@@ -1,0 +1,147 @@
+/*
+
+  The contents of this file are subject to the Mozilla Public License Version
+  1.1 (the "License"); you may not use this file except in compliance with
+  the License. You may obtain a copy of the License at 
+  
+           http://www.mozilla.org/MPL/ 
+  
+  Software distributed under the License is distributed on an "AS IS" basis,
+  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+  for the specific language governing rights and limitations under the License. 
+  
+  The Original Code is Vegas Framework.
+  
+  The Initial Developer of the Original Code is
+  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  the Initial Developer. All Rights Reserved.
+  
+  Contributor(s) :
+  
+*/
+
+/* ------- 	DynamicEvent
+
+	AUTHOR
+
+		Name : DynamicEvent
+		Package : vegas.events
+		Version : 1.0.0.0
+		Date :  2005-10-14
+		Author : ekameleon
+		URL : http://www.ekameleon.net
+		Mail : vegas@ekameleon.net
+
+	CONSTRUCTOR
+
+		new DynamicEvent(type:String, target, context) ;
+	
+	PROPERTY SUMMARY
+
+		- bubbles:Boolean [R/W]
+		
+		- context [R/W]
+		
+		- currentTarget [R/W]
+		
+		- eventPhase:Number [R/W]
+		
+		- target [R/W]
+		
+		- type:String [R/W]
+
+	METHOD SUMMARY
+	
+		- cancel():Void
+		
+		- clone():BasicEvent
+		
+		- getBubbles():Boolean
+		
+		- getContext()
+		
+		- getCurrentTarget()
+		
+		- getEventPhase():Number
+		
+		- getTarget()
+		
+		- getTimeStamp():Number
+		
+		- getType():String
+		
+		- isCancelled():Boolean
+		
+		- isQueued():Boolean
+		
+		- queueEvent():Void
+		
+		- setBubbles(b:Boolean):Void
+		
+		- setContext(context):Void
+		
+		- setCurrentTarget(target):Void
+		
+		- setEventPhase(n:Number):Void
+		
+		- setTarget(target):Void
+		
+		- setType(type:String):Void
+		
+		- stopImmediatePropagation()
+		
+		- toString():String
+
+	INHERIT
+	
+		Object > BasicEvent > DynamicEvent
+
+	IMPLEMENTS
+	
+		ICloneable, Event, IFormattable
+	
+	HISTORY
+	
+		ADD : [2006-01-22] time property.
+	
+----------  */
+
+import vegas.events.BasicEvent;
+import vegas.util.factory.PropertyFactory;
+
+dynamic class vegas.events.DynamicEvent extends BasicEvent {
+
+	// ----o Constructor
+	
+	public function DynamicEvent(type:String, target, context) {
+		super(type, target, context) ;
+	}
+
+	// ----o Public Properties
+	
+	public var bubbles:Boolean ; // [R/W]
+	public var context ; // [R/W]
+	public var currentTarget ; // [R/W]
+	public var eventPhase:Number ; // [R/W]
+	public var target ; // [R/W]
+	public var timeStamp:Number ; // [Read Only]
+	public var type:String ; // [R/W]
+	
+	// ----o Public Methods
+
+	/*override*/ public function clone() {
+		return new DynamicEvent(_type, _target, _context) ;
+	}
+
+	// ----o Virtual Properties
+
+	static private var __BUBBLES__:Boolean = PropertyFactory.create(DynamicEvent, "bubbles", true) ;
+	static private var __CONTEXT__:Boolean = PropertyFactory.create(DynamicEvent, "context", true) ;
+	static private var __CURRENT_TARGET__:Boolean = PropertyFactory.create(DynamicEvent, "currentTarget", true) ;
+	static private var __EVENT_PHASE__:Boolean = PropertyFactory.create(DynamicEvent, "eventPhase", true) ;
+	static private var __TARGET__:Boolean = PropertyFactory.create(DynamicEvent, "target", true) ;
+	static private var __TIMESTAMP__:Boolean = PropertyFactory.create(DynamicEvent, "timeStamp", true, true) ;
+	static private var __TYPE__:Boolean = PropertyFactory.create(DynamicEvent, "type", true) ;
+
+}
