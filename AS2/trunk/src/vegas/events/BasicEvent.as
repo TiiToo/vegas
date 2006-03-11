@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -102,10 +102,32 @@ import vegas.events.Event;
 import vegas.events.EventFormat;
 import vegas.events.EventPhase;
 
+/**
+ * {@code BasicEvent} is the basical event structure to work with {@link EventDispatcher} and {@link FastDispatcher}.
+ * 
+ * @author  eKameleon
+ * @version 1.0.0.0
+ * @see     CoreObject	
+ * @see     Event	
+ * @since   
+ */
 class vegas.events.BasicEvent extends CoreObject implements Event {
 
 	// ----o Constructor
 	
+	/**
+	 * Constructs a new {@code BasicEvent} instance.
+	 * 
+	 * <p>
+	 *    <code>
+	 *     var e:BasicEvent = new BasicEvent(type, target, context) ;
+	 *    </code>
+	 * </p>
+	 * @param   type    
+	 * @param   target  
+	 * @param   context 
+	 * 
+	 */
 	public function BasicEvent(type:String, target, context){
 		_bubbles = true ;
 		_context = context || null ;
@@ -126,38 +148,88 @@ class vegas.events.BasicEvent extends CoreObject implements Event {
 		_cancelled = true ;
 	}
 	
+	/**
+	 * Allows an object to be copied by reference.
+	 * @usage   
+	 * @return a new clone reference.
+	 */
 	public function clone() {
 		return new BasicEvent(_type, _target, _context) ;
 	}
 
+	/**
+	 * Allows an object to be copied by reference.
+	 * @usage   
+	 * @return 'true' if the event is bubbling.
+	 */
 	public function getBubbles():Boolean {
 		return _bubbles ;
 	}
 
+	/**
+	 * Enter description here
+	 * 
+	 * @usage   
+	 * @return  
+	 */
 	public function getContext() {
 		return _context ;
 	}
 
+	/**
+	 * Enter description here
+	 * 
+	 * @usage   
+	 * @return  
+	 */
 	public function getCurrentTarget() {
 		return _currentTarget ;
 	}
 
+	/**
+	 * Enter description here
+	 * 
+	 * @usage   
+	 * @return  
+	 */
 	public function getEventPhase():Number {
 		return _eventPhase ;
 	}
 
+	/**
+	 * Enter description here
+	 * 
+	 * @usage   
+	 * @return  
+	 */
 	public function getTarget() {
 		return _target ;
 	}
 	
+	/**
+	 * Get the event timestamp.
+	 * @usage  var time:Date = new Date(ev.getTimeStamp()) ;
+	 * @return the event number timestamp.
+	 */
 	public function getTimeStamp():Number {
 		return _time ;
 	}
 
+	/**
+	 * Returns event type (name).
+	 * @return an {@link EventType} instance
+	 */
 	public function getType():String {
 		return _type ;
 	}
 
+	/**
+	 * Inititalize the current event
+	 * @param   type       
+	 * @param   bubbles    
+	 * @param   cancelable 
+	 * @return  nothing
+	 */
 	public 	function initEvent(type:String, bubbles:Boolean, cancelable:Boolean):Void {
 		_type = type ;
 		_bubbles = bubbles ;
@@ -165,6 +237,10 @@ class vegas.events.BasicEvent extends CoreObject implements Event {
 		_time = (new Date()).valueOf() ;
 	}
 
+	/**
+	 * Returns 'true' if the event is cancelled.
+	 * @return 'true' if the event is cancelled.
+	 */
 	public function isCancelled():Boolean {
 		return _cancelled ;
 	}

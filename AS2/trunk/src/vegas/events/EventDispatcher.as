@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -127,6 +127,8 @@
 			This allows you to determine where altered handling of an event type has been introduced in the event flow heirarchy by an EventDispatcher object.
 			To determine whether a specific event type will actually trigger an event listener, use EventDispatcher.willTrigger(). 
 		
+		- static release(name:String):EventDispatcher
+		
 		- removeChild(child:EventDispatcher):Void
 		
 		- removeEventListener(eventName:String, listener )
@@ -161,13 +163,16 @@
 			- Cocoa-Framework : http://developer.apple.com/cocoa/
 			- Notification center : http://developer.apple.com/documentation/Cocoa/Conceptual/Notifications/index.html
 
-	CHANGE      : [2005-11-07] change method name triggerEvent -> dispatchEvent (use AS3 trigger event method name)
-	CHANGE      : [2005-11-08] priority in addEventListener method
-	CHANGE      : [2005-12-11] static removeInstance Method
-	ADD         : [2006-01-19] target parameter in constructor
-	ADD         : [2006-01-19] Bubbling Event v.alpha ! 
-	ADD         : [2006-01-22] Capturing Event v.alpha !
-	REFACTORING : [2006-01-22] Change params in addEventListener Method
+	HISTORY
+	
+		CHANGE      : [2005-11-07] change method name triggerEvent -> dispatchEvent (use AS3 trigger event method name)
+		CHANGE      : [2005-11-08] priority in addEventListener method
+		CHANGE      : [2005-12-11] static removeInstance Method
+		ADD         : [2006-01-19] target parameter in constructor
+		ADD         : [2006-01-19] Bubbling Event v.alpha ! 
+		ADD         : [2006-01-22] Capturing Event v.alpha !
+		REFACTORING : [2006-01-22] Change params in addEventListener Method
+		ADD         : [2006-03-11] add static release(name:String) method.
 	
 	TODO   : [2006-01-19] Vérifier le stopImmediatePropagation() et voir le stopPropagation en AS3 !
 	
@@ -263,7 +268,7 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
     }
 
 	static public function getInstance(name:String):EventDispatcher {
-		if (!name) name = "__default" ;
+		if (!name) name = "__default__" ;
 		if (!EventDispatcher.instances.containsKey(name)) {
 			EventDispatcher.instances.put(name, new EventDispatcher) ;
 		}
@@ -276,6 +281,11 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 	
 	public function hasEventListener(eventName:String):Boolean {
 		return _listeners.containsKey(eventName) ;
+	}
+
+	static public function release(name:String):EventDispatcher {
+		if (!name) name = "__default__" ;
+		return EventDispatcher.instances.remove(name) ;
 	}
 
 	public function removeChild( child:EventDispatcher ):Void {
