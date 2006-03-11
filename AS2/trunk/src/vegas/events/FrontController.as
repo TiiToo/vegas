@@ -71,10 +71,7 @@ class vegas.events.FrontController extends CoreObject  {
 	
 	/**
 	 * FrontController - Constructor
-	 * @usage 
-	 * 
-	 * 	var oC = new FrontController( [oE:EventDispatcher] ) ;
-	 * 
+	 * @usage var oC = new FrontController( [oE:EventDispatcher] ) ;
 	 */
 	function FrontController( oE:EventDispatcher , name) {
 		_map = new HashMap() ;
@@ -95,10 +92,7 @@ class vegas.events.FrontController extends CoreObject  {
 
 	/**
 	 * Returns a EventListener
-	 * @usage  
-	 * 
-	 * 	myController.get( myEvent:String ) ;	
-	 * 
+	 * @usage  myController.get( myEvent:String ) ;	
 	 * @param  eventName:String
 	 * @return an EventListener  
 	 */
@@ -108,8 +102,6 @@ class vegas.events.FrontController extends CoreObject  {
 	
 	/**
 	 * Add a new entry into the FrontController.
-	 * 
-	 * @usage   
 	 * @param eventName:String
 	 * @param listener:EventListener
 	 */
@@ -120,7 +112,6 @@ class vegas.events.FrontController extends CoreObject  {
 	
 	/**
 	 * Remove an entry into the FrontController.
-	 * @usage   
 	 * @param eventName:String
 	 * @return  
 	 */

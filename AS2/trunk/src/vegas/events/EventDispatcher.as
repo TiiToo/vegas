@@ -37,7 +37,7 @@
 	
 		new EventDispatcher(target:IEventDispatcher) ;
 
-	PUBLIC PROPERTY
+	PROPERTY SUMMARY
 	
 		- parent:EventDispatcher
 
@@ -151,9 +151,13 @@
 		
 		- toString():String
 
+	INHERIT
+	
+		CoreObject > EventDispatcher
+
 	IMPLEMENTS 
 	
-		EventTarget, IEventDispatcher, IFormattable
+		EventTarget, IEventDispatcher, IFormattable, IHashable
 
 	THANKS
 	

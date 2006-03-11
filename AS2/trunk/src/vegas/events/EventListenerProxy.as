@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -35,12 +35,14 @@
 
 	CONSTRUCTOR
 	
-		- new EventListenerProxy( myObject , myFunction ) ;
-		- new EventListenerProxy( myObject , "myFunction" ) ;
+		- new EventListenerProxy( myObject , myFunction:Function ) ;
+		- new EventListenerProxy( myObject , myFunction:String ) ;
 
 	METHOD SUMMARY
 	
 		- addArguments():Void
+		
+		- clone():Delegate
 		
 		- static create(scope, medthod):Function
 		
@@ -74,7 +76,7 @@
 	
 	IMPLEMENTS
 	
-		ICloneable, EventListener, IRunnable, IFormattable
+		ICloneable, EventListener, IRunnable, IFormattable, IHashable
 
 	SEE ALSO
 	

@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -41,6 +41,8 @@
 	
 		- addArguments():Void
 		
+		- clone():Delegate
+		
 		- static create(scope, medthod):Function
 		
 		- getArguments():Array
@@ -59,7 +61,7 @@
 
 	IMPLEMENTS
 	
-		ICloneable, EventListener, IRunnable, IFormattable
+		ICloneable, EventListener, IRunnable, IFormattable, IHashable
 
 	SEE ALSO
 	
@@ -128,6 +130,7 @@ class vegas.events.Delegate extends CoreObject implements ICloneable, EventListe
 	}
 
 	public function run():Void {
+		addArguments.apply(this, arguments) ;
 		_p() ;
 	}
 

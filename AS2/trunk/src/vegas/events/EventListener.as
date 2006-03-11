@@ -36,6 +36,7 @@
 	METHOD SUMMARY
 	
 		- handleEvent(e:Event)
+			Permet d'intercepter un événement.
 
 ----------  */
 

@@ -33,11 +33,15 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
+	DESCRIPTION
+	
+		Classe utilisée par la classe !EventDispatcher (en AS3 cette classe est une classe privée)
+
 	METHOD SUMMARY
 	
-		- enqueue(e:Event)
+		- enqueue(e:Event):Void
 		
-		- getQueuedEvents([eventType:String])
+		- getQueuedEvents([eventType:String]):Queue
 
 			return a queue with all events
 			
@@ -49,17 +53,17 @@
 	
 	IMPLEMENTS
 
-		IFormattable
+		IFormattable, IHashable
 
 ----------  */
 
-import vegas.core.IFormattable;
+import vegas.core.CoreObject ;
 import vegas.data.iterator.Iterator;
 import vegas.data.Queue;
 import vegas.data.queue.LinearQueue;
 import vegas.events.Event;
 
-class vegas.events.EventQueue implements IFormattable {
+class vegas.events.EventQueue extends CoreObject  {
 
 	// ----o Constructor
 	
@@ -91,10 +95,6 @@ class vegas.events.EventQueue implements IFormattable {
     
 	public function size():Number {
 		return _events.size() ;
-	}
-	
-	public function toString():String {
-		return "[EventQueue]" ;
 	}
 	
 	// ----o Private Properties

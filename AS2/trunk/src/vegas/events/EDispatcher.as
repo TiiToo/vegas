@@ -37,19 +37,18 @@
 	
 		Private
 
-	METHOD SUMMARY
 	
-		- initialize( target )
-		
-			Permet d'injecter dans un objet les méthodes définies par l'interface IDispatcher
-
-	MIXIN METHOD SUMMARY
+	METHOD SUMMARY
 	
 		- addEventListener( eventName:String, obj, func ):Void 
 		
 		- dispatchEvent(ev):Void 
 		
 		- eventListenerExists(eventName:String, obj , func):Boolean
+		
+		- static initialize( target )
+		
+			Permet d'injecter dans un objet les méthodes définies par l'interface IDispatcher
 		
 		- removeAllEventListeners(eventName:String):Void 
 		
