@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -107,24 +107,23 @@ class vegas.util.ConstructorUtil {
 		if (instance.__path__) {
 			return instance.__path__ ;
 		} else {
-			var o = typeof(instance)=="function"? Function(instance).prototype : instance.__proto__ ;
-			var f:Function ;
+			var o = (typeof(instance)=="function") ? Function(instance).prototype : instance.__proto__ ;
+			var callee:Function ;
 			var find:Function = function( s:String, target ) {
 				for ( var prop:String in target )  {
 					var current:Function = target[prop] ;
 					if ( current.__constructor__ === Object ) {
-							prop = f( s + prop + ".", current );
+							prop = callee( s + prop + ".", current );
 							if ( prop ) return prop ;
 					} else if ( current.prototype === o ) {
 						return s + prop ;
 					}
 				}
 			};
-			f = find ;
+			callee = find ;
 			instance["__path__"] = find( "", scope || _global ) || null ;
 			return instance["__path__"] || null ;
 		}
-		 
 	}
 	
 	static public function isImplementationOf(c:Function, i:Function):Boolean {
