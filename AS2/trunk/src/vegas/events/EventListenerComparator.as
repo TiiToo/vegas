@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -35,11 +35,7 @@
 
 	CONSTRUCTOR
 	
-		new EventListenerComparator(priority:Number) ;
-	
-	ARGUMENTS
-	
-		priority:Number
+		new EventListenerComparator(container:EventListenerContainer) ;
 	
 	METHOD SUMMARY
 	
@@ -55,9 +51,13 @@
 		
 		- toString()
 
+	INHERIT
+	
+		CoreObject > EventListenerComparator
+
 	IMPLEMENTS
 	
-		IComparator, IFormattable
+		IComparator, IFormattable, IHashable
 
 ----------  */
 

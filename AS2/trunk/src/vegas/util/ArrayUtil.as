@@ -157,7 +157,6 @@ class vegas.util.ArrayUtil {
     }
 
 	static public function indexOf( ar:Array, value:Object, startIndex:Number, count:Number):Number {
-		if (!value) return null ;
 		var l:Number = ar.length ;
 		if(isNaN(startIndex) ) startIndex = 0 ;
         if(isNaN(count)) count = ar.length  - startIndex ;

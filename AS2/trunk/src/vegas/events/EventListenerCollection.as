@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -53,7 +53,7 @@
 	
 	IMPLEMENTS 
 	
-		Iterable
+		IFormattable, IHashable, Iterable
 	
 	CHANGE    : 2005-11-12 change propagate method
 	CHANGE    : 2006-01-19 use TypeUtil class.
