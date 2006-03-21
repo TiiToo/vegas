@@ -33,6 +33,12 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
+ 	DESCRIPTION
+
+		Cette classe est privée, elle est utilisée en tant qu'abstraction pour créer par la suite des classes qui vont utiliser la classe EventDispatcher? par composition et qui vont implémenter également IEventDispatcher.
+		
+		Il est possible de redéfinir l'instance interne de la classe EventDispatcher en surchargeant la méthode getEventDispatcher(). Il peut être intéressant de faire cet overriding dans certaines conditions comme pour passer le système événmentiel sur un modèle global et non plus local au niveau de l'instance (Notion de Front Controller).  
+
 	METHOD SUMMARY
 	
 		- addEventListener(eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void
@@ -56,8 +62,12 @@
 		- removeGlobalEventListener(o):EventListener
 
 	INHERIT
-	
-		EventTarget
+		
+		 CoreObject > AbstractCoreEventDispatcher
+		 
+ 	IMPLEMENTS
+ 
+		EventTarget, IEventDispatcher, IFormattable, IHashable
 
 ----------  */
 
@@ -70,7 +80,7 @@ import vegas.events.EventListenerCollection;
 import vegas.events.IEventDispatcher;
 
 /**
- *
+ * Abstract class
  * @author eKameleon
  * @version 1.0.0.0
  **/
