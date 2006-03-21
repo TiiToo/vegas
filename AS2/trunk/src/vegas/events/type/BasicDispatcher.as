@@ -57,16 +57,17 @@
 
 ----------  */
 
-import vegas.events.EDispatcher;
-import vegas.events.IDispatcher;
+import vegas.core.CoreObject ;
+import vegas.events.EDispatcher ;
+import vegas.events.IDispatcher ;
 
-class vegas.events.type.BasicDispatcher extends Object implements IDispatcher {
+class vegas.events.type.BasicDispatcher extends CoreObject implements IDispatcher {
 
 	// ----o Constructor
 	
 	private function BasicDispatcher() {
-		
-			EDispatcher.initialize(this) ; 
+		super() ;
+		EDispatcher.initialize(this) ; 
 		
 	}
 

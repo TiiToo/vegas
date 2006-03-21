@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -35,39 +35,27 @@
 
 	CONSTRUCTOR
 
-		ModelChangedEvent(name:String, target:Object)
+		var ev:Event = new ModelChangedEvent(name:String, target) ;
 
 	PROPERTY SUMMARY
-
-		- bubbles:Boolean [R/W]
+	
+		- data
 		
-		- context [R/W]
-		
-		- eventName:String 
-			The name (sub-type) of the event; one of MODEL_CHANGED, ADD_IDTEMS, REMOVE_ITEMS, SORT, UPDATE_ALL, UPDATE_FIELD, or UPDATE_ITEMS. 
-		
-		- eventPhase:Number [R/W]
-		
-		- fieldName:String 
+		- fieldName:String
 			The name of the field that was updated, or null. 
 		
-		- firstItem:Number 
+		- firstItem:Number
 			The index of the first item that was added, changed, or removed. 
 		
-		- lastItem:Number 
-			The index of the last item that was added changed or removed. 
+		- index:Number
 		
-		- removedIDs:Array 
+		- lastItem:Number
+		
+		- removedIDs:Array
 			An array containing the IDs of the items that were removed, or null. 
 		
-		- removedItems:Array 
+		- removedItems:Array
 			An array containing the items that were removed from the data provider, or null. 
-		
-		- target [R/W]
-		
-		- time:Number [Read Only]
-		
-		- type:String [R/W]
 
 	METHOD SUMMARY
 	
@@ -129,15 +117,11 @@
 
 	INHERIT
 	
-		Object > BasicEvent > DynamicEvent > ModelChangedEvent
+		CoreObject > BasicEvent > ModelChangedEvent
 
 	IMPLEMENTS
 	
-		Event
-		
-	SEE ALSO
-	
-		ModelChangedEventType
+		Event, ModelChangedEventType
 
 ----------  */
 
@@ -150,7 +134,6 @@ class vegas.events.ModelChangedEvent extends BasicEvent {
 	
 	public function ModelChangedEvent(name:String, target:Object) {
 		super(name || ModelChangedEventType.MODEL_CHANGED , target) ;
-		trace("ok : " + name);
 	}
 
 	// ----o Public Properties

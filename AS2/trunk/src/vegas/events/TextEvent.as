@@ -33,6 +33,10 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
+	CONSTRUCTOR
+	
+		var ev:Event = new TextEvent(type:String, txt:String, target, context) ;
+
 	PROPERTY SUMMARY
 	
 		- bubbles:Boolean [R/W]
@@ -93,11 +97,11 @@
 
 	INHERIT
 	
-		Object > BasicEvent > DynamicEvent > TextEvent
+		CoreObject > BasicEvent > DynamicEvent > TextEvent
 
 	IMPLEMENTS
 	
-		ICloneable, Event
+		ICloneable, IFormattable, IHashable, Event
 	
 ----------  */
 
@@ -119,7 +123,7 @@ class vegas.events.TextEvent extends DynamicEvent {
 	// ----o Public Methods
 
 	public function clone() {
-		return new TextEvent(_type, text, _target, _context) ;
+		return new TextEvent(getType(), text, _target, getContext()) ;
 	}
 	
 }

@@ -59,14 +59,22 @@
 
 import vegas.events.EDispatcher;
 import vegas.events.IDispatcher;
+import vegas.core.HashCode;
+import vegas.core.IFormattable;
+import vegas.core.IHashable;
 
-class vegas.events.type.TextFieldDispatcher extends TextField implements IDispatcher {
+class vegas.events.type.TextFieldDispatcher extends TextField implements IDispatcher, IFormattable, IHashable {
 
 	// ----o Constructor
 	
 	private function TextFieldDispatcher() {
 		//
 	}
+
+	// ----o Init HashCode
+	
+	static private var _initHashCode:Boolean = HashCode.initialize(TextFieldDispatcher.prototype) ;
+	
 
 	// ----o Init EDispatcher Methods
 
@@ -80,5 +88,10 @@ class vegas.events.type.TextFieldDispatcher extends TextField implements IDispat
 	public function removeAllEventListeners(eventName:String):Void {}
 	public function removeEventListener(eventName:String, obj, func):Void {}
 	public function updateEvent(eventName:String, oInit):Void {}
+
+	public function hashCode():Number {
+		return null ;
+	}
+	
 
 }

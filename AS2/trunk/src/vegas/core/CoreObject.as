@@ -50,7 +50,7 @@ import vegas.core.IFormattable;
 import vegas.core.IHashable;
 import vegas.util.ConstructorUtil;
 
-dynamic class vegas.core.CoreObject implements IFormattable, IHashable {
+class vegas.core.CoreObject implements IFormattable, IHashable {
 
 	// ----o Construtor
 	

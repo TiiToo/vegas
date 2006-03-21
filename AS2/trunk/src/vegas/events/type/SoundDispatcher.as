@@ -59,8 +59,11 @@
 
 import vegas.events.EDispatcher;
 import vegas.events.IDispatcher;
+import vegas.core.HashCode;
+import vegas.core.IFormattable;
+import vegas.core.IHashable;
 
-class vegas.events.type.SoundDispatcher extends Sound implements IDispatcher {
+class vegas.events.type.SoundDispatcher extends Sound implements IDispatcher, IFormattable, IHashable {
 
 	// ----o Constructor
 	
@@ -68,6 +71,10 @@ class vegas.events.type.SoundDispatcher extends Sound implements IDispatcher {
 		super(mc) ;
 	}
 
+	// ----o Init HashCode
+	
+	static private var _initHashCode:Boolean = HashCode.initialize(SoundDispatcher.prototype) ;
+	
 	// ----o Init EDispatcher Methods
 
 	static private var __initDispatcher = EDispatcher.initialize (SoundDispatcher.prototype) ;
@@ -80,5 +87,10 @@ class vegas.events.type.SoundDispatcher extends Sound implements IDispatcher {
 	public function removeAllEventListeners(eventName:String):Void {}
 	public function removeEventListener(eventName:String, obj, func):Void {}
 	public function updateEvent(eventName:String, oInit):Void {}
+
+	public function hashCode():Number {
+		return null ;
+	}
 	
+
 }

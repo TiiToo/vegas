@@ -64,7 +64,9 @@ class vegas.util.factory.PropertyFactory {
 	// ----o Public Methods
 	
 	static public function create(o, propName:String, isPrototype:Boolean, isReadOnly:Boolean):Boolean {
-		if (isPrototype) o = o.prototype ;
+		if (isPrototype) {
+			o = o["prototype"] ;
+		}
 		var suffix:String = (new StringUtil(propName)).ucFirst() ;
 		var g:Function = o["get"+suffix] ;
 		var s:Function = isReadOnly ? null: o["set"+suffix] ;

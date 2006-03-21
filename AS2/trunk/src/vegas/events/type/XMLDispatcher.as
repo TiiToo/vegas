@@ -59,14 +59,23 @@
 
 import vegas.events.EDispatcher;
 import vegas.events.IDispatcher;
+import vegas.core.HashCode;
+import vegas.core.IFormattable;
+import vegas.core.IHashable;
 
-class vegas.events.type.XMLDispatcher extends XML implements IDispatcher {
+
+class vegas.events.type.XMLDispatcher extends XML implements IDispatcher, IFormattable, IHashable {
 
 	// ----o Constructor
 	
 	private function XMLDispatcher (str:String) {
 		super(str) ;
 	}
+
+	// ----o Init HashCode
+	
+	static private var _initHashCode:Boolean = HashCode.initialize(XMLDispatcher.prototype) ;
+	
 
 	// ----o Init EDispatcher Methods
 
@@ -78,7 +87,13 @@ class vegas.events.type.XMLDispatcher extends XML implements IDispatcher {
 	
 	public function dispatchEvent(ev):Void {}
 	
-	public function eventListenerExists(eventName:String, obj , func):Boolean { return undefined; }
+	public function eventListenerExists(eventName:String, obj , func):Boolean { 
+		return undefined ; 
+	}
+
+	public function hashCode():Number {
+		return null ;
+	}
 	
 	public function removeAllEventListeners(eventName:String):Void {}
 	

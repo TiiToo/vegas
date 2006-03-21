@@ -47,7 +47,7 @@
 			
 		serializer & deserializer in AS2 and
 		
-		MORE INFORMATION IN : http://www.crockford.com/JSON/index.html
+		MORE INFORMATION IN : http://www.json.org/
 	
 	
 	EXAMPLE

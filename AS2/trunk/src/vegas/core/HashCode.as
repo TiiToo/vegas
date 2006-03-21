@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -65,6 +65,13 @@ class vegas.core.HashCode {
 	
 	// ----o Public Methods
 
+	/**
+	 *  Compare two IHashable objects.
+	 * @usage   var isEquals:Boolean = HashCode.equals(o1, o2) ;
+	 * @param   o1 
+	 * @param   o2 
+	 * @return  
+	 */
 	static public function equals(o1, o2):Boolean {
 		return HashCode.identify(o1) == HashCode.identify(o2) ;
 	}

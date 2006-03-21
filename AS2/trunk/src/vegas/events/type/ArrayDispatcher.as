@@ -59,8 +59,11 @@
 
 import vegas.events.EDispatcher;
 import vegas.events.IDispatcher;
+import vegas.core.HashCode;
+import vegas.core.IFormattable;
+import vegas.core.IHashable;
 
-class vegas.events.type.ArrayDispatcher extends Array implements IDispatcher {
+class vegas.events.type.ArrayDispatcher extends Array implements IDispatcher, IFormattable, IHashable {
 
 	// ----o Constructor
 	
@@ -71,6 +74,10 @@ class vegas.events.type.ArrayDispatcher extends Array implements IDispatcher {
 		
 	}
 
+	// ----o Init HashCode
+	
+	static private var _initHashCode:Boolean = HashCode.initialize(ArrayDispatcher.prototype) ;
+	
 	// ----o Public Properties
 
 	public function addEventListener(eventName:String, obj, func):Void {
@@ -80,7 +87,11 @@ class vegas.events.type.ArrayDispatcher extends Array implements IDispatcher {
 	public function dispatchEvent(ev):Void {
 		//
 	}
-		
+
+	public function hashCode():Number {
+		return null ;
+	}
+	
 	public function eventListenerExists(eventName:String, obj , func):Boolean { 
 		return undefined ;
 	}
