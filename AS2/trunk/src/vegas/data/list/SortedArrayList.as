@@ -146,7 +146,7 @@ class vegas.data.list.SortedArrayList extends ArrayList {
 
 	public function SortedArrayList(o, comp:IComparator, opt:Number) {
 		super(o) ;
-		setIComparator(comp) ;
+		setComparator(comp) ;
 		setOptions(opt) ;
 	}
 	
@@ -179,7 +179,7 @@ class vegas.data.list.SortedArrayList extends ArrayList {
 		return b ;
 	}
 
-	public function getIComparator():IComparator {
+	public function getComparator():IComparator {
 		return _comparator ;
 	}
 
@@ -187,7 +187,7 @@ class vegas.data.list.SortedArrayList extends ArrayList {
 		return _options ;
 	}
 		
-	public function setIComparator(comp:IComparator):Void {
+	public function setComparator(comp:IComparator):Void {
 		_comparator = comp ;
 	}
 	
@@ -217,11 +217,11 @@ class vegas.data.list.SortedArrayList extends ArrayList {
 	// ----o Virtual Properties
 	
 	public function get comparator():IComparator {
-		return getIComparator() ;
+		return getComparator() ;
 	}
 	
 	public function set comparator(comp:IComparator):Void {
-		setIComparator(comp) ;
+		setComparator(comp) ;
 	}
 	
 	public function get options() {

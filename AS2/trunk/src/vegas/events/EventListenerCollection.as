@@ -81,7 +81,7 @@ class vegas.events.EventListenerCollection extends CoreObject implements Iterabl
 	
 	public function EventListenerCollection() {
 		_listeners = new SortedArrayList ;
-		_listeners.setIComparator(new EventListenerComparator()) ;
+		_listeners.setComparator(new EventListenerComparator()) ;
 		_listeners.setOptions(Array.NUMERIC) ;
 	}
 	
