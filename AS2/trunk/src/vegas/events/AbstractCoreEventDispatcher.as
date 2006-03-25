@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- AbstractCoreEventDispatcher
+/** ---------- AbstractCoreEventDispatcher
 
 	AUTHOR
 	
@@ -47,20 +47,26 @@
 		
 		- dispatchEvent( event , [isQueue, [target, [context]]]):Event
 		
-		- getEventDispatcher() : EventDispatcher 
+		- getEventDispatcher():EventDispatcher 
 
- 		- getEventListeners(eventName:String) : EventListenerCollection
+ 		- getEventListeners(eventName:String):EventListenerCollection
 		
 		- getGlobalEventListeners():EventListenerCollection
 		
+		- getParent():EventDispatcher
+		
 		- getRegisteredEventNames():Set
-			
-		- hasEventListener(eventName:String):Boolean
+	
+		- initEventDispatcher():EventDispatcher 
+ 
+ 		- hasEventListener(eventName:String):Boolean
 		
 		- removeEventListener(eventName:String, listener, useCapture:Boolean ):EventListener
 		
 		- removeGlobalEventListener(o):EventListener
-
+		
+		- setParent(parent:EventDispatcher):Void
+		
 	INHERIT
 		
 		 CoreObject > AbstractCoreEventDispatcher
@@ -88,14 +94,14 @@ import vegas.events.IEventDispatcher;
 class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEventDispatcher {
 
 	// ----o Constructor 
-	
+
 	private function AbstractCoreEventDispatcher() {
 		super() ;
 		_oED = initEventDispatcher() ;
 	}		
 
 	// ----o Püblic Methods
-	
+
 	public function addEventListener( eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void {
 		_oED.addEventListener.apply(_oED, arguments) ;
 	}
@@ -103,7 +109,7 @@ class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEv
 	public function addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void {
 		_oED.addGlobalEventListener.apply(_oED, arguments) ;
 	}		
-	
+
 	public function dispatchEvent(event, isQueue:Boolean, target, context):Event {
 		return _oED.dispatchEvent.apply(_oED, arguments) ;	
 	}
@@ -119,37 +125,37 @@ class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEv
 	public function getGlobalEventListeners():EventListenerCollection {
 		return _oED.getGlobalEventListeners.apply(_oED, arguments) ;
 	}
-	
+
 	public function getParent():EventDispatcher {
 		return _oED.parent ;
 	}
-	
+
 	public function getRegisteredEventNames():Set {
 		return _oED.getRegisteredEventNames.apply(_oED, arguments) ;
 	}
-	
+
 	public function hasEventListener(eventName:String):Boolean {
 		return _oED.hasEventListener.apply(_oED, arguments) ;
 	}
 
-	public function initEventDispatcher() : EventDispatcher {
+	public function initEventDispatcher():EventDispatcher {
 		return new EventDispatcher( this ) ;
 	}
 
 	public function removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener {
 		return _oED.removeEventListener.apply(_oED, arguments) ;
 	}
-	
+
 	public function removeGlobalEventListener( listener ):EventListener {
 		return _oED.removeGlobalEventListener.apply(_oED, arguments) ;
 	}
-	
+
 	public function setParent(parent:EventDispatcher):Void {
 		_oED.parent = parent ;
 	}
-	
+
 	// ----o Private Properties
-	
+
 	private var _oED:EventDispatcher ;
 
 }

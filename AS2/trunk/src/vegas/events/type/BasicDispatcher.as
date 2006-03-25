@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- BasicDispatcher
+/** ---------- BasicDispatcher
 
 	AUTHOR
 		
@@ -32,6 +32,11 @@
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
+
+	DESCRIPTION
+	
+		Cette classe utilise le modèle EDispatcher (compatibilité avec anciens projets)
+		Cette classe est dépréciée dans Vegas.
 
 	METHOD SUMMARY
 
@@ -49,11 +54,11 @@
 
 	INHERIT
 	
-		Object > BasicDispatcher
+		CoreObject > BasicDispatcher
 
 	IMPLEMENT
 	
-		IDispatcher
+		IDispatcher, IFormattable, IHashable
 
 ----------  */
 
