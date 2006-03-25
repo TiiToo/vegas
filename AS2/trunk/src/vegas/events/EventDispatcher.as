@@ -203,8 +203,8 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 	
 	public function EventDispatcher( target:IEventDispatcher , parent:EventDispatcher ) {
 		_globalListeners = new EventListenerCollection() ;
-		_captures = new HashMap ;
-		_listeners = new HashMap ;
+		_captures = new HashMap() ;
+		_listeners = new HashMap() ;
 		_queue = new EventQueue() ;
 		_target = target || this ;
 		this.parent = parent || null ;
@@ -264,7 +264,7 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 
 	public function getEventListeners(eventName:String):EventListenerCollection {
 		if ( _listeners.containsKey(eventName) ) return _listeners.get(eventName) ;
-		return new EventListenerCollection ;
+		return new EventListenerCollection() ;
 	}
 
 	public function getGlobalEventListeners():EventListenerCollection {
@@ -282,6 +282,10 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 	public function getRegisteredEventNames():Set {
     	return new HashSet(_listeners.getKeys()) ;
     }
+	
+	public function getTarget() {
+		return _target ;	
+	}
 	
 	public function hasEventListener(eventName:String):Boolean {
 		return _listeners.containsKey(eventName) ;
@@ -326,7 +330,7 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 	
     // ----o Private Properties
 	
-	static private var instances:HashMap = new HashMap ;
+	static private var instances:HashMap = new HashMap() ;
 	private var _globalListeners:EventListenerCollection ;
 	private var _captures:HashMap ;
 	private var _listeners:HashMap ;
@@ -345,7 +349,7 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 			while (i<l) {
 				if (e.getBubbles()) {
 					current = parents[i] ;
-					e.setCurrentTarget(current) ;
+					e.setCurrentTarget(current.getTarget()) ;
 					e.setEventPhase(EventPhase.BUBBLING_PHASE) ;
 					current.dispatchEvent(e) ;
 					if (e["stop"] >= EventPhase.STOP ) return false ;
@@ -363,7 +367,7 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 			var current:EventDispatcher ;
 			while (--l > -1) {
 				current = parents[l] ;
-				e.setCurrentTarget(current) ;
+				e.setCurrentTarget(current.getTarget()) ;
 				e.setEventPhase(EventPhase.CAPTURING_PHASE) ;
 				current.dispatchEvent(e) ;
 				if (e["stop"] >= EventPhase.STOP ) return false ;
@@ -397,7 +401,7 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 
 	private function _propagateBubble(e:Event):Void {
 		if (e.getEventPhase(EventPhase.BUBBLING_PHASE)) {
-			e.setCurrentTarget(this) ;
+			e.setCurrentTarget(getTarget()) ;
 			_propagate(e) ;
 		}
 	}
