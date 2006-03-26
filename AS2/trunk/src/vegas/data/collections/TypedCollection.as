@@ -21,15 +21,17 @@
   
 */
 
-/* ---------- TypedCollection
+/** TypedCollection
 
-	Name : TypedCollection
-	Package : vegas.data.collections
-	Version : 1.0.0.0
-	Date : 2005-11-06
-	Author : ekameleon
-	URL : http://www.ekameleon.net
-	Mail : vegas@ekameleon.net
+ 	AUTHOR
+	
+		Name : TypedCollection
+		Package : vegas.data.collections
+		Version : 1.0.0.0
+		Date : 2005-11-06
+		Author : ekameleon
+		URL : http://www.ekameleon.net
+		Mail : vegas@ekameleon.net
 
 	METHODS
 
@@ -55,25 +57,24 @@
 
 	INHERIT
 	
-		Object > AbstractTypeable > TypedCollection
+		CoreObject > AbstractTypeable > TypedCollection
 
 	IMPLEMENTS 
 
-		Iterable, ISerializable, Typeable, Validator	
-	
-	TODO [2006-01-05] Attention au type dans le toSource !
+		Iterable, ISerializable, Typeable, Validator, IFormattable, IHashable	
 	
 ----------  */
 
 import vegas.core.ICloneable;
 import vegas.data.Collection;
+import vegas.data.iterator.Iterable;
 import vegas.data.iterator.Iterator;
 import vegas.errors.IllegalArgumentError;
 import vegas.util.AbstractTypeable;
 import vegas.util.serialize.Serializer;
 import vegas.util.TypeUtil;
 
-class vegas.data.collections.TypedCollection extends AbstractTypeable implements ICloneable, Collection {
+class vegas.data.collections.TypedCollection extends AbstractTypeable implements ICloneable, Iterable, Collection {
 
 	// ----o Constructor
 

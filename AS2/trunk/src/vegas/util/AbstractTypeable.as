@@ -62,6 +62,7 @@ import vegas.core.ITypeable;
 import vegas.core.IValidator;
 import vegas.errors.IllegalArgumentError;
 import vegas.errors.TypeMismatchError;
+import vegas.util.ConstructorUtil;
 import vegas.util.TypeUtil;
 
 class vegas.util.AbstractTypeable extends CoreObject implements ITypeable, IValidator {
@@ -90,7 +91,8 @@ class vegas.util.AbstractTypeable extends CoreObject implements ITypeable, IVali
 	}
 	
 	public function validate(value):Void {
-		if (!supports(value)) throw new TypeMismatchError("validate('value' : " + value + ") is mismatch") ;
+		var name:String = ConstructorUtil.getName(this) ;
+		if (!supports(value)) throw new TypeMismatchError( name + ".validate('value' : " + value + ") is mismatch.") ;
 	}
 	
 	// -----o Private Properties
