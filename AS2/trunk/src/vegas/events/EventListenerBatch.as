@@ -38,6 +38,38 @@
 		Cette classe permet d'enregistrer plusieurs écouteurs qui seront invoqué en même temps lors de la notification
 		 d'un ou plusieurs événements.
 	
+	USE
+	
+		import vegas.events.BasicEvent ;
+		import vegas.events.Delegate ;
+		import vegas.events.Event ;
+		import vegas.events.EventDispatcher ;
+		import vegas.events.EventListener ;
+		import vegas.events.EventListenerBatch ;
+		
+		var EVENT_TYPE:String = "onTest" ;
+		
+		var action1:Function = function (e:Event):Void {
+    		trace ("> action1 : " + e.getType()) ;
+		}
+		
+		var action2:Function = function (e:Event):Void {
+    		trace ("> action2 : " + e.getType()) ;
+		}
+		
+		var oListener1:EventListener = new Delegate(this, action1) ;
+		var oListener2:EventListener = new Delegate(this, action2) ;
+		
+		var batch:EventListenerBatch = new EventListenerBatch() ;
+		batch.insert(oListener1) ;
+		batch.insert(oListener2) ;
+		
+		var e:Event = new BasicEvent( EVENT_TYPE , this ) ;
+		
+		EventDispatcher.getInstance().addEventListener(EVENT_TYPE, batch) ;
+		EventDispatcher.getInstance().dispatchEvent( e ) ;
+	
+	
 	METHOD SUMMARY
 	
 		- clear():Void
@@ -46,17 +78,17 @@
 		
 		- contains(o):Boolean
 		
-		- get(id:Number):IRunnable
+		- get(id:Number):EventListener
 
  		- handleEvent(e:Event):Void
 
-		- insert( oR:IRunnable ):Boolean
+		- insert( oListener:EventListener ):Boolean
 		
 		- isEmpty():Boolean
 		
 		- iterator():Iterator
 		
-		- remove( oR:IRunnable ):Boolean
+		- remove( oR:EventListener ):Boolean
 		
 		- size():Number
 		
@@ -68,7 +100,7 @@
 
 	IMPLEMENTS 
 
-		IFormattable, IHashable, IRunnable, ISerializable, Iterable, Typeable, Validator, 	
+		IFormattable, IHashable, IRunnable, ISerializable, Iterable, Typeable, Validator
 	
 ----------  */	
 
