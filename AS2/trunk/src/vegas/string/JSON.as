@@ -43,9 +43,9 @@
 
 	DESCRIPTION
 
-		JSON (JavaScript Object Notation)
+		JSON (JavaScript object Notation) is a lightweight data-interchange format.
 			
-		serializer & deserializer in AS2
+		Serializer & deserializer in AS2.
 		
 		MORE INFORMATION IN : http://www.json.org/
 	
@@ -61,13 +61,14 @@
 		import vegas.string.JSON ;
 		
 		// --- Init
+		var a:Array = [2, true, "hello"] ;
 		var o:Object = { prop1 : 1 , prop2 : 2 } ;
-		var s:String = "coucou, coucou, label" ;
+		var s:String = "hello world" ;
 		var n:Number = 4 ;
 		var b:Boolean = true ;
 			
 		trace ("*** Serialize") ;
-			
+		trace("* a : " + JSON.serialize( a ) )  ;	
 		trace("* o : " + JSON.serialize( o ) )  ;
 		trace("* s : " + JSON.serialize( s ) )  ;
 		trace("* n : " + JSON.serialize( n ) )  ;
@@ -95,6 +96,7 @@
 
 import vegas.string.errors.JSONError;
 
+
 class vegas.string.JSON {
 
 	// ----o Constructor
@@ -108,58 +110,58 @@ class vegas.string.JSON {
 	static public function deserialize(source:String):Object {
 		
 		source = new String(source) ; // Speed
-		
 		var at:Number = 0 ;
         var ch:String = ' ';
 		
-		var white:Function ;
-		var string:Function ;
-		var next:Function ;
-		var array:Function ;
-		var object:Function ;
-		var number:Function ;
-		var word:Function ;
-		var value:Function ;
-		var error:Function ;
+		// --- MTASC HACK
+		var _white:Function ;
+		var _string:Function ;
+		var _next:Function ;
+		var _array:Function ;
+		var _object:Function ;
+		var _number:Function ;
+		var _word:Function ;
+		var _value:Function ;
+		var _error:Function ;
 				
-        error = function(m) {
+        _error = function(m) {
             throw new JSONError( m, at - 1 , source) ;
-        };
+        } ;
 		
-        next = function() {
+        _next = function() {
             ch = source.charAt(at);
             at += 1;
             return ch;
-        };
+        } ;
 		
-        white = function () {
+        _white = function () {
            while (ch) {
                 if (ch <= ' ') {
-                    next();
+                    _next();
                 } else if (ch == '/') {
-                    switch (next()) {
+                    switch (_next()) {
                         case '/':
-                            while (next() && ch != '\n' && ch != '\r') {}
+                            while (_next() && ch != '\n' && ch != '\r') {}
                             break;
                         case '*':
-                            next();
+                            _next();
                             for (;;) {
                                 if (ch) {
                                     if (ch == '*') {
-                                        if (next() == '/') {
-                                            next();
+                                        if (_next() == '/') {
+                                            _next();
                                             break;
                                         }
                                     } else {
-                                        next();
+                                        _next();
                                     }
                                 } else {
-                                    error("Unterminated comment");
+                                    _error("Unterminated Comment");
                                 }
                             }
                             break;
                         default:
-                            error("Syntax error");
+                            _error("Syntax Error");
                     }
                 } else {
                     break;
@@ -167,17 +169,17 @@ class vegas.string.JSON {
             }
         };
 		
-        string = function () {
+        _string = function () {
             var i, s = '', t, u;
 			var outer:Boolean = false;
 			
             if (ch == '"') {
-				while (next()) {
+				while (_next()) {
                     if (ch == '"') {
-                        next();
+                        _next();
                         return s;
                     } else if (ch == '\\') {
-                        switch (next()) {
+                        switch (_next()) {
                         case 'b':
                             s += '\b';
                             break;
@@ -196,7 +198,7 @@ class vegas.string.JSON {
                         case 'u':
                             u = 0;
                             for (i = 0; i < 4; i += 1) {
-                                t = parseInt(next(), 16);
+                                t = parseInt(_next(), 16);
                                 if (!isFinite(t)) {
                                     outer = true;
 									break;
@@ -217,204 +219,208 @@ class vegas.string.JSON {
                     }
                 }
             }
-            error("Bad string");
+            _error("Bad String");
         };
 		
-        array = function() {
+        _array = function() {
             var a = [];
             if (ch == '[') {
-                next();
-                white();
+                _next();
+                _white();
                 if (ch == ']') {
-                    next();
+                    _next();
                     return a;
                 }
                 while (ch) {
-                    a.push(this.value());
-                    this.white();
+                    a.push(_value());
+                    _white();
                     if (ch == ']') {
-                        next();
+                        _next();
                         return a;
                     } else if (ch != ',') {
                         break;
                     }
-                    next();
-                    white();
+                    _next();
+                    _white();
                 }
             }
-            error("Bad array");
+            _error("Bad Array");
         };
 		
-        object = function () {
-            var k, o = {};
+        _object = function () {
+            var k, o = {} ;
             if (ch == '{') {
-                next();
-                white();
+                _next();
+                _white();
                 if (ch == '}') {
-                    next();
+                    _next();
                     return o;
                 }
                 while (ch) {
-                    k = this.string();
-                    white();
+                    k = this._string();
+                    _white();
                     if (ch != ':') {
                         break;
                     }
-                    next();
-                    o[k] = value();
-                    white();
+                    _next();
+                    o[k] = _value();
+                    _white();
                     if (ch == '}') {
-                        next();
+                        _next();
                         return o;
                     } else if (ch != ',') {
                         break;
                     }
-                    next();
-                    white();
+                    _next();
+                    _white();
                 }
             }
-            error("Bad object") ;
+            _error("Bad Object") ;
         };
 		
-        number = function () {
+        _number = function () {
             var n = '', v;
 		
             if (ch == '-') {
                 n = '-';
-                next();
+                _next();
             }
             while (ch >= '0' && ch <= '9') {
                 n += ch;
-                next();
+                _next();
             }
             if (ch == '.') {
                 n += '.';
-                while (next() && ch >= '0' && ch <= '9') {
+                while (_next() && ch >= '0' && ch <= '9') {
                     n += ch;
                 }
             }
             v = n;
             if (!isFinite(v)) {
-                error("Bad number");
+                _error("Bad Number");
             } else {
                 return v;
             }
         };
 		
-        word = function () {
+        _word = function () {
             switch (ch) {
                 case 't':
-                    if (next() == 'r' && next() == 'u' && next() == 'e') {
-                        next();
+                    if (_next() == 'r' && _next() == 'u' && _next() == 'e') {
+                        _next();
                         return true;
                     }
                     break;
                 case 'f':
-                    if (next() == 'a' && next() == 'l' && next() == 's' &&
-                            next() == 'e') {
-                        next();
+                    if (_next() == 'a' && _next() == 'l' && _next() == 's' &&
+                            _next() == 'e') {
+                        _next();
                         return false;
                     }
                     break;
                 case 'n':
-                    if (next() == 'u' && next() == 'l' && next() == 'l') {
-                        next();
+                    if (_next() == 'u' && _next() == 'l' && _next() == 'l') {
+                        _next();
                         return null;
                     }
                     break;
             }
-            error("Syntax error");
+            _error("Syntax Error");
         };
 		
-        value = function () {
-            white();
+        _value = function () {
+            _white();
             switch (ch) {
                 case '{':
-                    return object();
+                    return _object();
                 case '[':
-                    return array();
+                    return _array();
                 case '"':
-                    return string();
+                    return _string();
                 case '-':
-                    return number();
+                    return _number();
                 default:
-                    return ch >= '0' && ch <= '9' ? number() : word();
+                    return ch >= '0' && ch <= '9' ? _number() : _word();
             }
         };
 		
-        return value() ;
+        return _value() ;
 		
     }
 	
 	static public function serialize(o):String {
         var c, i, l:Number ;
-		var s:String = '';
+		var s:String = '' ;
 		var v ;
         switch (typeof o) {
-        case 'object':
-            if (o) {
-                if (o instanceof Array) {
-					l = o.length ;
-                    for (i = 0 ; i < l ; ++i) {
-                        v = serialize(o[i]);
-                        if (s) s += ',' ;
-                        s += v ;
-                    }
-                    return '[' + s + ']';
-                } else if (typeof o.toString != 'undefined') {
-                    for (i in o) {
-                        v = o[i];
-                        if (typeof v != 'undefined' && typeof v != 'function') {
-                            v = serialize(v);
-                            if (s) s += ',';
-                            s += serialize(i) + ':' + v ;
-                        }
-                    }
-                    return '{' + s + '}';
-                }
-            }
-            return 'null';
-        case 'number':
-            return isFinite(o) ? String(o) : 'null';
-        case 'string':
-            l = o.length ;
-            s = '"';
-            for (i = 0; i < l; i += 1) {
-                c = o.charAt(i);
-                if (c >= ' ') {
-                    if (c == '\\' || c == '"') {
-                        s += '\\';
-                    }
-                    s += c;
-                } else {
-                    switch (c) {
-                        case '\b':
-                            s += '\\b';
-                            break;
-                        case '\f':
-                            s += '\\f';
-                            break;
-                        case '\n':
-                            s += '\\n';
-                            break;
-                        case '\r':
-                            s += '\\r';
-                            break;
-                        case '\t':
-                            s += '\\t';
-                            break;
-                        default:
-                            c = c.charCodeAt();
-                            s += '\\u00' + Math.floor(c / 16).toString(16) +
-                                (c % 16).toString(16);
-                    }
-                }
-            }
-            return s + '"';
-        case 'boolean':
-            return String(o);
-        default:
-            return 'null';
+			case 'object':
+				if (o) {
+					if (o instanceof Array) {
+						l = o.length ;
+						for (i = 0 ; i < l ; ++i) {
+							v = serialize(o[i]);
+							if (s) s += ',' ;
+							s += v ;
+						}
+						return '[' + s + ']';
+					} else if (typeof o.toString != 'undefined') {
+						for (i in o) {
+							v = o[i];
+							if (typeof v != 'undefined' && typeof v != 'function') {
+								v = serialize(v);
+								if (s) s += ',';
+								s += serialize(i) + ':' + v ;
+							}
+						}
+						return '{' + s + '}';
+					}
+				}
+				return 'null';
+			
+			case 'number':
+				return isFinite(o) ? String(o) : 'null' ;
+			
+			case 'string':
+				l = o.length ;
+				s = '"';
+				for (i = 0 ; i < l ; i += 1) {
+					c = o.charAt(i);
+					if (c >= ' ') {
+						if (c == '\\' || c == '"') {
+							s += '\\';
+						}
+						s += c;
+					} else {
+						switch (c) {
+							case '\b':
+								s += '\\b';
+								break;
+							case '\f':
+								s += '\\f';
+								break;
+							case '\n':
+								s += '\\n';
+								break;
+							case '\r':
+								s += '\\r';
+								break;
+							case '\t':
+								s += '\\t';
+								break;
+							default:
+								c = c.charCodeAt() ;
+								s += '\\u00' + (Math.floor(c / 16).toString(16)) + ((c % 16).toString(16)) ;
+						}
+					}
+				}
+				return s + '"';
+				
+			case 'boolean':
+				return String(o);
+			
+			default:
+				return 'null';
+				
         }
     }
 }
