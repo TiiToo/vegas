@@ -41,14 +41,20 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
-	Description 
+	DESCRIPTION
 
 		JSON (JavaScript Object Notation)
 			
-		serializer & deserializer in AS2 and
+		serializer & deserializer in AS2
 		
 		MORE INFORMATION IN : http://www.json.org/
 	
+	
+	METHOD SUMMARY
+	
+		- static deserialize(source:String):Object
+		
+		- static serialize(o):String
 	
 	EXAMPLE
 
@@ -99,6 +105,247 @@ class vegas.string.JSON {
 
 	// ----o Public Methods
 
+	static public function deserialize(source:String):Object {
+		
+		source = new String(source) ; // Speed
+		
+		var at:Number = 0 ;
+        var ch:String = ' ';
+		
+		var white:Function ;
+		var string:Function ;
+		var next:Function ;
+		var array:Function ;
+		var object:Function ;
+		var number:Function ;
+		var word:Function ;
+		var value:Function ;
+		var error:Function ;
+				
+        error = function(m) {
+            throw new JSONError( m, at - 1 , source) ;
+        };
+		
+        next = function() {
+            ch = source.charAt(at);
+            at += 1;
+            return ch;
+        };
+		
+        white = function () {
+           while (ch) {
+                if (ch <= ' ') {
+                    next();
+                } else if (ch == '/') {
+                    switch (next()) {
+                        case '/':
+                            while (next() && ch != '\n' && ch != '\r') {}
+                            break;
+                        case '*':
+                            next();
+                            for (;;) {
+                                if (ch) {
+                                    if (ch == '*') {
+                                        if (next() == '/') {
+                                            next();
+                                            break;
+                                        }
+                                    } else {
+                                        next();
+                                    }
+                                } else {
+                                    error("Unterminated comment");
+                                }
+                            }
+                            break;
+                        default:
+                            error("Syntax error");
+                    }
+                } else {
+                    break;
+                }
+            }
+        };
+		
+        string = function () {
+            var i, s = '', t, u;
+			var outer:Boolean = false;
+			
+            if (ch == '"') {
+				while (next()) {
+                    if (ch == '"') {
+                        next();
+                        return s;
+                    } else if (ch == '\\') {
+                        switch (next()) {
+                        case 'b':
+                            s += '\b';
+                            break;
+                        case 'f':
+                            s += '\f';
+                            break;
+                        case 'n':
+                            s += '\n';
+                            break;
+                        case 'r':
+                            s += '\r';
+                            break;
+                        case 't':
+                            s += '\t';
+                            break;
+                        case 'u':
+                            u = 0;
+                            for (i = 0; i < 4; i += 1) {
+                                t = parseInt(next(), 16);
+                                if (!isFinite(t)) {
+                                    outer = true;
+									break;
+                                }
+                                u = u * 16 + t;
+                            }
+							if(outer) {
+								outer = false;
+								break;
+							}
+                            s += String.fromCharCode(u);
+                            break;
+                        default:
+                            s += ch;
+                        }
+                    } else {
+                        s += ch;
+                    }
+                }
+            }
+            error("Bad string");
+        };
+		
+        array = function() {
+            var a = [];
+            if (ch == '[') {
+                next();
+                white();
+                if (ch == ']') {
+                    next();
+                    return a;
+                }
+                while (ch) {
+                    a.push(this.value());
+                    this.white();
+                    if (ch == ']') {
+                        next();
+                        return a;
+                    } else if (ch != ',') {
+                        break;
+                    }
+                    next();
+                    white();
+                }
+            }
+            error("Bad array");
+        };
+		
+        object = function () {
+            var k, o = {};
+            if (ch == '{') {
+                next();
+                white();
+                if (ch == '}') {
+                    next();
+                    return o;
+                }
+                while (ch) {
+                    k = this.string();
+                    white();
+                    if (ch != ':') {
+                        break;
+                    }
+                    next();
+                    o[k] = value();
+                    white();
+                    if (ch == '}') {
+                        next();
+                        return o;
+                    } else if (ch != ',') {
+                        break;
+                    }
+                    next();
+                    white();
+                }
+            }
+            error("Bad object") ;
+        };
+		
+        number = function () {
+            var n = '', v;
+		
+            if (ch == '-') {
+                n = '-';
+                next();
+            }
+            while (ch >= '0' && ch <= '9') {
+                n += ch;
+                next();
+            }
+            if (ch == '.') {
+                n += '.';
+                while (next() && ch >= '0' && ch <= '9') {
+                    n += ch;
+                }
+            }
+            v = n;
+            if (!isFinite(v)) {
+                error("Bad number");
+            } else {
+                return v;
+            }
+        };
+		
+        word = function () {
+            switch (ch) {
+                case 't':
+                    if (next() == 'r' && next() == 'u' && next() == 'e') {
+                        next();
+                        return true;
+                    }
+                    break;
+                case 'f':
+                    if (next() == 'a' && next() == 'l' && next() == 's' &&
+                            next() == 'e') {
+                        next();
+                        return false;
+                    }
+                    break;
+                case 'n':
+                    if (next() == 'u' && next() == 'l' && next() == 'l') {
+                        next();
+                        return null;
+                    }
+                    break;
+            }
+            error("Syntax error");
+        };
+		
+        value = function () {
+            white();
+            switch (ch) {
+                case '{':
+                    return object();
+                case '[':
+                    return array();
+                case '"':
+                    return string();
+                case '-':
+                    return number();
+                default:
+                    return ch >= '0' && ch <= '9' ? number() : word();
+            }
+        };
+		
+        return value() ;
+		
+    }
+	
 	static public function serialize(o):String {
         var c, i, l:Number ;
 		var s:String = '';
@@ -169,237 +416,5 @@ class vegas.string.JSON {
         default:
             return 'null';
         }
-    }
-
-	static public function deserialize(source:String):Object {
-        
-		source = new String(source) ; // Speed
-		var at:Number = 0 ;
-        var ch:String = ' ';
-		
-        var error = function(m) {
-            throw new JSONError( m, at - 1 , source) ;
-        };
-		
-        var next = function() {
-            ch = source.charAt(at);
-            at += 1;
-            return ch;
-        };
-		
-        var white = function () {
-            while (ch) {
-                if (ch <= ' ') {
-                    next();
-                } else if (ch == '/') {
-                    switch (next()) {
-                        case '/':
-                            while (next() && ch != '\n' && ch != '\r') {}
-                            break;
-                        case '*':
-                            next();
-                            for (;;) {
-                                if (ch) {
-                                    if (ch == '*') {
-                                        if (next() == '/') {
-                                            next();
-                                            break;
-                                        }
-                                    } else {
-                                        next();
-                                    }
-                                } else {
-                                    error("Unterminated comment");
-                                }
-                            }
-                            break;
-                        default:
-                            error("Syntax error");
-                    }
-                } else {
-                    break;
-                }
-            }
-        };
-		
-        var string = function () {
-            var i, s = '', t, u;
-			var outer:Boolean = false;
-			
-            if (ch == '"') {
-				while (next()) {
-                    if (ch == '"') {
-                        next();
-                        return s;
-                    } else if (ch == '\\') {
-                        switch (next()) {
-                        case 'b':
-                            s += '\b';
-                            break;
-                        case 'f':
-                            s += '\f';
-                            break;
-                        case 'n':
-                            s += '\n';
-                            break;
-                        case 'r':
-                            s += '\r';
-                            break;
-                        case 't':
-                            s += '\t';
-                            break;
-                        case 'u':
-                            u = 0;
-                            for (i = 0; i < 4; i += 1) {
-                                t = parseInt(next(), 16);
-                                if (!isFinite(t)) {
-                                    outer = true;
-									break;
-                                }
-                                u = u * 16 + t;
-                            }
-							if(outer) {
-								outer = false;
-								break;
-							}
-                            s += String.fromCharCode(u);
-                            break;
-                        default:
-                            s += ch;
-                        }
-                    } else {
-                        s += ch;
-                    }
-                }
-            }
-            error("Bad string");
-        };
-
-        var array = function() {
-            var a = [];
-
-            if (ch == '[') {
-                next();
-                this.white();
-                if (ch == ']') {
-                    next();
-                    return a;
-                }
-                while (ch) {
-                    a.push(this.value());
-                    this.white();
-                    if (ch == ']') {
-                        next();
-                        return a;
-                    } else if (ch != ',') {
-                        break;
-                    }
-                    next();
-                    this.white();
-                }
-            }
-            error("Bad array");
-        };
-
-        var object = function () {
-            var k, o = {};
-
-            if (ch == '{') {
-                next();
-                this.white();
-                if (ch == '}') {
-                    next();
-                    return o;
-                }
-                while (ch) {
-                    k = this.string();
-                    this.white();
-                    if (ch != ':') {
-                        break;
-                    }
-                    next();
-                    o[k] = this.value();
-                    this.white();
-                    if (ch == '}') {
-                        next();
-                        return o;
-                    } else if (ch != ',') {
-                        break;
-                    }
-                    next();
-                    this.white();
-                }
-            }
-            error("Bad object") ;
-        };
-
-        var number = function () {
-            var n = '', v;
-
-            if (ch == '-') {
-                n = '-';
-                next();
-            }
-            while (ch >= '0' && ch <= '9') {
-                n += ch;
-                next();
-            }
-            if (ch == '.') {
-                n += '.';
-                while (next() && ch >= '0' && ch <= '9') {
-                    n += ch;
-                }
-            }
-            v = n;
-            if (!isFinite(v)) {
-                error("Bad number");
-            } else {
-                return v;
-            }
-        };
-
-        var word = function () {
-            switch (ch) {
-                case 't':
-                    if (next() == 'r' && next() == 'u' && next() == 'e') {
-                        next();
-                        return true;
-                    }
-                    break;
-                case 'f':
-                    if (next() == 'a' && next() == 'l' && next() == 's' &&
-                            next() == 'e') {
-                        next();
-                        return false;
-                    }
-                    break;
-                case 'n':
-                    if (next() == 'u' && next() == 'l' && next() == 'l') {
-                        next();
-                        return null;
-                    }
-                    break;
-            }
-            error("Syntax error");
-        };
-
-        var value = function () {
-            this.white();
-            switch (ch) {
-                case '{':
-                    return this.object();
-                case '[':
-                    return this.array();
-                case '"':
-                    return this.string();
-                case '-':
-                    return this.number();
-                default:
-                    return ch >= '0' && ch <= '9' ? this.number() : this.word();
-            }
-        };
-
-        return value();
-		
     }
 }
