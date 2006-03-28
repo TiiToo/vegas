@@ -1,3 +1,4 @@
+import vegas.util.ArrayUtil;
 /*
 
   The contents of this file are subject to the Mozilla Public License Version
@@ -98,6 +99,13 @@ class asgard.display.Align {
 	static public var LEFT_TOP = TOP_LEFT | REVERSE ;
 	static public var RIGHT_TOP = TOP_RIGHT | REVERSE ;
 
+	static public var aList:Array = [ 
+		Align.CENTER, Align.LEFT , Align.RIGHT, 
+		Align.TOP, Align.BOTTOM, 
+		Align.TOP_LEFT, Align.TOP_RIGHT,
+		Align.BOTTOM_LEFT, Align.BOTTOM_RIGHT
+	] ;
+
 	static private var __ASPF__ = _global.ASSetPropFlags(Align, null , 7, 7) ;
 
 	// ----o Public Methods
@@ -149,6 +157,10 @@ class asgard.display.Align {
 			case Align.RIGHT_BOTTOM : return "rb" ;
 			default : return "" ;
 		}
+	}
+
+	static public function validate(n:Number):Boolean {
+		return  ArrayUtil.contains(aList, n) ;
 	}
 	
 }
