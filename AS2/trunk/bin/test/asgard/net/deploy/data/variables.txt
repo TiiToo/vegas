@@ -1,0 +1,1 @@
+var1=item1&var2=item2

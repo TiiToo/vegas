@@ -1,0 +1,27 @@
+﻿{
+
+	"type" = "LocalDate" ,
+	"lang" = "fr" ,
+
+	"JANUARY"    : "Janvier" ,
+	"FEBRUARY"   : "Février" ,
+	"MARCH"      : "Mars" ,
+	"APRIL"      : "Avril" ,
+	"MAY"        : "MAY" ,
+	"JUNE"       : "Juin" ,
+	"JULY"       : "Juillet" ,
+	"AUGUST"     : "Août" ,
+	"SEPTEMBER"  : "Septembre" ,
+	"OCTOBER"    : "Octobre" ,
+	"NOVEMBER"   : "Novembre" ,
+	"DECEMBER"   : "Décembre" ,
+	
+	"MONDAY"     : "Lundi" ,
+	"TUESDAY"    : "Mardi" ,
+	"WEDNESDAY"  : "Mercredi" ,
+	"THURSDAY"   : "Jeudi" ,
+	"FRIDAY"     : "Vendredi" ,
+	"SATURDAY"   : "Samedi" ,
+	"SUNDAY"     : "Dimanche"
+
+}

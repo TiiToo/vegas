@@ -1,0 +1,20 @@
+{
+
+	"header" : {
+		"name"      : "CONFIG_TEST" , 
+		"namespace" : "asgard.config" ,
+		"version"   : "0.0.0.0"
+	} 
+	
+	,
+
+	"security" : [ 
+		"http://ekameleon.net/blog/" , 
+		"http://live.burrrn.com/wiki/VEGAS"
+	] 
+	
+	,
+	
+	"default_lang" : "fr"
+
+}

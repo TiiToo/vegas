@@ -1,0 +1,23 @@
+﻿{
+
+	"lang"      : "fr" ,
+	"namespace" : "asgard" ,
+	"version"   : "0.0.0.0" ,
+
+	"door" : {
+	
+		"connectStarted"    : "DEBUT CONNEXION" ,
+		"connectFinished"   : "FIN CONNEXION" ,		
+		"connectInProgress" : "CONNEXION EN COURS" ,		
+		"connectOutOfTime"  : "DELAIS DE CONNEXION DEPASSE" ,
+	
+	} ,
+
+	"info" : {
+	
+		"finish_loading"   : "Fin du chargement" ,
+		"progress_loading" : "Chargement en cours" ,
+		"start_loading"    : "Début du chargement"
+	}
+	
+}
