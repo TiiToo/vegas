@@ -124,7 +124,7 @@ class vegas.string.JSON {
 		var _value:Function ;
 		var _error:Function ;
 				
-        _error = function(m) {
+        _error = function(m:String) {
             throw new JSONError( m, at - 1 , source) ;
         } ;
 		
@@ -257,7 +257,7 @@ class vegas.string.JSON {
                     return o;
                 }
                 while (ch) {
-                    k = this._string();
+                    k = _string();
                     _white();
                     if (ch != ':') {
                         break;
@@ -312,8 +312,7 @@ class vegas.string.JSON {
                     }
                     break;
                 case 'f':
-                    if (_next() == 'a' && _next() == 'l' && _next() == 's' &&
-                            _next() == 'e') {
+                    if (_next() == 'a' && _next() == 'l' && _next() == 's' && _next() == 'e') {
                         _next();
                         return false;
                     }

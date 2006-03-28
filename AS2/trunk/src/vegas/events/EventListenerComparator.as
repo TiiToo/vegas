@@ -81,8 +81,8 @@ class vegas.events.EventListenerComparator extends CoreObject implements ICompar
 				&& o2 instanceof EventListenerContainer ) {
 			var p1:Number = o1.getPriority() ;
 			var p2:Number = o2.getPriority() ;
-			if( p1 < p2 ) return -1 ;
-			else if( p1 > p2 ) return 1;
+			if( p1 < p2 ) return 1 ;
+			else if( p1 > p2 ) return -1 ;
 			else return 0 ;
 		} else {
 			throw IllegalArgumentError ;
