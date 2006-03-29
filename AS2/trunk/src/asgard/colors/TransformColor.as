@@ -75,8 +75,8 @@
 
 ----------------*/
 
-import asgard.colors.BasicColor ;
-import asgard.colors.ColorRGB ;
+import asgard.colors.BasicColor;
+import asgard.colors.ColorRGB;
 
 class asgard.colors.TransformColor extends BasicColor {
 	

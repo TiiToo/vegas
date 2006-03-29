@@ -81,7 +81,7 @@
 	
 ------------*/
 
-import vegas.util.StringUtil ;
+import vegas.util.StringUtil;
 
 class asgard.display.StageAlign {
 

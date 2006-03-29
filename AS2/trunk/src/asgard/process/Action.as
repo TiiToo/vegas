@@ -63,7 +63,7 @@
 
 ----------  */
 
-import vegas.core.IRunnable ;
+import vegas.core.IRunnable;
 
 interface asgard.process.Action extends IRunnable {
 	

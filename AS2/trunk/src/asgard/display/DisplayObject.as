@@ -31,15 +31,14 @@
 		Date :  2006-03-21
 		Author : ekameleon
 		URL : http://www.ekameleon.net
-		Mail : contact@ekameleon.net
+		Mail : vegas@ekameleon.net
 
 **/
 
 import asgard.display.DisplayLoader;
 import asgard.display.DisplayLoaderCollector;
 import asgard.display.DisplayObjectCollector;
-
-import asgard.net.ILoader ;
+import asgard.net.ILoader;
 
 import vegas.errors.IllegalArgumentError;
 import vegas.events.AbstractCoreEventDispatcher;

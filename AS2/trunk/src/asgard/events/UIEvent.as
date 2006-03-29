@@ -71,7 +71,7 @@
 		
 ----------  */
 
-import vegas.events.DynamicEvent ;
+import vegas.events.DynamicEvent;
 
 class asgard.events.UIEvent extends DynamicEvent {
 

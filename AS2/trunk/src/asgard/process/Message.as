@@ -90,8 +90,9 @@
 	
 ----------  */
 
-import asgard.process.Pause ;
-import vegas.util.serialize.Serializer ;
+import asgard.process.Pause;
+
+import vegas.util.serialize.Serializer;
 
 class asgard.process.Message extends Pause {
 

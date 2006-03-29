@@ -100,15 +100,14 @@
 ----------  */
 
 import asgard.events.ActionEventType;
-import asgard.process.AbstractAction ;
-import asgard.process.Action ;
+import asgard.process.AbstractAction;
+import asgard.process.Action;
 
-import vegas.data.iterator.Iterator ;
-import vegas.data.queue.LinearQueue ;
-import vegas.data.queue.TypedQueue ;
-import vegas.events.EventListener ;
-import vegas.events.EventListenerProxy ;
-import vegas.util.factory.PropertyFactory ;
+import vegas.data.iterator.Iterator;
+import vegas.data.queue.LinearQueue;
+import vegas.data.queue.TypedQueue;
+import vegas.events.EventListener;
+import vegas.events.EventListenerProxy;
 import vegas.util.serialize.Serializer;
 
 class asgard.process.Sequencer extends AbstractAction {

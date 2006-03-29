@@ -73,20 +73,20 @@
 
 		- clone()
 		
-			Renvoie un nouvel objet Rectangle avec les mêmes valeurs que l'objet Rectangle d'origine
-			pour les propriétés x, y, width (largeur) et height (hauteur).
+			Renvoie un nouvel objet Rectangle avec les mï¿½mes valeurs que l'objet Rectangle d'origine
+			pour les propriï¿½tï¿½s x, y, width (largeur) et height (hauteur).
 		
 		- contains(p_x:Number, p_y:Number):Boolean
 		
-			Détermine si le point spécifié figure dans la zone rectangulaire définie par cet objet Rectangle.
+			Dï¿½termine si le point spï¿½cifiï¿½ figure dans la zone rectangulaire dï¿½finie par cet objet Rectangle.
 				
 		- containsPoint(pt:Point):Boolean
 		
-			Détermine si le point spécifié figure dans la zone rectangulaire définie par cet objet Rectangle.
+			Dï¿½termine si le point spï¿½cifiï¿½ figure dans la zone rectangulaire dï¿½finie par cet objet Rectangle.
 		
 		- containsRectangle(rect:Rectangle):Boolean
 		
-			Détermine si l'objet Rectangle spécifié par le paramètre rect figure dans cet objet Rectangle.
+			Dï¿½termine si l'objet Rectangle spï¿½cifiï¿½ par le paramï¿½tre rect figure dans cet objet Rectangle.
 		
 		- getBottom():Number
 		
@@ -110,7 +110,7 @@
 		
 		- inflate(dx:Number, dy:Number):Void
 		
-			Agrandit la taille de l'objet Rectangle en fonction des montants spécifiés.
+			Agrandit la taille de l'objet Rectangle en fonction des montants spï¿½cifiï¿½s.
 		
 		- inflatePoint(pt:Point):Void
 		
@@ -118,28 +118,28 @@
 		
 		- intersection(toIntersect:Rectangle):Rectangle 
 		
-			Si l'objet Rectangle spécifié dans les paramètres toIntersect forme une intersection avec cet objet Rectangle,
-			la méthode intersection() renvoie la zone d'intersection en tant qu'objet Rectangle.
+			Si l'objet Rectangle spï¿½cifiï¿½ dans les paramï¿½tres toIntersect forme une intersection avec cet objet Rectangle,
+			la mï¿½thode intersection() renvoie la zone d'intersection en tant qu'objet Rectangle.
 		
 		- intersects(toIntersect:Rectangle):Boolean
 
-			Détermine si l'objet spécifié par le paramètre toIntersect forme une intersection avec cet objet Rectangle.
+			Dï¿½termine si l'objet spï¿½cifiï¿½ par le paramï¿½tre toIntersect forme une intersection avec cet objet Rectangle.
 
 		- isEmpty():Boolean
 		
-			Détermine si cet objet Rectangle est vide.
+			Dï¿½termine si cet objet Rectangle est vide.
 		
 		- offset(dx:Number, dy:Number):Void
 		
-			Règle la position de l'objet Rectangle, identifié par son coin supérieur gauche, en fonction des montants spécifiés.
+			Rï¿½gle la position de l'objet Rectangle, identifiï¿½ par son coin supï¿½rieur gauche, en fonction des montants spï¿½cifiï¿½s.
 		
 		- offsetPoint(pt:Point):Void
 		
-			Règle l'emplacement de l'objet Rectangle en utilisant un objet Point en tant que paramètre.
+			Rï¿½gle l'emplacement de l'objet Rectangle en utilisant un objet Point en tant que paramï¿½tre.
 		
 		- setEmpty():Void
 		
-			Définit toutes les propriétés de l'objet Rectangle sur 0.
+			Dï¿½finit toutes les propriï¿½tï¿½s de l'objet Rectangle sur 0.
 		
 		- setBottom(n:Number):Void
 		
@@ -151,13 +151,13 @@
 		
 		- toString():String
 
-			Crée et renvoie une chaine qui répertorie les positions horizontale et verticale
+			Crï¿½e et renvoie une chaine qui rï¿½pertorie les positions horizontale et verticale
 			ainsi que la largeur et la hauteur de l'objet Rectangle.
 
 		- union(toUnion):Rectangle
 		
-			Additionne deux rectangles pour créer un nouvel objet Rectangle en remplissant l'essentiel de l'espace horizontal et vertical
-			qui sépare les deux rectangles.
+			Additionne deux rectangles pour crï¿½er un nouvel objet Rectangle en remplissant l'essentiel de l'espace horizontal et vertical
+			qui sï¿½pare les deux rectangles.
 
 	INHERIT
 	
@@ -173,14 +173,13 @@
 	
 ---------------*/
 
-import asgard.geom.Point ;
+import asgard.geom.Point;
 
-import vegas.core.CoreObject ;
-import vegas.core.ICloneable ;
-import vegas.core.IComparator ;
-import vegas.core.ISerializable ;
-
-import vegas.util.factory.PropertyFactory ;
+import vegas.core.CoreObject;
+import vegas.core.ICloneable;
+import vegas.core.IComparator;
+import vegas.core.ISerializable;
+import vegas.util.factory.PropertyFactory;
 
 class asgard.geom.Rectangle extends CoreObject implements ICloneable, IComparator, ISerializable {
 
@@ -352,8 +351,8 @@ class asgard.geom.Rectangle extends CoreObject implements ICloneable, IComparato
 	}
 
 	public function setBottomRight(value):Void {
-		this.width = value.x - x;
-		this.height = value.y - y;
+		width = value.x - x;
+		height = value.y - y;
 	}
 
 	public function setLeft(n:Number):Void {

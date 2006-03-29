@@ -122,13 +122,13 @@
 		
 ---------------*/
 
-import asgard.geom.Point ;
-import asgard.geom.Trigo ;
+import asgard.geom.Point;
+import asgard.geom.Trigo;
 
-import vegas.core.CoreObject ;
-import vegas.core.ICloneable ;
-import vegas.core.IEquality ;
-import vegas.core.ISerializable ;
+import vegas.core.CoreObject;
+import vegas.core.ICloneable;
+import vegas.core.IEquality;
+import vegas.core.ISerializable;
 
 class asgard.geom.TransformMatrix extends CoreObject implements ICloneable, IEquality, ISerializable{
 

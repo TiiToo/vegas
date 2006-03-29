@@ -113,11 +113,11 @@
 ----------  */
 
 import vegas.core.CoreObject;
-import vegas.core.IComparable ;
-import vegas.core.IEquality ;
-import vegas.core.ISerializable ;
-import vegas.util.factory.PropertyFactory ;
-import vegas.util.MathsUtil ;
+import vegas.core.IComparable;
+import vegas.core.IEquality;
+import vegas.core.ISerializable;
+import vegas.util.factory.PropertyFactory;
+import vegas.util.MathsUtil;
 
 
 class asgard.system.Version extends CoreObject implements IComparable, IEquality, ISerializable {

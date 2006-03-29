@@ -69,7 +69,7 @@
 
 import asgard.remoting.RemotingConnector;
 
-import vegas.events.DynamicEvent ;
+import vegas.events.DynamicEvent;
 
 class asgard.events.RemotingEvent extends DynamicEvent {
 

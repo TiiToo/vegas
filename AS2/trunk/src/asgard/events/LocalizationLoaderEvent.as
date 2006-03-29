@@ -81,11 +81,10 @@
 
 ----------  */
 
-import asgard.events.LoaderEvent ;
-
+import asgard.events.LoaderEvent;
 import asgard.system.Lang;
 import asgard.system.Locale;
-import asgard.system.LocalizationLoader ;
+import asgard.system.LocalizationLoader;
 
 
 /**

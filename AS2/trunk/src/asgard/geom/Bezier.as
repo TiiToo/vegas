@@ -57,8 +57,8 @@
  
 ----------------*/
 
-import asgard.geom.Line ;
-import asgard.geom.Point ;
+import asgard.geom.Line;
+import asgard.geom.Point;
 
 class asgard.geom.Bezier {
 	

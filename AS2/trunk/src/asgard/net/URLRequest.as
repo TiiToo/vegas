@@ -41,7 +41,7 @@ import asgard.net.URLRequestMethod;
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
 import vegas.errors.ArgumentsError;
-import vegas.util.factory.PropertyFactory ;
+import vegas.util.factory.PropertyFactory;
 
 /**
  * @author eKameleon

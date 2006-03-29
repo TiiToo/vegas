@@ -76,16 +76,16 @@
 // TODO il faut rajouter des erreurs en cas de date invalide
 // TODO il faut finir la localization 
 
-import asgard.date.DateFormatter ;
-import asgard.date.LocalDate ;
+import asgard.date.DateFormatter;
+import asgard.date.LocalDate;
 
 import vegas.core.HashCode;
+import vegas.core.ICloneable;
+import vegas.core.IEquality;
 import vegas.core.IFormattable;
 import vegas.core.IHashable;
-import vegas.core.ICloneable ;
-import vegas.core.IEquality ;
-import vegas.util.serialize.Serializer ;
-import vegas.core.ISerializable ;
+import vegas.core.ISerializable;
+import vegas.util.serialize.Serializer;
 
 class asgard.date.Calendar extends Date implements ICloneable, IEquality, IFormattable, IHashable, ISerializable {
 

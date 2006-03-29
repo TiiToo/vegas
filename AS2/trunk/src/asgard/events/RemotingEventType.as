@@ -61,7 +61,7 @@
 
 ----------  */
 
-import asgard.events.ActionEventType ;
+import asgard.events.ActionEventType;
 
 class asgard.events.RemotingEventType {
 

@@ -69,8 +69,8 @@
 
 ----------------*/
 
-import vegas.core.CoreObject ;
-import vegas.core.ICloneable ;
+import vegas.core.CoreObject;
+import vegas.core.ICloneable;
 import vegas.util.factory.PropertyFactory;
 
 class asgard.transitions.TweenEntry extends CoreObject implements ICloneable {

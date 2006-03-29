@@ -21,17 +21,14 @@
   
 */
 
-import asgard.display.DisplayLoaderCollector ;
+import asgard.display.DisplayLoaderCollector;
+import asgard.events.DisplayLoaderEvent;
+import asgard.events.LoaderEventType;
+import asgard.net.AbstractLoader;
+import asgard.net.URLRequest;
 
-import asgard.events.DisplayLoaderEvent ;
-import asgard.events.LoaderEvent ;
-import asgard.events.LoaderEventType ;
-
-import asgard.net.AbstractLoader ;
-import asgard.net.URLRequest ;
-
-import vegas.core.HashCode ;
-import vegas.errors.IllegalArgumentError ;
+import vegas.core.HashCode;
+import vegas.errors.IllegalArgumentError;
 
 
 /**

@@ -43,9 +43,10 @@
 
 ----------  */
 
-import vegas.data.iterator.ArrayIterator ;
 import asgard.system.SystemAnalyser;
-import vegas.core.IFormat ;
+
+import vegas.core.IFormat;
+import vegas.data.iterator.ArrayIterator;
 
 class asgard.system.SystemAnalyserFormat implements IFormat {
 

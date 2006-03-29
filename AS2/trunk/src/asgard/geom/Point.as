@@ -153,14 +153,14 @@
 	
 ---------------*/
 
-import vegas.core.CoreObject ;
-import vegas.core.ICloneable ;
-import vegas.core.IEquality  ;
-import vegas.core.ISerializable ;
-import vegas.util.factory.PropertyFactory ;
-import vegas.util.TypeUtil ;
+import asgard.geom.Trigo;
 
-import asgard.geom.Trigo ;
+import vegas.core.CoreObject;
+import vegas.core.ICloneable;
+import vegas.core.IEquality;
+import vegas.core.ISerializable;
+import vegas.util.factory.PropertyFactory;
+import vegas.util.TypeUtil;
 
 dynamic class asgard.geom.Point extends CoreObject implements ICloneable, IEquality, ISerializable {
 

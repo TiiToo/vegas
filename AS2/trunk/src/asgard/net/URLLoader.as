@@ -31,11 +31,119 @@
 		Date :  2006-03-23
 		Author : ekameleon
 		URL : http://www.ekameleon.net
-		Mail : contact@ekameleon.net
+		Mail : vegas@ekameleon.net
 
 	DESCRIPTION
 	
-		Dynamic Class
+		... Comming Soon
+
+	PROPERTY SUMMARY
+	
+		- bytesLoaded:Number [Read Only]
+		
+		- bytesTotal:Number [Read Only]
+		
+		- data [R/W]
+		
+		- dataFormat [R/W]
+		
+		- name:String [R/W]
+		
+		- running:Boolean [Read Only]
+		
+		- timeOut:Number [R/W]
+		
+		- percent:Number [Read Only]
+
+	METHOD SUMMARY
+	
+		- addEventListener(eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void
+		
+		- addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void
+		
+		- addRequestHeader( header, headerValue:String ):Void
+		
+		- checkData():Void
+		
+		- deserializeData():Void
+		
+		- dispatchEvent( event , [isQueue, [target, [context]]]):Event
+		
+		- getBytesLoaded():Number
+		
+		- getBytesTotal():Number
+		
+		- getContent()
+		
+		- getContentType():String
+		
+		- getData()
+		
+		- getDataFormat():String
+		
+		- getEventDispatcher():EventDispatcher 
+
+ 		- getEventListeners(eventName:String):EventListenerCollection
+		
+		- getGlobalEventListeners():EventListenerCollection
+		
+		- getName():String
+		
+		- getParent():EventDispatcher
+		
+		- getRegisteredEventNames():Set
+	
+		- getPercent():Number
+		
+		- getRunning():Boolean
+		
+		- getTimeOut():Number
+		
+		- getUrl()
+	
+ 		- hasEventListener(eventName:String):Boolean	
+		
+		- hashCode():Number
+		
+		- initEvent():Void
+		
+		- initEventDispatcher():EventDispatcher 
+ 		
+ 		- isLoaded():Boolean
+		
+		- load():Void
+		
+		- notifyError(sError:String, nCode:Number):Void
+		
+		- notifyEvent(eventType:String):Void
+		
+		- onLoadInit():Void
+		
+		- release():Void
+
+		- removeEventListener(eventName:String, listener, useCapture:Boolean ):EventListener
+		
+		- removeGlobalEventListener(o):EventListener
+		
+		- run():Void
+		
+		- setContent(o:LoadVars):Void
+
+		- setContentType(sType:String):Void
+
+		- setData(o):Void
+		
+		- setDataFormat(f:String):Void
+		
+		- setName(sName:String):Void
+		
+		- setParent(parent:EventDispatcher):Void	
+		
+		- setTimeOut(n:Number):Void
+		
+		- setUrl(sURL:string):Void
+		
+		- toString():String
 
 	INHERIT
 	
@@ -53,10 +161,9 @@
 	
 ----------  */	
 
-import asgard.events.LoaderEvent ;
-import asgard.events.LoaderEventType ;
-import asgard.net.URLLoaderEvent ;
-
+import asgard.events.LoaderEvent;
+import asgard.events.LoaderEventType;
+import asgard.events.URLLoaderEvent;
 import asgard.net.AbstractLoader;
 import asgard.net.DataFormat;
 import asgard.net.URLRequest;
@@ -117,7 +224,7 @@ class asgard.net.URLLoader extends AbstractLoader {
 		return _sDataFormat ;
 	}
 
-	public function initEventSource():Void {
+	public function initEvent():Void {
 		_e = new URLLoaderEvent(null, this);
 	}
 	
@@ -180,8 +287,6 @@ class asgard.net.URLLoader extends AbstractLoader {
   		
   	}
     
-    public var sendAndLoad:Function = LoadVars.prototype.sendAndLoad ;
-    
   	/*override*/ public function onLoadInit(e:LoaderEvent):Void {
 		// overwriting for delaying 'onLoadInit' broadcast
 	}
@@ -193,8 +298,8 @@ class asgard.net.URLLoader extends AbstractLoader {
   			
   	}
   
-	public function setContent(oLoadVars:LoadVars):Void {
-		super.setContent( oLoadVars );
+	public function setContent(o:LoadVars):Void {
+		super.setContent( o );
 	}
 	
 	public function setContentType(sType:String):Void {

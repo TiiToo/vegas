@@ -31,7 +31,7 @@
 		Date :  2006-02-19
 		Author : ekameleon
 		URL : http://www.ekameleon.net
-		Mail : contact@ekameleon.net
+		Mail : vegas@ekameleon.net
 
 	DESCRIPTION
 	

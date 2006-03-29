@@ -139,7 +139,7 @@
 		
 		- setArc(p_angle:Number, p_startAngle:Number, p_x:Number, p_y:Number, p_align:String):Void
 		
-		- setStartAngle (n:Number):Void
+		- setStartAngle(n:Number):Void
 		
 		- setTarget(target:MovieClip):Void
 		
@@ -147,33 +147,33 @@
 
 	INHERIT
 	
-		AbstractPen > EasyPen > Arc
+		CoreObject > AbstractPen > EasyPen > Arc
 
 	IMPLEMENT
 	
-		ICloneable, Pen, IRunnable, Shape, IFormattable, IHashable
+		ICloneable, IFormattable, IHashCode, IPen, IRunnable, IShape
 	
 ----------  */
 
-import asgard.display.Align ;
-import asgard.draw.AbstractPen ;
-import asgard.geom.Trigo ;
+import asgard.display.Align;
+import asgard.draw.ArcType;
+import asgard.draw.EasyPen;
+import asgard.geom.Trigo;
 
 import vegas.util.factory.PropertyFactory;
-import asgard.draw.ArcType;
 
-class asgard.draw.ArcPen extends AbstractPen {
+
+class asgard.draw.ArcPen extends EasyPen {
 
 	// -----o Constructor
 
 	public function ArcPen(target:MovieClip, isNew:Boolean) {
 		initialize(target, isNew) ;
-		_align = Align.TOP_LEFT ;
+		setAlign(Align.TOP_LEFT) ;
 	}
 
 	// -----o Public Properties
 
-	public var align:Number ; // [R/W]
 	public var angle:String ; // [R/W]
 	public var radius:Number = 100;
 	public var x:Number = 0 ;
@@ -235,10 +235,6 @@ class asgard.draw.ArcPen extends AbstractPen {
 		}
 	}
 
-	public function getAlign():Number {
-		return _align ;
-	}
-	
 	public function getAngle():Number { 
 		return _angle ;
 	}
@@ -252,8 +248,7 @@ class asgard.draw.ArcPen extends AbstractPen {
 		if (isNaN(y)) y = 0 ;
 		_nX = x ; 
 		_nY = y ;
-		var nR:Number = (yRadius != undefined) ? yRadius : radius ;
-		trace("align : " + _align) ;
+		var nR:Number = (isNaN(yRadius)) ? radius : yRadius ;
 		switch (_align) {
 			case Align.TOP : // Top
 				_nY += nR ;
@@ -284,35 +279,29 @@ class asgard.draw.ArcPen extends AbstractPen {
 				_nY -= nR ;
 				break ;
 			default : // Center
-			trace("ok center") ;
 				break ;
 		}
 	}
 
-	public function setAlign ( nAlign:Number ):Void {
-		// TODO tester un validate sur Align
-		_align = (Align.validate(nAlign)) ? nAlign : Align.TOP_LEFT ;
-	}
 
 	public function setAngle(n:Number):Void {
 		_angle = Trigo.fixAngle(n) ;
 	}
 
 	public function setArc(p_angle:Number, p_startAngle:Number, p_x:Number, p_y:Number, p_align:Number):Void {
-		if (p_angle != null) setAngle(p_angle, true) ;
-		if (p_startAngle != null) setStartAngle(p_startAngle, true) ;
-		if (p_x != null) x = p_x ;
-		if (p_y != null ) y = p_y ;
-		if (!isNaN(p_align)) setAlign(p_align, true) ;
+		if (!isNaN(p_angle) ) setAngle(p_angle) ;
+		if (!isNaN(p_startAngle) ) setStartAngle(p_startAngle) ;
+		if (!isNaN(p_align)) setAlign(p_align) ;
+		x = (isNaN(p_x)) ? 0 : p_x ;
+		y = (isNaN(p_y)) ? 0 : p_y ;
 	}
 
-	public function setStartAngle (n:Number):Void {
+	public function setStartAngle(n:Number):Void {
 		_startAngle = Trigo.degreesToRadians(n) ;
 	}
 
 	// ----o Virtual Properties
 
-	static private var __ALIGN__:Boolean = PropertyFactory.create(ArcPen, "align", true) ;	
 	static private var __ANGLE__:Boolean = PropertyFactory.create(ArcPen, "angle", true) ;
 	static private var __START_ANGLE__:Boolean = PropertyFactory.create(ArcPen, "startAngle", true) ;
 
@@ -320,7 +309,6 @@ class asgard.draw.ArcPen extends AbstractPen {
 
 	private var _angle:Number = 0 ;
 	private var _angleMid:Number ;
-	private var _align:Number ;
 	private var _nX:Number ;
 	private var _nY:Number ;
 	private var _startAngle:Number = 360 ;

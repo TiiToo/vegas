@@ -106,7 +106,7 @@
 
 ----------  */
 
-import asgard.events.MouseEvent ;
+import asgard.events.MouseEvent;
 
 class asgard.events.ButtonEvent extends MouseEvent {
 

@@ -63,8 +63,8 @@
 
 ----------  */
 
-import vegas.core.CoreObject ;
-import vegas.util.TypeUtil ;
+import vegas.core.CoreObject;
+import vegas.util.TypeUtil;
 
 class asgard.draw.FillMatrix extends CoreObject {
 

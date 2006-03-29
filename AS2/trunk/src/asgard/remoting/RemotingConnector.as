@@ -146,20 +146,18 @@
 
 ---------- */ 
 
-import asgard.events.RemotingEvent ;
-import asgard.events.RemotingEventType ;
+import mx.remoting.Service;
+import mx.rpc.FaultEvent;
+import mx.rpc.RelayResponder;
+import mx.rpc.Responder;
+import mx.rpc.ResultEvent;
 
-import asgard.process.AbstractAction ;
+import asgard.events.RemotingEvent;
+import asgard.events.RemotingEventType;
+import asgard.process.AbstractAction;
+import asgard.remoting.RemotingFormat;
 
-import asgard.remoting.RemotingFormat ;
-
-import mx.rpc.FaultEvent ;
-import mx.rpc.RelayResponder ;
-import mx.rpc.ResultEvent ;
-import mx.rpc.Responder ;
-import mx.remoting.Service ;
-
-import vegas.events.Delegate ;
+import vegas.events.Delegate;
 
 class asgard.remoting.RemotingConnector extends AbstractAction implements Responder {
 

@@ -94,13 +94,13 @@
 
 ----------------*/
 
-import asgard.geom.Point ;
+import asgard.geom.Point;
 
-import vegas.core.CoreObject ;
-import vegas.core.ICloneable ;
-import vegas.core.IEquality  ;
-import vegas.core.ISerializable ;
-import vegas.util.serialize.Serializer ;
+import vegas.core.CoreObject;
+import vegas.core.ICloneable;
+import vegas.core.IEquality;
+import vegas.core.ISerializable;
+import vegas.util.serialize.Serializer;
 
 class asgard.geom.Line extends CoreObject implements ICloneable, IEquality, ISerializable {
 	

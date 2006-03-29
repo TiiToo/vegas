@@ -118,10 +118,10 @@
 
 ------------- */
 
-import asgard.colors.BasicColor ;
-import asgard.colors.ColorRGB ;
+import asgard.colors.BasicColor;
+import asgard.colors.ColorRGB;
 
-import vegas.util.factory.PropertyFactory ;
+import vegas.util.factory.PropertyFactory;
 
 class asgard.colors.SolidColor extends BasicColor {
 

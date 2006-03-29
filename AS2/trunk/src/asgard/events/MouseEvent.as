@@ -126,7 +126,7 @@
 
 ----------  */
 
-import vegas.events.DynamicEvent ;
+import vegas.events.DynamicEvent;
 
 class asgard.events.MouseEvent extends DynamicEvent {
 

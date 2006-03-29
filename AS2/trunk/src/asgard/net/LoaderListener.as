@@ -27,7 +27,7 @@
  * @date 2006-03-24
  */
  
-import asgard.events.LoaderEvent; 
+import asgard.events.LoaderEvent;
 
 interface asgard.net.LoaderListener {
 

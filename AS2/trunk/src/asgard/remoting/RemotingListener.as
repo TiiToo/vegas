@@ -43,9 +43,9 @@
 
 ----------  */
 
-import vegas.core.CoreObject ;
-import vegas.events.Event ;
-import vegas.events.EventListener ;
+import vegas.core.CoreObject;
+import vegas.events.Event;
+import vegas.events.EventListener;
 
 class asgard.remoting.RemotingListener extends CoreObject implements EventListener {
 

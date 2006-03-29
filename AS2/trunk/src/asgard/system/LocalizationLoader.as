@@ -31,7 +31,7 @@
 		Date :  2006-02-19
 		Author : ekameleon
 		URL : http://www.ekameleon.net
-		Mail : contact@ekameleon.net
+		Mail : vegas@ekameleon.net
 
 	DESCRIPTION
 	
@@ -55,17 +55,15 @@
 	
 ----------  */	
 
-import asgard.events.LocalizationLoaderEvent ;
-
-import asgard.net.JSONLoader ;
-import asgard.net.URLRequest ;
-
-import asgard.system.Lang ;
+import asgard.events.LocalizationLoaderEvent;
+import asgard.net.JSONLoader;
+import asgard.net.URLRequest;
+import asgard.system.Lang;
 import asgard.system.Locale;
-import asgard.system.Localization ;
+import asgard.system.Localization;
 
-import vegas.errors.IllegalArgumentError ;
-import vegas.util.factory.PropertyFactory ;
+import vegas.errors.IllegalArgumentError;
+import vegas.util.factory.PropertyFactory;
 
 
 

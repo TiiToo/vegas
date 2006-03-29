@@ -26,7 +26,7 @@
  * @version 1.0.0.0
  */
  
- import vegas.core.IRunnable ;
+import vegas.core.IRunnable;
 
 interface asgard.net.ILoader extends IRunnable {
 	

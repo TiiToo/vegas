@@ -121,11 +121,11 @@
 	
 ----------  */
 
-import asgard.date.LocalDate ;
+import asgard.date.LocalDate;
 
-import vegas.maths.Range ;
-import vegas.errors.IllegalArgumentError ;
-import vegas.util.format.AbstractFormatter ;
+import vegas.errors.IllegalArgumentError;
+import vegas.maths.Range;
+import vegas.util.format.AbstractFormatter;
 
 class asgard.date.DateFormatter extends AbstractFormatter {
 

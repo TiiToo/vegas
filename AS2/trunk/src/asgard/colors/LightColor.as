@@ -98,9 +98,9 @@
 
 ------------- */
 
-import asgard.colors.BasicColor ;
+import asgard.colors.BasicColor;
 
-import vegas.util.factory.PropertyFactory ;
+import vegas.util.factory.PropertyFactory;
 
 class asgard.colors.LightColor extends BasicColor {
 

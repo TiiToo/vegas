@@ -60,10 +60,10 @@
 
 ----------  */
 
-import vegas.core.IRunnable;
+import asgard.config.Config;
+import asgard.config.ConfigLoader;
 
-import asgard.config.Config ;
-import asgard.config.ConfigLoader ;
+import vegas.core.IRunnable;
 
 /**
  * @author eKameleon

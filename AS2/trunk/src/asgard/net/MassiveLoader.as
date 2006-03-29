@@ -31,7 +31,7 @@
 		Date :  2006-03-22
 		Author : ekameleon
 		URL : http://www.ekameleon.net
-		Mail : contact@ekameleon.net
+		Mail : vegas@ekameleon.net
 
 	DESCRIPTION
 	
@@ -87,22 +87,20 @@
 	
 ----------  */	
 
-import asgard.events.LoaderEvent ;
-import asgard.events.LoaderEventType ;
+import asgard.events.LoaderEvent;
+import asgard.events.LoaderEventType;
+import asgard.net.AbstractLoader;
+import asgard.net.ILoader;
+import asgard.net.LoaderListener;
 
-import asgard.net.AbstractLoader ;
-import asgard.net.ILoader ;
-import asgard.net.LoaderListener ;
-
-import vegas.core.HashCode ;
-import vegas.data.iterator.Iterator ;
-import vegas.data.map.HashMap ;
-import vegas.data.queue.LinearQueue ;
-import vegas.errors.Warning ;
-import vegas.events.Delegate ;
-import vegas.util.factory.PropertyFactory ;
+import vegas.core.HashCode;
+import vegas.data.iterator.Iterator;
+import vegas.data.map.HashMap;
+import vegas.data.queue.LinearQueue;
+import vegas.errors.Warning;
+import vegas.events.Delegate;
+import vegas.events.TimerEventType;
 import vegas.util.Timer;
-import vegas.events.TimerEventType ;
 
 /**
  * @author eKameleon

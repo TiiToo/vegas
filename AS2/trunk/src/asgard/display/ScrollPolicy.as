@@ -31,7 +31,7 @@
 		Date :  2006-02-22
 		Author : ekameleon
 		URL : http://www.ekameleon.net
-		Mail : contact@ekameleon.net
+		Mail : vegas@ekameleon.net
 
 	CONSTANT SUMMARY
 		

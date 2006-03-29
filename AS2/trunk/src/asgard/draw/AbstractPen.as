@@ -125,18 +125,18 @@
 	
 	IMPLEMENT
 	
-		ICloneable, Pen, IRunnable, Shape, IFormattable, IHashable
+		ICloneable, IFormattable, IHashCode, IPen, IRunnable, IShape
 		
 ----------  */
 
-import vegas.core.CoreObject ;
-import vegas.core.ICloneable ;
-import vegas.core.IRunnable ;
+import asgard.draw.IPen;
 
-import asgard.draw.Pen ;
-import asgard.draw.PenFormat ;
+import vegas.core.CoreObject;
+import vegas.core.ICloneable;
+import vegas.core.IRunnable;
+import vegas.util.ConstructorUtil;
 
-class asgard.draw.AbstractPen extends CoreObject implements ICloneable, Pen, IRunnable {
+class asgard.draw.AbstractPen extends CoreObject implements ICloneable, IPen, IRunnable {
 
 	// -----o Constructor
 
@@ -147,46 +147,40 @@ class asgard.draw.AbstractPen extends CoreObject implements ICloneable, Pen, IRu
 	// -----o Public Properties
 	
 	public var la:Number ; // line alpha
-	
 	public var lc:Number ; // line color
-	
 	public var fa:Number ; // fill alpha	
-	
 	public var fc:Number ; // fill color
-
 	public var t:Number ; // thickness
 
 	public var C:Function = MovieClip.prototype.curveTo ;
-
 	public var CL:Function = MovieClip.prototype.clear ;
-
 	public var EF:Function = MovieClip.prototype.endFill ;
-
 	public var F:Function = MovieClip.prototype.beginFill ;
-
 	public var GF:Function = MovieClip.prototype.beginGradientFill ;
-	
 	public var L:Function = MovieClip.prototype.lineTo ;
-
 	public var M:Function = MovieClip.prototype.moveTo ;
-
 	public var S:Function = MovieClip.prototype.lineStyle ;
+
+	public var default_la = null ; // line alpha
+	public var default_lc:Number = null ; // line color
+	public var default_fa:Number = null ; // fill alpha	
+	public var default_fc:Number = null ; // fill color
+	public var default_t:Number = null ; // thickness
 
 	// -----o Public Methods
 
 	public function beginFill(color:Number, alpha:Number):Void {
-		fa = isNaN(alpha) ? 100 : alpha ;
-		fc = isNaN(color) ? 0 : color ;
+		fa = isNaN(alpha) ? default_fc : alpha ;
+		fc = isNaN(color) ? default_fa : color ;
 		F.apply(_target, [fc, fa]) ;
 	}
 
 	public function beginGradientFill(type:String, colors:Array, alphas:Array, ratios:Array, matrix):Void {
-		GF.apply(_target, [].concat(arguments)) ;
+		GF.apply(_target, arguments) ;
 	}
 
 	public function clear():Void {
 		CL.apply(_target) ;
-		_isLineStyle = false ;
 	}
 
 	public function clone() {
@@ -194,8 +188,7 @@ class asgard.draw.AbstractPen extends CoreObject implements ICloneable, Pen, IRu
 	}
 
 	public function curveTo(x1:Number, y1:Number, x2:Number, y2:Number):Void {
-		if(!_isLineStyle) S.apply(_target, [0, 0, 100]);
-		C.apply(_target, [].concat(arguments));
+		C.apply(_target, arguments);
 	}	
 
 	public function draw():Void {
@@ -219,37 +212,39 @@ class asgard.draw.AbstractPen extends CoreObject implements ICloneable, Pen, IRu
 	}
 
 	public function lineStyle(thickness:Number, color:Number, alpha:Number):Void {
-		t = isNaN(thickness) ? null : thickness ;
-		lc = isNaN(color) ? null : color ;
-		la = isNaN(alpha) ? null : alpha ;
+		t = isNaN(thickness) ? default_t : thickness ;
+		lc = isNaN(color) ? default_lc : color ;
+		la = isNaN(alpha) ? default_la : alpha ;
 		S.apply(_target, [t, lc, la].concat(arguments.slice(3)) ) ;
-		_isLineStyle = true ;
 	}
 
 	public function lineTo(x:Number, y:Number):Void {
-		if(!_isLineStyle) lineStyle(0, 0, 100) ;
-		L.apply(_target, [].concat(arguments));
+		L.apply(_target, arguments);
 	}
 
 	public function moveTo(x:Number, y:Number):Void {
-		M.apply(_target, [].concat(arguments));
+		M.apply(_target, arguments);
 	}
 
 	public function run():Void {
 		draw() ;
 	}
-
+	
 	public function setTarget(target:MovieClip):Void {
 		_target = target ;
 	}
 	
 	public function toString():String {
-		return (new PenFormat()).formatToString(this) ;
+		var name:String = ConstructorUtil.getName(this) ;
+		var m:MovieClip = getTarget() ;
+		var txt:String = "[" + name ;
+		if (m) txt += ":" + m ;
+		txt += "]" ;
+		return txt ;
 	}
 
 	// -----o Private Properties
 
-	private var _isLineStyle:Boolean ;
 	private var _target:MovieClip ;
   
 }

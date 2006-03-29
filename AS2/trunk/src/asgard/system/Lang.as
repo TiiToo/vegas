@@ -89,9 +89,7 @@
 		
 ----------  */
 
-import asgard.system.LangFormat;
-
-import vegas.data.map.HashMap ;
+import vegas.data.map.HashMap;
 import vegas.util.ArrayUtil;
 
 class asgard.system.Lang extends String {

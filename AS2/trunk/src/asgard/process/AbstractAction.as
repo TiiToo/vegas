@@ -109,13 +109,12 @@
 	
 ----------  */
 
-import asgard.process.Action ;
-import asgard.events.ActionEvent ;
-import asgard.events.ActionEventType ;
+import asgard.events.ActionEvent;
+import asgard.events.ActionEventType;
+import asgard.process.Action;
 
-import vegas.core.ICloneable ;
-import vegas.core.ISerializable ;
-
+import vegas.core.ICloneable;
+import vegas.core.ISerializable;
 import vegas.events.AbstractCoreEventDispatcher;
 import vegas.util.factory.PropertyFactory;
 

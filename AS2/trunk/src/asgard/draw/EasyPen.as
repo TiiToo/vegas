@@ -105,6 +105,8 @@
 		
 		- endFill():Void
 		
+		- getAlign():Number
+		
 		- getTarget():MovieClip
 		
 		- initialize( target:MovieClip , bNew:Boolean):Void
@@ -115,21 +117,30 @@
 		
 		- moveTo(x:Number, y:Number):Void
 		
+		- setAlign(nAlign:Number):Void
+		
 		- setTarget(target:MovieClip):Void
 		
 		- toString():String
 
 	INHERIT
 	
-		Object > AbstractPen > EasyPen
+		CoreObject > AbstractPen > EasyPen
 	
 	IMPLEMENT
 	
-		ICloneable, Pen, IRunnable, Shape, IFormattable, IHashable
+		ICloneable, IPen, IRunnable, IShape, IFormattable, IHashable
+
+	SEE ALSO
+	
+		Align
 
 ----------  */
 
-import asgard.draw.AbstractPen ;
+import asgard.display.Align;
+import asgard.draw.AbstractPen;
+
+import vegas.util.factory.PropertyFactory;
 
 class asgard.draw.EasyPen extends AbstractPen {
 
@@ -138,5 +149,28 @@ class asgard.draw.EasyPen extends AbstractPen {
 	public function EasyPen(target:MovieClip, isNew:Boolean) {
 		initialize(target, isNew) ;
 	}
+
+	// ----o Public Properties
+
+	public var align:Number ; // [R/W]
+
+	// ----o Public Methods
+
+	public function getAlign():Number {
+		return _align ;
+	}
+
+	public function setAlign ( nAlign:Number , noDraw:Boolean):Void {
+		_align = (Align.validate(nAlign)) ? nAlign : Align.TOP_LEFT ;
+		if (!noDraw) draw() ;
+	}
+
+	// ----o Virtual Properties
+
+	static private var __ALIGN__:Boolean = PropertyFactory.create(EasyPen, "align", true) ;	
+	
+	// ----o Private Properties
+	
+	private var _align:Number ;
 	
 }

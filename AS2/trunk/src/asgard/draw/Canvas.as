@@ -123,7 +123,7 @@
 
 	IMPLEMENT
 	
-		ICloneable, Pen, IRunnable, Shape, IFormattable
+		ICloneable, IFormattable, IHashCode, IPen, IRunnable, IShape
 		
 	INHERIT
 	
@@ -131,7 +131,7 @@
 
 	IMPLEMENT
 	
-		ICloneable, Pen, IRunnable, Shape, IFormattable, IHashable
+		ICloneable, IPen, IRunnable, IShape, IFormattable, IHashable
 	
 	THANKS 
 		
@@ -139,7 +139,9 @@
 		
 ----------  */
 
-import asgard.draw.AbstractPen ;
+import asgard.draw.AbstractPen;
+
+import vegas.util.factory.PropertyFactory;
 
 class asgard.draw.Canvas extends AbstractPen {
 
@@ -149,11 +151,15 @@ class asgard.draw.Canvas extends AbstractPen {
 		setData(data) ;
 		initialize(target, isNew) ;
 	}
+	
+	// ----o public Properties
+	
+	public var data:Array ; // [R/W]
 
 	// ----o Public Methods
 
 	/*override*/ public function clone() {
-		return new Canvas(_target, _data) ;
+		return new Canvas(getTarget(), getData()) ;
 	}
 	
 	public function curvesToLines():Void {
@@ -266,14 +272,8 @@ class asgard.draw.Canvas extends AbstractPen {
 	}
 
 	// ----o Virtual Properties
-	
-	public function get data():Array { 
-		return getData() ;
-	}
-	
-	public function set data(arData:Array):Void {
-		setData(arData) ;
-	}
+
+	static private var __DATA__:Boolean = PropertyFactory.create(Canvas, "data", true) ;	
 	
 	// ----o Private Properties
 	

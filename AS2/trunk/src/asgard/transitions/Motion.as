@@ -146,15 +146,15 @@
 
 ---------------*/
 
-import asgard.process.AbstractAction ;
+import asgard.process.AbstractAction;
 
-import vegas.events.Delegate ;
-import vegas.events.EventListener ;
-import vegas.events.TimerEventType ;
-import vegas.util.factory.PropertyFactory ;
-import vegas.util.FrameTimer ;
-import vegas.core.ITimer ;
-import vegas.util.Timer ;
+import vegas.core.ITimer;
+import vegas.events.Delegate;
+import vegas.events.EventListener;
+import vegas.events.TimerEventType;
+import vegas.util.factory.PropertyFactory;
+import vegas.util.FrameTimer;
+import vegas.util.Timer;
 
 class asgard.transitions.Motion extends AbstractAction {
 

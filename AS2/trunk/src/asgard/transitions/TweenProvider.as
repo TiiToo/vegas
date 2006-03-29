@@ -89,17 +89,17 @@
 	
 ----------------*/
 
-import asgard.transitions.TweenEntry ;
+import asgard.transitions.TweenEntry;
 
-import vegas.data.iterator.Iterable ;
-import vegas.data.iterator.Iterator ;
-import vegas.data.Map ;
-import vegas.data.map.HashMap ;
-import vegas.errors.IllegalArgumentError ;
-import vegas.events.ModelChangedEvent ;
-import vegas.events.ModelChangedEventType ;
-import vegas.util.mvc.AbstractModel ;
-import vegas.util.TypeUtil ;
+import vegas.data.iterator.Iterable;
+import vegas.data.iterator.Iterator;
+import vegas.data.Map;
+import vegas.data.map.HashMap;
+import vegas.errors.IllegalArgumentError;
+import vegas.events.ModelChangedEvent;
+import vegas.events.ModelChangedEventType;
+import vegas.util.mvc.AbstractModel;
+import vegas.util.TypeUtil;
 
 class asgard.transitions.TweenProvider extends AbstractModel implements Iterable {
 	

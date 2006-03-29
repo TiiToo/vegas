@@ -67,10 +67,10 @@
 	
 ----------  */	
 
-import vegas.core.IRunnable ;
-import vegas.data.collections.SimpleCollection;		
-import vegas.data.collections.TypedCollection ;
-import vegas.data.iterator.Iterator ;
+import vegas.core.IRunnable;
+import vegas.data.collections.SimpleCollection;
+import vegas.data.collections.TypedCollection;
+import vegas.data.iterator.Iterator;
 
 class asgard.process.Batch extends TypedCollection implements IRunnable {
 

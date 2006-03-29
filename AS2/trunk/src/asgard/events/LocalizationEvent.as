@@ -21,10 +21,10 @@
   
 */
 
-import vegas.events.BasicEvent ;
+import asgard.system.Locale;
+import asgard.system.Localization;
 
-import asgard.system.Locale ;
-import asgard.system.Localization ;
+import vegas.events.BasicEvent;
 
 
 /**

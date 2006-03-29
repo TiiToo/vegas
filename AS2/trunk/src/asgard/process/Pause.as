@@ -85,14 +85,13 @@
 
 ----------  */
 
-import asgard.process.AbstractAction ;
+import asgard.process.AbstractAction;
 
-import vegas.events.EventListenerProxy ;
-import vegas.events.TimerEvent ;
-import vegas.events.TimerEventType ;
-import vegas.util.factory.PropertyFactory ;
-import vegas.util.serialize.Serializer ;
-import vegas.util.Timer ;
+import vegas.events.EventListenerProxy;
+import vegas.events.TimerEventType;
+import vegas.util.factory.PropertyFactory;
+import vegas.util.serialize.Serializer;
+import vegas.util.Timer;
 
 class asgard.process.Pause extends AbstractAction {
 

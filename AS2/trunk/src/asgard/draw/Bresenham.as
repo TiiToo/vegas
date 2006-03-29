@@ -140,8 +140,9 @@
 
 ----------------*/
 
-import flash.display.BitmapData ;
-import vegas.util.MathsUtil ;
+import flash.display.BitmapData;
+
+import vegas.util.MathsUtil;
 
 class asgard.draw.Bresenham {
 

@@ -166,7 +166,7 @@
 	
 ----------  */
 
-import vegas.core.types.Char ;
+import vegas.core.types.Char;
 
 class asgard.ui.Keyboard {
 

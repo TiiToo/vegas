@@ -78,7 +78,7 @@
 	
 ----------  */
 
-import asgard.events.MouseEventType ;
+import asgard.events.MouseEventType;
 
 class asgard.events.ButtonEventType {
 

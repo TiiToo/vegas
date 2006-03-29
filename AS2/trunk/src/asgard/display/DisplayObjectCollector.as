@@ -31,7 +31,7 @@
 		Date :  2006-03-21
 		Author : ekameleon
 		URL : http://www.ekameleon.net
-		Mail : contact@ekameleon.net
+		Mail : vegas@ekameleon.net
 
 	METHOD SUMMARY
 	
@@ -54,10 +54,10 @@
  * @version 1.0.0.0
  */
 
-import asgard.display.DisplayObject ;
+import asgard.display.DisplayObject;
 
-import vegas.data.map.HashMap ;
-import vegas.errors.Warning ;
+import vegas.data.map.HashMap;
+import vegas.errors.Warning;
 
 class asgard.display.DisplayObjectCollector {
 

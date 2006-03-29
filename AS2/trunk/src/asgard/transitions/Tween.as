@@ -192,9 +192,9 @@
 // TODO Optimiser les tweens car pour le moment c'est TROP LENT !!!
 
 
-import asgard.transitions.Motion ;
-import asgard.transitions.TweenEntry ;
-import asgard.transitions.TweenProvider ;
+import asgard.transitions.Motion;
+import asgard.transitions.TweenEntry;
+import asgard.transitions.TweenProvider;
 
 class asgard.transitions.Tween extends Motion {
 

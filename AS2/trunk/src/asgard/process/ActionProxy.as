@@ -73,9 +73,9 @@
 
 ----------  */
 
-import vegas.events.Delegate ;
+import asgard.process.AbstractAction;
 
-import asgard.process.AbstractAction ;
+import vegas.events.Delegate;
 
 class asgard.process.ActionProxy extends AbstractAction {
 

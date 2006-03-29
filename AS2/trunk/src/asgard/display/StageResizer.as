@@ -91,15 +91,14 @@
 	
 ----------------*/
 
-import vegas.events.Event ;
-import vegas.events.EventType ;
-import vegas.events.DynamicEvent ;
-import vegas.events.EventDispatcher ;
-import vegas.events.EventListener ;
-import vegas.events.TimerEventType ;
-
-import vegas.util.Timer ;
-import vegas.core.IFormattable ;
+import vegas.core.IFormattable;
+import vegas.events.DynamicEvent;
+import vegas.events.Event;
+import vegas.events.EventDispatcher;
+import vegas.events.EventListener;
+import vegas.events.EventType;
+import vegas.events.TimerEventType;
+import vegas.util.Timer;
 
 class asgard.display.StageResizer extends EventDispatcher implements EventListener, IFormattable {
 

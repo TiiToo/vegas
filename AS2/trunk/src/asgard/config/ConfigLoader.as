@@ -31,19 +31,19 @@
 		Date :  2006-03-25
 		Author : ekameleon
 		URL : http://www.ekameleon.net
-		Mail : contact@ekameleon.net
+		Mail : vegas@ekameleon.net
 
 **/
 
-import asgard.config.Config ;
-import asgard.events.ConfigLoaderEvent ;
-import asgard.events.LoaderEvent ;
-import asgard.net.JSONLoader ;
-import asgard.net.URLRequest ;
+import asgard.config.Config;
+import asgard.events.ConfigLoaderEvent;
+import asgard.events.LoaderEvent;
+import asgard.net.JSONLoader;
+import asgard.net.URLRequest;
 
-import vegas.logging.ILogger ;
-import vegas.logging.Log ;
-import vegas.util.factory.PropertyFactory ;
+import vegas.logging.ILogger;
+import vegas.logging.Log;
+import vegas.util.factory.PropertyFactory;
 
 /**
  * @author eKameleon

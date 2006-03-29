@@ -79,10 +79,9 @@
 
 ----------  */
 
-import asgard.config.ConfigLoader ;
-
-import asgard.events.LoaderEvent ;
-import asgard.events.UIEventType  ;
+import asgard.config.ConfigLoader;
+import asgard.events.LoaderEvent;
+import asgard.events.UIEventType;
 
 /**
  * @author eKameleon

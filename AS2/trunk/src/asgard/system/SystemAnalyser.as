@@ -71,13 +71,13 @@
 
 ----------  */
 
-import vegas.core.IRunnable ;
-import vegas.core.IFormattable ;
-import vegas.data.iterator.ArrayIterator ;
-import vegas.events.EventDispatcher ;
-
 import asgard.system.SystemAnalyserFormat;
 import asgard.system.SystemEvent;
+
+import vegas.core.IFormattable;
+import vegas.core.IRunnable;
+import vegas.data.iterator.ArrayIterator;
+import vegas.events.EventDispatcher;
 
 class asgard.system.SystemAnalyser extends EventDispatcher implements IRunnable, IFormattable {
 

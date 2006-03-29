@@ -53,7 +53,7 @@
 		
 ----------  */	
 
-import vegas.util.ConstructorUtil ;
+import vegas.util.ConstructorUtil;
 
 class asgard.transitions.Ease {
 

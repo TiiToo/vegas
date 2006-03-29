@@ -43,12 +43,12 @@
 
 ----------  */
 
-import asgard.remoting.RemotingConnector ;
+import mx.remoting.RecordSet;
 
-import vegas.data.iterator.Iterator ;
-import vegas.core.IFormat ;
+import asgard.remoting.RemotingConnector;
 
-import mx.remoting.RecordSet ; // TODO voir à s'isoler du package mx.
+import vegas.core.IFormat;
+import vegas.data.iterator.Iterator;
 
 class asgard.remoting.RemotingFormat implements IFormat {
 

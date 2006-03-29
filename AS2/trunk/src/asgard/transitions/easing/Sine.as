@@ -18,7 +18,7 @@
 		
 ----------  */	
 
-import asgard.transitions.Ease ;
+import asgard.transitions.Ease;
 
 class asgard.transitions.easing.Sine extends Ease {
 

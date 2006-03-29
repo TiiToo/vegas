@@ -87,17 +87,17 @@
 
 ----------  */
 
-import asgard.config.Config ;
-import asgard.config.ConfigLoader ;
-import asgard.config.ISetup ;
-import asgard.events.LoaderEvent ;
-import asgard.events.LoaderEventType ;
-import asgard.events.UIEvent ;
+import asgard.config.Config;
+import asgard.config.ConfigLoader;
+import asgard.config.ISetup;
+import asgard.events.LoaderEvent;
+import asgard.events.LoaderEventType;
+import asgard.events.UIEvent;
 import asgard.events.UIEventType;
 import asgard.net.LoaderListener;
 
-import vegas.events.EventDispatcher;
 import vegas.events.Delegate;
+import vegas.events.EventDispatcher;
 import vegas.util.factory.PropertyFactory;
 
 class asgard.config.AbstractSetup extends EventDispatcher implements ISetup, LoaderListener  {

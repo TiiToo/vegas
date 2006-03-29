@@ -111,14 +111,14 @@
 		
 ----------------*/
 
-import vegas.core.CoreObject ;
-import vegas.core.IValidator ;
-import vegas.data.iterator.Iterator ;
-import vegas.data.set.HashSet ;
-import vegas.events.EventDispatcher ;
-import vegas.events.EventListener ;
-import vegas.events.ValidatorEvent ;
-import vegas.events.ValidatorEventType ;
+import vegas.core.CoreObject;
+import vegas.core.IValidator;
+import vegas.data.iterator.Iterator;
+import vegas.data.set.HashSet;
+import vegas.events.EventDispatcher;
+import vegas.events.EventListener;
+import vegas.events.ValidatorEvent;
+import vegas.events.ValidatorEventType;
 
 class asgard.ui.KeysValidator extends CoreObject implements IValidator {
 	

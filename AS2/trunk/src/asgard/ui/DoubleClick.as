@@ -66,11 +66,11 @@
 	
 ----------  */
 
-import vegas.events.Event ;
-import vegas.events.FastDispatcher ;
+import asgard.events.MouseEvent;
+import asgard.events.MouseEventType;
 
-import asgard.events.MouseEvent ;
-import asgard.events.MouseEventType ;
+import vegas.events.Event;
+import vegas.events.FastDispatcher;
 
 class asgard.ui.DoubleClick {
 

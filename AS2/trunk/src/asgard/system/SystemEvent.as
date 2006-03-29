@@ -60,7 +60,7 @@
 
 ----------  */
 
-import vegas.events.DynamicEvent ;
+import vegas.events.DynamicEvent;
 
 // TODO changer le setContext... par 2 propriétés property et value en direct.
 

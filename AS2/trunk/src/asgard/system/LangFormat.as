@@ -43,9 +43,9 @@
 	
 ----------  */
 
-import vegas.data.iterator.Iterator ;
-import vegas.data.map.HashMap ;
-import vegas.core.IFormat ;
+import vegas.core.IFormat;
+import vegas.data.iterator.Iterator;
+import vegas.data.map.HashMap;
 
 class asgard.system.LangFormat implements IFormat {
 

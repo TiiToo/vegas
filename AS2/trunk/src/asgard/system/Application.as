@@ -64,7 +64,7 @@
 
 ------ */
 
-import asgard.system.ApplicationType ;
+import asgard.system.ApplicationType;
 
 class asgard.system.Application {
 
