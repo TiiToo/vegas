@@ -187,16 +187,11 @@ class asgard.draw.RoundedRectanglePen extends CornerRectanglePen {
 			var nY:Number = r.y ;
 			var nW:Number = nX + r.width ;
 			var nH:Number = nY + r.height ;
-			
 			var c:Corner = getCorner() ;
-			trace("c : " + c) ;
 			var tr:Boolean = c.getTr() ;
 			var br:Boolean = c.getBr() ;
 			var bl:Boolean = c.getBl() ;
 			var tl:Boolean = c.getTl() ;
-			
-			trace(tr + " : " + br + " : " + bl + " : " + tl) ;
-			
 			
 			_currentRadius  = (_round > (Math.min (w, h) / 2) ) ? (Math.max (w, h) / 2) : _round  ;
 

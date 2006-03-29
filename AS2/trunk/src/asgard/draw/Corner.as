@@ -60,7 +60,25 @@
 		
 	PROPERTY SUMMARY
 	
+		- bl:Boolean [Read Only]
+	
+		- br:Boolean [Read Only]
+	
+		- tl:Boolean [Read Only]
+	
+		- tr:Boolean [Read Only]
+	
 	METHOD SUMMARY
+
+		- clone()
+
+		- getBl():Boolean
+
+		- getBr():Boolean
+		
+		- getTl():Boolean
+	
+		- getTr():Boolean
 
 		- hashCode()
 		
@@ -77,17 +95,18 @@
 ----------  */
 
 import vegas.core.CoreObject;
+import vegas.core.ICloneable;
 import vegas.util.ConstructorUtil;
 import vegas.util.factory.PropertyFactory;
 
 /**
  * @author eKameleon
  */
-class asgard.draw.Corner extends CoreObject {
+class asgard.draw.Corner extends CoreObject implements ICloneable {
 	
 	// ----o Constructor
 	
-	public function Corner(tl:Boolean , br:Boolean, tr:Boolean, bl:Boolean) {
+	public function Corner(tl:Boolean , tr:Boolean, br:Boolean, bl:Boolean) {
 		super() ;
 		if (tl != null) _tl = tl ;
 		if (br!= null) _br = br ;
@@ -104,20 +123,24 @@ class asgard.draw.Corner extends CoreObject {
 	
 	// ----o Public Methods
 
+	public function clone() {
+		return new Corner(getTl() , getTr(), getBr(), getBl()) ;	
+	}
+
 	public function getBl():Boolean {
-		return _bl || true ;
+		return _bl ;
 	}
 
 	public function getBr():Boolean {
-		return _br || true ;
+		return _br ;
 	}
 	
 	public function getTl():Boolean {
-		return _tl || true ;
+		return _tl ;
 	}
 
 	public function getTr():Boolean {
-		return _tr || true ;
+		return _tr ;
 	}
 	
 	public function toString():String {

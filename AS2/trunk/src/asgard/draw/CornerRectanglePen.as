@@ -41,6 +41,8 @@
 	
 		- align:String [R/W]
 		
+		- corner:Corner [R/W]
+		
 		- round:Number [R/W]
 		
 		- la:Number
@@ -113,6 +115,8 @@
 		
 		- getAlign():String
 		
+		- getCorner():Corner
+		
 		- getRectangle():Rectangle
 		
 		- getRound():Number
@@ -128,6 +132,8 @@
 		- moveTo(x:Number, y:Number):Void
 		
 		- run():Void
+		
+		- setCorner(c:Corner , noDraw:Boolean):Void
 		
 		- setRectangle(p_w:Number, p_h:Number, p_round:Number, p_rotation:Number, p_x:Number, p_y:Number, p_align:String):Void
 		
