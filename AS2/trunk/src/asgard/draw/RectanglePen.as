@@ -35,7 +35,7 @@
 	
 	CONSTRUCTOR
 	
-		var rec:Rectangle = new Rectangle(target:MovieClip, isNew:Boolean) ;
+		var rec:RectanglePen = new RectanglePen(target:MovieClip, isNew:Boolean) ;
 
 	PROPERTY SUMMARY
 	
@@ -115,10 +115,6 @@
 		
 		- getAlign():String
 		
-		- getRound():Number
-	
-		- getRotation():Number
-			
 		- getTarget():MovieClip
 		
 		- initialize(target:MovieClip , bNew:Boolean):Void
@@ -134,10 +130,6 @@
 		- setRectangle(p_w:Number, p_h:Number, p_round:Number, p_rotation:Number, p_x:Number, p_y:Number, p_align:String):Void
 		
 		- setAlign (str:String, noDraw:Boolean):Void
-		
-		- setRound(n:Number, noDraw:Boolean):Void
-		
-		- setRotation(n:Number, noDraw:Boolean):Void
 		
 		- setTarget(target:MovieClip):Void
 		

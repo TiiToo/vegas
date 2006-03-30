@@ -69,7 +69,6 @@
 		EventDispatcher.getInstance().addEventListener(EVENT_TYPE, batch) ;
 		EventDispatcher.getInstance().dispatchEvent( e ) ;
 	
-	
 	METHOD SUMMARY
 	
 		- clear():Void
