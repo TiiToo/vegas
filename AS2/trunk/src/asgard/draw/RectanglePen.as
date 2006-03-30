@@ -200,36 +200,6 @@ class asgard.draw.RectanglePen extends EasyPen {
 	}
 	
 	public function getRectangle():Rectangle {
-		var _nX:Number = isNaN(x) ? 0 : x ;
-		var _nY:Number = isNaN(y) ? 0 : y ;
-		var a:Number = _align ;
-		if (a == Align.CENTER) {
-			_nX -= w/2 ;
-			_nY -= h/2 ;
-		} else if (a == Align.BOTTOM) {
-			_nX -= w/2 ;
-			_nY -= h ;
-		} else if (a == Align.BOTTOM_LEFT) {
-			_nY -= h ;
-		} else if (a == Align.BOTTOM_RIGHT) {
-			_nX -= w ;
-			_nY -= h ;
-		} else if (a == Align.LEFT) {
-			_nY -= h/2 ;
-		} else if (a ==  Align.RIGHT) {
-			_nX -= w ;
-			_nY -= h/2 ;
-		} else if (a == Align.TOP) {
-			_nX -= w/2 ;
-		} else if (a == Align.TOP_RIGHT) {
-			_nX -= w ;
-		} else {
-			// top left
-		}
-		_rectangle.x = _nX ;
-		_rectangle.y = _nY ;
-		_rectangle.width = w ;
-		_rectangle.height = h ;
 		return _rectangle ;	
 	}
 	
@@ -239,6 +209,34 @@ class asgard.draw.RectanglePen extends EasyPen {
 		if (!isNaN(p_x)) x = p_x ;
 		if (!isNaN(p_y)) y = p_y ;
 		if (!isNaN(p_align)) setAlign(p_align, true) ;
+		_rectangle.x = isNaN(x) ? 0 : x ;
+		_rectangle.y = isNaN(y) ? 0 : y ;
+		var a:Number = getAlign() ;
+		if (a == Align.CENTER) {
+			_rectangle.x -= w/2 ;
+			_rectangle.y -= h/2 ;
+		} else if (a == Align.BOTTOM) {
+			_rectangle.x -= w/2 ;
+			_rectangle.y -= h ;
+		} else if (a == Align.BOTTOM_LEFT) {
+			_rectangle.y -= h ;
+		} else if (a == Align.BOTTOM_RIGHT) {
+			_rectangle.x -= w ;
+			_rectangle.y -= h ;
+		} else if (a == Align.LEFT) {
+			_rectangle.y -= h/2 ;
+		} else if (a ==  Align.RIGHT) {
+			_rectangle.x -= w ;
+			_rectangle.y -= h/2 ;
+		} else if (a == Align.TOP) {
+			_rectangle.x -= w/2 ;
+		} else if (a == Align.TOP_RIGHT) {
+			_rectangle.x -= w ;
+		} else {
+			// top left
+		}
+		_rectangle.width = w ;
+		_rectangle.height = h ;
 	}
 
 	// ----o Private  Properties

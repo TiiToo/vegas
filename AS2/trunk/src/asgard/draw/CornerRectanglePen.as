@@ -147,7 +147,11 @@
 
 	INHERIT
 	
-		CoreObject > AbstractPen > EasyPen > Rectangle
+		CoreObject 
+			> AbstractPen
+				> EasyPen
+					> RectanglePen
+						> CornerRectangle
 
 	IMPLEMENT
 	

@@ -113,6 +113,8 @@
 		
 		- getAlign():String
 		
+		- getCorner():Corner
+		
 		- getRectangle():Rectangle
 		
 		- getRound():Number
@@ -129,6 +131,8 @@
 		
 		- run():Void
 		
+		- setCorner(c:Corner , noDraw:Boolean):Void
+		
 		- setRectangle(p_w:Number, p_h:Number, p_round:Number, p_rotation:Number, p_x:Number, p_y:Number, p_align:String):Void
 		
 		- setAlign (str:String, noDraw:Boolean):Void
@@ -141,7 +145,12 @@
 
 	INHERIT
 	
-		CoreObject > AbstractPen > EasyPen > Rectangle
+		CoreObject 
+			> AbstractPen
+				> EasyPen
+					> RectanglePen
+						> CornerRectangle
+							> RoundedRectangle
 
 	IMPLEMENT
 	
