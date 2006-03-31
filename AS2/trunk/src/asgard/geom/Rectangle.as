@@ -74,19 +74,19 @@
 		- clone()
 		
 			Renvoie un nouvel objet Rectangle avec les m�mes valeurs que l'objet Rectangle d'origine
-			pour les propri�t�s x, y, width (largeur) et height (hauteur).
+			pour les propriétés x, y, width (largeur) et height (hauteur).
 		
 		- contains(p_x:Number, p_y:Number):Boolean
 		
-			D�termine si le point sp�cifi� figure dans la zone rectangulaire d�finie par cet objet Rectangle.
+			D�termine si le point spécifié figure dans la zone rectangulaire d�finie par cet objet Rectangle.
 				
 		- containsPoint(pt:Point):Boolean
 		
-			D�termine si le point sp�cifi� figure dans la zone rectangulaire d�finie par cet objet Rectangle.
+			Détermine si le point spécifié figure dans la zone rectangulaire définie par cet objet Rectangle.
 		
 		- containsRectangle(rect:Rectangle):Boolean
 		
-			D�termine si l'objet Rectangle sp�cifi� par le param�tre rect figure dans cet objet Rectangle.
+			D�termine si l'objet Rectangle spécifié par le paramètre rect figure dans cet objet Rectangle.
 		
 		- getBottom():Number
 		
@@ -110,7 +110,7 @@
 		
 		- inflate(dx:Number, dy:Number):Void
 		
-			Agrandit la taille de l'objet Rectangle en fonction des montants sp�cifi�s.
+			Agrandit la taille de l'objet Rectangle en fonction des montants spécifiés.
 		
 		- inflatePoint(pt:Point):Void
 		
@@ -118,28 +118,28 @@
 		
 		- intersection(toIntersect:Rectangle):Rectangle 
 		
-			Si l'objet Rectangle sp�cifi� dans les param�tres toIntersect forme une intersection avec cet objet Rectangle,
-			la m�thode intersection() renvoie la zone d'intersection en tant qu'objet Rectangle.
+			Si l'objet Rectangle spécifié dans les paramètres toIntersect forme une intersection avec cet objet Rectangle,
+			la méthode intersection() renvoie la zone d'intersection en tant qu'objet Rectangle.
 		
 		- intersects(toIntersect:Rectangle):Boolean
 
-			D�termine si l'objet sp�cifi� par le param�tre toIntersect forme une intersection avec cet objet Rectangle.
+			D�termine si l'objet spécifié par le param�tre toIntersect forme une intersection avec cet objet Rectangle.
 
 		- isEmpty():Boolean
 		
-			D�termine si cet objet Rectangle est vide.
+			Détermine si cet objet Rectangle est vide.
 		
 		- offset(dx:Number, dy:Number):Void
 		
-			R�gle la position de l'objet Rectangle, identifi� par son coin sup�rieur gauche, en fonction des montants sp�cifi�s.
+			Règle la position de l'objet Rectangle, identifi� par son coin sup�rieur gauche, en fonction des montants sp�cifi�s.
 		
 		- offsetPoint(pt:Point):Void
 		
-			R�gle l'emplacement de l'objet Rectangle en utilisant un objet Point en tant que param�tre.
+			Règle l'emplacement de l'objet Rectangle en utilisant un objet Point en tant que param�tre.
 		
 		- setEmpty():Void
 		
-			D�finit toutes les propri�t�s de l'objet Rectangle sur 0.
+			Défini toutes les propriétés de l'objet Rectangle sur 0.
 		
 		- setBottom(n:Number):Void
 		
@@ -151,17 +151,17 @@
 		
 		- toString():String
 
-			Cr�e et renvoie une chaine qui r�pertorie les positions horizontale et verticale
+			Crée et renvoie une chaine qui r�pertorie les positions horizontale et verticale
 			ainsi que la largeur et la hauteur de l'objet Rectangle.
 
 		- union(toUnion):Rectangle
 		
-			Additionne deux rectangles pour cr�er un nouvel objet Rectangle en remplissant l'essentiel de l'espace horizontal et vertical
-			qui s�pare les deux rectangles.
+			Additionne deux rectangles pour créer un nouvel objet Rectangle en remplissant l'essentiel de l'espace horizontal et vertical
+			qui sépare les deux rectangles.
 
 	INHERIT
 	
-		Object > Rectangle
+		CoreObject > Rectangle
 
 	IMPLEMENT SUMMARY
 	

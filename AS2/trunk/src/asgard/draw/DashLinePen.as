@@ -216,7 +216,6 @@ class asgard.draw.DashLinePen extends LinePen {
 		
 		if (arguments.length > 0) setLine.apply(this, arguments) ;
 		
-		
 		var s:Point = _pStart ;
 		var e:Point = _pEnd ;
 		var segl:Number = getLength() + getSpacing() ;

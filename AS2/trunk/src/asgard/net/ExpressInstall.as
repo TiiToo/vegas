@@ -23,7 +23,7 @@ class asgard.net.ExpressInstall {
 	// ----o Constructor
 	
 	public function ExpressInstall() {
-			//
+		//
 	}
 
 	// ----o Public Methods

@@ -60,10 +60,6 @@ class asgard.display.DisplayLoader extends AbstractLoader {
 	
 	// ----o Public Methods
 
-	/*override*/ public function getContent():MovieClip {
-		return MovieClip(super.getContent()) ;
-	}
-	
 	static public function getLoaderUrl():String {
 		return _root._url ;
 	}
@@ -95,11 +91,10 @@ class asgard.display.DisplayLoader extends AbstractLoader {
 		notifyEvent(LoaderEventType.START) ;
 		getContent().loadMovie( super.getUrl() );
 		hide();
-		super.load();
+		super.load() ;
 	}
 
 	/*override*/ public function onLoadInit():Void {
-		
 		if (_sName) {
 			
 			if (!(DisplayLoaderCollector.contains(_sName))) {
@@ -118,28 +113,22 @@ class asgard.display.DisplayLoader extends AbstractLoader {
 		
 		if (_isAutoShow) show() ;
 		
-		notifyEvent(LoaderEventType.COMPLETE) ;
-		
 	}
 	
 	/*override*/ public function release():Void {
+		super.release() ;
 		getContent().removeMovieClip() ;
 		_container._visible = _isAutoShow ;
 		if (_isCollected) {
 			DisplayLoaderCollector.remove(_sName) ;
 			_isCollected = false ;	
 		}	
-		super.release() ;
 	}
 	
 	public function setAutoShow(b:Boolean):Void {
 		_isAutoShow = b ;
 	}
 
-	public function setContent(mc:MovieClip):Void {
-		super.setContent( mc ) ;
-	}
-	
 	public function show():Void {
 		_container._visible = true ;
 	}

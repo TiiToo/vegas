@@ -21,7 +21,7 @@
   
 */
 
-/** ------ Config
+/** Config
 
 	AUTHOR
 
@@ -46,8 +46,8 @@
 	IMPLEMENTS
 	
 		IFormattable, IHashable
-	
-----------  */	
+
+**/	
 
 import vegas.core.CoreObject;
 

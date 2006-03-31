@@ -130,7 +130,7 @@ import vegas.core.ICloneable;
 import vegas.core.IEquality;
 import vegas.core.ISerializable;
 
-class asgard.geom.TransformMatrix extends CoreObject implements ICloneable, IEquality, ISerializable{
+class asgard.geom.TransformMatrix extends CoreObject implements ICloneable, IEquality, ISerializable {
 
 	// ----- Constructor
 	
