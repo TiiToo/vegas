@@ -72,9 +72,8 @@
 
 */
 
-
+import asgard.display.FlashPaperLoader;
 import asgard.events.DisplayLoaderEvent;
-import asgard.net.FlashPaperLoader;
 import asgard.net.ILoader;
 
 

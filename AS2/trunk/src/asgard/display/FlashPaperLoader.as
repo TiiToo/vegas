@@ -77,8 +77,8 @@
 // TODO il faut fixer le bug du focus !
 
 import asgard.display.DisplayLoader;
-import asgard.events.FlashPaperLoaderEvent;
-import asgard.events.FlashPaperLoaderEventType;
+import asgard.events.FlashPaperLoaderEvent ;
+import asgard.events.FlashPaperLoaderEventType ;
 import asgard.geom.Point;
 
 /**
@@ -86,18 +86,22 @@ import asgard.geom.Point;
  * @version 1.0.0.0
  * @date 2006-03-31
  */
-class asgard.net.FlashPaperLoader extends DisplayLoader {
+class asgard.display.FlashPaperLoader extends DisplayLoader {
 	
 	// ----o Constructor
 	
 	function FlashPaperLoader( mcTarget:MovieClip, nDepth:Number, bAutoShow:Boolean  ) {
 		
 		super(mcTarget, nDepth, bAutoShow) ;
-				
+	
 		_eEnableScroll = new FlashPaperLoaderEvent( FlashPaperLoaderEventType.ENABLE_SCROLL , this ) ;
+		
 		_ePageChange = new FlashPaperLoaderEvent( FlashPaperLoaderEventType.PAGE_CHANGE , this )  ;
+		
 		_eToolChange = new FlashPaperLoaderEvent( FlashPaperLoaderEventType.TOOL_CHANGE , this )  ;
+		
 		_eAreaChange = new FlashPaperLoaderEvent (FlashPaperLoaderEventType.VISIBLE_AREA_CHANGE , this) ;
+		
 		_eZoomChange = new FlashPaperLoaderEvent (FlashPaperLoaderEventType.ZOOM_CHANGE, this) ;
 		
 	}
@@ -305,7 +309,7 @@ class asgard.net.FlashPaperLoader extends DisplayLoader {
 		_fp.setCurrentPage(pageNumber) ;
 	}
 			
-	/*
+	/**
 	 * 	Sets the current zoom level.
 	 * 	You can pass a number indicating a zoom percentage (for example, 100 for a 100% view).
 	 * 	You can also pass the string width to zoom to the current fit-to-width magnification for this document, or pass the string page for the fit-to-page magnification.
@@ -400,11 +404,13 @@ class asgard.net.FlashPaperLoader extends DisplayLoader {
 	 *    - "ZoomKeys" This value doesn't affect the user interface ;
 	 *    	it is used to enable or disable various keys used to zoom in or out of the document (for example, +, -, p, w).
 	 */
-	
 	public function showUIElement(part:String, flag:Boolean):Void {
 		_fp.showUIElement(part, flag) ;
 	}
 	
+	/**
+	 * Refresh the view.
+	 */
 	public function update():Void {
 		if (getIsFlashPaperDocument()) {
 			var w:Number = isNaN(_w) ? _default_w : _w ; 

@@ -54,7 +54,9 @@ class asgard.display.FlashPaperTool {
 	// ----o Static Properties
 	
 	static public var NONE:String = "" ;
+	
 	static public var PAN:String = "pan" ;
+	
 	static public var SELECT:String = "select" ;
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(FlashPaperTool, null , 7, 7) ;
