@@ -117,9 +117,13 @@ class asgard.events.UIEventType {
 	static public var ENABLED_CHANGE:String = "enabled_change" ;
 	
 	static public var ENTER_FRAME:String = "enterframe" ;
+
+	static public var ICON_CHANGE:String = "onIconChanged" ;
 	
 	static public var INIT:String = "init" ;
-	
+
+	static public var LABEL_CHANGE:String = "onLabelChanged" ;
+
 	static public var REMOVED:String = "removed" ;
 	
 	static public var RENDER:String = "render" ;
