@@ -21,49 +21,59 @@
   
 */
 
-/** DateUtil
+/** FunctionUtil
 
 	AUTHOR
 	
-		Name : DateUtil
+		Name : FunctionUtil
 		Package : vegas.util.type
 		Version : 1.0.0.0
-		Date :  2005-12-23
+		Date :  2006-04-04
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
 	METHOD SUMMARY
 	
-		- static clone(d:Date):Date
+		- static clone(f:Function):Function
 		
-		- static copy(d:Date):Date
+		- static copy(f:Function):Function
 		
-		- static equals( d1:Date, d2:Date ):Boolean
+		- static equals( f1:Function, f2:Function ):Boolean
 
 **/
 
-class vegas.util.DateUtil {
+class vegas.util.FunctionUtil {
 
 	// ----o Construtor
 	
-	private function DateUtil() {
+	private function FunctionUtil() {
 		//
 	}
 	
 	// ----o Static Methods
 
-	static public function clone(d:Date):Date {
-		return d ;
+	/**
+	 * Returns a copy by value of this function.
+	 * Attention : we can not copy by reference a function , if you want to do that use apply or call method to make a kind of delegate.
+	 */
+	static public function clone(f:Function):Function {
+		return f ;
 	}
 
-	static public function copy(d:Date):Date {
-		return new Date(d.valueOf()) ;
+	/**
+	 * Returns a copy by value of this object.
+	 */
+	static public function copy(f:Function):Function {
+		return Function(f.valueOf()) ;
 	}
 
-	static public function equals( d1:Date, d2:Date ):Boolean {
-		if (!d2) return false ;
-		return d1.getTime() == d2.getTime() ;
+	/**
+	 * Compare if two Functions are equal by reference.
+ 	 */
+	static public function equals( f1:Function, f2:Function ):Boolean {
+		if (! f2 ) return false ;
+		return f1.valueOf() == f2.valueOf() ;
     }
 	
 }

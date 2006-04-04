@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- ObjectUtil
+/** ObjectUtil
 
 	AUTHOR
 
@@ -35,12 +35,31 @@
 	
 	METHOD SUMMARY
 	
+		- static clone(o)
+		
+		- static copy(o)
+			
+			Returns a copy by value of this object.
+			
+			See : ICopyable
+			
 		- static hasProperty(o, prop:String)
 			
 			Returns a Boolean value indicating whether an object has a property with the specified name (*ECMA-262*).
 			Returns true whether the property is in the prototype chain or not.
 
-----------  */
+		- static memberwiseClone( o )
+			 Creates a shallow copy of the current Object.
+		
+		- static toBoolean(o):Boolean
+		
+		- static toNumber(o):Number
+		
+		- static toObject(o):Object
+			
+**/
+
+import vegas.util.Copier;
 
 class vegas.util.ObjectUtil {
 	
@@ -52,10 +71,49 @@ class vegas.util.ObjectUtil {
 
 	// ----o Static Methods
 
+	static public function clone(o) {
+		return o ;	
+	}
+
+	static public function copy(o) {
+		var obj = {} ;
+		var prop:String ;
+		for (prop in o) {
+			if( ! o.hasOwnProperty( prop ) ) {
+			  	continue ;
+		  	} else if ( o[prop] == undefined ) {
+		  		obj[prop] = undefined ;
+		  	} else if ( o[prop] = null ) {
+		  		obj[prop] = null ;
+			} else {
+		  		obj[prop] = Copier.copy(obj[prop]) ; 
+		  	}
+		}
+		return obj ;
+	}
+
 	static public function hasProperty(o, prop:String):Boolean {
 		return (o.hasOwnProperty(prop) || o.__proto__.hasOwnProperty(prop)) ;
 	}
 
+	static public function memberwiseClone( o ) {
+    	var obj = {} ;
+    	for( var prop:String in o ) {
+        	obj[prop] = o[prop];
+        }
+		return obj;
+    }
 
+	static public function toBoolean(o):Boolean {
+		return (new Boolean( o.valueOf() )).valueOf() ;
+	}
+
+	static public function toNumber(o):Number {
+		return (new Number( o.valueOf() )).valueOf() ;
+	}
+
+	static public function toObject(o):Object {
+		return new Object( o.valueOf() ) ;
+	}
 
 }

@@ -93,7 +93,6 @@
 	
 		2005-12-16 - CHANGE :: exists > contains
 	
-	
 	TODO
 	
 		2005-12-22 :: créer une classe Copy qui permette de renvoyer la copy de n'importe quel objet.

@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	CoreObject
+/**	CoreObject
 
 	AUTHOR
 	
@@ -43,7 +43,7 @@
 	
 		IFormattable, IHashable
 
-----------  */
+**/
 
 import vegas.core.HashCode;
 import vegas.core.IFormattable;

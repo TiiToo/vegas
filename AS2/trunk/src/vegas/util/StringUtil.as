@@ -21,7 +21,7 @@
   
 */
 
-/* ------- StringUtil
+/** StringUtil
 
 	AUTHOR
 	
@@ -34,6 +34,16 @@
 		Mail : vegas@ekameleon.net
 
 	METHOD SUMMARY
+		
+		- clone()
+		
+		- static compare( strA:String , strB:String, ignoreCase:Boolean ):Number
+		
+		- compareTo( o ):Number
+		
+		- copy()
+
+		- endsWith( value:String ):Boolean
 	
 		- firstChar():String
 		
@@ -81,17 +91,21 @@
 			|
 			StringUtil
 
-----------  */
+**/
 
 import vegas.core.HashCode;
+import vegas.core.IComparable;
+import vegas.core.ICopyable;
 import vegas.core.ISerializable;
 import vegas.data.iterator.Iterable;
 import vegas.data.iterator.Iterator;
 import vegas.data.iterator.StringIterator;
+import vegas.errors.ArgumentsError;
 import vegas.util.ArrayUtil;
 import vegas.util.serialize.Serializer;
+import vegas.util.TypeUtil;
 
-class vegas.util.StringUtil extends String implements Iterable, ISerializable {
+class vegas.util.StringUtil extends String implements IComparable, ICopyable, Iterable, ISerializable {
 
 	// ----o Construtor
 	
@@ -101,9 +115,46 @@ class vegas.util.StringUtil extends String implements Iterable, ISerializable {
 
 	// ----o Init HashCode
 	
-	static private var _initHashCode:Boolean = HashCode.initialize(StringUtil.prototype) ;
+	static private var _initHashCode:Boolean = HashCode.initialize( StringUtil.prototype ) ;
 
 	// ----o Public Methods
+	
+	public function clone() {
+		return this ;	
+	}
+	
+	static public function compare( strA:String , strB:String, ignoreCase:Boolean ):Number {
+		if( (strA == null) || (strB == null) ) {
+			if( strA == strB ) return 0 ; //both null
+            else if( strA == null ) return -1 ; //strA is null -1
+            else return 1 ; //strB is null 1
+		}
+		strA = strA.toString() ;
+		strB = strB.toString() ;
+		if( ignoreCase ) {
+        	strA = strA.toLowerCase() ;
+        	strB = strB.toLowerCase() ;
+        }
+        if( strA == strB ) return 0 ;
+        else if( strA.length > strB.length ) return 1 ;
+        else return -1 ;
+	}
+	
+	public function compareTo( o ):Number {
+		if (! TypeUtil.typesMatch(o, String)) throw new ArgumentsError("StringUtil.compareTo('"+ o + "' value must be a string") ;
+		if (o == null) return 1 ;
+		return StringUtil.compare(this.valueOf(), o.valueOf()) ;
+	}
+	
+	public function copy() {
+		return new StringUtil( this.valueOf()) ;
+	}
+	
+	public function endsWith( value:String ):Boolean {
+		if (value == null) return false ;
+		if ( this.length < value.length ) return false ;
+		return StringUtil.compare( this.substr( this.length-value.length ), value) == 0;
+	}
 	
 	public function firstChar():String {
 		return charAt(0) ;
@@ -121,6 +172,17 @@ class vegas.util.StringUtil extends String implements Iterable, ISerializable {
 			if (index > -1) return index ;
 		}
 		return -1 ;
+	}
+	
+	public function insert( startIndex:Number, value:String):String {
+		var str:String = this.copy() ;
+		if( value == null ) return str ;
+		if( str == "" ) return value ;
+        if( startIndex == 0 ) return value + str ;
+       	else if( (startIndex == null) || (startIndex == str.length) ) return str + value ;
+       	var strA:String = str.substr( 0, startIndex );
+    	var strB:String = str.substr( startIndex ) ;
+    	return strA + value + strB ;
 	}
 	
 	public function isEmpty():Boolean {
