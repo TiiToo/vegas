@@ -43,7 +43,7 @@
 		
 		- clone()
 		
-		- containsKey 
+		- containsKey( key )
 		
 		- containsValue( value )
 		
