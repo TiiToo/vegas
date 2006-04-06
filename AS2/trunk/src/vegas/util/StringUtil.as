@@ -147,7 +147,7 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, It
 	}
 	
 	public function copy() {
-		return new StringUtil( String(this.valueOf())  ;
+		return new StringUtil( String(this.valueOf()) )  ;
 	}
 	
 	public function endsWith( value:String ):Boolean {
