@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -143,11 +143,11 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, It
 	public function compareTo( o ):Number {
 		if (! TypeUtil.typesMatch(o, String)) throw new ArgumentsError("StringUtil.compareTo('"+ o + "' value must be a string") ;
 		if (o == null) return 1 ;
-		return StringUtil.compare(this.valueOf(), o.valueOf()) ;
+		return StringUtil.compare(String(this.valueOf()), String(o.valueOf()) ) ;
 	}
 	
 	public function copy() {
-		return new StringUtil( this.valueOf()) ;
+		return new StringUtil( String(this.valueOf())  ;
 	}
 	
 	public function endsWith( value:String ):Boolean {
