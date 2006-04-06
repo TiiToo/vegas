@@ -78,10 +78,9 @@ class asgard.display.DisplayObjectCollector {
 	}
 	
 	static public function get(sName:String):DisplayObject {
-		
 		try {
-			if (contains(sName) ) {
-				throw new Warning("[DisplayObjectCollector].get(" + sName + "). Can't find DisplayObject instance." ) ;
+			if (!contains(sName) ) {
+				throw new Warning("[DisplayObjectCollector].get(\"" + sName + "\"). Can't find DisplayObject instance." ) ;
 			} ;
 		} catch (e:Warning) {
 			e.toString() ;
@@ -91,16 +90,15 @@ class asgard.display.DisplayObjectCollector {
 	}
 	
 	static public function insert(sName:String, dObject:DisplayObject):Boolean {
-		
 		try {
-			if (contains(sName) ) {
+			if ( contains(sName) ) {
 				throw new Warning("[DisplayObjectCollector].insert(). A DisplayObject instance is already registered with '" + sName + "' name." ) ;
 			} ;
 		} catch (e:Warning) {
 			e.toString() ;
 		}
+		return Boolean(_map.put(sName, dObject))   ;	
 		
-		return (_map.put(sName, dObject) != null) ;
 	}
 	
 	static public function isEmpty():Boolean {

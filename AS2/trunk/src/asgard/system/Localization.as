@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -90,7 +90,7 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	private function Localization(sName:String) {
 
 		super();
-
+		
 		_sName = sName ;
 		
 		_map = new HashMap() ;

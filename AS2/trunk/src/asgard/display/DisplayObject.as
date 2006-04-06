@@ -33,6 +33,62 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
+	PROPERTY SUMMARY
+	
+		- enabled:Boolean [R/W]
+		
+		- height:Number [R/W]
+		
+		- view
+		
+		- width:Number [R/W]
+
+	METHOD SUMMARY
+	
+		- createChild( c:Function, name:String , depth:Number , init )
+		
+		- getEnabled():Boolean
+		
+		- getLoader():ILoader
+		
+		- getName():String
+		
+		- getWidth():Number
+		
+		- getX():Number
+		
+		- getY():Number
+		
+		- hide():Void
+		
+		- isVisible():Boolean
+		
+		- move( x:Number, y:Number ) : Void 
+		
+		- release() : Void
+		
+		- setEnabled(b:Boolean):Void
+		
+		- setHeight( n:Number ) : Void
+		
+		- setWidth( n:Number ) : Void
+		
+		- setX( n:Number ) : Void
+		
+		- setY( n:Number ) : Void
+		
+		- show():Void
+	
+	INHERIT
+	
+		CoreObject
+			|
+			AbstractCoreEventDispatcher
+				|
+				DisplayObject
+					|
+					SpeedDisplay
+
 **/
 
 import asgard.display.DisplayLoader;
@@ -80,7 +136,7 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher {
 		}
 		
 		_setName(sName) ;
-		
+
     }
 
 	// ----o Public Properties
@@ -192,7 +248,7 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher {
 	// ----o Private Methods
 	
 	private function _setName( name:String ) : Void {
-		
+
 		DisplayObjectCollector.remove( _sName ) ;
 		
 		_sName = name ;

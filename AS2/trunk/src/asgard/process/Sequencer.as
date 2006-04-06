@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -129,7 +129,7 @@ class asgard.process.Sequencer extends AbstractAction {
 	// ----o Public Methods
 	
 	public function addAction(action:Action, isClone:Boolean):Boolean {
-		var a:Action = isClone ? AbstractAction(action).clone() : action ;
+		var a:Action = isClone ? action.clone() : action ;
 		var isEnqueue:Boolean = _queue.enqueue(a) ;
 		if (isEnqueue){
 			AbstractAction(a).addEventListener(ActionEventType.FINISH, _runner) ;
