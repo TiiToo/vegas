@@ -189,7 +189,7 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher {
 	}
 
 	public function isVisible():Boolean {
-		return view._visible = false ;	
+		return (view._visible = true) ;	
 	}
 
 	public function move( x:Number, y:Number ) : Void {

@@ -176,8 +176,10 @@ class asgard.draw.RectanglePen extends EasyPen {
 		return rec ;
 	}
 	
-	public function draw(p_w:Number, p_h:Number, p_x:Number, p_y:Number, p_align:Number, p_round:Number, p_rotation:Number):Void {
-		if (arguments.length > 0) setRectangle.apply(this, arguments) ;
+	public function draw(p_w:Number, p_h:Number, p_x:Number, p_y:Number, p_align:Number):Void {
+		if (arguments.length > 0) {
+			setRectangle(p_w, p_h, p_x, p_y, p_align) ;
+		}
 		var r:Rectangle = getRectangle() ;
 		var nX:Number = r.x ;
 		var nY:Number = r.y ;
