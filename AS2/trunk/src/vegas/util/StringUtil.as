@@ -237,7 +237,7 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, It
 	
 	public function splice(startIndex:Number, deleteCount:Number, value):String {
 		var a:Array = toArray() ;
-		a.splice.apply(a, arguments) ;
+		a = a.splice.apply(a, arguments) ;
 		return ArrayUtil.toString(a) ;
 	}
 
