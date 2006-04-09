@@ -55,7 +55,7 @@
 
 **/
 
-import vegas.util.MathsUtil ;
+import vegas.util.MathsUtil;
 
 class vegas.util.NumberUtil {
 

@@ -21,7 +21,7 @@
   
 */
 
-/* ------- DisplayFactory
+/** DisplayFactory
 
 	AUTHOR
 	
@@ -37,7 +37,7 @@
 
 		- createChild(oChild , p_name:String , p_depth:Number, p_target, p_init)
 
-----------------*/
+**/
 
 import vegas.util.ConstructorUtil;
 import vegas.util.TypeUtil;
@@ -54,21 +54,34 @@ class vegas.util.factory.DisplayFactory {
 	
 	static public function createChild ( oChild , p_name:String , p_depth:Number, p_target, p_init) {
 		var child ;
+		
 		if (oChild == null) {
+
 			child = p_target.createEmptyMovieClip(p_name, p_depth) ;
 			for (var each in p_init) child[each] = p_init[each] ;
 			return child ;
+			
 		} else if (oChild instanceof Function) {
+			
 			var p_class:Function = oChild ;
+
 			if (ConstructorUtil.isSubConstructorOf(p_class, MovieClip))  {
+				
 				child = p_target.createEmptyMovieClip (p_name, p_depth) ;
+				
 			} else if (ConstructorUtil.isSubConstructorOf(p_class, TextField)) {
+				
 				p_target.createTextField (p_name, p_depth, 0, 0, 0, 0) ;
 				child = p_target[p_name] ;
+				
 			}
+
 			return ConstructorUtil.createVisualInstance(p_class, child, p_init) ;
+			
 		} else if (TypeUtil.typesMatch(oChild, String)) {
+			
 			return p_target.attachMovie(oChild, p_name, p_depth, p_init) ;
+			
 		}
 	}
 	

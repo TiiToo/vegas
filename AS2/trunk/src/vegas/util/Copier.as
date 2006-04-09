@@ -47,13 +47,13 @@
  */
 
  
-import vegas.core.ICopyable ;
+import vegas.core.ICopyable;
 import vegas.util.ArrayUtil;
-import vegas.util.DateUtil;
-import vegas.util.TypeUtil;
 import vegas.util.BooleanUtil;
+import vegas.util.DateUtil;
 import vegas.util.FunctionUtil;
 import vegas.util.ObjectUtil;
+import vegas.util.TypeUtil;
 
 class vegas.util.Copier {
 	

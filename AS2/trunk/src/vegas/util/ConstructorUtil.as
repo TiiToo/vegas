@@ -82,7 +82,7 @@ class vegas.util.ConstructorUtil {
 	}
 
     static public function createVisualInstance(c:Function, oVisual, oInit) {
-		oVisual.__proto__ = c.prototype ;
+    	oVisual.__proto__ = c.prototype ;
 		if (oInit) for (var each:String in oInit) oVisual[each] = oInit[each] ;	
 		c.apply(oVisual) ;   
 		return oVisual ;

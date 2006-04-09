@@ -57,7 +57,7 @@
 
 ----------  */
 
-import vegas.core.CoreObject ;
+import vegas.core.CoreObject;
 import vegas.data.iterator.Iterator;
 import vegas.data.Queue;
 import vegas.data.queue.LinearQueue;

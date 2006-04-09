@@ -21,7 +21,7 @@
   
 */
 
-/* --------- IModel [Interface]
+/** IModel [Interface]
 
 	AUTHOR
 
@@ -45,7 +45,7 @@
 	
 		ICloneable > IModel
 	
-----------  */
+**/
 
 import vegas.core.ICloneable;
 import vegas.events.ModelChangedEvent;

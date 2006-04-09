@@ -103,9 +103,9 @@
 	
 ----------  */	
 
-import vegas.data.collections.SimpleCollection;		
-import vegas.data.collections.TypedCollection ;
-import vegas.data.iterator.Iterator ;
+import vegas.data.collections.SimpleCollection;
+import vegas.data.collections.TypedCollection;
+import vegas.data.iterator.Iterator;
 import vegas.events.Event;
 import vegas.events.EventListener;
 

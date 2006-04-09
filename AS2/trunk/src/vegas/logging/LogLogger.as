@@ -119,19 +119,15 @@ class vegas.logging.LogLogger extends EventDispatcher implements ILogger {
 		if (TypeUtil.typesMatch(context, String) && arguments.length > 2) {
 			message = _format(context.toString(), arguments.splice(2));
 		} else {
-			message = context.toString() ;
+			message = context ;
 		}
 		var ev:LogEvent = new LogEvent(message, level) ;
-		ev.context = context ;
+		ev.setContext(context) ;
 		this.dispatchEvent(ev, isQueue) ;
 	}
 	
 	public function warn(context):Void {
 		log.apply(this, [LogEventLevel.WARN].concat(arguments)) ;
-	}
-	
-	public function toString():String {
-		return "[LogLogger]" ;
 	}
 	
 	// ----o Private Methods

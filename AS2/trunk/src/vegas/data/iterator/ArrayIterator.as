@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	ArrayIterator
+/**	ArrayIterator
 
 	AUTHOR
 	
@@ -68,11 +68,10 @@
 ----------  */
 
 import vegas.core.CoreObject;
-import vegas.core.IFormattable;
 import vegas.data.iterator.Iterator;
 import vegas.util.MathsUtil;
 
-class vegas.data.iterator.ArrayIterator extends CoreObject implements Iterator, IFormattable {
+class vegas.data.iterator.ArrayIterator extends CoreObject implements Iterator {
 
 	// ----o Construtor
 	

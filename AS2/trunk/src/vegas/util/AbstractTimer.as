@@ -21,7 +21,7 @@
   
 */
 
-/* ------- AbstractTimer
+/** AbstractTimer
 
 	AUTHOR
 
@@ -102,7 +102,7 @@
 		- TimerEvent
 		- TimerEventType
 
-----------  */
+**/
 
 import vegas.core.ICloneable;
 import vegas.core.IFormattable;
@@ -111,24 +111,16 @@ import vegas.core.ITimer;
 import vegas.events.EventDispatcher;
 import vegas.events.TimerEvent;
 import vegas.events.TimerEventType;
-import vegas.util.ConstructorUtil;
-import vegas.util.factory.PropertyFactory;
 
 class vegas.util.AbstractTimer extends EventDispatcher implements ICloneable, ITimer, IFormattable, IRunnable {
 
 	// ----o Construtor
 	
 	private function AbstractTimer(d:Number, count:Number) {
-		setDelay(d);
+		setDelay(d) ;
 		setRepeatCount(count) ;
 	}
 
-	// ----o Public Properties
-	
-	public var delay:Number ; // [RW]
-	public var repeatCount:Number ; // [RW]
-	public var running:Boolean = false ;
-	
 	// ----o Public Methods	
 
 	public function clear():Void {
@@ -147,9 +139,13 @@ class vegas.util.AbstractTimer extends EventDispatcher implements ICloneable, IT
 		return _repeatCount ;
 	}
 
+	public function getRunning():Boolean {
+		return _running ;	
+	}
+
 	public function restart(noEvent:Boolean):Void {
-		if (running) stop() ;
-		running = true ;
+		if (getRunning()) stop() ;
+		_setRunning(true) ;
 		run() ;
 		if (!noEvent) dispatchEvent( new TimerEvent( TimerEventType.RESTART, this) ) ;
 	}
@@ -160,7 +156,9 @@ class vegas.util.AbstractTimer extends EventDispatcher implements ICloneable, IT
 	
 	public function setDelay(n:Number):Void {
 		_delay = (n > 0) ? n : 0 ;
-		if (running) restart() ;
+		if (getRunning()) {
+			restart() ;
+		}
 	}
 
 	public function setRepeatCount(n:Number):Void {
@@ -168,31 +166,51 @@ class vegas.util.AbstractTimer extends EventDispatcher implements ICloneable, IT
 	}
 
 	public function start():Void {
-		if (running) return ;
+		if (getRunning()) return ;
 		_count = 0 ;
 		dispatchEvent( new TimerEvent(TimerEventType.START, this) ) ;
 		restart(true) ;
 	}
 	
 	public function stop():Void {
-		running = false ;
+		_setRunning(false) ;
 		clear() ;
 		dispatchEvent( new TimerEvent(TimerEventType.STOP, this) ) ;
 	}
 	
-	public function toString():String {
-		return "[" + ConstructorUtil.getName(this) + "]" ;
-	}
-
 	// ----o Virtual Properties
 	
-	static private var __DELAY__:Boolean = PropertyFactory.create(AbstractTimer, "delay", true) ;
-	static private var __REPEAT_COUNT__:Boolean = PropertyFactory.create(AbstractTimer, "repeatCount", true) ;
+	public function  get delay():Number {
+		return getDelay() ;
+	}
 	
+	public function set delay( n:Number ):Void {
+		setDelay(n) ;	
+	}
+
+	public function  get repeatCount():Number {
+		return getRepeatCount() ;
+	}
+	
+	public function set repeatCount ( n:Number ):Void {
+		setRepeatCount(n) ;	
+	}
+	
+	public function  get running():Boolean {
+		return getRunning() ;
+	}	
+
 	// -----o Private Properties
 	
 	private var _count:Number ;
 	private var _delay:Number ;
 	private var _repeatCount:Number ;
+	private var _running:Boolean ;
+	
+	// ----o Private Methods
+	
+	private function _setRunning(b:Boolean):Void {
+		_running = b ;
+	}
 
 }

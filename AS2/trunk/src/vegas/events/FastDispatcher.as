@@ -110,7 +110,7 @@
 
 	CHANGE :: 2005-12-15 constructor more easy with [].concat(ar) 
 	
-	TODO   :: 2006-01-19 modifier la méthode dispatch et utiliser _getEvent comme dans EventDispatcher
+	TODO   :: 2006-01-19 modifier la mï¿½thode dispatch et utiliser _getEvent comme dans EventDispatcher
 ----------  */
 
 import vegas.core.CoreObject;

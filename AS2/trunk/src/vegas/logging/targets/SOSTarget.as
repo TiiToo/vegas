@@ -120,14 +120,14 @@
 
 ----------  */	
 
-import vegas.data.iterator.Iterator ;
-import vegas.data.queue.LinearQueue ;
-import vegas.events.Delegate ;
-import vegas.logging.LogEvent ;
-import vegas.logging.LogEventLevel ;
-import vegas.logging.SOSType ;
-import vegas.logging.targets.TraceTarget ;
-import vegas.util.factory.PropertyFactory ;
+import vegas.data.iterator.Iterator;
+import vegas.data.queue.LinearQueue;
+import vegas.events.Delegate;
+import vegas.logging.LogEvent;
+import vegas.logging.LogEventLevel;
+import vegas.logging.SOSType;
+import vegas.logging.targets.TraceTarget;
+import vegas.util.factory.PropertyFactory;
 
 class vegas.logging.targets.SOSTarget extends TraceTarget {
 
@@ -137,7 +137,7 @@ class vegas.logging.targets.SOSTarget extends TraceTarget {
 		
 		// --- Init Buffer queue object
 		
-		_queue = new LinearQueue ;
+		_queue = new LinearQueue() ;
 		
 		// --- Init Application Color
 		
@@ -145,7 +145,7 @@ class vegas.logging.targets.SOSTarget extends TraceTarget {
 		
 		// --- Init XMLSocket object
 		
-		_xs = new XMLSocket ;
+		_xs = new XMLSocket() ;
 		_xs.onConnect = Delegate.create(this, _connect) ;
 		
 		// ----o Init Colors
@@ -204,12 +204,16 @@ class vegas.logging.targets.SOSTarget extends TraceTarget {
 	}
 
 	public function sendLevelMessage(level:Number, message:String):Void {
-		if (levelPolicy == SOSType.ENABLE) message = "!SOS<showMessage key='" + level.toString() + "'>" + message + "</showMessage>\n" ;
+		if (levelPolicy == SOSType.ENABLE) message = "!SOS<showMessage key='" + level.toString() + "'>" + message.toString() + "</showMessage>\n" ;
 		sendMessage(message) ;
 	}
 
 	public function sendMessage(msg:String):Void {
-		(_isConnected) ? _xs.send(msg) : _queue.enqueue(msg) ;
+		if (_isConnected) {
+			_xs.send(msg) ;
+		} else {
+			_queue.enqueue(msg) ;
+		}
 	}
 
 	public function setAppName(name:String):Void {
@@ -225,7 +229,7 @@ class vegas.logging.targets.SOSTarget extends TraceTarget {
 		var msg:String = "!SOS<setKey>" ;
 		msg += "<name>" + level.toString() + "</name>" ;
 		msg += "<color>"+ (color || SOSType[level.toString()+"_COLOR"]) + "</color>" ;
-		msg += "</setKey>\n"
+		msg += "</setKey>\n" ;
 		sendMessage(msg) ;
 	}
 	

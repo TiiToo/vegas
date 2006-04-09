@@ -62,11 +62,11 @@
 		
 ----------  */
 
-import vegas.events.EDispatcher;
-import vegas.events.IDispatcher;
 import vegas.core.HashCode;
 import vegas.core.IFormattable;
 import vegas.core.IHashable;
+import vegas.events.EDispatcher;
+import vegas.events.IDispatcher;
 
 class vegas.events.type.TextFieldDispatcher extends TextField implements IDispatcher, IFormattable, IHashable {
 

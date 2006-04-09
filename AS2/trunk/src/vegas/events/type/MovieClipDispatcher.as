@@ -62,11 +62,11 @@
 		
 ----------  */
 
-import vegas.events.EDispatcher ;
-import vegas.events.IDispatcher ;
-import vegas.core.HashCode ;
-import vegas.core.IFormattable ;
-import vegas.core.IHashable ;
+import vegas.core.HashCode;
+import vegas.core.IFormattable;
+import vegas.core.IHashable;
+import vegas.events.EDispatcher;
+import vegas.events.IDispatcher;
 
 class vegas.events.type.MovieClipDispatcher extends MovieClip implements IDispatcher, IFormattable, IHashable {
 

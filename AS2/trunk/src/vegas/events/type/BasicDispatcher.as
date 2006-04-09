@@ -62,9 +62,9 @@
 
 ----------  */
 
-import vegas.core.CoreObject ;
-import vegas.events.EDispatcher ;
-import vegas.events.IDispatcher ;
+import vegas.core.CoreObject;
+import vegas.events.EDispatcher;
+import vegas.events.IDispatcher;
 
 class vegas.events.type.BasicDispatcher extends CoreObject implements IDispatcher {
 
