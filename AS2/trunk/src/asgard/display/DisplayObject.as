@@ -99,8 +99,6 @@ import asgard.net.ILoader;
 import vegas.errors.IllegalArgumentError;
 import vegas.events.AbstractCoreEventDispatcher;
 import vegas.util.factory.DisplayFactory;
-import vegas.util.factory.PropertyFactory;
-
 
 /**
  * @author eKameleon
@@ -141,10 +139,12 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher {
 
 	// ----o Public Properties
 
-	public var enabled:Boolean ; // [R/W]
-	public var height:Boolean ; // [R/W]
+	// public var enabled:Boolean ; // [R/W]
+	// public var height:Boolean ; // [R/W]
 	public var view ;
-	public var width:Boolean ; // [R/W]
+	// public var width:Boolean ; // [R/W]
+	// public var x:Number ; // [R/W]
+	// public var y:Number ; // [R/W]
 
 	// ----o Public Methods
 
@@ -234,11 +234,45 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher {
 	
 	// ----o Virtual Properties
 	
-	static private var __ENABLED__:Boolean = PropertyFactory.create(DisplayObject, "enabled", true) ;
-	static private var __HEIGHT__:Boolean = PropertyFactory.create(DisplayObject, "height", true) ;
-	static private var __WIDTH__:Boolean = PropertyFactory.create(DisplayObject, "width", true) ;	
-	static private var __X__:Boolean = PropertyFactory.create(DisplayObject, "x", true) ;
-	static private var __Y__:Boolean = PropertyFactory.create(DisplayObject, "y", true) ;	
+	public function get enabled():Boolean {
+		return getEnabled() ;	
+	}
+
+	public function set enabled(b:Boolean):Void {
+		setEnabled(b) ;	
+	}
+
+	public function get height():Number {
+		return getHeight() ;	
+	}
+
+	public function set height(n:Number):Void {
+		setHeight(n) ;	
+	}
+	
+	public function get width():Number {
+		return getWidth() ;	
+	}
+
+	public function set width(n:Number):Void {
+		setWidth(n) ;	
+	}
+	
+	public function get x():Number {
+		return getX() ;	
+	}
+
+	public function set x(n:Number):Void {
+		setX(n) ;	
+	}
+
+	public function get y():Number {
+		return getY() ;	
+	}
+
+	public function set y(n:Number):Void {
+		setY(n) ;	
+	}
 	
 	// ----o Private Properties
 	

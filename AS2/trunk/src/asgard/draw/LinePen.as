@@ -173,8 +173,6 @@ import asgard.draw.AbstractPen;
 import asgard.geom.Line;
 import asgard.geom.Point;
 
-import vegas.util.factory.PropertyFactory;
-
 class asgard.draw.LinePen extends AbstractPen {
 
 	// -----o Constructor
@@ -187,15 +185,15 @@ class asgard.draw.LinePen extends AbstractPen {
 
 	// -----o Public Properties
 
-	public var alpha:Number ; // [R/W]
-	public var color:Number ; // [R/W]
-	public var end:Point ; // [R/W]
+	// public var alpha:Number ; // [R/W]
+	// public var color:Number ; // [R/W]
+	// public var end:Point ; // [R/W]
 	public var la:Number = 100 ;
 	public var lc:Number = 0x000000 ;
-	public var line:Line ; // [Read Only]
-	public var start:Point ; // [R/W]
+	// public var line:Line ; // [Read Only]
+	// public var start:Point ; // [R/W]
 	public var t : Number = 1 ;
-	public var thickness:Number ; // [R/W]
+	// public var thickness:Number ; // [R/W]
 
 	// -----o Public Methods
 	
@@ -281,13 +279,50 @@ class asgard.draw.LinePen extends AbstractPen {
 
 	// ----o Virtual Properties
 
-	static private var __ALPHA__:Boolean = PropertyFactory.create(LinePen, "alpha", true) ;
-	static private var __COLOR__:Boolean = PropertyFactory.create(LinePen, "color", true) ;
-	static private var __END__:Boolean = PropertyFactory.create(LinePen, "end", true) ;
-	static private var __LINE__:Boolean = PropertyFactory.create(LinePen, "line", true, true) ;
-	static private var __START__:Boolean = PropertyFactory.create(LinePen, "start", true) ;
-	static private var __THICKNESS__:Boolean = PropertyFactory.create(LinePen, "thickness", true) ;
+	public function get alpha():Number {
+		return getAlpha() ;	
+	}
 	
+	public function set alpha(n:Number):Void {
+		setAlpha(n) ;	
+	}
+	
+	public function get color():Number {
+		return getColor() ;	
+	}
+	
+	public function set color(n:Number):Void {
+		setColor(n) ;	
+	}
+
+	public function get end():Point {
+		return getEnd() ;	
+	}
+	
+	public function set end(p:Point):Void {
+		setEnd(p) ;	
+	}
+	
+	public function get line():Line {
+		return getLine() ;	
+	}
+
+	public function get start():Point {
+		return getStart() ;	
+	}
+	
+	public function set start(p:Point):Void {
+		setStart(p) ;	
+	}
+
+	public function get thickness():Number {
+		return getThickness() ;	
+	}
+	
+	public function set thickness(n:Number):Void {
+		setThickness(n) ;	
+	}
+
 	// ----o Private  Properties
 
 	private var _autoClear:Boolean ;

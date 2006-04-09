@@ -106,8 +106,8 @@ import asgard.process.Action;
 import vegas.data.iterator.Iterator;
 import vegas.data.queue.LinearQueue;
 import vegas.data.queue.TypedQueue;
+import vegas.events.Delegate;
 import vegas.events.EventListener;
-import vegas.events.EventListenerProxy;
 import vegas.util.serialize.Serializer;
 
 class asgard.process.Sequencer extends AbstractAction {
@@ -116,7 +116,7 @@ class asgard.process.Sequencer extends AbstractAction {
 	
 	public function Sequencer( ar:Array ) {
 		_queue = new TypedQueue(Action, new LinearQueue()) ; 
-		_runner = new EventListenerProxy(this, run) ;
+		_runner = new Delegate(this, run) ;
 		var l:Number = ar.length ;
 		if (l>0) {
 			for (var i:Number = 0 ; i < l ; i++) {

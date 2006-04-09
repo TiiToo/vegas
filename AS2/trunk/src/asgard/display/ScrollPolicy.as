@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- ScrollPolicy
+/** ScrollPolicy
 	
 	AUTHOR
 	
@@ -45,7 +45,7 @@
 
 		- static validate(o):Boolean
 	
-----------  */
+**/
 
 class asgard.display.ScrollPolicy {
 

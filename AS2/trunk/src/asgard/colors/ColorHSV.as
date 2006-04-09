@@ -43,7 +43,7 @@
 	
 		Espaces colorimétriques - Damien
 	
-----------------*/
+**/
 
 class asgard.colors.ColorHSV {
 	

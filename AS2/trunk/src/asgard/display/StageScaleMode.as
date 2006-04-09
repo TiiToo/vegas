@@ -21,7 +21,7 @@
   
 */
 
-/* -------- StageScaleMode
+/** StageScaleMode
 
 	AUTHOR
 
@@ -55,7 +55,7 @@
 		
 			Specifies that the entire Flash application be visible in the specified area without distortion while maintaining the original aspect ratio of the application.
 
-------------*/
+**/
 
 class asgard.display.StageScaleMode {
 

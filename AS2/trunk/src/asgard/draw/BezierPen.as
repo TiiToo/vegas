@@ -149,11 +149,10 @@
 
 // 	TODO : TESTER !!!
 
-import asgard.geom.Bezier ;
-import asgard.geom.Line ;
-import asgard.geom.Point ;
-
-import asgard.draw.AbstractPen ;
+import asgard.draw.AbstractPen;
+import asgard.geom.Bezier;
+import asgard.geom.Line;
+import asgard.geom.Point;
 
 class asgard.draw.BezierPen extends AbstractPen {
 

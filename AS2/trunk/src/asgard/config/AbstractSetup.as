@@ -98,7 +98,6 @@ import asgard.net.LoaderListener;
 
 import vegas.events.Delegate;
 import vegas.events.EventDispatcher;
-import vegas.util.factory.PropertyFactory;
 
 class asgard.config.AbstractSetup extends EventDispatcher implements ISetup, LoaderListener  {
 
@@ -124,7 +123,7 @@ class asgard.config.AbstractSetup extends EventDispatcher implements ISetup, Loa
 	
 	public var name:String = null ;
 	public var namespace:String = null  ;
-	public var running:Boolean ; // [Read Only]
+	// public var running:Boolean // [Read Only]
 	public var version:String = null  ;
 	
 	// ----o Public Methods
@@ -195,7 +194,9 @@ class asgard.config.AbstractSetup extends EventDispatcher implements ISetup, Loa
 
 	// ----o Virtual Properties
 	
-	static private var __RUNNING__:Boolean = PropertyFactory.create(AbstractSetup, "running", true, true) ;
+	public function get running():Boolean {
+		return getRunning() ;	
+	}
 
 	// ----o Private Properties
 

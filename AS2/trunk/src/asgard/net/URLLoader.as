@@ -171,7 +171,7 @@ import asgard.net.URLRequestHeader;
 import asgard.net.URLVariables;
 
 import vegas.events.Delegate;
-import vegas.util.factory.PropertyFactory;
+import vegas.events.Event;
 
 /**
  * @author eKameleon
@@ -195,8 +195,8 @@ class asgard.net.URLLoader extends AbstractLoader {
 
 	// ----o Public Properties
 	
-	public var dataFormat ; // [R/W]
-	
+	// public var dataFormat:String ; // [R/W]
+
 	// ----o Public Methods
 
 	public function addRequestHeader( header, headerValue:String ):Void {
@@ -225,7 +225,7 @@ class asgard.net.URLLoader extends AbstractLoader {
 	}
 
 	public function initEvent():Void {
-		_e = new URLLoaderEvent(null, this);
+		_e = Event(new URLLoaderEvent(null, this)) ;
 	}
 	
 	public function isLoaded():Boolean {
@@ -313,7 +313,13 @@ class asgard.net.URLLoader extends AbstractLoader {
 
 	// ----o Virtual Properties
 
-	static private var __DATA_FORMAT__:Boolean = PropertyFactory.create(URLLoader, "dataFormat", true) ;
+	public function get dataFormat():String {
+		return getDataFormat() ;
+	}
+	
+	public function set dataFormat(s:String):Void {
+		setDataFormat(s) ;	
+	}
 		
 	// ----o Private Properties
 	

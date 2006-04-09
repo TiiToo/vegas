@@ -162,8 +162,6 @@ import asgard.draw.Corner;
 import asgard.draw.CornerRectanglePen;
 import asgard.geom.Rectangle;
 
-import vegas.util.factory.PropertyFactory;
-
 
 class asgard.draw.RoundedRectanglePen extends CornerRectanglePen {
 
@@ -175,7 +173,7 @@ class asgard.draw.RoundedRectanglePen extends CornerRectanglePen {
 
 	// -----o Public Properties
 
-	public var round:Number ; // [R/W]
+	// public var round:Number ; // [R/W]
 	
 	// -----o Public Methods
 	
@@ -280,7 +278,13 @@ class asgard.draw.RoundedRectanglePen extends CornerRectanglePen {
 
 	// ----o Virtual Properties
 
-	static private var __ROUND__:Boolean = PropertyFactory.create(RoundedRectanglePen, "round", true) ;	
+	public function get round():Number {
+		return getRound() ;	
+	}
+	
+	public function set round(n:Number):Void {
+		setRound(n) ;	
+	}
 		
 	// ----o Private  Properties
 

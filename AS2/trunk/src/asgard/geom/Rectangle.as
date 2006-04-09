@@ -86,7 +86,7 @@
 		
 		- containsRectangle(rect:Rectangle):Boolean
 		
-			D�termine si l'objet Rectangle spécifié par le paramètre rect figure dans cet objet Rectangle.
+			Détermine si l'objet Rectangle spécifié par le paramètre rect figure dans cet objet Rectangle.
 		
 		- getBottom():Number
 		
@@ -179,7 +179,6 @@ import vegas.core.CoreObject;
 import vegas.core.ICloneable;
 import vegas.core.IComparator;
 import vegas.core.ISerializable;
-import vegas.util.factory.PropertyFactory;
 
 class asgard.geom.Rectangle extends CoreObject implements ICloneable, IComparator, ISerializable {
 
@@ -199,17 +198,17 @@ class asgard.geom.Rectangle extends CoreObject implements ICloneable, IComparato
 
 	// ----o Public Properties
 	
-	public var bottom:Point ; // [R/W]
-	public var bottomLeft:Point ; // [R/W]
-	public var bottomRight:Point ; // [R/W]
-	public var center:Point ; // [R/W]
+	// public var bottom:Number; // [R/W]
+	// public var bottomLeft:Point ; // [R/W]
+	// public var bottomRight:Point ; // [R/W]
+	// public var center:Point ; // [R/W]
 	public var height:Number ;
-	public var left:Point ; // [R/W]
-	public var right:Point ; // [R/W]
-	public var size:Point ; // [R/W]
-	public var top:Point ; // [R/W]
-	public var topLeft:Point ; // [R/W]
-	public var topRight:Point ; // [R/W]
+	// public var left:Number ; // [R/W]
+	// public var right:Number ; // [R/W]
+	// public var size:Point ; // [R/W]
+	// public var top:Number ; // [R/W]
+	// public var topLeft:Point ; // [R/W]
+	// public var topRight:Point ; // [R/W]
 	public var width:Number ;
 	public var x:Number ;
 	public var y:Number ;
@@ -382,7 +381,7 @@ class asgard.geom.Rectangle extends CoreObject implements ICloneable, IComparato
 		y = value.y ;
 	}
 	
-	public function setSize(value:Object):Void {
+	public function setSize( value ):Void {
 		width = value.x ;
 		height = value.y ;
 	}
@@ -410,15 +409,80 @@ class asgard.geom.Rectangle extends CoreObject implements ICloneable, IComparato
 	
 	// ----o Virtual Properties
 	
-	static private var __BOTTOM__:Boolean = PropertyFactory.create(Rectangle, "bottom", true) ;
-	static private var __BOTTOM_LEFT__:Boolean = PropertyFactory.create(Rectangle, "bottomLeft", true) ;
-	static private var __BOTTOM_RIGHT__:Boolean = PropertyFactory.create(Rectangle, "bottomRight", true) ;
-	static private var __CENTER__:Boolean = PropertyFactory.create(Rectangle, "center", true) ;
-	static private var __LEFT__:Boolean = PropertyFactory.create(Rectangle, "left", true) ;
-	static private var __RIGHT__:Boolean = PropertyFactory.create(Rectangle, "right", true) ;
-	static private var __SIZE__:Boolean = PropertyFactory.create(Rectangle, "size", true) ;
-	static private var __TOP__:Boolean = PropertyFactory.create(Rectangle, "top", true) ;
-	static private var __TOP_LEFT__:Boolean = PropertyFactory.create(Rectangle, "topLeft", true) ;
-	static private var __TOP_RIGHT__:Boolean = PropertyFactory.create(Rectangle, "topRight", true) ;
+	public function get bottom():Number {
+		return getBottom() ;
+	}
+
+	public function set bottom( n:Number ):Void {
+		setBottom(n) ;	
+	}	
+
+	public function get bottomLeft():Point {
+		return getBottomLeft() ;
+	}
+
+	public function set bottomLeft( p:Point ):Void {
+		setBottomLeft(p) ;	
+	}	
+
+	public function get bottomRight():Point {
+		return getBottomRight() ;
+	}
+
+	public function set bottomRight( p:Point ):Void {
+		setBottomRight(p) ;	
+	}	
+	
+	public function get center():Point {
+		return getCenter() ;
+	}
+
+	public function get left():Number {
+		return getLeft() ;
+	}
+
+	public function set left( n:Number ):Void {
+		setLeft(n) ;	
+	}	
+
+	public function get right():Number {
+		return getRight() ;
+	}
+
+	public function set right( n:Number ):Void {
+		setRight(n) ;	
+	}
+	
+	public function get size():Point {
+		return getSize() ;	
+	}
+	
+	public function set size( o ):Void {
+		setSize(o) ;	
+	}
+
+	public function get top():Number {
+		return getTop() ;
+	}
+
+	public function set top( n:Number ):Void {
+		setTop(n) ;	
+	}
+
+	public function get topLeft():Point {
+		return getTopLeft() ;
+	}
+
+	public function set topLeft( p:Point ):Void {
+		setTopLeft(p) ;	
+	}	
+
+	public function get topRight():Point {
+		return getTopRight() ;
+	}
+
+	public function set topRight( p:Point ):Void {
+		setTopRight(p) ;	
+	}	
 
 }

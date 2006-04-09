@@ -43,8 +43,6 @@
 		
 		- corner:Corner [R/W]
 		
-		- round:Number [R/W]
-		
 		- la:Number
 		
 			line alpha
@@ -119,8 +117,6 @@
 		
 		- getRectangle():Rectangle
 		
-		- getRound():Number
-	
 		- getTarget():MovieClip
 		
 		- initialize(target:MovieClip , bNew:Boolean):Void
@@ -139,8 +135,6 @@
 		
 		- setAlign (str:String, noDraw:Boolean):Void
 		
-		- setRound(n:Number, noDraw:Boolean):Void
-		
 		- setTarget(target:MovieClip):Void
 		
 		- toString():String
@@ -157,12 +151,10 @@
 	
 		ICloneable, IFormattable, IHashCode, IPen, IRunnable, IShape
 
-----------  */
+**/
 
 import asgard.draw.Corner;
 import asgard.draw.RectanglePen;
-
-import vegas.util.factory.PropertyFactory;
 
 class asgard.draw.CornerRectanglePen extends RectanglePen {
 
@@ -174,7 +166,7 @@ class asgard.draw.CornerRectanglePen extends RectanglePen {
 
 	// -----o Public Properties
 
-	public var corner:Corner ; // [R/W]
+	// public var corner:Corner ; // [R/W]
 
 	// -----o Public Methods
 
@@ -188,8 +180,14 @@ class asgard.draw.CornerRectanglePen extends RectanglePen {
 	}
 	
 	// ----o Virtual Properties
-
-	static private var __CORNER__:Boolean = PropertyFactory.create(CornerRectanglePen, "corner", true) ;
+	
+	public function get corner():Corner {
+		return getCorner() ;
+	}
+	
+	public function set corner(c:Corner):Void {
+		setCorner(c) ;
+	}
 		
 	// ----o Private  Properties
 

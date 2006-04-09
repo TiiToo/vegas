@@ -77,8 +77,8 @@
 // TODO il faut fixer le bug du focus !
 
 import asgard.display.DisplayLoader;
-import asgard.events.FlashPaperLoaderEvent ;
-import asgard.events.FlashPaperLoaderEventType ;
+import asgard.events.FlashPaperLoaderEvent;
+import asgard.events.FlashPaperLoaderEventType;
 import asgard.geom.Point;
 
 /**

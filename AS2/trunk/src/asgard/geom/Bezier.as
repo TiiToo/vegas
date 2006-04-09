@@ -21,7 +21,7 @@
   
 */
 
-/**Bezier
+/** Bezier
 
 	AUTHOR
 	
@@ -55,7 +55,7 @@
 		Robert Penner : http://www.robertpenner.com
 		Timothee Groleau : http://timotheegroleau.com/Flash/articles/cubic_bezier/bezier_lib.as
  
-----------------*/
+**/
 
 import asgard.geom.Line;
 import asgard.geom.Point;

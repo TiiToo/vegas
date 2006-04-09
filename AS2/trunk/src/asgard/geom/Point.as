@@ -159,7 +159,6 @@ import vegas.core.CoreObject;
 import vegas.core.ICloneable;
 import vegas.core.IEquality;
 import vegas.core.ISerializable;
-import vegas.util.factory.PropertyFactory;
 import vegas.util.TypeUtil;
 
 dynamic class asgard.geom.Point extends CoreObject implements ICloneable, IEquality, ISerializable {
@@ -183,8 +182,6 @@ dynamic class asgard.geom.Point extends CoreObject implements ICloneable, IEqual
 
 	// ----o Public Properties
 	
-	public var angle:Number ; // [R/W]
-	public var length:Number ; // [R/W]
 	public var x:Number ;
 	public var y:Number ;
 
@@ -378,8 +375,21 @@ dynamic class asgard.geom.Point extends CoreObject implements ICloneable, IEqual
 	
 	// ----o Virtual Properties
 	
-	static private var __ANGLE__:Boolean = PropertyFactory.create(Point, "angle", true) ;
-	static private var __LENGTH__:Boolean = PropertyFactory.create(Point, "length", true) ;
+	public function get angle():Number {
+		return getAngle() ;
+	}
+	
+	public function set angle( n:Number ):Void {
+		setAngle(n) ;	
+	}
+	
+	public function get length():Number {
+		return getLength() ;	
+	}
+	
+	public function set length(n:Number):Void {
+		setLength(n) ;	
+	}
 	
 	// ----o Static Private -  MTASC HACK - Macromedia FP8 Compatibility
 	

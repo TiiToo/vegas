@@ -41,10 +41,6 @@
 	
 		- align:String [R/W]
 		
-		- round:Number [R/W]
-		
-		- rotation [R/W]
-		
 		- la:Number
 		
 			line alpha
@@ -115,6 +111,8 @@
 		
 		- getAlign():String
 		
+		- getRectangle():Rectangle
+		
 		- getTarget():MovieClip
 		
 		- initialize(target:MovieClip , bNew:Boolean):Void
@@ -143,7 +141,7 @@
 	
 		ICloneable, IFormattable, IHashCode, IPen, IRunnable, IShape
 
-----------  */
+**/
 
 import asgard.display.Align;
 import asgard.draw.EasyPen;
@@ -161,9 +159,6 @@ class asgard.draw.RectanglePen extends EasyPen {
 	// -----o Public Properties
 
 	public var h:Number ;
-	public var rectangle:Rectangle ; // [Read Only]
-	public var rotation:Number ; // [R/W]
-	public var round:Number ; // [R/W]
 	public var w:Number ;
 	public var x:Number ;
 	public var y:Number ;

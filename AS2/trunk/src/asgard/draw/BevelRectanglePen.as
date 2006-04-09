@@ -41,7 +41,7 @@
 	
 		- align:String [R/W]
 		
-		- round:Number [R/W]
+		- hBevel:Number [R/W]
 		
 		- la:Number
 		
@@ -62,6 +62,8 @@
 		- t:Number
 		
 			thickness
+		
+		- vBevel:Number [R/W]
 		
 		- C:Function 
 		
@@ -163,8 +165,6 @@ import asgard.draw.Corner;
 import asgard.draw.CornerRectanglePen;
 import asgard.geom.Rectangle;
 
-import vegas.util.factory.PropertyFactory;
-
 class asgard.draw.BevelRectanglePen extends CornerRectanglePen {
 
 	// -----o Constructor
@@ -175,8 +175,8 @@ class asgard.draw.BevelRectanglePen extends CornerRectanglePen {
 
 	// -----o Public Properties
 
-	public var hBevel:Number ; // [R/W]
-	public var vBevel:Number ; // [R/W]
+	// public var hBevel:Number ; // [R/W]
+	// public var vBevel:Number ; // [R/W]
 	
 	// -----o Public Methods
 	
@@ -265,8 +265,21 @@ class asgard.draw.BevelRectanglePen extends CornerRectanglePen {
 	
 	// ----o Virtual Properties
 
-	static private var __H_BEVEL__:Boolean = PropertyFactory.create(BevelRectanglePen, "hBevel", true) ;	
-	static private var __V_BEVEL__:Boolean = PropertyFactory.create(BevelRectanglePen, "vBevel", true) ;
+	public function get hBevel():Number {
+		return getHBevel() ;	
+	}
+
+	public function set hBevel(n:Number):Void {
+		setHBevel(n) ;	
+	}
+
+	public function get vBevel():Number {
+		return getVBevel() ;	
+	}
+
+	public function set vBevel(n:Number):Void {
+		setVBevel(n) ;	
+	}
 		
 	// ----o Private  Properties
 

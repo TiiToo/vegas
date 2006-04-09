@@ -21,7 +21,7 @@
   
 */
 
-/* ------ ApplicationType
+/** ApplicationType
  
 	AUTHOR
  
@@ -51,7 +51,7 @@
 		
 			"https"
 	
------- */
+**/
 
 class asgard.system.ApplicationType {
 

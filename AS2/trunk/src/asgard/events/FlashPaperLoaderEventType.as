@@ -65,7 +65,7 @@
 
 ----------  */
 
-import asgard.events.LoaderEventType ;
+import asgard.events.LoaderEventType;
 
 class asgard.events.FlashPaperLoaderEventType {
 

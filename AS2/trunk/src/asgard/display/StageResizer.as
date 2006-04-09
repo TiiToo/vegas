@@ -21,7 +21,7 @@
   
 */
 
-/* ----- StageResizer
+/** StageResizer
 	
 	AUTHOR
 
@@ -87,9 +87,9 @@
 	
 	IMPLEMENTS
 	
-		EventListener, IFormattable
+		EventListener, IFormattable, IHashable
 	
-----------------*/
+**/
 
 import vegas.core.IFormattable;
 import vegas.events.DynamicEvent;
@@ -137,10 +137,6 @@ class asgard.display.StageResizer extends EventDispatcher implements EventListen
 		_timer.setDelay(time) ;
 	}
 	
-	public function toString():String {
-		return "[StageResizer]" ;
-	}
-
 	// ----o Virtual Properties	
 	
 	public function get delay():Number { 

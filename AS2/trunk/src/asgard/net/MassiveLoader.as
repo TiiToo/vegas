@@ -146,7 +146,7 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener 
 		try {
 			if (sName) loader.setName(sName) ;
 			if (loader.getName() == undefined) {
-				throw new Warning("You passed ILoader object without any name property in " + toString() + ".enqueue()." ) ;
+				throw new Warning("You passed ILoader object without any name property in " + this + ".enqueue()." ) ;
 			}
 		} catch(e:Warning) {
 			e.toString() ;
@@ -155,7 +155,7 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener 
 		try {
 			if (sURL) loader.setUrl(sURL) ;
 			if (loader.getUrl() == undefined) {
-				throw new Warning("You passed ILoader object without any url property in " + toString() + ".enqueue().") ;
+				throw new Warning("You passed ILoader object without any url property in " + this + ".enqueue().") ;
 			}
 		} catch(e:Warning) {
 			e.toString() ;					

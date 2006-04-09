@@ -21,7 +21,7 @@
   
 */
 
-/** ------ AbstractLoader
+/** AbstractLoader
 
 	AUTHOR
 
@@ -139,7 +139,7 @@
 	
 		EventTarget, IFormattable, IHashable, IEventDispatcher, ILoader
 	
-----------  */	
+**/	
 
 import asgard.events.LoaderEvent;
 import asgard.events.LoaderEventType;
@@ -149,15 +149,12 @@ import vegas.events.AbstractCoreEventDispatcher;
 import vegas.events.Delegate;
 import vegas.events.Event;
 import vegas.events.TimerEventType;
-import vegas.util.factory.PropertyFactory;
 import vegas.util.Timer;
-
 
 /**
  * @author eKameleon
  * @version 1.0.0.0
  **/
- 
 
 class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements ILoader {
 
@@ -171,16 +168,6 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 		_setProgressTimer() ;
 		
 	}
-
-	// ----o Public Properties
-
-	public var bytesLoaded:Number ; // [Read Only]
-	public var bytesTotal:Number ; // [Read Only]
-	public var data ; // [R/W]
-	public var name:String ; // [R/W]
-	public var running:Boolean ; // [Read Only]
-	public var timeOut:Number ; // [R/W]
-	public var percent:Number ; // [Read Only]
 
 	// ----o Public Methods
 
@@ -224,7 +211,7 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 	}
 	
 	public function initEvent():Void {
-		_e = new LoaderEvent(null, this) ;
+		_e = Event(new LoaderEvent(null, this)) ;
 	}
 
 	public function load():Void {
@@ -292,14 +279,53 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 
 	// ----o Virtual Properties
 
-	static private var __BYTES_LOADED__:Boolean = PropertyFactory.create(AbstractLoader, "bytesLoaded", true, true) ;	
-	static private var __BYTES_TOTAL__:Boolean = PropertyFactory.create(AbstractLoader, "bytesTotal", true, true) ;	
-	static private var __DATA__:Boolean = PropertyFactory.create(AbstractLoader, "data", true) ;
-	static private var __NAME__:Boolean = PropertyFactory.create(AbstractLoader, "name", true) ;
-	static private var __PERCENT__:Boolean = PropertyFactory.create(AbstractLoader, "percent", true, true) ;
-	static private var __RUNNING__:Boolean = PropertyFactory.create(AbstractLoader, "running", true, true) ;		
-	static private var __TIMEOUT__:Boolean = PropertyFactory.create(AbstractLoader, "timeOut", true) ;
-	static private var __URL__:Boolean = PropertyFactory.create(AbstractLoader, "url", true) ;
+	public function get bytesLoaded():Number {
+		return getBytesLoaded() ;
+	}
+	
+	public function get bytesTotal():Number {
+		return getBytesTotal() ;
+	}
+	
+	public function get data() {
+		return getData() ;
+	}
+	
+	public function set data( o ):Void {
+		setData(o) ;	
+	}
+
+	public function get name():String {
+		return getName() ;	
+	}
+
+	public function set name(sName:String):Void {
+		setName(sName) ;	
+	}
+	
+	public function get percent():Number {
+		return getPercent() ;	
+	}
+	
+	public function get running():Boolean {
+		return getRunning() ;	
+	}
+
+	public function get timeOut():Number {
+		return getTimeOut() ;
+	}
+	
+	public function set timeOut( n:Number ):Void {
+		setTimeOut(n) ;	
+	}
+	
+	public function get url():String {
+		return this.getUrl() ;
+	}
+	
+	public function set url( sURL:String ):Void {
+		setUrl(sURL) ;	
+	}
 			
 	// ----o Private Properties
 	

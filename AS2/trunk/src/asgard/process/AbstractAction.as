@@ -37,7 +37,7 @@
 	
 		- looping:Boolean
 		
-		- running:Boolean
+		- running:Boolean [Read Only]
 
 	METHOD SUMMARY
 	
@@ -116,7 +116,6 @@ import asgard.process.Action;
 import vegas.core.ICloneable;
 import vegas.core.ISerializable;
 import vegas.events.AbstractCoreEventDispatcher;
-import vegas.util.factory.PropertyFactory;
 
 class asgard.process.AbstractAction extends AbstractCoreEventDispatcher implements Action, ICloneable, ISerializable {
 	
@@ -139,8 +138,7 @@ class asgard.process.AbstractAction extends AbstractCoreEventDispatcher implemen
 	// ----o Public Properties
 	
 	public var looping:Boolean ;
-	
-	public var running:Boolean ; // [Read Only]
+	// public var running:Boolean ; // [Read Only]
 	
 	// ----o Public Methods
 	
@@ -198,8 +196,10 @@ class asgard.process.AbstractAction extends AbstractCoreEventDispatcher implemen
 
 	// ----o Virtual Properties
 	
-	static private var __RUNNING__ = PropertyFactory.create(AbstractAction, "running", true, true) ;
-
+	public function get running():Boolean {
+		return getRunning() ;	
+	}
+	
 	// ----o Private Properties
 	
 	private var _eChange:ActionEvent ;

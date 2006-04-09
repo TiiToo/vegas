@@ -21,7 +21,7 @@
   
 */
 
-/* ------ Application
+/** Application
  
 	AUTHOR
  
@@ -62,7 +62,7 @@
 	
 		Zwetan NG > Burrrn.com [FMX] flash dans plusieurs environnements.
 
------- */
+**/
 
 import asgard.system.ApplicationType;
 

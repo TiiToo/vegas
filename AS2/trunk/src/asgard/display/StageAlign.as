@@ -21,7 +21,7 @@
   
 */
 
-/* -------- StageAlign
+/** StageAlign
 
 	AUTHOR
 
@@ -79,7 +79,7 @@
 	
 		- static getAlign(align:String, default_align:StageAlign):String
 	
-------------*/
+**/
 
 import vegas.util.StringUtil;
 

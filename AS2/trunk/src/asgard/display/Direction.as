@@ -69,7 +69,7 @@ class asgard.display.Direction {
 		switch (str.toLowerCase()) {
 			case "vertical" :
 				return Direction.VERTICAL ;
-			case "horizontal" : default :
+			default :
 				return Direction.HORIZONTAL ;
 				break ;
 		}

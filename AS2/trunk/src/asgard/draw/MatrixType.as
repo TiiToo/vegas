@@ -21,7 +21,7 @@
   
 */
 
-/* -------- MatrixType
+/** MatrixType
 
 	AUTHOR
 
@@ -39,7 +39,7 @@
 
 			Specifies the type of the matrix
 
-------------*/
+**/
 
 class asgard.draw.MatrixType {
 

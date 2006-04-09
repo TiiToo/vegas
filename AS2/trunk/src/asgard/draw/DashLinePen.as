@@ -180,8 +180,6 @@
 import asgard.draw.LinePen;
 import asgard.geom.Point;
 
-import vegas.util.factory.PropertyFactory;
-
 class asgard.draw.DashLinePen extends LinePen {
 
 	// -----o Constructor
@@ -195,8 +193,8 @@ class asgard.draw.DashLinePen extends LinePen {
 	public var default_length:Number = 2 ;
 	public var default_spacing:Number = 2 ;
 
-	public var length:Number ; // [R/W]
-	public var spacing:Number ; // [R/W]
+	// public var length:Number ; // [R/W]
+	// public var spacing:Number ; // [R/W]
 
 	// -----o Public Methods
 	
@@ -274,8 +272,21 @@ class asgard.draw.DashLinePen extends LinePen {
 
 	// ----o Virtual Properties
 
-	static private var __LENGTH__:Boolean = PropertyFactory.create(DashLinePen, "length", true) ;
-	static private var __SPACING__:Boolean = PropertyFactory.create(DashLinePen, "spacing", true) ;
+	public function get length():Number {
+		return getLength() ;	
+	}
+	
+	public function set length(n:Number):Void {
+		setLength(n) ;	
+	}
+
+	public function get spacing():Number {
+		return getSpacing() ;	
+	}
+	
+	public function set spacing(n:Number):Void {
+		setSpacing(n) ;	
+	}
 	
 	// ----o Private  Properties
 

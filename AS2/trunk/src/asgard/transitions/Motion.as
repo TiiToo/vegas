@@ -21,7 +21,7 @@
   
 */
 
-/* ---------------- Motion
+/** Motion
 
 	AUTHOR
 	
@@ -152,7 +152,6 @@ import vegas.core.ITimer;
 import vegas.events.Delegate;
 import vegas.events.EventListener;
 import vegas.events.TimerEventType;
-import vegas.util.factory.PropertyFactory;
 import vegas.util.FrameTimer;
 import vegas.util.Timer;
 
@@ -166,12 +165,9 @@ class asgard.transitions.Motion extends AbstractAction {
 	
 	// ----o Public Properties
 
-	public var duration:Number ; // [RW]
-	public var fps:Number ; // [RW]
 	public var useSeconds:Boolean ;
 	public var prevTime:Number ;
-	public var target ; // [RW]
-	
+
 	// ----o Public Methods
 	
 	public function clone() {
@@ -312,9 +308,29 @@ class asgard.transitions.Motion extends AbstractAction {
 	
 	// ----o Virtual Properties
 
-	static private var __DURATION__:Boolean = PropertyFactory.create(Motion, "duration", true) ;
-	static private var __FPS__:Boolean = PropertyFactory.create(Motion, "fps", true) ;
-	static private var __TARGET__:Boolean = PropertyFactory.create(Motion, "target", true) ;
+	public function get duration():Number {
+		return getDuration() ;
+	}
+	
+	public function set duration( n:Number ):Void {
+		setDuration(n) ;
+	}
+
+	public function get fps():Number {
+		return getFPS() ;
+	}
+	
+	public function set fps( n:Number ):Void {
+		setFPS(n) ;
+	}
+
+	public function get target() {
+		return getTarget() ;	
+	}
+	
+	public function set target( oT ) {
+		setTarget( oT ) ;	
+	}
 
 	// ----o Private Properties
 	
@@ -323,7 +339,7 @@ class asgard.transitions.Motion extends AbstractAction {
 	private var _oNext:EventListener ;
 	private var _startTime:Number ;
 	private var _stopping:Boolean ;
-	private var _target:Object ;
+	private var _target ;
 	private var _time:Number ;
 	private var _timer:ITimer ;
 	

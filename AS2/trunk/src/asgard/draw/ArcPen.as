@@ -160,9 +160,6 @@ import asgard.draw.ArcType;
 import asgard.draw.EasyPen;
 import asgard.geom.Trigo;
 
-import vegas.util.factory.PropertyFactory;
-
-
 class asgard.draw.ArcPen extends EasyPen {
 
 	// -----o Constructor
@@ -174,12 +171,12 @@ class asgard.draw.ArcPen extends EasyPen {
 
 	// -----o Public Properties
 
-	public var angle:String ; // [R/W]
+	// public var angle:String ; // [R/W]
 	public var radius:Number = 100;
 	public var x:Number = 0 ;
 	public var y:Number = 0 ;
 	public var yRadius:Number ;
-	public var startAngle:String ; // [R/W]
+	// public var startAngle:String ; // [R/W]
 	public var type:String = ArcType.CHORD ; // CHORD || PIE
 	
 	// -----o Public Methods
@@ -302,8 +299,21 @@ class asgard.draw.ArcPen extends EasyPen {
 
 	// ----o Virtual Properties
 
-	static private var __ANGLE__:Boolean = PropertyFactory.create(ArcPen, "angle", true) ;
-	static private var __START_ANGLE__:Boolean = PropertyFactory.create(ArcPen, "startAngle", true) ;
+	public function get angle():Number {
+		return getAngle() ;	
+	}
+	
+	public function set angle(n:Number):Void {
+		setAngle(n) ;	
+	}
+	
+	public function get startAngle():Number {
+		return getStartAngle() ;	
+	}
+	
+	public function set startAngle(n:Number):Void {
+		setStartAngle(n) ;	
+	}
 
 	// ----o Private  Properties
 

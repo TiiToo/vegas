@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- Pause
+/** Pause
 
 	AUTHOR
 
@@ -83,13 +83,12 @@
 	
 		Action, IEventDispatcher, ICloneable, IRunnable, ISerializable, IFormattable
 
-----------  */
+**/
 
 import asgard.process.AbstractAction;
 
 import vegas.events.EventListenerProxy;
 import vegas.events.TimerEventType;
-import vegas.util.factory.PropertyFactory;
 import vegas.util.serialize.Serializer;
 import vegas.util.Timer;
 
@@ -107,7 +106,6 @@ class asgard.process.Pause extends AbstractAction {
 	
 	// ----o Public Properties
 	
-	public var duration:Number ; // [RW]
 	public var useSeconds:Boolean ;
 	
 	// ----o Public Methods
@@ -159,8 +157,14 @@ class asgard.process.Pause extends AbstractAction {
 
 	// ----o Virtual Properties
 	
-	static private var __DURATION__:Boolean = PropertyFactory.create(Pause, "duration", true) ;
+	public function get duration():Number {
+		return getDuration() ;	
+	}
 	
+	public function set duration( n:Number ):Void {
+		setDuration(n) ;	
+	}
+
 	// ----o Private Properties
 
 	private var _duration:Number ;

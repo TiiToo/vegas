@@ -141,8 +141,6 @@
 
 import asgard.draw.AbstractPen;
 
-import vegas.util.factory.PropertyFactory;
-
 class asgard.draw.Canvas extends AbstractPen {
 
 	// -----o Constructor
@@ -154,7 +152,7 @@ class asgard.draw.Canvas extends AbstractPen {
 	
 	// ----o public Properties
 	
-	public var data:Array ; // [R/W]
+	// public var data:Array ; // [R/W]
 
 	// ----o Public Methods
 
@@ -273,7 +271,13 @@ class asgard.draw.Canvas extends AbstractPen {
 
 	// ----o Virtual Properties
 
-	static private var __DATA__:Boolean = PropertyFactory.create(Canvas, "data", true) ;	
+	public function get data():Array {
+		return getData() ;
+	}
+	
+	public function set data(aData:Array):Void {
+		setData(aData) ;	
+	}
 	
 	// ----o Private Properties
 	

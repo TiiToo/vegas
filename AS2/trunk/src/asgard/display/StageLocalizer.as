@@ -21,7 +21,7 @@
   
 */
 
-/* ------- StageLocalizer
+/** StageLocalizer
 
 	AUTHOR
 		
@@ -78,9 +78,9 @@
 				- "R" renvoi "L" ;
 				- "" renvoi "" ;
 
-----------------*/
+**/
 
-import asgard.display.StageAlign ;
+import asgard.display.StageAlign;
 
 class asgard.display.StageLocalizer {
 	
@@ -107,7 +107,7 @@ class asgard.display.StageLocalizer {
 
 	static public function getMiddle(Void):Object {
 		_setMiddle () ;
-		return { x:_x , y:_y }
+		return { x:_x , y:_y } ;
 	}
 	
 	static public function getVerticalMirror(point):String {

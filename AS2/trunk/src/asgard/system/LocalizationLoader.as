@@ -63,9 +63,6 @@ import asgard.system.Locale;
 import asgard.system.Localization;
 
 import vegas.errors.IllegalArgumentError;
-import vegas.util.factory.PropertyFactory;
-
-
 
 /**
  * @author eKameleon
@@ -81,9 +78,9 @@ class asgard.system.LocalizationLoader extends JSONLoader {
 	
 	// ----o Public Properties
 	
-	public var path:String ; // [R/W]
-	public var prefix:String ; // [R/W]
-	public var suffix:String ; // [R/W]
+	//public var path:String ; // [R/W]
+	//public var prefix:String ; // [R/W]
+	//public var suffix:String ; // [R/W]
 	
 	// ----o Public Methods
 
@@ -140,12 +137,32 @@ class asgard.system.LocalizationLoader extends JSONLoader {
 	}
 
 	// ----o Virtual Properties
+
+
+	public function get path():String {
+		return getPath() ;	
+	}
 	
-	static private var __DEFAULT__:Boolean = PropertyFactory.create(LocalizationLoader, "default", true) ;
-	static private var __PATH__:Boolean = PropertyFactory.create(LocalizationLoader, "path", true) ;
-	static private var __PREFIX__:Boolean = PropertyFactory.create(LocalizationLoader, "prefix", true) ;
-	static private var __SUFFIX_:Boolean = PropertyFactory.create(LocalizationLoader, "suffix", true) ;
+	public function set path(s:String):Void {
+		setPath(s) ;	
+	}
+
+	public function get prefix():String {
+		return getPrefix() ;	
+	}
 	
+	public function set prefix(s:String):Void {
+		setPrefix(s) ;	
+	}
+
+	public function get suffix():String {
+		return getSuffix() ;	
+	}
+	
+	public function set suffix(s:String):Void {
+		setSuffix(s) ;	
+	}
+
 	// ----o Private Properties
 	
 	private var _default:String = null ;

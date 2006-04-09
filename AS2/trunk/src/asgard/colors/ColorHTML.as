@@ -82,8 +82,12 @@
 	
 		- static htmlToNumber( sHTML:String ):Number
 
+		- toBoolean():Boolean
+
+		- toObject():Object
+
 		- toString():String
-		
+				
 		- valueOf():Number
 
 	SEE
@@ -96,11 +100,10 @@
 
 import vegas.core.IConvertible;
 import vegas.core.IFormattable;
-import vegas.util.ObjectUtil ;
-import vegas.util.StringUtil ;
-import vegas.util.TypeUtil;
+import vegas.util.ObjectUtil;
+import vegas.util.StringUtil;
 
-class asgard.colors.ColorHTML extends Number implements IConvertible, IFormattable{
+class asgard.colors.ColorHTML extends Number implements IConvertible, IFormattable {
 	
 	// ----o Constructor
 	

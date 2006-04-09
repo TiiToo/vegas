@@ -21,7 +21,7 @@
   
 */
 
-/* -------- StageAlign
+/** StageAlign
 
 	AUTHOR
 
@@ -60,7 +60,7 @@
 			
 			Specifies that the text is to be treated as right-justified text, meaning that the right side of the text field remains fixed and any resizing of a single line is on the left side.
 
-------------*/
+**/
 
 
 /**

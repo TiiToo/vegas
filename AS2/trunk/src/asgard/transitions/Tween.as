@@ -185,7 +185,7 @@
 	
 		Action, ICloneable, IRunnable, IFormattable
 
---------------*/
+**/
 
 // TODO continueTo()
 // TODO yoyo()
@@ -218,7 +218,7 @@ class asgard.transitions.Tween extends Motion {
 			var d:Number = arguments[5] ; // duration
 			var u:Boolean = arguments[6] ; // useSeconds
 			var a:Boolean = arguments[7] ; // auto start
-			duration = d ;
+			setDuration(d) ;
 			useSeconds = u ;
 			setTweenProvider( [new TweenEntry(p, e, b, f)] ) ;
 			if (a) run() ;

@@ -55,7 +55,7 @@
 	
 		IFormattable, IHashable
 
-------------*/
+**/
 
 import vegas.core.CoreObject;
 import vegas.util.ConstructorUtil;

@@ -33,6 +33,12 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
+	CONSTANT SUMMARY
+	
+		- static DEFAULT_FILE_NAME:String ("config")
+
+		- static DEFAULT_SUFFIX:String (".json")
+
 **/
 
 import asgard.config.Config;
@@ -41,9 +47,9 @@ import asgard.events.LoaderEvent;
 import asgard.net.JSONLoader;
 import asgard.net.URLRequest;
 
+import vegas.events.Event;
 import vegas.logging.ILogger;
 import vegas.logging.Log;
-import vegas.util.factory.PropertyFactory;
 
 /**
  * @author eKameleon
@@ -69,9 +75,9 @@ class asgard.config.ConfigLoader extends JSONLoader {
 	
 	// ----o Public Properties
 	
-	public var fileName:String ; // [R/W]
-	public var path:String ; // [R/W]
-	public var suffix:String ; // [R/W]
+	// public var fileName:String ; // [R/W]
+	// public var path:String ; // [R/W]
+	// public var suffix:String ; // [R/W]
 
 	// ----o Public Methods
 	
@@ -99,7 +105,9 @@ class asgard.config.ConfigLoader extends JSONLoader {
 	}
 
 	public function initEvent():Void {
-		_e = new ConfigLoaderEvent( null, this );
+		
+		_e = Event(new ConfigLoaderEvent( null, this )) ;
+		
 	}
 	
 	public function load( fileName:String ):Void {
@@ -138,9 +146,29 @@ class asgard.config.ConfigLoader extends JSONLoader {
 
 	// ----o Virtual Properties
 
-	static private var __FILE_NAME__:Boolean = PropertyFactory.create(ConfigLoader, "fileName", true) ;	
-	static private var __PATH__:Boolean = PropertyFactory.create(ConfigLoader, "path", true) ;
-	static private var __SUFFIX_:Boolean = PropertyFactory.create(ConfigLoader, "suffix", true) ;
+	public function get fileName():String {
+		return getFileName() ;	
+	}
+	
+	public function set fileName(s:String):Void {
+		setFileName(s) ;	
+	}
+
+	public function get path():String {
+		return getPath() ;	
+	}
+	
+	public function set path(s:String):Void {
+		setPath(s) ;	
+	}
+
+	public function get suffix():String {
+		return getSuffix() ;	
+	}
+	
+	public function set suffix(s:String):Void {
+		setSuffix(s) ;	
+	}
 	
 	// ----o Private Properties
 	

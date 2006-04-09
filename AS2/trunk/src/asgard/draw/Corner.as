@@ -54,6 +54,10 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 	
+	DESCRIPTION
+	
+		Cette classe permet de définir sur un Rectangle les coins qui peuvent subir une transformation.
+	
 	CONSTRUCTOR
 	
 		new Corner( tl:Boolean , br:Boolean, tr:Boolean, bl:Boolean) ;
@@ -97,7 +101,6 @@
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
 import vegas.util.ConstructorUtil;
-import vegas.util.factory.PropertyFactory;
 
 /**
  * @author eKameleon
@@ -116,10 +119,10 @@ class asgard.draw.Corner extends CoreObject implements ICloneable {
 	
 	// ----o Public Properties
 	
-	public var tl:Boolean ; // [Read Only]
-	public var tr:Boolean ; // [Read Only]
-	public var bl:Boolean ; // [Read Only]
-	public var br:Boolean ; // [Read Only]
+	// public var tl:Boolean ; // [Read Only]
+	// public var tr:Boolean ; // [Read Only]
+	// public var bl:Boolean ; // [Read Only]
+	// public var br:Boolean ; // [Read Only]
 	
 	// ----o Public Methods
 
@@ -143,16 +146,31 @@ class asgard.draw.Corner extends CoreObject implements ICloneable {
 		return _tr ;
 	}
 	
+	public function toSource():String {
+		return "new Corner(" + getTl() + "," + getTr() + "," + getBr() + "," + getBl() + ")" ;
+	}
+	
 	public function toString():String {
 		return "[" + ConstructorUtil.getName(this) + " tl:" + _tl + ", br:" + _br + ", tr:" + _tr + ", bl:" + _bl + "]" ;
 	}
 
 	// ----o Virtual Properties
 
-	static private var __BL__:Boolean = PropertyFactory.create(Corner, "bl", true, true) ;
-	static private var __BR__:Boolean = PropertyFactory.create(Corner, "bt", true, true) ;
-	static private var __TL__:Boolean = PropertyFactory.create(Corner, "tl", true, true) ;
-	static private var __TR__:Boolean = PropertyFactory.create(Corner, "tr", true, true) ;
+	public function get bl():Boolean {
+		return getBl() ;	
+	}
+	
+	public function get br():Boolean {
+		return getBr() ;	
+	}
+
+	public function get tl():Boolean {
+		return getTl() ;	
+	}
+	
+	public function get tr():Boolean {
+		return getTr() ;	
+	}
 	
 	// ----o Public Methods
 	
@@ -161,5 +179,4 @@ class asgard.draw.Corner extends CoreObject implements ICloneable {
 	private var _bl:Boolean = true ;
 	private var _br:Boolean = true ;
 	
-
 }

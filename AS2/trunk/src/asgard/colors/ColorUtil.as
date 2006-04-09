@@ -21,7 +21,7 @@
   
 */
 
-/* -------- ColorUtil
+/** ColorUtil
 
 	AUTHOR
 
@@ -39,7 +39,7 @@
 		
 		- ColorUtil.reset(c:Color) 
 
-----------------*/
+**/
 
 class asgard.colors.ColorUtil {
 	

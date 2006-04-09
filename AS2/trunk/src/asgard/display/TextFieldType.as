@@ -21,7 +21,7 @@
   
 */
 
-/* -------- StageAlign
+/** StageAlign
 
 	AUTHOR
 
@@ -52,7 +52,7 @@
 			
 			Used to specify an input TextField.
 
-------------*/
+**/
 
 
 /**

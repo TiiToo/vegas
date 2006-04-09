@@ -135,12 +135,10 @@
 	
 		Align
 
-----------  */
+**/
 
 import asgard.display.Align;
 import asgard.draw.AbstractPen;
-
-import vegas.util.factory.PropertyFactory;
 
 class asgard.draw.EasyPen extends AbstractPen {
 
@@ -152,7 +150,7 @@ class asgard.draw.EasyPen extends AbstractPen {
 
 	// ----o Public Properties
 
-	public var align:Number ; // [R/W]
+	// public var align:Number ; // [R/W]
 
 	// ----o Public Methods
 
@@ -167,7 +165,13 @@ class asgard.draw.EasyPen extends AbstractPen {
 
 	// ----o Virtual Properties
 
-	static private var __ALIGN__:Boolean = PropertyFactory.create(EasyPen, "align", true) ;	
+	public function get align():Number {
+		return getAlign() ;	
+	}
+	
+	public function set align(nAlign:Number):Void {
+		setAlign(nAlign) ;	
+	}
 	
 	// ----o Private Properties
 	

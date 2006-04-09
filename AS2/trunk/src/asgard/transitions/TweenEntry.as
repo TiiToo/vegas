@@ -71,7 +71,6 @@
 
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
-import vegas.util.factory.PropertyFactory;
 
 class asgard.transitions.TweenEntry extends CoreObject implements ICloneable {
 	
@@ -88,7 +87,6 @@ class asgard.transitions.TweenEntry extends CoreObject implements ICloneable {
 	
 	public var begin:Number ;
 	public var change:Number ;
-	public var easing:Function ; // [R/W]
 	public var isCached:Boolean ;
 	public var prevPos:Number ;
 	public var prop:String ;
@@ -96,7 +94,7 @@ class asgard.transitions.TweenEntry extends CoreObject implements ICloneable {
 	// ----o Public Methods
 	
 	public function clone() {
-		var t:TweenEntry = new TweenEntry (prop, easing, begin, finish);
+		var t:TweenEntry = new TweenEntry (prop, getEasing(), begin, finish);
 		return t ;
 	}
 
@@ -139,6 +137,14 @@ class asgard.transitions.TweenEntry extends CoreObject implements ICloneable {
 
 	// ----o Virtual Properties
 
+	public function get easing():Function {
+		return getEasing() ;
+	}
+	
+	public function set easing( f:Function ):Void {
+		setEasing(f) ;
+	}
+
 	public function get finish():Number {
 		return getFinish() ;
 	}
@@ -146,10 +152,7 @@ class asgard.transitions.TweenEntry extends CoreObject implements ICloneable {
 	public function set finish(n:Number):Void {
 		setFinish(n) ;
 	}
-	// ----o Virtual Properties
 
-	static private var __EASING__:Boolean = PropertyFactory.create(TweenEntry, "easing", true) ;
-	
 	// ----o Private Properties
 
 	private var _easing:Function = TweenEntry.noEasing ;

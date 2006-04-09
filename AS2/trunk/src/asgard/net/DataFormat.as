@@ -21,7 +21,7 @@
   
 */
 
-/* -------- DataFormat
+/** DataFormat
 
 	AUTHOR
 
@@ -44,7 +44,7 @@
  		static const VARIABLES:String = "variables"
 			Specifies that downloaded data is received as URL-encoded variables.
 
-------------*/
+**/
 
 /**
  * @author eKameleon
