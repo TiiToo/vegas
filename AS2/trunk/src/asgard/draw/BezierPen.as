@@ -221,10 +221,23 @@ class asgard.draw.BezierPen extends AbstractPen {
 		curveTo(p2.x, p2.y, p3.x, p3.y);
 	}
 
-	public function drawPoints(p1:Point, p2:Point, p3:Point, p4:Point, tolerance:Number):Void {
-		if (tolerance == undefined) tolerance = 5 ;
-		moveTo(p1.x, p1.y);
-		_create(p1, p2, p3, p4, Math.pow(tolerance, 2) ) ;
+	public function drawPoints( /* p1:Point, p2:Point, p3:Point, p4:Point, tolerance:Number */ ):Void {
+		if (arguments.length == 1 && arguments[0] instanceof Array) {
+			var pts:Array = arguments[0] ;
+			moveTo(pts[0].x,pts[0].y);
+			for (var i:Number=0;i<pts.length;i++){
+				lineTo(pts[i].x,pts[i].y);
+			}
+		} else {
+			var p1:Point = arguments[0] ;
+			var p2:Point = arguments[1] ;
+			var p3:Point = arguments[2] ;
+			var p4:Point = arguments[3] ;
+			var tolerance:Number = arguments[4] ;
+			if (tolerance == undefined) tolerance = 5 ;
+			moveTo(p1.x, p1.y);
+			_create(p1, p2, p3, p4, Math.pow(tolerance, 2) ) ;
+		}
 	}
 	
 	public function simulate(p1:Point, p2:Point, p3:Point, p4:Point):Void {

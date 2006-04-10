@@ -70,6 +70,84 @@ class asgard.geom.Bezier {
 
 	//  ------o Public Methods
 
+	/**
+	 *	Calculer un tableau de points permettant de tracer une courbe Bezier quadratique bouclée ou non sur n-points.
+	 */
+	public static function createBezier(step:Number,points:Array,precision:Number,boucle:Boolean):Array{
+		
+		precision= isNaN(precision) ? 0 : precision ;
+		if (boucle == undefined) boucle = true ;
+		
+		var pts:Array = [];
+		var nbp:Number = points.length ;
+		var i:Number=0 ;
+		var lastpoint:Point = null ;
+		
+		var _p0:Point ;
+		var _p1:Point ;
+		var _p2:Point ;
+		var t:Number ;
+		
+		var c1,c2, c3, nx, ny, u1:Number ;
+		var npoint:Point ;
+		
+		while (i<nbp){
+
+			_p0 = points[i] ;
+			_p1 = (boucle)? points[(i+1)%nbp]:(points[(i+1)])? points[(i+1)]:_p0 ;
+			_p2 = (boucle)? points[(i+2)%nbp]:(points[(i+2)])? points[(i+2)]:_p1 ;
+
+			t = 0 ;
+
+			while (t<=1){
+
+				var p0:Point = new Point((_p0.x+_p1.x)/2,(_p0.y+_p1.y)/2);
+				var p1:Point = new Point(_p1.x,_p1.y);
+				var p2:Point = new Point((_p2.x+_p1.x)/2,(_p2.y+_p1.y)/2);
+				
+				u1 = 1 - t ;
+				c1 = u1 * u1 ;
+				c2 = 2 * t * u1 ;
+				c3 = t * t ;
+			
+				nx = c1 * p0.x + c2 * p1.x + c3 * p2.x ;
+				ny = c1 * p0.y + c2 * p1.y + c3 * p2.y ;
+				
+				npoint =new Point(nx,ny);
+			
+				if (lastpoint!=null) {
+					
+					if ( Point.distance(lastpoint,npoint) > precision ){
+						lastpoint=npoint;
+						pts.push(npoint);
+					}
+				} else {
+					lastpoint = npoint ;
+					pts.push(npoint) ;
+				}
+
+				t+=step ;
+			}
+
+			i++ ;
+		}
+		return pts ;
+	}
+
+	/**
+	 *	Retourne le barycentre d'une série de points.
+	 */
+	public static function getBaryCenter(pts:Array):Point {
+		var nbp:Number = pts.length ;
+		var x:Number=0;
+		var y:Number=0;
+		while (--nbp>=0){
+			x += pts[nbp].x ;
+			y += pts[nbp].y ;
+		}
+		return new Point(x/pts.length,y/pts.length) ;
+	}
+
 	static public function split(p0:Point, p1:Point, p2:Point, p3:Point):Object {
 		var p01:Point = Line.getMiddle(p0, p1) ;
 		var p12:Point = Line.getMiddle(p1, p2);

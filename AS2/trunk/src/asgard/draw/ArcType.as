@@ -37,13 +37,13 @@
 	
 		- CHORD:String
 		
-		- PIEL:String
+		- PIE:String
 
 	METHOD SUMMARY
 	
 		- static validate(type:String):Boolean
 
-------------*/
+**/
 
 class asgard.draw.ArcType {
 
