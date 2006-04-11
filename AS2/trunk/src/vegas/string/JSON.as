@@ -295,7 +295,7 @@ class vegas.string.JSON {
                     n += ch;
                 }
             }
-            v = n;
+            v = 1 * n ;
             if (!isFinite(v)) {
                 _error("Bad Number");
             } else {
