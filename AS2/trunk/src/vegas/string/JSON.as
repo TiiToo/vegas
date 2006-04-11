@@ -25,11 +25,11 @@
 	
 		- Ported to Actionscript May 2005 by Trannie Carter <tranniec@designvox.com>, wwww.designvox.com
 		
-		- Refactoring AS2 and MTASC Compatibilty by Alcaraz Marc (aka eKameleon) <vegas@ekameleon.net>, http://www.ekameleon.net/blog/
+		- Refactoring AS2 and MTASC Compatibilty by Alcaraz Marc (aka eKameleon) <vegas@ekameleon.net>, http://www.ekameleon.net/blog/ - add hexa number parsing.
 
 */
  
-/* ------ JSON
+/** JSON
 
 	AUTHOR
 	
@@ -76,7 +76,7 @@
 			
 		trace ("*** Deserialize") ;
 		
-		var source:String = '[ {"prop1":1, "prop2":2, "prop3":"hello", "prop4":true} , 2, true,	3, [3, 2] ]' ;
+		var source:String = '[ {"prop1":0xFF0000, "prop2":2, "prop3":"hello", "prop4":true} , 2, true,	3, [3, 2] ]' ;
 		
 		var o = JSON.deserialize(source) ;
 		for (var prop:String in o) {
@@ -92,7 +92,7 @@
 			trace(prop + " : " + o[prop]) ;
 		}
 	
-*/
+**/
 
 import vegas.string.errors.JSONError;
 
@@ -114,6 +114,8 @@ class vegas.string.JSON {
         var ch:String = ' ';
 		
 		// --- MTASC HACK
+		var _isDigit:Function ;
+		var _isHexDigit:Function ;
 		var _white:Function ;
 		var _string:Function ;
 		var _next:Function ;
@@ -123,6 +125,14 @@ class vegas.string.JSON {
 		var _word:Function ;
 		var _value:Function ;
 		var _error:Function ;
+		
+		_isDigit = function( /*Char*/ c:String ) {
+    		return( ("0" <= c) && (c <= "9") );
+    	} ;
+			
+		_isHexDigit = function( /*Char*/ c:String ) {
+    		return( _isDigit( c ) || (("A" <= c) && (c <= "F")) || (("a" <= c) && (c <= "f")) );
+    	} ;
 				
         _error = function(m:String) {
             throw new JSONError( m, at - 1 , source) ;
@@ -279,13 +289,37 @@ class vegas.string.JSON {
         };
 		
         _number = function () {
-            var n = '', v;
-		
+            
+            var n = '' ;
+            var v:Number ;
+			var hex:String = '' ;
+			var sign:String = '' ;
+			
             if (ch == '-') {
                 n = '-';
+                sign = n ;
                 _next();
             }
-            while (ch >= '0' && ch <= '9') {
+            
+            if( ch == "0" ) {
+        		_next() ;
+				if( ( ch == "x") || ( ch == "X") ) {
+            		_next();
+            		while( _isHexDigit( ch ) ) {
+                		hex += ch ;
+                		_next();
+                	}
+            		if( hex == "" ) {   
+            			_error("mal formed Hexadecimal") ;
+					} else {
+						return Number( sign + "0x" + hex ) ;
+					}
+            	} else {
+	            	n += "0" ;
+            	}
+			}
+				
+            while ( _isDigit(ch) ) {
                 n += ch;
                 _next();
             }
