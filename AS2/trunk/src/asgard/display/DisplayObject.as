@@ -86,8 +86,10 @@
 			AbstractCoreEventDispatcher
 				|
 				DisplayObject
-					|
-					SpeedDisplay
+
+ 	IMPLEMENTS
+ 
+		EventTarget, IEventDispatcher, IFormattable, IHashable
 
 **/
 

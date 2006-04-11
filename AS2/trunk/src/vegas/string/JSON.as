@@ -1,4 +1,4 @@
-﻿/*
+﻿/**
 
 	Licence
 	
@@ -25,7 +25,13 @@
 	
 		- Ported to Actionscript May 2005 by Trannie Carter <tranniec@designvox.com>, wwww.designvox.com
 		
-		- Refactoring AS2 and MTASC Compatibilty by Alcaraz Marc (aka eKameleon) <vegas@ekameleon.net>, http://www.ekameleon.net/blog/ - add hexa number parsing.
+		- Alcaraz Marc (aka eKameleon) 2006-01-24 <vegas@ekameleon.net> 
+		
+			- Refactoring AS2 and MTASC Compatibilty
+			
+			- Add Hexa Digits in 'deserialize' method - 
+			
+			NOTE : EDEN Hexa digits code inspiration -> http://www.burrrn.com/projects/eden.html
 
 */
  
@@ -49,6 +55,7 @@
 		
 		MORE INFORMATION IN : http://www.json.org/
 	
+		ADD HEXA DIGITS in deserialize method - EDEN inspiration : http://www.burrrn.com/projects/eden.html
 	
 	METHOD SUMMARY
 	
