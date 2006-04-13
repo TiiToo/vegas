@@ -64,6 +64,8 @@
 		- INIT:UIEventType
 			A Loader object generates the INIT event when the properties and methods of a loaded SWF file are accessible.
 		
+		- OPEN:UIEventType
+		
 		- REMOVED:UIEventType
 			Flash Player dispatches the removed event when a DisplayObject is about to be removed from the display list.
 		
@@ -123,6 +125,8 @@ class asgard.events.UIEventType {
 	static public var INIT:String = "init" ;
 
 	static public var LABEL_CHANGE:String = "onLabelChanged" ;
+	
+	static public var OPEN:String = "open" ;	
 
 	static public var REMOVED:String = "removed" ;
 	
