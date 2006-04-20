@@ -73,7 +73,7 @@
 	 
 		Espaces colorimétriques - Damien
 
-----------------*/
+**/
 
 import asgard.colors.BasicColor;
 import asgard.colors.ColorRGB;

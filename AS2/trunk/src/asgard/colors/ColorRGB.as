@@ -21,7 +21,7 @@
   
 */
 
-/* -------- ColorRGB
+/** ColorRGB
 
 	AUTHOR
 
@@ -35,11 +35,15 @@
 
 	STATIC METHODS
 	
-		- ColorRGB.rgb2hex(r:Number, g:Number, b:Number) :Number
-		
-		- ColorRGB.hex2rgb(hex:Number):Object
+		- static getRGBStr(c:Color):String
+	
+		- static hex2rgb(hex:Number):Object
 
-----------------*/
+		- static rgb2hex(r:Number, g:Number, b:Number) :Number
+
+		- static setRGBStr(c:Color, str:String) : Void
+
+**/
 
 class asgard.colors.ColorRGB {
 	

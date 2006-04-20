@@ -21,11 +21,11 @@
   
 */
 
-/** ScrollPolicy
+/** ScrollContainerPolicy
 	
 	AUTHOR
 	
-		Name : ScrollPolicy
+		Name : ScrollContainerPolicy
 		Package : asgard.display
 		Version : 1.0.0.0
 		Date :  2006-02-22
@@ -35,11 +35,18 @@
 
 	CONSTANT SUMMARY
 		
-		- AUTO:Number
+		- AUTO:ScrollContainerPolicy
+			auto scroll
+
+		- FULL:ScrollContainerPolicy
+
+			auto scroll + scroll when user select an item
+
+		- NONE:ScrollContainerPolicy
+			no auto scroll
 		
-		- OFF:Number
-		
-		- ON:Number
+		- SCROLL_ON_CLICK:Number
+			scroll when user select an item.
 
 	METHOD SUMMARY
 
@@ -47,28 +54,43 @@
 	
 **/
 
-class asgard.display.ScrollPolicy {
+class asgard.display.ScrollContainerPolicy extends Number {
 
 	// ----o Constructor
 
-    private function ScrollPolicy() {
-		//
+    private function ScrollContainerPolicy(n:Number, sName:String) {
+		super(n) ;
+		_sName = sName ;
 	}
 
 	// ----o Constants
 
-	static public var AUTO:Number = 2 ;
-
-	static public var OFF:Number = 0 ;
+	static public var NONE:ScrollContainerPolicy = new ScrollContainerPolicy(0, "none") ;
 	
-	static public var ON:Number = 1 ;
+	static public var AUTO:ScrollContainerPolicy = new ScrollContainerPolicy(1, "auto") ;
+	
+	static public var SCROLL_ON_CLICK:ScrollContainerPolicy = new ScrollContainerPolicy(2, "scroll_on_click") ;
+	
+	static public var FULL:ScrollContainerPolicy = new ScrollContainerPolicy(AUTO | SCROLL_ON_CLICK, "full") ; ;
 
-	static private var __ASPF__ = _global.ASSetPropFlags(ScrollPolicy, null , 7, 7) ;
+	static private var __ASPF__ = _global.ASSetPropFlags(ScrollContainerPolicy, null , 7, 7) ;
 
 	// ----o Public Methods
 
 	static public function validate(o):Boolean {
-		return (o == ScrollPolicy.AUTO || o == ScrollPolicy.OFF || o == ScrollPolicy.ON) ;
+		switch(o) {
+			case NONE :
+			case AUTO : 
+			case SCROLL_ON_CLICK :
+			case FULL : 
+				return true ;
+			default :
+				return false ;
+		}
 	}
+
+	// ----o Private Properties
+	
+	private var _sName:String ;
 
 }

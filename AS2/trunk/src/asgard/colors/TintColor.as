@@ -86,7 +86,7 @@
 		http://www.robertpenner.com/profmx
 		http://www.amazon.com/exec/obidos/ASIN/0072223561/robertpennerc-20
 
-------------- */
+**/
 
 import asgard.colors.BasicColor;
 import asgard.colors.ColorRGB;

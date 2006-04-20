@@ -86,7 +86,6 @@ class asgard.transitions.TweenEntry extends CoreObject implements ICloneable {
 	// ----o Public Properties
 	
 	public var begin:Number ;
-	public var change:Number ;
 	public var isCached:Boolean ;
 	public var prevPos:Number ;
 	public var prop:String ;
@@ -96,6 +95,10 @@ class asgard.transitions.TweenEntry extends CoreObject implements ICloneable {
 	public function clone() {
 		var t:TweenEntry = new TweenEntry (prop, getEasing(), begin, finish);
 		return t ;
+	}
+
+	public function getChange():Number {
+		return _change ;	
 	}
 
 	public function getEasing():Function {
@@ -108,7 +111,7 @@ class asgard.transitions.TweenEntry extends CoreObject implements ICloneable {
 	
 	public function getPosition(t:Number , d:Number):Number {
 		var f:Function = _easing ;
-		return f( t, begin, change , d ) ;
+		return f( t, begin, getChange() , d ) ;
 	}
 	
 	static public function noEasing(t:Number, b:Number, c:Number, d:Number):Number {
@@ -121,8 +124,7 @@ class asgard.transitions.TweenEntry extends CoreObject implements ICloneable {
 	
 	public function setFinish(n:Number):Void {
 		_finish = n ;
-		var c:Number = n - begin ;
-		change = isNaN(c) ? 0 : c ;
+		_setChange(n) ;
 	}
 	
 	public function setPosition(value:Number):Number {
@@ -155,8 +157,16 @@ class asgard.transitions.TweenEntry extends CoreObject implements ICloneable {
 
 	// ----o Private Properties
 
+	private var _change:Number ;
 	private var _easing:Function = TweenEntry.noEasing ;
 	private var _finish:Number ;
 	private var _pos ;
+
+	// ----o Private Methods
+	
+	private function _setChange(n:Number):Void {
+		var c:Number = n - begin ;
+		_change = isNaN(c) ? 0 : c ;
+	}
 
 }

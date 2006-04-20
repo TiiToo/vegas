@@ -73,7 +73,7 @@ class asgard.geom.Bezier {
 	/**
 	 *	Calculer un tableau de points permettant de tracer une courbe Bezier quadratique bouclée ou non sur n-points.
 	 */
-	public static function createBezier(step:Number,points:Array,precision:Number,boucle:Boolean):Array{
+	public static function createBezier(step:Number,points:Array,precision:Number,boucle:Boolean):Array {
 		
 		precision= isNaN(precision) ? 0 : precision ;
 		if (boucle == undefined) boucle = true ;

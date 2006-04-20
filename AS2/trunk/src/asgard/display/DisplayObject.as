@@ -150,8 +150,8 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher {
 
 	// ----o Public Methods
 
-	public function createChild( c:Function, name:String , depth:Number , init ) {
-		return DisplayFactory.createChild( c , name , depth , view, init ) ;
+	public function createChild( o , name:String , depth:Number , init ) {
+		return DisplayFactory.createChild( o , name , depth , view, init ) ;
 	}
 	
 	public function getEnabled():Boolean { 

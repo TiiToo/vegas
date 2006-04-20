@@ -100,8 +100,6 @@
 
 import asgard.colors.BasicColor;
 
-import vegas.util.factory.PropertyFactory;
-
 class asgard.colors.LightColor extends BasicColor {
 
 	// ----o Constructor
@@ -112,10 +110,10 @@ class asgard.colors.LightColor extends BasicColor {
 	
 	// ----o Public Properties
 	
-	public var brightness:Number ; // [R/W]
-	public var brightOffset:Number ; // [R/W]
-	public var contrast:Number ; // [R/W]
-	public var negative:Number ; // [R/W]
+	// public var brightness:Number ; // [R/W]
+	// public var brightOffset:Number ; // [R/W]
+	// public var contrast:Number ; // [R/W]
+	// public var negative:Number ; // [R/W]
 	
 	// ----o Public Methods
 
@@ -165,10 +163,38 @@ class asgard.colors.LightColor extends BasicColor {
 	
 	// ----o Virtual Properties
 
-	static private var __BRIGHTNESS__:Boolean = PropertyFactory.create(LightColor, "brightness", true) ;
-	static private var __BRIGHTOFFSET__:Boolean = PropertyFactory.create(LightColor, "brightOffset", true) ;
-	static private var __CONTRAST__:Boolean = PropertyFactory.create(LightColor, "contrast", true) ;
-	static private var __NEGATIVE__:Boolean = PropertyFactory.create(LightColor, "negative", true) ;
+	public function get brightness():Number {
+		return getBrightness() ;	
+	}
+	
+	public function set brightness(n:Number):Void {
+		setBrightness(n) ;	
+	}
+
+	public function get brightOffset():Number {
+		return getBrightOffset() ;	
+	}
+	
+	public function set brightOffset(n:Number):Void {
+		setBrightOffset(n) ;	
+	}
+
+	public function get contrast():Number {
+		return getContrast() ;	
+	}
+	
+	public function set contrast(n:Number):Void {
+		setContrast(n) ;	
+	}
+
+	public function get negative():Number {
+		return getNegative() ;	
+	}
+	
+	public function set negative(n:Number):Void {
+		setNegative(n) ;	
+	}
+
 
 }
 
