@@ -195,6 +195,5 @@ class asgard.colors.LightColor extends BasicColor {
 		setNegative(n) ;	
 	}
 
-
 }
 

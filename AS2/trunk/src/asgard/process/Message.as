@@ -21,15 +21,17 @@
   
 */
 
-/* ---------- Message
+/** Message
 
-	Name : Message
-	Package : asgard.process
-	Version : 1.0.0.0
-	Date :  2006-01-07
-	Author : ekameleon
-	URL : http://www.ekameleon.net
-	Mail : vegas@ekameleon.net
+	AUTHOR
+	
+		Name : Message
+		Package : asgard.process
+		Version : 1.0.0.0
+		Date :  2006-01-07
+		Author : ekameleon
+		URL : http://www.ekameleon.net
+		Mail : vegas@ekameleon.net
 
 	DESCRIPTION 
 	
@@ -88,7 +90,7 @@
 	
 		Action, IEventDispatcher, ICloneable, IRunnable, ISerializable, IFormattable
 	
-----------  */
+**/
 
 import asgard.process.Pause;
 

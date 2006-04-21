@@ -87,7 +87,7 @@
 
 import asgard.process.AbstractAction;
 
-import vegas.events.EventListenerProxy;
+import vegas.events.Delegate;
 import vegas.events.TimerEventType;
 import vegas.util.serialize.Serializer;
 import vegas.util.Timer;
@@ -101,7 +101,7 @@ class asgard.process.Pause extends AbstractAction {
 		useSeconds = seconds ;
 		_timer = new Timer() ;
 		_timer.setRepeatCount(1) ;
-		_timer.addEventListener(TimerEventType.TIMER, new EventListenerProxy(this, notifyFinished)) ;
+		_timer.addEventListener(TimerEventType.TIMER, new Delegate(this, notifyFinished)) ;
 	}
 	
 	// ----o Public Properties
@@ -171,4 +171,3 @@ class asgard.process.Pause extends AbstractAction {
 	private var _timer:Timer ;
 
 }
-

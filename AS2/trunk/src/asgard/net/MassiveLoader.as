@@ -188,7 +188,6 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener 
 			var ar:Array = toArray() ;
 			var len:Number = ar.length ;
 			while (--len > -1) {
-				
 				var oLoader:ILoader = ar[len] ;
 				if (oLoader.getUrl() == undefined) {
 					notifyError( this + ".run() encounters ILoader object without url property, load fails." ) ;

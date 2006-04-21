@@ -30,7 +30,6 @@ import asgard.net.URLRequest;
 import vegas.core.HashCode;
 import vegas.errors.IllegalArgumentError;
 
-
 /**
  * @author eKameleon
  */
