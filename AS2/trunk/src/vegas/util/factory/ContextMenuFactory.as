@@ -21,7 +21,7 @@
   
 */
 
-/* -------- ContextMenuFactory
+/** ContextMenuFactory
 
 	AUTHOR
 	
@@ -39,7 +39,7 @@
 		
 		- static createItemProxy(label:String, obj, func:Function, separator:Boolean, args:Array):ContextMenuItem
 
-----------------*/
+**/
 
 import vegas.events.Delegate;
 
@@ -60,8 +60,8 @@ class vegas.util.factory.ContextMenuFactory {
 		return c ;
 	}
 	
-	static public function createItemProxy( label:String, o , f:Function, separator:Boolean , args:Array):ContextMenuItem {
-		var c:ContextMenuItem = new ContextMenuItem(label, Delegate.create.apply(null, [o, f].concat(args)) ) ;
+	static public function createItemProxy( label:String, scope , method:Function, separator:Boolean , args:Array):ContextMenuItem {
+		var c:ContextMenuItem = new ContextMenuItem(label, Delegate.create.apply(null, [scope, method].concat(args)) ) ;
 		c.separatorBefore = separator ;
 		return c ;
 	}

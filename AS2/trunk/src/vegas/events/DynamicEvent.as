@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	DynamicEvent
+/**	DynamicEvent
 
 	AUTHOR
 
@@ -105,10 +105,9 @@
 	
 		ADD : [2006-01-22] time property.
 	
-----------  */
+**/
 
 import vegas.events.BasicEvent;
-import vegas.util.factory.PropertyFactory;
 
 dynamic class vegas.events.DynamicEvent extends BasicEvent {
 
@@ -120,13 +119,13 @@ dynamic class vegas.events.DynamicEvent extends BasicEvent {
 
 	// ----o Public Properties
 	
-	public var bubbles:Boolean ; // [R/W]
-	public var context ; // [R/W]
-	public var currentTarget ; // [R/W]
-	public var eventPhase:Number ; // [R/W]
-	public var target ; // [R/W]
-	public var timeStamp:Number ; // [Read Only]
-	public var type:String ; // [R/W]
+	// public var bubbles:Boolean ; // [R/W]
+	// public var context ; // [R/W]
+	// public var currentTarget ; // [R/W]
+	// public var eventPhase:Number ; // [R/W]
+	// public var target ; // [R/W]
+	// public var timeStamp:Number ; // [Read Only]
+	// public var type:String ; // [R/W]
 	
 	// ----o Public Methods
 
@@ -136,12 +135,56 @@ dynamic class vegas.events.DynamicEvent extends BasicEvent {
 
 	// ----o Virtual Properties
 
-	static private var __BUBBLES__:Boolean = PropertyFactory.create(DynamicEvent, "bubbles", true) ;
-	static private var __CONTEXT__:Boolean = PropertyFactory.create(DynamicEvent, "context", true) ;
-	static private var __CURRENT_TARGET__:Boolean = PropertyFactory.create(DynamicEvent, "currentTarget", true) ;
-	static private var __EVENT_PHASE__:Boolean = PropertyFactory.create(DynamicEvent, "eventPhase", true) ;
-	static private var __TARGET__:Boolean = PropertyFactory.create(DynamicEvent, "target", true) ;
-	static private var __TIMESTAMP__:Boolean = PropertyFactory.create(DynamicEvent, "timeStamp", true, true) ;
-	static private var __TYPE__:Boolean = PropertyFactory.create(DynamicEvent, "type", true) ;
+	public function get bubbles():Boolean {
+		return getBubbles() ;	
+	}
+
+	public function set bubbles(b:Boolean):Void {
+		setBubbles(b) ;	
+	}
+
+	public function get context() {
+		return getContext() ;	
+	}
+
+	public function set context(o):Void {
+		setContext(o) ;	
+	}
+
+	public function get currentTarget() {
+		return getCurrentTarget() ;	
+	}
+
+	public function set currentTarget(o):Void {
+		setCurrentTarget(o) ;	
+	}
+
+	public function get eventPhase():Number {
+		return getEventPhase() ;	
+	}
+
+	public function set eventPhase(n:Number):Void {
+		setEventPhase(n) ;	
+	}
+
+	public function get target() {
+		return getTarget() ;	
+	}
+
+	public function set target(o):Void {
+		setTarget(o) ;	
+	}
+	
+	public function get timeStamp():Number {
+		return getTimeStamp() ;	
+	}
+
+	public function get type():String {
+		return getType() ;	
+	}
+
+	public function set type(s:String):Void {
+		setType(s) ;	
+	}
 
 }
