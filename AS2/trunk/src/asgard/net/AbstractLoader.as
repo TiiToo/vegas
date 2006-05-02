@@ -26,7 +26,7 @@
 	AUTHOR
 
 		Name : AbstractLoader
-		Package : asgard.system
+		Package : asgard.net
 		Version : 1.0.0.0
 		Date :  2006-03-22
 		Author : ekameleon

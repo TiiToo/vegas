@@ -35,6 +35,8 @@
 
 	PROPERTY SUMMARY
 	
+		- credentials:RemotingAuthentification
+	
 		- gatewayUrl:String
 			
 			Chemin de la passerelle.
@@ -127,24 +129,22 @@
 		Action, ICloneable, Responder, IRunnable
 
 
+	SEE ALSO
+	
+		RemotingAuthentification
+
 	TODOLIST (Pas encore implémenté)
 			
 		Enqueue connection with multipleSimultaneousAllowed
 			
-		userID
-			Définit/Renvoie un ID de connexion à utiliser pour établir une connexion au serveur. 
-		
-		password
-			Définit/Renvoie un mot de passe à utiliser pour établir une connexion au serveur. 
-		
 		shareConnections: Boolean
 			Lorsque cette valeur est vraie, 
 			plusieurs instances de ce composant peuvent partager une connexion
 			à condition d'utiliser une URL de passerelle commune. 
 
-	TODO : finir les tests du système événementiel.
-
 ---------- */ 
+
+// TODO injecter TimeOut !!!!
 
 import mx.remoting.Service;
 import mx.rpc.FaultEvent;
@@ -155,6 +155,7 @@ import mx.rpc.ResultEvent;
 import asgard.events.RemotingEvent;
 import asgard.events.RemotingEventType;
 import asgard.process.AbstractAction;
+import asgard.remoting.RemotingAuthentification;
 import asgard.remoting.RemotingFormat;
 
 import vegas.events.Delegate;
@@ -170,6 +171,7 @@ class asgard.remoting.RemotingConnector extends AbstractAction implements Respon
 
 	// ----o Public Properties
 	
+	public var credentials:RemotingAuthentification ;
 	public var gatewayUrl:String ;
 	public var methodName:String ;
 	public var multipleSimultaneousAllowed:Boolean ;
@@ -196,7 +198,6 @@ class asgard.remoting.RemotingConnector extends AbstractAction implements Respon
 		return _results ;
 	}
 
-
 	public function getService():Service { 
 		return _service ;
 	}
@@ -215,6 +216,9 @@ class asgard.remoting.RemotingConnector extends AbstractAction implements Respon
 			notifyStarted() ;
 			_setRunning(true) ;
 			_service = new Service( gatewayUrl , null , serviceName, null, this) ;
+			if (credentials.userID && credentials.password) {
+				_service.connection.setCredentials(credentials.userID, credentials.password) ;	
+			}
 			_service[methodName].apply(_service, params ) ; 		
 		}
 	}

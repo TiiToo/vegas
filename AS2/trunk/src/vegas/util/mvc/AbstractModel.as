@@ -21,7 +21,7 @@
   
 */
 
-/* --------- AbstractModel
+/** AbstractModel
 
 	AUTHOR
 
@@ -51,7 +51,7 @@
 	
 		Object > CoreObject > AbstractModel
 
-----------  */
+**/
 
 import vegas.events.EventDispatcher;
 import vegas.events.ModelChangedEvent;

@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	ModelChangedEvent
+/**	ModelChangedEvent
 
 	AUTHOR
 
@@ -121,9 +121,9 @@
 
 	IMPLEMENTS
 	
-		Event, ModelChangedEventType
+		Event
 
-----------  */
+**/
 
 import vegas.events.BasicEvent;
 import vegas.events.ModelChangedEventType;

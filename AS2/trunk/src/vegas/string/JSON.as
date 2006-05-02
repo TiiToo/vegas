@@ -460,7 +460,7 @@ class vegas.string.JSON {
 			
 			default:
 				return 'null';
-				
+			
         }
     }
 }
