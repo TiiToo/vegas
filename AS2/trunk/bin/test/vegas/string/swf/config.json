@@ -1,7 +1,8 @@
-﻿config={
+﻿{
 
 	"name"      : "EKAMELEON" ,
 	"namespace" : "net.ekameleon" ,
-	"version"   : "1.0.0.0" 
+	"version"   : "1.0.0.0" ,
+	"color"     : 0xFF0000
 
 }
