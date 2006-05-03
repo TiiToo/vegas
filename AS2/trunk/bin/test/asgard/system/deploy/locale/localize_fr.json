@@ -9,7 +9,7 @@
 		"connectStarted"    : "DEBUT CONNEXION" ,
 		"connectFinished"   : "FIN CONNEXION" ,		
 		"connectInProgress" : "CONNEXION EN COURS" ,		
-		"connectOutOfTime"  : "DELAIS DE CONNEXION DEPASSE" ,
+		"connectOutOfTime"  : "DELAIS DE CONNEXION DEPASSE"
 	
 	} ,
 
