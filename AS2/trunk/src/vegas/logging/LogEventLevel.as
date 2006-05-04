@@ -21,7 +21,7 @@
   
 */
 
-/* -------- LogEventLevel
+/** LogEventLevel
 
 	AUTHOR
 	
@@ -75,7 +75,7 @@
 	
 		IFormattable
 
-----------  */	
+**/	
 
 import vegas.core.types.Int;
 

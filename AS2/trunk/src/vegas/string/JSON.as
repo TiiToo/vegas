@@ -389,30 +389,39 @@ class vegas.string.JSON {
     }
 	
 	static public function serialize(o):String {
-        var c, i, l:Number ;
+        var c:String ; // char
+        var i:Number ;
+        var l:Number ;
 		var s:String = '' ;
 		var v ;
+		
         switch (typeof o) {
+        	
 			case 'object':
 				if (o) {
 					if (o instanceof Array) {
+						
 						l = o.length ;
+						
 						for (i = 0 ; i < l ; ++i) {
+						
 							v = serialize(o[i]);
 							if (s) s += ',' ;
 							s += v ;
 						}
 						return '[' + s + ']';
-					} else if (typeof o.toString != 'undefined') {
-						for (i in o) {
-							v = o[i];
-							if (typeof v != 'undefined' && typeof v != 'function') {
+						
+					} else if (typeof(o.toString) != 'undefined') {
+						
+						for (var prop:String in o) {
+							v = o[prop];
+							if ( (typeof(v) != 'undefined') && (typeof(v) != 'function') ) {
 								v = serialize(v);
 								if (s) s += ',';
-								s += serialize(i) + ':' + v ;
+								s += serialize(prop) + ':' + v ;
 							}
 						}
-						return '{' + s + '}';
+						return "{" + s + "}";
 					}
 				}
 				return 'null';
@@ -448,8 +457,8 @@ class vegas.string.JSON {
 								s += '\\t';
 								break;
 							default:
-								c = c.charCodeAt() ;
-								s += '\\u00' + (Math.floor(c / 16).toString(16)) + ((c % 16).toString(16)) ;
+								var code:Number = c.charCodeAt() ;
+								s += '\\u00' + (Math.floor(code / 16).toString(16)) + ((code % 16).toString(16)) ;
 						}
 					}
 				}

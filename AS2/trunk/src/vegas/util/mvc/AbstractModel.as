@@ -49,16 +49,16 @@
 
 	INHERIT
 	
-		Object > CoreObject > AbstractModel
+		CoreObject > AbstractCoreEventDispatcher > AbstractModel
 
 **/
 
-import vegas.events.EventDispatcher;
+import vegas.events.AbstractCoreEventDispatcher;
 import vegas.events.ModelChangedEvent;
 import vegas.util.mvc.IModel;
 import vegas.util.mvc.IView;
 
-class vegas.util.mvc.AbstractModel extends EventDispatcher implements IModel {
+class vegas.util.mvc.AbstractModel extends AbstractCoreEventDispatcher implements IModel {
 
 	// ----o Constructeur
 	

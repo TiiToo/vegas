@@ -93,6 +93,7 @@ class vegas.string.StringFormatter extends AbstractFormatter {
 	public function format( /* arg1, arg2, ... argN */ ):String {
 
 		if( !_pattern ) return "" ;
+		
 		var str:String = "" ;
 		var args:Array  = [].concat(arguments) ;
 		

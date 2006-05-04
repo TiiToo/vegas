@@ -21,7 +21,7 @@
   
 */
 
-/* -------- AbstractTarget
+/** AbstractTarget
 
 	AUTHOR
 
@@ -79,7 +79,7 @@
 	
 		EventListener, ITarget, IFormattable
 
-------------*/
+**/
 
 import vegas.core.CoreObject;
 import vegas.events.Event;

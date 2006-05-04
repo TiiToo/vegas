@@ -204,7 +204,9 @@ class vegas.logging.targets.SOSTarget extends TraceTarget {
 	}
 
 	public function sendLevelMessage(level:Number, message:String):Void {
-		if (levelPolicy == SOSType.ENABLE) message = "!SOS<showMessage key='" + level.toString() + "'>" + message.toString() + "</showMessage>\n" ;
+		if (levelPolicy == SOSType.ENABLE) {
+			message = "!SOS<showMessage key='" + String(level) + "'>" + String(message) + "</showMessage>\n" ;
+		}
 		sendMessage(message) ;
 	}
 

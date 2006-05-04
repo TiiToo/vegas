@@ -145,8 +145,8 @@ class vegas.logging.Log {
 
 	// ----o Private Properties
 	
-	static private var __logger:LogLogger = new LogLogger ;
-	static private var __categories:HashMap = new HashMap ;
+	static private var __logger:LogLogger = new LogLogger() ;
+	static private var __categories:HashMap = new HashMap() ;
 
 	// ----o Private Methods
 	

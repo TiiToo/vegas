@@ -21,31 +21,29 @@
   
 */
 
-/** NetServerStatus
+/** SharedDataStatus
 
 	AUTHOR
 
-		Name : NetServerStatus
+		Name : SharedDataStatus
 		Package : asgard.net
 		Version : 1.0.0.0
-		Date :  2006-04-20
+		Date :  2006-05-04
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
 	CONSTANT SUMMARY
 	
-		- CLOSED:NetServerStatus ("closed")
+		- CHANGE:SharedDataStatus ("change")
 		
-		- FAILED:NetServerStatus ("failed")
+		- CLEAR:SharedDataStatus ("clear")
 		
-		- INVALID:NetServerStatus ("invalidapp")
+		- DELETE:SharedDataStatus ("delete")
 		
-		- REJECTED:NetServerStatus ("rejected")
+		- REJECT:SharedDataStatus ("reject")
 		
-		- SHUTDOWN:NetServerStatus ("appshutdown")
-		
-		- SUCCESS:NetServerStatus ("success")
+		- SUCCESS:SharedDataStatus ("success")
 
 	METHOD SUMMARY
 	
@@ -61,43 +59,39 @@ import vegas.util.ArrayUtil;
  * @author eKameleon
  * @version 1.0.0.0
  **/	
-class asgard.net.NetServerStatus extends String {
+class asgard.net.SharedDataStatus extends String {
 	
 	// ----o Constructor
 	
-	private function NetServerStatus( s:String ) {
+	private function SharedDataStatus( s:String ) {
 		super(s) ;
 	}
 
 	// ----o Constants
 	
-	static public var BAD_VERSION:NetServerStatus = new NetServerStatus("badversion") ;
+	static public var CHANGE:SharedDataStatus = new SharedDataStatus("change") ;
 	
-	static public var CLOSED:NetServerStatus = new NetServerStatus("closed") ;
+	static public var CLEAR:SharedDataStatus = new SharedDataStatus("clear") ;
 
-	static public var FAILED:NetServerStatus = new NetServerStatus("failed") ;
+	static public var DELETE:SharedDataStatus = new SharedDataStatus("delete") ;
 
-	static public var INVALID:NetServerStatus = new NetServerStatus("invalidapp") ;
+	static public var REJECT:SharedDataStatus = new SharedDataStatus("reject") ;
 	
-	static public var REJECTED:NetServerStatus = new NetServerStatus("rejected") ;
-	
-	static public var SHUTDOWN:NetServerStatus = new NetServerStatus("appshutdown") ;
-	
-	static public var SUCCESS:NetServerStatus = new NetServerStatus("success") ;
+	static public var SUCCESS:SharedDataStatus = new SharedDataStatus("success") ;
 
-	static private var __ASPF__ = _global.ASSetPropFlags(NetServerStatus, null , 7, 7) ;
+	static private var __ASPF__ = _global.ASSetPropFlags(SharedDataStatus, null , 7, 7) ;
 
 	// ----o Public Methods
 
 	/**
-	 * Convert onStatus code value in NetConnection.onStatus in a ConnectionStatus valid string.
+	 * Convert onSync code value in SharedData.onSync.
 	 */
 	static public function format(code:String):String {
-		return code.split(".").pop().toLowerCase() ;
+		return code.toLowerCase() ;
 	}
 
 	static public function validate( o ):Boolean {
-		var status:Array = [BAD_VERSION, CLOSED, FAILED, INVALID, REJECTED, SHUTDOWN, SUCCESS] ;
+		var status:Array = [CHANGE, CLEAR, DELETE, REJECT, SUCCESS] ;
 		return ArrayUtil.contains(status, o) ;	
 	}
 

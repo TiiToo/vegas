@@ -21,7 +21,7 @@
   
 */
 
-/* -------- LineFormattedTarget
+/** LineFormattedTarget
 
 	AUTHOR
 	
@@ -69,7 +69,7 @@
 	
 		ITarget, IFormattable
 
-----------  */	
+**/	
 
 import vegas.logging.AbstractTarget;
 

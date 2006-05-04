@@ -122,6 +122,10 @@ class vegas.logging.SOSTracer {
 		return _instance.includeTime ;
 	}
 	
+	static public function getTargetInstance():SOSTarget {
+		return _instance ;	
+	}
+	
 	static public function initialize(name:String, color:Number, includes:Boolean):Void {
 		_logger = Log.getLogger() ;
 		_instance = new SOSTarget(color) ;
