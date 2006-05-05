@@ -35,17 +35,16 @@
 	
 	CONSTANT SUMMARY
 
-		- ACCEPT:ConnectionEventType
+		- ACCEPT:NetServerEventType
 
-		- CLOSE:ConnectionEventType
+		- CLOSE:NetServerEventType
 		
-		- FINISH:ConnectionEventType
+		- FINISH:NetServerEventType
 		
-		- START:ConnectionEventType
+		- START:NetServerEventType
 		
-		- TIMEOUT:ConnectionEventType
-
-----------  */
+		- TIMEOUT:NetServerEventType
+**/
 
 /**
  * @author eKameleon

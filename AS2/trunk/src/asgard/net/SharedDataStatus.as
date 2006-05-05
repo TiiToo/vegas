@@ -86,8 +86,12 @@ class asgard.net.SharedDataStatus extends String {
 	/**
 	 * Convert onSync code value in SharedData.onSync.
 	 */
-	static public function format(code:String):String {
-		return code.toLowerCase() ;
+	static public function format(code:String):SharedDataStatus {
+		var status:Array = [CHANGE, CLEAR, DELETE, REJECT, SUCCESS] ;
+		var l:Number = status.length ;
+		while(--l > -1) {
+			if (status[l].toString() == code) return status[l] ;	
+		}
 	}
 
 	static public function validate( o ):Boolean {

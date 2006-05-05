@@ -280,34 +280,34 @@ class asgard.net.SharedData extends AbstractCoreEventDispatcher {
 		for (var prop:String in list) {
 			
 			var item:Object = list[prop] ;
-			var code:String = SharedDataStatus.format( item.code )  ;
+			var code:SharedDataStatus = SharedDataStatus.format( item.code )  ;
 			var name:String = item.name ;
 			var value = _so.data[name] ;
 
-			// trace ("> " + this + " :: " + code + " : " + name + " / " + value) ;
+			trace ("> " + this + " :: " + code + " : " + name + " / " + value) ;
 
 			switch (code) {
 
-				case SharedDataStatus.CHANGE.toString() :
+				case SharedDataStatus.CHANGE :
 					_eChange.setProperty(name, value) ;
 					dispatchEvent(_eChange);
 					break ;
 					
-				case SharedDataStatus.CLEAR.toString() :
+				case SharedDataStatus.CLEAR :
 					dispatchEvent(_eClear);
 					break ;
 					
-				case SharedDataStatus.DELETE.toString() :
+				case SharedDataStatus.DELETE :
 					_eDelete.setProperty(name) ;
 					dispatchEvent(_eDelete );
 					break ;
 
-				case SharedDataStatus.REJECT.toString() :
+				case SharedDataStatus.REJECT :
 					_eReject.setProperty(name, value) ;
 					dispatchEvent(_eReject );
 					break ;
 
-				case SharedDataStatus.SUCCESS.toString() :
+				case SharedDataStatus.SUCCESS :
 					_eSuccess.setProperty(name, value) ;
 					dispatchEvent(_eSuccess );
 					break ;

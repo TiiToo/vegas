@@ -90,7 +90,7 @@
 	
 	INHERIT
 	
-		NetConnection → Connection
+		NetConnection → NetServerConnection
 
 	IMPLEMENTS
 	
@@ -98,6 +98,7 @@
 
 **/
 
+// TODO voir notifyAccept !! Pour le moment méthode non utilisée
 
 import asgard.events.NetServerEvent;
 import asgard.events.NetServerEventType;
@@ -134,7 +135,6 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 		
 		_dispatcher = initEventDispatcher() ;
 		
-		_eAccept = new NetServerEvent( NetServerEventType.ACCEPTED , this ) ;
 		_eClose = new NetServerEvent( NetServerEventType.CLOSE , this ) ;
 		_eFinish = new NetServerEvent( NetServerEventType.FINISH , this ) ;
 		_eStart = new NetServerEvent( NetServerEventType.START , this ) ;
@@ -227,10 +227,6 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 		return new EventDispatcher(this) ;
 	}
 
-	public function notifyAccepted():Void {
-		dispatchEvent( _eAccept ) ;	
-	}
-
 	public function notifyClose():Void {
 		dispatchEvent( _eClose ) ;	
 	}
@@ -297,7 +293,6 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 	// ----o Private Properties
 	
 	private var _dispatcher:EventDispatcher ;
-	private var _eAccept:NetServerEvent ;
 	private var _eClose:NetServerEvent ;
 	private var _eFinish:NetServerEvent ;
 	private var _eStart:NetServerEvent ;
@@ -311,34 +306,38 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 
 	private function onStatus( oInfo ):Void {
 		_timer.stop() ;
-		var code = NetServerStatus.format(oInfo.code) ;
+		
+		var code:NetServerStatus = NetServerStatus.format(oInfo.code) ;
+		
+		// trace("> " + this + ".onStatus(" + code + ")") ;
+		
 		switch (code) {
 
-			case NetServerStatus.BAD_VERSION.toString() :
+			case NetServerStatus.BAD_VERSION :
 				notifyStatus(NetServerStatus.BAD_VERSION) ;
 				break ;
 
-			case NetServerStatus.CLOSED.toString() :
+			case NetServerStatus.CLOSED :
 				notifyStatus(NetServerStatus.CLOSED) ;
 				break ;
 
-			case NetServerStatus.FAILED.toString() :
+			case NetServerStatus.FAILED :
 				notifyStatus(NetServerStatus.FAILED) ;
 				break ;
 
-			case NetServerStatus.INVALID.toString() :
+			case NetServerStatus.INVALID :
 				notifyStatus(NetServerStatus.INVALID) ;
 				break ;
 				
-			case NetServerStatus.REJECTED.toString() :
+			case NetServerStatus.REJECTED :
 				notifyStatus(NetServerStatus.REJECTED) ;
 				break ;
 
-			case NetServerStatus.SHUTDOWN.toString() :
+			case NetServerStatus.SHUTDOWN :
 				notifyStatus(NetServerStatus.SHUTDOWN) ;
 				break ;
 
-			case NetServerStatus.SUCCESS.toString() :
+			case NetServerStatus.SUCCESS :
 				notifyStatus(NetServerStatus.SUCCESS) ;
 				break ;
 

@@ -92,8 +92,13 @@ class asgard.net.NetServerStatus extends String {
 	/**
 	 * Convert onStatus code value in NetConnection.onStatus in a ConnectionStatus valid string.
 	 */
-	static public function format(code:String):String {
-		return code.split(".").pop().toLowerCase() ;
+	static public function format(code:String):NetServerStatus {
+		code = code.split(".").pop().toLowerCase() ;
+		var status:Array = [BAD_VERSION, CLOSED, FAILED, INVALID, REJECTED, SHUTDOWN, SUCCESS] ;
+		var l:Number = status.length ;
+		while(--l > -1) {
+			if (status[l].toString() == code) return status[l] ;	
+		}
 	}
 
 	static public function validate( o ):Boolean {
