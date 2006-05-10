@@ -49,6 +49,8 @@
 		
 		- nextIndex():Number
 		
+		- previous():Number
+		
 		- previousIndex():Number ;
 		
 		- remove()
@@ -67,8 +69,8 @@
 	
 ----------  */
 
-import vegas.core.IFormattable;
-import vegas.data.List;
+import vegas.core.CoreObject ;
+import vegas.data.List ;
 import vegas.data.list.AbstractList;
 import vegas.data.list.ListIterator;
 import vegas.errors.ConcurrentModificationError;
@@ -78,7 +80,7 @@ import vegas.errors.IndexOutOfBoundsError;
 import vegas.errors.NoSuchElementError;
 import vegas.util.MathsUtil;
 
-class vegas.data.list.ListItr implements ListIterator, IFormattable {
+class vegas.data.list.ListItr extends CoreObject implements ListIterator {
 
 	// ----o Construtor
 	
@@ -99,7 +101,26 @@ class vegas.data.list.ListItr implements ListIterator, IFormattable {
 
 	public function hasNext():Boolean {
 		return _key < _list.size() ;
-	}	
+	}
+	
+	public function hasPrevious():Boolean { 
+		return _key != 0 ;
+	}
+
+	public function insert(o):Void {
+		checkForComodification() ;
+		try {
+			_list.insertAt(_key++, o) ;
+			_listast = -1 ;
+			_expectedModCount = AbstractList(_list).getModCount() ;
+		} catch (e:ConcurrentModificationError) {
+			throw new ConcurrentModificationError() ;
+		}	
+	}
+
+	public function key() {
+		return _key ;
+	}
 
 	public function next() {
 		if (hasNext()) {
@@ -111,28 +132,7 @@ class vegas.data.list.ListItr implements ListIterator, IFormattable {
 			throw new NoSuchElementError ;
 		}
 	}
-
-	public function key() {
-		return _key ;
-	}
 	
-	public function remove() {
-		if (_listast == -1) throw new IllegalStateError ;
-		checkForComodification() ;
-		try {
-			_list.removeAt(_listast) ;
-			if (_listast < _key) _key -- ;
-			_listast = -1 ;
-			_expectedModCount = AbstractList(_list).getModCount() ;
-		} catch (e:ConcurrentModificationError) {
-			throw new ConcurrentModificationError() ;
-		}
-	}
-
-	public function hasPrevious():Boolean { 
-		return _key != 0 ;
-	}
-		
 	public function nextIndex():Number {
 		return _key ;
 	}
@@ -154,15 +154,26 @@ class vegas.data.list.ListItr implements ListIterator, IFormattable {
 		return _key - 1 ;
 	}
 
-	public function insert(o):Void {
+	public function remove() {
+		if (_listast == -1) throw new IllegalStateError ;
 		checkForComodification() ;
 		try {
-			_list.insertAt(_key++, o) ;
+			_list.removeAt(_listast) ;
+			if (_listast < _key) _key -- ;
 			_listast = -1 ;
 			_expectedModCount = AbstractList(_list).getModCount() ;
 		} catch (e:ConcurrentModificationError) {
 			throw new ConcurrentModificationError() ;
-		}	
+		}
+	}
+
+	public function reset():Void {
+		_key = 0 ;
+	}
+
+	public function seek(n:Number):Void {
+		_key = MathsUtil.clamp(n, 0, _list.size()) ;
+		_listast = _key - 1 ;
 	}
 
 	public function set(o):Void {
@@ -174,19 +185,6 @@ class vegas.data.list.ListItr implements ListIterator, IFormattable {
 		} catch (e:ConcurrentModificationError) {
 			throw new ConcurrentModificationError() ;
 		}
-	}
-
-	public function reset():Void {
-		_key = 0 ;
-	}
-	
-	public function seek(n:Number):Void {
-		_key = MathsUtil.clamp(n, 0, _list.size()) ;
-		_listast = _key - 1 ;
-	}
-
-	public function toString():String { 
-		return "[ListItr]" ;
 	}
 	
 	// ----o Private Properties

@@ -80,7 +80,8 @@
 
 **/
 
-import asgard.display.StageAlign;
+import asgard.display.StageAlign ;
+import asgard.geom.Point;
 
 class asgard.display.StageLocalizer {
 	
@@ -97,116 +98,90 @@ class asgard.display.StageLocalizer {
 
 	// ----o Public Methods
 
-	static public function localizePoint(point):String {
-		_curX = point.x ;
-		_curY = point.y ;
-		_setMiddle () ;
-		_setPos () ;
-		return _pos  ;
+	static public function localizePoint(p):String {
+		var middle:Point = getMiddle() ;
+		var x1:Number = p.x ;
+		var y1:Number = p.y ;
+		var x2:Number = middle.x ;
+		var y2:Number = middle.y ;
+		if (x1 > x2 && y1 > y2) return StageAlign.BOTTOM_RIGHT ;
+		else if (x1 < x2 && y1 > y2 ) return StageAlign.BOTTOM_LEFT ;
+		else if (x1 > x2 && y1 < y2) return StageAlign.TOP_RIGHT ;
+		else if (x1 < x2 && y1 < y2 ) return StageAlign.TOP_LEFT ;
+		else if (x1 == x2 && y1 > y2) return StageAlign.BOTTOM ;
+		else if (x1 == x2 && y1 < y2 ) return StageAlign.TOP ;
+		else if (x1 < x2 && y1 == y2 ) return StageAlign.LEFT ;
+		else if (x1 > x2 && y1 == y2 ) return StageAlign.RIGHT ;
+		else return StageAlign.CENTER ;
 	}
 
-	static public function getMiddle(Void):Object {
-		_setMiddle () ;
-		return { x:_x , y:_y } ;
+	static public function getMiddle():Point {
+		var middle:Point = new Point(0, 0) ;
+		switch (Stage.align) {
+			case StageAlign.BOTTOM : // bottom
+				middle.x = WIDTH / 2 ;
+				middle.y = -  ((Stage.height / 2) - HEIGHT)  ;
+				break ;
+			case StageAlign.BOTTOM_LEFT : // bottom left
+				middle.x = Stage.width / 2 ;
+				middle.y = -  ((Stage.height / 2) - HEIGHT)  ;
+				break ;
+			case StageAlign.BOTTOM_RIGHT : // bottom right
+				middle.x =  - (Stage.width - WIDTH) + Stage.width  / 2   ;
+				middle.y = -  ((Stage.height / 2) - HEIGHT)  ;
+				break ;
+			case StageAlign.LEFT : // left
+				middle.x = Stage.width / 2 ;
+				middle.y = HEIGHT / 2  ;
+				break ;
+			case StageAlign.RIGHT : // right
+				middle.x =  - (Stage.width - WIDTH) + Stage.width  / 2   ;
+				middle.y = HEIGHT / 2  ;
+				break ;
+			case StageAlign.TOP : // top
+				middle.x = WIDTH / 2 ;
+				middle.y = Stage.height / 2 ;
+				break ;
+			case StageAlign.TOP_LEFT : // top left
+				middle.x = Stage.width / 2 ;
+				middle.y = Stage.height / 2 ;
+				break ;
+			case StageAlign.TOP_RIGHT : // top right
+				middle.x =  - (Stage.width - WIDTH) + Stage.width  / 2   ;
+				middle.y = Stage.height / 2 ;
+				break ;
+			default : 
+				middle.x = WIDTH / 2 ;
+				middle.y = HEIGHT / 2 ;
+		}
+		return middle ;
 	}
 	
+	static public function getMirror(align:String):String {
+		switch (align.toUpperCase()) {
+			case StageAlign.TOP : return StageAlign.BOTTOM ;
+			case StageAlign.BOTTOM : return StageAlign.TOP ;
+			case StageAlign.TOP_RIGHT : return StageAlign.BOTTOM_LEFT ;
+			case StageAlign.TOP_LEFT : return StageAlign.BOTTOM_RIGHT ;
+			case StageAlign.BOTTOM_RIGHT : return StageAlign.TOP_LEFT ;
+			case StageAlign.BOTTOM_LEFT : return StageAlign.TOP_RIGHT ;
+			case StageAlign.LEFT : return StageAlign.RIGHT ;
+			case StageAlign.RIGHT : return StageAlign.LEFT ;
+			default : return StageAlign.CENTER ;
+		}
+	}
+
 	static public function getVerticalMirror(point):String {
 		var align:String = localizePoint(point) ;
 		switch (align.toUpperCase () ) {
-			case "TR" : return "BR" ;
-			case "TL" : return "BL" ;
-			case "BR" : return "TR" ;
-			case "BL" : return "TL" ;
-			case "L" : return "R" ;
-			case "R" : return "L" ;
-			default : return "" ;
+			case StageAlign.TOP_RIGHT : return StageAlign.BOTTOM_RIGHT ;
+			case StageAlign.TOP_LEFT : return StageAlign.BOTTOM_LEFT ;
+			case StageAlign.BOTTOM_RIGHT : return StageAlign.TOP_RIGHT ;
+			case StageAlign.BOTTOM_LEFT : return StageAlign.TOP_LEFT ;
+			case StageAlign.LEFT : return StageAlign.RIGHT ;
+			case StageAlign.RIGHT : return StageAlign.LEFT ;
+			default : return StageAlign.CENTER ;
 		}
-	}
-	
-	static public function getMirror(pos:String):String {
-		switch (pos.toUpperCase () ) {
-			case "T" : return "R" ;
-			case "B" : return "T" ;
-			case "TR" : return "BL" ;
-			case "TL" : return "BR" ;
-			case "BR" : return "TL" ;
-			case "BL" : return "TR" ;
-			case "L" : return "R" ;
-			case "R" : return "L" ;
-			default : return "" ;
-		}
-	}
-
-	// ----o Private Methods
-
-	static private var _curX:Number ;
-	static private var _curY:Number ;
-	static private var _pos:String ;
-	static private var _x:Number  ;
-	static private var _y:Number ;
-	
-	// ----o Private Methods
-
-	static private function _setMiddle () : Void {
-		switch (Stage.align) {
-			
-			case StageAlign.BOTTOM : // bottom
-				_x = WIDTH / 2 ;
-				_y = -  ((Stage.height / 2) - HEIGHT)  ;
-				break ;
-			
-			case StageAlign.BOTTOM_LEFT : // bottom left
-				_x = Stage.width / 2 ;
-				_y = -  ((Stage.height / 2) - HEIGHT)  ;
-				break ;
-
-			case StageAlign.BOTTOM_RIGHT : // bottom right
-				_x =  - (Stage.width - WIDTH) + Stage.width  / 2   ;
-				_y = -  ((Stage.height / 2) - HEIGHT)  ;
-				break ;
-				
-			case StageAlign.LEFT : // left
-				_x = Stage.width / 2 ;
-				_y = HEIGHT / 2  ;
-				break ;
-				
-			case StageAlign.RIGHT : // right
-				_x =  - (Stage.width - WIDTH) + Stage.width  / 2   ;
-				_y = HEIGHT / 2  ;
-				break ;
-			
-			case StageAlign.TOP : // top
-				_x = WIDTH / 2 ;
-				_y = Stage.height / 2 ;
-				break ;
-			
-			
-			case StageAlign.TOP_LEFT : // top left
-				_x = Stage.width / 2 ;
-				_y = Stage.height / 2 ;
-				break ;
-			
-			case StageAlign.TOP_RIGHT : // top right
-				_x =  - (Stage.width - WIDTH) + Stage.width  / 2   ;
-				_y = Stage.height / 2 ;
-				break ;
-			
-			default : 
-				_x = WIDTH / 2 ;
-				_y =  HEIGHT / 2 ;
-		}
-	}
-
-	static private function _setPos () : Void {
-		if (_curX == undefined && _curY == undefined) { _pos = "" ; return ; }
-		if  (_curX > _x && _curY > _y) _pos =  "BR" ;
-		else if  ( _curX < _x && _curY > _y ) _pos = "BL" ;
-		else if  ( _curX > _x && _curY < _y) _pos =  "TR" ;
-		else if  ( _curX < _x && _curY < _y ) _pos =  "TL" ;
-		else if  ( _curX == _x && _curY > _y ) _pos = "B" ;
-		else if  ( _curX == _x && _curY < _y ) _pos = "T" ;
-		else if  ( _curX < _x && _curY == _y ) _pos = "L" ;
-		else _pos = "R" ;
 	}
 
 }

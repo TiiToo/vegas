@@ -98,7 +98,7 @@
 		
 		- getTime():Number
 		
-		+ insert(e:MotionEntry)
+		+ insert(e:TweenEntry)
 		
 		+ insertProperty( prop , easing:Function, begin:Number, finish:Number)
 		

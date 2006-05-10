@@ -129,7 +129,7 @@ class vegas.util.ArrayUtil {
 				a[i] = null ;
 				continue ;
             } else {
-				 a[i] = ar[i].copy() ; // ici faire en sorte d'avoir une classe Copy.toCopy(o)
+				a[i] = ar[i].copy() ; // ici faire en sorte d'avoir une classe Copy.toCopy(o)
 			}
     		return a ;
 		}

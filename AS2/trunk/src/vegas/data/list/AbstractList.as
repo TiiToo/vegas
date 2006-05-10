@@ -58,7 +58,7 @@
 	
 	INHERIT 
 
-		SimpleCollection > AbstractCollection > AbstractList
+		CoreObject > AbstractCollection > AbstractList
 
 
 	METHODS
