@@ -95,7 +95,7 @@
 
 	INHERIT
 	
-		Object > BasicEvent > DynamicEvent
+		CoreObject → BasicEvent → DynamicEvent
 
 	IMPLEMENTS
 	

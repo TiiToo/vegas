@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	MultiHashMap
+/**	MultiHashMap
 
 	AUTHOR
 
@@ -95,7 +95,7 @@
 	
 	INHERIT
 	
-		HashMap
+		CoreObject → HashMap → MultiHashMap
 	
 	IMPLEMENTS
 	
@@ -120,7 +120,7 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 	// ----o Construtor
 	
 	public function MultiHashMap() {
-		_map = new HashMap ;
+		_map = new HashMap() ;
 		if (arguments[0] instanceof Map) {
 			var m:Map = arguments[0].clone() ;
 			if (m) putAll(m) ;
@@ -134,7 +134,7 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 	}
 
 	public function clone() {
-		var m:MultiHashMap = new MultiHashMap ;
+		var m:MultiHashMap = new MultiHashMap() ;
 		var vItr:Iterator = valueIterator() ;
 		var kItr:Iterator = keyIterator() ;
 		while (kItr.hasNext()) {

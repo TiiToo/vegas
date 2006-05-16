@@ -57,13 +57,7 @@
 		
 	INHERIT
 	
-		Object 
-			|
-			BasicEvent
-				|
-				DynamicEvent
-					|
-					UIEvent
+		CoreObject → BasicEvent → DynamicEvent → UIEvent
 		
 	IMPLEMENTS
 	

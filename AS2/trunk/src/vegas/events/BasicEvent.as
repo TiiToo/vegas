@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	BasicEvent
+/**	BasicEvent
 
 	AUTHOR
 	
@@ -83,7 +83,7 @@
 	
 	INHERIT
 	
-		Object > BasicEvent
+		CoreObject → BasicEvent
 	
 	IMPLEMENTS 
 		
@@ -95,7 +95,7 @@
 		ADD : [2006-01-22] initEvent(type:String, bubbles:Boolean, cancelable:Boolean)
 		REFACTORING : [2006-01-22] getTime() -> getTimeStamp()
 
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.events.Event;

@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	HashMap
+/**	HashMap
 
 	AUTHOR
 	
@@ -81,11 +81,9 @@
 
 	INHERIT
 	
-		CoreObject
-			|
-			HashMap
+		CoreObject → HashMap
 
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
