@@ -81,11 +81,7 @@
 	
 	INHERIT
 	
-		CoreObject
-			|
-			AbstractCoreEventDispatcher
-				|
-				DisplayObject
+		CoreObject → AbstractCoreEventDispatcher → DisplayObject
 
  	IMPLEMENTS
  

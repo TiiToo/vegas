@@ -21,7 +21,7 @@
   
 */
 
-/* --------- IView [Interface]
+/** IView [Interface]
 
 	AUTHOR
 
@@ -45,7 +45,7 @@
 		
 		- setViewContainer(mcContainer:MovieClip):Void
 	
-----------  */
+**/
 
 import vegas.events.EventListener;
 import vegas.util.mvc.IController;

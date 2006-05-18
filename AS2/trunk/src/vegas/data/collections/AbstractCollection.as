@@ -21,7 +21,7 @@
   
 */
 
-/* ----------  AbstractCollection
+/**  AbstractCollection
 
 	AUTHOR
 	
@@ -61,13 +61,13 @@
 
 	INHERIT
 	
-		CoreObject > AbstractCollection
+		CoreObject → AbstractCollection
 
 	IMPLEMENTS
 	
 		Collection, ISerializable, IFormattable
 
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;

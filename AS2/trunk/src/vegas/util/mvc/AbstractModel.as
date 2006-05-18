@@ -49,7 +49,7 @@
 
 	INHERIT
 	
-		CoreObject > AbstractCoreEventDispatcher > AbstractModel
+		CoreObject → AbstractCoreEventDispatcher → AbstractModel
 
 **/
 

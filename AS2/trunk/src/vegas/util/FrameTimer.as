@@ -21,7 +21,7 @@
   
 */
 
-/* ------- Timer
+/** Timer
 
 	AUTHOR
 
@@ -131,7 +131,7 @@
 		- TimerEvent
 		- TimerEventType
 
-----------  */
+**/
 
 import vegas.events.TimerEvent;
 import vegas.events.TimerEventType;

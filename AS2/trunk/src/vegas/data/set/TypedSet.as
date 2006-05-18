@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- TypedSet
+/** TypedSet
 
 	AUTHOR
 
@@ -33,7 +33,7 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
-	METHODS
+	METHOD SUMMARY
 
 		- clear()
 		
@@ -67,11 +67,7 @@
 	
 	INHERIT 
 	
-		CoreObject 
-			|
-			AbstractTypeable
-				|
-				TypedSet
+		CoreObject → AbstractTypeable → TypedSet
 	
 ----------  */
 

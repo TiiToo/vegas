@@ -21,7 +21,7 @@
   
 */
 
-/** ---------- AbstractCoreEventDispatcher
+/** AbstractCoreEventDispatcher
 
 	AUTHOR
 	
@@ -69,13 +69,13 @@
 		
 	INHERIT
 		
-		 CoreObject > AbstractCoreEventDispatcher
+		 CoreObject → AbstractCoreEventDispatcher
 		 
  	IMPLEMENTS
  
 		EventTarget, IEventDispatcher, IFormattable, IHashable
 
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.data.Set;
@@ -86,7 +86,7 @@ import vegas.events.EventListenerCollection;
 import vegas.events.IEventDispatcher;
 
 /**
- * Abstract class
+ * AbstractCoreEventDispatcher
  * @author eKameleon
  * @version 1.0.0.0
  **/

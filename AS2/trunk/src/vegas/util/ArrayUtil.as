@@ -21,7 +21,7 @@
   
 */
 
-/* ------- ArrayUtil
+/** ArrayUtil
 
 	AUTHOR
 	
@@ -35,21 +35,17 @@
 
 	STATIC METHOD SUMMARY
 	
-		- clone(ar:Array):Array 
+		- static clone(ar:Array):Array 
 		
-		- contains(ar:Array, value:Object):Boolean
+		- static contains(ar:Array, value:Object):Boolean
 		
-		- copy(ar:Array):Array 
+		- static copy(ar:Array):Array 
 		
-			!!!! ici faire en sorte d'avoir une classe Copy.toCopy(o)
-		
-		- every(ar:Array, callback:Function, o:Object):Boolean
+		- static every(ar:Array, callback:Function, o:Object):Boolean
 			
-			DESCRIPTION
-			
-				Tests whether all elements in the array pass the test implemented by the provided function.
+			Returns true if every element in this array satisfies the provided testing function.
 		
-		- forEach(callback:Function, o:Object):Void
+		- static forEach(callback:Function, o:Object):Void
 		
 			Calls a function for each element in the array.
 			
@@ -59,16 +55,14 @@
 					- the index of the element
 					- the Array object being traversed
 		
-		- fromArguments( ar:Array, args:Array ):Array
+		- static fromArguments( ar:Array, args:Array ):Array
 		
 			Returns an Array object from a function Arguments object.
 		
-		- indexOf( ar:Array, value:Object, startIndex:Number, count:Number):Number
+		- static indexOf( ar:Array, value:Object, startIndex:Number, count:Number):Number
 			
-			DESCRIPTION
-			
-				Returns the index of the first occurrence of a value in a one-dimensional Array 
-				or in a portion of the Array .
+			Returns the index of the first occurrence of a value in a one-dimensional Array 
+			or in a portion of the Array .
    
 			PARAMETERS
 				
@@ -78,28 +72,23 @@
 				- count 
 					allows to limit the number of elements to search in the array
 		
-		- initialize(index:Number, value:Object):Array 
+		- static initialize(index:Number, value:Object):Array 
 			
-			DESCRIPTION
-				
-				Initializes a new Array with an arbitrary number of elements (index) ,
-				with every element containing the passed parameter value or by default the null value.
+			Initializes a new Array with an arbitrary number of elements (index) ,
+			with every element containing the passed parameter value or by default the null value.
 			
-		- lastIndexOf(ar:Array, o):Number
+		- static lastIndexOf(ar:Array, o):Number
 		
-		- toString(ar:Array):String
+		- static map( ar:Array, callback:Function, o ):Array
+		
+			Creates a new array with the results of calling a provided function on every element in this array.
+		
+		- static toString(ar:Array):String
 
-	HISTORY
-	
-		2005-12-16 - CHANGE :: exists > contains
-	
-	TODO
-	
-		2005-12-22 :: créer une classe Copy qui permette de renvoyer la copy de n'importe quel objet.
-	
-----------  */
+**/
 
 import vegas.errors.ArgumentOutOfBoundsError;
+import vegas.util.Copier;
 
 class vegas.util.ArrayUtil {
 
@@ -107,34 +96,41 @@ class vegas.util.ArrayUtil {
 	
 	public function ArrayUtil() {}
 	
-// ----o Static Methods
+	// ----o Public Methods	
 
 	static public function clone(ar:Array):Array {
 		return ar.slice() ;
 	}
 
-	static public function contains( ar:Array , value:Object) :Boolean {
+	static public function contains( ar:Array , value:Object):Boolean {
 		return (indexOf(ar, value) > -1) ;
 	}
 
+	/**
+	 * Returns a deep copy.
+	 */
 	static public function copy(ar:Array):Array {
-		// TODO unstable
+		// TODO Test this method please !!!
 		var a:Array = [] ;
 		var i:Number ;
 		var l:Number = ar.length ;
+		trace(l) ;
 		for (i = 0 ; i < l ; i++) {
 			if( ar[i] === undefined ) {
 				a[i] = undefined ;
 			} else if( ar[i] === null ) {
 				a[i] = null ;
-				continue ;
             } else {
-				a[i] = ar[i].copy() ; // ici faire en sorte d'avoir une classe Copy.toCopy(o)
+            	trace("> " + i) ;
+				a[i] = Copier.copy(ar[i]) ; // TODO test !!
 			}
-    		return a ;
 		}
+		return a ;
 	}
 
+	/**
+	 * Returns true if every element in this array satisfies the provided testing function.
+	 */
 	static public function every(ar:Array, callback:Function, o:Object ):Boolean {
 		if(!o) o = _global ;
 		var len:Number = ar.length ;
@@ -144,11 +140,16 @@ class vegas.util.ArrayUtil {
 		return true ;
     }
 
+	/**
+	 * Calls a function for each element in the array.
+	 */
 	static public function forEach(ar:Array, callback:Function, o):Void {
         var len:Number = ar.length ; 
 		var i:Number ;
         if( o == null ) o = _global ;
-        for( i=0; i<len ; i++ ) callback.call(o, ar[i], i, ar) ;
+        for( i=0; i<len ; i++ ) {
+        	callback.call(o, ar[i], i, ar) ;
+        }
     }
 
 	static public function fromArguments( ar:Array, args:Array ):Array {
@@ -168,6 +169,9 @@ class vegas.util.ArrayUtil {
 		return -1 ;
 	}
 
+	/**
+	 * Create and Initialize an Array.
+	 */
 	static public function initialize(index:Number, value:Object):Array {
 		if( isNaN(index) ) index = 0 ;
 		if( value === undefined ) value = null ;
@@ -176,12 +180,54 @@ class vegas.util.ArrayUtil {
 		return ar ;
     }
 
+	/**
+	 * Returns the last (greatest) index of an element within the array equal to the specified value, or -1 if none is found.
+	 */
 	static public function lastIndexOf( ar:Array, o ) :Number {
 		var l:Number = ar.length;
 		while ( --l > -1 ) if (ar[l] == o) return l ; 
 		return -1 ;
 	}
 
+	/**
+	 * Creates a new array with the results of calling a provided function on every element in this array.
+	 */
+	static public function map( ar:Array, callback:Function, thisObject  ):Array {
+        
+		var arr:Array = [] ;
+		var i:Number ;
+
+		if( thisObject == null ) thisObject = _global;
+		var l:Number = ar.length ;
+        for(i=0 ; i<l ; i++ ) {
+            arr[i] = callback.call( thisObject, ar[i], i, ar ) ;
+        }
+        
+        return arr ;
+    
+    }
+
+	/**
+	 * Tests whether some element in the array passes the test implemented by the provided function.
+	 */
+	static public function some( ar:Array, callback:Function, thisObject):Boolean {
+        
+        var len:Number = ar.length ;
+        var i:Number = 0 ;
+        
+        if( thisObject == null ) thisObject = _global ;
+       
+        for( i=0; i<len; i++ ) {
+            if( callback.call( thisObject, ar[i], i, ar ) ) return true ;
+		}
+        
+        return false;
+   
+    }
+
+	/**
+	 * Returns a string representing the specified array and its elements.
+	 */
 	static public function toString(ar:Array):String {
 		return ar.join("") ;
 	}

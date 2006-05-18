@@ -81,6 +81,8 @@
 		
 		- initEventDispatcher():EventDispatcher
 		
+		- initialize(sName:String, nc:NetServerConnection, persistant:Boolean, autoConnect:Boolean):Void
+		
 		- lock():Void
 		
 		- removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener
@@ -145,6 +147,7 @@ class asgard.net.SharedData extends AbstractCoreEventDispatcher {
 	// ----o Constructor
 	
 	function SharedData( sName:String, nc:NetServerConnection, persistant:Boolean, autoConnect:Boolean) {
+		
 		super();
 		
 		_isConnected = false ;
@@ -153,16 +156,13 @@ class asgard.net.SharedData extends AbstractCoreEventDispatcher {
 		_eChange = new SharedDataEvent(SharedDataEventType.CHANGE, this) ;
 		_eClear = new SharedDataEvent(SharedDataEventType.CLEAR, this) ;
 		_eClose = new SharedDataEvent(SharedDataEventType.CLOSE, this) ;
+		_eFire = new SharedDataEvent( SharedDataEventType.FIRE , this ) ;
 		_eDelete = new SharedDataEvent(SharedDataEventType.DELETE, this) ;
 		_eReject = new SharedDataEvent(SharedDataEventType.REJECT, this) ;
 		_eSuccess = new SharedDataEvent(SharedDataEventType.SUCCESS, this) ;
 		_eSync = new SharedDataEvent(SharedDataEventType.SYNCHRONISED, this) ;
 		
-		_so = SharedObject.getRemote(sName, nc.uri, persistant) ;
-		_so.onSync = Delegate.create(this, _onSync) ;
-		_so[SharedDataEventType.FIRE] = Delegate.create(this, _onFired) ;
-		
-		if (autoConnect) connect(nc) ;
+		initialize(sName, nc, persistant, autoConnect) ;
 		
 	}
 
@@ -186,8 +186,8 @@ class asgard.net.SharedData extends AbstractCoreEventDispatcher {
 		return _isConnected ;
 	}
 
-	public function fireEvent( e ):Void {
-  		_so.send(SharedDataEventType.FIRE, e );
+	public function fireEvent( eContext ):Void {
+  		_so.send(SharedDataEventType.FIRE, eContext );
   	}
 
 	public function flush():Void {
@@ -205,6 +205,16 @@ class asgard.net.SharedData extends AbstractCoreEventDispatcher {
 	public function getProperty(sName:String) {
   		return _so.data[sName];
   	}
+
+	public function initialize(sName:String, nc:NetServerConnection, persistant:Boolean, autoConnect:Boolean):Void {
+		if (_so ) {
+			_so.close() ;
+		}
+		_so = SharedObject.getRemote(sName, nc.uri, persistant) ;
+		_so.onSync = Delegate.create(this, _onSync) ;
+		_so[SharedDataEventType.FIRE] = Delegate.create(this, _onFired) ;	
+		if (autoConnect) connect(nc) ;
+	}
 
 	public function lock():Void {
 		_so.setFps(0);
@@ -254,6 +264,7 @@ class asgard.net.SharedData extends AbstractCoreEventDispatcher {
 	private var _eClear:SharedDataEvent;
 	private var _eClose:SharedDataEvent ;	
 	private var _eDelete:SharedDataEvent ;	
+	private var _eFire:SharedDataEvent ;
 	private var _eReject:SharedDataEvent ;		
 	private var _eSuccess:SharedDataEvent ;		
 	private var _eSync:SharedDataEvent ;		
@@ -284,17 +295,22 @@ class asgard.net.SharedData extends AbstractCoreEventDispatcher {
 			var name:String = item.name ;
 			var value = _so.data[name] ;
 
-			trace ("> " + this + " :: " + code + " : " + name + " / " + value) ;
-
+			//**** DEBUG
+			var txt:String = "> " + this + "._onSync :: " + code ;
+			if(name) txt += " , name:" + name ;
+			if(value) txt += " , value:" + value ;
+			trace (txt) ;
+			//***/
+			
 			switch (code) {
+
+				case SharedDataStatus.CLEAR :
+					dispatchEvent(_eClear);
+					break ;
 
 				case SharedDataStatus.CHANGE :
 					_eChange.setProperty(name, value) ;
 					dispatchEvent(_eChange);
-					break ;
-					
-				case SharedDataStatus.CLEAR :
-					dispatchEvent(_eClear);
 					break ;
 					
 				case SharedDataStatus.DELETE :
@@ -315,10 +331,9 @@ class asgard.net.SharedData extends AbstractCoreEventDispatcher {
    		}
 	}
 
-	private function _onFired( e ):Void {
-		var e:SharedDataEvent = new SharedDataEvent( SharedDataEventType.FIRE , this ) ;
-		e.setContext(e) ;
-   		dispatchEvent( e ) ;
+	private function _onFired( eventContext ):Void {
+		_eFire.setContext ( eventContext ) ;
+   		dispatchEvent( _eFire ) ;
 	}
 	
 }

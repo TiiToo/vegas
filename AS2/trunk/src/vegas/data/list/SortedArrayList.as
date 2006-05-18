@@ -21,7 +21,7 @@
   
 */
 
-/* ----------  SortedArrayList
+/** SortedArrayList
 
 	AUTHOR
 
@@ -113,15 +113,7 @@
 
 	INHERIT 
 
-		AbstractCollection
-			|
-			SimpleCollection 
-				|
-				ArrayList 
-					|
-					AbstractList 
-						| 
-						AbstractCollection
+		CoreObject → AbstractCollection → AbstractList → ArrayList → SortedArrayList
 		
 	IMPLEMENTS
 	
@@ -153,7 +145,7 @@ class vegas.data.list.SortedArrayList extends ArrayList {
 	// ----o Public Methods
 		
 	public function clone() {
-		return new SortedArrayList(toArray) ;
+		return new SortedArrayList(toArray()) ;
 	}
 
 	public function insert(o):Boolean {
@@ -168,8 +160,8 @@ class vegas.data.list.SortedArrayList extends ArrayList {
 		return b ;
 	}
 	
-	public function insertAt(id:Number, o):Void {
-		super.insertAt(id, o) ;
+	public function insertAt(id /*Number*/ , o):Void {
+		insertAt(id, o) ;
 		_sort() ;
 	}
 

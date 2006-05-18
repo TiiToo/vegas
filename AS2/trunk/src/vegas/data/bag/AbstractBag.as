@@ -21,7 +21,7 @@
   
 */
 
-/* ------- AbstractBag
+/** AbstractBag
 
 	AUTHOR
 	
@@ -33,7 +33,7 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
-	METHODS
+	METHOD SUMMARY
 	
 		- clear()
 		
@@ -101,7 +101,7 @@
 
 	TODO TypedBag
 
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.core.types.Int;

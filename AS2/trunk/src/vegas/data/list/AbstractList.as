@@ -21,7 +21,7 @@
   
 */
 
-/* ----------  AbstractList
+/** AbstractList
 
 	AUTHOR
 
@@ -91,11 +91,14 @@
 		
 		- toString()
 
+	INHERIT 
 
-	BUG :: problème avec héritage direct de la classe SimpleCollection ! Pour le moment j'ai 
-	changé l'héritage en ciblant directement AbstractCollection et tout fonctionne... à finir de tester.
+		CoreObject → AbstractCollection → AbstractList
+		
+**/
 
-----------  */
+// TODO BUG :: problème avec héritage direct de la classe SimpleCollection !  
+// Pour le moment j'ai changé l'héritage en ciblant directement AbstractCollection...
 
 import vegas.data.Collection;
 import vegas.data.collections.AbstractCollection;

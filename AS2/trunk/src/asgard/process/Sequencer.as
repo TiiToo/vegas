@@ -79,7 +79,7 @@
 			
 			lancer la séquence
 		
-		- stop() : arrêter la séquence (n'arrête pas la dernière action en cours d'éxécution)
+		- stop() : arrêter la séquence (n'arrête pas la dernière action en cours d'éxecution)
 
 	EVENT SUMMARY
 	

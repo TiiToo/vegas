@@ -21,35 +21,29 @@
   
 */
 
-/**	ActionEvent
+/**	MediaEvent
 
 	AUTHOR
 
-		Name : ActionEvent
+		Name : MediaEvent
 		Package : asgard.events
 		Version : 1.0.0.0
-		Date :  2005-11-22
+		Date :  2006-05-18
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 	
 	EVENT SUMMARY
 
-		- ActionEventType.CHANGED : "changed"
+		- MediaEventType.onMediaFinishedEVENT:String
 		
-		- ActionEventType.CLEARED : "cleared"
+		- MediaEventType.onMediaProgressEVENT:String
 		
-		- ActionEventType.FINISHED  : "finished"
+		- MediaEventType.onMediaResumedEVENT:String
 		
-		- ActionEventType.LOOPED : "looped"
+		- MediaEventType.onMediaStartedEVENT:String
 		
-		- ActionEventType.PROGRESS : "progress"
-		
-		- ActionEventType.RESUMED  : "resumed"
-		
-		- ActionEventType.STARTED   : "started"
-		
-		- ActionEventType.STOPPED   : "stopped"
+		- MediaEventType.onMediaStoppedEVENT:String
 
 	METHOD SUMMARY
 	
@@ -61,7 +55,7 @@
 		
 	INHERIT
 	
-		CoreObject → BasicEvent → DynamicEvent → ActionEvent
+		CoreObject → BasicEvent → DynamicEvent → ActionEvent → MediaEvent
 		
 	IMPLEMENTS
 	
@@ -69,32 +63,20 @@
 
 ----------  */
 
-import vegas.events.DynamicEvent;
+import asgard.events.ActionEvent ;
 
-class asgard.events.ActionEvent extends DynamicEvent {
+class asgard.events.MediaEvent extends ActionEvent {
 
 	// ----o Constructor
 	
-	public function ActionEvent(type:String, target:Object){
+	public function MediaEvent(type:String, target:Object){
 		super(type, target) ;
 	}
 
 	// ----o Public Methods
 
-	public function getInfo() {
-		return _oInfo ;
+	public function clone() {
+		return new MediaEvent(getType(), getTarget()) ;
 	}
 
-	public function clone() {
-		return new ActionEvent(getType(), getTarget()) ;
-	}
-	
-	public function setInfo( oInfo ):Void {
-		_oInfo = oInfo ;	
-	}
-	
-	// ----o Private Properties
-	
-	private var _oInfo ;
-	
 }

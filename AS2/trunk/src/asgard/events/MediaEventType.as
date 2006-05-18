@@ -1,4 +1,4 @@
-﻿/*
+/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -21,58 +21,52 @@
   
 */
 
-/** Action [interface]
+/** MediaEventType
 
 	AUTHOR
-	
-		Name : Action
-		Package : asgard.process
+
+		Name : MediaEventType
+		Package : asgard.events
 		Version : 1.0.0.0
-		Date :  2005-07-05
+		Date :  2006-05-18
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 	
-	METHOD SUMMARY
-	
-		- addEventListener( eventName:String, listener, autoRemove:Boolean, priority:Number ):Void
-		
-		- clone()
-		
-		- notifyChanged():Void
-		
-		- notifyCleared():Void
-		
-		- notifyFinished():Void 
-		
-		- notifyLooped():Void
-		
-		- notifyResumed():Void
-		
-		- notifyStarted():Void
-		
-		- notifyStopped():Void
-		
-		- removeEventListener(eventName:String, listener):EventListener
-		
-		- run():Void
-		
-	INHERIT
-	
-		IRunnable
+	CONSTANT SUMMARY
 
-**/
+		- onMediaFinishedEVENT:String
+		
+		- onMediaProgressEVENT:String
+		
+		- onMediaResumedEVENT:String
+		
+		- onMediaStartedEVENT:String
+		
+		- onMediaStoppedEVENT:String
 
-import vegas.core.IRunnable;
+----------  */
 
-interface asgard.process.Action extends IRunnable {
+class asgard.events.MediaEventType {
+
+	// ----o Constructor
 	
-	function clone() ;
+	private function MediaEventType() {
+		//
+	}
+
+	// ----o Static Properties
+
+	static public var onMediaFinishedEVENT:String = "onMediaFinished" ;
 	
-	function notifyFinished():Void ;
+	static public var onMediaProgressEVENT:String = "onMediaProgress" ;
 	
-	function notifyStarted():Void ;
+	static public var onMediaResumedEVENT:String = "onMediaResumed" ;
 	
-	// function run():Void
+	static public var onMediaStartedEVENT:String = "onMediaStarted" ;
+	
+	static public var onMediaStoppedEVENT:String = "onMediaStopped" ;
+	
+	static private var __ASPF__ = _global.ASSetPropFlags(MediaEventType, null , 7, 7) ;
 	
 }

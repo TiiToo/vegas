@@ -107,7 +107,7 @@ class asgard.process.Message extends Pause {
 		to = p_to ;
 	}
 
-	// ----o ENUMS
+	// ----o Constants
 	
 	static public var ME:Number = 0 ;
 	static public var ALL:Number = 1 ;

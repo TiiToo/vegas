@@ -129,11 +129,7 @@
 	
 	INHERIT
 	
-		CoreObject
-			|
-			AbstractCoreEventDispatcher
-				|
-				AbstractLoader
+		CoreObject → AbstractCoreEventDispatcher → AbstractLoader
 
 	IMPLEMENTS
 	

@@ -21,7 +21,7 @@
   
 */
 
-/* ----------  AbstractSet
+/**  AbstractSet
 
 	AUTHOR
 	
@@ -73,17 +73,13 @@
 		
 	INHERIT
 		
-		CoreObject
-			|
-			AbstractCollection
-				|
-				AbstractSet
+		CoreObject → AbstractCollection → AbstractSet
 	
 	IMPLEMENTS 
 	
 		Set, Collection, ISerializable, IFormattable, IHashable
 	
-----------  */
+**/
 
 import vegas.data.Collection;
 import vegas.data.collections.AbstractCollection;

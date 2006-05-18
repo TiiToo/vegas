@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	HashBag
+/**	HashBag
 
 	AUTHOR
 	
@@ -96,11 +96,7 @@
 	
 	INHERIT 
 	
-		CoreObject
-			|
-			AbstractBag
-				|
-				HashBag
+		CoreObject → AbstractBag → HashBag
 	
 	IMPLEMENTS 
 	

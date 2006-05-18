@@ -21,7 +21,7 @@
   
 */
 
-/* ----------  ArrayList
+/** ArrayList
 
 	AUTHOR
 
@@ -91,14 +91,14 @@
 
 	INHERIT 
 
-		Object > AbstractCollection > SimpleCollection > AbstractList
+		CoreObject → AbstractCollection → AbstractList → ArrayList
 	
 
 	IMPLEMENTS
 	
 		ICloneable, Collection, List, ISerializable, IFormattable
 	
-----------  */
+**/
 
 import vegas.data.Collection;
 import vegas.data.iterator.ArrayIterator;

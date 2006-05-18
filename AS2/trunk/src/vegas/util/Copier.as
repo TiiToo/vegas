@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- Copier
+/** Copier
 
 	AUTHOR
 	
@@ -39,15 +39,18 @@
 			
 			return a deep copy of the object.
 
-----------  */
+	SEE 
+
+		ICopyable
+
+**/
 
 /**
  * @author eKameleon
  * @version 1.0.0.0
  */
 
- 
-import vegas.core.ICopyable;
+ import vegas.core.ICopyable;
 import vegas.util.ArrayUtil;
 import vegas.util.BooleanUtil;
 import vegas.util.DateUtil;
@@ -79,7 +82,6 @@ class vegas.util.Copier {
 		else {
 			return undefined ;
 		}
-	}
-	
+	}	
 	
 }

@@ -21,7 +21,7 @@
   
 */
 
-/* ----------  HashSet
+/** HashSet
 
 	Name : HashSet
 	Package : vegas.data.set
@@ -69,17 +69,13 @@
 		
 	INHERIT		
 	
-		CoreObject
-			|
-			AbstractCollection
-				|
-				AbstractSet		
+		CoreObject → AbstractCollection → AbstractSet		
 	
 	IMPLEMENTS
 	
 		ICloneable, Collection, ISerializable, Set, IFormattable
 	
-----------  */
+**/
 
 import vegas.data.Collection;
 import vegas.data.iterator.ArrayIterator;
@@ -94,7 +90,7 @@ class vegas.data.set.HashSet extends AbstractSet {
 	// ----o Constructor
 
 	public function HashSet() {
-		_map = new HashMap ;
+		_map = new HashMap() ;
 		if (arguments.length == 0) return ;
 		var arg = arguments[0] ;
 		var it:Iterator ;
@@ -117,7 +113,7 @@ class vegas.data.set.HashSet extends AbstractSet {
 	}
 	
 	/*override*/ public function clone() {
-		var s:Set = new HashSet ; 
+		var s:Set = new HashSet() ; 
 		if (size() > 0) {
 			var it:Iterator = _map.keyIterator() ;
 			while(it.hasNext()) {
