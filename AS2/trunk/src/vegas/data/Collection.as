@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	Collection [Interface]
+/** 	Collection [Interface]
 
 	Name : Collection
 	Package : vegas.data
@@ -55,7 +55,7 @@
 		
 		- toString():String
 
-----------  */
+**/
 
 import vegas.core.ISerializable;
 import vegas.data.iterator.Iterator;
