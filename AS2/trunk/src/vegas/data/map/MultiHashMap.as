@@ -51,6 +51,11 @@
 		
 		- containsValue()
 		
+		- createCollection():Collection
+		
+			Creates a new instance of the map value Collection container.
+			This method can be overridden to use your own collection type.
+			
 		- get(key)
 		
 		- getkeys()
@@ -101,7 +106,7 @@
 	
 		ICloneable, Iterable, Map, MultiMap, ISerializable, IFormattable
 	
-----------  */
+**/
 
 import vegas.core.IFormattable;
 import vegas.data.Collection;
@@ -128,11 +133,25 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 	}
 
 	// ----o Public Methods	
-	
+
+	/**
+	 * This clears each collection in the map, and so may be slow.
+	 */
 	public function clear():Void {
 		_map.clear() ;
 	}
 
+	/**
+	 * Creates a new instance of the map value Collection container.
+	 * This method can be overridden to use your own collection type.
+	 */
+	public function createCollection():Collection {
+		return new SimpleCollection() ;	
+	}
+
+	/**
+	 * Clones the map.
+	 */
 	public function clone() {
 		var m:MultiHashMap = new MultiHashMap() ;
 		var vItr:Iterator = valueIterator() ;
@@ -149,23 +168,47 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 		return _map.containsKey( key ) ;
 	}
 
+	/**
+	 * Checks whether the map contains the value specified or at the specified key contains the value.
+	 * @example
+	 * <code>
+	 * 		var b:Boolean = map.containsValue(key, value) ;
+	 * 		
+	 * 		var b:Boolean = map.containsValue(value) ;
+	 * </code>
+	 */
 	public function containsValue( value ):Boolean {
-		var it:Iterator = _map.iterator() ;
-		while (it.hasNext()) {
-			var cur = it.next() ;
-			if (cur.contains(value)) return true;
+		var len:Number = arguments.length ;
+		if (len == 2) {
+			var value = arguments[0] ;
+			var it:Iterator = _map.iterator() ;
+			while (it.hasNext()) {
+				var cur = it.next() ;
+				if (cur.contains(value)) return true;
+			}
+		} else if (len == 1) {
+			return get(arguments[0]).contains(arguments[1]) ;
 		}
 		return false ;
 	}
 
-	public function get(key) /*Collection*/ {
+	/**
+	 * Gets the collection mapped to the specified key. This method is a convenience method to typecast the result of get(key).
+	 */
+	public function get( key ) /*Collection*/ {
 		return _map.get(key) ;
 	}
 
+	/**
+	 * Checks whether the map contains the key specified .
+	 */
 	public function getKeys():Array {
 		return _map.getKeys() ;
 	}
 	
+	/**
+	 * This returns an array containing the combination of values from all keys.
+	 */
 	public function getValues():Array {
 		var ar:Array = [] ;
 		var it:Iterator = _map.iterator() ;
@@ -175,10 +218,18 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 		return ar ;
 	}
 
+	/**
+	 * Returns whether this MultiHashSet contains any mappings.
+	 * 
+	 * @return {@code true} if this MultiHashSet contains any mappings else {@code false}
+	 */
 	public function isEmpty():Boolean {
 		return _map.isEmpty() ;
 	}
 	
+	/**
+	 * Gets an iterator for the collection mapped to the specified key.
+	 */
 	public function iterator( /*key*/ ):Iterator {
 		var key = arguments[0] ;
 		if (key) {
@@ -192,19 +243,18 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 		return _map.keyIterator() ;
 	}
 
+	/**
+	 * Adds the value to the collection associated with the specified key.
+	 */
 	public function put(key, value) {
-		if (!containsKey(key)) _map.put(key , new SimpleCollection) ;
+		if (!containsKey(key)) _map.put(key , createCollection()) ;
 		var b:Boolean = _map.get(key).insert(value) ;
 		return b ? value : null ;
 	}
-	
-	public function putCollection(key, c:Collection):Void {
-		if (!containsKey(key)) {
-			_map.put(key , new SimpleCollection) ;
-		}
-		_map.get(key).insertAll(c) ;
-	}
-	
+
+	/**
+	 * Override superclass to ensure that MultiMap instances are correctly handled.
+	 */
 	public function putAll(map:Map):Void {
 		var it:Iterator = map.iterator() ;
 		while (it.hasNext()) {
@@ -218,6 +268,19 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 		}
 	}
 	
+	/**
+	 * Adds a collection of values to the collection associated with the specified key.
+	 */
+	public function putCollection(key, c:Collection):Void {
+		if (!containsKey(key)) {
+			_map.put(key , createCollection()) ;
+		}
+		_map.get(key).insertAll(c) ;
+	}
+	
+	/**
+	 * Removes a specific value from map.
+	 */
 	public function remove(key /*, value*/ ) {
 		var value = arguments[1] ;
 		if (key && value) {
@@ -228,7 +291,10 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 			return _map.remove(key) ;
 		}
 	}
-		
+	
+	/**
+	 * Gets the size of the collection mapped to the specified key.
+	 */
 	public function size():Number {
 		return _map.size() ;
 	}
@@ -242,6 +308,9 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 		return (new MultiMapFormat()).formatToString(this) ;
 	}
 
+	/**
+	 * Gets the total size of the map by counting all the values.
+	 */
 	public function totalSize():Number {
 		var result:Number = 0 ;
 		var it:Iterator = _map.iterator() ;

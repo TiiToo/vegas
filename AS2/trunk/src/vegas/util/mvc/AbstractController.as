@@ -21,7 +21,7 @@
   
 */
 
-/* --------- AbstractController
+/** AbstractController
 
 	AUTHOR
 
@@ -35,20 +35,23 @@
 	
 	METHOD SUMMARY
 
+		- getModel():IModel
+		
+		- getView():IView
+		
+		- setModel(oModel:IModel):Void
+		
+		- setView(oView:IView):Void
+		
+	INHERIT
+	
+		CoreObject → AbstractController
 
 	IMPLEMENTS 
 	
-		IController, IFormattable
+		IController, IFormattable, IHashable
 
-	INHERIT
-	
-		Object 
-			|
-			CoreObject
-				|
-				AbstractModel
-
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.util.mvc.IController;

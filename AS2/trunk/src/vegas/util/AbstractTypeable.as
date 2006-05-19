@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	AbstractTypeable
+/**	AbstractTypeable
 
 	AUTHOR
 
@@ -50,12 +50,16 @@
 		- supports(value):Boolean
 		
 		- validate(value)
-		
+	
+	INHERIT
+	
+		CoreObject → AbstractTypeable
+	
 	IMPLEMENTS 
 
 		Typeable, Validator
 
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.core.ITypeable;

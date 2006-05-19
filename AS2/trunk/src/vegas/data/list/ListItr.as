@@ -69,8 +69,8 @@
 	
 ----------  */
 
-import vegas.core.CoreObject ;
-import vegas.data.List ;
+import vegas.core.CoreObject;
+import vegas.data.List;
 import vegas.data.list.AbstractList;
 import vegas.data.list.ListIterator;
 import vegas.errors.ConcurrentModificationError;

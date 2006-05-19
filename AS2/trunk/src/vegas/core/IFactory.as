@@ -21,46 +21,30 @@
   
 */
 
-/**	MultiMap [Interface]
+/** IFactory [Interface]
 
 	AUTHOR
 
-		Name : MultiMap
-		Package : vegas.data
+		Name : IFactory
+		Package : vegas.core
 		Version : 1.0.0.0
-		Date :  2005-05-26
+		Date :  2006-05-18
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
+
+	DESCRIPTION : 
 	
-	METHODS
+		Defines a functor interface implemented by classes that create objects.
+
+	METHOD SUMMARY
 	
-		- putCollection(key, c:Collection)
-		
-		- totalSize():Number
-		
-		- values():Collection
-		
-		- valueIterator():Iterator
-	
-	INHERITS
-	
-		Map
+		- create()
 
 **/
 
-import vegas.data.Collection;
-import vegas.data.iterator.Iterator;
-import vegas.data.Map;
-
-interface vegas.data.MultiMap extends Map {
-
-	function putCollection(key, c:Collection):Void ;
-
-	function totalSize():Number ;
+interface vegas.core.IFactory {
 	
-	function values():Collection ;
-	
-	function valueIterator():Iterator ;
+	function create() ;
 	
 }

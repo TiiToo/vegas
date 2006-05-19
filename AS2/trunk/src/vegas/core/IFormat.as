@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	IFormat [Interface]
+/** IFormat [Interface]
 
 	AUTHOR
 
@@ -41,8 +41,7 @@
 	
 		- formatToString(o):String
 
-----------  */
-
+**/
 
 interface vegas.core.IFormat {
 	

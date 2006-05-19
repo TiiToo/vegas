@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- Set [Interface]
+/** Set [Interface]
 
 	Name : Set
 	Package : vegas.data.set
@@ -34,9 +34,8 @@
 	TODOLIST
 	
 		- SetUtils class :: http://jakarta.apache.org/commons/collections/apidocs-COLLECTIONS_3_1/org/apache/commons/collections/SetUtils.html
-		
 
-----------  */
+**/
 
 import vegas.data.Collection;
 

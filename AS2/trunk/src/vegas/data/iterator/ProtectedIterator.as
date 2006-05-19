@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	ProtectedIterator
+/**	ProtectedIterator
 
 	AUTHOR
 
@@ -60,7 +60,7 @@
 	
 		Iterator
 
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.data.iterator.Iterator;
@@ -89,15 +89,15 @@ class vegas.data.iterator.ProtectedIterator extends CoreObject implements Iterat
 	}
 	
 	public function remove() {
-		throw new UnsupportedOperation ;
+		throw new UnsupportedOperation() ;
 	}
 	
 	public function reset():Void {
-		throw new UnsupportedOperation ;
+		throw new UnsupportedOperation() ;
 	}
 	
 	public function seek(n:Number):Void {
-		throw new UnsupportedOperation ;
+		throw new UnsupportedOperation() ;
 	}
 
 	// ----o Private Properties

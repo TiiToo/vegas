@@ -21,7 +21,7 @@
   
 */
 
-/* --------- AbstractView
+/** AbstractView
 
 	AUTHOR
 
@@ -35,20 +35,33 @@
 	
 	METHOD SUMMARY
 
+		- getController():IController
+
+		- getViewContainer():MovieClip
+		
+		- handleEvent(e:Event)
+		
+		- registerWithModel( oModel:IModel ):Void
+		
+		- setController(oController:IController):Void
+		
+		- setModel(oModel:IModel):Void
+		
+		- setViewContainer(mcContainer:MovieClip):Void
+		
+	INHERIT
+	
+		CoreObject → AbstractView
 
 	IMPLEMENTS 
 	
 		IView, IFormattable
-
-	INHERIT
+		
+	IMPLEMENTS 
 	
-		Object 
-			|
-			CoreObject
-				|
-				AbstractModel
+		EventListener, IFormattable, IHashable, IView
 
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.events.Event;

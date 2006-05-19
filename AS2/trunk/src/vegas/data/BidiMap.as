@@ -21,14 +21,14 @@
   
 */
 
-/** 	Map [Interface]
+/** BidiMap [Interface]
 
 	AUTHOR
 
-		Name : Map
+		Name : BidiMap
 		Package : vegas.data
 		Version : 1.0.0.0
-		Date :  2005-04-24
+		Date :  2006-05-18
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
@@ -47,6 +47,8 @@
 	
 		- getValues():Array
 
+		- inverseBidiMap():Map
+
 		- isEmpty():Boolean
 	
 		- iterator():Iterator
@@ -63,44 +65,15 @@
 
 		- toString():String
 
-	TODO : PrimitiveTypeMap
-	TODO : PriorityMap
-
 **/
 
-import vegas.core.ISerializable;
-import vegas.data.iterator.Iterator;
+import vegas.data.Map;
 
-interface vegas.data.Map extends ISerializable {
+interface vegas.data.BidiMap extends  Map {
 
-	function clear():Void ;
-
-	function clone() ;
-	
-	function containsKey( key ):Boolean ;
-	
-	function containsValue( value ):Boolean ;
-
-	function get(key) ;
-	
-	function getKeys():Array ;
-	
-	function getValues():Array ;
-
-	function isEmpty():Boolean ;
-	
-	function iterator():Iterator ;
-
-	function keyIterator():Iterator ;
-
-	function put(key, value) ;
-	
-	function putAll(m:Map):Void ;
-
-	function remove(key) ;
-	
-	function size():Number ;
-
-	function toString():String ;
+	/**
+	 * Gets a view of this map where the keys and values are reversed.
+	 */
+	public function inverseBidiMap():Map ;
 
 }

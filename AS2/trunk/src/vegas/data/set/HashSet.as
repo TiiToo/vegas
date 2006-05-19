@@ -99,7 +99,9 @@ class vegas.data.set.HashSet extends AbstractSet {
 		} else if (arg instanceof Collection) {
 			it = arg.iterator() ;
 		}
-		if (it) while (it.hasNext()) insert(it.next()) ;
+		if (it) {
+			while (it.hasNext()) insert(it.next()) ;
+		}
 	}
 
 	// ----o Static Properties
@@ -155,8 +157,6 @@ class vegas.data.set.HashSet extends AbstractSet {
 		return Serializer.getSourceOf(this, [Serializer.toSource(toArray())]) ;
 	}
 	
-
-
 	// ----o Private Properties
 	
 	private var _map:HashMap ;

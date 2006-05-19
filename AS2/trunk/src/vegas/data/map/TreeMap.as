@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	TreeMap
+/**	TreeMap
 
 	!!!! EN CONSTRUCTION !!!!
 
@@ -39,7 +39,7 @@
 	
 		ICloneable, Iterable, SortedMap, IFormattable
 
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;

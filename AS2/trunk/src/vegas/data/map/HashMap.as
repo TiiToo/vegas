@@ -109,11 +109,17 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 	
 	// ----o Public Methods	
 	
+	/**
+	 * This clears all in the map.
+	 */
 	public function clear():Void {
 		_keys = [] ;
 		_values = [] ;
 	}
 	
+	/**
+	 * Clones the map.
+	 */
 	public function clone() {
 		var m:HashMap = new HashMap() ;
 		m.putAll(this) ;

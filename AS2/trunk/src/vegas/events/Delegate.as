@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- Delegate
+/** Delegate
 
 	AUTHOR
 
@@ -59,15 +59,19 @@
 		
 		- toString():String
 
+	INHERIT
+	
+		CoreObject → Delegate
+
 	IMPLEMENTS
 	
-		ICloneable, EventListener, IRunnable, IFormattable, IHashable
+		EventListener, ICloneable, IFormattable, IHashable, IRunnable
 
 	SEE ALSO
 	
 		Event
 
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;

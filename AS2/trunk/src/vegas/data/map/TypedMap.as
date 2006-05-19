@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- TypedMap
+/** TypedMap
 	
 	AUTHOR
 
@@ -73,13 +73,13 @@
 	
 	INHERIT
 	
-		Object > AbstractTypeable > AbstractTypeable
+		CoreObject → AbstractTypeable → AbstractTypeable
 
 	IMPLEMENTS 
 
 		ICloneable, Iterable, Map, Typeable, ISerializable, IFormattable, Validator
 	
-----------  */
+**/
 
 import vegas.core.ICloneable;
 import vegas.core.IFormattable;
