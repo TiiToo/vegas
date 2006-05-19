@@ -110,8 +110,6 @@
 
 import vegas.data.Collection;
 import vegas.data.iterator.Iterator;
-import vegas.data.Map;
-import vegas.data.map.HashMap;
 import vegas.data.map.MultiHashMap;
 import vegas.data.Set;
 import vegas.data.set.HashSet;
