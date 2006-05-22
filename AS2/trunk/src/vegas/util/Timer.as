@@ -21,7 +21,7 @@
   
 */
 
-/* ------- Timer
+/** Timer
 
 	AUTHOR
 
@@ -40,8 +40,8 @@
 
 	EXAMPLE
 	
+		import vegas.events.Delegate ;
 		import vegas.events.EventListener ;
-		import vegas.events.EventListenerProxy ;
 		import vegas.events.TimerEvent ;
 		import vegas.events.TimerEventType ;
 		import vegas.util.Timer  ;
@@ -50,7 +50,7 @@
 			trace("onTimer: " + event.type) ;
 		}
 		
-		var timeListener:EventListener = new EventListenerProxy(this, onTimer) ;
+		var timeListener:EventListener = new Delegate(this, onTimer) ;
 		
 		var myTimer:Timer = new Timer(1500, 3) ;
 		myTimer.addEventListener(TimerEventType.START, timeListener);
@@ -127,7 +127,7 @@
 		- TimerEvent
 		- TimerEventType
 
-----------  */
+**/
 
 import vegas.events.TimerEvent;
 import vegas.events.TimerEventType;

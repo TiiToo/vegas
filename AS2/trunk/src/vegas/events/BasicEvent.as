@@ -35,7 +35,7 @@
 
 	CONSTRUCTOR
 	
-		var ev:BasicEvent = new BasicEvent(type:String, target, context) ;
+		var e:BasicEvent = new BasicEvent(type:String, target, context) ;
 
 	METHOD SUMMARY
 	
@@ -99,8 +99,8 @@
 
 import vegas.core.CoreObject;
 import vegas.events.Event;
-import vegas.events.EventFormat;
 import vegas.events.EventPhase;
+import vegas.util.ConstructorUtil;
 
 /**
  * {@code BasicEvent} is the basical event structure to work with {@link EventDispatcher} and {@link FastDispatcher}.
@@ -149,87 +149,43 @@ class vegas.events.BasicEvent extends CoreObject implements Event {
 	}
 	
 	/**
-	 * Allows an object to be copied by reference.
-	 * @usage   
 	 * @return a new clone reference.
 	 */
 	public function clone() {
-		return new BasicEvent(_type, _target, _context) ;
+		return new BasicEvent(getType(), getTarget(), getContext()) ;
 	}
 
 	/**
-	 * Allows an object to be copied by reference.
-	 * @usage   
 	 * @return 'true' if the event is bubbling.
 	 */
 	public function getBubbles():Boolean {
 		return _bubbles ;
 	}
 
-	/**
-	 * Enter description here
-	 * 
-	 * @usage   
-	 * @return  
-	 */
 	public function getContext() {
 		return _context ;
 	}
 
-	/**
-	 * Enter description here
-	 * 
-	 * @usage   
-	 * @return  
-	 */
 	public function getCurrentTarget() {
 		return _currentTarget ;
 	}
 
-	/**
-	 * Enter description here
-	 * 
-	 * @usage   
-	 * @return  
-	 */
 	public function getEventPhase():Number {
 		return _eventPhase ;
 	}
 
-	/**
-	 * Enter description here
-	 * 
-	 * @usage   
-	 * @return  
-	 */
 	public function getTarget() {
 		return _target ;
 	}
 	
-	/**
-	 * Get the event timestamp.
-	 * @usage  var time:Date = new Date(ev.getTimeStamp()) ;
-	 * @return the event number timestamp.
-	 */
 	public function getTimeStamp():Number {
 		return _time ;
 	}
 
-	/**
-	 * Returns event type (name).
-	 * @return an {@link EventType} instance
-	 */
 	public function getType():String {
 		return _type ;
 	}
 
-	/**
-	 * Inititalize the current event
-	 * @param   type       
-	 * @param   bubbles    
-	 * @param   cancelable 
-	 * @return  nothing
-	 */
 	public 	function initEvent(type:String, bubbles:Boolean, cancelable:Boolean):Void {
 		_type = type ;
 		_bubbles = bubbles ;
@@ -237,10 +193,6 @@ class vegas.events.BasicEvent extends CoreObject implements Event {
 		_time = (new Date()).valueOf() ;
 	}
 
-	/**
-	 * Returns 'true' if the event is cancelled.
-	 * @return 'true' if the event is cancelled.
-	 */
 	public function isCancelled():Boolean {
 		return _cancelled ;
 	}
@@ -286,7 +238,32 @@ class vegas.events.BasicEvent extends CoreObject implements Event {
 	}
 	
 	public function toString():String {
-		return (new EventFormat()).formatToString(this) ;
+		var phase:Number = getEventPhase() ;
+		var name:String = ConstructorUtil.getName(this);
+		var txt:String = "[" + name ;
+		if (getType()) txt += " " + getType() ;
+		switch (phase) {
+			case EventPhase.CAPTURING_PHASE :
+				txt += ", CAPTURING" ;
+				break;
+			case EventPhase.AT_TARGET:
+				txt += ", AT TARGET" ;
+				break ;
+			case EventPhase.BUBBLING_PHASE:
+				txt += ", BUBBLING" ;
+				break ;
+			default :
+				txt += ", (inactive)" ;
+				break;
+		}
+		if (getBubbles() && phase != EventPhase.BUBBLING_PHASE) {
+			txt += ", bubbles" ;
+		}
+		if (isCancelled()) {
+			txt += ", can cancel" ;
+		}
+		txt += "]" ;
+		return txt ;
 	}
   
 	// ----o Private Properties
@@ -300,6 +277,5 @@ class vegas.events.BasicEvent extends CoreObject implements Event {
 	private var _target = null ;
 	private var _time:Number ;
 	private var _type:String ;
-
 	
 }

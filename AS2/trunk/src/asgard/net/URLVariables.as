@@ -21,7 +21,7 @@
   
 */
 
-/* -------- URLVariables
+/** URLVariables
 
 	AUTHOR
 
@@ -45,13 +45,13 @@
 		
 	INHERIT
 	
-		CoreObject > URLVariables
+		CoreObject → URLVariables
 		
 	IMPLEMENTS
 	
 		IFormattable, IHashable, ISerializable
 
-------------*/
+**/
 
 import vegas.core.CoreObject;
 import vegas.core.ISerializable;

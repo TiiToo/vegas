@@ -48,7 +48,7 @@
 		- dispatchEvent( event , [isQueue, [target, [context]]]):Event
 		
 		- getEventDispatcher():EventDispatcher 
-
+		
  		- getEventListeners(eventName:String):EventListenerCollection
 		
 		- getGlobalEventListeners():EventListenerCollection
@@ -56,9 +56,9 @@
 		- getParent():EventDispatcher
 		
 		- getRegisteredEventNames():Set
-	
+		
 		- initEventDispatcher():EventDispatcher 
- 
+		
  		- hasEventListener(eventName:String):Boolean
 		
 		- removeEventListener(eventName:String, listener, useCapture:Boolean ):EventListener
@@ -66,11 +66,11 @@
 		- removeGlobalEventListener(o):EventListener
 		
 		- setParent(parent:EventDispatcher):Void
-		
+	
 	INHERIT
-		
+
 		 CoreObject → AbstractCoreEventDispatcher
-		 
+ 
  	IMPLEMENTS
  
 		EventTarget, IEventDispatcher, IFormattable, IHashable

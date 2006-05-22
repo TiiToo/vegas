@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	Event [interface]
+/**	Event [interface]
 
 	AUTHOR
 	
@@ -81,7 +81,7 @@
 	
 		ICloneable
 	
-----------  */
+**/
 
 import vegas.core.ICloneable;
 

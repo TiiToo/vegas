@@ -61,7 +61,7 @@
 	
 		Event, IFormattable, IHashable
 
-----------  */
+**/
 
 import asgard.events.ActionEvent ;
 

@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- Warning
+/** Warning
 
 	AUTHOR
 
@@ -59,13 +59,13 @@
 
 	INHERIT
 	
-		Object > Error > AbstractError > Warning
+		Object → Error → AbstractError → Warning
 	
 	IMPLEMENT
 	
-		IFormattable
+		IFormattable, IHashable
 
-----------  */
+**/
 
 import vegas.errors.AbstractError;
 import vegas.errors.ErrorElement;

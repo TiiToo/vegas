@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- IEventDispatcher [interface]
+/** IEventDispatcher [interface]
 
 	AUTHOR
 	
@@ -57,7 +57,7 @@
 	
 		EventTarget
 
-----------  */
+**/
 
 import vegas.data.Set;
 import vegas.events.EventListener;

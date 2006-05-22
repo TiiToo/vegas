@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	ValidatorEventType
+/**	ValidatorEventType
 
 	AUTHOR
 
@@ -47,7 +47,7 @@
 		
 			"valid"
 
-----------  */
+**/
 
 class vegas.events.ValidatorEventType {
 

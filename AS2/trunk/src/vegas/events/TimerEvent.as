@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	TimerEvent
+/**	TimerEvent
 
 	AUTHOR
 
@@ -97,13 +97,13 @@
 
 	INHERIT
 	
-		Object > BasicEvent > DynamicEvent > TimerEvent
+		Object → BasicEvent → DynamicEvent → TimerEvent
 		
 	IMPLEMENTS
 	
 		ICloneable, Event
 
-----------  */
+**/
 
 import vegas.events.DynamicEvent;
 

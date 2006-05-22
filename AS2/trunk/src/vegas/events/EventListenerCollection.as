@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	EventListenerCollection
+/**	EventListenerCollection
 
 	AUTHOR
 	
@@ -47,9 +47,7 @@
 	
 	IMPLEMENTS
 	
-		CoreObject
-			|
-			EventListenerCollection
+		CoreObject → EventListenerCollection
 	
 	IMPLEMENTS 
 	
@@ -61,7 +59,7 @@
 	
 	TODO : optimiser les itérations
 	
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.data.iterator.Iterable;
@@ -80,7 +78,7 @@ class vegas.events.EventListenerCollection extends CoreObject implements Iterabl
 	// ----o Constructor
 	
 	public function EventListenerCollection() {
-		_listeners = new SortedArrayList ;
+		_listeners = new SortedArrayList() ;
 		_listeners.setComparator(new EventListenerComparator()) ;
 		_listeners.setOptions(Array.NUMERIC) ;
 	}
@@ -100,7 +98,7 @@ class vegas.events.EventListenerCollection extends CoreObject implements Iterabl
 	}
 	
 	public function propagate(e:Event):Event {
-		var remove:Array = new Array ;
+		var remove:Array = new Array() ;
 		var l:Number = _listeners.size() ;
 		for (var i:Number = 0 ; i<l ; i++) {
 			if (e["stop"] == EventPhase.STOP_IMMEDIATE) break ;

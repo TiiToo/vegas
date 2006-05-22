@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	TextEvent
+/**	TextEvent
 
 	AUTHOR
 		
@@ -97,13 +97,13 @@
 
 	INHERIT
 	
-		CoreObject > BasicEvent > DynamicEvent > TextEvent
+		CoreObject → BasicEvent → DynamicEvent → TextEvent
 
 	IMPLEMENTS
 	
 		ICloneable, IFormattable, IHashable, Event
 	
-----------  */
+**/
 
 import vegas.events.DynamicEvent;
 

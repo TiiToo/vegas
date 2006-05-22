@@ -21,7 +21,7 @@
   
 */
 
-/* ------ EventListenerContainer
+/** EventListenerContainer
 
 	AUTHOR
 	
@@ -49,13 +49,13 @@
 	
 	INHERIT
 	
-		CoreObject > EventListenerContainer
+		CoreObject → EventListenerContainer
 	
 	IMPLEMENT
 
 		IFormattable, IHashable
 	
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.events.EventListener;

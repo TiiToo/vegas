@@ -21,7 +21,7 @@
   
 */
 
-/* ---- EventDispatcher
+/** EventDispatcher
 
 	AUTHOR
 	
@@ -178,9 +178,7 @@
 		REFACTORING : [2006-01-22] Change params in addEventListener Method
 		ADD         : [2006-03-11] add static release(name:String) method.
 	
-	TODO   : [2006-01-19] Vérifier le stopImmediatePropagation() et voir le stopPropagation en AS3 !
-	
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.data.map.HashMap;

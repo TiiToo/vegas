@@ -122,21 +122,26 @@
 	
 	INHERIT
 
-		CoreObject → AbstractCoreEventDispatcher → AbstractLoader
+		CoreObject → AbstractCoreEventDispatcher → AbstractLoader → VideoLoader
 	
 	IMPLEMENTS
 	
-		ILoader, IEventDispatcher, EventTarget
+		EventTarget, IFormattable, IHashable, ILoader, IEventDispatcher
 	
 **/
 
+// TODO TESTER !!! 
+
 import asgard.events.MediaEvent;
+import asgard.events.MediaEventType;
 import asgard.net.AbstractLoader;
 
+import vegas.errors.UnsupportedOperation;
 import vegas.events.Delegate;
 import vegas.events.TimerEvent;
 import vegas.events.TimerEventType;
 import vegas.util.FrameTimer;
+import vegas.util.Timer;
 
 /**
  * @author eKameleon
@@ -152,7 +157,7 @@ class asgard.media.VideoLoader extends AbstractLoader {
 		_oVideo = video ? video : mcTarget.video ;
 		
 		if (_oVideo == undefined) {
-			// trace ("**Error** " + toString() + " failed. Invalid video object was passed in the constructor.") ;
+			trace ("**Error** " + toString() + " failed. Invalid video object was passed in the constructor.") ;
 		}
 		
 		setAutoPlay( true );
@@ -168,6 +173,9 @@ class asgard.media.VideoLoader extends AbstractLoader {
 		
 		_timer = new FrameTimer(24) ;
 		_timer.addEventListener(TimerEventType.TIMER, new Delegate(this, _onTimer)) ;
+		
+		_timerHeadTime = new Timer(100, 1) ;
+		_timerHeadTime.addEventListener(TimerEventType.TIMER, new Delegate(this, _onFrameUpdate)) ;
 		
 	}
 	
@@ -247,7 +255,7 @@ class asgard.media.VideoLoader extends AbstractLoader {
 				_load() ;
 			}
 		} else {
-			// Logger.LOG( toString() + " got invalid url property, can't load.", LogLevel.WARN, Debug.channel );
+			trace( toString() + " got invalid url property, can't load." );
 		}
 	}
 	
@@ -261,7 +269,9 @@ class asgard.media.VideoLoader extends AbstractLoader {
 			_oNS.pause( true ) ;
 			setPlaying(false) ;
 			_timer.stop() ;
-			// if (noEvent != true) fireEventType(MediaEventType.onMediaResumedEVENT) ;
+			if (noEvent != true) {
+				notifyEvent(MediaEventType.onMediaResumedEVENT) ;
+			}
 		} else {
 			_oNS.pause( false ) ;
 			setPlaying(true) ;
@@ -272,7 +282,7 @@ class asgard.media.VideoLoader extends AbstractLoader {
 	public function play(n:Number):Void {
 		if (!_bIsLoaded) _load();
 		if (!isNaN(n)) _oNS.seek(n);
-		// fireEventType(MediaEventType.onMediaStartedEVENT) ;
+		notifyEvent(MediaEventType.onMediaStartedEVENT) ;
 		_oNS.pause(false) ;
 		setPlaying(true) ;
 		_timer.start() ;
@@ -305,7 +315,8 @@ class asgard.media.VideoLoader extends AbstractLoader {
 		_oNS.seek(n);
 		if (!isPlaying()) {
 			_oNS.pause(false);
-			// CommandManagerMS.getInstance().delay( new Delegate(this, _onFrameUpdate), 100);
+			if (_timerHeadTime.getRunning()) _timerHeadTime.stop() ;
+			_timerHeadTime.start() ;
 		}
 	}
 	
@@ -334,7 +345,7 @@ class asgard.media.VideoLoader extends AbstractLoader {
 	public function stop():Void {
 		pause(true) ;
 		setPlayheadTime(0) ;
-		// fireEventType(MediaEventType.onMediaStoppedEVENT) ;
+		notifyEvent(MediaEventType.onMediaStoppedEVENT) ;
 	}
 
 	// ----o Virtual Properties
@@ -363,9 +374,16 @@ class asgard.media.VideoLoader extends AbstractLoader {
 	
 	private function _load():Void {
 		
-		if ( this.getUrl() == undefined ) {
-			// Logger.LOG( "**Error** " + toString() + " can't play without any valid url property, loading fails.", LogLevel.ERROR, Debug.channel);
+		try {
+			if ( this.getUrl() == undefined ) {
+				throw new UnsupportedOperation( toString() + " can't play without any valid url property, loading fails.");
+			}
+			
+		} catch (e:UnsupportedOperation) {
+			
+			trace(e.toString()) ;
 			return ;
+				
 		}
 		
 		_oNC = new NetConnection();
@@ -415,6 +433,7 @@ class asgard.media.VideoLoader extends AbstractLoader {
 	private var _oVideo:Video ;
 	
 	private var _timer:FrameTimer ;
+	private var _timerHeadTime:Timer ;
 	
 	// ----o Private Methods
 
@@ -426,40 +445,47 @@ class asgard.media.VideoLoader extends AbstractLoader {
 		
 	private function _onStatus(info:Object):Void {
 		
-		// trace(info.code) ;
+		// trace("> " + this + " : " + info.code) ;
 		
 		switch ( info.code ) {
 			
 			case 'NetStream.Play.Start' :
 					
-					// Logger.LOG( toString() + " stream starts playing.", LogLevel.DEBUG, Debug.channel );
+					trace( toString() + " stream starts playing.");
 					
 					break;
 					
 			case 'NetStream.Play.Stop' :
 					
-					// fireEventType(MediaEventType.onMediaFinishedEVENT) ;
-					// Logger.LOG( toString() + " stream stops playing.", LogLevel.DEBUG, Debug.channel );
+					notifyEvent(MediaEventType.onMediaFinishedEVENT) ;
+					
+					trace(toString() + " stream stops playing.");
+					
 					if (isLoop()) {
 						this.play(0) ;
 					}
+					
 					break;
 					
 			case 'NetStream.Seek.InvalidTime' :
-				// Logger.LOG( toString() + " seeks invalid time in '" + this.getURL() + "'.", LogLevel.WARN, Debug.channel );
+				
+				trace( toString() + " seeks invalid time in '" + this.getUrl() + "'.");
 				break;
 				
 			case 'NetStream.Buffer.Full' :
+				
 				if ( isAutoSize() ) setSize(_oVideo.width, _oVideo.height);
-				// Logger.LOG( toString() + " stream buffer is full.", LogLevel.DEBUG, Debug.channel );
+				trace( toString() + " stream buffer is full." );
 				break;
 				
 			case 'NetConnection.Connect.Success' : 
-				// Logger.LOG( toString() + " local connection successful.", LogLevel.DEBUG, Debug.channel );
+				
+				trace(toString() + " local connection successful.");
 				break;
 				
 			case 'NetConnection.Connect.Failed' : 
-				// Logger.LOG( toString() + " local connection failed", LogLevel.DEBUG, Debug.channel );
+				
+				trace( toString() + " local connection failed");
 				break;
 		}
 	}
@@ -469,7 +495,7 @@ class asgard.media.VideoLoader extends AbstractLoader {
 	}
 		
 	private function _onTimer(ev:TimerEvent):Void {
-		// fireEventType(MediaEventType.onMediaProgressEVENT) ;
+		notifyEvent(MediaEventType.onMediaProgressEVENT) ;
 	}
 	
 

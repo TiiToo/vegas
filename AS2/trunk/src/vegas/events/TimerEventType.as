@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	TimerEventType
+/**	TimerEventType
 
 	AUTHOR
 
@@ -55,7 +55,7 @@
 		
 			"timer"
 
-----------  */
+**/
 
 class vegas.events.TimerEventType {
 

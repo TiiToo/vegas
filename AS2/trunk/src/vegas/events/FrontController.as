@@ -21,7 +21,7 @@
   
 */
 
-/* ------- FrontController
+/** FrontController
 
 	AUTHOR
 	
@@ -39,6 +39,8 @@
 
 	METHOD SUMMARY
 	
+		- fireEvent(ev:Event):Void
+	
 		- getListener(eventName:String):EventListener 
 		
 		- insert(eventName:String, listener:EventListener):Void
@@ -47,15 +49,15 @@
 		
 	INHERIT
 	
-		CoreObject
+		CoreObject → FrontController
 	
 	IMPLEMENTS 
 		
 		IFormattable, IHashable
 
-----------  */
+**/
 
-import vegas.core.CoreObject
+import vegas.core.CoreObject ;
 import vegas.data.Map ;
 import vegas.data.map.HashMap ;
 import vegas.events.Event ;
@@ -84,10 +86,10 @@ class vegas.events.FrontController extends CoreObject  {
 
 	/**
 	 * Dispatch an event into the FrontController
-	 * @param  ev:Event 
+	 * @param e:Event 
 	 */
-	public function fireEvent(ev:Event):Void {
-		_oE.dispatchEvent(ev) ;
+	public function fireEvent(e:Event):Void {
+		_oE.dispatchEvent(e) ;
 	}
 
 	/**

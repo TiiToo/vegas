@@ -21,7 +21,7 @@
   
 */
 
-/** ------ JSONLoader
+/** JSONLoader
 
 	AUTHOR
 
@@ -145,21 +145,13 @@
 
 	INHERIT
 	
-		CoreObject
-			|
-			AbstractCoreEventDispatcher
-			 |
-			 AbstractLoader
-			 	|
-			 	URLLoader
-			 		 |
-			 		 JSONLoader
+		CoreObject → AbstractCoreEventDispatcher → AbstractLoader → URLLoader → JSONLoader
 			 	
 	IMPLEMENTS
 	
 		EventTarget, IFormattable, IHashable, IEventDispatcher, ILoader
 	
-----------  */	
+**/	
 
 import asgard.net.DataFormat;
 import asgard.net.URLLoader;

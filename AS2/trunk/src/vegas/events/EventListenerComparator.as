@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	EventListenerComparator
+/**	EventListenerComparator
 
 	AUTHOR
 	
@@ -53,7 +53,7 @@
 
 	INHERIT
 	
-		CoreObject > EventListenerComparator
+		CoreObject → EventListenerComparator
 
 	IMPLEMENTS
 	

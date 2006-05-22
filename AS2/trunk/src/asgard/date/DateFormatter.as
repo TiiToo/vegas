@@ -109,9 +109,7 @@
 	
 	INHERIT
 	
-		CoreObject
-			|
-			AbstractFormatter
+		CoreObject → AbstractFormatter
 	
 	IMPLEMENT
 	

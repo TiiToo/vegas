@@ -164,6 +164,9 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 		return m ;
 	}
 
+	/**
+	 * Checks whether the map contains the key specified.
+	 */
 	public function containsKey( key ):Boolean {
 		return _map.containsKey( key ) ;
 	}
@@ -239,6 +242,9 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 		}
 	}
 
+	/**
+	 * Gets an iterator for the map to iterate keys.
+	 */
 	public function keyIterator():Iterator {
 		return _map.keyIterator() ;
 	}

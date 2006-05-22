@@ -21,7 +21,7 @@
   
 */
 
-/* ------- EventPhase
+/** EventPhase
 
 	AUTHOR
 
@@ -67,7 +67,7 @@
 		
 			Stop the phase immediately (4). Use only by the Event and EventDispatcher class.
 	
-----------  */
+**/
 
 class vegas.events.EventPhase {
 

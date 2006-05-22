@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	FastDispatcher
+/**	FastDispatcher
 
 	AUTHOR
 	
@@ -100,9 +100,7 @@
 
 	INHERIT
 	
-		CoreObject
-			|
-			FastDispatcher
+		CoreObject → FastDispatcher
 
 	IMPLEMENTS
 	
@@ -111,7 +109,8 @@
 	CHANGE :: 2005-12-15 constructor more easy with [].concat(ar) 
 	
 	TODO   :: 2006-01-19 modifier la m�thode dispatch et utiliser _getEvent comme dans EventDispatcher
-----------  */
+
+**/
 
 import vegas.core.CoreObject;
 import vegas.data.iterator.ArrayIterator;

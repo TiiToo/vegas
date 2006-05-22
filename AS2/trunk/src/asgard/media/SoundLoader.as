@@ -1,6 +1,68 @@
+/**	SoundLoader
+
+	AUTHOR
+
+		Name : SoundLoader
+		Package : asgard.media
+		Version : 1.0.0.0
+		Date :  2006-06-22
+		Author : ekameleon
+		URL : http://www.ekameleon.net
+		Mail : contact@ekameleon.net
+	
+	PROPERTY SUMMARY
+
+		- duration:Number [Read Only]
+		
+		- position:Number [R/W]
+		
+		- volume:Number [R/W]
+	
+	METHOD SUMMARY
+	
+		- toString():String
+	
+	EVENT SUMMARY
+	
+		MediaEvent
+	
+	EVENT SUMMARY
+	
+		- LoadEventType.onLoadInitEVENT:String
+		
+		- LoadEventType.onLoadProgressEVENT:String
+		
+		- LoadEventType.onTimeOutEVENT:String
+
+		- MediaEventType.onMediaFinishedEVENT:String
+		
+		- MediaEventType.onMediaProgressEVENT:String
+		
+		- MediaEventType.onMediaResumedEVENT:String
+		
+		- MediaEventType.onMediaStartedEVENT:String
+		
+		- MediaEventType.onMediaStoppedEVENT:String
+	
+	INHERIT
+
+		CoreObject → AbstractCoreEventDispatcher → AbstractLoader → SoundLoader
+	
+	IMPLEMENTS
+	
+		EventTarget, IFormattable, IHashable, ILoader, IEventDispatcher 
+	
+**/
+
+// TODO TESTER !!! 
+
+import asgard.events.MediaEvent;
+import asgard.events.MediaEventType;
 import asgard.net.AbstractLoader;
 
 import vegas.errors.IllegalArgumentError;
+import vegas.errors.UnsupportedOperation;
+import vegas.errors.Warning;
 import vegas.events.Delegate;
 import vegas.events.TimerEvent;
 import vegas.events.TimerEventType;
@@ -65,7 +127,7 @@ class asgard.media.SoundLoader extends AbstractLoader {
 	}
 		
 	public function initEventSource():Void {
-		//_e = new MediaEvent(null, this) ;
+		_e = new MediaEvent(null, this) ;
 	}
 
 	public function isAutoPlay() : Boolean {
@@ -79,12 +141,18 @@ class asgard.media.SoundLoader extends AbstractLoader {
 	public function load(sURL:String):Void {
 		sURL = sURL || this.getUrl() ;
 		this.stop(true) ;
-		if( sURL ) {
-			super.setUrl( sURL ) ;
-			_isLoaded = false ;
-			_load() ;
-		} else {
-			// Logger.LOG( toString() + " got invalid url property, can't load.", LogLevel.WARN, Debug.channel );
+		try {
+			if( sURL ) {
+				super.setUrl( sURL ) ;
+				_isLoaded = false ;
+				_load() ;
+			} else {
+				throw new Warning ( toString() + " got invalid url property, can't load." ) ; 
+			}
+		} catch(e:Warning) {
+			
+			trace(e.toString()) ;
+			
 		}
 	}
 
@@ -94,7 +162,9 @@ class asgard.media.SoundLoader extends AbstractLoader {
 			_currentPos = _oSound.position ;
 			_oSound.stop() ;
 			setPlaying(false) ;
-			// if (noEvent != true) fireEventType(MediaEventType.onMediaResumedEVENT) ;
+			if (noEvent != true) {
+				notifyEvent(MediaEventType.onMediaResumedEVENT) ;
+			}
 		}
 	}
 
@@ -106,7 +176,9 @@ class asgard.media.SoundLoader extends AbstractLoader {
 		_oSound.start(_currentPos) ;
 		setPlaying(true) ;
 		_timer.start() ;
-		//if (noEvent != true) fireEventType(MediaEventType.onMediaStartedEVENT) ;
+		if (noEvent != true) {
+			notifyEvent(MediaEventType.onMediaStartedEVENT) ;
+		}
 	}
 	
 	public function release():Void {
@@ -146,7 +218,7 @@ class asgard.media.SoundLoader extends AbstractLoader {
 			setPlaying(false) ;
 			_oSound.stop() ;
 			_timer.stop() ;
-			//if (!noEvent) fireEventType(MediaEventType.onMediaStoppedEVENT) ;
+			if (!noEvent) notifyEvent(MediaEventType.onMediaStoppedEVENT) ;
 		}
 	}
 
@@ -176,6 +248,8 @@ class asgard.media.SoundLoader extends AbstractLoader {
 	
 	private var _currentPos:Number ;
 	
+	private var _e:MediaEvent ;
+	
 	private var _isAutoPlay : Boolean;
 	private var _isLoaded : Boolean ;
 	private var _isLoop : Boolean ;
@@ -190,28 +264,36 @@ class asgard.media.SoundLoader extends AbstractLoader {
 	// ----o Private Methods
 
 	private function _load():Void {
-		if ( this.getUrl() == undefined ) {
-			//Logger.LOG( "**Error** " + toString() + " can't play without any valid url property, loading fails.", LogLevel.ERROR, Debug.channel);
+		
+		try {
+			if ( this.getUrl() == undefined ) {
+				throw new UnsupportedOperation( toString() + " can't play without any valid url property, loading fails.");
+			}
+			
+		} catch (e:UnsupportedOperation) {
+			
+			trace(e.toString()) ;
 			return ;
+				
 		}
 		
 		_oSound.loadSound( this.getUrl() , isAutoPlay() ) ;
 		if (isAutoPlay()) {
 			setPlaying(true) ;
 			_timer.start() ;
-			// fireEventType(MediaEventType.onMediaStartedEVENT) ;
+			notifyEvent(MediaEventType.onMediaStartedEVENT) ;
 		}
 		_isLoaded = true;
 		super.load();
 	}
 
 	private function _onSoundComplete():Void {
-		//dispatchEvent( MediaEventType.onMediaFinishedEVENT) ;
+		notifyEvent(MediaEventType.onMediaFinishedEVENT) ;
 		if (_isLoop) _oSound.start() ; 
 	}
 
 	private function _onTimer(ev:TimerEvent):Void {
-		//fireEventType(MediaEventType.onMediaProgressEVENT) ;
+		notifyEvent(MediaEventType.onMediaProgressEVENT) ;
 	}
 
 }

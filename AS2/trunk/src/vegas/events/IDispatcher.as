@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- IDispatcher [interface]
+/** IDispatcher [interface]
 
 	AUTHOR
 	
@@ -47,7 +47,7 @@
 		
 		- updateEvent(eventName:String, oInit):Void
 
-----------  */
+**/
 
 interface vegas.events.IDispatcher {
 	

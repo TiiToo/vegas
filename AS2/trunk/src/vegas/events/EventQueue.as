@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	EventQueue
+/**	EventQueue
 
 	AUTHOR
 	
@@ -55,7 +55,7 @@
 
 		IFormattable, IHashable
 
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.data.iterator.Iterator;
@@ -68,7 +68,7 @@ class vegas.events.EventQueue extends CoreObject  {
 	// ----o Constructor
 	
 	public function EventQueue() {
-		_events = new LinearQueue ;
+		_events = new LinearQueue() ;
 	}
 
 	// ----o Public Methods
@@ -80,7 +80,7 @@ class vegas.events.EventQueue extends CoreObject  {
 
     public function getQueuedEvents():Queue {
 		if (typeof(arguments[0]) == "string") {
-			var q:LinearQueue = new LinearQueue ;
+			var q:LinearQueue = new LinearQueue() ;
 			var eventType:String = arguments[0] ;
 			var it:Iterator = _events.iterator() ;
 			while (it.hasNext()) {

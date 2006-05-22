@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- EDispatcher
+/** EDispatcher
 
 	AUTHOR
 	
@@ -37,7 +37,6 @@
 	
 		Private
 
-	
 	METHOD SUMMARY
 	
 		- addEventListener( eventName:String, obj, func ):Void 
@@ -60,7 +59,7 @@
 	
 		GDispatcher by Grant Skinner, http://gskinner.com/
 
-----------  */
+**/
 
 import vegas.events.Delegate;
 import vegas.util.Mixin;

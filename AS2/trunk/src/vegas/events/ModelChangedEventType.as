@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	ModelChangedEvent
+/** ModelChangedEvent
 
 	AUTHOR
 
@@ -68,8 +68,7 @@
 		
 			"modelChanged"
 	
-	
-----------  */
+**/
 
 class vegas.events.ModelChangedEventType {
 

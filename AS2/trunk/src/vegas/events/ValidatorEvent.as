@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	ValidatorEvent
+/**	ValidatorEvent
 
 	AUTHOR
 
@@ -103,13 +103,13 @@
 	
 	INHERIT
 	
-		BasicEvent > DynamicEvent > ValidatorEvent
+		BasicEvent → DynamicEvent → ValidatorEvent
 		
 	IMPLEMENTS
 	
 		Event
 
-----------  */
+**/
 
 import vegas.events.DynamicEvent;
 

@@ -101,7 +101,7 @@
 
 		IFormattable, IHashable, IRunnable, ISerializable, Iterable, Typeable, Validator
 	
-----------  */	
+**/	
 
 import vegas.data.collections.SimpleCollection;
 import vegas.data.collections.TypedCollection;

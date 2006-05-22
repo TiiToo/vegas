@@ -21,7 +21,7 @@
   
 */
 
-/* -------- URLRequest
+/** URLRequest
 
 	AUTHOR
 
@@ -33,15 +33,63 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
+	PROPERTY SUMMARY
+	
+		- contentyType:String [R/W]
+		
+		- data [R/W]
+		
+		- method:String [R/W]
+		
+		- requestHeaders:Array [R/W]
+		
+		- url:String [R/W]
+		
+		- useCodePage:Boolean [R/W]	
 
-------------*/
+	METHOD SUMMARY
+	
+		- clone()
+		
+		- getContentType():String
+		
+		- getData()
+		
+		- getMethod():String
+		
+		- getRequestHeaders():Array
+		
+		- getUrl():String
+		
+		- getUseCodePage():Boolean
+
+		- setContentType(sType:String):Void
+		
+		- setData(o)
+		
+		- setMethod(sMethod:String):Void
+		
+		- setRequestHeaders(ar:Array):Void
+		
+		- setUrl(sURL:String):Void
+		
+		- setUseCodePage(b:Boolean):Void
+
+	INHERIT
+	
+		CoreObject → URLRequest
+		
+	IMPLEMENTS
+	
+		ICloneable, IFormattable, IHashable
+
+**/
 
 import asgard.net.URLRequestMethod;
 
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
 import vegas.errors.ArgumentsError;
-import vegas.util.factory.PropertyFactory;
 
 /**
  * @author eKameleon
@@ -50,61 +98,21 @@ import vegas.util.factory.PropertyFactory;
  
 class asgard.net.URLRequest extends CoreObject implements ICloneable {
 	
-	/**
-	 * Constructor
-	 */
+	// ----o Constructor
 		
 	public function URLRequest(url:String) {
 		super() ;
 		_sURL = url ;
 	}
 
-	/**
-	 * Constants
-	 */
+	// ----o Constants
 		
 	static public var DEFAULT_CONTENT_TYPE:String = "application/x-www-form-urlencoded" ;
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(URLRequest, null , 7, 7) ;
 
-	/**
-	 * Public Properties
-	 */
-	
-	/**
-	 * The MIME content type of any POST data.
-	 */
-	public var contentType:String ; // [R/W]
-	
-	/**
-	 * An object containing data to be transmitted with the URL request.
-	 */
-	public var data ; // [R/W]
-	
-	/**
-	 * Controls whether the HTTP form submission method is a GET or POST operation.
-	 */
-	public var method:String ; // [R/W]
-	
-	/**
-	 * The array of HTTP request headers to be appended to the HTTP request.
-	 */
-	public var requestHeaders:Array ; // [R/W]
-	
-	/**
-	 * The URL to be requested.
-	 */
-	public var url:String ; // [R/W]
-	
-	/**
-	 * If true, the request is encoded using the system code page, rather than Unicode.
-	 */
-	public var useCodePage:Boolean ; // [R/W]
-	
-	/**
-	 * Public Methods
-	 */
-	
+	// ----o Public Methods
+
 	public function clone() {
 		var request:URLRequest = new URLRequest(this.getUrl()) ;
 		request.setData( getData() ) ;
@@ -171,20 +179,69 @@ class asgard.net.URLRequest extends CoreObject implements ICloneable {
 		_bUseCodePage = b ;
 	}
 
-	/**
-	 * Virtual Properties
-	 */
+	// ----o Virtual Properties
 
-	static private var __CONTENT_TYPE__:Boolean = PropertyFactory.create(URLRequest, "contentType", true) ;
-	static private var __DATA__:Boolean = PropertyFactory.create(URLRequest, "data", true) ;
-	static private var __METHOD__:Boolean = PropertyFactory.create(URLRequest, "method", true) ;
-	static private var __REQUEST_HEADERS__:Boolean = PropertyFactory.create(URLRequest, "requestHeaders", true) ;		
-	static private var __URL__:Boolean = PropertyFactory.create(URLRequest, "url", true) ;	
-	static private var __USE_CODE_PAGE__:Boolean = PropertyFactory.create(URLRequest, "useCodePage", true) ;
-	
 	/**
-	 * Private Properties
+	 * The MIME content type of any POST data.
 	 */
+	public function get contentType():String {
+		return getContentType() ;
+	}
+	public function set contentType(s:String):Void {
+		setContentType(s) ;	
+	}
+
+	/**
+	 * An object containing data to be transmitted with the URL request.
+	 */
+	public function get data() {
+		return getData() ;
+	}
+	public function set data(o):Void {
+		setData(o) ;	
+	}
+
+	/**
+	 * Controls whether the HTTP form submission method is a GET or POST operation.
+	 */
+	public function get method():String {
+		return getMethod() ;
+	}
+	public function set method(s:String):Void {
+		setMethod(s) ;	
+	}
+
+	/**
+	 * The array of HTTP request headers to be appended to the HTTP request.
+	 */
+	public function get requestHeaders():Array {
+		return getRequestHeaders() ;
+	}
+	public function set requestHeaders(ar:Array):Void {
+		setRequestHeaders(ar) ;	
+	}
+
+	/**
+	 * The URL to be requested.
+	 */
+	public function get url():String {
+		return getUrl() ;
+	}
+	public function set url(sURL:String):Void {
+		setUrl(sURL) ;	
+	}
+
+	/**
+	 * If true, the request is encoded using the system code page, rather than Unicode.
+	 */
+	public function get useCodePage():Boolean {
+		return getUseCodePage() ;
+	}
+	public function set useCodePage(b:Boolean):Void {
+		setUseCodePage(b) ;	
+	}
+	
+	// ----o Private Properties
 	
 	private var _aRequestHeaders:Array ;
 	private var _bUseCodePage:Boolean ;	

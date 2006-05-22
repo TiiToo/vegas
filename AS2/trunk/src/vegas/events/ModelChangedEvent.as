@@ -117,7 +117,7 @@
 
 	INHERIT
 	
-		CoreObject > BasicEvent > ModelChangedEvent
+		CoreObject → BasicEvent → ModelChangedEvent
 
 	IMPLEMENTS
 	

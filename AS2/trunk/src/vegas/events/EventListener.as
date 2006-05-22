@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	EventListener [Interface]
+/**	EventListener [Interface]
 
 	AUTHOR
 	
@@ -38,12 +38,15 @@
 		- handleEvent(e:Event)
 			Permet d'intercepter un événement.
 
-----------  */
+**/
 
 import vegas.events.Event;
 
 interface vegas.events.EventListener {
 	
+	/**
+	 * This method is called whenever an event occurs of the type for which the EventListener interface was registered.
+	 */
 	function handleEvent(e:Event) ;
 
 }

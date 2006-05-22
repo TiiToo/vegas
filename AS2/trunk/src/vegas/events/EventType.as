@@ -21,7 +21,7 @@
   
 */
 
-/* ------- EventType
+/** EventType
 
 	AUTHOR
 
@@ -116,8 +116,7 @@
 		- UNLOAD:String
 		A Loader object generates the unload event whenever a loaded SWF file is removed using the Loader.unload() method.
 
-
-----------  */
+**/
 
 class vegas.events.EventType {
 

@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- EventTarget [interface]
+/** EventTarget [interface]
 
 	AUTHOR
 	
@@ -47,7 +47,7 @@
 		Document Object Model (DOM) Level 2 Events Specification
 			- http://www.w3.org/TR/2000/REC-DOM-Level-2-Events-20001113/
 	
-----------  */
+**/
 
 import vegas.events.Event;
 import vegas.events.EventListener;

@@ -21,7 +21,7 @@
   
 */
 
-/* ------- EventListenerProxy
+/** EventListenerProxy
 
 	AUTHOR
 	
@@ -72,7 +72,7 @@
 	
 	INHERIT
 	
-		Delegate
+		CoreObject → Delegate → EventListenerProxy
 	
 	IMPLEMENTS
 	
@@ -82,7 +82,7 @@
 	
 		Event
 
-----------  */
+**/
 
 import vegas.events.Delegate;
 import vegas.events.Event;

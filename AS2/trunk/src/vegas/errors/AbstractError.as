@@ -21,8 +21,7 @@
   
 */
 
-/* ---------- AbstractError
-
+/** AbstractError
 
 	AUTHOR
 
@@ -64,18 +63,19 @@
 
 	INHERIT
 	
-		Object > Error > AbstractError
+		Object → Error → AbstractError
 	
 	IMPLEMENT
 	
-		IFormattable
+		IFormattable, IHashable
 
 	TODO 2006-01-22 injecter le ErrorElement dans le ErrorFormat.
 
-----------  */
+**/
 
 import vegas.core.HashCode;
 import vegas.core.IFormattable;
+import vegas.core.IHashable;
 import vegas.errors.ErrorElement;
 import vegas.errors.ErrorFormat;
 import vegas.logging.ILogger;
@@ -83,7 +83,7 @@ import vegas.logging.Log;
 import vegas.util.ConstructorUtil;
 import vegas.util.factory.PropertyFactory;
 
-class vegas.errors.AbstractError extends Error implements IFormattable {
+class vegas.errors.AbstractError extends Error implements IFormattable, IHashable {
     
 	// ----o Constructor
 	

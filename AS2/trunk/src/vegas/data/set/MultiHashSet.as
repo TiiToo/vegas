@@ -135,14 +135,6 @@ class vegas.data.set.MultiHashSet extends MultiHashMap implements Set {
 	}
 
 	/**
-	 * Creates a new instance of the map value Collection(Set) container.
-	 * This method can be overridden to use your own collection type.
-	 */
-	/*override*/ public function createCollection():Collection {
-		return new HashSet() ;	
-	}
-
-	/**
 	 * Clones the map.
 	 */
 	/*override*/ public function clone() {
@@ -162,6 +154,14 @@ class vegas.data.set.MultiHashSet extends MultiHashMap implements Set {
 	 */
 	public function contains(o):Boolean {
 		return containsValue(o) ;
+	}
+
+	/**
+	 * Creates a new instance of the map value Collection(Set) container.
+	 * This method can be overridden to use your own collection type.
+	 */
+	/*override*/ public function createCollection():Collection {
+		return new HashSet() ;	
 	}
 
 	public function get( id:Number ) {

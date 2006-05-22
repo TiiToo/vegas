@@ -130,7 +130,7 @@ dynamic class vegas.events.DynamicEvent extends BasicEvent {
 	// ----o Public Methods
 
 	/*override*/ public function clone() {
-		return new DynamicEvent(_type, _target, _context) ;
+		return new DynamicEvent(getType(), getTarget(), getContext()) ;
 	}
 
 	// ----o Virtual Properties

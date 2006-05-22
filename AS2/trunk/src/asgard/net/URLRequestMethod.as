@@ -21,7 +21,7 @@
   
 */
 
-/* -------- URLRequest
+/** URLRequest
 
 	AUTHOR
 
@@ -45,7 +45,7 @@
 
 		static validate(sMethod:String):Boolean
 
-------------*/
+**/
 
 /**
  * @author eKameleon

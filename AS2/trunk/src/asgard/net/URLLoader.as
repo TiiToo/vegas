@@ -21,7 +21,7 @@
   
 */
 
-/** ------ URLLoader
+/** URLLoader
 
 	AUTHOR
 
@@ -147,19 +147,13 @@
 
 	INHERIT
 	
-		CoreObject
-			|
-			AbstractCoreEventDispatcher
-			 |
-			 AbstractLoader
-			 	|
-			 	URLLoader
+		CoreObject → AbstractCoreEventDispatcher → AbstractLoader → URLLoader
 			 	
 	IMPLEMENTS
 	
 		EventTarget, IFormattable, IHashable, IEventDispatcher, ILoader
 	
-----------  */	
+**/	
 
 import asgard.events.LoaderEvent;
 import asgard.events.LoaderEventType;
