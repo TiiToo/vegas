@@ -21,18 +21,17 @@
   
 */
 
-/** StageAlign
+/** TextFieldType
 
 	AUTHOR
 
-		Name : TextFieldAutoSize
-		Package : asgard.display
+		Name : TextFieldType
+		Package : asgard.text
 		Version : 1.0.0.0
 		Date :  2006-03-21
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
-
 
 	DESCRIPTION
 	
@@ -61,7 +60,7 @@
  * @version 1.0.0.0
  **/
  
-class asgard.display.TextFieldType {
+class asgard.text.TextFieldType {
 	
 	// ----o Constructor
 	
