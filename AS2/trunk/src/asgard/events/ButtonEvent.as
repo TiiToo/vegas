@@ -90,21 +90,13 @@
 
 	INHERIT
 	
-		CoreObject
-			|
-			BasicEvent
-				|
-		 		DynamicEvent
-			 		|
-		 			MouseEvent
-						|
-						ButtonEvent
+		CoreObject → BasicEvent → DynamicEvent → MouseEvent → ButtonEvent
 		
 	IMPLEMENTS
 	
 		IEvent
 
-----------  */
+**/
 
 import asgard.events.MouseEvent;
 

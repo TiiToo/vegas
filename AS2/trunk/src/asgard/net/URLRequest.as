@@ -225,8 +225,9 @@ class asgard.net.URLRequest extends CoreObject implements ICloneable {
 	 * The URL to be requested.
 	 */
 	public function get url():String {
-		return getUrl() ;
+		return this.getUrl() ;
 	}
+	
 	public function set url(sURL:String):Void {
 		setUrl(sURL) ;	
 	}

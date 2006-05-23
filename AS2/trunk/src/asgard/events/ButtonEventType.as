@@ -39,44 +39,43 @@
 	
 	CONSTANT SUMMARY
 	
-		- CLICK:String
+		- static CLICK:String
 		
-		- DISABLED:String
+		- static DISABLED:String
 		
-		- DOUBLE_CLICK:String
+		- static DOUBLE_CLICK:String
 		
-		- DOWN:String
+		- static DOWN:String
 		
-		- DRAG:String
+		- static DRAG:String
 		
-		- ICON_CHANGE:String
+		- static ICON_CHANGE:String
 		
-		- LABEL_CHANGE:String
+		- static LABEL_CHANGE:String
 		
-		- MOUSE_UP:String
+		- static MOUSE_UP:String
 		
-		- MOUSE_DOWN:String
+		- static MOUSE_DOWN:String
 		
-		- OUT:String
+		- static OUT:String
 		
-		- OUT_SELECTED:String
+		- static OUT_SELECTED:String
 		
-		- OVER:String
+		- static OVER:String
 		
-		- OVER_SELECTED:String
+		- static OVER_SELECTED:String
 		
-		- ROLLOUT:String
+		- static ROLLOUT:String
 		
-		- ROLLOVER:String
+		- static ROLLOVER:String
 		
-		- SELECT:String
+		- static SELECT:String
 		
-		- UNSELECT:String
+		- static UNSELECT:String
 		
-		- UP:String
+		- static UP:String
 	
-	
-----------  */
+**/
 
 import asgard.events.MouseEventType;
 

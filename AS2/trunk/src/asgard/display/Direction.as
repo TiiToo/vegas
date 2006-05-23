@@ -45,7 +45,7 @@
 		
 		- toString(n:Number):String
 
-----------  */
+**/
 
 class asgard.display.Direction {
 
