@@ -80,7 +80,7 @@
 
 **/
 
-import asgard.display.StageAlign ;
+import asgard.display.StageAlign;
 import asgard.geom.Point;
 
 class asgard.display.StageLocalizer {

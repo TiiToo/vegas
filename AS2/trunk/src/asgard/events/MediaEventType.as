@@ -35,17 +35,17 @@
 	
 	CONSTANT SUMMARY
 
-		- onMediaFinishedEVENT:String
+		- static MEDIA_FINISH:String = "onMediaFinished"
 		
-		- onMediaProgressEVENT:String
+		- static MEDIA_PROGRESS:String = "onMediaProgress"
 		
-		- onMediaResumedEVENT:String
+		- static MEDIA_RESUME:String = "onMediaResumed"
 		
-		- onMediaStartedEVENT:String
+		- static MEDIA_START:String = "onMediaStarted"
 		
-		- onMediaStoppedEVENT:String
+		- static MEDIA_STOP:String = "onMediaStopped"
 
-----------  */
+**/
 
 class asgard.events.MediaEventType {
 
@@ -55,17 +55,17 @@ class asgard.events.MediaEventType {
 		//
 	}
 
-	// ----o Static Properties
+	// ----o Constants
 
-	static public var onMediaFinishedEVENT:String = "onMediaFinished" ;
+	static public var MEDIA_FINISH:String = "onMediaFinished" ;
 	
-	static public var onMediaProgressEVENT:String = "onMediaProgress" ;
+	static public var MEDIA_PROGRESS:String = "onMediaProgress" ;
 	
-	static public var onMediaResumedEVENT:String = "onMediaResumed" ;
+	static public var MEDIA_RESUME:String = "onMediaResumed" ;
 	
-	static public var onMediaStartedEVENT:String = "onMediaStarted" ;
+	static public var MEDIA_START:String = "onMediaStarted" ;
 	
-	static public var onMediaStoppedEVENT:String = "onMediaStopped" ;
+	static public var MEDIA_STOP:String = "onMediaStopped" ;
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(MediaEventType, null , 7, 7) ;
 	

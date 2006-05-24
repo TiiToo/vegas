@@ -21,6 +21,106 @@
   
 */
 
+/**	LoaderEvent
+
+	AUTHOR
+
+		Name : LoaderEvent
+		Package : asgard.events
+		Version : 1.0.0.0
+		Date :  2006-05-18
+		Author : ekameleon
+		URL : http://www.ekameleon.net
+		Mail : vegas@ekameleon.net
+	
+	METHOD SUMMARY
+	
+		- cancel():Void
+		
+		- clone():LoaderEvent
+		
+		- getBubbles():Boolean
+		
+		- getBytesLoaded():Number
+		
+		- getBytesTotal():Number
+		
+		- getContext()
+		
+		- getCurrentTarget()
+		
+		- getData()
+		
+		- getEventPhase():Number
+		
+		- getLoader():ILoader
+		
+		- getName():String
+		
+		- getPercent():Number
+		
+		- getTarget()
+		
+		- getTimeStamp():Number
+		
+		- getType():String
+		
+		- hashCode():Number
+		
+		- initEvent(type:String, bubbles:Boolean, cancelable:Boolean)
+		
+		- isCancelled():Boolean
+		
+		- isQueued():Boolean
+		
+		- queueEvent():Void
+		
+		- setBubbles(b:Boolean):Void
+		
+		- setContext(context):Void
+		
+		- setCurrentTarget(target):Void
+		
+		- setEventPhase(n:Number):Void
+		
+		- setTarget(target):Void
+		
+		- setType(type:String):Void
+		
+		- stopImmediatePropagation():Void
+		
+		- toString():String
+
+	EVENT SUMMARY
+
+		- LoaderEventType.COMPLETE:String = "onLoadComplete"
+		
+		- LoaderEventType.IO_ERROR:String = "onLoadError"
+		
+		- LoaderEventType.FINISH:String = "onLoadFinished"
+		
+		- LoaderEventType.INIT:String = "onLoadInit"
+		
+		- LoaderEventType.PROGRESS:String = "onLoadProgress"
+		
+		- LoaderEventType.START:String = "onLoadStarted"
+		
+		- LoaderEventType.STOP:String = "onLoadStopped"
+		
+		- LoaderEventType.TIMEOUT:String = "onTimeOut"
+		
+		- LoaderEventType.RELEASE:String = "onRelease"
+			
+	INHERIT
+	
+		CoreObject → BasicEvent → DynamicEvent → LoaderEvent
+		
+	IMPLEMENTS
+	
+		Event, IFormattable, IHashable
+
+**/
+
 import asgard.net.ILoader;
 
 import vegas.events.BasicEvent;
@@ -51,15 +151,15 @@ class asgard.events.LoaderEvent extends BasicEvent {
 	}
 	
 	public function getBytesLoaded():Number {
-		return _oLoader.getBytesLoaded() ;
+		return getLoader().getBytesLoaded() ;
 	}
 
 	public function getBytesTotal():Number {
-		return _oLoader.getBytesTotal() ;
+		return getLoader().getBytesTotal() ;
 	}
 
 	public function getData() {
-		return _oLoader.getData() ;	
+		return getLoader().getData() ;	
 	}
 
 	public function getLoader():ILoader {
@@ -67,11 +167,11 @@ class asgard.events.LoaderEvent extends BasicEvent {
 	}
 	
 	public function getName():String {
-		return _oLoader.getName() ;	
+		return getLoader().getName() ;	
 	}
 	
 	public function getPercent():Number {
-		return _oLoader.getPercent() ;
+		return getLoader().getPercent() ;
 	}
 	
 	// ----o Private Properties

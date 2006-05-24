@@ -130,49 +130,52 @@
 	
 **/
 
-// TODO TESTER !!! 
-
-import asgard.events.MediaEvent;
 import asgard.events.MediaEventType;
-import asgard.net.AbstractLoader;
+import asgard.media.AbstractMediaLoader;
 
+import vegas.errors.IllegalArgumentError;
 import vegas.errors.UnsupportedOperation;
 import vegas.events.Delegate;
-import vegas.events.TimerEvent;
 import vegas.events.TimerEventType;
+import vegas.maths.Range;
 import vegas.util.FrameTimer;
 import vegas.util.Timer;
 
 /**
  * @author eKameleon
  */
-class asgard.media.VideoLoader extends AbstractLoader {
+class asgard.media.VideoLoader extends AbstractMediaLoader {
 	
 	// ----o Constructor
 	
-	function VideoLoader( mcTarget:MovieClip , video:Video ) {
-		super();
+	function VideoLoader( mcTarget:MovieClip , video:Video , sName:String ) {
 		
-		_mcTarget = mcTarget ;
-		_oVideo = video ? video : mcTarget.video ;
+		super(mcTarget, sName);
+		
+		_oVideo = video ? video : _mcTarget.video ;
 		
 		if (_oVideo == undefined) {
-			trace ("**Error** " + toString() + " failed. Invalid video object was passed in the constructor.") ;
+			throw new IllegalArgumentError( toString() + " failed. Invalid video object was passed in the constructor.") ;
 		}
 		
-		setAutoPlay( true );
-		setAutoSize( false );
+		_oNC = new NetConnection() ;
+		_oNC.connect(null) ;
 		
-		setBufferTime( BUFFER_TIME_DEFAULT );
+		_oNS = new NetStream( _oNC ) ;
 		
-		setPlaying(false) ;
-		_bIsLoaded = false ;
+		_oNS["onMetaData"] = Delegate.create(this, _onMetaData) ;
+		_oNS.onStatus = Delegate.create(this, _onStatus) ;
 		
-		_oSound = new Sound( _mcTarget ) ;
-		_oSound.setVolume(VOLUME_DEFAULT) ;
+		_oVideo.attachVideo(_oNS);
+		_mcTarget.attachAudio(_oNS);
 		
-		_timer = new FrameTimer(24) ;
-		_timer.addEventListener(TimerEventType.TIMER, new Delegate(this, _onTimer)) ;
+		setContent( _oNS );
+
+		setAutoPlay( true ) ;
+		setAutoSize( false ) ;
+		setBufferTime( VideoLoader.BUFFER_TIME_DEFAULT );
+		setPlaying ( false ) ;
+		setVolume(VideoLoader.VOLUME_DEFAULT) ;
 		
 		_timerHeadTime = new Timer(100, 1) ;
 		_timerHeadTime.addEventListener(TimerEventType.TIMER, new Delegate(this, _onFrameUpdate)) ;
@@ -181,26 +184,22 @@ class asgard.media.VideoLoader extends AbstractLoader {
 	
 	// ----o Constant
 	
-	static public var BUFFER_TIME_DEFAULT:Number = 86400 ;
+	static public var BUFFER_TIME_DEFAULT:Number = 0 ;
 	static public var VOLUME_DEFAULT:Number = 60 ;
-
-	// ----o Public Properties
-	
-	// public var duration:Number ; // [Read Only]
-	// public var position:Number ; // [Read Only]
-	// public var volume:Number ; // [R/W]
 
 	// ----o Public Methods
 
 	public function getBytesLoaded():Number {
-		return _oNS.bytesLoaded ;
-	}
-	
-	public function getBytesTotal():Number {
-		return _oNS.bytesTotal ;
+		var bytesLoaded:Number = _oNS.bytesLoaded ;
+		return isNaN(bytesLoaded) ? 0 : bytesLoaded ;
 	}
 
-	public function getDuration():Number {
+	public function getBytesTotal():Number {
+		var bytesTotal:Number = _oNS.bytesTotal ;
+		return isNaN(bytesTotal) ? 0 : bytesTotal ;
+	}
+
+	/*override*/ public function getDuration():Number {
 		return isNaN(_duration) ? 0 : _duration ;
 	}
 
@@ -208,47 +207,31 @@ class asgard.media.VideoLoader extends AbstractLoader {
 		return _mcTarget._height ;
 	}
 
-	public function getPlayheadTime():Number {
-		return _oNS.time ;
+	public function getTime():Number {
+		return getContent().time ;
 	}
 
 	public function getPosition():Number {
-		return (duration > 0) ? Math.round(getPlayheadTime() * 100 / getDuration()) : 0 ;
+		return (duration > 0) ? Math.round(getTime() * 100 / getDuration()) : 0 ;
 	}
 
-	public function getVolume():Number {
-		return _oSound.getVolume();
+	public function getVideo():Video {
+		return _oVideo ;	
 	}
 
 	public function getWidth():Number {
 		return _mcTarget._width ;
 	}
 	
-	public function initEvent():Void {
-		_e = new MediaEvent(null, this) ;
-	}
-	
-	public function isAutoPlay():Boolean {
-		return _bAutoPlay ;
-	}
-	
 	public function isAutoSize():Boolean {
 		return _bAutoSize ;
 	}
 
-	public function isLoop():Boolean {
-		return _bIsLoop ;	
-	}
-
-	public function isPlaying():Boolean {
-		return _bIsPlaying ;
-	}
-	
 	public function load(sURL:String):Void {
 		sURL = sURL || this.getUrl() ;
 		if( sURL ) {
 			super.setUrl( sURL ) ;
-			_bIsLoaded = false ;
+			_isLoaded = false ;
 			if ( isPlaying() ) {
 				this.play(0) ;
 			} else {
@@ -265,38 +248,40 @@ class asgard.media.VideoLoader extends AbstractLoader {
 	}
 
 	public function pause(noEvent:Boolean):Void {
-		if (isPlaying()) {
-			_oNS.pause( true ) ;
-			setPlaying(false) ;
-			_timer.stop() ;
-			if (noEvent != true) {
-				notifyEvent(MediaEventType.onMediaResumedEVENT) ;
-			}
+		if (!isResumed() && isPlaying()) {
+			
+			setResumed(true) ;
+			_oNS.pause(true) ;	
+			stopProgress() ;
+			if (noEvent != true) notifyEvent(MediaEventType.MEDIA_RESUME) ;
+		
 		} else {
+			
+			setResumed(false) ;
 			_oNS.pause( false ) ;
-			setPlaying(true) ;
-			_timer.start() ;
+			startProgress() ;
+			
 		}
 	}
 
-	public function play(n:Number):Void {
-		if (!_bIsLoaded) _load();
-		if (!isNaN(n)) _oNS.seek(n);
-		notifyEvent(MediaEventType.onMediaStartedEVENT) ;
+	public function play(n:Number, noEvent:Boolean):Void {
+		if (!isLoaded()) {
+			 _load();
+		}
+		if (!isNaN(n)) {
+			_oNS.seek(n) ;
+		}
 		_oNS.pause(false) ;
-		setPlaying(true) ;
-		_timer.start() ;
+		startProgress() ;
+		if (noEvent != true) notifyEvent(MediaEventType.MEDIA_START) ;
 	}
 	
 	public function release():Void {
 		_oNS.close() ;
 		_oNC.close() ;
 		_oVideo.clear() ;
+		_duration = 0 ;
 		super.release() ;
-	}
-	
-	public function setAutoPlay(b:Boolean):Void {
-		_bAutoPlay = b ;
 	}
 	
 	public function setAutoSize(b:Boolean):Void 	{
@@ -307,26 +292,16 @@ class asgard.media.VideoLoader extends AbstractLoader {
 		_nBufferTime = n ;
 	}
 	
-	public function setLoop(b:Boolean):Void {
-		_bIsLoop = b ;	
+	public function setDuration(n:Number):Void {
+		_duration = (n>0) ? n : 0 ;
 	}
-	
-	public function setPlayheadTime(n:Number):Void {
+
+	public function setTime(n:Number):Void {
 		_oNS.seek(n);
-		if (!isPlaying()) {
-			_oNS.pause(false);
-			if (_timerHeadTime.getRunning()) _timerHeadTime.stop() ;
-			_timerHeadTime.start() ;
-		}
 	}
 	
-	public function setPlaying(b:Boolean):Void {
-		_bIsPlaying = b;
-	}
-	
-	public function setPosition(n:Number):Void {
-		var t:Number = Math.ceil(n * 100 / getDuration()) ;
-		setPlayheadTime(t) ;
+	/*override*/ public function setPosition(n:Number):Void {
+		setTime(Math.ceil(Range.PERCENT_RANGE.clamp(n) * 100 / getDuration())) ;
 	}
 
 	public function setSize(w:Number, h:Number):Void {
@@ -334,40 +309,16 @@ class asgard.media.VideoLoader extends AbstractLoader {
 		_mcTarget._height = h ;
 	}
 
-	public function setURL(sURL:String):Void {
-		if (sURL) super.setUrl( sURL ) ;
-	}
-
-	public function setVolume(n:Number):Void {
-		_oSound.setVolume(n) ;
-	}
-
 	public function stop():Void {
-		pause(true) ;
-		setPlayheadTime(0) ;
-		notifyEvent(MediaEventType.onMediaStoppedEVENT) ;
-	}
-
-	// ----o Virtual Properties
-	
-	public function get duration():Number {
-		return getDuration() ;	
-	}
-
-	public function get position():Number {
-		return getPosition() ;	
-	}
-	
-	public function set position(n:Number):Void {
-		setPosition(n) ;	
-	}
-
-	public function get volume():Number {
-		return getVolume() ;	
-	}
-	
-	public function set volume(n:Number):Void {
-		setVolume(n) ;	
+		if (isResumed() || isPlaying()) {
+			_oNS.close() ;
+			_oVideo.clear() ;
+			setLoaded(false) ;
+			if ( isResumed() ) setResumed(false) ;
+			stopProgress() ;
+			notifyEvent(MediaEventType.MEDIA_PROGRESS) ;
+			notifyEvent(MediaEventType.MEDIA_STOP) ;
+		}
 	}
 
 	// ----o Protected Methods
@@ -386,50 +337,34 @@ class asgard.media.VideoLoader extends AbstractLoader {
 				
 		}
 		
-		_oNC = new NetConnection();
-		_oNC.connect(null);
-		
-		_oNS = new NetStream(_oNC);
-		setContent( _oNS );
-		_oNS.setBufferTime( _nBufferTime );
-
-		_oNS.onStatus = Delegate.create(this, _onStatus) ;
-		_oNS["onMetaData"] = Delegate.create(this, _onMetaData) ;
-
-		_oVideo.attachVideo(_oNS);
-		_mcTarget.attachAudio(_oNS);
-		
-		_timer.start() ;
+		trace(">>>> " + this.getUrl()) ;
 		
 		_oNS.play( this.getUrl() );
 		
-		if ( !isAutoPlay() ) _oNS.pause(true);
-	
-		_bIsLoaded = true;
+		super.load();
+		
+		setLoaded(true) ;
+		
+		if ( isAutoPlay() ) {
+			this.play();
+		} else {
+			this.stop() ;	
+		}
 
-		this.__proto__.__proto__.load.apply(this);
+		
+		
 	}
-
 
 	// ----o Private Properties
 
-	private var _bAutoPlay : Boolean;
-	private var _bAutoSize : Boolean;
-	private var _bIsLoaded : Boolean;
-	private var _bIsLoop : Boolean = true ; // default value is 'true'
-	private var _bIsPlaying : Boolean;
+	private var _bAutoSize : Boolean ;
 
 	private var _duration:Number ;
 	
-	private var _e:MediaEvent ;	
-	
-	private var _mcTarget:MovieClip ;
-
 	private var _nBufferTime : Number;	
 
 	private var _oNC:NetConnection ;
 	private var _oNS:NetStream ;
-	private var _oSound:Sound ;
 	private var _oVideo:Video ;
 	
 	private var _timer:FrameTimer ;
@@ -439,8 +374,8 @@ class asgard.media.VideoLoader extends AbstractLoader {
 
 	private function _onMetaData (info:Object):Void {
 		
-		_duration = isNaN(info.duration) ? 0 : info.duration ;
-		
+		setDuration( isNaN(info.duration) ? 0 : info.duration ) ;
+
 	}
 		
 	private function _onStatus(info:Object):Void {
@@ -457,12 +392,14 @@ class asgard.media.VideoLoader extends AbstractLoader {
 					
 			case 'NetStream.Play.Stop' :
 					
-					notifyEvent(MediaEventType.onMediaFinishedEVENT) ;
+					notifyEvent(MediaEventType.MEDIA_FINISH) ;
 					
 					trace(toString() + " stream stops playing.");
 					
 					if (isLoop()) {
 						this.play(0) ;
+					} else {
+						this.stop() ;	
 					}
 					
 					break;
@@ -474,19 +411,22 @@ class asgard.media.VideoLoader extends AbstractLoader {
 				
 			case 'NetStream.Buffer.Full' :
 				
-				if ( isAutoSize() ) setSize(_oVideo.width, _oVideo.height);
+				if ( isAutoSize() ) {
+					setSize(_oVideo.width, _oVideo.height) ;
+				}
 				trace( toString() + " stream buffer is full." );
 				break;
 				
 			case 'NetConnection.Connect.Success' : 
 				
 				trace(toString() + " local connection successful.");
-				break;
+				break ;
 				
 			case 'NetConnection.Connect.Failed' : 
 				
 				trace( toString() + " local connection failed");
-				break;
+				break ;
+				
 		}
 	}
 
@@ -494,9 +434,5 @@ class asgard.media.VideoLoader extends AbstractLoader {
 		_oNS.pause(true) ;
 	}
 		
-	private function _onTimer(ev:TimerEvent):Void {
-		notifyEvent(MediaEventType.onMediaProgressEVENT) ;
-	}
-	
 
 }

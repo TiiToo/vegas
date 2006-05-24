@@ -28,34 +28,108 @@
 		Name : MediaEvent
 		Package : asgard.events
 		Version : 1.0.0.0
-		Date :  2006-05-18
+		Date :  2006-06-20
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 	
-	EVENT SUMMARY
-
-		- MediaEventType.onMediaFinishedEVENT:String
-		
-		- MediaEventType.onMediaProgressEVENT:String
-		
-		- MediaEventType.onMediaResumedEVENT:String
-		
-		- MediaEventType.onMediaStartedEVENT:String
-		
-		- MediaEventType.onMediaStoppedEVENT:String
-
 	METHOD SUMMARY
 	
-		- getInfo()
-	
-		- clone():ActionEvent
+		- cancel():Void
+		
+		- clone():LoaderEvent
+		
+		- getBubbles():Boolean
+		
+		- getBytesLoaded():Number
+		
+		- getBytesTotal():Number
+		
+		- getContext()
+		
+		- getCurrentTarget()
+		
+		- getData()
+		
+		- getDuration():Numbe
+		
+		- getEventPhase():Number
+		
+		- getLoader():IMediaLoader
+		
+		- getName():String
+		
+		- getPercent():Number
+		
+		- getPosition():Number
+		
+		- getTarget()
+		
+		- getTimeStamp():Number
+		
+		- getType():String
+		
+		-  getVolume():Number
+		
+		- hashCode():Number
+		
+		- initEvent(type:String, bubbles:Boolean, cancelable:Boolean)
+		
+		- isCancelled():Boolean
+		
+		- isQueued():Boolean
+		
+		- queueEvent():Void
+		
+		- setBubbles(b:Boolean):Void
+		
+		- setContext(context):Void
+		
+		- setCurrentTarget(target):Void
+		
+		- setEventPhase(n:Number):Void
+		
+		- setTarget(target):Void
+		
+		- setType(type:String):Void
+		
+		- stopImmediatePropagation():Void
+		
+		- toString():String
 
-		- setInfo(oInfo):Void
+	EVENT SUMMARY
+
+		- LoaderEventType.COMPLETE:String = "onLoadComplete"
+		
+		- LoaderEventType.IO_ERROR:String = "onLoadError"
+		
+		- LoaderEventType.FINISH:String = "onLoadFinished"
+		
+		- LoaderEventType.INIT:String = "onLoadInit"
+		
+		- LoaderEventType.PROGRESS:String = "onLoadProgress"
+		
+		- LoaderEventType.START:String = "onLoadStarted"
+		
+		- LoaderEventType.STOP:String = "onLoadStopped"
+		
+		- LoaderEventType.TIMEOUT:String = "onTimeOut"
+		
+		- LoaderEventType.RELEASE:String = "onRelease"
+
+		- MediaEventType.MEDIA_FINISH:String
+		
+		- MediaEventType.MEDIA_PROGRESS:String
+		
+		- MediaEventType.MEDIA_RESUME:String
+		
+		- MediaEventType.MEDIA_START:String
+		
+		- MediaEventType.MEDIA_STOP:String
 		
 	INHERIT
 	
-		CoreObject → BasicEvent → DynamicEvent → ActionEvent → MediaEvent
+		CoreObject → BasicEvent → DynamicEvent → LoaderEvent → MediaEvent
 		
 	IMPLEMENTS
 	
@@ -63,14 +137,15 @@
 
 **/
 
-import asgard.events.ActionEvent ;
+import asgard.events.LoaderEvent;
+import asgard.media.IMediaLoader;
 
-class asgard.events.MediaEvent extends ActionEvent {
+class asgard.events.MediaEvent extends LoaderEvent {
 
 	// ----o Constructor
 	
-	public function MediaEvent(type:String, target:Object){
-		super(type, target) ;
+	public function MediaEvent(type:String, loader:IMediaLoader){
+		super(type, loader) ;
 	}
 
 	// ----o Public Methods
@@ -78,5 +153,25 @@ class asgard.events.MediaEvent extends ActionEvent {
 	public function clone() {
 		return new MediaEvent(getType(), getTarget()) ;
 	}
+
+	public function getDuration():Number {
+		return getLoader().getDuration() ;	
+	}
+
+	public function getLoader():IMediaLoader {
+		return _oLoader ;
+	}
+
+	public function getPosition():Number {
+		return getLoader().getPosition() ;	
+	}
+	
+	public function getVolume():Number {
+		return getLoader().getVolume() ;	
+	}
+
+	// ----o Private Properties
+	
+	private var _oLoader:IMediaLoader ;
 
 }

@@ -40,7 +40,7 @@
 **/
 
 import asgard.events.SharedDataEventType;
-import asgard.net.SharedData ;
+import asgard.net.SharedData;
 
 import vegas.events.DynamicEvent;
 

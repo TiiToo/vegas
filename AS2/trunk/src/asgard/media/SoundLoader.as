@@ -54,64 +54,53 @@
 	
 **/
 
-// TODO TESTER !!! 
-
-import asgard.events.MediaEvent;
 import asgard.events.MediaEventType;
-import asgard.net.AbstractLoader;
+import asgard.media.AbstractMediaLoader;
 
-import vegas.errors.IllegalArgumentError;
 import vegas.errors.UnsupportedOperation;
 import vegas.errors.Warning;
 import vegas.events.Delegate;
-import vegas.events.TimerEvent;
-import vegas.events.TimerEventType;
-import vegas.util.FrameTimer;
 import vegas.util.MathsUtil;
 
 /**
  * @author eKameleon
  */
-class asgard.media.SoundLoader extends AbstractLoader {
+class asgard.media.SoundLoader extends AbstractMediaLoader {
 	
 	// ----o Constructor
 	
-	function SoundLoader( mc:MovieClip ) {
-		super();
+	function SoundLoader( mcTarget:MovieClip , sName:String ) {
+
+		super(mcTarget, sName) ;
 		
-		if (!mc) {
-			throw new IllegalArgumentError(this + " 'mc' argument in constructor is undefined.") ;
-		}
-		
-		_mcTarget = mc ;
-		
-		_oSound = new Sound(mc) ;
-		_oSound.onLoad = function (success):Void {
+		getSound().onLoad = function (success:Boolean):Void {
 			
-			trace("sound onLoad :: " + success) ;
+			trace("> sound onLoad :: " + success) ;
 			
 		} ;
-		_oSound.onSoundComplete = Delegate.create(this, _onSoundComplete) ;
 		
-		_timer = new FrameTimer(24) ;
-		_timer.addEventListener(TimerEventType.TIMER, new Delegate(this, _onTimer)) ;
+		_currentPos = 0 ;
+		
+		getSound().onSoundComplete = Delegate.create(this, _onSoundComplete) ;
+		
+		setContent(_oSound) ;
+		
+		setAutoPlay(true) ;
 		
 	}
 
-	// ----o Public Properties
+	// ----o Constants
 	
-	// public var duration:Number ; // [Read Only]
-	// public var position:Number ; // [R/W]
-	// public var volume:Number ; // [R/W]
+	static public var VOLUME_DEFAULT:Number = 60 ;
 
 	// ----o Public Methods
 
-	public function getDuration():Number {
+	/*override*/ public function getDuration():Number {
 		return isNaN(_oSound.duration) ? 0 : _oSound.duration ;
 	}
 	
-	public function getPosition():Number {
-		return _oSound.position ;	
+	/*override*/ public function getPosition():Number {
+		return getSound().position ;	
 	}
 
 	public function getTime():Number {
@@ -122,23 +111,7 @@ class asgard.media.SoundLoader extends AbstractLoader {
 		return MathsUtil.getPercent(getPosition(), getDuration()) ;	
 	}
 
-	public function getVolume():Number {
-		return _oSound.getVolume() ;
-	}
-		
-	public function initEventSource():Void {
-		_e = new MediaEvent(null, this) ;
-	}
-
-	public function isAutoPlay() : Boolean {
-		return _isAutoPlay ;
-	}
-	
-	public function isPlaying() :Boolean {
-		return _isPlaying ;
-	}
-
-	public function load(sURL:String):Void {
+	/*override*/ public function load(sURL:String):Void {
 		sURL = sURL || this.getUrl() ;
 		this.stop(true) ;
 		try {
@@ -156,110 +129,70 @@ class asgard.media.SoundLoader extends AbstractLoader {
 		}
 	}
 
-	public function pause(noEvent:Boolean):Void {
-		if (_isPlaying) {
-			_timer.stop() ;
-			_currentPos = _oSound.position ;
-			_oSound.stop() ;
-			setPlaying(false) ;
+	/*override*/ public function pause(noEvent:Boolean):Void {
+		trace(isPlaying()) ;
+		if (isPlaying()) {
+			
+			stopProgress() ;
+			getSound().stop() ;
+			
+			_currentPos = getSound().position ;
+
 			if (noEvent != true) {
-				notifyEvent(MediaEventType.onMediaResumedEVENT) ;
+				notifyEvent(MediaEventType.MEDIA_RESUME) ;
 			}
+		} else {
+			
+			this.play(_currentPos) ;
+			
 		}
 	}
 
-	public function play(noEvent):Void {
-		if (!_isLoaded) _load() ;
-		if (isPlaying()) return ;
-		//trace("play :: " + _currentPos) ;
-		if (isNaN(_currentPos)) _currentPos = 0 ;
-		_oSound.start(_currentPos) ;
-		setPlaying(true) ;
-		_timer.start() ;
-		if (noEvent != true) {
-			notifyEvent(MediaEventType.onMediaStartedEVENT) ;
+	/*override*/ public function play( pos:Number, noEvent:Boolean):Void {
+
+		trace(!_isLoaded) ;
+
+		if (!_isLoaded) {
+			_load() ;
 		}
+		
+		_currentPos = (pos > 0) ? pos : 0 ;
+		
+		getSound().start( _currentPos / 1000 ) ;
+		
+		if (noEvent != true) {
+			notifyEvent(MediaEventType.MEDIA_START) ;
+		}
+		startProgress() ;
 	}
 	
-	public function release():Void {
+	/*override*/ public function release():Void {
 		this.stop(true) ;
 		super.release() ;
 	}
 	
-	public function setAutoPlay(b:Boolean):Void {
-		_isAutoPlay = b ;
-	}
-	
-	public function setPlaying(b:Boolean):Void {
-		_isPlaying = b;
-	}
-
-	public function setUrl(sURL:String):Void {
-		if (sURL) super.setUrl( sURL ) ;
-	}
-	
-	public function setPosition(time:Number):Void {
-		if (_isPlaying) {
-			this.play(0) ;
+	/*override*/ public function setPosition(time:Number):Void {
+		if (isPlaying()) {
+			this.play(time) ;
 		} else {
 			_currentPos = (isNaN(time)) ? 0 : time ;
-			
 		}
 	}
 	
-	public function setVolume(n:Number):Void {
-		_oSound.setVolume(n) ;
-	}
-
-
-	public function stop(noEvent:Boolean):Void {
-		if (_isPlaying) {
+	/*override*/ public function stop(noEvent:Boolean):Void {
+		if (isPlaying()) {
+			stopProgress() ;
+			getSound().stop() ;
 			_currentPos = 0 ;
-			setPlaying(false) ;
-			_oSound.stop() ;
-			_timer.stop() ;
-			if (!noEvent) notifyEvent(MediaEventType.onMediaStoppedEVENT) ;
+			if ( noEvent != true ) {
+				notifyEvent(MediaEventType.MEDIA_STOP) ;
+			}
 		}
-	}
-
-	// ----o Virtual Properties
-	
-	public function get duration():Number {
-		return getDuration() ;	
-	}
-
-	public function get position():Number {
-		return getPosition() ;	
-	}
-	
-	public function set position(n:Number):Void {
-		setPosition(n) ;	
-	}
-
-	public function get volume():Number {
-		return getVolume() ;	
-	}
-	
-	public function set volume(n:Number):Void {
-		setVolume(n) ;	
 	}
 
 	// ----o Private Properties
 	
 	private var _currentPos:Number ;
-	
-	private var _e:MediaEvent ;
-	
-	private var _isAutoPlay : Boolean;
-	private var _isLoaded : Boolean ;
-	private var _isLoop : Boolean ;
-
-	private var _mcTarget:MovieClip ;
-	private var _oSound:Sound ;
-	
-	private var _timer:FrameTimer ;
-
-	private var _isPlaying:Boolean ;
 
 	// ----o Private Methods
 
@@ -278,22 +211,23 @@ class asgard.media.SoundLoader extends AbstractLoader {
 		}
 		
 		_oSound.loadSound( this.getUrl() , isAutoPlay() ) ;
+		
 		if (isAutoPlay()) {
-			setPlaying(true) ;
-			_timer.start() ;
-			notifyEvent(MediaEventType.onMediaStartedEVENT) ;
+			startProgress() ;
+			_currentPos = 0 ;
+			getSound().start(_currentPos) ;
+			notifyEvent(MediaEventType.MEDIA_START) ;
 		}
-		_isLoaded = true;
+		_isLoaded = true ;
+		
 		super.load();
 	}
 
 	private function _onSoundComplete():Void {
-		notifyEvent(MediaEventType.onMediaFinishedEVENT) ;
-		if (_isLoop) _oSound.start() ; 
-	}
-
-	private function _onTimer(ev:TimerEvent):Void {
-		notifyEvent(MediaEventType.onMediaProgressEVENT) ;
+		notifyEvent(MediaEventType.MEDIA_FINISH) ;
+		if ( isLoop() ) {
+			getSound().start() ;
+		} 
 	}
 
 }

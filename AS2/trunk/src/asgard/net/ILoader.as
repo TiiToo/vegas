@@ -21,13 +21,69 @@
   
 */
 
+
+/**	ILoader
+
+	AUTHOR
+
+		Name : ILoader
+		Package : asgard.media
+		Version : 1.0.0.0
+		Date :  2006-06-23
+		Author : ekameleon
+		URL : http://www.ekameleon.net
+		Mail : contact@ekameleon.net
+	
+	METHOD SUMMARY
+
+	 	- getContent() ;
+	
+		- getBytesLoaded():Number ;
+
+		- getBytesTotal():Number ;
+
+		- getData() ;
+
+		- getName():String ;
+
+		- getPercent():Number ;
+
+		- getTimeOut():Number ;
+
+		- getUrl():String ;
+	
+		- initEvent():Void ;
+
+		- load():Void ;
+
+		- notifyError(sError:String, nCode:Number) : Void ;
+	
+		- notifyEvent(eventType:String):Void ;
+
+		- onLoadInit():Void ;
+	
+		- release():Void ;
+
+		- run():Void
+
+		- setContent(o):Void ;
+
+		- setData( o ):Void ;
+
+		- setName(sName:String):Void ;
+
+		- setTimeOut( n : Number ):Void ;
+
+		- setUrl(sURL:String):Void ;
+		
+**/
+ 
+import vegas.core.IRunnable;
+
 /**
  * @author eKameleon
  * @version 1.0.0.0
  */
- 
-import vegas.core.IRunnable;
-
 interface asgard.net.ILoader extends IRunnable {
 	
 	function getContent() ;

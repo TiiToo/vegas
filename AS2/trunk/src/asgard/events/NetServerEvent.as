@@ -43,11 +43,11 @@
 
 **/
 
-import asgard.net.NetServerConnection ;
 import asgard.events.NetServerEventType;
+import asgard.net.NetServerConnection;
+import asgard.net.NetServerStatus;
 
 import vegas.events.DynamicEvent;
-import asgard.net.NetServerStatus;
 
 /**
  * @author eKameleon

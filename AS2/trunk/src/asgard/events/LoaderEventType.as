@@ -35,7 +35,23 @@
 	
 	CONSTANT SUMMARY
 
-
+		- static COMPLETE:String = "onLoadComplete"
+		
+		- static IO_ERROR:String = "onLoadError"
+		
+		- static FINISH:String = "onLoadFinished"
+		
+		- static INIT:String = "onLoadInit"
+		
+		- static PROGRESS:String = "onLoadProgress"
+		
+		- static START:String = "onLoadStarted"
+		
+		- static STOP:String = "onLoadStopped"
+		
+		- static TIMEOUT:String = "onTimeOut"
+		
+		- static RELEASE:String = "onRelease"
 
 ----------  */
 
@@ -54,7 +70,7 @@ class asgard.events.LoaderEventType {
 	static public var FINISH:String = "onLoadFinished" ;
 	static public var INIT:String = "onLoadInit" ;
 	static public var PROGRESS:String = "onLoadProgress" ;
-	static public var START:String = "onLoadStart" ;
+	static public var START:String = "onLoadStarted" ;
 	static public var STOP:String = "onLoadStopped" ;
 	static public var TIMEOUT:String = "onTimeOut" ;
 	static public var RELEASE:String = "onRelease" ;

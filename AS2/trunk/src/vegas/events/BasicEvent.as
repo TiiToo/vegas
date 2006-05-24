@@ -57,6 +57,8 @@
 		
 		- getType():String
 		
+		- hashCode():Number
+		
 		- initEvent(type:String, bubbles:Boolean, cancelable:Boolean)
 		
 		- isCancelled():Boolean

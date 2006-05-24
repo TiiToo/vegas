@@ -143,7 +143,6 @@ import asgard.net.ILoader;
 
 import vegas.events.AbstractCoreEventDispatcher;
 import vegas.events.Delegate;
-import vegas.events.Event;
 import vegas.events.TimerEventType;
 import vegas.util.Timer;
 
@@ -207,34 +206,37 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 	}
 	
 	public function initEvent():Void {
-		_e = Event(new LoaderEvent(null, this)) ;
+		_e = new LoaderEvent(null, this) ;
 	}
 
 	public function load():Void {
+		
 		if (_tProgress.running) _tProgress.stop() ;
 		if (this.getUrl()) {
+			
 			_nLastBytesLoaded = 0;
 			_nTime = getTimer();
 			_setRunning(true) ;
 			_tProgress.start() ;
+			
 		} else {
 			notifyError(this + ".load() can't retrieve file url : " + this.getUrl() , null ) ;
 		}
 	}
 
 	public function notifyError(sError:String, nCode:Number) : Void {
-		LoaderEvent(_e).setType(LoaderEventType.IO_ERROR) ;
-		LoaderEvent(_e).error = sError ;
-		LoaderEvent(_e).code = nCode ;
-		release() ; // TODO test this instruction !!!!
-		_oED.dispatchEvent(_e);
+		_e.setType(LoaderEventType.IO_ERROR) ;
+		_e.error = sError ;
+		_e.code = nCode ;
+		release() ;
+		dispatchEvent(_e);
 	}
 
 	public function notifyEvent(eventType:String):Void {
-		LoaderEvent(_e).setType(eventType) ;
-		LoaderEvent(_e).error = null ;
-		LoaderEvent(_e).code = null ;
-		_oED.dispatchEvent(_e) ;
+		_e.setType(eventType) ;
+		_e.error = null ;
+		_e.code = null ;
+		dispatchEvent(_e) ;
 	}
 
 	public function onLoadInit() : Void {
@@ -325,7 +327,7 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 			
 	// ----o Private Properties
 	
-	private var _e:Event ;
+	private var _e:LoaderEvent ;
 	private var _isRunning:Boolean ;
 	private var _nLastBytesLoaded : Number;
 	private var _nTimeOut:Number = 9000 ; // default timeOut value : 9 seconds
