@@ -66,6 +66,8 @@ import vegas.core.IComparator;
 import vegas.errors.IllegalArgumentError;
 import vegas.events.EventListenerContainer;
 
+// TODO vérifier méthode equals !! .. problème sur le test du typage de 'o'.
+
 class vegas.events.EventListenerComparator extends CoreObject implements IComparator {
 
 	// ----o Constructor
@@ -85,7 +87,7 @@ class vegas.events.EventListenerComparator extends CoreObject implements ICompar
 			else if( p1 > p2 ) return -1 ;
 			else return 0 ;
 		} else {
-			throw IllegalArgumentError ;
+			throw new IllegalArgumentError(this + ".compare(" + o1 + "," + o2 + "), arguments must be EventListenerContainer") ;
 		}
 	}
 	

@@ -75,21 +75,19 @@
 		
 		- ucFirst():String
 		
-			capitalize the first letter of a string, like the PHP function
+			Capitalize the first letter of a string, like the PHP function.
 		
 		- ucWords():String
 		
-			capitalize each word in a string, like the PHP function
+			Capitalize each word in a string, like the PHP function.
+
+	INHERIT
+
+		String → StringUtil
 
 	IMPLEMENTS
 	
 		IHashable, IFormattable, Iterable, ISerializable
-
-	INHERIT
-
-		String
-			|
-			StringUtil
 
 **/
 

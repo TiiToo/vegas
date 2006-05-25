@@ -40,7 +40,6 @@
 		- dispatchEvent( event , [isQueue, [target, [context]]]):Event
 		
 		- removeEventListener(eventName:String, listener, useCapture:Boolean ):EventListener
-	
 
 	SEE ALSO :
 	

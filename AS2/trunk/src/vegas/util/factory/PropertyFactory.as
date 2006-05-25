@@ -21,7 +21,7 @@
   
 */
 
-/* ------ PropertyFactory
+/** PropertyFactory
 
 	AUTHOR
 
@@ -35,7 +35,7 @@
 	
 	DESCRIPTION
 		
-		Fabrique pour créer des propriétés virtuelles sur un constructeur donné.
+		Fabrique qui permet créer des propriétés virtuelles sur un objet donné.
 
 	METHOD SUMMARY
 	
@@ -49,7 +49,7 @@
 	
 	NOTE : penser à déclarer en AS2 la propriété virtuelle en public
 	
----------------*/
+**/
 
 import vegas.util.StringUtil;
 

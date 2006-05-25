@@ -12,26 +12,54 @@
 	
 	PROPERTY SUMMARY
 
-		- duration:Number [Read Only]
+		- bytesLoaded:Number [Read Only]
 		
+		- bytesTotal:Number [Read Only]
+		
+		- data [R/W]
+
+		- duration:Number [Read Only]
+	
+		- name:String [R/W]
+		
+		- percent:Number [Read Only]
+	
 		- position:Number [R/W]
+
+		- running:Boolean [Read Only]
+		
+		- timeOut:Number [R/W]
 		
 		- volume:Number [R/W]
 	
 	METHOD SUMMARY
-	
+
+	 	- getContent() ;
+
+		- getBytesLoaded():Number ;
+
+		- getBytesTotal():Number ;
+
+		- getData() ;
+		
 		- getDuration():Number
 		
 		- getHeight():Number
 		
-		- getPlayheadTime():Number
+		- getName():String ;
+
+		- getPercent():Number ;
+		
+		- getTime():Number
 		
 			Returns playhead position.
 		
 		- getPosition():Number
 		
 			Returns playhead position in %.
-				
+		
+		- getMetaData()
+						
 		- getURL():String
 		
 		- getVolume():Number
@@ -94,6 +122,8 @@
 		
 			Defines video playback size.
 		
+		- setTime(n:Number):Void
+		
 		- stop():Void
 		
 		- toString():String
@@ -140,6 +170,8 @@ import vegas.events.TimerEventType;
 import vegas.maths.Range;
 import vegas.util.FrameTimer;
 import vegas.util.Timer;
+import vegas.errors.Warning;
+import asgard.net.NetStreamStatus;
 
 /**
  * @author eKameleon
@@ -159,6 +191,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader {
 		}
 		
 		_oNC = new NetConnection() ;
+		_oNC.onStatus = Delegate.create(this, _onStatus) ;
 		_oNC.connect(null) ;
 		
 		_oNS = new NetStream( _oNC ) ;
@@ -184,7 +217,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader {
 	
 	// ----o Constant
 	
-	static public var BUFFER_TIME_DEFAULT:Number = 0 ;
+	static public var BUFFER_TIME_DEFAULT:Number = 4 ;
 	static public var VOLUME_DEFAULT:Number = 60 ;
 
 	// ----o Public Methods
@@ -205,6 +238,10 @@ class asgard.media.VideoLoader extends AbstractMediaLoader {
 
 	public function getHeight() : Number {
 		return _mcTarget._height ;
+	}
+
+	public function getMetaData() {
+		return _oMetaData ;	
 	}
 
 	public function getTime():Number {
@@ -228,18 +265,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader {
 	}
 
 	public function load(sURL:String):Void {
-		sURL = sURL || this.getUrl() ;
-		if( sURL ) {
-			super.setUrl( sURL ) ;
-			_isLoaded = false ;
-			if ( isPlaying() ) {
-				this.play(0) ;
-			} else {
-				_load() ;
-			}
-		} else {
-			trace( toString() + " got invalid url property, can't load." );
-		}
+		setUrl(sURL) ;
 	}
 	
 	public function move( x : Number, y : Number):Void {
@@ -248,7 +274,8 @@ class asgard.media.VideoLoader extends AbstractMediaLoader {
 	}
 
 	public function pause(noEvent:Boolean):Void {
-		if (!isResumed() && isPlaying()) {
+	
+		if (!isResumed() || isPlaying()) {
 			
 			setResumed(true) ;
 			_oNS.pause(true) ;	
@@ -265,18 +292,25 @@ class asgard.media.VideoLoader extends AbstractMediaLoader {
 	}
 
 	public function play(n:Number, noEvent:Boolean):Void {
-		if (!isLoaded()) {
-			 _load();
-		}
+		
+		if (!isLoaded()) _load();
+		
 		if (!isNaN(n)) {
 			_oNS.seek(n) ;
+		} else {
+			_oNS.seek(0) ;	
 		}
+		
 		_oNS.pause(false) ;
 		startProgress() ;
-		if (noEvent != true) notifyEvent(MediaEventType.MEDIA_START) ;
+		if (noEvent != true) {
+			notifyEvent(MediaEventType.MEDIA_START) ;
+		}
+		
 	}
 	
 	public function release():Void {
+		_oMetaData = null  ;
 		_oNS.close() ;
 		_oNC.close() ;
 		_oVideo.clear() ;
@@ -309,6 +343,24 @@ class asgard.media.VideoLoader extends AbstractMediaLoader {
 		_mcTarget._height = h ;
 	}
 
+	public function setUrl( sURL:String ) : Void {
+		try {
+			if (sURL) {
+				super.setUrl( sURL ) ;
+				setLoaded(false) ;
+				if (isPlaying()) {
+					this.play(0);
+				} else {
+					_load() ;
+				}
+			} else {
+				throw new Warning( toString() + " got invalid url property, can't load." );
+			}
+		} catch (e:Warning) {
+			trace(e.toString()) ;	
+		}
+	}
+
 	public function stop():Void {
 		if (isResumed() || isPlaying()) {
 			_oNS.close() ;
@@ -333,25 +385,19 @@ class asgard.media.VideoLoader extends AbstractMediaLoader {
 		} catch (e:UnsupportedOperation) {
 			
 			trace(e.toString()) ;
-			return ;
+			// return ;
 				
 		}
 		
-		trace(">>>> " + this.getUrl()) ;
-		
-		_oNS.play( this.getUrl() );
-		
-		super.load();
-		
 		setLoaded(true) ;
-		
-		if ( isAutoPlay() ) {
-			this.play();
-		} else {
-			this.stop() ;	
-		}
-
-		
+		_oMetaData = null ;
+		_oNS.setBufferTime( _nBufferTime ) ;
+		_oNS.play( this.getUrl() );
+		startProgress() ;
+		if (!isAutoPlay() ) {
+			this.pause(true) ;
+		} 
+		super.load();
 		
 	}
 
@@ -363,6 +409,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader {
 	
 	private var _nBufferTime : Number;	
 
+	private var _oMetaData ;
 	private var _oNC:NetConnection ;
 	private var _oNS:NetStream ;
 	private var _oVideo:Video ;
@@ -374,23 +421,34 @@ class asgard.media.VideoLoader extends AbstractMediaLoader {
 
 	private function _onMetaData (info:Object):Void {
 		
-		setDuration( isNaN(info.duration) ? 0 : info.duration ) ;
+		_oMetaData = info ;
+		
+		for (var props in info) trace(this + ".onMetaData -> " + props + " : " + info[props]) ;
+		
+		setDuration( isNaN(info.duration) ? 0 : parseInt(info.duration) ) ;
+		
+		if (isAutoSize()) {
+		
+			setSize( info.width , info.height) ;	
+			
+		}
 
 	}
 		
 	private function _onStatus(info:Object):Void {
 		
-		// trace("> " + this + " : " + info.code) ;
+		trace("> " + this + " : " + info.code) ;
 		
 		switch ( info.code ) {
 			
-			case 'NetStream.Play.Start' :
+			case NetStreamStatus.PLAY_START.toString() :
 					
 					trace( toString() + " stream starts playing.");
+		
 					
 					break;
 					
-			case 'NetStream.Play.Stop' :
+			case NetStreamStatus.PLAY_STOP.toString() :
 					
 					notifyEvent(MediaEventType.MEDIA_FINISH) ;
 					
@@ -403,19 +461,27 @@ class asgard.media.VideoLoader extends AbstractMediaLoader {
 					}
 					
 					break;
-					
-			case 'NetStream.Seek.InvalidTime' :
+			
+			case NetStreamStatus.PLAY_STREAM_NOT_FOUND.toString() :
+			
+				trace(toString() + " stream not found.");
+				stopProgress() ;
+				break ;
+			
+			case NetStreamStatus.SEEK_INVALID_TIME.toString() :
 				
 				trace( toString() + " seeks invalid time in '" + this.getUrl() + "'.");
 				break;
 				
-			case 'NetStream.Buffer.Full' :
+			case NetStreamStatus.BUFFER_FULL.toString() :
 				
-				if ( isAutoSize() ) {
-					setSize(_oVideo.width, _oVideo.height) ;
-				}
 				trace( toString() + " stream buffer is full." );
 				break;
+
+			case 'NetConnection.Connect.Closed' : 
+				stopProgress() ;
+				trace(toString() + " local connection closed.");
+				break ;
 				
 			case 'NetConnection.Connect.Success' : 
 				
@@ -431,7 +497,8 @@ class asgard.media.VideoLoader extends AbstractMediaLoader {
 	}
 
 	private function _onFrameUpdate():Void {
-		_oNS.pause(true) ;
+		_oNS.pause(true) ;					
+		stopProgress() ;				
 	}
 		
 

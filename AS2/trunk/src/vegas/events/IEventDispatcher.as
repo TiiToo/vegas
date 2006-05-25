@@ -55,7 +55,7 @@
 
 	INHERIT
 	
-		EventTarget
+		EventTarget → IEventDispatcher
 
 **/
 

@@ -12,9 +12,23 @@
 	
 	PROPERTY SUMMARY
 
-		- duration:Number [Read Only]
+		- bytesLoaded:Number [Read Only]
 		
+		- bytesTotal:Number [Read Only]
+		
+		- data [R/W]
+
+		- duration:Number [Read Only]
+	
+		- name:String [R/W]
+		
+		- percent:Number [Read Only]
+	
 		- position:Number [R/W]
+
+		- running:Boolean [Read Only]
+		
+		- timeOut:Number [R/W]
 		
 		- volume:Number [R/W]
 	

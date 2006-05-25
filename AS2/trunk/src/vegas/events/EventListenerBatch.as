@@ -95,7 +95,7 @@
 	
 	INHERIT
 	
-		CoreObject > AbstractTypeable > TypedCollection > BatchEventListener
+		CoreObject → AbstractTypeable → TypedCollection → EventListenerBatch
 
 	IMPLEMENTS 
 
