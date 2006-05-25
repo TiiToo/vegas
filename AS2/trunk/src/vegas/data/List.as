@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	List [Interface]
+/**	List [Interface]
 
 	AUTHOR
 
@@ -89,15 +89,13 @@
 
 	INHERIT
 	
-		Collection 
-			|
-			List
+		Collection → List
 
 	LEGEND : 
 		- : Collection
 		+ : List
 
-----------  */
+**/
 
 import vegas.data.Collection;
 import vegas.data.list.ListIterator;

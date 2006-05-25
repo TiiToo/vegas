@@ -21,7 +21,7 @@
   
 */
 
-/* ------- Iterable [Interface]
+/** Iterable [Interface]
 
 	AUTHOR
 
@@ -37,7 +37,7 @@
 	
 		- iterator():Iterator
 
-----------  */
+**/
 
 import vegas.data.iterator.Iterator;
 

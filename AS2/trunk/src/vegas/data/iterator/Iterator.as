@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	Iterator [Interface]
+/** 	Iterator [Interface]
 
 	AUTHOR
 
@@ -47,7 +47,7 @@
 		
 		- seek(n:Number)
 
-----------  */
+**/
 
 interface vegas.data.iterator.Iterator {
 	

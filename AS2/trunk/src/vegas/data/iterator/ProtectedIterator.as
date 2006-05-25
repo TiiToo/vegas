@@ -52,9 +52,7 @@
 
 	INHERIT
 	
-		CoreObject
-			|
-			ProtectedIterator
+		CoreObject → ProtectedIterator
 
 	IMPLEMENTS
 	

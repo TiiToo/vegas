@@ -135,7 +135,7 @@ class vegas.data.list.AbstractList extends AbstractCollection implements List {
 	}
 	
 	public function insertAt(id:Number, o):Void {
-		if (id<0 || id>size()) throw new IndexOutOfBoundsError ;
+		if (id<0 || id>size()) throw new IndexOutOfBoundsError() ;
 		_a.splice(id, 0, o) ;
 	}
 	

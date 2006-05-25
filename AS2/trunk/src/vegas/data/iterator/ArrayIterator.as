@@ -57,15 +57,13 @@
 
 	INHERIT
 	
-		CoreObject
-			|
-			ArrayIterator
+		CoreObject → ArrayIterator
 
 	IMPLEMENTS
 	
 		Iterator, IFormattable, IHashable
 
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.data.iterator.Iterator;
@@ -111,5 +109,4 @@ class vegas.data.iterator.ArrayIterator extends CoreObject implements Iterator {
 	private var _a:Array ; // current array
 	private var _k:Number ; // current key
 
-	
 }

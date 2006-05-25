@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	StringIterator
+/**	StringIterator
 
 	AUTHOR
 	
@@ -49,15 +49,13 @@
 
 	INHERIT
 	
-		CoreObject
-			|
-			StringIterator
+		CoreObject → StringIterator
 
 	IMPLEMENTS
 	
 		IFormattable, IHashable, Iterator
 
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.data.iterator.Iterator;

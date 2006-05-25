@@ -21,7 +21,7 @@
   
 */
 
-/** IEventDispatcher [interface]
+/** IEventDispatcher [Interface]
 
 	AUTHOR
 	

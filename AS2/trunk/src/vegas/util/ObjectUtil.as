@@ -48,6 +48,8 @@
 			Returns a Boolean value indicating whether an object has a property with the specified name (*ECMA-262*).
 			Returns true whether the property is in the prototype chain or not.
 
+		- static isEmpty(o):Boolean
+
 		- static memberwiseClone( o )
 			 Creates a shallow copy of the current Object.
 		
@@ -94,6 +96,13 @@ class vegas.util.ObjectUtil {
 
 	static public function hasProperty(o, prop:String):Boolean {
 		return (o.hasOwnProperty(prop) || o.__proto__.hasOwnProperty(prop)) ;
+	}
+
+	static public function isEmpty(o):Boolean {
+		for (var each:String in o) {
+			return false ;	
+		}
+		return true ;
 	}
 
 	static public function memberwiseClone( o ) {

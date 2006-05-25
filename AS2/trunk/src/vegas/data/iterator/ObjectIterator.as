@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	ObjectIterator
+/** ObjectIterator
 
 	AUTHOR
 	
@@ -70,15 +70,13 @@
 
 	INHERIT
 	
-		CoreObject
-			|
-			StringIterator
+		CoreObject → StringIterator
 
 	IMPLEMENTS
 	
 		IFormattable, IHashable, Iterator
 
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.data.iterator.Iterator;
@@ -90,7 +88,7 @@ class vegas.data.iterator.ObjectIterator extends CoreObject implements Iterator 
 	
 	public function ObjectIterator(o) {
 		_o = o ;
-		_a = new Array ;
+		_a = new Array() ;
 		_k = -1 ;
 		for (var each:String in o) if (typeof(o[each]) != "function") _a.push(each) ;
 		_len = _a.length ;

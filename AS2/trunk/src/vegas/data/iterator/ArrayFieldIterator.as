@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	ArrayFieldIterator
+/**	ArrayFieldIterator
 
 	AUTHOR
 
@@ -55,17 +55,13 @@
 
 	INHERIT
 	
-		CoreObject
-			|
-			ArrayIterator
-				|
-				ArrayFieldIterator
+		CoreObject → ArrayIterator → ArrayFieldIterator
 
 	IMPLEMENTS
 	
-		Iterator, IFormattable
+		Iterator, IFormattable, IHashable
 
-----------  */
+**/
 
 import vegas.data.iterator.ArrayIterator;
 

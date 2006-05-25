@@ -110,15 +110,27 @@ class vegas.data.list.ArrayList extends AbstractList {
 	// ----o Constructor
 
 	function ArrayList() {
+		
 		var arg = arguments[0] ;
+		
 		if (arg instanceof Array) {
+			
 			var it:Iterator = new ArrayIterator(arg) ;
-			while (it.hasNext()) insert(it.next()) ;
+			while (it.hasNext()) {
+				insert(it.next()) ;
+			}
+			
 		} else if (arg instanceof Collection) {
+			
 			var it:Iterator = arg.iterator() ;
-			while (it.hasNext()) insert(it.next()) ;
+			while (it.hasNext()) {
+				insert(it.next()) ;
+			}
+			
 		} else if (typeof (arg) == "number") {
+			
 			_a.length = arg ;
+			
 		}
 	}
 

@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	OrderedIterator [Interface]
+/**	OrderedIterator [Interface]
 
 	AUTHOR
 
@@ -55,7 +55,7 @@
 	
 		Iterator
 	
-----------  */
+**/
 
 import vegas.data.iterator.Iterator;
 
