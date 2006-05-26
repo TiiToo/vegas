@@ -162,16 +162,16 @@
 
 import asgard.events.MediaEventType;
 import asgard.media.AbstractMediaLoader;
+import asgard.net.NetStreamStatus;
 
 import vegas.errors.IllegalArgumentError;
 import vegas.errors.UnsupportedOperation;
+import vegas.errors.Warning;
 import vegas.events.Delegate;
 import vegas.events.TimerEventType;
 import vegas.maths.Range;
 import vegas.util.FrameTimer;
 import vegas.util.Timer;
-import vegas.errors.Warning;
-import asgard.net.NetStreamStatus;
 
 /**
  * @author eKameleon

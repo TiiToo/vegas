@@ -26,7 +26,7 @@
 	AUTHOR
 	
 		Name : RecordSet
-		Package : vegas.data.iterator
+		Package : asgard.data.iterator
 		Version : 0.0.0.1 alpha
 		Date :  2005-05-25
 		Author : ekameleon
@@ -73,12 +73,12 @@
 
 **/
 
-import vegas.data.iterator.ArrayIterator;
+import asgard.data.iterator.RecordSetIterator;
+import asgard.events.RecordSetEvent;
+
 import vegas.data.iterator.Iterable;
 import vegas.data.iterator.Iterator;
-import vegas.data.iterator.RecordSetIterator;
 import vegas.errors.Warning;
-import vegas.events.RecordSetEvent;
 import vegas.util.ArrayUtil;
 import vegas.util.mvc.AbstractModel;
 
@@ -89,7 +89,7 @@ import vegas.util.mvc.AbstractModel;
 /**
  * @author eKameleon
  */
-class vegas.data.remoting.RecordSet extends AbstractModel implements Iterable {
+class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable {
 
 	// ----o Constructor
 	
@@ -102,8 +102,7 @@ class vegas.data.remoting.RecordSet extends AbstractModel implements Iterable {
 			_aColumnNames = o ;
 		} else {
 			parse(o) ;
-		}
-		
+		}		
 		_eAdd    = new RecordSetEvent(RecordSetEvent.ADD_ITEMS, this) ;
 		_eClear  = new RecordSetEvent(RecordSetEvent.CLEAR_ITEMS, this);
 		_eRemove = new RecordSetEvent(RecordSetEvent.REMOVE_ITEMS, this) ;
@@ -287,22 +286,16 @@ class vegas.data.remoting.RecordSet extends AbstractModel implements Iterable {
 	}
 
 	public function parse( oRaw ):Void {
-		
 		clear();
-		
 		_aColumnNames = oRaw.serverInfo.columnNames ;
-		
 		var aItems:Array = oRaw.serverInfo.initialData ;
-		var i:Iterator = new ArrayIterator( aItems );
-		while( i.hasNext()) 
-		{
+		var l:Number = aItems.length ;
+		for (var i:Number = 0 ; i<l ; i++) {
 			var item:Object = {} ;
-			var aProperties = i.next();
-			var len:Number = aProperties.length ;
-			for (var i:Number = 0 ; i<len ; i++) {
-				var name:String = _aColumnNames[ i ];
-				var value = aProperties[i] ;
-				item[ name ] = value ;
+			var aProperties = aItems[i] ;
+			var count:Number = aProperties.length ;
+			for (var j:Number = 0 ; j<count ; j++) {
+				item[ _aColumnNames[ j ] ] = aProperties[j] ;
 			}
 			_aItems.push( item );
 		}

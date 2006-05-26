@@ -140,7 +140,7 @@ class vegas.events.Delegate extends CoreObject implements ICloneable, EventListe
 
 	public function setArguments():Void {
 		if (arguments.length > 0) {
-			_a = arguments ;
+			_a = [].concat(arguments) ;
 			_p.a = _a ;
 		}
 	}

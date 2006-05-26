@@ -21,7 +21,7 @@
   
 */
 
-/** 	RemotingEvent
+/** RemotingEvent
 
 	AUTHOR
 
@@ -55,7 +55,7 @@
 	
 		- clone()
 		
-		- getResults()
+		- getResult()
 		
 	INHERIT
 	
@@ -65,9 +65,7 @@
 	
 		Event
 
-----------  */
-
-import asgard.remoting.RemotingConnector;
+**/
 
 import vegas.events.DynamicEvent;
 
@@ -75,33 +73,113 @@ class asgard.events.RemotingEvent extends DynamicEvent {
 
 	// ----o Constructor
 	
-	public function RemotingEvent(type:String, target:RemotingConnector){
+	public function RemotingEvent(type:String, target){
 		super(type, target) ;
 	}
+
+	// ----o Constants
+	
+	static public var ERROR:String = "onError" ;	
+	static public var FAULT:String = "onFault" ;
+	static public var FINISH:String = "onFinished" ;
+	static public var PROGRESS:String = "onProgress" ;
+	static public var RESULT:String = "onResult" ;
+	static public var START:String = "onStart" ;
+
+	static private var __ASPF__ = _global.ASSetPropFlags(RemotingEvent, null , 7, 7) ;
 
 	// ----o Public Properties
 	
 	public var code:String ;
-	
-	public var fault:Object ;
-	
 	public var level:String ;
-	
-	public var result:Object ;
 	
 	// ----o Public Methods
 
 	public function clone() {
-		var re:RemotingEvent = new RemotingEvent(getType(), getTarget()) ;
-		re.code = code ;
-		re.fault = fault ;
-		re.level = level ;
-		re.result = result ;
-		return re ;
+		var e:RemotingEvent = new RemotingEvent(getType(), getTarget()) ;
+		e.code = code ;
+		e.setFault(getFault()) ;
+		e.level = level ;
+		e.setResult(e.getResult()) ;
+		return e ;
+	}
+
+	public function getCode():String {
+		return _sCode ;
+	}
+
+	public function getDetail():String {
+		return _sDetail ;
+	}
+	
+	public function getDescription():String {
+		return _sDescription ;
+	}
+
+	public function getExceptionStack():String {
+		return _sExceptionStack ;
+	}
+	
+	public function getFault() {
+		return _fault ;
+	}
+
+	public function getLevel():String {
+		return _sLevel ;
+	}
+	
+	public function getLine():String {
+		return _sLine ;
+	}
+	
+	public function getMethodName():String {
+		return _sMethodName ;
+	}
+
+	public function getResult() {
+		return _result ;	
 	}
 	
 	public function getResults() {
-		return RemotingConnector(getTarget()).getResults() ;	
+		return _result ;	
 	}
 	
+	public function setFault( oFault , methodName:String):Void {
+		_fault = oFault ;	
+		_sCode = oFault.code || null ;
+		_sDetail = oFault.details || null ;
+		_sDescription = oFault.description || null ;
+		_sExceptionStack = oFault.exceptionStack || null ;
+		_sLevel = oFault.level || null ;
+		_sLine = oFault.line || null ;
+		if (methodName) _sMethodName = methodName  ;
+	}
+	
+	public function setResult( oResult , sMethodName:String ):Void {
+		_result = oResult ;
+		if (methodName) _sMethodName = sMethodName  ;
+	}		
+
+	// ----o Virtual Properties
+	
+	public function get fault() {
+		return getFault() ;	
+	}
+	
+	public function set fault(oFault):Void {
+		setFault(oFault) ;	
+	}
+	
+	// ----o Private Properties
+	
+	private var _fault ;
+	private var _result ;	
+	private var _sCode:String ;
+	private var _sDescription:String ;
+	private var _sDetail : String ;
+	private var _sExceptionStack:String ;
+	private var _sLevel:String ;
+	private var _sLine:String ;
+	private var _sMethodName:String ;
+
 }

@@ -50,7 +50,7 @@
  * @version 1.0.0.0
  */
 
- import vegas.core.ICopyable;
+import vegas.core.ICopyable;
 import vegas.util.ArrayUtil;
 import vegas.util.BooleanUtil;
 import vegas.util.DateUtil;

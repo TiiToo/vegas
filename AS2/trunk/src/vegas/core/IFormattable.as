@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- IFormattable [interface]
+/** IFormattable [interface]
 
 	AUTHOR
 	
@@ -37,7 +37,7 @@
 	
 		- toString():String
 
-----------  */
+**/
 
 interface vegas.core.IFormattable  {
 	

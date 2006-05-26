@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	RemotingEventType
+/**	RemotingEventType
 
 	AUTHOR
 
@@ -59,7 +59,7 @@
 		
 			"onStarted"
 
-----------  */
+**/
 
 import asgard.events.ActionEventType;
 

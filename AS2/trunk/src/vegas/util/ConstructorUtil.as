@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- ConstructorUtil
+/** ConstructorUtil
 
 	AUTHOR
 	
@@ -55,7 +55,7 @@
 		
 		- isSubConstructorOf (subConstructor, superConstructor) ;
 	
----------  */
+**/
 
 class vegas.util.ConstructorUtil {
 	
@@ -104,9 +104,13 @@ class vegas.util.ConstructorUtil {
 	}
 	
 	static public function getPath(instance, scope):String {
+
 		if (instance.__path__) {
+			
 			return instance.__path__ ;
+			
 		} else {
+
 			var o = (typeof(instance)=="function") ? Function(instance).prototype : instance.__proto__ ;
 			var callee:Function ;
 			var find:Function = function( s:String, target ) {
@@ -123,7 +127,9 @@ class vegas.util.ConstructorUtil {
 			callee = find ;
 			instance["__path__"] = find( "", scope || _global ) || null ;
 			_global.ASSetPropFlags(instance, ["__path__"], 7, 7) ;
+			
 			return instance["__path__"] || null ;
+			
 		}
 	}
 	

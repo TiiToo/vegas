@@ -21,14 +21,14 @@
   
 */
 
-/** DisplayObjectCollector
+/** RemotingConnectionCollector
 
 	AUTHOR
 
-		Name : DisplayObjectCollector
-		Package : asgard.display
+		Name : RemotingConnectionCollector
+		Package : asgard.net.remoting
 		Version : 1.0.0.0
-		Date :  2006-03-21
+		Date :  2006-05-26
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
@@ -39,9 +39,9 @@
 	
 		- static contains( sName:String ):Boolean
 		
-		- static get(sName:String):DisplayObject
+		- static get(sName:String):RemotingConnection
 		
-		- static insert(sName:String, dObject:DisplayObject):Boolean
+		- static insert(sName:String, rc:RemotingConnection):Boolean
 		
 		- static isEmpty():Boolean
 		
@@ -49,7 +49,7 @@
 
 **/
 
-import asgard.display.DisplayObject;
+import asgard.net.remoting.RemotingConnection;
 
 import vegas.data.map.HashMap;
 import vegas.errors.Warning;
@@ -59,11 +59,11 @@ import vegas.errors.Warning;
  * @version 1.0.0.0
  */
 
-class asgard.display.DisplayObjectCollector {
+class asgard.net.remoting.RemotingConnectionCollector {
 
 	// ----o Constructor
 	
-    private function DisplayObjectCollector() {
+    private function RemotingConnectionCollector() {
 		//
     }
 
@@ -77,27 +77,27 @@ class asgard.display.DisplayObjectCollector {
 		return _map.containsKey( sName ) ;	
 	}
 	
-	static public function get(sName:String):DisplayObject {
+	static public function get(sName:String):RemotingConnection {
 		try {
 			if (!contains(sName) ) {
-				throw new Warning("[DisplayObjectCollector].get(\"" + sName + "\"). Can't find DisplayObject instance." ) ;
+				throw new Warning("[RemotingConnectionCollector].get(\"" + sName + "\"). Can't find RemotingConnection instance." ) ;
 			} ;
 		} catch (e:Warning) {
 			e.toString() ;
 		}
 		
-		return DisplayObject(_map.get(sName)) ;	
+		return RemotingConnection(_map.get(sName)) ;	
 	}
 	
-	static public function insert(sName:String, dObject:DisplayObject):Boolean {
+	static public function insert(sName:String, rc:RemotingConnection):Boolean {
 		try {
 			if ( contains(sName) ) {
-				throw new Warning("[DisplayObjectCollector].insert(). A DisplayObject instance is already registered with '" + sName + "' name." ) ;
+				throw new Warning("[RemotingConnectionCollector].insert(). A RemotingConnection instance is already registered with '" + sName + "' name." ) ;
 			} ;
 		} catch (e:Warning) {
 			e.toString() ;
 		}
-		return Boolean(_map.put(sName, dObject))   ;	
+		return Boolean(_map.put(sName, rc))   ;	
 		
 	}
 	

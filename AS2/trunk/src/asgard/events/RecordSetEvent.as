@@ -26,7 +26,7 @@
 	AUTHOR
 
 		Name : RecordSetEvent
-		Package : vegas.events
+		Package : asgard.events
 		Version : 1.0.0.0
 		Date :  2006-05-25
 		Author : ekameleon
@@ -127,11 +127,11 @@
 
 **/
 
-import vegas.events.ModelChangedEvent;
-import vegas.events.ModelChangedEventType;
-import vegas.data.remoting.RecordSet;
+import asgard.data.remoting.RecordSet;
 
-class vegas.events.RecordSetEvent extends ModelChangedEvent {
+import vegas.events.ModelChangedEvent;
+
+class asgard.events.RecordSetEvent extends ModelChangedEvent {
 
 	// ----o Constructor
 	

@@ -88,6 +88,8 @@
 		
 		- setParent(parent:EventDispatcher):Void	INHERIT
 	
+		- toString():String
+	
 	INHERIT
 	
 		NetConnection → NetServerConnection
@@ -97,8 +99,6 @@
 		Action, EventTarget, IEventDispatcher, IHashable, IFormattable
 
 **/
-
-// TODO voir notifyAccept !! Pour le moment méthode non utilisée
 
 import asgard.events.NetServerEvent;
 import asgard.events.NetServerEventType;
@@ -305,26 +305,27 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 	// ----o Private Methods
 
 	private function onStatus( oInfo ):Void {
+		
 		_timer.stop() ;
 		
 		var code:NetServerStatus = NetServerStatus.format(oInfo.code) ;
 		
-		// trace("> " + this + ".onStatus(" + code + ")") ;
+		trace("> " + this + ".onStatus(" + arguments + ")") ;
 		
 		switch (code) {
-
+		
 			case NetServerStatus.BAD_VERSION :
 				notifyStatus(NetServerStatus.BAD_VERSION) ;
 				break ;
-
+			
 			case NetServerStatus.CLOSED :
 				notifyStatus(NetServerStatus.CLOSED) ;
 				break ;
-
+			
 			case NetServerStatus.FAILED :
 				notifyStatus(NetServerStatus.FAILED) ;
 				break ;
-
+			
 			case NetServerStatus.INVALID :
 				notifyStatus(NetServerStatus.INVALID) ;
 				break ;

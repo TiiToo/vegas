@@ -26,7 +26,7 @@
 	AUTHOR
 	
 		Name : RecordSetIterator
-		Package : vegas.data.iterator
+		Package : asgard.data.iterator
 		Version : 1.0.0.0
 		Date :  2005-05-25
 		Author : ekameleon
@@ -65,15 +65,16 @@
 
 **/
 
+import asgard.data.remoting.RecordSet;
+
 import vegas.core.CoreObject;
 import vegas.data.iterator.Iterator;
-import vegas.data.remoting.RecordSet;
 import vegas.util.MathsUtil;
 
 /**
  * @author eKameleon
  */
-class vegas.data.iterator.RecordSetIterator extends CoreObject implements Iterator {
+class asgard.data.iterator.RecordSetIterator extends CoreObject implements Iterator {
 
 	// ----o Constructor
 	

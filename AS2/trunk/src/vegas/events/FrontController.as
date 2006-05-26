@@ -57,12 +57,12 @@
 
 **/
 
-import vegas.core.CoreObject ;
-import vegas.data.Map ;
-import vegas.data.map.HashMap ;
-import vegas.events.Event ;
-import vegas.events.EventDispatcher ;
-import vegas.events.EventListener ;
+import vegas.core.CoreObject;
+import vegas.data.Map;
+import vegas.data.map.HashMap;
+import vegas.events.Event;
+import vegas.events.EventDispatcher;
+import vegas.events.EventListener;
 
 /**
  * {@code FrontController} .
