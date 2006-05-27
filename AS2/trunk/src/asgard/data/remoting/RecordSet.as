@@ -26,8 +26,8 @@
 	AUTHOR
 	
 		Name : RecordSet
-		Package : asgard.data.iterator
-		Version : 0.0.0.1 alpha
+		Package : asgard.data.remoting
+		Version : 1.0.0.0
 		Date :  2005-05-25
 		Author : ekameleon
 		URL : http://www.ekameleon.net
@@ -38,7 +38,7 @@
 		var rs:RecordSet = new RecordSet( oRaw ) ;
 
 	METHOD SUMMARY
-		
+	
 		- addView(listener:EventListener):Void
 		
 		- clone()
@@ -60,7 +60,7 @@
 		- RecordSetEvent.REMOVE_ITEMS:String
 		
 		- RecordSetEvent.SORT_ITEMS:String
-					
+		
 		- RecordSetEvent.UPDATE_ITEMS:String
 
 	INHERIT
@@ -113,8 +113,8 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable {
 
 	// ----o Public Properties
 	
-	public var serverInfo:Object ; // attached by the player
-	public var serverinfo:Object ; // attached by the player
+	public var serverInfo:Object ;
+	public var serverinfo:Object ;
 	public var serviceName:String ; 
 	
 	// ----o Public Methods
@@ -402,6 +402,13 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable {
 	private var _recordsAvailable:Number ;
 	private var _recordSetID:Number = null ;
 	private var _totalCount:Number ;
-	
+
+	// ----o Private Methods
+
+	static private function _registerRecordSet():Boolean {
+		Object.registerClass( "RecordSet", asgard.data.remoting.RecordSet );
+		return( true );
+	}
+
 
 }

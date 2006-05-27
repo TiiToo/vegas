@@ -33,6 +33,10 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
+	PROPERTY SUMMARY
+	
+		- stop:Number
+
 	METHOD SUMMARY
 	
 		- cancel():Void
@@ -86,6 +90,8 @@
 import vegas.core.ICloneable;
 
 interface vegas.events.Event extends ICloneable {
+
+	// var stop:Number ;
 
 	function cancel():Void ;
 		

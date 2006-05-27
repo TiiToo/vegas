@@ -21,7 +21,7 @@
   
 */
 
-/* -------- Range
+/** Range
 
 	AUTHOR
 
@@ -78,8 +78,7 @@
 	TODO : getCentralValue():Number
 	TODO : size()
 	
-	
----------------*/
+**/
 
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
@@ -101,6 +100,7 @@ class vegas.maths.Range extends CoreObject implements ICloneable, IEquality, ISe
 	// ----o Constant
 	
 	static public var PERCENT_RANGE:Range = new Range(0, 100) ;
+	
 	static public var COLOR_RANGE:Range = new Range(-255, 255) ;
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(Range, null , 7, 7) ;
@@ -125,7 +125,7 @@ class vegas.maths.Range extends CoreObject implements ICloneable, IEquality, ISe
 	}
 	
 	public function equals(o):Boolean {
-		return o instanceof Range && o.min == min && o.max == o.max ;
+		return (o instanceof Range) && (o.min == min) && (o.max == o.max) ;
 	}
 	
 	public function isOutOfRange(value:Number):Boolean {

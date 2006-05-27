@@ -21,7 +21,7 @@
   
 */
 
-/* ----- Factor
+/** Factor
 
 	AUTHOR
 
@@ -34,7 +34,6 @@
 		Mail : vegas@ekameleon.net
 
 	METHOD SUMMARY
-
 
 		- static factorial(n)
 			Recursive method that defines the factorial of a positive integer.
@@ -75,7 +74,7 @@
 	
 		Richard Wright : [wisolutions2002@shaw.ca]
 
-------------------------- */
+**/
 
 import vegas.errors.ValueOutOfBoundsError;
 import vegas.maths.Prime;
@@ -126,7 +125,7 @@ class vegas.maths.Factor {
     }
 
 	static public function factorial(n:Number):Number {
-		if (n > maxRecursion) throw new ValueOutOfBoundsError ;
+		if (n > maxRecursion) throw new ValueOutOfBoundsError() ;
 		if (n!=0) return n * Factor.factorial(n-1) ;
 		else return (1) ;
     }

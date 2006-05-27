@@ -21,7 +21,7 @@
   
 */
 
-/* ------ EventFactory
+/** EventFactory
 
 	AUTHOR
 
@@ -41,7 +41,7 @@
 	
 		- static public create(o, target:Object, context:Object):Event
 	
----------------*/
+**/
 
 import vegas.events.BasicEvent;
 import vegas.events.Event;

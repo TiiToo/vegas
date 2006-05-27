@@ -50,7 +50,11 @@
 		- size():Number
 		
 		- toString():String
+
+	INHERIT
 	
+		CoreObject → EventQueue
+
 	IMPLEMENTS
 
 		IFormattable, IHashable
@@ -99,6 +103,6 @@ class vegas.events.EventQueue extends CoreObject  {
 	
 	// ----o Private Properties
 
-    private var _events:LinearQueue ;
+    private var _events:LinearQueue = null ;
     
 }

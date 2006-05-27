@@ -35,7 +35,7 @@
 
 	CONSTRUCTOR
 	
-		new EventDispatcher(target:IEventDispatcher) ;
+		new EventDispatcher(target:IEventDispatcher, parent:EventDispatcher) ;
 
 	PROPERTY SUMMARY
 	
@@ -272,7 +272,7 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 	static public function getInstance(name:String):EventDispatcher {
 		if (!name) name = "__default__" ;
 		if (!EventDispatcher.instances.containsKey(name)) {
-			EventDispatcher.instances.put(name, new EventDispatcher) ;
+			EventDispatcher.instances.put(name, new EventDispatcher()) ;
 		}
 		return EventDispatcher(EventDispatcher.instances.get(name));
 	}
@@ -413,7 +413,7 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 	}
 	
 	private function _propagate(e:Event, isQueue:Boolean):Event {
-		if (e["stop"] >= EventPhase.STOP ) return e ;
+		if (e["stop"] >= EventPhase.STOP ) return e ; // hack the interface limitation
 		if (_listeners.containsKey(e.getType())) {
             var col:EventListenerCollection = EventListenerCollection(_listeners.get(e.getType())) ;
             col.propagate(e) ;
