@@ -140,11 +140,11 @@ class asgard.net.remoting.RemotingConnection extends NetServerConnection {
 	// ----o Public Methods
 
 	public function clone() {
-		return new RemotingConnection(_url) ;	
+		return new RemotingConnection( uri ) ;	
 	}
 
 	static public function getConnection( sUrl:String ):RemotingConnection {
-		if ( ! RemotingConnectionCollector.contains(sURL) ) {
+		if ( ! RemotingConnectionCollector.contains(sUrl) ) {
 			RemotingConnectionCollector.insert(sUrl, new RemotingConnection( sUrl ));
 		}
 		return RemotingConnectionCollector.get(sUrl) ;
@@ -173,7 +173,7 @@ class asgard.net.remoting.RemotingConnection extends NetServerConnection {
 	}
 	
 	public function stopDebug():Void {
-		addHeader( RemotingConnection.AMF_SERVER_DEBUG, true, oDebug) ;
+		addHeader( RemotingConnection.AMF_SERVER_DEBUG, true, undefined) ;
 	}
 	
 }

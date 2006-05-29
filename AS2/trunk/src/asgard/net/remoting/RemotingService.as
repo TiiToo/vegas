@@ -137,7 +137,7 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction {
 	}
 
 	public function getIsProxy():Boolean {
-		return _isDynamic ;	
+		return _isProxy ;	
 	}
 	
 	public function getGatewayUrl():String {
@@ -243,7 +243,7 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction {
 	}
 
 	public function toString():String {
-		return new RemotingFormat().formatToString(this) ;	
+		return (new RemotingFormat()).formatToString(this) ;	
 	}
 
 	// ----o Virtual Properties
@@ -322,9 +322,12 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction {
 		var responder:RemotingServiceResponder = getResponder() ;
 		responder.setMethodName(methodName) ;
 
+		var rc:RemotingConnection = _rc ;
+		var serviceName:String = _serviceName ;
+
 		return function () {
-			var args:Array = [ _serviceName + "." + methodName , responder ].concat(arguments) ;
-			return _rc.call.apply( _rc, args ); 
+			var args:Array = [ serviceName + "." + methodName , responder ].concat(arguments) ;
+			return rc.call.apply( rc, args ); 
 		} ;
 		
 		
