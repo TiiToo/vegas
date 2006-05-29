@@ -136,6 +136,10 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction {
 		return new RemotingService( getGatewayUrl() , getServiceName() ) ; // TODO voir pour le responder !
 	}
 
+	public function getConnection() {
+		return _rc ;	
+	}
+
 	public function getIsProxy():Boolean {
 		return _isProxy ;	
 	}
@@ -231,7 +235,9 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction {
 	}
 	
 	public function setResponder( responder:RemotingServiceResponder ):Void {
+		if (_responder) _responder.setService(null) ;
 		_responder = responder || new RemotingServiceResponder(this, onResult, onFault) ;
+		_responder.setService(this) ;
 	}
 
 	public function setServiceName( sName:String ):Void {

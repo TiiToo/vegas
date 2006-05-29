@@ -71,6 +71,10 @@
 	
 		IEventDispatcher, IFormattable, IHashable, IModel, EventTarget
 
+	HISTORY
+	
+		2006-05-29 : add in constructor parsing if serverInfo is not null !
+
 **/
 
 import asgard.data.iterator.RecordSetIterator;
@@ -81,10 +85,11 @@ import vegas.data.iterator.Iterator;
 import vegas.errors.Warning;
 import vegas.util.ArrayUtil;
 import vegas.util.mvc.AbstractModel;
+import asgard.net.remoting.RemotingService;
 
 // TODO setDeliveryMode : see RecordSet class (macromedia in mc.remoting package).
 // TODO finir la documentation
-// TODO voir toute la gestion remote et local du RecordSet (finir).
+// TODO voir toute la gestion remote et local du RecordSet (finir) !!!!
 
 /**
  * @author eKameleon
@@ -95,20 +100,36 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable {
 	
 	public function RecordSet( o ) {
 		
-		_aItems = [] ;
-		_aColumnNames = [] ;
-		
-		if (o instanceof Array) {
-			_aColumnNames = o ;
-		} else {
-			parse(o) ;
-		}		
 		_eAdd    = new RecordSetEvent(RecordSetEvent.ADD_ITEMS, this) ;
 		_eClear  = new RecordSetEvent(RecordSetEvent.CLEAR_ITEMS, this);
 		_eRemove = new RecordSetEvent(RecordSetEvent.REMOVE_ITEMS, this) ;
 		_eSort   = new RecordSetEvent(RecordSetEvent.SORT_ITEMS, this) ;
 		_eUpdate = new RecordSetEvent(RecordSetEvent.UPDATE_ITEMS, this) ;
 		
+		_items = [] ;
+		mTiles = [] ;
+		
+		if (serverInfo == null) {
+			if (serverinfo != null) {
+				serverInfo = serverinfo ;
+			}
+		}
+		
+		if (o) {
+		
+			if (o instanceof Array) {
+				mTiles = o ;
+			} else {
+				parse(o) ;
+			}		
+		}
+		
+		// ??? voir ici ce qui cloche en comparaison avec script MM.
+		
+		if (serverInfo) {
+			parse(this) ;	
+		}
+
 	}
 
 	// ----o Public Properties
@@ -129,12 +150,12 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable {
 		
 		if (index >= 0 && index < l ) {
 			
-			_aItems.splice(index, 0, oItem) ;
+			_items.splice(index, 0, oItem) ;
 			
 		} else {
 			
 			 if (index == l) {
-			 	_aItems[index] = oItem ;	
+			 	_items[index] = oItem ;	
 			 } else {
 			 	return null ;	
 			 }
@@ -163,20 +184,20 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable {
 	 */
 	public function clear():Void {
 		_id = 0 ;
-		_aColumnNames = new Array();
-		_eClear.removedItems = _aItems.splice(0) ;
+		mTiles = new Array();
+		_eClear.removedItems = _items.splice(0) ;
 		notifyChanged(_eClear) ;
 	}
 
 	public  function contains( oItem ):Boolean {
-		return ArrayUtil.contains(_aItems, oItem) ;
+		return ArrayUtil.contains(_items, oItem) ;
 	}
 
 	public function editField(index:Number, fieldName:String , value):Void {
 		
 		if ( checkLocal() ) return ;
 		if (index<0 || index > size()) return ;
-		_aItems[index][fieldName] = value ;
+		_items[index][fieldName] = value ;
 		
 	}	
 
@@ -187,7 +208,7 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable {
 		}
 
 		var rs:RecordSet = new RecordSet() ;
-		rs.setColumnNames(_aColumnNames) ;
+		rs.setColumnNames(mTiles) ;
 	
 		var len:Number = size() ;
 		for(var i:Number = 0; i < len ; i++) {
@@ -202,7 +223,7 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable {
 
 
 	public function getColumnNames():Array {
-		return _aColumnNames;
+		return mTiles ;
 	}
 
 	public function getItemAt(id:Number) {
@@ -210,7 +231,7 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable {
 			return null ;
 		}
 		if (isLocal()) {
-			return _aItems[id] ;
+			return _items[id] ;
 		}
 	}
 
@@ -225,7 +246,7 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable {
 	 * again in this RecordSet object.
 	 */
 	public function getItemID( index:Number ) {
-		return _aItems[index].hashCode() ;
+		return _items[index].hashCode() ;
 	}
 
 	/**
@@ -235,13 +256,17 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable {
 		return size() ;	
 	}
 
+	public function getLength():Number {
+		return size() ;	
+	}
+
 	/**
 	 * Returns the number of records that have been downloaded from the server.
 	 * The count does not include records that have been requested but not yet arrived.
 	 * For local RecordSet objects, this will always return the same value as the getLocalLength method.
 	 */
 	public function getNumberAvailable():Number {
-		return isLocal() ? size() : _recordsAvailable ; 
+		return isLocal() ? size() : mRecordsAvailable ; 
 	}
 
 	/**
@@ -249,25 +274,25 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable {
 	 */
 	public function getRemoteLength():Number {
 		if( isLocal())
-			return _recordsAvailable ;
+			return mRecordsAvailable ;
 		else
-			return _totalCount ;
+			return mTotalCount ;
 	}
 
 	public function indexOf( oItem ):Number {
-		return ArrayUtil.indexOf(_aItems, oItem) ;
+		return ArrayUtil.indexOf(_items, oItem) ;
 	}
 
 	public function indexOfField(fieldName:String, value):Number {
-		var l:Number = _aItems.length ;
+		var l:Number = _items.length ;
 		while (--l > -1) {
-			if (_aItems[l][fieldName] == value) return l ;
+			if (_items[l][fieldName] == value) return l ;
 		}
 		return -1 ;
 	}
 
 	public function isEmpty():Boolean {
-		return _aItems.length == 0 ;
+		return _items.length == 0 ;
 	}
 
 	function isFullyPopulated():Boolean {
@@ -275,7 +300,7 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable {
 	}
 
 	function isLocal():Boolean {
-		return _recordSetID == null ;
+		return mRecordSetID == null ;
 	}
 
 	/**
@@ -286,19 +311,32 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable {
 	}
 
 	public function parse( oRaw ):Void {
+		
 		clear();
-		_aColumnNames = oRaw.serverInfo.columnNames ;
+		
+		mTiles = oRaw.serverInfo.columnNames ;
+		
+		mRecordsAvailable = 0 ;
+		
+		// implémenter setData ici !
+		// setData((serverInfo.cursor == null) ? 0 : (serverInfo.cursor - 1), serverInfo.initialData);
+		
 		var aItems:Array = oRaw.serverInfo.initialData ;
+		
+		
 		var l:Number = aItems.length ;
 		for (var i:Number = 0 ; i<l ; i++) {
 			var item:Object = {} ;
 			var aProperties = aItems[i] ;
 			var count:Number = aProperties.length ;
 			for (var j:Number = 0 ; j<count ; j++) {
-				item[ _aColumnNames[ j ] ] = aProperties[j] ;
+				item[ mTiles[ j ] ] = aProperties[j] ;
 			}
-			_aItems.push( item );
+			_items.push( item );
 		}
+		
+		//serverInfo = null ;
+		
 	}
 
 	public function removeItem(oItem) {
@@ -317,7 +355,7 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable {
 	}
 
 	public function removeItemsAt(index:Number, len:Number):Array {
-		var oldItems = _aItems.splice(index, len) ;
+		var oldItems = _items.splice(index, len) ;
 		_eRemove.firstItem = index ;
 		_eRemove.lastItem = index + len - 1 ;
 		_eRemove.removedItems = [].concat(oldItems) ;
@@ -336,8 +374,8 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable {
 	public function replaceItemAt( index:Number, item:Object ):Void {
 		if (index>=0 && index<=size()) {
 			var tmpID = getItemID(index) ;
-			_aItems[index] = item ;
-			_aItems[index].__ID__ = tmpID ;
+			_items[index] = item ;
+			_items[index].__ID__ = tmpID ;
 			_eUpdate.index = index ;
 			notifyChanged( _eUpdate ) ;
 		}
@@ -348,15 +386,19 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable {
 		if (id == -1 || id == index) return ;
 		else {
 			var tmp = oItem ;
-			_aItems.splice(id, 1) ;
-			_aItems.splice(index, 0, tmp) ;
+			_items.splice(id, 1) ;
+			_items.splice(index, 0, tmp) ;
 			_eUpdate.index = index ;
 			notifyChanged( _eUpdate ) ;
 		}
 	}
 
 	public function setColumnNames(ar:Array):Void {
-		_aColumnNames = ar ;	
+		mTiles = ar ;	
+	}
+
+	public function setParentService( service ):Void {
+		_nc = service.getConnection() ;
 	}
 
 	/**
@@ -364,51 +406,92 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable {
 	 */
 	public function size():Number {
 		if (isLocal()) {
-			return _aItems.length ;
+			return _items.length ;
 		} else {
-			return _totalCount ;
+			return mTotalCount ;
 		}
 	}
 	
 	public function sortItems(compareFunc:Function, options:Number):Void {
 		if (checkLocal()) return ;
-		_aItems.sort(compareFunc, options) ;
+		_items.sort(compareFunc, options) ;
 		notifyChanged(_eSort) ;
 	}
 
 	public function sortItemsBy( fieldNames , options ):Void {
 		if (checkLocal()) return ;
-		_aItems.sortOn( fieldNames, options ) ;
+		_items.sortOn( fieldNames, options ) ;
 		notifyChanged(_eSort) ;
 	}
 	
 	public function toArray():Array {
-		return _aItems ;
+		return _items ;
 	}
 
+	// ----o Virtual Properties
+
+	public function get columnNames():Array {
+		return getColumnNames() ;
+	}
+
+	public function get items():Array {
+		return _items ;
+	}
+
+	public function get length():Number {
+		return getLength() ;
+	}
+	
 	// ----o Private Properties
 	
-	private var _aColumnNames : Array;
-	private var _aItems : Array ;
+	private var mTiles : Array;
+	private var _items : Array ;
 
-	private var _eAdd:RecordSetEvent ;
-	private var _eClear:RecordSetEvent ;
-	private var _eRemove:RecordSetEvent ;
-	private var _eSort:RecordSetEvent ;
-	private var _eUpdate:RecordSetEvent ;
+	private var _eAdd:RecordSetEvent = null ;
+	private var _eClear:RecordSetEvent = null ;
+	private var _eRemove:RecordSetEvent = null ;
+	private var _eSort:RecordSetEvent = null ;
+	private var _eUpdate:RecordSetEvent = null ;
 
 	private var _id:Number = 0 ;
 
-	private var _recordsAvailable:Number ;
-	private var _recordSetID:Number = null ;
-	private var _totalCount:Number ;
+	// -- server-associated RecordSet only
+	
+	private var mDeliveryMode:String;	
+	private var mRecordsAvailable:Number ;
+	private var mRecordSetID:Number = null ;
+	private var mRecordSetService:RemotingService ;
+	private var mTotalCount:Number ;
 
-	// ----o Private Methods
+	// -- only if deliverymode = "page"
+	private var mPageSize:Number;
+	private var mNumPrefetchPages:Number;
+	private var mAllNotified:Boolean;
+	private var mOutstandingRecordCount:Number;
+
+	private var _nc ;
+
+	// ----o Register Class - AMF deserialization
 
 	static private function _registerRecordSet():Boolean {
 		Object.registerClass( "RecordSet", asgard.data.remoting.RecordSet );
 		return( true );
 	}
 
+	static private var _initRegister:Boolean = _registerRecordSet() ;	
 
+	// ----o Private Methods
+
+	/**
+	
+	private function getRecordSetService():RemotingService {
+		// see MM code
+		return mRecordSetService ;
+	}
+	
+	private function setData( ) {
+		trace(">>>>>>>>>>>>>> " + this + " : " + arguments) ;	
+	}
+
+	*/
 }

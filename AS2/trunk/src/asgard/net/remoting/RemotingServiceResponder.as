@@ -70,8 +70,19 @@ class asgard.net.remoting.RemotingServiceResponder extends CoreObject {
 		return _methodName ;
 	}
 	
+	public function getService() {
+		return _service ;	
+	}
+	
 	public function onResult( oResult ):Void {
+		
+		
+		if (oResult instanceof RecordSet) {
+			oResult.setParentService( getService() ) ;
+		}
+		
 		_eResult.setResult( oResult.serverInfo ? new RecordSet(oResult) : oResult, _methodName ) ;
+		
 		_result.setArguments( _eResult ) ;
 		_result.run() ;
 	}
@@ -86,6 +97,10 @@ class asgard.net.remoting.RemotingServiceResponder extends CoreObject {
 		_methodName = sName ;
 	}
 
+	public function setService( service ) {
+		_service = service ;
+	}
+
 	// ----o Private Properties
 	
 	private var _eFault:RemotingEvent ;
@@ -94,5 +109,7 @@ class asgard.net.remoting.RemotingServiceResponder extends CoreObject {
 	private var _fault:Delegate ;
 	private var _methodName:String ;
 	private var _result:Delegate ;
+	
+	private var _service ;
 	
 }
