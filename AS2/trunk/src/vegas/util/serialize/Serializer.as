@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- Serializer
+/** Serializer
 
 	AUTHOR
 	
@@ -65,7 +65,7 @@
 	TODO : voir si il est préférable de gérer une SerializeError ??
 	TODO : finir le remplissage des propriétés dans le constructeur de la source
 
-----------  */
+**/
 
 import vegas.core.ISerializable;
 import vegas.util.ConstructorUtil;

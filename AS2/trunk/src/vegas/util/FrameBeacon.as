@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- FrameBeacon
+/** FrameBeacon
 
 	AUTHOR
 
@@ -39,7 +39,7 @@
 
 	 PROPERTY SUMMARY
 	
-		- static running:Boolean [R only]
+		- static running:Boolean [Read only]
 
 	 METHOD SUMMARY
 	
@@ -89,8 +89,7 @@
 			FrameBeacon.running ? FrameBeacon.stop() : FrameBeacon.start() ;
 		}
 	
-	
-----------------*/
+**/
 
 import vegas.data.iterator.ArrayIterator;
 import vegas.data.iterator.Iterator;
@@ -167,7 +166,7 @@ class vegas.util.FrameBeacon {
 	
 	// ----o Private Properties
 	
-	static private var _listeners:Array = new Array ;
+	static private var _listeners:Array = new Array() ;
 	static private var _mc:MovieClip ;
 	static private var _proxy:Function = Delegate.create( FrameBeacon, FrameBeacon.broadcastMessage , "onEnterFrame" ) ; 
 	static private var addListener:Function ;

@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	NullComparator
+/**	NullComparator
 
 	AUTHOR
 	
@@ -39,9 +39,9 @@
 	
 	ARGUMENTS
 	
-		an object reference
+		an object reference.
 	
-	METHODS
+	METHOD SUMMARY
 	
 		- compare(o1, o2) : return a number
 		
@@ -51,13 +51,17 @@
 		
 		- toString():String
 
+	INHERIT
+	
+		CoreObject → NullComparator
+
 	IMPLEMENTS
 	
 		IComparator, ISerializable, IFormattable
 
 	TODO : ?? voir si vraiment utile pour le moment pas d'utilité ^_^
 
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.core.IComparator;

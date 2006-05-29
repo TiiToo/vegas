@@ -21,7 +21,7 @@
   
 */
 
-/* ------- FunctionSerializer
+/** FunctionSerializer
 
 	AUTHOR
 	
@@ -47,7 +47,7 @@
 	
 		- EDEN : http://live.burrrn.com/wiki/eden
 	
-----------  */
+**/
 
 class vegas.util.serialize.FunctionSerializer {
 

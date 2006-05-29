@@ -21,7 +21,7 @@
   
 */
 
-/* ----------  Observable
+/** Observable
 
 	AUTHOR
 
@@ -51,7 +51,7 @@
 		
 		- setChanged()
 	
-----------  */
+**/
 
 import vegas.data.iterator.Iterator;
 import vegas.data.list.ArrayList;
@@ -63,7 +63,7 @@ class vegas.util.Observable {
 	// ----o Constructor
 
 	public function Observable() {
-		_obs = new ArrayList ;
+		_obs = new ArrayList() ;
 	}
 
 	// ----o Public Methods

@@ -21,7 +21,7 @@
   
 */
 
-/* ------- ITimer [Interface]
+/** ITimer [Interface]
 
 	AUTHOR
 
@@ -63,7 +63,7 @@
 	
 		EventTarget
 
-----------  */
+**/
 
 import vegas.events.EventTarget;
 

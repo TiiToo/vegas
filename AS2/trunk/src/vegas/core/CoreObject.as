@@ -39,6 +39,10 @@
 		
 		- toString():String
 
+	INHERIT
+	
+		Object → CoreObject
+	
 	IMPLEMENT
 	
 		IFormattable, IHashable

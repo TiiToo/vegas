@@ -21,7 +21,7 @@
   
 */
 
-/* ------- Byte
+/** Byte
 
 	AUTHOR
 
@@ -33,7 +33,7 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
-	CONSTANTS
+	CONSTANT SUMMARY
 	
 		- SHORT_BYTE : Shortname of byte.
 		
@@ -44,8 +44,42 @@
 		- SHORT_GIGA_BYTE : Shortname of giga-byte.
 		
 		- SHORT_TERA_BYTE : Shortname of tera-byte. 
+
+	METHOD SUMMARY
 	
-----------  */
+		- getBit():Number
+		
+		- getBytes():Number
+		
+		- getKBit():Number
+		
+		- getKBytes():Number
+		
+		- getMegaBit():Number
+		
+		- getMegaBytes():Number
+		
+		- getGigaBit():Number
+		
+		- getGigaBytes():Number
+		
+		- getTeraBit():Number
+		
+		- getTeraBytes():Number
+		
+		- hashCode():Number
+		
+		- setFloatingPoints(n:Number):Bit
+		
+		- toString():String 
+		
+		- valueOf()
+
+	INHERIT
+	
+		Number → Bit → Byte  
+	
+**/
 
 import vegas.core.types.Bit;
 

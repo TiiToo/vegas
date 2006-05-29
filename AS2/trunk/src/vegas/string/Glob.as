@@ -21,15 +21,17 @@
   
 */
 
-/* -------- 	Glob
+/** Glob
 
-	Name : 	Glob
-	Package : vegas.string
-	Version : 1.0.0.0
-	Date :  2005-05-25
-	Author : ekameleon
-	URL : http://www.ekameleon.net
-	Mail : vegas@ekameleon.net
+	AUTHOR
+	
+		Name : 	Glob
+		Package : vegas.string
+		Version : 1.0.0.0
+		Date :  2005-05-25
+		Author : ekameleon
+		URL : http://www.ekameleon.net
+		Mail : vegas@ekameleon.net
 
 	DESCRIPTION
 		
@@ -74,7 +76,7 @@
 	
 		Zwetan : BuRRRn > Flashcodeurs - mailing list (12/10/2004)
 
-----------  */	
+**/	
 
 class vegas.string.Glob {
 

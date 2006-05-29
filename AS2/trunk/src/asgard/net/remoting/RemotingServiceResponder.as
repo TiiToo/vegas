@@ -33,6 +33,19 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
+	METHOD SUMMARY
+	
+		- getMethodName():String
+		
+		- getService()
+
+		- onResult( oResult ):Void
+		
+		- onStatus( oFault:Object ):Void
+		
+		- setMethodName(sName:String):Void
+
+		- setService( service )
 
 **/
 
@@ -80,9 +93,7 @@ class asgard.net.remoting.RemotingServiceResponder extends CoreObject {
 		if (oResult instanceof RecordSet) {
 			oResult.setParentService( getService() ) ;
 		}
-		
 		_eResult.setResult( oResult.serverInfo ? new RecordSet(oResult) : oResult, _methodName ) ;
-		
 		_result.setArguments( _eResult ) ;
 		_result.run() ;
 	}

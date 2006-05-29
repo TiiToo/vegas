@@ -21,7 +21,7 @@
   
 */
 
-/* ------- ErrorSerializer
+/** ErrorSerializer
 
 	AUTHOR
 	
@@ -41,7 +41,7 @@
 	
 		- static toSource(e:Error):String
 	
-----------  */
+**/
 
 class vegas.util.serialize.ErrorSerializer {
 

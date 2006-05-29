@@ -21,7 +21,7 @@
   
 */
 
-/* ------- BooleanUtil
+/** BooleanUtil
 
 	AUTHOR
 	
@@ -47,7 +47,7 @@
 		
 		- static toObject(b:Boolean):Object
 
-----------  */
+**/
 
 class vegas.util.BooleanUtil {
 

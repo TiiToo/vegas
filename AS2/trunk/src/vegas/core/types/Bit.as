@@ -21,7 +21,7 @@
   
 */
 
-/* ------- Bit
+/** Bit
 
 	AUTHOR
 
@@ -35,15 +35,82 @@
 
 	CONSTANTS
 	
-		- DEFAULT_FLOATING_POINTS : Default floating points used.
+		- static DEFAULT_FLOATING_POINTS:Number
+
+		- static KBIT:Number
+		
+		- static MBIT:Number
+		
+		- static GBIT:Number
+		
+		- static TBIT:Number
 	
-----------  */
+		- static BYTE:Number
+		
+		- static KBYTE:Number
+		
+		- static MBYTE:Number
+		
+		- static GBYTE:Number
+		
+		- static TBYTE:Number
+	
+		- static SB:String = "b" 
+		
+		- static SKB:String = "Kb"
+		
+		- static SMB:String = "Mb"
+		
+		- static SGB:String = "Gb"
+		
+		- static STB:String = "Tb"
+
+	METHOD SUMMARY
+	
+		- getBit():Number
+		
+		- getBytes():Number
+		
+		- getKBit():Number
+		
+		- getKBytes():Number
+		
+		- getMegaBit():Number
+		
+		- getMegaBytes():Number
+		
+		- getGigaBit():Number
+		
+		- getGigaBytes():Number
+		
+		- getTeraBit():Number
+		
+		- getTeraBytes():Number
+		
+		- hashCode():Number
+		
+		- setFloatingPoints(n:Number):Bit
+		
+		- toString():String 
+		
+		- valueOf()
+	
+	INHERIT
+	
+		Number → Bit
+
+	IMPLEMENTS
+	
+		IFormattable, IHashable
+
+**/
 
 import vegas.core.HashCode;
 import vegas.core.IFormattable;
+import vegas.core.IHashable ;
 import vegas.util.MathsUtil;
 
-class vegas.core.types.Bit extends Number implements IFormattable {
+class vegas.core.types.Bit extends Number implements IFormattable, IHashable {
 
 	// ----o Constructor
 	

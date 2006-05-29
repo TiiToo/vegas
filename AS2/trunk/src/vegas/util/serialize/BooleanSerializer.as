@@ -21,7 +21,7 @@
   
 */
 
-/* ------- BooleanSerializer
+/** BooleanSerializer
 
 	AUTHOR
 	
@@ -41,7 +41,7 @@
 	
 		- static toSource(b:Boolean):String
 	
-----------  */
+**/
 
 import vegas.util.BooleanUtil;
 

@@ -21,7 +21,7 @@
   
 */
 
-/* ---------------- Luhn
+/** Luhn
 
 	AUTHOR
 	
@@ -48,7 +48,7 @@
 	
 		Luhn.isValid( str:String )
 	
-	METHODS
+	METHOD SUMMARY
 	
 		- isValid(str:String):Boolean
 	
@@ -65,7 +65,7 @@
 	
 		Formule de Luhn : http://fr.wikipedia.org/wiki/Formule_de_Luhn
 
--------------------- */
+**/
 
 class vegas.string.Luhn {
 

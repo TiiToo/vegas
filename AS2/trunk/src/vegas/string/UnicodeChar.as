@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- UnicodeChar
+/** UnicodeChar
 
 	AUTHOR
 	
@@ -94,7 +94,7 @@
 		var char:Char = UnicodeChar.toChar(unicode) ;
 		trace(">> " + char) ;
 	
-----------  */
+**/
 
 import vegas.core.types.Char;
 

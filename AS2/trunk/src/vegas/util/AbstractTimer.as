@@ -90,7 +90,7 @@
 
 	INHERIT
 	
-		Object → EventDispatcher → AbstractTimer
+		CoreObject → EventDispatcher → AbstractTimer
 
 	IMPLEMENTS 
 	

@@ -69,9 +69,13 @@
 		
 		- toString():String
 
+	INHERIT
+	
+		CoreObject → Range
+
 	IMPLEMENTS
 
-		ICloneable, IEquality, ISerializable, IFormattable
+		ICloneable, IEquality, IFormattable, IHashable, ISerializable
 	
 	TODO : combine(range1:Range, range2:Range) 
 	TODO : expand(r:Range, lowerMargin:Number, upperMargin:Number)
@@ -141,7 +145,7 @@ class vegas.maths.Range extends CoreObject implements ICloneable, IEquality, ISe
 	}
 	
 	public function toString():String {
-		return "[" + min + "," + max + "]";
+		return "<" + min + "," + max + ">";
 	}
 	
 }

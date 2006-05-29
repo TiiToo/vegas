@@ -21,7 +21,7 @@
   
 */
 
-/* ------- ReverseComparator
+/** ReverseComparator
 
 	AUTHOR
 		
@@ -57,13 +57,13 @@
 
 	INHERIT
 	
-		Object > CoreObject > ReverseIComparator
+		Object → CoreObject → ReverseIComparator
 
 	IMPLEMENTS
 	
-		IComparator, ISerializable, IFormattable, IHashable
+		IComparator, IFormattable, IHashable, ISerializable
 		
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.core.IComparator;
@@ -102,6 +102,5 @@ class vegas.util.comparators.ReverseComparator extends CoreObject implements ICo
 	public function toSource(indent:Number, indentor:String):String {
 		return Serializer.getSourceOf(this, [Serializer.toSource(comparator)]) ;
 	}
-
 	
 }

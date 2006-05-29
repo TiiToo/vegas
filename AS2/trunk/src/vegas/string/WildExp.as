@@ -21,7 +21,7 @@
   
 */
 
-/* ------ WildExp
+/** WildExp
 
 	AUTHOR
 	
@@ -111,7 +111,7 @@
 		- vegas.string.StringUtil : replace()
 		- vegas.string.UnicodeChar : WHITE_SPACE_CHARS and LINE_TERMINATOR_CHARS constants
 
-----------  */	
+**/	
 
 import vegas.core.CoreObject;
 import vegas.string.UnicodeChar;

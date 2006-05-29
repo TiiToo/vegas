@@ -21,7 +21,7 @@
   
 */
 
-/* -------- MathsUtil
+/** MathsUtil
 
 	AUTHOR
 
@@ -60,7 +60,7 @@
 		2006-01-11 : change namespace vegas.maths > vegas.util
 		2006-03-01 : add getPercent() method
 	
-----------------*/
+**/
 
 import vegas.errors.IllegalArgumentError;
 
@@ -89,7 +89,9 @@ class vegas.util.MathsUtil {
 	}
 		
 	static public function round(n:Number, floatCount:Number):Number {
-		if (isNaN(n)) throw new IllegalArgumentError() ; // "Argument 'n' must not be 'null' or 'undefined'.
+		if (isNaN(n)) {
+			throw new IllegalArgumentError("MathsUtil.round, Argument 'n' must not be 'null' or 'undefined'.") ;
+		}
 		var r:Number = 1 ;
 		var i:Number = -1 ;
 		while (++i < floatCount) r *= 10 ;
@@ -97,7 +99,9 @@ class vegas.util.MathsUtil {
 	}
 	
 	static public function sign( n:Number ):Number {
-		if (isNaN(n)) throw new IllegalArgumentError() ; // "Argument 'n' must not be 'null' or 'undefined'.
+		if (isNaN(n)) {
+			throw new IllegalArgumentError("MathsUtil.sign, Argument 'n' must not be 'null' or 'undefined'.") ;
+		}
 		return n<0 ? -1 : 1 ;
 	}
 

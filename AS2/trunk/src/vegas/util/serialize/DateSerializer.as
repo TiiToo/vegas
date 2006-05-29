@@ -21,7 +21,7 @@
   
 */
 
-/* ------- DateSerializer
+/** DateSerializer
 
 	AUTHOR
 	
@@ -41,7 +41,7 @@
 	
 		- toSource(date:Date):String
 	
-----------  */
+**/
 
 class vegas.util.serialize.DateSerializer {
 

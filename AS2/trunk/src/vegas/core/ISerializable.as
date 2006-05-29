@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- ISerializable [interface]
+/** ISerializable [interface]
 
 	AUTHOR
 	
@@ -59,7 +59,7 @@
 	
 		Zwetan Core2 framework inspired by Mozilla SpiderMonkey.
 
-----------  */
+**/
 
 interface vegas.core.ISerializable {
 	

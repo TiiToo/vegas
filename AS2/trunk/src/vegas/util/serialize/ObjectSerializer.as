@@ -21,7 +21,7 @@
   
 */
 
-/* ------- ObjectSerializer
+/** ObjectSerializer
 
 	AUTHOR
 	
@@ -41,7 +41,7 @@
 	
 		- toSource(o:Object, indent:Number, indentor:String):String
 	
-----------  */
+**/
 
 import vegas.util.ArrayUtil;
 import vegas.util.serialize.Serializer;

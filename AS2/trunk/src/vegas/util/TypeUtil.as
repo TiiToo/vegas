@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- TypeUtil
+/** TypeUtil
 
 	AUTHOR
 
@@ -87,7 +87,7 @@
 		
 		- static toString(type:Function):String
 
-----------  */
+**/
 
 import vegas.util.ConstructorUtil;
 

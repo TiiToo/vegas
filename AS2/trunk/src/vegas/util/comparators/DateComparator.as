@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	DateComparator
+/**	DateComparator
 
 	AUTHOR
 
@@ -63,13 +63,13 @@
 
 	INHERIT
 	
-		CoreObject
+		CoreObject → DateComparator
 
 	IMPLEMENTS
 	
-		IEquality, ICloneable, IComparator, ISerializable, IFormattable
+		ICloneable, IComparator, IEquality, IFormattable, IHashable, ISerializable
 
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;

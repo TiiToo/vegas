@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- ResolverProxy
+/** ResolverProxy
 
 	AUTHOR
 
@@ -61,6 +61,14 @@
          the View and the Model share their methods
          and properties as they were only one object.
 
+	INHERIT
+	
+		CoreObject → ResolverProxy
+
+	IMPLEMENTS
+
+		IFormattable, IHashable
+
 	SEE ALSO
 	
 		Mixin
@@ -71,12 +79,13 @@
 	
 		Zwetan >> http://www.zwetan.com/	
 		
--------------- */
+**/
 
 import vegas.util.factory.PropertyFactory;
 import vegas.util.Mixin;
+import vegas.core.CoreObject;
 
-class vegas.util.ResolverProxy {
+class vegas.util.ResolverProxy extends CoreObject {
 	
 	// ----o Constructor
 	
@@ -126,10 +135,6 @@ class vegas.util.ResolverProxy {
 			return _proxy[name];
 		}
     }
-
-	public function toString():String {
-		return "[ResolverProxy]" ;
-	}
 
 	// ----o Virtual Properties
 	

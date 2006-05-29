@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- ResolverMultiProxy
+/** ResolverMultiProxy
 
 	AUTHOR
 
@@ -33,7 +33,7 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
-	METHODS
+	METHOD SUMMARY
 	
 		- addProxy( proxy )
 		
@@ -41,7 +41,7 @@
 	
 	TODO A tester !
 	
--------------- */
+**/
 
 import vegas.data.collections.SimpleCollection;
 import vegas.data.iterator.Iterator;
@@ -52,7 +52,7 @@ class vegas.util.ResolverMultiProxy {
 	// ----o Constructor
 	
 	function ResolverMultiProxy ( p_proxy ) {
-		_proxys = new SimpleCollection ;
+		_proxys = new SimpleCollection() ;
     }
 
 	// ----o Statics

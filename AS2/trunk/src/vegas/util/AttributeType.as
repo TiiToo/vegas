@@ -21,7 +21,7 @@
   
 */
 
-/* ------- AttributeType
+/** AttributeType
 
 	AUTHOR
 
@@ -61,7 +61,7 @@
 		
 	TODO [2006-01-09] Use Number Constants.
 	
-----------  */
+**/
 
 class vegas.util.AttributeType {
 

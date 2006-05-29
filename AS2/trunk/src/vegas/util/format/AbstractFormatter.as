@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	AbstractFormatter
+/**	AbstractFormatter
 
 	AUTHOR
 	
@@ -49,15 +49,13 @@
 
 	INHERIT
 	
-		CoreObject
-			|
-			AbstractFormatter
+		CoreObject → AbstractFormatter
 
 	IMPLEMENT
 	
 		IFormatter, IFormattable, IHashable
 
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.util.factory.PropertyFactory;

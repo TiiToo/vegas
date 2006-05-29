@@ -21,7 +21,7 @@
   
 */
 
-/* ------- XMLSerializer
+/** XMLSerializer
 
 	AUTHOR
 	
@@ -41,7 +41,7 @@
 	
 		- toSource(x:XML):String
 	
-----------  */
+**/
 
 import vegas.util.serialize.Serializer;
 

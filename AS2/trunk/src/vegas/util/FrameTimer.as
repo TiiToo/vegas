@@ -21,7 +21,7 @@
   
 */
 
-/** Timer
+/** FrameTimer
 
 	AUTHOR
 
@@ -41,7 +41,7 @@
 	EXAMPLE
 	
 		import vegas.events.EventListener ;
-		import vegas.events.EventListenerProxy ;
+		import vegas.events.Delegate ;
 		import vegas.events.TimerEvent ;
 		import vegas.events.TimerEventType ;
 		import vegas.util.FrameTimer  ;
@@ -50,7 +50,7 @@
 			trace("onTimer: " + event.type) ;
 		}
 		
-		var timeListener:EventListener = new EventListenerProxy(this, onTimer) ;
+		var timeListener:EventListener = new Delegate(this, onTimer) ;
 		
 		var myTimer:FrameTimer = new FrameTimer(24, 10) ;
 		myTimer.addEventListener(TimerEventType.START, timeListener);
@@ -63,7 +63,7 @@
 			myTimer.running ? myTimer.stop() : myTimer.restart() ;
 		}
 
-	PROPERTIES
+	PROPERTY SUMMARY
 	
 		- delay:Number [R/W] 
 		
@@ -77,7 +77,7 @@
 		
 		- running:Boolean
 
-	METHODS
+	METHOD SUMMARY
 	
 		- clear():Void
 		
@@ -104,17 +104,18 @@
 			Stops the timer.
 			
 
-	EVENTS
+	EVENT SUMMARY
 	
-		- restartEvent
-		
-		- start Event
-		
-		- stop Event
-		
-		- timer Event
-		
-			A Timer object generates the timer event whenever a timer tick occurs.
+		TimerEvent
+	
+			- TimerEventType.RESTART
+			
+			- TimerEventType.START
+			
+			- TimerEventType.STOP
+			
+			- TimerEventType.TIMER
+				A Timer object generates the timer event whenever a timer tick occurs.
 
 	INHERIT
 	

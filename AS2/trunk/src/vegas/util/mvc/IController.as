@@ -21,7 +21,7 @@
   
 */
 
-/* --------- IController [Interface]
+/** IController [Interface]
 
 	AUTHOR
 
@@ -43,7 +43,7 @@
 		
 		- setView(oView:IView):Void
 	
-----------  */
+**/
 
 import vegas.util.mvc.IModel;
 import vegas.util.mvc.IView;

@@ -21,7 +21,7 @@
   
 */
 
-/* ------- NumberSerializer
+/** NumberSerializer
 
 	AUTHOR
 	
@@ -41,7 +41,7 @@
 	
 		- toSource(n:Number):String
 	
-----------  */
+**/
 
 class vegas.util.serialize.NumberSerializer {
 

@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	IFormatter [Interface]
+/**	IFormatter [Interface]
 
 	Name : IFormatter
 	Package : vegas.util.format
@@ -31,7 +31,7 @@
 	URL : http://www.ekameleon.net
 	Mail : vegas@ekameleon.net
 
-----------  */
+**/
 
 interface vegas.util.format.IFormatter {
 

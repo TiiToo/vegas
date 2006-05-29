@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	NumberComparator
+/**	NumberComparator
 
 	AUTHOR
 
@@ -59,13 +59,13 @@
 
 	INHERIT
 	
-		CoreObject > NumberComparator
+		CoreObject → NumberComparator
 
 	IMPLEMENTS
 	
-		IComparator, ISerializable, IFormattable
+		IComparator, IFormattable, IHashable, ISerializable
 
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.core.IComparator;

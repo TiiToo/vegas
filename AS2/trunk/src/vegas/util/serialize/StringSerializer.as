@@ -21,7 +21,7 @@
   
 */
 
-/* ------- StringSerializer
+/** StringSerializer
 
 	AUTHOR
 	
@@ -41,7 +41,7 @@
 	
 		- toSource(s:String):String
 	
-----------  */
+**/
 
 import vegas.string.UnicodeChar;
 

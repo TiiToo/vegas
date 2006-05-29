@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	StringComparator
+/**	StringComparator
 
 	AUTHOR
 
@@ -65,13 +65,13 @@
 
 	INHERIT
 	
-		CoreObject > StringIComparator
+		CoreObject → StringComparator
 
 	IMPLEMENTS
 	
-		IComparator, ISerializable, IFormattable
+		IComparator, IFormattable, IHashable, ISerializable
 
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.core.IComparator;

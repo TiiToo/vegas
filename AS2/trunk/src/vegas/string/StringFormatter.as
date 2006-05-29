@@ -21,7 +21,7 @@
 
 */
 
-/* ------- 	StringFormatter
+/**	StringFormatter
 
 	AUTHOR
 	
@@ -69,7 +69,15 @@
 		
 		- setPattern( pattern:String )
 
-----------  */
+	INHERIT
+	
+		CoreObject → AbstractFormatter → StringFormatter
+
+	IMPLEMENT
+	
+		IFormatter, IFormattable, IHashable
+
+**/
 
 import vegas.util.format.AbstractFormatter;
 import vegas.util.StringUtil;

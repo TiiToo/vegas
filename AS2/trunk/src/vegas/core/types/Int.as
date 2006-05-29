@@ -21,7 +21,7 @@
   
 */
 
-/* ------- Int
+/** Int
 
 	AUTHOR
 	
@@ -37,29 +37,30 @@
 	
 		Nombre entier
 
-	METHODS
+	METHOD SUMMARY
 
-		- toString()
+		- hashCode():Number
+
+		- toString():String
 		
 		- valueOf()
 	
-	IMPLEMENTS
-	
-		IFormattable
-		
 	INHERIT
 	
-		Number
-			|
-			Int
+		Number → Int
 
-----------  */
+	IMPLEMENTS
+	
+		IFormattable, IHashable
+
+**/
 
 import vegas.core.HashCode;
 import vegas.core.IFormattable;
+import vegas.core.IHashable ;
 import vegas.errors.NumberFormatError;
 
-class vegas.core.types.Int extends Number implements IFormattable {
+class vegas.core.types.Int extends Number implements IFormattable, IHashable {
 
 	// ----o Construtor
 	

@@ -21,7 +21,7 @@
   
 */
 
-/* ------- ICopyable [Interface]
+/** ICopyable [Interface]
 
 	AUTHOR
 	
@@ -37,7 +37,7 @@
 	
 		-  copy()
 
-----------  */
+**/
 
 interface vegas.core.ICopyable {
 	

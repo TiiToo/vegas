@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	Observer [Interface]
+/**	Observer [Interface]
 
 	AUTHOR
 	
@@ -37,7 +37,7 @@
 	
 		- update( o:Observable, arg )
 
-----------  */
+**/
 
 import vegas.util.Observable;
 

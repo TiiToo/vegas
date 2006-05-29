@@ -21,7 +21,7 @@
   
 */
 
-/* ------- Char
+/** Char
 
 	AUTHOR
 	
@@ -33,30 +33,31 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 	
-	METHODS
+	METHOD SUMMARY
 	
 		- getCode():Number
+		
+		- hashCode():Number
 		
 		- toString():String
 		
 		- valueOf()
 	
-	IMPLEMENTS
-	
-		IFormattable
-	
 	INHERIT
 	
-		String
-			|
-			Char
+		String → Char  
+
+	IMPLEMENTS
 	
-----------  */
+		IFormattable, IHashable
+
+**/
 
 import vegas.core.HashCode;
 import vegas.core.IFormattable;
+import vegas.core.IHashable ;
 
-class vegas.core.types.Char extends String implements IFormattable {
+class vegas.core.types.Char extends String implements IFormattable, IHashable {
 
 	// ----o Construtor
 	

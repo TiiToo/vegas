@@ -21,7 +21,7 @@
   
 */
 
-/* ------- Attribute
+/** Attribute
 
 	AUTHOR
 
@@ -70,7 +70,7 @@
 		* SSAS FMS Framework inspiration
 		* Zwetan : Core2 AS2 Framework inspiration for refactoring !
 		
-----------  */
+**/
 
 import vegas.core.IFormattable;
 import vegas.util.AttributeType;
