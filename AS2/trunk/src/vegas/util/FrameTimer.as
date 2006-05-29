@@ -118,11 +118,11 @@
 
 	INHERIT
 	
-		EventDispatcher > AbstractTimer > Timer
+		CoreObject → EventDispatcher → AbstractTimer → FrameTimer
 
 	IMPLEMENTS 
 	
-		ICloneable, EventTarget, IEventDispatcher, ITimer, IRunnable, IFormattable
+		EventTarget, ICloneable, IEventDispatcher,IFormattable,IRunnable,ITimer
 
 	SEE ALSO
 	

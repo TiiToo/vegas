@@ -98,27 +98,27 @@
 		- stop()
 		
 			Stops the timer.
-			
 
-	EVENTS
+	EVENT SUMMARY
 	
-		- restartEvent
-		
-		- start Event
-		
-		- stop Event
-		
-		- timer Event
-		
-			A Timer object generates the timer event whenever a timer tick occurs.
+		TimerEvent
+	
+			- TimerEventType.RESTART
+			
+			- TimerEventType.START
+			
+			- TimerEventType.STOP
+			
+			- TimerEventType.TIMER
+				A Timer object generates the timer event whenever a timer tick occurs.
 
 	INHERIT
 	
-		Object > EventDispatcher > AbstractTimer > Timer
+		CoreObject → EventDispatcher → AbstractTimer → Timer
 
 	IMPLEMENTS 
 	
-		ICloneable, EventTarget, IEventDispatcher, ITimer, IRunnable, IFormattable
+		EventTarget, ICloneable, IEventDispatcher, IFormattable, ITimer, IRunnable
 
 	SEE ALSO
 	

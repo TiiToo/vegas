@@ -97,7 +97,7 @@
 
 	INHERIT
 	
-		Object → BasicEvent → DynamicEvent → TimerEvent
+		CoreObject → BasicEvent → DynamicEvent → TimerEvent
 		
 	IMPLEMENTS
 	

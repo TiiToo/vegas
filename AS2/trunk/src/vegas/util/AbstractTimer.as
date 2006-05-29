@@ -45,7 +45,7 @@
 			If zero, the timer repeats infinitely. 
 			If nonzero, the timer runs the specified number of times and then stops.
 		
-		- running:Boolean
+		- running:Boolean [Read Only]
 
 	METHOD SUMMARY
 	
@@ -79,18 +79,18 @@
 		TimerEvent
 	
 			- TimerEventType.RESTART
-		
+			
 			- TimerEventType.START
-		
+			
 			- TimerEventType.STOP
-		
+			
 			- TimerEventType.TIMER
-		
-			A Timer object generates the timer event whenever a timer tick occurs.
+			
+				A Timer object generates the timer event whenever a timer tick occurs.
 
 	INHERIT
 	
-		Object > EventDispatcher > AbstractTimer
+		Object → EventDispatcher → AbstractTimer
 
 	IMPLEMENTS 
 	
@@ -144,7 +144,7 @@ class vegas.util.AbstractTimer extends EventDispatcher implements ICloneable, IT
 	}
 
 	public function restart(noEvent:Boolean):Void {
-		if (getRunning()) stop() ;
+		if (getRunning()) this.stop() ;
 		_setRunning(true) ;
 		run() ;
 		if (!noEvent) dispatchEvent( new TimerEvent( TimerEventType.RESTART, this) ) ;
