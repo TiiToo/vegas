@@ -244,7 +244,7 @@ class asgard.remoting.RemotingConnector extends AbstractAction implements Respon
 		_setRunning(false) ;
 		_results = result.result ;
 		var ev:RemotingEvent = new RemotingEvent(RemotingEventType.RESULT, this)  ;
-		ev.result = _results ;
+		ev.setResult( _results ) ;
 		dispatchEvent( ev ) ;
 		notifyFinished() ;
 	}

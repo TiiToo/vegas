@@ -165,7 +165,6 @@ import asgard.net.URLRequestHeader;
 import asgard.net.URLVariables;
 
 import vegas.events.Delegate;
-import vegas.events.Event;
 
 /**
  * @author eKameleon
@@ -219,7 +218,7 @@ class asgard.net.URLLoader extends AbstractLoader {
 	}
 
 	public function initEvent():Void {
-		_e = Event(new URLLoaderEvent(null, this)) ;
+		_e = new URLLoaderEvent(null, this) ;
 	}
 	
 	public function isLoaded():Boolean {

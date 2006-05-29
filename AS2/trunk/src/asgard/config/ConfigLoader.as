@@ -47,7 +47,6 @@ import asgard.events.LoaderEvent;
 import asgard.net.JSONLoader;
 import asgard.net.URLRequest;
 
-import vegas.events.Event;
 import vegas.logging.ILogger;
 import vegas.logging.Log;
 
@@ -106,7 +105,7 @@ class asgard.config.ConfigLoader extends JSONLoader {
 
 	public function initEvent():Void {
 		
-		_e = Event(new ConfigLoaderEvent( null, this )) ;
+		_e = new ConfigLoaderEvent( null, this ) ;
 		
 	}
 	
