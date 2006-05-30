@@ -117,11 +117,11 @@
 
 	INHERIT
 	
-		CoreObject → BasicEvent → ModelChangedEvent
-
+		BasicEvent → DynamicEvent → ModelChangedEvent
+		
 	IMPLEMENTS
 	
-		Event
+		Event, ICloneable, IFormattable, IHashable
 
 **/
 
@@ -138,7 +138,7 @@ class vegas.events.ModelChangedEvent extends BasicEvent {
 
 	// ----o Public Properties
 	
-	public var data ;
+	public var data = null ;
 	public var fieldName:String = null ;
 	public var firstItem:Number = null ;
 	public var index:Number = null ;
@@ -149,7 +149,15 @@ class vegas.events.ModelChangedEvent extends BasicEvent {
 	// ----o Public Methods
 
 	public function clone() {
-		return new ModelChangedEvent(getType(), getTarget()) ;
+		var e:ModelChangedEvent = new ModelChangedEvent(getType(), getTarget()) ;
+		e.data = data || null ;
+		e.fieldName = fieldName || null ;
+		e.firstItem = isNaN(firstItem) ? null : firstItem ;
+		e.index = isNaN(index) ? null : index ;
+		e.lastItem = isNaN(lastItem) ? null : lastItem ;
+		e.removedIDs = removedIDs || null ;
+		e.removedItems = removedItems || null ;
+		return e ;
 	}
 
 }

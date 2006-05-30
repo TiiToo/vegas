@@ -101,7 +101,7 @@
 		
 	IMPLEMENTS
 	
-		ICloneable, Event
+		Event, ICloneable, IFormattable, IHashable
 
 **/
 
