@@ -35,7 +35,9 @@
 
 	METHOD SUMMARY
 
-		- createChild(oChild , p_name:String , p_depth:Number, p_target, p_init)
+		- static attachChild( fConstructor:Function, sID:String, sName:String, nDepth:Number, mcTarget:MovieClip, init )
+
+		- static createChild(oChild , p_name:String , p_depth:Number, p_target, p_init)
 
 **/
 
@@ -51,6 +53,11 @@ class vegas.util.factory.DisplayFactory {
 	}
 	
 	// ----o Static Methods
+	
+	static public function attachChild( fConstructor:Function, sID:String, sName:String, nDepth:Number, mcTarget:MovieClip, init ) {
+		var oChild = mcTarget.attachMovie(sID, sName, nDepth) ;
+		return ConstructorUtil.createVisualInstance( fConstructor, oChild, init) ;
+	}
 	
 	static public function createChild ( oChild , p_name:String , p_depth:Number, p_target, p_init) {
 		var child ;
