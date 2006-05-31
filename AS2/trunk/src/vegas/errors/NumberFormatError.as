@@ -21,7 +21,7 @@
   
 */
 
-/* ----------  NumberFormatError
+/** NumberFormatError
 
 	AUTHOR
 
@@ -59,13 +59,13 @@
 
 	INHERIT
 	
-		Object > Error > AbstractError > FatalError > NumberFormatError
+		Object → Error → AbstractError → FatalError → NumberFormatError
 	
 	IMPLEMENT
 	
-		IFormattable
+		IFormattable, IHashable
 
-----------  */
+**/
 
 import vegas.errors.ErrorElement;
 import vegas.errors.FatalError;

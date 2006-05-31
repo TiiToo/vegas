@@ -21,7 +21,7 @@
   
 */
 
-/* ----------  NullPointerError
+/**  NullPointerError
 
 	AUTHOR
 
@@ -59,13 +59,13 @@
 
 	INHERIT
 	
-		Object > Error > AbstractError > FatalError > NullPointerError
+		Object → Error → AbstractError → FatalError → NullPointerError
 	
 	IMPLEMENT
 	
-		IFormattable
+		IFormattable, IHashable
 
-----------  */
+**/
 
 import vegas.errors.ErrorElement;
 import vegas.errors.FatalError;

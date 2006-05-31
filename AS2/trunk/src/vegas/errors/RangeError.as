@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- RangeError
+/** RangeError
 
 	AUTHOR
 	
@@ -59,13 +59,13 @@
 
 	INHERIT
 	
-		Object > Error > AbstractError > FatalError > RangeError
+		Object → Error → AbstractError → FatalError → RangeError
 	
 	IMPLEMENT
 	
-		IFormattable
+		IFormattable, IHashable
 
-----------  */
+**/
 
 import vegas.errors.ErrorElement;
 import vegas.errors.FatalError;

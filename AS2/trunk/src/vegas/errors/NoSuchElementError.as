@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- NoSuchElementError
+/** NoSuchElementError
 
 	AUTHOR
 	
@@ -59,13 +59,13 @@
 
 	INHERIT
 	
-		Object > Error > AbstractError > FatalError > NoSuchElementError
+		Object → Error → AbstractError → FatalError → NoSuchElementError
 	
 	IMPLEMENT
 	
-		IFormattable
+		IFormattable, IHashable
 
-----------  */
+**/
 
 import vegas.errors.ErrorElement;
 import vegas.errors.FatalError;

@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- ErrorFormat
+/** ErrorFormat
 
 
 	AUTHOR
@@ -37,12 +37,16 @@
 	METHOD SUMMARY
 	
 		- formatToString(o):String
+
+	INHERIT
 	
+		CoreObject → ErrorFormat
+
 	IMPLEMENT
 	
-		IFormat
+		IFormat, IFormattable, IHashable
 	
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.core.IFormat;

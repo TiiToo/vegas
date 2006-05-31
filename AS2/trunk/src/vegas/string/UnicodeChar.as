@@ -134,7 +134,7 @@ class vegas.string.UnicodeChar {
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(UnicodeChar, null , 7, 7) ;
 	
-	// ----o Static Methods
+	// ----o Public Methods
 	
 	static public function isWhiteSpace( char:String ):Boolean {
 		var c:Char = new Char(char) ;
@@ -161,7 +161,5 @@ class vegas.string.UnicodeChar {
 		while( hex.length < 4 ) hex = "0" + hex ;
 		return hex ;
 	}
-	
-
 
 }

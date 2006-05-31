@@ -21,7 +21,7 @@
   
 */
 
-/* ----------  UnsupportedOperation
+/** UnsupportedOperation
 
 	AUTHOR
 
@@ -59,13 +59,13 @@
 
 	INHERIT
 	
-		Object > Error > AbstractError > FatalError > UnsupportedOperation
+		Object → Error → AbstractError → FatalError → UnsupportedOperation
 	
 	IMPLEMENT
 	
-		IFormattable
+		IFormattable, IHashable
 
-----------  */
+**/
 
 import vegas.errors.ErrorElement;
 import vegas.errors.FatalError;

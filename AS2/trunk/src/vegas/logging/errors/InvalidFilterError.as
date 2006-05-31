@@ -63,11 +63,11 @@
 
 	INHERIT
 	
-		Object > Error > AbstractError > FatalError > InvalidFilterError
+		Object → Error → AbstractError → FatalError → InvalidFilterError
 	
 	IMPLEMENT
 	
-		IFormattable
+		IFormattable, IHashable
 
 **/
 

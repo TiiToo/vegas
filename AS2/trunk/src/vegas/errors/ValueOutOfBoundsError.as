@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- ValueOutOfBoundsError
+/** ValueOutOfBoundsError
 
 	AUTHOR
 	
@@ -59,13 +59,13 @@
 
 	INHERIT
 	
-		Object > Error > AbstractError > FatalError > ValueOutOfBoundsError
+		Object → Error → AbstractError → FatalError → ValueOutOfBoundsError
 	
 	IMPLEMENT
 	
-		IFormattable
+		IFormattable, IHashable
 	
-----------  */
+**/
 
 import vegas.errors.ErrorElement;
 import vegas.errors.FatalError;

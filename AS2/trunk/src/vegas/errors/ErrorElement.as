@@ -21,7 +21,7 @@
   
 */
 
-/* ---- ErrorElement
+/** ErrorElement
 
 	AUTHOR
 
@@ -73,19 +73,19 @@
 	
 	INHERIT
 	
-		Object > ErrorElement
+		CoreObject → ErrorElement
 	
 	IMPLEMENTS
 	
-		IFormattable
+		IEquality, IFormattable, IHashable
 	
-----------  */
+**/
 
-import vegas.core.IEquality;
-import vegas.core.IFormattable;
-import vegas.util.ConstructorUtil;
+import vegas.core.CoreObject ;
+import vegas.core.IEquality ;
+import vegas.util.ConstructorUtil ;
 
-class vegas.errors.ErrorElement implements IEquality, IFormattable {
+class vegas.errors.ErrorElement extends CoreObject implements IEquality {
     
 	// ----o Constructor
 	
@@ -142,10 +142,6 @@ class vegas.errors.ErrorElement implements IEquality, IFormattable {
 
 	public function isNativeMethod():Boolean {
 		return _isNative ;
-	}
-	
-	public function toString():String {
-		return "[ErrorElement]" ;
 	}
 	
 	// ----o Private Properties

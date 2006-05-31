@@ -21,7 +21,7 @@
   
 */
 
-/* ----------  TypeMismatchError
+/** TypeMismatchError
 
 	AUTHOR
 
@@ -59,13 +59,13 @@
 
 	INHERIT
 	
-		Object > Error > AbstractError > FatalError > TypeMismatchError
+		Object → Error → AbstractError → FatalError → TypeMismatchError
 	
 	IMPLEMENT
 	
-		IFormattable
+		IFormattable, IHashable
 
-----------  */
+**/
 
 import vegas.errors.ErrorElement;
 import vegas.errors.FatalError;

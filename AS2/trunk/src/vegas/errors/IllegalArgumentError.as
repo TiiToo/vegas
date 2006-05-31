@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- IllegalArgumentError
+/** IllegalArgumentError
 
 	AUTHOR
 
@@ -59,13 +59,13 @@
 
 	INHERIT
 	
-		Object > Error > AbstractError > FatalError > IllegalArgumentError
+		Object → Error → AbstractError → FatalError → IllegalArgumentError
 	
 	IMPLEMENT
 	
-		IFormattable
+		IFormattable, IHashable
 
-----------  */
+**/
 
 import vegas.errors.ErrorElement;
 import vegas.errors.FatalError;

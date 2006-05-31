@@ -80,6 +80,7 @@
 		- static getLevelString(value:Number):String 
 		
 			Returns a string value representing the level specified.
+			
 		- getTarget()
 		
 		- getTimeStamp():Number

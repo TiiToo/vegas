@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- ConcurrentModificationError
+/** ConcurrentModificationError
 
 	AUTHOR
 
@@ -59,13 +59,13 @@
 
 	INHERIT
 	
-		Object > Error > AbstractError > FatalError > ConcurrentModificationError
+		Object → Error → AbstractError → FatalError → ConcurrentModificationError
 	
 	IMPLEMENT
 	
-		IFormattable
+		IFormattable, IHashable
 
-----------  */
+**/
 
 import vegas.errors.ErrorElement;
 import vegas.errors.FatalError;

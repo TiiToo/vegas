@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- FatalError
+/** FatalError
 
 	AUTHOR
 
@@ -59,13 +59,13 @@
 
 	INHERIT
 	
-		Object > Error > AbstractError > FatalError
+		Object → Error → AbstractError → FatalError
 	
 	IMPLEMENT
 	
-		IFormattable
+		IFormattable, IHashable
 
-----------  */
+**/
 
 import vegas.errors.AbstractError;
 import vegas.errors.ErrorElement;
