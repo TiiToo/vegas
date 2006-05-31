@@ -21,7 +21,7 @@
   
 */
 
-/* -------- LogLogger
+/** LogLogger
 
 	AUTHOR
 	
@@ -65,15 +65,15 @@
 
 	INHERIT
 	
-		EventDispatcher
+		CoreObject → EventDispatcher → LogLogger
 
 	IMPLEMENTS
 	
-		 IEventDispatcher, ILogger, IFormattable
+		 EventTarget, IEventDispatcher, IFormattable, IHashable, ILogger
 
 	CHANGE : [2006-01-20 message:String -> o
 
-----------  */	
+**/	
 
 import vegas.events.EventDispatcher;
 import vegas.logging.ILogger;
@@ -136,7 +136,5 @@ class vegas.logging.LogLogger extends EventDispatcher implements ILogger {
 		var f:StringFormatter = new StringFormatter(msg) ;
 		return f.format.apply(f, args) ;
 	}
-	
 
-	
 }

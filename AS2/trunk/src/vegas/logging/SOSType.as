@@ -21,7 +21,7 @@
   
 */
 
-/* -------- SOSType
+/** SOSType
 
 	AUTHOR
 	
@@ -61,7 +61,7 @@
 		
 		- const static WARN_COLOR:Number
 
-----------  */	
+**/	
 
 class vegas.logging.SOSType {
 	

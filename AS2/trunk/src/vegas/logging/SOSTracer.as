@@ -21,7 +21,7 @@
   
 */
 
-/* -------- SOSTarget
+/** SOSTarget
 
 	AUTHOR
 	
@@ -73,7 +73,7 @@
 		
 		- static traceReplacer(o):Void [MTASC]
 	
-----------  */	
+**/	
 
 import vegas.logging.ILogger;
 import vegas.logging.Log;

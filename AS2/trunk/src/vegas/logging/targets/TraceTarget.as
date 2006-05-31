@@ -21,7 +21,7 @@
   
 */
 
-/* -------- TraceTarget
+/** TraceTarget
 
 	AUTHOR
 	
@@ -63,15 +63,15 @@
 		
 			This method handles a LogEvent from an associated logger.
 	
-	INHERIT
+	INHERIT 
 	
-		Object > AbstractTarget > LineFormattedTarget > TraceTarget
+		CoreObject → AbstractTarget → LineFormattedTarget → TraceTarget
 
 	IMPLEMENTS
 	
-		EventListener, ITarget, IFormattable
+		EventListener, ITarget, IFormattable, IHashable
 
-----------  */	
+**/	
 
 import vegas.logging.LogEvent;
 import vegas.logging.targets.LineFormattedTarget;

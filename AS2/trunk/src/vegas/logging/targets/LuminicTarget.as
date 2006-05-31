@@ -21,7 +21,7 @@
   
 */
 
-/* -------- LuminicTarget
+/** LuminicTarget
 
 	AUTHOR
 	
@@ -79,13 +79,13 @@
 		
 		- toString():String
 	
-	INHERIT
+	INHERIT 
 	
-		AbstractTarget > LineFormattedTarget > TraceTarget > LuminicTarget
+		CoreObject → AbstractTarget → LineFormattedTarget → TraceTarget → LuminicTarget
 
 	IMPLEMENTS
 	
-		ITarget
+		EventListener, ITarget, IFormattable, IHashable
 
 	THANKS
 	

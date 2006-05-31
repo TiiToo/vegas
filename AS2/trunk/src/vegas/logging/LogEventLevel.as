@@ -69,11 +69,11 @@
 
 	INHERIT
 	
-		Int > LogEventLevel
+		Int → LogEventLevel
 	
 	IMPLEMENTS
 	
-		IFormattable
+		IFormattable, IHashable
 
 **/	
 

@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- 	Lang
+/**	Lang
 
 	AUTHOR
 
@@ -87,7 +87,9 @@
 		
 		- static initialize()
 		
-----------  */
+		- 
+		
+**/
 
 import vegas.data.map.HashMap;
 import vegas.util.ArrayUtil;
@@ -96,7 +98,7 @@ class asgard.system.Lang extends String {
 
 	// ----o Constructor
 	
-	private function Lang(s) {
+	public function Lang(s) {
 		super(s) ;
 	}
 	
@@ -161,19 +163,6 @@ class asgard.system.Lang extends String {
 		return LANGS.get(id) ;			
 	}
 
-	static public function validate( lang:String ):Boolean {
-		
-		var langs:Array = [
-			CS, DA, NL, EN, FI, FR,
-			DE, HU, IT, JA, KO, NO,
-			XU, PL, PT, RU, ZH_CN,
-			ES, SV, ZH_TW, TR
-		] ;
-	
-		return ArrayUtil.contains(langs, lang) ;
-
-	}
-
 	static public function initialize():Void {
 		LANGS.clear() ;
 		LANGS.put(CS, CS_FULL) ;
@@ -198,7 +187,27 @@ class asgard.system.Lang extends String {
 		LANGS.put(ZH_TW, ZH_TW_FULL) ;
 		LANGS.put(TR, TR_FULL) ;
 	}
-	
+
+	static public function put( lang:Lang , label:String ) {
+		return LANGS.put(lang, label) ;
+	}
+
+	static public function remove( lang:Lang ) {
+		return LANGS.remove(lang) ;
+	}
+
+	static public function validate( lang:String ):Boolean {
+		
+		var langs:Array = [
+			CS, DA, NL, EN, FI, FR,
+			DE, HU, IT, JA, KO, NO,
+			XU, PL, PT, RU, ZH_CN,
+			ES, SV, ZH_TW, TR
+		] ;
+		
+		return ArrayUtil.contains(langs, lang) ;
+	}
+
 	// ----o Private Properties
 	
 	static private var __INITLANGS__ = Lang.initialize() ;

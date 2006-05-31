@@ -21,7 +21,7 @@
   
 */
 
-/* -------- SOSTarget
+/** SOSTarget
 
 	AUTHOR
 	
@@ -110,15 +110,15 @@
 		
 		- toString():String
 
-	INHERIT
+	INHERIT 
 	
-		Object > AbstractTarget > LineFormattedTarget > SOSTarget
+		CoreObject → AbstractTarget → LineFormattedTarget → TraceTarget → SOSTarget
 
 	IMPLEMENTS
 	
-		EventListener, ITarget, IFormattable
+		EventListener, ITarget, IFormattable, IHashable
 
-----------  */	
+**/	
 
 import vegas.data.iterator.Iterator;
 import vegas.data.queue.LinearQueue;

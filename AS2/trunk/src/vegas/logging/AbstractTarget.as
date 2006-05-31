@@ -72,12 +72,11 @@
 	
 	INHERIT 
 	
-		Object > AbstractTarget
-	
-	
+		CoreObject → AbstractTarget
+		
 	IMPLEMENTS
 	
-		EventListener, ITarget, IFormattable
+		EventListener, ITarget, IFormattable, IHashable
 
 **/
 

@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- InvalidCategoryError
+/** InvalidCategoryError
 
 	AUTHOR
 
@@ -69,7 +69,7 @@
 	
 		IFormattable
 
-----------  */
+**/
 
 import vegas.errors.ErrorElement;
 import vegas.errors.FatalError;

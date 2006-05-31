@@ -21,7 +21,7 @@
   
 */
 
-/* -------- LogEvent
+/** LogEvent
 
 	AUTHOR
 	
@@ -110,13 +110,13 @@
 
 	INHERIT
 	
-		Object > BasicEvent > DynamicEvent
+		CoreObject → BasicEvent → DynamicEvent → LogEvent
 
 	IMPLEMENTS
 	
 		ICloneable, Event, IFormattable
 
-----------  */	
+**/	
 
 import vegas.events.DynamicEvent;
 import vegas.logging.LogEventLevel;

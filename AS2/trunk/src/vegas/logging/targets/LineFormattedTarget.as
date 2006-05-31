@@ -61,13 +61,13 @@
 		
 			This method handles a LogEvent from an associated logger.
 
-	INHERIT
+	INHERIT 
 	
-		Object > AbstractTarget > LineFormattedTarget
-
+		CoreObject → AbstractTarget → LineFormattedTarget
+		
 	IMPLEMENTS
 	
-		ITarget, IFormattable
+		EventListener, ITarget, IFormattable, IHashable
 
 **/	
 

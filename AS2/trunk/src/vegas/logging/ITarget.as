@@ -21,7 +21,7 @@
   
 */
 
-/* -------- ITarget [Interface]
+/** ITarget [Interface]
 
 	AUTHOR
 
@@ -63,9 +63,9 @@
 	
 	INHERIT
 	
-		EventListener > ITarget
+		EventListener → ITarget
 	
-------------*/
+**/
 
 import vegas.events.EventListener;
 import vegas.logging.ILogger;

@@ -117,7 +117,7 @@
 	
 	TODO : améliorer la gestion des erreurs des méthodes de cette classe.
 	
-----------  */
+**/
 
 import asgard.date.LocalDate;
 

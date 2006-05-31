@@ -21,7 +21,7 @@
   
 */
 
-/* -------- Log
+/** Log
 
 	AUTHOR
 
@@ -81,7 +81,7 @@
 			
 			Stops the specified target from receiving notification of log events.
 
-------------*/
+**/
 
 import vegas.data.map.HashMap;
 import vegas.events.Event;

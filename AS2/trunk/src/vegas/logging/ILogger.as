@@ -21,7 +21,7 @@
   
 */
 
-/* -------- ILogger
+/** ILogger
 
 	AUTHOR
 
@@ -61,9 +61,9 @@
 
 	INHERIT
 	
-		 IFormattable > IEventDispatcher > ILogger
+		 IFormattable → IEventDispatcher → ILogger
 
-------------*/
+**/
 
 import vegas.events.IEventDispatcher;
 

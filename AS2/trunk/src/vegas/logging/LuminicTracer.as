@@ -21,7 +21,7 @@
   
 */
 
-/* -------- LuminicTracer
+/** LuminicTracer
 
 	AUTHOR
 	
@@ -54,7 +54,7 @@
 		Pablo Costantini :: LuminicBox 
 			http://www.luminicbox.com/blog/default.aspx?page=post&id=2
 
-----------  */	
+**/	
 
 
 import vegas.logging.ILogger;

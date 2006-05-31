@@ -108,7 +108,7 @@
 
 	CHANGE :: 2005-12-15 constructor more easy with [].concat(ar) 
 	
-	TODO   :: 2006-01-19 modifier la m�thode dispatch et utiliser _getEvent comme dans EventDispatcher
+	TODO   :: 2006-01-19 modifier la méthode dispatch et utiliser _getEvent comme dans EventDispatcher
 
 **/
 
@@ -161,7 +161,7 @@ class vegas.events.FastDispatcher extends CoreObject implements Iterable {
 		else if (tof == "string") e = new DynamicEvent(event) ;
 		else if (tof == "object") {
 			if (event.type == undefined) return null ;
-			e = new DynamicEvent(event) ;
+			e = new DynamicEvent() ;
 			e.setType(event.type) ;
 			e.setTarget(event.target) ;
 			e.setContext(event.context) ;
@@ -173,7 +173,7 @@ class vegas.events.FastDispatcher extends CoreObject implements Iterable {
 	public function getListeners():Array {
 		return [].concat(_listeners) ;
 	}
-	
+		
 	public function isEmpty():Boolean {
 		return _listeners.length == 0 ;
 	}
