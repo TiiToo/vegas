@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	IComparable [Interface]
+/**	IComparable [Interface]
 
 	AUTHOR
 	
@@ -33,11 +33,11 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
-	METHODS
+	METHOD SUMMARY
 	
 		compareTo(o)
 
-----------  */
+**/
 
 interface vegas.core.IComparable {
 

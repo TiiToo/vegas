@@ -39,12 +39,10 @@
 		
 			In addition to the level setting, filters are used to provide a pseudo hierarchical 
 			mapping for processing only those events for a given category.
-		
-		
+
 		- level:Number
 		
 			Provides access to the level this target is currently set at.
-
 
 	METHOD SUMMARY
 	
@@ -54,19 +52,23 @@
 			
 			NOTE this method is called by the framework and should not be called by the developer.
 		
-		- initialized(document:Object, id:String):Void
-		
-			Called after the implementing object has been created and all properties specified on the tag have been assigned.
+		- addNamespace(namespace:String):Boolean
 		
 		- handleEvent(event:Event) : Void
 		
 			This method handles a LogEvent from an associated logger.
+		
+		- logEvent(e:LogEvent):Void
+		
+			Override this method.
 		
 		- removeLogger(logger:ILogger):Void
 		
 			Stops this target from receiving events from the specified logger.
 			
 			NOTE this method is called by the framework and should not be called by the developer.
+		
+		- removeNamespace(namespace:String):Boolean
 		
 		- toString():String
 	
@@ -115,10 +117,6 @@ class vegas.logging.AbstractTarget extends CoreObject implements ITarget {
 		filters.push(namespace) ;
 	}
 
-	public function logEvent(e:LogEvent):Void {
-		//
-	}
-
 	public function handleEvent(e:Event) {
 		if ( level == LogEventLevel.ALL || level == LogEvent(e).level ) {
 			var category:String = LogEvent(e).getTarget().category ;
@@ -126,9 +124,13 @@ class vegas.logging.AbstractTarget extends CoreObject implements ITarget {
 			if (isValid) logEvent(LogEvent(e)) ;
 		}
 	}
-	
+
+	public function logEvent(e:LogEvent):Void {
+		//
+	}
+
 	public function removeLogger(logger:ILogger):Void {
-		logger.removeEventListener(LogEvent.LOG) ;
+		logger.removeEventListener(LogEvent.LOG, this) ;
 	}
 	
 	public function removeNamespace(namespace:String):Boolean {

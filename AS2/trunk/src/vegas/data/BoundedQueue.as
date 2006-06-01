@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	BoundedQueue [Interface]
+/**	BoundedQueue [Interface]
 
 	AUTHOR
 

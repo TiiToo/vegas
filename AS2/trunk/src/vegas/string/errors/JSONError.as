@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- JSONError
+/** JSONError
 
 	AUTHOR
 
@@ -59,25 +59,13 @@
 
 	INHERIT
 	
-		Corebject
-			|
-			Error
-				|
-				AbstractError
-					|
-					FatalError
-						|
-						JSONError
+		Object → Error → AbstractError → FatalError → ArgumentsError
 	
 	IMPLEMENT
 	
-		IFormattable
+		IFormattable, IHashable
 	
-	TODO
-	
-		Tester le getLogger()
-	
-----------  */
+**/
 
 import vegas.errors.ErrorFormat;
 import vegas.errors.FatalError;

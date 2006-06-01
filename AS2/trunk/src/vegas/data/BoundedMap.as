@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	BoundedMap [Interface]
+/**	BoundedMap [Interface]
 
 	AUTHOR
 
@@ -33,48 +33,47 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
-	METHODS
-
+	METHOD SUMMARY
+	
+		- clear()
+		
+		- containsKey( key ):Boolean
+		
+		- containsValue( value ):Boolean
+		
+		- get(key)
+		
+		- getKeys():Array
+		
+		- getValues():Array
+		
+		- isEmpty():Boolean
+		
 		- isFull():Boolean
 		
+		- iterator():Iterator
+		
+		- keyIterator():Iterator
+		
 		- maxSize():Number
+		
+		- put(key, value)
+		
+		- putAll(m:Map)
+		
+		- remove(key)
+		
+		- size():Number
+		
+		- toString():String
+		
 
 	INHERIT
 
 		Map > BoundedCollection
 
 
-	INHERIT METHODS
-	
-		- clear()
-
-		- containsKey( key ):Boolean
-	
-		- containsValue( value ):Boolean
-
-		- get(key)
-	
-		- getKeys():Array
-	
-		- getValues():Array
-
-		- isEmpty():Boolean
-	
-		- iterator():Iterator
-
-		- keyIterator():Iterator
-
-		- put(key, value)
-	
-		- putAll(m:Map)
-
-		- remove(key)
-	
-		- size():Number
-
-		- toString():String
-		
-----------  */
+**/
 
 import vegas.data.Map;
 

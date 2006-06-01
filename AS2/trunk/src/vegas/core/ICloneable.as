@@ -21,7 +21,7 @@
   
 */
 
-/* ------- ICloneable [Interface]
+/** ICloneable [Interface]
 
 	AUTHOR
 	
@@ -33,11 +33,11 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
-	METHODS
+	METHOD SUMMARY
 	
 		-  clone()
 
-----------  */
+**/
 
 interface vegas.core.ICloneable {
 	

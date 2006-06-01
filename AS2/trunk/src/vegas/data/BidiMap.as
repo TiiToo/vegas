@@ -65,11 +65,15 @@
 		
 		- toString():String
 
+	INHERIT
+	
+		Map
+
 **/
 
 import vegas.data.Map;
 
-interface vegas.data.BidiMap extends  Map {
+interface vegas.data.BidiMap extends Map {
 
 	/**
 	 * Gets a view of this map where the keys and values are reversed.

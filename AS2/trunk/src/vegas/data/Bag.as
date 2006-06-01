@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	Bag [Interface]
+/** 	Bag [Interface]
 
 	AUTHOR
 	
@@ -44,7 +44,7 @@
 			(Violation)  Returns true if the bag contains all elements in the given collection, respecting cardinality.
 		
 		- insertAll(c:Collection):Boolean 
-
+		
 		- insertCopies(o, i:Number):Boolean 
 			
 			Add i copies of the given object to the bag and keep a count.
@@ -70,7 +70,7 @@
 			The Set of unique members that represent all members in the bag.
 
 	INHERIT : Collection
-		
+	
 		METHODS
 		
 			- clear()
@@ -93,7 +93,7 @@
 
 	TODO TypedBag, Buffer, TreeBag ??
 
-----------  */
+**/
 
 import vegas.data.Collection;
 import vegas.data.Set;

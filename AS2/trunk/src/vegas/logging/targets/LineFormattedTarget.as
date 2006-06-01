@@ -35,6 +35,11 @@
 
 	PROPERTY SUMMARY
 		
+		- filters:Array
+		
+			In addition to the level setting, filters are used to provide a pseudo hierarchical 
+			mapping for processing only those events for a given category.
+		
 		- includeCategory:Boolean
 		
 			Indicates if the category for this target should added to the trace.
@@ -55,11 +60,37 @@
 		
 			Indicates if the time should be added to the trace.
 
+		- level:Number
+		
+			Provides access to the level this target is currently set at.
+
 	METHOD SUMMARY
 	
-		- handleEvent(event:LogEvent) : Void
+		- addLogger(logger:ILogger):Void
+		
+			Sets up this target with the specified logger.
+			
+			NOTE this method is called by the framework and should not be called by the developer.
+		
+		- addNamespace(namespace:String):Boolean
+		
+		- handleEvent(event:Event) : Void
 		
 			This method handles a LogEvent from an associated logger.
+		
+		- logEvent(e:LogEvent):Void
+		
+			Override this method.
+		
+		- removeLogger(logger:ILogger):Void
+		
+			Stops this target from receiving events from the specified logger.
+			
+			NOTE this method is called by the framework and should not be called by the developer.
+		
+		- removeNamespace(namespace:String):Boolean
+		
+		- toString():String
 
 	INHERIT 
 	
