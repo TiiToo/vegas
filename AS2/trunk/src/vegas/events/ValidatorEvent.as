@@ -117,14 +117,14 @@ class vegas.events.ValidatorEvent extends DynamicEvent {
 
 	// ----o Constructor
 	
-	public function ValidatorEvent(type:String, target:Object){
-		super(type, target) ;
+	public function ValidatorEvent(type:String, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) {
+		super(type, target, context, bubbles, eventPhase, time, stop) ;
 	}
 
 	// ----o Public Methods
 
 	public function clone() {
-		return new ValidatorEvent(_type, _target) ;
+		return new ValidatorEvent(getType(), getTarget()) ;
 	}
 	
 }

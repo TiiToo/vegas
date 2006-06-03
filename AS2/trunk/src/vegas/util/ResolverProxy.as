@@ -81,9 +81,9 @@
 		
 **/
 
+import vegas.core.CoreObject;
 import vegas.util.factory.PropertyFactory;
 import vegas.util.Mixin;
-import vegas.core.CoreObject;
 
 class vegas.util.ResolverProxy extends CoreObject {
 	

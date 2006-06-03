@@ -111,14 +111,14 @@ class vegas.events.TimerEvent extends DynamicEvent {
 
 	// ----o Constructor
 	
-	public function TimerEvent(type:String, target) {
-		super(type, target) ;
+	public function TimerEvent(type:String, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) {
+		super(type, target, context, bubbles, eventPhase, time, stop) ;
 	}
 
 	// ----o Public Methods
 
 	public function clone() {
-		return new TimerEvent(_type, _target) ;
+		return new TimerEvent(getType(), getTarget()) ;
 	}
 	
 }

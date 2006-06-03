@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	TypedArray
+/**	TypedArray
 
 	AUTHOR
 
@@ -79,7 +79,7 @@
 		// ta : item1,item2,item3
 		// [TypeMismatchError] TypedArray.validate('value':2) is mismatch
 	
-----------  */
+**/
 
 import vegas.core.HashCode;
 import vegas.core.ICloneable;
@@ -99,7 +99,7 @@ class vegas.data.array.TypedArray extends Array implements ICloneable, IFormatta
 	// ----o Construtor
 	
 	public function TypedArray(type:Function, ar:Array) {
-		if (!type) throw new IllegalArgumentError("Argument 'type' must not be 'null' nor 'undefined'.") ;
+		if (!type) throw new IllegalArgumentError("TypedArray constructor, argument 'type' must not be 'null' nor 'undefined'.") ;
 		_type = type ;
 		var l:Number = ar.length ;
 		if (l > 0) {

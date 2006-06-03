@@ -81,9 +81,9 @@
 	
 **/
 
-import vegas.core.CoreObject ;
-import vegas.core.IEquality ;
-import vegas.util.ConstructorUtil ;
+import vegas.core.CoreObject;
+import vegas.core.IEquality;
+import vegas.util.ConstructorUtil;
 
 class vegas.errors.ErrorElement extends CoreObject implements IEquality {
     

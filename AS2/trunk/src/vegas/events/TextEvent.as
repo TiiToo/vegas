@@ -106,13 +106,14 @@
 **/
 
 import vegas.events.DynamicEvent;
+import vegas.util.serialize.Serializer;
 
 class vegas.events.TextEvent extends DynamicEvent {
 
 	// ----o Constructor
 	
-	public function TextEvent(type:String, txt:String, target, context){
-		super(type, target, context) ;
+	public function TextEvent(type:String, txt:String, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number){
+		super(type, target, context, bubbles, eventPhase, time, stop) ;
 		text = txt ;
 	}
 
@@ -123,7 +124,16 @@ class vegas.events.TextEvent extends DynamicEvent {
 	// ----o Public Methods
 
 	public function clone() {
-		return new TextEvent(getType(), text, _target, getContext()) ;
+		return new TextEvent(getType(), text, getTarget(), getContext()) ;
 	}
+
+	// ----o Protected Methods
 	
+	/*protected*/ private function _getParams():Array {
+		var ar:Array = super._getParams() ;
+		ar.splice(1, null, text) ;
+		return ar ;
+	}
+
+
 }

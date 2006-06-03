@@ -113,8 +113,8 @@ dynamic class vegas.events.DynamicEvent extends BasicEvent {
 
 	// ----o Constructor
 	
-	public function DynamicEvent(type:String, target, context) {
-		super(type, target, context) ;
+	public function DynamicEvent( type:String, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) {
+		super(type, target, context, bubbles, eventPhase, time, stop) ;
 	}
 
 	// ----o Public Properties

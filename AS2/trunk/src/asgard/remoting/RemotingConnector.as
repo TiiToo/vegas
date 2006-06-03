@@ -165,8 +165,13 @@ class asgard.remoting.RemotingConnector extends AbstractAction implements Respon
 	// ----o Constructor
 	
 	public function RemotingConnector (str:String) {
+		
 		if (str) gatewayUrl = str ;
+		
 		_global.System.onStatus = Delegate.create (this, _onStatus) ;
+		
+		trace("Warning : RemotingConnector is depreciated... use asgard.net.remoting.RemotingService.") ;
+		
 	}
 
 	// ----o Public Properties

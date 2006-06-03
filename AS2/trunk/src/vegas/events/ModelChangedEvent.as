@@ -127,13 +127,27 @@
 
 import vegas.events.BasicEvent;
 import vegas.events.ModelChangedEventType;
+import vegas.util.serialize.Serializer;
 
 class vegas.events.ModelChangedEvent extends BasicEvent {
 
 	// ----o Constructor
 	
-	public function ModelChangedEvent(name:String, target:Object) {
-		super(name || ModelChangedEventType.MODEL_CHANGED , target) ;
+	public function ModelChangedEvent( 
+		name:String , target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number 
+		, data, fieldName:String, firstItem:Number, index:Number, lastItem:Number, removedIDs:Array, removedItems:Array
+	) {
+		
+		super(name || ModelChangedEventType.MODEL_CHANGED, target, context, bubbles, eventPhase, time, stop) ;
+		
+		data = data || null ;
+		fieldName = fieldName || null ;
+		firstItem = isNaN(firstItem) ? null : firstItem ;
+		index = isNaN(index) ? null : index ;
+		lastItem = isNaN(lastItem) ? null : lastItem ;
+		removedIDs = removedIDs || null ;
+		removedItems = removedItems || null ;
+		
 	}
 
 	// ----o Public Properties
@@ -149,15 +163,27 @@ class vegas.events.ModelChangedEvent extends BasicEvent {
 	// ----o Public Methods
 
 	public function clone() {
-		var e:ModelChangedEvent = new ModelChangedEvent(getType(), getTarget()) ;
-		e.data = data || null ;
-		e.fieldName = fieldName || null ;
-		e.firstItem = isNaN(firstItem) ? null : firstItem ;
-		e.index = isNaN(index) ? null : index ;
-		e.lastItem = isNaN(lastItem) ? null : lastItem ;
-		e.removedIDs = removedIDs || null ;
-		e.removedItems = removedItems || null ;
-		return e ;
+		return new ModelChangedEvent(
+			getType(), getTarget(), getContext(), getBubbles(), getEventPhase(), getTimeStamp(), stop,
+			data, fieldName, firstItem, index, lastItem, removedIDs, removedItems
+		) ;
+	}
+
+	// ----o Protected Methods
+	
+	/*protected*/ private function _getParams():Array {
+		var ar:Array = super._getParams() ;
+		ar = ar.concat( [
+			Serializer.toSource(data) ,
+			Serializer.toSource(fieldName) ,
+			Serializer.toSource(firstItem) ,
+			Serializer.toSource(index) ,
+			Serializer.toSource(lastItem) ,
+			Serializer.toSource(removedIDs) ,
+			Serializer.toSource(removedItems) 
+		] ) ;
+		return ar ;
 	}
 
 }
+

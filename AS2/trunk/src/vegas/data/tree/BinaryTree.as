@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	BinaryTree
+/**	BinaryTree
 
 	!!! EN CONSTRUCTION !!!
 
@@ -65,9 +65,7 @@
 	
 	INHERIT
 	
-		CoreObject
-			|
-			BinaryTree
+		CoreObject → BinaryTree
 	
 	SEE ALSO
 	
@@ -75,7 +73,7 @@
 	
 	!!! EN CONSTRUCTION !!!
 	
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
@@ -87,6 +85,7 @@ class vegas.data.tree.BinaryTree extends CoreObject implements ICloneable, ISeri
 	// ----o Construtor
 	
 	public function BinaryTree() {
+		trace("BinaryTree : class in construct... don't use this class") ;
 		root = null ;
 	}
 

@@ -79,6 +79,8 @@
 		
 		- stopImmediatePropagation():Void
 		
+		- toSource(o, [indent:Number], [indentor:String]):String
+		
 		- toString():String
 	
 	INHERIT
@@ -132,6 +134,8 @@ interface vegas.events.Event extends ICloneable {
 	function stopPropagation():Void ;
 	
 	function stopImmediatePropagation():Void ;
+	
+	function toSource(indent:Number, indentor:String):String ;
 	
 	function toString():String ;
 	

@@ -79,13 +79,13 @@
 
 import asgard.data.iterator.RecordSetIterator;
 import asgard.events.RecordSetEvent;
+import asgard.net.remoting.RemotingService;
 
 import vegas.data.iterator.Iterable;
 import vegas.data.iterator.Iterator;
 import vegas.errors.Warning;
 import vegas.util.ArrayUtil;
 import vegas.util.mvc.AbstractModel;
-import asgard.net.remoting.RemotingService;
 
 // TODO setDeliveryMode : see RecordSet class (macromedia in mc.remoting package).
 // TODO finir la documentation

@@ -310,7 +310,7 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 		
 		var code:NetServerStatus = NetServerStatus.format(oInfo.code) ;
 		
-		trace("> " + this + ".onStatus(" + arguments + ")") ;
+		// trace("> " + this + ".onStatus(" + arguments + ")") ;
 		
 		switch (code) {
 		

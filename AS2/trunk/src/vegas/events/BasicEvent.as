@@ -1,10 +1,10 @@
-﻿/*
+/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
   the License. You may obtain a copy of the License at 
   
-           http://www.mozilla.org/MPL/ 
+        http://www.mozilla.org/MPL/ 
   
   Software distributed under the License is distributed on an "AS IS" basis,
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
@@ -100,9 +100,11 @@
 **/
 
 import vegas.core.CoreObject;
+import vegas.core.ISerializable;
 import vegas.events.Event;
 import vegas.events.EventPhase;
 import vegas.util.ConstructorUtil;
+import vegas.util.serialize.Serializer;
 
 /**
  * {@code BasicEvent} is the basical event structure to work with {@link EventDispatcher} and {@link FastDispatcher}.
@@ -113,7 +115,7 @@ import vegas.util.ConstructorUtil;
  * @see     Event	
  * @since   
  */
-class vegas.events.BasicEvent extends CoreObject implements Event {
+class vegas.events.BasicEvent extends CoreObject implements Event, ISerializable {
 
 	// ----o Constructor
 	
@@ -122,22 +124,41 @@ class vegas.events.BasicEvent extends CoreObject implements Event {
 	 * 
 	 * <p>
 	 *    <code>
-	 *     var e:BasicEvent = new BasicEvent(type, target, context) ;
+	 *     var e:BasicEvent = new BasicEvent(type, target, context, [bubbles:Boolean, [eventPhase:Number, [time:Number, [stop:Boolean]]]]) ;
 	 *    </code>
 	 * </p>
-	 * @param   type    
-	 * @param   target  
-	 * @param   context 
-	 * 
+	 * @param type:String 
+	 * @param target
+	 * @param context
+	 * @param bubbles:Boolean
+	 * @param eventPhase:Number
+	 * @param time:Number
+	 * @param stop:Boolean
 	 */
-	public function BasicEvent(type:String, target, context){
-		_bubbles = true ;
+	public function BasicEvent(
+		type:String
+		, target
+		, context
+		, p_bubbles:Boolean
+		, p_eventPhase:Number
+		, p_time:Number
+		, p_stop:Number 
+	) {
+		
+		_type = type || null ;
+		
 		_context = context || null ;
-		_eventPhase = EventPhase.AT_TARGET ;
-		stop = EventPhase.NONE ;
+		
 		_target = target || null ;
-		_time = (new Date()).valueOf() ;
-		_type = type ;
+		
+		_bubbles = (p_bubbles != null) ? p_bubbles : true ;
+		
+		_eventPhase = isNaN(p_eventPhase) ? EventPhase.AT_TARGET : p_eventPhase ; ;
+		
+		_time = (p_time > 0) ? p_time : ( (new Date()).valueOf() ) ;
+		
+		stop = isNaN(p_stop) ? EventPhase.NONE : p_stop ;
+		
 	}
 	
 	// ----o Public Property
@@ -228,7 +249,7 @@ class vegas.events.BasicEvent extends CoreObject implements Event {
 	}
 
 	public function setType(type:String):Void {
-		_type = type ;
+		_type = type || null ;
 	}
 	
 	public function stopPropagation():Void {
@@ -238,10 +259,14 @@ class vegas.events.BasicEvent extends CoreObject implements Event {
 	public function stopImmediatePropagation():Void {
 		stop = EventPhase.STOP_IMMEDIATE ;
 	}
-	
+
+	public function toSource(indent : Number, indentor : String) : String {
+		return Serializer.getSourceOf(this, _getParams()) ;
+	}
+
 	public function toString():String {
 		var phase:Number = getEventPhase() ;
-		var name:String = ConstructorUtil.getName(this);
+		var name:String = ConstructorUtil.getName(this, vegas);
 		var txt:String = "[" + name ;
 		if (getType()) txt += " " + getType() ;
 		switch (phase) {
@@ -279,5 +304,23 @@ class vegas.events.BasicEvent extends CoreObject implements Event {
 	private var _target = null ;
 	private var _time:Number ;
 	private var _type:String ;
+
+	// ----o Protected Methods
 	
+	/*protected*/ private function _getParams():Array {
+		return [
+			Serializer.toSource(getType()) ,
+			Serializer.toSource(getTarget()) ,
+			Serializer.toSource(getContext()) ,
+			Serializer.toSource(getBubbles()) ,
+			Serializer.toSource(getEventPhase()) ,
+			Serializer.toSource(getTimeStamp()) ,
+			Serializer.toSource(stop)
+		] ;
+	}
+	
+	/*protected*/ private function _setTimeStamp( nTime:Number ):Void {
+		_time = (nTime >= 0) ? nTime : (new Date()).valueOf() ;	
+	}
+
 }

@@ -107,7 +107,7 @@
 
 import vegas.core.HashCode;
 import vegas.core.IFormattable;
-import vegas.core.IHashable ;
+import vegas.core.IHashable;
 import vegas.util.MathsUtil;
 
 class vegas.core.types.Bit extends Number implements IFormattable, IHashable {

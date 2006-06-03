@@ -57,7 +57,7 @@
 
 import vegas.core.HashCode;
 import vegas.core.IFormattable;
-import vegas.core.IHashable ;
+import vegas.core.IHashable;
 import vegas.errors.NumberFormatError;
 
 class vegas.core.types.Int extends Number implements IFormattable, IHashable {

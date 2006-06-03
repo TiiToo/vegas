@@ -69,7 +69,7 @@ class vegas.core.CoreObject implements IFormattable, IHashable {
 	}
 	
 	public function toString():String {
-		return "[" + ConstructorUtil.getName(this) + "]" ;
+		return "[" + ConstructorUtil.getName(this, vegas) + "]" ;
 	}
 
 	// ----o Init HashCode

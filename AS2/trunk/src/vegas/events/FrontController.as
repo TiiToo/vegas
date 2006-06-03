@@ -39,20 +39,22 @@
 
 	METHOD SUMMARY
 	
+		- contains(eventName:String):Boolean
+		
 		- fireEvent(ev:Event):Void
-	
+		
 		- getListener(eventName:String):EventListener 
 		
 		- insert(eventName:String, listener:EventListener):Void
 		
 		- remove(eventName:String):Void
-		
+	
 	INHERIT
 	
 		CoreObject → FrontController
 	
 	IMPLEMENTS 
-		
+
 		IFormattable, IHashable
 
 **/
@@ -80,9 +82,15 @@ class vegas.events.FrontController extends CoreObject  {
 		_oE = oE || EventDispatcher.getInstance(name); 
 	}
 	
+	// ----o Public Methods 
+
 	/**
-	* Public Methods 
-	*/
+	 * Returns 'true' if the eventName is registered in the FrontController.
+	 * @param eventName:String
+	 */
+	public function contains( eventName:String ):Boolean {
+		return _map.containsKey(eventName) ;	
+	}
 
 	/**
 	 * Dispatch an event into the FrontController
@@ -122,9 +130,7 @@ class vegas.events.FrontController extends CoreObject  {
 		if (listener) _oE.removeEventListener(eventName, listener);
 	}
 	
-	/**
-	* Private Properties
-	*/
+	// ----o Private Properties
 	
 	private var _map:Map ;
 	private var _oE:EventDispatcher ;
