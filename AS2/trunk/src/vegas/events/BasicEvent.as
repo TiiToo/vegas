@@ -266,7 +266,7 @@ class vegas.events.BasicEvent extends CoreObject implements Event, ISerializable
 
 	public function toString():String {
 		var phase:Number = getEventPhase() ;
-		var name:String = ConstructorUtil.getName(this, vegas);
+		var name:String = ConstructorUtil.getName(this);
 		var txt:String = "[" + name ;
 		if (getType()) txt += " " + getType() ;
 		switch (phase) {

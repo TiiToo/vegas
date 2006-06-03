@@ -83,7 +83,7 @@ class asgard.net.remoting.RemotingFormat extends CoreObject implements IFormat {
 			}
 			txt += "]" ;
 		} else {
-			txt += "empty ";
+			txt += "empty";
 			if (rs.getServiceName() || rs.getMethodName()) txt += "\r" ;
 			txt += "]" ;
 		}
