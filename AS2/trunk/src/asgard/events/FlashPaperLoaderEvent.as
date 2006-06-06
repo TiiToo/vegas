@@ -32,13 +32,74 @@
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
+
+	PROPERTY SUMMARY
 	
+		- code:Number
+		
+		- error:String
+
 	METHOD SUMMARY
 	
-
-	EVENT SUMMARY
-	
-		FlashPaperLoaderEvent
+		- cancel():Void
+		
+		- clone():LoaderEvent
+		
+		- getBubbles():Boolean
+		
+		- getBytesLoaded():Number
+		
+		- getBytesTotal():Number
+		
+		- getContext()
+		
+		- getCurrentTarget()
+		
+		- getData()
+		
+		- getEventPhase():Number
+		
+		- getLoader():DisplayLoader
+		
+		- getName():String
+		
+		- getPercent():Number
+		
+		- getTarget()
+		
+		- getTimeStamp():Number
+		
+		- getType():String
+		
+		- getView():MovieClip
+		
+		- hashCode():Number
+		
+		- initEvent(type:String, bubbles:Boolean, cancelable:Boolean)
+		
+		- isCancelled():Boolean
+		
+		- isQueued():Boolean
+		
+		- queueEvent():Void
+		
+		- setBubbles(b:Boolean):Void
+		
+		- setContext(context):Void
+		
+		- setCurrentTarget(target):Void
+		
+		- setEventPhase(n:Number):Void
+		
+		- setTarget(target):Void
+		
+		- setType(type:String):Void
+		
+		- stopImmediatePropagation():Void
+		
+		- toSource(indent : Number, indentor : String):String
+		
+		- toString():String
 
 	EVENT TYPE SUMMARY
 
@@ -70,11 +131,38 @@
 		
 		- const VISIBLE_AREA_CHANGE:String
 
+		- LoaderEventType.COMPLETE:String = "onLoadComplete"
+		
+		- LoaderEventType.IO_ERROR:String = "onLoadError"
+		
+		- LoaderEventType.FINISH:String = "onLoadFinished"
+		
+		- LoaderEventType.INIT:String = "onLoadInit"
+		
+		- LoaderEventType.PROGRESS:String = "onLoadProgress"
+		
+		- LoaderEventType.START:String = "onLoadStarted"
+		
+		- LoaderEventType.STOP:String = "onLoadStopped"
+		
+		- LoaderEventType.TIMEOUT:String = "onTimeOut"
+		
+		- LoaderEventType.RELEASE:String = "onRelease"
+			
+	INHERIT
+	
+		CoreObject → BasicEvent → DynamicEvent → LoaderEvent → DisplayLoaderEvent
+		
+	IMPLEMENTS
+	
+		Event, ICloneable, IFormattable, IHashable, ISerializable
+
 */
 
 import asgard.display.FlashPaperLoader;
 import asgard.events.DisplayLoaderEvent;
 
+import vegas.util.serialize.Serializer;
 
 /**
  * @author eKameleon
@@ -86,8 +174,18 @@ class asgard.events.FlashPaperLoaderEvent extends DisplayLoaderEvent {
 
 	// ----o Constructor
 		
-	public function FlashPaperLoaderEvent(type : String, fpLoader:FlashPaperLoader ) {
-		super(type, fpLoader);
+	public function FlashPaperLoaderEvent(
+		type : String, fpLoader:FlashPaperLoader
+		, p_currentZoom:Number, p_isEnabledScrolling:Boolean, p_newPageNumber:Number, p_newVisibleArea 
+		, p_code:Number, p_error:String, context
+		, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number
+	) 
+	{
+		super(type, fpLoader, p_code, p_error, context, bubbles, eventPhase, time, stop);
+		currentZoom = isNaN(p_currentZoom) ? null : p_currentZoom ;
+		isEnabledScrolling = p_isEnabledScrolling || null ;
+		newPageNumber = isNaN(p_newPageNumber) ? null : p_newPageNumber ;
+		newVisibleArea = p_newVisibleArea || null ;
 	}
 	
 	// ----o Public Properties
@@ -97,7 +195,6 @@ class asgard.events.FlashPaperLoaderEvent extends DisplayLoaderEvent {
 	public var newPageNumber:Number ;
 	public var newVisibleArea ; 
 	
-	
 	// ----o Public Methods
 	
 	public function clone() {
@@ -106,6 +203,17 @@ class asgard.events.FlashPaperLoaderEvent extends DisplayLoaderEvent {
 
 	public function getLoader():FlashPaperLoader {
 		return FlashPaperLoader(_oLoader) ;
+	}
+
+	// ----o Protected Methods
+
+	/*protected*/ private function _getParams():Array {
+		var ar:Array = super._getParams() ;
+		ar.splice(2, null, Serializer.toSource(currentZoom)) ;
+		ar.splice(3, null, Serializer.toSource(isEnabledScrolling)) ;
+		ar.splice(4, null, Serializer.toSource(newPageNumber)) ;
+		ar.splice(5, null, Serializer.toSource(newVisibleArea)) ;
+		return ar ;
 	}
 
 }

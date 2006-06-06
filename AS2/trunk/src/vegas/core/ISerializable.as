@@ -39,7 +39,7 @@
 	
 	METHOD SUMMARY
 	
-		- toSource( [indent:Number], [indentor:String] ) ;
+		- toSource( [indent:Number], [indentor:String] ):String
 
 			PARAMETERS
 			

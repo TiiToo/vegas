@@ -39,6 +39,8 @@
 		
 		- hashCode():Number
 		
+		- toSource():String
+		
 		- toString():String
 		
 		- valueOf()
@@ -49,15 +51,16 @@
 
 	IMPLEMENTS
 	
-		IFormattable, IHashable
+		IFormattable, IHashable, ISerializable
 
 **/
 
 import vegas.core.HashCode;
 import vegas.core.IFormattable;
 import vegas.core.IHashable;
+import vegas.core.ISerializable ;
 
-class vegas.core.types.Char extends String implements IFormattable, IHashable {
+class vegas.core.types.Char extends String implements IFormattable, IHashable, ISerializable {
 
 	// ----o Construtor
 	
@@ -78,7 +81,11 @@ class vegas.core.types.Char extends String implements IFormattable, IHashable {
 	public function hashCode():Number {
 		return null ;
 	}
-	
+
+	function toSource(indent : Number, indentor : String) : String {
+		return 'new vegas.core.types.Char("' + _char + '")' ;
+	}	
+
 	public function toString():String {
 		return _char.toString() ;
 	}

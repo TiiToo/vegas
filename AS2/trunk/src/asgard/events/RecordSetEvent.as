@@ -97,6 +97,8 @@
 		
 		- stopImmediatePropagation()
 		
+		- toSource(indent : Number, indentor : String):String
+		
 		- toString():String
 
 	EVENTS SUMMARY
@@ -123,7 +125,7 @@
 
 	IMPLEMENTS
 	
-		Event
+		Event, IFormattable, IHashable, ISerializable
 
 **/
 
@@ -135,8 +137,27 @@ class asgard.events.RecordSetEvent extends ModelChangedEvent {
 
 	// ----o Constructor
 	
-	public function RecordSetEvent(type:String, rs:RecordSet) {
-		super( type || RecordSetEvent.MODEL_CHANGED , rs) ;
+	public function RecordSetEvent(
+		type:String, rs:RecordSet
+		, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number 
+		, data, fieldName:String, firstItem:Number, index:Number, lastItem:Number, removedIDs:Array, removedItems:Array)
+	{
+		super( 
+			type || RecordSetEvent.MODEL_CHANGED, 
+			rs, 
+			context, 
+			bubbles, 
+			eventPhase, 
+			time, 
+			stop,
+			data, 
+			fieldName, 
+			firstItem, 
+			index, 
+			lastItem, 
+			removedIDs, 
+			removedItems
+		) ;
 	}
 
 	// ----o Constants
@@ -150,6 +171,8 @@ class asgard.events.RecordSetEvent extends ModelChangedEvent {
 	static public var UPDATE_FIELD:String = "updateField" ;
 	static public var UPDATE_ITEMS:String = "updateItems" ;
 	static public var UPDATE_ROWS:String = "updateRows" ;
+	
+	static private var __ASPF__ = _global.ASSetPropFlags(RecordSetEvent, null , 7, 7) ;
 	
 	// ----o Public Methods
 

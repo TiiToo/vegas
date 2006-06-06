@@ -51,30 +51,68 @@
 	
 		- code:String
 		
+		- fault [R/W]
+		
+		- level:String
+		
+		- result [R/W]
+		
 	METHOD SUMMARY
 	
 		- clone()
 		
+		- getCode():String
+		
+		- getDescription():String
+		
+		- getDetail():String
+		
+		- getExceptionStack():String
+		
+		- getFault()
+		
+		- getLevel():String
+		
+		- getLine():String
+		
+		- getMethodName():String
+		
 		- getResult()
+		
+		- getResults()
+		
+		- setFault( oFault , methodName:String):Void
+		
+		- setMethodName( methodName:String ):Void 
+		
+		- setResult( oResult , sMethodName:String ):Void
 		
 	INHERIT
 	
-		CoreObject > BasicEvent > DynamicEvent > RemotingEvent
+		CoreObject → BasicEvent → DynamicEvent → RemotingEvent
+
+	IMPLEMENTS 
 		
-	IMPLEMENTS
-	
-		Event
+		Event, ICloneable, IFormattable, IHashable, ISerializable
 
 **/
 
+// TODO A Tester !!
+
 import vegas.events.DynamicEvent;
+import vegas.util.serialize.Serializer;
 
 class asgard.events.RemotingEvent extends DynamicEvent {
 
 	// ----o Constructor
 	
-	public function RemotingEvent(type:String, target){
-		super(type, target) ;
+	public function RemotingEvent(type:String, target, oResult, oFault, sMethodName:String, sCode:String, sLevel:String, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number ){
+		super(type, target, context, bubbles, eventPhase, time, stop) ;
+		code = sCode || null ;
+		level = sLevel || null ;
+		 setResult(oResult) ;
+		setFault(oFault) ;
+		if (sMethodName) setMethodName(sMethodName) ; 
 	}
 
 	// ----o Constants
@@ -101,6 +139,7 @@ class asgard.events.RemotingEvent extends DynamicEvent {
 		e.setFault(getFault()) ;
 		e.level = level ;
 		e.setResult(e.getResult()) ;
+		e.setMethodName(getMethodName()) ;
 		return e ;
 	}
 
@@ -108,12 +147,12 @@ class asgard.events.RemotingEvent extends DynamicEvent {
 		return _sCode ;
 	}
 
-	public function getDetail():String {
-		return _sDetail ;
-	}
-	
 	public function getDescription():String {
 		return _sDescription ;
+	}
+
+	public function getDetail():String {
+		return _sDetail ;
 	}
 
 	public function getExceptionStack():String {
@@ -145,19 +184,25 @@ class asgard.events.RemotingEvent extends DynamicEvent {
 	}
 	
 	public function setFault( oFault , methodName:String):Void {
-		_fault = oFault ;	
-		_sCode = oFault.code || null ;
-		_sDetail = oFault.details || null ;
-		_sDescription = oFault.description || null ;
-		_sExceptionStack = oFault.exceptionStack || null ;
-		_sLevel = oFault.level || null ;
-		_sLine = oFault.line || null ;
-		if (methodName) _sMethodName = methodName  ;
+		_fault = oFault || null ;	
+		if (_fault != null) {
+			_sCode = oFault.code || null ;
+			_sDetail = oFault.details || null ;
+			_sDescription = oFault.description || null ;
+			_sExceptionStack = oFault.exceptionStack || null ;
+			_sLevel = oFault.level || null ;
+			_sLine = oFault.line || null ;
+		}
+		if (sMethodName) setMethodName( sMethodName ) ;
+	}
+	
+	public function setMethodName( methodName:String ):Void {
+		_sMethodName = methodName || null  ;	
 	}
 	
 	public function setResult( oResult , sMethodName:String ):Void {
-		_result = oResult ;
-		if (sMethodName) _sMethodName = sMethodName  ;
+		_result = oResult || null ;
+		if (sMethodName) setMethodName( sMethodName ) ;
 	}		
 
 	// ----o Virtual Properties
@@ -189,5 +234,17 @@ class asgard.events.RemotingEvent extends DynamicEvent {
 	private var _sLevel:String ;
 	private var _sLine:String ;
 	private var _sMethodName:String ;
+
+	// ----o Protected Methods
+	
+	/*protected*/ private function _getParams():Array {
+		var ar:Array = super._getParams() ;
+		ar.splice(2, null, Serializer.toSource(_result)) ;
+		ar.splice(3, null, Serializer.toSource(_fault)) ;
+		ar.splice(4, null, Serializer.toSource(_sMethodName)) ;
+		ar.splice(5, null, Serializer.toSource(code)) ;
+		ar.splice(6, null, Serializer.toSource(level)) ;
+		return ar ;
+	}
 
 }

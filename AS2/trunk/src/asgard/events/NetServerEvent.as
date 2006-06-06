@@ -33,13 +33,91 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 	
-	METHODS
-	
-		- clone():NetServerEvent
+	PROPERTY SUMMARY
 
+		- bubbles:Boolean [R/W]
+		
+		- context [R/W]
+		
+		- currentTarget [R/W]
+		
+		- eventPhase:Number [R/W]
+		
+		- target [R/W]
+		
+		- type:String [R/W]
+
+	METHOD SUMMARY
+	
+		- cancel():Void
+		
+		- clone():BasicEvent
+		
+		- getBubbles():Boolean
+		
+		- getContext()
+		
+		- getCurrentTarget()
+		
+		- getEventPhase():Number
+		
 		- getInfo():NetServerStatus
+				
+		- getTarget()
+		
+		- getTimeStamp():Number
+		
+		- getType():String
+		
+		- isCancelled():Boolean
+		
+		- isQueued():Boolean
+		
+		- queueEvent():Void
+		
+		- setBubbles(b:Boolean):Void
+		
+		- setContext(context):Void
+		
+		- setCurrentTarget(target):Void
+		
+		- setEventPhase(n:Number):Void
 		
 		- setInfo(status:NetServerStatus):Void
+		
+		- setTarget(target):Void
+		
+		- setType(type:String):Void
+		
+		- stopImmediatePropagation()
+		
+		- toSource(indent : Number, indentor : String):String
+		
+		- toString():String
+
+	INHERIT
+	
+		CoreObject → BasicEvent → DynamicEvent
+
+	IMPLEMENTS 
+		
+		Event, ICloneable, IFormattable, IHashable, ISerializable
+
+	EVENT SUMMARY
+
+		- NetServerEventType.ACCEPT:NetServerEventType
+
+		- NetServerEventType.CLOSE:NetServerEventType
+		
+		- NetServerEventType.FINISH:NetServerEventType
+		
+		- NetServerEventType.START:NetServerEventType
+		
+		- NetServerEventType.TIMEOUT:NetServerEventType
+
+	SEE ALSO
+		
+		NetServerEventType
 
 **/
 
@@ -57,8 +135,9 @@ class asgard.events.NetServerEvent extends DynamicEvent {
 
 	// ----o Constructor
 	
-	public function NetServerEvent( type:NetServerEventType, connection:NetServerConnection ){
-		super(type, connection) ;
+	public function NetServerEvent( type:NetServerEventType, connection:NetServerConnection, p_info:NetServerStatus, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number ){
+		super(type, connection, context, bubbles, eventPhase, time, stop) ;
+		_info = p_info || null ;
 	}
 	
 	// ----o Public Methods
@@ -78,5 +157,13 @@ class asgard.events.NetServerEvent extends DynamicEvent {
 	// ----o Private Properties
 	
 	private var _info:NetServerStatus ;
-		
+
+	// ----o Protected Methods
+	
+	/*protected*/ private function _getParams():Array {
+		var ar:Array = super._getParams() ;
+		ar.splice(2, null, _info.toSource()) ;
+		return ar ;
+	}
+
 }

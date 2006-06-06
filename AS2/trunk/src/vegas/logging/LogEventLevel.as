@@ -60,9 +60,13 @@
 			designates events that could be harmful to the application operation	
 
 	METHOD SUMMARY
-	
+
+		- hashCode():Number
+
 		- static isValidLevel(level:Number):Boolean
-		
+
+		- toSource():String
+
 		- toString():String
 		
 		- valueOf()
@@ -78,6 +82,7 @@
 **/	
 
 import vegas.core.types.Int;
+import vegas.util.serialize.Serializer;
 
 class vegas.logging.LogEventLevel extends Int {
 	
@@ -121,5 +126,10 @@ class vegas.logging.LogEventLevel extends Int {
 	
 	private var _name:String ;
 
+	// ----o Protected Methods
 	
+	/*protected*/ private function _getParams():Array {
+		return [ Serializer.toSource(_name) ].concat(super._getParams()) ;
+	}
+
 }

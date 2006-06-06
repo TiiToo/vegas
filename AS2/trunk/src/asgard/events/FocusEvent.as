@@ -68,18 +68,22 @@
 
 	IMPLEMENTS
 	
-		ICloneable, Event, IFormattable
+		Event, ICloneable, IFormattable, IHashable, ISerializable
 
-----------  */
+**/
 
 import vegas.events.DynamicEvent;
+import vegas.util.serialize.Serializer;
 
 class asgard.events.FocusEvent extends DynamicEvent {
 
 	// ----o Constructor
 	
-	public function FocusEvent(type:String, target:Object){
-		super(type, target) ;
+	public function FocusEvent( type:String, target, p_keyCode:Number, p_relatedObject, p_shiftKey:Boolean, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number ){
+		super(type, target, context, bubbles, eventPhase, time, stop) ;
+		keyCode = isNaN(p_keyCode) ? null : p_keyCode ;
+		relatedObject = p_relatedObject || null  ;
+		shiftKey = p_shiftKey || null  ;
 	}
 
 	// ----o Constants
@@ -96,16 +100,26 @@ class asgard.events.FocusEvent extends DynamicEvent {
 
 	// ----o Public Properties
 
-	public var keyCode:Number ;
+	public var keyCode:Number = null ;
 	
-	public var relatedObject ;
+	public var relatedObject = null ;
 	
-	public var shiftKey:Boolean ;
+	public var shiftKey:Boolean = null ;
 		
 	// ----o Public Methods
 	
 	public function clone() {
 		return new FocusEvent(getType(), getTarget()) ;
 	}
-	
+
+	// ----o Protected Methods
+
+	/*protected*/ private function _getParams():Array {
+		var ar:Array = super._getParams() ;
+		ar.splice(2, null, Serializer.toSource(keyCode)) ;
+		ar.splice(3, null, Serializer.toSource(relatedObject)) ;
+		ar.splice(4, null, Serializer.toSource(shiftKey)) ;
+		return ar ;
+	}
+
 }

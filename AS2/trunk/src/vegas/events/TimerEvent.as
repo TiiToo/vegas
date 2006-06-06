@@ -99,9 +99,9 @@
 	
 		CoreObject → BasicEvent → DynamicEvent → TimerEvent
 		
-	IMPLEMENTS
-	
-		Event, ICloneable, IFormattable, IHashable
+	IMPLEMENTS 
+		
+		Event, ICloneable, IFormattable, IHashable, ISerializable
 
 **/
 

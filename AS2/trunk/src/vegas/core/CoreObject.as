@@ -37,6 +37,8 @@
 		
 		- hashCode():Number
 		
+		- toSource(indent : Number, indentor : String):String
+		
 		- toString():String
 
 	INHERIT
@@ -45,16 +47,17 @@
 	
 	IMPLEMENT
 	
-		IFormattable, IHashable
+		IFormattable, IHashable, ISerializable
 
 **/
 
 import vegas.core.HashCode;
 import vegas.core.IFormattable;
 import vegas.core.IHashable;
+import vegas.core.ISerializable;
 import vegas.util.ConstructorUtil;
 
-class vegas.core.CoreObject implements IFormattable, IHashable {
+class vegas.core.CoreObject implements IFormattable, IHashable, ISerializable {
 
 	// ----o Construtor
 	
@@ -67,7 +70,11 @@ class vegas.core.CoreObject implements IFormattable, IHashable {
 	public function hashCode():Number {
 		return null ;
 	}
-	
+
+	public function toSource(indent : Number, indentor : String):String {
+		return null ; // override thid method
+	}
+
 	public function toString():String {
 		return "[" + ConstructorUtil.getName(this) + "]" ;
 	}

@@ -63,29 +63,26 @@
 		
 		- setType(type:String):Void
 		
+		- toSource():String
+		
 		- toString():String
 
 	INHERIT
 	
-		CoreObject
-			|
-			BasicEvent
-				|
-				LoaderEvent
-					|
-					LocalizationLoaderEvent
+		CoreObject → BasicEvent → DynamicEvent → LoaderEvent → LocalizationLoaderEvent
 		
 	IMPLEMENTS
 	
-		IEvent
+		Event, ICloneable, IFormattable, IHashable, ISerializable
 
-----------  */
+**/
+
+// TODO tester !!
 
 import asgard.events.LoaderEvent;
 import asgard.system.Lang;
 import asgard.system.Locale;
 import asgard.system.LocalizationLoader;
-
 
 /**
  * @author eKameleon
@@ -96,9 +93,21 @@ class asgard.events.LocalizationLoaderEvent extends LoaderEvent {
 
 	// ----o Constructor
 		
-	public function LocalizationLoaderEvent(type : String, loader:LocalizationLoader ) {
-		super(type, loader);
-	}
+	public function LocalizationLoaderEvent(
+		type : String, loader:LocalizationLoader
+		, nCode:Number
+		, sError:String
+		, context
+		, bubbles:Boolean
+		, eventPhase:Number
+		, time:Number
+		, stop:Number  
+	) 
+		{
+			
+		super(type, loader, nCode, sError, context, bubbles, eventPhase, time, stop) ; 
+		
+		}
 	
 	// ----o Constant
 	

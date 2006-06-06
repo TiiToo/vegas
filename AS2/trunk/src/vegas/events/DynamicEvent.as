@@ -91,15 +91,17 @@
 		
 		- stopImmediatePropagation()
 		
+		- toSource(indent : Number, indentor : String):String
+		
 		- toString():String
 
 	INHERIT
 	
 		CoreObject → BasicEvent → DynamicEvent
 
-	IMPLEMENTS
-	
-		ICloneable, Event, IFormattable
+	IMPLEMENTS 
+		
+		Event, ICloneable, IFormattable, IHashable, ISerializable
 	
 	HISTORY
 	

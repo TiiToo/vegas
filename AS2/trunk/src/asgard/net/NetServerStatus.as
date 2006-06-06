@@ -51,21 +51,24 @@
 	
 		- static format(code:String):String
 		
+		- toSource(indent : Number, indentor : String):String
+		
 		- static validate(o):Boolean
 
 **/
 
+import vegas.core.ISerializable;
 import vegas.util.ArrayUtil;
 
 /**
  * @author eKameleon
  * @version 1.0.0.0
  **/	
-class asgard.net.NetServerStatus extends String {
+class asgard.net.NetServerStatus extends String implements ISerializable {
 	
 	// ----o Constructor
 	
-	private function NetServerStatus( s:String ) {
+	public function NetServerStatus( s:String ) {
 		super(s) ;
 	}
 
@@ -99,6 +102,10 @@ class asgard.net.NetServerStatus extends String {
 		while(--l > -1) {
 			if (status[l].toString() == code) return status[l] ;	
 		}
+	}
+
+	public function toSource(indent : Number, indentor : String):String {
+		return "new NetServerStatus(\"" + toString() + "\")" ;
 	}
 
 	static public function validate( o ):Boolean {

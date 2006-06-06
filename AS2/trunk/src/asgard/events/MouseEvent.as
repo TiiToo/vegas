@@ -111,7 +111,9 @@
 		- setType(type:String):Void
 		
 		- stopImmediatePropagation()
-		
+
+		- toSource(indent : Number, indentor : String):String
+
 		- toString():String
 		
 	INHERIT
@@ -127,22 +129,39 @@
 ----------  */
 
 import vegas.events.DynamicEvent;
+import vegas.util.serialize.Serializer;
 
 class asgard.events.MouseEvent extends DynamicEvent {
 
 	// ----o Constructor
 	
-	public function MouseEvent(type:String, target){
-		super(type, target) ;
-	}
+	public function MouseEvent(
+		type:String, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number
+		, p_localX:Number, p_localY:Number, p_relatedObject:Number, p_ctrlKey:Boolean, p_altKey:Boolean
+		, p_shiftKey:Boolean, p_buttonDown:Boolean, p_delta:Number
+	)
+		{
+			
+		super(type, target, context, bubbles, eventPhase, time, stop) ;
+		
+		localX = isNaN(p_localX) ? 0 : p_localX ;
+		localY = isNaN(p_localY) ? 0 : p_localY ;
+		relatedObject = p_relatedObject || null ;
+		ctrlKey = p_ctrlKey || false ;
+		altKey = p_altKey || false ;
+		shiftKey = p_shiftKey || false ;
+		buttonDown = p_buttonDown || false ;
+		delta = isNaN(p_delta) ? 0 : p_delta ;
+		
+		}
 
 	// ----o Public Properties
 	
 	public var localX:Number = 0 ;
 	public var localY:Number = 0 ;
 	public var relatedObject:Number = null ;
-	public var ctrlKey:Boolean = false ;
 	public var altKey:Boolean = false ;
+	public var ctrlKey:Boolean = false ;
 	public var shiftKey:Boolean = false ;
 	public var buttonDown:Boolean = false ;
 	public var delta:Number = 0 ;
@@ -152,13 +171,26 @@ class asgard.events.MouseEvent extends DynamicEvent {
 	public function clone() {
 		var prop:String ;
 		var props:Array = ["localX", "localY", "relatedObject", "ctrlKey", "altKey", "shiftKey", "buttonDown", "delta"] ;
-		var me:MouseEvent = new MouseEvent(_type, _target) ;
+		var me:MouseEvent = new MouseEvent(getType(), getTarget()) ;
 		var l:Number = props.length ;
 		while(--l > -1) {
 			prop = props[l] ;
 			me[prop] = this[prop];
 		}
 		return me ;
+	}
+
+	// ----o Protected Methods
+
+	/*protected*/ private function _getParams():Array {
+		var ar1:Array = super._getParams() ;
+		var ar2:Array = [] ;
+		var props:Array = ["localX", "localY", "relatedObject", "ctrlKey", "altKey", "shiftKey", "buttonDown", "delta"] ;
+		var len:Number = props.length ;
+		for (var i:Number = 0 ; i<len ; i++) {
+			ar2[i] = Serializer.toSource( this[props[i]] ) ;
+		} ;
+		return ar1.concat(ar2) ;
 	}
 	
 }

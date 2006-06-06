@@ -81,6 +81,8 @@
 		
 		- stopImmediatePropagation():Void
 		
+		- toSource(indent : Number, indentor : String):String
+		
 		- toString():String
 	
 	INHERIT
@@ -89,7 +91,7 @@
 	
 	IMPLEMENTS 
 		
-		Event, ICloneable, IFormattable, IHashable
+		Event, ICloneable, IFormattable, IHashable, ISerializable
 
 	HISTORY
 	
@@ -100,7 +102,6 @@
 **/
 
 import vegas.core.CoreObject;
-import vegas.core.ISerializable;
 import vegas.events.Event;
 import vegas.events.EventPhase;
 import vegas.util.ConstructorUtil;
@@ -115,7 +116,7 @@ import vegas.util.serialize.Serializer;
  * @see     Event	
  * @since   
  */
-class vegas.events.BasicEvent extends CoreObject implements Event, ISerializable {
+class vegas.events.BasicEvent extends CoreObject implements Event {
 
 	// ----o Constructor
 	
@@ -135,7 +136,7 @@ class vegas.events.BasicEvent extends CoreObject implements Event, ISerializable
 	 * @param time:Number
 	 * @param stop:Boolean
 	 */
-	public function BasicEvent(
+	public function BasicEvent (
 		type:String
 		, target
 		, context
@@ -143,23 +144,19 @@ class vegas.events.BasicEvent extends CoreObject implements Event, ISerializable
 		, p_eventPhase:Number
 		, p_time:Number
 		, p_stop:Number 
-	) {
+	) 
+		{
 		
 		_type = type || null ;
-		
 		_context = context || null ;
-		
 		_target = target || null ;
-		
 		_bubbles = (p_bubbles != null) ? p_bubbles : true ;
-		
 		_eventPhase = isNaN(p_eventPhase) ? EventPhase.AT_TARGET : p_eventPhase ; ;
-		
 		_time = (p_time > 0) ? p_time : ( (new Date()).valueOf() ) ;
 		
 		stop = isNaN(p_stop) ? EventPhase.NONE : p_stop ;
 		
-	}
+		}
 	
 	// ----o Public Property
 	
@@ -260,7 +257,7 @@ class vegas.events.BasicEvent extends CoreObject implements Event, ISerializable
 		stop = EventPhase.STOP_IMMEDIATE ;
 	}
 
-	public function toSource(indent : Number, indentor : String) : String {
+	/*override*/ public function toSource(indent : Number, indentor : String) : String {
 		return Serializer.getSourceOf(this, _getParams()) ;
 	}
 

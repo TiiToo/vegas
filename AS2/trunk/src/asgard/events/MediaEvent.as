@@ -95,6 +95,8 @@
 		
 		- stopImmediatePropagation():Void
 		
+		- toSource(indent : Number, indentor : String):String
+		
 		- toString():String
 
 	EVENT SUMMARY
@@ -133,7 +135,7 @@
 		
 	IMPLEMENTS
 	
-		Event, IFormattable, IHashable
+		Event, IFormattable, IHashable, ISerializable
 
 **/
 
@@ -144,8 +146,8 @@ class asgard.events.MediaEvent extends LoaderEvent {
 
 	// ----o Constructor
 	
-	public function MediaEvent(type:String, loader:IMediaLoader){
-		super(type, loader) ;
+	public function MediaEvent(type:String, loader:IMediaLoader, p_code:Number, p_error:String, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) {
+		super(type, loader, p_code, p_error, context, bubbles, eventPhase, time, stop) ;
 	}
 
 	// ----o Public Methods

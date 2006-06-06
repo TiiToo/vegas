@@ -119,9 +119,9 @@
 	
 		BasicEvent → DynamicEvent → ModelChangedEvent
 		
-	IMPLEMENTS
-	
-		Event, ICloneable, IFormattable, IHashable
+	IMPLEMENTS 
+		
+		Event, ICloneable, IFormattable, IHashable, ISerializable
 
 **/
 

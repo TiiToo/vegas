@@ -93,15 +93,17 @@
 		
 		- stopImmediatePropagation()
 		
+		- toSource(indent : Number, indentor : String) : String
+		
 		- toString():String
 
 	INHERIT
 	
 		CoreObject → BasicEvent → DynamicEvent → TextEvent
 
-	IMPLEMENTS
-	
-		ICloneable, IFormattable, IHashable, Event
+	IMPLEMENTS 
+		
+		Event, ICloneable, IFormattable, IHashable, ISerializable
 	
 **/
 
@@ -131,7 +133,7 @@ class vegas.events.TextEvent extends DynamicEvent {
 	
 	/*protected*/ private function _getParams():Array {
 		var ar:Array = super._getParams() ;
-		ar.splice(1, null, text) ;
+		ar.splice(1, null, Serializer.toSource(text)) ;
 		return ar ;
 	}
 

@@ -90,6 +90,7 @@ import vegas.util.mvc.AbstractModel;
 // TODO setDeliveryMode : see RecordSet class (macromedia in mc.remoting package).
 // TODO finir la documentation
 // TODO voir toute la gestion remote et local du RecordSet (finir) !!!!
+// TODO finir de mettre en place la sérialization avec toSource():String
 
 /**
  * @author eKameleon

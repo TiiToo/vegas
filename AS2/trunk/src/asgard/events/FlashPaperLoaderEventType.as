@@ -63,7 +63,7 @@
 		
 		- const VISIBLE_AREA_CHANGE:String
 
-----------  */
+**/
 
 import asgard.events.LoaderEventType;
 

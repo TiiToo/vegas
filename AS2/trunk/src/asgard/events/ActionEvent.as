@@ -52,31 +52,77 @@
 		- ActionEventType.STOPPED   : "stopped"
 
 	METHOD SUMMARY
-	
-		- getInfo()
-	
-		- clone():ActionEvent
 
+		- cancel():Void
+		
+		- clone():BasicEvent
+		
+		- getBubbles():Boolean
+		
+		- getContext():Object
+		
+		- getCurrentTarget():Object
+		
+		- getEventPhase():Number
+		
+		- getInfo()
+		
+		- getTarget():Object
+		
+		- getTimeStamp():Number
+		
+		- getType():String
+		
+		- isCancelled():Boolean
+		
+		- isQueued():Boolean
+		
+		- queueEvent():Void
+		
+		- setBubbles(b:Boolean):Void
+		
+		- setContext(context:Object):Void
+		
+		- setCurrentTarget(target):Void
+		
+		- setEventPhase(n:Number):Void
+		
 		- setInfo(oInfo):Void
+		
+		- setTarget(target:Object):Void
+		
+		- setType(type:String):Void
+		
+		- stopImmediatePropagation()
+		
+		- toSource(indent : Number, indentor : String):String
+		
+		- toString():String
 		
 	INHERIT
 	
 		CoreObject → BasicEvent → DynamicEvent → ActionEvent
 		
-	IMPLEMENTS
-	
-		Event, IFormattable, IHashable
+	IMPLEMENTS 
+		
+		Event, ICloneable, IFormattable, IHashable, ISerializable
 
-----------  */
+	SEE ALSO
+	
+		ActionEventType
+
+**/
 
 import vegas.events.DynamicEvent;
+import vegas.util.serialize.Serializer;
 
 class asgard.events.ActionEvent extends DynamicEvent {
 
 	// ----o Constructor
 	
-	public function ActionEvent(type:String, target:Object){
-		super(type, target) ;
+	public function ActionEvent(type:String, target:Object, info, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number){
+		super(type, target, context, bubbles, eventPhase, time, stop) ;
+		_oInfo = info || null ;
 	}
 
 	// ----o Public Methods
@@ -92,9 +138,17 @@ class asgard.events.ActionEvent extends DynamicEvent {
 	public function setInfo( oInfo ):Void {
 		_oInfo = oInfo ;	
 	}
-	
+
 	// ----o Private Properties
 	
 	private var _oInfo ;
+
+	// ----o Protected Methods
 	
+	/*protected*/ private function _getParams():Array {
+		var ar:Array = super._getParams() ;
+		ar.splice(2, null, Serializer.toSource(_oInfo)) ;
+		return ar ;
+	}
+
 }

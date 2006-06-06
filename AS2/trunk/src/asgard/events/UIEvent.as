@@ -39,19 +39,67 @@
 
 	PROPERTY SUMMARY
 
-		- child
+		- bubbles:Boolean [R/W]
 		
+		- child
+				
+		- context [R/W]
+		
+		- currentTarget [R/W]
+		
+		- eventPhase:Number [R/W]
+
 		- index:Number
+				
+		- target [R/W]
+		
+		- type:String [R/W]
 	
 	METHOD SUMMARY
 	
-		- getTarget():Object
+		- cancel():Void
+		
+		- clone():BasicEvent
+		
+		- getBubbles():Boolean
+		
+		- getContext()
+		
+		- getCurrentTarget()
+		
+		- getEventPhase():Number
+		
+		- getTarget()
+		
+		- getTimeStamp():Number
 		
 		- getType():String
 		
-		- setTarget(target:Object):Void
+		- hashCode():Number
+		
+		- initEvent(type:String, bubbles:Boolean, cancelable:Boolean)
+		
+		- isCancelled():Boolean
+		
+		- isQueued():Boolean
+		
+		- queueEvent():Void
+		
+		- setBubbles(b:Boolean):Void
+		
+		- setContext(context):Void
+		
+		- setCurrentTarget(target):Void
+		
+		- setEventPhase(n:Number):Void
+		
+		- setTarget(target):Void
 		
 		- setType(type:String):Void
+		
+		- stopImmediatePropagation():Void
+		
+		- toSource(indent : Number, indentor : String):String
 		
 		- toString():String
 		
@@ -61,18 +109,25 @@
 		
 	IMPLEMENTS
 	
-		Event
-		
-----------  */
+		Event, ICloneable, IFormattable, IHashable
+	
+	SEE ALSO 
+	
+		UIEventType
+	
+**/
 
 import vegas.events.DynamicEvent;
+import vegas.util.serialize.Serializer;
 
 class asgard.events.UIEvent extends DynamicEvent {
 
 	// ----o Constructor
 	
-	public function UIEvent(type:String, target) {
-		super(type, target) ;
+	public function UIEvent( type:String, target, p_child, p_index:Number, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) {
+		super(type, target, context, bubbles, eventPhase, time, stop) ;
+		child = p_child || null ;
+		index = isNaN(p_index) ? null : p_index ;
 	}
 
 	// ----o Public Properties
@@ -85,5 +140,14 @@ class asgard.events.UIEvent extends DynamicEvent {
 	public function clone() {
 		return new UIEvent(getType(), getTarget()) ;
 	}
-
+	
+	// ----o Protected Methods
+	
+	/*protected*/ private function _getParams():Array {
+		var ar:Array = super._getParams() ;
+		ar.splice(2, null, Serializer.toSource(child)) ;
+		ar.splice(3, null, Serializer.toSource(index)) ;
+		return ar ;
+	}
+	
 }

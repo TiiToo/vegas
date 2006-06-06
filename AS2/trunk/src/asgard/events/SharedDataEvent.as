@@ -33,9 +33,81 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 	
-	METHODS
+	PROPERTY SUMMARY
+
+		- bubbles:Boolean [R/W]
+		
+		- context [R/W]
+		
+		- currentTarget [R/W]
+		
+		- eventPhase:Number [R/W]
+		
+		- id:String
+		
+		- target [R/W]
+		
+		- type:String [R/W]
+		
+		- value
+
+	METHOD SUMMARY
 	
-		- clone():SharedDataEvent
+		- cancel():Void
+		
+		- clone():BasicEvent
+		
+		- getBubbles():Boolean
+		
+		- getContext()
+		
+		- getCurrentTarget()
+		
+		- getEventPhase():Number
+		
+		- getTarget()
+		
+		- getTimeStamp():Number
+		
+		- getType():String
+		
+		- isCancelled():Boolean
+		
+		- isQueued():Boolean
+		
+		- queueEvent():Void
+		
+		- setBubbles(b:Boolean):Void
+		
+		- setContext(context):Void
+		
+		- setCurrentTarget(target):Void
+		
+		- setEventPhase(n:Number):Void
+		
+		- setProperty(p_id:String, p_value):Void
+		
+		- setTarget(target):Void
+		
+		- setType(type:String):Void
+		
+		- stopImmediatePropagation()
+		
+		- toSource(indent : Number, indentor : String):String
+		
+		- toString():String
+
+	INHERIT
+	
+		CoreObject → BasicEvent → DynamicEvent
+
+	IMPLEMENTS 
+		
+		Event, ICloneable, IFormattable, IHashable, ISerializable
+
+	SEE ALSO
+		
+		SharedDataEventType
 
 **/
 
@@ -43,6 +115,7 @@ import asgard.events.SharedDataEventType;
 import asgard.net.SharedData;
 
 import vegas.events.DynamicEvent;
+import vegas.util.serialize.Serializer;
 
 /**
  * @author eKameleon
@@ -52,10 +125,16 @@ class asgard.events.SharedDataEvent extends DynamicEvent {
 
 	// ----o Constructor
 	
-	public function SharedDataEvent( type:SharedDataEventType, sharedData:SharedData , p_id:String, p_value ){
-		super(type, sharedData) ;
+	public function SharedDataEvent ( 
+		type:SharedDataEventType, sharedData:SharedData , p_id:String, p_value
+		, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number 
+	)
+		{
+		
+		super(type, sharedData, context, bubbles, eventPhase, time, stop) ;
  		this.setProperty(p_id, p_value) ;
-	}
+ 		
+		}
 	
 	// ----o Public Properties
 	
@@ -64,13 +143,31 @@ class asgard.events.SharedDataEvent extends DynamicEvent {
 	
 	// ----o Public Methods
 
-	public function clone() {
+	public function clone() 
+		{
+			
 		return new SharedDataEvent(SharedDataEventType(getType()), getTarget()) ;
-	}
+		
+		}
 
-	public function setProperty(p_id:String, p_value):Void {
+	public function setProperty(p_id:String, p_value):Void 
+		{
+			
 		id = p_id || null ;
 		value = p_value || null ;
-	}
 		
+		}
+
+	// ----o Protected Methods
+
+	/*protected*/ private function _getParams():Array 
+		{
+		
+		var ar:Array = super._getParams() ;
+		ar.splice(2, null, Serializer.toSource(id)) ;
+		ar.splice(3, null, Serializer.toSource(value)) ;
+		return ar ;
+		
+		}
+	
 }

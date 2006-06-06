@@ -61,23 +61,19 @@
 		
 		- setType(type:String):Void
 		
+		- toSource(indent : Number, indentor : String):String
+		
 		- toString():String
 
 	INHERIT
 	
-		CoreObject
-			|
-			BasicEvent
-				|
-				LoaderEvent
-					|
-					LocalizationLoaderEvent
+		CoreObject → BasicEvent → DynamicEvent → LoaderEvent → ConfigLoaderEvent
 		
-	IMPLEMENTS
-	
-		IEvent
+	IMPLEMENTS 
+		
+		Event, ICloneable, IFormattable, IHashable, ISerializable
 
-----------  */
+**/
 
 import asgard.config.ConfigLoader;
 import asgard.events.LoaderEvent;
@@ -92,8 +88,8 @@ class asgard.events.ConfigLoaderEvent extends LoaderEvent {
 
 	// ----o Constructor
 		
-	public function ConfigLoaderEvent(type : String, loader:ConfigLoader ) {
-		super(type, loader);
+	public function ConfigLoaderEvent( type : String, loader:ConfigLoader, p_code:Number, p_error:String, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number ) {
+		super(type, loader, p_code, p_error, context, bubbles, eventPhase, time, stop);
 	}
 	
 	// ----o Constant

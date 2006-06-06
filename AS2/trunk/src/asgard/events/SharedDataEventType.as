@@ -53,7 +53,7 @@
 		
 		- SYNCHRONISED:SharedDataEventType
 
-----------  */
+**/
 
 /**
  * @author eKameleon
@@ -63,7 +63,7 @@ class asgard.events.SharedDataEventType extends String {
 
 	// ----o Constructor
 	
-	private function SharedDataEventType(s:String) {
+	public function SharedDataEventType(s:String) {
 		super(s) ;
 	}
 

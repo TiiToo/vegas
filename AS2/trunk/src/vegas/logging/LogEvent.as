@@ -37,6 +37,10 @@
 	
 		Dynamic class.
 
+	CONSTRUCTOR
+	
+		var e:LogEvent = new LogEvent( message:String, level:Number ) ;
+
 	CONSTANT SUMMARY
 
 		- LOG:String
@@ -115,19 +119,20 @@
 
 	IMPLEMENTS
 	
-		ICloneable, Event, IFormattable
+		ICloneable, Event, IFormattable, ISerializable
 
 **/	
 
 import vegas.events.DynamicEvent;
 import vegas.logging.LogEventLevel;
+import vegas.util.serialize.Serializer;
 
 dynamic class vegas.logging.LogEvent extends DynamicEvent {
 	
 	// ----o Constructor
 	
-	public function LogEvent(msg:String, lv:Number) {
-		super(LogEvent.LOG) ;
+	public function LogEvent(msg:String, lv:Number, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) {
+		super(LogEvent.LOG, target, context, bubbles, eventPhase, time, stop) ;
 		message = msg || "" ;
 		level = lv || LogEventLevel.ALL ;
 	}
@@ -176,5 +181,16 @@ dynamic class vegas.logging.LogEvent extends DynamicEvent {
 				return null ;
 		}
 	}
+
+	// ----o Protected Methods
 	
+	/*protected*/ private function _getParams():Array {
+		var ar1:Array = [
+			Serializer.toSource(message) ,
+			Serializer.toSource(level)
+		] ;
+		var ar2:Array = super._getParams() ;
+		return ar1.concat( ar2 ) ;
+	}
+
 }

@@ -33,6 +33,12 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 	
+	PROPERTY SUMMARY
+	
+		- code:Number
+		
+		- error:String
+	
 	METHOD SUMMARY
 	
 		- cancel():Void
@@ -89,6 +95,8 @@
 		
 		- stopImmediatePropagation():Void
 		
+		- toSource(indent : Number, indentor : String):String
+		
 		- toString():String
 
 	EVENT SUMMARY
@@ -117,13 +125,14 @@
 		
 	IMPLEMENTS
 	
-		Event, IFormattable, IHashable
+		Event, ICloneable, IFormattable, IHashable, ISerializable
 
 **/
 
 import asgard.net.ILoader;
 
 import vegas.events.BasicEvent;
+import vegas.util.serialize.Serializer;
 
 /**
  * @author eKameleon
@@ -134,9 +143,11 @@ class asgard.events.LoaderEvent extends BasicEvent {
 
 	// ----o Constructor
 		
-	public function LoaderEvent(type : String, loader:ILoader ) {
-		super(type, loader);
+	public function LoaderEvent(type : String, loader:ILoader, p_code:Number, p_error:String, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number ) {
+		super(type, loader, context, bubbles, eventPhase, time, stop);
 		_oLoader = loader ;
+		code = isNaN(p_code) ? null : p_code ;
+		error = p_error || null ;
 	}
 	
 	// ----o Public Properties
@@ -177,5 +188,14 @@ class asgard.events.LoaderEvent extends BasicEvent {
 	// ----o Private Properties
 	
 	private var _oLoader:ILoader ;
+
+	// ----o Protected Methods
+	
+	/*protected*/ private function _getParams():Array {
+		var ar:Array = super._getParams() ;
+		ar.splice(2, null, Serializer.toSource(code)) ;
+		ar.splice(3, null, Serializer.toSource(error)) ;
+		return ar ;
+	}
 
 }

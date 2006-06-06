@@ -53,7 +53,7 @@
 		
 		- static RELEASE:String = "onRelease"
 
-----------  */
+**/
 
 class asgard.events.LoaderEventType {
 

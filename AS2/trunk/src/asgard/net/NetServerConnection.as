@@ -109,6 +109,7 @@ import asgard.process.Action;
 import vegas.core.HashCode;
 import vegas.core.IFormattable;
 import vegas.core.IHashable;
+import vegas.core.ISerializable;
 import vegas.data.Set;
 import vegas.events.Delegate;
 import vegas.events.Event;
@@ -125,7 +126,7 @@ import vegas.util.Timer;
  * @author eKameleon
  * @version 1.0.0.0
  **/	
-dynamic class asgard.net.NetServerConnection extends NetConnection implements Action, IEventDispatcher, IFormattable, IHashable {
+dynamic class asgard.net.NetServerConnection extends NetConnection implements Action, IEventDispatcher, IFormattable, IHashable, ISerializable {
 	
 	// ----o Constructor
 	
@@ -286,6 +287,9 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 		_dispatcher.parent = parent ;
 	}
 
+	/*override*/ public function toSource(indent : Number, indentor : String) : String {
+		return null ;
+	}
 	public function toString():String {
 		return "[" + ConstructorUtil.getName(this) + "]" ;
 	}

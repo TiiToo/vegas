@@ -78,13 +78,45 @@
 
 	METHOD SUMMARY
 	
+		- cancel():Void
+		
+		- clone():BasicEvent
+		
+		- getBubbles():Boolean
+		
+		- getContext():Object
+		
+		- getCurrentTarget():Object
+		
+		- getEventPhase():Number
+		
 		- getTarget():Object
 		
+		- getTimeStamp():Number
+		
 		- getType():String
+		
+		- isCancelled():Boolean
+		
+		- isQueued():Boolean
+		
+		- queueEvent():Void
+		
+		- setBubbles(b:Boolean):Void
+		
+		- setContext(context:Object):Void
+		
+		- setCurrentTarget(target):Void
+		
+		- setEventPhase(n:Number):Void
 		
 		- setTarget(target:Object):Void
 		
 		- setType(type:String):Void
+		
+		- stopImmediatePropagation()
+		
+		- toSource(indent : Number, indentor : String):String
 		
 		- toString():String
 
@@ -104,9 +136,19 @@ class asgard.events.ButtonEvent extends MouseEvent {
 
 	// ----o Constructor
 	
-	public function ButtonEvent(type:String, target) {
-		super(type, target) ;
-	}
+	public function ButtonEvent(
+		type:String, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number
+		, p_localX:Number, p_localY:Number, p_relatedObject:Number, p_ctrlKey:Boolean, p_altKey:Boolean
+		, p_shiftKey:Boolean, p_buttonDown:Boolean, p_delta:Number
+	) 
+		{
+			
+		super(
+			type, target, context, bubbles, eventPhase, time, stop
+			, p_localX, p_localY, p_relatedObject, p_ctrlKey, p_altKey, p_shiftKey, p_buttonDown, p_delta
+		) ;
+		
+		}
 
 	// ----o Public Methods
 

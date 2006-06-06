@@ -33,43 +33,88 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
-	PROPERTIES
-	
-		- context
+	PROPERTY SUMMARY
+
+		- bubbles:Boolean [R/W]
+
+		- context [R/W]
 		
 			- context.id
 			- context.value
+
+		- currentTarget [R/W]
 		
-		- target
+		- eventPhase:Number [R/W]
 		
-		- type
+		- target [R/W]
+		
+		- type:String [R/W]
+
+	METHOD SUMMARY
 	
+		- cancel():Void
+		
+		- clone():BasicEvent
+		
+		- getBubbles():Boolean
+		
+		- getContext()
+		
+		- getCurrentTarget()
+		
+		- getEventPhase():Number
+		
+		- getTarget()
+		
+		- getTimeStamp():Number
+		
+		- getType():String
+		
+		- isCancelled():Boolean
+		
+		- isQueued():Boolean
+		
+		- queueEvent():Void
+		
+		- setBubbles(b:Boolean):Void
+		
+		- setContext(context):Void
+		
+		- setCurrentTarget(target):Void
+		
+		- setEventPhase(n:Number):Void
+		
+		- setTarget(target):Void
+		
+		- setType(type:String):Void
+		
+		- stopImmediatePropagation()
+		
+		- toSource(indent : Number, indentor : String):String
+		
+		- toString():String
+
 	INHERIT
 	
-		BasicEvent
-			|
-			DynamicEvent
-				|
-				SystemEvent
-				
+		CoreObject → BasicEvent → DynamicEvent
 
-	IMPLEMENTS
-	
-		Event
-	
+	IMPLEMENTS 
+		
+		Event, ICloneable, IFormattable, IHashable, ISerializable
 
-----------  */
+**/
 
 import vegas.events.DynamicEvent;
 
 // TODO changer le setContext... par 2 propriétés property et value en direct.
+// TODO test method toSource()
 
 class asgard.system.SystemEvent extends DynamicEvent {
 
 	// ----o Constructor
 	
-	public function SystemEvent(target, property, value){
-		super( VIEW_SYSTEM_EVENT , target) ;
+	public function SystemEvent(target, property, value, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number){
+		super( VIEW_SYSTEM_EVENT , target, context, bubbles, eventPhase, time, stop) ;
 		setContext( {
 			id : property || null , 
 			value : value || null

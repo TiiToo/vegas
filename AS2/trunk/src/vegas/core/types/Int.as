@@ -41,6 +41,8 @@
 
 		- hashCode():Number
 
+		- toSource():String
+
 		- toString():String
 		
 		- valueOf()
@@ -51,16 +53,18 @@
 
 	IMPLEMENTS
 	
-		IFormattable, IHashable
+		IFormattable, IHashable, ISerializable
 
 **/
 
 import vegas.core.HashCode;
 import vegas.core.IFormattable;
 import vegas.core.IHashable;
+import vegas.core.ISerializable;
 import vegas.errors.NumberFormatError;
+import vegas.util.serialize.Serializer;
 
-class vegas.core.types.Int extends Number implements IFormattable, IHashable {
+class vegas.core.types.Int extends Number implements IFormattable, IHashable, ISerializable {
 
 	// ----o Construtor
 	
@@ -82,6 +86,10 @@ class vegas.core.types.Int extends Number implements IFormattable, IHashable {
 		return null ;
 	}
 	
+	function toSource(indent : Number, indentor : String) : String {
+		return Serializer.getSourceOf(this, _getParams()) ;
+	}	
+
 	public function toString():String {
 		return _int.toString() ;
 	}
@@ -94,5 +102,10 @@ class vegas.core.types.Int extends Number implements IFormattable, IHashable {
 	
 	private var _int:Number ;
 
+	// ----o Protected Methods
 	
+	/*protected*/ private function _getParams():Array {
+		return [ Serializer.toSource(_int) ] ;
+	}
+
 }
