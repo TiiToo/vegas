@@ -82,7 +82,7 @@ import vegas.data.Set;
 import vegas.events.Event;
 import vegas.events.EventDispatcher;
 import vegas.events.EventListener;
-import vegas.events.EventListenerCollection;
+import vegas.events.EventListenerCollection ;
 import vegas.events.IEventDispatcher;
 
 /**

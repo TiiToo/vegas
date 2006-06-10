@@ -89,7 +89,7 @@
 	
 		ICloneable, IEquality
 
-----------  */
+**/
 
 // TODO il faut rajouter des erreurs en cas de date invalide
 // TODO il faut finir la localization 

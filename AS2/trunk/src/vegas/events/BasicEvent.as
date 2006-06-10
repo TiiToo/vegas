@@ -151,7 +151,7 @@ class vegas.events.BasicEvent extends CoreObject implements Event {
 		_context = context || null ;
 		_target = target || null ;
 		_bubbles = (p_bubbles != null) ? p_bubbles : true ;
-		_eventPhase = isNaN(p_eventPhase) ? EventPhase.AT_TARGET : p_eventPhase ; ;
+		_eventPhase = isNaN(p_eventPhase) ? EventPhase.AT_TARGET : p_eventPhase ;
 		_time = (p_time > 0) ? p_time : ( (new Date()).valueOf() ) ;
 		
 		stop = isNaN(p_stop) ? EventPhase.NONE : p_stop ;

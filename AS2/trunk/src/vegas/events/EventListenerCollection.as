@@ -43,6 +43,8 @@
 		
 		- removeListener( o ):EventListenerContainer
 		
+		- size():Number
+			
 		- toString():String
 	
 	IMPLEMENTS
@@ -145,6 +147,10 @@ class vegas.events.EventListenerCollection extends CoreObject implements Iterabl
 			
 		}
 		return null ;
+	}
+	
+	public function size():Number {
+		return _listeners.size() ;
 	}
 	
 	// ----o Private Properties

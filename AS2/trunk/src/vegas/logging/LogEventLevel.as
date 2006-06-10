@@ -77,7 +77,7 @@
 	
 	IMPLEMENTS
 	
-		IFormattable, IHashable
+		IFormattable, IHashable, ISerializable
 
 **/	
 
