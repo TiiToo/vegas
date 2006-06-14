@@ -105,7 +105,7 @@ class asgard.net.NetServerStatus extends String implements ISerializable {
 	}
 
 	public function toSource(indent : Number, indentor : String):String {
-		return "new NetServerStatus(\"" + toString() + "\")" ;
+		return "new asgard.net.NetServerStatus(\"" + toString() + "\")" ;
 	}
 
 	static public function validate( o ):Boolean {

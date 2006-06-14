@@ -59,6 +59,8 @@
 		
 		- getCurrentTarget()
 		
+		- getError()
+		
 		- getEventPhase():Number
 		
 		- getInfo():NetServerStatus
@@ -82,6 +84,8 @@
 		- setCurrentTarget(target):Void
 		
 		- setEventPhase(n:Number):Void
+		
+		- setError(oError):Void
 		
 		- setInfo(status:NetServerStatus):Void
 		
@@ -123,6 +127,7 @@
 
 import asgard.events.NetServerEventType;
 import asgard.net.NetServerConnection;
+import asgard.net.NetServerInfo;
 import asgard.net.NetServerStatus;
 
 import vegas.events.DynamicEvent;
@@ -135,35 +140,66 @@ class asgard.events.NetServerEvent extends DynamicEvent {
 
 	// ----o Constructor
 	
-	public function NetServerEvent( type:NetServerEventType, connection:NetServerConnection, p_info:NetServerStatus, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number ){
+	public function NetServerEvent( type:NetServerEventType, connection:NetServerConnection, status:NetServerStatus, info, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number ){
 		super(type, connection, context, bubbles, eventPhase, time, stop) ;
-		_info = p_info || null ;
+		setInfo(info) ;
+		setStatus(status) ;
 	}
 	
 	// ----o Public Methods
 
-	public function clone() {
-		return new NetServerEvent(NetServerEventType(getType()), getTarget()) ;
-	}
+	public function clone() 
+		{
+		var e = new NetServerEvent(NetServerEventType(getType()), getTarget()) ;
+		e.setInfo (e.getInfo()) ;
+		e.setStatus(e.getStatus()) ;
+		return e ;
+		}
 
-	public function getInfo():NetServerStatus {
+	public function getInfo():NetServerInfo 
+		{
 		return _info ;	
-	}
+		}
 	
-	public function setInfo(status:NetServerStatus):Void {
-		_info = NetServerStatus.validate(status) ? status : null ;
-	}
+	public function getStatus():NetServerStatus 
+		{
+		return _status ;	
+		}
+
+	public function setInfo( oInfo ):Void 
+		{
+		if (oInfo instanceof NetServerInfo) 
+			{
+			_info = oInfo ;
+			} 
+		else if (typeof(oInfo) == "object") 
+			{
+			_info = new NetServerInfo(oInfo) ;	
+			} 	
+		else
+			{
+			_info = null ;
+			}
+		}
+	
+	public function setStatus(status:NetServerStatus):Void 
+		{
+		_status = NetServerStatus.validate(status) ? status : null ;
+		}
 	
 	// ----o Private Properties
 	
-	private var _info:NetServerStatus ;
+	private var _status:NetServerStatus ;
+	private var _info:NetServerInfo ;
 
 	// ----o Protected Methods
 	
-	/*protected*/ private function _getParams():Array {
+	/*protected*/ private function _getParams():Array 
+		{
 		var ar:Array = super._getParams() ;
-		ar.splice(2, null, _info.toSource()) ;
+		ar.splice(2, null, getStatus().toSource()) ;
+		ar.splice(3, null, getInfo().toSource()) ;
 		return ar ;
-	}
+		}
 
 }

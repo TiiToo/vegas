@@ -240,8 +240,9 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 		dispatchEvent( _eStart ) ;
 	}
 	
-	public function notifyStatus( info:NetServerStatus ):Void {
+	public function notifyStatus( status:NetServerStatus , info ):Void {
 		_eStatus.setInfo(info) ;
+		_eStatus.setStatus(status) ;
 		dispatchEvent( _eStatus ) ;	
 	}
 
@@ -327,12 +328,7 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 				break ;
 			
 			case NetServerStatus.FAILED :
-			
-				/*for (var each in oInfo) {
-					trace(" >> " + each + " : " + oInfo[each]) ;
-				}*/
-				
-				notifyStatus(NetServerStatus.FAILED) ;
+				notifyStatus(NetServerStatus.FAILED, oInfo) ;
 				break ;
 			
 			case NetServerStatus.INVALID :
