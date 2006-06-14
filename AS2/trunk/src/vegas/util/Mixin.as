@@ -45,7 +45,7 @@
 	
 		- getAttributes()
 		
-		- getConetructor()
+		- getConstructor()
 		
 		- getTarget()
 		

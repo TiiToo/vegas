@@ -153,7 +153,7 @@
 
 	INHERIT
 	
-		CoreObject > EventDispatcher
+		CoreObject → EventDispatcher
 
 	IMPLEMENTS 
 	

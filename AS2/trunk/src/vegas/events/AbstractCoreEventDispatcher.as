@@ -57,6 +57,8 @@
 		
 		- getRegisteredEventNames():Set
 		
+		- getTarget()
+		
 		- initEventDispatcher():EventDispatcher 
 		
  		- hasEventListener(eventName:String):Boolean
@@ -69,7 +71,7 @@
 	
 	INHERIT
 
-		 CoreObject → AbstractCoreEventDispatcher
+		CoreObject → AbstractCoreEventDispatcher
  
  	IMPLEMENTS
  
@@ -82,7 +84,7 @@ import vegas.data.Set;
 import vegas.events.Event;
 import vegas.events.EventDispatcher;
 import vegas.events.EventListener;
-import vegas.events.EventListenerCollection ;
+import vegas.events.EventListenerCollection;
 import vegas.events.IEventDispatcher;
 
 /**
@@ -132,6 +134,10 @@ class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEv
 
 	public function getRegisteredEventNames():Set {
 		return _oED.getRegisteredEventNames.apply(_oED, arguments) ;
+	}
+
+	public function getTarget() {
+		return _oED.getTarget() ;	
 	}
 
 	public function hasEventListener(eventName:String):Boolean {

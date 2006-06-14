@@ -327,6 +327,11 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 				break ;
 			
 			case NetServerStatus.FAILED :
+			
+				/*for (var each in oInfo) {
+					trace(" >> " + each + " : " + oInfo[each]) ;
+				}*/
+				
 				notifyStatus(NetServerStatus.FAILED) ;
 				break ;
 			

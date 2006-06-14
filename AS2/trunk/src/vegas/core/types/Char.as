@@ -58,7 +58,7 @@
 import vegas.core.HashCode;
 import vegas.core.IFormattable;
 import vegas.core.IHashable;
-import vegas.core.ISerializable ;
+import vegas.core.ISerializable;
 
 class vegas.core.types.Char extends String implements IFormattable, IHashable, ISerializable {
 

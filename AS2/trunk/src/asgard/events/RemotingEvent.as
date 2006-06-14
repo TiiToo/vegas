@@ -193,7 +193,7 @@ class asgard.events.RemotingEvent extends DynamicEvent {
 			_sLevel = oFault.level || null ;
 			_sLine = oFault.line || null ;
 		}
-		if (sMethodName) setMethodName( sMethodName ) ;
+		if (methodName) setMethodName( methodName ) ;
 	}
 	
 	public function setMethodName( methodName:String ):Void {
