@@ -99,19 +99,19 @@ class vegas.logging.LogLogger extends EventDispatcher implements ILogger {
 	// ----o Public Methods
 	
 	public function debug(context):Void {
-		log.apply(this, [LogEventLevel.DEBUG].concat(Array.fromArguments(arguments))) ;
+		log.apply(this, [LogEventLevel.DEBUG].concat(arguments)) ;
 	}
 	
 	public function error(context):Void {
-		log.apply(this, [LogEventLevel.ERROR].concat(Array.fromArguments(arguments))) ;
+		log.apply(this, [LogEventLevel.ERROR].concat(arguments)) ;
 	}
 	
 	public function fatal(context):Void {
-		log.apply(this, [LogEventLevel.FATAL].concat(Array.fromArguments(arguments))) ;
+		log.apply(this, [LogEventLevel.FATAL].concat(arguments)) ;
 	}
 	
 	public function info(context):Void {
-		log.apply(this, [LogEventLevel.INFO].concat(Array.fromArguments(arguments))) ;
+		log.apply(this, [LogEventLevel.INFO].concat(arguments)) ;
 	}
 	
 	public function log(level:Number, context):Void {
@@ -127,7 +127,7 @@ class vegas.logging.LogLogger extends EventDispatcher implements ILogger {
 	}
 	
 	public function warn(context):Void {
-		log.apply(this, [LogEventLevel.WARN].concat(Array.fromArguments(arguments))) ;
+		log.apply(this, [LogEventLevel.WARN].concat(arguments)) ;
 	}
 	
 	// ----o Private Methods

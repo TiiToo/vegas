@@ -84,7 +84,6 @@
 **/
 
 import vegas.data.map.HashMap;
-import vegas.events.Event;
 import vegas.logging.errors.InvalidCategoryError;
 import vegas.logging.ILogger;
 import vegas.logging.ITarget;
@@ -147,12 +146,5 @@ class vegas.logging.Log {
 	
 	static private var __logger:LogLogger = new LogLogger() ;
 	static private var __categories:HashMap = new HashMap() ;
-
-	// ----o Private Methods
-	
-	static private function _handleEvent(e:Event) {
-		__logger.dispatchEvent(e) ;
-	}
-	
 
 }
