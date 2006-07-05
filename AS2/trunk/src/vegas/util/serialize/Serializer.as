@@ -78,6 +78,7 @@ import vegas.util.serialize.NumberSerializer;
 import vegas.util.serialize.ObjectSerializer;
 import vegas.util.serialize.StringSerializer;
 import vegas.util.TypeUtil;
+import vegas.util.ArrayUtil;
 
 class vegas.util.serialize.Serializer {
 
@@ -87,7 +88,79 @@ class vegas.util.serialize.Serializer {
 		//
 	}
 	
+	// ----o Properties
+	
+	static public var GLOBAL_RESERVED:Array = ["_global"] ;
+	
 	// ----o Methods
+
+	static public function isGlobalReserved( name:String ):Boolean 
+		{
+		var l:Number = GLOBAL_RESERVED.length ;
+        while(--l > -1) 
+        	{
+           if( GLOBAL_RESERVED[l] == name ) return true ;
+        	}
+        return false;
+		}
+
+	static public function globalToSource( indent:Number, indentor:String ):String  
+	
+		{
+    	
+    	var target, member, source;
+    	source = [];
+    
+    	if( indent != null ) indent++;
+    
+	    for( member in _global ) {
+        	
+        	if( isGlobalReserved( member ) )
+            {
+            continue;
+            }
+        
+			if( member == "__path__" )
+            	{
+            	continue;
+            	}
+        
+        	if( _global.hasOwnProperty( member ) ) {
+				      
+            	if( _global[member] === undefined )
+	                {
+                	source.push( member + ":" + "undefined" );
+	                continue;
+                	}
+	            
+            	if( _global[member] === null )
+	                {
+                	source.push( member + ":" + "null" );
+	                continue;
+                	}
+	            
+            	source.push( member + ":" + _global[member].toSource( indent, indentor ) );
+            	}
+	        }
+    	
+	   	 	if( indent == null )
+        		{
+	        	return( "{" + source.join( "," ) + "}" );
+        		}
+		
+	    	if( indentor == null )
+	        	{
+        		indentor = "    ";
+	        	}
+		    
+	    	if(indent == null )
+	        	{
+        		indent = 0;
+        		}
+		    
+	    	var decal = "\n" + (ArrayUtil.initialize( indent, indentor )).join( "" );
+	    	return( decal + "{" + decal + source.join( "," + decal ) + decal + "}" );
+	    }
 
 	static public function getSourceOf(o, params:Array):String {
 		var path:String = ConstructorUtil.getPath(o) ;
@@ -120,4 +193,6 @@ class vegas.util.serialize.Serializer {
 		else return "undefined" ;
 	}
 	
+
+		
 }

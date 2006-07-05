@@ -69,6 +69,8 @@
 		
 		- splice(startIndex:Number, deleteCount:Number, value):String
 		
+		- startsWith( value:String ):Boolean
+		
 		- toArray():Array
 		
 		- toSource():String
@@ -238,6 +240,31 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, It
 		a = a.splice.apply(a, arguments) ;
 		return ArrayUtil.toString(a) ;
 	}
+
+	/* Method: startsWith
+   	Determines whether a specified string is a prefix
+   	of the current instance.
+	*/
+	public function startsWith( value:String ):Boolean
+    	{
+    	if( value == null )
+	        {
+        	return false;
+        	}
+	    
+	    if( this.length < value.length )
+        	{
+        	return false;
+        	}
+	    
+	    if( this.charAt( 0 ) != value.charAt( 0 ) )
+        	{
+        	return false;
+        	}
+	    
+	    return( StringUtil.compare( this.substr( 0, value.length), value) == 0);
+	    }
+
 
 	public function toArray():Array {
 		return split("") ;

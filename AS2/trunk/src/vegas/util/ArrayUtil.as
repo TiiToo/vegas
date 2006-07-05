@@ -45,6 +45,8 @@
 			
 			Returns true if every element in this array satisfies the provided testing function.
 		
+		- static filter( ar:Array, callback:Function, thisObject ):Array
+		
 		- static forEach(callback:Function, o:Object):Void
 		
 			Calls a function for each element in the array.
@@ -139,6 +141,37 @@ class vegas.util.ArrayUtil {
         }
 		return true ;
     }
+
+	static public function filter( ar:Array, callback:Function, thisObject ):Array
+        {
+        
+        	var arr:Array = [];
+           	if( thisObject == null ) thisObject = _global ;
+           	var len:Number = ar.length ;
+        	
+        	for( var i:Number = 0; i<len ; i++ )
+           		{
+           			
+            	if( callback.call( thisObject, ar[i], i, ar ) )
+	                {
+                	if( ar[i] === undefined )
+	                    {
+                    	arr.push( undefined );
+                    	continue;
+                    	}
+	                
+                	if( ar[i] === null )
+	                    {
+                    	arr.push( null );
+                    	continue;
+                    	}
+                            	
+                	arr.push( Copier.copy(ar[i]) );
+                	}
+                	
+	        	}
+        	return arr;
+    	}
 
 	/**
 	 * Calls a function for each element in the array.

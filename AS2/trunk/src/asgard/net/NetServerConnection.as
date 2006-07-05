@@ -88,6 +88,8 @@
 		
 		- setParent(parent:EventDispatcher):Void	INHERIT
 	
+		- sharedEvent( event , type:String ):Void
+	
 		- toString():String
 	
 	INHERIT
@@ -121,6 +123,7 @@ import vegas.events.TimerEvent;
 import vegas.events.TimerEventType;
 import vegas.util.ConstructorUtil;
 import vegas.util.Timer;
+import vegas.util.TypeUtil;
 
 /**
  * @author eKameleon
@@ -286,6 +289,21 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 
 	public function setParent(parent:EventDispatcher):Void {
 		_dispatcher.parent = parent ;
+	}
+
+	/**
+	 * Use this method to dispatch in FMS application an event.
+	 */
+	public function sharedEvent( event , context ):Void {
+		var eventType:String ;
+		if (event instanceof Event) 
+			{
+			eventType = type || event.getType() ;	
+			this.call(type, null, event.toSource()) ;
+			}
+		else if (TypeUtil.typesMatch(event, String)) {
+			this.call( event, null, context || null) ;
+		}
 	}
 
 	/*override*/ public function toSource(indent : Number, indentor : String) : String {

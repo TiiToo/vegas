@@ -164,7 +164,9 @@ class vegas.string.WildExp extends CoreObject {
 			default:
         }
 		
-		if( _caseSensitive ) pattern = pattern.toLowerCase();
+		if( _caseSensitive ) {
+			pattern = pattern.toLowerCase();
+		}
         
 		source = pattern ;
     
