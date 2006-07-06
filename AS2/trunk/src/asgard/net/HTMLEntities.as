@@ -155,7 +155,7 @@
 
 // TODO à tester !!
 
-import vegas.util.StringUtil ;
+import vegas.util.StringUtil;
 
 /**
  * @author eKameleon

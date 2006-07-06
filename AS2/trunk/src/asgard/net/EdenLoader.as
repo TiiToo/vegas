@@ -21,11 +21,11 @@
   
 */
 
-/** JSONLoader
+/** EdenLoader
 
 	AUTHOR
 
-		Name : JSONLoader
+		Name : EdenLoader
 		Package : asgard.system
 		Version : 1.0.0.0
 		Date :  2006-03-23
@@ -145,7 +145,7 @@
 
 	INHERIT
 	
-		CoreObject → AbstractCoreEventDispatcher → AbstractLoader → URLLoader → ParserLoader → JSONLoader
+		CoreObject → AbstractCoreEventDispatcher → AbstractLoader → URLLoader → ParserLoader → EDENLoader
 			 	
 	IMPLEMENTS
 	
@@ -153,27 +153,23 @@
 	
 **/	
 
-import asgard.net.ParserLoader ;
-
-import vegas.string.JSON;
-
-// TODO tester fieldName et DataFormat.VARIABLES
+import asgard.net.ParserLoader;
 
 /**
  * @author eKameleon
  */
-class asgard.net.JSONLoader extends ParserLoader {
+class asgard.net.EdenLoader extends ParserLoader {
 	
 	// ----o Constructor
 	
-	function JSONLoader() {
+	function EdenLoader() {
 		super() ;
 	}
 
 	// ----o Public Methods
 
 	/*override*/ public function getDeserializer():Function {
-		return JSON.deserialize ;	
+		return buRRRn.eden.Application.deserialize ;	
 	}
 
 }

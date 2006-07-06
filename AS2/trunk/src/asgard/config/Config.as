@@ -39,9 +39,7 @@
 		
 	INHERIT
 	
-		CoreObject
-			|
-			Config
+		CoreObject → Config
 	
 	IMPLEMENTS
 	

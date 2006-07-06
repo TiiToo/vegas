@@ -75,9 +75,9 @@
 
 **/
 
-import asgard.config.ConfigLoader;
 import asgard.events.LoaderEvent;
 import asgard.events.UIEventType;
+import asgard.net.ParserLoader;
 
 /**
  * @author eKameleon
@@ -88,7 +88,7 @@ class asgard.events.ConfigLoaderEvent extends LoaderEvent {
 
 	// ----o Constructor
 		
-	public function ConfigLoaderEvent( type : String, loader:ConfigLoader, p_code:Number, p_error:String, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number ) {
+	public function ConfigLoaderEvent( type : String, loader:ParserLoader, p_code:Number, p_error:String, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number ) {
 		super(type, loader, p_code, p_error, context, bubbles, eventPhase, time, stop);
 	}
 	
@@ -101,11 +101,11 @@ class asgard.events.ConfigLoaderEvent extends LoaderEvent {
 	// ----o Public Methods
 	
 	public function clone() {
-		return new ConfigLoaderEvent( getType(), ConfigLoader(getLoader())) ;
+		return new ConfigLoaderEvent( getType(), ParserLoader(getLoader())) ;
 	}
 	
 	public function getConfig() {
-		return ConfigLoader(getTarget()).getConfig() ;	
+		return getTarget()["getConfig"]() ;	
 	}
 	
 }

@@ -61,7 +61,7 @@
 
 **/
 
-import vegas.core.CoreObject ;
+import vegas.core.CoreObject;
 import vegas.util.serialize.Serializer;
 
 /**

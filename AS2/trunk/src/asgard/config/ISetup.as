@@ -58,7 +58,7 @@
 	
 		IRunnable
 
-----------  */
+**/
 
 import asgard.config.Config;
 import asgard.config.ConfigLoader;

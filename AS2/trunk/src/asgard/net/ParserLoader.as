@@ -21,14 +21,14 @@
   
 */
 
-/** JSONLoader
+/** ParserLoader
 
 	AUTHOR
 
-		Name : JSONLoader
+		Name : ParserLoader
 		Package : asgard.system
 		Version : 1.0.0.0
-		Date :  2006-03-23
+		Date :  2006-07-06
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
@@ -97,6 +97,8 @@
 		
 		- getTimeOut():Number
 		
+		- getDeserializer():Function
+		
 		- getUrl()
 	
  		- hasEventListener(eventName:String):Boolean	
@@ -145,7 +147,7 @@
 
 	INHERIT
 	
-		CoreObject → AbstractCoreEventDispatcher → AbstractLoader → URLLoader → ParserLoader → JSONLoader
+		CoreObject → AbstractCoreEventDispatcher → AbstractLoader → URLLoader → ParserLoader
 			 	
 	IMPLEMENTS
 	
@@ -153,27 +155,54 @@
 	
 **/	
 
-import asgard.net.ParserLoader ;
-
-import vegas.string.JSON;
-
-// TODO tester fieldName et DataFormat.VARIABLES
+import asgard.net.DataFormat;
+import asgard.net.URLLoader;
 
 /**
  * @author eKameleon
  */
-class asgard.net.JSONLoader extends ParserLoader {
+class asgard.net.ParserLoader extends URLLoader {
 	
 	// ----o Constructor
 	
-	function JSONLoader() {
+	private function ParserLoader() {
 		super() ;
 	}
 
+	// ----o Public Properties
+	
+	public var fieldName:String ;
+
 	// ----o Public Methods
 
-	/*override*/ public function getDeserializer():Function {
-		return JSON.deserialize ;	
+	public function deserializeData():Void {
+		
+		var source:String ;
+		
+		switch (getDataFormat()) {
+
+				case DataFormat.VARIABLES :
+
+					source = this.getData()[fieldName] ;
+					
+					break ;
+
+				case DataFormat.BINARY :
+				case DataFormat.TEXT :
+
+					source = this.getData() ;
+					
+					break ;
+
+		}
+		
+		var deserialize:Function = getDeserializer() ;
+		setData( deserialize( source )  ) ;
+		
+	}
+	
+	public function getDeserializer():Function {
+		return null ;	
 	}
 
 }
