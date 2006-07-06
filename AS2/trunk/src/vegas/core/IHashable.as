@@ -21,25 +21,25 @@
   
 */
 
-/* ------- IHashable [Interface]
+/** IHashable [Interface]
 
 	AUTHOR
 	
 		Name : IHashable
 		Package : vegas.core
 		Version : 1.0.0.0
-		Date :  2006-02-28
+		Date :  2006-07-05
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
-	METHODS
+	METHOD SUMMARY
 	
 		- hashCode():Boolean
           
 			returns a hash code value for the object.
 
-----------  */
+**/
 
 interface vegas.core.IHashable {
 	

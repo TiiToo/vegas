@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	IValidator [Interface]
+/**	IValidator [Interface]
 
 	AUTHOR
 
@@ -39,7 +39,7 @@
 		
 		- validate(value):Void
 
-----------  */
+**/
 
 interface vegas.core.IValidator {
 	

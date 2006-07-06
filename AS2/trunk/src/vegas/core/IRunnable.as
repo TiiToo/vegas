@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	IRunnable [Interface]
+/**	IRunnable [Interface]
 
 	AUTHOR
 
@@ -37,7 +37,7 @@
 	
 		- run():Void
 
-----------  */
+**/
 
 interface vegas.core.IRunnable {
 	

@@ -35,7 +35,7 @@
 
 	DESCRIPTION : 
 	
-		Defines a functor interface implemented by classes that create objects.
+		Defines an interface implemented by classes that create objects.
 
 	METHOD SUMMARY
 	

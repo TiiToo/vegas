@@ -298,8 +298,8 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 		var eventType:String ;
 		if (event instanceof Event) 
 			{
-			eventType = type || event.getType() ;	
-			this.call(type, null, event.toSource()) ;
+			eventType = event || event.getType() ;	
+			this.call(event, null, event.toSource()) ;
 			}
 		else if (TypeUtil.typesMatch(event, String)) {
 			this.call( event, null, context || null) ;

@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	IComparator [Interface]
+/** 	IComparator [Interface]
 	
 	AUTHOR
 
@@ -47,7 +47,7 @@
 	
 		2005-12-21 :: ADD inherit IEquality interface
 
-----------  */
+**/
 
 import vegas.core.IEquality;
 

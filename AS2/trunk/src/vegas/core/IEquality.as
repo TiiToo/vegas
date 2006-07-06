@@ -21,12 +21,12 @@
   
 */
 
-/* ------- 	IEquality [Interface]
+/** IEquality [Interface]
 	
 	AUTHOR
 
 		Name : IEquality
-		Package : vegas.util
+		Package : vegas.core
 		Version : 1.0.0.0
 		Date :  2005-12-21
 		Author : ekameleon
@@ -37,7 +37,7 @@
 
 		- equals(o):Boolean
 
-----------  */
+**/
 
 interface vegas.core.IEquality {
 

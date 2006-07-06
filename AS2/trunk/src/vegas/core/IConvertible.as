@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- IConvertible [interface]
+/** IConvertible [interface]
 
 	AUTHOR
 	
@@ -50,7 +50,7 @@
 		[Read] Standard ECMAScript-262 3rd Edition CHAP 9 : 'Type Conversion'
 			- http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf
 
-----------  */
+**/
 
 interface vegas.core.IConvertible {
 	

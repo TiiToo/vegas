@@ -153,7 +153,18 @@ class vegas.data.set.MultiHashSet extends MultiHashMap implements Set {
 	 * Checks whether the map contains the value specified .
 	 */
 	public function contains(o):Boolean {
-		return containsValue(o) ;
+		var len:Number = arguments.length ;
+		if (len == 1) {
+			var value = arguments[0] ;
+			var it:Iterator = _map.iterator() ;
+			while (it.hasNext()) {
+				var cur = it.next() ;
+				if (cur.contains(value)) return true;
+			}
+		} else if (len == 2) {
+			return ( getSet(arguments[0] ).contains(arguments[1]) == true);
+		}
+		return false ;
 	}
 
 	/**

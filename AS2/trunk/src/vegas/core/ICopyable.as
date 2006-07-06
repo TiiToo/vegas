@@ -28,12 +28,12 @@
 		Name : ICopyable
 		Package : vegas.core
 		Version : 1.0.0.0
-		Date :  2006-01-05
+		Date :  2006-07-05
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
-	METHODS
+	METHOD SUMMARY
 	
 		-  copy()
 

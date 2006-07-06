@@ -21,7 +21,7 @@
   
 */
 
-/* ----------  ITypeable
+/** ITypeable
 
 	AUTHOR
 	
@@ -43,7 +43,7 @@
 		
 			the type to set.
 	
-----------  */
+**/
 
 interface vegas.core.ITypeable {
 

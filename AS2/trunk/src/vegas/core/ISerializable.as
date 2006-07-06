@@ -57,7 +57,7 @@
 
 	THANKS
 	
-		Zwetan Core2 framework inspired by Mozilla SpiderMonkey.
+		Zwetan : Core2 framework inspired by Mozilla SpiderMonkey.
 
 **/
 

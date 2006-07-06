@@ -108,6 +108,8 @@
 	
 **/
 
+// TODO finir les tests car il y a des problèmes !!
+
 import vegas.core.IFormattable;
 import vegas.data.Collection;
 import vegas.data.collections.SimpleCollection;
@@ -182,15 +184,15 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 	 */
 	public function containsValue( value ):Boolean {
 		var len:Number = arguments.length ;
-		if (len == 2) {
+		if (len == 1) {
 			var value = arguments[0] ;
 			var it:Iterator = _map.iterator() ;
 			while (it.hasNext()) {
 				var cur = it.next() ;
 				if (cur.contains(value)) return true;
 			}
-		} else if (len == 1) {
-			return get(arguments[0]).contains(arguments[1]) ;
+		} else if (len == 2) {
+			return ( get(arguments[0] ).contains(arguments[1]) == true);
 		}
 		return false ;
 	}
@@ -213,12 +215,13 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 	 * This returns an array containing the combination of values from all keys.
 	 */
 	public function getValues():Array {
-		var ar:Array = [] ;
-		var it:Iterator = _map.iterator() ;
-		while (it.hasNext()) {
-			ar.concat(it.next().getValues()) ;
+		var result:Array = [] ;
+		var values = this._map.getValues() ;
+		var l:Number = values.length ;
+		for (var i:Number = 0 ; i<l ; i++) {
+			result = result.concat( values[i].toArray() ) ;
 		}
-		return ar ;
+		return result ;
 	}
 
 	/**

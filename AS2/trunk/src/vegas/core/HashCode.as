@@ -21,7 +21,7 @@
   
 */
 
-/* ------- HashCode
+/** HashCode
 
 	AUTHOR
 	
@@ -53,7 +53,7 @@
 		
 	TODO : combine ?
 
-----------  */
+**/
 
 class vegas.core.HashCode {
 
@@ -84,7 +84,7 @@ class vegas.core.HashCode {
 		return HashCode._nHash++ ;
 	}
 
-	public static function nextName():String {
+	static public function nextName():String {
 		return String( HashCode._nHash + 1 ) ;
 	}
 	
