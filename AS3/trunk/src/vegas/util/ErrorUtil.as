@@ -21,28 +21,37 @@
   
 */
 
-/** ICopyable [Interface]
+/** ErrorUtil
 
 	AUTHOR
 	
-		Name : ICopyable
-		Package : vegas.core
+		Name : ErrorUtil
+		Package : vegas.util
 		Version : 1.0.0.0
-		Date :  2006-01-05
+		Date :  2006-07-07
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
+	DESCRIPTION
+	
+		EDEN Compatibility to serialize ECMAScript data.
+
 	METHOD SUMMARY
 	
-		-  copy()
-
+		- static toSource(e:Error):String
+	
 **/
 
-package vegas.core
+
+package vegas.util
 {
-	public interface ICopyable
-	{
-		function copy():* ;
-	}
+    public class ErrorUtil
+    {
+        
+	    static public function toSource( e:Error ):String {
+		    return 'new Error(\"' + e.message + '")' ;
+        }
+        
+    }
 }

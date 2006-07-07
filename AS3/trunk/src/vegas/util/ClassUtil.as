@@ -21,11 +21,11 @@
   
 */
 
-/** ConstructorUtil
+/** ClassUtil
 
 	AUTHOR
 	
-		Name : ConstructorUtil
+		Name : ClassUtil
 		Package : vegas.util
 		Version : 1.0.0.0
 		Date : 2006-07-05
@@ -56,11 +56,10 @@
 package vegas.util
 {
 	
-	import flash.utils.getQualifiedClassName 
-	import flash.utils.getQualifiedSuperclassName;
-	;
+	import flash.utils.getQualifiedClassName ;
+	import flash.utils.getQualifiedSuperclassName ;
 	
-	public class ConstructorUtil
+	public class ClassUtil
 	{
 		
 		// ----o Public Methods
@@ -103,7 +102,8 @@ package vegas.util
             return (a.length > 1) ? a.pop() : path ;
 		}
 
-		static private function _formatPackage( path:String ):String {
+		static private function _formatPackage( path:String ):String 
+		{
 			var a:Array = path.split(".") ;
 			if (a.length > 1) {
 				a.pop() ;
@@ -113,9 +113,11 @@ package vegas.util
 			}
 		}
 		
-		static private function _formatPath( path:String ):String {
+		static private function _formatPath( path:String ):String 
+		{
 			return (path.split("::")).join(".") ;
 		}
 		
 	}
+
 }

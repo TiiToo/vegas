@@ -21,28 +21,54 @@
   
 */
 
-/** ICopyable [Interface]
+/** ArgumentOutOfBoundsError
 
 	AUTHOR
-	
-		Name : ICopyable
-		Package : vegas.core
+
+		Name : ArgumentOutOfBoundsError
+		Package : vegas.errors
 		Version : 1.0.0.0
-		Date :  2006-01-05
+		Date : 2006-07-07
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
-
+	
+	PROPERTY SUMMARY
+	
+		- message:String
+		
+		- name:String
+	
 	METHOD SUMMARY
 	
-		-  copy()
+		- getCategory():String
+		
+			get internal logger's category.
+		
+		- getLogger():ILogger 
+		
+			get internal Logger.
+		
+		- toString():String
+
+	INHERIT
+	
+		Object → Error → AbstractError → FatalError → ArgumentOutOfBoundsError
+	
+	IMPLEMENT
+	
+		IFormattable
 
 **/
 
-package vegas.core
+package vegas.errors
 {
-	public interface ICopyable
-	{
-		function copy():* ;
-	}
+    public class ArgumentOutOfBoundsError extends FatalError
+    {
+        public function ArgumentOutOfBoundsError(message:String="", id:int=0)
+        {
+            super(message, id);
+        }
+        
+    }
 }

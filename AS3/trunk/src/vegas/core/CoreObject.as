@@ -64,7 +64,7 @@ package vegas.core
 	import vegas.core.IFormattable ;
 	import vegas.core.IHashable ;
 	import vegas.core.ISerializable ;
-	import vegas.util.* ;
+	import vegas.util.ClassUtil ;
 		
 	public class CoreObject implements IFormattable, IHashable, ISerializable
 	{
@@ -75,6 +75,10 @@ package vegas.core
 		{
 		//				
 		}
+		
+    	// ----o Init HashCode
+	
+		HashCode.initialize(CoreObject.prototype) ;
 		
 		// ----o Public Methods
 		
@@ -87,13 +91,9 @@ package vegas.core
 		}
 
 		public function toString():String {
-			return "[" + ConstructorUtil.getName(this) + "]" ;
+			return "[" + ClassUtil.getName(this) + "]" ;
 		}
 
-		// ----o Init HashCode
-	
-		static private var _initHashCode:Boolean = HashCode.initialize(CoreObject.prototype) ;
-		
 	}
 	
 }

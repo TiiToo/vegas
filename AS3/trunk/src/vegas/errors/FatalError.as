@@ -21,28 +21,68 @@
   
 */
 
-/** ICopyable [Interface]
+/** FatalError
 
 	AUTHOR
-	
-		Name : ICopyable
-		Package : vegas.core
+
+		Name : FatalError
+		Package : vegas.errors
 		Version : 1.0.0.0
-		Date :  2006-01-05
+		Date : 2006-07-07
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
-
+	
+	PROPERTY SUMMARY
+	
+		- message:String
+		
+		- name:String
+	
 	METHOD SUMMARY
 	
-		-  copy()
+		- getCategory():String
+		
+			get internal logger's category.
+		
+		- getLogger():ILogger 
+		
+			get internal Logger.
+		
+		- toString():String
+
+	INHERIT
+	
+		Object → Error → AbstractError → FatalError
+	
+	IMPLEMENT
+	
+		IFormattable, IHashable
 
 **/
 
-package vegas.core
+package vegas.errors
 {
-	public interface ICopyable
-	{
-		function copy():* ;
-	}
+    
+    public class FatalError extends AbstractError
+    {
+        
+        // ----o Constructor
+        
+        function FatalError(message:String="", id:int=0)
+        {
+           super(message, id);
+        }
+        
+        // ----o Public Methods
+        
+        override public function toString():String {
+            
+            var msg:String = "## " + name + " : " + message + " ##" ;
+		    //this.getLogger().fatal(msg) ;
+		    return msg ;
+            
+        }
+        
+    }
 }

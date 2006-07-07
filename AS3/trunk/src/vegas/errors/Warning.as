@@ -21,28 +21,66 @@
   
 */
 
-/** ICopyable [Interface]
+/** Warning
 
 	AUTHOR
-	
-		Name : ICopyable
-		Package : vegas.core
+
+		Name : Warning
+		Package : vegas.errors
 		Version : 1.0.0.0
-		Date :  2006-01-05
+		Date : 2006-07-07
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
-
+	
+	PROPERTY SUMMARY
+		
+		- message:String
+		
+		- name:String [Read Only]
+	
 	METHOD SUMMARY
 	
-		-  copy()
+		- getCategory():String
+		
+			get internal logger's category.
+		
+		- getLogger():ILogger 
+		
+			get internal Logger.
+		
+		- toString():String
+
+	INHERIT
+	
+		Object → Error → AbstractError → Warning
+	
+	IMPLEMENT
+	
+		IFormattable, IHashable
 
 **/
 
-package vegas.core
+package vegas.errors
 {
-	public interface ICopyable
-	{
-		function copy():* ;
-	}
+    public class Warning extends AbstractError
+    {
+        
+        // ----o Constructor
+        
+        public function Warning(message:String="", id:int=0)
+        {
+            super(message, id);
+        }
+        
+    	// ----o Public Methods
+	
+	    override public function toString():String {
+    		var msg:String = "!! " + name + " : " + message + " !!" ;
+    		// getLogger().warn( msg ) ;
+    		return msg ;
+    	}
+        
+        
+    }
 }
