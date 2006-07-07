@@ -26,7 +26,7 @@
 	AUTHOR
 	
 		Name : Copier
-		Package : vegas.util.serialize
+		Package : vegas.util
 		Version : 1.0.0.0
 		Date : 2006-04-04
 		Author : ekameleon

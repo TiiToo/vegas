@@ -210,7 +210,7 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, It
 	public function padLeft(i:Number /*Int*/, char:String):String {
 		char = char || " " ;
 		var s:String = new String(this) ;
-        var l = s.length ;
+        var l:Number = s.length ;
         for (var k:Number = 0 ; k < (i - l) ; k++) s = char + s ;
         return s ;
     }
@@ -218,7 +218,7 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, It
 	public function padRight(i:Number /*Int*/ , char:String):String {
 		char = char || " " ;
         var s:String = new String(this) ;
-        var l = s.length ;
+        var l:Number = s.length ;
 		for (var k:Number = 0 ; k < (i - l) ; k++) {
 			s = s + char ;
 		}

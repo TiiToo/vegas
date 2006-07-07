@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	MapIterator
+/**	MapIterator
 
 	AUTHOR
 
@@ -33,15 +33,35 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
+	METHOD SUMMARY
+	
+		- hashCode():Number
+		
+		- hasNext():Boolean
+		
+		- key():*
+		
+		- next():*
+		
+		- reset():Void
+		
+		- remove():*
+		
+		- seek(n:Number)
+		
+		- toSource(...arguments:Array):String
+		
+		- toString():String
+
 	INHERIT
 	
-		Iterator
-
-	2005-07-22 :
+		CoreObject
+		
+	IMPLEMENTS
 	
-		add key() method
+		IFormattable, IHashable, Iterator, ISerializable
 
-----------  */
+*/
 
 import vegas.core.CoreObject;
 import vegas.data.iterator.ArrayIterator;
@@ -73,18 +93,18 @@ class vegas.data.map.MapIterator extends CoreObject implements Iterator {
 		_k = _i.next() ;
 		return _m.get(_k) ;
 	}
-	
-	public function reset():Void {
-		_i.reset() ;
-	}
-		
+
 	public function remove() {
 		_i.remove() ;
 		return _m.remove(_k) ;
 	}
+	
+	public function reset():Void {
+		_i.reset() ;
+	}
 
 	public function seek(n:Number):Void {
-		throw new UnsupportedOperation ;
+		throw new UnsupportedOperation("'seek' method is unsupported in MapIterator object.") ;
 	}
 	
 	// ----o Private Properties

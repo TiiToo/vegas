@@ -75,13 +75,13 @@
 		
 		- toString():String
 
-	IMPLEMENTS
-	
-		ICloneable, IFormattable, IHashable, ISerializable, Iterable, Map
-
 	INHERIT
 	
 		CoreObject → HashMap
+	
+	IMPLEMENTS
+	
+		ICloneable, IFormattable, IHashable, ISerializable, Iterable, Map
 
 **/
 

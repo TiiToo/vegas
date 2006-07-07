@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	MapFormat
+/**	MapFormat
 
 	AUTHOR
 
@@ -47,7 +47,7 @@
 		
 		IFormat
 
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.core.IFormat;

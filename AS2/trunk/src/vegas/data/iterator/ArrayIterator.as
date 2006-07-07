@@ -53,6 +53,8 @@
 		
 		- seek(n:Number)
 		
+		- toSource(...arguments:Array):String
+		
 		- toString():String
 
 	INHERIT
@@ -68,6 +70,7 @@
 import vegas.core.CoreObject;
 import vegas.data.iterator.Iterator;
 import vegas.util.MathsUtil;
+import vegas.util.serialize.Serializer;
 
 class vegas.data.iterator.ArrayIterator extends CoreObject implements Iterator {
 
@@ -91,18 +94,23 @@ class vegas.data.iterator.ArrayIterator extends CoreObject implements Iterator {
 	public function next() {
 		return _a[++_k] ;
 	}
+
+	public function remove() {
+		return _a.splice(_k--, 1);
+	}
 	
 	public function reset():Void {
 		_k = -1 ;
 	}
-		
-	public function remove() {
-		return _a.splice(_k--, 1);
-	}
-		
+			
 	public function seek(n:Number):Void {
 		_k = MathsUtil.clamp ((n-1), -1, _a.length) ;
 	}
+	
+    /*override*/ public function toSource():String 
+    {
+    	return "new vegas.data.iterator.ArrayIterator(" + Serializer.toSource(_a) + ")" ;
+    }
 			
 	// -----o Private Properties
 	

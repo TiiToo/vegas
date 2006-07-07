@@ -21,11 +21,11 @@
   
 */
 
-/** AbstractError
+/** UnsupportedOperation
 
 	AUTHOR
 
-		Name : AbstractError
+		Name : UnsupportedOperation
 		Package : vegas.errors
 		Version : 1.0.0.0
 		Date : 2006-07-07
@@ -33,11 +33,11 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 	
-	PROPERTY SUMMMARY
-		
+	PROPERTY SUMMARY
+	
 		- message:String
 		
-		- name:String [Read Only]
+		- name:String
 	
 	METHOD SUMMARY
 	
@@ -53,7 +53,7 @@
 
 	INHERIT
 	
-		Object → Error → AbstractError
+		Object → Error → AbstractError → FatalError → UnsupportedOperation
 	
 	IMPLEMENT
 	
@@ -61,55 +61,14 @@
 
 **/
 
-// TODO add toSource() !!
-
 package vegas.errors
 {
-    
-    import vegas.core.HashCode;
-    import vegas.core.IFormattable;
-    import vegas.core.IHashable;
-    // import vegas.logging.ILogger;
-    // import vegas.logging.Log;
-    import vegas.util.ClassUtil;
-    
-    internal class AbstractError extends Error implements IFormattable, IHashable
+    public class UnsupportedOperation extends FatalError
     {
-        
-        public function AbstractError(message:String="", id:int=0)
+        public function UnsupportedOperation(message:String="", id:int=0)
         {
             super(message, id);
-            name = ClassUtil.getName(this) ;
-            //_logger = Log.getLogger(ClassUtil.getPath(this)) ;
         }
         
-       	// ----o Init HashCode
-	
-    	HashCode.initialize(AbstractError.prototype) ;
-
-	    // ----o Public Methods
-	    
-    	public function getCategory():String 
-    	{
-		    return null ; //_logger["category"] ;
-    	}
-	    
-	    public function getLogger():* //ILogger 
-	    {
-		    return null ; //_logger ;
-    	}
-	    
-	    public function hashCode():uint {
-		    return null ;
-    	}
-
-	    public function toString():String {
-		    return super.toString() ;
-    	}
-	        
-    	// ----o Private Properties
-	    
-    	//private var _logger:ILogger ;
-
     }
 }

@@ -164,7 +164,7 @@ package vegas.util
     		if (l > 0) {
     			var i:uint = 0 ;
     			while (i < l) {
-    				source += params[i] ;
+    				source += Serializer.toSource(params[i]) ;
     				i++ ;
     				if (i<l) source += "," ;
     			}

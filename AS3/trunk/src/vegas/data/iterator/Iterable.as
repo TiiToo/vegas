@@ -21,28 +21,33 @@
   
 */
 
-/**	IRunnable [Interface]
+/** Iterable [Interface]
 
 	AUTHOR
 
-		Name : IRunnable
-		Package : vegas.core
+		Name : Iterable
+		Package : vegas.data.iterator
 		Version : 1.0.0.0
-		Date :  2006-07-05
+		Date :  2006-07-07
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 		
 	METHOD SUMMARY
 	
-		- run():void
+		- iterator():Iterator
 
 **/
 
-package vegas.core
+package vegas.data.iterator
 {
-	public interface IRunnable
-	{
-		function run( ...arguments:Array ):void ;
-	}
+    
+    import vegas.data.iterator.Iterator ;
+    
+    public interface Iterable
+    {
+       
+       function iterator():Iterator ;
+	
+    }
 }

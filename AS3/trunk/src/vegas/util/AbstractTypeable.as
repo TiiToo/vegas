@@ -72,7 +72,7 @@ package vegas.util
     import vegas.util.ClassUtil;
     import vegas.util.TypeUtil;
 
-    internal class AbstractTypeable extends CoreObject implements ITypeable, IValidator
+    public class AbstractTypeable extends CoreObject implements ITypeable, IValidator
     {
         
         // ----o Constructor

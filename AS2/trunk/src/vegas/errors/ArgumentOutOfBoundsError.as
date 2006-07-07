@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- ArgumentOutOfBoundsError
+/** ArgumentOutOfBoundsError
 
 	AUTHOR
 
@@ -33,16 +33,6 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
-	AUTHOR
-
-		Name : FatalError
-		Package : vegas.errors
-		Version : 1.0.0.0
-		Date : 2006-01-22
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
 	PROPERTY SUMMARY
 	
 		- errorElement:ErrorElement
@@ -75,7 +65,7 @@
 	
 		IFormattable
 
-----------  */
+**/
 
 import vegas.errors.ErrorElement;
 import vegas.errors.FatalError;

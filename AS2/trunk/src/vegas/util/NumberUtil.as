@@ -84,7 +84,7 @@ class vegas.util.NumberUtil {
 	/**
 	 * compare if two Numbers are equal by value
 	 */
-	static public function equals( n1:Function, n2:Function ):Boolean {
+	static public function equals( n1:Number, n2:Number ):Boolean {
 		if (! n2 ) return false ;
 		if(n1.valueOf() == n2.valueOf()) return true ;
 		return false ;

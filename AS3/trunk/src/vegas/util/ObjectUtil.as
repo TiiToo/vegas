@@ -113,7 +113,8 @@ package vegas.util
       		return Object( o.valueOf() ) ;
     	}
     	
- 	   static public function toSource( ...arguments ):String {
+ 	   static public function toSource( ...arguments ):String 
+ 	   {
  	        var o:Object = arguments[0] ;
  	        var indent:Number = arguments[1] ;
  	        var indentor:String = arguments[2] ;

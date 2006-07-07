@@ -84,6 +84,4 @@ class vegas.util.BooleanUtil {
 		return new Boolean( b.valueOf() ) ;
     }
 
-	
-	
 }

@@ -103,7 +103,9 @@ package vegas.core
 			return true ;
 		}
 		
-		static private var _init:Boolean = HashCode.initialize( Object.prototype ) ;
+		HashCode.initialize( Object.prototype ) ;
 			
 	}
 }
+
+

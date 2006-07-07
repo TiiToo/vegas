@@ -58,6 +58,8 @@
 		- static toNumber(o):Number
 		
 		- static toObject(o):Object
+		
+		- static toSource(o):String
 			
 **/
 
@@ -78,14 +80,14 @@ class vegas.util.ObjectUtil {
 	}
 
 	static public function copy(o) {
-		var obj = {} ;
+		var obj:Object = {} ;
 		var prop:String ;
 		for (prop in o) {
 			if( ! o.hasOwnProperty( prop ) ) {
 			  	continue ;
 		  	} else if ( o[prop] == undefined ) {
 		  		obj[prop] = undefined ;
-		  	} else if ( o[prop] = null ) {
+		  	} else if ( o[prop] == null ) {
 		  		obj[prop] = null ;
 			} else {
 		  		obj[prop] = Copier.copy(obj[prop]) ; 

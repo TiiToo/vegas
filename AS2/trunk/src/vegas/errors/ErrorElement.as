@@ -77,7 +77,7 @@
 	
 	IMPLEMENTS
 	
-		IEquality, IFormattable, IHashable
+		IEquality, IFormattable, IHashable, ISerializable
 	
 **/
 
