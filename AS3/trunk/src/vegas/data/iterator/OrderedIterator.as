@@ -21,30 +21,50 @@
   
 */
 
-/** IEquality [Interface]
-	
+/**	OrderedIterator [Interface]
+
 	AUTHOR
 
-		Name : IEquality
-		Package : vegas.core
+		Name : OrderedIterator
+		Package : vegas.data.iterator
 		Version : 1.0.0.0
-		Date :  2006-07-05
+		Date :  2006-07-08
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
+	
+	METHOD SUMMARY
+	
+		- hashNext():Boolean
 
-	METHODS
-
-		- equals(o):Boolean
-
+ 		- hasPrevious():Boolean		
+ 
+		- key():*
+		
+		- next():*
+		
+		- previous():*
+		
+		- remove():*
+		
+		- reset():void
+		
+		- seek(position:*):void
+	
+	INHERIT
+	
+		Iterator → OrderedIterator
+	
 **/
 
-package vegas.core
+package vegas.data.iterator
 {
-	public interface IEquality
-	{
+    public interface OrderedIterator extends Iterator
+    {
+        
+        function hasPrevious():Boolean ;
 
-		function equals(o:*):Boolean ;
-		
-	}
+    	function previous():* ;
+        
+    }
 }

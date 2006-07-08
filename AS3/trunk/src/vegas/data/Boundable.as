@@ -21,30 +21,34 @@
   
 */
 
-/** IEquality [Interface]
-	
+/**	Boundable [Interface]
+
 	AUTHOR
 
-		Name : IEquality
-		Package : vegas.core
+		Name : Boundable
+		Package : vegas.data
 		Version : 1.0.0.0
-		Date :  2006-07-05
+		Date :  2006-07-08
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
-	METHODS
+	METHOD SUMMARY
 
-		- equals(o):Boolean
+		- isFull():Boolean
+		
+		- maxSize():uint
 
 **/
 
-package vegas.core
+package vegas.data
 {
-	public interface IEquality
-	{
-
-		function equals(o:*):Boolean ;
-		
-	}
+    public interface Boundable
+    {
+        
+    	function isFull():Boolean ;
+	
+	    function maxSize():uint ; 
+	    
+    }
 }

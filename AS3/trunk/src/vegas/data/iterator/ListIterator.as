@@ -21,30 +21,62 @@
   
 */
 
-/** IEquality [Interface]
-	
+/* ListIterator [Interface]
+
 	AUTHOR
 
-		Name : IEquality
-		Package : vegas.core
+		Name : ListIterator
+		Package : vegas.data.iterator
 		Version : 1.0.0.0
-		Date :  2006-07-05
+		Date :  2006-07-08
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
+	
+	METHOD SUMMARY
+	
+		- hashNext():Boolean
 
-	METHODS
-
-		- equals(o):Boolean
-
+ 		- hasPrevious():Boolean		
+ 
+        - insert(o:*):void
+ 
+		- key():*
+		
+		- next():*
+		
+		- nextIndex():uint
+		
+		- previous():*
+		
+		- previousIndex():int
+		
+		- remove():*
+		
+		- reset():void
+		
+		- seek(position:*):void
+	
+	    - set(o:*):void
+	
+	INHERIT
+	
+		Iterator → OrderedIterator → ListIterator
+	
 **/
 
-package vegas.core
+package vegas.data.iterator
 {
-	public interface IEquality
-	{
+    public interface ListIterator extends OrderedIterator
+    {
+        
+        	function insert(o:*):void ;
 
-		function equals(o:*):Boolean ;
-		
-	}
+        	function nextIndex():uint ;	
+	
+        	function previousIndex():int ;
+	
+        	function set(o:*):void ;
+        
+    }
 }

@@ -21,30 +21,60 @@
   
 */
 
-/** IEquality [Interface]
+/* Set [Interface]
 	
 	AUTHOR
 
-		Name : IEquality
-		Package : vegas.core
-		Version : 1.0.0.0
-		Date :  2006-07-05
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
+    	Name : Set
+    	Package : vegas.data
+    	Version : 1.0.0.0
+    	Date : 2006-07-08
+    	Author : ekameleon
+    	URL : http://www.ekameleon.net
+    	Mail : vegas@ekameleon.net
 
-	METHODS
+    DESCRIPTION
+    
+        A collection that contains no duplicate elements.
 
-		- equals(o):Boolean
+	METHOD SUMMARY
+	
+		- clear():Void
+		
+		- clone():*
+		
+		- copy():*
+		
+		- contains(o:*):Boolean
+		
+		- get(id:uin):*
+		
+		- insert(o:*):Boolean
+		
+		- isEmpty():Boolean
+		
+		- iterator():Iterator
+		
+		- remove(o):Boolean
+		
+		- size():Number
+		
+		- toArray():Array
+		
+		- toSource(...arguments:Array):String
+		
+		- toString():String
+
+    INHERIT
+    
+        Collection, ICloneable, ICopyable, IFormattable, ISerialzable, Iterable
 
 **/
 
-package vegas.core
+package vegas.data
 {
-	public interface IEquality
-	{
-
-		function equals(o:*):Boolean ;
-		
-	}
+    public interface Set extends Collection
+    {
+        
+    }
 }

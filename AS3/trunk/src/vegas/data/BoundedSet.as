@@ -21,32 +21,60 @@
   
 */
 
-/**	IValidator [Interface]
-
+/* Set [Interface]
+	
 	AUTHOR
 
-		Name : IValidator
-		Package : vegas.core
-		Version : 1.0.0.0
-		Date :  2006-07-05
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
+    	Name : Set
+    	Package : vegas.data
+    	Version : 1.0.0.0
+    	Date : 2006-07-08
+    	Author : ekameleon
+    	URL : http://www.ekameleon.net
+    	Mail : vegas@ekameleon.net
+
+    DESCRIPTION
+    
+        A collection that contains no duplicate elements.
 
 	METHOD SUMMARY
 	
-		- supports(value:*):Boolean
+		- clear():Void
 		
-		- validate(value:*):Void
+		- clone():*
+		
+		- copy():*
+		
+		- contains(o:*):Boolean
+		
+		- get(id:uin):*
+		
+		- insert(o:*):Boolean
+		
+		- isEmpty():Boolean
+		
+		- iterator():Iterator
+		
+		- remove(o):Boolean
+		
+		- size():Number
+		
+		- toArray():Array
+		
+		- toSource(...arguments:Array):String
+		
+		- toString():String
+
+    INHERIT
+    
+        Boundable, Collection, ICloneable, ICopyable, IFormattable, ISerialzable, Iterable, Set
 
 **/
 
-package vegas.core
+package vegas.data
 {
-	public interface IValidator
-	{
-		function supports(value:*):Boolean ;
-	
-		function validate(value:*):void ;
-	}
+    public interface BoundedSet extends Boundable, Set
+    {
+        
+    }
 }

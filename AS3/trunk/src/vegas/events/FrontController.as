@@ -110,8 +110,7 @@ package vegas.events
     import flash.events.Event ;
     
     import vegas.core.CoreObject;
-    import vegas.data.map.HashMap;
-    import vegas.events.EventBroadcaster ;
+    import vegas.data.map.ArrayMap;
     
     public class FrontController extends CoreObject
     {
@@ -120,7 +119,7 @@ package vegas.events
         
         public function FrontController( oE:EventBroadcaster=null , name:String=null )
         {
-		    _map = new HashMap() ;
+		    _map = new ArrayMap() ;
 		    if (name == null) name = EventBroadcaster.DEFAULT_DISPATCHER_NAME ;
     		_oE = (oE == null) ? EventBroadcaster.getInstance(name) : oE ; 
         }
@@ -191,7 +190,7 @@ package vegas.events
         // ----o Private Properties
         
        	private var _oE:EventBroadcaster ;
-        private var _map:HashMap ;
+        private var _map:ArrayMap ;
         
     }
     

@@ -21,14 +21,14 @@
   
 */
 
-/* Map [Interface]
+/* MultiMap [Interface]
 
 	AUTHOR
 
-		Name : Map
+		Name : MultiMap
 		Package : vegas.data
 		Version : 1.0.0.0
-		Date :  2006-07-07
+		Date :  2006-07-08
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
@@ -57,57 +57,41 @@
 	
 		- putAll(m:Map)
 
+        - putCollection(key:*, c:Collection):void 
+
 		- remove(key)
 	
 		- size():Number
 
         - toSource(...arguments:Array):String
 
-		- toString():String
+        - toString():String
+        
+        - totalSize():uint
+
+        - values():Collection
+
+        - valueIterator():Iterator
 
     INHERIT
 
-        ICloneable, IFormattable, IHashable, ISerializable, Iterable.
+        ICloneable, IFormattable, IHashable, ISerializable, Iterable, Map
 
 **/
 
 package vegas.data
 {
-
-    import vegas.core.IFormattable;
-    import vegas.core.ISerializable;
-    import vegas.core.IHashable;
-    import vegas.core.ICloneable;
-    import vegas.data.iterator.Iterable;
-    import vegas.data.iterator.Iterator;
-
-    public interface Map extends ICloneable, IFormattable, IHashable, ISerializable, Iterable
+    
+    import vegas.data.iterator.Iterator ;
+    
+    public interface MultiMap extends Map
     {
-     
-     	function clear():void ;
+	    function putCollection(key:*, c:Collection):void ;
 
-        function containsKey( key:* ):Boolean ;
+    	function totalSize():uint ;
 	
-    	function containsValue( value:* ):Boolean ;
-
-	    function get(key:*):* ;
+    	function values():Collection ;
 	
-    	function getKeys():Array ;
-	
-    	function getValues():Array ;
-
-	    function isEmpty():Boolean ;
-	
-        function keyIterator():Iterator ;
-
-    	function put(key:*, value:*):*  ;
-	
-    	function putAll(m:Map):void ;
-
-    	function remove(key:*):*  ;
-	
-    	function size():uint ;
-
+	    function valueIterator():Iterator ;
     }
-
 }

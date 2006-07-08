@@ -21,45 +21,43 @@
   
 */
 
-/**	ArrayIterator
+/**	ArrayFieldIterator
 
 	AUTHOR
-	
-		Name : ArrayIterator
+
+		Name : ArrayFieldIterator
 		Package : vegas.data.iterator
 		Version : 1.0.0.0
-		Date :  20056-07-07
+		Date :  2006-07-08
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
 	CONSTRUCTOR
 	
-		var it:ArrayIterator = new ArrayIterator(ar:Array) ;
+		var it:ArrayFieldIterator = new ArrayFieldIterator(ar:Array, fieldName:String) ;
 
 	METHOD SUMMARY
 	
-		- hashCode():Number
-		
 		- hasNext():Boolean
 		
-		- key():*
+		- key()
 		
-		- next():*
+		- next()
 		
 		- reset():Void
 		
-		- remove():*
+		- remove()
 		
-		- seek(position:*)
-
+		- seek(n:Number)
+		
 		- toSource(...arguments:Array):String
 
 		- toString():String
 
 	INHERIT
 	
-		CoreObject → ArrayIterator
+		CoreObject → ArrayIterator → ArrayFieldIterator
 
 	IMPLEMENTS
 	
@@ -69,64 +67,37 @@
 
 package vegas.data.iterator
 {
-    
-    import vegas.core.CoreObject ;
-    import vegas.data.iterator.Iterator ;
-    import vegas.util.MathsUtil ;
+   
     import vegas.util.Serializer ;
-
-    public class ArrayIterator extends CoreObject implements Iterator
+    
+    public class ArrayFieldIterator extends ArrayIterator
     {
-        
+    
         // ----o Constructor
         
-        public function ArrayIterator(a:Array)
+        public function ArrayFieldIterator(a:Array, fieldName:String=null)
         {
- 		   _a = a ;
-    	   _k = -1 ;
+		    super(a) ;
+    		this.fieldName = fieldName ;
         }
         
-        // ----o Public Methods
- 
-        public function hasNext():Boolean
-        {
-            return (_k < _a.length - 1);
-        }
+        // ----o Public Properties
+	
+    	public var fieldName:String ;
+    	
+	    // ----o Public Methods	
 
-        public function key():*
-        {
-            return _k ;
-        }
-        
-        public function next():*
-        {
-           return _a[++_k] ;
-        }
-        
-        public function remove():*
-        {
-            return _a.splice(_k--, 1);
-        }
-        
-        public function reset():void
-        {
-            _k = -1 ;
-        }        
-
-        public function seek(position:*):void
-        {
-		    _k = MathsUtil.clamp ((position-1), -1, _a.length) ;
-        }
+    	override public function next():* {
+	    	var o:* = _a[++_k] ;
+    		return (fieldName != null) ? o[fieldName] : o ;
+    	}
 
         override public function toSource(...arguments:Array):String 
         {
-            return "new vegas.data.iterator.ArrayIterator(" + Serializer.toSource(_a) + ")" ;
+            var sourceA:String = Serializer.toSource(_a) ;
+            var sourceB:String = Serializer.toSource(fieldName) ;
+            return "new vegas.data.iterator.ArrayFieldIterator(" + sourceA + "," + sourceB + ")" ;
         }
-
-        // -----o Private Properties
-	
-	    protected var _a:Array ; // current array
-    	protected var _k:Number ; // current key
 
     }
 }

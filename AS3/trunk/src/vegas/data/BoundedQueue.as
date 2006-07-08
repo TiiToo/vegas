@@ -21,30 +21,64 @@
   
 */
 
-/** IEquality [Interface]
-	
-	AUTHOR
+/* BoundedQueue [Interface]
 
-		Name : IEquality
-		Package : vegas.core
+	AUTHOR
+	
+		Name : BoundedQueue
+		Package : vegas.data
 		Version : 1.0.0.0
-		Date :  2006-07-05
+		Date :  2006-07-08
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
-	METHODS
+	DESCRIPTION
 
-		- equals(o):Boolean
+		File d'attente, on ajoute en queue de la liste et on enlève en tête.
+
+	METHOD SUMMARY
+	
+	    - clear():void
+	
+	    - clone():*
+	    
+	    - copy():*
+	
+		- dequeue():Boolean
+		
+		- element():*
+		
+		- enqueue(o):Boolean
+		
+		- hashCode():uint
+
+		- isFull():Boolean
+		
+		- iterator():Iterator
+
+		- maxSize():uint
+		
+		- peek():*
+		
+		- poll():* 
+
+        - size():uint
+
+        - toSource(...arguments:Array):String
+        
+        - toString():String
+
+    INHERIT
+    
+        Boundable, ICloneable, ICopyable, IFormattable, IHashable, Iterable, ISerializable, Queue
 
 **/
 
-package vegas.core
+package vegas.data
 {
-	public interface IEquality
-	{
-
-		function equals(o:*):Boolean ;
-		
-	}
+    public interface BoundedQueue extends Boundable, Queue
+    {
+        
+    }
 }

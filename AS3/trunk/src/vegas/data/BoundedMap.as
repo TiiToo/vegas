@@ -21,30 +21,62 @@
   
 */
 
-/** IEquality [Interface]
-	
+/* BoundedMap [Interface]
+
 	AUTHOR
 
-		Name : IEquality
-		Package : vegas.core
+		Name : BoundedMap
+		Package : vegas.data
 		Version : 1.0.0.0
-		Date :  2006-07-05
+		Date :  2006-07-08
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
-	METHODS
+	METHOD SUMMARY
 
-		- equals(o):Boolean
+		- clear()
+
+		- containsKey( key ):Boolean
+	
+		- containsValue( value ):Boolean
+
+		- get(key)
+	
+		- getKeys():Array
+	
+		- getValues():Array
+
+		- isEmpty():Boolean
+	
+	    - isFull():Boolean
+	
+		- iterator():Iterator
+
+		- keyIterator():Iterator
+
+        - maxSize():uint
+
+		- put(key, value)
+	
+		- putAll(m:Map)
+
+		- remove(key)
+	
+		- size():Number
+
+		- toString():String
+
+    INHERIT
+
+        ICloneable, IFormattable, IHashable, ISerializable, Iterable, Map
 
 **/
 
-package vegas.core
+package vegas.data
 {
-	public interface IEquality
-	{
+    public interface BoundedMap extends Boundable, Map
+    {
 
-		function equals(o:*):Boolean ;
-		
-	}
+    }
 }

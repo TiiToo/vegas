@@ -21,66 +21,60 @@
   
 */
 
-/**	MapIterator
+/**	ProtectedIterator
 
 	AUTHOR
 
-		Name : MapIterator
-		Package : vegas.data.map
+		Name : ProtectedIterator
+		Package : vegas.data.iterator
 		Version : 1.0.0.0
-		Date :  2005-04-24
+		Date :  2006-07-08
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
+	CONSTRUCTOR
+	
+		var pIterator:Iterator = new ProtectedIterator(it:Iterator) ;
+
+	DESCRIPTION
+	
+		Protège un objet implémenté avec l'interface Iterator.
+		Cette classe permet de bloquer les méthodes remove, reset et seek d'un Iterator.
+
 	METHOD SUMMARY
 	
-		- hashCode():Number
+		- hashNext():Boolean
 		
-		- hasNext():Boolean
+		- key()
 		
-		- key():*
-		
-		- next():*
-		
-		- reset():Void
-		
-		- remove():*
-		
-		- seek(n:Number)
-		
-		- toSource(...arguments:Array):String
-		
-		- toString():String
+		- next()
 
 	INHERIT
 	
-		CoreObject → MapIterator
-		
+		CoreObject → ProtectedIterator
+
 	IMPLEMENTS
 	
 		IFormattable, IHashable, Iterator, ISerializable
 
-*/
+**/
 
 package vegas.data.iterator
 {
- 
-    import vegas.core.CoreObject;
-    import vegas.data.Map ;
-    import vegas.errors.UnsupportedOperation ;
-    import vegas.util.Serializer ;
 
-    public class MapIterator extends CoreObject implements Iterator
+    import vegas.core.CoreObject;
+    import vegas.data.iterator.Iterator ;
+    import vegas.errors.UnsupportedOperation ;
+    
+    public class ProtectedIterator extends CoreObject implements Iterator
     {
         
         // ----o Constructor
         
-        public function MapIterator(m:Map)
+        public function ProtectedIterator(i:Iterator)
         {
-		    _m = m ;
-    		_i = new ArrayIterator(m.getKeys()) ;
-    		_k = null ;
+		    _i = i ;
         }
         
         // ----o Public Methods
@@ -89,44 +83,40 @@ package vegas.data.iterator
         {
             return _i.hasNext() ;
         }
-
+        
         public function key():*
         {
-            return _k ;
+            return _i.key() ;
         }
         
         public function next():*
         {
-		    _k = _i.next() ;
-    		return _m.get(_k) ;
+            return _i.next() ;
         }
         
         public function remove():*
         {
-		    _i.remove() ;
-    		return _m.remove(_k) ;
+            throw new UnsupportedOperation("This Iterator does not support the remove() method.") ;
         }
         
         public function reset():void
         {
-            _i.reset() ;
-        }        
-
+            throw new UnsupportedOperation("This Iterator does not support the reset() method.") ;
+        }
+        
         public function seek(position:*):void
         {
-		    throw new UnsupportedOperation("This Iterator does not support the seek() method.") ;
+            throw new UnsupportedOperation("This Iterator does not support the seek() method.") ;
         }
-
+        
         override public function toSource(...arguments:Array):String 
         {
-            return "new vegas.data.iterator.MapIterator(" + Serializer.toSource(_m) + ")" ;
+            return "new vegas.data.iterator.ProtectedIterator(" + Serializer.toSource(_i) + ")" ;
         }
-    
+        
     	// ----o Private Properties
 	
-    	private var _m:Map ; 
-    	private var _i:ArrayIterator ; 
-    	private var _k:* ; // current key
-        
+	    private var _i:Iterator ;
+	    
     }
 }

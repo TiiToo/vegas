@@ -21,21 +21,21 @@
   
 */
 
-/**	HashMap
+/* HashMap
 
 	AUTHOR
 	
 		Name : HashMap
 		Package : vegas.data.map
 		Version : 1.0.0.0
-		Date :  2006-07-07
+		Date :  2006-07-08
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
 	DESCRIPTION
 	
-		Tableau associatif d'objets
+		Tableau associatif d'objets.
 
 	METHOD SUMMARY
 	
@@ -52,10 +52,6 @@
 		- getKeys()
 		
 		- getValues()
-		
-		- indexOfKey(key)
-		
-		- indexOfValue(value)
 		
 		- isEmpty()
 		
@@ -83,52 +79,121 @@
 	
 		ICloneable, IFormattable, IHashable, ISerializable, Iterable, Map
 
-**/
+    NOTE
+     
+        This class is not the same AS2 vegas.data.map.HashMap !
+
+    EXAMPLE
+
+        package {
+        	
+            import flash.display.Sprite;
+    	    import flash.utils.* 
+	
+            import vegas.data.Map ;
+            import vegas.data.map.HashMap;
+    	    import vegas.data.iterator.Iterator;
+
+            public class TestHashMap extends Sprite
+            {
+        
+                // ----o Constructor
+		
+                public function TestHashMa() 
+                {
+                    
+                    var map:Map = new HashMap() ;
+                    trace("> put key1 -> value0 : " + map.put("key1", "value0") ) ;
+                    trace("> put key1 -> value1 : " + map.put("key1", "value1") ) ;            
+                    trace("> put key2 -> value2 : " + map.put("key2", "value2") ) ;
+                    
+                    trace("> map : " + map) ;
+                    
+                    trace("> map toSource : " + map.toSource()) ;
+                    
+                    trace("> iterator") ;
+                    var it:Iterator = map.iterator() ;
+                    while(it.hasNext()) 
+                    {
+                        var v:* = it.next() ;
+                        var k:* = it.key() ;
+                        trace( "   -> " + k + " : " + v ) ;
+                        
+                    }
+                    
+                    trace("> remove key1 : " + map.remove("key1")) ;
+                    
+                    trace("> size : " + map.size()) ;      
+                    
+                    map.clear() ;  
+                    
+                    trace("> isEmpty : " + map.isEmpty()) ;      
+                    
+                }
+            }
+        }
+
+*/
+
+// TODO Finir les tests.
 
 package vegas.data.map
 {
-    
-    import vegas.core.CoreObject;
-    import vegas.data.Map;
-    import vegas.data.iterator.ArrayIterator ;
-    import vegas.data.iterator.Iterator ;
-    import vegas.data.iterator.MapIterator ;
+
+    import flash.utils.Proxy;
+    import flash.utils.getDefinitionByName;
+
+    import vegas.core.HashCode ;
+    import vegas.core.ICloneable ;
+    import vegas.core.IFormattable ;
+    import vegas.data.iterator.ArrayIterator  ;
+    import vegas.data.iterator.Iterator  ;
+    import vegas.data.iterator.MapIterator  ;
+    import vegas.data.Map 
     import vegas.util.Serializer ;
 
-    public class HashMap extends CoreObject implements Map
+    public class HashMap extends Proxy implements Map
     {
         
         // ----o Constructor
         
         public function HashMap( ...arguments:Array )
         {
-            super();
+            clear() ;
             
             var k:* = arguments[0] ;
     		var v:* = arguments[1] ;
     		
-    		if (k == null ||  v == null) 
-    		{
-        		_keys = [] ;
-    	    	_values = [] ;
-    		}
-    		else 
+    		if (k != null && v!=null)
             {
-    		    var b:Boolean =  (k is Array && v is Array && k.length > 0 && k.length == v.length) ;
-    		    _keys = b ? [].concat(k) : [] ;
-        		_values = b ? [].concat(v) : [] ;
+                if (k is Array && v is Array && k.length == v.length)
+                {
+                    var count:uint = k.length ;
+                    for(var i:uint = 0 ; i<count ; i++) {
+                        
+                        put(k[i], v[i]) ;
+                        
+                    }
+                }
             }
+            
         }
         
+    	// ----o Init HashCode
+	
+		HashCode.initialize(HashMap.prototype) ;
+        
         // ----o Public Methods
-
+        
     	/**
     	 * This clears all in the map.
     	 */  
         public function clear():void
         {
-            _keys = [] ;
-    		_values = [] ;
+            var clazz:* = flash.utils.getDefinitionByName("flash.utils.Dictionary");
+            _keys = new clazz(true) ;
+    		_values = new clazz(true) ;
+    		_size = 0 ;
         }
         
     	/**
@@ -143,42 +208,45 @@ package vegas.data.map
 
         public function containsKey(key:*):Boolean
         {
-            return indexOfKey(key) > -1 ;
+            return _keys[ key ] != null ;
         }
         
         public function containsValue(value:*):Boolean
         {
-    		return indexOfValue(value) > -1 ;
+    		return _values[ value ] != null ;
         }
 
         public function get(key:*):* 
         {
-            return _values[indexOfKey(key)] ;
+            return _keys[key] ;
         }
 
         public function getKeys():Array
         {
-            return _keys.slice() ;
+            var ar:Array = [] ;
+            for (var key:* in _keys) {
+                ar.push(key) ;
+            }
+            return ar ;
         }
 
         public function getValues():Array
         {
-            return _values.slice() ;
+            var ar:Array = [] ;
+            for each (var value:* in _keys) {
+                ar.push(value) ;
+            }
+            return ar ;
         }
 
-	    public function indexOfKey(key:*):int 
-	    {
-            return _keys.indexOf(key) ;
-	    }
-	
-    	public function indexOfValue(value:*):int
-    	{
-    		return _values.indexOf(value) ;
-	    }
+        public function hashCode():uint
+        {
+            return null ;
+        }
 
         public function isEmpty():Boolean
         {
-	        return (size() < 1) ;
+	        return _size == 0 ;
         }
         
         public function iterator():Iterator
@@ -188,22 +256,28 @@ package vegas.data.map
         
         public function keyIterator():Iterator
         {
-            return new ArrayIterator(_keys) ;
+            return new ArrayIterator(getKeys()) ;
         }
         
         public function put(key:*, value:*):*
         {
-		    var r:* ;
-    		var i:int = indexOfKey(key) ;
-		    if (i<0) {
-			    _keys.push(key) ;
-    			_values.push(value) ;
-    			return null ;
-    		} else {
-    			r = _values[i] ;
-    			_values[i] = value ;
-    			return r ;
+		    var r:* = null ;
+
+    		if ( containsKey( key ) )
+    		{
+    		    r = _keys[ key ] ;
+    		    remove( key );
+    		    
     		}
+			
+			var count:uint = _values[ value ] ;
+			
+			_values[ value ] = (count > 0) ? count+1 : 1 ;
+			
+			_size++ ;
+			_keys[ key ] = value ;
+			
+			return r ;
         }
         
         public function putAll(m:Map):void
@@ -219,30 +293,48 @@ package vegas.data.map
         public function remove(key:*):*
         {
 		    var r:* = null ;
-    		var i:int = indexOfKey(key) ;
-    		if (i > -1) {
-    			r = _values[i] ;
-    			_values.splice(i, 1) ;
-    			_keys.splice(i, 1) ;
-    		}
-    		return r ;
+    		var value:* ;
+			
+			if ( containsKey( key ) ) 
+			{
+				_size -- ;
+
+				value = _keys[ key ];
+				
+				var count:uint = _values[ value ];
+				if (count > 1)
+				{
+					_values[ value ] = count - 1;
+				} else
+				{
+					delete _values[ value ];
+				}
+				
+				delete _keys[ key ];
+				
+				return value ;
+				
+			}
+			
+			return null ;
+			
         }
         
         public function size():uint
         {
-            return _keys.length ;
+            return _size ;
         }
         
-        override public function toSource(...arguments):String
+        public function toSource(...arguments):String
         {
-    		return Serializer.getSourceOf(this, [_keys, _values]) ;
+    		return Serializer.getSourceOf(this, [getKeys(), getValues()]) ;
         }
         
-        override public function toString():String
+        public function toString():String
         {
 		    var m:Map = this ;
     		var r:String = "{";
-    		var vIterator:Iterator = new ArrayIterator(m.getValues());
+    		var vIterator:Iterator = m.iterator() ;
     		var kIterator:Iterator = new ArrayIterator(m.getKeys());
     		while (kIterator.hasNext()) {
     			r += kIterator.next().toString() + ":" + vIterator.next().toString();
@@ -251,11 +343,12 @@ package vegas.data.map
     		r += "}";
     		return r ;
         }
-    
-    	// -----o Private Properties
-	
-	    private var _keys:Array ;
-    	private var _values:Array ;
-    	
+
+        // ----o Private Properties
+        
+        private var _size:uint ;
+        private var _keys:* ;
+        private var _values:* ;
+
     }
 }

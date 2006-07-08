@@ -21,30 +21,60 @@
   
 */
 
-/** IEquality [Interface]
-	
-	AUTHOR
+/* BoundedCollection [Interface]
 
-		Name : IEquality
-		Package : vegas.core
-		Version : 1.0.0.0
-		Date :  2006-07-05
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
+    AUTHOR
+
+    	Name : BoundedCollection
+    	Package : vegas.data
+    	Version : 1.0.0.0
+    	Date :  2006-07-08
+    	Author : ekameleon
+    	URL : http://www.ekameleon.net
+    	Mail : vegas@ekameleon.net
 
 	METHODS
+	
+		- clear():Void
+		
+		- clone():*
+		
+		- copy():*
+		
+		- contains(o:*):Boolean
+		
+		- get(id:uin):*
+		
+		- insert(o:*):Boolean
+		
+		- isEmpty():Boolean
+		
+		- isFull():Boolean
+		
+		- iterator():Iterator
+		
+		- maxSize():uint
+		
+		- remove(o):Boolean
+		
+		- size():Number
+		
+		- toArray():Array
+		
+		- toSource(...arguments:Array):String
+		
+		- toString():String
 
-		- equals(o):Boolean
+    INHERIT
+    
+        Boundable, Collection → BoundedCollection
 
 **/
 
-package vegas.core
+package vegas.data
 {
-	public interface IEquality
-	{
+    public interface BoundedCollection extends Boundable, Collection
+    {
 
-		function equals(o:*):Boolean ;
-		
-	}
+    }
 }

@@ -84,7 +84,7 @@ package vegas.events
     
     import vegas.core.HashCode ;
 
-    import vegas.data.map.HashMap ;
+    import vegas.data.map.ArrayMap ;
 
     import vegas.events.EventListener ;
     import vegas.events.IEventBroadcaster ;
@@ -232,7 +232,7 @@ package vegas.events
         
         // ----o Private Properties
 	
-        static private var instances:HashMap = new HashMap() ;
+        static private var instances:ArrayMap = new ArrayMap() ;
 
     }
     

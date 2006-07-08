@@ -49,8 +49,8 @@ package vegas.core
 {
 	public interface ITypeable
 	{
-		function getType():Function ;
+		function getType():* ;
 	
-		function setType(type:Function):Void ;
+		function setType(type:*):void ;
 	}
 }
