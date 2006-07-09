@@ -97,6 +97,7 @@ package vegas.data.map
     import vegas.data.iterator.ArrayIterator ;
     import vegas.data.iterator.Iterator ;
     import vegas.data.iterator.MapIterator ;
+    import vegas.data.map.MapFormat ;
     import vegas.util.Serializer ;
 
     public class ArrayMap extends CoreObject implements Map
@@ -244,16 +245,7 @@ package vegas.data.map
         
         override public function toString():String
         {
-		    var m:Map = this ;
-    		var r:String = "{";
-    		var vIterator:Iterator = new ArrayIterator(m.getValues());
-    		var kIterator:Iterator = new ArrayIterator(m.getKeys());
-    		while (kIterator.hasNext()) {
-    			r += kIterator.next().toString() + ":" + vIterator.next().toString();
-    			if (kIterator.hasNext()) r += ",";
-    		}
-    		r += "}";
-    		return r ;
+		    return new MapFormat().formatToString(this) ;
         }
     
     	// -----o Private Properties

@@ -45,6 +45,8 @@
 		
 		- get(id:uin):*
 		
+		- indexOf(o:*, fromIndex:uint=0):int
+		
 		- insert(o:*):Boolean
 		
 		- isEmpty():Boolean
@@ -84,6 +86,8 @@ package vegas.data
     	function contains(o:*):Boolean ;
 	
     	function get(id:uint):* ;
+
+		function indexOf(o:*, fromIndex:uint=0):int
 
     	function insert(o:*):Boolean ;
 	

@@ -21,45 +21,47 @@
   
 */
 
-/**	QueueFormat
+/**	CollectionFormat
 
 	AUTHOR
 
-		Name : QueueFormat
-		Package : vegas.data.queue
+		Name : CollectionFormat
+		Package : vegas.data.collections
 		Version : 1.0.0.0
 		Date :  2006-07-09
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
-	
+
 	METHOD SUMMARY
 	
 		- formatToString(o):String
 	
 	INHERIT
-
-		CoreObject → QueueFormat
-
+	
+		CoreObject → CollectionFormat
+	
 	IMPLEMENT
 	
 		IFormat, IFormattable, IHashable, ISerializable
 	
 **/
 
-package vegas.data.queue
+package vegas.data.collections
 {
+
 	import vegas.core.IFormat;
 	import vegas.core.CoreObject;
-	import vegas.data.iterator.Iterator;
-	import vegas.data.Queue;
 	
-	public class QueueFormat extends CoreObject implements IFormat
+	import vegas.data.Collection ;
+	import vegas.data.iterator.Iterator ;
+
+	public class CollectionFormat extends CoreObject implements IFormat
 	{
 		
 		// ----o Constructor
 		
-		public function QueueFormat()
+		public function CollectionFormat()
 		{
 			super();
 		}
@@ -68,17 +70,19 @@ package vegas.data.queue
 		
 		public function formatToString(o:*):String
 		{
-			var q:Queue = Queue(o);
-			var r:String = "{ ";
-			var i:Iterator = q.iterator() ;
-			while (i.hasNext()) 
+			if (o is Collection) 
 			{
-				r += i.next().toString() ;
-				if (i.hasNext()) r += " , ";
+				var r:String = "{";
+				var it:Iterator = o.iterator() ;
+				while (it.hasNext()) {
+					r += it.next().toString() ;
+					if (it.hasNext()) r += ",";
+				}
+				r += "}";
+				return r ;
 			}
-			r += " }";
-			return r ;
+			return null ;
 		}
-
+		
 	}
 }

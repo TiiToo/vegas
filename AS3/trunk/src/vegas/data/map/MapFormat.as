@@ -21,12 +21,12 @@
   
 */
 
-/**	QueueFormat
+/**	MapFormat
 
 	AUTHOR
 
-		Name : QueueFormat
-		Package : vegas.data.queue
+		Name : MapFormat
+		Package : vegas.data.map
 		Version : 1.0.0.0
 		Date :  2006-07-09
 		Author : ekameleon
@@ -39,7 +39,7 @@
 	
 	INHERIT
 
-		CoreObject → QueueFormat
+		CoreObject → MapFormat
 
 	IMPLEMENT
 	
@@ -47,38 +47,41 @@
 	
 **/
 
-package vegas.data.queue
+package vegas.data.map
 {
+	
 	import vegas.core.IFormat;
 	import vegas.core.CoreObject;
-	import vegas.data.iterator.Iterator;
-	import vegas.data.Queue;
-	
-	public class QueueFormat extends CoreObject implements IFormat
+	import vegas.data.Map ;
+	import vegas.data.iterator.ArrayIterator ;
+	import vegas.data.iterator.Iterator ;
+
+	public class MapFormat extends CoreObject implements IFormat
 	{
 		
 		// ----o Constructor
 		
-		public function QueueFormat()
+		public function MapFormat()
 		{
-			super();
+			
 		}
-		
+
 		// ----o Public Methods
 		
 		public function formatToString(o:*):String
 		{
-			var q:Queue = Queue(o);
-			var r:String = "{ ";
-			var i:Iterator = q.iterator() ;
-			while (i.hasNext()) 
-			{
-				r += i.next().toString() ;
-				if (i.hasNext()) r += " , ";
-			}
-			r += " }";
-			return r ;
-		}
-
+		    var m:Map = Map(o) ;
+    		var r:String = "{";
+    		var vIterator:Iterator = new ArrayIterator(m.getValues());
+    		var kIterator:Iterator = new ArrayIterator(m.getKeys());
+    		while (kIterator.hasNext()) {
+    			r += kIterator.next().toString() + ":" + vIterator.next().toString();
+    			if (kIterator.hasNext()) r += ",";
+    		}
+    		r += "}";
+    		return r ;
+        }
+		
 	}
+
 }

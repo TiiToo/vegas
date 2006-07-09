@@ -21,7 +21,7 @@
   
 */
 
-/**	AbstractTypeable
+/*	AbstractTypeable
 
 	AUTHOR
 
@@ -39,17 +39,13 @@
 
 	METHOD SUMMARY
 	
-		- getType()
-				
-			return the type.
+		- getType():*
 			
-		- setType(type:Function)
+		- setType(type:*):void
 			
-			the type to set.
+		- supports(value:*):Boolean
 		
-		- supports(value):Boolean
-		
-		- validate(value)
+		- validate(value:*):void
 	
 	INHERIT
 	
@@ -59,7 +55,7 @@
 
 		IFormattable, ISerializable, IHashable, Typeable, Validator
 
-**/
+*/
 
 package vegas.util
 {
@@ -70,7 +66,6 @@ package vegas.util
     import vegas.errors.IllegalArgumentError;
     import vegas.errors.TypeMismatchError;
     import vegas.util.ClassUtil;
-    import vegas.util.TypeUtil;
 
     public class AbstractTypeable extends CoreObject implements ITypeable, IValidator
     {
@@ -92,28 +87,28 @@ package vegas.util
         // ----o Public Methods
         
         public function getType():*
-            {
+        {
     		return _type ;
-            }
-        
-        public function setType(type:*):Void
-            {
+        }
+		     
+        public function setType(type:*):void
+        {
     	    _type = type ;
-            }
+        }
         
         public function supports(value:*):Boolean
-            {
-            return value is _type ;
-            }
+        {
+        	return value is _type ;
+        }
         
-        public function validate(value:*):Void
-            {
+        public function validate(value:*):void
+        {
 		    var name:String = ClassUtil.getName(this) ;
     		if (!supports(value)) 
-                {
+        	{
     		    throw new TypeMismatchError( name + ".validate('value' : " + value + ") is mismatch.") ;
-    		    }
-            }
+    		}
+        }
         
         // -----o Private Properties
 	
