@@ -21,17 +21,19 @@
   
 */
 
-/* ------- 	Stack [Interface]
+/**	Stack [Interface]
 
-	Name : Stack
-	Package : vegas.data
-	Version : 1.0.0.0
-	Date :  2005-04-24
-	Author : ekameleon
-	URL : http://www.ekameleon.net
-	Mail : vegas@ekameleon.net
+	AUTHOR
+	
+		Name : Stack
+		Package : vegas.data
+		Version : 1.0.0.0
+		Date :  2005-04-24
+		Author : ekameleon
+		URL : http://www.ekameleon.net
+		Mail : vegas@ekameleon.net
 
-	METHODS
+	METHOD SUMMARY
 	
 		- clear()
 		
@@ -55,7 +57,7 @@
 		
 		- toString():String
 
-----------  */
+**/
 
 import vegas.core.ISerializable;
 import vegas.data.iterator.Iterator;

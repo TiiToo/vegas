@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	Boundable [Interface]
+/**	Boundable [Interface]
 
 	AUTHOR
 
@@ -39,7 +39,7 @@
 		
 		- maxSize():Number
 
-----------  */
+**/
 
 interface vegas.data.Boundable {
 

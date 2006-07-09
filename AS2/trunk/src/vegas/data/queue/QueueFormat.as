@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	QueueFormat
+/**	QueueFormat
 
 	AUTHOR
 
@@ -37,17 +37,15 @@
 	
 		- formatToString(o):String
 	
+	INHERIT
+
+		CoreObject → QueueFormat
+
 	IMPLEMENT
 	
 		IFormat
 	
-	INHERIT
-
-		CoreObject
-			|
-			QueueFormat
-	
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.core.IFormat;

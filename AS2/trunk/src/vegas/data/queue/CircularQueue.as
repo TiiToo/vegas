@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	CircularQueue
+/**	CircularQueue
 
 	AUTHOR
 
@@ -88,7 +88,7 @@
 	
 		BoundedQueue, Collection, ICloneable, IFormattable, IHashable, ISerializable, Iterable, Queue 
 	
-----------  */
+**/
 
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
@@ -211,7 +211,7 @@ class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue,
 	
 	public function toArray():Array {
 		if (_count == 0) {
-			return new Array ;
+			return new Array() ;
 		} else {
 			var r:Array = new Array(_count) ;
 			var i:Number = (_front == _qSize) ? 0 : _front ;

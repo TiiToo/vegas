@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	ListIterator [Interface]
+/**	ListIterator [Interface]
 
 	AUTHOR
 
@@ -63,7 +63,7 @@
 		
 		- reset()
 
-----------  */
+**/
 
 import vegas.data.iterator.OrderedIterator;
 

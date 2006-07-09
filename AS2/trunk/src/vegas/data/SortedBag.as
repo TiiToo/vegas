@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	Bag [Interface]
+/** Bag [Interface]
 
 	AUTHOR
 	
@@ -100,7 +100,7 @@
 	TODO TypedBag, Buffer, MultiBag, TreeBag ??	....
 
 
-----------  */
+**/
 
 import vegas.core.IComparator;
 import vegas.data.Bag;

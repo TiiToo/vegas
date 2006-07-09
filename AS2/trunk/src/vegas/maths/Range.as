@@ -91,7 +91,7 @@ import vegas.core.ISerializable;
 import vegas.errors.ArgumentOutOfBoundsError;
 import vegas.util.MathsUtil;
 
-class vegas.maths.Range extends CoreObject implements ICloneable, IEquality, ISerializable {
+class vegas.maths.Range extends CoreObject implements ICloneable, IEquality {
 
 	// ----o Constructor 
 	
@@ -141,7 +141,7 @@ class vegas.maths.Range extends CoreObject implements ICloneable, IEquality, ISe
 	}
 	
 	public function toSource(indent:Number, indentor:String):String {
-		return "new Range(" + min + "," + max + ")";
+		return "new vegas.maths.Range(" + min + "," + max + ")";
 	}
 	
 	public function toString():String {

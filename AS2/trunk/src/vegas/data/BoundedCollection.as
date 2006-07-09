@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	BoundedCollection [Interface]
+/**	BoundedCollection [Interface]
 
 	AUTHOR
 
@@ -63,7 +63,7 @@
 		
 		- toArray():Array
 
-----------  */
+**/
 
 import vegas.data.Collection;
 

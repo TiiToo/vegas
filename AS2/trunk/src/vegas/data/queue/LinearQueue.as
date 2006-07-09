@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	LinearQueue
+/**	LinearQueue
 
 	AUTHOR
 
@@ -57,7 +57,7 @@
 
 	INHERIT 
 	
-		Object > AbstractCollection > LinearQueue
+		CoreObject → AbstractCollection → LinearQueue
 		
 	IMPLEMENTS
 	
@@ -66,7 +66,7 @@
 	TODO [2006-01-05] add toSource method et implement ISerializable in AbstractCollection class
 	TODO [2006-01-12] Vérifier le constructeur de AbstractCollection ! utilise super ?
 	
-----------  */
+**/
 
 import vegas.core.ICloneable;
 import vegas.data.Collection;

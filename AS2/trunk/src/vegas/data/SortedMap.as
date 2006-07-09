@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	SortedMap [Interface]
+/**	SortedMap [Interface]
 
 	AUTHOR
 

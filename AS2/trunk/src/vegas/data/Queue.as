@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	Queue [Interface]
+/**	Queue [Interface]
 
 	AUTHOR
 	
@@ -53,7 +53,7 @@
 
 		PriorityQueue
 
-----------  */
+**/
 
 import vegas.core.ISerializable;
 import vegas.data.iterator.Iterator;

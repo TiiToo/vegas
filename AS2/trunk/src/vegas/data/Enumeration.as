@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	Enumeration [Interface]
+/**	Enumeration [Interface]
 
 	AUTHOR
 	
@@ -39,7 +39,7 @@
 		
 		- nextElement()
 
-----------  */
+**/
 
 interface vegas.data.Enumeration {
 	

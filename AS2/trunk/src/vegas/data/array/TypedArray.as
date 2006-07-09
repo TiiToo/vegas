@@ -61,7 +61,7 @@
 	
 	INHERIT 
 	
-		Object > Array > TypedArray
+		Object → Array → TypedArray
 
 	IMPLEMENTS 
 
@@ -190,7 +190,10 @@ class vegas.data.array.TypedArray extends Array implements ICloneable, IFormatta
 	}
 
 	public function validate(value):Void {
-		if (!supports(value)) throw new TypeMismatchError("TypedArray.validate('value':" + value + ") is mismatch") ;
+		if (!supports(value)) 
+		{
+			throw new TypeMismatchError("TypedArray.validate('value':" + value + ") is mismatch") ;
+		}
 	}
 	
 	// -----o Private Properties

@@ -21,17 +21,19 @@
   
 */
 
-/** 	Collection [Interface]
+/** Collection [Interface]
 
-	Name : Collection
-	Package : vegas.data
-	Version : 1.0.0.0
-	Date :  2005-04-24
-	Author : ekameleon
-	URL : http://www.ekameleon.net
-	Mail : vegas@ekameleon.net
+	AUTHOR
+		
+		Name : Collection
+		Package : vegas.data
+		Version : 1.0.0.0
+		Date :  2005-04-24
+		Author : ekameleon
+		URL : http://www.ekameleon.net
+		Mail : vegas@ekameleon.net
 
-	METHODS
+	METHOD SUMMARY
 	
 		- clear():Void
 		

@@ -24,7 +24,7 @@
 /** Set [Interface]
 
 	Name : Set
-	Package : vegas.data.set
+	Package : vegas.data
 	Version : 1.0.0.0
 	Date : 2005-04-17
 	Author : ekameleon
