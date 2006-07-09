@@ -87,7 +87,7 @@ package vegas.core
 		}
 
 		public function toSource(...arguments):String {
-			return "new CoreObject()" ;
+			return "new " + ClassUtil.getPath(this) + "()" ;
 		}
 
 		public function toString():String {

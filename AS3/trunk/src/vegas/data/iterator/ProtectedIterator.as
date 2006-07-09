@@ -66,6 +66,7 @@ package vegas.data.iterator
     import vegas.core.CoreObject;
     import vegas.data.iterator.Iterator ;
     import vegas.errors.UnsupportedOperation ;
+    import vegas.util.Serializer ;
     
     public class ProtectedIterator extends CoreObject implements Iterator
     {
@@ -111,7 +112,7 @@ package vegas.data.iterator
         
         override public function toSource(...arguments:Array):String 
         {
-            return "new vegas.data.iterator.ProtectedIterator(" + Serializer.toSource(_i) + ")" ;
+            return Serializer.getSourceOf(this, [_i]) ;
         }
         
     	// ----o Private Properties

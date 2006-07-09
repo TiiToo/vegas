@@ -110,13 +110,13 @@ package vegas.data.array
         {
             _ar = (ar == null) ? [] : [].concat(ar)  ;
         }
-
+		
     	// ----o Init HashCode
-	
+		
 		HashCode.initialize(ProxyArray.prototype) ;
-
+		
         // ----o Init Proxy
-
+		
         flash_proxy override function callProperty( methodName:*, ... args):* 
         {
             var res:* ;
@@ -130,50 +130,50 @@ package vegas.data.array
             }
             return res ;
         }
-    
+		
         flash_proxy override function getProperty(name:*):* 
         {
             return _ar[name];
         }
-
+		
         flash_proxy override function setProperty(name:*, value:*):void 
         {
             _ar[name] = value;
         }
-
+		
         // ----o Public Methods
- 
+		
         public function clone():*
         {
             return new ProxyArray(_ar.slice()) ;
         }
- 
+		
         public function copy():*
         {
             return new ProxyArray(ObjectUtil.copy(_ar)) ;
-        }
- 
+		}
+		
         public function hashCode():uint
         {
             return null ;
-        }
-
+		}
+		
     	public function iterator():Iterator 
     	{
 		    return new ArrayIterator(_ar) ;
 	    }
-
+		
         public function toSource(...arguments):String
         {
             //TODO: implement function
             return "new " + ClassUtil.getPath(this) + "(" + getSourceParams() + ")" ;
         }
-
+		
         public function toString():String
         {
             return _ar.toString() ;
         }
-
+		
         // ----o Protected Methods
         
         protected function getSourceParams():String
@@ -182,7 +182,7 @@ package vegas.data.array
             return Serializer.toSource(_ar) ;
             
         }
-
+		
         // ----o Private Properties
         
         protected var _ar:Array ;

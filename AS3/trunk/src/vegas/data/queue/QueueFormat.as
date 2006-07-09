@@ -21,32 +21,64 @@
   
 */
 
-/** IFormat [Interface]
+/**	QueueFormat
 
 	AUTHOR
 
-		Name : IFormat
-		Package : vegas.core
+		Name : QueueFormat
+		Package : vegas.data.queue
 		Version : 1.0.0.0
-		Date :  2006-07-05
+		Date :  2005-04-24
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
-
-	DESCRIPTION : 
 	
-		interface qui permet d'implémenter une méthode qui va transformer n'importe quel objet en chaine de caractère.
-
 	METHOD SUMMARY
 	
-		- formatToString(o:*):String
+		- formatToString(o):String
+	
+	INHERIT
 
+		CoreObject → QueueFormat
+
+	IMPLEMENT
+	
+		IFormat, IFormattable, IHashable, ISerializable
+	
 **/
 
-package vegas.core
+package vegas.data.queue
 {
-	public interface IFormat
+	import vegas.core.IFormat;
+	import vegas.core.CoreObject;
+	import vegas.data.iterator.Iterator;
+	import vegas.data.Queue;
+	
+	public class QueueFormat extends CoreObject implements IFormat
 	{
-		function formatToString(o:*):String ;
+		
+		// ----o Constructor
+		
+		public function QueueFormat()
+		{
+			super();
+		}
+		
+		// ----o Public Methods
+		
+		public function formatToString(o:*):String
+		{
+			var q:Queue = Queue(o);
+			var r:String = "{ ";
+			var i:Iterator = q.iterator() ;
+			while (i.hasNext()) 
+			{
+				r += i.next().toString() ;
+				if (i.hasNext()) r += " , ";
+			}
+			r += " }";
+			return r ;
+		}
+
 	}
 }

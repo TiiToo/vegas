@@ -21,32 +21,65 @@
   
 */
 
-/** IFormat [Interface]
+/* BidiMap [Interface]
 
 	AUTHOR
 
-		Name : IFormat
-		Package : vegas.core
+		Name : BidiMap
+		Package : vegas.data
 		Version : 1.0.0.0
-		Date :  2006-07-05
+		Date :  2006-07-07
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
-	DESCRIPTION : 
-	
-		interface qui permet d'implémenter une méthode qui va transformer n'importe quel objet en chaine de caractère.
-
 	METHOD SUMMARY
+
+		- clear()
+
+		- containsKey( key ):Boolean
 	
-		- formatToString(o:*):String
+		- containsValue( value ):Boolean
+
+		- get(key)
+	
+		- getKeys():Array
+	
+		- getValues():Array
+
+		- inverseBidiMap():Map
+
+		- isEmpty():Boolean
+	
+		- iterator():Iterator
+
+		- keyIterator():Iterator
+
+		- put(key, value)
+	
+		- putAll(m:Map)
+
+		- remove(key)
+	
+		- size():Number
+
+        - toSource(...arguments:Array):String
+
+		- toString():String
+
+    INHERIT
+
+        ICloneable, IFormattable, IHashable, ISerializable, Iterable, Map.
 
 **/
 
-package vegas.core
+package vegas.data
 {
-	public interface IFormat
+	public interface BidiMap extends Map
 	{
-		function formatToString(o:*):String ;
+		/**
+		 * Gets a view of this map where the keys and values are reversed.
+		 */
+		public function inverseBidiMap():Map ;
 	}
 }

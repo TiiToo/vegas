@@ -21,32 +21,56 @@
   
 */
 
-/** IFormat [Interface]
+/*	BoundedStack [Interface]
 
 	AUTHOR
-
-		Name : IFormat
-		Package : vegas.core
+	
+		Name : BoundedStack
+		Package : vegas.data
 		Version : 1.0.0.0
-		Date :  2006-07-05
+		Date :  2006-07-08
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
-	DESCRIPTION : 
-	
-		interface qui permet d'implémenter une méthode qui va transformer n'importe quel objet en chaine de caractère.
-
 	METHOD SUMMARY
 	
-		- formatToString(o:*):String
+		- clear():void
+		
+		- clone(:*
+		
+		- isEmpty():Boolean
+
+		- isFull():Boolean
+		
+		- iterator():Iterator
+
+		- maxSize():uint
+		
+		- peek():*
+		
+		- pop():*
+		
+		- push(o):*
+		
+		- search(o):Number
+		
+		- size():Number
+		
+		- toArray():Array ;
+		
+		- toString():String
+
+	INHERIT
+	
+		Boundable, ICloneable, Iterable, IFormattable, ISerializable, Stack
 
 **/
 
-package vegas.core
+package vegas.data
 {
-	public interface IFormat
+	public interface BoundedStack extends Boundable, Stack
 	{
-		function formatToString(o:*):String ;
+		
 	}
 }

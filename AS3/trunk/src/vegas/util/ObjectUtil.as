@@ -21,7 +21,7 @@
   
 */
 
-/** ObjectUtil
+/* ObjectUtil
 
 	AUTHOR
 
@@ -44,6 +44,8 @@
 			See : ICopyable
 			
     	- static isEmpty(o):Boolean
+
+		- static isSimple(value:Object):Boolean
 
 		- static memberwiseClone( o )
 			 Creates a shallow copy of the current Object.
@@ -87,6 +89,29 @@ package vegas.util
             }
         	return true ;
         }
+
+		static public function isSimple(value:Object):Boolean {
+			
+			var tof:String = typeof(value);
+        	switch (tof)
+        	{
+            	case "number":
+	            case "string":
+    	        case "boolean":
+        	    	{
+	            	    return true;
+            		}
+	            case "object":
+            		{
+    	            	return (value is Date) || (value is Array) ;
+    		        }
+                default :
+					{
+	    	            return false 
+					}            	
+        	}
+
+		}
 
 	    static public function memberwiseClone( o:* ):Object 
     	{

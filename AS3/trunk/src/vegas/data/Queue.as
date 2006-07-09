@@ -90,16 +90,21 @@ package vegas.data
     	 */
     	function clear():void ;
 	
-	    /**
-	     * Retrieves, but does not remove, the head of this queue.
-	     */
-    	function element():* ;
-	
+		/**
+		 * Return true if the queue contains value.
+		 */
+    	function contains(o:*):Boolean ;
+    	
         /**
          * Retrieves and removes the head of this queue.
          */
     	function dequeue():Boolean ;
 
+	    /**
+	     * Retrieves, but does not remove, the head of this queue.
+	     */
+    	function element():* ;
+    	
 	    /**
 	     * Inserts the specified element into this queue, if possible.
 	     */

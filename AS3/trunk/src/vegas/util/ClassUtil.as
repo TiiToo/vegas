@@ -21,7 +21,7 @@
   
 */
 
-/** ClassUtil
+/* ClassUtil
 
 	AUTHOR
 	
@@ -38,6 +38,8 @@
 		Constructor tools.
 	
 	METHOD SUMMARY
+	
+		- createNewInstance(c:Class, initProperties:Object=null):*
 	
 		- getName(instance:*):String
 		
@@ -63,6 +65,20 @@ package vegas.util
 	{
 		
 		// ----o Public Methods
+		
+		static public function createNewInstance(c:Class, initProperties:Object=null):*
+		{
+			
+			var instance:Object = new c ;
+			if (initProperties != null) 
+			{
+				for (var prop:String in initProperties)
+				{
+        			instance[prop] = initProperties[prop];
+				}
+			}
+			
+		}
 		
 		static public function getName(instance:*):String 
 		{
