@@ -74,7 +74,7 @@
 
 	IMPLEMENTS
 	
-		IFormattable, IHashable, Iterator
+		IFormattable, IHashable, Iterator, ISerializable
 
 **/
 

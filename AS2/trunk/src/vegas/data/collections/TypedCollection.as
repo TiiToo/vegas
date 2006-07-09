@@ -63,7 +63,7 @@
 
 		Iterable, ISerializable, Typeable, Validator, IFormattable, IHashable	
 	
-----------  */
+*/
 
 import vegas.core.ICloneable;
 import vegas.data.Collection;
@@ -80,7 +80,7 @@ class vegas.data.collections.TypedCollection extends AbstractTypeable implements
 
 	public function TypedCollection(p_type:Function , co:Collection) {
 		super(p_type) ;
-		if (!co) throw new IllegalArgumentError() ; // "Argument 'co' must not be 'null' or 'undefined'.
+		if (!co) throw new IllegalArgumentError("Argument 'co' must not be 'null' or 'undefined'.") ;
 		if (co.size() > 0) {
 			var it:Iterator = co.iterator() ;
 			while ( it.hasNext() ) 	validate(it.next()) ;
@@ -149,6 +149,5 @@ class vegas.data.collections.TypedCollection extends AbstractTypeable implements
 	// ----o Private Properties
 	
 	private var _co:Collection ;
-
 	
 }

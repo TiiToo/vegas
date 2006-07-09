@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	CollectionFormat
+/**	CollectionFormat
 
 	AUTHOR
 
@@ -37,17 +37,22 @@
 	
 		- formatToString(o):String
 	
+	INHERIT
+	
+		CoreObject → CollectionFormat
+	
 	IMPLEMENT
 	
-		IFormat
+		IFormat, IFormattable, IHashable, ISerializable
 	
-----------  */
+**/
 
+import vegas.core.CoreObject;
 import vegas.core.IFormat;
 import vegas.data.Collection;
 import vegas.data.iterator.Iterator;
 
-class vegas.data.collections.CollectionFormat implements IFormat {
+class vegas.data.collections.CollectionFormat extends CoreObject implements IFormat {
 
 	// ----o Constructor
 	
