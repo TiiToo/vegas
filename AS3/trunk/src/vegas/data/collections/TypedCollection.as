@@ -67,7 +67,7 @@
 
 		- setType(type:*):void
 			
-		- size():Number
+		- size():uint
 
 		- supports(value):Boolean
 
@@ -85,7 +85,7 @@
 	
 	IMPLEMENTS 
 
-		Collection, ICloneable, ICopyable, IFormattable, IHashable, Iterable, ISerializable, Typeable, Validator
+		Collection, ICloneable, ICopyable, IFormattable, IHashable ISerializable, Iterable,, Typeable, Validator
 
 */
 
@@ -121,11 +121,13 @@ package vegas.data.collections
 		
 		// ----o Public Methods
 		
-		public function clear():void {
+		public function clear():void 
+		{
 			_co.clear() ;
 		}
-	
-		public function clone():* {
+		
+		public function clone():* 
+		{
 			return new TypedCollection(getType(), _co) ;
 		}
 		
@@ -168,8 +170,14 @@ package vegas.data.collections
 		{
 			return _co.remove(o) ;
 		}
+	
+		public function setType(type:Function):void
+		{
+			super.setType(type) ;
+			_co.clear() ;
+		}
 		
-		public function size():Number
+		public function size():uint
 		{
 			return _co.size() ;
 		}

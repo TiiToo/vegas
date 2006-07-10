@@ -55,7 +55,7 @@
 		
 		- search(o):Number
 		
-		- size():Number
+		- size():uint
 		
 		- toArray():Array ;
 		

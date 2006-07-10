@@ -70,18 +70,25 @@ package vegas.data.collections
 		
 		public function formatToString(o:*):String
 		{
-			if (o is Collection) 
+			if (o is Collection)
 			{
 				var r:String = "{";
-				var it:Iterator = o.iterator() ;
-				while (it.hasNext()) {
-					r += it.next().toString() ;
-					if (it.hasNext()) r += ",";
+				if (o.size() > 0) 
+				{
+					var ar:Array = o.toArray() ;
+					var l:Number = ar.length ;
+					for (var i:Number = 0 ; i < l ; i++) {
+						r += ar[i] ;
+						if (i < (l-1)) r += ",";
+					}
+					r += "}";
 				}
-				r += "}";
 				return r ;
 			}
-			return null ;
+			else 
+			{
+				return "" ;
+			}
 		}
 		
 	}

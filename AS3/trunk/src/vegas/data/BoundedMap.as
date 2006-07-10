@@ -63,7 +63,7 @@
 
 		- remove(key)
 	
-		- size():Number
+		- size():uint
 
 		- toString():String
 

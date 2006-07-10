@@ -154,7 +154,7 @@ package vegas.data.queue
 	
 	import vegas.errors.UnsupportedOperation ;
 	
-	import vegas.util.ObjectUtil ;
+	import vegas.util.Copier ;
 	import vegas.util.Serializer ;
 
 	public class CircularQueue extends CoreObject implements BoundedQueue
@@ -164,7 +164,7 @@ package vegas.data.queue
 		
 		public function CircularQueue( qSize:uint=uint.MAX_VALUE , ar:Array=null )
 		{
-			_qSize = ( isNaN(qSize) ? CircularQueue.DEFAULT_SIZE : qSize ) + 1 ;
+			_qSize = ( isNaN(qSize) ? CircularQueue.MAX_CAPACITY : qSize ) + 1 ;
 			clear() ;
 			if (ar == null) return ;
 			var l:uint = ar.length ;
@@ -179,7 +179,7 @@ package vegas.data.queue
 
 		// ----o Static Properties
 	
-		static public var DEFAULT_SIZE:uint = uint.MAX_VALUE ;
+		static public var MAX_CAPACITY:uint = uint.MAX_VALUE ;
 
 		// ----o Public Methods
 		
@@ -205,7 +205,7 @@ package vegas.data.queue
 		
 		public function copy():*
 		{
-			return new CircularQueue(maxSize(), ObjectUtil.copy(toArray())) ;
+			return new CircularQueue(maxSize(), Copier.copy(toArray())) ;
 		}
 		
 		public function dequeue():Boolean

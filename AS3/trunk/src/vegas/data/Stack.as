@@ -51,7 +51,7 @@
 		
 		- search(o):Number
 		
-		- size():Number
+		- size():uint
 		
 		- toArray():Array ;
 		
@@ -86,9 +86,9 @@ package vegas.data
 
 		function push(o:*):void ;
 	
-		function search(o:*):Number ;
+		function search(o:*):uint ;
 
-		function size():Number ;
+		function size():uint ;
 
 		function toArray():Array ;
 	

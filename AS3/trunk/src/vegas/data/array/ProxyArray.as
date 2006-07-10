@@ -95,7 +95,7 @@ package vegas.data.array
     import vegas.data.iterator.Iterator;
     
     import vegas.util.ClassUtil ;
-    import vegas.util.ObjectUtil ;
+    import vegas.util.Copier ;
     import vegas.util.Serializer ;
         
     import flash.utils.Proxy;
@@ -150,7 +150,7 @@ package vegas.data.array
 		
         public function copy():*
         {
-            return new ProxyArray(ObjectUtil.copy(_ar)) ;
+            return new ProxyArray(Copier.copy(_ar)) ;
 		}
 		
         public function hashCode():uint

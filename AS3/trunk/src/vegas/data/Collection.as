@@ -95,7 +95,7 @@ package vegas.data
 	
     	function remove(o:*):Boolean ;
 	
-    	function size():Number ;
+    	function size():uint ;
 
     	function toArray():Array ;
 

@@ -21,11 +21,11 @@
   
 */
 
-/* BoundedList [Interface]
+/* AbstractList [Interface]
 
     AUTHOR
 
-    	Name : BoundedList
+    	Name : AbstractList
     	Package : vegas.data
     	Version : 1.0.0.0
     	Date :  2006-07-08
@@ -45,9 +45,13 @@
 		
 		- contains(o:*):Boolean
 		
+		- containsAll(c:Collection):Boolean
+		
+		- ensureCapacity( capacity:uint ):void 
+		
 		- get(id:uin):*
 		
-		- indexOf(o:*):Number
+		- indexOf(o:*):int
 		
 		- insert(o:*):Boolean
 		
@@ -55,31 +59,29 @@
 		
 		- insertAllAt(id:uint, c:Collection):Boolean
 		
-		- insertAt(id:uint, o:*):Void
+		- insertAt(id:uint, o:*):void
 		
 		- isEmpty():Boolean
 		
-		- isFull():Boolean
-		
 		- iterator():Iterator
 		
-		- lastIndexOf(o:*):Number
+		- lastIndexOf(o:*):int
 		
 		- listIterator():ListIterator
-		
-		- maxSize():uint
 		
 		- remove(o):Boolean
 		
 		- removeAll(c:Collection):Boolean
-		
+
+		- retainAll(c:Collection):Boolean
+
 		- removeAt(id:uint):*
 		
 		- retainAll(c:Collection):Boolean
 		
-		- setAt(id:uint, o):Void
+		- setAt(id:uint, o:*):void
 		
-		- size():uint
+		- size():Number
 		
 		- subList(fromIndex:uint, toIndex:uint):List
 		
@@ -91,14 +93,84 @@
 
     INHERIT
     
-        Boundable, Collection, ICloneable, ICopyable, IEquality, IFormattable, ISerialzable, Iterable, List
+	    CoreObject → AbstractCollection → SimpleCollection → AbstractList → ArrayList
+    
+    IMPLEMENTS
+    
+        Collection, ICloneable, ICopyable, IEquality, IFormattable, ISerialzable, Iterable, List
 
 **/
 
-package vegas.data
+
+package vegas.data.list
 {
-    public interface BoundedList extends List, Boundable
-    {
-        
-    }
+
+	import vegas.data.Collection ;
+	import vegas.data.iterator.Iterator ;
+	import vegas.util.Copier ;
+		
+	public class ArrayList extends AbstractList
+	{
+		
+		// ----o Constructor
+		
+		/**
+		 * ArrayList constructor.
+		 * 
+		 * @use 
+		 * 	new ArrayList() ;
+		 * 	new ArrayList(ar:Array) ;
+		 * 	new ArrayList(co:Collection) ;
+		 *  new ArrayList( capacity:uint ) ;
+		 * 
+		 */
+		
+		public function ArrayList( init:*=null )
+		{
+			
+			var ar:Array ;			
+			
+			if ( init is Array )
+			{
+				ar = init ;
+			}
+			else if (init is Collection)
+			{
+				ar = [] ;
+				var it:Iterator = init.iterator() ;
+				while (it.hasNext()) {
+					insert(it.next()) ;
+				}
+			}
+			else if (init is uint)
+			{
+				ar = new Array(init) ;
+			}
+			else 
+			{
+				ar = [] ;
+			}
+			
+			super(ar) ;
+			
+		}
+		
+		// ----o Public Methods
+	
+		override public function clone():* 
+		{
+			return new ArrayList(toArray()) ;
+		}
+	
+		override public function copy():*
+		{
+			return new ArrayList( Copier.copy(toArray())) ;
+		}
+	
+		public function ensureCapacity( capacity:uint ):void 
+		{
+			_a.length = capacity ;
+		}
+		
+	}
 }

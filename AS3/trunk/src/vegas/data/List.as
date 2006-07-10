@@ -101,17 +101,15 @@ package vegas.data
     {
     	function containsAll(c:Collection):Boolean ;
 
-        function indexOf(o:*):Number ;
-	
     	function insertAll(c:Collection):Boolean ;
 	
     	function insertAllAt(id:uint, c:Collection):Boolean ;
 
     	function insertAt(id:uint, o:*):void ;
 
-    	function lastIndexOf(o:*):Number ;
+    	function lastIndexOf(o:*):int ;
 	
-    	function listIterator():ListIterator ;
+    	function listIterator( position:uint=0 ):ListIterator ;
 
     	function removeAll(c:Collection):Boolean ;
 

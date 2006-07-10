@@ -57,7 +57,7 @@
 		
 		- remove(o):Boolean
 		
-		- size():Number
+		- size():uint
 		
 		- toArray():Array
 		

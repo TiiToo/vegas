@@ -28,7 +28,7 @@
 		Name : AbstractCollection
 		Package : vegas.data.collections
 		Version : 1.0.0.0
-		Date : 2005-04-25
+		Date : 2006-07-09
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
@@ -57,7 +57,7 @@
 		
 		- remove(o):Boolean
 		
-		- size():Number
+		- size():uint
 		
 		- toArray():Array
 		
@@ -93,23 +93,25 @@ package vegas.data.collections
 		
 		// ----o Constructor
 				
-		public function AbstractCollection( ...arguments:Array )
+		public function AbstractCollection( ar:Array=null )
 		{
-		
-			if(arguments.length > 0) {
-				
-				_a = [].concat(arguments[0]) ;
-				
-			} else {
-				
-				_a = [] ;
-				
+
+			if (ar is Array && ar.length > 0) 
+			{	
+				_a = ar.slice() ;	
+			}
+			else 
+			{
+				_a = new Array() ;
 			}
 			
 		}
 		
 		// ----o Public Methods
 		
+		/**
+    	 * Clear the queue object.
+    	 */
 		public function clear():void
 		{
 			_a.splice(0) ;
@@ -125,6 +127,9 @@ package vegas.data.collections
 			return null;
 		}
 		
+		/**
+		 * Return true if the queue contains value.
+		 */
 		public function contains(o:*):Boolean
 		{
 			return _a.indexOf(o) >- 1  ;
@@ -147,6 +152,9 @@ package vegas.data.collections
 			return true ;
 		}
 		
+        /**
+         * Returns trus if the queue is empty.
+         */
 		public function isEmpty():Boolean
 		{
 			return _a.length == 0 ;
@@ -188,11 +196,17 @@ package vegas.data.collections
 			
 		}
 		
-		public function size():Number
+	    /**
+	     * Retrieves the size of the queue.
+	     */
+		public function size():uint
 		{
 			return _a.length ;
 		}
-		
+	
+		/**
+	     * Retrieves an Array representation of the queue.
+	     */
 		public function toArray():Array
 		{
 			return _a.concat() ;

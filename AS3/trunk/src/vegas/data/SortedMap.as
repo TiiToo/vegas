@@ -67,7 +67,7 @@
 
 		- remove(key)
 	
-		- size():Number
+		- size():uint
 
 		- subMap(fromKey:*, toKey:*):SortedMap
 

@@ -83,7 +83,7 @@
 		
 			(Violation)  Remove any members of the bag that are not in the given collection, respecting cardinality.
 	
-		- size():Number
+		- size():uint
 		
 		- toArray():Array
 		

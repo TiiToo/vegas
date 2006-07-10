@@ -61,7 +61,7 @@
 
 		- remove(key)
 	
-		- size():Number
+		- size():uint
 
         - toSource(...arguments:Array):String
 

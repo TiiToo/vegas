@@ -21,18 +21,18 @@
   
 */
 
-/* SimpleCollection
+/* AbstractSet
 
 	AUTHOR
 	
-		Name : SimpleCollection
-		Package : vegas.data.collections
+		Name : AbstractSet
+		Package : vegas.data.sets
 		Version : 1.0.0.0
-		Date : 2005-04-25
+		Date : 2006-07-09
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
-
+	
 	METHOD SUMMARY
 
 		- clear():void
@@ -44,6 +44,8 @@
 		- contains(o:*):Boolean
 		
 		- containsAll(c:Collection):Boolean
+		
+		- equals(o:*):Boolean
 		
 		- get(id)
 		
@@ -75,98 +77,59 @@
 
 	INHERIT
 	
-		CoreObject → AbstractCollection → SimpleCollection
+		CoreObject → AbstractCollection → SimpleCollection → AbstractSet
 
 	IMPLEMENTS
 	
-		Collection, ICloneable, ICopyable, IFormattable, IHashable, ISerialzable, Iterable
+		Collection, ICloneable, ICopyable, IEquality, IFormattable, IHashable, ISerialzable, Iterable, Set
 
 */
 
-package vegas.data.collections
+package vegas.data.sets
 {
-	
+
+	import vegas.core.IEquality ;
 	import vegas.data.Collection ;
-	import vegas.data.iterator.Iterator ;
-	import vegas.util.Copier ;
-	
-	public class SimpleCollection extends AbstractCollection
+	import vegas.data.collections.SimpleCollection;
+	import vegas.data.Set ;
+
+	internal class AbstractSet extends SimpleCollection implements IEquality, Set
 	{
 		
 		// ----o Constructor
 		
-		public function SimpleCollection( ar:Array=null )
+		public function AbstractSet( ar:Array )
 		{
-			super(ar);
+			super(ar) ;		
 		}
 		
 		// ----o Public Methods
 		
-		override public function clone():*
+		public function equals(o:*):Boolean 
 		{
-			return new SimpleCollection(toArray()) ;
-		}
-
-		override public function copy():*
-		{
-			return new SimpleCollection( Copier.copy(toArray()) ) ;
-		}
-
-		public function containsAll(c:Collection):Boolean 
-		{
-			var it:Iterator = c.iterator() ;
-			while(it.hasNext()) {
-				if ( ! contains(it.next()) ) 
-				{
-					return false ;
-				}
-			}
-			return true ;
-		}
-		
-		public function insertAll(c:Collection):Boolean 
-		{
-			if (c.size() > 0) 
+			
+			if (o == this) 
 			{
-				var it:Iterator = c.iterator() ;
-				while(it.hasNext()) insert(it.next()) ;
 				return true ;
 			}
-			else 
+			if ( ! (o is Set) ) 
 			{
 				return false ;
 			}
-		}
-	
-		public function removeAll(c:Collection):Boolean 
-		{
-			var b:Boolean = false ;
-			var it:Iterator = iterator() ;
-			while (it.hasNext()) 
+			var c:Collection = Collection(o) ;
+			if (c.size() != size()) 
 			{
-				if ( c.contains(it.next()) ) 
-				{
-					it.remove() ;
-					b = true ;
-				}
-			}
-			return b ;
-		}
-
-		public function retainAll(c:Collection):Boolean 
-		{
-			var b:Boolean = false ;
-			var it:Iterator = iterator() ;
-			while(it.hasNext()) 
-			{
-				if ( ! c.contains(it.next()) ) 
-				{
-					it.remove() ;
-					b = true ;
-				}
-			}
-			return b ;
+				return false ;
+			}		
+			
+			return this.containsAll(c) ;
+			
 		}
 		
 	}
+	
+	
+	
+
+
 }
