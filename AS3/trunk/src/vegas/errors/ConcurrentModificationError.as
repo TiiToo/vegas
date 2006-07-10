@@ -21,11 +21,11 @@
   
 */
 
-/** ArgumentOutOfBoundsError
+/** ConcurrentModificationError
 
 	AUTHOR
 
-		Name : ArgumentOutOfBoundsError
+		Name : ConcurrentModificationError
 		Package : vegas.errors
 		Version : 1.0.0.0
 		Date : 2006-07-07
@@ -53,22 +53,23 @@
 
 	INHERIT
 	
-		Object → Error → AbstractError → FatalError → ArgumentOutOfBoundsError
+		Object → Error → AbstractError → FatalError → ConcurrentModificationError
 	
 	IMPLEMENT
 	
 		IFormattable
 
-*/
+**/
 
 package vegas.errors
 {
-    public class ArgumentOutOfBoundsError extends FatalError
-    {
-        public function ArgumentOutOfBoundsError(message:String="", id:int=0)
+	public class ConcurrentModificationError extends FatalError
+	{
+		
+		public function ConcurrentModificationError(message:String="", id:int=0)
         {
             super(message, id);
         }
         
-    }
+	}
 }

@@ -21,11 +21,11 @@
   
 */
 
-/** ArgumentOutOfBoundsError
+/** IllegalStateError
 
 	AUTHOR
 
-		Name : ArgumentOutOfBoundsError
+		Name : IllegalStateError
 		Package : vegas.errors
 		Version : 1.0.0.0
 		Date : 2006-07-07
@@ -53,22 +53,22 @@
 
 	INHERIT
 	
-		Object → Error → AbstractError → FatalError → ArgumentOutOfBoundsError
+		Object → Error → AbstractError → FatalError → IllegalStateError
 	
 	IMPLEMENT
 	
-		IFormattable
+		IFormattable, IHashable
 
-*/
+**/
 
 package vegas.errors
 {
-    public class ArgumentOutOfBoundsError extends FatalError
-    {
-        public function ArgumentOutOfBoundsError(message:String="", id:int=0)
-        {
-            super(message, id);
-        }
-        
-    }
+	public class IllegalStateError extends FatalError
+	{
+		public function IllegalStateError(message:String="", id:int=0)
+		{
+			super(message, id);
+		}
+		
+	}
 }

@@ -21,11 +21,11 @@
   
 */
 
-/** ArgumentOutOfBoundsError
+/** IndexOutOfBoundsError
 
 	AUTHOR
 
-		Name : ArgumentOutOfBoundsError
+		Name : IndexOutOfBoundsError
 		Package : vegas.errors
 		Version : 1.0.0.0
 		Date : 2006-07-07
@@ -53,7 +53,7 @@
 
 	INHERIT
 	
-		Object → Error → AbstractError → FatalError → ArgumentOutOfBoundsError
+		Object → Error → AbstractError → FatalError → IndexOutOfBoundsError
 	
 	IMPLEMENT
 	
@@ -63,12 +63,12 @@
 
 package vegas.errors
 {
-    public class ArgumentOutOfBoundsError extends FatalError
-    {
-        public function ArgumentOutOfBoundsError(message:String="", id:int=0)
-        {
-            super(message, id);
-        }
-        
-    }
+	public class IndexOutOfBoundsError extends FatalError
+	{
+		public function IndexOutOfBoundsError(message:String="", id:int=0)
+		{
+			super(message, id);
+		}
+		
+	}
 }

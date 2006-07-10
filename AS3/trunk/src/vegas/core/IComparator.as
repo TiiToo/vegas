@@ -33,22 +33,16 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
-	METHODS
+	METHOD SUMMARY
 	
-		- compare(o1, o2):Number
+		- compare(o1:*, o2:*):int
 		
-		- equals(o):Boolean
-
-	INHERIT
-	
-		IEquality
-
 **/
 
 package vegas.core
 {
-	public interface IComparator extends IEquality
+	public interface IComparator
 	{
-		function compare(o1, o2):Number ;
+		function compare(o1:*, o2:*):int ;
 	}
 }

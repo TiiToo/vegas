@@ -64,6 +64,7 @@ package vegas.util
 {
     
     import flash.utils.ByteArray;
+    import vegas.util.Copier ;
     
     public class ObjectUtil
     {
@@ -74,6 +75,24 @@ package vegas.util
         }   
 
         static public function copy(o:*):*
+        {
+			var obj:Object = {} ;
+			var prop:String ;
+			for (prop in o) {
+				if( ! o.hasOwnProperty( prop ) ) {
+				  	continue ;
+			  	} else if ( o[prop] == undefined ) {
+			  		obj[prop] = undefined ;
+			  	} else if ( o[prop] == null ) {
+			  		obj[prop] = null ;
+				} else {
+			  		obj[prop] = Copier.copy(obj[prop]) ; 
+			  	}
+			}
+			return obj ;
+        }
+        
+        static public function copyPrimitive(o:Object):Object
         {
             var buffer:ByteArray = new ByteArray();
             buffer.writeObject(o);
