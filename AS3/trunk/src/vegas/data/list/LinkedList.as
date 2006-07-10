@@ -21,53 +21,69 @@
   
 */
 
-/* LinearQueue
+/* LinkedLis [Interface]
 
-	AUTHOR
-	
-		Name : LinearQueue
-		Package : vegas.data.queue
-		Version : 1.0.0.0
-		Date : 2006-07-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
+    AUTHOR
+
+    	Name : LinkedList
+    	Package : vegas.data
+    	Version : 1.0.0.0
+    	Date :  2006-07-08
+    	Author : ekameleon
+    	URL : http://www.ekameleon.net
+    	Mail : vegas@ekameleon.net
 
 	METHOD SUMMARY
-
-		- clear():void
+	
+		- clear():Void
 		
 		- clone():*
 		
+		- containsAll(c:Collection):Boolean
+		
 		- copy():*
-				
+		
 		- contains(o:*):Boolean
 		
-		- dequeue():Boolean 
+		- containsAll(c:Collection):Boolean
 		
-		- element():* 
-		
-		- enqueue(o:*):Boolean
+		- ensureCapacity( capacity:uint ):void 
 		
 		- get(id:uin):*
 		
-		- hashCode():uint
-		
-		- indexOf(o:*, fromIndex:uint=0):int
+		- indexOf(o:*):int
 		
 		- insert(o:*):Boolean
+		
+		- insertAll(c:Collection):Boolean
+		
+		- insertAllAt(id:uint, c:Collection):Boolean
+		
+		- insertAt(id:uint, o:*):void
 		
 		- isEmpty():Boolean
 		
 		- iterator():Iterator
 		
-		- peek():*
+		- lastIndexOf(o:*):int
 		
-		- poll():*
+		- listIterator():ListIterator
 		
 		- remove(o):Boolean
 		
-		- size():uint
+		- removeAll(c:Collection):Boolean
+
+		- retainAll(c:Collection):Boolean
+
+		- removeAt(id:uint):*
+		
+		- retainAll(c:Collection):Boolean
+		
+		- setAt(id:uint, o:*):void
+		
+		- size():Number
+		
+		- subList(fromIndex:uint, toIndex:uint):List
 		
 		- toArray():Array
 		
@@ -75,58 +91,42 @@
 		
 		- toString():String
 
-	INHERIT
-	
-		CoreObject → AbstractCollection → SimpleCollection → LinearQueue
+    INHERIT
+    
+	    CoreObject → AbstractCollection → SimpleCollection → AbstractList → ArrayList → LinkedList
+    
+    IMPLEMENTS
+    
+        Collection, ICloneable, ICopyable, IEquality, IFormattable, ISerialzable, Iterable, List, Queue
 
-	IMPLEMENTS
-	
-		Collection, ICloneable, ICopyable, IFormattable, IHashable, ISerialzable, Iterable, Queue
+**/
 
-	EXAMPLE
-	
-		var q:LinearQueue = new LinearQueue() ;
-		trace("enqueue item1 : " + q.enqueue("item1")) ;
-		trace("enqueue item1 : " + q.enqueue("item2")) ;
-		trace("enqueue item1 : " + q.enqueue("item3")) ;
-		trace("enqueue item1 : " + q.enqueue("item4")) ;
-		
-		trace("poll : " + q.poll()) ;
-		
-		trace("queue : " + q) ;
-		trace("queue toSource : " + q.toSource()) ;
-		trace("queue toArray : " + q.toArray()) ;
-
-*/
-
-package vegas.data.queue
+package vegas.data.list
 {
-	import vegas.data.collections.SimpleCollection;
+
 	import vegas.data.Queue;
-	
 	import vegas.util.Copier ;
 
-	public class LinearQueue extends SimpleCollection implements Queue
+	public class LinkedList extends ArrayList implements Queue
 	{
 		
 		// ----o Constructor
 		
-		public function LinearQueue( ar:Array=null )
+		public function LinkedList( init:* )
 		{
-			super(ar);
+			super(init);
 		}
 		
 		// ----o Public Methods
 		
-
 		override public function clone():*
 		{
-			return new LinearQueue(toArray()) ;
+			return new LinkedList(toArray()) ;
 		}
 		
 		override public function copy():*
 		{
-			return new LinearQueue(Copier.copy(toArray())) ;
+			return new LinkedList(Copier.copy(toArray())) ;
 		}
 	
         /**
@@ -172,7 +172,6 @@ package vegas.data.queue
 			if (isEmpty()) return null ;
 			return _a.shift() ;	
     	}
-	
 		
 	}
 }

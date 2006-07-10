@@ -21,11 +21,11 @@
   
 */
 
-/* ArrayList [Interface]
+/* SortedArrayList [Interface]
 
     AUTHOR
 
-    	Name : ArrayList
+    	Name : SortedArrayList
     	Package : vegas.data
     	Version : 1.0.0.0
     	Date :  2006-07-08
@@ -93,7 +93,7 @@
 
     INHERIT
     
-	    CoreObject → AbstractCollection → SimpleCollection → AbstractList → ArrayList
+	    CoreObject → AbstractCollection → SimpleCollection → AbstractList → ArrayList → SortedArrayList
     
     IMPLEMENTS
     
@@ -104,72 +104,16 @@
 package vegas.data.list
 {
 
-	import vegas.data.Collection ;
-	import vegas.data.iterator.Iterator ;
-	import vegas.util.Copier ;
-		
-	public class ArrayList extends AbstractList
+	public class SortedArrayList extends ArrayList
 	{
-		
+
 		// ----o Constructor
-		
-		/**
-		 * ArrayList constructor.
-		 * 
-		 * @use 
-		 * 	new ArrayList() ;
-		 * 	new ArrayList(ar:Array) ;
-		 * 	new ArrayList(co:Collection) ;
-		 *  new ArrayList( capacity:uint ) ;
-		 * 
-		 */
-		
-		public function ArrayList( init:*=null )
+
+		public function SortedArrayList(init:*)
 		{
-			
-			var ar:Array ;			
-			
-			if ( init is Array )
-			{
-				ar = init ;
-			}
-			else if (init is Collection)
-			{
-				ar = [] ;
-				var it:Iterator = init.iterator() ;
-				while (it.hasNext()) {
-					insert(it.next()) ;
-				}
-			}
-			else if (init is uint)
-			{
-				ar = new Array(init) ;
-			}
-			else 
-			{
-				ar = [] ;
-			}
-			
-			super(ar) ;
-			
+			super(init);
 		}
 		
-		// ----o Public Methods
-	
-		override public function clone():* 
-		{
-			return new ArrayList(toArray()) ;
-		}
-	
-		override public function copy():*
-		{
-			return new ArrayList( Copier.copy(toArray())) ;
-		}
-	
-		public function ensureCapacity( capacity:uint ):void 
-		{
-			_a.length = capacity ;
-		}
 		
 	}
 }

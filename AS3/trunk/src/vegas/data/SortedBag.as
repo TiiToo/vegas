@@ -115,7 +115,9 @@ package vegas.data
 	public interface SortedBag extends Bag
 	{
 
-		function comparator():IComparator ;
+		function get comparator():IComparator ;
+	
+		function set comparator(comp:IComparator):void ;
 	
 		function first():* ;
 	

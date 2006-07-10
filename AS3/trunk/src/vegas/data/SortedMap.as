@@ -91,7 +91,9 @@ package vegas.data
 	public interface SortedMap extends Map
 	{
 		
-		function comparator():IComparator ;
+		function get comparator():IComparator ;
+	
+		function set comparator(comp:IComparator):void ;
 	
 		function firstKey():* ;
 	

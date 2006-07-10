@@ -106,10 +106,10 @@ package vegas.data.queue
 		 * 		var q:Queue = new PriorityQueue( comparator:IComparator=null , ar:Array:null ) ;
 		 * 
 		 */
-		public function PriorityQueue(comparator:IComparator=null, ar:Array=null)
+		public function PriorityQueue(comp:IComparator=null, ar:Array=null)
 		{
 			super(ar) ;
-			_comparator = comparator ;
+			comparator = comp ;
 			if (size() > 0) _sort() ;
 		}
 		
@@ -117,16 +117,21 @@ package vegas.data.queue
 	
 		override public function clone():* 
 		{
-			return new PriorityQueue(comparator(), toArray());
+			return new PriorityQueue(comparator, toArray());
 		}
 	
-		public function comparator():IComparator {
+		public function get comparator():IComparator {
 			return _comparator ;
+		}
+
+		public function set comparator(comp:IComparator):void {
+			_comparator = comp ;
+			_sort() ;
 		}
 		
 		override public function copy():* 
 		{
-			return new PriorityQueue(comparator(), Copier.copy(toArray())) ;
+			return new PriorityQueue(comparator, Copier.copy(toArray())) ;
 		}
 		
 		override public function enqueue(o:*):Boolean {
