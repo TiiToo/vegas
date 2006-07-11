@@ -82,15 +82,18 @@ package vegas.core
 		
 		// ----o Public Methods
 		
-		public function hashCode():uint {
+		public function hashCode():uint 
+		{
 			return null ;
 		}
 
-		public function toSource(...arguments):String {
+		public function toSource(...arguments:Array):String 
+		{
 			return "new " + ClassUtil.getPath(this) + "()" ;
 		}
 
-		public function toString():String {
+		public function toString():String 
+		{
 			return "[" + ClassUtil.getName(this) + "]" ;
 		}
 

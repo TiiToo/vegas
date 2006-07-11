@@ -28,14 +28,14 @@
 		Name : FrontController
 		Package : vegas.events
 		Version : 1.0.0.0
-		Date :  2006-03-11
+		Date :  2006-07-08
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
 	CONSTRUCTOR
 	
-		var oC:FrontController = new FrontController([oE:EventBroadcaster, name:String=EventBroadcaster.DEFAULT_DISPATCHER_NAME) ;
+		var oC:FrontController = new FrontController([oE:EventBroadcaster=null, name:String=null) ;
 
 	METHOD SUMMARY
 	
@@ -187,6 +187,7 @@ package vegas.events
     		    _oE.removeListener(eventName, listener);
     		}
     	}
+    	
         // ----o Private Properties
         
        	private var _oE:EventBroadcaster ;

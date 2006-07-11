@@ -21,11 +21,11 @@
   
 */
 
-/**	IComparable [Interface]
+/**	IComparer [Interface]
 
 	AUTHOR
 	
-		Name : IComparable
+		Name : IComparer
 		Package : vegas.core
 		Version : 1.0.0.0
 		Date :  2006-07-09
@@ -33,10 +33,10 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
-	METHOD SUMMARY
+	PROPERTY SUMMARY
 	
-		compareTo(o)
-
+		comparator:IComparator ; [R/W] (get/set)
+	
 **/
 
 package vegas.core

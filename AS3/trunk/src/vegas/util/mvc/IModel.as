@@ -57,11 +57,11 @@ package vegas.util.mvc
 	public interface IModel
 	{
 		
-		function addView(view:IView):Void ;
+		function addView(view:IView):void ;
 		
-		function notifyChanged(ev:ModelChangedEvent):Void ;
+		function notifyChanged(ev:ModelChangedEvent):void ;
 		
-		function removeView(view:IView):Void ;
+		function removeView(view:IView):void ;
 		
 	}
 }

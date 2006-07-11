@@ -21,7 +21,7 @@
   
 */
 
-/** StringUtil
+/* StringUtil
 
 	AUTHOR
 	
@@ -39,45 +39,47 @@
 		
 		- static compare( strA:String , strB:String, ignoreCase:Boolean ):Number
 		
-		- compareTo( o ):Number
+		- static compareTo( o ):Number
 		
-		- copy()
+		- static copy():*
 
-		- endsWith( value:String ):Boolean
+		- static endsWith( value:String ):Boolean
 	
-		- firstChar():String
+		- static firstChar():String
 		
-		- indexOfAny(ar:Array):Number
+		- static format( pattern:String=null , ...arguments:Array ):String
 		
-		- isEmpty():Boolean
+		- static indexOfAny(ar:Array):Number
 		
-		- lastChar():String
+		- static isEmpty():Boolean
 		
-		- lastIndexOfAny(ar:Array):Number
+		- static lastChar():String
 		
-		- padLeft(i:Number, char:String):String 
+		- static lastIndexOfAny(ar:Array):Number
 		
-		- padRight(i:Number, char:String):String
+		- static padLeft(i:Number, char:String):String 
 		
-		- replace(search:String, replace:String):String
+		- static padRight(i:Number, char:String):String
 		
-		- reverse():String
+		- static replace(search:String, replace:String):String
+		
+		- static reverse():String
 		
 			Warning : this method use String.split méthod !
 		
-		- splice(startIndex:Number, deleteCount:Number, value):String
+		- static splice(startIndex:Number, deleteCount:Number, value):String
 		
-		- startsWith( value:String ):Boolean
+		- static startsWith( value:String ):Boolean
 		
-		- toArray():Array
+		- static toArray():Array
 		
-		- toSource():String
+		- static toSource():String
 		
-		- ucFirst():String
+		- static ucFirst():String
 		
 			Capitalize the first letter of a string, like the PHP function.
 		
-		- ucWords():String
+		- static ucWords():String
 		
 			Capitalize each word in a string, like the PHP function.
 
@@ -98,6 +100,12 @@ package vegas.util
     
     public class StringUtil
     {
+        
+        // ----o Constants
+        
+        static public const SPC:String = " " ; // SPACE
+        
+        // ----o Public Methods
         
         /**
          * Returns a copy by reference of this string.
@@ -154,6 +162,125 @@ package vegas.util
     	static public function firstChar( str:String ):String {
     		return str.charAt(0) ;
     	}
+ 
+ 		/** 
+ 		 * StringUtil.format(pattern:String, ...arguments:Array):String
+ 		 * 
+ 		 * Replaces the pattern item in a specified String with the text equivalent of the value of a specified Object instance.
+ 		 * 
+ 		 * @usage
+ 		 * 
+ 		 * 	var result:String ;
+		 *
+		 *	result = StringUtil.format("Brad's dog has {0,6:#} fleas.", 41) ;
+		 *	trace("> " + result) ;
+		 *
+		 * 	result = StringUtil.format("Brad's dog has {0,-6} fleas.", 12) ;
+		 *	trace("> " + result) ;
+		 *
+		 * 	result = StringUtil.format("{3} {2} {1} {0}", "a", "b", "c", "d") ;
+		 *	trace("> " + result) ;
+ 		 *
+ 		 *  @thanks Zwetan and Core2 Library.
+ 		 * 
+ 		 */
+ 
+ 		static public function format( pattern:String=null , ...arguments:Array ):String {
+
+			if( ! pattern ) return "" ;
+			
+			var str:String = "" ;
+			var args:Array  = [].concat(arguments) ;
+			
+			var format:String = pattern ;
+			
+			if ( format.indexOf( "{" ) == -1 ) 
+			{
+				return format ;	
+			}
+			
+			var ch:String = "" ;
+			var pos:uint = 0 ;
+			
+			var next:Function = function():String {
+				ch = format.charAt( pos );
+				pos++ ;
+				return ch ;
+			};
+		
+			var getIndexValue:Function = function( index:uint ):String {
+				var cur:* = args[index] ;
+				if( cur ) return cur.toString() ;
+				if (cur == undefined ) return "" ;
+				else if (cur == null) return null ;
+				else return cur.toString() ;
+			} ;
+		
+			var expression:String ; 
+			var run:Boolean ;
+			var index:Number ;
+			var expValue:String ; 
+			var paddingChar:String ;
+			var spaceAlign:int ;
+		
+			var l:uint = format.length ;
+			while( pos < l ) {
+				next() ; 
+				if( ch == "{" ) {
+					expression = next() ;
+					run = true ;
+					while( run ) {
+						next() ;
+						if( ch != "}" ) expression = expression + ch ;
+						else run = false ;
+					}
+					index = undefined ;
+					paddingChar = SPC ;
+					expValue = "" ;
+					if( StringUtil.indexOfAny(expression, [ ",", ":" ] ) == -1 ) 
+					{
+						index = parseInt( expression.toString() ) ;
+						expValue = getIndexValue( index ) ;
+						str += expValue ;
+					}
+					else 
+					{
+						var vPos:int = expression.indexOf( "," ) ;
+						var fPos:int = expression.indexOf( ":" ) ;
+						if( vPos == -1 ) {
+							vPos = fPos ;
+							fPos = -1 ;
+						}
+						index = parseInt( expression.substring( 0, vPos ) ) ;
+						expValue = getIndexValue( index ) ;
+						if( fPos == -1 ) {
+							spaceAlign = parseInt( expression.substr( vPos+1 ) ) ;
+						} else {
+							spaceAlign  = parseInt( expression.substring( vPos+1, fPos ) ) ;
+							paddingChar = expression.substr( fPos+1 ) ;
+						}
+						if ( isNaN( spaceAlign ) ) 
+						{
+							// 
+						}
+						else if( spaceAlign > 0 ) 
+						{
+							expValue = StringUtil.padLeft(expValue, spaceAlign, paddingChar ) ;
+						}
+						else 
+						{
+							expValue = StringUtil.padRight(expValue, -spaceAlign, paddingChar ) ;
+						}
+						str += expValue ;
+					}
+				}
+				else
+				{
+					str += ch ;
+				}
+			}
+			return str ;		
+		}
  
      	static public function indexOfAny(str:String, ar:Array):Number 
      	{

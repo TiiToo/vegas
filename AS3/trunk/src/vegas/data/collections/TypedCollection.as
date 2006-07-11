@@ -171,7 +171,7 @@ package vegas.data.collections
 			return _co.remove(o) ;
 		}
 	
-		public function setType(type:Function):void
+		override public function setType(type:*):void
 		{
 			super.setType(type) ;
 			_co.clear() ;

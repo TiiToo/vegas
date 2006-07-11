@@ -35,7 +35,7 @@
 
 	METHOD SUMMARY
 	
-		- handleEvent(e:Event)
+		- handleEvent(e:Event):*
 		 
 **/
 

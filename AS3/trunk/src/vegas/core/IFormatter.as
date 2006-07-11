@@ -21,44 +21,28 @@
   
 */
 
-/** IController [Interface]
+/** IFormatter [interface]
 
 	AUTHOR
-
-		Name : IController
-		Package : vegas.util.mvc
+	
+		Name : IFormatter
+		Package : vegas.core
 		Version : 1.0.0.0
-		Date :  2006-07-06
+		Date : 2006-07-08
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 	
 	METHOD SUMMARY
 	
-		- getModel():IModel
-		
-		- getView():IView
-		
-		- setModel(oModel:IModel):Void
-		
-		- setView(oView:IView):Void
-	
+		- format(...arguments:Array):String ;
+
 **/
 
-package vegas.util.mvc
+package vegas.core
 {
-	
-	import vegas.util.mvc.IModel;
-	import vegas.util.mvc.IView;
-	
-	public interface IController
+	public interface IFormatter
 	{
-		function getModel():IModel ;
-		
-		function getView():IView ;
-		
-		function setModel(oModel:IModel):void ;
-		
-		function setView(oView:IView):void ;
+		function format(...arguments:Array):String ;
 	}
 }

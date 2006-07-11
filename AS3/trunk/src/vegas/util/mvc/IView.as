@@ -58,12 +58,12 @@ package vegas.util.mvc
 	{
 		function getController():IController;
 		
-		function getViewContainer():MovieClip ;
+		function getViewContainer():DisplayObject ;
 		
-		function setController(oController:IController):Void ;
+		function setController(oController:IController):void ;
 			
-		function setModel(oModel:IModel):Void ;
+		function setModel(oModel:IModel):void ;
 			
-		function setViewContainer(mcContainer:MovieClip):Void ;
+		function setViewContainer(container:DisplayObject):void ;
 	}
 }
