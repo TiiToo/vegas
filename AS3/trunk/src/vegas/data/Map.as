@@ -37,11 +37,11 @@
 
 		- clear()
 
-		- containsKey( key ):Boolean
+		- containsKey( key:* ):Boolean
 	
-		- containsValue( value ):Boolean
+		- containsValue( value:* ):Boolean
 
-		- get(key)
+		- get(key:*):*
 	
 		- getKeys():Array
 	
@@ -53,11 +53,11 @@
 
 		- keyIterator():Iterator
 
-		- put(key, value)
+		- put(key:*, value:*):*
 	
-		- putAll(m:Map)
+		- putAll(m:Map):void
 
-		- remove(key)
+		- remove(key):*
 	
 		- size():Number
 

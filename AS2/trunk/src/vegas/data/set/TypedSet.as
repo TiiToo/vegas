@@ -69,7 +69,7 @@
 	
 		CoreObject → AbstractTypeable → TypedSet
 	
-----------  */
+*/
 
 import vegas.core.ICloneable;
 import vegas.data.iterator.Iterator;

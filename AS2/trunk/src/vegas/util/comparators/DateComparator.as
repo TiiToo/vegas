@@ -108,7 +108,7 @@ class vegas.util.comparators.DateComparator extends CoreObject implements IClone
 				else return 0 ;
 				
 		} else {
-			throw IllegalArgumentError ;
+			throw new IllegalArgumentError() ;
 		}
 	}
 	

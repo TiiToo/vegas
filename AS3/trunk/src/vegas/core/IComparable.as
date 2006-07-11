@@ -28,7 +28,7 @@
 		Name : IComparable
 		Package : vegas.core
 		Version : 1.0.0.0
-		Date :  2005-04-24
+		Date :  2006-07-09
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net

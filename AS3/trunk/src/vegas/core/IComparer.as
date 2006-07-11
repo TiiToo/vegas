@@ -21,28 +21,32 @@
   
 */
 
-/** IComparator [Interface]
-	
-	AUTHOR
+/**	IComparable [Interface]
 
-		Name : IComparator
-		Package : vegas.util
+	AUTHOR
+	
+		Name : IComparable
+		Package : vegas.core
 		Version : 1.0.0.0
-		Date :  2006-07-05
+		Date :  2006-07-09
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
 	METHOD SUMMARY
 	
-		- compare(o1:*, o2:*):int
-		
+		compareTo(o)
+
 **/
 
 package vegas.core
 {
-	public interface IComparator
+	public interface IComparer
 	{
-		function compare(o1:*, o2:*):int ;
+
+		function get comparator():IComparator ;
+	
+		function set comparator(comp:IComparator):void ;
+		
 	}
 }

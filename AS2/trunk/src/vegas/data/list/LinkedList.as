@@ -21,7 +21,7 @@
   
 */
 
-/* ----------  LinkedList
+/** LinkedList
 
 	AUTHOR
 

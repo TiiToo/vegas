@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	SimpleStack
+/**	SimpleStack
 
 	AUTHOR
 
@@ -89,7 +89,7 @@
 	
 		Collection, ICloneable, IFormattable, IHashable, Iterable, ISerializable, Stack.
 	
-----------  */
+**/
 
 import vegas.core.ICloneable;
 import vegas.data.Collection;

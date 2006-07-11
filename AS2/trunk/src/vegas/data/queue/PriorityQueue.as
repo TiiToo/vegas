@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	PriorityQueue
+/**	PriorityQueue
 
 	AUTHOR
 
@@ -64,7 +64,7 @@
 
 		ICloneable, Collection, Queue
 	
-----------  */
+**/
 
 import vegas.core.IComparator;
 import vegas.data.queue.LinearQueue;
@@ -85,7 +85,7 @@ class vegas.data.queue.PriorityQueue extends LinearQueue {
 				constructor.apply(this, arg) ;				
 			}
 		} else {
-			throw IllegalArgumentError ;
+			throw new IllegalArgumentError("PriorityQueue in constructor arguments must not be 'null' or 'undefined'") ;
 		}
 	}
 

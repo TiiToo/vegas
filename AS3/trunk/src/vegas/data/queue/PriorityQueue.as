@@ -33,13 +33,15 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
+	PROPERTY SUMMARY
+
+		- comparator:IComparator [R/W]
+
 	METHOD SUMMARY
 
 		- clear():void
 		
 		- clone():*
-		
-		- comparator():IComparator
 
 		- contains(o:*):Boolean
 		
@@ -83,7 +85,7 @@
 
 	IMPLEMENTS
 	
-		Collection, ICloneable, ICopyable, IFormattable, IHashable, ISerialzable, Iterable, Queue
+		Collection, ICloneable, IComparer, ICopyable, IFormattable, IHashable, ISerialzable, Iterable, Queue
 
 */
 
@@ -91,10 +93,11 @@ package vegas.data.queue
 {
 	
 	import vegas.core.IComparator;
+	import vegas.core.IComparer;
 	import vegas.errors.IllegalArgumentError;
 	import vegas.util.Copier ;
 	
-	public class PriorityQueue extends LinearQueue
+	public class PriorityQueue extends LinearQueue implements IComparer
 	{
 		
 		// ----o Constructor

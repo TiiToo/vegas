@@ -106,7 +106,7 @@ class vegas.data.set.HashSet extends AbstractSet {
 
 	// ----o Static Properties
 	
-	static private var PRESENT = new Object ;
+	static private var PRESENT = new Object() ;
 
 	// ----o Public Methods
 

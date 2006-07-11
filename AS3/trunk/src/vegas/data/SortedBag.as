@@ -37,6 +37,10 @@
 	
 		Defines a collection that counts the number of times an object appears in the collection.
 
+	PROPERTY SUMMARY
+	
+		- comparator:IComparator [R/W]
+
 	METHOD SUMMARY
 	
 		- clear():Void
@@ -44,9 +48,7 @@
 		- clone():*
 		
 		- copy():*
-		
-		- comparator():IComparator
-		
+				
 		- contains(o:*):Boolean
 		
 		- containsAll(c:Collection):Boolean
@@ -110,14 +112,10 @@
 package vegas.data
 {
 	
-	import vegas.core.IComparator ;
+	import vegas.core.IComparer ;
 	
-	public interface SortedBag extends Bag
+	public interface SortedBag extends Bag implements IComparer
 	{
-
-		function get comparator():IComparator ;
-	
-		function set comparator(comp:IComparator):void ;
 	
 		function first():* ;
 	

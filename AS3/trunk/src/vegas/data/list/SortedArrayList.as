@@ -97,23 +97,131 @@
     
     IMPLEMENTS
     
-        Collection, ICloneable, ICopyable, IEquality, IFormattable, ISerialzable, Iterable, List
+        Collection, ICloneable, IComparer, ICopyable, IFormattable, ISerialzable, Iterable, List
 
 **/
 
 package vegas.data.list
 {
 
-	public class SortedArrayList extends ArrayList
+	import vegas.core.IComparator;
+	import vegas.core.IComparer;
+	import vegas.data.Collection ;
+	import vegas.util.Copier ;
+	import vegas.util.Serializer;
+	
+	public class SortedArrayList extends ArrayList implements IComparer
 	{
 
 		// ----o Constructor
 
-		public function SortedArrayList(init:*)
+		public function SortedArrayList(init:*, comp:IComparator=null, opt:uint=0)
 		{
 			super(init);
+			comparator = comp ;
+			options = opt ;
 		}
 		
+		// ----o Public Methods
+	
+		override public function clone():*
+		{
+			return new SortedArrayList(toArray(), comparator, options) ;
+		}
+
+		override public function copy():*
+		{
+			return new SortedArrayList(Copier.copy(toArray()), Copier.copy(comparator), Copier.copy(options)) ;
+		}
+
+		override public function insert(o:*):Boolean 
+		{
+			var b:Boolean = super.insert(o) ;
+			_sort() ;
+			return b ;
+		}	
+
+		override public function insertAll(c:Collection):Boolean 
+		{
+			var b:Boolean = super.insertAll(c) ;
+			_sort() ;
+			return b ;
+		}
+	
+		override public function insertAt(id:uint, o:*):void
+		{
+			insertAt(id, o) ;
+			_sort() ;
+		}
+
+		override public function insertAllAt(id:uint, c:Collection):Boolean 
+		{
+			var b:Boolean = super.insertAllAt(id, c) ;
+			_sort() ;
+			return b ;
+		}
+
+			
+		public function sort( compare:*=null , opts:uint=0 ):Array  
+		{
+			if ( compare == null) return null ;
+			var f:Function ;
+			if (compare is IComparator) 
+			{
+				f = compare.compare ;
+			}
+			else if (compare is Function)
+			{
+				f = compare ;
+			}
+			else
+			{
+				return null ;
+			}
+			return _a.sort(f , opts) ;
+		}
+	
+		public function sortOn( fieldName:*, opts:*=null ):Array  
+		{
+			return _a.sortOn(fieldName, opts) ;
+		}
+	
+		override public function toSource(...arguments:Array):String {
+			return Serializer.getSourceOf(this, [toArray(), comparator, options] ) ;
+		}
 		
+		// ----o Virtual Properties
+
+		public function get comparator():IComparator 
+		{
+			return _comparator ;
+		}
+		
+		public function set comparator(comp:IComparator):void 
+		{
+			_comparator = comp ;
+			_sort() ;
+		}
+
+		public function get options():uint {
+			return _options ;
+		}
+	
+		public function set options(o:*):void{
+			_options = o ;
+			_sort() ;
+		}
+		
+		// ----o Private Properties
+		
+		private var _comparator:IComparator ;
+		private var _options:* ;
+
+		// ----o Private Methods
+	
+		private function _sort():void {
+			sort( _comparator.compare , _options) ;
+		}
+
 	}
 }

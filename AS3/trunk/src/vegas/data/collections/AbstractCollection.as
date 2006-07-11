@@ -162,7 +162,7 @@ package vegas.data.collections
 	
 		public function iterator():Iterator
 		{
-			return new ArrayIterator(_a) ;
+			return new ArrayIterator(toArray()) ;
 		}
 		
 		public function remove(o:*):Boolean
@@ -212,9 +212,9 @@ package vegas.data.collections
 			return _a.concat() ;
 		}
 
-		override public function toSource(...arguments):String
+		override public function toSource(...arguments:Array):String
 		{
-			return Serializer.getSourceOf(this, [_a]) ;
+			return Serializer.getSourceOf(this, [toArray()]) ;
 		}
 		
 	

@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- 	ListItr
+/**	ListItr
 
 	AUTHOR
 		

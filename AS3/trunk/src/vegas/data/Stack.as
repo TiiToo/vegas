@@ -74,11 +74,9 @@ package vegas.data
     public interface Stack extends ICloneable, Iterable, IFormattable, ISerializable
     {
 
-		function clear()void ;
+		function clear():void ;
 	
 		function isEmpty():Boolean ;
-
-		function iterator():Iterator ;
 
 		function peek():* ;
 

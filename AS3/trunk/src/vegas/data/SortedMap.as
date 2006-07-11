@@ -33,11 +33,13 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
+	PROPERTY SUMMARY
+	
+		- comparator:IComparator [R/W]
+
 	METHOD SUMMARY
 
 		- clear()
-
-		- comparator():IComparator
 
 		- containsKey( key ):Boolean
 	
@@ -79,7 +81,7 @@
 
     INHERIT
 
-        ICloneable, IFormattable, IHashable, ISerializable, Iterable, Map
+        ICloneable, IComparer, IFormattable, IHashable, ISerializable, Iterable, Map
 
 **/
 
@@ -87,14 +89,11 @@ package vegas.data
 {
 	
 	import vegas.core.IComparator;
+	import vegas.core.IComparer;
 	
-	public interface SortedMap extends Map
+	public interface SortedMap extends IComparer, Map
 	{
 		
-		function get comparator():IComparator ;
-	
-		function set comparator(comp:IComparator):void ;
-	
 		function firstKey():* ;
 	
 		function heapMap(toKey:*):SortedMap ;

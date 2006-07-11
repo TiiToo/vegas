@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	TypedQueue
+/**	TypedQueue
 
 	AUTHOR
 
@@ -73,7 +73,7 @@
 
 		Queue, Typeable, Validator
 
-----------  */
+*/
 
 import vegas.data.iterator.Iterable;
 import vegas.data.iterator.Iterator;

@@ -70,7 +70,7 @@
 
 	INHERIT
 	
-		CoreObject → StringIterator
+		CoreObject → ObjectIterator
 
 	IMPLEMENTS
 	

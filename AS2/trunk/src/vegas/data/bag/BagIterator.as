@@ -89,7 +89,7 @@ class vegas.data.bag.BagIterator extends CoreObject implements Iterator {
 	}
 
 	public function key() {
-		throw new UnsupportedOperation ;
+		throw new UnsupportedOperation() ;
 	}
 
 	public function next() {
@@ -110,11 +110,11 @@ class vegas.data.bag.BagIterator extends CoreObject implements Iterator {
     }
 	
 	public function reset():Void {
-		throw new UnsupportedOperation ;
+		throw new UnsupportedOperation() ;
 	}
 	
 	public function seek(n:Number):Void {
-		throw new UnsupportedOperation ;
+		throw new UnsupportedOperation() ;
 	}
 
 	// ----o Private Properties
