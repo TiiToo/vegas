@@ -66,12 +66,14 @@
 
 package vegas.data
 {
+	
 	import vegas.core.ICloneable;
+	import vegas.core.ICopyable;
 	import vegas.data.iterator.Iterable;
 	import vegas.core.IFormattable;
 	import vegas.core.ISerializable;
 	
-    public interface Stack extends ICloneable, Iterable, IFormattable, ISerializable
+    public interface Stack extends ICloneable, ICopyable, Iterable, IFormattable, ISerializable
     {
 
 		function clear():void ;

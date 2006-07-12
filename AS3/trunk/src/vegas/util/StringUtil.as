@@ -170,6 +170,8 @@ package vegas.util
  		 * 
  		 * @usage
  		 * 
+ 		 *  import vegas.util.StringUtil ;
+ 		 * 
  		 * 	var result:String ;
 		 *
 		 *	result = StringUtil.format("Brad's dog has {0,6:#} fleas.", 41) ;
@@ -185,7 +187,8 @@ package vegas.util
  		 * 
  		 */
  
- 		static public function format( pattern:String=null , ...arguments:Array ):String {
+ 		static public function format( pattern:String=null , ...arguments:Array ):String 
+ 		{
 
 			if( ! pattern ) return "" ;
 			
@@ -202,13 +205,15 @@ package vegas.util
 			var ch:String = "" ;
 			var pos:uint = 0 ;
 			
-			var next:Function = function():String {
+			var next:Function = function():String 
+			{
 				ch = format.charAt( pos );
 				pos++ ;
 				return ch ;
 			};
 		
-			var getIndexValue:Function = function( index:uint ):String {
+			var getIndexValue:Function = function( index:uint ):String 
+			{
 				var cur:* = args[index] ;
 				if( cur ) return cur.toString() ;
 				if (cur == undefined ) return "" ;
@@ -224,14 +229,17 @@ package vegas.util
 			var spaceAlign:int ;
 		
 			var l:uint = format.length ;
-			while( pos < l ) {
+			while( pos < l ) 
+			{
 				next() ; 
-				if( ch == "{" ) {
+				if( ch == "{" ) 
+				{
 					expression = next() ;
 					run = true ;
-					while( run ) {
+					while( run ) 
+					{
 						next() ;
-						if( ch != "}" ) expression = expression + ch ;
+						if( ch != "}" ) expression += ch ;
 						else run = false ;
 					}
 					index = undefined ;
@@ -253,9 +261,12 @@ package vegas.util
 						}
 						index = parseInt( expression.substring( 0, vPos ) ) ;
 						expValue = getIndexValue( index ) ;
-						if( fPos == -1 ) {
+						if( fPos == -1 ) 
+						{
 							spaceAlign = parseInt( expression.substr( vPos+1 ) ) ;
-						} else {
+						}
+						else 
+						{
 							spaceAlign  = parseInt( expression.substring( vPos+1, fPos ) ) ;
 							paddingChar = expression.substr( fPos+1 ) ;
 						}
@@ -282,18 +293,19 @@ package vegas.util
 			return str ;		
 		}
  
-     	static public function indexOfAny(str:String, ar:Array):Number 
+     	static public function indexOfAny(str:String, ar:Array):int
      	{
-    		var index:Number ;
-    		var l:Number = ar.length ;
-    		for (var i:Number = 0 ; i<l ; i++) {
+    		var index:int ;
+    		var l:uint = ar.length ;
+    		for (var i:uint = 0 ; i<l ; i++) 
+    		{
     			index = str.indexOf(ar[i]) ;
     			if (index > -1) return index ;
     		}
     		return -1 ;
     	}
 	
-    	static public function insert( str:String, startIndex:Number=0, value:String=null):String 
+    	static public function insert( str:String, startIndex:uint=0, value:String=null):String 
     	{
     		if( value == null ) return str ;
     		if( str == "" ) return value ;
@@ -314,11 +326,11 @@ package vegas.util
     		return str.charAt(length - 1) ;
 	    }
 
-    	static public function lastIndexOfAny(str:String, ar:Array):Number 
+    	static public function lastIndexOfAny(str:String, ar:Array):int 
     	{
-    		var index:Number = -1 ;
-    		var l:Number = ar.length ;
-    		for (var i:Number = 0 ; i<l ; i++) {
+    		var index:int = -1 ;
+    		var l:uint = ar.length ;
+    		for (var i:uint = 0 ; i<l ; i++) {
     			index = str.lastIndexOf(ar[i]) ;
     			if (index > -1) return index ;
     		}
@@ -330,14 +342,15 @@ package vegas.util
 		    char = char || " " ;
     		var s:String = new String(str) ;
             var l:uint = s.length ;
-            for (var k:uint = 0 ; k < (i - l) ; k++)
+            for ( var k:uint = 0 ; k < (i - l) ; k++)
             {
                 s = char + s ;
             }
             return s ;
         }
 	
-	    static public function padRight(str:String, i:int , char:String):String {
+	    static public function padRight(str:String, i:int , char:String):String 
+	    {
 		    char = char || " " ;
             var s:String = new String(str) ;
             var l:uint = s.length ;
@@ -348,17 +361,20 @@ package vegas.util
             return s ;
         }
  
- 	   static public function replace(str:String, search:String, replace:String):String {
+		static public function replace(str:String, search:String, replace:String):String 
+ 	   	{
 		    return str.split(search).join(replace) ;
 	    }
 	
-	    static public function reverse(str:String):String {  
+	    static public function reverse(str:String):String 
+	    {  
 		    var ar:Array = str.split("") ;
     		ar.reverse() ;
 	    	return ar.join("") ;
 	    }
 	
-	    static public function splice(str:String, startIndex:Number, deleteCount:Number, value:*):String {
+	    static public function splice(str:String, startIndex:uint, deleteCount:uint, value:*):String 
+	    {
 		    var a:Array = StringUtil.toArray(str) ;
 		    a = a.splice.apply(a, arguments) ;
 		    return a.toString() ;
@@ -397,15 +413,16 @@ package vegas.util
 		    return str.split("") ;
 	    }
 	
-	    static public function toSource( ...arguments ):String {
-		    var s:String = new String(arguments[0]) ;
+	    static public function toSource( ...arguments ):String 
+	    {
+		    var s:String = arguments[0] ;
     		var ch:String ;
     		var code:Number ;
     		var quote:String = "\"" ;
     		var str:String = "" ;
     		var pos:Number = 0 ;
     		var toUnicode:Function = UnicodeChar.toUnicode ;
-    		var l:Number = s.length ;
+    		var l:uint = s.length ;
     		while( pos < l ) {
     			ch = s.charAt(pos) ;
     			code = s.charCodeAt(pos) ;
@@ -425,11 +442,13 @@ package vegas.util
 		    return quote + str + quote ;
 	    }
 	
-	    static public function ucFirst(str:String):String {
+	    static public function ucFirst(str:String):String 
+	    {
 		    return str.charAt(0).toUpperCase() + str.substring(1) ;
 	    }
 	
-	    static public function ucWords(str:String):String {
+	    static public function ucWords(str:String):String 
+	    {
 		    var ar:Array = str.split(" ") ;
 		    var l:uint = ar.length ;
 		    while(--l > -1) 

@@ -119,7 +119,6 @@ package vegas.string
 		var at:Number = 0 ;
         var ch:String = ' ';
 		
-		// --- MTASC HACK
 		var _isDigit:Function ;
 		var _isHexDigit:Function ;
 		var _white:Function ;
