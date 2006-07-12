@@ -152,25 +152,34 @@ class vegas.string.StringFormatter extends AbstractFormatter {
 					expValue = getIndexValue( index ) ;
 					str += expValue ;
 				} else {
-					var vPos = expression.indexOf( "," ) ;
-					var fPos = expression.indexOf( ":" ) ;
-					if( vPos == -1 ) {
+					var vPos:Number = expression.indexOf( "," ) ;
+					var fPos:Number = expression.indexOf( ":" ) ;
+					if( vPos == -1 ) 
+					{
 						vPos = fPos ;
 						fPos = -1 ;
 					}
 					index = parseInt( expression.substring( 0, vPos ) ) ;
 					expValue = new StringUtil(getIndexValue( index )) ;
-					if( fPos == -1 ) {
+					if( fPos == -1 )
+					{
 						spaceAlign = parseInt( expression.substr( vPos+1 ) ) ;
-					} else {
+					}
+					else 
+					{
 						spaceAlign  = parseInt( expression.substring( vPos+1, fPos ) ) ;
 						paddingChar = expression.substr( fPos+1 ) ;
 					}
-					if ( isNaN( spaceAlign ) ) {
+					if ( isNaN( spaceAlign ) ) 
+					{
 						// 
-					} else if( spaceAlign > 0 ) {
+					}
+					else if( spaceAlign > 0 ) 
+					{
 						expValue = (new StringUtil(expValue)).padLeft( spaceAlign, paddingChar ) ;
-					} else {
+					}
+					else 
+					{
 						expValue = (new StringUtil(expValue)).padRight( -spaceAlign, paddingChar ) ;
 					}
 					str += expValue ;

@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- TypedStack
+/** TypedStack
 
 	AUTHOR
 		
@@ -69,7 +69,7 @@
 	
 		ICloneable, Iterable, Stack, IFormattable, IHashable
 
-----------  */
+*/
 
 import vegas.core.ICloneable;
 import vegas.core.IFormattable;
@@ -88,7 +88,10 @@ class vegas.data.stack.TypedStack extends AbstractTypeable implements ICloneable
 
 	public function TypedStack(p_type:Function , p_stack:Stack) {
 		super(p_type) ;
-		if (!p_stack) throw new IllegalArgumentError() ; // "Argument 'p_stack' must not be 'null' or 'undefined'.
+		if (!p_stack) 
+		{
+			throw new IllegalArgumentError("TypedStack constructor, argument 'p_stack' must not be 'null' or 'undefined'.") ;
+		}
 		_stack = p_stack ;
 		if (_stack.size() > 0) {
 			var it:Iterator = _stack.iterator() ;
