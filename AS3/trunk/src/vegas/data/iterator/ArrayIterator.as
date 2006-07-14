@@ -71,7 +71,10 @@ package vegas.data.iterator
 {
     
     import vegas.core.CoreObject ;
+    
     import vegas.data.iterator.Iterator ;
+    
+    import vegas.util.ClassUtil ;
     import vegas.util.MathsUtil ;
     import vegas.util.Serializer ;
 
@@ -80,7 +83,7 @@ package vegas.data.iterator
         
         // ----o Constructor
         
-        public function ArrayIterator(a:Array)
+        public function ArrayIterator( a:Array )
         {
  		   _a = a ;
     	   _k = -1 ;
@@ -105,7 +108,7 @@ package vegas.data.iterator
         
         public function remove():*
         {
-            return _a.splice(_k--, 1);
+            return _a.splice( _k-- , 1 );
         }
         
         public function reset():void
@@ -120,7 +123,7 @@ package vegas.data.iterator
 
         override public function toSource(...arguments:Array):String 
         {
-            return "new vegas.data.iterator.ArrayIterator(" + Serializer.toSource(_a) + ")" ;
+            return "new " + ClassUtil.getPath(this) + "(" + Serializer.toSource(_a) + ")" ;
         }
 
         // -----o Private Properties

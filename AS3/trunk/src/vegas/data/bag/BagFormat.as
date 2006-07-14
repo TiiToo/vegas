@@ -21,12 +21,12 @@
   
 */
 
-/**	MapFormat
+/**	BagFormat
 
 	AUTHOR
 
-		Name : MapFormat
-		Package : vegas.data.map
+		Name : BagFormat
+		Package : vegas.data.queue
 		Version : 1.0.0.0
 		Date :  2006-07-09
 		Author : ekameleon
@@ -39,52 +39,55 @@
 	
 	INHERIT
 
-		CoreObject → MapFormat
+		CoreObject → BagFormat
 
 	IMPLEMENT
 	
 		IFormat, IFormattable, IHashable, ISerializable
 	
-*/
+**/
 
-package vegas.data.map
+package vegas.data.bag
 {
-	
-	import vegas.core.IFormat;
-	import vegas.core.CoreObject;
-	import vegas.data.Map ;
-	import vegas.data.iterator.ArrayIterator ;
-	import vegas.data.iterator.Iterator ;
 
-	public class MapFormat extends CoreObject implements IFormat
+	import vegas.core.CoreObject;
+	import vegas.core.IFormat;
+
+	import vegas.data.Bag;
+	import vegas.data.iterator.Iterator;
+
+	public class BagFormat extends CoreObject implements IFormat
 	{
 		
 		// ----o Constructor
 		
-		public function MapFormat()
+		public function BagFormat()
 		{
 			super();
 		}
-
+		
 		// ----o Public Methods
 		
 		public function formatToString(o:*):String
 		{
-		    var m:Map = o as Map ;
-		    if (m == null) return null ;
-    		var r:String = "{";
-    		var vIterator:Iterator = new ArrayIterator(m.getValues());
-    		var kIterator:Iterator = new ArrayIterator(m.getKeys());
-    		while (kIterator.hasNext()) {
-    			var k:* = kIterator.next() ;
-    			var v:* = vIterator.next() ;
-    			r += k + ":" + v ;
-    			if (kIterator.hasNext()) r += ",";
-    		}
-    		r += "}";
-    		return r ;
-        }
+			if ( ! o is Bag) return null ;
+			var s:String = "{" ;
+			var it:Iterator = o.uniqueSet().iterator() ;
+			var cur:* ;
+			var count:uint ;
+			while (it.hasNext()) 
+			{
+				cur = it.next() ;
+				count = o.getCount(cur) ;
+				s += count + ":" + cur ;
+				if (it.hasNext())
+				{
+					s += "," ;
+				}
+			}
+			s += "}" ;
+			return s ;
+		}
 		
 	}
-
 }

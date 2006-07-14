@@ -50,8 +50,6 @@
 		- get(id:uin):*
 
 		- getType():*
-				
-			return the type.
 
 		- hashCode():uint
 		
@@ -85,7 +83,7 @@
 	
 	IMPLEMENTS 
 
-		Collection, ICloneable, ICopyable, IFormattable, IHashable ISerializable, Iterable,, Typeable, Validator
+		Collection, ICloneable, ICopyable, IFormattable, IHashable ISerializable, Iterable, ITypeable, IValidator
 
 */
 

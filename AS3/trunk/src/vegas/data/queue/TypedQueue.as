@@ -65,11 +65,15 @@
 		
 		- size():uint
 		
+		- supports(value:*):Boolean
+
 		- toArray():Array
-		
-		- toSource():String
-		
+	
+        - toSource(...arguments:Array):String
+
 		- toString():String
+
+		- validate(value:*):void
 
 	INHERIT
 	

@@ -69,19 +69,20 @@
 
         ICloneable, IFormattable, IHashable, ISerializable, Iterable.
 
-**/
+*/
 
 package vegas.data
 {
 
-    import vegas.core.IFormattable;
-    import vegas.core.ISerializable;
-    import vegas.core.IHashable;
     import vegas.core.ICloneable;
+    import vegas.core.ICopyable;
+    import vegas.core.IFormattable;
+    import vegas.core.IHashable;
+    import vegas.core.ISerializable;
     import vegas.data.iterator.Iterable;
     import vegas.data.iterator.Iterator;
 
-    public interface Map extends ICloneable, IFormattable, IHashable, ISerializable, Iterable
+    public interface Map extends ICloneable, ICopyable, IFormattable, IHashable, ISerializable, Iterable
     {
      
      	function clear():void ;

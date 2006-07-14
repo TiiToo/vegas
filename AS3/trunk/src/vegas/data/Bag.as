@@ -112,7 +112,7 @@ package vegas.data
 
     	function insertCopies(o:*, nCopies:uint):Boolean ;
 
-    	function getCount(o:*):Number ;
+    	function getCount(o:*):uint ;
 	
     	function removeAll(c:Collection):Boolean ;
 

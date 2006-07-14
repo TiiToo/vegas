@@ -21,14 +21,14 @@
   
 */
 
-/**	MapFormat
+/**	MultiMapFormat
 
 	AUTHOR
 
-		Name : MapFormat
+		Name : MultiMapFormat
 		Package : vegas.data.map
 		Version : 1.0.0.0
-		Date :  2006-07-09
+		Date :  2006-07-14
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
@@ -39,7 +39,7 @@
 	
 	INHERIT
 
-		CoreObject → MapFormat
+		CoreObject → MultiMapFormat
 
 	IMPLEMENT
 	
@@ -49,42 +49,42 @@
 
 package vegas.data.map
 {
-	
 	import vegas.core.IFormat;
 	import vegas.core.CoreObject;
-	import vegas.data.Map ;
-	import vegas.data.iterator.ArrayIterator ;
 	import vegas.data.iterator.Iterator ;
+	import vegas.data.Map ;
+	import vegas.data.MultiMap;
+	
 
-	public class MapFormat extends CoreObject implements IFormat
+	public class MultiMapFormat extends CoreObject implements IFormat
 	{
 		
 		// ----o Constructor
 		
-		public function MapFormat()
+		public function MultiMapFormat()
 		{
 			super();
 		}
-
+		
 		// ----o Public Methods
 		
 		public function formatToString(o:*):String
 		{
-		    var m:Map = o as Map ;
-		    if (m == null) return null ;
+		    var m:MultiMap = (o as MultiMap) ;
+		    if (m == null) 
+		    {
+		       return null ;
+		   	}
     		var r:String = "{";
-    		var vIterator:Iterator = new ArrayIterator(m.getValues());
-    		var kIterator:Iterator = new ArrayIterator(m.getKeys());
+    		var vIterator:Iterator = m.valueIterator() ;
+    		var kIterator:Iterator = m.keyIterator() ;
     		while (kIterator.hasNext()) {
-    			var k:* = kIterator.next() ;
-    			var v:* = vIterator.next() ;
-    			r += k + ":" + v ;
+    			r += kIterator.next().toString() + ":" + vIterator.next().toString();
     			if (kIterator.hasNext()) r += ",";
     		}
     		r += "}";
     		return r ;
-        }
+		}
 		
 	}
-
 }

@@ -35,7 +35,7 @@
 	
 	METHOD SUMMARY
 	
-		- hashNext():Boolean
+		- hasNext():Boolean
 		
 		- key():*
 		
@@ -56,15 +56,15 @@ package vegas.data.iterator
     {
         
         function hasNext():Boolean ;
-
+     
         function key():* ;
        
         function next():* ;
-        	
+    	
         function remove():* ;
-
+     
         function reset():void ;
-
+     
         function seek( position:* ):void ;
         
     }

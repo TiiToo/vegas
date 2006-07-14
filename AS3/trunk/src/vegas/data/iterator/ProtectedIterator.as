@@ -44,11 +44,15 @@
 
 	METHOD SUMMARY
 	
-		- hashNext():Boolean
+		- hasNext():Boolean
 		
-		- key()
+		- key():*
 		
-		- next()
+		- next():*
+		 
+		- toSource(...arguments:Array):String
+		
+		- toString():String
 
 	INHERIT
 	

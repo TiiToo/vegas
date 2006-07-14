@@ -21,11 +21,11 @@
   
 */
 
-/* EventDispatcher
+/* EventBroadcaster
 
 	AUTHOR
 	
-		Name : EventDispatcher
+		Name : EventBroadcaster
 		Package : vegas.events
 		Version : 1.0.0.0
 		Date :  2006-07-07
@@ -35,7 +35,7 @@
 
 	CONSTRUCTOR
 	
-		new EventDispatcher(target:IEventDispatcher, parent:EventDispatcher) ;
+		new EventBroadcaster(target:IEventDispatcher) ;
 
 	PROPERTY SUMMARY
 	
@@ -98,15 +98,15 @@ package vegas.events
         // ----o Constructor
         
         /**
-         * Aggregates an instance of the EventBroadcaster class.
-         */
+          * Aggregates an instance of the EventBroadcaster class.
+          */
         public function EventBroadcaster(target:IEventDispatcher=null)
-            {
+        {
             
             super(target);
             target = (target == null) ? this : target ;
            
-            }
+        }
  
      	// ----o Init HashCode
 	
@@ -117,15 +117,15 @@ package vegas.events
         static public var DEFAULT_DISPATCHER_NAME:String = "__default__" ;
         
         /**
-         * Returns the target reference.
-         */
+          * Returns the target reference.
+          */
         public var target:IEventBroadcaster ;
         
         // ----o Public Methods
         
         /**
-         * Registers an event listener object with an EventBroadcaster object so that the listener receives notification of an event.
-         */
+          * Registers an event listener object with an EventBroadcaster object so that the listener receives notification of an event.
+          */
         public function addListener(type:String, listener:*, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void
         {    
 
@@ -145,18 +145,18 @@ package vegas.events
         }
         
         /**
-         * Clear all globals EventBroadcaster instances.
-         */
+          * Clear all globals EventBroadcaster instances.
+          */
     	static public function flush():void 
   	    {
 		    EventBroadcaster.instances.clear() ;
         }
 
         /**
-         * Create and return a globalEventBroadcaster instance.
-         */
+          * Create and return a globalEventBroadcaster instance.
+          */
 	    static public function getInstance(name:String=null):EventBroadcaster
-	        {
+	    {
 		    
 		    if (name == null) name = EventBroadcaster.DEFAULT_DISPATCHER_NAME ;
 		    
@@ -167,21 +167,22 @@ package vegas.events
 
     		return EventBroadcaster.instances.get(name) ;
     		
-	        }
+	    }
  
         /**
-         * Returns the hashCode of the EventDispatcher object.
-         */
+          * Returns the hashCode of the EventDispatcher object.
+          */
 		public function hashCode():uint 
-		    {
+		{
 			return null ;
-    		}
+   		}
  
 
         /**
-         * Removes a event listener from the EventDispatcher object.
-         */
-        public function removeListener(type:String, listener:*, useCapture:Boolean = false):void {
+          * Removes a event listener from the EventDispatcher object.
+          */
+        public function removeListener(type:String, listener:*, useCapture:Boolean = false):void 
+        {
             
             var func:Function ;
             
@@ -199,10 +200,10 @@ package vegas.events
         }
         
         /**
-         * Remove a global EventDispatcher instance.
-         */
+          * Remove a global EventDispatcher instance.
+          */
         static public function removeInstance(name:String=null):Boolean 
- 	        {
+ 	    {
  	        
  	        if (name == null) name = EventBroadcaster.DEFAULT_DISPATCHER_NAME ;
  	           
@@ -214,19 +215,21 @@ package vegas.events
 	            {
     			return false ;
         		}
-	        }
+	    }
 
         /**
-         * Returns a string representing the source code of the EventDispatcher object.
-         */
-		public function toSource(...arguments):String {
+          * Returns a string representing the source code of the EventDispatcher object.
+          */
+		public function toSource(...arguments:Array):String 
+		{
 			return "new EventBroadcaster(" + Serializer.toSource(target) + ")" ;
 		}
 
         /**
-         * Returns a string representing the specified EventDispatcher object (ECMA-262).
-         */
-		override public function toString():String {
+          * Returns a string representing the specified EventDispatcher object (ECMA-262).
+          */
+		override public function toString():String 
+		{
 			return "[" + ClassUtil.getName(this) + "]" ;
 		}
         

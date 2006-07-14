@@ -76,6 +76,8 @@ package vegas.errors
     internal class AbstractError extends Error implements IFormattable, IHashable
     {
         
+        // ----o Constructor
+        
         public function AbstractError(message:String="", id:int=0)
         {
             super(message, id);

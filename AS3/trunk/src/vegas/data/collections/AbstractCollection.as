@@ -79,14 +79,10 @@ package vegas.data.collections
 {
 
 	import vegas.core.CoreObject;
-	
 	import vegas.data.Collection;
-	
-	import vegas.data.collections.CollectionFormat ;
-	import vegas.data.iterator.ArrayIterator ;
-	import vegas.data.iterator.Iterator ;
-	
-	import vegas.util.Serializer ;
+	import vegas.data.iterator.ArrayIterator;
+	import vegas.data.iterator.Iterator;
+	import vegas.util.Serializer;
 	
 	public class AbstractCollection extends CoreObject implements Collection
 	{
@@ -96,7 +92,7 @@ package vegas.data.collections
 		public function AbstractCollection( ar:Array=null )
 		{
 
-			if (ar is Array && ar.length > 0) 
+			if  ( ar as Array != null) 
 			{	
 				_a = ar.slice() ;	
 			}
@@ -167,8 +163,7 @@ package vegas.data.collections
 		
 		public function remove(o:*):Boolean
 		{
-			var it:Iterator ;
-			it = iterator() ;
+			var it:Iterator = iterator() ;
 			if (o == null) 
 			{
 				while(it.hasNext()) 
@@ -183,9 +178,11 @@ package vegas.data.collections
 				
 			}
  			else {
+ 				
 				while (it.hasNext()) 
 				{
-					if (o == it.next() ) 
+					var v:* = it.next() ;
+					if (o == v) 
 					{
 						it.remove() ;
 						return true ;
@@ -209,7 +206,7 @@ package vegas.data.collections
 	     */
 		public function toArray():Array
 		{
-			return _a.concat() ;
+			return _a ;
 		}
 
 		override public function toSource(...arguments:Array):String

@@ -53,7 +53,7 @@
 	
 	IMPLEMENTS 
 
-		IFormattable, ISerializable, IHashable, Typeable, Validator
+		IFormattable, ISerializable, IHashable, ITypeable, IValidator
 
 */
 

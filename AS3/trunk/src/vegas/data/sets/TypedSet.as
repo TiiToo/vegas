@@ -48,7 +48,9 @@
 		- contains(o:*):Boolean
 		
 		- get(id:uin):*
-		
+
+		- getType():*
+
 		- insert(o:*):Boolean
 		
 		- isEmpty():Boolean
@@ -56,14 +58,20 @@
 		- iterator():Iterator
 		
 		- remove(o):Boolean
-		
+
+		- setType(type:*):void
+
 		- size():uint
 		
+		- supports(value:*):Boolean
+
 		- toArray():Array
-		
-		- toSource(...arguments:Array):String
-		
+	
+        - toSource(...arguments:Array):String
+
 		- toString():String
+
+		- validate(value:*):void
 
     INHERIT
     

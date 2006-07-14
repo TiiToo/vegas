@@ -146,11 +146,14 @@ package vegas.data.map
     import vegas.core.HashCode ;
     import vegas.core.ICloneable ;
     import vegas.core.IFormattable ;
+
     import vegas.data.iterator.ArrayIterator  ;
     import vegas.data.iterator.Iterator  ;
     import vegas.data.iterator.MapIterator  ;
     import vegas.data.Map ;
     import vegas.data.map.MapFormat ;
+
+	import vegas.util.Copier ;
     import vegas.util.Serializer ;
 
     public class HashMap extends Proxy implements Map
@@ -160,6 +163,7 @@ package vegas.data.map
         
         public function HashMap( ...arguments:Array )
         {
+            
             clear() ;
             
             var k:* = arguments[0] ;
@@ -206,6 +210,11 @@ package vegas.data.map
             m.putAll(this) ;
             return m ;
         }
+
+		public function copy():*
+		{
+			return new HashMap( Copier.copy( getKeys() ) , Copier.copy( getValues() ) ) ;
+		}
 
         public function containsKey(key:*):Boolean
         {
@@ -293,11 +302,13 @@ package vegas.data.map
         
         public function remove(key:*):*
         {
+		    
 		    var r:* = null ;
     		var value:* ;
 			
 			if ( containsKey( key ) ) 
 			{
+
 				_size -- ;
 
 				value = _keys[ key ];
@@ -311,13 +322,15 @@ package vegas.data.map
 					delete _values[ value ];
 				}
 				
-				delete _keys[ key ];
+				delete _keys[ key ] ;
 				
 				return value ;
 				
 			}
-			
-			return null ;
+			else 
+			{
+				return null ;
+			}
 			
         }
         
@@ -333,7 +346,7 @@ package vegas.data.map
         
         public function toString():String
         {
-		    return new MapFormat().formatToString(this) ;
+		    return new MapFormat().formatToString( this ) ;
         }
 
         // ----o Private Properties

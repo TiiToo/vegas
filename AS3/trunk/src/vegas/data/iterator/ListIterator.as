@@ -35,7 +35,7 @@
 	
 	METHOD SUMMARY
 	
-		- hashNext():Boolean
+		- hasNext():Boolean
 
  		- hasPrevious():Boolean		
  

@@ -21,7 +21,7 @@
   
 */
 
-/**	ArrayFieldIterator
+/* ArrayFieldIterator
 
 	AUTHOR
 
@@ -39,15 +39,17 @@
 
 	METHOD SUMMARY
 	
+		- hashCode():uint
+	
 		- hasNext():Boolean
 		
-		- key()
+		- key():*
 		
-		- next()
+		- next():*
 		
 		- reset():Void
 		
-		- remove()
+		- remove():*
 		
 		- seek(n:Number)
 		

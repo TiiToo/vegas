@@ -21,76 +21,55 @@
   
 */
 
-/* Stack [Interface]
+/** MapUtil
 
 	AUTHOR
 	
-		Name : Stack
-		Package : vegas.data
+		Name : MapUtil
+		Package : vegas.data.map
 		Version : 1.0.0.0
-		Date :  2006-07-08
+		Date :  2006-07-10
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
 	METHOD SUMMARY
 	
-		- clear():void
+		- static getNumber(map:Map, key):Number
 		
-		- clone(:*
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- peek():*
-		
-		- pop():*
-		
-		- push(o):*
-		
-		- search(o):Number
-		
-		- size():uint
-		
-		- toArray():Array ;
-		
-		- toString():String
-
-
-	INHERIT
-	
-		ICloneable, Iterable, IFormattable, ISerializable
-
 */
 
-package vegas.data
+package vegas.data.map
 {
 	
-	import vegas.core.ICloneable;
-	import vegas.core.ICopyable;
-	import vegas.data.iterator.Iterable;
-	import vegas.core.IFormattable;
-	import vegas.core.ISerializable;
+	import vegas.data.Map ;
 	
-    public interface Stack extends ICloneable, ICopyable, Iterable, IFormattable, ISerializable
-    {
-
-		function clear():void ;
+	public class MapUtil
+	{
+		
+		static public function getNumber(map:Map, key:*):Number 
+		{
+        	if (map != null) {
+	            var answer:* = map.get(key) ;
+	            if (answer != null) 
+	            {
+	                if (answer is Number) 
+	                {
+	                    return Number(answer) ;
+	                }
+	                else if (answer is String) 
+	                {
+	                    
+	                    var r:Number = parseInt(answer) ;
+						
+						return isNaN(r) ? NaN : r ;
+						
+	                }
+	            }
+	        }
+    	    return NaN ;
+	    }
+		
+	}
 	
-		function isEmpty():Boolean ;
-
-		function peek():* ;
-
-		function pop():* ;
-
-		function push(o:*):void ;
-	
-		function search(o:*):uint ;
-
-		function size():uint ;
-
-		function toArray():Array ;
-	
-    }
 }

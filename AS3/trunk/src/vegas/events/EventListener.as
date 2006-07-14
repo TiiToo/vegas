@@ -37,7 +37,7 @@
 	
 		- handleEvent(e:Event):*
 		 
-**/
+*/
 
 package vegas.events
 {
@@ -48,4 +48,5 @@ package vegas.events
 	{
 		function handleEvent(e:Event):* ;
 	}
+	
 }
