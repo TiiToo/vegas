@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	MapUtil
+/** MapUtil
 
 	AUTHOR
 	
@@ -33,13 +33,13 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
-	METHODS
+	METHOD SUMMARY
 	
-		- getNumber(map:Map, key):Number
+		- static getNumber(map:Map, key):Number
 		
 	TODO : EN CONSTRUCTION !!
 
-----------  */
+*/
 
 import vegas.data.Map;
 
@@ -51,15 +51,21 @@ class vegas.data.map.MapUtil {
 		//
 	}
 
-	// ----o Static Public Methods
+	// ----o Public Methods
     
-	static public function getNumber(map:Map, key):Number {
-        if (map != null) {
+	static public function getNumber(map:Map, key):Number
+	{
+        if (map != null) 
+        {
             var answer = map.get(key) ;
-            if (answer != null) {
-                if (answer instanceof Number) {
+            if (answer != null) 
+            {
+                if (answer instanceof Number) 
+                {
                     return Number(answer) ;
-                } else if (answer instanceof String) {
+                }
+                else if (answer instanceof String) 
+                {
                     var r:Number = parseInt(answer) ;
 					return (r == isNaN) ? null : Number(r) ;
                 }

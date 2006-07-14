@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	BagIterator
+/**	BagIterator
 
 	AUTHOR
 	
@@ -53,17 +53,13 @@
 
 	IHNERIT
 	
-		CoreObject
-			|
-			BagIterator
+		CoreObject → BagIterator
 
 	IMPLEMENTS 
 	
 		IFormattable, IHashable, Iterator
 
-	TODO : Test remove
-
-----------  */
+*/
 
 import vegas.core.CoreObject;
 import vegas.data.bag.AbstractBag;

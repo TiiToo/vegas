@@ -79,7 +79,7 @@
 
 		ICloneable, Iterable, Map, Typeable, ISerializable, IFormattable, Validator
 	
-**/
+*/
 
 import vegas.core.ICloneable;
 import vegas.core.IFormattable;
@@ -163,7 +163,7 @@ class vegas.data.map.TypedMap extends AbstractTypeable implements ICloneable, Ma
 		return _map.remove(key) ;
     }
 
-	public function setType(type:Function):Void {
+	/*override*/ public function setType(type:Function):Void {
 		super.setType(type) ;
 		_map.clear() ;
 	}

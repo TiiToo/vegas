@@ -163,7 +163,7 @@ class vegas.data.bag.HashBag extends AbstractBag {
 	// ----o Constructor
 
 	public function HashBag( c:Collection ) {
-		super(new HashMap) ;
+		super(new HashMap()) ;
 		if (c) insertAll(c) ;
 	}
 	

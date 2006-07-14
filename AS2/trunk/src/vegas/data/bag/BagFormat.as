@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	BagFormat
+/**	BagFormat
 
 	AUTHOR
 
@@ -39,15 +39,13 @@
 	
 	INHERIT
 	
-		CoreObject
-			|
-			BagFormat
+		CoreObject → BagFormat
 	
 	IMPLEMENTS
 	
 		IFormat
 
-----------  */
+*/
 
 import vegas.core.CoreObject;
 import vegas.core.IFormat;
