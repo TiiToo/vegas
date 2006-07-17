@@ -87,7 +87,6 @@
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
 import vegas.core.IEquality;
-import vegas.core.ISerializable;
 import vegas.errors.ArgumentOutOfBoundsError;
 import vegas.util.MathsUtil;
 

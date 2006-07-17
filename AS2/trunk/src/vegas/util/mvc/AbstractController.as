@@ -49,7 +49,7 @@
 
 	IMPLEMENTS 
 	
-		IController, IFormattable, IHashable
+		IController, IFormattable, IHashable, ISerializable
 
 **/
 
