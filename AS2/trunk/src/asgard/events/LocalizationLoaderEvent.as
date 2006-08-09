@@ -75,26 +75,26 @@
 	
 		Event, ICloneable, IFormattable, IHashable, ISerializable
 
-**/
-
-// TODO tester !!
+*/
 
 import asgard.events.LoaderEvent;
 import asgard.system.Lang;
 import asgard.system.Locale;
-import asgard.system.LocalizationLoader;
+import asgard.system.ILocalizationLoader;
+import asgard.net.ILoader;
 
 /**
  * @author eKameleon
  * @version 1.0.0.0
  */
  
-class asgard.events.LocalizationLoaderEvent extends LoaderEvent {
+class asgard.events.LocalizationLoaderEvent extends LoaderEvent 
+{
 
 	// ----o Constructor
 		
 	public function LocalizationLoaderEvent(
-		type : String, loader:LocalizationLoader
+		type : String, loader:ILocalizationLoader
 		, nCode:Number
 		, sError:String
 		, context
@@ -103,11 +103,11 @@ class asgard.events.LocalizationLoaderEvent extends LoaderEvent {
 		, time:Number
 		, stop:Number  
 	) 
-		{
+	{
 			
-		super(type, loader, nCode, sError, context, bubbles, eventPhase, time, stop) ; 
+		super(type, ILoader(loader), nCode, sError, context, bubbles, eventPhase, time, stop) ; 
 		
-		}
+	}
 	
 	// ----o Constant
 	
@@ -117,12 +117,14 @@ class asgard.events.LocalizationLoaderEvent extends LoaderEvent {
 	
 	// ----o Public Methods
 	
-	public function clone() {
-		return new LocalizationLoaderEvent( getType(), LocalizationLoader(getLoader())) ;
+	public function clone() 
+	{
+		return new LocalizationLoaderEvent( getType(), ILocalizationLoader(getLoader())) ;
 	}
 	
-	public function getLocalization(lang:Lang):Locale {
-		return LocalizationLoader(getLoader()).getLocalization(lang) ;
+	public function getLocalization(lang:Lang):Locale 
+	{
+		return ILocalizationLoader(getLoader()).getLocalization(lang) ;
 	}
 
 }

@@ -72,7 +72,7 @@ class vegas.core.CoreObject implements IFormattable, IHashable, ISerializable {
 	}
 
 	public function toSource(indent : Number, indentor : String):String {
-		return null ; // override thid method
+		return "new " + ConstructorUtil.getPath(this) + "()" ;
 	}
 
 	public function toString():String {

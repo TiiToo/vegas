@@ -22,9 +22,7 @@
   
 */
 
-import buRRRn.eden.config ;
 
-import buRRRn.eden.strings ;
 
 /**
  *	Constructor: GenericParser

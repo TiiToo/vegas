@@ -85,7 +85,7 @@
 
  	IMPLEMENTS
  
-		EventTarget, IEventDispatcher, IFormattable, IHashable
+		EventTarget, IEventDispatcher, IFormattable, IHashable, ISerializable
 
 **/
 

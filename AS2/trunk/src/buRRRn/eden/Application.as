@@ -22,12 +22,12 @@
   
 */
 
-import buRRRn.eden.config ;
-
+import buRRRn.eden.config;
 import buRRRn.eden.ECMAScript;
-import vegas.util.StringUtil;
-import vegas.util.serialize.Serializer;
+
 import vegas.util.ArrayUtil;
+import vegas.util.serialize.Serializer;
+import vegas.util.StringUtil;
 
 /* Singleton: Application
    The eden application.
@@ -165,7 +165,7 @@ class buRRRn.eden.Application
     static function isAuthorized( path )
         {
         
-	    var path:StringUtil = new StringUtil(path) ;
+	    path = new StringUtil(path) ;
         
         var strictMode:Boolean  = config.strictMode ;
         var pathMode:Boolean    = false ;
@@ -200,7 +200,7 @@ class buRRRn.eden.Application
         if( whiteList.length == 0 ) return false ;
         
         var whiteListPath:StringUtil ;
-        var path:StringUtil ;
+
         var len:Number = whiteList.length ;
 		
         for( var i:Number = 0 ; i<len; i++ )

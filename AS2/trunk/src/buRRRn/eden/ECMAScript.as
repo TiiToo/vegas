@@ -22,11 +22,11 @@
   
 */
 
-import buRRRn.eden.config ;
-
+import buRRRn.eden.config;
 import buRRRn.eden.strings;
 
 import vegas.util.ConstructorUtil;
+import vegas.util.StringUtil;
 
 /**
  * Constructor: ECMAScript
@@ -667,7 +667,8 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
             
             if( fcnPath.indexOf( "." ) > -1 )
                 {
-                fcnObjScope = eval( "_global." + fcnPath.replace( "."+fcnName, "" ) );
+                var s:StringUtil = new StringUtil(fcnPath) ;
+                fcnObjScope = eval( "_global." + s.replace( "."+fcnName, "" ) );
                 }
             else
                 {
@@ -839,83 +840,88 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
             while( next() )
                 {
                 switch( ch )
-                    {
+                {
+                    
                     case quote:
-                    next();
-                    return str;
+                    	
+                    	next() ;
+                    	return str;
                     
                     case "\\":
-                    /* note:
-                       Escape Sequence
-                       \ followed by one of ' " \ b f n r t v
-                       or followed by x hexdigit hexdigit
-                       or followed by u hexdigit hexdigit hexdigit hexdigit
-                       see: ECMA-262 specs 7.8.4 (PDF p30 to p32/188)
-                    */
-                    switch( next() )
-                        {
-                        case "b": //backspace       - \u0008
-                        str += "\b";
-                        break;
+                    	/* note:
+                       		Escape Sequence
+                       		\ followed by one of ' " \ b f n r t v
+                       		or followed by x hexdigit hexdigit
+                       		or followed by u hexdigit hexdigit hexdigit hexdigit
+                       		see: ECMA-262 specs 7.8.4 (PDF p30 to p32/188)
+                    	*/
+                    
+                    	switch( next() )
+                    	{
+                    		case "b": //backspace       - \u0008
+                        		str += "\b";
+	                        	break;
+                        	
+                        	case "t": //horizontal tab  - \u0009
+	                        	str += "\t";
+                        		break;
+	                        
+                        	case "n": //line feed       - \u000A
+                        		str += "\n";
+                        		break;
                         
-                        case "t": //horizontal tab  - \u0009
-                        str += "\t";
-                        break;
+	                       //TODO check \v bug 
+	                       case "v" : //vertical tab    - \u000B
+                        		
+                        		//str += "\v";
+                        		break;
                         
-                        case "n": //line feed       - \u000A
-                        str += "\n";
-                        break;
+                        	case "f" : //form feed       - \u000C
+                        		str += "\f";
+                        		break;
                         
-                        /* TODO: check \v bug */
-                        case "v": //vertical tab    - \u000B
-                        str += "\v";
-                        break;
+                       		 case "r": //carriage return - \u000D
+                        		str += "\r";
+                        		break;
                         
-                        case "f": //form feed       - \u000C
-                        str += "\f";
-                        break;
+                        	case "\"": //double quote   - \u0022
+                        		str += "\"";
+                        		break;
                         
-                        case "r": //carriage return - \u000D
-                        str += "\r";
-                        break;
+		                    case "\'": //single quote   - \u0027
+                        		str += "\'";
+                        		break;
                         
-                        case "\"": //double quote   - \u0022
-                        str += "\"";
-                        break;
+                        	case "\\": //backslash      - \u005c
+                        		str += "\\";
+                        		break;
                         
-                        case "\'": //single quote   - \u0027
-                        str += "\'";
-                        break;
+                        	case "u": //unicode escape sequence \uFFFF
+                        		var ucode = source.substring( pos, pos+4 );
+                        		str  += String.fromCharCode( parseInt( ucode, 16 ) );
+                        		pos      += 4;
+                        		break;
                         
-                        case "\\": //backslash      - \u005c
-                        str += "\\";
-                        break;
+	                        case "x": //hexadecimal escape sequence \xFF
+                        		var xcode = source.substring( pos, pos+2 );
+                        		str      += String.fromCharCode( parseInt( xcode, 16 ) );
+                        		pos      += 2;
+                        		break;
                         
-                        case "u": //unicode escape sequence \uFFFF
-                        var ucode = source.substring( pos, pos+4 );
-                        str      += String.fromCharCode( parseInt( ucode, 16 ) );
-                        pos      += 4;
-                        break;
-                        
-                        case "x": //hexadecimal escape sequence \xFF
-                        var xcode = source.substring( pos, pos+2 );
-                        str      += String.fromCharCode( parseInt( xcode, 16 ) );
-                        pos      += 2;
-                        break;
-                        
-                        default:
-                        str += ch;
+                        	default:
+                        		str += ch;
                         }
-                    break;
+                    	break;
                     
                     default:
-                    if( !isLineTerminator( ch ) )
+                    	
+                    	if( !isLineTerminator( ch ) )
                         {
-                        str += ch;
+                        	str += ch;
                         }
-                    else
+                    	else
                         {
-                        log( strings.errorLineTerminator );
+                        	log( strings.errorLineTerminator );
                         }
                     }
                 

@@ -21,21 +21,21 @@
   
 */
 
-/** LocalizationLoader
+/** EdenLocalizationLoader
 
 	AUTHOR
 
-		Name : LocalizationLoader
+		Name : EdenLocalizationLoader
 		Package : asgard.system
 		Version : 1.0.0.0
-		Date :  2006-02-19
+		Date :  2006-08-08
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
 	INHERIT
 	
-		CoreObject → AbstractCoreEventDispatcher → AbstractLoader → URLLoader → JSONLoader
+		CoreObject → AbstractCoreEventDispatcher → AbstractLoader → URLLoader → EdenLoader → EdenLocalizationLoader
 			 	
 	IMPLEMENTS
 	
@@ -44,7 +44,7 @@
 */	
 
 import asgard.events.LocalizationLoaderEvent;
-import asgard.net.JSONLoader;
+import asgard.net.EdenLoader;
 import asgard.net.URLRequest;
 import asgard.system.ILocalizationLoader;
 import asgard.system.Lang;
@@ -57,12 +57,12 @@ import vegas.errors.IllegalArgumentError;
  * @author eKameleon
  * @date 2006-03-24
  */
-class asgard.system.LocalizationLoader extends JSONLoader implements ILocalizationLoader
+class asgard.system.EdenLocalizationLoader extends EdenLoader implements ILocalizationLoader
 {
 	
 	// ----o Constructor
 	
-	function LocalizationLoader() 
+	function EdenLocalizationLoader() 
 	{
 		super() ;
 	}
@@ -76,7 +76,7 @@ class asgard.system.LocalizationLoader extends JSONLoader implements ILocalizati
 	// ----o Constants
 	
 	static public var DEFAULT_PREFIX:String = "localize_" ;
-	static public var DEFAULT_SUFFIX:String = ".json" ;
+	static public var DEFAULT_SUFFIX:String = ".eden" ;
 	
 	// ----o Public Methods
 
@@ -113,10 +113,16 @@ class asgard.system.LocalizationLoader extends JSONLoader implements ILocalizati
 	
 	public function load( lang:Lang ):Void 
 	{
+		
+		trace(lang + " : " ) ;
+		
 		if (Lang.validate(lang)) 
 		{
 			var uri:String = getPath() + getPrefix() + lang + getSuffix() ;
 			var request:URLRequest = new URLRequest(uri) ;
+			
+			trace(uri) ;
+			
 			super.load( request ) ;
 		}
 		else 

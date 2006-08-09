@@ -21,7 +21,7 @@
   
 */
 
-/** ------ Localization
+/** Localization
 
 	AUTHOR
 
@@ -52,23 +52,20 @@
 
 	INHERIT
 	
-		CoreObject
-			|
-			AbstractCoreEventDispatcher
-			 	|
-			 	Localization
+		CoreObject → AbstractCoreEventDispatcher → Localization
 			 	
 	IMPLEMENTS
 	
 		IFormattable, LoaderListener, IHashable, IEventDispatcher
 	
-----------  */	
+*/	
 
 import asgard.events.LoaderEvent;
 import asgard.events.LoaderEventType;
 import asgard.events.LocalizationEvent;
 import asgard.events.UIEventType;
 import asgard.net.LoaderListener;
+import asgard.system.ILocalizationLoader;
 import asgard.system.Lang;
 import asgard.system.Locale;
 import asgard.system.LocalizationLoader;
@@ -76,6 +73,7 @@ import asgard.system.LocalizationLoader;
 import vegas.data.map.HashMap;
 import vegas.events.AbstractCoreEventDispatcher;
 import vegas.events.Delegate;
+import vegas.events.EventListener;
 import vegas.util.factory.PropertyFactory;
 
 
@@ -87,26 +85,34 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	
 	// ----o Constructor
 	
-	private function Localization(sName:String) {
+	private function Localization(sName:String) 
+	{
 
 		super();
 		
 		_sName = sName ;
 		
 		_map = new HashMap() ;
+		
 		_eChange = new LocalizationEvent ( Localization.CHANGE ) ;
 		
-		_loader = new LocalizationLoader() ;
-		_loader.setParent( getEventDispatcher() ) ; // use bubbling
+		_complete = new Delegate(this, onLoadComplete) ;
+		_error = new Delegate(this, onLoadError) ;
+		_init = new Delegate(this, onLoadInit) ;
+		_progress = new Delegate(this, onLoadProgress) ;
+		_start = new Delegate(this, onLoadStart) ;
+		_timeOut = new Delegate(this, onLoadTimeOut) ;
 		
-		_loader.addEventListener(LoaderEventType.COMPLETE, new Delegate(this, onLoadComplete)) ;
-		_loader.addEventListener(LoaderEventType.INIT, new Delegate(this, onLoadInit)) ;
-		_loader.addEventListener(LoaderEventType.PROGRESS, new Delegate(this, onLoadProgress)) ;
-		_loader.addEventListener(LoaderEventType.START, new Delegate(this, onLoadStart)) ;
-		_loader.addEventListener(LoaderEventType.IO_ERROR, new Delegate(this, onLoadError)) ;
-		_loader.addEventListener(LoaderEventType.TIMEOUT, new Delegate(this, onLoadTimeOut)) ;
+		setLoader( new LocalizationLoader() ) ;
 		
 	}
+
+	private var _complete:EventListener ;
+	private var _error:EventListener ;
+	private var _init:EventListener ;
+	private var _progress:EventListener ;
+	private var _start:EventListener ;
+	private var _timeOut:EventListener ;
 
 	// ----o Constants
 	
@@ -128,44 +134,54 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	
 	// ----o Public Methods
 
-	public function clear():Void {
+	public function clear():Void 
+	{
 		_map.clear() ;
 	}
 
-	public function contains(lang:Lang):Boolean {	
+	public function contains(lang:Lang):Boolean 
+	{	
 		return _map.containsKey(lang) ;
 	}
 	
-	public function get(lang:Lang):Locale {
+	public function get(lang:Lang):Locale 
+	{
 		return _map.get(lang) ;
 	}
 	
-	public function getCurrent():Lang {
+	public function getCurrent():Lang 
+	{
 		return _current ;
 	} 
 	
-	static public function getInstance( sName:String ):Localization {
+	static public function getInstance( sName:String ):Localization 
+	{
 		sName = sName || Localization.DEFAULT_NAME  ;
-		if (!__mInstances.containsKey(sName)) {
+		if (!__mInstances.containsKey(sName)) 
+		{
 			__mInstances.put(sName, new Localization(sName)) ;
 		}
 		return Localization(__mInstances.get(sName)) ;
 	}	
 
-	public function getName():String {
+	public function getName():String 
+	{
 		return _sName ;	
 	}
 
-	static public function release(sName:String):Localization {
+	static public function release(sName:String):Localization 
+	{
 		if (!sName) sName = Localization.DEFAULT_NAME ;
 		return Localization.__mInstances.remove(sName) ;
 	}
 
-	public function getLoader():LocalizationLoader {
+	public function getLoader():ILocalizationLoader
+	{
 		return _loader ;
 	}
 
-	public function getLocale( sID:String ) {
+	public function getLocale( sID:String ) 
+	{
 		if (sID) {
 			return this.get(_current)[sID] || null ;
 		} else {
@@ -173,27 +189,33 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 		}
 	}
 
-	public function isEmpty():Boolean {
+	public function isEmpty():Boolean 
+	{
 		return _map.isEmpty() ;
 
 	}
 
-	public function notifyChange():Void {
+	public function notifyChange():Void 
+	{
 		dispatchEvent( _eChange ) ;
 	}
 
-	public function onLoadError(e:LoaderEvent):Void {
+	public function onLoadError(e:LoaderEvent):Void 
+	{
 		// override
 	}
 
-	public function onLoadComplete(e:LoaderEvent):Void {
+	public function onLoadComplete(e:LoaderEvent):Void 
+	{
 		// override
 	}
 
-	public function onLoadInit( e:LoaderEvent ) : Void {
+	public function onLoadInit( e:LoaderEvent ) : Void 
+	{
 		var oLocale:Locale = new Locale() ;
 		var jsonData = e.getData() ;
-		for (var each:String in jsonData) {
+		for (var each:String in jsonData) 
+		{
 			oLocale[each] = jsonData[each] ;	
 		}
 		put (_current, oLocale ) ;
@@ -204,36 +226,79 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 		// override
 	}
 
-	public function onLoadStart( e:LoaderEvent ):Void {
+	public function onLoadStart( e:LoaderEvent ):Void 
+	{
 		// override
 	}
 
-	public function onLoadTimeOut( e:LoaderEvent ):Void {
+	public function onLoadTimeOut( e:LoaderEvent ):Void 
+	{
 		// override
 	}
 
-	public function put(lang:Lang, oL:Locale) {
+	public function put(lang:Lang, oL:Locale) 
+	{
 		return _map.put(lang, oL) ;
 	}
 
-	public function remove(lang:Lang):Void {
-		if (Lang.validate(lang)) {
+	public function remove(lang:Lang):Void 
+	{
+		if (Lang.validate(lang)) 
+		{
 			_map.remove(lang) ;
 		}
 	}
 
-	public function setCurrent(lang:Lang):Void {
-		if (Lang.validate(lang)) {
+	public function setCurrent(lang:Lang):Void 
+	{
+		if (Lang.validate(lang)) 
+		{
 			_current = lang ;
-			if ( contains(lang) ) {
+			if ( contains(lang) ) 
+			{
 				notifyChange() ;	
-			} else {
-				LocalizationLoader(_loader).load(lang) ;
+			}
+			else 
+			{
+				ILocalizationLoader(_loader).load(_current) ;
 			}
 		}
 	}
 
-	public function toString():String {
+	public function setLoader( loader:ILocalizationLoader ):Void
+	{
+		
+		if (_loader != null)
+		{
+			AbstractCoreEventDispatcher(_loader).setParent( null ) ; // use bubbling
+		
+			AbstractCoreEventDispatcher(_loader).removeEventListener(LoaderEventType.COMPLETE, _complete) ;
+			AbstractCoreEventDispatcher(_loader).removeEventListener(LoaderEventType.INIT, _init) ;
+			AbstractCoreEventDispatcher(_loader).removeEventListener(LoaderEventType.PROGRESS, _progress) ;
+			AbstractCoreEventDispatcher(_loader).removeEventListener(LoaderEventType.START, _start) ;
+			AbstractCoreEventDispatcher(_loader).removeEventListener(LoaderEventType.IO_ERROR, _error) ;
+			AbstractCoreEventDispatcher(_loader).removeEventListener(LoaderEventType.TIMEOUT, _timeOut) ;
+			
+		}
+		
+		_loader = loader ;
+		
+		if (_loader != null)
+		{
+		
+			AbstractCoreEventDispatcher(_loader).setParent( getEventDispatcher() ) ; // use bubbling
+			
+			AbstractCoreEventDispatcher(_loader).addEventListener(LoaderEventType.COMPLETE, _complete) ;
+			AbstractCoreEventDispatcher(_loader).addEventListener(LoaderEventType.INIT, _init) ;
+			AbstractCoreEventDispatcher(_loader).addEventListener(LoaderEventType.PROGRESS, _progress) ;
+			AbstractCoreEventDispatcher(_loader).addEventListener(LoaderEventType.START, _start) ;
+			AbstractCoreEventDispatcher(_loader).addEventListener(LoaderEventType.IO_ERROR, _error) ;
+			AbstractCoreEventDispatcher(_loader).addEventListener(LoaderEventType.TIMEOUT, _timeOut) ;
+		}
+	}
+
+	public function toString():String 
+	{
 		var txt:String = "[Localization" ; 
 		 if (_sName.length > 0) txt += "." + _sName ;
 		 txt += "]" ;
@@ -250,7 +315,7 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	private var _current:Lang = null ;
 	private var _eChange:LocalizationEvent = null ;
 	static private var __mInstances:HashMap = new HashMap () ;
-	private var _loader:LocalizationLoader = null ;
+	private var _loader:ILocalizationLoader = null ;
 	private var _map:HashMap = null ;
 	private var _sName:String = null ;
 
