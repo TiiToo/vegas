@@ -43,7 +43,7 @@
 		
 		- contains(o:*):Boolean
 		
-		- get(id:uin):*
+		- get(key:*):*
 		
 		- indexOf(o:*, fromIndex:uint=0):int
 		
@@ -53,7 +53,7 @@
 		
 		- iterator():Iterator
 		
-		- remove(o):Boolean
+		- remove(o):*
 		
 		- size():Number
 		
@@ -85,7 +85,7 @@ package vegas.data
 
     	function contains(o:*):Boolean ;
 	
-    	function get(id:uint):* ;
+    	function get(key:*):* ;
 
 		function indexOf(o:*, fromIndex:uint=0):int
 
@@ -93,7 +93,7 @@ package vegas.data
 	
     	function isEmpty():Boolean ;
 	
-    	function remove(o:*):Boolean ;
+    	function remove(o:*):* ;
 	
     	function size():uint ;
 

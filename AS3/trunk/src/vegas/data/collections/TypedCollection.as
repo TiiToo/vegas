@@ -47,7 +47,7 @@
 				
 		- contains(o:*):Boolean
 			
-		- get(id:uin):*
+		- get(key:*):*
 
 		- getType():*
 
@@ -61,7 +61,7 @@
 		
 		- iterator():Iterator
 		
-		- remove(o):Boolean
+		- remove(o):*
 
 		- setType(type:*):void
 			
@@ -139,9 +139,9 @@ package vegas.data.collections
 			return _co.contains(o) ;
 		}
 
-    	public function get(id:uint):* 
+    	public function get(key:*):*
     	{
-    		return _co.get(id) ;	
+    		return _co.get(key) ;	
     	}
 
 		public function indexOf(o:*, fromIndex:uint=0):int
@@ -164,7 +164,7 @@ package vegas.data.collections
 			return _co.iterator() ;
 		}
 		
-		public function remove(o:*):Boolean
+		public function remove(o:*):*
 		{
 			return _co.remove(o) ;
 		}

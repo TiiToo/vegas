@@ -136,28 +136,22 @@ package vegas.string
 	        static public function isWhiteSpace( char:String ):Boolean 
 	        {
         		var c:Char = new Char(char) ;
-		        var ar:Array = WHITE_SPACE_CHARS ;
-        		var l:uint = ar.length ;
-        		while (--l > -1) 
-        		{
-        		    if (ar[l] == char) return true ;
-        		}
-		        return false ;
+		        return (WHITE_SPACE_CHARS.indexOf(c) != -1) ;
         	}
 
-        	static public function isLineTerminators( char:String ):Boolean {
+        	static public function isLineTerminators( char:String ):Boolean 
+        	{
 		        var c:Char = new Char(char) ;
-        		var ar:Array = LINE_TERMINATOR_CHARS ;
-        		var l:Number = ar.length ;
-        		while (--l > -1) if (ar[l] == char) return true ;
-        		return false ;
+        		return (LINE_TERMINATOR_CHARS.indexOf(c) != -1) ;
         	}
 
-	        static public function toChar( unicode:String ):Char {
+	        static public function toChar( unicode:String ):Char 
+	        {
         		return new Char(String.fromCharCode(parseInt( unicode, 16))) ;
         	}
 
-            static public function toUnicode(n:Number):String {
+            static public function toUnicode(n:Number):String 
+            {
     		    var hex:String = n.toString(16) ;
         		while( hex.length < 4 ) hex = "0" + hex ;
         		return hex ;

@@ -67,7 +67,7 @@
 		
 		- iterator():Iterator
 		
-		- remove(o):Boolean
+		- remove(o):*
 		
 		- removeAll(c:Collection):Boolean
 		
@@ -178,7 +178,7 @@ package vegas.data.sets
 			return _map.keyIterator() ;
 		}
 
-    	override public function remove(o:*):Boolean {
+    	override public function remove(o:*):* {
 			return _map.remove(o) == PRESENT ;
     	}
 	

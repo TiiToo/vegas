@@ -67,7 +67,7 @@
 	
 		- putAll(m:Map)
 
-		- remove(key)
+		- remove(o:*):*
 	
 		- size():uint
 

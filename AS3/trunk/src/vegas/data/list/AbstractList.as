@@ -47,7 +47,7 @@
 		
 		- containsAll(c:Collection):Boolean
 		
-		- get(id:uin):*
+		- get(key:*):*
 		
 		- indexOf(o:*):int
 		

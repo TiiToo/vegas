@@ -53,15 +53,15 @@
 
 		- keyIterator():Iterator
 
-		- put(key, value)
+		- put(key:*, value:*):*
 	
-		- putAll(m:Map)
+		- putAll(m:Map):void
 
         - putCollection(key:*, c:Collection):void 
 
-		- remove(key)
+		- remove(ko:*):*
 	
-		- size():Number
+		- size():uint
 
         - toSource(...arguments:Array):String
 

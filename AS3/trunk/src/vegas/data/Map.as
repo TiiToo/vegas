@@ -57,7 +57,7 @@
 	
 		- putAll(m:Map):void
 
-		- remove(key):*
+		- remove(o:*):*
 	
 		- size():Number
 
@@ -105,7 +105,7 @@ package vegas.data
 	
     	function putAll(m:Map):void ;
 
-    	function remove(key:*):*  ;
+    	function remove(o:*):*  ;
 	
     	function size():uint ;
 

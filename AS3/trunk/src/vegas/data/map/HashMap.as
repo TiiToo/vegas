@@ -63,7 +63,7 @@
 		
 		- putAll(m:Map)
 		
-		- remove(key)
+		- remove(o:*):*
 		
 		- size()
 		
@@ -300,9 +300,10 @@ package vegas.data.map
     		}
         }
         
-        public function remove(key:*):*
+        public function remove(o:*):*
         {
 		    
+		    var key:* = o ;
 		    var r:* = null ;
     		var value:* ;
 			

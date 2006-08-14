@@ -53,7 +53,7 @@
 		
 		- enqueue(o:*):Boolean
 		
-		- get(id:uin):*
+		- get(key:*):*
 		
 		- hashCode():uint
 		
@@ -69,7 +69,7 @@
 		
 		- poll():*
 		
-		- remove(o):Boolean
+		- remove(o):*
 		
 		- size():uint
 		

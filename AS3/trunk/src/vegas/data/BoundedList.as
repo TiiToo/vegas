@@ -45,7 +45,7 @@
 		
 		- contains(o:*):Boolean
 		
-		- get(id:uin):*
+		- get(key:*):*
 		
 		- indexOf(o:*):Number
 		

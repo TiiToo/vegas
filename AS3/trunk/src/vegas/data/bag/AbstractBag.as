@@ -57,7 +57,7 @@
 		
 			Return the number of occurrences (cardinality) of the given object currently in the bag.
 		
-		- get(id:uint)*
+		- get(key:*):*
 		
 			throw UnsupportedOperation
 		
@@ -67,7 +67,7 @@
 		
 		- iterator():Iterator
 		
-		- remove(o:*):Boolean
+		- remove(o:*):*
 		
 		+ removeAll(c:Collection):Boolean
 		
@@ -139,35 +139,35 @@ package vegas.data.bag
 		}
 		
 		// ----o Public Methods
-
+     
 		public function clear():void 
 		{
 			_mods ++ ;
 			_map.clear() ;
 			_total = 0 ;
 		}
-	
+	 
 		public function clone():*
 		{
 			return null ;
 		}
-
+     
 		public function copy():*
 		{
 			return null ;
 		}
-
+	 
 		public function contains(o:*):Boolean 
 		{
 			return _map.containsKey(o);
 		}
-
-	
+     
+	 
 	    public function containsAll(c:Collection):Boolean 
 	    {
 	    	return containsAllInBag(new HashBag(c)) ;
 	    }
-
+     
 		public function containsAllInBag(b:Bag):Boolean 
 		{
 			var result:Boolean = true ;
@@ -180,7 +180,7 @@ package vegas.data.bag
 	        return result;
 		}
 	
-		public function get(id:uint):*
+		public function get(key:*):*
 		{
 			throw new UnsupportedOperation(this + " 'get' method is unsupported.") ;
 		}
@@ -250,7 +250,7 @@ package vegas.data.bag
 			return new BagIterator(this, _extractList().iterator()) ;
 		}
 
-		public function remove(o:*):Boolean 
+		public function remove(o:*):* 
 		{
 			return removeCopies(o, getCount(o));
 		}

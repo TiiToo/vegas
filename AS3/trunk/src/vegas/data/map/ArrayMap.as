@@ -67,7 +67,7 @@
 		
 		- putAll(m:Map)
 		
-		- remove(key)
+		- remove(o:*):*
 		
 		- size()
 		
@@ -98,6 +98,7 @@ package vegas.data.map
     import vegas.data.iterator.Iterator ;
     import vegas.data.iterator.MapIterator ;
     import vegas.data.map.MapFormat ;
+    import vegas.util.Copier ;
     import vegas.util.Serializer ;
 
     public class ArrayMap extends CoreObject implements Map
@@ -155,6 +156,11 @@ package vegas.data.map
         {
     		return indexOfValue(value) > -1 ;
         }
+
+		public function copy():*
+		{
+			return new ArrayMap( Copier.copy(getKeys()) , Copier.copy(getValues()) ) ;
+		}
 
         public function get(key:*):* 
         {
@@ -221,10 +227,10 @@ package vegas.data.map
     		}
         }
         
-        public function remove(key:*):*
+        public function remove(o:*):*
         {
 		    var r:* = null ;
-    		var i:int = indexOfKey(key) ;
+    		var i:int = indexOfKey(o) ;
     		if (i > -1) {
     			r = _values[i] ;
     			_values.splice(i, 1) ;

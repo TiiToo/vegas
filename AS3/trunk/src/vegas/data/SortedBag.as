@@ -57,7 +57,7 @@
 
 		- first():*
 
-		- get(id:uin):*
+		- get(key:*):*
 
 		- getCount(o):Number 
 		
@@ -77,7 +77,7 @@
 		
 		- last():*
 		
-		- remove(o):Boolean
+		- remove(o):*
 		
 		- removeAll(c:Collection):Boolean
 		

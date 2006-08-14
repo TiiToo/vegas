@@ -43,7 +43,7 @@
 
 		- copy():*
 
-		- get(id:uin):*
+		- get(key:*):*
 
 		- hashCode():uint
 		
@@ -61,7 +61,7 @@
 		
 		- push(o):*
 
-		- remove(o):Boolean
+		- remove(o):*
 
 		- search(o):Number
 		
@@ -120,10 +120,10 @@ package vegas.data.stack
 			return new SimpleStack(Copier.copy(toArray())) ;
 		}
 
-		override public function get(id:uint):*
+		override public function get(key:*):*
 		{ 
 			var a:Array = toArray() ;
-			return a[id] ;
+			return a[key] ;
 		}
 
 		override public function iterator():Iterator 

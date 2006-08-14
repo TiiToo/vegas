@@ -49,7 +49,7 @@
 		
 		- ensureCapacity( capacity:uint ):void 
 		
-		- get(id:uin):*
+		- get(key:*):*
 		
 		- indexOf(o:*):int
 		

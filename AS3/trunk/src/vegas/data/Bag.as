@@ -51,7 +51,7 @@
 		
 			(Violation)  Returns true if the bag contains all elements in the given collection, respecting cardinality.
 
-		- get(id:uin):*
+		- get(key:*):*
 
 		- getCount(o):Number 
 		

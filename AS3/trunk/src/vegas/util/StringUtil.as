@@ -103,6 +103,12 @@ package vegas.util
         
         // ----o Constants
         
+        /** StaticProperty: empty
+  		 * Represents the empty string.
+  		 * This property should be read-only.
+		 */
+        static public const EMPTY:String = "" ;
+        
         static public const SPC:String = " " ; // SPACE
         
         // ----o Public Methods

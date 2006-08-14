@@ -47,7 +47,7 @@
 		
 		- contains(o:*):Boolean
 		
-		- get(id:uin):*
+		- get(key:*):*
 
 		- getType():*
 
@@ -57,7 +57,7 @@
 		
 		- iterator():Iterator
 		
-		- remove(o):Boolean
+		- remove(o):*
 
 		- setType(type:*):void
 
@@ -135,9 +135,9 @@ package vegas.data.sets
 			return new TypedSet(getType(), _set.copy()) ;
 		}
 		
-		public function get(id:uint):*
+		public function get(key:*):*
 		{
-			return _set.get(id) ;
+			return _set.get(key) ;
 		}
 	
 		public function indexOf(o:*, fromIndex:uint=0):int
@@ -161,7 +161,7 @@ package vegas.data.sets
 			return _set.iterator() ;
 		}
 
-	    public function remove(o:*):Boolean 
+	    public function remove(o:*):*
 	    {
 			return _set.remove(o);
 	    }

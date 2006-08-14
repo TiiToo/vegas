@@ -76,11 +76,13 @@
 		
 		- putAll(map:Map) 
 		
-		- remove(key, [value]) 
+		- remove(o:*):* 
 		
 			If value is undefined; removes all values associated with the specified key.
 			
 			If value is defined, removes a specific value from map.
+		
+		- removeByKey(key:*, value:*):*
 		
 		- size():Number
 		
@@ -190,7 +192,7 @@ package vegas.data.map
 		public function MultiHashMap( m:Map=null )
 		{
 
-			_map = new HashMap ;
+			__map = new HashMap ;
 			if (m == null) return ;
 			if (m.size() > 0) 
 			{
@@ -207,7 +209,7 @@ package vegas.data.map
 		 */
 		public function clear():void 
 		{
-			_map.clear() ;
+			__map.clear() ;
 		}
 
 		/**
@@ -216,8 +218,8 @@ package vegas.data.map
 		public function clone():* 
 		{
 			var m:MultiHashMap = new MultiHashMap() ;
-			var vItr:Iterator = valueIterator() ;
 			var kItr:Iterator = keyIterator() ;
+			var vItr:Iterator = valueIterator() ;
 			while (kItr.hasNext()) {
 				var key:* = kItr.next() ;
 				var value:* = vItr.next() ;
@@ -231,7 +233,7 @@ package vegas.data.map
 		 */
 		public function containsKey( key:* ):Boolean 
 		{
-			return _map.containsKey( key ) ;
+			return __map.containsKey( key ) ;
 		}
 
 		/**
@@ -247,8 +249,7 @@ package vegas.data.map
 		{
 			var len:uint = arguments.length ;
 			if (len == 1) {
-				var value:* = arguments[0] ;
-				var it:Iterator = _map.iterator() ;
+				var it:Iterator = __map.iterator() ;
 				while (it.hasNext()) {
 					var cur:* = it.next() ;
 					if (cur.contains(value)) return true;
@@ -287,7 +288,7 @@ package vegas.data.map
 		 */
 		public function get( key:* ):*
 		{
-			return _map.get(key) ;
+			return __map.get(key) ;
 		}
 
 		/**
@@ -295,7 +296,7 @@ package vegas.data.map
 		 */
 		public function getKeys():Array 
 		{
-			return _map.getKeys() ;
+			return __map.getKeys() ;
 		}
 	
 		/**
@@ -304,7 +305,7 @@ package vegas.data.map
 		public function getValues():Array 
 		{
 			var result:Array = [] ;
-			var values:* = this._map.getValues() ;
+			var values:* = __map.getValues() ;
 			var l:uint = values.length ;
 			for (var i:uint = 0 ; i<l ; i++) 
 			{
@@ -320,7 +321,7 @@ package vegas.data.map
 		 */
 		public function isEmpty():Boolean 
 		{
-			return _map.isEmpty() ;
+			return __map.isEmpty() ;
 		}
 	
 		/**
@@ -328,7 +329,7 @@ package vegas.data.map
 		 */
 		public function iterator( /*key*/ ):Iterator 
 		{
-			return _map.iterator() ;
+			return __map.iterator() ;
 		}
 
 		/**
@@ -336,7 +337,7 @@ package vegas.data.map
 		 */
 		public function iteratorByKey( key:* ):Iterator
 		{
-			return _map.get(key).iterator() ;
+			return __map.get(key).iterator() ;
 		}
 
 		/**
@@ -344,7 +345,7 @@ package vegas.data.map
 		 */
 		public function keyIterator():Iterator 
 		{
-			return _map.keyIterator() ;
+			return __map.keyIterator() ;
 		}		
 	
 		/**
@@ -354,9 +355,9 @@ package vegas.data.map
 		{
 			if (!containsKey(key)) 
 			{
-				_map.put( key , createCollection() ) ;
+				__map.put( key , createCollection() ) ;
 			}
-			var co:Collection = _map.get(key) ;
+			var co:Collection = __map.get(key) ;
 			var b:Boolean = co.insert( value ) ;
 			return b ? value : null ;
 		}	
@@ -389,17 +390,17 @@ package vegas.data.map
 	    {
 	    	if (!containsKey(key)) 
 	    	{
-				_map.put(key , createCollection()) ;
+				__map.put(key , createCollection()) ;
 			}
-			_map.get(key).insertAll(c) ;
+			__map.get(key).insertAll(c) ;
 	    }
 	    
 		/**
 		 * Removes a specific value from map with a specific key.
 		 */
-		public function remove(key:*):*
+		public function remove(o:*):*
 		{
-			return _map.remove(key) ;
+			return __map.remove(o) ;
 		}
 		   
 		/**
@@ -411,7 +412,7 @@ package vegas.data.map
 			if (key != null && value != null) 
 			{
 				
-				var c:* = _map.get(key) ;
+				var c:* = __map.get(key) ;
 				var b:Boolean = c.remove(value) ;
 				return (b) ? value : null ;
 				
@@ -425,12 +426,12 @@ package vegas.data.map
 		 */
 		public function size():uint
 		{
-			return _map.size() ;
+			return __map.size() ;
 		}
 
 		override public function toSource(...arguments:Array):String 
 		{
-			return Serializer.getSourceOf(this, [_map]) ;
+			return Serializer.getSourceOf(this, [__map]) ;
 		}
 	
 		override public function toString():String 
@@ -441,7 +442,7 @@ package vegas.data.map
     	public function totalSize():uint 
     	{
     		var result:uint = 0 ;
-			var it:Iterator = _map.iterator() ;
+			var it:Iterator = __map.iterator() ;
 			while (it.hasNext()) 
 			{
 				var co:Collection = it.next() ;
@@ -459,12 +460,12 @@ package vegas.data.map
 	
 	    public function valueIterator():Iterator 
 	    {
-	    	return new ArrayIterator(_map.getValues()) ;
+	    	return new ArrayIterator(__map.getValues()) ;
 	    }
 
-		// ----o Private Properties
+		// ----o Protected Properties
 			
-		private var _map:HashMap ;
+		protected var __map:HashMap ;
 
 	}
 }

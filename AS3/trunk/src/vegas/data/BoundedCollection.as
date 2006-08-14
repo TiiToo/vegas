@@ -43,7 +43,7 @@
 		
 		- contains(o:*):Boolean
 		
-		- get(id:uin):*
+		- get(key:*):*
 		
 		- insert(o:*):Boolean
 		

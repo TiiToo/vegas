@@ -43,7 +43,7 @@
 				
 		- contains(o:*):Boolean
 			
-		- get(id:uin):*
+		- get(key:*):*
 		
 		- hashCode():uint
 		
@@ -55,7 +55,7 @@
 		
 		- iterator():Iterator
 		
-		- remove(o):Boolean
+		- remove(o):*
 		
 		- size():uint
 		
@@ -131,9 +131,9 @@ package vegas.data.collections
 			return _a.indexOf(o) >- 1  ;
 		}
 
-    	public function get(id:uint):* 
+    	public function get(key:*):* 
     	{
-    		return _a[id] ;	
+    		return _a[key] ;	
     	}
 
 		public function indexOf(o:*, fromIndex:uint=0):int
@@ -161,7 +161,7 @@ package vegas.data.collections
 			return new ArrayIterator(toArray()) ;
 		}
 		
-		public function remove(o:*):Boolean
+		public function remove(o:*):*
 		{
 			var it:Iterator = iterator() ;
 			if (o == null) 

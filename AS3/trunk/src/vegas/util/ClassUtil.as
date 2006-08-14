@@ -61,6 +61,9 @@ package vegas.util
 	import flash.utils.getQualifiedClassName ;
 	import flash.utils.getQualifiedSuperclassName ;
 	
+	import vegas.core.HashCode ;
+	import vegas.core.IHashable;
+	
 	public class ClassUtil
 	{
 		
@@ -83,7 +86,33 @@ package vegas.util
 		static public function getName(instance:*):String 
 		{
 			return _formatName(getPath(instance)) ;
-		}	
+		}
+		
+		static public function getUniqueName(instance:*):String
+		{
+			var name:String = getName(instance) ;
+			
+			var charCode:int = name.charCodeAt(name.length - 1);
+			if (charCode >= 48 && charCode <= 57)
+			{
+				name += "_" ;
+			}
+			
+			var count:uint = 0 ;
+			
+			if (instance is IHashable)
+			{
+				//			 
+			}	
+			else
+			{
+				HashCode.initialize(instance) ;
+			}
+			
+			count += instance["hashCode"]() ;
+			
+			return name + count ;
+		}
 
 		static public function getPackage(instance:*):String 
 		{
@@ -109,7 +138,11 @@ package vegas.util
 		{
 			return _formatPath(flash.utils.getQualifiedSuperclassName(instance)) ;
 		}
-		
+	
+		// ----o Private Properties
+	
+		private static var _counter:uint = 0;
+
 		// ----o Private Methods
 		
 		static private function _formatName( path:String ):String 

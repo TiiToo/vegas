@@ -59,7 +59,7 @@
 	
 		- putAll(m:Map):void
 
-		- remove(key):*
+		- remove(o:*):*
 	
 		- setType(type:*):void
 	
