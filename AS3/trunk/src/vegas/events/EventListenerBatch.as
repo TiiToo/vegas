@@ -26,7 +26,7 @@
 	AUTHOR
 
 		Name : EventListenerBatch
-		Package : vegas.events
+		Package : vegas.events.dom
 		Version : 1.0.0.0
 		Date :  2006-07-09
 		Author : ekameleon

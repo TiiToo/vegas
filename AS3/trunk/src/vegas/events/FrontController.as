@@ -120,7 +120,10 @@ package vegas.events
         public function FrontController( oE:EventBroadcaster=null , name:String=null )
         {
 		    _map = new ArrayMap() ;
-		    if (name == null) name = EventBroadcaster.DEFAULT_DISPATCHER_NAME ;
+		    if (name == null) 
+		    {
+			    name = EventBroadcaster.DEFAULT_DISPATCHER_NAME ;
+		    }
     		_oE = (oE == null) ? EventBroadcaster.getInstance(name) : oE ; 
         }
         

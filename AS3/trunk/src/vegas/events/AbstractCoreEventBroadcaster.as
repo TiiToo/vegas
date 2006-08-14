@@ -102,7 +102,7 @@ package vegas.events
             _oED.addListener(type, listener, useCapture, priority, useWeakReference) ;
         }
  
-        public function dispatchEvent(event:Event):Boolean
+        public function dispatchEvent( event:Event ):Boolean
         {
             return _oED.dispatchEvent(event) ;
         }

@@ -92,9 +92,15 @@ package vegas.events
     import vegas.util.ClassUtil ;
     import vegas.util.Serializer ;
  
+ 	import VEGAS ;
+ 	 	
+ 
     public class EventBroadcaster extends EventDispatcher implements IEventBroadcaster
     {
-
+		
+		
+		use namespace VEGAS ;
+        
         // ----o Constructor
         
         /**
@@ -122,6 +128,14 @@ package vegas.events
         public var target:IEventBroadcaster ;
         
         // ----o Public Methods
+        
+        
+        VEGAS function addEventListener (type:String, listener:*, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void
+        {
+        	
+        	addListener(type, listener, useCapture, priority, useWeakReference) ;
+        	
+        }
         
         /**
           * Registers an event listener object with an EventBroadcaster object so that the listener receives notification of an event.
