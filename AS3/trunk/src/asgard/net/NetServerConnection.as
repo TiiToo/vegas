@@ -39,23 +39,25 @@
 package asgard.net
 {
 
+	import flash.events.IOErrorEvent;
 	import flash.events.NetStatusEvent ;
+	import flash.events.SecurityErrorEvent;	
 	import flash.events.TimerEvent ;
 	import flash.net.NetConnection;
 	import flash.net.ObjectEncoding;
 	import flash.utils.Timer;
 
 	import asgard.events.NetServerEvent;
-	import asgard.net.NetServerPolicy ;
 	import asgard.net.NetServerStatus ;
-	
+	import asgard.net.TimeoutPolicy ;
+		
 	import vegas.core.HashCode;
 	import vegas.core.ICloneable;
 	import vegas.core.IHashable; 
 	import vegas.core.IRunnable;
 	import vegas.core.ISerializable;
 	
-	import vegas.util.ClassUtil;	
+	import vegas.util.ClassUtil;
 
 	public class NetServerConnection extends NetConnection implements ICloneable, IHashable, IRunnable, ISerializable
 	{
@@ -72,17 +74,23 @@ package asgard.net
 			_eStatus = new NetServerEvent( NetServerEvent.NET_STATUS ) ;
 			_eTimeOut = new NetServerEvent( NetServerEvent.TIMEOUT ) ;
 			
-			_timer = new Timer(8000, 1) ;
+			_timer = new Timer(DEFAULT_DELAY, 1) ;
 			
 			objectEncoding = ObjectEncoding.AMF0 ;
-			
-			addEventListener(NetStatusEvent.NET_STATUS, _onStatus) ;
-			
+
+			addEventListener( IOErrorEvent.IO_ERROR , onIOError, false, 0, true ) ;
+			addEventListener( NetStatusEvent.NET_STATUS, _onStatus, false, 0, true) ;
+			addEventListener( SecurityErrorEvent.SECURITY_ERROR, onSecurityError, false, 0, true);
+						
 		}
 
 		// ----o Init HashCode
 	
 		static private var _initHashCode:Boolean = HashCode.initialize(NetServerConnection.prototype) ;
+
+		// ----o Constants
+		
+		static public const DEFAULT_DELAY:uint = 8000 ; // 8 secondes
 
 		// ----o Public Properties
 		
@@ -108,8 +116,15 @@ package asgard.net
 			super.connect.apply(this, [command].concat(arguments)) ;
 		}
 
+		/**
+		 * Returns timeout interval duration.
+		 */
+		public function getDelay():uint
+		{
+			return _timer.delay ;
+		}
 
-		public function getLimitPolicy():NetServerPolicy {
+		public function getTimeoutPolicy():TimeoutPolicy {
 			return _policy ;	
 		}
 
@@ -135,18 +150,18 @@ package asgard.net
 
 		/**
 		 * Use limit timeout interval.
-		 * @see StreamPolicy
+		 * @see TimeoutPolicy
 		 */
-		public function setLimitPolicy( policy:NetServerPolicy ):void 
+		public function setLimitPolicy( policy:TimeoutPolicy ):void 
 		{
 			_policy = policy ;
-			if (_policy == NetServerPolicy.LIMIT) 
+			if (_policy == TimeoutPolicy.LIMIT) 
 			{
-				_timer.addEventListener(TimerEvent.TIMER, _timeOut) ;
+				_timer.addEventListener(TimerEvent.TIMER_COMPLETE, _onTimeOut) ;
 			}
 			else 
 			{
-				_timer.removeEventListener(TimerEvent.TIMER, _timeOut) ;
+				_timer.removeEventListener(TimerEvent.TIMER_COMPLETE, _onTimeOut) ;
 			}
 		}
 		
@@ -174,6 +189,7 @@ package asgard.net
 
 		protected function notifyStarted():void 
 		{
+			_timer.start() ;
 			dispatchEvent( _eStart ) ;
 		}
 	
@@ -189,6 +205,20 @@ package asgard.net
 			dispatchEvent(_eTimeOut) ;	
 		}
 
+		protected function onIOError(e:IOErrorEvent):void
+		{
+			_timer.stop() ;
+			trace("> " + this + "onIOError : " + e) ;
+			notifyFinished() ;
+		}
+
+		protected function onSecurityError(e:SecurityErrorEvent):void
+		{
+			_timer.stop() ;
+			trace("> " + this + "onSecurityError : " + e) ;
+			notifyFinished() ;
+		}
+
 		// ----o Private Properties
 		
 		private var _eClose:NetServerEvent ;
@@ -196,7 +226,7 @@ package asgard.net
 		private var _eStart:NetServerEvent ;
 		private var _eStatus:NetServerEvent ;
 		private var _eTimeOut:NetServerEvent ;
-		private var _policy:NetServerPolicy ;
+		private var _policy:TimeoutPolicy ;
 		private var _timer:Timer ;
 	
 		// ----o Private Methods
@@ -208,7 +238,7 @@ package asgard.net
 		
 			var code:NetServerStatus = NetServerStatus.format(e.info.code) ;
 		
-			trace("> " + this + "._onStatus(" + code + ")") ;
+			// trace("> " + this + "._onStatus(" + code + ")") ;
 		
 			switch (code) 
 			{
@@ -242,14 +272,20 @@ package asgard.net
 					break ;
 	
 			}
+			
 			notifyFinished() ;
+			
 		}
 	
-		public function _timeOut(e:TimerEvent):void 
+		public function _onTimeOut(e:TimerEvent):void 
 		{
+			
+			_timer.stop() ;
+			
 			notifyTimeOut() ;
 			notifyFinished() ;
 			close() ;
+			
 		}
 		
 		

@@ -21,25 +21,42 @@
   
 */
 
-// TODO réimplémenter AbstractAction ?
+/* RemotingService
+
+	AUTHOR
+
+		Name : RemotingService
+		Package : asgard.net.remoting
+		Version : 1.0.0.0
+		Date :  2006-08-15
+		Author : ekameleon
+		URL : http://www.ekameleon.net
+		Mail : vegas@ekameleon.net
+	
+*/
+
 // TODO cabler l'événement TIMEOUT
 
 package asgard.net.remoting
 {
 
 	
-	import asgard.process.IAction;
+	import asgard.process.AbstractAction;
 	
 	import asgard.data.remoting.RecordSet ;
 	import asgard.events.ActionEvent;
+	import asgard.events.NetServerEvent;
 	import asgard.events.RemotingEvent ;
+	import asgard.net.TimeoutPolicy ;
 
+	import flash.events.TimerEvent ;	
 	import flash.net.Responder ;
+	import flash.utils.Timer;
 
 	import vegas.core.ICloneable;
 	import vegas.events.AbstractCoreEventBroadcaster;
 
-	public class RemotingService extends AbstractCoreEventBroadcaster implements IAction, ICloneable
+	public class RemotingService extends AbstractAction implements ICloneable
 	{
 		
 		// ----o Constructor
@@ -53,24 +70,22 @@ package asgard.net.remoting
 			setServiceName( serviceName ) ;
 			setResponder( responder ) ;
 		
+			_timer = new Timer(DEFAULT_DELAY, 1) ;
+			setTimeoutPolicy(TimeoutPolicy.LIMIT) ;
+			
 			_eError = new RemotingEvent(RemotingEvent.ERROR)  ;
-
-			_eFinish = new ActionEvent(ActionEvent.FINISH) ;
 			
 			_eFault = new RemotingEvent( RemotingEvent.FAULT) ;
 			
 			_eResult = new RemotingEvent( RemotingEvent.RESULT) ;
-			
-			_eProgress = new ActionEvent(ActionEvent.PROGRESS) ;
-			
-			_eStart = new ActionEvent(ActionEvent.START) ;
 			
 			_eTimeOut = new RemotingEvent(RemotingEvent.TIMEOUT) ;
 			
 		}
 		
 		// ----o Constants
-	
+		
+		static public const DEFAULT_DELAY:uint = 8000 ; // 8 secondes
 		static public const LEVEL_ERROR:String = "error" ;
 
 		// ----o Public Properties
@@ -79,7 +94,7 @@ package asgard.net.remoting
 
 		// ----o Public Methods
 
-		public function clone():*
+		override public function clone():*
 		{
 			return new RemotingService( getGatewayUrl() , getServiceName() ) ; // TODO voir pour le responder !
 		}
@@ -87,6 +102,14 @@ package asgard.net.remoting
 		public function getConnection():RemotingConnection 
 		{
 			return _rc ;	
+		}
+
+		/**
+		 * Returns timeout interval duration.
+		 */
+		public function getDelay():uint
+		{
+			return _timer.delay ;
 		}
 
 		public function getIsProxy():Boolean 
@@ -97,6 +120,10 @@ package asgard.net.remoting
 		public function getGatewayUrl():String 
 		{
 			return _gatewayUrl ;	
+		}
+
+		public function getTimeoutPolicy():TimeoutPolicy {
+			return _policy ;	
 		}
 
 		public function getMethodName():String 
@@ -119,11 +146,6 @@ package asgard.net.remoting
 			return _result ;	
 		}
 
-		public function getRunning():Boolean 
-		{
-			return _isRunning ;	
-		}
-
 		public function getServiceName():String 
 		{
 			return _serviceName ;
@@ -137,31 +159,20 @@ package asgard.net.remoting
 			notifyFinished() ;
 		}	
 
-		public function notifyFinished():void
-		{
-			dispatchEvent( _eFinish ) ;
-		}
-
-		public function notifyProgress():void
-		{
-			dispatchEvent(_eProgress) ;
-		}
-
 		public function notifyResult():void
 		{
 		
-			_eResult = new RemotingEvent(RemotingEvent.RESULT, getResult(), getMethodName()) ;
+			_eResult.setResult( getResult(), getMethodName() ) ;
 			dispatchEvent( _eResult ) ;
 			
 		}
 
-		public function notifyStarted():void
+		public function notifyTimeOut():void
 		{
-			dispatchEvent( _eStart ) ;
+			dispatchEvent(_eTimeOut) ;
 		}
-	
 
-		public function run(...arguments:Array):void {
+		override public function run(...arguments:Array):void {
 		
 			if (_rc == null ) {
 				// ici notifier qu'il est impossible de lancer la connection.	
@@ -175,16 +186,46 @@ package asgard.net.remoting
 			{
 				
 				notifyStarted() ;
-				
+
 				_result = null ;
-				_setRunning(true) ;
-				var arg:Array = [_serviceName + "." + _methodName , getResponder()].concat(_args) ;
+
+				_setRunning(true) ;	
+
+				var args:Array = [_serviceName + "." + _methodName , getResponder()].concat(_args) ;
 				
-				_rc.call.apply( _rc, arg );
+				_rc.call.apply( _rc, args );
 				
+				_timer.start() ;
+						
 			} 
 		}
-	
+		
+		/**
+		 * Set timeout interval duration.
+		 */
+		public function setDelay( time:uint , useSeconds:Boolean=false):void 
+		{
+			if (useSeconds) time = Math.round(time * 1000) ;
+			_timer.delay = time ;
+		}
+
+		/**
+		 * Use limit timeout interval.
+		 * @see TimeoutPolicy
+		 */
+		public function setTimeoutPolicy( policy:TimeoutPolicy ):void 
+		{
+			_policy = policy ;
+			if (_policy == TimeoutPolicy.LIMIT) 
+			{
+				_timer.addEventListener(TimerEvent.TIMER_COMPLETE, _onTimeOut) ;
+			}
+			else 
+			{
+				_timer.removeEventListener(TimerEvent.TIMER_COMPLETE, _onTimeOut) ;
+			}
+		}
+
 		public function setParams(args:Array):void 
 		{
 			_args = args ;	
@@ -224,7 +265,7 @@ package asgard.net.remoting
 	
 		public function setResponder( responder:Responder=null ):void 
 		{
-			_responder = (responder == null) ?  new Responder(_onResult, _onStatus) : responder ;
+			_responder = (responder == null) ?  _internalResponder : responder ;
 		}
 
 		public function setServiceName( sName:String ):void 
@@ -284,11 +325,6 @@ package asgard.net.remoting
 			setMethodName(sName) ;
 		}
 
-		public function get running():Boolean 
-		{
-			return getRunning() ;	
-		}
-
 		public function get serviceName():String 
 		{ 
 			return getServiceName() ;	
@@ -299,51 +335,44 @@ package asgard.net.remoting
 			setServiceName(sName) ;
 		}
 
-		// ----o Protected Methods
-	
-		protected function _setRunning(b:Boolean):void
-		{
-			_isRunning = b ;	
-		}
-
 		// ----o Private Properties
 	
 		private var _args:Array ;
 		
 		private var _eError:RemotingEvent ;
 		
-		private var _eFinish:ActionEvent ;
-		
 		private var _eFault:RemotingEvent ;
 		
 		private var _eResult:RemotingEvent ;
 		
-		private var _eProgress:ActionEvent ;
-		
-		private var _eStart:ActionEvent ;
-		
 		private var _eTimeOut:RemotingEvent ;
 
 		private var _gatewayUrl:String = null  ;
+
+		private var _internalResponder:Responder = new Responder(_onResult, _onStatus) ;
 		
 		private var _isProxy:Boolean = false ;
 		
-		private var _isRunning:Boolean = false ;
-		
 		private var _methodName:String ; 
-		
+
+		private var _policy:TimeoutPolicy ;
+
 		private var _rc:RemotingConnection = null ;
+
+		private var _responder:Responder = null ;
 		
 		private var _result:* = null ;
 		
 		private var _serviceName:String = null ;
 		
-		private var _responder:Responder = null ;
-
+		private var _timer:Timer ;
+		
 		// ----o Private Methods
 		
 		private function _onResult( data:* ):void
 		{
+						
+			_timer.stop() ; // stop timeout interval
 			
 			if (data.hasOwnProperty("serverInfo") )
 			{
@@ -368,6 +397,8 @@ package asgard.net.remoting
 		private function _onStatus( fault:Object ):void 
 		{
 
+			_timer.stop() ; // stop timeout interval
+
 			_eFault.setFault(fault, _methodName) ;
 			
 			_setRunning(false) ;
@@ -377,7 +408,18 @@ package asgard.net.remoting
 			notifyFinished() ;
 
 		}
-		
+
+		public function _onTimeOut(e:TimerEvent):void 
+		{
+			
+			_timer.stop() ;
+			
+			notifyTimeOut() ;
+
+			notifyFinished() ;
+			
+		}
+
 	}
 	
 }

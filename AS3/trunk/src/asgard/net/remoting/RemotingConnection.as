@@ -67,7 +67,8 @@
 
 package asgard.net.remoting
 {
-	
+
+	import asgard.events.NetServerEvent ;	
 	import asgard.net.NetServerConnection;
 
 	public class RemotingConnection extends NetServerConnection
@@ -78,13 +79,12 @@ package asgard.net.remoting
 		public function RemotingConnection( sURL:String=null )
 		{
 			
-			super();
+			super() ;
 			
 			if (sURL != null)
 			{
 				this.connect( sURL );
 			} 
-			
 			
 		}
 

@@ -4,9 +4,9 @@ package asgard.process
 	import asgard.events.ActionEvent ;
 	import asgard.process.IAction ;
 	
-	import flash.events.EventDispatcher ;
+	import vegas.events.AbstractCoreEventBroadcaster;
 
-	public class AbstractAction extends EventDispatcher implements IAction
+	public class AbstractAction extends AbstractCoreEventBroadcaster implements IAction
 	{
 		
 		// ----o Constructor
