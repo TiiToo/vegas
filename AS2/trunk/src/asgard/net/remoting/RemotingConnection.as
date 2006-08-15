@@ -110,7 +110,7 @@
 	
 		RemotingConnectionCollector
 
-**/
+*/
 
 import asgard.net.NetServerConnection;
 import asgard.net.remoting.RemotingAuthentification;

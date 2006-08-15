@@ -21,7 +21,7 @@
   
 */
 
-/** AbstractAction
+/* AbstractAction
 
 	AUTHOR
 	
@@ -101,13 +101,13 @@
 
 	INHERIT
 	
-		CoreObject > AbstractCoreEventDispatcher > AbstractAction
+		CoreObject → AbstractCoreEventDispatcher → AbstractAction
 
 	IMPLEMENTS
 	
 		Action, ICloneable, IRunnable, IFormattable
 	
-----------  */
+*/
 
 import asgard.events.ActionEvent;
 import asgard.events.ActionEventType;

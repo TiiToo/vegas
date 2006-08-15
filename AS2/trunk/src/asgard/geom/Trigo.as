@@ -79,7 +79,7 @@
 			- http://www.robertpenner.com/profmx
 			- http://www.amazon.com/exec/obidos/ASIN/0072223561/robertpennerc-20
 
-------------------------- */
+*/
 
 class asgard.geom.Trigo {
 

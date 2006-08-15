@@ -21,7 +21,7 @@
   
 */
 
-/**	RecordSet
+/*	RecordSet
 
 	AUTHOR
 	
@@ -95,7 +95,8 @@ import vegas.util.mvc.AbstractModel;
 /**
  * @author eKameleon
  */
-class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable {
+class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable 
+{
 
 	// ----o Constructor
 	

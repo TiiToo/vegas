@@ -110,7 +110,7 @@ class asgard.events.RemotingEvent extends DynamicEvent {
 		super(type, target, context, bubbles, eventPhase, time, stop) ;
 		code = sCode || null ;
 		level = sLevel || null ;
-		 setResult(oResult) ;
+		setResult(oResult) ;
 		setFault(oFault) ;
 		if (sMethodName) setMethodName(sMethodName) ; 
 	}

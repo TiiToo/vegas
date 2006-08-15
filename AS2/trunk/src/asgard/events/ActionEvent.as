@@ -111,7 +111,7 @@
 	
 		ActionEventType
 
-**/
+*/
 
 import vegas.events.DynamicEvent;
 import vegas.util.serialize.Serializer;
