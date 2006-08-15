@@ -1,6 +1,6 @@
 ﻿{
 
-	ang      : "fr" ,
+	lang      : "fr" ,
 	namespace : "http://www.ekameleon.net/2006/asgard" ,
 	version   : "0.0.0.0" ,
 
