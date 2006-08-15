@@ -21,7 +21,7 @@
   
 */
 
-/** Batch
+/* Batch
 
 	AUTHOR
 
@@ -65,7 +65,7 @@
 
 		IFormattable, IHashable, IRunnable, ISerializable, Iterable, Typeable, Validator, 	
 	
-----------  */	
+*/	
 
 import vegas.core.IRunnable;
 import vegas.data.collections.SimpleCollection;

@@ -97,7 +97,7 @@
 	
 		Action, IEventDispatcher, ICloneable, IRunnable, ISerializable, IFormattable
 
-----------  */
+*/
 
 import asgard.events.ActionEventType;
 import asgard.process.AbstractAction;
