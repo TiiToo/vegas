@@ -13,31 +13,12 @@ package asgard.process
 		
 		public function AbstractAction()
 		{
-			
-			_eChange = new ActionEvent(ActionEvent.CHANGE) ;
-			
-			_eClear = new ActionEvent(ActionEvent.CLEAR) ;
-			
-			_eFinish = new ActionEvent(ActionEvent.FINISH) ;
-			
-			_eInfo = new ActionEvent(ActionEvent.INFO) ;
-			
-			_eLoop = new ActionEvent(ActionEvent.LOOP) ;
-			
-			_eProgress = new ActionEvent(ActionEvent.PROGRESS) ;
-			
-			_eResume = new ActionEvent(ActionEvent.RESUME) ;
-			
-			_eStart = new ActionEvent(ActionEvent.START) ;
-			
-			_eStop = new ActionEvent(ActionEvent.STOP) ;
-			
+			//
 		}
 
 		// ----o Public Properties
 	
 		public var looping:Boolean ;
-		// public var running:Boolean ; // [Read Only]
 	
 		// ----o Public Methods
 	
@@ -50,50 +31,17 @@ package asgard.process
 		{
 			return _isRunning ;	
 		}
-	
-		public function notifyChanged():void 
-		{
-			dispatchEvent(_eChange) ;
-		}
-
-		public function notifyCleared():void 
-		{
-			dispatchEvent(_eClear) ;
-		}	
 
 		public function notifyFinished():void 
 		{
-			dispatchEvent(_eFinish) ;
-		}
-	
-		public function notifyInfo( oInfo:* ):void
-		{
-			dispatchEvent(_eInfo) ;
-		}
-	
-		public function notifyLooped():void 
-		{
-			dispatchEvent(_eLoop) ;
-		}
-
-		public function notifyProgress():void
-		{
-			dispatchEvent(_eProgress) ;
-		}
-	
-		public function notifyResumed():void
-		{
-			dispatchEvent(_eResume) ;
+			var eFinish:ActionEvent = new ActionEvent(ActionEvent.FINISH) ;
+			dispatchEvent(eFinish) ;
 		}
 	
 		public function notifyStarted():void
 		{
-			dispatchEvent( _eStart ) ;
-		}
-	
-		public function notifyStopped():void
-		{
-			dispatchEvent(_eStop) ;
+			var eStart:ActionEvent = new ActionEvent(ActionEvent.START) ;
+			dispatchEvent( eStart ) ;
 		}
 		
 		public function run(...arguments):void 
@@ -108,26 +56,58 @@ package asgard.process
 			return getRunning() ;	
 		}
 	
-		// ----o Private Properties
-	
-		private var _eChange:ActionEvent ;
-		private var _eClear:ActionEvent ;
-		private var _eFinish:ActionEvent ;
-		private var _eInfo:ActionEvent ;
-		private var _eLoop:ActionEvent ;
-		private var _eProgress:ActionEvent ;
-		private var _eResume:ActionEvent ;
-		private var _eStart:ActionEvent ;
-		private var _eStop:ActionEvent ;
-		
-		private var _isRunning:Boolean ;
-
 		// ----o Protected Methods
+		
+		protected function notifyChanged():void 
+		{
+			var eChange:ActionEvent = new ActionEvent(ActionEvent.CHANGE) ;
+			dispatchEvent(eChange) ;
+		}
+
+		protected function notifyCleared():void 
+		{
+			var eClear:ActionEvent = new ActionEvent(ActionEvent.CLEAR) ;
+			dispatchEvent(eClear) ;
+		}	
 	
-		protected function _setRunning(b:Boolean):void
+		protected function notifyInfo( oInfo:* ):void
+		{
+			var eInfo:ActionEvent = new ActionEvent(ActionEvent.INFO) ;
+			dispatchEvent(eInfo) ;
+		}
+	
+		protected function notifyLooped():void 
+		{
+			var eLoop:ActionEvent = new ActionEvent(ActionEvent.LOOP) ;
+			dispatchEvent(eLoop) ;
+		}
+
+		protected function notifyProgress():void
+		{
+			var eProgress:ActionEvent = new ActionEvent(ActionEvent.PROGRESS) ;
+			dispatchEvent(eProgress) ;
+		}
+	
+		protected function notifyResumed():void
+		{
+			var eResume:ActionEvent = new ActionEvent(ActionEvent.RESUME) ;
+			dispatchEvent(eResume) ;
+		}
+	
+		protected function notifyStopped():void
+		{
+			var eStop:ActionEvent = new ActionEvent(ActionEvent.STOP) ;
+			dispatchEvent(eStop) ;
+		}
+
+		protected function setRunning(b:Boolean):void
 		{
 			_isRunning = b ;	
 		}
+
+		// ----o Private Properties
+		
+		private var _isRunning:Boolean ;
 
 	}
 }

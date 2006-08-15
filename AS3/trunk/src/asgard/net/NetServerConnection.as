@@ -78,9 +78,9 @@ package asgard.net
 			
 			objectEncoding = ObjectEncoding.AMF0 ;
 
-			addEventListener( IOErrorEvent.IO_ERROR , onIOError, false, 0, true ) ;
-			addEventListener( NetStatusEvent.NET_STATUS, _onStatus, false, 0, true) ;
-			addEventListener( SecurityErrorEvent.SECURITY_ERROR, onSecurityError, false, 0, true);
+			addEventListener( IOErrorEvent.IO_ERROR , onIOError) ;
+			addEventListener( NetStatusEvent.NET_STATUS, _onStatus) ;
+			addEventListener( SecurityErrorEvent.SECURITY_ERROR, onSecurityError);
 						
 		}
 

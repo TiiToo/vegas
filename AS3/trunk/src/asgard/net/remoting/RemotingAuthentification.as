@@ -39,7 +39,7 @@
 
 	PROPERTY SUMMARY
 	
-		- userID:String
+		- userid:String
 		
 			Définit/Renvoie un ID de connexion à utiliser pour établir une connexion au serveur. 
 		
@@ -72,17 +72,26 @@ package asgard.net.remoting
 		
 		// ----o Constructor
 		
-		public function RemotingAuthentification(id:String, pass:String)
+		public function RemotingAuthentification(id:String=null, pass:String=null)
 		{
 			super();
-			userID = id ;
+			
+			userid = id ;
 			password = pass ;
+			
 		}
 	
 		// ----o Public Properties
 	
-		public var userID:String ;
+		public var userid:String ;
 		public var password:String ;
+		
+		// ----o Public Methods
+		
+		public function toObject():Object
+		{
+			return { userid : userid , 	password : password } ;
+		}
 		
 	}
 }

@@ -109,13 +109,9 @@ package asgard.net.remoting
 			return RemotingConnectionCollector.get(sUrl) ;
 		}
 
-		public function setCredentials( authentification:RemotingAuthentification ):void  
+		public function setCredentials( authentification:RemotingAuthentification=null ):void  
 		{
-			var oInfo:Object = {
-				userid : authentification.userID , 
-				password: authentification.password 
-			} ; 
-			addHeader( RemotingConnection.CREDENTIALS , false, oInfo);
+			addHeader( RemotingConnection.CREDENTIALS , false, authentification.toObject());
 		}
 	
 		public function startDebug():void

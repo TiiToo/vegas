@@ -73,14 +73,6 @@ package asgard.net.remoting
 			_timer = new Timer(DEFAULT_DELAY, 1) ;
 			setTimeoutPolicy(TimeoutPolicy.LIMIT) ;
 			
-			_eError = new RemotingEvent(RemotingEvent.ERROR)  ;
-			
-			_eFault = new RemotingEvent( RemotingEvent.FAULT) ;
-			
-			_eResult = new RemotingEvent( RemotingEvent.RESULT) ;
-			
-			_eTimeOut = new RemotingEvent(RemotingEvent.TIMEOUT) ;
-			
 		}
 		
 		// ----o Constants
@@ -151,33 +143,21 @@ package asgard.net.remoting
 			return _serviceName ;
 		}
 
-		public function notifyError( code:String ):void 
-		{
-			_setRunning(false) ;
-			_eError.code = (code == null) ? RemotingEvent.ERROR : code ;
-			dispatchEvent( _eError ) ;
-			notifyFinished() ;
-		}	
-
-		public function notifyResult():void
-		{
-		
-			_eResult.setResult( getResult(), getMethodName() ) ;
-			dispatchEvent( _eResult ) ;
-			
-		}
-
-		public function notifyTimeOut():void
-		{
-			dispatchEvent(_eTimeOut) ;
-		}
-
 		override public function run(...arguments:Array):void {
 		
-			if (_rc == null ) {
+						
+			_rc = RemotingConnection.getConnection( _gatewayUrl ) ;
+
+	
+			if ( (_rc == null) && !(_rc is RemotingConnection) ) {
 				// ici notifier qu'il est impossible de lancer la connection.	
 			}
 		
+			if (_authentification != null)
+			{
+				_rc.setCredentials(_authentification) ;
+			}
+			
 			if (getRunning() && multipleSimultaneousAllowed == false)  
 			{
 				notifyProgress() ;
@@ -188,8 +168,8 @@ package asgard.net.remoting
 				notifyStarted() ;
 
 				_result = null ;
-
-				_setRunning(true) ;	
+				
+				setRunning(true) ;	
 
 				var args:Array = [_serviceName + "." + _methodName , getResponder()].concat(_args) ;
 				
@@ -231,26 +211,16 @@ package asgard.net.remoting
 			_args = args ;	
 		}
 	
-		public function setCredentials( authentification:RemotingAuthentification ):void  
-		{
-			_rc.setCredentials(authentification) ;
+		public function setCredentials( authentification:RemotingAuthentification=null ):void  
+		{			
+			_authentification = authentification ;
 		}
 	
 		public function setGatewayUrl( url:String ):void 
 		{
-			if (_gatewayUrl != null)
-			{
-				RemotingConnectionCollector.remove(_gatewayUrl) ;
-			} 
-			if (url) 
-			{
-				_gatewayUrl = url ;
-				_rc = RemotingConnection.getConnection( _gatewayUrl ) ;
-			}
-			else
-			{
-				_rc = null ;	
-			}
+			
+			_gatewayUrl = url ;
+			
 		}
 
 		public function setIsProxy(b:Boolean):void 
@@ -335,18 +305,49 @@ package asgard.net.remoting
 			setServiceName(sName) ;
 		}
 
+		// ----o Protected Methods
+
+		protected function notifyError( code:String ):void 
+		{
+			
+			setRunning(false) ;
+			
+			var eError:RemotingEvent = new RemotingEvent(RemotingEvent.ERROR) ;
+			eError.code = (code == null) ? RemotingEvent.ERROR : code ;
+			dispatchEvent( eError ) ;
+			
+			notifyFinished() ;
+			
+		}	
+
+		protected function notifyFault(fault:Object):void
+		{
+			var eFault:RemotingEvent = new RemotingEvent(RemotingEvent.FAULT) ;
+			eFault.setFault(fault, _methodName) ;
+			dispatchEvent( eFault ) ;
+		}
+
+		protected function notifyResult():void
+		{
+			
+			var eResult:RemotingEvent = new RemotingEvent(RemotingEvent.RESULT, _result, _methodName) ;
+			dispatchEvent( eResult ) ;
+			
+		}
+
+		protected function notifyTimeOut():void
+		{
+			var eTimeOut:RemotingEvent = new RemotingEvent(RemotingEvent.TIMEOUT) ;
+			dispatchEvent(eTimeOut) ;
+		}
+
+
 		// ----o Private Properties
 	
 		private var _args:Array ;
 		
-		private var _eError:RemotingEvent ;
+		private var _authentification:RemotingAuthentification ;
 		
-		private var _eFault:RemotingEvent ;
-		
-		private var _eResult:RemotingEvent ;
-		
-		private var _eTimeOut:RemotingEvent ;
-
 		private var _gatewayUrl:String = null  ;
 
 		private var _internalResponder:Responder = new Responder(_onResult, _onStatus) ;
@@ -371,7 +372,7 @@ package asgard.net.remoting
 		
 		private function _onResult( data:* ):void
 		{
-						
+			
 			_timer.stop() ; // stop timeout interval
 			
 			if (data.hasOwnProperty("serverInfo") )
@@ -386,7 +387,7 @@ package asgard.net.remoting
 
 			_result = data ;
 			
-			_setRunning(false) ;
+			setRunning(false) ;
 
 			notifyResult() ;
 
@@ -399,17 +400,15 @@ package asgard.net.remoting
 
 			_timer.stop() ; // stop timeout interval
 
-			_eFault.setFault(fault, _methodName) ;
+			setRunning(false) ;
 			
-			_setRunning(false) ;
-			
-			dispatchEvent( _eFault ) ;
+			notifyFault(fault) ;
 			
 			notifyFinished() ;
 
 		}
 
-		public function _onTimeOut(e:TimerEvent):void 
+		private function _onTimeOut(e:TimerEvent):void 
 		{
 			
 			_timer.stop() ;
