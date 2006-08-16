@@ -66,28 +66,31 @@
 	EXAMPLE
 
 		import vegas.string.JSON ;
-		
+				
 		// --- Init
 		var a:Array = [2, true, "hello"] ;
 		var o:Object = { prop1 : 1 , prop2 : 2 } ;
 		var s:String = "hello world" ;
 		var n:Number = 4 ;
 		var b:Boolean = true ;
-			
+					
 		trace ("*** Serialize") ;
 		trace("* a : " + JSON.serialize( a ) )  ;	
 		trace("* o : " + JSON.serialize( o ) )  ;
 		trace("* s : " + JSON.serialize( s ) )  ;
 		trace("* n : " + JSON.serialize( n ) )  ;
 		trace("* b : " + JSON.serialize( b ) )  ;
-			
+				
 		trace ("*** Deserialize") ;
 		
 		var source:String = '[ {"prop1":0xFF0000, "prop2":2, "prop3":"hello", "prop4":true} , 2, true,	3, [3, 2] ]' ;
 		
-		var o = JSON.deserialize(source) ;
-		for (var prop:String in o) {
-			trace(prop + " : " + o[prop] + " -> typeof :: " + typeof(o[prop])) ;
+		import vegas.util.ClassUtil ;
+		
+		var result:* = JSON.deserialize(source) ;
+		for (var prop:String in result) 
+		{
+			trace(prop + " : " + result[prop] + " -> " + ClassUtil.getPath(result[prop])) ;
 		}
 		
 		trace ("*** JSONError") ;
