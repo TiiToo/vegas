@@ -95,7 +95,7 @@
 		
 			http://www.december.com/html/spec/colorsvg.html
 
-**/
+*/
 
 import asgard.colors.ColorHTML;
 
@@ -111,14 +111,14 @@ class asgard.colors.ColorSVG extends ColorHTML implements IConvertible, IFormatt
 	// ----o Constructor
 	
 	public function ColorSVG( n:Number , name:String) 
-		{
+	{
 		super(n, name) ;
 		if (!ColorSVG._colorSVGCollector)
-			{
+		{
 			ColorSVG._colorSVGCollector = new HashMap() ;
-			}
-		ColorSVG._colorSVGCollector.put( name.toLowerCase(), this) ;
 		}
+		ColorSVG._colorSVGCollector.put( name.toLowerCase(), this) ;
+	}
 	
 	// ----o Constants
 	
@@ -423,11 +423,13 @@ class asgard.colors.ColorSVG extends ColorHTML implements IConvertible, IFormatt
 
 	// ----o Public Methods
 	
-	static public function equals( c1:ColorSVG, c2:ColorSVG ):Boolean {
+	static public function equals( c1:ColorSVG, c2:ColorSVG ):Boolean 
+	{
 		return ( c1.valueOf() == c2.valueOf() && c1.toString() == c2.toString()) ;	
 	}
 	
-	static public function get( name:String ):ColorSVG {
+	static public function get( name:String ):ColorSVG 
+	{
 		return ColorSVG._colorSVGCollector.get(name.toLowerCase()) ;
 	}
 

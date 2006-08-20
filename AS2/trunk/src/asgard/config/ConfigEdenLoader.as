@@ -39,7 +39,7 @@
 
 		- static DEFAULT_SUFFIX:String (".json")
 
-**/
+*/
 
 import asgard.config.Config;
 import asgard.events.ConfigLoaderEvent;

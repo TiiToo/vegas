@@ -1,4 +1,4 @@
-﻿/*
+/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -21,62 +21,27 @@
   
 */
 
-/** DisplayLoaderCollector
+/** IConfigurable (interface)
 
 	AUTHOR
 
-		Name : DisplayLoaderCollector
-		Package : asgard.display
+		Name : IConfigurable
+		Package : asgard.config
 		Version : 1.0.0.0
-		Date :  2006-03-20
+		Date :  2006-08-18
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
-*/
-
-import asgard.display.DisplayLoader;
-
-import vegas.data.map.HashMap;
+*/	
 
 /**
  * @author eKameleon
- * @version 1.0.0.0
- **/
-
-class asgard.display.DisplayLoaderCollector {
-
-	/**
-	 * constructor
-	 */
-    private function DisplayLoaderCollector() {
-		//
-    }
-
-	/**
-	 * Public Methods
-	 */
+ */
+interface asgard.config.IConfigurable 
+{
 	
-	static public function contains( sName:String ):Boolean {
-		return _map.containsKey( sName ) ;	
-	}
 	
-	static public function get(sName:String):DisplayLoader {
-		return DisplayLoader(_map.get(sName)) ;	
-	}
-	
-	static public function insert(sName:String, dObject:DisplayLoader):Boolean {
-		return (_map.put(sName, dObject) != null) ;
-	}
-	
-	static public function remove(sName:String):Void {
-		_map.remove(sName) ;
-	}
-	
-	/**
-	 * Private Methods
-	 */
-	
-	static private var _map:HashMap = new HashMap() ;
+	public function setup():Void ;
 	
 }

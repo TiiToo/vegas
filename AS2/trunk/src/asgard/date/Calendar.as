@@ -109,7 +109,8 @@ class asgard.date.Calendar extends Date implements ICloneable, IEquality, IForma
 
 	// ----o Construtor
 	
-	public function Calendar(yearOrTimevalue:Number, month:Number, date:Number, hour:Number, minute:Number, second:Number, millisecond:Number) {
+	public function Calendar(yearOrTimevalue:Number, month:Number, date:Number, hour:Number, minute:Number, second:Number, millisecond:Number) 
+	{
 		super(yearOrTimevalue, month, date, hour, minute, second, millisecond) ;
 	}
 
@@ -156,19 +157,26 @@ class asgard.date.Calendar extends Date implements ICloneable, IEquality, IForma
 	* @param {Integer} amount	The number of units (measured in the field constant) to add to the date.
 	* @return {date}
 	*/
-	static public function add(date:Date, field:String, amount:Number):Date {
+	static public function add(date:Date, field:String, amount:Number):Date 
+	{
 		var d:Date = new Date(date.getTime());
-		switch (field) {
+		switch (field) 
+		{
 			case Calendar.MONTH:
 				var newMonth:Number = date.getMonth() + amount;
 				var years:Number = 0;
-				if (newMonth < 0) {
-					while (newMonth < 0) {
+				if (newMonth < 0) 
+				{
+					while (newMonth < 0) 
+					{
 						newMonth += 12;
 						years -= 1 ;
 					}
-				} else if (newMonth > 11) {
-					while (newMonth > 11) {
+				}
+				else if (newMonth > 11) 
+				{
+					while (newMonth > 11) 
+					{
 						newMonth -= 12;
 						years += 1;
 					}
@@ -195,35 +203,42 @@ class asgard.date.Calendar extends Date implements ICloneable, IEquality, IForma
 	/**
 	 * @return true if the current time of this Calendar is after the time of Calendar when; false otherwise.
 	 */
-	public function after(d:Date):Boolean {
+	public function after(d:Date):Boolean 
+	{
 		return d.getTime() < getTime() ;
 	}
 
 	/**
 	 * @return true if the current time of this Calendar is before the time of Calendar when; false otherwise. 
 	 */
-	public function before(d:Date):Boolean {
+	public function before(d:Date):Boolean 
+	{
 		return d.getTime() > getTime() ;
 	}
 	
-	public function clone() {
+	public function clone() 
+	{
 		return new Date(valueOf()) ;
 	}
 	
-	public function equals(o):Boolean {
+	public function equals(o):Boolean 
+	{
 		return o instanceof Date && o.valueOf() == valueOf() ;
 	}
 
-	public function format(pattern:String):String {
+	public function format(pattern:String):String 
+	{
 		return (new DateFormatter(pattern)).format(this) ;
 	}
 
-	static public function getCurrentFullMonthCalendar():Array {
+	static public function getCurrentFullMonthCalendar():Array 
+	{
 		var d:Date = new Date() ;
 		return getFullMonthCalendar(d.getFullYear(), d.getMonth()) ;
 	}
 
-	static public function getDaysInMonth(y:Number, m:Number):Number {
+	static public function getDaysInMonth(y:Number, m:Number):Number 
+	{
 		var monthDays:Array = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31] ;
 		if (((y%4 == 0) && !(y%100 == 0) ) || (y%400 == 0)) monthDays[1] = 29 ;
 		return monthDays[m] ;
@@ -236,21 +251,25 @@ class asgard.date.Calendar extends Date implements ICloneable, IEquality, IForma
 	* @param {Integer} calendarYear	The calendar year to use for determining the offset
 	* @return {Integer}	The number of days since January 1 of the given year
 	*/
-	static public function getDayOffset(date:Date, calendarYear:Number):Number {
+	static public function getDayOffset(date:Date, calendarYear:Number):Number 
+	{
 		var beginYear = Calendar.getJan1(calendarYear); // Find the start of the year. This will be in week 1.
 		return Math.ceil( (date.getTime() - beginYear.getTime()) / Calendar.ONE_DAY_MS );
 	}
 
-	static public function getFirstDay(y:Number , m:Number, nameFlag:Boolean) {
+	static public function getFirstDay(y:Number , m:Number, nameFlag:Boolean) 
+	{
 		var d:Number = (new Date (y, m)).getDay() ;
 		return nameFlag ? LocalDate.getDays()[d] : d ;
 	}
 	
-	static public function getFullMonthCalendar(y:Number, m:Number):Array {
+	static public function getFullMonthCalendar(y:Number, m:Number):Array 
+	{
 		var min:Number = getFirstDay (y , m) ;
 		var max:Number = min + getDaysInMonth (y, m) ;
 		var ar:Array = new Array () ;
-		for (var i:Number = 0 ; i < max ; i++) {
+		for (var i:Number = 0 ; i < max ; i++) 
+		{
 			ar[i] = (i < min) ? null : (i - min + 1) ;
 		}
 		return ar ;
@@ -261,7 +280,8 @@ class asgard.date.Calendar extends Date implements ICloneable, IEquality, IForma
 	* @param {Number} calendarYear	The calendar year for which to retrieve January 1
 	* @return {Date} January 1 of the calendar year specified.
 	*/
-	static public function getJan1(calendarYear:Number):Date {
+	static public function getJan1(calendarYear:Number):Date 
+	{
 		return new Date(calendarYear, 0, 1) ; 
 	}
 
@@ -278,7 +298,8 @@ class asgard.date.Calendar extends Date implements ICloneable, IEquality, IForma
 	* @param {Integer} weekStartsOn	OPTIONAL - The integer (0-6) representing which day a week begins on. Default is 0 (for Sunday).
 	* @return {Integer}	The week number of the given date.
 	*/
-	static public function getWeekNumber(date:Date, calendarYear:Number, weekStartsOn:Number):Number {
+	static public function getWeekNumber(date:Date, calendarYear:Number, weekStartsOn:Number):Number 
+	{
 		if (isNaN(weekStartsOn)) weekStartsOn = 0 ;
 		if (isNaN(calendarYear)) calendarYear = date.getFullYear();
 		var weekNum = -1 ;
@@ -292,12 +313,16 @@ class asgard.date.Calendar extends Date implements ICloneable, IEquality, IForma
 		
 		var dayOffset = Calendar.getDayOffset(date, calendarYear); // Days since Jan 1, Calendar Year
 			
-		if (dayOffset < 0 && dayOffset >= (-1 * jan1DayOfWeek)) {
+		if (dayOffset < 0 && dayOffset >= (-1 * jan1DayOfWeek)) 
+		{
 			weekNum = 1;
-		} else {
+		}
+		else
+		{
 			weekNum = 1;
 			var testDate:Date = Calendar.getJan1(calendarYear);
-			while (testDate.getTime() < date.getTime() && testDate.getFullYear() == calendarYear) {
+			while (testDate.getTime() < date.getTime() && testDate.getFullYear() == calendarYear) 
+			{
 				weekNum += 1;
 				testDate = Calendar.add(testDate, Calendar.WEEK, 1);
 			}
@@ -317,11 +342,13 @@ class asgard.date.Calendar extends Date implements ICloneable, IEquality, IForma
 	* @param {Integer} amount	The number of units (measured in the field constant) to subtract from the date.
 	* @return {date}
 	*/
-	static public function subtract(date:Date, field:String, amount:Number):Date {
+	static public function subtract(date:Date, field:String, amount:Number):Date 
+	{
 		return Calendar.add(date, field, (amount*-1));
-	};
+	}
 
-	public function toSource(indent:Number, indentor:String):String {
+	public function toSource(indent:Number, indentor:String):String 
+	{
 		return Serializer.getSourceOf(this, [Serializer.toSource(valueOf())]) ;
 	}
 

@@ -85,7 +85,7 @@
 	
 		IFormattable, IHashable, IEventDispatcher, IRunnable, ISetup, EventTarget, LoaderListener, ISetup
 
-----------  */
+*/
 
 import asgard.config.Config;
 import asgard.config.ConfigLoader;
@@ -103,11 +103,12 @@ class asgard.config.AbstractSetup extends EventDispatcher implements ISetup, Loa
 
 	// ----o Constructor
 	
-	private function AbstractSetup( sFileName:String, sPath:String, sSuffix:String ) {
+	private function AbstractSetup( sFileName:String, sPath:String, sSuffix:String ) 
+	{
 
 		_eChange = new UIEvent( UIEventType.CHANGE ) ;
+	
 		_loader = new ConfigLoader() ;
-			
 		_loader.addEventListener(LoaderEventType.COMPLETE, new Delegate(this, onLoadComplete)) ;
 		_loader.addEventListener(LoaderEventType.INIT, new Delegate(this, onLoadInit)) ;
 		_loader.addEventListener(LoaderEventType.PROGRESS, new Delegate(this, onLoadProgress)) ;
@@ -128,67 +129,81 @@ class asgard.config.AbstractSetup extends EventDispatcher implements ISetup, Loa
 	
 	// ----o Public Methods
 
-	public function getConfig():Config {
+	public function getConfig():Config 
+	{
 		return Config.getInstance() ;
 	}
 
-	public function getConfigLoader():ConfigLoader {
+	public function getConfigLoader():ConfigLoader 
+	{
 		return _loader ;
 	}
 	
-	public function getRunning():Boolean {
+	public function getRunning():Boolean 
+	{
 		return _loader.running ;
 	}
 
-	public function notifyChange():Void {
+	public function notifyChange():Void 
+	{
 		dispatchEvent( _eChange ) ;
 	}
 
-	public function onLoadError(e:LoaderEvent):Void {
+	public function onLoadError(e:LoaderEvent):Void 
+	{
 		// override
 	}
 
-	public function onLoadComplete(e:LoaderEvent):Void {
+	public function onLoadComplete(e:LoaderEvent):Void 
+	{
 
 	}
 
-	public function onLoadInit( e:LoaderEvent ) : Void {
+	public function onLoadInit( e:LoaderEvent ) : Void 
+	{
 		update() ;
 		notifyChange() ;
 	}
 
-	public function onLoadProgress( e:LoaderEvent ):Void {
+	public function onLoadProgress( e:LoaderEvent ):Void 
+	{
 		// override
 	}
 
-	public function onLoadStart( e:LoaderEvent ):Void {
+	public function onLoadStart( e:LoaderEvent ):Void 
+	{
 		// override
 	}
 
-	public function onLoadTimeOut( e:LoaderEvent ):Void {
+	public function onLoadTimeOut( e:LoaderEvent ):Void 
+	{
 		// override
 	}
 	
-	public function release():Void {
+	public function release():Void 
+	{
 		name = null ;
 		namespace = null  ;
 		version = null  ;
 	}
 	
-	public function run():Void {
+	public function run():Void 
+	{
 		if (!getRunning()) {
 			release() ;
 			_loader.load() ;
 		}
 	}
 	
-	public function setLoader(sFileName:String, sPath:String, sSuffix:String):Void {
+	public function setLoader(sFileName:String, sPath:String, sSuffix:String):Void 
+	{
 		if (sFileName) _loader.setFileName(sFileName) ;
 		if (sPath) _loader.setPath(sPath) ;
 		if (sSuffix) _loader.setSuffix(sSuffix) ;	
 	}
 
-	public function update():Void {
+	public function update():Void 
+	{
 		// override this method in you setup class.
 	}
 

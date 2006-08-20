@@ -58,7 +58,7 @@
 	
 		IRunnable
 
-**/
+*/
 
 import asgard.config.Config;
 import asgard.config.ConfigLoader;
@@ -68,7 +68,8 @@ import vegas.core.IRunnable;
 /**
  * @author eKameleon
  */
-interface asgard.config.ISetup extends IRunnable {
+interface asgard.config.ISetup extends IRunnable 
+{
 	
 	function getConfig():Config ;
 
@@ -84,6 +85,4 @@ interface asgard.config.ISetup extends IRunnable {
 
 	function update():Void ;
 
-	
-	
 }

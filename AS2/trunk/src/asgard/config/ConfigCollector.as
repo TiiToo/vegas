@@ -1,4 +1,4 @@
-﻿/*
+/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -21,35 +21,40 @@
   
 */
 
-/** DisplayLoaderCollector
+/** ConfigCollector
 
 	AUTHOR
 
-		Name : DisplayLoaderCollector
-		Package : asgard.display
+		Name : ConfigCollector
+		Package : asgard.config
 		Version : 1.0.0.0
-		Date :  2006-03-20
+		Date :  2006-08-18
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
 */
 
-import asgard.display.DisplayLoader;
+import asgard.config.IConfigurable;
 
-import vegas.data.map.HashMap;
+import vegas.data.iterator.Iterator;
+import vegas.data.list.ArrayList ;
+
+// TODO utiliser un Set et pas une ArrayList !!
 
 /**
  * @author eKameleon
  * @version 1.0.0.0
  **/
 
-class asgard.display.DisplayLoaderCollector {
-
+class asgard.config.ConfigCollector 
+{
+	
 	/**
 	 * constructor
 	 */
-    private function DisplayLoaderCollector() {
+    private function ConfigCollector() 
+    {
 		//
     }
 
@@ -57,26 +62,47 @@ class asgard.display.DisplayLoaderCollector {
 	 * Public Methods
 	 */
 	
-	static public function contains( sName:String ):Boolean {
-		return _map.containsKey( sName ) ;	
+	static public function contains( conf:IConfigurable ) :Boolean 
+	{
+		return _list.contains( conf ) ;	
 	}
 	
-	static public function get(sName:String):DisplayLoader {
-		return DisplayLoader(_map.get(sName)) ;	
+	static public function insert( conf:IConfigurable ) :Boolean 
+	{
+		return _list.insert( conf ) ;
 	}
 	
-	static public function insert(sName:String, dObject:DisplayLoader):Boolean {
-		return (_map.put(sName, dObject) != null) ;
+	static public function iterator() :Iterator
+	{
+		return _list.iterator() ;	
 	}
 	
-	static public function remove(sName:String):Void {
-		_map.remove(sName) ;
+	static public function remove( conf:IConfigurable ) :Void 
+	{
+		_list.remove( conf ) ;
+	}
+	
+	static public function run():Void
+	{
+		if (size() > 0)
+		{
+			var it:Iterator = iterator() ;
+			while(it.hasNext())
+			{
+				(it.next()).setup() ;	
+			}
+		}	
+	}
+	
+	static public function size():Number
+	{
+		return _list.size() ;
 	}
 	
 	/**
 	 * Private Methods
 	 */
 	
-	static private var _map:HashMap = new HashMap() ;
+	static private var _list:ArrayList = new ArrayList() ;
 	
 }

@@ -51,7 +51,7 @@
 	
 		IFormattable, IHashable
 
-------------- */
+*/
 
 import asgard.colors.ColorUtil;
 

@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- 	LangFormat
+/* LangFormat
 
 	AUTHOR
 
@@ -41,13 +41,14 @@
 	
 		IFormat
 	
-----------  */
+*/
 
 import vegas.core.IFormat;
 import vegas.data.iterator.Iterator;
 import vegas.data.map.HashMap;
 
-class asgard.system.LangFormat implements IFormat {
+class asgard.system.LangFormat implements IFormat 
+{
 
 	// ----o Constructor
 	

@@ -95,7 +95,7 @@
 			
 			http://www.w3.org/TR/html4/types.html (chap 6.5)
 
-**/
+*/
 
 import vegas.core.IConvertible;
 import vegas.core.IFormattable;

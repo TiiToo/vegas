@@ -21,7 +21,7 @@
   
 */
 
-/** ------ Locale
+/* Locale
 
 	AUTHOR
 
@@ -47,7 +47,7 @@
 	
 		IFormattable, IHashable
 	
-----------  */	
+*/	
 
 import vegas.core.CoreObject;
 

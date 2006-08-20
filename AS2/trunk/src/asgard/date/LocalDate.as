@@ -84,7 +84,7 @@
 		
 		- getMonths():Array
 	
-----------  */
+*/
 
 // TODO il faut finir la localization 
 
