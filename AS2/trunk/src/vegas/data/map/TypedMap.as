@@ -94,64 +94,85 @@ class vegas.data.map.TypedMap extends AbstractTypeable implements ICloneable, Ma
 
 	// ----o Constructor
 
-	public function TypedMap(p_type:Function , p_map:Map) {
-		super(p_type) ;
-		if (!p_map) throw new IllegalArgumentError() ; // "Argument 'p_map' must not be 'null' or 'undefined'.
-		if (p_map.size() > 0) {
-			var it = p_map.iterator() ;
-			while ( it.hasNext() ) validate(it.next()) ;
+	public function TypedMap( fType:Function , m:Map) {
+		
+		super( fType ) ;
+		if ( m == null) 
+		{
+			throw new IllegalArgumentError("Argument 'map' must not be 'null' or 'undefined'.") ;
 		}
-		_map = p_map ;
+		if ( m.size() > 0) 
+		{
+			var it = m.iterator() ;
+			while ( it.hasNext() ) 
+			{
+				validate(it.next()) ;
+			}
+		}
+		_map = m ;
+		trace(_map) ;
 	}
 
 	// ----o Public Methods
 
-	public function clear():Void {
+	public function clear():Void 
+	{
 		_map.clear() ;
 	}
 	
-	public function clone() {
+	public function clone() 
+	{
 		return new TypedMap(_type, _map) ;
 	}
 
-	public function containsKey(o):Boolean {
+	public function containsKey(o):Boolean 
+	{
 		return _map.containsKey(o) ;
     }
 
-	public function containsValue(o):Boolean {
+	public function containsValue(o):Boolean 
+	{
 		return _map.containsValue(o) ;
     }
 
-	public function get(key) {
+	public function get(key) 
+	{
 		return _map.get(key) ;
 	}
 
-	public function getKeys():Array {
+	public function getKeys():Array 
+	{
 		return _map.getKeys() ;
 	}
 	
-	public function getValues():Array {
+	public function getValues():Array 
+	{
 		return _map.getValues() ;
 	}
 	
-	public function isEmpty():Boolean {
+	public function isEmpty():Boolean 
+	{
 		return _map.isEmpty() ;
 	}
 
-	public function iterator():Iterator {
+	public function iterator():Iterator 
+	{
 		return _map.iterator() ;
 	}
 
-	public function keyIterator():Iterator {
+	public function keyIterator():Iterator 
+	{
 		return _map.keyIterator() ;
 	}
 
-	public function put(key, value) {
+	public function put(key, value) 
+	{
 		validate(value) ;
 		return _map.put(key, value) ;
 	}
 	
-	public function putAll(m:Map):Void {
+	public function putAll(m:Map):Void 
+	{
 		var it:Iterator = m.iterator() ;
 		while(it.hasNext()) {
 			validate(it.next()) ;
@@ -159,26 +180,31 @@ class vegas.data.map.TypedMap extends AbstractTypeable implements ICloneable, Ma
 		_map.putAll(m) ;
 	}
 
-    public function remove(key) {
+    public function remove(key) 
+    {
 		return _map.remove(key) ;
     }
 
-	/*override*/ public function setType(type:Function):Void {
+	/*override*/ public function setType(type:Function):Void 
+	{
 		super.setType(type) ;
 		_map.clear() ;
 	}
 
-	public function size():Number {
+	public function size():Number 
+	{
 		return _map.size() ;
 	}
 
-	public function toSource(indent:Number, indentor:String):String {
+	public function toSource(indent:Number, indentor:String):String 
+	{
 		var sourceA:String = TypeUtil.toString(_type) ;
 		var sourceB:String = Serializer.toSource(_map) ;
 		return Serializer.getSourceOf(this, [sourceA, sourceB]) ;
 	}
 
-	public function toString():String {
+	public function toString():String 
+	{
 		return _map.toString() ;
 	}
 
