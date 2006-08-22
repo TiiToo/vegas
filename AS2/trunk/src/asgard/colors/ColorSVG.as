@@ -69,7 +69,7 @@
 
 	METHOD SUMMARY
 
-		- static equals(c1:ColorSVG, c2:ColorSVG):Boolean
+		- equals( o ):Boolean
 		
 		- static get( name:String ):ColorSVG
 		
@@ -85,12 +85,16 @@
 	
 		Number → ColorHTML → ColorSVG
 
-	SEE
+	IMPLEMENTS
+	
+		IConvertible, IEquality, IFormattable
+	
+	SEE ALSO
 	
 		Basic HTML data types - W3C HTML 4 Specifications :
 			
 			http://www.w3.org/TR/html4/types.html (chap 6.5)
-
+		
 		Scalable Vector Graphics Color Names
 		
 			http://www.december.com/html/spec/colorsvg.html
@@ -99,29 +103,36 @@
 
 import asgard.colors.ColorHTML;
 
-import vegas.core.IConvertible;
-import vegas.core.IFormattable;
-
 import vegas.data.map.HashMap;
+import vegas.util.TypeUtil;
+
 
 // TODO complete the documentation !!!
 
-class asgard.colors.ColorSVG extends ColorHTML implements IConvertible, IFormattable {
+class asgard.colors.ColorSVG extends ColorHTML 
+{
 	
 	// ----o Constructor
 	
 	public function ColorSVG( n:Number , name:String) 
 	{
 		super(n, name) ;
-		if (!ColorSVG._colorSVGCollector)
+		
+		if ( ColorSVG.ELEMENTS == null )
 		{
-			ColorSVG._colorSVGCollector = new HashMap() ;
+			ColorSVG.ELEMENTS = new HashMap() ;
 		}
-		ColorSVG._colorSVGCollector.put( name.toLowerCase(), this) ;
+		
+		ColorSVG.ELEMENTS.put( name.toLowerCase(), this) ;
+		
 	}
+
+	// ----o Public Properties
 	
-	// ----o Constants
-	
+	static public var ELEMENTS:HashMap = null ;
+
+
+
 	static public var ALICE_BLUE:ColorSVG = new ColorSVG(0xF0F8FF , "AliceBlue") ;
 	
 	static public var ANTIQUE_WHITE:ColorSVG = new ColorSVG(0xFAEBD7 , "AntiqueWhite") ;
@@ -417,24 +428,29 @@ class asgard.colors.ColorSVG extends ColorHTML implements IConvertible, IFormatt
 	static public var YELLOW:ColorSVG = new ColorSVG(0xFFFF00 , "Yellow") ;
 	
 	static public var YELLOW_GREEN:ColorSVG = new ColorSVG(0x9ACD32 , "YellowGreen") ;
-
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(ColorSVG, null , 7, 7) ;
 
 	// ----o Public Methods
 	
-	static public function equals( c1:ColorSVG, c2:ColorSVG ):Boolean 
+	static public function contains( o ):Boolean
 	{
-		return ( c1.valueOf() == c2.valueOf() && c1.toString() == c2.toString()) ;	
+		if (o instanceof ColorSVG)
+		{
+			return ColorSVG.ELEMENTS.containsKey( o.name.toLowerCase() ) ;
+		}
+		else if (TypeUtil.typesMatch(o, String))
+		{
+			return ColorSVG.ELEMENTS.containsKey(o.toLowerCase()) ;
+		}
+		else
+		{
+			return false ;	
+		}
 	}
 	
 	static public function get( name:String ):ColorSVG 
 	{
-		return ColorSVG._colorSVGCollector.get(name.toLowerCase()) ;
+		return ColorSVG.ELEMENTS.get(name.toLowerCase()) ;
 	}
-
-	// ----o Private Properties
-	
-	static private var _colorSVGCollector:HashMap = null ;
 
 }

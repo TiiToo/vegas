@@ -21,7 +21,7 @@
   
 */
 
-/**	LocalDate
+/* LocalDate
 
 	AUTHOR
 	
@@ -88,11 +88,15 @@
 
 // TODO il faut finir la localization 
 
-class asgard.date.LocalDate {
+class asgard.date.LocalDate 
+{
 
 	// ----o Construtor
 	
-	private function LocalDate() {}
+	private function LocalDate() 
+	{
+		//
+	}
 	
 	// ---- Statics Properties
 	
@@ -119,12 +123,15 @@ class asgard.date.LocalDate {
 
 	// ---- Static Methods
 	
-	static public function getDays():Array {
+	static public function getDays():Array 
+	{
 		return [SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY] ;
 	}
 	
-	static public function getMonths():Array {
-		return [
+	static public function getMonths():Array 
+	{
+		return 
+		[
 			JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE,
 			JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER
 		] ;

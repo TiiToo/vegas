@@ -45,24 +45,28 @@
 
 **/
 
-class asgard.colors.ColorRGB {
+class asgard.colors.ColorRGB 
+{
 	
 	// ----o Constructor
 	
-	private function ColorRGB() {
+	private function ColorRGB() 
+	{
 		//
 	}
 	
 	//  ------o static public Methods
 	
-	static public function getRGBStr(c:Color):String {
+	static public function getRGBStr(c:Color):String 
+	{
 		var str:String = c.getRGB().toString(16);
 		var toFill:Number = 6 - str.length;
 		while (toFill--) str = "0" + str ;
 		return str.toUpperCase();
 	}
 	
-	static public function hex2rgb(hex:Number):Object {
+	static public function hex2rgb(hex:Number):Object 
+	{
 		var r,g,b,gb:Number ;
 		r = hex>>16 ;
 		gb = hex ^ r << 16 ;
@@ -71,11 +75,13 @@ class asgard.colors.ColorRGB {
 		return {r:r,g:g,b:b} ;
 	}
 	
-	static public function rgb2hex(r:Number, g:Number, b:Number):Number  {
+	static public function rgb2hex(r:Number, g:Number, b:Number):Number  
+	{
 		return ((r << 16) | (g << 8) | b);
 	}
 	
-	static public function setRGBStr(c:Color, str:String) : Void {
+	static public function setRGBStr(c:Color, str:String):Void 
+	{
 		c.setRGB (parseInt (str.substr (-6, 6), 16));
 	}
 

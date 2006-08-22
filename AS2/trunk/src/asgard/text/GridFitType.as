@@ -1,4 +1,4 @@
-﻿/*
+/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -21,21 +21,21 @@
   
 */
 
-/** AntiAliasType
+/** GridFitType
 
 	AUTHOR
 
-		Name : AntiAliasType
+		Name : GridFitType
 		Package : asgard.text
 		Version : 1.0.0.0
-		Date :  2006-05-22
+		Date :  2006-08-22
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
 	DESCRIPTION
 	
-		The AntiAliasType class provides values for anti-aliasing in the flash.text.TextField class.
+		The GridFitType class defines values for grid fitting in the TextField class.
 
 	CONSTRUCTOR
 	
@@ -43,39 +43,41 @@
 	
 	CONSTANT SUMMARY
 	
-		- static ADVANCED:String = "advanced"
-			
-			[static] Sets anti-aliasing to advanced anti-aliasing.
-	
-		- static NORMAL:String = "normal"
+ 		- static NONE:String = "none"
+			Doesn't set grid fitting. GridFitType 
 		
-			[static] Sets anti-aliasing to the anti-aliasing that is used in Flash Player 7 and earlier.
+		- static PIXEL:String = "pixel"
+			Fits strong horizontal and vertical lines to the pixel grid. GridFitType 
+		
+		- static SUBPIXEL:String = "subpixel"
+			Fits strong horizontal and vertical lines to the sub-pixel grid on LCD monitors. 
 
-**/
-
+*/
 
 /**
- * AntiAliasType
+ * GridFitType
  * @author eKameleon
  * @version 1.0.0.0
  **/
  
-class asgard.text.AntiAliasType 
+class asgard.text.GridFitType 
 {
 	
 	// ----o Constructor
 	
-	private function AntiAliasType()
+	private function GridFitType()
 	{
 		//
 	}
 	
 	// ----o Constant
 	
-	static public var ADVANCED:String = "advanced" ;
+	static public var NONE:String = "none" ;
 	
-	static public var NORMAL:String = "normal" ;
+	static public var PIXEL:String = "pixel" ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(AntiAliasType, null , 7, 7) ;
+	static public var SUBPIXEL:String = "subpixel" ;
+
+	static private var __ASPF__ = _global.ASSetPropFlags(GridFitType, null , 7, 7) ;
 
 }

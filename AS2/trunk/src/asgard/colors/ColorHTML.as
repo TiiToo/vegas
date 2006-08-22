@@ -78,18 +78,30 @@
 		- YELLOW:ColorHTML
 
 	METHOD SUMMARY
-	
+		
+		- equals(o):Boolean
+		
+		- static hexToHtml( hex:Number ):String
+		
 		- static htmlToNumber( sHTML:String ):Number
-
+		
 		- toBoolean():Boolean
-
+		
 		- toObject():Object
-
+		
 		- toString():String
 				
 		- valueOf():Number
 
-	SEE
+	INHERIT
+	
+		Number → ColorHTML
+
+	IMPLEMENTS
+	
+		IConvertible, IEquality, IFormattable
+
+	SEE ALSO
 	
 		Basic HTML data types - W3C HTML 4 Specifications :
 			
@@ -98,17 +110,19 @@
 */
 
 import vegas.core.IConvertible;
+import vegas.core.IEquality;
 import vegas.core.IFormattable;
 import vegas.util.ObjectUtil;
 import vegas.util.StringUtil;
 
-class asgard.colors.ColorHTML extends Number implements IConvertible, IFormattable {
+class asgard.colors.ColorHTML extends Number implements IConvertible, IEquality, IFormattable {
 	
 	// ----o Constructor
 	
-	private function ColorHTML( n:Number , name:String) {
+	private function ColorHTML( n:Number , name:String) 
+	{
 		super(n) ;
-		_name = name ;
+		this.name = name ;
 	}
 	
 	// ----o Constants
@@ -145,38 +159,51 @@ class asgard.colors.ColorHTML extends Number implements IConvertible, IFormattab
 	
 	static public var YELLOW:ColorHTML  = new ColorHTML(0xFFFF00 , "Yellow") ;
 
-	static private var __ASPF__ = _global.ASSetPropFlags(ColorHTML, null , 7, 7) ;
+	// ----o Public Propeerties
+	
+	public var name:String ;
 
 	// ----o Public Methods
-	
-	static public function htmlToNumber( sHTML:String ):Number {
+
+	public function equals( o ):Boolean 
+	{
+		return ( o.valueOf() == valueOf() && toString() == o.toString()) ;	
+	}
+
+	static public function htmlToNumber( sHTML:String ):Number 
+	{
 		var s = new StringUtil(sHTML) ;
-		if (s.firstChar() == "#" && s.length > 1 && s.length <= 7) {
+		if (s.firstChar() == "#" && s.length > 1 && s.length <= 7) 
+		{
 			s = s.splice(1) ;
 			return parseInt("0x" + s) ;
 		}
 		return null ;
 	}
 
-	public function toBoolean():Boolean {
+	static public function hexToHtml( hex:Number):String
+	{
+		return "#" + (hex.toString(16)).toUpperCase() ; 
+	}
+
+	public function toBoolean():Boolean 
+	{
 		return ObjectUtil.toBoolean(this) ;	
 	}
 	
-
-	public function toNumber():Number {
+	public function toNumber():Number 
+	{
 		return ObjectUtil.toNumber(this) ;	
 	}
 
-	public function toObject():Object {
+	public function toObject():Object 
+	{
 		return ObjectUtil.toObject(this) ;	
 	}
 	
-	public function toString():String {
-		return 	_name ;
+	public function toString():String 
+	{
+		return name ;
 	}
 
-	// ----o Private Properties
-	
-	private var _name:String ;
-	
 }
