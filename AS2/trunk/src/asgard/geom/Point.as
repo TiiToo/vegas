@@ -137,15 +137,15 @@
 		
 		- swap(p:Point):Void
 		
+		- toFlash():flash.geom.Point 
+		
 		- toSource():String
 		
 		- toString():String
 
 	INHERIT
 	
-		CoreObject
-			|
-			Point
+		CoreObject → Point
 
 	IMPLEMENTS
 
@@ -187,93 +187,114 @@ dynamic class asgard.geom.Point extends CoreObject implements ICloneable, IEqual
 
 	// ----o Public Methods
 
-	public function abs():Void {
+	public function abs():Void 
+	{
 		x = Math.abs(x) ;
 		y = Math.abs(y) ;
 	}
 	
-	public function absNew():Point {
+	public function absNew():Point 
+	{
 		return clone().abs() ;
 	}
 
-	public function angleBetween(p:Point):Number {
+	public function angleBetween(p:Point):Number 
+	{
 		var dp:Number = dot(p) ;
 		var l:Number = getLength() ;
 		var a:Number = dp / (l * l) ;
 		return Trigo.acosD(a) ;
 	}
 	
-	public function clone() {
+	public function clone() 
+	{
 		return new Point(x, y) ;
 	}
 
-	public function cross(p:Point):Number {
+	public function cross(p:Point):Number 
+	{
 		return ( x * p.y ) - (y * p.x) ;
 	}
 
-	static public function distance(p1:Point, p2:Point):Number {
+	static public function distance(p1:Point, p2:Point):Number 
+	{
 		return p1.subtractNew(p2).getLength() ;
 	}
 	
-	public function dot(p:Point):Number {
+	public function dot(p:Point):Number 
+	{
 		return (x * p.x) + (y * p.y) ;
 	}
 	
-	public function equals(o):Boolean {
+	public function equals(o):Boolean 
+	{
 		return (o instanceof Point && o.x == x && o.y == y) ;
 	}
 	
-	public function getAngle():Number {
+	public function getAngle():Number 
+	{
 		return Trigo.atan2D(y, x) ;
 	}
 	
-	public function getDirection():Point {
+	public function getDirection():Point 
+	{
 		return clone().normalize() ;
 	}
 	
-	public function getLength():Number {
+	public function getLength():Number 
+	{
 		return Math.sqrt(x * x + y * y) ;
 	}
 
-	static public function getMiddle(p1:Point, p2:Point):Point {
+	static public function getMiddle(p1:Point, p2:Point):Point 
+	{
 		return new Point( ( p1.x + p2.x) / 2 , (p1.y + p2.y) / 2) ;
 	}
 	
-	public function getNormal():Point {
+	public function getNormal():Point 
+	{
 		return new Point(-y , x) ;
 	}
 
-	public function getProjectionLength(p:Point):Number {
+	public function getProjectionLength(p:Point):Number 
+	{
 		var l:Number = p.dot(p) ;
 		return (l==0) ? 0 : Math.abs(dot(p)/l) ;
 	}
 
-	static public function interpolate(p1:Point, p2:Point, f:Number):Point {
+	static public function interpolate(p1:Point, p2:Point, f:Number):Point 
+	{
 		return new Point( p2.x + f * (p1.x - p2.x) , p2.y + f * (p1.y - p2.y) ) ;
 	}
 	
-	public function isPerpTo(p:Point):Boolean {
+	public function isPerpTo(p:Point):Boolean 
+	{
 		return dot(p) == 0 ;
 	}
 
-    public function max(p:Point):Point {
+    public function max(p:Point):Point 
+    {
         return new Point( Math.max(x, p.x), Math.max(y, p.y) ) ;
     }
 
-	public function min(p:Point):Point {
+	public function min(p:Point):Point 
+	{
         return new Point( Math.min(x , p.x) , Math.min(y, p.y) ) ;
     }
 
-	public function negate():Void {
+	public function negate():Void 
+	{
 		x = - x ;
 		y = - y ;
 	}
 
-	public function negateNew():Point {
+	public function negateNew():Point 
+	{
 		return new Point(-x , -y) ;
 	}
 	
-	public function normalize(thickness:Number):Void {
+	public function normalize(thickness:Number):Void 
+	{
 		var l:Number = getLength() ;
 		if (l > 0) {
 			l = thickness / l ;
@@ -282,36 +303,43 @@ dynamic class asgard.geom.Point extends CoreObject implements ICloneable, IEqual
 		}
 	}
 
-	public function offset(dx:Number, dy:Number):Void {
+	public function offset(dx:Number, dy:Number):Void 
+	{
 		x += dx ;
 		y += dy ;
 	}
 
-	public function plus(p:Object):Void {
+	public function plus(p:Object):Void 
+	{
 		x += p.x ;
 		y += p.y ;
 	}
 
-	public function plusNew(p:Object):Point {
+	public function plusNew(p:Object):Point 
+	{
 		return new Point (x + p.x, y + p.y) ;
 	}
 
-	static public function polar(len:Number, angle:Number):Point {
+	static public function polar(len:Number, angle:Number):Point 
+	{
 		return new Point(len * Math.cos(angle), len * Math.sin(angle)) ;
 	}
 	
-	public function project( p:Point ):Point {
+	public function project( p:Point ):Point 
+	{
 		var l:Number = p.dot(p) ;
 		if( l == 0) return clone() ;
 		else return scaleNew( dot(p) / l ) ;
 	}
 	
-	public function reset(x:Number, y:Number):Void {
+	public function reset(x:Number, y:Number):Void 
+	{
 		x = x ;
 		y = y ;
 	}
 	
-	public function rotate(angle:Number):Void {
+	public function rotate(angle:Number):Void 
+	{
 		var ca:Number = Trigo.cosD (angle) ;
 		var sa:Number = Trigo.sinD (angle) ;
 		var rx:Number = x * ca - y * sa ;
@@ -320,43 +348,51 @@ dynamic class asgard.geom.Point extends CoreObject implements ICloneable, IEqual
 		y = ry ;
 	}
 
-	public function rotateNew(angle:Number):Point {
+	public function rotateNew(angle:Number):Point 
+	{
 		var p:Point = new Point(x, y) ;
 		p.rotate (angle) ;
 		return p ;
 	}
 
-	public function scale(n:Number):Void {
+	public function scale(n:Number):Void 
+	{
 		x *= n ;
 		y *= n ;
 	}
 
-	public function scaleNew(s:Number):Point {
+	public function scaleNew(s:Number):Point 
+	{
 		return new Point( x * s , y * s ) ;
 	}
 
-	public function setAngle(n:Number):Void {
+	public function setAngle(n:Number):Void 
+	{
 		var r:Number = getLength() ;
 		x = r * Trigo.cosD(n) ;
 		y = r * Trigo.sinD(n) ;
 	}
 	
-	public function setLength (n:Number) : Void {
+	public function setLength (n:Number) : Void 
+	{
 		var r:Number = getLength() ;
 		if (isNaN(r) && r !=0) scale ( n / r ) ;
 		else x = r ;
 	}
 	
-	public function subtract(p:Object):Void {
+	public function subtract(p:Object):Void 
+	{
 		x -= p.x ;
 		y -= p.y ;
 	}
 	
-	public function subtractNew(p:Point):Point {
+	public function subtractNew(p:Point):Point 
+	{
 		return new Point(x - p.x, y - p.y) ;
 	}
 
-	public function swap(p:Point):Void {
+	public function swap(p:Point):Void 
+	{
 		var tx:Number = x ;
 		var ty:Number = y ;
 		x = p.x ;
@@ -365,36 +401,48 @@ dynamic class asgard.geom.Point extends CoreObject implements ICloneable, IEqual
 		p.y = ty ;
 	}
 
-	public function toSource(indent:Number, indentor:String):String {
+	public function toFlash():flash.geom.Point
+	{
+		return new flash.geom.Point(x,y) ;
+	}
+
+	public function toSource(indent:Number, indentor:String):String 
+	{
 		return "new Point(" + x + "," + y + ")" ;
 	}
 	
-	public function toString():String {
+	public function toString():String 
+	{
 		return "("+ (x||0) + ","+ (y||0) + ")" ;
 	}
 	
 	// ----o Virtual Properties
 	
-	public function get angle():Number {
+	public function get angle():Number 
+	{
 		return getAngle() ;
 	}
 	
-	public function set angle( n:Number ):Void {
+	public function set angle( n:Number ):Void 
+	{
 		setAngle(n) ;	
 	}
 	
-	public function get length():Number {
+	public function get length():Number 
+	{
 		return getLength() ;	
 	}
 	
-	public function set length(n:Number):Void {
+	public function set length(n:Number):Void 
+	{
 		setLength(n) ;	
 	}
 	
 	// ----o Static Private -  MTASC HACK - Macromedia FP8 Compatibility
 	
 	static private var __init:Boolean ;
-	static private function initialize():Boolean {
+	static private function initialize():Boolean 
+	{
 		if (__init) return false ;
 		else {
 			__init = true ;

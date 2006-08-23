@@ -108,19 +108,21 @@
 		
 		- translate(dx:Number, dy:Number):Void
 		
+		- toFlash():flash.geom.Matrix 
+		
 		- toSource( indent:Number, indentor:String):String
 		
 		- toString():String
 
 	INHERIT
 	
-		CoreObject > TransformMatrix
+		CoreObject → TransformMatrix
 
 	IMPLEMENT SUMMARY
 	
 		ICloneable, IEquality, ISerializable, IFormattable
 		
----------------*/
+*/
 
 import asgard.geom.Point;
 import asgard.geom.Trigo;
@@ -130,15 +132,20 @@ import vegas.core.ICloneable;
 import vegas.core.IEquality;
 import vegas.core.ISerializable;
 
-class asgard.geom.TransformMatrix extends CoreObject implements ICloneable, IEquality, ISerializable {
+class asgard.geom.TransformMatrix extends CoreObject implements ICloneable, IEquality, ISerializable 
+{
 
 	// ----- Constructor
 	
-	public function TransformMatrix(p_a:Number, p_b:Number, p_c:Number, p_d:Number, p_x:Number, p_y:Number) {
+	public function TransformMatrix(p_a:Number, p_b:Number, p_c:Number, p_d:Number, p_x:Number, p_y:Number) 
+	{
 		var l = arguments.length ;
-		if (l == 0) {
+		if (l == 0) 
+		{
 			identity() ;
-		} else {
+		}
+		else 
+		{
 			a = p_a ;
 			b = p_b ;
 			c = p_c ;
@@ -159,11 +166,13 @@ class asgard.geom.TransformMatrix extends CoreObject implements ICloneable, IEqu
 		
 	// ----o Public Methods
 
-	public function clone() {
+	public function clone() 
+	{
 		return new TransformMatrix(a, b, c, d, tx, ty) ;
 	}
 	
-	public function createBox(scaleX:Number, scaleY:Number, rotation:Number, x:Number, y:Number):Void {
+	public function createBox(scaleX:Number, scaleY:Number, rotation:Number, x:Number, y:Number):Void 
+	{
 		var rr:Number = isNaN(rotation) ? 0 : rotation ;
 		var rx:Number = isNaN(x) ? 0 : x ;
 		var ry:Number = isNaN(y) ? 0 : y ;
@@ -174,21 +183,24 @@ class asgard.geom.TransformMatrix extends CoreObject implements ICloneable, IEqu
 		ty = ry ;
 	}
 	
-	public function createGradientBox(width:Number, height:Number, rotation:Number, x:Number, y:Number):Void {
+	public function createGradientBox(width:Number, height:Number, rotation:Number, x:Number, y:Number):Void 
+	{
 		var rr = isNaN(rotation) ? 0 : rotation ;
 		var rx:Number = isNaN(x) ? 0 : x ;
 		var ry:Number = isNaN(y) ? 0 : y ;
 		createBox((width / 1638.400000) , (height / 1638.400000) , rr, rx + width / 2, ry + height / 2) ;
 	}
 	
-	public function concat(m:TransformMatrix):Void {
+	public function concat(m:TransformMatrix):Void 
+	{
 		var r_a:Number = a * m.a ;
 		var r_d:Number = d * m.d ;
 		var r_b:Number = 0 ;
 		var r_c:Number = 0 ;
 		var r_tx:Number = tx * m.a + m.tx ;
 		var r_ty:Number = ty * m.d + m.ty ;
-		if (b != 0 || c != 0 || m.b != 0 || m.c != 0) {
+		if (b != 0 || c != 0 || m.b != 0 || m.c != 0) 
+		{
 			r_a = r_a + b * m.c ;
 			r_d = r_d + c * m.b ;
 			r_b = r_b + (a * m.b + b * m.d) ;
@@ -204,21 +216,25 @@ class asgard.geom.TransformMatrix extends CoreObject implements ICloneable, IEqu
 		ty = r_ty ;
 	}
 	
-	public function deltaTransformPoint(p:Point):Point {
+	public function deltaTransformPoint(p:Point):Point 
+	{
 		return new Point(a * p.x + c * p.y , d * p.y + b * p.x) ;
 	}
 	
-	public function equals(o):Boolean {
+	public function equals(o):Boolean 
+	{
 		return ( o instanceof TransformMatrix && o.a == a && o.b == b && o.c == c && o.d == d && o.tx == tx && o.ty == ty) ;
 	}
 		
-	public function identity():Void {
+	public function identity():Void 
+	{
 		a = d = 1 ;
 		b = c = 0 ;
 		tx = ty = 0 ;
 	}
 	
-	public function invert():Void {
+	public function invert():Void 
+	{
 		if (b == 0 && c == 0) 
 		{
 			a = 1 / a ;
@@ -250,34 +266,46 @@ class asgard.geom.TransformMatrix extends CoreObject implements ICloneable, IEqu
 		}
 	}
 	
-	public function rotate( radians:Number ):Void {
+	public function rotate( radians:Number ):Void 
+	{
 		var c:Number = Math.cos(radians);
 		var s:Number = Math.sin(radians);
 		concat(new TransformMatrix(c, s, -s, c, 0, 0)) ;
 	}
 	
-	public function rotateD( degrees:Number ):Void {
+	public function rotateD( degrees:Number ):Void 
+	{
 		rotate(Trigo.degreesToRadians(degrees)) ;
 	}
 	
-	public function scale(sx:Number, sy:Number):Void {
+	public function scale(sx:Number, sy:Number):Void 
+	{
 		concat(new TransformMatrix(sx, 0, 0, sy, 0, 0));
 	}
 	
-	public function transformPoint(p:Point):Point {
+	public function transformPoint(p:Point):Point 
+	{
 		return new Point( (a * p.x) + (c * p.y) + tx , (d * p.y) + (b * p.x) + ty ) ;
 	}
 	
-	public function translate(dx:Number, dy:Number):Void {
+	public function translate(dx:Number, dy:Number):Void 
+	{
 		tx += dx ;
 		ty += dy ;
 	}
 	
-	public function toSource( indent:Number, indentor:String):String {
+	public function toFlash():flash.geom.Matrix
+	{
+		return new flash.geom.Matrix(a, b, c, d, tx, ty) ;
+	}
+	
+	public function toSource( indent:Number, indentor:String):String 
+	{
 		return "new TransformMatrix(" + a + "," + b + "," + c + "," + d + "," + tx + "," + ty + ")" ;
 	}
 	
-	public function toString():String {
+	public function toString():String 
+	{
 		return "[a:" + a + ",b:" + b + ",c:" + c + ",d:" + d + ",tx:" + tx + ",ty:" + ty +  "]" ;
 	}
 
