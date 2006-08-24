@@ -1,0 +1,145 @@
+/*
+
+  The contents of this file are subject to the Mozilla Public License Version
+  1.1 (the "License"); you may not use this file except in compliance with
+  the License. You may obtain a copy of the License at 
+  
+           http://www.mozilla.org/MPL/ 
+  
+  Software distributed under the License is distributed on an "AS IS" basis,
+  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+  for the specific language governing rights and limitations under the License. 
+  
+  The Original Code is Vegas Library.
+  
+  The Initial Developer of the Original Code is
+  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  the Initial Developer. All Rights Reserved.
+  
+  Contributor(s) :
+  
+*/
+
+/**	AbstractProgressbar
+
+	AUTHOR
+	
+		Name : AbstractProgressbar
+		Package : lunas.display.components.bar
+		Version : 1.0.0.0
+		Date :  2006-02-10
+		Author : ekameleon
+		URL : http://www.ekameleon.net
+		Mail : vegas@ekameleon.net
+
+	PROPERTY SUMMARY
+	
+		- direction:Number [R/W]
+		
+		- position:Number [R/W]
+	
+	METHOD SUMMARY
+		
+		- getDirection():Number
+		
+		- getPosition():Number
+		
+		- setDirection(n:Number):Void
+		
+		- setPosition(pos:Number, noEvent:Boolean):Void
+		
+	EVENT TYPE SUMMARY
+	
+		- CHANGE:String
+
+	INHERIT
+	
+		MovieClip → AbstractComponent → AbstractProgressbar
+
+**/
+
+import asgard.display.Direction;
+import asgard.events.UIEventType;
+
+import lunas.display.components.AbstractComponent;
+import lunas.display.components.IProgressbar;
+
+import vegas.maths.Range;
+
+class lunas.display.components.bar.AbstractProgressbar extends AbstractComponent implements IProgressbar {
+
+	// ----o Constructor
+	
+	private function AbstractProgressbar() {
+		_rPercent = Range.PERCENT_RANGE ;
+	}
+
+	// ----o Constant
+	
+	static public var CHANGE:String = UIEventType.CHANGE ;
+	
+	static private var __ASPF__ = _global.ASSetPropFlags(AbstractProgressbar, null, 7, 7) ;
+	
+	// ----o Public Properties
+	
+	// public var direction:Number ; // [R/W]
+	// public var position:Number ; // [R/W]
+	
+	// ----o Public Methods		
+
+	public function getDirection():Number { 
+		return (_nDirection == Direction.HORIZONTAL) ? Direction.HORIZONTAL : Direction.VERTICAL ;
+	}
+	
+	public function getPosition():Number {
+		return isNaN(_position) ? 0 : _position ;
+	}
+
+	public function setDirection(n:Number):Void {
+		_nDirection = (n == Direction.HORIZONTAL) ? Direction.HORIZONTAL : Direction.VERTICAL ;
+		update() ;
+	}
+
+	public function setPosition(pos:Number, noEvent:Boolean, flag:Boolean):Void {
+		pos = _rPercent.clamp(pos) ;
+		if (pos != _position) {
+			_position = pos ;
+			viewPositionChanged(flag) ;
+			if (!noEvent) notifyChanged() ;
+		}
+	}
+	
+	public function viewChanged():Void {
+		setPosition(0, true, true) ;
+	}
+
+	public function viewPositionChanged(flag:Boolean):Void {
+		// override this method
+	}
+
+	// ----o Virtual Properties
+
+	public function get direction():Number {
+		return getDirection() ;
+	}
+	
+	public function set direction(n:Number):Void {
+		setDirection(n) ;	
+	}
+
+	public function get position():Number {
+		return getPosition() ;
+	}
+	
+	public function set position(n:Number):Void {
+		setPosition(n) ;	
+	}
+
+	// ----o Private Properties
+
+	private var _nDirection:Number = Direction.HORIZONTAL ; 
+	private var _position:Number = 0 ;
+	private var _rPercent:Range ;
+	
+}

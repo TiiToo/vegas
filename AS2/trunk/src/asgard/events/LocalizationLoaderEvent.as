@@ -78,10 +78,10 @@
 */
 
 import asgard.events.LoaderEvent;
+import asgard.net.ILoader;
+import asgard.system.ILocalizationLoader;
 import asgard.system.Lang;
 import asgard.system.Locale;
-import asgard.system.ILocalizationLoader;
-import asgard.net.ILoader;
 
 /**
  * @author eKameleon

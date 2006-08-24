@@ -144,7 +144,8 @@ class asgard.draw.EasyPen extends AbstractPen {
 
 	// -----o Constructor
 
-	public function EasyPen(target:MovieClip, isNew:Boolean) {
+	public function EasyPen(target:MovieClip, isNew:Boolean) 
+	{
 		initialize(target, isNew) ;
 	}
 
@@ -154,22 +155,26 @@ class asgard.draw.EasyPen extends AbstractPen {
 
 	// ----o Public Methods
 
-	public function getAlign():Number {
+	public function getAlign():Number 
+	{
 		return _align ;
 	}
 
-	public function setAlign ( nAlign:Number , noDraw:Boolean):Void {
+	public function setAlign ( nAlign:Number , noDraw:Boolean):Void 
+	{
 		_align = (Align.validate(nAlign)) ? nAlign : Align.TOP_LEFT ;
 		if (!noDraw) draw() ;
 	}
 
 	// ----o Virtual Properties
 
-	public function get align():Number {
+	public function get align():Number 
+	{
 		return getAlign() ;	
 	}
 	
-	public function set align(nAlign:Number):Void {
+	public function set align(nAlign:Number):Void 
+	{
 		setAlign(nAlign) ;	
 	}
 	

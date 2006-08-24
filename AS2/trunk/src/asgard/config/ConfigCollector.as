@@ -38,7 +38,7 @@
 import asgard.config.IConfigurable;
 
 import vegas.data.iterator.Iterator;
-import vegas.data.list.ArrayList ;
+import vegas.data.list.ArrayList;
 
 // TODO utiliser un Set et pas une ArrayList !!
 

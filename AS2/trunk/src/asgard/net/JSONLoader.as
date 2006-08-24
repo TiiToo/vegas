@@ -153,7 +153,7 @@
 	
 **/	
 
-import asgard.net.ParserLoader ;
+import asgard.net.ParserLoader;
 
 import vegas.string.JSON;
 
