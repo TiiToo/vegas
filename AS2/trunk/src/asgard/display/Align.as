@@ -1,4 +1,3 @@
-import vegas.util.ArrayUtil;
 /*
 
   The contents of this file are subject to the Mozilla Public License Version
@@ -72,7 +71,9 @@ import vegas.util.ArrayUtil;
 		
 		- toString(n:Number):String
 
-----------  */
+*/
+
+import vegas.util.ArrayUtil;
 
 class asgard.display.Align {
 

@@ -103,11 +103,13 @@ import vegas.util.factory.DisplayFactory;
  * @version 1.0.0.0
  */
 
-class asgard.display.DisplayObject extends AbstractCoreEventDispatcher {
+class asgard.display.DisplayObject extends AbstractCoreEventDispatcher 
+{
 
 	// ----o Constructor
 
-    public function DisplayObject( sName:String , target ) {
+    public function DisplayObject( sName:String , target ) 
+    {
 		
         super() ;
 
@@ -146,39 +148,48 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher {
 
 	// ----o Public Methods
 
-	public function createChild( o , name:String , depth:Number , init ) {
+	public function createChild( o , name:String , depth:Number , init ) 
+	{
 		return DisplayFactory.createChild( o , name , depth , view, init ) ;
 	}
 	
-	public function getEnabled():Boolean { 
+	public function getEnabled():Boolean 
+	{ 
 		return view.enabled ;
 	} 
 	
-	public function getHeight():Number { 
+	public function getHeight():Number 
+	{ 
 		return view._height ;
 	}
 	
-	public function getLoader():ILoader {
+	public function getLoader():ILoader 
+	{
 		return _loader ;	
 	}
 	
-	public function getName():String 	{
+	public function getName():String
+	{
 		return _sName;
 	}
 	
-	public function getWidth():Number { 
+	public function getWidth():Number 
+	{ 
 		return view._width ;
 	}
 
-	public function getX():Number { 
+	public function getX():Number 
+	{ 
 		return view._x ;
 	}
 	
-	public function getY():Number { 
+	public function getY():Number 
+	{ 
 		return view._y ;
 	}
 
-	public function hide():Void {
+	public function hide():Void 
+	{
 		if (_loader != null) {
 			_loader.hide() ;
 		} else {
@@ -186,43 +197,52 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher {
 		}
 	}
 
-	public function isVisible():Boolean {
+	public function isVisible():Boolean 
+	{
 		return (view._visible = true) ;	
 	}
 
-	public function move( x:Number, y:Number ) : Void {
+	public function move( x:Number, y:Number ) : Void 
+	{
 		view._x = x ;
 		view._y = y ;
 	}
 
-	public function release() : Void {
+	public function release() : Void 
+	{
 		DisplayObjectCollector.remove( _sName );
 		view.removeMovieClip() ;
 		_loader.release() ;
 		delete _sName ;
 	}
 	
-	public function setEnabled(b:Boolean):Void {
+	public function setEnabled(b:Boolean):Void 
+	{
 		view.enabled = (b == true) ; 
 	}
 
-	public function setHeight( n:Number ) : Void {
+	public function setHeight( n:Number ) : Void 
+	{
 		view._height = n ; 
 	}
 
-	public function setWidth( n:Number ) : Void {
+	public function setWidth( n:Number ) : Void 
+	{
 		view._width = n ; 
 	}
 
-	public function setX( n:Number ) : Void {
+	public function setX( n:Number ) : Void 
+	{
 		view._x = n ; 
 	}
 	
-	public function setY( n:Number ) : Void {
+	public function setY( n:Number ) : Void 
+	{
 		view._y = n ; 
 	}
 	
-	public function show():Void {
+	public function show():Void 
+	{
 		if (_loader != null) {
 			_loader.show() ;
 		} else {
@@ -232,43 +252,53 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher {
 	
 	// ----o Virtual Properties
 	
-	public function get enabled():Boolean {
+	public function get enabled():Boolean 
+	{
 		return getEnabled() ;	
 	}
 
-	public function set enabled(b:Boolean):Void {
+	public function set enabled(b:Boolean):Void 
+	{
 		setEnabled(b) ;	
 	}
 
-	public function get height():Number {
+	public function get height():Number 
+	{
 		return getHeight() ;	
 	}
 
-	public function set height(n:Number):Void {
+	public function set height(n:Number):Void 
+	{
 		setHeight(n) ;	
 	}
 	
-	public function get width():Number {
+	public function get width():Number 
+	{
 		return getWidth() ;	
 	}
 
-	public function set width(n:Number):Void {
+	public function set width(n:Number):Void 
+	{
 		setWidth(n) ;	
 	}
 	
-	public function get x():Number {
+	public function get x():Number 
+	{
 		return getX() ;	
 	}
 
-	public function set x(n:Number):Void {
+	public function set x(n:Number):Void 
+	{
 		setX(n) ;	
 	}
 
-	public function get y():Number {
+	public function get y():Number 
+	{
 		return getY() ;	
 	}
 
-	public function set y(n:Number):Void {
+	public function set y(n:Number):Void 
+	{
 		setY(n) ;	
 	}
 	
@@ -279,7 +309,8 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher {
 	
 	// ----o Private Methods
 	
-	private function _setName( name:String ) : Void {
+	private function _setName( name:String ) : Void 
+	{
 
 		DisplayObjectCollector.remove( _sName ) ;
 		
