@@ -102,17 +102,17 @@ class asgard.display.Bitmap extends DisplayObject
 	
 	// ----o Constructor
 	
-	public function Bitmap(sName:String, target:MovieClip, bmp:BitmapData, pixelSnapping:String, smoothing:Boolean ) 
+	public function Bitmap( sName:String, target:MovieClip, bmp:BitmapData, pixelSnapping:String, smoothing:Boolean ) 
 	{
 		
-		super(sName, target) ;
+		super( sName, target ) ;
 		
 		_container = view.createEmptyMovieClip("__container__", 1000) ;
 		
 		setPixelSnapping(pixelSnapping, true) ;
 		setSmoothing(smoothing, true) ;
 		
-		setBitmap(bmp) ;
+		setBitmapData(bmp) ;
 		
 	}
 	
@@ -128,7 +128,7 @@ class asgard.display.Bitmap extends DisplayObject
 		_bmp.dispose() ;	
 	}
 	
-	public function getBitmap():BitmapData
+	public function getBitmapData():BitmapData
 	{
 		return _bmp ;	
 	}
@@ -149,6 +149,12 @@ class asgard.display.Bitmap extends DisplayObject
 		_container.removeMovieClip() ;	
 	}
 
+	public function setBitmapData(bmp:BitmapData):Void
+	{
+		_bmp = bmp ;
+		update() ;	
+	}
+
 	public function setPixelSnapping( snapping:String, noUpdate:Boolean ):Void
 	{
 		_pixelSnapping = snapping ;
@@ -162,15 +168,10 @@ class asgard.display.Bitmap extends DisplayObject
 		if (noUpdate()) return ;
 		update() ; 	
 	} 
-
-	public function setBitmap(bmp:BitmapData):Void
-	{
-		_bmp = bmp ;
-		if (_bmp != null) update() ;	
-	}
 	
 	public function update():Void
 	{
+		clear() ;
 		_container.attachBitmap(_bmp, 1, getPixelSnapping(), getSmoothing()) ;
 	}
 	
@@ -179,15 +180,14 @@ class asgard.display.Bitmap extends DisplayObject
 	/**
 	 * The BitmapData object being referenced.
 	 */
-	
-	public function get bitmap():BitmapData
+	public function get bitmapData():BitmapData
 	{
-		return getBitmap() ;	
+		return getBitmapData() ;	
 	}
 	
-	public function set bitmap(bmp:BitmapData):Void
+	public function set bitmapData(bmp:BitmapData):Void
 	{
-		setBitmap(bmp) ;	
+		setBitmapData(bmp) ;	
 	}
 	
 	/**
@@ -198,7 +198,6 @@ class asgard.display.Bitmap extends DisplayObject
 	 *   - PixelSnapping.AUTO — The image is snapped to the nearest pixel if it is drawn with no rotation or skew and it is drawn at a scale factor of 99.9% to 100.1%. If these conditions are satisfied, the bitmap image is drawn at 100% scale, snapped to the nearest pixel. Internally, this value allows the image to be drawn as fast as possible using the vector renderer.
 	 * 
 	 * NB : Only in FP9 & FP8.5
-	 *   
 	 */
 	public function get pixelSnapping():String
 	{
