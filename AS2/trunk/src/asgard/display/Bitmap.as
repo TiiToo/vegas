@@ -35,23 +35,41 @@
 
 	PROPERTY SUMMARY
 	
+		- bitmapData:BitmapData [R/W]
+
+		- container:MovieClip [Read Only]
+	
 		- enabled:Boolean [R/W]
 		
 		- height:Number [R/W]
+			
+		- pixelSnapping:String [R/W]
+	
+		- smoothing:Boolean [R/W]
 		
 		- view
 		
 		- width:Number [R/W]
 
 	METHOD SUMMARY
+
+	 	- clear():Void
 	
-		- createChild( c:Function, name:String , depth:Number , init )
+ 		- createChild( c:Function, name:String , depth:Number , init )
 		
+		- dispose():Void
+	
+		- getBitmapData():BitmapData()
+	
 		- getEnabled():Boolean
 		
 		- getLoader():ILoader
 		
 		- getName():String
+			
+		- getPixelSnapping():String
+	
+		- getSmoothing():Boolean
 		
 		- getWidth():Number
 		
@@ -66,7 +84,13 @@
 		- move( x:Number, y:Number ) : Void 
 		
 		- release() : Void
-		
+
+		- setBitmapData(bmp:BitmapData):Void
+	
+		- setPixelSnapping( snapping:String, noUpdate:Boolean ):Void
+	
+		- setSmoothing(b:Boolean, noUpdate:Boolean):Void
+	
 		- setEnabled(b:Boolean):Void
 		
 		- setHeight( n:Number ) : Void
@@ -78,6 +102,8 @@
 		- setY( n:Number ) : Void
 		
 		- show():Void
+	
+		- update():Void
 	
 	INHERIT
 	
@@ -107,7 +133,7 @@ class asgard.display.Bitmap extends DisplayObject
 		
 		super( sName, target ) ;
 		
-		_container = view.createEmptyMovieClip("__container__", 1000) ;
+		_container = view.createEmptyMovieClip("__container__", __CONTAINER_DEPTH__) ;
 		
 		setPixelSnapping(pixelSnapping, true) ;
 		setSmoothing(smoothing, true) ;
@@ -191,6 +217,14 @@ class asgard.display.Bitmap extends DisplayObject
 	}
 	
 	/**
+	 * [Read Only] Returns the bitmap container reference. 
+	 */
+	public function get container():MovieClip
+	{
+		return _container ;	
+	}
+	
+	/**
 	 * Controls whether or not the Bitmap object is snapped to the nearest pixel. The PixelSnapping class includes possible values :
 	 * 
 	 *   - PixelSnapping.NEVER — No pixel snapping occurs.
@@ -229,5 +263,7 @@ class asgard.display.Bitmap extends DisplayObject
 	private var _container:MovieClip ;
 	private var _pixelSnapping:String = "auto" ; 
 	private var _smoothing:Boolean = false ;
+	
+	static private var __CONTAINER_DEPTH__:Number = 1000 ;
 
 }
