@@ -40,7 +40,6 @@
 package asgard.net.remoting
 {
 
-	
 	import asgard.process.AbstractAction;
 	
 	import asgard.data.remoting.RecordSet ;
@@ -50,11 +49,14 @@ package asgard.net.remoting
 	import asgard.net.TimeoutPolicy ;
 
 	import flash.events.TimerEvent ;	
+	import flash.net.registerClassAlias;
 	import flash.net.Responder ;
+
 	import flash.utils.Timer;
 
 	import vegas.core.ICloneable;
 	import vegas.events.AbstractCoreEventBroadcaster;
+	import vegas.util.ClassUtil;
 
 	public class RemotingService extends AbstractAction implements ICloneable
 	{
@@ -138,9 +140,24 @@ package asgard.net.remoting
 			return _result ;	
 		}
 
-		public function getServiceName():String 
+		public function getServiceName():String
 		{
 			return _serviceName ;
+		}
+
+		/**
+		 * Preserves the class (type) of an object when the object is encoded in Action Message Format (AMF).
+		 */
+		static public function registerClassAlias( classObject:Class, aliasName:String=null  ):void
+		{
+			
+			if (aliasName == null)
+			{
+				aliasName = ClassUtil.getPath(classObject) ;
+			}
+			
+			flash.net.registerClassAlias(aliasName, classObject) ;	
+					
 		}
 
 		override public function run(...arguments:Array):void {
@@ -196,6 +213,7 @@ package asgard.net.remoting
 		public function setTimeoutPolicy( policy:TimeoutPolicy ):void 
 		{
 			_policy = policy ;
+			
 			if (_policy == TimeoutPolicy.LIMIT) 
 			{
 				_timer.addEventListener(TimerEvent.TIMER_COMPLETE, _onTimeOut) ;
@@ -204,6 +222,7 @@ package asgard.net.remoting
 			{
 				_timer.removeEventListener(TimerEvent.TIMER_COMPLETE, _onTimeOut) ;
 			}
+			
 		}
 
 		public function setParams(args:Array):void 
@@ -375,10 +394,16 @@ package asgard.net.remoting
 			
 			_timer.stop() ; // stop timeout interval
 			
+			/* 
+			
+			// Use RemotingService.registerClassAlias(RecordSet, "RecordSet") when you want use RecordSet AMF object.
+			
 			if (data.hasOwnProperty("serverInfo") )
 			{
 				data = new RecordSet(data) ;
 			}
+			
+			*/
 			
 			if (data is RecordSet) 
 			{
@@ -420,5 +445,9 @@ package asgard.net.remoting
 		}
 
 	}
+	
+	// ----o Register RecordSet class to deserialization.
+		
+	RecordSet.register() ;
 	
 }

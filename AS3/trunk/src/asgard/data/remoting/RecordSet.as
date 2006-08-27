@@ -34,11 +34,13 @@ package asgard.data.remoting
 	
 	import vegas.data.iterator.Iterable;
 	import vegas.data.iterator.Iterator;
-	import vegas.errors.Warning 
+	import vegas.errors.Warning ;
 	import asgard.net.remoting.RemotingService;
-	;
-	
-	
+
+	//RemotingService.registerClassAlias( RecordSet , "RecordSet" ) ;
+
+	import flash.utils.setTimeout ;
+
 	public class RecordSet extends AbstractModel implements Iterable
 	{
 		
@@ -56,18 +58,6 @@ package asgard.data.remoting
 			_items = [] ;
 			mTiles = [] ;
 	
-			// ----o Use with AMF serialization
-				
-			if (serverInfo == null) 
-			{
-				
-				if (serverinfo != null) 
-				{
-					serverInfo = serverinfo ;
-				}
-				
-			}
-		
 			if (o != null) 
 			{
 		
@@ -80,17 +70,14 @@ package asgard.data.remoting
 					parse(o) ;
 				}		
 			}
-		
-			if (serverInfo != null) 
-			{
-				parse(this) ;	
-			}
+			
+			// Use with AMF serialization - see serverInfo read-write property !
+
 		}
 
 		// ----o Public Properties
 	
-		public var serverInfo:Object ;
-		public var serverinfo:Object ;
+		public var numRows:uint ;
 		public var serviceName:String ; 
 		
 		// ----o Public Methods
@@ -335,7 +322,14 @@ package asgard.data.remoting
 				_items.push( item );
 			}
 			
-			//serverInfo = null ;
+			serverInfo = null ;
+		
+		}
+
+		static public function register():void
+		{
+		
+			RemotingService.registerClassAlias(RecordSet, "RecordSet") ;	
 		
 		}
 
@@ -454,6 +448,12 @@ package asgard.data.remoting
 			return getColumnNames() ;
 		}
 
+		public function set columnNames(ar:Array):void
+		{
+			setColumnNames(ar) ;
+		}
+
+
 		public function get items():Array 
 		{
 			return _items ;
@@ -462,6 +462,38 @@ package asgard.data.remoting
 		public function get length():Number 
 		{
 			return getLength() ;
+		}
+		
+		public function get serverInfo():Object
+		{
+		
+			return _serverInfo  ;	
+		
+		}
+
+		public function set serverInfo( oInfo:Object ):void
+		{
+		
+			_serverInfo = oInfo ;	
+			if (_serverInfo != null) 
+			{
+				parse(this) ;
+			}
+		
+		}
+
+		public function get serverinfo():Object
+		{
+		
+			return _serverInfo  ;	
+		
+		}
+
+		public function set serverinfo( oInfo:Object ):void
+		{
+		
+			serverInfo( oInfo ) ;
+		
 		}
 
 		// ----o Private Properties
@@ -486,6 +518,7 @@ package asgard.data.remoting
 		private var mTotalCount:Number ;
 	
 		// -- only if deliverymode = "page"
+		
 		private var mPageSize:Number;
 		private var mNumPrefetchPages:Number;
 		private var mAllNotified:Boolean;
@@ -493,25 +526,10 @@ package asgard.data.remoting
 	
 		private var _nc:NetServerConnection ;
 		
-		// ----o Private Methods
-
-		/* TODO !!!
-	
-		private function getRecordSetService():RemotingService 
-		{
-			// see MM code
-			return mRecordSetService ;
-		}
-		
-		private function setData( ) 
-		{
-			trace(">>>>>>>>>>>>>> " + this + " : " + arguments) ;	
-		}
-	
-		*/
+		private var _serverInfo:Object ;
 		
 	}
-	
-	flash.net.registerClassAlias("RecordSet", asgard.data.remoting.RecordSet) ;
-	
+		
 }
+
+
