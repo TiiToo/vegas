@@ -99,11 +99,13 @@ import vegas.events.Delegate;
 /**
  * @author eKameleon
  */
-dynamic class asgard.net.remoting.RemotingService extends AbstractAction {
+dynamic class asgard.net.remoting.RemotingService extends AbstractAction 
+{
 	
 	// ----o Constructor
 	
-	function RemotingService( gatewayUrl:String , serviceName:String , responder:RemotingServiceResponder ) {
+	function RemotingService( gatewayUrl:String , serviceName:String , responder:RemotingServiceResponder ) 
+	{
 		
 		super() ;
 		
@@ -118,6 +120,7 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction {
 		_eError = new RemotingEvent(RemotingEvent.ERROR, this)  ;
 		
 		_global.System.onStatus = Delegate.create (this, _onStatus) ;
+		
 	}
 	
 	// ----o Constants
@@ -132,23 +135,28 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction {
 	
 	// ----o Public Methods
 
-	public function clone() {
+	public function clone() 
+	{
 		return new RemotingService( getGatewayUrl() , getServiceName() ) ; // TODO voir pour le responder !
 	}
 
-	public function getConnection() {
+	public function getConnection() 
+	{
 		return _rc ;	
 	}
 
-	public function getIsProxy():Boolean {
+	public function getIsProxy():Boolean 
+	{
 		return _isProxy ;	
 	}
 	
-	public function getGatewayUrl():String {
+	public function getGatewayUrl():String 
+	{
 		return _gatewayUrl ;	
 	}
 
-	public function getMethodName():String {
+	public function getMethodName():String 
+	{
 		return _methodName ;
 	}
 
@@ -156,33 +164,39 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction {
 		return _args  ;	
 	}
 
-	public function getResponder():RemotingServiceResponder {
+	public function getResponder():RemotingServiceResponder 
+	{
 		return _responder ;
 	}
 
-	public function getResult() {
+	public function getResult() 
+	{
 		return _result ;	
 	}
 
-	public function getServiceName():String {
+	public function getServiceName():String 
+	{
 		return _serviceName ;
 	}
 
-	public function notifyError( code:String ):Void {
+	public function notifyError( code:String ):Void 
+	{
 		_setRunning(false) ;
 		_eError.code = code || RemotingEvent.ERROR ;
 		dispatchEvent( _eError ) ;
 		notifyFinished() ;
 	}	
 
-	public function onFault( e:RemotingEvent ) : Void {
+	public function onFault( e:RemotingEvent ) : Void 
+	{
 		_setRunning(false) ;
 		e.setTarget(this) ;
 		dispatchEvent( e ) ;
 		notifyFinished() ;
 	}
 
-	public function onResult( e:RemotingEvent ):Void {
+	public function onResult( e:RemotingEvent ):Void 
+	{
 		_setRunning(false) ;
 		e.setTarget(this) ;
 		_result = e.getResult() ;
@@ -190,13 +204,21 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction {
 		notifyFinished() ;
 	}
 
-	public function run():Void {
+	public function run():Void 
+	{
+		
+		_rc = RemotingConnection.getConnection( _gatewayUrl ) ;
 		
 		if (_rc == null ) {
 			// ici notifier qu'il est impossible de lancer la connection.	
 		}
 		
-		if (getRunning() && multipleSimultaneousAllowed == false)  {
+		if (_authentification != null)
+		{
+			_rc.setCredentials(_authentification) ;
+		}
+		
+		if ( getRunning() && multipleSimultaneousAllowed == false)  {
 			notifyProgress() ;
 		} else {
 			notifyStarted() ;
@@ -207,15 +229,18 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction {
 		} 
 	}
 	
-	public function setParams(args:Array):Void {
+	public function setParams(args:Array):Void 
+	{
 		_args = args ;	
 	}
 	
-	public function setCredentials( authentification:RemotingAuthentification ):Void  {
-		_rc.setCredentials(authentification) ;
+	public function setCredentials( authentification:RemotingAuthentification ):Void  
+	{
+		_authentification = authentification ;
 	}
 	
-	public function setGatewayUrl( url:String ):Void {
+	public function setGatewayUrl( url:String ):Void 
+	{
 		if (_gatewayUrl) RemotingConnectionCollector.remove(_gatewayUrl) ;
 		if (url) {
 			_gatewayUrl = url ;
@@ -225,72 +250,88 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction {
 		}
 	}
 
-	public function setIsProxy(b:Boolean):Void {
+	public function setIsProxy(b:Boolean):Void 
+	{
 		_isProxy = b ;
 		__resolve = b ? __resolve__ : null ;	
 	}
 		
-	public function setMethodName( sName:String ):Void {
+	public function setMethodName( sName:String ):Void 
+	{
 		_methodName = sName ;	
 	}
 	
-	public function setResponder( responder:RemotingServiceResponder ):Void {
+	public function setResponder( responder:RemotingServiceResponder ):Void 
+	{
 		if (_responder) _responder.setService(null) ;
 		_responder = responder || new RemotingServiceResponder(this, onResult, onFault) ;
 		_responder.setService(this) ;
 	}
 
-	public function setServiceName( sName:String ):Void {
+	public function setServiceName( sName:String ):Void 
+	{
 		_serviceName = sName ;	
 	}
 
-	public function trigger():Void {
+	public function trigger():Void 
+	{
 		run() ;	
 	}
 
-	public function toString():String {
+	public function toString():String 
+	{
 		return (new RemotingFormat()).formatToString(this) ;	
 	}
 
 	// ----o Virtual Properties
 
-	public function get gatewayUrl():String { 
+	public function get gatewayUrl():String 
+	{ 
 		return getGatewayUrl() ;
 	}
 	
-	public function set gatewayUrl(sUrl:String):Void { 
+	public function set gatewayUrl(sUrl:String):Void 
+	{ 
 		setGatewayUrl(sUrl) ;
 	}
 
-	public function get isProxy():Boolean { 
+	public function get isProxy():Boolean 
+	{ 
 		return getIsProxy() ;
 	}
 	
-	public function set isProxy(b:Boolean):Void { 
+	public function set isProxy(b:Boolean):Void 
+	{ 
 		setIsProxy(b) ;
 	}
 
-	public function get params():Array { 
+	public function get params():Array 
+	{ 
 		return getParams() ;
 	}
 	
-	public function set params(ar:Array):Void { 
+	public function set params(ar:Array):Void 
+	{ 
 		setParams(ar) ;
 	}
 
-	public function get methodName():String { 
+	public function get methodName():String 
+	{ 
 		return getMethodName() ;
 	}
 	
-	public function set methodName(sName:String):Void { 
+	public function set methodName(sName:String):Void 
+	{ 
 		setMethodName(sName) ;
 	}
 
-	public function get serviceName():String { 
+	public function get serviceName():String 
+	{ 
 		return getServiceName() ;
 	}
 	
-	public function set serviceName(sName:String):Void { 
+	public function set serviceName(sName:String):Void 
+	{ 
 		setServiceName(sName) ;
 	}
 
@@ -298,23 +339,36 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction {
 	
 	private var _args:Array ;
 	
+	private var _authentification:RemotingAuthentification ;
+	
 	private var _eError:RemotingEvent ;
+	
 	private var _eFinish:RemotingEvent ;
+	
 	private var _eProgress:RemotingEvent ;
+	
 	private var _eStart:RemotingEvent ;
 	
 	private var _gatewayUrl:String = null  ;
+	
 	private var _isProxy:Boolean = false ;
+	
 	private var _methodName:String ; 
+	
 	private var _rc:RemotingConnection = null ;
+	
 	private var __resolve = null ;
+	
 	private var _result = null ;
+	
 	private var _serviceName:String = null ;
+	
 	private var _responder:RemotingServiceResponder = null ;
 
 	// ----o Private Methods
 
-	private function __resolve__( methodName:String ):Function {
+	private function __resolve__( methodName:String ):Function 
+	{
 		
 		if (_rc == null ) {
 			// ici notifier qu'il est impossible de lancer la connection.	
@@ -339,8 +393,10 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction {
 		
 	}
 	
-	private function _onStatus ( ev:Object ):Void {
-		if (ev.level == RemotingService.LEVEL_ERROR) {
+	private function _onStatus ( ev:Object ):Void 
+	{
+		if (ev.level == RemotingService.LEVEL_ERROR) 
+		{
 			notifyError(ev.code) ;
 		}
 	}

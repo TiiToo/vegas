@@ -50,7 +50,9 @@
 	METHOD SUMMARY
 	
 		- hashCode():String
-		
+				
+		- toObject():Object
+	
 		- toString():String
 
 	INHERIT
@@ -69,19 +71,32 @@ import vegas.core.CoreObject;
  * @author eKameleon
  * @date 2006-05-02
  */
-class asgard.net.remoting.RemotingAuthentification extends CoreObject {
+class asgard.net.remoting.RemotingAuthentification extends CoreObject 
+{
 	
 	// ----o Constructor
 	
-	public function RemotingAuthentification(id:String, pass:String) {
+	public function RemotingAuthentification(id:String, pass:String) 
+	{
+
 		super();
-		userID = id ;
+
+		userid = id ;
 		password = pass ;
+
+		
 	}
 
 	// ----o Public Properties
 	
-	public var userID:String ;
+	public var userid:String ;
 	public var password:String ;
+	
+	// ----o Public Methods
+	
+	public function toObject():Object
+	{
+		return { userid : userid , password: password } ; 
+	}
 	
 }

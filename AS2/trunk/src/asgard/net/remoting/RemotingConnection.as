@@ -143,7 +143,8 @@ class asgard.net.remoting.RemotingConnection extends NetServerConnection {
 		return new RemotingConnection( uri ) ;	
 	}
 
-	static public function getConnection( sUrl:String ):RemotingConnection {
+	static public function getConnection( sUrl:String ):RemotingConnection 
+	{
 		if ( ! RemotingConnectionCollector.contains(sUrl) ) {
 			RemotingConnectionCollector.insert(sUrl, new RemotingConnection( sUrl ));
 		}
@@ -151,11 +152,10 @@ class asgard.net.remoting.RemotingConnection extends NetServerConnection {
 	}
 
 	public function setCredentials( authentification:RemotingAuthentification ):Void  {
-		var oInfo:Object = {
-			userid : authentification.userID , 
-			password: authentification.password 
-		} ; 
-		addHeader( RemotingConnection.CREDENTIALS , false, oInfo);
+		
+		var o:Object = (authentification == null) ? null : authentification.toObject() ;
+		addHeader( RemotingConnection.CREDENTIALS , false, o);
+		
 	}
 
 	public function startDebug():Void {

@@ -196,7 +196,12 @@ package asgard.net.remoting
 						
 			} 
 		}
-		
+
+		public function setCredentials( authentification:RemotingAuthentification=null ):void  
+		{			
+			_authentification = authentification ;
+		}
+
 		/**
 		 * Set timeout interval duration.
 		 */
@@ -228,11 +233,6 @@ package asgard.net.remoting
 		public function setParams(args:Array):void 
 		{
 			_args = args ;	
-		}
-	
-		public function setCredentials( authentification:RemotingAuthentification=null ):void  
-		{			
-			_authentification = authentification ;
 		}
 	
 		public function setGatewayUrl( url:String ):void 
@@ -447,7 +447,7 @@ package asgard.net.remoting
 	}
 	
 	// ----o Register RecordSet class to deserialization.
-		
+	
 	RecordSet.register() ;
 	
 }

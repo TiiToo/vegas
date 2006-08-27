@@ -58,11 +58,13 @@ import vegas.events.Delegate;
 /**
  * @author eKameleon
  */
-class asgard.net.remoting.RemotingServiceResponder extends CoreObject {
+class asgard.net.remoting.RemotingServiceResponder extends CoreObject 
+{
 	
 	// ----o Constructor
 	
-	public function RemotingServiceResponder( scope, resultMethod:Function, faultMethod:Function) {
+	public function RemotingServiceResponder( scope, resultMethod:Function, faultMethod:Function) 
+	{
 		
 		super();
 		
@@ -79,34 +81,42 @@ class asgard.net.remoting.RemotingServiceResponder extends CoreObject {
 	
 	// ----o Public Methods
 
-	public function getMethodName():String {
+	public function getMethodName():String 
+	{
 		return _methodName ;
 	}
 	
-	public function getService() {
+	public function getService() 
+	{
 		return _service ;	
 	}
 	
-	public function onResult( oResult ):Void {
-		if (oResult instanceof RecordSet) {
+	public function onResult( oResult ):Void 
+	{
+		
+		if (oResult instanceof RecordSet) 
+		{
 			oResult.setParentService( getService() ) ;
 		}
-		_eResult.setResult( oResult.serverInfo ? new RecordSet(oResult) : oResult, _methodName ) ;
+		_eResult.setResult( oResult, _methodName ) ;
 		_result.setArguments( _eResult ) ;
 		_result.run() ;
 	}
 
-	public function onStatus( oFault:Object ):Void {
+	public function onStatus( oFault:Object ):Void 
+	{
 		_eFault.setFault(oFault, _methodName) ;
 		_fault.setArguments( _eFault );
 		_fault.run();
 	}
 
-	public function setMethodName(sName:String):Void {
+	public function setMethodName(sName:String):Void 
+	{
 		_methodName = sName ;
 	}
 
-	public function setService( service ) {
+	public function setService( service ) 
+	{
 		_service = service ;
 	}
 
