@@ -93,19 +93,17 @@ package vegas.events
     import vegas.util.Serializer ;
  
  	import VEGAS ;
- 	 	
- 
+  
     public class EventBroadcaster extends EventDispatcher implements IEventBroadcaster
     {
-		
 		
 		use namespace VEGAS ;
         
         // ----o Constructor
         
         /**
-          * Aggregates an instance of the EventBroadcaster class.
-          */
+		 * Aggregates an instance of the EventBroadcaster class.
+		 */
         public function EventBroadcaster(target:IEventDispatcher=null)
         {
             
@@ -236,7 +234,7 @@ package vegas.events
           */
 		public function toSource(...arguments:Array):String 
 		{
-			return "new EventBroadcaster(" + Serializer.toSource(target) + ")" ;
+			return "new vegas.events.EventBroadcaster(" + Serializer.toSource(target) + ")" ;
 		}
 
         /**

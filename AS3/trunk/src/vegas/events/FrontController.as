@@ -125,6 +125,9 @@ package vegas.events
 			    name = EventBroadcaster.DEFAULT_DISPATCHER_NAME ;
 		    }
     		_oE = (oE == null) ? EventBroadcaster.getInstance(name) : oE ; 
+    		
+    		initialize() ;
+    		
         }
         
     	// ----o Public Methods 
@@ -164,6 +167,16 @@ package vegas.events
     	 */
     	public function getListener(eventName:String):* {
     		return _map.get(eventName) ;
+    	}
+    
+       	/**
+    	 * Initialize all Commands - override this method.
+    	 */
+    	public function initialize():void
+    	{
+    		
+    		// override this method.
+    		
     	}
     	
     	/**
