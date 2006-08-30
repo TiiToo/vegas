@@ -100,7 +100,8 @@ class asgard.process.Message extends Pause {
 
 	// ----o Constructor
 	
-	public function Message(p_msg:String, p_face:String, p_duration:Number, p_to:Number, seconds:Boolean ) {
+	public function Message(p_msg:String, p_face:String, p_duration:Number, p_to:Number, seconds:Boolean ) 
+	{
 		super(p_duration || 1500, seconds) ;
 		message = p_msg ;
 		face = p_face ;
@@ -122,15 +123,18 @@ class asgard.process.Message extends Pause {
 	
 	// ----o Public Methods
 
-	public function clone() {
+	public function clone() 
+	{
 		return new Message(message, face, _duration, to, useSeconds) ;
 	}
 
-	/*override*/ public function toSource(indent:Number, indentor:String):String {
+	/*override*/ public function toSource(indent:Number, indentor:String):String 
+	{
 		return Serializer.getSourceOf(this, [message, face, duration, to, Serializer.toSource(useSeconds) ]) ;
 	}
 	
-	public function toString(Void):String {
+	public function toString(Void):String 
+	{
 		return "[Message : " + message + "]" ;
 	}
 

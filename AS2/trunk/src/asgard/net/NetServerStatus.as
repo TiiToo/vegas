@@ -64,11 +64,13 @@ import vegas.util.ArrayUtil;
  * @author eKameleon
  * @version 1.0.0.0
  **/	
-class asgard.net.NetServerStatus extends String implements ISerializable {
+class asgard.net.NetServerStatus extends String implements ISerializable 
+{
 	
 	// ----o Constructor
 	
-	public function NetServerStatus( s:String ) {
+	public function NetServerStatus( s:String ) 
+	{
 		super(s) ;
 	}
 
@@ -95,7 +97,8 @@ class asgard.net.NetServerStatus extends String implements ISerializable {
 	/**
 	 * Convert onStatus code value in NetConnection.onStatus in a ConnectionStatus valid string.
 	 */
-	static public function format(code:String):NetServerStatus {
+	static public function format(code:String):NetServerStatus 
+	{
 		code = code.split(".").pop().toLowerCase() ;
 		var status:Array = [BAD_VERSION, CLOSED, FAILED, INVALID, REJECTED, SHUTDOWN, SUCCESS] ;
 		var l:Number = status.length ;
@@ -104,11 +107,13 @@ class asgard.net.NetServerStatus extends String implements ISerializable {
 		}
 	}
 
-	public function toSource(indent : Number, indentor : String):String {
+	public function toSource(indent : Number, indentor : String):String 
+	{
 		return "new asgard.net.NetServerStatus(\"" + toString() + "\")" ;
 	}
 
-	static public function validate( o ):Boolean {
+	static public function validate( o ):Boolean 
+	{
 		var status:Array = [BAD_VERSION, CLOSED, FAILED, INVALID, REJECTED, SHUTDOWN, SUCCESS] ;
 		return ArrayUtil.contains(status, o) ;	
 	}

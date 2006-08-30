@@ -21,7 +21,7 @@
   
 */
 
-/* ParserLoader
+/* Lang
 
 	AUTHOR
 

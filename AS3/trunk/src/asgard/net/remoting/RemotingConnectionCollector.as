@@ -31,11 +31,15 @@ package asgard.net.remoting
 		
 		static public function get(sName:String):RemotingConnection 
 		{
-			try {
-				if (!contains(sName) ) {
+			try 
+			{
+				if (!contains(sName) ) 
+				{
 					throw new Warning("[RemotingConnectionCollector].get(\"" + sName + "\"). Can't find RemotingConnection instance." ) ;
 				} ;
-			} catch (e:Warning) {
+			} 
+			catch (e:Warning) 
+			{
 				e.toString() ;
 			}
 			
@@ -67,6 +71,11 @@ package asgard.net.remoting
 		static public function remove(sName:String):void
 		{
 			_map.remove(sName) ;
+		}
+		
+		static public function size():uint
+		{
+			return _map.size() ;
 		}
 		
 		// ----o Private Properties

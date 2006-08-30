@@ -40,8 +40,7 @@
  */
 interface asgard.config.IConfigurable 
 {
-	
-	
+		
 	public function setup():Void ;
 	
 }

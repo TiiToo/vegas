@@ -21,7 +21,7 @@
   
 */
 
-/** ------ MassiveLoader
+/** MassiveLoader
 
 	AUTHOR
 
@@ -85,7 +85,7 @@
 	
 		EventTarget, IFormattable, IHashable, IEventDispatcher, ILoader
 	
-----------  */	
+*/	
 
 import asgard.events.LoaderEvent;
 import asgard.events.LoaderEventType;

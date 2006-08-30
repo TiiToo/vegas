@@ -53,26 +53,29 @@ import vegas.logging.Log;
 /**
  * @author eKameleon
  */
-class asgard.config.ConfigEdenLoader extends EdenLoader {
+class asgard.config.ConfigEdenLoader extends EdenLoader 
+{
 	
 	// ----o Constructor
 	
-	function ConfigEdenLoader( config ) {
+	function ConfigEdenLoader( config ) 
+	{
+		
 		super();
+		
 		_oConfig = config || Config.getInstance() ;
+		
 		ConfigEdenLoader.protectConfig( _oConfig ) ;
+		
 		_logger = Log.getLogger("asgard.config") ;
+		
 	}
 
-	// ----o Constants
-	
-	static public var DEFAULT_FILE_NAME:String = "config" ;
-	
-	static public var DEFAULT_SUFFIX:String = ".eden" ;
-	
-	static private var __ASPF__ = _global.ASSetPropFlags(ConfigEdenLoader, null , 7, 7) ;
-	
 	// ----o Public Properties
+	
+	public var default_file_name:String = "config" ;
+	
+	public var default_file_suffix:String = ".eden" ;
 	
 	// public var fileName:String ; // [R/W]
 	// public var path:String ; // [R/W]
@@ -80,30 +83,38 @@ class asgard.config.ConfigEdenLoader extends EdenLoader {
 
 	// ----o Public Methods
 	
-	public function deserializeData():Void {
+	public function deserializeData():Void 
+	{
 		super.deserializeData() ;
-		for (var each:String in _oData) {
+		for (var each:String in _oData) 
+		{
 			_oConfig[each] = _oData[each] ;
 		}
 	}
 	
-	public function getConfig():Config {
+	public function getConfig():Config 
+	{
 		return _oConfig ;	
 	}
 
-	public function getFileName():String {
-		return (_fileName == null) ? ConfigEdenLoader.DEFAULT_FILE_NAME : _fileName ;	
+	public function getFileName():String 
+	{
+		return (_fileName == null) ? default_file_name : _fileName ;	
 	}
 
-	public function getPath():String {
+	public function getPath():String 
+	{
 		return _path || "" ;
 
 	}
-	public function getSuffix():String {
-		return (_suffix == null) ? ConfigEdenLoader.DEFAULT_SUFFIX : _suffix ;
+	
+	public function getSuffix():String 
+	{
+		return (_suffix == null) ? default_file_suffix : _suffix ;
 	}
 
-	public function initEvent():Void {
+	public function initEvent():Void 
+	{
 		
 		_e = new ConfigLoaderEvent( null, this ) ;
 		

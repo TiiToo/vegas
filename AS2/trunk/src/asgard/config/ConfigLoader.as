@@ -53,46 +53,51 @@ import vegas.logging.Log;
 /**
  * @author eKameleon
  */
-class asgard.config.ConfigLoader extends JSONLoader {
+class asgard.config.ConfigLoader extends JSONLoader 
+{
 	
 	// ----o Constructor
 	
-	function ConfigLoader( config ) {
+	function ConfigLoader( config ) 
+	{
+		
 		super();
+		
 		_oConfig = config || Config.getInstance() ;
+		
 		ConfigLoader.protectConfig( _oConfig ) ;
+		
 		_logger = Log.getLogger("asgard.config") ;
+		
 	}
 
-	// ----o Constants
-	
-	static public var DEFAULT_FILE_NAME:String = "config" ;
-	
-	static public var DEFAULT_SUFFIX:String = ".json" ;
-	
-	static private var __ASPF__ = _global.ASSetPropFlags(ConfigLoader, null , 7, 7) ;
-	
 	// ----o Public Properties
 	
+	public var default_file_name:String = "config" ;
+	
+	public var default_file_suffix:String = ".json" ;
+		
 	// public var fileName:String ; // [R/W]
 	// public var path:String ; // [R/W]
 	// public var suffix:String ; // [R/W]
 
 	// ----o Public Methods
 	
-	public function deserializeData():Void {
+	public function deserializeData():Void 
+	{
 		super.deserializeData() ;
 		for (var each:String in _oData) {
 			_oConfig[each] = _oData[each] ;
 		}
 	}
 	
-	public function getConfig():Config {
+	public function getConfig():Config 
+	{
 		return _oConfig ;	
 	}
 
 	public function getFileName():String {
-		return (_fileName == null) ? ConfigLoader.DEFAULT_FILE_NAME : _fileName ;	
+		return (_fileName == null) ? default_file_name : _fileName ;	
 	}
 
 	public function getPath():String {
@@ -100,7 +105,7 @@ class asgard.config.ConfigLoader extends JSONLoader {
 
 	}
 	public function getSuffix():String {
-		return (_suffix == null) ? ConfigLoader.DEFAULT_SUFFIX : _suffix ;
+		return (_suffix == null) ? default_file_suffix : _suffix ;
 	}
 
 	public function initEvent():Void {

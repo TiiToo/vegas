@@ -78,13 +78,13 @@ package asgard.events
 			super(type, bubbles, cancelable);
 			_oInfo = info ;
 		}
-
+		
 		// ----o Constants
-	
+		
 		static public const CHANGE:String = "onChanged" ;
-
+		
 		static public const CLEAR:String = "onCleared" ;
-
+		
 		static public const FINISH:String = "onFinished" ;
 		
 		static public const INFO:String = "onInfo" ;
@@ -98,28 +98,27 @@ package asgard.events
 		static public const START:String = "onStarted" ;
 		
 		static public const STOP:String = "onStopped" ;	
-	
+		
 		// ----o Public Methods
-
-		public function getInfo():* 
-		{
-			return _oInfo ;
-		}
-
+		
 		override public function clone():Event 
 		{
 			return new ActionEvent(type, getInfo()) ;
 		}
-	
+		
+		public function getInfo():* 
+		{
+			return _oInfo ;
+		}
+		
 		public function setInfo( oInfo:* ):void 
 		{
 			_oInfo = oInfo ;	
 		}
-
-		// ----o Private Properties
-	
-		private var _oInfo:* ;
 		
+		// ----o Private Properties
+		
+		private var _oInfo:* ;
 		
 	}
 }

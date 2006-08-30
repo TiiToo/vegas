@@ -162,17 +162,20 @@ import vegas.string.JSON;
 /**
  * @author eKameleon
  */
-class asgard.net.JSONLoader extends ParserLoader {
+class asgard.net.JSONLoader extends ParserLoader 
+{
 	
 	// ----o Constructor
 	
-	function JSONLoader() {
+	function JSONLoader() 
+	{
 		super() ;
 	}
 
 	// ----o Public Methods
 
-	/*override*/ public function getDeserializer():Function {
+	/*override*/ public function getDeserializer():Function 
+	{
 		return JSON.deserialize ;	
 	}
 

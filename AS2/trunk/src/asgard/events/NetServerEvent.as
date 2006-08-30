@@ -28,7 +28,7 @@
 		Name : NetServerEvent
 		Package : asgard.events
 		Version : 1.0.0.0
-		Date :  2005-04-20
+		Date :  2005-08-28
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net

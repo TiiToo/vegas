@@ -170,11 +170,13 @@ import vegas.events.Delegate;
  * @author eKameleon
  */
  
-class asgard.net.URLLoader extends AbstractLoader {
+class asgard.net.URLLoader extends AbstractLoader 
+{
 	
 	// ----o Constructor
 	
-	function URLLoader() {
+	function URLLoader() 
+	{
 		super() ;
 		setDataFormat(DataFormat.TEXT) ;
 		_setInitTimer(super.onLoadInit) ;

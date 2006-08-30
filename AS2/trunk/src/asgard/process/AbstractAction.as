@@ -117,11 +117,13 @@ import vegas.core.ICloneable;
 import vegas.core.ISerializable;
 import vegas.events.AbstractCoreEventDispatcher;
 
-class asgard.process.AbstractAction extends AbstractCoreEventDispatcher implements Action, ICloneable, ISerializable {
+class asgard.process.AbstractAction extends AbstractCoreEventDispatcher implements Action, ICloneable, ISerializable 
+{
 	
 	// ----o Constructor
 	
-	private function AbstractAction() {
+	private function AbstractAction() 
+	{
 		
 		_eChange = new ActionEvent(ActionEventType.CHANGE, this) ;
 		_eClear = new ActionEvent(ActionEventType.CLEAR, this) ;
@@ -142,61 +144,75 @@ class asgard.process.AbstractAction extends AbstractCoreEventDispatcher implemen
 	
 	// ----o Public Methods
 	
-	public function clone() {
+	public function clone() 
+	{
 		//
 	}
 
-	public function getRunning():Boolean {
+	public function getRunning():Boolean 
+	{
 		return _isRunning ;	
 	}
 
-	public function notifyChanged():Void {
+	public function notifyChanged():Void 
+	{
 		dispatchEvent(_eChange) ;
 	}
 
-	public function notifyCleared():Void {
+	public function notifyCleared():Void 
+	{
 		dispatchEvent(_eClear) ;
 	}	
 
-	public function notifyFinished():Void {
+	public function notifyFinished():Void 
+	{
 		dispatchEvent(_eFinish) ;
 	}
 	
-	public function notifyInfo( oInfo ):Void {
+	public function notifyInfo( oInfo ):Void 
+	{
 		dispatchEvent(_eInfo) ;
 	}
 	
-	public function notifyLooped():Void {
+	public function notifyLooped():Void 
+	{
 		dispatchEvent(_eLoop) ;
 	}
 
-	public function notifyProgress():Void {
+	public function notifyProgress():Void 
+	{
 		dispatchEvent(_eProgress) ;
 	}
 	
-	public function notifyResumed():Void {
+	public function notifyResumed():Void 
+	{
 		dispatchEvent(_eResume) ;
 	}
 	
-	public function notifyStarted():Void {
+	public function notifyStarted():Void 
+	{
 		dispatchEvent(_eStart) ;
 	}
 	
-	public function notifyStopped():Void {
+	public function notifyStopped():Void 
+	{
 		dispatchEvent(_eStop) ;
 	}
 		
-	public function run():Void {
+	public function run():Void 
+	{
 		// 
 	}
 
-	public function toSource(indent:Number, indentor:String):String {
+	public function toSource(indent:Number, indentor:String):String 
+	{
 		return null ;
 	}
 
 	// ----o Virtual Properties
 	
-	public function get running():Boolean {
+	public function get running():Boolean 
+	{
 		return getRunning() ;	
 	}
 	
@@ -216,7 +232,8 @@ class asgard.process.AbstractAction extends AbstractCoreEventDispatcher implemen
 
 	// ----o Private Methods
 	
-	/*protected*/ private function _setRunning(b:Boolean):Void {
+	/*protected*/ private function _setRunning(b:Boolean):Void 
+	{
 		_isRunning = b ;	
 	}
 

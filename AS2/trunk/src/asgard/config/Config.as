@@ -53,7 +53,8 @@ import vegas.core.CoreObject;
  * @author eKameleon
  */
 
-dynamic class asgard.config.Config extends CoreObject {
+dynamic class asgard.config.Config extends CoreObject 
+{
 	
 	// ----o Constructor
 	
@@ -63,7 +64,8 @@ dynamic class asgard.config.Config extends CoreObject {
 
 	// ----o Public Methods 
 
-	static public function getInstance():Config {
+	static public function getInstance():Config 
+	{
 		
 		if( !__instance) __instance = new Config() ;
 		return __instance ;

@@ -50,7 +50,7 @@ package asgard.net
 	import asgard.events.NetServerEvent;
 	import asgard.net.NetServerStatus ;
 	import asgard.net.TimeoutPolicy ;
-		
+
 	import vegas.core.HashCode;
 	import vegas.core.ICloneable;
 	import vegas.core.IHashable; 
@@ -77,21 +77,21 @@ package asgard.net
 			_timer = new Timer(DEFAULT_DELAY, 1) ;
 			
 			objectEncoding = ObjectEncoding.AMF0 ;
-
+			
 			addEventListener( IOErrorEvent.IO_ERROR , onIOError) ;
 			addEventListener( NetStatusEvent.NET_STATUS, _onStatus) ;
 			addEventListener( SecurityErrorEvent.SECURITY_ERROR, onSecurityError);
-						
+			
 		}
-
+		
 		// ----o Init HashCode
-	
+		
 		static private var _initHashCode:Boolean = HashCode.initialize(NetServerConnection.prototype) ;
-
+		
 		// ----o Constants
 		
 		static public const DEFAULT_DELAY:uint = 8000 ; // 8 secondes
-
+		
 		// ----o Public Properties
 		
 		public var noEvent:Boolean = false ;
@@ -102,20 +102,20 @@ package asgard.net
 		{
 			return new NetServerConnection() ;
 		}
-
+		
 		override public function close():void 
 		{
 			super.close() ;
 			_timer.stop() ;
 			if (!noEvent) notifyClose() ;
 		}
-
+		
 		override public function connect(command:String, ... arguments):void
 		{
 			notifyStarted() ;
 			super.connect.apply(this, [command].concat(arguments)) ;
 		}
-
+		
 		/**
 		 * Returns timeout interval duration.
 		 */
@@ -123,21 +123,21 @@ package asgard.net
 		{
 			return _timer.delay ;
 		}
-
+		
 		public function getTimeoutPolicy():TimeoutPolicy {
 			return _policy ;	
 		}
-
+		
 		public function hashCode():uint
 		{
 			return null ;
 		}
-
+		
 		public function run( ...arguments:Array ):void 
 		{
 			connect(uri) ;	
 		}
-
+		
 		/**
 		 * Set timeout interval duration.
 		 */
@@ -147,7 +147,7 @@ package asgard.net
 			if (useSeconds) t = Math.round(t * 1000) ;
 			_timer.delay = t ;
 		}
-
+		
 		/**
 		 * Use limit timeout interval.
 		 * @see TimeoutPolicy
@@ -167,58 +167,58 @@ package asgard.net
 		
 		public function toSource(...arguments:Array):String
 		{
-			return "new NetServerConnection()" ;
+			return "new asgard.net.NetServerConnection()" ;
 		}
 		
 		override public function toString():String
 		{
 			return "[" + ClassUtil.getName(this) + "]" ;
 		}
-
+		
 		// ----o Protected Methods
-
+		
 		protected function notifyClose():void 
 		{
 			dispatchEvent( _eClose ) ;	
 		}
-
+		
 		protected function notifyFinished():void 
 		{
 			dispatchEvent(_eFinish) ;
 		}
-
+		
 		protected function notifyStarted():void 
 		{
 			_timer.start() ;
 			dispatchEvent( _eStart ) ;
 		}
-	
+		
 		protected function notifyStatus( status:NetServerStatus , info:*=null ):void 
 		{
 			_eStatus.setInfo(info) ;
 			_eStatus.setStatus(status) ;
 			dispatchEvent( _eStatus ) ;	
 		}
-
+		
 		protected function notifyTimeOut():void
 		{
 			dispatchEvent(_eTimeOut) ;	
 		}
-
+		
 		protected function onIOError(e:IOErrorEvent):void
 		{
 			_timer.stop() ;
 			trace("> " + this + "onIOError : " + e) ;
 			notifyFinished() ;
 		}
-
+		
 		protected function onSecurityError(e:SecurityErrorEvent):void
 		{
 			_timer.stop() ;
 			trace("> " + this + "onSecurityError : " + e) ;
 			notifyFinished() ;
 		}
-
+		
 		// ----o Private Properties
 		
 		private var _eClose:NetServerEvent ;
@@ -228,21 +228,21 @@ package asgard.net
 		private var _eTimeOut:NetServerEvent ;
 		private var _policy:TimeoutPolicy ;
 		private var _timer:Timer ;
-	
+		
 		// ----o Private Methods
-	
+		
 		private function _onStatus( e:NetStatusEvent ):void
 		{
-		
+			
 			_timer.stop() ;
-		
+			
 			var code:NetServerStatus = NetServerStatus.format(e.info.code) ;
-		
+			
 			// trace("> " + this + "._onStatus(" + code + ")") ;
-		
+			
 			switch (code) 
 			{
-		
+				
 				case NetServerStatus.BAD_VERSION :
 					notifyStatus( NetServerStatus.BAD_VERSION ) ;
 					break ;
@@ -262,21 +262,21 @@ package asgard.net
 				case NetServerStatus.REJECTED :
 					notifyStatus(NetServerStatus.REJECTED) ;
 					break ;
-	
+				
 				case NetServerStatus.SHUTDOWN :
 					notifyStatus(NetServerStatus.SHUTDOWN) ;
 					break ;
-	
+				
 				case NetServerStatus.SUCCESS :
 					notifyStatus(NetServerStatus.SUCCESS) ;
 					break ;
-	
+				
 			}
 			
 			notifyFinished() ;
 			
 		}
-	
+		
 		public function _onTimeOut(e:TimerEvent):void 
 		{
 			

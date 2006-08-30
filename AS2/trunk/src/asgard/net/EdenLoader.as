@@ -158,17 +158,20 @@ import asgard.net.ParserLoader;
 /**
  * @author eKameleon
  */
-class asgard.net.EdenLoader extends ParserLoader {
+class asgard.net.EdenLoader extends ParserLoader 
+{
 	
 	// ----o Constructor
 	
-	function EdenLoader() {
+	function EdenLoader() 
+	{
 		super() ;
 	}
 
 	// ----o Public Methods
 
-	/*override*/ public function getDeserializer():Function {
+	/*override*/ public function getDeserializer():Function 
+	{
 		return buRRRn.eden.Application.deserialize ;	
 	}
 

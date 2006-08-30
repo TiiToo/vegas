@@ -165,7 +165,8 @@ class asgard.net.ParserLoader extends URLLoader {
 	
 	// ----o Constructor
 	
-	private function ParserLoader() {
+	private function ParserLoader() 
+	{
 		super() ;
 	}
 
@@ -175,7 +176,8 @@ class asgard.net.ParserLoader extends URLLoader {
 
 	// ----o Public Methods
 
-	public function deserializeData():Void {
+	public function deserializeData():Void 
+	{
 		
 		var source:String ;
 		
@@ -201,7 +203,8 @@ class asgard.net.ParserLoader extends URLLoader {
 		
 	}
 	
-	public function getDeserializer():Function {
+	public function getDeserializer():Function 
+	{
 		return null ;	
 	}
 

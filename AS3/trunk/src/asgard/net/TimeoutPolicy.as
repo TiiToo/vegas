@@ -61,7 +61,7 @@ package asgard.net
 		
 		override public function toSource(...arguments):String
 		{
-			return "new NetServerPolicy(" + Serializer.toSource(_value) + ")" ;
+			return "new asgard.net.TimeOutPolicy(" + Serializer.toSource(_value) + ")" ;
 		}
 		
 		override public function toString():String

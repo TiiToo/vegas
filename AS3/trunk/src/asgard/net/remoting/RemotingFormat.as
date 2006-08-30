@@ -20,7 +20,8 @@ package asgard.net.remoting
 
 		// ----o Public Methods
 	
-		public function formatToString(o:*):String {
+		public function formatToString(o:*):String 
+		{
 			var rs:RemotingService = RemotingService(o);
 			var r:* = rs.getResult() ;
 			var txt:String = "[" ;
@@ -50,7 +51,9 @@ package asgard.net.remoting
 					txt += r  + "\r";
 				}
 				txt += "]" ;
-			} else {
+			}
+			else 
+			{
 				txt += "empty";
 				if (rs.getServiceName() || rs.getMethodName()) txt += "\r" ;
 				txt += "]" ;

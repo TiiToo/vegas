@@ -68,12 +68,13 @@ import vegas.util.serialize.Serializer;
  * @author eKameleon
  * @version 1.0.0.0
  **/	
-class asgard.net.NetServerInfo extends CoreObject {
+class asgard.net.NetServerInfo extends CoreObject 
+{
 	
 	// ----o Constructor
 	
 	public function NetServerInfo( oInfo ) 
-		{
+	{
 		
 		description = oInfo.description || null ;
 		
@@ -83,7 +84,7 @@ class asgard.net.NetServerInfo extends CoreObject {
 		
 		_oInfo = toObject() ;
 		
-		}
+	}
 
 	// ----o Public Properties
 	
@@ -94,16 +95,16 @@ class asgard.net.NetServerInfo extends CoreObject {
 	// ----o Public Methods
 
 	public function toObject():Object 
-		{
+	{
 		
 		return { description:description, code:code, level:level } ;
 			
-		}
+	}
 
 	public function toSource(indent : Number, indentor : String):String 
-		{
+	{
 		return "new asgard.net.NetServerInfo(" + Serializer.toSource(toObject()) + ")" ;
-		}
+	}
 
 	// ----o Private Properties
 	

@@ -97,8 +97,6 @@
 
 **/
 
-// TODO A Tester !!
-
 import vegas.events.DynamicEvent;
 import vegas.util.serialize.Serializer;
 
@@ -138,7 +136,7 @@ class asgard.events.RemotingEvent extends DynamicEvent {
 		e.code = code ;
 		e.setFault(getFault()) ;
 		e.level = level ;
-		e.setResult(e.getResult()) ;
+		e.setResult( getResult() ) ;
 		e.setMethodName(getMethodName()) ;
 		return e ;
 	}

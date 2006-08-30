@@ -153,7 +153,8 @@
 
 **/
 
-// TODO à tester !!
+// TODO à tester !! Semble pas être complet... pas eu le temps de finir cette classe ! 
+// Ne pas utiliser !!!
 
 import vegas.util.StringUtil;
 
@@ -166,14 +167,15 @@ class asgard.net.HTMLEntities {
 	// ----o Constructor
 	
 	private function HTMLEntities() 
-		{
+	{
 		//	
-		}
+	}
 	
 	
 	// ----o Public Properties
 
-	static var entities:Array = [ 
+	static var entities:Array = 
+	[ 
 		"&euro;", "&quot;", "&amp;", "&lt;", "&gt;", "&iexcl;", "&cent;", "&pound;", "&curren;", "&yen;",
 		"&brvbar;", "&sect;", "&uml;", "&copy;", "&ordf;", "&not;", "&shy;", "&reg;", "&macr;", "&deg;",
 		"&plusmn;", "&sup2;", "&sup3;", "&acute;", "&micro;", "&para;", "&middot;", "&cedil;", "&sup1;", "&ordm;",
@@ -186,7 +188,8 @@ class asgard.net.HTMLEntities {
 		"&ugrave;", "&uacute;", "&ucirc;", "&uuml;", "&yacute;", "&thorn;", "&nbsp;" 
 	];
 		
-	static var specialchars:Array = [ 
+	static var specialchars:Array = 
+	[ 
 		"€", "\"", "&", "<", ">", "¡", "¢", "£", "¤", "¥",
 		"¦", "§", "¨", "©", "ª", "¬", "­", "®", "¯", "°",
 		"±", "²", "³", "´", "µ", "¶", "·", "¸", "¹", "º",
@@ -202,48 +205,59 @@ class asgard.net.HTMLEntities {
 	// ----o Public Methods
 
 	static function decode( text:String, removeCRLF:Boolean ):String 
-		{
+	{
 		var i:Number ;
 		var ch:String ;
 		var txt:StringUtil ;
 		var entity:String ;
 		var len:Number = entities.length ;
+		
 		for( i=0; i<len ; i++ )
-			{
+		{
 			ch = specialchars[ i ];
 			entity = entities[ i ];
+			
+			// trace(ch + " : " + i) ;
+			
 			if( text.indexOf( entity ) > -1 )
-				{
+			{
 				txt = new StringUtil(text) ;
 				text = txt.replace( entity, ch );
-				}
 			}
-
-		if( removeCRLF )
-			{
-			text = text.replace( "\r\n", "" );
-			}
-		return text;
 		}
+		
+		if( removeCRLF )
+		{
+			text = text.replace( "\r\n", "" );
+		}
+		return text;
+	}
 
 	static function encode( text:String ):String
-		{
+	{
 		var i:Number ;
+		
 		var ch:String ;
+		
 		var txt:StringUtil ;
+		
 		var entity:String ;
+		
 		var len:Number = entities.length ;
+		
 		for( i=0; i<len; i++ )
-			{
+		{
+			
 			ch = specialchars[i];
 			entity = entities[i];
+			
 			if( text.indexOf( ch ) > -1 )
-				{
+			{
 				txt = new StringUtil(text) ;
 				text = txt.replace( ch, entity );
-				}
 			}
-			return text.toString() ;
 		}
+		return text.toString() ;
+	}
 
 }

@@ -43,21 +43,21 @@
 	METHOD SUMMARY
 	
 		- addEventListener( eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void
-	
+		
 		- addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void
-	
+		
 		- addHeader()
 		
 		- call(remoteMethod:String, resultObject:Object):Void
 		
 		- close():Void
-	
+		
 		- connect(targetURI:String):Boolean
-	
+		
 		- dispatchEvent(event, isQueue:Boolean, target, context):Event
-	
+		
 		- getDelay():Number
-
+		
 		- getDispatcher():EventDispatcher
 		
 		- getEventDispatcher():EventDispatcher
@@ -87,9 +87,9 @@
 		- setLimitPolicy( policy:NetServerPolicy ):Void
 		
 		- setParent(parent:EventDispatcher):Void	INHERIT
-	
+		
 		- sharedEvent( event , type:String ):Void
-	
+		
 		- toString():String
 	
 	INHERIT
@@ -133,7 +133,8 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 	
 	// ----o Constructor
 	
-	function NetServerConnection() {
+	function NetServerConnection() 
+	{
 		
 		super() ;
 		
@@ -156,119 +157,145 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 
 	// ----o Public Methods
 
-	public function addEventListener( eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void {
+	public function addEventListener( eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void 
+	{
 		_dispatcher.addEventListener.apply(_dispatcher, arguments);
 	}
 	
-	public function addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void {
+	public function addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void 
+	{
 		_dispatcher.addGlobalEventListener(listener, priority, autoRemove) ;
 	}
 
-	public function clone() {
+	public function clone() 
+	{
 		return new NetServerConnection() ;	
 	}
 
-	/*override*/ public function close( noEvent:Boolean ):Void {
+	/*override*/ public function close( noEvent:Boolean ):Void 
+	{
 		super.close() ;
 		_timer.stop() ;
 		if (!noEvent) notifyClose() ;
 	}
 
-	/*override*/ public function connect():Boolean {
+	/*override*/ public function connect():Boolean 
+	{
 		if (isConnected) return false ;
 		notifyStarted() ;
 		return super.connect.apply(this, arguments) ;
 	}
 
-	public function dispatchEvent(event, isQueue:Boolean, target, context):Event {
+	public function dispatchEvent(event, isQueue:Boolean, target, context):Event 
+	{
 		return _dispatcher.dispatchEvent(event, isQueue, target, context) ;
 	}
 	
 	/**
 	 * Return timeout interval duration.
 	 */
-	public function getDelay():Number {
+	public function getDelay():Number 
+	{
 		return _timer.getDelay() ;	
 	}
 
-	public function getDispatcher():EventDispatcher {
+	public function getDispatcher():EventDispatcher 
+	{
 		return _dispatcher ;
 	}
 
-	public function getEventDispatcher():EventDispatcher {
+	public function getEventDispatcher():EventDispatcher 
+	{
 		return _dispatcher ;
 	}
 	
-	public function getEventListeners(eventName:String):EventListenerCollection {
+	public function getEventListeners(eventName:String):EventListenerCollection 
+	{
 		return _dispatcher.getEventListeners(eventName) ;
 	}
 
-	public function getGlobalEventListeners():EventListenerCollection {
-		return getGlobalEventListeners() ;
+	public function getGlobalEventListeners():EventListenerCollection 
+	{
+		return _dispatcher.getGlobalEventListeners() ;
 	}
 
-	public function getLimitPolicy():NetServerPolicy {
+	public function getLimitPolicy():NetServerPolicy 
+	{
 		return _policy ;	
 	}
 	
-	function getRegisteredEventNames():Set {
+	public function getRegisteredEventNames():Set 
+	{
 		return _dispatcher.getRegisteredEventNames() ;
 	}
 	
-	public function getParent():EventDispatcher {
+	public function getParent():EventDispatcher 
+	{
 		return _dispatcher.parent ;
 	}
 
-	public function hashCode():Number {
+	public function hashCode():Number 
+	{
 		return null ;
 	}
 	
-	public function hasEventListener(eventName:String):Boolean {
+	public function hasEventListener(eventName:String):Boolean 
+	{
 		return _dispatcher.hasEventListener(eventName) ;
 	}
 
-	public function initEventDispatcher():EventDispatcher {
+	public function initEventDispatcher():EventDispatcher 
+	{
 		return new EventDispatcher(this) ;
 	}
 
-	public function notifyClose():Void {
+	public function notifyClose():Void 
+	{
 		dispatchEvent( _eClose ) ;	
 	}
 
-	public function notifyFinished():Void {
+	public function notifyFinished():Void 
+	{
 		dispatchEvent(_eFinish) ;
 	}
 
-	public function notifyStarted():Void {
+	public function notifyStarted():Void 
+	{
 		dispatchEvent( _eStart ) ;
 	}
 	
-	public function notifyStatus( status:NetServerStatus , info ):Void {
+	public function notifyStatus( status:NetServerStatus , info ):Void 
+	{
 		_eStatus.setInfo(info) ;
 		_eStatus.setStatus(status) ;
 		dispatchEvent( _eStatus ) ;	
 	}
 
-	public function notifyTimeOut():Void {
+	public function notifyTimeOut():Void 
+	{
 		dispatchEvent(_eTimeOut) ;	
 	}
 	
-	public function removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener {
+	public function removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener 
+	{
 		return _dispatcher.removeEventListener(eventName, listener, useCapture) ;
 	}
 
-	public function removeGlobalEventListener( listener ):EventListener {
+	public function removeGlobalEventListener( listener ):EventListener 
+	{
 		return _dispatcher.removeGlobalEventListener(listener) ;
 	}
 
-	public function run():Void {
+	public function run():Void 
+	{
 		connect(uri) ;	
 	}
 
 	/**
 	 * Set timeout interval duration.
 	 */
-	public function setDelay(n:Number, useSeconds:Boolean):Void {
+	public function setDelay(n:Number, useSeconds:Boolean):Void 
+	{
 		var t:Number = (n > 0) ? n : 0 ;
 		if (useSeconds) t = Math.round(t * 1000) ;
 		_timer.setDelay(t) ;
@@ -276,13 +303,17 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 
 	/**
 	 * Use limit timeout interval.
-	 * @see StreamPolicy
+	 * @see NetServerPolicy
 	 */
-	public function setLimitPolicy( policy:NetServerPolicy ):Void {
+	public function setLimitPolicy( policy:NetServerPolicy ):Void 
+	{
 		_policy = policy ;
-		if (_policy == NetServerPolicy.LIMIT) {
+		if (_policy == NetServerPolicy.LIMIT) 
+		{
 			_timer.addEventListener(TimerEventType.TIMER, _timeOut) ;
-		} else {
+		}
+		else 
+		{
 			_timer.removeEventListener(TimerEventType.TIMER, _timeOut) ;
 		}
 	}
@@ -294,22 +325,27 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 	/**
 	 * Use this method to dispatch in FMS application an event.
 	 */
-	public function sharedEvent( event , context ):Void {
+	public function sharedEvent( event , context ):Void 
+	{
 		var eventType:String ;
 		if (event instanceof Event) 
-			{
+		{
 			eventType = event || event.getType() ;	
 			this.call(event, null, event.toSource()) ;
-			}
-		else if (TypeUtil.typesMatch(event, String)) {
+		}
+		else if (TypeUtil.typesMatch(event, String)) 
+		{
 			this.call( event, null, context || null) ;
 		}
 	}
 
-	/*override*/ public function toSource(indent : Number, indentor : String) : String {
+	/*override*/ public function toSource(indent : Number, indentor : String) : String 
+	{
 		return null ;
 	}
-	public function toString():String {
+	
+	public function toString():String 
+	{
 		return "[" + ConstructorUtil.getName(this) + "]" ;
 	}
 
@@ -327,7 +363,8 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 	
 	// ----o Private Methods
 
-	private function onStatus( oInfo ):Void {
+	private function onStatus( oInfo ):Void 
+	{
 		
 		_timer.stop() ;
 		
@@ -335,8 +372,9 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 		
 		// trace("> " + this + ".onStatus(" + arguments + ")") ;
 		
-		switch (code) {
-		
+		switch (code) 
+		{
+			
 			case NetServerStatus.BAD_VERSION :
 				notifyStatus(NetServerStatus.BAD_VERSION) ;
 				break ;
@@ -356,20 +394,23 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 			case NetServerStatus.REJECTED :
 				notifyStatus(NetServerStatus.REJECTED) ;
 				break ;
-
+			
 			case NetServerStatus.SHUTDOWN :
 				notifyStatus(NetServerStatus.SHUTDOWN) ;
 				break ;
-
+			
 			case NetServerStatus.SUCCESS :
 				notifyStatus(NetServerStatus.SUCCESS) ;
 				break ;
-
+			
 		}
+		
 		notifyFinished() ;
+		
 	}
 
-	public function _onTimeOut(e:TimerEvent):Void {
+	public function _onTimeOut(e:TimerEvent):Void 
+	{
 		notifyTimeOut() ;
 		notifyFinished() ;
 		close() ;

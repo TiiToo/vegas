@@ -434,7 +434,7 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable
 	
 	public function removeItemAt(index:Number) 
 	{
-		var ret = getItemAt[index] ; 
+		var ret = getItemAt(index) ; 
 		removeItemsAt(index, 1);
 		return ret;
 	}

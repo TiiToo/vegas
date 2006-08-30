@@ -119,6 +119,18 @@ class asgard.process.Pause extends AbstractAction {
 		if (useSeconds) d = Math.round(d * 1000) ;
 		return d ;
 	}
+
+	public function run():Void {
+		if (_timer.running) return ;
+		notifyStarted() ;
+		_setRunning(true) ;
+		_timer.setDelay(getDuration()) ;
+		_timer.start() ;
+	}
+	
+	public function setDuration(duration:Number):Void {
+		_duration = (isNaN(duration) && duration < 0) ? 0 : duration ;
+	}
 	
 	public function start():Void {
 		run() ;
@@ -131,18 +143,6 @@ class asgard.process.Pause extends AbstractAction {
 			notifyStopped() ;	
 			notifyFinished() ;	
 		}
-	}
-
-	public function run():Void {
-		if (_timer.running) return ;
-		notifyStarted() ;
-		_setRunning(true) ;
-		_timer.setDelay(getDuration()) ;
-		_timer.start() ;
-	}
-	
-	public function setDuration(duration:Number):Void {
-		_duration = (isNaN(duration) && duration < 0) ? 0 : duration ;
 	}
 	
 	/*override*/ public function toSource(indent:Number, indentor:String):String {

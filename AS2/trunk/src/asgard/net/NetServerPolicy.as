@@ -39,11 +39,13 @@
  * @author eKameleon
  * @version 1.0.0.0
  **/	
-class asgard.net.NetServerPolicy extends Number {
+class asgard.net.NetServerPolicy extends Number 
+{
 	
 	// ----o Constructor
 	
-	private function NetServerPolicy( n:Number ) {
+	private function NetServerPolicy( n:Number ) 
+	{
 		super(n) ;
 	}
 

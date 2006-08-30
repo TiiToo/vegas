@@ -116,7 +116,6 @@
 */
 
 import asgard.display.DisplayObject;
-import asgard.display.PixelSnapping;
 
 import flash.display.BitmapData;
 

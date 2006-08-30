@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- ActionProxy
+/** ActionProxy
 
 	AUTHOR
 
@@ -71,7 +71,7 @@
 	
 		Action, ICloneable, IRunnable
 
-----------  */
+*/
 
 import asgard.process.AbstractAction;
 
@@ -103,7 +103,9 @@ class asgard.process.ActionProxy extends AbstractAction {
 	
 	public function run():Void {
 		notifyStarted() ;
+		_setRunning(true) ;
 		Delegate.create.apply(this, [obj, func].concat(args)) ();
+		_setRunning(false) ;
 		notifyFinished() ;
 	}
 
