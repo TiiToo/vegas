@@ -47,6 +47,8 @@
   		
 		- getListener(eventName:String):EventListener 
 		
+		- initialize
+		 
 		- insert(eventName:String, listener:EventListener):void
 		
 		- remove(eventName:String):void

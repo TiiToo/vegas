@@ -1,4 +1,4 @@
-/*
+ï»¿/*
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
   the License. You may obtain a copy of the License at 
@@ -24,10 +24,12 @@
 
 package vegas.string.eden
 {
-	
+
+	import flash.utils.getDefinitionByName;
+
 	import vegas.util.ClassUtil ;
 	import vegas.util.StringUtil ;
-		
+
 	public class ECMAScript extends GenericParser
 	{
 		
@@ -43,18 +45,17 @@ package vegas.string.eden
 			}
 			
 			var sp:* ; // scope path
-        
+			
         	if( scope != _global )
             {
            	 	sp = ClassUtil.getPath( scope );
             }
             
-            if( Config.autoAddScopePath &&
-	            (scopepath != undefined) && (scopepath != "_global") )
+            if( Config.autoAddScopePath && (scopepath != undefined) && (scopepath != "_global") )
             {
 	            addAuthorized( scopepath + ".*" ) ;
             }
-        
+			
 	        this.inAssignement = false ;
 	        this.inConstructor = false ;
 	        this.inFunction    = false ;
@@ -70,45 +71,46 @@ package vegas.string.eden
 	    public var inFunction:Boolean;
 		public var scope:* ;
 	    public var scopepath:* ;
-    
+		
     	// ----o Public Methods
     	
     	/**
-    	 * @public eval
-    	 */
+		 * eval( ...arguments:Array ):*
+		 */
 	    override public function eval( ...arguments:Array ):*
         {
 	        
 	        var value:* ;
 	        var tmp:* ;
-
+			
 	        value = _ORC ;
-        
+			
 	        while( hasMoreChar() )
             {
     	        next();
 	            scanSeparators();
-            
+				
     	        tmp = scanValue();
-            
+				
         	    if( tmp != _ORC )
                 {
             	    value = tmp;
                 }
-            
+				
 	            /* note: poor man semicolon auto-insertion */
     	        if( ch == " ")
         	    {
             	    ch = ";";
                 }
+                
             }
-        
+			
 	        return onParsed( value ) ;
 	        
         }
-   
+		
    		/**
-   		 * evaluate
+   		 * static evaluate( source:String, scope:*, callback:* ):*
    		 */
 	    static public function evaluate( source:String, scope:*, callback:* ):*
         {
@@ -116,35 +118,35 @@ package vegas.string.eden
 	        return parser.eval() ;
         }
         
-
-  /* Method: isOctalNumber
-    */
-    public function isOctalNumber( num:* ):Boolean
+		/**
+		 * isOctalNumber(num:*):Boolean
+		 */ 
+        public function isOctalNumber( num:* ):Boolean
         {
-        var i:uint;
-        
-        if( (num.indexOf( "." ) > -1) ||
-            (num.indexOf( "e" ) > -1) ||
-            (num.indexOf( "E" ) > -1) )
+            var i:uint;
+			
+            if( (num.indexOf( "." ) > -1) || (num.indexOf( "e" ) > -1) || (num.indexOf( "E" ) > -1) )
             {
-            return false;
+                return false ;
             }
-        
-        num = num.split("");
-        
-        for( i=0; i<num.length; i++ )
+			
+            num = num.split("") ;
+			
+            var l:uint = num.length ;
+            for( i=0; i<l ; i++ )
             {
-            if( !isOctalDigit( num[i] ) )
+                if( !isOctalDigit( num[i] ) )
                 {
-                return false;
+                    return false;
                 }
             }
-        
-        return true;
+			
+            return true ;
         }
-    
-    /* Method: isDigitNumber
-    */
+		
+        /**
+		 * isDigit( num:String ):Boolean
+		 */ 
 	    public function isDigitNumber( num:String ):Boolean
         {
     	    var i:uint ;
@@ -156,249 +158,292 @@ package vegas.string.eden
 	                return false;
                 }
             }
-        
+			
     	    return true;
         }
-    
-    /* Method: isIdentifierStart
-       
-       note:
-       identifiers
-       see: ECMA-262 spec 7.6 (PDF p26/188)
-    */
-    public function isIdentifierStart( /*char*/ c:String ):Boolean
-            {
+		
+        /**
+		 * isIdentifierStart( c:String ):Boolean
+		 * identifiers
+		 * see: ECMA-262 spec 7.6 (PDF p26/188)
+		 */ 
+        public function isIdentifierStart( /*char*/ c:String ):Boolean
+        {
             if( isAlpha( c ) || (c == "_") || (c == "$" ) )
-                {
+            {
                 return true;
-                }
+            }
             
             if( c.charCodeAt( 0 ) < 128 )
-                {
+            {
                 return false;
-                }
+            }
             
             return false;
-            }
-    
-    /* Method: isIdentifierPart
-    */
-    public function isIdentifierPart( /*char*/ c:String ):Boolean
-        {
-        if( isIdentifierStart( c ) )
-            {
-            return true;
-            }
-        
-        if( isDigit( c ) )
-            {
-            return true;
-            }
-        
-        if( c.charCodeAt( 0 ) < 128 )
-            {
-            return false;
-            }
-        
-        return false;
         }
-    
-    /* Method: isLineTerminator
-       
-       note:
-       line terminators
-       "\n" - \u000A - LF
-       "\R" - \u000D - CR
-       ???  - \u2028 - LS
-       ???  - \u2029 - PS
-       see: ECMA-262 spec 7.3 (PDF p24/188)
-    */
-    public function isLineTerminator( /*char*/ c:String ):Boolean
+		
+        /**
+		 * isIdentifierPart( c:String ):Boolean
+		 * @params c:String
+		 * @return Boolean
+		 */ 
+        public function isIdentifierPart( /*char*/ c:String ):Boolean
         {
-        switch( c )
+            if( isIdentifierStart( c ) )
             {
-            case "\u000A": case "\u000D": case "\u2028": case "\u2029":
-            return true;
+                return true;
+            }
             
-            default:
-            return false;
-            }
-        }
-    
-    /* Method: isReservedKeyword
-       
-       note:
-       Reserved Keywords
-       see: ECMA-262 spec 7.5.2 p13 (PDF p25/188)
-    */
-    public function isReservedKeyword( identifier:String ):Boolean
-        {
-        if( !Config.strictMode )
+            if( isDigit( c ) )
             {
-            identifier = identifier.toLowerCase();
+                return true;
             }
-        
-        switch( identifier )
-            {
-            case "break":
-            case "case": case "catch": case "continue":
-            case "default": case "delete": case "do":
-            case "else":
-            case "finally": case "for": case "function":
-            case "if": case "in": case "instanceof":
-            case "new":
-            case "return":
-            case "switch":
-            case "this": case "throw": case "try": case "typeof":
-            case "var": case "void":
-            case "while": case "with":
             
-            	var formatter:* = new vegas.string.StringFormatter( strings.reservedKeyword ) ;
-            	log( formatter.format( identifier ) ) ;
-	            return true;
-            
-            default:
-            return false;
-            }
-        }
-    
-    /* Method: isFutureReservedKeyword
-       
-       note:
-       Future Reserved Keywords
-       see: ECMA-262 spec 7.5.3
-    */
-    public function isFutureReservedKeyword( identifier:String ):Boolean
-        {
-        if( !Config.strictMode )
+            if( c.charCodeAt( 0 ) < 128 )
             {
-            identifier = identifier.toLowerCase();
-            }
-        
-        switch( identifier )
-            {
-            case "abstract":
-            case "boolean": case "byte":
-            case "char": case "class": case "const":
-            case "debugger": case "double":
-            case "enum": case "export": case "extends":
-            case "final": case "float":
-            case "goto":
-            case "implements": case "import": case "int": case "interface":
-            case "long":
-            case "native":
-            case "package": case "private": case "protected": case "public":
-            case "short": case "static": case "super": case "synchronized":
-            case "throws": case "transient":
-            case "volatile":
-            
-            	var formatter:* = new vegas.string.StringFormatter( strings.futurReservedKeyword ) ;
-            	log( formatter.format( identifier ) ) ;
-	            return true;
-            
-            default:
-            return false;
-            }
-        }
-    
-    /* Method: isValidpath
-    */
-    public function isValidPath( path:String ):Boolean
-        {
-        var i:* ;
-        var paths:* ;
-        var subpath:* ;
-        var formatter:* ;
-        if( path.indexOf( "." ) > -1 )
-            {
-            paths = path.split( "." );
-            }
-        else
-            {
-            paths = [ path ];
-            }
-        
-        for( i=0; i<paths.length; i++ )
-            {
-            subpath = paths[i];
-            
-            if( isReservedKeyword( subpath ) ||
-                isFutureReservedKeyword( subpath ) )
-                {
-            	formatter = new vegas.string.StringFormatter( strings.notValidPath ) ;
-            	log( formatter.format( path ) ) ;
                 return false;
-                }
             }
-        
-        if( Config.autoAddScopePath &&
-            (scopepath != undefined) && (scope != _global) )
-            {
-            path = scopepath + "." + path;
-            }
-        
-        if( Config.security && !isAuthorized( path ) )
-            {
-            formatter = new vegas.string.StringFormatter( strings.notAuthorizedPath ) ;
-            log( formatter.format( path ) ) ;
-            return Config.undefineable;
-            }
-//         else
-//             {
-//             trace( path + " is authorized (isValidPath)" );
-//             }
-        
-        return true;
+            
+            return false;
         }
-    
-    /* Method: doesExistInGlobal
-    */
-    public function doesExistInGlobal( path:String ):Boolean
+		
+        /**
+		 * line terminators
+		 * "\n" - \u000A - LF
+		 * "\R" - \u000D - CR
+		 * ???  - \u2028 - LS
+		 * ???  - \u2029 - PS
+		 * see: ECMA-262 spec 7.3 (PDF p24/188)
+		 */
+        public function isLineTerminator( /*char*/ c:String ):Boolean
         {
-        var i:uint ;
-        var paths:* ;
-        var subpath:* ;
-        var scope:* = _global;
-        
-        if( path.indexOf( "." ) > -1 )
+            switch( c )
             {
-            paths = path.split( "." );
+                case "\u000A" : 
+                case "\u000D" : 
+                case "\u2028" : 
+                case "\u2029" :
+                
+                    return true ;
+				
+                default:
+                
+                    return false ;
             }
-        else
-            {
-            paths = [ path ];
-            }
-        
-        for( i=0; i<paths.length; i++ )
-            {
-            subpath = paths[i];
-            
-            if( isDigitNumber( subpath ) )
-                {
-                subpath = parseInt( subpath );
-                }
-            
-            if( scope[ subpath ] == undefined )
-                {
-                return false;
-                }
-            
-            scope = scope[ subpath ];
-            }
-        
-        return true;
         }
-    
-    /* Method: createPath
-    */
+		
+		/**
+		 * Reserved Keywords
+		 * see: ECMA-262 spec 7.5.2 p13 (PDF p25/188)
+		 */
+		public function isReservedKeyword( identifier:String ):Boolean
+        {
+			if( !Config.strictMode )
+            {
+				identifier = identifier.toLowerCase();
+            }
+			
+			switch( identifier )
+            {
+				case "break":
+				case "case": 
+				case "catch": 
+				case "continue":
+				case "default": 
+				case "delete": 
+				case "do":
+				case "else":
+				case "finally": 
+				case "for": 
+				case "function":
+				case "if": 
+				case "in": 
+				case "instanceof":
+				case "new":
+				case "return":
+				case "switch":
+				case "this": 
+				case "throw": 
+				case "try": 
+				case "typeof":
+				case "var": 
+				case "void":
+				case "while": 
+				case "with":
+				
+					var formatter:* = new vegas.string.StringFormatter( strings.reservedKeyword ) ;
+					log( formatter.format( identifier ) ) ;
+					return true ;
+				
+				default:
+				
+					return false ;
+            }
+        }
+		
+		// FIXME déplacer futurereservedKeyword vers resvervedKeyword ?
+		
+		/**	
+		 * Future Reserved Keywords
+		 * see: ECMA-262 spec 7.5.3
+		 */
+		public function isFutureReservedKeyword( identifier:String ):Boolean
+        {
+			if( !Config.strictMode )
+            {
+				identifier = identifier.toLowerCase();
+            }
+			
+			switch( identifier )
+            {
+				case "abstract" :
+				case "boolean" : 
+				case "byte" :
+				case "char" : 
+				case "class" : 
+				case "const" :
+				case "debugger" : 
+				case "double" :
+				case "enum" :
+				case "export" :
+				case "extends" :
+				case "final" :
+				case "float" :
+				case "goto" :
+				case "implements" : 
+				case "import":
+				case "int" :
+				case "interface" :
+				case "long" :
+				case "native" :
+				case "package" : 
+				case "private" : 
+				case "protected" :
+				case "public" :
+				case "short" :
+				case "static" :
+				case "super" :
+				case "synchronized" :
+				case "throws" :
+				case "transient" :
+				case "volatile" :
+				
+					var formatter:* = new vegas.string.StringFormatter( strings.futurReservedKeyword ) ;
+					log( formatter.format( identifier ) ) ;
+					return true;
+				
+				default:
+				
+				return false;
+				
+            }
+        }
+		
+		/**
+		 * Method: isValidpath
+		 */
+		public function isValidPath( path:String ):Boolean
+		{
+			
+			var i:* ;
+			var paths:* ;
+			var subpath:* ;
+			var formatter:* ;
+			
+			if( path.indexOf( "." ) > -1 )
+            {
+				paths = path.split( "." );
+            }
+			else
+            {
+				paths = [ path ];
+            }
+			
+			for( i=0; i<paths.length; i++ )
+            {
+				
+				subpath = paths[i];
+				
+				if( isReservedKeyword( subpath ) || isFutureReservedKeyword( subpath ) )
+                {
+					formatter = new vegas.string.StringFormatter( strings.notValidPath ) ;
+					log( formatter.format( path ) ) ;
+					return false;
+                }
+                
+            }
+			
+			if( Config.autoAddScopePath && (scopepath != undefined) && (scope != _global) )
+            {
+				path = scopepath + "." + path;
+            }
+			
+			if( Config.security && !isAuthorized( path ) )
+            {
+				formatter = new vegas.string.StringFormatter( strings.notAuthorizedPath ) ;
+				log( formatter.format( path ) ) ;
+				return Config.undefineable;
+            }
+	        // else
+			// {
+			//	trace( path + " is authorized (isValidPath)" );
+			// }
+			
+			return true;
+        }
+		
+		/**
+		 * doesExistInGlobal(path:String):Boolean
+		 */
+		public function doesExistInGlobal( path:String ):Boolean
+        {
+			
+			var i:uint ;
+			var paths:* ;
+			var subpath:* ;
+			var scope:* = _global;
+			
+			if( path.indexOf( "." ) > -1 )
+			{
+				paths = path.split( "." );
+            }
+			else
+            {
+				paths = [ path ];
+            }
+			
+			for( i=0; i<paths.length; i++ )
+            {
+				subpath = paths[i];
+				
+				if( isDigitNumber( subpath ) )
+                {
+					subpath = parseInt( subpath );
+                }
+				
+				if( scope[ subpath ] == undefined )
+                {
+					return false;
+                }
+				
+				scope = scope[ subpath ];
+            }
+			
+			return true;
+        }
+		
+		/**
+		 * createPath( path:String ):void
+		 */
     	public function createPath( path:String ):void
 	    {
+			
         	var i:uint ;
         	var scp:* ;
         	var paths:* ;
-	
-	        scp = this.scope;
-        
+			
+	        scp = this.scope ;
+			
     	    if( path.indexOf( "." ) > -1 )
 	        {
 	            paths = path.split( "." );
@@ -407,228 +452,256 @@ package vegas.string.eden
             {
         	    paths = [ path ];
             }
-        
+			
 	        for( i=0; i<paths.length; i++ )
             {
     	        path = paths[i];
-            
+				
 	            if( scp[path] == undefined )
                 {
     	            scp[path] = {};
                 }
-            
+				
         	    scp = scp[path];
             }
+            
         }
-    
-    /* Method: scanComments
-    */
-    public function scanComments():void
+		
+		/**
+		 * Method: scanComments
+		 */
+		public function scanComments():void
         {
-        next();
-        
-        switch( ch )
+			
+			next();
+			
+			switch( ch )
             {
-            case "/":
-            while( !isLineTerminator( ch ) )
-                {
-                next();
-                }
-            break;
-            
-            case "*":
-            var ch_:* = next();
-            
-            while( (ch_ != "*") && (ch != "/") )
-                {
-                ch_ = ch;
-                next();
-                
-                if( ch == "" )
-                    {
-                    log( strings.unterminatedComment );
-                    break;
-                    }
-                }
-    
-            next();
-            ch_ = undefined ;
-            break;
-            
-            case "":
-            default:
+				case "/":
+					while( !isLineTerminator( ch ) )
+					{
+					next();
+					}
+					break;
+				
+				case "*":
+					
+					var ch_:* = next();
+					
+					while( (ch_ != "*") && (ch != "/") )
+					{
+						ch_ = ch;
+						next();
+						
+						if( ch == "" )
+						{
+							log( strings.unterminatedComment );
+							break;
+						}
+					}
+					
+					next();
+					ch_ = undefined ;
+					break;
+            	
+            	case "":
+				default:
             log( strings.errorComment );
             }
         }
-    
-    /* Method: scanWhiteSpace
-       
-       note:
-       White Space
-       "\t" - \u0009 - TAB
-       "\v" - \u000B - VT
-       "\f" - \u000C - FF
-       " "  - \u0020 - SP
-       ???  - \u00A0 - NBSP
-       see: ECMA-262 spec 7.2 (PDF p23/188)
-    */
-    public function scanWhiteSpace():void
-        {
-        var scan:Boolean = true;
-        
-        while( scan )
-            {
-            switch( ch )
+		
+		/**
+		 * White Space
+		 * "\t" - \u0009 - TAB
+		 * "\v" - \u000B - VT
+		 * "\f" - \u000C - FF
+		 * " "  - \u0020 - SP
+		 * ???  - \u00A0 - NBSP
+		 * see: ECMA-262 spec 7.2 (PDF p23/188)
+		 */
+		public function scanWhiteSpace():void
+		{
+			
+			var scan:Boolean = true;
+			
+			while( scan )
+			{
+				switch( ch )
                 {
-                case "\u0009": case "\u000B": case "\u000C": case "\u0020": case "\u00A0":
-                next();
-                break;
-                
-                case "/":
-                scanComments();
-                break;
-                
-                default:
-                scan = false;
+					
+					case "\u0009" :
+					case "\u000B" :
+					case "\u000C" :
+					case "\u0020" :
+					case "\u00A0" :
+					
+						next() ;
+					
+					break;
+					
+					case "/":
+					
+						scanComments();
+						break;
+					
+					default:
+					
+						scan = false ;
+					
                 }
             }
         }
-    
-    /* Method: scanSeparators
-    */
+		
+		/**
+		 * scanSeparators()
+		 */
 	    public function scanSeparators():void
         {
     	    var scan:Boolean = true;
-        
+			
         	while( scan )
             {
             	switch( ch )
                 {
                 	/* note:
-	                   White Space
-	                   "\t" - \u0009 - TAB
-	                   "\v" - \u000B - VT
-	                   "\f" - \u000C - FF
-	                   " "  - \u0020 - SP
-	                   ???  - \u00A0 - NBSP
-	                   see: ECMA-262 spec 7.2 (PDF p23/188)
-	                */
-	                case "\u0009": case "\u000B": case "\u000C": case "\u0020": case "\u00A0":
+						White Space
+						"\t" - \u0009 - TAB
+						"\v" - \u000B - VT
+						"\f" - \u000C - FF
+						" "  - \u0020 - SP
+						???  - \u00A0 - NBSP
+						see: ECMA-262 spec 7.2 (PDF p23/188)
+						*/
+	                case "\u0009" :
+	                case "\u000B" :
+	                case "\u000C" :
+	                case "\u0020" :
+	                case "\u00A0" :
+    	            
     	            	next();
         	        	break;
-                
+					
             	    /* note:
-	                   line terminators
-	                   "\n" - \u000A - LF
-	                   "\R" - \u000D - CR
-	                   ???  - \u2028 - LS
-	                   ???  - \u2029 - PS
-	                   see: ECMA-262 spec 7.3 (PDF p24/188)
-	                */
-    	            case "\u000A": case "\u000D": case "\u2028": case "\u2029":
+						line terminators
+						"\n" - \u000A - LF
+						"\R" - \u000D - CR
+						???  - \u2028 - LS
+						???  - \u2029 - PS
+						see: ECMA-262 spec 7.3 (PDF p24/188)
+					*/
+    	            case "\u000A" :
+    	            case "\u000D" :
+    	            case "\u2028" :
+    	            case "\u2029" :
+    	            
         	    	    next();
             	    	break;
-                
+					
                		case "/":
+               		
 		                scanComments();
 	    	            break;
-                
+					
             	    default:
+            	    
                 		scan = false;
+                	
                 }
             }
         }
-    
-    /* Method: scanIdentifier
-    */
-    public function scanIdentifier():String
+		
+		/**
+		 * scanIdentifier():String
+		 */
+		public function scanIdentifier():String
         {
-        var id:String = "";
-        
-        if( isIdentifierStart( ch ) )
+			
+			var id:String = "";
+			
+			if( isIdentifierStart( ch ) )
             {
-            id += ch;
-            next();
-            
-            while( isIdentifierPart( ch ) )
+				id += ch;
+				next();
+				
+				while( isIdentifierPart( ch ) )
                 {
-                id += ch;
-                next();
+					id += ch;
+					next();
                 }
             }
-        else
-            {
-            log( strings.errorIdentifier );
+			else
+			{
+				log( strings.errorIdentifier ) ;
             }
-        
-        return id;
+			
+			return id;
         }
-    
-    /* Method: scanPath
-    */
-    public function scanPath():String
-        {
-        var path:String = "" ;
-        var subpath:* ;
-        
-        if( isIdentifierStart( ch ) )
+		
+		/**
+		 * Method: scanPath():String
+		 */
+		public function scanPath():String
+		{
+			var path:String = "" ;
+			var subpath:* ;
+			
+			if( isIdentifierStart( ch ) )
             {
-            path += ch;
-            next();
-            
-            while( isIdentifierPart( ch ) ||
-                   (ch == ".") ||
-                   (ch == "[") )
+				
+				path += ch;
+				next();
+				
+				while( isIdentifierPart( ch ) || (ch == ".") || (ch == "[") )
                 {
-                
-                if( ch == "[" )
+					if( ch == "[" )
                     {
-                    next();
-                    scanWhiteSpace();
-                    
-                    if( isDigit( ch ) )
+						
+						next();
+						scanWhiteSpace();
+						
+						if( isDigit( ch ) )
                         {
-                        subpath = String( scanNumber() );
-                        scanWhiteSpace();
-                        path += "." + subpath;
+							subpath = String( scanNumber() );
+							scanWhiteSpace();
+							path += "." + subpath;
                         }
-                    else if( (this.ch == "\"") || (this.ch == "\'") )
+						else if( (this.ch == "\"") || (this.ch == "\'") )
                         {
-                        subpath = scanString( ch );
-                        scanWhiteSpace();
-                        path += "." + subpath;
+							subpath = scanString( ch );
+							scanWhiteSpace();
+							path += "." + subpath;
                         }
-                    
-                    if( ch == "]" )
-                        {
-                        next();
-                        continue;
+						
+						if( ch == "]" )
+						{
+							next();
+							continue;
                         }
                     }
-                
-                
-                path += ch;
-                next();
-                
+					
+					path += ch;
+					next();
                 }
             }
-        
-        if( StringUtil.startsWith( path, "_global." ) )
+			
+			if( StringUtil.startsWith( path, "_global." ) )
             {
-            path = path.substr( "_global.".length );
+				path = path.substr( "_global.".length ) ;
             }
-        
-        if( !inConstructor && ch == "(" )
+			
+			if( !inConstructor && ch == "(" )
             {
-            inFunction = true;
-            return scanFunction( path );
+				inFunction = true;
+				return scanFunction( path ) ;
             }
-        
-        return path;
+			
+			return path ;
+			
         }
-    
-    /* Method: scanFunction
-    */
+		
+	    /**
+		 * scanFunction( fcnPath:String):*
+		 */
 	    public function scanFunction( fcnPath:String ):*
         {
     	    var args:* ;
@@ -644,9 +717,9 @@ package vegas.string.eden
             {
         	    fcnName = fcnPath;
             }
-        
+			
 	        scanWhiteSpace();
-        
+			
 	        args = [];
 	        
 	        var formatter:* ;
@@ -661,29 +734,29 @@ package vegas.string.eden
                 	next();
 	                break;
                 }
-            
+				
     	        args.push( scanValue() );
 	            scanSeparators();
-            
+				
     	        if( ch == "," )
                 {
         	        next();
 	                scanSeparators();
                 }
             }
-        
+			
     	    if( !Config.allowFunctionCall )
             {
         	    formatter = new vegas.string.StringFormatter( strings.notFunctionCallAllowed ) ;
             	log( formatter.format( fcnPath, args ) ) ;
 	            return Config.undefineable;
             }
-        
+			
     	    if( !isReservedKeyword( fcnPath ) &&
             	!isFutureReservedKeyword( fcnPath ) )
         	{
             	fcnObj = eval( "_global." + fcnPath );
-            
+				
             	if( fcnPath.indexOf( "." ) > -1 )
 	            {
         	        fcnObjScope = eval( "_global." + StringUtil.replace( fcnName, "."+ fcnName, "" ) );
@@ -699,18 +772,18 @@ package vegas.string.eden
 	            log( formatter.format( fcnPath ) ) ;
 	            return Config.undefineable;
             }
-        
+			
     	    if( Config.security && !isAuthorized( fcnPath ) )
             {
         	    formatter = new vegas.string.StringFormatter( strings.notAuthorizedFunction ) ;
 	            log( formatter.format( fcnPath ) ) ;
 	            return Config.undefineable;
             }
-//         else
-//             {
-//             trace( fcnPath + " is authorized (scanFunction)" );
-//             }
-        
+			// else
+			// {
+			//	trace( fcnPath + " is authorized (scanFunction)" );
+			// }
+			
     	    if( fcnObj == undefined )
             {
         	    formatter = new vegas.string.StringFormatter( strings.doesNotExist ) ;
@@ -720,68 +793,71 @@ package vegas.string.eden
     	    else
             {
         	    return fcnObj.apply( fcnObjScope, args );
-            
-//             switch( args.length )
-//                 {
-//                 case 9:
-//                 return fcnObj( args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8] );
-//                 case 8:
-//                 return fcnObj( args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7] );
-//                 case 7:
-//                 return fcnObj( args[0], args[1], args[2], args[3], args[4], args[5], args[6] );
-//                 case 6:
-//                 return fcnObj( args[0], args[1], args[2], args[3], args[4], args[5] );
-//                 case 5:
-//                 return fcnObj( args[0], args[1], args[2], args[3], args[4] );
-//                 case 4:
-//                 return fcnObj( args[0], args[1], args[2], args[3] );
-//                 case 3:
-//                 return fcnObj( args[0], args[1], args[2] );
-//                 case 2:
-//                 return fcnObj( args[0], args[1] );
-//                 case 1:
-//                 return fcnObj( args[0] );
-//                 case 0:
-//                 default:
-//                 return fcnObj();
-//                 }
-            	}
-        
-	        log( strings.errorFunction );
+				
+			//             switch( args.length )
+			//                 {
+			//                 case 9:
+			//                 return fcnObj( args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8] );
+			//                 case 8:
+			//                 return fcnObj( args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7] );
+			//                 case 7:
+			//                 return fcnObj( args[0], args[1], args[2], args[3], args[4], args[5], args[6] );
+			//                 case 6:
+			//                 return fcnObj( args[0], args[1], args[2], args[3], args[4], args[5] );
+			//                 case 5:
+			//                 return fcnObj( args[0], args[1], args[2], args[3], args[4] );
+			//                 case 4:
+			//                 return fcnObj( args[0], args[1], args[2], args[3] );
+			//                 case 3:
+			//                 return fcnObj( args[0], args[1], args[2] );
+			//                 case 2:
+			//                 return fcnObj( args[0], args[1] );
+			//                 case 1:
+			//                 return fcnObj( args[0] );
+			//                 case 0:
+			//                 default:
+			//                 return fcnObj();
+			//                 }
+            }        
+	        
+			log( strings.errorFunction );
+			
         }
-    
-    /* Method: scanConstructor
-    */
+		
+		/**
+		 * scanConstructor():*
+		 */
     	public function scanConstructor():*
 	    {
-        	var ctor:* ;
+        	
+			var ctor:* ;
         	var args:* ;
         	var ctorObj:* ;
 	        
 	        scanWhiteSpace();
 	        
-	        inConstructor = true;
+	        inConstructor = true ;
 	        ctor = scanPath();
 	        args = [];
-	        inConstructor = false;
-        
+	        inConstructor = false ;
+			
     	    if( ch == "(" )
             {
         	    next();
 	            scanSeparators();
-            
+				
     	        while( ch != "" )
                 {
-                
+					
         	        if( ch == ")" )
                     {
             	        next();
                 	    break;
                     }
-                
+					
 	                args.push( scanValue() );
 	                scanSeparators();
-                
+					
     	            if( ch == "," )
                     {
         	            next();
@@ -789,149 +865,159 @@ package vegas.string.eden
                     }
                 }
             }
-        
-        var formatter:* ;
-        
-        if( !isReservedKeyword( ctor ) &&
-            !isFutureReservedKeyword( ctor ) )
+			
+        	var formatter:* ;
+			
+	        if( !isReservedKeyword( ctor ) && !isFutureReservedKeyword( ctor ) )
             {
-            ctorObj = eval( "_global." + ctor );
+    	        ctorObj = flash.utils.getDefinitionByName(ctor) ;
+	        }
+	        else
+            {
+    	        formatter = new vegas.string.StringFormatter(strings.notValidConstructor) ;
+        	    log( formatter.format( ctor ) ) ;
+            	return Config.undefineable;
             }
-        else
+			
+			if( Config.security && !this.isAuthorized( ctor ) )
             {
-            formatter = new vegas.string.StringFormatter(strings.notValidConstructor) ;
-            log( formatter.format( ctor ) ) ;
-            return Config.undefineable;
+				formatter = new vegas.string.StringFormatter(strings.notAuthorizedConstructor) ;
+				log( formatter.format( ctor ) ) ;
+				return Config.undefineable;
             }
-        
-        if( Config.security && !this.isAuthorized( ctor ) )
+			// else
+			// {
+			//	trace( ctor + " is authorized (scanConstructor)" );
+			// }
+			
+			if( ctorObj == undefined )
             {
-            formatter = new vegas.string.StringFormatter(strings.notAuthorizedConstructor) ;
-            log( formatter.format( ctor ) ) ;
-            return Config.undefineable;
+				formatter = new vegas.string.StringFormatter(strings.doesNotExist) ;
+				log( formatter.format( ctor ) ) ;
+				return Config.undefineable;
             }
-//         else
-//             {
-//             trace( ctor + " is authorized (scanConstructor)" );
-//             }
-        
-        if( ctorObj == undefined )
+			else
             {
-            formatter = new vegas.string.StringFormatter(strings.doesNotExist) ;
-            log( formatter.format( ctor ) ) ;
-            return Config.undefineable;
-            }
-        else
-            {
-            switch( args.length )
+				switch( args.length )
                 {
-                case 9:
-                return new ctorObj( args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8] );
-                case 8:
-                return new ctorObj( args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7] );
-                case 7:
-                return new ctorObj( args[0], args[1], args[2], args[3], args[4], args[5], args[6] );
-                case 6:
-                return new ctorObj( args[0], args[1], args[2], args[3], args[4], args[5] );
-                case 5:
-                return new ctorObj( args[0], args[1], args[2], args[3], args[4] );
-                case 4:
-                return new ctorObj( args[0], args[1], args[2], args[3] );
-                case 3:
-                return new ctorObj( args[0], args[1], args[2] );
-                case 2:
-                return new ctorObj( args[0], args[1] );
-                case 1:
-                return new ctorObj( args[0] );
-                case 0:
-                default:
-                return new ctorObj();
+					case 9:
+					return new ctorObj( args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8] );
+					
+					case 8:
+					return new ctorObj( args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7] );
+					
+					case 7:
+					return new ctorObj( args[0], args[1], args[2], args[3], args[4], args[5], args[6] );
+					
+					case 6:
+					return new ctorObj( args[0], args[1], args[2], args[3], args[4], args[5] );
+					
+					case 5:
+					return new ctorObj( args[0], args[1], args[2], args[3], args[4] );
+					
+					case 4:
+					return new ctorObj( args[0], args[1], args[2], args[3] );
+					
+					case 3:
+					return new ctorObj( args[0], args[1], args[2] );
+					
+					case 2:
+					return new ctorObj( args[0], args[1] );
+					
+					case 1:
+					return new ctorObj( args[0] );
+					
+					case 0:
+					default:
+					return new ctorObj();
+					
                 }
             }
-        
-        log( strings.errorConstructor );
+			
+			log( strings.errorConstructor );
+			
         }
-    
-    /* Method: scanString
-    */
-    public function scanString( quote:String ):String
+		
+		/**
+		 * scanString( quote:String ):String
+		  */
+        public function scanString( quote:String ):String
         {
-        var str:String = "";
-        
-        if( ch == quote )
+            var str:String = "";
+            if(  ch == quote )
             {
-            while( next() )
+                while( next() )
                 {
-                switch( ch )
-                {
-                    
-                    case quote:
+                    switch( ch )
+                    {
+						
+                        case quote :
                     	
-                    	next() ;
-                    	return str;
-                    
-                    case "\\":
-                    	/* note:
-                       		Escape Sequence
-                       		\ followed by one of ' " \ b f n r t v
-                       		or followed by x hexdigit hexdigit
-                       		or followed by u hexdigit hexdigit hexdigit hexdigit
-                       		see: ECMA-262 specs 7.8.4 (PDF p30 to p32/188)
-                    	*/
-                    
-                    	switch( next() )
-                    	{
-                    		case "b": //backspace       - \u0008
-                        		str += "\b";
-	                        	break;
-                        	
-                        	case "t": //horizontal tab  - \u0009
-	                        	str += "\t";
+                    	    next() ;
+                          	return str;
+						
+                        case "\\" :
+                    	   
+							/* note:
+								Escape Sequence
+								\ followed by one of ' " \ b f n r t v
+								or followed by x hexdigit hexdigit
+								or followed by u hexdigit hexdigit hexdigit hexdigit
+								see: ECMA-262 specs 7.8.4 (PDF p30 to p32/188)
+							*/
+							
+                    	    switch( next() )
+                    	    {
+                    		    case "b" : //backspace       - \u0008
+                        		    str += "\b";
+	                        	    break;
+                       	        
+                        	    case "t" : //horizontal tab  - \u0009
+	                        	    str += "\t";
+									break;
+								
+								case "n" : //line feed       - \u000A
+									str += "\n";
+									break;
+								
+								//FIXME check \v bug 
+								case "v" : //vertical tab    - \u000B
+									//str += "\v";
+									break;
+								
+								case "f" : //form feed       - \u000C
+									str += "\f";
+									break;
+								
+								case "r" : //carriage return - \u000D
+									str += "\r";
+									break;
+								
+								case "\"" : //double quote   - \u0022
+									str += "\"";
+									break;
+								
+								case "\'" : //single quote   - \u0027
+									str += "\'";
+									break;
+								
+								case "\\" : //backslash      - \u005c
+									str += "\\";
+									break;
+								
+								case "u" : //unicode escape sequence \uFFFF
+									var ucode:* = source.substring( pos, pos+4 );
+									str  += String.fromCharCode( parseInt( ucode, 16 ) );
+									pos      += 4;
+									break;
+								
+								case "x" : //hexadecimal escape sequence \xFF
+									var xcode:* = source.substring( pos, pos+2 );
+									str      += String.fromCharCode( parseInt( xcode, 16 ) );
+									pos      += 2;
                         		break;
-	                        
-                        	case "n": //line feed       - \u000A
-                        		str += "\n";
-                        		break;
-                        
-	                       //TODO check \v bug 
-	                       case "v" : //vertical tab    - \u000B
-                        		
-                        		//str += "\v";
-                        		break;
-                        
-                        	case "f" : //form feed       - \u000C
-                        		str += "\f";
-                        		break;
-                        
-                       		 case "r": //carriage return - \u000D
-                        		str += "\r";
-                        		break;
-                        
-                        	case "\"": //double quote   - \u0022
-                        		str += "\"";
-                        		break;
-                        
-		                    case "\'": //single quote   - \u0027
-                        		str += "\'";
-                        		break;
-                        
-                        	case "\\": //backslash      - \u005c
-                        		str += "\\";
-                        		break;
-                        
-                        	case "u": //unicode escape sequence \uFFFF
-                        		var ucode:* = source.substring( pos, pos+4 );
-                        		str  += String.fromCharCode( parseInt( ucode, 16 ) );
-                        		pos      += 4;
-                        		break;
-                        
-	                        case "x": //hexadecimal escape sequence \xFF
-                        		var xcode:* = source.substring( pos, pos+2 );
-                        		str      += String.fromCharCode( parseInt( xcode, 16 ) );
-                        		pos      += 2;
-                        		break;
-                        
-                        	default:
+							
+                        	default :
                         		str += ch;
                         }
                     	break;
@@ -950,33 +1036,35 @@ package vegas.string.eden
                 
                 }
             }
-        
-        log( strings.errorString );
-        return null ;
+			
+            log( strings.errorString );
+            return null ;
+            
         }
-    
-    	/* Method: scanArray
-	    */
+		
+    	/**
+		 * Method: scanArray
+		 */
 	    public function scanArray():Array
         {
     	    var arr:Array = [];
-        
+			
         	if( ch == "[" )
             {
             	next();
 	            scanSeparators();
-            
+				
     	        if( ch == "]" )
         	    {
             	    next();
                 	return arr;
                 }
-            
+				
 	            while( ch != "" )
                 {
     	            arr.push( scanValue() );
 	                scanSeparators();
-                
+					
     	            if( ch == "]" )
                     {
         	            next();
@@ -986,82 +1074,86 @@ package vegas.string.eden
                     {
         	            break;
                     }
-                
+					
                 	next();
             	    scanSeparators();
                 }
             }
-        
+			
         	log( strings.errorArray );
         	return null ;
         }
     
-	    /* Method: scanObject
-    	*/
+	    /**
+		 * Method: scanObject():Object
+		*/
     	public function scanObject():Object
         {
-        var member:* ;
-        var value:*  ;
-        var obj:Object = {};
-        
-        if( ch == "{" )
+			var member:* ;
+			var value:*  ;
+			var obj:Object = {};
+			
+			if( ch == "{" )
             {
-            next();
-            scanSeparators();
-            
-            if( ch == "}" )
+				next();
+				scanSeparators();
+				
+				if( ch == "}" )
                 {
-                next();
-                return obj;
+					next();
+					return obj;
                 }
-            
-            while( ch != "" )
-                {
-                member = scanIdentifier();
-                scanWhiteSpace();
-                
-                if( ch != ":" )
-                    {
+				
+				while( ch != "" )
+				{
+					member = scanIdentifier();
+					scanWhiteSpace();
+					
+					if( ch != ":" )
+					{
                     break;
                     }
-                
-                next();
-                inAssignement = true;
-                value = scanValue();
-                inAssignement = false;
-                
-                if( !isReservedKeyword( member ) &&
+					
+					next();
+					inAssignement = true;
+					value = scanValue();
+					inAssignement = false;
+					
+					if( !isReservedKeyword( member ) &&
                     !isFutureReservedKeyword( member ) )
                     {
-                    obj[member] = value;
+						obj[member] = value;
                     }
-                
-                scanSeparators();
-                
-                if( ch == "}" )
+					
+					scanSeparators();
+					
+					if( ch == "}" )
                     {
-                    next();
-                    return obj;
+						next();
+						return obj;
                     }
-                else if( ch != "," )
+					else if( ch != "," )
                     {
-                    break;
+						break;
                     }
-                
-                next();
-                scanSeparators();
-                }
+					
+					next();
+					scanSeparators();
+				}
             }
-        
-        log( strings.errorObject );
-        return null ;
+			
+			log( strings.errorObject );
+			return null ;
+			
         }
-    
-		/* Method: scanNumber
-		*/
+		
+		/**
+		 * Method: scanNumber
+		 */
 		public function scanNumber():Number
 	    {
-		    var num:String  = "";
+		    
+			var num:String  = "";
 		    var oct:String  = "";
 		    var hex:String  = "";
 		    var sign:String = "";
@@ -1077,17 +1169,17 @@ package vegas.string.eden
 		    if( ch == "0" )
 	        {
     		    next();
-				        
+				
 		        if( (ch == "x") || (ch == "X") )
         	    {
             		next();
-            
+					
 		            while( isHexDigit( ch ) )
         	        {
     	        	    hex += ch;
 	    	            next();
             	    }
-            
+					
 		            if( hex == "" )
             	    {
         	    	    log( strings.malformedHexadecimal );
@@ -1098,315 +1190,330 @@ package vegas.string.eden
             		    return Number( sign + "0x" + hex );
 	                }
     	        }
-        	else
-            {
-            	num += "0";
-            }
-        }
-    
-	    while( isDigit( ch ) )
+				else
+				{
+					num += "0";
+				}
+			}
+			
+			while( isDigit( ch ) )
+			{
+				num += ch;
+				next();
+			}
+			
+			if( ch == "." )
+			{
+				num += ".";
+				next();
+				
+				while( isDigit( ch ) )
+				{
+					num += ch;
+					next();
+				}
+			}
+			
+			if( ch == "e" )
+			{
+				num += "e";
+				isSignedExp = next();
+					
+				if( (isSignedExp == "+") || (isSignedExp == "-") )
+				{
+					num += isSignedExp;
+					next();
+				}
+				
+				while( isDigit( ch ) )
+				{
+					num += ch;
+					next();
+				}
+			}
+			
+			if( (num.charAt(0) == "0") && isOctalNumber( num ) )
+			{
+				value = parseInt( sign + num );
+			}
+			else
+			{
+				value = Number( sign + num );
+			}
+			
+			if( !isFinite( value ) )
+			{
+				log( strings.errorNumber );
+				return NaN;
+			}
+			else
+			{
+				return value;
+			}
+		}
+		
+		/**
+		 * scanAssignement( path:String ):void
+		 */
+		public function scanAssignement( path:String ):void
         {
-    	    num += ch;
-	        next();
-        }
-    
-    	if( ch == "." )
-        {
-        	num += ".";
-	        next();
-        
-    	    while( isDigit( ch ) )
-            {
-        	    num += ch;
-	            next();
-            }
-        }
-
-    	if( ch == "e" )
-        {
-        	num += "e";
-	        isSignedExp = next();
-	    	    
-    	    if( (isSignedExp == "+") || (isSignedExp == "-") )
-            {
-            	num += isSignedExp;
-        	    next();
-            }
-        
-	        while( isDigit( ch ) )
-            {
-    	        num += ch;
-	            next();
-            }
-        }
-    
-    if( (num.charAt(0) == "0") && isOctalNumber( num ) )
-        {
-        value = parseInt( sign + num );
-        }
-    else
-        {
-        value = Number( sign + num );
-        }
-    
-    if( !isFinite( value ) )
-        {
-        log( strings.errorNumber );
-        return NaN;
-        }
-    else
-        {
-        return value;
-        }
-    }
-    
-    /* Method: scanAssignement
-    */
-    public function scanAssignement( path:String ):void
-        {
-        var basescope:* ;
-        var scope:* ;
-        var obj:* ;
-        var value:* ;
-        
-        basescope  = scope = this.scope;
-        
-        if( path.indexOf( "." ) > -1 )
-            {
-            var objPath:* ;
-            var i:uint ;
-            objPath = path.split( "." );
-            
-            for( i=0; i<objPath.length; i++ )
+			
+			var basescope:* ;
+			var scope:* ;
+			var obj:* ;
+			var value:* ;
+			
+			basescope  = scope = this.scope;
+			
+			if( path.indexOf( "." ) > -1 )
+			{
+				var objPath:* ;
+				var i:uint ;
+				objPath = path.split( "." );
+				
+				for( i=0; i<objPath.length; i++ )
                 {
-                path = objPath[i];
-                
-                if( i == objPath.length-1 )
-                    {
-                    break;
+					path = objPath[i];
+					
+					if( i == objPath.length-1 )
+					{
+						break;
                     }
-                
-                if( scope[path] == undefined )
+					
+					if( scope[path] == undefined )
                     {
-                    scope[path] = {};
+						scope[path] = {};
                     }
-                
-                scope = scope[path];
+					
+					scope = scope[path];
+					
                 }
             }
-        
-        scanWhiteSpace();
-        
-        if( ch == "=" )
-            {
-            inAssignement = true;
-            next();
-            scanWhiteSpace();
-            
-            if( isLineTerminator( ch ) )
+			
+			scanWhiteSpace();
+			
+			if( ch == "=" )
+			{
+				
+				inAssignement = true;
+				next();
+				scanWhiteSpace();
+				
+				if( isLineTerminator( ch ) )
                 {
-                /* TODO: check if undefineable value is not preferable here */
-                return;
+					/* TODO: check if undefineable value is not preferable here */
+					return;
                 }
-            
-            value = scanValue();
-            scope[path] = value;
-            
-            inAssignement = false;
+				
+				value = scanValue();
+				scope[path] = value ;
+				
+				inAssignement = false ;
+				
             }
-        
-        this.scope = basescope;
+			
+			this.scope = basescope ;
+			
         }
-    
-    /* PrivateMethod: _insertBracketForNumberIndex
-    */
-    public function _insertBracketForNumberIndex( path:String ):*
+		
+		/**
+		 * @private
+		 */
+		public function _insertBracketForNumberIndex( path:String ):*
         {
-        if( !Config.arrayIndexAsBracket )
+			if( !Config.arrayIndexAsBracket )
             {
-            return path;
+				return path;
             }
-        
-        var paths:* = path.split( "." );
-        
-        for( var i:uint=0; i<paths.length; i++ )
+			
+			var paths:* = path.split( "." );
+			
+			for( var i:uint=0; i<paths.length; i++ )
             {
-            if( isDigitNumber( paths[i] ) )
+				if( isDigitNumber( paths[i] ) )
                 {
-                paths[i] = "[" + paths[i] + "]";
+					paths[i] = "[" + paths[i] + "]";
                 }
-            else if( i != 0 )
+				else if( i != 0 )
                 {
-                paths[i] = "." + paths[i];
+					paths[i] = "." + paths[i];
                 }
             }
-        
-        return paths.join( "" );
+			
+			return paths.join( "" );
         }
-    
-    /* Method: scanExternalReference
-    */
-    public function scanExternalReference( path:String ):*
+		
+		/**
+		 * scanExternalReference
+		 */
+		public function scanExternalReference( path:String ):*
         {
-        var check:* ;
-        var sign:* ;
-        var target:* ;
-        var valueTest:* ;
-        var formatter:* ;
-        
-        check = false;
-        sign  = "";
-        
-        switch( path.charAt( 0 ) )
+			
+			var check:* ;
+			var sign:* ;
+			var target:* ;
+			var valueTest:* ;
+			var formatter:* ;
+			
+			check = false;
+			sign  = "";
+			
+			switch( path.charAt( 0 ) )
             {
-            case "-":
-            sign = "-";
-            path = path.substr( 1 );
-            break;
-            
-            case "+":
-            path = path.substr( 1 );
-            break;
+				case "-":
+					sign = "-";
+					path = path.substr( 1 );
+					break;
+				
+				case "+":
+					path = path.substr( 1 );
+					break;
             }
-        
-        check = doesExistInGlobal( path );
-        
-        if( check )
+			
+			check = doesExistInGlobal( path );
+			
+			if( check )
             {
-            
-            if( Config.security && !isAuthorized( path ) )
+				
+				if( Config.security && !isAuthorized( path ) )
                 {
-            	formatter = new vegas.string.StringFormatter(strings.notAuthorizedExternalReference) ;
-            	log( formatter.format( path ) ) ;
-                return Config.undefineable;
+					formatter = new vegas.string.StringFormatter(strings.notAuthorizedExternalReference) ;
+					log( formatter.format( path ) ) ;
+					return Config.undefineable;
                 }
-//             else
-//                 {
-//                 trace( path + " is authorized (scanExternalReference)" );
-//                 }
-            
-            path = this._insertBracketForNumberIndex( path );
-            
-            valueTest = eval( "_global." + path );
-            
-            if( valueTest != undefined )
+				//else
+				//{
+				//	trace( path + " is authorized (scanExternalReference)" );
+				//}
+				
+				path = this._insertBracketForNumberIndex( path );
+				
+				valueTest = eval( "_global." + path );
+				
+				if( valueTest != undefined )
                 {
-                if( Config.copyObjectByValue && (typeof( valueTest ) == "object") )
+					if( Config.copyObjectByValue && (typeof( valueTest ) == "object") )
                     {
-                    valueTest = valueTest.copy();
+						valueTest = valueTest.copy();
                     }
-                
-                if( sign == "-" )
+					
+					if( sign == "-" )
                     {
-                    return -valueTest;
+						return -valueTest;
                     }
-                
-                return valueTest;
+					
+					return valueTest;
                 }
             }
-		formatter = new vegas.string.StringFormatter(strings.extRefDoesNotExist) ;
-		log( formatter.format( path ) ) ;
-        return Config.undefineable;
+			
+			formatter = new vegas.string.StringFormatter(strings.extRefDoesNotExist) ;
+			log( formatter.format( path ) ) ;
+			return Config.undefineable;
+			
         }
-    
-    /* Method: scanKeyword
-    */
-    public function scanKeyword( pre:String=null ):*
+		
+		/**
+		 *
+		 */	
+		public function scanKeyword( pre:String=null ):*
         {
-        if( pre == null )
+			if( pre == null )
             {
-            pre = "";
+				pre = "";
             }
-        
-        var word:* ;
-        var baseword:* ;
-        baseword = scanPath();
-        
-        if( inFunction )
+			
+			var word:* ;
+			var baseword:* ;
+			baseword = scanPath();
+			
+			if( inFunction )
             {
-            inFunction = false;
-            return baseword;
+				inFunction = false;
+				return baseword;
             }
-        
-            word = pre + baseword;
-        
-        if( word == undefined )
+			
+			word = pre + baseword;
+			
+			if( word == undefined )
             {
-            return _ORC;
+				return _ORC;
             }
-        
-        switch( word )
+			
+			switch( word )
             {
-            case "":
-            case "_global":
-            case "undefined":
-            return Config.undefineable;
-            
-            // Null literal
-            case "null":
-            return null;
-            
-            // Boolean literals
-            case "true":
-            return true;
-            
-            case "false":
-            return false;
-            
-            // Number literals
-            case "NaN":
-            return NaN;
-            
-            case "new":
-            return scanConstructor();
-            
-            default:
-            var externalReference:* = Config.undefineable;
-            
-            /* coded in the train listening RUN-DMC "It's Tricky" ;) */
-            if( !doesExistInGlobal( baseword ) )
-                {
-                if( isValidPath( baseword ) )
-                    {
-                    createPath( baseword );
-                    }
-                else
-                    {
-                    return Config.undefineable;
-                    }
-                }
-            else
-                {            
-                externalReference = scanExternalReference( word );
-                
-                if( (externalReference != Config.undefineable) && inAssignement )
-                    {
-                    return externalReference;
-                    }
-                }
-            
-            if( !inAssignement )
-                {
-                scanAssignement( baseword );
-                }
-            
-            if( externalReference != Config.undefineable )
-                {
-                return externalReference;
-                }
-            
-            return Config.undefineable;
-            }
-        
-        log( strings.errorKeyword );
+				case "":
+				case "_global":
+				case "undefined":
+					return Config.undefineable;
+				
+				// Null literal
+				case "null":
+					return null;
+				
+				// Boolean literals
+				case "true":
+					return true;
+				
+				case "false":
+					return false;
+				
+				// Number literals
+				case "NaN":
+					return NaN;
+				
+				case "new":
+					return scanConstructor();
+				
+				default:
+					var externalReference:* = Config.undefineable;
+					
+					/* coded in the train listening RUN-DMC "It's Tricky" ;) */
+					if( !doesExistInGlobal( baseword ) )
+					{
+						
+						if( isValidPath( baseword ) )
+						{
+							createPath( baseword );
+						}
+						else
+						{
+							return Config.undefineable;
+						}
+					}
+					else
+					{            
+						externalReference = scanExternalReference( word );
+						
+						if( (externalReference != Config.undefineable) && inAssignement )
+						{
+						return externalReference;
+						}
+					}
+					
+					if( !inAssignement )
+					{
+						scanAssignement( baseword );
+					}
+					
+					if( externalReference != Config.undefineable )
+					{
+						return externalReference;
+					}
+					
+					return Config.undefineable;
+			}
+			
+			log( strings.errorKeyword );
+			
         }
-    
-    	/* Method: scanValue
-	    */
+		
+    	/**
+		 *
+		 */
     	public function scanValue():*
         {
 	        scanWhiteSpace();
-        
+			
     	    switch( ch )
             {
         	    case "{":
@@ -1420,8 +1527,7 @@ package vegas.string.eden
 	            
 	            case "-": 
 	            case "+":
-	        
-	            	if( isDigit( source.charAt( pos+1 ) ) )
+				   	if( isDigit( source.charAt( pos+1 ) ) )
 	                {
 		                return scanNumber();
         	        }
@@ -1438,13 +1544,13 @@ package vegas.string.eden
 	            	
 	    	}
 		}
-
-
+		
 	    // ----o Private Properties
-    
+		
         private var _ORC:String = "\uFFFC" ; //Object Replacement Character
 		
 	}
+	
 }
 
 include "../../../vegas/core/global.as" ;

@@ -25,7 +25,6 @@
 package vegas.string.eden
 {
 	
-	
 	/**
 	 * GenericParser
 	 */
@@ -38,43 +37,44 @@ package vegas.string.eden
         {
         	if( callback == null )
             {
-            	callback = vegas.string.eden.Application ;
+            	callback = vegas.string.Eden ;
             }
-        
+			
 	        //delegates
     	    this.log = function( message:* ):void
             {
         	    callback.log( message );
             } ;
-        
+			
 	        this.onParsed = function( value:* ):*
             {
     	        return callback.onParsed( value );
             } ;
-        
+			
         	this.isAuthorized = function( value:* ):*
             {
             	return callback.isAuthorized( value );
             } ;
-        
+			
 	        this.addAuthorized = function():*
             {
     	        callback.addAuthorized.apply( callback, arguments );
             } ;
-        
+			
 	        this.removeAuthorized = function():*
             {
     	        callback.removeAuthorized.apply( callback, arguments );
             } ;
-        
+			
         	this.source = source;
 	        this.pos    = 0;
 	        this.ch     = "";
+	        
         }
-    
-    
+		
+		
     	// ----o Public Properties
-
+		
         public var source:String;
 	    public var pos:Number;
 	    public var ch:String;
@@ -84,103 +84,115 @@ package vegas.string.eden
 	  	public var isAuthorized:Function;
 	    public var addAuthorized:Function;
 	    public var removeAuthorized:Function;
-	
+		
 	   	// ----o Public Methods
-    
-	    /* Method: getCharAt
-    	*/
+		
+	    /**
+		 *Method: getCharAt
+		 */
 	    public function getCharAt( pos:int ):String
         {
     	    if( isNaN(pos) )
            	{
             	pos = this.pos;
             }
-        
+			
 	        return source.charAt( pos );
         }
-    
-	    /* Method: getChar
-    	*/
+		
+	    /**
+	      * Method: getChar():String
+		 */
     	public function getChar():String
         {
     	    return source.charAt( pos );
         }
-    
-	    /* Method: next
-	    */
+		
+	    /**
+	      * Method: next():String
+		 */
 	    public function next():String
         {
     	    ch = getChar();
 	        pos++;
 	        return ch;
         }
-    
-	    /* Method: hasMoreChar
-	    */
+		
+	    /**
+	      * Method: hasMoreChar():Boolean
+		 */
 	    public function hasMoreChar():Boolean
         {
     	    return( pos <= (source.length-1) );
         }
-    
-	    /* Method: eval
-	       To override.
-	    */
+		
+	    /**
+	      * eval( ...arguments:Array ):*
+	      * override this method.
+		 */
     	public function eval( ...arguments:Array ):*
         {
         
         }
-    
-	    /* StaticMethod: evaluate
-	       To override.
-    	*/
+		
+	    /**
+		 * @static evaluate( source:String, callback:* ):*
+		 * To override.
+		 */
 	    static public function evaluate( source:String, callback:* ):*
         {
     	    var parser:GenericParser = new GenericParser( source, callback );
 	        return parser.eval();
         }
 	    
-	    /* Method: isAlpha
-	    */
+	    /**
+		 * isAlpha(c:String):Boolean
+		 */
 	    public function isAlpha( /*char*/ c:String ):Boolean
         {
-    	    return( (("A" <= c) && (c <= "Z")) || (("a" <= c) && (c <= "z")) );
+    	    return ( (("A" <= c) && (c <= "Z")) || (("a" <= c) && (c <= "z")) ) ;
         }
-
-	    /* Method: isASCII
-	    */
+		
+	    /**
+		 * isASCII(c:String):Boolean
+		 */
 	    public function isASCII( /*char*/ c:String ):Boolean
         {
-        	return( c.charCodeAt( 0 ) <= 255 );
+        	return ( c.charCodeAt( 0 ) <= 255 ) ;
     	}
-    
-	    /* Method: isDigit
-	    */
+		
+	    /**
+		 * isDigit(c:String):Boolean
+		 */
 	    public function isDigit( /*char*/ c:String ):Boolean
         {
-	        return( ("0" <= c) && (c <= "9") );
+	        return ( ("0" <= c) && (c <= "9") ) ;
         }
-    
-	    /* Method: isHexDigit
-	    */
+		
+	    /**
+		 * isHexDigit(c:String):Boolean
+		 */
     	public function isHexDigit( /*char*/ c:String ):Boolean
         {
-        	return( isDigit( c ) || (("A" <= c) && (c <= "F")) || (("a" <= c) && (c <= "f")) );
+        	return ( isDigit( c ) || (("A" <= c) && (c <= "F")) || (("a" <= c) && (c <= "f")) ) ;
         }
-    
-	    /* Method: isOctalDigit
-	    */
+		
+	    /**
+		 * isOctalDigit(c:String):Boolean
+		 */
     	public function isOctalDigit( /*char*/ c:String ):Boolean
         {
-        	return( ("0" <= c) && (c <= "7") );
+        	return ( ("0" <= c) && (c <= "7") ) ;
         }
-    
-	    /* Method: isUnicode
-	    */
+		
+		/**
+		 * isUnicode(c:String):Boolean
+		 */
     	public function isUnicode( /*char*/ c:String ):Boolean
         {
-	        return( c.charCodeAt( 0 ) > 255 );
+	        return ( c.charCodeAt( 0 ) > 255 ) ;
         }
-    
+		
 	}
 	
 }

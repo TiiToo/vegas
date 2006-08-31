@@ -45,10 +45,10 @@ package vegas.string.eden
 		   multiSerialize require pairs of values
 		*/	
 		static public var requirePairValue:String = "multiSerialize require pairs of values";
-    
+		
 	    /* Property: pairIsIgnored
-    	   name "{0}" is not a string, pair[{1},{2}] is ignored
-	    */
+			name "{0}" is not a string, pair[{1},{2}] is ignored
+		*/
 	    static public var pairIsIgnored:String = "name \"{0}\" is not a string, pair[{1},{2}] is ignored";
 	    
 	    /* Property: reservedKeyword

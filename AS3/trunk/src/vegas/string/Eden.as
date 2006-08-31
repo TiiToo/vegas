@@ -20,38 +20,43 @@
   	- Alcaraz Marc (aka eKameleon) <vegas@ekameleon.net> (2006)
 	  Use this version only with Vegas AS3 Framework Please.
 
+        PS : original code in buRRRn.eden.Application class.
+
 */
 
-package vegas.string.eden
+package vegas.string
 {
 
-	import vegas.util.ArrayUtil;
-	import vegas.util.Serializer;
-	import vegas.util.StringUtil;	
+    import vegas.string.eden.ECMAScript ;
+    import vegas.string.eden.Config ;
 
-	public class Application
+	import vegas.util.ArrayUtil ;
+	import vegas.util.Serializer ;
+	import vegas.util.StringUtil ;	
+    
+	public class Eden
 	{
 		
 		/**
 		 * logs property.
 		 */
 		static public var logs:Array = [];
-    
+		
     	/**
-    	 * Allows to display messages in the console.
-    	 */
+		 * Allows to display messages in the console.
+		 */
 	    static public function _trace( message:String ):void
     	{
 			trace( message );
         }
-    
+		
 	    /**
-    	 * Add a message to the logs queue.
-	     */
+		 * Add a message to the logs queue.
+	      */
   		static public function log( message:String ):void
         {
         	logs.push( message );
-        
+			
 	        if( Config.verbose )
             {
 	            _trace( message );
@@ -69,8 +74,7 @@ package vegas.string.eden
 	            _trace( logs[i] );
             }
         }
-
-    
+		
 		/**
 		 * StaticEvent: onParsed
 		 * To override.
@@ -79,58 +83,62 @@ package vegas.string.eden
         {
     	    return value;
         }
-    
+		
     	/**
-    	 * Dynamically interpret a source string.
-    	 * That's it, a small and fast ECMAScript parser.
-    	 */
+		 * Dynamically interpret a source string.
+		 * That's it, a small and fast ECMAScript parser.
+		 */
 		static public function deserialize( source:String, scope:*=null, callback:*=null ):*
         {
 	        return ECMAScript.evaluate( source, scope, callback ) ;
         }
-    
+		
     	/**
-    	 * Takes an object reference and serialize it as an ECMAScript string.
-    	 */
-		static public function serialize( reference:*, indent:uint=0 ):String
+		 * Takes an object reference and serialize it as an ECMAScript string.
+		 */
+		static public function serialize( ...arguments:Array ):String
 		{
-        
+			
+            var indent:* ;
+			
+            var reference:* = arguments[0] ;
+			
         	if( !Config.compress  )
             {
-	            if( isNaN(indent) )
+	            if( isNaN(arguments[1]) )
     	        {
         	        indent = 0;
                 }
             }
-        
-        	/*
-        	if( reference === _global )
-            {
-            	return Serializer.globalToSource( indent );
-            }
-            */
-        
+			
+         	/* global ??
+			if( reference === _global )
+			{
+				return Serializer.globalToSource( indent );
+			}
+			*/
+            
 	        if( reference === undefined )
             {
     	        return Config.undefineable;
             }
-        
+			
         	if( reference === null )
             {
             	return "null";
             }
-        
-	        return Serializer.toSource( reference, indent );
+			
+	        return Serializer.toSource( reference , indent ) ;
         }
-    
+		
     	/**
-    	 * addAuthorized
-    	 */
+		 * addAuthorized
+		 */
 	    static public function addAuthorized( ...arguments:Array ):void
         {
-        
+			
     	    var l:uint = arguments.length ;
-        
+			
         	for( var i:Number = 0 ; i<l; i++ )
             {
             	if( ! ArrayUtil.contains( Config.authorized, arguments[i] ) )
@@ -139,10 +147,10 @@ package vegas.string.eden
                 }
             }
         }
-    
+		
     	/**
-    	 * removeAuthorized
-    	 */
+		 * removeAuthorized
+		 */
 	    static public function removeAuthorized( ...arguments:Array ):void
         {
     	    var paths:* ;
@@ -150,7 +158,7 @@ package vegas.string.eden
     	    var found:* ;
     	    
 	        paths = [].concat(arguments) ;
-        
+			
         	var l:uint = paths.length ;
         	for( i=0; i < l ; i++ )
             {
@@ -161,29 +169,29 @@ package vegas.string.eden
                 }
             }
         }
-    
+		
         /**
-    	 * isAuthorized
-    	 */
+		 * isAuthorized
+		 */
 	    static public function isAuthorized( path:String ):Boolean
         {
-        
-       
+			
+			
         	var strictMode:Boolean  = Config.strictMode ;
 	        var pathMode:Boolean    = false ;
-        
+			
     	    var firstLetter:String = path.charAt( 0 ) ;
-        
+			
         	if( path.indexOf( "." ) > -1 )
             {
 	            pathMode = true;
             }
-
+			
 	        if( !strictMode )
     		{
             	firstLetter = firstLetter.toLowerCase();
             }
-        
+			
 	        var filterFirstLetter:Function = function( value:*, index:int, arrObj:* ):Boolean
             {
             
@@ -195,14 +203,14 @@ package vegas.string.eden
 	            return StringUtil.startsWith( value, firstLetter ) ;
             
             } ;
-        
+			
         	var whiteList:Array = Config.authorized.filter( filterFirstLetter ) ;
-
+			
         	if( whiteList.length == 0 ) 
         	{
         		return false ;
         	}
-	
+			
 	        var whiteListPath:String ;
         	var len:uint = whiteList.length ;
 			
@@ -219,7 +227,7 @@ package vegas.string.eden
                 	return true;
 	           	}
     	    }
-        
+			
         	return false ;
         	
         }
@@ -228,4 +236,4 @@ package vegas.string.eden
 	
 }
 
-include "../../../vegas/core/global.as" ;
+include "../../vegas/core/global.as" ;

@@ -37,7 +37,7 @@ package vegas.string.eden
 		 * to optimize (more or less) packets of datas when they are transfered.
 		 */
 		static public var compress:Boolean = true;
-
+		
 		/**
 		 * Parameter allowing to copy objects by value
 		 * if true or by reference if false.
@@ -52,7 +52,7 @@ package vegas.string.eden
 		 * bar will be an exact copy of foo object
 		 */
 		static public var copyObjectByValue:Boolean = false;
-    
+		
     	/**
     	 * Allows to define the case-sensitivy of the parsers.
     	 * If true, variable names that differ only in case are
@@ -69,13 +69,13 @@ package vegas.string.eden
 		 *   for exemple on C# you could set it to null.
 		 */
 	    static public var undefineable:* = undefined ;
-    
+		
     	/**
     	 * Parameter allowing to trace messages
     	 * in the console if the environment permit it.
 		 */
 	    static public var verbose:Boolean = true ;
-    
+		
     	/**
     	 * Parameter setting on (true) or off (false) the security.
     	 * If true, all object path, function or constructor will
@@ -83,7 +83,7 @@ package vegas.string.eden
     	 * authorized list (see: buRRRn.eden.config.authorized).
     	 */
 	    static public var security:Boolean = true ;
-    
+		
 	    /**
 	     * List of authorized keywords, objects path and constructors
 	     * that the parser is allowed to interpret.
@@ -107,7 +107,7 @@ package vegas.string.eden
 	    [ 
 			"Array", "Boolean", "Date", "Error", "Math.*", "Number.*", "Object", "String.*", "Infinity" 
 		] ;
-    
+		
   	  	/**
 	     * Allows to execute function call is set to true,
 	     * set to false it blocks any functrion call and return undefined.
@@ -122,12 +122,12 @@ package vegas.string.eden
 	     * toto will equal undefined
     	 */
 	    static public var allowFunctionCall:Boolean = false ;
-    
+		
 		/**
 		 * autoAddScopePath
 		 */
 		static public var autoAddScopePath:Boolean = false ;
-    
+		
 		/**
 		 * When set to false array index are evaluated without bracket eval( test.0 ) for Flash ActionScript.
 		 * When set to true array index are evaluated with bracket eval( test[0] ) for JavaScript, JScript, JSDB etc.
