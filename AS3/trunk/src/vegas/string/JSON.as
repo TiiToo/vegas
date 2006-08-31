@@ -188,6 +188,7 @@ package vegas.string
         };
 		
         _string = function ():* {
+            
             var i:* = '' ;
             var s:* = '' ; 
             var t:* ;
@@ -195,11 +196,15 @@ package vegas.string
 			var outer:Boolean = false;
 			
             if (ch == '"') {
+				
 				while (_next()) {
-                    if (ch == '"') {
+                    if (ch == '"') 
+                    {
                         _next();
                         return s;
-                    } else if (ch == '\\') {
+                    }
+                    else if (ch == '\\') 
+                    {
                         switch (_next()) {
                         case 'b':
                             s += '\b';
@@ -274,16 +279,23 @@ package vegas.string
             var k:* = {} ;
             var o:* = {} ;
             if (ch == '{') {
+                
                 _next();
+                
                 _white();
-                if (ch == '}') {
-                    _next();
-                    return o;
+                
+                if (ch == '}') 
+                {
+                    _next() ;
+                    return o ;
                 }
-                while (ch) {
+                
+                while (ch) 
+                {
                     k = _string();
                     _white();
-                    if (ch != ':') {
+                    if (ch != ':') 
+                    {
                         break;
                     }
                     _next();
