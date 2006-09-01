@@ -69,8 +69,8 @@ package vegas.errors
     import vegas.core.HashCode;
     import vegas.core.IFormattable;
     import vegas.core.IHashable;
-    // import vegas.logging.ILogger;
-    // import vegas.logging.Log;
+    import vegas.logging.ILogger;
+    import vegas.logging.Log;
     import vegas.util.ClassUtil;
     
     internal class AbstractError extends Error implements IFormattable, IHashable
@@ -82,7 +82,8 @@ package vegas.errors
         {
             super(message, id);
             name = ClassUtil.getName(this) ;
-            //_logger = Log.getLogger(ClassUtil.getPath(this)) ;
+            _logger = Log.getLogger( ClassUtil.getPath(this) ) ;
+            
         }
         
        	// ----o Init HashCode
@@ -93,25 +94,27 @@ package vegas.errors
 	    
     	public function getCategory():String 
     	{
-		    return null ; //_logger["category"] ;
+		    return _logger["category"] ;
     	}
 	    
 	    public function getLogger():* //ILogger 
 	    {
-		    return null ; //_logger ;
+		    return _logger ;
     	}
 	    
-	    public function hashCode():uint {
+	    public function hashCode():uint 
+	    {
 		    return null ;
     	}
 
-	    public function toString():String {
+	    public function toString():String 
+	    {
 		    return super.toString() ;
     	}
 	        
     	// ----o Private Properties
 	    
-    	//private var _logger:ILogger ;
+    	private var _logger:ILogger ;
 
     }
 }

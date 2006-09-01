@@ -77,7 +77,7 @@ package vegas.errors
 	
 	    override public function toString():String {
     		var msg:String = "!! " + name + " : " + message + " !!" ;
-    		// getLogger().warn( msg ) ;
+    		getLogger().warn( msg ) ;
     		return msg ;
     	}
         

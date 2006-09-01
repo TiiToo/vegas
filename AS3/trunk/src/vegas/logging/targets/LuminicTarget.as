@@ -46,21 +46,26 @@ package vegas.logging.targets
     import flash.net.LocalConnection;
 	import flash.xml.XMLNode ;
 	
+    import vegas.logging.ILogger;
+    import vegas.logging.Log;
     import vegas.logging.LogEvent;    
     import vegas.logging.LogEventLevel;
+  
     import vegas.maths.Range;
-    
+    import vegas.util.ClassUtil ;
+
     public class LuminicTarget extends LineFormattedTarget
     {
         public function LuminicTarget( collapse:Boolean=true , depth:uint=4 )
         {
             super();
             
+            _logger = Log.getLogger( ClassUtil.getPath(this) ) ;
+            
             _lc = new LocalConnection() ;
     	    _lc.addEventListener ( AsyncErrorEvent.ASYNC_ERROR, _onAsyncError ) ;
     	    _lc.addEventListener ( StatusEvent.STATUS, _onStatus ) ;
     		_lc.addEventListener ( SecurityErrorEvent.SECURITY_ERROR , _onSecurityError ) ;    		
-
 
             isCollapse = collapse ;
 
@@ -130,6 +135,7 @@ package vegas.logging.targets
         // ----o Private Properties
 	
         private var _lc:LocalConnection ;
+        private var _logger:ILogger ;
         private var _maxDepth:uint ;
 
     	// ----o Private Methods
@@ -182,18 +188,18 @@ package vegas.logging.targets
     	
     	private function _onAsyncError(e:AsyncErrorEvent):void
     	{
-    	    trace( "> " + this + " : " + e ) ;
+    	    _logger.info( "> " + this + " : " + e ) ;
     	}
     	
     	private function _onStatus( e:StatusEvent ):void
 		{
-			trace( "> " + this + " : " + e ) ;
+			_logger.info( "> " + this + " : " + e ) ;
 		}
 
 		private function _onSecurityError( e:SecurityErrorEvent ):void
 		{
 		    
-		    trace( "> " + this + " : " + e ) ;
+		    _logger.info( "> " + this + " : " + e ) ;
 		    
 		}
 
