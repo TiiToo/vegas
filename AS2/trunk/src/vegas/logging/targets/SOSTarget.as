@@ -118,7 +118,7 @@
 	
 		EventListener, ITarget, IFormattable, IHashable
 
-**/	
+*/	
 
 import vegas.data.iterator.Iterator;
 import vegas.data.queue.LinearQueue;

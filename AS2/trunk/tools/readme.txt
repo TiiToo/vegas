@@ -17,3 +17,5 @@ Pour le moment faute d'avoir le temps de faire la mienne je propose d'utiliser l
 1 - SOS : http://sos.powerflasher.com/english.html
 
 2 - FlashInspector : http://www.luminicbox.com/blog/?page=post&id=2
+
+3 - XPanel : http://www.faratasystems.com/?page_id=45

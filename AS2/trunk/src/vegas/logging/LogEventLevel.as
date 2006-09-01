@@ -84,11 +84,13 @@
 import vegas.core.types.Int;
 import vegas.util.serialize.Serializer;
 
-class vegas.logging.LogEventLevel extends Int {
+class vegas.logging.LogEventLevel extends Int 
+{
 	
 	// ----o Constructor 
 	
-	public function LogEventLevel(name:String, value:Number) {
+	public function LogEventLevel(name:String, value:Number) 
+	{
 		super(value) ;
 		_name = name ;
 	}
@@ -111,14 +113,16 @@ class vegas.logging.LogEventLevel extends Int {
 	
 	// ----o Public Methods
 
-	static public function isValidLevel(level:Number):Boolean {
+	static public function isValidLevel(level:Number):Boolean 
+	{
 		var levels:Array = [ALL, DEBUG, ERROR, FATAL, INFO, WARN] ;
 		var l:Number = levels.length ;
 		while (--l > -1) if (level == levels[l]) return true ;
 		return false ;
 	}
 		
-	/*override*/ public function toString():String { 
+	/*override*/ public function toString():String 
+	{ 
 		return _name ; 
 	}
 
@@ -128,7 +132,8 @@ class vegas.logging.LogEventLevel extends Int {
 
 	// ----o Protected Methods
 	
-	/*protected*/ private function _getParams():Array {
+	/*protected*/ private function _getParams():Array 
+	{
 		return [ Serializer.toSource(_name) ].concat(super._getParams()) ;
 	}
 
