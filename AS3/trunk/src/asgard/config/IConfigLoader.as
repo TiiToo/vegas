@@ -38,11 +38,14 @@
 package asgard.config
 {
 
-    import flash.net.URLLoader ;
+    import asgard.process.IAction;
 
+    import flash.net.URLLoader ;
+    import flash.net.URLRequest ;
+    
     import vegas.events.IEventBroadcaster;
     
-    public interface IConfigLoader extends IEventBroadcaster
+    public interface IConfigLoader extends IAction, IEventBroadcaster
     {
 
         // ----o Public Properties
@@ -91,7 +94,7 @@ package asgard.config
         /**
          * Sends and loads data from the specified URL.
          */
-        function load():void ;
+        function load( request:URLRequest=null ):void ;
         
     }
     

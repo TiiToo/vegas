@@ -36,25 +36,30 @@
 */
 
 // TODO : finir de cabler les propriétés et méthodes de URLLoader.
-// TODO : ajouter la possibilité d'injecter dans l'URLRequest des données pour les envoyer vers un serveur.
 // TODO : voir pour le protect Config.
+// TODO : créer asgard.net.ActionLoader
+// TODO : créer asgard.net.MassiveLoader
 
 package asgard.config
 {
+
+    import asgard.events.ActionEvent ;
 
     import flash.events.Event;
     import flash.events.HTTPStatusEvent;
     import flash.events.IOErrorEvent;
     import flash.events.ProgressEvent;
     import flash.events.SecurityErrorEvent;
+    import flash.net.URLLoader;
     import flash.net.URLRequest;
+    import flash.utils.getDefinitionByName;
     
-    import vegas.events.EventBroadcaster ;
+    import vegas.events.AbstractCoreEventBroadcaster;
     import vegas.logging.Log ;
     import vegas.logging.ILogger 
-    import flash.net.URLLoader;
+    import vegas.util.ClassUtil 
 
-    public class AbstractConfigLoader extends EventBroadcaster implements IConfigLoader
+    public class AbstractConfigLoader extends AbstractCoreEventBroadcaster implements IConfigLoader
     {
         
         // ----o Constructor
@@ -130,6 +135,14 @@ package asgard.config
     	}
 
         /**
+         * (read-only) Returns 'true' if load method is launched
+         */
+    	public function get running():Boolean 
+    	{
+		    return _isRunning ;
+        }
+
+        /**
          * The name of the config.
          */
     	public function get name():String 
@@ -166,6 +179,26 @@ package asgard.config
         // ----o Public Methods
     
         /**
+         * Returns a clone.
+         */
+        public function clone():*
+        {
+            var cName:String = ClassUtil.getPath(this) ;
+            var clazz:Class = ( getDefinitionByName( cName ) as Class ) ;
+            var cloader:IConfigLoader = (new clazz(_name) as IConfigLoader) ;
+            if (cloader != null)
+            {
+                cloader.data = data ;
+                cloader.fileName = fileName ;
+                cloader.path = path ;
+                cloader.suffix = suffix ;
+            }
+            return cloader ;
+            
+        }
+    
+    
+        /**
          * Closes the load operation in progress.
          */
         public function close():void
@@ -183,8 +216,49 @@ package asgard.config
         
         /**
          * Sends and loads data from the specified URL.
+         * @param request:URLRequest broke the internal request with your custom URLRequest
          */
-        public function load():void
+        public function load( request:URLRequest=null ):void
+        {
+
+            notifyStarted() ;
+
+            if (request == null)
+            {
+                _request.url = path + fileName + suffix ;
+                _loader.load(_request) ;    
+            }
+            else
+            {
+                _loader.load(request) ;
+            }
+            
+        }
+
+        /**
+         * Dispatch the ActionEvent.FINISH event.
+         */
+		public function notifyFinished():void 
+		{
+		    setRunning(false) ;
+			var eFinish:ActionEvent = new ActionEvent(ActionEvent.FINISH) ;
+			dispatchEvent(eFinish) ;
+		}
+
+        /**
+         * Dispatch the ActionEvent.START event.
+         */
+		public function notifyStarted():void
+		{
+   			setRunning(true) ;
+			var eStart:ActionEvent = new ActionEvent(ActionEvent.START) ;
+			dispatchEvent( eStart ) ;
+		}
+
+        /**
+         * Sends and loads data from the specified URL.
+         */
+        public function run( ...arguments:Array ):void
         {
 
             _request.url = path + fileName + suffix ;
@@ -200,6 +274,7 @@ package asgard.config
         protected function complete(e:Event):void
 		{
             dispatchEvent(e) ;
+            notifyFinished()
         }
 
         /**
@@ -216,6 +291,7 @@ package asgard.config
         protected function ioError( e:IOErrorEvent ):void
         {
             dispatchEvent(e) ;
+            notifyFinished() ;
         }
 
         /**
@@ -240,12 +316,19 @@ package asgard.config
         protected function securityError( e:SecurityErrorEvent ):void
         {
             dispatchEvent(e) ;
+            notifyFinished() ;
+        }
+
+        protected function setRunning( b:Boolean ):void
+        {
+            _isRunning = b ;
         }
 
         // ----o Private Properties
         
         private var _config:Config = null ;
         private var _fileName:String = null ;
+		private var _isRunning:Boolean = false ;
         private var _loader:URLLoader = null ;
         private var _logger:ILogger ;
         private var _name:String ;

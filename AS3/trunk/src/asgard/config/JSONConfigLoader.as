@@ -21,14 +21,14 @@
   
 */
 
-/*	EdenConfigLoader
+/* JSONConfigLoader
 
 	AUTHOR
 
-		Name : EdenConfigLoader
+		Name : JSONConfigLoader
 		Package : asgard.config
 		Version : 1.0.0.0
-		Date :  2008-09-01
+		Date :  2008-09-02
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
@@ -36,7 +36,7 @@
 	EXAMPLE
 	
     	import asgard.config.Config ;
-        import asgard.config.EdenConfigLoader;
+        import asgard.config.JSONConfigLoader;
         import asgard.config.IConfigLoader;
         
         import flash.events.Event ;
@@ -65,60 +65,39 @@
 		
 */
 
-// TODO : voir si il est nécessaire d'ajouter des fonctions liées à EDEN.
-
 package asgard.config
 {
     
     import asgard.config.AbstractConfigLoader;
-    import asgard.net.EdenLoader;
+    import asgard.net.JSONLoader;
    
     import flash.events.Event ;
     import flash.net.URLLoader;
 
-    import vegas.string.eden.Config ;
-
-    public class EdenConfigLoader extends AbstractConfigLoader
+    public class JSONConfigLoader extends AbstractConfigLoader
     {
         
         // ----o Constructor
         
-        public function EdenConfigLoader( name:String="" )
+        public function JSONConfigLoader( name:String="" )
         {
 
             super(name ) ;
             default_file_name = "config" ;
-            default_file_suffix = ".eden" ;
+            default_file_suffix = ".json" ;
             
         }
         
         // ----o Public Methods
-    
-        public function getEdenProperty( prop:String ):*
-        {
-            return vegas.string.eden.Config[prop] ;
-        }
     
         /**
          * Return the original loader in the constructor. Override this method.
          */ 
         override public function getLoader():URLLoader
         {
-            return (new EdenLoader() as URLLoader) ;
+            return (new JSONLoader() as URLLoader) ;
         }
 
-        public function setEdenProperty( prop:String , value:* ):void
-        {
-            vegas.string.eden.Config[prop] = value ;
-        }
-        
-        public function setSecurity( b:Boolean=true ):void
-        {
-            
-            vegas.string.eden.Config.security = b ;
-
-        }
-  
         // ----o Protected Methods
 
         /**
