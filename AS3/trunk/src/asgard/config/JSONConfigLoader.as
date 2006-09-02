@@ -97,19 +97,6 @@ package asgard.config
             return (new JSONLoader() as URLLoader) ;
         }
 
-        /**
-         * Parse your datas when loading is complete.
-         */
-        override public function parse():void
-        {
-            var o:* = data ;
-		    var c:* = config ;
-		    for (var prop:String in o) 
-		    {
-    			c[ prop ] = o[prop] ;
-	    	}
-        }
-
     }
     
 }

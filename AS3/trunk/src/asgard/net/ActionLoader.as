@@ -105,6 +105,19 @@ package asgard.net
 		    return _isRunning ;
         }
 
+        /**
+         * (read-write) Activate or disactivate parsing. 
+         */
+        public function get parsing():Boolean
+    	{
+    		return _isParsing ;	
+    	}
+    	
+        public function set parsing( b:Boolean ):void
+    	{
+    	    _isParsing = b ;	
+    	}
+
         // ----o Public Methods
 
         /**
@@ -197,7 +210,10 @@ package asgard.net
          */
         protected function complete(e:Event):void
 		{
-		    parse() ;
+		    if (_isParsing) 
+		    {
+		        parse() ;
+		    }
             dispatchEvent(e) ;
             notifyFinished()
         }
@@ -258,6 +274,7 @@ package asgard.net
         // ----o Private Properties
         
   		private var _isRunning:Boolean = false ;
+  		private var _isParsing:Boolean = false ;
   
     }
 }

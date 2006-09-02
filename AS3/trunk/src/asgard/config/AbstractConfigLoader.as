@@ -35,7 +35,6 @@
 	
 */
 
-
 package asgard.config
 {
 
@@ -52,10 +51,15 @@ package asgard.config
         
         // ----o Constructor
         
+        /**
+         * @author eKameleon
+         */
         public function AbstractConfigLoader( name:String="" )
         {
 
             super() ;
+            
+            parsing = true ;
             
             _name = name ;
             
@@ -74,12 +78,12 @@ package asgard.config
     	}
     	
         /**
-         *
+         * Define the defaut file name ('config').
          */
     	public var default_file_name:String = "config" ;
         
         /**
-         * 
+         * Define the defaut file suffix ('.eden').
          */
     	public var default_file_suffix:String = ".eden" ;
         
@@ -173,8 +177,19 @@ package asgard.config
             
         }
 
-
-
+        /**
+         * Parse your datas when loading is complete.
+         */
+        override public function parse():void
+        {
+            var o:* = data ;
+		    var c:* = config ;
+		    for (var prop:String in o) 
+		    {
+    			c[ prop ] = o[prop] ;
+	    	}
+        }
+        
         // ----o Private Properties
         
         private var _config:Config = null ;

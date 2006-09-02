@@ -55,7 +55,13 @@ package asgard.net
          */
         function get data():* ;
         function set data( value:* ):void ;
-    
+
+        /**
+         * (read-write) Activate or disactivate parsing. 
+         */
+        function get parsing():Boolean ;
+        function set parsing( b:Boolean ):void ;
+
         // ----o Public Methods
         
         /**
