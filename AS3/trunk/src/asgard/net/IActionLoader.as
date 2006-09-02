@@ -43,9 +43,7 @@ package asgard.net
     import flash.net.URLLoader ;
     import flash.net.URLRequest ;
 
-    import vegas.events.IEventBroadcaster;
-
-    public interface IActionLoader extends IAction, IEventBroadcaster
+    public interface IActionLoader extends IAction
     {
 
         // ----o Public Properties

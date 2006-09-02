@@ -137,6 +137,12 @@ package asgard.process
 			dispatchEvent(eStop) ;
 		}
 
+		protected function notifyTimeOut():void
+		{
+			var eTimeOut:ActionEvent = new ActionEvent(ActionEvent.TIMEOUT) ;
+			dispatchEvent(eTimeOut) ;
+		}
+
 		protected function setRunning(b:Boolean):void
 		{
 			_isRunning = b ;	

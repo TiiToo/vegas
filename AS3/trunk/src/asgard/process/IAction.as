@@ -40,8 +40,9 @@ package asgard.process
 	
 	import vegas.core.ICloneable;
 	import vegas.core.IRunnable;
+	import vegas.events.IEventBroadcaster;
 
-	public interface IAction extends ICloneable, IRunnable
+	public interface IAction extends ICloneable, IRunnable, IEventBroadcaster
 	{
 		
 		function notifyFinished():void ;

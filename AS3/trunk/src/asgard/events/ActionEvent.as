@@ -50,11 +50,12 @@
 		- const ActionEvent.STARTED   : "started"
 		
 		- const ActionEvent.STOPPED   : "stopped"
-
+		
+		- const ActionEvent.TIMEOUT  : "onTimeOut"
+		
 	INHERIT
 	
 		flash.events.Event → ActionEvent
-
 
 */
 
@@ -98,6 +99,8 @@ package asgard.events
 		static public const START:String = "onStarted" ;
 		
 		static public const STOP:String = "onStopped" ;	
+		
+		static public const TIMEOUT:String = "onTimeOut" ;
 		
 		// ----o Public Methods
 		

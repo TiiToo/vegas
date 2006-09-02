@@ -50,9 +50,11 @@ package asgard.net
     import flash.events.IOErrorEvent;
     import flash.events.ProgressEvent;
     import flash.events.SecurityErrorEvent;
+    import flash.events.TimerEvent;
     import flash.net.URLLoader;
     import flash.net.URLRequest;
     import flash.utils.getDefinitionByName;
+    import flash.utils.Timer ;
 
     import vegas.events.AbstractCoreEventBroadcaster;
     import vegas.logging.Log ;
@@ -80,9 +82,36 @@ package asgard.net
             
             _logger = Log.getLogger( ClassUtil.getPackage(this) ) ;
             
+            _timer = new Timer(DEFAULT_DELAY, 1) ;
+
+			setTimeoutPolicy( TimeoutPolicy.LIMIT ) ;
+            
         }
         
+		// ----o Constants
+		
+		/**
+		 * The default value of the delay before the ActionEvent.TIMEOUT event.
+		 */
+		static public const DEFAULT_DELAY:uint = 8000 ; // 8 secondes
+        
         // ----o Public Properties
+        
+        /**
+         * (read-only) Indicates the number of bytes that have been loaded thus far during the load operation.
+         */
+        public function get bytesLoaded():uint
+    	{
+    		return _loader.bytesLoaded ;	
+    	}
+        
+        /**
+         * (read-write) Indicates the total number of bytes in the downloaded data.
+         */
+        public function get bytesTotal():uint
+    	{
+    		return _loader.bytesTotal ;	
+    	}
         
         /**
          * (read-write) The data received from the load operation. 
@@ -98,6 +127,22 @@ package asgard.net
     	}
         
         /**
+         * (read-write) Controls whether the downloaded data is received as 
+         *   - text (URLLoaderDataFormat.TEXT),
+         *   - raw binary data (URLLoaderDataFormat.BINARY)
+         *   - URL-encoded variables (URLLoaderDataFormat.VARIABLES).
+         */
+        public function get dataFormat():String
+    	{
+    		return _loader.dataFormat ;	
+    	}
+    	
+        public function set dataFormat( value:String ):void
+    	{
+    		_loader.dataFormat = value ;	
+    	}
+        
+        /**
          * (read-only) Returns 'true' if load method is launched
          */
     	public function get running():Boolean 
@@ -106,7 +151,7 @@ package asgard.net
         }
 
         /**
-         * (read-write) Activate or disactivate parsing. 
+         * (read-write) Activate or disactivate parsing (Use this with XML, EDEN, JSON...). 
          */
         public function get parsing():Boolean
     	{
@@ -139,6 +184,14 @@ package asgard.net
             _loader.close() ;
         }
 
+		/**
+		 * Returns timeout interval duration.
+		 */
+		public function getDelay():uint
+		{
+			return _timer.delay ;
+		}
+
         /**
          * Return the original loader in the constructor. Override this method.
          */ 
@@ -146,6 +199,14 @@ package asgard.net
         {
             return new URLLoader() ;
         }
+        
+        /**
+         * Returns the timeout policy.
+         */
+		public function getTimeoutPolicy():TimeoutPolicy 
+		{
+			return _policy ;	
+		}
 
         /**
          * Sends and loads data from the specified URL.
@@ -160,7 +221,6 @@ package asgard.net
             }
 
             notifyStarted() ;
-
             _loader.load(request) ;
             
         }
@@ -171,6 +231,7 @@ package asgard.net
 		public function notifyFinished():void 
 		{
 		    setRunning(false) ;
+            _timer.stop() ;
 			var eFinish:ActionEvent = new ActionEvent(ActionEvent.FINISH) ;
 			dispatchEvent(eFinish) ;
 		}
@@ -181,6 +242,7 @@ package asgard.net
 		public function notifyStarted():void
 		{
    			setRunning(true) ;
+            _timer.start() ;
 			var eStart:ActionEvent = new ActionEvent(ActionEvent.START) ;
 			dispatchEvent( eStart ) ;
 		}
@@ -203,9 +265,40 @@ package asgard.net
             
         }
 
+		/**
+		 * Set timeout interval duration.
+		 */
+		public function setDelay( time:uint , useSeconds:Boolean=false):void 
+		{
+			if (useSeconds) 
+			{
+			    time = Math.round(time * 1000) ;
+			}
+			_timer.delay = time ;
+		}
+
+		/**
+		 * Use limit timeout interval.
+		 * @see TimeoutPolicy
+		 */
+		public function setTimeoutPolicy( policy:TimeoutPolicy ):void 
+		{
+			_policy = policy ;
+			
+			if (_policy == TimeoutPolicy.LIMIT) 
+			{
+				_timer.addEventListener(TimerEvent.TIMER_COMPLETE, _onTimeOut) ;
+			}
+			else 
+			{
+				_timer.removeEventListener(TimerEvent.TIMER_COMPLETE, _onTimeOut) ;
+			}
+			
+		}
+
         // ----o Protected Methods
         
-      /**
+        /**
          * Dispatch Event.COMPLETE event after all the received data is decoded and placed in the data property. 
          */
         protected function complete(e:Event):void
@@ -236,6 +329,15 @@ package asgard.net
         }
 
         /**
+         * Notify the time imparted to load data is timeout.
+         */
+		protected function notifyTimeOut():void
+		{
+			var eTimeOut:ActionEvent = new ActionEvent(ActionEvent.TIMEOUT) ;
+			dispatchEvent(eTimeOut) ;
+		}
+
+        /**
          * Dispatch Event.OPEN event when the download operation commences following a call to the load() method.
          */
         protected function open(e:Event):void
@@ -260,6 +362,10 @@ package asgard.net
             notifyFinished() ;
         }
 
+        /**
+         * @protected
+         * Set the running property.
+         */
         protected function setRunning( b:Boolean ):void
         {
             _isRunning = b ;
@@ -275,6 +381,17 @@ package asgard.net
         
   		private var _isRunning:Boolean = false ;
   		private var _isParsing:Boolean = false ;
-  
+  		private var _policy:TimeoutPolicy = null ;
+  		private var _timer:Timer = null ;
+  		
+  		// ----o Private Methods
+  		
+  		private function _onTimeOut(e:TimerEvent):void
+  		{
+  		    close() ; // test the close method here...
+			notifyTimeOut() ;
+			notifyFinished() ;
+  		}
+  		
     }
 }

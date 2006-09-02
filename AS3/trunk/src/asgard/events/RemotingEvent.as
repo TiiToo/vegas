@@ -77,8 +77,6 @@ package asgard.events
 		
 		static public const RESULT:String = "onResult" ;
 		
-		static public const TIMEOUT:String = "onTimeOut" ;
-		
 		// ----o Public Properties
 		
 		public var code:String ;

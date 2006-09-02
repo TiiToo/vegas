@@ -57,6 +57,7 @@ package asgard.net.remoting
 	import vegas.core.ICloneable;
 	import vegas.events.AbstractCoreEventBroadcaster;
 	import vegas.util.ClassUtil;
+	import vegas.errors.Warning;
 
 	public class RemotingService extends AbstractAction implements ICloneable
 	{
@@ -116,7 +117,11 @@ package asgard.net.remoting
 			return _gatewayUrl ;	
 		}
 
-		public function getTimeoutPolicy():TimeoutPolicy {
+        /**
+         * Returns the timeout policy.
+         */
+		public function getTimeoutPolicy():TimeoutPolicy 
+		{
 			return _policy ;	
 		}
 
@@ -166,8 +171,9 @@ package asgard.net.remoting
 			_rc = RemotingConnection.getConnection( _gatewayUrl ) ;
 
 	
-			if ( (_rc == null) && !(_rc is RemotingConnection) ) {
-				// ici notifier qu'il est impossible de lancer la connection.	
+			if ( (_rc == null) && !(_rc is RemotingConnection) ) 
+			{
+				throw new Warning(this + ", You can't run the RemotingConnection.") ;
 			}
 		
 			if (_authentification != null)
@@ -210,7 +216,12 @@ package asgard.net.remoting
 			if (useSeconds) time = Math.round(time * 1000) ;
 			_timer.delay = time ;
 		}
-
+		
+		public function setGatewayUrl( url:String ):void 
+		{
+			_gatewayUrl = url ;
+		}
+		
 		/**
 		 * Use limit timeout interval.
 		 * @see TimeoutPolicy
@@ -235,13 +246,6 @@ package asgard.net.remoting
 			_args = args ;	
 		}
 	
-		public function setGatewayUrl( url:String ):void 
-		{
-			
-			_gatewayUrl = url ;
-			
-		}
-
 		public function setIsProxy(b:Boolean):void 
 		{
 			_isProxy = b ;
@@ -353,13 +357,6 @@ package asgard.net.remoting
 			dispatchEvent( eResult ) ;
 			
 		}
-
-		protected function notifyTimeOut():void
-		{
-			var eTimeOut:RemotingEvent = new RemotingEvent(RemotingEvent.TIMEOUT) ;
-			dispatchEvent(eTimeOut) ;
-		}
-
 
 		// ----o Private Properties
 	

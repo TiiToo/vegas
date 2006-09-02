@@ -35,6 +35,8 @@
 
 */
 
+// TODO : ajouter un Timer pour les action "next" en cas de besoin pour laisser le temps d'initialiser l'action courante avant de passer à la suivante.
+
 package asgard.process
 {
 	
@@ -80,11 +82,11 @@ package asgard.process
 		
 		public function addAction(action:IAction, isClone:Boolean=false):Boolean 
 		{
-			var a:IAction = isClone ? action.clone() : action ;
+			var a:IAction = action ;
 			var isEnqueue:Boolean = _queue.enqueue(a) ;
 			if (isEnqueue)
 			{
-				AbstractAction(a).addEventListener(ActionEvent.FINISH, run) ;
+				a.addEventListener(ActionEvent.FINISH, run) ;
 			}
 			return isEnqueue ;
 		}
