@@ -21,54 +21,62 @@
   
 */
 
-/*	IConfigLoader (interface)
+/* IActionLoader (interface)
 
 	AUTHOR
 
-		Name : IConfigLoader
+		Name : IActionLoader
 		Package : asgard.config
 		Version : 1.0.0.0
-		Date :  2008-09-01
+		Date :  2008-09-02
 		Author : ekameleon
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 	
 */
 
-package asgard.config
+package asgard.net
 {
 
-    import asgard.net.IActionLoader ;
-    
-    public interface IConfigLoader extends IActionLoader
+    import asgard.process.IAction;
+
+    import flash.net.URLLoader ;
+    import flash.net.URLRequest ;
+
+    import vegas.events.IEventBroadcaster;
+
+    public interface IActionLoader extends IAction, IEventBroadcaster
     {
 
         // ----o Public Properties
     
         /**
-         * (Read-only) Return the config object.
+         * (Read-write) The data received from the load operation. 
          */
-        function get config():Config ;
+        function get data():* ;
+        function set data( value:* ):void ;
     
-        /**
-         * (Read-write) The name of the config file with datas.
-         */
-        function get fileName():String ;
-    	function set fileName( value:String ):void ;
+        // ----o Public Methods
         
         /**
-         * (Read-write) The path of the config file with datas.
+         * Closes the load operation in progress.
          */
-    	function get path():String ;
-        function set path( value:String ):void ;
-
+        function close():void ;
+    
         /**
-         * (Read-write) The suffix of the config file with datas.
+         * Return the original loader in the constructor. Override this method.
+         */ 
+        function getLoader():URLLoader ;
+    
+        /**
+         * Sends and loads data from the specified URL.
          */
-    	function get suffix():String ;
-	    function set suffix( value:String ):void ;
+        function load( request:URLRequest=null ):void ;
+        
+        /**
+         * Parse datas if the loading is complete.
+         */
+        function parse():void ;
         
     }
-    
-    
 }

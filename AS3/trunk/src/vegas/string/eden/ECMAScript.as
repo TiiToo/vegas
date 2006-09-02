@@ -281,7 +281,7 @@ package vegas.string.eden
             }
         }
 		
-		// FIXME déplacer futurereservedKeyword vers resvervedKeyword ?
+		// FIXME : dÃ©placer futurereservedKeyword vers resvervedKeyword ?
 		
 		/**	
 		 * Future Reserved Keywords

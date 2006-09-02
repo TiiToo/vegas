@@ -35,6 +35,8 @@
 	
 */
 
+// FIXME : localization with error messages.
+
 package vegas.logging
 {
 
@@ -54,8 +56,6 @@ package vegas.logging
         }
         
         // ----o Public Properties
-        
-        // FIXME : localization with error messages.
         
         static public var charsInvalid:String = "The following characters are not valid\: []~$^&\/(){}<>+\=_-`!@#%?,\:;'\\" ;
         static public var errorFilter:String = "Error for filter \''{0}'" ;

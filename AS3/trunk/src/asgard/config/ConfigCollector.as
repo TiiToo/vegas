@@ -21,7 +21,7 @@
   
 */
 
-/** ConfigCollector
+/* ConfigCollector
 
 	AUTHOR
 

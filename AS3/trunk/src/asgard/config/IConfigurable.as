@@ -21,7 +21,7 @@
   
 */
 
-/** IConfigurable (interface)
+/* IConfigurable (interface)
 
 	AUTHOR
 

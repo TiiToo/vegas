@@ -36,6 +36,7 @@
 */
 
 // TODO : corriger les types de la sérialization (le problème reste que cette console est prévue à la base pour AS1/AS2)
+// FIXME : Problème avec le logger ... boucle infinie dans l'événement StatusEvent !!!!
 
 package vegas.logging.targets
 {

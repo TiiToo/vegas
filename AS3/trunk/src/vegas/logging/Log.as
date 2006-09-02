@@ -37,7 +37,7 @@
 
 */
 
-// TODO refactoring all vegas.logging.* package with vegas tools (see AS2 implementation.
+// TODO refactoring all vegas.logging.* package with vegas tools (see AS2 implementation).
 
 package vegas.logging
 {

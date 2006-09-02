@@ -36,6 +36,7 @@
 */
 
 // TODO : ajouter proxy ??
+// TODO : voir pour le protect Config.
 
 package asgard.config
 {

@@ -73,7 +73,6 @@ package asgard.config
     import asgard.config.AbstractConfigLoader;
     import asgard.net.EdenLoader;
    
-    import flash.events.Event ;
     import flash.net.URLLoader;
 
     import vegas.string.eden.Config ;
@@ -107,6 +106,19 @@ package asgard.config
             return (new EdenLoader() as URLLoader) ;
         }
 
+        /**
+         * Parse your datas when loading is complete.
+         */
+        override public function parse():void
+        {
+            var o:* = data ;
+		    var c:* = config ;
+		    for (var prop:String in o) 
+		    {
+    			c[ prop ] = o[prop] ;
+	    	}
+        }
+
         public function setEdenProperty( prop:String , value:* ):void
         {
             vegas.string.eden.Config[prop] = value ;
@@ -119,22 +131,6 @@ package asgard.config
 
         }
   
-        // ----o Protected Methods
-
-        /**
-         * Dispatch Event.COMPLETE event after all the received data is decoded and placed in the data property. 
-         */
-        override protected function complete(e:Event):void
-		{
-		    var o:* = data ;
-		    var c:* = config ;
-		    for (var prop:String in o) 
-		    {
-    			c[ prop ] = o[prop] ;
-	    	}
-            super.complete(e) ;
-        }    
-        
     }
     
 }

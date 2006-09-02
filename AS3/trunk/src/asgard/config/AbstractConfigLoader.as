@@ -35,31 +35,19 @@
 	
 */
 
-// TODO : finir de cabler les propriétés et méthodes de URLLoader.
-// TODO : voir pour le protect Config.
-// TODO : créer asgard.net.ActionLoader
-// TODO : créer asgard.net.MassiveLoader
 
 package asgard.config
 {
 
-    import asgard.events.ActionEvent ;
+    import asgard.config.IConfigLoader ;
+    import asgard.net.ActionLoader ;
 
-    import flash.events.Event;
-    import flash.events.HTTPStatusEvent;
-    import flash.events.IOErrorEvent;
-    import flash.events.ProgressEvent;
-    import flash.events.SecurityErrorEvent;
-    import flash.net.URLLoader;
     import flash.net.URLRequest;
     import flash.utils.getDefinitionByName;
     
-    import vegas.events.AbstractCoreEventBroadcaster;
-    import vegas.logging.Log ;
-    import vegas.logging.ILogger 
-    import vegas.util.ClassUtil 
+    import vegas.util.ClassUtil ;
 
-    public class AbstractConfigLoader extends AbstractCoreEventBroadcaster implements IConfigLoader
+    public class AbstractConfigLoader extends ActionLoader implements IConfigLoader
     {
         
         // ----o Constructor
@@ -69,21 +57,9 @@ package asgard.config
 
             super() ;
             
-            _loader = getLoader() ;
-            _loader.addEventListener( Event.COMPLETE , complete ) ;
-            _loader.addEventListener( HTTPStatusEvent.HTTP_STATUS , httpStatus ) ;
-            _loader.addEventListener( IOErrorEvent.IO_ERROR, ioError ) ;
-            _loader.addEventListener( Event.OPEN, open ) ;
-            _loader.addEventListener( ProgressEvent.PROGRESS, progress ) ;
-            _loader.addEventListener( SecurityErrorEvent.SECURITY_ERROR, securityError ) ;
-
-            _request = new URLRequest() ;
-            
             _name = name ;
             
             _config = Config.getInstance( name ) ;
-            
-            _logger = Log.getLogger("asgard.config") ;
             
         }
         
@@ -95,19 +71,6 @@ package asgard.config
         public function get config():Config 
     	{
     		return _config ;	
-    	}
-    	
-        /**
-         * The data received from the load operation. 
-         */
-        public function get data():*
-    	{
-    		return _loader.data ;	
-    	}
-    	
-        public function set data( value:* ):void
-    	{
-    		_loader.data = value ;	
     	}
     	
         /**
@@ -133,14 +96,6 @@ package asgard.config
     	{
     		_fileName = value ;	
     	}
-
-        /**
-         * (read-only) Returns 'true' if load method is launched
-         */
-    	public function get running():Boolean 
-    	{
-		    return _isRunning ;
-        }
 
         /**
          * The name of the config.
@@ -181,7 +136,7 @@ package asgard.config
         /**
          * Returns a clone.
          */
-        public function clone():*
+        override public function clone():*
         {
             var cName:String = ClassUtil.getPath(this) ;
             var clazz:Class = ( getDefinitionByName( cName ) as Class ) ;
@@ -197,28 +152,11 @@ package asgard.config
             
         }
     
-    
-        /**
-         * Closes the load operation in progress.
-         */
-        public function close():void
-        {
-            _loader.close() ;
-        }
-        
-        /**
-         * Return the original loader in the constructor. Override this method.
-         */ 
-        public function getLoader():URLLoader
-        {
-            return new URLLoader() ;
-        }
-        
         /**
          * Sends and loads data from the specified URL.
          * @param request:URLRequest broke the internal request with your custom URLRequest
          */
-        public function load( request:URLRequest=null ):void
+        override public function load( request:URLRequest=null ):void
         {
 
             notifyStarted() ;
@@ -235,105 +173,14 @@ package asgard.config
             
         }
 
-        /**
-         * Dispatch the ActionEvent.FINISH event.
-         */
-		public function notifyFinished():void 
-		{
-		    setRunning(false) ;
-			var eFinish:ActionEvent = new ActionEvent(ActionEvent.FINISH) ;
-			dispatchEvent(eFinish) ;
-		}
 
-        /**
-         * Dispatch the ActionEvent.START event.
-         */
-		public function notifyStarted():void
-		{
-   			setRunning(true) ;
-			var eStart:ActionEvent = new ActionEvent(ActionEvent.START) ;
-			dispatchEvent( eStart ) ;
-		}
-
-        /**
-         * Sends and loads data from the specified URL.
-         */
-        public function run( ...arguments:Array ):void
-        {
-
-            _request.url = path + fileName + suffix ;
-            _loader.load(_request) ;
-            
-        }
-
-        // ----o Protected Methods
-
-        /**
-         * Dispatch Event.COMPLETE event after all the received data is decoded and placed in the data property. 
-         */
-        protected function complete(e:Event):void
-		{
-            dispatchEvent(e) ;
-            notifyFinished()
-        }
-
-        /**
-         * Dispatch HTTPStatusEvent if a call to load() attempts to access data over HTTP and the current Flash Player environment is able to detect and return the status code for the request.
-         */
-        protected function httpStatus( e:HTTPStatusEvent ):void
-        {
-            dispatchEvent(e) ;
-        }
-
-        /**
-         * Dispatch IOErrorEvent if a call to load() results in a fatal error that terminates the download.
-         */
-        protected function ioError( e:IOErrorEvent ):void
-        {
-            dispatchEvent(e) ;
-            notifyFinished() ;
-        }
-
-        /**
-         * Dispatch Event.OPEN event when the download operation commences following a call to the load() method.
-         */
-        protected function open(e:Event):void
-        {
-            dispatchEvent(e) ;
-        }
-        
-        /**
-         * Dispatch ProgressEvent.PROGRESS event when data is received as the download operation progresses. 
-         */
-        protected function progress( e:ProgressEvent ):void
-        {
-            dispatchEvent(e) ;
-        }
-
-        /**
-         * Dispatch SecurityErrorEvent if a call to load() attempts to load data from a server outside the security sandbox. 
-         */
-        protected function securityError( e:SecurityErrorEvent ):void
-        {
-            dispatchEvent(e) ;
-            notifyFinished() ;
-        }
-
-        protected function setRunning( b:Boolean ):void
-        {
-            _isRunning = b ;
-        }
 
         // ----o Private Properties
         
         private var _config:Config = null ;
         private var _fileName:String = null ;
-		private var _isRunning:Boolean = false ;
-        private var _loader:URLLoader = null ;
-        private var _logger:ILogger ;
         private var _name:String ;
         private var _path:String = null ;
-        private var _request:URLRequest = null ;
         private var _suffix:String = null ;
 
     }

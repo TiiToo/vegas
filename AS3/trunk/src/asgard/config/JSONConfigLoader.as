@@ -71,7 +71,6 @@ package asgard.config
     import asgard.config.AbstractConfigLoader;
     import asgard.net.JSONLoader;
    
-    import flash.events.Event ;
     import flash.net.URLLoader;
 
     public class JSONConfigLoader extends AbstractConfigLoader
@@ -98,22 +97,19 @@ package asgard.config
             return (new JSONLoader() as URLLoader) ;
         }
 
-        // ----o Protected Methods
-
         /**
-         * Dispatch Event.COMPLETE event after all the received data is decoded and placed in the data property. 
+         * Parse your datas when loading is complete.
          */
-        override protected function complete(e:Event):void
-		{
-		    var o:* = data ;
+        override public function parse():void
+        {
+            var o:* = data ;
 		    var c:* = config ;
 		    for (var prop:String in o) 
 		    {
     			c[ prop ] = o[prop] ;
 	    	}
-            super.complete(e) ;
-        }    
-        
+        }
+
     }
     
 }
