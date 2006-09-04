@@ -35,6 +35,8 @@
 
 	PROPERTY SUMMARY
 	
+		- autoResetPosition:Boolean
+	
 		- direction:Number [R/W]
 		
 		- position:Number [R/W]
@@ -67,7 +69,8 @@ import lunas.display.components.IProgressbar;
 
 import vegas.maths.Range;
 
-class lunas.display.components.bar.AbstractProgressbar extends AbstractComponent implements IProgressbar {
+class lunas.display.components.bar.AbstractProgressbar extends AbstractComponent implements IProgressbar 
+{
 
 	// ----o Constructor
 	
@@ -83,56 +86,73 @@ class lunas.display.components.bar.AbstractProgressbar extends AbstractComponent
 	
 	// ----o Public Properties
 	
+	public var autoResetPosition:Boolean = false ;
 	// public var direction:Number ; // [R/W]
 	// public var position:Number ; // [R/W]
 	
 	// ----o Public Methods		
 
-	public function getDirection():Number { 
+	public function getDirection():Number 
+	{ 
 		return (_nDirection == Direction.HORIZONTAL) ? Direction.HORIZONTAL : Direction.VERTICAL ;
 	}
 	
-	public function getPosition():Number {
+	public function getPosition():Number 
+	{
 		return isNaN(_position) ? 0 : _position ;
 	}
 
-	public function setDirection(n:Number):Void {
+	public function setDirection(n:Number):Void 
+	{
 		_nDirection = (n == Direction.HORIZONTAL) ? Direction.HORIZONTAL : Direction.VERTICAL ;
 		update() ;
 	}
 
-	public function setPosition(pos:Number, noEvent:Boolean, flag:Boolean):Void {
+	public function setPosition(pos:Number, noEvent:Boolean, flag:Boolean):Void 
+	{
 		pos = _rPercent.clamp(pos) ;
-		if (pos != _position) {
+		if (pos != _position) 
+		{
 			_position = pos ;
 			viewPositionChanged(flag) ;
 			if (!noEvent) notifyChanged() ;
 		}
 	}
 	
-	public function viewChanged():Void {
+	public function viewChanged():Void 
+	{
+		var memPos:Number = getPosition() ;
 		setPosition(0, true, true) ;
+		if (!autoResetPosition) 
+		{
+			setPosition( memPos, true, true) ;
+		}
 	}
 
-	public function viewPositionChanged(flag:Boolean):Void {
+	public function viewPositionChanged(flag:Boolean):Void 
+	{
 		// override this method
 	}
 
 	// ----o Virtual Properties
 
-	public function get direction():Number {
+	public function get direction():Number 
+	{
 		return getDirection() ;
 	}
 	
-	public function set direction(n:Number):Void {
+	public function set direction(n:Number):Void 
+	{
 		setDirection(n) ;	
 	}
 
-	public function get position():Number {
+	public function get position():Number 
+	{
 		return getPosition() ;
 	}
 	
-	public function set position(n:Number):Void {
+	public function set position(n:Number):Void 
+	{
 		setPosition(n) ;	
 	}
 

@@ -35,6 +35,8 @@
 
 	PROPERTY SUMMARY
 	
+		- autoResetPosition:Boolean
+	
 		- direction:Number [R/W]
 		
 		- position:Number [R/W]
@@ -62,11 +64,13 @@ import asgard.display.Direction;
 import lunas.display.components.bar.AbstractProgressbar;
 import lunas.display.components.shape.RectangleComponent;
 
-class lunas.display.components.bar.EasyProgressbar extends AbstractProgressbar {
+class lunas.display.components.bar.EasyProgressbar extends AbstractProgressbar 
+{
 
 	// ----o Constructor
 	
-	public function EasyProgressbar() {
+	public function EasyProgressbar() 
+	{
 		super() ;
 		_createBackground() ;
 		_createBar() ;
@@ -86,7 +90,8 @@ class lunas.display.components.bar.EasyProgressbar extends AbstractProgressbar {
 
 	// ----o Public Methods		
 
-	public function resize():Void {
+	public function resize():Void 
+	{
 		bar._x = border ;
 		bar._y = border ;
 		var nB:Number = 2 * border ;
@@ -99,26 +104,31 @@ class lunas.display.components.bar.EasyProgressbar extends AbstractProgressbar {
 	}
 
 
-	public function viewChanged():Void {
+	public function viewChanged():Void 
+	{
 		_refreshBackground() ;
 		_refreshBar() ;
 	}
 
-	public function viewPositionChanged():Void {
+	public function viewPositionChanged():Void 
+	{
 		resize() ;
 	}
 
 	// ----o Private Methods
 
-	private function _createBackground():Void {
+	private function _createBackground():Void 
+	{
 		createChild(BACKGROUND_RENDERER, "background", 0) ;
 	}
 	
-	private function _createBar():Void {
+	private function _createBar():Void 
+	{
 		createChild(BAR_RENDERER, "bar", 1) ;
 	}
 
-	private function _refreshBackground():Void {
+	private function _refreshBackground():Void 
+	{
 		background.refresh( {
 			t : 1 , la : 100 , lc : 0xFFFFFF ,
 			fc : 0xD0330D , fa : 100
@@ -126,7 +136,8 @@ class lunas.display.components.bar.EasyProgressbar extends AbstractProgressbar {
 		background.setSize(_w, _h) ;
 	}
 
-	private function _refreshBar():Void {
+	private function _refreshBar():Void 
+	{
 		bar.refresh( {
 			t : null , la : null , lc : null ,
 			fc : 0xF8E2B1 , fa : 100

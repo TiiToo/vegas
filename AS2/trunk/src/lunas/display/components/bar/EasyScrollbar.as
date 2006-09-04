@@ -35,6 +35,8 @@
 
 	PROPERTY SUMMARY
 	
+		- autoResetPosition:Boolean
+	
 		- direction:Number [R/W]
 		
 		- position:Number [R/W]
@@ -65,7 +67,7 @@
 		
 		- CHANGE:EventType
 	
-**/
+*/
 
 import asgard.display.Direction;
 
@@ -74,11 +76,13 @@ import lunas.display.components.shape.RectangleComponent;
 
 import vegas.events.Delegate;
 
-class lunas.display.components.bar.EasyScrollbar extends AbstractScrollbar {
+class lunas.display.components.bar.EasyScrollbar extends AbstractScrollbar 
+{
 
 	// ----o Constructor
 	
-	public function EasyScrollbar() {
+	public function EasyScrollbar() 
+	{
 		super() ;
 		_createBar() ;
 		_createThumb() ;
@@ -97,20 +101,24 @@ class lunas.display.components.bar.EasyScrollbar extends AbstractScrollbar {
 
 	// ----o Public Methods		
 
-	public function draw():Void {
+	public function draw():Void 
+	{
 		_refreshBar() ;
 		_refreshThumb() ;
 	}
 	
-	public function getBar():MovieClip {
+	public function getBar():MovieClip 
+	{
 		return bar ;
 	}
 
-	public function getThumb():MovieClip {
+	public function getThumb():MovieClip 
+	{
 		return thumb ;
 	}
 
-	public function viewEnabled():Void  {
+	public function viewEnabled():Void  
+	{
 		bar.enabled = enabled ;
 		bar._alpha = enabled ? 100 : 50 ;
 		thumb.enabled = enabled ;
@@ -123,13 +131,15 @@ class lunas.display.components.bar.EasyScrollbar extends AbstractScrollbar {
 
 	// ----o Private Methods
 	
-	private function _createBar():Void {
+	private function _createBar():Void 
+	{
 		createChild(BAR_RENDERER, "bar", 0) ;
 		bar.onPress = Delegate.create(this, dragging) ;
 		bar.useHandCursor = false ;
 	}
 
-	private function _createThumb():Void {
+	private function _createThumb():Void 
+	{
 		createChild(THUMB_RENDERER, "thumb", 1) ;
 		thumb.onPress = Delegate.create(this, startDragging) ;
 		thumb.onRelease = Delegate.create(this, stopDragging) ;
@@ -137,7 +147,8 @@ class lunas.display.components.bar.EasyScrollbar extends AbstractScrollbar {
 		thumb.useHandCursor = false ;
 	}
 
-	private function _refreshBar():Void {
+	private function _refreshBar():Void 
+	{
 		bar.refresh( {
 			t : 1 , la : 100 , lc : 0xFFFFFF ,
 			fc : 0xFF0000 , fa : 100
@@ -146,7 +157,8 @@ class lunas.display.components.bar.EasyScrollbar extends AbstractScrollbar {
 
 	}
 	
-	private function _refreshThumb():Void {
+	private function _refreshThumb():Void 
+	{
 		thumb.refresh( {
 			t : 0 , la : 100 , lc : 0x000000 ,
 			fc : 0x000000 , fa : 100

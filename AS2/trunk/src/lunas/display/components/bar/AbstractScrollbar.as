@@ -35,6 +35,8 @@
 
 	PROPERTY SUMMARY
 	
+		- autoResetPosition:Boolean
+	
 		- direction:Number [R/W]
 		
 		- duration:Number
@@ -92,11 +94,13 @@ import lunas.display.components.IScrollbar;
 
 import vegas.util.MathsUtil;
 
-class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar implements IScrollbar {
+class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar implements IScrollbar 
+{
 
 	// ----o Constructor
 	
-	private function AbstractScrollbar() {
+	private function AbstractScrollbar() 
+	{
 		_eDrag = new ButtonEvent(ButtonEventType.DRAG, this) ;
 	}
 
@@ -110,12 +114,14 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 
 	public var duration:Number = 24  ;	
 	public var easing:Function = null ;
+	static public var invertPosField:Object = { _x : "_y" , _y : "_x" } ;
 	// public var isDragging:Boolean ; // [Read Only]
 	public var noEasing:Boolean = true ;
 	
 	// ----o Public Methods		
 
-	public function dragging():Void {
+	public function dragging():Void 
+	{
 		var sizeField:String = getSizeField() ;
 		var mouseField:String = getMouseField() ;
 		var b:MovieClip = getBar() ;
@@ -127,31 +133,38 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 		notifyDrag() ;
 	}
 
-	public function getBar():MovieClip {
+	public function getBar():MovieClip 
+	{
 		return null ; // override this method !
 	}
 
-	public function getIsDragging():Boolean {
+	public function getIsDragging():Boolean 
+	{
 		return _isDragging ;
 	}
 	
-	public function getSizeField():String {
+	public function getSizeField():String 
+	{
 		return (getDirection() == Direction.VERTICAL) ? "_height" : "_width" ;
 	}
 	
-	public function getMouseField():String {
+	public function getMouseField():String 
+	{
 		return (getDirection() == Direction.VERTICAL) ? "_ymouse" : "_xmouse" ;
 	}
 	
-	public function getThumb():MovieClip {
+	public function getThumb():MovieClip 
+	{
 		return null ; // override this method !
 	}
 
-	public function notifyDrag():Void {
+	public function notifyDrag():Void 
+	{
 		dispatchEvent( _eDrag ) ;
 	}
 
-	public function startDragging():Void {
+	public function startDragging():Void 
+	{
 		var mouseField:String = (_nDirection == Direction.VERTICAL) ? "_ymouse" : "_xmouse" ;
 		_mouseOffset = (getThumb())[mouseField] ;
 		dragging() ;
@@ -159,23 +172,36 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 		onMouseMove = dragging ;
 	}
 
-	public function stopDragging():Void {
+	public function stopDragging():Void 
+	{
 		_isDragging = false ;
 		delete onMouseMove ;
 	}
 	
-	public function viewPositionChanged( flag:Boolean ):Void {
+	public function viewPositionChanged( flag:Boolean ):Void 
+	{
+
 		if (_tw.running) _tw.stop() ;
+
 		var posField:String = (_nDirection == Direction.VERTICAL) ? "_y" : "_x" ;
 		var sizeField:String = (_nDirection == Direction.VERTICAL) ? "_height" : "_width" ;
 		var b:MovieClip = getBar() ;
 		var t:MovieClip = getThumb() ;
 		var size:Number =  b[sizeField] - t[sizeField] ;
 		var pos:Number = (getPosition() / 100) *  size  ;
-		if ( flag || _isDragging || noEasing ) {
+		
+		t[invertPosField[posField]] =  0 ; 
+		
+		if ( flag || _isDragging || noEasing ) 
+		{
+			//t[invert] = 0 ;
 			t[posField] = pos ;
-		} else {
-			_tw = new Tween ( 
+		} 
+		else 
+		{
+			//t[invert] = 0 ;
+			_tw = new Tween 
+			( 
 				t, 
 				posField, 
 				easing || Back.easeOut ,
@@ -189,7 +215,8 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 
 	// ----o Virtual Properties
 
-	public function get isDragging():Boolean {
+	public function get isDragging():Boolean 
+	{
 		return getIsDragging() ;	
 	}
 

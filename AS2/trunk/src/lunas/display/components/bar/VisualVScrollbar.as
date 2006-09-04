@@ -35,6 +35,8 @@
 
 	PROPERTY SUMMARY
 	
+		- autoResetPosition:Boolean
+	
 		- direction:Number [R/W]
 		
 		- position:Number [R/W]
@@ -70,11 +72,13 @@
 import lunas.display.components.bar.AbstractScrollbar;
 import lunas.display.components.bar.VisualVScrollbarBuilder;
 
-class lunas.display.components.bar.VisualVScrollbar extends AbstractScrollbar {
+class lunas.display.components.bar.VisualVScrollbar extends AbstractScrollbar 
+{
 
 	// ----o Constructor
 	
-	public function VisualVScrollbar() {
+	public function VisualVScrollbar() 
+	{
 		super() ;
 	}
 
@@ -85,19 +89,23 @@ class lunas.display.components.bar.VisualVScrollbar extends AbstractScrollbar {
 
 	// ----o Public Methods		
 
-	public function getBar():MovieClip {
+	public function getBar():MovieClip 
+	{
 		return bar ;
 	}
 
-	public function getBuilderRenderer():Function {
+	public function getBuilderRenderer():Function 
+	{
 		return VisualVScrollbarBuilder ;
 	}
 
-	public function getThumb():MovieClip {
+	public function getThumb():MovieClip 
+	{
 		return thumb ;
 	}
 
-	public function viewEnabled():Void  {
+	public function viewEnabled():Void  
+	{
 		bar.enabled = enabled ;
 		bar._alpha = enabled ? 100 : 50 ;
 		thumb.enabled = enabled ;
