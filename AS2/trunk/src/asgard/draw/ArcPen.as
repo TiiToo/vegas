@@ -160,11 +160,13 @@ import asgard.draw.ArcType;
 import asgard.draw.EasyPen;
 import asgard.geom.Trigo;
 
-class asgard.draw.ArcPen extends EasyPen {
+class asgard.draw.ArcPen extends EasyPen 
+{
 
 	// -----o Constructor
 
-	public function ArcPen(target:MovieClip, isNew:Boolean) {
+	public function ArcPen(target:MovieClip, isNew:Boolean) 
+	{
 		initialize(target, isNew) ;
 		setAlign(Align.TOP_LEFT) ;
 	}
@@ -181,7 +183,8 @@ class asgard.draw.ArcPen extends EasyPen {
 	
 	// -----o Public Methods
 	
-	public function clone() {
+	public function clone() 
+	{
 		var arc:ArcPen = new ArcPen(_target) ;
 		arc.radius = radius ;
 		arc.x = x ;
@@ -194,8 +197,12 @@ class asgard.draw.ArcPen extends EasyPen {
 		return arc ;
 	}
 	
-	public function draw(p_angle:Number, p_startAngle:Number, p_x:Number, p_y:Number, p_align:Number):Void {
-		if (arguments.length > 0) setArc.apply(this, arguments) ;
+	public function draw(p_angle:Number, p_startAngle:Number, p_x:Number, p_y:Number, p_align:Number):Void 
+	{
+		if (arguments.length > 0) 
+		{
+			setArc.apply(this, arguments) ;
+		}
 		init() ;
 		moveTo(_nX, _nY);
 		var ax:Number ;
@@ -210,12 +217,14 @@ class asgard.draw.ArcPen extends EasyPen {
 		var segAngle:Number = _angle / segs ;
 		var theta:Number = - Trigo.degreesToRadians(segAngle) ;
 		var a:Number = - _startAngle  ;
-		if (segs>0) {
+		if (segs>0) 
+		{
 			ax = _nX + Math.cos (_startAngle) * radius ;
 			ay = _nY + Math.sin (-_startAngle) * nR ;
 			if (_angle < 360 && _angle > -360 && type == ArcType.PIE) lineTo (ax, ay) ;
 			moveTo (ax, ay) ;
-			for (var i:Number = 0 ; i<segs ; i++) {
+			for (var i:Number = 0 ; i<segs ; i++) 
+			{
 				a += theta ;
 				angleMid = a - ( theta / 2 ) ;
 				bx = _nX + Math.cos ( a ) * radius ;
@@ -224,23 +233,30 @@ class asgard.draw.ArcPen extends EasyPen {
 				cy = _nY + Math.sin( angleMid ) * ( nR / Math.cos( theta / 2 ) ) ;
 				curveTo(cx, cy, bx, by) ;
 			}
-			if(type == ArcType.PIE) {
+			if(type == ArcType.PIE) 
+			{
 				if (_angle < 360 && _angle > -360) lineTo(_nX, _nY);
-			} else { // CHORD or other value
-				lineTo(ax, ay);
+			}
+			else 
+			{ 
+				lineTo(ax, ay); // CHORD or other value
 			}
 		}
+		endFill() ;
 	}
 
-	public function getAngle():Number { 
+	public function getAngle():Number 
+	{ 
 		return _angle ;
 	}
 	
-	public function getStartAngle():Number { 
+	public function getStartAngle():Number 
+	{ 
 		return Trigo.radiansToDegrees(_startAngle)  ;
 	}
 
-	public function init():Void {
+	public function init():Void 
+	{
 		if (isNaN(x)) x = 0 ;
 		if (isNaN(y)) y = 0 ;
 		_nX = x ; 
@@ -281,11 +297,13 @@ class asgard.draw.ArcPen extends EasyPen {
 	}
 
 
-	public function setAngle(n:Number):Void {
+	public function setAngle(n:Number):Void 
+	{
 		_angle = Trigo.fixAngle(n) ;
 	}
 
-	public function setArc(p_angle:Number, p_startAngle:Number, p_x:Number, p_y:Number, p_align:Number):Void {
+	public function setArc(p_angle:Number, p_startAngle:Number, p_x:Number, p_y:Number, p_align:Number):Void 
+	{
 		if (!isNaN(p_angle) ) setAngle(p_angle) ;
 		if (!isNaN(p_startAngle) ) setStartAngle(p_startAngle) ;
 		if (!isNaN(p_align)) setAlign(p_align) ;
@@ -299,19 +317,23 @@ class asgard.draw.ArcPen extends EasyPen {
 
 	// ----o Virtual Properties
 
-	public function get angle():Number {
+	public function get angle():Number 
+	{
 		return getAngle() ;	
 	}
 	
-	public function set angle(n:Number):Void {
+	public function set angle(n:Number):Void 
+	{
 		setAngle(n) ;	
 	}
 	
-	public function get startAngle():Number {
+	public function get startAngle():Number 
+	{
 		return getStartAngle() ;	
 	}
 	
-	public function set startAngle(n:Number):Void {
+	public function set startAngle(n:Number):Void 
+	{
 		setStartAngle(n) ;	
 	}
 
