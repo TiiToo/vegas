@@ -35,8 +35,6 @@
 	
 */
 
-// TODO cabler l'événement TIMEOUT
-
 package asgard.net.remoting
 {
 
@@ -91,7 +89,7 @@ package asgard.net.remoting
 
 		override public function clone():*
 		{
-			return new RemotingService( getGatewayUrl() , getServiceName() ) ; // TODO voir pour le responder !
+			return new RemotingService( getGatewayUrl() , getServiceName() ) ; // TODO : TODO voir pour le responder !
 		}
 		
 		public function getConnection():RemotingConnection 
@@ -434,6 +432,8 @@ package asgard.net.remoting
 		{
 			
 			_timer.stop() ;
+			
+			setRunning(false) ;
 			
 			notifyTimeOut() ;
 
