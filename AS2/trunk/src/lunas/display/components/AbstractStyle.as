@@ -127,13 +127,16 @@ import vegas.events.Event;
 import vegas.string.StringFormatter;
 import vegas.util.TypeUtil;
 
-class lunas.display.components.AbstractStyle extends AbstractCoreEventDispatcher implements IStyle {
+class lunas.display.components.AbstractStyle extends AbstractCoreEventDispatcher implements IStyle 
+{
 
 	// ----o Constructor 
 	
-	private function AbstractStyle ( init:Object ) {
+	private function AbstractStyle ( init:Object ) 
+	{
 		super() ;		
-		for (var prop:String in init) {
+		for (var prop:String in init) 
+		{
 			this[prop] = init[prop] ;
 		}
 		_styleFormatter = new StringFormatter("<span class='{0}'>{1}</span>") ;
@@ -147,82 +150,106 @@ class lunas.display.components.AbstractStyle extends AbstractCoreEventDispatcher
 	
 	// ----o Public Methods
 	
-	public function initialize():Void {
+	public function initialize():Void 
+	{
 		// override
 	}
 	
-	public function getFieldText( sLabel:String , styleName:String ):String {
+	public function getFieldText( sLabel:String , styleName:String ):String 
+	{
 		var txt:String = "" ;
-		if (sLabel.length > 0) {
+		if (sLabel.length > 0) 
+		{
 			txt = _styleFormatter.format( styleName || getLabelStyleName(), sLabel) ;
 		}
 		return txt ;
 	}
 
-	public function getLabelStyleName():String {
+	public function getLabelStyleName():String 
+	{
 		return _labelStyleName || "" ;	
 	}
 
-	public function getStyle(prop:String) { 
+	public function getStyle(prop:String) 
+	{ 
 		return this[prop] || null ;
 	}
 	
-	public function getStyleFormatter():StringFormatter {
+	public function getStyleFormatter():StringFormatter 
+	{
 		return _styleFormatter ;	
 	}
 
-	public function getStyleSheet():TextField.StyleSheet { 
+	public function getStyleSheet():TextField.StyleSheet 
+	{ 
 		return _oS ;
 	}
 
-	public function setLabelStyleName(s:String):Void {
+	public function setLabelStyleName(s:String):Void 
+	{
 		_labelStyleName = s || null ;	
 	}
 
-	public function setStyle():Void {
-		if (TypeUtil.typesMatch(arguments[0], String) && arguments.length > 1) {
+	public function setStyle(  ):Void 
+	{
+
+		if (arguments.length == 0 || arguments[0] == null) return ; 
+		
+		if (TypeUtil.typesMatch(arguments[0], String) && arguments.length > 1) 
+		{
 			this[arguments[0]] = arguments[1] ;
-		} else if (arguments[0] instanceof Object) {
+		}
+		else if (arguments[0] instanceof Object) 
+		{
 			var prop = arguments[0] ;
 			for (var i:String in prop) this[i] = prop[i] ;
 		}
 		_fireEvent( new StyleEvent(StyleEventType.STYLE_CHANGED, this)) ;
+		
 	}
 	
-	public function setStyleSheet(ss:TextField.StyleSheet):Void {
+	public function setStyleSheet(ss:TextField.StyleSheet):Void 
+	{
 		_oS = ss ;
 		styleSheetChanged() ;
 		_fireEvent(new StyleEvent(StyleEventType.STYLE_SHEET_CHANGED, this)) ;
 	}
 
-	public function styleChanged():Void {
+	public function styleChanged():Void 
+	{
 		// override
 	}
 
-	public function styleSheetChanged():Void {
+	public function styleSheetChanged():Void 
+	{
 		// override
 	}
 
-	public function update():Void {
+	public function update():Void 
+	{
 		// override with super !
 		styleChanged() ;
 	}
 
 	// ----o Virtual Properties
 
-	public function get labelStyleName():String {
+	public function get labelStyleName():String 
+	{
 		return getLabelStyleName() ; 	
 	}
 
-	public function set labelStyleName(s:String):Void {
+	public function set labelStyleName(s:String):Void 
+	{
 		setLabelStyleName(s) ; 	
 	}
 	
-	public function get styleSheet():TextField.StyleSheet {
+	public function get styleSheet():TextField.StyleSheet 
+	{
 		return getStyleSheet() ; 	
 	}
 
-	public function set styleSheet(ss:TextField.StyleSheet):Void {
+	public function set styleSheet(ss:TextField.StyleSheet):Void 
+	{
 		setStyleSheet(ss) ; 	
 	}
 	
@@ -234,7 +261,8 @@ class lunas.display.components.AbstractStyle extends AbstractCoreEventDispatcher
 	
 	// ----o Private Methods
 	
-	private function _fireEvent(event, isQueue:Boolean, target, context):Event {
+	private function _fireEvent(event, isQueue:Boolean, target, context):Event 
+	{
 		return dispatchEvent(event, isQueue, target, context) ;
 	}
 	

@@ -59,7 +59,6 @@
 import asgard.display.Direction;
 
 import lunas.display.components.container.AutoScrollContainer;
-
 import lunas.display.components.list.AbstractListBuilder;
 import lunas.display.components.list.EasyList;
 import lunas.display.components.list.EasyListStyle;

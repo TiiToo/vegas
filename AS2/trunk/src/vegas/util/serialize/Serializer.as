@@ -68,6 +68,7 @@
 **/
 
 import vegas.core.ISerializable;
+import vegas.util.ArrayUtil;
 import vegas.util.ConstructorUtil;
 import vegas.util.serialize.ArraySerializer;
 import vegas.util.serialize.BooleanSerializer;
@@ -78,7 +79,6 @@ import vegas.util.serialize.NumberSerializer;
 import vegas.util.serialize.ObjectSerializer;
 import vegas.util.serialize.StringSerializer;
 import vegas.util.TypeUtil;
-import vegas.util.ArrayUtil;
 
 class vegas.util.serialize.Serializer {
 

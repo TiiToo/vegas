@@ -199,7 +199,7 @@ import asgard.events.UIEventType;
 
 import lunas.display.components.IBuilder;
 import lunas.display.components.IStyle;
-import lunas.events.StyleEventType ;
+import lunas.events.StyleEventType;
 
 import vegas.core.HashCode;
 import vegas.core.IHashable;
@@ -363,51 +363,62 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 		return _dispatcher.hasEventListener(eventName) ;
 	}
 
-	public function initEventDispatcher():EventDispatcher {
+	public function initEventDispatcher():EventDispatcher 
+	{
 		return new EventDispatcher(this) ;
 	}
 	
-	public function lock():Void {
+	public function lock():Void 
+	{
 		___isLock___ = true ;
 	}
 
-	public function initialize():Void {
+	public function initialize():Void 
+	{
 		// initialize the component !
 	}
 
-	public function notifyAdded(child:MovieClip, index:Number):Void {
+	public function notifyAdded(child:MovieClip, index:Number):Void 
+	{
 		_eAdded.child = child ;
 		_eAdded.index = index ;
 		dispatchEvent(_eAdded ) ;
 	}
 
-	public function notifyChanged():Void {
+	public function notifyChanged():Void 
+	{
 		dispatchEvent(_eChange) ;
 	}
 
-	public function notifyRemoved():Void {
+	public function notifyRemoved():Void 
+	{
 		dispatchEvent(_eRemoved) ;
 	}
 
-	public function notifyResized():Void {
+	public function notifyResized():Void 
+	{
 		viewResize() ;
 		dispatchEvent(_eResize) ;
 	}
 
-	public function refresh (oInit):Void {
+	public function refresh (oInit):Void 
+	{
 		for (var each:String in oInit) this[each] = oInit[each] ;
 		update() ;
 	}
 	
-	public function removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener {
+	public function removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener 
+	{
 		return _dispatcher.removeEventListener(eventName, listener, useCapture) ;
 	}
 	
-	public function removeGlobalEventListener( listener ):EventListener {
+	public function removeGlobalEventListener( listener ):EventListener 
+	{
 		return _dispatcher.removeGlobalEventListener(listener) ;
 	}
 	
-	public function setBuilder(b:IBuilder):Boolean {
+	public function setBuilder(b:IBuilder):Boolean 
+	{
 		if (_builder) _builder.clear() ;
 		if (!b) return false ;
 		_builder = b ;
@@ -416,7 +427,8 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 		return true ;
 	}
 	
-	public function setEnabled(bool:Boolean):Void {
+	public function setEnabled(bool:Boolean):Void 
+	{
 		_enabled = (bool == true) ;
 		if (___isLock___) return ;
 		viewEnabled() ;
@@ -446,16 +458,19 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 		_dispatcher.parent = parent ;
 	}
 
-	public function setSize(p_w:Number, p_h:Number) : Void {
+	public function setSize(p_w:Number, p_h:Number) : Void 
+	{
 		_w = MathsUtil.clamp(p_w, minWidth, maxWidth) ; 
 		_h = MathsUtil.clamp(p_h, minHeight, maxHeight) ; 
 		notifyResized() ;
 		update() ;
 	}
 	
-	public function setStyle(s:IStyle):Void {
+	public function setStyle(s:IStyle):Void 
+	{
 		if (_style != undefined) {
 			_style.removeEventListener(StyleEventType.STYLE_CHANGED, this) ;
+			_style.removeEventListener(StyleEventType.STYLE_SHEET_CHANGED, new Delegate(this, viewStyleChanged)) ;
 			_style = undefined ;
 		}
 		if (s == undefined) return ;

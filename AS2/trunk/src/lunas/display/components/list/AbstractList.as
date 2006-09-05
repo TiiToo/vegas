@@ -183,11 +183,13 @@ import vegas.util.ConstructorUtil;
 import vegas.util.mvc.IController;
 import vegas.util.mvc.IView;
 
-class lunas.display.components.list.AbstractList extends AbstractComponent implements Iterable {
+class lunas.display.components.list.AbstractList extends AbstractComponent implements Iterable 
+{
 
 	// ----o Constructor
 
-	private function AbstractList () { 
+	private function AbstractList () 
+	{ 
 		super() ;
 	}
 	

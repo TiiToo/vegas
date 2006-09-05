@@ -210,7 +210,6 @@
 **/
 
 import asgard.display.Direction;
-import asgard.events.UIEventType;
 
 import lunas.display.components.cell.EasyCell;
 import lunas.display.components.container.AutoScrollContainer;
