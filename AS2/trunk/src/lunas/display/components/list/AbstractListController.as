@@ -77,63 +77,108 @@ import lunas.events.CellEvent;
 
 import vegas.events.Event;
 import vegas.util.mvc.AbstractController;
+import lunas.display.components.ICell;
 
-class lunas.display.components.list.AbstractListController extends AbstractController {
+class lunas.display.components.list.AbstractListController extends AbstractController 
+{
 
 	// ----o Constructor
 
-	public function ListController() { 
+	public function ListController() 
+	{ 
 		//
 	}
 
 	// ----o Public Methods
 
-	public function viewClear():Void {
+	public function unSelect():Void
+	{
+		if (_oldCell != null)
+		{
+			var view_mc:MovieClip = getView().getViewContainer() ;
+			MovieClip(_oldCell).enabled = view_mc.enabled ;	
+			_oldCell = null ;
+		}
+	}
+
+	public function viewClear():Void 
+	{
 		var view_mc:MovieClip = getView().getViewContainer() ;
 		view_mc.unSelect() ;
 		var container:MovieClip = view_mc.getContainer() ;
 		container.clear() ;
 	}
 	
-	public function viewCreateAt(index:Number):MovieClip {
+	public function viewCreateAt(index:Number):MovieClip 
+	{
 		return null ;
 	}
 
-	public function viewRemove(first:Number, last:Number):Void {
+	public function viewRemove(first:Number, last:Number):Void 
+	{
 		var view_mc:MovieClip = getView().getViewContainer() ;
 		var container:MovieClip = view_mc.getContainer() ;
 		container.removeRange(first, last) ;
 		view_mc.unSelect() ;
 	}
 	
-	public function viewRollOver(ev:CellEvent):Void {
+	public function viewRollOver(ev:CellEvent):Void 
+	{
 		var view_mc:MovieClip = getView().getViewContainer() ;
 		// todo envoyer le numéro de la cellule courante
 		ev.setTarget(view_mc) ;
 		view_mc.dispatchEvent(ev) ;
 	}
 	
-	public function viewRollOut(ev:CellEvent):Void {
+	public function viewRollOut(ev:CellEvent):Void 
+	{
 		var view_mc:MovieClip = getView().getViewContainer() ;
 		// todo envoyer le numéro de la cellule courante
 		ev.setTarget(view_mc) ;
 		view_mc.dispatchEvent(ev) ;
 	}
 
-	public function viewSelect(ev:CellEvent):Void {
+	public function viewSelect(ev:CellEvent):Void 
+	{
 		var cellIndex:Object = ev.getCellIndex() ;
-		var cell = ev.getCell() ;
+		var cell:ICell = ev.getCell() ;
 		var view_mc:MovieClip = getView().getViewContainer() ;
-		view_mc.setSelectedIndex(cellIndex.itemIndex || cell.index, true) ;
+		view_mc.setSelectedIndex(cellIndex.itemIndex || cell["index"], true) ;
+		
+		
+		//////////////////// Protected Selected !! 
+		
+		if (view_mc.protectSelected)
+		{
+			
+		
+			if (_oldCell != null)
+			{
+				MovieClip(_oldCell).enabled = true ;
+			}
+			MovieClip(cell).enabled = false ;
+			
+			_oldCell = cell ;
+		
+		}
+		////////////////////
+		
 		view_mc.notifyChanged() ;
+		
 	}
 
-	public function viewSort(ev:Event):Void {
+	public function viewSort(ev:Event):Void 
+	{
 		// override this method
 	}
 	
-	public function viewUpdateItemAt(index:Number):Void {
+	public function viewUpdateItemAt(index:Number):Void 
+	{
 		// override this method
 	}
+	
+	// ----o Private Properties
+	
+	private var _oldCell:ICell ;
 
 }

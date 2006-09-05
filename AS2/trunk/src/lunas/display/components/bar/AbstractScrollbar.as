@@ -102,6 +102,10 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 	private function AbstractScrollbar() 
 	{
 		_eDrag = new ButtonEvent(ButtonEventType.DRAG, this) ;
+		
+		 // Fix bug with MTASC ! I must declare the value with Static Property in the constructor
+		_nDirection = Direction.VERTICAL ;
+		
 	}
 
 	// ----o Constant
@@ -169,37 +173,44 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 		_mouseOffset = (getThumb())[mouseField] ;
 		dragging() ;
 		_isDragging = true ;
-		onMouseMove = dragging ;
+		this.onMouseMove = dragging ;
 	}
 
 	public function stopDragging():Void 
 	{
 		_isDragging = false ;
-		delete onMouseMove ;
+		delete this.onMouseMove ;
 	}
 	
 	public function viewPositionChanged( flag:Boolean ):Void 
 	{
 
-		if (_tw.running) _tw.stop() ;
+		if (_tw.running) 
+		{
+			_tw.stop() ;
+		}
 
 		var posField:String = (_nDirection == Direction.VERTICAL) ? "_y" : "_x" ;
+		
 		var sizeField:String = (_nDirection == Direction.VERTICAL) ? "_height" : "_width" ;
+		
 		var b:MovieClip = getBar() ;
 		var t:MovieClip = getThumb() ;
+
 		var size:Number =  b[sizeField] - t[sizeField] ;
 		var pos:Number = (getPosition() / 100) *  size  ;
 		
-		t[invertPosField[posField]] =  0 ; 
+		if (!isDragging) 
+		{
+			t[invertPosField[posField]] =  0 ;
+		} 
 		
 		if ( flag || _isDragging || noEasing ) 
 		{
-			//t[invert] = 0 ;
 			t[posField] = pos ;
 		} 
 		else 
 		{
-			//t[invert] = 0 ;
 			_tw = new Tween 
 			( 
 				t, 
@@ -209,7 +220,9 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 				pos , 
 				isNaN(duration) ? 24 : duration
 			) ;
+			
 			_tw.run() ;
+			
 		}
 	}
 
@@ -225,7 +238,7 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 	private var _eDrag:ButtonEvent ;
 	private var _isDragging:Boolean ;
 	private var _mouseOffset:Number = 0 ;
-	private var _nDirection:Number = Direction.VERTICAL ; 
+	private var _nDirection:Number ; 
 	private var _tw:Tween ;
 	
 }

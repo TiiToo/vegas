@@ -87,52 +87,7 @@ class lunas.display.components.bar.AbstractProgressbar extends AbstractComponent
 	// ----o Public Properties
 	
 	public var autoResetPosition:Boolean = false ;
-	// public var direction:Number ; // [R/W]
-	// public var position:Number ; // [R/W]
-	
-	// ----o Public Methods		
 
-	public function getDirection():Number 
-	{ 
-		return (_nDirection == Direction.HORIZONTAL) ? Direction.HORIZONTAL : Direction.VERTICAL ;
-	}
-	
-	public function getPosition():Number 
-	{
-		return isNaN(_position) ? 0 : _position ;
-	}
-
-	public function setDirection(n:Number):Void 
-	{
-		_nDirection = (n == Direction.HORIZONTAL) ? Direction.HORIZONTAL : Direction.VERTICAL ;
-		update() ;
-	}
-
-	public function setPosition(pos:Number, noEvent:Boolean, flag:Boolean):Void 
-	{
-		pos = _rPercent.clamp(pos) ;
-		if (pos != _position) 
-		{
-			_position = pos ;
-			viewPositionChanged(flag) ;
-			if (!noEvent) notifyChanged() ;
-		}
-	}
-	
-	public function viewChanged():Void 
-	{
-		var memPos:Number = getPosition() ;
-		setPosition(0, true, true) ;
-		if (!autoResetPosition) 
-		{
-			setPosition( memPos, true, true) ;
-		}
-	}
-
-	public function viewPositionChanged(flag:Boolean):Void 
-	{
-		// override this method
-	}
 
 	// ----o Virtual Properties
 
@@ -154,6 +109,53 @@ class lunas.display.components.bar.AbstractProgressbar extends AbstractComponent
 	public function set position(n:Number):Void 
 	{
 		setPosition(n) ;	
+	}
+
+	// ----o Public Methods		
+
+	public function getDirection():Number 
+	{ 
+		return (_nDirection == Direction.HORIZONTAL) ? Direction.HORIZONTAL : Direction.VERTICAL ;
+	}
+	
+	public function getPosition():Number 
+	{
+		return isNaN(_position) ? 0 : _position ;
+	}
+
+	public function setDirection(n:Number):Void 
+	{
+		_nDirection = (n == Direction.HORIZONTAL) ? Direction.HORIZONTAL : Direction.VERTICAL ;
+		update() ;
+	}
+
+	public function setPosition(pos:Number, noEvent:Boolean, flag:Boolean):Void 
+	{
+		pos = _rPercent.clamp(pos) ;
+		
+		if (pos != _position) 
+		{
+			_position = pos ;
+			
+			viewPositionChanged(flag) ;
+			
+			if (!noEvent) notifyChanged() ;
+		}
+	}
+	
+	public function viewChanged():Void 
+	{
+		var memPos:Number = getPosition() ;
+		setPosition(0, true, true) ;
+		if (!autoResetPosition) 
+		{
+			setPosition( memPos, true, true) ;
+		}
+	}
+
+	public function viewPositionChanged(flag:Boolean):Void 
+	{
+		// override this method
 	}
 
 	// ----o Private Properties

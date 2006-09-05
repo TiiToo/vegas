@@ -21,7 +21,7 @@
   
 */
 
-/**	CellEvent
+/*
 
 	AUTHOR
 
@@ -108,25 +108,28 @@
 	
 		IEvent
 
-----------  */
+*/
 
 import asgard.events.ButtonEvent;
 
 import lunas.display.components.cell.CellIndex;
 import lunas.display.components.ICell;
 
-class lunas.events.CellEvent extends ButtonEvent {
+class lunas.events.CellEvent extends ButtonEvent 
+{
 
 	// ----o Constructor
 	
-	public function CellEvent(type:String, target:ICell) {
+	public function CellEvent(type:String, target:ICell) 
+	{
 		super(type, target) ;
 		_cell = target ;
 	}
 
 	// ----o Public Methods
 
-	public function clone() {
+	public function clone() 
+	{
 		var prop:String ;
 		var props:Array = ["localX", "localY", "relatedObject", "ctrlKey", "altKey", "shiftKey", "buttonDown", "delta"] ;
 		var be:CellEvent = new CellEvent(getType(), getCell()) ;
@@ -138,11 +141,13 @@ class lunas.events.CellEvent extends ButtonEvent {
 		return be ;
 	}
 	
-	public function getCell():ICell {
+	public function getCell():ICell 
+	{
 		return _cell ;	
 	}
 	
-	public function getCellIndex():CellIndex {
+	public function getCellIndex():CellIndex 
+	{
 		return _cell.getCellIndex() ;	
 	}
 	

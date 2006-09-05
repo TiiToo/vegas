@@ -174,6 +174,7 @@ import asgard.events.UIEvent;
 import asgard.events.UIEventType;
 
 import lunas.display.components.AbstractComponent;
+import lunas.display.components.list.AbstractListController;
 import lunas.display.components.list.ListModel;
 import lunas.display.group.RadioButtonGroup;
 
@@ -376,20 +377,25 @@ class lunas.display.components.list.AbstractList extends AbstractComponent imple
 		if (noRender != true) update() ;
 	}
 	
-	public function setSelectedIndex(index:Number, noEvent:Boolean):Void {
+	public function setSelectedIndex(index:Number, noEvent:Boolean):Void 
+	{
 		if (enabled) {
 			_selectedIndex = isNaN(index) ? null : index ;
 			_selectedItem = _oModel.getItemAt( _selectedIndex ) ;
 			if (noEvent) return ;
-			if (_selectedIndex != null) {
+			if (_selectedIndex != null) 
+			{
 				getContainer().getChildAt(_selectedIndex).selected = true ;
-			} else {
+			}
+			else 
+			{
 				unSelect() ;
 			}
 		}
 	}
 	
-	public function setSelectedItem(item, noEvent:Boolean):Void {
+	public function setSelectedItem(item, noEvent:Boolean):Void 
+	{
 		_selectedItem = item ; // TODO search the index object !!
 	}
 	
@@ -410,6 +416,7 @@ class lunas.display.components.list.AbstractList extends AbstractComponent imple
 	}
 	
 	public function unSelect():Void {
+		AbstractListController(_oController).unSelect() ;
 		RadioButtonGroup.getInstance().unSelect(getGroupName()) ;
 		_selectedItem = null ;
 		_selectedIndex = null ;
@@ -431,6 +438,23 @@ class lunas.display.components.list.AbstractList extends AbstractComponent imple
 	
 	public function set labelField(sField:String):Void {
 		setLabelField(sField) ;	
+	}
+
+	/**
+	 * Protect the selected cell if this property is 'true'.
+	 * Il you use the 'setter' definition of the virtual property 'unSelect' method is launched.
+	 * Return a boolean.
+	 */
+
+	public function get protectSelected():Boolean
+	{
+		return _protectSelected ;
+	}
+	
+	public function set protectSelected(b:Boolean):Void
+	{
+		_protectSelected = b ;
+		unSelect() ;
 	}
 
 	public function get rowCount():Number {
@@ -484,6 +508,7 @@ class lunas.display.components.list.AbstractList extends AbstractComponent imple
 	private var _oController:IController ;
 	private var _oModel:ListModel ;
 	private var _oView:IView ;
+	private var _protectSelected:Boolean ;
 	private var _selectedIndex:Number = null ;
 	private var _selectedItem = null ;
 	
