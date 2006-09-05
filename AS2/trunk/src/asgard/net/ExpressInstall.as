@@ -18,22 +18,26 @@
  *
  */
 
-class asgard.net.ExpressInstall {
+class asgard.net.ExpressInstall 
+{
 
 	// ----o Constructor
 	
-	public function ExpressInstall() {
+	public function ExpressInstall() 
+	{
 		//
 	}
 
 	// ----o Public Methods
 
-	static public function getInstance():ExpressInstall {
+	static public function getInstance():ExpressInstall 
+	{
 		if (_instance == null) _instance = new ExpressInstall() ;
 		return _instance ;
 	}
 
-	static public function init():Boolean {
+	static public function init():Boolean 
+	{
 		// if MMplayerType is not set, the var was not passed in
 		// from the FlashObject embed, so the upgrade is not needed
 		if (_root.MMplayerType == undefined) return false ;
@@ -41,14 +45,16 @@ class asgard.net.ExpressInstall {
 		return true ;
 	}
 
-	public function loadInit():Void {
+	public function loadInit():Void 
+	{
       _hold.redirectURL = _root.MMredirectURL ;
       _hold.MMplayerType = _root.MMplayerType ;
       _hold.MMdoctitle = _root.MMdoctitle ;
       _hold.startUpdate() ;
    }
 
-   public function installStatus(statusValue):Void {
+   public function installStatus(statusValue):Void 
+   {
 		switch(statusValue) {
 			
 			case "Download.Complete" :
@@ -87,7 +93,8 @@ class asgard.net.ExpressInstall {
 
 	// ----o Private Methods
 	
-	private function _loadUpdater():Void {
+	private function _loadUpdater():Void 
+	{
       
 		System.security.allowDomain("fpdownload.macromedia.com") ;
 		
@@ -98,8 +105,10 @@ class asgard.net.ExpressInstall {
 		
 		_hold = _updater.createEmptyMovieClip("hold", 1) ;
 		
-		_updater.onEnterFrame = function() {
-			if (typeof ( this.hold.startUpdate ) == 'function') {
+		_updater.onEnterFrame = function() 
+		{
+			if (typeof ( this.hold.startUpdate ) == 'function') 
+			{
 				ExpressInstall.getInstance().loadInit() ;
 				delete this.onEnterFrame ;
 			}

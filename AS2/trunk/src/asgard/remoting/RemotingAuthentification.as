@@ -61,7 +61,7 @@
 	
 		IHashable, IFormattable
 
----------- */ 
+*/ 
 
 import vegas.core.CoreObject;
 
@@ -83,5 +83,12 @@ class asgard.remoting.RemotingAuthentification extends CoreObject {
 	
 	public var userID:String ;
 	public var password:String ;
+	
+	// -----o Public Methods
+	
+	/*override*/ public function toSource():String
+	{
+		return 'new asgard.remoting.RemotingAuthentification("' + userID + '","' + password + '")' ;	
+	}
 	
 }

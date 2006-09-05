@@ -19,9 +19,11 @@
   
   Contributor(s) :
   
+	- Nicolas Coevoet <http://niko.informatif.org/> (Documentation)
+
 */
 
-/** BasicColor
+/* BasicColor
 
 	AUTHOR
 
@@ -33,24 +35,6 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 
-	METHOD SUMMARY
-
-		- getTarget() : renvoie l'instance de l'objet controlé par la couleur courante.
-		
-		- invert() : inverse la couleur de l'objet.
-		
-		- reset() : réinitialise la couleur d'origine de l'objet.
-		
-		- toString():String
-
-	INHERIT
-	
-		Color > BasicColor
-		
-	IMPLEMENTS
-	
-		IFormattable, IHashable
-
 */
 
 import asgard.colors.ColorUtil;
@@ -60,10 +44,31 @@ import vegas.core.IFormattable;
 import vegas.core.IHashable;
 import vegas.util.ConstructorUtil;
 
-class asgard.colors.BasicColor extends Color implements IFormattable, IHashable {
+/**
+ * <code>BasicColor</code> extends the Color Object.
+ * 
+ * @usage <pre>
+ * import asgard.colors.BasicColor;
+ * var c : BasicColor = new BasicColor (this); // assuming 'this' is a MovieClip;
+ * c.setRGB(0xFF9900);
+ * </pre>
+ * 
+ * @author 		Ekameleon
+ * @version     1.0.0.0
+ * @since       1.0.0.0
+ */
+class asgard.colors.BasicColor extends Color implements IFormattable, IHashable 
+{
 
-	// -----o Constructor
+	// ----o Constructor
 
+	/**
+	 * Creates an instance of a BasicColor.
+	 * @since Flash 6
+	 * @usage new BasicColor(mc);
+	 * @param mc a MovieClip
+	 * @return nothing
+	 */
 	public function BasicColor (mc:MovieClip) { 
 		super (mc) ;
 		_mc = mc ;
@@ -75,22 +80,61 @@ class asgard.colors.BasicColor extends Color implements IFormattable, IHashable 
 
 	// -----o Public Methods
 
+	/**
+	 * Return the BasicColor target MovieClip.
+	 * @since Flash 6
+	 * @usage getTarget();
+	 * @return mc a MovieClip
+	 */	
 	public function getTarget():MovieClip { 
 		return _mc ;
 	}
-	
+
+	/**
+	* This method is overrided !
+	* @return a Number
+	* @see vegas.core.HashCode
+	*/		
 	public function hashCode():Number {
 		return null ;
 	}
-	
+
+	/**
+	* Invert color of the MovieClip
+	* @example <pre>
+	* import asgard.colors.BasicColor;
+	* var c : BasicColor = new BasicColor (this);
+	* c.invert();
+	* </pre>
+	* @see asgard.colors.ColorUtil#invert
+	*/
 	public function invert():Void { 
 		ColorUtil.invert(this) ; 
 	}
 
+	/**
+	* Reset color of the MovieClip
+	* @example <pre>
+	* import asgard.colors.BasicColor;
+	* var c : BasicColor = new BasicColor (this);
+	* c.reset();
+	* </pre>
+	* @see asgard.colors.ColorUtil#reset
+	*/
 	public function reset():Void { 
 		ColorUtil.reset(this) ;
 	}
-	
+
+	/**
+	* Return current instance name
+	* @example <pre>
+	* import asgard.colors.BasicColor;
+	* var c : BasicColor = new BasicColor (this);
+	* trace (c.toString());
+	* </pre>
+	* @return a String, the current instance string name
+	* @see vegas.util.ConstructorUtil#getName
+	*/	
 	public function toString():String {
 		return "[" + ConstructorUtil.getName(this) + "]" ;
 	}

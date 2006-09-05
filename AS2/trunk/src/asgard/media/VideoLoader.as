@@ -176,17 +176,20 @@ import vegas.util.Timer;
 /**
  * @author eKameleon
  */
-class asgard.media.VideoLoader extends AbstractMediaLoader {
+class asgard.media.VideoLoader extends AbstractMediaLoader 
+{
 	
 	// ----o Constructor
 	
-	function VideoLoader( mcTarget:MovieClip , video:Video , sName:String ) {
+	function VideoLoader( mcTarget:MovieClip , video:Video , sName:String ) 
+	{
 		
 		super(mcTarget, sName);
 		
 		_oVideo = video ? video : _mcTarget.video ;
 		
-		if (_oVideo == undefined) {
+		if (_oVideo == undefined) 
+		{
 			throw new IllegalArgumentError( toString() + " failed. Invalid video object was passed in the constructor.") ;
 		}
 		
@@ -222,67 +225,83 @@ class asgard.media.VideoLoader extends AbstractMediaLoader {
 
 	// ----o Public Methods
 
-	public function getBytesLoaded():Number {
+	public function getBytesLoaded():Number 
+	{
 		var bytesLoaded:Number = _oNS.bytesLoaded ;
 		return isNaN(bytesLoaded) ? 0 : bytesLoaded ;
 	}
 
-	public function getBytesTotal():Number {
+	public function getBytesTotal():Number 
+	{
 		var bytesTotal:Number = _oNS.bytesTotal ;
 		return isNaN(bytesTotal) ? 0 : bytesTotal ;
 	}
 
-	/*override*/ public function getDuration():Number {
+	/*override*/ public function getDuration():Number 
+	{
 		return isNaN(_duration) ? 0 : _duration ;
 	}
 
-	public function getHeight() : Number {
+	public function getHeight() : Number 
+	{
 		return _mcTarget._height ;
 	}
 
-	public function getMetaData() {
+	public function getMetaData() 
+	{
 		return _oMetaData ;	
 	}
 
-	public function getTime():Number {
+	public function getTime():Number 
+	{
 		return getContent().time ;
 	}
 
-	public function getPosition():Number {
+	public function getPosition():Number 
+	{
 		return (duration > 0) ? Math.round(getTime() * 100 / getDuration()) : 0 ;
 	}
 
-	public function getVideo():Video {
+	public function getVideo():Video 
+	{
 		return _oVideo ;	
 	}
 
-	public function getWidth():Number {
+	public function getWidth():Number 
+	{
 		return _mcTarget._width ;
 	}
 	
-	public function isAutoSize():Boolean {
+	public function isAutoSize():Boolean 
+	{
 		return _bAutoSize ;
 	}
 
-	public function load(sURL:String):Void {
+	public function load(sURL:String):Void 
+	{
 		setUrl(sURL) ;
 	}
 	
-	public function move( x : Number, y : Number):Void {
+	public function move( x : Number, y : Number):Void 
+	{
 		_mcTarget._x = x ;
 		_mcTarget._y = y ;
 	}
 
-	public function pause(noEvent:Boolean):Void {
+	public function pause(noEvent:Boolean):Void 
+	{
 	
-		if (!isResumed() || isPlaying()) {
+		if (!isResumed() || isPlaying()) 
+		{
 			
 			setResumed(true) ;
 			_oNS.pause(true) ;	
 			stopProgress() ;
 			if (noEvent != true) notifyEvent(MediaEventType.MEDIA_RESUME) ;
 		
-		} else {
+		}
+		else 
+		{
 			
 			setResumed(false) ;
 			_oNS.pause( false ) ;
@@ -291,25 +310,31 @@ class asgard.media.VideoLoader extends AbstractMediaLoader {
 		}
 	}
 
-	public function play(n:Number, noEvent:Boolean):Void {
+	public function play(n:Number, noEvent:Boolean):Void 
+	{
 		
 		if (!isLoaded()) _load();
 		
-		if (!isNaN(n)) {
+		if (!isNaN(n)) 
+		{
 			_oNS.seek(n) ;
-		} else {
+		}
+		else 
+		{
 			_oNS.seek(0) ;	
 		}
 		
 		_oNS.pause(false) ;
 		startProgress() ;
-		if (noEvent != true) {
+		if (noEvent != true) 
+		{
 			notifyEvent(MediaEventType.MEDIA_START) ;
 		}
 		
 	}
 	
-	public function release():Void {
+	public function release():Void 
+	{
 		_oMetaData = null  ;
 		_oNS.close() ;
 		_oNC.close() ;
@@ -318,55 +343,75 @@ class asgard.media.VideoLoader extends AbstractMediaLoader {
 		super.release() ;
 	}
 	
-	public function setAutoSize(b:Boolean):Void 	{
+	public function setAutoSize(b:Boolean):Void 
+	{
 		_bAutoSize = b ;
 	}
 	
-	public function setBufferTime(n:Number):Void {
+	public function setBufferTime(n:Number):Void 
+	{
 		_nBufferTime = n ;
 	}
 	
-	public function setDuration(n:Number):Void {
+	public function setDuration(n:Number):Void 
+	{
 		_duration = (n>0) ? n : 0 ;
 	}
 
-	public function setTime(n:Number):Void {
+	public function setTime(n:Number):Void 
+	{
 		_oNS.seek(n);
 	}
 	
-	/*override*/ public function setPosition(n:Number):Void {
+	/*override*/ public function setPosition(n:Number):Void 
+	{
 		setTime(Math.ceil(Range.PERCENT_RANGE.clamp(n) * 100 / getDuration())) ;
 	}
 
-	public function setSize(w:Number, h:Number):Void {
+	public function setSize(w:Number, h:Number):Void 
+	{
 		_mcTarget._width = w ;
 		_mcTarget._height = h ;
 	}
 
-	public function setUrl( sURL:String ) : Void {
-		try {
-			if (sURL) {
+	public function setUrl( sURL:String ):Void 
+	{
+		try 
+		{
+			if (sURL) 
+			{
 				super.setUrl( sURL ) ;
 				setLoaded(false) ;
-				if (isPlaying()) {
+				if (isPlaying()) 
+				{
 					this.play(0);
-				} else {
+				}
+				else 
+				{
 					_load() ;
 				}
-			} else {
+			}
+			else 
+			{
 				throw new Warning( toString() + " got invalid url property, can't load." );
 			}
-		} catch (e:Warning) {
-			trace(e.toString()) ;	
+		} 
+		catch (e:Warning) 
+		{
+			trace("> " + this + " : " + e.toString()) ;	
 		}
 	}
 
 	public function stop():Void {
-		if (isResumed() || isPlaying()) {
+		if (isResumed() || isPlaying()) 
+		{
 			_oNS.close() ;
 			_oVideo.clear() ;
 			setLoaded(false) ;
-			if ( isResumed() ) setResumed(false) ;
+			if ( isResumed() ) 
+			{
+				setResumed(false) ;
+			}
 			stopProgress() ;
 			notifyEvent(MediaEventType.MEDIA_PROGRESS) ;
 			notifyEvent(MediaEventType.MEDIA_STOP) ;
@@ -375,18 +420,19 @@ class asgard.media.VideoLoader extends AbstractMediaLoader {
 
 	// ----o Protected Methods
 	
-	private function _load():Void {
-		
-		try {
-			if ( this.getUrl() == undefined ) {
+	private function _load():Void 
+	{
+		try 
+		{
+			if ( this.getUrl() == undefined ) 
+			{
 				throw new UnsupportedOperation( toString() + " can't play without any valid url property, loading fails.");
 			}
-			
-		} catch (e:UnsupportedOperation) {
-			
+		} 
+		catch (e:UnsupportedOperation) 
+		{
 			trace(e.toString()) ;
 			// return ;
-				
 		}
 		
 		setLoaded(true) ;
@@ -394,7 +440,8 @@ class asgard.media.VideoLoader extends AbstractMediaLoader {
 		_oNS.setBufferTime( _nBufferTime ) ;
 		_oNS.play( this.getUrl() );
 		startProgress() ;
-		if (!isAutoPlay() ) {
+		if (!isAutoPlay() ) 
+		{
 			this.pause(true) ;
 		} 
 		super.load();
@@ -419,7 +466,8 @@ class asgard.media.VideoLoader extends AbstractMediaLoader {
 	
 	// ----o Private Methods
 
-	private function _onMetaData (info:Object):Void {
+	private function _onMetaData (info:Object):Void 
+	{
 		
 		_oMetaData = info ;
 		
@@ -427,7 +475,8 @@ class asgard.media.VideoLoader extends AbstractMediaLoader {
 		
 		setDuration( isNaN(info.duration) ? 0 : parseInt(info.duration) ) ;
 		
-		if (isAutoSize()) {
+		if (isAutoSize()) 
+		{
 		
 			setSize( info.width , info.height) ;	
 			
@@ -435,7 +484,8 @@ class asgard.media.VideoLoader extends AbstractMediaLoader {
 
 	}
 		
-	private function _onStatus(info:Object):Void {
+	private function _onStatus(info:Object):Void 
+	{
 		
 		trace("> " + this + " : " + info.code) ;
 		
@@ -454,9 +504,12 @@ class asgard.media.VideoLoader extends AbstractMediaLoader {
 					
 					trace(toString() + " stream stops playing.");
 					
-					if (isLoop()) {
+					if (isLoop()) 
+					{
 						this.play(0) ;
-					} else {
+					}
+					else 
+					{
 						this.stop() ;	
 					}
 					
@@ -496,7 +549,8 @@ class asgard.media.VideoLoader extends AbstractMediaLoader {
 		}
 	}
 
-	private function _onFrameUpdate():Void {
+	private function _onFrameUpdate():Void 
+	{
 		_oNS.pause(true) ;					
 		stopProgress() ;				
 	}

@@ -90,7 +90,7 @@
  *
  *	IMPLEMENTS
  *	 
- *	  	IConfigurable
+ *		EventTarget, IConfigurable, IEventDispatcher, IFormattable, IHashable, ISerializable
  *
  */
 

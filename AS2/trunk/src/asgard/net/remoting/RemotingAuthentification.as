@@ -53,6 +53,8 @@
 				
 		- toObject():Object
 	
+	 	- toSource():String
+
 		- toString():String
 
 	INHERIT
@@ -61,9 +63,9 @@
 		
 	IMPLEMENTS
 	
-		IHashable, IFormattable
+		IHashable, IFormattable, ISerializable
 
-**/ 
+*/ 
 
 import vegas.core.CoreObject;
 
@@ -97,6 +99,13 @@ class asgard.net.remoting.RemotingAuthentification extends CoreObject
 	public function toObject():Object
 	{
 		return { userid : userid , password: password } ; 
+	}
+	
+	// -----o Public Methods
+	
+	/*override*/ public function toSource():String
+	{
+		return 'new asgard.remoting.RemotingAuthentification("' + userid + '","' + password + '")' ;	
 	}
 	
 }
