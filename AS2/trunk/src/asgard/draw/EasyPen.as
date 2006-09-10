@@ -151,8 +151,11 @@ class asgard.draw.EasyPen extends AbstractPen {
 
 	// ----o Public Properties
 
-	// public var align:Number ; // [R/W]
-
+	/**
+	 * Indique en cas de besoin si la méthode draw finie par un endFill() ou non.
+	 */
+	public var isEndFill:Boolean = true ;
+	
 	// ----o Public Methods
 
 	public function getAlign():Number 

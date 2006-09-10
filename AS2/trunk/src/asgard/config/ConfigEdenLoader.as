@@ -65,7 +65,7 @@ class asgard.config.ConfigEdenLoader extends EdenLoader
 		
 		_oConfig = config || Config.getInstance() ;
 		
-		ConfigEdenLoader.protectConfig( _oConfig ) ;
+		//ConfigEdenLoader.protectConfig( _oConfig ) ;
 		
 		_logger = Log.getLogger("asgard.config") ;
 		
@@ -120,10 +120,11 @@ class asgard.config.ConfigEdenLoader extends EdenLoader
 		
 	}
 	
-	public function load( fileName:String ):Void {
+	public function load( fileName:String ):Void 
+	{
 		if (fileName) setFileName(fileName) ;
 		var uri:String = getPath() + getFileName() + getSuffix() ;
-		var request:URLRequest = new URLRequest(uri) ;
+		var request:URLRequest = new URLRequest("config/config.eden") ;
 		super.load( request ) ;
 	}
 
@@ -156,27 +157,33 @@ class asgard.config.ConfigEdenLoader extends EdenLoader
 
 	// ----o Virtual Properties
 
-	public function get fileName():String {
+	public function get fileName():String 
+	{
 		return getFileName() ;	
 	}
 	
-	public function set fileName(s:String):Void {
+	public function set fileName(s:String):Void 
+	{
 		setFileName(s) ;	
 	}
 
-	public function get path():String {
+	public function get path():String 
+	{
 		return getPath() ;	
 	}
 	
-	public function set path(s:String):Void {
+	public function set path(s:String):Void 
+	{
 		setPath(s) ;	
 	}
 
-	public function get suffix():String {
+	public function get suffix():String 
+	{
 		return getSuffix() ;	
 	}
 	
-	public function set suffix(s:String):Void {
+	public function set suffix(s:String):Void 
+	{
 		setSuffix(s) ;	
 	}
 	

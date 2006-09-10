@@ -162,7 +162,7 @@ class asgard.draw.RectanglePen extends EasyPen {
 	public var w:Number ;
 	public var x:Number ;
 	public var y:Number ;
-	
+		
 	// -----o Public Methods
 	
 	public function clone() {
@@ -185,7 +185,7 @@ class asgard.draw.RectanglePen extends EasyPen {
 		lineTo(nW, nH) ;
 		lineTo(nX, nH) ;
 		lineTo(nX, nY) ;
-		endFill() ;		
+		if (isEndFill) endFill() ;		
 	}
 	
 	public function getRectangle():Rectangle {

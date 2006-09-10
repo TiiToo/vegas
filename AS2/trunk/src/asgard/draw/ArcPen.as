@@ -242,7 +242,7 @@ class asgard.draw.ArcPen extends EasyPen
 				lineTo(ax, ay); // CHORD or other value
 			}
 		}
-		endFill() ;
+		if (isEndFill) endFill() ;	
 	}
 
 	public function getAngle():Number 

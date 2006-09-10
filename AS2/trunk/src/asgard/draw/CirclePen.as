@@ -209,6 +209,8 @@ class asgard.draw.CirclePen extends EasyPen {
 			curveTo(cx, cy, px, py) ;
 		}
 		
+		if (isEndFill) endFill() ;	
+		
 	}
 
 	public function setPen(nX:Number, nY:Number, nRadius:Number, nAlign:Number):Void

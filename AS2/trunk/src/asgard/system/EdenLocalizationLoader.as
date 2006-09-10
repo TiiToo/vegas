@@ -114,15 +114,10 @@ class asgard.system.EdenLocalizationLoader extends EdenLoader implements ILocali
 	public function load( lang:Lang ):Void 
 	{
 		
-		trace(lang + " : " ) ;
-		
 		if (Lang.validate(lang)) 
 		{
 			var uri:String = getPath() + getPrefix() + lang + getSuffix() ;
 			var request:URLRequest = new URLRequest(uri) ;
-			
-			trace(uri) ;
-			
 			super.load( request ) ;
 		}
 		else 

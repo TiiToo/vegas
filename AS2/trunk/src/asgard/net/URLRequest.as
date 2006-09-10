@@ -159,23 +159,30 @@ class asgard.net.URLRequest extends CoreObject implements ICloneable {
 		_oData = oData ;	
 	}
 
-	public function setMethod(sMethod:String):Void {
-		if (URLRequestMethod.validate(sMethod)) {
+	public function setMethod(sMethod:String):Void 
+	{
+		if (URLRequestMethod.validate(sMethod)) 
+		{
 			_sMethod = sMethod ;
-		} else {
+		}
+		else 
+		{
 			throw new ArgumentsError(this + ".setMethod("+ sMethod + ") argument is not a URLRequestHeader value" ) ;	
 		}
 	}
 
-	public function setRequestHeaders(ar:Array):Void {
+	public function setRequestHeaders(ar:Array):Void 
+	{
 		_aRequestHeaders = ar ;
 	}
 
-	public function setUrl(sURL:String):Void {
+	public function setUrl(sURL:String):Void 
+	{
 		_sURL = sURL ;	
 	}
 		
-	public function setUseCodePage(b:Boolean):Void {
+	public function setUseCodePage(b:Boolean):Void 
+	{
 		_bUseCodePage = b ;
 	}
 
@@ -184,61 +191,78 @@ class asgard.net.URLRequest extends CoreObject implements ICloneable {
 	/**
 	 * The MIME content type of any POST data.
 	 */
-	public function get contentType():String {
+	public function get contentType():String 
+	{
 		return getContentType() ;
 	}
-	public function set contentType(s:String):Void {
+	
+	public function set contentType(s:String):Void 
+	{
 		setContentType(s) ;	
 	}
 
 	/**
 	 * An object containing data to be transmitted with the URL request.
 	 */
-	public function get data() {
+	public function get data() 
+	{
 		return getData() ;
 	}
-	public function set data(o):Void {
+	
+	public function set data(o):Void 
+	{
 		setData(o) ;	
 	}
 
 	/**
 	 * Controls whether the HTTP form submission method is a GET or POST operation.
 	 */
-	public function get method():String {
+	public function get method():String 
+	{
 		return getMethod() ;
 	}
-	public function set method(s:String):Void {
+	
+	public function set method(s:String):Void 
+	{
 		setMethod(s) ;	
 	}
 
 	/**
 	 * The array of HTTP request headers to be appended to the HTTP request.
 	 */
-	public function get requestHeaders():Array {
+	public function get requestHeaders():Array 
+	{
 		return getRequestHeaders() ;
 	}
-	public function set requestHeaders(ar:Array):Void {
+	
+	public function set requestHeaders(ar:Array):Void 
+	{
 		setRequestHeaders(ar) ;	
 	}
 
 	/**
 	 * The URL to be requested.
 	 */
-	public function get url():String {
+	public function get url():String 
+	{
 		return this.getUrl() ;
 	}
 	
-	public function set url(sURL:String):Void {
+	public function set url(sURL:String):Void 
+	{
 		setUrl(sURL) ;	
 	}
 
 	/**
 	 * If true, the request is encoded using the system code page, rather than Unicode.
 	 */
-	public function get useCodePage():Boolean {
+	public function get useCodePage():Boolean 
+	{
 		return getUseCodePage() ;
 	}
-	public function set useCodePage(b:Boolean):Void {
+	
+	public function set useCodePage(b:Boolean):Void 
+	{
 		setUseCodePage(b) ;	
 	}
 	

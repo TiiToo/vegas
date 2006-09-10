@@ -212,7 +212,8 @@ class asgard.draw.EllipsePen extends EasyPen {
 			py = y + Math.sin(angle) * yradius ;
 			
 			curveTo(cx, cy, px, py) ;
-		}	
+		}
+		if (isEndFill) endFill() ;	
 		
 	}
 

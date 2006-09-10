@@ -74,8 +74,10 @@ class lunas.display.components.bar.AbstractProgressbar extends AbstractComponent
 
 	// ----o Constructor
 	
-	private function AbstractProgressbar() {
+	private function AbstractProgressbar() 
+	{
 		_rPercent = Range.PERCENT_RANGE ;
+		_nDirection = Direction.HORIZONTAL ;
 	}
 
 	// ----o Constant
@@ -87,7 +89,6 @@ class lunas.display.components.bar.AbstractProgressbar extends AbstractComponent
 	// ----o Public Properties
 	
 	public var autoResetPosition:Boolean = false ;
-
 
 	// ----o Virtual Properties
 
@@ -160,7 +161,7 @@ class lunas.display.components.bar.AbstractProgressbar extends AbstractComponent
 
 	// ----o Private Properties
 
-	private var _nDirection:Number = Direction.HORIZONTAL ; 
+	private var _nDirection:Number ;
 	private var _position:Number = 0 ;
 	private var _rPercent:Range ;
 	

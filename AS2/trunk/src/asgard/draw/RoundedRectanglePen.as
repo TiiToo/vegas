@@ -233,7 +233,7 @@ class asgard.draw.RoundedRectanglePen extends CornerRectanglePen {
 			} else {
 				lineTo( nX , nY ) ;
 			}
-			endFill () ;
+			if (isEndFill) endFill() ;	
 			_angle = null ;
 			
 		} else {

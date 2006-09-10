@@ -226,61 +226,68 @@ class asgard.net.URLLoader extends AbstractLoader
 	public function isLoaded():Boolean {
 		return getContent().loaded ;	
 	}	
+	
+	// FIXME : IMPORTANT ici tout vérifier et Tests !!!!
 
 	/*override*/ public function load(request:URLRequest):Void {
 		
 		_oData = null ;
 		
+		var datas:Object = {} ;
+		
 		if (request) {
 		
 			System.useCodepage = (request.getUseCodePage() || false) ;
 			
-			if (request.getUrl() != undefined) {
+			if (request.getUrl() != undefined) 
+			{
 				//trace("request url not undefined : " + request.getUrl()) ;
 				setUrl( request.getUrl() ) ;
 			}
 			
 			_sContentType = request.getContentType() || URLRequest.DEFAULT_CONTENT_TYPE ;
+			
 			_sMethod = request.getMethod() ;
+			
 			_aHeaders = request.getRequestHeaders() ;
 			
-		}
-		
-		var sender ;
 			
-		switch (getDataFormat()) {
-			case DataFormat.BINARY :
-				sender = new Object() ;
-				break ;
-			default :
-				sender = new LoadVars() ;
-				break ;
+			
 		}
 		
-		sender.contentType = _sContentType ;
+		var sender:LoadVars = new LoadVars() ;
+		//sender.contentType = _sContentType ;
+		
+		for (var prop:String in request.data)
+		{
+			sender[prop] = request.data[prop] ;	
+		}
 		
 		var len:Number = _aHeaders.length ;
-		if (len > 0) {
-			while(--len > -1) {
+		if (len > 0) 
+		{
+			while(--len > -1) 
+			{
 				var header:URLRequestHeader = _aHeaders[len] ;
-				LoadVars.prototype.addRequestHeader.call( sender, header.name , header.value ) ;
+				sender.addRequestHeader( header.name , header.value ) ;
 			} 
 		}
 		
-		var receive = new LoadVars() ;
+		var receive:LoadVars = new LoadVars() ;
+		//receive.onHTTPStatus = Delegate.create(this, _onHTTPStatus, receive) ;
 		receive.onData = Delegate.create(this, _onData) ;
 
 		setContent( receive ) ;
 				
 		notifyEvent(LoaderEventType.START) ;
 
-		sender.sendAndLoad = LoadVars.prototype.sendAndLoad ;
-		
-		LoadVars.prototype.sendAndLoad.call(sender, this.getUrl(), receive, _sMethod ) ;
+		sender.sendAndLoad(this.getUrl(), receive, _sMethod ) ;
 		
   		super.load() ;
   		
   	}
+  	
+
     
   	/*override*/ public function onLoadInit(e:LoaderEvent):Void {
 		// overwriting for delaying 'onLoadInit' broadcast
@@ -326,13 +333,18 @@ class asgard.net.URLLoader extends AbstractLoader
 	
 	// ----o Private Methods
 	
+	// FIXME : REFACTORING COMPLET DE CETTE CLASSE !!! 
+	
 	private function _onData( source:String ) {
 
-		if (source == undefined) {
+		if (source == undefined) 
+		{
 			
 			_onLoad(false) ;
 			
-		} else {
+		}
+		else 
+		{
 		
 			switch (getDataFormat()) {
 			
@@ -357,10 +369,46 @@ class asgard.net.URLLoader extends AbstractLoader
 	}
 	
 	private function _onLoad(success:Boolean):Void {
-		if (success) {
+		
+		if (success) 
+		{
 			checkData() ;
-		} else {
+		}
+		else 
+		{
 			notifyError(this + " : Unload to load/parse URL file : " + this.getUrl() , null ) ;
 		}
 	}
+	
+  	private function _onHTTPStatus( httpStatus:Number , loader)
+  	{
+  		var httpStatusType:String = "unknow httpstatus" ;
+     	if(httpStatus < 100) 
+     	{
+          	httpStatusType = "flashError";
+     	}
+     	else if(httpStatus < 200) 
+     	{
+         	httpStatusType = "informational";
+     	}
+     	else if(httpStatus < 300) 
+     	{
+        	httpStatusType = "successful";
+     	}
+     	else if(httpStatus < 400) 
+     	{
+          	httpStatusType = "redirection";
+     	}
+     	else if(httpStatus < 500) 
+     	{
+         	 httpStatusType = "clientError";
+     	}
+     	else if(httpStatus < 600) 
+     	{
+          	httpStatusType = "serverError";
+     	}
+     	
+     	trace("> " + this + " HTTP status : " + httpStatusType) ;
+  		
+  	}
 }

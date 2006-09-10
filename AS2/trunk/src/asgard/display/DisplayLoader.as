@@ -33,17 +33,21 @@ import vegas.errors.IllegalArgumentError;
 /**
  * @author eKameleon
  */
-class asgard.display.DisplayLoader extends AbstractLoader {
+class asgard.display.DisplayLoader extends AbstractLoader 
+{
 	
 	// ----o Constructor
 	
-	function DisplayLoader( mcTarget:MovieClip, nDepth:Number, bAutoShow:Boolean  ) {
+	function DisplayLoader( mcTarget:MovieClip, nDepth:Number, bAutoShow:Boolean  ) 
+	{
 		
 		super() ;
 		
-		if (! mcTarget) {
+		if (! mcTarget) 
+		{
 			throw new IllegalArgumentError(this + " mcTarget argument is undefined.") ;
 		}
+		
 		nDepth = (isNaN(nDepth)) ? 1 : nDepth ;
 		
 		HashCode.identify( mcTarget ) ;
@@ -59,23 +63,28 @@ class asgard.display.DisplayLoader extends AbstractLoader {
 	
 	// ----o Public Methods
 
-	static public function getLoaderUrl():String {
+	static public function getLoaderUrl():String 
+	{
 		return _root._url ;
 	}
 
-	public function getView():MovieClip {
+	public function getView():MovieClip 
+	{
 		return MovieClip(super.getContent()) ;
 	}
 	
-	public function hide():Void {
+	public function hide():Void 
+	{
 		_container._visible = false ;
 	}
 
-	/*override*/ public function initEvent():Void {
+	/*override*/ public function initEvent():Void 
+	{
 		_e = new DisplayLoaderEvent(null, this) ;
 	}
 
-	public function isAutoShow():Boolean {
+	public function isAutoShow():Boolean 
+	{
 		return _isAutoShow ;	
 	}
 	
@@ -83,8 +92,12 @@ class asgard.display.DisplayLoader extends AbstractLoader {
 		return _container._visible ;	
 	}
 
-	/*override*/ public function load(request:URLRequest):Void {
-		if (request.getUrl() != undefined) setUrl( request.getUrl() );
+	/*override*/ public function load(request:URLRequest):Void 
+	{
+		if (request.getUrl() != undefined) 
+		{
+			setUrl( request.getUrl() );
+		}
 		release() ;
 		setContent( _container.createEmptyMovieClip("__mcExternal", 1) ) ;
 		notifyEvent(LoaderEventType.START) ;
@@ -93,15 +106,20 @@ class asgard.display.DisplayLoader extends AbstractLoader {
 		super.load() ;
 	}
 
-	/*override*/ public function onLoadInit():Void {
-		if (_sName) {
+	/*override*/ public function onLoadInit():Void 
+	{
+		if (_sName) 
+		{
 			
-			if (!(DisplayLoaderCollector.contains(_sName))) {
+			if (!(DisplayLoaderCollector.contains(_sName))) 
+			{
 				
 				_isCollected = true ;
 				DisplayLoaderCollector.insert( _sName, this ) ;
 				
-			} else {
+			} 
+			else 
+			{
 				_isCollected = false ;
 				// TODO créer une erreur.
 				notifyError( this + " can't be collected to [DisplayCollector] with '" + _sName + "' name. This name already exists." ) ;
@@ -114,17 +132,20 @@ class asgard.display.DisplayLoader extends AbstractLoader {
 		
 	}
 	
-	/*override*/ public function release():Void {
+	/*override*/ public function release():Void 
+	{
 		super.release() ;
 		getContent().removeMovieClip() ;
 		_container._visible = _isAutoShow ;
-		if (_isCollected) {
+		if (_isCollected) 
+		{
 			DisplayLoaderCollector.remove(_sName) ;
 			_isCollected = false ;	
 		}	
 	}
 	
-	public function setAutoShow(b:Boolean):Void {
+	public function setAutoShow(b:Boolean):Void 
+	{
 		_isAutoShow = b ;
 	}
 

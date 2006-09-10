@@ -148,8 +148,14 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener 
 			if (loader.getName() == undefined) {
 				throw new Warning("You passed ILoader object without any name property in " + this + ".enqueue()." ) ;
 			}
-		} catch(e:Warning) {
+		}
+		catch(e:Warning) 
+		{
 			e.toString() ;
+		}
+		catch(e:Error)
+		{
+			e.toString() ;	
 		}
 
 		try {

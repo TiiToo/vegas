@@ -231,7 +231,7 @@ class asgard.draw.BevelRectanglePen extends CornerRectanglePen {
 			} else {
 				lineTo( nX , nY ) ;
 			}
-			
+			if (isEndFill) endFill() ;	
 		} else {
 			super.draw.apply(this) ;
 		}

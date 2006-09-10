@@ -256,7 +256,7 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 			_current = lang ;
 			if ( contains(lang) ) 
 			{
-				notifyChange() ;	
+				notifyChange() ;
 			}
 			else 
 			{
