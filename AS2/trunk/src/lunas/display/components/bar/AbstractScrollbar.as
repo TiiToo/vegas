@@ -103,7 +103,7 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 	{
 		_eDrag = new ButtonEvent(ButtonEventType.DRAG, this) ;
 		_eStartDrag = new ButtonEvent(ButtonEventType.START_DRAG, this) ;
-		_eStopDrag = new ButtonEvent(ButtonEventType.START_DRAG, this) ;
+		_eStopDrag = new ButtonEvent(ButtonEventType.STOP_DRAG, this) ;
 		
 		 // Fix bug with MTASC ! I must declare the value with Static Property in the constructor
 		_nDirection = Direction.VERTICAL ;
@@ -113,6 +113,8 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 	// ----o Constant
 	
 	static public var DRAG:String = ButtonEventType.DRAG ;
+	static public var START_DRAG:String = ButtonEventType.START_DRAG ;
+	static public var STOP_DRAG:String = ButtonEventType.STOP_DRAG ;
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(AbstractScrollbar, null, 7, 7) ;
 	
