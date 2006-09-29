@@ -123,6 +123,7 @@ class asgard.colors.ColorHTML extends Number implements IConvertible, IEquality,
 	{
 		super(n) ;
 		this.name = name ;
+		this.value = n ;
 	}
 	
 	// ----o Constants
@@ -162,6 +163,7 @@ class asgard.colors.ColorHTML extends Number implements IConvertible, IEquality,
 	// ----o Public Propeerties
 	
 	public var name:String ;
+	public var value:Number ;
 
 	// ----o Public Methods
 
@@ -204,6 +206,11 @@ class asgard.colors.ColorHTML extends Number implements IConvertible, IEquality,
 	public function toString():String 
 	{
 		return name ;
+	}
+	
+	public function valueOf():Number
+	{
+		return value ;	
 	}
 
 }

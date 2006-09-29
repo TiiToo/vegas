@@ -132,11 +132,13 @@
 
 import asgard.events.MouseEvent;
 
-class asgard.events.ButtonEvent extends MouseEvent {
+class asgard.events.ButtonEvent extends MouseEvent 
+{
 
 	// ----o Constructor
 	
-	public function ButtonEvent(
+	public function ButtonEvent
+	(
 		type:String, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number
 		, p_localX:Number, p_localY:Number, p_relatedObject:Number, p_ctrlKey:Boolean, p_altKey:Boolean
 		, p_shiftKey:Boolean, p_buttonDown:Boolean, p_delta:Number

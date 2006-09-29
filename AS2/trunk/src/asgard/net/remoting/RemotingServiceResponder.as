@@ -93,7 +93,6 @@ class asgard.net.remoting.RemotingServiceResponder extends CoreObject
 	
 	public function onResult( oResult ):Void 
 	{
-		
 		if (oResult instanceof RecordSet) 
 		{
 			oResult.setParentService( getService() ) ;

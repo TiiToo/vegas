@@ -79,7 +79,8 @@ class asgard.display.Align {
 
 	// ----o Constructor
 
-    private function Align() {
+    private function Align() 
+    {
 		//
 	}
 	
@@ -111,8 +112,10 @@ class asgard.display.Align {
 
 	// ----o Public Methods
 
-	static public function toNumber(str:String):Number {
-		switch (str.toLowerCase()) {
+	static public function toNumber(str:String):Number 
+	{
+		switch (str.toLowerCase()) 
+		{
 			case "l" : 
 				return Align.LEFT ;
 			case "r" :

@@ -77,12 +77,17 @@ class asgard.display.DisplayObjectCollector {
 		return _map.containsKey( sName ) ;	
 	}
 	
-	static public function get(sName:String):DisplayObject {
-		try {
-			if (!contains(sName) ) {
+	static public function get(sName:String):DisplayObject 
+	{
+		try 
+		{
+			if (!contains(sName) ) 
+			{
 				throw new Warning("[DisplayObjectCollector].get(\"" + sName + "\"). Can't find DisplayObject instance." ) ;
 			} ;
-		} catch (e:Warning) {
+		}
+		catch (e:Warning) 
+		{
 			e.toString() ;
 		}
 		
@@ -90,11 +95,15 @@ class asgard.display.DisplayObjectCollector {
 	}
 	
 	static public function insert(sName:String, dObject:DisplayObject):Boolean {
-		try {
-			if ( contains(sName) ) {
+		try 
+		{
+			if ( contains(sName) ) 
+			{
 				throw new Warning("[DisplayObjectCollector].insert(). A DisplayObject instance is already registered with '" + sName + "' name." ) ;
 			} ;
-		} catch (e:Warning) {
+		}
+		catch (e:Warning) 
+		{
 			e.toString() ;
 		}
 		return Boolean(_map.put(sName, dObject))   ;	

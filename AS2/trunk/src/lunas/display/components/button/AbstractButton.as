@@ -132,7 +132,8 @@ class lunas.display.components.button.AbstractButton extends AbstractComponent i
 
 	// ----o Constructor
 
-	private function AbstractButton () {
+	private function AbstractButton () 
+	{
 		initButtonEvent() ; 
 		_rg = RadioButtonGroup.getInstance()  ;
 	}
@@ -147,55 +148,73 @@ class lunas.display.components.button.AbstractButton extends AbstractComponent i
 	
 	// ----o Public Methods
 	
-	public function getLabel():String {
+	public function getLabel():String 
+	{
 		return _label || "" ;
 	}
 		
-	public function getSelected():Boolean {
+	public function getSelected():Boolean 
+	{
 		return _selected ;
 	}
 	
-	public function getToggle():Boolean {
+	public function getToggle():Boolean 
+	{
 		return _toggle ;
 	}
 	
-	public function groupPolicyChanged():Void {
+	public function groupPolicyChanged():Void 
+	{
 		_rg.setGroupName( _groupName, this ) ;
-		if (group) {
+		if (group) 
+		{
 			_rg.addButton( this ) ;
 			addEventListener(ButtonEventType.DOWN, _rg) ;
-		} else {
+		}
+		else 
+		{
 			_rg.removeButton( this ) ;
 			removeEventListener(ButtonEventType.DOWN, _rg) ;
 		}
 	}
 
-	public function initButtonEvent():Void {
+	public function initButtonEvent():Void 
+	{
 		_eButton = new ButtonEvent() ;	
 	}
 
-	public function setLabel(str:String):Void {
+	public function setLabel(str:String):Void 
+	{
 		_label = str ; 
 		viewLabelChanged() ;
 		_fireButtonEvent(ButtonEventType.LABEL_CHANGE) ;
 	}
 
-	public function setSelected (b:Boolean, noEvent:Boolean):Void {
+	public function setSelected (b:Boolean, noEvent:Boolean):Void 
+	{
 		_selected =  (_toggle)  ? b : null ;
 		_fireButtonEvent (_selected ? ButtonEventType.DOWN : ButtonEventType.UP ) ;
-		if (!noEvent) _fireButtonEvent (_selected ? ButtonEventType.SELECT : ButtonEventType.UNSELECT) ;
+		if (!noEvent) 
+		{
+			_fireButtonEvent (_selected ? ButtonEventType.SELECT : ButtonEventType.UNSELECT) ;
+		}
 	}
 	
-	public function setToggle(b:Boolean):Void {
+	public function setToggle(b:Boolean):Void 
+	{
 		_toggle = b ;	
 		setSelected (false, true) ;
 	}
 
-	/*final*/ public function viewEnabled():Void {
+	/*final*/ public function viewEnabled():Void 
+	{
 		var type:String ;
-		if (enabled) {
+		if (enabled) 
+		{
 			type = (toggle && selected) ? ButtonEventType.DOWN : ButtonEventType.UP ;
-		} else {
+		}
+		else 
+		{
 			type = ButtonEventType.DISABLED ;
 		}
 		_fireButtonEvent( type ) ;
@@ -207,27 +226,33 @@ class lunas.display.components.button.AbstractButton extends AbstractComponent i
 
 	// ----o Virtual Properties
 	
-	public function get label():String {
+	public function get label():String 
+	{
 		return getLabel() ;
 	}
 	
-	public function set label(s:String):Void {
+	public function set label(s:String):Void 
+	{
 		setLabel(s) ;	
 	}
 		
-	public function get selected():Boolean {
+	public function get selected():Boolean 
+	{
 		return getSelected() ;	
 	}
 	
-	public function set selected(b:Boolean):Void {
+	public function set selected(b:Boolean):Void 
+	{
 		setSelected(b);	
 	}	
 	
-	public function get toggle():Boolean {
+	public function get toggle():Boolean 
+	{
 		return getToggle() ;	
 	}
 	
-	public function set toggle(b:Boolean):Void {
+	public function set toggle(b:Boolean):Void 
+	{
 		setToggle(b);	
 	}	
 	
@@ -242,40 +267,59 @@ class lunas.display.components.button.AbstractButton extends AbstractComponent i
 	
 	// ----o Private Methods
 
-	private function _fireButtonEvent( eventType:String ):Void {
+	private function _fireButtonEvent( eventType:String ):Void 
+	{
 		_eButton.setType(eventType) ;
 		_eButton.setTarget(this) ;
 		dispatchEvent( _eButton ) ;
 	}
 
-	private function onPress():Void {
-		if (_toggle) {
+	private function onPress():Void 
+	{
+		if (_toggle) 
+		{
 			setSelected (!_selected);
-		} else {
+		}
+		else 
+		{
 			_fireButtonEvent(ButtonEventType.DOWN) ;
 		}
 		_fireButtonEvent(ButtonEventType.CLICK) ;
 		_fireButtonEvent(ButtonEventType.MOUSE_DOWN) ;
 	}
 
-	private function onRelease():Void { 
+	private function onRelease():Void 
+	{ 
 		if ( !_toggle ) _fireButtonEvent(ButtonEventType.UP) ;
 		_fireButtonEvent(ButtonEventType.MOUSE_UP) ;
 	}
 	
 	private var onReleaseOutside:Function = AbstractButton.prototype.onRelease ;
 	
-	private function onRollOut():Void {
-		if ( !_toggle || !_selected ) {
+	private function onRollOut():Void 
+	{
+		if ( !_toggle || !_selected ) 
+		{
 			_fireButtonEvent(ButtonEventType.UP) ;
 			_fireButtonEvent(ButtonEventType.OUT) ;
-		} else if (_selected)_fireButtonEvent(ButtonEventType.OUT_SELECTED) ;
+		}
+		else if (_selected)
+		{
+			_fireButtonEvent(ButtonEventType.OUT_SELECTED) ;
+		}
 		_fireButtonEvent(ButtonEventType.ROLLOUT) ;
 	}
 
-	private function onRollOver():Void {
-		if ( !_toggle || !_selected ) _fireButtonEvent(ButtonEventType.OVER) ;
-		else if (_selected) _fireButtonEvent(ButtonEventType.OVER_SELECTED) ;
+	private function onRollOver():Void 
+	{
+		if ( !_toggle || !_selected ) 
+		{
+			_fireButtonEvent(ButtonEventType.OVER) ;
+		}
+		else if (_selected) 
+		{
+			_fireButtonEvent(ButtonEventType.OVER_SELECTED) ;
+		}
 		_fireButtonEvent(ButtonEventType.ROLLOVER) ;
 	}	
 	

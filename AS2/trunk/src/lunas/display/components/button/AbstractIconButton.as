@@ -146,10 +146,13 @@ import lunas.display.components.button.AbstractButton;
 
 class lunas.display.components.button.AbstractIconButton extends AbstractButton {
 
-	// ----o Constructor
-
-	private function AbstractIconButton () { 
-		
+	/**
+	 * Abstract constructor.
+	 * @private
+	 */
+	private function AbstractIconButton () 
+	{ 
+		//	
 	}
 
 	// ----o Public Properties
@@ -158,55 +161,69 @@ class lunas.display.components.button.AbstractIconButton extends AbstractButton 
 
 	// ----o Public Methods
 	
-	public function attachIcon(depth:Number):MovieClip {
-		if (_mcIcon) _mcIcon.removeMovieClip() ;
-		if (getIcon() != undefined) {
+	public function attachIcon(depth:Number):MovieClip 
+	{
+		if (_mcIcon) 
+		{
+			_mcIcon.removeMovieClip() ;
+		}
+		if (getIcon() != undefined) 
+		{
 			return attachMovie( getIcon(), "_mcIcon", isNaN(depth) ? 4 : depth ) ;
 		} else {
 			return null ;
 		}
 	}
 	
-	public function getIcon():String { 
+	public function getIcon():String 
+	{ 
 		return _sIcon ;
 	}
 	
-	public function getIconDepth():Number { 
+	public function getIconDepth():Number 
+	{ 
 		return _mcIcon.getDepth() ;
 	}
 	
-	public function getIconTarget():MovieClip { 
+	public function getIconTarget():MovieClip 
+	{ 
 		return _mcIcon ;
 	}
 
-	public function resetIconColor():Void {
+	public function resetIconColor():Void 
+	{
 		if (_mcIcon) ColorUtil.reset(new Color(_mcIcon)) ;
 	}
 
-	public function setIcon( str:String ) : Void {
+	public function setIcon( str:String ) : Void 
+	{
 		_sIcon = str ; 
 		viewIconChanged() ;
 		dispatchEvent(new ButtonEvent( ButtonEventType.ICON_CHANGE )) ;
 	}
 
-	public function setIconColor(hex:Number):Void {
+	public function setIconColor(hex:Number):Void 
+	{
 		resetIconColor() ; 
 		if ( _mcIcon && !isNaN(hex) ) {
 			(new Color(_mcIcon)).setRGB (hex) ;
 		}
 	}
 
-	public function viewIconChanged():Void {
+	public function viewIconChanged():Void 
+	{
 		// override this method when icon property change
 	}
 	
 	// ----o Virtual Properties
 	
-	public function get icon():String {
+	public function get icon():String 
+	{
 		return getIcon() ;	
 	}
 	
-	public function set icon(sIcon:String):Void {
+	public function set icon(sIcon:String):Void 
+	{
 		setIcon(sIcon) ;	
 	}
 	

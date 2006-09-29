@@ -143,6 +143,7 @@ class lunas.display.components.list.AbstractListController extends AbstractContr
 		var cellIndex:Object = ev.getCellIndex() ;
 		var cell:ICell = ev.getCell() ;
 		var view_mc:MovieClip = getView().getViewContainer() ;
+		
 		view_mc.setSelectedIndex(cellIndex.itemIndex || cell["index"], true) ;
 		
 		
@@ -150,7 +151,6 @@ class lunas.display.components.list.AbstractListController extends AbstractContr
 		
 		if (view_mc.protectSelected)
 		{
-			
 		
 			if (_oldCell != null)
 			{

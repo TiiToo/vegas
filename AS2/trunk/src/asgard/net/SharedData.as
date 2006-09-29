@@ -243,7 +243,7 @@ class asgard.net.SharedData extends AbstractCoreEventDispatcher {
 	/**
 	 * Unlock Method like server side SSAS !! Test this method !!
 	 */
- 	public function unlock(Void):Void {
+ 	public function unlock():Void {
 		_so.setFps(0) ;
 		_so.setFps(-1) ;
 	}

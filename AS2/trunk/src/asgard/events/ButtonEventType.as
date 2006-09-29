@@ -121,6 +121,10 @@ class asgard.events.ButtonEventType {
 		
 	static public var SELECT:String = "select" ;
 	
+	static public var START_DRAG:String = "startDrag" ;
+	
+	static public var STOP_DRAG:String = "startDrag" ;
+	
 	static public var UNSELECT:String = "unselect" ;
 	
 	static public var UP:String = "up" ;

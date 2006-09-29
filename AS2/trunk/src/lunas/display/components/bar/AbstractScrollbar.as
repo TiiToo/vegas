@@ -102,6 +102,8 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 	private function AbstractScrollbar() 
 	{
 		_eDrag = new ButtonEvent(ButtonEventType.DRAG, this) ;
+		_eStartDrag = new ButtonEvent(ButtonEventType.START_DRAG, this) ;
+		_eStopDrag = new ButtonEvent(ButtonEventType.START_DRAG, this) ;
 		
 		 // Fix bug with MTASC ! I must declare the value with Static Property in the constructor
 		_nDirection = Direction.VERTICAL ;
@@ -167,8 +169,19 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 		dispatchEvent( _eDrag ) ;
 	}
 
+	public function notifyStartDrag():Void
+	{
+		dispatchEvent( _eStartDrag ) ;	
+	}
+	
+	public function notifyStopDrag():Void
+	{
+		dispatchEvent( _eStopDrag ) ;	
+	}
+
 	public function startDragging():Void 
 	{
+		notifyStartDrag() ;
 		var mouseField:String = (_nDirection == Direction.VERTICAL) ? "_ymouse" : "_xmouse" ;
 		_mouseOffset = (getThumb())[mouseField] ;
 		dragging() ;
@@ -180,6 +193,7 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 	{
 		_isDragging = false ;
 		delete this.onMouseMove ;
+		notifyStopDrag() ;
 	}
 	
 	public function viewPositionChanged( flag:Boolean ):Void 
@@ -236,6 +250,8 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 	// ----o Private Properties
 
 	private var _eDrag:ButtonEvent ;
+	private var _eStartDrag:ButtonEvent ;
+	private var _eStopDrag:ButtonEvent ;
 	private var _isDragging:Boolean ;
 	private var _mouseOffset:Number = 0 ;
 	private var _nDirection:Number ; 

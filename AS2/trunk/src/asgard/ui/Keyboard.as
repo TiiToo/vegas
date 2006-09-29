@@ -229,7 +229,8 @@ class asgard.ui.Keyboard {
 
 	// ----o Static Methods
 
-	static public function getCharCode(char:String):Number {
+	static public function getCharCode(char:String):Number 
+	{
 		return (new Char(char)).getCode() ;
 	}
 

@@ -57,19 +57,23 @@ class asgard.display.DisplayLoaderCollector {
 	 * Public Methods
 	 */
 	
-	static public function contains( sName:String ):Boolean {
+	static public function contains( sName:String ):Boolean 
+	{
 		return _map.containsKey( sName ) ;	
 	}
 	
-	static public function get(sName:String):DisplayLoader {
+	static public function get(sName:String):DisplayLoader 
+	{
 		return DisplayLoader(_map.get(sName)) ;	
 	}
 	
-	static public function insert(sName:String, dObject:DisplayLoader):Boolean {
+	static public function insert(sName:String, dObject:DisplayLoader):Boolean 
+	{
 		return (_map.put(sName, dObject) != null) ;
 	}
 	
-	static public function remove(sName:String):Void {
+	static public function remove(sName:String):Void 
+	{
 		_map.remove(sName) ;
 	}
 	

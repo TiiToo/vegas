@@ -113,11 +113,14 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 		
         super() ;
 
-		if (target) {
+		if (target) 
+		{
 			
 			view = target ;
 		
-		} else {
+		}
+		else 
+		{
 			
 			_loader = DisplayLoaderCollector.get( sName ) ;
 			

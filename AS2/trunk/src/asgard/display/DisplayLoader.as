@@ -88,7 +88,8 @@ class asgard.display.DisplayLoader extends AbstractLoader
 		return _isAutoShow ;	
 	}
 	
-	public function isVisible():Boolean {
+	public function isVisible():Boolean 
+	{
 		return _container._visible ;	
 	}
 
