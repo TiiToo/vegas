@@ -21,7 +21,7 @@
   
 */
 
-/** AbstractLabel
+/**
 
 	AUTHOR
 
@@ -102,7 +102,7 @@
 	
 		IBuilder, IStyle
 
-**/
+*/
 
 import asgard.events.UIEvent;
 import asgard.events.UIEventType;
@@ -110,20 +110,67 @@ import asgard.events.UIEventType;
 import lunas.display.components.AbstractComponent;
 import lunas.display.components.ILabel;
 
-class lunas.display.components.text.AbstractLabel extends AbstractComponent implements ILabel {
+class lunas.display.components.text.AbstractLabel extends AbstractComponent implements ILabel 
+{
 
 	// ----o Constructor
 
-	private function AbstractLabel() { 
+	private function AbstractLabel() 
+	{ 
 		super() ;		
 	}
 
 	// ----o Public Properties
+
+	public function get autoSize():Boolean 
+	{
+		return getAutoSize() ;	
+	}
+
+	public function set autoSize(b:Boolean) 
+	{
+		setAutoSize(b) ;	
+	}
+
+	public function get html():Boolean 
+	{
+		return getHTML() ;	
+	}
+
+	public function set html(b:Boolean) 
+	{
+		setHTML(b) ;	
+	}
+
+	public function get label():String 
+	{
+		return getLabel() ;	
+	}
+
+	public function set label(s:String) 
+	{
+		setLabel(s) ;	
+	}
+		
+	public function get multiline():Boolean 
+	{ 
+		return getMultiline() ; 
+	}
 	
-	//public var autoSize:Boolean ; // [R/W]
-	//public var html:Boolean ; // [R/W]
-	//public var label:String ; // [R/W]
-	//public var text:String ; // [R/W]
+	public function set multiline(b:Boolean) 
+	{ 
+		setMultiline(b); 
+	}
+	
+	public function get text():String 
+	{
+		return getText() ;	
+	}
+
+	public function set text(s:String) 
+	{
+		setText(s) ;	
+	}
 
 	// ----o Public Methods
 
@@ -188,58 +235,6 @@ class lunas.display.components.text.AbstractLabel extends AbstractComponent impl
 		// override this method when label property change
 	}
 
-	// ----o Virtual Properties
-
-	public function get autoSize():Boolean 
-	{
-		return getAutoSize() ;	
-	}
-
-	public function set autoSize(b:Boolean) 
-	{
-		setAutoSize(b) ;	
-	}
-
-	public function get html():Boolean 
-	{
-		return getHTML() ;	
-	}
-
-	public function set html(b:Boolean) 
-	{
-		setHTML(b) ;	
-	}
-
-	public function get label():String 
-	{
-		return getLabel() ;	
-	}
-
-	public function set label(s:String) 
-	{
-		setLabel(s) ;	
-	}
-		
-	public function get multiline():Boolean 
-	{ 
-		return getMultiline() ; 
-	}
-	
-	public function set multiline(b:Boolean) 
-	{ 
-		setMultiline(b); 
-	}
-	
-	public function get text():String 
-	{
-		return getText() ;	
-	}
-
-	public function set text(s:String) 
-	{
-		setText(s) ;	
-	}
-	
 	// ----o Private Properties
 	
 	private var _autoSize:Boolean ;

@@ -80,12 +80,17 @@ import vegas.errors.IndexOutOfBoundsError;
 import vegas.errors.NoSuchElementError;
 import vegas.util.MathsUtil;
 
-class vegas.data.list.ListItr extends CoreObject implements ListIterator {
+class vegas.data.list.ListItr extends CoreObject implements ListIterator 
+{
 
 	// ----o Construtor
 	
-	public function ListItr(li:List) {
-		if (!li) throw new IllegalArgumentError() ; // li must not be 'null' nor 'undefined'.
+	public function ListItr(li:List) 
+	{
+		if (!li)
+		{
+			throw new IllegalArgumentError(this + "constructor, 'li' argument must not be 'null' nor 'undefined'.") ;
+		}
 		_list = li ;
 		_key = 0 ;
 		_listast = -1 ;
@@ -96,7 +101,10 @@ class vegas.data.list.ListItr extends CoreObject implements ListIterator {
 
 	public function checkForComodification():Void {
 		var l:AbstractList = AbstractList(_list) ;
-	    if (l.getModCount() != _expectedModCount) throw new ConcurrentModificationError ;
+	    if (l.getModCount() != _expectedModCount) 
+	    {
+	    	throw new ConcurrentModificationError(this + " checkForComodification") ;
+	    }
 	}
 
 	public function hasNext():Boolean {
@@ -169,6 +177,7 @@ class vegas.data.list.ListItr extends CoreObject implements ListIterator {
 
 	public function reset():Void {
 		_key = 0 ;
+		_listast = -1 ;
 	}
 
 	public function seek(n:Number):Void {

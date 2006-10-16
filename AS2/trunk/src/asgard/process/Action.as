@@ -65,7 +65,8 @@
 
 import vegas.core.IRunnable;
 
-interface asgard.process.Action extends IRunnable {
+interface asgard.process.Action extends IRunnable 
+{
 	
 	function clone() ;
 	

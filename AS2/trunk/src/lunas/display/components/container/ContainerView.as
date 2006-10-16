@@ -66,33 +66,42 @@ import vegas.util.mvc.AbstractView;
 import vegas.util.mvc.IController;
 import vegas.util.mvc.IModel;
 
-class lunas.display.components.container.ContainerView extends AbstractView {
+class lunas.display.components.container.ContainerView extends AbstractView 
+{
 
 	// ----o Constructor
 
-	public function ContainerView(oModel:IModel, oController:IController, mcContainer:MovieClip) { 
+	public function ContainerView(oModel:IModel, oController:IController, mcContainer:MovieClip) 
+	{ 
 		super(oModel, oController, mcContainer) ;
 	}
 
 	// ----o Public Methods
 
-	public function handleEvent(ev:ModelChangedEvent):Void {
+	public function handleEvent(ev:ModelChangedEvent):Void 
+	{
 		var eventName:String = ev.getType() ;
 		var target:ContainerModel = ev.getTarget() ;
 		var c:ContainerController = ContainerController(getController()) ;
-		switch (eventName) {
+		switch (eventName) 
+		{
+		
 			case ModelChangedEventType.ADD_ITEMS :
 				//
 				break ;
+		
 			case ModelChangedEventType.CLEAR_ITEMS :
 				c.removeItems(ev.removedItems) ;
 				break ;
+		
 			case ModelChangedEventType.REMOVE_ITEMS :
 				c.removeItems(ev.removedItems) ;
 				break ;
+		
 			case ModelChangedEventType.UPDATE_ITEMS : 
 				//
 				break ;
+		
 			default :
 				//
 		}

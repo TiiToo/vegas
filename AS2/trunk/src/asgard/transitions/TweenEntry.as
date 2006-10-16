@@ -21,7 +21,7 @@
   
 */
 
-/** TweenEntry
+/**
 
 	AUTHOR
 
@@ -67,16 +67,18 @@
 	
 		ICloneable, IFormattable, IHashable
 
-----------------*/
+*/
 
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
 
-class asgard.transitions.TweenEntry extends CoreObject implements ICloneable {
+class asgard.transitions.TweenEntry extends CoreObject implements ICloneable 
+{
 	
 	// ----o Constructor
 	
-	public function TweenEntry(p:String, e:Function, b:Number, f:Number) {
+	public function TweenEntry(p:String, e:Function, b:Number, f:Number) 
+	{
 		begin = b ;
 		setEasing(e) ;
 		finish = f ;
@@ -92,12 +94,14 @@ class asgard.transitions.TweenEntry extends CoreObject implements ICloneable {
 
 	// ----o Public Methods
 	
-	public function clone() {
+	public function clone() 
+	{
 		var t:TweenEntry = new TweenEntry (prop, getEasing(), begin, finish);
 		return t ;
 	}
 
-	public function getChange():Number {
+	public function getChange():Number 
+	{
 		return _change ;	
 	}
 
@@ -105,53 +109,64 @@ class asgard.transitions.TweenEntry extends CoreObject implements ICloneable {
 		return _easing ;	
 	}
 
-	public function getFinish():Number {
+	public function getFinish():Number 
+	{
 		return _finish ;
 	}
 	
-	public function getPosition(t:Number , d:Number):Number {
+	public function getPosition(t:Number , d:Number):Number 
+	{
 		var f:Function = _easing ;
 		return f( t, begin, getChange() , d ) ;
 	}
 	
-	static public function noEasing(t:Number, b:Number, c:Number, d:Number):Number {
+	static public function noEasing(t:Number, b:Number, c:Number, d:Number):Number 
+	{
 		return c*t/d + b;
 	}
 	
-	public function setEasing( e:Function ):Void {
+	public function setEasing( e:Function ):Void 
+	{
 		_easing	= e || TweenEntry.noEasing ;
 	}
 	
-	public function setFinish(n:Number):Void {
+	public function setFinish(n:Number):Void 
+	{
 		_finish = n ;
 		_setChange(n) ;
 	}
 	
-	public function setPosition(value:Number):Number {
+	public function setPosition(value:Number):Number 
+	{
 		prevPos = _pos ;
 		_pos = value ;
 		return value ;
 	}
 	
-	public function toString():String {
+	public function toString():String 
+	{
 		return "[TweenEntry" + (prop ? (":" + prop) : "") + "]" ;
 	}
 
 	// ----o Virtual Properties
 
-	public function get easing():Function {
+	public function get easing():Function 
+	{
 		return getEasing() ;
 	}
 	
-	public function set easing( f:Function ):Void {
+	public function set easing( f:Function ):Void 
+	{
 		setEasing(f) ;
 	}
 
-	public function get finish():Number {
+	public function get finish():Number 
+	{
 		return getFinish() ;
 	}
 	
-	public function set finish(n:Number):Void {
+	public function set finish(n:Number):Void 
+	{
 		setFinish(n) ;
 	}
 
@@ -164,7 +179,8 @@ class asgard.transitions.TweenEntry extends CoreObject implements ICloneable {
 
 	// ----o Private Methods
 	
-	private function _setChange(n:Number):Void {
+	private function _setChange(n:Number):Void 
+	{
 		var c:Number = n - begin ;
 		_change = isNaN(c) ? 0 : c ;
 	}

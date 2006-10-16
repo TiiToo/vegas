@@ -62,23 +62,30 @@
 
 import vegas.util.mvc.AbstractController;
 
-class lunas.display.components.container.ContainerController extends AbstractController {
+class lunas.display.components.container.ContainerController extends AbstractController 
+{
 
 	// ----o Constructor
 
-	public function ContainerController() { 
+	public function ContainerController() 
+	{ 
 		//
 	}
 
 	// ----o Public Methods
 
-	public function removeItems(items:Array):Void {
+	public function removeItems(items:Array):Void 
+	{
 		var l:Number = items.length ;
-		while(--l > -1) {
+		while(--l > -1) 
+		{
 			var child = items[l] ;
-			if (child instanceof MovieClip) {
+			if (child instanceof MovieClip) 
+			{
 				child.removeMovieClip() ;
-			} else if (child instanceof TextField)	{
+			}
+			else if (child instanceof TextField)	
+			{
 				child.removeTextField() ;
 			}
 		}

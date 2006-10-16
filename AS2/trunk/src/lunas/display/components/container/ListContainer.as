@@ -113,7 +113,8 @@ class lunas.display.components.container.ListContainer extends SimpleContainer
 
 	// ----o Constructor
 
-	public function ListContainer () { 
+	public function ListContainer () 
+	{ 
 		_createMask() ;
 		update() ;
 	}
@@ -145,7 +146,10 @@ class lunas.display.components.container.ListContainer extends SimpleContainer
 
 	public function draw():Void 
 	{
-		if (_oModel.size() > 0) changeChildsPosition() ;
+		if (_oModel.size() > 0) 
+		{
+			changeChildsPosition() ;
+		}
 		resize() ;
 		_refreshMask() ;
 	}

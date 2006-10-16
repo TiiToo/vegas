@@ -21,7 +21,7 @@
   
 */
 
-/** AbstractComponent
+/**
 
 	AUTHOR
 
@@ -129,17 +129,20 @@
 			
 				largeur du composant - attention ne pas confondre avec _width la largeur du 'clip'.
 	
-**/
+*/
 
 import lunas.display.components.container.AbstractContainer;
 import lunas.display.components.container.ContainerController;
 import lunas.display.components.container.ContainerView;
 
-class lunas.display.components.container.SimpleContainer extends AbstractContainer {
+class lunas.display.components.container.SimpleContainer extends AbstractContainer 
+{
 
-	// ----o Constructor
-
-	public function SimpleContainer () { 
+	/**
+	 * Creates a new SimpleContainer instance.
+	 */
+	public function SimpleContainer () 
+	{ 
 		_oController = new ContainerController() ;
 		_oView = new ContainerView(_oModel, _oController, this) ;
 		_oController.setModel(_oModel) ;
