@@ -193,16 +193,19 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 
 	public function hide():Void 
 	{
-		if (_loader != null) {
+		if (_loader != null) 
+		{
 			_loader.hide() ;
-		} else {
+		}
+		else 
+		{
 			view._visible = false ;	
 		}
 	}
 
 	public function isVisible():Boolean 
 	{
-		return (view._visible == true) ;	
+		return view._visible  ;	
 	}
 
 	public function move( x:Number, y:Number ) : Void 

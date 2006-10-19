@@ -85,11 +85,13 @@ import vegas.data.Set;
 import vegas.data.set.AbstractSet;
 import vegas.util.serialize.Serializer;
 
-class vegas.data.set.HashSet extends AbstractSet {
+class vegas.data.set.HashSet extends AbstractSet 
+{
 
 	// ----o Constructor
 
-	public function HashSet() {
+	public function HashSet() 
+	{
 		_map = new HashMap() ;
 		if (arguments.length == 0) return ;
 		var arg = arguments[0] ;

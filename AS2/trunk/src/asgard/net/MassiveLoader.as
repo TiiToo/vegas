@@ -109,11 +109,14 @@ import vegas.util.Timer;
 
 // TODO : revoir le chargement successif ... problème
 
-class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener {
+class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener 
+{
 
-	// ----o Constructor 
-	
-	public function MassiveLoader() {
+	/**
+	 * Create a new MassiveLoader.
+	 */ 
+	public function MassiveLoader() 
+	{
 		
 		super() ;
 		
@@ -137,11 +140,13 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener 
 
 	// ----o Public Methods
 
-	public function clear():Void {
+	public function clear():Void 
+	{
 		_qBuffer.clear() ;	
 	}
 	
-	public function enqueue( loader:ILoader, sName:String, sURL:String ):String  {
+	public function enqueue( loader:ILoader, sName:String, sURL:String ):String 
+	{
 
 		try {
 			if (sName) loader.setName(sName) ;
@@ -189,13 +194,16 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener 
 		return _qBuffer.isEmpty() ;	
 	}
 
-	public function load():Void {
-		if ( !_isRunning && !isEmpty() ) {
+	public function load():Void 
+	{
+		if ( !_isRunning && !isEmpty() ) 
+		{
 			var ar:Array = toArray() ;
 			var len:Number = ar.length ;
 			while (--len > -1) {
 				var oLoader:ILoader = ar[len] ;
-				if (oLoader.getUrl() == undefined) {
+				if (oLoader.getUrl() == undefined) 
+				{
 					notifyError( this + ".run() encounters ILoader object without url property, load fails." ) ;
 					return ;
 				}
@@ -206,38 +214,50 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener 
 		}
 	}
 
-	public function onLoadComplete(e:LoaderEvent):Void {
-		if (isEmpty()) {
+	public function onLoadComplete(e:LoaderEvent):Void 
+	{
+		if (isEmpty()) 
+		{
 			_timerComplete.start() ;
-		} else {
+		}
+		else 
+		{
 			_timer.start() ;
 		}
 	}
 
-	public function onLoadError(e:LoaderEvent):Void {
-		if (isEmpty()) {
+	public function onLoadError(e:LoaderEvent):Void 
+	{
+		if (isEmpty()) 
+		{
 			_timerComplete.start() ;
-		} else {
+		}
+		else 
+		{
 			_timer.start() ;
 		}
 	}
 
-	public function onLoadInit( e:LoaderEvent ):Void {
+	public function onLoadInit( e:LoaderEvent ):Void 
+	{
 		// internal method - override this method
 	}
 
-	public function onLoadProgress(e : LoaderEvent) : Void {
+	public function onLoadProgress(e : LoaderEvent) : Void 
+	{
 		// internal method - override this method
 	}
 
-	public function onLoadStart(e : LoaderEvent) : Void {
+	public function onLoadStart(e : LoaderEvent) : Void 
+	{
 		// internal method - override this method
 	}
 
 	/**
 	 * invoqué quand le chargement d'un ILoader n'a pas réussi dans le délais prévu.
 	 */
-	public function onLoadTimeOut(e : LoaderEvent) : Void {
+	public function onLoadTimeOut(e : LoaderEvent) : Void 
+	{
 		if (isEmpty()) {
 			_timerComplete.start() ;
 		} else {
@@ -248,14 +268,16 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener 
 	/**
 	 * Permet de lancer le chargement massif de tous les ILoader placé en queue dans le MassiveLoader.
 	 */
-	public function run():Void {
+	public function run():Void 
+	{
 		super.run() ;
 	}
 
 	/**
 	 * Permet de définir le délais entre chaque chargement d'un nouveau ILoader 
 	 */
-	public function setDelay(n:Number):Void {
+	public function setDelay(n:Number):Void 
+	{
 		_timer.setDelay(n) ;
 		_timerComplete.setDelay(n) ;
 	}
@@ -263,14 +285,16 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener 
 	/**
 	 * Renvoi le nombre de ILoader encore présent dans le buffer du MassiveLoader 
 	 */
-	 public function size():Number {
+	 public function size():Number 
+	 {
 		return _qBuffer.size() ;	
 	}
 	
 	/**
 	 * Renvoi la liste des ILoader défini dans le MassiveLoader.
 	 */
-	public function toArray():Array {
+	public function toArray():Array 
+	{
 		return _qBuffer.toArray() ;	
 	}
 
@@ -284,7 +308,8 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener 
 	
 	// ----o Private Methods
 
-	private function _next():Void {
+	private function _next():Void 
+	{
 		if (_oCurrentLoader != undefined) _unRegisterCurrentLoader() ;
 		_oCurrentLoader = ILoader( _qBuffer.poll() );
 		AbstractLoader(_oCurrentLoader).setParent(getEventDispatcher()) ;
@@ -292,12 +317,14 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener 
 		_oCurrentLoader.load();
 	}
 
-	private function _onLoadComplete():Void {
+	private function _onLoadComplete():Void 
+	{
 		_unRegisterCurrentLoader() ;
 		notifyEvent( LoaderEventType.COMPLETE );
 	}
 
-	private function _registerCurrentLoader():Void {
+	private function _registerCurrentLoader():Void 
+	{
 		var it:Iterator = _mListeners.iterator() ;
 		while(it.hasNext()) {
 			var value:Delegate = it.next() ;
@@ -306,9 +333,11 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener 
 		}		
 	}
 	
-	private function _unRegisterCurrentLoader():Void {
+	private function _unRegisterCurrentLoader():Void 
+	{
 		var it:Iterator = _mListeners.iterator() ;
-		while(it.hasNext()) {
+		while(it.hasNext()) 
+		{
 			var value:Delegate = it.next() ;
 			var key:String = it.key() ;
 			AbstractLoader(_oCurrentLoader).removeEventListener(key, value) ;	

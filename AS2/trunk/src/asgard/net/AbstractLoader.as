@@ -151,11 +151,13 @@ import vegas.util.Timer;
  * @version 1.0.0.0
  **/
 
-class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements ILoader {
+class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements ILoader 
+{
 
 	// ----o Constructor 
 	
-	private function AbstractLoader() {
+	private function AbstractLoader() 
+	{
 		
 		super() ;
 		initEvent() ;

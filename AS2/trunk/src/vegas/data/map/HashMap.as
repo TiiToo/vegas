@@ -106,8 +106,8 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 		var k:Array = arguments[0] ;
 		var v:Array = arguments[1] ;
 		var b:Boolean = (k.length > 0 && k.length == v.length) ;
-		_keys = b ? [].concat(k) : [].concat(_keys) ; // 
-		_values = b ? [].concat(v) : [].concat(_values) ;
+		_keys = b ? [].concat(k) : ((_keys != null) ? [].concat(_keys) : []) ;
+		_values = b ? [].concat(v) : ((_values != null) ? [].concat(_values) : [])  ;
 	}
 	
 	// ----o Public Methods	

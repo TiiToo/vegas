@@ -56,7 +56,7 @@ class asgard.display.DisplayLoader extends AbstractLoader
 		
 		HashCode.identify( _container ) ;
 		
-		_isAutoShow = bAutoShow || true ;
+		_isAutoShow = (bAutoShow == null) ? true : bAutoShow ;
 		_isCollected = false ;
 		
 	}
