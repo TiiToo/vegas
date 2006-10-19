@@ -83,7 +83,7 @@
 	
 		ICloneable, IFormattable, IHashable, ISerializable, Iterable, Map
 
-**/
+*/
 
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
@@ -95,30 +95,34 @@ import vegas.data.map.MapFormat;
 import vegas.data.map.MapIterator;
 import vegas.util.serialize.Serializer;
 
-class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable, Map {
+class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable, Map 
+{
 
-	// ----o Construtor
-	
-	public function HashMap() {
+	/**
+	 * Creates a new HashMap instance.
+	 */
+	public function HashMap() 
+	{
 		var k:Array = arguments[0] ;
 		var v:Array = arguments[1] ;
 		var b:Boolean = (k.length > 0 && k.length == v.length) ;
-		_keys = b ? [].concat(k) : [] ;
-		_values = b ? [].concat(v) : [] ;
+		_keys = b ? [].concat(k) : [].concat(_keys) ; // 
+		_values = b ? [].concat(v) : [].concat(_values) ;
 	}
 	
 	// ----o Public Methods	
 	
 	/**
-	 * This clears all in the map.
+	 * Removes all mappings from this map.
 	 */
-	public function clear():Void {
+	public function clear():Void 
+	{
 		_keys = [] ;
 		_values = [] ;
 	}
 	
 	/**
-	 * Clones the map.
+	 * Returns a shallow copy of this HashMap instance: the keys and values themselves are not cloned.
 	 */
 	public function clone() {
 		var m:HashMap = new HashMap() ;
@@ -126,51 +130,80 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 		return m ;
 	}
 	
-	public function containsKey( key ):Boolean {
+	/**
+	 * Returns true if this map contains a mapping for the specified key.
+	 */
+	public function containsKey( key ):Boolean 
+	{
 		return indexOfKey(key) > -1 ;
 	}
 	
-	public function containsValue( value ):Boolean {
+	/**
+	 * Returns true if this map maps one or more keys to the specified value.
+	 */
+	public function containsValue( value ):Boolean 
+	{
 		return indexOfValue(value) > -1 ;
 	}
 
-	public function get(key) {
+	/**
+	 * Returns the value to which this map maps the specified key.
+	 */
+	public function get(key) 
+	{
 		return _values[indexOfKey(key)] ;
 	}
 
-	public function getKeys():Array {
+	public function getKeys():Array 
+	{
 		return _keys.slice() ;
 	}
 
-	public function getValues():Array {
+	public function getValues():Array 
+	{
 		return _values.slice() ;
 	}
 	
-	public function indexOfKey(key):Number {
+	public function indexOfKey(key):Number 
+	{
 		var l:Number = _keys.length ;
 		while (_keys[--l] != key && l>-1);
 		return l ;
 	}
 	
-	public function indexOfValue(value):Number {
+	public function indexOfValue(value):Number 
+	{
 		var l:Number = _values.length ;
 		while (_values[--l] != value && l>-1) ;
 		return l ;
 	}
 	
-	public function isEmpty():Boolean {
+	/**
+	 * Returns true if this map contains no key-value mappings.
+	 */
+	public function isEmpty():Boolean 
+	{
 		return (size() < 1 || size == undefined) ;
 	}
 
-	public function iterator():Iterator {
+	/**
+	 * Returns the iterator of this map.
+	 */
+	public function iterator():Iterator 
+	{
 		return new MapIterator(this) ;
 	}
 	
-	public function keyIterator():Iterator {
+	public function keyIterator():Iterator 
+	{
 		return new ArrayIterator(_keys) ;
 	}
 
-	public function put(key, value) {
+	/**
+	 * Associates the specified value with the specified key in this map.
+	 */
+	public function put(key, value) 
+	{
 		var r ;
 		var i:Number = indexOfKey(key) ;
 		if (i<0) {
@@ -184,7 +217,11 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 		}
 	}
 	
-	public function putAll(m:Map):Void {
+	/**
+	 * Copies all of the mappings from the specified map to this one.
+	 */
+	public function putAll(m:Map):Void 
+	{
 		var aV:Array = m.getValues() ;
 		var aK:Array = m.getKeys() ;
 		var l:Number = aK.length ;
@@ -193,7 +230,11 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 		}
 	}
 
-	public function remove(key) {
+	/**
+	 * Removes the mapping for this key from this map if present.
+	 */
+	public function remove(key) 
+	{
 		var r = null ;
 		var i:Number = indexOfKey(key) ;
 		if (i > -1) {
@@ -204,16 +245,27 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 		return r ;
 	}
 
-	public function size():Number {
+	/**
+	 * Returns the number of key-value mappings in this map.
+	 */
+	public function size():Number 
+	{
 		return _keys.length ;
 	}
 
-	public function toSource(indent:Number, indentor:String):String {
+	/**
+	 * Returns the Eden representation of this map.
+	 */
+	public function toSource(indent:Number, indentor:String):String 
+	{
 		var sourceA:String = Serializer.toSource(_keys) ;
 		var sourceB:String = Serializer.toSource(_values) ;
 		return Serializer.getSourceOf(this, [sourceA, sourceB]) ;
 	}
 
+	/**
+	 * Returns the String representation of this map.
+	 */
 	public function toString():String {
 		return (new MapFormat()).formatToString(this) ;
 	}

@@ -32,7 +32,7 @@ package asgard.util.mvc
 		public function notifyChanged(event:ModelChangedEvent):void
 		{
 			
-			dispatchEvent(event) ;
+			dispatchEvent( event ) ;
 			
 		}
 

@@ -165,7 +165,8 @@ package vegas.util
         /**
          * Determines whether the start of this instance matches the specified String.
          */
-    	static public function firstChar( str:String ):String {
+    	static public function firstChar( str:String ):String 
+    	{
     		return str.charAt(0) ;
     	}
  
@@ -379,7 +380,7 @@ package vegas.util
 	    	return ar.join("") ;
 	    }
 	
-	    static public function splice(str:String, startIndex:uint, deleteCount:uint, value:*):String 
+	    static public function splice(str:String, startIndex:uint, deleteCount:uint=0, value:*=undefined):String 
 	    {
 		    var a:Array = StringUtil.toArray(str) ;
 		    a = a.splice.apply(a, arguments) ;

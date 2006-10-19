@@ -21,7 +21,7 @@
   
 */
 
-/* ---------- Framework
+/** Framework
 
 	AUTHOR
 
@@ -65,11 +65,12 @@
 		
 		- toString():String
 		
-----------  */
+*/
 
 import asgard.system.Version;
 
-class asgard.system.Framework {
+class asgard.system.Framework 
+{
 	
 	// -----o Constructor
 	
@@ -81,57 +82,71 @@ class asgard.system.Framework {
 	
 	// ---- Methods
 	
-	static public function getAuthor():String {
+	static public function getAuthor():String 
+	{
 		return COPYRIGHT.author ;
 	}
 	
-	static public function getLicence():String {
+	static public function getLicence():String 
+	{
 		return COPYRIGHT.licence ;
 	}
 	
-	static public function getLink():String {
+	static public function getLink():String 
+	{
 		return COPYRIGHT.link ;
 	}
 	
-	static public function getMail():String {
+	static public function getMail():String 
+	{
 		return COPYRIGHT.mail ;
 	}
 	
-	static public function getName():String {
+	static public function getName():String 
+	{
 		return COPYRIGHT.name ;
 	}
 	
-	static public function getVersion():Version {
+	static public function getVersion():Version 
+	{
 		return COPYRIGHT.version ;
 	}
 		
-	static public function setAuthor(s:String):Void {
+	static public function setAuthor(s:String):Void 
+	{
 		COPYRIGHT.author = s ;
 	}
 
-	static public function setLicence(s:String):Void {
+	static public function setLicence(s:String):Void 
+	{
 		COPYRIGHT.licence = s ;
 	}
 
-	static public function setLink(s:String):Void {
+	static public function setLink(s:String):Void 
+	{
 		COPYRIGHT.link = s ;
 	}
 
-	static public function setMail (s:String):Void {
+	static public function setMail (s:String):Void 
+	{
 		COPYRIGHT.mail = s ;
 	}
 	
-	static public function setName(s:String):Void {
+	static public function setName(s:String):Void 
+	{
 		COPYRIGHT.name = s ;
 	}
 	
-	static public function setVersion(v:Version):Void {
+	static public function setVersion(v:Version):Void 
+	{
 		COPYRIGHT.version = v ;
 	}
 	
-	static public function toString():String {
+	static public function toString():String 
+	{
 		var txt:String = "<" ;
-		for (var prop in COPYRIGHT) {
+		for (var prop in COPYRIGHT) 
+		{
 			txt += "\r\t" + prop + " : " + (COPYRIGHT[prop].toString() || "empty") ;
 		}
 		txt += "\r>" ;

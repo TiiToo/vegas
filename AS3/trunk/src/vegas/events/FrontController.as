@@ -128,8 +128,6 @@ package vegas.events
 		    }
     		_oE = (oE == null) ? EventBroadcaster.getInstance(name) : oE ; 
     		
-    		initialize() ;
-    		
         }
         
     	// ----o Public Methods 

@@ -160,7 +160,7 @@ class asgard.colors.ColorHTML extends Number implements IConvertible, IEquality,
 	
 	static public var YELLOW:ColorHTML  = new ColorHTML(0xFFFF00 , "Yellow") ;
 
-	// ----o Public Propeerties
+	// ----o Public Properties
 	
 	public var name:String ;
 	public var value:Number ;

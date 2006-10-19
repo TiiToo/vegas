@@ -154,7 +154,7 @@ package vegas.util
 
    	    static public function toObject(o:*):Object 
         {
-      		return Object( o.valueOf() ) ;
+      		return o.valueOf() as Object ;
     	}
     	
  	   static public function toSource( ...arguments ):String 
