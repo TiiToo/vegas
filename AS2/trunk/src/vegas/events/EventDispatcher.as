@@ -231,7 +231,8 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 		}
 	}
 	
-	public function addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void {
+	public function addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void 
+	{
 		_globalListeners.addListener(listener, autoRemove, priority ) ;
         _dispatchQueuedEvents() ;
     }

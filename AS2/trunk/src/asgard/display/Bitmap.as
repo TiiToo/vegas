@@ -132,7 +132,7 @@ class asgard.display.Bitmap extends DisplayObject
 		
 		super( sName, target ) ;
 		
-		_container = view.createEmptyMovieClip("__container__", __CONTAINER_DEPTH__) ;
+		clear() ;
 		
 		setPixelSnapping(pixelSnapping, true) ;
 		setSmoothing(smoothing, true) ;
@@ -145,7 +145,7 @@ class asgard.display.Bitmap extends DisplayObject
 	
 	public function clear():Void
 	{
-		_container = view.createEmptyMovieClip("__container__", 1000) ;
+		_container = view.createEmptyMovieClip("__container__", __CONTAINER_DEPTH__) ;
 	}
 	
 	public function dispose():Void
@@ -183,14 +183,14 @@ class asgard.display.Bitmap extends DisplayObject
 	public function setPixelSnapping( snapping:String, noUpdate:Boolean ):Void
 	{
 		_pixelSnapping = snapping ;
-		if (noUpdate()) return ;
+		if ( noUpdate ) return ;
 		update() ;
 	} 
 
 	public function setSmoothing(b:Boolean, noUpdate:Boolean):Void
 	{
 		_smoothing = b ;
-		if (noUpdate()) return ;
+		if ( noUpdate ) return ;
 		update() ; 	
 	} 
 	
@@ -263,6 +263,6 @@ class asgard.display.Bitmap extends DisplayObject
 	private var _pixelSnapping:String = "auto" ; 
 	private var _smoothing:Boolean = false ;
 	
-	static private var __CONTAINER_DEPTH__:Number = 1000 ;
+	static private var __CONTAINER_DEPTH__:Number = 100 ;
 
 }

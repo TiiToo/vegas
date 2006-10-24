@@ -312,7 +312,7 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener
 	{
 		if (_oCurrentLoader != undefined) _unRegisterCurrentLoader() ;
 		_oCurrentLoader = ILoader( _qBuffer.poll() );
-		AbstractLoader(_oCurrentLoader).setParent(getEventDispatcher()) ;
+		AbstractLoader(_oCurrentLoader).setParent( getEventDispatcher() ) ;
 		_registerCurrentLoader() ;
 		_oCurrentLoader.load();
 	}
@@ -320,7 +320,9 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener
 	private function _onLoadComplete():Void 
 	{
 		_unRegisterCurrentLoader() ;
+		
 		notifyEvent( LoaderEventType.COMPLETE );
+		
 	}
 
 	private function _registerCurrentLoader():Void 

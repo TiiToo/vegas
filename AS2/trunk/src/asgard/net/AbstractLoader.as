@@ -343,7 +343,8 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 
 	// ----o Private Methods
 
-	private function _checkTimeOut( nLastBytesLoaded:Number, nTime:Number ) : Void {
+	private function _checkTimeOut( nLastBytesLoaded:Number, nTime:Number ) : Void 
+	{
 		if ( nLastBytesLoaded != _nLastBytesLoaded) {
 			_nLastBytesLoaded = nLastBytesLoaded ;
 			_nTime = nTime ;
@@ -356,12 +357,15 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 
 	private function _onLoadProgress():Void {
 		_checkTimeOut( getBytesLoaded(), getTimer() ) ;
-		if ( getBytesLoaded() > 4 && getBytesLoaded() == getBytesTotal()) {
+		if ( getBytesLoaded() > 4 && getBytesLoaded() == getBytesTotal()) 
+		{
 			_tProgress.stop() ;
 			notifyEvent(LoaderEventType.PROGRESS);
 			notifyEvent(LoaderEventType.COMPLETE) ;
 			_startInitTimer() ;
-		} else {
+		} 
+		else 
+		{
 			notifyEvent(LoaderEventType.PROGRESS);
 		}
 	}
