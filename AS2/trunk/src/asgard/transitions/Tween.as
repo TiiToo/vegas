@@ -191,12 +191,12 @@
 // TODO yoyo()
 // TODO Optimiser les tweens car pour le moment c'est TROP LENT !!!
 
-
 import asgard.transitions.Motion;
 import asgard.transitions.TweenEntry;
 import asgard.transitions.TweenProvider;
 
-class asgard.transitions.Tween extends Motion {
+class asgard.transitions.Tween extends Motion 
+{
 
 	// ----o Constructor
 
@@ -208,9 +208,12 @@ class asgard.transitions.Tween extends Motion {
 			return ;
 		}
 		var l:Number = arguments.length ;
-		if (l == 2 && arguments[1] instanceof Array) {
+		if (l == 2 && arguments[1] instanceof Array) 
+		{
 			setTweenProvider(arguments[1]) ;
-		} else if (l > 2) {
+		} 
+		else if (l > 2) 
+		{
 			var p:String = arguments[1] ; // property
 			var e:Function = arguments[2] ; // easing
 			var b:Number = arguments[3] ; // begin
@@ -227,13 +230,15 @@ class asgard.transitions.Tween extends Motion {
 	
 	// ----o Public Methods
 
-	public function clear(Void):Void {
+	public function clear(Void):Void 
+	{
 		if (running) this.stop() ;
 		if (_model) _model.clear() ;
 		notifyCleared() ;
 	}
 
-	/*override*/ public function clone() {
+	/*override*/ public function clone() 
+	{
 		var t:Tween = new Tween() ;
 		t.setTarget(getTarget()) ;
 		t.duration = getDuration() ;
@@ -242,52 +247,66 @@ class asgard.transitions.Tween extends Motion {
 		return t ;
 	}
 
-	public function getTweenProvider():TweenProvider {
+	public function getTweenProvider():TweenProvider 
+	{
 		return _model ;
 	}
 	
-	public function insert(o:TweenEntry):Void {
+	public function insert(o:TweenEntry):Void 
+	{
 		if (!_model) setTweenProvider() ;
 		_model.insert(o) ;
 	}
 
-	public function insertProperty( prop , easing:Function, begin:Number, finish:Number):TweenEntry {
+	public function insertProperty( prop , easing:Function, begin:Number, finish:Number):TweenEntry 
+	{
 		var e:TweenEntry = new TweenEntry(prop, easing, begin, finish) ;
 		insert(e) ;
 		return e ;
 	}
 
-	public function remove(o:TweenEntry):Void {
+	public function remove(o:TweenEntry):Void 
+	{
 		if (running) stop() ;
 		_model.remove(o) ;
 	}	
 
-	public function removeProperty(prop:String):Boolean {
+	public function removeProperty(prop:String):Boolean 
+	{
 		if (running) stop() ;
 		return _model.remove(prop) ;
 	}
 
-	public function setTweenProvider(o):Void {
-		if (o instanceof TweenProvider) {
+	public function setTweenProvider(o):Void 
+	{
+		if (o instanceof TweenProvider) 
+		{
 			_model = o ;
-		} else if (o instanceof Array) {
+		}
+		else if (o instanceof Array) 
+		{
 			_model = new TweenProvider(o) ;
-		} else {
+		}
+		else 
+		{
 			_model = new TweenProvider() ;
 		}
 	}
 	
-	public function size():Number {
+	public function size():Number 
+	{
 		return _model.size() ;
 	}
 	
-	/*override*/ public function update():Void {
+	/*override*/ public function update():Void 
+	{
 		var o = _target ;
 		var t:Number = _time ;
 		var d:Number = _duration ;
 		var a:Array = _model.toArray() ;
 		var l:Number = a.length ;
-		while(--l > -1) {
+		while(--l > -1) 
+		{
 			var e:TweenEntry = a[l] ;
 			o[e.prop] = e.setPosition( e.getPosition(t, d) ) ;
 			updateAfterEvent() ;
@@ -297,11 +316,13 @@ class asgard.transitions.Tween extends Motion {
 	
 	// ----o Virtual Properties
 
-	public function get tweenProvider():TweenProvider {
+	public function get tweenProvider():TweenProvider 
+	{
 		return getTweenProvider() ;
 	}
 
-	public function set tweenProvider(o):Void {
+	public function set tweenProvider(o):Void 
+	{
 		setTweenProvider(o) ;
 	}
 	

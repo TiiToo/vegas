@@ -249,9 +249,12 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	
 	public function show():Void 
 	{
-		if (_loader != null) {
+		if (_loader != null) 
+		{
 			_loader.show() ;
-		} else {
+		}
+		else 
+		{
 			view._visible = true ;	
 		}
 	}

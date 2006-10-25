@@ -87,7 +87,8 @@ class vegas.data.queue.LinearQueue extends AbstractCollection implements Collect
 		return new LinearQueue(_a) ;
 	}
 
-	public function dequeue():Boolean {
+	public function dequeue():Boolean 
+	{
 		return poll() != null  ;
 	}
 	

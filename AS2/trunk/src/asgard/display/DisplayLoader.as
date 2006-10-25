@@ -38,7 +38,7 @@ class asgard.display.DisplayLoader extends AbstractLoader
 	
 	// ----o Constructor
 	
-	function DisplayLoader( mcTarget:MovieClip, nDepth:Number, bAutoShow:Boolean  ) 
+	function DisplayLoader( mcTarget:MovieClip, nDepth:Number, bAutoShow:Boolean ) 
 	{
 		
 		super() ;
@@ -129,7 +129,10 @@ class asgard.display.DisplayLoader extends AbstractLoader
 		
 		super.onLoadInit();
 		
-		if (_isAutoShow) show() ;
+		if (_isAutoShow)
+		{
+			show() ;
+		}
 		
 	}
 	
@@ -150,7 +153,8 @@ class asgard.display.DisplayLoader extends AbstractLoader
 		_isAutoShow = b ;
 	}
 
-	public function show():Void {
+	public function show():Void 
+	{
 		_container._visible = true ;
 	}
 

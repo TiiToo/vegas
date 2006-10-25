@@ -49,11 +49,11 @@
 		
 		- x 
 			
-			coordonn�e en x
+			coordonnée en x
 		
 		- y
 		
-			coordonn�e en y
+			coordonnée en y
 
 	METHOD SUMMARY
 
