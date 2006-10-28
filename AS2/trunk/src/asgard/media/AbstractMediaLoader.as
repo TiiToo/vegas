@@ -122,11 +122,13 @@ import vegas.util.FrameTimer;
 /**
  * @author eKameleon
  */
-class asgard.media.AbstractMediaLoader extends AbstractLoader implements IMediaLoader {
+class asgard.media.AbstractMediaLoader extends AbstractLoader implements IMediaLoader 
+{
 	
 	// ----o Constructor
 	
-	private function AbstractMediaLoader( mcTarget:MovieClip , sName:String) {
+	private function AbstractMediaLoader( mcTarget:MovieClip , sName:String) 
+	{
 		
 		super();
 		
@@ -150,56 +152,67 @@ class asgard.media.AbstractMediaLoader extends AbstractLoader implements IMediaL
 	/**
 	 * override this method 
 	 */
-	public function getDuration():Number {
+	public function getDuration():Number 
+	{
 		return null ;
 	}
 	
 	/**
 	 * override this method.
 	 */
-	public function getPosition():Number {
+	public function getPosition():Number 
+	{
 		return null ;
 	}
 
 	/**
 	 * Return the sound's media reference.
 	 */
-	public function getSound():Sound {
+	public function getSound():Sound 
+	{
 		return _oSound ;
 	}
 
 	/**
 	 * Return Sound volume
 	 */
-	public function getVolume():Number {
+	public function getVolume():Number 
+	{
 		return getSound().getVolume() ;
 	}
 		
-	public function initEvent():Void {
+	public function initEvent():Void 
+	{
 		_e = new MediaEvent(null, this) ;
 	}
 
-	public function isAutoPlay() : Boolean {
+	public function isAutoPlay():Boolean 
+	{
 		return _isAutoPlay ;
 	}
 
-	public function isLoaded():Boolean {
+	public function isLoaded():Boolean 
+	{
 		return _isLoaded ;	
 	}
 
-	public function isLoop():Boolean {
+	public function isLoop():Boolean 
+	{
 		return _isLoop ;	
 	}
 	
-	public function isPlaying() :Boolean {
+	public function isPlaying():Boolean 
+	{
 		return _isPlaying ;
 	}
 
-	public function isResumed():Boolean {
+	public function isResumed():Boolean 
+	{
 		return _isResumed ;	
 	}
 
-	public function onProgress(ev:TimerEvent):Void {
+	public function onProgress(ev:TimerEvent):Void 
+	{
 		notifyEvent(MediaEventType.MEDIA_PROGRESS) ;
 	}
 
@@ -213,42 +226,51 @@ class asgard.media.AbstractMediaLoader extends AbstractLoader implements IMediaL
 	/**
 	 * override this method 
 	 */
-	public function play():Void {
+	public function play():Void 
+	{
 		//
 	}
 	
-	public function setAutoPlay(b:Boolean):Void {
+	public function setAutoPlay(b:Boolean):Void 
+	{
 		_isAutoPlay = b ;
 	}
 
-	public function setLoaded(b:Boolean):Void {
+	public function setLoaded(b:Boolean):Void
+	{
 		_isLoaded = b ;	
 	}
 
-	public function setLoop(b:Boolean):Void {
+	public function setLoop(b:Boolean):Void 
+	{
 		_isLoop = b ;	
 	}
 
-	public function setPlaying(b:Boolean):Void {
+	public function setPlaying(b:Boolean):Void 
+	{
 		_isPlaying = b ;
 	}
 
 	/**
 	 * override this method 
 	 */
-	public function setPosition(time:Number):Void {
+	public function setPosition(time:Number):Void 
+	{
 		// 
 	}
 	
-	public function setResumed(b:Boolean):Void {
+	public function setResumed(b:Boolean):Void 
+	{
 		_isResumed = b ;
 	}
 	
-	public function setVolume(n:Number):Void {
+	public function setVolume(n:Number):Void 
+	{
 		getSound().setVolume(n) ;
 	}
 
-	public function startProgress():Void {
+	public function startProgress():Void 
+	{
 		_timer.start() ;
 		setPlaying(true) ;
 	}
@@ -256,34 +278,41 @@ class asgard.media.AbstractMediaLoader extends AbstractLoader implements IMediaL
 	/**
 	 * override this method 
 	 */
-	public function stop():Void {
+	public function stop():Void 
+	{
 		
 	}
 
-	public function stopProgress():Void {
+	public function stopProgress():Void 
+	{
 		_timer.stop() ;
 		setPlaying(false) ;
 	}
 
 	// ----o Virtual Properties
 	
-	public function get duration():Number {
+	public function get duration():Number 
+	{
 		return getDuration() ;	
 	}
 
-	public function get position():Number {
+	public function get position():Number 
+	{
 		return getPosition() ;	
 	}
 	
-	public function set position(n:Number):Void {
+	public function set position(n:Number):Void 
+	{
 		setPosition(n) ;	
 	}
 
-	public function get volume():Number {
+	public function get volume():Number 
+	{
 		return getVolume() ;	
 	}
 	
-	public function set volume(n:Number):Void {
+	public function set volume(n:Number):Void 
+	{
 		setVolume(n) ;	
 	}
 

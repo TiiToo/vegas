@@ -57,6 +57,8 @@ class asgard.events.MediaEventType {
 
 	// ----o Constants
 
+	static public var MEDIA_CLEAR:String = "onMediaClear" ;
+
 	static public var MEDIA_FINISH:String = "onMediaFinished" ;
 	
 	static public var MEDIA_PROGRESS:String = "onMediaProgress" ;

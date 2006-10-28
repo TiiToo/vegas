@@ -140,15 +140,15 @@
 		
 		- LoadEventType.onTimeOutEVENT:String
 
-		- MediaEventType.onMediaFinishedEVENT:String
+		- MediaEvent.onMediaFinishedEVENT:String
 		
-		- MediaEventType.onMediaProgressEVENT:String
+		- MediaEvent.onMediaProgressEVENT:String
 		
-		- MediaEventType.onMediaResumedEVENT:String
+		- MediaEvent.onMediaResumedEVENT:String
 		
-		- MediaEventType.onMediaStartedEVENT:String
+		- MediaEvent.onMediaStartedEVENT:String
 		
-		- MediaEventType.onMediaStoppedEVENT:String
+		- MediaEvent.onMediaStoppedEVENT:String
 	
 	INHERIT
 
@@ -160,14 +160,16 @@
 	
 **/
 
-import asgard.events.MediaEventType;
+import asgard.events.MediaEvent;
 import asgard.media.AbstractMediaLoader;
 import asgard.net.NetStreamStatus;
 
 import vegas.errors.IllegalArgumentError;
 import vegas.errors.UnsupportedOperation;
 import vegas.errors.Warning;
+import vegas.events.BasicEvent;
 import vegas.events.Delegate;
+import vegas.events.EventType;
 import vegas.events.TimerEventType;
 import vegas.maths.Range;
 import vegas.util.FrameTimer;
@@ -211,7 +213,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		setAutoSize( false ) ;
 		setBufferTime( VideoLoader.BUFFER_TIME_DEFAULT );
 		setPlaying ( false ) ;
-		setVolume(VideoLoader.VOLUME_DEFAULT) ;
+		setVolume( VideoLoader.VOLUME_DEFAULT ) ;
 		
 		_timerHeadTime = new Timer(100, 1) ;
 		_timerHeadTime.addEventListener(TimerEventType.TIMER, new Delegate(this, _onFrameUpdate)) ;
@@ -224,6 +226,15 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	static public var VOLUME_DEFAULT:Number = 60 ;
 
 	// ----o Public Methods
+
+	/**
+	 * Clear the video.
+	 */
+	public function clear():Void
+	{
+		_oVideo.clear() ;
+		notifyEvent(MediaEvent.MEDIA_CLEAR) ;
+	}
 
 	public function getBytesLoaded():Number 
 	{
@@ -297,7 +308,10 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 			setResumed(true) ;
 			_oNS.pause(true) ;	
 			stopProgress() ;
-			if (noEvent != true) notifyEvent(MediaEventType.MEDIA_RESUME) ;
+			if (noEvent != true) 
+			{
+				notifyEvent(MediaEvent.MEDIA_RESUME) ;
+			}
 		
 		}
 		else 
@@ -328,7 +342,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		startProgress() ;
 		if (noEvent != true) 
 		{
-			notifyEvent(MediaEventType.MEDIA_START) ;
+			notifyEvent(MediaEvent.MEDIA_START) ;
 		}
 		
 	}
@@ -372,6 +386,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	{
 		_mcTarget._width = w ;
 		_mcTarget._height = h ;
+		dispatchEvent( new BasicEvent(EventType.RESIZE, this) ) ;
 	}
 
 	public function setUrl( sURL:String ):Void 
@@ -413,8 +428,8 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 				setResumed(false) ;
 			}
 			stopProgress() ;
-			notifyEvent(MediaEventType.MEDIA_PROGRESS) ;
-			notifyEvent(MediaEventType.MEDIA_STOP) ;
+			notifyEvent(MediaEvent.MEDIA_PROGRESS) ;
+			notifyEvent(MediaEvent.MEDIA_STOP) ;
 		}
 	}
 
@@ -471,7 +486,10 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		
 		_oMetaData = info ;
 		
-		for (var props in info) trace(this + ".onMetaData -> " + props + " : " + info[props]) ;
+		for (var props in info) 
+		{
+			trace(">>>> " + this + ".onMetaData -> " + props + " : " + info[props]) ;
+		}
 		
 		setDuration( isNaN(info.duration) ? 0 : parseInt(info.duration) ) ;
 		
@@ -500,7 +518,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 					
 			case NetStreamStatus.PLAY_STOP.toString() :
 					
-					notifyEvent(MediaEventType.MEDIA_FINISH) ;
+					notifyEvent(MediaEvent.MEDIA_FINISH) ;
 					
 					trace(toString() + " stream stops playing.");
 					

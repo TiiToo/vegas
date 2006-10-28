@@ -142,33 +142,54 @@
 import asgard.events.LoaderEvent;
 import asgard.media.IMediaLoader;
 
-class asgard.events.MediaEvent extends LoaderEvent {
+class asgard.events.MediaEvent extends LoaderEvent 
+{
 
 	// ----o Constructor
 	
-	public function MediaEvent(type:String, loader:IMediaLoader, p_code:Number, p_error:String, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) {
+	public function MediaEvent(type:String, loader:IMediaLoader, p_code:Number, p_error:String, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
+	{
 		super(type, loader, p_code, p_error, context, bubbles, eventPhase, time, stop) ;
 	}
+	
+	// ----o Constants
+
+	static public var MEDIA_CLEAR:String = "onMediaClear" ;
+
+	static public var MEDIA_FINISH:String = "onMediaFinished" ;
+	
+	static public var MEDIA_PROGRESS:String = "onMediaProgress" ;
+	
+	static public var MEDIA_RESUME:String = "onMediaResumed" ;
+	
+	static public var MEDIA_START:String = "onMediaStarted" ;
+	
+	static public var MEDIA_STOP:String = "onMediaStopped" ;
 
 	// ----o Public Methods
 
-	public function clone() {
+	public function clone() 
+	{
 		return new MediaEvent(getType(), getTarget()) ;
 	}
 
-	public function getDuration():Number {
+	public function getDuration():Number 
+	{
 		return getLoader().getDuration() ;	
 	}
 
-	public function getLoader():IMediaLoader {
+	public function getLoader():IMediaLoader 
+	{
 		return _oLoader ;
 	}
 
-	public function getPosition():Number {
+	public function getPosition():Number 
+	{
 		return getLoader().getPosition() ;	
 	}
 	
-	public function getVolume():Number {
+	public function getVolume():Number 
+	{
 		return getLoader().getVolume() ;	
 	}
 
