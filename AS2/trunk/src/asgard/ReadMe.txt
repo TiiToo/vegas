@@ -1,12 +1,19 @@
  
-   VEGAS - ASGARD version 0.1 beta public
+   ASGARD version 0.6 (VEGAS Project extension)
  
-    * Project : http://www.ekameleon.net/vegas/ -- comming soon --
-    * Trac : http://live.burrrn.com/wiki/VEGAS
+   PROJECT PAGES
+
+	- http://osflash.org/asgard
+	- http://vegas.riaforge.org/
+	- http://code.google.com/p/vegas/
+
+   BLOG
+
+        - http://www.ekameleon.net/blog/
 
    DESCRIPTION
    
-		First very experimental Vegas Extension.
+       Principal extension based on VEGAS.
 	
    ABOUT
 
@@ -22,11 +29,3 @@
     * Stephan Schmid : Event model framework inspiration | http://schst.net/
     * OSFlash - Second SVN Hosting : http://www.osflash.org
     * PowerFlasher - FDT OpenSource Licence : http://powerflasher.com/ 
-	
-	TODO
-	
-	* Remoting package with no Macromedia Framework's dependencies.
-	* MediaPlayer (Video, Sound, FlashPaper)
-	* FP8 compatibility and BitmapData tools.
-	* asgard.net.XMLLoader
-	* agard.net.EDENLoader

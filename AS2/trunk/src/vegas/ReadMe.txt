@@ -1,8 +1,15 @@
  
-   VEGAS version 0.2 beta public
+   VEGAS version 0.6
  
-    * Project : http://www.ekameleon.net/vegas/ -- comming soon --
-    * Trac : http://live.burrrn.com/wiki/VEGAS
+   PROJECT PAGES
+
+	- http://osflash.org/asgard
+	- http://vegas.riaforge.org/
+	- http://code.google.com/p/vegas/
+
+   BLOG
+
+        - http://www.ekameleon.net/blog/
 
    ABOUT
 
