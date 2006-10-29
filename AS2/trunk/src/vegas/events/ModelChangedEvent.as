@@ -129,14 +129,17 @@ import vegas.events.BasicEvent;
 import vegas.events.ModelChangedEventType;
 import vegas.util.serialize.Serializer;
 
-class vegas.events.ModelChangedEvent extends BasicEvent {
+class vegas.events.ModelChangedEvent extends BasicEvent 
+{
 
 	// ----o Constructor
 	
-	public function ModelChangedEvent( 
+	public function ModelChangedEvent
+	( 
 		name:String , target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number 
 		, data, fieldName:String, firstItem:Number, index:Number, lastItem:Number, removedIDs:Array, removedItems:Array
-	) {
+	)
+	{
 		
 		super(name || ModelChangedEventType.MODEL_CHANGED, target, context, bubbles, eventPhase, time, stop) ;
 		
@@ -150,6 +153,17 @@ class vegas.events.ModelChangedEvent extends BasicEvent {
 		
 	}
 
+	// ----o Constant
+	
+	static public var ADD_ITEMS:String = "addItems" ; 
+	static public var CLEAR_ITEMS:String = "clear" ;
+	static public var MODEL_CHANGED:String = "modelChanged" ;
+	static public var REMOVE_ITEMS:String = "removeItems" ;
+	static public var SORT_ITEMS:String = "sortItems" ;
+	static public var UPDATE_ALL:String = "updateAll" ;
+	static public var UPDATE_FIELD:String = "updateField" ;
+	static public var UPDATE_ITEMS:String = "updateItems" ;
+
 	// ----o Public Properties
 	
 	public var data = null ;
@@ -162,8 +176,10 @@ class vegas.events.ModelChangedEvent extends BasicEvent {
 
 	// ----o Public Methods
 
-	public function clone() {
-		return new ModelChangedEvent(
+	public function clone() 
+	{
+		return new ModelChangedEvent
+		(
 			getType(), getTarget(), getContext(), getBubbles(), getEventPhase(), getTimeStamp(), stop,
 			data, fieldName, firstItem, index, lastItem, removedIDs, removedItems
 		) ;
@@ -171,9 +187,12 @@ class vegas.events.ModelChangedEvent extends BasicEvent {
 
 	// ----o Protected Methods
 	
-	/*protected*/ private function _getParams():Array {
+	/*protected*/ private function _getParams():Array 
+	{
 		var ar:Array = super._getParams() ;
-		ar = ar.concat( [
+		ar = ar.concat
+		( 
+			[
 			Serializer.toSource(data) ,
 			Serializer.toSource(fieldName) ,
 			Serializer.toSource(firstItem) ,
@@ -181,7 +200,8 @@ class vegas.events.ModelChangedEvent extends BasicEvent {
 			Serializer.toSource(lastItem) ,
 			Serializer.toSource(removedIDs) ,
 			Serializer.toSource(removedItems) 
-		] ) ;
+			]
+		) ;
 		return ar ;
 	}
 

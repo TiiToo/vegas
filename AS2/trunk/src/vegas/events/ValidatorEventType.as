@@ -47,13 +47,15 @@
 		
 			"valid"
 
-**/
+*/
 
-class vegas.events.ValidatorEventType {
+class vegas.events.ValidatorEventType 
+{
 
 	// ----o Constructor
 	
-	private function ValidatorEventType(){
+	private function ValidatorEventType()
+	{
 		//
 	}
 

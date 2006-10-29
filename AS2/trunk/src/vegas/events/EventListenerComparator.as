@@ -59,7 +59,7 @@
 	
 		IComparator, IFormattable, IHashable
 
-----------  */
+*/
 
 import vegas.core.CoreObject;
 import vegas.core.IComparator;
@@ -68,33 +68,52 @@ import vegas.events.EventListenerContainer;
 
 // TODO vérifier méthode equals !! .. problème sur le test du typage de 'o'.
 
-class vegas.events.EventListenerComparator extends CoreObject implements IComparator {
+class vegas.events.EventListenerComparator extends CoreObject implements IComparator 
+{
 
 	// ----o Constructor
 	
-	function EventListenerComparator( container:EventListenerContainer ) {
+	function EventListenerComparator( container:EventListenerContainer ) 
+	{
 		_container = container ;
 	}
 
 	// ----o Public Methods
 
-	public function compare(o1, o2):Number {
+	public function compare(o1, o2):Number 
+	{
 		if ( o1 instanceof EventListenerContainer 
-				&& o2 instanceof EventListenerContainer ) {
+				&& o2 instanceof EventListenerContainer ) 
+		{
 			var p1:Number = o1.getPriority() ;
 			var p2:Number = o2.getPriority() ;
-			if( p1 < p2 ) return 1 ;
-			else if( p1 > p2 ) return -1 ;
-			else return 0 ;
-		} else {
+			if( p1 < p2 ) 
+			{
+				return 1 ;
+			}
+			else if( p1 > p2 ) 
+			{
+				return -1 ;
+			}
+			else 
+			{
+				return 0 ;
+			}
+		}
+		else 
+		{
 			throw new IllegalArgumentError(this + ".compare(" + o1 + "," + o2 + "), arguments must be EventListenerContainer") ;
 		}
 	}
 	
-	public function equals(o):Boolean {
-		if (typeof(o) == "number" || o instanceof Number ) {
+	public function equals(o):Boolean 
+	{
+		if ( typeof(o) == "number" || o instanceof Number ) 
+		{
 			return compare(_container, o) == 0 ;
-		} else {
+		} 
+		else 
+		{
 			return false ;
 		}
 	}

@@ -107,15 +107,17 @@
 	
 		ADD : [2006-01-22] time property.
 	
-**/
+*/
 
 import vegas.events.BasicEvent;
 
-dynamic class vegas.events.DynamicEvent extends BasicEvent {
+dynamic class vegas.events.DynamicEvent extends BasicEvent 
+{
 
 	// ----o Constructor
 	
-	public function DynamicEvent( type:String, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) {
+	public function DynamicEvent( type:String, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
+	{
 		super(type, target, context, bubbles, eventPhase, time, stop) ;
 	}
 
@@ -131,61 +133,75 @@ dynamic class vegas.events.DynamicEvent extends BasicEvent {
 	
 	// ----o Public Methods
 
-	/*override*/ public function clone() {
+	/*override*/ public function clone() 
+	{
 		return new DynamicEvent(getType(), getTarget(), getContext()) ;
 	}
 
 	// ----o Virtual Properties
 
-	public function get bubbles():Boolean {
+	public function get bubbles():Boolean 
+	{
 		return getBubbles() ;	
 	}
 
-	public function set bubbles(b:Boolean):Void {
+	public function set bubbles(b:Boolean):Void 
+	{
 		setBubbles(b) ;	
 	}
 
-	public function get context() {
+	public function get context() 
+	{
 		return getContext() ;	
 	}
 
-	public function set context(o):Void {
+	public function set context(o):Void 
+	{
 		setContext(o) ;	
 	}
 
-	public function get currentTarget() {
+	public function get currentTarget() 
+	{
 		return getCurrentTarget() ;	
 	}
 
-	public function set currentTarget(o):Void {
+	public function set currentTarget(o):Void 
+	{
 		setCurrentTarget(o) ;	
 	}
 
-	public function get eventPhase():Number {
+	public function get eventPhase():Number 
+	{
 		return getEventPhase() ;	
 	}
 
-	public function set eventPhase(n:Number):Void {
+	public function set eventPhase(n:Number):Void 
+	{
 		setEventPhase(n) ;	
 	}
 
-	public function get target() {
+	public function get target() 
+	{
 		return getTarget() ;	
 	}
 
-	public function set target(o):Void {
+	public function set target(o):Void 
+	{
 		setTarget(o) ;	
 	}
 	
-	public function get timeStamp():Number {
+	public function get timeStamp():Number 
+	{
 		return getTimeStamp() ;	
 	}
 
-	public function get type():String {
+	public function get type():String 
+	{
 		return getType() ;	
 	}
 
-	public function set type(s:String):Void {
+	public function set type(s:String):Void 
+	{
 		setType(s) ;	
 	}
 

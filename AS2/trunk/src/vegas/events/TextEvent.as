@@ -105,16 +105,18 @@
 		
 		Event, ICloneable, IFormattable, IHashable, ISerializable
 	
-**/
+*/
 
 import vegas.events.DynamicEvent;
 import vegas.util.serialize.Serializer;
 
-class vegas.events.TextEvent extends DynamicEvent {
+class vegas.events.TextEvent extends DynamicEvent 
+{
 
 	// ----o Constructor
 	
-	public function TextEvent(type:String, txt:String, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number){
+	public function TextEvent(type:String, txt:String, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number)
+	{
 		super(type, target, context, bubbles, eventPhase, time, stop) ;
 		text = txt ;
 	}
@@ -125,13 +127,15 @@ class vegas.events.TextEvent extends DynamicEvent {
 
 	// ----o Public Methods
 
-	public function clone() {
+	public function clone() 
+	{
 		return new TextEvent(getType(), text, getTarget(), getContext()) ;
 	}
 
 	// ----o Protected Methods
 	
-	/*protected*/ private function _getParams():Array {
+	/*protected*/ private function _getParams():Array 
+	{
 		var ar:Array = super._getParams() ;
 		ar.splice(1, null, Serializer.toSource(text)) ;
 		return ar ;

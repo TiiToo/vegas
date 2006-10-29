@@ -109,28 +109,33 @@ import vegas.data.iterator.Iterator;
 import vegas.events.Event;
 import vegas.events.EventListener;
 
-class vegas.events.EventListenerBatch extends TypedCollection implements EventListener {
+class vegas.events.EventListenerBatch extends TypedCollection implements EventListener 
+{
 
 	// ----o Constructor
 	
- 	public function EventListenerBatch() {
+ 	public function EventListenerBatch() 
+ 	{
 		super(EventListener, new SimpleCollection()) ;
   	}
 
 	// ----o Public Methods
 	
-	public function clone() {
+	public function clone() 
+	{
 		var b:EventListenerBatch = new EventListenerBatch() ;
 		var it:Iterator = iterator() ;
 		while (it.hasNext()) b.insert(it.next()) ;
 		return b ;
 	}
 	
-	public function handleEvent(e:Event) {
+	public function handleEvent(e:Event) 
+	{
 		var ar:Array = toArray() ;
 		var i:Number = -1 ;
 		var l:Number = ar.length ;
-		if (l>0) while (++i < l) { 
+		if (l>0) while (++i < l) 
+		{ 
 			ar[i].handleEvent.apply(ar[i], arguments) ; 
 		}
   	}

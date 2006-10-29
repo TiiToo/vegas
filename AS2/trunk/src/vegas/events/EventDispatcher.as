@@ -178,7 +178,7 @@
 		REFACTORING : [2006-01-22] Change params in addEventListener Method
 		ADD         : [2006-03-11] add static release(name:String) method.
 	
-**/
+*/
 
 import vegas.core.CoreObject;
 import vegas.data.map.HashMap;
@@ -195,11 +195,13 @@ import vegas.events.IEventDispatcher;
 import vegas.util.factory.EventFactory;
 import vegas.util.TypeUtil;
 
-class vegas.events.EventDispatcher extends CoreObject implements IEventDispatcher {
+class vegas.events.EventDispatcher extends CoreObject implements IEventDispatcher 
+{
 
 	// ----o Constructor
 	
-	public function EventDispatcher( target:IEventDispatcher , parent:EventDispatcher ) {
+	public function EventDispatcher( target:IEventDispatcher , parent:EventDispatcher ) 
+	{
 		_globalListeners = new EventListenerCollection() ;
 		_captures = new HashMap() ;
 		_listeners = new HashMap() ;
@@ -214,15 +216,20 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 
 	// ----o Public Methods
 
-	public function addChild( child:EventDispatcher ):Void {
+	public function addChild( child:EventDispatcher ):Void 
+	{
 		child.parent = this ;
 	}
 
-	public function addEventListener( eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void {
+	public function addEventListener( eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void 
+	{
 		priority = isNaN(priority) ? 0 : priority ;
-		if (eventName == "ALL") {
+		if (eventName == "ALL") 
+		{
 			addGlobalEventListener(listener, priority, autoRemove) ;
-		} else {
+		}
+		else 
+		{
 			var map:HashMap = (!useCapture) ? _listeners : _captures ;
 			if (!map.containsKey(eventName)) map.put(eventName, new EventListenerCollection()) ;
 			var col:EventListenerCollection = map.get(eventName) ;
@@ -237,71 +244,89 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
         _dispatchQueuedEvents() ;
     }
 
-	public function dispatchEvent( event , isQueue:Boolean, target, context):Event {
+	public function dispatchEvent( event , isQueue:Boolean, target, context):Event 
+	{
 		if (!event) return null ;
 		var e:Event = EventFactory.create(event, target || this, context) ;
 		if (e == null) return null ;
 		var phase:Number = e.getEventPhase() ;
-		if (phase == EventPhase.AT_TARGET) {
+		if (phase == EventPhase.AT_TARGET) 
+		{
 			_capture(e) ; // CAPTURING_PHASE
 			e.setEventPhase(EventPhase.AT_TARGET) ;
 			e.setCurrentTarget(this) ;
 			_propagate(e, isQueue || false ) ; // AT_TARGET
 			_bubble(e) ; // BUBBLING_PHASE
 			e.setEventPhase(EventPhase.AT_TARGET) ; // TODO inclure cette initialisation dans initEvent ??
-		} else if (phase == EventPhase.BUBBLING_PHASE) {
+		}
+		else if (phase == EventPhase.BUBBLING_PHASE) 
+		{
 			_propagateBubble(e) ;
-		} else if (phase == EventPhase.CAPTURING_PHASE) {
+		}
+		else if (phase == EventPhase.CAPTURING_PHASE) 
+		{
 			_propagateCapture(e) ;
 		}
 		return e ;
 	}
 
-	static public function flush():Void {
+	static public function flush():Void 
+	{
 		EventDispatcher.instances.clear() ;
 	}
 
-	public function getEventListeners(eventName:String):EventListenerCollection {
+	public function getEventListeners(eventName:String):EventListenerCollection 
+	{
 		if ( _listeners.containsKey(eventName) ) return _listeners.get(eventName) ;
 		return new EventListenerCollection() ;
 	}
 
-	public function getGlobalEventListeners():EventListenerCollection {
+	public function getGlobalEventListeners():EventListenerCollection 
+	{
         return _globalListeners ;
     }
 
-	static public function getInstance(name:String):EventDispatcher {
+	static public function getInstance(name:String):EventDispatcher 
+	{
 		if (!name) name = "__default__" ;
-		if (!EventDispatcher.instances.containsKey(name)) {
+		if (!EventDispatcher.instances.containsKey(name)) 
+		{
 			EventDispatcher.instances.put(name, new EventDispatcher()) ;
 		}
 		return EventDispatcher(EventDispatcher.instances.get(name));
 	}
 	
-	public function getRegisteredEventNames():Set {
+	public function getRegisteredEventNames():Set 
+	{
     	return new HashSet(_listeners.getKeys()) ;
     }
 	
-	public function getTarget() {
+	public function getTarget() 
+	{
 		return _target ;	
 	}
 	
-	public function hasEventListener(eventName:String):Boolean {
+	public function hasEventListener(eventName:String):Boolean 
+	{
 		return _listeners.containsKey(eventName) ;
 	}
 
-	static public function release(name:String):EventDispatcher {
+	static public function release(name:String):EventDispatcher 
+	{
 		if (!name) name = "__default__" ;
 		return EventDispatcher.instances.remove(name) ;
 	}
 
-	public function removeChild( child:EventDispatcher ):Void {
+	public function removeChild( child:EventDispatcher ):Void 
+	{
 		child.parent = null ;
 	}
 
-    public function removeEventListener(eventName:String, listener , useCapture:Boolean):EventListener {
+    public function removeEventListener(eventName:String, listener , useCapture:Boolean):EventListener 
+    {
 		if (eventName == "ALL") return removeGlobalEventListener(listener) ;
-		if (listener instanceof EventListener || TypeUtil.typesMatch(listener, String))  {
+		if (listener instanceof EventListener || TypeUtil.typesMatch(listener, String))  
+		{
 			var map:HashMap = (!useCapture) ? _listeners : _captures ;
 			if (!map.containsKey(eventName) ) return null ;
 			var col:EventListenerCollection = map.get(eventName) ;
@@ -311,18 +336,24 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
         return null ;
     }
 
-	public function removeGlobalEventListener( listener ):EventListener {
-		if (listener instanceof EventListener || typeof(listener) == "string") {
+	public function removeGlobalEventListener( listener ):EventListener 
+	{
+		if (listener instanceof EventListener || typeof(listener) == "string") 
+		{
 			var container:EventListenerContainer = EventListenerContainer(_globalListeners.removeListener(listener));
 			if (container != null) 	return container.getListener();
 			return null;
 		}
 	}
 	
-	static public function removeInstance(name:String):Boolean {
-		if (!EventDispatcher.instances.containsKey(name)) {
+	static public function removeInstance(name:String):Boolean 
+	{
+		if (!EventDispatcher.instances.containsKey(name)) 
+		{
 			return EventDispatcher.instances.remove(name) != null ;
-		} else {
+		}
+		else 
+		{
 			return false ;
 		}
 	}
@@ -338,15 +369,19 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 	
     // ----o Private Methods
 	
-	private function _bubble(e:Event):Boolean {
+	private function _bubble(e:Event):Boolean 
+	{
 		if (e["stop"] >= EventPhase.STOP ) return false ;
 		var parents:Array = _getParents() ;
-		if (parents != null) {
+		if (parents != null) 
+		{
 			var l:Number = parents.length ;
 			var i:Number = 0 ;
 			var current:EventDispatcher ;
-			while (i<l) {
-				if (e.getBubbles()) {
+			while (i<l) 
+			{
+				if (e.getBubbles()) 
+				{
 					current = parents[i] ;
 					e.setCurrentTarget(current.getTarget()) ;
 					e.setEventPhase(EventPhase.BUBBLING_PHASE) ;
@@ -359,12 +394,15 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 		return true ;
 	}
 	
-	private function _capture(e:Event):Boolean {
+	private function _capture(e:Event):Boolean 
+	{
 		var parents:Array = _getParents() ;
-		if (parents != null) {
+		if (parents != null) 
+		{
 			var l:Number = parents.length ;
 			var current:EventDispatcher ;
-			while (--l > -1) {
+			while (--l > -1) 
+			{
 				current = parents[l] ;
 				e.setCurrentTarget(current.getTarget()) ;
 				e.setEventPhase(EventPhase.CAPTURING_PHASE) ;
@@ -375,47 +413,58 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 		return true ;
 	}
 	
-	private function _dispatchQueuedEvents():Void {
+	private function _dispatchQueuedEvents():Void 
+	{
 		var q:Queue = _queue.getQueuedEvents();
-		if (q.size() > 0) {
+		if (q.size() > 0) 
+		{
 			var ar:Array = q.toArray() ;
 			var len:Number = ar.length ;
-			for (var i:Number = 0 ; i<len ; i++) {
+			for (var i:Number = 0 ; i<len ; i++) 
+			{
 				var e:Event = ar[i] ;
 				dispatchEvent(e, e.isQueued()) ;
 			}
 		}
 	}
 
-	private function _getParents():Array {
+	private function _getParents():Array 
+	{
 		if (parent == null) return null ;
 		var ar:Array = [] ;
 		var tmp:EventDispatcher = parent ;
-		while(tmp != null) {
+		while(tmp != null) 
+		{
 			ar.push(tmp) ;
 			tmp = tmp.parent ;
 		}
 		return ar ;
 	}
 
-	private function _propagateBubble(e:Event):Void {
-		if (e.getEventPhase(EventPhase.BUBBLING_PHASE)) {
+	private function _propagateBubble(e:Event):Void 
+	{
+		if (e.getEventPhase(EventPhase.BUBBLING_PHASE)) 
+		{
 			e.setCurrentTarget(getTarget()) ;
 			_propagate(e) ;
 		}
 	}
 	
-	private function _propagateCapture(e:Event):Void {
-		if (_captures.containsKey(e.getType())) {
+	private function _propagateCapture(e:Event):Void 
+	{
+		if (_captures.containsKey(e.getType())) 
+		{
 			e.getEventPhase(EventPhase.CAPTURING_PHASE) ;
             var col:EventListenerCollection = EventListenerCollection(_captures.get(e.getType())) ;
             col.propagate(e) ;
         }
 	}
 	
-	private function _propagate(e:Event, isQueue:Boolean):Event {
+	private function _propagate(e:Event, isQueue:Boolean):Event 
+	{
 		if (e["stop"] >= EventPhase.STOP ) return e ; // hack the interface limitation
-		if (_listeners.containsKey(e.getType())) {
+		if (_listeners.containsKey(e.getType())) 
+		{
             var col:EventListenerCollection = EventListenerCollection(_listeners.get(e.getType())) ;
             col.propagate(e) ;
         }
@@ -425,6 +474,5 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
         _queue.enqueue(e) ;
         return e;
 	}
-	
 	
 }

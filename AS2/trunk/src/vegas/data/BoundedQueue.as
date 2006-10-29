@@ -58,11 +58,12 @@
 		
 		- poll() : Retrieves and removes the head of this queue.
 		
-----------  */
+*/
 
 import vegas.data.Queue;
 
-interface vegas.data.BoundedQueue extends Queue {
+interface vegas.data.BoundedQueue extends Queue 
+{
 
 	function isFull():Boolean ;
 	

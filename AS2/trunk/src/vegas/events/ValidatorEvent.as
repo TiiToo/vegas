@@ -109,7 +109,7 @@
 		
 		Event, ICloneable, IFormattable, IHashable, ISerializable
 
-**/
+*/
 
 import vegas.events.DynamicEvent;
 
@@ -117,13 +117,20 @@ class vegas.events.ValidatorEvent extends DynamicEvent {
 
 	// ----o Constructor
 	
-	public function ValidatorEvent(type:String, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) {
+	public function ValidatorEvent(type:String, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
+	{
 		super(type, target, context, bubbles, eventPhase, time, stop) ;
 	}
 
+	// ----o Constants
+
+	static public var INVALID:String = "invalid" ;
+	static public var VALID:String = "valid" ;
+
 	// ----o Public Methods
 
-	public function clone() {
+	public function clone() 
+	{
 		return new ValidatorEvent(getType(), getTarget()) ;
 	}
 	

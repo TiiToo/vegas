@@ -107,17 +107,27 @@
 
 import vegas.events.DynamicEvent;
 
-class vegas.events.TimerEvent extends DynamicEvent {
+class vegas.events.TimerEvent extends DynamicEvent 
+{
 
 	// ----o Constructor
 	
-	public function TimerEvent(type:String, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) {
+	public function TimerEvent(type:String, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
+	{
 		super(type, target, context, bubbles, eventPhase, time, stop) ;
 	}
 
+	// ----o Constants
+
+	static public var RESTART:String = "restart" ;
+	static public var START:String = "start" ;
+	static public var STOP:String = "stop" ;
+	static public var TIMER:String = "timer" ;
+
 	// ----o Public Methods
 
-	public function clone() {
+	public function clone() 
+	{
 		return new TimerEvent(getType(), getTarget()) ;
 	}
 	

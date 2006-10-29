@@ -72,12 +72,12 @@
 
 		Map > BoundedCollection
 
-
-**/
+*/
 
 import vegas.data.Map;
 
-interface vegas.data.BoundedMap extends Map {
+interface vegas.data.BoundedMap extends Map 
+{
 
 	function isFull():Boolean ;
 	

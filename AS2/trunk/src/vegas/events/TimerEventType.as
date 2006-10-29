@@ -55,13 +55,15 @@
 		
 			"timer"
 
-**/
+*/
 
-class vegas.events.TimerEventType {
+class vegas.events.TimerEventType 
+{
 
 	// ----o Constructor
 	
-	private function TimerEventType() {
+	private function TimerEventType() 
+	{
 		//
 	}
 

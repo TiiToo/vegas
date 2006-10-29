@@ -53,38 +53,44 @@
 		
 	TODO : combine ?
 
-**/
+*/
 
-class vegas.core.HashCode {
+class vegas.core.HashCode 
+{
 
 	// ----o Construtor
 	
-	private function HashCode() {
+	private function HashCode() 
+	{
 		//
 	}
 	
 	// ----o Public Methods
 
 	/**
-	 *  Compare two IHashable objects.
+	 * Compare two IHashable objects.
 	 * @usage   var isEquals:Boolean = HashCode.equals(o1, o2) ;
 	 * @param   o1 
 	 * @param   o2 
-	 * @return  
+	 * @return a Boolean.  
 	 */
-	static public function equals(o1, o2):Boolean {
+	static public function equals(o1, o2):Boolean 
+	{
 		return HashCode.identify(o1) == HashCode.identify(o2) ;
 	}
 
-	static public function identify(o):Number {
+	static public function identify(o):Number 
+	{
 		return o.hashCode() ;
 	}
 	
-	static public function next():Number {
+	static public function next():Number 
+	{
 		return HashCode._nHash++ ;
 	}
 
-	static public function nextName():String {
+	static public function nextName():String 
+	{
 		return String( HashCode._nHash + 1 ) ;
 	}
 	
@@ -94,15 +100,17 @@ class vegas.core.HashCode {
 	
 	// ----o Private Methods
 	
-	static public function initialize(o):Boolean {
-		o.hashCode = function () {
+	static public function initialize(o):Boolean 
+	{
+		o.hashCode = function () 
+		{
 			if (this.__hashcode__ == null) {
 				this.__hashcode__ = HashCode.next() ;
 				_global.ASSetPropFlags(this, ["__hashcode__"], 7, 7) ;
 			}
 			return this.__hashcode__ ;
 		} ;
-		_global.ASSetPropFlags(o, ["__hashcode__", "hashCode"], 7, 7);
+		_global.ASSetPropFlags(o, ["__hashcode__", "hashCode"], 7, 7) ;
 		return true ;
 	}
 	

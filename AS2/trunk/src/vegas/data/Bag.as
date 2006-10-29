@@ -93,12 +93,13 @@
 
 	TODO TypedBag, Buffer, TreeBag ??
 
-**/
+*/
 
 import vegas.data.Collection;
 import vegas.data.Set;
 
-interface vegas.data.Bag extends Collection {
+interface vegas.data.Bag extends Collection 
+{
 
 	function containsAll(c:Collection):Boolean ;
 	

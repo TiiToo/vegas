@@ -61,7 +61,7 @@
 	
 	TODO : optimiser les itérations
 	
-**/
+*/
 
 import vegas.core.CoreObject;
 import vegas.data.iterator.Iterable;
@@ -75,11 +75,13 @@ import vegas.events.EventPhase;
 import vegas.util.ConstructorUtil;
 import vegas.util.TypeUtil;
 
-class vegas.events.EventListenerCollection extends CoreObject implements Iterable {
+class vegas.events.EventListenerCollection extends CoreObject implements Iterable 
+{
 
 	// ----o Constructor
 	
-	public function EventListenerCollection() {
+	public function EventListenerCollection() 
+	{
 		_listeners = new SortedArrayList() ;
 		_listeners.setComparator(new EventListenerComparator()) ;
 		_listeners.setOptions(Array.NUMERIC) ;
@@ -87,7 +89,8 @@ class vegas.events.EventListenerCollection extends CoreObject implements Iterabl
 	
 	// ----o Public Methods
     
-	public function addListener( listener:EventListener, autoRemove:Boolean, priority:Number ):Number {
+	public function addListener( listener:EventListener, autoRemove:Boolean, priority:Number ):Number 
+	{
 		var container:EventListenerContainer = new EventListenerContainer(listener) ;
 		container.enableAutoRemove(autoRemove) ;
 		container.setPriority(priority) ;
@@ -95,51 +98,71 @@ class vegas.events.EventListenerCollection extends CoreObject implements Iterabl
 		return _listeners.size() ;
 	}
 
-	public function iterator():Iterator {
+	public function iterator():Iterator 
+	{
 		return _listeners.iterator() ;
 	}
 	
-	public function propagate(e:Event):Event {
+	public function propagate(e:Event):Event 
+	{
 		var remove:Array = new Array() ;
 		var l:Number = _listeners.size() ;
-		for (var i:Number = 0 ; i<l ; i++) {
+		for (var i:Number = 0 ; i<l ; i++) 
+		{
 			if (e["stop"] == EventPhase.STOP_IMMEDIATE) break ;
 			var container:EventListenerContainer = _listeners.get(i) ;
 			container.getListener().handleEvent(e) ;
-			if (container.isAutoRemoveEnabled()) {
+			if (container.isAutoRemoveEnabled()) 
+			{
 				remove.push(container.getListener()) ;
 			}
 			if (e.isCancelled()) break ;
 		}
 		// remove all autoRemove listeners
 		l = remove.length ;
-		if (l > 0) while (--l > -1) removeListener(remove[l]) ;
+		if (l > 0) 
+		{
+			while (--l > -1) 
+			{
+				removeListener(remove[l]) ;
+			}
+		}
 		return e ;
 	}
 
-	public function removeListener( listener ):EventListenerContainer {
-		if (listener instanceof EventListener) { // EventListener
+	public function removeListener( listener ):EventListenerContainer 
+	{
+		if (listener instanceof EventListener) 
+		{
 			
 			var it:Iterator = _listeners.iterator() ;
-			while(it.hasNext()) {
+			while(it.hasNext()) 
+			{
 				var container:EventListenerContainer = it.next() ;
-				if (container.getListener() == listener) {
+				if (container.getListener() == listener) 
+				{
 					_listeners.remove(container) ;
 					return container ;
 				}
 			}
 			
-		} else if (TypeUtil.typesMatch(listener, Number)) {
+		}
+		else if (TypeUtil.typesMatch(listener, Number)) 
+		{
 			
 			return _listeners.removeAt(listener) ;
 			
-		} else if (TypeUtil.typesMatch(listener, String)) { // constructorName
+		}
+		else if (TypeUtil.typesMatch(listener, String)) // constructorName 
+		{ 
 		 
 			var it:Iterator = _listeners.iterator() ;
-			while(it.hasNext()) {
+			while(it.hasNext()) 
+			{
 				var container:EventListenerContainer = it.next() ;
 				var constructorName:String = ConstructorUtil.getName(container) ;
-				if (constructorName == listener) {
+				if (constructorName == listener) 
+				{
 					_listeners.remove(container) ;
 					return container ;
 				}
@@ -149,7 +172,8 @@ class vegas.events.EventListenerCollection extends CoreObject implements Iterabl
 		return null ;
 	}
 	
-	public function size():Number {
+	public function size():Number 
+	{
 		return _listeners.size() ;
 	}
 	

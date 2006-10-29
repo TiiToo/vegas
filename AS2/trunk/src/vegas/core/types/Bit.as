@@ -103,18 +103,20 @@
 	
 		IFormattable, IHashable
 
-**/
+*/
 
 import vegas.core.HashCode;
 import vegas.core.IFormattable;
 import vegas.core.IHashable;
 import vegas.util.MathsUtil;
 
-class vegas.core.types.Bit extends Number implements IFormattable, IHashable {
+class vegas.core.types.Bit extends Number implements IFormattable, IHashable 
+{
 
 	// ----o Constructor
 	
-	public function Bit(n:Number) {
+	public function Bit(n:Number) 
+	{
 		_bit = n ;
 		_comma = DEFAULT_FLOATING_POINTS ;
 	}

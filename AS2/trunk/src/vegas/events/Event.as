@@ -87,11 +87,12 @@
 	
 		ICloneable
 	
-**/
+*/
 
 import vegas.core.ICloneable;
 
-interface vegas.events.Event extends ICloneable {
+interface vegas.events.Event extends ICloneable 
+{
 
 	// var stop:Number ;
 

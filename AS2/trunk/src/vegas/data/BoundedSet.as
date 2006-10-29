@@ -21,7 +21,7 @@
   
 */
 
-/* ------- 	BoundedSet [Interface]
+/**	BoundedSet [Interface]
 
 	AUTHOR
 
@@ -41,16 +41,14 @@
 
 	INHERIT
 
-		Set 
-		| 
-		BoundedSet
+		Set - BoundedSet
 
-
-----------  */
+*/
 
 import vegas.data.Set;
 
-interface vegas.data.BoundedSet extends Set {
+interface vegas.data.BoundedSet extends Set 
+{
 
 	function isFull():Boolean ;
 	

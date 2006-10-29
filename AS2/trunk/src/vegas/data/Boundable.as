@@ -39,9 +39,10 @@
 		
 		- maxSize():Number
 
-**/
+*/
 
-interface vegas.data.Boundable {
+interface vegas.data.Boundable 
+{
 
 	function isFull():Boolean ;
 	

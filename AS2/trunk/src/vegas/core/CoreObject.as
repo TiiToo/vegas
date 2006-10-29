@@ -49,7 +49,7 @@
 	
 		IFormattable, IHashable, ISerializable
 
-**/
+*/
 
 import vegas.core.HashCode;
 import vegas.core.IFormattable;
@@ -57,25 +57,34 @@ import vegas.core.IHashable;
 import vegas.core.ISerializable;
 import vegas.util.ConstructorUtil;
 
-class vegas.core.CoreObject implements IFormattable, IHashable, ISerializable {
+/**
+ * @author eKameleon.
+ */
+class vegas.core.CoreObject implements IFormattable, IHashable, ISerializable 
+{
 
-	// ----o Construtor
-	
-	public function CoreObject() {
+	/**
+	 * Creates a new CoreObject instance.
+	 */
+	public function CoreObject() 
+	{
 		//
 	}
 	
 	// ----o Public Methods
 	
-	public function hashCode():Number {
+	public function hashCode():Number 
+	{
 		return null ;
 	}
 
-	public function toSource(indent : Number, indentor : String):String {
+	public function toSource(indent : Number, indentor : String):String 
+	{
 		return "new " + ConstructorUtil.getPath(this) + "()" ;
 	}
 
-	public function toString():String {
+	public function toString():String 
+	{
 		return "[" + ConstructorUtil.getName(this) + "]" ;
 	}
 

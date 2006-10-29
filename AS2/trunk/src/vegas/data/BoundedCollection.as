@@ -63,11 +63,12 @@
 		
 		- toArray():Array
 
-**/
+*/
 
 import vegas.data.Collection;
 
-interface vegas.data.BoundedCollection extends Collection {
+interface vegas.data.BoundedCollection extends Collection 
+{
 
 	function isFull():Boolean ;
 	
