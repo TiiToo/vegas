@@ -122,23 +122,6 @@ dynamic class vegas.events.DynamicEvent extends BasicEvent
 	}
 
 	// ----o Public Properties
-	
-	// public var bubbles:Boolean ; // [R/W]
-	// public var context ; // [R/W]
-	// public var currentTarget ; // [R/W]
-	// public var eventPhase:Number ; // [R/W]
-	// public var target ; // [R/W]
-	// public var timeStamp:Number ; // [Read Only]
-	// public var type:String ; // [R/W]
-	
-	// ----o Public Methods
-
-	/*override*/ public function clone() 
-	{
-		return new DynamicEvent(getType(), getTarget(), getContext()) ;
-	}
-
-	// ----o Virtual Properties
 
 	public function get bubbles():Boolean 
 	{
@@ -203,6 +186,13 @@ dynamic class vegas.events.DynamicEvent extends BasicEvent
 	public function set type(s:String):Void 
 	{
 		setType(s) ;	
+	}
+
+	// ----o Public Methods
+
+	/*override*/ public function clone() 
+	{
+		return new DynamicEvent(getType(), getTarget(), getContext()) ;
 	}
 
 }

@@ -147,9 +147,9 @@ class vegas.events.BasicEvent extends CoreObject implements Event {
 	) 
 		{
 		
-		_type = type || null ;
-		_context = context || null ;
-		_target = target || null ;
+		_type = type ;
+		_context = context ;
+		_target = target ;
 		_bubbles = (p_bubbles != null) ? p_bubbles : true ;
 		_eventPhase = isNaN(p_eventPhase) ? EventPhase.AT_TARGET : p_eventPhase ;
 		_time = (p_time > 0) ? p_time : ( (new Date()).valueOf() ) ;
