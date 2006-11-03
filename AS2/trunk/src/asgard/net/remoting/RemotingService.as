@@ -81,7 +81,7 @@
  
 		Action, EventTarget, IEventDispatcher, IFormattable, IHashable
 
-**/
+*/
 
 // TODO rajouter les logs et les erreurs.
 // TODO rajouter le timeOut
@@ -218,9 +218,12 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction
 			_rc.setCredentials(_authentification) ;
 		}
 		
-		if ( getRunning() && multipleSimultaneousAllowed == false)  {
+		if ( getRunning() && multipleSimultaneousAllowed == false)  
+		{
 			notifyProgress() ;
-		} else {
+		}
+		else 
+		{
 			notifyStarted() ;
 			_result = null ;
 			_setRunning(true) ;

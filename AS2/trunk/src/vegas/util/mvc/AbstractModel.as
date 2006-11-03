@@ -51,36 +51,42 @@
 	
 		CoreObject → AbstractCoreEventDispatcher → AbstractModel
 
-**/
+*/
 
 import vegas.events.AbstractCoreEventDispatcher;
 import vegas.events.ModelChangedEvent;
 import vegas.util.mvc.IModel;
 import vegas.util.mvc.IView;
 
-class vegas.util.mvc.AbstractModel extends AbstractCoreEventDispatcher implements IModel {
+class vegas.util.mvc.AbstractModel extends AbstractCoreEventDispatcher implements IModel 
+{
 
 	// ----o Constructeur
 	
-	private function AbstractModel() {
+	private function AbstractModel() 
+	{
 		//
 	}
 	
 	// ----o Public Methods
 	
-	public function addView(view:IView):Void {
+	public function addView(view:IView):Void 
+	{
 		addGlobalEventListener(view) ;
 	}
 	
-	public function clone() {
+	public function clone() 
+	{
 		//
 	}
 	
-	public function notifyChanged(ev:ModelChangedEvent):Void {
+	public function notifyChanged(ev:ModelChangedEvent):Void 
+	{
 		dispatchEvent(ev) ;
 	}
 	
-	public function removeView(view:IView):Void {
+	public function removeView(view:IView):Void 
+	{
 		removeGlobalEventListener(view) ;
 	}
 

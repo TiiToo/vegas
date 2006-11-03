@@ -120,7 +120,7 @@ class asgard.events.RemotingEvent extends DynamicEvent {
 	static public var FINISH:String = "onFinished" ;
 	static public var PROGRESS:String = "onProgress" ;
 	static public var RESULT:String = "onResult" ;
-	static public var START:String = "onStart" ;
+	static public var START:String = "onStarted" ;
 
 	static private var __ASPF__ = _global.ASSetPropFlags(RemotingEvent, null , 7, 7) ;
 

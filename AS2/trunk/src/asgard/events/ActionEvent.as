@@ -120,22 +120,50 @@ class asgard.events.ActionEvent extends DynamicEvent {
 
 	// ----o Constructor
 	
-	public function ActionEvent(type:String, target:Object, info, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number){
+	public function ActionEvent
+	(
+		type:String, target:Object, info, context,
+			bubbles:Boolean, eventPhase:Number, time:Number, stop:Number
+	)
+	{
 		super(type, target, context, bubbles, eventPhase, time, stop) ;
-		_oInfo = info || null ;
+		_oInfo = info  ;
 	}
+
+	// ----o Constants
+
+	static public var CHANGE:String = "onChanged" ;
+	
+	static public var CLEAR:String = "onCleared" ;
+	
+	static public var FINISH:String = "onFinished" ;
+	
+	static public var INFO:String = "onInfo" ;
+	
+	static public var LOOP:String = "onLooped" ;
+	
+	static public var PROGRESS:String = "onProgress" ;
+	
+	static public var RESUME:String = "onResumed" ;
+	
+	static public var START:String = "onStarted" ;
+	
+	static public var STOP:String = "onStopped" ;	
 
 	// ----o Public Methods
 
-	public function getInfo() {
+	public function getInfo() 
+	{
 		return _oInfo ;
 	}
 
-	public function clone() {
+	public function clone() 
+	{
 		return new ActionEvent(getType(), getTarget()) ;
 	}
 	
-	public function setInfo( oInfo ):Void {
+	public function setInfo( oInfo ):Void 
+	{
 		_oInfo = oInfo ;	
 	}
 
@@ -145,7 +173,8 @@ class asgard.events.ActionEvent extends DynamicEvent {
 
 	// ----o Protected Methods
 	
-	/*protected*/ private function _getParams():Array {
+	/*protected*/ private function _getParams():Array 
+	{
 		var ar:Array = super._getParams() ;
 		ar.splice(2, null, Serializer.toSource(_oInfo)) ;
 		return ar ;
