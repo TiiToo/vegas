@@ -35,17 +35,23 @@
 
 	EVENT TYPE SUMMARY
 	
-		- RemotingEventType.ERROR : "error"
-
-		- RemotingEventType.FAULT : "fault"
+		- const ActionEvent.CHANGED : "changed"
 		
-		- RemotingEventType.FINISHED  : "onFinished"
+		- const ActionEvent.CLEARED : "cleared"
 		
-		- RemotingEventType.PROGRESS : "onProgress"
-
-		- RemotingEventType.RESULT : "result"
-	
-		- RemotingEventType.STARTED   : "onStarted"
+		- const ActionEvent.FINISHED  : "finished"
+		
+		- const ActionEvent.LOOPED : "looped"
+		
+		- const ActionEvent.PROGRESS : "progress"
+		
+		- const ActionEvent.RESUMED  : "resumed"
+		
+		- const ActionEvent.STARTED   : "started"
+		
+		- const ActionEvent.STOPPED   : "stopped"
+		
+		- const ActionEvent.TIMEOUT  : "onTimeOut"
 
 	PROPERTY SUMMARY
 	
@@ -116,12 +122,19 @@ class asgard.events.RemotingEvent extends DynamicEvent {
 	// ----o Constants
 	
 	static public var ERROR:String = "onError" ;	
+	
 	static public var FAULT:String = "onFault" ;
+	
 	static public var FINISH:String = "onFinished" ;
+	
 	static public var PROGRESS:String = "onProgress" ;
+	
 	static public var RESULT:String = "onResult" ;
+	
 	static public var START:String = "onStarted" ;
-
+	
+	static public var TIMEOUT:String = "onTimeOut" ;
+	
 	static private var __ASPF__ = _global.ASSetPropFlags(RemotingEvent, null , 7, 7) ;
 
 	// ----o Public Properties

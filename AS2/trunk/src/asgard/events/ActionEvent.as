@@ -35,81 +35,27 @@
 	
 	EVENT SUMMARY
 
-		- ActionEventType.CHANGED : "changed"
+		- const ActionEvent.CHANGED : "onChanged"
 		
-		- ActionEventType.CLEARED : "cleared"
+		- const ActionEvent.CLEARED : "onCleared"
 		
-		- ActionEventType.FINISHED  : "finished"
+		- const ActionEvent.FINISHED  : "onFinished"
 		
-		- ActionEventType.LOOPED : "looped"
+		- const ActionEvent.LOOPED : "onLooped"
 		
-		- ActionEventType.PROGRESS : "progress"
+		- const ActionEvent.PROGRESS : "onProgress"
 		
-		- ActionEventType.RESUMED  : "resumed"
+		- const ActionEvent.RESUMED  : "onResumed"
 		
-		- ActionEventType.STARTED   : "started"
+		- const ActionEvent.STARTED   : "onStarted"
 		
-		- ActionEventType.STOPPED   : "stopped"
+		- const ActionEvent.STOPPED   : "onStopped"
+		
+		- const ActionEvent.TIMEOUT  : "onTimeOut"
 
-	METHOD SUMMARY
-
-		- cancel():Void
-		
-		- clone():BasicEvent
-		
-		- getBubbles():Boolean
-		
-		- getContext():Object
-		
-		- getCurrentTarget():Object
-		
-		- getEventPhase():Number
-		
-		- getInfo()
-		
-		- getTarget():Object
-		
-		- getTimeStamp():Number
-		
-		- getType():String
-		
-		- isCancelled():Boolean
-		
-		- isQueued():Boolean
-		
-		- queueEvent():Void
-		
-		- setBubbles(b:Boolean):Void
-		
-		- setContext(context:Object):Void
-		
-		- setCurrentTarget(target):Void
-		
-		- setEventPhase(n:Number):Void
-		
-		- setInfo(oInfo):Void
-		
-		- setTarget(target:Object):Void
-		
-		- setType(type:String):Void
-		
-		- stopImmediatePropagation()
-		
-		- toSource(indent : Number, indentor : String):String
-		
-		- toString():String
-		
 	INHERIT
 	
-		CoreObject → BasicEvent → DynamicEvent → ActionEvent
-		
-	IMPLEMENTS 
-		
-		Event, ICloneable, IFormattable, IHashable, ISerializable
-
-	SEE ALSO
-	
-		ActionEventType
+		flash.events.Event → ActionEvent
 
 */
 
@@ -149,6 +95,8 @@ class asgard.events.ActionEvent extends DynamicEvent {
 	static public var START:String = "onStarted" ;
 	
 	static public var STOP:String = "onStopped" ;	
+
+	static public var TIMEOUT:String = "onTimeOut" ;
 
 	// ----o Public Methods
 

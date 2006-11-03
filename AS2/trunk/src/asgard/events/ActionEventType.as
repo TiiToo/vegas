@@ -33,41 +33,27 @@
 		URL : http://www.ekameleon.net
 		Mail : vegas@ekameleon.net
 	
-	CONSTANT SUMMARY
+	EVENT SUMMARY
 
-		- CHANGE:String
+		- const ActionEvent.CHANGED : "onChanged"
 		
-			"onChanged"
+		- const ActionEvent.CLEARED : "onCleared"
 		
-		- CLEAR:String
+		- const ActionEvent.FINISHED  : "onFinished"
 		
-			"onCleared"
+		- const ActionEvent.LOOPED : "onLooped"
 		
-		- FINISH:String
+		- const ActionEvent.PROGRESS : "onProgress"
 		
-			"onFinished"
+		- const ActionEvent.RESUMED  : "onResumed"
 		
-		- LOOP:String
+		- const ActionEvent.STARTED   : "onStarted"
 		
-			"onLooped"
+		- const ActionEvent.STOPPED   : "onStopped"
 		
-		- PROGRESS:String
-		
-			"onProgress"
-		
-		- RESUME:String
-		
-			"onResumed"
-		
-		- START:String
-		
-			"onStarted"
-		
-		- STOP:String
-		
-			"onStopped"
+		- const ActionEvent.TIMEOUT  : "onTimeOut"
 
-----------  */
+*/
 
 class asgard.events.ActionEventType {
 
@@ -96,7 +82,9 @@ class asgard.events.ActionEventType {
 	static public var START:String = "onStarted" ;
 	
 	static public var STOP:String = "onStopped" ;	
-	
+
+	static public var TIMEOUT:String = "onTimeOut" ;
+
 	static private var __ASPF__ = _global.ASSetPropFlags(ActionEventType, null , 7, 7) ;
 	
 }

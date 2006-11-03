@@ -84,7 +84,6 @@
 */
 
 // TODO rajouter les logs et les erreurs.
-// TODO rajouter le timeOut
 
 import asgard.events.RemotingEvent;
 import asgard.net.remoting.RemotingAuthentification;
@@ -92,9 +91,13 @@ import asgard.net.remoting.RemotingConnection;
 import asgard.net.remoting.RemotingConnectionCollector;
 import asgard.net.remoting.RemotingFormat;
 import asgard.net.remoting.RemotingServiceResponder;
+import asgard.net.TimeoutPolicy;
 import asgard.process.AbstractAction;
 
 import vegas.events.Delegate;
+import vegas.events.EventListener;
+import vegas.events.TimerEvent;
+import vegas.util.Timer;
 
 /**
  * @author eKameleon
@@ -116,15 +119,20 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction
 		_eFinish = new RemotingEvent(RemotingEvent.FINISH, this) ;
 		_eProgress = new RemotingEvent(RemotingEvent.PROGRESS, this) ;
 		_eStart = new RemotingEvent(RemotingEvent.START, this) ;
-		
 		_eError = new RemotingEvent(RemotingEvent.ERROR, this)  ;
 		
 		_global.System.onStatus = Delegate.create (this, _onStatus) ;
+		
+		_timerListener = new Delegate(this, _onTimeOut) ;
+		_timer = new Timer(DEFAULT_DELAY, 1) ;
+		setTimeoutPolicy(TimeoutPolicy.LIMIT) ;
 		
 	}
 	
 	// ----o Constants
 	
+	static public var DEFAULT_DELAY:Number = 8000 ; // 8 secondes
+
 	static public var LEVEL_ERROR:String = "error" ;
 
 	static private var __ASPF__ = _global.ASSetPropFlags(RemotingService, null , 7, 7) ;
@@ -143,6 +151,14 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction
 	public function getConnection() 
 	{
 		return _rc ;	
+	}
+
+	/**
+	 * Returns timeout interval duration.
+	 */
+	public function getDelay():Number
+	{
+		return _timer.delay ;
 	}
 
 	public function getIsProxy():Boolean 
@@ -181,6 +197,7 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction
 
 	public function notifyError( code:String ):Void 
 	{
+		_timer.stop() ;
 		_setRunning(false) ;
 		_eError.code = code || RemotingEvent.ERROR ;
 		dispatchEvent( _eError ) ;
@@ -189,6 +206,7 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction
 
 	public function onFault( e:RemotingEvent ) : Void 
 	{
+		_timer.stop() ;
 		_setRunning(false) ;
 		e.setTarget(this) ;
 		dispatchEvent( e ) ;
@@ -197,6 +215,7 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction
 
 	public function onResult( e:RemotingEvent ):Void 
 	{
+		_timer.stop() ;
 		_setRunning(false) ;
 		e.setTarget(this) ;
 		_result = e.getResult() ;
@@ -227,19 +246,26 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction
 			notifyStarted() ;
 			_result = null ;
 			_setRunning(true) ;
+			_timer.start() ;
 			var arg:Array = [_serviceName + "." + _methodName , getResponder()].concat(_args) ;
 			_rc.call.apply( _rc, arg );
+			
 		} 
 	}
-	
-	public function setParams(args:Array):Void 
-	{
-		_args = args ;	
-	}
+
 	
 	public function setCredentials( authentification:RemotingAuthentification ):Void  
 	{
 		_authentification = authentification ;
+	}
+
+	/**
+	 * Set timeout interval duration.
+	 */
+	public function setDelay( time:Number , useSeconds:Boolean ):Void 
+	{
+		if (useSeconds) time = Math.round(time * 1000) ;
+		_timer.delay = time ;
 	}
 	
 	public function setGatewayUrl( url:String ):Void 
@@ -258,6 +284,13 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction
 		_isProxy = b ;
 		__resolve = b ? __resolve__ : null ;	
 	}
+
+
+
+	public function setParams(args:Array):Void 
+	{
+		_args = args ;	
+	}
 		
 	public function setMethodName( sName:String ):Void 
 	{
@@ -274,6 +307,24 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction
 	public function setServiceName( sName:String ):Void 
 	{
 		_serviceName = sName ;	
+	}
+
+	/**
+	 * Use limit timeout interval.
+	 * @see TimeoutPolicy
+	 */
+	public function setTimeoutPolicy( policy:TimeoutPolicy ):Void 
+	{
+		_policy = policy ;
+		
+		if (_policy == TimeoutPolicy.LIMIT) 
+		{
+			_timer.addEventListener( TimerEvent.TIMER, _timerListener) ;
+		}
+		else 
+		{
+			_timer.removeEventListener(TimerEvent.TIMER, _timerListener) ;
+		}
 	}
 
 	public function trigger():Void 
@@ -357,7 +408,9 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction
 	private var _isProxy:Boolean = false ;
 	
 	private var _methodName:String ; 
-	
+
+	private var _policy:TimeoutPolicy ;
+
 	private var _rc:RemotingConnection = null ;
 	
 	private var __resolve = null ;
@@ -367,6 +420,10 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction
 	private var _serviceName:String = null ;
 	
 	private var _responder:RemotingServiceResponder = null ;
+
+	private var _timer:Timer ;
+	
+	private var _timerListener:EventListener ;
 
 	// ----o Private Methods
 
@@ -398,10 +455,27 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction
 	
 	private function _onStatus ( ev:Object ):Void 
 	{
+		
+		_timer.stop() ; // stop timeout interval
+		
 		if (ev.level == RemotingService.LEVEL_ERROR) 
 		{
 			notifyError(ev.code) ;
 		}
+	}
+
+	private function _onTimeOut(e:TimerEvent):Void 
+	{
+		
+		_timer.stop() ;
+		
+		_rc.close() ;
+		
+		_setRunning(false) ;
+		
+		notifyTimeOut() ;
+		notifyFinished() ;
+			
 	}
 
 }

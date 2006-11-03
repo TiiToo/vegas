@@ -198,7 +198,12 @@ class asgard.process.AbstractAction extends AbstractCoreEventDispatcher implemen
 	{
 		dispatchEvent(_eStop) ;
 	}
-		
+
+	public function notifyTimeOut():Void
+	{
+		dispatchEvent( new ActionEvent(ActionEvent.TIMEOUT ) ) ;
+	}
+
 	public function run():Void 
 	{
 		// 
