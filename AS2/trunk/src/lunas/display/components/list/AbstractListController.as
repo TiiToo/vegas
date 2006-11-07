@@ -146,7 +146,6 @@ class lunas.display.components.list.AbstractListController extends AbstractContr
 		
 		view_mc.setSelectedIndex(cellIndex.itemIndex || cell["index"], true) ;
 		
-		
 		//////////////////// Protected Selected !! 
 		
 		if (view_mc.protectSelected)

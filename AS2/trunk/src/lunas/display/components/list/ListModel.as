@@ -21,7 +21,7 @@
   
 */
 
-/** ListModel
+/**
 
 	AUTHOR
 
@@ -105,21 +105,24 @@
 
 	TODO Create a PageableModel Abstract class.
 
-**/
+*/
 
 import vegas.data.iterator.ArrayIterator;
 import vegas.data.iterator.Iterable;
 import vegas.data.iterator.Iterator;
 import vegas.events.ModelChangedEvent;
 import vegas.events.ModelChangedEventType;
+import vegas.maths.Range;
 import vegas.util.ArrayUtil;
 import vegas.util.mvc.AbstractModel;
 
-class lunas.display.components.list.ListModel extends AbstractModel implements Iterable {
+class lunas.display.components.list.ListModel extends AbstractModel implements Iterable 
+{
 
 	// ----o Constructor
 
-	public function ListModel () { 
+	public function ListModel () 
+	{ 
 		super() ;
 		_model = [] ;
 	}
@@ -135,34 +138,55 @@ class lunas.display.components.list.ListModel extends AbstractModel implements I
 
 	// ----o Public Methods
 	
-	public function addItem( oItem ) {
+	public function addItem( oItem ) 
+	{
 		return addItemAt(oItem, size()) ; 
 	}
 	
-	public function addItemAt(oItem, index:Number) {
+	/**
+	 * Add an item in the model with an index.
+	 * If the index is null the item is inserted at the end of the model.
+	 * If the index is out of the bounds of the model the item is inserted at the begining or a the end of the model.
+	 */
+	public function addItemAt(oItem, index:Number) 
+	{
 		var l:Number = size() ;
-		if (index < 0) return null ;
-		else if (index > l) return null ;
-		else {
-			_model.splice(index, 0, oItem) ;
-			var ev:ModelChangedEvent = new ModelChangedEvent(ModelChangedEventType.ADD_ITEMS, this) ;
-			ev.index = index ;
-			notifyChanged( ev ) ;
-			return oItem ;
+		var r:Range = new Range(0, l) ;
+		if ( isNaN(index) )
+		{
+			index = l ;	
 		}
+		index = r.clamp(index) ;
+		if (index == 0)
+		{
+			_model.unshift(oItem) ;	
+		}
+		else
+		{
+			_model.splice(index, 0, oItem) ;
+		}
+		
+		var ev:ModelChangedEvent = new ModelChangedEvent(ModelChangedEventType.ADD_ITEMS, this) ;
+		ev.index = index ;
+		notifyChanged( ev ) ;
+		return oItem ;
+		
 	}
 	
-	public function clear():Void {
+	public function clear():Void 
+	{
 		var e:ModelChangedEvent = new ModelChangedEvent(ModelChangedEventType.CLEAR_ITEMS, this);
 		e.removedItems = _model.splice(0) ;
 		notifyChanged(e) ;
 	}
 	
-	public  function contains( oItem ):Boolean {
+	public  function contains( oItem ):Boolean 
+	{
 		return ArrayUtil.contains(_model, oItem) ;
 	}
 
-	public function editField(index:Number, fieldName:String, newData):Void {
+	public function editField(index:Number, fieldName:String, newData):Void 
+	{
 		_model.getItemAt(index)[fieldName] = newData ;
 		var ev:ModelChangedEvent = new ModelChangedEvent(ModelChangedEventType.UPDATE_FIELD, this) ;
 		ev.index = index ;
@@ -171,23 +195,28 @@ class lunas.display.components.list.ListModel extends AbstractModel implements I
 		notifyChanged ( ev ) ;
 	}
 
-	public function getItemAt(index:Number) {
+	public function getItemAt(index:Number) 
+	{
 		return _model[index] ;
 	}
 	
-	public function getItemByKey(key:Number) {
+	public function getItemByKey(key:Number) 
+	{
 		var l:Number = size() ;
-		while (--l > -1) {
+		while (--l > -1) 
+		{
 			if (_model[l].__KEY == key) return _model[l] ;
 		}
 		return null ;
 	}
 	
-	public function indexOf( oItem ):Number {
+	public function indexOf( oItem ):Number 
+	{
 		return ArrayUtil.indexOf(_model, oItem) ;
 	}
 	
-	public function indexOfField(fieldName:String, value):Number {
+	public function indexOfField(fieldName:String, value):Number 
+	{
 		var l:Number = _model.length ;
 		while (--l > -1) {
 			if (_model[l][fieldName] == value) return l ;
@@ -195,30 +224,38 @@ class lunas.display.components.list.ListModel extends AbstractModel implements I
 		return -1 ;
 	}
 	
-	public function isEmpty():Boolean {
+	public function isEmpty():Boolean 
+	{
 		return (!_model.length > 0) ;
 	}
 	
-	public function iterator():Iterator {
+	public function iterator():Iterator 
+	{
 		return new ArrayIterator(_model) ;
 	}
 	
-	public function removeItem( oItem ) {
+	public function removeItem( oItem ) 
+	{
 		var index:Number = indexOf(oItem) ;
-		if (index > -1) {
+		if (index > -1) 
+		{
 			return removeItemAt(index) ;
-		} else {
+		}
+		else 
+		{
 			return null ;
 		}
 	}
 	
-	public function removeItemAt(index:Number) {
+	public function removeItemAt(index:Number) 
+	{
 		var ret = getItemAt(index) ; 
 		removeItemsAt(index, 1);
 		return ret;
 	}
 	
-	public function removeItemsAt(index:Number, len:Number):Array {
+	public function removeItemsAt(index:Number, len:Number):Array 
+	{
 		var oldItems = _model.splice(index, len) ;
 		var ev:ModelChangedEvent = new ModelChangedEvent(ModelChangedEventType.REMOVE_ITEMS, this) ;
 		ev.firstItem = index ;
@@ -228,15 +265,21 @@ class lunas.display.components.list.ListModel extends AbstractModel implements I
 		return oldItems ;
 	}
 	
-	public function removeRange(from:Number, to:Number):Array {
+	public function removeRange(from:Number, to:Number):Array 
+	{
 		if (from == undefined) return null ;
 		return removeItemsAt(from, to - from) ;
 	}
 	
-	public function setItemIndex( oItem, index:Number):Void {
+	public function setItemIndex( oItem, index:Number):Void 
+	{
 		var id:Number = indexOf(oItem) ;
-		if (id == -1 || id == index) return ;
-		else {
+		if (id == -1 || id == index) 
+		{
+			return ;
+		}
+		else 
+		{
 			var tmp = oItem ;
 			_model.splice(id, 1) ;
 			_model.splice(index, 0, tmp) ;
@@ -244,21 +287,38 @@ class lunas.display.components.list.ListModel extends AbstractModel implements I
 		}
 	}
 	
-	public function size():Number {
+	/**
+	 * Returns the numbers of item in the model.
+	 */
+	public function size():Number 
+	{
 		return _model.length ;
 	}
 
-	public function sortItems(compareFunc:Function, options:Number):Void {
+	/**
+	 * Sort the model with a function of comparaison.
+	 */
+	public function sortItems(compareFunc:Function, options:Number):Void 
+	{
 		_model.sort(compareFunc, options) ;
 		notifyChanged(new ModelChangedEvent(ModelChangedEventType.SORT_ITEMS, this)) ;
 	}
 
-	public function sortItemsBy( fieldNames , options ):Void {
+	/**
+	 * Sort the model by items.
+	 * @see Array.sortOn
+	 */
+	public function sortItemsBy( fieldNames , options ):Void 
+	{
 		_model.sortOn( fieldNames, options ) ;
 		notifyChanged(new ModelChangedEvent(ModelChangedEventType.SORT_ITEMS, this)) ;
 	}
-		
-	public function toArray():Array {
+	
+	/**
+	 * Returns an Array representation of the model.
+	 */
+	public function toArray():Array 
+	{
 		return [].concat(_model) ;
 	}
 	

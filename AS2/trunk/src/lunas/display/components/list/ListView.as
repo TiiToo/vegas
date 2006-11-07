@@ -61,7 +61,7 @@
 	
 		EventListener, IFormattable, IHashable, IView
 
-**/
+*/
 
 import lunas.display.components.container.ContainerModel;
 import lunas.display.components.list.AbstractListController;
@@ -76,13 +76,15 @@ class lunas.display.components.list.ListView extends AbstractView {
 
 	// ----o Constructor
 
-	public function ListView(oModel:IModel, oController:IController, mcContainer:MovieClip) { 
+	public function ListView(oModel:IModel, oController:IController, mcContainer:MovieClip) 
+	{ 
 		super(oModel, oController, mcContainer) ;
 	}
 
 	// ----o Public Methods
 
-	public function handleEvent(ev:ModelChangedEvent):Void {
+	public function handleEvent(ev:ModelChangedEvent):Void 
+	{
 
 		var eventName:String = ev.getType() ;
 		var target:ContainerModel = ev.getTarget() ;
