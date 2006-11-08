@@ -319,13 +319,18 @@ class lunas.display.components.list.AbstractList extends AbstractComponent imple
 		_oModel.editField(index, fieldName, newData) ;
 	}
 
-	public function initialize():Void 
+	public function forceItemSelection( item ) : Void 
 	{
-		_groupName = ConstructorUtil.getName(this) + "_group"  + hashCode() ;
-		_eScroll = new UIEvent( UIEventType.SCROLL, this) ;
-		_oModel = new ListModel() ;
-	}
-	
+  		var index : Number = _oModel.indexOf(item);
+  		if (index > -1) 
+  		{
+  			var child:MovieClip = getContainer().getChildAt(index) ;
+  			_selectedIndex = index ;
+  			_selectedItem = item ;
+  			child.setSelected( true, true ) ;
+  		}
+ 	}
+
 	public function getContainer():MovieClip 
 	{
 		return container ;
@@ -345,12 +350,7 @@ class lunas.display.components.list.AbstractList extends AbstractComponent imple
 	{
 		return _oModel.getItemByKey(key) ;
 	}
-	
-	public function iterator():Iterator 
-	{
-		return _oModel.iterator() ;
-	}
-	
+
 	public function getLabelField():String 
 	{ 
 		return _labelField || DEFAULT_LABEL_FIELD ;
@@ -390,10 +390,22 @@ class lunas.display.components.list.AbstractList extends AbstractComponent imple
 	{
 		return _oModel.indexOfField(fieldName, value) ;
 	}
-	
+
+	public function initialize():Void 
+	{
+		_groupName = ConstructorUtil.getName(this) + "_group"  + hashCode() ;
+		_eScroll = new UIEvent( UIEventType.SCROLL, this) ;
+		_oModel = new ListModel() ;
+	}
+
 	public function isEmpty():Boolean 
 	{
 		return _oModel.isEmpty() ;
+	}
+
+	public function iterator():Iterator 
+	{
+		return _oModel.iterator() ;
 	}
 	
 	public function notifyScroll():Void 

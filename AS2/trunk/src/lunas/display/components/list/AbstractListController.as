@@ -21,58 +21,6 @@
   
 */
 
-/** ListController
-
-	AUTHOR
-
-		Name : ListController
-		Package : lunas.display.components.list
-		Version : 1.0.0.0
-		Date :  2006-02-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- getModel():IModel
-		
-		- getView():IView
-		
-		- setModel(oModel:IModel):Void
-		
-		- setView(oView:IView):Void
-		
-		- toString():String
-		
-		- viewClear():Void
-		
-		- viewCreateAt(index:Number):MovieClip
-		
-		- viewRemove(first:Number, last:Number):Void
-		
-		- viewRollOut 
-			Override this method - Out of a cell.
-			
-		- viewRollOver():Void
-			override this method - Over of a cell.
-		
-		- viewSelect(ev:IEvent):Void
-			Invoqué quand une cellule est sélectionnée dans la liste, notifie un événement UIEventType.CHANGE
-		
-		-  viewUpdateItemAt(index:Number)
-			Permet de rafraichir l'affichage d'une cellule dans la liste.
-			
-	INHERIT 
-	
-		CoreObject → AbstractController → ListController
-
-	IMPLEMENTS 
-	
-		IController, IFormattable, IHashable
-
-**/
-
 import lunas.events.CellEvent;
 
 import vegas.events.Event;

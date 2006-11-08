@@ -1,60 +1,25 @@
-/** AbstractBuilder
+/*
 
-	AUTHOR
-		
-		Name : AbstractListBuilder
-		Package : lunas.display.components.list
-		Version : 1.0.0.0
-		Date :  2006-04-19
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		private
-
-	PROPERTY SUMMARY
-	
-		- target:MovieClip
-
-	METHOD SUMMARY
-	
-		- clear():Void
-		
-		- getContainerRenderer():Function
-		
-			override this method if you want use a specific container Function !
-		
-		- run():Void
-		
-			override this method but use super._createContainer !
-		
-		- toString():String
-		
-		- update():Void
-
-			override this method but use super._createContainer !
-
-	PROTECTED METHOD SUMMARY
-	
-		- _createContainer():Void
-		
-			override this method but use super._createContainer !
-		
-		- _refreshContainer():Void
-		
-			override this method.
-
-	INHERIT
-	
-		CoreObject
-			|
-			AbstractBuilder
-				|
-				AbstractListBuilder
-
-**/
+  The contents of this file are subject to the Mozilla Public License Version
+  1.1 (the "License"); you may not use this file except in compliance with
+  the License. You may obtain a copy of the License at 
+  
+           http://www.mozilla.org/MPL/ 
+  
+  Software distributed under the License is distributed on an "AS IS" basis,
+  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+  for the specific language governing rights and limitations under the License. 
+  
+  The Original Code is Vegas Library.
+  
+  The Initial Developer of the Original Code is
+  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  the Initial Developer. All Rights Reserved.
+  
+  Contributor(s) :
+  
+*/
 
 import lunas.display.components.AbstractBuilder;
 import lunas.display.components.container.ListContainer;
@@ -65,44 +30,46 @@ import lunas.display.components.container.ListContainer;
  * @version 1.0.0.0
  * @date 2006-04-19
  */
-class lunas.display.components.list.AbstractListBuilder extends AbstractBuilder {
+class lunas.display.components.list.AbstractListBuilder extends AbstractBuilder 
+{
 	
-	// ----o Constructor
-	
+	/**
+	 * Creates a new AbstractListBuilder instance.
+	 */
 	private function AbstractListBuilder(mc : MovieClip) {
 		super(mc) ;
 	}
 	
-	// ----o Public Properties
-
 	public var container:MovieClip ;
 	
-	// ----o Public Methods
-	
-	public function clear():Void {
+	public function clear():Void 
+	{
 		container.clear() ;
 		container.removeMovieClip() ;
 	}
 
-	public function getContainerRenderer():Function {
+	public function getContainerRenderer():Function 
+	{
 		return ListContainer ;
 	}
 
-	public function run():Void {
+	public function run():Void 
+	{
 		_createContainer() ;
 	}
 	
-	public function update():Void {
+	public function update():Void 
+	{
 		_refreshContainer() ;
 	}
 
-	// ----o Private Methods
-	
-	/*protected*/ private function _createContainer():Void {
+	/*protected*/ private function _createContainer():Void 
+	{
 		container = target.createChild( getContainerRenderer(), "container", 50) ;
 	}
 
-	/*protected*/ private function _refreshContainer():Void {
+	/*protected*/ private function _refreshContainer():Void 
+	{
 		// override this protected method
 	}
 

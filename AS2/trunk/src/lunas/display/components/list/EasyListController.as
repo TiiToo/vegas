@@ -83,17 +83,21 @@ import lunas.events.CellEventType;
 import vegas.events.Delegate;
 import vegas.events.Event;
 
-class lunas.display.components.list.EasyListController extends AbstractListController {
+class lunas.display.components.list.EasyListController extends AbstractListController 
+{
 
-	// ----o Constructor
-
-	public function EasyListController() { 
+	/**
+	 * Creates a new EasyListController instance.
+	 */
+	public function EasyListController() 
+	{ 
 		//
 	}
 
 	// ----o Public Methods
 	
-	public function viewCreateAt(index:Number):MovieClip {
+	public function viewCreateAt(index:Number):MovieClip 
+	{
 		if ( isNaN(index) ) return null ;
 		var item:Object = ListModel(getModel()).getItemAt(index) ;
 		var view_mc:MovieClip = getView().getViewContainer() ;
@@ -112,7 +116,8 @@ class lunas.display.components.list.EasyListController extends AbstractListContr
 		return mI ;
 	}
 	
-	public function viewRemove(first:Number, last:Number):Void {
+	public function viewRemove(first:Number, last:Number):Void 
+	{
 		super.viewRemove(first, last) ;
 		var view_mc:MovieClip = getView().getViewContainer() ;
 		var container:MovieClip = view_mc.getContainer() ;
@@ -128,14 +133,16 @@ class lunas.display.components.list.EasyListController extends AbstractListContr
 		}
 	}
 	
-	public function viewSelect(ev:CellEvent):Void {
+	public function viewSelect(ev:CellEvent):Void 
+	{
 		super.viewSelect(ev) ;
 		var view_mc:MovieClip = getView().getViewContainer() ;
 		var p:Number = view_mc.getScrollPolicy() ;
 		if (p == EasyList.SCROLL_ON_CLICK || p == EasyList.FULL) view_mc.setVPosition ( view_mc.getSelectedIndex() + 1) ;
 	}
 
-	public function viewSort(ev:Event):Void {
+	public function viewSort(ev:Event):Void 
+	{
 		var model = ListModel(getModel()) ;
 		var size:Number = model.size() ;
 		var view_mc:MovieClip = getView().getViewContainer() ;
@@ -148,7 +155,8 @@ class lunas.display.components.list.EasyListController extends AbstractListContr
 		}
 	}
 
-	public function viewUpdateItemAt(index:Number):Void {
+	public function viewUpdateItemAt(index:Number):Void 
+	{
 		var item:Object = ListModel(getModel()).getItemAt(index) ;
 		var view_mc:MovieClip = getView().getViewContainer() ;
 		view_mc.unSelect() ;
