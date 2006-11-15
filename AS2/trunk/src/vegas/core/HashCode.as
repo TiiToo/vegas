@@ -25,15 +25,6 @@ class vegas.core.HashCode
 {
 
 	/**
-	 * Constructor
-	 * @private
-	 */
-	private function HashCode() 
-	{
-		//
-	}
-	
-	/**
 	 * Compare two IHashable objects.
 	 * @usage   var isEquals:Boolean = HashCode.equals(o1, o2) ;
 	 * @param   o1 
@@ -50,7 +41,7 @@ class vegas.core.HashCode
 	 */
 	static public function identify(o):Number 
 	{
-		return o.hashCode() ;
+		return o["hashCode"]() ;
 	}
 	
 	/**
@@ -75,24 +66,17 @@ class vegas.core.HashCode
 	 */
 	static public function initialize(o):Boolean 
 	{
-		if ( !o.hasOwnProperty("hashCode") )
+		o.hashCode = function () 
 		{
-			o["hashCode"] = function () 
+			if (isNaN(this.__hashcode__)) 
 			{
-				if (this.__hashcode__ == null) 
-				{
-					this.__hashcode__ = HashCode.next() ;
-					_global.ASSetPropFlags(this, ["__hashcode__"], 7, 7) ;
-				}
-				return this.__hashcode__ ;
-			} ;
-			_global.ASSetPropFlags(o, ["__hashcode__", "hashCode"], 7, 7) ;
-			return true ;
-		}
-		else
-		{
-			return false ;	
-		}
+				this.__hashcode__ = HashCode.next() ;
+				_global.ASSetPropFlags(this, ["__hashcode__"], 7, 7) ;
+			}
+			return this.__hashcode__ ;
+		} ;
+		_global.ASSetPropFlags(o, ["__hashcode__", "hashCode"], 7, 7) ;
+		return true ;
 	}
 	
 	/**

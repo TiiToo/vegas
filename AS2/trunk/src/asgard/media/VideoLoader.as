@@ -1,164 +1,25 @@
-/**	VideoLoader
+/*
 
-	AUTHOR
-
-		Name : VideoLoader
-		Package : asgard.media
-		Version : 1.0.0.0
-		Date :  2006-05-18
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : contact@ekameleon.net
-	
-	PROPERTY SUMMARY
-
-		- bytesLoaded:Number [Read Only]
-		
-		- bytesTotal:Number [Read Only]
-		
-		- data [R/W]
-
-		- duration:Number [Read Only]
-	
-		- name:String [R/W]
-		
-		- percent:Number [Read Only]
-	
-		- position:Number [R/W]
-
-		- running:Boolean [Read Only]
-		
-		- timeOut:Number [R/W]
-		
-		- volume:Number [R/W]
-	
-	METHOD SUMMARY
-
-	 	- getContent() ;
-
-		- getBytesLoaded():Number ;
-
-		- getBytesTotal():Number ;
-
-		- getData() ;
-		
-		- getDuration():Number
-		
-		- getHeight():Number
-		
-		- getName():String ;
-
-		- getPercent():Number ;
-		
-		- getTime():Number
-		
-			Returns playhead position.
-		
-		- getPosition():Number
-		
-			Returns playhead position in %.
-		
-		- getMetaData()
-						
-		- getURL():String
-		
-		- getVolume():Number
-		
-		- getWidth():Number
-		
-		- isAutoPlay():Boolean
-		
-			Checks "autoplay" is enable or not.
-		
-		- isAutoSize():Boolean
-		
-			Checks "autosize" mode.
-		
-		- isLoop():Boolean
-		
-		- isPlaying():Boolean
-		
-			Indicates playing video state.
-		
-		- load(url:String):Void
-		
-			Loads passed-in url video file.
-		
-		- move(x:Number, y:Number):Void
-		
-			Changes video object position.
-		
-		- pause():Void	
-		
-		- play(n:Number):Void
-		
-			Plays video.
-			If video is loaded, play it at passed-in n (seek)
-			If video is not already loaded, loads it.
-		
-		- release():Void
-		
-			Deletes and stops all VideoDisplay activity.
-		
-		- setAutoPlay (b:Boolean) : Void
-		
-			Defines "autoplay" mode.
-		
-		- setAutoSize(b:Boolean):Void
-		
-			Defines "autosize" mode.
-		
-		- setBufferTime(n:Number):Void
-		
-		- setLoop(b:Boolean):Void
-		
-		- setPosition(n:Number):Void
-		
-		- setURL(url:String):Void
-		
-		- setVolume(n:Number):Void
-		
-		- setSize(w:Number, h:Number):Void
-		
-			Defines video playback size.
-		
-		- setTime(n:Number):Void
-		
-		- stop():Void
-		
-		- toString():String
-	
-	EVENT SUMMARY
-	
-		MediaEvent
-	
-	EVENT SUMMARY
-	
-		- LoadEventType.onLoadInitEVENT:String
-		
-		- LoadEventType.onLoadProgressEVENT:String
-		
-		- LoadEventType.onTimeOutEVENT:String
-
-		- MediaEvent.onMediaFinishedEVENT:String
-		
-		- MediaEvent.onMediaProgressEVENT:String
-		
-		- MediaEvent.onMediaResumedEVENT:String
-		
-		- MediaEvent.onMediaStartedEVENT:String
-		
-		- MediaEvent.onMediaStoppedEVENT:String
-	
-	INHERIT
-
-		CoreObject → AbstractCoreEventDispatcher → AbstractLoader → VideoLoader
-	
-	IMPLEMENTS
-	
-		EventTarget, IFormattable, IHashable, ILoader, IEventDispatcher
-	
-**/
+  The contents of this file are subject to the Mozilla Public License Version
+  1.1 (the "License"); you may not use this file except in compliance with
+  the License. You may obtain a copy of the License at 
+  
+           http://www.mozilla.org/MPL/ 
+  
+  Software distributed under the License is distributed on an "AS IS" basis,
+  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+  for the specific language governing rights and limitations under the License. 
+  
+  The Original Code is Vegas Framework.
+  
+  The Initial Developer of the Original Code is
+  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  the Initial Developer. All Rights Reserved.
+  
+  Contributor(s) :
+  
+*/
 
 import asgard.events.MediaEvent;
 import asgard.media.AbstractMediaLoader;
@@ -181,8 +42,9 @@ import vegas.util.Timer;
 class asgard.media.VideoLoader extends AbstractMediaLoader 
 {
 	
-	// ----o Constructor
-	
+	/**
+	 * Creates a new VideoLoader instance.
+	 */
 	function VideoLoader( mcTarget:MovieClip , video:Video , sName:String ) 
 	{
 		
@@ -220,12 +82,9 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		
 	}
 	
-	// ----o Constant
-	
 	static public var BUFFER_TIME_DEFAULT:Number = 4 ;
-	static public var VOLUME_DEFAULT:Number = 60 ;
 
-	// ----o Public Methods
+	static public var VOLUME_DEFAULT:Number = 60 ;
 
 	/**
 	 * Clear the video.
@@ -236,69 +95,108 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		notifyEvent(MediaEvent.MEDIA_CLEAR) ;
 	}
 
+	/**
+	 * Returns the number of bytes loaded (streamed) for the specified 
+	 */
 	public function getBytesLoaded():Number 
 	{
 		var bytesLoaded:Number = _oNS.bytesLoaded ;
 		return isNaN(bytesLoaded) ? 0 : bytesLoaded ;
 	}
 
+	/**
+	 * Returns the size, in bytes, of the specified object.
+	 */
 	public function getBytesTotal():Number 
 	{
 		var bytesTotal:Number = _oNS.bytesTotal ;
 		return isNaN(bytesTotal) ? 0 : bytesTotal ;
 	}
 
+	/**
+	 * Returns the duration of the loader.
+	 */
 	/*override*/ public function getDuration():Number 
 	{
 		return isNaN(_duration) ? 0 : _duration ;
 	}
-
+	
+	/**
+	 * Rerturns the height of the loader.
+	 */
 	public function getHeight() : Number 
 	{
 		return _mcTarget._height ;
 	}
 
+	/**
+	 * Returns the MedaData object.
+	 */
 	public function getMetaData() 
 	{
 		return _oMetaData ;	
 	}
 
+	/**
+	 * Returns the current time of the loader.
+	 */
 	public function getTime():Number 
 	{
 		return getContent().time ;
 	}
 
+	/**
+	 * Returns the current position of the loader.
+	 */
 	public function getPosition():Number 
 	{
 		return (duration > 0) ? Math.round(getTime() * 100 / getDuration()) : 0 ;
 	}
 
+	/**
+	 * Returns the internal video reference.
+	 */
 	public function getVideo():Video 
 	{
 		return _oVideo ;	
 	}
 
+	/**
+	 * Returns the width of the loader.
+	 */
 	public function getWidth():Number 
 	{
 		return _mcTarget._width ;
 	}
 	
+	/**
+	 * Returns 'true' if the loader auto size.
+	 */
 	public function isAutoSize():Boolean 
 	{
 		return _bAutoSize ;
 	}
 
+	/**
+	 * Load the external video.
+	 */
 	public function load(sURL:String):Void 
 	{
 		setUrl(sURL) ;
 	}
 	
+	/**
+	 * Move the loader view.
+	 */
 	public function move( x : Number, y : Number):Void 
 	{
 		_mcTarget._x = x ;
 		_mcTarget._y = y ;
 	}
 
+	/**
+	 * Pause the loader.
+	 */
 	public function pause(noEvent:Boolean):Void 
 	{
 	
@@ -324,6 +222,9 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		}
 	}
 
+	/**
+	 * Play the loader.
+	 */
 	public function play(n:Number, noEvent:Boolean):Void 
 	{
 		
@@ -347,6 +248,9 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		
 	}
 	
+	/**
+	 * Release the loader.
+	 */
 	public function release():Void 
 	{
 		_oMetaData = null  ;
@@ -372,16 +276,25 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		_duration = (n>0) ? n : 0 ;
 	}
 
+	/**
+	 * Sets the current time of the loader.
+	 */
 	public function setTime(n:Number):Void 
 	{
 		_oNS.seek(n);
 	}
 	
+	/**
+	 * Sets the position of the loader.
+	 */
 	/*override*/ public function setPosition(n:Number):Void 
 	{
 		setTime(Math.ceil(Range.PERCENT_RANGE.clamp(n) * 100 / getDuration())) ;
 	}
 
+	/**
+	 * Set the size of the loader (width and height)
+	 */
 	public function setSize(w:Number, h:Number):Void 
 	{
 		_mcTarget._width = w ;
@@ -389,6 +302,9 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		dispatchEvent( new BasicEvent(EventType.RESIZE, this) ) ;
 	}
 
+	/**
+	 * Sets the url of the loader.
+	 */
 	public function setUrl( sURL:String ):Void 
 	{
 		try 
@@ -417,7 +333,11 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		}
 	}
 
-	public function stop():Void {
+	/**
+	 * Stop the loader.
+	 */
+	public function stop():Void 
+	{
 		if (isResumed() || isPlaying()) 
 		{
 			_oNS.close() ;
@@ -433,8 +353,9 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		}
 	}
 
-	// ----o Protected Methods
-	
+	/**
+	 * Internal load method.
+	 */
 	private function _load():Void 
 	{
 		try 
@@ -463,8 +384,6 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		
 	}
 
-	// ----o Private Properties
-
 	private var _bAutoSize : Boolean ;
 
 	private var _duration:Number ;
@@ -472,36 +391,43 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	private var _nBufferTime : Number;	
 
 	private var _oMetaData ;
+	
 	private var _oNC:NetConnection ;
+	
 	private var _oNS:NetStream ;
+	
 	private var _oVideo:Video ;
 	
 	private var _timer:FrameTimer ;
+	
 	private var _timerHeadTime:Timer ;
 	
-	// ----o Private Methods
-
+	/**
+	 * Invoqued when the onMetaData changed.
+	 */
 	private function _onMetaData (info:Object):Void 
 	{
 		
 		_oMetaData = info ;
 		
+		/*
 		for (var props in info) 
 		{
 			trace(">>>> " + this + ".onMetaData -> " + props + " : " + info[props]) ;
 		}
-		
+		*/
 		setDuration( isNaN(info.duration) ? 0 : parseInt(info.duration) ) ;
 		
 		if (isAutoSize()) 
 		{
-		
 			setSize( info.width , info.height) ;	
-			
 		}
 
 	}
-		
+	
+	/**
+	 * Invoqued when the status of the stream change.
+	 */
 	private function _onStatus(info:Object):Void 
 	{
 		
@@ -567,6 +493,9 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		}
 	}
 
+	/**
+	 * Invoqued when the frame update.
+	 */
 	private function _onFrameUpdate():Void 
 	{
 		_oNS.pause(true) ;					

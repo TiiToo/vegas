@@ -33,7 +33,7 @@ interface vegas.core.IValidator
 	function supports(value):Boolean ;
 	
 	/**
-	 * evaluates the condition it checks and updates the IsValid property.
+	 * Evaluates the condition it checks and updates the IsValid property.
 	 */
 	function validate(value):Void ;
 	

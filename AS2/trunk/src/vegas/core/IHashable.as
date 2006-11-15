@@ -24,7 +24,8 @@
 /**
  * @author
  */
-interface vegas.core.IHashable {
+interface vegas.core.IHashable 
+{
 	
 	/**
 	 * Returns a hash code value for the object.

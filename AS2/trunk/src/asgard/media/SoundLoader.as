@@ -1,58 +1,25 @@
-/**	SoundLoader
+/*
 
-	AUTHOR
-
-		Name : SoundLoader
-		Package : asgard.media
-		Version : 1.0.0.0
-		Date :  2006-06-22
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : contact@ekameleon.net
-	
-	PROPERTY SUMMARY
-
-		- duration:Number [Read Only]
-		
-		- position:Number [R/W]
-		
-		- volume:Number [R/W]
-	
-	METHOD SUMMARY
-	
-		- toString():String
-	
-	EVENT SUMMARY
-	
-		MediaEvent
-	
-	EVENT SUMMARY
-	
-		- LoadEventType.onLoadInitEVENT:String
-		
-		- LoadEventType.onLoadProgressEVENT:String
-		
-		- LoadEventType.onTimeOutEVENT:String
-
-		- MediaEventType.onMediaFinishedEVENT:String
-		
-		- MediaEventType.onMediaProgressEVENT:String
-		
-		- MediaEventType.onMediaResumedEVENT:String
-		
-		- MediaEventType.onMediaStartedEVENT:String
-		
-		- MediaEventType.onMediaStoppedEVENT:String
-	
-	INHERIT
-
-		CoreObject → AbstractCoreEventDispatcher → AbstractLoader → SoundLoader
-	
-	IMPLEMENTS
-	
-		EventTarget, IFormattable, IHashable, ILoader, IEventDispatcher 
-	
-**/
+  The contents of this file are subject to the Mozilla Public License Version
+  1.1 (the "License"); you may not use this file except in compliance with
+  the License. You may obtain a copy of the License at 
+  
+           http://www.mozilla.org/MPL/ 
+  
+  Software distributed under the License is distributed on an "AS IS" basis,
+  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+  for the specific language governing rights and limitations under the License. 
+  
+  The Original Code is Vegas Framework.
+  
+  The Initial Developer of the Original Code is
+  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  the Initial Developer. All Rights Reserved.
+  
+  Contributor(s) :
+  
+*/
 
 import asgard.events.MediaEventType;
 import asgard.media.AbstractMediaLoader;
@@ -65,94 +32,100 @@ import vegas.util.MathsUtil;
 /**
  * @author eKameleon
  */
-class asgard.media.SoundLoader extends AbstractMediaLoader {
+class asgard.media.SoundLoader extends AbstractMediaLoader 
+{
 	
-	// ----o Constructor
-	
-	function SoundLoader( mcTarget:MovieClip , sName:String ) {
-
+	/**
+	 * Creates a new SoundLoader instance.
+	 */
+	function SoundLoader( mcTarget:MovieClip , sName:String ) 
+	{
 		super(mcTarget, sName) ;
-		
-		getSound().onLoad = function (success:Boolean):Void {
-			
+		getSound().onLoad = function (success:Boolean):Void 
+		{
 			trace("> sound onLoad :: " + success) ;
-			
 		} ;
-		
 		_currentPos = 0 ;
-		
 		getSound().onSoundComplete = Delegate.create(this, _onSoundComplete) ;
-		
 		setContent(_oSound) ;
-		
 		setAutoPlay(true) ;
-		
 	}
 
-	// ----o Constants
 	
 	static public var VOLUME_DEFAULT:Number = 60 ;
 
-	// ----o Public Methods
 
-	/*override*/ public function getDuration():Number {
+	/*override*/ public function getDuration():Number 
+	{
 		return isNaN(_oSound.duration) ? 0 : _oSound.duration ;
 	}
 	
-	/*override*/ public function getPosition():Number {
+	/*override*/ public function getPosition():Number 
+	{
 		return getSound().position ;	
 	}
 
-	public function getTime():Number {
+	public function getTime():Number 
+	{
 		return (getPosition() / 1000) ;
 	}
 	
-	public function getPercentPosition():Number {
+	public function getPercentPosition():Number 
+	{
 		return MathsUtil.getPercent(getPosition(), getDuration()) ;	
 	}
 
-	/*override*/ public function load(sURL:String):Void {
+	/*override*/ public function load(sURL:String):Void 
+	{
 		sURL = sURL || this.getUrl() ;
 		this.stop(true) ;
-		try {
-			if( sURL ) {
+		try 
+		{
+			if( sURL ) 
+			{
 				super.setUrl( sURL ) ;
 				_isLoaded = false ;
 				_load() ;
-			} else {
+			}
+			else 
+			{
 				throw new Warning ( toString() + " got invalid url property, can't load." ) ; 
 			}
-		} catch(e:Warning) {
+		} 
+		catch(e:Warning) 
+		{
 			
 			trace(e.toString()) ;
 			
 		}
 	}
 
-	/*override*/ public function pause(noEvent:Boolean):Void {
-		trace(isPlaying()) ;
-		if (isPlaying()) {
+	/*override*/ public function pause(noEvent:Boolean):Void 
+	{
+		if (isPlaying()) 
+		{
 			
 			stopProgress() ;
 			getSound().stop() ;
 			
 			_currentPos = getSound().position ;
 
-			if (noEvent != true) {
+			if (noEvent != true) 
+			{
 				notifyEvent(MediaEventType.MEDIA_RESUME) ;
 			}
-		} else {
-			
+		}
+		else 
+		{
 			this.play(_currentPos) ;
-			
 		}
 	}
 
-	/*override*/ public function play( pos:Number, noEvent:Boolean):Void {
+	/*override*/ public function play( pos:Number, noEvent:Boolean):Void 
+	{
 
-		trace(!_isLoaded) ;
-
-		if (!_isLoaded) {
+		if (!_isLoaded) 
+		{
 			_load() ;
 		}
 		
@@ -160,50 +133,60 @@ class asgard.media.SoundLoader extends AbstractMediaLoader {
 		
 		getSound().start( _currentPos / 1000 ) ;
 		
-		if (noEvent != true) {
+		if (noEvent != true) 
+		{
 			notifyEvent(MediaEventType.MEDIA_START) ;
 		}
 		startProgress() ;
 	}
 	
-	/*override*/ public function release():Void {
+	/*override*/ public function release():Void 
+	{
 		this.stop(true) ;
 		super.release() ;
 	}
 	
-	/*override*/ public function setPosition(time:Number):Void {
-		if (isPlaying()) {
+	/*override*/ public function setPosition(time:Number):Void 
+	{
+		if (isPlaying()) 
+		{
 			this.play(time) ;
-		} else {
+		}
+		else 
+		{
 			_currentPos = (isNaN(time)) ? 0 : time ;
 		}
 	}
 	
-	/*override*/ public function stop(noEvent:Boolean):Void {
-		if (isPlaying()) {
+	/*override*/ public function stop(noEvent:Boolean):Void 
+	{
+		if (isPlaying()) 
+		{
 			stopProgress() ;
 			getSound().stop() ;
 			_currentPos = 0 ;
-			if ( noEvent != true ) {
+			if ( noEvent != true ) 
+			{
 				notifyEvent(MediaEventType.MEDIA_STOP) ;
 			}
 		}
 	}
 
-	// ----o Private Properties
-	
 	private var _currentPos:Number ;
 
-	// ----o Private Methods
-
-	private function _load():Void {
+	private function _load():Void 
+	{
 		
-		try {
-			if ( this.getUrl() == undefined ) {
+		try 
+		{
+			if ( this.getUrl() == undefined ) 
+			{
 				throw new UnsupportedOperation( toString() + " can't play without any valid url property, loading fails.");
 			}
 			
-		} catch (e:UnsupportedOperation) {
+		} 
+		catch (e:UnsupportedOperation) 
+		{
 			
 			trace(e.toString()) ;
 			return ;
@@ -212,7 +195,8 @@ class asgard.media.SoundLoader extends AbstractMediaLoader {
 		
 		_oSound.loadSound( this.getUrl() , isAutoPlay() ) ;
 		
-		if (isAutoPlay()) {
+		if (isAutoPlay()) 
+		{
 			startProgress() ;
 			_currentPos = 0 ;
 			getSound().start(_currentPos) ;
@@ -223,9 +207,11 @@ class asgard.media.SoundLoader extends AbstractMediaLoader {
 		super.load();
 	}
 
-	private function _onSoundComplete():Void {
+	private function _onSoundComplete():Void 
+	{
 		notifyEvent(MediaEventType.MEDIA_FINISH) ;
-		if ( isLoop() ) {
+		if ( isLoop() ) 
+		{
 			getSound().start() ;
 		} 
 	}

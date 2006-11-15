@@ -21,37 +21,14 @@
   
 */
 
-/**	TreeMap
-
-	!!!! EN CONSTRUCTION !!!!
-
-	Name : TreeMap
-	Package : vegas.data.map
-	Version : 1.0.0.0
-	Date :  2005-11-13
-	Author : ekameleon
-	URL : http://www.ekameleon.net
-	Mail : vegas@ekameleon.net
-
-	!!!! EN CONSTRUCTION !!!!
+// FIXME IN CONSTRUCTION !!!!
 	
-	IMPLEMENTS
-	
-		ICloneable, Iterable, SortedMap, IFormattable
-
-**/
-
 import vegas.core.CoreObject;
-import vegas.core.ICloneable;
-import vegas.core.IComparator;
-import vegas.data.Entry;
-import vegas.data.iterator.Iterable;
-import vegas.data.iterator.Iterator;
-import vegas.data.Map;
-import vegas.data.SortedMap;
-import vegas.errors.NoSuchElementError;
 
-class vegas.data.map.TreeMap extends CoreObject implements SortedMap, ICloneable, Iterable {
+class vegas.data.map.TreeMap extends CoreObject //implements SortedMap, ICloneable, Iterable 
+{
+
+	/*
 
 	// ----o Construtor
 	
@@ -199,6 +176,6 @@ class vegas.data.map.TreeMap extends CoreObject implements SortedMap, ICloneable
         return  (n.left  != null && valueSearchNonNull(n.left, value)) ||
 				(n.right != null && _valueSearchNonNull(n.right, value));
     }
-	
+	*/
 	
 }
