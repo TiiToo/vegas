@@ -21,140 +21,68 @@
   
 */
 
-/** Bit
-
-	AUTHOR
-
-		Name : Bit
-		Package : vegas.core.types
-		Version : 1.0.0.0
-		Date :  2005-11-02
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTANTS
-	
-		- static DEFAULT_FLOATING_POINTS:Number
-
-		- static KBIT:Number
-		
-		- static MBIT:Number
-		
-		- static GBIT:Number
-		
-		- static TBIT:Number
-	
-		- static BYTE:Number
-		
-		- static KBYTE:Number
-		
-		- static MBYTE:Number
-		
-		- static GBYTE:Number
-		
-		- static TBYTE:Number
-	
-		- static SB:String = "b" 
-		
-		- static SKB:String = "Kb"
-		
-		- static SMB:String = "Mb"
-		
-		- static SGB:String = "Gb"
-		
-		- static STB:String = "Tb"
-
-	METHOD SUMMARY
-	
-		- getBit():Number
-		
-		- getBytes():Number
-		
-		- getKBit():Number
-		
-		- getKBytes():Number
-		
-		- getMegaBit():Number
-		
-		- getMegaBytes():Number
-		
-		- getGigaBit():Number
-		
-		- getGigaBytes():Number
-		
-		- getTeraBit():Number
-		
-		- getTeraBytes():Number
-		
-		- hashCode():Number
-		
-		- setFloatingPoints(n:Number):Bit
-		
-		- toString():String 
-		
-		- valueOf()
-	
-	INHERIT
-	
-		Number → Bit
-
-	IMPLEMENTS
-	
-		IFormattable, IHashable
-
-*/
-
 import vegas.core.HashCode;
 import vegas.core.IFormattable;
 import vegas.core.IHashable;
 import vegas.util.MathsUtil;
 
+/**
+ * @author eKameleon
+ */
 class vegas.core.types.Bit extends Number implements IFormattable, IHashable 
 {
 
-	// ----o Constructor
-	
+	/**
+	 * Creates a new Bit instance.
+	 */
 	public function Bit(n:Number) 
 	{
 		_bit = n ;
 		_comma = DEFAULT_FLOATING_POINTS ;
 	}
 
-	// ----o Init HashCode
-	
+	/**
+	 * Init the hashcode representation of the class.
+	 */
 	static private var _initHashCode:Boolean = HashCode.initialize(Bit.prototype) ;
-
-	// ----o Static Properties
 
 	static public var DEFAULT_FLOATING_POINTS:Number = 2 ;
 
 	static public var KBIT:Number = 1024 ; // KILO BIT
+
 	static public var MBIT:Number = KBIT * KBIT ; // MEGA BIT
+
 	static public var GBIT:Number = MBIT * KBIT ; // GIGA BIT
+
 	static public var TBIT:Number = GBIT * KBIT ; // TERA BIT
 	
 	static public var BYTE:Number = 8 ; // BYTE
+
 	static public var KBYTE:Number = 1024 * BYTE ; // KILO BYTE
+
 	static public var MBYTE:Number = KBYTE * 1024 ; // MEGA BYTE
+
 	static public var GBYTE:Number = MBYTE * 1024 ; // GIGA BYTE
+
 	static public var TBYTE:Number = GBYTE * 1024 ; // TERA BYTE
 	
 	static public var SB:String = "b" ;
+
 	static public var SKB:String = "Kb" ;
+
 	static public var SMB:String = "Mb" ;
+
 	static public var SGB:String = "Gb" ;
+
 	static public var STB:String = "Tb" ;
 
-	static private var __ASPF__ = _global.ASSetPropFlags(Bit, null, 7, 7) ;
-
-	// ----o Public Methods
-	
-	public function getBit():Number {
+	public function getBit():Number 
+	{
 		return _bit ;
 	}
 	
-	public function getBytes():Number {
+	public function getBytes():Number 
+	{
 		return MathsUtil.round( _bit / BYTE, _comma) ;
 	}
 
@@ -162,44 +90,60 @@ class vegas.core.types.Bit extends Number implements IFormattable, IHashable
 		return MathsUtil.round( _bit / KBIT, _comma) ;
 	}
 
-	public function getKBytes():Number {
+	public function getKBytes():Number 
+	{
 		return MathsUtil.round( _bit / KBYTE, _comma) ;
 	}
 	
-	public function getMegaBit():Number {
+	public function getMegaBit():Number 
+	{
 		return MathsUtil.round( _bit / MBIT, _comma) ;
 	}
 
-	public function getMegaBytes():Number {
+	public function getMegaBytes():Number 
+	{
 		return MathsUtil.round( _bit / MBYTE, _comma) ;
 	}
 
-	public function getGigaBit():Number {
+	public function getGigaBit():Number 
+	{
 		return MathsUtil.round( _bit / GBIT, _comma) ;
 	}
 	
-	public function getGigaBytes():Number {
+	public function getGigaBytes():Number 
+	{
 		return MathsUtil.round( _bit / GBYTE, _comma) ;
 	}
 	
-	public function getTeraBit():Number {
+	public function getTeraBit():Number 
+	{
 		return MathsUtil.round( _bit / TBIT, _comma);
 	}
 
-	public function getTeraBytes():Number {
+	public function getTeraBytes():Number 
+	{
 		return MathsUtil.round(_bit / TBYTE, _comma);
 	}
-	
-	public function hashCode():Number {
+
+	/**
+	 * Returns a hash code value for the object.
+	 */
+	public function hashCode():Number 
+	{
 		return null ;
 	}
 	
-	public function setFloatingPoints(n:Number):Bit {
+	public function setFloatingPoints(n:Number):Bit 
+	{
 		_comma = (n > 0) ? n : 0 ;
 		return this ;
 	}
-	
-	public function toString():String {
+
+	/**
+	 * Returns a string representation of the object.
+	 */
+	public function toString():String 
+	{
 		if (_bit < KBIT) return getBit() + SB ;
 		else if(_bit < MBIT) return getKBit() + SKB ;
 		else if(_bit < GBIT) return getMegaBit() + SMB ;
@@ -207,7 +151,11 @@ class vegas.core.types.Bit extends Number implements IFormattable, IHashable
 		else return getTeraBit() + STB ;
 	}
 	
-	public function valueOf() {
+	/**
+	 * Returns the real value of the object.
+	 */
+	public function valueOf() 
+	{
 		return getBytes().valueOf();
 	}
 	

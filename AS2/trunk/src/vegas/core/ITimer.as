@@ -21,70 +21,59 @@
   
 */
 
-/** ITimer [Interface]
-
-	AUTHOR
-
-		Name : ITimer
-		Package : vegas.core
-		Version : 1.0.0.0
-		Date :  2005-11-16
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- clear():Void
-		
-		- getDelay():Number
-		
-		- getRepeatCount():Number
-		
-		- restart()
-		
-			Restarts the timer. The timer is stopped, and then started.
-		
-		- run()
-		
-		- setDelay(n:Number)
-		
-		- setRepeatCount(n:Number)
-		
-		- start()
-		
-			Starts the timer, if it is not already running.
-		
-		- stop()
-		
-			Stops the timer.
-
-	INHERIT
-	
-		EventTarget
-
-**/
-
 import vegas.events.EventTarget;
 
-interface vegas.core.ITimer extends EventTarget {
+/**
+ * This interface is implemented by Timer and FrameTimer class.
+ * @author eKameleon
+ */
+interface vegas.core.ITimer extends EventTarget 
+{
 
+	/**
+	 * Clear the timer interval.
+	 */
 	function clear():Void ;
 
+	/**
+	 * Returns the delay of the interval.
+	 */
 	function getDelay():Number ;
 
+	/**
+	 * Returns the max number of intervals of time.
+	 */
 	function getRepeatCount():Number ;
 
+	/**
+	 * Restarts the timer. The timer is stopped, and then started.
+	 */
 	function restart(noEvent:Boolean):Void ;
 
+	/**
+	 * Run the command.
+	 * @see IRunnable
+	 */
 	function run():Void ;
 
+	/**
+	 * Starts the timer if it is not already running.
+	 */
 	function start():Void ;
 
+	/**
+	 * Sets the delay of the interval.
+	 */
 	function setDelay(n:Number):Void ;
 
+	/**
+	 * Sets the max number of intervals of time.
+	 */
 	function setRepeatCount(n:Number):Void ;
 	
+	/**
+	 * Stop the timer.
+	 */
 	function stop():Void ;
 	
 }

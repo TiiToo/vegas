@@ -21,26 +21,12 @@
   
 */
 
-/** ICopyable [Interface]
+interface vegas.core.ICopyable 
+{
 
-	AUTHOR
-	
-		Name : ICopyable
-		Package : vegas.core
-		Version : 1.0.0.0
-		Date :  2006-07-05
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		-  copy()
-
-**/
-
-interface vegas.core.ICopyable {
-	
+	/**
+	 * Creates and returns a deep copy of the object.
+	 */	
 	function copy() ;
 	
 }

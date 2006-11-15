@@ -21,30 +21,15 @@
   
 */
 
-/** IFormat [Interface]
+/**
+ * @author eKameleon
+ */
+interface vegas.core.IFormat 
+{
 
-	AUTHOR
-
-		Name : IFormat
-		Package : vegas.core
-		Version : 1.0.0.0
-		Date :  2006-01-25
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION : 
-	
-		interface qui permet d'implémenter une méthode qui va transformer n'importe quel objet en chaine de caractère.
-
-	METHOD SUMMARY
-	
-		- formatToString(o):String
-
-**/
-
-interface vegas.core.IFormat {
-	
+	/**
+	 * Converts the object to a custom string representation.
+	 */	
 	function formatToString(o):String ;
 	
 }

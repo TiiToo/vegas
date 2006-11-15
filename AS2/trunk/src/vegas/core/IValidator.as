@@ -21,30 +21,20 @@
   
 */
 
-/**	IValidator [Interface]
-
-	AUTHOR
-
-		Name : IValidator
-		Package : vegas.core
-		Version : 1.0.0.0
-		Date :  2005-10-10
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
+/**
+ * @author eKameleon
+ */
+interface vegas.core.IValidator 
+{
 	
-		- supports(value):Boolean
-		
-		- validate(value):Void
-
-**/
-
-interface vegas.core.IValidator {
-	
+	/**
+	 * Returns true if the IValidator object validate the value.
+	 */
 	function supports(value):Boolean ;
 	
+	/**
+	 * evaluates the condition it checks and updates the IsValid property.
+	 */
 	function validate(value):Void ;
 	
 }

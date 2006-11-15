@@ -21,94 +21,57 @@
   
 */
 
-/** Byte
-
-	AUTHOR
-
-		Name : Byte
-		Package : vegas.core.types
-		Version : 1.0.0.0
-		Date :  2005-11-02
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTANT SUMMARY
-	
-		- SHORT_BYTE : Shortname of byte.
-		
-		- SHORT_KILO_BYTE : Shortname of kilo-byte.
-		
-		- SHORT_MEGA_BYTE : Shortname of mega-byte.
-		
-		- SHORT_GIGA_BYTE : Shortname of giga-byte.
-		
-		- SHORT_TERA_BYTE : Shortname of tera-byte. 
-
-	METHOD SUMMARY
-	
-		- getBit():Number
-		
-		- getBytes():Number
-		
-		- getKBit():Number
-		
-		- getKBytes():Number
-		
-		- getMegaBit():Number
-		
-		- getMegaBytes():Number
-		
-		- getGigaBit():Number
-		
-		- getGigaBytes():Number
-		
-		- getTeraBit():Number
-		
-		- getTeraBytes():Number
-		
-		- hashCode():Number
-		
-		- setFloatingPoints(n:Number):Bit
-		
-		- toString():String 
-		
-		- valueOf()
-
-	INHERIT
-	
-		Number → Bit → Byte  
-	
-**/
-
 import vegas.core.types.Bit;
 
-class vegas.core.types.Byte extends Bit {
+/**
+ * @author eKameleon
+ */
+class vegas.core.types.Byte extends Bit 
+{
 
-	// ----o Constructor
-	
-	public function Byte(bytes:Number) {
+	/**
+	 * Creates a new Byte instance.
+	 */
+	public function Byte(bytes:Number) 
+	{
 		super(bytes*BYTE);
 	}
 
-	// ----o Static Properties
-
 	static public var SHORT_BYTE:String = "B" ;
+
 	static public var SHORT_KILO_BYTE:String = "KB";
+
 	static public var SHORT_MEGA_BYTE:String = "MB";
+
 	static public var SHORT_GIGA_BYTE:String = "GB";
+
 	static public var SHORT_TERA_BYTE:String = "TB";	
 
-	static private var __ASPF__ = _global.ASSetPropFlags(Byte, null, 7, 7) ;
-
-	// ----o Public Methods
-	
-	public function toString():String {
-		if (_bit < Bit.KBYTE) return getBytes() + Byte.SHORT_BYTE ;
-		else if(_bit < Bit.MBYTE) return getKBytes() + Byte.SHORT_KILO_BYTE ;
-		else if(_bit < Bit.GBYTE) return getMegaBytes() + Byte.SHORT_MEGA_BYTE ;
-		else if(_bit < Bit.TBYTE) return getGigaBytes() + Byte.SHORT_GIGA_BYTE ;
-		else return getTeraBytes() + Byte.SHORT_TERA_BYTE ;
+	/**
+	 * Returns a string representation of the object.
+	 */
+	public function toString():String 
+	{
+		if (_bit < Bit.KBYTE) 
+		{
+			return getBytes() + Byte.SHORT_BYTE ;
+		}
+		else if(_bit < Bit.MBYTE) 
+		{
+			return getKBytes() + Byte.SHORT_KILO_BYTE ;
+		}
+		else if(_bit < Bit.GBYTE) 
+		{
+			return getMegaBytes() + Byte.SHORT_MEGA_BYTE ;
+		}
+		else if(_bit < Bit.TBYTE) 
+		{
+			return getGigaBytes() + Byte.SHORT_GIGA_BYTE ;
+		}
+		else 
+		{
+			return getTeraBytes() + Byte.SHORT_TERA_BYTE ;
+		}
 	}
 	
 }

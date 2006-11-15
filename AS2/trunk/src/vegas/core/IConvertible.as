@@ -21,43 +21,27 @@
   
 */
 
-/** IConvertible [interface]
-
-	AUTHOR
+/**
+ * Allows an object to be converted to an equivalent type.
+ * @author eKameleon
+ * @see <a href="http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf">Standard ECMAScript-262 3rd Edition CHAP 9 : 'Type Conversion'</a>
+ */
+interface vegas.core.IConvertible 
+{
 	
-		Name : IConvertible
-		Package : vegas.core
-		Version : 1.0.0.0
-		Date : 2005-12-19
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	DESCRIPTION
-	
-		Allows an object to be converted to an equivalent type.
-	
-	METHOD SUMMARY
-	
-		- toBoolean():Boolean
-		
-		- toNumber():Number
-		
-		- toObject():Object
-
-	NOTE
-	
-		[Read] Standard ECMAScript-262 3rd Edition CHAP 9 : 'Type Conversion'
-			- http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf
-
-**/
-
-interface vegas.core.IConvertible {
-	
+	/**
+	 * Converts an object to an equivalent Boolean value.
+	 */
 	function toBoolean():Boolean ;
 	
+	/**
+	 * Converts an object to an equivalent Number value.
+	 */
 	function toNumber():Number ;
 	
+	/**
+	 * Converts an object to an equivalent Object value.
+	 */
 	function toObject():Object ;
 	
 }

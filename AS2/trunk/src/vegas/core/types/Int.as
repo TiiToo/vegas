@@ -21,42 +21,6 @@
   
 */
 
-/** Int
-
-	AUTHOR
-	
-		Name : Int
-		Package : vegas.core.types
-		Version : 1.0.0.0
-		Date :  2005-11-04
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		Nombre entier
-
-	METHOD SUMMARY
-
-		- hashCode():Number
-
-		- toSource():String
-
-		- toString():String
-		
-		- valueOf()
-	
-	INHERIT
-	
-		Number → Int
-
-	IMPLEMENTS
-	
-		IFormattable, IHashable, ISerializable
-
-**/
-
 import vegas.core.HashCode;
 import vegas.core.IFormattable;
 import vegas.core.IHashable;
@@ -64,47 +28,74 @@ import vegas.core.ISerializable;
 import vegas.errors.NumberFormatError;
 import vegas.util.serialize.Serializer;
 
+/**
+ * @author eKameleon
+ */
 class vegas.core.types.Int extends Number implements IFormattable, IHashable, ISerializable {
 
-	// ----o Construtor
-	
-	public function Int(n:Number) {
-		if (n == Infinity || n == -Infinity) {
-			throw new NumberFormatError() ;
-		} else {
+	/**
+	 * Creates a new Int instance.
+	 */
+	public function Int(n:Number) 
+	{
+		if (n == Infinity || n == -Infinity) 
+		{
+			throw new NumberFormatError("Int constructor failed, the value of this Int can't be Infinity of -Infinity.") ;
+		}
+		else 
+		{
 			_int = n - n%1 ;
 		}
 	}
 	
-	// ----o Init HashCode
-	
+	/**
+	 * Init the hashcode representation of the class.
+	 */
 	static private var _initHashCode:Boolean = HashCode.initialize(Int.prototype) ;
 	
-	// ----o Public Methods
-
-	public function hashCode():Number {
+	/**
+	 * Returns a hash code value for the object.
+	 */
+	public function hashCode():Number 
+	{
 		return null ;
 	}
-	
-	function toSource(indent : Number, indentor : String) : String {
+
+	/**
+	 * Returns a Eden representation of the object.
+	 * @return a string representing the source code of the object.
+	 */
+	function toSource(indent : Number, indentor : String) : String 
+	{
 		return Serializer.getSourceOf(this, _getParams()) ;
 	}	
 
-	public function toString():String {
+	/**
+	 * Returns a string representation of the object.
+	 */
+	public function toString():String 
+	{
 		return _int.toString() ;
 	}
 
-	public function valueOf() {
+	/**
+	 * Returns the real value of the object.
+	 */
+	public function valueOf() 
+	{
 		return _int ;
 	}
 	
-	// ----o Private Properties
-	
+	/**
+	 * The internal value of the object.
+	 */	
 	private var _int:Number ;
 
-	// ----o Protected Methods
-	
-	/*protected*/ private function _getParams():Array {
+	/**
+	 * Returns a array of all values used by the toSource method. 
+	 */
+	/*protected*/ private function _getParams():Array 
+	{
 		return [ Serializer.toSource(_int) ] ;
 	}
 

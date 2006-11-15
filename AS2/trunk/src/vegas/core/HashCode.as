@@ -21,52 +21,18 @@
   
 */
 
-/** HashCode
-
-	AUTHOR
-	
-		Name : HashCode
-		Package : vegas.core
-		Version : 1.0.0.0
-		Date :  2006-02-28
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- static equals(o1, o2):Boolean
-		
-			return 'true' if o1 and o2 are the same HashCode.
-		
-		- static identify(o):Number
-		
-			return the hashcode of an object.
-		
-		- static next():Number
-		
-			return the next unique hashCode number.
-		
-		- static nextName():String
-		
-			Returns next available object's name. Use for building a default name for an object.
-		
-	TODO : combine ?
-
-*/
-
 class vegas.core.HashCode 
 {
 
-	// ----o Construtor
-	
+	/**
+	 * Constructor
+	 * @private
+	 */
 	private function HashCode() 
 	{
 		//
 	}
 	
-	// ----o Public Methods
-
 	/**
 	 * Compare two IHashable objects.
 	 * @usage   var isEquals:Boolean = HashCode.equals(o1, o2) ;
@@ -79,41 +45,64 @@ class vegas.core.HashCode
 		return HashCode.identify(o1) == HashCode.identify(o2) ;
 	}
 
+	/**
+	 * Indenfity the hashcode value of an object.
+	 */
 	static public function identify(o):Number 
 	{
 		return o.hashCode() ;
 	}
 	
+	/**
+	 * Returns the next hashcode value.
+	 */
 	static public function next():Number 
 	{
 		return HashCode._nHash++ ;
 	}
 
+	/**
+	 * Returns the next string representation of the next hashcode value.
+	 */
 	static public function nextName():String 
 	{
 		return String( HashCode._nHash + 1 ) ;
 	}
 	
-	// ----o Private Properties
 	
-	static private var _nHash:Number = 0 ;
-	
-	// ----o Private Methods
-	
+	/**
+	 * Initialize the hashcode value of an object.
+	 */
 	static public function initialize(o):Boolean 
 	{
-		o.hashCode = function () 
+		if ( !o.hasOwnProperty("hashCode") )
 		{
-			if (this.__hashcode__ == null) {
-				this.__hashcode__ = HashCode.next() ;
-				_global.ASSetPropFlags(this, ["__hashcode__"], 7, 7) ;
-			}
-			return this.__hashcode__ ;
-		} ;
-		_global.ASSetPropFlags(o, ["__hashcode__", "hashCode"], 7, 7) ;
-		return true ;
+			o["hashCode"] = function () 
+			{
+				if (this.__hashcode__ == null) 
+				{
+					this.__hashcode__ = HashCode.next() ;
+					_global.ASSetPropFlags(this, ["__hashcode__"], 7, 7) ;
+				}
+				return this.__hashcode__ ;
+			} ;
+			_global.ASSetPropFlags(o, ["__hashcode__", "hashCode"], 7, 7) ;
+			return true ;
+		}
+		else
+		{
+			return false ;	
+		}
 	}
 	
+	/**
+	 * The internal hashcode counter.
+	 */
+	static private var _nHash:Number = 0 ;
+	
+	/**
+	 * Launch the initialize of the Object.prototype object.
+	 */
 	static private var _init:Boolean = HashCode.initialize( Object.prototype ) ;
 	
 }

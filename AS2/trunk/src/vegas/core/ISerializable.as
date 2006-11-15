@@ -21,48 +21,21 @@
   
 */
 
-/** ISerializable [interface]
-
-	AUTHOR
+/**
+ * Allows an object to control its own serialization and deserialization.
+ * Note : To add a diffrent syntax formating it should be possible to add a 3rd *formater* argument and override the implementation of the method in all core objects.
+ * @author eKameleon
+ * @see Core2 & Eden framework inspired by Mozilla SpiderMonkey (Zwetan)
+ */
+interface vegas.core.ISerializable 
+{
 	
-		Name : ISerializable
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date : 2005-12-19
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	DESCRIPTION
-	
-		  Allows an object to control its own serialization.
-	
-	METHOD SUMMARY
-	
-		- toSource( [indent:Number], [indentor:String] ):String
-
-			PARAMETERS
-			
-				- indent : optional the starting of the indenting
-				- indentor : the string value used to do the indentation
-
-			RETURN
-			
-				a string representing the source code of the object.
-
-	NOTE
-	
-		To add a diffrent syntax formating it should be possible to add a 3rd *formater* argument
-		and override the implementation of the method in all core objects.
-
-	THANKS
-	
-		Zwetan : Core2 framework inspired by Mozilla SpiderMonkey.
-
-**/
-
-interface vegas.core.ISerializable {
-	
+	/**
+	 * Returns a Eden representation of the object.
+	 * @param indent:Number optional the starting of the indenting
+	 * @param identor:String the string value used to do the indentation
+	 * @return a string representing the source code of the object.
+	 */
 	function toSource(indent:Number, indentor:String):String ;
 	
 }

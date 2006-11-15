@@ -21,36 +21,6 @@
   
 */
 
-/**	CoreObject
-
-	AUTHOR
-	
-		Name : CoreObject
-		Package : vegas.core
-		Version : 1.0.0.0
-		Date :  2006-01-03
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-		
-		- hashCode():Number
-		
-		- toSource(indent : Number, indentor : String):String
-		
-		- toString():String
-
-	INHERIT
-	
-		Object → CoreObject
-	
-	IMPLEMENT
-	
-		IFormattable, IHashable, ISerializable
-
-*/
-
 import vegas.core.HashCode;
 import vegas.core.IFormattable;
 import vegas.core.IHashable;
@@ -71,25 +41,30 @@ class vegas.core.CoreObject implements IFormattable, IHashable, ISerializable
 		//
 	}
 	
-	// ----o Public Methods
-	
+	/**
+	 * Returns a hashcode value for the object.
+	 */
 	public function hashCode():Number 
 	{
 		return null ;
 	}
 
+	/**
+	 * Returns a Eden reprensation of the object.
+	 */
 	public function toSource(indent : Number, indentor : String):String 
 	{
 		return "new " + ConstructorUtil.getPath(this) + "()" ;
 	}
-
+	
+	/**
+	 * Returns a string representation of the object.
+	 */
 	public function toString():String 
 	{
 		return "[" + ConstructorUtil.getName(this) + "]" ;
 	}
 
-	// ----o Init HashCode
-	
 	static private var _initHashCode:Boolean = HashCode.initialize(CoreObject.prototype) ;
 	
 }

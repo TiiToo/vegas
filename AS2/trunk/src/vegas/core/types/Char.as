@@ -21,76 +21,67 @@
   
 */
 
-/** Char
-
-	AUTHOR
-	
-		Name : Char
-		Package : vegas.core.types
-		Version : 1.0.0.0
-		Date :  2005-11-05
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- getCode():Number
-		
-		- hashCode():Number
-		
-		- toSource():String
-		
-		- toString():String
-		
-		- valueOf()
-	
-	INHERIT
-	
-		String → Char  
-
-	IMPLEMENTS
-	
-		IFormattable, IHashable, ISerializable
-
-**/
-
 import vegas.core.HashCode;
 import vegas.core.IFormattable;
 import vegas.core.IHashable;
 import vegas.core.ISerializable;
 
-class vegas.core.types.Char extends String implements IFormattable, IHashable, ISerializable {
+/**
+ * @author eKameleon
+ */
+class vegas.core.types.Char extends String implements IFormattable, IHashable, ISerializable 
+{
 
-	// ----o Construtor
-	
-	public function Char(s:String) {
+	/**
+	 * Creates a new Char instance.
+	 */
+	public function Char(s:String) 
+	{
 		_char = (s || "").substring(0, 1) ;
 	}
 
-	// ----o Init HashCode
-	
+	/**
+	 * Init the hashcode representation of the class.
+	 */
 	static private var _initHashCode:Boolean = HashCode.initialize(Char.prototype) ;
 	
-	// ----o Public Methods
-	
-	public function getCode():Number {
+	/**
+	 * Returns the integer character code for the character.
+	 */
+	public function getCode():Number 
+	{
 		return _char.charCodeAt(0) ;
 	}
 
+	/**
+	 * Returns a hash code value for the object.
+	 */
 	public function hashCode():Number {
 		return null ;
 	}
-
-	function toSource(indent : Number, indentor : String) : String {
+	
+	/**
+	 * Returns a Eden representation of the object.
+	 * @return a string representing the source code of the object.
+	 */
+	public function toSource(indent : Number, indentor : String) : String 
+	{
 		return 'new vegas.core.types.Char("' + _char + '")' ;
 	}	
 
-	public function toString():String {
+	/**
+	 * Returns a string representation of the object.
+	 */
+	public function toString():String 
+	{
 		return _char.toString() ;
 	}
 
-	public function valueOf() {
+	/**
+	 * Returns the real value of the object.
+	 */
+	public function valueOf() 
+	{
 		return _char.valueOf() ;
 	}
 	

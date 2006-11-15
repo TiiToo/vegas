@@ -21,40 +21,18 @@
   
 */
 
-/** 	IComparator [Interface]
-	
-	AUTHOR
-
-		Name : IComparator
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date :  2005-04-24
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHODS
-	
-		- compare(o1, o2):Number
-		
-		- equals(o):Boolean
-
-	INHERIT
-	
-		IEquality
-
-	HISTORY
-	
-		2005-12-21 :: ADD inherit IEquality interface
-
-**/
-
 import vegas.core.IEquality;
 
-interface vegas.core.IComparator extends IEquality {
+/**
+ * A comparison function, which imposes a total ordering on some collection of objects.
+ * @author eKameleon
+ */
+interface vegas.core.IComparator extends IEquality 
+{
 
+	/**
+	 * Compares its two arguments for order.
+	 */
 	function compare(o1, o2):Number ;
-	
-	// function equals(o):Boolean ;
 	
 }
