@@ -121,8 +121,11 @@ class lunas.display.PanelDisplay extends DisplayObject {
 	// ----o Constants
 	
 	static public var PANEL:String = "__PANEL__" ;
+	
 	static public var PANEL_DEPTH:Number = 9775 ;
+	
 	static public var PANEL_RENDERER:Function = PanelContainer ;
+	
 	static public var PANEL_ROOT:MovieClip = _root ;
 
 	// ----o Public Methods

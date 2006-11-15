@@ -21,176 +21,204 @@
   
 */
 
-/** DisplayObject
-
-	AUTHOR
-
-		Name : DisplayObject
-		Package : asgard.display
-		Version : 1.0.0.0
-		Date :  2006-03-21
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-	
-		- enabled:Boolean [R/W]
-		
-		- height:Number [R/W]
-		
-		- view
-		
-		- width:Number [R/W]
-
-	METHOD SUMMARY
-	
-		- createChild( c:Function, name:String , depth:Number , init )
-		
-		- getEnabled():Boolean
-		
-		- getLoader():ILoader
-		
-		- getName():String
-		
-		- getWidth():Number
-		
-		- getX():Number
-		
-		- getY():Number
-		
-		- hide():Void
-		
-		- isVisible():Boolean
-		
-		- move( x:Number, y:Number ) : Void 
-		
-		- release() : Void
-		
-		- setEnabled(b:Boolean):Void
-		
-		- setHeight( n:Number ) : Void
-		
-		- setWidth( n:Number ) : Void
-		
-		- setX( n:Number ) : Void
-		
-		- setY( n:Number ) : Void
-		
-		- show():Void
-	
-	INHERIT
-	
-		CoreObject → AbstractCoreEventDispatcher → DisplayObject
-
- 	IMPLEMENTS
- 
-		EventTarget, IEventDispatcher, IFormattable, IHashable, ISerializable
-
-**/
-
 import asgard.display.DisplayLoader;
 import asgard.display.DisplayLoaderCollector;
 import asgard.display.DisplayObjectCollector;
 import asgard.net.ILoader;
 
 import vegas.errors.IllegalArgumentError;
+import vegas.errors.Warning;
 import vegas.events.AbstractCoreEventDispatcher;
 import vegas.util.factory.DisplayFactory;
 
 /**
  * @author eKameleon
- * @version 1.0.0.0
  */
-
 class asgard.display.DisplayObject extends AbstractCoreEventDispatcher 
 {
 
-	// ----o Constructor
-
+	/**
+	 * Creates a new DisplayObject instance.
+	 * @param sName:String the name of the display.
+	 * @param target:MovieClip the DisplayObject instance control this target.
+	 */
     public function DisplayObject( sName:String , target ) 
     {
-		
         super() ;
-
 		if (target) 
 		{
-			
 			view = target ;
-		
 		}
 		else 
 		{
-			
 			_loader = DisplayLoaderCollector.get( sName ) ;
-			
-			if ( _loader ) {
-				
+			if ( _loader ) 
+			{
 				this.view = _loader.getView() ;
-				
-			} else {
-				
-				throw new IllegalArgumentError("invalid arguments for " + this + " constructor.");
-				
 			}
-			
+			else 
+			{
+				throw new IllegalArgumentError("invalid arguments for " + this + " constructor.");
+			}
 		}
 		
 		_setName(sName) ;
 
     }
 
-	// ----o Public Properties
+	/**
+	 * (read-write) Returns 'true' if the display is enabled.
+	 */
+	public function get enabled():Boolean 
+	{
+		return getEnabled() ;	
+	}
 
-	// public var enabled:Boolean ; // [R/W]
-	// public var height:Boolean ; // [R/W]
+	/**
+	 * (read-write) Sets the display enabled state.
+	 */
+	public function set enabled(b:Boolean):Void 
+	{
+		setEnabled(b) ;	
+	}
+
+	/**
+	 * (read-write) Returns the height of the display's view.
+	 */
+	public function get height():Number 
+	{
+		return getHeight() ;	
+	}
+
+	/**
+	 * (read-write) Sets the height of the display's view.
+	 */
+	public function set height(n:Number):Void 
+	{
+		setHeight(n) ;	
+	}
+
+	/**
+	 * The view of the display.
+	 */
 	public var view ;
-	// public var width:Boolean ; // [R/W]
-	// public var x:Number ; // [R/W]
-	// public var y:Number ; // [R/W]
+	
+	/**
+	 * (read-write) Sets the width of the display's view.
+	 */
+	public function get width():Number 
+	{
+		return getWidth() ;	
+	}
 
-	// ----o Public Methods
+	/**
+	 * (read-write) Returns the width of the display's view.
+	 */
+	public function set width(n:Number):Void 
+	{
+		setWidth(n) ;	
+	}
 
+	/**
+	 * (read-write) Returns the x position of the display's view.
+	 */
+	public function get x():Number 
+	{
+		return getX() ;	
+	}
+
+	/**
+	 * (read-write) Sets the x position of the display's view.
+	 */
+	public function set x(n:Number):Void 
+	{
+		setX(n) ;	
+	}
+	
+	/**
+	 * (read-write) Returns the y position of the display's view.
+	 */
+	public function get y():Number 
+	{
+		return getY() ;	
+	}
+
+	/**
+	 * (read-write) Sets the y position of the display's view.
+	 */
+	public function set y(n:Number):Void 
+	{
+		setY(n) ;	
+	}
+
+	/**
+	 * Create a new child in the view of the display.
+	 * @see DisplayFactory.createChild
+	 */
 	public function createChild( o , name:String , depth:Number , init ) 
 	{
 		return DisplayFactory.createChild( o , name , depth , view, init ) ;
 	}
 	
+	/**
+	 * Returns true if the display's view is enabled.
+	 */
 	public function getEnabled():Boolean 
 	{ 
 		return view.enabled ;
 	} 
 	
+	/**
+	 * Returns the height of the display's view.
+	 */
 	public function getHeight():Number 
 	{ 
 		return view._height ;
 	}
 	
+	/**
+	 * Returns the loader of the display.
+	 */
 	public function getLoader():ILoader 
 	{
 		return _loader ;	
 	}
 	
+	/**
+	 * Returns the name of the display.
+	 */
 	public function getName():String
 	{
 		return _sName;
 	}
-	
+
+	/**
+	 * Returns the width of the display's view.
+	 */
 	public function getWidth():Number 
 	{ 
 		return view._width ;
 	}
 
+	/**
+	 * Return the x position of the display.
+	 */
 	public function getX():Number 
 	{ 
 		return view._x ;
 	}
-	
+
+	/**
+	 * Returns the y position of the display.
+	 */
 	public function getY():Number 
 	{ 
 		return view._y ;
 	}
 
+	/**
+	 * Hide the display.
+	 */
 	public function hide():Void 
 	{
 		if (_loader != null) 
@@ -203,17 +231,28 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 		}
 	}
 
+	/**
+	 * Returns 'true' if the display is visible.
+	 */
 	public function isVisible():Boolean 
 	{
 		return view._visible  ;	
 	}
 
+	/**
+	 * Move the display in a new position.
+	 * @param x:Number the new x position of the display.
+	 * @param y:Number the new y position of the display.
+	 */ 
 	public function move( x:Number, y:Number ) : Void 
 	{
 		view._x = x ;
 		view._y = y ;
 	}
 
+	/**
+	 * Release the view of the display.
+	 */
 	public function release() : Void 
 	{
 		DisplayObjectCollector.remove( _sName );
@@ -222,31 +261,65 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 		delete _sName ;
 	}
 	
+	/**
+	 * Sets the enabled state of the display.
+	 */
 	public function setEnabled(b:Boolean):Void 
 	{
 		view.enabled = (b == true) ; 
 	}
 
+	/**
+	 * Sets the height of the display.
+	 */
 	public function setHeight( n:Number ) : Void 
 	{
 		view._height = n ; 
 	}
 
+	/**
+	 * Sets the width of the display.
+	 */
 	public function setWidth( n:Number ) : Void 
 	{
 		view._width = n ; 
 	}
 
+	/**
+	 * Sets the x position of the display.
+	 */
 	public function setX( n:Number ) : Void 
 	{
 		view._x = n ; 
 	}
 	
+	/**
+	 * Sets the y position of the display.
+	 */
 	public function setY( n:Number ) : Void 
 	{
 		view._y = n ; 
 	}
 	
+	/**
+	 * Returns an instance in a visual DisplayObject if exist else throws a Warning.
+	 * @throws Warning
+	 */
+	public function resolve( name:String )
+	{
+		if ( view.hasOwnProperty(name) )
+		{
+			return view[name] ;
+		}
+		else
+		{
+			throw new Warning( this + " resolve failed with the view : '" + name );
+		}
+	}
+	
+	/**
+	 * Show the display instance.
+	 */
 	public function show():Void 
 	{
 		if (_loader != null) 
@@ -259,65 +332,20 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 		}
 	}
 	
-	// ----o Virtual Properties
-	
-	public function get enabled():Boolean 
-	{
-		return getEnabled() ;	
-	}
-
-	public function set enabled(b:Boolean):Void 
-	{
-		setEnabled(b) ;	
-	}
-
-	public function get height():Number 
-	{
-		return getHeight() ;	
-	}
-
-	public function set height(n:Number):Void 
-	{
-		setHeight(n) ;	
-	}
-	
-	public function get width():Number 
-	{
-		return getWidth() ;	
-	}
-
-	public function set width(n:Number):Void 
-	{
-		setWidth(n) ;	
-	}
-	
-	public function get x():Number 
-	{
-		return getX() ;	
-	}
-
-	public function set x(n:Number):Void 
-	{
-		setX(n) ;	
-	}
-
-	public function get y():Number 
-	{
-		return getY() ;	
-	}
-
-	public function set y(n:Number):Void 
-	{
-		setY(n) ;	
-	}
-	
-	// ----o Private Properties
-	
+	/**
+	 * The internal loader of the display.
+	 */	
 	private var _loader:DisplayLoader = null ; 
+	
+	/**
+	 * The internal name's property of the display.
+	 */
 	private var _sName:String = null ;
 	
-	// ----o Private Methods
-	
+	/**
+	 * Internal method to sets the name of the display and register this display in the DisplayObjectCollector.
+	 * @see DisplayObjectCollector
+	 */
 	private function _setName( name:String ) : Void 
 	{
 

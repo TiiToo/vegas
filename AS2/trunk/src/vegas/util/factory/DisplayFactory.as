@@ -21,74 +21,65 @@
   
 */
 
-/** DisplayFactory
-
-	AUTHOR
-	
-		Name : DisplayFactory
-		Package : vegas.util.factory
-		Version : 1.0.0.0
-		Date :  2005-10-15
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-
-		- static attachChild( fConstructor:Function, sID:String, sName:String, nDepth:Number, mcTarget:MovieClip, init )
-
-		- static createChild(oChild , p_name:String , p_depth:Number, p_target, p_init)
-
-**/
-
 import vegas.util.ConstructorUtil;
 import vegas.util.TypeUtil;
 
-class vegas.util.factory.DisplayFactory {
+/**
+ * eKameleon
+ */
+class vegas.util.factory.DisplayFactory 
+{
 	
-	// ----o Constructor
-	
-	private function DisplayFactory() {
-		//
-	}
-	
-	// ----o Static Methods
-	
-	static public function attachChild( fConstructor:Function, sID:String, sName:String, nDepth:Number, mcTarget:MovieClip, init ) {
+	/**
+	 * Attachs a MovieClip in a target and register a custom constructor who inherit MovieClip in this instance.
+	 * @see ConstructorUtil.createVisualInstance
+	 */
+	static public function attachChild
+	( 
+		fConstructor:Function, sID:String, sName:String,
+		 nDepth:Number, mcTarget:MovieClip, init 
+	) 
+	{
 		var oChild = mcTarget.attachMovie(sID, sName, nDepth) ;
 		return ConstructorUtil.createVisualInstance( fConstructor, oChild, init) ;
 	}
 	
-	static public function createChild ( oChild , p_name:String , p_depth:Number, p_target, p_init) {
+	/**
+	 * Creates a new child object (MovieClip, TextField) with a custom constructor or an id link.
+	 * @see ConstructorUtil
+	 */
+	static public function createChild ( oChild , p_name:String , p_depth:Number, p_target, p_init) 
+	{
+		
 		var child ;
 		
-		if (oChild == null) {
-
+		if (oChild == null) 
+		{
 			child = p_target.createEmptyMovieClip(p_name, p_depth) ;
-			for (var each in p_init) child[each] = p_init[each] ;
+			for (var each in p_init) 
+			{
+				child[each] = p_init[each] ;
+			}
 			return child ;
 			
-		} else if (oChild instanceof Function) {
-			
+		}
+		else if (oChild instanceof Function) 
+		{
 			var p_class:Function = oChild ;
-
-			if (ConstructorUtil.isSubConstructorOf(p_class, MovieClip))  {
-				
+			if (ConstructorUtil.isSubConstructorOf(p_class, MovieClip))  
+			{
 				child = p_target.createEmptyMovieClip (p_name, p_depth) ;
-				
-			} else if (ConstructorUtil.isSubConstructorOf(p_class, TextField)) {
-				
+			}
+			else if (ConstructorUtil.isSubConstructorOf(p_class, TextField)) 
+			{
 				p_target.createTextField (p_name, p_depth, 0, 0, 0, 0) ;
 				child = p_target[p_name] ;
-				
 			}
-
 			return ConstructorUtil.createVisualInstance(p_class, child, p_init) ;
-			
-		} else if (TypeUtil.typesMatch(oChild, String)) {
-			
+		}
+		else if (TypeUtil.typesMatch(oChild, String)) 
+		{
 			return p_target.attachMovie(oChild, p_name, p_depth, p_init) ;
-			
 		}
 	}
 	

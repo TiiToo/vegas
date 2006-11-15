@@ -1,4 +1,4 @@
-﻿/*
+/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -21,44 +21,6 @@
   
 */
 
-/** FrontController
-
-	AUTHOR
-	
-		Name : FrontController
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2006-03-11
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var oC:FrontController = new FrontController([oE:EventDispatcher]) ;
-
-	METHOD SUMMARY
-	
-		- contains(eventName:String):Boolean
-		
-		- fireEvent(ev:Event):Void
-		
-		- getListener(eventName:String):EventListener 
-		
-		- insert(eventName:String, listener:EventListener):Void
-		
-		- remove(eventName:String):Void
-	
-	INHERIT
-	
-		CoreObject → FrontController
-	
-	IMPLEMENTS 
-
-		IFormattable, IHashable, ISerializable
-
-**/
-
 import vegas.core.CoreObject;
 import vegas.data.Map;
 import vegas.data.map.HashMap;
@@ -67,17 +29,17 @@ import vegas.events.EventDispatcher;
 import vegas.events.EventListener;
 
 /**
- * {@code FrontController} .
  * @author eKameleon
- * @version 1.0.0.0
- **/
-class vegas.events.FrontController extends CoreObject  {
+ */
+class vegas.events.FrontController extends CoreObject  
+{
 	
 	/**
 	 * FrontController - Constructor
 	 * @usage var oC = new FrontController( [oE:EventDispatcher] ) ;
 	 */
-	function FrontController( oE:EventDispatcher , name) {
+	function FrontController( oE:EventDispatcher , name) 
+	{
 		_map = new HashMap() ;
 		_oE = oE || EventDispatcher.getInstance(name); 
 	}
@@ -88,7 +50,8 @@ class vegas.events.FrontController extends CoreObject  {
 	 * Returns 'true' if the eventName is registered in the FrontController.
 	 * @param eventName:String
 	 */
-	public function contains( eventName:String ):Boolean {
+	public function contains( eventName:String ):Boolean 
+	{
 		return _map.containsKey(eventName) ;	
 	}
 
@@ -96,7 +59,8 @@ class vegas.events.FrontController extends CoreObject  {
 	 * Dispatch an event into the FrontController
 	 * @param e:Event 
 	 */
-	public function fireEvent(e:Event):Void {
+	public function fireEvent(e:Event):Void 
+	{
 		_oE.dispatchEvent(e) ;
 	}
 
@@ -106,7 +70,8 @@ class vegas.events.FrontController extends CoreObject  {
 	 * @param  eventName:String
 	 * @return an EventListener  
 	 */
-	public function getListener(eventName:String):EventListener {
+	public function getListener(eventName:String):EventListener 
+	{
 		return _map.get(eventName) ;
 	}
 	
@@ -115,7 +80,8 @@ class vegas.events.FrontController extends CoreObject  {
 	 * @param eventName:String
 	 * @param listener:EventListener
 	 */
-	public function insert(eventName:String, listener:EventListener):Void {
+	public function insert(eventName:String, listener:EventListener):Void 
+	{
 		_map.put.apply( this, arguments ) ;
 		_oE.addEventListener(eventName, listener) ;
 	}
@@ -125,14 +91,20 @@ class vegas.events.FrontController extends CoreObject  {
 	 * @param eventName:String
 	 * @return  
 	 */
-	public function remove(eventName:String):Void {
+	public function remove(eventName:String):Void 
+	{
 		var listener:EventListener = _map.remove.apply(this, arguments ) ;
 		if (listener) _oE.removeEventListener(eventName, listener);
 	}
-	
-	// ----o Private Properties
-	
+
+	/**
+	 * Internal HashMap instance.
+	 */
 	private var _map:Map ;
+	
+	/**
+	 * Internal EventDispatcher instance.
+	 */
 	private var _oE:EventDispatcher ;
 
 }
