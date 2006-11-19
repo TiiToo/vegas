@@ -21,141 +21,56 @@
   
 */
 
-/** LogEvent
-
-	AUTHOR
-	
-		Name : LogEvent
-		Package : vegas.logging
-		Version : 1.0.0.0
-		Date :  2005-12-10
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		Dynamic class.
-
-	CONSTRUCTOR
-	
-		var e:LogEvent = new LogEvent( message:String, level:Number ) ;
-
-	CONSTANT SUMMARY
-
-		- LOG:String
-
-	PROPERTY SUMMARY
-
-		- bubbles:Boolean [R/W]
-		
-		- context [R/W]
-		
-		- currentTarget [R/W]
-		
-		- eventPhase:Number [R/W]
-		
-		- level:Number
-			
-			Provides access to the level for this log event.
-		
-		- message:String
-		
-			Provides access to the message that was logged.
-		
-		- target [R/W]
-		
-		- type:String [R/W]
-
-	METHOD SUMMARY
-	
-		- cancel():Void
-		
-		- clone()
-		
-		- getBubbles():Boolean
-		
-		- getContext()
-		
-		- getCurrentTarget()
-		
-		- getEventPhase():Number
-		
-		- static getLevelString(value:Number):String 
-		
-			Returns a string value representing the level specified.
-			
-		- getTarget()
-		
-		- getTimeStamp():Number
-		
-		- getType():String
-		
-		- isCancelled():Boolean
-		
-		- isQueued():Boolean
-		
-		- queueEvent():Void
-		
-		- setBubbles(b:Boolean):Void
-		
-		- setContext(context):Void
-		
-		- setCurrentTarget(target):Void
-		
-		- setEventPhase(n:Number):Void
-		
-		- setTarget(target):Void
-		
-		- setType(type:String):Void
-		
-		- stopImmediatePropagation()
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → BasicEvent → DynamicEvent → LogEvent
-
-	IMPLEMENTS
-	
-		ICloneable, Event, IFormattable, ISerializable
-
-**/	
-
 import vegas.events.DynamicEvent;
 import vegas.logging.LogEventLevel;
 import vegas.util.serialize.Serializer;
 
-dynamic class vegas.logging.LogEvent extends DynamicEvent {
+/**
+ * Represents the log information for a single logging event. The loging system dispatches a single event each time a process requests information be logged. This event can be captured by any object for storage or formatting.
+ * @author eKameleon 
+ */
+dynamic class vegas.logging.LogEvent extends DynamicEvent 
+{
 	
-	// ----o Constructor
-	
-	public function LogEvent(msg:String, lv:Number, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) {
+	/**
+	 * Creates a new LogEvent.
+	 */
+	public function LogEvent(msg:String, lv:Number, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
+	{
 		super(LogEvent.LOG, target, context, bubbles, eventPhase, time, stop) ;
 		message = msg || "" ;
 		level = lv || LogEventLevel.ALL ;
 	}
 
-	// ----o Constant
-	
+	/**
+	 * Event type constant, identifies a logging event.
+	 */
 	static public var LOG:String = "log" ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(LogEvent, ["LOG"] , 7, 7) ;
-	
-	// ----o Public Properties
-	
+	/**
+	 * Provides access to the level for this log event.
+	 */
 	public var level:Number ;
 	
+	/**
+	 * Provides access to the message that was logged.
+	 */
 	public var message:String ;
 	
-	// ----o Public Methods
-	
-	/*override*/ public function clone() {
+	/**
+	 * Returns the shallow copy of the event.
+	 * @return the shallow copy of the LogEvent event.
+	 */
+	/*override*/ public function clone() 
+	{
 		return new LogEvent(message, level) ;
 	}
 	
-	static public function getLevelString(value:Number):String {
+	/**
+	 * Returns a string value representing the level specified.
+	 */
+	static public function getLevelString(value:Number):String 
+	{
 		
 		switch (value) {
 			
@@ -182,10 +97,13 @@ dynamic class vegas.logging.LogEvent extends DynamicEvent {
 		}
 	}
 
-	// ----o Protected Methods
-	
-	/*protected*/ private function _getParams():Array {
-		var ar1:Array = [
+	/**
+	 * Internal methods used by toSource method.
+	 */
+	/*protected*/ private function _getParams():Array 
+	{
+		var ar1:Array = 
+		[
 			Serializer.toSource(message) ,
 			Serializer.toSource(level)
 		] ;

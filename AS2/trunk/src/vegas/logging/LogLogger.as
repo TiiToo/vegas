@@ -83,38 +83,68 @@ import vegas.logging.LogEventLevel;
 import vegas.string.StringFormatter;
 import vegas.util.TypeUtil;
 
-class vegas.logging.LogLogger extends EventDispatcher implements ILogger {
+/**
+ * The logger that is used within the logging framework. This class dispatches events for each message logged using the log() method.
+ * @uthor eKameleon
+ */
+class vegas.logging.LogLogger extends EventDispatcher implements ILogger 
+{
 
-	// ----o Constructor
-	
-	public function LogLogger(category:String) {
+	/**
+	 * Creates a new LogLogger instance.
+	 */
+	public function LogLogger(category:String) 
+	{
 		this.category = category || Log.DEFAULT_CATEGORY ;
 	}
 
-	// ----o Public Methods
-	
+	/**
+	 * The category this logger send messages for.
+	 */
 	public var category:String ;
+
+	/**
+	 * This logger is dispatching in a queue if no targets are register.
+	 */
 	public var isQueue:Boolean ;
 	
-	// ----o Public Methods
-	
-	public function debug(context):Void {
+	/**
+	 * Logs the specified data using the LogEventLevel.DEBUG level.
+	 */
+	public function debug(context):Void 
+	{
 		log.apply(this, [LogEventLevel.DEBUG].concat(arguments)) ;
 	}
 	
-	public function error(context):Void {
+	/**
+	 * Logs the specified data using the LogEventLevel.ERROR  level.
+	 */
+	public function error(context):Void 
+	{
 		log.apply(this, [LogEventLevel.ERROR].concat(arguments)) ;
 	}
 	
-	public function fatal(context):Void {
+	/**
+	 * Logs the specified data using the LogEventLevel.FATAL level.
+	 */
+	public function fatal(context):Void 
+	{
 		log.apply(this, [LogEventLevel.FATAL].concat(arguments)) ;
 	}
 	
-	public function info(context):Void {
+	/**
+	 * Logs the specified data using the LogEvent.INFO level.
+	 */
+	public function info(context):Void 
+	{
 		log.apply(this, [LogEventLevel.INFO].concat(arguments)) ;
 	}
 	
-	public function log(level:Number, context):Void {
+	/**
+	 * Logs the specified data at the given level.
+	 */
+	public function log(level:Number, context):Void 
+	{
 		var message:String ;
 		if (TypeUtil.typesMatch(context, String) && arguments.length > 2) {
 			message = _format(context.toString(), arguments.splice(2));
@@ -126,13 +156,20 @@ class vegas.logging.LogLogger extends EventDispatcher implements ILogger {
 		this.dispatchEvent(ev, isQueue) ;
 	}
 	
-	public function warn(context):Void {
+	/**
+	 * Logs the specified data using the LogEventLevel.WARN level.
+	 */
+	public function warn(context):Void 
+	{
 		log.apply(this, [LogEventLevel.WARN].concat(arguments)) ;
 	}
 	
-	// ----o Private Methods
-	
-	private function _format(msg:String, args:Array):String {
+	/**
+	 * Format the message with StringFormatter tool.
+	 * @see StringFormatter
+	 */
+	private function _format(msg:String, args:Array):String 
+	{
 		var f:StringFormatter = new StringFormatter(msg) ;
 		return f.format.apply(f, args) ;
 	}

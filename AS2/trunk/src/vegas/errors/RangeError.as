@@ -25,7 +25,7 @@ import vegas.errors.ErrorElement;
 import vegas.errors.FatalError;
 
 /**
- * @uthor eKameleon
+ * @author eKameleon
  */
 class vegas.errors.RangeError extends FatalError 
 {

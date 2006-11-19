@@ -21,72 +21,72 @@
   
 */
 
-/** SOSType
-
-	AUTHOR
+/**
+ * This static class contains all default static properties to defined colors and specific SOS message in the {@code SOSTarget} class.
+ * @author eKameleon
+ */
+class vegas.logging.targets.SOSType 
+{
 	
-		Name : SOSType
-		Package : vegas.logging
-		Version : 1.0.0.0
-		Date :  2006-01-19
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTANT SUMMARY
-	
-		- const static ALL_COLOR:Number
-		
-		- const static CLEAR:String
-		
-		- const static DEBUG_COLOR:Number
-		
-		- const static DEFAULT_COLOR:Number
-		
-		- const static DISABLE:Number
-		
-		- const static ENABLE:Number
-		
-		- const static ERROR_COLOR:Number
-		
-		- const static EXIT:String
-		
-		- const static FATAL_COLOR:Number
-		
-		- const static HOST:String
-		
-		- const static INFO_COLOR:Number
-		
-		- const static PORT:Number
-		
-		- const static WARN_COLOR:Number
-
-**/	
-
-class vegas.logging.SOSType {
-	
-	// ----o Constructor 
-	
-	private function SOSType() {
-		//		
-	}
-
-	// ----o Constant
-
+	/**
+	 * Provides the color in the SOS console to display all levels. 
+	 */
 	static public var ALL_COLOR:Number = 0xD7EEFD ;
+	
+	/**
+	 * Provides the message to send in the SOS console to clear the console. 
+	 */
 	static public var CLEAR:String = "!SOS<clear/>\n" ;
+	
+	/**
+	 * Provides the 'debug' color in the SOS console. 
+	 */
 	static public var DEBUG_COLOR:Number = 0xDEECFE ;
+
+	/**
+	 * Provides the 'default' color in the SOS console. 
+	 */
 	static public var DEFAULT_COLOR:Number = 0xFFFFFF ;
+	
+	/**
+	 * Provides the value if you want 'disabled' the levels colors in the SOS Console.
+	 */
 	static public var DISABLE:Number = 0 ;
+
+	/**
+	 * Provides the value if you want 'enabled' the levels colors in the SOS Console.
+	 */
 	static public var ENABLE:Number = 1 ;
+
+	/**
+	 * Provides the 'error' color in the SOS console. 
+	 */
 	static public var ERROR_COLOR:Number = 0xEDCC81 ;
 	static public var EXIT:String = "!SOS<exit/>" ;
+	
+	/**
+	 * Provides the 'fatal' color in the SOS console. 
+	 */
 	static public var FATAL_COLOR:Number = 0xFDD1B5 ;
+	
+	/**
+	 * Provides the default host in the SOS console to connect the internal XMLSocket. 
+	 */
 	static public var HOST:String = "localhost" ;
+	
+	/**
+	 * Provides the 'info' color in the SOS console. 
+	 */
 	static public var INFO_COLOR:Number = 0xD2FAB8 ;
+
+	/**
+	 * Provides the default port in the SOS console to connect the internal XMLSocket. 
+	 */
 	static public var PORT:Number = 4444 ;
+	
+	/**
+	 * Provides the 'warn' color in the SOS console. 
+	 */
 	static public var WARN_COLOR:Number = 0xFDFDB5 ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(SOSType, null , 7, 7) ;
-
 }

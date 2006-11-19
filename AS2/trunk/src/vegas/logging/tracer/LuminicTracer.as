@@ -21,66 +21,36 @@
   
 */
 
-/** LuminicTracer
-
-	AUTHOR
-	
-		Name : LuminicTracer
-		Package : vegas.logging
-		Version : 1.0.0.0
-		Date :  2006-01-18
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-	
-		- static category
-
-	METHOD SUMMARY
-	
-		- static getInstance():LuminicTarget
-		
-		- static initialize(namespace:String):Void
-		
-		- static release():Void
-		
-		- static trace(o):Void
-		
-		- static traceReplacer(o):Void [MTASC]
-	
-	THANKS
-	
-		Pablo Costantini :: LuminicBox 
-			http://www.luminicbox.com/blog/default.aspx?page=post&id=2
-
-**/	
-
-
 import vegas.logging.ILogger;
 import vegas.logging.Log;
 import vegas.logging.LogEventLevel;
 import vegas.logging.targets.LuminicTarget;
 
-class vegas.logging.LuminicTracer {
-	
-	// ----o Constructor
-	
-	private function LuminicTracer() {
-		//
-	}
+/**
+ * This static class create a tracer to use with MTASC and this {@code -trace} command.
+ * @author eKameleon
+ */
+class vegas.logging.tracer.LuminicTracer 
+{
 
-	// ----o Public Properties
-	
+	/**
+	 * Provides the category of the current tracer.
+	 */	
 	static public var category:String ;
-	
-	// ----o Public Methods
 
+	/**
+	 * Returns the internal singleton LuminicTarget instance.
+	 * @return the internal singleton LuminicTarget instance.
+	 */	
 	static public function getInstance():LuminicTarget {
 		return _instance ;
 	}
 
-	static public function initialize(namespace:String, depth:Number, collapse:Boolean):Void {
+	/**
+	 * Initialize the LuminicTracer.
+	 */
+	static public function initialize(namespace:String, depth:Number, collapse:Boolean):Void 
+	{
 		release() ;
 		category = namespace ;
 		if (category.length > 0) {
@@ -93,23 +63,40 @@ class vegas.logging.LuminicTracer {
 		}
 	}
 
-	static public function release():Void {
+	/**
+	 * Release the LuminicTracer.
+	 */
+	static public function release():Void 
+	{
 		Log.removeTarget(_instance) ;
 		_instance = null ;
 		_logger = null ;
 	}
 
-	static public function trace(o):Void {
+	/**
+	 * Trace a message with the internal LuminicTarget.
+	 */
+	static public function trace(o):Void 
+	{
 		_logger.debug(o) ;
 	}
-
-	static public function traceReplacer(o):Void {
+	
+	/**
+	 * This method is used in MTASC {@code -trace} command.
+	 */
+	static public function traceReplacer(o):Void 
+	{
 		LuminicTracer.trace(o) ;
 	}
-	
-	// ----o Private Properties
-	
+
+	/**
+	 * Internal LuminicTarget singleton.
+	 */	
 	static private var _instance:LuminicTarget ;
+
+	/**
+	 * Internal logger.
+	 */
 	static private var _logger:ILogger ;
 	
 }

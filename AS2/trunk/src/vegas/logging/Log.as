@@ -21,68 +21,6 @@
   
 */
 
-/** Log
-
-	AUTHOR
-
-		Name : Log
-		Package : vegas.logging
-		Version : 1.0.0.0
-		Date :  2005-10-16
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTANT SUMMARY
-	
-		- DEFAULT_CATEGORY : ""
-		
-		- ILLEGALCHARACTERS : "[]~$^&\/(){}<>+=`!#%?,:;'\"@"
-
-	METHOD SUMMARY
-	
-		- static addTarget(target:ITarget, [logger:ILogger] ):Void
-		
-			DESCRIPTION
-			
-				Allows the specified target to begin receiving notification of log events.
-			
-			PARAMS
-			
-				- target : an ITarget instance
-				
-				- logger : optional ILogger instance
-		
-		- static flush():Void
-		
-			This method will remove all of the current loggers from the cache.
-		
-		- static getLogger(category:String, isQueue:Boolean) : ILogger 
-		
-			Returns the logger associated with the specified category.
-			If the category given doesn't exist a new instance of a logger will be returned and associated with that category.
-			Categories must be at least one character in length and may not contain any blanks or any of the following characters :
-				[]~$^&\/(){}<>+=`!#%?,:;'"@ 
-			This method will throw an InvalidCategoryError if the category specified is malformed.
-		
-		- static hasIllegalCharacters(value:String) : Boolean 
-		
-			This method checks the specified string value for illegal characters.
-			
-			Parameters
-				
-				value:String : string to check for illegal characters. The following characters are not valid: []~$^&\/(){}<>+=`!#%?,:;'"@
-			
-			Returns
-			
-				Boolean : true if there are any illegal characters found, false otherwise
-		
-		- static removeTarget(target:ITarget, [logger:ILogger] ) : Void 
-			
-			Stops the specified target from receiving notification of log events.
-
-**/
-
 import vegas.data.map.HashMap;
 import vegas.logging.errors.InvalidCategoryError;
 import vegas.logging.ILogger;
@@ -90,36 +28,57 @@ import vegas.logging.ITarget;
 import vegas.logging.LogLogger;
 import vegas.util.StringUtil;
 
-class vegas.logging.Log {
+// TODO : use a HashMap to register LogLogger instance for a specific category.
 
-	// ----o Constructor
-	
-	private function Log() {
-		//
-	}
+/**
+ * Provides psuedo-hierarchical logging capabilities with multiple format and output options.
+ * @author eKameleon
+ */
+class vegas.logging.Log 
+{
 
-	// ----o Static Properties
+	/**
+	 * const The default categoty of the {@code ILogger} instances returns with the {@code getLogger} method.
+	 */
+	static public var DEFAULT_CATEGORY:String = "" ;
 	
-	static var DEFAULT_CATEGORY:String = "" ;
-	
-	static var ILLEGALCHARACTERS:String = "[]~$^&/\\(){}<>+=`!#%?,:;'\"@" ;
+	/**
+	 * const The string representation of all the illegal characters.
+	 */
+	static public var ILLEGALCHARACTERS:String = "[]~$^&/\\(){}<>+=`!#%?,:;'\"@" ;
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(Log, null , 7, 7) ;
 	
-	// ----o Public Methods
-	
-	static public function addTarget(target:ITarget, logger:ILogger):Void {
+	/**
+	 * Allows the specified target to begin receiving notification of log events.
+	 * @param target specific target that should capture log events.
+	 */
+	static public function addTarget(target:ITarget, logger:ILogger):Void 
+	{
 		target.addLogger( __logger ) ;
 	}
 
-	static public function flush():Void {
+	/**
+	 * This method removes all of the current loggers from the cache.
+	 */
+	static public function flush():Void 
+	{
 		Log.__categories.clear() ;
 	}
 	
-	static public function getLogger(category:String, isQueue:Boolean):ILogger {
+	/**
+	 * Returns the logger associated with the specified category.
+	 * If the category given doesn't exist a new instance of a logger will be returned and associated with that category. Categories must be at least one character in length and may not contain any blanks or any of the following characters: []~$^&\/(){}<>+=`!#%?,:;'"@
+	 * @param The String to check for illegal characters. The following characters are not valid: []~$^&\/(){}<>+=`!#%?,:;'"@ 
+	 * @return An instance of a logger object for the specified name. If the name doesn't exist, a new instance with the specified name is returned.
+	 * @throws InvalidCategoryError if the category specified is malformed.
+	 */
+	static public function getLogger(category:String, isQueue:Boolean):ILogger 
+	{
 		if (hasIllegalCharacters(category)) throw new InvalidCategoryError ;
 		if (!category) category = DEFAULT_CATEGORY ;
-		if (! Log.__categories.containsKey(category)) {
+		if (! Log.__categories.containsKey(category)) 
+		{
 			var logger:LogLogger = new LogLogger(category) ;
 			logger.isQueue = isQueue ;
 			logger.parent = __logger ; // Bubbling Event
@@ -128,23 +87,46 @@ class vegas.logging.Log {
 		return Log.__categories.get(category) ;
 	}
 		
-	static public function hasIllegalCharacters(value:String):Boolean {
+	/**
+	 * This method checks the specified string value for illegal characters.
+	 * @param value The String to check for illegal characters. The following characters are not valid: []~$^&\/(){}<>+=`!#%?,:;'"@
+	 * @return {code true} if there are any illegal characters found, false otherwise.
+	 */
+	static public function hasIllegalCharacters(value:String):Boolean 
+	{
 		var a = ILLEGALCHARACTERS.split("") ;
 		var s:StringUtil = new StringUtil(value) ;
 		return s.indexOfAny( a ) != -1 ;
 	}
 	
-	static public function removeTarget(target:ITarget, logger:ILogger):Void {
+	/**
+	 * Stops the specified target from receiving notification of log events.
+	 * @param specific target that should capture log events.
+	 */
+	static public function removeTarget(target:ITarget, logger:ILogger):Void 
+	{
 		target.removeLogger(logger || __logger) ;
 	}
 
-	static public function toString():String {
+	/**
+	 * Returns the string representation of this instance.
+	 * @return the string representation of this instance
+	 */
+	static public function toString():String 
+	{
 		return "[Log]" ;
 	}
 
-	// ----o Private Properties
-	
-	static private var __logger:LogLogger = new LogLogger() ;
+	/**
+	 * The internal categories HashMap.
+	 */
 	static private var __categories:HashMap = new HashMap() ;
+
+	/**
+	 * The internal logger.
+	 */
+	static private var __logger:LogLogger = new LogLogger() ;
+	
+	
 
 }

@@ -27,7 +27,7 @@ import vegas.errors.Warning;
 import vegas.events.Delegate;
 import vegas.logging.LogEvent;
 import vegas.logging.LogEventLevel;
-import vegas.logging.SOSType;
+import vegas.logging.targets.SOSType;
 import vegas.logging.targets.TraceTarget;
 
 /**
