@@ -24,6 +24,7 @@
 import vegas.data.Collection;
 
 /**
+ * Defines a collection that is bounded in size. The size of the collection can vary, but it can never exceed a preset maximum number of elements. This interface allows the querying of details associated with the maximum number of elements.
  * @author eKameleon
  */
 interface vegas.data.BoundedCollection extends Collection 

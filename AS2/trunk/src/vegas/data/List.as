@@ -21,115 +21,89 @@
   
 */
 
-/**	List [Interface]
-
-	AUTHOR
-
-		Name : List
-		Package : vegas.data
-		Version : 1.0.0.0
-		Date :  2005-04-25
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-		
-	METHOD SUMMARY
-
-		- clear()
-		
-		- clone()
-		
-		- contains(o)
-		
-		+ containsAll(c:Collection)
-		
-		+ equals()
-		
-		- get(id:Number)
-		
-		+ indexOf(o):Number
-		
-		- insert(o):Boolean
-		
-		+ insertAt(id:Number, o)
-		
-		+ insertAll(c:Collection):Boolean
-		
-		+ insertAllAt(id:Number, c:Collection):Boolean
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		+ lastIndexOf(o):Number
-		
-		+ listIterator():ListIterator
-		
-		- remove(o):Boolean
-		
-		+ removeAll(c:Collection):Boolean
-		
-		+ removeAt(id:Number) 
-		
-		+ removeRange(from:Number, to:Number)
-		
-		+ removesAt(id:Number, len:Number)
-		
-		+ retainAll(c:Collection):Boolean
-		
-		+ setAt(id:Number, o)
-		
-		- size():Number
-		
-		- subList(fromIndex:Number, toIndex:Number):List
-		
-		- toArray():Array
-		
-		- toString():String
-
-	INHERIT
-	
-		Collection → List
-
-	LEGEND : 
-		- : Collection
-		+ : List
-
-**/
-
 import vegas.data.Collection;
 import vegas.data.list.ListIterator;
 
-interface vegas.data.List extends Collection {
-
+/**
+ * An ordered collection (also known as a sequence). The user of this interface has precise control over where in the list each element is inserted. The user can access elements by their integer index (position in the list), and search for elements in the list.
+ * @author eKameleon
+ */
+interface vegas.data.List extends Collection 
+{
+	
+	/**
+	 * Returns {@code true} if this list contains all of the elements of the specified collection.
+	 */
 	function containsAll(c:Collection):Boolean ;
 
+	/**
+	 * Indicates whether some other object is "equal to" this one.
+	 */
 	function equals(o):Boolean ;
 
+	/**
+	 * Returns the index in this list of the first occurrence of the specified element, or -1 if this list does not contain this element.
+	 */
 	function indexOf(o):Number ;
 	
+	/**
+	 * Inserts the specified element at the specified position in this list (optional operation).
+	 */
 	function insertAt(id:Number, o):Void ;
 	
+	/**
+	 * Appends all of the elements in the specified collection to the end of this list, in the order that they are returned by the specified collection's iterator (optional operation).
+	 */
 	function insertAll(c:Collection):Boolean ;
 	
+	/**
+	 * Inserts all of the elements in the specified collection into this list at the specified position (optional operation).
+	 */
 	function insertAllAt(id:Number, c:Collection):Boolean ;
 
+	/**
+	 * Returns the index in this list of the last occurrence of the specified element, or -1 if this list does not contain this element.
+	 */
 	function lastIndexOf(o):Number ;
 	
+	/**
+	 * Returns a list iterator of the elements in this list (in proper sequence).
+	 */
 	function listIterator():ListIterator ;
 
+	/**
+	 * Removes from this list all the elements that are contained in the specified collection (optional operation).
+	 */
 	function removeAll(c:Collection):Boolean ;
 
+	/**
+	 * Removes the element at the specified position in this list (optional operation).
+	 */
 	function removeAt(id:Number) ;
 
+	/**
+	 * Removes from this list all the elements that are contained between the specific {@code from} and the specific {@code to} position in this list (optional operation).
+	 */
 	function removeRange(from:Number, to:Number):Void ;
 	
+	/**
+	 * Removes from this list all the elements that are contained between the specific {@code id} position and the end of this list (optional operation).
+	 */
 	function removesAt(id:Number, len:Number) ;
 
+	/**
+	 * Retains only the elements in this list that are contained in the specified collection (optional operation).
+	 */
 	function retainAll(c:Collection):Boolean ;
 
+	/**
+	 * Replaces the element at the specified position in this list with the specified element (optional operation).
+	 */
 	function setAt(id:Number, o):Void ;
 	
+	/**
+	 * Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.
+	 */
 	function subList(fromIndex:Number, toIndex:Number):List ;
 
 }

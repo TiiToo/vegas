@@ -21,69 +21,71 @@
   
 */
 
-/** Collection [Interface]
-
-	AUTHOR
-		
-		Name : Collection
-		Package : vegas.data
-		Version : 1.0.0.0
-		Date :  2005-04-24
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- clear():Void
-		
-		- clone()
-		
-		- contains(o):Boolean
-		
-		- get(id:Number)
-		
-		- insert(o):Boolean
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- remove(o):Boolean
-		
-		- size():Number
-		
-		- toArray():Array
-		
-		- toString():String
-
-**/
-
 import vegas.core.ISerializable;
 import vegas.data.iterator.Iterator;
 
-interface vegas.data.Collection extends ISerializable {
+/**
+ * The root interface in the collection hierarchy. A collection represents a group of objects, known as its elements. Some collections allow duplicate elements and others do not. Some are ordered and others unordered. 
+ * @author eKameleon
+ */
+interface vegas.data.Collection extends ISerializable 
+{
 
+	/**
+	 * Removes all of the elements from this collection (optional operation).
+	 */
 	function clear():Void ;
 
+	/**
+	 * Returns a shallow copy of this collection (optional operation)
+	 */
 	function clone() ;
 
+	/**
+	 * Returns {@code true} if this collection contains the specified element.
+	 */
 	function contains(o):Boolean ;
 	
+	/**
+	 * Returns the element from this collection at the passed index.
+	 */
 	function get(id:Number) ;
 
+	/**
+	 * Ensures that this collection contains the specified element (optional operation).
+	 */
 	function insert(o):Boolean ;
 	
+	/**
+	 * Returns {@code true} if this collection contains no elements.
+	 * @return {@code true} if this collection is empty else {@code false}.
+	 */
 	function isEmpty():Boolean ;
 
+	/**
+	 * Returns an iterator over the elements in this collection.
+	 */
 	function iterator():Iterator ;
 	
+	/**
+	 * Removes a single instance of the specified element from this collection, if it is present (optional operation).
+	 */
 	function remove(o):Boolean ;
 	
+	/**
+	 * Returns the number of elements in this collection.
+	 */
 	function size():Number ;
 
+	/**
+	 * Returns an array containing all of the elements in this collection.
+	 */
 	function toArray():Array ;
 
+	/**
+	 * Returns the string representation of this instance.
+	 * @return the string representation of this instance
+	 */
 	function toString():String ;
 
 }

@@ -21,103 +21,99 @@
   
 */
 
-/**	BagIterator
-
-	AUTHOR
-	
-		Name : BagIterator
-		Package : vegas.data.collections
-		Version : 1.0.0.0
-		Date :  2005-11-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-		
-	METHODS SUMMARY
-	
-		- hashCode():Number
-		
-		- hasNext():Boolean
-		
-		- key()
-		
-		- next()
-		
-		- remove()
-		
-		- reset():Void
-		
-		- seek(n:Number):Void
-		
-		- toString():String
-
-	IHNERIT
-	
-		CoreObject → BagIterator
-
-	IMPLEMENTS 
-	
-		IFormattable, IHashable, Iterator
-
-*/
-
 import vegas.core.CoreObject;
 import vegas.data.bag.AbstractBag;
 import vegas.data.iterator.Iterator;
 import vegas.errors.ConcurrentModificationError;
 import vegas.errors.UnsupportedOperation;
 
-class vegas.data.bag.BagIterator extends CoreObject implements Iterator {
+/**
+ * @author eKameleon
+ */
+class vegas.data.bag.BagIterator extends CoreObject implements Iterator 
+{
 
-	// ----o Constructor
-	
-    public function BagIterator( parent:AbstractBag, support:Iterator ) {
+	/**
+	 * Creates a new BagIterator instance.
+	 * @param parent the bag ( AbstractBag ) used in this iterator.
+	 * @param support the iterator to support this iterator.
+	 */
+    public function BagIterator( parent:AbstractBag, support:Iterator ) 
+    {
 		_parent = parent;
 		_support = support ;
 		_current = null;
 		_mods = parent.getModCount() ;
 	}
 
-	// ----o Public Methods
-
-	public function hasNext():Boolean {
+	/**
+	 * Returns true if the iteration has more elements.
+	 */	
+	public function hasNext():Boolean 
+	{
 		return _support.hasNext() ;
 	}
 
-	public function key() {
-		throw new UnsupportedOperation() ;
+	/**
+	 * Unsupported method in all BagIterator.
+	 * @throws UnsupportedOperation
+	 */
+	public function key() 
+	{
+		throw new UnsupportedOperation(this + " 'key' method in unsupported.") ;
 	}
 
-	public function next() {
-		if (_parent.getModCount() != _mods) {
+	/**
+	 * Returns the next element in the iteration.
+	 */
+	public function next() 
+	{
+		if (_parent.getModCount() != _mods) 
+		{
 			throw new ConcurrentModificationError();
 		}
         _current = _support.next() ;
 		return _current;
     }
 
-	public function remove() {
-		if (_parent.getModCount() != _mods) {
+	/**
+	 * Removes from the underlying collection the last element returned by the iterator (optional operation).
+	 */
+	public function remove() 
+	{
+		if (_parent.getModCount() != _mods) 
+		{
             throw new ConcurrentModificationError();
         }
         _support.remove() ;
         _parent.removeCopies(_current, 1);
 		_mods++ ;
     }
-	
-	public function reset():Void {
-		throw new UnsupportedOperation() ;
-	}
-	
-	public function seek(n:Number):Void {
-		throw new UnsupportedOperation() ;
+
+	/**
+	 * Unsupported method in all BagIterator.
+	 * @throws UnsupportedOperation
+	 */
+	public function reset():Void 
+	{
+		throw new UnsupportedOperation(this + " 'reset' method in unsupported.") ;
 	}
 
-	// ----o Private Properties
-	
-	private var _parent:AbstractBag = null ;
-	private var _support:Iterator = null ;
+	/**
+	 * Unsupported method in all BagIterator.
+	 * @throws UnsupportedOperation
+	 */
+	public function seek(n:Number):Void 
+	{
+		throw new UnsupportedOperation(this + " 'seek' method in unsupported.") ;
+	}
+
 	private var _current = null ;
+
 	private var _mods:Number = 0;
+
+	private var _parent:AbstractBag = null ;
+
+	private var _support:Iterator = null ;
 
 }

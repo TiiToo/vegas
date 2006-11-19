@@ -21,85 +21,80 @@
   
 */
 
-/**	ProtectedIterator
-
-	AUTHOR
-
-		Name : ProtectedIterator
-		Package : vegas.data.iterator
-		Version : 1.0.0.0
-		Date :  2005-04-24
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var pIterator:Iterator = new ProtectedIterator(it:Iterator) ;
-
-	DESCRIPTION
-	
-		Protège un objet implémenté avec l'interface Iterator.
-		Cette classe permet de bloquer les méthodes remove, reset et seek d'un Iterator.
-
-	METHOD SUMMARY
-	
-		- hashNext():Boolean
-		
-		- key()
-		
-		- next()
-
-	INHERIT
-	
-		CoreObject → ProtectedIterator
-
-	IMPLEMENTS
-	
-		Iterator
-
-**/
-
 import vegas.core.CoreObject;
 import vegas.data.iterator.Iterator;
 import vegas.errors.UnsupportedOperation;
 
-class vegas.data.iterator.ProtectedIterator extends CoreObject implements Iterator {
+/**
+ * Protect an iterator. This class protect the remove, reset and seek method. 	
+ * @author eKameleon 
+ */
+class vegas.data.iterator.ProtectedIterator extends CoreObject implements Iterator 
+{
 
-	// ----o Construtor
-	
-	public function ProtectedIterator (i:Iterator) {
-		_i = i ;
+	/**
+	 * Creates a new ProtectedIterator instance.
+	 * @param iterator the iterator to protected.
+	 */
+	public function ProtectedIterator (iterator:Iterator) 
+	{
+		_i = iterator ;
 	}
-	
-	// ----o Public Methods
-	
-	public function hasNext():Boolean {
+
+	/**
+	 * Returns true if the iteration has more elements.
+	 */	
+	public function hasNext():Boolean 
+	{
 		return _i.hasNext() ;
 	}
 
-	public function key() {
+	/**
+	 * Returns the current key of the internal pointer of the iterator (optional operation).
+	 */
+	public function key() 
+	{
 		return _i.key() ;
 	}
 
-	public function next() {
+	/**
+	 * Returns the next element in the iteration.
+	 */
+	public function next() 
+	{
 		return _i.next() ;
 	}
-	
-	public function remove() {
-		throw new UnsupportedOperation() ;
-	}
-	
-	public function reset():Void {
-		throw new UnsupportedOperation() ;
-	}
-	
-	public function seek(n:Number):Void {
-		throw new UnsupportedOperation() ;
+
+	/**
+	 * Unsupported method in all ProtectedIterator.
+	 * @throws UnsupportedOperation
+	 */
+	public function remove() 
+	{
+		throw new UnsupportedOperation(this + " 'remove' method in unsupported.") ;
 	}
 
-	// ----o Private Properties
-	
+	/**
+	 * Unsupported method in all ProtectedIterator.
+	 * @throws UnsupportedOperation
+	 */
+	public function reset():Void 
+	{
+		throw new UnsupportedOperation(this + " 'reset' method in unsupported.") ;
+	}
+
+	/**
+	 * Unsupported method in all ProtectedIterator.
+	 * @throws UnsupportedOperation
+	 */
+	public function seek(n:Number):Void 
+	{
+		throw new UnsupportedOperation(this + " 'seek' method in unsupported.") ;
+	}
+
+	/**
+	 * Internal iterator.
+	 */
 	private var _i:Iterator ;
 	
 }

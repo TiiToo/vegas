@@ -21,60 +21,23 @@
   
 */
 
-/* ------- 	BoundedStack [Interface]
-
-	AUTHOR
-
-		Name : BoundedStack
-		Package : vegas.data
-		Version : 1.0.0.0
-		Date :  2005-11-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHODS
-	
-		- isFull():Boolean
-		
-		- maxSize():Number
-	
-	INHERIT METHODS
-	
-		- clear()
-		
-		- clone()
-		
-		- isEmpty()
-		
-		- iterator()
-		
-		- peek()
-		
-		- pop()
-		
-		- push(o)
-		
-		- search(o):Number
-		
-		- size():Number
-		
-		- toArray():Array ;
-		
-		- toString():String
-
-	INHERIT
-	
-		Stack
-	
-----------  */
-
 import vegas.data.Stack;
 
-interface vegas.data.BoundedStack extends Stack {
+/**
+ * Defines a stack that is bounded in size. The size of the stack can vary, but it can never exceed a preset maximum number of elements. This interface allows the querying of details associated with the maximum number of elements.
+ * @author eKameleon
+ */
+interface vegas.data.BoundedStack extends Stack 
+{
 
+	/**
+	 * Returns {@code true} if the object is full.
+	 */
 	function isFull():Boolean ;
-	
+
+	/**
+	 * Returns the max number of occurrences in the given stack.
+	 */
 	function maxSize():Number ;
 
 }

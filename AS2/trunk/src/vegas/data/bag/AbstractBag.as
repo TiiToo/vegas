@@ -21,88 +21,6 @@
   
 */
 
-/** AbstractBag
-
-	AUTHOR
-	
-		Name : AbstractBag
-		Package : vegas.data.bag
-		Version : 1.0.0.0
-		Date :  2005-11-05
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- clear()
-		
-		- contains(o)
-		
-		+ containsAll(c:Collection):Boolean
-		
-			(Violation)  Returns true if the bag contains all elements in the given collection, respecting cardinality.
-		
-		+ containsAllInBag(b:Bag)
-		
-		- hashCode():Number
-		
-		+ insertAll(c:Collection):Boolean 
-		
-		+ insertCopies(o, i:Number):Boolean 
-			
-			Add i copies of the given object to the bag and keep a count.
-			
-		+ getCount(o):Number 
-		
-			Return the number of occurrences (cardinality) of the given object currently in the bag.
-		
-		- get(id:Number)
-		
-			throw UnsupportedOperation
-		
-		- insert(o):Boolean
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- remove(o):Boolean
-		
-		+ removeAll(c:Collection):Boolean
-		
-			(Violation)  Remove all elements represented in the given collection, respecting cardinality.
-		
-		+ removeCopies(o, i:Number):Boolean
-		
-			Remove the given number of occurrences from the bag.
-		
-		+ retainAll(c:Collection):Boolean
-		
-			(Violation)  Remove any members of the bag that are not in the given collection, respecting cardinality.
-		
-		+ retainAllInBag(b:Bag):Boolean
-		
-		- size():Number
-
-		- toArray():Array
-		
-		- toSource():String
-		
-		- toString():String
-		
-		+ uniqueSet():Set
-		
-			The Set of unique members that represent all members in the bag.
-
-	IMPLEMENTS
-	
-		Bag, Collection
-
-	TODO TypedBag
-
-**/
-
 import vegas.core.CoreObject;
 import vegas.core.types.Int;
 import vegas.data.Bag;
@@ -121,35 +39,59 @@ import vegas.errors.IllegalArgumentError;
 import vegas.errors.UnsupportedOperation;
 import vegas.util.serialize.Serializer;
 
+/**
+ * This class provides a skeletal implementation of the {@code Bag} interface, to minimize the effort required to implement this interface.
+ * To implement a bag, the programmer needs only to extend this class and provide implementations for the cursor, insert and size methods. For supporting the removal of elements, the cursor returned by the cursor method must additionally implement its remove method.
+ * @author eKameleon
+ */
 class vegas.data.bag.AbstractBag extends CoreObject implements Bag {
 
-	// ----o Constructor
-
+	/**
+	 * Creates a new AbstractBag instance.
+	 */
 	private function AbstractBag( m:Map ) {
 		if (m) _setMap(m) ;
 	}
 	
-	// ----o Public Methods
-
-	public function clear():Void {
+	/**
+	 * Removes all of the elements from this bag.
+	 */
+	public function clear():Void 
+	{
 		_mods ++ ;
 		_map.clear() ;
 		_total = 0 ;
 	}
 
-	public function clone() {
+	/**
+	 * Returns the shallow copy of this bag.
+	 */
+	public function clone() 
+	{
 		return new AbstractBag(_map.clone()) ;
 	}
 
-	public function contains(o):Boolean {
+	/**
+	 * Returns {@code true} if this bag contains the object passed in argument.
+	 */
+	public function contains(o):Boolean 
+	{
 		return _map.containsKey(o);
 	}
 
-	public function containsAll(c:Collection):Boolean {
+	/**
+	 * Returns {@code true} if thie bag contains all object in the passed collection in argument.
+	 */
+	public function containsAll(c:Collection):Boolean 
+	{
 		return containsAllInBag(new HashBag(c)) ;
 	}
 	
-	public function containsAllInBag(b:Bag):Boolean {
+	/**
+	 * Returns {@code true} if thie bag contains all object in the passed bag in argument.
+	 */
+	public function containsAllInBag(b:Bag):Boolean 
+	{
 		var result:Boolean = true ;
 		var i:Iterator = b.uniqueSet().iterator() ;
         while (i.hasNext()) {
@@ -159,12 +101,21 @@ class vegas.data.bag.AbstractBag extends CoreObject implements Bag {
         }
         return result;
 	}
-	
-	public function get(id:Number) {
-		throw new UnsupportedOperation ;
+
+	/**
+	 * Unsupported by bag objects.
+	 * @throws UnsupportedOperation "The 'get' method is unsupported with a bag object."
+	 */	
+	public function get(id:Number) 
+	{
+		throw new UnsupportedOperation("The 'get' method is unsupported with a bag object.") ;
 	}
 
-	public function getCount(o):Number {
+	/**
+	 * Returns the count 
+	 */
+	public function getCount(o):Number 
+	{
         var result:Number = 0;
         var count:Number = MapUtil.getNumber(_map, o);
         if (count != null) {
@@ -173,57 +124,92 @@ class vegas.data.bag.AbstractBag extends CoreObject implements Bag {
         return result;
 	}
 
-	public function getModCount():Number {
+	/**
+	 * This method is used in the BagIterator class.
+	 */
+	public function getModCount():Number 
+	{
 		return _mods ;
 	}
-	
-	public function insert(o):Boolean {
-		
+
+	/**
+	 * Add 1 copy of the given object to the bag and keep a count. 
+	 */	
+	public function insert(o):Boolean 
+	{
 		return insertCopies(o, 1) ;
-		
 	}
-	
-	public function insertAll(c:Collection):Boolean {
+
+	/**
+	 * Insert all elements represented in the given collection.
+	 */
+	public function insertAll(c:Collection):Boolean 
+	{
 		var changed:Boolean = false;
         var i:Iterator = c.iterator() ;
 		var added:Boolean ;
-        while (i.hasNext()) {
+        while (i.hasNext()) 
+        {
 			added = insert(i.next());
             changed = changed || added ;
         }
         return changed;
 	}
 
-	public function insertCopies(o, nCopies:Number):Boolean {
+	/**
+	 * Add n copies of the given object to the bag and keep a count. 
+	 */
+	public function insertCopies(o, nCopies:Number):Boolean 
+	{
 		_mods++ ;
-        if (nCopies > 0) {
+        if (nCopies > 0) 
+        {
             var count:Number = nCopies + getCount(o) ;
             _map.put(o, new Int(count));
             _total += nCopies;
             return count == nCopies ;
-        } else {
+        }
+        else 
+        {
             return false;
         }
 	}
 	
-	public function isEmpty():Boolean {
+	/**
+	 * Returns {@code true} if the bag is empty.
+	 */
+	public function isEmpty():Boolean 
+	{
 		return _map.isEmpty() ;
     }
 	
-	public function iterator():Iterator {
+	/**
+	 * Returns the bag iterator.
+	 */
+	public function iterator():Iterator 
+	{
 		return new BagIterator(this, _extractList().iterator()) ;
 	}
 
-
-	public function remove(o):Boolean {
+	/**
+	 * Removes the object in argument in the bag.
+	 */
+	public function remove(o):Boolean 
+	{
 		return removeCopies(o, getCount(o));
 	}
-	
-	public function removeAll(c:Collection):Boolean {
+
+	/**
+	 * (Violation) Removes all elements represented in the given collection, respecting cardinality.
+	 */
+	public function removeAll(c:Collection):Boolean 
+	{
         var result:Boolean = false ;
-        if (c != null) {
+        if (c != null) 
+        {
             var i:Iterator = c.iterator() ;
-            while (i.hasNext()) {
+            while (i.hasNext()) 
+            {
 				var next = i.next() ;
                 var changed:Boolean = removeCopies(next, 1) ;
                 result = result || changed ;
@@ -232,96 +218,171 @@ class vegas.data.bag.AbstractBag extends CoreObject implements Bag {
         return result ;
     }
 
-	public function removeCopies(o, nCopies:Number):Boolean {
+	/**
+	 * Removes the given number of occurrences from the bag.
+	 */
+	public function removeCopies(o, nCopies:Number):Boolean 
+	{
 		_mods++;
         var result:Boolean = false;
         var count:Number = getCount(o) ;
-        if (nCopies <= 0) result = false;
-        else if (count > nCopies) {
+        if (nCopies <= 0) 
+        {
+        	result = false;
+        }
+        else if (count > nCopies) 
+        {
             _map.put(o, new Int(count - nCopies)) ;
             result = true ;
             _total -= nCopies ;
-        } else { // count > 0 && count <= i  
+        } 
+        else // count > 0 && count <= i 
+        {   
             result = (_map.remove(o) != null) ; // need to remove all
             _total -= count ;
         }
         return result;
 	}
 
-	public function retainAll(c:Collection):Boolean {
+	/**
+	 * (Violation) Removes any members of the bag that are not in the given collection, respecting cardinality.
+	 */
+	public function retainAll(c:Collection):Boolean 
+	{
 		return retainAllInBag(new HashBag(c));
 	}
 
-	public function retainAllInBag(b:Bag):Boolean {
+	/**
+	 * (Violation) Removes any members of the bag that are not in the given bag.
+	 */
+	public function retainAllInBag(b:Bag):Boolean 
+	{
         var result:Boolean = false ;
         var excess:Bag = new HashBag() ;
         var i:Iterator = uniqueSet().iterator() ;
-        while (i.hasNext()) {
+        while (i.hasNext()) 
+        {
             var cur = i.next() ;
             var count1:Number = getCount(cur) ;
             var count2:Number = b.getCount(cur) ;
-            if ( 1 <= count2 && count2 <= count1) {
+            if ( 1 <= count2 && count2 <= count1) 
+            {
                 excess.insertCopies(cur, count1 - count2) ;
-            } else {
+            }
+            else 
+            {
                 excess.insertCopies(cur, count1) ;
             }
         }
-        if (!excess.isEmpty()) result = removeAll(excess) ;
+        if (!excess.isEmpty()) 
+        {
+        	result = removeAll(excess) ;
+        }
         return result;
     }
 
-	public function size():Number {
+	/**
+	 * Returns the number of elements in this bag (its cardinality).
+	 */
+	public function size():Number 
+	{
 		return _total ;
 	}
 	
-	
-	public function toArray():Array {
+	/**
+	 * Returns the array representation of the bag.
+	 */
+	public function toArray():Array 
+	{
 		return _extractList().toArray();
 	}
 
-	public function toSource(indent:Number, indentor:String):String {
+	/**
+	 * Returns a Eden reprensation of the object.
+	 * @return a string representing the source code of the object.
+	 */
+	public function toSource(indent:Number, indentor:String):String 
+	{
 		return Serializer.getSourceOf(this, [Serializer.toSource(_map)]) ;
 	}
-	
-	public function toString():String {
+
+	/**
+	 * Returns the string representation of this instance.
+	 * @return the string representation of this instance.
+	 */
+	public function toString():String 
+	{
 		return (new BagFormat()).formatToString(this) ;
 	}
 
-	public function uniqueSet():Set {
+	/**
+	 * Returns the Set of unique members that represent all members in the bag.
+	 */
+	public function uniqueSet():Set 
+	{
 		return new HashSet(_map.getKeys()) ;
 	}
 
-	// ----o Private Properties
-
-	private var _map:Map = null ;	
+	/**
+	 * The internal map.
+	 */
+	private var _map:Map = null ;
+	
+	/**
+	 * The internal mod value.
+	 */	
 	private var _mods:Number = 0 ;
+	
+	/**
+	 * The internal total value.
+	 */
 	private var _total:Number = 0 ;
 	
-	// ----o Private Methods
-	
-	private function _calcTotalSize():Number {
+	/**
+	 * This method calculate the total value. 
+	 */
+	private function _calcTotalSize():Number 
+	{
         _total = _extractList().size() ;
         return _total ;
     }
 
-	private function _extractList():List {
+	/**
+	 * Returns a List.
+	 */
+	private function _extractList():List 
+	{
         var result:List = new ArrayList() ;
         var i:Iterator  = uniqueSet().iterator();
-        while (i.hasNext()) {
+        while (i.hasNext()) 
+        {
             var current = i.next() ;
 			var l:Number = getCount(current) ;
-            while (--l > -1) result.insert(current);
+            while (--l > -1) 
+            {
+            	result.insert(current);
+            }
         }
         return result ;
     }
 
-	private function _getMap():Map {
+	/**
+	 * Returns the internal map reference.
+	 */
+	private function _getMap():Map 
+	{
 		return _map ;
 	}
 	
-	private function _setMap(m:Map):Void {
-		if (m == null || m.isEmpty() == false) {
-            throw new IllegalArgumentError() ; // "The map must be non-null and empty"
+	/**
+	 * Sets the internal map reference.
+	 * @throws IllegalArgumentError
+	 */
+	private function _setMap(m:Map):Void 
+	{
+		if (m == null || m.isEmpty() == false) 
+		{
+            throw new IllegalArgumentError("In this bag, the map must be non-null and empty.") ;
         }
         _map = m ;
 	}

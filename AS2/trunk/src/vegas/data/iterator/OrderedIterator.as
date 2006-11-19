@@ -21,48 +21,23 @@
   
 */
 
-/**	OrderedIterator [Interface]
-
-	AUTHOR
-
-		Name : OrderedIterator
-		Package : vegas.data.iterator
-		Version : 1.0.0.0
-		Date :  2005-11-13
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- hashNext():Boolean
-		
-		- hasPrevious():Boolean
-		
-		- key()
-		
-		- next()
-		
-		- previous()
-		
-		- remove()
-		
-		- reset()
-		
-		- seek(n:Number)
-	
-	INHERIT
-	
-		Iterator
-	
-**/
-
 import vegas.data.iterator.Iterator;
 
-interface vegas.data.iterator.OrderedIterator extends Iterator {
+/**
+ * Defines an iterator that operates over an ordered collection. This iterator allows both forward and reverse iteration through the collection.
+ * @author eKameleon
+ */
+interface vegas.data.iterator.OrderedIterator extends Iterator 
+{
 	
+	/**
+	 * Checks to see if there is a previous element that can be iterated to.
+	 */
 	function hasPrevious():Boolean ;
 
+	/**
+	 * Returns the previous element in the collection.
+	 */
 	function previous() ;
 	
 }

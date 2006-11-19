@@ -21,58 +21,44 @@
   
 */
 
-/**	BagFormat
-
-	AUTHOR
-
-		Name : BagFormat
-		Package : vegas.data.bag
-		Version : 1.0.0.0
-		Date :  2005-11-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-		
-	METHOD SUMMARY
-	
-		- formatToString(o):String
-	
-	INHERIT
-	
-		CoreObject → BagFormat
-	
-	IMPLEMENTS
-	
-		IFormat
-
-*/
-
 import vegas.core.CoreObject;
 import vegas.core.IFormat;
 import vegas.data.Bag;
 import vegas.data.iterator.Iterator;
 
-class vegas.data.bag.BagFormat extends CoreObject implements IFormat {
+/**
+ * @author eKameleon
+ */
+class vegas.data.bag.BagFormat extends CoreObject implements IFormat 
+{
 
-	// ----o Constructor
-	
-	public function BagFormat() {
+	/**
+	 * Creates a new BagFormat instance.
+	 */
+	public function BagFormat() 
+	{
 		//
 	}
-
-	// ----o Public Methods
-
-	public function formatToString(o):String {
+	
+	/**
+	 * Converts the object to a custom string representation.
+	 */	
+	public function formatToString(o):String 
+	{
 		var b:Bag = Bag(o) ;
 		var s:String = "{" ;
 		var it:Iterator = b.uniqueSet().iterator() ;
 		var cur ;
 		var count:Number ;
-		while (it.hasNext()) {
+		while (it.hasNext()) 
+		{
 			cur = it.next() ;
 			count = b.getCount(cur) ;
 			s += count + ":" + cur ;
-			if (it.hasNext()) s += ",";
+			if (it.hasNext()) 
+			{
+				s += ",";
+			}
 		}
 		s += "}" ;
 		return s ;

@@ -21,60 +21,29 @@
   
 */
 
-/**	ListIterator [Interface]
-
-	AUTHOR
-
-		Name : ListIterator
-		Package : vegas.data.list
-		Version : 1.0.0.0
-		Date :  2005-04-25
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHODS
-	
-		- insert(o)
-		
-		- hasPrevious():Boolean
-				
-		- nextIndex():Number
-		
-		- previousIndex():Number ;
-		
-		- set(o)
-	
-	INHERIT
-	
-		Iterator > OrderedIterator > ListIterator
-		
-	INHERIT METHODS
-	
-		- hasNext():Boolean
-		
-		- key()
-		
-		- next()
-		
-		- remove()
-		
-		- seek(n:Number)
-		
-		- reset()
-
-**/
-
 import vegas.data.iterator.OrderedIterator;
 
-interface vegas.data.list.ListIterator extends OrderedIterator {
+interface vegas.data.list.ListIterator extends OrderedIterator 
+{
 
+	/**
+	 * Inserts the specified element into the list (optional operation).
+	 */
 	function insert(o):Void ;
 
+	/**
+	 * Returns the index of the element that would be returned by a subsequent call to next.
+	 */
 	function nextIndex():Number ;	
 	
+	/**
+	 * Returns the index of the element that would be returned by a subsequent call to previous.
+	 */
 	function previousIndex():Number ;
 	
+	/**
+	 * Replaces the last element returned by next or previous with the specified element (optional operation).
+	 */
 	function set(o):Void ;
 	
 }

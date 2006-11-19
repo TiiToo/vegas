@@ -24,13 +24,14 @@
 import vegas.data.Map;
 
 /**
+ * Defines a map that is bounded in size. The size of the map can vary, but it can never exceed a preset maximum number of elements. This interface allows the querying of details associated with the maximum number of elements.
  * @author eKameleon
  */
 interface vegas.data.BoundedMap extends Map 
 {
 
 	/**
-	 * Returns 'true' if the object is full.
+	 * Returns {@code true} if the object is full.
 	 */
 	function isFull():Boolean ;
 	

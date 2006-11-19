@@ -21,52 +21,50 @@
   
 */
 
-/* ------- 	Dictionnary [Interface]
-
-	AUTHOR
-
-		Name : Dictionnary
-		Package : vegas.data
-		Version : 1.0.0.0
-		Date :  2005-04-24
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHODS
-	
-		- getKeys():Enumeration
-		
-		- getValueAt(key)
-		
-		- getValues():Enumeration
-		
-		- isEmpty():Boolean
-		
-		- put( key, value)
-		
-		- remove(key)
-		
-		- size():Number
-
-----------  */
-
 import vegas.data.Enumeration;
 
-interface vegas.data.Dictionnary {
-		
+/**
+ * The Dictionary is an interface such as Map, which maps keys to values. Every key and every value is an object. In any one Dictionary object, every key is associated with at most one value.
+ * @author eKameleon
+ */
+interface vegas.data.Dictionnary 
+{
+	
+	/**
+	 * Returns an enumeration of the keys in this dictionary.
+	 */
 	function getKeys():Enumeration ;
 
+	/**
+	 * Returns the value to which the key is mapped in this dictionary.
+	 */
 	function get(key) ;
 
+	/**
+	 * Returns an enumeration of the values in this dictionary.
+	 */
 	function getValues():Enumeration ;
 
+	/**
+	 * Returns {@code true} if this dictionnary contains no elements.
+	 * @return {@code true} if this dictionnary is empty else {@code false}.
+	 */
 	function isEmpty():Boolean ;
 	
+	/**
+	 * Maps the specified key to the specified value in this dictionary.
+	 */
 	function put( key , value ) ;
 	
+	/**
+	 * Removes the key (and its corresponding value) from this dictionary.
+	 */
 	function remove(key) ;
 
+	/**
+	 * Returns the number of entries (dinstint keys) in this dictionary.
+	 * @return the number of entries.
+	 */
 	function size():Number ;
 	
 }

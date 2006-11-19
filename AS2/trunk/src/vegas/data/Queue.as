@@ -21,67 +21,80 @@
   
 */
 
-/**	Queue [Interface]
-
-	AUTHOR
-	
-		Name : Queue
-		Package : vegas.data
-		Version : 1.0.0.0
-		Date :  2005-04-24
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-
-		File d'attente, on ajoute en queue de la liste et on enlève en tête.
-
-	METHODS
-	
-		- dequeue() : Retrieves and removes the head of this queue.
-		
-		- element() : Retrieves, but does not remove, the head of this queue.
-		
-		- enqueue(o) : Inserts the specified element into this queue, if possible.
-		
-		- peek() : Retrieves, but does not remove, the head of this queue, returning null if this queue is empty.
-		
-		- poll() : Retrieves and removes the head of this queue.
-
-	TODOLIST :
-
-		PriorityQueue
-
-**/
-
 import vegas.core.ISerializable;
 import vegas.data.iterator.Iterator;
 
-interface vegas.data.Queue extends ISerializable {
+/**
+ * A collection designed for holding elements prior to processing. Besides basic Collection operations, queues provide additional insertion, extraction, and inspection operations.
+ * <p>
+ * Queues typically, but do not necessarily, order elements in a FIFO (first-in-first-out) manner.
+ * </p>
+ * <p>Whatever the ordering used, the head of the queue is that element which would be removed by a call to remove() or poll().</p>
+ * @author eKameleon
+ */
+interface vegas.data.Queue extends ISerializable 
+{
 	
+	/**
+	 * Removes all of the elements from this queue (optional operation).
+	 */
 	function clear():Void ;
 	
+	/**
+	 * Returns the shallow copy of this queue.
+	 */
 	function clone() ;
-
-	function element() ;
 	
-	function enqueue(o):Boolean ;
-	
+	/**
+	 * Retrieves and removes the head of this queue.
+	 */
 	function dequeue():Boolean ;
 
+	/**
+	 * Retrieves, but does not remove, the head of this queue.
+	 */
+	function element() ;
+	
+	/**
+	 * Inserts the specified element into this queue, if possible.
+	 */
+	function enqueue(o):Boolean ;
+
+	/**
+	 * Returns {@code true} if this queue contains no elements.
+	 * @return {@code true} if this queue is empty else {@code false}.
+	 */
 	function isEmpty():Boolean ;
 
+	/**
+	 * Returns the iterator of this queue.
+	 */
 	function iterator():Iterator ;
 	
+	/**
+	 * Retrieves, but does not remove, the head of this queue, returning null if this queue is empty.
+	 */
 	function peek() ;
 	
+	/**
+	 * Retrieves and removes the head of this queue.
+	 */
 	function poll() ;
-	
+
+	/**
+	 * Returns the number of elements in this queue.
+	 */
 	function size():Number ;
-	
+
+	/**
+	 * Returns an array containing all of the elements in this collection.
+	 */
 	function toArray():Array ;
-	
+
+	/**
+	 * Returns the string representation of this instance.
+	 * @return the string representation of this instance
+	 */
 	function toString():String ;
 	
 }

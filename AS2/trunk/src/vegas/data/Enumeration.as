@@ -21,30 +21,23 @@
   
 */
 
-/**	Enumeration [Interface]
-
-	AUTHOR
+/**
+ * An object that implements the Enumeration interface generates a series of elements, one at a time. Successive calls to the nextElement method return successive elements of the series.
+ * @author eKameleon
+ */
+interface vegas.data.Enumeration 
+{
 	
-		Name : Enumeration
-		Package : vegas.data
-		Version : 1.0.0.0
-		Date :  2005-04-24
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- hasMoreElements():Boolean
-		
-		- nextElement()
-
-**/
-
-interface vegas.data.Enumeration {
-	
+	/**
+	 * Tests if this enumeration contains more elements.
+	 * @return {@code true} if and only if this enumeration object contains at least one more element to provide; false otherwise.
+	 */
 	function hasMoreElements():Boolean ;
 	
+	/**
+	 * Returns the next element of this enumeration if this enumeration object has at least one more element to provide.
+	 * @return the next element of this enumeration.
+	 */
 	function nextElement() ;
 		
 }

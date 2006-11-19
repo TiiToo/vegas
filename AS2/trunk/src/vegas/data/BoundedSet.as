@@ -21,37 +21,24 @@
   
 */
 
-/**	BoundedSet [Interface]
-
-	AUTHOR
-
-		Name : BoundedSet
-		Package : vegas.data.set
-		Version : 1.0.0.0
-		Date :  2005-11-10
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHODS
-
-		- isFull():Boolean
-		
-		- maxSize():Number
-
-	INHERIT
-
-		Set - BoundedSet
-
-*/
-
 import vegas.data.Set;
+
+/**
+ * Defines a set that is bounded in size. The size of the set can vary, but it can never exceed a preset maximum number of elements. This interface allows the querying of details associated with the maximum number of elements.
+ * @author eKameleon
+ */
 
 interface vegas.data.BoundedSet extends Set 
 {
 
+	/**
+	 * Returns {@code true} if the object is full.
+	 */
 	function isFull():Boolean ;
-	
+
+	/**
+	 * Returns the max number of occurrences in the given set.
+	 */
 	function maxSize():Number ;
 	
 }

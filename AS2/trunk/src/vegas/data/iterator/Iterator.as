@@ -21,46 +21,41 @@
   
 */
 
-/** 	Iterator [Interface]
+/**
+ * An iterator over a collection.
+ * @author eKameleon
+ */
+interface vegas.data.iterator.Iterator 
+{
 
-	AUTHOR
-
-		Name : Iterator
-		Package : vegas.data.iterator
-		Version : 1.0.0.0
-		Date :  2005-04-24
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- hashNext():Boolean
-		
-		- key()
-		
-		- next()
-		
-		- remove()
-		
-		- reset()
-		
-		- seek(n:Number)
-
-**/
-
-interface vegas.data.iterator.Iterator {
-	
+	/**
+	 * Returns true if the iteration has more elements.
+	 */	
 	function hasNext():Boolean ;
 
+	/**
+	 * Returns the current key of the internal pointer of the iterator (optional operation).
+	 */
 	function key() ;
 
+	/**
+	 * Returns the next element in the iteration.
+	 */
 	function next() ;
 	
+	/**
+	 * Removes from the underlying collection the last element returned by the iterator (optional operation).
+	 */
 	function remove() ;
 
+	/**
+	 * Reset the internal pointer of the iterator (optional operation).
+	 */
 	function reset():Void ;
 
+	/**
+	 * Change the position of the internal pointer of the iterator (optional operation).
+	 */
 	function seek(n:Number):Void ;
 	
 }

@@ -22,13 +22,14 @@
 */
 
 /**
+ * Defines an object that is bounded in size. The size of the object can vary, but it can never exceed a preset maximum number of elements. This interface allows the querying of details associated with the maximum number of elements.
  * @author eKameleon
  */
 interface vegas.data.Boundable 
 {
 
 	/**
-	 * Returns 'true' if the object is full.
+	 * Returns {@code true} if the object is full.
 	 */
 	function isFull():Boolean ;
 	

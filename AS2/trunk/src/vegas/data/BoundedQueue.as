@@ -21,52 +21,17 @@
   
 */
 
-/**	BoundedQueue [Interface]
-
-	AUTHOR
-
-		Name : BoundedQueue
-		Package : vegas.data
-		Version : 1.0.0.0
-		Date :  2005-11-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHODS
-
-		- isFull():Boolean
-		
-		- maxSize():Number
-
-	INHERIT
-
-		Queue 
-			| 
-			BoundedQueue
-
-
-	INHERIT METHODS
-	
-		- dequeue() : Retrieves and removes the head of this queue.
-		
-		- element() : Retrieves, but does not remove, the head of this queue.
-		
-		- enqueue(o) : Inserts the specified element into this queue, if possible.
-		
-		- peek() : Retrieves, but does not remove, the head of this queue, returning null if this queue is empty.
-		
-		- poll() : Retrieves and removes the head of this queue.
-		
-*/
-
 import vegas.data.Queue;
 
+/**
+ * Defines a queue that is bounded in size. The size of the queue can vary, but it can never exceed a preset maximum number of elements. This interface allows the querying of details associated with the maximum number of elements.
+ * @author eKameleon
+ */
 interface vegas.data.BoundedQueue extends Queue 
 {
 
 	/**
-	 * Returns 'true' if the object is full.
+	 * Returns {@code true} if the object is full.
 	 */
 	function isFull():Boolean ;
 	

@@ -21,26 +21,13 @@
   
 */
 
-/** Set [Interface]
-
-	Name : Set
-	Package : vegas.data
-	Version : 1.0.0.0
-	Date : 2005-04-17
-	Author : ekameleon
-	URL : http://www.ekameleon.net
-	Mail : vegas@ekameleon.net
-
-	TODOLIST
-	
-		- SetUtils class :: http://jakarta.apache.org/commons/collections/apidocs-COLLECTIONS_3_1/org/apache/commons/collections/SetUtils.html
-
-**/
-
 import vegas.data.Collection;
 
-interface vegas.data.Set extends Collection {
-
-		//
-		
+/**
+ * A collection that contains no duplicate elements.
+ * @author eKameleon
+ */
+interface vegas.data.Set extends Collection 
+{
+	//
 }
