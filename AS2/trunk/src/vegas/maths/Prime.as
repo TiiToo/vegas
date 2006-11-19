@@ -21,63 +21,17 @@
   
 */
 
-/** Prime
+/**
+ * @author eKameleon
+ */
+class vegas.maths.Prime 
+{
 
-	AUTHOR
-
-		Name : Prime
-		Package : vegas.maths
-		Version : 1.0.0.0
-		Date :  2005-04-24
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		Utilitaire sur les nombres premiers
-	
-	METHOD SUMMARY
-	
-		- static findPrimeFrom(n:Number,from:Number):Array
-			
-			Defines an array of all primes between 'from' and 'n' inclusive, 
-			positive but restricted integer value, ignores decimals.
-			
-		- static generatePrimes(limit:Number):Array
-		
-			Defines an array of all primes between 2 and 'n' inclusive.
-		
-		- static isPrime(n:Number):Boolean
-		
-			Boolean for 'isPrime' integer condition, ignores decimals.
-			
-		- static primeFactor(n:Number):String
-		
-			Defines prime factors of 'n', positive but restricted integer value, ignores decimals.
-			returns a string representation of the multiplication of primes of 'n'.
-		
-		- static totient(n:Number):Number
-		
-			Defines total of relative primes of 'n'.
-
-	THANKS
-		
-		findPrimeFrom, primeFactor, totient >> Richard Wright | wisolutions2002@shaw.ca
-		 
-**/
-
-class vegas.maths.Prime {
-
-	// ----- Constructor
-	
-	private function Prime() {
-		//
-	}
-
-	// ----o Static Methods
-
-	static public function findPrimeFrom(n:Number,from:Number):Array {
+	/**
+	 * Defines an array of all primes between 'from' and 'n' inclusive, positive but restricted integer value, ignores decimals.
+	 */
+	static public function findPrimeFrom(n:Number,from:Number):Array 
+	{
 		n |= 0 ;
         from |= 0 ;
         var i,j:Number;
@@ -86,20 +40,38 @@ class vegas.maths.Prime {
         if (!from) from = 0 ;
         else from -= 1 ;
         n += 1 ;
-        for (i=0 ; i<n; i++) aCount[i] = 0;
+        for (i=0 ; i<n; i++) 
+        {
+        	aCount[i] = 0;
+        }
         var sqrtN:Number = Math.round(Math.sqrt(n+1));
         var last:Number = 2 ;
-        for (i=2 ; i<=sqrtN ;i++ ) {
-            if (aCount[i]==0) {
-                for (j=last*i ; j<n ; j+=i ) aCount[j] = 1 ;
+        for (i=2 ; i<=sqrtN ;i++ ) 
+        {
+            if (aCount[i]==0) 
+            {
+                for (j=last*i ; j<n ; j+=i ) 
+                {
+                	aCount[j] = 1 ;
+                }
                 last = i ;
             }
         }
-        for (i=n-1 ;i>from ; i--) if (aCount[i] == 0) aOut.push(i);
+        for (i=n-1 ;i>from ; i--) 
+        {
+        	if (aCount[i] == 0) 
+        	{
+        		aOut.push(i);
+        	}
+        }
         return aOut;
     }
 
-	static public function generatePrimes(limit:Number):Array {
+	/**
+	 * Defines an array of all primes between 2 and 'n' inclusive.
+	 */
+	static public function generatePrimes(limit:Number):Array 
+	{
 		var b:Boolean ;
 		var a:Array = new Array() ;
 		var i:Number = 1 ;
@@ -107,6 +79,9 @@ class vegas.maths.Prime {
 		return a ;
 	}
 
+	/**
+	 * Boolean for 'isPrime' integer condition, ignores decimals.
+	 */
 	static public function isPrime(n:Number):Boolean { // Division successives
 		if (n<3) return ( n == 2 ) ; 
 		else if ((n%2) == 0) return false ;
@@ -117,41 +92,70 @@ class vegas.maths.Prime {
 		}
 		return true ;
 	}
-		
-	static public function primeFactor(n:Number):String {
+	
+	/**
+	 * Defines prime factors of 'n', positive but restricted integer value, ignores decimals.
+	 * @return a string representation of the multiplication of primes of 'n'.
+	 */
+	static public function primeFactor(n:Number):String 
+	{
         var bFlag:Boolean;
         n |= 0;
-        if (n==1) return "1";
+        if (n==1)
+        {
+        	return "1";
+        }
         var temp:Number = n;
         var delim:String = "*";
         var sFactor:String = "";
-        while (1) {
-            if (temp%2==0) {
+        while (1) 
+        {
+            if (temp%2==0) 
+            {
                 temp /= 2;
                 sFactor += 2+delim;
             }
-            else break;
+            else 
+            {
+            	break;
+            }
         }
         var num:Number = 3;
-        while (1<temp) {
+        while (1<temp) 
+        {
             bFlag = true;
-            while (bFlag) {
-                if (temp%num==0) {
+            while (bFlag) 
+            {
+                if (temp%num==0) 
+                {
                     temp /= num;
                     sFactor += num+delim;
                 }
-                else bFlag = false;
+                else 
+                {
+                	bFlag = false;
+                }
             }
             num += 2;
         }
         return sFactor.substr(0,-1);
     }
 	
-	static public function totient(n:Number):Number {
+	/**
+	 * Defines total of relative primes of 'n'.
+	 */
+	static public function totient(n:Number):Number 
+	{
         var k:Number = 1;
         var j:Number;
         if (n%2==0) j++;
-        for (j=3;j<=n;j+=2) if (Prime.isPrime(j)) k++;
+        for (j=3;j<=n;j+=2) 
+        {
+        	if (Prime.isPrime(j)) 
+        	{
+        		k++;
+        	}
+        }
         return k;
     }
 	

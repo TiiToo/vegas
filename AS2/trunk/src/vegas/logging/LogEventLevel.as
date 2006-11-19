@@ -21,98 +21,61 @@
   
 */
 
-/** LogEventLevel
-
-	AUTHOR
-	
-		Name : LogEventLevel
-		Package : vegas.logging
-		Version : 1.0.0.0
-		Date :  2005-12-10
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTANT SUMMARY
-	
-		- ALL
-		
-			intended to force a target to process all messages.
-		
-		- DEBUG
-		
-			designates informational level messages that are fine grained and most helpful when debugging an application.
-		
-		- ERROR
-		
-			designates error events that might still allow the application to continue running.
-		
-		- FATAL
-		
-			designates events that are very harmful and will eventually lead to application failure
-		
-		- INFO
-		
-			designates informational messages that highlight the progress of the application at coarse-grained level.
-		
-		- WARN
-			
-			designates events that could be harmful to the application operation	
-
-	METHOD SUMMARY
-
-		- hashCode():Number
-
-		- static isValidLevel(level:Number):Boolean
-
-		- toSource():String
-
-		- toString():String
-		
-		- valueOf()
-
-	INHERIT
-	
-		Int → LogEventLevel
-	
-	IMPLEMENTS
-	
-		IFormattable, IHashable, ISerializable
-
-**/	
 
 import vegas.core.types.Int;
 import vegas.util.serialize.Serializer;
 
+/**
+ * Static class containing constants for use in the level  property.
+ * @author eKameleon
+ */
 class vegas.logging.LogEventLevel extends Int 
 {
 	
-	// ----o Constructor 
-	
+	/**
+	 * Creates a new LogEventLevel instance.
+	 */
 	public function LogEventLevel(name:String, value:Number) 
 	{
 		super(value) ;
 		_name = name ;
 	}
 
-	// ----o Constant
-
+	/**
+	 * Intended to force a target to process all messages.
+	 */
 	static public var ALL:LogEventLevel = new LogEventLevel("ALL", 1000) ;
-	
+
+	/**
+	 * Designates informational level messages that are fine grained and most helpful when debugging an application.
+	 */
 	static public var DEBUG:LogEventLevel = new LogEventLevel("DEBUG", 8) ;
-	
+
+	/**
+	 * Designates error events that might still allow the application to continue running.
+	 */	
 	static public var ERROR:LogEventLevel = new LogEventLevel("ERROR", 2) ;
 	
+	/**
+	 * Designates events that are very harmful and will eventually lead to application failure
+	 */
 	static public var FATAL:LogEventLevel = new LogEventLevel("FATAL", 6) ;
 
+	/**
+	 * Designates informational messages that highlight the progress of the application at coarse-grained level.
+	 */
 	static public var INFO:LogEventLevel = new LogEventLevel("INFO", 0) ;	
-	
+
+	/**
+	 * Designates events that could be harmful to the application operation
+	 */	
 	static public var WARN:LogEventLevel = new LogEventLevel("WARN", 4) ; ;
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(LogEventLevel, null , 7, 7) ;
 	
-	// ----o Public Methods
-
+	/**
+	 * Returns true if the number level passed in argument is valid.
+	 */
 	static public function isValidLevel(level:Number):Boolean 
 	{
 		var levels:Array = [ALL, DEBUG, ERROR, FATAL, INFO, WARN] ;
@@ -120,18 +83,23 @@ class vegas.logging.LogEventLevel extends Int
 		while (--l > -1) if (level == levels[l]) return true ;
 		return false ;
 	}
-		
+	
+	/**
+	 * Returns the string representation of the object.
+	 */	
 	/*override*/ public function toString():String 
 	{ 
 		return _name ; 
 	}
 
-	// ----o Private Properties
-	
+	/**
+	 * The name of this LogEventLevel instance.
+	 */
 	private var _name:String ;
 
-	// ----o Protected Methods
-	
+	/**
+	 * This method is used by the toSource method.
+	 */
 	/*protected*/ private function _getParams():Array 
 	{
 		return [ Serializer.toSource(_name) ].concat(super._getParams()) ;

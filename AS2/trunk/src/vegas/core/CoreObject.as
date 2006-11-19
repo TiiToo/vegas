@@ -51,6 +51,7 @@ class vegas.core.CoreObject implements IFormattable, IHashable, ISerializable
 
 	/**
 	 * Returns a Eden reprensation of the object.
+	 * @return a string representing the source code of the object.
 	 */
 	public function toSource(indent : Number, indentor : String):String 
 	{
@@ -58,7 +59,8 @@ class vegas.core.CoreObject implements IFormattable, IHashable, ISerializable
 	}
 	
 	/**
-	 * Returns a string representation of the object.
+	 * Returns the string representation of this instance.
+	 * @return the string representation of this instance.
 	 */
 	public function toString():String 
 	{

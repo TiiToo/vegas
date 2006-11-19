@@ -21,31 +21,20 @@
   
 */
 
-/**	Boundable [Interface]
-
-	AUTHOR
-
-		Name : Boundable
-		Package : vegas.data
-		Version : 1.0.0.0
-		Date :  2005-11-10
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHODS
-
-		- isFull():Boolean
-		
-		- maxSize():Number
-
-*/
-
+/**
+ * @author eKameleon
+ */
 interface vegas.data.Boundable 
 {
 
+	/**
+	 * Returns 'true' if the object is full.
+	 */
 	function isFull():Boolean ;
 	
+	/**
+	 * Returns the max number of occurrences in the given collection.
+	 */
 	function maxSize():Number ;
 	
 }

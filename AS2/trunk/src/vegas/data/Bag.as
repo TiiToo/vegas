@@ -21,100 +21,57 @@
   
 */
 
-/** 	Bag [Interface]
-
-	AUTHOR
-	
-		Name : Bag
-		Package : vegas.data
-		Version : 1.0.0.0
-		Date :  2005-11-05
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		Defines a collection that counts the number of times an object appears in the collection.
-
-	METHODS
-	
-		- containsAll(c:Collection):Boolean
-		
-			(Violation)  Returns true if the bag contains all elements in the given collection, respecting cardinality.
-		
-		- insertAll(c:Collection):Boolean 
-		
-		- insertCopies(o, i:Number):Boolean 
-			
-			Add i copies of the given object to the bag and keep a count.
-			
-		- getCount(o):Number 
-		
-			Return the number of occurrences (cardinality) of the given object currently in the bag.
-		
-		- removeAll(c:Collection):Boolean
-		
-			(Violation)  Remove all elements represented in the given collection, respecting cardinality.
-		
-		- removeCopies(o, i:Number):Boolean
-		
-			Remove the given number of occurrences from the bag.
-		
-		- retainAll(c:Collection):Boolean
-		
-			(Violation)  Remove any members of the bag that are not in the given collection, respecting cardinality.
-		
-		- uniqueSet():Set
-		
-			The Set of unique members that represent all members in the bag.
-
-	INHERIT : Collection
-	
-		METHODS
-		
-			- clear()
-			
-			- contains(o)
-			
-			- get(id:Number)
-			
-			- insert(o):Boolean
-			
-			- isEmpty():Boolean
-			
-			- iterator():Iterator
-			
-			- remove(o):Boolean
-			
-			- size():Number
-			
-			- toArray():Array
-
-	TODO TypedBag, Buffer, TreeBag ??
-
-*/
+// TODO TypedBag, Buffer, TreeBag ??
 
 import vegas.data.Collection;
 import vegas.data.Set;
 
+/**
+ * Defines a collection that counts the number of times an object appears in the collection.
+ * 
+ * @author eKameleon
+ */
 interface vegas.data.Bag extends Collection 
 {
 
+	/**
+	 * (Violation) Returns true if the bag contains all elements in the given collection, respecting cardinality.
+	 */
 	function containsAll(c:Collection):Boolean ;
 	
+	/**
+	 * Insert all elements represented in the given collection.
+	 */
 	function insertAll(c:Collection):Boolean ;
 
+	/**
+	 * Add n copies of the given object to the bag and keep a count. 
+	 */
 	function insertCopies(o, nCopies:Number):Boolean ;
 
+	/**
+	 * Returns the number of occurrences (cardinality) of the given object currently in the bag.
+	 */
 	function getCount(o):Number ;
 	
+	/**
+	 * (Violation) Removes all elements represented in the given collection, respecting cardinality.
+	 */
 	function removeAll(c:Collection):Boolean ;
 
+	/**
+	 * Removes the given number of occurrences from the bag.
+	 */
 	function removeCopies(o, nCopies:Number):Boolean ; 
 
+	/**
+	 * (Violation) Removes any members of the bag that are not in the given collection, respecting cardinality.
+	 */
 	function retainAll(c:Collection):Boolean ;
 
+	/**
+	 * Returns the Set of unique members that represent all members in the bag.
+	 */
 	function uniqueSet():Set ;
 
 }

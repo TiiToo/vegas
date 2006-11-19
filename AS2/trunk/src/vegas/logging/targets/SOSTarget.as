@@ -21,134 +21,43 @@
   
 */
 
-/** SOSTarget
-
-	AUTHOR
-	
-		Name : SOSTarget
-		Package : vegas.logging.targets
-		Version : 1.0.0.0
-		Date :  2006-01-17
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		new SOSTarget(color:Number) ;
-
-	PROPERTY SUMMARY
-		
-		- includeCategory:Boolean
-		
-			Indicates if the category for this target should added to the trace.
-		
-		- includeDate:Boolean
-		
-			Indicates if the date should be added to the trace.
-		
-		- includeLevel:Boolean
-		
-			Indicates if the level for the event should added to the trace.
-		
-		- includeLines:Boolean
-		
-		- includeTime:Boolean
-		
-			Indicates if the time should be added to the trace.
-		
-		- isConnected:Boolean [Read Only]
-		
-		- levelPolicy:Number
-		
-			show level colors SOSType.ENABLE or SOSType.DISABLE
-			
-	METHOD SUMMARY
-	
-		- clear():Void
-	
-			clear SOS console.
-	
-		- close():Void
-			
-			close SOS console connection
-			
-		- connect():Void
-		
-			connect SOS console.
-		
-		- exit():Void	
-		
-			close SOS console.
-		
-		- formatLogEvent(ev:LogEvent):String
-		
-		- getIdentify():Void
-		
-			Shows some Information about the Connection.
-			This time it is : HostName, HostAddress and Color.
-		
-		- getIsConnected():Boolean
-		
-		- override logEvent(e:LogEvent):Void
-		
-		- sendLevelMessage(level:Number, message:String):Void
-		
-		- sendMessage(message:String):Void
-		
-			send message or bufferize message if the SOS console is disconnected.
-		
-		- setAppName(name:String):Void 
-		
-			Each Command or Log Connection can have a name. You can set this name with this command.
-		
-		- setAppColor(color:Number):Void 
-		
-			The Color must be set as Integer Value. So 16768477 equals 0xffdddd.
-		
-		- setLevelColor(level:LogEventLevel, color:Number):Void
-		
-		- toString():String
-
-	INHERIT 
-	
-		CoreObject → AbstractTarget → LineFormattedTarget → TraceTarget → SOSTarget
-
-	IMPLEMENTS
-	
-		EventListener, ITarget, IFormattable, IHashable
-
-*/	
-
 import vegas.data.iterator.Iterator;
 import vegas.data.queue.LinearQueue;
+import vegas.errors.Warning;
 import vegas.events.Delegate;
 import vegas.logging.LogEvent;
 import vegas.logging.LogEventLevel;
 import vegas.logging.SOSType;
 import vegas.logging.targets.TraceTarget;
-import vegas.util.factory.PropertyFactory;
 
-class vegas.logging.targets.SOSTarget extends TraceTarget {
+/**
+ * Provides a logger target that uses the SOS console to output log messages. 
+ * Thanks PowerFlasher and the <a href='http://sos.powerflasher.de/english/english.html'>SOS Console</a>
+ * @author eKameleon
+ */
+class vegas.logging.targets.SOSTarget extends TraceTarget 
+{
 
-	// ----o Constructor
-	
-	public function SOSTarget(color:Number) {
+	/**
+	 * Creates a new SOSTarget instance.
+	 */
+	public function SOSTarget(color:Number) 
+	{
 		
-		// --- Init Buffer queue object
+		// Init Buffer queue object
 		
 		_queue = new LinearQueue() ;
 		
-		// --- Init Application Color
+		// Init Application Color
 		
 		setAppColor(isNaN(color) ? SOSType.DEFAULT_COLOR : color) ;
 		
-		// --- Init XMLSocket object
+		// Init XMLSocket object
 		
 		_xs = new XMLSocket() ;
 		_xs.onConnect = Delegate.create(this, _connect) ;
 		
-		// ----o Init Colors
+		// Init Colors
 		
 		setLevelColor(LogEventLevel.ALL) ;
 		setLevelColor(LogEventLevel.DEBUG) ;
@@ -159,74 +68,164 @@ class vegas.logging.targets.SOSTarget extends TraceTarget {
 		
 		levelPolicy = SOSType.ENABLE ;
 		
-		// ----o Connect Console
+		// Connect Console
 		
 		connect() ;
 		
 	}
 	
-	// ----o Public Properties
+	/**
+	 * (read-only) Returns 'true' if the socket is connected with the console.
+	 */
+	public function get isConnected():Boolean 
+	{
+		return getIsConnected() ;	
+	}
 	
-	public var isConnected:Boolean ; // [R/W]
+	/**
+	 * Show the level colors. Use SOSType.ENABLE or SOSType.DISABLE
+	 */	
 	public var levelPolicy:Number ;
-	
-	// ----o Public Methods
 
-	public function clear():Void {
+	/**
+	 * Clear the console.
+	 */	
+	public function clear():Void 
+	{
 		sendMessage(SOSType.CLEAR) ;
 	}
 
-	public function close():Void {
+	/**
+	 * Close the console socket connection.
+	 */
+	public function close():Void 
+	{
 		_isConnected = false ;
 		_xs.close() ;
 	}
 
-	public function connect() {
+	/**
+	 * Connect to the SOS console. 
+	 */
+	public function connect() 
+	{
 		if (_isConnected) close() ;
 		_xs.connect(SOSType.HOST, SOSType.PORT) ;
 	}
 
+	/**
+	 * Exit and close the SOS console.
+	 */
 	public function exit():Void {
 		sendMessage(SOSType.EXIT) ;
 	}
 
-	public function getIdentify():Void {
+	/**
+	 * Returns the string socket representation to send a fold message in the SOSConsole.
+	 */
+	public function getFoldMessage( title:String, message:String, level:Number ):String
+	{
+		var msg:String = "";
+		msg += '!SOS<showFoldMessage key="' + String(level) + '">';
+		msg += '<title>' + title + '</title>';
+		msg += '<message><![CDATA[' + message + ']]></message>' ;
+		msg += '</showFoldMessage>' ;
+		return msg ;	
+	} 
+
+	/**
+	 * Shows some Information about the Connection. This time it is : HostName, HostAddress and Color.
+	 */
+	public function getIdentify():Void 
+	{
 		sendMessage("!SOS<identify/>") ;
 	}
 
-	public function getIsConnected():Boolean {
+	/**
+	 * Returns the string socket representation to send a simple message in the SOSConsole.
+	 */
+	public function getMessage( msg:String , level:Number ):String
+	{
+		return  "!SOS<showMessage key='" + String(level) + "'>" + String(msg) + "</showMessage>\n"  ;	
+	}
+
+	/**
+	 * Returns 'true' if the socket is connected with the console.
+	 */
+	public function getIsConnected():Boolean 
+	{
 		return _isConnected ;
 	}
-
-	/*override*/ public function logEvent(e:LogEvent) {
-		var msg:String = formatLogEvent(e) ;
-		sendLevelMessage(e.level, msg) ;
+	
+	/**
+	 * This method handles a LogEvent from an associated logger.
+	 */
+	/*override*/ public function logEvent(e:LogEvent) 
+	{
+		sendLevelMessage(e.level, formatLogEvent( e )) ;
 	}
 
-	public function sendLevelMessage(level:Number, message:String):Void {
-		if (levelPolicy == SOSType.ENABLE) {
-			message = "!SOS<showMessage key='" + String(level) + "'>" + String(message) + "</showMessage>\n" ;
+	/**
+	 * Send a fold message with a specific level.
+	 */
+	public function sendFoldLevelMessage(level:Number, title:String, message:String):Void
+	{
+		if (levelPolicy == SOSType.ENABLE) 
+		{
+			message = getFoldMessage( title, message, level) ;
 		}
-		sendMessage(message) ;
+		sendMessage( message ) ;
 	}
 
-	public function sendMessage(msg:String):Void {
-		if (_isConnected) {
-			_xs.send(msg) ;
-		} else {
+	/**
+	 * Send a message with a specific level.
+	 */
+	public function sendLevelMessage(level:Number, message:String):Void 
+	{
+		if (levelPolicy == SOSType.ENABLE) 
+		{
+			message = getMessage(message, level) ;
+		}
+		sendMessage( message ) ;
+	}
+
+	/**
+	 * Send message or bufferize message if the SOS console is disconnected.
+	 */
+	public function sendMessage(msg:String):Void 
+	{
+		if (_isConnected) 
+		{
+			_xs.send( msg ) ;
+		}
+		else 
+		{
 			_queue.enqueue(msg) ;
 		}
 	}
 
-	public function setAppName(name:String):Void {
+	/**
+	 * Sets the name of the application.
+	 */
+	public function setAppName(name:String):Void 
+	{
 		sendMessage("!SOS<appName>" + name + "</appName>") ;
 	}
 	
-	public function setAppColor(color:Number):Void {
+	/**
+	 * Sets the color of the application, the Color must be set as Integer Value. So 16768477 equals 0xffdddd.
+	 */
+	public function setAppColor(color:Number):Void 
+	{
 		sendMessage("!SOS<appColor>" + color + "</appColor>") ;
 	}
 	
-	public function setLevelColor(level:LogEventLevel, color:Number):Void {
+	/**
+	 * Sets the color for a specific level.
+	 * @see LogEventLevel
+	 */
+	public function setLevelColor( level:LogEventLevel, color:Number ):Void 
+	{
 		if (!LogEventLevel.isValidLevel(level)) return ;
 		var msg:String = "!SOS<setKey>" ;
 		msg += "<name>" + level.toString() + "</name>" ;
@@ -235,32 +234,54 @@ class vegas.logging.targets.SOSTarget extends TraceTarget {
 		sendMessage(msg) ;
 	}
 	
-	// ----o Virtual Properties
-	
-	static private var __ISCONNECTED__:Boolean = PropertyFactory.create(SOSTarget, "isConnected", true, true) ;
-	
-	// ----o Private Properties
-	
+	/**
+	 * The internal color value.
+	 */	
 	private var _color:Number ;
+	
+	/**
+	 * The internal value to indicated if the target is connected.
+	 */
 	private var _isConnected:Boolean ;
+	
+	/**
+	 * The internal buffer.
+	 */
 	private var _queue:LinearQueue ;
+	
+	/**
+	 * The internal socket reference.
+	 */
 	private var _xs:XMLSocket ;
 	
-	// ----o Private Methods
-	
-	private function _connect(success:Boolean):Void {
-		if (success) {
+	/**
+	 * Invoqued if the xml socket try to connect the console.
+	 */
+	private function _connect(success:Boolean):Void 
+	{
+		if (success) 
+		{
 			_flush() ;
 			_isConnected = true ;
-		} else {
-			throw new Error("SOS Socket connection failed") ;
+		}
+		else 
+		{
+			throw new Warning("SOSTarget failed the connection with the console, the socket connection is failed.") ;
 		}
 	}
 	
-	private function _flush() {
-		if (_queue.size() > 0) {
+	/**
+	 * Flush the internal buffer.
+	 */
+	private function _flush() 
+	{
+		if (_queue.size() > 0) 
+		{
 			var it:Iterator = _queue.iterator() ;
-			while (it.hasNext()) _xs.send(it.next()) ;
+			while (it.hasNext())
+			{
+				 _xs.send(it.next()) ;
+			}
 		}
 	}
 	

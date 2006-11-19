@@ -21,58 +21,6 @@
   
 */
 
-/** AbstractError
-
-	AUTHOR
-
-		Name : AbstractError
-		Package : vegas.errors
-		Version : 1.0.0.0
-		Date : 2006-01-22
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	PROPERTY SUMMMARY
-	
-		- errorElement:ErrorElement
-		
-		- message:String
-		
-		- name:String [Read Only]
-	
-	METHOD SUMMARY
-	
-		- getCategory():String
-		
-			get internal logger's category.
-		
-		- getLogger():ILogger 
-		
-			get internal Logger.
-		
-		- getMessage():String
-		
-			return the message of the Error.
-		
-		- getName():String
-		
-			return the name of the Error.
-		
-		- toString():String
-
-	INHERIT
-	
-		Object → Error → AbstractError
-	
-	IMPLEMENT
-	
-		IFormattable, IHashable
-
-	TODO 2006-01-22 injecter le ErrorElement dans le ErrorFormat.
-
-**/
-
 import vegas.core.HashCode;
 import vegas.core.IFormattable;
 import vegas.core.IHashable;
@@ -81,60 +29,70 @@ import vegas.errors.ErrorFormat;
 import vegas.logging.ILogger;
 import vegas.logging.Log;
 import vegas.util.ConstructorUtil;
-import vegas.util.factory.PropertyFactory;
 
-class vegas.errors.AbstractError extends Error implements IFormattable, IHashable {
+/**
+ * @author eKameleon
+ */
+class vegas.errors.AbstractError extends Error implements IFormattable, IHashable 
+{
     
-	// ----o Constructor
-	
-	private function AbstractError(message:String, e:ErrorElement) {
+	/**
+	 * Creates a new AbstractError only if you inherit this class.
+	 */
+	private function AbstractError(message:String, e:ErrorElement) 
+	{
 		super(message) ;
 		errorElement = e ;
-		_logger = Log.getLogger(ConstructorUtil.getPath(this)) ;
+		name = ConstructorUtil.getName(this) ;
+		_logger = Log.getLogger( ConstructorUtil.getPath(this) ) ;
 	}
 
-	// ----o Init HashCode
-	
+	/**
+	 * Launch HashCode 'initialize' method.
+	 */	
 	static private var _initHashCode:Boolean = HashCode.initialize(AbstractError.prototype) ;
 
-	// ----o Public Properties
-
+	/**
+	 * The internal ErrorElement reference.
+	 */
 	public var errorElement:ErrorElement ;
 	
-	// ----o Public Methods
-	
-	public function getCategory():String {
+	/**
+	 * Returns the internal logger's category.
+	 */
+	public function getCategory():String 
+	{
 		return _logger["category"] ;
 	}
 	
-	public function getLogger():ILogger {
+	/**
+	 * Returns the internal logger.
+	 */
+	public function getLogger():ILogger 
+	{
 		return _logger ;
 	}
 	
-	public function getMessage():String {
-		return message ;
-	}
-	
-	public function getName():String {
-		return ConstructorUtil.getName(this) ;
-	}
-
-	public function hashCode():Number {
+	/**
+	 * Returns a hashcode value for the object.
+	 */
+	public function hashCode():Number 
+	{
 		return null ;
 	}
-	
-	public function toString():String {
+
+	/**
+	 * Returns the string representation of this instance.
+	 * @return the string representation of this instance
+	 */
+	public function toString():String 
+	{
 		return (new ErrorFormat()).formatToString(this) ;
 	}
 	
-	// ----o Virtual Properties
-	
-	static private var __NAME__:Boolean = PropertyFactory.create(AbstractError, "name", true, true) ;
-	
-	// ----o Private Properties
-	
+	/**
+	 * The internal logger of this instance.
+	 */	
 	private var _logger:ILogger ;
-	private var name:String ;
-	private var message:String ;
 	
 }

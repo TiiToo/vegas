@@ -21,32 +21,19 @@
   
 */
 
-/**	EventListener [Interface]
-
-	AUTHOR
-	
-		Name : EventListener
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2005-10-13
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- handleEvent(e:Event)
-			Permet d'intercepter un événement.
-
-*/
-
 import vegas.events.Event;
 
+/**
+ * The {@code EventListener} interface is the primary method for handling events. Users implement the EventListener interface and register their listener on an {@code EventTarget} using the {@code addEventListener method}. The users should also remove their EventListener from its {@code EventTarget} after they have completed using the listener.
+ * 
+ * @author eKameleon
+ */
 interface vegas.events.EventListener 
 {
 	
 	/**
 	 * This method is called whenever an event occurs of the type for which the EventListener interface was registered.
+	 * @param e The Event contains contextual information about the event.
 	 */
 	function handleEvent(e:Event) ;
 

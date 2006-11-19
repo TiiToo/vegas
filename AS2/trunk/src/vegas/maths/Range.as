@@ -21,130 +21,187 @@
   
 */
 
-/** Range
-
-	AUTHOR
-
-		Name : Range
-		Package : vegas.maths
-		Version : 1.0.0.0
-		Date :  2005-12-20
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	CONSTRUCTOR
-	
-		var r:Range = new Range(p_min:Number, p_max:Number) ;
-	
-	CONSTANT SUMMARY
-	
-		- PERCENT_RANGE : Range between 0 and 100
-		
-		- COLOR_RANGE : Range between -255 and 255
-	
-	PROPERTY SUMMARY
-		
-		- max:Number
-			
-		- min:Number
-
-	METHOD SUMMARY
-
-		- clamp(value:Number):Number
-		
-		- clone()
-		
-		- contains(value):Boolean
-		
-		- equals(o):Boolean
-		
-		- isOutOfRange(value:Number):Boolean
-		
-		- overlap(r:Range):Boolean
-		
-			test si les 2 objets de type Range se chevauchent.
-		
-		- toSource():String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → Range
-
-	IMPLEMENTS
-
-		ICloneable, IEquality, IFormattable, IHashable, ISerializable
-	
-	TODO : combine(range1:Range, range2:Range) 
-	TODO : expand(r:Range, lowerMargin:Number, upperMargin:Number)
-	TODO : getCentralValue():Number
-	TODO : size()
-	
-**/
-
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
 import vegas.core.IEquality;
 import vegas.errors.ArgumentOutOfBoundsError;
+import vegas.errors.IllegalArgumentError;
 import vegas.util.MathsUtil;
 
-class vegas.maths.Range extends CoreObject implements ICloneable, IEquality {
+/**
+ * Represents an immutable range of values.
+ * @author eKameleon
+ */
+class vegas.maths.Range extends CoreObject implements ICloneable, IEquality
+{
 
-	// ----o Constructor 
-	
-	public function Range(p_min:Number, p_max:Number) {
-		if (p_max < p_min) throw new ArgumentOutOfBoundsError("Range constructor : 'max' argument is < of 'min' argument") ;
+	/**
+	 * Creates a new Range instance.
+	 * use <pre>var r:Range = new Range(p_min:Number, p_max:Number) ;</pre>
+	 */ 
+	public function Range(p_min:Number, p_max:Number) 
+	{
+		if (p_max < p_min) 
+		{
+			throw new ArgumentOutOfBoundsError("Range constructor : 'max' argument is < of 'min' argument") ;
+		}
 		min = p_min ;
 		max = p_max ;
 	}
 
-	// ----o Constant
-	
+	/**
+	 * Range between 0 and 100.
+	 */
 	static public var PERCENT_RANGE:Range = new Range(0, 100) ;
 	
+	/**
+	 * Range between -255 and 255.
+	 */
 	static public var COLOR_RANGE:Range = new Range(-255, 255) ;
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(Range, null , 7, 7) ;
 	
-	// ----o Public Properties
-	
+	/**
+	 * The max value of the range.
+	 */	
 	public var max:Number ;
+	
+	/**
+	 * The min value of the range.
+	 */
 	public var min:Number ;
 		
-	// ----o Public Methods
-	
-	public function clamp(value:Number):Number {
+	/**
+	 * Clamp a value in the current range.
+	 */	
+	public function clamp(value:Number):Number 
+	{
 		return MathsUtil.clamp(value, min, max) ;
 	}
 	
-	public function clone() {
+	/**
+	 * Creates a new range by combining two existing ranges.
+	 * <li>either range can be {@code null}, in which case the other range is returned.</li>
+     * <li>if both ranges are {@code null} the return value is {@code null}.</li>
+	 * 
+	 * @param range1 the first range, {@code null} permitted.
+	 * @param range2 the second range, {@code null} permitted.
+	 */
+	static public function combine( range1:Range, range2:Range ):Range
+	{
+		if (range1 == null)
+		{
+			return range2 ;	
+		}
+		else
+		{
+			if (range2 == null)
+			{
+				return range1 ;	
+			}	
+			else
+			{
+				var lower:Number = Math.min( range1.min , range2.min ) ;
+				var upper:Number = Math.max( range1.max , range2.max ) ;
+				return new Range(lower, upper) ;	
+			}
+		}
+	}
+	
+	/**
+	 * Returns a shallow copy of the object.
+	 */
+	public function clone() 
+	{
 		return new Range(min, max) ;
 	}
 	
-	public function contains(value:Number):Boolean {
+	/**
+	 * Returns {@code true} if the Range instance contains the value passed in argument.
+	 */
+	public function contains(value:Number):Boolean 
+	{
 		return !isOutOfRange(value) ;
 	}
 	
-	public function equals(o):Boolean {
+	/**
+	 * Indicates whether some other object is "equal to" this one.
+	 */
+	public function equals(o):Boolean 
+	{
 		return (o instanceof Range) && (o.min == min) && (o.max == o.max) ;
 	}
 	
-	public function isOutOfRange(value:Number):Boolean {
+	/**
+	 * Creates a new range by adding margins to an existing range.
+	 * @param range the range {@code null} not permitted.
+	 * @param lowerMargin the lower margin (expressed as a percentage of the range length).
+	 * @param upperMargin the upper margin (expressed as a percentage of the range length).
+	 * @return The expanded range.
+	 * @throws IllegalArgumentError if the range argument is {@code null}
+	 */
+	static public function expand(range:Range, lowerMargin:Number, upperMargin:Number):Range
+	{
+		if (range == null)
+		{
+			throw new IllegalArgumentError("Range.expand method failed, the range argument not must be 'null' or 'undefined'.");  
+		}
+		var size:Number = range.size() ;
+		var lower:Number = size * lowerMargin ;
+		var upper:Number = size * upperMargin ;
+		return new Range( range.min , range.max ) ;
+	}
+	
+	/**
+	 * Returns the central value for the range.
+	 * @return The central value.
+	 */
+	public function getCentralValue():Number
+	{
+		return (min + max) / 2 ;
+	}
+	
+	/**
+	 * Returns {@code true} if the value is out of the range.
+	 */
+	public function isOutOfRange(value:Number):Boolean 
+	{
 		return (value > max ) || (value < min) ;
 	}
-	
-	public function overlap(r:Range):Boolean {
+
+	/**
+	 * Returns true if the range in argument overlap the current range.
+	 */
+	public function overlap(r:Range):Boolean 
+	{
 		return max > r.min && r.max > min ;
 	}
-	
-	public function toSource(indent:Number, indentor:String):String {
+
+	/**
+	 * Returns the length of the range.
+	 * @return the length of the range.
+	 */
+	public function size():Number
+	{
+		return max - min ;	
+	}
+
+	/**
+	 * Returns a Eden reprensation of the object.
+	 * @return a string representing the source code of the object.
+	 */
+	public function toSource(indent:Number, indentor:String):String 
+	{
 		return "new vegas.maths.Range(" + min + "," + max + ")";
 	}
-	
-	public function toString():String {
-		return "<" + min + "," + max + ">";
+
+	/**
+	 * Returns the string representation of this instance.
+	 * @return the string representation of this instance.
+	 */
+	public function toString():String 
+	{
+		return "[Range<" + min + "," + max + ">]";
 	}
 	
 }

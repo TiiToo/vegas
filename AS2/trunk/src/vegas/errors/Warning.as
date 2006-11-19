@@ -21,67 +21,30 @@
   
 */
 
-/** Warning
-
-	AUTHOR
-
-		Name : Warning
-		Package : vegas.errors
-		Version : 1.0.0.0
-		Date : 2006-01-22
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	PROPERTY SUMMARY
-	
-		- errorElement:ErrorElement
-		
-		- message:String
-		
-		- name:String [Read Only]
-	
-	METHOD SUMMARY
-	
-		- getCategory():String
-		
-			get internal logger's category.
-		
-		- getLogger():ILogger 
-		
-			get internal Logger.
-		
-		- getName():String
-		
-			return the name of the Error.
-		
-		- toString():String
-
-	INHERIT
-	
-		Object → Error → AbstractError → Warning
-	
-	IMPLEMENT
-	
-		IFormattable, IHashable
-
-**/
-
 import vegas.errors.AbstractError;
 import vegas.errors.ErrorElement;
 import vegas.errors.ErrorFormat;
 
-class vegas.errors.Warning extends AbstractError {
+/**
+ * @author eKameleon
+ */
+class vegas.errors.Warning extends AbstractError 
+{
     
-	// ----o Constructor
-	
-	public function Warning(msg:String, errorElement:ErrorElement) {
+	/**
+	 * Creates a new Warning instance.
+	 */
+	public function Warning(msg:String, errorElement:ErrorElement) 
+	{
 		super(msg, errorElement) ;
 	}
 
-	// ----o Public Methods
-	
-	/*override*/ public function toString():String {
+	/**
+	 * Returns the string representation of this instance.
+	 * @return the string representation of this instance
+	 */
+	/*override*/ public function toString():String 
+	{
 		var msg:String = (new ErrorFormat()).formatToString(this) ;
 		getLogger().warn( msg ) ;
 		return msg ;

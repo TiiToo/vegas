@@ -65,8 +65,14 @@ import vegas.data.Queue;
 interface vegas.data.BoundedQueue extends Queue 
 {
 
+	/**
+	 * Returns 'true' if the object is full.
+	 */
 	function isFull():Boolean ;
 	
+	/**
+	 * Returns the max number of occurrences in the given queue.
+	 */
 	function maxSize():Number ;
 	
 }

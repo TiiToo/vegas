@@ -21,113 +21,72 @@
   
 */
 
-/** LuminicTarget
-
-	AUTHOR
-	
-		Name : LuminicTarget
-		Package : vegas.logging.targets
-		Version : 1.0.0.0
-		Date :  2006-01-17
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		new LuminicTarget(depth:Number, collapse:Boolean)
-
-	PROPERTY SUMMARY
-		
-		- includeCategory:Boolean
-		
-			Indicates if the category for this target should added to the trace. Only if isCollapse is false.
-		
-		- includeDate:Boolean
-		
-			Indicates if the date should be added to the trace. Only if isCollapse is false.
-		
-		- includeLevel:Boolean
-		
-			Indicates if the level for the event should added to the trace. Only if isCollapse is false.
-		
-		- includeLines:Boolean
-		
-			Indicates if a line number should be added to the trace. Only if isCollapse is false.
-		
-		- includeTime:Boolean
-		
-			Indicates if the time should be added to the trace. Only if isCollapse is false.
-		
-		- isCollapse:Boolean
-		
-			Indicate if the LuminicBox Console use collapse presentation or not.
-		
-		- maxDepth:Number [R/W] 
-		
-			object's depth value between 1 and 255.
-
-	METHOD SUMMARY
-	
-		- formatLogEvent(ev:LogEvent):Object
-		
-		- getMaxDepth():Number
-		
-		- override logEvent(e:LogEvent):Void
-		
-		- setMaxDepth(n:Number):Void
-		
-		- toString():String
-	
-	INHERIT 
-	
-		CoreObject → AbstractTarget → LineFormattedTarget → TraceTarget → LuminicTarget
-
-	IMPLEMENTS
-	
-		EventListener, ITarget, IFormattable, IHashable
-
-	THANKS
-	
-		Pablo Costantini :: LuminicBox
-			http://www.luminicbox.com/blog/default.aspx?page=post&id=2
-
-----------  */	
-
 import vegas.logging.LogEvent;
 import vegas.logging.targets.TraceTarget;
 import vegas.maths.Range;
-import vegas.util.factory.PropertyFactory;
 
-class vegas.logging.targets.LuminicTarget extends TraceTarget {
+/**
+ * Provides a logger target that uses the FlashInspector console to output log messages. 
+ * Thanks Pablo Costantini and LuminicBox <a href='http://www.luminicbox.com/blog/default.aspx?page=post&id=2'>FlashInspector</a>.
+ * @author eKameleon
+ */
+class vegas.logging.targets.LuminicTarget extends TraceTarget 
+{
 	
-	// ----o Constructor
-	
-	public function LuminicTarget(depth:Number, collapse:Boolean) {
-		isCollapse = (collapse == false) ? false : true ;
-		setMaxDepth(depth || 4) ;
+	/**
+	 * Creates a new LuminicTarget instance.
+	 */
+	public function LuminicTarget(depth:Number, collapse:Boolean) 
+	{
 		_lc = new LocalConnection() ;
+		isCollapse = (collapse == false) ? false : true ;
+		setMaxDepth( depth || 4 ) ;
 	}
 	
-	// ----o Public Properties
-
+	/**
+	 * Indicated if the console use collapse property or not.
+	 */
 	public var isCollapse:Boolean ;
-	public var maxDepth:Number ; // [R/W]
+	
+	/**
+	 * (read-only) Returns the max depth to collaspe the structure of an object in the console.
+	 */
+	public function get maxDepth():Number
+	{
+		return getMaxDepth() ;	
+	}
 
-	// ----o Public Methods
+	/**
+	 * (read-only) Sets the max depth to collaspe the structure of an object in the console.
+	 */
+	public function set maxDepth( value:Number ):Void
+	{
+		setMaxDepth(value) ;	
+	}
 
-	/*override*/ public function formatLogEvent(ev:LogEvent):Object {
-		var context:Object = {
+	/**
+	 * Returns and format the string representation of the log event.
+	 */
+	/*override*/ public function formatLogEvent(ev:LogEvent):Object 
+	{
+		
+		var context:Object = 
+		{
 			loggerId     : null ,
 			levelName    : ev.level.toString() ,
 			time : new Date()
 		};
-		if (isCollapse) {
+		
+		if (isCollapse) 
+		{
 			context.argument = _serializeObj( ev.context , 1) ;
-		} else {
+		}
+		else 
+		{
 			var data:Object = new Object();
 			data.type = "string" ;
-			data.value = _formatMessage(
+			data.value = _formatMessage
+			(
 				ev.context.toString() , 
 				ev.level.toString(), 
 				ev.getTarget().category, 
@@ -139,115 +98,157 @@ class vegas.logging.targets.LuminicTarget extends TraceTarget {
 		return context ;
 	}
 
+	/**
+	 * Returns the max depth to collaspe the structure of an object in the console.
+	 */
 	public function getMaxDepth():Number {
 		return _maxDepth ;
 	}
-
+	
+	/**
+	 * This method handles a LogEvent from an associated logger.
+	 */
 	/*override*/ public function logEvent(e:LogEvent) {
 		_lc.send( "_luminicbox_log_console", "log", formatLogEvent(e)) ;
 	}
 
-	public function setMaxDepth(value:Number) {
+	/**
+	 * Sets the max depth to collaspe the structure of an object in the console.
+	 */
+	public function setMaxDepth(value:Number) 
+	{
 		var r:Range = new Range(1, 255) ;
 		_maxDepth = r.clamp(value) ;
 	}
 	
-	public function toString():String {
-		return "[LuminicTarget]" ;
-	}
-
-	// ----o Virtual Properties
-	
-	static private var __MAXDEPTH__:Boolean = PropertyFactory.create(LuminicTarget, "maxDepth", true) ;
-	
-	// ----o Private Properties
-	
+	/**
+	 * Internal max depth value.
+	 */
 	private var _maxDepth:Number ;
+	
+	/**
+	 * Internal LocalConnection reference.
+	 */
 	private var _lc:LocalConnection ;
 	
-	// ----o Private Methods
-	
+	/**
+	 * Serialize un object before send the message in the console.
+	 */
 	private function _serializeObj(o, depth:Number) : Object {
 		
 		var type = _getType(o) ;
 		var serial:Object = {} ;
 		
-		if (!type.inspectable) {
-			
+		if (!type.inspectable) 
+		{
 			serial.value = o ;
-			
-		}else if(type.stringify) {
-			
+		}
+		else if(type.stringify) 
+		{
 			serial.value = o + "" ;
-			
-		} else {
-			
-			if (depth <= _maxDepth) 	{
-				
-				if(type.name == "movieclip" || type.name == "button") serial.id = o + "" ;
+		}
+		else 
+		{
+			if (depth <= _maxDepth) 	
+			{
+				if(type.name == "movieclip" || type.name == "button") 
+				{
+					serial.id = o + "" ;
+				}
 				var items:Array = [] ;
-				if(o instanceof Array) {
+				if(o instanceof Array) 
+				{
 					var len:Number = o.length ;
-					for(var i:Number=0; i<len ; i++) {
-						items[i] = {
+					for(var i:Number=0; i<len ; i++) 
+					{
+						items[i] = 
+						{
 							property : i ,
 							value : _serializeObj( o[i], (depth+1) )
 						} ;
 					}
 					
-				} else {
-					for (var prop:String in o) {
-						items.push( {
-							property : prop ,
-							value : _serializeObj( o[prop], (depth+1) )
-						} ) ;
+				}
+				else 
+				{
+					for (var prop:String in o) 
+					{
+						items.push
+						( 
+							{
+								property : prop ,
+								value : _serializeObj( o[prop], (depth+1) )
+							} 
+						) ;
 					} 
 				}
 				
 				serial.value = items ;
 				
-			} else {
-				
+			}
+			else 
+			{
 				serial.reachLimit = true ;
-				
 			}
 		}
 		serial.type = type.name ;
 		return serial ;
 	}
 	
-	private function _getType(o):Object {
-		var tof = typeof(o);
+	/**
+	 * Returns an object with all the config of the current log content.
+	 */
+	private function _getType(o):Object 
+	{
+		var tof:String = typeof(o);
 		var type = new Object();
 		type.inspectable = true ;
 		type.name = tof ;
-		switch( tof ) {
+		switch( tof ) 
+		{
 			case "string" :
 			case "boolean" :
 			case "number" :
 			case "undefined" :
 			case "null" :
+			{
 				type.inspectable = false ;
 				break ;
-			default :	
-				if(o instanceof Date) {
+			}
+			default :
+			{	
+				if(o instanceof Date) 
+				{
 					type.inspectable = false ;
 					type.name = "date" ;
-				} else if(o instanceof Array) {
+				}
+				else if(o instanceof Array) 
+				{
 					type.name = "array" ;
-				} else if(o instanceof Button) {
+				}
+				else if(o instanceof Button) 
+				{
 					type.name = "button";
-				} else if(o instanceof MovieClip) {
+				}
+				else if(o instanceof MovieClip) 
+				{
 					type.name = "movieclip";
-				} else if(o instanceof XML) {
+				}
+				else if(o instanceof XML) 
+				{
 					type.name = "xml" ;
 					type.stringify = true ;
-				} else if(o instanceof XMLNode) {
+				}
+				else if(o instanceof XMLNode) 
+				{
 					type.name = "xmlnode" ;
 					type.stringify = true ;
-				} else if(o instanceof Color) {
+				}
+				else if(o instanceof Color) 
+				{
 					type.name = "color" ;
 				}
+			}
 		}
 		return type ;
 	}

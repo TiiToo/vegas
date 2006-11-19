@@ -21,64 +21,43 @@
   
 */
 
-/** ILogger
-
-	AUTHOR
-
-		Name : ILogger
-		Package : vegas.logging
-		Version : 1.0.0.0
-		Date :  2005-10-12
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- debug(context, ...rest):Void
-		
-			Logs the specified data using the LogEventLevel.DEBUG level.
-		
-		- error(context, ...rest):Void
-		
-			Logs the specified data using the LogEventLevel.ERROR level.
-		
-		- fatal(context, ...rest):Void
-		
-			Logs the specified data using the LogEventLevel.FATAL level.
-		
-		- info(context, ...rest):Void
-		
-			Logs the specified data using the LogEvent.INFO level.
-		
-		- log(context, message:String, ...rest):Void
-		
-			Logs the specified data at the given level.
-		
-		- warn(context, ...rest):Void
-		
-			Logs the specified data using the LogEventLevel.WARN level.
-
-	INHERIT
-	
-		 IFormattable → IEventDispatcher → ILogger
-
-**/
-
 import vegas.events.IEventDispatcher;
 
-interface vegas.logging.ILogger extends IEventDispatcher {
+/**
+ * All loggers within the logging framework must implement this interface.
+ * @author eKameleon
+ */
+interface vegas.logging.ILogger extends IEventDispatcher 
+{
 
+	/**
+	 * Logs the specified data using the LogEventLevel.DEBUG level.
+	 */
 	function debug(context):Void ;
 	
+	/**
+	 * Logs the specified data using the LogEventLevel.ERROR level.
+	 */
 	function error(context):Void ;
 	
+	/**
+	 * Logs the specified data using the LogEventLevel.FATAL level.
+	 */
 	function fatal(context):Void ;
 	
+	/**
+	 * Logs the specified data using the LogEvent.INFO level.
+	 */
 	function info(context):Void ;
 	
+	/**
+	 * Logs the specified data at the given level.
+	 */
 	function log(level:Number, context):Void ;
 	
+	/**
+	 * Logs the specified data using the LogEventLevel.WARN level.
+	 */
 	function warn(context):Void ;
 
 }

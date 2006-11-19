@@ -21,60 +21,20 @@
   
 */
 
-/** IndexOutOfBoundsError
-
-	AUTHOR
-
-		Name : IndexOutOfBoundsError
-		Package : vegas.errors
-		Version : 1.0.0.0
-		Date : 2006-01-23
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-	
-		- errorElement:ErrorElement
-		
-		- message:String
-		
-		- name:String [Read Only]
-	
-	METHOD SUMMARY
-	
-		- getCategory():String
-		
-			get internal logger's category.
-		
-		- getLogger():ILogger 
-		
-			get internal Logger.
-		
-		- getName():String
-		
-			return the name of the Error.
-		
-		- toString():String
-
-	INHERIT
-	
-		Object → Error → AbstractError → FatalError → IndexOutOfBoundsError
-	
-	IMPLEMENT
-	
-		IFormattable, IHashable
-
-**/
-
 import vegas.errors.ErrorElement;
 import vegas.errors.FatalError;
 
-class vegas.errors.IndexOutOfBoundsError extends FatalError {
+/**
+ * @author eKameleon
+ */
+class vegas.errors.IndexOutOfBoundsError extends FatalError 
+{
 
-	// ----o Constructor
-	
-	public function IndexOutOfBoundsError(message:String, errorElement:ErrorElement) {
+	/**
+	 * Creates a new IndexOutOfBoundsError instance.
+	 */
+	public function IndexOutOfBoundsError(message:String, errorElement:ErrorElement) 
+	{
 		super(message, errorElement) ;
 	}
   

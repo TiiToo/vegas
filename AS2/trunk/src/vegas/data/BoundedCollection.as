@@ -21,57 +21,22 @@
   
 */
 
-/**	BoundedCollection [Interface]
-
-	AUTHOR
-
-		Name : BoundedCollection
-		Package : vegas.data
-		Version : 1.0.0.0
-		Date :  2005-11-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHODS
-
-		- isFull():Boolean
-		
-		- maxSize():Number
-
-	INHERIT
-
-		Collection > BoundedCollection
-
-	INHERIT METHODS
-	
-		- clear()
-		
-		- contains(o)
-		
-		- get(id:Number)
-		
-		- insert(o):Boolean
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- remove(o):Boolean
-		
-		- size():Number
-		
-		- toArray():Array
-
-*/
-
 import vegas.data.Collection;
 
+/**
+ * @author eKameleon
+ */
 interface vegas.data.BoundedCollection extends Collection 
 {
 
+	/**
+	 * Returns 'true' if the object is full.
+	 */
 	function isFull():Boolean ;
 	
+	/**
+	 * Returns the max number of occurrences in the given collection.
+	 */
 	function maxSize():Number ;
 
 }

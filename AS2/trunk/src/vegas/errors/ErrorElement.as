@@ -21,75 +21,21 @@
   
 */
 
-/** ErrorElement
-
-	AUTHOR
-
-		Name : ErrorElement
-		Package : vegas.errors
-		Version : 1.0.0.0
-		Date : 2006-01-22
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	CONSTRUCTOR
-	
-		new ErrorElement(thrower, methodName:String, args:Array, fileName:String, lineNumber:Number, isNative:Boolean)
-	
-	METHOD SUMMARY
-	
-		- equals(o):Boolean
-		
-			Returns true if the given object is also a ErrorElement and all attributes, except the native flag, are equal.
-		
-		- getArguments():Array
-		
-			Returns an array with parameters of the thrower method.
-		
-		- getConstructorName():String
-		
-			Returns the fully qualified name of the class containing the execution point represented by this stack trace element.
-		
-		- getFileName():String
-		
-			Returns the name of the source file containing the execution point represented by this stack trace element.
-		
-		- getLineNumber():Number
-		
-			Returns the line number of the source line containing the execution point represented by this stack trace element.
-		
-		- getMethodName():String
-		
-			Returns the name of the method containing the execution point represented by this stack trace element.
-		
-		- isNativeMethod():Boolean
-		
-			Returns true if the method containing the execution point represented by this stack trace element is a native method.
-		
-		- toString():String
-		
-			Returns a string representation of this stack trace element.
-	
-	INHERIT
-	
-		CoreObject → ErrorElement
-	
-	IMPLEMENTS
-	
-		IEquality, IFormattable, IHashable, ISerializable
-	
-**/
-
 import vegas.core.CoreObject;
 import vegas.core.IEquality;
 import vegas.util.ConstructorUtil;
 
-class vegas.errors.ErrorElement extends CoreObject implements IEquality {
+/**
+ * @author eKameleon
+ */
+class vegas.errors.ErrorElement extends CoreObject implements IEquality 
+{
     
-	// ----o Constructor
-	
-	public function ErrorElement(thrower, methodName:String, args:Array, fileName:String, lineNumber:Number, isNative:Boolean) {
+	/**
+	 * Creates a new ErrorElement instance.
+	 */
+	public function ErrorElement(thrower, methodName:String, args:Array, fileName:String, lineNumber:Number, isNative:Boolean) 
+	{
 		_args = args || null ;
 		_fileName = fileName || null ;
 		_lineNumber = lineNumber || null ;
@@ -98,11 +44,18 @@ class vegas.errors.ErrorElement extends CoreObject implements IEquality {
 		_thrower = thrower || null ;
 	}
 	
-	// ----o Public Methods
-	
-	public function equals(o):Boolean {
-		if (!o instanceof ErrorElement) return false ;
-		return (
+	/**
+	 * Indicates whether some other object is "equal to" this one.
+	 */
+	public function equals(o):Boolean 
+	{
+		if (!o instanceof ErrorElement) 
+		{
+			return false ;
+		}
+		
+		return 
+		(
 			o.getConstructorName() == getConstructorName() 
 			&& o.getConstructorPath() == getConstructorPath()
 			&& o.getFileName() == getFileName()
@@ -110,47 +63,101 @@ class vegas.errors.ErrorElement extends CoreObject implements IEquality {
 			&& o.getMethodName()== getMethodName()
 			&& o.getThrower() == getThrower()
 		) ;
+		
 	}
 	
-	public function getArguments():Array {
+	/**
+	 * Returns an array with parameters of the thrower method.
+	 */
+	public function getArguments():Array 
+	{
 		return _args ;
 	}
 	
-	public function getConstructorName():String {
+	/**
+	 * Returns the fully qualified name of the class containing the execution point represented by this stack trace element.
+	 */
+	public function getConstructorName():String 
+	{
 		return ConstructorUtil.getName(_thrower) ;
 	}
-
-	public function getConstructorPath():String {
+	
+	/**
+	 * Returns the fully qualified path of the class containing the execution point represented by this stack trace element.
+	 */
+	public function getConstructorPath():String 
+	{
 		return ConstructorUtil.getPath(_thrower) ;
 	}
 	
-	public function getFileName():String {
+	/**
+	 * Returns the name of the source file containing the execution point represented by this stack trace element.
+	 */
+	public function getFileName():String 
+	{
 		return _fileName ;
 	}
 	
-	public function getLineNumber():Number {
+	/**
+	 * Returns the line number of the source line containing the execution point represented by this stack trace element.
+	 */
+	public function getLineNumber():Number 
+	{
 		return _lineNumber ;
 	}
 	
-	public function getMethodName():String {
+	/**
+	 * Returns the name of the method containing the execution point represented by this stack trace element.
+	 */
+	public function getMethodName():String 
+	{
 		return _methodName ;
 	}
 	
-	public function getThrower() {
+	/**
+	 * Return the thrower object reference.
+	 */
+	public function getThrower() 
+	{
 		return _thrower ;
 	}
 
-	public function isNativeMethod():Boolean {
+	/**
+	 * Returns true if the method containing the execution point represented by this stack trace element is a native method.
+	 */
+	public function isNativeMethod():Boolean 
+	{
 		return _isNative ;
 	}
 	
-	// ----o Private Properties
-	
+	/**
+	 * Internal array parameters of the thrower method.
+	 */
 	private var _args:Array ;
+
+	/**
+	 * Internal file name.
+	 */
 	private var _fileName:String ;
+
+	/**
+	 * Internal line number.
+	 */
 	private var _lineNumber ;
+
+	/**
+	 * Internal value to represented is the trace is a native method.
+	 */
 	private var _isNative:Boolean ;
+
+	/**
+	 * The name of the method.
+	 */
 	private var _methodName:String ;
+
+	/**
+	 * The thrower.
+	 */
 	private var _thrower ;
 	
 }

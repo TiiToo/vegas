@@ -21,58 +21,12 @@
   
 */
 
-/** BidiMap [Interface]
-
-	AUTHOR
-
-		Name : BidiMap
-		Package : vegas.data
-		Version : 1.0.0.0
-		Date :  2006-05-18
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-
-		- clear()
-		
-		- containsKey( key ):Boolean
-		
-		- containsValue( value ):Boolean
-		
-		- get(key)
-		
-		- getKeys():Array
-		
-		- getValues():Array
-		
-		- inverseBidiMap():Map
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- keyIterator():Iterator
-		
-		- put(key, value)
-		
-		- putAll(m:Map)
-		
-		- remove(key)
-		
-		- size():Number
-		
-		- toString():String
-
-	INHERIT
-	
-		Map
-
-*/
-
 import vegas.data.Map;
 
+/**
+ * Defines a map that allows bidirectional lookup between key and values.
+ * @author eKameleon
+ */
 interface vegas.data.BidiMap extends Map 
 {
 

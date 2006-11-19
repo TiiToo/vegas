@@ -21,135 +21,147 @@
   
 */
 
-/** Factor
-
-	AUTHOR
-
-		Name : Factor
-		Package : vegas.maths
-		Version : 1.0.0.0
-		Date :  2003-05-15
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-
-		- static factorial(n)
-			Recursive method that defines the factorial of a positive integer.
-		
-		- static factorialApprox(n)
-			Uses the Gamma function to approximate factorial - very fast	
-		
-		- static fibonacci(n)
-			Calculates total fibonacci levels in 'n'.
-		
-		- static gammaApprox(n)
-			Extends the domain of the factorial function by calculating the factorial of decimal numbers
-		
-		- static inverse(n)
-			Defines the inverse of a number.
-		
-		- static ln(n)
-			Defines the logarithm with base 'a' of 'n'.
-		
-		- static logA(a,n)
-		
-		- static nRoot(a,n)
-			Defines the nth root of a number.
-		
-		- static pow(a,n)
-			Solves the negative value input bug.
-		
-		- static productFactors(n)
-			Calculates the product of factors of 'n'.
-		
-		- static square(n) 
-			Defines the square of a number.		
-		
-		- static summation(n,x)
-			Defines the sum of all the numbers between 1 and 'n' raised to the 'x' power.
-
-	THANKS
-	
-		Richard Wright : [wisolutions2002@shaw.ca]
-
-**/
-
 import vegas.errors.ValueOutOfBoundsError;
 import vegas.maths.Prime;
 
-class vegas.maths.Factor {
+/**
+ * Implements the static behaviours of the Factor Class.
+ * @author eKameleon
+ */
+class vegas.maths.Factor 
+{
 
-	// ----- Constructor
-	
-	private function Factor() {
-		//
-	}
-
-	// ----- Constant
-
+	/**
+	 * The max number of recursions.
+	 */
 	static public var maxRecursion:Number = 254 ;
 
-	// ----- Static Methods
-
-    static public function ln(n:Number):Number {
-        return Math.log(n) ;
-    }
-	
-    static public function logA(a:Number, n:Number):Number {
-        return Math.log(n) / Math.log(a) ;
-    }
-	
-	static public function summation(n:Number, x:Number):Number {
-        var sum:Number = 0 ;
-        var i:Number ;
-		for (i=1; i<=n; i++) sum += Math.pow(i, x) ;
-        return sum ;
-    }
-	
-    static public function square(n:Number):Number {
-        return n*n ;
+	/**
+	 * Recursive method that defines the factorial of a positive integer.
+	 */
+	static public function factorial(n:Number):Number 
+	{
+		if (n > maxRecursion) 
+		{
+			throw new ValueOutOfBoundsError() ;
+		}
+		if (n!=0) 
+		{
+			return n * Factor.factorial(n-1) ;
+		}
+		else 
+		{
+			return 1 ;
+		}
     }
 
-    static public function inverse(n:Number):Number {
-        return 1/n ;
-    }
-	
-	static public function pow(a:Number,n:Number):Number {
-        return a==0 ? 0 : (a>0 ? Math.pow(a,n) : Math.pow(a*-1,n)*-1) ;
-    }
-
-    static public function nRoot(a:Number,n:Number):Number {
-        return Factor.pow(a, 1/n) ;
+	/**
+	 * Uses the Gamma function to approximate factorial - very fast.
+	 */
+	static public function factorialApprox(n:Number):Number 
+	{
+        return Math.round(Factor.gammaApprox(n+1)) ;
     }
 
-	static public function factorial(n:Number):Number {
-		if (n > maxRecursion) throw new ValueOutOfBoundsError() ;
-		if (n!=0) return n * Factor.factorial(n-1) ;
-		else return (1) ;
+	/**
+	 * Calculates total fibonacci levels in 'n'.
+	 */
+	static public function fibonacci(n:Number):Number 
+	{
+        return Math.round((Math.pow((1+Math.sqrt(5))/2,n)-Math.pow((1-Math.sqrt(5))/2,n))/Math.sqrt(5));
     }
 
-	static public function gammaApprox(n:Number):Number {
+	/**
+	 * Extends the domain of the factorial function by calculating the factorial of decimal numbers.
+	 */
+	static public function gammaApprox(n:Number):Number 
+	{
         var x:Number = n-1 ;
         return Math.sqrt( (2*x+1/3) * Math.PI ) * Math.pow(x,x) * Math.exp(-x) ;
     }
 
-	static public function factorialApprox(n:Number):Number {
-        return Math.round(Factor.gammaApprox(n+1)) ;
+	/**
+	 * Defines the inverse of a number.
+	 */
+    static public function inverse(n:Number):Number 
+    {
+        return 1/n ;
     }
 	
-	static public function productFactors(n:Number):Number {
+	/**
+	 * Defines the logarithm with base 'a' of 'n'.
+	 */
+    static public function ln(n:Number):Number 
+    {
+        return Math.log(n) ;
+    }
+	
+	/**
+	 * Defines the logarithm with base 'a' of 'n'.
+	 * @param a :Number a real number for 'log base'.
+	 * @param n :Number a real number.
+	 * @return returns the logarithm with base 'a' of 'n'.
+	 */
+    static public function logA(a:Number, n:Number):Number 
+    {
+        return Math.log(n) / Math.log(a) ;
+    }
+
+	/**
+	 * Defines the nth root of a number.
+	 */
+    static public function nRoot(a:Number,n:Number):Number 
+    {
+        return Factor.pow(a, 1/n) ;
+    }
+
+	/**
+	 * Solves the negative value input bug.
+	 */
+	static public function pow(a:Number,n:Number):Number 
+	{
+        return a==0 ? 0 : (a>0 ? Math.pow(a,n) : Math.pow(a*-1,n)*-1) ;
+    }
+
+	/**
+	 * Calculates the product of factors of 'n'.
+	 */
+	static public function productFactors(n:Number):Number 
+	{
         var k:Number = 1 ;
-        var i:Number ;
-        for (i=3; i<=n; i+=2) if (Prime.isPrime(i)) k *= i ;
-        if (n>2) k *= 2;
+        for (var i:Number=3; i<=n; i+=2) 
+        {
+        	if (Prime.isPrime(i)) 
+        	{
+        		k *= i ;
+        	}
+        }
+        if (n>2) 
+        {
+        	k *= 2;
+        }
         return k;
     }
-	
-	static public function fibonacci(n:Number):Number {
-        return Math.round((Math.pow((1+Math.sqrt(5))/2,n)-Math.pow((1-Math.sqrt(5))/2,n))/Math.sqrt(5));
+
+	/**
+	 * Defines the square of a number.
+	 */
+    static public function square(n:Number):Number 
+    {
+        return n*n ;
+    }
+
+	/**
+	 * Defines the sum of all the numbers between 1 and 'n' raised to the 'x' power.
+	 */
+	static public function summation(n:Number, x:Number):Number 
+	{
+        var sum:Number = 0 ;
+		for (var i:Number = 1; i<=n; i++) 
+		{
+			sum += Math.pow(i, x) ;
+		}
+        return sum ;
     }
 	
-
 }

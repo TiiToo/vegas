@@ -21,75 +21,6 @@
   
 */
 
-/**	CircularQueue
-
-	AUTHOR
-
-		Name : CircularQueue
-		Package : vegas.data.queue
-		Version : 1.0.0.0
-		Date :  2005-10-28
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		Abstract data type (ADT) http://en.wikipedia.org/wiki/Abstract_data_type
-			Concept de programmation objet.
-			Type de données d'un objet uniquement manipulables via les
-			fonctions définies dans l'objet lui-même.
-
-		a circular bounded queue
-
-	CONSTRUCTOR
-	
-		var q:CircularQueue = new CircularQueue( qSize ) 
-
-	METHODS
-	
-		- clear()
-		
-		- clone()
-		
-		- dequeue() 
-		
-			retreive the first element in the queue object, return a boolean.
-		
-		- element()
-		
-		- enqueue(o)
-		
-			enqueue a new element in the queue if the que is not full, return a boolean
-		
-		- isEmpty()
-		
-		- isFull()
-		
-		- iterator()
-		
-			return a ProtectedIterator
-		
-		- maxSize():Number
-		
-		- peek()
-		
-		- poll()
-		
-		- size()
-		
-		- toArray()
-		
-		- toSource()
-		
-		- toString()
-
-	IMPLEMENTS
-	
-		BoundedQueue, Collection, ICloneable, IFormattable, IHashable, ISerializable, Iterable, Queue 
-	
-**/
-
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
 import vegas.core.ISerializable;
@@ -102,23 +33,34 @@ import vegas.data.queue.QueueFormat;
 import vegas.errors.UnsupportedOperation;
 import vegas.util.serialize.Serializer;
 
+/**
+ * @author eKameleon
+ */
 class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue, ICloneable, Collection, ISerializable {
 
-	// ----o Constructor
-	
-	public function CircularQueue( qSize:Number , ar:Array) {
+	/**
+	 * Creates a new CircularQueue instance.
+	 * @param qSize the max number of element in the queue
+	 * @param elaments an array with elements to enqueue in the current stack.
+	 */
+	public function CircularQueue( qSize:Number , elements:Array) {
 		_qSize = (qSize || CircularQueue.DEFAULT_SIZE) + 1 ;
 		clear() ;
-		var l:Number = ar.length ;
-		if (l > 0) for (var i:Number = 0 ; i<l ; i++) enqueue(ar[i]) ;
+		var l:Number = elements.length ;
+		if (l > 0) for (var i:Number = 0 ; i<l ; i++) 
+		{
+			enqueue(elements[i]) ;
+		}
 	}
 	
-	// ----o Static Properties
-	
+	/**
+	 * The default numbers of elements in the queue.
+	 */
 	static public var DEFAULT_SIZE:Number = Number.MAX_VALUE ;
 
-	// ----o Public Methods
-
+	/**
+	 * Clear all elements in the queue.
+	 */
 	public function clear():Void {
 		_queue = new Array(_qSize) ;
 		_count = 0 ;
@@ -126,27 +68,46 @@ class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue,
 		_front = 0 ;
 	}
 
-	public function clone() {
+	/**
+	 * Returns a shallow copy of the queue.
+	 */
+	public function clone() 
+	{
 		var s:Number = _qSize - 1 ;
 		var a:Array = toArray() ;
 		return new CircularQueue(s , a) ;
 	}
 
+	/**
+	 * Returns {@code true} if the queue contains the object passed in argument.
+	 */
 	public function contains(o):Boolean {
 		var l:Number = _queue.length ;
 		for (var i:Number = 0 ; i<l ; i++) if (_queue[i] == o) return true ;
 		return false ; 
 	}
-
-	public function dequeue():Boolean {
+	
+	/**
+	 * Retreives the first element in the queue object, return a boolean.
+	 */
+	public function dequeue():Boolean 
+	{
 		return poll() != null  ;
 	}
 
-	public function element() {
+	/**
+	 * Returns the value of the first element in the queue.
+	 */
+	public function element() 
+	{
 		return _queue[_front] ;
 	}	
 
-	public function enqueue(o):Boolean {
+	/**
+	 * Enqueue a new element in the queue if the que is not full, return a boolean.
+	 */
+	public function enqueue(o):Boolean 
+	{
 		var next:Number = _rear + 1 ;
 		if ( (next == _front) || ( ( next == _qSize) && (_front == 0) )) {
 			return false ;
@@ -158,40 +119,80 @@ class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue,
 		return true ;
 	}
 
-	public function get(id:Number) { 
-		throw new UnsupportedOperation ;
+	/**
+	 * Returns an element in the queue with the id passed in argument. This method is unsupported in a CircularQueue.
+	 * @throws UnsupportedOperation
+	 */
+	public function get(id:Number) 
+	{ 
+		throw new UnsupportedOperation(this + " 'get' method us unsupported in a CircularQueue") ;
+	}
+
+	/**
+	 * Insert an element in the queue. This method is unsupported in a CircularQueue.
+	 * @throws UnsupportedOperation
+	 */
+	public function insert(o):Boolean 
+	{
+		throw new UnsupportedOperation(this + " 'insert' method us unsupported in a CircularQueue") ;
 		return false ;
 	}
 
-	public function insert(o):Boolean {
-		throw new UnsupportedOperation ;
-		return false ;
-	}
-
-	public function isEmpty():Boolean {
+	/**
+	 * Returns {@code true} if the queue is empty.
+	 */
+	public function isEmpty():Boolean 
+	{
 		return _count == 0 ;
 	}
 
-	public function isFull():Boolean {
+	/**
+	 * Returns {@code true} if the queue is full.
+	 */
+	public function isFull():Boolean 
+	{
 		return _count == maxSize() ;
 	}
 	
-	public function iterator():Iterator {
+	/**
+	 * Returns the iterator of the queue.
+	 * @see {@code vegas.data.iterator.ProtectedIterator}
+	 */
+	public function iterator():Iterator 
+	{
 		return (new ProtectedIterator(new ArrayIterator(toArray()))) ;
 	}
 
-	public function maxSize():Number {
+	/**
+	 * Returns the max number of occurrences in the given queue.
+	 */
+	public function maxSize():Number 
+	{
 		return _qSize -1 ;
 	}
 	
-	public function peek() {
+	/**
+	 * Returns the value of the first element in the queue or {@code null} if the queue is empty.
+	 */
+	public function peek() 
+	{
 		return isEmpty() ? null : _queue[_front] ;
 	}
 	
+	/**
+	 * Returns the value of the first element in the queue and remove this value in the queue.
+	 */
 	public function poll() {
-		if (_front == _qSize) _front = 0 ; // loop back
-        if (_front == _rear) return null;  // queue is empty
-        else  {
+		if (_front == _qSize) 
+		{
+			_front = 0 ; // loop back
+		}
+        if (_front == _rear) 
+        {
+        	return null;  // queue is empty
+        }
+        else  
+        {
             _count-- ;
             var mem = _queue[_front] ;
             _queue[_front] = undefined ;
@@ -200,16 +201,29 @@ class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue,
         }
 	}	
 	
-	public function remove(o):Boolean {
-		throw new UnsupportedOperation ;
+	/**
+	 * Remove the passed argument value. This method is unsupported in a CircularQueue.
+	 * @throws UnsupportedOperation
+	 */
+	public function remove(o):Boolean 
+	{
+		throw new UnsupportedOperation(this + " 'remove' method us unsupported in a CircularQueue") ;
 		return false ;
 	}
 	
-	public function size():Number {
+	/**
+	 * Returns the number of elements in the CircularQueue.
+	 */
+	public function size():Number 
+	{
 		return _count ;
 	}
 	
-	public function toArray():Array {
+	/**
+	 * Returns the array representation of the CircularQueue.
+	 */
+	public function toArray():Array 
+	{
 		if (_count == 0) {
 			return new Array() ;
 		} else {
@@ -224,23 +238,49 @@ class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue,
 		}
 	}
 
-	public function toSource(indent:Number, indentor:String):String {
+	/**
+	 * Returns a Eden reprensation of the object.
+	 * @return a string representing the source code of the object.
+	 */
+	public function toSource(indent:Number, indentor:String):String 
+	{
 		var sourceA:String = Serializer.toSource(_qSize - 1) ;
 		var sourceB:String = Serializer.toSource(toArray()) ;
 		return Serializer.getSourceOf(this, [sourceA, sourceB]) ;
 	}
 	
-	public function toString():String {
+	/**
+	 * Returns the string representation of this instance.
+	 * @return the string representation of this instance
+	 */
+	public function toString():String 
+	{
 		return (new QueueFormat()).formatToString(this) ;
 	}
 
-	// ----o Private Properties
-
+	/**
+	 * The internal array.
+	 */
 	private var _queue:Array ;
-    private var _rear:Number ; // The array index for the next object to be stored in the queue.
-	private var _front:Number ; // The array index for the next object to be removed from the queue.
-	private var _count:Number ; // The number of objects currently stored in the queue
-    private var _qSize:Number ; // The number of objects in the array : queue size + 1
+	
+	/**
+	 * The array index for the next object to be stored in the queue.
+	 */
+    private var _rear:Number ;
+    
+    /**
+     * The array index for the next object to be removed from the queue.
+     */ 
+	private var _front:Number ;
+	
+	/**
+	 * The number of objects currently stored in the queue.
+	 */
+	private var _count:Number ;
 
+	/**
+	 * The number of objects in the array : queue size + 1
+	 */
+    private var _qSize:Number ;
 
 }

@@ -21,53 +21,35 @@
   
 */
 
-/** ErrorFormat
-
-
-	AUTHOR
-
-		Name : ErrorFormat
-		Package : vegas.errors
-		Version : 1.0.0.0
-		Date : 2006-01-22
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- formatToString(o):String
-
-	INHERIT
-	
-		CoreObject → ErrorFormat
-
-	IMPLEMENT
-	
-		IFormat, IFormattable, IHashable
-	
-**/
-
 import vegas.core.CoreObject;
 import vegas.core.IFormat;
-import vegas.errors.AbstractError;
-import vegas.util.ConstructorUtil;
 
-class vegas.errors.ErrorFormat extends CoreObject implements IFormat {
+/**
+ * @author eKameleon
+ */
+class vegas.errors.ErrorFormat extends CoreObject implements IFormat 
+{
     
-	// ----o Constructor
-	
-	public function ErrorFormat() {
+	/**
+	 * Create a new ErrorFormat instance.
+	 */
+	public function ErrorFormat() 
+	{
 		//
 	}
 	
-	// ----o Public Method
-	
-	public function formatToString(o):String {
-		o = AbstractError(o) ;
-		var txt:String = "[" + ConstructorUtil.getName(o) + "]" ;
-		var msg = o.getMessage() ;
-		if (msg && msg.length > 0) txt += " " + msg ;
+	/**
+	 * Converts the object to a custom string representation.
+	 */	
+	public function formatToString(o):String 
+	{
+		var e:Error = Error(o) ;
+		var txt:String = "[" + e.name + "]" ;
+		var msg = e.message ;
+		if (msg && msg.length > 0)
+		{
+			txt += " " + msg ;
+		}
 		return txt ;
 	}
 	

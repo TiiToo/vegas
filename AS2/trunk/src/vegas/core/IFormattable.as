@@ -29,7 +29,8 @@ interface vegas.core.IFormattable
 {
 	
 	/**
-	 * Returns a string representation of the object.
+	 * Returns the string representation of this instance.
+	 * @return the string representation of this instance
 	 */
 	function toString():String ;
 	

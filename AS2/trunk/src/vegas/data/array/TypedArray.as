@@ -182,6 +182,7 @@ import vegas.util.TypeUtil;
 
 	/**
 	 * Returns a Eden reprensation of the object.
+	 * @return a string representing the source code of the object.
 	 */
 	public function toSource(indent:Number, indentor:String):String 
 	{
