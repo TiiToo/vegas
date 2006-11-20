@@ -29,7 +29,7 @@ interface vegas.data.iterator.Iterator
 {
 
 	/**
-	 * Returns true if the iteration has more elements.
+	 * Returns {@code true} if the iteration has more elements.
 	 */	
 	function hasNext():Boolean ;
 

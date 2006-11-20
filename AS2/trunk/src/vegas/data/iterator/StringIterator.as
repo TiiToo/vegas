@@ -21,87 +21,89 @@
   
 */
 
-/**	StringIterator
-
-	AUTHOR
-	
-		Name : StringIterator
-		Package : vegas.data.iterator
-		Version : 1.0.0.0
-		Date :  2005-11-04
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- hasNext()
-		
-		- key()
-		
-		- next()
-		
-		- reset()
-		
-		- seek(n:Number) : n between 0 and the size of the string object
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → StringIterator
-
-	IMPLEMENTS
-	
-		IFormattable, IHashable, Iterator
-
-**/
-
 import vegas.core.CoreObject;
 import vegas.data.iterator.Iterator;
 import vegas.errors.UnsupportedOperation;
 import vegas.util.MathsUtil;
 
-class vegas.data.iterator.StringIterator extends CoreObject implements Iterator {
+/**
+ * Converts a string to an iterator.
+ * @author eKameleon
+ */
+class vegas.data.iterator.StringIterator extends CoreObject implements Iterator 
+{
 
-	// ----o Construtor
-	
-	public function StringIterator(s:String) {
+	/**
+	 * Creates a new StringIterator instance.
+	 */
+	public function StringIterator(s:String) 
+	{
 		_s = new String(s) ;
 		_k = -1 ;
 		_size = s.length ;
 	}
 
-	// ----o Public Methods
-	
-	public function hasNext():Boolean {
+	/**
+	 * Returns {@code true} if the iteration has more elements.
+	 */	
+	public function hasNext():Boolean 
+	{
 		return _k < _size-1  ;
 	}
 
-	public function key() {
+	/**
+	 * Returns the current key of the internal pointer of the iterator (optional operation).
+	 */
+	public function key() 
+	{
 		return _k ;
 	}
 
-	public function next() {
+	/**
+	 * Returns the next element in the iteration.
+	 */
+	public function next() 
+	{
 		return _s.charAt( ++_k );
 	}
-	
-	public function remove() {
-		throw new UnsupportedOperation ;
+
+	/**
+	 * Removes from the underlying collection the last element returned by the iterator (optional operation).
+	 */
+	public function remove() 
+	{
+		throw new UnsupportedOperation(this + " 'remove' method in unsupported.") ;
 	}
-	
-	public function reset():Void {
+
+	/**
+	 * Reset the internal pointer of the iterator (optional operation).
+	 */
+	public function reset():Void 
+	{
 		_k = -1 ;
 	}
-	
-	public function seek(n:Number):Void {
+
+	/**
+	 * Change the position of the internal pointer of the iterator (optional operation).
+	 */
+	public function seek(n:Number):Void 
+	{
 		_k = MathsUtil.clamp (n-1, -1, _size-1) ;
 	}
 	
-	// ----o Private Properties
-	
-	private var _s:String ;
+	/**
+	 * The internal key.
+	 */
 	private var _k:Number ;
+
+	/**
+	 * The internal string instance.
+	 */
+	private var _s:String ;
+	
+	/**
+	 * The internal size.
+	 */
 	private var _size:Number ;
 	
 }

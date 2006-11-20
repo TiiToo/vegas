@@ -21,28 +21,18 @@
   
 */
 
-/** Iterable [Interface]
-
-	AUTHOR
-
-		Name : Iterable
-		Package : vegas.data.iterator
-		Version : 1.0.0.0
-		Date :  2005-10-31
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-		
-	METHOD SUMMARY
-	
-		- iterator():Iterator
-
-**/
-
 import vegas.data.iterator.Iterator;
 
+/**
+ * Implementing this interface allows an object to be iterable.
+ * @author eKameleon
+ */
 interface vegas.data.iterator.Iterable {
 	
+	/**
+	 * Returns an iterator.
+	 * @return an Iterator.
+	 */
 	function iterator():Iterator ;
 	
 }

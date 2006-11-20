@@ -21,46 +21,35 @@
   
 */
 
-/**	MultiMap [Interface]
-
-	AUTHOR
-
-		Name : MultiMap
-		Package : vegas.data
-		Version : 1.0.0.0
-		Date :  2005-05-26
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHODS
-	
-		- putCollection(key, c:Collection)
-		
-		- totalSize():Number
-		
-		- values():Collection
-		
-		- valueIterator():Iterator
-	
-	INHERITS
-	
-		Map
-
-**/
-
 import vegas.data.Collection;
 import vegas.data.iterator.Iterator;
 import vegas.data.Map;
 
-interface vegas.data.MultiMap extends Map {
+/**
+ * Maps multiple values to keys.
+ * @author eKameleon
+ */
+interface vegas.data.MultiMap extends Map 
+{
 
+	/**
+	 * Adds the specified collection to the set of values associated with the specified key in this map (optional operation).
+	 */
 	function putCollection(key, c:Collection):Void ;
 
+	/**
+	 * Returns the total count of elements in all the collection in the MultiMap.
+	 */
 	function totalSize():Number ;
 	
+	/**
+	 * Returns a collection of all values associated with all the keys in this map.
+	 */
 	function values():Collection ;
 	
+	/**
+	 * Returns an iterator fo all the values in the map.
+	 */
 	function valueIterator():Iterator ;
 	
 }

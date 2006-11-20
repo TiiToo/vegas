@@ -21,100 +21,90 @@
   
 */
 
-/**	ArrayIterator
-
-	AUTHOR
-	
-		Name : ArrayIterator
-		Package : vegas.data.iterator
-		Version : 1.0.0.0
-		Date :  2005-04-24
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var it:ArrayIterator = new ArrayIterator(ar:Array) ;
-
-	METHOD SUMMARY
-	
-		- hashCode():Number
-		
-		- hasNext():Boolean
-		
-		- key()
-		
-		- next()
-		
-		- reset():Void
-		
-		- remove()
-		
-		- seek(n:Number)
-		
-		- toSource(...arguments:Array):String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → ArrayIterator
-
-	IMPLEMENTS
-	
-		Iterator, IFormattable, IHashable
-
-**/
-
 import vegas.core.CoreObject;
 import vegas.data.iterator.Iterator;
 import vegas.util.MathsUtil;
 import vegas.util.serialize.Serializer;
 
-class vegas.data.iterator.ArrayIterator extends CoreObject implements Iterator {
+/**
+ * Converts an array to an iterator.
+ * @author eKameleon
+ */
+class vegas.data.iterator.ArrayIterator extends CoreObject implements Iterator 
+{
 
-	// ----o Construtor
-	
+	/**
+	 * Creates a new ArrayIterator instance.
+	 * @param a the array to enumerate with the iterator.
+	 */
 	public function ArrayIterator(a:Array) {
 		_a = a ;
 		_k = -1 ;
 	}
 	
-	// ----o Public Methods	
-
-	public function hasNext():Boolean {
-		return (_k < _a.length - 1);
+	/**
+	 * Returns {@code true} if the iteration has more elements.
+	 */	
+	public function hasNext():Boolean 
+	{
+		return _k < (_a.length - 1);
 	}
 
-	public function key() {
+	/**
+	 * Returns the current key of the internal pointer of the iterator (optional operation).
+	 */
+	public function key() 
+	{
 		return _k ;
 	}
-	
-	public function next() {
+
+	/**
+	 * Returns the next element in the iteration.
+	 */
+	public function next() 
+	{
 		return _a[++_k] ;
 	}
-
-	public function remove() {
+	
+	/**
+	 * Removes from the underlying collection the last element returned by the iterator (optional operation).
+	 */
+	public function remove() 
+	{
 		return _a.splice(_k--, 1);
 	}
-	
+
+	/**
+	 * Reset the internal pointer of the iterator (optional operation).
+	 */
 	public function reset():Void {
 		_k = -1 ;
 	}
-			
+
+	/**
+	 * Change the position of the internal pointer of the iterator (optional operation).
+	 */		
 	public function seek(n:Number):Void {
 		_k = MathsUtil.clamp ((n-1), -1, _a.length) ;
 	}
-	
+
+	/**
+	 * Returns a Eden reprensation of the object.
+	 * @return a string representing the source code of the object.
+	 */
     /*override*/ public function toSource():String 
     {
     	return "new vegas.data.iterator.ArrayIterator(" + Serializer.toSource(_a) + ")" ;
     }
 			
-	// -----o Private Properties
+	/**
+	 * Current internal array.
+	 */
+	private var _a:Array ;
 	
-	private var _a:Array ; // current array
-	private var _k:Number ; // current key
+	/**
+	 * Current internal key pointer.
+	 */
+	private var _k:Number ;
 
 }

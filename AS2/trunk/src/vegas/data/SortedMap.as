@@ -21,44 +21,44 @@
   
 */
 
-/**	SortedMap [Interface]
-
-	AUTHOR
-
-		Name : SortedMap
-		Package : vegas.data.map
-		Version : 1.0.0.0
-		Date :  2005-11-13
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	  
-		- comparator():IComparator
-		- firstKey()
-		- heapMap(toKey):SortedMap
-		- lastKey()
-		- subMap(fromKey, toKey):SortedMap
-		- tailMap(fromKey):SortedMap
-
-*/
-
 import vegas.core.IComparator;
 import vegas.data.Map;
 
-interface vegas.data.SortedMap extends Map {
+/**
+ * Map that further guarantees that it will be in ascending key order, sorted according to the natural ordering of its keys.
+ * @author eKameleon
+ */
+interface vegas.data.SortedMap extends Map 
+{
 
+	/**
+	 * Returns the comparator associated with this sorted map, or null if it uses its keys' natural ordering.
+	 */
 	function comparator():IComparator ;
 	
+	/**
+	 * Returns the first (lowest) key currently in this sorted map.
+	 */
 	function firstKey() ;
 	
+	/**
+	 * Returns a view of the portion of this sorted map whose keys are strictly less than toKey.
+	 */
 	function heapMap(toKey):SortedMap ;
 	
+	/**
+	 * Returns the last (highest) key currently in this sorted map.
+	 */
 	function lastKey() ;
 	
+	/**
+	 * Returns a view of the portion of this sorted map whose keys range from fromKey, inclusive, to toKey, exclusive.
+	 */
 	function subMap(fromKey, toKey):SortedMap ;
 	
+	/**
+	 * Returns a view of the portion of this sorted map whose keys are greater than or equal to fromKey.
+	 */
 	function tailMap(fromKey):SortedMap ;
 	
 }

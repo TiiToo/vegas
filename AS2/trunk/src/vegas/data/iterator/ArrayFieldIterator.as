@@ -21,66 +21,34 @@
   
 */
 
-/**	ArrayFieldIterator
-
-	AUTHOR
-
-		Name : ArrayFieldIterator
-		Package : vegas.data.iterator
-		Version : 1.0.0.0
-		Date :  2005-10-27
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var it:ArrayFieldIterator = new ArrayFieldIterator(ar:Array, fieldName:String) ;
-
-	METHOD SUMMARY
-	
-		- hasNext():Boolean
-		
-		- key()
-		
-		- next()
-		
-		- reset():Void
-		
-		- remove()
-		
-		- seek(n:Number)
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → ArrayIterator → ArrayFieldIterator
-
-	IMPLEMENTS
-	
-		Iterator, IFormattable, IHashable
-
-**/
-
 import vegas.data.iterator.ArrayIterator;
 
-class vegas.data.iterator.ArrayFieldIterator extends ArrayIterator {
+/**
+ * Converts an array to an iterator but this iterator return the value of a specific field if the array is an array of objects.
+ * @author eKameleon
+ */
+class vegas.data.iterator.ArrayFieldIterator extends ArrayIterator 
+{
 
-	// ----o Construtor
-	
-	public function ArrayFieldIterator(p_a:Array, p_fieldName:String) {
+	/**
+	 * Creates a new ArrayFieldIterator instance.
+	 */
+	public function ArrayFieldIterator(p_a:Array, p_fieldName:String) 
+	{
 		super(p_a) ;
 		fieldName = p_fieldName ;
 	}
 	
-	// ----o Public Properties
-	
+	/**
+	 * The field used in the next method to return the next value in the array.
+	 */	
 	public var fieldName:String ;
 	
-	// ----o Public Methods	
-
-	public function next() {
+	/**
+	 * Returns the next field element in the iteration.
+	 */
+	public function next() 
+	{
 		var o = _a[++_k] ;
 		return (fieldName) ? o[fieldName] : o ;
 	}
