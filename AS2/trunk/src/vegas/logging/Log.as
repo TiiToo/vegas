@@ -28,8 +28,6 @@ import vegas.logging.ITarget;
 import vegas.logging.LogLogger;
 import vegas.util.StringUtil;
 
-// TODO : use a HashMap to register LogLogger instance for a specific category.
-
 /**
  * Provides psuedo-hierarchical logging capabilities with multiple format and output options.
  * @author eKameleon

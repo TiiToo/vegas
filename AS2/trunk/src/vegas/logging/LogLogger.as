@@ -21,60 +21,6 @@
   
 */
 
-/** LogLogger
-
-	AUTHOR
-	
-		Name : LogLogger
-		Package : vegas.logging
-		Version : 1.0.0.0
-		Date :  2005-12-10
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-	
-		- isQueue:Boolean
-
-	METHOD SUMMARY
-	
-		- debug(context, ...rest):Void
-		
-			Logs the specified data using the LogEventLevel.DEBUG level.
-		
-		- error(context, ...rest):Void
-		
-			Logs the specified data using the LogEventLevel.ERROR level.
-		
-		- fatal(context, ...rest):Void
-		
-			Logs the specified data using the LogEventLevel.FATAL level.
-		
-		- info(context, ...rest):Void
-		
-			Logs the specified data using the LogEvent.INFO level.
-		
-		- log(level:Number, context ...rest):Void
-		
-			Logs the specified data at the given level.
-		
-		- warn(context, ...rest):Void
-		
-			Logs the specified data using the LogEventLevel.WARN level.
-
-	INHERIT
-	
-		CoreObject → EventDispatcher → LogLogger
-
-	IMPLEMENTS
-	
-		 EventTarget, IEventDispatcher, IFormattable, IHashable, ILogger
-
-	CHANGE : [2006-01-20 message:String -> o
-
-**/	
-
 import vegas.events.EventDispatcher;
 import vegas.logging.ILogger;
 import vegas.logging.Log;
@@ -110,6 +56,8 @@ class vegas.logging.LogLogger extends EventDispatcher implements ILogger
 	
 	/**
 	 * Logs the specified data using the LogEventLevel.DEBUG level.
+	 * @param context The information to log. This string can contain special marker characters of the form {x}, where x is a zero based index that will be replaced with the additional parameters found at that index if specified.
+ 	 * @param ... Additional parameters that can be subsituted in the str parameter at each "{x}" location, where x is an integer (zero based) index value into the Array of values specified.
 	 */
 	public function debug(context):Void 
 	{
@@ -117,7 +65,9 @@ class vegas.logging.LogLogger extends EventDispatcher implements ILogger
 	}
 	
 	/**
-	 * Logs the specified data using the LogEventLevel.ERROR  level.
+	 * Logs the specified data using the LogEventLevel.ERROR level.
+	 * @param context The information to log. This string can contain special marker characters of the form {x}, where x is a zero based index that will be replaced with the additional parameters found at that index if specified.
+ 	 * @param ... Additional parameters that can be subsituted in the str parameter at each "{x}" location, where x is an integer (zero based) index value into the Array of values specified.
 	 */
 	public function error(context):Void 
 	{
@@ -126,7 +76,9 @@ class vegas.logging.LogLogger extends EventDispatcher implements ILogger
 	
 	/**
 	 * Logs the specified data using the LogEventLevel.FATAL level.
-	 */
+	 * @param context The information to log. This string can contain special marker characters of the form {x}, where x is a zero based index that will be replaced with the additional parameters found at that index if specified.
+ 	 * @param ... Additional parameters that can be subsituted in the str parameter at each "{x}" location, where x is an integer (zero based) index value into the Array of values specified.	 
+ 	 */
 	public function fatal(context):Void 
 	{
 		log.apply(this, [LogEventLevel.FATAL].concat(arguments)) ;
@@ -134,6 +86,8 @@ class vegas.logging.LogLogger extends EventDispatcher implements ILogger
 	
 	/**
 	 * Logs the specified data using the LogEvent.INFO level.
+ 	 * @param context The information to log. This string can contain special marker characters of the form {x}, where x is a zero based index that will be replaced with the additional parameters found at that index if specified.
+ 	 * @param ... Additional parameters that can be subsituted in the str parameter at each "{x}" location, where x is an integer (zero based) index value into the Array of values specified.
 	 */
 	public function info(context):Void 
 	{
@@ -142,7 +96,16 @@ class vegas.logging.LogLogger extends EventDispatcher implements ILogger
 	
 	/**
 	 * Logs the specified data at the given level.
-	 */
+ 	 * @param level The level this information should be logged at. Valid values are:<p>
+	 * <li>LogEventLevel.FATAL designates events that are very harmful and will eventually lead to application failure</li>
+	 * <li>LogEventLevel.ERROR designates error events that might still allow the application to continue running.</li>
+	 * <li>LogEventLevel.WARN designates events that could be harmful to the application operation</li>
+	 * <li>LogEventLevel.INFO designates informational messages that highlight the progress of the application at coarse-grained level.</li>
+	 * <li>LogEventLevel.DEBUG designates informational level messages that are fine grained and most helpful when debugging an application.</li>
+	 * <li>LogEventLevel.ALL intended to force a target to process all messages.</li></p>
+	 * @param context The information to log. This string can contain special marker characters of the form {x}, where x is a zero based index that will be replaced with the additional parameters found at that index if specified.
+  	 * @param ... Additional parameters that can be subsituted in the str parameter at each "{x}" location, where x is an integer (zero based) index value into the Array of values specified.
+ 	 */
 	public function log(level:Number, context):Void 
 	{
 		var message:String ;
@@ -158,6 +121,9 @@ class vegas.logging.LogLogger extends EventDispatcher implements ILogger
 	
 	/**
 	 * Logs the specified data using the LogEventLevel.WARN level.
+ 	 * @param context The information to log. This string can contain special marker characters of the form {x}, where x is a zero based index that will be replaced with the additional parameters found at that index if specified.
+ 	 * 
+ 	 * @param ... Additional parameters that can be subsituted in the str parameter at each "{x}" location, where x is an integer (zero based) index value into the Array of values specified.
 	 */
 	public function warn(context):Void 
 	{
