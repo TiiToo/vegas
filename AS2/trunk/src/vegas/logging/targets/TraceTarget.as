@@ -58,12 +58,13 @@ class vegas.logging.targets.TraceTarget extends LineFormattedTarget
 	/**
 	 * The current line number.
 	 */
-	static private var __lineNumber:Number = 1 ;
+	private var __lineNumber:Number = 1 ;
 	
 	/**
 	 * This method format the passed Date in arguments.
 	 */
-	private function _formatDate(d:Date):String {
+	private function _formatDate(d:Date):String 
+	{
 		var date:String = "" ;
 		date += _getDigit(d.getDate()) ;
 		date += "/" + _getDigit(d.getMonth() + 1) ;
@@ -74,14 +75,16 @@ class vegas.logging.targets.TraceTarget extends LineFormattedTarget
 	/**
 	 * This method format the passed level in arguments.
 	 */
-	private function _formatLevel(level:String):String {
+	private function _formatLevel(level:String):String 
+	{
 		return '[' + level + ']' ;
 	}	
 
 	/**
 	 * This method format the current line value.
 	 */
-	private function _formatLines():String {
+	private function _formatLines():String 
+	{
 		return "[" + __lineNumber++ + "]" ; 
 	}	
 	

@@ -62,6 +62,10 @@ class vegas.logging.targets.SOSType
 	 * Provides the 'error' color in the SOS console. 
 	 */
 	static public var ERROR_COLOR:Number = 0xEDCC81 ;
+
+	/**
+	 * Provides the message to send in the SOS console to exit the console. 
+	 */
 	static public var EXIT:String = "!SOS<exit/>" ;
 	
 	/**

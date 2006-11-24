@@ -24,6 +24,7 @@
 import vegas.logging.LogEvent;
 import vegas.logging.targets.TraceTarget;
 import vegas.maths.Range;
+import vegas.util.TypeUtil;
 
 /**
  * Provides a logger target that uses the FlashInspector console to output log messages. 
@@ -70,16 +71,16 @@ class vegas.logging.targets.LuminicTarget extends TraceTarget
 	/*override*/ public function formatLogEvent(ev:LogEvent):Object 
 	{
 		
-		var context:Object = 
-		{
-			loggerId     : null ,
-			levelName    : ev.level.toString() ,
-			time : new Date()
-		};
+		var category:String = ev.getTarget().category ;
+		var level:String = ev.level.toString() ;
+		var msg = ev.context ;
+		var time:Date = new Date(ev.getTimeStamp()) ; 
 		
-		if (isCollapse) 
+		var context:Object = { loggerId:null , levelName:level , time:time };
+		
+		if ( !TypeUtil.typesMatch( msg, String ) && isCollapse ) 
 		{
-			context.argument = _serializeObj( ev.context , 1) ;
+			context.argument = _serializeObj( msg , 1) ;	
 		}
 		else 
 		{
@@ -87,9 +88,9 @@ class vegas.logging.targets.LuminicTarget extends TraceTarget
 			data.type = "string" ;
 			data.value = _formatMessage
 			(
-				ev.context.toString() , 
-				ev.level.toString(), 
-				ev.getTarget().category, 
+				msg.toString() , 
+				level, 
+				category, 
 				context.time
 			) ;
 			context.argument = data ;
@@ -101,14 +102,16 @@ class vegas.logging.targets.LuminicTarget extends TraceTarget
 	/**
 	 * Returns the max depth to collaspe the structure of an object in the console.
 	 */
-	public function getMaxDepth():Number {
+	public function getMaxDepth():Number 
+	{
 		return _maxDepth ;
 	}
 	
 	/**
 	 * This method handles a LogEvent from an associated logger.
 	 */
-	/*override*/ public function logEvent(e:LogEvent) {
+	/*override*/ public function logEvent(e:LogEvent) 
+	{
 		_lc.send( "_luminicbox_log_console", "log", formatLogEvent(e)) ;
 	}
 
