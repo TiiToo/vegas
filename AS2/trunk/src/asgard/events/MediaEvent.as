@@ -21,180 +21,99 @@
   
 */
 
-/**	MediaEvent
-
-	AUTHOR
-
-		Name : MediaEvent
-		Package : asgard.events
-		Version : 1.0.0.0
-		Date :  2006-06-20
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- cancel():Void
-		
-		- clone():LoaderEvent
-		
-		- getBubbles():Boolean
-		
-		- getBytesLoaded():Number
-		
-		- getBytesTotal():Number
-		
-		- getContext()
-		
-		- getCurrentTarget()
-		
-		- getData()
-		
-		- getDuration():Numbe
-		
-		- getEventPhase():Number
-		
-		- getLoader():IMediaLoader
-		
-		- getName():String
-		
-		- getPercent():Number
-		
-		- getPosition():Number
-		
-		- getTarget()
-		
-		- getTimeStamp():Number
-		
-		- getType():String
-		
-		-  getVolume():Number
-		
-		- hashCode():Number
-		
-		- initEvent(type:String, bubbles:Boolean, cancelable:Boolean)
-		
-		- isCancelled():Boolean
-		
-		- isQueued():Boolean
-		
-		- queueEvent():Void
-		
-		- setBubbles(b:Boolean):Void
-		
-		- setContext(context):Void
-		
-		- setCurrentTarget(target):Void
-		
-		- setEventPhase(n:Number):Void
-		
-		- setTarget(target):Void
-		
-		- setType(type:String):Void
-		
-		- stopImmediatePropagation():Void
-		
-		- toSource(indent : Number, indentor : String):String
-		
-		- toString():String
-
-	EVENT SUMMARY
-
-		- LoaderEventType.COMPLETE:String = "onLoadComplete"
-		
-		- LoaderEventType.IO_ERROR:String = "onLoadError"
-		
-		- LoaderEventType.FINISH:String = "onLoadFinished"
-		
-		- LoaderEventType.INIT:String = "onLoadInit"
-		
-		- LoaderEventType.PROGRESS:String = "onLoadProgress"
-		
-		- LoaderEventType.START:String = "onLoadStarted"
-		
-		- LoaderEventType.STOP:String = "onLoadStopped"
-		
-		- LoaderEventType.TIMEOUT:String = "onTimeOut"
-		
-		- LoaderEventType.RELEASE:String = "onRelease"
-
-		- MediaEventType.MEDIA_FINISH:String
-		
-		- MediaEventType.MEDIA_PROGRESS:String
-		
-		- MediaEventType.MEDIA_RESUME:String
-		
-		- MediaEventType.MEDIA_START:String
-		
-		- MediaEventType.MEDIA_STOP:String
-		
-	INHERIT
-	
-		CoreObject → BasicEvent → DynamicEvent → LoaderEvent → MediaEvent
-		
-	IMPLEMENTS
-	
-		Event, IFormattable, IHashable, ISerializable
-
-**/
-
 import asgard.events.LoaderEvent;
 import asgard.media.IMediaLoader;
 
+/**
+ * The MediaEvent class.
+ * @author eKameleon
+ * @version 1.0.0.0
+ */
 class asgard.events.MediaEvent extends LoaderEvent 
 {
 
-	// ----o Constructor
-	
+	/**
+	 * Creates a new MediaEvent instance.
+	 */
 	public function MediaEvent(type:String, loader:IMediaLoader, p_code:Number, p_error:String, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
 	{
 		super(type, loader, p_code, p_error, context, bubbles, eventPhase, time, stop) ;
 	}
 	
-	// ----o Constants
-
+	/**
+	 * The name of the MediaEvent when the media is cleared.
+	 */
 	static public var MEDIA_CLEAR:String = "onMediaClear" ;
 
+	/**
+	 * The name of the MediaEvent when the media is finished.
+	 */
 	static public var MEDIA_FINISH:String = "onMediaFinished" ;
-	
+
+	/**
+	 * The name of the MediaEvent when the media progress.
+	 */
 	static public var MEDIA_PROGRESS:String = "onMediaProgress" ;
 	
+	/**
+	 * The name of the MediaEvent when the media is resumed.
+	 */
 	static public var MEDIA_RESUME:String = "onMediaResumed" ;
-	
+
+	/**
+	 * The name of the MediaEvent when the media is started.
+	 */
 	static public var MEDIA_START:String = "onMediaStarted" ;
 	
+	/**
+	 * The name of the MediaEvent when the media is stopped.
+	 */
 	static public var MEDIA_STOP:String = "onMediaStopped" ;
 
-	// ----o Public Methods
-
+	/**
+	 * Returns a shallow copy of this object.
+	 * @return a shallow copy of this object.
+	 */
 	public function clone() 
 	{
 		return new MediaEvent(getType(), getTarget()) ;
 	}
 
+	/**
+	 * Returns the duration of the media.
+	 */
 	public function getDuration():Number 
 	{
 		return getLoader().getDuration() ;	
 	}
 
+	/**
+	 * Returns the load of the media.
+	 */
 	public function getLoader():IMediaLoader 
 	{
 		return _oLoader ;
 	}
 
+	/**
+	 * Returns the position of the media.
+	 */
 	public function getPosition():Number 
 	{
 		return getLoader().getPosition() ;	
 	}
 	
+	/**
+	 * Returns the volume of the media.
+	 */
 	public function getVolume():Number 
 	{
 		return getLoader().getVolume() ;	
 	}
 
-	// ----o Private Properties
-	
+	/**
+	 * Internal IMediaLoader reference.
+	 */	
 	private var _oLoader:IMediaLoader ;
 
 }

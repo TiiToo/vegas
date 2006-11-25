@@ -21,73 +21,65 @@
   
 */
 
-/** AbstractController
-
-	AUTHOR
-
-		Name : AbstractController
-		Package : vegas.util.mvc
-		Version : 1.0.0.0
-		Date :  2006-02-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-
-		- getModel():IModel
-		
-		- getView():IView
-		
-		- setModel(oModel:IModel):Void
-		
-		- setView(oView:IView):Void
-		
-	INHERIT
-	
-		CoreObject → AbstractController
-
-	IMPLEMENTS 
-	
-		IController, IFormattable, IHashable, ISerializable
-
-**/
-
 import vegas.core.CoreObject;
 import vegas.util.mvc.IController;
 import vegas.util.mvc.IModel;
 import vegas.util.mvc.IView;
 
-class vegas.util.mvc.AbstractController extends CoreObject implements IController {
+/**
+ * Abstract class to creates IController implementations.
+ * @author eKameleon
+ */
+class vegas.util.mvc.AbstractController extends CoreObject implements IController 
+{
 
-	// ----o Constructeur
-	
+	/**
+	 * Abstract contructor, creates an IController instance.
+	 */
 	private function AbstractController() {
 		
 	}
 	
-	// ----o Public Methods
-	
-	public function getModel():IModel {
+	/**
+	 * Returns the model of this controller.
+	 */
+	public function getModel():IModel 
+	{
 		return _oModel ;
 	}
 	
-	public function getView():IView {
+	/**
+	 * Returns the view of this controller.
+	 */
+	public function getView():IView 
+	{
 		return _oView ;
 	}
 	
-	public function setModel(oModel:IModel):Void {
+	/**
+	 * Sets the model of this controller. 
+	 */
+	public function setModel(oModel:IModel):Void 
+	{
 		_oModel = oModel ;
 	}
 	
-	public function setView(oView:IView):Void {
+	/**
+	 * Sets the view of this controller.
+	 */
+	public function setView(oView:IView):Void 
+	{
 		_oView = oView ;
 	}
 
-	// ----o Private Properties
-	
+	/**
+	 * Internal view reference.
+	 */
 	private var _oView:IView ;
-	private var _oModel:IModel ;
 	
+	/**
+	 * Internal model reference.
+	 */
+	private var _oModel:IModel ;
 	
 }

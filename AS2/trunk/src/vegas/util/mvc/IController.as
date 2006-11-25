@@ -21,41 +21,34 @@
   
 */
 
-/** IController [Interface]
-
-	AUTHOR
-
-		Name : IController
-		Package : vegas.util.mvc
-		Version : 1.0.0.0
-		Date :  2006-02-02
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- getModel():IModel
-		
-		- getView():IView
-		
-		- setModel(oModel:IModel):Void
-		
-		- setView(oView:IView):Void
-	
-**/
-
 import vegas.util.mvc.IModel;
 import vegas.util.mvc.IView;
 
-interface vegas.util.mvc.IController {
-	
+/**
+ * Defines the representation of a controller in a specific type of the MVC implementation.
+ * @author eKameleon
+ */
+interface vegas.util.mvc.IController 
+{
+
+	/**
+	 * Returns the model of this controller.
+	 */
 	function getModel():IModel ;
-	
+
+	/**
+	 * Returns the view of this controller.
+	 */
 	function getView():IView ;
-	
+
+	/**
+	 * Sets the model of this controller. 
+	 */
 	function setModel(oModel:IModel):Void ;
-	
+
+	/**
+	 * Sets the view of this controller.
+	 */
 	function setView(oView:IView):Void ;
 	
 }

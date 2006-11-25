@@ -21,70 +21,53 @@
   
 */
 
-/** AbstractModel
-
-	AUTHOR
-
-		Name : AbstractModel
-		Package : vegas.util.mvc
-		Version : 1.0.0.0
-		Date :  2005-11-26
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- addView(listener:EventListener):Void
-		
-		- clone()
-		
-		- notifyChanged(ev:ModelChangedEvent):Void
-		
-		- removeView(listener:EventListener):Void
-
-	IMPLEMENTS 
-	
-		ICloneable, IEventTarget, IEventDispatcher, IFormattable, IHashable, IModel
-
-	INHERIT
-	
-		CoreObject → AbstractCoreEventDispatcher → AbstractModel
-
-*/
-
 import vegas.events.AbstractCoreEventDispatcher;
 import vegas.events.ModelChangedEvent;
 import vegas.util.mvc.IModel;
 import vegas.util.mvc.IView;
 
+/**
+ * Abstract class to creates IModel implementations.
+ * @author eKameleon
+ */
 class vegas.util.mvc.AbstractModel extends AbstractCoreEventDispatcher implements IModel 
 {
 
-	// ----o Constructeur
-	
+	/**
+	 * Abstract contructor, creates an IModel instance.
+	 */
 	private function AbstractModel() 
 	{
 		//
 	}
 	
-	// ----o Public Methods
-	
+	/**
+	 * Adds a view in the model.
+	 */
 	public function addView(view:IView):Void 
 	{
 		addGlobalEventListener(view) ;
 	}
-	
+
+	/**
+	 * Returns a shallow copy of this object.
+	 */	
 	public function clone() 
 	{
 		//
 	}
 	
+	/**
+	 * Notify a ModelChangedEvent to the views.
+	 */
 	public function notifyChanged(ev:ModelChangedEvent):Void 
 	{
 		dispatchEvent(ev) ;
 	}
 	
+	/**
+	 * Removes a view in the model.
+	 */
 	public function removeView(view:IView):Void 
 	{
 		removeGlobalEventListener(view) ;

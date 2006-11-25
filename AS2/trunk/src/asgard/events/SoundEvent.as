@@ -1,4 +1,4 @@
-﻿/*
+/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -21,44 +21,43 @@
   
 */
 
+import vegas.events.BasicEvent;
+
 /**
- * AS3 API flash.events.EventPhase compatibility
+ * The SoundEvent class.
  * @author eKameleon
  */
-class vegas.events.EventPhase 
+class asgard.events.SoundEvent extends BasicEvent 
 {
 
 	/**
-	 * The target phase(2).
-	 */
-	static public var AT_TARGET:Number = 2 ;
+	 * Creates a new SoundEvent instance.
+	 */	
+	public function SoundEvent(type : String, sound:Sound) 
+	{
+		super(type);
+		_sound = sound ;
+	}
 	
 	/**
-	 * The bubbling phase(3).
+	 * Returns the sound reference.
 	 */
-	static public var BUBBLING_PHASE:Number = 3 ;
+	public function getSound():Sound
+	{
+		return _sound ;	
+	}
 	
 	/**
-	 * The capturing phase(1).
+	 * Sets the sound reference.
 	 */
-	static public var CAPTURING_PHASE:Number = 1 ;
+	public function setSound( s:Sound ):Void
+	{
+		_sound = s ;	
+	}
 	
 	/**
-	 * The default phase(0)
+	 * Internal Sound reference.
 	 */
-	static public var NONE:Number = 0 ;
-	
-	/**
-	 * Stop the phase(4). Use only by the Event and EventDispatcher class.
-	 */
-	static public var STOP:Number = 8 ;
-	
-	/**
-	 * Stop the phase immediately (4). Use only by the Event and EventDispatcher class.
-	 */
-	static public var STOP_IMMEDIATE:Number = 10 ;
-	
-	static private var __ASPF__ = _global.ASSetPropFlags(EventPhase, null , 7, 7) ;
-	
-}
+	private var _sound:Sound ;
 
+}

@@ -21,47 +21,6 @@
   
 */
 
-/** AbstractView
-
-	AUTHOR
-
-		Name : AbstractView
-		Package : vegas.util.mvc
-		Version : 1.0.0.0
-		Date :  2006-02-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-
-		- getController():IController
-
-		- getViewContainer():MovieClip
-		
-		- handleEvent(e:Event)
-		
-		- registerWithModel( oModel:IModel ):Void
-		
-		- setController(oController:IController):Void
-		
-		- setModel(oModel:IModel):Void
-		
-		- setViewContainer(mcContainer:MovieClip):Void
-		
-	INHERIT
-	
-		CoreObject → AbstractView
-
-	IMPLEMENTS 
-	
-		IView, IFormattable
-		
-	IMPLEMENTS 
-	
-		EventListener, IFormattable, IHashable, IView
-
-**/
 
 import vegas.core.CoreObject;
 import vegas.events.Event;
@@ -70,50 +29,93 @@ import vegas.util.mvc.IController;
 import vegas.util.mvc.IModel;
 import vegas.util.mvc.IView;
 
-class vegas.util.mvc.AbstractView extends CoreObject implements IView {
+/**
+ * Abstract class to creates IView implementations.
+ * @author eKameleon
+ */
+class vegas.util.mvc.AbstractView extends CoreObject implements IView 
+{
 
-	// ----o Constructeur
-	
-	private function AbstractView(oModel:IModel, oController:IController, mcContainer:MovieClip) {
+	/**
+	 * Abstract contructor, creates an IView instance.
+	 */
+	private function AbstractView(oModel:IModel, oController:IController, mcContainer:MovieClip) 
+	{
 		setModel(oModel) ;
 		setController(oController) ;
 		setViewContainer(mcContainer) ;
 	}
 	
-	// ----o Public Methods
-	
-	public function getController():IController {
+	/**
+	 * Returns the controller reference of this view.
+	 */
+	public function getController():IController 
+	{
 		return _oController ;
 	}
-	
-	public function getViewContainer():MovieClip {
+
+	/**
+	 * Returns the container reference of this view.
+	 */
+	public function getViewContainer():MovieClip 
+	{
 		return _mcContainer ;
 	}
 	
-	public function handleEvent(e:Event) {
+	/**
+	 * This method is called whenever an event occurs of the type for which the EventListener interface was registered.
+	 * @param e The Event contains contextual information about the event.
+	 */
+	public function handleEvent(e:Event) 
+	{
 		//
 	}
 	
-	public function registerWithModel( oModel:IModel ):Void {
+	/**
+	 * Register a model with this view.
+	 */
+	public function registerWithModel( oModel:IModel ):Void 
+	{
 		AbstractModel( oModel ).addView(this);
 	}
-	
-	public function setController(oController:IController):Void {
+
+	/**
+	 * Sets the controller reference of this view.
+	 */
+	public function setController(oController:IController):Void 
+	{
 		_oController = oController;
 	}
 	
-	public function setModel(oModel:IModel):Void {
+	/**
+	 * Sets a new model and register this model with this view. 
+	 */
+	public function setModel(oModel:IModel):Void 
+	{
 		registerWithModel( oModel ) ;
 	}
-	
-	public function setViewContainer(mcContainer:MovieClip):Void {
+
+	/**
+	 * Sets the container reference of this view.
+	 */
+	public function setViewContainer(mcContainer:MovieClip):Void 
+	{
 		_mcContainer = mcContainer ? mcContainer : _root ;
 	}
 
-	// ----o Private Properties
-	
+	/**
+	 * Internal view container reference.
+	 */
 	private var _mcContainer:MovieClip ;
+
+	/**
+	 * Internal controller.
+	 */
 	private var _oController:IController ;
+
+	/**
+	 * Internal model.
+	 */
 	private var _oModel:IModel ;
 	
 	

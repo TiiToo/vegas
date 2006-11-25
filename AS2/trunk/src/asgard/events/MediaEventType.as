@@ -21,52 +21,41 @@
   
 */
 
-/** MediaEventType
+/**
+ * The MediaEvent types.
+ * @author eKameleon
+ */
+class asgard.events.MediaEventType 
+{
 
-	AUTHOR
-
-		Name : MediaEventType
-		Package : asgard.events
-		Version : 1.0.0.0
-		Date :  2006-05-18
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	CONSTANT SUMMARY
-
-		- static MEDIA_FINISH:String = "onMediaFinished"
-		
-		- static MEDIA_PROGRESS:String = "onMediaProgress"
-		
-		- static MEDIA_RESUME:String = "onMediaResumed"
-		
-		- static MEDIA_START:String = "onMediaStarted"
-		
-		- static MEDIA_STOP:String = "onMediaStopped"
-
-**/
-
-class asgard.events.MediaEventType {
-
-	// ----o Constructor
-	
-	private function MediaEventType() {
-		//
-	}
-
-	// ----o Constants
-
+	/**
+	 * The name of the MediaEvent when the media is cleared.
+	 */
 	static public var MEDIA_CLEAR:String = "onMediaClear" ;
 
+	/**
+	 * The name of the MediaEvent when the media is finished.
+	 */
 	static public var MEDIA_FINISH:String = "onMediaFinished" ;
-	
+
+	/**
+	 * The name of the MediaEvent when the media progress.
+	 */
 	static public var MEDIA_PROGRESS:String = "onMediaProgress" ;
-	
+
+	/**
+	 * The name of the MediaEvent when the media is resumed.
+	 */
 	static public var MEDIA_RESUME:String = "onMediaResumed" ;
-	
+
+	/**
+	 * The name of the MediaEvent when the media is started.
+	 */
 	static public var MEDIA_START:String = "onMediaStarted" ;
-	
+
+	/**
+	 * The name of the MediaEvent when the media is stopped.
+	 */
 	static public var MEDIA_STOP:String = "onMediaStopped" ;
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(MediaEventType, null , 7, 7) ;

@@ -21,42 +21,30 @@
   
 */
 
-/** IModel [Interface]
-
-	AUTHOR
-
-		Name : IModel
-		Package : vegas.util.mvc
-		Version : 1.0.0.0
-		Date :  2006-02-02
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- addView(listener:EventListener):Void
-		
-		- notifyChanged(ev:ModelChangedEvent):Void
-		
-		- removeView(listener:EventListener):Void
-	
-	INHERIT
-	
-		ICloneable > IModel
-	
-**/
-
 import vegas.core.ICloneable;
 import vegas.events.ModelChangedEvent;
 import vegas.util.mvc.IView;
 
-interface vegas.util.mvc.IModel extends ICloneable {
-	
+/**
+ * Defines the representation of a model in a specific type of the MVC implementation.
+ * @author eKameleon
+ */
+interface vegas.util.mvc.IModel extends ICloneable 
+{
+
+	/**
+	 * Adds a view in the model.
+	 */
 	function addView(view:IView):Void ;
-	
+
+	/**
+	 * Notify a ModelChangedEvent to the views.
+	 */
 	function notifyChanged(ev:ModelChangedEvent):Void ;
 
+	/**
+	 * Removes a view in the model.
+	 */
 	function removeView(view:IView):Void ;
 
 }

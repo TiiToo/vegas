@@ -21,48 +21,40 @@
   
 */
 
-/** IView [Interface]
-
-	AUTHOR
-
-		Name : IView
-		Package : vegas.util.mvc
-		Version : 1.0.0.0
-		Date :  2006-02-02
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- getController():IController
-	
-		- getViewContainer():MovieClip
-		
-		- handleEvent(e:Event)
-		
-		- setModel(oModel:IModel):Void
-		
-		- setViewContainer(mcContainer:MovieClip):Void
-	
-**/
-
 import vegas.events.EventListener;
 import vegas.util.mvc.IController;
 import vegas.util.mvc.IModel;
 
-interface vegas.util.mvc.IView extends EventListener {
-	
+/**
+ * Defines the representation of a view in a specific type of the MVC implementation.
+ * @author eKameleon
+ */
+interface vegas.util.mvc.IView extends EventListener 
+{
+
+	/**
+	 * Returns the controller reference of this view.
+	 */
 	function getController():IController;
 	
+	/**
+	 * Returns the container reference of this view.
+	 */
 	function getViewContainer():MovieClip ;
-	
-	// function handleEvent(e:Event) ;
-	
+
+	/**
+	 * Sets the controller reference of this view.
+	 */
 	function setController(oController:IController):Void ;
-	
+
+	/**
+	 * Sets a new model and register this model with this view. 
+	 */
 	function setModel(oModel:IModel):Void ;
-	
+
+	/**
+	 * Sets the container reference of this view.
+	 */
 	function setViewContainer(mcContainer:MovieClip):Void ;
 	
 }
