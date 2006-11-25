@@ -22,13 +22,16 @@
 */
 
 /**
- * @author
+ * Interface implemented by classes that can return a hash code value.
+ * @author eKameleon
+ * @version 1.0.0.0
  */
 interface vegas.core.IHashable 
 {
 	
 	/**
 	 * Returns a hash code value for the object.
+	 * @return a hash code value for the object.
 	 */
 	function hashCode():Number ;
 	

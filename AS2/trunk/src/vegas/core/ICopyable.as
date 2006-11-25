@@ -21,11 +21,17 @@
   
 */
 
+/**
+ * Interface implemented by classes that can produce "deep" copies of their objects.
+ * @author eKameleon
+ * @version 1.0.0.0
+ */
 interface vegas.core.ICopyable 
 {
 
 	/**
 	 * Creates and returns a deep copy of the object.
+	 * @return A new object that is a deep copy of this instance.
 	 */	
 	function copy() ;
 	

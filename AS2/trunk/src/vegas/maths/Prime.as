@@ -22,6 +22,7 @@
 */
 
 /**
+ * Implements the static behaviours of the Prime Class.
  * @author eKameleon
  */
 class vegas.maths.Prime 
@@ -29,6 +30,7 @@ class vegas.maths.Prime
 
 	/**
 	 * Defines an array of all primes between 'from' and 'n' inclusive, positive but restricted integer value, ignores decimals.
+	 * @return a array representation of all primes between {@code from} and {@code n} inclusive}
 	 */
 	static public function findPrimeFrom(n:Number,from:Number):Array 
 	{
@@ -81,8 +83,10 @@ class vegas.maths.Prime
 
 	/**
 	 * Boolean for 'isPrime' integer condition, ignores decimals.
+	 * Successive division.
 	 */
-	static public function isPrime(n:Number):Boolean { // Division successives
+	static public function isPrime(n:Number):Boolean 
+	{ 
 		if (n<3) return ( n == 2 ) ; 
 		else if ((n%2) == 0) return false ;
 		var i:Number = 3 ;

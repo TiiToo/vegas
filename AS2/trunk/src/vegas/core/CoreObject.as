@@ -28,7 +28,9 @@ import vegas.core.ISerializable;
 import vegas.util.ConstructorUtil;
 
 /**
- * @author eKameleon.
+ * CoreObject offers a default implementation of the IFormattable, IHashable and ISerializable interfaces.
+ * @author eKameleon
+ * @version 1.0.0.0
  */
 class vegas.core.CoreObject implements IFormattable, IHashable, ISerializable 
 {

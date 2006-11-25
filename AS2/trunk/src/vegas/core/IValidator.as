@@ -22,13 +22,16 @@
 */
 
 /**
+ * Defines the methods that objects that participate in a validation operation.
  * @author eKameleon
+ * @version 1.0.0.0
  */
 interface vegas.core.IValidator 
 {
 	
 	/**
 	 * Returns true if the IValidator object validate the value.
+	 * @return {@code true} is this specific value is valid.
 	 */
 	function supports(value):Boolean ;
 	

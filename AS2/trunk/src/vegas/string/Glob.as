@@ -23,77 +23,70 @@
 
 /** Glob
 
-	AUTHOR
-	
-		Name : 	Glob
-		Package : vegas.string
-		Version : 1.0.0.0
-		Date :  2005-05-25
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
 	DESCRIPTION
 		
 		Permet de filtrer une chaine de caractère.
 		la base glob (glob.c) vient des systems unix et sert principalement a lister des repertoires 
 		et fichiers à base de * et de ?
 	
-	USE
-	
-		import vegas.string.Glob ;
 
-		var str1:String = "<html> hello world </html>";
-		var str2:String = "function test()\n\t{\n\treturn true;\n\t}";
-		var str3:String = "<data><toto>blah</toto></data>";
-
-		var pat1:String = "<*>";
-		var pat2:String = "<html>*</html>";
-		var pat3:String = "function *()*{*}";
-
-		var t:Number = getTimer();
-		
-		trace( "is < > delimited: " + Glob.stringMatch( str1, pat1 ) );
-		trace( "is < > delimited: " + Glob.stringMatch( str3, pat1 ) );
-		trace( "is html tag delimited: " + Glob.stringMatch( str1, pat2 ) );
-		trace( "is html tag delimited: " + Glob.stringMatch( str3, pat2 ) );
-		trace( "is a function: " + Glob.stringMatch( str2, pat3 ) );
-		
-		trace( "total time : " + (getTimer()-t) +"ms" );
-
-		// --- Sortie
-		
-		// is < > delimited: true
-		// is < > delimited: true
-		// is html tag delimited: true
-		// is html tag delimited: false
-		// is a function: true
-		// total time : 7ms
 		
 		// --------
 
-	THANKS
 	
-		Zwetan : BuRRRn > Flashcodeurs - mailing list (12/10/2004)
 
 **/	
 
-class vegas.string.Glob {
+/**
+ * The glob module finds all the pathnames matching a specified pattern according to the rules used by the Unix shell.
+ * <p><b>Example:</b>
+ * {@code
+ * import vegas.string.Glob ;
+ * 
+ * var str1:String = "<html> hello world </html>";
+ * var str2:String = "function test()\n\t{\n\treturn true;\n\t}";
+ * var str3:String = "<data><toto>blah</toto></data>";
+ * 
+ * var pat1:String = "<*>";
+ * var pat2:String = "<html>*</html>";
+ * var pat3:String = "function *()*{*}";
+ * 
+ * 	var t:Number = getTimer();
+ *
+ *	trace( "is < > delimited: " + Glob.stringMatch( str1, pat1 ) );
+ *	trace( "is < > delimited: " + Glob.stringMatch( str3, pat1 ) );
+ *	trace( "is html tag delimited: " + Glob.stringMatch( str1, pat2 ) );
+ *	trace( "is html tag delimited: " + Glob.stringMatch( str3, pat2 ) );
+ *	trace( "is a function: " + Glob.stringMatch( str2, pat3 ) );
+ *	trace( "total time : " + (getTimer()-t) +"ms" );
+ *	
+ *	// Output
+ *	// is < > delimited: true
+ *	// is < > delimited: true
+ *	// is html tag delimited: true
+ *	// is html tag delimited: false
+ *	// is a function: true
+ *	// total time : 7ms
+ * }
+ * </p>
+ * <p><b>THANKS : Zwetan</b> in buRRRn FCNG mailing list (12/10/2004)</p>
+ * @author eKameleon
+ * @version 1.0.0.0
+ */
+class vegas.string.Glob 
+{
 
-	// ----o Constructor
-	
-	private function Glob() {
-		//
-	}
-
-	// -----o Static Methods
-
-	static public function stringMatch(str:String, pattern:String, caseSensitive:Boolean ) {
+	/**
+	 * Matchs the string expression with the specified pattern.
+	 */
+	static public function stringMatch(str:String, pattern:String, caseSensitive:Boolean ) 
+	{
 		
 		if (! str instanceof String) str = new String(str) ;
 		if (! pattern instanceof String) pattern = new String(pattern) ;
 		
-		if( !caseSensitive ) {
+		if( !caseSensitive ) 
+		{
 			str = str.toLowerCase();
 			pattern = pattern.toLowerCase();
         }

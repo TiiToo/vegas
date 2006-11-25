@@ -21,68 +21,36 @@
   
 */
 
-/** Luhn
+/**
+ * It is a simple checksum formula used to validate a variety of account numbers, such as credit card numbers, etc.
+ * <p>The Luhn algorithm or Luhn formula, also known as the "modulus 10" or "mod 10" algorithm, was developed in the 1960s as a method of validating identification numbers.</p>
+ * <p><b>example</b><br>
+ * {@code
+ * import vegas.string.Luhn ;
+ * 
+ * var code:String = "456565654" ;
+ * trace (code + " isValid : " + Luhn.isValid(code)) ;
+ * }
+ * </p>
+ * @see <a href='http://fr.wikipedia.org/wiki/Formule_de_Luhn'>Luhn Formula</a> 
+ * @author eKameleon
+ * @version 1.0.0.0
+ */
+class vegas.string.Luhn 
+{
 
-	AUTHOR
-	
-		Name : 	Luhn
-		Package : vegas.string
-		Version : 1.0.0.0
-		Date :  2005-09-23
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		Algorithme "module 10" ou "mod 10", développé en 1960 pour valider l'identification de certains nombres.
-		
-		La méthode consiste en une simple formule de vérification de somme (CheckSum) et permet de valider
-		par exemple les numéros de carte de crédit, certains numéros de comptes etc.
-		
-		L'algorithme fait parti du domaine public. 
-		Il n'a aucun but au niveau de la sécurisation des données,
-		il permet surtout l'utilisation de nombres aléatoires.
-		
-	USE
-	
-		Luhn.isValid( str:String )
-	
-	METHOD SUMMARY
-	
-		- isValid(str:String):Boolean
-	
-	EXAMPLE
-	
-		import vegas.string.Luhn ;
-		
-		var code:String = "456565654" ;
-		trace (code + " isValid : " + Luhn.isValid(code)) ;
-
-	THANKS : 
-	
-		ShoeBox : http://www.shoe-box.org/blog/
-	
-		Formule de Luhn : http://fr.wikipedia.org/wiki/Formule_de_Luhn
-
-**/
-
-class vegas.string.Luhn {
-
-	// ----o Constructor
-	
-	private function Luhn() {
-		//
-	}
-	
-	// ----o Statics
-	
-	static public function isValid(str:String):Boolean {	
+	/**
+	 * Returns {@code true} if the expression in argument is a valid Luhn value.
+	 * @return {@code true} if the expression in argument is a valid Luhn value.
+	 */
+	static public function isValid(str:String):Boolean 
+	{	
 		str = new String(str) ;
 		var	n:Number ;
 		var sum:Number = 0 ;
 		var l:Number = str.length ;
-		for (var i:Number = 0 ; i<l ; i++){
+		for (var i:Number = 0 ; i<l ; i++)
+		{
 			n = Number(str.charAt(i)) * ( i%2 == 1 ? 2 : 1) ;
 			sum += n - ((n > 9) ? 9 : 0) ;
 		}

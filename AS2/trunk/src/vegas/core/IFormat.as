@@ -22,7 +22,9 @@
 */
 
 /**
+ * Interface implemented by classes that can converts an object to a custom string representation.
  * @author eKameleon
+ * @version 1.0.0.0
  */
 interface vegas.core.IFormat 
 {

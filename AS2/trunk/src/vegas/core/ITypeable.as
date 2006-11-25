@@ -22,6 +22,7 @@
 */
 
 /**
+ * Interface implemented by classes that defined a specific type.
  * @author eKameleon
  */
 interface vegas.core.ITypeable 

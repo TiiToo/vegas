@@ -22,13 +22,16 @@
 */
 
 /**
+ * Interface implemented by classes that can compare an object with their objects.
  * @author eKameleon
+ * @version 1.0.0.0
  */
 interface vegas.core.IEquality 
 {
 
 	/**
-	 * Indicates whether some other object is "equal to" this one.
+	 * Compares the specified object with this object for equality.
+	 * @return {@code true} if the the specified object is equal with this object.
 	 */
 	function equals(o):Boolean ;
 

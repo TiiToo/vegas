@@ -21,20 +21,17 @@
   
 */
 
-/**	IFormatter [Interface]
+/**
+ * Interface implemented by classes that can format an specific string expression.
+ * @author eKameleon
+ * @version 1.0.0.0
+ */
+interface vegas.util.format.IFormatter 
+{
 
-	Name : IFormatter
-	Package : vegas.util.format
-	Version : 1.0.0.0
-	Date :  2005-11-04
-	Author : ekameleon
-	URL : http://www.ekameleon.net
-	Mail : vegas@ekameleon.net
-
-**/
-
-interface vegas.util.format.IFormatter {
-
+	/**
+	 * Format a string expression.
+	 */
 	function format():String ;
 
 }

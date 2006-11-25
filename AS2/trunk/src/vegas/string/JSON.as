@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
 
 	Licence
 	
@@ -34,87 +34,86 @@
 			NOTE : EDEN Hexa digits code inspiration -> http://www.burrrn.com/projects/eden.html
 
 */
- 
-/** JSON
 
-	AUTHOR
-	
-		Name : JSON
-		Package : vegas.string
-		Version : 1.0.0.0
-		Date :  2006-01-24
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
+/*
 
-	DESCRIPTION
+  The contents of this file are subject to the Mozilla Public License Version 1.1 (the "License") ;
+  you may not use this file except in compliance with the License. You may obtain a copy of the License at :
+  
+	- http://www.mozilla.org/MPL/
 
-		JSON (JavaScript object Notation) is a lightweight data-interchange format.
-			
-		Serializer & deserializer in AS2.
-		
-		MORE INFORMATION IN : http://www.json.org/
-	
-		ADD HEXA DIGITS in deserialize method - EDEN inspiration : http://www.burrrn.com/projects/eden.html
-	
-	METHOD SUMMARY
-	
-		- static deserialize(source:String):Object
-		
-		- static serialize(o):String
-	
-	EXAMPLE
+  Software distributed under the License is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND,
+  either express or implied. See the License for the specific language governing rights and limitations 
+  under the License.
 
-		import vegas.string.JSON ;
-		
-		// --- Init
-		var a:Array = [2, true, "hello"] ;
-		var o:Object = { prop1 : 1 , prop2 : 2 } ;
-		var s:String = "hello world" ;
-		var n:Number = 4 ;
-		var b:Boolean = true ;
-			
-		trace ("*** Serialize") ;
-		trace("* a : " + JSON.serialize( a ) )  ;	
-		trace("* o : " + JSON.serialize( o ) )  ;
-		trace("* s : " + JSON.serialize( s ) )  ;
-		trace("* n : " + JSON.serialize( n ) )  ;
-		trace("* b : " + JSON.serialize( b ) )  ;
-			
-		trace ("*** Deserialize") ;
-		
-		var source:String = '[ {"prop1":0xFF0000, "prop2":2, "prop3":"hello", "prop4":true} , 2, true,	3, [3, 2] ]' ;
-		
-		var o = JSON.deserialize(source) ;
-		for (var prop:String in o) {
-			trace(prop + " : " + o[prop] + " -> typeof :: " + typeof(o[prop])) ;
-		}
-		
-		trace ("*** JSONError") ;
-		
-		var source:String = "[3, 2," ; // test1
-		//var source:String = '{"prop1":coucou"}' ; // test2
-		var o = JSON.deserialize(source) ;
-		for (var prop:String in o) {
-			trace(prop + " : " + o[prop]) ;
-		}
+  The Original Code is core2: ECMAScript core objects 2nd gig.
+
+  The Initial Developer of the Original Code is Zwetan Kjukov <zwetan@gmail.com>.
+  Portions created by the Initial Developer are Copyright (C) 2003-2005
+  the Initial Developer. All Rights Reserved.
+
+  Contributor(s) : 
 	
-**/
+	- ekameleon <vegas@ekameleon.net>
+
+*/
 
 import vegas.string.errors.JSONError;
 
-
-class vegas.string.JSON {
-
-	// ----o Constructor
+/**
+ * JSON (JavaScript object Notation) is a lightweight data-interchange format.
+ * <p>Serializer & deserializer in AS2.</p>
+ * <p>MORE INFORMATION IN : http://www.json.org/</p>
+ * <p>ADD HEXA DIGITS in deserialize method - EDEN inspiration : http://www.burrrn.com/projects/eden.html</p>
+ * <p><b>EXAMPLE</b><br>
+ * {@code
+ *  import vegas.string.JSON ;
+ *   
+ *  // --- Init
+ *  var a:Array = [2, true, "hello"] ;
+ *  var o:Object = { prop1 : 1 , prop2 : 2 } ;
+ *  var s:String = "hello world" ;
+ *  var n:Number = 4 ;
+ *  var b:Boolean = true ;
+ *  
+ *  trace ("*** Serialize") ;
+ *  trace("* a : " + JSON.serialize( a ) )  ; * 
+ *  trace("* o : " + JSON.serialize( o ) )  ;
+ *  trace("* s : " + JSON.serialize( s ) )  ;
+ *  trace("* n : " + JSON.serialize( n ) )  ;
+ *  trace("* b : " + JSON.serialize( b ) )  ;
+ *   
+ *  trace ("*** Deserialize") ;
+ *  
+ *  var source:String = '[ {"prop1":0xFF0000, "prop2":2, "prop3":"hello", "prop4":true} , 2, true, * 3, [3, 2] ]' ;
+ *   
+ *  var o = JSON.deserialize(source) ;
+ *  for (var prop:String in o) 
+ *  {
+ *      trace(prop + " : " + o[prop] + " -> typeof :: " + typeof(o[prop])) ;
+ *  }
+ *   
+ *  trace ("*** JSONError") ;
+ *  
+ *  var source:String = "[3, 2," ; // test1
+ *  //var source:String = '{"prop1":coucou"}' ; // test2
+ *  var o = JSON.deserialize(source) ;
+ *  for (var prop:String in o) 
+ *  {
+ *      trace(prop + " : " + o[prop]) ;
+ * 	}
+ * }
+ * @author eKameleon
+ * @version 1.0.0.0
+ */
+class vegas.string.JSON 
+{
 	
-	private function JSON() {
-		//
-	}
-
-	// ----o Public Methods
-
-	static public function deserialize(source:String):Object {
+	/**
+	 * Deserialize the string source representation and return the result object.
+	 */
+	static public function deserialize(source:String):Object 
+	{
 		
 		source = new String(source) ; // Speed
 		var at:Number = 0 ;
@@ -133,19 +132,23 @@ class vegas.string.JSON {
 		var _value:Function ;
 		var _error:Function ;
 		
-		_isDigit = function( /*Char*/ c:String ) {
+		_isDigit = function( /*Char*/ c:String )
+		{
     		return( ("0" <= c) && (c <= "9") );
     	} ;
 			
-		_isHexDigit = function( /*Char*/ c:String ) {
+		_isHexDigit = function( /*Char*/ c:String ) 
+		{
     		return( _isDigit( c ) || (("A" <= c) && (c <= "F")) || (("a" <= c) && (c <= "f")) );
     	} ;
 				
-        _error = function(m:String) {
+        _error = function(m:String) 
+        {
             throw new JSONError( m, at - 1 , source) ;
         } ;
 		
-        _next = function() {
+        _next = function() 
+        {
             ch = source.charAt(at);
             at += 1;
             return ch;
@@ -388,7 +391,12 @@ class vegas.string.JSON {
 		
     }
 	
-	static public function serialize(o):String {
+	/**
+	 * Serialize the object and return this string representation.
+	 * @return the string serialize representation of an object.
+	 */
+	static public function serialize(o):String 
+	{
         var c:String ; // char
         var i:Number ;
         var l:Number ;

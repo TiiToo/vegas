@@ -21,84 +21,64 @@
 
 */
 
-/**	StringFormatter
-
-	AUTHOR
-	
-		Name : StringFormatter
-		Package : vegas.string
-		Version : 1.0.0.0
-		Date :  2005-11-05
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		Replaces the pattern item in a specified String with the text 
-		equivalent of the value of a specified Object instance.
-
-	USAGE
-	
-		var f:StringFormatter = new StringFormatter() ;
-		f.pattern = "Brad's dog has {0,-4:_} fleas." ;
-		var result:String = f.format(42) ;
-		trace (">> " + result) ;
-
-		f.pattern = "Brad's dog has {0,6:#} fleas.";
-		var result:String = f.format(41) ;
-		trace (">> " + result) ;
-
-		f.pattern = "Brad's dog has {0,-8} fleas." ;
-		var result:String = f.format(12) ;
-		trace (">> " + result) ;
-
-		f.pattern = "{3} {2} {1} {0}" ;
-		var result:String = f.format("a", "b", "c", "d") ;
-		trace (">> " + result) ;
-
-	PROPERTY SUMMARY
-	
-		- pattern
-
-	METHOD SUMMARY
-	
-		- format( arg1, arg2, ... argN )
-		
-		- getPattern()
-		
-		- setPattern( pattern:String )
-
-	INHERIT
-	
-		CoreObject → AbstractFormatter → StringFormatter
-
-	IMPLEMENT
-	
-		IFormatter, IFormattable, IHashable
-
-**/
-
 import vegas.util.format.AbstractFormatter;
 import vegas.util.StringUtil;
 
-class vegas.string.StringFormatter extends AbstractFormatter {
+/**
+ * Replaces the pattern item in a specified String with the text equivalent of the value of a specified Object instance.
+ * <p><b>Usage :</b>
+ * {@code
+ * import vegas.string.StringFormatter ;
+ * 
+ * var f:StringFormatter ;
+ * var result:String ;
+ * 
+ * f = new StringFormatter() ;
+ * f.pattern = "Brad's dog has {0,-4:_} fleas." ;
+ * result = f.format(42) ;
+ * trace (">> " + result) ;
+ * 
+ * f.pattern = "Brad's dog has {0,6:#} fleas.";
+ * result = f.format(41) ;
+ * trace (">> " + result) ;
+ * 
+ * f.pattern = "Brad's dog has {0,-8} fleas." ;
+ * result = f.format(12) ;
+ * trace (">> " + result) ;
+ * 
+ * f.pattern = "{3} {2} {1} {0}" ;
+ * result = f.format("a", "b", "c", "d") ;
+ * trace (">> " + result) ;
+ * }
+ * </p>
+ * @author eKameleon
+ * @version 1.0.0.0
+ */
+class vegas.string.StringFormatter extends AbstractFormatter 
+{
 
-	// ----o Construtor
-	
-	public function StringFormatter(pattern:String) {
+	/**
+	 * Creates a new StringFormatter instance.
+	 * @param pattern the format pattern.
+	 */
+	public function StringFormatter(pattern:String) 
+	{
 		super(pattern) ;
 	}
 	
-	// ----o Static Properties
-	
+	/**
+	 * const The space expression.
+	 */	
 	static public var SPC:String = " " ; // SPACE
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(StringFormatter, null, 7, 7) ;
 	
-	// ----o Public Methods
-		
-	public function format( /* arg1, arg2, ... argN */ ):String {
+	/**
+	 * Format the pattern with all the arguments passed in this method.
+	 * @return the new string representation of the pattern. 
+	 */
+	public function format( /* arg1, arg2, ... argN */ ):String 
+	{
 
 		if( !_pattern ) return "" ;
 		
@@ -107,23 +87,40 @@ class vegas.string.StringFormatter extends AbstractFormatter {
 		
 		var format:String = new String(_pattern) ;
 		
-		if ( format.indexOf( "{" ) == -1 ) return format ;	
+		if ( format.indexOf( "{" ) == -1 ) 
+		{
+			return format ;
+		}	
 		
 		var ch:String = "" ;
 		var pos:Number = 0 ;
 		
-		var next = function() {
+		var next = function() 
+		{
 			ch = format.charAt( pos );
 			pos++ ;
 			return ch ;
 		};
 		
-		var getIndexValue = function( index:Number ):String {
+		var getIndexValue = function( index:Number ):String 
+		{
 			var cur = args[index] ;
-			if( cur ) return cur.toString() ;
-			if (cur == undefined ) return "" ;
-			else if (cur == null) return null ;
-			else return cur.toString() ;
+			if( cur ) 
+			{
+				return cur.toString() ;
+			}
+			if (cur == undefined ) 
+			{
+				return "" ;
+			}
+			else if (cur == null) 
+			{
+				return null ;
+			}
+			else 
+			{
+				return cur.toString() ;
+			}
 		};
 		
 		var expression:StringUtil ; 
@@ -134,24 +131,36 @@ class vegas.string.StringFormatter extends AbstractFormatter {
 		var spaceAlign:Number ;
 		
 		var l:Number = format.length ;
-		while( pos < l ) {
+		while( pos < l ) 
+		{
 			next() ; 
-			if( ch == "{" ) {
+			if( ch == "{" ) 
+			{
 				expression = new StringUtil(next()) ;
 				run = true ;
-				while( run ) {
+				while( run ) 
+				{
 					next() ;
-					if( ch != "}" ) expression = new StringUtil(expression + ch) ;
-					else run = false ;
+					if( ch != "}" ) 
+					{
+						expression = new StringUtil(expression + ch) ;
+					}
+					else 
+					{
+						run = false ;
+					}
 				}
 				index = null ;
 				paddingChar = SPC ;
 				expValue = "" ;
-				if( expression.indexOfAny( [ ",", ":" ] ) == -1 ) {
+				if( expression.indexOfAny( [ ",", ":" ] ) == -1 ) 
+				{
 					index = parseInt( expression.toString() ) ;
 					expValue = getIndexValue( index ) ;
 					str += expValue ;
-				} else {
+				}
+				else 
+				{
 					var vPos:Number = expression.indexOf( "," ) ;
 					var fPos:Number = expression.indexOf( ":" ) ;
 					if( vPos == -1 ) 
@@ -184,7 +193,9 @@ class vegas.string.StringFormatter extends AbstractFormatter {
 					}
 					str += expValue ;
 				}
-			} else {
+			}
+			else 
+			{
 				str += ch ;
 			}
 		}

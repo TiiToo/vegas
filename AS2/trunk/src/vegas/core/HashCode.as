@@ -21,6 +21,11 @@
   
 */
 
+/**
+ * Collected methods which allow easy implementation of <code>hashCode</code>.
+ * @author eKameleon
+ * @version 1.0.0.0
+ */
 class vegas.core.HashCode 
 {
 
@@ -46,6 +51,7 @@ class vegas.core.HashCode
 	
 	/**
 	 * Returns the next hashcode value.
+	 * @return the next hashcode value.
 	 */
 	static public function next():Number 
 	{
@@ -53,7 +59,8 @@ class vegas.core.HashCode
 	}
 
 	/**
-	 * Returns the next string representation of the next hashcode value.
+	 * Returns the string representation of the next hashcode value.
+	 * @return the string representation of the next hashcode value.
 	 */
 	static public function nextName():String 
 	{
@@ -63,6 +70,7 @@ class vegas.core.HashCode
 	
 	/**
 	 * Initialize the hashcode value of an object.
+	 * @return {@code true}
 	 */
 	static public function initialize(o):Boolean 
 	{

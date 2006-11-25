@@ -21,78 +21,73 @@
   
 */
 
-/**	AbstractFormatter
-
-	AUTHOR
-	
-		Name : AbstractFormatter
-		Package : vegas.util.format
-		Version : 1.0.0.0
-		Date :  2005-11-05
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTU SUMMARY
-	
-		- pattern:String [R/W]
-
-	METHOD SUMMARY
-	
-		- format():String
-		
-		- getPattern():String
-		
-		- setPattern( pattern:String ):Void
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → AbstractFormatter
-
-	IMPLEMENT
-	
-		IFormatter, IFormattable, IHashable
-
-**/
-
 import vegas.core.CoreObject;
 import vegas.util.factory.PropertyFactory;
 import vegas.util.format.IFormatter;
 
-class vegas.util.format.AbstractFormatter extends CoreObject implements IFormatter {
+/**
+ * Abstract class to creates classes who implemented IFormatter interface.
+ * @author eKameleon
+ * @version 1.0.0.0
+ */
+class vegas.util.format.AbstractFormatter extends CoreObject implements IFormatter 
+{
 
-	// ----o Construtor
-	
-	private function AbstractFormatter(pattern:String) {
+	/**
+	 * Abstract constructor to creates a new class who extends AbstractFormatter.
+	 */
+	private function AbstractFormatter(pattern:String) 
+	{
 		setPattern(pattern) ;
 	}
 	
-	// ----o Public Properties
+	/**
+	 * Returns the internal pattern of this formatter.
+	 * @return the string representation of the pattern of this formatter.
+	 */
+	public function get pattern():String
+	{
+		return getPattern() ;	
+	}
+
 	
-	public var pattern:String ; // [RW]
-	
-	// ----o Public Methods
-	
-	public function format():String {
+	/**
+	 * Sets the internal pattern of this formatter.
+	 */
+	public function set pattern( expression:String ):Void
+	{
+		setPattern( expression ) ;	
+	}
+
+	/**
+	 * This method format an expression with the pattern of this formatter.
+	 * Overrides this method.
+	 */	
+	public function format():String 
+	{
 		return null ;
 	}
-	
-	public function getPattern():String {
+
+	/**
+	 * Returns the string representation of the pattern of this formatter.
+	 * @return the string representation of the pattern of this formatter.
+	 */
+	public function getPattern():String 
+	{
 		return _pattern ;
 	}
-	
-	public function setPattern(pattern:String):Void {
-		_pattern = new String(pattern) ;
+
+	/**
+	 * Sets the internal pattern of this formatter.
+	 */
+	public function setPattern( expression:String ):Void 
+	{
+		_pattern = new String( expression ) ;
 	}
-	
-	// ----o Virtual Properties
-	
-	static private var __PATTERN__:Boolean = PropertyFactory.create(AbstractFormatter, "pattern", true) ;
-	
-	// ----o Private Properties
-	
-	private var _pattern:String ; // pattern
+
+	/**
+	 * The internal pattern of this formatter.
+	 */
+	private var _pattern:String ;
 
 }

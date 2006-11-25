@@ -23,13 +23,16 @@
 
 
 /**
+ * Supports cloning, which creates a new instance of a class with the same value as an existing instance.
  * @author eKameleon
+ * @version 1.0.0.0
  */
 interface vegas.core.ICloneable 
 {
 
 	/**
 	 * Creates and returns a shallow copy of the object.
+	 * @return A new object that is a shallow copy of this instance.
 	 */	
 	function clone() ;
 	
