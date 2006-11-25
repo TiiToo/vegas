@@ -21,22 +21,6 @@
   
 */
 
-/** Glob
-
-	DESCRIPTION
-		
-		Permet de filtrer une chaine de caractère.
-		la base glob (glob.c) vient des systems unix et sert principalement a lister des repertoires 
-		et fichiers à base de * et de ?
-	
-
-		
-		// --------
-
-	
-
-**/	
-
 /**
  * The glob module finds all the pathnames matching a specified pattern according to the rules used by the Unix shell.
  * <p><b>Example:</b>

@@ -21,73 +21,43 @@
   
 */
 
-/** JSONError
-
-	AUTHOR
-
-		Name : JSONError
-		Package : vegas.string.errors
-		Version : 1.0.0.0
-		Date : 2006-01-23
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-	
-		- errorElement:ErrorElement
-		
-		- message:String
-		
-		- name:String [Read Only]
-	
-	METHOD SUMMARY
-	
-		- getCategory():String
-		
-			get internal logger's category.
-		
-		- getLogger():ILogger 
-		
-			get internal Logger.
-		
-		- getName():String
-		
-			return the name of the Error.
-		
-		- toString():String
-
-	INHERIT
-	
-		Object → Error → AbstractError → FatalError → ArgumentsError
-	
-	IMPLEMENT
-	
-		IFormattable, IHashable
-	
-**/
-
 import vegas.errors.ErrorFormat;
 import vegas.errors.FatalError;
 
-class vegas.string.errors.JSONError extends FatalError {
+/**
+ * This JSONError is throw in the JSON static methods.
+ * @author eKameleon
+ * @version 1.0.0.0
+ */
+class vegas.string.errors.JSONError extends FatalError 
+{
 
-	// ----o Constructor
-	
-	public function JSONError(message:String, at:Number, source:String) {
+	/**
+	 * Creates a new JSONError instance.
+	 */
+	public function JSONError(message:String, at:Number, source:String) 
+	{
 		super(message) ;
 		this.at = at ;
 		this.source = source ;
 	}
 
-	// ----o Public Properties
-	
+	/**
+	 * The 'at' property.
+	 */
 	public var at:Number ;
+	
+	/**
+	 * The source of the json error.
+	 */
 	public var source:String ;
 	
-	// ----o Public Methods
-	
-	public function toString():String {
+	/**
+	 * Returns the string representation of the error.
+	 * @return the string representation of the error.
+	 */	
+	public function toString():String 
+	{
 		var ret:String = (new ErrorFormat()).formatToString(this) ;
 		if (!isNaN(at)) ret += ", at:" + at ;
 		if (source) ret += " in \"" + source + "\"";
