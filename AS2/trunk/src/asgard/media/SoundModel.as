@@ -29,7 +29,7 @@ import vegas.events.Event;
 import vegas.util.mvc.AbstractModel;
 
 /**
- * Sound model to register all sounds in an application.
+ * Sound model to manage sounds.
  * @author eKameleon
  * @version 1.0.0.0
  */
@@ -81,11 +81,12 @@ class asgard.media.SoundModel extends AbstractModel
 				return "[Sound:'" + id + "']" ;
 			} ;
 			notifyAddSound(id, sound) ;
-			return r ;
+			return id  ;
 		}
 		else
 		{
 			throw new ArgumentsError ( this + " addSound method failed, the specified id and sound not must be 'null' or 'undefined'." ) ;
+			return null ;
 		}
 	}
 
@@ -131,6 +132,7 @@ class asgard.media.SoundModel extends AbstractModel
 				aSounds[ size ].stop();
 			}
 		}
+		notifyDisableSound() ;
 	}
 
 	/**
@@ -138,7 +140,8 @@ class asgard.media.SoundModel extends AbstractModel
 	 */
 	public function enable() : Void 
 	{ 
-		_bIsOn = true; 
+		_bIsOn = true;
+		notifyEnableSound() ; 
 	}
 
 	/**
@@ -158,6 +161,24 @@ class asgard.media.SoundModel extends AbstractModel
 	public function getClearSoundModelEventType():String 
 	{
 		return SoundModelEvent.CLEAR_SOUND ;
+	}
+
+	/**
+	 * Protected method, returns the SoundModelEventType when enable all sounds in the model.
+	 * You can overrides this method to customize the event model.
+	 */
+	public function getEnableSoundModelEventType():String 
+	{
+		return SoundModelEvent.ENABLE_SOUNDS ;
+	}
+
+	/**
+	 * Protected method, returns the SoundModelEventType when disable all sounds in the model.
+	 * You can overrides this method to customize the event model.
+	 */
+	public function getDisableSoundModelEventType():String 
+	{
+		return SoundModelEvent.DISABLE_SOUNDS ;
 	}
 
 	/**
@@ -187,7 +208,7 @@ class asgard.media.SoundModel extends AbstractModel
 	 */
 	public function getSound( id:String ):Sound 
 	{ 
-		return _bIsOn ? _map.get[ id ] : null ;
+		return _bIsOn ? _map.get(id) : null ;
 	}
 
 	/**
@@ -239,6 +260,32 @@ class asgard.media.SoundModel extends AbstractModel
 		event.setModel(this) ;
 		event.setSound(null) ;
 		event.setType( getClearSoundModelEventType() ) ;
+		notifyChanged(event) ;	
+	}
+	
+	/**
+	 * Notify a SoundModelEvent if the model is enabled.
+	 */
+	public function notifyEnableSound():Void
+	{
+		var event:SoundModelEvent = SoundModelEvent(_e) ;
+		event.setID(null) ;
+		event.setModel(this) ;
+		event.setSound(null) ;
+		event.setType( getEnableSoundModelEventType() ) ;
+		notifyChanged(event) ;	
+	}
+	
+	/**
+	 * Notify a SoundModelEvent if the model is disabled.
+	 */
+	public function notifyDisableSound():Void
+	{
+		var event:SoundModelEvent = SoundModelEvent(_e) ;
+		event.setID(null) ;
+		event.setModel(this) ;
+		event.setSound(null) ;
+		event.setType( getDisableSoundModelEventType() ) ;
 		notifyChanged(event) ;	
 	}
 

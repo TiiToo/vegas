@@ -33,11 +33,31 @@ class asgard.events.SoundEvent extends BasicEvent
 	/**
 	 * Creates a new SoundEvent instance.
 	 */	
-	public function SoundEvent(type : String, sound:Sound) 
+	public function SoundEvent(type:String, sound:Sound) 
 	{
 		super(type);
 		_sound = sound ;
 	}
+	
+	/**
+	 * The type of the event when the sound is complete.
+	 */
+	static public var COMPLETE:String = "onSoundComplete" ;
+
+	/**
+	 * The type of the event when a sound id3 is notify.
+	 */
+	static public var ID3:String = "onSoundID3" ; 
+	
+	/**
+	 * The type of the event when a sound is loading.
+	 */
+	static public var LOAD:String = "onSoundLoad" ; 
+	
+	/**
+	 * The success boolean value if the SoundEvent type is 'LOAD'.
+	 */
+	public var success:Boolean = null ;
 	
 	/**
 	 * Returns the sound reference.

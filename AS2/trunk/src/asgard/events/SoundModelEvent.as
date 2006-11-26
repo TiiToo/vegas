@@ -36,12 +36,13 @@ class asgard.events.SoundModelEvent extends ModelChangedEvent
 	/**
 	 * Creates a new SoundModelEvent instance.
 	 */	
-	public function SoundModelEvent(type:String, model:SoundModel, id:String, sound:Sound) 
+	public function SoundModelEvent(type:String, model:SoundModel, id:String, sound:Sound, url:String) 
 	{
 		super(type);
 		_id    = id ;
 		_model = model ;
 		_sound = sound ;
+		_url   = url ; 
 	}
 
 	/**
@@ -55,12 +56,43 @@ class asgard.events.SoundModelEvent extends ModelChangedEvent
 	static public var CLEAR_SOUND:String = "onClearSound" ;
 
 	/**
+	 * The type of the event when the sound is complete.
+	 */
+	static public var COMPLETE_SOUND:String = "onCompleteSound" ;
+
+	/**
+	 * The type of the event when all sounds are enabled in the model.
+	 */
+	static public var ENABLE_SOUNDS:String = "onEnabledSounds" ;
+
+	/**
+	 * The type of the event when all sounds are disabled in the model.
+	 */
+	static public var DISABLE_SOUNDS:String = "onDisabledSounds" ;
+	
+	/**
+	 * The type of the event when a sound id3 is notify.
+	 */
+	static public var ID3_SOUND:String = "onID3Sound" ; 
+	
+	/**
+	 * The type of the event when a sound is loading.
+	 */
+	static public var LOAD_SOUND:String = "onLoadSound" ; 
+
+	/**
 	 * The name of the SoundModelEvent when a Sound is removed in a SoundModel instance.
 	 */
 	static public var REMOVE_SOUND:String = "onRemoveSound" ; 
 
 	/**
+	 * The success boolean value if the SoundModelEvent type is 'LOAD_SOUND'.
+	 */
+	public var success:Boolean = null ;
+
+	/**
 	 * Returns the id of the sound reference.
+	 * @return the id of the sound reference.
 	 */
 	public function getID():String
 	{
@@ -69,6 +101,7 @@ class asgard.events.SoundModelEvent extends ModelChangedEvent
 
 	/**
 	 * Returns the model reference of this event.
+	 * @return the model reference of this event.
 	 */
 	public function getModel():SoundModel
 	{
@@ -77,10 +110,20 @@ class asgard.events.SoundModelEvent extends ModelChangedEvent
 	
 	/**
 	 * Returns the sound reference.
+	 * @return the sound reference.
 	 */
 	public function getSound():Sound
 	{
 		return _sound ;	
+	}
+	
+	/**
+	 * Returns the url of the sound reference if this sound is an external sound.
+	 * @return the url of the sound reference if this sound is an external sound.
+	 */
+	public function getUrl():String
+	{
+		return _url ;	
 	}
 
 	/**
@@ -108,6 +151,14 @@ class asgard.events.SoundModelEvent extends ModelChangedEvent
 	}
 
 	/**
+	 * Sets the url of the sound reference if this sound is an external sound.
+	 */
+	public function setUrl(sURL:String):Void
+	{
+		_url = sURL ;	
+	}
+
+	/**
 	 * Id of the sound in the model.
 	 */
 	private var _id:String ;
@@ -121,5 +172,10 @@ class asgard.events.SoundModelEvent extends ModelChangedEvent
 	 * Internal Sound reference.
 	 */
 	private var _sound:Sound ;
+	
+	/**
+	 * Internal url of the Sound reference.
+	 */
+	private var _url:String ;
 
 }
