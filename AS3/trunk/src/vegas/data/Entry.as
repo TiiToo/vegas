@@ -21,48 +21,34 @@
   
 */
 
-/**	Entry [Interface]
-
-	AUTHOR
-		
-		Name : Entry
-		Package : vegas.data
-		Version : 1.0.0.0
-		Date :  20056-07-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- getKey():*
-		 
-		    Returns the key corresponding to this entry.
-		
-		- getValue():*
-		
-		    Returns the value corresponding to this entry.
-		
-		- setKey(key:*):void
-		
-		    Set the key of this entry.
-		
-		- setValue(value:*):void
-		
-		    Replaces the value corresponding to this entry with the specified value (optional operation).
-	
-**/
-
 package vegas.data
 {
+	
+	/**
+	 * A map entry (key-value pair).
+	 * @author eKameleon
+	 */
     public interface Entry
     {
+    	
+	 	/**
+		 * Returns the key corresponding to this entry.
+		 */
 	    function getKey():* ;
-	
+
+		/**
+		 * Returns the value corresponding to this entry.
+		 */
     	function getValue():* ; 
 	
+		/**
+		 * Sets the key of this entry.
+		 */
 	    function setKey(key:*):void ;
-	
+
+		/**
+		 * Replaces the value corresponding to this entry with the specified value (optional operation).
+		 */
     	function setValue(value:*):void ;
     }
 }

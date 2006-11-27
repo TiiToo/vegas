@@ -21,72 +21,6 @@
   
 */
 
-/** TypedArray
-
-	AUTHOR
-
-		Name : TypedArray
-		Package : vegas.data.array
-		Version : 1.0.0.0
-		Date :  2006-07-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var ta:TypedArray = new TypedArray( type:*, ar:Array ) 
-
-	METHOD SUMMARY
-	
-	    - clone():*
-	    
-	    - copy():*
-	
-		- concat() : return a TypedArray
-		
-		- getType()
-		
-		- hashCode():Number
-		
-		- iterator()
-		
-		- push(value)
-		
-		- setType(type:Function) : set the type and clear TypedArray
-		
-		- supports(value)
-		
-		- toSource(...arguments:Array):String
-		
-		- toString():String
-		
-		- unshift(value):Number
-		
-		- validate(value):Void
-	
-	INHERIT 
-	
-		Object → Array → ProxyArray → TypedArray
-
-	IMPLEMENTS 
-
-    	ICloneable, ICopyable, IFormattable, IHashable, Iterable, ISerializable, ITypeable, IValidator
-
-	EXAMPLE
-	
-		import vegas.data.array.TypedArray ;
-		
-		var ta:TypedArray = new TypedArray(String, ["item1", "item2", "item3"]) ;
-		trace ("ta : " + ta) ;
-		ta.push(2) ;
-		
-		// Output
-		// ta : item1,item2,item3
-		// [TypeMismatchError] TypedArray.validate('value':2) is mismatch
-	
-**/
-
 package vegas.data.array
 {
 
@@ -109,11 +43,27 @@ package vegas.data.array
     import vegas.util.ClassUtil ;    
     import vegas.util.Serializer ;
 
+	/**
+	 * {@code TypedArray} acts like a normal array but assures that only objects of a specific type are added to the array.
+	 * 
+	 * <p>Example :
+	 * <code>
+	 * import vegas.data.array.TypedArray ;
+	 * 
+	 * var ta:TypedArray = new TypedArray(String, ["item1", "item2", "item3"]) ;
+	 * trace ("ta : " + ta) ; // output : ta : item1,item2,item3
+	 * ta.push(2) ; // [TypeMismatchError] TypedArray.validate('value':2) is mismatch
+	 * </code>
+	 * 
+	 * @author eKameleon 
+	 */
     public class TypedArray extends ProxyArray implements ITypeable, IValidator
     {
         
-        // ----o Constructor
-        
+		/**
+		 * Creates a new TypedArray instance.
+		 * @throw IllegalArgumentError if the argument 'type' is 'null' nor 'undefined'.
+		 */
         public function TypedArray( ...arguments:Array )
         {
             
@@ -149,18 +99,26 @@ package vegas.data.array
     		}
         }
         
-        // ----o Public Methods
-        
+		/**
+		 * Creates and returns a shallow copy of the object.
+		 */	
         override public function clone():*
         {
             return new TypedArray(_type, _ar.slice()) ;
         }
 
+		/**
+		 * Creates and returns a deep copy of the object.
+		 */	
         override public function copy():*
         {
             return new TypedArray(_type, _ar.slice()) ;
         }
 
+		/**
+		 * Concatenates the elements specified in the parameter list with the elements of this array and returns a new array containing these element.
+		 * @return a new array that contains the elements of this array as well as the passed-in elements.
+		 */
         public function concat( ...arguments:Array ):TypedArray 
         {
 		    var r:TypedArray = new TypedArray(_type) ;
@@ -195,11 +153,19 @@ package vegas.data.array
     		return r ;
         }
         
+		/**
+		 * Returns the type of the ITypeable object.
+		 */
         public function getType():*
         {
             return _type;
         }
 
+		/**
+		 * Adds one or more elements to the end of this array and returns the new length of this array.
+		 * @return the new length of this array
+		 * @throws TypeMismatchError 
+		 */
     	public function push( ...arguments:Array ):uint 
     	{
 		    if (arguments.length > 1) 
@@ -218,13 +184,18 @@ package vegas.data.array
 		    return Number(_ar.push.apply(_ar, arguments)) ;
     	}
 
-
+		/**
+		 * Sets the type of the ITypeable object.
+		 */
         public function setType(type:*):void
         {
 		    _type = type ;
     		_ar.length = 0 ;
         }
 
+		/**
+		 * Returns true if the IValidator object validate the value.
+		 */
     	public function supports(value:*):Boolean 
     	{
 		    return value is _type ;
@@ -253,6 +224,10 @@ package vegas.data.array
 		    
     	}
   
+		/**
+		 * Evaluates the condition it checks and updates the IsValid property.
+		 * @throws TypeMismatchError 
+		 */
         public function validate(value:*):void
         {
   		    if (!supports(value)) 
@@ -261,8 +236,9 @@ package vegas.data.array
    		    }
         }
         
-        // ----o Protected Methods
-        
+        /**
+         * This method is used in toSource method.
+         */  
         override protected function getSourceParams():String
         {
             
@@ -271,8 +247,6 @@ package vegas.data.array
             return sourceA + "," + sourceB ;
             
         }
-	
-	    // -----o Private Properties
 		    
 	    private var _type:* ;
 	    

@@ -21,33 +21,24 @@
   
 */
 
-/**	Boundable [Interface]
-
-	AUTHOR
-
-		Name : Boundable
-		Package : vegas.data
-		Version : 1.0.0.0
-		Date :  2006-07-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-
-		- isFull():Boolean
-		
-		- maxSize():uint
-
-**/
-
 package vegas.data
 {
+	
+	/**
+	 * Defines an object that is bounded in size. The size of the object can vary, but it can never exceed a preset maximum number of elements. This interface allows the querying of details associated with the maximum number of elements.
+	 * @author eKameleon
+	 */
     public interface Boundable
     {
         
+		/**
+		 * Returns {@code true} if the object is full.
+		 */
     	function isFull():Boolean ;
 	
+		/**
+		 * Returns the max number of occurrences in the given collection.
+		 */
 	    function maxSize():uint ; 
 	    
     }

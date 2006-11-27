@@ -21,56 +21,6 @@
   
 */
 
-/*	DateComparator
-
-	AUTHOR
-
-		Name : DateComparator
-		Package : vegas.util.comparators
-		Version : 1.0.0.0
-		Date :  2006-07-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	CONSTRUCTOR
-	
-		var comp:DateComparator = new DateComparator() ;
-	
-	PROPERTY SUMMARY
-	
-		- date
-	
-	METHOD SUMMARY
-	
-		- clone():*
-	
-		- compare(o1, o2):Number
-			
-			RETURNS 
-			
-				- -1 if o1 is "lower" than (less than, before, etc.) o2 ;
-				- 1 if o1 is "higher" than (greater than, after, etc.) o2 ;
-				- 0 if o1 and o2 are equal.
-	
-		- copy():*
-	
-		- hashCode():uint
-		
-		- toSource(...arguments:Array):String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → DateComparator
-
-	IMPLEMENTS
-	
-		ICloneable, IComparator, IFormattable, IHashable, ISerializable
-
-*/
-
 package vegas.util.comparators
 {
 
@@ -81,27 +31,41 @@ package vegas.util.comparators
 
 	import vegas.errors.IllegalArgumentError;
 	
+	/**
+	 * This comparator compare Date objects.
+	 * @author eKameleon
+	 */
 	public class DateComparator extends CoreObject implements IComparator, ICloneable, ICopyable
 	{
 		
-		// ----o Constructor
-				
+		/**
+		 * Creates a new DateCompator instance.
+		 */
 		public function DateComparator()
 		{
 			super();
 		}
-		
-		// -----o Public Methods
 
-		public function clone():* {
-			return new DateComparator() ;
-		}
-
-		public function copy():*
+		/**
+		 * Creates and returns a shallow copy of the object.
+		 * @return A new object that is a shallow copy of this instance.
+		 */			
+		public function clone():* 
 		{
 			return new DateComparator() ;
 		}
-	
+
+		/**
+		 * Returns an integer value to compare two Date objects.
+		 * @param o1 the first Date object to compare.
+		 * @param o2 the second Date object to compare.
+		 * @return <p>
+		 * <li>-1 if o1 is "lower" than (less than, before, etc.) o2 ;</li>
+		 * <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
+		 * <li> 0 if o1 and o2 are equal.</li>
+		 * </p>
+		 * @throw IllegalArgumentError if compare(a, b) and 'a' and 'b' must be Date or uint objects.
+		 */
 		public function compare(o1:*, o2:*):int
 		{
 			
@@ -109,16 +73,37 @@ package vegas.util.comparators
 			if (o2 == null) o2 = 0 ;
 			var b1:Boolean = (o1 is Number) || (o1 is Date) ;
 			var b2:Boolean = (o2 is Number) || (o2 is Date) ;
-			if ( b1 && b2 ) {
+			if ( b1 && b2 ) 
+			{
 				var a:Number = (o1 is Date) ? o1.valueOf() : o1 ;
 				var b:Number = (o2 is Date) ? o2.valueOf() : o2 ;
-				if( a < b ) return -1;
-				else if( a > b ) return 1;
-				else return 0 ;
+				if( a < b ) 
+				{
+					return -1;
+				}
+				else if( a > b ) 
+				{
+					return 1;
+				}
+				else 
+				{
+					return 0 ;
+				}
 				
-			} else {
+			}
+			else 
+			{
 				throw new IllegalArgumentError(this + ".compare(a, b), 'a' and 'b' must be Date or uint objects.") ;
 			}
+		}
+		
+		/**
+		 * Creates and returns a deep copy of the object.
+		 * @return A new object that is a deep copy of this instance.
+		 */	
+		public function copy():*
+		{
+			return new DateComparator() ;
 		}
 		
 	}

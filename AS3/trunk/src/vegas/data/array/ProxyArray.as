@@ -61,22 +61,7 @@
 	
     EXAMPLE
 
-            var a:ProxyArray = new ProxyArray() ;
-            a.push("item1") ;
-            a.push("item2") ;
-            a.push("item3") ;
-            a.push("item4") ;
-            
-            trace("> " + a) ;
 
-            trace("source : " + a.toSource()) ;
-            
-            var a2:ProxyArray = new ProxyArray( [[1, 2], [3, 4]] ) ;
- 
-            var copy:ProxyArray = a2.copy() ;
-   
-            copy[1][0] = "new value" ;  
-            trace(a2 + " : " + copy) ;
 
 */
 
@@ -101,22 +86,45 @@ package vegas.data.array
     import flash.utils.Proxy;
     import flash.utils.flash_proxy 
     
+    /**
+     * The ProxyArray class.
+     * <p><b>Example :</b></p>
+     * <p>{@code
+     * var a:ProxyArray = new ProxyArray() ;
+     * a.push("item1") ;
+     * a.push("item2") ;
+     * a.push("item3") ;
+     * a.push("item4") ;
+     * 
+     * trace("> " + a) ;
+     * trace("source : " + a.toSource()) ;
+     * var a2:ProxyArray = new ProxyArray( [[1, 2], [3, 4]] ) ;
+     * var copy:ProxyArray = a2.copy() ;
+     * copy[1][0] = "new value" ;  
+     * trace(a2 + " : " + copy) ;
+	 * }
+	 * </p>
+     * @author eKameleon
+     */
     dynamic public class ProxyArray extends Proxy implements ICloneable, ICopyable, IFormattable, IHashable, Iterable, ISerializable
     {
         
-        // ----o Constructor
-        
+		/**
+		 * Creates a new ProxyArray instance.
+		 */        
         public function ProxyArray( ar:Array=null )
         {
             _ar = (ar == null) ? [] : [].concat(ar)  ;
         }
 		
-    	// ----o Init HashCode
-		
+    	/**
+    	 * Init HashCode method.
+		 */
 		HashCode.initialize(ProxyArray.prototype) ;
 		
-        // ----o Init Proxy
-		
+        /**
+         * Init Proxy.
+         */
         flash_proxy override function callProperty( methodName:*, ... args):* 
         {
             var res:* ;
@@ -130,61 +138,84 @@ package vegas.data.array
             }
             return res ;
         }
-		
+        
+        /**
+         * Init Proxy getProperty.
+         */
         flash_proxy override function getProperty(name:*):* 
         {
             return _ar[name];
         }
 		
+        /**
+         * Init Proxy setProperty.
+         */
         flash_proxy override function setProperty(name:*, value:*):void 
         {
             _ar[name] = value;
         }
 		
-        // ----o Public Methods
-		
+		/**
+		 * Creates and returns a shallow copy of the object.
+		 */	
         public function clone():*
         {
             return new ProxyArray(_ar.slice()) ;
         }
 		
+		/**
+		 * Creates and returns a deep copy of the object.
+		 */	
         public function copy():*
         {
             return new ProxyArray(Copier.copy(_ar)) ;
 		}
 		
+		/**
+		 * Returns a hashcode value for the object.
+		 */
         public function hashCode():uint
         {
             return null ;
 		}
-		
+
+		/**
+		 * Returns the iterator of the object.
+		 */
     	public function iterator():Iterator 
     	{
 		    return new ArrayIterator(_ar) ;
 	    }
-		
+
+		/**
+		 * Returns a Eden reprensation of the object.
+		 * @return a string representing the source code of the object.
+		 */
         public function toSource(...arguments):String
         {
-            //TODO: implement function
             return "new " + ClassUtil.getPath(this) + "(" + getSourceParams() + ")" ;
         }
-		
+
+		/**
+		 * Returns the string representation of this instance.
+		 * @return the string representation of this instance
+		 */
         public function toString():String
         {
             return _ar.toString() ;
         }
 		
-        // ----o Protected Methods
-        
+        /**
+         * This method is used in toSource method.
+         */  
         protected function getSourceParams():String
         {
-            
             return Serializer.toSource(_ar) ;
-            
         }
 		
-        // ----o Private Properties
-        
+		/**
+		 * Internal array used in the proxy pattern.
+		 */        
         protected var _ar:Array ;
         
     }

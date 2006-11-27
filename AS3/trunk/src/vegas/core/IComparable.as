@@ -21,28 +21,21 @@
   
 */
 
-/**	IComparable [Interface]
-
-	AUTHOR
-	
-		Name : IComparable
-		Package : vegas.core
-		Version : 1.0.0.0
-		Date :  2006-07-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		compareTo(o)
-
-**/
-
 package vegas.core
 {
+
+	/**
+	 * This interface imposes a total ordering on the objects of each class that implements it.
+	 * This ordering is referred to as the class's natural ordering, and the class's compareTo method is referred to as its natural comparison method.
+	 * @author eKameleon
+	 */
 	public interface IComparable
 	{
+
+		/**
+		 * Compares this object with the specified object for order.
+		 */
 		function compareTo(o):Number ;	
+	
 	}
 }

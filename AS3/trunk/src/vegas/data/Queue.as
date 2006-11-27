@@ -21,56 +21,6 @@
   
 */
 
-/* Queue [Interface]
-
-	AUTHOR
-	
-		Name : Queue
-		Package : vegas.data
-		Version : 1.0.0.0
-		Date :  2006-07-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-
-		File d'attente, on ajoute en queue de la liste et on enlève en tête.
-
-	METHOD SUMMARY
-	
-	    - clear():void
-	
-	    - clone():*
-	    
-	    - copy():*
-	
-		- dequeue():Boolean
-		
-		- element():*
-		
-		- enqueue(o):Boolean
-		
-		- hashCode():uint
-		
-		- iterator():Iterator
-		
-		- peek():*
-		
-		- poll():* 
-
-        - size():uint
-
-        - toSource(...arguments:Array):String
-        
-        - toString():String
-
-    INHERIT
-    
-        ICloneable, ICopyable, IFormattable, IHashable, Iterable, ISerializable
-
-**/
-
 package vegas.data
 {
     
@@ -82,12 +32,20 @@ package vegas.data
 
     import vegas.data.iterator.Iterable;
 
+	/**
+	 * A collection designed for holding elements prior to processing. Besides basic Collection operations, queues provide additional insertion, extraction, and inspection operations.
+	 * <p>
+	 * Queues typically, but do not necessarily, order elements in a FIFO (first-in-first-out) manner.
+	 * </p>
+	 * <p>Whatever the ordering used, the head of the queue is that element which would be removed by a call to remove() or poll().</p>
+	 * @author eKameleon
+	 */
     public interface Queue extends ICloneable, ICopyable, IFormattable, IHashable, Iterable, ISerializable
     {
     	
-    	/**
-    	 * Clear the queue object.
-    	 */
+		/**
+		 * Removes all of the elements from this queue (optional operation).
+		 */
     	function clear():void ;
 	
 		/**

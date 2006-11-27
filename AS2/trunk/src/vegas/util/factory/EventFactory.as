@@ -21,67 +21,56 @@
   
 */
 
-/** EventFactory
-
-	AUTHOR
-
-		Name : EventFactory
-		Package : vegas.util.factory
-		Version : 1.0.0.0
-		Date :  2006-01-19
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	DESCRIPTION
-		
-		Permet de créer un objet qui implémente l'interface Event
-
-	METHOD SUMMARY
-	
-		- static public create(o, target:Object, context:Object):Event
-	
-**/
-
 import vegas.events.BasicEvent;
 import vegas.events.Event;
 import vegas.events.EventTarget;
 import vegas.util.TypeUtil;
 
-class vegas.util.factory.EventFactory {
+/**
+ * This factory class creates and returns Event's object.
+ * @author eKameleon
+ */
+class vegas.util.factory.EventFactory 
+{
 
-	// ----o Constructor
-	
-	private function EventFactory() {
-		//
-	}
-
-	// ----o Public Methods
-	
-	static public function create(o, target:EventTarget, context:Object):Event {
+	/**
+	 * Creates a new Event's object.
+	 */
+	static public function create(o, target:EventTarget, context:Object):Event 
+	{
 		
 		var e:Event = null ;
 		
-		if (o instanceof Event) {
-			
-			if (o.getTarget() == null) o.setTarget(target) ;
-			if (context) o.setContext(context) ;
+		if (o instanceof Event) 
+		{
+			if (o.getTarget() == null) 
+			{
+				o.setTarget(target) ;
+			}
+			if (context) 
+			{
+				o.setContext(context) ;
+			}
 			e = o ;
-			
-		} else if (TypeUtil.typesMatch(o, String)) {
-			
+		}
+		else if (TypeUtil.typesMatch(o, String)) 
+		{
 			e = new BasicEvent(o, target, context) ;
-			
-		} else if (TypeUtil.typesMatch(o, Object)) {
-			
-			if (o.type == undefined) return null ;
+		}
+		else if (TypeUtil.typesMatch(o, Object)) 
+		{
+			if (o.type == undefined) 
+			{
+				return null ;
+			}
 			e = new BasicEvent(o.type, o.target , o.context) ;
 			if (target) e.setTarget(target) ;
 			if (context) e.setContext(context) ;
-			
 		}
-		
-		if (!e.getCurrentTarget()) e.setCurrentTarget(e.getTarget()) ;
+		if (!e.getCurrentTarget()) 
+		{
+			e.setCurrentTarget(e.getTarget()) ;
+		}
 		return e ;
 	}
 }

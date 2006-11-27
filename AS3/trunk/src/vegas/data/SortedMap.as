@@ -21,87 +21,42 @@
   
 */
 
-/* SortedMap [Interface]
-
-	AUTHOR
-
-		Name : SortedMap
-		Package : vegas.data
-		Version : 1.0.0.0
-		Date :  2006-07-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-	
-		- comparator:IComparator [R/W]
-
-	METHOD SUMMARY
-
-		- clear()
-
-		- containsKey( key ):Boolean
-	
-		- containsValue( value ):Boolean
-
-		- firstKey():*
-
-		- get(key)
-	
-		- getKeys():Array
-	
-		- getValues():Array
-
-		- heapMap(toKey:*):SortedMap
-
-		- isEmpty():Boolean
-	
-		- iterator():Iterator
-
-		- keyIterator():Iterator
-
-		- lastKey():*
-
-		- put(key, value)
-	
-		- putAll(m:Map)
-
-		- remove(o:*):*
-	
-		- size():uint
-
-		- subMap(fromKey:*, toKey:*):SortedMap
-
-		- tailMap(fromKey:*):SortedMap
-
-        - toSource(...arguments:Array):String
-
-		- toString():String
-
-    INHERIT
-
-        ICloneable, IComparer, IFormattable, IHashable, ISerializable, Iterable, Map
-
-**/
-
 package vegas.data
 {
 	
 	import vegas.core.IComparator;
 	import vegas.core.IComparer;
 	
+	/**
+	 * Map that further guarantees that it will be in ascending key order, sorted according to the natural ordering of its keys.
+	 * @author eKameleon
+	 */
 	public interface SortedMap extends IComparer, Map
 	{
 		
+		/**
+		 * Returns the first (lowest) key currently in this sorted map.
+		 */
 		function firstKey():* ;
 	
+		/**
+		 * Returns a view of the portion of this sorted map whose keys are strictly less than toKey.
+		 */
 		function heapMap(toKey:*):SortedMap ;
-	
+
+		/**
+		 * Returns the last (highest) key currently in this sorted map.
+		 */
 		function lastKey():* ;
-	
+
+		/**
+		 * Returns a view of the portion of this sorted map whose keys range from fromKey, inclusive, to toKey, exclusive.
+		 */
 		function subMap(fromKey:*, toKey:*):SortedMap ;
-	
+
+		/**
+		 * Returns a view of the portion of this sorted map whose keys are greater than or equal to fromKey.
+		 */
 		function tailMap(fromKey:*):SortedMap ;
 		
 	}

@@ -21,29 +21,21 @@
   
 */
 
-/** IEquality [Interface]
-	
-	AUTHOR
-
-		Name : IEquality
-		Package : vegas.core
-		Version : 1.0.0.0
-		Date :  2006-07-05
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHODS
-
-		- equals(o):Boolean
-
-**/
-
 package vegas.core
 {
+	
+	/**
+	 * Interface implemented by classes that can compare an object with their objects.
+	 * @author eKameleon
+	 * @version 1.0.0.0
+	 */
 	public interface IEquality
 	{
 
+		/**
+		 * Compares the specified object with this object for equality.
+		 * @return {@code true} if the the specified object is equal with this object.
+		 */
 		function equals(o:*):Boolean ;
 		
 	}

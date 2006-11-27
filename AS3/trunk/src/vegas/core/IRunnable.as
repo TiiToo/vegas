@@ -21,28 +21,23 @@
   
 */
 
-/**	IRunnable [Interface]
-
-	AUTHOR
-
-		Name : IRunnable
-		Package : vegas.core
-		Version : 1.0.0.0
-		Date :  2006-07-05
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-		
-	METHOD SUMMARY
-	
-		- run():void
-
-**/
-
 package vegas.core
 {
+
+	/**
+	 * The IRunnable interface should be implemented by any class whose instances are intended to be executed by a "thread".
+	 * The class must define a method of no arguments called run.
+	 * @author eKameleon
+	 * @version 1.0.0.0
+	 */	
 	public interface IRunnable
 	{
+	
+		/**
+		 * Run the command.
+		 */
 		function run( ...arguments:Array ):void ;
+	
 	}
+
 }

@@ -21,97 +21,37 @@
   
 */
 
-/** ArrayUtil
-
-	AUTHOR
-	
-		Name : ArrayUtil
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date :  2005-11-04
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	STATIC METHOD SUMMARY
-	
-		- static clone(ar:Array):Array 
-		
-		- static contains(ar:Array, value:Object):Boolean
-		
-		- static copy(ar:Array):Array 
-		
-		- static every(ar:Array, callback:Function, o:Object):Boolean
-			
-			Returns true if every element in this array satisfies the provided testing function.
-		
-		- static filter( ar:Array, callback:Function, thisObject ):Array
-		
-		- static forEach(callback:Function, o:Object):Void
-		
-			Calls a function for each element in the array.
-			
-			note:
-				callback is invoked with three arguments:
-					- the value of the element
-					- the index of the element
-					- the Array object being traversed
-		
-		- static fromArguments( ar:Array, args:Array ):Array
-		
-			Returns an Array object from a function Arguments object.
-		
-		- static indexOf( ar:Array, value:Object, startIndex:Number, count:Number):Number
-			
-			Returns the index of the first occurrence of a value in a one-dimensional Array 
-			or in a portion of the Array .
-   
-			PARAMETERS
-				
-				- startIndex 
-					optionnal, allows to specify the starting index of the search.
-				
-				- count 
-					allows to limit the number of elements to search in the array
-		
-		- static initialize(index:Number, value:Object):Array 
-			
-			Initializes a new Array with an arbitrary number of elements (index) ,
-			with every element containing the passed parameter value or by default the null value.
-			
-		- static lastIndexOf(ar:Array, o):Number
-		
-		- static map( ar:Array, callback:Function, o ):Array
-		
-			Creates a new array with the results of calling a provided function on every element in this array.
-		
-		- static toString(ar:Array):String
-
-**/
-
 import vegas.errors.ArgumentOutOfBoundsError;
 import vegas.util.Copier;
 
-class vegas.util.ArrayUtil {
+/**
+ * Array tools class.
+ * @author eKameleon
+ */
+class vegas.util.ArrayUtil 
+{
 
-	// ----o Construtor
-	
-	public function ArrayUtil() {}
-	
-	// ----o Public Methods	
-
-	static public function clone(ar:Array):Array {
+    /**
+     * Creates a shallow copy of the Array.
+     */
+	static public function clone(ar:Array):Array 
+	{
 		return ar.slice() ;
 	}
 
-	static public function contains( ar:Array , value:Object):Boolean {
+    /**
+     * Returns whether the Array contains a particular item.
+     */
+	static public function contains( ar:Array , value:Object):Boolean 
+	{
 		return (indexOf(ar, value) > -1) ;
 	}
 
-	/**
-	 * Returns a deep copy.
-	 */
-	static public function copy(ar:Array):Array {
+    /**
+     * Creates a deep copy of the Array.
+   	 */
+	static public function copy(ar:Array):Array 
+	{
 		// TODO Test this method please !!!
 		var a:Array = [] ;
 		var i:Number ;
@@ -133,10 +73,12 @@ class vegas.util.ArrayUtil {
 	/**
 	 * Returns true if every element in this array satisfies the provided testing function.
 	 */
-	static public function every(ar:Array, callback:Function, o:Object ):Boolean {
+	static public function every(ar:Array, callback:Function, o:Object ):Boolean 
+	{
 		if(!o) o = _global ;
 		var len:Number = ar.length ;
-		for (var i:Number = 0 ; i<len ; i++) {
+		for (var i:Number = 0 ; i<len ; i++) 
+		{
 			if( !callback.call( o, ar[i], i, ar ) ) return false ;
         }
 		return true ;
@@ -176,20 +118,35 @@ class vegas.util.ArrayUtil {
 	/**
 	 * Calls a function for each element in the array.
 	 */
-	static public function forEach(ar:Array, callback:Function, o):Void {
+	static public function forEach(ar:Array, callback:Function, o):Void 
+	{
         var len:Number = ar.length ; 
 		var i:Number ;
         if( o == null ) o = _global ;
-        for( i=0; i<len ; i++ ) {
+        for( i=0; i<len ; i++ ) 
+        {
         	callback.call(o, ar[i], i, ar) ;
         }
     }
 
-	static public function fromArguments( ar:Array, args:Array ):Array {
+	/**
+	 * Returns an new array from arguments in a function.
+	 */
+	static public function fromArguments( ar:Array, args:Array ):Array 
+	{
 		return ar.concat(args) ;	
     }
-
-	static public function indexOf( ar:Array, value:Object, startIndex:Number, count:Number):Number {
+    
+	/**
+	 * Returns the index of the first occurrence of a value in a one-dimensional Array or in a portion of the Array.
+	 * @param ar the array reference.
+	 * @param value the value to search in the array.
+	 * @param startIndex optionnal, allows to specify the starting index of the search.
+	 * @param count	allows to limit the number of elements to search in the array.
+	 * @return the index of the first occurrence of a value in a one-dimensional Array or in a portion of the Array.
+	 */
+	static public function indexOf( ar:Array, value:Object, startIndex:Number, count:Number):Number 
+	{
 		var l:Number = ar.length ;
 		if(isNaN(startIndex) ) startIndex = 0 ;
         if(isNaN(count)) count = ar.length  - startIndex ;
@@ -205,7 +162,8 @@ class vegas.util.ArrayUtil {
 	/**
 	 * Create and Initialize an Array.
 	 */
-	static public function initialize(index:Number, value:Object):Array {
+	static public function initialize(index:Number, value:Object):Array 
+	{
 		if( isNaN(index) ) index = 0 ;
 		if( value === undefined ) value = null ;
         var ar:Array = [] ;
@@ -225,7 +183,8 @@ class vegas.util.ArrayUtil {
 	/**
 	 * Creates a new array with the results of calling a provided function on every element in this array.
 	 */
-	static public function map( ar:Array, callback:Function, thisObject  ):Array {
+	static public function map( ar:Array, callback:Function, thisObject ):Array 
+	{
         
 		var arr:Array = [] ;
 		var i:Number ;
@@ -243,7 +202,8 @@ class vegas.util.ArrayUtil {
 	/**
 	 * Tests whether some element in the array passes the test implemented by the provided function.
 	 */
-	static public function some( ar:Array, callback:Function, thisObject):Boolean {
+	static public function some( ar:Array, callback:Function, thisObject):Boolean 
+	{
         
         var len:Number = ar.length ;
         var i:Number = 0 ;
@@ -261,7 +221,8 @@ class vegas.util.ArrayUtil {
 	/**
 	 * Returns a string representing the specified array and its elements.
 	 */
-	static public function toString(ar:Array):String {
+	static public function toString(ar:Array):String 
+	{
 		return ar.join("") ;
 	}
 	

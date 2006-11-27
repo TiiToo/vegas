@@ -21,36 +21,25 @@
   
 */
 
-/** ITypeable
-
-	AUTHOR
-	
-		Name : ITypeable
-		Package : vegas.core
-		Version : 1.0.0.0
-		Date : 2006-07-05
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHODS
-	
-		- getType() 
-		
-			return the type.
-		
-		- setType(type:Function) 
-		
-			the type to set.
-	
-**/
-
 package vegas.core
 {
+	
+	/**
+	 * Interface implemented by classes that defined a specific type.
+	 * @author eKameleon
+	 */
 	public interface ITypeable
 	{
+	
+		/**
+		 * Returns the type of the ITypeable object.
+		 */
 		function getType():* ;
 	
+		/**
+		 * Sets the type of the ITypeable object.
+		 */
 		function setType(type:*):void ;
+	
 	}
 }

@@ -21,67 +21,68 @@
   
 */
 
-/** BooleanUtil
+/**
+ * Boolean tools class.
+ * @author eKameleon
+ */
+class vegas.util.BooleanUtil 
+{
 
-	AUTHOR
-	
-		Name : BooleanUtil
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date :  2005-12-23
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- static clone(b:Boolean):Boolean
-		
-		- static copy(b:Boolean):Boolean
-		
-		- static equals(b1:Boolean, b2:Boolean):Boolean
-		
-		- static toBoolean(b:Boolean):Boolean
-		
-		- static toNumber(b:Boolean):Number
-		
-		- static toObject(b:Boolean):Object
-
-**/
-
-class vegas.util.BooleanUtil {
-
-	// ----o Construtor
-	
-	private function BooleanUtil() {
-		//
-	}
-	
-	// ----o Static Methods
-
-	static public function clone(b:Boolean):Boolean {
+    /**
+     * Returns a copy by reference of this boolean.
+     */
+	static public function clone(b:Boolean):Boolean 
+	{
 		return b ;
 	}
-
-	static public function copy(b:Boolean):Boolean {
+    
+    /**
+     * Returns a copy by value of this object.
+     */
+	static public function copy(b:Boolean):Boolean 
+	{
 		return b.valueOf() ;
 	}
 
-	static public function equals( b1:Boolean, b2:Boolean ):Boolean {
+    /**
+     * compare if two Booleans are equal by value.
+     */
+	static public function equals( b1:Boolean, b2:Boolean ):Boolean 
+	{
 		if ( !b2 ) return false ;
 		return b1.valueOf() == b2.valueOf() ;
     }
-	
-	static public function toBoolean(b:Boolean):Boolean {
+
+	/**
+	 * Converts to an equivalent Boolean value.
+	 */
+	static public function toBoolean(b:Boolean):Boolean 
+	{
 		return b.valueOf() ;
 	}
-	
-	static public function toNumber(b:Boolean):Number {
+
+	/**
+ 	 * Converts to an equivalent Number value.
+ 	 */
+	static public function toNumber(b:Boolean):Number 
+	{
 		return  b.valueOf() == true ? 1 : 0 ;
     }
-	
-	static public function toObject(b:Boolean):Object {
+
+	/**
+	 * Converts to an equivalent Object value.
+	 */
+	static public function toObject(b:Boolean):Object 
+	{
 		return new Boolean( b.valueOf() ) ;
+    }
+
+    /**
+     * Returns a string representing the source code of the boolean.
+     */
+    static public function toSource( b:Boolean ):String 
+    {
+		return BooleanUtil.equals(arguments[0], true) ? "true" : "false" ;
     }
 
 }

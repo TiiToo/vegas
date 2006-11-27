@@ -21,70 +21,6 @@
   
 */
 
-/**	HashMap
-
-	AUTHOR
-	
-		Name : HashMap
-		Package : vegas.data.map
-		Version : 1.0.1.0
-		Date :  2005-04-24
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		Tableau associatif d'objets
-
-	METHOD SUMMARY
-	
-		- clear()
-		
-		- clone()
-		
-		- containsKey( key )
-		
-		- containsValue( value )
-		
-		- get(key)
-		
-		- getKeys()
-		
-		- getValues()
-		
-		- indexOfKey(key)
-		
-		- indexOfValue(value)
-		
-		- isEmpty()
-		
-		- iterator()
-		
-		- keyIterator()
-		
-		- put(key, value)
-		
-		- putAll(m:Map)
-		
-		- remove(key)
-		
-		- size()
-		
-		- toSource():String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → HashMap
-	
-	IMPLEMENTS
-	
-		ICloneable, IFormattable, IHashable, ISerializable, Iterable, Map
-
-*/
-
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
 import vegas.data.iterator.ArrayIterator;
@@ -95,6 +31,9 @@ import vegas.data.map.MapFormat;
 import vegas.data.map.MapIterator;
 import vegas.util.serialize.Serializer;
 
+/**
+ * @author eKameleon
+ */
 class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable, Map 
 {
 
@@ -109,8 +48,6 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 		_keys = b ? [].concat(k) : ((_keys != null) ? [].concat(_keys) : []) ;
 		_values = b ? [].concat(v) : ((_values != null) ? [].concat(_values) : [])  ;
 	}
-	
-	// ----o Public Methods	
 	
 	/**
 	 * Removes all mappings from this map.
@@ -154,11 +91,17 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 		return _values[indexOfKey(key)] ;
 	}
 
+	/**
+	 * Returns an array representation of all keys in the map.
+	 */
 	public function getKeys():Array 
 	{
 		return _keys.slice() ;
 	}
 
+	/**
+	 * Returns an array representation of all values in the map.
+	 */
 	public function getValues():Array 
 	{
 		return _values.slice() ;
@@ -187,13 +130,16 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 	}
 
 	/**
-	 * Returns the iterator of this map.
+	 * Returns the values iterator of this map.
 	 */
 	public function iterator():Iterator 
 	{
 		return new MapIterator(this) ;
 	}
-	
+
+	/**
+	 * Returns the keys iterator of this map.
+	 */
 	public function keyIterator():Iterator 
 	{
 		return new ArrayIterator(_keys) ;
@@ -270,9 +216,8 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 		return (new MapFormat()).formatToString(this) ;
 	}
 
-	// -----o Private Properties
-	
 	private var _keys:Array ;
+
 	private var _values:Array ;
 
 	

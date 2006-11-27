@@ -21,58 +21,13 @@
   
 */
 
-/* BoundedCollection [Interface]
-
-    AUTHOR
-
-    	Name : BoundedCollection
-    	Package : vegas.data
-    	Version : 1.0.0.0
-    	Date :  2006-07-08
-    	Author : ekameleon
-    	URL : http://www.ekameleon.net
-    	Mail : vegas@ekameleon.net
-
-	METHODS
-	
-		- clear():Void
-		
-		- clone():*
-		
-		- copy():*
-		
-		- contains(o:*):Boolean
-		
-		- get(key:*):*
-		
-		- insert(o:*):Boolean
-		
-		- isEmpty():Boolean
-		
-		- isFull():Boolean
-		
-		- iterator():Iterator
-		
-		- maxSize():uint
-		
-		- remove(o):Boolean
-		
-		- size():uint
-		
-		- toArray():Array
-		
-		- toSource(...arguments:Array):String
-		
-		- toString():String
-
-    INHERIT
-    
-        Boundable, Collection → BoundedCollection
-
-**/
-
 package vegas.data
 {
+	
+	/**
+	 * Defines a collection that is bounded in size. The size of the collection can vary, but it can never exceed a preset maximum number of elements. This interface allows the querying of details associated with the maximum number of elements.
+	 * @author eKameleon
+	 */
     public interface BoundedCollection extends Boundable, Collection
     {
 

@@ -21,80 +21,64 @@
   
 */
 
-/** Char
-
-	AUTHOR
-	
-		Name : Char
-		Package : vegas.core.types
-		Version : 1.0.0.0
-		Date :  2007-07-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- getCode():Number
-		
-		- hashCode():Number
-		
-		- toSource():String
-		
-		- toString():String
-		
-		- valueOf()
-	
-	INHERIT
-	
-		CoreObject → Char  
-
-	IMPLEMENTS
-	
-		IFormattable, IHashable, ISerializable
-
-**/
-
-
 package vegas.core.types
 {
+	
     import vegas.core.CoreObject;
     import vegas.core.HashCode ;
-    
+
+	/**
+	 * An object of type Char contains a single field whose type is String.
+	 * @author eKameleon
+	 */    
     public class Char extends CoreObject
     {
         
-        // ----o Constructor
-        
+        /**
+         * Creates a new Char instance.
+         */  
         public function Char( value:String="" )
         {
             _ch = value.substring(0, 1) ; ;
         }
 
-        // ----o Public Methods
-        
-    	public function getCode():Number {
+		/**
+		 * Returns the integer character code for the character.
+		 */
+    	public function getCode():Number 
+    	{
 	    	return _ch.charCodeAt(0) ;
     	}
-        
+
+		/**
+		 * Returns a Eden representation of the object.
+		 * @return a string representing the source code of the object.
+		 */
         override public function toSource(...arguments):String 
         {
             return 'new vegas.core.types.Char("' + _ch + '")' ;    
         }
 
+		/**
+		 * Returns the string representation of this instance.
+		 * @return the string representation of this instance
+		 */
         override public function toString():String
         {
             return _ch ;
         }  
 
-        
+		/**
+		 * Returns the real value of the object.
+		 */
         public function valueOf():Object
         {
             return _ch ;
         }
         
-        // ----o Private Properties
-        
+		/**
+		 * Internal string object.
+		 */        
         private var _ch:String ;
         
     }

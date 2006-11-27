@@ -21,32 +21,21 @@
   
 */
 
-/** IFactory [Interface]
-
-	AUTHOR
-
-		Name : IFactory
-		Package : vegas.core
-		Version : 1.0.0.0
-		Date :  2006-07-05
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION : 
-	
-		Defines an interface implemented by classes that create objects.
-
-	METHOD SUMMARY
-	
-		- create()
-
-**/
-
 package vegas.core
 {
+	
+	/**
+	 * Defines an interface implemented by classes that create objects.
+	 * @author eKameleon
+	 */
 	public interface IFactory
 	{
-		function create() ;
+
+		/**
+		 * Returns and creates a new Object.
+		 */
+		function create():* ;
+
 	}
+
 }

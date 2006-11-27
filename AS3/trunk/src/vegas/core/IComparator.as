@@ -21,28 +21,21 @@
   
 */
 
-/** IComparator [Interface]
-	
-	AUTHOR
-
-		Name : IComparator
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date :  2006-07-05
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- compare(o1:*, o2:*):int
-		
-**/
-
 package vegas.core
 {
+
+	/**
+	 * A comparison function, which imposes a total ordering on some collection of objects.
+	 * @author eKameleon
+	 */
 	public interface IComparator
 	{
+
+		/**
+		 * Compares its two arguments for order.
+		 */
 		function compare(o1:*, o2:*):int ;
+
 	}
+
 }

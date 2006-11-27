@@ -21,82 +21,66 @@
   
 */
 
-/**	NullComparator
-
-	AUTHOR
-	
-		Name : NullComparator
-		Package : vegas.util.comparators
-		Version : 1.0.0.0
-		Date :  2005-10-26
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var comp:NullComparator = new NullComparator( o ) ;
-	
-	ARGUMENTS
-	
-		an object reference.
-	
-	METHOD SUMMARY
-	
-		- compare(o1, o2) : return a number
-		
-		- equals(o) : return a boolean
-		
-		- toSource():String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → NullComparator
-
-	IMPLEMENTS
-	
-		IComparator, ISerializable, IFormattable
-
-	TODO : ?? voir si vraiment utile pour le moment pas d'utilité ^_^
-
-**/
-
 import vegas.core.CoreObject;
 import vegas.core.IComparator;
 import vegas.core.ISerializable;
 import vegas.errors.IllegalArgumentError;
 import vegas.util.serialize.Serializer;
 
-class vegas.util.comparators.NullComparator extends CoreObject implements IComparator, ISerializable {
+/**
+ * This comparator compare Null objects.
+ * @author eKameleon
+ */
+class vegas.util.comparators.NullComparator extends CoreObject implements IComparator, ISerializable 
+{
 
-	// ----o Constructor
-	
+	/**
+	 * Creates a new NullCompator instance.
+	 */
 	public function NullComparator( o ) {
 		_oNull = o ;
 	}
 	
-	// ----o Public Methods
-
-	public function compare(o1, o2):Number {
-		if (o1 == null && o2 == null) {
+	/**
+	 * Returns an integer value to compare two 'null' objects.
+	 * @param o1 the first 'null' object to compare.
+	 * @param o2 the second 'null' object to compare.
+	 * @return <p>
+	 * <li>-1 if o1 is "lower" than (less than, before, etc.) o2 ;</li>
+	 * <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
+	 * <li> 0 if o1 and o2 are equal.</li>
+	 * </p>
+	 * @throw IllegalArgumentError if compare(a, b) and 'a' and 'b' must be Number objects.
+	 */
+	public function compare(o1, o2):Number 
+	{
+		if (o1 == null && o2 == null) 
+		{
 			return (o1 == o2) ? 1 : -1 ;
-		} else {
-			throw IllegalArgumentError ;
+		} 
+		else 
+		{
+			throw IllegalArgumentError(this + " : compare(), Arguments 'null' expected") ; ;
 		}
 	}
-	
-	public function equals(o):Boolean {
+
+	/**
+	 * Compares the specified object with this object for equality.
+	 * @return {@code true} if the the specified object is equal with this object.
+	 */
+	public function equals(o):Boolean 
+	{
 		if (_oNull) return (_oNull == null && o == null) ;
 		else return (o == null) ;
 	}
-	
+
+	/**
+	 * Returns a Eden representation of the object.
+	 * @return a string representing the source code of the object.
+	 */
 	public function toSource(indent:Number, indentor:String):String {
 		return Serializer.getSourceOf(this, [Serializer.toSource(_oNull)]) ;
 	}
-	
-	// ----o Private Properties
 	
 	private var _oNull ;
 	

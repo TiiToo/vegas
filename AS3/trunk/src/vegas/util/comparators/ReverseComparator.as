@@ -21,57 +21,6 @@
   
 */
 
-/*	ReverseComparator
-
-	AUTHOR
-
-		Name : ReverseComparator
-		Package : vegas.util.comparators
-		Version : 1.0.0.0
-		Date :  2006-07-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	CONSTRUCTOR
-	
-		var comp:Reverseomparator = new ReverseComparator( comp:IComparator ) ;
-	
-	PROPERTY SUMMARY
-	
-		- date
-	
-	METHOD SUMMARY
-	
-		- clone():*
-	
-		- compare(o1, o2):Number
-			
-			RETURNS 
-			
-				- -1 if o1 is "lower" than (less than, before, etc.) o2 ;
-				- 1 if o1 is "higher" than (greater than, after, etc.) o2 ;
-				- 0 if o1 and o2 are equal.
-	
-		- copy():*
-	
-		- hashCode():uint
-		
-		- toSource(...arguments:Array):String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → ReverseComparator
-
-	IMPLEMENTS
-	
-		ICloneable, IComparator, IFormattable, IHashable, ISerializable
-
-*/
-
-
 package vegas.util.comparators
 {
 	
@@ -81,38 +30,59 @@ package vegas.util.comparators
 	import vegas.core.ICopyable ;
 	import vegas.errors.IllegalArgumentError;
 	
+	/**
+	 * Reverse an IComparator.
+	 * @author eKameleon
+	 */
 	public class ReverseComparator extends CoreObject implements IComparator, ICloneable, ICopyable
 	{
 		
-		// ----o Constructor
-		
+		/**
+		 * Creates a new ReverseComparator instance.
+		 */
 		public function ReverseComparator( comp:IComparator=null )
 		{
-			if (comp == null) {
+			if (comp == null) 
+			{
 				throw new IllegalArgumentError(this + " constructor argument 'comp' not mmust be 'null' or 'undefined'.") ;
 			}
 			_comp = comp ;
 		}
-		
-		// ----o Public Methods
 
+		/**
+		 * Creates and returns a shallow copy of the object.
+		 * @return A new object that is a shallow copy of this instance.
+		 */	
 		public function clone():* 
 		{
 			return new ReverseComparator( _comp ) ;
 		}
 
+		/**
+		 * Returns an integer value to compare two objects (reverse the value).
+		 * @param o1 the first object to compare.
+		 * @param o2 the second object to compare.
+		 * @return <p>
+		 * <li>-1 if o1 is "lower" than (less than, before, etc.) o2 ;</li>
+		 * <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
+		 * <li> 0 if o1 and o2 are equal.</li>
+		 * </p>
+		 * @throw IllegalArgumentError if compare(a, b) and 'a' and 'b' must be Date or uint objects.
+		 */
 		public function compare(o1:*, o2:*):int
 		{
 			return _comp.compare(o2, o1) ;
 		}
 
+		/**
+		 * Creates and returns a deep copy of the object.
+		 * @return A new object that is a deep copy of this instance.
+		 */
 		public function copy():*
 		{
 			return new ReverseComparator( _comp ) ;
 		}
 	
-		// ----o Private Properties
-		
 		private var _comp:IComparator ;
 		
 	}

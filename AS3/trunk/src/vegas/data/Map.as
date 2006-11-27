@@ -21,56 +21,6 @@
   
 */
 
-/* Map [Interface]
-
-	AUTHOR
-
-		Name : Map
-		Package : vegas.data
-		Version : 1.0.0.0
-		Date :  2006-07-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-
-		- clear()
-
-		- containsKey( key:* ):Boolean
-	
-		- containsValue( value:* ):Boolean
-
-		- get(key:*):*
-	
-		- getKeys():Array
-	
-		- getValues():Array
-
-		- isEmpty():Boolean
-	
-		- iterator():Iterator
-
-		- keyIterator():Iterator
-
-		- put(key:*, value:*):*
-	
-		- putAll(m:Map):void
-
-		- remove(o:*):*
-	
-		- size():Number
-
-        - toSource(...arguments:Array):String
-
-		- toString():String
-
-    INHERIT
-
-        ICloneable, IFormattable, IHashable, ISerializable, Iterable.
-
-*/
-
 package vegas.data
 {
 
@@ -82,31 +32,71 @@ package vegas.data
     import vegas.data.iterator.Iterable;
     import vegas.data.iterator.Iterator;
 
+	/**
+	 * An object that maps keys to values. A map cannot contain duplicate keys. Each key can map to at most one value.
+	 * @author eKameleon
+	 */
     public interface Map extends ICloneable, ICopyable, IFormattable, IHashable, ISerializable, Iterable
     {
      
+		/**
+		 * Removes all mappings from this map (optional operation).
+		 */
      	function clear():void ;
 
+		/**
+		 * Returns {@code true} if this map contains a mapping for the specified key.
+		 */
         function containsKey( key:* ):Boolean ;
 	
+		/**
+		 * Returns {@code true} if this map maps one or more keys to the specified value.
+		 */
     	function containsValue( value:* ):Boolean ;
 
+		/**
+		 * Returns the value to which this map maps the specified key.
+		 */
 	    function get(key:*):* ;
 	
+		/**
+		 * Returns an array of all the keys in the map.
+		 */
     	function getKeys():Array ;
-	
+
+		/**
+		 * Returns an array of all the values in the map.
+		 */
     	function getValues():Array ;
 
+		/**
+		 * Returns {@code true} if this map contains no key-value mappings.
+		 */
 	    function isEmpty():Boolean ;
 	
+		/**
+		 * Returns the keys iterator of this map. 
+		 */
         function keyIterator():Iterator ;
 
+		/**
+		 * Associates the specified value with the specified key in this map (optional operation).
+		 */
     	function put(key:*, value:*):*  ;
 	
+		/**
+		 * Copies all of the mappings from the specified map to this map (optional operation).
+		 */	
     	function putAll(m:Map):void ;
-
+    	
+		/**
+		 * Removes the mapping for this key from this map if it is present (optional operation).
+		 */
     	function remove(o:*):*  ;
 	
+		/**
+		 * Returns the number of key-value mappings in this map.
+		 */
     	function size():uint ;
 
     }

@@ -21,108 +21,84 @@
   
 */
 
-/* List [Interface]
-
-    AUTHOR
-
-    	Name : List
-    	Package : vegas.data
-    	Version : 1.0.0.0
-    	Date :  2006-07-08
-    	Author : ekameleon
-    	URL : http://www.ekameleon.net
-    	Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- clear():Void
-		
-		- clone():*
-		
-		- containsAll(c:Collection):Boolean
-		
-		- copy():*
-		
-		- contains(o:*):Boolean
-		
-		- get(key:*):*
-		
-		- indexOf(o:*):Number
-		
-		- insert(o:*):Boolean
-		
-		- insertAll(c:Collection):Boolean
-		
-		- insertAllAt(id:uint, c:Collection):Boolean
-		
-		- insertAt(id:uint, o:*):void
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- lastIndexOf(o:*):Number
-		
-		- listIterator():ListIterator
-		
-		- remove(o):Boolean
-		
-		- removeAll(c:Collection):Boolean
-		
-		- removeAt(id:uint):*
-		
-		- retainAll(c:Collection):Boolean
-		
-		- setAt(id:uint, o:*):void
-		
-		- size():Number
-		
-		- subList(fromIndex:uint, toIndex:uint):List
-		
-		- toArray():Array
-		
-		- toSource(...arguments:Array):String
-		
-		- toString():String
-
-    INHERIT
-    
-        Collection, ICloneable, ICopyable, IEquality, IFormattable, ISerialzable, Iterable
-
-**/
-
 package vegas.data
 {
 
     import vegas.core.IEquality;
     import vegas.data.iterator.ListIterator ;
     
+	/**
+	 * An ordered collection (also known as a sequence). The user of this interface has precise control over where in the list each element is inserted. The user can access elements by their integer index (position in the list), and search for elements in the list.
+	 * @author eKameleon
+	 */
     public interface List extends Collection, IEquality
     {
+    
+    	/**
+		 * Returns {@code true} if this list contains all of the elements of the specified collection.
+		 */
     	function containsAll(c:Collection):Boolean ;
 
+		/**
+		 * Appends all of the elements in the specified collection to the end of this list, in the order that they are returned by the specified collection's iterator (optional operation).
+		 */
     	function insertAll(c:Collection):Boolean ;
-	
+
+		/**
+		 * Inserts all of the elements in the specified collection into this list at the specified position (optional operation).
+		 */
     	function insertAllAt(id:uint, c:Collection):Boolean ;
 
+		/**
+		 * Inserts the specified element at the specified position in this list (optional operation).
+		 */
     	function insertAt(id:uint, o:*):void ;
 
+		/**
+		 * Returns the index in this list of the last occurrence of the specified element, or -1 if this list does not contain this element.
+		 */
     	function lastIndexOf(o:*):int ;
-	
+
+		/**
+		 * Returns a list iterator of the elements in this list (in proper sequence).
+		 */
     	function listIterator( position:uint=0 ):ListIterator ;
 
+		/**
+		 * Removes from this list all the elements that are contained in the specified collection (optional operation).
+		 */
     	function removeAll(c:Collection):Boolean ;
 
+		/**
+		 * Removes the element at the specified position in this list (optional operation).
+		 */
     	function removeAt(id:uint):* ;
 
+		/**
+		 * Removes from this list all the elements that are contained between the specific {@code from} and the specific {@code to} position in this list (optional operation).
+		 */
     	function removeRange(fromIndex:uint, toIndex:uint):void ;
 	
+		/**
+		 * Removes from this list all the elements that are contained between the specific {@code id} position and the end of this list (optional operation).
+		 */
     	function removesAt(id:uint, len:uint):* ;
 
+		/**
+		 * Retains only the elements in this list that are contained in the specified collection (optional operation).
+		 */
     	function retainAll(c:Collection):Boolean ;
 
+		/**
+		 * Replaces the element at the specified position in this list with the specified element (optional operation).
+		 */
     	function setAt(id:uint, o:*):void ;
 	
+		/**
+		 * Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.
+		 */
 	    function subList(fromIndex:uint, toIndex:uint):List ;
+    
     }
+
 }

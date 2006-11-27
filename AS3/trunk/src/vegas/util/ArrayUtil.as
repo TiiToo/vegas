@@ -21,46 +21,6 @@
   
 */
 
-/** ArrayUtil
- 
-
-	AUTHOR
-	
-		Name : ArrayUtil
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date :  2006-07-06
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	STATIC METHOD SUMMARY
-	
-		- static clone(ar:Array):Array 
-		
-		- static contains(ar:Array, value:Object):Boolean
-		
-		- static copy(ar:Array):Array 
-		
-		- static fromArguments( ar:Array, args:Array ):Array
-		
-			Returns an Array object from a function Arguments object.
-		
-		- static initialize(index:Number, value:Object):Array 
-			
-			Initializes a new Array with an arbitrary number of elements (index) ,
-			with every element containing the passed parameter value or by default the null value.
-			
-		- static map( ar:Array, callback:Function, o ):Array
-		
-			Creates a new array with the results of calling a provided function on every element in this array.
-
-        - static toSource(ar:Array, indent:Number, indentor:String):String
-            
-            Returns a string representing the source code of the array.
-
-**/
-
 package vegas.util
 {
     
@@ -68,7 +28,12 @@ package vegas.util
     import vegas.util.Copier;
     import vegas.util.Serializer ;
 
-    public class ArrayUtil {
+	/**
+	 * Array tool class.
+	 * @author eKameleon
+	 */
+    public class ArrayUtil 
+    {
 
         /**
          * Creates a shallow copy of the Array.
@@ -105,11 +70,22 @@ package vegas.util
     		return a ;
     	}
 
+		/**
+		 * Returns an new array from arguments in a function.
+		 */
     	static public function fromArguments( ar:Array, args:Array ):Array 
     	{
     		return ar.concat(args) ;	
         }
-        
+
+	   	/**
+		 * Returns the index of the first occurrence of a value in a one-dimensional Array or in a portion of the Array.
+		 * @param ar the array reference.
+		 * @param value the value to search in the array.
+		 * @param startIndex optionnal, allows to specify the starting index of the search.
+		 * @param count	allows to limit the number of elements to search in the array.
+		 * @return the index of the first occurrence of a value in a one-dimensional Array or in a portion of the Array.
+		 */
     	static public function indexOf( ar:Array, value:Object, startIndex:Number, count:Number):Number 
     	{
     		var l:Number = ar.length ;

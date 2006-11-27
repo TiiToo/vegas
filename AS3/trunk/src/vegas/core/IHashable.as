@@ -21,30 +21,22 @@
   
 */
 
-/** IHashable [Interface]
-
-	AUTHOR
-	
-		Name : IHashable
-		Package : vegas.core
-		Version : 1.0.0.0
-		Date :  2006-07-05
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- hashCode():Boolean
-          
-			returns a hash code value for the object.
-
-**/
-
 package vegas.core
 {
+	
+	/**
+	 * Interface implemented by classes that can return a hash code value.
+	 * @author eKameleon
+	 * @version 1.0.0.0
+	 */
 	public interface IHashable
 	{
+	
+		/**
+		 * Returns a hash code value for the object.
+		 * @return a hash code value for the object.
+		 */
 		function hashCode():uint ;
+		
 	}
 }

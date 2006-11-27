@@ -21,49 +21,6 @@
   
 */
 
-/* Stack [Interface]
-
-	AUTHOR
-	
-		Name : Stack
-		Package : vegas.data
-		Version : 1.0.0.0
-		Date :  2006-07-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- clear():void
-		
-		- clone(:*
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- peek():*
-		
-		- pop():*
-		
-		- push(o):*
-		
-		- search(o):Number
-		
-		- size():uint
-		
-		- toArray():Array ;
-		
-		- toString():String
-
-
-	INHERIT
-	
-		ICloneable, Iterable, IFormattable, ISerializable
-
-*/
-
 package vegas.data
 {
 	
@@ -72,24 +29,59 @@ package vegas.data
 	import vegas.data.iterator.Iterable;
 	import vegas.core.IFormattable;
 	import vegas.core.ISerializable;
-	
+
+	/**
+	 * A collection designed for holding elements prior to processing. 
+	 * <p>Stacks typically, but do not necessarily, order elements in a LIFO (last-in-first-out) manner.</p>
+	 * @author eKameleon
+	 */
     public interface Stack extends ICloneable, ICopyable, Iterable, IFormattable, ISerializable
     {
 
+		/**
+		 * Removes all of the elements from this stack (optional operation).
+		 */
 		function clear():void ;
 	
+		/**
+		 * Returns {@code true} if this stack contains no elements.
+		 * @return {@code true} if this stack is empty else {@code false}.
+		 */
 		function isEmpty():Boolean ;
 
+		/**
+		 * Returns the lastly pushed value without removing it.
+		 * @throws the lastly pushed value.
+		 */
 		function peek():* ;
-
+		
+		/**
+		 * Removes and returns the lastly pushed value.
+		 * @return the lastly pushed value
+		 */
 		function pop():* ;
 
+		/**
+		 * Pushes the passed-in value to this stack.
+		 */
 		function push(o:*):void ;
-	
+
+		/**
+		 * Search a value in the stack.
+		 * @return the index position of a value in the stack.
+		 */
 		function search(o:*):uint ;
 
+		/**
+		 * Returns the number of pushed values.
+		 * @return the number of pushed values.
+		 */
 		function size():uint ;
 
+		/**
+		 * Returns the array representation of this stack.
+		 * @return the array representation of this stack
+		 */
 		function toArray():Array ;
 	
     }

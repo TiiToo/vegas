@@ -21,46 +21,6 @@
   
 */
 
-/* AbstractFormatter
-
-	AUTHOR
-	
-		Name : AbstractFormatter
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date :  2006-07-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-	
-		- pattern:String [R/W]
-
-	METHOD SUMMARY
-
-		- clone():*
-		
-		- copy():*
-
-		- format(...arguments:Array):String
-
-		- hashCode():Number
-		
-		- toSource(indent : Number, indentor : String):String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → AbstractFormatter
-
-	IMPLEMENT
-	
-		IFormatter, IFormattable, IHashable, ISerializable
-
-**/
-
 package vegas.util
 {
 
@@ -71,54 +31,81 @@ package vegas.util
 	import vegas.util.Serializer 
 	import flash.utils.getDefinitionByName;
 
+	/**
+	 * Abstract class to creates classes who implemented IFormatter interface.
+	 * @author eKameleon
+	 * @version 1.0.0.0
+	 */
 	public class AbstractFormatter extends CoreObject implements ICloneable, ICopyable, IFormatter
 	{
 		
-		// ----o Constructor
-		
+		/**
+		 * Abstract constructor to creates a new class who extends AbstractFormatter.
+		 */
 		public function AbstractFormatter( pattern:String )
 		{
 			_pattern = pattern
 		}
-		
-		// ----o Public Methods
-		
+
+		/**
+		 * Returns the internal pattern of this formatter.
+		 * @return the string representation of the pattern of this formatter.
+		 */
+		public function get pattern():String 
+		{
+			return _pattern ;
+		}
+
+		/**
+		 * Sets the internal pattern of this formatter.
+		 */
+		public function set pattern(pattern:String):void 
+		{
+			this._pattern = pattern ;
+		}
+
+		/**
+		 * Creates and returns a shallow copy of the object.
+		 * @return A new object that is a shallow copy of this instance.
+		 */	
 		public function clone():*
 		{
 			var clazz:* = getDefinitionByName( ClassUtil.getPath(this) ) ;
 			return new clazz( pattern)  ;
 		}
 
+		/**
+		 * Interface implemented by classes that can produce "deep" copies of their objects.
+		 * @author eKameleon
+		 * @version 1.0.0.0
+		 */
 		public function copy():*
 		{
 			var clazz:* = getDefinitionByName(ClassUtil.getPath(this)) ;
 			return new clazz( pattern.valueOf() ) ;
 		}
 
+		/**
+		 * This method format an expression with the pattern of this formatter.
+		 * Overrides this method.
+		 */	
 		public function format(...arguments:Array):String 
 		{
 			return null ; // override this method
 		}
-			
+
+		/**
+		 * Returns a Eden representation of the object.
+		 * @return a string representing the source code of the object.
+		 */
 		override public function toSource(...arguments:Array):String
 		{
 			return "new " + ClassUtil.getPath(this) + "(" + Serializer.toSource(pattern) + ")" ;
 		}
 		
-		// ----o Virtual Properties
-		
-		public function get pattern():String 
-		{
-			return _pattern ;
-		}
-	
-		public function set pattern(pattern:String):void 
-		{
-			this._pattern = pattern ;
-		}
-		
-		// ----o Private Properties	
-		
+		/**
+		 * The internal pattern of this formatter.
+		 */
 		private var _pattern:String ; // pattern
 		
 	}

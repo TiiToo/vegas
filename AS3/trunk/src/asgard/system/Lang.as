@@ -66,31 +66,40 @@ package asgard.system
 	import vegas.data.map.HashMap ;
 	import vegas.util.Serializer ;
 	
+	/**
+	 * @author eKameleon
+	 */
 	public final class Lang extends CoreObject
 	{
 		
-		// ----o Constructor
-		
+		/**
+		 * Creates a new Lang instance.
+		 */
 		public function Lang( idLang:String , label:String )
 		{
-			
-			
 			this.label = label ;
 			this.value = idLang ;
-			
 			put(this) ;
-			
 		}
-
-		// ----o Public Properties
 		
+		/**
+		 * The map 
+		 */
 		static public var LANGS:HashMap = new HashMap () ;
-		
+
+		/**
+		 * The label of the current Lang instance.
+		 */		
 		public var label:String = null ;
+
+		/**
+		 * The value of the current Lang instance.
+		 */		
 		public var value:String = null ;
 		
-		// ----o Public Methods
-		
+		/**
+		 * Returns a Lang instance with the specified 'id' value.
+		 */
 		static public function get( id:String ):Lang
 		{
 			return LANGS.get(id) ;			
@@ -116,11 +125,18 @@ package asgard.system
 			return 'new Lang(' + Serializer.toSource(value) + ',' + Serializer.toSource(label) + ')' ;
 		}
 
+		/**
+		 * Returns the string representation of this instance.
+		 * @return the string representation of this instance.
+		 */
 		override public function toString():String
 		{
 			return value ;
 		}
 		
+		/**
+		 * Returns true if the passed value is a valid Lang reference. 
+		 */
 		static public function validate( lang:* ):Boolean 
 		{
 		
@@ -135,6 +151,10 @@ package asgard.system
 			
 		}
 		
+		/**
+		 * Returns the value of this instance.
+		 * @return the value of this instance.
+		 */
 		public function valueOf():String
 		{
 			return value ;

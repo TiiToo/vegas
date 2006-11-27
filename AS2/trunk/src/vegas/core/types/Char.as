@@ -27,6 +27,7 @@ import vegas.core.IHashable;
 import vegas.core.ISerializable;
 
 /**
+ * An object of type Char contains a single field whose type is String.
  * @author eKameleon
  */
 class vegas.core.types.Char extends String implements IFormattable, IHashable, ISerializable 
@@ -70,7 +71,8 @@ class vegas.core.types.Char extends String implements IFormattable, IHashable, I
 	}	
 
 	/**
-	 * Returns a string representation of the object.
+	 * Returns the string representation of this instance.
+	 * @return the string representation of this instance
 	 */
 	public function toString():String 
 	{
@@ -85,8 +87,9 @@ class vegas.core.types.Char extends String implements IFormattable, IHashable, I
 		return _char.valueOf() ;
 	}
 	
-	// ----o Private Properties
-	
+	/**
+	 * Internal string object.
+	 */
 	private var _char:String ;
 	
 }

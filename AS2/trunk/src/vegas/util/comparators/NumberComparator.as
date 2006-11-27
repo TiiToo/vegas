@@ -21,52 +21,6 @@
   
 */
 
-/**	NumberComparator
-
-	AUTHOR
-
-		Name : NumberComparator
-		Package : vegas.util.comparators
-		Version : 1.0.0.0
-		Date :  2005-11-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var comp:NumberComparator = new NumberComparator(n:Number) ;
-	
-	ARGUMENTS
-	
-		n : a number object
-	
-	METHOD SUMMARY
-	
-		- compare(o1, o2):Number
-			
-			RETURNS 
-			
-				- -1 if o1 is "lower" than o2 ;
-				- 1 if o1 is "higher" than o2 ;
-				- 0 if o1 and o2 are equal.
-		
-		- equals(n:Number) : return a boolean
-		
-		- toSource():String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → NumberComparator
-
-	IMPLEMENTS
-	
-		IComparator, IFormattable, IHashable, ISerializable
-
-**/
-
 import vegas.core.CoreObject;
 import vegas.core.IComparator;
 import vegas.core.ISerializable;
@@ -74,39 +28,82 @@ import vegas.errors.IllegalArgumentError;
 import vegas.util.serialize.Serializer;
 import vegas.util.TypeUtil;
 
-class vegas.util.comparators.NumberComparator extends CoreObject implements IComparator, ISerializable {
+/**
+ * This comparator compare Number objects.
+ * @author eKameleon
+ */
+class vegas.util.comparators.NumberComparator extends CoreObject implements IComparator, ISerializable 
+{
 
-	// ----o Constructor
-	
-	public function NumberComparator( p_n:Number ) {
+	/**
+	 * Creates a new NumberCompator instance.
+	 */
+	public function NumberComparator( p_n:Number ) 
+	{
 		n = p_n ;
 	}
-	
-	// ----o Public Properties
-	
-	public var n ;
-	
-	// ----o Public Methods
 
-	public function compare(o1, o2):Number {
-		if ( TypeUtil.typesMatch(o1, Number) && TypeUtil.typesMatch(o2, Number )) {
-			if( o1 < o2 ) return -1;
-			else if( o1 > o2 ) return 1;
-			else return 0 ;
-		} else {
-			throw IllegalArgumentError ;
+	/**
+	 * The number value to compare.
+	 */	
+	public var n ;
+
+	/**
+	 * Returns an integer value to compare two Number objects.
+	 * @param o1 the first Number object to compare.
+	 * @param o2 the second Number object to compare.
+	 * @return <p>
+	 * <li>-1 if o1 is "lower" than (less than, before, etc.) o2 ;</li>
+	 * <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
+	 * <li> 0 if o1 and o2 are equal.</li>
+	 * </p>
+	 * @throw IllegalArgumentError if compare(a, b) and 'a' and 'b' must be Number objects.
+	 */
+	public function compare(o1, o2):Number 
+	{
+		if ( TypeUtil.typesMatch(o1, Number) && TypeUtil.typesMatch(o2, Number )) 
+		{
+			if( o1 < o2 )
+			{
+				return -1;
+			}
+			else if( o1 > o2 )
+			{
+				return 1;
+			}
+			else 
+			{
+				return 0 ;
+			}
+		}
+		else 
+		{
+			throw IllegalArgumentError(this + " : compare(), Arguments number expected") ;
 		}
 	}
-	
-	public function equals(o):Boolean {
-		if (TypeUtil.typesMatch(o, Number) ) {
+
+	/**
+	 * Compares the specified object with this object for equality.
+	 * @return {@code true} if the the specified object is equal with this object.
+	 */
+	public function equals(o):Boolean 
+	{
+		if (TypeUtil.typesMatch(o, Number) ) 
+		{
 			return compare(n, o) == 0 ;
-		} else {
+		}
+		else 
+		{
 			return false ;
 		}
 	}
 
-	public function toSource(indent:Number, indentor:String):String {
+	/**
+	 * Returns a Eden representation of the object.
+	 * @return a string representing the source code of the object.
+	 */
+	public function toSource(indent:Number, indentor:String):String 
+	{
 		return Serializer.getSourceOf(this, [Serializer.toSource(n)]) ;
 	}
 	

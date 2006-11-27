@@ -21,64 +21,16 @@
   
 */
 
-/* BoundedQueue [Interface]
-
-	AUTHOR
-	
-		Name : BoundedQueue
-		Package : vegas.data
-		Version : 1.0.0.0
-		Date :  2006-07-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-
-		File d'attente, on ajoute en queue de la liste et on enlève en tête.
-
-	METHOD SUMMARY
-	
-	    - clear():void
-	
-	    - clone():*
-	    
-	    - copy():*
-	
-		- dequeue():Boolean
-		
-		- element():*
-		
-		- enqueue(o):Boolean
-		
-		- hashCode():uint
-
-		- isFull():Boolean
-		
-		- iterator():Iterator
-
-		- maxSize():uint
-		
-		- peek():*
-		
-		- poll():* 
-
-        - size():uint
-
-        - toSource(...arguments:Array):String
-        
-        - toString():String
-
-    INHERIT
-    
-        Boundable, ICloneable, ICopyable, IFormattable, IHashable, Iterable, ISerializable, Queue
-
-**/
-
 package vegas.data
 {
+	
+	/**
+	 * Defines a queue that is bounded in size. The size of the queue can vary, but it can never exceed a preset maximum number of elements. This interface allows the querying of details associated with the maximum number of elements.
+	 * @author eKameleon
+	 */
     public interface BoundedQueue extends Boundable, Queue
     {
         
     }
+    
 }

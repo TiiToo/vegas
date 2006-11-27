@@ -29,7 +29,7 @@ interface vegas.core.IFactory
 {
 	
 	/**
-	 * This method create a new Object.
+	 * Returns and creates a new Object.
 	 */
 	function create() ;
 	

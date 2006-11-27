@@ -39,7 +39,7 @@ interface vegas.data.Entry
 	function getValue() ; 
 	
 	/**
-	 * Set the key of this entry.
+	 * Sets the key of this entry.
 	 */
 	function setKey(key):Void ;
 	

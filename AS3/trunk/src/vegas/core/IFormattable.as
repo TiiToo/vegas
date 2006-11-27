@@ -21,28 +21,22 @@
   
 */
 
-/** IFormattable [interface]
-
-	AUTHOR
-	
-		Name : IFormattable
-		Package : vegas.core
-		Version : 1.0.0.0
-		Date : 2006-07-05
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- toString():String
-
-**/
-
 package vegas.core
 {
+
+	/**
+	 * Provides functionality to format the value of an object into a string representation.
+	 * @author eKameleon
+	 */
 	public interface IFormattable
 	{
+
+		/**
+		 * Returns the string representation of this instance.
+		 * @return the string representation of this instance
+		 */
 		function toString():String ;
+
 	}
+
 }

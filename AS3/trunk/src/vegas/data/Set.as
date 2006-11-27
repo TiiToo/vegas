@@ -21,60 +21,16 @@
   
 */
 
-/* Set [Interface]
-	
-	AUTHOR
-
-    	Name : Set
-    	Package : vegas.data
-    	Version : 1.0.0.0
-    	Date : 2006-07-08
-    	Author : ekameleon
-    	URL : http://www.ekameleon.net
-    	Mail : vegas@ekameleon.net
-
-    DESCRIPTION
-    
-        A collection that contains no duplicate elements.
-
-	METHOD SUMMARY
-	
-		- clear():Void
-		
-		- clone():*
-		
-		- copy():*
-		
-		- contains(o:*):Boolean
-		
-		- get(key:*):*
-		
-		- insert(o:*):Boolean
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- remove(o):Boolean
-		
-		- size():uint
-		
-		- toArray():Array
-		
-		- toSource(...arguments:Array):String
-		
-		- toString():String
-
-    INHERIT
-    
-        Collection, ICloneable, ICopyable, IFormattable, ISerialzable, Iterable
-
-**/
-
 package vegas.data
 {
+	
+	/**
+	 * A collection that contains no duplicate elements.
+	 * @author eKameleon
+	 */
     public interface Set extends Collection
     {
         
     }
+    
 }

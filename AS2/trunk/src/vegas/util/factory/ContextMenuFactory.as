@@ -21,54 +21,31 @@
   
 */
 
-/** ContextMenuFactory
-
-	AUTHOR
-	
-		Name : ContextMenuFactory
-		Package : vegas.util.factory
-		Version : 1.0.0.0
-		Date :  2005-10-15
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-
-		- static createItemURL(label:String, url:String, target:String):ContextMenuItem
-		
-		- static createItemProxy(label:String, obj, func:Function, separator:Boolean, args:Array):ContextMenuItem
-
-**/
-
 import vegas.events.Delegate;
 
-class vegas.util.factory.ContextMenuFactory {
+/**
+ * @author eKameleon
+ */
+class vegas.util.factory.ContextMenuFactory 
+{
 	
-	// ----o Constructor
-	
-	private function ContextMenuFactory() {
-		//
-	}
-	
-	// ----o static public Methods
-	
-	static public function createItemURL(label:String, url:String, target:String, separator:Boolean):ContextMenuItem {
+	static public function createItemURL(label:String, url:String, target:String, separator:Boolean):ContextMenuItem 
+	{
 		var f:Function = Delegate.create(ContextMenuFactory, _getURL, url, target) ;
 		var c:ContextMenuItem = new ContextMenuItem(label, f) ;
 		c.separatorBefore = separator ;
 		return c ;
 	}
 	
-	static public function createItemProxy( label:String, scope , method:Function, separator:Boolean , args:Array):ContextMenuItem {
+	static public function createItemProxy( label:String, scope , method:Function, separator:Boolean , args:Array):ContextMenuItem 
+	{
 		var c:ContextMenuItem = new ContextMenuItem(label, Delegate.create.apply(null, [scope, method].concat(args)) ) ;
 		c.separatorBefore = separator ;
 		return c ;
 	}
 	
-	// ----o static private Methods
-	
-	static private function _getURL(target, item, url:String, where:String) {
+	static private function _getURL(target, item, url:String, where:String) 
+	{
 		getURL(url, where || "_blank") ;	
 	}
 	

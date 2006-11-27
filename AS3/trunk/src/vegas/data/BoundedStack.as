@@ -21,56 +21,16 @@
   
 */
 
-/*	BoundedStack [Interface]
-
-	AUTHOR
-	
-		Name : BoundedStack
-		Package : vegas.data
-		Version : 1.0.0.0
-		Date :  2006-07-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- clear():void
-		
-		- clone(:*
-		
-		- isEmpty():Boolean
-
-		- isFull():Boolean
-		
-		- iterator():Iterator
-
-		- maxSize():uint
-		
-		- peek():*
-		
-		- pop():*
-		
-		- push(o):*
-		
-		- search(o):Number
-		
-		- size():uint
-		
-		- toArray():Array ;
-		
-		- toString():String
-
-	INHERIT
-	
-		Boundable, ICloneable, Iterable, IFormattable, ISerializable, Stack
-
-**/
-
 package vegas.data
 {
+	
+	/**
+	 * Defines a stack that is bounded in size. The size of the stack can vary, but it can never exceed a preset maximum number of elements. This interface allows the querying of details associated with the maximum number of elements.
+	 * @author eKameleon
+	 */
 	public interface BoundedStack extends Boundable, Stack
 	{
 		
 	}
+	
 }

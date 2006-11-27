@@ -21,48 +21,20 @@
   
 */
 
-/** PropertyFactory
-
-	AUTHOR
-
-		Name : PropertyFactory
-		Package : vegas.util.factory
-		Version : 1.0.0.0
-		Date :  2006-01-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	DESCRIPTION
-		
-		Fabrique qui permet créer des propriétés virtuelles sur un objet donné.
-
-	METHOD SUMMARY
-	
-		- static create(c:Function, propName:String, isPrototype:Boolean, isReadOnly:Boolean):Boolean		
-	
-			- PARAMS
-				- o : an object
-				- propName:String
-				- isPrototype:Boolean
-				- isReadOnly:Boolean
-	
-	NOTE : penser à déclarer en AS2 la propriété virtuelle en public
-	
-**/
-
 import vegas.util.StringUtil;
 
-class vegas.util.factory.PropertyFactory {
+/**
+ * This factory class creates virtual properties.
+ * <p>You must defined your virtual properties in public if you use this class.</p>
+ * @author eKameleon
+ */
+class vegas.util.factory.PropertyFactory 
+{
 
-	// ----o Constructor
-	
-	private function PropertyFactory() {
-		//
-	}
-	
-	// ----o Public Methods
-	
+	/**
+	 * Creates a new virtual property (read_write or read only).
+	 * @see addProperty method.
+	 */	
 	static public function create(o, propName:String, isPrototype:Boolean, isReadOnly:Boolean):Boolean {
 		if (isPrototype) o = o["prototype"] ;
 		var suffix:String = (new StringUtil(propName)).ucFirst() ;

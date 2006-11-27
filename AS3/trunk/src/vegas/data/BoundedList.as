@@ -21,82 +21,13 @@
   
 */
 
-/* BoundedList [Interface]
-
-    AUTHOR
-
-    	Name : BoundedList
-    	Package : vegas.data
-    	Version : 1.0.0.0
-    	Date :  2006-07-08
-    	Author : ekameleon
-    	URL : http://www.ekameleon.net
-    	Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- clear():Void
-		
-		- clone():*
-		
-		- containsAll(c:Collection):Boolean
-		
-		- copy():*
-		
-		- contains(o:*):Boolean
-		
-		- get(key:*):*
-		
-		- indexOf(o:*):Number
-		
-		- insert(o:*):Boolean
-		
-		- insertAll(c:Collection):Boolean
-		
-		- insertAllAt(id:uint, c:Collection):Boolean
-		
-		- insertAt(id:uint, o:*):Void
-		
-		- isEmpty():Boolean
-		
-		- isFull():Boolean
-		
-		- iterator():Iterator
-		
-		- lastIndexOf(o:*):Number
-		
-		- listIterator():ListIterator
-		
-		- maxSize():uint
-		
-		- remove(o):Boolean
-		
-		- removeAll(c:Collection):Boolean
-		
-		- removeAt(id:uint):*
-		
-		- retainAll(c:Collection):Boolean
-		
-		- setAt(id:uint, o):Void
-		
-		- size():uint
-		
-		- subList(fromIndex:uint, toIndex:uint):List
-		
-		- toArray():Array
-		
-		- toSource(...arguments:Array):String
-		
-		- toString():String
-
-    INHERIT
-    
-        Boundable, Collection, ICloneable, ICopyable, IEquality, IFormattable, ISerialzable, Iterable, List
-
-**/
-
 package vegas.data
 {
+	
+	/**
+	 * Defines a list that is bounded in size. The size of the list can vary, but it can never exceed a preset maximum number of elements. This interface allows the querying of details associated with the maximum number of elements.
+	 * @author eKameleon
+	 */
     public interface BoundedList extends List, Boundable
     {
         

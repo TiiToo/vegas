@@ -21,77 +21,37 @@
   
 */
 
-/* MultiMap [Interface]
-
-	AUTHOR
-
-		Name : MultiMap
-		Package : vegas.data
-		Version : 1.0.0.0
-		Date :  2006-07-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-
-		- clear()
-
-		- containsKey( key ):Boolean
-	
-		- containsValue( value ):Boolean
-
-		- get(key)
-	
-		- getKeys():Array
-	
-		- getValues():Array
-
-		- isEmpty():Boolean
-	
-		- iterator():Iterator
-
-		- keyIterator():Iterator
-
-		- put(key:*, value:*):*
-	
-		- putAll(m:Map):void
-
-        - putCollection(key:*, c:Collection):void 
-
-		- remove(ko:*):*
-	
-		- size():uint
-
-        - toSource(...arguments:Array):String
-
-        - toString():String
-        
-        - totalSize():uint
-
-        - values():Collection
-
-        - valueIterator():Iterator
-
-    INHERIT
-
-        ICloneable, IFormattable, IHashable, ISerializable, Iterable, Map
-
-**/
-
 package vegas.data
 {
     
     import vegas.data.iterator.Iterator ;
     
+	/**
+	 * Maps multiple values to keys.
+	 * @author eKameleon
+	 */
     public interface MultiMap extends Map
     {
+
+		/**
+		 * Adds the specified collection to the set of values associated with the specified key in this map (optional operation).
+		 */
 	    function putCollection(key:*, c:Collection):void ;
 
+		/**
+		 * Returns the total count of elements in all the collection in the MultiMap.
+		 */
     	function totalSize():uint ;
 	
+		/**
+		 * Returns a collection of all values associated with all the keys in this map.
+		 */
     	function values():Collection ;
-	
+
+		/**
+		 * Returns an iterator fo all the values in the map.
+		 */
 	    function valueIterator():Iterator ;
+	    
     }
 }

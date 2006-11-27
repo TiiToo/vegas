@@ -21,74 +21,58 @@
   
 */
 
-/** HashCode
-
-	AUTHOR
-	
-		Name : HashCode
-		Package : vegas.core
-		Version : 1.0.0.0
-		Date :  2006-02-28
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- static equals(o1, o2):Boolean
-		
-			return 'true' if o1 and o2 are the same HashCode.
-		
-		- static identify(o):Number
-		
-			return the hashcode of an object.
-		
-		- static next():Number
-		
-			return the next unique hashCode number.
-		
-		- static nextName():String
-		
-			Returns next available object's name. Use for building a default name for an object.
-
- **/
-
 package vegas.core
 {
+
+	/**
+	 * Collected methods which allow easy implementation of <code>hashCode</code>.
+	 * @author eKameleon
+	 * @version 1.0.0.0
+	 */
 	public class HashCode
 	{
 		
-		// ----o Public Methods
-
 		/**
 		 * Compare two IHashable objects.
 		 * @usage   var isEquals:Boolean = HashCode.equals(o1, o2) ;
-		 * @param   o1 
-		 * @param   o2 
-		 * @return  
+		 * @param   o1 the first value to compare.
+		 * @param   o2 the second value to compare.
+		 * @return {@code true} of the two object are equals.  
 		 */
-		static public function equals(o1:*, o2:*):Boolean {
+		static public function equals(o1:*, o2:*):Boolean 
+		{
 			return HashCode.identify(o1) == HashCode.identify(o2) ;
 		}
 	
-		static public function identify(o:*):uint {
+		/**
+		 * Indenfity the hashcode value of an object.
+		 */
+		static public function identify(o:*):uint 
+		{
 			return o.hashCode() ;
 		}
-		
-		static public function next():uint {
+
+		/**
+		 * Returns the next hashcode value.
+		 * @return the next hashcode value.
+		 */
+		static public function next():uint 
+		{
 			return HashCode._nHash++ ;
 		}
-	
+
+		/**
+		 * Returns the string representation of the next hashcode value.
+		 * @return the string representation of the next hashcode value.
+		 */
 		static public function nextName():String {
 			return String( HashCode._nHash + 1 ) ;
 		}
 		
-		// ----o Private Properties
-		
-		static private var _nHash:uint = 0 ;
-	
-		// ----o Private Methods
-		
+		/**
+		 * Initialize the hashcode value of an object.
+		 * @return {@code true}
+		 */
 		static public function initialize( o:* ):Boolean {
 			if (o.hasOwnProperty("hasCode")) return false ;
 			
@@ -102,7 +86,15 @@ package vegas.core
 			o.setPropertyIsEnumerable("hashCode", false) ;
 			return true ;
 		}
-		
+
+		/**
+		 * The internal hashcode counter.
+		 */
+		static private var _nHash:uint = 0 ;
+
+		/**
+		 * Launch the initialize of the Object.prototype object.
+		 */
 		HashCode.initialize( Object.prototype ) ;
 			
 	}

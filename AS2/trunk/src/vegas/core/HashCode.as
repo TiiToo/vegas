@@ -22,7 +22,7 @@
 */
 
 /**
- * Collected methods which allow easy implementation of <code>hashCode</code>.
+ * Collected methods which allow easy implementation of {@code hashCode}.
  * @author eKameleon
  * @version 1.0.0.0
  */
@@ -32,9 +32,9 @@ class vegas.core.HashCode
 	/**
 	 * Compare two IHashable objects.
 	 * @usage   var isEquals:Boolean = HashCode.equals(o1, o2) ;
-	 * @param   o1 
-	 * @param   o2 
-	 * @return a Boolean.  
+	 * @param   o1 the first value to compare.
+	 * @param   o2 the second value to compare.
+	 * @return {@code true} of the two object are equals.  
 	 */
 	static public function equals(o1, o2):Boolean 
 	{

@@ -21,31 +21,24 @@
   
 */
 
-/**	IComparer [Interface]
-
-	AUTHOR
-	
-		Name : IComparer
-		Package : vegas.core
-		Version : 1.0.0.0
-		Date :  2006-07-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-	
-		comparator:IComparator ; [R/W] (get/set)
-	
-**/
-
 package vegas.core
 {
+	
+	/**
+	 * This interface defined an object who contains an IComparator instance.
+	 * @author eKameleon
+	 */
 	public interface IComparer
 	{
 
+		/**
+		 * Returns the IComparator reference of this object.
+		 */
 		function get comparator():IComparator ;
-	
+
+		/**
+		 * Sets the IComparator reference of this object.
+		 */
 		function set comparator(comp:IComparator):void ;
 		
 	}

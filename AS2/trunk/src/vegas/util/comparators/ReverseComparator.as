@@ -21,85 +21,79 @@
   
 */
 
-/** ReverseComparator
-
-	AUTHOR
-		
-		Name : ReverseComparator
-		Package : vegas.util.comparators
-		Version : 1.0.0.0
-		Date :  2005-10-26
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-		
-	DESCRIPTION
-	
-		reverse a comparator result
-
-	CONSTRUCTOR
-	
-		var comp:ReverseIComparator = new ReverseComparator( o ) ;
-	
-	ARGUMENTS
-	
-		an object
-	
-	METHOD SUMMARY
-	
-		- compare(o1, o2) : return a number
-		
-		- equals(o) : return a boolean
-		
-		- ToSource():String
-		
-		- toString():String
-
-	INHERIT
-	
-		Object → CoreObject → ReverseIComparator
-
-	IMPLEMENTS
-	
-		IComparator, IFormattable, IHashable, ISerializable
-		
-**/
-
 import vegas.core.CoreObject;
 import vegas.core.IComparator;
 import vegas.core.ISerializable;
 import vegas.util.serialize.Serializer;
 
-class vegas.util.comparators.ReverseComparator extends CoreObject implements IComparator, ISerializable {
+/**
+ * Reverse an IComparator.
+ * @author eKameleon
+ */
+class vegas.util.comparators.ReverseComparator extends CoreObject implements IComparator, ISerializable 
+{
 
-	// ----o Constructor
-	
-	public function ReverseComparator( c:IComparator ) {
+	/**
+	 * Creates a new ReverseComparator instance.
+	 */
+	public function ReverseComparator( c:IComparator ) 
+	{
 		comparator = c ;
 	}
-
-	// ----o Public Properties
 	
+	/**
+	 * The IComparator instance to reverse.
+	 */	
 	public var comparator:IComparator ;
 	
-	// ----o Public Methods
-
-	public function compare(o1, o2):Number {
+	/**
+	 * Returns an integer value to compare two Date objects.
+	 * @param o1 the first Date object to compare.
+	 * @param o2 the second Date object to compare.
+	 * @return <p>
+	 * <li>-1 if o1 is "lower" than (less than, before, etc.) o2 ;</li>
+	 * <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
+	 * <li> 0 if o1 and o2 are equal.</li>
+	 * </p>
+	 * @throw IllegalArgumentError if compare(a, b) and 'a' and 'b' must be Date or uint objects.
+	 */
+	public function compare(o1, o2):Number 
+	{
 		return comparator.compare(o2, o1) ;
 	}
-	
-	public function equals(o):Boolean {
-		if ( this == o )  return true ;
-		else if (null == o) return false ;
-		else if ( o.constructor == this.constructor ) {
+
+
+	/**
+	 * Compares the specified object with this object for equality.
+	 * @return {@code true} if the the specified object is equal with this object.
+	 */
+	public function equals(o):Boolean 
+	{
+		if ( this == o )  
+		{
+			return true ;
+		}
+		else if (null == o) 
+		{
+			return false ;
+		}
+		else if ( o.constructor == this.constructor ) 
+		{
 			var rc:ReverseComparator = ReverseComparator(o) ;
 			return comparator.equals(rc.comparator) ;
-		} else {
+		}
+		else 
+		{
 			return false ;
 		}
 	}
 
-	public function toSource(indent:Number, indentor:String):String {
+	/**
+	 * Returns a Eden representation of the object.
+	 * @return a string representing the source code of the object.
+	 */
+	public function toSource(indent:Number, indentor:String):String 
+	{
 		return Serializer.getSourceOf(this, [Serializer.toSource(comparator)]) ;
 	}
 	

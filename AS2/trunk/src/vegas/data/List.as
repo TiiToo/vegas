@@ -47,11 +47,6 @@ interface vegas.data.List extends Collection
 	function indexOf(o):Number ;
 	
 	/**
-	 * Inserts the specified element at the specified position in this list (optional operation).
-	 */
-	function insertAt(id:Number, o):Void ;
-	
-	/**
 	 * Appends all of the elements in the specified collection to the end of this list, in the order that they are returned by the specified collection's iterator (optional operation).
 	 */
 	function insertAll(c:Collection):Boolean ;
@@ -60,6 +55,11 @@ interface vegas.data.List extends Collection
 	 * Inserts all of the elements in the specified collection into this list at the specified position (optional operation).
 	 */
 	function insertAllAt(id:Number, c:Collection):Boolean ;
+
+	/**
+	 * Inserts the specified element at the specified position in this list (optional operation).
+	 */
+	function insertAt(id:Number, o):Void ;
 
 	/**
 	 * Returns the index in this list of the last occurrence of the specified element, or -1 if this list does not contain this element.

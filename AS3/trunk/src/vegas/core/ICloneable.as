@@ -21,29 +21,21 @@
   
 */
 
-/** ICloneable [Interface]
-
-	AUTHOR
-	
-		Name : ICloneable
-		Package : vegas.core
-		Version : 1.0.0.0
-		Date :  2006-07-05
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		-  clone():*
-
-**/
-
 package vegas.core
 {
+
+	/**
+	 * Supports cloning, which creates a new instance of a class with the same value as an existing instance.
+	 * @author eKameleon
+	 * @version 1.0.0.0
+	 */
 	public interface ICloneable 
 	{
-		
+
+		/**
+		 * Creates and returns a shallow copy of the object.
+		 * @return A new object that is a shallow copy of this instance.
+		 */	
 		function clone():* ;
 		
 	}

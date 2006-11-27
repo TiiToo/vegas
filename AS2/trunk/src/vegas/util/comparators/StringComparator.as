@@ -21,58 +21,6 @@
   
 */
 
-/**	StringComparator
-
-	AUTHOR
-
-		Name : StringComparator
-		Package : vegas.util.comparators
-		Version : 1.0.0.0
-		Date :  2005-11-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var comp:StringIComparator = new StringIComparator(str:String) ;
-	
-	ARGUMENTS
-	
-		s : a string object
-	
-	PROPERTY SUMMARY
-	
-		- ignoreCase:Boolean
-		
-			allow to take into account the case for comparison
-	
-	METHOD SUMMARY
-	
-		- compare(o1, o2):Number
-			
-			RETURNS 
-			
-				- -1 if o1 is "lower" than o2 ;
-				- 1 if o1 is "higher" than o2 ;
-				- 0 if o1 and o2 are equal.
-		
-		- equals(o) : return a boolean
-		
-		- toSource():String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → StringComparator
-
-	IMPLEMENTS
-	
-		IComparator, IFormattable, IHashable, ISerializable
-
-**/
-
 import vegas.core.CoreObject;
 import vegas.core.IComparator;
 import vegas.core.ISerializable;
@@ -80,31 +28,60 @@ import vegas.errors.IllegalArgumentError;
 import vegas.util.serialize.Serializer;
 import vegas.util.TypeUtil;
 
-class vegas.util.comparators.StringComparator extends CoreObject implements IComparator, ISerializable {
+/**
+ * This comparator compare String objects.
+ * @author eKameleon
+ */
+class vegas.util.comparators.StringComparator extends CoreObject implements IComparator, ISerializable 
+{
 
-	// ----o Constructor
-	
-	function StringComparator( str:String ) {
+	/**
+	 * Creates a new StringCompator instance.
+	 */
+	function StringComparator( str:String ) 
+	{
 		s = str ;
 	}
-	
-	// ----o Public Properties
-	
-	public var s:String ;
-	public var ignoreCase:Boolean ;
-	
-	// ----o Public Methods
 
-	public function compare(o1, o2):Number {
-		if ( o1 == null || o2 == null) {
+	/**
+	 * The string object to compare.
+	 */
+	public var s:String ;
+	
+	/**
+	 * Allow to take into account the case for comparison.
+	 */
+	public var ignoreCase:Boolean ;
+
+	/**
+	 * Returns an integer value to compare two String objects.
+	 * @param o1 the first String object to compare.
+	 * @param o2 the second String object to compare.
+	 * @return <p>
+	 * <li>-1 if o1 is "lower" than (less than, before, etc.) o2 ;</li>
+	 * <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
+	 * <li> 0 if o1 and o2 are equal.</li>
+	 * </p>
+	 * @throw IllegalArgumentError if compare(a, b) and 'a' and 'b' must be String objects.
+	 */
+	public function compare(o1, o2):Number 
+	{
+		if ( o1 == null || o2 == null) 
+		{
 			if (o1 == o2) return 0 ;
 			else if (o1 == null) return -1 ;
 			else return 1 ;
-		} else {
-			if ( !TypeUtil.typesMatch(o1, String) || !TypeUtil.typesMatch(o2, String)) {
+		}
+		else 
+		{
+			if ( !TypeUtil.typesMatch(o1, String) || !TypeUtil.typesMatch(o2, String)) 
+			{
 				throw IllegalArgumentError(this + " : compare(), Arguments string expected") ;
-			} else {
-				if (ignoreCase) {
+			}
+			else 
+			{
+				if (ignoreCase) 
+				{
 					o1 = String(o1).toLowerCase() ;
 					o2 = String(o2).toLowerCase() ;
 				}
@@ -114,16 +91,29 @@ class vegas.util.comparators.StringComparator extends CoreObject implements ICom
 			}
 		}
 	}
-	
-	public function equals(o):Boolean {
-		if (TypeUtil.typesMatch(o, String)) {
+
+	/**
+	 * Compares the specified object with this object for equality.
+	 * @return {@code true} if the the specified object is equal with this object.
+	 */
+	public function equals(o):Boolean 
+	{
+		if (TypeUtil.typesMatch(o, String)) 
+		{
 			return compare(s, o) == 0 ;
-		} else {
+		}
+		else 
+		{
 			return false ;
 		}
 	}
-	
-	public function toSource(indent:Number, indentor:String):String {
+
+	/**
+	 * Returns a Eden representation of the object.
+	 * @return a string representing the source code of the object.
+	 */
+	public function toSource(indent:Number, indentor:String):String 
+	{
 		return Serializer.getSourceOf(this, [s.toString()]) ;
 	}
 	

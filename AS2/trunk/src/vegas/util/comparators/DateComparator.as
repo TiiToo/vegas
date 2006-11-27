@@ -21,56 +21,6 @@
   
 */
 
-/**	DateComparator
-
-	AUTHOR
-
-		Name : DateComparator
-		Package : vegas.util.comparators
-		Version : 1.0.0.0
-		Date :  2005-09-18
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	CONSTRUCTOR
-	
-		var comp:DateComparator = new DateComparator(myDate) ;
-	
-	ARGUMENTS
-	
-		myDate : a Date object or a timeStamp number.
-	
-	PROPERTY SUMMARY
-	
-		- date
-	
-	METHOD SUMMARY
-	
-		- compare(o1, o2):Number
-			
-			RETURNS 
-			
-				- -1 if o1 is "lower" than (less than, before, etc.) o2 ;
-				- 1 if o1 is "higher" than (greater than, after, etc.) o2 ;
-				- 0 if o1 and o2 are equal.
-		
-		- equals(d:Date):Boolean
-		
-		- toSource():String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → DateComparator
-
-	IMPLEMENTS
-	
-		ICloneable, IComparator, IEquality, IFormattable, IHashable, ISerializable
-
-**/
-
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
 import vegas.core.IComparator;
@@ -78,49 +28,85 @@ import vegas.core.ISerializable;
 import vegas.errors.IllegalArgumentError;
 import vegas.util.serialize.Serializer;
 import vegas.util.TypeUtil;
-
-class vegas.util.comparators.DateComparator extends CoreObject implements ICloneable, IComparator, ISerializable {
-
-	// ----o Constructor
 	
-	public function DateComparator(p_date) {
+/**
+ * This comparator compare Date objects.
+ * @author eKameleon
+ */
+class vegas.util.comparators.DateComparator extends CoreObject implements ICloneable, IComparator, ISerializable 
+{
+
+	/**
+	 * Creates a new DateCompator instance.
+	 */
+	public function DateComparator(p_date) 
+	{
 		date = p_date ;
 	}
 	
-	// ----o Public Properties
-	
+	/**
+	 * The current Date reference.
+	 */
 	public var date ;
 	
-	// ----o Public Methods
-
+	/**
+	 * Creates and returns a shallow copy of the object.
+	 * @return A new object that is a shallow copy of this instance.
+	 */	
 	public function clone() {
 		return new DateComparator(date) ;
 	}
-	
+
+	/**
+	 * Returns an integer value to compare two Date objects.
+	 * @param o1 the first Date object to compare.
+	 * @param o2 the second Date object to compare.
+	 * @return <p>
+	 * <li>-1 if o1 is "lower" than (less than, before, etc.) o2 ;</li>
+	 * <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
+	 * <li> 0 if o1 and o2 are equal.</li>
+	 * </p>
+	 * @throw IllegalArgumentError if compare(a, b) and 'a' and 'b' must be Date or uint objects.
+	 */
 	public function compare(o1, o2):Number {
 		var b1:Boolean = TypeUtil.typesMatch(o1, Number) || TypeUtil.typesMatch(o1, Date) ;
 		var b2:Boolean = TypeUtil.typesMatch(o2, Number) || TypeUtil.typesMatch(o2, Date) ;
-		if ( b1  && b2 ) {
-				var a:Number = (o1 instanceof Date) ? o1.valueOf() : o1 ;
-				var b:Number = (o2 instanceof Date) ? o2.valueOf() : o2 ;
-				if( a < b ) return -1;
-				else if( a > b ) return 1;
-				else return 0 ;
-				
-		} else {
-			throw new IllegalArgumentError() ;
+		if ( b1  && b2 ) 
+		{
+			var a:Number = (o1 instanceof Date) ? o1.valueOf() : o1 ;
+			var b:Number = (o2 instanceof Date) ? o2.valueOf() : o2 ;
+			if( a < b ) return -1;
+			else if( a > b ) return 1;
+			else return 0 ;
+		}
+		else 
+		{
+			throw new IllegalArgumentError(this + ".compare(a, b), 'a' and 'b' must be Date or uint objects.") ;
 		}
 	}
-	
-	public function equals(o):Boolean {
-		if (o instanceof Date) {
+
+	/**
+	 * Compares the specified object with this object for equality.
+	 * @return {@code true} if the the specified object is equal with this object.
+	 */
+	public function equals(o):Boolean 
+	{
+		if (o instanceof Date) 
+		{
 			return compare(date, o) == 0 ;
-		} else {
+		}
+		else 
+		{
 			return false ;
 		}
 	}
 
-	public function toSource(indent:Number, indentor:String):String {
+	/**
+	 * Returns a Eden representation of the object.
+	 * @return a string representing the source code of the object.
+	 */
+	public function toSource(indent:Number, indentor:String):String
+	{
 		return Serializer.getSourceOf(this, [Serializer.toSource(date)]) ;
 	}
 	

@@ -22,7 +22,6 @@
 */
 
 import vegas.core.CoreObject;
-import vegas.util.factory.PropertyFactory;
 import vegas.util.format.IFormatter;
 
 /**
@@ -50,7 +49,6 @@ class vegas.util.format.AbstractFormatter extends CoreObject implements IFormatt
 		return getPattern() ;	
 	}
 
-	
 	/**
 	 * Sets the internal pattern of this formatter.
 	 */

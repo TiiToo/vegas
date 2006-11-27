@@ -21,28 +21,22 @@
   
 */
 
-/** IFormatter [interface]
-
-	AUTHOR
-	
-		Name : IFormatter
-		Package : vegas.core
-		Version : 1.0.0.0
-		Date : 2006-07-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- format(...arguments:Array):String ;
-
-**/
-
 package vegas.core
 {
+
+	/**
+	 * Interface implemented by classes that can format an specific string expression.
+	 * @author eKameleon
+	 * @version 1.0.0.0
+	 */
 	public interface IFormatter
 	{
+
+		/**
+		 * Format a string expression.
+		 */
 		function format(...arguments:Array):String ;
+
 	}
+
 }
