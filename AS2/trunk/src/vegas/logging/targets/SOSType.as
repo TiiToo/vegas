@@ -79,6 +79,11 @@ class vegas.logging.targets.SOSType
 	static public var HOST:String = "localhost" ;
 	
 	/**
+	 * Provides the message to send in the SOS console to receive infos about the console. 
+	 */
+	static public var IDENTIFY:String = "!SOS<identify/>" ;
+	
+	/**
 	 * Provides the 'info' color in the SOS console. 
 	 */
 	static public var INFO_COLOR:Number = 0xD2FAB8 ;

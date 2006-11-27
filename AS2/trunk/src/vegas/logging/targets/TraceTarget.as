@@ -21,11 +21,47 @@
   
 */
 
-import vegas.logging.LogEvent;
 import vegas.logging.targets.LineFormattedTarget;
 
 /**
  * Provides a logger target that uses the global trace() method to output log messages.
+ * <p><b>Example :</b></p>
+ * <p>
+ * {@code
+ * import vegas.logging.ILogger ;
+ * import vegas.logging.ITarget ;
+ * import vegas.logging.Log ;
+ * import vegas.logging.LogEvent ;
+ * import vegas.logging.LogEventLevel ;
+ * import vegas.logging.targets.TraceTarget ;
+ * 
+ * // setup writer 
+ * var traceTarget:TraceTarget = new TraceTarget() ;
+ * 
+ * traceTarget.filters = ["vegas.logging.*"] ;
+ * traceTarget.includeDate = true ;
+ * traceTarget.includeTime = true ;
+ * traceTarget.includeLevel = true ;
+ * traceTarget.includeCategory = true ;
+ * traceTarget.includeLines = true ;
+ * traceTarget.level = LogEventLevel.ALL ; // LogEventLevel.DEBUG (only the debug logs).
+ * 
+ * // start writing log data 
+ * Log.addTarget(traceTarget); 
+ * 
+ * // get a logger for the 'myDebug' category 
+ * // and send some data to it.
+ * 
+ * var logger:ILogger = Log.getLogger("vegas.logging.targets") ;
+ * logger.log(LogEventLevel.DEBUG, "here is some myDebug info : {0} and {1}", 2.25 , true) ; 
+ * logger.fatal("Here is some fatal error...") ; 
+ * 
+ * traceTarget.includeDate = false ;
+ * traceTarget.includeTime = false ;
+ * traceTarget.includeCategory = false ;
+ * logger.info("[{0}, {1}, {2}]", 2, 4, 6) ; 
+ * }
+ * </p>
  * @author eKameleon
  */
 class vegas.logging.targets.TraceTarget extends LineFormattedTarget 
@@ -40,89 +76,14 @@ class vegas.logging.targets.TraceTarget extends LineFormattedTarget
 	}
 	
 	/**
-	 * Returns the string representation with format of the log event.
+     * Descendants of this class should override this method to direct the specified message to the desired output.
+     *
+     * @param message String containing preprocessed log message which may include time, date, category, etc. 
+     *        based on property settings, such as <code>includeDate</code>, <code>includeCategory</code>, etc.
 	 */
-	public function formatLogEvent(ev:LogEvent):String 
+	/*override*/ public function internalLog( message , level:Number ):Void
 	{
-		return _formatMessage(ev.message, ev.level.toString(), ev.getTarget().category, new Date(ev.getTimeStamp())) ;
-	}
-	
-	/**
-	 * This method handles a LogEvent from an associated logger.
-	 */
-	/*override*/ public function logEvent(e:LogEvent) 
-	{
-		trace ( formatLogEvent(e) ) ;
-	}
-	
-	/**
-	 * The current line number.
-	 */
-	private var __lineNumber:Number = 1 ;
-	
-	/**
-	 * This method format the passed Date in arguments.
-	 */
-	private function _formatDate(d:Date):String 
-	{
-		var date:String = "" ;
-		date += _getDigit(d.getDate()) ;
-		date += "/" + _getDigit(d.getMonth() + 1) ;
-		date += "/" + d.getFullYear();
-		return date ;
-	}
-
-	/**
-	 * This method format the passed level in arguments.
-	 */
-	private function _formatLevel(level:String):String 
-	{
-		return '[' + level + ']' ;
-	}	
-
-	/**
-	 * This method format the current line value.
-	 */
-	private function _formatLines():String 
-	{
-		return "[" + __lineNumber++ + "]" ; 
-	}	
-	
-	/**
-	 * This method format the log message.
-	 */
-	private function _formatMessage(message:String, level:String, category:String, date:Date):String 
-	{
-		var msg:String = "" ;
-		var d:Date = date || new Date ;
-		if (includeLines) msg += _formatLines() + " " ; // lines
-		if (includeDate) msg += _formatDate(d) + " " ; // date
-		if (includeTime) msg += _formatTime(d) + " " ; // time
-		if (includeLevel) msg += _formatLevel(level || "" ) + " " ; // level
-		if (includeCategory) msg += (category || "") + " " ; // category
-		msg += message ;
-		return msg ;
-	}
-	
-	/**
-	 * This method format the current Date passed in argument.
-	 */
-	private function _formatTime(d:Date):String 
-	{
-		var time:String = "" ;
-		time += _getDigit(d.getHours()) ;
-		time += ":" + _getDigit(d.getMinutes()) ;
-		time += ":" + _getDigit(d.getSeconds()) ;
-		return time ;
-	}
-	
-	/**
-	 * Returns the string representation of a number and use digit conversion.
-	 */
-	private function _getDigit(n:Number):String 
-	{
-		if (isNaN(n)) return "00" ;
-		return ((n < 10) ? "0" : "") + n ;
+		trace(message) ;
 	}
 	
 }

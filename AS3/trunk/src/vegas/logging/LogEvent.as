@@ -21,29 +21,20 @@
   
 */
 
-/** LogEvent
-
-	AUTHOR
-	
-		Name :LogEvent
-		Package : vegas.logging
-		Version : 1.0.0.0
-		Date :  2006-08-31
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-*/
-
 package vegas.logging
 {
     import flash.events.Event;
 
+	/**
+	 * Represents the log information for a single logging event. The loging system dispatches a single event each time a process requests information be logged. This event can be captured by any object for storage or formatting.
+	 * @author eKameleon 
+	 */
     public class LogEvent extends Event
     {
         
-        // ----o Constructor
-        
+		/**
+		 * Creates a new LogEvent.
+		 */
         public function LogEvent(context:* , level:LogEventLevel )
         {
             super(LogEvent.LOG, false, false);
@@ -52,14 +43,10 @@ package vegas.logging
             
         }
         
-        // ----o Constants
-        
         /**
          * Event type constant, identifies a logging event.
          */
         public static const LOG:String = "log";
-
-        // ----o Public Properties
 
         /**
          * Provides access to the level for this log event.
@@ -71,13 +58,18 @@ package vegas.logging
          */
         public var message:* ;
 
-        // ----o Public Methods
-
+		/**
+		 * Returns the shallow copy of the event.
+		 * @return the shallow copy of the LogEvent event.
+		 */
         override public function clone():Event
         {
             return new LogEvent(message, level);
         }
 
+		/**
+		 * Returns a string value representing the level specified.
+		 */
         public static function getLevelString( value:LogEventLevel ):String
         {
            

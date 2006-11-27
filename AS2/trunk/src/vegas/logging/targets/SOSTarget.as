@@ -25,17 +25,54 @@ import vegas.data.iterator.Iterator;
 import vegas.data.queue.LinearQueue;
 import vegas.errors.Warning;
 import vegas.events.Delegate;
-import vegas.logging.LogEvent;
 import vegas.logging.LogEventLevel;
+import vegas.logging.targets.LineFormattedTarget;
 import vegas.logging.targets.SOSType;
-import vegas.logging.targets.TraceTarget;
 
 /**
  * Provides a logger target that uses the SOS console to output log messages. 
  * Thanks PowerFlasher and the <a href='http://sos.powerflasher.de/english/english.html'>SOS Console</a>
+ * <p><b>Example :</b></p>
+ * <p>
+ * {@code
+ * import vegas.logging.* ;
+ * import vegas.logging.targets.SOSTarget ;
+ *  
+ * import vegas.errors.* ;
+ * 
+ * // setup target
+ * var target:SOSTarget = new SOSTarget(0xD8F394) ;
+ * target.filters = ["monApplication", "vegas.errors.*"] ; // use a empty array to receive all logs.
+ * target.includeLines = true ;
+ * target.includeCategory = true ;
+ * target.includeDate = true ;
+ * target.includeTime = true ;
+ * target.includeLevel = true ;
+ * target.level = LogEventLevel.ALL ; 
+ * //target.setLevelColor(LogEventLevel.DEBUG, 0xFF0000) ;
+ * //target.levelPolicy = SOSType.DISABLE ; // SOSType.ENABLE default value
+ * target.sendFoldLevelMessage(LogEventLevel.DEBUG, "Init SOS console", "test a fold message") ;
+ * target.sendMessage("Init SOS console....") ;
+ * 
+ * // register target
+ * Log.addTarget(target); 
+ * 
+ * // create a log writer
+ * var logger:ILogger = Log.getLogger("monApplication") ;
+ * 
+ * logger.log(LogEventLevel.DEBUG, "here is some myDebug info : {0} and {1}", 2.25 , true) ;
+ * logger.debug("DEBUG !!") ;
+ * logger.error("ERROR !!") ;
+ * logger.fatal("FATAL !!") ;
+ * logger.info("INFO !!") ;
+ * logger.warn("WARNING !!") ;
+ * logger.warn([3, 2, 4]) ;
+ * throw new FatalError("a fatal error") ;
+ * }
+ * </p>
  * @author eKameleon
  */
-class vegas.logging.targets.SOSTarget extends TraceTarget 
+class vegas.logging.targets.SOSTarget extends LineFormattedTarget 
 {
 
 	/**
@@ -138,7 +175,7 @@ class vegas.logging.targets.SOSTarget extends TraceTarget
 	 */
 	public function getIdentify():Void 
 	{
-		sendMessage("!SOS<identify/>") ;
+		sendMessage( SOSType.IDENTIFY ) ;
 	}
 
 	/**
@@ -158,11 +195,14 @@ class vegas.logging.targets.SOSTarget extends TraceTarget
 	}
 	
 	/**
-	 * This method handles a LogEvent from an associated logger.
+     * Descendants of this class should override this method to direct the specified message to the desired output.
+     *
+     * @param message String containing preprocessed log message which may include time, date, category, etc. 
+     *        based on property settings, such as <code>includeDate</code>, <code>includeCategory</code>, etc.
 	 */
-	/*override*/ public function logEvent(e:LogEvent) 
+	/*override*/ public function internalLog( message , level:Number ):Void
 	{
-		sendLevelMessage(e.level, formatLogEvent( e )) ;
+		sendLevelMessage( level , message ) ;
 	}
 
 	/**

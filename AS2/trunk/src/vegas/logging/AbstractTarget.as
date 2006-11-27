@@ -96,9 +96,12 @@ class vegas.logging.AbstractTarget extends CoreObject implements ITarget
 		}
 	}
 
-	/**
-	 * This method handles a LogEvent from an associated logger.
-	 */
+    /**
+     *  This method handles a <code>LogEvent</code> from an associated logger.
+     *  <p>A target uses this method to translate the event into the appropriate format for transmission, storage, or display.</p>
+     *  <p>This method will be called only if the event's level is in range of the target's level.</p>
+     *  <p><b><i>Descendants need to override this method to make it useful.</i></b></p>
+     */		
 	public function logEvent(e:LogEvent):Void 
 	{
 		//
@@ -114,7 +117,7 @@ class vegas.logging.AbstractTarget extends CoreObject implements ITarget
 	}
 
 	/**
-	 * Remove an existing namespace in the filters array.
+	 * Removes an existing namespace in the filters array.
 	 */
 	public function removeNamespace(namespace:String):Boolean 
 	{

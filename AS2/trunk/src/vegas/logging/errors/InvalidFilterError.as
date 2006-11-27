@@ -25,6 +25,7 @@ import vegas.errors.ErrorElement;
 import vegas.errors.FatalError;
 
 /**
+ * The error throws when an invalid filter is find.
  * @author eKameleon
  */
 class vegas.logging.errors.InvalidFilterError extends FatalError 

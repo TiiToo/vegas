@@ -25,6 +25,7 @@ import vegas.errors.ErrorElement;
 import vegas.errors.FatalError;
 
 /**
+ * The error throws when an invalid category is find.
  * @author eKameleon
  */
 class vegas.logging.errors.InvalidCategoryError extends FatalError 

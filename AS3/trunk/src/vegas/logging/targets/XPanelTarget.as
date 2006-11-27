@@ -21,88 +21,123 @@
   
 */
 
-/** XPanelTarget
-
-	AUTHOR
-	
-		Name : XPanelTarget
-		Package : vegas.logging.targets
-		Version : 1.0.0.0
-		Date :  2006-09-01
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-*/
-
-// FIXME : bug au premier build de l'application. Si la console XPanel vient de s'ouvrir il faut relancer le build une seconde fois !
-
 package vegas.logging.targets
 {
+
+	// FIXME : bug au premier build de l'application. Si la console XPanel vient de s'ouvrir il faut relancer le build une seconde fois !
 
     import flash.events.AsyncErrorEvent;    
    	import flash.events.StatusEvent;
 	import flash.events.SecurityErrorEvent;
     import flash.net.LocalConnection ;
 
+    import vegas.logging.ILogger;
+    import vegas.logging.Log;
     import vegas.logging.LogEventLevel;
-
-
+    
+	import vegas.util.ClassUtil ;
+	
+	/**
+	 * Provides a logger target that uses the XPanel console to output log messages. 
+	 * Thanks Farata System and <a href='http://www.faratasystems.com/xpanel/readme.pdf'>XPanel</a> console.
+	 * @author eKameleon
+	 */
     public class XPanelTarget extends LineFormattedTarget
     {
         
-        // ----o Constructor
-        
+        /**
+         * Creates a new XPanelTarget instance.
+         */ 
         public function XPanelTarget( name:String="unknow" )
         {
-            super();
+			super();
+			
+             _logger = Log.getLogger( ClassUtil.getPath(this) ) ;
             
             _lc = new LocalConnection() ;
     	    _lc.addEventListener ( AsyncErrorEvent.ASYNC_ERROR, _onAsyncError ) ;
     	    _lc.addEventListener ( StatusEvent.STATUS, _onStatus ) ;
     		_lc.addEventListener ( SecurityErrorEvent.SECURITY_ERROR , _onSecurityError ) ;    			
+            _lc.send( CONNECTION_ID, DISPATCH_MESSAGE, new Date().valueOf(), START + " " + name, LEVEL_START );
             
-           // _lc.connect( CONNECTION_ID ) ;
-            
-            _lc.send ( 
-		        CONNECTION_ID ,
-    		    DISPATCH_MESSAGE , 
-    		    new Date().valueOf() ,
-    		    START + " " + name ,
-    		    LEVEL_START
-	    	);
-
         }
 
-        // ----o Constants
-        
+		/**
+		 * The id of the LocalConnection.
+		 */
         static public const CONNECTION_ID:String = "_xpanel1" ;
+        
+        /**
+         * The dispatch message label.
+         */
         static public const DISPATCH_MESSAGE:String = "dispatchMessage" ;
-        static public const START:String = "Started" ;
-        
-        static public const LEVEL_DEBUG       : uint = 0x0001 ;
-		static public const LEVEL_INFORMATION : uint = 0x0002 ;
-		static public const LEVEL_WARNING     : uint = 0x0004 ;
-		static public const LEVEL_ERROR       : uint = 0x0008 ;
-		static public const LEVEL_FATAL       : uint = 0x0010 ;
-		static public const LEVEL_START       : uint = 0x0100 ;
 
-		static public const LEVEL_NONE        : Number = 0xFF ;
-		static public const LEVEL_ALL         : Number = 0x00 ;
+        /**
+         * The 'all' level value of the XPanel console.
+         */ 
+		static public const LEVEL_ALL:uint = 0x00 ;
+		
+        /**
+         * The 'debug' level value of the XPanel console.
+         */ 
+        static public const LEVEL_DEBUG:uint = 0x0001 ;
 
-        // ----o Public Properties
-        
+        /**
+         * The 'error' level value of the XPanel console.
+         */ 
+		static public const LEVEL_ERROR:uint = 0x0008 ;
+
+        /**
+         * The 'fatal' level value of the XPanel console.
+         */ 
+		static public const LEVEL_FATAL:uint = 0x0010 ;
+
+        /**
+         * The 'information' level value of the XPanel console.
+         */ 
+		static public const LEVEL_INFORMATION:uint = 0x0002 ;
+
+        /**
+         * The 'none' level value of the XPanel console.
+         */ 
+		static public const LEVEL_NONE:Number = 0xFF ;
+
+        /**
+         * The 'start' level value of the XPanel console.
+         */ 
+		static public const LEVEL_START:uint = 0x0100 ;
+	
+        /**
+         * The 'warning' level value of the XPanel console.
+         */ 
+		static public const LEVEL_WARNING:uint = 0x0004 ;
+
+		/**
+		 * The started value.
+		 */
+		static public const START:String = "Started" ;
+
+        /**
+	     * The name of the connection
+	     */
         public var name:String ;
 
-        // ----o Public Methods
-   	   	
+		/**
+		 * This method format the log message.
+		 */
+        override protected function formatMessage(message:*, level:String, category:String, date:Date):String 
+        {
+	    	
+	    	message = (typeof message == "xml") ? (message as XML).toXMLString() : message.toString();
+	    	return super.formatMessage(message, level, category, date) ;
+    	}
+ 
    	   	/**
     	 * Descendants of this class should override this method to direct the specified message to the desired output.
     	 *
     	 * @param message String containing preprocessed log message which may include time, date, category, etc. 
     	 *        based on property settings, such as <code>includeDate</code>, <code>includeCategory</code>, etc.
 	     */
-
 	    override public function internalLog( message:* , level:LogEventLevel):void
 	    {
 	        
@@ -142,45 +177,44 @@ package vegas.logging.targets
 	    		}
 	    	}
 	    	
-			_lc.send(
-			    CONNECTION_ID , 
-			    DISPATCH_MESSAGE , 
-			    new Date().valueOf(), 
-			    message, targetLevel
-			) ;
+			_lc.send( CONNECTION_ID , DISPATCH_MESSAGE , new Date().valueOf(), message, targetLevel ) ;
 	        
-	    }
-	    
-        // ----o Protected Methods
-        
-        override protected function formatMessage(message:*, level:String, category:String, date:Date):String 
-        {
-	    	
-	    	message = (typeof message == "xml") ? (message as XML).toXMLString() : message.toString();
-	    	return super.formatMessage(message, level, category, date) ;
-	    	
-    	}
-    	
+	    }   
+
+    	/**
+    	 * Invoqued when the LocalConnection notify an asynchronous error.
+    	 */
     	private function _onAsyncError(e:AsyncErrorEvent):void
     	{
-    	    trace( "> " + this + " : " + e ) ;
+    	    _logger.error( "> " + this + " : " + e ) ;
     	}
-    	
+
+    	/**
+    	 * Invoqued when the LocalConnection notify a status change.
+    	 */
     	private function _onStatus( e:StatusEvent ):void
 		{
-			trace( "> " + this + " : " + e ) ;
+			_logger.info( "> " + this + " : " + e ) ;
 		}
 
+    	/**
+    	 * Invoqued when the LocalConnection notify a security error.
+    	 */
 		private function _onSecurityError( e:SecurityErrorEvent ):void
 		{
-		    
-		    trace( "> " + this + " : " + e ) ;
-		    
+		    _logger.error( "> " + this + " : " + e ) ;
 		}
 		
-		// ----o Private Properties
-		
+		/**
+		 * Internal LocalConnection reference.
+		 */
 		private var _lc:LocalConnection ;
+        
+        /**
+		 * The internal logger of this instance.
+		 */
+		private var _logger:ILogger ;
+
         
     }
 }

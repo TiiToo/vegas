@@ -21,20 +21,6 @@
   
 */
 
-/** TraceTarget
-
-	AUTHOR
-	
-		Name : TraceTarget
-		Package : vegas.logging.targets
-		Version : 1.0.0.0
-		Date :  2006-09-01
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-*/
-
 package vegas.logging.targets
 {
 
@@ -44,22 +30,21 @@ package vegas.logging.targets
 
     import vegas.util.* ;
 
+	/**
+	 * All logger target implementations that have a formatted line style output should extend this class. It provides default behavior for including date, time, category, and level within the output.
+	 * @author eKameleon
+	 */
     public class LineFormattedTarget extends AbstractTarget
     {
         
-        // ----o Constructor
-        
+		/**
+		 * Creates a new LineFormattedTarget instance.
+		 */
         public function LineFormattedTarget()
         {
             super();
         }
         
-        // ----o Public Properties
-        
-        public var separator:String = " " ;
-        
-       	// ----o Public Properties
-
     	/**
          * Indicates if the category for this target should added to the trace.
          */
@@ -84,9 +69,12 @@ package vegas.logging.targets
          * Indicates if the time should be added to the trace.
          */
 	    public var includeTime:Boolean = false ;
-	    
-	    // ----o Public Methods
-	    
+
+        /**
+         * The separator string.
+         */
+        public var separator:String = " " ;
+
 	   	/**
     	 * Descendants of this class should override this method to direct the specified message to the desired output.
     	 *
@@ -95,9 +83,7 @@ package vegas.logging.targets
 	     */
 	    public function internalLog( message:* , level:LogEventLevel ):void
 	    {
-	        
 	        // override this method.
-	        
 	    }
 	    
         /**
@@ -117,9 +103,10 @@ package vegas.logging.targets
             internalLog ( message , event.level ) ;
         
         }
-	    
-	    // ---o Protected Methods
-	    
+
+		/**
+		 * This method format the passed Date in arguments.
+		 */
 	    protected function formatDate( d:Date ):String 
 	    {
 		    var date:String = "" ;
@@ -129,17 +116,27 @@ package vegas.logging.targets
 		    return date ;
 	    }
 	    
+   		/**
+		 * This method format the passed level in arguments.
+		 */
 	    protected function formatLevel(level:String):String 
 	    {
 		    return '[' + level + ']' ;
 	    }	
-	    
+
+		/**
+		 * This method format the current line value.
+		 */
 	    protected function formatLines():String 
 	    {
 		    return "[" + __lineNumber++ + "]" ; 
 	    }	
-	
-    	protected function formatMessage(message:*, level:String, category:String, date:Date):String {
+
+		/**
+		 * This method format the log message.
+		 */
+    	protected function formatMessage(message:*, level:String, category:String, date:Date):String 
+    	{
 	    	
 	    	var msg:String = "" ;
        		
@@ -175,23 +172,28 @@ package vegas.logging.targets
 	    	return msg ;
 	    	
     	}
-	    
-    	protected function formatTime(d:Date):String {
+
+		/**
+		 * This method format the current Date passed in argument.
+		 */
+    	protected function formatTime(d:Date):String 
+    	{
 		    var time:String = "" ;
     		time += getDigit(d.getHours()) ;
     		time += ":" + getDigit(d.getMinutes()) ;
     		time += ":" + getDigit(d.getSeconds()) ;
     		return time ;
     	}
-	    
+
+		/**
+		 * Returns the string representation of a number and use digit conversion.
+		 */
 	    protected function getDigit(n:Number):String 
 	    {
 		    if (isNaN(n)) return "00" ;
     		return ((n < 10) ? "0" : "") + n ;
     	}
         
-       	// ----o Private Properties
-	
 	    private var __lineNumber:Number = 1 ;
         
     }

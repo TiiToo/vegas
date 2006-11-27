@@ -21,51 +21,52 @@
   
 */
 
-
-/** ITarget
-
-	AUTHOR
-
-		Name : ITarget
-		Package : vegas.logging
-		Version : 1.0.0.0
-		Date :  2006-08-31
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-*/
-
 package vegas.logging
 {
-    
+
+	/**
+	 * All logger target implementations within the logging framework must implement this interface.
+	 * @author eKameleon
+	 */
     public interface ITarget
     {
         
-        // ----o Public Properties
-
         /**
-         * In addition to the level setting, filters are used to provide a psuedo-hierarchical mapping for processing only those events for a given category.	
+         * (read-write) Returns the filters array of this target.
+         * <p>In addition to the level setting, filters are used to provide a psuedo-hierarchical mapping for processing only those events for a given category.</p>
+         * @return the filters array of this target.
          */
     	function get filters():Array ;
+
+        /**
+         * (read-write) Sets the filters array of this target.
+         * <p>In addition to the level setting, filters are used to provide a psuedo-hierarchical mapping for processing only those events for a given category.</p>
+         */
     	function set filters( value:Array ):void ;
 	
         /**
+         * (read-write) Returns the level of this target. 
          * Provides access to the level this target is currently set at.
+         * @return the level of this target.
          */ 
     	function get level():LogEventLevel ;
+
+        /**
+         * (read-write) Sets the level of this target. 
+         * Provides access to the level this target is currently set at.
+         */ 
     	function set level( value:LogEventLevel ):void ;
 	
-    	// ----o Public Methods
-	
-	    /**
-	     * Sets up this target with the specified logger.
-	     */
+		/**
+		 * Sets up this target with the specified logger.
+		 * Note : this method is called by the framework and should not be called by the developer.
+		 */
     	function addLogger(logger:ILogger):void ;
 		
 		/**
-	     * Stops this target from receiving events from the specified logger.
-	     */
+		 * Stops this target from receiving events from the specified logger.
+		 * Note : this method is called by the framework and should not be called by the developer.
+		 */
     	function removeLogger(logger:ILogger):void ;
         
     }

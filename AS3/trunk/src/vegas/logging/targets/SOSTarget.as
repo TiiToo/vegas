@@ -21,129 +21,6 @@
   
 */
 
-/** SOSTarget
-
-	AUTHOR
-	
-		Name : SOSTarget
-		Package : vegas.logging.targets
-		Version : 1.0.0.0
-		Date :  2006-09-01
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	 CONSTRUCTOR
-	
-		new SOSTarget(color:Number) ;
-
-	CONSTANT SUMMARY
-	
-		- const static ALL_COLOR:Number
-		
-		- const static CLEAR:String
-		
-		- const static DEBUG_COLOR:Number
-		
-		- const static DEFAULT_COLOR:Number
-		
-		- const static DISABLE:Number
-		
-		- const static ENABLE:Number
-		
-		- const static ERROR_COLOR:Number
-		
-		- const static EXIT:String
-		
-		- const static FATAL_COLOR:Number
-		
-		- const static HOST:String
-		
-		- const static INFO_COLOR:Number
-		
-		- const static PORT:Number
-		
-		- const static WARN_COLOR:Number
- 
-	PROPERTY SUMMARY
-		
-		- connected:Boolean [Read Only]
-		
-		- includeCategory:Boolean
-		
-			Indicates if the category for this target should added to the trace.
-		
-		- includeDate:Boolean
-		
-			Indicates if the date should be added to the trace.
-		
-		- includeLevel:Boolean
-		
-			Indicates if the level for the event should added to the trace.
-		
-		- includeLines:Boolean
-		
-		- includeTime:Boolean
-		
-			Indicates if the time should be added to the trace.
-
-		- levelPolicy:Number
-		
-			show level colors SOSTarget.ENABLE or SOSTarget.DISABLE
-
-	METHOD SUMMARY
-	
-		- clear():Void
-	
-			clear SOS console.
-	
-		- close():Void
-			
-			close SOS console connection
-			
-		- connect():Void
-		
-			connect SOS console.
-		
-		- exit():Void	
-		
-			close SOS console.
-		
-		- formatLogEvent(ev:LogEvent):String
-		
-		- identify():Void
-		
-			Shows some Information about the Connection.
-			This time it is : HostName, HostAddress and Color.
-		
-		- sendLevelMessage(level:Number, message:String):Void
-		
-		- sendMessage(message:String):Void
-		
-			send message or bufferize message if the SOS console is disconnected.
-		
-		- setAppName(name:String):Void 
-		
-			Each Command or Log Connection can have a name. You can set this name with this command.
-		
-		- setAppColor(color:Number):Void 
-		
-			The Color must be set as Integer Value. So 16768477 equals 0xffdddd.
-		
-		- setLevelColor(level:LogEventLevel, color:Number):Void
-		
-		- toString():String
-
-	INHERIT 
-	
-		CoreObject → AbstractTarget → LineFormattedTarget → TraceTarget → SOSTarget
-
-	IMPLEMENTS
-	
-		EventListener, ITarget, IFormattable, IHashable
-
-*/
-
 package vegas.logging.targets
 {
     
@@ -159,11 +36,54 @@ package vegas.logging.targets
     
     import vegas.logging.LogEventLevel;
        
+	/**
+	 * Provides a logger target that uses the SOS console to output log messages. 
+	 * Thanks PowerFlasher and the <a href='http://sos.powerflasher.de/english/english.html'>SOS Console</a>
+	 * <p><b>Example :</b></p>
+	 * <code>
+	 * import vegas.logging.* ;
+	 * import vegas.logging.targets.SOSTarget ;
+	 *  
+	 * import vegas.errors.* ;
+	 * 
+	 * // setup target
+	 * var target:SOSTarget = new SOSTarget(0xD8F394) ;
+	 * target.filters = ["monApplication", "vegas.errors.*"] ; // use a empty array to receive all logs.
+	 * target.includeLines = true ;
+	 * target.includeCategory = true ;
+	 * target.includeDate = true ;
+	 * target.includeTime = true ;
+	 * target.includeLevel = true ;
+	 * target.level = LogEventLevel.ALL ; 
+	 * //target.setLevelColor(LogEventLevel.DEBUG, 0xFF0000) ;
+	 * //target.levelPolicy = SOSType.DISABLE ; // SOSType.ENABLE default value
+	 * target.sendFoldLevelMessage(LogEventLevel.DEBUG, "Init SOS console", "test a fold message") ;
+	 * target.sendMessage("Init SOS console....") ;
+	 * 
+	 * // register target
+	 * Log.addTarget(target); 
+	 * 
+	 * // create a log writer
+	 * var logger:ILogger = Log.getLogger("monApplication") ;
+	 * 
+	 * logger.log(LogEventLevel.DEBUG, "here is some myDebug info : {0} and {1}", 2.25 , true) ;
+	 * logger.debug("DEBUG !!") ;
+	 * logger.error("ERROR !!") ;
+	 * logger.fatal("FATAL !!") ;
+	 * logger.info("INFO !!") ;
+	 * logger.warn("WARNING !!") ;
+	 * logger.warn([3, 2, 4]) ;
+	 * throw new FatalError("a fatal error") ;
+	 * </code>
+	 * 
+	 * @author eKameleon
+	 */
     public class SOSTarget extends LineFormattedTarget
     {
         
-        // ----o Constructor
-        
+		/**
+		 * Creates a new SOSTarget instance.
+		 */
         public function SOSTarget( name:String=null, color:Number=NaN , isIdenfify:Boolean=true  )
         {
             super();
@@ -214,27 +134,74 @@ package vegas.logging.targets
             
         }
         
-        // ----o Constants
-        
+		/**
+		 * Provides the message to send in the SOS console to clear the console. 
+		 */
     	static public const CLEAR:String = "!SOS<clear/>\n" ;
-    	static public const EXIT:String = "!SOS<exit/>" ;
-    	static public const DISABLE:Number = 0 ; // levelPolicy
+
+		/**
+		 * Provides the value if you want 'disabled' the levels colors in the SOS Console.
+		 */
+		static public const DISABLE:Number = 0 ; // levelPolicy
+
+		/**
+		 * Provides the value if you want 'enabled' the levels colors in the SOS Console.
+		 */
     	static public const ENABLE:Number = 1 ; // levelPolicy
 
-    	// ----o Public Properties
+		/**
+		 * Provides the message to send in the SOS console to exit the console. 
+		 */
+    	static public const EXIT:String = "!SOS<exit/>" ;
 
+		/**
+		 * Provides the color in the SOS console to display all levels. 
+		 */
         static public var ALL_COLOR:Number = 0xD7EEFD ;
-    	static public var DEBUG_COLOR:Number = 0xDEECFE ;
+        
+		/**
+		 * Provides the 'debug' color in the SOS console. 
+		 */
+		static public var DEBUG_COLOR:Number = 0xDEECFE ;
+		
+		/**
+		 * Provides the 'default' color in the SOS console. 
+		 */
     	static public var DEFAULT_COLOR:Number = 0xFFFFFF ;
+    	
+		/**
+		 * Provides the 'error' color in the SOS console. 
+		 */
     	static public var ERROR_COLOR:Number = 0xEDCC81 ;
-     	static public var INFO_COLOR:Number = 0xD2FAB8 ;
+
+	  	/**
+		 * Provides the 'fatal' color in the SOS console. 
+		 */
     	static public var FATAL_COLOR:Number = 0xFDD1B5 ;
+
+		/**
+		 * Provides the 'info' color in the SOS console. 
+		 */
+     	static public var INFO_COLOR:Number = 0xD2FAB8 ;
+
+		/**
+		 * Provides the default host in the SOS console to connect the internal XMLSocket. 
+		 */
+    	static public var HOST:String = "localhost" ;
+
+		/**
+		 * Provides the 'warn' color in the SOS console. 
+		 */
     	static public var WARN_COLOR:Number = 0xFDFDB5 ;
 
-    	static public var HOST:String = "localhost" ;
+		/**
+		 * Provides the default port in the SOS console to connect the internal XMLSocket. 
+		 */
     	static public var PORT:Number = 4444 ;
 
-	    
+		/**
+		 * Show the level colors. Use SOSType.ENABLE or SOSType.DISABLE
+		 */	
     	public var levelPolicy:Number ;
 
         /**
@@ -245,88 +212,43 @@ package vegas.logging.targets
 		    return _xs.connected  ;
     	}
 
-    	
-    	// ----o Public Methods
-    	
+		/**
+		 * Clear the console.
+		 */	
     	public function clear():void 
     	{
 		    sendMessage( CLEAR ) ;
     	}
 
+		/**
+		 * Close the console socket connection.
+		 */
 	    public function close():void 
 	    {
 		    _isConnected = false ;
     		_xs.close() ;
 	    }
 
+		/**
+		 * Connect to the SOS console. 
+		 */
     	public function connect():void
     	{
 		    if (_isConnected) close() ;
     		_xs.connect( HOST, PORT ) ;
 	    }
 
+		/**
+		 * Exit and close the SOS console.
+		 */
     	public function exit():void
     	{
 		    sendMessage( EXIT ) ;
     	}
 
-	    public function identify():void
-	    {
-    		sendMessage("!SOS<identify/>") ;
-	    }
-        
-        override public function internalLog( message:* , level:LogEventLevel ):void
-	    {
-        	sendLevelMessage( level, message ) ;
-	    }
-
-
-	    public function sendLevelMessage(level:LogEventLevel, message:String ):void 
-	    {
-	        
-    		if (levelPolicy == SOSTarget.ENABLE) 
-	    	{
-		    	message = "!SOS<showMessage key='" + level.toString() + "'>" + message.toString() + "</showMessage>\n" ;
-		    } 
-    		
-    		sendMessage(message) ;
-    		
-	    }
-
-	    public function sendMessage(msg:String):void 
-	    {
-		    if (_isConnected) 
-		    {
-    			_xs..send(msg) ;
-    		}
-    		else 
-    		{
-	    		_queue.enqueue(msg) ;
-		    }
-    	}
-
-    	public function setAppName(name:String):void 
-    	{
-		    sendMessage("!SOS<appName>" + name + "</appName>") ;
-    	}
-	
-    	public function setAppColor(color:Number):void 
-    	{
-		    sendMessage("!SOS<appColor>" + color + "</appColor>") ;
-    	}
-	
-    	public function setLevelColor( level:LogEventLevel, color:Number=NaN ):void 
-    	{
-		    if (!LogEventLevel.isValidLevel(level)) return ;
-    		var msg:String = "!SOS<setKey>" ;
-    		msg += "<name>" + level.toString() + "</name>" ;
-    		msg += "<color>"+ ( isNaN(color) ? SOSTarget[level.toString()+"_COLOR"] : color ) + "</color>" ;
-    		msg += "</setKey>\n" ;
-    		sendMessage(msg) ;
-    	}
-
-    	// ----o Protected Methods
-    	
+		/**
+		 * Flush the target.
+		 */
     	protected function flush():void
     	{
     		if ( _queue.size() > 0 ) 
@@ -339,34 +261,129 @@ package vegas.logging.targets
     		}
     	}
 
+		/**
+		 * Shows some Information about the Connection. This time it is : HostName, HostAddress and Color.
+		 */
+	    public function identify():void
+	    {
+    		sendMessage("!SOS<identify/>") ;
+	    }
+        
+        override public function internalLog( message:* , level:LogEventLevel ):void
+	    {
+        	sendLevelMessage( level, message ) ;
+	    }
 
-    	// ----o Private Properties
-    	
+		/**
+		 * Send a message with a specific level.
+		 */
+	    public function sendLevelMessage(level:LogEventLevel, message:String ):void 
+	    {
+	        
+    		if (levelPolicy == SOSTarget.ENABLE) 
+	    	{
+		    	message = "!SOS<showMessage key='" + level.toString() + "'>" + message.toString() + "</showMessage>\n" ;
+		    } 
+    		
+    		sendMessage(message) ;
+    		
+	    }
+
+		/**
+		 * Send message or bufferize message if the SOS console is disconnected.
+		 */
+	    public function sendMessage(msg:String):void 
+	    {
+		    if (_isConnected) 
+		    {
+    			_xs..send(msg) ;
+    		}
+    		else 
+    		{
+	    		_queue.enqueue(msg) ;
+		    }
+    	}
+
+		/**
+		 * Sets the name of the application.
+		 */
+    	public function setAppName(name:String):void 
+    	{
+		    sendMessage("!SOS<appName>" + name + "</appName>") ;
+    	}
+
+		/**
+		 * Sets the color of the application, the Color must be set as Integer Value. So 16768477 equals 0xffdddd.
+		 */
+    	public function setAppColor(color:Number):void 
+    	{
+		    sendMessage("!SOS<appColor>" + color + "</appColor>") ;
+    	}
+
+		/**
+		 * Sets the color for a specific level.
+		 * @see LogEventLevel
+		 */
+    	public function setLevelColor( level:LogEventLevel, color:Number=NaN ):void 
+    	{
+		    if (!LogEventLevel.isValidLevel(level)) return ;
+    		var msg:String = "!SOS<setKey>" ;
+    		msg += "<name>" + level.toString() + "</name>" ;
+    		msg += "<color>"+ ( isNaN(color) ? SOSTarget[level.toString()+"_COLOR"] : color ) + "</color>" ;
+    		msg += "</setKey>\n" ;
+    		sendMessage(msg) ;
+    	}
+
+
+
+		/**
+		 * The internal color value.
+		 */	
     	private var _color:Number ;
+
+		/**
+		 * The internal value to indicated if the target is connected.
+		 */
     	private var _isConnected:Boolean ;
+
+		/**
+		 * The internal buffer.
+		 */
     	private var _queue:LinearQueue ;
+   
+		/**
+		 * The internal socket reference.
+		 */
     	private var _xs:XMLSocket ;
     	
-    	// ----o Private Methods
-
+    	/**
+    	 * Invoqued when the socket close the connection.
+    	 */
     	private function _onClose( e:Event ):void
     	{
-    	
     	    trace("> " + this + ", close socket connection : " + e ) ;
-    	
     	}
-    	
+
+    	/**
+    	 * Invoqued when the socket is connected.
+    	 */
     	private function _onConnect( e:Event ):void 
     	{
     	    trace("> " + this + ", connect socket connection : " + e ) ;
    			flush() ;
     	}
-    	
+
+    	/**
+    	 * Invoqued when the socket notify an IO error.
+    	 */
     	private function _onIOError ( e:IOErrorEvent ):void 
     	{
             trace("> " + this + ", io error socket connection : " + e);
         }
 
+    	/**
+    	 * Invoqued when the socket notify a security error.
+    	 */
         private function _onSecurityError ( e:SecurityErrorEvent ):void 
         {
             trace("> " + this + ", security error socket connection : " + e);

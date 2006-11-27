@@ -21,25 +21,12 @@
   
 */
 
-/** LuminicTarget
-
-	AUTHOR
-	
-		Name : LuminicTarget
-		Package : vegas.logging.targets
-		Version : 1.0.0.0
-		Date :  2006-09-01
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-*/
-
-// TODO : corriger les types de la sérialization (le problème reste que cette console est prévue à la base pour AS1/AS2)
-// FIXME : Problème avec le logger ... boucle infinie dans l'événement StatusEvent !!!!
-
 package vegas.logging.targets
 {
+
+	// TODO : corriger les types de la sérialization (le problème reste que cette console est prévue à la base pour AS1/AS2)
+	// FIXME : Problème avec le logger ... boucle infinie dans l'événement StatusEvent !!!!
+
 
     import flash.events.AsyncErrorEvent;
     import flash.events.SecurityErrorEvent;
@@ -55,9 +42,18 @@ package vegas.logging.targets
     import vegas.maths.Range;
     import vegas.util.ClassUtil ;
 
+	/**
+	 * Provides a logger target that uses the FlashInspector console to output log messages. 
+	 * Thanks Pablo Costantini and LuminicBox <a href='http://www.luminicbox.com/blog/default.aspx?page=post&id=2'>FlashInspector</a>.
+	 * @author eKameleon
+	 */
     public class LuminicTarget extends LineFormattedTarget
     {
-        public function LuminicTarget( collapse:Boolean=true , depth:uint=4 )
+    	
+		/**
+		 * Creates a new LuminicTarget instance.
+		 */
+        public function LuminicTarget( collapse:Boolean=false , depth:uint=4 )
         {
             super();
             
@@ -74,15 +70,38 @@ package vegas.logging.targets
 	    	
         }
 
-    	// ----o Public Properties
-        
+		/**
+		 * The id of the local connection.
+		 */
         static public const CONNECTION_ID:String = "_luminicbox_log_console" ;
-        static public const DISPATCH_MESSAGE:String = "log" ;
         
-	    public var isCollapse:Boolean ;
-   
-        // ----o Public Methods
+        /**
+         * The name of the dispatch message.
+         */
+        static public const DISPATCH_MESSAGE:String = "log" ;
 
+		/**
+		 * Indicated if the console use collapse property or not.
+		 */
+	    public var isCollapse:Boolean ;
+
+		/**
+		 * (read-only) Returns the max depth to collaspe the structure of an object in the console.
+		 */
+	    public function get maxDepth():uint
+	    {
+	        return _maxDepth ;
+	    }
+
+		/**
+		 * (read-only) Sets the max depth to collaspe the structure of an object in the console.
+		 */
+        public function set maxDepth( value:uint ):void
+        {
+		    var r:Range = new Range(1, 255) ;
+    		_maxDepth = r.clamp(value) ;
+    	}
+    	
         /**
          *  This method handles a <code>LogEvent</code> from an associated logger.
          *  A target uses this method to translate the event into the appropriate
@@ -120,27 +139,24 @@ package vegas.logging.targets
         
         }
 
-	    // ----o Virtual Properties
-	    
-	    public function get maxDepth():uint
-	    {
-	        return _maxDepth ;
-	    }
-	
-        public function set maxDepth( value:uint ):void
-        {
-		    var r:Range = new Range(1, 255) ;
-    		_maxDepth = r.clamp(value) ;
-    	}
-    	
-        // ----o Private Properties
-	
+		/**
+		 * Internal LocalConnection reference.
+		 */
         private var _lc:LocalConnection ;
+
+		/**
+		 * Internal ILogger reference.
+		 */
         private var _logger:ILogger ;
+
+		/**
+		 * Internal max depth value.
+		 */
         private var _maxDepth:uint ;
 
-    	// ----o Private Methods
-    	
+		/**
+		 * Returns an object with all the config of the current log content.
+		 */
     	private function _getType(o:*):Object 
     	{
     		
@@ -187,23 +203,33 @@ package vegas.logging.targets
     		return type ;
     	}
     	
+    	/**
+    	 * Invoqued when a asynchronous error is notify by the LocalConnection.
+    	 */
     	private function _onAsyncError(e:AsyncErrorEvent):void
     	{
     	    _logger.info( "> " + this + " : " + e ) ;
     	}
-    	
+
+    	/**
+    	 * Invoqued when the status of the LocalConnection change.
+    	 */
     	private function _onStatus( e:StatusEvent ):void
 		{
 			_logger.info( "> " + this + " : " + e ) ;
 		}
 
+    	/**
+    	 * Invoqued when a security error is notify by the LocalConnection.
+    	 */
 		private function _onSecurityError( e:SecurityErrorEvent ):void
 		{
-		    
 		    _logger.info( "> " + this + " : " + e ) ;
-		    
 		}
 
+		/**
+		 * Serialize un object before send the message in the console.
+		 */
     	private function _serializeObj ( o:*, depth:Number) : Object 
     	{
 		    

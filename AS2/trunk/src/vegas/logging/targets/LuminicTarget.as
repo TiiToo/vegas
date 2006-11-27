@@ -22,16 +22,44 @@
 */
 
 import vegas.logging.LogEvent;
-import vegas.logging.targets.TraceTarget;
+import vegas.logging.targets.LineFormattedTarget;
 import vegas.maths.Range;
 import vegas.util.TypeUtil;
 
 /**
  * Provides a logger target that uses the FlashInspector console to output log messages. 
  * Thanks Pablo Costantini and LuminicBox <a href='http://www.luminicbox.com/blog/default.aspx?page=post&id=2'>FlashInspector</a>.
+ * <p><b>Example :</b></p>
+ * <p>
+ * {@code
+ * import vegas.logging.* ;
+ * import vegas.logging.targets.LuminicTarget ;
+ * 
+ * var target:LuminicTarget = new LuminicTarget(2, false) ;
+ * target.includeLines = true ;
+ * target.includeLevel = true ;
+ * target.filters = ["__TEST__"] ;
+ * target.level = LogEventLevel.ALL ; // level filter !
+ * 
+ * // ----o register target
+ * Log.addTarget(target); 
+ * 
+ * // ----o create a log writer
+ * var logger:ILogger = Log.getLogger("__TEST__") ;
+ * 
+ * logger.debug("hello") ;
+ * logger.warn(2) ;
+ * 
+ * logger.debug("------------") ;
+ * target.isCollapse = true ;
+ * logger.error([2, 3, ["coucou", "hello", "item"]]) ;
+ * logger.debug({ prop1:"coucou" , prop2:[3, 4, 5] , prop3:true } ) ;
+ * logger.debug(new XML("<item><subitem>coucou</subitem><subitem>hello</subitem></item>")) ;
+ * }
+ * </p>
  * @author eKameleon
  */
-class vegas.logging.targets.LuminicTarget extends TraceTarget 
+class vegas.logging.targets.LuminicTarget extends LineFormattedTarget 
 {
 	
 	/**
@@ -43,7 +71,17 @@ class vegas.logging.targets.LuminicTarget extends TraceTarget
 		isCollapse = (collapse == false) ? false : true ;
 		setMaxDepth( depth || 4 ) ;
 	}
-	
+
+	/**
+	 * The id of the local connection.
+	 */
+    static public var CONNECTION_ID:String = "_luminicbox_log_console" ;
+       
+    /**
+     * The name of the dispatch message.
+     */
+    static public var DISPATCH_MESSAGE:String = "log" ;
+
 	/**
 	 * Indicated if the console use collapse property or not.
 	 */
@@ -86,7 +124,7 @@ class vegas.logging.targets.LuminicTarget extends TraceTarget
 		{
 			var data:Object = new Object();
 			data.type = "string" ;
-			data.value = _formatMessage
+			data.value = formatMessage
 			(
 				msg.toString() , 
 				level, 
@@ -108,11 +146,29 @@ class vegas.logging.targets.LuminicTarget extends TraceTarget
 	}
 	
 	/**
+     * Descendants of this class should override this method to direct the specified message to the desired output.
+     *
+     * @param message String containing preprocessed log message which may include time, date, category, etc. 
+     *        based on property settings, such as <code>includeDate</code>, <code>includeCategory</code>, etc.
+	 */
+	/*override*/ public function internalLog( message , level:Number ):Void
+	{
+		_lc.send( CONNECTION_ID , DISPATCH_MESSAGE, message ) ;
+	}
+	
+	/**
 	 * This method handles a LogEvent from an associated logger.
 	 */
 	/*override*/ public function logEvent(e:LogEvent) 
 	{
-		_lc.send( "_luminicbox_log_console", "log", formatLogEvent(e)) ;
+       	var message = e.message ;
+        var level:String = LogEvent.getLevelString(e.level) ;
+        var category:String = e.currentTarget.category ;
+        var time:Date = new Date() ;
+
+        var context:Object = formatLogEvent(e) ;
+        
+        internalLog(context, e.level) ;
 	}
 
 	/**
@@ -123,17 +179,76 @@ class vegas.logging.targets.LuminicTarget extends TraceTarget
 		var r:Range = new Range(1, 255) ;
 		_maxDepth = r.clamp(value) ;
 	}
-	
-	/**
-	 * Internal max depth value.
-	 */
-	private var _maxDepth:Number ;
-	
+
 	/**
 	 * Internal LocalConnection reference.
 	 */
 	private var _lc:LocalConnection ;
 	
+	/**
+	 * Internal max depth value.
+	 */
+	private var _maxDepth:Number ;
+
+	/**
+	 * Returns an object with all the config of the current log content.
+	 */
+	private function _getType(o):Object 
+	{
+		var tof:String = typeof(o);
+		var type = new Object();
+		type.inspectable = true ;
+		type.name = tof ;
+		switch( tof ) 
+		{
+			case "string" :
+			case "boolean" :
+			case "number" :
+			case "undefined" :
+			case "null" :
+			{
+				type.inspectable = false ;
+				break ;
+			}
+			default :
+			{	
+				if(o instanceof Date) 
+				{
+					type.inspectable = false ;
+					type.name = "date" ;
+				}
+				else if(o instanceof Array) 
+				{
+					type.name = "array" ;
+				}
+				else if(o instanceof Button) 
+				{
+					type.name = "button";
+				}
+				else if(o instanceof MovieClip) 
+				{
+					type.name = "movieclip";
+				}
+				else if(o instanceof XML) 
+				{
+					type.name = "xml" ;
+					type.stringify = true ;
+				}
+				else if(o instanceof XMLNode) 
+				{
+					type.name = "xmlnode" ;
+					type.stringify = true ;
+				}
+				else if(o instanceof Color) 
+				{
+					type.name = "color" ;
+				}
+			}
+		}
+		return type ;
+	}
+	
+
 	/**
 	 * Serialize un object before send the message in the console.
 	 */
@@ -198,63 +313,6 @@ class vegas.logging.targets.LuminicTarget extends TraceTarget
 		return serial ;
 	}
 	
-	/**
-	 * Returns an object with all the config of the current log content.
-	 */
-	private function _getType(o):Object 
-	{
-		var tof:String = typeof(o);
-		var type = new Object();
-		type.inspectable = true ;
-		type.name = tof ;
-		switch( tof ) 
-		{
-			case "string" :
-			case "boolean" :
-			case "number" :
-			case "undefined" :
-			case "null" :
-			{
-				type.inspectable = false ;
-				break ;
-			}
-			default :
-			{	
-				if(o instanceof Date) 
-				{
-					type.inspectable = false ;
-					type.name = "date" ;
-				}
-				else if(o instanceof Array) 
-				{
-					type.name = "array" ;
-				}
-				else if(o instanceof Button) 
-				{
-					type.name = "button";
-				}
-				else if(o instanceof MovieClip) 
-				{
-					type.name = "movieclip";
-				}
-				else if(o instanceof XML) 
-				{
-					type.name = "xml" ;
-					type.stringify = true ;
-				}
-				else if(o instanceof XMLNode) 
-				{
-					type.name = "xmlnode" ;
-					type.stringify = true ;
-				}
-				else if(o instanceof Color) 
-				{
-					type.name = "color" ;
-				}
-			}
-		}
-		return type ;
-	}
-	
+
 
 }

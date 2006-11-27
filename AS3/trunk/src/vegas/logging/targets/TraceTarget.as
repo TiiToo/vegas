@@ -25,19 +25,57 @@ package vegas.logging.targets
 {
     
     import vegas.logging.LogEventLevel;
-    
+ 
+	 /**
+	  * Provides a logger target that uses the global trace() method to output log messages.
+	  * <p><b>Example :</b></p>
+ 	  * <code>
+	  * import vegas.logging.ILogger ;
+	  * import vegas.logging.ITarget ;
+	  * import vegas.logging.Log ;
+	  * import vegas.logging.LogEvent ;
+	  * import vegas.logging.LogEventLevel ;
+	  * import vegas.logging.targets.TraceTarget ;
+	  * 
+	  * // setup writer 
+	  * var traceTarget:TraceTarget = new TraceTarget() ;
+	  * 
+	  * traceTarget.filters = ["vegas.logging.*"] ;
+	  * traceTarget.includeDate = true ;
+	  * traceTarget.includeTime = true ;
+	  * traceTarget.includeLevel = true ;
+	  * traceTarget.includeCategory = true ;
+	  * traceTarget.includeLines = true ;
+	  * traceTarget.level = LogEventLevel.ALL ; // LogEventLevel.DEBUG (only the debug logs).
+	  * 
+	  * // start writing log data 
+	  * Log.addTarget(traceTarget); 
+	  * 
+	  * // get a logger for the 'myDebug' category 
+	  * // and send some data to it.
+	  * 
+	  * var logger:ILogger = Log.getLogger("vegas.logging.targets") ;
+	  * logger.log(LogEventLevel.DEBUG, "here is some myDebug info : {0} and {1}", 2.25 , true) ; 
+	  * logger.fatal("Here is some fatal error...") ; 
+	  * 
+	  * traceTarget.includeDate = false ;
+	  * traceTarget.includeTime = false ;
+	  * traceTarget.includeCategory = false ;
+	  * logger.info("[{0}, {1}, {2}]", 2, 4, 6) ; 
+	  * </code>
+	  * @author eKameleon
+	  */
     public class TraceTarget extends LineFormattedTarget
     {
         
-        // ----o Constructor
-        
+		/**
+		 * Creates a new TraceTarget instance.
+		 */
         public function TraceTarget()
         {
             super();
         }
-        
-        // ----o Public Methods
-        
+
 	   	/**
     	 * Descendants of this class should override this method to direct the specified message to the desired output.
     	 *
@@ -46,9 +84,7 @@ package vegas.logging.targets
 	     */
 	    override public function internalLog( message:* , level:LogEventLevel ):void
 	    {
-
            trace(message) ;
-	        
 	    }
         
     }

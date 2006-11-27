@@ -21,24 +21,6 @@
   
 */
 
-/** Log
-
-	AUTHOR
-
-		Name : Log
-		Package : vegas.logging
-		Version : 1.0.0.0
-		Date : 2006-09-01
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-    This class is inspirate for the moment about mx.loggin.* package...
-
-*/
-
-// TODO refactoring all vegas.logging.* package with vegas tools (see AS2 implementation).
-
 package vegas.logging
 {
 
@@ -46,34 +28,41 @@ package vegas.logging
     import vegas.data.map.HashMap;
     import vegas.logging.errors.InvalidCategoryError;
     import vegas.util.StringUtil ;
-    
+
+	/**
+	 * Provides psuedo-hierarchical logging capabilities with multiple format and output options.
+	 * @author eKameleon
+	 */
     public class Log
     {
-        
-        // ----o Constructor
-        
-        public function Log()
-        {
-            // 
-        }
-        
-        // ----o Public Properties
-	
+
+		/**
+		 * const The default categoty of the {@code ILogger} instances returns with the {@code getLogger} method.
+		 */
 	    static public var DEFAULT_CATEGORY:String = "" ;
-	    
+
+		/**
+		 * const The string representation of all the illegal characters.
+		 */
     	static public var ILLEGALCHARACTERS:String = "[]~$^&/\\(){}<>+=`!#%?,:;'\"@" ;
-    	
+
+		/**
+		 * The static field used when throws an Error when a character is invalid.
+		 */     
         static public var INVALID_CHARS:String = "Categories can not contain any of the following characters : []~$^&/\\(){}<>+=`!#%?,:;'\"@" ;
-           
-        static public var INVALID_LENGTH:String = "Categories must be at least one character in length." ;
-        
-    	static public var INVALID_TARGET:String = "Log, Invalid target specified." ;
-    	
-    	// ----o Public Methods
         
         /**
+		 * The static field used when throws an Error when the length of one character is invalid.
+		 */     
+        static public var INVALID_LENGTH:String = "Categories must be at least one character in length." ;
+
+        /**
+		 * The static field used when throws an Error when the specified target is invalid.
+		 */     
+    	static public var INVALID_TARGET:String = "Log, Invalid target specified." ;
+    	
+        /**
          *  Allows the specified target to begin receiving notification of log events.
-         *
          *  @param The specific target that should capture log events.
          */
     	static public function addTarget(target:ITarget):void
@@ -112,7 +101,7 @@ package vegas.logging
             }
             else
             {
-                    throw new ArgumentError( INVALID_TARGET );
+            	throw new ArgumentError( INVALID_TARGET );
             }
 
         }
@@ -301,35 +290,26 @@ package vegas.logging
             }
         
         }
-        
-    	// ----o Private Properties
-        
+      
         /**
-         *  @private
          *  An associative Array of existing loggers keyed by category
          */
     	static private var _loggers:HashMap = new HashMap() ;
 
         /**
-         *  @private
          *  Sentinal value for the target log level to indicate no logging.
          */
     	static private var NONE:int = int.MAX_VALUE;
         
         /**
-         *  @private
          *  The most verbose supported log level among registered targets.
          */
     	static private var _targetLevel:int = NONE ;
     	
         /**
-         *  @private
-         *  Array of targets that should be searched any time
-      	 *  a new logger is created.
+         *  Array of targets that should be searched any time a new logger is created.
          */
         static private var _targets:Array = [];
-        
-        // ----o Private Methods
         
         /**
          *  This method checks that the specified category matches any of the filter
@@ -337,10 +317,7 @@ package vegas.logging
          *
          *  @param category The category to match against
          *  @param filters A list of Strings to check category against.
-         *  @return <code>true</code> if the specified category matches any of the
-         *            filter expressions found in the filters list, <code>false</code>
-         *            otherwise.
-         *  @private
+         *  @return <code>true</code> if the specified category matches any of the filter expressions found in the filters list, <code>false</code> otherwise.
          */
         static private function categoryMatchInFilterList(category:String, filters:Array):Boolean
         {
@@ -376,8 +353,6 @@ package vegas.logging
          *  If the category is not valid an <code>InvalidCategoryError</code> will be thrown.
          *  Categories can not contain any blanks or any of the following characters: []`*~,!#$%^&amp;()]{}+=\|'";?&gt;&lt;./&#64; 
          *  or be less than 1 character in length.
-         * 
-         *  @private
          */
         static private function checkCategory(category:String):void
         {
@@ -397,8 +372,6 @@ package vegas.logging
         /**
          *  This method resets the Log's target level to the most verbose log level
          *  for the currently registered targets.
-         * 
-         * @private
          */
         static private function resetTargetLevel():void
         {

@@ -31,7 +31,7 @@ import vegas.util.TypeUtil;
 
 /**
  * The logger that is used within the logging framework. This class dispatches events for each message logged using the log() method.
- * @uthor eKameleon
+ * @author eKameleon
  */
 class vegas.logging.LogLogger extends EventDispatcher implements ILogger 
 {
@@ -45,7 +45,7 @@ class vegas.logging.LogLogger extends EventDispatcher implements ILogger
 	}
 
 	/**
-	 * The category this logger send messages for.
+	 * Returns the category of this logger.
 	 */
 	public var category:String ;
 
@@ -109,17 +109,13 @@ class vegas.logging.LogLogger extends EventDispatcher implements ILogger
 	public function log(level:Number, context):Void 
 	{
 		var message:String ;
-		
-		if (TypeUtil.typesMatch(context, String) && arguments.length > 2) 
-		{
+		if (TypeUtil.typesMatch(context, String) && arguments.length > 2) {
 			message = _format(context.toString(), arguments.splice(2));
-		}
-		else 
-		{
+		} else {
 			message = context ;
 		}
 		var ev:LogEvent = new LogEvent(message, level) ;
-		ev.setContext( message) ;
+		ev.setContext(context) ;
 		this.dispatchEvent(ev, isQueue) ;
 	}
 	

@@ -21,22 +21,6 @@
   
 */
 
-/** AbstractTarget
-
-	AUTHOR
-	
-		Name : AbstractTarget
-		Package : vegas.logging
-		Version : 1.0.0.0
-		Date :  2006-08-31
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-*/
-
-// FIXME : localization with error messages.
-
 package vegas.logging
 {
 
@@ -44,25 +28,109 @@ package vegas.logging
 
     import vegas.events.AbstractCoreEventBroadcaster ;
     import vegas.util.StringUtil ;
-    
+
+	/**
+	 * This class provides the basic functionality required by the logging framework for a target implementation. It handles the validation of filter expressions and provides a default level property. No implementation of the logEvent() method is provided.
+	 * @author eKameleon
+	 */
     public class AbstractTarget extends AbstractCoreEventBroadcaster implements ITarget
     {
         
-        // ----o Constructor
-        
+		/**
+		 * Creates a new AbstractTarget instance.
+		 */
         public function AbstractTarget()
         {
             super();
         }
-        
-        // ----o Public Properties
-        
+
+		/**
+		 * The static field used when throws an Error when a character is invalid.
+		 */        
         static public var charsInvalid:String = "The following characters are not valid\: []~$^&\/(){}<>+\=_-`!@#%?,\:;'\\" ;
+
+		/**
+		 * The static field used when throws an Error when filter failed.
+		 */        
         static public var errorFilter:String = "Error for filter \''{0}'" ;
-        static public var charPlacement:String = "'*' must be the right most character." ;
         
-       	// ----o Public Methods
-	    
+		/**
+		 * The static field used when throws an Error when the character placement failed.
+		 */        
+        static public var charPlacement:String = "'*' must be the right most character." ;
+
+		/**
+		 * (read-write) Returns the filters array representation of this target.
+		 */
+        public function get filters():Array
+        {
+            return _filters ;
+        }
+		
+		/**
+		 * (read-write) Sets the filters array of this target.
+		 */
+        public function set filters( value:Array ):void
+        {
+            if (value != null && value.length > 0)
+            {
+                var filter:String ;
+                var index:int ;
+                
+                var len:uint = value.length ;
+                for (var i:uint = 0; i<len; i++)
+                {
+                    filter = value[i] ;
+                    // check for invalid characters
+                    if ( Log.hasIllegalCharacters(filter) )
+                    {
+                         throw new InvalidFilterError( StringUtil.format(errorFilter, filter ) + charsInvalid );
+                    }
+
+                    index = filter.indexOf("*") ;
+                    if ((index >= 0) && (index != (filter.length -1)))
+                    {                        
+                        throw new InvalidFilterError(StringUtil.format( errorFilter, filter) + charPlacement);
+                    }
+                }
+            }
+            else
+            {
+                // if null was specified then default to all
+                value = ["*"];
+            }
+
+            if (_loggerCount > 0)
+            {
+                Log.removeTarget(this);
+                _filters = value;
+                Log.addTarget(this);
+            }
+            else
+		    {
+                _filters = value;
+		    }
+		    
+        }
+        
+        /**
+         * (read-write) Returns the level of this target.
+         */
+        public function get level():LogEventLevel
+        {
+            return _level ;
+        }
+
+        /**
+         * (read-write) Sets the level of this target.
+         */
+        public function set level( value:LogEventLevel ):void
+        {
+            Log.removeTarget(this);
+            _level = value;
+            Log.addTarget(this);     
+        } 
+
 	    /**
          * Insert a category in the fllters if this category don't exist.
          * Returns a boolean if the category is add in the list.
@@ -81,9 +149,10 @@ package vegas.logging
     		
 	    }
 	    
-	    /**
-	     * Sets up this target with the specified logger.
-	     */
+		/**
+		 * Sets up this target with the specified logger.
+		 * Note : this method is called by the framework and should not be called by the developer.
+		 */
     	public function addLogger(logger:ILogger):void 
         {
             if ( logger != null )
@@ -93,6 +162,26 @@ package vegas.logging
                 logger.addEventListener(LogEvent.LOG, _logHandler);
             }
         }
+
+		/**
+		 * Add a new namespace in the filters array.
+		 */
+		public function addNamespace(nameSpace:String):Boolean 
+		{
+			if (filters == null) 
+			{
+				filters = [] ;
+			}
+			if ( filters.contains( nameSpace ) ) 
+			{
+				return false ;
+			}
+			else
+			{
+				filters.push( nameSpace ) ;
+				return true ;
+			}
+		}
 
         /**
          *  This method handles a <code>LogEvent</code> from an associated logger.
@@ -140,92 +229,41 @@ package vegas.logging
             }
             
     	}
-
-        // ----o Virtual Properties
-        
-        public function get filters():Array
-        {
-            return _filters ;
-        }
-
-        public function set filters( value:Array ):void
-        {
-            if (value && value.length > 0)
-            {
-                var filter:String ;
-                var index:int ;
-                
-                var len:uint = value.length ;
-                for (var i:uint = 0; i<len; i++)
-                {
-                    filter = value[i] ;
-                    // check for invalid characters
-                    if ( Log.hasIllegalCharacters(filter) )
-                    {
-                         throw new InvalidFilterError( StringUtil.format(errorFilter, filter ) + charsInvalid );
-                    }
-
-                    index = filter.indexOf("*") ;
-                    if ((index >= 0) && (index != (filter.length -1)))
-                    {                        
-                        throw new InvalidFilterError(StringUtil.format( errorFilter, filter) + charPlacement);
-                    }
-                }
-            }
-            else
-            {
-                // if null was specified then default to all
-                value = ["*"];
-            }
-
-            if (_loggerCount > 0)
-            {
-                Log.removeTarget(this);
-                _filters = value;
-                Log.addTarget(this);
-            }
-            else
-		    {
-                _filters = value;
-		    }
-		    
-        }
-        
-        public function get level():LogEventLevel
-        {
-            return _level ;
-        }
-
-        public function set level( value:LogEventLevel ):void
-        {
-            Log.removeTarget(this);
-            _level = value;
-            Log.addTarget(this);     
-        }
-        // ----o Private Properties
+    	
+		/**
+		 * Removes an existing namespace in the filters array.
+		 */
+		public function removeNamespace( nameSpace:String ):Boolean 
+		{
+			var pos:Number = filters.indexOf(nameSpace) ;
+			if ( pos > -1) 
+			{
+				filters.splice(pos, 1) ;
+				return true ;
+			} 
+			else 
+			{
+				return false ;
+			}
+		}
        
         /**
-         * @private
          * Storage for the filters property.
          */
         private var _filters:Array = ["*"] ;
 
         /**
-         * @private
          * Storage for the filters property.
          */
         private var _level:LogEventLevel = LogEventLevel.ALL ;
 
         /**
-         * @private
          * Count of the number of loggers this target is listening to. 
          * When this value is zero changes to the filters property shouldn't do anything.
          */
         private var _loggerCount:uint = 0 ;
         
-        // ----o Private Methods
-
-        /**
+         /**
          * @private
          * This method will call the <code>logEvent</code> method if the level of the
          * event is appropriate for the current level.

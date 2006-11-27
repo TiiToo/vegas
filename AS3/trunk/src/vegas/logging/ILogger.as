@@ -21,39 +21,24 @@
   
 */
 
-
-/** ILogger
-
-	AUTHOR
-
-		Name : ILogger
-		Package : vegas.logging
-		Version : 1.0.0.0
-		Date :  2006-08-31
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-*/
-
 package vegas.logging
 {
     
     import flash.events.IEventDispatcher;
 
+	/**
+	 * All loggers within the logging framework must implement this interface.
+	 * @author eKameleon
+	 */
     public interface ILogger extends IEventDispatcher
     {
      
-        // ----o Public Properties
-        
         /**
 	     * The category value for the logger.
     	 *
 	     * @return String containing the category for this logger.
          */
     	function get category():String ;
-     
-        // ----o Public Methods
      
         /**
          * Logs the specified data using the LogEventLevel.DEBUG level. 
