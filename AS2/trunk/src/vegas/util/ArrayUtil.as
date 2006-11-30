@@ -174,7 +174,8 @@ class vegas.util.ArrayUtil
 	/**
 	 * Returns the last (greatest) index of an element within the array equal to the specified value, or -1 if none is found.
 	 */
-	static public function lastIndexOf( ar:Array, o ) :Number {
+	static public function lastIndexOf( ar:Array, o ) :Number 
+	{
 		var l:Number = ar.length;
 		while ( --l > -1 ) if (ar[l] == o) return l ; 
 		return -1 ;
@@ -198,6 +199,28 @@ class vegas.util.ArrayUtil
         return arr ;
     
     }
+    
+	/**
+	 * Splices an array (removes an element) and returns either the entire array or the removed element.
+	 * <p>{code
+	 * import vegas.util.ArrayUtil ;
+	 * var ar = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+	 * trace("+ " + ar);
+	 * ArrayUtil.pierce( ar, 1 ) ;
+	 * trace("+ " + ar) ;
+	 * }
+	 * </p>
+	 * @param ar the array.
+	 * @param index the index of the array element to remove from the array.
+	 * @param flag a boolean {@code true} to return a new spliced array of false to return the removed element.
+	 * @return The newly spliced array or the removed element in function of the flag parameter.
+	 */
+	static public function pierce(ar:Array, index:Number, flag:Boolean ) 
+	{
+ 		var item = ar[index] ;
+ 		ar.splice(index, 1) ;
+  		return (flag) ? ar : item ;
+	}
 
 	/**
 	 * Tests whether some element in the array passes the test implemented by the provided function.
@@ -217,6 +240,36 @@ class vegas.util.ArrayUtil
         return false;
    
     }
+
+	/**
+	 * Shuffles an array.
+	 * <p>{code
+	 * import vegas.util.ArrayUtil ;
+	 * var ar = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+	 * trace("+ " + ar);
+	 * ArrayUtil.shuffle(ar);
+	 * trace("+ " + ar) ;
+	 * }
+	 * </p>
+	 * @return the shuffled array.
+	 * @see ArrayUtil.pierce() method.
+	 */
+	static public function shuffle( ar:Array) 
+	{
+ 		var tmp:Array = [] ;
+ 		var len = ar.length;
+ 		var index = len - 1 ;
+ 		for (var i:Number = 0; i < len; i++) 
+ 		{
+  			tmp.push( ArrayUtil.pierce( ar, Math.round(Math.random() * index), false) );
+  			index-- ;
+ 		}
+ 		while(--len > -1) 
+ 		{
+  			ar[len] = tmp[len] ;
+ 		}
+ 		return ar ;
+	}
 
 	/**
 	 * Returns a string representing the specified array and its elements.
