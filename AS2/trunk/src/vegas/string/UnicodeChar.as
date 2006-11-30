@@ -42,10 +42,9 @@ import vegas.core.types.Char;
  *  var unicode:String = "0040" ;
  *  var char:Char = UnicodeChar.toChar(unicode) ;
  *  trace(">> " + char) ;
- * ]
+ * }
  * </p>
  * @author eKameleon
- * @version 1.0.0.0
  * @see <a href='http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf'>ECMAScript 262 specifications</a>
  */
 class vegas.string.UnicodeChar 

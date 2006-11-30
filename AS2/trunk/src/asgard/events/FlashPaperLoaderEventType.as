@@ -21,83 +21,36 @@
   
 */
 
-/** FlashPaperLoaderEventType
+import asgard.events.LoaderEvent;
 
-	AUTHOR
+/**
+ * Enumeration of all event type of the FlashPaperLoaderEvent class.
+ * @author eKameleon
+ */
+class asgard.events.FlashPaperLoaderEventType 
+{
 
-		Name : FlashPaperLoaderEventType
-		Package : asgard.events
-		Version : 1.0.0.0
-		Date :  2006-03-31
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	CONSTANT SUMMARY
-
-		- const COMPLETE:String
-		
-		- const ENABLE_SCROLL:String
-		
-		- const FINISH:String
-		
-		- const INIT:String
-		
-		- const IO_ERROR:String
-		
-		- const PAGE_CHANGE:String
-		
-		- const PROGRESS:String
-		
-		- const RELEASE:String
-				
-		- const START:String
-		
-		- const STOP:String
-		
-		- const TIMEOUT:String
-		
-		- const TOOL_CHANGE:String
-		
-		- const ZOOM_CHANGE:String
-		
-		- const VISIBLE_AREA_CHANGE:String
-
-**/
-
-import asgard.events.LoaderEventType;
-
-class asgard.events.FlashPaperLoaderEventType {
-
-	// ----o Constructor
-	
-	private function FlashPaperLoaderEventType() {
-		//
-	}
-
-	// ----o Static Properties
-	
-	static public var COMPLETE:String = LoaderEventType.COMPLETE ;
+	static public var COMPLETE:String = LoaderEvent.COMPLETE ;
 	
 	static public var ENABLE_SCROLL:String = "onEnableScrolling" ;
 	
-	static public var FINISH:String = LoaderEventType.FINISH ;
+	static public var FINISH:String = LoaderEvent.FINISH ;
 	
-	static public var INIT:String = LoaderEventType.INIT ;
+	static public var INIT:String = LoaderEvent.INIT ;
 	
-	static public var IO_ERROR:String = LoaderEventType.IO_ERROR ;
+	static public var IO_ERROR:String = "onLoadError" ;
 	
-	static public var PROGRESS:String = LoaderEventType.PROGRESS ;
+	static public var PROGRESS:String = LoaderEvent.PROGRESS ;
 		
-	static public var RELEASE:String = LoaderEventType.RELEASE ;
+	static public var RELEASE:String = LoaderEvent.RELEASE ;
 
 	static public var PAGE_CHANGE:String = "onPageChanged" ;
 
-	static public var START:String = LoaderEventType.START ;
+	static public var START:String = LoaderEvent.START ;
 	
-	static public var STOP:String = LoaderEventType.STOP ;
+	static public var STOP:String = LoaderEvent.STOP ;
 	
-	static public var TIMEOUT:String = LoaderEventType.TIMEOUT ;
+	static public var TIMEOUT:String = LoaderEvent.TIMEOUT ;
 
 	static public var TOOL_CHANGE:String = "onToolChanged" ;
 
@@ -105,6 +58,4 @@ class asgard.events.FlashPaperLoaderEventType {
 
 	static public var VISIBLE_AREA_CHANGE:String = "onVisibleAreaChanged" ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(FlashPaperLoaderEventType, null , 7, 7) ;
-
 }

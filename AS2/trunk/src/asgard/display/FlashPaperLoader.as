@@ -21,98 +21,47 @@
   
 */
 
-/** FlashPaperLoader
-
-	AUTHOR
-
-		Name : FlashPaperLoader
-		Package : asgard.net
-		Version : 1.0.0.0
-		Date :  2006-03-31
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	EVENT SUMMARY
-	
-		FlashPaperLoaderEvent
-
-	EVENT TYPE SUMMARY
-
-		- const COMPLETE:String
-		
-		- const ENABLE_SCROLL:String
-		
-		- const FINISH:String
-		
-		- const INIT:String
-		
-		- const IO_ERROR:String
-		
-		- const PAGE_CHANGE:String
-		
-		- const PROGRESS:String
-		
-		- const RELEASE:String
-				
-		- const START:String
-		
-		- const STOP:String
-		
-		- const TIMEOUT:String
-		
-		- const TOOL_CHANGE:String
-		
-		- const ZOOM_CHANGE:String
-		
-		- const VISIBLE_AREA_CHANGE:String
-
-	SEE ALSO
-	
-		FlashPaperTool
-		FlashPaperUIElement
-
-*/
-
 // TODO il faut fixer le bug du focus !
 
 import asgard.display.DisplayLoader;
 import asgard.events.FlashPaperLoaderEvent;
-import asgard.events.FlashPaperLoaderEventType;
 import asgard.geom.Point;
 
 /**
+ * This loader is used to load FlashPaper documents in a swf application.
  * @author eKameleon
  * @version 1.0.0.0
- * @date 2006-03-31
+ * @see FlashPaperTool
+ * @see FlashPaperUIElement
  */
-class asgard.display.FlashPaperLoader extends DisplayLoader {
+class asgard.display.FlashPaperLoader extends DisplayLoader 
+{
 	
-	// ----o Constructor
-	
-	function FlashPaperLoader( mcTarget:MovieClip, nDepth:Number, bAutoShow:Boolean  ) {
+	/**
+	 * Creates a new FlashPaperLoader instance.
+	 */
+	function FlashPaperLoader( mcTarget:MovieClip, nDepth:Number, bAutoShow:Boolean  ) 
+	{
 		
 		super(mcTarget, nDepth, bAutoShow) ;
 	
-		_eEnableScroll = new FlashPaperLoaderEvent( FlashPaperLoaderEventType.ENABLE_SCROLL , this ) ;
-		
-		_ePageChange = new FlashPaperLoaderEvent( FlashPaperLoaderEventType.PAGE_CHANGE , this )  ;
-		
-		_eToolChange = new FlashPaperLoaderEvent( FlashPaperLoaderEventType.TOOL_CHANGE , this )  ;
-		
-		_eAreaChange = new FlashPaperLoaderEvent (FlashPaperLoaderEventType.VISIBLE_AREA_CHANGE , this) ;
-		
-		_eZoomChange = new FlashPaperLoaderEvent (FlashPaperLoaderEventType.ZOOM_CHANGE, this) ;
+		_eEnableScroll = new FlashPaperLoaderEvent( getEventTypeENABLE_SCROLL() , this ) ;
+		_ePageChange   = new FlashPaperLoaderEvent( getEventTypePAGE_CHANGE() , this )  ;
+		_eToolChange   = new FlashPaperLoaderEvent( getEventTypeTOOL_CHANGE() , this )  ;
+		_eAreaChange   = new FlashPaperLoaderEvent( getEventTypeVISIBLE_AREA_CHANGE() , this) ;
+		_eZoomChange   = new FlashPaperLoaderEvent( getEventTypeVISIBLE_ZOOM_CHANGE() , this) ;
 		
 	}
-	
-	// ----o Public Methods
 
 	/**
 	 * Used to prevent the user from scrolling the document.
 	 */
-	public function enableScrolling(b:Boolean):Void {
-		if(_fp) _fp.enableScrolling(b) ;
+	public function enableScrolling(b:Boolean):Void 
+	{
+		if(_fp) 
+		{
+			_fp.enableScrolling(b) ;
+		}
 		_isEnableScrolling = b ;
 	}
 	
@@ -123,14 +72,16 @@ class asgard.display.FlashPaperLoader extends DisplayLoader {
 	 * If text is found, the specific range can be found by calling getTextSelectionRange().
 	 * @Returns true if text is found, false if not.
 	 */
-	public function findNext():Boolean {
+	public function findNext():Boolean 
+	{
 		return _fp.findNext() ;	
 	}
 
 	/**
 	 * 	Returns the current page number (as displayed in the toolbar). The first page is page 1.
 	 */
-	public function getCurrentPage():Number {
+	public function getCurrentPage():Number 
+	{
 		return _fp.getCurrentPage() ;
 	}
 	
@@ -142,63 +93,72 @@ class asgard.display.FlashPaperLoader extends DisplayLoader {
 	 *     - "pan" (hand tool)
 	 *     - "select" (text selection tool)
 	 */
-	public function getCurrentTool():String {
+	public function getCurrentTool():String 
+	{
 		return _fp.getCurrentTool() ;	
 	}
 			
 	/**
 	 * Returns the current zoom level.
 	 */
-	public function getCurrentZoom():Number {
+	public function getCurrentZoom():Number 
+	{
 		return _fp.getCurrentZoom() ;
 	}
 	
 	/**
 	 * Returns any text in the Find text box as a Unicode string.
 	 */
-	public function getFindText():String {
+	public function getFindText():String 
+	{
 		return _fp.getFindText() ;	
 	}
 
 	/**
 	 * Returns true if the loaded document is a FlashPaper.
 	 */
-	public function getIsFlashPaperDocument():Boolean {
+	public function getIsFlashPaperDocument():Boolean 
+	{
 		return ( getContent().isFlashPaperDocument() == true ) ;
 	}
 
 	/**
 	 * Returns the total number of pages loaded
 	 */
-	public function getLoadedPages():Number {
+	public function getLoadedPages():Number 
+	{
 		return _fp.getLoadedPages ;
 	}
 			
 	/**
 	 * Returns the total number of pages in the document.
 	 */
-	public function getNumberOfPages():Number { 
+	public function getNumberOfPages():Number 
+	{ 
 		return _fp.getNumberOfPages() ;		
 	}
 	
 	/**
 	 * Returns the selected text as a Unicode string. If no text is selected, an empty string is returned.
 	 */
-	public function getSelectedText():String {
+	public function getSelectedText():String 
+	{
 		return _fp.getSelectedText() ;
 	}
 
 	/**
 	 * Returns the width of the sidebar. A document with no outline always returns zero.
 	 */
-	public function getSidebarWidth():Number {
+	public function getSidebarWidth():Number 
+	{
 		return _fp.getSidebarWidth() ;	
 	}
 
 	/**
 	 * Returns an object describing the current text selection. If no text is selected, this function returns null.
 	 */
-	public function getTextSelectionRange() {
+	public function getTextSelectionRange() 
+	{
 		return _fp.getTextSelectionRange() ;
 	}
 
@@ -206,35 +166,40 @@ class asgard.display.FlashPaperLoader extends DisplayLoader {
 	 * Returns a string describing the type of user interface that is included in the document.
 	 * The standard Macromedia FlashPaper viewer always returns the string 'Macromedia FlashPaper Default Viewer'.
 	 */
-	public function getViewerType():String {
+	public function getViewerType():String 
+	{
 		return _fp.getViewerType() ;	
 	}
 	
 	/**
 	 * Returns an integer indicating the version of the user interface code in this particular document.
 	 */
-	public function getViewerVersion():Number {
+	public function getViewerVersion():Number 
+	{
 		return _fp.getViewerVersion() ;	
 	}
 	
 	/**
 	 * Returns an object describing the current visible area of the document.
 	 */
-	public function getVisibleArea() {
+	public function getVisibleArea() 
+	{
 		return _fp.getVisibleArea() ;
 	}
 
 	/**
 	 * Handles an anchor or URL link request.
 	 */
-	public function goToLinkTarget(linktarget:String, window ):Void {
+	public function goToLinkTarget(linktarget:String, window ):Void 
+	{
 		_fp.goToLinkTarget(linktarget, window) ;
 	}
 
 	/**
 	 * Hide the FlashPaper Official Logo.
 	 */
-	public function hideLogo():Void {
+	public function hideLogo():Void 
+	{
 		_isLogoVisible = false ;
 		getContent().toolbar_mc.brandClip_mc._visible = false ;	
 	}
@@ -242,7 +207,8 @@ class asgard.display.FlashPaperLoader extends DisplayLoader {
 	/**
 	 * Hide the tool bar's background.
 	 */
-	public function hideToolBarBackground():Void {
+	public function hideToolBarBackground():Void 
+	{
 		getContent().toolbar_mc.toolbarBg_mc._visible = false ;
 		_isToolBarBackgroundVisible = false ;
 	}
@@ -250,25 +216,29 @@ class asgard.display.FlashPaperLoader extends DisplayLoader {
 	/**
 	 * Init Event Class use in the loader.
 	 */
-	public function initEvent():Void {
+	public function initEvent():Void 
+	{
 		_e = new FlashPaperLoaderEvent(null, this) ;	
 	}
 
 	/**
 	 * Returns true if the official FlashPaper logo is visible.
 	 */
-	public function isLogoVisible():Boolean {
+	public function isLogoVisible():Boolean 
+	{
 		return _isLogoVisible ;	
 	}
 	
 	/**
 	 * Returns true if the tool bar's background is visible.
 	 */
-	public function isToolBarBackgroundVisible():Boolean {
+	public function isToolBarBackgroundVisible():Boolean 
+	{
 		return _isToolBarBackgroundVisible ;	
 	}
 
-	/*override*/ public function onLoadInit():Void {
+	/*override*/ public function onLoadInit():Void 
+	{
 
 		var c:MovieClip = getContent() ;
 		
@@ -293,11 +263,13 @@ class asgard.display.FlashPaperLoader extends DisplayLoader {
 	 * 	The document must be fully loaded before you call this function.
 	 * 	This function returns false if the document is not fully loaded.
 	 */
-	public function printTheDocument():Boolean {
+	public function printTheDocument():Boolean 
+	{
 		return _fp.printTheDocument() ;	
 	}
 
-	public function release():Void {
+	public function release():Void 
+	{
 		_fp = null ;
 		super.release() ;	
 	}
@@ -305,7 +277,8 @@ class asgard.display.FlashPaperLoader extends DisplayLoader {
 	/**
 	 * Sets the current page. The view scrolls as necessary to ensure the page is visible, but does not adjust zoom.
 	 */
-	public function setCurrentPage(pageNumber:Number):Void {
+	public function setCurrentPage(pageNumber:Number):Void 
+	{
 		_fp.setCurrentPage(pageNumber) ;
 	}
 			
@@ -314,7 +287,8 @@ class asgard.display.FlashPaperLoader extends DisplayLoader {
 	 * 	You can pass a number indicating a zoom percentage (for example, 100 for a 100% view).
 	 * 	You can also pass the string width to zoom to the current fit-to-width magnification for this document, or pass the string page for the fit-to-page magnification.
 	 */
-	public function setCurrentZoom(percent:Number):Void {
+	public function setCurrentZoom(percent:Number):Void 
+	{
 		_fp.setCurrentZoom(percent) ;	
 	}
 		
@@ -326,7 +300,8 @@ class asgard.display.FlashPaperLoader extends DisplayLoader {
 	 *		- "select" : text selection tool. 
 	 *	@see FlashPaperTool
 	 */
-	public function setCurrentTool(tool:String):Boolean {
+	public function setCurrentTool(tool:String):Boolean 
+	{
 		return _fp.setCurrentTool(tool) ;
 	}
 
@@ -334,7 +309,8 @@ class asgard.display.FlashPaperLoader extends DisplayLoader {
 	 * Sets the text in the Find text box to a Unicode string value.
 	 * This call does not perform a find operation or alter the current selection.
 	 */
-	public function setFindText(s:String):Void {
+	public function setFindText(s:String):Void 
+	{
 		_fp.setFindText(s) ;	
 	}
 		
@@ -342,14 +318,16 @@ class asgard.display.FlashPaperLoader extends DisplayLoader {
 	 * Sets the width of the sidebar. Pass zero to hide the sidebar completely.
 	 * A document with no outline ignores this call.
 	 */
-	public function setSidebarWidth(w:Number):Void {
+	public function setSidebarWidth(w:Number):Void 
+	{
 		_fp.setSidebarWidth(w) ;
 	}
 
 	/**
 	 * Sets the display size of the document, in pixels.
 	 */
-	public function setSize(nW:Number, nH:Number, noRender:Boolean):Void {
+	public function setSize(nW:Number, nH:Number, noRender:Boolean):Void 
+	{
 		_w = isNaN(nW) ? null : nW ;	
 		_h = isNaN(nW) ? null : nH ;
 		if (!noRender) update() ;
@@ -362,21 +340,24 @@ class asgard.display.FlashPaperLoader extends DisplayLoader {
 	 * (this allows you to set a range that begins with zero and ends with a large number,
 	 *  such as 999999, to select the entire document).
 	 */
-	public function setTextSelectionRange( selection /*SelectionRange*/ , skipBroadcast:Boolean):Void {
+	public function setTextSelectionRange( selection /*SelectionRange*/ , skipBroadcast:Boolean):Void 
+	{
 		_fp.setTextSelectionRange( selection, skipBroadcast ) ;
 	}
 
 	/**
 	 * Adjusts the currently visible page/zoom/scroll to match the visible area described by the area object.
 	 */
-	public function setVisibleArea(area, skipBroadcast:Boolean):Void {
+	public function setVisibleArea(area, skipBroadcast:Boolean):Void 
+	{
 		_fp.setVisibleArea(area, skipBroadcast) ;
 	}
 
 	/**
 	 * The official FlashPaper logo is visible.
 	 */
-	public function showLogo():Void {
+	public function showLogo():Void 
+	{
 		getContent().toolbar_mc.brandClip_mc._visible = true ;
 		_isLogoVisible = true ;
 	}
@@ -384,79 +365,149 @@ class asgard.display.FlashPaperLoader extends DisplayLoader {
 	/**
 	 * The Toolbar Background is visible.
 	 */
-	public function showToolBarBackground():Void {
+	public function showToolBarBackground():Void 
+	{
 		getContent().toolbar_mc.toolbarBg_mc._visible = true ;
 		_isToolBarBackgroundVisible = true ;
 	}
 	
 	/**
 	 * Hides or displays part of the user interface in the FlashPaper document.
-	 * The currently supported, case-sensitive values for part are the following :
-	 *    - "PrevNext" : The Previous Page and Next Page toolbar buttons are hidden or shown.
-	 *    - "Print" The Print toolbar button is hidden or shown.
-	 *    - "Tool" All tool selection buttons on the toolbar are hidden or shown.
-	 *    - "Zoom" All zoom-related controls on the toolbar are hidden or shown.
-	 *    - "Find" All text-search-related controls on the toolbar are hidden or shown.
-	 *    - "Pop" The Open Document in New Browser Window toolbar button is hidden or shown.
-	 *    - "Sidebar" The sidebar (displaying the document outline) is hidden or shown.
-	 *    - "Page" The Current Page and Number of Pages fields in the toolbar are hidden or shown.
-	 *    - "Overflow" The Overflow menu on the toolbar is hidden or shown.
-	 *    - "ZoomKeys" This value doesn't affect the user interface ;
-	 *    	it is used to enable or disable various keys used to zoom in or out of the document (for example, +, -, p, w).
+	 * <p>The currently supported, case-sensitive values for part are the following :
+	 * <li>"PrevNext" : The Previous Page and Next Page toolbar buttons are hidden or shown.</li>
+	 * <li>"Print" The Print toolbar button is hidden or shown.</li>
+	 * <li>"Tool" All tool selection buttons on the toolbar are hidden or shown.</li>
+	 * <li>"Zoom" All zoom-related controls on the toolbar are hidden or shown.</li>
+	 * <li>"Find" All text-search-related controls on the toolbar are hidden or shown.</li>
+	 * <li>"Pop" The Open Document in New Browser Window toolbar button is hidden or shown.</li>
+	 * <li>"Sidebar" The sidebar (displaying the document outline) is hidden or shown.</li>
+	 * <li>"Page" The Current Page and Number of Pages fields in the toolbar are hidden or shown.</li>
+	 * <li>"Overflow" The Overflow menu on the toolbar is hidden or shown.</li>
+	 * <li>"ZoomKeys" This value doesn't affect the user interface ; it is used to enable or disable various keys used to zoom in or out of the document (for example, +, -, p, w).</li>
+	 * </p>
 	 */
-	public function showUIElement(part:String, flag:Boolean):Void {
+	public function showUIElement(part:String, flag:Boolean):Void 
+	{
 		_fp.showUIElement(part, flag) ;
 	}
 	
 	/**
 	 * Refresh the view.
 	 */
-	public function update():Void {
-		if (getIsFlashPaperDocument()) {
+	public function update():Void 
+	{
+		if (getIsFlashPaperDocument()) 
+		{
 			var w:Number = isNaN(_w) ? _default_w : _w ; 
 			var h:Number = isNaN(_h)? _default_h : _h ;
 			enableScrolling(_isEnableScrolling) ;
 			_fp.setSize(w, h) ;
-			if (!isLogoVisible()) hideLogo() ;
-			if (!isToolBarBackgroundVisible()) hideToolBarBackground() ;
+			if (!isLogoVisible()) 
+			{
+				hideLogo() ;
+			}
+			if (!isToolBarBackgroundVisible()) 
+			{
+				hideToolBarBackground() ;
+			}
 		}
 	}
+
+	/**
+	 * (protected) Returns the event type of the internal event when the FlashPaperLoader change this enable scroll value.
+	 * Overrides this method if you want custom your object.
+	 */
+	/*protected*/ function getEventTypeENABLE_SCROLL():String
+	{
+		return FlashPaperLoaderEvent.ENABLE_SCROLL ;	
+	}
 	
-	// ----o Private Properties
+	/**
+	 * (protected) Returns the event type of the internal event when the FlashPaperLoader change this current page value.
+	 * Overrides this method if you want custom your object.
+	 */
+	/*protected*/ function getEventTypePAGE_CHANGE():String
+	{
+		return FlashPaperLoaderEvent.PAGE_CHANGE ;	
+	}
+
+	/**
+	 * (protected) Returns the event type of the internal event when the FlashPaperLoader change this current tool value.
+	 * Overrides this method if you want custom your object.
+	 */
+	/*protected*/ function getEventTypeTOOL_CHANGE():String
+	{
+		return FlashPaperLoaderEvent.TOOL_CHANGE ;	
+	}
+
+	/**
+	 * (protected) Returns the event type of the internal event when the FlashPaperLoader change this visible area.
+	 * Overrides this method if you want custom your object.
+	 */
+	/*protected*/ function getEventTypeVISIBLE_AREA_CHANGE():String
+	{
+		return FlashPaperLoaderEvent.VISIBLE_AREA_CHANGE ;	
+	}
+	
+	/**
+	 * (protected) Returns the event type of the internal event when the FlashPaperLoader change this zoom value.
+	 * Overrides this method if you want custom your object.
+	 */
+	/*protected*/ function getEventTypeVISIBLE_ZOOM_CHANGE():String
+	{
+		return FlashPaperLoaderEvent.ZOOM_CHANGE ;	
+	}
 
 	private var _default_h:Number ;
+	
 	private var _default_w:Number ;
 
-	private var _eAreaChange   : FlashPaperLoaderEvent ;
-	private var _eEnableScroll : FlashPaperLoaderEvent ; 
-	private var _ePageChange   : FlashPaperLoaderEvent ;
-	private var _eToolChange   : FlashPaperLoaderEvent ;
-	private var _eZoomChange   : FlashPaperLoaderEvent ;
+	private var _eAreaChange:FlashPaperLoaderEvent ;
+	
+	private var _eEnableScroll:FlashPaperLoaderEvent ; 
+	
+	private var _ePageChange:FlashPaperLoaderEvent ;
+	
+	private var _eToolChange:FlashPaperLoaderEvent ;
+	
+	private var _eZoomChange:FlashPaperLoaderEvent ;
 	
 	private var _fp /*IFlashPaper*/ = null ; 
+	
 	private var _h:Number = null ;
+	
 	private var _isEnableScrolling:Boolean = true ;
+	
 	private var _isLogoVisible:Boolean = true ;
+	
 	private var _isToolBarBackgroundVisible:Boolean = true ;
+	
 	private var _w:Number = null ;	
 		
-	// ----o Private Methods
-	
-	static private function _fixSelectionManagement(mc:MovieClip):Void {
+	/**
+	 * Fix the selection management.
+	 */
+	static private function _fixSelectionManagement(mc:MovieClip):Void 
+	{
 		var main:MovieClip = mc.gMainView.m_mainMC ;
-		if (typeof (main.onMouseDown) == "function" && main.hasSafeSelectionManagement === undefined) {
-      		main.onMouseDown = function() {
+		if (typeof (main.onMouseDown) == "function" && main.hasSafeSelectionManagement === undefined) 
+		{
+      		main.onMouseDown = function() 
+      		{
          		var fpfocus:MovieClip = _global.FPUI.Component.focusedComponent;
-         		if (fpfocus != null) {
+         		if (fpfocus != null) 
+         		{
 		            var hitFocused:Boolean = false;
-            		if (fpfocus._visible) {
+            		if (fpfocus._visible) 
+            		{
 	               		var p:Point = new Point(_root._xmouse, _root._ymouse);
 	               		_root.localToGlobal(p) ;
 	               		hitFocused = fpfocus.hitTest(p.x, p.y, true);
             		}
             		if (hitFocused == false) {
 						// Selection.setFocus(null) ;
-						if (typeof (fpfocus.onComponentKillFocus) == "function") {
+						if (typeof (fpfocus.onComponentKillFocus) == "function") 
+						{
                   			fpfocus.onComponentKillFocus();
                			}
             		}
@@ -465,26 +516,46 @@ class asgard.display.FlashPaperLoader extends DisplayLoader {
    		}
 	}	
 	
-	private function onPageChanged(newPageNumber:Number):Void {
+	/**
+	 * Invoqued when the page changed.
+	 */
+	private function onPageChanged(newPageNumber:Number):Void 
+	{
 		_ePageChange.newPageNumber = newPageNumber ;
 		dispatchEvent( _ePageChange ) ;
 	}
-
-	private function onToolChanged(newTool:String):Void {
+	
+	/**
+	 * Invoqued when a tool changed.
+	 */
+	private function onToolChanged(newTool:String):Void 
+	{
 		dispatchEvent( _eToolChange ) ;
 	}
 
-	private function onEnableScrolling(b:Boolean):Void {
+	/**
+	 * Invoqued when the enable scrolling value changed.
+	 */
+	private function onEnableScrolling(b:Boolean):Void 
+	{
 		_eEnableScroll.isEnabledScrolling = b ;
 		dispatchEvent( _eEnableScroll ) ;
 	}
-	
-	private function onZoomChanged(percent:Number):Void {
+
+	/**
+	 * Invoqued when the zoom value changed.
+	 */
+	private function onZoomChanged(percent:Number):Void 
+	{
 		_eZoomChange.currentZoom = percent ;
 		dispatchEvent( _eZoomChange ) ;
 	}
 
-	private function onVisibleAreaChanged():Void {
+	/**
+	 * Invoqued when the visible area changed.
+	 */
+	private function onVisibleAreaChanged():Void 
+	{
 		_eAreaChange.newVisibleArea = _fp.getVisibleArea() ;
 		dispatchEvent( _eAreaChange ) ;
 	}

@@ -21,64 +21,19 @@
   
 */
 
-/**	FocusEvent
-
-	AUTHOR
-
-		Name : FocusEvent
-		Package : asgard.events
-		Version : 1.0.0.0
-		Date :  2006-05-16
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	EVENT SUMMARY
-
-		- FOCUS_IN:String = "focusIn"
-			[static] Dispatched after a display object gains focus.
-	
- 	 	- FOCUS_OUT:String = "focusOut"
-			[static] Dispatched after a display object loses focus.
-		
-		- KEY_FOCUS_CHANGE:String = "keyFocusChange"
-			[static] Dispatched when the user attempts to change focus using keyboard navigation.
-	
- 	 	- MOUSE_FOCUS_CHANGE:String = "mouseFocusChange"
-			[static] Dispatched when the user attempts to change focus by using a pointer device.
-
-	PROPERTY SUMMARY
-	
-		- keyCode:Number
-			The key code value of the key pressed to trigger a keyFocusChange event.
-	
-		- relatedObject
-			A reference to the complementary InteractiveObject instance that is affected by the change in focus.
-	
- 	 	- shiftKey:Boolean
-			Indicates whether the Shift key modifier is activated, in which case the value is true.
-
-	METHOD SUMMARY
-	
-		- clone():FocusEvent
-
-	INHERIT
-	
-		CoreObject → BasicEvent → DynamicEvent → FocusEvent
-
-	IMPLEMENTS
-	
-		Event, ICloneable, IFormattable, IHashable, ISerializable
-
-**/
-
 import vegas.events.DynamicEvent;
 import vegas.util.serialize.Serializer;
 
-class asgard.events.FocusEvent extends DynamicEvent {
+/**
+ * The FocusEvent class.
+ * @author eKameleon
+ */
+class asgard.events.FocusEvent extends DynamicEvent 
+{
 
-	// ----o Constructor
-	
+	/**
+	 * Creates a new FocusEvent instance.
+	 */
 	public function FocusEvent( type:String, target, p_keyCode:Number, p_relatedObject, p_shiftKey:Boolean, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number ){
 		super(type, target, context, bubbles, eventPhase, time, stop) ;
 		keyCode = isNaN(p_keyCode) ? null : p_keyCode ;
@@ -86,34 +41,54 @@ class asgard.events.FocusEvent extends DynamicEvent {
 		shiftKey = p_shiftKey || null  ;
 	}
 
-	// ----o Constants
-
+	/**
+	 * [static] Dispatched after a display object gains focus.
+	 */
 	static public var FOCUS_IN:String = "focusIn" ;
 	
+	/**
+	 * [static] Dispatched after a display object loses focus.
+	 */
 	static public var FOCUS_OUT:String = "focusOut" ;
 
+	/**
+	 * [static] Dispatched when the user attempts to change focus using keyboard navigation.
+	 */
 	static public var KEY_FOCUS_CHANGE:String = "keyFocusChange" ;
 	
+	/**
+	 * [static] Dispatched when the user attempts to change focus by using a pointer device.
+	 */
 	static public var MOUSE_FOCUS_CHANGE:String = "MouseFocusChange" ;
 
 	static private var __ASPF__ = _global.ASSetPropFlags(FocusEvent, null , 7, 7) ;
 
-	// ----o Public Properties
-
+	/**
+	 * The key code value of the key pressed to trigger a keyFocusChange event.
+	 */
 	public var keyCode:Number = null ;
-	
+
+	/**
+	 * A reference to the complementary InteractiveObject instance that is affected by the change in focus.
+	 */	
 	public var relatedObject = null ;
 	
+	/**
+	 * Indicates whether the Shift key modifier is activated, in which case the value is true.
+	 */
 	public var shiftKey:Boolean = null ;
 		
-	// ----o Public Methods
-	
-	public function clone() {
+	/**
+	 * Returns a shallow copy of the object.
+	 */
+	public function clone() 
+	{
 		return new FocusEvent(getType(), getTarget()) ;
 	}
 
-	// ----o Protected Methods
-
+	/**
+	 * This protected method is used by the toSource method.
+	 */
 	/*protected*/ private function _getParams():Array {
 		var ar:Array = super._getParams() ;
 		ar.splice(2, null, Serializer.toSource(keyCode)) ;

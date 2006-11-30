@@ -21,58 +21,56 @@
   
 */
 
-/** LoaderEventType
+/**
+ * The enumeration of all event type used by default in a ILoader instance.
+ * @author eKameleon
+ */
+class asgard.events.LoaderEventType 
+{
 
-	AUTHOR
-
-		Name : LoaderEventType
-		Package : asgard.events
-		Version : 1.0.0.0
-		Date :  2006-03-25
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	CONSTANT SUMMARY
-
-		- static COMPLETE:String = "onLoadComplete"
-		
-		- static IO_ERROR:String = "onLoadError"
-		
-		- static FINISH:String = "onLoadFinished"
-		
-		- static INIT:String = "onLoadInit"
-		
-		- static PROGRESS:String = "onLoadProgress"
-		
-		- static START:String = "onLoadStarted"
-		
-		- static STOP:String = "onLoadStopped"
-		
-		- static TIMEOUT:String = "onTimeOut"
-		
-		- static RELEASE:String = "onRelease"
-
-**/
-
-class asgard.events.LoaderEventType {
-
-	// ----o Constructor
-	
-	private function LoaderEventType() {
-		//
-	}
-
-	// ----o Static Properties
-	
+	/**
+	 * The name of the event when the loader is complete.
+	 */
 	static public var COMPLETE:String = "onLoadComplete" ;
+
+	/**
+	 * The name of the event when the loader notify an IO error.
+	 */
 	static public var IO_ERROR:String = "onLoadError" ;
+	
+	/**
+	 * The name of the event when the loader is finished.
+	 */
 	static public var FINISH:String = "onLoadFinished" ;
+
+	/**
+	 * The name of the event when the loader is initialized.
+	 */
 	static public var INIT:String = "onLoadInit" ;
+	
+	/**
+	 * The name of the event when the loader is in progress.
+	 */
 	static public var PROGRESS:String = "onLoadProgress" ;
+
+	/**
+	 * The name of the event when the loader is started.
+	 */
 	static public var START:String = "onLoadStarted" ;
+
+	/**
+	 * The name of the event when the loader is stopped.
+	 */
 	static public var STOP:String = "onLoadStopped" ;
+	
+	/**
+	 * The name of the event when the loader is out of time.
+	 */
 	static public var TIMEOUT:String = "onTimeOut" ;
+
+	/**
+	 * The name of the event when the loader is release.
+	 */
 	static public var RELEASE:String = "onRelease" ;
 
 	static private var __ASPF__ = _global.ASSetPropFlags(LoaderEventType, null , 7, 7) ;

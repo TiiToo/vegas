@@ -21,160 +21,24 @@
   
 */
 
-/** FlashPaperLoader
-
-	AUTHOR
-
-		Name : FlashPaperLoaderEvent
-		Package : asgard.events
-		Version : 1.0.0.0
-		Date :  2006-03-31
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-	
-		- code:Number
-		
-		- error:String
-
-	METHOD SUMMARY
-	
-		- cancel():Void
-		
-		- clone():LoaderEvent
-		
-		- getBubbles():Boolean
-		
-		- getBytesLoaded():Number
-		
-		- getBytesTotal():Number
-		
-		- getContext()
-		
-		- getCurrentTarget()
-		
-		- getData()
-		
-		- getEventPhase():Number
-		
-		- getLoader():DisplayLoader
-		
-		- getName():String
-		
-		- getPercent():Number
-		
-		- getTarget()
-		
-		- getTimeStamp():Number
-		
-		- getType():String
-		
-		- getView():MovieClip
-		
-		- hashCode():Number
-		
-		- initEvent(type:String, bubbles:Boolean, cancelable:Boolean)
-		
-		- isCancelled():Boolean
-		
-		- isQueued():Boolean
-		
-		- queueEvent():Void
-		
-		- setBubbles(b:Boolean):Void
-		
-		- setContext(context):Void
-		
-		- setCurrentTarget(target):Void
-		
-		- setEventPhase(n:Number):Void
-		
-		- setTarget(target):Void
-		
-		- setType(type:String):Void
-		
-		- stopImmediatePropagation():Void
-		
-		- toSource(indent : Number, indentor : String):String
-		
-		- toString():String
-
-	EVENT TYPE SUMMARY
-
-		- const COMPLETE:String
-		
-		- const ENABLE_SCROLL:String
-		
-		- const FINISH:String
-		
-		- const INIT:String
-		
-		- const IO_ERROR:String
-		
-		- const PAGE_CHANGE:String
-		
-		- const PROGRESS:String
-		
-		- const RELEASE:String
-				
-		- const START:String
-		
-		- const STOP:String
-		
-		- const TIMEOUT:String
-		
-		- const TOOL_CHANGE:String
-		
-		- const ZOOM_CHANGE:String
-		
-		- const VISIBLE_AREA_CHANGE:String
-
-		- LoaderEventType.COMPLETE:String = "onLoadComplete"
-		
-		- LoaderEventType.IO_ERROR:String = "onLoadError"
-		
-		- LoaderEventType.FINISH:String = "onLoadFinished"
-		
-		- LoaderEventType.INIT:String = "onLoadInit"
-		
-		- LoaderEventType.PROGRESS:String = "onLoadProgress"
-		
-		- LoaderEventType.START:String = "onLoadStarted"
-		
-		- LoaderEventType.STOP:String = "onLoadStopped"
-		
-		- LoaderEventType.TIMEOUT:String = "onTimeOut"
-		
-		- LoaderEventType.RELEASE:String = "onRelease"
-			
-	INHERIT
-	
-		CoreObject → BasicEvent → DynamicEvent → LoaderEvent → DisplayLoaderEvent
-		
-	IMPLEMENTS
-	
-		Event, ICloneable, IFormattable, IHashable, ISerializable
-
-*/
-
 import asgard.display.FlashPaperLoader;
 import asgard.events.DisplayLoaderEvent;
 
 import vegas.util.serialize.Serializer;
 
 /**
+ * The FlashPaperLoaderEvent event.
  * @author eKameleon
  * @version 1.0.0.0
- * @date 2006-03-31
  */
- 
-class asgard.events.FlashPaperLoaderEvent extends DisplayLoaderEvent {
+class asgard.events.FlashPaperLoaderEvent extends DisplayLoaderEvent 
+{
 
-	// ----o Constructor
-		
-	public function FlashPaperLoaderEvent(
+	/**
+	 * Creates a new FlashPaperLoaderEvent instance.
+	 */
+	public function FlashPaperLoaderEvent
+	(
 		type : String, fpLoader:FlashPaperLoader
 		, p_currentZoom:Number, p_isEnabledScrolling:Boolean, p_newPageNumber:Number, p_newVisibleArea 
 		, p_code:Number, p_error:String, context
@@ -187,27 +51,118 @@ class asgard.events.FlashPaperLoaderEvent extends DisplayLoaderEvent {
 		newPageNumber = isNaN(p_newPageNumber) ? null : p_newPageNumber ;
 		newVisibleArea = p_newVisibleArea || null ;
 	}
+
+	/**
+	 * The name of the event when the loader is complete.
+	 */
+	static public var COMPLETE:String = "onLoadComplete" ;
 	
-	// ----o Public Properties
+	/**
+	 * The name of the event when the value of the enable scroll change.
+	 */
+	static public var ENABLE_SCROLL:String = "onEnableScrolling" ;
 	
+	/**
+	 * The name of the event when the loader is finished.
+	 */
+	static public var FINISH:String = "onLoadFinished" ;
+	
+	/**
+	 * The name of the event when the loader is initialized.
+	 */
+	static public var INIT:String = "onLoadInit" ;
+	
+	/**
+	 * The name of the event when the loader notify an IO error.
+	 */
+	static public var IO_ERROR:String = "onLoadError" ;
+	
+	/**
+	 * The name of the event when the loader is in progress.
+	 */
+	static public var PROGRESS:String = "onLoadProgress" ;
+	
+	/**
+	 * The name of the event when the loader is release.
+	 */
+	static public var RELEASE:String = "onRelease" ;
+
+	/**
+	 * The name of the event when the value of the current page change.
+	 */
+	static public var PAGE_CHANGE:String = "onPageChanged" ;
+
+	/**
+	 * The name of the event when the loader is started.
+	 */
+	static public var START:String = "onLoadStarted" ;
+	
+	/**
+	 * The name of the event when the loader is stopped.
+	 */
+	static public var STOP:String = "onLoadStopped" ;
+	
+	/**
+	 * The name of the event when the loader is out of time.
+	 */
+	static public var TIMEOUT:String = "onTimeOut" ;
+
+	/**
+	 * The name of the event when the value of the current tool change.
+	 */
+	static public var TOOL_CHANGE:String = "onToolChanged" ;
+
+	/**
+	 * The name of the event when the value of the current zoom change.
+	 */
+	static public var ZOOM_CHANGE:String = "onZoomChanged" ;
+
+	/**
+	 * The name of the event when the visible area change.
+	 */
+	static public var VISIBLE_AREA_CHANGE:String = "onVisibleAreaChanged" ;
+
+	/**
+	 * The current zoom of the loader.
+	 */	
 	public var currentZoom:Number ;
+	
+	/**
+	 * The scrolling enabled value of the loader.
+	 */
 	public var isEnabledScrolling:Boolean ;
+	
+	/**
+	 * The new page number in the loader.
+	 */
 	public var newPageNumber:Number ;
+	
+	/**
+	 * The new visible area to display in the loader.
+	 */
 	public var newVisibleArea ; 
-	
-	// ----o Public Methods
-	
-	public function clone() {
+
+	/**
+	 * Returns a shallow copy of the event.
+	 */
+	public function clone() 
+	{
 		return new FlashPaperLoaderEvent( getType(), getLoader()) ;
 	}
 
-	public function getLoader():FlashPaperLoader {
+	/**
+	 * Returns the FlashPaperLoader reference of this event.
+	 */
+	public function getLoader():FlashPaperLoader 
+	{
 		return FlashPaperLoader(_oLoader) ;
 	}
 
-	// ----o Protected Methods
-
-	/*protected*/ private function _getParams():Array {
+	/**
+	 * This protected method is used by the toSource method.
+	 */
+	/*protected*/ private function _getParams():Array 
+	{
 		var ar:Array = super._getParams() ;
 		ar.splice(2, null, Serializer.toSource(currentZoom)) ;
 		ar.splice(3, null, Serializer.toSource(isEnabledScrolling)) ;

@@ -23,7 +23,6 @@
 
 import asgard.display.DisplayLoaderCollector;
 import asgard.events.DisplayLoaderEvent;
-import asgard.events.LoaderEventType;
 import asgard.net.AbstractLoader;
 import asgard.net.URLRequest;
 
@@ -36,8 +35,9 @@ import vegas.errors.IllegalArgumentError;
 class asgard.display.DisplayLoader extends AbstractLoader 
 {
 	
-	// ----o Constructor
-	
+	/**
+	 * Creates a new DisplayLoader instance.
+	 */
 	function DisplayLoader( mcTarget:MovieClip, nDepth:Number, bAutoShow:Boolean ) 
 	{
 		
@@ -45,7 +45,7 @@ class asgard.display.DisplayLoader extends AbstractLoader
 		
 		if (! mcTarget) 
 		{
-			throw new IllegalArgumentError(this + " mcTarget argument is undefined.") ;
+			throw new IllegalArgumentError(this + " mcTarget argument not must be 'undefined' or 'null'.") ;
 		}
 		
 		nDepth = (isNaN(nDepth)) ? 1 : nDepth ;
@@ -60,39 +60,60 @@ class asgard.display.DisplayLoader extends AbstractLoader
 		_isCollected = false ;
 		
 	}
-	
-	// ----o Public Methods
 
+	/**
+	 * Returns the absolute url of the root swf object.
+	 */
 	static public function getLoaderUrl():String 
 	{
 		return _root._url ;
 	}
 
+	/**
+	 * Returns the view of this loader.
+	 */
 	public function getView():MovieClip 
 	{
 		return MovieClip(super.getContent()) ;
 	}
 	
+	/**
+	 * Hide the view of this loader.
+	 */
 	public function hide():Void 
 	{
 		_container._visible = false ;
 	}
 
+	/**
+	 * Init the internal event of this loader.
+	 */
 	/*override*/ public function initEvent():Void 
 	{
 		_e = new DisplayLoaderEvent(null, this) ;
 	}
 
+	/**
+	 * Return {@code true} if the view of this loader is visible when is loading.
+	 * @return {@code true} if the view of this loader is visible when is loading
+	 */
 	public function isAutoShow():Boolean 
 	{
 		return _isAutoShow ;	
 	}
 	
+	/**
+	 * Return {@code true} if the view of this loader is visible.
+	 * @return {@code true} if the view of this loader is visible.
+	 */
 	public function isVisible():Boolean 
 	{
 		return _container._visible ;	
 	}
 
+	/**
+	 * Load the current URLRequest.
+	 */
 	/*override*/ public function load(request:URLRequest):Void 
 	{
 		if (request.getUrl() != undefined) 
@@ -101,12 +122,15 @@ class asgard.display.DisplayLoader extends AbstractLoader
 		}
 		release() ;
 		setContent( _container.createEmptyMovieClip("__mcExternal", 1) ) ;
-		notifyEvent(LoaderEventType.START) ;
+		notifyEvent( getEventTypeSTART() ) ;
 		getContent().loadMovie( super.getUrl() );
 		hide();
 		super.load() ;
 	}
 
+	/**
+	 * Invoqued when the loading is finish and the loader is init.
+	 */
 	/*override*/ public function onLoadInit():Void 
 	{
 		if (_sName) 
@@ -136,6 +160,9 @@ class asgard.display.DisplayLoader extends AbstractLoader
 		
 	}
 	
+	/**
+	 * Release the loader.
+	 */
 	/*override*/ public function release():Void 
 	{
 		super.release() ;
@@ -148,20 +175,35 @@ class asgard.display.DisplayLoader extends AbstractLoader
 		}	
 	}
 	
+	/**
+	 * Sets if the view is show when the content is loading.
+	 */
 	public function setAutoShow(b:Boolean):Void 
 	{
 		_isAutoShow = b ;
 	}
 
+	/**
+	 * Show the view of the loader.
+	 */
 	public function show():Void 
 	{
 		_container._visible = true ;
 	}
 
-	// ----o Private Properties
-	
+	/**
+	 * The internal container of this loader.
+	 */
 	private var _container:MovieClip ;
+
+	/**
+	 * The boolean value to indicated if the view is auto show when the content is loading.
+	 */
 	private var _isAutoShow:Boolean ;
+
+	/**
+	 * The boolean to indicated if the loader is collected.
+	 */
 	private var _isCollected:Boolean ;
 
 }

@@ -33,10 +33,6 @@
 			
 			NOTE : EDEN Hexa digits code inspiration -> http://www.burrrn.com/projects/eden.html
 
-*/
-
-/*
-
   The contents of this file are subject to the Mozilla Public License Version 1.1 (the "License") ;
   you may not use this file except in compliance with the License. You may obtain a copy of the License at :
   
@@ -61,12 +57,11 @@
 import vegas.string.errors.JSONError;
 
 /**
- * JSON (JavaScript object Notation) is a lightweight data-interchange format.
+ * Json (JavaScript object Notation) is a lightweight data-interchange format.
  * <p>Serializer & deserializer in AS2.</p>
- * <p>MORE INFORMATION IN : http://www.json.org/</p>
- * <p>ADD HEXA DIGITS in deserialize method - EDEN inspiration : http://www.burrrn.com/projects/eden.html</p>
- * <p><b>EXAMPLE</b><br>
- * {@code
+ * <p>More information in the official site : <a href="http://www.json.org/">http://www.json.org</a></p>
+ * <p>Add Hexa Digits tool in deserialize method - <a href="http://www.burrrn.com/projects/eden.html">EDEN inspiration</a></p>
+ * <p><b>Example :</b>{@code
  *  import vegas.string.JSON ;
  *   
  *  // --- Init
@@ -76,14 +71,14 @@ import vegas.string.errors.JSONError;
  *  var n:Number = 4 ;
  *  var b:Boolean = true ;
  *  
- *  trace ("*** Serialize") ;
- *  trace("* a : " + JSON.serialize( a ) )  ; * 
- *  trace("* o : " + JSON.serialize( o ) )  ;
- *  trace("* s : " + JSON.serialize( s ) )  ;
- *  trace("* n : " + JSON.serialize( n ) )  ;
- *  trace("* b : " + JSON.serialize( b ) )  ;
+ *  trace("-> Serialize") ;
+ *  trace("- a : " + JSON.serialize( a ) )  ;
+ *  trace("- o : " + JSON.serialize( o ) )  ;
+ *  trace("- s : " + JSON.serialize( s ) )  ;
+ *  trace("- n : " + JSON.serialize( n ) )  ;
+ *  trace("- b : " + JSON.serialize( b ) )  ;
  *   
- *  trace ("*** Deserialize") ;
+ *  trace (" Deserialize") ;
  *  
  *  var source:String = '[ {"prop1":0xFF0000, "prop2":2, "prop3":"hello", "prop4":true} , 2, true, * 3, [3, 2] ]' ;
  *   
@@ -102,9 +97,11 @@ import vegas.string.errors.JSONError;
  *  {
  *      trace(prop + " : " + o[prop]) ;
  * 	}
+ * 	
  * }
+ * </p>
+ * 
  * @author eKameleon
- * @version 1.0.0.0
  */
 class vegas.string.JSON 
 {
@@ -347,8 +344,10 @@ class vegas.string.JSON
             }
         };
 		
-        _word = function () {
-            switch (ch) {
+        _word = function () 
+        {
+            switch (ch) 
+            {
                 case 't':
                     if (_next() == 'r' && _next() == 'u' && _next() == 'e') {
                         _next();
@@ -371,7 +370,8 @@ class vegas.string.JSON
             _error("Syntax Error");
         };
 		
-        _value = function () {
+        _value = function () 
+        {
             _white();
             switch (ch) {
                 case '{':
@@ -406,7 +406,9 @@ class vegas.string.JSON
         switch (typeof o) {
         	
 			case 'object':
-				if (o) {
+			{
+				if (o) 
+				{
 					if (o instanceof Array) {
 						
 						l = o.length ;
@@ -419,11 +421,14 @@ class vegas.string.JSON
 						}
 						return '[' + s + ']';
 						
-					} else if (typeof(o.toString) != 'undefined') {
-						
-						for (var prop:String in o) {
+					} 
+					else if (typeof(o.toString) != 'undefined') 
+					{
+						for (var prop:String in o) 
+						{
 							v = o[prop];
-							if ( (typeof(v) != 'undefined') && (typeof(v) != 'function') ) {
+							if ( (typeof(v) != 'undefined') && (typeof(v) != 'function') ) 
+							{
 								v = serialize(v);
 								if (s) s += ',';
 								s += serialize(prop) + ':' + v ;
@@ -433,51 +438,72 @@ class vegas.string.JSON
 					}
 				}
 				return 'null';
-			
+        	}
 			case 'number':
+			{
 				return isFinite(o) ? String(o) : 'null' ;
-			
+			}
 			case 'string':
+			{
 				l = o.length ;
 				s = '"';
-				for (i = 0 ; i < l ; i += 1) {
+				for (i = 0 ; i < l ; i += 1) 
+				{
 					c = o.charAt(i);
 					if (c >= ' ') {
-						if (c == '\\' || c == '"') {
+						if (c == '\\' || c == '"') 
+						{
 							s += '\\';
 						}
 						s += c;
-					} else {
-						switch (c) {
-							case '\b':
+					} 
+					else 
+					{
+						switch (c) 
+						{
+							case '\b' :
+							{
 								s += '\\b';
 								break;
-							case '\f':
+							}
+							case '\f' :
+							{
 								s += '\\f';
 								break;
-							case '\n':
+							}
+							case '\n' :
+							{
 								s += '\\n';
 								break;
-							case '\r':
+							}
+							case '\r' :
+							{
 								s += '\\r';
 								break;
-							case '\t':
+							}
+							case '\t' :
+							{
 								s += '\\t';
 								break;
-							default:
+							}
+							default :
+							{
 								var code:Number = c.charCodeAt() ;
 								s += '\\u00' + (Math.floor(code / 16).toString(16)) + ((code % 16).toString(16)) ;
+							}
 						}
 					}
 				}
 				return s + '"';
-				
+        	}
 			case 'boolean':
+			{
 				return String(o);
-			
+			}
 			default:
+			{
 				return 'null';
-			
+			}			
         }
     }
 }

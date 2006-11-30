@@ -21,112 +21,20 @@
   
 */
 
-/** Bitmap
-	
-	AUTHOR
-	
-		Name : Bitmap
-		Package : asgard.display
-		Version : 1.0.0.0
-		Date :  2006-08-25
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-	
-		- bitmapData:BitmapData [R/W]
-
-		- container:MovieClip [Read Only]
-	
-		- enabled:Boolean [R/W]
-		
-		- height:Number [R/W]
-			
-		- pixelSnapping:String [R/W]
-	
-		- smoothing:Boolean [R/W]
-		
-		- view
-		
-		- width:Number [R/W]
-
-	METHOD SUMMARY
-
-	 	- clear():Void
-	
- 		- createChild( c:Function, name:String , depth:Number , init )
-		
-		- dispose():Void
-	
-		- getBitmapData():BitmapData()
-	
-		- getEnabled():Boolean
-		
-		- getLoader():ILoader
-		
-		- getName():String
-			
-		- getPixelSnapping():String
-	
-		- getSmoothing():Boolean
-		
-		- getWidth():Number
-		
-		- getX():Number
-		
-		- getY():Number
-		
-		- hide():Void
-		
-		- isVisible():Boolean
-		
-		- move( x:Number, y:Number ) : Void 
-		
-		- release() : Void
-
-		- setBitmapData(bmp:BitmapData):Void
-	
-		- setPixelSnapping( snapping:String, noUpdate:Boolean ):Void
-	
-		- setSmoothing(b:Boolean, noUpdate:Boolean):Void
-	
-		- setEnabled(b:Boolean):Void
-		
-		- setHeight( n:Number ) : Void
-		
-		- setWidth( n:Number ) : Void
-		
-		- setX( n:Number ) : Void
-		
-		- setY( n:Number ) : Void
-		
-		- show():Void
-	
-		- update():Void
-	
-	INHERIT
-	
-		CoreObject → AbstractCoreEventDispatcher → DisplayObject → Bitmap
-
- 	IMPLEMENTS
- 
-		EventTarget, IEventDispatcher, IFormattable, IHashable, ISerializable
-
-*/
-
 import asgard.display.DisplayObject;
 
 import flash.display.BitmapData;
 
 /**
+ * Display a BitmapData object in a MovieClip.
  * @author eKameleon
  */
 class asgard.display.Bitmap extends DisplayObject 
 {
 	
-	// ----o Constructor
-	
+	/**
+	 * Creates a new Bitmap instance.
+	 */
 	public function Bitmap( sName:String, target:MovieClip, bmp:BitmapData, pixelSnapping:String, smoothing:Boolean ) 
 	{
 		
@@ -141,82 +49,24 @@ class asgard.display.Bitmap extends DisplayObject
 		
 	}
 	
-	// ----o Public Methods
-	
-	public function clear():Void
-	{
-		_container = view.createEmptyMovieClip("__container__", __CONTAINER_DEPTH__) ;
-	}
-	
-	public function dispose():Void
-	{
-		_bmp.dispose() ;	
-	}
-	
-	public function getBitmapData():BitmapData
-	{
-		return _bmp ;	
-	}
-
-	public function getPixelSnapping():String
-	{
-		return _pixelSnapping ; 	
-	} 
-
-	public function getSmoothing():Boolean
-	{
-		return _smoothing ; 	
-	} 
-
-	/*override*/ public function release():Void
-	{
-		super.release() ;
-		_container.removeMovieClip() ;	
-	}
-
-	public function setBitmapData(bmp:BitmapData):Void
-	{
-		_bmp = bmp ;
-		update() ;	
-	}
-
-	public function setPixelSnapping( snapping:String, noUpdate:Boolean ):Void
-	{
-		_pixelSnapping = snapping ;
-		if ( noUpdate ) return ;
-		update() ;
-	} 
-
-	public function setSmoothing(b:Boolean, noUpdate:Boolean):Void
-	{
-		_smoothing = b ;
-		if ( noUpdate ) return ;
-		update() ; 	
-	} 
-	
-	public function update():Void
-	{
-		clear() ;
-		_container.attachBitmap(_bmp, 1, getPixelSnapping(), getSmoothing()) ;
-	}
-	
-	// ----o Virtual Properties
-	
 	/**
-	 * The BitmapData object being referenced.
+	 * Returns the BitmapData object being referenced.
 	 */
 	public function get bitmapData():BitmapData
 	{
 		return getBitmapData() ;	
 	}
-	
+
+	/**
+	 * Sets the BitmapData object being referenced.
+	 */
 	public function set bitmapData(bmp:BitmapData):Void
 	{
 		setBitmapData(bmp) ;	
 	}
 	
 	/**
-	 * [Read Only] Returns the bitmap container reference. 
+	 * (read-only) Returns the bitmap container reference. 
 	 */
 	public function get container():MovieClip
 	{
@@ -224,26 +74,35 @@ class asgard.display.Bitmap extends DisplayObject
 	}
 	
 	/**
-	 * Controls whether or not the Bitmap object is snapped to the nearest pixel. The PixelSnapping class includes possible values :
-	 * 
-	 *   - PixelSnapping.NEVER — No pixel snapping occurs.
-	 *   - PixelSnapping.ALWAYS — The image is always snapped to the nearest pixel, independent of transformation.
-	 *   - PixelSnapping.AUTO — The image is snapped to the nearest pixel if it is drawn with no rotation or skew and it is drawn at a scale factor of 99.9% to 100.1%. If these conditions are satisfied, the bitmap image is drawn at 100% scale, snapped to the nearest pixel. Internally, this value allows the image to be drawn as fast as possible using the vector renderer.
-	 * 
-	 * NB : Only in FP9 & FP8.5
+	 * (read-write) Controls whether or not the Bitmap object is snapped to the nearest pixel.
+	 * <p>The PixelSnapping class includes possible values :
+	 * <li>PixelSnapping.NEVER — No pixel snapping occurs.</li>
+	 * <li>PixelSnapping.ALWAYS — The image is always snapped to the nearest pixel, independent of transformation.</li>
+	 * <li>PixelSnapping.AUTO — The image is snapped to the nearest pixel if it is drawn with no rotation or skew and it is drawn at a scale factor of 99.9% to 100.1%. If these conditions are satisfied, the bitmap image is drawn at 100% scale, snapped to the nearest pixel. Internally, this value allows the image to be drawn as fast as possible using the vector renderer.</li>
+	 * </p>
+	 * @since Flash Player 8.5
 	 */
 	public function get pixelSnapping():String
 	{
 		return getPixelSnapping() ;	
 	}
 
+	/**
+	 * (read-write) Controls whether or not the Bitmap object is snapped to the nearest pixel.
+	 * <p>The PixelSnapping class includes possible values :
+	 * <li>PixelSnapping.NEVER — No pixel snapping occurs.</li>
+	 * <li>PixelSnapping.ALWAYS — The image is always snapped to the nearest pixel, independent of transformation.</li>
+	 * <li>PixelSnapping.AUTO — The image is snapped to the nearest pixel if it is drawn with no rotation or skew and it is drawn at a scale factor of 99.9% to 100.1%. If these conditions are satisfied, the bitmap image is drawn at 100% scale, snapped to the nearest pixel. Internally, this value allows the image to be drawn as fast as possible using the vector renderer.</li>
+	 * </p>
+	 * @since Flash Player 8.5
+	 */
 	public function set pixelSnapping( snapping:String ):Void
 	{
 		setPixelSnapping( snapping ) ;	
 	}
 	
 	/**
-	 * Controls whether or not the bitmap is smoothed when scaled. 
+	 * (read-write) Controls whether or not the bitmap is smoothed when scaled. 
 	 * If true, the bitmap is smoothed when scaled. If false, the bitmap is not smoothed when scaled. 
 	 */ 
 	public function get smoothing():Boolean
@@ -251,18 +110,125 @@ class asgard.display.Bitmap extends DisplayObject
 		return getSmoothing() ;	
 	}
 
+	/**
+	 * (read-write) Controls whether or not the bitmap is smoothed when scaled. 
+	 * If true, the bitmap is smoothed when scaled. If false, the bitmap is not smoothed when scaled. 
+	 */
 	public function set smoothing(b:Boolean):Void
 	{
 		setSmoothing(b) ;	
 	}
-		
-	// ----o Private Properties
 	
+	/**
+	 * Clear the display.
+	 */
+	public function clear():Void
+	{
+		_container = view.createEmptyMovieClip("__container__", __CONTAINER_DEPTH__) ;
+	}
+	
+	/**
+	 * Disposes the BitmapData in the display.
+	 */
+	public function dispose():Void
+	{
+		_bmp.dispose() ;	
+	}
+	
+	/**
+	 * Returns the BitmapData reference.
+	 */
+	public function getBitmapData():BitmapData
+	{
+		return _bmp ;	
+	}
+
+	/**
+	 * Returns the pixel snapping value.
+	 */
+	public function getPixelSnapping():String
+	{
+		return _pixelSnapping ; 	
+	} 
+
+	/**
+	 * Returns the smoothing value.
+	 */
+	public function getSmoothing():Boolean
+	{
+		return _smoothing ; 	
+	} 
+
+	/**
+	 * Release the display.
+	 */
+	/*override*/ public function release():Void
+	{
+		super.release() ;
+		_container.removeMovieClip() ;	
+	}
+
+	/**
+	 * Sets the bitmapData reference in this display.
+	 */
+	public function setBitmapData(bmp:BitmapData):Void
+	{
+		_bmp = bmp ;
+		update() ;	
+	}
+
+	/**
+	 * Sets the pixel snapping value in this display.
+	 */
+	public function setPixelSnapping( snapping:String, noUpdate:Boolean ):Void
+	{
+		_pixelSnapping = snapping ;
+		if ( noUpdate ) return ;
+		update() ;
+	} 
+
+	/**
+	 * Sets the smoothing value in this display.
+	 */
+	public function setSmoothing(b:Boolean, noUpdate:Boolean):Void
+	{
+		_smoothing = b ;
+		if ( noUpdate ) return ;
+		update() ; 	
+	} 
+
+	/**
+	 * Update the display.
+	 */
+	public function update():Void
+	{
+		clear() ;
+		_container.attachBitmap(_bmp, 1, getPixelSnapping(), getSmoothing()) ;
+	}
+
+	/**
+	 * The internal BitmapData reference.
+	 */	
 	private var _bmp:BitmapData ;
+
+	/**
+	 * The internal movieclip reference to attach the bitmap.
+	 */
 	private var _container:MovieClip ;
+
+	/**
+	 * The default value of the BitmapData pixelSnapping property.
+	 */
 	private var _pixelSnapping:String = "auto" ; 
+
+	/**
+	 * The default value of the BitmapData smoothing propety.
+	 */
 	private var _smoothing:Boolean = false ;
 	
+	/**
+	 * The depth of the internal container of this display.
+	 */
 	static private var __CONTAINER_DEPTH__:Number = 100 ;
 
 }
