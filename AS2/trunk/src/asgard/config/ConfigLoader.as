@@ -21,26 +21,6 @@
   
 */
 
-/** ConfigLoader
-
-	AUTHOR
-
-		Name : ConfigLoader
-		Package : asgard.config
-		Version : 1.0.0.0
-		Date :  2006-03-25
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTANT SUMMARY
-	
-		- static DEFAULT_FILE_NAME:String ("config")
-
-		- static DEFAULT_SUFFIX:String (".json")
-
-**/
-
 import asgard.config.Config;
 import asgard.events.ConfigLoaderEvent;
 import asgard.events.LoaderEvent;
@@ -56,8 +36,9 @@ import vegas.logging.Log;
 class asgard.config.ConfigLoader extends JSONLoader 
 {
 	
-	// ----o Constructor
-	
+	/**
+	 * Creates a new ConfigLoader instance.
+	 */
 	function ConfigLoader( config ) 
 	{
 		
@@ -71,22 +52,45 @@ class asgard.config.ConfigLoader extends JSONLoader
 		
 	}
 
-	// ----o Public Properties
-	
 	public var default_file_name:String = "config" ;
 	
 	public var default_file_suffix:String = ".json" ;
 		
-	// public var fileName:String ; // [R/W]
-	// public var path:String ; // [R/W]
-	// public var suffix:String ; // [R/W]
-
-	// ----o Public Methods
+	public function get fileName():String 
+	{
+		return getFileName() ;	
+	}
 	
+	public function set fileName(s:String):Void 
+	{
+		setFileName(s) ;	
+	}
+
+	public function get path():String 
+	{
+		return getPath() ;	
+	}
+	
+	public function set path(s:String):Void 
+	{
+		setPath(s) ;	
+	}
+
+	public function get suffix():String 
+	{
+		return getSuffix() ;	
+	}
+	
+	public function set suffix(s:String):Void 
+	{
+		setSuffix(s) ;	
+	}
+
 	public function deserializeData():Void 
 	{
 		super.deserializeData() ;
-		for (var each:String in _oData) {
+		for (var each:String in _oData) 
+		{
 			_oConfig[each] = _oData[each] ;
 		}
 	}
@@ -96,15 +100,18 @@ class asgard.config.ConfigLoader extends JSONLoader
 		return _oConfig ;	
 	}
 
-	public function getFileName():String {
+	public function getFileName():String 
+	{
 		return (_fileName == null) ? default_file_name : _fileName ;	
 	}
 
-	public function getPath():String {
+	public function getPath():String 
+	{
 		return _path || "" ;
 
 	}
-	public function getSuffix():String {
+	public function getSuffix():String 
+	{
 		return (_suffix == null) ? default_file_suffix : _suffix ;
 	}
 
@@ -114,72 +121,56 @@ class asgard.config.ConfigLoader extends JSONLoader
 		
 	}
 	
-	public function load( fileName:String ):Void {
-		if (fileName) setFileName(fileName) ;
+	public function load( fileName:String ):Void 
+	{
+		if (fileName) 
+		{
+			setFileName(fileName) ;
+		}
 		var uri:String = getPath() + getFileName() + getSuffix() ;
 		var request:URLRequest = new URLRequest(uri) ;
 		super.load( request ) ;
 	}
 
-  	/*override*/ public function onLoadInit(e:LoaderEvent):Void {
-		
+  	/*override*/ public function onLoadInit(e:LoaderEvent):Void 
+  	{
 		_logger.info(this + ".onLoadInit() : Config has been loaded") ; 
-		
 	}
 
-	static public function protectConfig( oConfig ):Void {
+	static public function protectConfig( oConfig ):Void 
+	{
 		var logger:ILogger = Log.getLogger("asgard.config") ;
-		oConfig.__resolve = function( p:String ) : String {
+		oConfig.__resolve = function( p:String ) : String 
+		{
 			logger.warn("Config object : '" + p + "' property is undefined" ) ;
 			return "" ;
 		} ;
 		_global.ASSetPropFlags(oConfig, "__resolve", 7, 1) ;
 	}
 
-	public function setFileName(sFileName:String):Void {
+	public function setFileName(sFileName:String):Void 
+	{
 		_fileName = sFileName ;	
 	}
 
-	public function setPath( sPath:String ):Void {
+	public function setPath( sPath:String ):Void 
+	{
 		_path = sPath || "" ;
 	}
 
-	public function setSuffix( sSuffix:String ):Void {
+	public function setSuffix( sSuffix:String ):Void 
+	{
 		_suffix = sSuffix || null ;
 	}
-
-	// ----o Virtual Properties
-
-	public function get fileName():String {
-		return getFileName() ;	
-	}
-	
-	public function set fileName(s:String):Void {
-		setFileName(s) ;	
-	}
-
-	public function get path():String {
-		return getPath() ;	
-	}
-	
-	public function set path(s:String):Void {
-		setPath(s) ;	
-	}
-
-	public function get suffix():String {
-		return getSuffix() ;	
-	}
-	
-	public function set suffix(s:String):Void {
-		setSuffix(s) ;	
-	}
-	
-	// ----o Private Properties
 	
 	private var _fileName:String = null ;
+
 	private var _logger:ILogger ;
+
 	private var _oConfig:Config ;
+
 	private var _path:String = null ;
+
 	private var _suffix:String = null ;
 
 }

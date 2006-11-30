@@ -21,21 +21,11 @@
   
 */
 
-/** Localization
+/**
 
-	AUTHOR
-
-		Name : Localization
-		Package : asgard.system
-		Version : 1.0.0.0
-		Date :  2006-02-19
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
+	TODO DESCRIPTION (à traduire)
 	
-		La classe Localization permet de gérer via des fichiers textes au format JSON de charger le contenu textuel d'une 
+		La classe Localization permet de gérer via des fichiers textes au format JSON ou Eden de charger le contenu textuel d'une 
 		application en fonction des paramètres de langues choisis par l'utilisateurs.
 		
 		Il est possible de définir plusieurs instances de la classe Localization pour gérer plusieurs éléments dans l'application, 
@@ -50,14 +40,7 @@
 		
 		Chaque fichier chargé donc contenir dans son nom principal un suffix de type _LANG qui permet de le différencier en fonction de la langue choisie.
 
-	INHERIT
-	
-		CoreObject → AbstractCoreEventDispatcher → Localization
-			 	
-	IMPLEMENTS
-	
-		IFormattable, LoaderListener, IHashable, IEventDispatcher
-	
+
 */	
 
 import asgard.events.LoaderEvent;
@@ -74,17 +57,17 @@ import vegas.data.map.HashMap;
 import vegas.events.AbstractCoreEventDispatcher;
 import vegas.events.Delegate;
 import vegas.events.EventListener;
-import vegas.util.factory.PropertyFactory;
-
 
 /**
+ * The singleton Localization tool.
  * @author eKameleon
  */
-
-class asgard.system.Localization extends AbstractCoreEventDispatcher implements LoaderListener {
+class asgard.system.Localization extends AbstractCoreEventDispatcher implements LoaderListener 
+{
 	
-	// ----o Constructor
-	
+	/**
+	 * Creates the Localizationb Singleton.
+	 */
 	private function Localization(sName:String) 
 	{
 
@@ -107,38 +90,58 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 		
 	}
 
-	private var _complete:EventListener ;
-	private var _error:EventListener ;
-	private var _init:EventListener ;
-	private var _progress:EventListener ;
-	private var _start:EventListener ;
-	private var _timeOut:EventListener ;
-
-	// ----o Constants
-	
 	static public var CHANGE:String = UIEventType.CHANGE  ;
+	
 	static public var COMPLETE:String = "onLoadComplete" ;
+	
+	static public var FINISH:String = "onLoadFinished" ;
+	
 	static public var IO_ERROR:String = "onLoadError" ;
+	
 	static public var PROGRESS:String = "onLoadProgress" ;
-	static public var START:String = "onLoadStart" ;
+	
+	static public var START:String = "onLoadStarted" ;
+	
 	static public var TIMEOUT:String = "onTimeOut" ;
 
 	static public var DEFAULT_NAME:String = "" ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(Lang, ["CHANGE"] , 7, 7) ;
-
-	// ----o Public Properties
+	/**
+	 * (read-write) Returns the current localization.
+	 */
+	public function get current():Lang 
+	{
+		return getCurrent() ;
+	}
 	
-	public var current:Lang ; // [R/W]
-	public var name:String ; // [Read Only]
+	/**
+	 * (read-write) Sets the current localization.
+	 */
+	public function set current(lang:Lang):Void
+	{
+		setCurrent(lang) ;
+	}	
 	
-	// ----o Public Methods
-
+	/**
+	 * (read-only) Returns the name of the current localization.
+	 */
+	public function get name():String 
+	{
+		return getName() ;	
+	}
+	
+	/**
+	 * Clear the internal map.
+	 */
 	public function clear():Void 
 	{
 		_map.clear() ;
 	}
 
+	/**
+	 * Returns {@code true} if this Localization contains the specified Lang.
+	 * @return {@code true} if this Localization contains the specified Lang.
+	 */
 	public function contains(lang:Lang):Boolean 
 	{	
 		return _map.containsKey(lang) ;
@@ -189,27 +192,43 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 		}
 	}
 
+	/**
+	 * Returns {@code true} if the Localization model is empty.
+	 */
 	public function isEmpty():Boolean 
 	{
 		return _map.isEmpty() ;
-
 	}
 
+	/**
+	 * Notify when the Localization change.
+	 */
 	public function notifyChange():Void 
 	{
 		dispatchEvent( _eChange ) ;
 	}
-
+	
+	/**
+	 * Invoqued if the Localization loader notify an error.
+	 * Overrides this method.
+	 */
 	public function onLoadError(e:LoaderEvent):Void 
 	{
 		// override
 	}
 
+	/**
+	 * Invoqued if the Localization loader notify is complete.
+	 * Overrides this method.
+	 */
 	public function onLoadComplete(e:LoaderEvent):Void 
 	{
 		// override
 	}
 
+	/**
+	 * Invoqued if the Localization loader notify is init.
+	 */
 	public function onLoadInit( e:LoaderEvent ) : Void 
 	{
 		var oLocale:Locale = new Locale() ;
@@ -222,7 +241,8 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 		notifyChange() ;
 	}
 
-	public function onLoadProgress( e:LoaderEvent ):Void {
+	public function onLoadProgress( e:LoaderEvent ):Void 
+	{
 		// override
 	}
 
@@ -236,11 +256,17 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 		// override
 	}
 
+	/**
+	 * Put the specified Lang in the Localization model.
+	 */
 	public function put(lang:Lang, oL:Locale) 
 	{
 		return _map.put(lang, oL) ;
 	}
 
+	/**
+	 * Remove the specified Lang in the Localization model.
+	 */
 	public function remove(lang:Lang):Void 
 	{
 		if (Lang.validate(lang)) 
@@ -249,6 +275,9 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 		}
 	}
 
+	/**
+	 * Sets the current localization with the specified Lang.
+	 */
 	public function setCurrent(lang:Lang):Void 
 	{
 		if (Lang.validate(lang)) 
@@ -264,7 +293,10 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 			}
 		}
 	}
-
+	
+	/**
+	 * Sets the current loader of this Localization.
+	 */
 	public function setLoader( loader:ILocalizationLoader ):Void
 	{
 		
@@ -297,6 +329,10 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 		}
 	}
 
+	/**
+	 * Returns the string representation of this object.
+	 * @return the string representation of this object.
+	 */
 	public function toString():String 
 	{
 		var txt:String = "[Localization" ; 
@@ -305,18 +341,29 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 		 return txt ;	
 	}
 
-	// ----o Virtual Properties
-
-	static private var __CURRENT__:Boolean = PropertyFactory.create(Localization, "current", true) ;
-	static private var __NAME__:Boolean = PropertyFactory.create(Localization, "name", true, true) ;
-
-	// ----o Private Properties
+	private var _map:HashMap = null ;
+	
+	private var _complete:EventListener ;
 
 	private var _current:Lang = null ;
+
 	private var _eChange:LocalizationEvent = null ;
-	static private var __mInstances:HashMap = new HashMap () ;
+
+	private var _error:EventListener ;
+
+	private var _init:EventListener ;
+
 	private var _loader:ILocalizationLoader = null ;
-	private var _map:HashMap = null ;
+
+	static private var __mInstances:HashMap = new HashMap () ;
+
+	private var _progress:EventListener ;
+
 	private var _sName:String = null ;
+	
+	private var _start:EventListener ;
+
+	private var _timeOut:EventListener ;
+
 
 }

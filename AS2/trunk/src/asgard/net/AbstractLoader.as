@@ -237,8 +237,9 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 		{
 			_tProgress.stop() ;
 		}
-		if (this.getUrl()) 
+		if ( this.getUrl() != null ) 
 		{
+			notifyStart() ;
 			_nLastBytesLoaded = 0;
 			_nTime = getTimer();
 			_setRunning(true) ;
@@ -246,6 +247,7 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 		} 
 		else 
 		{
+			
 			notifyError(this + ".load() can't retrieve file url : " + this.getUrl() , null ) ;
 		}
 	}
@@ -271,6 +273,14 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 		_e.error = null ;
 		_e.code = null ;
 		dispatchEvent(_e) ;
+	}
+
+	/**
+	 * Notify the start of the loader.
+	 */
+	public function notifyStart():Void 
+	{
+		notifyEvent( getEventTypeSTART() ) ;
 	}
 
 	/**

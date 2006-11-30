@@ -1,18 +1,25 @@
-/**
-	
-	AUTHOR
-	
-		Name : ZoomDisplay
-		Package : asgard.display
-		Version : 1.0.0.0
-		Date :  9 sept. 06
-		Author : eKameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
+/*
 
+  The contents of this file are subject to the Mozilla Public License Version
+  1.1 (the "License"); you may not use this file except in compliance with
+  the License. You may obtain a copy of the License at 
+  
+           http://www.mozilla.org/MPL/ 
+  
+  Software distributed under the License is distributed on an "AS IS" basis,
+  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+  for the specific language governing rights and limitations under the License. 
+  
+  The Original Code is Vegas Framework.
+  
+  The Initial Developer of the Original Code is
+  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  the Initial Developer. All Rights Reserved.
+  
+  Contributor(s) :
+  
 */
-
-// ALPHA version !!! 
 
 import asgard.display.DisplayObject;
 import asgard.draw.RectanglePen;
@@ -25,6 +32,7 @@ import vegas.events.Delegate;
 import vegas.maths.Range;
 
 /**
+ * ALPHA version !!! 
  * @author eKameleon
  */
 class asgard.display.ZoomDisplay extends DisplayObject 
@@ -56,8 +64,6 @@ class asgard.display.ZoomDisplay extends DisplayObject
 		initialize() ;
 		
 	}
-
-	// ----o Public Properties
 
 	/**
 	 * The content container.
@@ -156,8 +162,6 @@ class asgard.display.ZoomDisplay extends DisplayObject
 		_w = value ;
 		update() ;	
 	}
-
-	// ----o Public Methods
 
 	/**
 	 * Create the initial container if the view don't have a container by default.
@@ -454,13 +458,8 @@ class asgard.display.ZoomDisplay extends DisplayObject
 		
 	}
 		
-		
-
-	// ----o Private Properties
-	
 	/**
 	 * The container movieclip.
-	 * @private
 	 */
 	private var _container:MovieClip ;
 
@@ -471,43 +470,36 @@ class asgard.display.ZoomDisplay extends DisplayObject
 
 	/**
 	 * The onMouse move handler.
-	 * @private
 	 */
 	private var onMouseMove:Function ;
 
 	/**
 	 * The original position of the container.
-	 * @private
 	 */
 	public var _offset:Point ; 
 
 	/**
 	 * The Mask Rectangle.
-	 * @private
 	 */
 	private var _recMask:Rectangle ;
 
 	/**
 	 * The current range of the scale.
-	 * @private
 	 */
 	private var _rScale:Range ;
 	 
 	/**
 	 * The current scale value.
-	 * @private
 	 */
 	private var _scale:Number = 1 ;
 	
 	/**
 	 * The scale reference.
-	 * @private
 	 */
 	private var _scaleReference:Number = 100 ;
 
 	/**
 	 * The scale step to change the scale of the view.
-	 * @private
 	 */
 	private var _scaleStep:Number = 1.4 ;
 
@@ -516,10 +508,8 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	 */
 	private var _w:Number = 550 ;
 
-	// ----o Private Methods
-	
 	/**
-	 * Bound the container if the view is out of the bounds of the visible area.
+	 * Bounds the container if the view is out of the bounds of the visible area.
 	 */
 	private function _boundPosition():Void
 	{
@@ -545,7 +535,6 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	
 	/**
 	 * Refresh the _offset when the container is drag.
-	 * @private
 	 */
 	 private function _refreshOffset():Void
 	 {

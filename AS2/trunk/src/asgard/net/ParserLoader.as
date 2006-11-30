@@ -21,160 +21,24 @@
   
 */
 
-/** ParserLoader
-
-	AUTHOR
-
-		Name : ParserLoader
-		Package : asgard.system
-		Version : 1.0.0.0
-		Date :  2006-07-06
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-	
-		- bytesLoaded:Number [Read Only]
-		
-		- bytesTotal:Number [Read Only]
-		
-		- data [R/W]
-		
-		- dataFormat [R/W]
-		
-		- fieldName:String // TODO voir si cette méthode doit rester en place ou pas ?
-		
-		- name:String [R/W]
-		
-		- running:Boolean [Read Only]
-		
-		- timeOut:Number [R/W]
-		
-		- percent:Number [Read Only]
-
-	METHOD SUMMARY
-	
-		- addEventListener(eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void
-		
-		- addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void
-		
-		- addRequestHeader( header, headerValue:String ):Void
-		
-		- checkData():Void
-		
-		- deserializeData():Void
-		
-		- dispatchEvent( event , [isQueue, [target, [context]]]):Event
-		
-		- getBytesLoaded():Number
-		
-		- getBytesTotal():Number
-		
-		- getContent()
-		
-		- getContentType():String
-		
-		- getData()
-		
-		- getDataFormat():String
-		
-		- getEventDispatcher():EventDispatcher 
-
- 		- getEventListeners(eventName:String):EventListenerCollection
-		
-		- getGlobalEventListeners():EventListenerCollection
-		
-		- getName():String
-		
-		- getParent():EventDispatcher
-		
-		- getRegisteredEventNames():Set
-	
-		- getPercent():Number
-		
-		- getRunning():Boolean
-		
-		- getTimeOut():Number
-		
-		- getDeserializer():Function
-		
-		- getUrl()
-	
- 		- hasEventListener(eventName:String):Boolean	
-		
-		- hashCode():Number
-		
-		- initEvent():Void
-		
-		- initEventDispatcher():EventDispatcher 
- 		
- 		- isLoaded():Boolean
-		
-		- load():Void
-		
-		- notifyError(sError:String, nCode:Number):Void
-		
-		- notifyEvent(eventType:String):Void
-		
-		- onLoadInit():Void
-		
-		- release():Void
-
-		- removeEventListener(eventName:String, listener, useCapture:Boolean ):EventListener
-		
-		- removeGlobalEventListener(o):EventListener
-		
-		- run():Void
-		
-		- setContent(o:LoadVars):Void
-
-		- setContentType(sType:String):Void
-
-		- setData(o):Void
-		
-		- setDataFormat(f:String):Void
-		
-		- setName(sName:String):Void
-		
-		- setParent(parent:EventDispatcher):Void	
-		
-		- setTimeOut(n:Number):Void
-		
-		- setUrl(sURL:string):Void
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → AbstractCoreEventDispatcher → AbstractLoader → URLLoader → ParserLoader
-			 	
-	IMPLEMENTS
-	
-		EventTarget, IFormattable, IHashable, IEventDispatcher, ILoader
-	
-**/	
-
 import asgard.net.DataFormat;
 import asgard.net.URLLoader;
 
 /**
  * @author eKameleon
  */
-class asgard.net.ParserLoader extends URLLoader {
+class asgard.net.ParserLoader extends URLLoader 
+{
 	
-	// ----o Constructor
-	
+	/**
+	 * Creates a new ParserLoader instance.
+	 */
 	private function ParserLoader() 
 	{
 		super() ;
 	}
 
-	// ----o Public Properties
-	
 	public var fieldName:String ;
-
-	// ----o Public Methods
 
 	public function deserializeData():Void 
 	{

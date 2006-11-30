@@ -21,76 +21,6 @@
   
 */
 
-/**	Calendar
-
-	AUTHOR
-	
-		Name : Calendar
-		Package : asgard.date
-		Version : 1.0.0.0
-		Date :  2005-12-22
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		new Calendar(yearOrTimevalue:Number, month:Number, date:Number, hour:Number, minute:Number, second:Number, millisecond:Number) ;
-	
-	CONSTANT SUMMARY
-	
-		- static DAY:String
-		
-		- static MONTH:String
-		
-		- static WEEK:String
-		
-		- static YEAR:String
-	
-		- static ONE_DAY_MS:Number
-	
-	METHOD SUMMARY
-	
-		- static add(date:Date, field:String, amount:Number):Date
-	
-		- after(d:Date):Boolean
-		
-		- before(d:Date):Boolean
-		
-		- clone():Calendar
-		
-		- equals(o):Boolean
-		
-		- format(pattern:String):String
-		
-		- getCurrentFullMonthCalendar():Array
-		
-		- static getDaysInMonth(y:Number, m:Number):Number
-		
-		- static getDayOffset(date:Date, calendarYear:Number):Number
-		
-		- static getFirstDay(y:Number , m:Number, nameFlag:Boolean)
-		
-		- static getFullMonthCalendar(y:Number, m:Number):Array
-		
-		- static getJan1(calendarYear:Number):Date
-		
-		- static getWeekNumber(date:Date, calendarYear:Number, weekStartsOn:Number):Number
-		
-		- static subtract(date:Date, field:String, amount:Number):Date
-		
-		- toSource():String
-	
-	INHERIT
-	
-		Date → Calendar
-
-	IMPLEMENT
-	
-		ICloneable, IEquality
-
-**/
-
 // TODO il faut rajouter des erreurs en cas de date invalide
 // TODO il faut finir la localization 
 
@@ -105,17 +35,21 @@ import vegas.core.IHashable;
 import vegas.core.ISerializable;
 import vegas.util.serialize.Serializer;
 
-class asgard.date.Calendar extends Date implements ICloneable, IEquality, IFormattable, IHashable, ISerializable {
+/**
+ * This class contains all tools to create a calendar.
+ * @author eKameleon
+ */
+class asgard.date.Calendar extends Date implements ICloneable, IEquality, IFormattable, IHashable, ISerializable 
+{
 
-	// ----o Construtor
-	
+	/**
+	 * Creates a new Calendar instance.
+	 */
 	public function Calendar(yearOrTimevalue:Number, month:Number, date:Number, hour:Number, minute:Number, second:Number, millisecond:Number) 
 	{
 		super(yearOrTimevalue, month, date, hour, minute, second, millisecond) ;
 	}
 
-	// ----o Constants
-	
 	/**
 	* Constant field representing Day
 	* @type String
@@ -148,15 +82,13 @@ class asgard.date.Calendar extends Date implements ICloneable, IEquality, IForma
 
 	static private var __ASPF__ = _global.ASSetPropFlags(Calendar, null , 7, 7) ;
 
-	// ----o Public Methods
-
 	/**
-	* Adds the specified amount of time to the this instance.
-	* @param {Date} date	The JavaScript Date object to perform addition on
-	* @param {string} field	The this field constant to be used for performing addition.
-	* @param {Integer} amount	The number of units (measured in the field constant) to add to the date.
-	* @return {date}
-	*/
+ 	 * Adds the specified amount of time to the this instance.
+	 * @param {Date} date	The JavaScript Date object to perform addition on
+	 * @param {string} field	The this field constant to be used for performing addition.
+	 * @param {Integer} amount	The number of units (measured in the field constant) to add to the date.
+	 * @return {@code Date}
+	 */
 	static public function add(date:Date, field:String, amount:Number):Date 
 	{
 		var d:Date = new Date(date.getTime());
@@ -201,7 +133,7 @@ class asgard.date.Calendar extends Date implements ICloneable, IEquality, IForma
 	}
 	
 	/**
-	 * @return true if the current time of this Calendar is after the time of Calendar when; false otherwise.
+	 * @return {@code true} if the current time of this Calendar is after the time of Calendar when; false otherwise.
 	 */
 	public function after(d:Date):Boolean 
 	{
@@ -209,16 +141,19 @@ class asgard.date.Calendar extends Date implements ICloneable, IEquality, IForma
 	}
 
 	/**
-	 * @return true if the current time of this Calendar is before the time of Calendar when; false otherwise. 
+	 * @return {@code true} if the current time of this Calendar is before the time of Calendar when; false otherwise. 
 	 */
 	public function before(d:Date):Boolean 
 	{
 		return d.getTime() > getTime() ;
 	}
 	
+	/**
+	 * Returns the shallow copy of this object.
+	 */
 	public function clone() 
 	{
-		return new Date(valueOf()) ;
+		return new Calendar(valueOf()) ;
 	}
 	
 	public function equals(o):Boolean 
@@ -226,17 +161,26 @@ class asgard.date.Calendar extends Date implements ICloneable, IEquality, IForma
 		return o instanceof Date && o.valueOf() == valueOf() ;
 	}
 
+	/**
+	 * Format the current Calendar date.
+	 */
 	public function format(pattern:String):String 
 	{
 		return (new DateFormatter(pattern)).format(this) ;
 	}
 
+	/**
+	 * Returns the array representation of all days in the current month.
+	 */
 	static public function getCurrentFullMonthCalendar():Array 
 	{
 		var d:Date = new Date() ;
 		return getFullMonthCalendar(d.getFullYear(), d.getMonth()) ;
 	}
 
+	/**
+	 * Returns the numbers of days in a specified month.
+	 */
 	static public function getDaysInMonth(y:Number, m:Number):Number 
 	{
 		var monthDays:Array = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31] ;
@@ -257,12 +201,18 @@ class asgard.date.Calendar extends Date implements ICloneable, IEquality, IForma
 		return Math.ceil( (date.getTime() - beginYear.getTime()) / Calendar.ONE_DAY_MS );
 	}
 
+	/**
+	 * Returns the first day in the specified month.
+	 */
 	static public function getFirstDay(y:Number , m:Number, nameFlag:Boolean) 
 	{
 		var d:Number = (new Date (y, m)).getDay() ;
 		return nameFlag ? LocalDate.getDays()[d] : d ;
 	}
 	
+	/**
+	 * Returns an array representation of a full month.
+	 */
 	static public function getFullMonthCalendar(y:Number, m:Number):Array 
 	{
 		var min:Number = getFirstDay (y , m) ;
@@ -331,7 +281,11 @@ class asgard.date.Calendar extends Date implements ICloneable, IEquality, IForma
 		return weekNum;
 	};
 
-	public function hashCode():Number {
+	/**
+	 * Returns the hashcode representation of this object.
+	 */
+	public function hashCode():Number 
+	{
 		return null ;
 	}
 
@@ -347,13 +301,14 @@ class asgard.date.Calendar extends Date implements ICloneable, IEquality, IForma
 		return Calendar.add(date, field, (amount*-1));
 	}
 
+	/**
+	 * Returns the Eden string representation of this object.
+	 */
 	public function toSource(indent:Number, indentor:String):String 
 	{
 		return Serializer.getSourceOf(this, [Serializer.toSource(valueOf())]) ;
 	}
 
-	// ----o Init HashCode
-	
 	static private var _initHashCode:Boolean = HashCode.initialize(Calendar.prototype) ;
 
 }

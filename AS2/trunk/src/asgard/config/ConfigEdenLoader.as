@@ -21,26 +21,6 @@
   
 */
 
-/** ConfigLoader
-
-	AUTHOR
-
-		Name : ConfigLoader
-		Package : asgard.config
-		Version : 1.0.0.0
-		Date :  2006-03-25
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTANT SUMMARY
-	
-		- static DEFAULT_FILE_NAME:String ("config")
-
-		- static DEFAULT_SUFFIX:String (".json")
-
-*/
-
 import asgard.config.Config;
 import asgard.events.ConfigLoaderEvent;
 import asgard.events.LoaderEvent;
@@ -49,40 +29,62 @@ import asgard.net.URLRequest;
 
 import vegas.logging.ILogger;
 import vegas.logging.Log;
+import vegas.util.ConstructorUtil;
 
 /**
+ * The ConfigEdenLoader class.
  * @author eKameleon
  */
 class asgard.config.ConfigEdenLoader extends EdenLoader 
 {
 	
-	// ----o Constructor
-	
+	/**
+	 * Creates a new ConfigEdentLoader instance.
+	 */
 	function ConfigEdenLoader( config ) 
 	{
 		
 		super();
-		
 		_oConfig = config || Config.getInstance() ;
-		
-		//ConfigEdenLoader.protectConfig( _oConfig ) ;
-		
-		_logger = Log.getLogger("asgard.config") ;
 		
 	}
 
-	// ----o Public Properties
-	
 	public var default_file_name:String = "config" ;
 	
 	public var default_file_suffix:String = ".eden" ;
 	
-	// public var fileName:String ; // [R/W]
-	// public var path:String ; // [R/W]
-	// public var suffix:String ; // [R/W]
-
-	// ----o Public Methods
+	public function get fileName():String 
+	{
+		return getFileName() ;	
+	}
 	
+	public function set fileName(s:String):Void 
+	{
+		setFileName(s) ;	
+	}
+	
+	static public var LOGGER:ILogger = Log.getLogger( ConstructorUtil.getPath( new ConfigEdenLoader() ) ) ;
+
+	public function get path():String 
+	{
+		return getPath() ;	
+	}
+	
+	public function set path(s:String):Void 
+	{
+		setPath(s) ;	
+	}
+
+	public function get suffix():String 
+	{
+		return getSuffix() ;	
+	}
+	
+	public function set suffix(s:String):Void 
+	{
+		setSuffix(s) ;	
+	}
+
 	public function deserializeData():Void 
 	{
 		super.deserializeData() ;
@@ -122,77 +124,50 @@ class asgard.config.ConfigEdenLoader extends EdenLoader
 	
 	public function load( fileName:String ):Void 
 	{
-		if (fileName) setFileName(fileName) ;
+		if (fileName) 
+		{
+			setFileName(fileName) ;
+		}
 		var uri:String = getPath() + getFileName() + getSuffix() ;
-		var request:URLRequest = new URLRequest("config/config.eden") ;
-		super.load( request ) ;
+		super.load(new URLRequest(uri) ) ;
+	}
+	
+  	/*override*/ public function onLoadInit(e:LoaderEvent):Void 
+  	{
+		LOGGER.info(this + ".onLoadInit() : Config has been loaded") ; 
 	}
 
-  	/*override*/ public function onLoadInit(e:LoaderEvent):Void {
-		
-		_logger.info(this + ".onLoadInit() : Config has been loaded") ; 
-		
-	}
-
-	static public function protectConfig( oConfig ):Void {
-		var logger:ILogger = Log.getLogger("asgard.config") ;
-		oConfig.__resolve = function( p:String ) : String {
-			logger.warn("Config object : '" + p + "' property is undefined" ) ;
+	static public function protectConfig( oConfig ):Void 
+	{
+		oConfig.__resolve = function( p:String ) : String 
+		{
+			ConfigEdenLoader.LOGGER.warn("Config object : '" + p + "' property is undefined" ) ;
 			return "" ;
 		} ;
 		_global.ASSetPropFlags(oConfig, "__resolve", 7, 1) ;
 	}
 
-	public function setFileName(sFileName:String):Void {
+	public function setFileName(sFileName:String):Void 
+	{
 		_fileName = sFileName ;	
 	}
 
-	public function setPath( sPath:String ):Void {
+	public function setPath( sPath:String ):Void 
+	{
 		_path = sPath || "" ;
 	}
 
-	public function setSuffix( sSuffix:String ):Void {
+	public function setSuffix( sSuffix:String ):Void 
+	{
 		_suffix = sSuffix || null ;
 	}
 
-	// ----o Virtual Properties
-
-	public function get fileName():String 
-	{
-		return getFileName() ;	
-	}
-	
-	public function set fileName(s:String):Void 
-	{
-		setFileName(s) ;	
-	}
-
-	public function get path():String 
-	{
-		return getPath() ;	
-	}
-	
-	public function set path(s:String):Void 
-	{
-		setPath(s) ;	
-	}
-
-	public function get suffix():String 
-	{
-		return getSuffix() ;	
-	}
-	
-	public function set suffix(s:String):Void 
-	{
-		setSuffix(s) ;	
-	}
-	
-	// ----o Private Properties
-	
 	private var _fileName:String = null ;
-	private var _logger:ILogger ;
+
 	private var _oConfig:Config ;
+
 	private var _path:String = null ;
+
 	private var _suffix:String = null ;
 
 }

@@ -165,14 +165,13 @@ import vegas.string.JSON;
 class asgard.net.JSONLoader extends ParserLoader 
 {
 	
-	// ----o Constructor
-	
+	/**
+	 * Creates a new JSONLoader instance.
+	 */
 	function JSONLoader() 
 	{
 		super() ;
 	}
-
-	// ----o Public Methods
 
 	/*override*/ public function getDeserializer():Function 
 	{

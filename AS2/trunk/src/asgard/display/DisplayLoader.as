@@ -122,7 +122,6 @@ class asgard.display.DisplayLoader extends AbstractLoader
 		}
 		release() ;
 		setContent( _container.createEmptyMovieClip("__mcExternal", 1) ) ;
-		notifyEvent( getEventTypeSTART() ) ;
 		getContent().loadMovie( super.getUrl() );
 		hide();
 		super.load() ;

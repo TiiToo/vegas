@@ -21,142 +21,7 @@
   
 */
 
-/** URLLoader
-
-	AUTHOR
-
-		Name : URLLoader
-		Package : asgard.system
-		Version : 1.0.0.0
-		Date :  2006-03-23
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		... Comming Soon
-
-	PROPERTY SUMMARY
-	
-		- bytesLoaded:Number [Read Only]
-		
-		- bytesTotal:Number [Read Only]
-		
-		- data [R/W]
-		
-		- dataFormat [R/W]
-		
-		- name:String [R/W]
-		
-		- running:Boolean [Read Only]
-		
-		- timeOut:Number [R/W]
-		
-		- percent:Number [Read Only]
-
-	METHOD SUMMARY
-	
-		- addEventListener(eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void
-		
-		- addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void
-		
-		- addRequestHeader( header, headerValue:String ):Void
-		
-		- checkData():Void
-		
-		- deserializeData():Void
-		
-		- dispatchEvent( event , [isQueue, [target, [context]]]):Event
-		
-		- getBytesLoaded():Number
-		
-		- getBytesTotal():Number
-		
-		- getContent()
-		
-		- getContentType():String
-		
-		- getData()
-		
-		- getDataFormat():String
-		
-		- getEventDispatcher():EventDispatcher 
-
- 		- getEventListeners(eventName:String):EventListenerCollection
-		
-		- getGlobalEventListeners():EventListenerCollection
-		
-		- getName():String
-		
-		- getParent():EventDispatcher
-		
-		- getRegisteredEventNames():Set
-	
-		- getPercent():Number
-		
-		- getRunning():Boolean
-		
-		- getTimeOut():Number
-		
-		- getUrl()
-	
- 		- hasEventListener(eventName:String):Boolean	
-		
-		- hashCode():Number
-		
-		- initEvent():Void
-		
-		- initEventDispatcher():EventDispatcher 
- 		
- 		- isLoaded():Boolean
-		
-		- load():Void
-		
-		- notifyError(sError:String, nCode:Number):Void
-		
-		- notifyEvent(eventType:String):Void
-		
-		- onLoadInit():Void
-		
-		- release():Void
-
-		- removeEventListener(eventName:String, listener, useCapture:Boolean ):EventListener
-		
-		- removeGlobalEventListener(o):EventListener
-		
-		- run():Void
-		
-		- setContent(o:LoadVars):Void
-
-		- setContentType(sType:String):Void
-
-		- setData(o):Void
-		
-		- setDataFormat(f:String):Void
-		
-		- setName(sName:String):Void
-		
-		- setParent(parent:EventDispatcher):Void	
-		
-		- setTimeOut(n:Number):Void
-		
-		- setUrl(sURL:string):Void
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → AbstractCoreEventDispatcher → AbstractLoader → URLLoader
-			 	
-	IMPLEMENTS
-	
-		EventTarget, IFormattable, IHashable, IEventDispatcher, ILoader
-	
-**/	
-
 import asgard.events.LoaderEvent;
-import asgard.events.LoaderEventType;
 import asgard.events.URLLoaderEvent;
 import asgard.net.AbstractLoader;
 import asgard.net.DataFormat;
@@ -167,14 +32,15 @@ import asgard.net.URLVariables;
 import vegas.events.Delegate;
 
 /**
+ * The URLLoader class.
  * @author eKameleon
  */
- 
 class asgard.net.URLLoader extends AbstractLoader 
 {
 	
-	// ----o Constructor
-	
+	/**
+	 * Creates a new URLLoader instance.
+	 */
 	function URLLoader() 
 	{
 		super() ;
@@ -182,60 +48,82 @@ class asgard.net.URLLoader extends AbstractLoader
 		_setInitTimer(super.onLoadInit) ;
 	}
 
-	// ----o Constants
-
 	static public var DEFAULT_CONTENT_TYPE:String = "application/x-www-form-urlencoded" ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(URLLoader, null , 7, 7) ;
-
-	// ----o Public Properties
+	/**
+	 * (read-write) Returns the data format of this loader.
+	 */
+	public function get dataFormat():String 
+	{
+		return getDataFormat() ;
+	}
 	
-	// public var dataFormat:String ; // [R/W]
-
-	// ----o Public Methods
-
-	public function addRequestHeader( header, headerValue:String ):Void {
+	/**
+	 * (read-write) Sets the data format of this loader.
+	 */
+	public function set dataFormat(s:String):Void 
+	{
+		setDataFormat(s) ;	
+	}
+	
+	/**
+	 * Adds a request header in the loader.
+	 */
+	public function addRequestHeader( header, headerValue:String ):Void 
+	{
 		getContent().addRequestHeader(header, headerValue) ;
 	}
 
-	public function checkData():Void {
+	public function checkData():Void 
+	{
 		deserializeData() ;
 		_startInitTimer() ;
 	}
 	
-	public function deserializeData():Void {
+	public function deserializeData():Void 
+	{
 		// override thid method
 	}
 
-	/*override*/ public function getContent():LoadVars {
+	/*override*/ public function getContent():LoadVars 
+	{
 		return LoadVars( super.getContent() );
 	}
 	
-	public function getContentType():String {
+	public function getContentType():String 
+	{
 		return getContent().contentType ;	
 	}
 	
-	public function getDataFormat():String {
+	public function getDataFormat():String 
+	{
 		return _sDataFormat ;
 	}
 
-	public function initEvent():Void {
+	public function initEvent():Void 
+	{
 		_e = new URLLoaderEvent(null, this) ;
 	}
 	
-	public function isLoaded():Boolean {
+	public function isLoaded():Boolean 
+	{
 		return getContent().loaded ;	
 	}	
 	
 	// FIXME : IMPORTANT ici tout vérifier et Tests !!!!
 
-	/*override*/ public function load(request:URLRequest):Void {
-		
+	/**
+	 * Load the external content in the loader.
+	 */
+	/*override*/ public function load(request:URLRequest):Void 
+	{
+
 		_oData = null ;
 		
 		var datas:Object = {} ;
 		
-		if (request) {
+		if (request) 
+		{
 		
 			System.useCodepage = (request.getUseCodePage() || false) ;
 			
@@ -250,8 +138,6 @@ class asgard.net.URLLoader extends AbstractLoader
 			_sMethod = request.getMethod() ;
 			
 			_aHeaders = request.getRequestHeaders() ;
-			
-			
 			
 		}
 		
@@ -274,68 +160,60 @@ class asgard.net.URLLoader extends AbstractLoader
 		}
 		
 		var receive:LoadVars = new LoadVars() ;
-		//receive.onHTTPStatus = Delegate.create(this, _onHTTPStatus, receive) ;
+		// receive.onHTTPStatus = Delegate.create(this, _onHTTPStatus, receive) ;
 		receive.onData = Delegate.create(this, _onData) ;
 
 		setContent( receive ) ;
 				
-		notifyEvent(LoaderEventType.START) ;
-
 		sender.sendAndLoad(this.getUrl(), receive, _sMethod ) ;
 		
   		super.load() ;
   		
   	}
-  	
-
     
-  	/*override*/ public function onLoadInit(e:LoaderEvent):Void {
+  	/*override*/ public function onLoadInit(e:LoaderEvent):Void 
+  	{
 		// overwriting for delaying 'onLoadInit' broadcast
 	}
   
-  	public function release():Void {
+  	public function release():Void 
+  	{
   		getContent().onData = null ;
   		getContent().onLoad = null ;
   		super.release() ;
   			
   	}
   
-	public function setContent(o:LoadVars):Void {
+	public function setContent(o:LoadVars):Void 
+	{
 		super.setContent( o );
 	}
 	
-	public function setContentType(sType:String):Void {
+	public function setContentType(sType:String):Void 
+	{
 		getContent().contentType = sType || DEFAULT_CONTENT_TYPE ;
 	}
 	
-	public function setDataFormat(s:String):Void {
+	public function setDataFormat(s:String):Void 
+	{
 		s = DataFormat.validate(s) ? s : DataFormat.TEXT ;
 		_sDataFormat = s ;
 	}
 
-	// ----o Virtual Properties
-
-	public function get dataFormat():String {
-		return getDataFormat() ;
-	}
-	
-	public function set dataFormat(s:String):Void {
-		setDataFormat(s) ;	
-	}
-		
-	// ----o Private Properties
-	
 	private var _aHeaders:Array ;
+
 	private var _sContentType:String = URLRequest.DEFAULT_CONTENT_TYPE ;
+
 	private var _sDataFormat:String ;
+
 	private var _sMethod:String = "POST" ;
+
 	private var _oData = null ;
-	
-	// ----o Private Methods
 	
 	// FIXME : REFACTORING COMPLET DE CETTE CLASSE !!! 
 	
-	private function _onData( source:String ) {
+	private function _onData( source:String )
+	{
 
 		if (source == undefined) 
 		{

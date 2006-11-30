@@ -21,28 +21,6 @@
   
 */
 
-/** LocalizationLoader
-
-	AUTHOR
-
-		Name : LocalizationLoader
-		Package : asgard.system
-		Version : 1.0.0.0
-		Date :  2006-02-19
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	INHERIT
-	
-		CoreObject → AbstractCoreEventDispatcher → AbstractLoader → URLLoader → JSONLoader
-			 	
-	IMPLEMENTS
-	
-		EventTarget, IFormattable, IHashable, IEventDispatcher, ILoader
-	
-*/	
-
 import asgard.events.LocalizationLoaderEvent;
 import asgard.net.JSONLoader;
 import asgard.net.URLRequest;
@@ -55,30 +33,52 @@ import vegas.errors.IllegalArgumentError;
 
 /**
  * @author eKameleon
- * @date 2006-03-24
  */
 class asgard.system.LocalizationLoader extends JSONLoader implements ILocalizationLoader
 {
 	
-	// ----o Constructor
-	
+	/**
+	 * Creates a new LocalizationLoader instance.
+	 */
 	function LocalizationLoader() 
 	{
 		super() ;
 	}
-	
-	// ----o Public Properties
-	
-	//public var path:String ; // [R/W]
-	//public var prefix:String ; // [R/W]
-	//public var suffix:String ; // [R/W]
-	
-	// ----o Constants
-	
+
 	static public var DEFAULT_PREFIX:String = "localize_" ;
+
 	static public var DEFAULT_SUFFIX:String = ".json" ;
+
+
+	public function get path():String 
+	{
+		return getPath() ;	
+	}
 	
-	// ----o Public Methods
+	public function set path(s:String):Void 
+	{
+		setPath(s) ;	
+	}
+
+	public function get prefix():String 
+	{
+		return getPrefix() ;	
+	}
+	
+	public function set prefix(s:String):Void 
+	{
+		setPrefix(s) ;	
+	}
+
+	public function get suffix():String 
+	{
+		return getSuffix() ;	
+	}
+	
+	public function set suffix(s:String):Void 
+	{
+		setSuffix(s) ;	
+	}
 
 	public function getDefault():Lang 
 	{
@@ -144,44 +144,13 @@ class asgard.system.LocalizationLoader extends JSONLoader implements ILocalizati
 	{
 		_suffix = sSuffix || null ;
 	}
-
-	// ----o Virtual Properties
-
-	public function get path():String 
-	{
-		return getPath() ;	
-	}
-	
-	public function set path(s:String):Void 
-	{
-		setPath(s) ;	
-	}
-
-	public function get prefix():String 
-	{
-		return getPrefix() ;	
-	}
-	
-	public function set prefix(s:String):Void 
-	{
-		setPrefix(s) ;	
-	}
-
-	public function get suffix():String 
-	{
-		return getSuffix() ;	
-	}
-	
-	public function set suffix(s:String):Void 
-	{
-		setSuffix(s) ;	
-	}
-
-	// ----o Private Properties
 	
 	private var _default:String = null ;
+
 	private var _path:String = null ;
+
 	private var _prefix:String = null ;
+
 	private var _suffix:String = null ;
 
 }
