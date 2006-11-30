@@ -53,8 +53,8 @@ package vegas.logging.targets
 			super();
 			
              _logger = Log.getLogger( ClassUtil.getPath(this) ) ;
-            
             _lc = new LocalConnection() ;
+            _lc.allowDomain("*") ;
     	    _lc.addEventListener ( AsyncErrorEvent.ASYNC_ERROR, _onAsyncError ) ;
     	    _lc.addEventListener ( StatusEvent.STATUS, _onStatus ) ;
     		_lc.addEventListener ( SecurityErrorEvent.SECURITY_ERROR , _onSecurityError ) ;    			
@@ -127,8 +127,7 @@ package vegas.logging.targets
 		 */
         override protected function formatMessage(message:*, level:String, category:String, date:Date):String 
         {
-	    	
-	    	message = (typeof message == "xml") ? (message as XML).toXMLString() : message.toString();
+	    	//message = (typeof message == "xml") ? (message as XML).toXMLString() : message.toString();
 	    	return super.formatMessage(message, level, category, date) ;
     	}
  

@@ -202,7 +202,7 @@ class vegas.util.ArrayUtil
     
 	/**
 	 * Splices an array (removes an element) and returns either the entire array or the removed element.
-	 * <p>{code
+	 * <p>{@code
 	 * import vegas.util.ArrayUtil ;
 	 * var ar = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 	 * trace("+ " + ar);
@@ -243,7 +243,7 @@ class vegas.util.ArrayUtil
 
 	/**
 	 * Shuffles an array.
-	 * <p>{code
+	 * <p>{@code
 	 * import vegas.util.ArrayUtil ;
 	 * var ar = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 	 * trace("+ " + ar);

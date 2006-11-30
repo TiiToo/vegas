@@ -1,5 +1,298 @@
-14:56:53 [11:26:50.860] [Error] [1] vegas.test - Here an error : 2.25 and true
-14:56:54 [11:26:50.860] [Debug] [2] vegas.test - Voici un message...
-14:56:54 [11:26:50.860] [Information] [3] vegas.test - Voici une petite information...
-14:56:54 [11:26:50.860] [Fatal] [4] vegas.test - Grosse erreur fatale
-14:56:54 [11:26:50.860] [Warning] [5] vegas.test - Attention !!
+09:54:00 [21:18:22.564] [Debug] > [Application] initialize : _level0.application
+09:54:00 [21:18:22.721] [Debug] > [RunApplication] handleEvent.
+09:54:00 [21:18:22.721] [Debug] > [LaunchConfig] handleEvent.
+09:54:00 [21:18:22.721] [Debug] > [LaunchConfig] onLoadStarted
+09:54:00 [21:18:22.721] [Debug] > [LaunchConfig] onLoadStarted
+09:54:00 [21:18:22.846] [Debug] > [ChangeLoader] handleEvent : Configuration : 100%,100
+09:54:00 [21:18:22.846] [Debug] > [LaunchConfig] onLoadProgress, 100%
+09:54:00 [21:18:22.861] [Debug] > [LaunchConfig] onLoadComplete
+09:54:00 [21:18:22.971] [Debug] > [LaunchConfig] : [ConfigLoaderEvent onLoadInit, AT TARGET, bubbles]
+09:54:00 [21:18:22.971] [Debug] > [ApplicationContextMenu] setup.
+09:54:00 [21:18:22.971] [Information] > [ApplicationContextMenu] label:ZOOKEEPER | DESIGN STUDIO,url : http://www.zookeeper.fr
+09:54:00 [21:18:22.971] [Debug] > [ApplicationPolicy] setup.
+09:54:00 [21:18:22.971] [Information] > [ApplicationPolicy] > System.security.allowDomain("http://localhost/")
+09:54:00 [21:18:22.971] [Debug] > [BackgroundDisplay] setup.
+09:54:00 [21:18:22.986] [Debug] > [HeaderDisplay] setup.
+09:54:00 [21:18:22.986] [Debug] > [FooterDisplay] setup.
+09:54:00 [21:18:22.986] [Debug] > [CompanionDisplay] setup.
+09:54:00 [21:18:22.986] [Debug] > [LoaderDisplay] setup.
+09:54:00 [21:18:23.002] [Debug] > [ProtectScreenDisplay] setup.
+09:54:00 [21:18:23.002] [Debug] > [LaunchLocalization] handleEvent : fr
+09:54:00 [21:18:23.096] [Debug] > [ChangeLoader] handleEvent : Localization : 100%,100
+09:54:00 [21:18:23.111] [Debug] > [LaunchLocalization] onLoadProgress, 100%
+09:54:00 [21:18:23.111] [Debug] > [LaunchLocalization] onLoadComplete
+09:54:00 [21:18:23.236] [Debug] > [LaunchLocalization] change.
+09:54:00 [21:18:23.236] [Debug] > [HideLoader] handleEvent.
+09:54:00 [21:18:23.236] [Debug] > [UnProtectScreen] handleEvent.
+09:54:00 [21:18:23.236] [Information] > [LaunchLocalization] + change :: fr
+09:54:00 [21:18:23.236] [Debug] > [InitApplication] handleEvent.
+09:54:00 [21:18:23.252] [Debug] > [PutLayout] handleEvent : default -> [LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+09:54:00 [21:18:23.252] [Debug] > [ChangeLayout] handleEvent : default
+09:54:00 [21:18:23.252] [Information] > [ChangeLayout] -> people : [LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+09:54:01 [21:18:23.252] [Debug] > [ShowScreen] handleEvent.
+09:54:01 [21:18:23.252] [Information] > [InitApplication] 'event' and 'user' are undefined, use contextMenu to launch authentification.
+09:54:01 [21:18:23.268] [Information] > [InitApplication] add item in the contextMenu : Alcaraz :: MOD, user:1, event:116
+09:54:01 [21:18:23.268] [Information] > [InitApplication] add item in the contextMenu : Ducuing :: PART, user:9001, event:116
+09:54:01 [21:18:23.268] [Information] > [InitApplication] add item in the contextMenu : Mousseron :: PART, user:9002, event:116
+09:54:01 [21:18:23.268] [Information] > [InitApplication] add item in the contextMenu : Moreau :: PART, user:9003, event:116
+09:54:01 [21:18:23.268] [Information] > [InitApplication] add item in the contextMenu : Meish :: PART, user:9004, event:116
+09:54:04 [21:18:27.064] [Debug] > [LaunchAuthentification] handleEvent, event:116, id:9001
+09:54:04 [21:18:27.064] [Debug] > [LaunchAuthentification] : onStarted
+09:54:04 [21:18:27.064] [Debug] > [ChangeLoader] handleEvent : Authentification in progress,100
+09:54:04 [21:18:27.064] [Debug] > [ShowLoader] handleEvent.
+09:54:04 [21:18:27.064] [Debug] > [ProtectScreen] handleEvent.
+09:54:04 [21:18:27.377] [Debug] > [LaunchAuthentification] result : [AuthentificationVO]
+09:54:04 [21:18:27.377] [Debug] > [HideLoader] handleEvent.
+09:54:04 [21:18:27.377] [Debug] > [UnProtectScreen] handleEvent.
+09:54:04 [21:18:27.377] [Debug] > [LaunchAuthentification] run success
+09:54:04 [21:18:27.377] [Debug] > [ChangeEvent] handleEvent : [EventVO id:116, name:salle1]
+09:54:05 [21:18:27.393] [Debug] > [ChangeRoom] handleEvent : [RoomVO title:Salle de Test]
+09:54:05 [21:18:27.393] [Debug] > [AddUser] handleEvent : [UserVO id:1, name:Alcaraz, firstname:Marc]
+09:54:05 [21:18:27.393] [Debug] > [AddUser] handleEvent : [UserVO id:9001, name:Ducuing, firstname:Olivier]
+09:54:05 [21:18:27.408] [Debug] > [AddUser] handleEvent : [UserVO id:9002, name:Mousseron, firstname:Cedric]
+09:54:05 [21:18:27.439] [Debug] > [AddUser] handleEvent : [UserVO id:9004, name:Meish, firstname:Adeline]
+09:54:05 [21:18:27.439] [Debug] > [AddUser] handleEvent : [UserVO id:9003, name:Moreau, firstname:Fred]
+09:54:05 [21:18:27.455] [Information] > [LaunchAuthentification] UserModel size : 5
+09:54:05 [21:18:27.455] [Debug] > [ChangeUser] handleEvent : [UserVO id:9001, name:Ducuing, firstname:Olivier]
+09:54:05 [21:18:27.455] [Debug] > [RoomConnect] handleEvent.
+09:54:05 [21:18:27.455] [Debug] > [ChangeLoader] handleEvent : Server Connection start...,100
+09:54:05 [21:18:27.471] [Information] > [RoomConnect] myUser:[UserVO id:9001, name:Ducuing, firstname:Olivier], myRoom:[RoomVO title:Salle de Test]
+09:54:05 [21:18:27.471] [Debug] > [RoomStarted].handleEvent()
+09:54:05 [21:18:27.471] [Information] > [LaunchAuthentification] : onFinished
+09:54:05 [21:18:27.705] [Debug] > [RoomStatus].handleEvent()
+09:54:05 [21:18:27.705] [Information]     + [RoomStatus] :: onRoomStatus : success
+09:54:05 [21:18:27.705] [Debug] > [ChangeLoader] handleEvent : Server Connection success,100
+09:54:05 [21:18:27.721] [Debug] > [RoomInit].handleEvent()
+09:54:05 [21:18:27.721] [Debug] > [HideLoader] handleEvent.
+09:54:05 [21:18:27.721] [Debug] > [UnProtectScreen] handleEvent.
+09:54:05 [21:18:27.721] [Debug] > [RoomFinished].handleEvent()
+09:54:05 [21:18:27.768] [Debug] > [RoomConnection] connectUser : [UserVO id:9001, name:Ducuing, firstname:Olivier], id : 9001
+09:54:05 [21:18:27.768] [Debug] > [ConnectUser] handleEvent : [UserVO id:9001, name:Ducuing, firstname:Olivier]
+11:12:03 [22:36:25.486] [Debug] > [Application] initialize : _level0.application
+11:12:03 [22:36:25.518] [Debug] > [AlphaScreen] clear screen.
+11:12:03 [22:36:25.627] [Debug] > [ListScreen] clear screen.
+11:12:03 [22:36:25.674] [Debug] > [SearchMapScreen] clear screen.
+11:12:03 [22:36:25.752] [Debug] > [HideRadar] handleEvent.
+11:12:03 [22:36:25.814] [Debug] > [ClearPicture] handleEvent.
+11:12:03 [22:36:25.971] [Debug] > [UnProtectScreen] handleEvent.
+11:12:03 [22:36:26.111] [Debug] > [ProtectScreen] handleEvent.
+11:12:03 [22:36:26.236] [Information]   > name : Vesubie
+11:12:03 [22:36:26.236] [Information]   > namespace : http://www.okdak.com/2006/vesubie
+11:12:03 [22:36:26.236] [Information]   > version : 1.0.0.0
+11:12:03 [22:36:26.236] [Information]   > copyright : OKDAK
+11:12:03 [22:36:26.236] [Information]   > default_call : 99913
+11:12:04 [22:36:26.236] [Information]   > default_lang : fr
+11:12:04 [22:36:26.236] [Information]   > filePath : library/
+11:12:04 [22:36:26.236] [Information]   > mapPath : map/
+11:12:04 [22:36:26.236] [Information]   > gatewayUrl : http://localhost/work/okbak/php/gateway.php
+11:12:04 [22:36:26.236] [Information]   > socketID : IdentificationOKDAK {0} 
+11:12:04 [22:36:26.236] [Information]   > socketUrl : 192.168.50.67
+11:12:04 [22:36:26.236] [Information]   > socketPort : 13000
+11:12:04 [22:36:26.236] [Information]   > layoutWidth : 1280
+11:12:04 [22:36:26.236] [Information]   > layoutHeight : 1024
+11:12:04 [22:36:26.236] [Information]   > isSocket : false
+11:12:04 [22:36:26.236] [Information]   > context_menu : [object Object]
+11:12:04 [22:36:26.252] [Information]       + 0 : [object Object]
+11:12:04 [22:36:26.252] [Information]   > security : http://localhost/,192.168.50.67,195.115.87.251
+11:12:04 [22:36:26.252] [Information]       + 2 : 195.115.87.251
+11:12:04 [22:36:26.252] [Information]       + 1 : 192.168.50.67
+11:12:04 [22:36:26.252] [Information]       + 0 : http://localhost/
+11:12:04 [22:36:26.252] [Information]   > background : [object Object]
+11:12:04 [22:36:26.252] [Information]       + rotation : 90
+11:12:04 [22:36:26.252] [Information]       + ratios : 0,100
+11:12:04 [22:36:26.252] [Information]       + colors : 104645,104645
+11:12:04 [22:36:26.252] [Information]       + alphas : 100,100
+11:12:04 [22:36:26.252] [Information]   > banner : [object Object]
+11:12:04 [22:36:26.252] [Information]       + rotation : 0
+11:12:04 [22:36:26.252] [Information]       + ratios : 0,125,255
+11:12:04 [22:36:26.252] [Information]       + colors : 0,0,0
+11:12:04 [22:36:26.252] [Information]       + alphas : 50,25,0
+11:12:04 [22:36:26.252] [Information]   > loader : [object Object]
+11:12:04 [22:36:26.252] [Information]       + useDropShadow : true
+11:12:04 [22:36:26.268] [Information]       + themeColor : 16777215
+11:12:04 [22:36:26.268] [Information]       + themeAlpha : 95
+11:12:04 [22:36:26.268] [Information]       + shadowStrength : 0.35
+11:12:04 [22:36:26.268] [Information]       + shadowInner : false
+11:12:04 [22:36:26.268] [Information]       + shadowDistance : 2
+11:12:04 [22:36:26.268] [Information]       + shadowColor : 0
+11:12:04 [22:36:26.268] [Information]       + shadowBlurY : 15
+11:12:04 [22:36:26.268] [Information]       + shadowBlurX : 15
+11:12:04 [22:36:26.268] [Information]       + shadowAngle : 45
+11:12:04 [22:36:26.268] [Information]       + shadowAlpha : 30
+11:12:04 [22:36:26.268] [Information]       + color : 25261
+11:12:04 [22:36:26.268] [Information]       + barColor : 14286872
+11:12:04 [22:36:26.268] [Information]   > protect_screen : [object Object]
+11:12:04 [22:36:26.268] [Information]       + color : 0
+11:12:04 [22:36:26.268] [Information]       + alpha : 0
+11:12:04 [22:36:26.268] [Information]   > radar : [object Object]
+11:12:04 [22:36:26.268] [Information]       + useSeconds : true
+11:12:04 [22:36:26.268] [Information]       + easingType : back
+11:12:05 [22:36:26.283] [Information]       + duration : 1
+11:12:05 [22:36:26.283] [Information]       + color : 16706236
+11:12:05 [22:36:26.283] [Information]   > result : [object Object]
+11:12:05 [22:36:26.283] [Information]       + pictureY : 365
+11:12:05 [22:36:26.283] [Information]       + pictureX : 945
+11:12:05 [22:36:26.283] [Information]       + delay : 6000
+11:12:05 [22:36:26.283] [Information]   > roadmap : [object Object]
+11:12:05 [22:36:26.283] [Information]       + videoY : 365
+11:12:05 [22:36:26.283] [Information]       + videoX : 985
+11:12:05 [22:36:26.283] [Information]       + videoUseSeconds : true
+11:12:05 [22:36:26.283] [Information]       + videoDuration : 1.5
+11:12:05 [22:36:26.283] [Information]   > video : [object Object]
+11:12:05 [22:36:26.283] [Information]       + useDropShadow : true
+11:12:05 [22:36:26.283] [Information]       + themeColor : 16777215
+11:12:05 [22:36:26.283] [Information]       + themeAlpha : 100
+11:12:05 [22:36:26.283] [Information]       + shadowStrength : 0.35
+11:12:05 [22:36:26.299] [Information]       + shadowInner : false
+11:12:05 [22:36:26.299] [Information]       + shadowDistance : 2
+11:12:05 [22:36:26.299] [Information]       + shadowColor : 0
+11:12:05 [22:36:26.299] [Information]       + shadowBlurY : 15
+11:12:05 [22:36:26.299] [Information]       + shadowBlurX : 15
+11:12:05 [22:36:26.299] [Information]       + shadowAngle : 45
+11:12:05 [22:36:26.299] [Information]       + shadowAlpha : 30
+11:12:05 [22:36:26.299] [Debug] > [ApplicationContextMenu] setup.
+11:12:05 [22:36:26.299] [Information] > [ApplicationContextMenu] label:eKameleon,url : http://www.ekameleon.net/blog/
+11:12:05 [22:36:26.314] [Debug] > [ApplicationPolicy] setup.
+11:12:05 [22:36:26.314] [Information]       > [ApplicationPolicy] : System.security.allowDomain("195.115.87.251")
+11:12:05 [22:36:26.346] [Information]       > [ApplicationPolicy] : System.security.allowDomain("192.168.50.67")
+11:12:05 [22:36:26.346] [Information]       > [ApplicationPolicy] : System.security.allowDomain("http://localhost/")
+11:12:05 [22:36:26.361] [Debug] > [LoaderDisplay] setup.
+11:12:05 [22:36:26.377] [Debug] > [ProtectScreenDisplay] setup.
+11:12:05 [22:36:26.377] [Debug] > [LaunchLocalization] handleEvent, current lang : fr
+11:12:06 [22:36:26.471] [Information] > [Localization] :: [EdenLocalizationLoader] > onLoadProgress : 100%
+11:12:06 [22:36:26.471] [Debug] > [Localization] :: [EdenLocalizationLoader] > onLoadComplete
+11:12:06 [22:36:26.549] [Information] > [HomeScreen] : home -> changeLocalization : home / null
+11:12:06 [22:36:26.549] [Information] > [AlphaScreen] : alpha -> changeLocalization : alpha / [object Object]
+11:12:06 [22:36:26.564] [Information] > [LangScreen] : lang -> changeLocalization : lang / fr
+11:12:06 [22:36:26.564] [Information] > [ListScreen] : list -> changeLocalization : list / [object Object]
+11:12:06 [22:36:26.564] [Information] > [SearchMapScreen] : searchmap -> changeLocalization : searchmap / [object Object]
+11:12:06 [22:36:26.580] [Information] > [ResultScreen] : result -> changeLocalization : result / [object Object]
+11:12:06 [22:36:26.596] [Information] > [RoadMapScreen] : roadmap -> changeLocalization : roadmap / [object Object]
+11:12:06 [22:36:26.611] [Debug] > [LaunchLocalization].change()
+11:12:06 [22:36:26.611] [Information] ++ change :: fr
+11:12:06 [22:36:26.627] [Information] ++ locale : [Locale]
+11:12:06 [22:36:26.627] [Information]    + lang : fr
+11:12:06 [22:36:26.643] [Information]    + namespace : http://www.okdak.com/2006/vesubie
+11:12:06 [22:36:26.643] [Information]    + version : 1.0.0.0
+11:12:06 [22:36:26.643] [Information]    + alpha : [object Object]
+11:12:06 [22:36:26.643] [Information]       + prevLabel : Retour
+11:12:06 [22:36:26.643] [Information]       + nextLabel : Suivant
+11:12:06 [22:36:26.643] [Information]       + homeLabel : Accueil
+11:12:06 [22:36:26.658] [Information]    + list : [object Object]
+11:12:06 [22:36:26.658] [Information]       + prevLabel : Retour
+11:12:06 [22:36:26.658] [Information]       + nextLabel : Suivant
+11:12:06 [22:36:26.658] [Information]       + homeLabel : Accueil
+11:12:06 [22:36:26.689] [Information]    + result : [object Object]
+11:12:06 [22:36:26.689] [Information]       + smsLabel : Transfert des informationsvers votre mobile
+11:12:06 [22:36:26.689] [Information]       + roadmapLabel : Voir l'itinÃ©raire
+11:12:06 [22:36:26.705] [Information]       + prevLabel : Retour
+11:12:06 [22:36:26.705] [Information]       + homeLabel : Accueil
+11:12:06 [22:36:26.705] [Information]    + roadmap : [object Object]
+11:12:06 [22:36:26.705] [Information]       + smsLabel : Transfert des informations vers votre mobile
+11:12:06 [22:36:26.705] [Information]       + prevLabel : Retour
+11:12:06 [22:36:26.721] [Information]       + homeLabel : Accueil
+11:12:06 [22:36:26.721] [Information]    + searchmap : [object Object]
+11:12:06 [22:36:26.721] [Information]       + prevLabel : Retour
+11:12:06 [22:36:26.721] [Information]       + nextLabel : Suivant
+11:12:06 [22:36:26.721] [Information]       + homeLabel : Accueil
+11:12:06 [22:36:26.736] [Debug] > [InitApplication] handleEvent.
+11:12:06 [22:36:26.736] [Information] > [InitApplication] idCall : 99913
+11:12:06 [22:36:26.752] [Debug] > [GetBorne] handleEvent, call id : 99913
+11:12:07 [22:36:26.752] [Information] > [GetBorne] : onStarted
+11:12:07 [22:36:27.861] [Debug] > [GetBorne] result : [BorneVO : id:140, title:VÃ©subie, startPage:1, call:99913, currentSituation:1]
+11:12:07 [22:36:27.861] [Information] > [GetBorne] run : [BorneVO : id:140, title:VÃ©subie, startPage:1, call:99913, currentSituation:1]
+11:12:07 [22:36:27.877] [Information] + [BorneModel] setCurrentBorne : [BorneVO : id:140, title:VÃ©subie, startPage:1, call:99913, currentSituation:1]
+11:12:07 [22:36:27.877] [Debug] > [ChangeCurrentBorne] handleEvent, current borne : [BorneVO : id:140, title:VÃ©subie, startPage:1, call:99913, currentSituation:1]
+11:12:07 [22:36:27.893] [Debug] > [AddLang] handleEvent, lang : [LangVO id:fr, num:null, label:FranÃ§ais]
+11:12:07 [22:36:27.893] [Debug] > [LangScreen] addLang([LangVO id:fr, num:null, label:FranÃ§ais])
+11:12:07 [22:36:27.908] [Debug] > [AddLang] handleEvent, lang : [LangVO id:en, num:null, label:Anglais]
+11:12:07 [22:36:27.908] [Debug] > [LangScreen] addLang([LangVO id:en, num:null, label:Anglais])
+11:12:07 [22:36:27.924] [Debug] > [AddLang] handleEvent, lang : [LangVO id:it, num:null, label:Italien]
+11:12:07 [22:36:27.924] [Debug] > [LangScreen] addLang([LangVO id:it, num:null, label:Italien])
+11:12:07 [22:36:27.939] [Information] + [SituationModel] setCurrent : 7
+11:12:07 [22:36:28.002] [Debug] > [ChangeCurrentSituation] handleEvent, current situation: {1:[SituationVO id:1, label:utelle],2:[SituationVO id:2, label:lantosque],3:[SituationVO id:3, label:la bollene],4:[SituationVO id:4, label:roquebilliere],5:[SituationVO id:5, label:belvedere],6:[SituationVO id:6, label:st martin vesubie],7:[SituationVO id:7, label:venanson]}
+11:12:07 [22:36:28.002] [Information] + [LibraryModel] setCurrentLibrary : [LibraryVO, size : 25]
+11:12:07 [22:36:28.018] [Debug] > [ChangeCurrentLibrary] handleEvent, current library : [LibraryVO, size : 25]
+11:12:07 [22:36:28.018] [Information] > [ChangeCurrentLibrary] get asset '1' : [AssetVO:1 - global background]
+11:12:07 [22:36:28.018] [Debug] > [ShowBackground] handleEvent.
+11:12:07 [22:36:28.033] [Debug] > [InitAssetsBackground] handleEvent.
+11:12:07 [22:36:28.049] [Information] > [GetBorne] : onFinished
+11:12:07 [22:36:30.002] [Debug] > [InitAssetsMap] handleEvent.
+11:12:11 [22:36:33.518] [Debug] > [UnProtectScreen] handleEvent.
+11:12:11 [22:36:33.533] [Debug] > [RunApplication] handleEvent.
+11:12:11 [22:36:33.533] [Debug] > [GoLangScreen].handleEvent()
+11:12:11 [22:36:33.533] [Debug] > [ShowLangAssetBackground].handleEvent()
+11:12:11 [22:36:33.549] [Debug] > [SetCurrentScreen] handleEvent.
+11:12:12 [22:36:35.205] [Debug] > [ChangeCurrentLang] handleEvent, current lang : [LangVO id:fr, num:null, label:FranÃ§ais]
+11:12:12 [22:36:35.221] [Debug] > [ClearScreenModel] handleEvent.
+11:12:12 [22:36:35.221] [Information] > [HeaderDisplay] clear.
+11:12:12 [22:36:35.221] [Debug] > [GetCategory] handleEvent.
+11:12:12 [22:36:35.236] [Debug] > [ClearCategory]handleEvent.
+11:12:12 [22:36:35.236] [Information] > [GetCategory] : onStarted
+11:12:13 [22:36:35.518] [Debug] > [GetCategory] result : [CategoryVO id:1, num:1, link:0, label:EvÃ©nements],[CategoryVO id:2, num:2, link:5, label:Le Pays],[CategoryVO id:3, num:3, link:33, label:Sites Touristiques],[CategoryVO id:4, num:4, link:2, label:ActivitÃ©s],[CategoryVO id:5, num:5, link:27, label:HÃ©bergements et Restauration],[CategoryVO id:6, num:6, link:0, label:Commerces et Services],[CategoryVO id:7, num:7, link:0, label:CrÃ©dits]
+11:12:13 [22:36:35.518] [Information] > [GetCategory] result length : 7
+11:12:13 [22:36:35.533] [Debug] > [ChangeColorsApplication] handleEvent.
+11:12:13 [22:36:35.533] [Debug] > [GetCategory] add new category : [CategoryVO id:1, num:1, link:0, label:EvÃ©nements]
+11:12:13 [22:36:35.533] [Debug] > [AddCategory] handleEvent.
+11:12:13 [22:36:35.533] [Debug] > [HomeScreen] addCategory([CategoryVO id:1, num:1, link:0, label:EvÃ©nements])
+11:12:13 [22:36:35.549] [Debug] > [GetCategory] add new category : [CategoryVO id:2, num:2, link:5, label:Le Pays]
+11:12:13 [22:36:35.564] [Debug] > [AddCategory] handleEvent.
+11:12:13 [22:36:35.564] [Debug] > [HomeScreen] addCategory([CategoryVO id:2, num:2, link:5, label:Le Pays])
+11:12:13 [22:36:35.580] [Debug] > [GetCategory] add new category : [CategoryVO id:3, num:3, link:33, label:Sites Touristiques]
+11:12:13 [22:36:35.580] [Debug] > [AddCategory] handleEvent.
+11:12:13 [22:36:35.580] [Debug] > [HomeScreen] addCategory([CategoryVO id:3, num:3, link:33, label:Sites Touristiques])
+11:12:13 [22:36:35.596] [Debug] > [GetCategory] add new category : [CategoryVO id:4, num:4, link:2, label:ActivitÃ©s]
+11:12:13 [22:36:35.611] [Debug] > [AddCategory] handleEvent.
+11:12:13 [22:36:35.611] [Debug] > [HomeScreen] addCategory([CategoryVO id:4, num:4, link:2, label:ActivitÃ©s])
+11:12:13 [22:36:35.658] [Debug] > [GetCategory] add new category : [CategoryVO id:5, num:5, link:27, label:HÃ©bergements et Restauration]
+11:12:13 [22:36:35.658] [Debug] > [AddCategory] handleEvent.
+11:12:13 [22:36:35.674] [Debug] > [HomeScreen] addCategory([CategoryVO id:5, num:5, link:27, label:HÃ©bergements et Restauration])
+11:12:13 [22:36:35.689] [Debug] > [GetCategory] add new category : [CategoryVO id:6, num:6, link:0, label:Commerces et Services]
+11:12:13 [22:36:35.689] [Debug] > [AddCategory] handleEvent.
+11:12:13 [22:36:35.689] [Debug] > [HomeScreen] addCategory([CategoryVO id:6, num:6, link:0, label:Commerces et Services])
+11:12:13 [22:36:35.705] [Debug] > [GetCategory] add new category : [CategoryVO id:7, num:7, link:0, label:CrÃ©dits]
+11:12:13 [22:36:35.705] [Debug] > [AddCategory] handleEvent.
+11:12:13 [22:36:35.705] [Debug] > [HomeScreen] addCategory([CategoryVO id:7, num:7, link:0, label:CrÃ©dits])
+11:12:13 [22:36:35.736] [Debug] > [GoHome].handleEvent()
+11:12:13 [22:36:35.736] [Debug] > [ShowDefaultAssetBackground].handleEvent()
+11:12:13 [22:36:35.736] [Debug] > [SetCurrentScreen] handleEvent.
+11:12:13 [22:36:35.752] [Debug] > [GetCategory] model size : 7
+11:12:13 [22:36:35.752] [Information] > [GetCategory] : onFinished
+11:43:16 [23:07:38.783] [Debug] > [Application] initialize : _level0.application
+11:43:16 [23:07:38.924] [Debug] > [RunApplication] handleEvent.
+11:43:16 [23:07:38.939] [Debug] > [LaunchConfig] handleEvent.
+11:43:16 [23:07:38.939] [Debug] > [LaunchConfig] onLoadStarted
+11:43:16 [23:07:38.939] [Debug] > [LaunchConfig] onLoadStarted
+11:43:16 [23:07:39.064] [Debug] > [ChangeLoader] handleEvent : Configuration : 100%,100
+11:43:16 [23:07:39.064] [Debug] > [LaunchConfig] onLoadProgress, 100%
+11:43:16 [23:07:39.064] [Debug] > [LaunchConfig] onLoadComplete
+11:43:16 [23:07:39.189] [Debug] > [LaunchConfig] : [ConfigLoaderEvent onLoadInit, AT TARGET, bubbles]
+11:43:16 [23:07:39.189] [Debug] > [ApplicationContextMenu] setup.
+11:43:16 [23:07:39.189] [Information] > [ApplicationContextMenu] label:ZOOKEEPER | DESIGN STUDIO,url : http://www.zookeeper.fr
+11:43:16 [23:07:39.205] [Debug] > [ApplicationPolicy] setup.
+11:43:16 [23:07:39.205] [Information] > [ApplicationPolicy] > System.security.allowDomain("http://localhost/")
+11:43:16 [23:07:39.205] [Debug] > [BackgroundDisplay] setup.
+11:43:16 [23:07:39.205] [Debug] > [HeaderDisplay] setup.
+11:43:16 [23:07:39.205] [Debug] > [FooterDisplay] setup.
+11:43:16 [23:07:39.221] [Debug] > [CompanionDisplay] setup.
+11:43:16 [23:07:39.221] [Debug] > [LoaderDisplay] setup.
+11:43:16 [23:07:39.236] [Debug] > [ProtectScreenDisplay] setup.
+11:43:16 [23:07:39.236] [Debug] > [LaunchLocalization] handleEvent : fr
+11:43:17 [23:07:39.346] [Debug] > [ChangeLoader] handleEvent : Localization : 100%,100
+11:43:17 [23:07:39.346] [Debug] > [LaunchLocalization] onLoadProgress, 100%
+11:43:17 [23:07:39.361] [Debug] > [LaunchLocalization] onLoadComplete
+11:43:17 [23:07:39.486] [Debug] > [LaunchLocalization] change.
+11:43:17 [23:07:39.486] [Debug] > [HideLoader] handleEvent.
+11:43:17 [23:07:39.486] [Debug] > [UnProtectScreen] handleEvent.
+11:43:17 [23:07:39.486] [Information] > [LaunchLocalization] + change :: fr
+11:43:17 [23:07:39.502] [Debug] > [InitApplication] handleEvent.
+11:43:17 [23:07:39.502] [Debug] > [PutLayout] handleEvent, id:default, layout:[LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+11:43:17 [23:07:39.518] [Debug] > [ChangeLayout] handleEvent : default
+11:43:17 [23:07:39.518] [Information] > [ChangeLayout] -> people : [LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+11:43:17 [23:07:39.518] [Debug] > [ShowScreen] handleEvent.
+11:43:17 [23:07:39.518] [Information] > [InitApplication] 'event' and 'user' are undefined, use contextMenu to launch authentification.
+11:43:17 [23:07:39.518] [Information] > [InitApplication] add item in the contextMenu : Alcaraz :: MOD, user:1, event:116
+11:43:17 [23:07:39.518] [Information] > [InitApplication] add item in the contextMenu : Ducuing :: PART, user:9001, event:116
+11:43:17 [23:07:39.518] [Information] > [InitApplication] add item in the contextMenu : Mousseron :: PART, user:9002, event:116
+11:43:17 [23:07:39.533] [Information] > [InitApplication] add item in the contextMenu : Moreau :: PART, user:9003, event:116
+11:43:17 [23:07:39.533] [Information] > [InitApplication] add item in the contextMenu : Meish :: PART, user:9004, event:116
