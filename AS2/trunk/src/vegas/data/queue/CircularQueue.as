@@ -34,6 +34,7 @@ import vegas.errors.UnsupportedOperation;
 import vegas.util.serialize.Serializer;
 
 /**
+ * The CircularQueue class allows for storing objects in a circular queue of a predefined size.
  * @author eKameleon
  */
 class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue, ICloneable, Collection, ISerializable {
@@ -109,12 +110,18 @@ class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue,
 	public function enqueue(o):Boolean 
 	{
 		var next:Number = _rear + 1 ;
-		if ( (next == _front) || ( ( next == _qSize) && (_front == 0) )) {
+		if ( (next == _front) || ( ( next == _qSize) && (_front == 0) )) 
+		{
 			return false ;
-		} else {
+		}
+		else 
+		{
 			_queue[_rear++] = o ;
 			_count ++ ;
-			if (_rear == _qSize) _rear = 0 ;
+			if (_rear == _qSize) 
+			{
+				_rear = 0 ;
+			}
 		}
 		return true ;
 	}

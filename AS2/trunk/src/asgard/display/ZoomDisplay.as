@@ -22,7 +22,6 @@
 */
 
 import asgard.display.DisplayObject;
-import asgard.draw.RectanglePen;
 import asgard.events.UIEvent;
 import asgard.events.UIEventType;
 import asgard.geom.Point;
@@ -109,11 +108,6 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	}
 
 	/**
-	 * Indicates if the display is draggable or not. 
-	 */
-	public var isDraggable:Boolean = false ;
-	
-	/**
 	 * (read-only) Returns the max scale value.
 	 */
 	public function get maxScale():Number 
@@ -128,6 +122,38 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	public function get minScale():Number 
 	{ 
 		return getMinScale() ; 
+	}
+
+	/**
+	 * (read-write) Returns the offset x value of this display.
+	 */
+	public function get offsetX():Number
+	{
+		return getOffsetX() ;
+	}
+
+	/**
+	 * (read-write) Sets the offset x value of this display.
+	 */
+	public function set offsetX( value:Number ):Void
+	{
+		setOffsetX( value ) ;
+	}
+
+	/**
+	 * (read-write) Returns the offset y value of this display.
+	 */
+	public function get offsetY():Number
+	{
+		return getOffsetY() ;
+	}
+
+	/**
+	 * (read-write) Sets the offset y value of this display.
+	 */
+	public function set offsetY( value:Number ):Void
+	{
+		setOffsetY( value ) ;
 	}
 
 	/**
@@ -197,7 +223,6 @@ class asgard.display.ZoomDisplay extends DisplayObject
 		return _rScale.max ; 
 	}
 
-
 	/**
 	 * Returns the min scale value.
 	 */
@@ -205,7 +230,23 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	{ 
 		return _rScale.min ; 
 	}
-
+	
+	/**
+	 * Returns the offset x value of this display.
+	 */
+	public function getOffsetX():Number
+	{
+		return _offset.x ;
+	}
+	
+	/**
+	 * Returns the offset y value of this display.
+	 */
+	public function getOffsetY():Number
+	{
+		return _offset.y ;
+	}	
+	
 	/**
 	 * Returns the current scale value.
 	 */
@@ -242,15 +283,23 @@ class asgard.display.ZoomDisplay extends DisplayObject
 		
 	}
 	
+	/**
+	 * Returns {@code true} if the display is draggable.
+	 * @see registerDrag and unregisterDrag methods.
+	 */
+	public function idDraggable():Boolean
+	{
+		return _isDraggable ;	
+	}
 
 	/**
 	 * Register the drags handler with mouse press and release events.
 	 */
 	public function registerDrag():Void
 	{
-		if( ! isDraggable  )
+		if( ! _isDraggable  )
 		{
-			isDraggable = true ;
+			_isDraggable = true ;
 			view.onPress = Delegate.create(this, _startDrag) ;
 			view.onRelease = view.onReleaseOutside = Delegate.create(this, _stopDrag) ;
 		}
@@ -344,6 +393,26 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	}
 
 	/**
+	 * Sets the offset x value of this display.
+	 */
+	public function setOffsetX( value:Number ):Void
+	{
+		_container._x = value ;
+		_boundPosition() ;
+		_offset.x = _container._x ;
+	}
+
+	/**
+	 * Sets the offset y value of this display.
+	 */
+	public function setOffsetY( value:Number ):Void
+	{
+		_container._y = value ;
+		_boundPosition() ;
+		_offset.y = _container._y ;
+	}
+
+	/**
 	 * Sets the scale value.
 	 */
 	public function setScale( value:Number, p:Point ):Void 
@@ -413,9 +482,9 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	 */
 	public function unRegisterDrag():Void
 	{
-		if( isDraggable )
+		if( _isDraggable )
 		{
-			isDraggable = false ;
+			_isDraggable = false ;
 			delete view.onPress ;
 			delete view.onRelease ;
 			delete view.onReleaseOutside ;
@@ -467,6 +536,11 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	 * Virtual width of the visible area.
 	 */
 	private var _h:Number = 300 ;
+
+	/**
+	 * Indicates if the display is draggable or not. 
+	 */
+	private var _isDraggable:Boolean = false ;
 
 	/**
 	 * The onMouse move handler.

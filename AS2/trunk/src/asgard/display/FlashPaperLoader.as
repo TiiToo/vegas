@@ -50,6 +50,8 @@ class asgard.display.FlashPaperLoader extends DisplayLoader
 		_eToolChange   = new FlashPaperLoaderEvent( getEventTypeTOOL_CHANGE() , this )  ;
 		_eAreaChange   = new FlashPaperLoaderEvent( getEventTypeVISIBLE_AREA_CHANGE() , this) ;
 		_eZoomChange   = new FlashPaperLoaderEvent( getEventTypeVISIBLE_ZOOM_CHANGE() , this) ;
+	
+
 		
 	}
 
@@ -87,11 +89,8 @@ class asgard.display.FlashPaperLoader extends DisplayLoader
 	
 	/**
 	 * Returns the currently active tool. If no tool is active, an empty string is returned.
-	 *
-	 * The following are currently supported values :
-	 *	   - "" (no tool)
-	 *     - "pan" (hand tool)
-	 *     - "select" (text selection tool)
+	 * <p>The following are currently supported values :</p>
+	 * <p><li><b>""</b> no tool</li><li><b>pan</b> the hand tool</li><li><b>select</b> the text selection tool</b></li></p>
 	 */
 	public function getCurrentTool():String 
 	{
@@ -165,6 +164,7 @@ class asgard.display.FlashPaperLoader extends DisplayLoader
 	/**
 	 * Returns a string describing the type of user interface that is included in the document.
 	 * The standard Macromedia FlashPaper viewer always returns the string 'Macromedia FlashPaper Default Viewer'.
+	 * @return a string describing the type of user interface that is included in the document.
 	 */
 	public function getViewerType():String 
 	{
@@ -268,6 +268,9 @@ class asgard.display.FlashPaperLoader extends DisplayLoader
 		return _fp.printTheDocument() ;	
 	}
 
+	/**
+	 * Release the loader.
+	 */
 	public function release():Void 
 	{
 		_fp = null ;
@@ -490,11 +493,13 @@ class asgard.display.FlashPaperLoader extends DisplayLoader
 	static private function _fixSelectionManagement(mc:MovieClip):Void 
 	{
 		var main:MovieClip = mc.gMainView.m_mainMC ;
+		
 		if (typeof (main.onMouseDown) == "function" && main.hasSafeSelectionManagement === undefined) 
 		{
-      		main.onMouseDown = function() 
+      		main.onMouseDown =  function() 
       		{
          		var fpfocus:MovieClip = _global.FPUI.Component.focusedComponent;
+         		
          		if (fpfocus != null) 
          		{
 		            var hitFocused:Boolean = false;
@@ -504,8 +509,9 @@ class asgard.display.FlashPaperLoader extends DisplayLoader
 	               		_root.localToGlobal(p) ;
 	               		hitFocused = fpfocus.hitTest(p.x, p.y, true);
             		}
-            		if (hitFocused == false) {
-						// Selection.setFocus(null) ;
+            		if (hitFocused == false) 
+            		{
+						//Selection.setFocus(null) ;
 						if (typeof (fpfocus.onComponentKillFocus) == "function") 
 						{
                   			fpfocus.onComponentKillFocus();
@@ -513,6 +519,7 @@ class asgard.display.FlashPaperLoader extends DisplayLoader
             		}
          		}
       		} ;
+      		
    		}
 	}	
 	

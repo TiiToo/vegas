@@ -21,94 +21,85 @@
   
 */
 
-/**	LinearQueue
-
-	AUTHOR
-
-		Name : LinearQueue
-		Package : vegas.data.queue
-		Version : 1.0.0.1
-		Date :  2005-04-24
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var q:LinearQueue = new LinearQueue( [ar:Array] ) 
-
-	METHODS
-	
-		- dequeue() : Retrieves and removes the head of this queue.
-		
-		- element() : Retrieves, but does not remove, the head of this queue.
-		
-		- enqueue(o) : Inserts the specified element into this queue, if possible.
-		
-		- peek() : Retrieves, but does not remove, the head of this queue, returning null if this queue is empty.
-		
-		- poll() : Retrieves and removes the head of this queue.
-		
-		- toArray():Array
-		
-		- toSource():String
-		
-		- toString():String
-
-	INHERIT 
-	
-		CoreObject → AbstractCollection → LinearQueue
-		
-	IMPLEMENTS
-	
-		ICloneable, Collection, Iterable, Queue, ISerializable, IFormattable
-
-	TODO [2006-01-05] add toSource method et implement ISerializable in AbstractCollection class
-	TODO [2006-01-12] Vérifier le constructeur de AbstractCollection ! utilise super ?
-	
-**/
+// TODO [2006-01-05] add toSource method et implement ISerializable in AbstractCollection class
+// TODO [2006-01-12] Vérifier le constructeur de AbstractCollection ! utilise super ?
 
 import vegas.core.ICloneable;
 import vegas.data.Collection;
 import vegas.data.collections.AbstractCollection;
 import vegas.data.Queue;
 
-class vegas.data.queue.LinearQueue extends AbstractCollection implements Collection, ICloneable, Queue {
+/**
+ * LinearQueue stores values in a 'first-in, first-out' manner.
+ * @author eKameleon
+ */
+class vegas.data.queue.LinearQueue extends AbstractCollection implements Collection, ICloneable, Queue 
+{
 
-	// ----o Constructor
-	
-	public function LinearQueue( ar:Array ) {
-		_a = (ar.length > 0) ? [].concat(ar)  : [] ;
+	/**
+	 * Creates a new LinearQueue instance.
+	 */
+	public function LinearQueue( ar:Array ) 
+	{
+		_a = (ar.length > 0) ? [].concat(ar) : [] ;
 	}
 
-	// ----o Public Methods
-	
-	public function clone() {
+	/**
+	 * Returns a shallow copy of this object.
+	 * @return a shallow copy of this object.
+	 */	
+	public function clone() 
+	{
 		return new LinearQueue(_a) ;
 	}
 
+	/**
+	 * Retrieves and removes the head of this queue.
+	 */
 	public function dequeue():Boolean 
 	{
 		return poll() != null  ;
 	}
 	
-	public function element() {
+	/**
+	 * Retrieves, but does not remove, the head of this queue.
+	 */
+	public function element() 
+	{
 		return _a[0] ;
 	}
 
-	public function enqueue(o):Boolean {
+	/**
+	 * Inserts the specified element into this queue, if possible.
+	 */
+	public function enqueue(o):Boolean 
+	{
 		if (o == undefined) return false ;
 		_a.push(o) ;
 		return true ;
 	}
 
-	public function peek() {
-		if (isEmpty()) return null ;
+	/**
+	 * Retrieves, but does not remove, the head of this queue, returning null if this queue is empty.
+	 */
+	public function peek() 
+	{
+		if (isEmpty()) 
+		{
+			return null ;
+		}
 		return _a[0] ;
 	}
 
-	public function poll() {
-		if (isEmpty()) return null ;
+	/**
+	 * Retrieves and removes the head of this queue.
+	 */
+	public function poll() 
+	{
+		if (isEmpty()) 
+		{
+			return null ;
+		}
 		return _a.shift() ;
 	}	
 

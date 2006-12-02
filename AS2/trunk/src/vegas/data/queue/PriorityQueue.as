@@ -21,95 +21,82 @@
   
 */
 
-/**	PriorityQueue
-
-	AUTHOR
-
-		Name : PriorityQueue
-		Package : eka.src.queue
-		Version : 0.0.0.0
-		Date :  2005-11-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-
-		- new PriorityQueue(ar:Array)  
-		- new PriorityQueue(comparator:IComparator, ar:Array)  ;
-	
-	METHODS
-	
-		- clear()
-		
-		- comparator()
-		
-			return the queue comparator
-		
-		- element()
-		
-		- enqueue(o, priority)
-		
-		- dequeue()
-		
-		- isQueue()
-		
-		- iterator()
-	
-	INHERIT
-	
-		AbstractCollection > LinearQueue
-	
-	IMPLEMENTS
-
-		ICloneable, Collection, Queue
-	
-**/
-
 import vegas.core.IComparator;
 import vegas.data.queue.LinearQueue;
 import vegas.errors.IllegalArgumentError;
 
-class vegas.data.queue.PriorityQueue extends LinearQueue {
+/**
+ * This queue orders elements according to an order specified at construction time, which is specified either according to their natural order or according to a IComparator object.
+ * @author eKameleon
+ * @see IComparator
+ */
+class vegas.data.queue.PriorityQueue extends LinearQueue 
+{
 
-	// ----o Constructor
-	
-	public function PriorityQueue() {
+	/**
+	 * Creates a new PriorityQueue instance.
+	 * <p><b>Example :</b>
+	 * {@code
+	 *    var q:PriorityQueue = new PriorityQueue( ar ) ;
+	 *    var q:PriorityQueue = new PriorityQueue( comparator, ar)  ;
+	 * }
+	 * </p>
+	 */
+	public function PriorityQueue() 
+	{
 		var l:Number = arguments.length ;
-		if (l > 0) {
+		if (l > 0) 
+		{
 			var arg = arguments[0] ;
-			if (arg instanceof IComparator) {
+			if (arg instanceof IComparator) 
+			{
 				_comparator = arg ;
 				arg = arguments[1] ;
-			}  else if (arg instanceof Array) {
+			}
+			else if (arg instanceof Array) 
+			{
 				constructor.apply(this, arg) ;				
 			}
-		} else {
+		} 
+		else 
+		{
 			throw new IllegalArgumentError("PriorityQueue in constructor arguments must not be 'null' or 'undefined'") ;
 		}
 	}
 
-	// ----o Public Methods
-
-	public function clone() {
+	/**
+	 * Returns a shallow copy of this object.
+	 * @return a shallow copy of this object.
+	 */
+	public function clone() 
+	{
 		return new PriorityQueue(_comparator);
 	}
 	
-	public function comparator():IComparator {
+	/**
+	 * Returns the internal IComparator reference.
+	 */
+	public function comparator():IComparator 
+	{
 		return _comparator ;
 	}
 	
-	public function enqueue(o):Boolean {
+	/**
+	 * Inserts the specified element into this queue, if possible.
+	 */
+	public function enqueue(o):Boolean 
+	{
 		var isEnqueue:Boolean = super.enqueue(o) ;
-		if ( isEnqueue && _comparator ) {
+		if ( isEnqueue && _comparator ) 
+		{
 			_a.sort(_comparator.compare) ;
 		}
 		return isEnqueue ;
 	}
 	
-
-	// ----o Private Properties
-	
+	/**
+	 * The internal IComparator reference.
+	 */
 	private var _comparator:IComparator = null ;
 	
 }

@@ -21,54 +21,40 @@
   
 */
 
-/**	QueueFormat
-
-	AUTHOR
-
-		Name : QueueFormat
-		Package : vegas.data.queue
-		Version : 1.0.0.0
-		Date :  2005-04-24
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- formatToString(o):String
-	
-	INHERIT
-
-		CoreObject → QueueFormat
-
-	IMPLEMENT
-	
-		IFormat
-	
-**/
-
 import vegas.core.CoreObject;
 import vegas.core.IFormat;
 import vegas.data.iterator.Iterator;
 import vegas.data.Queue;
 
-class vegas.data.queue.QueueFormat extends CoreObject implements IFormat {
+/**
+ * @author eKameleon
+ */
+class vegas.data.queue.QueueFormat extends CoreObject implements IFormat 
+{
 
-	// ----o Constructor
-	
-	public function QueueFormat() {
+	/**
+	 * Creates a new QueueFormat instance.
+	 */
+	public function QueueFormat() 
+	{
 		//
 	}
-
-	// ----o Public Methods
-
-	public function formatToString(o):String {
+	
+	/**
+	 * Converts the object to a custom string representation.
+	 */	
+	public function formatToString(o):String 
+	{
 		var q:Queue = Queue(o);
 		var r:String = "{ ";
 		var i:Iterator = q.iterator() ;
-		while (i.hasNext()) {
+		while (i.hasNext()) 
+		{
 			r += i.next().toString() ;
-			if (i.hasNext()) r += " , ";
+			if (i.hasNext()) 
+			{
+				r += " , ";
+			}
 		}
 		r += " }";
 		return r ;

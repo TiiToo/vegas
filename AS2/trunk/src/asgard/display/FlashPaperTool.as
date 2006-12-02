@@ -21,44 +21,26 @@
   
 */
 
-/** FlashPaperTool
+/**
+ * Enumerates all tools in a FlashPaper document.
+ * @author eKameleon
+ */
+class asgard.display.FlashPaperTool 
+{
 
-	AUTHOR
-
-		Name : FlashPaperTool
-		Package : asgard.events
-		Version : 1.0.0.0
-		Date :  2006-03-31
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	CONSTANT SUMMARY
-
-		- NONE:String ("")
-		
-		- PAN:String ("pan")
-		
-		- SELECT:String ("select")
-
-----------  */
-
-class asgard.display.FlashPaperTool {
-
-	// ----o Constructor
-	
-	private function FlashPaperTool() {
-		//
-	}
-
-	// ----o Static Properties
-	
+	/**
+	 * Unselect the current tool selected in the FlashPaper document.
+	 */
 	static public var NONE:String = "" ;
 	
+	/**
+	 * The 'pan' tool in the FlashPaper document.
+	 */
 	static public var PAN:String = "pan" ;
 	
+	/**
+	 * The 'select' tool in the FlashPaper document.
+	 */
 	static public var SELECT:String = "select" ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(FlashPaperTool, null , 7, 7) ;
-
 }

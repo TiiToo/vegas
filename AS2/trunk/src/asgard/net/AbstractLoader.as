@@ -369,6 +369,15 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 	{
 	 	return LoaderEvent.IO_ERROR ;
 	}
+	
+	/**
+	 * (protected) Returns the event type of the internal event when the loader is finished.
+	 * Overrides this method if you want custom your object.
+	 */
+	/*protected*/ function getEventTypeFINISH():String
+	{
+	 	return LoaderEvent.FINISH ;
+	}
 
 	/**
 	 * (protected) Returns the event type of the internal event when the loader is complete.
