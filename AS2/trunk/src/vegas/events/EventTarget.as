@@ -20,43 +20,48 @@
   Contributor(s) :
   
 */
-
-/** EventTarget [interface]
-
-	AUTHOR
-	
-		Name : EventTarget
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2006-01-22
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- addEventListener(eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void
-		
-		- dispatchEvent( event , [isQueue, [target, [context]]]):Event
-		
-		- removeEventListener(eventName:String, listener, useCapture:Boolean ):EventListener
-
-	SEE ALSO :
-	
-		Document Object Model (DOM) Level 2 Events Specification
-			- http://www.w3.org/TR/2000/REC-DOM-Level-2-Events-20001113/
-	
-**/
-
 import vegas.events.Event;
 import vegas.events.EventListener;
 
-interface vegas.events.EventTarget {
-	
+/**
+ * The EventTarget interface inspired by the <a href='http://www.w3.org/TR/2000/REC-DOM-Level-2-Events-20001113/'>Document Object Model (DOM) Level 2 Events Specification</a>.
+ * @author eKameleon
+ */
+interface vegas.events.EventTarget 
+{
+
+	/**
+	 * Allows the registration of event listeners on the event target.
+	 * 
+	 * @param eventName A string representing the event type to listen for. If eventName value is {@code ALL} this method use {@code addGlobalListener}
+	 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the {@code EventListener} interface.
+	 * @param useCapture Determinates if the event flow use capture or not.
+	 * @param priority Determines the priority level of the event listener.
+	 * @param autoRemove Apply a removeEventListener after the first trigger
+	 * 
+	 */
 	function addEventListener( eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void ;
 
+	/**
+	 * Dispatches an event into the event flow.
+	 * 
+	 * @param event The Event object that is dispatched into the event flow.
+	 * @param isQueue if the EventDispatcher isn't register to the event type the event is bufferized.
+	 * @param target the target of the event.
+	 * @param contect the context of the event.
+	 * 
+	 * @return the reference of the event dispatched in the event flow.
+	 * 
+	 */
 	function dispatchEvent(event, isQueue:Boolean, target, context):Event ;
 
+	/** 
+	 * Removes a listener from the {@code EventDispatcher} object.
+	 * <p>If there is no matching listener registered with the EventDispatcher object, then calling this method has no effect.</p>
+	 * 
+	 * @param Specifies the type of event.
+	 * @param the class name(string) or a EventListener object.
+	 */
 	function removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener ;
 	
 }

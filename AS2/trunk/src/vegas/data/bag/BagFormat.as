@@ -27,6 +27,7 @@ import vegas.data.Bag;
 import vegas.data.iterator.Iterator;
 
 /**
+ * Converts a Bag to a custom string representation.
  * @author eKameleon
  */
 class vegas.data.bag.BagFormat extends CoreObject implements IFormat 

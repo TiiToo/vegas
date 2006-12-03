@@ -21,50 +21,6 @@
   
 */
 
-/** TypedCollection
-
- 	AUTHOR
-	
-		Name : TypedCollection
-		Package : vegas.data.collections
-		Version : 1.0.0.0
-		Date : 2005-11-06
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHODS
-
-		- clear()
-		
-		- contains(o)
-		
-		- get(id:Number)
-		
-		- insert(o):Boolean
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- remove(o):Boolean
-		
-		- size():Number
-		
-		- toArray():Array
-		
-		- toSource():String
-
-	INHERIT
-	
-		CoreObject > AbstractTypeable > TypedCollection
-
-	IMPLEMENTS 
-
-		Iterable, ISerializable, Typeable, Validator, IFormattable, IHashable	
-	
-*/
-
 import vegas.core.ICloneable;
 import vegas.data.Collection;
 import vegas.data.iterator.Iterable;
@@ -74,80 +30,147 @@ import vegas.util.AbstractTypeable;
 import vegas.util.serialize.Serializer;
 import vegas.util.TypeUtil;
 
-class vegas.data.collections.TypedCollection extends AbstractTypeable implements ICloneable, Iterable, Collection {
+/**
+ * TypedCollection is a wrapper for Collection instances that ensures that only values of a specific type can be added to the wrapped collection.
+ * @author eKameleon
+ */
+class vegas.data.collections.TypedCollection extends AbstractTypeable implements ICloneable, Iterable, Collection 
+{
 
-	// ----o Constructor
-
+	/**
+	 * Creates a new TypedCollection.
+	 * @throws IllegalArgumentError if the specified collection in argument is {@code null} or {@code undefined} 
+	 */
 	public function TypedCollection(p_type:Function , co:Collection) {
 		super(p_type) ;
-		if (!co) throw new IllegalArgumentError("Argument 'co' must not be 'null' or 'undefined'.") ;
-		if (co.size() > 0) {
+		if (!co) 
+		{
+			throw new IllegalArgumentError("Argument 'co' must not be 'null' or 'undefined'.") ;
+		}
+		if (co.size() > 0) 
+		{
 			var it:Iterator = co.iterator() ;
 			while ( it.hasNext() ) 	validate(it.next()) ;
 		}
 		_co = co ;
 	}
 
-	// ----o Public Methods
-
-	public function clear():Void {
+	/**
+	 * Removes all of the elements from this collection (optional operation).
+	 */
+	public function clear():Void 
+	{
 		_co.clear() ;
 	}
 	
-	public function clone() {
+	/**
+	 * Returns a shallow copy of this collection (optional operation).
+	 */
+	public function clone() 
+	{
 		return new TypedCollection(getType(), _co.clone()) ;
 	}
 
-	public function contains(o):Boolean {
+	/**
+	 * Returns {@code true} if this collection contains the specified element.
+	 * @return {@code true} if this collection contains the specified element.
+	 */
+	public function contains(o):Boolean 
+	{
 		return _co.contains(o) ;
     }
 
-	public function get(id:Number) {
+	/**
+	 * Returns the element from this collection at the passed index.
+	 */
+	public function get(id:Number) 
+	{
 		return _co.get(id) ;
 	}
 
-    public function insert(o):Boolean {
+	/**
+	 * Ensures that this collection contains the specified element (optional operation).
+	 */
+    public function insert(o):Boolean 
+    {
 		validate(o) ;
 		return _co.insert(o) ;
     }
 
-	public function isEmpty():Boolean {
+	/**
+	 * Returns  true if this collection contains no elements.
+	 * @return {@code true} if the collection is empty else {@code false}.
+	 */
+	public function isEmpty():Boolean 
+	{
 		return _co.isEmpty() ;
 	}
 
-	public function iterator():Iterator {
+	/**
+	 * Returns an iterator over the elements in this collection.
+	 */
+	public function iterator():Iterator 
+	{
 		return _co.iterator() ;
 	}
 
-    public function remove(o):Boolean {
+	/**
+	 * Removes a single instance of the specified element from this collection, if it is present (optional operation).
+	 */
+    public function remove(o):Boolean 
+    {
 		return _co.remove(o);
     }
 
-	public function setType(type:Function):Void {
+	/**
+	 * Sets the type of the ITypeable object.
+	 */
+	public function setType(type:Function):Void 
+	{
 		super.setType(type) ;
 		_co.clear() ;
 	}
 
-	public function size():Number {
+	/**
+	 * Returns the number of elements in this collection.
+	 */
+	public function size():Number 
+	{
 		return _co.size() ;
 	}
 	
-	public function toArray():Array {
+	/**
+	 * Returns an array containing all of the elements in this collection.
+	 * @return an array representation of all the elements in this wrapped collection.
+	 */
+	public function toArray():Array 
+	{
 		return _co.toArray() ;
 	}
 
-	public function toSource(indent:Number, indentor:String):String {
+	/**
+	 * Returns a Eden representation of the object.
+	 * @return a string representing the source code of the object.
+	 */
+	public function toSource(indent:Number, indentor:String):String 
+	{
 		var sourceA:String = TypeUtil.toString(_type) ;
 		var sourceB:String = Serializer.toSource(_co) ;
 		return Serializer.getSourceOf(this, [sourceA, sourceB]) ;
 	}
 
-	public function toString():String {
+	/**
+	 * Returns the string representation of this instance.
+	 * @return the string representation of this instance.
+	 */
+	public function toString():String 
+	{
 		return _co.toString() ;
 	}
-
-	// ----o Private Properties
 	
+	/**
+	 * The internal collection of this wrapped Collection.
+	 */
 	private var _co:Collection ;
 	
 }

@@ -21,64 +21,6 @@
   
 */
 
-/** AbstractCoreEventDispatcher
-
-	AUTHOR
-	
-		Name : AbstractCoreEventDispatcher
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2006-03-21
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
- 	DESCRIPTION
-
-		Cette classe est privée, elle est utilisée en tant qu'abstraction pour créer par la suite des classes qui vont utiliser la classe EventDispatcher? par composition et qui vont implémenter également IEventDispatcher.
-		
-		Il est possible de redéfinir l'instance interne de la classe EventDispatcher en surchargeant la méthode getEventDispatcher(). Il peut être intéressant de faire cet overriding dans certaines conditions comme pour passer le système événmentiel sur un modèle global et non plus local au niveau de l'instance (Notion de Front Controller).  
-
-	METHOD SUMMARY
-	
-		- addEventListener(eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void
-		
-		- addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void
-		
-		- dispatchEvent( event , [isQueue, [target, [context]]]):Event
-		
-		- getEventDispatcher():EventDispatcher 
-		
- 		- getEventListeners(eventName:String):EventListenerCollection
-		
-		- getGlobalEventListeners():EventListenerCollection
-		
-		- getParent():EventDispatcher
-		
-		- getRegisteredEventNames():Set
-		
-		- getTarget()
-		
-		- initEventDispatcher():EventDispatcher 
-		
- 		- hasEventListener(eventName:String):Boolean
-		
-		- removeEventListener(eventName:String, listener, useCapture:Boolean ):EventListener
-		
-		- removeGlobalEventListener(o):EventListener
-		
-		- setParent(parent:EventDispatcher):Void
-	
-	INHERIT
-
-		CoreObject → AbstractCoreEventDispatcher
- 
- 	IMPLEMENTS
- 
-		EventTarget, IEventDispatcher, IFormattable, IHashable
-
-**/
-
 import vegas.core.CoreObject;
 import vegas.data.Set;
 import vegas.events.Event;
@@ -88,80 +30,163 @@ import vegas.events.EventListenerCollection;
 import vegas.events.IEventDispatcher;
 
 /**
- * AbstractCoreEventDispatcher
+ * This abstract class is used to create concrete {@code IEventDispatcher} implementations. This class used an{@code EventDispatcher} by composition.
+ * <p>You can overrides the internal {@code EventDispatcher} instance with the {@code initEventDispatcher} method. Used a global singleton reference in this method to register all events in a {@code FrontController} for example.</p>
  * @author eKameleon
- * @version 1.0.0.0
- **/
- 
-class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEventDispatcher {
+ */
+class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEventDispatcher 
+{
 
-	// ----o Constructor 
-
-	private function AbstractCoreEventDispatcher() {
+	/**
+	 * Creates a new AbstractCoreEventDispatcher.
+	 */
+	private function AbstractCoreEventDispatcher() 
+	{
 		super() ;
 		_oED = initEventDispatcher() ;
 	}		
 
-	// ----o Püblic Methods
-
-	public function addEventListener( eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void {
+	/**
+	 * Allows the registration of event listeners on the event target.
+	 * @param eventName A string representing the event type to listen for. If eventName value is "ALL" addEventListener use addGlobalListener
+	 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the {@code EventListener} interface.
+	 * @param useCapture Determinates if the event flow use capture or not.
+	 * @param priority Determines the priority level of the event listener.
+	 * @param autoRemove Apply a removeEventListener after the first trigger
+	 */
+	public function addEventListener( eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void 
+	{
 		_oED.addEventListener.apply(_oED, arguments) ;
 	}
 
-	public function addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void {
+	/**
+	 * Allows the registration of global event listeners on the event target.
+	 * 
+	 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the <b>EventListener</b> interface.
+	 * @param priority Determines the priority level of the event listener.
+	 * @param autoRemove Apply a removeEventListener after the first trigger
+	 */
+	public function addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void 
+	{
 		_oED.addGlobalEventListener.apply(_oED, arguments) ;
 	}		
 
-	public function dispatchEvent(event, isQueue:Boolean, target, context):Event {
+	/**
+	 * Dispatches an event into the event flow.
+	 * @param event The Event object that is dispatched into the event flow.
+	 * @param isQueue if the EventDispatcher isn't register to the event type the event is bufferized.
+	 * @param target the target of the event.
+	 * @param contect the context of the event.
+	 * @return the reference of the event dispatched in the event flow.
+	 */
+	public function dispatchEvent(event, isQueue:Boolean, target, context):Event 
+	{
 		return _oED.dispatchEvent.apply(_oED, arguments) ;	
 	}
 
-	public function getEventDispatcher():EventDispatcher {
+	/**
+	 * Returns the internal {@code EventDispatcher} reference.
+	 * @return the internal {@code EventDispatcher} reference.
+	 */
+	public function getEventDispatcher():EventDispatcher 
+	{
 		return _oED ;
 	}
 
-	public function getEventListeners(eventName:String):EventListenerCollection {
+	/**
+	 * Returns the {@code EventListenerCollection} of the specified event name.
+	 * @return the {@code EventListenerCollection} of the specified event name.
+	 */
+	public function getEventListeners(eventName:String):EventListenerCollection 
+	{
 		return _oED.getEventListeners.apply(_oED, arguments) ;
 	}
 
-	public function getGlobalEventListeners():EventListenerCollection {
+	/**
+	 * Returns the {@code EventListenerCollection} of this EventDispatcher.
+	 * @return the {@code EventListenerCollection} of this EventDispatcher.
+	 */
+	public function getGlobalEventListeners():EventListenerCollection 
+	{
 		return _oED.getGlobalEventListeners.apply(_oED, arguments) ;
 	}
 
-	public function getParent():EventDispatcher {
+	/**
+	 * Returns the EventDispatcher reference of the parent of this instance.
+	 */
+	public function getParent():EventDispatcher 
+	{
 		return _oED.parent ;
 	}
 
-	public function getRegisteredEventNames():Set {
+	/**
+	 * Returns a {@code Set} of all register event's name in this EventListener.
+	 * @return a {@code Set} of all register event's name in this EventListener.
+	 */
+	public function getRegisteredEventNames():Set 
+	{
 		return _oED.getRegisteredEventNames.apply(_oED, arguments) ;
 	}
 
-	public function getTarget() {
+	/**
+	 * Returns the target of this instance.
+	 */
+	public function getTarget() 
+	{
 		return _oED.getTarget() ;	
 	}
 
-	public function hasEventListener(eventName:String):Boolean {
+	/**
+	 * Checks whether the EventDispatcher object has any listeners registered for a specific type of event.
+	 * This allows you to determine where altered handling of an event type has been introduced in the event flow heirarchy by an EventDispatcher object.
+	 */ 
+	public function hasEventListener(eventName:String):Boolean 
+	{
 		return _oED.hasEventListener.apply(_oED, arguments) ;
 	}
 
-	public function initEventDispatcher():EventDispatcher {
+	/**
+	 * Creates and returns the internal {@code EventDispatcher} reference (this method is invoqued in the constructor).
+	 * You can overrides this method if you wan use a global {@code EventDispatcher} singleton.
+	 * @return the internal {@code EventDispatcher} reference.
+	 */
+	public function initEventDispatcher():EventDispatcher 
+	{
 		return new EventDispatcher( this ) ;
 	}
 
-	public function removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener {
+	/** 
+	 * Removes a listener from the EventDispatcher object.
+	 * If there is no matching listener registered with the {@code EventDispatcher} object, then calling this method has no effect.
+	 * @param Specifies the type of event.
+	 * @param the class name(string) or a {@code EventListener} object.
+	 */
+	public function removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener 
+	{
 		return _oED.removeEventListener.apply(_oED, arguments) ;
 	}
 
-	public function removeGlobalEventListener( listener ):EventListener {
+	/** 
+	 * Removes a global listener from the EventDispatcher object.
+	 * If there is no matching listener registered with the EventDispatcher object, then calling this method has no effect.
+	 * @param the string representation of the class name of the EventListener or a EventListener object.
+	 */
+	public function removeGlobalEventListener( listener ):EventListener 
+	{
 		return _oED.removeGlobalEventListener.apply(_oED, arguments) ;
 	}
 
-	public function setParent(parent:EventDispatcher):Void {
+	/**
+	 * Sets the parent EventDispatcher reference of this instance.
+	 */
+	public function setParent(parent:EventDispatcher):Void 
+	{
 		_oED.parent = parent ;
 	}
 
-	// ----o Private Properties
-
+	/**
+	 * The internal EventDispatcher reference.
+	 */
 	private var _oED:EventDispatcher ;
 
 }

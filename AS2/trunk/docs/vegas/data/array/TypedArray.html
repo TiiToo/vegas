@@ -4,14 +4,15 @@ document.quicknavBasePath="../../../index-files";
 //--></script><link href="../../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../../overview-summary.html" title="Overview" rel="top"/><link href="package-summary.html" title="Package vegas.data.array" rel="up"/><link href="../../../vegas/data/bag/AbstractBag.html" title="Class vegas.data.bag.AbstractBag" rel="prev"/><link href="../../../vegas/core/types/Int.html" title="Class vegas.core.types.Int" rel="next"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><h1>Class vegas.data.array.TypedArray</h1><div class="type_hierachy"><ul><li><strong>vegas.data.array.TypedArray</strong></li></ul></div><div class="interfaces"><h2>Implemented Interfaces</h2><code><a href="../../../vegas/core/ICloneable.html" class="interface_name" title="Interface vegas.core.ICloneable">ICloneable</a></code> <code><a href="../../../vegas/core/IFormattable.html" class="interface_name" title="Interface vegas.core.IFormattable">IFormattable</a></code> <code><a href="../../../vegas/core/ISerializable.html" class="interface_name" title="Interface vegas.core.ISerializable">ISerializable</a></code> <code><a href="../../../vegas/core/ITypeable.html" class="interface_name" title="Interface vegas.core.ITypeable">ITypeable</a></code> <code><a href="../../../vegas/core/IValidator.html" class="interface_name" title="Interface vegas.core.IValidator">IValidator</a></code> </div><div class="type_description"><h2>Description</h2><p>
  <code> TypedArray</code> acts like a normal array but assures that only objects of a specific type are added to the array.
  
- <p>Example :
- <code>
+ <p><b>Example :</b>
+ {@ code
  import vegas.data.array.TypedArray ;
  
  var ta:TypedArray = new TypedArray(String, ["item1", "item2", "item3"]) ;
  trace ("ta : " + ta) ; // output : ta : item1,item2,item3
  ta.push(2) ; // [TypeMismatchError] TypedArray.validate('value':2) is mismatch
- </code>
+ }
+ </p>
  
  </p></div><div class="type_indexes"><div class="method_index"><h2>Method Index</h2><div><code>new <a href="#TypedArray" title="public function TypedArray(type:Function, ar:Array)">TypedArray()</a></code></div><a href="#clone" title="public function clone()">clone()</a>, <a href="#concat" title="public function concat():TypedArray">concat()</a>, <a href="#getType" title="public function getType():Function">getType()</a>, <a href="#hashCode" title="public function hashCode():Number">hashCode()</a>, <a href="#iterator" title="public function iterator():Iterator">iterator()</a>, <a href="#push" title="public function push(value):Number">push()</a>, <a href="#setType" title="public function setType(type:Function):Void">setType()</a>, <a href="#supports" title="public function supports(value):Boolean">supports()</a>, <a href="#toSource" title="public function toSource(indent:Number, indentor:String):String">toSource()</a>, <a href="#unshift" title="public function unshift(value):Number">unshift()</a>, <a href="#validate" title="public function validate(value):Void">validate()</a></div></div><div class="type_details"><div class="constructor_detail_list"><h2>Constructor Detail</h2><div class="method_details"><a name="TypedArray"></a><h3>TypedArray</h3><code class="method_synopsis">public function <strong class="method_name">TypedArray</strong>(type:<span class="unresolved_type_name">Function</span>, ar:<span class="unresolved_type_name">Array</span>)</code><div class="method_info"><p>
  Creates a new TypedArray instance.

@@ -61,7 +61,8 @@ import vegas.string.errors.JSONError;
  * <p>Serializer & deserializer in AS2.</p>
  * <p>More information in the official site : <a href="http://www.json.org/">http://www.json.org</a></p>
  * <p>Add Hexa Digits tool in deserialize method - <a href="http://www.burrrn.com/projects/eden.html">EDEN inspiration</a></p>
- * <p><b>Example :</b>{@code
+ * <p><b>Example :</b>
+ * {@code
  *  import vegas.string.JSON ;
  *   
  *  // --- Init
@@ -97,7 +98,7 @@ import vegas.string.errors.JSONError;
  *  {
  *      trace(prop + " : " + o[prop]) ;
  * 	}
- * 	
+ *  // see output.
  * }
  * </p>
  * 

@@ -21,165 +21,6 @@
   
 */
 
-/** EventDispatcher
-
-	AUTHOR
-	
-		Name : EventDispatcher
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2005-10-13
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		new EventDispatcher(target:IEventDispatcher, parent:EventDispatcher) ;
-
-	PROPERTY SUMMARY
-	
-		- parent:EventDispatcher
-
-	METHOD SUMMARY
-	
-		- addChild(child:EventDispatcher):Void
-		
-		- addEventListener(eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean)
-		
-			PARAMS
-			
-				- eventName:String
-					
-					String : corresponding of the event type's name
-				
-					PS : if eventName value is "ALL" addEventListener use addGlobalListener
-				
-				- listener:EventListener
-					
-					EventListener object
-				
-				- useCapture:Boolean
-				
-				- priority:Number
-				
-					Determines the priority level of the event listener.
-					
-				- autoRemove:Boolean
-				
-					Apply a removeEventListener after the first trigger		
-		
-		- addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean)
-		
-			DESCRIPTION 
-			
-				apply a global broadcast 
-		
-
-		- dispatchEvent( event , [isQueue], [target], [context])
-			
-			DESCRIPTION
-				
-				dispatch event
-			
-			PARAMS
-				
-				- event : 
-				
-					- a string 
-					- a Event Object
-					- a basic object with properties
-						- type [obligatory]
-						- target [optional]
-						- context [optional]
-				
-				- isQueue [Boolean] [optional]
-				
-				- target [optional]
-				
-				- context [optional]
-			
-			RETURNS 
-			
-				an Event object or null
-
-		- static flush():Void 
-		
-			remove all singleton instances
-		
-		- getEventListeners(eventName:String) : EventListenerCollection
-		
-			return an EventListenerCollection object for a specific type of event.
-
-		- getGlobalEventListeners()
-		
-			return a EventListenerCollection object for global events listeners.
-
-		- static getInstance(name:String):EventDispatcher
-
-		- getRegisteredEventNames()
-			
-			return a HashSet object
-	
-		- hasEventListener(eventName:String)
-		
-			Checks whether the EventDispatcher object has any listeners registered for a specific type of event.
-			This allows you to determine where altered handling of an event type has been introduced in the event flow heirarchy by an EventDispatcher object.
-			To determine whether a specific event type will actually trigger an event listener, use EventDispatcher.willTrigger(). 
-		
-		- static release(name:String):EventDispatcher
-		
-		- removeChild(child:EventDispatcher):Void
-		
-		- removeEventListener(eventName:String, listener )
-		
-			Removes a listener from the EventDispatcher object.
-			If there is no matching listener registered with the EventDispatcher object, then calling this method has no effect. 
-		
-			Parameters :
-			
-				- eventName :String -> Specifies the type of event.
-				
-				- listener -> the class name(string) or a EventListener object.
-				
-		
-		- removeGlobalEventListener( listener ) 
-
-			Removes all "Global" listeners from the EventDispatcher object.
-
-		- static removeInstance(name:String):Boolean
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → EventDispatcher
-
-	IMPLEMENTS 
-	
-		EventTarget, IEventDispatcher, IFormattable, IHashable
-
-	THANKS
-	
-		EventDispatcher is a AS2 port of the Java.schst.net EventDispatcher. Inspired by the NotificationCenter of Apple's Cocoa-Framework.
-		
-			- EventDispatcher JAVA : Stephan Schmid - http://schst.net/
-			- Cocoa-Framework : http://developer.apple.com/cocoa/
-			- Notification center : http://developer.apple.com/documentation/Cocoa/Conceptual/Notifications/index.html
-
-	HISTORY
-	
-		CHANGE      : [2005-11-07] change method name triggerEvent -> dispatchEvent (use AS3 trigger event method name)
-		CHANGE      : [2005-11-08] priority in addEventListener method
-		CHANGE      : [2005-12-11] static removeInstance Method
-		ADD         : [2006-01-19] target parameter in constructor
-		ADD         : [2006-01-19] Bubbling Event v.alpha ! 
-		ADD         : [2006-01-22] Capturing Event v.alpha !
-		REFACTORING : [2006-01-22] Change params in addEventListener Method
-		ADD         : [2006-03-11] add static release(name:String) method.
-	
-*/
-
 import vegas.core.CoreObject;
 import vegas.data.map.HashMap;
 import vegas.data.Queue;
@@ -195,11 +36,21 @@ import vegas.events.IEventDispatcher;
 import vegas.util.factory.EventFactory;
 import vegas.util.TypeUtil;
 
+/**
+ * Stores the listeners object an notifies them. The EventDispatcher class implements the IEventDispatcher interface. This object allows any object to be an {@code EventTarget}.
+ * <p><b>Thanks</b>:</p>
+ * <p>{@code EventDispatcher} is an AS2 port of the <b>Java.schst.net EventDispatcher</b>. Inspired by the NotificationCenter of Apple's Cocoa-Framework.
+ * <li>EventDispatcher JAVA : Stephan Schmid - http://schst.net/</li><li>Cocoa-Framework : http://developer.apple.com/cocoa/</li><li>Notification center : http://developer.apple.com/documentation/Cocoa/Conceptual/Notifications/index.html</li>
+ * </p>
+ * 
+ * @author eKameleon
+ */
 class vegas.events.EventDispatcher extends CoreObject implements IEventDispatcher 
 {
 
-	// ----o Constructor
-	
+	/**
+	 * Creates a new EventDispatcher instannce.
+	 */
 	public function EventDispatcher( target:IEventDispatcher , parent:EventDispatcher ) 
 	{
 		_globalListeners = new EventListenerCollection() ;
@@ -210,17 +61,27 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 		this.parent = parent || null ;
 	}
 
-	// ----o Public Properties
-	
+	/**
+	 * The parent EventDispatcher reference of this EventDispatcher.
+	 */
 	public var parent:EventDispatcher ;
 
-	// ----o Public Methods
-
+	/**
+	 * Adds a child EventDispatcher reference at this instance.
+	 */
 	public function addChild( child:EventDispatcher ):Void 
 	{
 		child.parent = this ;
 	}
 
+	/**
+	 * Allows the registration of event listeners on the event target.
+	 * @param eventName A string representing the event type to listen for. If eventName value is "ALL" addEventListener use addGlobalListener
+	 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the {@code EventListener} interface.
+	 * @param useCapture Determinates if the event flow use capture or not.
+	 * @param priority Determines the priority level of the event listener.
+	 * @param autoRemove Apply a removeEventListener after the first trigger
+	 */
 	public function addEventListener( eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void 
 	{
 		priority = isNaN(priority) ? 0 : priority ;
@@ -237,16 +98,33 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 			_dispatchQueuedEvents() ;
 		}
 	}
-	
+
+	/**
+	 * Allows the registration of global event listeners on the event target.
+	 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the {@code EventListener} interface.
+	 * @param priority Determines the priority level of the event listener.
+	 * @param autoRemove Apply a removeEventListener after the first trigger
+	 */
 	public function addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void 
 	{
 		_globalListeners.addListener(listener, autoRemove, priority ) ;
         _dispatchQueuedEvents() ;
     }
 
+	/**
+	 * Dispatches an event into the event flow.
+	 * @param event The Event object that is dispatched into the event flow.
+	 * @param isQueue if the EventDispatcher isn't register to the event type the event is bufferized.
+	 * @param target the target of the event.
+	 * @param contect the context of the event.
+	 * @return the reference of the event dispatched in the event flow.
+	 */
 	public function dispatchEvent( event , isQueue:Boolean, target, context):Event 
 	{
-		if (!event) return null ;
+		if (!event) 
+		{
+			return null ;
+		}
 		var e:Event = EventFactory.create(event, target || this, context) ;
 		if (e == null) return null ;
 		var phase:Number = e.getEventPhase() ;
@@ -270,22 +148,34 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 		return e ;
 	}
 
+	/**
+	 * Flush all global EventDispatcher singleton.
+	 */
 	static public function flush():Void 
 	{
 		EventDispatcher.instances.clear() ;
 	}
 
+	/**
+	 * Returns the {@code EventListenerCollection} of the specified event name.
+	 */
 	public function getEventListeners(eventName:String):EventListenerCollection 
 	{
 		if ( _listeners.containsKey(eventName) ) return _listeners.get(eventName) ;
 		return new EventListenerCollection() ;
 	}
-
+	
+	/**
+	 * Returns the {@code EventListenerCollection} of this EventDispatcher.
+	 */
 	public function getGlobalEventListeners():EventListenerCollection 
 	{
         return _globalListeners ;
     }
 
+	/**
+	 * Returns a global {@code EventDispatcher} singleton. Uses this method to create [@code FrontController} patterns for example.
+	 */
 	static public function getInstance(name:String):EventDispatcher 
 	{
 		if (!name) name = "__default__" ;
@@ -296,56 +186,102 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 		return EventDispatcher(EventDispatcher.instances.get(name));
 	}
 	
+	/**
+	 * Returns a {@code Set} of all register event's name in this EventListener.
+	 * @return a {@code Set} of all register event's name in this EventListener.
+	 */
 	public function getRegisteredEventNames():Set 
 	{
     	return new HashSet(_listeners.getKeys()) ;
     }
 	
+	/**
+	 * Returns the current target of this EventDispatcher.
+	 */
 	public function getTarget() 
 	{
 		return _target ;	
 	}
 	
+	/**
+	 * Checks whether the EventDispatcher object has any listeners registered for a specific type of event.
+	 * This allows you to determine where altered handling of an event type has been introduced in the event flow heirarchy by an EventDispatcher object.
+	 */ 
 	public function hasEventListener(eventName:String):Boolean 
 	{
 		return _listeners.containsKey(eventName) ;
 	}
 
+	/**
+	 * Release all global EventDispatcher instances in your application.
+	 */
 	static public function release(name:String):EventDispatcher 
 	{
-		if (!name) name = "__default__" ;
+		if (!name) 
+		{
+			name = "__default__" ;
+		}
 		return EventDispatcher.instances.remove(name) ;
 	}
 
+	/**
+	 * Remove the EventDispatcher child reference of this EventDispatcher instance.
+	 */
 	public function removeChild( child:EventDispatcher ):Void 
 	{
 		child.parent = null ;
 	}
 
+	/** 
+	 * Removes a listener from the EventDispatcher object.
+	 * If there is no matching listener registered with the EventDispatcher object, then calling this method has no effect.
+	 * @param Specifies the type of event.
+	 * @param the class name(string) or a EventListener object.
+	 */
     public function removeEventListener(eventName:String, listener , useCapture:Boolean):EventListener 
     {
-		if (eventName == "ALL") return removeGlobalEventListener(listener) ;
+		if (eventName == "ALL") 
+		{
+			return removeGlobalEventListener(listener) ;
+		}
 		if (listener instanceof EventListener || TypeUtil.typesMatch(listener, String))  
 		{
 			var map:HashMap = (!useCapture) ? _listeners : _captures ;
-			if (!map.containsKey(eventName) ) return null ;
+			if (!map.containsKey(eventName) ) 
+			{
+				return null ;
+			}
 			var col:EventListenerCollection = map.get(eventName) ;
 			var container:EventListenerContainer = col.removeListener(listener) ;
-			if (container != null) return container.getListener() ;
+			if (container != null) 
+			{
+				return container.getListener() ;
+			}
 		}
         return null ;
     }
 
+	/** 
+	 * Removes a global listener from the EventDispatcher object.
+	 * If there is no matching listener registered with the EventDispatcher object, then calling this method has no effect.
+	 * @param the class name(string) or a EventListener object.
+	 */
 	public function removeGlobalEventListener( listener ):EventListener 
 	{
 		if (listener instanceof EventListener || typeof(listener) == "string") 
 		{
 			var container:EventListenerContainer = EventListenerContainer(_globalListeners.removeListener(listener));
-			if (container != null) 	return container.getListener();
+			if (container != null) 	
+			{
+				return container.getListener();
+			}
 			return null;
 		}
 	}
 	
+	/**
+	 * Removes a global EventDispatcher singleton.
+	 */
 	static public function removeInstance(name:String):Boolean 
 	{
 		if (!EventDispatcher.instances.containsKey(name)) 
@@ -357,17 +293,36 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 			return false ;
 		}
 	}
-	
-    // ----o Private Properties
-	
+
+	/**
+	 * The static internal hashmap to register all global instances in your applications.
+	 */	
 	static private var instances:HashMap = new HashMap() ;
-	private var _globalListeners:EventListenerCollection ;
-	private var _captures:HashMap ;
-	private var _listeners:HashMap ;
-	private var _queue:EventQueue ;
-	private var _target:IEventDispatcher ;
 	
-    // ----o Private Methods
+	/**
+	 * The internal EventListenerCollection to register all global listeners.
+	 */
+	private var _globalListeners:EventListenerCollection ;
+	
+	/**
+	 * The HashMap to put all captures.
+	 */
+	private var _captures:HashMap ;
+	
+	/**
+	 * The HashMap of all listeners.
+	 */
+	private var _listeners:HashMap ;
+	
+	/**
+	 * The internal EventQueue buffer. 
+	 */
+	private var _queue:EventQueue ;
+	
+	/**
+	 * The internal IEventDispatcher target.
+	 */
+	private var _target:IEventDispatcher ;
 	
 	private function _bubble(e:Event):Boolean 
 	{

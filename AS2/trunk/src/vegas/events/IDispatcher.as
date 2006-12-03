@@ -21,35 +21,12 @@
   
 */
 
-/** IDispatcher [interface]
-
-	AUTHOR
-	
-		Name : IDispatcher
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2005-12-10
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-		
-	METHOD SUMMARY
-
-		- addEventListener(eventName:String, obj, func):Void 
-		
-		- dispatchEvent(ev):Void
-		
-		- eventListenerExists(eventName:String, obj , func):Boolean
-		
-		- removeAllEventListeners(eventName:String):Void
-		
-		- removeEventListener(eventName:String, obj, func):Void
-		
-		- updateEvent(eventName:String, oInit):Void
-
-**/
-
-interface vegas.events.IDispatcher {
+/**
+ * This interface is the skeleton of all methods used in the old EDispatcher event model.
+ * @author eKameleon
+ */
+interface vegas.events.IDispatcher 
+{
 	
 	function addEventListener(eventName:String, obj, func):Void ;
 

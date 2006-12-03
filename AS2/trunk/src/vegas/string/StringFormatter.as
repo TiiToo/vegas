@@ -52,7 +52,6 @@ import vegas.util.StringUtil;
  * }
  * </p>
  * @author eKameleon
- * @version 1.0.0.0
  */
 class vegas.string.StringFormatter extends AbstractFormatter 
 {

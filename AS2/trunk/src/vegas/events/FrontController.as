@@ -29,14 +29,16 @@ import vegas.events.EventDispatcher;
 import vegas.events.EventListener;
 
 /**
+ * The Front Controller pattern defines a single EventDispatcher that is responsible for processing application requests.
+ * <p>A front controller centralizes functions such as view selection, security, and templating, and applies them consistently across all pages or views. Consequently, when the behavior of these functions need to change, only a small part of the application needs to be changed: the controller and its helper classes.</p>
  * @author eKameleon
  */
 class vegas.events.FrontController extends CoreObject  
 {
 	
 	/**
-	 * FrontController - Constructor
-	 * @usage var oC = new FrontController( [oE:EventDispatcher] ) ;
+	 * Creates a new FrontController instance.
+	 * <p><b>Example :</b> {@code var oC = new FrontController() ;}</p>
 	 */
 	function FrontController( oE:EventDispatcher , name) 
 	{
@@ -44,11 +46,9 @@ class vegas.events.FrontController extends CoreObject
 		_oE = oE || EventDispatcher.getInstance(name); 
 	}
 	
-	// ----o Public Methods 
-
 	/**
 	 * Returns 'true' if the eventName is registered in the FrontController.
-	 * @param eventName:String
+	 * @param eventName the name of an event type.
 	 */
 	public function contains( eventName:String ):Boolean 
 	{
@@ -57,7 +57,7 @@ class vegas.events.FrontController extends CoreObject
 
 	/**
 	 * Dispatch an event into the FrontController
-	 * @param e:Event 
+	 * @param e an event to dispatch.
 	 */
 	public function fireEvent(e:Event):Void 
 	{
@@ -65,9 +65,8 @@ class vegas.events.FrontController extends CoreObject
 	}
 
 	/**
-	 * Returns a EventListener
-	 * @usage  myController.get( myEvent:String ) ;	
-	 * @param  eventName:String
+	 * Returns an EventListener reference.
+	 * @param  eventName the name of the event type mapped in the FrontController.
 	 * @return an EventListener  
 	 */
 	public function getListener(eventName:String):EventListener 
@@ -76,9 +75,9 @@ class vegas.events.FrontController extends CoreObject
 	}
 	
 	/**
-	 * Add a new entry into the FrontController.
-	 * @param eventName:String
-	 * @param listener:EventListener
+	 * Adds a new entry into the FrontController.
+	 * @param eventName the name of the event type.
+	 * @param listener the {@code EventListener} mapped in the FrontController with the specified event type.
 	 */
 	public function insert(eventName:String, listener:EventListener):Void 
 	{
@@ -88,8 +87,7 @@ class vegas.events.FrontController extends CoreObject
 	
 	/**
 	 * Remove an entry into the FrontController.
-	 * @param eventName:String
-	 * @return  
+	 * @param eventName the name of the global event name to remove.
 	 */
 	public function remove(eventName:String):Void 
 	{

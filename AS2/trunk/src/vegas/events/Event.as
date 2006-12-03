@@ -21,123 +21,128 @@
   
 */
 
-/**	Event [interface]
-
-	AUTHOR
-	
-		Name : Event
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2005-10-13
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-	
-		- stop:Number
-
-	METHOD SUMMARY
-	
-		- cancel():Void
-		
-		- clone():BasicEvent
-		
-		- getBubbles():Boolean
-		
-		- getContext()
-		
-		- getCurrentTarget()
-		
-		- getEventPhase():Number
-		
-		- getTarget()
-		
-		- getTimeStamp():Number
-		
-		- getType():String
-		
-		- initEvent(type:String, bubbles:Boolean, cancelable:Boolean)
-		
-		- isCancelled():Boolean
-		
-		- isQueued():Boolean
-		
-		- queueEvent():Void
-		
-		- setBubbles(b:Boolean):Void
-		
-		- setContext(context):Void
-		
-		- setCurrentTarget(target):Void
-		
-		- setEventPhase(n:Number):Void
-		
-		- setTarget(target):Void
-		
-		- setType(type:String):Void
-		
-		- stopImmediatePropagation():Void
-		
-		- toSource(o, [indent:Number], [indentor:String]):String
-		
-		- toString():String
-	
-	INHERIT
-	
-		ICloneable
-	
-*/
-
 import vegas.core.ICloneable;
 
+/**
+ * Event interface, that contains information about a generic event.
+ * @author eKameleon
+ */
 interface vegas.events.Event extends ICloneable 
 {
 
 	// var stop:Number ;
 
+	/**
+	 * Cancel the event.
+	 */
 	function cancel():Void ;
 		
+	/**
+	 * Returns {@code true} if this event is a bubbling event.
+	 */
 	function getBubbles():Boolean ;
 		
+	/**
+	 * Returns the event context
+	 */
 	function getContext() ;
 		
+	/**
+	 * Returns the current target of this event in a capturing or a bubbling phase.
+	 */
 	function getCurrentTarget() ;
 		
+	/**
+	 * Returns the event phase value.
+	 * @see EventPhase
+	 */
 	function getEventPhase():Number ;
 		
+	/**
+	 * Returns the target of this event.
+	 */
 	function getTarget() ;
 	
+	/**
+	 * Returns the timestamp value of this event.
+	 */
 	function getTimeStamp():Number ;
 	
+	/**
+	 * Returns the type of the event.
+	 * @return the string representation of the type of this event.
+	 */
 	function getType():String ;
 	
 	function initEvent(type:String, bubbles:Boolean, cancelable:Boolean):Void ;
 	
+	/**
+	 * Check, whether the event has been cancelled.
+	 * @return {@code true} if the event has been cancelled, false otherwise.
+	 */
 	function isCancelled():Boolean ;
 
+	/**
+	 * Check, whether the event already is in a queue.
+	 * @return (@code true} if the event already is in a queue. 
+	 */
 	function isQueued():Boolean ;
 	
+	/**
+	 * Flags the event as queued.
+	 */
 	function queueEvent():Void ;
 	
+	/**
+	 * Sets if the event is bubbling.
+	 */
 	function setBubbles(b:Boolean):Void ;
 	
+	/**
+	 * Sets the context of this event.
+	 */
 	function setContext(context):Void ;
 	
+	/**
+	 * Sets the current target of this event in a bubbling or capturing phase.
+	 */
 	function setCurrentTarget(target):Void ;
 	
+	/**
+	 * Sets the {@code EventPhase} of this event.
+	 */
 	function setEventPhase(n:Number):Void ;
 	
+	/**
+	 * Sets the target of this event.
+	 */
 	function setTarget(target):Void ;
 	
+	/**
+	 * Sets the event type.
+	 */
 	function setType(type:String):Void ;
 	
+	/**
+	 * Stops the propagation of this event in the event flow.
+	 */
 	function stopPropagation():Void ;
 	
+	/**
+	 * Stops immediately the propagation of this event in the event flow.
+	 */
 	function stopImmediatePropagation():Void ;
 	
+	/**
+	 * Returns a Eden representation of the object.
+	 * @return a string representing the source code of the object.
+	 */
 	function toSource(indent:Number, indentor:String):String ;
-	
+
+	/**
+	 * Returns the string representation of this instance.
+	 * @return the string representation of this instance.
+	 */
 	function toString():String ;
 	
 }

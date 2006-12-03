@@ -21,34 +21,6 @@
   
 */
 
-/** WildExp
-	
-	
-	TIPS AND TRICKS :
-		
-		1. find all the words in a string
-			
-			import vegas.string.WildExp ;
-			var we:WildExp = new WildExp( "*", WildExp.IGNORECASE | WildExp.MULTIWORD );
-			result = we.test( "any phrases with words inside" );
-			//result = [ "any", "phrases", "with", "words", "inside" ];
-		
-		2. find comments in a string
-			import vegas.string.WildExp ;
-			var we:WildExp = new WildExp( "*\/!**!*!/\*", WildExp.IGNORECASE | WildExp.MULTIWORD );
-			result = we.test( "toto = \"123\"; /\*hello world*\/" );
-			//result = [ "toto = \"123\"; ", "hello world" ] ;
-      
-		3. find the name, arguments and body of a function
-			import vegas.string.WildExp ;
-			var we:WildExp = new WildExp( "function *(*)*{*}", WildExp.IGNORECASE | WildExp.MULTIWORD );
-			result = we.test( "function toto( a, b, c )\r\n{\treturn \"hello world\";\r\n\t}" );
-			//result = [ "toto", " a, b, c ", "\r\n", "\treturn \"hello world\";\r\n\t" ];
-      
-
-
-**/	
-
 import vegas.core.CoreObject;
 import vegas.string.UnicodeChar;
 import vegas.util.StringUtil;
@@ -98,7 +70,6 @@ import vegas.util.StringUtil;
  *	@see vegas.string.StringUtil replace() method
  *	@see vegas.string.UnicodeChar WHITE_SPACE_CHARS and LINE_TERMINATOR_CHARS constants
  *	@author eKameleon
- *	@version 1.0.0.0
  */
 class vegas.string.WildExp extends CoreObject 
 {

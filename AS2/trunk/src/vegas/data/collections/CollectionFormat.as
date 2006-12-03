@@ -21,52 +21,37 @@
   
 */
 
-/**	CollectionFormat
-
-	AUTHOR
-
-		Name : CollectionFormat
-		Package : vegas.data.collections
-		Version : 1.0.0.0
-		Date :  2005-04-24
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- formatToString(o):String
-	
-	INHERIT
-	
-		CoreObject → CollectionFormat
-	
-	IMPLEMENT
-	
-		IFormat, IFormattable, IHashable, ISerializable
-	
-**/
-
 import vegas.core.CoreObject;
 import vegas.core.IFormat;
 import vegas.data.Collection;
 import vegas.data.iterator.Iterator;
 
-class vegas.data.collections.CollectionFormat extends CoreObject implements IFormat {
+/**
+ * Converts a Collection to a custom string representation.
+ * @author eKameleon
+ */
+class vegas.data.collections.CollectionFormat extends CoreObject implements IFormat 
+{
 
-	// ----o Constructor
-	
-	public function CollectionFormat() {
+	/**
+	 * Creates a new Collectionformat instance.
+	 */
+	public function CollectionFormat() 
+	{
 		//
 	}
 	
-	// ----o Public Methods
-
-	public function formatToString(o):String {
-		if (o instanceof Collection) {
+	/**
+	 * Converts the object to a custom string representation.
+	 */	
+	public function formatToString(o):String 
+	{
+		if (o instanceof Collection) 
+		{
 			var r:String = "{";
 			var it:Iterator = o.iterator() ;
-			while (it.hasNext()) {
+			while (it.hasNext()) 
+			{
 				r += it.next().toString() ;
 				if (it.hasNext()) r += ",";
 			}

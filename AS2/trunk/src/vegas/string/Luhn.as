@@ -34,7 +34,6 @@
  * </p>
  * @see <a href='http://fr.wikipedia.org/wiki/Formule_de_Luhn'>Luhn Formula</a> 
  * @author eKameleon
- * @version 1.0.0.0
  */
 class vegas.string.Luhn 
 {

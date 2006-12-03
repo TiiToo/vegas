@@ -55,7 +55,6 @@
  * </p>
  * <p><b>THANKS : Zwetan</b> in buRRRn FCNG mailing list (12/10/2004)</p>
  * @author eKameleon
- * @version 1.0.0.0
  */
 class vegas.string.Glob 
 {

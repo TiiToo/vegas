@@ -21,107 +21,77 @@
   
 */
 
-/* ----------  SimpleCollection
-
-	AUTHOR
-
-		Name : SimpleCollection
-		Package : vegas.data.collections
-		Version : 1.0.0.0
-		Date : 2005-07-01
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var co:SimpleCollection = new SimpleCollection( ar:Array ) ;
-
-	METHOD SUMMARY
-
-		- clear()
-		
-		- contains(o)
-		
-		- containsAll(c:Collection)
-		
-		- get(id)
-		
-		- indexOf(o)
-		
-		- insert(o)
-		
-		- insertAll(c:Collection)
-		
-		- isEmpty()
-		
-		- iterator()
-		
-		- remove()
-		
-		- removeAll(c:Collection)
-		
-		- retainAll(c:Collection)
-		
-		- size():Number
-		
-		- toArray():Array
-		
-		- toSource():String
-		
-		- toString():String
-
-	INHERIT
-	
-		Object > AbstractCollection > SimpleCollection
-
-	IMPLEMENTS
-	
-		ICloneable, Collection, ISerializable, IFormattable
-
-----------  */
-
 import vegas.data.Collection;
 import vegas.data.collections.AbstractCollection;
 import vegas.data.iterator.Iterator;
 
-class vegas.data.collections.SimpleCollection extends AbstractCollection {
+/**
+ * A simple representation of the ICollection interface.
+ * @author eKameleon
+ */
+class vegas.data.collections.SimpleCollection extends AbstractCollection 
+{
 	
-	// ----o Constructor
-
-	public function SimpleCollection( ar:Array ) {
+	/**
+	 * Creates a new SimpleCollection instance.
+	 * @param ar an optional array to fill the collection.
+	 */
+	public function SimpleCollection( ar:Array ) 
+	{
 		super(ar) ;
 	}
 
-	// ----o Public Methods
-	
-	public function clone() {
-		return new SimpleCollection(_a) ;
+	/**
+	 * Returns a shallow copy of this collection (optional operation).
+	 */
+	public function clone() 
+	{
+		return new SimpleCollection( toArray() ) ;
 	}
 	
-	public function containsAll(c:Collection):Boolean {
+	/**
+	 * Returns  true if this list contains all of the elements of the specified collection.
+	 */
+	public function containsAll(c:Collection):Boolean 
+	{
 		var it:Iterator = c.iterator() ;
-		while(it.hasNext()) {
+		while(it.hasNext()) 
+		{
 			if ( ! contains(it.next()) ) return false ;
 		}
 		return true ;
 	}
-		
+	
+	/**
+	 * Appends all of the elements in the specified collection to the end of this list, in the order that they are returned by the specified collection's iterator (optional operation).
+	 */
 	public function insertAll(c:Collection):Boolean {
-		if (c.size() > 0) {
+		if (c.size() > 0) 
+		{
 			var it:Iterator = c.iterator() ;
-			while(it.hasNext()) insert(it.next()) ;
+			while(it.hasNext()) 
+			{
+				insert(it.next()) ;
+			}
 			return true ;
-		} else {
+		}
+		else 
+		{
 			return false ;
 		}
 	}
 	
-	public function removeAll(c:Collection):Boolean {
+	/**
+	 * Removes from this list all the elements that are contained in the specified collection (optional operation).
+	 */
+	public function removeAll(c:Collection):Boolean 
+	{
 		var b:Boolean = false ;
 		var it:Iterator = iterator() ;
-		while (it.hasNext()) {
-			if ( c.contains(it.next()) ) {
+		while (it.hasNext()) 
+		{
+			if ( c.contains(it.next()) ) 
+			{
 				it.remove() ;
 				b = true ;
 			}
@@ -129,11 +99,17 @@ class vegas.data.collections.SimpleCollection extends AbstractCollection {
 		return b ;
 	}
 
-	public function retainAll(c:Collection):Boolean {
+	/**
+	 * Retains only the elements in this list that are contained in the specified collection (optional operation).
+	 */
+	public function retainAll(c:Collection):Boolean 
+	{
 		var b:Boolean = false ;
 		var it:Iterator = iterator() ;
-		while(it.hasNext()) {
-			if ( ! c.contains(it.next()) ) {
+		while(it.hasNext()) 
+		{
+			if ( ! c.contains(it.next()) ) 
+			{
 				it.remove() ;
 				b = true ;
 			}

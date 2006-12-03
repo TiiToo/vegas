@@ -28,6 +28,7 @@ import vegas.errors.ConcurrentModificationError;
 import vegas.errors.UnsupportedOperation;
 
 /**
+ * Converts an Bag to an iterator.
  * @author eKameleon
  */
 class vegas.data.bag.BagIterator extends CoreObject implements Iterator 
@@ -35,7 +36,7 @@ class vegas.data.bag.BagIterator extends CoreObject implements Iterator
 
 	/**
 	 * Creates a new BagIterator instance.
-	 * @param parent the bag ( AbstractBag ) used in this iterator.
+	 * @param parent the bag (@code AbstractBag) used in this iterator.
 	 * @param support the iterator to support this iterator.
 	 */
     public function BagIterator( parent:AbstractBag, support:Iterator ) 
@@ -56,7 +57,7 @@ class vegas.data.bag.BagIterator extends CoreObject implements Iterator
 
 	/**
 	 * Unsupported method in all BagIterator.
-	 * @throws UnsupportedOperation
+	 * @throws UnsupportedOperation {@ode key} method in unsupported.
 	 */
 	public function key() 
 	{
@@ -92,7 +93,7 @@ class vegas.data.bag.BagIterator extends CoreObject implements Iterator
 
 	/**
 	 * Unsupported method in all BagIterator.
-	 * @throws UnsupportedOperation
+	 * @throws UnsupportedOperation {@code reset} method in unsupported.
 	 */
 	public function reset():Void 
 	{
@@ -101,7 +102,7 @@ class vegas.data.bag.BagIterator extends CoreObject implements Iterator
 
 	/**
 	 * Unsupported method in all BagIterator.
-	 * @throws UnsupportedOperation
+	 * @throws UnsupportedOperation {@code seek} method in unsupported.
 	 */
 	public function seek(n:Number):Void 
 	{

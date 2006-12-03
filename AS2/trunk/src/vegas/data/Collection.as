@@ -43,6 +43,7 @@ interface vegas.data.Collection extends ISerializable
 
 	/**
 	 * Returns {@code true} if this collection contains the specified element.
+	 * @return {@code true} if this collection contains the specified element.
 	 */
 	function contains(o):Boolean ;
 	

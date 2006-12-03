@@ -27,7 +27,6 @@ import vegas.errors.FatalError;
 /**
  * This JSONError is throw in the JSON static methods.
  * @author eKameleon
- * @version 1.0.0.0
  */
 class vegas.string.errors.JSONError extends FatalError 
 {

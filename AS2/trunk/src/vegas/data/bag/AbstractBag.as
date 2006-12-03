@@ -41,7 +41,7 @@ import vegas.util.serialize.Serializer;
 
 /**
  * This class provides a skeletal implementation of the {@code Bag} interface, to minimize the effort required to implement this interface.
- * To implement a bag, the programmer needs only to extend this class and provide implementations for the cursor, insert and size methods. For supporting the removal of elements, the cursor returned by the cursor method must additionally implement its remove method.
+ * <p>To implement a bag, the programmer needs only to extend this class and provide implementations for the cursor, insert and size methods. For supporting the removal of elements, the cursor returned by the cursor method must additionally implement its remove method.</p>
  * @author eKameleon
  */
 class vegas.data.bag.AbstractBag extends CoreObject implements Bag {
@@ -104,7 +104,7 @@ class vegas.data.bag.AbstractBag extends CoreObject implements Bag {
 
 	/**
 	 * Unsupported by bag objects.
-	 * @throws UnsupportedOperation "The 'get' method is unsupported with a bag object."
+	 * @throws UnsupportedOperation the 'get' method is unsupported with a bag object.
 	 */	
 	public function get(id:Number) 
 	{

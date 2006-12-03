@@ -21,54 +21,6 @@
   
 */
 
-/**  AbstractCollection
-
-	AUTHOR
-	
-		Name : AbstractCollection
-		Package : vegas.data.collections
-		Version : 1.0.0.0
-		Date : 2005-04-25
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-
-		- clear()
-		
-		- contains(o)
-		
-		- get(id)
-		
-		- indexOf(o)
-		
-		- insert(o)
-		
-		- isEmpty()
-		
-		- iterator()
-		
-		- remove()
-		
-		- size():Number
-		
-		- toArray():Array
-		
-		- toSource():String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → AbstractCollection
-
-	IMPLEMENTS
-	
-		Collection, ISerializable, IFormattable
-
-**/
-
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
 import vegas.data.Collection;
@@ -78,68 +30,128 @@ import vegas.data.iterator.Iterable;
 import vegas.data.iterator.Iterator;
 import vegas.util.serialize.Serializer;
 
-class vegas.data.collections.AbstractCollection extends CoreObject implements Collection, ICloneable, Iterable {
+/**
+ * This class provides a skeletal implementation of the {@code Collection} interface, to minimize the effort required to implement this interface.
+ * @author eKameleon
+ */
+class vegas.data.collections.AbstractCollection extends CoreObject implements Collection, ICloneable, Iterable 
+{
 	
-	// ----o Constructor
-
-	private function AbstractCollection(ar:Array) {
+	/**
+	 * Creates a new AbstractCollection.
+	 */
+	private function AbstractCollection(ar:Array) 
+	{
 		if(ar.length > 0) {
 			_a = [].concat(arguments[0]) ;
 		} else {
 			_a = [] ;
 		}
 	}
-	
-	// ----o Public Methods
 
-	public function clone() {
-		//
-	}
-
-	public function clear():Void { 
+	/**
+	 * Removes all of the elements from this collection (optional operation).
+	 */
+	public function clear():Void 
+	{ 
 		_a.splice(0) ;
 	}
 	
-	public function contains(o):Boolean { 
+	/**
+	 * Returns a shallow copy of this collection (optional operation).
+	 * <p>Overrides this method in the concrete class.</p>
+	 */
+	public function clone() 
+	{
+		//
+	}
+
+	/**
+	 * Returns {@code true} if this collection contains the specified element.
+	 * @return {@code true} if this collection contains the specified element.
+	 */
+	public function contains(o):Boolean 
+	{ 
 		return indexOf(o) >- 1  ;
 	}
 
-	public function get(id:Number) { 
+	/**
+	 * Returns the element from this collection at the passed index.
+	 */
+	public function get(id:Number) 
+	{ 
 		return _a[id] ;
 	}
 
-	public function insert(o):Boolean {
-		if (o == undefined) return false ;
+	/**
+	 * Ensures that this collection contains the specified element (optional operation).
+	 */
+	public function insert(o):Boolean 
+	{
+		if (o == undefined) 
+		{
+			return false ;
+		}
 		_a.push(o);
 		return true ;
 	}
 
-	public function indexOf(o):Number {
+	/**
+	 * Returns the index of an element in the collection.
+	 */
+	public function indexOf(o):Number 
+	{
 		var l:Number = _a.length ;
-		for (var i:Number = 0 ; i<l ; i++) if (_a[i] == o) return i ;
+		for (var i:Number = 0 ; i<l ; i++) 
+		{
+			if (_a[i] == o) return i ;
+		}
 		return -1 ; 
 	}
 
-	public function isEmpty():Boolean { 
+	/**
+	 * Returns {@code true} if this collection contains no elements.
+	 * @return {@code true} if this collection contains no elements.
+	 */
+	public function isEmpty():Boolean 
+	{ 
 		return _a.length == 0 ;
 	}
 
-	public function iterator():Iterator { 
+	/**
+	 * Returns an iterator over the elements in this collection.
+	 * @return an Iterator over the elements in this collection.
+	 * @see Iterator
+	 * @see Iterable
+	 */
+	public function iterator():Iterator 
+	{ 
 		return new ArrayIterator(_a) ;
 	}
 
-	public function remove(o):Boolean {
+	/**
+	 * Removes a single instance of the specified element from this collection, if it is present (optional operation).
+	 */
+	public function remove(o):Boolean 
+	{
 		var it:Iterator = iterator() ;
-		if (o == null) {
-			while(it.hasNext()) {
-				if (it.next() == null) {
+		if (o == null) 
+		{
+			while(it.hasNext()) 
+			{
+				if (it.next() == null) 
+				{
 					it.remove() ;
 					return true ;
 				}
 			}
-		} else {
-			while (it.hasNext()) {
-				if (o == it.next() ) {
+		}
+		else 
+		{
+			while (it.hasNext()) 
+			{
+				if (o == it.next() ) 
+				{
 					it.remove() ;
 					return true ;
 				}
@@ -148,24 +160,43 @@ class vegas.data.collections.AbstractCollection extends CoreObject implements Co
 		return false ;
 	}
 
-	public function size():Number { 
+	/**
+	 * Returns the number of elements in this collection.
+	 */
+	public function size():Number 
+	{ 
 		return _a.length ;
 	}
 
-	public function toArray():Array { 
+	/**
+	 * Returns an array containing all of the elements in this collection.
+	 */
+	public function toArray():Array 
+	{ 
 		return _a.concat() ;
 	}
 
-	public function toSource(indent:Number, indentor:String):String {
+	/**
+	 * Returns a Eden representation of the object.
+	 * @return a string representing the source code of the object.
+	 */
+	public function toSource(indent:Number, indentor:String):String 
+	{
 		return Serializer.getSourceOf(this, [Serializer.toSource(_a)]) ;
 	}
 
-	public function toString():String {
+	/**
+	 * Returns the string representation of this instance.
+	 * @return the string representation of this instance.
+	 */
+	public function toString():String 
+	{
 		return (new CollectionFormat()).formatToString(this) ;
 	}
 
-	// ----o Private Properties
-	
+	/**
+	 * The internal array of the collection.
+	 */	
 	private var _a:Array ;
 
 }
