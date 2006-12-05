@@ -21,46 +21,6 @@
   
 */
 
-/**	AbstractTypeable
-
-	AUTHOR
-
-		Name : AbstractTypeable
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date :  2005-11-02
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		private
-
-	METHODS
-	
-		- getType()
-				
-			return the type.
-			
-		- setType(type:Function)
-			
-			the type to set.
-		
-		- supports(value):Boolean
-		
-		- validate(value)
-	
-	INHERIT
-	
-		CoreObject → AbstractTypeable
-	
-	IMPLEMENTS 
-
-		Typeable, Validator
-
-**/
-
 import vegas.core.CoreObject;
 import vegas.core.ITypeable;
 import vegas.core.IValidator;
@@ -69,38 +29,68 @@ import vegas.errors.TypeMismatchError;
 import vegas.util.ConstructorUtil;
 import vegas.util.TypeUtil;
 
-class vegas.util.AbstractTypeable extends CoreObject implements ITypeable, IValidator {
+/**
+ * This abstract class is used to create concrete {@code ITypeable} implementations.
+ * @author eKameleon
+ * @see ITypeable
+ * @see IValidator
+ */
+class vegas.util.AbstractTypeable extends CoreObject implements ITypeable, IValidator 
+{
 
-	// ----o Construtor
-	
-	private function AbstractTypeable(type:Function) {
-		if (type == null) {
+	/**
+	 * Creates a new ITypeable instance if you extend this class.
+	 */
+	private function AbstractTypeable(type:Function) 
+	{
+		
+		if (type == null) 
+		{
 			throw new IllegalArgumentError("Argument 'type' must not be 'null' or 'undefined'.") ;
 		}
 		_type = type ;
+		
 	}
 
-	// ----o Public Methods	
-
-	public function getType():Function {
+	/**
+	 * Returns the type of the ITypeable object.
+	 */
+	public function getType():Function 
+	{
 		return _type ;
 	}
 
-	public function setType(type:Function):Void {
+	/**
+	 * Sets the type of the ITypeable object.
+	 */
+	public function setType(type:Function):Void 
+	{
 		_type = type ;
 	}
 
-	public function supports(value):Boolean {
+	/**
+	 * Returns true if the IValidator object validate the value.
+	 * @return {@code true} is this specific value is valid.
+	 */
+	public function supports( value ):Boolean 
+	{
 		return TypeUtil.typesMatch(value, _type) ;
 	}
-	
-	public function validate(value):Void {
-		var name:String = ConstructorUtil.getName(this) ;
-		if (!supports(value)) throw new TypeMismatchError( name + ".validate('value' : " + value + ") is mismatch.") ;
+
+	/**
+	 * Evaluates the condition it checks and updates the IsValid property.
+	 */
+	public function validate( value ):Void 
+	{
+		if (!supports(value)) 
+		{
+			throw new TypeMismatchError( this + " validate('value' : " + value + ") is mismatch.") ;
+		}
 	}
 	
-	// -----o Private Properties
-	
+	/**
+	 * The internal type function.
+	 */
 	private var _type:Function ;
 
 }

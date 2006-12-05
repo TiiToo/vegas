@@ -24,7 +24,6 @@
 /**
  * Interface implemented by classes that can compare an object with their objects.
  * @author eKameleon
- * @version 1.0.0.0
  */
 interface vegas.core.IEquality 
 {

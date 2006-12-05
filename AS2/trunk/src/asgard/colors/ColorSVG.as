@@ -21,99 +21,26 @@
   
 */
 
-/** ColorSVG
-
-	AUTHOR
-
-		Name : ColorSVG
-		Package : asgard.colors
-		Version : 1.0.0.0
-		Date :  2006-05-29
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTANT SUMMARY
-	
-		- AQUA:ColorHTML
-		
-		- BLACK:ColorHTML
-		
-		- BLUE:ColorHTML
-		
-		- FUCHSIA:ColorHTML
-		
-		- GRAY:ColorHTML
-		
-		- GREEN:ColorHTML
-		
-		- LIME:ColorHTML
-		
-		- OLIVE:ColorHTML
-		
-		- MAROON:ColorHTML
-		
-		- NAVY:ColorHTML
-		
-		- PURPLE:ColorHTML
-		
-		- RED:ColorHTML
-		
-		- SILVER:ColorHTML
-		
-		- TEAL:ColorHTML
-		
-		- WHITE:ColorHTML
-		
-		- YELLOW:ColorHTML
-
-	METHOD SUMMARY
-
-		- equals( o ):Boolean
-		
-		- static get( name:String ):ColorSVG
-		
-		- toBoolean():Boolean
-		
-		- toObject():Object
-		
-		- toString():String
-				
-		- valueOf():Number
-
-	INHERIT
-	
-		Number → ColorHTML → ColorSVG
-
-	IMPLEMENTS
-	
-		IConvertible, IEquality, IFormattable
-	
-	SEE ALSO
-	
-		Basic HTML data types - W3C HTML 4 Specifications :
-			
-			http://www.w3.org/TR/html4/types.html (chap 6.5)
-		
-		Scalable Vector Graphics Color Names
-		
-			http://www.december.com/html/spec/colorsvg.html
-
-*/
-
 import asgard.colors.ColorHTML;
 
 import vegas.data.map.HashMap;
 import vegas.util.TypeUtil;
 
 
-// TODO complete the documentation !!!
-
+/**
+ * All SVG W3C standard colors. 
+ * Basic HTML data types - W3C HTML 4 Specifications : <a href='http://www.w3.org/TR/html4/types.html (chap 6.5)'>http://www.w3.org/TR/html4/types.html</a> (chap 6.5).
+ * Scalable Vector Graphics Color Names : <a href='http://www.december.com/html/spec/colorsvg.html'>http://www.december.com/html/spec/colorsvg.html</a>
+ * @author eKameleon
+ */
 class asgard.colors.ColorSVG extends ColorHTML 
 {
 	
-	// ----o Constructor
-	
+	/**
+	 * Creates a new ColorSVG instance.
+	 * @param n the value hex of the color.
+	 * @param the name of the color.
+	 */
 	public function ColorSVG( n:Number , name:String) 
 	{
 		super(n, name) ;
@@ -127,11 +54,10 @@ class asgard.colors.ColorSVG extends ColorHTML
 		
 	}
 
-	// ----o Public Properties
-	
+	/**
+	 * The hashmap of all SVG colors.
+	 */
 	static public var ELEMENTS:HashMap = null ;
-
-
 
 	static public var ALICE_BLUE:ColorSVG = new ColorSVG(0xF0F8FF , "AliceBlue") ;
 	
@@ -429,9 +355,9 @@ class asgard.colors.ColorSVG extends ColorHTML
 	
 	static public var YELLOW_GREEN:ColorSVG = new ColorSVG(0x9ACD32 , "YellowGreen") ;
 	
-
-	// ----o Public Methods
-	
+	/**
+	 * Returns true if the object passed in argument is in the map of ColorSVG elements.
+	 */
 	static public function contains( o ):Boolean
 	{
 		if (o instanceof ColorSVG)
@@ -448,6 +374,9 @@ class asgard.colors.ColorSVG extends ColorHTML
 		}
 	}
 	
+	/**
+	 * Returns the current ColorSVG reference specified with the name passed in parameter.
+	 */
 	static public function get( name:String ):ColorSVG 
 	{
 		return ColorSVG.ELEMENTS.get(name.toLowerCase()) ;

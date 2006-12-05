@@ -25,7 +25,8 @@ import vegas.errors.ArgumentOutOfBoundsError;
 import vegas.util.Copier;
 
 /**
- * Array tools class.
+ * The {@code ArrayUtil} utility class is an all-static class with methods for working with array.
+ * <p>You do not create instances of {@code ArrayUtil}, instead you call static methods.</p>
  * @author eKameleon
  */
 class vegas.util.ArrayUtil 

@@ -21,28 +21,20 @@
   
 */
 
-/**	Observer [Interface]
-
-	AUTHOR
-	
-		Name : Observer
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date :  2005-04-24
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHODS
-	
-		- update( o:Observable, arg )
-
-**/
-
 import vegas.util.Observable;
 
-interface vegas.util.Observer {
+/**
+ * A class can implement the Observer interface when it wants to be informed of changes in observable objects.
+ * @author eKameleon
+ */
+interface vegas.util.Observer 
+{
 
+	/**
+	 * This method is called whenever the observed object is changed.
+	 * @param o the observable object.
+	 * @param arg an argument passed to the notifyObservers method.
+	 */
 	function update(o:Observable, arg) ;
 
 }

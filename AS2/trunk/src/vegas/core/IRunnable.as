@@ -25,7 +25,6 @@
  * The IRunnable interface should be implemented by any class whose instances are intended to be executed by a "thread".
  * The class must define a method of no arguments called run.
  * @author eKameleon
- * @version 1.0.0.0
  */
 interface vegas.core.IRunnable 
 {

@@ -24,7 +24,6 @@
 /**
  * Interface implemented by classes that can return a hash code value.
  * @author eKameleon
- * @version 1.0.0.0
  */
 interface vegas.core.IHashable 
 {

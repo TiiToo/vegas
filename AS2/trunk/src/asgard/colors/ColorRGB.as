@@ -21,41 +21,11 @@
   
 */
 
-/** ColorRGB
-
-	AUTHOR
-
-		Name : ColorRGB
-		Package : asgard.colors
-		Version : 1.0.0.0
-		Date :  2004-11-16
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	STATIC METHODS
-	
-		- static getRGBStr(c:Color):String
-	
-		- static hex2rgb(hex:Number):Object
-
-		- static rgb2hex(r:Number, g:Number, b:Number) :Number
-
-		- static setRGBStr(c:Color, str:String) : Void
-
-**/
-
+/**
+ * @author eKameleon
+ */
 class asgard.colors.ColorRGB 
 {
-	
-	// ----o Constructor
-	
-	private function ColorRGB() 
-	{
-		//
-	}
-	
-	//  ------o static public Methods
 	
 	static public function getRGBStr(c:Color):String 
 	{

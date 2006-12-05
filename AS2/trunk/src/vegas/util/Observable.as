@@ -21,100 +21,122 @@
   
 */
 
-/** Observable
-
-	AUTHOR
-
-		Name : Observable
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date : 2005-04-17
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHODS
-	
-		- addObserver(obs)
-		
-		- clearChanged()
-		
-		- countObservers()
-		
-		- deleteObservers([obs])
-			
-			détruit tous les observers si obs n'est pas défini, sinon détruit l'observer passé en paramètre
-		
-		- hasChanged()
-		
-		- notifyObservers( arg )
-		
-		- setChanged()
-	
-**/
-
+import vegas.core.CoreObject;
 import vegas.data.iterator.Iterator;
 import vegas.data.list.ArrayList;
 import vegas.errors.NullPointerError;
 import vegas.util.Observer;
 
-class vegas.util.Observable {
+/**
+ * This class represents an observable object, or "data" in the model-view paradigm. It can be subclassed to represent an object that the application wants to have observed.
+ * @author eKameleon
+ */
+class vegas.util.Observable extends CoreObject
+{
 
-	// ----o Constructor
-
-	public function Observable() {
+	/**
+	 * Creates an Observable instance with zero Observers.
+	 */
+	public function Observable() 
+	{
 		_obs = new ArrayList() ;
 	}
 
-	// ----o Public Methods
-
-	public function addObserver(o:Observer):Boolean {
-		if (o == null) throw new NullPointerError() ;
-		if (!_obs.contains(o)) {
+	/**
+	 *  Adds an observer to the set of observers for this object, provided that it is not the same as some observer already in the set.
+ 	 */
+	public function addObserver(o:Observer):Boolean 
+	{
+		if (o == null) 
+		{
+			throw new NullPointerError(this + " the passed object in argument not must be 'null' or 'undefined'.") ;
+		}
+		if (!_obs.contains(o)) 
+		{
 			_obs.insert(o) ;
 			return true ;
 		}
 		return false ;
 	}
 
-	public function clearChanged():Void {
+	/**
+	 * Indicates that this object has no longer changed, or that it has already notified all of its observers of its most recent change, so that the hasChanged method will now return false.
+	 */
+	public function clearChanged():Void 
+	{
 		_changed = false ;
 	}
 	
-	public function countObservers(Void):Number {
+	/**
+	 * Returns the number of observers of this Observable object.
+	 * @return the number of observers of this Observable object.
+	 */
+	public function countObservers(Void):Number 
+	{
 		return _obs.size() ;
 	}
 
-	public function deleteObservers(o:Observer):Void {
-		if (o == undefined) {
+	/**
+	 * Deletes an observer from the set of observers of this object.
+	 */
+	public function deleteObservers(o:Observer):Void 
+	{
+		if (o == undefined) 
+		{
 			_obs.clear() ;
-		} else {
+		}
+		else 
+		{
 			_obs.remove(o) ;
 		}
 	}
 	
-	public function hasChanged():Boolean {
+	/**
+	 * Tests if this object has changed.
+	 */
+	public function hasChanged():Boolean 
+	{
 		return _changed ;
 	}
 
-	public function notifyObservers( arg ):Void {
-		if (arg == undefined) arg = null ;
-		if (!_changed) return ;
+	/**
+	 * If this object has changed, as indicated by the hasChanged method, then notify all of its observers and then call the clearChanged method to indicate that this object has no longer changed.
+	 */
+	public function notifyObservers( arg ):Void 
+	{
+		if (arg == undefined) 
+		{
+			arg = null ;
+		}
+		if (!_changed) 
+		{
+			return ;
+		}
 		clearChanged() ;
 		var _obsMemory:ArrayList = _obs.clone() ;
 		var it:Iterator = _obsMemory.iterator() ;
-		while(it.hasNext()) {
+		while(it.hasNext()) 
+		{
 			it.next().update(this, arg) ;
 		}
 	}
 	
-	public function setChanged():Void {
+	/**
+	 * Marks this Observable object as having been changed; the hasChanged method will now return true
+	 */
+	public function setChanged():Void 
+	{
 		_changed = true ;
 	}
-
-	// ----o Private Properties
-		
+	
+	/**
+	 * The internal ArrayList.
+	 */		
 	private var _obs:ArrayList ;
+	
+	/**
+	 * The internal value to notify if this Observable object is changed or not.
+	 */
 	private var _changed:Boolean ;
 	
 }

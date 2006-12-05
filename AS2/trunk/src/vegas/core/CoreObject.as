@@ -40,7 +40,6 @@ import vegas.util.ConstructorUtil;
  * }
  * </p>
  * @author eKameleon
- * @version 1.0.0.0
  */
 class vegas.core.CoreObject implements IFormattable, IHashable, ISerializable 
 {

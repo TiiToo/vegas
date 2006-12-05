@@ -21,107 +21,104 @@
   
 */
 
-/** ResolverProxy
-
-	AUTHOR
-
-		Name : ResolverProxy 
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date :  2005-05-21
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-		Allow to link an object with another objet using __resolve
-		instead of ASBroadcaster, EventBroadcaster, EventDispatcher, etc...
-   
-		ATTN: this a 1 to 1 relationship
-		EventBroadcaster -> 1 to *    + unidirectional
-		ResolverProxy    -> 1 to 1    + unidirectional or bidirectional
-   
-	NOTE: this can be used to connect a "Model" object
-		  to a "View" object as an alternative to
-		  "Model-View-Controller" or "visual proxy".
-        
-     EXAMPLES
-     
-         ex1:
-         myModel = new Model();
-         _root.createView( "myView" );
-         myView.proxy = myModel;
-         myModel.proxy = myView;
-         
-         ex2:
-         myModel = new Model();
-         _root.createView( "myView" );
-         myView.link( myModel );
-         
-         the View and the Model share their methods
-         and properties as they were only one object.
-
-	INHERIT
-	
-		CoreObject → ResolverProxy
-
-	IMPLEMENTS
-
-		IFormattable, IHashable
-
-	SEE ALSO
-	
-		Mixin
-    
-	TODO A tester !
-
-	THANKS 
-	
-		Zwetan >> http://www.zwetan.com/	
-		
-**/
-
 import vegas.core.CoreObject;
 import vegas.util.factory.PropertyFactory;
 import vegas.util.Mixin;
 
-class vegas.util.ResolverProxy extends CoreObject {
+/**
+ * Allow to link an object with another objet using {@code __resolve} method.
+ * <p>This is a 1 to 1 relationship.
+ * <li>EventBroadcaster -> 1 to *    + unidirectional</li>
+ * <li>ResolverProxy    -> 1 to 1    + unidirectional or bidirectional</li>
+ * </p>
+ * <p><b>Note :</b>This can be used to connect a "Model" object to a "View" object as an alternative to  "Model-View-Controller" or "visual proxy".</p>
+ * <p><b>Example 1 :</b>
+ * {@code
+ * var myModel = new Model();
+ * createView( "myView" ) ;
+ * myView.proxy = myModel ;
+ * myModel.proxy = myView;
+ * }
+ * </p>
+ * <p><b>Example 2 :</b>
+ * {@code
+ * myModel = new Model();
+ * createView( "myView" );
+ * myView.link( myModel );
+ * }
+ * </p>
+ * <p>The View and the Model share their methods and properties as they were only one object.</p>
+ * @author eKameleon
+ * @see Mixin
+ */
+class vegas.util.ResolverProxy extends CoreObject 
+{
 	
-	// ----o Constructor
-	
-	public function ResolverProxy ( p_proxy ) {
-		_proxy = p_proxy ;
+	/**
+	 * Creates a new ResolverProxy instance.
+	 */
+	public function ResolverProxy ( proxy ) 
+	{
+		_proxy = proxy ;
     }
 	
-	// ----o Statics
-	
-	static public function initialize( target )  {
+	/**
+	 * Returns the proxy reference of this instance.
+	 */
+	public function get proxy()
+	{
+		return getProxy() ;	
+	}
+
+	/**
+	 * Sets the proxy reference of this instance.
+	 */
+	public function set proxy( oTarget )
+	{
+		setProxy( oTarget ) ;	
+	}
+
+	/**
+	 * Returns the proxy reference of this ResolverProxy.
+	 */
+	public function getProxy() 
+	{
+		return _proxy ;
+    }
+
+	/**
+	 * Initialize a proxy on a specific target.
+	 */
+	static public function initialize( target )  
+	{
 		var attributes:Array = [ "linkProxy", "getProxy", "_proxy", "proxy", "__resolve", "setProxy" ] ;
 		var mix:Mixin = new Mixin(ResolverProxy, target, attributes) ;
 		mix.run() ;
     }
-	
-	// ----o Public Properties
-	
-	public var proxy ; // [R/W]
-	
-	// ----o Public Methods
-		
-	public function linkProxy( linkedProxy ) {
+
+
+	/**
+	 * Creates a link proxy between 2 proxy object.
+	 */		
+	public function linkProxy( linkedProxy ) 
+	{
 		linkedProxy.proxy = this ;
 		_proxy = linkedProxy ;
     }
 
-
-	public function getProxy() {
-		return _proxy ;
-    }
-	
-	public function setProxy( o ) {
+	/**
+	 * Sets the proxy reference of this ResolverProxy.
+	 */
+	public function setProxy( o ) 
+	{
 		_proxy = o;
 	}
 
-	public function __resolve( name:String ) {
+	/**
+	 * Resolve the specified property name.
+	 */
+	public function __resolve( name:String ) 
+	{
 		if ( _proxy == null ) return ;
 		if( !_proxy.hasOwnProperty( name ) ) {
 			if( _proxy.__proto__[name] == undefined ) return ;
@@ -136,12 +133,9 @@ class vegas.util.ResolverProxy extends CoreObject {
 		}
     }
 
-	// ----o Virtual Properties
-	
-	static private var __PROXY__:Boolean = PropertyFactory.create(ResolverProxy, "proxy", true) ;
-	
-	// ----o Private Properties
-	
+	/**
+	 * Internal proxy reference.
+	 */	
 	private var _proxy ;
 	
 }

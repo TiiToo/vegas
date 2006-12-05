@@ -26,7 +26,6 @@ import vegas.events.EventTarget;
 /**
  * This interface is implemented by Timer and FrameTimer class.
  * @author eKameleon
- * @version 1.0.0.0
  */
 interface vegas.core.ITimer extends EventTarget 
 {

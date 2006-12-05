@@ -24,7 +24,6 @@
 /**
  * Collected methods which allow easy implementation of {@code hashCode}.
  * @author eKameleon
- * @version 1.0.0.0
  */
 class vegas.core.HashCode 
 {

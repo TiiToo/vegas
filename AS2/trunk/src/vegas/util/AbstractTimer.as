@@ -21,89 +21,6 @@
   
 */
 
-/** AbstractTimer
-
-	AUTHOR
-
-		Name : AbstractTimer
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date :  2005-11-16
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-	
-		- delay:Number [R/W] 
-		
-			The delay between timer events, in milliseconds.
-		
-		- repeatCount:Number [R/W]
-			
-			Specifies the number of repetitions. 
-			If zero, the timer repeats infinitely. 
-			If nonzero, the timer runs the specified number of times and then stops.
-		
-		- running:Boolean [Read Only]
-
-	METHOD SUMMARY
-	
-		- clear() [override]
-		
-		- getDelay():Number
-		
-		- getRepeatCount():Number
-		
-		- restart()
-		
-			Restarts the timer. The timer is stopped, and then started.
-		
-		- run() [override]
-		
-		- setDelay(n:Number)
-		
-		- setRepeatCount(n:Number)
-		
-		- start()
-		
-			Starts the timer, if it is not already running.
-		
-		- stop()
-		
-			Stops the timer.
-			
-
-	EVENT SUMMARY
-	
-		TimerEvent
-	
-			- TimerEventType.RESTART
-			
-			- TimerEventType.START
-			
-			- TimerEventType.STOP
-			
-			- TimerEventType.TIMER
-			
-				A Timer object generates the timer event whenever a timer tick occurs.
-
-	INHERIT
-	
-		CoreObject → EventDispatcher → AbstractTimer
-
-	IMPLEMENTS 
-	
-		ICloneable, EventTarget, IEventDispatcher, ITimer, IRunnable, IFormattable
-
-	SEE ALSO
-	
-		- EventDispatcher
-		- TimerEvent
-		- TimerEventType
-
-**/
-
 import vegas.core.ICloneable;
 import vegas.core.IFormattable;
 import vegas.core.IRunnable;
@@ -112,18 +29,67 @@ import vegas.events.EventDispatcher;
 import vegas.events.TimerEvent;
 import vegas.events.TimerEventType;
 
+/**
+ * This abstract class is used to create concrete {@code ITimer} implementations.
+ * @author eKameleon
+ * @see EventDispatcher
+ * @see TimerEvent
+ */
 class vegas.util.AbstractTimer extends EventDispatcher implements ICloneable, ITimer, IFormattable, IRunnable {
 
-	// ----o Construtor
-	
-	private function AbstractTimer(d:Number, count:Number) {
+	/**
+	 * Creates a new ITimer instance if you extend this class.
+	 */
+	private function AbstractTimer(d:Number, count:Number) 
+	{
 		setDelay(d) ;
 		setRepeatCount(count) ;
 	}
 
-	// ----o Public Methods	
+	/**
+	 * (read-write) Returns the delay between timer events, in milliseconds.
+	 */
+	public function  get delay():Number 
+	{
+		return getDelay() ;
+	}
 
-	public function clear():Void {
+	/**
+	 * (read-write) Sets the delay between timer events, in milliseconds.
+	 */
+	public function set delay( n:Number ):Void 
+	{
+		setDelay(n) ;	
+	}
+
+	/**
+	 * (read-write) Returns the number of repetitions. If zero, the timer repeats infinitely. If nonzero, the timer runs the specified number of times and then stops.
+	 */
+	public function  get repeatCount():Number 
+	{
+		return getRepeatCount() ;
+	}
+
+	/**
+	 * (read-write) Sets the number of repetitions. If zero, the timer repeats infinitely. If nonzero, the timer runs the specified number of times and then stops.
+	 */
+	public function set repeatCount ( n:Number ):Void {
+		setRepeatCount(n) ;	
+	}
+	
+	/**
+	 * (read-only) Returns {@code true} if the timer is in progress.
+	 */
+	public function get running():Boolean 
+	{
+		return getRunning() ;
+	}	
+
+	/**
+	 * Clear the timer.
+	 */
+	public function clear():Void 
+	{
 		// override this method
 	}
 	
@@ -131,84 +97,113 @@ class vegas.util.AbstractTimer extends EventDispatcher implements ICloneable, IT
 		return new AbstractTimer(_delay, _repeatCount) ; // override this method
 	}
 
-	public function getDelay():Number {
+	/**
+	 * Returns the delay between timer events, in milliseconds.
+	 */
+	public function getDelay():Number 
+	{
 		return _delay ;
 	}
 
-	public function getRepeatCount():Number {
+	/**
+	 * Returns the number of repetitions. If zero, the timer repeats infinitely. If nonzero, the timer runs the specified number of times and then stops.
+	 */
+	public function getRepeatCount():Number 
+	{
 		return _repeatCount ;
 	}
 
-	public function getRunning():Boolean {
+	/**
+	 * Returns {@code true} if the timer is in progress.
+	 */
+	public function getRunning():Boolean 
+	{
 		return _running ;	
 	}
 
-	public function restart(noEvent:Boolean):Void {
+	/**
+	 * Restarts the timer. The timer is stopped, and then started.
+	 */
+	public function restart(noEvent:Boolean):Void 
+	{
 		if (getRunning()) this.stop() ;
 		_setRunning(true) ;
 		run() ;
 		if (!noEvent) dispatchEvent( new TimerEvent( TimerEventType.RESTART, this) ) ;
 	}
 
-	public function run():Void {
+	/**
+	 * Run the timer.
+	 */
+	public function run():Void 
+	{
 		// override this method
 	}
 	
-	public function setDelay(n:Number):Void {
+	/**
+	 * Sets the delay between timer events, in milliseconds.
+	 */
+	public function setDelay(n:Number):Void 
+	{
 		_delay = (n > 0) ? n : 0 ;
-		if (getRunning()) {
+		if (getRunning()) 
+		{
 			restart() ;
 		}
 	}
 
-	public function setRepeatCount(n:Number):Void {
+	/**
+	 * Sets the number of repetitions. If zero, the timer repeats infinitely. If nonzero, the timer runs the specified number of times and then stops.
+	 */
+	public function setRepeatCount(n:Number):Void
+	{
 		_repeatCount = (n > 0) ? n : 0 ;
 	}
 
-	public function start():Void {
+	/**
+	 * Starts the timer, if it is not already running.
+	 */
+	public function start():Void 
+	{
 		if (getRunning()) return ;
 		_count = 0 ;
 		dispatchEvent( new TimerEvent(TimerEventType.START, this) ) ;
 		restart(true) ;
 	}
 	
-	public function stop():Void {
+	/**
+	 * Stops the timer.
+	 */
+	public function stop():Void 
+	{
 		_setRunning(false) ;
 		clear() ;
 		dispatchEvent( new TimerEvent(TimerEventType.STOP, this) ) ;
 	}
 	
-	// ----o Virtual Properties
-	
-	public function  get delay():Number {
-		return getDelay() ;
-	}
-	
-	public function set delay( n:Number ):Void {
-		setDelay(n) ;	
-	}
-
-	public function  get repeatCount():Number {
-		return getRepeatCount() ;
-	}
-	
-	public function set repeatCount ( n:Number ):Void {
-		setRepeatCount(n) ;	
-	}
-	
-	public function  get running():Boolean {
-		return getRunning() ;
-	}	
-
-	// -----o Private Properties
-	
+	/**
+	 * The internal counter of the timer.
+	 */
 	private var _count:Number ;
+	
+	/**
+	 * The internal delay of the timer.
+	 */
 	private var _delay:Number ;
+	
+	/**
+	 * The internal repeat counter of the timer.
+	 */
 	private var _repeatCount:Number ;
+	
+	/**
+	 * Determintates if the timer is in progress or not.
+	 */
 	private var _running:Boolean ;
 	
-	// ----o Private Methods
-	
+	/**
+	 * Protected methods to defined the running property when the timer is in progress.
+	 */
 	private function _setRunning(b:Boolean):Void {
 		_running = b ;
 	}

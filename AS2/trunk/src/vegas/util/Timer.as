@@ -23,20 +23,6 @@
 
 /** Timer
 
-	AUTHOR
-
-		Name : Timer
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date :  2005-11-16
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	 
-		Constructs a new Timer object with the specified delay  and repeat state.
-		The timer does not start automatically; you much call the start() method to start it.
 
 	EXAMPLE
 	
@@ -63,7 +49,7 @@
 	
 		- delay:Number [R/W] 
 		
-			The delay between timer events, in milliseconds.
+			
 		
 		- repeatCount:Number [R/W]
 			
@@ -133,21 +119,34 @@ import vegas.events.TimerEvent;
 import vegas.events.TimerEventType;
 import vegas.util.AbstractTimer;
 
-class vegas.util.Timer extends AbstractTimer {
+/**
+ * @author eKameleon
+ */
+class vegas.util.Timer extends AbstractTimer 
+{
 
-	// ----o Construtor
-	
+	/**
+	 * Creates a new Timer object with the specified delay and repeat state. 
+	 * The timer does not start automatically; you much call the start() method to start it.
+	 */
 	public function Timer(delay:Number, repeatCount:Number) {
 		super(delay, repeatCount) ;
 	}
 
-	// ----o Public Methods	
-
-	/*override*/ public function clear():Void {
+	/**
+	 * Clear the timer interval.
+	 */
+	/*override*/ public function clear():Void 
+	{
 		clearInterval(_itv) ;
 	}
-
-	/*override*/ public function clone() {
+	
+	/**
+	 * Returns a shallow copy of this object.
+	 * @return a shallow copy of this object.
+	 */
+	/*override*/ public function clone() 
+	{
 		return new Timer(_delay, _repeatCount) ;
 	}
 
@@ -155,16 +154,22 @@ class vegas.util.Timer extends AbstractTimer {
 		_itv = setInterval(this, "_next", _delay) ;
 	}
 	
-	// -----o Private Properties
-	
+	/**
+	 * The internal timer interval.
+	 */
 	private var _itv:Number ;
 	
-	// ----o Private Methods
-	
-	private function _next():Void {
+	/**
+	 * Launch the next interval.
+	 */
+	private function _next():Void 
+	{
 		dispatchEvent( new TimerEvent(TimerEventType.TIMER, this) ) ;
 		_count ++ ;
-		if (_repeatCount != 0 && _repeatCount == _count) this.stop() ;
+		if (_repeatCount != 0 && _repeatCount == _count) 
+		{
+			this.stop() ;
+		}
 	}
 	
 }

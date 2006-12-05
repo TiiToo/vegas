@@ -25,7 +25,6 @@
 /**
  * Supports cloning, which creates a new instance of a class with the same value as an existing instance.
  * @author eKameleon
- * @version 1.0.0.0
  */
 interface vegas.core.ICloneable 
 {

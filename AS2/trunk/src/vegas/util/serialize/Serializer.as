@@ -21,52 +21,6 @@
   
 */
 
-/** Serializer
-
-	AUTHOR
-	
-		Name : Serializer
-		Package : vegas.util.serialize
-		Version : 0.0.0.0
-		Date : 2005-12-24
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	DESCRIPTION
-	
-		  Allows an object to control its own serialization.
-	
-	METHOD SUMMARY
-	
-		- static getSourceOf(o, params:Array):String
-		
-		- static toSource( o, [indent:Number], [indentor:String] ) ;
-		
-			PARAMETERS
-			
-				- indent : optional the starting of the indenting
-				- indentor : the string value used to do the indentation
-		
-			RETURN
-			
-				a string representing the source code of the object.
-
-	NOTE
-	
-		To add a diffrent syntax formating it should be possible to add a 3rd *formater* argument
-		and override the implementation of the method in all core objects.
-
-	THANKS
-	
-		Zwetan Core2 framework inspired by Mozilla SpiderMonkey.
-
-	TODO : voir si on peut transformer l'objet en objet généric ou en primitif directement ?	
-	TODO : voir si il est préférable de gérer une SerializeError ??
-	TODO : finir le remplissage des propriétés dans le constructeur de la source
-
-**/
-
 import vegas.core.ISerializable;
 import vegas.util.ArrayUtil;
 import vegas.util.ConstructorUtil;
@@ -80,33 +34,40 @@ import vegas.util.serialize.ObjectSerializer;
 import vegas.util.serialize.StringSerializer;
 import vegas.util.TypeUtil;
 
-class vegas.util.serialize.Serializer {
+/**
+ * Allows an object to control its own serialization.
+ * Thanks : Zwetan Core2 framework inspired by Mozilla SpiderMonkey.
+ * @author eKameleon
+ */
+class vegas.util.serialize.Serializer 
+{
 
-	// ----o Construtor
-	
-	private function Serializer() {
-		//
-	}
-	
-	// ----o Properties
-	
+	/**
+	 * Global reserved words in an array.
+	 */
 	static public var GLOBAL_RESERVED:Array = ["_global"] ;
 	
-	// ----o Methods
-
+	/**
+	 * Returns {@code true} if the current word if a global word reserved.
+	 */
 	static public function isGlobalReserved( name:String ):Boolean 
-		{
+	{
 		var l:Number = GLOBAL_RESERVED.length ;
         while(--l > -1) 
+        {
+        	if( GLOBAL_RESERVED[l] == name ) 
         	{
-           if( GLOBAL_RESERVED[l] == name ) return true ;
+        		return true ;
         	}
+        }
         return false;
-		}
+	}
 
+	/**
+	 * This method used Core2 implementation to return the Eden Source of the global object. In AS2 this method is dangerous !
+	 */
 	static public function globalToSource( indent:Number, indentor:String ):String  
-	
-		{
+	{
     	
     	var target, member, source;
     	source = [];
@@ -160,15 +121,21 @@ class vegas.util.serialize.Serializer {
 		    
 	    	var decal = "\n" + (ArrayUtil.initialize( indent, indentor )).join( "" );
 	    	return( decal + "{" + decal + source.join( "," + decal ) + decal + "}" );
-	    }
+	}
 
-	static public function getSourceOf(o, params:Array):String {
+	/**
+	 * Returns the source of the specified object passed in argument.
+	 */
+	static public function getSourceOf(o, params:Array):String 
+	{
 		var path:String = ConstructorUtil.getPath(o) ;
 		var source:String = "new " + path + "(" ;
 		var l:Number = params.length ;
-		if (l > 0) {
+		if (l > 0) 
+		{
 			var i:Number = 0 ;
-			while (i < l) {
+			while (i < l) 
+			{
 				source += params[i] ;
 				i++ ;
 				if (i<l) source += "," ;
@@ -178,7 +145,13 @@ class vegas.util.serialize.Serializer {
 		return source ;
 	}
 
-	static public function toSource( o, indent:Number, indentor:String):String {
+	/**
+	 * @param indent optional the starting of the indenting.
+	 * @param indentor the string value used to do the indentation.
+	 * @return a string representing the source code of the object.
+	 */
+	static public function toSource( o, indent:Number, indentor:String):String 
+	{
 		if (o === undefined) return "undefined" ;
 		if (o === null) return "null" ;
 		if (o instanceof ISerializable) return o.toSource.apply(o, arguments.slice(1)) ;

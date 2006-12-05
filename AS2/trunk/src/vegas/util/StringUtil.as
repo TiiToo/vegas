@@ -21,78 +21,6 @@
   
 */
 
-/** StringUtil
-
-	AUTHOR
-	
-		Name : StringUtil
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date :  2005-11-04
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-		
-		- clone()
-		
-		- static compare( strA:String , strB:String, ignoreCase:Boolean ):Number
-		
-		- compareTo( o ):Number
-		
-		- copy()
-
-		- endsWith( value:String ):Boolean
-	
-		- firstChar():String
-		
-		- indexOfAny(ar:Array):Number
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- lastChar():String
-		
-		- lastIndexOfAny(ar:Array):Number
-		
-		- padLeft(i:Number, char:String):String 
-		
-		- padRight(i:Number, char:String):String
-		
-		- replace(search:String, replace:String):String
-		
-		- reverse():String
-		
-			Warning : this method use String.split méthod !
-		
-		- splice(startIndex:Number, deleteCount:Number, value):String
-		
-		- startsWith( value:String ):Boolean
-		
-		- toArray():Array
-		
-		- toSource():String
-		
-		- ucFirst():String
-		
-			Capitalize the first letter of a string, like the PHP function.
-		
-		- ucWords():String
-		
-			Capitalize each word in a string, like the PHP function.
-
-	INHERIT
-
-		String → StringUtil
-
-	IMPLEMENTS
-	
-		IHashable, IFormattable, Iterable, ISerializable
-
-**/
-
 import vegas.core.HashCode;
 import vegas.core.IComparable;
 import vegas.core.ICopyable;
@@ -105,33 +33,53 @@ import vegas.util.ArrayUtil;
 import vegas.util.serialize.Serializer;
 import vegas.util.TypeUtil;
 
-class vegas.util.StringUtil extends String implements IComparable, ICopyable, Iterable, ISerializable {
+/**
+ * The {@code StringUtil} utility class is an extended String class with methods for working with string.
+ * @author eKameleon
+ */
+class vegas.util.StringUtil extends String implements IComparable, ICopyable, Iterable, ISerializable 
+{
 
-	// ----o Construtor
-	
-	public function StringUtil(s:String) {
+	/**
+	 * Creates a new StringUtil instance.
+	 */
+	public function StringUtil(s:String) 
+	{
 		super(s || "") ;
 	}
 
-	// ----o Init HashCode
-	
-	static private var _initHashCode:Boolean = HashCode.initialize( StringUtil.prototype ) ;
-
-	// ----o Public Methods
-	
-	public function clone() {
+	/**
+	 * Returns a shallow copy of this object.
+	 */
+	public function clone() 
+	{
 		return this ;	
 	}
-	
-	static public function compare( strA:String , strB:String, ignoreCase:Boolean ):Number {
-		if( (strA == null) || (strB == null) ) {
-			if( strA == strB ) return 0 ; //both null
-            else if( strA == null ) return -1 ; //strA is null -1
-            else return 1 ; //strB is null 1
+
+	/**
+	 * Compares its two arguments for order. You can ignore the case of the 2 strings parameters.
+	 */
+	static public function compare( strA:String , strB:String, ignoreCase:Boolean ):Number 
+	{
+		if( (strA == null) || (strB == null) ) 
+		{
+			if( strA == strB ) 
+			{
+				return 0 ;
+			}
+            else if( strA == null ) 
+            {
+            	return -1 ;
+            }
+            else 
+            {
+            	return 1 ;
+            }
 		}
 		strA = strA.toString() ;
 		strB = strB.toString() ;
-		if( ignoreCase ) {
+		if( ignoreCase ) 
+		{
         	strA = strA.toLowerCase() ;
         	strB = strB.toLowerCase() ;
         }
@@ -140,41 +88,79 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, It
         else return -1 ;
 	}
 	
-	public function compareTo( o ):Number {
-		if (! TypeUtil.typesMatch(o, String)) throw new ArgumentsError("StringUtil.compareTo('"+ o + "' value must be a string") ;
-		if (o == null) return 1 ;
+	/**
+	 * Compares this object with the specified object for order.
+	 */
+	public function compareTo( o ):Number 
+	{
+		if (! TypeUtil.typesMatch(o, String)) 
+		{
+			throw new ArgumentsError("StringUtil.compareTo('"+ o + "' value must be a string") ;
+		}
+		if (o == null) 
+		{
+			return 1 ;
+		}
 		return StringUtil.compare(String(this.valueOf()), String(o.valueOf()) ) ;
 	}
 	
-	public function copy() {
+	/**
+	 * Returns a deep copy of this object.
+	 * @return a deep copy of this object.
+	 */
+	public function copy() 
+	{
 		return new StringUtil( String(this.valueOf()) )  ;
 	}
 	
-	public function endsWith( value:String ):Boolean {
+	/**
+	 * Returns {@code true} if the string contains the specified caractere at the end.
+	 * @return {@code true} if the string contains the specified caractere at the end.
+	 */
+	public function endsWith( value:String ):Boolean 
+	{
 		if (value == null) return false ;
 		if ( this.length < value.length ) return false ;
 		return StringUtil.compare( this.substr( this.length-value.length ), value) == 0;
 	}
 	
-	public function firstChar():String {
+	/**
+	 * Returns the first character in the string.
+	 */
+	public function firstChar():String 
+	{
 		return charAt(0) ;
 	}
 
-	public function hashCode():Number {
+	/**
+	 * Returns a hash code value for the object.
+	 * @return a hash code value for the object.
+	 */
+	public function hashCode():Number 
+	{
 		return null ;
 	}
 	
-	public function indexOfAny(ar:Array):Number {
+	/**
+	 * Reports the index of the first occurrence in this instance of any character in a specified array of Unicode characters.
+	 */
+	public function indexOfAny(ar:Array):Number 
+	{
 		var index:Number ;
 		var l:Number = ar.length ;
-		for (var i:Number = 0 ; i<l ; i++) {
+		for (var i:Number = 0 ; i<l ; i++) 
+		{
 			index = this.indexOf(ar[i]) ;
 			if (index > -1) return index ;
 		}
 		return -1 ;
 	}
 	
-	public function insert( startIndex:Number, value:String):String {
+	/**
+	 * Inserts a specified instance of String at a specified index position in this instance.
+	 */
+	public function insert( startIndex:Number, value:String):String 
+	{
 		var str:String = this.copy() ;
 		if( value == null ) return str ;
 		if( str == "" ) return value ;
@@ -185,104 +171,175 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, It
     	return strA + value + strB ;
 	}
 	
-	public function isEmpty():Boolean {
+	/**
+	 * Returns {@code true} if this string is empty.
+	 */
+	public function isEmpty():Boolean 
+	{
 		return length == 0 ;
 	}
 	
-	public function iterator():Iterator {
+	/**
+	 * Returns a StringIterator reference of this string instance.
+	 * @return a StringIterator reference of this string instance.
+	 */
+	public function iterator():Iterator 
+	{
 		return new StringIterator(this.toString()) ;
 	}	
 	
-	public function lastChar():String {
+	/**
+	 * Returns the last char of the string. 
+	 */
+	public function lastChar():String 
+	{
 		return charAt(length - 1) ;
 	}
 
-	public function lastIndexOfAny(ar:Array):Number {
+	/**
+	 * Reports the index position of the last occurrence in this instance of one or more characters specified in a Unicode array.
+	 */
+	public function lastIndexOfAny(ar:Array):Number 
+	{
 		var index:Number = -1 ;
 		var l:Number = ar.length ;
-		for (var i:Number = 0 ; i<l ; i++) {
+		for (var i:Number = 0 ; i<l ; i++) 
+		{
 			index = this.lastIndexOf(ar[i]) ;
-			if (index > -1) return index ;
+			if (index > -1) 
+			{
+				return index ;
+			}
 		}
 		return index ;
 	}
 	
-	public function padLeft(i:Number /*Int*/, char:String):String {
+	/**
+	 * Right-aligns the characters in this instance, padding on the left with a specified Unicode character for a specified total length.
+	 */
+	public function padLeft(i:Number /*Int*/, char:String):String 
+	{
 		char = char || " " ;
 		var s:String = new String(this) ;
         var l:Number = s.length ;
-        for (var k:Number = 0 ; k < (i - l) ; k++) s = char + s ;
+        for (var k:Number = 0 ; k < (i - l) ; k++) 
+        {
+        	s = char + s ;
+        }
         return s ;
     }
 	
-	public function padRight(i:Number /*Int*/ , char:String):String {
+	/**
+	 * Left-aligns the characters in this string, padding on the right with a specified Unicode character, for a specified total length.
+	 */
+	public function padRight(i:Number /*Int*/ , char:String):String 
+	{
 		char = char || " " ;
         var s:String = new String(this) ;
         var l:Number = s.length ;
-		for (var k:Number = 0 ; k < (i - l) ; k++) {
+		for (var k:Number = 0 ; k < (i - l) ; k++) 
+		{
 			s = s + char ;
 		}
         return s ;
     }
 	
-	public function replace(search:String, replace:String):String {
+	/**
+	 * Repleace the 'search' string with the 'replace' String.
+	 */
+	public function replace(search:String, replace:String):String 
+	{
 		return split(search).join(replace) ;
 	}
 	
-	public function reverse():String {  
+	/**
+	 * Reverse the current instance.
+	 */
+	public function reverse():String 
+	{  
 		var ar:Array = split("") ;
 		ar.reverse() ;
 		return ar.join("") ;
 	}
 	
-	public function splice(startIndex:Number, deleteCount:Number, value):String {
+	/**
+	 * Adds and removes elements in the string.
+	 * @param startIndex Index at which to start changing the string.
+	 * @param deleteCount Indicating the number of old character elements to remove.
+	 * @param value The elements to add to the string. If you don't specify any elements, splice simply removes elements from the string.
+	 */
+	public function splice(startIndex:Number, deleteCount:Number, value):String 
+	{
 		var a:Array = toArray() ;
 		a = a.splice.apply(a, arguments) ;
-		return ArrayUtil.toString(a) ;
+		return a.join("") ;
 	}
 
-	/* Method: startsWith
-   	Determines whether a specified string is a prefix
-   	of the current instance.
-	*/
+	/**
+	 * Determines whether a specified string is a prefix of the current instance. 
+	 * @return {@code true} if the specified string is a prefix of the current instance.
+	 */
 	public function startsWith( value:String ):Boolean
-    	{
-    	if( value == null )
-	        {
-        	return false;
-        	}
+   	{
+	   	if( value == null )
+		{
+    	   	return false;
+        }
 	    
 	    if( this.length < value.length )
-        	{
+        {
         	return false;
-        	}
+        }
 	    
 	    if( this.charAt( 0 ) != value.charAt( 0 ) )
-        	{
+        {
         	return false;
-        	}
+        }
 	    
-	    return( StringUtil.compare( this.substr( 0, value.length), value) == 0);
-	    }
+	   	return( StringUtil.compare( this.substr( 0, value.length), value) == 0);
+	}
 
-
-	public function toArray():Array {
+	/**
+	 * Returns an array representation of this instance.
+	 * @return an array representation of this instance.
+	 */
+	public function toArray():Array 
+	{
 		return split("") ;
 	}
 	
-	public function toSource(indent:Number, indentor:String):String {
+	/**
+	 * Returns a Eden representation of the object.
+	 * @return a string representing the source code of the object.
+	 */
+	public function toSource(indent:Number, indentor:String):String 
+	{
 		return Serializer.getSourceOf(this, [toString()]) ;
 	}
 	
-	public function ucFirst():String {
+	/**
+	 * Returns the value of this string with the first character in uppercase.
+	 */
+	public function ucFirst():String 
+	{
 		return this.charAt(0).toUpperCase() + this.substring(1) ;
 	}
 	
-	public function ucWords():String {
+	/**
+	 * Uppercase the first character of each word in a string.
+	 */
+	public function ucWords():String 
+	{
 		var ar:Array = split(" ") ;
 		var l:Number = ar.length ;
-		while(--l > -1) ar[l] = (new StringUtil(ar[l])).ucFirst() ;
+		while(--l > -1) 
+		{
+			ar[l] = (new StringUtil(ar[l])).ucFirst() ;
+		}
 		return ar.join(" ") ;
 	}
+	
+	static private var _initHashCode:Boolean = HashCode.initialize( StringUtil.prototype ) ;
+	
 	
 }

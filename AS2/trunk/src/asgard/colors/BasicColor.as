@@ -23,20 +23,6 @@
 
 */
 
-/* BasicColor
-
-	AUTHOR
-
-		Name : BasicColor
-		Package : asgard.colors
-		Version : 1.0.0.0
-		Date :  2004-11-22
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-*/
-
 import asgard.colors.ColorUtil;
 
 import vegas.core.HashCode;
@@ -45,45 +31,36 @@ import vegas.core.IHashable;
 import vegas.util.ConstructorUtil;
 
 /**
- * <code>BasicColor</code> extends the Color Object.
- * 
- * @usage <pre>
+ * {@code BasicColor} extends the Color Object.
+ * <p>
+ * {@code 
  * import asgard.colors.BasicColor;
  * var c : BasicColor = new BasicColor (this); // assuming 'this' is a MovieClip;
  * c.setRGB(0xFF9900);
- * </pre>
- * 
- * @author 		Ekameleon
- * @version     1.0.0.0
- * @since       1.0.0.0
+ * }
+ * </p>
+ * @author eKameleon
  */
 class asgard.colors.BasicColor extends Color implements IFormattable, IHashable 
 {
 
-	// ----o Constructor
-
 	/**
 	 * Creates an instance of a BasicColor.
 	 * @since Flash 6
-	 * @usage new BasicColor(mc);
+	 * <p>{@code new BasicColor(mc);</p>
 	 * @param mc a MovieClip
-	 * @return nothing
 	 */
-	public function BasicColor (mc:MovieClip) { 
+	public function BasicColor (mc:MovieClip) 
+	{ 
 		super (mc) ;
 		_mc = mc ;
 	}
 
-	// ----o Init HashCode
-	
 	static private var _initHashCode:Boolean = HashCode.initialize(BasicColor.prototype) ;
 
-	// -----o Public Methods
-
-	/**
+		/**
 	 * Return the BasicColor target MovieClip.
 	 * @since Flash 6
-	 * @usage getTarget();
 	 * @return mc a MovieClip
 	 */	
 	public function getTarget():MovieClip { 
@@ -91,10 +68,10 @@ class asgard.colors.BasicColor extends Color implements IFormattable, IHashable
 	}
 
 	/**
-	* This method is overrided !
-	* @return a Number
-	* @see vegas.core.HashCode
-	*/		
+	 * This method is overrided !
+ 	 * @return a Number
+	 * @see vegas.core.HashCode
+	 */		
 	public function hashCode():Number {
 		return null ;
 	}

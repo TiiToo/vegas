@@ -21,30 +21,6 @@
   
 */
 
-/** Copier
-
-	AUTHOR
-	
-		Name : Copier
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date : 2006-04-04
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- static copy(o)
-			
-			return a deep copy of the object.
-
-	SEE 
-
-		ICopyable
-
-**/
-
 import vegas.core.ICopyable;
 import vegas.util.ArrayUtil;
 import vegas.util.BooleanUtil;
@@ -54,32 +30,59 @@ import vegas.util.ObjectUtil;
 import vegas.util.TypeUtil;
 
 /**
+ * The {@code Copier} utility class is an all-static class with a method to returns a copy representation of an object.
  * @author eKameleon
- * @version 1.0.0.0
  */
+class vegas.util.Copier 
+{
 
-class vegas.util.Copier {
-	
-	// ----o Constructor
-	
-	private function Copier() {
-		//	
-	}
-	
-	// ----o Public Methods
-	
-	static public function copy( o ) {
-		if (o === undefined) return undefined ;
-		if (o === null) return null ;
-		if (o instanceof ICopyable) return o.copy() ;
-		else if (TypeUtil.typesMatch(o, Array)) return ArrayUtil.copy(o) ;
-		else if (TypeUtil.typesMatch(o, Boolean)) return BooleanUtil.copy(o) ;
-		else if (TypeUtil.typesMatch(o, Date)) return DateUtil.copy(o) ;
-		else if (TypeUtil.typesMatch(o, Function)) return FunctionUtil.copy(o) ;
-		else if (TypeUtil.typesMatch(o, Number)) return o.valueOf() ;
-		else if (TypeUtil.typesMatch(o, String)) return o.valueOf() ;
-		else if (typeof(o) === "object") return ObjectUtil.copy(o) ;
-		else {
+	/**
+	 * Returns a deep copy of the specified object passed in argument. You can use a {@code ICopyable} instance or a native object.
+	 */	
+	static public function copy( o ) 
+	{
+		if (o === undefined) 
+		{
+			return undefined ;
+		}
+		if (o === null) 
+		{
+			return null ;
+		}
+		if (o instanceof ICopyable) 
+		{
+			return o.copy() ;
+		}
+		else if (TypeUtil.typesMatch(o, Array)) 
+		{
+			return ArrayUtil.copy(o) ;
+		}
+		else if (TypeUtil.typesMatch(o, Boolean)) 
+		{
+			return BooleanUtil.copy(o) ;
+		}
+		else if (TypeUtil.typesMatch(o, Date))
+		{
+			return DateUtil.copy(o) ;
+		}
+		else if (TypeUtil.typesMatch(o, Function))
+		{
+			return FunctionUtil.copy(o) ;
+		}
+		else if (TypeUtil.typesMatch(o, Number))
+		{
+			return o.valueOf() ;
+		}
+		else if (TypeUtil.typesMatch(o, String))
+		{
+			return o.valueOf() ;
+		}
+		else if (typeof(o) === "object")
+		{
+			return ObjectUtil.copy(o) ;
+		}
+		else
+		{
 			return undefined ;
 		}
 	}	

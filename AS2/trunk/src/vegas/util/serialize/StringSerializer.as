@@ -21,41 +21,17 @@
   
 */
 
-/** StringSerializer
-
-	AUTHOR
-	
-		Name : StringSerializer
-		Package : vegas.util.serialize
-		Version : 1.0.0.0
-		Date :  2005-12-23
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		EDEN Compatibility to serialize ECMAScript data.
-
-	METHOD SUMMARY
-	
-		- toSource(s:String):String
-	
-**/
-
 import vegas.string.UnicodeChar;
 
-class vegas.util.serialize.StringSerializer {
+/**
+ * EDEN Compatibility to serialize ECMAScript data.
+ * @author eKameleon
+ */
+class vegas.util.serialize.StringSerializer 
+{
 
-	// ----o Construtor
-	
-	private function StringSerializer() {
-		//
-	}
-	
-	// ----o Static Methods
-
-	static public function toSource(s:String):String {
+	static public function toSource(s:String):String 
+	{
 		s = new String(s) ;
 		var ch:String ;
 		var code:Number ;

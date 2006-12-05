@@ -24,7 +24,6 @@
 /**
  * Defines the methods that objects that participate in a validation operation.
  * @author eKameleon
- * @version 1.0.0.0
  */
 interface vegas.core.IValidator 
 {
