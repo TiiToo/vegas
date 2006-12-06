@@ -21,99 +21,86 @@
   
 */
 
-/** NumberUtil
-
-	AUTHOR
-	
-		Name : NumberUtil
-		Package : vegas.util.type
-		Version : 1.0.0.0
-		Date :  2006-04-04
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- static clone(f:Function):Function
-		
-		- static copy(f:Function):Function
-		
-		- static equals( f1:Function, f2:Function ):Boolean
-
-		- static toBoolean(n:Number):Boolean
-		
-		- static toExponential(p_n:Number, fractionDigits:Number)
-		
-		- static toFixed(p_n:Number, fractionDigits:Number):String
-		
-		- static toNumber(n:Number):Number
-		
-		- static toObject(n:Number):Number
-		
-		- static toPrecision(p_n:Number, precision:Number):String
-
-**/
-
 import vegas.util.MathsUtil;
 
-class vegas.util.NumberUtil {
-
-	// ----o Construtor
-	
-	private function NumberUtil() {
-		//
-	}
-	
-	// ----o Static Methods
+/**
+ * The {@code NumberUtil} utility class is an all-static class with methods for working with number.
+ * @author eKameleon
+ */
+class vegas.util.NumberUtil 
+{
 
 	/**
 	 * Returns a copy by reference of this Number.
 	 */
-	static public function clone(n:Number):Number {
+	static public function clone(n:Number):Number 
+	{
 		return n ;
 	}
 
 	/**
 	 * Returns a copy by value of this Number.
 	 */
-	static public function copy(n:Number):Number {
+	static public function copy(n:Number):Number 
+	{
 		return Number(n.valueOf()) ;
 	}
 
 	/**
 	 * compare if two Numbers are equal by value
 	 */
-	static public function equals( n1:Number, n2:Number ):Boolean {
+	static public function equals( n1:Number, n2:Number ):Boolean 
+	{
 		if (! n2 ) return false ;
-		if(n1.valueOf() == n2.valueOf()) return true ;
+		if(n1.valueOf() == n2.valueOf()) 
+		{
+			return true ;
+		}
 		return false ;
     }
 	
 	/**
 	 * Converts to an equivalent Boolean value.
 	 */
-	static public function toBoolean(n:Number):Boolean {
-		if (isNaN(n) || n.valueOf() == 0) return false ;
+	static public function toBoolean(n:Number):Boolean 
+	{
+		if (isNaN(n) || n.valueOf() == 0) 
+		{
+			return false ;
+		}
 		return true ;
 	}
 	
-	static public function toExponential(p_n:Number, fractionDigits:Number):String {
+	/***
+	 * Returns the exponential string reprsentation of the number passsed in argument.
+	 */
+	static public function toExponential(p_n:Number, fractionDigits:Number):String 
+	{
 		var str:String ;
         var x:Number = p_n ;
        	var s:String = "+" ;
-        if( isNaN( x ) ) return "NaN" ;
-        if( x < 0 ) {
+        if( isNaN( x ) ) 
+        {
+        	return "NaN" ;
+        }
+        if( x < 0 ) 
+        {
 			s = "-";
 			x = -x ;
 		}
-		if( x == Infinity ) return s + "Infinity" ;
+		if( x == Infinity ) 
+		{
+			return s + "Infinity" ;
+		}
         var l:Number = Math.floor( Math.log(x) / Math.LN10 ) ;
         var lm:Number = Math.pow( 10, l ) ;
         var n:Number = x/lm ;
-        if( fractionDigits == null ) {
+        if( fractionDigits == null ) 
+        {
             str = n.toString();
-        } else {
+        }
+        else 
+        {
         	fractionDigits = MathsUtil.clamp(fractionDigits, 0, 20) ;
             str = NumberUtil.toFixed( n, fractionDigits );
         }
@@ -124,16 +111,21 @@ class vegas.util.NumberUtil {
 	/**
 	 * Returns a string representing the number in fixed-point notation (*ECMA-262*).
 	 */
-	static public function toFixed(p_n:Number, fractionDigits:Number):String {
+	static public function toFixed(p_n:Number, fractionDigits:Number):String 
+	{
         var x:Number = p_n ;
-        if( isNaN( x )) return "NaN" ;
+        if( isNaN( x )) 
+        {
+        	return "NaN" ;
+        }
         if (fractionDigits == null) fractionDigits = 0 ;
        	fractionDigits = MathsUtil.clamp(fractionDigits, 0, 20) ;
         var m:Number = Math.pow( 10, fractionDigits );
         var r:Number = Math.round( x*m ) / m;
         var str:String = r.toString() ;
         var d = str.split( "." )[1] ;
-        if( d && (d.length < fractionDigits) ) {
+        if( d && (d.length < fractionDigits) ) 
+        {
 			var len:Number = fractionDigits - d.length  ;
 			for( var i:Number=0; i< len ; i++ ) str += "0" ;
 		}
@@ -143,27 +135,37 @@ class vegas.util.NumberUtil {
 	/**
 	 * Converts to an equivalent Number value.
 	 */
-	static public function toNumber(n:Number):Number {
+	static public function toNumber(n:Number):Number 
+	{
 		return n.valueOf() ;	
 	}
 	
 	/**
 	 * Converts to an equivalent Object value
 	 */
-	static public function toObject(n:Number):Number {
+	static public function toObject(n:Number):Number 
+	{
 		return new Number( n.valueOf() ) ;	
 	}
 	
 	/**
 	 * Returns a string representing the number to a specified precision in fixed-point notation (*ECMA-262*).
 	 */
-	static public function toPrecision(p_n:Number, precision:Number):String {
+	static public function toPrecision(p_n:Number, precision:Number):String 
+	{
 		var x:Number = p_n ;
 		var str:String = x.toString() ;
-		if ( isNaN(x) ) return "NaN" ;
-		if( (precision == null) || (x == Infinity) || (x == -Infinity) ) return x.toString();
+		if ( isNaN(x) ) 
+		{
+			return "NaN" ;
+		}
+		if( (precision == null) || (x == Infinity) || (x == -Infinity) ) 
+		{
+			return x.toString();
+		}
 		precision = MathsUtil.clamp(precision, 1, 21) ;
-		if (str.length > precision) {
+		if (str.length > precision) 
+		{
 			return NumberUtil.toExponential( x, precision - 1 ) ;	
 		}
 		var l:Number = Math.floor( Math.log(x) / Math.LN10 ) ;
@@ -171,10 +173,17 @@ class vegas.util.NumberUtil {
 		var r:Number = Math.round(x/m) * m ;
 		str = r.toString() ;
 		var d = str.split( "." ).join( "" ) ;
-		if( d && (d.length < precision) ) {
-			if( str.indexOf( "." ) == -1 ) str += "." ;
+		if( d && (d.length < precision) ) 
+		{
+			if( str.indexOf( "." ) == -1 ) 
+			{
+				str += "." ;
+			}
 			var len:Number = precision - d.length ;
-            for( var i:Number = 0 ; i < len; i++ ) str += "0" ;
+            for( var i:Number = 0 ; i < len; i++ ) 
+            {
+            	str += "0" ;
+            }
         }
         return str ;
 	}

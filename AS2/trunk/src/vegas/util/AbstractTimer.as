@@ -39,11 +39,13 @@ class vegas.util.AbstractTimer extends EventDispatcher implements ICloneable, IT
 
 	/**
 	 * Creates a new ITimer instance if you extend this class.
+	 * @param delay the delay between two intervals in this timer.
+	 * @param count the number of repetitions of this timer.
 	 */
-	private function AbstractTimer(d:Number, count:Number) 
+	private function AbstractTimer( nDelay :Number, nCount:Number) 
 	{
-		setDelay(d) ;
-		setRepeatCount(count) ;
+		setDelay( nDelay ) ;
+		setRepeatCount( nCount ) ;
 	}
 
 	/**
@@ -133,7 +135,8 @@ class vegas.util.AbstractTimer extends EventDispatcher implements ICloneable, IT
 	}
 
 	/**
-	 * Run the timer.
+	 * Run the timer. Overrides this method.
+	 * @see IRunnable
 	 */
 	public function run():Void 
 	{

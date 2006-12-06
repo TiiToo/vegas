@@ -26,7 +26,6 @@ import vegas.core.ITypeable;
 import vegas.core.IValidator;
 import vegas.errors.IllegalArgumentError;
 import vegas.errors.TypeMismatchError;
-import vegas.util.ConstructorUtil;
 import vegas.util.TypeUtil;
 
 /**
@@ -46,7 +45,7 @@ class vegas.util.AbstractTypeable extends CoreObject implements ITypeable, IVali
 		
 		if (type == null) 
 		{
-			throw new IllegalArgumentError("Argument 'type' must not be 'null' or 'undefined'.") ;
+			throw new IllegalArgumentError(this + " constructor failed, the argument 'type' must not be 'null' or 'undefined'.") ;
 		}
 		_type = type ;
 		

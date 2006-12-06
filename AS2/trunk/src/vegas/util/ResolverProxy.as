@@ -22,7 +22,6 @@
 */
 
 import vegas.core.CoreObject;
-import vegas.util.factory.PropertyFactory;
 import vegas.util.Mixin;
 
 /**

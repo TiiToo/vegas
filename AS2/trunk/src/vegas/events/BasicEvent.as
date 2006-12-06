@@ -21,86 +21,6 @@
   
 */
 
-/**	BasicEvent
-
-	AUTHOR
-	
-		Name : BasicEvent
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2005-10-13
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var e:BasicEvent = new BasicEvent(type:String, target, context) ;
-
-	METHOD SUMMARY
-	
-		- cancel():Void
-		
-		- clone():BasicEvent
-		
-		- getBubbles():Boolean
-		
-		- getContext()
-		
-		- getCurrentTarget()
-		
-		- getEventPhase():Number
-		
-		- getTarget()
-		
-		- getTimeStamp():Number
-		
-		- getType():String
-		
-		- hashCode():Number
-		
-		- initEvent(type:String, bubbles:Boolean, cancelable:Boolean)
-		
-		- isCancelled():Boolean
-		
-		- isQueued():Boolean
-		
-		- queueEvent():Void
-		
-		- setBubbles(b:Boolean):Void
-		
-		- setContext(context):Void
-		
-		- setCurrentTarget(target):Void
-		
-		- setEventPhase(n:Number):Void
-		
-		- setTarget(target):Void
-		
-		- setType(type:String):Void
-		
-		- stopImmediatePropagation():Void
-		
-		- toSource(indent : Number, indentor : String):String
-		
-		- toString():String
-	
-	INHERIT
-	
-		CoreObject → BasicEvent
-	
-	IMPLEMENTS 
-		
-		Event, ICloneable, IFormattable, IHashable, ISerializable
-
-	HISTORY
-	
-		ADD : [2006-01-22] getTime() method
-		ADD : [2006-01-22] initEvent(type:String, bubbles:Boolean, cancelable:Boolean)
-		REFACTORING : [2006-01-22] getTime() -> getTimeStamp()
-
-*/
-
 import vegas.core.CoreObject;
 import vegas.events.Event;
 import vegas.events.EventPhase;
@@ -109,12 +29,11 @@ import vegas.util.serialize.Serializer;
 
 /**
  * {@code BasicEvent} is the basical event structure to work with {@link EventDispatcher} and {@link FastDispatcher}.
- * 
+ * <p><b>Example</b></p>
+ * {@code var e:BasicEvent = new BasicEvent(type:String, target, context) ; } 
  * @author  eKameleon
- * @version 1.0.0.0
  * @see     CoreObject	
  * @see     Event	
- * @since   
  */
 class vegas.events.BasicEvent extends CoreObject implements Event {
 

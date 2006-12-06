@@ -22,7 +22,7 @@
 */
 
 /**
- * Boolean tools class.
+ * The {@code BooleanUtil} utility class is an all-static class with methods for working with boolean objects.
  * @author eKameleon
  */
 class vegas.util.BooleanUtil 

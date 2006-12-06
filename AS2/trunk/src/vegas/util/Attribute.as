@@ -21,79 +21,53 @@
   
 */
 
-/** Attribute
-
-	AUTHOR
-
-		Name : Attribute
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date :  2006-01-02
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		Define a basic attribute structure.
-
-	PROPERTY SUMMARY
-
-		- dontDelete:Boolean
-		
-		- dontEnum:Boolean
-		
-		- readOnly:Boolean
-
-	METHOD SUMMARY
-	
-		- static getAttribute(obj:Object, property:String):Attribute
-		
-		- static isDontEnum(obj, property:String):Boolean
-		
-		- static isDontDelete(obj, property:String):Boolean
-		
-		- static isReadOnly(obj, property:String):Boolean
-		
-		- setAttribute(obj:Object, property, attrib, override):Void
-		
-		- toString():String
-		
-		- valueOf():Number
-	
-	IMPLEMENT
-	
-		IFormattable
-	
-	THANKS
-	
-		* SSAS FMS Framework inspiration
-		* Zwetan : Core2 AS2 Framework inspiration for refactoring !
-		
-**/
-
 import vegas.core.IFormattable;
 import vegas.util.AttributeType;
 
-class vegas.util.Attribute implements IFormattable {
+/**
+ * This tool static class define a basic attribute structure.
+ * SSAS FMS Framework inspiration and Zwetan : Core2 AS2 Framework inspiration for refactoring !
+ * @author eKameleon
+ * @see ASSetPropFlags global and no documented function.
+ */
+class vegas.util.Attribute implements IFormattable 
+{
 
-	// ----o Construtor
-	
-	public function Attribute(dontEnum:Boolean, dontDelete:Boolean, readOnly:Boolean) {
+	/**
+	 * Creates a new Attribute instance.
+	 * @param dontEnum a boolean to defined if the object is enumerable or not.
+	 * @param dontDelete a boolean to defined if the object can be remove or not.
+	 * @param readOnly a boolean to defined if the object is readable only or not.
+	 */
+	public function Attribute(dontEnum:Boolean, dontDelete:Boolean, readOnly:Boolean) 
+	{
 		dontEnum = dontEnum || false ;
         dontDelete = dontDelete || false ;
 		readOnly = readOnly || false ;
 	}
 
-	// ----o Public Property
-	
+	/**
+	 * The dontEnum value to defined if the object is enumerable or not.
+	 */
 	public var dontEnum:Boolean ;
+	
+	/**
+	 * The dontDelete value to defined if the object can be remove or not. 
+	 */
 	public var dontDelete:Boolean ;
+	
+	/**
+	 * The readOnly value to defined if the object is readable only or not.
+	 */
 	public var readOnly:Boolean ;
 
-	// ----o Public Methods
-
-    static public function getAttribute(obj:Object, property:String):Attribute {
+	/**
+	 * Returns the attribut instance and configuration of an object.
+	 * @param obj the object to defined the {@code Attribute} instance.
+	 * @param property the property in the object to check.
+	 */
+    static public function getAttribute(obj:Object, property:String):Attribute 
+    {
         var dontEnum:Boolean = Attribute.isDontEnum(obj, property);
         var readOnly:Boolean = Attribute.isReadOnly(obj, property);
         var dontdelete:Boolean = Attribute.isDontDelete(obj, property);
@@ -102,40 +76,80 @@ class vegas.util.Attribute implements IFormattable {
         return attrib ;
 	}
 
-    static public function isDontDelete(obj, property:String):Boolean {
+	/**
+	 * Returns {@code true} if the property in the specified object can't be deleted.
+	 * @return {@code true} if the property in the specified object can't be deleted.
+	 */
+    static public function isDontDelete(obj, property:String):Boolean 
+    {
         var save = obj[property] ;
 		delete obj[property] ;
-        if( obj[property] === undefined ) {
+        if( obj[property] === undefined ) 
+        {
             obj[property] = save ;
             return false;
 		}
         return true;
 	}
-	
-    static public function isDontEnum(obj, property:String):Boolean {
+
+	/**
+	 * Returns {@code true} if the property in the specified object isn't enumerable.
+	 * @return {@code true} if the property in the specified object isn't enumerable.
+	 */
+    static public function isDontEnum(obj, property:String):Boolean 
+    {
         return !obj.isPropertyEnumerable(obj) ;
 	}
     
-    static public function isReadOnly(obj, property:String):Boolean {
+	/**
+	 * Returns {@code true} if the property in the specified object can be read only.
+	 * @return {@code true} if the property in the specified object can be read only.
+	 */
+    static public function isReadOnly(obj, property:String):Boolean 
+    {
         var dummy:String = "__\uFFFC\uFFFD\uFFFC\uFFFD__"; // we use ORC char to prevent string colision
         var save = obj[property] ;
         obj[property] = dummy ;
-        if( obj[property] == dummy ) {
+        if( obj[property] == dummy ) 
+        {
             obj[property] = save ;
             return false ;
 		}
         return true ;
 	}
 	
-	static public function setAttribute(obj:Object, property, attrib, override):Void {
+	/**
+	 * Sets the attribute of the property in the specified object.
+	 * @param obj the specified object to change the property attribute.
+	 * @param property the string name of the property of the specified object.
+	 * @param attrib the Attribute instance to change the current attribute of the property.
+	 * @param override to defined the override value. This value is the last parameter of the {@code ASSetPropFlags} global function.
+	 * @see ASSetPropFlags
+	 */
+	static public function setAttribute(obj:Object, property, attrib, override):Void 
+	{
         if( attrib == null ) attrib = AttributeType.NONE ;
-		if( override == null ) override = AttributeType.NONE ;
-		if( attrib instanceof Attribute ) attrib = attrib.valueOf() ;
-        if( override instanceof Attribute ) override = override.valueOf();
+		if( override == null ) 
+		{
+			override = AttributeType.NONE ;
+		}
+		if( attrib instanceof Attribute ) 
+		{
+			attrib = attrib.valueOf() ;
+		}
+        if( override instanceof Attribute ) 
+        {
+        	override = override.valueOf();
+        }
         _global.ASSetPropFlags( obj, property, attrib, override );
     }
     
-	public function toString():String {
+    /**
+     * Returns the string representation of this object.
+     * @return the string representation of this object.
+     */
+	public function toString():String 
+	{
         var data:Array = [];
         var sep:String = ",";
         if(readOnly) data.push( "readOnly" ) ;
@@ -145,7 +159,12 @@ class vegas.util.Attribute implements IFormattable {
         return "[Attribute : " + data.join( sep ) + "]";
 	}
 	
-	public function valueOf():Number {
+	/**
+	 * Returns the value of this object.
+	 * @return the value of this object.
+	 */
+	public function valueOf():Number 
+	{
         return ((Number(readOnly) << 2) | (Number(dontDelete) << 1) | Number(dontEnum) );
 	}
 	

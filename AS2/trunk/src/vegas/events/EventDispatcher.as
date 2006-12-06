@@ -37,7 +37,9 @@ import vegas.util.factory.EventFactory;
 import vegas.util.TypeUtil;
 
 /**
- * Stores the listeners object an notifies them. The EventDispatcher class implements the IEventDispatcher interface. This object allows any object to be an {@code EventTarget}.
+ * Stores the listeners object an notifies them with the DOM Events level 2/3 of the W3C.
+ * The EventDispatcher class implements the IEventDispatcher interface. 
+ * This object allows any object to be an {@code EventTarget}.
  * <p><b>Thanks</b>:</p>
  * <p>{@code EventDispatcher} is an AS2 port of the <b>Java.schst.net EventDispatcher</b>. Inspired by the NotificationCenter of Apple's Cocoa-Framework.
  * <li>EventDispatcher JAVA : Stephan Schmid - http://schst.net/</li><li>Cocoa-Framework : http://developer.apple.com/cocoa/</li><li>Notification center : http://developer.apple.com/documentation/Cocoa/Conceptual/Notifications/index.html</li>

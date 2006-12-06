@@ -21,65 +21,29 @@
   
 */
 
-/** ObjectUtil
-
-	AUTHOR
-
-		Name : ObjectUtil
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date : 2006-01-13
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- static clone(o)
-		
-		- static copy(o)
-			
-			Returns a copy by value of this object.
-			
-			See : ICopyable
-			
-		- static hasProperty(o, prop:String)
-			
-			Returns a Boolean value indicating whether an object has a property with the specified name (*ECMA-262*).
-			Returns true whether the property is in the prototype chain or not.
-
-		- static isEmpty(o):Boolean
-
-		- static memberwiseClone( o )
-			 Creates a shallow copy of the current Object.
-		
-		- static toBoolean(o):Boolean
-		
-		- static toNumber(o):Number
-		
-		- static toObject(o):Object
-		
-		- static toSource(o):String
-			
-**/
-
 import vegas.util.Copier;
 
-class vegas.util.ObjectUtil {
-	
-	// ----o Constructor
-	
-	private function ObjectUtil() {
-		//
-	}
+/**
+ * The {@code ObjectUtil} utility class is an all-static class with methods for working with object.
+ * @author eKameleon
+ */
+class vegas.util.ObjectUtil 
+{
 
-	// ----o Static Methods
-
+	/**
+	 * Returns the shallow copy of the object.
+	 * @return the shallow copy of the object.
+	 */
 	static public function clone(o) {
 		return o ;	
 	}
 
-	static public function copy(o) {
+	/**
+	 * Returns the deep copy of the object.
+	 * @return the deep copy of the object.
+	 */
+	static public function copy(o) 
+	{
 		var obj:Object = {} ;
 		var prop:String ;
 		for (prop in o) {
@@ -96,34 +60,61 @@ class vegas.util.ObjectUtil {
 		return obj ;
 	}
 
-	static public function hasProperty(o, prop:String):Boolean {
+	/**
+	 * Returns a Boolean value indicating whether an object has a property with the specified name (*ECMA-262*). 
+	 * @return {@code true} whether the property is in the prototype chain or not.
+	 */
+	static public function hasProperty(o, prop:String):Boolean 
+	{
 		return (o.hasOwnProperty(prop) || o.__proto__.hasOwnProperty(prop)) ;
 	}
 
-	static public function isEmpty(o):Boolean {
-		for (var each:String in o) {
+	/**
+	 * Returns {@code true} if the passed object is empty of enumerable property.
+	 */
+	static public function isEmpty(o):Boolean 
+	{
+		for (var each:String in o) 
+		{
 			return false ;	
 		}
 		return true ;
 	}
 
-	static public function memberwiseClone( o ) {
+	/**
+	 * Creates a shallow copy of the current Object.
+	 */
+	static public function memberwiseClone( o ) 
+	{
     	var obj = {} ;
-    	for( var prop:String in o ) {
+    	for( var prop:String in o ) 
+    	{
         	obj[prop] = o[prop];
         }
 		return obj;
     }
 
-	static public function toBoolean(o):Boolean {
+	/**
+	 * Converts an object to an equivalent Boolean value.
+	 */
+	static public function toBoolean(o):Boolean 
+	{
 		return (new Boolean( o.valueOf() )).valueOf() ;
 	}
 
-	static public function toNumber(o):Number {
+	/**
+	 * Converts an object to an equivalent Number value.
+	 */
+	static public function toNumber(o):Number 
+	{
 		return (new Number( o.valueOf() )).valueOf() ;
 	}
 
-	static public function toObject(o):Object {
+	/**
+	 * Converts an object to an equivalent Object value.
+	 */
+	static public function toObject(o):Object 
+	{
 		return new Object( o.valueOf() ) ;
 	}
 

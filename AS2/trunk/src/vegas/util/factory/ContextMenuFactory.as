@@ -24,11 +24,18 @@
 import vegas.events.Delegate;
 
 /**
+ * This factory static class is an all-static class with methods to creates different {@code ContextMenuItem} objects.
  * @author eKameleon
+ * @see ContextMenu
+ * @see ContextMenuItem
  */
 class vegas.util.factory.ContextMenuFactory 
 {
-	
+
+	/**
+	 * Creates a {@code ContextMenuItem} who launch an exteral url when the user select this item in a ContextMenu.
+	 * @return a {@code ContextMenuItem} reference.
+	 */
 	static public function createItemURL(label:String, url:String, target:String, separator:Boolean):ContextMenuItem 
 	{
 		var f:Function = Delegate.create(ContextMenuFactory, _getURL, url, target) ;
@@ -37,6 +44,10 @@ class vegas.util.factory.ContextMenuFactory
 		return c ;
 	}
 	
+	/**
+	 * Creates a {@code ContextMenuItem} who use a proxy method when the user select this item in a ContextMenu.
+	 * @return a {@code ContextMenuItem} reference.
+	 */
 	static public function createItemProxy( label:String, scope , method:Function, separator:Boolean , args:Array):ContextMenuItem 
 	{
 		var c:ContextMenuItem = new ContextMenuItem(label, Delegate.create.apply(null, [scope, method].concat(args)) ) ;
@@ -44,6 +55,9 @@ class vegas.util.factory.ContextMenuFactory
 		return c ;
 	}
 	
+	/**
+	 * Internal proxy method to launch {@code getURL} method.
+	 */
 	static private function _getURL(target, item, url:String, where:String) 
 	{
 		getURL(url, where || "_blank") ;	

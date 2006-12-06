@@ -21,96 +21,16 @@
   
 */
 
-/**	DynamicEvent
-
-	AUTHOR
-
-		Name : DynamicEvent
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2005-10-14
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-
-		new DynamicEvent(type:String, target, context) ;
-	
-	PROPERTY SUMMARY
-
-		- bubbles:Boolean [R/W]
-		
-		- context [R/W]
-		
-		- currentTarget [R/W]
-		
-		- eventPhase:Number [R/W]
-		
-		- target [R/W]
-		
-		- type:String [R/W]
-
-	METHOD SUMMARY
-	
-		- cancel():Void
-		
-		- clone():BasicEvent
-		
-		- getBubbles():Boolean
-		
-		- getContext()
-		
-		- getCurrentTarget()
-		
-		- getEventPhase():Number
-		
-		- getTarget()
-		
-		- getTimeStamp():Number
-		
-		- getType():String
-		
-		- isCancelled():Boolean
-		
-		- isQueued():Boolean
-		
-		- queueEvent():Void
-		
-		- setBubbles(b:Boolean):Void
-		
-		- setContext(context):Void
-		
-		- setCurrentTarget(target):Void
-		
-		- setEventPhase(n:Number):Void
-		
-		- setTarget(target):Void
-		
-		- setType(type:String):Void
-		
-		- stopImmediatePropagation()
-		
-		- toSource(indent : Number, indentor : String):String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → BasicEvent → DynamicEvent
-
-	IMPLEMENTS 
-		
-		Event, ICloneable, IFormattable, IHashable, ISerializable
-	
-	HISTORY
-	
-		ADD : [2006-01-22] time property.
-	
-*/
-
 import vegas.events.BasicEvent;
 
+/**
+ * {@code BasicEvent} is the dynamic event structure to work with {@link EventDispatcher} and {@link FastDispatcher}.
+ * <p><b>Example</b></p>
+ * {@code var e:BasicEvent = new DynamicEvent(type, target, context) ; } 
+ * @author  eKameleon
+ * @see     CoreObject	
+ * @see     Event	
+ */
 dynamic class vegas.events.DynamicEvent extends BasicEvent 
 {
 

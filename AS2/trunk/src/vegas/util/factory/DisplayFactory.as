@@ -25,7 +25,9 @@ import vegas.util.ConstructorUtil;
 import vegas.util.TypeUtil;
 
 /**
- * eKameleon
+ * This factory static class is an all-static class with methods to creates dynamic {@code MovieClip} or {@code Textfield} who used a custom class. 
+ * @author eKameleon
+ * @see ConstructorUtil
  */
 class vegas.util.factory.DisplayFactory 
 {

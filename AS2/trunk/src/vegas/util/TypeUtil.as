@@ -21,107 +21,87 @@
   
 */
 
-/** TypeUtil
-
-	AUTHOR
-
-		Name : TypeUtil
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date : 2005-10-29
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	CONSTANT SUMMARY
-	
-		- const BOOLEAN:String
-		
-		- const COLOR:String
-		
-		- const DATE:String
-		
-		- const ERROR:String
-		
-		- const FUNCTION:String
-		
-		- const MOVIECLIP:String
-		
-		- const NULL:String
-		
-		- const NUMBER:String
-		
-		- const OBJECT:String
-		
-		- const STRING:String
-		
-		- const UNDEFINED:String
-		
-		- const XML:String
-	
-	METHOD SUMMARY
-	
-		- static compare(o1, o2) : Compares the type of 2 objects.
-			
-			Compares the types of two objects.
-			
-		- static isExplicitInstanceOf(o, class:Function)
-			
-			Checks if the passed-in object is an explicit instance of the passed-in class.
-			
-		- static isInstanceOf(o, type:Function)
-			
-			Checks if the passed-in object is an instance of the passed-in type.
-		
-		- static isPrimitive(o)
-		
-			Checks if the passed-in object is a primitive type.
-			
-		- static isTypeOf(o, type:String)
-		
-			Checks if the result of an execution of the typeof method on the passed-in object matches the passed-in type.
-			
-		- static typesMatch(o, type:Function)
-		
-			Checks if the type of the passed-in object matches the passed-in type
-		
-		- static toString(type:Function):String
-
-**/
-
 import vegas.util.ConstructorUtil;
 
-class vegas.util.TypeUtil {
+/**
+ * The {@code TypeUtil} utility class is an all-static class with methods for checking and working with the type of the object in AS2.
+ * @author eKameleon
+ */
+class vegas.util.TypeUtil 
+{
 	
-	// ----o Constructor
-	
-	private function TypeUtil() {
-		//
-	}
-	
-	// ----o CONSTANT
-
+	/**
+	 * The type of the 'boolean' objects.
+	 */
 	static public var BOOLEAN:String = "boolean" ;
+
+	/**
+	 * The type of the 'color' objects.
+	 */
 	static public var COLOR:String = "color" ;
+	
+	/**
+	 * The type of the 'date' objects.
+	 */
 	static public var DATE:String = "date" ;
+	
+	/**
+	 * The type of the 'error' objects.
+	 */
 	static public var ERROR:String = "error" ;
+	
+	/**
+	 * The type of the 'function' objects.
+	 */
 	static public var FUNCTION:String = "function" ;
+	
+	/**
+	 * The type of the 'movieclip' objects.
+	 */
 	static public var MOVIECLIP:String = "movieclip" ;
+
+	/**
+	 * The type of the 'null' objects.
+	 */
 	static public var NULL:String = "null" ;
+
+	/**
+	 * The type of the 'number' objects.
+	 */
 	static public var NUMBER:String = "number" ;
+	
+	/**
+	 * The type of the 'object' objects.
+	 */
 	static public var OBJECT:String = "object" ;
+
+	/**
+	 * The type of the 'string' objects.
+	 */
 	static public var STRING:String = "string" ;
+
+	/**
+	 * The type of the 'undefined' objects.
+	 */
 	static public var UNDEFINED:String = "undefined" ;
+	
+	/**
+	 * The type of the 'xml' objects.
+	 */	
 	static public var XML:String = "xml" ;
 
 	static private var __ASPF__ = _global.ASSetPropFlags(TypeUtil, null , 7, 7) ;
 
-	// ----o Static Methods
-
+	/**
+	 * Compares the types of two objects.
+	 */
 	static public function compare(o1, o2):Boolean {
 		return typeof(o1) == typeof(o2) ;
 	}
 
+	/**
+	 * Checks if the passed-in object is an explicit instance of the passed-in class.
+	 */
 	static public function isExplicitInstanceOf(o, c:Function):Boolean {
 		if (TypeUtil.isPrimitive(o)) {
 			var tof:String = typeof(o) ;
@@ -132,50 +112,147 @@ class vegas.util.TypeUtil {
 		return (o instanceof c	&& !(o.__proto__ instanceof c));
 	}
 
-	static public function isInstanceOf(o, type:Function):Boolean {
-		if (type === Object) return true ;
+	/**
+	 * Checks if the passed-in object is an instance of the passed-in type.
+	 */
+	static public function isInstanceOf(o, type:Function):Boolean 
+	{
+		if (type === Object) 
+		{
+			return true ;
+		}
 		return (o instanceof type) ;
 	}
 	
-	static public function isPrimitive(o):Boolean {
+	/**
+	 * Checks if the passed-in object is a primitive type.
+	 */
+	static public function isPrimitive(o):Boolean 
+	{
 		var tof:String = typeof(o) ;
 		return (tof == TypeUtil.STRING || tof == TypeUtil.NUMBER || tof == TypeUtil.BOOLEAN) ;
 	}
 	
-	static public function isTypeOf(o, type:String):Boolean {
+	/**
+	 * Checks if the result of an execution of the typeof method on the passed-in object matches the passed-in type.
+	 */
+	static public function isTypeOf(o, type:String):Boolean 
+	{
 		return typeof(o) == type ;
 	}
 
-	static public function typesMatch(o, type:Function):Boolean {
-		if (type === Object) return true ;
-		if ( TypeUtil.isPrimitive(o) ) {
+	/**
+	 * Checks if the type of the passed-in object matches the passed-in type.
+	 * <p><b>Example :</b>
+	 * {@code
+	 * import vegas.util.TypeUtil ;
+	 * 
+	 * var s1:String = "hello world" ;
+	 * var s2:String = new String("hello world") ;
+	 * trace("s1 is string : " + TypeUtil.typesMatch( s1, String )) ; // output : 'true'
+	 * trace("s2 is string : " + TypeUtil.typesMatch( s2, String )) ; // output : 'true'
+	 * }
+	 * </p>
+	 * @see ConstructorUtil
+	 */
+	static public function typesMatch(o, type:Function):Boolean 
+	{
+		if (type === Object) 
+		{
+			return true ;
+		}
+		if ( TypeUtil.isPrimitive(o) ) 
+		{
 			var tof:String = typeof(o);
-			if (tof == TypeUtil.STRING && (type === String || ConstructorUtil.isSubConstructorOf(type, String))) return true;
-			else if (tof == TypeUtil.BOOLEAN && (type === Boolean || ConstructorUtil.isSubConstructorOf(type, Boolean))) return true;
-			else if (tof == TypeUtil.NUMBER && (type === Number || ConstructorUtil.isSubConstructorOf(type, Number))) return true;
-			else return false;
-		} else {
+			if (tof == TypeUtil.STRING && (type === String || ConstructorUtil.isSubConstructorOf(type, String)))
+			{
+				return true ;
+			}
+			else if (tof == TypeUtil.BOOLEAN && (type === Boolean || ConstructorUtil.isSubConstructorOf(type, Boolean)))
+			{
+				return true ;
+			}
+			else if (tof == TypeUtil.NUMBER && (type === Number || ConstructorUtil.isSubConstructorOf(type, Number)))
+			{
+				return true ;
+			}
+			else
+			{
+				return false ;
+			}
+		}
+		else 
+		{
 			return (isInstanceOf(o, type));
 		}
 	}
 	
-	static public function toString(type:Function):String {
-		if (type === undefined) return "undefined" ;
-		if (type === null) return "null" ;
+	/**
+	 * Returns the string representation of the constructor function passed in argument.
+	 * <p>If the constructor function is a custom class the method use the ConstructorUtil class.</p>
+	 * @return the string representation of the type function passed in argument.
+	 * @see ConstructorUtil.
+	 */
+	static public function toString(type:Function):String 
+	{
+		if (type === undefined) 
+		{
+			return "undefined" ;
+		}
+		if (type === null) 
+		{
+			return "null" ;
+		}
 		var instance = ConstructorUtil.createBasicInstance(type) ;
 		var path:String = ConstructorUtil.getPath(instance) ;
-		if ( path != null) return path ;
-		else if (type == Array) return "Array" ;
-		else if (type == Boolean) return "Boolean" ;
-		else if (type == Color) return "Color" ;
-		else if (type == Date) return "Date" ;
-		else if (type == Error) return "Error" ;
-		else if (type == Number) return "Number" ;
-		else if (type == String) return "String" ;
-		else if (type == XML) return "XML" ;
-		else if (type == XMLNode) return "XMLNode" ;
-		else if (type == Function) return "Function" ;
-		else return "Object" ;
+		if ( path != null) 
+		{
+			return path ;
+		}
+		else if (type == Array) 
+		{
+			return "Array" ;
+		}
+		else if (type == Boolean) 
+		{
+			return "Boolean" ;
+		}
+		else if (type == Color) 
+		{
+			return "Color" ;
+		}
+		else if (type == Date) 
+		{
+			return "Date" ;
+		}
+		else if (type == Error) 
+		{
+			return "Error" ;
+		}
+		else if (type == Number)
+		{
+			return "Number" ;
+		}
+		else if (type == String) 
+		{
+			return "String" ;
+		}
+		else if (type == XML) 
+		{
+			return "XML" ;
+		}
+		else if (type == XMLNode) 
+		{
+			return "XMLNode" ;
+		}
+		else if (type == Function) 
+		{
+			return "Function" ;
+		}
+		else 
+		{
+			return "Object" ;
+		}
 	}
 
 }

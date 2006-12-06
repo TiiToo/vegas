@@ -21,159 +21,99 @@
   
 */
 
-/** FrameTimer
-
-	AUTHOR
-
-		Name : FrameTimer
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date :  2005-11-16
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	 
-		Constructs a new FrameTimer object with the specified delay and repeat state.
-		The timer does not start automatically, you much call the start() method to start it.
-
-	EXAMPLE
-	
-		import vegas.events.EventListener ;
-		import vegas.events.Delegate ;
-		import vegas.events.TimerEvent ;
-		import vegas.events.TimerEventType ;
-		import vegas.util.FrameTimer  ;
-		
-		function onTimer(event:TimerEvent):Void {
-			trace("onTimer: " + event.type) ;
-		}
-		
-		var timeListener:EventListener = new Delegate(this, onTimer) ;
-		
-		var myTimer:FrameTimer = new FrameTimer(24, 10) ;
-		myTimer.addEventListener(TimerEventType.START, timeListener);
-		myTimer.addEventListener(TimerEventType.STOP, timeListener);
-		myTimer.addEventListener(TimerEventType.TIMER, timeListener);
-		myTimer.start();
-		
-		Key.addListener(this) ;
-		onKeyDown = function () {
-			myTimer.running ? myTimer.stop() : myTimer.restart() ;
-		}
-
-	PROPERTY SUMMARY
-	
-		- delay:Number [R/W] 
-		
-			The delay between timer events, in frame/seconds
-		
-		- repeatCount:Number [R/W]
-			
-			Specifies the number of repetitions. 
-			If zero, the timer repeats infinitely. 
-			If nonzero, the timer runs the specified number of times and then stops.
-		
-		- running:Boolean
-
-	METHOD SUMMARY
-	
-		- clear():Void
-		
-		- getDelay():Number
-		
-		- getRepeatCount():Number
-		
-		- restart()
-		
-			Restarts the timer. The timer is stopped, and then started.
-		
-		- run()
-		
-		- setDelay(n:Number)
-		
-		- setRepeatCount(n:Number)
-		
-		- start()
-		
-			Starts the timer, if it is not already running.
-		
-		- stop()
-		
-			Stops the timer.
-			
-
-	EVENT SUMMARY
-	
-		TimerEvent
-	
-			- TimerEventType.RESTART
-			
-			- TimerEventType.START
-			
-			- TimerEventType.STOP
-			
-			- TimerEventType.TIMER
-				A Timer object generates the timer event whenever a timer tick occurs.
-
-	INHERIT
-	
-		CoreObject → EventDispatcher → AbstractTimer → FrameTimer
-
-	IMPLEMENTS 
-	
-		EventTarget, ICloneable, IEventDispatcher,IFormattable,IRunnable,ITimer
-
-	SEE ALSO
-	
-		- EventDispatcher
-		- RangeError
-		- TimerEvent
-		- TimerEventType
-
-**/
-
 import vegas.events.TimerEvent;
 import vegas.events.TimerEventType;
 import vegas.util.AbstractTimer;
 import vegas.util.FrameBeacon;
 
-class vegas.util.FrameTimer extends AbstractTimer {
+/**
+ * Constructs a {@code new FrameTimer} object with the specified delay and repeat state. This timer use the frames by second of the animation. The timer does not start automatically, you much call the {@code start()} method to start it.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import vegas.events.EventListener ;
+ * import vegas.events.Delegate ;
+ * import vegas.events.TimerEvent ;
+ * import vegas.util.FrameTimer  ;
+ * 
+ * function onTimer(event:TimerEvent):Void 
+ * {
+ *     trace("onTimer: " + event.type) ;
+ * }
+ * 
+ * var timeListener:EventListener = new Delegate(this, onTimer) ;
+ *	
+ * var myTimer:FrameTimer = new FrameTimer(24, 10) ;
+ * myTimer.addEventListener(TimerEvent.START, timeListener);
+ * myTimer.addEventListener(TimerEvent.STOP, timeListener);
+ * myTimer.addEventListener(TimerEvent.TIMER, timeListener);
+ * myTimer.start();
+ *	
+ * this.onKeyDown = function () 
+ * {
+ *    myTimer.running ? myTimer.stop() : myTimer.restart() ;
+ * }
+ * Key.addListener(this) ;
+ * }
+ * @author eKameleon
+ * @see TimerEvent
+ */
+class vegas.util.FrameTimer extends AbstractTimer 
+{
 
-	// ----o Construtor
-	
-	public function FrameTimer(delay:Number, repeatCount:Number) {
+	/**
+	 * Creates a new FrameTimer instance.
+	 */
+	public function FrameTimer(delay:Number, repeatCount:Number) 
+	{
 		super(delay, repeatCount) ;
 	}
 
-	// ----o Public Methods	
-
-	/*override*/ public function clear():Void {
+	/**
+	 * Clear the timer interval.
+	 */
+	/*override*/ public function clear():Void 
+	{
 		FrameBeacon.removeFrameListener(this) ;
 	}
 
-	/*override*/ public function clone() {
+	/**
+	 * Returns a shallow copy of this object.
+	 * @return a shallow copy of this object.
+	 */
+	/*override*/ public function clone() 
+	{
 		return new FrameTimer(_delay, _repeatCount) ;
 	}
 
-	/*override*/ public function run():Void {
+	/**
+	 * Run the timer.
+	 * @see IRunnable
+	 */
+	/*override*/ public function run():Void 
+	{
 		FrameBeacon.addFrameListener(this) ;
 	}
 
-	// ----o Private Properties
-	
+	/**
+	 * The next value.
+	 */
 	private var _next:Number = 0 ;
-	
-	// ----o Private Methods
-	
-	private function onEnterFrame():Void {
-		if (++_next >= _delay) {
+
+	/**
+	 * This method is invoqued frame by frame.
+	 */
+	private function onEnterFrame():Void 
+	{
+		if (++_next >= _delay) 
+		{
 			dispatchEvent( new TimerEvent(TimerEventType.TIMER, this) ) ;
 			_next = 0 ;
 			_count ++ ;
 		}
-		if (_repeatCount && _count >= _repeatCount) this.stop() ;
+		if (_repeatCount && _count >= _repeatCount) 
+		{
+			this.stop() ;
+		}
 	}
 	
 }

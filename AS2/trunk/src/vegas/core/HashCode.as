@@ -30,7 +30,8 @@ class vegas.core.HashCode
 
 	/**
 	 * Compare two IHashable objects.
-	 * @usage   var isEquals:Boolean = HashCode.equals(o1, o2) ;
+	 * <p><b>Example :</b></p>
+	 * {@code var isEquals:Boolean = HashCode.equals(o1, o2) ; }
 	 * @param   o1 the first value to compare.
 	 * @param   o2 the second value to compare.
 	 * @return {@code true} of the two object are equals.  
@@ -69,7 +70,7 @@ class vegas.core.HashCode
 	
 	/**
 	 * Initialize the hashcode value of an object.
-	 * @return {@code true}
+	 * @return {@code true} if the method is called.
 	 */
 	static public function initialize(o):Boolean 
 	{

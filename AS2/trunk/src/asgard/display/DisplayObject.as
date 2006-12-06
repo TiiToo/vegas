@@ -307,7 +307,7 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	 */
 	public function resolve( name:String )
 	{
-		if ( view.hasOwnProperty(name) )
+		if ( view[name] )
 		{
 			return view[name] ;
 		}

@@ -21,66 +21,55 @@
   
 */
 
-/** AttributeType
+/**
+ * This enumeration static class is based on ECMA-262 property attributes specification. See chapter 8.6.1 - PDF p38/188
+ * @author eKameleon
+ * @see Attribute
+ * @see ASSetPropFlags
+ */
+class vegas.util.AttributeType 
+{
 
-	AUTHOR
-
-		Name : AttributeType
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date :  2006-01-02
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		based on ECMA-262 property attributes specification [chapter 8.6.1 - PDF p38/188]
-
-	CONSTANT SUMMARY
-	
-		- DELETE_ONLY:Number
-		
-		- DONT_DELETE:Number
-		
-		- DONT_ENUM:Number
-		
-		- ENUM_ONLY:Number
-		
-		- LOCKED:Number
-		
-		- NONE:Number
-		
-		- OVERRIDE_ONLY:Number
-		
-		- READ_ONLY:Number
-	
-	THANKS
-	
-		Zwetan : Core2 AS2 Framework inspiration for refactoring !
-		
-	TODO [2006-01-09] Use Number Constants.
-	
-**/
-
-class vegas.util.AttributeType {
-
-	// ----o Construtor
-	
-	private function AttributeType() {
-		//
-	}
-	
-	// ----o Constant
-	
+	/**
+	 * The NONE value(0).
+	 */	
 	static public var NONE:Number = 0 ;
+	
+	/**
+	 * The DONT_ENUM value(1).
+	 */	
 	static public var DONT_ENUM:Number = 1 ;
+	
+	/**
+	 * The DONT_DELETE value(2).
+	 */
 	static public var DONT_DELETE:Number = 2 ;
+
+	/**
+	 * The READ_ONLY value(4).
+	 */
 	static public var READ_ONLY:Number = 4 ;
-	static public var OVERRIDE_ONLY:Number = DONT_ENUM | DONT_DELETE ; // 3
+
+	/**
+	 * The OVERRIDE_ONLY value(3).
+	 */
+	static public var OVERRIDE_ONLY:Number = DONT_ENUM | DONT_DELETE ;
+
+	/**
+	 * The DELETE_ONLY value(5).
+	 */
 	static public var DELETE_ONLY:Number = DONT_ENUM | READ_ONLY ; // 5
+
+	/**
+	 * The ENUM_ONLY value(6).
+	 */
 	static public var ENUM_ONLY:Number = READ_ONLY | DONT_DELETE ; // 6
+
+	/**
+	 * The LOCKED value(7).
+	 */
 	static public var LOCKED:Number = DONT_DELETE | DONT_ENUM | READ_ONLY ; // 7
+
 
 	static private var __ASPF__ = _global.ASSetPropFlags(AttributeType, null, 7, 7) ;
 	

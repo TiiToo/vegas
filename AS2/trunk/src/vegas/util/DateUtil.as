@@ -21,47 +21,37 @@
   
 */
 
-/** DateUtil
+/**
+ * The {@code DateUtil} utility class is an all-static class with methods for working with dates.
+ * @author eKameleon
+ */
+class vegas.util.DateUtil 
+{
 
-	AUTHOR
-	
-		Name : DateUtil
-		Package : vegas.util.type
-		Version : 1.0.0.0
-		Date :  2005-12-23
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- static clone(d:Date):Date
-		
-		- static copy(d:Date):Date
-		
-		- static equals( d1:Date, d2:Date ):Boolean
-
-**/
-
-class vegas.util.DateUtil {
-
-	// ----o Construtor
-	
-	private function DateUtil() {
-		//
-	}
-	
-	// ----o Static Methods
-
-	static public function clone(d:Date):Date {
+	/**
+	 * Returns a shallow copy of the date object passed in argument.
+	 * @return a shallow copy of the date object passed in argument.
+	 */
+	static public function clone(d:Date):Date 
+	{
 		return d ;
 	}
 
-	static public function copy(d:Date):Date {
+	/**
+	 * Returns a deep copy of the date object passed in argument.
+	 * @return a deep copy of the date object passed in argument.
+	 */
+	static public function copy(d:Date):Date 
+	{
 		return new Date(d.valueOf()) ;
 	}
 
-	static public function equals( d1:Date, d2:Date ):Boolean {
+	/**
+	 * Compares the twno specified Date objects for equality.
+	 * @return {@code true} if the the two specified Date object are equals.
+	 */
+	static public function equals( d1:Date, d2:Date ):Boolean 
+	{
 		if (!d2) return false ;
 		return d1.getTime() == d2.getTime() ;
     }

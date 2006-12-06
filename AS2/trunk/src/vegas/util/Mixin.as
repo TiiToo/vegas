@@ -21,64 +21,34 @@
   
 */
 
-/** Mixin
-
-	AUTHOR
-
-		Name : Mixin
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date :  2005-10-10
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION 
-	
-		Fabrique du pattern Decorator basé sur l'injection dans le prototype d'une fonction constructor (Mixin)
-
-	CONSTRUCTOR
-	
-		var mix:Mixin = new Mixin(constructor[Function], target|Object], attributes[Array])
-
-	METHOD SUMMARY
-	
-		- getAttributes()
-		
-		- getConstructor()
-		
-		- getTarget()
-		
-		- run()
-		
-		- setAttributes(ar:Array)
-		
-		- setContructor(f:Function)
-		
-		- setTarget(o)
-	
-	IMPLEMENTS
-	
-		IRunnable
-
-**/
-
 import vegas.core.CoreObject;
 import vegas.core.IRunnable;
 
+/**
+ * Factory of the pattern Decorator based on the prototype methods injection (Mixin).
+ * @author eKameleon
+ */
 class vegas.util.Mixin extends CoreObject implements IRunnable {
 
-	// ----o Construtor
-	
-	public function Mixin( fConstructor:Function, target, attributes:Array) {
+	/**
+	 * Creates a new Mixin instance.
+	 * @param fConstructor the function constructor to used to create a mixin.
+	 * @param target the target reference to injected new method with the mixin.
+	 * @param attributes the array of all attributes to used in the mixin operation. 
+	 */
+	public function Mixin( fConstructor:Function, target, attributes:Array) 
+	{
 		setAttributes(attributes) ;
 		setConstructor(fConstructor);
 		setTarget(target) ;
 	}
-
-	// ----o Public Methods
-
-	public function getAttributes():Array {
+	
+	/**
+	 * Returns the array of all attributes.
+	 * @return the array of all attributes.
+	 */
+	public function getAttributes():Array 
+	{
 		return _ar ;
 	}
 
