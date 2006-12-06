@@ -29,7 +29,6 @@ import vegas.data.iterator.Iterable;
 import vegas.data.iterator.Iterator;
 import vegas.data.iterator.StringIterator;
 import vegas.errors.ArgumentsError;
-import vegas.util.ArrayUtil;
 import vegas.util.serialize.Serializer;
 import vegas.util.TypeUtil;
 
