@@ -27,6 +27,7 @@ import vegas.data.iterator.Iterator;
 import vegas.data.Queue;
 
 /**
+ * Converts a Queue to a custom string representation.
  * @author eKameleon
  */
 class vegas.data.queue.QueueFormat extends CoreObject implements IFormat 

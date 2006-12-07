@@ -1,6 +1,7 @@
 import test.visitor.diaporama.visitors.ClearVisitor;
 import test.visitor.diaporama.visitors.HideVisitor;
 import test.visitor.diaporama.visitors.LoaderVisitor;
+import test.visitor.diaporama.visitors.ReleaseVisitor;
 import test.visitor.diaporama.visitors.ShowVisitor;
 
 import vegas.util.visitor.AbstractVisitable;
@@ -83,7 +84,12 @@ class test.visitor.diaporama.Picture extends AbstractVisitable
 				LoaderVisitor(visitor).visit(this) ;
 				break ;
 			}	
-
+			
+			case visitor instanceof ReleaseVisitor :
+			{
+				ReleaseVisitor(visitor).visit(this) ;	
+			}
+			
 			case visitor instanceof ShowVisitor :
 			{
 				ShowVisitor(visitor).visit(this) ;
@@ -99,6 +105,16 @@ class test.visitor.diaporama.Picture extends AbstractVisitable
 	public function isVisible():Boolean 
 	{
 		return view._visible ;		
+	}
+	
+	/**
+	 * Release the display (Initialize the Picture and remove the target reference) 
+	 */
+	public function release():Void
+	{
+		view.removeMovieClip() ;
+		url = null ;
+		name = null ;	
 	}
 
 	/**

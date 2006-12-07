@@ -23,7 +23,11 @@
 
 import vegas.data.iterator.OrderedIterator;
 
-interface vegas.data.list.ListIterator extends OrderedIterator 
+/**
+ * Defines an iterator that operates over an ordered list. This iterator allows both forward and reverse iteration through the list.
+ * @author eKameleon
+ */
+interface vegas.data.iterator.ListIterator extends OrderedIterator 
 {
 
 	/**

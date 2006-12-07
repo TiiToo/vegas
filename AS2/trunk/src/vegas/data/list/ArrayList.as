@@ -21,95 +21,24 @@
   
 */
 
-/** ArrayList
-
-	AUTHOR
-
-		Name : ArrayList
-		Package : vegas.data.list
-		Version : 1.0.0.0
-		Date : 2005-04-27
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-
-		- clear()
-		
-		- clone()
-		
-		- contains(o)
-		
-		- containsAll(c:Collection)
-		
-		- ensureCapacity(n:Number)
-		
-		- get(id)
-		
-		- indexOf(o)
-		
-		- insert(o)
-		
-		- insertAll(c:Collection)
-		
-		- insertAllAt (id, c:Collection)
-		
-		- insertAt(id, o)
-		
-		- isEmpty():Boolean
-	
-		- iterator():Iterator
-		
-		- lastIndexOf(o) 
-		
-		- listIterator()
-		
-		- remove()
-		
-		- removeAll(c:Collection)
-		
-		- removeAt(id)
-		
-		- removesAt(id, len)
-		
-		- removeRange(from, to) : Removes from this List all of the elements whose index is between fromIndex, inclusive and toIndex, exclusive.
-		
-		- retainAll(c:Collection)
-		
-		- setAt(id, o)
-		
-		- size():Number
-		
-		- subList(from, to) : return a list
-		
-		- toArray():Array
-		
-		- toSource():String	
-		
-		- toString():String
-
-	INHERIT 
-
-		CoreObject → AbstractCollection → AbstractList → ArrayList
-	
-
-	IMPLEMENTS
-	
-		ICloneable, Collection, List, ISerializable, IFormattable
-	
-**/
-
 import vegas.data.Collection;
 import vegas.data.iterator.ArrayIterator;
 import vegas.data.iterator.Iterator;
 import vegas.data.list.AbstractList;
 
-class vegas.data.list.ArrayList extends AbstractList {
+/**
+ * Resizable-array implementation of the List interface.
+ * Implements all optional list operations, and permits all elements, including null. 
+ * @author eKameleon
+ */
+class vegas.data.list.ArrayList extends AbstractList 
+{
 	
-	// ----o Constructor
-
-	function ArrayList() {
+	/**
+	 * Creates a new ArrayList instance.
+	 */
+	function ArrayList() 
+	{
 		
 		var arg = arguments[0] ;
 		
@@ -134,15 +63,21 @@ class vegas.data.list.ArrayList extends AbstractList {
 		}
 	}
 
-	// ----o Public Methods
-	
-	public function clone() {
+	/**
+	 * Creates and returns a shallow copy of the object.
+	 * @return A new object that is a shallow copy of this instance.
+	 */	
+	public function clone() 
+	{
 		return new ArrayList(toArray()) ;
 	}
 	
-	public function ensureCapacity(n:Number):Void {
+	/**
+	 * ncreases the capacity of this ArrayList instance, if necessary, to ensure that it can hold at least the number of elements specified by the minimum capacity argument.
+	 */
+	public function ensureCapacity(n:Number):Void 
+	{
 		_a.length = n ;
 	}
-	
 	
 }

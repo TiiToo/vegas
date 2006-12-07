@@ -21,94 +21,7 @@
   
 */
 
-/**	MultiHashMap
-
-	AUTHOR
-
-		Name : MultiHashMap
-		Package : vegas.data.map
-		Version : 1.0.0.0
-		Date :  2005-10-26
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var m:MultiHashMap = new MultiHashMap( m:Map ) ;
-	
-	ARGUMENTS
-	
-		m : copies the input map creating an independant copy
-		
-	METHOD SUMMARY
-	
-		- clear()
-		
-		- clone()
-		
-		- containsKey(key)
-		
-		- containsValue()
-		
-		- createCollection():Collection
-		
-			Creates a new instance of the map value Collection container.
-			This method can be overridden to use your own collection type.
-			
-		- get(key)
-		
-		- getkeys()
-		
-		- getValues()
-		
-		- isEmpty():Boolean
-		
-		- iterator([key]) 
-		
-		- keyIterator()
-				
-		- put(key, value)
-		
-			Adds the value to the collection associated with the specified key.
-		
-		- putCollection(key, collection:Collection)
-		
-		- putAll(map:Map) 
-		
-		- remove(key, [value]) 
-		
-			If value is undefined; removes all values associated with the specified key.
-			
-			If value is defined, removes a specific value from map.
-		
-		- size():Number
-		
-		- toSource():String
-		
-		- toString():String
-		
-		- totalSize():Number
-		
-		- values()
-		
-			Gets a collection containing all the values in the map.
-		
-		- valueIterator()
-			
-			get a iterator to browse collections in MultiMap
-	
-	INHERIT
-	
-		CoreObject → HashMap → MultiHashMap
-	
-	IMPLEMENTS
-	
-		ICloneable, Iterable, Map, MultiMap, ISerializable, IFormattable
-	
-**/
-
-// TODO finir les tests car il y a des problèmes !!
+// TODO finish the test of this class.
 
 import vegas.core.IFormattable;
 import vegas.data.Collection;
@@ -122,11 +35,19 @@ import vegas.data.map.MultiMapFormat;
 import vegas.data.MultiMap;
 import vegas.util.serialize.Serializer;
 
-class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap, IFormattable {
+/**
+ * The default implementation of the {@code MultiMap} interface.
+ * @author eKameleon
+ * @see MultiMap
+ */
+class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap, IFormattable 
+{
 
-	// ----o Construtor
-	
-	public function MultiHashMap() {
+	/**
+	 * Creates a new MultiHashMap instance.
+	 */
+	public function MultiHashMap() 
+	{
 		_map = new HashMap() ;
 		if (arguments[0] instanceof Map) {
 			var m:Map = arguments[0].clone() ;
@@ -134,31 +55,35 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 		}
 	}
 
-	// ----o Public Methods	
-
 	/**
-	 * This clears each collection in the map, and so may be slow.
+	 * Removes all elements in this map.
 	 */
-	public function clear():Void {
+	public function clear():Void 
+	{
 		_map.clear() ;
 	}
 
 	/**
 	 * Creates a new instance of the map value Collection container.
 	 * This method can be overridden to use your own collection type.
+	 * @return a new instance of the map value Collection container.
 	 */
-	public function createCollection():Collection {
+	public function createCollection():Collection 
+	{
 		return new SimpleCollection() ;	
 	}
 
 	/**
-	 * Clones the map.
+	 * Returns a shallow copy of this object.
+	 * @return a shallow copy of this object.
 	 */
-	public function clone() {
+	public function clone() 
+	{
 		var m:MultiHashMap = new MultiHashMap() ;
 		var vItr:Iterator = valueIterator() ;
 		var kItr:Iterator = keyIterator() ;
-		while (kItr.hasNext()) {
+		while (kItr.hasNext()) 
+		{
 			var key = kItr.next() ;
 			var value = vItr.next() ;
 			m.putCollection(key, value) ;
@@ -169,29 +94,35 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 	/**
 	 * Checks whether the map contains the key specified.
 	 */
-	public function containsKey( key ):Boolean {
+	public function containsKey( key ):Boolean 
+	{
 		return _map.containsKey( key ) ;
 	}
 
 	/**
 	 * Checks whether the map contains the value specified or at the specified key contains the value.
-	 * @example
-	 * <code>
-	 * 		var b:Boolean = map.containsValue(key, value) ;
-	 * 		
-	 * 		var b:Boolean = map.containsValue(value) ;
-	 * </code>
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * var b:Boolean = map.containsValue(key, value) ;
+	 * var b:Boolean = map.containsValue(value) ;
+	 * }
+	 * @return {@code true} if the map contains the specified value. 
 	 */
-	public function containsValue( value ):Boolean {
+	public function containsValue( value ):Boolean 
+	{
 		var len:Number = arguments.length ;
-		if (len == 1) {
+		if (len == 1) 
+		{
 			var value = arguments[0] ;
 			var it:Iterator = _map.iterator() ;
-			while (it.hasNext()) {
+			while (it.hasNext()) 
+			{
 				var cur = it.next() ;
 				if (cur.contains(value)) return true;
 			}
-		} else if (len == 2) {
+		} 
+		else if (len == 2) 
+		{
 			return ( get(arguments[0] ).contains(arguments[1]) == true);
 		}
 		return false ;
@@ -200,25 +131,29 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 	/**
 	 * Gets the collection mapped to the specified key. This method is a convenience method to typecast the result of get(key).
 	 */
-	public function get( key ) /*Collection*/ {
+	public function get( key ) /*Collection*/ 
+	{
 		return _map.get(key) ;
 	}
 
 	/**
 	 * Checks whether the map contains the key specified .
 	 */
-	public function getKeys():Array {
+	public function getKeys():Array 
+	{
 		return _map.getKeys() ;
 	}
 	
 	/**
 	 * This returns an array containing the combination of values from all keys.
 	 */
-	public function getValues():Array {
+	public function getValues():Array 
+	{
 		var result:Array = [] ;
 		var values = this._map.getValues() ;
 		var l:Number = values.length ;
-		for (var i:Number = 0 ; i<l ; i++) {
+		for (var i:Number = 0 ; i<l ; i++) 
+		{
 			result = result.concat( values[i].toArray() ) ;
 		}
 		return result ;
@@ -229,18 +164,23 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 	 * 
 	 * @return {@code true} if this MultiHashSet contains any mappings else {@code false}
 	 */
-	public function isEmpty():Boolean {
+	public function isEmpty():Boolean 
+	{
 		return _map.isEmpty() ;
 	}
 	
 	/**
 	 * Gets an iterator for the collection mapped to the specified key.
 	 */
-	public function iterator( /*key*/ ):Iterator {
+	public function iterator( /*key*/ ):Iterator 
+	{
 		var key = arguments[0] ;
-		if (key) {
+		if (key) 
+		{
 			return _map.get(key).iterator() ;
-		} else {
+		}
+		else 
+		{
 			return _map.iterator() ;
 		}
 	}
@@ -248,15 +188,20 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 	/**
 	 * Gets an iterator for the map to iterate keys.
 	 */
-	public function keyIterator():Iterator {
+	public function keyIterator():Iterator 
+	{
 		return _map.keyIterator() ;
 	}
 
 	/**
 	 * Adds the value to the collection associated with the specified key.
 	 */
-	public function put(key, value) {
-		if (!containsKey(key)) _map.put(key , createCollection()) ;
+	public function put(key, value) 
+	{
+		if (!containsKey(key)) 
+		{
+			_map.put(key , createCollection()) ;
+		}
 		var b:Boolean = _map.get(key).insert(value) ;
 		return b ? value : null ;
 	}
@@ -264,14 +209,19 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 	/**
 	 * Override superclass to ensure that MultiMap instances are correctly handled.
 	 */
-	public function putAll(map:Map):Void {
+	public function putAll(map:Map):Void 
+	{
 		var it:Iterator = map.iterator() ;
-		while (it.hasNext()) {
+		while (it.hasNext()) 
+		{
 			var value = it.next() ;
 			var key = it.key() ;
-			if (value instanceof Collection) {
+			if (value instanceof Collection) 
+			{
 				putCollection(key, value) ;
-			} else {
+			}
+			else 
+			{
 				put(key, value) ;
 			}
 		}
@@ -289,57 +239,87 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 	
 	/**
 	 * Removes a specific value from map.
+	 * @param key the key to remove in the map
+	 * @param value (optional) if this value is defined removes a specific value from map else removes all values associated with the specified key.
+	 * @return the removed value.
 	 */
-	public function remove(key /*, value*/ ) {
+	public function remove(key /*, value*/ ) 
+	{
 		var value = arguments[1] ;
-		if (key && value) {
+		if (key && value) 
+		{
 			var c:Collection = _map.get(key) ;
 			var b:Boolean = c.remove(value) ;
 			return (b) ? value : null ;
-		} else {
+		}
+		else 
+		{
 			return _map.remove(key) ;
 		}
 	}
 	
 	/**
-	 * Gets the size of the collection mapped to the specified key.
+	 * Returns the size of the collection mapped to the specified key.
+	 * @return the size of the collection mapped to the specified key.
 	 */
-	public function size():Number {
+	public function size():Number 
+	{
 		return _map.size() ;
 	}
 
-	public function toSource(indent:Number, indentor:String):String {
+	/**
+	 * Returns a Eden representation of the object.
+	 * @return a string representing the source code of the object.
+	 */
+	public function toSource(indent:Number, indentor:String):String 
+	{
 		var sourceA:String = Serializer.toSource(_map) ;
 		return Serializer.getSourceOf(this, [sourceA]) ;
 	}
-	
-	public function toString():String {
+
+	/**
+	 * Returns the string representation of this instance.
+	 * @return the string representation of this instance
+	 */
+	public function toString():String 
+	{
 		return (new MultiMapFormat()).formatToString(this) ;
 	}
 
 	/**
 	 * Gets the total size of the map by counting all the values.
 	 */
-	public function totalSize():Number {
+	public function totalSize():Number 
+	{
 		var result:Number = 0 ;
 		var it:Iterator = _map.iterator() ;
-		while (it.hasNext()) {
+		while (it.hasNext()) 
+		{
 			result += (it.next().size() || 0) ;
 		}
 		return result ;
 	}
 
-	public function values():Collection {
+	/**
+	 * Returns a Collection of all values in the MultiHashMap.
+	 */
+	public function values():Collection 
+	{
 		var ar:Array = getValues() ;
 		return new SimpleCollection(ar) ;
 	}
 
-	public function valueIterator():Iterator {
+	/**
+	 * Returns the iterator of all values in the MultiHashMap.
+	 */
+	public function valueIterator():Iterator 
+	{
 		return new ArrayIterator(_map.getValues()) ;
 	}
 
-	// ----o Private Properties
-	
+	/**
+	 * The internal HashMap.
+	 */
 	private var _map:HashMap ;
 	
 }

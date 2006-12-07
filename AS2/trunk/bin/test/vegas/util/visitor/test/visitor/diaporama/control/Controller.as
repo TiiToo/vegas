@@ -1,3 +1,10 @@
+
+import test.visitor.diaporama.control.model.AddPicture;
+import test.visitor.diaporama.control.model.ChangeCurrentPicture;
+import test.visitor.diaporama.control.model.ClearPicture;
+import test.visitor.diaporama.control.model.RemovePicture;
+import test.visitor.diaporama.events.EventList;
+
 import vegas.events.FrontController;
 
 /**
@@ -35,6 +42,13 @@ class test.visitor.diaporama.control.Controller extends FrontController
 	 */
 	public function initialize():Void
 	{
+		
+		// control.model
+		
+		insert( EventList.ADD_PICTURE , new AddPicture() ) ;
+		insert( EventList.CLEAR_PICTURE , new ClearPicture() ) ;
+		insert( EventList.REMOVE_PICTURE , new RemovePicture() ) ;
+		insert( EventList.CHANGE_CURRENT_PICTURE , new ChangeCurrentPicture() ) ;
 		
 	}
 

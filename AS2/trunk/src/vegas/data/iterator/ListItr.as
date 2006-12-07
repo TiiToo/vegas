@@ -21,58 +21,10 @@
   
 */
 
-/**	ListItr
-
-	AUTHOR
-		
-		Name : ListItr
-		Package : vegas.data.list
-		Version : 1.0.0.0
-		Date :  2005-04-27
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHODS
-	
-		- checkForComodification()
-		
-		- insert(o)
-		
-		- hasNext():Boolean
-		
-		- hasPrevious():Boolean
-		
-		- key()
-		
-		- next()
-		
-		- nextIndex():Number
-		
-		- previous():Number
-		
-		- previousIndex():Number ;
-		
-		- remove()
-		
-		- reset()
-		
-		- seek(n:Number)
-		
-		- set(o)
-		
-		- toString():String
-	
-	IMPLEMENTS
-	
-		ListIterator
-	
-----------  */
-
 import vegas.core.CoreObject;
+import vegas.data.iterator.ListIterator;
 import vegas.data.List;
 import vegas.data.list.AbstractList;
-import vegas.data.list.ListIterator;
 import vegas.errors.ConcurrentModificationError;
 import vegas.errors.IllegalArgumentError;
 import vegas.errors.IllegalStateError;
@@ -80,11 +32,16 @@ import vegas.errors.IndexOutOfBoundsError;
 import vegas.errors.NoSuchElementError;
 import vegas.util.MathsUtil;
 
-class vegas.data.list.ListItr extends CoreObject implements ListIterator 
+/**
+ * Converts an {@code ArrayList} or other list based on the {@code AbstractList} class to an {@code ListIterator}.
+ * @author eKameleon
+ */
+class vegas.data.iterator.ListItr extends CoreObject implements ListIterator 
 {
 
-	// ----o Construtor
-	
+	/**
+	 * Creates a new ListItr instance.
+	 */
 	public function ListItr(li:List) 
 	{
 		if (!li)

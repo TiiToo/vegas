@@ -21,6 +21,11 @@ class test.visitor.diaporama.events.PictureEvent extends ModelChangedEvent
 	}
 	
 	/**
+	 * A Picture reference used in the GalleryModel with the setCurrentPicture method to notify the old picture selected in the model.
+	 */
+	public var oldPicture:Picture ;
+	
+	/**
 	 * Returns the Picture reference.
 	 */
 	public function getPicture():Picture

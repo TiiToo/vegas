@@ -20,10 +20,19 @@ class test.visitor.diaporama.visitors.LoaderVisitor extends CoreObject implement
 	/**
 	 * Creates a new LoaderVisitor instance.
 	 */
-	public function LoaderVisitor() 
+	public function LoaderVisitor( bAutoShow:Boolean ) 
 	{
+		
 		super();
+		
+		autoShow = bAutoShow ;
+		
 	}
+
+	/**
+	 * Defined if the picture is show when is loading.
+	 */
+	public var autoShow:Boolean ;
 
 	/**
 	 * Load a Picture object with this current url. Visit the IVisitable object. 
@@ -50,6 +59,7 @@ class test.visitor.diaporama.visitors.LoaderVisitor extends CoreObject implement
 				loader.addListener(listener) ;
 				
 				loader.loadClip(url , target) ;
+				
 			}
 			else
 			{
@@ -71,8 +81,10 @@ class test.visitor.diaporama.visitors.LoaderVisitor extends CoreObject implement
 		
 		trace("> " + this + " picture " + picture + " is loading and init.") ;
 		
-		// show the picture.
-		picture.accept( new ShowVisitor() ) ;
+		if ( autoShow == true )
+		{
+			picture.accept( new ShowVisitor() ) ;
+		}
 		
 	}
 

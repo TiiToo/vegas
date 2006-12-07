@@ -27,7 +27,7 @@ import vegas.util.MathsUtil;
 import vegas.util.serialize.Serializer;
 
 /**
- * Converts an array to an iterator.
+ * Converts an {@code Array} to an iterator.
  * @author eKameleon
  */
 class vegas.data.iterator.ArrayIterator extends CoreObject implements Iterator 

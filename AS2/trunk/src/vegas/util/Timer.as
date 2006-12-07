@@ -27,8 +27,8 @@ import vegas.util.AbstractTimer;
 
 /**
  * The {@code Timer} class is the interface to Flash Player timers. 
- * <p>You can create new Timer objects to run code on a specified time sequence. Use the {@code start()] method to start a timer.</p> 
- * <p>Add an {@code EventListener} for the timer event to set up code to be run on the timer interval.</p>
+ * <p>You can create new Timer objects to run code on a specified time sequence. Use the start() method to start a timer.</p> 
+ * <p>Add an EventListener for the timer event to set up code to be run on the timer interval.</p>
  * <p><b>Example :</b></p>
  * {@code
  * import vegas.events.Delegate ;
@@ -50,7 +50,6 @@ import vegas.util.AbstractTimer;
  * myTimer.addEventListener(TimerEventType.TIMER, timeListener);
  * myTimer.start();
  * }
- * </p>
  * @author eKameleon
  * @see TimerEvent
  */
