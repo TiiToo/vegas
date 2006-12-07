@@ -58,3 +58,4 @@ lunas.display.components.stepper
 vegas.data.collections
 vegas.data.queue
 vegas.string
+vegas.util.visitor
