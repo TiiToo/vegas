@@ -3,25 +3,24 @@
 document.quicknavBasePath="../../index-files";
 //--></script><link href="../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../overview-summary.html" title="Overview" rel="top"/><link href="package-summary.html" title="Package vegas.string" rel="up"/><link href="../../vegas/string/WildExp.html" title="Class vegas.string.WildExp" rel="prev"/><link href="../../vegas/string/StringFormatter.html" title="Class vegas.string.StringFormatter" rel="next"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><h1>Class vegas.string.UnicodeChar</h1><div class="type_hierachy"><ul><li><strong>vegas.string.UnicodeChar</strong></li></ul></div><div class="type_description"><h2>Description</h2><p>
  ECMA 262 Unicode IFormat-Control Characters tools.
- <p><b>Example :</b>
+ <p><b>Example :</b></p>
  <pre>
- 	<span class="key">import</span> vegas.string.UnicodeChar ;
-  <span class="key">import</span> vegas.core.types.Char ;
+ <span class="key">import</span> vegas.string.UnicodeChar ;
+ <span class="key">import</span> vegas.core.types.Char ;
    
-  trace (UnicodeChar.WHITE_SPACE_CHARS.length) ;
+ trace (UnicodeChar.WHITE_SPACE_CHARS.length) ;
    
-  <span class="key">var</span> str:String = UnicodeChar.TAB + <span class="str_const">"coucou"</span> ;
-  trace (str) ;
+ <span class="key">var</span> str:String = UnicodeChar.TAB + <span class="str_const">"coucou"</span> ;
+ trace (str) ;
   
-  <span class="key">var</span> s:Char = <span class="key">new</span> Char(<span class="str_const">"\t"</span>) ;
-  <span class="key">var</span> b:Boolean = UnicodeChar.isWhiteSpace(s) ;
-  trace (<span class="str_const">"isWhiteSpace : "</span> + b) ;
+ <span class="key">var</span> s:Char = <span class="key">new</span> Char(<span class="str_const">"\t"</span>) ;
+ <span class="key">var</span> b:Boolean = UnicodeChar.isWhiteSpace(s) ;
+ trace (<span class="str_const">"isWhiteSpace : "</span> + b) ;
   
-  <span class="key">var</span> unicode:String = <span class="str_const">"0040"</span> ;
-  <span class="key">var</span> char:Char = UnicodeChar.toChar(unicode) ;
-  trace(<span class="str_const">"&gt;&gt; "</span> + char) ;
+ <span class="key">var</span> unicode:String = <span class="str_const">"0040"</span> ;
+ <span class="key">var</span> char:Char = UnicodeChar.toChar(unicode) ;
+ trace(<span class="str_const">"&gt;&gt; "</span> + char) ;
  </pre>
- </p>
  </p><h4>See Also</h4><ul class="extra_info"><li> <a href='http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf'>ECMAScript 262 specifications</a>
  </li></ul></div><div class="type_indexes"><div class="field_index"><h2>Field Index</h2><a href="#BACK_SLASH" title="static public BACK_SLASH:String">BACK_SLASH</a>, <a href="#BACK_SPACE" title="static public BACK_SPACE:String">BACK_SPACE</a>, <a href="#CR" title="static public CR:String">CR</a>, <a href="#DOUBLE_QUOTE" title="static public DOUBLE_QUOTE:String">DOUBLE_QUOTE</a>, <a href="#FF" title="static public FF:String">FF</a>, <a href="#LF" title="static public LF:String">LF</a>, <a href="#LINE_TERMINATOR_CHARS" title="static public LINE_TERMINATOR_CHARS:Array">LINE_TERMINATOR_CHARS</a>, <a href="#LS" title="static public LS:String">LS</a>, <a href="#NBSP" title="static public NBSP:String">NBSP</a>, <a href="#PS" title="static public PS:String">PS</a>, <a href="#SIMPLE_QUOTE" title="static public SIMPLE_QUOTE:String">SIMPLE_QUOTE</a>, <a href="#SP" title="static public SP:String">SP</a>, <a href="#TAB" title="static public TAB:String">TAB</a>, <a href="#VT" title="static public VT:String">VT</a>, <a href="#WHITE_SPACE_CHARS" title="static public WHITE_SPACE_CHARS:Array">WHITE_SPACE_CHARS</a></div><div class="method_index"><h2>Method Index</h2><a href="#isLineTerminators" title="static public function isLineTerminators(char:String):Boolean">isLineTerminators()</a>, <a href="#isWhiteSpace" title="static public function isWhiteSpace(char:String):Boolean">isWhiteSpace()</a>, <a href="#toChar" title="static public function toChar(unicode:String):Char">toChar()</a>, <a href="#toUnicode" title="static public function toUnicode(n:Number):String">toUnicode()</a></div></div><div class="type_details"><div class="field_detail_list"><h2>Field Detail</h2><a name="BACK_SLASH"></a><h3>BACK_SLASH</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">BACK_SLASH</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
  Back Slash utf8 representation (special char).

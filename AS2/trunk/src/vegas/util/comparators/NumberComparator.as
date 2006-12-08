@@ -57,7 +57,7 @@ class vegas.util.comparators.NumberComparator extends CoreObject implements ICom
 	 * <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
 	 * <li> 0 if o1 and o2 are equal.</li>
 	 * </p>
-	 * @throw IllegalArgumentError if compare(a, b) and 'a' and 'b' must be Number objects.
+	 * @throws IllegalArgumentError if compare(a, b) and 'a' and 'b' must be Number objects.
 	 */
 	public function compare(o1, o2):Number 
 	{

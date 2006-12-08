@@ -43,7 +43,7 @@ class vegas.errors.ErrorFormat extends CoreObject implements IFormat
 	 */	
 	public function formatToString(o):String 
 	{
-		var e:Error = Error(o) ;
+		var e = o ;
 		var txt:String = "[" + e.name + "]" ;
 		var msg = e.message ;
 		if (msg && msg.length > 0)

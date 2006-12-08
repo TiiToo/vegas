@@ -21,74 +21,6 @@
   
 */
 
-/* ---------- TweenProvider
-
-	AUTHOR
-	
-		Name : TweenProvider
-		Package : asgard.transitions.motion
-		Version : 1.0.0.0
-		Date :  2005-09-06
-		Author : ekameleon
-		Url : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-
-		- clear():Void
-		
-		- clone()
-		
-		- get(prop:String):IMotionEntry
-		
-		- getProperties():Array
-		
-		- insert(t:TweenEntry):Boolean
-		
-		- iterator():Iterator
-		
-		- remove( motion:Object ):Boolean
-			
-			motion : IMotionEntry or String object
-			
-		- size():Number
-		
-		- toArray():Array
-		
-		- toMap():Map
-		
-		- toString():String
-	
-	EVENT
-	
-		ModelChangedEvent
-	
-	EVENT TYPE SUMMARY
-	
-		- ModelChangedEventType.ADD_ITEMS:ModelChangedEventType = "addItems" ; 
-		
-		- ModelChangedEventType.MODEL_CHANGED:ModelChangedEventType = "modelChanged" ;
-		
-		- ModelChangedEventType.REMOVE_ITEMS:ModelChangedEventType = "removeItems" ;
-		
-		- ModelChangedEventType.SORT:ModelChangedEventType = "sort" ;
-		
-		- ModelChangedEventType.UPDATE_ALL:ModelChangedEventType = "updateAll" ;
-		
-		- ModelChangedEventType.UPDATE_FIELD:ModelChangedEventType = "updateField" ;
-		
-		- ModelChangedEventType.UPDATE_ITEMS:ModelChangedEventType = "updateItems" ;
-
-	INHERIT
-	
-		Object > CoreObject > AbstractModel > TweenProvider
-	
-	IMPLEMENTS
-	
-		ICloneable, Iterable, Model, IFormattable
-	
-----------------*/
-
 import asgard.transitions.TweenEntry;
 
 import vegas.data.iterator.Iterable;
@@ -101,15 +33,17 @@ import vegas.events.ModelChangedEventType;
 import vegas.util.mvc.AbstractModel;
 import vegas.util.TypeUtil;
 
-class asgard.transitions.TweenProvider extends AbstractModel implements Iterable {
+/**
+ * The model of the Tween class.
+ * @author eKameleon
+ */
+class asgard.transitions.TweenProvider extends AbstractModel implements Iterable 
+{
 	
-	// ----o Constructor
 	
 	/**
-	 * @constructor
-	 * @usage new TweenProvider(tweens:Array) ;
-	 * @param tweens : an array of TweenEntry objects. 
-	 * @return nothing
+	 * Creates a new TweenProvider instance.
+	 * @param tweens an array of TweenEntry objects. 
 	 */
 	public function TweenProvider( tweens:Array ) {
 		_map = new HashMap() ;
@@ -124,12 +58,10 @@ class asgard.transitions.TweenProvider extends AbstractModel implements Iterable
 		}
 	}
 	
-	// ----o Public Methods
-	
 	/**
-	 * @method clone
-	 * @usage  var clone:TweenProvier = tp.clone() ;
-	 * @return TweenProvider 
+	 * Returns a shallow copy of this object.
+	 * {@code  var clone:TweenProvier = tp.clone() ;}
+	 * @return a shallow copy of this object.
 	 */
 	public function clone() {
 		var ar:Array = [] ;
@@ -196,7 +128,6 @@ class asgard.transitions.TweenProvider extends AbstractModel implements Iterable
 		return _map.toString() ;
 	}
 
-	// ----o Private Properties
 	
 	private var _map:HashMap ;
 

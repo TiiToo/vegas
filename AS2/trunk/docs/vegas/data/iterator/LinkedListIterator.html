@@ -11,8 +11,30 @@ document.quicknavBasePath="../../../index-files";
  Returns <code> <span class="key">true</span></code> if the iteration has more elements.
 	 </p></div></div><div class="method_details alt_row"><a name="hasPrevious"></a><h3>hasPrevious</h3><code class="method_synopsis">public function <strong class="method_name">hasPrevious</strong>():<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
  Checks to see if there is a previous element that can be iterated to.
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">var</span> list:LinkedList = <span class="key">new</span> LinkedList() ;
+ list.insert(<span class="str_const">"item1"</span>) ;
+ list.insert(<span class="str_const">"item2"</span>) ;
+ list.insert(<span class="str_const">"item3"</span>) ;
+ <span class="key">var</span> it:ListIterator = list.listIterator(<span class="num_const">2</span>) ;
+ trace( it.hasPrevious() ) ;
+ </pre>
 	 </p></div></div><div class="method_details"><a name="insert"></a><h3>insert</h3><code class="method_synopsis">public function <strong class="method_name">insert</strong>(o):<span class="void_name">Void</span></code><div class="method_info"><p>
  Inserts the specified element into the list (optional operation).
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">var</span> list:LinkedList = <span class="key">new</span> LinkedList() ;
+ list.insert(<span class="str_const">"item1"</span>) ;
+ list.insert(<span class="str_const">"item2"</span>) ;
+ list.insert(<span class="str_const">"item3"</span>) ;
+ 
+ <span class="key">var</span> it:ListIterator = list.listIterator(<span class="num_const">1</span>) ;
+ it.insert(<span class="str_const">"item0"</span>) ;
+ 
+ trace(list) ;
+ </pre>
+ <p><b>Attention :</b> Dont' use this method in a loop with hasPrevious() and previous() method.</p> 
 	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/iterator/ListIterator.html#insert" title="function insert(o):Void">insert()</a> in <a href="../../../vegas/data/iterator/ListIterator.html" class="interface_name" title="Interface vegas.data.iterator.ListIterator">vegas.data.iterator.ListIterator</a></p></div></div><div class="method_details alt_row"><a name="key"></a><h3>key</h3><code class="method_synopsis">public function <strong class="method_name">key</strong>()</code><div class="method_info"><p>
  Unsupported operation in this iterator, uses nextIndex() and previousIndex() method.
 	 </p></div></div><div class="method_details"><a name="next"></a><h3>next</h3><code class="method_synopsis">public function <strong class="method_name">next</strong>()</code><div class="method_info"><p>

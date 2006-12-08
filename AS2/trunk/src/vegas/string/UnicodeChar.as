@@ -25,25 +25,24 @@ import vegas.core.types.Char;
 
 /**
  * ECMA 262 Unicode IFormat-Control Characters tools.
- * <p><b>Example :</b>
+ * <p><b>Example :</b></p>
  * {@code
- * 	import vegas.string.UnicodeChar ;
- *  import vegas.core.types.Char ;
+ * import vegas.string.UnicodeChar ;
+ * import vegas.core.types.Char ;
  *   
- *  trace (UnicodeChar.WHITE_SPACE_CHARS.length) ;
+ * trace (UnicodeChar.WHITE_SPACE_CHARS.length) ;
  *   
- *  var str:String = UnicodeChar.TAB + "coucou" ;
- *  trace (str) ;
+ * var str:String = UnicodeChar.TAB + "coucou" ;
+ * trace (str) ;
  *  
- *  var s:Char = new Char('\t') ;
- *  var b:Boolean = UnicodeChar.isWhiteSpace(s) ;
- *  trace ("isWhiteSpace : " + b) ;
+ * var s:Char = new Char('\t') ;
+ * var b:Boolean = UnicodeChar.isWhiteSpace(s) ;
+ * trace ("isWhiteSpace : " + b) ;
  *  
- *  var unicode:String = "0040" ;
- *  var char:Char = UnicodeChar.toChar(unicode) ;
- *  trace(">> " + char) ;
+ * var unicode:String = "0040" ;
+ * var char:Char = UnicodeChar.toChar(unicode) ;
+ * trace(">> " + char) ;
  * }
- * </p>
  * @author eKameleon
  * @see <a href='http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf'>ECMAScript 262 specifications</a>
  */

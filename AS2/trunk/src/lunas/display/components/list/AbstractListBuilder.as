@@ -27,8 +27,6 @@ import lunas.display.components.container.ListContainer;
 /**
  * AbstractListBuilder
  * @author eKameleon
- * @version 1.0.0.0
- * @date 2006-04-19
  */
 class lunas.display.components.list.AbstractListBuilder extends AbstractBuilder 
 {

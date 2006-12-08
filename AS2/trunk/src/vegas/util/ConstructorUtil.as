@@ -151,8 +151,8 @@ class vegas.util.ConstructorUtil
 	
 	/**
 	 * Returns {@code true} if the constructor function is an implementation of the specified interface.
-	 * @c the function constructor reference.
-	 * @i the interface reference.
+	 * @param c the function constructor reference.
+	 * @param i the interface reference.
 	 * @return {@code true} if the constructor function is an implementation of the specified interface.
 	 */
 	static public function isImplementationOf(c:Function, i:Function):Boolean 
@@ -166,14 +166,15 @@ class vegas.util.ConstructorUtil
 	
 	/**
 	 * Returns {@code true} if the constructor function is the sub constructor of the specified function constructor.
-	 * @c the function constructor reference.
-	 * @sc the specified sub constructor reference.
+	 * @param c the function constructor reference.
+	 * @param sc the specified sub constructor reference.
 	 * @return {@code true} if the constructor function is the sub constructor of the specified function constructor.
 	 */
 	static public function isSubConstructorOf( c:Function, sc:Function):Boolean 
 	{
 		var p = c.prototype ;
-		while(p) {
+		while(p) 
+		{
 			p = p.__proto__;
 			if(p === sc.prototype) return true ;
 		}

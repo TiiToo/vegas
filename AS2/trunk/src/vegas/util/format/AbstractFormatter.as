@@ -27,7 +27,6 @@ import vegas.util.format.IFormatter;
 /**
  * Abstract class to creates classes who implemented IFormatter interface.
  * @author eKameleon
- * @version 1.0.0.0
  */
 class vegas.util.format.AbstractFormatter extends CoreObject implements IFormatter 
 {

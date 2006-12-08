@@ -746,11 +746,12 @@ class vegas.data.list.LinkedList implements List, Queue
 	 */
 	public function _insertBefore( o , e:LinkedListEntry ):LinkedListEntry
 	{
-		var newLinkedListEntry:LinkedListEntry = new LinkedListEntry( o, e, e.previous ) ;
-		newLinkedListEntry.previous.next = newLinkedListEntry ;
-		newLinkedListEntry.next.previous = newLinkedListEntry ;
+		var newEntry:LinkedListEntry = new LinkedListEntry( o, e, e.previous ) ;
+		newEntry.previous.next = newEntry ;
+		newEntry.next.previous = newEntry ;
 		_size ++ ;
-		return newLinkedListEntry ;
+		_modCount ++ ;
+		return newEntry ;
 	}
 
     /**

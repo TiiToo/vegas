@@ -90,7 +90,7 @@ class vegas.data.iterator.LinkedListIterator extends CoreObject implements ListI
 	{
 	    if ( _list.getModCount() != _expectedModCount )
 	    {
-			throw new ConcurrentModificationError(this + " check for comodification failed." ) ;
+			trace( new ConcurrentModificationError(this + " check for comodification failed." ) ) ;
 		}
     }
 
@@ -105,6 +105,15 @@ class vegas.data.iterator.LinkedListIterator extends CoreObject implements ListI
 
 	/**
 	 * Checks to see if there is a previous element that can be iterated to.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * var list:LinkedList = new LinkedList() ;
+	 * list.insert("item1") ;
+	 * list.insert("item2") ;
+	 * list.insert("item3") ;
+	 * var it:ListIterator = list.listIterator(2) ;
+	 * trace( it.hasPrevious() ) ;
+	 * }
 	 */
 	public function hasPrevious():Boolean 
 	{
@@ -113,6 +122,19 @@ class vegas.data.iterator.LinkedListIterator extends CoreObject implements ListI
 
 	/**
 	 * Inserts the specified element into the list (optional operation).
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * var list:LinkedList = new LinkedList() ;
+	 * list.insert("item1") ;
+	 * list.insert("item2") ;
+	 * list.insert("item3") ;
+	 * 
+	 * var it:ListIterator = list.listIterator(1) ;
+	 * it.insert("item0") ;
+	 * 
+	 * trace(list) ;
+	 * }
+	 * <p><b>Attention :</b> Dont' use this method in a loop with hasPrevious() and previous() method.</p> 
 	 */
 	public function insert( o ):Void 
 	{

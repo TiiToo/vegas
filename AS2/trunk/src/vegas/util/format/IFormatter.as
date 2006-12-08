@@ -24,7 +24,6 @@
 /**
  * Interface implemented by classes that can format an specific string expression.
  * @author eKameleon
- * @version 1.0.0.0
  */
 interface vegas.util.format.IFormatter 
 {
