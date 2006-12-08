@@ -21,62 +21,6 @@
   
 */
 
-/** HashSet
-
-	Name : HashSet
-	Package : vegas.data.set
-	Version : 1.0.0.0
-	Date : 2005-10-08
-	Author : ekameleon
-	URL : http://www.ekameleon.net
-	Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		Collection d'objets. Tous les objets sont différents les uns des autres.
-
-	USE
-	
-		var mySet:HashSet = new HashSet( arg ) ;
-		
-	ARGUMENTS
-	
-		arg : an Array or a Collection instance to fill the Set object.
-	
-	METHOD SUMMARY
-
-		- clear()
-		
-		- clone()
-		
-		- contains(o)
-		
-		- insert(o)
-		
-		- isEmpty()
-		
-		- iterator()
-		
-		- remove(o)
-		
-		- size()
-		
-		- toArray():Array
-		
-		- toSource():String
-		
-		- toString():String
-		
-	INHERIT		
-	
-		CoreObject → AbstractCollection → AbstractSet		
-	
-	IMPLEMENTS
-	
-		ICloneable, Collection, ISerializable, Set, IFormattable
-	
-**/
-
 import vegas.data.Collection;
 import vegas.data.iterator.ArrayIterator;
 import vegas.data.iterator.Iterator;
@@ -85,38 +29,54 @@ import vegas.data.Set;
 import vegas.data.set.AbstractSet;
 import vegas.util.serialize.Serializer;
 
+/**
+ * Hash Set based implementation of the Set interface. 
+ * @author eKameleon
+ */
 class vegas.data.set.HashSet extends AbstractSet 
 {
 
-	// ----o Constructor
-
+	/**
+	 * Creates a new HashSet instance.
+	 * <p>You can use an optional parameter in this constructor with different type : an Array or a Collection instance to fill the Set object.</p>
+	 */
 	public function HashSet() 
 	{
 		_map = new HashMap() ;
-		if (arguments.length == 0) return ;
+		if (arguments.length == 0) 
+		{
+			return ;
+		}
 		var arg = arguments[0] ;
 		var it:Iterator ;
-		if (arg instanceof Array) {
+		if (arg instanceof Array) 
+		{
 			it = new ArrayIterator(arg) ;
-		} else if (arg instanceof Collection) {
+		}
+		else if (arg instanceof Collection) 
+		{
 			it = arg.iterator() ;
 		}
-		if (it) {
+		if ( it != null ) 
+		{
 			while (it.hasNext()) insert(it.next()) ;
 		}
 	}
 
-	// ----o Static Properties
-	
-	static private var PRESENT = new Object() ;
-
-	// ----o Public Methods
-
-	/*override*/ public function clear():Void {
+	/**
+	 * Removes all of the elements from this Set (optional operation).
+	 */
+	/*override*/ public function clear():Void 
+	{
 		_map.clear() ;
 	}
 	
-	/*override*/ public function clone() {
+	/**
+	 * Returns a shallow copy of this Set (optional operation).
+	 * @return a shallow copy of this Set (optional operation).
+	 */
+	/*override*/ public function clone() 
+	{
 		var s:Set = new HashSet() ; 
 		if (size() > 0) {
 			var it:Iterator = _map.keyIterator() ;
@@ -127,40 +87,79 @@ class vegas.data.set.HashSet extends AbstractSet
 		return s ;
 	}
 
-	/*override*/ public function contains(o):Boolean {
+	/**
+	 * Returns {@code true} if this Set contains the specified element.
+	 * @return {@code true} if this Set contains the specified element.
+	 */
+	/*override*/ public function contains(o):Boolean 
+	{
 		return _map.containsKey(o) ;
     }
 
-	/*override*/ public function insert(o):Boolean {
+	/**
+	 * Adds the specified element to this set if it is not already present.
+	 */
+	/*override*/ public function insert(o):Boolean 
+	{
 		return _map.put(o, PRESENT) == null ;
     }
 
-	/*override*/ public function isEmpty():Boolean {
+	/**
+	 * Returns true if this set contains no elements.
+	 * @return true if this set contains no elements.
+	 */
+	/*override*/ public function isEmpty():Boolean 
+	{
 		return _map.isEmpty() ;
 	}
 
-	/*override*/ public function iterator():Iterator {
+	/**
+	 * Returns an iterator over the elements in this Set.
+	 * @return an iterator over the elements in this Set.
+	 */
+	/*override*/ public function iterator():Iterator 
+	{
 		return _map.keyIterator() ;
 	}
 
-    /*override*/ public function remove(o):Boolean {
+	/**
+	 * Removes the specified element from this set if it is present.
+	 */
+    /*override*/ public function remove(o):Boolean 
+    {
 		return _map.remove(o) == PRESENT ;
     }
 
-	/*override*/ public function size():Number {
+	/**
+	 * Returns the number of elements in this set (its cardinality).
+	 * @return the number of elements in this set (its cardinality).
+	 */
+	/*override*/ public function size():Number 
+	{
 		return _map.size() ;
 	}
-	
-	/*override*/ public function toArray():Array {
+
+	/**
+	 * Returns the array representation of all the elements of this Set.
+	 * @return the array representation of all the elements of this Set.
+	 */
+	/*override*/ public function toArray():Array 
+	{
 		return _map.getKeys() ;
 	}
-	
-	/*override*/ public function toSource(indent:Number, indentor:String):String {
+
+	/**
+	 * Returns a Eden representation of this object.
+	 * @return a string representing the source code of the object.
+	 */
+	/*override*/ public function toSource(indent:Number, indentor:String):String 
+	{
 		return Serializer.getSourceOf(this, [Serializer.toSource(toArray())]) ;
 	}
 	
-	// ----o Private Properties
-	
 	private var _map:HashMap ;
+	
+	static private var PRESENT = new Object() ;
+	
 
 }

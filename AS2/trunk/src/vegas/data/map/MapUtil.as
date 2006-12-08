@@ -21,38 +21,21 @@
   
 */
 
-/** MapUtil
-
-	AUTHOR
-	
-		Name : MapUtil
-		Package : vegas.data.map
-		Version : 1.0.0.0
-		Date :  2005-11-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- static getNumber(map:Map, key):Number
-		
-	TODO : EN CONSTRUCTION !!
-
-*/
-
 import vegas.data.Map;
 
-class vegas.data.map.MapUtil {
+/**
+ * The {@code MapUtil} utility class is an all-static class with methods for working with map.
+ * @author eKameleon
+ */
+class vegas.data.map.MapUtil 
+{
 
-	// ----o Constructor
-	
-	private function MapUtil() {
-		//
-	}
-
-	// ----o Public Methods
-    
+	/**
+	 * Returns the value of the specified key in the map with a Number representation.
+	 * @param map the map used by this method
+	 * @param key the key in the map to used to return the number value.
+	 * @return the value of the specified key in the map with a Number representation.
+	 */
 	static public function getNumber(map:Map, key):Number
 	{
         if (map != null) 

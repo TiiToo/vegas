@@ -25,6 +25,7 @@ import vegas.errors.ErrorElement;
 import vegas.errors.FatalError;
 
 /**
+ * hrown to indicate that the application has attempted to convert a string to one of the numeric types, but that the string does not have the appropriate format.
  * @author eKameleon
  */
 class vegas.errors.NumberFormatError extends FatalError 

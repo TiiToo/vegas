@@ -30,8 +30,6 @@ class vegas.data.map.TreeMap extends CoreObject //implements SortedMap, ICloneab
 
 	/*
 
-	// ----o Construtor
-	
 	public function TreeMap ( comp:IComparator , map) {
 		_comparator = comp ;
 		if (map instanceof SortedMap) {
@@ -143,7 +141,8 @@ class vegas.data.map.TreeMap extends CoreObject //implements SortedMap, ICloneab
 		_size -- ;
 	}
 	
-	private function _getEntry(key):Entry {
+	private function _getEntry(key):Entry 
+	{
         var p:Entry = _rootEntry ;
 		var k = key ;
         while (p != null) {

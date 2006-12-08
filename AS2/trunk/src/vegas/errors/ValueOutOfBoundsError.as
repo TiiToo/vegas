@@ -25,6 +25,7 @@ import vegas.errors.ErrorElement;
 import vegas.errors.FatalError;
 
 /**
+ * An exception for converted values exceeding bounds.
  * @author eKameleon
  */
 class vegas.errors.ValueOutOfBoundsError extends FatalError 

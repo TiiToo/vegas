@@ -50,7 +50,7 @@ class vegas.data.collections.SimpleCollection extends AbstractCollection
 	}
 	
 	/**
-	 * Returns  true if this list contains all of the elements of the specified collection.
+	 * Returns  true if this collection contains all of the elements of the specified collection.
 	 */
 	public function containsAll(c:Collection):Boolean 
 	{
@@ -63,7 +63,7 @@ class vegas.data.collections.SimpleCollection extends AbstractCollection
 	}
 	
 	/**
-	 * Appends all of the elements in the specified collection to the end of this list, in the order that they are returned by the specified collection's iterator (optional operation).
+	 * Appends all of the elements in the specified collection to the end of this Collection, in the order that they are returned by the specified collection's iterator (optional operation).
 	 */
 	public function insertAll(c:Collection):Boolean {
 		if (c.size() > 0) 
@@ -82,7 +82,7 @@ class vegas.data.collections.SimpleCollection extends AbstractCollection
 	}
 	
 	/**
-	 * Removes from this list all the elements that are contained in the specified collection (optional operation).
+	 * Removes from this Collection all the elements that are contained in the specified Collection (optional operation).
 	 */
 	public function removeAll(c:Collection):Boolean 
 	{
@@ -100,7 +100,7 @@ class vegas.data.collections.SimpleCollection extends AbstractCollection
 	}
 
 	/**
-	 * Retains only the elements in this list that are contained in the specified collection (optional operation).
+	 * Retains only the elements in this Collection that are contained in the specified Collection (optional operation).
 	 */
 	public function retainAll(c:Collection):Boolean 
 	{

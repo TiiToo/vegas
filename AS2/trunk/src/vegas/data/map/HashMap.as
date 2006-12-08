@@ -32,6 +32,8 @@ import vegas.data.map.MapIterator;
 import vegas.util.serialize.Serializer;
 
 /**
+ * Hash table based implementation of the Map interface. 
+ * <p><b>Attention :</b> this class is the ArrayMap class in the AS3 version of VEGAS.</p>
  * @author eKameleon
  */
 class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable, Map 
@@ -60,8 +62,10 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 	
 	/**
 	 * Returns a shallow copy of this HashMap instance: the keys and values themselves are not cloned.
+	 * @return a shallow copy of this HashMap instance: the keys and values themselves are not cloned.
 	 */
-	public function clone() {
+	public function clone() 
+	{
 		var m:HashMap = new HashMap() ;
 		m.putAll(this) ;
 		return m ;
@@ -69,6 +73,7 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 	
 	/**
 	 * Returns true if this map contains a mapping for the specified key.
+	 * @return true if this map contains a mapping for the specified key.
 	 */
 	public function containsKey( key ):Boolean 
 	{
@@ -77,6 +82,7 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 	
 	/**
 	 * Returns true if this map maps one or more keys to the specified value.
+	 * @return true if this map maps one or more keys to the specified value.
 	 */
 	public function containsValue( value ):Boolean 
 	{
@@ -85,6 +91,7 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 
 	/**
 	 * Returns the value to which this map maps the specified key.
+	 * @return the value to which this map maps the specified key.
 	 */
 	public function get(key) 
 	{
@@ -93,6 +100,7 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 
 	/**
 	 * Returns an array representation of all keys in the map.
+	 * @return an array representation of all keys in the map.
 	 */
 	public function getKeys():Array 
 	{
@@ -107,13 +115,23 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 		return _values.slice() ;
 	}
 	
+	/**
+	 * Returns the index of the specified key in argument.
+	 * @param key the key in the map to search.
+	 * @return the index of the specified key in argument.
+	 */
 	public function indexOfKey(key):Number 
 	{
 		var l:Number = _keys.length ;
 		while (_keys[--l] != key && l>-1);
 		return l ;
 	}
-	
+
+	/**
+	 * Returns the index of the specified value in argument.
+	 * @param value the value in the map to search.
+	 * @return the index of the specified value in argument.
+	 */
 	public function indexOfValue(value):Number 
 	{
 		var l:Number = _values.length ;
@@ -123,6 +141,7 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 	
 	/**
 	 * Returns true if this map contains no key-value mappings.
+	 * @return true if this map contains no key-value mappings.
 	 */
 	public function isEmpty():Boolean 
 	{
@@ -131,6 +150,7 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 
 	/**
 	 * Returns the values iterator of this map.
+	 * @return the values iterator of this map.
 	 */
 	public function iterator():Iterator 
 	{
@@ -139,6 +159,7 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 
 	/**
 	 * Returns the keys iterator of this map.
+	 * @return the keys iterator of this map.
 	 */
 	public function keyIterator():Iterator 
 	{
@@ -147,6 +168,8 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 
 	/**
 	 * Associates the specified value with the specified key in this map.
+	 * @key the key to register the value.
+	 * @value the value to be mapped in the map.
 	 */
 	public function put(key, value) 
 	{
@@ -193,6 +216,7 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 
 	/**
 	 * Returns the number of key-value mappings in this map.
+	 * @return the number of key-value mappings in this map.
 	 */
 	public function size():Number 
 	{
@@ -201,6 +225,7 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 
 	/**
 	 * Returns the Eden representation of this map.
+	 * @return the Eden representation of this map.
 	 */
 	public function toSource(indent:Number, indentor:String):String 
 	{
@@ -210,9 +235,11 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 	}
 
 	/**
-	 * Returns the String representation of this map.
+	 * Returns the string representation of this map.
+	 * @return the string representation of this map.
 	 */
-	public function toString():String {
+	public function toString():String 
+	{
 		return (new MapFormat()).formatToString(this) ;
 	}
 

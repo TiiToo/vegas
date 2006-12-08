@@ -26,6 +26,8 @@ import vegas.errors.ErrorElement;
 import vegas.errors.ErrorFormat;
 
 /**
+ * The error throws when a fatal method or action is detected in the code.
+ * This error notify a fatal level message in the vegas.errors.* logging category.
  * @author eKameleon
  */
 class vegas.errors.FatalError extends AbstractError 

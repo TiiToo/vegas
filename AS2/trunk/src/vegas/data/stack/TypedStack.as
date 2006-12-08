@@ -21,56 +21,6 @@
   
 */
 
-/** TypedStack
-
-	AUTHOR
-		
-		Name : TypedStack
-		Package : vegas.data.stack
-		Version : 1.0.0.0
-		Date : 2005-10-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHODS
-	
-		- clear()
-		
-		- clone()
-		
-		- getType()
-		
-		- isEmpty()
-		
-		- iterator()
-		
-		- peek()
-		
-		- pop()
-		
-		- push(o)
-		
-		- search(o):Number
-		
-		- setType(type:Function)
-		
-		- size():Number
-		
-		- toArray():Array ;
-		
-		- toString():String
-
-	INHERIT
-	
-		AbstractTypeable
-		
-	IMPLEMENTS
-	
-		ICloneable, Iterable, Stack, IFormattable, IHashable
-
-*/
-
 import vegas.core.ICloneable;
 import vegas.core.IFormattable;
 import vegas.core.ISerializable;
@@ -82,83 +32,145 @@ import vegas.util.AbstractTypeable;
 import vegas.util.serialize.Serializer;
 import vegas.util.TypeUtil;
 
-class vegas.data.stack.TypedStack extends AbstractTypeable implements ICloneable, Iterable, ISerializable, Stack, IFormattable {
+/**
+ * TypedQueue is a wrapper for Stack instances that ensures that only values of a specific type can be added to the wrapped stack.
+ * @author eKameleon
+ */
+class vegas.data.stack.TypedStack extends AbstractTypeable implements ICloneable, Iterable, ISerializable, Stack, IFormattable 
+{
 
-	// ----o Constructor
-
-	public function TypedStack(p_type:Function , p_stack:Stack) {
+	/**
+	 * Creates a new TypedStack instance.
+	 */
+	public function TypedStack(p_type:Function , p_stack:Stack) 
+	{
 		super(p_type) ;
 		if (!p_stack) 
 		{
 			throw new IllegalArgumentError("TypedStack constructor, argument 'p_stack' must not be 'null' or 'undefined'.") ;
 		}
 		_stack = p_stack ;
-		if (_stack.size() > 0) {
+		if (_stack.size() > 0) 
+		{
 			var it:Iterator = _stack.iterator() ;
 			while (it.hasNext()) validate(it.next()) ;
 		}
 	}
-	
-	// ----o Public Methods
 
-	public function clear():Void {
+	/**
+	 * Removes all of the elements from this Stack (optional operation).
+	 */
+	public function clear():Void 
+	{
 		_stack.clear() ;
 	}
 	
-	public function clone() {
+	/**
+	 * Returns a shallow copy of this Stack (optional operation).
+	 * @return a shallow copy of this Stack (optional operation).
+	 */
+	public function clone() 
+	{
 		return new TypedStack(getType(), _stack.clone()) ;
 	}
 
-	public function isEmpty():Boolean {
+	/**
+	 * Returns {@code true} if this Stack contains no elements.
+	 * @return {@code true} if this Stack contains no elements.
+	 */
+	public function isEmpty():Boolean 
+	{
 		return _stack.isEmpty() ;
 	}
 
-	public function iterator():Iterator {
+	/**
+	 * Returns an iterator over the elements in this Stack.
+	 * @return an iterator over the elements in this Stack.
+	 */
+	public function iterator():Iterator 
+	{
 		return _stack.iterator() ;
 	}
 
-	public function peek() {
+	/**
+	 * Looks at the object at the top of this stack without removing it from the stack.
+	 */
+	public function peek() 
+	{
 		return _stack.peek() ;
 	}
 
-	public function pop() {
+	/**
+	 * Removes the object at the top of this stack and returns that object as the value of this function.
+	 */
+	public function pop() 
+	{
 		return _stack.pop() ;
 	}
 
-	public function push(o):Void {
+	/**
+	 * Pushes an item onto the top of this stack.
+	 */
+	public function push(o):Void 
+	{
 		validate(o) ;
 		_stack.push(o) ;
 	}
 
-	public function search(o):Number {
+	/**
+	 * Returns the 1-based position where an object is on this stack.
+	 */
+	public function search(o):Number 
+	{
 		return _stack.search(o) ;
 	}
-
-	public function setType(type:Function):Void {
+	
+	/**
+	 * Sets the type of this ITypeable object.
+	 */
+	public function setType(type:Function):Void 
+	{
 		super.setType(type) ;
 		_stack.clear() ;
 	}
 
-	public function size():Number {
+	/**
+	 * Returns the number of elements in this Stack.
+	 */
+	public function size():Number 
+	{
 		return _stack.size() ;
 	}
 	
-	public function toArray():Array {
+	/**
+	 * Returns the array representation of all the elements of this Stack.
+	 * @return the array representation of all the elements of this Stack.
+	 */
+	public function toArray():Array 
+	{
 		return _stack.toArray() ;
 	}
 
-	public function toSource(indent:Number, indentor:String):String {
+	/**
+	 * Returns a Eden representation of the object.
+	 * @return a string representing the source code of the object.
+	 */
+	public function toSource(indent:Number, indentor:String):String 
+	{
 		var sourceA:String = TypeUtil.toString(_type) ;
 		var sourceB:String = Serializer.toSource(_stack) ;
 		return Serializer.getSourceOf(this, [sourceA, sourceB]) ;
 	}
 
-	public function toString():String {
+	/**
+	 * Returns the string representation of this instance.
+	 * @return the string representation of this instance.
+	 */
+	public function toString():String 
+	{
 		return _stack.toString() ;
 	}
 
-	// ----o Private Properties
-	
 	private var _stack:Stack ;
 	
 }

@@ -25,6 +25,7 @@ import vegas.errors.ErrorElement;
 import vegas.errors.FatalError;
 
 /**
+ * A RangeError exception is thrown when a numeric value is outside the acceptable range.
  * @author eKameleon
  */
 class vegas.errors.RangeError extends FatalError 

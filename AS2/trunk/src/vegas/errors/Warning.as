@@ -26,6 +26,7 @@ import vegas.errors.ErrorElement;
 import vegas.errors.ErrorFormat;
 
 /**
+ * Thrown to indicate a warning message in an application or in the source code.
  * @author eKameleon
  */
 class vegas.errors.Warning extends AbstractError 

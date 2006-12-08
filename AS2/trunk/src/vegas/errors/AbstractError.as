@@ -31,6 +31,7 @@ import vegas.logging.Log;
 import vegas.util.ConstructorUtil;
 
 /**
+ * This class provides a Abstract implementation to creates Error classes with an internal logging model. 
  * @author eKameleon
  */
 class vegas.errors.AbstractError extends Error implements IFormattable, IHashable 

@@ -25,6 +25,7 @@ import vegas.core.CoreObject;
 import vegas.core.IFormat;
 
 /**
+ * Converts an Error to a custom string representation.
  * @author eKameleon
  */
 class vegas.errors.ErrorFormat extends CoreObject implements IFormat 

@@ -25,6 +25,7 @@ import vegas.errors.ErrorElement;
 import vegas.errors.FatalError;
 
 /**
+ * Thrown when an error is invoqued at runtime.
  * @author eKameleon
  */
 class vegas.errors.RuntimeError extends FatalError 

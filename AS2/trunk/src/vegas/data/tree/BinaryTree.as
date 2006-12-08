@@ -21,79 +21,23 @@
   
 */
 
-/**	BinaryTree
-
-	!!! EN CONSTRUCTION !!!
-
-	AUTHOR
-
-		Name : BinaryTree
-		Package : vegas.data.tree
-		Version : 0.0.0.0
-		Date :  2005-12-21
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-	
-
-	
-	METHOD SUMMARY
-	
-		- clone()
-		
-		- contains(data:Number):Boolean
-		
-		- insert(data:Number):Void
-		
-		- max():Number
-		
-		- maxDepth():Number
-		
-		- min():Number
-		
-		- size():Number
-		
-		- toSource():String
-		
-		- toString():String
-	
-	IMPLEMENT
-	
-			ICloneable, ISerializable, IFormattable, IHashable
-	
-	INHERIT
-	
-		CoreObject → BinaryTree
-	
-	SEE ALSO
-	
-		Node
-	
-	!!! EN CONSTRUCTION !!!
-	
-**/
 
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
 import vegas.core.ISerializable;
 import vegas.data.tree.Node;
 
-class vegas.data.tree.BinaryTree extends CoreObject implements ICloneable, ISerializable {
+class vegas.data.tree.BinaryTree extends CoreObject implements ICloneable, ISerializable 
+{
 
-	// ----o Construtor
-	
-	public function BinaryTree() {
+		
+	public function BinaryTree() 
+	{
 		trace("BinaryTree : class in construct... don't use this class") ;
 		root = null ;
 	}
 
-	// ----o Public Properties
-	
 	public var root:Node ;
-	
-	// ----o Public Methods
 	
 	public function clone() {
 		return new BinaryTree() ;
@@ -133,9 +77,8 @@ class vegas.data.tree.BinaryTree extends CoreObject implements ICloneable, ISeri
 		return txt ;
 	}
 
-	// ----o Private Methods
-
-	private function _contains(node:Node, data:Number):Boolean {
+	private function _contains(node:Node, data:Number):Boolean 
+	{
         if (node == null) return false ;
         if (data == node.data) return true ;
         else if (data < node.data ) return _contains(node.left, data) ;

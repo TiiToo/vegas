@@ -21,120 +21,95 @@
   
 */
 
-/**  AbstractSet
-
-	AUTHOR
-	
-		Name : AbstractSet
-		Package : vegas.data.set
-		Version : 1.0.0.0
-		Date : 2005-04-17
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-
-		private constructor
-
-	METHOD SUMMARY
-	
-		- clear()
-		
-		- contains(o)
-		
-		- containsAll(c:Collection)
-		
-		- get(id)
-		
-		- indexOf(o)
-		
-		- insert(o)
-		
-		- insertAll(c:Collection)
-		
-		- isEmpty()
-		
-		- iterator()
-		
-		- remove()
-		
-		- removeAll(c:Collection)
-		
-		- retainAll(c:Collection)
-		
-		- size():Number
-		
-		- toArray():Array
-		
-		- toSource():String
-		
-		- toString():String
-		
-	INHERIT
-		
-		CoreObject → AbstractCollection → AbstractSet
-	
-	IMPLEMENTS 
-	
-		Set, Collection, ISerializable, IFormattable, IHashable
-	
-**/
-
 import vegas.data.Collection;
 import vegas.data.collections.AbstractCollection;
 import vegas.data.iterator.Iterator;
 import vegas.data.Set;
 
-class vegas.data.set.AbstractSet extends AbstractCollection implements Set {
+/**
+ * This class provides a skeletal implementation of the Set interface to minimize the effort required to implement this interface.
+ * A collection that contains no duplicate elements.
+ * @author eKameleon
+ */
+class vegas.data.set.AbstractSet extends AbstractCollection implements Set 
+{
 
-	// ----o Constructor
-
+	/**
+	 * Creates a new AbstractSet instance.
+	 */
 	private function AbstractSet(ar) {
 		super(ar);
 	}
-
-	// ----o Public Methods
-
-	public function containsAll(c:Collection):Boolean {
+	
+	/**
+	 * Returns  true if this set contains all of the elements of the specified collection.
+	 */
+	public function containsAll(c:Collection):Boolean 
+	{
 		var it:Iterator = c.iterator() ;
 		while(it.hasNext()) {
 			if ( ! contains(it.next()) ) return false ;
 		}
 		return true ;
 	}
-		
-	public function equals(o):Boolean {
+
+	/**
+	 * Compares the specified object with this object for equality.
+	 * @return {@code true} if the the specified object is equal with this object.
+	 */
+	public function equals(o):Boolean 
+	{
 		if (o == this) return true ;
-		if ( ! (o instanceof Set) ) {
+		if ( ! (o instanceof Set) ) 
+		{
 			return false ;
 		}
 		var c:Collection = Collection(o) ;
 		if (c.size() != size()) return false ;
 		return this.containsAll(c) ;
 	}
-	
-	public function insertAll(c:Collection):Boolean {
-		if (c.size() > 0) {
+
+	/**
+	 * Appends all of the elements in the specified collection to the end of this Set, in the order that they are returned by the specified collection's iterator (optional operation).
+	 */
+	public function insertAll(c:Collection):Boolean 
+	{
+		if (c.size() > 0) 
+		{
 			var it:Iterator = c.iterator() ;
-			while(it.hasNext()) insert(it.next()) ;
+			while(it.hasNext()) 
+			{
+				insert(it.next()) ;
+			}
 			return true ;
-		} else {
+		}
+		else 
+		{
 			return false ;
 		}
 	}
-	
-	public function removeAll(c:Collection):Boolean {
+
+	/**
+	 * Removes from this Set all the elements that are contained in the specified Collection (optional operation).
+	 */
+	public function removeAll(c:Collection):Boolean 
+	{
 		var b:Boolean = false ;
-		if (size() > c.size()) {
+		if (size() > c.size()) 
+		{
 			var it:Iterator = c.iterator() ;
-			while (it.hasNext()) {
+			while (it.hasNext()) 
+			{
 				b = remove(it.next()) ;
 			}
-		} else {
+		} 
+		else 
+		{
 			var it:Iterator = iterator() ;
-			while (it.hasNext()) {
-				if (c.contains(it.next())) {
+			while (it.hasNext()) 
+			{
+				if (c.contains(it.next())) 
+				{
 					it.remove() ;
 					b = true ;
 				}
@@ -143,12 +118,18 @@ class vegas.data.set.AbstractSet extends AbstractCollection implements Set {
 		}
 		return b ;
 	}
-		
-	public function retainAll(c:Collection):Boolean {
+
+	/**
+	 * Retains only the elements in this Set that are contained in the specified Collection (optional operation).
+	 */
+	public function retainAll(c:Collection):Boolean 
+	{
 		var b:Boolean = false ;
 		var it:Iterator = iterator() ;
-		while(it.hasNext()) {
-			if ( ! c.contains(it.next()) ) {
+		while(it.hasNext()) 
+		{
+			if ( ! c.contains(it.next()) ) 
+			{
 				it.remove() ;
 				b = true ;
 			}

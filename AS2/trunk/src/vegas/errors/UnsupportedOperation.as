@@ -25,6 +25,7 @@ import vegas.errors.ErrorElement;
 import vegas.errors.FatalError;
 
 /**
+ * Thrown to indicate that the requested operation is not supported.
  * @author eKameleon
  */
 class vegas.errors.UnsupportedOperation extends FatalError 

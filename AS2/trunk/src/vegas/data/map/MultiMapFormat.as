@@ -21,57 +21,37 @@
   
 */
 
-/* ------- 	MultiMapFormat
-
-	AUTHOR
-
-		Name : MultiMapFormat
-		Package : vegas.data.map
-		Version : 1.0.0.0
-		Date :  2005-04-24
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- formatToString(o):String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject
-			|
-			MultiMapFormat
-
-	IMPLEMENTS
-	
-		IFormat
-
-----------  */
-
 import vegas.core.CoreObject;
 import vegas.core.IFormat;
 import vegas.data.iterator.Iterator;
 import vegas.data.MultiMap;
 
-class vegas.data.map.MultiMapFormat extends CoreObject implements IFormat {
+/**
+ * Converts a MultiMap to a custom string representation.
+ * @author eKameleon
+ */
+class vegas.data.map.MultiMapFormat extends CoreObject implements IFormat 
+{
 
-	// ----o Constructor
-	
-	public function MultiMapFormat() {
+	/**
+	 * Creates a new MultiMapFormat instance.
+	 */
+	public function MultiMapFormat() 
+	{
 		//
 	}
 
-	// ----o Public Methods
-
-	public function formatToString(o):String {
+	/**
+	 * Converts the object to a custom string representation.
+	 */
+	public function formatToString(o):String 
+	{
 		var m:MultiMap = MultiMap(o);
 		var r:String = "{";
 		var vIterator:Iterator = m.valueIterator() ;
 		var kIterator:Iterator = m.keyIterator() ;
-		while (kIterator.hasNext()) {
+		while (kIterator.hasNext()) 
+		{
 			r += kIterator.next().toString() + ":" + vIterator.next().toString();
 			if (kIterator.hasNext()) r += ",";
 		}

@@ -21,93 +21,6 @@
   
 */
 
-/**	MultiHashSet
-
-	AUTHOR
-
-		Name : MultiHashSet
-		Package : vegas.data.map
-		Version : 1.0.0.0
-		Date :  2006-05-19
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var m:MultiHashSet = new MultiHashSet( m:Map ) ;
-	
-	ARGUMENTS
-	
-		m : copies the input map creating an independant copy
-		
-	METHOD SUMMARY
-	
-		- clear()
-		
-		- clone()
-		
-		- containsKey(key)
-		
-		- containsValue()
-		
-		- createCollection():Collection
-		
-			Creates a new instance of the map value Collection container.
-			This method can be overridden to use your own collection type.
-			
-		- get(key)
-		
-		- getkeys()
-		
-		- getValues()
-		
-		- isEmpty():Boolean
-		
-		- iterator([key]) 
-		
-		- keyIterator()
-				
-		- put(key, value)
-		
-			Adds the value to the collection associated with the specified key.
-		
-		- putCollection(key, collection:Collection)
-		
-		- putAll(map:Map) 
-		
-		- remove(key, [value]) 
-		
-			If value is undefined; removes all values associated with the specified key.
-			
-			If value is defined, removes a specific value from map.
-		
-		- size():Number
-		
-		- toSource():String
-		
-		- toString():String
-		
-		- totalSize():Number
-		
-		- values()
-		
-			Gets a collection containing all the values in the map.
-		
-		- valueIterator()
-			
-			get a iterator to browse collections in MultiMap
-	
-	INHERIT
-	
-		CoreObject → HashMap → MultiHashMap → MultiHashSet  
-	
-	IMPLEMENTS
-	
-		ICloneable, Iterable, Map, MultiMap, ISerializable, IFormattable
-	
-**/
-
 import vegas.data.Collection;
 import vegas.data.iterator.Iterator;
 import vegas.data.map.MultiHashMap;
@@ -115,29 +28,38 @@ import vegas.data.Set;
 import vegas.data.set.HashSet;
 import vegas.errors.UnsupportedOperation;
 
-class vegas.data.set.MultiHashSet extends MultiHashMap implements Set {
+/**
+ * The MultiHashSet is a MutliHashMap that contains no duplicate elements in a specified key.
+ * @author eKameleon
+ * @see MultiMap
+ */
+class vegas.data.set.MultiHashSet extends MultiHashMap implements Set 
+{
 
-	// ----o Construtor
-	
-	public function MultiHashSet() {
+	/**
+	 * Creates a new MultiHashSet instance.
+	 */
+	public function MultiHashSet() 
+	{
 		super(arguments[0]) ;
 		_internalSet = new HashSet() ;
 	}
 
-	// ----o Public Methods	
-
 	/**
 	 * This clears each collection in the map, and so may be slow.
 	 */
-	public function clear():Void {
+	public function clear():Void 
+	{
 		super.clear() ;
 		_internalSet.clear() ;
 	}
 
 	/**
-	 * Clones the map.
+	 * Returns the shallow copy of this object.
+	 * @return the shallow copy of this object.
 	 */
-	/*override*/ public function clone() {
+	/*override*/ public function clone() 
+	{
 		var m:MultiHashSet = new MultiHashSet() ;
 		var vItr:Iterator = valueIterator() ;
 		var kItr:Iterator = keyIterator() ;
@@ -175,19 +97,28 @@ class vegas.data.set.MultiHashSet extends MultiHashMap implements Set {
 		return new HashSet() ;	
 	}
 
-	public function get( id:Number ) {
+	/**
+	 * This method is unsupported, use getSet method.
+	 * @throws UnsupportedOperation the MultiHashSet does not support the get() method, use getSet()
+	 */
+	public function get( id:Number ) 
+	{
 		throw new UnsupportedOperation("This MultiHashSet does not support the get() method, use getSet().") ;
 		return null ;
 	}
 
-	public function getSet( key ) /*Set*/ {
+	/**
+	 * Returns the Set defined in the map with the specified key.
+	 * @param key the key in the map 
+	 * @return the Set defined in the map with the specified key.
+	 */
+	public function getSet( key ) /*Set*/ 
+	{
 		return super.get(key) ;
 	}
 
-
 	/**
-	 * This method always throws an {@code UnsupportedOperation}
-	 * because this method is not supported by this Set.
+	 * This method always throws an {@code UnsupportedOperation} because this method is not supported by this Set.
 	 *
 	 * @throws UnsupportedOperationException
 	 */
@@ -228,7 +159,7 @@ class vegas.data.set.MultiHashSet extends MultiHashMap implements Set {
 	
 	/**
 	 * Removes a specific value from map.
-	 * Note : Use Set implementation and not Map implementation !
+	 * <p><b>Note :</b> Use Set implementation and not Map implementation !</p>
 	 */
 	/*override*/ public function remove( o /* key, value*/ ):Boolean {
 		var len:Number = arguments.length ;
@@ -258,14 +189,13 @@ class vegas.data.set.MultiHashSet extends MultiHashMap implements Set {
 	}
 	
 	/**
-	 * This returns an array containing the combination of values from all keys.
+	 * Returns an array containing the combination of values from all keys.
+	 * @return an array containing the combination of values from all keys.
 	 */
 	function toArray():Array {
 		return getValues() ;
 	}
 
-	// ----o Private Properties
-	
 	private var _internalSet:HashSet ;
 
 }

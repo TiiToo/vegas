@@ -25,6 +25,7 @@ import vegas.errors.ErrorElement;
 import vegas.errors.FatalError;
 
 /**
+ * Thrown when an application attempts to use 'null' in a case where an object is required.
  * @author ekameleon
  */
 class vegas.errors.NullPointerError extends FatalError 

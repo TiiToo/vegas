@@ -21,77 +21,36 @@
   
 */
 
-/* ------- 	Node
-
-	AUTHOR
-
-		Name : Node
-		Package : vegas.data.tree
-		Version : 1.0.0.0
-		Date :  2005-12-21
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-	
-		- data:Number
-		
-		- left:Node
-		
-		- right:Node
-	
-	METHOD SUMMARY
-	
-		- clone()
-		
-		- toSource():String
-		
-		- toString():String
-	
-	INHERIT
-	
-		CoreObject
-			|
-			Node
-	
-	IMPLEMENT
-	
-		ICloneable, IFormattable, IHashable, ISerializable
-	
-----------  */
-
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
 import vegas.core.ISerializable;
 
-class vegas.data.tree.Node extends CoreObject implements ICloneable, ISerializable {
+class vegas.data.tree.Node extends CoreObject implements ICloneable, ISerializable 
+{
 
-	// ----o Construtor
-	
-	public function Node(d:Number) {
+	public function Node(d:Number) 
+	{
 		left = null ;
 		right = null ;
 		data = d ;
 	}
 	
-	// ----o Public Properties
-	
 	public var left:Node ;
 	public var right:Node ;
 	public var data:Number ;
 	
-	// ----o Public Methods
-	
-	public function clone() {
+	public function clone() 
+	{
 		return new Node(data) ;
 	}
 
-	public function toSource(indent:Number, indentor:String):String {
-		return "new Node(" + data + ")" ;
+	public function toSource(indent:Number, indentor:String):String 
+	{
+		return "new vegas.data.tree.Node(" + data + ")" ;
 	}
 
-	public function toString():String {
+	public function toString():String 
+	{
 		return "<Node data:" + data + " />" ;
 	}
 

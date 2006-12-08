@@ -21,56 +21,6 @@
   
 */
 
-/** TypedSet
-
-	AUTHOR
-
-		Name : TypedSet
-		Package : vegas.data.set
-		Version : 1.0.0.0
-		Date : 2005-10-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-
-		- clear()
-		
-		- clone()
-		
-		- contains(o)
-		
-		- getType()
-		
-		- insert(o)
-		
-		- isEmpty()
-		
-		- iterator()
-		
-		- remove(o)
-		
-		- setType(type:Function) : set the type and clear TypedArray
-		
-		- size():Number
-		
-		- toArray():Array
-		
-		- toSource():String
-		
-		- toString():String
-		
-	IMPLEMENTS 
-
-		Iterable, Collection, ISerializable, IHashable, IFormattable, Set, Typeable, Validator	
-	
-	INHERIT 
-	
-		CoreObject → AbstractTypeable → TypedSet
-	
-*/
-
 import vegas.core.ICloneable;
 import vegas.data.iterator.Iterator;
 import vegas.data.Set;
@@ -79,80 +29,144 @@ import vegas.util.AbstractTypeable;
 import vegas.util.serialize.Serializer;
 import vegas.util.TypeUtil;
 
+/**
+ * TypedSet is a wrapper for Set instances that ensures that only values of a specific type can be added to the wrapped Set.
+ * @author eKameleon
+ */
 class vegas.data.set.TypedSet extends AbstractTypeable implements ICloneable, Set {
 
-	// ----o Constructor
-
-	public function TypedSet(p_type:Function , p_set:Set) {
+	/**
+	 * Creates a new TypedSet instance.
+	 */
+	public function TypedSet(p_type:Function , p_set:Set) 
+	{
 		super(p_type) ;
-		if (!p_set) throw new IllegalArgumentError() ; // "Argument 'p_set' must not be 'null' or 'undefined'.
+		if (!p_set) throw new IllegalArgumentError("TypedSet constructor failed, argument 'p_set' must not be 'null' or 'undefined'.") ;
 		_set = p_set ;
 		if (_set.size() > 0) {
 			var it:Iterator = _set.iterator() ;
 			while (it.hasNext()) validate(it.next()) ;
 		}
 	}
-	
-	// ----o Public Methods
 
-	public function clear():Void {
+	/**
+	 * Removes all of the elements from this Set (optional operation).
+	 */
+	public function clear():Void 
+	{
 		_set.clear() ;
 	}
-	
-	public function clone() {
+
+	/**
+	 * Returns a shallow copy of this Set (optional operation).
+	 * @return a shallow copy of this Set (optional operation).
+	 */
+	public function clone() 
+	{
 		return _set.clone() ;
 	}
 
-	public function contains(o):Boolean {
+	/**
+	 * Returns {@code true} if this Set contains the specified element.
+	 * @return {@code true} if this Set contains the specified element.
+	 */
+	public function contains(o):Boolean 
+	{
 		return _set.contains(o) ;
     }
 
-	public function get(id:Number) {
+	/**
+	 * Returns an element in the set at the specified position.
+	 * @param id the position of the element in the Set.
+	 * @return the value of the specified element in the Set.
+	 */
+	public function get(id:Number) 
+	{
 		return _set.get(id) ;
 	}
 
-    public function insert(o):Boolean {
+	/**
+	 * Adds the specified element to this set if it is not already present.
+	 */
+    public function insert(o):Boolean 
+    {
 		validate(o) ;
 		return _set.insert(o) ;
     }
 
-	public function isEmpty():Boolean {
+	/**
+	 * Returns true if this set contains no elements.
+	 * @return true if this set contains no elements.
+	 */
+	public function isEmpty():Boolean 
+	{
 		return _set.isEmpty() ;
 	}
 
-	public function iterator():Iterator {
+	/**
+	 * Returns an iterator over the elements in this set.
+	 * @return an iterator over the elements in this set.
+	 */
+	public function iterator():Iterator 
+	{
 		return _set.iterator() ;
 	}
 
-    public function remove(o):Boolean {
+	/**
+	 * Removes the specified element from this set if it is present.
+	 */
+    public function remove(o):Boolean 
+    {
 		return _set.remove(o);
     }
 
-	public function setType(type:Function):Void {
+	/**
+	 * Sets the type of the ITypeable object.
+	 */
+	public function setType(type:Function):Void 
+	{
 		super.setType(type) ;
 		_set.clear() ;
 	}
 
-	public function size():Number {
+	/**
+	 * Returns the number of elements in this set (its cardinality).
+	 * @return the number of elements in this set (its cardinality).
+	 */
+	public function size():Number 
+	{
 		return _set.size() ;
 	}
-	
-	public function toArray():Array {
+
+	/**
+	 * Returns the array representation of all the elements of this Set.
+	 * @return the array representation of all the elements of this Set.
+	 */
+	public function toArray():Array 
+	{
 		return _set.toArray() ;
 	}
 
-	public function toSource(indent:Number, indentor:String):String {
+	/**
+	 * Returns a Eden representation of this object.
+	 * @return a string representing the source code of the object.
+	 */
+	public function toSource(indent:Number, indentor:String):String 
+	{
 		var sourceA:String = TypeUtil.toString(_type) ;
 		var sourceB:String = Serializer.toSource(_set) ;
 		return Serializer.getSourceOf(this, [sourceA, sourceB]) ;
 	}
 
-	public function toString():String {
+	/**
+	 * Returns the string representation of this instance.
+	 * @return the string representation of this instance
+	 */
+	public function toString():String 
+	{
 		return _set.toString() ;
 	}
 
-	// ----o Private Properties
-	
 	private var _set:Set ;
 
 	

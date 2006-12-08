@@ -26,6 +26,7 @@ import vegas.core.IEquality;
 import vegas.util.ConstructorUtil;
 
 /**
+ * Base object for representing an errors.
  * @author eKameleon
  */
 class vegas.errors.ErrorElement extends CoreObject implements IEquality 
@@ -53,7 +54,6 @@ class vegas.errors.ErrorElement extends CoreObject implements IEquality
 		{
 			return false ;
 		}
-		
 		return 
 		(
 			o.getConstructorName() == getConstructorName() 
@@ -156,7 +156,7 @@ class vegas.errors.ErrorElement extends CoreObject implements IEquality
 	private var _methodName:String ;
 
 	/**
-	 * The thrower.
+	 * The internal thrower.
 	 */
 	private var _thrower ;
 	

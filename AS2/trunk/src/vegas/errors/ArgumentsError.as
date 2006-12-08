@@ -25,6 +25,7 @@ import vegas.errors.ErrorElement;
 import vegas.errors.FatalError;
 
 /**
+ * The error throws when the arguments in a function failed the method.
  * @author eKameleon
  */
 class vegas.errors.ArgumentsError extends FatalError 

@@ -21,76 +21,6 @@
   
 */
 
-/**	SimpleStack
-
-	AUTHOR
-
-		Name : SimpleStack
-		Package : vegas.data.stack
-		Version : 1.0.0.0
-		Date :  2005-04-24
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var s:SimpleStack = new SimpleStack(ar:Array) ;
-	
-	METHOD SUMMARY
-	
-		- clear()
-		
-		- contains(o)
-		
-		- get(id)
-		
-			return an element but if id = 0, it's the last element in the stack
-		
-		- clone()
-		
-		- iterator()
-		
-		- insert(o):Boolean 
-		
-			the same of push() method
-		
-		- isEmpty()
-		
-		- iterator()
-		
-		- peek()
-		
-		- pop()
-		
-		- push(o)
-		
-		- remove(o):Boolean
-		
-		- search(o):Number
-		
-		- size():Number
-		
-		- toArray():Array
-		
-		- toSource():String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject
-			|
-			AbstractCollection
-				|
-				SimpleStack
-	
-	IMPLEMENTS
-	
-		Collection, ICloneable, IFormattable, IHashable, Iterable, ISerializable, Stack.
-	
-**/
-
 import vegas.core.ICloneable;
 import vegas.data.Collection;
 import vegas.data.collections.AbstractCollection;
@@ -100,46 +30,88 @@ import vegas.data.iterator.Iterator;
 import vegas.data.iterator.ProtectedIterator;
 import vegas.data.Stack;
 
-class vegas.data.stack.SimpleStack extends AbstractCollection implements Iterable, ICloneable, Collection, Stack {
+/**
+ * The based implementation of the Stack interface.
+ * The Stack interface represents a last-in-first-out (LIFO) stack of objects.
+ * @author eKameleon
+ */
+class vegas.data.stack.SimpleStack extends AbstractCollection implements Iterable, ICloneable, Collection, Stack 
+{
 
-	// ----o Construtor
-	
-	public function SimpleStack(ar:Array) {
+	/**
+	 * Creates a new SimpleStack instance.
+	 * @param ar an array to fill the Stack
+	 */
+	public function SimpleStack(ar:Array) 
+	{
 		super(ar) ;
 	}
 
-	// ----o Public Methods
-	
-	public function clone() {
+	/**
+	 * Returns a shallow copy of this Set (optional operation).
+	 * @return a shallow copy of this Set (optional operation).
+	 */
+	public function clone() 
+	{
 		return new SimpleStack(_a) ;
 	}
 
-	public function get(id:Number) { 
+	/**
+	 * Returns an element but if id = 0, it's the last element in the stack.
+	 */
+	public function get(id:Number) 
+	{ 
 		var a:Array = toArray() ;
 		return a[id] ;
 	}
 
-	public function iterator():Iterator {
+	/**
+	 * Returns an iterator over the elements in this Stack.
+	 * @return an iterator over the elements in this Stack.
+	 */
+	public function iterator():Iterator 
+	{
 		return (new ProtectedIterator(new ArrayIterator(toArray()))) ;
 	}
 
-	public function peek() {
+	/**
+	 * Looks at the object at the top of this stack without removing it from the stack.
+	 */
+	public function peek() 
+	{
 		return _a[_a.length - 1] ;
 	}
 
-	public function pop() {
+	/**
+	 * Removes the object at the top of this stack and returns that object as the value of this function.
+	 */
+	public function pop() 
+	{
 		return isEmpty() ? null : _a.pop() ;
 	}
 
-	public function push(o):Void {
+	/**
+	 * Pushes an item onto the top of this stack.
+	 */
+	public function push(o):Void 
+	{
 		_a.push(o) ;
 	}
 
-	public function search(o):Number {
+	/**
+	 * Returns the index of an element in the Stack.
+	 */
+	public function search(o):Number 
+	{
 		return indexOf(o) ;
 	}
 
-	public function toArray():Array {
+	/**
+	 * Returns the array representation of all the elements of this Stack.
+	 * @return the array representation of all the elements of this Stack.
+	 */
+	public function toArray():Array 
+	{
 		var aReverse:Array = _a.slice() ;
 		aReverse.reverse() ;
 		return aReverse ;

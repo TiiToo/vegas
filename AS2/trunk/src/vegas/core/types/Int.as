@@ -29,12 +29,16 @@ import vegas.errors.NumberFormatError;
 import vegas.util.serialize.Serializer;
 
 /**
+ * {@code Integer} represents an integer value.
+ * <p>A integer is a positive or negative natural number including 0.</p>
  * @author eKameleon
  */
 class vegas.core.types.Int extends Number implements IFormattable, IHashable, ISerializable {
 
 	/**
 	 * Creates a new Int instance.
+	 * @param n the number to convert to an Int.
+	 * @throws NumberFormatError if the value passed in argument is Infinity or -Infinity
 	 */
 	public function Int(n:Number) 
 	{

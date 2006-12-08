@@ -25,6 +25,7 @@ import vegas.errors.ErrorElement;
 import vegas.errors.FatalError;
 
 /**
+ * Exception thrown on a type mismatch when trying to set a bean property.
  * @author eKameleon
  */
 class vegas.errors.TypeMismatchError extends FatalError 

@@ -24,6 +24,17 @@
 import vegas.core.types.Bit;
 
 /**
+ * {@code Byte} is represents a byte value.
+ * <p>{@code Byte} can be used for a different kind of formatting of a byte value.
+ * It allows to access the value as bit, kilo-bit, mega-bit, giga-bit, tera-bit, byte, kilo-byte, mega-byte, giga-byte and tera-byte.
+ * </p>
+ * <p><b>Examples:</b></p>
+ * {@code 
+ *   import vegas.core.types.Byte ;
+ *   trace(new Byte(1).toString()) ; // 1B
+ *   trace(new Byte(1234).toString()) ; // 1.21KB
+ *   trace(new Byte(15002344).toString()) ; // 14.31MB
+ * }
  * @author eKameleon
  */
 class vegas.core.types.Byte extends Bit 
@@ -31,20 +42,36 @@ class vegas.core.types.Byte extends Bit
 
 	/**
 	 * Creates a new Byte instance.
+	 * @param bytes value in byte
 	 */
-	public function Byte(bytes:Number) 
+	public function Byte( bytes:Number ) 
 	{
-		super(bytes*BYTE);
+		super( bytes * BYTE );
 	}
 
+	/**
+	 * Shortname of byte.
+	 */
 	static public var SHORT_BYTE:String = "B" ;
 
+	/**
+	 * Shortname of kilo-byte.
+	 */
 	static public var SHORT_KILO_BYTE:String = "KB";
 
+	/**
+	 * Shortname of mega-byte.
+	 */
 	static public var SHORT_MEGA_BYTE:String = "MB";
 
+	/**
+	 * Shortname of giga-byte.
+	 */
 	static public var SHORT_GIGA_BYTE:String = "GB";
 
+	/**
+	 * Shortname of tera-byte.
+	 */
 	static public var SHORT_TERA_BYTE:String = "TB";	
 
 	/**

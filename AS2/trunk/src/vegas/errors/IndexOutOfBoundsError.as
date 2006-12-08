@@ -25,6 +25,7 @@ import vegas.errors.ErrorElement;
 import vegas.errors.FatalError;
 
 /**
+ * Thrown to indicate that an index of some sort (such as to an array, to a string, or to a vector) is out of range.
  * @author eKameleon
  */
 class vegas.errors.IndexOutOfBoundsError extends FatalError 

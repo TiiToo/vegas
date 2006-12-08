@@ -21,96 +21,84 @@
   
 */
 
-/**	MapIterator
-
-	AUTHOR
-
-		Name : MapIterator
-		Package : vegas.data.map
-		Version : 1.0.0.0
-		Date :  2005-04-24
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- hashCode():Number
-		
-		- hasNext():Boolean
-		
-		- key():*
-		
-		- next():*
-		
-		- reset():Void
-		
-		- remove():*
-		
-		- seek(n:Number)
-		
-		- toSource(...arguments:Array):String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject
-		
-	IMPLEMENTS
-	
-		IFormattable, IHashable, Iterator, ISerializable
-
-*/
-
 import vegas.core.CoreObject;
 import vegas.data.iterator.ArrayIterator;
 import vegas.data.iterator.Iterator;
 import vegas.data.Map;
 import vegas.errors.UnsupportedOperation;
 
-class vegas.data.map.MapIterator extends CoreObject implements Iterator {
+/**
+ * Converts a {@code Map} to an iterator.
+ * @author eKameleon
+ */
+class vegas.data.map.MapIterator extends CoreObject implements Iterator 
+{
 
-	// ----o Construtor
-	
-	public function MapIterator (m:Map) {
+	/**
+	 * Creates a new MapIterator instance.
+	 * @param m the Map reference of this iterator. 
+	 */
+	public function MapIterator (m:Map) 
+	{
 		_m = m ;
 		_i = new ArrayIterator(m.getKeys()) ;
 		_k = null ;
 	}
 
-	// ----o Public Methods
-	
-	public function hasNext():Boolean {
+	/**
+	 * Returns {@code true} if the iteration has more elements.
+	 */	
+	public function hasNext():Boolean 
+	{
 		return _i.hasNext() ;
 	}
-	
-	public function key() {
+
+	/**
+	 * Returns the current key of the internal pointer of the iterator (optional operation).
+	 */
+	public function key() 
+	{
 		return _k ;
 	}
-	
-	public function next() {
+
+	/**
+	 * Returns the next element in the iteration.
+	 */
+	public function next() 
+	{
 		_k = _i.next() ;
 		return _m.get(_k) ;
 	}
 
-	public function remove() {
+	/**
+	 * Removes from the underlying collection the last element returned by the iterator (optional operation).
+	 */
+	public function remove() 
+	{
 		_i.remove() ;
 		return _m.remove(_k) ;
 	}
-	
-	public function reset():Void {
+
+	/**
+	 * Reset the internal pointer of the iterator (optional operation).
+	 */
+	public function reset():Void 
+	{
 		_i.reset() ;
 	}
 
-	public function seek(n:Number):Void {
+	/**
+	 * Change the position of the internal pointer of the iterator (optional operation).
+	 */	
+	public function seek(n:Number):Void 
+	{
 		throw new UnsupportedOperation("'seek' method is unsupported in MapIterator object.") ;
 	}
 	
-	// ----o Private Properties
-	
 	private var _m:Map ; 
+	
 	private var _i:ArrayIterator ; 
+	
 	private var _k ; // current key
 	
 }

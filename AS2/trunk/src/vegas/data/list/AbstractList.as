@@ -33,7 +33,7 @@ import vegas.data.list.ArrayList;
 import vegas.errors.IndexOutOfBoundsError;
 
 /**
- * This class provides a skeletal implementation of the List  interface to minimize the effort required to implement this interface.
+ * This class provides a skeletal implementation of the List interface to minimize the effort required to implement this interface.
  * @author eKameleon
  */
 class vegas.data.list.AbstractList extends AbstractCollection implements List 
