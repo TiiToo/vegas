@@ -24,6 +24,7 @@
 import vegas.core.CoreObject;
 import vegas.data.Map;
 import vegas.data.map.HashMap;
+import vegas.events.BasicEvent;
 import vegas.events.Event;
 import vegas.events.EventDispatcher;
 import vegas.events.EventListener;
@@ -62,6 +63,15 @@ class vegas.events.FrontController extends CoreObject
 	public function fireEvent(e:Event):Void 
 	{
 		_oE.dispatchEvent(e) ;
+	}
+
+	/**
+	 * Dispatch an event into the FrontController with a simple event type.
+	 * @param type an event type to dispatch a {@code BasicEvent}.
+	 */
+	public function fireEventType( type:String ):Void 
+	{
+		_oE.dispatchEvent( new BasicEvent(type) ) ;
 	}
 
 	/**

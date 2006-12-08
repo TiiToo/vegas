@@ -21,111 +21,49 @@
   
 */
 
-/**	TimerEvent
-
-	AUTHOR
-
-		Name : TimerEvent
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2005-11-16
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-		
-	CONSTRUCTOR
-	
-		new TimerEvent(type:String, target) ;
-
-	PROPERTY SUMMARY
-	
-		- bubbles:Boolean [R/W]
-		
-		- context [R/W]
-		
-		- currentTarget [R/W]
-		
-		- eventPhase:Number [R/W]
-		
-		- target[R/W]
-		
-		- text:String
-		
-		- type:String [R/W]
-
-	METHOD SUMMARY
-	
-		- cancel():Void
-		
-		- clone():BasicEvent
-		
-		- getBubbles():Boolean
-		
-		- getContext():Object
-		
-		- getCurrentTarget():Object
-		
-		- getEventPhase():Number
-		
-		- getTarget():Object
-		
-		- getTimeStamp():Number
-		
-		- getType():String
-		
-		- isCancelled():Boolean
-		
-		- isQueued():Boolean
-		
-		- queueEvent():Void
-		
-		- setBubbles(b:Boolean):Void
-		
-		- setContext(context:Object):Void
-		
-		- setCurrentTarget(target):Void
-		
-		- setEventPhase(n:Number):Void
-		
-		- setTarget(target:Object):Void
-		
-		- setType(type:String):Void
-		
-		- stopImmediatePropagation()
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → BasicEvent → DynamicEvent → TimerEvent
-		
-	IMPLEMENTS 
-		
-		Event, ICloneable, IFormattable, IHashable, ISerializable
-
-**/
-
 import vegas.events.DynamicEvent;
 
+/**
+ * The {@code TimerEvent} to dispatch an event with a ITimer representation.
+ * @author eKameleon
+ * @see vegas.util.FrameTimer
+ * @see vegas.util.Timer
+ */
 class vegas.events.TimerEvent extends DynamicEvent 
 {
 
-	// ----o Constructor
-	
+	/**
+	 * Creates a new TimerEvent instance.
+	 */
 	public function TimerEvent(type:String, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
 	{
 		super(type, target, context, bubbles, eventPhase, time, stop) ;
 	}
 
-	// ----o Constants
-
+	/**
+	 * The name of the event when the ITimer instance restart.
+	 */
 	static public var RESTART:String = "restart" ;
+
+	/**
+	 * The name of the event when the ITimer instance start.
+	 */
 	static public var START:String = "start" ;
+
+	/**
+	 * The name of the event when the ITimer instance stop.
+	 */
 	static public var STOP:String = "stop" ;
+	
+	/**
+	 * The name of the event when the ITimer instance complete this timer.
+	 */
 	static public var TIMER:String = "timer" ;
 
-	// ----o Public Methods
-
+	/**
+	 * Returns the shallow copy of this event.
+	 * @return the shallow copy of this event.
+	 */
 	public function clone() 
 	{
 		return new TimerEvent(getType(), getTarget()) ;

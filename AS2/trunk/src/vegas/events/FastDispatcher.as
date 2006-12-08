@@ -21,97 +21,6 @@
   
 */
 
-/**	FastDispatcher
-
-	AUTHOR
-	
-		Name : FastDispatcher
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2005-11-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var dispatcher:FastDispatcher = new FastDispatcher( ar:Array ) ;
-		
-	USE
-	
-		import vegas.events.Event ;
-		import vegas.events.FastDispatcher ;
-	
-		function onTest( ev:Event ):Void {
-			trace ("--------") ;
-			trace ("type : " + ev.getType()) ;
-			trace ("target : " + ev.getTarget()) ;
-			trace ("context : " + ev.getContext()) ;
-			trace ("this : " + this) ;
-		}	
-
-		var oFD:FastDispatcher = new FastDispatcher() ;
-		
-		trace ("addListener this : " + oFD.addListener(this)) ;
-		trace ("hasListeners : " + oFD.hasListeners()) ;
-		trace ("size : " + oFD.size()) ;
-		oFD.dispatch( { type : "onTest", target : this } ) ;
-		oFD.removeAllListeners() ;
-		oFD.dispatch( { type : "onTest", target : this } ) ;
- 
-	METHOD SUMMARY
-	
-		- addListener(listener):Boolean
-		
-			Registers an object to receive event notification messages. 
-			This method is called on the broadcasting object and the listener object is sent as an argument.
-		
-		- broadcastMessage(eventName:String, [param1, param2, .., paramN]) ;
-
-			Sends an event message to each object in the list of listeners.
-			When the message is received by the listening object, Flash Player attempts to invoke a function of the same name on the listening object.
-					
-		- dispatch(event)
-
-			Sends an Event Object to each object in the list of listeners. 
-			When the Event is received by the listening object, Flash Player attempts to invoke a function of the same name on the Event.type property.
-
-		- isEmpty():Boolean
-		
-			Return true is the listeners list is empty.
-		
-		- iterator():Iterator
-		
-			Return an iterator of _listeners list.
-		
-		- removeAllListeners():Boolean
-			
-			clear listeners list.
-		
-		- removeListener()
-		
-			Removes an object from the list of objects that receive event notification messages. 
-		
-		- size():Number
-
-			Return count of listeners.
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → FastDispatcher
-
-	IMPLEMENTS
-	
-		Iterable, IFormattable, IHashable
-
-	CHANGE :: 2005-12-15 constructor more easy with [].concat(ar) 
-	
-	TODO   :: 2006-01-19 modifier la méthode dispatch et utiliser _getEvent comme dans EventDispatcher
-
-**/
-
 import vegas.core.CoreObject;
 import vegas.data.iterator.ArrayIterator;
 import vegas.data.iterator.Iterable;
@@ -120,47 +29,93 @@ import vegas.events.DynamicEvent;
 import vegas.events.Event;
 import vegas.util.Mixin;
 
-class vegas.events.FastDispatcher extends CoreObject implements Iterable {
+/**
+ * This class is an implementation of the native AsBroadcaster event model but used {@code Event} object to dispatch the message.
+ * <p>You can used this class with a simple instance, with an extends class or with the mixin(use initialize static method like AsBroadcaster).</p>
+ * <p><b>Example : </b></p>
+ * {@code
+ * import vegas.events.Event ;
+ * import vegas.events.FastDispatcher ;
+ * 
+ * function onTest( ev:Event ):Void 
+ * {
+ *     trace ("--------") ;
+ *     trace ("type : " + ev.getType()) ;
+ *     trace ("target : " + ev.getTarget()) ;
+ *     trace ("context : " + ev.getContext()) ;
+ *     trace ("this : " + this) ;
+ * }
+ * 
+ * var oFD:FastDispatcher = new FastDispatcher() ;
+ * 
+ * trace ("addListener this : " + oFD.addListener(this)) ;
+ * trace ("hasListeners : " + oFD.hasListeners()) ;
+ * trace ("size : " + oFD.size()) ;
+ * oFD.dispatch( { type : "onTest", target : this } ) ;
+ * oFD.removeAllListeners() ;
+ * oFD.dispatch( { type : "onTest", target : this } ) ;
+ * }
+ * @author eKameleon
+ */
+class vegas.events.FastDispatcher extends CoreObject implements Iterable 
+{
 
-	// ----o Constructor
-	
+	/**
+	 * Creates a new FastDispatcher instance.
+	 */
 	public function FastDispatcher( ar:Array ) {
 		_listeners = (ar.length > 0) ? [].concat(ar) : [] ;
 	}
 
-	// ----o Mixin
-	
-	static public function initialize ( target ):Void {
-		var properties:Array = [
-			"addListener" , "broadcastMessage", "dispatch", "iterator" ,
-			"removeAllListeners" , "removeListener" , "size"
-		] ;
-		var mix:Mixin = new Mixin( FastDispatcher, target, properties ) ; 
-		mix.run() ;
-	}
-
-	// ----o Inject AsBroadcaster
-	
-	static private var _initBroadcaster = AsBroadcaster.initialize(FastDispatcher.prototype) ;
-
-	// ----o static public Method
-	
-	public function addListener(listener):Boolean {
+	/**
+	 * Registers an object to receive event notification messages.
+	 * This method is called on the broadcasting object and the listener object is sent as an argument.
+ 	*/
+	public function addListener(listener):Boolean 
+	{
 		return null ; // Mixin
 	}
-	
+
+	/**
+	 * Sends an event message to each object in the list of listeners.
+	 * When the message is received by the listening object, Flash Player attempts to invoke a function of the same name on the listening object.
+	 */
+	public function broadcastMessage( eventName:String /* , [param1, param2, .., paramN] */):Void
+	{
+		//
+	}
+
+	/**
+	 * Returns a shallow copy of this instance.
+	 * @return a shallow copy of this instance.
+	 */
 	public function clone() {
 		return new FastDispatcher(_listeners) ;
 	}
 	
-	public function dispatch(event):Event {
+	/**
+	 * Sends an Event Object to each object in the list of listeners.
+	 * When the Event is received by the listening object, Flash Player attempts to invoke a function of the same name on the Event.type property.
+	 */
+	public function dispatch(event):Event 
+	{
 		if (!event) return null ;
 		var e:Event ;
 		var tof:String = typeof(event) ;
-		if (event instanceof Event) e = event ;
-		else if (tof == "string") e = new DynamicEvent(event) ;
-		else if (tof == "object") {
-			if (event.type == undefined) return null ;
+		if (event instanceof Event) 
+		{
+			e = event ;
+		}
+		else if (tof == "string") 
+		{
+			e = new DynamicEvent(event) ;
+		}
+		else if (tof == "object") 
+		{
+			if (event.type == undefined) 
+			{
+				return null ;
+			}
 			e = new DynamicEvent() ;
 			e.setType(event.type) ;
 			e.setTarget(event.target) ;
@@ -170,33 +125,79 @@ class vegas.events.FastDispatcher extends CoreObject implements Iterable {
 		return e ;
 	}
 	
-	public function getListeners():Array {
+	/**
+	 * Returns an array representation of all listeners.
+	 * @return an array representation of all listeners.
+	 */
+	public function getListeners():Array 
+	{
 		return [].concat(_listeners) ;
 	}
-		
-	public function isEmpty():Boolean {
+
+	/**
+	 * Launch the mixin of the FastDispatcher methods in the specified target.
+	 * @param target the object decorates by the FastDispatcher.
+	 * @see Mixin
+	 */
+	static public function initialize ( target ):Void 
+	{
+		var properties:Array = 
+		[
+			"addListener" , "broadcastMessage", "dispatch", "iterator" ,
+			"removeAllListeners" , "removeListener" , "size"
+		] ;
+		var mix:Mixin = new Mixin( FastDispatcher, target, properties ) ; 
+		mix.run() ;
+	}
+
+	/**
+	 * Returns {@code true} is the listeners list is empty.
+	 * @return {@code true} is the listeners list is empty.
+	 */
+	public function isEmpty():Boolean 
+	{
 		return _listeners.length == 0 ;
 	}
 	
-	public function iterator():Iterator {
+	/**
+	 * Returns an iterator of the listeners list.
+	 * @return an iterator of the listeners list.
+	 */
+	public function iterator():Iterator 
+	{
 		return new ArrayIterator(_listeners) ;
 	}
 
+	/**
+	 * Removes all listeners.
+	 */
 	public function removeAllListeners():Void {
 		_listeners.splice(0) ;
 	}
 	
-	public function removeListener(listener):Boolean {
+	/**
+	 * Removes the specified listener.
+	 */
+	public function removeListener(listener):Boolean 
+	{
 		return null ; // Mixin
 	}
 	
-	public function size():Number {
+	/**
+	 * Returns the number of listeners.
+	 * @return the number of listeners.
+	 */
+	public function size():Number 
+	{
 		return _listeners.length ;
 	}
-	
-	// ----o Private Properties
-	
+
+
+	static private var _initBroadcaster = AsBroadcaster.initialize(FastDispatcher.prototype) ;
+
+	/**
+	 * The internal _listeners array injected by the AsBroadcaster class.
+	 */
 	private var _listeners:Array ;
-	private var broadcastMessage:Function ;
-	
+
 }

@@ -21,90 +21,69 @@
   
 */
 
-/** Delegate
-
-	AUTHOR
-
-		Name : Delegate
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2005-10-24
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		new Delegate(scope, method:Function) ;
-
-	METHOD SUMMARY
-	
-		- addArguments():Void
-		
-		- clone():Delegate
-		
-		- static create(scope, medthod):Function
-		
-		- getArguments():Array
-		
-		- getMethod():Function
-		
-		- getScope():Object
-		
-		- handleEvent(e:Event)
-		
-		- run():Void
-		
-		- setArguments():Void
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → Delegate
-
-	IMPLEMENTS
-	
-		EventListener, ICloneable, IFormattable, IHashable, IRunnable
-
-	SEE ALSO
-	
-		Event
-
-**/
-
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
 import vegas.core.IRunnable;
 import vegas.events.Event;
 import vegas.events.EventListener;
 
-class vegas.events.Delegate extends CoreObject implements ICloneable, EventListener, IRunnable {
+/**
+ * Delegate was originally created by Mike Chambers for Macromedia mx.events package.
+ * <p>This version is also inspired from <a href='http://www.peterjoel.com/blog/index.php?archive=2004_08_01_archive.xml#109320812208031938'>Peter Hall's EventDelegate</a> implementation and from the Francis bourre framework "<a href="http://osflash.org/pixlib">Pixlib</a>".</p>
+ * <p>You can instantiate and keep a reference of a Delegate instance.</p>
+ * <p>In the VEGAS implementation :
+ * <li>The {@code Delegate} class implements {@code EventListener} interface. you can use a Delegate instances in the {@code addEventListener} method for all {@code EventTarget} implementations.</li>
+ * <li>The {@code Delegate} class implements {@code IRunnable} interface</li>
+ * </p>
+ * @author eKameleon
+ */
+class vegas.events.Delegate extends CoreObject implements ICloneable, EventListener, IRunnable 
+{
 
-	// ----o Constructor
-	
-	public function Delegate(scope, method:Function) {
+	/**
+	 * Creates a new Delegate instance.
+	 * @param scope the scope to be used by calling this method.
+	 * @param method the method to be executed.
+	 */
+	public function Delegate(scope, method:Function) 
+	{
 		_s = scope ;
 		_m = method ;
 		_a = arguments.splice(2) ;
 		_p = Function( Delegate.create.apply(this, [_s].concat([_m], _a) ) );
 	}
 
-	// ----o Public Methods
-
-	public function addArguments():Void {
-		if (arguments.length > 0) {
+	/**
+	 * Add arguments to proxy method.
+	 */
+	public function addArguments():Void 
+	{
+		if (arguments.length > 0) 
+		{
 			_a = _a.concat(arguments) ;
 			_p.a = _a ;
 		}
 	}
 	
-	public function clone() {
+	/**
+	 * Returns a shallow copy of the instance.
+	 * @return a shallow copy of the instance.
+	 */
+	public function clone() 
+	{
 		return new Delegate(getScope(), getMethod()) ;
 	}
 
-	static public function create(scope, method:Function):Function {
-		var f:Function = function() {	
+	/**
+	 * Creates a method that delegates its arguments to a specified scope. This static method is a wrapper for MM compatibility.
+	 * @param scope this scope to be used by calling this method.
+	 * @param method the method to be called.
+	 * @return a Function that delegates its call to a custom scope, method and arguments.
+	 */
+	static public function create(scope, method:Function):Function 
+	{
+		var f:Function = function() 
+		{	
 			var o = arguments.callee ;
 			var s = o.s ;
 			var m = o.m ;
@@ -113,19 +92,30 @@ class vegas.events.Delegate extends CoreObject implements ICloneable, EventListe
 		} ;
 		f.s = scope ;
 		f.m = method ;
-		f.a = arguments.splice(2);
-		return f;
+		f.a = arguments.splice(2) ;
+		return f ;
 	}	
 	
-	public function getArguments():Array {
+	/**
+	 * Returns the array of all arguments called in the proxy method.
+	 */
+	public function getArguments():Array 
+	{
 		return _a ;
 	}
 
+	/**
+	 * Returns the proxy method reference.
+	 */
 	public function getMethod():Function {
 		return _m ;
 	}
 	
-	public function getScope() {
+	/**
+	 * Returns the scope reference.
+	 */
+	public function getScope() 
+	{
 		return _s ;
 	}
 	
@@ -133,23 +123,32 @@ class vegas.events.Delegate extends CoreObject implements ICloneable, EventListe
 		return _m.apply(_s, [e].concat(_a));
 	}
 
-	public function run():Void {
+	/**
+	 * Run the proxy method in the provided context. 
+	 */
+	public function run():Void 
+	{
 		addArguments.apply(this, arguments) ;
 		_p() ;
 	}
 
-	public function setArguments():Void {
+	/**
+	 * Sets or change arguments of proxy method.
+	 */
+	public function setArguments():Void 
+	{
 		if (arguments.length > 0) {
 			_a = [].concat(arguments) ;
 			_p.a = _a ;
 		}
 	}
 
-	// ----o Private Properties
-	
 	private var _m:Function ; // method
+
 	private var _s:Object ; // scope
+
 	private var _a:Array ; // arguments
+
 	private var _p:Function; // proxy
 
 }

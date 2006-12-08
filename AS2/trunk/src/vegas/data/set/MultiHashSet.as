@@ -120,7 +120,7 @@ class vegas.data.set.MultiHashSet extends MultiHashMap implements Set
 	/**
 	 * This method always throws an {@code UnsupportedOperation} because this method is not supported by this Set.
 	 *
-	 * @throws UnsupportedOperationException
+	 * @throws UnsupportedOperation
 	 */
 	public function insert(o):Boolean {
 		throw new UnsupportedOperation("This MultiHashSet does not support the insert() method.") ;

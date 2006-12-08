@@ -21,119 +21,39 @@
   
 */
 
-/**	TextEvent
-
-	AUTHOR
-		
-		Name : TextEvent
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2005-10-14
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var ev:Event = new TextEvent(type:String, txt:String, target, context) ;
-
-	PROPERTY SUMMARY
-	
-		- bubbles:Boolean [R/W]
-		
-		- context [R/W]
-		
-		- currentTarget [R/W]
-		
-		- eventPhase:Number [R/W]
-		
-		- target[R/W]
-		
-		- text:String
-		
-		- type:String [R/W]
-
-	METHOD SUMMARY
-	
-		- cancel():Void
-		
-		- clone():BasicEvent
-		
-		- getBubbles():Boolean
-		
-		- getContext():Object
-		
-		- getCurrentTarget():Object
-		
-		- getEventPhase():Number
-		
-		- getTarget():Object
-		
-		- getTimeStamp():Number
-		
-		- getType():String
-		
-		- isCancelled():Boolean
-		
-		- isQueued():Boolean
-		
-		- queueEvent():Void
-		
-		- setBubbles(b:Boolean):Void
-		
-		- setContext(context:Object):Void
-		
-		- setCurrentTarget(target):Void
-		
-		- setEventPhase(n:Number):Void
-		
-		- setTarget(target:Object):Void
-		
-		- setType(type:String):Void
-		
-		- stopImmediatePropagation()
-		
-		- toSource(indent : Number, indentor : String) : String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → BasicEvent → DynamicEvent → TextEvent
-
-	IMPLEMENTS 
-		
-		Event, ICloneable, IFormattable, IHashable, ISerializable
-	
-*/
-
 import vegas.events.DynamicEvent;
 import vegas.util.serialize.Serializer;
 
+/**
+ * The {@code TextEvent} to dispatch an event with a string text.
+ * @author eKameleon
+ */
 class vegas.events.TextEvent extends DynamicEvent 
 {
 
-	// ----o Constructor
-	
+	/**
+	 * Creates a new TextEvent instance.
+	 */
 	public function TextEvent(type:String, txt:String, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number)
 	{
 		super(type, target, context, bubbles, eventPhase, time, stop) ;
 		text = txt ;
 	}
 
-	// ----o Public Properties
-	
+	/**
+	 * The string text reference.
+	 */
 	public var text:String ;
 
-	// ----o Public Methods
-
+	/**
+	 * Returns the shallow copy of this event.
+	 * @return the shallow copy of this event.
+	 */
 	public function clone() 
 	{
 		return new TextEvent(getType(), text, getTarget(), getContext()) ;
 	}
 
-	// ----o Protected Methods
-	
 	/*protected*/ private function _getParams():Array 
 	{
 		var ar:Array = super._getParams() ;

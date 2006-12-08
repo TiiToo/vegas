@@ -21,69 +21,33 @@
   
 */
 
-/**	EventListenerComparator
-
-	AUTHOR
-	
-		Name : EventListenerComparator
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2005-11-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		new EventListenerComparator(container:EventListenerContainer) ;
-	
-	METHOD SUMMARY
-	
-		- compare(o1, o2) : return a number
-			
-			RETURNS 
-			
-				- -1 if o1 is "lower" than o2 ;
-				-  1 if o1 is "higher" than o2 ;
-				-  0 if o1 and o2 are equal.
-		
-		- equals(o) : return a boolean
-		
-		- toString()
-
-	INHERIT
-	
-		CoreObject → EventListenerComparator
-
-	IMPLEMENTS
-	
-		IComparator, IFormattable, IHashable
-
-*/
-
 import vegas.core.CoreObject;
 import vegas.core.IComparator;
 import vegas.errors.IllegalArgumentError;
 import vegas.events.EventListenerContainer;
 
-// TODO vérifier méthode equals !! .. problème sur le test du typage de 'o'.
-
+/**
+ * This comparator is used in the {@code EventDispatcher} class to ordered all {@code EventLister} with a priority value.
+ * @author eKameleon
+ */
 class vegas.events.EventListenerComparator extends CoreObject implements IComparator 
 {
 
-	// ----o Constructor
-	
+	/**
+	 * Creates the EventListenerComparator instance.
+	 */
 	function EventListenerComparator( container:EventListenerContainer ) 
 	{
 		_container = container ;
 	}
 
-	// ----o Public Methods
-
+	/**
+	 * Compares its two arguments for order.
+	 * @return -1 if o1 is "lower" than o2, 1 if o1 is "higher" than o2 and 0 if o1 and o2 are equal.
+	 */
 	public function compare(o1, o2):Number 
 	{
-		if ( o1 instanceof EventListenerContainer 
-				&& o2 instanceof EventListenerContainer ) 
+		if ( o1 instanceof EventListenerContainer && o2 instanceof EventListenerContainer ) 
 		{
 			var p1:Number = o1.getPriority() ;
 			var p2:Number = o2.getPriority() ;
@@ -106,6 +70,12 @@ class vegas.events.EventListenerComparator extends CoreObject implements ICompar
 		}
 	}
 	
+	// TODO vérifier méthode equals !! .. problème sur le test du typage de 'o'.
+	
+	/**
+	 * Compares the specified object with this object for equality.
+	 * @return {@code true} if the the specified object is equal with this object.
+	 */
 	public function equals(o):Boolean 
 	{
 		if ( typeof(o) == "number" || o instanceof Number ) 
@@ -117,8 +87,6 @@ class vegas.events.EventListenerComparator extends CoreObject implements ICompar
 			return false ;
 		}
 	}
-	
-	// ----o Private Properties
 	
 	private var _container:EventListenerContainer ;
 	

@@ -35,7 +35,7 @@ import vegas.util.serialize.StringSerializer;
 import vegas.util.TypeUtil;
 
 /**
- * Allows an object to control its own serialization.
+ * Allows an object to control its own serialization with an EDEN representation.
  * Thanks : Zwetan Core2 framework inspired by Mozilla SpiderMonkey.
  * @author eKameleon
  */
@@ -154,16 +154,46 @@ class vegas.util.serialize.Serializer
 	{
 		if (o === undefined) return "undefined" ;
 		if (o === null) return "null" ;
-		if (o instanceof ISerializable) return o.toSource.apply(o, arguments.slice(1)) ;
-		else if (TypeUtil.typesMatch(o, Array)) return ArraySerializer.toSource.apply(o, arguments.slice()) ;
-		else if (TypeUtil.typesMatch(o, Boolean)) return BooleanSerializer.toSource.apply(o, arguments.slice()) ;
-		else if (TypeUtil.typesMatch(o, Date)) return DateSerializer.toSource.apply(o, arguments.slice()) ;
-		else if (TypeUtil.typesMatch(o, Error)) return ErrorSerializer.toSource.apply(o, arguments.slice()) ;
-		else if (TypeUtil.typesMatch(o, Function)) return FunctionSerializer.toSource.apply(o, arguments.slice()) ;
-		else if (TypeUtil.typesMatch(o, Number)) return NumberSerializer.toSource.apply(o, arguments.slice()) ;
-		else if (TypeUtil.typesMatch(o, String)) return StringSerializer.toSource.apply(o, arguments.slice()) ;
-		else if (typeof(o) === "object") return ObjectSerializer.toSource.apply(o, arguments.slice()) ;
-		else return "undefined" ;
+		if (o instanceof ISerializable) 
+		{
+			return o.toSource.apply(o, arguments.slice(1)) ;
+		}
+		else if (TypeUtil.typesMatch(o, Array))
+		{
+			return ArraySerializer.toSource.apply(o, arguments.slice()) ;
+		}
+		else if (TypeUtil.typesMatch(o, Boolean)) 
+		{
+			return BooleanSerializer.toSource.apply(o, arguments.slice()) ;
+		}
+		else if (TypeUtil.typesMatch(o, Date)) 
+		{
+			return DateSerializer.toSource.apply(o, arguments.slice()) ;
+		}
+		else if (TypeUtil.typesMatch(o, Error)) 
+		{
+			return ErrorSerializer.toSource.apply(o, arguments.slice()) ;
+		}
+		else if (TypeUtil.typesMatch(o, Function)) 
+		{
+			return FunctionSerializer.toSource.apply(o, arguments.slice()) ;
+		}
+		else if (TypeUtil.typesMatch(o, Number))
+		{
+			return NumberSerializer.toSource.apply(o, arguments.slice()) ;
+		}
+		else if (TypeUtil.typesMatch(o, String)) 
+		{
+			return StringSerializer.toSource.apply(o, arguments.slice()) ;
+		}
+		else if (typeof(o) === "object") 
+		{
+			return ObjectSerializer.toSource.apply(o, arguments.slice()) ;
+		}
+		else
+		{
+			return "undefined" ;
+		}
 	}
 	
 

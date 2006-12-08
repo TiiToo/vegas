@@ -21,88 +21,75 @@
   
 */
 
-/**	EventQueue
-
-	AUTHOR
-	
-		Name : EventQueue
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2005-10-13
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		Classe utilisée par la classe !EventDispatcher (en AS3 cette classe est une classe privée)
-
-	METHOD SUMMARY
-	
-		- enqueue(e:Event):Void
-		
-		- getQueuedEvents([eventType:String]):Queue
-
-			return a queue with all events
-			
-			return queued events of a specific event name
-		
-		- size():Number
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → EventQueue
-
-	IMPLEMENTS
-
-		IFormattable, IHashable
-
-**/
-
 import vegas.core.CoreObject;
 import vegas.data.iterator.Iterator;
 import vegas.data.Queue;
 import vegas.data.queue.LinearQueue;
 import vegas.events.Event;
+import vegas.util.TypeUtil;
 
-class vegas.events.EventQueue extends CoreObject  {
+/**
+ * Internal class used in {@code EventDispatcher} class to bufferize the events if no EventListener are registered with the event type of the event.
+ */
+class vegas.events.EventQueue extends CoreObject  
+{
 
-	// ----o Constructor
-	
-	public function EventQueue() {
+	/**
+	 * Creates a new EventQueue instance.
+	 */
+	public function EventQueue() 
+	{
 		_events = new LinearQueue() ;
 	}
 
-	// ----o Public Methods
-
-    public function enqueue( e:Event ):Void {
+	/**
+	 * Enqueue an event in the buffer if no EventListener are registered in the EventListener.
+	 */
+    public function enqueue( e:Event ):Void 
+    {
         e.queueEvent() ;
         _events.enqueue(e);
     }
 
-    public function getQueuedEvents():Queue {
-		if (typeof(arguments[0]) == "string") {
+	/**
+	 * Returns a queue with all events bufferized.
+	 * @return a queue with all events bufferized.
+	 */
+    public function getQueuedEvents( ):Queue 
+    {
+    	var arg = arguments[0] ;
+		if ( TypeUtil.typesMatch( arg , String ) ) 
+		{
 			var q:LinearQueue = new LinearQueue() ;
 			var eventType:String = arguments[0] ;
 			var it:Iterator = _events.iterator() ;
-			while (it.hasNext()) {
+			while (it.hasNext()) 
+			{
 				var e:Event = it.next() ;
-				if (e.getType() == eventType) q.enqueue(e) ;
+				if (e.getType() == eventType) 
+				{
+					q.enqueue(e) ;
+				}
 			}
 			return q ;
-		} else {
+		}
+		else 
+		{
 			return _events ;
 		}
     }
     
-	public function size():Number {
+    /**
+     * The size of this buffer.
+     */
+	public function size():Number 
+	{
 		return _events.size() ;
 	}
-	
-	// ----o Private Properties
 
+	/**
+	 * Internal LinearQueue used by this this instance.
+	 */
     private var _events:LinearQueue = null ;
     
 }

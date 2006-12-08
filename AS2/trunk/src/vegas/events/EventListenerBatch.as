@@ -21,114 +21,73 @@
   
 */
 
-/** EventListenerBatch
-
-	AUTHOR
-
-		Name : EventListenerBatch
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2006-03-26
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	DESCRIPTION
-	
-		Cette classe permet d'enregistrer plusieurs écouteurs qui seront invoqué en même temps lors de la notification
-		 d'un ou plusieurs événements.
-	
-	USE
-	
-		import vegas.events.BasicEvent ;
-		import vegas.events.Delegate ;
-		import vegas.events.Event ;
-		import vegas.events.EventDispatcher ;
-		import vegas.events.EventListener ;
-		import vegas.events.EventListenerBatch ;
-		
-		var EVENT_TYPE:String = "onTest" ;
-		
-		var action1:Function = function (e:Event):Void {
-    		trace ("> action1 : " + e.getType()) ;
-		}
-		
-		var action2:Function = function (e:Event):Void {
-    		trace ("> action2 : " + e.getType()) ;
-		}
-		
-		var oListener1:EventListener = new Delegate(this, action1) ;
-		var oListener2:EventListener = new Delegate(this, action2) ;
-		
-		var batch:EventListenerBatch = new EventListenerBatch() ;
-		batch.insert(oListener1) ;
-		batch.insert(oListener2) ;
-		
-		var e:Event = new BasicEvent( EVENT_TYPE , this ) ;
-		
-		EventDispatcher.getInstance().addEventListener(EVENT_TYPE, batch) ;
-		EventDispatcher.getInstance().dispatchEvent( e ) ;
-	
-	METHOD SUMMARY
-	
-		- clear():Void
-		
-		- clone()
-		
-		- contains(o):Boolean
-		
-		- get(id:Number):EventListener
-
- 		- handleEvent(e:Event):Void
-
-		- insert( oListener:EventListener ):Boolean
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- remove( oR:EventListener ):Boolean
-		
-		- size():Number
-		
-		- toArray():Array
-	
-	INHERIT
-	
-		CoreObject → AbstractTypeable → TypedCollection → EventListenerBatch
-
-	IMPLEMENTS 
-
-		IFormattable, IHashable, IRunnable, ISerializable, Iterable, Typeable, Validator
-	
-*/	
-
 import vegas.data.collections.SimpleCollection;
 import vegas.data.collections.TypedCollection;
 import vegas.data.iterator.Iterator;
 import vegas.events.Event;
 import vegas.events.EventListener;
 
+/**
+ * It handles several {@code EventListener} as one {@code EventListener}.
+ * <p><b>Example : </b></p>
+ * {@code
+ * 	
+ * import vegas.events.* ;
+ * 
+ * var EVENT_TYPE:String = "onTest" ;
+ * 
+ * var action1:Function = function (e:Event):Void 
+ * {
+ *    trace ("> action1 : " + e.getType()) ;
+ * }
+ * 
+ * var action2:Function = function (e:Event):Void 
+ * {
+ *     trace ("> action2 : " + e.getType()) ;
+ * }
+ * 
+ * var oListener1:EventListener = new Delegate(this, action1) ;
+ * var oListener2:EventListener = new Delegate(this, action2) ;
+ * 
+ * var batch:EventListenerBatch = new EventListenerBatch() ;
+ * batch.insert(oListener1) ;
+ * batch.insert(oListener2) ;
+ * 	
+ * var e:Event = new BasicEvent( EVENT_TYPE , this ) ;
+ * 	
+ * EventDispatcher.getInstance().addEventListener(EVENT_TYPE, batch) ;
+ * EventDispatcher.getInstance().dispatchEvent( e ) ;
+ * }
+ */
 class vegas.events.EventListenerBatch extends TypedCollection implements EventListener 
 {
 
-	// ----o Constructor
-	
+	/**
+	 * Creates a new EventListenerBatch instance.
+	 */
  	public function EventListenerBatch() 
  	{
 		super(EventListener, new SimpleCollection()) ;
   	}
 
-	// ----o Public Methods
-	
+	/**
+	 * Returns a shallow copy of this instance.
+	 * @return a shallow copy of this instance.
+	 */	
 	public function clone() 
 	{
 		var b:EventListenerBatch = new EventListenerBatch() ;
 		var it:Iterator = iterator() ;
-		while (it.hasNext()) b.insert(it.next()) ;
+		while (it.hasNext()) 
+		{
+			b.insert(it.next()) ;
+		}
 		return b ;
 	}
 	
+	/**
+	 * Handles the event.
+	 */
 	public function handleEvent(e:Event) 
 	{
 		var ar:Array = toArray() ;

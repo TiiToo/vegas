@@ -21,48 +21,6 @@
   
 */
 
-/**	EventListenerCollection
-
-	AUTHOR
-	
-		Name : EventListenerCollection
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2005-10-13
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- addListener( listener:EventListener, autoRemove:Boolean, priority:Number ):Number 
-		
-		- iterator():Iterator
-		
-		- propagate(e:Event):Event
-		
-		- removeListener( o ):EventListenerContainer
-		
-		- size():Number
-			
-		- toString():String
-	
-	IMPLEMENTS
-	
-		CoreObject → EventListenerCollection
-	
-	IMPLEMENTS 
-	
-		IFormattable, IHashable, Iterable
-	
-	CHANGE    : 2005-11-12 change propagate method
-	CHANGE    : 2006-01-19 use TypeUtil class.
-	ADD       : 2006-01-22 use EventPhase.STOP_IMMEDIATE in propagate method
-	
-	TODO : optimiser les itérations
-	
-*/
-
 import vegas.core.CoreObject;
 import vegas.data.iterator.Iterable;
 import vegas.data.iterator.Iterator;
@@ -75,11 +33,16 @@ import vegas.events.EventPhase;
 import vegas.util.ConstructorUtil;
 import vegas.util.TypeUtil;
 
+/**
+ * Internal class used in the EventDispatcher to collect {@code EventListener} for a specific event type.  
+ * @author eKameleon
+ */
 class vegas.events.EventListenerCollection extends CoreObject implements Iterable 
 {
 
-	// ----o Constructor
-	
+	/**
+	 * Creates a new EventListenerCollection instance.
+	 */
 	public function EventListenerCollection() 
 	{
 		_listeners = new SortedArrayList() ;
@@ -87,8 +50,12 @@ class vegas.events.EventListenerCollection extends CoreObject implements Iterabl
 		_listeners.setOptions(Array.NUMERIC) ;
 	}
 	
-	// ----o Public Methods
-    
+	/**
+	 * Adds an {@code EventListener} in the collection 
+	 * @param listener the EventListener in the collection
+	 * @param autoRemove this EventListener is autoRemove when the event flow is finished.
+	 * @param priority the priority value of the EventListener.
+	 */
 	public function addListener( listener:EventListener, autoRemove:Boolean, priority:Number ):Number 
 	{
 		var container:EventListenerContainer = new EventListenerContainer(listener) ;
@@ -98,18 +65,27 @@ class vegas.events.EventListenerCollection extends CoreObject implements Iterabl
 		return _listeners.size() ;
 	}
 
+	/**
+	 * Returns the iterator of this collection.
+	 */
 	public function iterator():Iterator 
 	{
 		return _listeners.iterator() ;
 	}
 	
+	/**
+	 * Propagate an event in the event flow of all {@code EventListener} in this collection.
+	 */
 	public function propagate(e:Event):Event 
 	{
 		var remove:Array = new Array() ;
 		var l:Number = _listeners.size() ;
 		for (var i:Number = 0 ; i<l ; i++) 
 		{
-			if (e["stop"] == EventPhase.STOP_IMMEDIATE) break ;
+			if (e["stop"] == EventPhase.STOP_IMMEDIATE) 
+			{
+				break ;
+			}
 			var container:EventListenerContainer = _listeners.get(i) ;
 			container.getListener().handleEvent(e) ;
 			if (container.isAutoRemoveEnabled()) 
@@ -129,7 +105,11 @@ class vegas.events.EventListenerCollection extends CoreObject implements Iterabl
 		}
 		return e ;
 	}
-
+	
+	/**
+	 * Removes an {@code EventListener} in the collection.
+	 * @return the EventListenerContainer of the listener removes in the collection.
+	 */
 	public function removeListener( listener ):EventListenerContainer 
 	{
 		if (listener instanceof EventListener) 
@@ -172,14 +152,16 @@ class vegas.events.EventListenerCollection extends CoreObject implements Iterabl
 		return null ;
 	}
 	
+	/**
+	 * Returns the number of {@code EventListener} in this collection.
+	 */
 	public function size():Number 
 	{
 		return _listeners.size() ;
 	}
 	
-	// ----o Private Properties
-
 	private var _autoRemove:Boolean = false ;
+
     private var _listeners:SortedArrayList  ;
 
 }

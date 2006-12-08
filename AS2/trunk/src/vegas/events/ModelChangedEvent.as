@@ -21,119 +21,34 @@
   
 */
 
-/**	ModelChangedEvent
-
-	AUTHOR
-
-		Name : ModelChangedEvent
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2005-11-18
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-
-		var ev:Event = new ModelChangedEvent(name:String, target) ;
-
-	PROPERTY SUMMARY
-	
-		- data
-		
-		- fieldName:String
-			The name of the field that was updated, or null. 
-		
-		- firstItem:Number
-			The index of the first item that was added, changed, or removed. 
-		
-		- index:Number
-		
-		- lastItem:Number
-		
-		- removedIDs:Array
-			An array containing the IDs of the items that were removed, or null. 
-		
-		- removedItems:Array
-			An array containing the items that were removed from the data provider, or null. 
-
-	METHOD SUMMARY
-	
-		- cancel():Void
-		
-		- clone():BasicEvent
-		
-		- getBubbles():Boolean
-		
-		- getContext():Object
-		
-		- getCurrentTarget():Object
-		
-		- getEventPhase():Number
-		
-		- getTarget():Object
-		
-		- getTime():Number
-		
-		- getType():String
-		
-		- isCancelled():Boolean
-		
-		- isQueued():Boolean
-		
-		- queueEvent():Void
-		
-		- setBubbles(b:Boolean):Void
-		
-		- setContext(context:Object):Void
-		
-		- setCurrentTarget(target):Void
-		
-		- setEventPhase(n:Number):Void
-		
-		- setTarget(target:Object):Void
-		
-		- setType(type:String):Void
-		
-		- stopImmediatePropagation()
-		
-		- toString():String
-
-	EVENTS SUMMARY
-
-		- ADD_ITEMS:String = "addItems" ; 
-		
-		- MODEL_CHANGED:String = "modelChanged" ;
-		
-		- REMOVE_ITEMS:String = "removeItems" ;
-		
-		- SORT:String = "sort" ;
-		
-		- UPDATE_ALL:String = "updateAll" ;
-		
-		- UPDATE_FIELD:String = "updateField" ;
-		
-		- UPDATE_ITEMS:String = "updateItems" ;
-
-	INHERIT
-	
-		BasicEvent → DynamicEvent → ModelChangedEvent
-		
-	IMPLEMENTS 
-		
-		Event, ICloneable, IFormattable, IHashable, ISerializable
-
-**/
-
 import vegas.events.BasicEvent;
 import vegas.events.ModelChangedEventType;
 import vegas.util.serialize.Serializer;
 
+/**
+ * This event is used in the MVC model with the IModel implementations.
+ * @author eKameleon
+ */
 class vegas.events.ModelChangedEvent extends BasicEvent 
 {
 
-	// ----o Constructor
-	
+	/**
+	 * Creates a ModelChanged event.
+	 * @param type the string type of the instance. 
+	 * @param target the target of the event.
+	 * @param context the optional context object of the event.
+	 * @param bubbles indicates if the event is a bubbling event.
+	 * @param eventPhase the current EventPhase of the event.
+	 * @param time this parameter is used in the Eden deserialization.
+	 * @param stop this parameter is used in the Eden deserialization.
+	 * @param data the date of the event
+	 * @param fieldName the fieldName in the model of changed item.
+	 * @param firstItem the firstItem who changed.
+	 * @param index the index position of the item who changed in the model.
+	 * @param lastItem the last position of the items who changed in the model.
+	 * @param removedIDs the array of the ids of the items who changed in the model.
+	 * @param removeItems the array of all items who changed in the model.
+	 */
 	public function ModelChangedEvent
 	( 
 		name:String , target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number 
@@ -143,39 +58,87 @@ class vegas.events.ModelChangedEvent extends BasicEvent
 		
 		super(name || ModelChangedEventType.MODEL_CHANGED, target, context, bubbles, eventPhase, time, stop) ;
 		
-		data = data || null ;
-		fieldName = fieldName || null ;
-		firstItem = isNaN(firstItem) ? null : firstItem ;
-		index = isNaN(index) ? null : index ;
-		lastItem = isNaN(lastItem) ? null : lastItem ;
-		removedIDs = removedIDs || null ;
-		removedItems = removedItems || null ;
+		this.data = data || null ;
+		this.fieldName = fieldName || null ;
+		this.firstItem = isNaN(firstItem) ? null : firstItem ;
+		this.index = isNaN(index) ? null : index ;
+		this.lastItem = isNaN(lastItem) ? null : lastItem ;
+		this.removedIDs = removedIDs || null ;
+		this.removedItems = removedItems || null ;
 		
 	}
 
-	// ----o Constant
-	
+	/**
+	 * The type of a ModelChangedEvent when an item is added in this model.
+	 */
 	static public var ADD_ITEMS:String = "addItems" ; 
+
+	/**
+	 * The type of a ModelChangedEvent when clear all items in the model.
+	 */
 	static public var CLEAR_ITEMS:String = "clear" ;
+
+	/**
+	 * The type of a ModelChangedEvent when the model is changed.
+	 */
 	static public var MODEL_CHANGED:String = "modelChanged" ;
+
+	/**
+	 * The type of a ModelChangedEvent when an item is removed in this model.
+	 */
 	static public var REMOVE_ITEMS:String = "removeItems" ;
+
+	/**
+	 * The type of a ModelChangedEvent when the model is sorted.
+	 */
 	static public var SORT_ITEMS:String = "sortItems" ;
+
+	/**
+	 * The type of a ModelChangedEvent when all is update in the model.
+	 */
 	static public var UPDATE_ALL:String = "updateAll" ;
+
+	/**
+	 * The type of a ModelChangedEvent when a field in the model is updated.
+	 */
 	static public var UPDATE_FIELD:String = "updateField" ;
+
+	/**
+	 * The type of a ModelChangedEvent when an item in the model changed.
+	 */
 	static public var UPDATE_ITEMS:String = "updateItems" ;
 
-	// ----o Public Properties
-	
+	/**
+	 * The data of this event.
+	 */
 	public var data = null ;
+	
+	/**
+	 * The name of the field that was updated, or null. 
+	 */
 	public var fieldName:String = null ;
+	
+	/**
+	 * The index of the first item that was added, changed, or removed. 
+	 */
 	public var firstItem:Number = null ;
 	public var index:Number = null ;
 	public var lastItem:Number = null ;
+	
+	/**
+	 * An array containing the IDs of the items that were removed, or null. 
+	 */
 	public var removedIDs:Array = null ;
+	
+	/**
+	 * An array containing the items that were removed from the data provider, or null. 
+	 */
 	public var removedItems:Array = null ;
 
-	// ----o Public Methods
-
+	/**
+	 * Returns a shallow copy of this instance.
+	 * @return a shallow copy of this instance.
+	 */
 	public function clone() 
 	{
 		return new ModelChangedEvent
@@ -185,8 +148,6 @@ class vegas.events.ModelChangedEvent extends BasicEvent
 		) ;
 	}
 
-	// ----o Protected Methods
-	
 	/*protected*/ private function _getParams():Array 
 	{
 		var ar:Array = super._getParams() ;

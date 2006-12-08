@@ -32,198 +32,297 @@ import vegas.util.serialize.Serializer;
  * <p><b>Example</b></p>
  * {@code var e:BasicEvent = new BasicEvent(type:String, target, context) ; } 
  * @author  eKameleon
- * @see     CoreObject	
- * @see     Event	
+ * @see Event	
  */
-class vegas.events.BasicEvent extends CoreObject implements Event {
+class vegas.events.BasicEvent extends CoreObject implements Event 
+{
 
-	// ----o Constructor
-	
 	/**
 	 * Constructs a new {@code BasicEvent} instance.
-	 * 
 	 * <p>
-	 *    <code>
+	 * {@code
 	 *     var e:BasicEvent = new BasicEvent(type, target, context, [bubbles:Boolean, [eventPhase:Number, [time:Number, [stop:Boolean]]]]) ;
-	 *    </code>
+	 * }
 	 * </p>
-	 * @param type:String 
-	 * @param target
-	 * @param context
-	 * @param bubbles:Boolean
-	 * @param eventPhase:Number
-	 * @param time:Number
-	 * @param stop:Boolean
+	 * @param type the string type of the instance. 
+	 * @param target the target of the event.
+	 * @param context the optional context object of the event.
+	 * @param bubbles indicates if the event is a bubbling event.
+	 * @param eventPhase the current EventPhase of the event.
+	 * @param time this parameter is used in the Eden deserialization.
+	 * @param stop this parameter is used in the Eden deserialization.
 	 */
-	public function BasicEvent (
-		type:String
-		, target
-		, context
-		, p_bubbles:Boolean
-		, p_eventPhase:Number
-		, p_time:Number
-		, p_stop:Number 
-	) 
-		{
+	public function BasicEvent ( type:String , target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number ) 
+	{
 		
 		_type = type ;
 		_context = context ;
 		_target = target ;
-		_bubbles = (p_bubbles != null) ? p_bubbles : true ;
-		_eventPhase = isNaN(p_eventPhase) ? EventPhase.AT_TARGET : p_eventPhase ;
-		_time = (p_time > 0) ? p_time : ( (new Date()).valueOf() ) ;
+		_bubbles = ( bubbles != null) ? bubbles : true ;
+		_eventPhase = isNaN( eventPhase) ? EventPhase.AT_TARGET : eventPhase ;
+		_time = ( time > 0) ? time : ( (new Date()).valueOf() ) ;
 		
-		stop = isNaN(p_stop) ? EventPhase.NONE : p_stop ;
+		this.stop = isNaN( stop) ? EventPhase.NONE : stop ;
 		
-		}
-	
-	// ----o Public Property
-	
+	}
+
+	/**
+	 * This property indicated in the event model if this event is stopped.
+	 */	
 	public var stop:Number ;
-
-	// ----o Public Methods
-
-	public function cancel():Void {
+	
+	/**
+	 * Indicates whether the behavior associated with the event can be prevented.
+	 */
+	public function cancel():Void 
+	{
 		_cancelled = true ;
 	}
 	
 	/**
-	 * @return a new clone reference.
+	 * Returns the shallow copy of this event.
+	 * @return the shallow copy of this event.
 	 */
-	public function clone() {
+	public function clone() 
+	{
 		return new BasicEvent(getType(), getTarget(), getContext()) ;
 	}
 
 	/**
-	 * @return 'true' if the event is bubbling.
+	 * @return {@code true} if the event is bubbling.
 	 */
-	public function getBubbles():Boolean {
+	public function getBubbles():Boolean 
+	{
 		return _bubbles ;
 	}
 
-	public function getContext() {
+	/**
+	 * Returns the optional context of this event.
+	 * @returns an object, corresponding the optional context of this event.
+	 */
+	public function getContext() 
+	{
 		return _context ;
 	}
 
-	public function getCurrentTarget() {
+	/**
+	 * The object that is actively processing the Event object with an event listener.
+	 */
+	public function getCurrentTarget() 
+	{
 		return _currentTarget ;
 	}
 
-	public function getEventPhase():Number {
+	/**
+	 * Returns the current phase in the event flow.
+	 * @return the current phase in the event flow.
+	 * @see EventPhase
+	 */
+	public function getEventPhase():Number 
+	{
 		return _eventPhase ;
 	}
 
+	/**
+	 * The event target.
+	 */
 	public function getTarget() {
 		return _target ;
 	}
 	
-	public function getTimeStamp():Number {
+	/**
+	 * Returns the timestamp of the event.
+	 */
+	public function getTimeStamp():Number 
+	{
 		return _time ;
 	}
-
-	public function getType():String {
+	
+	/**
+	 * The type of event.
+	 */
+	public function getType():String 
+	{
 		return _type ;
 	}
 
-	public 	function initEvent(type:String, bubbles:Boolean, cancelable:Boolean):Void {
+	/**
+	 * Initialize the event with the properties type, bubbles, cancelable.
+	 * @param type the type of the event.
+	 * @param bubbles a boolean to indicate if the event is a bubbling event.
+	 * @param cancelable a boolean to indicate if the event is a capturing event.
+	 */
+	public 	function initEvent(type:String, bubbles:Boolean, cancelable:Boolean):Void 
+	{
 		_type = type ;
 		_bubbles = bubbles ;
 		_cancelled = cancelable ;
 		_time = (new Date()).valueOf() ;
 	}
 
-	public function isCancelled():Boolean {
+	/**
+	 * Returns {@code true} if the event is cancelled. 
+	 */
+	public function isCancelled():Boolean 
+	{
 		return _cancelled ;
 	}
 
-	public function isQueued():Boolean {
+	/**
+	 * Returns {@code true} if the event is queued.
+	 */
+	public function isQueued():Boolean 
+	{
 		return _inQueue ;
 	}
 	
-	public function queueEvent():Void {
+	/**
+	 * Sets if the event is queued.
+	 */
+	public function queueEvent():Void 
+	{
 		_inQueue = true ;
 	}
 
-	public function setBubbles(b:Boolean):Void {
+	/**
+	 * Sets if the event is bubbling.
+	 */
+	public function setBubbles(b:Boolean):Void 
+	{
 		_bubbles = b ;
 	}
 
-	public function setContext(context):Void {
+	/**
+	 * Sets the optional context object of this event. 
+	 */
+	public function setContext(context):Void 
+	{
 		_context = context || null ;
 	}
 
+	/**
+	 * Set the object that is actively processing the Event object with an event listener.
+	 */
 	public function setCurrentTarget(target):Void {
 		_currentTarget = target ;
 	}
 
-	public function setEventPhase(n:Number):Void {
+	/**
+	 * Sets the current phase in the event flow.
+	 */
+	public function setEventPhase(n:Number):Void 
+	{
 		_eventPhase = n ;
 	}
 
-	public function setTarget(target):Void {
+	/**
+	 * Sets the event target.
+	 */
+	public function setTarget(target):Void 
+	{
 		_target = target || null ;
 	}
 
-	public function setType(type:String):Void {
+	/**
+	 * Sets the event type.
+	 */
+	public function setType(type:String):Void 
+	{
 		_type = type || null ;
 	}
-	
-	public function stopPropagation():Void {
-		stop = EventPhase.STOP ;
-	}
-	
+
+	/**
+	 * Prevents processing of any event listeners in the current node and any subsequent nodes in the event flow.
+	 */
 	public function stopImmediatePropagation():Void {
 		stop = EventPhase.STOP_IMMEDIATE ;
 	}
 
-	/*override*/ public function toSource(indent : Number, indentor : String) : String {
+	/**
+	 * Prevents processing of any event listeners in nodes subsequent to the current node in the event flow.
+	 */	
+	public function stopPropagation():Void 
+	{
+		stop = EventPhase.STOP ;
+	}
+	
+	/**
+	 * Returns a Eden representation of the object.
+	 * @return a string representing the source code of the object.
+	 */
+	/*override*/ public function toSource(indent : Number, indentor : String) : String 
+	{
 		return Serializer.getSourceOf(this, _getParams()) ;
 	}
 
-	public function toString():String {
+	/**
+	 * Returns the string representation of this event.
+	 * @return the string representation of this event.
+	 */
+	public function toString():String 
+	{
 		var phase:Number = getEventPhase() ;
 		var name:String = ConstructorUtil.getName(this);
 		var txt:String = "[" + name ;
 		if (getType()) txt += " " + getType() ;
-		switch (phase) {
+		switch (phase) 
+		{
 			case EventPhase.CAPTURING_PHASE :
+			{
 				txt += ", CAPTURING" ;
 				break;
+			}
 			case EventPhase.AT_TARGET:
+			{
 				txt += ", AT TARGET" ;
 				break ;
+			}
 			case EventPhase.BUBBLING_PHASE:
+			{
 				txt += ", BUBBLING" ;
 				break ;
+			}
 			default :
+			{
 				txt += ", (inactive)" ;
 				break;
+			}
 		}
-		if (getBubbles() && phase != EventPhase.BUBBLING_PHASE) {
+		if (getBubbles() && phase != EventPhase.BUBBLING_PHASE) 
+		{
 			txt += ", bubbles" ;
 		}
-		if (isCancelled()) {
+		if (isCancelled()) 
+		{
 			txt += ", can cancel" ;
 		}
 		txt += "]" ;
 		return txt ;
 	}
   
-	// ----o Private Properties
-
 	private var _bubbles:Boolean ;
+
 	private var _context = null ;
+
 	private var _currentTarget ;
+
 	private var _cancelled:Boolean = false ;
+
 	private var _eventPhase:Number ;
+
 	private var _inQueue:Boolean = false ;
+
 	private var _target = null ;
+
 	private var _time:Number ;
+
 	private var _type:String ;
 
-	// ----o Protected Methods
-	
-	/*protected*/ private function _getParams():Array {
+	/**
+	 * This method is used by toSource method. Overrides this method in other Event concrete class if you want extend the arguments in the constructor class.
+	 */
+	/*protected*/ private function _getParams():Array 
+	{
 		return [
 			Serializer.toSource(getType()) ,
 			Serializer.toSource(getTarget()) ,
@@ -235,7 +334,11 @@ class vegas.events.BasicEvent extends CoreObject implements Event {
 		] ;
 	}
 	
-	/*protected*/ private function _setTimeStamp( nTime:Number ):Void {
+	/**
+	 * Set the timestamp of the event (used this method only in internal in the Event class).
+	 */
+	/*protected*/ private function _setTimeStamp( nTime:Number ):Void 
+	{
 		_time = (nTime >= 0) ? nTime : (new Date()).valueOf() ;	
 	}
 

@@ -21,57 +21,34 @@
   
 */
 
-/**	TimerEventType
-
-	AUTHOR
-
-		Name : TimerEventType
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2005-11-16
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	CONSTRUCTOR
-	
-		Private
-	
-	CONSTANT SUMMARY
-	
-		- RESTART:String
-			
-			"restart"
-		
-		- START:String
-		
-			"start"
-		
-		- STOP:String
-		
-			"stop"
-		
-		- TIMER:String
-		
-			"timer"
-
-*/
-
+/**
+ * This static enumeration indicated the names of the events in a ITimer instance.
+ * @author eKameleon
+ * @see Timer
+ * @see FrameTimer
+ * @see TimerEvent
+ */
 class vegas.events.TimerEventType 
 {
 
-	// ----o Constructor
-	
-	private function TimerEventType() 
-	{
-		//
-	}
-
-	// ----o Static Properties
-
+	/**
+	 * The name of the event when the ITimer instance restart.
+	 */
 	static public var RESTART:String = "restart" ;
+
+	/**
+	 * The name of the event when the ITimer instance start.
+	 */
 	static public var START:String = "start" ;
+
+	/**
+	 * The name of the event when the ITimer instance stop.
+	 */
 	static public var STOP:String = "stop" ;
+	
+	/**
+	 * The name of the event when the ITimer instance complete this timer.
+	 */
 	static public var TIMER:String = "timer" ;
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(TimerEventType, null , 7, 7) ;

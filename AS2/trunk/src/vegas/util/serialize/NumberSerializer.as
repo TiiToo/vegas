@@ -21,39 +21,20 @@
   
 */
 
-/** NumberSerializer
+/**
+ * This serializer convert a Number object in an EDEN string representation.
+ * EDEN Compatibility to serialize ECMAScript data.
+ * @author eKameleon
+ */
+class vegas.util.serialize.NumberSerializer 
+{
 
-	AUTHOR
-	
-		Name : NumberSerializer
-		Package : vegas.util.serialize
-		Version : 1.0.0.0
-		Date :  2005-12-23
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		EDEN Compatibility to serialize ECMAScript data.
-
-	METHOD SUMMARY
-	
-		- toSource(n:Number):String
-	
-**/
-
-class vegas.util.serialize.NumberSerializer {
-
-	// ----o Construtor
-	
-	private function NumberSerializer() {
-		//
-	}
-	
-	// ----o Static Methods
-
-	static public function toSource(n:Number):String {
+	/**
+	 * Returns a Eden representation of the object.
+	 * @return a string representing the source code of the object.
+	 */	
+	static public function toSource(n:Number):String 
+	{
 		return n.toString() ;
     }
 

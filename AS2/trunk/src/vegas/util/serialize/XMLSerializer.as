@@ -21,41 +21,22 @@
   
 */
 
-/** XMLSerializer
-
-	AUTHOR
-	
-		Name : XMLSerializer
-		Package : vegas.util.serialize
-		Version : 1.0.0.0
-		Date :  2005-12-31
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		EDEN Compatibility to serialize ECMAScript data.
-
-	METHOD SUMMARY
-	
-		- toSource(x:XML):String
-	
-**/
-
 import vegas.util.serialize.Serializer;
 
-class vegas.util.serialize.XMLSerializer {
+/**
+ * This serializer convert a xml in an EDEN string representation.
+ * EDEN Compatibility to serialize ECMAScript data.
+ * @author eKameleon
+ */
+class vegas.util.serialize.XMLSerializer 
+{
 
-	// ----o Construtor
-	
-	private function XMLSerializer() {
-		//
-	}
-	
-	// ----o Static Methods
-
-	static public function toSource(x:XML):String {
+	/**
+	 * Returns a Eden representation of the object.
+	 * @return a string representing the source code of the object.
+	 */	
+	static public function toSource(x:XML):String 
+	{
 		return "new XML(" + Serializer.toSource(x.toString()) + ")" ;
 	}
 

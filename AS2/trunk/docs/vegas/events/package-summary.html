@@ -8,32 +8,35 @@ document.quicknavBasePath="../../index-files";
  This interface is the skeleton of all methods used in the old EDispatcher event model</td></tr><tr><td><a href="IEventDispatcher.html">IEventDispatcher</a></td><td>
  This interface implement class who stores the listeners object an notifies them</td></tr></table><table class="summary_list" summary=""><caption>Class Summary</caption><tr><td><a href="AbstractCoreEventDispatcher.html">AbstractCoreEventDispatcher</a></td><td>
  This abstract class is used to create concrete <code> IEventDispatcher</code> implementations</td></tr><tr><td><a href="ArrayEvent.html">ArrayEvent</a></td><td>
- The <code> ArrayEvent</code> to dispatch an event with a boolean object</td></tr><tr><td><a href="BasicEvent.html">BasicEvent</a></td><td>
+ The <code> ArrayEvent</code> to dispatch an event with an array object</td></tr><tr><td><a href="BasicEvent.html">BasicEvent</a></td><td>
  <code> BasicEvent</code> is the basical event structure to work with <span class="unresolved_type_name">EventDispatcher</span> and <span class="unresolved_type_name">FastDispatcher</span>.
  </td></tr><tr><td><a href="BooleanEvent.html">BooleanEvent</a></td><td>
- The <code> BooleanEvent</code> to dispatch an event with a boolean object</td></tr><tr><td><a href="Delegate.html">Delegate</a></td><td></td></tr><tr><td><a href="DynamicEvent.html">DynamicEvent</a></td><td>
+ The <code> BooleanEvent</code> to dispatch an event with a boolean object</td></tr><tr><td><a href="Delegate.html">Delegate</a></td><td>
+ Delegate was originally created by Mike Chambers for Macromedia mx.events package.
+ </td></tr><tr><td><a href="DynamicEvent.html">DynamicEvent</a></td><td>
  <code> BasicEvent</code> is the dynamic event structure to work with <span class="unresolved_type_name">EventDispatcher</span> and <span class="unresolved_type_name">FastDispatcher</span>.
- </td></tr><tr><td><a href="EDispatcher.html">EDispatcher</a></td><td></td></tr><tr><td><a href="EventDispatcher.html">EventDispatcher</a></td><td>
- Stores the listeners object an notifies them with the DOM Events level 2/3 of the W3C</td></tr><tr><td><a href="EventListenerBatch.html">EventListenerBatch</a></td><td></td></tr><tr><td><a href="EventListenerCollection.html">EventListenerCollection</a></td><td></td></tr><tr><td><a href="EventListenerComparator.html">EventListenerComparator</a></td><td></td></tr><tr><td><a href="EventListenerContainer.html">EventListenerContainer</a></td><td></td></tr><tr><td><a href="EventListenerProxy.html">EventListenerProxy</a></td><td></td></tr><tr><td><a href="EventPhase.html">EventPhase</a></td><td>
- AS3 API flash.events.EventPhase compatibility
- </td></tr><tr><td><a href="EventQueue.html">EventQueue</a></td><td></td></tr><tr><td><a href="EventType.html">EventType</a></td><td> EventType
-
-	AUTHOR
-
-		Name </td></tr><tr><td><a href="FastDispatcher.html">FastDispatcher</a></td><td></td></tr><tr><td><a href="FrontController.html">FrontController</a></td><td>
+ </td></tr><tr><td><a href="EDispatcher.html">EDispatcher</a></td><td>
+ The old event model of VEGAS inspired by the <a href='http://livedocs.macromedia.com/flash/mx2004/main_7_2/wwhelp/wwhimpl/common/html/wwhelp.htm?context=Flash_MX_2004&file=00003105.html'>mx.events.EventDispatcher</a> in the V2 components framework and inspired by the <a href='http://www.gskinner.com/blog/archives/000027.html>GDispatcher</a> class of Grant Skinner.
+ </td></tr><tr><td><a href="EventDispatcher.html">EventDispatcher</a></td><td>
+ Stores the listeners object an notifies them with the DOM Events level 2/3 of the W3C</td></tr><tr><td><a href="EventListenerBatch.html">EventListenerBatch</a></td><td>
+ It handles several <code> EventListener</code> as one <code> EventListener</code>.
+ </td></tr><tr><td><a href="EventListenerCollection.html">EventListenerCollection</a></td><td>
+ Internal class used in the EventDispatcher to collect <code> EventListener</code> for a specific event type</td></tr><tr><td><a href="EventListenerComparator.html">EventListenerComparator</a></td><td>
+ This comparator is used in the <code> EventDispatcher</code> class to ordered all <code> EventLister</code> with a priority value</td></tr><tr><td><a href="EventListenerContainer.html">EventListenerContainer</a></td><td>
+ Internal class in the <code> EventDispatcher</code> class to register in an <code> EventCollection</code> an <code> EventListener</code></td></tr><tr><td><a href="EventPhase.html">EventPhase</a></td><td>
+ The EventPhase class provides values for the eventPhase property of the Event class</td></tr><tr><td><a href="EventQueue.html">EventQueue</a></td><td>
+ Internal class used in <code> EventDispatcher</code> class to bufferize the events if no EventListener are registered with the event type of the event</td></tr><tr><td><a href="EventType.html">EventType</a></td><td>
+ Enumeration static class with the principal event types</td></tr><tr><td><a href="FastDispatcher.html">FastDispatcher</a></td><td>
+ This class is an implementation of the native AsBroadcaster event model but used <code> Event</code> object to dispatch the message.
+ </td></tr><tr><td><a href="FrontController.html">FrontController</a></td><td>
  The Front Controller pattern defines a single EventDispatcher that is responsible for processing application requests.
- </td></tr><tr><td><a href="ModelChangedEvent.html">ModelChangedEvent</a></td><td></td></tr><tr><td><a href="ModelChangedEventType.html">ModelChangedEventType</a></td><td> ModelChangedEvent
-
-	AUTHOR
-
-		Name </td></tr><tr><td><a href="NumberEvent.html">NumberEvent</a></td><td>
- </td></tr><tr><td><a href="StringEvent.html">StringEvent</a></td><td>
- </td></tr><tr><td><a href="TextEvent.html">TextEvent</a></td><td></td></tr><tr><td><a href="TimerEvent.html">TimerEvent</a></td><td></td></tr><tr><td><a href="TimerEventType.html">TimerEventType</a></td><td>	TimerEventType
-
-	AUTHOR
-
-		Name </td></tr><tr><td><a href="ValidatorEvent.html">ValidatorEvent</a></td><td></td></tr><tr><td><a href="ValidatorEventType.html">ValidatorEventType</a></td><td>	ValidatorEventType
-
-	AUTHOR
-
-		Name </td></tr></table><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><span class="button nav_current">Package</span></li><li><span class="button">Class</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
+ </td></tr><tr><td><a href="ModelChangedEvent.html">ModelChangedEvent</a></td><td>
+ This event is used in the MVC model with the IModel implementations</td></tr><tr><td><a href="ModelChangedEventType.html">ModelChangedEventType</a></td><td>
+ Enumeration of all basic event names in the ModelChangedEvent</td></tr><tr><td><a href="NumberEvent.html">NumberEvent</a></td><td>
+ The <code> NumberEvent</code> to dispatch an event with a number object</td></tr><tr><td><a href="StringEvent.html">StringEvent</a></td><td>
+ The <code> StringEvent</code> to dispatch an event with a string object</td></tr><tr><td><a href="TextEvent.html">TextEvent</a></td><td>
+ The <code> TextEvent</code> to dispatch an event with a string text</td></tr><tr><td><a href="TimerEvent.html">TimerEvent</a></td><td>
+ The <code> TimerEvent</code> to dispatch an event with a ITimer representation</td></tr><tr><td><a href="TimerEventType.html">TimerEventType</a></td><td>
+ This static enumeration indicated the names of the events in a ITimer instance</td></tr><tr><td><a href="ValidatorEvent.html">ValidatorEvent</a></td><td>
+ The <code> ValidatorEvent</code> to dispatch an event with a IValidator representation</td></tr><tr><td><a href="ValidatorEventType.html">ValidatorEventType</a></td><td>
+ Enumeration static class with the IValidator event types</td></tr></table><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><span class="button nav_current">Package</span></li><li><span class="button">Class</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

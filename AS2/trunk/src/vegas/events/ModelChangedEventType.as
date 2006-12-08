@@ -21,73 +21,53 @@
   
 */
 
-/** ModelChangedEvent
+/**
+ * Enumeration of all basic event names in the ModelChangedEvent.
+ * @author eKameleon
+ */
+class vegas.events.ModelChangedEventType 
+{
 
-	AUTHOR
-
-		Name : ModelChangedEvent
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2005-11-18
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-
-	CONSTANT SUMMARY
-
-		- ADD_ITEMS:String 
-		
-			"addItems"
-		
-		- MODEL_CHANGED:String 
-			
-			"modelChanged"
-		
-		- REMOVE_ITEMS:String
-			
-			"removeItems"
-		
-		- SORT_ITEMS:String
-		
-			"sortItems"
-		
-		- UPDATE_ALL:String
-		
-			"updateAll"
-		
-		- UPDATE_FIELD:String
-		
-			"updateField"
-		
-		- UPDATE_ITEMS:String
-		
-			"updateItems"
-		
-		- MODEL_CHANGED::String
-		
-			"modelChanged"
-	
-**/
-
-class vegas.events.ModelChangedEventType {
-
-	// ----o Constructor
-	
-	public function ModelChangedEventType() {
-		//
-	}
-
-	// ----o Constant
-	
+	/**
+	 * The type of a ModelChangedEvent when an item is added in this model.
+	 */
 	static public var ADD_ITEMS:String = "addItems" ; 
+
+	/**
+	 * The type of a ModelChangedEvent when clear all items in the model.
+	 */
 	static public var CLEAR_ITEMS:String = "clear" ;
+
+	/**
+	 * The type of a ModelChangedEvent when the model is changed.
+	 */
 	static public var MODEL_CHANGED:String = "modelChanged" ;
+
+	/**
+	 * The type of a ModelChangedEvent when an item is removed in this model.
+	 */
 	static public var REMOVE_ITEMS:String = "removeItems" ;
+
+	/**
+	 * The type of a ModelChangedEvent when the model is sorted.
+	 */
 	static public var SORT_ITEMS:String = "sortItems" ;
+
+	/**
+	 * The type of a ModelChangedEvent when all is update in the model.
+	 */
 	static public var UPDATE_ALL:String = "updateAll" ;
+
+	/**
+	 * The type of a ModelChangedEvent when a field in the model is updated.
+	 */
 	static public var UPDATE_FIELD:String = "updateField" ;
+
+	/**
+	 * The type of a ModelChangedEvent when an item in the model changed.
+	 */
 	static public var UPDATE_ITEMS:String = "updateItems" ;
+	
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(ModelChangedEventType, null , 7, 7) ;
 	

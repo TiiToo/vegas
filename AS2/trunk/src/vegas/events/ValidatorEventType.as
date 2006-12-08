@@ -21,47 +21,21 @@
   
 */
 
-/**	ValidatorEventType
-
-	AUTHOR
-
-		Name : ValidatorEventType
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2005-11-22
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	CONSTRUCTOR
-	
-		Private
-	
-	CONSTANT SUMMARY
-
-		- INVALID:String
-		
-			"invalid"
-		
-		- VALID:String
-		
-			"valid"
-
-*/
-
+/**
+ * Enumeration static class with the IValidator event types.
+ * @author eKameleon
+ */
 class vegas.events.ValidatorEventType 
 {
 
-	// ----o Constructor
-	
-	private function ValidatorEventType()
-	{
-		//
-	}
-
-	// ----o Static Properties
-	
+	/**
+	 * The name of the event invoqued when the IValidator is invalid.
+	 */
 	static public var INVALID:String = "invalid" ;
+
+	/**
+	 * The name of the event invoqued when the IValidator is valid.
+	 */
 	static public var VALID:String = "valid" ;
 
 	static private var __ASPF__ = _global.ASSetPropFlags(ValidatorEventType, null , 7, 7) ;

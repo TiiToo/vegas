@@ -22,24 +22,24 @@
 */
 
 /**
- * AS3 API flash.events.EventPhase compatibility
+ * The EventPhase class provides values for the eventPhase property of the Event class. This class used a polymorphism with AS3 API flash.events.EventPhase class.
  * @author eKameleon
  */
 class vegas.events.EventPhase 
 {
 
 	/**
-	 * The target phase(2).
+	 * The target phase, which is the second phase of the event flow (2).
 	 */
 	static public var AT_TARGET:Number = 2 ;
 	
 	/**
-	 * The bubbling phase(3).
+	 * The bubbling phase, , which is the third phase of the event flow (3).
 	 */
 	static public var BUBBLING_PHASE:Number = 3 ;
 	
 	/**
-	 * The capturing phase(1).
+	 * The capturing phase, which is the first phase of the event flow (1).
 	 */
 	static public var CAPTURING_PHASE:Number = 1 ;
 	
@@ -49,7 +49,7 @@ class vegas.events.EventPhase
 	static public var NONE:Number = 0 ;
 	
 	/**
-	 * Stop the phase(4). Use only by the Event and EventDispatcher class.
+	 * Stop the phase in progress (4). Use only by the Event and EventDispatcher class.
 	 */
 	static public var STOP:Number = 8 ;
 	
@@ -57,6 +57,7 @@ class vegas.events.EventPhase
 	 * Stop the phase immediately (4). Use only by the Event and EventDispatcher class.
 	 */
 	static public var STOP_IMMEDIATE:Number = 10 ;
+	
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(EventPhase, null , 7, 7) ;
 	

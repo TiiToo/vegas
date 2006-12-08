@@ -21,55 +21,56 @@
   
 */
 
-/** ObjectSerializer
-
-	AUTHOR
-	
-		Name : ObjectSerializer
-		Package : vegas.util.serialize
-		Version : 1.0.0.0
-		Date :  2005-12-23
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		EDEN Compatibility to serialize ECMAScript data.
-
-	METHOD SUMMARY
-	
-		- toSource(o:Object, indent:Number, indentor:String):String
-	
-**/
-
 import vegas.util.ArrayUtil;
 import vegas.util.serialize.Serializer;
 
-class vegas.util.serialize.ObjectSerializer {
+/**
+ * This serializer convert a primitive object in an EDEN string representation.
+ * EDEN Compatibility to serialize ECMAScript data.
+ * @author eKameleon
+ */
+class vegas.util.serialize.ObjectSerializer 
+{
 
-	// ----o Construtor
-	
-	private function ObjectSerializer() {
-		//
-	}
-	
-	// ----o Static Methods
-
-	static public function toSource(o:Object, indent:Number, indentor:String):String {
+	/**
+	 * Returns a Eden representation of the object.
+	 * @return a string representing the source code of the object.
+	 */	
+	static public function toSource(o:Object, indent:Number, indentor:String):String 
+	{
 		var each:String ;
 		var source:Array = [] ;
 		if (indent != null) indent ++ ;
-		for (each in o) {
-			if ( o.hasOwnProperty(each) ) {
-				if (o[each] === undefined) source.push( each + ":" + "undefined") ;
-				else if (o[each] === null) source.push( each + ":" + "null") ;
-				else source.push( each + ":" + Serializer.toSource(o[each], indent, indentor) ) ;
+		for (each in o) 
+		{
+			if ( o.hasOwnProperty(each) ) 
+			{
+				if (o[each] === undefined) 
+				{
+					source.push( each + ":" + "undefined") ;
+				}
+				else if (o[each] === null) 
+				{
+					source.push( each + ":" + "null") ;
+				}
+				else 
+				{
+					source.push( each + ":" + Serializer.toSource(o[each], indent, indentor) ) ;
+				}
 			}
 		}
-		if (indent == null) return "{" + source.join(",") + "}" ;
-		if (indentor == null) indentor = "    " ;
-		if(indent == null ) indent = 0;
+		if (indent == null) 
+		{
+			return "{" + source.join(",") + "}" ;
+		}
+		if (indentor == null)
+		{
+			indentor = "    " ;
+		}
+		if(indent == null ) 
+		{
+			indent = 0;
+		}
 		var decal:String = "\n" + ArrayUtil.initialize( indent, indentor ).join( "" ) ;
 		return decal + "{" + decal + source.join( "," + decal ) + decal + "}" ;
     }

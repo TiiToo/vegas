@@ -21,60 +21,26 @@
   
 */
 
-/** EDispatcher
-
-	AUTHOR
-	
-		Name : EDispatcher
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2005-10-11
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		Private
-
-	METHOD SUMMARY
-	
-		- addEventListener( eventName:String, obj, func ):Void 
-		
-		- dispatchEvent(ev):Void 
-		
-		- eventListenerExists(eventName:String, obj , func):Boolean
-		
-		- static initialize( target )
-		
-			Permet d'injecter dans un objet les méthodes définies par l'interface IDispatcher
-		
-		- removeAllEventListeners(eventName:String):Void 
-		
-		- removeEventListener( eventName:String, obj , func):Void 
-		
-		- updateEvent(eventName:String, oInit):Void 
-
-	INSPIRATION & COMPATIBILITY 
-	
-		GDispatcher by Grant Skinner, http://gskinner.com/
-
-**/
-
 import vegas.events.Delegate;
 import vegas.util.Mixin;
 
-class vegas.events.EDispatcher {
-
-	// -----o Constructor
-
-	private function EDispatcher() 
-	{
-		//
-	}
+/**
+ * The old event model of VEGAS inspired by the <a href='http://livedocs.macromedia.com/flash/mx2004/main_7_2/wwhelp/wwhimpl/common/html/wwhelp.htm?context=Flash_MX_2004&file=00003105.html'>mx.events.EventDispatcher</a> in the V2 components framework and inspired by the <a href='http://www.gskinner.com/blog/archives/000027.html>GDispatcher</a> class of Grant Skinner.
+ * <p>This event model is depreciated, used {@code EventDispatcher} class in VEGAS please.</p>
+ * @author eKameleon
+ * @see IDispatcher interface to creates concrete EDispatcher implementations.
+ * @see FastDispatcher
+ * @see EventDispatcher
+ * @see vegas.events.type package with all core class with the IDispatcher implementation and the EDispatcher mixin.
+ */
+class vegas.events.EDispatcher 
+{
 	
-	// ----o Mixin
-		
+	/**
+	 * Launch the mixin of the specified target object. 
+	 * Injected in this object the methods addEventListener, dispatchEvent, eventListenerExists, removeAllEventListeners, removeEventListener and dispatchEvent.
+	 * @see Mixin  
+	 */
 	static public function initialize ( target ):Void 
 	{
 		var attributes:Array = 
@@ -86,17 +52,62 @@ class vegas.events.EDispatcher {
 		mix.run() ;
 	}
 	
+	static public function dispatch( target, a:Array , ev ):Void 
+	{
+		for (var each:String in a) 
+		{
+			var item = a[each] ;
+			var o = item.o ;
+			var f = item.f ;
+			var tof:String = typeof(o) ;
+			if (tof == "object" || tof == "movieclip") 
+			{
+				if (f instanceof Function) 
+				{
+					Delegate.create(o, f)(ev) ;
+				}
+				else if (o["handleEvent"] && !f) 
+				{
+					o["handleEvent"](ev) ;
+				}
+				else 
+				{
+					if (f == undefined) f = ev.type ;
+					if (typeof(f) == "string") 
+					{
+						o[f].apply(o, [ev]) ;
+					}
+				}
+			} 
+			else  // function 
+			{
+				o.apply(target, [ev]) ;
+			}
+		}	
+	}
+	
+	static public function indexOf( a:Array, o , f):Number 
+	{
+		var l:Number = a.length ;
+		while (--l > -1) 
+		{
+			var item = a[l] ;
+			if (item.o == o && item.f == f) return l ; 
+		}
+		return -1;
+	}
+	
+	/**
+	 * Returns the string representation of this singleton.
+	 * @return the string representation of this singleton.
+	 */
 	static public function toString() : String 
 	{
 		return "[EDispatcher]";
 	}
 	
-	// -----o Private Properties
-
 	private var _listeners ;
 	
-	// -----o Private Methods
-
 	private function addEventListener( eventName:String, obj, func ):Void 
 	{
 		if (!eventName) return ;
@@ -147,53 +158,5 @@ class vegas.events.EDispatcher {
 		if ( oInit != undefined ) for (var each:String in oInit) ev[each] = oInit[each] ;
 		dispatchEvent( ev ) ;
 	}
-	
-	// ----o Static public Methods
-	
-	static public function dispatch( target, a:Array , ev ):Void 
-	{
-		for (var each:String in a) 
-		{
-			var item = a[each] ;
-			var o = item.o ;
-			var f = item.f ;
-			var tof:String = typeof(o) ;
-			if (tof == "object" || tof == "movieclip") 
-			{
-				if (f instanceof Function) 
-				{
-					Delegate.create(o, f)(ev) ;
-				}
-				else if (o["handleEvent"] && !f) 
-				{
-					o["handleEvent"](ev) ;
-				}
-				else 
-				{
-					if (f == undefined) f = ev.type ;
-					if (typeof(f) == "string") 
-					{
-						o[f].apply(o, [ev]) ;
-					}
-				}
-			} 
-			else  // function 
-			{
-				o.apply(target, [ev]) ;
-			}
-		}	
-	}
-	
-	static public function indexOf( a:Array, o , f):Number 
-	{
-		var l:Number = a.length ;
-		while (--l > -1) 
-		{
-			var item = a[l] ;
-			if (item.o == o && item.f == f) return l ; 
-		}
-		return -1;
-	}
-
 	
 }

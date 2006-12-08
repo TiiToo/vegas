@@ -24,12 +24,17 @@
 import vegas.string.UnicodeChar;
 
 /**
+ * This serializer convert a string in an EDEN string representation.
  * EDEN Compatibility to serialize ECMAScript data.
  * @author eKameleon
  */
 class vegas.util.serialize.StringSerializer 
 {
 
+	/**
+	 * Returns a Eden representation of the object.
+	 * @return a string representing the source code of the object.
+	 */	
 	static public function toSource(s:String):String 
 	{
 		s = new String(s) ;
@@ -40,7 +45,8 @@ class vegas.util.serialize.StringSerializer
 		var pos:Number = 0 ;
 		var toUnicode:Function = UnicodeChar.toUnicode ;
 		var l:Number = s.length ;
-		while( pos < l ) {
+		while( pos < l ) 
+		{
 			ch = s.charAt(pos) ;
 			code = s.charCodeAt(pos) ;
 			if( code > 0xFF ) str += "\\u" + toUnicode( code ) ;

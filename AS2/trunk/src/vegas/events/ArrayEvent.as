@@ -24,7 +24,7 @@
 import vegas.events.DynamicEvent;
 
 /**
- * The {@code ArrayEvent} to dispatch an event with a boolean object.
+ * The {@code ArrayEvent} to dispatch an event with an array object.
  * @author eKameleon
  */
 class vegas.events.ArrayEvent extends DynamicEvent 

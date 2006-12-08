@@ -21,114 +21,37 @@
   
 */
 
-/**	ValidatorEvent
-
-	AUTHOR
-
-		Name : ValidatorEvent
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2005-11-18
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		new Validator(type:String, target) ;
-
-	PROPERTY SUMMARY
-	
-		- bubbles:Boolean [R/W]
-		
-		- context [R/W]
-		
-		- currentTarget [R/W]
-		
-		- eventPhase:Number [R/W]
-		
-		- target[R/W]
-		
-		- text:String
-		
-		- type:String [R/W]
-
-	METHOD SUMMARY
-	
-		- cancel():Void
-		
-		- clone():BasicEvent
-		
-		- getBubbles():Boolean
-		
-		- getContext():Object
-		
-		- getCurrentTarget():Object
-		
-		- getEventPhase():Number
-		
-		- getTarget():Object
-		
-		- getTimeStamp():Number
-		
-		- getType():String
-		
-		- isCancelled():Boolean
-		
-		- isQueued():Boolean
-		
-		- queueEvent():Void
-		
-		- setBubbles(b:Boolean):Void
-		
-		- setContext(context:Object):Void
-		
-		- setCurrentTarget(target):Void
-		
-		- setEventPhase(n:Number):Void
-		
-		- setTarget(target:Object):Void
-		
-		- setType(type:String):Void
-		
-		- stopImmediatePropagation()
-		
-		- toString():String
-
-	EVENTS TYPE SUMMARY
-	
-		- ValidatorEventType.INVALID
-		
-		- ValidatorEventType.VALID
-	
-	INHERIT
-	
-		BasicEvent → DynamicEvent → ValidatorEvent
-		
-	IMPLEMENTS 
-		
-		Event, ICloneable, IFormattable, IHashable, ISerializable
-
-*/
-
 import vegas.events.DynamicEvent;
 
-class vegas.events.ValidatorEvent extends DynamicEvent {
+/**
+ * The {@code ValidatorEvent} to dispatch an event with a IValidator representation.
+ * @author eKameleon
+ */
+class vegas.events.ValidatorEvent extends DynamicEvent 
+{
 
-	// ----o Constructor
-	
+	/**
+	 * Creates a new ValidatorEvent instance.
+	 */
 	public function ValidatorEvent(type:String, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
 	{
 		super(type, target, context, bubbles, eventPhase, time, stop) ;
 	}
 
-	// ----o Constants
-
+	/**
+	 * The name of the event invoqued when the IValidator is invalid.
+	 */
 	static public var INVALID:String = "invalid" ;
+
+	/**
+	 * The name of the event invoqued when the IValidator is valid.
+	 */
 	static public var VALID:String = "valid" ;
 
-	// ----o Public Methods
-
+	/**
+	 * Returns the shallow copy of this event.
+	 * @return the shallow copy of this event.
+	 */
 	public function clone() 
 	{
 		return new ValidatorEvent(getType(), getTarget()) ;

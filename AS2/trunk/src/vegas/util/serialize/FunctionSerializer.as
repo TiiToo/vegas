@@ -21,44 +21,18 @@
   
 */
 
-/** FunctionSerializer
+/**
+ * This serializer convert a Function object in an EDEN string representation.
+ * EDEN Compatibility to serialize ECMAScript data.
+ * @author eKameleon
+ */
+class vegas.util.serialize.FunctionSerializer 
+{
 
-	AUTHOR
-	
-		Name : ErrorSerializer
-		Package : vegas.util.serialize
-		Version : 1.0.0.0
-		Date :  2005-12-23
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		EDEN Compatibility to serialize ECMAScript data.
-	
-	METHOD SUMMARY
-	
-		- static toSource(f:Function):String
-		
-			return "(function)" beacause eden serialize data and not function
-	
-	SEE ALSO
-	
-		- EDEN : http://live.burrrn.com/wiki/eden
-	
-**/
-
-class vegas.util.serialize.FunctionSerializer {
-
-	// ----o Construtor
-	
-	private function FunctionSerializer() {
-		//
-	}
-	
-	// ----o Static Methods
-
+	/**
+	 * Returns "(function)" beacause eden serialize data and not function.
+	 * @return "(function)" beacause eden serialize data and not function.
+	 */
 	static public function toSource( f:Function ):String {
 		return '(function)' ;
     }

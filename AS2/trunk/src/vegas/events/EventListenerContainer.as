@@ -21,83 +21,80 @@
   
 */
 
-/** EventListenerContainer
-
-	AUTHOR
-	
-		Name : EventListenerContainer
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2005-10-13
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- enableAutoRemove(enable:Boolean):Void
-		
-		- getPriority():Number
-		
-		- isAutoRemoveEnabled():Boolean
-		
-		- getListener():EventListener
-		
-		- setPriority(n:Number):Void
-		
-		- toString():String
-	
-	INHERIT
-	
-		CoreObject → EventListenerContainer
-	
-	IMPLEMENT
-
-		IFormattable, IHashable
-	
-**/
-
 import vegas.core.CoreObject;
 import vegas.events.EventListener;
 
-class vegas.events.EventListenerContainer extends CoreObject  {
+/**
+ * Internal class in the {@code EventDispatcher} class to register in an {@code EventCollection} an {@code EventListener}.
+ * @author eKameleon
+ * @see EventListenerCollection
+ * @see EventListenerComparator
+ */
+class vegas.events.EventListenerContainer extends CoreObject  
+{
 
-	// ----o Constructor
-	
+	/**
+	 * Creates a new EventListenerContainer instance.
+	 * @param listener an {@code EventListener}
+	 */	
 	public function EventListenerContainer( listener:EventListener ) {
 		_listener = listener ;
 	}
 
-	// ----o Public Properties
-	
+	/**
+	 * Determinates if the listener use capture flow event or not.
+	 */	
 	public var useCapture:Boolean ;
 
-	// ----o Public Methods
-    
-	public function enableAutoRemove(enable:Boolean):Void {
+	/**
+	 * Enables the auto remove option in the EventListener.
+	 * @param enable a boolean to indicated if the EventListener is autoRemove at the end of the event flow.
+	 */
+	public function enableAutoRemove(enable:Boolean):Void 
+	{
         _autoRemove = enable;
     }
 
-	public function getPriority():Number {
+	/**
+	 * Returns the priority of the {@code EventListener}. This priority is used in the {@code EventListenerComparator}.
+	 * @return the priority of the {@code EventListener}. This priority is used in the {@code EventListenerComparator}.
+	 * @see EventListenerComparator
+	 */
+	public function getPriority():Number 
+	{
 		return _priority || 0 ;
 	}
     
-    public function isAutoRemoveEnabled():Boolean {
+    /**
+     * Returns {@code true} if the {@code EventListener} is auto remove at the end of the event flow.
+     * @return {@code true} if the {@code EventListener} is auto remove at the end of the event flow.
+     */
+    public function isAutoRemoveEnabled():Boolean 
+    {
         return _autoRemove;
     }
 
-    public function getListener():EventListener {
+	/**
+	 * Returns the {@code EventListener} reference.
+	 * @return the {@code EventListener} reference.
+	 */
+    public function getListener():EventListener 
+    {
         return _listener ;
     }
     
-	public function setPriority(n:Number):Void {
+    /**
+     * Sets the priority of the {@code EventListener}.
+     */
+	public function setPriority(n:Number):Void 
+	{
 		_priority = (n>0) ? n : 0 ;
 	}
 	
-	// ----o Private Properties
-
 	private var _autoRemove:Boolean = false ;
+
     private var _listener:EventListener = null ;
+
 	private var _priority:Number ;
     
 }

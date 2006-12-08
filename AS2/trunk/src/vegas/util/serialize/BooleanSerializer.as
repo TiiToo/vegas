@@ -21,41 +21,22 @@
   
 */
 
-/** BooleanSerializer
-
-	AUTHOR
-	
-		Name : BooleanSerializer
-		Package : vegas.util.serialize
-		Version : 1.0.0.0
-		Date :  2005-12-23
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		EDEN Compatibility to serialize ECMAScript data.
-
-	METHOD SUMMARY
-	
-		- static toSource(b:Boolean):String
-	
-**/
-
 import vegas.util.BooleanUtil;
 
-class vegas.util.serialize.BooleanSerializer {
+/**
+ * This serializer convert a boolean in an EDEN string representation.
+ * EDEN Compatibility to serialize ECMAScript data.
+ * @author eKameleon
+ */
+class vegas.util.serialize.BooleanSerializer 
+{
 
-	// ----o Construtor
-	
-	private function BooleanSerializer() {
-		//
-	}
-	
-	// ----o Static Methods
-
-	static public function toSource( b:Boolean ):String {
+	/**
+	 * Returns a Eden representation of the object.
+	 * @return a string representing the source code of the object.
+	 */	
+	static public function toSource( b:Boolean ):String 
+	{
 		return BooleanUtil.equals(b, true) ? "true" : "false" ;
     }
 
