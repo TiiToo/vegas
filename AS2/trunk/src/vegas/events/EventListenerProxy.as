@@ -26,7 +26,7 @@ import vegas.events.Event;
 import vegas.util.TypeUtil;
 
 /**
- * This class extended the {@code vegas.events.Delegate] class and uses function or a string to defined the method to call by the virtual EventListener.
+ * This class extended the {@code Delegate} class and uses function or a string to defined the method to call by the virtual EventListener.
  * @author eKameleon 
  */
 class vegas.events.EventListenerProxy extends Delegate 

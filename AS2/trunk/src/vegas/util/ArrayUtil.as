@@ -253,7 +253,7 @@ class vegas.util.ArrayUtil
 	 * }
 	 * </p>
 	 * @return the shuffled array.
-	 * @see ArrayUtil.pierce() method.
+	 * @see ArrayUtil {@code pierce()} method.
 	 */
 	static public function shuffle( ar:Array) 
 	{

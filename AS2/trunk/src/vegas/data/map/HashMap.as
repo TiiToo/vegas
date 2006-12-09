@@ -168,8 +168,8 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 
 	/**
 	 * Associates the specified value with the specified key in this map.
-	 * @key the key to register the value.
-	 * @value the value to be mapped in the map.
+	 * @param key the key to register the value.
+	 * @param value the value to be mapped in the map.
 	 */
 	public function put(key, value) 
 	{

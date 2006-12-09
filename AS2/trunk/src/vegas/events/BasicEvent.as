@@ -89,6 +89,7 @@ class vegas.events.BasicEvent extends CoreObject implements Event
 	}
 
 	/**
+	 * Returns {@code true} if the event is bubbling.
 	 * @return {@code true} if the event is bubbling.
 	 */
 	public function getBubbles():Boolean 
@@ -98,7 +99,7 @@ class vegas.events.BasicEvent extends CoreObject implements Event
 
 	/**
 	 * Returns the optional context of this event.
-	 * @returns an object, corresponding the optional context of this event.
+	 * @return an object, corresponding the optional context of this event.
 	 */
 	public function getContext() 
 	{
@@ -161,7 +162,8 @@ class vegas.events.BasicEvent extends CoreObject implements Event
 	}
 
 	/**
-	 * Returns {@code true} if the event is cancelled. 
+	 * Returns {@code true} if the event is cancelled.
+	 * @return {@code true} if the event is cancelled.  
 	 */
 	public function isCancelled():Boolean 
 	{
@@ -170,6 +172,7 @@ class vegas.events.BasicEvent extends CoreObject implements Event
 
 	/**
 	 * Returns {@code true} if the event is queued.
+	 * @return {@code true} if the event is queued.
 	 */
 	public function isQueued():Boolean 
 	{
