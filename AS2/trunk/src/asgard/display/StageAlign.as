@@ -25,6 +25,24 @@ import vegas.util.StringUtil;
 
 /**
  * The StageAlign class provides constant values to use for the Stage.align property.
+ * <p></b>Example :</b></p>
+ * {@code
+ * import asgard.display.StageAlign ;
+ * 
+ * trace ("---- constant") ;
+ * 
+ * trace ("StageAlign.TOP_LEFT : " + StageAlign.TOP_LEFT) ;
+ * StageAlign.TOP_LEFT = "coucou" ;
+ * trace ("StageAlign.TOP_LEFT : " + StageAlign.TOP_LEFT) ;
+ * 
+ * trace ("---- getAlign") ;
+ * 
+ * trace("get align 'tl' : " + StageAlign.getAlign("tl")) ;
+ * trace("get align 'lt' : " + StageAlign.getAlign("LT")) ;
+ * trace("get align 'unknow' : " + StageAlign.getAlign("unknow", StageAlign.BOTTOM_LEFT)) ;
+ * 
+ * }
+ * @author eKameleon
  */
 class asgard.display.StageAlign 
 {

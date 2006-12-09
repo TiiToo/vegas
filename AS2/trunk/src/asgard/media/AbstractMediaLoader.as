@@ -33,7 +33,10 @@ import vegas.events.TimerEventType;
 import vegas.util.FrameTimer;
 
 /**
+ * This class simplify the implementation of the IMediaLoader interface.
  * @author eKameleon
+ * @see SoundLoader
+ * @see VideoLoader
  */
 class asgard.media.AbstractMediaLoader extends AbstractLoader implements IMediaLoader 
 {

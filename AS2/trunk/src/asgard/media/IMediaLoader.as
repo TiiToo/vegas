@@ -24,6 +24,7 @@
 import asgard.net.ILoader;
 
 /**
+ * This interface defined a ILoader who showed a Media (Sound, Video, ..)
  * @author eKameleon
  */
 interface asgard.media.IMediaLoader extends ILoader 

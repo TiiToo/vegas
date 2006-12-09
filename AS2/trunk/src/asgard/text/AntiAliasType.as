@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Luna Framework.
+  The Original Code is Vegas Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -21,59 +21,21 @@
   
 */
 
-/** AntiAliasType
-
-	AUTHOR
-
-		Name : AntiAliasType
-		Package : asgard.text
-		Version : 1.0.0.0
-		Date :  2006-05-22
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		The AntiAliasType class provides values for anti-aliasing in the flash.text.TextField class.
-
-	CONSTRUCTOR
-	
-		Private
-	
-	CONSTANT SUMMARY
-	
-		- static ADVANCED:String = "advanced"
-			
-			[static] Sets anti-aliasing to advanced anti-aliasing.
-	
-		- static NORMAL:String = "normal"
-		
-			[static] Sets anti-aliasing to the anti-aliasing that is used in Flash Player 7 and earlier.
-
-**/
-
-
 /**
- * AntiAliasType
+ * The AntiAliasType class provides values for anti-aliasing in the flash.text.TextField class.
  * @author eKameleon
- * @version 1.0.0.0
- **/
- 
+ */
 class asgard.text.AntiAliasType 
 {
 	
-	// ----o Constructor
-	
-	private function AntiAliasType()
-	{
-		//
-	}
-	
-	// ----o Constant
-	
+	/**
+	 * [static] Sets anti-aliasing to advanced anti-aliasing ("advanced").
+	 */
 	static public var ADVANCED:String = "advanced" ;
 	
+	/**
+	 * [static] Sets anti-aliasing to the anti-aliasing that is used in Flash Player 7 and earlier ("normal").
+	 */
 	static public var NORMAL:String = "normal" ;
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(AntiAliasType, null , 7, 7) ;

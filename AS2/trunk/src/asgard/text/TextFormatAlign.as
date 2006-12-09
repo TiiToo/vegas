@@ -21,68 +21,32 @@
   
 */
 
-/** TextFormatAlign
-
-	AUTHOR
-
-		Name : TextFormatAlign
-		Package : asgard.text
-		Version : 1.0.0.0
-		Date :  2006-05-22
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		A class that provides values for text alignment in the TextFormat class.
-
-	CONSTRUCTOR
-	
-		Private
-	
-	CONSTANT SUMMARY
-	
-		- static const CENTER:String = "center"
-			
-			[static] Centers the text in the text field.
-		
-		- static const JUSTIFY:String = "justify"
-			
-			[static] Justifies text within the text field.(only >= FP8).
-
-		- static const LEFT:String = "left"
-
-			[static] Aligns text to the left within the text field.
-
-		- static const RIGHT:String = "right"
-
-			[static] Aligns text to the right within the text field.
-
-**/
-
 /**
- * TextFormatAlign
+ * A class that provides values for text alignment in the TextFormat class.
  * @author eKameleon
  * @version 1.0.0.0
- **/
- 
-class asgard.text.TextFormatAlign {
+ */
+class asgard.text.TextFormatAlign 
+{
 	
-	// ----o Constructor
-	
-	private function TextFormatAlign () {
-		//
-	}
-	
-	// ----o Constant
-	
+	/**
+	 * Centers the text in the text field ("center").
+	 */
 	static public var CENTER:String = "center" ;
 	
+	/**
+	 * Justifies text within the text field [only >= FP8] ("justify").
+	 */
 	static public var JUSTIFY:String = "justify" ;
 	
+	/**
+	 * Aligns text to the left within the text field ("left").
+	 */
 	static public var LEFT:String = "left" ;
 	
+	/**
+	 * Aligns text to the right within the text field ("right").
+	 */
 	static public var RIGHT:String = "right" ;
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(TextFormatAlign, null , 7, 7) ;

@@ -27,6 +27,50 @@ import flash.display.BitmapData;
 
 /**
  * Display a BitmapData object in a MovieClip.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import asgard.display.Bitmap ; 
+ * import flash.display.BitmapData ;
+ * 
+ * var url:String = "pic/picture.jpg" ;
+ * var container:MovieClip = createEmptyMovieClip("container", 1) ;
+ * container._x = 10 ;
+ * container._y = 10 ;
+ * 
+ * var loader:MovieClipLoader = new MovieClipLoader() ;
+ * loader.addListener(this) ;
+ * 
+ * var bmp:BitmapData ;
+ * var bmpMC:MovieClip = createEmptyMovieClip("bmpMC", 2) ;
+ * 
+ * var bitmap:Bitmap = new Bitmap("bmp1", bmpMC) ;
+ * 
+ * var onLoadInit:Function = function ( target ):Void
+ * {
+ *     bmp = new BitmapData(target._width, target._height) ;
+ *     bmp.draw(target) ;
+ *     
+ *     bitmap.x = container._x + container._width + 10 ;
+ *     bitmap.y = container._y ;
+ *     
+ *     trace(bitmap.width + " : " + bitmap.height) ;
+ *     
+ *     bitmap.bitmapData = bmp ;
+ *     
+ *     trace(bitmap.width + " : " + bitmap.height) ;
+ * }
+ * 
+ * loader.loadClip(url, container) ;
+ * 
+ * var onKeyDown:Function = function():Void
+ * {
+ *     // bitmap.clear() ; // test clear method
+ *     bitmap.bitmapData = null ;
+ *     trace(bitmap.width + " : " + bitmap.height) ;
+ * }
+ * Key.addListener(this) ;
+ * 
+ * }
  * @author eKameleon
  */
 class asgard.display.Bitmap extends DisplayObject 
@@ -76,9 +120,11 @@ class asgard.display.Bitmap extends DisplayObject
 	/**
 	 * (read-write) Controls whether or not the Bitmap object is snapped to the nearest pixel.
 	 * <p>The PixelSnapping class includes possible values :
-	 * <li>PixelSnapping.NEVER — No pixel snapping occurs.</li>
-	 * <li>PixelSnapping.ALWAYS — The image is always snapped to the nearest pixel, independent of transformation.</li>
-	 * <li>PixelSnapping.AUTO — The image is snapped to the nearest pixel if it is drawn with no rotation or skew and it is drawn at a scale factor of 99.9% to 100.1%. If these conditions are satisfied, the bitmap image is drawn at 100% scale, snapped to the nearest pixel. Internally, this value allows the image to be drawn as fast as possible using the vector renderer.</li>
+	 * <ul>
+	 * <li>PixelSnapping.NEVER No pixel snapping occurs.</li>
+	 * <li>PixelSnapping.ALWAYS The image is always snapped to the nearest pixel, independent of transformation.</li>
+	 * <li>PixelSnapping.AUTO The image is snapped to the nearest pixel if it is drawn with no rotation or skew and it is drawn at a scale factor of 99.9% to 100.1%. If these conditions are satisfied, the bitmap image is drawn at 100% scale, snapped to the nearest pixel. Internally, this value allows the image to be drawn as fast as possible using the vector renderer.</li>
+	 * </ul>
 	 * </p>
 	 * @since Flash Player 8.5
 	 */
@@ -90,9 +136,11 @@ class asgard.display.Bitmap extends DisplayObject
 	/**
 	 * (read-write) Controls whether or not the Bitmap object is snapped to the nearest pixel.
 	 * <p>The PixelSnapping class includes possible values :
-	 * <li>PixelSnapping.NEVER — No pixel snapping occurs.</li>
-	 * <li>PixelSnapping.ALWAYS — The image is always snapped to the nearest pixel, independent of transformation.</li>
-	 * <li>PixelSnapping.AUTO — The image is snapped to the nearest pixel if it is drawn with no rotation or skew and it is drawn at a scale factor of 99.9% to 100.1%. If these conditions are satisfied, the bitmap image is drawn at 100% scale, snapped to the nearest pixel. Internally, this value allows the image to be drawn as fast as possible using the vector renderer.</li>
+	 * <ul>
+	 * <li>PixelSnapping.NEVER No pixel snapping occurs.</li>
+	 * <li>PixelSnapping.ALWAYS The image is always snapped to the nearest pixel, independent of transformation.</li>
+	 * <li>PixelSnapping.AUTO The image is snapped to the nearest pixel if it is drawn with no rotation or skew and it is drawn at a scale factor of 99.9% to 100.1%. If these conditions are satisfied, the bitmap image is drawn at 100% scale, snapped to the nearest pixel. Internally, this value allows the image to be drawn as fast as possible using the vector renderer.</li>
+	 * </ul>
 	 * </p>
 	 * @since Flash Player 8.5
 	 */

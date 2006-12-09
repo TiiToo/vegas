@@ -30,6 +30,59 @@ import vegas.core.HashCode;
 import vegas.errors.IllegalArgumentError;
 
 /**
+ * The DisplayLoader class is used to load SWF files or image (JPG, PNG, or GIF) files. 
+ * <p>Use the load() method to initiate loading.</p>
+ * <p><b>Example :</b></p>
+ * {@code
+ * import asgard.display.DisplayLoader ;
+ * import asgard.events.LoaderEvent ;
+ * import asgard.events.LoaderEventType ;
+ * import asgard.net.URLRequest ;
+ * 
+ * import vegas.events.Delegate ;
+ * 
+ * var onLoadError = function(ev:LoaderEvent):Void
+ * {
+ *     trace("> " + ev.getType() + " : " + ev.error ) ;
+ * }
+ * 
+ * var onLoadComplete = function(ev:LoaderEvent):Void
+ * {
+ *     trace(ev.getTarget() + " > " + ev.getType() ) ;
+ * }
+ * 
+ * var onLoadInit = function(ev:LoaderEvent):Void
+ * {
+ *     trace(ev.getTarget() + " > " + ev.getType() ) ;
+ * }
+ * 
+ * var onLoadProgress = function (ev:LoaderEvent):Void
+ * {
+ *     trace(ev.getTarget() + " > " + ev.getType() + " : " + ev.getPercent() + "%") ;
+ * }
+ * 
+ * var onLoadStart = function (ev:LoaderEvent):Void
+ * {
+ *     trace(ev.getTarget() + " > " + ev.getType() ) ;
+ * }
+ * 
+ * var url:String = "pic/picture.jpg" ;
+ * var mc:MovieClip = createEmptyMovieClip("container", 1) ;
+ * 
+ * mc._x = 25 ;
+ * mc._y = 25 ;
+ * 
+ * var loader:DisplayLoader = new DisplayLoader(mc) ;
+ * loader.addEventListener(LoaderEventType.COMPLETE, new Delegate(this, onLoadComplete)) ;
+ * loader.addEventListener(LoaderEventType.IO_ERROR, new Delegate(this, onLoadError)) ;
+ * loader.addEventListener(LoaderEventType.INIT, new Delegate(this, onLoadInit)) ;
+ * loader.addEventListener(LoaderEventType.PROGRESS, new Delegate(this, onLoadProgress)) ;
+ * loader.addEventListener(LoaderEventType.START, new Delegate(this, onLoadStart)) ;
+ * 
+ * var request:URLRequest = new URLRequest(url);
+ * loader.load(request) ;
+ * 
+ * }
  * @author eKameleon
  */
 class asgard.display.DisplayLoader extends AbstractLoader 

@@ -21,65 +21,48 @@
   
 */
 
-/** DisplayLoaderCollector
-
-	AUTHOR
-
-		Name : DisplayLoaderCollector
-		Package : asgard.display
-		Version : 1.0.0.0
-		Date :  2006-03-20
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-*/
-
 import asgard.display.DisplayLoader;
 
 import vegas.data.map.HashMap;
 
 /**
+ * Collect all DisplayLoader in the application.
  * @author eKameleon
- * @version 1.0.0.0
- **/
-
-class asgard.display.DisplayLoaderCollector {
-
-	/**
-	 * constructor
-	 */
-    private function DisplayLoaderCollector() {
-		//
-    }
+ */
+class asgard.display.DisplayLoaderCollector 
+{
 
 	/**
-	 * Public Methods
+	 * Returns {@code true} if the collector contains the specified DisplayLoader defined by this name.
 	 */
-	
 	static public function contains( sName:String ):Boolean 
 	{
 		return _map.containsKey( sName ) ;	
 	}
-	
+
+	/**
+	 * Returns the DisplayLoader in the collector specified by the string name in parameter.
+	 */	
 	static public function get(sName:String):DisplayLoader 
 	{
 		return DisplayLoader(_map.get(sName)) ;	
 	}
 	
+	/**
+	 * Inserts a DisplayLoader in the collector.
+	 */
 	static public function insert(sName:String, dObject:DisplayLoader):Boolean 
 	{
 		return (_map.put(sName, dObject) != null) ;
 	}
 	
+	/**
+	 * Removes a DisplayLoader in the collector.
+	 */
 	static public function remove(sName:String):Void 
 	{
 		_map.remove(sName) ;
 	}
-	
-	/**
-	 * Private Methods
-	 */
 	
 	static private var _map:HashMap = new HashMap() ;
 	

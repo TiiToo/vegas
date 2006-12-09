@@ -21,56 +21,32 @@
   
 */
 
-/* -------- StageQuality
+/**
+ * The StageQuality class provides values for the global function {@code _quality}.
+ * Polymorphism with the flash.display.StageQuality class but in AS3 the {@code Stage.quality} property is defined for this values.
+ * @author eKameleon
+ */
+class asgard.display.StageQuality 
+{
 
-	AUTHOR
-
-		Name : StageQuality
-		Package : asgard.display
-		Version : 1.0.0.0
-		Date :  2006-01-02
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		Private
-	
-	CONSTANT SUMMARY
-	
-		- BEST:String
-
-			Specifies Very high rendering quality: graphics are anti-aliased using a 4 x 4 pixel grid and bitmaps are always smoothed.
-		
-		- HIGH:String
-			
-			Specifies high rendering quality: graphics are anti-aliased using a 4 x 4 pixel grid, and bitmaps are smoothed if the movie is static.
-			
-		- LOW:String
-			
-			Specifies low rendering quality: graphics are not anti-aliased, and bitmaps are not smoothed.
-		
-		- MEDIUM:String
-		
-			Specifies medium rendering quality: graphics are anti-aliased using a 2 x 2 pixel grid, but bitmaps are not smoothed.
-		
-	
-------------*/
-
-class asgard.display.StageQuality {
-
-	// ----o Constructor
-
-    private function StageQuality() {
-		//
-	}
-
-	// ----o Public Properties
-
+	/**
+	 * Specifies Very high rendering quality: graphics are anti-aliased using a 4 x 4 pixel grid and bitmaps are always smoothed.
+ 	 */
 	static public var BEST:String = "best" ;
+	
+	/**
+	 * Specifies high rendering quality: graphics are anti-aliased using a 4 x 4 pixel grid, and bitmaps are smoothed if the movie is static.
+	 */
 	static public var HIGH:String = "high" ;
+	
+	/**
+	 * Specifies low rendering quality: graphics are not anti-aliased, and bitmaps are not smoothed.
+	 */
 	static public var LOW:String = "low" ;
+	
+	/**
+	 * Specifies medium rendering quality: graphics are anti-aliased using a 2 x 2 pixel grid, but bitmaps are not smoothed.
+	 */
 	static public var MEDIUM:String = "medium" ;
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(StageQuality, null , 7, 7) ;

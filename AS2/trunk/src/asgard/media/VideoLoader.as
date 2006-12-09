@@ -37,6 +37,7 @@ import vegas.util.FrameTimer;
 import vegas.util.Timer;
 
 /**
+ * This loader load an external FLV video in the application.
  * @author eKameleon
  */
 class asgard.media.VideoLoader extends AbstractMediaLoader 

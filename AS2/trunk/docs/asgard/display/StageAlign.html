@@ -3,6 +3,23 @@
 document.quicknavBasePath="../../index-files";
 //--></script><link href="../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../overview-summary.html" title="Overview" rel="top"/><link href="package-summary.html" title="Package asgard.display" rel="up"/><link href="../../asgard/display/StageLocalizer.html" title="Class asgard.display.StageLocalizer" rel="prev"/><link href="../../asgard/display/ScrollPolicy.html" title="Class asgard.display.ScrollPolicy" rel="next"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><h1>Class asgard.display.StageAlign</h1><div class="type_hierachy"><ul><li><strong>asgard.display.StageAlign</strong></li></ul></div><div class="type_description"><h2>Description</h2><p>
  The StageAlign class provides constant values to use for the Stage.align property.
+ <p></b>Example :</b></p>
+ <pre>
+ <span class="key">import</span> asgard.display.StageAlign ;
+ 
+ trace (<span class="str_const">"---- constant"</span>) ;
+ 
+ trace (<span class="str_const">"StageAlign.TOP_LEFT : "</span> + StageAlign.TOP_LEFT) ;
+ StageAlign.TOP_LEFT = <span class="str_const">"coucou"</span> ;
+ trace (<span class="str_const">"StageAlign.TOP_LEFT : "</span> + StageAlign.TOP_LEFT) ;
+ 
+ trace (<span class="str_const">"---- getAlign"</span>) ;
+ 
+ trace(<span class="str_const">"get align 'tl' : "</span> + StageAlign.getAlign(<span class="str_const">"tl"</span>)) ;
+ trace(<span class="str_const">"get align 'lt' : "</span> + StageAlign.getAlign(<span class="str_const">"LT"</span>)) ;
+ trace(<span class="str_const">"get align 'unknow' : "</span> + StageAlign.getAlign(<span class="str_const">"unknow"</span>, StageAlign.BOTTOM_LEFT)) ;
+ 
+ </pre>
  </p></div><div class="type_indexes"><div class="field_index"><h2>Field Index</h2><a href="#BOTTOM" title="static public BOTTOM:String">BOTTOM</a>, <a href="#BOTTOM_LEFT" title="static public BOTTOM_LEFT:String">BOTTOM_LEFT</a>, <a href="#BOTTOM_RIGHT" title="static public BOTTOM_RIGHT:String">BOTTOM_RIGHT</a>, <a href="#CENTER" title="static public CENTER:String">CENTER</a>, <a href="#LEFT" title="static public LEFT:String">LEFT</a>, <a href="#RIGHT" title="static public RIGHT:String">RIGHT</a>, <a href="#TOP" title="static public TOP:String">TOP</a>, <a href="#TOP_LEFT" title="static public TOP_LEFT:String">TOP_LEFT</a>, <a href="#TOP_RIGHT" title="static public TOP_RIGHT:String">TOP_RIGHT</a></div><div class="method_index"><h2>Method Index</h2><a href="#getAlign" title="static public function getAlign(align:String, default_align:String):String">getAlign()</a></div></div><div class="type_details"><div class="field_detail_list"><h2>Field Detail</h2><a name="BOTTOM"></a><h3>BOTTOM</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">BOTTOM</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
  Specifies that the Stage is aligned at the bottom.
 	 </div></div><a name="BOTTOM_LEFT"></a><h3>BOTTOM_LEFT</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">BOTTOM_LEFT</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">

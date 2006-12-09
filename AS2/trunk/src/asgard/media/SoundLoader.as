@@ -30,6 +30,7 @@ import vegas.events.Delegate;
 import vegas.util.MathsUtil;
 
 /**
+ * This loader load an external Sound in the application. 
  * @author eKameleon
  */
 class asgard.media.SoundLoader extends AbstractMediaLoader 
@@ -181,7 +182,7 @@ class asgard.media.SoundLoader extends AbstractMediaLoader
 		{
 			if ( this.getUrl() == undefined ) 
 			{
-				throw new UnsupportedOperation( toString() + " can't play without any valid url property, loading fails.");
+				throw new UnsupportedOperation( this + " can't play without any valid url property, loading fails.");
 			}
 			
 		} 

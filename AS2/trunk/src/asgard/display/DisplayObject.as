@@ -33,6 +33,69 @@ import vegas.util.factory.DisplayFactory;
 
 /**
  * The DisplayObject class is the base class for all objects that can be displayed in the Flash Player.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import asgard.display.DisplayObject ;
+ * import asgard.display.DisplayObjectCollector ;
+ * 
+ * var mc:MovieClip = createEmptyMovieClip("display", 1) ;
+ * 
+ * var UIList = {} ;
+ * UIList.CANVAS = "canvas" ;
+ * 
+ * var dCanvas = new DisplayObject( "canvas", mc ) ;
+ * 
+ * trace("> DisplayObjectCollector contains canvas : " + DisplayObjectCollector.containsDisplay(canvas))  ;
+ * 
+ * var contains:Boolean = DisplayObjectCollector.contains(UIList.CANVAS) ;
+ * trace("contains 'canvas' DisplayObject : " + contains) ;
+ * 
+ * var canvas = DisplayObjectCollector.get(UIList.CANVAS) ;
+ * canvas.move(25, 25) ;
+ * 
+ * var square:MovieClip = canvas.view ;
+ * square.lineStyle(3, 0xFF0000, 100, true, "none", "square" ) ;
+ * square.beginFill(0xF2F10D, 100) ;
+ * square.lineTo(150,0) ;
+ * square.lineTo(150,150) ;
+ * square.lineTo(0,150) ;
+ * square.lineTo(0,0) ;
+ * 
+ * trace("canvas : " + canvas) ;
+ * trace("canvas name : '" + canvas.getName() + "'" ) ;
+ * trace("The root DisplayObject : " + canvas.root + " : " + canvas.root.view) ;
+ * 
+ * this.onKeyDown = function ()
+ * {
+ *     var code:Number = Key.getCode() ;
+ *     switch (code)
+ *     {
+ *         case Key.UP :
+ *         {
+ *             canvas.hide() ;
+ *             trace("canvas idHide : " + canvas.isVisible()) ;
+ *             break ;
+ *         }
+ *         case Key.DOWN :
+ *         {
+ *             canvas.show() ;
+ *             break ;
+ *         }
+ *         case Key.RIGHT :
+ *         {
+ *             canvas.rotation = 25 ;
+ *             break ;
+ *         }
+ *         case Key.LEFT :
+ *         {
+ *             canvas.alpha = 30 ;
+ *             break ;
+ *         }
+ *     }
+ * }
+ * 
+ * Key.addListener(this) ;
+ * }
  * @author eKameleon
  */
 class asgard.display.DisplayObject extends AbstractCoreEventDispatcher 

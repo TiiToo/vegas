@@ -21,53 +21,35 @@
   
 */
 
-/** ScrollPolicy
-	
-	AUTHOR
-	
-		Name : ScrollPolicy
-		Package : asgard.display
-		Version : 1.0.0.0
-		Date :  2006-02-22
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTANT SUMMARY
-		
-		- AUTO:Number
-		
-		- OFF:Number
-		
-		- ON:Number
-
-	METHOD SUMMARY
-
-		- static validate(o):Boolean
-	
-**/
-
+/**
+ * Values for the horizontalScrollPolicy and verticalScrollPolicy properties of the Container and ScrollControlBase classes.
+ * Compatibility with flash.display.* AS3 package.
+ * @author eKameleon
+ */
 class asgard.display.ScrollPolicy {
 
-	// ----o Constructor
-
-    private function ScrollPolicy() {
-		//
-	}
-
-	// ----o Constants
-
+	/**
+	 * Show the scrollbar if the children exceed the owner's dimension.
+	 */
 	static public var AUTO:Number = 2 ;
 
+	/**
+	 * Never show the scrollbar.
+	 */
 	static public var OFF:Number = 0 ;
-	
+
+	/**
+	 * Always show the scrollbar.
+	 */
 	static public var ON:Number = 1 ;
 
 	static private var __ASPF__ = _global.ASSetPropFlags(ScrollPolicy, null , 7, 7) ;
 
-	// ----o Public Methods
-
-	static public function validate(o):Boolean {
+	/**
+	 * Returns {@code true} if the value passed in arguments is a valid ScrollPolicy constant.
+	 */
+	static public function validate(o):Boolean 
+	{
 		return (o == ScrollPolicy.AUTO || o == ScrollPolicy.OFF || o == ScrollPolicy.ON) ;
 	}
 

@@ -21,57 +21,21 @@
   
 */
 
-/** TextFieldType
-
-	AUTHOR
-
-		Name : TextFieldType
-		Package : asgard.text
-		Version : 1.0.0.0
-		Date :  2006-03-21
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		The TextFieldType class is an enumeration of constant values used in setting the type property of the TextField class.
-
-	CONSTRUCTOR
-	
-		Private
-	
-	CONSTANT SUMMARY
-	
-		static const DYNAMIC:String = "dynamic"
-			
-			Used to specify a dynamic TextField.
-		
-		static const INPUT:String = "input"
-			
-			Used to specify an input TextField.
-
-**/
-
-
 /**
  * The TextFieldType class is an enumeration of constant values used in setting the type property of the TextField class.
  * @author eKameleon
- * @version 1.0.0.0
- **/
- 
-class asgard.text.TextFieldType {
+ */
+class asgard.text.TextFieldType 
+{
 	
-	// ----o Constructor
-	
-	private function TextFieldType () {
-		//
-	}
-	
-	// ----o Constant
-	
+	/**
+	 * Used to specify a dynamic TextField.
+	 */
 	static public var DYNAMIC:String = "dynamic" ;
 	
+	/**
+	 * Used to specify an input TextField.
+	 */
 	static public var INPUT:String = "input" ;
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(TextFieldType, null , 7, 7) ;
