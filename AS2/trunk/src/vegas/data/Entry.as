@@ -22,7 +22,7 @@
 */
 
 /**
- * A map entry (key-value pair).
+ * Defined a map entry (key-value pair).
  * @author eKameleon
  */
 interface vegas.data.Entry 
@@ -41,11 +41,11 @@ interface vegas.data.Entry
 	/**
 	 * Sets the key of this entry.
 	 */
-	function setKey(key):Void ;
+	function setKey( key ):Void ;
 	
 	/**
 	 * Replaces the value corresponding to this entry with the specified value (optional operation).
 	 */
-	function setValue(value):Void ;
+	function setValue( value ):Void ;
 
 }

@@ -21,52 +21,15 @@
   
 */
 
-/** FlashPaperUIElement
+/**
+ * This static enumeration defined all UI elements in a FlashPaper document.
+ */
+class asgard.display.FlashPaperUIElement 
+{
 
-	AUTHOR
-
-		Name : FlashPaperUIElement
-		Package : asgard.display
-		Version : 1.0.0.0
-		Date :  2006-03-31
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	CONSTANT SUMMARY
-
-		- FIND:String = "Find" 
-		
-		- OVERFLOW:String = "OverFlow" ;
-		
-		- PAGE:String = "Page" ;
-	
-		- POP:String = "Pop" ;
-	
-		- PREV_NEXT:String = "PrevNext" ;
-	
-		- PRINT:String = "Print" ;
-	
-		- SIDEBAR:String = "Sidebar" ;
-	
-		- TOOL:String = "Tool" ;
-	
-		- ZOOM:String = "Zoom" ;
-		
-		- ZOOM_KEYS:String = "ZoomKeys"
-
-**/
-
-class asgard.display.FlashPaperUIElement {
-
-	// ----o Constructor
-	
-	private function FlashPaperUIElement() {
-		//
-	}
-
-	// ----o Static Properties
-	
+	/**
+	 * The Find display.
+	 */
 	static public var FIND:String = "Find" ;
 	
 	/**

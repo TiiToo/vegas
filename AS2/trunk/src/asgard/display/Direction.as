@@ -21,52 +21,33 @@
   
 */
 
-/** Direction
-	
-	AUTHOR
-	
-		Name : Direction
-		Package : asgard.display
-		Version : 1.0.0.0
-		Date :  2006-01-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
+/**
+ * he PixelSnapping class is an enumeration of constant values for setting the direction of a Display or a component.
+ */
+class asgard.display.Direction 
+{
 
-	CONSTANT SUMMARY
-		
-		- HORIZONTAL
-		
-		- VERTICAL
-
-	METHOD SUMMARY
-
-		- toNumber(str:String):Number
-		
-		- toString(n:Number):String
-
-**/
-
-class asgard.display.Direction {
-
-	// ----o Constructor
-
-    private function Direction() {
-		//
-	}
-
-	// ----o Constants
-
+	/**
+	 * Specifies the horizontal value to change the orientation of a Display or a component.
+	 */
 	static public var HORIZONTAL:Number = 0 ;
-	
+
+	/**
+	 * Specifies the horizontal value to change the orientation of a Display or a component.
+	 */
 	static public var VERTICAL:Number = 1 ;
 
 	static private var __ASPF__ = _global.ASSetPropFlags(Direction, null , 7, 7) ;
 
-	// ----o Public Methods
-
-	static public function toNumber(str:String):Number {
-		switch (str.toLowerCase()) {
+	/**
+	 * Returns the number representation of the specified string passed in argument.
+	 * If the string passed in argument is different of 'vertical' the method return the Direction.HORIZONTAL value.
+	 * @return the number representation of the specified string passed in argument.
+	 */
+	static public function toNumber(str:String):Number 
+	{
+		switch (str.toLowerCase()) 
+		{
 			case "vertical" :
 				return Direction.VERTICAL ;
 			default :
@@ -75,13 +56,30 @@ class asgard.display.Direction {
 		}
 	}
 
-	static public function toString(n:Number):String {
-		if (n == Direction.HORIZONTAL) return "horizontal" ;
-		else if (n == Direction.VERTICAL) return "vertical" ;
-		else return "" ;
+	/**
+	 * Returns the string representation of the number value passed in argument.
+	 * <ul>
+	 * <li>If the value is Direction.HORIZONTAL returns "horizontal".</li>
+	 * <li>If the value is Direction.VERTICAL returns "vertical".</li>
+	 * <li>If the value isn't Direction.HORIZONTAL or Direction.VERTICAL returns an empty string.</li>
+	 * </ul>
+	 * @return the string representation of the number value passed in argument.
+	 */
+	static public function toString(n:Number):String 
+	{
+		if (n == Direction.HORIZONTAL)
+		{
+			return "horizontal" ;
+		}
+		else if (n == Direction.VERTICAL) 
+		{
+			return "vertical" ;
+		}
+		else 
+		{
+			return "" ;
+		}
 	}
-
-	
 
 	
 }

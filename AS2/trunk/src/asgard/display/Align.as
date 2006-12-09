@@ -21,87 +21,45 @@
   
 */
 
-/** Align
-
-	AUTHOR
-	
-		Name : Align
-		Package : asgard.display
-		Version : 1.0.0.0
-		Date :  2006-01-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTANT SUMMARY
-	
-		- BOTTOM:Number
-		
-		- BOTTOM_LEFT:Number
-		
-		- BOTTOM_RIGHT:Number
-		
-		- CENTER:Number
-		
-		- LEFT:Number
-		
-		- LEFT_BOTTOM:Number
-		
-		- LEFT_TOP:Number
-		
-		- RIGHT:Number
-		
-		- RIGHT_BOTTOM:Number
-		
-		- RIGHT_TOP:Number
-		
-		- REVERSE:Number
-		
-			use to inverse >> tl -> lt / tr -> rt / bl -> lb / br->lr
-		
-		- TOP:Number
-		
-		- TOP_LEFT:Number
-		
-		- TOP_RIGHT:Number
-
-	METHOD SUMMARY
-
-		- toNumber(str:String):Number
-		
-		- toString(n:Number):String
-
-*/
-
 import vegas.util.ArrayUtil;
 
-class asgard.display.Align {
+/**
+ * The Align enumeration class provides constant values to align displays or components.
+ * @author eKameleon
+ */
+class asgard.display.Align 
+{
 
-	// ----o Constructor
-
-    private function Align() 
-    {
-		//
-	}
-	
-	// ----o Public Properties
-	
 	static public var CENTER:Number = 0 ;
+
 	static public var LEFT:Number = 2 ;
+
 	static public var RIGHT:Number = 4 ;
+
 	static public var TOP:Number = 8 ;
+
 	static public var BOTTOM:Number = 16 ;
+
 	static public var REVERSE:Number = 32 ;
+
 	static public var BOTTOM_LEFT = BOTTOM | LEFT ;
+
 	static public var BOTTOM_RIGHT = BOTTOM | RIGHT ;
+
 	static public var TOP_LEFT = TOP | LEFT ;
+
 	static public var TOP_RIGHT = TOP | RIGHT ;
+
 	static public var LEFT_BOTTOM = BOTTOM_LEFT | REVERSE ;
+
 	static public var RIGHT_BOTTOM = BOTTOM_RIGHT | REVERSE ;
+
 	static public var LEFT_TOP = TOP_LEFT | REVERSE ;
+
 	static public var RIGHT_TOP = TOP_RIGHT | REVERSE ;
 
-	static public var aList:Array = [ 
+	static public var aList:Array = 
+	[ 
 		Align.CENTER, Align.LEFT , Align.RIGHT, 
 		Align.TOP, Align.BOTTOM, 
 		Align.TOP_LEFT, Align.TOP_RIGHT,
@@ -109,8 +67,6 @@ class asgard.display.Align {
 	] ;
 
 	static private var __ASPF__ = _global.ASSetPropFlags(Align, null , 7, 7) ;
-
-	// ----o Public Methods
 
 	static public function toNumber(str:String):Number 
 	{
@@ -145,7 +101,8 @@ class asgard.display.Align {
 		}
 	}
 
-	static public function toString(n:Number):String {
+	static public function toString(n:Number):String 
+	{
 		switch (n) {
 			case Align.LEFT : return "l" ;
 			case Align.RIGHT : return "r" ;
@@ -163,7 +120,8 @@ class asgard.display.Align {
 		}
 	}
 
-	static public function validate(n:Number):Boolean {
+	static public function validate(n:Number):Boolean 
+	{
 		return  ArrayUtil.contains(aList, n) ;
 	}
 	

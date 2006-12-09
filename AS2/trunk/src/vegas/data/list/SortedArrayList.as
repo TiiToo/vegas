@@ -54,7 +54,8 @@ class vegas.data.list.SortedArrayList extends ArrayList
 	/**
 	 * (read-only) Sets the IComparator instance.
 	 */
-	public function set comparator(comp:IComparator):Void {
+	public function set comparator(comp:IComparator):Void 
+	{
 		setComparator(comp) ;
 	}
 	

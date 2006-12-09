@@ -21,76 +21,75 @@
   
 */
 
-/** ScrollContainerPolicy
-	
-	AUTHOR
-	
-		Name : ScrollContainerPolicy
-		Package : asgard.display
-		Version : 1.0.0.0
-		Date :  2006-02-22
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
+/**
+ * Values for the horizontalScrollPolicy and verticalScrollPolicy properties of the Container and ScrollControlBase classes.
+ * @author eKameleon
+ */
+class asgard.display.ScrollContainerPolicy extends Number 
+{
 
-	CONSTANT SUMMARY
-		
-		- AUTO:ScrollContainerPolicy
-			auto scroll
-
-		- FULL:ScrollContainerPolicy
-
-			auto scroll + scroll when user select an item
-
-		- NONE:ScrollContainerPolicy
-			no auto scroll
-		
-		- SCROLL_ON_CLICK:Number
-			scroll when user select an item.
-
-	METHOD SUMMARY
-
-		- static validate(o):Boolean
-	
-**/
-
-class asgard.display.ScrollContainerPolicy extends Number {
-
-	// ----o Constructor
-
-    private function ScrollContainerPolicy(n:Number, sName:String) {
+	/**
+	 * Creates a new ScrollContainerPolicy instance.
+	 */
+    function ScrollContainerPolicy(n:Number, sName:String) 
+    {
 		super(n) ;
 		_sName = sName ;
 	}
+	
+	/**
+	 * Show the scrollbar if the children exceed the owner's dimension.
+	 */
+	static public var AUTO:ScrollContainerPolicy = new ScrollContainerPolicy(1, "auto") ;
 
-	// ----o Constants
-
+	/**
+	 * Specifies no scroll activity.
+	 */
 	static public var NONE:ScrollContainerPolicy = new ScrollContainerPolicy(0, "none") ;
 	
-	static public var AUTO:ScrollContainerPolicy = new ScrollContainerPolicy(1, "auto") ;
+	/**
+	 * Never show the scrollbar.
+	 */
+	static public var OFF:ScrollContainerPolicy = new ScrollContainerPolicy( 20, "on") ;
 	
+	/**
+	 * Always show the scrollbar.
+	 */
+	static public var ON:ScrollContainerPolicy = new ScrollContainerPolicy( 10, "on") ;
+	
+	/**
+	 * Scroll the container when an item is selected in the container.
+	 */
 	static public var SCROLL_ON_CLICK:ScrollContainerPolicy = new ScrollContainerPolicy(2, "scroll_on_click") ;
 	
+	/**
+	 * The scroll is active with SCROLL_ON_CLICK and AUTO mode.
+	 */
 	static public var FULL:ScrollContainerPolicy = new ScrollContainerPolicy(AUTO | SCROLL_ON_CLICK, "full") ; ;
 
 	static private var __ASPF__ = _global.ASSetPropFlags(ScrollContainerPolicy, null , 7, 7) ;
 
-	// ----o Public Methods
-
-	static public function validate(o):Boolean {
-		switch(o) {
+	/**
+	 * Returns {@code true} if the object passed in argument is a ScrollContainerPolicy defined in static in this class.
+	 */
+	static public function validate(o):Boolean 
+	{
+		switch(o) 
+		{
 			case NONE :
 			case AUTO : 
 			case SCROLL_ON_CLICK :
 			case FULL : 
+			{
 				return true ;
+			}
 			default :
+			{
 				return false ;
+			}
 		}
 	}
 
-	// ----o Private Properties
-	
 	private var _sName:String ;
 
 }

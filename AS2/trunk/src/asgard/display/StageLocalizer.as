@@ -21,84 +21,32 @@
   
 */
 
-/** StageLocalizer
-
-	AUTHOR
-		
-		Name : StageLocalizer
-		Package : asgard.display
-		Version : 1.0.0.0
-		Date :  2003-03-25
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION :
-
-		Classe statique. Permet de définir la position d'un point selon 
-		le référentiel défini par la propriété Stage.align courante.
-
-	STATIC PROPRERTIES
-
-		- WIDTH : propriété en lecture seule. Retourne la largeur initiale de la scène principale.
-
-		- HEIGHT : propriété en lecture seule. Retourne la hauteur initiale de la scène principale.
-
-
-	STATIC METHODS :
-	
-		- getMiddle() : Renvoi un point ayant pour coordonnées x et y le centre de la scène.
-	
-		- localizePoint (p:Object) : String
-			Description : Méthode statique.
-				Cette méthode renvoie une chaine de caractère
-				Retourne la position d'un point dans la scène principale en fonction du référentiel courant défini par la propriété Stage.align.
-
-			argument : un objet définissant un point de coordonnée x et y.
-			renvoi :
-				- "B" : Bottom
-				- "T" : Top
-				- "L" : Left
-				- "R" : Right
-				- "TL" : Top Left
-				- "TR" : Top Right
-				- "BL" : Bottom Left
-				- "BR" : Bottom Right
-				- "" : Center
-		- getMirror  (position:String) : String
-			Decription : renvoi la position mirroir dans la scène d'une position donnée.
-			Exemple :
-				- "T" renvoi "R" ;
-				- "B" renvoi "T" ;
-				- "TR" renvoi "BL" ;
-				- "TL" renvoi "BR" ;
-				- "BR" renvoi "TL" ;
-				- "BL" renvoi "TR" ;
-				- "L" renvoi "R" ;
-				- "R" renvoi "L" ;
-				- "" renvoi "" ;
-
-**/
-
 import asgard.display.StageAlign;
 import asgard.geom.Point;
 
-class asgard.display.StageLocalizer {
+/**
+ * This static tool class defined the position of a point in the stage or in a specific display. This value change with the current Stage.align property.
+ * @author eKameleon
+ */
+class asgard.display.StageLocalizer 
+{
 	
-	// ----o Constructor
-
-	private function StageLocalizer () {
-		//
-	}
-
-	// ----o INIT
-
+	/**
+	 * The default value of the Stage.width when the FlashPlayer is open.
+	 */
 	static public var WIDTH = Stage.width ;
+
+	/**
+	 * The default value of the Stage.height when the FlashPlayer is open.
+	 */
 	static public var HEIGHT = Stage.height ;
 
-	// ----o Public Methods
-
-	static public function localizePoint(p):String {
+	/**
+	 * Localize the position of a specified point on the Stage with the current Stage.align property.
+	 * @return the string representation of the StageAlign defined for the point passed in argument.
+	 */
+	static public function localizePoint(p):String 
+	{
 		var middle:Point = getMiddle() ;
 		var x1:Number = p.x ;
 		var y1:Number = p.y ;
@@ -115,9 +63,13 @@ class asgard.display.StageLocalizer {
 		else return StageAlign.CENTER ;
 	}
 
+	/**
+	 * Returns the Point representation of the middle of the Stage. This property is defined with the current Stage.align value.
+	 */
 	static public function getMiddle():Point {
 		var middle:Point = new Point(0, 0) ;
-		switch (Stage.align) {
+		switch (Stage.align) 
+		{
 			case StageAlign.BOTTOM : // bottom
 				middle.x = WIDTH / 2 ;
 				middle.y = -  ((Stage.height / 2) - HEIGHT)  ;
@@ -157,8 +109,14 @@ class asgard.display.StageLocalizer {
 		return middle ;
 	}
 	
-	static public function getMirror(align:String):String {
-		switch (align.toUpperCase()) {
+	/**
+	 * Returns the mirror StageAlign string representation of the string passed in argument. 
+	 * @return the mirror StageAlign string representation of the string passed in argument.
+	 */
+	static public function getMirror(align:String):String 
+	{
+		switch (align.toUpperCase()) 
+		{
 			case StageAlign.TOP : return StageAlign.BOTTOM ;
 			case StageAlign.BOTTOM : return StageAlign.TOP ;
 			case StageAlign.TOP_RIGHT : return StageAlign.BOTTOM_LEFT ;
@@ -171,9 +129,15 @@ class asgard.display.StageLocalizer {
 		}
 	}
 
-	static public function getVerticalMirror(point):String {
+	/**
+	 * Returns a vertical mirror StageAlign string representation of the string passed in argument. 
+	 * @return a vertical StageAlign string representation of the string passed in argument.
+	 */
+	static public function getVerticalMirror(point):String 
+	{
 		var align:String = localizePoint(point) ;
-		switch (align.toUpperCase () ) {
+		switch (align.toUpperCase () ) 
+		{
 			case StageAlign.TOP_RIGHT : return StageAlign.BOTTOM_RIGHT ;
 			case StageAlign.TOP_LEFT : return StageAlign.BOTTOM_LEFT ;
 			case StageAlign.BOTTOM_RIGHT : return StageAlign.TOP_RIGHT ;

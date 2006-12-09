@@ -32,6 +32,7 @@ import vegas.events.AbstractCoreEventDispatcher;
 import vegas.util.factory.DisplayFactory;
 
 /**
+ * The DisplayObject class is the base class for all objects that can be displayed in the Flash Player.
  * @author eKameleon
  */
 class asgard.display.DisplayObject extends AbstractCoreEventDispatcher 
@@ -44,7 +45,9 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	 */
     public function DisplayObject( sName:String , target ) 
     {
+        
         super() ;
+		
 		if (target) 
 		{
 			view = target ;
@@ -52,6 +55,7 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 		else 
 		{
 			_loader = DisplayLoaderCollector.get( sName ) ;
+			
 			if ( _loader ) 
 			{
 				this.view = _loader.getView() ;
@@ -65,6 +69,22 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 		_setName(sName) ;
 
     }
+    
+	/**
+	 * [read-only] Indicates the alpha value of the display.
+	 */
+	public function get alpha():Number 
+	{
+		return view._alpha ;	
+	}
+
+	/**
+	 * [read-only] Sets the alpha value of the display.
+	 */
+	public function set alpha( n:Number ):Void 
+	{
+		view._alpha = n ;	
+	}
 
 	/**
 	 * (read-write) Returns 'true' if the display is enabled.
@@ -96,6 +116,63 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	public function set height(n:Number):Void 
 	{
 		setHeight(n) ;	
+	}
+
+	/**
+	 * [read-only] Indicates the x coordinate of the mouse position, in pixels.
+	 */
+	public function get mouseX():String 
+	{
+		return view._xmouse ;	
+	}
+
+	/**
+	 * [read-only] Indicates the y coordinate of the mouse position, in pixels.
+	 */
+	public function get mouseY():String 
+	{
+		return view._ymouse ;	
+	}
+
+	/**
+	 * [read-write] Indicates the instance name of the DisplayObject.
+	 */
+	public function get name():String 
+	{
+		return _sName ;
+	}
+
+	/**
+	 * [read-write] Set the instance name of the DisplayObject.
+	 */
+	public function set name( sName:String ):Void 
+	{
+		_setName( sName ) ;
+	}
+
+	/**
+	 * [read-only] For a display object in a loaded SWF file, the root property is the top-most display object in the portion of the display list's tree structure represented by that SWF file.
+	 */
+	public function get root():DisplayObject
+	{
+		return __ROOT__ ;
+	}
+
+	
+	/**
+	 * [read-write] Indicates the rotation value of the DisplayObject.
+	 */
+	public function get rotation():Number
+	{
+		return view._rotation ;
+	}
+	
+	/**
+	 * [read-write] Sets the rotation value of the DisplayObject.
+	 */
+	public function set rotation(n:Number):Void
+	{
+		view._rotation = n ;
 	}
 
 	/**
@@ -336,6 +413,16 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	 * The internal loader of the display.
 	 */	
 	private var _loader:DisplayLoader = null ; 
+	
+	/**
+	 * The parent DisplayObject of this DisplayObject.
+	 */
+	private var _parent:DisplayObject ;
+	
+	/**
+	 * Defined the root DisplayObject.
+	 */
+	static private var __ROOT__:DisplayObject = new DisplayObject( "root" , _root ) ;
 	
 	/**
 	 * The internal name's property of the display.

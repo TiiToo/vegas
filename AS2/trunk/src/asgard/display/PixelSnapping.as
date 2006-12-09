@@ -21,42 +21,12 @@
   
 */
 
-/** PixelSnapping
-	
-	AUTHOR
-	
-		Name : PixelSnapping
-		Package : asgard.display
-		Version : 1.0.0.0
-		Date :  2006-08-25
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTANT SUMMARY
-		
-		- static ALWAYS:String = "always"
-		
-		- static AUTO:String = "auto"
-		
-		- static NEVER:String = "never" 
-
-*/
-
 /**
+ * The PixelSnapping class is an enumeration of constant values for setting the pixel snapping options by using the pixelSnapping property of a Bitmap object.
  * @author eKameleon
  */
 class asgard.display.PixelSnapping 
 {
-	
-	// ----o Constructor
-	
-	private function PixelSnapping()
-	{
-		//	
-	}
-	
-	// ----o Constants
 	
 	/**
 	 * [static] A constant value used in the pixelSnapping property of a Bitmap object to specify that the bitmap image is always snapped to the nearest pixel, independent of any transformation.

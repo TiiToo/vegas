@@ -21,20 +21,6 @@
   
 */
 
-/** ConfigCollector
-
-	AUTHOR
-
-		Name : ConfigCollector
-		Package : asgard.config
-		Version : 1.0.0.0
-		Date :  2006-08-18
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-*/
-
 import asgard.config.IConfigurable;
 
 import vegas.data.iterator.Iterator;

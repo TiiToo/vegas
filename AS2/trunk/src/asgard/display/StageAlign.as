@@ -21,110 +21,84 @@
   
 */
 
-/** StageAlign
-
-	AUTHOR
-
-		Name : StageAlign
-		Package : asgard.display
-		Version : 1.0.0.0
-		Date :  2005-11-18
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		Private
-	
-	CONSTANT SUMMARY
-	
-		- BOTTOM:String
-
-			Specifies that the Stage is aligned at the bottom.
-		
-		- BOTTOM_LEFT:String
-			
-			Specifies that the Stage is aligned in the bottom-left corner.
-			
-		- BOTTOM_RIGHT:String
-			
-			Specifies that the Stage is aligned in the bottom-right corner.
-		
-		- CENTER:String
-		
-			Specifies that the Stage is aligned in the center.
-		
-		- LEFT:String
-			
-			Specifies that the Stage is aligned on the left.
-		
-		- RIGHT:String
-			
-			Specifies that the Stage is aligned to the right.
-		
-		- TOP:String
-			
-			Specifies that the Stage is aligned at the top.
-		
-		- TOP_LEFT:String
-			
-			Specifies that the Stage is aligned in the top-left corner.
-		
-		- TOP_RIGHT:String
-			
-			Specifies that the Stage is aligned in the top-right corner.
-	
-	METHOD SUMMARY
-	
-		- static getAlign(align:String, default_align:StageAlign):String
-	
-**/
-
 import vegas.util.StringUtil;
 
-class asgard.display.StageAlign {
-
-	// ----o Constructor
-
-    private function StageAlign() {
-		//
-	}
-	
-	// ----o Public Properties
-
+/**
+ * The StageAlign class provides constant values to use for the Stage.align property.
+ */
+class asgard.display.StageAlign 
+{
+	/**
+	 * Specifies that the Stage is aligned at the bottom.
+	 */
 	static public var BOTTOM:String = "B" ;
 	
+	/**
+	 * Specifies that the Stage is aligned in the bottom-left corner.
+	 */
 	static public var BOTTOM_LEFT:String = "BL" ;
 	
+	/**
+	 * Specifies that the Stage is aligned in the bottom-right corner.
+	 */
 	static public var BOTTOM_RIGHT:String = "BR" ;
 	
+	/**
+	 * Specifies that the Stage is aligned in the center.
+	 */
 	static public var CENTER:String = "" ;
 	
+	/**
+	 * Specifies that the Stage is aligned on the left.
+	 */
 	static public var LEFT:String = "L" ;
 	
+	/**
+	 * Specifies that the Stage is aligned to the right.
+	 */
 	static public var RIGHT:String = "R" ;
 	
+	/**
+	 * Specifies that the Stage is aligned at the top.
+	 */
 	static public var TOP:String = "T" ;
 	
+	/**
+	 * Specifies that the Stage is aligned in the top-left corner.
+	 */
 	static public var TOP_LEFT:String = "TL" ;
 	
+	/**
+	 * Specifies that the Stage is aligned in the top-right corner.
+	 */
 	static public var TOP_RIGHT:String = "TR" ;
 
 	static private var __ASPF__ = _global.ASSetPropFlags(StageAlign, null , 7, 7) ;
 
-	// ----o Public Methods
-	
-	static public function getAlign(align:String, default_align:String):String {
+	/**
+	 * Returns the string representation of a StageAlign and a default align if this alignement don't exist in this enumeration. 
+	 */	
+	static public function getAlign(align:String, default_align:String):String 
+	{
 		var s:StringUtil = new StringUtil(align.toUpperCase()) ;
 		var r:String = s.reverse() ;
-		var aligns =  {
+		var aligns =  
+		{
 			B:BOTTOM, BL:BOTTOM_LEFT, BR:BOTTOM_RIGHT,
 			L:LEFT, R:RIGHT, T:TOP, TL:TOP_LEFT, TR:TOP_RIGHT
 		} ;
-		if (aligns[s]) return aligns[s] ;
-		else if (aligns[r]) return aligns[r] ;
-		else return default_align || StageAlign.CENTER ;
+		if (aligns[s]) 
+		{
+			return aligns[s] ;
+		}
+		else if (aligns[r])
+		{
+			return aligns[r] ;
+		}
+		else 
+		{
+			return default_align || StageAlign.CENTER ;
+		}
 	}
 	
 }

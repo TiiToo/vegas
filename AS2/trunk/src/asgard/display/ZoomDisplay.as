@@ -31,6 +31,7 @@ import vegas.events.Delegate;
 import vegas.maths.Range;
 
 /**
+ * This class create a ZoomDisplay container to manipulate the scale and the offset position of the display with a mask.
  * ALPHA version !!! 
  * @author eKameleon
  */

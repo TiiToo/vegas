@@ -21,76 +21,6 @@
   
 */
 
-/** StageResizer
-	
-	AUTHOR
-
-		Name : StageResizer
-		Package : asgard.display
-		Version : 1.0.0.0
-		Date :  2005-11-22
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		StageResizer(autoResize:Boolean, delay:Number)
-
-	USE
-	
-		import asgard.display.StageResizer ;
-		import vegas.events.* ;
-		
-		var onDebug = function (ev:Event) {
-			trace (">> " + ev.getType() ) ;
-		}
-		
-		var debug:EventListener = new EventListenerProxy(this, onDebug) ;
-		
-		var resizer:StageResizer = new StageResizer(true) ;
-		resizer.addEventListener(EventType.RESIZE, debug) ;
-
-
-	DESCRIPTION
-		
-		Permet de controler des évéments de type Stage.onResize plus lentement via l'évément EventType.RESIZE.
-
-	STATIC PROPERTY SUMMARY
-	
-		DEFAULT_DELAY:Number [R/W] default delay value (default : 300 ms)
-
-	PROPERTY SUMMARY
-	
-		delay:Number [R/W] permet de définir un interval en ms pour ralentir l'événement onResize
-	
-	
-	METHOD SUMMARY
-	
-		- getDelay():Number
-		
-		- handleEvent(ev:Event)
-		
-		- setDelay(delay:Number):Void
-		
-		- toString():String
-	
-	EVENTS
-	
-		- DynamicEvent
-		
-			- EventType.RESIZE
-	
-	INHERIT
-	
-		EventDispatcher > StageResizer
-	
-	IMPLEMENTS
-	
-		EventListener, IFormattable, IHashable
-	
-**/
-
 import vegas.core.IFormattable;
 import vegas.events.DynamicEvent;
 import vegas.events.Event;
@@ -100,60 +30,101 @@ import vegas.events.EventType;
 import vegas.events.TimerEventType;
 import vegas.util.Timer;
 
-class asgard.display.StageResizer extends EventDispatcher implements EventListener, IFormattable {
+/**
+ * This controller manage the Stage.onResize event and use a delay to dispatch the EventType.RESIZE event.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import asgard.display.StageResizer ;
+ * import vegas.events.* ;
+ * 
+ * var onDebug = function (ev:Event) 
+ * {
+ *     trace (">> " + ev.getType() ) ;
+ * }
+ * 
+ * var debug:EventListener = new Delegate(this, onDebug) ;
+ * var resizer:StageResizer = new StageResizer(true) ;
+ * resizer.addEventListener(EventType.RESIZE, debug) ;
+ * }
+ */
+class asgard.display.StageResizer extends EventDispatcher implements EventListener, IFormattable 
+{
 
-	// ----o Constructor
-
-	public function StageResizer(autoResize:Boolean, delay:Number) {
+	/**
+	 * Creates a new StageResizer instance.
+	 */
+	public function StageResizer(autoResize:Boolean, delay:Number) 
+	{
 		_timer = new Timer(isNaN(delay) ? DEFAULT_DELAY : delay, 1) ;
 		_timer.addEventListener(TimerEventType.TIMER, this) ;
 		Stage.addListener(this) ;
-		if (autoResize) onResize() ;
+		if (autoResize) 
+		{
+			onResize() ;
+		}
 	}
 
-	// ----o Static Properties
-	
-	static public function get DEFAULT_DELAY():Number {
+	/**
+	 * (read-write) Returns the default delay value ( 300 ms by default )
+	 */
+	static public function get DEFAULT_DELAY():Number 
+	{
 		return __defaultDelay ;
 	}
 
+	/**
+	 * (read-write) Sets the default delay value.
+	 */
 	static public function set DEFAULT_DELAY(delay:Number):Void {
 		__defaultDelay = (isNaN(delay) || delay < 0) ? 0 : delay ;
 	}
 
-	static private var __defaultDelay = 300 ;
-
-	// ----o Public Methods
-	
-	public function getDelay():Number { 
-		return _timer.getDelay() ;
-	}
-	
-	public function handleEvent(e:Event) {
-		dispatchEvent( new DynamicEvent(EventType.RESIZE, this) ) ;
-	}
-	
-	public function setDelay(time:Number):Void { 
-		_timer.setDelay(time) ;
-	}
-	
-	// ----o Virtual Properties	
-	
+	/**
+	 * Returns the delay before dispatch the EventType.RESIZE event.
+	 * @return the delay before dispatch the EventType.RESIZE event.
+	 */
 	public function get delay():Number { 
 		return getDelay () ;
 	}
 	
-	public function set delay(time:Number):Void {
+	/**
+	 * Sets the delay before dispatch the EventType.RESIZE event.
+	 */
+	public function set delay(time:Number):Void 
+	{
 		setDelay(time) ;
 	}	
 
-	// ----o Private Properties
+	/**
+	 * Returns the delay before dispatch the EventType.RESIZE event.
+	 */
+	public function getDelay():Number 
+	{
+		return _timer.getDelay() ;
+	}
+	
+	/**
+	 * Handles the event.
+	 */
+	public function handleEvent(e:Event) 
+	{
+		dispatchEvent( new DynamicEvent(EventType.RESIZE, this) ) ;
+	}
+
+	/**
+	 * Sets the delay before dispatch the EventType.RESIZE event.
+	 */
+	public function setDelay(time:Number):Void 
+	{ 
+		_timer.setDelay(time) ;
+	}
+	
+	static private var __defaultDelay = 300 ;
 
 	private var _timer:Timer ;
 	
-	// ----o Private Methods
-	
-	private function onResize(Void):Void {
+	private function onResize(Void):Void 
+	{
 		_timer.stop() ;
 		_timer.start() ;
 	}
