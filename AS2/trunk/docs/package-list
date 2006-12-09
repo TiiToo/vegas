@@ -9,7 +9,6 @@ asgard.geom
 lunas.display.components.bar
 lunas.display.components.bubble
 lunas.display.components.container
-vegas.data.tree
 vegas.logging.errors
 asgard.draw
 asgard.events
