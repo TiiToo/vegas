@@ -59,47 +59,6 @@ class test.visitor.diaporama.Picture extends AbstractVisitable
 	public var view:MovieClip ;
 	
 	/**
-	 * Accept a IVisitor object 
-	 */
-	public function accept( visitor:IVisitor ) 
-	{
-		
-		switch( true )
-		{
-			
-			case visitor instanceof ClearVisitor :
-			{
-				ClearVisitor(visitor).visit(this) ;
-				break ;
-			}
-			
-			case visitor instanceof HideVisitor :
-			{
-				HideVisitor(visitor).visit(this) ;
-				break ;
-			}	
-
-			case visitor instanceof LoaderVisitor :
-			{
-				LoaderVisitor(visitor).visit(this) ;
-				break ;
-			}	
-			
-			case visitor instanceof ReleaseVisitor :
-			{
-				ReleaseVisitor(visitor).visit(this) ;	
-			}
-			
-			case visitor instanceof ShowVisitor :
-			{
-				ShowVisitor(visitor).visit(this) ;
-				break ;
-			}
-				
-		}
-	}
-
-	/**
 	 * Returns true if the picture is visible.
 	 */
 	public function isVisible():Boolean 

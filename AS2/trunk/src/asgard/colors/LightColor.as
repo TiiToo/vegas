@@ -21,178 +21,181 @@
   
 */
 
-/** LightColor
-
-	AUTHOR
-	
-		Name : LightColor
-		Package : asgard.colors
-		Version : 1.0.0.0
-		Date :  2004-11-22
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	Date de création : 2004-06-18
-
-	PROPERTIES
-
-		- brightness
-  			Luminosité, même effet que l'inspecteur de propriété 
-			Pourcentage entre -100 and 100
-			
-		- brightOffset
-			Luminosité, même effet que l'inspecteur de propriété 
-			Offset entre -255 and 255
-  		
-		- contrast
-			Ajuste le contraste 
-			Pourcentage entre -100 and 100
-  		
-		- negative
-			Transforme une image en son négatif
-			Pourcentage entre -100 and 100
-		
-	PUBLIC METHODS
-
-		- getBrightness()
-		
-		- getBrightOffset()
-		
-		- getContrast()
-		
-		- getNegative()
-		
-		- getTarget() 
-		
-			renvoi l'instance de l'objet controlé par la couleur courante
-		
-		- invert() 
-		
-			inverse la couleur de l'objet
-		
-		- reset()
-		
-			réinitialise la couleur d'origine de l'objet.
-		
-		- setBrightness(percent)
-		
-		- setBrightOffset(offset)
-		
-		- setContrast(percent)
-		
-		- setNegative(percent)
-
-
-	INHERIT 
-	
-		Color > BasicColor > LightColor
-		
-	
-	THANKS
-	
-		© 2003 Robert Penner - Use freely, giving credit where possible.
-		code basée sur le livre : Robert Penner's Programming Macromedia Flash MX
-		http://www.robertpenner.com/profmx
-		http://www.amazon.com/exec/obidos/ASIN/0072223561/robertpennerc-20
-
-------------- */
-
 import asgard.colors.BasicColor;
 
+/**
+ * This class is the basic extension of the actionscript Color class to changed light and contrast over a MovieClip. 
+ * <p>Thanks 2003 Robert Penner - Use freely, giving credit where possible.</p>
+ * <p>This code is based on the book : Robert Penner's Programming Macromedia Flash MX. More informations in :
+ * <ul>
+ * <li>http://www.robertpenner.com/profmx
+ * <li>http://www.amazon.com/exec/obidos/ASIN/0072223561/robertpennerc-20
+ * </ul>
+ * </p>
+ * <p>
+ * {@code 
+ * import asgard.colors.BasicColor;
+ * var c:LightColor = new LightColor(mc); 
+ * c.setBrightness(55);
+ * }
+ * </p>
+ * @author eKameleon
+ */
 class asgard.colors.LightColor extends BasicColor {
 
-	// ----o Constructor
-
-	public function LightColor (mc:MovieClip) { 
+	/**
+	 * Creates a new LightColor instance.
+	 */
+	public function LightColor (mc:MovieClip) 
+	{ 
 		super (mc) ;
 	}
 	
-	// ----o Public Properties
-	
-	// public var brightness:Number ; // [R/W]
-	// public var brightOffset:Number ; // [R/W]
-	// public var contrast:Number ; // [R/W]
-	// public var negative:Number ; // [R/W]
-	
-	// ----o Public Methods
+	/**
+	 * Returns the bright between 0 and 100 of an movieclip.
+	 * @return the bright between 0 and 100 of an movieclip.
+	 */
+	public function get brightness():Number 
+	{
+		return getBrightness() ;	
+	}
 
-	public function getBrightness():Number {
+	/**
+	 * Sets the bright between 0 and 100 of an movieclip.
+	 */
+	public function set brightness(n:Number):Void 
+	{
+		setBrightness(n) ;	
+	}
+
+	/**
+	 * Returns the bright between -255 and 255 of an movieclip.
+	 * @return the bright between 255 and 255 of an movieclip.
+	 */
+	public function get brightOffset():Number 
+	{
+		return getBrightOffset() ;	
+	}
+
+	/**
+	 * Sets the bright between -255 and 255 of an movieclip.
+	 */
+	public function set brightOffset(n:Number):Void 
+	{
+		setBrightOffset(n) ;	
+	}
+
+	/**
+	 * Returns the contrast value (percent) of the movieclip.
+	 * @return the contrast value (percent) of the movieclip.
+	 */
+	public function get contrast():Number 
+	{
+		return getContrast() ;	
+	}
+	
+	/**
+	 * Sets the contrast value (percent) of the movieclip.
+	 */
+	public function set contrast(n:Number):Void 
+	{
+		setContrast(n) ;	
+	}
+
+	/**
+	 * Returns the negative value of the movieclip.
+	 * @return  the negative value of the movieclip.
+	 */
+	public function get negative():Number 
+	{
+		return getNegative() ;	
+	}
+
+	/**
+	 * Sets the negative percent value of the movieclip.
+	 */
+	public function set negative(n:Number):Void 
+	{
+		setNegative(n) ;	
+	}
+
+	/**
+	 * Returns the bright between 0 and 100 of an movieclip.
+	 * @return the bright between 0 and 100 of an movieclip.
+	 */
+	public function getBrightness():Number 
+	{
 		var t:Object = getTransform();
 		return t.rb ? 100-t.ra : t.ra-100;
 	}
 
-	public function setBrightness(percent:Number):Void {
+	/**
+	 * Returns the contrast value (percent) of the movieclip.
+	 * @return the contrast value (percent) of the movieclip.
+	 */
+	public function getContrast():Number
+	{ 
+		return getTransform().ra ; 
+	}
+
+	/**
+	 * Returns the bright between 0 and 100 of an movieclip.
+	 * @return the bright between 0 and 100 of an movieclip.
+	 */
+	public function getBrightOffset():Number 
+	{ 
+		return getTransform().rb ; 
+	}
+	
+	/**
+	 * Returns the negative color value of the movieclip.
+	 */
+	public function getNegative():Number 
+	{ 
+		return getTransform().rb * 2.55 ; 
+	}
+
+	/**
+	 * Sets the bright between 0 and 100 of an movieclip.
+	 */
+	public function setBrightness(percent:Number):Void 
+	{
 		var t:Object = getTransform() ;
 		t.ra = t.ga = t.ba = 100 - Math.abs (percent) ;
 		t.rb = t.gb = t.bb = (percent > 0) ? (percent*2.56) : 0 ;
 		setTransform (t);
 	}
-
-	public function getContrast():Number { 
-		return getTransform().ra ; 
-	}
-
-	public function setContrast(percent:Number):Void {
+	
+	/**
+	 * Sets the contrast value (percent) of the movieclip.
+	 */
+	public function setContrast(percent:Number):Void 
+	{
 		var t:Object = {};
 		t.ra = t.ga = t.ba = percent;
 		t.rb = t.gb = t.bb = 128 - (128/100 * percent);
 		setTransform(t);
 	}
 
-	public function getBrightOffset():Number { 
-		return getTransform().rb ; 
-	}
-
-	public function setBrightOffset(offset:Number):Void {
+	/**
+	 * Sets the brightness of a movieclip between -255 and 255.
+	 */
+	public function setBrightOffset(offset:Number):Void 
+	{
 		var t:Object = getTransform();
 		t.rb = t.gb = t.bb = offset ;
 		setTransform (t);
 	}
 
-	public function getNegative():Number { 
-		return getTransform().rb * 2.55 ; 
-	}
-
-	public function setNegative(percent:Number):Void {
+	/**
+	 * Sets the negative value of the movieclip.
+	 */
+	public function setNegative(percent:Number):Void 
+	{
 		var t:Object = {} ;
 		t.ra = t.ga = t.ba = 100 - 2 * percent;
 		t.rb = t.gb = t.bb = percent * (2.55) ;
 		setTransform (t);
-	}
-	
-	// ----o Virtual Properties
-
-	public function get brightness():Number {
-		return getBrightness() ;	
-	}
-	
-	public function set brightness(n:Number):Void {
-		setBrightness(n) ;	
-	}
-
-	public function get brightOffset():Number {
-		return getBrightOffset() ;	
-	}
-	
-	public function set brightOffset(n:Number):Void {
-		setBrightOffset(n) ;	
-	}
-
-	public function get contrast():Number {
-		return getContrast() ;	
-	}
-	
-	public function set contrast(n:Number):Void {
-		setContrast(n) ;	
-	}
-
-	public function get negative():Number {
-		return getNegative() ;	
-	}
-	
-	public function set negative(n:Number):Void {
-		setNegative(n) ;	
 	}
 
 }

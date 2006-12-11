@@ -23,69 +23,42 @@
     
 */
 
-/* BasicColor
-
-	AUTHOR
-
-		Name : ColorHSV
-		Package : asgard.colors
-		Version : 1.0.0.0
-		Date :  2004-11-22
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-*/
-
-
 /**
  * <code>ColorHSV</code> provide static color conversion methods, in Hue Saturation Value color space.
  * {@link http://en.wikipedia.org/wiki/HSV_color_space}
- * @usage 
- * <pre>
+ * <p><b>Example :</b></p>
+ * {@code
  * import asgard.colors.ColorHSV;
  * var o:Object = ColorHSV.rgb2hsv(255, 0, 0);
- * for (var i in o) {
- * 	trace(i+" : "+o[i]);
+ * for (var prop:String in o) 
+ * {
+ *     trace( prop + " : " + o[prop] ) ;
  * }
  * var oRGB : Object = {r:250,g:0,b:0};
  * var o2 : Object = ColorHSV.hsv2rgb (oRGB, 50, 100);
  * trace ("--")
- * for (var i in o2) {
- * 	trace(i+" : "+o2[i]);
+ * for (var prop:String:String in o2) 
+ * {
+ * 	   trace( prop + " : " + o2[prop] ) ;
  * }
  * </pre>
- * 
  * @author 		eKameleon
- * @version     1.0.0.0
- * @since       1.0.0.0
  */
-class asgard.colors.ColorHSV {
-	
-	// ----o Constructor
+class asgard.colors.ColorHSV 
+{
 	
 	/**
-	 * You can't create a ColorHSV instance, only use static methods. 
-	 * @private
-	 */
-	private function ColorHSV() {
-		//
-	}
-	
-	//  ------o static public Methods
-
-	/**
-	 * hsv2rgb
-	 * @since Flash 6
-	 * @usage 
-	 * <pre>
+	 * Converts a HSV color in a RGB color.
+	 * <p><b>Example :</b></p>
+	 * {@code
 	 * import asgard.colors.ColorHSV;
 	 * var oRGB : Object = {r:250,g:0,b:0};
 	 * var o2 : Object = ColorHSV.hsv2rgb (oRGB, 50, 100); // desaturate 50%
-	 * for (var i in o2) {
-	 * 	trace(i+" : "+o2[i]);
+	 * for (var prop:String in o2) 
+	 * {
+	 *     trace( prop + " : " + o2[prop] );
 	 * }
-	 * </pre>
+	 * }
 	 * @param oColor an Object with r,g,b properties ( range from 0 - 255 ), this is the Hue.
 	 * @param s a Number represent the Saturation value ( range from 0 - 100 ).
 	 * @param v a Number represent the Brightness ( Value ) ( range from 0 - 100 ).
@@ -104,23 +77,26 @@ class asgard.colors.ColorHSV {
 	}
 
 	/**
-	 * rgb2hsv
-	 * @since Flash 6
-	 * @usage 
-	 * <pre>
+	 * Converts a RGB color in a HSV color.
+	 * <p><b>Example :</b></p>
+	 * {@code
 	 * import asgard.colors.ColorHSV;
 	 * var o:Object = ColorHSV.rgb2hsv(255, 0, 0);
 	 * for (var i in o) {
-	 * 	if (typeof (o[i]) == "object") {
+	 * 	if (typeof (o[i]) == "object") 
+	 * 	{
 	 * 		trace(i+" : ");
-	 * 		for (var j in o[i]) {
+	 * 		for (var j in o[i]) 
+	 * 		{
 	 * 			trace("	"+j+" : "+o[i][j]);
 	 * 		}
-	 * 	} else {
+	 * 	}
+	 * 	else 
+	 * 	{
 	 * 		trace(i+" : "+o[i]);
 	 * 	}
 	 * }
-	 * </pre>
+	 * }
 	 * @param r a Number represent red value ( range from 0 - 255 ).
 	 * @param g a Number represent red value ( range from 0 - 255 ).
 	 * @param b a Number represent red value ( range from 0 - 255 ).
@@ -140,9 +116,8 @@ class asgard.colors.ColorHSV {
 		return( { h:o , s:s<<0 ,v:v<<0} ) ;
 	}
 	
-	//  ------o static private Methods
-	
-	static private function _fsort ( a:String , b:String ) :Number {
+	static private function _fsort ( a:String , b:String ) :Number 
+	{
 		var val1:Number = Number(a.split(':')[1]);
 		var val2:Number = Number(b.split(':')[1]);
 		if (val1 > val2) return -1;

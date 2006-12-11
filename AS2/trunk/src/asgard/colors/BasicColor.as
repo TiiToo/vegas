@@ -58,12 +58,13 @@ class asgard.colors.BasicColor extends Color implements IFormattable, IHashable
 
 	static private var _initHashCode:Boolean = HashCode.initialize(BasicColor.prototype) ;
 
-		/**
+	/**
 	 * Return the BasicColor target MovieClip.
 	 * @since Flash 6
 	 * @return mc a MovieClip
 	 */	
-	public function getTarget():MovieClip { 
+	public function getTarget():MovieClip 
+	{ 
 		return _mc ;
 	}
 
@@ -72,20 +73,23 @@ class asgard.colors.BasicColor extends Color implements IFormattable, IHashable
  	 * @return a Number
 	 * @see vegas.core.HashCode
 	 */		
-	public function hashCode():Number {
+	public function hashCode():Number 
+	{
 		return null ;
 	}
 
 	/**
 	* Invert color of the MovieClip
-	* @example <pre>
+	* <p><b>Example</b><b>
+	* {@code
 	* import asgard.colors.BasicColor;
 	* var c : BasicColor = new BasicColor (this);
 	* c.invert();
-	* </pre>
+	* }
 	* @see asgard.colors.ColorUtil#invert
 	*/
-	public function invert():Void { 
+	public function invert():Void 
+	{ 
 		ColorUtil.invert(this) ; 
 	}
 
@@ -98,7 +102,8 @@ class asgard.colors.BasicColor extends Color implements IFormattable, IHashable
 	* </pre>
 	* @see asgard.colors.ColorUtil#reset
 	*/
-	public function reset():Void { 
+	public function reset():Void 
+	{ 
 		ColorUtil.reset(this) ;
 	}
 
@@ -112,11 +117,10 @@ class asgard.colors.BasicColor extends Color implements IFormattable, IHashable
 	* @return a String, the current instance string name
 	* @see vegas.util.ConstructorUtil#getName
 	*/	
-	public function toString():String {
+	public function toString():String 
+	{
 		return "[" + ConstructorUtil.getName(this) + "]" ;
 	}
-
-	// -----o Private MovieClip
 
 	private var _mc:MovieClip ;
 

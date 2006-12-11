@@ -357,6 +357,7 @@ class asgard.colors.ColorSVG extends ColorHTML
 	
 	/**
 	 * Returns true if the object passed in argument is in the map of ColorSVG elements.
+	 * @return true if the object passed in argument is in the map of ColorSVG elements.
 	 */
 	static public function contains( o ):Boolean
 	{
@@ -376,6 +377,7 @@ class asgard.colors.ColorSVG extends ColorHTML
 	
 	/**
 	 * Returns the current ColorSVG reference specified with the name passed in parameter.
+	 * @return the current ColorSVG reference specified with the name passed in parameter.
 	 */
 	static public function get( name:String ):ColorSVG 
 	{

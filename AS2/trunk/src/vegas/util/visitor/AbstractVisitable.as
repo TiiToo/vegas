@@ -28,6 +28,7 @@ import vegas.util.visitor.IVisitor;
 /**
  * The abstract representation of the IVisitable interface.
  * To implements a Visitor pattern you must inspired your IVisitor classes with this interface.
+ * This Abstract class is a basical implementation of the Visitor pattern, you can inspirate your custom Visitor design pattern implementation with it easy representation.  
  * @author eKameleon
  */
 class vegas.util.visitor.AbstractVisitable extends CoreObject implements IVisitable 
@@ -42,11 +43,12 @@ class vegas.util.visitor.AbstractVisitable extends CoreObject implements IVisita
 	}
 
 	/**
-	 * Accept a IVisitor object 
+	 * Accept a IVisitor object. 
+	 * You can overrides this method in complexe Visitor pattern implementation.
 	 */
 	function accept( visitor:IVisitor ) 
 	{
-		// use the visitor argument to launch a specific method of the visitor
+		visitor.visit(this) ;
 	}
 
 }

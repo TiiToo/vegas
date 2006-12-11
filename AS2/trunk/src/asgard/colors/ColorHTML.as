@@ -21,112 +21,37 @@
   
 */
 
-/** ColorHTML
-
-	AUTHOR
-
-		Name : ColorHTML
-		Package : asgard.colors
-		Version : 1.0.0.0
-		Date :  2006-04-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	USE
-	
-		import asgard.colors.ColorHTML ;
-		
-		var n:Number = ColorHTML.htmlToNumber( "#FF0000" ) ;
-		trace("convert #FF0000 : "  + n) ;
-		
-		var c:ColorHTML = ColorHTML.YELLOW ;
-		trace(c.toString() + " : " + c.valueOf()) ;
-	
-	CONSTANT SUMMARY
-	
-		- AQUA:ColorHTML
-		
-		- BLACK:ColorHTML
-		
-		- BLUE:ColorHTML
-		
-		- FUCHSIA:ColorHTML
-		
-		- GRAY:ColorHTML
-		
-		- GREEN:ColorHTML
-		
-		- LIME:ColorHTML
-		
-		- OLIVE:ColorHTML
-		
-		- MAROON:ColorHTML
-		
-		- NAVY:ColorHTML
-		
-		- PURPLE:ColorHTML
-		
-		- RED:ColorHTML
-		
-		- SILVER:ColorHTML
-		
-		- TEAL:ColorHTML
-		
-		- WHITE:ColorHTML
-		
-		- YELLOW:ColorHTML
-
-	METHOD SUMMARY
-		
-		- equals(o):Boolean
-		
-		- static hexToHtml( hex:Number ):String
-		
-		- static htmlToNumber( sHTML:String ):Number
-		
-		- toBoolean():Boolean
-		
-		- toObject():Object
-		
-		- toString():String
-				
-		- valueOf():Number
-
-	INHERIT
-	
-		Number → ColorHTML
-
-	IMPLEMENTS
-	
-		IConvertible, IEquality, IFormattable
-
-	SEE ALSO
-	
-		Basic HTML data types - W3C HTML 4 Specifications :
-			
-			http://www.w3.org/TR/html4/types.html (chap 6.5)
-
-*/
-
 import vegas.core.IConvertible;
 import vegas.core.IEquality;
 import vegas.core.IFormattable;
 import vegas.util.ObjectUtil;
 import vegas.util.StringUtil;
 
-class asgard.colors.ColorHTML extends Number implements IConvertible, IEquality, IFormattable {
+/**
+ * Enumeration static class to defined Basic HTML data types : <a href="http://www.w3.org/TR/html4/types.html">W3C HTML 4 Specifications</a> (chap 6.5)
+ * <p><b>Example :</b></p>
+ * {@code
+ * import asgard.colors.ColorHTML ;
+ * 
+ * var n:Number = ColorHTML.htmlToNumber( "#FF0000" ) ;
+ * trace("convert #FF0000 : "  + n) ;
+ * 
+ * var c:ColorHTML = ColorHTML.YELLOW ;
+ * trace(c.toString() + " : " + c.valueOf()) ;
+ * }
+ */
+class asgard.colors.ColorHTML extends Number implements IConvertible, IEquality, IFormattable 
+{
 	
-	// ----o Constructor
-	
-	private function ColorHTML( n:Number , name:String) 
+	/**
+	 * Creates a new ColorHTML instance.
+	 */
+	function ColorHTML( n:Number , name:String) 
 	{
 		super(n) ;
 		this.name = name ;
 		this.value = n ;
 	}
-	
-	// ----o Constants
 	
 	static public var AQUA:ColorHTML    = new ColorHTML(0x00FFFF , "Aqua") ;
 	
@@ -160,18 +85,28 @@ class asgard.colors.ColorHTML extends Number implements IConvertible, IEquality,
 	
 	static public var YELLOW:ColorHTML  = new ColorHTML(0xFFFF00 , "Yellow") ;
 
-	// ----o Public Properties
-	
+	/**
+	 * The string representation of the color name.
+	 */	
 	public var name:String ;
+	
+	/**
+	 * The value (number) of the color.
+	 */
 	public var value:Number ;
 
-	// ----o Public Methods
-
+	/**
+	 * Compares the specified object with this object for equality.
+	 * @return {@code true} if the the specified object is equal with this object.
+	 */
 	public function equals( o ):Boolean 
 	{
 		return ( o.valueOf() == valueOf() && toString() == o.toString()) ;	
 	}
 
+	/**
+	 * Converts the string passed in argument (the html color) in a number representation.
+	 */
 	static public function htmlToNumber( sHTML:String ):Number 
 	{
 		var s = new StringUtil(sHTML) ;
@@ -183,31 +118,50 @@ class asgard.colors.ColorHTML extends Number implements IConvertible, IEquality,
 		return null ;
 	}
 
+	/**
+	 * Converts the number passed in argument (the html color in hex with ECMAScript notation 0xrrggbb) in a HTML string representation.
+	 */
 	static public function hexToHtml( hex:Number):String
 	{
 		return "#" + (hex.toString(16)).toUpperCase() ; 
 	}
 
+	/**
+	 * Converts an object to an equivalent Boolean value.
+	 */
 	public function toBoolean():Boolean 
 	{
 		return ObjectUtil.toBoolean(this) ;	
 	}
-	
+
+	/**
+	 * Converts an object to an equivalent Number value.
+	 */
 	public function toNumber():Number 
 	{
 		return ObjectUtil.toNumber(this) ;	
 	}
 
+	/**
+	 * Converts an object to an equivalent Object value.
+	 */
 	public function toObject():Object 
 	{
 		return ObjectUtil.toObject(this) ;	
 	}
-	
+
+	/**
+	 * Returns the string representation of this instance.
+	 * @return the string representation of this instance
+	 */
 	public function toString():String 
 	{
 		return name ;
 	}
 	
+	/**
+	 * Return the value in number of this ColorHTML instance.
+	 */
 	public function valueOf():Number
 	{
 		return value ;	

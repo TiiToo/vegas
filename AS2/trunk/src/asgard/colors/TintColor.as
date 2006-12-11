@@ -21,87 +21,48 @@
   
 */
 
-/** TintColor
-
-	AUTHOR
-	
-		Name : TintColor
-		Package : asgard.colors
-		Version : 1.0.0.0
-		Date :  2004-11-22
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-
-		Gestion de la teinte d'un clip (MovieClip)
-
-	METHODS
-	
-		- getTarget()
-			renvoi l'instance de l'objet controlé par la couleur courante.
-		
-		- getTint()
-			renvoi une teinte sous forme d'un objet contenant les propriétés r, g, b et percent .
-		
-		- getTint2()
-			retourne la teinte d'un clip sous forme d'un objet ayant pour propriété :
-				rgb : un nombre (0xFFFFFF)
-				percent : le pourcentage de la teinte
-			
-		- getTintOffset()
-			renvoi un objet ayant pour propriété : r, g et b entre -255 et 255
-		
-		- invert()
-			inverse la couleur de l'objet
-		
-		- reset()
-			réinitialise la couleur d'origine de l'objet
-		
-		- setTint(r, g, b, percent)
-			gère la teinte d'un objet comme dans le panneau de propriété.
-			paramètres : 
-				r, g, b entre 0 et 255.
-				percent entre 0 et 100.
-			
-		- setTint2(hex, percent)
-			Teinte d'une couleur - approche alternative
-			Paramètres : 
-				hex : couleur entre 0 et 0xFFFFFF
-				percent : alpha entre 0 et 100
-			
-		- setTintOffset(r, g, b)
-			Teinte d'une couleur, en fonction des 3 composantes r, g et b
-			Paramètres : r, g, b entre -255 et 255
-	
-	INHERIT 
-	
-		Color > BasicColor > TintColor
-	
-	
-	THANKS
-		© 2003 Robert Penner - Use freely, giving credit where possible.
-		Classe basée sur le livre : Robert Penner's Programming Macromedia Flash MX
-		http://www.robertpenner.com/profmx
-		http://www.amazon.com/exec/obidos/ASIN/0072223561/robertpennerc-20
-
-**/
-
 import asgard.colors.BasicColor;
 import asgard.colors.ColorRGB;
 
-class asgard.colors.TintColor extends BasicColor {
+/**
+ * Control the tint of a Color object.
+ * <p>Thanks 2003 Robert Penner - Use freely, giving credit where possible.</p>
+ * <p>This code is based on the book : Robert Penner's Programming Macromedia Flash MX. More informations in :
+ * <ul>
+ * <li>http://www.robertpenner.com/profmx
+ * <li>http://www.amazon.com/exec/obidos/ASIN/0072223561/robertpennerc-20
+ * </ul>
+ * </p>
+ * @author eKameleon
+ */
+class asgard.colors.TintColor extends BasicColor 
+{
 
-	// -----o Constructor
-
-	public function TintColor (mc:MovieClip) { 
+	/**
+	 * Creates a new TintColor instance.
+	 * @param mc the movieclip target of the TintColor object.
+ 	 */
+	public function TintColor (mc:MovieClip) 
+	{ 
 		super(mc) ;
 	}
 
-	// -----o Public Methods
-
-	public function getTint():Object {
+	/**
+	 * Returns the tint of a Color object.
+	 * <p><b>Example</b></b>
+	 * {@code
+	 * var cTint:TintColor = new TintColor(my_mc);
+	 * cTint.setTint( 0, 0, 128, 50 ) ;
+	 * var tint:Object = cTint.getTint();
+	 * trace ("r : " + tint.r);
+	 * trace ("g : " + tint.g);
+	 * trace ("b : " + tint.b);
+	 * trace ("percent : " + tint.percent);
+	 * }
+	 * @return The tint value object with r, g, b, and percent properties.
+	 */
+	public function getTint():Object 
+	{
 		var t:Object = getTransform();
 		var percent:Number = 100 - t.ra ;
 		var ratio:Number = 100 / percent;
@@ -113,14 +74,20 @@ class asgard.colors.TintColor extends BasicColor {
 		} ;
 	}
 
-	public function setTint(r:Number, g:Number, b:Number, percent:Number):Void {
-		var ratio:Number = percent / 100;
-		var t:Object = { rb:r*ratio, gb:g*ratio, bb:b*ratio } ;
-		t.ra = t.ga = t.ba = 100-percent ;
-		setTransform (t);
-	}
-
-	public function getTint2():Object {
+	/**
+	 * Returns the tint of a Color object.
+	 * <p><b>Example</b></b>
+	 * {@code
+	 * var cTint:TintColor = new TintColor(my_mc);
+	 * cTint.setTint2( 0x0000FF, 100 ) ;
+	 * var tint:Object = cTint.getTint2();
+	 * trace ("rgb     : " + tint.rgb);
+	 * trace ("percent : " + tint.percent);
+	 * }
+	 * @return The tint value object with rgb and percent properties.
+	 */
+	public function getTint2():Object 
+	{
 		var t:Object = getTransform();
 		var percent:Number = 100 - t.ra ;
 		var ratio:Number = 100 / percent ;
@@ -129,8 +96,58 @@ class asgard.colors.TintColor extends BasicColor {
 			rgb:ColorRGB.rgb2hex(t.rb*ratio, t.gb*ratio, t.bb*ratio) 
 		} ;
 	}
-	
-	public function setTint2(hex:Number, percent:Number):Void {
+
+	/**
+	 * Returns the tint offset of a Color object.
+	 * <p><b>Example</b></b>
+	 * {@code
+	 * var cTint:TintColor = new TintColor(my_mc);
+	 * cTint.setTintOffset(0, 0, 128);
+	 * var tint:Object = cTint.getTintOffset();
+	 * trace ("r : " + tint.r);
+	 * trace ("g : " + tint.g);
+	 * trace ("b : " + tint.b);
+	 * }
+	 * @return The tint offset value object with r, g, and b properties.
+	 */
+	public function getTintOffset():Object 
+	{
+		var t:Object = getTransform() ;
+		return {r:t.rb, g:t.gb, b:t.bb} ;
+	}
+
+	/**
+	 * Tints a color object with a Color according to a certain percentage.
+	 * <p><b>Example</b></b>
+	 * {@code
+	 * var cTint:TintColor = new TintColor(my_mc);
+	 * cTint.setTint( 0, 0, 128, 50 ) ;
+	 * }
+	 * @param r The red color value.
+	 * @param g The green color value.
+	 * @param b The blue color value.
+	 * @param percent
+	 */
+	public function setTint(r:Number, g:Number, b:Number, percent:Number):Void 
+	{
+		var ratio:Number = percent / 100;
+		var t:Object = { rb:r*ratio, gb:g*ratio, bb:b*ratio } ;
+		t.ra = t.ga = t.ba = 100-percent ;
+		setTransform (t);
+	}
+
+	/**
+	 * Tints a color object with a Color according to a certain percentage.
+	 * <p><b>Example</b></b>
+	 * {@code
+	 * var cTint:TintColor = new TintColor(my_mc);
+	 * cTint.setTint2( 0x0000FF, 100 ) ;
+	 * }
+	 * @param hex The rgb value.
+	 * @param percent The tint percentage.
+	 */
+	public function setTint2(hex:Number, percent:Number):Void 
+	{
 		var c:Object = ColorRGB.hex2rgb (hex) ;
 		var ratio:Number = percent / 100 ;
 		var t:Object = {rb:c.r*ratio, gb:c.g*ratio, bb:c.b*ratio};
@@ -138,18 +155,24 @@ class asgard.colors.TintColor extends BasicColor {
 		setTransform (t);
 	}
 
-
-	public function setTintOffset(r:Number, g:Number, b:Number):Void {
+	/**
+	 * Tints a Color object with a color according to red, green, and blue values.
+	 * <p><b>Example</b></b>
+	 * {@code
+	 * var cTint:TintColor = new TintColor(my_mc);
+	 * cTint.setTintOffset( 0, 0, 128 ) ;
+	 * }
+	 * @param r The red color value.
+	 * @param g The green color value.
+	 * @param b The blue color value.
+	 */
+	public function setTintOffset(r:Number, g:Number, b:Number):Void 
+	{
 		var t:Object = getTransform();
 		t.rb = r ; 
 		t.gb = g ; 
 		t.bb = b ;
 		setTransform (t);
-	}
-
-	public function getTintOffset():Object {
-		var t:Object = getTransform() ;
-		return {r:t.rb, g:t.gb, b:t.bb} ;
 	}
 
 }

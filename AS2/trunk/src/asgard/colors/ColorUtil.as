@@ -21,38 +21,23 @@
   
 */
 
-/** ColorUtil
-
-	AUTHOR
-
-		Name : ColorUtil
-		Package : asgard.colors
-		Version : 1.0.0.0
-		Date :  2004-11-22
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	STATIC METHODS
-		
-		- ColorUtil.invert (c:Color) 
-		
-		- ColorUtil.reset(c:Color) 
-
-**/
-
+/**
+ * This static tool class contains static methods to manipulate the Color instances.
+ * <p>Thanks 2003 Robert Penner - Use freely, giving credit where possible.</p>
+ * <p>This code is based on the book : Robert Penner's Programming Macromedia Flash MX. More informations in :
+ * <ul>
+ * <li>http://www.robertpenner.com/profmx
+ * <li>http://www.amazon.com/exec/obidos/ASIN/0072223561/robertpennerc-20
+ * </ul>
+ * </p>
+ * @author eKameleon
+ */
 class asgard.colors.ColorUtil 
 {
 	
-	// ----o Constructor
-	
-	private function ColorUtil() 
-	{
-		//
-	}
-
-	//  ------o static public Methods
-	
+	/**
+	 * Inverts the color of the specified Color reference in argument.
+	 */
 	static public function invert(c:Color):Void 
 	{
 		var t:Object = c.getTransform();
@@ -64,6 +49,9 @@ class asgard.colors.ColorUtil
 		) ;
 	}
 
+	/**
+	 * Resets the color of the specified Color reference in argument, the MovieClip display the original view since Color transformation.
+	 */
 	static public function reset(c:Color):Void 
 	{ 
 		c.setTransform ({ra:100, ga:100, ba:100, rb:0, gb:0, bb:0}) ;
