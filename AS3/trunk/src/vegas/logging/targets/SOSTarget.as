@@ -88,8 +88,6 @@ package vegas.logging.targets
         {
             super();
             
-            // --- Init Buffer queue object
-		
 		    _queue = new LinearQueue() ;
 		
        		// --- Init Application
@@ -361,7 +359,7 @@ package vegas.logging.targets
     	 */
     	private function _onClose( e:Event ):void
     	{
-    	    trace("> " + this + ", close socket connection : " + e ) ;
+    	    // trace("> " + this + ", close socket connection : " + e ) ;
     	}
 
     	/**
@@ -369,7 +367,7 @@ package vegas.logging.targets
     	 */
     	private function _onConnect( e:Event ):void 
     	{
-    	    trace("> " + this + ", connect socket connection : " + e ) ;
+    	    // trace("> " + this + ", connect socket connection : " + e ) ;
    			flush() ;
     	}
 
@@ -378,7 +376,7 @@ package vegas.logging.targets
     	 */
     	private function _onIOError ( e:IOErrorEvent ):void 
     	{
-            trace("> " + this + ", io error socket connection : " + e);
+            // trace("> " + this + ", io error socket connection : " + e);
         }
 
     	/**
@@ -386,7 +384,7 @@ package vegas.logging.targets
     	 */
         private function _onSecurityError ( e:SecurityErrorEvent ):void 
         {
-            trace("> " + this + ", security error socket connection : " + e);
+           // trace("> " + this + ", security error socket connection : " + e);
         }
 
     }

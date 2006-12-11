@@ -21,36 +21,6 @@
   
 */
 
-/* AbstractView
-
-	AUTHOR
-
-		Name : AbstractView
-		Package : asgard.util.mvc
-		Version : 1.0.0.0
-		Date :  2006-08-14
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- getController():IController
-	
-		- getDisplay():DisplayObject
-		
-		- handleEvent(e:Event):*
-		
-		- registerWithModel( oModel:IModel ):void
-		
-		- setController(oController:IController):void
-		
-		- setModel(oModel:IModel):void
-		
-		- setDisplay( display:DisplayObject=null ):void
-	
-*/
-
 package asgard.util.mvc
 {
 	
@@ -62,58 +32,91 @@ package asgard.util.mvc
 	
 	import vegas.core.CoreObject;
 
+	/**
+	 * Abstract class to creates IView implementations.
+	 * @author eKameleon
+	 */
 	public class AbstractView extends CoreObject implements IView
 	{
-		
-		// ----o Constructor
-		
+
+		/**
+		 * Abstract contructor, creates an IView instance.
+		 */		
 		public function AbstractView()
 		{
-			//TODO: implement function
 			super();
 		}
-		
-		// ----o Public Methods
-		
+
+		/**
+		 * Returns the controller reference of this view.
+		 */
 		public function getController():IController 
 		{
 			return _oController ;
 		}
-		
+
+		/**
+		 * Returns the display reference of this view.
+		 */
 		public function getDisplay():DisplayObject
 		{
 			return _mcContainer ;
 		}
-	
+
+		/**
+		 * This method is called whenever an event occurs of the type for which the EventListener interface was registered.
+		 * @param e The Event contains contextual information about the event.
+		 */
 		public function handleEvent(e:Event):*
 		{
 			//
 		}
-	
+
+		/**
+		 * Register a model with this view.
+		 */
 		public function registerWithModel( oModel:IModel ):void
 		{
 			oModel.addView(this);
 		}
-	
+
+		/**
+		 * Sets the controller reference of this view.
+		 */
 		public function setController(oController:IController):void
 		{
 			_oController = oController;
 		}
-	
+
+		/**
+		 * Sets a new model and register this model with this view. 
+		 */
 		public function setModel(oModel:IModel):void 
 		{
 			registerWithModel( oModel ) ;
 		}
-	
+
+		/**
+		 * Sets the display reference of this view.
+		 */
 		public function setDisplay( display:DisplayObject=null ):void
 		{
 			_display = (display == null) ? root : display ;
 		}		
 	
-		// ----o Private Properties
-	
+		/**
+		 * Internal display view reference.
+		 */
 		private var _display:MovieClip ;
+
+		/**
+		 * Internal controller.
+		 */
 		private var _oController:IController ;
+
+		/**
+		 * Internal model.
+		 */
 		private var _oModel:IModel ;
 		
 	}

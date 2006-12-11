@@ -10,6 +10,7 @@ lunas.display.components.bar
 lunas.display.components.bubble
 lunas.display.components.container
 vegas.logging.errors
+vegas.util.observer
 asgard.draw
 asgard.events
 vegas.data.set

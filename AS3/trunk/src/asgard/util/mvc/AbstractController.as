@@ -21,38 +21,6 @@
   
 */
 
-/** AbstractController
-
-	AUTHOR
-
-		Name : AbstractController
-		Package : asgard.util.mvc
-		Version : 1.0.0.0
-		Date :  2006-08-14
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-
-		- getModel():IModel
-		
-		- getView():IView
-		
-		- setModel(oModel:IModel):Void
-		
-		- setView(oView:IView):Void
-		
-	INHERIT
-	
-		CoreObject → AbstractController
-
-	IMPLEMENTS 
-	
-		IController, IFormattable, IHashable, ISerializable
-
-*/
-
 package asgard.util.mvc
 {
 	
@@ -61,44 +29,63 @@ package asgard.util.mvc
 	import asgard.util.mvc.IView;
 	
 	import vegas.core.CoreObject;
-	
+
+	/**
+	 * Abstract class to creates IController implementations.
+	 * @author eKameleon
+	 */
 	public class AbstractController extends CoreObject implements IController
 	{
-		
-		// ----o Constructor
-		
+
+		/**
+		 * Abstract contructor, creates an IController instance.
+		 */
 		public function AbstractController()
 		{
-			//TODO: implement function
 			super();
 		}
 
-		// ----o Public Methods
-		
+		/**
+		 * Returns the model of this controller.
+		 */
 		public function getModel():IModel
 		{
 			return _oModel ;
 		}
 
+		/**
+		 * Returns the view of this controller.
+		 */
 		public function getView():IView
 		{
 			return _oView ;
 		}
 
+		/**
+		 * Sets the model of this controller. 
+		 */
 		public function setModel(oModel:IModel):void
 		{
 			_oModel = oModel ;
 		}
 
+		/**
+		 * Sets the view of this controller.
+		 */
 		public function setView(oView:IView):void
 		{
 			_oView = oView ;
 		}
 
-		// ----o Private Properties
-		
-		private var _oView:IView ;
+		/**
+		 * Internal model reference.
+		 */
 		private var _oModel:IModel ;
+
+		/**
+		 * Internal view reference.
+		 */
+		private var _oView:IView ;
 
 	}
 }

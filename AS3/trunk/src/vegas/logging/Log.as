@@ -72,11 +72,14 @@ package vegas.logging
             {
                 
                 var filters:Array = target.filters ;
+
                 var logger:ILogger ;
 
                 var it:Iterator = _loggers.iterator() ;
-                while (it.hasNext())
+                
+                while ( it.hasNext() )
                 {
+                  	
                     var log:ILogger = it.next() as ILogger ;
                     var cat:String = it.key() ;
                     
@@ -163,7 +166,7 @@ package vegas.logging
                 {
                     target.addLogger(result);
                 }
-                
+
             } 
 
             return result ;

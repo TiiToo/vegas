@@ -31,8 +31,6 @@ package vegas.logging.targets
 	import flash.events.SecurityErrorEvent;
     import flash.net.LocalConnection ;
 
-    import vegas.logging.ILogger;
-    import vegas.logging.Log;
     import vegas.logging.LogEventLevel;
     
 	import vegas.util.ClassUtil ;
@@ -48,17 +46,19 @@ package vegas.logging.targets
         /**
          * Creates a new XPanelTarget instance.
          */ 
-        public function XPanelTarget( name:String="unknow" )
+        public function XPanelTarget( name:String="unknow" , restart:Boolean=true )
         {
 			super();
 			
-             _logger = Log.getLogger( ClassUtil.getPath(this) ) ;
             _lc = new LocalConnection() ;
             _lc.allowDomain("*") ;
     	    _lc.addEventListener ( AsyncErrorEvent.ASYNC_ERROR, _onAsyncError ) ;
     	    _lc.addEventListener ( StatusEvent.STATUS, _onStatus ) ;
-    		_lc.addEventListener ( SecurityErrorEvent.SECURITY_ERROR , _onSecurityError ) ;    			
-            _lc.send( CONNECTION_ID, DISPATCH_MESSAGE, new Date().valueOf(), START + " " + name, LEVEL_START );
+    		_lc.addEventListener ( SecurityErrorEvent.SECURITY_ERROR , _onSecurityError ) ;   
+    		if (restart == true)
+    		{			
+	            _lc.send( CONNECTION_ID, DISPATCH_MESSAGE, new Date().valueOf(), START + " " + name, LEVEL_START );
+			}
             
         }
 
@@ -185,7 +185,7 @@ package vegas.logging.targets
     	 */
     	private function _onAsyncError(e:AsyncErrorEvent):void
     	{
-    	    _logger.error( "> " + this + " : " + e ) ;
+    	    //trace( "> " + this + " : " + e ) ;
     	}
 
     	/**
@@ -193,7 +193,7 @@ package vegas.logging.targets
     	 */
     	private function _onStatus( e:StatusEvent ):void
 		{
-			_logger.info( "> " + this + " : " + e ) ;
+			//trace("> " + this + " : " + e ) ;
 		}
 
     	/**
@@ -201,19 +201,13 @@ package vegas.logging.targets
     	 */
 		private function _onSecurityError( e:SecurityErrorEvent ):void
 		{
-		    _logger.error( "> " + this + " : " + e ) ;
+		    //trace( "> " + this + " : " + e ) ;
 		}
 		
 		/**
 		 * Internal LocalConnection reference.
 		 */
 		private var _lc:LocalConnection ;
-        
-        /**
-		 * The internal logger of this instance.
-		 */
-		private var _logger:ILogger ;
-
         
     }
 }

@@ -21,34 +21,6 @@
   
 */
 
-/* IView [Interface]
-
-	AUTHOR
-
-		Name : IView
-		Package : asgard.util.mvc
-		Version : 1.0.0.0
-		Date :  2006-08-14
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- getController():IController
-	
-		- getDisplay():DisplayObject
-		
-		- handleEvent(e:Event):*
-		
-		- setController(oController:IController):void
-		
-		- setModel(oModel:IModel):void
-		
-		- setDisplay( display:DisplayObject=null ):void
-	
-*/
-
 package asgard.util.mvc
 {
 
@@ -58,18 +30,37 @@ package asgard.util.mvc
 	import flash.display.DisplayObject ;
 	
 	import vegas.events.EventListener;
-	
+
+	/**
+	 * Defines the representation of a view in a specific type of the MVC implementation.
+	 * @author eKameleon
+	 */
 	public interface IView extends EventListener
 	{
-		
+
+		/**
+		 * Returns the controller reference of this view.
+		 */
 		function getController():IController;
 		
+		/**
+		 * Returns the display reference of this view.
+		 */
 		function getDisplay():DisplayObject ;
-		
+
+		/**
+		 * Sets the controller reference of this view.
+		 */
 		function setController(oController:IController):void ;
-			
+
+		/**
+		 * Sets a new model and register this model with this view. 
+		 */
 		function setModel(oModel:IModel):void ;
-			
+
+		/**
+		 * Sets the display reference of this view.
+		 */
 		function setDisplay(display:DisplayObject):void ;
 		
 	}

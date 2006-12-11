@@ -21,42 +21,6 @@
   
 */
 
-/*	AbstractTypeable
-
-	AUTHOR
-
-		Name : AbstractTypeable
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date :  2006-07-06
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		private
-
-	METHOD SUMMARY
-	
-		- getType():*
-			
-		- setType(type:*):void
-			
-		- supports(value:*):Boolean
-		
-		- validate(value:*):void
-	
-	INHERIT
-	
-		CoreObject → AbstractTypeable
-	
-	IMPLEMENTS 
-
-		IFormattable, ISerializable, IHashable, ITypeable, IValidator
-
-*/
-
 package vegas.util
 {
     
@@ -70,19 +34,20 @@ package vegas.util
     public class AbstractTypeable extends CoreObject implements ITypeable, IValidator
     {
         
-        // ----o Constructor
-        
+        /**
+         * Creates a new AbstractTypeable instance.
+         */ 
         public function AbstractTypeable(type:*)
-            {
+        {
             super();
        		
        		if (type == null) 
-                {
+            {
     			throw new IllegalArgumentError("Argument 'type' must not be 'null' or 'undefined'.") ;
-	    	    }
+	    	}
 		    _type = type ;
             
-            }
+        }
         
         // ----o Public Methods
         
@@ -110,8 +75,6 @@ package vegas.util
     		}
         }
         
-        // -----o Private Properties
-	
     	private var _type:* ;
         
     }

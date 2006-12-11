@@ -21,34 +21,6 @@
   
 */
 
-/* IModel [Interface]
-
-	AUTHOR
-
-		Name : IModel
-		Package : asgard.util.mvc
-		Version : 1.0.0.0
-		Date :  2006-08-14
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- addView(listener:EventListener):Void
-		
-		- clone():*
-		
-		- notifyChanged(ev:ModelChangedEvent):Void
-		
-		- removeView(listener:EventListener):Void
-	
-	INHERIT
-	
-		IModel
-	
-*/
-
 package asgard.util.mvc
 {
 	
@@ -57,13 +29,26 @@ package asgard.util.mvc
 		
 	import vegas.core.ICloneable;
 
+	/**
+	 * Defines the representation of a model in a specific type of the MVC implementation.
+	 * @author eKameleon
+	 */
 	public interface IModel extends ICloneable
 	{
-		
+
+		/**
+		 * Adds a view in the model.
+		 */
 		function addView(view:IView):void ;
 		
+		/**
+		 * Notify a ModelChangedEvent to the views.
+		 */
 		function notifyChanged( event:ModelChangedEvent ):void ;
 		
+		/**
+		 * Removes a view in the model.
+		 */
 		function removeView(view:IView):void ;
 		
 	}
