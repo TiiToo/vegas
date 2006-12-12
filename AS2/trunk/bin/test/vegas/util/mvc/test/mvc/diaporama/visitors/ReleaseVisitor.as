@@ -23,13 +23,16 @@ class test.mvc.diaporama.visitors.ReleaseVisitor extends CoreObject implements I
 
 	/**
 	 * Release a Picture object. Visit the IVisitable object. 
+	 * Initialize the Picture and remove the target reference. 
 	 */
 	public function visit( o:IVisitable ):Void
 	{
 		if (o instanceof Picture)
 		{
 			trace("> " + this + " visit " + o) ;
-			Picture(o).release();
+			Picture(o).view.removeMovieClip() ;
+			Picture(o).url = null ;
+			Picture(o).name = null ;	
 		}
 		else
 		{

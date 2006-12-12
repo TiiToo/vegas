@@ -59,16 +59,6 @@ class test.mvc.diaporama.Picture extends AbstractVisitable
 	{
 		return view._visible ;		
 	}
-	
-	/**
-	 * Release the display (Initialize the Picture and remove the target reference) 
-	 */
-	public function release():Void
-	{
-		view.removeMovieClip() ;
-		url = null ;
-		name = null ;	
-	}
 
 	/**
 	 * Sets the visible property of the picture.
