@@ -10,7 +10,7 @@ import vegas.util.visitor.IVisitor;
  * This class show the view of a Picture instance.
  * @author eKameleon
  */
-class test.observer.diaporama.visitors.ShowVisitor extends CoreObject implements IVisitor 
+class test.visitor.diaporama.visitors.ShowVisitor extends CoreObject implements IVisitor 
 {
 	
 	/**

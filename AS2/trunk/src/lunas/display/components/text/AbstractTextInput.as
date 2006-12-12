@@ -21,130 +21,6 @@
   
 */
 
-/** AbstractTextInput
-
-	AUTHOR
-
-		Name : AbstractTextInput
-		Package : lunas.display.components.text
-		Version : 1.0.0.0
-		Date :  2006-02-22
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : contact@ekameleon.net
-
-	PROPERTY SUMMARY
-
-		- autoSize:Boolean
-
-		- editable:Boolean [R/W]
-
-		- field:TextField
-
-		- hPosition:Number
-
-		- label:String [R/W]
-
-		- length:Number [Read Only]
-
-		- maxChars:Number [R/W]
-
-		- maxHPosition:Number [Read Only]
-
-		- maxVPosition:Number [Read Only]
-
-		- multiline:Boolean [R/W]
-
-		- password:Boolean [R/W]
-
-		- priority:Boolean [R/W]
-
-		- restrict:String [R/W]
-
-		- vPosition:Number
-
-	METHOD SUMMARY
-		
-		- getAutoSize():Boolean
-
-		- getEditable():Boolean
-
-		- getHTML():Boolean
-
-		- getHPosition():Number
-
-		- getHScrollPolicy():Number
-
-		- getInputField():TextField
-
-		- getLabel():String
-
-		- getLength():Number
-
-		- getMaxHPosition():Number
-
-		- getMaxVPosition():Number 
-
-		- getMultiline():Boolean
-
-		- getText():String
-
-		- getVPosition():Number
-
-		- getVScrollPolicy():Number
-
-		- setHTML(b:Boolean):Void
-
-		- setAutoSize(b:Boolean):Void
-
-		- setEditable(b:Boolean):Void
-
-		- setHPosition(n:Number)
-
-		- setHScrollPolicy(n:Number)
-
-		- setLabel(str:String):Void
-
-		- setMultiline(b:Boolean):Void
-
-		- setText(str:String):Void
-
-		- setVPosition(n:Number)
-
-		- setVScrollPolicy(n:Number)
-
-		- viewLabelChanged():Void (override this method)
-
-	IMPLEMENTS 
-	
-		ILabel, IEventTarget
-
-	EVENT SUMMARY
-
-		UIEvent
-
-	EVENT TYPE SUMMARY
-
-		- UIEventType.CHANGE
-
-		- UIEventType.LABEL_CHANGE
-
-		- UIEventType.SCROLL
-
-	INHERIT 
-	
-		MovieClip → AbstractComponent → AbstractLabel -> AbstractTextInput
-
-	IMPLEMENTS
-	
-		ILabel
-
-	SEE ALSO
-	
-		IBuilder, IStyle
-
-**/
-
 import asgard.events.FocusEvent;
 
 import lunas.display.components.text.AbstractTextArea;
@@ -152,11 +28,19 @@ import lunas.display.group.TextInputGroup;
 
 import vegas.events.Delegate;
 
-class lunas.display.components.text.AbstractTextInput extends AbstractTextArea {
+/**
+ * This class simplify the implementation of the TextInput components.
+ * @author eKameleon
+ */
+class lunas.display.components.text.AbstractTextInput extends AbstractTextArea 
+{
 
-	// ----o Constructor
-
-	private function AbstractTextInput() { 
+	/**
+	 * The abstract constructor to creates TextInput concrete class.
+	 */
+	private function AbstractTextInput() 
+	{ 
+		
 		super() ;
 		
 		_eFocusIn = new FocusEvent(FocusEvent.FOCUS_IN, this) ;
@@ -164,99 +48,204 @@ class lunas.display.components.text.AbstractTextInput extends AbstractTextArea {
 		
 		field.onKillFocus = Delegate.create(this, notifyFocusOut) ;
 		field.onSetFocus = Delegate.create(this, notifyFocusIn) ;
+		
 	}
 
-	// ----o Public Methods
+	/**
+	 * (read-write) Returns the maximum number of characters that the text field can contain. 
+	 * A script may insert more text than the maxChars property allows; this property indicates only how much text a user can enter. 
+	 * If this property is null, there is no limit to the amount of text a user can enter. The default value is null.
+	 * @return the maximum number of characters that the text field can contain. 
+	 */
+	public function get maxChars():Number 
+	{ 
+		return getMaxChars() ; 
+	}
+
+	/**
+	 * (read-write) Sets the maximum number of characters that the text field can contain. 
+	 * A script may insert more text than the maxChars property allows; this property indicates only how much text a user can enter. 
+	 * If this property is null, there is no limit to the amount of text a user can enter. The default value is null.
+	 */
+	public function set maxChars(n:Number):Void 
+	{ 
+		setMaxChars(n); 
+	}
+
+	/**
+	 * (read-write) Returns a Boolean value indicating whether the text field is a password field (true) or not (false).
+	 * @return a Boolean value indicating whether the text field is a password field (true) or not (false).
+	 */
+	public function get password():Boolean 
+	{ 
+		return getPassword(); 
+	}
+
+	/**
+	 * (read-write) Sets a Boolean value indicating whether the text field is a password field (true) or not (false).
+	 */
+	public function set password(b:Boolean):Void 
+	{ 
+		setPassword(b); 
+	}
+
+	/**
+	 * (read-write) Returns a Boolean value indicating whether the text field is a priority field (true) or not (false).
+	 * @return a Boolean value indicating whether the text field is a priority field (true) or not (false).
+	 */
+	public function get priority():Boolean 
+	{ 
+		return getPriority(); 
+	}
+
+	/**
+	 * (read-write) Sets a Boolean value indicating whether the text field is a priority field (true) or not (false).
+	 */
+	public function set priority(bool:Boolean):Void 
+	{ 
+		setPriority(bool); 
+	}
+
+	/**
+	 * (read-write) Returns the set of characters that a user can enter in the text field.
+	 * @return the set of characters that a user can enter in the text field.
+	 */
+	public function get restrict():String 
+	{ 
+		return getRestrict(); 
+	}
+
+	/**
+	 * (read-write) Indicates the set of characters that a user can enter in the text field. 
+	 * The default value is undefined. If this property is null or an empty string (""), a user can enter any character. If this property is a string of characters, the user can enter only characters in the string; the string is scanned from left to right. You can specify a range by using a dash (-).
+	 * @see TextField
+	 */
+	public function set restrict(s:String):Void 
+	{ 
+		setRestrict(s); 
+	}
 	
-	public function getInputField():TextField {
+	/**
+	 * Returns the input field reference.
+	 */
+	public function getInputField():TextField 
+	{
 		return field ;
 	}	
 	
+	/**
+	 * Returns the maximum number of characters that the text field can contain. 
+	 * A script may insert more text than the maxChars property allows; this property indicates only how much text a user can enter. 
+	 * If this property is null, there is no limit to the amount of text a user can enter. The default value is null.
+	 * @return the maximum number of characters that the text field can contain. 
+	 */
 	public function getMaxChars():Number { 
 		return field.maxChars ; 
 	}
 	
+	/**
+	 * Returns a Boolean value indicating whether the text field is a password field (true) or not (false).
+	 * @return a Boolean value indicating whether the text field is a password field (true) or not (false).
+	 */
 	public function getPassword():Boolean { 
 		return field.password ; 
 	}
-	
-	public function getPriority(Void):Boolean { 
+
+	/**
+	 * Returns a Boolean value indicating whether the text field is a priority field (true) or not (false).
+	 * @return a Boolean value indicating whether the text field is a priority field (true) or not (false).
+	 */
+	public function getPriority(Void):Boolean 
+	{ 
 		return _priority ; 
 	}
 
-	public function getRestrict(Void):String { 
+	/**
+	 * Returns the set of characters that a user can enter in the text field.
+	 * @return the set of characters that a user can enter in the text field.
+	 */
+	public function getRestrict(Void):String 
+	{ 
 		return field.restrict ;
 	}
 	
-	/*override*/ public function groupPolicyChanged():Void {
+	/**
+	 * This method is invoqued when the group or the groupName property are changed.
+	 * The user can group all TextInput in a form and enable or disable all component if their are in the same group.
+	 */
+	/*override*/ public function groupPolicyChanged():Void 
+	{
 		TextInputGroup.getInstance().setGroupName( getGroupName(), this) ;
 	}
 
-	public function notifyFocusIn( oldFocus ):Void {
+	/**
+	 * Notify the focus in of this component.
+	 */
+	public function notifyFocusIn( oldFocus ):Void 
+	{
 		_eFocusIn.relatedObject = oldFocus ;
 		dispatchEvent(_eFocusIn) ;
 	}
 
-	public function notifyFocusOut( newFocus ):Void {
+	/**
+	 * Notify the focus out of this component.
+	 */
+	public function notifyFocusOut( newFocus ):Void 
+	{
 		_eFocusIn.relatedObject = newFocus ;
 		dispatchEvent(_eFocusOut) ;
 	}
 
-	public function setMaxChars(n:Number):Void { 
+	/**
+	 * Sets the maximum number of characters that the text field can contain. 
+	 * A script may insert more text than the maxChars property allows; this property indicates only how much text a user can enter. 
+	 * If this property is null, there is no limit to the amount of text a user can enter. The default value is null.
+	 */
+	public function setMaxChars(n:Number):Void 
+	{ 
 		field.maxChars = n ; 
 	}
-	
-	public function setPassword(b:Boolean):Void { 
+
+	/**
+	 * Sets a Boolean value indicating whether the text field is a password field (true) or not (false).
+	 */
+	public function setPassword(b:Boolean):Void 
+	{ 
 		field.password = b ; 
 	}
-	
-	public function setPriority(bool:Boolean):Void { 
+
+	/**
+	 * Sets a Boolean value indicating whether the text field is a priority field (true) or not (false).
+	 */
+	public function setPriority(bool:Boolean):Void 
+	{ 
 		_priority = bool ;
 		update() ;
 	}
 
-	public function setRestrict(s:String):Void { 
+	/**
+	 * Indicates the set of characters that a user can enter in the text field. 
+	 * The default value is undefined. If this property is null or an empty string (""), a user can enter any character. If this property is a string of characters, the user can enter only characters in the string; the string is scanned from left to right. You can specify a range by using a dash (-).
+	 * @see TextField
+	 */
+	public function setRestrict(s:String):Void 
+	{ 
 		field.restrict = s ;
 	}
-	
-	// ----o Virtual Properties
 
-	public function get maxChars():Number { 
-		return getMaxChars() ; 
-	}
-	
-	public function set maxChars(n:Number):Void { 
-		setMaxChars(n); 
-	}
-
-	public function get password():Boolean { 
-		return getPassword(); 
-	}
-	
-	public function set password(b:Boolean):Void { 
-		setPassword(b); 
-	}
-
-	public function get priority():Boolean { 
-		return getPriority(); 
-	}
-	
-	public function set priority(bool:Boolean):Void { 
-		setPriority(bool); 
-	}
-	
-	public function get restrict():String { 
-		return getRestrict(); 
-	}
-	
-	public function set restrict(s:String):Void { 
-		setRestrict(s); 
-	}
-
-	// ----o Private Properties
-	
+	/**
+	 * The event when the component is focus in.
+	 */
 	private var _eFocusIn:FocusEvent ;
+	
+	/**
+	 * The event when the component is focus out.
+	 */
 	private var _eFocusOut:FocusEvent ;
+	
+	/**
+	 * The priority value of the component.
+	 */
 	private var _priority:Boolean = false ;
 	
 }

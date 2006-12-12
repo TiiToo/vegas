@@ -85,49 +85,67 @@ import vegas.core.CoreObject;
 import vegas.events.Event;
 import vegas.util.ArrayUtil;
 
-class lunas.display.group.RadioButtonGroup extends CoreObject implements IRadioButtonGroup {
+/**
+ * This singleton class defined all groups for the different RadioButton in the application.
+ * @author eKameleon
+ */
+class lunas.display.group.RadioButtonGroup extends CoreObject implements IRadioButtonGroup 
+{
 	
-	// ----o Private Constructor
-	
-	private function RadioButtonGroup () {
+	/**
+	 * Creates the singleton RadioButtonGroup.
+	 */
+	private function RadioButtonGroup () 
+	{
 		//
 	}
 
-	// ----o Public Properties
-	
 	public var groups:Object = new Object() ;
 
-	// ----o Public Methods
-	
-	public function addButton(obj):Void {
+	public function addButton(obj):Void 
+	{
 		var name = obj.getGroupName() ;
 		if (name == undefined || name == "" || obj == undefined ) return ;
 		if (groups[name] == undefined) groups[name] = [] ;
-		if ( ! ArrayUtil.contains(groups[name], obj) ) {
+		if ( ! ArrayUtil.contains(groups[name], obj) ) 
+		{
 			groups[name].push (obj) ;	
 		}
 	}
 	
-	public function getGroup(groupName:String):Array {
+	public function getGroup(groupName:String):Array 
+	{
 		return groups[groupName] ;
 	}
 
-	static public function getInstance () : RadioButtonGroup {
+	static public function getInstance():RadioButtonGroup 
+	{
 		if (_instance == undefined)  _instance = new RadioButtonGroup () ;
 		return _instance ;
 	}
 	
-	public function handleEvent(e:Event) {
+	/**
+	 * Handles the event.
+	 */
+	public function handleEvent(e:Event) 
+	{
 		var target:MovieClip = e.getTarget() ;
-		if ( ! target.getToggle() ) return ;
+		if ( ! target.getToggle() ) 
+		{
+			return ;
+		}
 		var name:String = target.getGroupName() ;
 		var aGroup:Array = groups[name] ;
-		if ( name != undefined &&  aGroup != undefined) {
+		if ( name != undefined &&  aGroup != undefined) 
+		{
 			var l:Number = aGroup.length ;
-			for (var i:Number = 0 ; i<l ; i++) {
+			for (var i:Number = 0 ; i<l ; i++) 
+			{
 				var cur = groups[name][i] ;
-				if (cur != target && cur.getToggle()) {
-					if (cur.toggle) {
+				if (cur != target && cur.getToggle()) 
+				{
+					if (cur.toggle) 
+					{
 						cur.setSelected (false, true)  ;
 					}
 				}
@@ -135,51 +153,71 @@ class lunas.display.group.RadioButtonGroup extends CoreObject implements IRadioB
 		}
 	}
 	
-	public function removeButton(obj) : Void {
-		for (var i:String in groups) {
+	public function removeButton(obj) : Void 
+	{
+		for (var i:String in groups) 
+		{
 			var cur:Array = groups[i] ;
 			var n = cur.length ;
-			for (var j = 0 ; j<n ; j++) {
-				if (cur[j] == obj) { 
-					cur.splice (j, 1) ; 
+			for (var j:Number = 0 ; j<n ; j++) 
+			{
+				if (cur[j] == obj) 
+				{ 
+					cur.splice(j, 1) ; 
 					break ; 
 				}
 			}
 		}
 	}
 
-	public function resetGroup (groupName:String):Void {
+	public function resetGroup (groupName:String):Void 
+	{
 		groups[groupName] = undefined ;
 	}
 	
-	public function selectedItemAt (id:Number, groupName:String, noEvent:Boolean) : Void {
+	public function selectedItemAt (id:Number, groupName:String, noEvent:Boolean) : Void 
+	{
 		var a:Array = groups[groupName] ;
 		var item = a[id] ;
-		if (!item.toggle) return ;
+		if (!item.toggle) 
+		{
+			return ;
+		}
 		item.selected = true ;
 		var l:Number = a.length ;
-		for (var i:Number = 0 ; i<l ; i++) {
+		for (var i:Number = 0 ; i<l ; i++) 
+		{
 			var cur = a[i] ;
-			if (i != id && cur.toggle) {
+			if (i != id && cur.toggle) 
+			{
 				cur.setSelected (false, noEvent)  ;
 			}
 		}
 	}
 	
-	public function setGroupName ( name:String , obj ) : Void {
-		if (obj == undefined) return ;
+	public function setGroupName ( name:String , obj ) : Void 
+	{
+		if (obj == undefined) 
+		{
+			return ;
+		}
 		removeButton(obj) ;
-		if (name == undefined || name == "") return ;
+		if (name == undefined || name == "") 
+		{
+			return ;
+		}
 		addButton ( name  , obj ); 
 	}
 	
-	public function unSelect ( groupName:String ) : Void {
+	public function unSelect ( groupName:String ) : Void 
+	{
 		var list:Array = groups[groupName] ;
 		var l:Number = list.length ;
-		while (--l > -1) list[l].setSelected (false, true)  ;
+		while (--l > -1) 
+		{
+			list[l].setSelected (false, true)  ;
+		}
 	}
-	
-	// ----o Private Properties
 	
 	static private var _instance : RadioButtonGroup ;	
 

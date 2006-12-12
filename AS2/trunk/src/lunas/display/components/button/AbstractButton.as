@@ -14,110 +14,12 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2006
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
-
-/** AbstractButton
-
-	AUTHOR
-
-		Name : AbstractButton
-		Package : lunas.display.components.button
-		Version : 1.0.0.0
-		Date :  2006-02-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-
-		- index:Number
-		
-		- data:Object
-		
-		- label:String [R/W]
-		
-		- selected:Boolean [R/W]
-		
-		- toggle:Boolean [R/W]
-			
-	METHOD SUMMARY
-		
-		- getLabel():String
-		
-		- getSelected():Boolean
-		
-		- getToggle():Boolean
-		
-		- setLabel(str:String):Void
-		
-		- setSelected(b:Boolean, noEvent:Boolean):Void
-		
-		- setToggle(b:Boolean):Void
-		
-		- final viewEnabled():Void
-		
-		- viewLabelChanged():Void
-		
-			override this method !
-
-	EVENT SUMMARY
-	
-		ButtonEvent
-		
-		- CLICK:String
-		
-		- UP:String
-		
-		- DISABLED:String
-		
-		- DOUBLE_CLICK:String
-		
-		- DOWN:String
-		
-		- ICON_CHANGE:String
-		
-		- LABEL_CHANGE:String
-		
-		- MOUSE_UP:String
-		
-		- MOUSE_DOWN:String
-		
-		- OUT:String
-		
-		- OUT_SELECTED:String
-		
-		- OVER:String
-		
-		- OVER_SELECTED:String
-		
-		- ROLLOUT:String
-		
-		- ROLLOVER:String
-		
-		- SELECT:String
-		
-		- UNSELECT:String
-		
-		- UP:String
-
-	IMPLEMENTS 
-	
-		IButton, IEventTarget
-
-	INHERIT 
-	
-		MovieClip → AbstractComponent → AbstractButton
-
-	SEE ALSO
-	
-		IBuilder, IButton, IStyle
-	
-**/
 
 import asgard.events.ButtonEvent;
 import asgard.events.ButtonEventType;
@@ -128,41 +30,114 @@ import lunas.display.group.RadioButtonGroup;
 
 import vegas.events.EventListener;
 
-class lunas.display.components.button.AbstractButton extends AbstractComponent implements IButton {
+/**
+ * This class provides a skeletal implementation of the {@code IButton interface, to minimize the effort required to implement this interface.
+ * @author eKameleon
+ */
+class lunas.display.components.button.AbstractButton extends AbstractComponent implements IButton 
+{
 
-	// ----o Constructor
-
+	/**
+	 * Creates a new AbstractButton instance. Overrides this constructor.
+	 */	
 	private function AbstractButton () 
 	{
 		initButtonEvent() ; 
 		_rg = RadioButtonGroup.getInstance()  ;
 	}
 
-	// ----o Public Properties
-	
-	//public var label:String ; // [R/W]
+	/**
+	 * A data property used to keep an object in memory.
+	 */
 	public var data ;
+
+	/**
+	 * A number value to indicated the index of this IButton.
+	 */
 	public var index:Number ;
-	//public var selected:Boolean ; // [R/W]
-	//public var toggle:Boolean ; // [R/W]
+
+	/**
+	 * Returns the text label for a button instance.
+	 * @return the text label for a button instance.
+	 */
+	public function get label():String 
+	{
+		return getLabel() ;
+	}
+
+	/**
+	 * Sets the text label for a button instance.
+	 */
+	public function set label(s:String):Void 
+	{
+		setLabel(s) ;	
+	}
 	
-	// ----o Public Methods
+	/**
+	 * Returns a Boolean value indicating whether the button is selected (true) or not (false). The default value is false.
+	 * @return a Boolean value indicating whether the button is selected (true) or not (false)
+	 */
+	public function get selected():Boolean 
+	{
+		return getSelected() ;	
+	}
+
+	/**
+	 * Sets a Boolean value indicating whether the button is selected (true) or not (false). The default value is false.
+	 */
+	public function set selected(b:Boolean):Void 
+	{
+		setSelected(b);	
+	}	
 	
+	/**
+	 * Returns a boolean value indicating whether the button behaves as a toggle switch (true) or not (false). 
+	 * @return a boolean value indicating whether the button behaves as a toggle switch (true) or not (false).
+	 */
+	public function get toggle():Boolean 
+	{
+		return getToggle() ;	
+	}
+
+	/**
+	 * Sets a boolean value indicating whether the button behaves as a toggle switch (true) or not (false). 
+	 * The default value is false.
+	 */
+	public function set toggle(b:Boolean):Void 
+	{
+		setToggle(b);	
+	}	
+	
+	/**
+	 * Returns the text label for a button instance.
+	 * @return the text label for a button instance.
+	 */
 	public function getLabel():String 
 	{
 		return _label || "" ;
 	}
-		
+
+	/**
+	 * Returns a Boolean value indicating whether the button is selected (true) or not (false). The default value is false.
+	 * @return a Boolean value indicating whether the button is selected (true) or not (false)
+	 */
 	public function getSelected():Boolean 
 	{
 		return _selected ;
 	}
-	
+
+	/**
+	 * Returns a boolean value indicating whether the button behaves as a toggle switch (true) or not (false). 
+	 * @return a boolean value indicating whether the button behaves as a toggle switch (true) or not (false).
+	 */
 	public function getToggle():Boolean 
 	{
 		return _toggle ;
 	}
 	
+	/**
+	 * Invoqued when the groupPolicy of the component change.
+	 */
 	public function groupPolicyChanged():Void 
 	{
 		_rg.setGroupName( _groupName, this ) ;
@@ -177,12 +152,18 @@ class lunas.display.components.button.AbstractButton extends AbstractComponent i
 			removeEventListener(ButtonEventType.DOWN, _rg) ;
 		}
 	}
-
+	
+	/**
+	 * Protected method to initialize the internal ButtonEvent of this instance.
+	 */
 	public function initButtonEvent():Void 
 	{
 		_eButton = new ButtonEvent() ;	
 	}
 
+	/**
+	 * Sets the text label for a button instance.
+	 */
 	public function setLabel(str:String):Void 
 	{
 		_label = str ; 
@@ -190,6 +171,10 @@ class lunas.display.components.button.AbstractButton extends AbstractComponent i
 		_fireButtonEvent(ButtonEventType.LABEL_CHANGE) ;
 	}
 
+	/**
+	 * Sets a boolean value indicating whether the button is selected (true) or not (false). 
+	 * The default value is false.
+	 */
 	public function setSelected (b:Boolean, noEvent:Boolean):Void 
 	{
 		_selected =  (_toggle)  ? b : null ;
@@ -200,12 +185,19 @@ class lunas.display.components.button.AbstractButton extends AbstractComponent i
 		}
 	}
 	
+	/**
+	 * Sets a boolean value indicating whether the button behaves as a toggle switch (true) or not (false). 
+	 * The default value is false.
+	 */
 	public function setToggle(b:Boolean):Void 
 	{
 		_toggle = b ;	
 		setSelected (false, true) ;
 	}
 
+	/**
+	 * Invoqued when the enabled property of the component change.
+	 */
 	/*final*/ public function viewEnabled():Void 
 	{
 		var type:String ;
@@ -220,53 +212,26 @@ class lunas.display.components.button.AbstractButton extends AbstractComponent i
 		_fireButtonEvent( type ) ;
 	}
 
-	public function viewLabelChanged():Void {
+	/**
+	 * Invoqued when the label property of the component change.
+	 */
+	public function viewLabelChanged():Void 
+	{
 		// override this method when label property change
 	}
 
-	// ----o Virtual Properties
-	
-	public function get label():String 
-	{
-		return getLabel() ;
-	}
-	
-	public function set label(s:String):Void 
-	{
-		setLabel(s) ;	
-	}
-		
-	public function get selected():Boolean 
-	{
-		return getSelected() ;	
-	}
-	
-	public function set selected(b:Boolean):Void 
-	{
-		setSelected(b);	
-	}	
-	
-	public function get toggle():Boolean 
-	{
-		return getToggle() ;	
-	}
-	
-	public function set toggle(b:Boolean):Void 
-	{
-		setToggle(b);	
-	}	
-	
-	// ----o Private Properties
-	
 	private var _eButton:ButtonEvent ;
-	private var _label:String ;
-	private var _rgListener:EventListener ;
-	private var _toggle:Boolean ;
-	private var _rg:RadioButtonGroup ;
-	private var _selected:Boolean ;
-	
-	// ----o Private Methods
 
+	private var _label:String ;
+
+	private var _rgListener:EventListener ;
+
+	private var _toggle:Boolean = false ;
+
+	private var _rg:RadioButtonGroup ;
+
+	private var _selected:Boolean = false ;
+	
 	private function _fireButtonEvent( eventType:String ):Void 
 	{
 		_eButton.setType(eventType) ;
@@ -290,7 +255,10 @@ class lunas.display.components.button.AbstractButton extends AbstractComponent i
 
 	private function onRelease():Void 
 	{ 
-		if ( !_toggle ) _fireButtonEvent(ButtonEventType.UP) ;
+		if ( !_toggle ) 
+		{
+			_fireButtonEvent(ButtonEventType.UP) ;
+		}
 		_fireButtonEvent(ButtonEventType.MOUSE_UP) ;
 	}
 	

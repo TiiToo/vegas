@@ -14,184 +14,11 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2006
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
-*/
-
-/** AbstractComponent
-
-	AUTHOR
-
-		Name : AbstractComponent
-		Package : lunas.display.components
-		Version : 1.0.0.0
-		Date :  2006-02-05
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-
-		- enabled:Boolean [R/W]
-		
-			Défini si le clip doit recevoir les événements d'un bouton ou non.
-		
-		- h:Number [R/W]
-		
-			hauteur du composant - attention ne pas confondre avec _height la hauteur du 'clip'.
-		
-		- group:Boolean [R/W] 
-		
-			Défini si le composant peut appartenir à un groupe ou non.
-		
-		- groupName:String [R/W] 
-		
-			Défini via une chaine de caractère le nom d'un groupe auquel peut être attaché le composant.
-			Si la propriété groupName est définie alors la propriété group prend pour valeur automatiquement 'true'.
-		
-		- minWidth:Number
-		
-		- minHeight:Number
-		
-		- maxWidth:Number
-		
-		- maxHeight:Number
-		
-		- style:IStyle [R/W] 
-			
-			renvoi et défini le style du composant.
-
-		- w:Number [R/W]
-		
-			largeur du composant - attention ne pas confondre avec _width la largeur du 'clip'.
-
-	METHOD SUMMARY
-	
-		- addEventListener( eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void
-		
-		- createChild( oChild , name:String, depth:Number, oInit)
-		
-		- dispatchEvent(event, isQueue:Boolean, target, context):Event		- dispatchEvent(o:Object):Void
-		
-		- doLater():Void
-		
-		- draw():Void
-		
-		- getBuilder():IBuilder
-		
-		- getDispatcher():EventDispatcher
-		
-		- getEnabled():Boolean
-		 
-		- getGroup():Boolean
-		
-		- getGroupName():String
-		
-		- getH():Number
-		
-		- getBuilderRenderer():Function 
-		
-			override this method
-		
-		- getEventDispatcher():EventDispatcher
-		
-			override this method.
-		
-		- getStyleRenderer():Function
-		
-			override this method
-		
-		- getStyle():IStyle
-		
-		- getW():Number
-		
-		- groupPolicyChanged():Void
-		
-			override this method when the groupName changed.
-		
-		- lock():Void
-		
-			appliquer une protection sur le composant pour désactiver les événements et les refresh.
-		
-		- initialize():Void
-			initialize the component with this method
-		
-		- notifyAdded(child:MovieClip, index:Number):Void
-		
-		- notifyChanged():Void
-		
-		- notifyRemoved():Void
-		
-		- notifyResized():Void
-		
-		- refresh(oInit:Object):Void
-		
-			update and initialize the component.
-		
-		- removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener 
-		
-		- setBuilder(b:IBuilder)::Boolean
-		
-		- setEnabled(bool:Boolean):Void
-		
-		- setGroup(b:Boolean):Void
-		
-		- setGroupName(sName:String, bInvalidate:Boolean):Void
-		
-		- setH(n:Number):Void
-		
-		- setSize(p_w:Number, p_h:Number):Void
-		
-		- setStyle(s:IStyle):Void
-		
-		- setW(n:Number):Void
-		
-		- unLock():Void
-		
-		- update():Void
-		
-		- viewChanged():Void
-		
-			override this method
-		
-		- viewEnabled():Void
-		
-			override this method
-		
-		- viewResize():Void
-		
-			override this method when component resize !
-		
-		- viewStyleChanged():Void
-		
-			override this method
-		
-		- viewStyleSheetChanged():Void
-		
-			override this method
-		
-		- viewDestroyed():Void
-			
-			override this method
-
-	EVENT SUMMARY
-
-
-	IMPLEMENTS 
-	
-		IEventTarget
-
-	INHERIT 
-	
-		MovieClip
-
-	SEE ALSO
-	
-		IBuilder, IStyle
-	
 */
 
 import asgard.events.UIEvent;
@@ -216,10 +43,16 @@ import vegas.util.factory.DisplayFactory;
 import vegas.util.FrameTimer;
 import vegas.util.MathsUtil;
 
-class lunas.display.components.AbstractComponent extends MovieClip implements IEventDispatcher, IHashable {
+/**
+ * This class provides a skeletal implementation of all the components in Lunas, to minimize the effort required to implement this interface.
+ * @author eKameleon
+ */
+class lunas.display.components.AbstractComponent extends MovieClip implements IEventDispatcher, IHashable 
+{
 
-	// ----o Constructor
-
+	/**
+	 * Creates a new AbstractComponent instance.
+	 */
 	private function AbstractComponent() { 
 		
 		_dispatcher = initEventDispatcher() ;
@@ -248,30 +81,165 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 		_dispatcher.dispatchEvent(_eInit) ;
 		
 	}
-	
-	// ----o Init HashCode
-	
-	static private var _initHashCode:Boolean = HashCode.initialize(AbstractComponent.prototype) ;
-	
-	// ----o Public Properties
-	
-	public var minWidth:Number ;
+
+	/**
+	 * Returns a Boolean value that indicates whether a movie clip is enabled. The default value of enabled is true. 
+	 * @return a Boolean value that indicates whether a movie clip is enabled. The default value of enabled is true.
+	 */
+	public function get enabled():Boolean 
+	{
+		return getEnabled() ;
+	}
+
+	/**
+	 * Sets a Boolean value that indicates whether a movie clip is enabled. The default value of enabled is true. 
+	 */
+	public function set enabled( b:Boolean ):Void 
+	{
+		setEnabled(b) ;
+	}
+
+	/**
+	 * Returns {@code true} if this component is grouped.
+	 * @return {@code true} if this component is grouped.
+	 */
+	public function get group():Boolean 
+	{
+		return getGroup() ;
+	}
+
+	/**
+	 * Sets this component is grouped.
+	 */
+	public function set group( b:Boolean ):Void 
+	{
+		setGroup(b) ;
+	}
+
+	/**
+	 * Returns the name of the group of this component.
+	 * @return the name of the group of this component.
+	 */
+	public function get groupName():String 
+	{
+		return getGroupName() ;
+	}
+
+	/**
+	 * Sets the name of the group of this component.
+	 * @param sName the name of the group or null to unregister the component.
+	 */	
+	public function set groupName( sName:String ):Void 
+	{
+		setGroupName( sName ) ;
+	}
+
+	/**
+	 * (read-only) Returns the virtual height value of this component.
+	 * @return the virtual height value of this component.
+	 */
+	public function get h():Number 
+	{
+		return getH() ;	
+	}
+
+	/**
+	 * (read-only) Sets the virtual width value of this component.
+	 */
+	public function set h( n:Number ):Void 
+	{
+		setH( n ) ;	
+	}
+
+	/**
+	 * This property defined the mimimun height of this component.
+	 */
 	public var minHeight:Number ;
+
+	/**
+	 * This property defined the mimimun width of this component.
+	 */
+	public var minWidth:Number ;
+
+	/**
+	 * This property defined the maximum width of this component.
+	 */
 	public var maxWidth:Number ;
+	
+	/**
+	 * This property defined the maximum height of this component.
+	 */
 	public var maxHeight:Number ;
-	public var tabEnabled:Boolean = false ; // not supposed to receive focus
-	
-	// ----o Public Methods
-	
-	public function addEventListener( eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void {
-		_dispatcher.addEventListener.apply(_dispatcher, arguments);
+
+	/**
+	 * Returns the style of this component.
+	 * @return the style of this component.
+	 */
+	public function get style():IStyle 
+	{
+		return getStyle() ;
 	}
 	
-	public function addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void {
+	/**
+	 * Sets the style of this component.
+	 */
+	public function set style( s:IStyle ):Void 
+	{
+		setStyle( s ) ;
+	}
+
+	/**
+	 * Specifies whether the movie clip is included in automatic tab ordering.
+	 */
+	public var tabEnabled:Boolean = false ; // not supposed to receive focus
+	
+	/**
+	 * (read-only) Returns the virtual width value of this component.
+	 * @return the virtual width value of this component.
+	 */
+	public function get w():Number 
+	{ 
+		return getW() ;	
+	}
+	
+	/**
+	 * (read-only) Sets the virtual width value of this component.
+	 */
+	public function set w( n:Number ):Void 
+	{
+		setW( n ) ;	
+	}
+
+	/**
+	 * Allows the registration of event listeners on the event target.
+	 * @param eventName A string representing the event type to listen for. If eventName value is "ALL" addEventListener use addGlobalListener
+	 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the {@code EventListener} interface.
+	 * @param useCapture Determinates if the event flow use capture or not.
+	 * @param priority Determines the priority level of the event listener.
+	 * @param autoRemove Apply a removeEventListener after the first trigger
+	 */
+	public function addEventListener( eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void 
+	{
+		_dispatcher.addEventListener.apply(_dispatcher, arguments);
+	}
+
+	/**
+	 * Allows the registration of global event listeners on the event target.
+	 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the {@code EventListener} interface.
+	 * @param priority Determines the priority level of the event listener.
+	 * @param autoRemove Apply a removeEventListener after the first trigger
+	 */
+	public function addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void 
+	{
 		_dispatcher.addGlobalEventListener(listener, priority, autoRemove) ;
 	}
 	
-	public function createChild( oChild , name:String, depth:Number, oInit) {
+	/**
+	 * Creates a child MovieClip, TextField or custom visual instance.
+	 * @see DisplayFactory
+	 */
+	public function createChild( oChild , name:String, depth:Number, oInit) 
+	{
 		var c:MovieClip = DisplayFactory.createChild( oChild, name, depth, this, oInit) ;
 		var ev:UIEvent = new UIEvent( UIEventType.CREATE, this) ;
 		ev.child = c ;
@@ -279,105 +247,220 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 		return c ;
 	}
 
-	public function dispatchEvent(event, isQueue:Boolean, target, context):Event {
+	/**
+	 * Dispatches an event into the event flow.
+	 * @param event The Event object that is dispatched into the event flow.
+	 * @param isQueue if the EventDispatcher isn't register to the event type the event is bufferized.
+	 * @param target the target of the event.
+	 * @param contect the context of the event.
+	 * @return the reference of the event dispatched in the event flow.
+	 */
+	public function dispatchEvent(event, isQueue:Boolean, target, context):Event 
+	{
 		return _dispatcher.dispatchEvent(event, isQueue, target, context) ;
 	}
 	
-	public function doLater():Void {
+	/**
+	 * Launch an event with a delayed interval.
+	 */
+	public function doLater():Void 
+	{
 		if (___isLock___) return ;
 		___timer___.start() ;
 	}
 
-	public function draw():Void {
-		// Permet de redessiner le composant
+	/**
+	 * Draw the view of the component.
+	 */
+	public function draw():Void 
+	{
+		// Draw the component.
 	}
 	
-	public function getBuilder():IBuilder {
+	/**
+	 * Returns the IBuilder reference of this instance.
+	 */
+	public function getBuilder():IBuilder 
+	{
 		return _builder ;
 	}
 
-	public function getBuilderRenderer():Function {
+	/**
+	 * Returns the constructor of the IBuilder of this instance. 
+	 */
+	public function getBuilderRenderer():Function 
+	{
 		return null ; // override
 	}
 	
-	public function getEventDispatcher():EventDispatcher {
+	/**
+	 * Returns the internal EventDispatcher reference of this instance.
+	 */
+	public function getEventDispatcher():EventDispatcher 
+	{
 		return _dispatcher ;
 	}
-	
-	public function getEventListeners(eventName:String):EventListenerCollection {
+
+	/**
+	 * Returns the {@code EventListenerCollection} of the specified event name.
+	 */
+	public function getEventListeners(eventName:String):EventListenerCollection 
+	{
 		return _dispatcher.getEventListeners(eventName) ;
 	}
 
-	public function getGlobalEventListeners():EventListenerCollection {
+	/**
+	 * Returns the {@code EventListenerCollection} of this EventDispatcher.
+	 */
+	public function getGlobalEventListeners():EventListenerCollection 
+	{
 		return getGlobalEventListeners() ;
 	}
-	
-	function getRegisteredEventNames():Set {
+
+	/**
+	 * Returns a {@code Set} of all register event's name in this EventListener.
+	 * @return a {@code Set} of all register event's name in this EventListener.
+	 */
+	function getRegisteredEventNames():Set 
+	{
 		return _dispatcher.getRegisteredEventNames() ;
 	}
 	
-	public function getDispatcher():EventDispatcher {
+	/**
+	 * Returns the internal EventDispatcher of this EventTarget.
+	 * @return the internal EventDispatcher of this EventTarget.
+	 * @see {@link AbstractComponent#getEventDispatcher}
+	 */
+	public function getDispatcher():EventDispatcher 
+	{
 		return _dispatcher ;
 	}
 	
-	public function getEnabled():Boolean { 
+	/**
+	 * Returns a Boolean value that indicates whether a movie clip is enabled. The default value of enabled is true. 
+	 * @return a Boolean value that indicates whether a movie clip is enabled. The default value of enabled is true.
+	 */
+	public function getEnabled():Boolean 
+	{ 
 		return _enabled ;
 	} 
 	
-	public function getGroup():Boolean { 
+	/**
+	 * Returns {@code true} if this component is grouped.
+	 * @return {@code true} if this component is grouped.
+	 */
+	public function getGroup():Boolean 
+	{ 
 		return _group ;
 	}
 	
-	public function getGroupName():String { 
+	/**
+	 * Returns the name of the group of this component.
+	 * @return the name of the group of this component.
+	 */
+	public function getGroupName():String 
+	{ 
 		return _groupName ;
 	}
-	public function getH():Number { 
+	
+	/**
+	 * (read-only) Returns the virtual height value of this component.
+	 * @return the virtual height value of this component.
+	 */
+	public function getH():Number 
+	{ 
 		return isNaN(_h) ? 0 : _h ;
 	}
 
-	public function getParent():EventDispatcher {
+	/**
+	 * Return the parent EventDispatcher of the internal EventDispatcher of this component.
+	 */
+	public function getParent():EventDispatcher 
+	{
 		return _dispatcher.parent ;
 	}
 
-	public function getStyleRenderer():Function {
+	/**
+	 * Returns the constructor of the IStyle of this instance. 
+	 */
+	public function getStyleRenderer():Function 
+	{
 		return null ; // override
 	}
-
-	public function getStyle():IStyle { 
+	
+	/**
+	 * Returns the style property from the style declaration or object.
+	 */
+	public function getStyle():IStyle 
+	{ 
 		return _style; 
 	}
-	
-	public function getW():Number { 
+
+	/**
+	 * (read-only) Returns the virtual width value of this component.
+	 * @return the virtual width value of this component.
+	 */
+	public function getW():Number 
+	{ 
 		return isNaN(_w) ? 0 : _w ;
 	}
 	
-	public function groupPolicyChanged():Void {
-		// override this method when the groupName changed.
+	/**
+	 * Invoqued when the group property or the groupName property changed.
+	 * Overrides this method in concrete class.
+	 */
+	public function groupPolicyChanged():Void 
+	{
+		//
 	}
-	
-	public function hashCode():Number {
+
+	/**
+	 * Returns a hash code value for the object.
+	 * @return a hash code value for the object.
+	 */
+	public function hashCode():Number 
+	{
 		return null ;
 	}
-	
-	public function hasEventListener(eventName:String):Boolean {
+
+	/**
+	 * Checks whether the EventDispatcher object has any listeners registered for a specific type of event.
+	 * This allows you to determine where altered handling of an event type has been introduced in the event flow heirarchy by an EventDispatcher object.
+	 */ 
+	public function hasEventListener(eventName:String):Boolean 
+	{
 		return _dispatcher.hasEventListener(eventName) ;
 	}
 
+	/**
+	 * Initialize in the constructor of this component the internal EventDispatcher reference.
+	 * You can override this method to use a global event model.
+	 * @see FrontController
+	 */
 	public function initEventDispatcher():EventDispatcher 
 	{
 		return new EventDispatcher(this) ;
 	}
 	
+	/**
+	 * Lock the component.
+	 */
 	public function lock():Void 
 	{
 		___isLock___ = true ;
 	}
 
+	/**
+	 * Initialize the component
+	 */
 	public function initialize():Void 
 	{
 		// initialize the component !
 	}
 
+	/**
+	 * Notify when a new child is added in the component.
+	 */
 	public function notifyAdded(child:MovieClip, index:Number):Void 
 	{
 		_eAdded.child = child ;
@@ -385,48 +468,85 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 		dispatchEvent(_eAdded ) ;
 	}
 
+	/**
+	 * Notify a change in this component.
+	 */
 	public function notifyChanged():Void 
 	{
 		dispatchEvent(_eChange) ;
 	}
 
+	/**
+	 * Notify an event when a child is removed in the component.
+	 */
 	public function notifyRemoved():Void 
 	{
 		dispatchEvent(_eRemoved) ;
 	}
 
+	/**
+	 * Notify an event when you resize the component.
+	 */
 	public function notifyResized():Void 
 	{
 		viewResize() ;
 		dispatchEvent(_eResize) ;
 	}
 
+	/**
+	 * Refresh the component with an object of initialization.
+	 * This method launch the update() method.
+	 */
 	public function refresh (oInit):Void 
 	{
 		for (var each:String in oInit) this[each] = oInit[each] ;
 		update() ;
 	}
-	
+
+	/** 
+	 * Removes a listener from the EventDispatcher object.
+	 * If there is no matching listener registered with the EventDispatcher object, then calling this method has no effect.
+	 * @param Specifies the type of event.
+	 * @param the class name(string) or a EventListener object.
+	 */
 	public function removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener 
 	{
 		return _dispatcher.removeEventListener(eventName, listener, useCapture) ;
 	}
-	
+
+	/** 
+	 * Removes a global listener from the EventDispatcher object.
+	 * If there is no matching listener registered with the EventDispatcher object, then calling this method has no effect.
+	 * @param the class name(string) or a EventListener object.
+	 */
 	public function removeGlobalEventListener( listener ):EventListener 
 	{
 		return _dispatcher.removeGlobalEventListener(listener) ;
 	}
 	
+	/**
+	 * Sets the IBuilder instance use to create the view of the component.
+	 * @return {@code true} if the new IBuilder is not null.
+	 */
 	public function setBuilder(b:IBuilder):Boolean 
 	{
-		if (_builder) _builder.clear() ;
-		if (!b) return false ;
+		if (_builder) 
+		{
+			_builder.clear() ;
+		}
+		if (b == null) 
+		{
+			return false ;
+		}
 		_builder = b ;
 		_builder.setTarget(this) ;
 		_builder.run() ;
 		return true ;
 	}
-	
+
+	/**
+	 * Sets a Boolean value that indicates whether a movie clip is enabled. The default value of enabled is true. 
+	 */
 	public function setEnabled(bool:Boolean):Void 
 	{
 		_enabled = (bool == true) ;
@@ -435,17 +555,29 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 		dispatchEvent(_eEnabledChanged) ;
 	}
 
-	public function setGroup(b:Boolean):Void {
+	/**
+	 * Sets if the component is grouped or not.
+	 */
+	public function setGroup(b:Boolean):Void 
+	{
 		_group = b ;
 		groupPolicyChanged() ;
 	}
 	
-	public function setGroupName(sName:String, bInvalidate:Boolean):Void {
+	/**
+	 * Sets the name of the group of this component.
+	 * @param sName the name of the group or null to unregister the component.
+	 */	
+	public function setGroupName(sName:String):Void 
+	{
 		_group = (sName != undefined) ;
 		_groupName = sName ;	
 		groupPolicyChanged() ;
 	}
 
+	/**
+	 * Sets the virtual height value of the component.
+	 */
 	public function setH( n:Number ) : Void 
 	{
 		_h = MathsUtil.clamp(n, minHeight, maxHeight) ;
@@ -453,11 +585,17 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 		update() ;
 	}
 
+	/**
+	 * Sets the parent of the internal EventDispatcher. Uses this method to creates an event flow (bubbling and capturing).
+	 */
 	public function setParent(parent:EventDispatcher):Void 
 	{
 		_dispatcher.parent = parent ;
 	}
 
+	/**
+	 * Sets the virtuals width and height of the component.
+	 */
 	public function setSize(p_w:Number, p_h:Number) : Void 
 	{
 		_w = MathsUtil.clamp(p_w, minWidth, maxWidth) ; 
@@ -466,6 +604,9 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 		update() ;
 	}
 	
+	/**
+	 * Sets the style property on the style declaration or object.
+	 */
 	public function setStyle(s:IStyle):Void 
 	{
 		if (_style != undefined) {
@@ -473,132 +614,158 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 			_style.removeEventListener(StyleEventType.STYLE_SHEET_CHANGED, new Delegate(this, viewStyleChanged)) ;
 			_style = undefined ;
 		}
-		if (s == undefined) return ;
+		if (s == undefined) 
+		{
+			return ;
+		}
 		_style = s ; 
 		_style.addEventListener(StyleEventType.STYLE_CHANGED, new Delegate(this, viewStyleChanged)) ;
 		_style.addEventListener(StyleEventType.STYLE_SHEET_CHANGED, new Delegate(this, viewStyleChanged)) ;
-		if (___isLock___) return ;
+		if (___isLock___) 
+		{
+			return ;
+		}
 		dispatchEvent(_eStyleChange) ;
 		update() ;
 	}
 	
-	public function setW( n:Number ) : Void {
+	/**
+	 * Sets the virtual width value of the component.
+	 */
+	public function setW( n:Number ) : Void 
+	{
 		_w = MathsUtil.clamp(n, minWidth, maxWidth) ; 
 		notifyResized() ;
 		update() ;
 	}
-	
-	public function unLock():Void {
+
+	/**
+	 * Unlock the component.
+	 */
+	public function unLock():Void 
+	{
 		___isLock___ = false ;
 	}
 
-	public function update():Void {
-		if (___isLock___) return ;
+	/**
+	 * Updates the component. This method is invoqued when the component must be refreh.
+	 */
+	public function update():Void 
+	{
+		if (___isLock___) 
+		{
+			return ;
+		}
 		draw() ;
-		if (_builder) _builder.update() ;
+		if (_builder) 
+		{
+			_builder.update() ;
+		}
 		viewChanged() ;
 		dispatchEvent(_eRender) ;
 	}
 	
-	public function viewChanged():Void {
-		// Permet de mettre à jour l'affichage une fois que le composant est réinitialisé
+	/**
+	 * Invoqued after the draw method and when the IBuilder is updated.
+	 */
+	public function viewChanged():Void 
+	{
+		
 	}
 	
-	public function viewDestroyed():Void {
-		// changer le composant quand le style change
+	/**
+	 * Invoqued when the component is destroyed with a removeMovieClip.
+	 * Overrides this method.
+	 */
+	public function viewDestroyed():Void 
+	{
+		
 	}	
-
-	public function viewEnabled():Void {
-		// changer le composant en fonction de la propriété enabled
+	
+	/**
+	 * Invoqued when the enabled property of the component change.
+	 * Overrides this method.
+	 */
+	public function viewEnabled():Void 
+	{
+		
 	}
 	
-	public function viewResize():Void {
-		// changer le composant en fonction du dernier resize.
+	/**
+	 * Invoqued when the component is resized.
+	 * Overrides this method.
+	 */
+	public function viewResize():Void 
+	{
+		
 	}
 	
-	public function viewStyleChanged():Void {
-		// changer le composant quand le style change.
+	/**
+	 * Invoqued when the component IStyle changed.
+	 * Overrides this method.
+	 */
+	public function viewStyleChanged():Void 
+	{
+		
 	}
 	
-	public function viewStyleSheetChanged():Void {
-		// changer le composant quand sa feuille de style change.
+	/**
+	 * Invoqued when the StyleSheet in the IStyle is changed.
+	 * Overrides this method.
+	 */
+	public function viewStyleSheetChanged():Void 
+	{
+		//
 	}
-	
-	// ----o Virtual Properties
-
-	public function get enabled():Boolean {
-		return getEnabled() ;
-	}
-	public function set enabled( b:Boolean ):Void {
-		setEnabled(b) ;
-	}
-
-	public function get group():Boolean {
-		return getGroup() ;
-	}
-	public function set group( b:Boolean ):Void {
-		setGroup(b) ;
-	}
-
-	public function get groupName():String {
-		return getGroupName() ;
-	}
-	public function set groupName( s:String ):Void {
-		setGroupName( s ) ;
-	}
-	
-	public function get h():Number {
-		return getH() ;	
-	}
-	public function set h( n:Number ):Void {
-		setH( n ) ;	
-	}
-
-	public function get style():IStyle {
-		return getStyle() ;
-	}
-	public function set style( s:IStyle ):Void {
-		setStyle( s ) ;
-	}
-
-	public function get w():Number { 
-		return getW() ;	
-	}
-	public function set w( n:Number ):Void {
-		setW( n ) ;	
-	}
-
-	// ----o Private Properties
 
 	private var _builder:IBuilder ;
+	
 	private var _enabled:Boolean = MovieClip.prototype.enabled ;
+	
 	private var _groupName:String ;
+	
 	private var _group:Boolean ;
+	
 	private var _h:Number ;
+	
 	private var ___isLock___:Boolean ;
+	
 	private var ___timer___:FrameTimer ;
+	
 	private var _dispatcher:EventDispatcher ;
+	
 	private var _style:IStyle ;
+	
 	private var _w:Number ;
 
 	private var _eAdded:UIEvent ;	
+	
 	private var _eChange:UIEvent ;
+	
 	private var _eDestroy:UIEvent ;
+	
 	private var _eEnabledChanged:UIEvent ;
+	
 	private var _eInit:UIEvent ;
+	
 	private var _eRemoved:UIEvent ;
+	
 	private var _eRender:UIEvent ;
+	
 	private var _eResize:UIEvent ;
+	
 	private var _eStyleChange:UIEvent ;
 		
-	// ----o Private Methods
+	static private var _initHashCode:Boolean = HashCode.initialize(AbstractComponent.prototype) ;
 
-	private function _redraw(ev:TimerEvent):Void {
+	private function _redraw(ev:TimerEvent):Void 
+	{
 		___timer___.stop() ;
 		update() ;
 	}
 	
-	private function onUnload():Void {
+	private function onUnload():Void 
+	{
 		if (___isLock___) return ;
 		viewDestroyed() ;
 		dispatchEvent(_eDestroy) ;

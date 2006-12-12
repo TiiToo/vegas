@@ -1,100 +1,1988 @@
-18:52:11 [6:16:33.565] [Debug] [1] 18:52:10 > Test0 init the test application.
-18:52:11 [6:16:33.675] [Information] [2] 18:52:10 > [GetLibrary].handleEvent()
-18:52:11 [6:16:33.675] [Debug] [3] 18:52:10 > [GetLibrary] : onStarted
-18:52:11 [6:16:33.768] [Debug] [4] 18:52:10 > result : [	serviceName : Browser , 	methodName : browse ,	result : [FileVO type:dir,  name:.svn],[FileVO type:dir,  name:background],[FileVO type:dir,  name:map],[FileVO type:dir,  name:picture],[FileVO type:dir,  name:resultmap],[FileVO type:dir,  name:roadmap],[FileVO type:dir,  name:video]]
-18:52:11 [6:16:33.768] [Information] [5] 18:52:10    + 0 : [FileVO type:dir,  name:.svn]
-18:52:11 [6:16:33.768] [Information] [6] 18:52:10    + 1 : [FileVO type:dir,  name:background]
-18:52:11 [6:16:33.768] [Information] [7] 18:52:10    + 2 : [FileVO type:dir,  name:map]
-18:52:11 [6:16:33.768] [Information] [8] 18:52:10    + 3 : [FileVO type:dir,  name:picture]
-18:52:11 [6:16:33.768] [Information] [9] 18:52:10    + 4 : [FileVO type:dir,  name:resultmap]
-18:52:11 [6:16:33.768] [Information] [10] 18:52:10    + 5 : [FileVO type:dir,  name:roadmap]
-18:52:11 [6:16:33.768] [Information] [11] 18:52:10    + 6 : [FileVO type:dir,  name:video]
-18:52:11 [6:16:33.768] [Debug] [12] 18:52:10 > Commands.getDirectory(140, '.svn')
-18:52:11 [6:16:33.768] [Debug] [13] 18:52:10 > [GetDirectory] handleEvent.
-18:52:11 [6:16:33.768] [Debug] [14] 18:52:10 > [GetDirectory] : onStarted
-18:52:11 [6:16:33.768] [Debug] [15] 18:52:10 > [GetLibrary] : onFinished
-18:52:11 [6:16:33.878] [Debug] [16] 18:52:11 > [GetDirectory] result : [FileVO type:file,  name:dir-wcprops],[FileVO type:file,  name:empty-file],[FileVO type:file,  name:entries],[FileVO type:file,  name:format],[FileVO type:dir,  name:prop-base],[FileVO type:dir,  name:props],[FileVO type:file,  name:README.txt],[FileVO type:dir,  name:text-base],[FileVO type:dir,  name:tmp],[FileVO type:dir,  name:wcprops]
-18:52:11 [6:16:33.878] [Information] [17] 18:52:11    + 0 : [FileVO type:file,  name:dir-wcprops]
-18:52:11 [6:16:33.878] [Information] [18] 18:52:11    + 1 : [FileVO type:file,  name:empty-file]
-18:52:11 [6:16:33.878] [Information] [19] 18:52:11    + 2 : [FileVO type:file,  name:entries]
-18:52:11 [6:16:33.878] [Information] [20] 18:52:11    + 3 : [FileVO type:file,  name:format]
-18:52:11 [6:16:33.878] [Information] [21] 18:52:11    + 4 : [FileVO type:dir,  name:prop-base]
-18:52:11 [6:16:33.878] [Information] [22] 18:52:11    + 5 : [FileVO type:dir,  name:props]
-18:52:11 [6:16:33.878] [Information] [23] 18:52:11    + 6 : [FileVO type:file,  name:README.txt]
-18:52:11 [6:16:33.878] [Information] [24] 18:52:11    + 7 : [FileVO type:dir,  name:text-base]
-18:52:11 [6:16:33.878] [Information] [25] 18:52:11    + 8 : [FileVO type:dir,  name:tmp]
-18:52:11 [6:16:33.878] [Information] [26] 18:52:11    + 9 : [FileVO type:dir,  name:wcprops]
-18:52:11 [6:16:33.878] [Debug] [27] 18:52:11 > [GetDirectory] : onFinished
-18:52:24 [6:16:47.503] [Debug] [28] 18:52:24 > Commands.getDirectory(140, 'background')
-18:52:24 [6:16:47.503] [Debug] [29] 18:52:24 > [GetDirectory] handleEvent.
-18:52:24 [6:16:47.503] [Debug] [30] 18:52:24 > [GetDirectory] : onStarted
-18:52:24 [6:16:47.565] [Debug] [31] 18:52:24 > [GetDirectory] result : [FileVO type:dir,  name:.svn],[FileVO type:file,  name:belvedere.swf],[FileVO type:file,  name:lang.swf],[FileVO type:file,  name:lantosque.swf],[FileVO type:file,  name:la_bollene.swf],[FileVO type:file,  name:roquebilliere.swf],[FileVO type:file,  name:stmartin.swf],[FileVO type:file,  name:summer.swf],[FileVO type:file,  name:utelle.swf],[FileVO type:file,  name:venanson.swf],[FileVO type:file,  name:winter.swf]
-18:52:24 [6:16:47.565] [Information] [32] 18:52:24    + 0 : [FileVO type:dir,  name:.svn]
-18:52:24 [6:16:47.565] [Information] [33] 18:52:24    + 1 : [FileVO type:file,  name:belvedere.swf]
-18:52:24 [6:16:47.565] [Information] [34] 18:52:24    + 2 : [FileVO type:file,  name:lang.swf]
-18:52:25 [6:16:47.565] [Information] [35] 18:52:24    + 3 : [FileVO type:file,  name:lantosque.swf]
-18:52:25 [6:16:47.565] [Information] [36] 18:52:24    + 4 : [FileVO type:file,  name:la_bollene.swf]
-18:52:25 [6:16:47.565] [Information] [37] 18:52:24    + 5 : [FileVO type:file,  name:roquebilliere.swf]
-18:52:25 [6:16:47.565] [Information] [38] 18:52:24    + 6 : [FileVO type:file,  name:stmartin.swf]
-18:52:25 [6:16:47.565] [Information] [39] 18:52:24    + 7 : [FileVO type:file,  name:summer.swf]
-18:52:25 [6:16:47.565] [Information] [40] 18:52:24    + 8 : [FileVO type:file,  name:utelle.swf]
-18:52:25 [6:16:47.565] [Information] [41] 18:52:24    + 9 : [FileVO type:file,  name:venanson.swf]
-18:52:25 [6:16:47.565] [Information] [42] 18:52:24    + 10 : [FileVO type:file,  name:winter.swf]
-18:52:25 [6:16:47.565] [Debug] [43] 18:52:24 > [GetDirectory] : onFinished
-18:52:25 [6:16:48.050] [Debug] [44] 18:52:25 > Commands.getDirectory(140, 'map')
-18:52:25 [6:16:48.050] [Debug] [45] 18:52:25 > [GetDirectory] handleEvent.
-18:52:25 [6:16:48.050] [Debug] [46] 18:52:25 > [GetDirectory] : onStarted
-18:52:25 [6:16:48.159] [Debug] [47] 18:52:25 > [GetDirectory] result : [FileVO type:dir,  name:.svn],[FileVO type:file,  name:background_map.swf],[FileVO type:file,  name:belvedere.swf],[FileVO type:file,  name:belvedere_bg.swf],[FileVO type:file,  name:bollene.swf],[FileVO type:file,  name:bollene_bg.swf],[FileVO type:file,  name:lantosque.swf],[FileVO type:file,  name:lantosque_bg.swf],[FileVO type:file,  name:map_Belvedere.swf],[FileVO type:file,  name:map_Bollene.swf],[FileVO type:file,  name:map_Lantosque.swf],[FileVO type:file,  name:map_Pays.swf],[FileVO type:file,  name:map_Roquebilliere.swf],[FileVO type:file,  name:map_StMartin.swf],[FileVO type:file,  name:map_Utelle.swf],[FileVO type:file,  name:map_Venanson.swf],[FileVO type:file,  name:pays.swf],[FileVO type:file,  name:radar.swf],[FileVO type:file,  name:roquebillere.swf],[FileVO type:file,  name:roquebillere_bg.swf],[FileVO type:file,  name:stmartin.swf],[FileVO type:file,  name:stmartin_bg.swf],[FileVO type:file,  name:utelle.swf],[FileVO type:file,  name:utelle_bg.swf],[FileVO type:file,  name:venanson.swf],[FileVO type:file,  name:venanson_bg.swf]
-18:52:25 [6:16:48.159] [Information] [48] 18:52:25    + 0 : [FileVO type:dir,  name:.svn]
-18:52:25 [6:16:48.159] [Information] [49] 18:52:25    + 1 : [FileVO type:file,  name:background_map.swf]
-18:52:25 [6:16:48.159] [Information] [50] 18:52:25    + 2 : [FileVO type:file,  name:belvedere.swf]
-18:52:25 [6:16:48.159] [Information] [51] 18:52:25    + 3 : [FileVO type:file,  name:belvedere_bg.swf]
-18:52:25 [6:16:48.159] [Information] [52] 18:52:25    + 4 : [FileVO type:file,  name:bollene.swf]
-18:52:25 [6:16:48.159] [Information] [53] 18:52:25    + 5 : [FileVO type:file,  name:bollene_bg.swf]
-18:52:25 [6:16:48.159] [Information] [54] 18:52:25    + 6 : [FileVO type:file,  name:lantosque.swf]
-18:52:25 [6:16:48.159] [Information] [55] 18:52:25    + 7 : [FileVO type:file,  name:lantosque_bg.swf]
-18:52:25 [6:16:48.159] [Information] [56] 18:52:25    + 8 : [FileVO type:file,  name:map_Belvedere.swf]
-18:52:25 [6:16:48.159] [Information] [57] 18:52:25    + 9 : [FileVO type:file,  name:map_Bollene.swf]
-18:52:25 [6:16:48.159] [Information] [58] 18:52:25    + 10 : [FileVO type:file,  name:map_Lantosque.swf]
-18:52:25 [6:16:48.159] [Information] [59] 18:52:25    + 11 : [FileVO type:file,  name:map_Pays.swf]
-18:52:25 [6:16:48.159] [Information] [60] 18:52:25    + 12 : [FileVO type:file,  name:map_Roquebilliere.swf]
-18:52:25 [6:16:48.159] [Information] [61] 18:52:25    + 13 : [FileVO type:file,  name:map_StMartin.swf]
-18:52:25 [6:16:48.159] [Information] [62] 18:52:25    + 14 : [FileVO type:file,  name:map_Utelle.swf]
-18:52:25 [6:16:48.159] [Information] [63] 18:52:25    + 15 : [FileVO type:file,  name:map_Venanson.swf]
-18:52:25 [6:16:48.159] [Information] [64] 18:52:25    + 16 : [FileVO type:file,  name:pays.swf]
-18:52:25 [6:16:48.159] [Information] [65] 18:52:25    + 17 : [FileVO type:file,  name:radar.swf]
-18:52:25 [6:16:48.159] [Information] [66] 18:52:25    + 18 : [FileVO type:file,  name:roquebillere.swf]
-18:52:25 [6:16:48.159] [Information] [67] 18:52:25    + 19 : [FileVO type:file,  name:roquebillere_bg.swf]
-18:52:25 [6:16:48.159] [Information] [68] 18:52:25    + 20 : [FileVO type:file,  name:stmartin.swf]
-18:52:26 [6:16:48.159] [Information] [69] 18:52:25    + 21 : [FileVO type:file,  name:stmartin_bg.swf]
-18:52:26 [6:16:48.159] [Information] [70] 18:52:25    + 22 : [FileVO type:file,  name:utelle.swf]
-18:52:26 [6:16:48.159] [Information] [71] 18:52:25    + 23 : [FileVO type:file,  name:utelle_bg.swf]
-18:52:26 [6:16:48.159] [Information] [72] 18:52:25    + 24 : [FileVO type:file,  name:venanson.swf]
-18:52:26 [6:16:48.159] [Information] [73] 18:52:25    + 25 : [FileVO type:file,  name:venanson_bg.swf]
-18:52:26 [6:16:48.159] [Debug] [74] 18:52:25 > [GetDirectory] : onFinished
-18:52:26 [6:16:48.628] [Debug] [75] 18:52:25 > Commands.getDirectory(140, 'resultmap')
-18:52:26 [6:16:48.628] [Debug] [76] 18:52:25 > [GetDirectory] handleEvent.
-18:52:26 [6:16:48.628] [Debug] [77] 18:52:25 > [GetDirectory] : onStarted
-18:52:26 [6:16:48.722] [Debug] [78] 18:52:25 > [GetDirectory] result : [FileVO type:dir,  name:.svn],[FileVO type:file,  name:belvedere.swf],[FileVO type:file,  name:roquebilliere.swf],[FileVO type:file,  name:stmartin.swf],[FileVO type:file,  name:venanson.swf]
-18:52:26 [6:16:48.722] [Information] [79] 18:52:25    + 0 : [FileVO type:dir,  name:.svn]
-18:52:26 [6:16:48.722] [Information] [80] 18:52:25    + 1 : [FileVO type:file,  name:belvedere.swf]
-18:52:26 [6:16:48.722] [Information] [81] 18:52:25    + 2 : [FileVO type:file,  name:roquebilliere.swf]
-18:52:26 [6:16:48.722] [Information] [82] 18:52:25    + 3 : [FileVO type:file,  name:stmartin.swf]
-18:52:26 [6:16:48.722] [Information] [83] 18:52:25    + 4 : [FileVO type:file,  name:venanson.swf]
-18:52:26 [6:16:48.722] [Debug] [84] 18:52:25 > [GetDirectory] : onFinished
-18:52:26 [6:16:49.315] [Debug] [85] 18:52:26 > Commands.getDirectory(140, 'video')
-18:52:26 [6:16:49.315] [Debug] [86] 18:52:26 > [GetDirectory] handleEvent.
-18:52:26 [6:16:49.315] [Debug] [87] 18:52:26 > [GetDirectory] : onStarted
-18:52:26 [6:16:49.393] [Debug] [88] 18:52:26 > [GetDirectory] result : [FileVO type:dir,  name:.svn],[FileVO type:file,  name:test.jpg],[FileVO type:file,  name:video.flv]
-18:52:26 [6:16:49.409] [Information] [89] 18:52:26    + 0 : [FileVO type:dir,  name:.svn]
-18:52:26 [6:16:49.409] [Information] [90] 18:52:26    + 1 : [FileVO type:file,  name:test.jpg]
-18:52:26 [6:16:49.409] [Information] [91] 18:52:26    + 2 : [FileVO type:file,  name:video.flv]
-18:52:26 [6:16:49.409] [Debug] [92] 18:52:26 > [GetDirectory] : onFinished
-18:52:27 [6:16:49.909] [Debug] [93] 18:52:27 > Commands.getDirectory(140, 'roadmap')
-18:52:27 [6:16:49.909] [Debug] [94] 18:52:27 > [GetDirectory] handleEvent.
-18:52:27 [6:16:49.909] [Debug] [95] 18:52:27 > [GetDirectory] : onStarted
-18:52:27 [6:16:50.003] [Debug] [96] 18:52:27 > [GetDirectory] result : [FileVO type:dir,  name:.svn],[FileVO type:file,  name:78_1_global_gordolasque.swf],[FileVO type:file,  name:78_gordolasque.swf]
-18:52:27 [6:16:50.003] [Information] [97] 18:52:27    + 0 : [FileVO type:dir,  name:.svn]
-18:52:27 [6:16:50.003] [Information] [98] 18:52:27    + 1 : [FileVO type:file,  name:78_1_global_gordolasque.swf]
-18:52:27 [6:16:50.003] [Information] [99] 18:52:27    + 2 : [FileVO type:file,  name:78_gordolasque.swf]
-18:52:27 [6:16:50.003] [Debug] [100] 18:52:27 > [GetDirectory] : onFinished
+10:49:37 [22:13:59.159] [Debug] > [Application] initialize : _level0.application
+10:49:37 [22:13:59.221] [Fatal] > [FlashPaperSlide] hide.
+10:49:37 [22:13:59.237] [Information] + [DiaporamaScreen] addSlide success insert : flp
+10:49:37 [22:13:59.237] [Information] + [DiaporamaScreen] addSlide success insert : pic
+10:49:37 [22:13:59.330] [Debug] > [RunApplication] handleEvent.
+10:49:37 [22:13:59.346] [Debug] > [LaunchConfig] handleEvent.
+10:49:37 [22:13:59.346] [Debug] > [LaunchConfig] onLoadStarted
+10:49:37 [22:13:59.502] [Debug] > [ChangeLoader] handleEvent : Configuration : 100%,100
+10:49:37 [22:13:59.502] [Debug] > [ShowLoader] handleEvent.
+10:49:37 [22:13:59.502] [Debug] > [ProtectScreen] handleEvent.
+10:49:37 [22:13:59.518] [Debug] > [LaunchConfig] onLoadProgress, 100%
+10:49:37 [22:13:59.518] [Debug] > [LaunchConfig] onLoadComplete
+10:49:37 [22:13:59.627] [Debug] > [LaunchConfig] : [ConfigLoaderEvent onLoadInit, AT TARGET, bubbles]
+10:49:37 [22:13:59.627] [Information]   > name : ELEARNING_APPLICATION
+10:49:37 [22:13:59.627] [Information]   > namespace : optisio
+10:49:37 [22:13:59.627] [Information]   > version : 1.0.0.0
+10:49:37 [22:13:59.627] [Information]   > copyright : ZOOKEEPER
+10:49:37 [22:13:59.627] [Information]   > default_lang : fr
+10:49:37 [22:13:59.643] [Information]   > libraryPath : library/
+10:49:37 [22:13:59.643] [Information]   > filePath : http://localhost/optisio/library/
+10:49:37 [22:13:59.643] [Information]   > gatewayUrl : http://localhost/work/optisio/php/gateway.php
+10:49:37 [22:13:59.643] [Information]   > layoutWidth : 1000
+10:49:37 [22:13:59.643] [Information]   > layoutHeight : 600
+10:49:37 [22:13:59.643] [Information]   > background : [object Object]
+10:49:37 [22:13:59.643] [Information]       + ratios : 0,100
+10:49:37 [22:13:59.643] [Information]       + gradientRotation : 90
+10:49:37 [22:13:59.643] [Information]       + colors : 14736339,16777215
+10:49:37 [22:13:59.659] [Information]       + alphas : 100,100
+10:49:37 [22:13:59.659] [Information]   > dashboard : [object Object]
+10:49:37 [22:13:59.659] [Information]       + color : 6397901
+10:49:37 [22:13:59.659] [Information]       + alpha : 55
+10:49:37 [22:13:59.659] [Information]   > default_users : [object Object],[object Object],[object Object],[object Object],[object Object]
+10:49:37 [22:13:59.659] [Information]       + 4 : [object Object]
+10:49:37 [22:13:59.659] [Information]       + 3 : [object Object]
+10:49:37 [22:13:59.659] [Information]       + 2 : [object Object]
+10:49:37 [22:13:59.674] [Information]       + 1 : [object Object]
+10:49:37 [22:13:59.674] [Information]       + 0 : [object Object]
+10:49:37 [22:13:59.674] [Information]   > context_menu : [object Object]
+10:49:38 [22:13:59.674] [Information]       + 0 : [object Object]
+10:49:38 [22:13:59.674] [Information]   > loader : [object Object]
+10:49:38 [22:13:59.674] [Information]       + useGradient : true
+10:49:38 [22:13:59.674] [Information]       + useDropShadow : true
+10:49:38 [22:13:59.674] [Information]       + useBorder : true
+10:49:38 [22:13:59.674] [Information]       + thickness : 2
+10:49:38 [22:13:59.690] [Information]       + themeColor : 6710886
+10:49:38 [22:13:59.690] [Information]       + themeBorderColor : 7829367
+10:49:38 [22:13:59.690] [Information]       + themeBorderAlpha : 100
+10:49:38 [22:13:59.690] [Information]       + themeAlpha : 90
+10:49:38 [22:13:59.690] [Information]       + shadowStrength : 0.5
+10:49:38 [22:13:59.690] [Information]       + shadowInner : false
+10:49:38 [22:13:59.690] [Information]       + shadowDistance : 3
+10:49:38 [22:13:59.690] [Information]       + shadowColor : 0
+10:49:38 [22:13:59.705] [Information]       + shadowBlurY : 12
+10:49:38 [22:13:59.705] [Information]       + shadowBlurX : 12
+10:49:38 [22:13:59.705] [Information]       + shadowAngle : 50
+10:49:38 [22:13:59.705] [Information]       + shadowAlpha : 30
+10:49:38 [22:13:59.705] [Information]       + ratios : 0,100,200,255
+10:49:38 [22:13:59.705] [Information]       + gradientRotation : 45
+10:49:38 [22:13:59.737] [Information]       + colors : 4695740,4625574,3431011,1123364
+10:49:38 [22:13:59.737] [Information]       + color : 16777215
+10:49:38 [22:13:59.737] [Information]       + barColor : 13441799
+10:49:38 [22:13:59.737] [Information]       + alphas : 54,80,92,100
+10:49:38 [22:13:59.737] [Information]   > protect_screen : [object Object]
+10:49:38 [22:13:59.737] [Information]       + color : 0
+10:49:38 [22:13:59.737] [Information]       + alpha : 0
+10:49:38 [22:13:59.737] [Information]   > security : http://localhost/
+10:49:38 [22:13:59.737] [Information]       + 0 : http://localhost/
+10:49:38 [22:13:59.752] [Debug] > [ApplicationContextMenu] setup.
+10:49:38 [22:13:59.752] [Debug] > [ApplicationPolicy] setup.
+10:49:38 [22:13:59.752] [Information] > [ApplicationPolicy] > System.security.allowDomain("http://localhost/")
+10:49:38 [22:13:59.752] [Debug] > [BackgroundDisplay] setup.
+10:49:38 [22:13:59.752] [Debug] > [HeaderDisplay] setup.
+10:49:38 [22:13:59.768] [Debug] > [FooterDisplay] setup.
+10:49:38 [22:13:59.768] [Debug] > [CompanionDisplay] setup.
+10:49:38 [22:13:59.768] [Debug] > [LoaderDisplay] setup.
+10:49:38 [22:13:59.784] [Debug] > [ProtectScreenDisplay] setup.
+10:49:38 [22:13:59.784] [Debug] > [LaunchLocalization] handleEvent : fr
+10:49:38 [22:13:59.799] [Debug] > [LaunchLocalization] onLoadStarted
+10:49:38 [22:13:59.862] [Debug] > [ChangeLoader] handleEvent : Localization : 100%,100
+10:49:38 [22:13:59.877] [Debug] > [LaunchLocalization] onLoadProgress, 100%
+10:49:38 [22:13:59.877] [Debug] > [LaunchLocalization] onLoadComplete
+10:49:38 [22:14:00.002] [Debug] > [LaunchLocalization] change.
+10:49:38 [22:14:00.002] [Debug] > [HideLoader] handleEvent.
+10:49:38 [22:14:00.002] [Debug] > [UnProtectScreen] handleEvent.
+10:49:38 [22:14:00.002] [Information] > [LaunchLocalization] + change :: fr
+10:49:39 [22:14:00.002] [Debug] > [InitApplication] handleEvent.
+10:49:39 [22:14:00.018] [Debug] > [PutLayout] handleEvent, id:default, layout:[LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+10:49:39 [22:14:00.018] [Debug] > [ChangeLayout] handleEvent : default
+10:49:39 [22:14:00.018] [Information] > [ChangeLayout] -> people : [LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+10:49:39 [22:14:00.034] [Debug] > [ShowScreen] handleEvent.
+10:49:39 [22:14:00.034] [Information] > [InitApplication] 'event' and 'user' are undefined, use contextMenu to launch authentification.
+10:49:39 [22:14:00.034] [Information] > [InitApplication] add item in the contextMenu : Alcaraz :: MOD, user:1, event:116
+10:49:39 [22:14:00.034] [Information] > [InitApplication] add item in the contextMenu : Ducuing :: PART, user:9001, event:116
+10:49:39 [22:14:00.034] [Information] > [InitApplication] add item in the contextMenu : Mousseron :: PART, user:9002, event:116
+10:49:39 [22:14:00.034] [Information] > [InitApplication] add item in the contextMenu : Moreau :: PART, user:9003, event:116
+10:49:39 [22:14:00.034] [Information] > [InitApplication] add item in the contextMenu : Meish :: PART, user:9004, event:116
+10:50:58 [22:15:20.924] [Debug] > [Application] initialize : _level0.application
+10:50:58 [22:15:20.987] [Fatal] > [FlashPaperSlide] hide.
+10:50:58 [22:15:20.987] [Information] + [DiaporamaScreen] addSlide success insert : flp
+10:50:58 [22:15:21.002] [Information] + [DiaporamaScreen] addSlide success insert : pic
+10:50:58 [22:15:21.112] [Debug] > [RunApplication] handleEvent.
+10:50:58 [22:15:21.112] [Debug] > [LaunchConfig] handleEvent.
+10:50:59 [22:15:21.112] [Debug] > [LaunchConfig] onLoadStarted
+10:50:59 [22:15:21.190] [Debug] > [ChangeLoader] handleEvent : Configuration : 0%,0
+10:50:59 [22:15:21.190] [Debug] > [ShowLoader] handleEvent.
+10:50:59 [22:15:21.205] [Debug] > [ProtectScreen] handleEvent.
+10:50:59 [22:15:21.205] [Debug] > [LaunchConfig] onLoadProgress, 0%
+10:50:59 [22:15:21.299] [Debug] > [ChangeLoader] handleEvent : Configuration : 100%,100
+10:50:59 [22:15:21.299] [Debug] > [LaunchConfig] onLoadProgress, 100%
+10:50:59 [22:15:21.299] [Debug] > [LaunchConfig] onLoadComplete
+10:50:59 [22:15:21.424] [Debug] > [LaunchConfig] : [ConfigLoaderEvent onLoadInit, AT TARGET, bubbles]
+10:50:59 [22:15:21.424] [Information]   > name : ELEARNING_APPLICATION
+10:50:59 [22:15:21.424] [Information]   > namespace : optisio
+10:50:59 [22:15:21.440] [Information]   > version : 1.0.0.0
+10:50:59 [22:15:21.440] [Information]   > copyright : ZOOKEEPER
+10:50:59 [22:15:21.440] [Information]   > default_lang : fr
+10:50:59 [22:15:21.440] [Information]   > libraryPath : library/
+10:50:59 [22:15:21.440] [Information]   > filePath : http://localhost/optisio/library/
+10:50:59 [22:15:21.440] [Information]   > gatewayUrl : http://localhost/work/optisio/php/gateway.php
+10:50:59 [22:15:21.440] [Information]   > layoutWidth : 1000
+10:50:59 [22:15:21.440] [Information]   > layoutHeight : 600
+10:50:59 [22:15:21.440] [Information]   > background : [object Object]
+10:50:59 [22:15:21.455] [Information]       + ratios : 0,100
+10:50:59 [22:15:21.455] [Information]       + gradientRotation : 90
+10:50:59 [22:15:21.455] [Information]       + colors : 14736339,16777215
+10:50:59 [22:15:21.455] [Information]       + alphas : 100,100
+10:50:59 [22:15:21.455] [Information]   > dashboard : [object Object]
+10:50:59 [22:15:21.455] [Information]       + color : 6397901
+10:50:59 [22:15:21.455] [Information]       + alpha : 55
+10:50:59 [22:15:21.455] [Information]   > default_users : [object Object],[object Object],[object Object],[object Object],[object Object]
+10:50:59 [22:15:21.455] [Information]       + 4 : [object Object]
+10:50:59 [22:15:21.455] [Information]       + 3 : [object Object]
+10:50:59 [22:15:21.471] [Information]       + 2 : [object Object]
+10:50:59 [22:15:21.471] [Information]       + 1 : [object Object]
+10:51:00 [22:15:21.471] [Information]       + 0 : [object Object]
+10:51:00 [22:15:21.471] [Information]   > context_menu : [object Object]
+10:51:00 [22:15:21.471] [Information]       + 0 : [object Object]
+10:51:00 [22:15:21.471] [Information]   > loader : [object Object]
+10:51:00 [22:15:21.471] [Information]       + useGradient : true
+10:51:00 [22:15:21.487] [Information]       + useDropShadow : true
+10:51:00 [22:15:21.502] [Information]       + useBorder : true
+10:51:00 [22:15:21.502] [Information]       + thickness : 2
+10:51:00 [22:15:21.502] [Information]       + themeColor : 6710886
+10:51:00 [22:15:21.502] [Information]       + themeBorderColor : 7829367
+10:51:00 [22:15:21.502] [Information]       + themeBorderAlpha : 100
+10:51:00 [22:15:21.502] [Information]       + themeAlpha : 90
+10:51:00 [22:15:21.518] [Information]       + shadowStrength : 0.5
+10:51:00 [22:15:21.518] [Information]       + shadowInner : false
+10:51:00 [22:15:21.518] [Information]       + shadowDistance : 3
+10:51:00 [22:15:21.518] [Information]       + shadowColor : 0
+10:51:00 [22:15:21.518] [Information]       + shadowBlurY : 12
+10:51:00 [22:15:21.518] [Information]       + shadowBlurX : 12
+10:51:00 [22:15:21.518] [Information]       + shadowAngle : 50
+10:51:00 [22:15:21.518] [Information]       + shadowAlpha : 30
+10:51:00 [22:15:21.518] [Information]       + ratios : 0,100,200,255
+10:51:00 [22:15:21.518] [Information]       + gradientRotation : 45
+10:51:00 [22:15:21.534] [Information]       + colors : 4695740,4625574,3431011,1123364
+10:51:00 [22:15:21.534] [Information]       + color : 16777215
+10:51:00 [22:15:21.534] [Information]       + barColor : 13441799
+10:51:00 [22:15:21.534] [Information]       + alphas : 54,80,92,100
+10:51:00 [22:15:21.534] [Information]   > protect_screen : [object Object]
+10:51:00 [22:15:21.534] [Information]       + color : 0
+10:51:00 [22:15:21.534] [Information]       + alpha : 0
+10:51:00 [22:15:21.534] [Information]   > security : http://localhost/
+10:51:00 [22:15:21.549] [Information]       + 0 : http://localhost/
+10:51:00 [22:15:21.549] [Debug] > [ApplicationContextMenu] setup.
+10:51:00 [22:15:21.549] [Debug] > [ApplicationPolicy] setup.
+10:51:00 [22:15:21.549] [Information] > [ApplicationPolicy] > System.security.allowDomain("http://localhost/")
+10:51:00 [22:15:21.549] [Debug] > [BackgroundDisplay] setup.
+10:51:00 [22:15:21.565] [Debug] > [HeaderDisplay] setup.
+10:51:00 [22:15:21.565] [Debug] > [FooterDisplay] setup.
+10:51:00 [22:15:21.565] [Debug] > [CompanionDisplay] setup.
+10:51:00 [22:15:21.580] [Debug] > [LoaderDisplay] setup.
+10:51:00 [22:15:21.596] [Debug] > [ProtectScreenDisplay] setup.
+10:51:00 [22:15:21.596] [Debug] > [LaunchLocalization] handleEvent : fr
+10:51:00 [22:15:21.612] [Debug] > [LaunchLocalization] onLoadStarted
+10:51:00 [22:15:21.690] [Debug] > [ChangeLoader] handleEvent : Localization : 100%,100
+10:51:00 [22:15:21.690] [Debug] > [LaunchLocalization] onLoadProgress, 100%
+10:51:00 [22:15:21.690] [Debug] > [LaunchLocalization] onLoadComplete
+10:51:00 [22:15:21.815] [Debug] > [LaunchLocalization] change.
+10:51:01 [22:15:21.815] [Debug] > [HideLoader] handleEvent.
+10:51:01 [22:15:21.830] [Debug] > [UnProtectScreen] handleEvent.
+10:51:01 [22:15:21.830] [Information] > [LaunchLocalization] + change :: fr
+10:51:01 [22:15:21.830] [Debug] > [InitApplication] handleEvent.
+10:51:01 [22:15:21.830] [Debug] > [PutLayout] handleEvent, id:default, layout:[LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+10:51:01 [22:15:21.846] [Debug] > [ChangeLayout] handleEvent : default
+10:51:01 [22:15:21.862] [Information] > [ChangeLayout] -> people : [LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+10:51:01 [22:15:21.862] [Debug] > [ShowScreen] handleEvent.
+10:51:01 [22:15:21.877] [Information] > [InitApplication] 'event' and 'user' are undefined, use contextMenu to launch authentification.
+10:51:01 [22:15:21.877] [Information] > [InitApplication] add item in the contextMenu : Alcaraz :: MOD, user:1, event:116
+10:51:01 [22:15:21.877] [Information] > [InitApplication] add item in the contextMenu : Ducuing :: PART, user:9001, event:116
+10:51:01 [22:15:21.877] [Information] > [InitApplication] add item in the contextMenu : Mousseron :: PART, user:9002, event:116
+10:51:01 [22:15:21.877] [Information] > [InitApplication] add item in the contextMenu : Moreau :: PART, user:9003, event:116
+10:51:01 [22:15:21.877] [Information] > [InitApplication] add item in the contextMenu : Meish :: PART, user:9004, event:116
+10:53:13 [22:17:36.096] [Debug] > [Application] initialize : _level0.application
+10:53:13 [22:17:36.159] [Fatal] > [FlashPaperSlide] hide.
+10:53:13 [22:17:36.174] [Information] + [DiaporamaScreen] addSlide success insert : flp
+10:53:13 [22:17:36.174] [Information] + [DiaporamaScreen] addSlide success insert : pic
+10:53:13 [22:17:36.284] [Debug] > [RunApplication] handleEvent.
+10:53:14 [22:17:36.284] [Debug] > [LaunchConfig] handleEvent.
+10:53:14 [22:17:36.284] [Debug] > [LaunchConfig] onLoadStarted
+10:53:14 [22:17:36.409] [Debug] > [ChangeLoader] handleEvent : Configuration : 100%,100
+10:53:14 [22:17:36.409] [Debug] > [ShowLoader] handleEvent.
+10:53:14 [22:17:36.424] [Debug] > [ProtectScreen] handleEvent.
+10:53:14 [22:17:36.424] [Debug] > [LaunchConfig] onLoadProgress, 100%
+10:53:14 [22:17:36.424] [Debug] > [LaunchConfig] onLoadComplete
+10:53:14 [22:17:36.534] [Debug] > [LaunchConfig] : [ConfigLoaderEvent onLoadInit, AT TARGET, bubbles]
+10:53:14 [22:17:36.549] [Information]   > name : ELEARNING_APPLICATION
+10:53:14 [22:17:36.549] [Information]   > namespace : optisio
+10:53:14 [22:17:36.549] [Information]   > version : 1.0.0.0
+10:53:14 [22:17:36.549] [Information]   > copyright : ZOOKEEPER
+10:53:14 [22:17:36.549] [Information]   > default_lang : fr
+10:53:14 [22:17:36.549] [Information]   > libraryPath : library/
+10:53:14 [22:17:36.549] [Information]   > filePath : http://localhost/optisio/library/
+10:53:14 [22:17:36.549] [Information]   > gatewayUrl : http://localhost/work/optisio/php/gateway.php
+10:53:14 [22:17:36.549] [Information]   > layoutWidth : 1000
+10:53:14 [22:17:36.565] [Information]   > layoutHeight : 600
+10:53:14 [22:17:36.565] [Information]   > background : [object Object]
+10:53:14 [22:17:36.565] [Information]       + ratios : 0,100
+10:53:14 [22:17:36.565] [Information]       + gradientRotation : 90
+10:53:14 [22:17:36.565] [Information]       + colors : 14736339,16777215
+10:53:14 [22:17:36.565] [Information]       + alphas : 100,100
+10:53:14 [22:17:36.565] [Information]   > dashboard : [object Object]
+10:53:14 [22:17:36.565] [Information]       + color : 6397901
+10:53:14 [22:17:36.565] [Information]       + alpha : 55
+10:53:14 [22:17:36.580] [Information]   > default_users : [object Object],[object Object],[object Object],[object Object],[object Object]
+10:53:14 [22:17:36.580] [Information]       + 4 : [object Object]
+10:53:14 [22:17:36.580] [Information]       + 3 : [object Object]
+10:53:14 [22:17:36.580] [Information]       + 2 : [object Object]
+10:53:14 [22:17:36.580] [Information]       + 1 : [object Object]
+10:53:14 [22:17:36.580] [Information]       + 0 : [object Object]
+10:53:14 [22:17:36.580] [Information]   > context_menu : [object Object]
+10:53:14 [22:17:36.580] [Information]       + 0 : [object Object]
+10:53:15 [22:17:36.580] [Information]   > loader : [object Object]
+10:53:15 [22:17:36.580] [Information]       + useGradient : true
+10:53:15 [22:17:36.596] [Information]       + useDropShadow : true
+10:53:15 [22:17:36.596] [Information]       + useBorder : true
+10:53:15 [22:17:36.596] [Information]       + thickness : 2
+10:53:15 [22:17:36.596] [Information]       + themeColor : 6710886
+10:53:15 [22:17:36.612] [Information]       + themeBorderColor : 7829367
+10:53:15 [22:17:36.612] [Information]       + themeBorderAlpha : 100
+10:53:15 [22:17:36.627] [Information]       + themeAlpha : 90
+10:53:15 [22:17:36.627] [Information]       + shadowStrength : 0.5
+10:53:15 [22:17:36.627] [Information]       + shadowInner : false
+10:53:15 [22:17:36.627] [Information]       + shadowDistance : 3
+10:53:15 [22:17:36.627] [Information]       + shadowColor : 0
+10:53:15 [22:17:36.627] [Information]       + shadowBlurY : 12
+10:53:15 [22:17:36.627] [Information]       + shadowBlurX : 12
+10:53:15 [22:17:36.627] [Information]       + shadowAngle : 50
+10:53:15 [22:17:36.627] [Information]       + shadowAlpha : 30
+10:53:15 [22:17:36.643] [Information]       + ratios : 0,100,200,255
+10:53:15 [22:17:36.643] [Information]       + gradientRotation : 45
+10:53:15 [22:17:36.643] [Information]       + colors : 4695740,4625574,3431011,1123364
+10:53:15 [22:17:36.643] [Information]       + color : 16777215
+10:53:15 [22:17:36.643] [Information]       + barColor : 13441799
+10:53:15 [22:17:36.643] [Information]       + alphas : 54,80,92,100
+10:53:15 [22:17:36.643] [Information]   > protect_screen : [object Object]
+10:53:15 [22:17:36.643] [Information]       + color : 0
+10:53:15 [22:17:36.643] [Information]       + alpha : 0
+10:53:15 [22:17:36.659] [Information]   > security : http://localhost/
+10:53:15 [22:17:36.659] [Information]       + 0 : http://localhost/
+10:53:15 [22:17:36.659] [Debug] > [ApplicationContextMenu] setup.
+10:53:15 [22:17:36.659] [Debug] > [ApplicationPolicy] setup.
+10:53:15 [22:17:36.659] [Information] > [ApplicationPolicy] > System.security.allowDomain("http://localhost/")
+10:53:15 [22:17:36.674] [Debug] > [BackgroundDisplay] setup.
+10:53:15 [22:17:36.674] [Debug] > [HeaderDisplay] setup.
+10:53:15 [22:17:36.690] [Debug] > [FooterDisplay] setup.
+10:53:15 [22:17:36.690] [Debug] > [CompanionDisplay] setup.
+10:53:15 [22:17:36.690] [Debug] > [LoaderDisplay] setup.
+10:53:15 [22:17:36.705] [Debug] > [ProtectScreenDisplay] setup.
+10:53:15 [22:17:36.705] [Debug] > [LaunchLocalization] handleEvent : fr
+10:53:15 [22:17:36.721] [Debug] > [LaunchLocalization] onLoadStarted
+10:53:15 [22:17:36.799] [Debug] > [ChangeLoader] handleEvent : Localization : 100%,100
+10:53:15 [22:17:36.799] [Debug] > [LaunchLocalization] onLoadProgress, 100%
+10:53:15 [22:17:36.799] [Debug] > [LaunchLocalization] onLoadComplete
+10:53:15 [22:17:36.924] [Debug] > [LaunchLocalization] change.
+10:53:15 [22:17:36.924] [Debug] > [HideLoader] handleEvent.
+10:53:15 [22:17:36.940] [Debug] > [UnProtectScreen] handleEvent.
+10:53:15 [22:17:36.940] [Information] > [LaunchLocalization] + change :: fr
+10:53:15 [22:17:36.940] [Debug] > [InitApplication] handleEvent.
+10:53:16 [22:17:36.940] [Debug] > [PutLayout] handleEvent, id:default, layout:[LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+10:53:16 [22:17:36.955] [Debug] > [ChangeLayout] handleEvent : default
+10:53:16 [22:17:36.955] [Information] > [ChangeLayout] -> people : [LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+10:53:16 [22:17:36.987] [Debug] > [ShowScreen] handleEvent.
+10:53:16 [22:17:36.987] [Information] > [InitApplication] 'event' and 'user' are undefined, use contextMenu to launch authentification.
+10:53:16 [22:17:36.987] [Information] > [InitApplication] add item in the contextMenu : Alcaraz :: MOD, user:1, event:116
+10:53:16 [22:17:36.987] [Information] > [InitApplication] add item in the contextMenu : Ducuing :: PART, user:9001, event:116
+10:53:16 [22:17:36.987] [Information] > [InitApplication] add item in the contextMenu : Mousseron :: PART, user:9002, event:116
+10:53:16 [22:17:36.987] [Information] > [InitApplication] add item in the contextMenu : Moreau :: PART, user:9003, event:116
+10:53:16 [22:17:36.987] [Information] > [InitApplication] add item in the contextMenu : Meish :: PART, user:9004, event:116
+10:55:19 [22:19:41.487] [Debug] > [Application] initialize : _level0.application
+10:55:19 [22:19:41.565] [Fatal] > [FlashPaperSlide] hide.
+10:55:19 [22:19:41.565] [Information] + [DiaporamaScreen] addSlide success insert : flp
+10:55:19 [22:19:41.565] [Information] + [DiaporamaScreen] addSlide success insert : pic
+10:55:19 [22:19:41.674] [Debug] > [RunApplication] handleEvent.
+10:55:19 [22:19:41.690] [Debug] > [LaunchConfig] handleEvent.
+10:55:19 [22:19:41.690] [Debug] > [LaunchConfig] onLoadStarted
+10:55:19 [22:19:41.815] [Debug] > [ChangeLoader] handleEvent : Configuration : 100%,100
+10:55:19 [22:19:41.815] [Debug] > [ShowLoader] handleEvent.
+10:55:19 [22:19:41.815] [Debug] > [ProtectScreen] handleEvent.
+10:55:19 [22:19:41.815] [Debug] > [LaunchConfig] onLoadProgress, 100%
+10:55:19 [22:19:41.830] [Debug] > [LaunchConfig] onLoadComplete
+10:55:19 [22:19:41.940] [Debug] > [LaunchConfig] : [ConfigLoaderEvent onLoadInit, AT TARGET, bubbles]
+10:55:19 [22:19:41.940] [Information]   > name : ELEARNING_APPLICATION
+10:55:19 [22:19:41.940] [Information]   > namespace : optisio
+10:55:19 [22:19:41.940] [Information]   > version : 1.0.0.0
+10:55:19 [22:19:41.940] [Information]   > copyright : ZOOKEEPER
+10:55:19 [22:19:41.940] [Information]   > default_lang : fr
+10:55:19 [22:19:41.940] [Information]   > libraryPath : library/
+10:55:19 [22:19:41.940] [Information]   > filePath : http://localhost/optisio/library/
+10:55:19 [22:19:41.955] [Information]   > gatewayUrl : http://localhost/work/optisio/php/gateway.php
+10:55:19 [22:19:41.955] [Information]   > layoutWidth : 1000
+10:55:20 [22:19:41.955] [Information]   > layoutHeight : 600
+10:55:20 [22:19:41.955] [Information]   > background : [object Object]
+10:55:20 [22:19:41.955] [Information]       + ratios : 0,100
+10:55:20 [22:19:41.955] [Information]       + gradientRotation : 90
+10:55:20 [22:19:41.955] [Information]       + colors : 14736339,16777215
+10:55:20 [22:19:41.955] [Information]       + alphas : 100,100
+10:55:20 [22:19:41.971] [Information]   > dashboard : [object Object]
+10:55:20 [22:19:41.971] [Information]       + color : 6397901
+10:55:20 [22:19:41.971] [Information]       + alpha : 55
+10:55:20 [22:19:41.971] [Information]   > default_users : [object Object],[object Object],[object Object],[object Object],[object Object]
+10:55:20 [22:19:41.971] [Information]       + 4 : [object Object]
+10:55:20 [22:19:41.971] [Information]       + 3 : [object Object]
+10:55:20 [22:19:41.971] [Information]       + 2 : [object Object]
+10:55:20 [22:19:41.971] [Information]       + 1 : [object Object]
+10:55:20 [22:19:41.971] [Information]       + 0 : [object Object]
+10:55:20 [22:19:41.987] [Information]   > context_menu : [object Object]
+10:55:20 [22:19:41.987] [Information]       + 0 : [object Object]
+10:55:20 [22:19:41.987] [Information]   > loader : [object Object]
+10:55:20 [22:19:41.987] [Information]       + useGradient : true
+10:55:20 [22:19:41.987] [Information]       + useDropShadow : true
+10:55:20 [22:19:41.987] [Information]       + useBorder : true
+10:55:20 [22:19:41.987] [Information]       + thickness : 2
+10:55:20 [22:19:41.987] [Information]       + themeColor : 6710886
+10:55:20 [22:19:42.018] [Information]       + themeBorderColor : 7829367
+10:55:20 [22:19:42.018] [Information]       + themeBorderAlpha : 100
+10:55:20 [22:19:42.018] [Information]       + themeAlpha : 90
+10:55:20 [22:19:42.018] [Information]       + shadowStrength : 0.5
+10:55:20 [22:19:42.018] [Information]       + shadowInner : false
+10:55:20 [22:19:42.018] [Information]       + shadowDistance : 3
+10:55:20 [22:19:42.018] [Information]       + shadowColor : 0
+10:55:20 [22:19:42.018] [Information]       + shadowBlurY : 12
+10:55:20 [22:19:42.034] [Information]       + shadowBlurX : 12
+10:55:20 [22:19:42.034] [Information]       + shadowAngle : 50
+10:55:20 [22:19:42.034] [Information]       + shadowAlpha : 30
+10:55:20 [22:19:42.034] [Information]       + ratios : 0,100,200,255
+10:55:20 [22:19:42.034] [Information]       + gradientRotation : 45
+10:55:20 [22:19:42.034] [Information]       + colors : 4695740,4625574,3431011,1123364
+10:55:20 [22:19:42.034] [Information]       + color : 16777215
+10:55:20 [22:19:42.034] [Information]       + barColor : 13441799
+10:55:20 [22:19:42.034] [Information]       + alphas : 54,80,92,100
+10:55:20 [22:19:42.049] [Information]   > protect_screen : [object Object]
+10:55:20 [22:19:42.049] [Information]       + color : 0
+10:55:20 [22:19:42.049] [Information]       + alpha : 0
+10:55:20 [22:19:42.049] [Information]   > security : http://localhost/
+10:55:20 [22:19:42.049] [Information]       + 0 : http://localhost/
+10:55:21 [22:19:42.049] [Debug] > [ApplicationContextMenu] setup.
+10:55:21 [22:19:42.049] [Debug] > [ApplicationPolicy] setup.
+10:55:21 [22:19:42.065] [Information] > [ApplicationPolicy] > System.security.allowDomain("http://localhost/")
+10:55:21 [22:19:42.065] [Debug] > [BackgroundDisplay] setup.
+10:55:21 [22:19:42.065] [Debug] > [HeaderDisplay] setup.
+10:55:21 [22:19:42.080] [Debug] > [FooterDisplay] setup.
+10:55:21 [22:19:42.080] [Debug] > [CompanionDisplay] setup.
+10:55:21 [22:19:42.096] [Debug] > [LoaderDisplay] setup.
+10:55:21 [22:19:42.112] [Debug] > [ProtectScreenDisplay] setup.
+10:55:21 [22:19:42.112] [Debug] > [LaunchLocalization] handleEvent : fr
+10:55:21 [22:19:42.112] [Debug] > [LaunchLocalization] onLoadStarted
+10:55:21 [22:19:42.190] [Debug] > [ChangeLoader] handleEvent : Localization : 100%,100
+10:55:21 [22:19:42.190] [Debug] > [LaunchLocalization] onLoadProgress, 100%
+10:55:21 [22:19:42.205] [Debug] > [LaunchLocalization] onLoadComplete
+10:55:21 [22:19:42.330] [Debug] > [LaunchLocalization] change.
+10:55:21 [22:19:42.330] [Debug] > [HideLoader] handleEvent.
+10:55:21 [22:19:42.330] [Debug] > [UnProtectScreen] handleEvent.
+10:55:21 [22:19:42.330] [Information] > [LaunchLocalization] + change :: fr
+10:55:21 [22:19:42.330] [Debug] > [InitApplication] handleEvent.
+10:55:21 [22:19:42.346] [Debug] > [PutLayout] handleEvent, id:default, layout:[LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+10:55:21 [22:19:42.346] [Debug] > [ChangeLayout] handleEvent : default
+10:55:21 [22:19:42.346] [Information] > [ChangeLayout] -> people : [LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+10:55:21 [22:19:42.377] [Debug] > [ShowScreen] handleEvent.
+10:55:21 [22:19:42.377] [Information] > [InitApplication] 'event' and 'user' are undefined, use contextMenu to launch authentification.
+10:55:21 [22:19:42.377] [Information] > [InitApplication] add item in the contextMenu : Alcaraz :: MOD, user:1, event:116
+10:55:21 [22:19:42.377] [Information] > [InitApplication] add item in the contextMenu : Ducuing :: PART, user:9001, event:116
+10:55:21 [22:19:42.393] [Information] > [InitApplication] add item in the contextMenu : Mousseron :: PART, user:9002, event:116
+10:55:21 [22:19:42.393] [Information] > [InitApplication] add item in the contextMenu : Moreau :: PART, user:9003, event:116
+10:55:21 [22:19:42.393] [Information] > [InitApplication] add item in the contextMenu : Meish :: PART, user:9004, event:116
+10:55:45 [22:20:07.596] [Debug] > [Application] initialize : _level0.application
+10:55:45 [22:20:07.659] [Fatal] > [FlashPaperSlide] hide.
+10:55:45 [22:20:07.674] [Information] + [DiaporamaScreen] addSlide success insert : flp
+10:55:45 [22:20:07.674] [Information] + [DiaporamaScreen] addSlide success insert : pic
+10:55:45 [22:20:07.784] [Debug] > [RunApplication] handleEvent.
+10:55:45 [22:20:07.784] [Debug] > [LaunchConfig] handleEvent.
+10:55:45 [22:20:07.799] [Debug] > [LaunchConfig] onLoadStarted
+10:55:45 [22:20:07.846] [Debug] > [ChangeLoader] handleEvent : Configuration : 0%,0
+10:55:45 [22:20:07.862] [Debug] > [ShowLoader] handleEvent.
+10:55:45 [22:20:07.862] [Debug] > [ProtectScreen] handleEvent.
+10:55:45 [22:20:07.862] [Debug] > [LaunchConfig] onLoadProgress, 0%
+10:55:45 [22:20:07.955] [Debug] > [ChangeLoader] handleEvent : Configuration : 100%,100
+10:55:45 [22:20:07.955] [Debug] > [LaunchConfig] onLoadProgress, 100%
+10:55:45 [22:20:07.971] [Debug] > [LaunchConfig] onLoadComplete
+10:55:45 [22:20:08.096] [Debug] > [LaunchConfig] : [ConfigLoaderEvent onLoadInit, AT TARGET, bubbles]
+10:55:46 [22:20:08.096] [Information]   > name : ELEARNING_APPLICATION
+10:55:46 [22:20:08.096] [Information]   > namespace : optisio
+10:55:46 [22:20:08.096] [Information]   > version : 1.0.0.0
+10:55:46 [22:20:08.096] [Information]   > copyright : ZOOKEEPER
+10:55:46 [22:20:08.096] [Information]   > default_lang : fr
+10:55:46 [22:20:08.096] [Information]   > libraryPath : library/
+10:55:46 [22:20:08.096] [Information]   > filePath : http://localhost/optisio/library/
+10:55:46 [22:20:08.096] [Information]   > gatewayUrl : http://localhost/work/optisio/php/gateway.php
+10:55:46 [22:20:08.112] [Information]   > layoutWidth : 1000
+10:55:46 [22:20:08.112] [Information]   > layoutHeight : 600
+10:55:46 [22:20:08.112] [Information]   > background : [object Object]
+10:55:46 [22:20:08.112] [Information]       + ratios : 0,100
+10:55:46 [22:20:08.112] [Information]       + gradientRotation : 90
+10:55:46 [22:20:08.112] [Information]       + colors : 14736339,16777215
+10:55:46 [22:20:08.112] [Information]       + alphas : 100,100
+10:55:46 [22:20:08.112] [Information]   > dashboard : [object Object]
+10:55:46 [22:20:08.112] [Information]       + color : 6397901
+10:55:46 [22:20:08.127] [Information]       + alpha : 55
+10:55:46 [22:20:08.127] [Information]   > default_users : [object Object],[object Object],[object Object],[object Object],[object Object]
+10:55:46 [22:20:08.127] [Information]       + 4 : [object Object]
+10:55:46 [22:20:08.127] [Information]       + 3 : [object Object]
+10:55:46 [22:20:08.127] [Information]       + 2 : [object Object]
+10:55:46 [22:20:08.127] [Information]       + 1 : [object Object]
+10:55:46 [22:20:08.127] [Information]       + 0 : [object Object]
+10:55:46 [22:20:08.127] [Information]   > context_menu : [object Object]
+10:55:46 [22:20:08.127] [Information]       + 0 : [object Object]
+10:55:46 [22:20:08.143] [Information]   > loader : [object Object]
+10:55:46 [22:20:08.143] [Information]       + useGradient : true
+10:55:46 [22:20:08.174] [Information]       + useDropShadow : true
+10:55:46 [22:20:08.174] [Information]       + useBorder : true
+10:55:46 [22:20:08.174] [Information]       + thickness : 2
+10:55:46 [22:20:08.174] [Information]       + themeColor : 6710886
+10:55:46 [22:20:08.174] [Information]       + themeBorderColor : 7829367
+10:55:46 [22:20:08.174] [Information]       + themeBorderAlpha : 100
+10:55:46 [22:20:08.174] [Information]       + themeAlpha : 90
+10:55:46 [22:20:08.174] [Information]       + shadowStrength : 0.5
+10:55:46 [22:20:08.174] [Information]       + shadowInner : false
+10:55:46 [22:20:08.190] [Information]       + shadowDistance : 3
+10:55:46 [22:20:08.190] [Information]       + shadowColor : 0
+10:55:46 [22:20:08.190] [Information]       + shadowBlurY : 12
+10:55:46 [22:20:08.190] [Information]       + shadowBlurX : 12
+10:55:46 [22:20:08.190] [Information]       + shadowAngle : 50
+10:55:46 [22:20:08.190] [Information]       + shadowAlpha : 30
+10:55:46 [22:20:08.190] [Information]       + ratios : 0,100,200,255
+10:55:46 [22:20:08.190] [Information]       + gradientRotation : 45
+10:55:47 [22:20:08.190] [Information]       + colors : 4695740,4625574,3431011,1123364
+10:55:47 [22:20:08.190] [Information]       + color : 16777215
+10:55:47 [22:20:08.205] [Information]       + barColor : 13441799
+10:55:47 [22:20:08.205] [Information]       + alphas : 54,80,92,100
+10:55:47 [22:20:08.205] [Information]   > protect_screen : [object Object]
+10:55:47 [22:20:08.205] [Information]       + color : 0
+10:55:47 [22:20:08.205] [Information]       + alpha : 0
+10:55:47 [22:20:08.205] [Information]   > security : http://localhost/
+10:55:47 [22:20:08.205] [Information]       + 0 : http://localhost/
+10:55:47 [22:20:08.205] [Debug] > [ApplicationContextMenu] setup.
+10:55:47 [22:20:08.221] [Debug] > [ApplicationPolicy] setup.
+10:55:47 [22:20:08.221] [Information] > [ApplicationPolicy] > System.security.allowDomain("http://localhost/")
+10:55:47 [22:20:08.221] [Debug] > [BackgroundDisplay] setup.
+10:55:47 [22:20:08.221] [Debug] > [HeaderDisplay] setup.
+10:55:47 [22:20:08.237] [Debug] > [FooterDisplay] setup.
+10:55:47 [22:20:08.237] [Debug] > [CompanionDisplay] setup.
+10:55:47 [22:20:08.237] [Debug] > [LoaderDisplay] setup.
+10:55:47 [22:20:08.252] [Debug] > [ProtectScreenDisplay] setup.
+10:55:47 [22:20:08.268] [Debug] > [LaunchLocalization] handleEvent : fr
+10:55:47 [22:20:08.268] [Debug] > [LaunchLocalization] onLoadStarted
+10:55:47 [22:20:08.346] [Debug] > [ChangeLoader] handleEvent : Localization : 100%,100
+10:55:47 [22:20:08.362] [Debug] > [LaunchLocalization] onLoadProgress, 100%
+10:55:47 [22:20:08.362] [Debug] > [LaunchLocalization] onLoadComplete
+10:55:47 [22:20:08.487] [Debug] > [LaunchLocalization] change.
+10:55:47 [22:20:08.487] [Debug] > [HideLoader] handleEvent.
+10:55:47 [22:20:08.487] [Debug] > [UnProtectScreen] handleEvent.
+10:55:47 [22:20:08.502] [Information] > [LaunchLocalization] + change :: fr
+10:55:47 [22:20:08.502] [Debug] > [InitApplication] handleEvent.
+10:55:47 [22:20:08.502] [Debug] > [PutLayout] handleEvent, id:default, layout:[LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+10:55:47 [22:20:08.534] [Debug] > [ChangeLayout] handleEvent : default
+10:55:47 [22:20:08.534] [Information] > [ChangeLayout] -> people : [LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+10:55:47 [22:20:08.549] [Debug] > [ShowScreen] handleEvent.
+10:55:47 [22:20:08.549] [Information] > [InitApplication] 'event' and 'user' are undefined, use contextMenu to launch authentification.
+10:55:47 [22:20:08.549] [Information] > [InitApplication] add item in the contextMenu : Alcaraz :: MOD, user:1, event:116
+10:55:47 [22:20:08.549] [Information] > [InitApplication] add item in the contextMenu : Ducuing :: PART, user:9001, event:116
+10:55:47 [22:20:08.549] [Information] > [InitApplication] add item in the contextMenu : Mousseron :: PART, user:9002, event:116
+10:55:47 [22:20:08.549] [Information] > [InitApplication] add item in the contextMenu : Moreau :: PART, user:9003, event:116
+10:55:47 [22:20:08.565] [Information] > [InitApplication] add item in the contextMenu : Meish :: PART, user:9004, event:116
+10:55:58 [22:20:20.455] [Debug] > [Application] initialize : _level0.application
+10:55:58 [22:20:20.534] [Fatal] > [FlashPaperSlide] hide.
+10:55:58 [22:20:20.534] [Information] + [DiaporamaScreen] addSlide success insert : flp
+10:55:58 [22:20:20.534] [Information] + [DiaporamaScreen] addSlide success insert : pic
+10:55:58 [22:20:20.659] [Debug] > [RunApplication] handleEvent.
+10:55:58 [22:20:20.659] [Debug] > [LaunchConfig] handleEvent.
+10:55:58 [22:20:20.659] [Debug] > [LaunchConfig] onLoadStarted
+10:55:58 [22:20:20.784] [Debug] > [ChangeLoader] handleEvent : Configuration : 100%,100
+10:55:58 [22:20:20.799] [Debug] > [ShowLoader] handleEvent.
+10:55:58 [22:20:20.799] [Debug] > [ProtectScreen] handleEvent.
+10:55:58 [22:20:20.799] [Debug] > [LaunchConfig] onLoadProgress, 100%
+10:55:58 [22:20:20.799] [Debug] > [LaunchConfig] onLoadComplete
+10:55:58 [22:20:20.924] [Debug] > [LaunchConfig] : [ConfigLoaderEvent onLoadInit, AT TARGET, bubbles]
+10:55:58 [22:20:20.924] [Information]   > name : ELEARNING_APPLICATION
+10:55:58 [22:20:20.924] [Information]   > namespace : optisio
+10:55:58 [22:20:20.924] [Information]   > version : 1.0.0.0
+10:55:58 [22:20:20.924] [Information]   > copyright : ZOOKEEPER
+10:55:58 [22:20:20.924] [Information]   > default_lang : fr
+10:55:58 [22:20:20.924] [Information]   > libraryPath : library/
+10:55:58 [22:20:20.924] [Information]   > filePath : http://localhost/optisio/library/
+10:55:58 [22:20:20.940] [Information]   > gatewayUrl : http://localhost/work/optisio/php/gateway.php
+10:55:58 [22:20:20.940] [Information]   > layoutWidth : 1000
+10:55:58 [22:20:20.940] [Information]   > layoutHeight : 600
+10:55:58 [22:20:20.940] [Information]   > background : [object Object]
+10:55:58 [22:20:20.940] [Information]       + ratios : 0,100
+10:55:59 [22:20:20.940] [Information]       + gradientRotation : 90
+10:55:59 [22:20:20.940] [Information]       + colors : 14736339,16777215
+10:55:59 [22:20:20.940] [Information]       + alphas : 100,100
+10:55:59 [22:20:20.940] [Information]   > dashboard : [object Object]
+10:55:59 [22:20:20.955] [Information]       + color : 6397901
+10:55:59 [22:20:20.955] [Information]       + alpha : 55
+10:55:59 [22:20:20.955] [Information]   > default_users : [object Object],[object Object],[object Object],[object Object],[object Object]
+10:55:59 [22:20:20.955] [Information]       + 4 : [object Object]
+10:55:59 [22:20:20.955] [Information]       + 3 : [object Object]
+10:55:59 [22:20:20.955] [Information]       + 2 : [object Object]
+10:55:59 [22:20:20.955] [Information]       + 1 : [object Object]
+10:55:59 [22:20:20.955] [Information]       + 0 : [object Object]
+10:55:59 [22:20:20.971] [Information]   > context_menu : [object Object]
+10:55:59 [22:20:20.971] [Information]       + 0 : [object Object]
+10:55:59 [22:20:20.971] [Information]   > loader : [object Object]
+10:55:59 [22:20:20.971] [Information]       + useGradient : true
+10:55:59 [22:20:20.971] [Information]       + useDropShadow : true
+10:55:59 [22:20:20.971] [Information]       + useBorder : true
+10:55:59 [22:20:20.971] [Information]       + thickness : 2
+10:55:59 [22:20:21.002] [Information]       + themeColor : 6710886
+10:55:59 [22:20:21.002] [Information]       + themeBorderColor : 7829367
+10:55:59 [22:20:21.002] [Information]       + themeBorderAlpha : 100
+10:55:59 [22:20:21.002] [Information]       + themeAlpha : 90
+10:55:59 [22:20:21.002] [Information]       + shadowStrength : 0.5
+10:55:59 [22:20:21.002] [Information]       + shadowInner : false
+10:55:59 [22:20:21.002] [Information]       + shadowDistance : 3
+10:55:59 [22:20:21.018] [Information]       + shadowColor : 0
+10:55:59 [22:20:21.018] [Information]       + shadowBlurY : 12
+10:55:59 [22:20:21.018] [Information]       + shadowBlurX : 12
+10:55:59 [22:20:21.018] [Information]       + shadowAngle : 50
+10:55:59 [22:20:21.018] [Information]       + shadowAlpha : 30
+10:55:59 [22:20:21.018] [Information]       + ratios : 0,100,200,255
+10:55:59 [22:20:21.018] [Information]       + gradientRotation : 45
+10:55:59 [22:20:21.018] [Information]       + colors : 4695740,4625574,3431011,1123364
+10:55:59 [22:20:21.018] [Information]       + color : 16777215
+10:55:59 [22:20:21.034] [Information]       + barColor : 13441799
+10:55:59 [22:20:21.034] [Information]       + alphas : 54,80,92,100
+10:55:59 [22:20:21.034] [Information]   > protect_screen : [object Object]
+10:55:59 [22:20:21.034] [Information]       + color : 0
+10:55:59 [22:20:21.034] [Information]       + alpha : 0
+10:55:59 [22:20:21.034] [Information]   > security : http://localhost/
+10:55:59 [22:20:21.034] [Information]       + 0 : http://localhost/
+10:55:59 [22:20:21.034] [Debug] > [ApplicationContextMenu] setup.
+10:55:59 [22:20:21.049] [Debug] > [ApplicationPolicy] setup.
+10:56:00 [22:20:21.049] [Information] > [ApplicationPolicy] > System.security.allowDomain("http://localhost/")
+10:56:00 [22:20:21.049] [Debug] > [BackgroundDisplay] setup.
+10:56:00 [22:20:21.049] [Debug] > [HeaderDisplay] setup.
+10:56:00 [22:20:21.065] [Debug] > [FooterDisplay] setup.
+10:56:00 [22:20:21.065] [Debug] > [CompanionDisplay] setup.
+10:56:00 [22:20:21.065] [Debug] > [LoaderDisplay] setup.
+10:56:00 [22:20:21.096] [Debug] > [ProtectScreenDisplay] setup.
+10:56:00 [22:20:21.096] [Debug] > [LaunchLocalization] handleEvent : fr
+10:56:00 [22:20:21.096] [Debug] > [LaunchLocalization] onLoadStarted
+10:56:00 [22:20:21.174] [Debug] > [ChangeLoader] handleEvent : Localization : 100%,100
+10:56:00 [22:20:21.174] [Debug] > [LaunchLocalization] onLoadProgress, 100%
+10:56:00 [22:20:21.190] [Debug] > [LaunchLocalization] onLoadComplete
+10:56:00 [22:20:21.299] [Debug] > [LaunchLocalization] change.
+10:56:00 [22:20:21.315] [Debug] > [HideLoader] handleEvent.
+10:56:00 [22:20:21.315] [Debug] > [UnProtectScreen] handleEvent.
+10:56:00 [22:20:21.315] [Information] > [LaunchLocalization] + change :: fr
+10:56:00 [22:20:21.330] [Debug] > [InitApplication] handleEvent.
+10:56:00 [22:20:21.330] [Debug] > [PutLayout] handleEvent, id:default, layout:[LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+10:56:00 [22:20:21.330] [Debug] > [ChangeLayout] handleEvent : default
+10:56:00 [22:20:21.330] [Information] > [ChangeLayout] -> people : [LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+10:56:00 [22:20:21.362] [Debug] > [ShowScreen] handleEvent.
+10:56:00 [22:20:21.362] [Information] > [InitApplication] 'event' and 'user' are undefined, use contextMenu to launch authentification.
+10:56:00 [22:20:21.362] [Information] > [InitApplication] add item in the contextMenu : Alcaraz :: MOD, user:1, event:116
+10:56:00 [22:20:21.377] [Information] > [InitApplication] add item in the contextMenu : Ducuing :: PART, user:9001, event:116
+10:56:00 [22:20:21.377] [Information] > [InitApplication] add item in the contextMenu : Mousseron :: PART, user:9002, event:116
+10:56:00 [22:20:21.377] [Information] > [InitApplication] add item in the contextMenu : Moreau :: PART, user:9003, event:116
+10:56:00 [22:20:21.377] [Information] > [InitApplication] add item in the contextMenu : Meish :: PART, user:9004, event:116
+10:56:11 [22:20:33.955] [Debug] > [Application] initialize : _level0.application
+10:56:11 [22:20:34.018] [Fatal] > [FlashPaperSlide] hide.
+10:56:11 [22:20:34.034] [Information] + [DiaporamaScreen] addSlide success insert : flp
+10:56:11 [22:20:34.034] [Information] + [DiaporamaScreen] addSlide success insert : pic
+10:56:11 [22:20:34.143] [Debug] > [RunApplication] handleEvent.
+10:56:11 [22:20:34.143] [Debug] > [LaunchConfig] handleEvent.
+10:56:11 [22:20:34.143] [Debug] > [LaunchConfig] onLoadStarted
+10:56:11 [22:20:34.268] [Debug] > [ChangeLoader] handleEvent : Configuration : 100%,100
+10:56:12 [22:20:34.268] [Debug] > [ShowLoader] handleEvent.
+10:56:12 [22:20:34.268] [Debug] > [ProtectScreen] handleEvent.
+10:56:12 [22:20:34.284] [Debug] > [LaunchConfig] onLoadProgress, 100%
+10:56:12 [22:20:34.284] [Debug] > [LaunchConfig] onLoadComplete
+10:56:12 [22:20:34.393] [Debug] > [LaunchConfig] : [ConfigLoaderEvent onLoadInit, AT TARGET, bubbles]
+10:56:12 [22:20:34.393] [Information]   > name : ELEARNING_APPLICATION
+10:56:12 [22:20:34.393] [Information]   > namespace : optisio
+10:56:12 [22:20:34.393] [Information]   > version : 1.0.0.0
+10:56:12 [22:20:34.409] [Information]   > copyright : ZOOKEEPER
+10:56:12 [22:20:34.409] [Information]   > default_lang : fr
+10:56:12 [22:20:34.409] [Information]   > libraryPath : library/
+10:56:12 [22:20:34.409] [Information]   > filePath : http://localhost/optisio/library/
+10:56:12 [22:20:34.409] [Information]   > gatewayUrl : http://localhost/work/optisio/php/gateway.php
+10:56:12 [22:20:34.409] [Information]   > layoutWidth : 1000
+10:56:12 [22:20:34.409] [Information]   > layoutHeight : 600
+10:56:12 [22:20:34.409] [Information]   > background : [object Object]
+10:56:12 [22:20:34.409] [Information]       + ratios : 0,100
+10:56:12 [22:20:34.424] [Information]       + gradientRotation : 90
+10:56:12 [22:20:34.424] [Information]       + colors : 14736339,16777215
+10:56:12 [22:20:34.424] [Information]       + alphas : 100,100
+10:56:12 [22:20:34.424] [Information]   > dashboard : [object Object]
+10:56:12 [22:20:34.424] [Information]       + color : 6397901
+10:56:12 [22:20:34.424] [Information]       + alpha : 55
+10:56:12 [22:20:34.424] [Information]   > default_users : [object Object],[object Object],[object Object],[object Object],[object Object]
+10:56:12 [22:20:34.424] [Information]       + 4 : [object Object]
+10:56:12 [22:20:34.424] [Information]       + 3 : [object Object]
+10:56:12 [22:20:34.440] [Information]       + 2 : [object Object]
+10:56:12 [22:20:34.440] [Information]       + 1 : [object Object]
+10:56:12 [22:20:34.440] [Information]       + 0 : [object Object]
+10:56:12 [22:20:34.440] [Information]   > context_menu : [object Object]
+10:56:12 [22:20:34.440] [Information]       + 0 : [object Object]
+10:56:12 [22:20:34.440] [Information]   > loader : [object Object]
+10:56:12 [22:20:34.440] [Information]       + useGradient : true
+10:56:12 [22:20:34.440] [Information]       + useDropShadow : true
+10:56:12 [22:20:34.440] [Information]       + useBorder : true
+10:56:12 [22:20:34.455] [Information]       + thickness : 2
+10:56:12 [22:20:34.471] [Information]       + themeColor : 6710886
+10:56:12 [22:20:34.471] [Information]       + themeBorderColor : 7829367
+10:56:12 [22:20:34.471] [Information]       + themeBorderAlpha : 100
+10:56:12 [22:20:34.471] [Information]       + themeAlpha : 90
+10:56:13 [22:20:34.487] [Information]       + shadowStrength : 0.5
+10:56:13 [22:20:34.487] [Information]       + shadowInner : false
+10:56:13 [22:20:34.487] [Information]       + shadowDistance : 3
+10:56:13 [22:20:34.487] [Information]       + shadowColor : 0
+10:56:13 [22:20:34.487] [Information]       + shadowBlurY : 12
+10:56:13 [22:20:34.502] [Information]       + shadowBlurX : 12
+10:56:13 [22:20:34.502] [Information]       + shadowAngle : 50
+10:56:13 [22:20:34.502] [Information]       + shadowAlpha : 30
+10:56:13 [22:20:34.502] [Information]       + ratios : 0,100,200,255
+10:56:13 [22:20:34.502] [Information]       + gradientRotation : 45
+10:56:13 [22:20:34.502] [Information]       + colors : 4695740,4625574,3431011,1123364
+10:56:13 [22:20:34.502] [Information]       + color : 16777215
+10:56:13 [22:20:34.502] [Information]       + barColor : 13441799
+10:56:13 [22:20:34.502] [Information]       + alphas : 54,80,92,100
+10:56:13 [22:20:34.518] [Information]   > protect_screen : [object Object]
+10:56:13 [22:20:34.518] [Information]       + color : 0
+10:56:13 [22:20:34.518] [Information]       + alpha : 0
+10:56:13 [22:20:34.518] [Information]   > security : http://localhost/
+10:56:13 [22:20:34.518] [Information]       + 0 : http://localhost/
+10:56:13 [22:20:34.518] [Debug] > [ApplicationContextMenu] setup.
+10:56:13 [22:20:34.518] [Debug] > [ApplicationPolicy] setup.
+10:56:13 [22:20:34.534] [Information] > [ApplicationPolicy] > System.security.allowDomain("http://localhost/")
+10:56:13 [22:20:34.534] [Debug] > [BackgroundDisplay] setup.
+10:56:13 [22:20:34.534] [Debug] > [HeaderDisplay] setup.
+10:56:13 [22:20:34.534] [Debug] > [FooterDisplay] setup.
+10:56:13 [22:20:34.549] [Debug] > [CompanionDisplay] setup.
+10:56:13 [22:20:34.549] [Debug] > [LoaderDisplay] setup.
+10:56:13 [22:20:34.565] [Debug] > [ProtectScreenDisplay] setup.
+10:56:13 [22:20:34.565] [Debug] > [LaunchLocalization] handleEvent : fr
+10:56:13 [22:20:34.565] [Debug] > [LaunchLocalization] onLoadStarted
+10:56:13 [22:20:34.643] [Debug] > [ChangeLoader] handleEvent : Localization : 100%,100
+10:56:13 [22:20:34.659] [Debug] > [LaunchLocalization] onLoadProgress, 100%
+10:56:13 [22:20:34.659] [Debug] > [LaunchLocalization] onLoadComplete
+10:56:13 [22:20:34.784] [Debug] > [LaunchLocalization] change.
+10:56:13 [22:20:34.784] [Debug] > [HideLoader] handleEvent.
+10:56:13 [22:20:34.784] [Debug] > [UnProtectScreen] handleEvent.
+10:56:13 [22:20:34.784] [Information] > [LaunchLocalization] + change :: fr
+10:56:13 [22:20:34.799] [Debug] > [InitApplication] handleEvent.
+10:56:13 [22:20:34.799] [Debug] > [PutLayout] handleEvent, id:default, layout:[LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+10:56:13 [22:20:34.799] [Debug] > [ChangeLayout] handleEvent : default
+10:56:13 [22:20:34.799] [Information] > [ChangeLayout] -> people : [LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+10:56:13 [22:20:34.830] [Debug] > [ShowScreen] handleEvent.
+10:56:13 [22:20:34.830] [Information] > [InitApplication] 'event' and 'user' are undefined, use contextMenu to launch authentification.
+10:56:13 [22:20:34.830] [Information] > [InitApplication] add item in the contextMenu : Alcaraz :: MOD, user:1, event:116
+10:56:13 [22:20:34.830] [Information] > [InitApplication] add item in the contextMenu : Ducuing :: PART, user:9001, event:116
+10:56:13 [22:20:34.846] [Information] > [InitApplication] add item in the contextMenu : Mousseron :: PART, user:9002, event:116
+10:56:14 [22:20:34.846] [Information] > [InitApplication] add item in the contextMenu : Moreau :: PART, user:9003, event:116
+10:56:14 [22:20:34.846] [Information] > [InitApplication] add item in the contextMenu : Meish :: PART, user:9004, event:116
+10:56:17 [22:20:40.034] [Warning] > [GetSlides] this control failed, only the 'MOD' users can launch it.
+10:56:42 [22:21:05.174] [Debug] > [Application] initialize : _level0.application
+10:56:42 [22:21:05.237] [Fatal] > [FlashPaperSlide] hide.
+10:56:42 [22:21:05.237] [Information] + [DiaporamaScreen] addSlide success insert : flp
+10:56:42 [22:21:05.252] [Information] + [DiaporamaScreen] addSlide success insert : pic
+10:56:42 [22:21:05.362] [Debug] > [RunApplication] handleEvent.
+10:56:43 [22:21:05.362] [Debug] > [LaunchConfig] handleEvent.
+10:56:43 [22:21:05.362] [Debug] > [LaunchConfig] onLoadStarted
+10:56:43 [22:21:05.487] [Debug] > [ChangeLoader] handleEvent : Configuration : 100%,100
+10:56:43 [22:21:05.487] [Debug] > [ShowLoader] handleEvent.
+10:56:43 [22:21:05.502] [Debug] > [ProtectScreen] handleEvent.
+10:56:43 [22:21:05.502] [Debug] > [LaunchConfig] onLoadProgress, 100%
+10:56:43 [22:21:05.502] [Debug] > [LaunchConfig] onLoadComplete
+10:56:43 [22:21:05.627] [Debug] > [LaunchConfig] : [ConfigLoaderEvent onLoadInit, AT TARGET, bubbles]
+10:56:43 [22:21:05.627] [Information]   > name : ELEARNING_APPLICATION
+10:56:43 [22:21:05.627] [Information]   > namespace : optisio
+10:56:43 [22:21:05.627] [Information]   > version : 1.0.0.0
+10:56:43 [22:21:05.627] [Information]   > copyright : ZOOKEEPER
+10:56:43 [22:21:05.627] [Information]   > default_lang : fr
+10:56:43 [22:21:05.627] [Information]   > libraryPath : library/
+10:56:43 [22:21:05.627] [Information]   > filePath : http://localhost/optisio/library/
+10:56:43 [22:21:05.627] [Information]   > gatewayUrl : http://localhost/work/optisio/php/gateway.php
+10:56:43 [22:21:05.627] [Information]   > layoutWidth : 1000
+10:56:43 [22:21:05.643] [Information]   > layoutHeight : 600
+10:56:43 [22:21:05.643] [Information]   > background : [object Object]
+10:56:43 [22:21:05.643] [Information]       + ratios : 0,100
+10:56:43 [22:21:05.643] [Information]       + gradientRotation : 90
+10:56:43 [22:21:05.643] [Information]       + colors : 14736339,16777215
+10:56:43 [22:21:05.643] [Information]       + alphas : 100,100
+10:56:43 [22:21:05.643] [Information]   > dashboard : [object Object]
+10:56:43 [22:21:05.643] [Information]       + color : 6397901
+10:56:44 [22:21:05.643] [Information]       + alpha : 55
+10:56:44 [22:21:05.659] [Information]   > default_users : [object Object],[object Object],[object Object],[object Object],[object Object]
+10:56:44 [22:21:05.659] [Information]       + 4 : [object Object]
+10:56:44 [22:21:05.659] [Information]       + 3 : [object Object]
+10:56:44 [22:21:05.659] [Information]       + 2 : [object Object]
+10:56:44 [22:21:05.659] [Information]       + 1 : [object Object]
+10:56:44 [22:21:05.659] [Information]       + 0 : [object Object]
+10:56:44 [22:21:05.659] [Information]   > context_menu : [object Object]
+10:56:44 [22:21:05.659] [Information]       + 0 : [object Object]
+10:56:44 [22:21:05.674] [Information]   > loader : [object Object]
+10:56:44 [22:21:05.674] [Information]       + useGradient : true
+10:56:44 [22:21:05.674] [Information]       + useDropShadow : true
+10:56:44 [22:21:05.674] [Information]       + useBorder : true
+10:56:44 [22:21:05.674] [Information]       + thickness : 2
+10:56:44 [22:21:05.674] [Information]       + themeColor : 6710886
+10:56:44 [22:21:05.690] [Information]       + themeBorderColor : 7829367
+10:56:44 [22:21:05.705] [Information]       + themeBorderAlpha : 100
+10:56:44 [22:21:05.705] [Information]       + themeAlpha : 90
+10:56:44 [22:21:05.705] [Information]       + shadowStrength : 0.5
+10:56:44 [22:21:05.705] [Information]       + shadowInner : false
+10:56:44 [22:21:05.705] [Information]       + shadowDistance : 3
+10:56:44 [22:21:05.705] [Information]       + shadowColor : 0
+10:56:44 [22:21:05.705] [Information]       + shadowBlurY : 12
+10:56:44 [22:21:05.705] [Information]       + shadowBlurX : 12
+10:56:44 [22:21:05.705] [Information]       + shadowAngle : 50
+10:56:44 [22:21:05.721] [Information]       + shadowAlpha : 30
+10:56:44 [22:21:05.721] [Information]       + ratios : 0,100,200,255
+10:56:44 [22:21:05.721] [Information]       + gradientRotation : 45
+10:56:44 [22:21:05.721] [Information]       + colors : 4695740,4625574,3431011,1123364
+10:56:44 [22:21:05.721] [Information]       + color : 16777215
+10:56:44 [22:21:05.721] [Information]       + barColor : 13441799
+10:56:44 [22:21:05.721] [Information]       + alphas : 54,80,92,100
+10:56:44 [22:21:05.721] [Information]   > protect_screen : [object Object]
+10:56:44 [22:21:05.721] [Information]       + color : 0
+10:56:44 [22:21:05.737] [Information]       + alpha : 0
+10:56:44 [22:21:05.737] [Information]   > security : http://localhost/
+10:56:44 [22:21:05.737] [Information]       + 0 : http://localhost/
+10:56:44 [22:21:05.737] [Debug] > [ApplicationContextMenu] setup.
+10:56:44 [22:21:05.737] [Debug] > [ApplicationPolicy] setup.
+10:56:44 [22:21:05.737] [Information] > [ApplicationPolicy] > System.security.allowDomain("http://localhost/")
+10:56:44 [22:21:05.752] [Debug] > [BackgroundDisplay] setup.
+10:56:44 [22:21:05.752] [Debug] > [HeaderDisplay] setup.
+10:56:44 [22:21:05.752] [Debug] > [FooterDisplay] setup.
+10:56:44 [22:21:05.768] [Debug] > [CompanionDisplay] setup.
+10:56:44 [22:21:05.768] [Debug] > [LoaderDisplay] setup.
+10:56:44 [22:21:05.784] [Debug] > [ProtectScreenDisplay] setup.
+10:56:44 [22:21:05.784] [Debug] > [LaunchLocalization] handleEvent : fr
+10:56:44 [22:21:05.799] [Debug] > [LaunchLocalization] onLoadStarted
+10:56:45 [22:21:05.862] [Debug] > [ChangeLoader] handleEvent : Localization : 100%,100
+10:56:45 [22:21:05.877] [Debug] > [LaunchLocalization] onLoadProgress, 100%
+10:56:45 [22:21:05.877] [Debug] > [LaunchLocalization] onLoadComplete
+10:56:45 [22:21:06.002] [Debug] > [LaunchLocalization] change.
+10:56:45 [22:21:06.002] [Debug] > [HideLoader] handleEvent.
+10:56:45 [22:21:06.002] [Debug] > [UnProtectScreen] handleEvent.
+10:56:45 [22:21:06.002] [Information] > [LaunchLocalization] + change :: fr
+10:56:45 [22:21:06.018] [Debug] > [InitApplication] handleEvent.
+10:56:45 [22:21:06.018] [Debug] > [PutLayout] handleEvent, id:default, layout:[LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+10:56:45 [22:21:06.018] [Debug] > [ChangeLayout] handleEvent : default
+10:56:45 [22:21:06.018] [Information] > [ChangeLayout] -> people : [LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+10:56:45 [22:21:06.049] [Debug] > [ShowScreen] handleEvent.
+10:56:45 [22:21:06.049] [Information] > [InitApplication] 'event' and 'user' are undefined, use contextMenu to launch authentification.
+10:56:45 [22:21:06.049] [Information] > [InitApplication] add item in the contextMenu : Alcaraz :: MOD, user:1, event:116
+10:56:45 [22:21:06.065] [Information] > [InitApplication] add item in the contextMenu : Ducuing :: PART, user:9001, event:116
+10:56:45 [22:21:06.065] [Information] > [InitApplication] add item in the contextMenu : Mousseron :: PART, user:9002, event:116
+10:56:45 [22:21:06.065] [Information] > [InitApplication] add item in the contextMenu : Moreau :: PART, user:9003, event:116
+10:56:45 [22:21:06.065] [Information] > [InitApplication] add item in the contextMenu : Meish :: PART, user:9004, event:116
+10:57:58 [22:22:21.143] [Debug] > [Application] initialize : _level0.application
+10:57:58 [22:22:21.205] [Fatal] > [FlashPaperSlide] hide.
+10:57:58 [22:22:21.221] [Information] + [DiaporamaScreen] addSlide success insert : flp
+10:57:58 [22:22:21.221] [Information] + [DiaporamaScreen] addSlide success insert : pic
+10:57:58 [22:22:21.315] [Debug] > [RunApplication] handleEvent.
+10:57:58 [22:22:21.315] [Debug] > [LaunchConfig] handleEvent.
+10:57:58 [22:22:21.315] [Debug] > [LaunchConfig] onLoadStarted
+10:57:59 [22:22:21.377] [Debug] > [ChangeLoader] handleEvent : Configuration : 0%,0
+10:57:59 [22:22:21.377] [Debug] > [ShowLoader] handleEvent.
+10:57:59 [22:22:21.393] [Debug] > [ProtectScreen] handleEvent.
+10:57:59 [22:22:21.393] [Debug] > [LaunchConfig] onLoadProgress, 0%
+10:57:59 [22:22:21.487] [Debug] > [ChangeLoader] handleEvent : Configuration : 100%,100
+10:57:59 [22:22:21.487] [Debug] > [LaunchConfig] onLoadProgress, 100%
+10:57:59 [22:22:21.487] [Debug] > [LaunchConfig] onLoadComplete
+10:57:59 [22:22:21.612] [Debug] > [LaunchConfig] : [ConfigLoaderEvent onLoadInit, AT TARGET, bubbles]
+10:57:59 [22:22:21.627] [Information]   > name : ELEARNING_APPLICATION
+10:57:59 [22:22:21.627] [Information]   > namespace : optisio
+10:57:59 [22:22:21.627] [Information]   > version : 1.0.0.0
+10:57:59 [22:22:21.627] [Information]   > copyright : ZOOKEEPER
+10:57:59 [22:22:21.627] [Information]   > default_lang : fr
+10:57:59 [22:22:21.627] [Information]   > libraryPath : library/
+10:57:59 [22:22:21.627] [Information]   > filePath : http://localhost/optisio/library/
+10:57:59 [22:22:21.627] [Information]   > gatewayUrl : http://localhost/work/optisio/php/gateway.php
+10:57:59 [22:22:21.627] [Information]   > layoutWidth : 1000
+10:57:59 [22:22:21.627] [Information]   > layoutHeight : 600
+10:57:59 [22:22:21.643] [Information]   > background : [object Object]
+10:57:59 [22:22:21.643] [Information]       + ratios : 0,100
+10:57:59 [22:22:21.643] [Information]       + gradientRotation : 90
+10:57:59 [22:22:21.643] [Information]       + colors : 14736339,16777215
+10:57:59 [22:22:21.643] [Information]       + alphas : 100,100
+10:57:59 [22:22:21.643] [Information]   > dashboard : [object Object]
+10:57:59 [22:22:21.643] [Information]       + color : 6397901
+10:57:59 [22:22:21.643] [Information]       + alpha : 55
+10:57:59 [22:22:21.659] [Information]   > default_users : [object Object],[object Object],[object Object],[object Object],[object Object]
+10:57:59 [22:22:21.659] [Information]       + 4 : [object Object]
+10:57:59 [22:22:21.659] [Information]       + 3 : [object Object]
+10:57:59 [22:22:21.659] [Information]       + 2 : [object Object]
+10:57:59 [22:22:21.659] [Information]       + 1 : [object Object]
+10:57:59 [22:22:21.659] [Information]       + 0 : [object Object]
+10:57:59 [22:22:21.659] [Information]   > context_menu : [object Object]
+10:58:00 [22:22:21.659] [Information]       + 0 : [object Object]
+10:58:00 [22:22:21.659] [Information]   > loader : [object Object]
+10:58:00 [22:22:21.659] [Information]       + useGradient : true
+10:58:00 [22:22:21.674] [Information]       + useDropShadow : true
+10:58:00 [22:22:21.674] [Information]       + useBorder : true
+10:58:00 [22:22:21.674] [Information]       + thickness : 2
+10:58:00 [22:22:21.674] [Information]       + themeColor : 6710886
+10:58:00 [22:22:21.674] [Information]       + themeBorderColor : 7829367
+10:58:00 [22:22:21.674] [Information]       + themeBorderAlpha : 100
+10:58:00 [22:22:21.674] [Information]       + themeAlpha : 90
+10:58:00 [22:22:21.674] [Information]       + shadowStrength : 0.5
+10:58:00 [22:22:21.674] [Information]       + shadowInner : false
+10:58:00 [22:22:21.690] [Information]       + shadowDistance : 3
+10:58:00 [22:22:21.690] [Information]       + shadowColor : 0
+10:58:00 [22:22:21.690] [Information]       + shadowBlurY : 12
+10:58:00 [22:22:21.690] [Information]       + shadowBlurX : 12
+10:58:00 [22:22:21.705] [Information]       + shadowAngle : 50
+10:58:00 [22:22:21.721] [Information]       + shadowAlpha : 30
+10:58:00 [22:22:21.721] [Information]       + ratios : 0,100,200,255
+10:58:00 [22:22:21.721] [Information]       + gradientRotation : 45
+10:58:00 [22:22:21.721] [Information]       + colors : 4695740,4625574,3431011,1123364
+10:58:00 [22:22:21.721] [Information]       + color : 16777215
+10:58:00 [22:22:21.721] [Information]       + barColor : 13441799
+10:58:00 [22:22:21.721] [Information]       + alphas : 54,80,92,100
+10:58:00 [22:22:21.721] [Information]   > protect_screen : [object Object]
+10:58:00 [22:22:21.721] [Information]       + color : 0
+10:58:00 [22:22:21.721] [Information]       + alpha : 0
+10:58:00 [22:22:21.737] [Information]   > security : http://localhost/
+10:58:00 [22:22:21.737] [Information]       + 0 : http://localhost/
+10:58:00 [22:22:21.737] [Debug] > [ApplicationContextMenu] setup.
+10:58:00 [22:22:21.752] [Debug] > [ApplicationPolicy] setup.
+10:58:00 [22:22:21.752] [Information] > [ApplicationPolicy] > System.security.allowDomain("http://localhost/")
+10:58:00 [22:22:21.752] [Debug] > [BackgroundDisplay] setup.
+10:58:00 [22:22:21.752] [Debug] > [HeaderDisplay] setup.
+10:58:00 [22:22:21.768] [Debug] > [FooterDisplay] setup.
+10:58:00 [22:22:21.768] [Debug] > [CompanionDisplay] setup.
+10:58:00 [22:22:21.768] [Debug] > [LoaderDisplay] setup.
+10:58:00 [22:22:21.784] [Debug] > [ProtectScreenDisplay] setup.
+10:58:00 [22:22:21.784] [Debug] > [LaunchLocalization] handleEvent : fr
+10:58:00 [22:22:21.799] [Debug] > [LaunchLocalization] onLoadStarted
+10:58:00 [22:22:21.877] [Debug] > [ChangeLoader] handleEvent : Localization : 100%,100
+10:58:00 [22:22:21.877] [Debug] > [LaunchLocalization] onLoadProgress, 100%
+10:58:00 [22:22:21.877] [Debug] > [LaunchLocalization] onLoadComplete
+10:58:00 [22:22:22.002] [Debug] > [LaunchLocalization] change.
+10:58:00 [22:22:22.002] [Debug] > [HideLoader] handleEvent.
+10:58:00 [22:22:22.018] [Debug] > [UnProtectScreen] handleEvent.
+10:58:00 [22:22:22.018] [Information] > [LaunchLocalization] + change :: fr
+10:58:00 [22:22:22.018] [Debug] > [InitApplication] handleEvent.
+10:58:01 [22:22:22.018] [Debug] > [PutLayout] handleEvent, id:default, layout:[LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+10:58:01 [22:22:22.034] [Debug] > [ChangeLayout] handleEvent : default
+10:58:01 [22:22:22.034] [Information] > [ChangeLayout] -> people : [LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+10:58:01 [22:22:22.034] [Debug] > [ShowScreen] handleEvent.
+10:58:01 [22:22:22.034] [Information] > [InitApplication] 'event' and 'user' are undefined, use contextMenu to launch authentification.
+10:58:01 [22:22:22.034] [Information] > [InitApplication] add item in the contextMenu : Alcaraz :: MOD, user:1, event:116
+10:58:01 [22:22:22.034] [Information] > [InitApplication] add item in the contextMenu : Ducuing :: PART, user:9001, event:116
+10:58:01 [22:22:22.049] [Information] > [InitApplication] add item in the contextMenu : Mousseron :: PART, user:9002, event:116
+10:58:01 [22:22:22.049] [Information] > [InitApplication] add item in the contextMenu : Moreau :: PART, user:9003, event:116
+10:58:01 [22:22:22.049] [Information] > [InitApplication] add item in the contextMenu : Meish :: PART, user:9004, event:116
+10:58:12 [22:22:35.080] [Debug] > [Application] initialize : _level0.application
+10:58:12 [22:22:35.159] [Fatal] > [FlashPaperSlide] hide.
+10:58:12 [22:22:35.159] [Information] + [DiaporamaScreen] addSlide success insert : flp
+10:58:12 [22:22:35.159] [Information] + [DiaporamaScreen] addSlide success insert : pic
+10:58:13 [22:22:35.252] [Debug] > [RunApplication] handleEvent.
+10:58:13 [22:22:35.252] [Debug] > [LaunchConfig] handleEvent.
+10:58:13 [22:22:35.252] [Debug] > [LaunchConfig] onLoadStarted
+10:58:13 [22:22:35.315] [Debug] > [ChangeLoader] handleEvent : Configuration : 0%,0
+10:58:13 [22:22:35.330] [Debug] > [ShowLoader] handleEvent.
+10:58:13 [22:22:35.330] [Debug] > [ProtectScreen] handleEvent.
+10:58:13 [22:22:35.330] [Debug] > [LaunchConfig] onLoadProgress, 0%
+10:58:13 [22:22:35.424] [Debug] > [ChangeLoader] handleEvent : Configuration : 100%,100
+10:58:13 [22:22:35.424] [Debug] > [LaunchConfig] onLoadProgress, 100%
+10:58:13 [22:22:35.440] [Debug] > [LaunchConfig] onLoadComplete
+10:58:13 [22:22:35.534] [Debug] > [LaunchConfig] : [ConfigLoaderEvent onLoadInit, AT TARGET, bubbles]
+10:58:13 [22:22:35.534] [Information]   > name : ELEARNING_APPLICATION
+10:58:13 [22:22:35.534] [Information]   > namespace : optisio
+10:58:13 [22:22:35.534] [Information]   > version : 1.0.0.0
+10:58:13 [22:22:35.534] [Information]   > copyright : ZOOKEEPER
+10:58:13 [22:22:35.534] [Information]   > default_lang : fr
+10:58:13 [22:22:35.534] [Information]   > libraryPath : library/
+10:58:13 [22:22:35.534] [Information]   > filePath : http://localhost/optisio/library/
+10:58:13 [22:22:35.534] [Information]   > gatewayUrl : http://localhost/work/optisio/php/gateway.php
+10:58:13 [22:22:35.549] [Information]   > layoutWidth : 1000
+10:58:13 [22:22:35.549] [Information]   > layoutHeight : 600
+10:58:13 [22:22:35.549] [Information]   > background : [object Object]
+10:58:13 [22:22:35.549] [Information]       + ratios : 0,100
+10:58:13 [22:22:35.549] [Information]       + gradientRotation : 90
+10:58:13 [22:22:35.565] [Information]       + colors : 14736339,16777215
+10:58:13 [22:22:35.565] [Information]       + alphas : 100,100
+10:58:13 [22:22:35.565] [Information]   > dashboard : [object Object]
+10:58:13 [22:22:35.565] [Information]       + color : 6397901
+10:58:13 [22:22:35.565] [Information]       + alpha : 55
+10:58:13 [22:22:35.565] [Information]   > default_users : [object Object],[object Object],[object Object],[object Object],[object Object]
+10:58:13 [22:22:35.565] [Information]       + 4 : [object Object]
+10:58:13 [22:22:35.565] [Information]       + 3 : [object Object]
+10:58:13 [22:22:35.565] [Information]       + 2 : [object Object]
+10:58:13 [22:22:35.580] [Information]       + 1 : [object Object]
+10:58:13 [22:22:35.580] [Information]       + 0 : [object Object]
+10:58:13 [22:22:35.580] [Information]   > context_menu : [object Object]
+10:58:13 [22:22:35.580] [Information]       + 0 : [object Object]
+10:58:13 [22:22:35.580] [Information]   > loader : [object Object]
+10:58:13 [22:22:35.580] [Information]       + useGradient : true
+10:58:14 [22:22:35.580] [Information]       + useDropShadow : true
+10:58:14 [22:22:35.580] [Information]       + useBorder : true
+10:58:14 [22:22:35.580] [Information]       + thickness : 2
+10:58:14 [22:22:35.580] [Information]       + themeColor : 6710886
+10:58:14 [22:22:35.596] [Information]       + themeBorderColor : 7829367
+10:58:14 [22:22:35.596] [Information]       + themeBorderAlpha : 100
+10:58:14 [22:22:35.596] [Information]       + themeAlpha : 90
+10:58:14 [22:22:35.596] [Information]       + shadowStrength : 0.5
+10:58:14 [22:22:35.596] [Information]       + shadowInner : false
+10:58:14 [22:22:35.596] [Information]       + shadowDistance : 3
+10:58:14 [22:22:35.596] [Information]       + shadowColor : 0
+10:58:14 [22:22:35.596] [Information]       + shadowBlurY : 12
+10:58:14 [22:22:35.596] [Information]       + shadowBlurX : 12
+10:58:14 [22:22:35.612] [Information]       + shadowAngle : 50
+10:58:14 [22:22:35.627] [Information]       + shadowAlpha : 30
+10:58:14 [22:22:35.627] [Information]       + ratios : 0,100,200,255
+10:58:14 [22:22:35.627] [Information]       + gradientRotation : 45
+10:58:14 [22:22:35.627] [Information]       + colors : 4695740,4625574,3431011,1123364
+10:58:14 [22:22:35.643] [Information]       + color : 16777215
+10:58:14 [22:22:35.643] [Information]       + barColor : 13441799
+10:58:14 [22:22:35.643] [Information]       + alphas : 54,80,92,100
+10:58:14 [22:22:35.643] [Information]   > protect_screen : [object Object]
+10:58:14 [22:22:35.643] [Information]       + color : 0
+10:58:14 [22:22:35.643] [Information]       + alpha : 0
+10:58:14 [22:22:35.643] [Information]   > security : http://localhost/
+10:58:14 [22:22:35.643] [Information]       + 0 : http://localhost/
+10:58:14 [22:22:35.659] [Debug] > [ApplicationContextMenu] setup.
+10:58:14 [22:22:35.659] [Debug] > [ApplicationPolicy] setup.
+10:58:14 [22:22:35.659] [Information] > [ApplicationPolicy] > System.security.allowDomain("http://localhost/")
+10:58:14 [22:22:35.659] [Debug] > [BackgroundDisplay] setup.
+10:58:14 [22:22:35.659] [Debug] > [HeaderDisplay] setup.
+10:58:14 [22:22:35.674] [Debug] > [FooterDisplay] setup.
+10:58:14 [22:22:35.674] [Debug] > [CompanionDisplay] setup.
+10:58:14 [22:22:35.674] [Debug] > [LoaderDisplay] setup.
+10:58:14 [22:22:35.690] [Debug] > [ProtectScreenDisplay] setup.
+10:58:14 [22:22:35.690] [Debug] > [LaunchLocalization] handleEvent : fr
+10:58:14 [22:22:35.705] [Debug] > [LaunchLocalization] onLoadStarted
+10:58:14 [22:22:35.768] [Debug] > [ChangeLoader] handleEvent : Localization : 100%,100
+10:58:14 [22:22:35.784] [Debug] > [LaunchLocalization] onLoadProgress, 100%
+10:58:15 [22:22:35.784] [Debug] > [LaunchLocalization] onLoadComplete
+10:58:15 [22:22:35.909] [Debug] > [LaunchLocalization] change.
+10:58:15 [22:22:35.909] [Debug] > [HideLoader] handleEvent.
+10:58:15 [22:22:35.909] [Debug] > [UnProtectScreen] handleEvent.
+10:58:15 [22:22:35.924] [Information] > [LaunchLocalization] + change :: fr
+10:58:15 [22:22:35.924] [Debug] > [InitApplication] handleEvent.
+10:58:15 [22:22:35.924] [Debug] > [PutLayout] handleEvent, id:default, layout:[LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+10:58:15 [22:22:35.924] [Debug] > [ChangeLayout] handleEvent : default
+10:58:15 [22:22:35.940] [Information] > [ChangeLayout] -> people : [LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+10:58:15 [22:22:35.940] [Debug] > [ShowScreen] handleEvent.
+10:58:15 [22:22:35.940] [Information] > [InitApplication] 'event' and 'user' are undefined, use contextMenu to launch authentification.
+10:58:15 [22:22:35.940] [Information] > [InitApplication] add item in the contextMenu : Alcaraz :: MOD, user:1, event:116
+10:58:15 [22:22:35.940] [Information] > [InitApplication] add item in the contextMenu : Ducuing :: PART, user:9001, event:116
+10:58:15 [22:22:35.940] [Information] > [InitApplication] add item in the contextMenu : Mousseron :: PART, user:9002, event:116
+10:58:15 [22:22:35.955] [Information] > [InitApplication] add item in the contextMenu : Moreau :: PART, user:9003, event:116
+10:58:15 [22:22:35.955] [Information] > [InitApplication] add item in the contextMenu : Meish :: PART, user:9004, event:116
+10:59:14 [22:23:37.237] [Debug] > [Application] initialize : _level0.application
+10:59:14 [22:23:37.299] [Fatal] > [FlashPaperSlide] hide.
+10:59:14 [22:23:37.299] [Information] + [DiaporamaScreen] addSlide success insert : flp
+10:59:14 [22:23:37.299] [Information] + [DiaporamaScreen] addSlide success insert : pic
+10:59:14 [22:23:37.393] [Debug] > [RunApplication] handleEvent.
+10:59:14 [22:23:37.409] [Debug] > [LaunchConfig] handleEvent.
+10:59:15 [22:23:37.409] [Debug] > [LaunchConfig] onLoadStarted
+10:59:15 [22:23:37.471] [Debug] > [ChangeLoader] handleEvent : Configuration : 0%,0
+10:59:15 [22:23:37.471] [Debug] > [ShowLoader] handleEvent.
+10:59:15 [22:23:37.487] [Debug] > [ProtectScreen] handleEvent.
+10:59:15 [22:23:37.487] [Debug] > [LaunchConfig] onLoadProgress, 0%
+10:59:15 [22:23:37.580] [Debug] > [ChangeLoader] handleEvent : Configuration : 100%,100
+10:59:15 [22:23:37.580] [Debug] > [LaunchConfig] onLoadProgress, 100%
+10:59:15 [22:23:37.580] [Debug] > [LaunchConfig] onLoadComplete
+10:59:15 [22:23:37.705] [Debug] > [LaunchConfig] : [ConfigLoaderEvent onLoadInit, AT TARGET, bubbles]
+10:59:15 [22:23:37.705] [Information]   > name : ELEARNING_APPLICATION
+10:59:15 [22:23:37.705] [Information]   > namespace : optisio
+10:59:15 [22:23:37.721] [Information]   > version : 1.0.0.0
+10:59:15 [22:23:37.721] [Information]   > copyright : ZOOKEEPER
+10:59:15 [22:23:37.721] [Information]   > default_lang : fr
+10:59:15 [22:23:37.721] [Information]   > libraryPath : library/
+10:59:15 [22:23:37.721] [Information]   > filePath : http://localhost/optisio/library/
+10:59:15 [22:23:37.721] [Information]   > gatewayUrl : http://localhost/work/optisio/php/gateway.php
+10:59:15 [22:23:37.737] [Information]   > layoutWidth : 1000
+10:59:15 [22:23:37.737] [Information]   > layoutHeight : 600
+10:59:15 [22:23:37.737] [Information]   > background : [object Object]
+10:59:15 [22:23:37.737] [Information]       + ratios : 0,100
+10:59:15 [22:23:37.737] [Information]       + gradientRotation : 90
+10:59:15 [22:23:37.737] [Information]       + colors : 14736339,16777215
+10:59:15 [22:23:37.737] [Information]       + alphas : 100,100
+10:59:15 [22:23:37.737] [Information]   > dashboard : [object Object]
+10:59:15 [22:23:37.737] [Information]       + color : 6397901
+10:59:15 [22:23:37.752] [Information]       + alpha : 55
+10:59:15 [22:23:37.752] [Information]   > default_users : [object Object],[object Object],[object Object],[object Object],[object Object]
+10:59:15 [22:23:37.752] [Information]       + 4 : [object Object]
+10:59:15 [22:23:37.752] [Information]       + 3 : [object Object]
+10:59:16 [22:23:37.752] [Information]       + 2 : [object Object]
+10:59:16 [22:23:37.752] [Information]       + 1 : [object Object]
+10:59:16 [22:23:37.752] [Information]       + 0 : [object Object]
+10:59:16 [22:23:37.752] [Information]   > context_menu : [object Object]
+10:59:16 [22:23:37.752] [Information]       + 0 : [object Object]
+10:59:16 [22:23:37.768] [Information]   > loader : [object Object]
+10:59:16 [22:23:37.768] [Information]       + useGradient : true
+10:59:16 [22:23:37.768] [Information]       + useDropShadow : true
+10:59:16 [22:23:37.768] [Information]       + useBorder : true
+10:59:16 [22:23:37.768] [Information]       + thickness : 2
+10:59:16 [22:23:37.768] [Information]       + themeColor : 6710886
+10:59:16 [22:23:37.768] [Information]       + themeBorderColor : 7829367
+10:59:16 [22:23:37.768] [Information]       + themeBorderAlpha : 100
+10:59:16 [22:23:37.768] [Information]       + themeAlpha : 90
+10:59:16 [22:23:37.768] [Information]       + shadowStrength : 0.5
+10:59:16 [22:23:37.784] [Information]       + shadowInner : false
+10:59:16 [22:23:37.784] [Information]       + shadowDistance : 3
+10:59:16 [22:23:37.784] [Information]       + shadowColor : 0
+10:59:16 [22:23:37.784] [Information]       + shadowBlurY : 12
+10:59:16 [22:23:37.784] [Information]       + shadowBlurX : 12
+10:59:16 [22:23:37.799] [Information]       + shadowAngle : 50
+10:59:16 [22:23:37.815] [Information]       + shadowAlpha : 30
+10:59:16 [22:23:37.815] [Information]       + ratios : 0,100,200,255
+10:59:16 [22:23:37.815] [Information]       + gradientRotation : 45
+10:59:16 [22:23:37.815] [Information]       + colors : 4695740,4625574,3431011,1123364
+10:59:16 [22:23:37.815] [Information]       + color : 16777215
+10:59:16 [22:23:37.815] [Information]       + barColor : 13441799
+10:59:16 [22:23:37.815] [Information]       + alphas : 54,80,92,100
+10:59:16 [22:23:37.815] [Information]   > protect_screen : [object Object]
+10:59:16 [22:23:37.815] [Information]       + color : 0
+10:59:16 [22:23:37.815] [Information]       + alpha : 0
+10:59:16 [22:23:37.830] [Information]   > security : http://localhost/
+10:59:16 [22:23:37.830] [Information]       + 0 : http://localhost/
+10:59:16 [22:23:37.830] [Debug] > [ApplicationContextMenu] setup.
+10:59:16 [22:23:37.830] [Debug] > [ApplicationPolicy] setup.
+10:59:16 [22:23:37.830] [Information] > [ApplicationPolicy] > System.security.allowDomain("http://localhost/")
+10:59:16 [22:23:37.846] [Debug] > [BackgroundDisplay] setup.
+10:59:16 [22:23:37.846] [Debug] > [HeaderDisplay] setup.
+10:59:16 [22:23:37.846] [Debug] > [FooterDisplay] setup.
+10:59:16 [22:23:37.862] [Debug] > [CompanionDisplay] setup.
+10:59:16 [22:23:37.862] [Debug] > [LoaderDisplay] setup.
+10:59:16 [22:23:37.877] [Debug] > [ProtectScreenDisplay] setup.
+10:59:16 [22:23:37.877] [Debug] > [LaunchLocalization] handleEvent : fr
+10:59:16 [22:23:37.877] [Debug] > [LaunchLocalization] onLoadStarted
+10:59:16 [22:23:37.955] [Debug] > [ChangeLoader] handleEvent : Localization : 100%,100
+10:59:16 [22:23:37.971] [Debug] > [LaunchLocalization] onLoadProgress, 100%
+10:59:16 [22:23:37.971] [Debug] > [LaunchLocalization] onLoadComplete
+10:59:16 [22:23:38.096] [Debug] > [LaunchLocalization] change.
+10:59:17 [22:23:38.096] [Debug] > [HideLoader] handleEvent.
+10:59:17 [22:23:38.096] [Debug] > [UnProtectScreen] handleEvent.
+10:59:17 [22:23:38.096] [Information] > [LaunchLocalization] + change :: fr
+10:59:17 [22:23:38.112] [Debug] > [InitApplication] handleEvent.
+10:59:17 [22:23:38.112] [Debug] > [PutLayout] handleEvent, id:default, layout:[LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+10:59:17 [22:23:38.112] [Debug] > [ChangeLayout] handleEvent : default
+10:59:17 [22:23:38.112] [Information] > [ChangeLayout] -> people : [LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+10:59:17 [22:23:38.127] [Debug] > [ShowScreen] handleEvent.
+10:59:17 [22:23:38.127] [Information] > [InitApplication] 'event' and 'user' are undefined, use contextMenu to launch authentification.
+10:59:17 [22:23:38.127] [Information] > [InitApplication] add item in the contextMenu : Alcaraz :: MOD, user:1, event:116
+10:59:17 [22:23:38.127] [Information] > [InitApplication] add item in the contextMenu : Ducuing :: PART, user:9001, event:116
+10:59:17 [22:23:38.127] [Information] > [InitApplication] add item in the contextMenu : Mousseron :: PART, user:9002, event:116
+10:59:17 [22:23:38.143] [Information] > [InitApplication] add item in the contextMenu : Moreau :: PART, user:9003, event:116
+10:59:17 [22:23:38.143] [Information] > [InitApplication] add item in the contextMenu : Meish :: PART, user:9004, event:116
+10:59:17 [22:23:39.815] [Debug] send message....
+10:59:18 [22:23:41.627] [Debug] send message....
+10:59:20 [22:23:42.955] [Debug] send message....
+10:59:20 [22:23:43.330] [Debug] send message....
+11:00:08 [22:24:30.440] [Debug] > [Application] initialize : _level0.application
+11:00:08 [22:24:30.502] [Fatal] > [FlashPaperSlide] hide.
+11:00:08 [22:24:30.518] [Information] + [DiaporamaScreen] addSlide success insert : flp
+11:00:08 [22:24:30.518] [Information] + [DiaporamaScreen] addSlide success insert : pic
+11:00:08 [22:24:30.612] [Debug] > [RunApplication] handleEvent.
+11:00:08 [22:24:30.612] [Debug] > [LaunchConfig] handleEvent.
+11:00:08 [22:24:30.627] [Debug] > [LaunchConfig] onLoadStarted
+11:00:08 [22:24:30.690] [Debug] > [ChangeLoader] handleEvent : Configuration : 0%,0
+11:00:08 [22:24:30.690] [Debug] > [ShowLoader] handleEvent.
+11:00:08 [22:24:30.690] [Debug] > [ProtectScreen] handleEvent.
+11:00:08 [22:24:30.705] [Debug] > [LaunchConfig] onLoadProgress, 0%
+11:00:08 [22:24:30.799] [Debug] > [ChangeLoader] handleEvent : Configuration : 100%,100
+11:00:08 [22:24:30.799] [Debug] > [LaunchConfig] onLoadProgress, 100%
+11:00:08 [22:24:30.799] [Debug] > [LaunchConfig] onLoadComplete
+11:00:08 [22:24:30.924] [Debug] > [LaunchConfig] : [ConfigLoaderEvent onLoadInit, AT TARGET, bubbles]
+11:00:08 [22:24:30.924] [Information]   > name : ELEARNING_APPLICATION
+11:00:08 [22:24:30.924] [Information]   > namespace : optisio
+11:00:08 [22:24:30.940] [Information]   > version : 1.0.0.0
+11:00:08 [22:24:30.940] [Information]   > copyright : ZOOKEEPER
+11:00:08 [22:24:30.940] [Information]   > default_lang : fr
+11:00:08 [22:24:30.940] [Information]   > libraryPath : library/
+11:00:08 [22:24:30.940] [Information]   > filePath : http://localhost/optisio/library/
+11:00:08 [22:24:30.940] [Information]   > gatewayUrl : http://localhost/work/optisio/php/gateway.php
+11:00:08 [22:24:30.940] [Information]   > layoutWidth : 1000
+11:00:08 [22:24:30.940] [Information]   > layoutHeight : 600
+11:00:09 [22:24:30.940] [Information]   > background : [object Object]
+11:00:09 [22:24:30.955] [Information]       + ratios : 0,100
+11:00:09 [22:24:30.955] [Information]       + gradientRotation : 90
+11:00:09 [22:24:30.955] [Information]       + colors : 14736339,16777215
+11:00:09 [22:24:30.955] [Information]       + alphas : 100,100
+11:00:09 [22:24:30.955] [Information]   > dashboard : [object Object]
+11:00:09 [22:24:30.955] [Information]       + color : 6397901
+11:00:09 [22:24:30.955] [Information]       + alpha : 55
+11:00:09 [22:24:30.955] [Information]   > default_users : [object Object],[object Object],[object Object],[object Object],[object Object]
+11:00:09 [22:24:30.955] [Information]       + 4 : [object Object]
+11:00:09 [22:24:30.971] [Information]       + 3 : [object Object]
+11:00:09 [22:24:30.971] [Information]       + 2 : [object Object]
+11:00:09 [22:24:30.971] [Information]       + 1 : [object Object]
+11:00:09 [22:24:30.971] [Information]       + 0 : [object Object]
+11:00:09 [22:24:30.971] [Information]   > context_menu : [object Object]
+11:00:09 [22:24:30.971] [Information]       + 0 : [object Object]
+11:00:09 [22:24:30.971] [Information]   > loader : [object Object]
+11:00:09 [22:24:30.971] [Information]       + useGradient : true
+11:00:09 [22:24:30.971] [Information]       + useDropShadow : true
+11:00:09 [22:24:30.987] [Information]       + useBorder : true
+11:00:09 [22:24:30.987] [Information]       + thickness : 2
+11:00:09 [22:24:30.987] [Information]       + themeColor : 6710886
+11:00:09 [22:24:30.987] [Information]       + themeBorderColor : 7829367
+11:00:09 [22:24:30.987] [Information]       + themeBorderAlpha : 100
+11:00:09 [22:24:30.987] [Information]       + themeAlpha : 90
+11:00:09 [22:24:30.987] [Information]       + shadowStrength : 0.5
+11:00:09 [22:24:30.987] [Information]       + shadowInner : false
+11:00:09 [22:24:30.987] [Information]       + shadowDistance : 3
+11:00:09 [22:24:30.987] [Information]       + shadowColor : 0
+11:00:09 [22:24:31.002] [Information]       + shadowBlurY : 12
+11:00:09 [22:24:31.002] [Information]       + shadowBlurX : 12
+11:00:09 [22:24:31.002] [Information]       + shadowAngle : 50
+11:00:09 [22:24:31.018] [Information]       + shadowAlpha : 30
+11:00:09 [22:24:31.018] [Information]       + ratios : 0,100,200,255
+11:00:09 [22:24:31.018] [Information]       + gradientRotation : 45
+11:00:09 [22:24:31.034] [Information]       + colors : 4695740,4625574,3431011,1123364
+11:00:09 [22:24:31.034] [Information]       + color : 16777215
+11:00:09 [22:24:31.034] [Information]       + barColor : 13441799
+11:00:09 [22:24:31.034] [Information]       + alphas : 54,80,92,100
+11:00:09 [22:24:31.034] [Information]   > protect_screen : [object Object]
+11:00:09 [22:24:31.034] [Information]       + color : 0
+11:00:09 [22:24:31.034] [Information]       + alpha : 0
+11:00:09 [22:24:31.034] [Information]   > security : http://localhost/
+11:00:09 [22:24:31.034] [Information]       + 0 : http://localhost/
+11:00:09 [22:24:31.049] [Debug] > [ApplicationContextMenu] setup.
+11:00:09 [22:24:31.049] [Debug] > [ApplicationPolicy] setup.
+11:00:09 [22:24:31.049] [Information] > [ApplicationPolicy] > System.security.allowDomain("http://localhost/")
+11:00:10 [22:24:31.049] [Debug] > [BackgroundDisplay] setup.
+11:00:10 [22:24:31.065] [Debug] > [HeaderDisplay] setup.
+11:00:10 [22:24:31.065] [Debug] > [FooterDisplay] setup.
+11:00:10 [22:24:31.065] [Debug] > [CompanionDisplay] setup.
+11:00:10 [22:24:31.065] [Debug] > [LoaderDisplay] setup.
+11:00:10 [22:24:31.080] [Debug] > [ProtectScreenDisplay] setup.
+11:00:10 [22:24:31.096] [Debug] > [LaunchLocalization] handleEvent : fr
+11:00:10 [22:24:31.096] [Debug] > [LaunchLocalization] onLoadStarted
+11:00:10 [22:24:31.174] [Debug] > [ChangeLoader] handleEvent : Localization : 100%,100
+11:00:10 [22:24:31.174] [Debug] > [LaunchLocalization] onLoadProgress, 100%
+11:00:10 [22:24:31.190] [Debug] > [LaunchLocalization] onLoadComplete
+11:00:10 [22:24:31.299] [Debug] > [LaunchLocalization] change.
+11:00:10 [22:24:31.315] [Debug] > [HideLoader] handleEvent.
+11:00:10 [22:24:31.315] [Debug] > [UnProtectScreen] handleEvent.
+11:00:10 [22:24:31.315] [Information] > [LaunchLocalization] + change :: fr
+11:00:10 [22:24:31.315] [Debug] > [InitApplication] handleEvent.
+11:00:10 [22:24:31.330] [Debug] > [PutLayout] handleEvent, id:default, layout:[LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+11:00:10 [22:24:31.330] [Debug] > [ChangeLayout] handleEvent : default
+11:00:10 [22:24:31.346] [Information] > [ChangeLayout] -> people : [LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+11:00:10 [22:24:31.346] [Debug] > [ShowScreen] handleEvent.
+11:00:10 [22:24:31.346] [Information] > [InitApplication] 'event' and 'user' are undefined, use contextMenu to launch authentification.
+11:00:10 [22:24:31.346] [Information] > [InitApplication] add item in the contextMenu : Alcaraz :: MOD, user:1, event:116
+11:00:10 [22:24:31.346] [Information] > [InitApplication] add item in the contextMenu : Ducuing :: PART, user:9001, event:116
+11:00:10 [22:24:31.346] [Information] > [InitApplication] add item in the contextMenu : Mousseron :: PART, user:9002, event:116
+11:00:10 [22:24:31.362] [Information] > [InitApplication] add item in the contextMenu : Moreau :: PART, user:9003, event:116
+11:00:10 [22:24:31.362] [Information] > [InitApplication] add item in the contextMenu : Meish :: PART, user:9004, event:116
+11:00:10 [22:24:32.971] [Debug] send message....
+11:00:10 [22:24:32.971] [Debug] send message....
+11:00:11 [22:24:33.987] [Debug] send message....
+11:00:11 [22:24:33.987] [Debug] send message....
+11:00:15 [22:24:38.580] [Debug] send message....
+11:00:16 [22:24:38.705] [Debug] send message....
+11:00:16 [22:24:38.830] [Debug] send message....
+11:00:16 [22:24:38.924] [Debug] send message....
+11:00:16 [22:24:38.987] [Debug] send message....
+11:00:16 [22:24:39.096] [Debug] send message....
+11:00:16 [22:24:39.174] [Debug] send message....
+11:00:16 [22:24:39.596] [Debug] send message....
+11:00:17 [22:24:39.596] [Debug] send message....
+11:01:18 [22:25:40.487] [Debug] > [Application] initialize : _level0.application
+11:01:18 [22:25:40.565] [Fatal] > [FlashPaperSlide] hide.
+11:01:18 [22:25:40.565] [Information] + [DiaporamaScreen] addSlide success insert : flp
+11:01:18 [22:25:40.565] [Information] + [DiaporamaScreen] addSlide success insert : pic
+11:01:18 [22:25:40.659] [Debug] > [RunApplication] handleEvent.
+11:01:18 [22:25:40.659] [Debug] > [LaunchConfig] handleEvent.
+11:01:18 [22:25:40.674] [Debug] > [LaunchConfig] onLoadStarted
+11:01:18 [22:25:40.737] [Debug] > [ChangeLoader] handleEvent : Configuration : 0%,0
+11:01:18 [22:25:40.737] [Debug] > [ShowLoader] handleEvent.
+11:01:18 [22:25:40.737] [Debug] > [ProtectScreen] handleEvent.
+11:01:18 [22:25:40.752] [Debug] > [LaunchConfig] onLoadProgress, 0%
+11:01:18 [22:25:40.830] [Debug] > [ChangeLoader] handleEvent : Configuration : 100%,100
+11:01:18 [22:25:40.846] [Debug] > [LaunchConfig] onLoadProgress, 100%
+11:01:18 [22:25:40.846] [Debug] > [LaunchConfig] onLoadComplete
+11:01:18 [22:25:40.971] [Debug] > [LaunchConfig] : [ConfigLoaderEvent onLoadInit, AT TARGET, bubbles]
+11:01:18 [22:25:40.971] [Information]   > name : ELEARNING_APPLICATION
+11:01:18 [22:25:40.971] [Information]   > namespace : optisio
+11:01:18 [22:25:40.971] [Information]   > version : 1.0.0.0
+11:01:18 [22:25:40.971] [Information]   > copyright : ZOOKEEPER
+11:01:18 [22:25:40.971] [Information]   > default_lang : fr
+11:01:19 [22:25:40.987] [Information]   > libraryPath : library/
+11:01:19 [22:25:40.987] [Information]   > filePath : http://localhost/optisio/library/
+11:01:19 [22:25:40.987] [Information]   > gatewayUrl : http://localhost/work/optisio/php/gateway.php
+11:01:19 [22:25:40.987] [Information]   > layoutWidth : 1000
+11:01:19 [22:25:40.987] [Information]   > layoutHeight : 600
+11:01:19 [22:25:40.987] [Information]   > background : [object Object]
+11:01:19 [22:25:40.987] [Information]       + ratios : 0,100
+11:01:19 [22:25:40.987] [Information]       + gradientRotation : 90
+11:01:19 [22:25:40.987] [Information]       + colors : 14736339,16777215
+11:01:19 [22:25:41.002] [Information]       + alphas : 100,100
+11:01:19 [22:25:41.002] [Information]   > dashboard : [object Object]
+11:01:19 [22:25:41.002] [Information]       + color : 6397901
+11:01:19 [22:25:41.018] [Information]       + alpha : 55
+11:01:19 [22:25:41.018] [Information]   > default_users : [object Object],[object Object],[object Object],[object Object],[object Object]
+11:01:19 [22:25:41.018] [Information]       + 4 : [object Object]
+11:01:19 [22:25:41.018] [Information]       + 3 : [object Object]
+11:01:19 [22:25:41.018] [Information]       + 2 : [object Object]
+11:01:19 [22:25:41.018] [Information]       + 1 : [object Object]
+11:01:19 [22:25:41.018] [Information]       + 0 : [object Object]
+11:01:19 [22:25:41.018] [Information]   > context_menu : [object Object]
+11:01:19 [22:25:41.018] [Information]       + 0 : [object Object]
+11:01:19 [22:25:41.018] [Information]   > loader : [object Object]
+11:01:19 [22:25:41.034] [Information]       + useGradient : true
+11:01:19 [22:25:41.034] [Information]       + useDropShadow : true
+11:01:19 [22:25:41.034] [Information]       + useBorder : true
+11:01:19 [22:25:41.034] [Information]       + thickness : 2
+11:01:19 [22:25:41.034] [Information]       + themeColor : 6710886
+11:01:19 [22:25:41.034] [Information]       + themeBorderColor : 7829367
+11:01:19 [22:25:41.034] [Information]       + themeBorderAlpha : 100
+11:01:19 [22:25:41.034] [Information]       + themeAlpha : 90
+11:01:19 [22:25:41.034] [Information]       + shadowStrength : 0.5
+11:01:19 [22:25:41.049] [Information]       + shadowInner : false
+11:01:19 [22:25:41.049] [Information]       + shadowDistance : 3
+11:01:19 [22:25:41.049] [Information]       + shadowColor : 0
+11:01:19 [22:25:41.049] [Information]       + shadowBlurY : 12
+11:01:19 [22:25:41.049] [Information]       + shadowBlurX : 12
+11:01:19 [22:25:41.065] [Information]       + shadowAngle : 50
+11:01:19 [22:25:41.080] [Information]       + shadowAlpha : 30
+11:01:19 [22:25:41.080] [Information]       + ratios : 0,100,200,255
+11:01:19 [22:25:41.080] [Information]       + gradientRotation : 45
+11:01:19 [22:25:41.080] [Information]       + colors : 4695740,4625574,3431011,1123364
+11:01:19 [22:25:41.080] [Information]       + color : 16777215
+11:01:19 [22:25:41.080] [Information]       + barColor : 13441799
+11:01:19 [22:25:41.080] [Information]       + alphas : 54,80,92,100
+11:01:19 [22:25:41.080] [Information]   > protect_screen : [object Object]
+11:01:19 [22:25:41.080] [Information]       + color : 0
+11:01:20 [22:25:41.096] [Information]       + alpha : 0
+11:01:20 [22:25:41.096] [Information]   > security : http://localhost/
+11:01:20 [22:25:41.096] [Information]       + 0 : http://localhost/
+11:01:20 [22:25:41.096] [Debug] > [ApplicationContextMenu] setup.
+11:01:20 [22:25:41.096] [Debug] > [ApplicationPolicy] setup.
+11:01:20 [22:25:41.096] [Information] > [ApplicationPolicy] > System.security.allowDomain("http://localhost/")
+11:01:20 [22:25:41.112] [Debug] > [BackgroundDisplay] setup.
+11:01:20 [22:25:41.112] [Debug] > [HeaderDisplay] setup.
+11:01:20 [22:25:41.112] [Debug] > [FooterDisplay] setup.
+11:01:20 [22:25:41.127] [Debug] > [CompanionDisplay] setup.
+11:01:20 [22:25:41.127] [Debug] > [LoaderDisplay] setup.
+11:01:20 [22:25:41.143] [Debug] > [ProtectScreenDisplay] setup.
+11:01:20 [22:25:41.143] [Debug] > [LaunchLocalization] handleEvent : fr
+11:01:20 [22:25:41.143] [Debug] > [LaunchLocalization] onLoadStarted
+11:01:20 [22:25:41.221] [Debug] > [ChangeLoader] handleEvent : Localization : 100%,100
+11:01:20 [22:25:41.221] [Debug] > [LaunchLocalization] onLoadProgress, 100%
+11:01:20 [22:25:41.221] [Debug] > [LaunchLocalization] onLoadComplete
+11:01:20 [22:25:41.346] [Debug] > [LaunchLocalization] change.
+11:01:20 [22:25:41.362] [Debug] > [HideLoader] handleEvent.
+11:01:20 [22:25:41.362] [Debug] > [UnProtectScreen] handleEvent.
+11:01:20 [22:25:41.362] [Information] > [LaunchLocalization] + change :: fr
+11:01:20 [22:25:41.362] [Debug] > [InitApplication] handleEvent.
+11:01:20 [22:25:41.377] [Debug] > [PutLayout] handleEvent, id:default, layout:[LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+11:01:20 [22:25:41.377] [Debug] > [ChangeLayout] handleEvent : default
+11:01:20 [22:25:41.377] [Information] > [ChangeLayout] -> people : [LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+11:01:20 [22:25:41.393] [Debug] > [ShowScreen] handleEvent.
+11:01:20 [22:25:41.393] [Information] > [InitApplication] 'event' and 'user' are undefined, use contextMenu to launch authentification.
+11:01:20 [22:25:41.393] [Information] > [InitApplication] add item in the contextMenu : Alcaraz :: MOD, user:1, event:116
+11:01:20 [22:25:41.393] [Information] > [InitApplication] add item in the contextMenu : Ducuing :: PART, user:9001, event:116
+11:01:20 [22:25:41.393] [Information] > [InitApplication] add item in the contextMenu : Mousseron :: PART, user:9002, event:116
+11:01:20 [22:25:41.393] [Information] > [InitApplication] add item in the contextMenu : Moreau :: PART, user:9003, event:116
+11:01:20 [22:25:41.409] [Information] > [InitApplication] add item in the contextMenu : Meish :: PART, user:9004, event:116
+11:01:23 [22:25:45.909] [Debug] send message....
+11:05:14 [22:29:36.862] [Debug] > [Application] initialize : _level0.application
+11:05:14 [22:29:36.924] [Fatal] > [FlashPaperSlide] hide.
+11:05:14 [22:29:36.940] [Information] + [DiaporamaScreen] addSlide success insert : flp
+11:05:14 [22:29:36.940] [Information] + [DiaporamaScreen] addSlide success insert : pic
+11:05:14 [22:29:37.034] [Debug] > [RunApplication] handleEvent.
+11:05:14 [22:29:37.049] [Debug] > [LaunchConfig] handleEvent.
+11:05:14 [22:29:37.049] [Debug] > [LaunchConfig] onLoadStarted
+11:05:15 [22:29:37.112] [Debug] > [ChangeLoader] handleEvent : Configuration : 0%,0
+11:05:15 [22:29:37.112] [Debug] > [ShowLoader] handleEvent.
+11:05:15 [22:29:37.127] [Debug] > [ProtectScreen] handleEvent.
+11:05:15 [22:29:37.127] [Debug] > [LaunchConfig] onLoadProgress, 0%
+11:05:15 [22:29:37.221] [Debug] > [ChangeLoader] handleEvent : Configuration : 100%,100
+11:05:15 [22:29:37.221] [Debug] > [LaunchConfig] onLoadProgress, 100%
+11:05:15 [22:29:37.221] [Debug] > [LaunchConfig] onLoadComplete
+11:05:15 [22:29:37.346] [Debug] > [LaunchConfig] : [ConfigLoaderEvent onLoadInit, AT TARGET, bubbles]
+11:05:15 [22:29:37.346] [Information]   > name : ELEARNING_APPLICATION
+11:05:15 [22:29:37.346] [Information]   > namespace : optisio
+11:05:15 [22:29:37.362] [Information]   > version : 1.0.0.0
+11:05:15 [22:29:37.362] [Information]   > copyright : ZOOKEEPER
+11:05:15 [22:29:37.362] [Information]   > default_lang : fr
+11:05:15 [22:29:37.362] [Information]   > libraryPath : library/
+11:05:15 [22:29:37.362] [Information]   > filePath : http://localhost/optisio/library/
+11:05:15 [22:29:37.362] [Information]   > gatewayUrl : http://localhost/work/optisio/php/gateway.php
+11:05:15 [22:29:37.362] [Information]   > layoutWidth : 1000
+11:05:15 [22:29:37.362] [Information]   > layoutHeight : 600
+11:05:15 [22:29:37.362] [Information]   > background : [object Object]
+11:05:15 [22:29:37.362] [Information]       + ratios : 0,100
+11:05:15 [22:29:37.377] [Information]       + gradientRotation : 90
+11:05:15 [22:29:37.377] [Information]       + colors : 14736339,16777215
+11:05:15 [22:29:37.377] [Information]       + alphas : 100,100
+11:05:15 [22:29:37.377] [Information]   > dashboard : [object Object]
+11:05:15 [22:29:37.377] [Information]       + color : 6397901
+11:05:16 [22:29:37.377] [Information]       + alpha : 55
+11:05:16 [22:29:37.377] [Information]   > default_users : [object Object],[object Object],[object Object],[object Object],[object Object]
+11:05:16 [22:29:37.377] [Information]       + 4 : [object Object]
+11:05:16 [22:29:37.377] [Information]       + 3 : [object Object]
+11:05:16 [22:29:37.393] [Information]       + 2 : [object Object]
+11:05:16 [22:29:37.393] [Information]       + 1 : [object Object]
+11:05:16 [22:29:37.393] [Information]       + 0 : [object Object]
+11:05:16 [22:29:37.393] [Information]   > context_menu : [object Object]
+11:05:16 [22:29:37.393] [Information]       + 0 : [object Object]
+11:05:16 [22:29:37.393] [Information]   > loader : [object Object]
+11:05:16 [22:29:37.393] [Information]       + useGradient : true
+11:05:16 [22:29:37.393] [Information]       + useDropShadow : true
+11:05:16 [22:29:37.393] [Information]       + useBorder : true
+11:05:16 [22:29:37.409] [Information]       + thickness : 2
+11:05:16 [22:29:37.409] [Information]       + themeColor : 6710886
+11:05:16 [22:29:37.409] [Information]       + themeBorderColor : 7829367
+11:05:16 [22:29:37.409] [Information]       + themeBorderAlpha : 100
+11:05:16 [22:29:37.409] [Information]       + themeAlpha : 90
+11:05:16 [22:29:37.409] [Information]       + shadowStrength : 0.5
+11:05:16 [22:29:37.409] [Information]       + shadowInner : false
+11:05:16 [22:29:37.409] [Information]       + shadowDistance : 3
+11:05:16 [22:29:37.409] [Information]       + shadowColor : 0
+11:05:16 [22:29:37.424] [Information]       + shadowBlurY : 12
+11:05:16 [22:29:37.424] [Information]       + shadowBlurX : 12
+11:05:16 [22:29:37.534] [Information]       + shadowAngle : 50
+11:05:16 [22:29:37.549] [Information]       + shadowAlpha : 30
+11:05:16 [22:29:37.549] [Information]       + ratios : 0,100,200,255
+11:05:17 [22:29:37.549] [Information]       + gradientRotation : 45
+11:05:17 [22:29:37.549] [Information]       + colors : 4695740,4625574,3431011,1123364
+11:05:17 [22:29:37.549] [Information]       + color : 16777215
+11:05:17 [22:29:37.549] [Information]       + barColor : 13441799
+11:05:17 [22:29:37.549] [Information]       + alphas : 54,80,92,100
+11:05:17 [22:29:37.549] [Information]   > protect_screen : [object Object]
+11:05:17 [22:29:37.549] [Information]       + color : 0
+11:05:17 [22:29:37.565] [Information]       + alpha : 0
+11:05:17 [22:29:37.565] [Information]   > security : http://localhost/
+11:05:18 [22:29:37.565] [Information]       + 0 : http://localhost/
+11:05:18 [22:29:37.565] [Debug] > [ApplicationContextMenu] setup.
+11:05:18 [22:29:37.565] [Debug] > [ApplicationPolicy] setup.
+11:05:18 [22:29:37.565] [Information] > [ApplicationPolicy] > System.security.allowDomain("http://localhost/")
+11:05:18 [22:29:37.580] [Debug] > [BackgroundDisplay] setup.
+11:05:18 [22:29:37.580] [Debug] > [HeaderDisplay] setup.
+11:05:18 [22:29:37.580] [Debug] > [FooterDisplay] setup.
+11:05:18 [22:29:37.596] [Debug] > [CompanionDisplay] setup.
+11:05:18 [22:29:37.596] [Debug] > [LoaderDisplay] setup.
+11:05:18 [22:29:37.612] [Debug] > [ProtectScreenDisplay] setup.
+11:05:18 [22:29:37.612] [Debug] > [LaunchLocalization] handleEvent : fr
+11:05:50 [22:30:12.205] [Debug] > [Application] initialize : _level0.application
+11:05:50 [22:30:12.268] [Fatal] > [FlashPaperSlide] hide.
+11:05:50 [22:30:12.268] [Information] + [DiaporamaScreen] addSlide success insert : flp
+11:05:50 [22:30:12.284] [Information] + [DiaporamaScreen] addSlide success insert : pic
+11:05:50 [22:30:12.393] [Debug] > [RunApplication] handleEvent.
+11:05:50 [22:30:12.409] [Debug] > [LaunchConfig] handleEvent.
+11:05:50 [22:30:12.409] [Debug] > [LaunchConfig] onLoadStarted
+11:05:50 [22:30:12.534] [Debug] > [ChangeLoader] handleEvent : Configuration : 100%,100
+11:05:50 [22:30:12.534] [Debug] > [ShowLoader] handleEvent.
+11:05:50 [22:30:12.534] [Debug] > [ProtectScreen] handleEvent.
+11:05:50 [22:30:12.549] [Debug] > [LaunchConfig] onLoadProgress, 100%
+11:05:50 [22:30:12.549] [Debug] > [LaunchConfig] onLoadComplete
+11:05:50 [22:30:12.659] [Debug] > [LaunchConfig] : [ConfigLoaderEvent onLoadInit, AT TARGET, bubbles]
+11:05:50 [22:30:12.659] [Information]   > name : ELEARNING_APPLICATION
+11:05:50 [22:30:12.659] [Information]   > namespace : optisio
+11:05:50 [22:30:12.659] [Information]   > version : 1.0.0.0
+11:05:50 [22:30:12.659] [Information]   > copyright : ZOOKEEPER
+11:05:50 [22:30:12.659] [Information]   > default_lang : fr
+11:05:51 [22:30:12.674] [Information]   > libraryPath : library/
+11:05:51 [22:30:12.674] [Information]   > filePath : http://localhost/optisio/library/
+11:05:51 [22:30:12.674] [Information]   > gatewayUrl : http://localhost/work/optisio/php/gateway.php
+11:05:51 [22:30:12.674] [Information]   > layoutWidth : 1000
+11:05:51 [22:30:12.674] [Information]   > layoutHeight : 600
+11:05:51 [22:30:12.674] [Information]   > background : [object Object]
+11:05:51 [22:30:12.674] [Information]       + ratios : 0,100
+11:05:51 [22:30:12.674] [Information]       + gradientRotation : 90
+11:05:51 [22:30:12.690] [Information]       + colors : 14736339,16777215
+11:05:51 [22:30:12.690] [Information]       + alphas : 100,100
+11:05:51 [22:30:12.690] [Information]   > dashboard : [object Object]
+11:05:51 [22:30:12.690] [Information]       + color : 6397901
+11:05:51 [22:30:12.690] [Information]       + alpha : 55
+11:05:51 [22:30:12.690] [Information]   > default_users : [object Object],[object Object],[object Object],[object Object],[object Object]
+11:05:51 [22:30:12.690] [Information]       + 4 : [object Object]
+11:05:51 [22:30:12.690] [Information]       + 3 : [object Object]
+11:05:51 [22:30:12.690] [Information]       + 2 : [object Object]
+11:05:51 [22:30:12.690] [Information]       + 1 : [object Object]
+11:05:51 [22:30:12.705] [Information]       + 0 : [object Object]
+11:05:51 [22:30:12.705] [Information]   > context_menu : [object Object]
+11:05:51 [22:30:12.705] [Information]       + 0 : [object Object]
+11:05:51 [22:30:12.705] [Information]   > loader : [object Object]
+11:05:51 [22:30:12.705] [Information]       + useGradient : true
+11:05:51 [22:30:12.705] [Information]       + useDropShadow : true
+11:05:51 [22:30:12.705] [Information]       + useBorder : true
+11:05:51 [22:30:12.705] [Information]       + thickness : 2
+11:05:51 [22:30:12.705] [Information]       + themeColor : 6710886
+11:05:51 [22:30:12.721] [Information]       + themeBorderColor : 7829367
+11:05:51 [22:30:12.721] [Information]       + themeBorderAlpha : 100
+11:05:52 [22:30:12.721] [Information]       + themeAlpha : 90
+11:05:52 [22:30:12.721] [Information]       + shadowStrength : 0.5
+11:05:52 [22:30:12.721] [Information]       + shadowInner : false
+11:05:52 [22:30:12.721] [Information]       + shadowDistance : 3
+11:05:52 [22:30:12.721] [Information]       + shadowColor : 0
+11:05:52 [22:30:12.721] [Information]       + shadowBlurY : 12
+11:05:52 [22:30:12.721] [Information]       + shadowBlurX : 12
+11:05:52 [22:30:12.737] [Information]       + shadowAngle : 50
+11:05:52 [22:30:12.737] [Information]       + shadowAlpha : 30
+11:05:52 [22:30:12.737] [Information]       + ratios : 0,100,200,255
+11:05:52 [22:30:12.752] [Information]       + gradientRotation : 45
+11:05:52 [22:30:12.752] [Information]       + colors : 4695740,4625574,3431011,1123364
+11:05:52 [22:30:12.768] [Information]       + color : 16777215
+11:05:52 [22:30:12.768] [Information]       + barColor : 13441799
+11:05:52 [22:30:12.768] [Information]       + alphas : 54,80,92,100
+11:05:52 [22:30:12.768] [Information]   > protect_screen : [object Object]
+11:05:52 [22:30:12.768] [Information]       + color : 0
+11:05:52 [22:30:12.768] [Information]       + alpha : 0
+11:05:52 [22:30:12.768] [Information]   > security : http://localhost/
+11:05:52 [22:30:12.768] [Information]       + 0 : http://localhost/
+11:05:52 [22:30:12.784] [Debug] > [ApplicationContextMenu] setup.
+11:05:52 [22:30:12.784] [Debug] > [ApplicationPolicy] setup.
+11:05:52 [22:30:12.784] [Information] > [ApplicationPolicy] > System.security.allowDomain("http://localhost/")
+11:05:52 [22:30:12.877] [Debug] > [BackgroundDisplay] setup.
+11:05:52 [22:30:12.877] [Debug] > [HeaderDisplay] setup.
+11:05:53 [22:30:12.893] [Debug] > [FooterDisplay] setup.
+11:05:53 [22:30:12.893] [Debug] > [CompanionDisplay] setup.
+11:05:53 [22:30:12.893] [Debug] > [LoaderDisplay] setup.
+11:05:53 [22:30:12.909] [Debug] > [ProtectScreenDisplay] setup.
+11:05:53 [22:30:12.909] [Debug] > [LaunchLocalization] handleEvent : fr
+11:05:53 [22:30:12.924] [Debug] > [LaunchLocalization] onLoadStarted
+11:05:53 [22:30:13.002] [Debug] > [ChangeLoader] handleEvent : Localization : 100%,100
+11:05:53 [22:30:13.018] [Debug] > [LaunchLocalization] onLoadProgress, 100%
+11:05:53 [22:30:13.018] [Debug] > [LaunchLocalization] onLoadComplete
+11:05:53 [22:30:13.143] [Debug] > [LaunchLocalization] change.
+11:05:53 [22:30:13.143] [Debug] > [HideLoader] handleEvent.
+11:05:53 [22:30:13.143] [Debug] > [UnProtectScreen] handleEvent.
+11:05:53 [22:30:13.143] [Information] > [LaunchLocalization] + change :: fr
+11:05:53 [22:30:13.159] [Debug] > [InitApplication] handleEvent.
+11:05:53 [22:30:13.159] [Debug] > [PutLayout] handleEvent, id:default, layout:[LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+11:05:53 [22:30:13.159] [Debug] > [ChangeLayout] handleEvent : default
+11:05:53 [22:30:13.159] [Information] > [ChangeLayout] -> people : [LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+11:05:53 [22:30:13.174] [Debug] > [ShowScreen] handleEvent.
+11:05:53 [22:30:13.174] [Information] > [InitApplication] 'event' and 'user' are undefined, use contextMenu to launch authentification.
+11:05:53 [22:30:13.174] [Information] > [InitApplication] add item in the contextMenu : Alcaraz :: MOD, user:1, event:116
+11:05:53 [22:30:13.174] [Information] > [InitApplication] add item in the contextMenu : Ducuing :: PART, user:9001, event:116
+11:05:53 [22:30:13.174] [Information] > [InitApplication] add item in the contextMenu : Mousseron :: PART, user:9002, event:116
+11:05:53 [22:30:13.174] [Information] > [InitApplication] add item in the contextMenu : Moreau :: PART, user:9003, event:116
+11:05:53 [22:30:13.221] [Information] > [InitApplication] add item in the contextMenu : Meish :: PART, user:9004, event:116
+11:06:26 [22:30:48.643] [Debug] > [Application] initialize : _level0.application
+11:06:26 [22:30:48.705] [Fatal] > [FlashPaperSlide] hide.
+11:06:26 [22:30:48.721] [Information] + [DiaporamaScreen] addSlide success insert : flp
+11:06:26 [22:30:48.721] [Information] + [DiaporamaScreen] addSlide success insert : pic
+11:06:26 [22:30:48.815] [Debug] > [RunApplication] handleEvent.
+11:06:26 [22:30:48.815] [Debug] > [LaunchConfig] handleEvent.
+11:06:26 [22:30:48.815] [Debug] > [LaunchConfig] onLoadStarted
+11:06:26 [22:30:48.893] [Debug] > [ChangeLoader] handleEvent : Configuration : 0%,0
+11:06:26 [22:30:48.893] [Debug] > [ShowLoader] handleEvent.
+11:06:26 [22:30:48.893] [Debug] > [ProtectScreen] handleEvent.
+11:06:26 [22:30:48.893] [Debug] > [LaunchConfig] onLoadProgress, 0%
+11:06:26 [22:30:48.987] [Debug] > [ChangeLoader] handleEvent : Configuration : 100%,100
+11:06:27 [22:30:49.002] [Debug] > [LaunchConfig] onLoadProgress, 100%
+11:06:27 [22:30:49.002] [Debug] > [LaunchConfig] onLoadComplete
+11:06:27 [22:30:49.127] [Debug] > [LaunchConfig] : [ConfigLoaderEvent onLoadInit, AT TARGET, bubbles]
+11:06:27 [22:30:49.127] [Information]   > name : ELEARNING_APPLICATION
+11:06:27 [22:30:49.127] [Information]   > namespace : optisio
+11:06:27 [22:30:49.127] [Information]   > version : 1.0.0.0
+11:06:27 [22:30:49.127] [Information]   > copyright : ZOOKEEPER
+11:06:27 [22:30:49.127] [Information]   > default_lang : fr
+11:06:27 [22:30:49.127] [Information]   > libraryPath : library/
+11:06:27 [22:30:49.143] [Information]   > filePath : http://localhost/optisio/library/
+11:06:27 [22:30:49.143] [Information]   > gatewayUrl : http://localhost/work/optisio/php/gateway.php
+11:06:27 [22:30:49.143] [Information]   > layoutWidth : 1000
+11:06:27 [22:30:49.143] [Information]   > layoutHeight : 600
+11:06:27 [22:30:49.143] [Information]   > background : [object Object]
+11:06:27 [22:30:49.143] [Information]       + ratios : 0,100
+11:06:27 [22:30:49.143] [Information]       + gradientRotation : 90
+11:06:27 [22:30:49.143] [Information]       + colors : 14736339,16777215
+11:06:27 [22:30:49.143] [Information]       + alphas : 100,100
+11:06:27 [22:30:49.237] [Information]   > dashboard : [object Object]
+11:06:27 [22:30:49.237] [Information]       + color : 6397901
+11:06:27 [22:30:49.237] [Information]       + alpha : 55
+11:06:27 [22:30:49.237] [Information]   > default_users : [object Object],[object Object],[object Object],[object Object],[object Object]
+11:06:27 [22:30:49.237] [Information]       + 4 : [object Object]
+11:06:27 [22:30:49.237] [Information]       + 3 : [object Object]
+11:06:27 [22:30:49.252] [Information]       + 2 : [object Object]
+11:06:28 [22:30:49.252] [Information]       + 1 : [object Object]
+11:06:28 [22:30:49.252] [Information]       + 0 : [object Object]
+11:06:28 [22:30:49.252] [Information]   > context_menu : [object Object]
+11:06:28 [22:30:49.252] [Information]       + 0 : [object Object]
+11:06:28 [22:30:49.252] [Information]   > loader : [object Object]
+11:06:28 [22:30:49.252] [Information]       + useGradient : true
+11:06:28 [22:30:49.252] [Information]       + useDropShadow : true
+11:06:28 [22:30:49.252] [Information]       + useBorder : true
+11:06:28 [22:30:49.268] [Information]       + thickness : 2
+11:06:28 [22:30:49.268] [Information]       + themeColor : 6710886
+11:06:28 [22:30:49.284] [Information]       + themeBorderColor : 7829367
+11:06:28 [22:30:49.284] [Information]       + themeBorderAlpha : 100
+11:06:28 [22:30:49.284] [Information]       + themeAlpha : 90
+11:06:28 [22:30:49.284] [Information]       + shadowStrength : 0.5
+11:06:28 [22:30:49.299] [Information]       + shadowInner : false
+11:06:28 [22:30:49.299] [Information]       + shadowDistance : 3
+11:06:28 [22:30:49.299] [Information]       + shadowColor : 0
+11:06:28 [22:30:49.299] [Information]       + shadowBlurY : 12
+11:06:28 [22:30:49.299] [Information]       + shadowBlurX : 12
+11:06:28 [22:30:49.299] [Information]       + shadowAngle : 50
+11:06:28 [22:30:49.299] [Information]       + shadowAlpha : 30
+11:06:29 [22:30:49.299] [Information]       + ratios : 0,100,200,255
+11:06:29 [22:30:49.299] [Information]       + gradientRotation : 45
+11:06:29 [22:30:49.299] [Information]       + colors : 4695740,4625574,3431011,1123364
+11:06:29 [22:30:49.315] [Information]       + color : 16777215
+11:06:29 [22:30:49.315] [Information]       + barColor : 13441799
+11:06:29 [22:30:49.315] [Information]       + alphas : 54,80,92,100
+11:06:29 [22:30:49.315] [Information]   > protect_screen : [object Object]
+11:06:29 [22:30:49.315] [Information]       + color : 0
+11:06:29 [22:30:49.315] [Information]       + alpha : 0
+11:06:29 [22:30:49.315] [Information]   > security : http://localhost/
+11:06:29 [22:30:49.315] [Information]       + 0 : http://localhost/
+11:06:29 [22:30:49.330] [Debug] > [ApplicationContextMenu] setup.
+11:06:29 [22:30:49.330] [Debug] > [ApplicationPolicy] setup.
+11:06:29 [22:30:49.330] [Information] > [ApplicationPolicy] > System.security.allowDomain("http://localhost/")
+11:06:29 [22:30:49.330] [Debug] > [BackgroundDisplay] setup.
+11:06:29 [22:30:49.346] [Debug] > [HeaderDisplay] setup.
+11:06:29 [22:30:49.346] [Debug] > [FooterDisplay] setup.
+11:06:29 [22:30:49.346] [Debug] > [CompanionDisplay] setup.
+11:06:29 [22:30:49.362] [Debug] > [LoaderDisplay] setup.
+11:06:30 [22:30:49.377] [Debug] > [ProtectScreenDisplay] setup.
+11:06:30 [22:30:49.377] [Debug] > [LaunchLocalization] handleEvent : fr
+11:06:30 [22:30:49.377] [Debug] > [LaunchLocalization] onLoadStarted
+11:06:30 [22:30:49.455] [Debug] > [ChangeLoader] handleEvent : Localization : 100%,100
+11:06:30 [22:30:49.471] [Debug] > [LaunchLocalization] onLoadProgress, 100%
+11:06:30 [22:30:49.471] [Debug] > [LaunchLocalization] onLoadComplete
+11:06:30 [22:30:49.627] [Debug] > [LaunchLocalization] change.
+11:06:30 [22:30:49.627] [Debug] > [HideLoader] handleEvent.
+11:06:30 [22:30:49.627] [Debug] > [UnProtectScreen] handleEvent.
+11:06:30 [22:30:49.627] [Information] > [LaunchLocalization] + change :: fr
+11:06:30 [22:30:49.690] [Debug] > [InitApplication] handleEvent.
+11:06:30 [22:30:49.690] [Debug] > [PutLayout] handleEvent, id:default, layout:[LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+11:06:30 [22:30:49.705] [Debug] > [ChangeLayout] handleEvent : default
+11:06:30 [22:30:49.737] [Information] > [ChangeLayout] -> people : [LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+11:06:30 [22:30:49.737] [Debug] > [ShowScreen] handleEvent.
+11:06:30 [22:30:49.737] [Information] > [InitApplication] 'event' and 'user' are undefined, use contextMenu to launch authentification.
+11:06:30 [22:30:49.737] [Information] > [InitApplication] add item in the contextMenu : Alcaraz :: MOD, user:1, event:116
+11:06:30 [22:30:49.737] [Information] > [InitApplication] add item in the contextMenu : Ducuing :: PART, user:9001, event:116
+11:06:30 [22:30:49.752] [Information] > [InitApplication] add item in the contextMenu : Mousseron :: PART, user:9002, event:116
+11:06:30 [22:30:49.752] [Information] > [InitApplication] add item in the contextMenu : Moreau :: PART, user:9003, event:116
+11:06:30 [22:30:49.752] [Information] > [InitApplication] add item in the contextMenu : Meish :: PART, user:9004, event:116
+11:06:52 [22:31:14.580] [Debug] > [Application] initialize : _level0.application
+11:06:52 [22:31:14.643] [Fatal] > [FlashPaperSlide] hide.
+11:06:52 [22:31:14.643] [Information] + [DiaporamaScreen] addSlide success insert : flp
+11:06:52 [22:31:14.643] [Information] + [DiaporamaScreen] addSlide success insert : pic
+11:06:52 [22:31:14.752] [Debug] > [RunApplication] handleEvent.
+11:06:52 [22:31:14.752] [Debug] > [LaunchConfig] handleEvent.
+11:06:52 [22:31:14.752] [Debug] > [LaunchConfig] onLoadStarted
+11:06:52 [22:31:14.815] [Debug] > [ChangeLoader] handleEvent : Configuration : 0%,0
+11:06:52 [22:31:14.830] [Debug] > [ShowLoader] handleEvent.
+11:06:52 [22:31:14.830] [Debug] > [ProtectScreen] handleEvent.
+11:06:52 [22:31:14.830] [Debug] > [LaunchConfig] onLoadProgress, 0%
+11:06:53 [22:31:14.971] [Debug] > [ChangeLoader] handleEvent : Configuration : 100%,100
+11:06:53 [22:31:14.971] [Debug] > [LaunchConfig] onLoadProgress, 100%
+11:06:53 [22:31:14.971] [Debug] > [LaunchConfig] onLoadComplete
+11:06:53 [22:31:15.049] [Debug] > [LaunchConfig] : [ConfigLoaderEvent onLoadInit, AT TARGET, bubbles]
+11:06:53 [22:31:15.049] [Information]   > name : ELEARNING_APPLICATION
+11:06:53 [22:31:15.065] [Information]   > namespace : optisio
+11:06:53 [22:31:15.065] [Information]   > version : 1.0.0.0
+11:06:53 [22:31:15.065] [Information]   > copyright : ZOOKEEPER
+11:06:53 [22:31:15.065] [Information]   > default_lang : fr
+11:06:53 [22:31:15.065] [Information]   > libraryPath : library/
+11:06:53 [22:31:15.065] [Information]   > filePath : http://localhost/optisio/library/
+11:06:53 [22:31:15.065] [Information]   > gatewayUrl : http://localhost/work/optisio/php/gateway.php
+11:06:53 [22:31:15.065] [Information]   > layoutWidth : 1000
+11:06:53 [22:31:15.065] [Information]   > layoutHeight : 600
+11:06:53 [22:31:15.080] [Information]   > background : [object Object]
+11:06:53 [22:31:15.080] [Information]       + ratios : 0,100
+11:06:53 [22:31:15.080] [Information]       + gradientRotation : 90
+11:06:53 [22:31:15.080] [Information]       + colors : 14736339,16777215
+11:06:53 [22:31:15.080] [Information]       + alphas : 100,100
+11:06:53 [22:31:15.080] [Information]   > dashboard : [object Object]
+11:06:53 [22:31:15.080] [Information]       + color : 6397901
+11:06:53 [22:31:15.080] [Information]       + alpha : 55
+11:06:53 [22:31:15.080] [Information]   > default_users : [object Object],[object Object],[object Object],[object Object],[object Object]
+11:06:53 [22:31:15.096] [Information]       + 4 : [object Object]
+11:06:53 [22:31:15.096] [Information]       + 3 : [object Object]
+11:06:53 [22:31:15.096] [Information]       + 2 : [object Object]
+11:06:53 [22:31:15.096] [Information]       + 1 : [object Object]
+11:06:53 [22:31:15.096] [Information]       + 0 : [object Object]
+11:06:53 [22:31:15.096] [Information]   > context_menu : [object Object]
+11:06:53 [22:31:15.096] [Information]       + 0 : [object Object]
+11:06:53 [22:31:15.096] [Information]   > loader : [object Object]
+11:06:54 [22:31:15.112] [Information]       + useGradient : true
+11:06:54 [22:31:15.112] [Information]       + useDropShadow : true
+11:06:54 [22:31:15.112] [Information]       + useBorder : true
+11:06:54 [22:31:15.112] [Information]       + thickness : 2
+11:06:54 [22:31:15.112] [Information]       + themeColor : 6710886
+11:06:54 [22:31:15.221] [Information]       + themeBorderColor : 7829367
+11:06:54 [22:31:15.221] [Information]       + themeBorderAlpha : 100
+11:06:54 [22:31:15.221] [Information]       + themeAlpha : 90
+11:06:54 [22:31:15.221] [Information]       + shadowStrength : 0.5
+11:06:54 [22:31:15.237] [Information]       + shadowInner : false
+11:06:54 [22:31:15.237] [Information]       + shadowDistance : 3
+11:06:54 [22:31:15.237] [Information]       + shadowColor : 0
+11:06:54 [22:31:15.237] [Information]       + shadowBlurY : 12
+11:06:54 [22:31:15.237] [Information]       + shadowBlurX : 12
+11:06:54 [22:31:15.237] [Information]       + shadowAngle : 50
+11:06:54 [22:31:15.237] [Information]       + shadowAlpha : 30
+11:06:54 [22:31:15.237] [Information]       + ratios : 0,100,200,255
+11:06:54 [22:31:15.237] [Information]       + gradientRotation : 45
+11:06:54 [22:31:15.252] [Information]       + colors : 4695740,4625574,3431011,1123364
+11:06:54 [22:31:15.252] [Information]       + color : 16777215
+11:06:54 [22:31:15.252] [Information]       + barColor : 13441799
+11:06:54 [22:31:15.252] [Information]       + alphas : 54,80,92,100
+11:06:54 [22:31:15.252] [Information]   > protect_screen : [object Object]
+11:06:54 [22:31:15.252] [Information]       + color : 0
+11:06:54 [22:31:15.252] [Information]       + alpha : 0
+11:06:54 [22:31:15.252] [Information]   > security : http://localhost/
+11:06:54 [22:31:15.252] [Information]       + 0 : http://localhost/
+11:06:54 [22:31:15.268] [Debug] > [ApplicationContextMenu] setup.
+11:06:54 [22:31:15.268] [Debug] > [ApplicationPolicy] setup.
+11:06:54 [22:31:15.268] [Information] > [ApplicationPolicy] > System.security.allowDomain("http://localhost/")
+11:06:55 [22:31:15.268] [Debug] > [BackgroundDisplay] setup.
+11:06:55 [22:31:15.284] [Debug] > [HeaderDisplay] setup.
+11:06:55 [22:31:15.284] [Debug] > [FooterDisplay] setup.
+11:06:55 [22:31:15.284] [Debug] > [CompanionDisplay] setup.
+11:06:55 [22:31:15.299] [Debug] > [LoaderDisplay] setup.
+11:06:55 [22:31:15.299] [Debug] > [ProtectScreenDisplay] setup.
+11:06:55 [22:31:15.315] [Debug] > [LaunchLocalization] handleEvent : fr
+11:06:55 [22:31:15.315] [Debug] > [LaunchLocalization] onLoadStarted
+11:06:55 [22:31:15.393] [Debug] > [ChangeLoader] handleEvent : Localization : 100%,100
+11:06:55 [22:31:15.409] [Debug] > [LaunchLocalization] onLoadProgress, 100%
+11:06:55 [22:31:15.409] [Debug] > [LaunchLocalization] onLoadComplete
+11:06:55 [22:31:15.534] [Debug] > [LaunchLocalization] change.
+11:06:55 [22:31:15.534] [Debug] > [HideLoader] handleEvent.
+11:06:55 [22:31:15.534] [Debug] > [UnProtectScreen] handleEvent.
+11:06:55 [22:31:15.565] [Information] > [LaunchLocalization] + change :: fr
+11:06:55 [22:31:15.565] [Debug] > [InitApplication] handleEvent.
+11:06:55 [22:31:15.565] [Debug] > [PutLayout] handleEvent, id:default, layout:[LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+11:06:55 [22:31:15.565] [Debug] > [ChangeLayout] handleEvent : default
+11:06:55 [22:31:15.596] [Information] > [ChangeLayout] -> people : [LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+11:06:55 [22:31:15.596] [Debug] > [ShowScreen] handleEvent.
+11:06:55 [22:31:15.674] [Information] > [InitApplication] 'event' and 'user' are undefined, use contextMenu to launch authentification.
+11:06:55 [22:31:15.674] [Information] > [InitApplication] add item in the contextMenu : Alcaraz :: MOD, user:1, event:116
+11:06:55 [22:31:15.674] [Information] > [InitApplication] add item in the contextMenu : Ducuing :: PART, user:9001, event:116
+11:06:55 [22:31:15.674] [Information] > [InitApplication] add item in the contextMenu : Mousseron :: PART, user:9002, event:116
+11:06:55 [22:31:15.674] [Information] > [InitApplication] add item in the contextMenu : Moreau :: PART, user:9003, event:116
+11:06:56 [22:31:15.674] [Information] > [InitApplication] add item in the contextMenu : Meish :: PART, user:9004, event:116
+11:07:12 [22:31:34.940] [Debug] > [Application] initialize : _level0.application
+11:07:12 [22:31:35.002] [Fatal] > [FlashPaperSlide] hide.
+11:07:12 [22:31:35.018] [Information] + [DiaporamaScreen] addSlide success insert : flp
+11:07:12 [22:31:35.018] [Information] + [DiaporamaScreen] addSlide success insert : pic
+11:07:12 [22:31:35.159] [Debug] > [RunApplication] handleEvent.
+11:07:13 [22:31:35.159] [Debug] > [LaunchConfig] handleEvent.
+11:07:13 [22:31:35.174] [Debug] > [LaunchConfig] onLoadStarted
+11:07:13 [22:31:35.237] [Debug] > [ChangeLoader] handleEvent : Configuration : 0%,0
+11:07:13 [22:31:35.237] [Debug] > [ShowLoader] handleEvent.
+11:07:13 [22:31:35.252] [Debug] > [ProtectScreen] handleEvent.
+11:07:13 [22:31:35.252] [Debug] > [LaunchConfig] onLoadProgress, 0%
+11:07:13 [22:31:35.346] [Debug] > [ChangeLoader] handleEvent : Configuration : 100%,100
+11:07:13 [22:31:35.346] [Debug] > [LaunchConfig] onLoadProgress, 100%
+11:07:13 [22:31:35.346] [Debug] > [LaunchConfig] onLoadComplete
+11:07:13 [22:31:35.534] [Debug] > [LaunchConfig] : [ConfigLoaderEvent onLoadInit, AT TARGET, bubbles]
+11:07:13 [22:31:35.534] [Information]   > name : ELEARNING_APPLICATION
+11:07:13 [22:31:35.549] [Information]   > namespace : optisio
+11:07:13 [22:31:35.549] [Information]   > version : 1.0.0.0
+11:07:13 [22:31:35.549] [Information]   > copyright : ZOOKEEPER
+11:07:13 [22:31:35.549] [Information]   > default_lang : fr
+11:07:13 [22:31:35.549] [Information]   > libraryPath : library/
+11:07:13 [22:31:35.549] [Information]   > filePath : http://localhost/optisio/library/
+11:07:13 [22:31:35.549] [Information]   > gatewayUrl : http://localhost/work/optisio/php/gateway.php
+11:07:13 [22:31:35.549] [Information]   > layoutWidth : 1000
+11:07:13 [22:31:35.549] [Information]   > layoutHeight : 600
+11:07:13 [22:31:35.565] [Information]   > background : [object Object]
+11:07:14 [22:31:35.565] [Information]       + ratios : 0,100
+11:07:14 [22:31:35.565] [Information]       + gradientRotation : 90
+11:07:14 [22:31:35.565] [Information]       + colors : 14736339,16777215
+11:07:14 [22:31:35.565] [Information]       + alphas : 100,100
+11:07:14 [22:31:35.565] [Information]   > dashboard : [object Object]
+11:07:14 [22:31:35.565] [Information]       + color : 6397901
+11:07:14 [22:31:35.565] [Information]       + alpha : 55
+11:07:14 [22:31:35.565] [Information]   > default_users : [object Object],[object Object],[object Object],[object Object],[object Object]
+11:07:14 [22:31:35.580] [Information]       + 4 : [object Object]
+11:07:14 [22:31:35.580] [Information]       + 3 : [object Object]
+11:07:14 [22:31:35.580] [Information]       + 2 : [object Object]
+11:07:14 [22:31:35.580] [Information]       + 1 : [object Object]
+11:07:14 [22:31:35.580] [Information]       + 0 : [object Object]
+11:07:14 [22:31:35.580] [Information]   > context_menu : [object Object]
+11:07:14 [22:31:35.580] [Information]       + 0 : [object Object]
+11:07:14 [22:31:35.580] [Information]   > loader : [object Object]
+11:07:14 [22:31:35.580] [Information]       + useGradient : true
+11:07:14 [22:31:35.596] [Information]       + useDropShadow : true
+11:07:14 [22:31:35.596] [Information]       + useBorder : true
+11:07:14 [22:31:35.596] [Information]       + thickness : 2
+11:07:14 [22:31:35.596] [Information]       + themeColor : 6710886
+11:07:14 [22:31:35.612] [Information]       + themeBorderColor : 7829367
+11:07:14 [22:31:35.627] [Information]       + themeBorderAlpha : 100
+11:07:14 [22:31:35.627] [Information]       + themeAlpha : 90
+11:07:14 [22:31:35.627] [Information]       + shadowStrength : 0.5
+11:07:14 [22:31:35.627] [Information]       + shadowInner : false
+11:07:14 [22:31:35.627] [Information]       + shadowDistance : 3
+11:07:14 [22:31:35.627] [Information]       + shadowColor : 0
+11:07:15 [22:31:35.627] [Information]       + shadowBlurY : 12
+11:07:15 [22:31:35.627] [Information]       + shadowBlurX : 12
+11:07:15 [22:31:35.643] [Information]       + shadowAngle : 50
+11:07:15 [22:31:35.643] [Information]       + shadowAlpha : 30
+11:07:15 [22:31:35.643] [Information]       + ratios : 0,100,200,255
+11:07:15 [22:31:35.643] [Information]       + gradientRotation : 45
+11:07:15 [22:31:35.643] [Information]       + colors : 4695740,4625574,3431011,1123364
+11:07:15 [22:31:35.643] [Information]       + color : 16777215
+11:07:15 [22:31:35.643] [Information]       + barColor : 13441799
+11:07:15 [22:31:35.643] [Information]       + alphas : 54,80,92,100
+11:07:15 [22:31:35.659] [Information]   > protect_screen : [object Object]
+11:07:15 [22:31:35.659] [Information]       + color : 0
+11:07:15 [22:31:35.659] [Information]       + alpha : 0
+11:07:15 [22:31:35.659] [Information]   > security : http://localhost/
+11:07:15 [22:31:35.659] [Information]       + 0 : http://localhost/
+11:07:15 [22:31:35.659] [Debug] > [ApplicationContextMenu] setup.
+11:07:15 [22:31:35.659] [Debug] > [ApplicationPolicy] setup.
+11:07:15 [22:31:35.674] [Information] > [ApplicationPolicy] > System.security.allowDomain("http://localhost/")
+11:07:15 [22:31:35.674] [Debug] > [BackgroundDisplay] setup.
+11:07:15 [22:31:35.674] [Debug] > [HeaderDisplay] setup.
+11:07:25 [22:31:48.002] [Debug] > [Application] initialize : _level0.application
+11:07:25 [22:31:48.080] [Fatal] > [FlashPaperSlide] hide.
+11:07:25 [22:31:48.080] [Information] + [DiaporamaScreen] addSlide success insert : flp
+11:07:25 [22:31:48.080] [Information] + [DiaporamaScreen] addSlide success insert : pic
+11:07:26 [22:31:48.205] [Debug] > [RunApplication] handleEvent.
+11:07:26 [22:31:48.205] [Debug] > [LaunchConfig] handleEvent.
+11:07:26 [22:31:48.205] [Debug] > [LaunchConfig] onLoadStarted
+11:07:26 [22:31:48.346] [Debug] > [ChangeLoader] handleEvent : Configuration : 100%,100
+11:07:26 [22:31:48.346] [Debug] > [ShowLoader] handleEvent.
+11:07:26 [22:31:48.346] [Debug] > [ProtectScreen] handleEvent.
+11:07:26 [22:31:48.362] [Debug] > [LaunchConfig] onLoadProgress, 100%
+11:07:26 [22:31:48.362] [Debug] > [LaunchConfig] onLoadComplete
+11:07:26 [22:31:48.471] [Debug] > [LaunchConfig] : [ConfigLoaderEvent onLoadInit, AT TARGET, bubbles]
+11:07:26 [22:31:48.487] [Information]   > name : ELEARNING_APPLICATION
+11:07:26 [22:31:48.487] [Information]   > namespace : optisio
+11:07:26 [22:31:48.487] [Information]   > version : 1.0.0.0
+11:07:26 [22:31:48.487] [Information]   > copyright : ZOOKEEPER
+11:07:26 [22:31:48.487] [Information]   > default_lang : fr
+11:07:26 [22:31:48.487] [Information]   > libraryPath : library/
+11:07:26 [22:31:48.487] [Information]   > filePath : http://localhost/optisio/library/
+11:07:26 [22:31:48.487] [Information]   > gatewayUrl : http://localhost/work/optisio/php/gateway.php
+11:07:26 [22:31:48.565] [Information]   > layoutWidth : 1000
+11:07:26 [22:31:48.565] [Information]   > layoutHeight : 600
+11:07:26 [22:31:48.565] [Information]   > background : [object Object]
+11:07:26 [22:31:48.565] [Information]       + ratios : 0,100
+11:07:26 [22:31:48.565] [Information]       + gradientRotation : 90
+11:07:27 [22:31:48.565] [Information]       + colors : 14736339,16777215
+11:07:27 [22:31:48.565] [Information]       + alphas : 100,100
+11:07:27 [22:31:48.565] [Information]   > dashboard : [object Object]
+11:07:27 [22:31:48.565] [Information]       + color : 6397901
+11:07:27 [22:31:48.596] [Information]       + alpha : 55
+11:07:27 [22:31:48.596] [Information]   > default_users : [object Object],[object Object],[object Object],[object Object],[object Object]
+11:07:27 [22:31:48.596] [Information]       + 4 : [object Object]
+11:07:27 [22:31:48.596] [Information]       + 3 : [object Object]
+11:07:27 [22:31:48.596] [Information]       + 2 : [object Object]
+11:07:27 [22:31:48.596] [Information]       + 1 : [object Object]
+11:07:27 [22:31:48.596] [Information]       + 0 : [object Object]
+11:07:27 [22:31:48.612] [Information]   > context_menu : [object Object]
+11:07:27 [22:31:48.627] [Information]       + 0 : [object Object]
+11:07:27 [22:31:48.627] [Information]   > loader : [object Object]
+11:07:27 [22:31:48.627] [Information]       + useGradient : true
+11:07:27 [22:31:48.643] [Information]       + useDropShadow : true
+11:07:27 [22:31:48.643] [Information]       + useBorder : true
+11:07:27 [22:31:48.643] [Information]       + thickness : 2
+11:07:27 [22:31:48.643] [Information]       + themeColor : 6710886
+11:07:27 [22:31:48.643] [Information]       + themeBorderColor : 7829367
+11:07:27 [22:31:48.643] [Information]       + themeBorderAlpha : 100
+11:07:27 [22:31:48.643] [Information]       + themeAlpha : 90
+11:07:27 [22:31:48.643] [Information]       + shadowStrength : 0.5
+11:07:27 [22:31:48.659] [Information]       + shadowInner : false
+11:07:27 [22:31:48.659] [Information]       + shadowDistance : 3
+11:07:27 [22:31:48.659] [Information]       + shadowColor : 0
+11:07:28 [22:31:48.659] [Information]       + shadowBlurY : 12
+11:07:28 [22:31:48.659] [Information]       + shadowBlurX : 12
+11:07:28 [22:31:48.659] [Information]       + shadowAngle : 50
+11:07:28 [22:31:48.659] [Information]       + shadowAlpha : 30
+11:07:28 [22:31:48.674] [Information]       + ratios : 0,100,200,255
+11:07:28 [22:31:48.690] [Information]       + gradientRotation : 45
+11:07:28 [22:31:48.690] [Information]       + colors : 4695740,4625574,3431011,1123364
+11:07:28 [22:31:48.690] [Information]       + color : 16777215
+11:07:28 [22:31:48.705] [Information]       + barColor : 13441799
+11:07:28 [22:31:48.705] [Information]       + alphas : 54,80,92,100
+11:07:28 [22:31:48.705] [Information]   > protect_screen : [object Object]
+11:07:28 [22:31:48.705] [Information]       + color : 0
+11:07:57 [22:32:19.612] [Debug] > [Application] initialize : _level0.application
+11:07:57 [22:32:19.705] [Fatal] > [FlashPaperSlide] hide.
+11:07:57 [22:32:19.721] [Information] + [DiaporamaScreen] addSlide success insert : flp
+11:07:57 [22:32:19.721] [Information] + [DiaporamaScreen] addSlide success insert : pic
+11:07:57 [22:32:19.815] [Debug] > [RunApplication] handleEvent.
+11:07:57 [22:32:19.830] [Debug] > [LaunchConfig] handleEvent.
+11:07:57 [22:32:19.830] [Debug] > [LaunchConfig] onLoadStarted
+11:07:57 [22:32:19.909] [Debug] > [ChangeLoader] handleEvent : Configuration : 0%,0
+11:07:57 [22:32:19.909] [Debug] > [ShowLoader] handleEvent.
+11:07:57 [22:32:19.909] [Debug] > [ProtectScreen] handleEvent.
+11:07:57 [22:32:19.909] [Debug] > [LaunchConfig] onLoadProgress, 0%
+11:07:57 [22:32:20.018] [Debug] > [ChangeLoader] handleEvent : Configuration : 100%,100
+11:07:57 [22:32:20.018] [Debug] > [LaunchConfig] onLoadProgress, 100%
+11:07:58 [22:32:20.018] [Debug] > [LaunchConfig] onLoadComplete
+11:07:58 [22:32:20.143] [Debug] > [LaunchConfig] : [ConfigLoaderEvent onLoadInit, AT TARGET, bubbles]
+11:07:58 [22:32:20.143] [Information]   > name : ELEARNING_APPLICATION
+11:07:58 [22:32:20.143] [Information]   > namespace : optisio
+11:07:58 [22:32:20.143] [Information]   > version : 1.0.0.0
+11:07:58 [22:32:20.159] [Information]   > copyright : ZOOKEEPER
+11:07:58 [22:32:20.159] [Information]   > default_lang : fr
+11:07:58 [22:32:20.159] [Information]   > libraryPath : library/
+11:07:58 [22:32:20.159] [Information]   > filePath : http://localhost/optisio/library/
+11:07:58 [22:32:20.159] [Information]   > gatewayUrl : http://localhost/work/optisio/php/gateway.php
+11:07:58 [22:32:20.159] [Information]   > layoutWidth : 1000
+11:07:58 [22:32:20.159] [Information]   > layoutHeight : 600
+11:07:58 [22:32:20.159] [Information]   > background : [object Object]
+11:07:58 [22:32:20.159] [Information]       + ratios : 0,100
+11:07:58 [22:32:20.159] [Information]       + gradientRotation : 90
+11:07:58 [22:32:20.174] [Information]       + colors : 14736339,16777215
+11:07:58 [22:32:20.174] [Information]       + alphas : 100,100
+11:07:58 [22:32:20.174] [Information]   > dashboard : [object Object]
+11:07:58 [22:32:20.174] [Information]       + color : 6397901
+11:07:58 [22:32:20.174] [Information]       + alpha : 55
+11:07:58 [22:32:20.174] [Information]   > default_users : [object Object],[object Object],[object Object],[object Object],[object Object]
+11:07:58 [22:32:20.174] [Information]       + 4 : [object Object]
+11:07:59 [22:32:20.268] [Information]       + 3 : [object Object]
+11:07:59 [22:32:20.268] [Information]       + 2 : [object Object]
+11:07:59 [22:32:20.284] [Information]       + 1 : [object Object]
+11:07:59 [22:32:20.284] [Information]       + 0 : [object Object]
+11:07:59 [22:32:20.284] [Information]   > context_menu : [object Object]
+11:07:59 [22:32:20.284] [Information]       + 0 : [object Object]
+11:07:59 [22:32:20.284] [Information]   > loader : [object Object]
+11:07:59 [22:32:20.284] [Information]       + useGradient : true
+11:07:59 [22:32:20.284] [Information]       + useDropShadow : true
+11:07:59 [22:32:20.284] [Information]       + useBorder : true
+11:07:59 [22:32:20.284] [Information]       + thickness : 2
+11:07:59 [22:32:20.299] [Information]       + themeColor : 6710886
+11:07:59 [22:32:20.315] [Information]       + themeBorderColor : 7829367
+11:07:59 [22:32:20.315] [Information]       + themeBorderAlpha : 100
+11:07:59 [22:32:20.315] [Information]       + themeAlpha : 90
+11:07:59 [22:32:20.315] [Information]       + shadowStrength : 0.5
+11:07:59 [22:32:20.315] [Information]       + shadowInner : false
+11:07:59 [22:32:20.330] [Information]       + shadowDistance : 3
+11:07:59 [22:32:20.330] [Information]       + shadowColor : 0
+11:07:59 [22:32:20.330] [Information]       + shadowBlurY : 12
+11:07:59 [22:32:20.330] [Information]       + shadowBlurX : 12
+11:07:59 [22:32:20.330] [Information]       + shadowAngle : 50
+11:07:59 [22:32:20.330] [Information]       + shadowAlpha : 30
+11:07:59 [22:32:20.346] [Information]       + ratios : 0,100,200,255
+11:08:00 [22:32:20.346] [Information]       + gradientRotation : 45
+11:08:00 [22:32:20.346] [Information]       + colors : 4695740,4625574,3431011,1123364
+11:08:00 [22:32:20.346] [Information]       + color : 16777215
+11:08:00 [22:32:20.346] [Information]       + barColor : 13441799
+11:08:00 [22:32:20.346] [Information]       + alphas : 54,80,92,100
+11:08:00 [22:32:20.362] [Information]   > protect_screen : [object Object]
+11:08:00 [22:32:20.362] [Information]       + color : 0
+11:08:00 [22:32:20.362] [Information]       + alpha : 0
+11:08:00 [22:32:20.362] [Information]   > security : http://localhost/
+11:08:00 [22:32:20.362] [Information]       + 0 : http://localhost/
+11:08:00 [22:32:20.362] [Debug] > [ApplicationContextMenu] setup.
+11:08:00 [22:32:20.377] [Debug] > [ApplicationPolicy] setup.
+11:08:00 [22:32:20.377] [Information] > [ApplicationPolicy] > System.security.allowDomain("http://localhost/")
+11:08:00 [22:32:20.377] [Debug] > [BackgroundDisplay] setup.
+11:08:00 [22:32:20.377] [Debug] > [HeaderDisplay] setup.
+11:08:00 [22:32:20.393] [Debug] > [FooterDisplay] setup.
+11:08:00 [22:32:20.393] [Debug] > [CompanionDisplay] setup.
+11:08:00 [22:32:20.393] [Debug] > [LoaderDisplay] setup.
+11:08:00 [22:32:20.440] [Debug] > [ProtectScreenDisplay] setup.
+11:08:00 [22:32:20.440] [Debug] > [LaunchLocalization] handleEvent : fr
+11:08:00 [22:32:20.440] [Debug] > [LaunchLocalization] onLoadStarted
+11:08:00 [22:32:20.518] [Debug] > [ChangeLoader] handleEvent : Localization : 100%,100
+11:08:00 [22:32:20.534] [Debug] > [LaunchLocalization] onLoadProgress, 100%
+11:08:00 [22:32:20.534] [Debug] > [LaunchLocalization] onLoadComplete
+11:08:00 [22:32:20.659] [Debug] > [LaunchLocalization] change.
+11:08:00 [22:32:20.659] [Debug] > [HideLoader] handleEvent.
+11:08:00 [22:32:20.659] [Debug] > [UnProtectScreen] handleEvent.
+11:08:00 [22:32:20.674] [Information] > [LaunchLocalization] + change :: fr
+11:08:00 [22:32:20.674] [Debug] > [InitApplication] handleEvent.
+11:08:00 [22:32:20.674] [Debug] > [PutLayout] handleEvent, id:default, layout:[LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+11:08:01 [22:32:20.674] [Debug] > [ChangeLayout] handleEvent : default
+11:08:01 [22:32:20.705] [Information] > [ChangeLayout] -> people : [LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+11:08:01 [22:32:20.705] [Debug] > [ShowScreen] handleEvent.
+11:08:01 [22:32:20.721] [Information] > [InitApplication] 'event' and 'user' are undefined, use contextMenu to launch authentification.
+11:08:01 [22:32:20.721] [Information] > [InitApplication] add item in the contextMenu : Alcaraz :: MOD, user:1, event:116
+11:08:01 [22:32:20.721] [Information] > [InitApplication] add item in the contextMenu : Ducuing :: PART, user:9001, event:116
+11:08:01 [22:32:20.721] [Information] > [InitApplication] add item in the contextMenu : Mousseron :: PART, user:9002, event:116
+11:08:01 [22:32:20.721] [Information] > [InitApplication] add item in the contextMenu : Moreau :: PART, user:9003, event:116
+11:08:01 [22:32:20.721] [Information] > [InitApplication] add item in the contextMenu : Meish :: PART, user:9004, event:116
+11:08:19 [22:32:41.565] [Debug] > [Application] initialize : _level0.application
+11:08:19 [22:32:41.627] [Fatal] > [FlashPaperSlide] hide.
+11:08:19 [22:32:41.643] [Information] + [DiaporamaScreen] addSlide success insert : flp
+11:08:19 [22:32:41.643] [Information] + [DiaporamaScreen] addSlide success insert : pic
+11:08:19 [22:32:41.737] [Debug] > [RunApplication] handleEvent.
+11:08:19 [22:32:41.737] [Debug] > [LaunchConfig] handleEvent.
+11:08:19 [22:32:41.752] [Debug] > [LaunchConfig] onLoadStarted
+11:08:19 [22:32:41.815] [Debug] > [ChangeLoader] handleEvent : Configuration : 0%,0
+11:08:19 [22:32:41.815] [Debug] > [ShowLoader] handleEvent.
+11:08:19 [22:32:41.815] [Debug] > [ProtectScreen] handleEvent.
+11:08:19 [22:32:41.830] [Debug] > [LaunchConfig] onLoadProgress, 0%
+11:08:20 [22:32:41.909] [Debug] > [ChangeLoader] handleEvent : Configuration : 100%,100
+11:08:20 [22:32:41.924] [Debug] > [LaunchConfig] onLoadProgress, 100%
+11:08:20 [22:32:41.924] [Debug] > [LaunchConfig] onLoadComplete
+11:08:20 [22:32:42.049] [Debug] > [LaunchConfig] : [ConfigLoaderEvent onLoadInit, AT TARGET, bubbles]
+11:08:20 [22:32:42.049] [Information]   > name : ELEARNING_APPLICATION
+11:08:20 [22:32:42.049] [Information]   > namespace : optisio
+11:08:20 [22:32:42.049] [Information]   > version : 1.0.0.0
+11:08:20 [22:32:42.049] [Information]   > copyright : ZOOKEEPER
+11:08:20 [22:32:42.049] [Information]   > default_lang : fr
+11:08:20 [22:32:42.065] [Information]   > libraryPath : library/
+11:08:20 [22:32:42.065] [Information]   > filePath : http://localhost/optisio/library/
+11:08:20 [22:32:42.065] [Information]   > gatewayUrl : http://localhost/work/optisio/php/gateway.php
+11:08:20 [22:32:42.065] [Information]   > layoutWidth : 1000
+11:08:20 [22:32:42.065] [Information]   > layoutHeight : 600
+11:08:20 [22:32:42.065] [Information]   > background : [object Object]
+11:08:20 [22:32:42.065] [Information]       + ratios : 0,100
+11:08:20 [22:32:42.065] [Information]       + gradientRotation : 90
+11:08:20 [22:32:42.065] [Information]       + colors : 14736339,16777215
+11:08:20 [22:32:42.080] [Information]       + alphas : 100,100
+11:08:20 [22:32:42.080] [Information]   > dashboard : [object Object]
+11:08:20 [22:32:42.159] [Information]       + color : 6397901
+11:08:20 [22:32:42.159] [Information]       + alpha : 55
+11:08:20 [22:32:42.174] [Information]   > default_users : [object Object],[object Object],[object Object],[object Object],[object Object]
+11:08:20 [22:32:42.174] [Information]       + 4 : [object Object]
+11:08:20 [22:32:42.174] [Information]       + 3 : [object Object]
+11:08:20 [22:32:42.174] [Information]       + 2 : [object Object]
+11:08:20 [22:32:42.174] [Information]       + 1 : [object Object]
+11:08:20 [22:32:42.174] [Information]       + 0 : [object Object]
+11:08:20 [22:32:42.174] [Information]   > context_menu : [object Object]
+11:08:20 [22:32:42.174] [Information]       + 0 : [object Object]
+11:08:20 [22:32:42.174] [Information]   > loader : [object Object]
+11:08:21 [22:32:42.174] [Information]       + useGradient : true
+11:08:21 [22:32:42.190] [Information]       + useDropShadow : true
+11:08:21 [22:32:42.190] [Information]       + useBorder : true
+11:08:21 [22:32:42.190] [Information]       + thickness : 2
+11:08:21 [22:32:42.190] [Information]       + themeColor : 6710886
+11:08:21 [22:32:42.205] [Information]       + themeBorderColor : 7829367
+11:08:21 [22:32:42.221] [Information]       + themeBorderAlpha : 100
+11:08:21 [22:32:42.221] [Information]       + themeAlpha : 90
+11:08:21 [22:32:42.221] [Information]       + shadowStrength : 0.5
+11:08:21 [22:32:42.221] [Information]       + shadowInner : false
+11:08:21 [22:32:42.221] [Information]       + shadowDistance : 3
+11:08:21 [22:32:42.221] [Information]       + shadowColor : 0
+11:08:21 [22:32:42.221] [Information]       + shadowBlurY : 12
+11:08:21 [22:32:42.221] [Information]       + shadowBlurX : 12
+11:08:21 [22:32:42.221] [Information]       + shadowAngle : 50
+11:08:21 [22:32:42.221] [Information]       + shadowAlpha : 30
+11:08:21 [22:32:42.237] [Information]       + ratios : 0,100,200,255
+11:08:21 [22:32:42.237] [Information]       + gradientRotation : 45
+11:08:21 [22:32:42.237] [Information]       + colors : 4695740,4625574,3431011,1123364
+11:08:21 [22:32:42.237] [Information]       + color : 16777215
+11:08:21 [22:32:42.237] [Information]       + barColor : 13441799
+11:08:21 [22:32:42.237] [Information]       + alphas : 54,80,92,100
+11:08:21 [22:32:42.237] [Information]   > protect_screen : [object Object]
+11:08:21 [22:32:42.237] [Information]       + color : 0
+11:08:21 [22:32:42.237] [Information]       + alpha : 0
+11:08:21 [22:32:42.252] [Information]   > security : http://localhost/
+11:08:21 [22:32:42.252] [Information]       + 0 : http://localhost/
+11:08:21 [22:32:42.252] [Debug] > [ApplicationContextMenu] setup.
+11:08:21 [22:32:42.252] [Debug] > [ApplicationPolicy] setup.
+11:08:21 [22:32:42.252] [Information] > [ApplicationPolicy] > System.security.allowDomain("http://localhost/")
+11:08:22 [22:32:42.268] [Debug] > [BackgroundDisplay] setup.
+11:08:22 [22:32:42.268] [Debug] > [HeaderDisplay] setup.
+11:08:22 [22:32:42.268] [Debug] > [FooterDisplay] setup.
+11:08:22 [22:32:42.284] [Debug] > [CompanionDisplay] setup.
+11:08:22 [22:32:42.284] [Debug] > [LoaderDisplay] setup.
+11:08:22 [22:32:42.299] [Debug] > [ProtectScreenDisplay] setup.
+11:08:22 [22:32:42.299] [Debug] > [LaunchLocalization] handleEvent : fr
+11:08:22 [22:32:42.299] [Debug] > [LaunchLocalization] onLoadStarted
+11:08:22 [22:32:42.393] [Debug] > [ChangeLoader] handleEvent : Localization : 100%,100
+11:08:22 [22:32:42.393] [Debug] > [LaunchLocalization] onLoadProgress, 100%
+11:08:22 [22:32:42.393] [Debug] > [LaunchLocalization] onLoadComplete
+11:08:22 [22:32:42.565] [Debug] > [LaunchLocalization] change.
+11:08:22 [22:32:42.565] [Debug] > [HideLoader] handleEvent.
+11:08:22 [22:32:42.565] [Debug] > [UnProtectScreen] handleEvent.
+11:08:22 [22:32:42.565] [Information] > [LaunchLocalization] + change :: fr
+11:08:22 [22:32:42.580] [Debug] > [InitApplication] handleEvent.
+11:08:22 [22:32:42.580] [Debug] > [PutLayout] handleEvent, id:default, layout:[LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+11:08:22 [22:32:42.580] [Debug] > [ChangeLayout] handleEvent : default
+11:08:22 [22:32:42.596] [Information] > [ChangeLayout] -> people : [LayoutVO id:default,name:people,x:5,y:260,w:undefined,h:undefined]
+11:08:22 [22:32:42.627] [Debug] > [ShowScreen] handleEvent.
+11:08:22 [22:32:42.627] [Information] > [InitApplication] 'event' and 'user' are undefined, use contextMenu to launch authentification.
+11:08:22 [22:32:42.627] [Information] > [InitApplication] add item in the contextMenu : Alcaraz :: MOD, user:1, event:116
+11:08:22 [22:32:42.627] [Information] > [InitApplication] add item in the contextMenu : Ducuing :: PART, user:9001, event:116
+11:08:22 [22:32:42.627] [Information] > [InitApplication] add item in the contextMenu : Mousseron :: PART, user:9002, event:116
+11:08:22 [22:32:42.643] [Information] > [InitApplication] add item in the contextMenu : Moreau :: PART, user:9003, event:116
+11:08:22 [22:32:42.643] [Information] > [InitApplication] add item in the contextMenu : Meish :: PART, user:9004, event:116
+11:08:48 [22:33:11.221] [Debug] send message....
+11:09:01 [22:33:24.705] [Debug] send message....

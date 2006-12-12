@@ -14,88 +14,52 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2006
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/** AbstractBuilder
-
-	AUTHOR
-		
-		Name : AbstractBuilder
-		Package : lunas.display.components
-		Version : 1.0.0.0
-		Date :  2006-02-05
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		private
-
-	PROPERTY SUMMARY
-	
-		- target:MovieClip
-
-	METHOD SUMMARY
-	
-		- clear():Void
-		
-		- run():Void
-		
-		- toString():String
-		
-		- update():Void
-
-	INHERIT
-	
-		CoreObject → AbstractBuilder
-		
-	IMPLEMENTS
-	
-		IBuilder, IFormattable, IHashable
-
-**/
-
 import lunas.display.components.IBuilder;
 
 import vegas.core.CoreObject;
 
-class lunas.display.components.AbstractBuilder extends CoreObject implements IBuilder {
+/**
+ * @author eKameleon
+ */
+class lunas.display.components.AbstractBuilder extends CoreObject implements IBuilder 
+{
 	
-	// ----o Constructor
-
-	private function AbstractBuilder( mc:MovieClip ) {
+	private function AbstractBuilder( mc:MovieClip ) 
+	{
 		target = mc ;
 	}
 
-	// ----o Public Properties
-	
 	public var target:MovieClip ;
 	
-	// ----o Public Methods
-
-	public function clear():Void {
+	public function clear():Void 
+	{
 		// override
 	}
 	
-	public function run():Void {
+	public function run():Void 
+	{
 		// override
 	}
 
-	public function getTarget():MovieClip {
+	public function getTarget():MovieClip 
+	{
 		return target ;
 	}
 	
-	public function setTarget(t:MovieClip):Void {
+	public function setTarget(t:MovieClip):Void 
+	{
 		target = t ;
 	}
 	
-	public function update():Void {
+	public function update():Void 
+	{
 		// override
 	}
 

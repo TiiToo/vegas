@@ -10,7 +10,7 @@ import vegas.util.visitor.IVisitor;
  * This class release the view and the properties of a Picture instance.
  * @author eKameleon
  */
-class test.observer.diaporama.visitors.ReleaseVisitor extends CoreObject implements IVisitor 
+class test.visitor.diaporama.visitors.ReleaseVisitor extends CoreObject implements IVisitor 
 {
 	
 	/**

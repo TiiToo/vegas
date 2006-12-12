@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2006
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -127,11 +127,12 @@ import vegas.events.Event;
 import vegas.string.StringFormatter;
 import vegas.util.TypeUtil;
 
+/**
+ * @author eKameleon
+ */
 class lunas.display.components.AbstractStyle extends AbstractCoreEventDispatcher implements IStyle 
 {
 
-	// ----o Constructor 
-	
 	private function AbstractStyle ( init:Object ) 
 	{
 		super() ;		
@@ -144,11 +145,25 @@ class lunas.display.components.AbstractStyle extends AbstractCoreEventDispatcher
 		update() ;
 	}
 	
-	// ----o Public Properties
+	public function get labelStyleName():String 
+	{
+		return getLabelStyleName() ; 	
+	}
+
+	public function set labelStyleName(s:String):Void 
+	{
+		setLabelStyleName(s) ; 	
+	}
 	
-	// public var styleSheet:TextField.StyleSheet ; // [R/W]
-	
-	// ----o Public Methods
+	public function get styleSheet():TextField.StyleSheet 
+	{
+		return getStyleSheet() ; 	
+	}
+
+	public function set styleSheet(ss:TextField.StyleSheet):Void 
+	{
+		setStyleSheet(ss) ; 	
+	}
 	
 	public function initialize():Void 
 	{
@@ -231,35 +246,11 @@ class lunas.display.components.AbstractStyle extends AbstractCoreEventDispatcher
 		styleChanged() ;
 	}
 
-	// ----o Virtual Properties
-
-	public function get labelStyleName():String 
-	{
-		return getLabelStyleName() ; 	
-	}
-
-	public function set labelStyleName(s:String):Void 
-	{
-		setLabelStyleName(s) ; 	
-	}
-	
-	public function get styleSheet():TextField.StyleSheet 
-	{
-		return getStyleSheet() ; 	
-	}
-
-	public function set styleSheet(ss:TextField.StyleSheet):Void 
-	{
-		setStyleSheet(ss) ; 	
-	}
-	
-	// ----o Private Properties
-
 	private var _labelStyleName:String = null ;
+
 	private var _oS:TextField.StyleSheet ;
+
 	private var _styleFormatter:StringFormatter ;
-	
-	// ----o Private Methods
 	
 	private function _fireEvent(event, isQueue:Boolean, target, context):Event 
 	{

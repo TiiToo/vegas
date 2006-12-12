@@ -10,7 +10,7 @@ import vegas.util.visitor.IVisitor;
  * This class clear the view of a Picture instance.
  * @author eKameleon
  */
-class test.observer.diaporama.visitors.ClearVisitor extends CoreObject implements IVisitor 
+class test.visitor.diaporama.visitors.ClearVisitor extends CoreObject implements IVisitor 
 {
 	
 	/**

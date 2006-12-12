@@ -14,7 +14,7 @@ import vegas.util.visitor.IVisitor;
  * This class load an external picture in a Picture instance.
  * @author eKameleon
  */
-class test.observer.diaporama.visitors.LoaderVisitor extends CoreObject implements IVisitor 
+class test.visitor.diaporama.visitors.LoaderVisitor extends CoreObject implements IVisitor 
 {
 
 	/**

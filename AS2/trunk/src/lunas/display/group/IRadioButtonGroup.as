@@ -21,41 +21,12 @@
   
 */
 
-/**	IRadioButtonGroup [Interface]
-
-	AUTHOR
-		
-		Name : IRadioButtonGroup
-		Package : lunas.display.group
-		Version : 1.0.0.0
-		Date :  2006-02-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- addButton(obj):Void
-		
-		- handleEvent(e:Event)
-		
-		- removeButton(obj):Void
-		
-		- selectedItemAt (id:Number, groupName:String, noEvent:Boolean):Void
-		
-		- setGroupName(name:String, obj):Void
-
-		- unSelect(groupName:String):Void
-
-**/
-
 import vegas.events.EventListener;
 
-interface lunas.display.group.IRadioButtonGroup extends EventListener {
+interface lunas.display.group.IRadioButtonGroup extends EventListener 
+{
 	
 	function addButton(obj):Void ;
-	
-	//function handleEvent(e:Event) ;
 	
 	function removeButton(obj):Void ;
 	
