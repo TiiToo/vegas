@@ -1,7 +1,7 @@
 
-import test.visitor.diaporama.Picture;
-import test.visitor.diaporama.visitors.ClearVisitor;
-import test.visitor.diaporama.visitors.ShowVisitor;
+import test.observer.diaporama.Picture;
+import test.observer.diaporama.visitors.ClearVisitor;
+import test.observer.diaporama.visitors.ShowVisitor;
 
 import vegas.core.CoreObject;
 import vegas.errors.IllegalArgumentError;
@@ -14,7 +14,7 @@ import vegas.util.visitor.IVisitor;
  * This class load an external picture in a Picture instance.
  * @author eKameleon
  */
-class test.visitor.diaporama.visitors.LoaderVisitor extends CoreObject implements IVisitor 
+class test.observer.diaporama.visitors.LoaderVisitor extends CoreObject implements IVisitor 
 {
 
 	/**

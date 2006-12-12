@@ -1,5 +1,5 @@
 
-import test.visitor.diaporama.Picture;
+import test.observer.diaporama.Picture;
 
 import vegas.core.CoreObject;
 import vegas.errors.IllegalArgumentError;
@@ -10,7 +10,7 @@ import vegas.util.visitor.IVisitor;
  * This class show the view of a Picture instance.
  * @author eKameleon
  */
-class test.visitor.diaporama.visitors.ShowVisitor extends CoreObject implements IVisitor 
+class test.observer.diaporama.visitors.ShowVisitor extends CoreObject implements IVisitor 
 {
 	
 	/**
