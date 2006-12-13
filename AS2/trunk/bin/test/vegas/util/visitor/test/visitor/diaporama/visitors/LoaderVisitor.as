@@ -1,7 +1,7 @@
 
-import test.observer.diaporama.Picture;
-import test.observer.diaporama.visitors.ClearVisitor;
-import test.observer.diaporama.visitors.ShowVisitor;
+import test.visitor.diaporama.Picture;
+import test.visitor.diaporama.visitors.ClearVisitor;
+import test.visitor.diaporama.visitors.ShowVisitor;
 
 import vegas.core.CoreObject;
 import vegas.errors.IllegalArgumentError;

@@ -1,5 +1,5 @@
 
-import test.observer.diaporama.Picture;
+import test.visitor.diaporama.Picture;
 
 import vegas.core.CoreObject;
 import vegas.errors.IllegalArgumentError;

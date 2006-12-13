@@ -14,80 +14,12 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
-
-/**	ArrayMap
-
-	AUTHOR
-	
-		Name : ArrayMap
-		Package : vegas.data.map
-		Version : 1.0.0.0
-		Date :  2006-07-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		Tableau associatif d'objets
-
-	METHOD SUMMARY
-	
-		- clear()
-		
-		- clone()
-		
-		- containsKey( key )
-		
-		- containsValue( value )
-		
-		- get(key)
-		
-		- getKeys()
-		
-		- getValues()
-		
-		- indexOfKey(key)
-		
-		- indexOfValue(value)
-		
-		- isEmpty()
-		
-		- iterator()
-		
-		- keyIterator()
-		
-		- put(key, value)
-		
-		- putAll(m:Map)
-		
-		- remove(o:*):*
-		
-		- size()
-		
-		- toSource():String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → ArrayMap
-	
-	IMPLEMENTS
-	
-		ICloneable, IFormattable, IHashable, ISerializable, Iterable, Map
-
-    NOTE
-     
-        This class corresponding AS2 vegas.data.map.HashMap !
-
-**/
 
 package vegas.data.map
 {
@@ -101,11 +33,15 @@ package vegas.data.map
     import vegas.util.Copier ;
     import vegas.util.Serializer ;
 
+	/**
+	 * @author eKameleon
+	 */
     public class ArrayMap extends CoreObject implements Map
     {
         
-        // ----o Constructor
-        
+		/**
+		 * Creates a new ArrayMap instance.
+		 */        
         public function ArrayMap( ...arguments:Array )
         {
             super();
@@ -126,8 +62,6 @@ package vegas.data.map
             }
         }
         
-        // ----o Public Methods
-
     	/**
     	 * This clears all in the map.
     	 */  
@@ -138,7 +72,8 @@ package vegas.data.map
         }
         
     	/**
-    	 * Clones the map.
+    	 * Returns the shallow copy of this map.
+    	 * @return the shallow copy of this map.
     	 */
         public function clone():*
         {
@@ -253,10 +188,9 @@ package vegas.data.map
         {
 		    return new MapFormat().formatToString(this) ;
         }
-    
-    	// -----o Private Properties
-	
+
 	    private var _keys:Array ;
+
     	private var _values:Array ;
     	
     }
