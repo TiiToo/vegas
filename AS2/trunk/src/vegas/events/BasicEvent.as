@@ -338,7 +338,7 @@ class vegas.events.BasicEvent extends CoreObject implements Event
 	}
 	
 	/**
-	 * Set the timestamp of the event (used this method only in internal in the Event class).
+	 * Sets the timestamp of the event (used this method only in internal in the Event class).
 	 */
 	/*protected*/ private function _setTimeStamp( nTime:Number ):Void 
 	{
