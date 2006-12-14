@@ -54,6 +54,7 @@ class vegas.core.CoreObject implements IFormattable, IHashable, ISerializable
 	
 	/**
 	 * Returns a hashcode value for the object.
+	 * @return a hashcode value for the object.
 	 */
 	public function hashCode():Number 
 	{

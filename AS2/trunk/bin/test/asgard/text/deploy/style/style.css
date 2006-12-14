@@ -1,0 +1,40 @@
+p {
+  color: #FFFFFF;
+  font-family: verdana,helvetica,sans-serif;
+  font-size: 10px;
+  display: inline;
+  margin-left: 3px ;
+  margin-right: 3px ;
+}
+
+a:link {
+  color: #C20505;
+}
+
+a:active {
+  font-weight: normal;
+}
+
+a:hover {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.chat-historic-title {
+	color: #CEEBFD;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.chat-historic-mod {
+	color: #FF0000;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.chat-historic-part {
+	color: #D3F8DE;
+	font-size: 11px;
+	font-weight: bold;
+}
+

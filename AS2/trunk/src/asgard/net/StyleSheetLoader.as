@@ -23,59 +23,43 @@
 
 import asgard.net.DataFormat;
 import asgard.net.URLLoader;
+import asgard.text.StyleSheet;
+
+import vegas.errors.UnsupportedOperation;
 
 /**
+ * This loader is a simple ILoader to receive an external CSS style sheet.
  * @author eKameleon
  */
-class asgard.net.ParserLoader extends URLLoader 
+class asgard.net.StyleSheetLoader extends URLLoader
 {
-	
+
 	/**
-	 * Creates a new ParserLoader instance.
-	 */
-	private function ParserLoader() 
+	 * Creates a new StyleSheetLoader instance.
+	 */	
+	function StyleSheetLoader() 
 	{
-		super() ;
+		super();
 	}
 
-	public var fieldName:String ;
-
+	/**
+	 * Deserialize the source and transform it in a StyleSheet reference.
+	 */
 	public function deserializeData():Void 
 	{
-		
-		var source:String ;
-		
-		switch (getDataFormat()) 
-		{
-
-				case DataFormat.VARIABLES :
-				{
-					source = this.getData()[fieldName] ;
-					
-					break ;
-				}
-				
-				case DataFormat.BINARY :
-				case DataFormat.TEXT :
-				{
-					source = this.getData() ;
-					
-					break ;
-				}
-		}
-		
-		var deserialize:Function = getDeserializer() ;
-		setData( deserialize( source )  ) ;
-		
+		setData( new StyleSheet( this.getData() )  ) ;
 	}
-	
+
 	/**
-	 * Returns the deserialize method used in the deserializeData method.
-	 * @return the deserialize method used in the deserializeData method.
+	 * Unsupported method in the StyleSheetLoader. You can only load a string text in the external css file.
+	 * @throws UnsupportedOperation this method is unsupported.
 	 */
-	public function getDeserializer():Function 
+	public function setDataFormat( s:String ):Void 
 	{
-		return null ;	
+		if (s != DataFormat.TEXT)
+		{
+			throw new UnsupportedOperation( this + " the method setDataFormat is unsupported, the dataFormat is only a DataFormat.TEXT.") ;
+		}
 	}
 
 }

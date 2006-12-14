@@ -247,15 +247,13 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 	 */
 	public function sharedEvent( event , context ):Void 
 	{
-		var eventType:String ;
 		if (event instanceof Event) 
 		{
-			eventType = event || event.getType() ;	
-			this.call(event, null, event.toSource()) ;
+			this.call( event.getType(), null, event ) ;
 		}
 		else if (TypeUtil.typesMatch(event, String)) 
 		{
-			this.call( event, null, context || null) ;
+			this.call( event, null, context ) ;
 		}
 	}
 

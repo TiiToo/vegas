@@ -80,6 +80,9 @@ class asgard.net.URLLoader extends AbstractLoader
 		_startInitTimer() ;
 	}
 	
+	/**
+	 * This method can be overrided to deserialize the external source string or data.
+	 */
 	public function deserializeData():Void 
 	{
 		// override thid method
@@ -176,6 +179,9 @@ class asgard.net.URLLoader extends AbstractLoader
 		// overwriting for delaying 'onLoadInit' broadcast
 	}
   
+  	/**
+  	 * Release the loader.
+  	 */
   	public function release():Void 
   	{
   		getContent().onData = null ;
@@ -246,7 +252,11 @@ class asgard.net.URLLoader extends AbstractLoader
 		}
 	}
 	
-	private function _onLoad(success:Boolean):Void {
+	/**
+	 * Invoqued when the source is loading or not.
+	 */
+	private function _onLoad(success:Boolean):Void 
+	{
 		
 		if (success) 
 		{

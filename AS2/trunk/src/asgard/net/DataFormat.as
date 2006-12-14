@@ -21,57 +21,34 @@
   
 */
 
-/** DataFormat
-
-	AUTHOR
-
-		Name : DataFormat
-		Package : asgard.net
-		Version : 1.0.0.0
-		Date :  2006-03-21
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
- 	CONSTANT SUMMARY
-  
- 		static const BINARY:String = "binary"
-			Specifies that downloaded data is received as raw binary data.
-  	
- 		static const TEXT:String = "text"
-			Specifies that downloaded data is received as text.
- 
- 		static const VARIABLES:String = "variables"
-			Specifies that downloaded data is received as URL-encoded variables.
-
-**/
-
 /**
+ * The DataFormat class provides values that specify how downloaded data is received.
  * @author eKameleon
  */
- 
- 
-class asgard.net.DataFormat {
+class asgard.net.DataFormat 
+{
 
-	// ----o Constructor
-	
-	private function DataFormat(){
-		//	
-	}
-	
-	// ----o Constants
-	
+	/**
+	 * Specifies that downloaded data is received as raw binary data.
+	 */
 	static public var BINARY:String = "binary" ;
-		
+	
+	/**
+	 * Specifies that downloaded data is received as text.
+	 */
 	static public var TEXT:String = "text" ;
 	
+	/**
+	 * Specifies that downloaded data is received as URL-encoded variables.
+	 */
 	static public var VARIABLES:String = "variables" ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(DataFormat, null , 7, 7) ;
-
-	// ----o Public Methods
-
-	static public function validate(sFormat:String):Boolean {
+	/**
+	 * Returns {@code true} if the passed argument is valid.
+	 * @return {@code true} if the passed argument is valid.
+	 */
+	static public function validate(sFormat:String):Boolean 
+	{
 		return (sFormat == DataFormat.BINARY) || (sFormat == DataFormat.TEXT) || (sFormat == DataFormat.VARIABLES) ;
 	}
 
