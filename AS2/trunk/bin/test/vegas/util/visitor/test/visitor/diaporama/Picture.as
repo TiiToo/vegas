@@ -1,11 +1,5 @@
-import test.visitor.diaporama.visitors.ClearVisitor;
-import test.visitor.diaporama.visitors.HideVisitor;
-import test.visitor.diaporama.visitors.LoaderVisitor;
-import test.visitor.diaporama.visitors.ReleaseVisitor;
-import test.visitor.diaporama.visitors.ShowVisitor;
 
 import vegas.util.visitor.AbstractVisitable;
-import vegas.util.visitor.IVisitor;
 
 /**
  * The Picture class to display a picture in a Movieclip who contains a container movieclip inside.

@@ -1,5 +1,5 @@
  
-   VEGAS version 0.6
+   VEGAS version 0.7
  
    PROJECT PAGES
 
@@ -14,14 +14,14 @@
    ABOUT
 
     * Author : eKameleon
-    * Version : 0.2 beta public
+    * Version : 0.7
     * Link : http://www.ekameleon.net/blog
     * Mail : vegas@ekameleon.net 
 
    THANKS
 
     * Zwetan : ECMAScript Concepts and hosting | http://zwetan.com/
-    * Faya : http://www.djellyfish.com/
+    * Faya
     * Stephan Schmid : Event model framework inspiration | http://schst.net/
     * OSFlash - Second SVN Hosting : http://www.osflash.org
     * PowerFlasher - FDT OpenSource Licence : http://powerflasher.com/ 

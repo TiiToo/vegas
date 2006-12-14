@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -55,9 +55,9 @@ class vegas.events.BasicEvent extends CoreObject implements Event
 	public function BasicEvent ( type:String , target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number ) 
 	{
 		
-		_type = type ;
-		_context = context ;
-		_target = target ;
+		_type = (getType() != null) ? getType() : type ;
+		_context = (getContext() != null) ? getContext() : context ;
+		_target = (getTarget() != null) ? getTarget() : target ;
 		_bubbles = ( bubbles != null) ? bubbles : true ;
 		_eventPhase = isNaN( eventPhase) ? EventPhase.AT_TARGET : eventPhase ;
 		_time = ( time > 0) ? time : ( (new Date()).valueOf() ) ;

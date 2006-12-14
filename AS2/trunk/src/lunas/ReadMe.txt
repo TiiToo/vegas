@@ -1,5 +1,5 @@
  
-   LUNAS version 0.2 beta public - VEGAS EXTENSION
+   LUNAS version 0.3 - VEGAS EXTENSION
  
    PROJECT PAGES
 
@@ -14,7 +14,7 @@
    ABOUT
 
     * Author : eKameleon
-    * Version : 0.2
+    * Version : 0.3
     * Link : http://www.ekameleon.net/blog
     * Mail : vegas@ekameleon.net 
 

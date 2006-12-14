@@ -14,93 +14,12 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
-
-
-/** NetServerConnection
-
-	AUTHOR
-
-		Name : NetServerConnection
-		Package : asgard.net
-		Version : 1.0.0.0
-		Date :  2006-04-20
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	PROPERTY SUMMARY
-	
-		- isConnected:Boolean
-		
-		- uri:String
-		
-	METHOD SUMMARY
-	
-		- addEventListener( eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void
-		
-		- addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void
-		
-		- addHeader()
-		
-		- call(remoteMethod:String, resultObject:Object):Void
-		
-		- close():Void
-		
-		- connect(targetURI:String):Boolean
-		
-		- dispatchEvent(event, isQueue:Boolean, target, context):Event
-		
-		- getDelay():Number
-		
-		- getDispatcher():EventDispatcher
-		
-		- getEventDispatcher():EventDispatcher
-		
-		- getEventListeners(eventName:String):EventListenerCollection
-		
-		- getGlobalEventListeners():EventListenerCollection
-		
-		- getLimitPolicy():ConnectionPolicy
-		
-		- getRegisteredEventNames():Set
-		
-		- getParent():EventDispatcher
-		
-		- hashCode():Number
-		
-		- hasEventListener(eventName:String):Boolean
-		
-		- initEventDispatcher():EventDispatcher
-		
-		- removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener
-		
-		- removeGlobalEventListener( listener ):EventListener
-		
-		- setDelay(n:Number, useSeconds:Boolean):Void
-		
-		- setLimitPolicy( policy:NetServerPolicy ):Void
-		
-		- setParent(parent:EventDispatcher):Void	INHERIT
-		
-		- sharedEvent( event , type:String ):Void
-		
-		- toString():String
-	
-	INHERIT
-	
-		NetConnection → NetServerConnection
-
-	IMPLEMENTS
-	
-		Action, EventTarget, IEventDispatcher, IHashable, IFormattable
-
-**/
 
 import asgard.events.NetServerEvent;
 import asgard.events.NetServerEventType;
@@ -126,13 +45,14 @@ import vegas.util.Timer;
 import vegas.util.TypeUtil;
 
 /**
+ * This class extends the NetConnection class and defined an implementation based on VEGAS to used Flash Remoting or Flash MediaServer (with AMF protocol).
  * @author eKameleon
- * @version 1.0.0.0
- **/	
+ */	
 dynamic class asgard.net.NetServerConnection extends NetConnection implements Action, IEventDispatcher, IFormattable, IHashable, ISerializable {
 	
-	// ----o Constructor
-	
+	/**
+	 * Creates a new NetServerConnection instance.
+	 */
 	function NetServerConnection() 
 	{
 		
@@ -151,11 +71,11 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 		
 	}
 
-	// ----o Init HashCode
-	
-	static private var _initHashCode:Boolean = HashCode.initialize(NetServerConnection.prototype) ;
-
-	// ----o Public Methods
+	/**
+	 * This method is overrides if you want receive Events from the server.
+	 * @see NetServerGateway
+	 */
+	public var receiveSharedEvent:Function ;
 
 	public function addEventListener( eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void 
 	{
@@ -349,8 +269,6 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 		return "[" + ConstructorUtil.getName(this) + "]" ;
 	}
 
-	// ----o Private Properties
-	
 	private var _dispatcher:EventDispatcher ;
 	private var _eClose:NetServerEvent ;
 	private var _eFinish:NetServerEvent ;
@@ -361,8 +279,12 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 	private var _timer:Timer ;
 	private var _timeOut:EventListener ;
 	
-	// ----o Private Methods
+	static private var _initHashCode:Boolean = HashCode.initialize(NetServerConnection.prototype) ;
 
+	/**
+	 * Invoqued when the onStatus event is invoqued.
+	 * @see NetServerStatus
+	 */	
 	private function onStatus( oInfo ):Void 
 	{
 		
@@ -409,11 +331,16 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 		
 	}
 
-	public function _onTimeOut(e:TimerEvent):Void 
+	/**
+	 * Invoqued when the connection is out of time.
+	 */
+	private function _onTimeOut(e:TimerEvent):Void 
 	{
 		notifyTimeOut() ;
 		notifyFinished() ;
 		close() ;
 	}
+
+
 
 }
