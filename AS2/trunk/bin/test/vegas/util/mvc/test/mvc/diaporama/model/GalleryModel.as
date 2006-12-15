@@ -220,17 +220,11 @@ class test.mvc.diaporama.model.GalleryModel extends AbstractModel implements IRu
 		
 		if ( contains(name) )
 		{
-			
 			trace("> " + this + " setCurrentPicture : " + name) ;
-			
 			_eChange.oldPicture = _currentPicture ;
-			
 			_currentPicture = getPicture(name) ;
-			
 			_eChange.setPicture(_currentPicture) ;
-			
 			notifyChanged(_eChange) ;
-						
 		}
 		else
 		{

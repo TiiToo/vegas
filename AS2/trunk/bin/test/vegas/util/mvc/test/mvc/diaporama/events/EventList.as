@@ -1,6 +1,6 @@
 
 /**
- * The global event list of the application.
+ * The global event type list of this application.
  * @author eKameleon
  */
 class test.mvc.diaporama.events.EventList 

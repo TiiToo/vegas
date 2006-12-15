@@ -31,6 +31,7 @@ class test.mvc.diaporama.Gallery extends DisplayObject
 		Stage.scaleMode = StageScaleMode.NO_SCALE ;
 		Stage.addListener(this) ;
 		
+		// register the onResize event notify by the Stage class when the stage is resized.
 		onResize = Delegate.create(this, resize) ;
 
 		initialize() ;
@@ -61,11 +62,6 @@ class test.mvc.diaporama.Gallery extends DisplayObject
 	static public var gallery:Gallery ;
 	
 	/**
-	 * The numbers of picture in the gallery.
-	 */
-	public var nPicture:Number = 6 ;
-
-	/**
 	 * Clear and initialize the view of the display. 
 	 */
 	public function clear():Void
@@ -85,17 +81,18 @@ class test.mvc.diaporama.Gallery extends DisplayObject
 		
 		GalleryModel.getInstance().clear() ;
 		
+		var mc:MovieClip ;
 		var picture:Picture ;
-		var count:Number = 3 ;
+		var nPicture:Number = 6 ;
 		
 		for (var i:Number = 1 ; i<= nPicture ; i++)
 		{
-			var mc:MovieClip = container.attachMovie( PICTURE_VIEW_ID , "picture_mc" + i , i ) ;
-			var picture:Picture = new Picture("picture " + i , mc , "library/picture" + i + ".jpg") ; 
+			mc = container.attachMovie( PICTURE_VIEW_ID , "picture_mc" + i , i ) ;
+			picture = new Picture("picture " + i , mc , "library/picture" + i + ".jpg") ; 
 			GalleryModel.getInstance().addPicture( picture ) ;
 		}
 		
-		resize() ;
+		resize() ; // launch the resize method to initialize the position of all pictures
 		
 		GalleryModel.getInstance().run() ;
 		

@@ -55,6 +55,6 @@ class test.mvc.diaporama.control.Controller extends FrontController
 	/**
 	 * The internal singleton reference.
 	 */
-	private static var _instance : Controller;
+	private static var _instance:Controller;
 
 }
