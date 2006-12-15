@@ -206,6 +206,9 @@ class test.mvc.diaporama.model.GalleryModel extends AbstractModel implements IRu
 		}	
 	}
 	
+	/**
+	 * Run the model to launch the next picture in the Picture display.
+	 */
 	public function run():Void
 	{
 		reset() ;
@@ -281,7 +284,6 @@ class test.mvc.diaporama.model.GalleryModel extends AbstractModel implements IRu
 	 */
 	private var _it:Iterator ;
 	
-
 
 	/**
 	 * The internal map to register all pictures in the model.

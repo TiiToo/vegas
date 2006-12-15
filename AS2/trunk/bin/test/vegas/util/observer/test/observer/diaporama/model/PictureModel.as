@@ -1,6 +1,7 @@
 
 import test.observer.diaporama.events.PictureModelEvent;
 
+import vegas.core.IRunnable;
 import vegas.data.iterator.Iterator;
 import vegas.data.Set;
 import vegas.data.set.HashSet;
@@ -10,7 +11,7 @@ import vegas.util.observer.Observable;
  * The model to change the Picture with differents external files.
  * @author eKameleon
  */
-class test.observer.diaporama.model.PictureModel extends Observable 
+class test.observer.diaporama.model.PictureModel extends Observable implements IRunnable
 {
 	
 	/**
