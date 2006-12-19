@@ -21,14 +21,13 @@
   
 */
 
-import vegas.events.EventListener;
 import vegas.logging.ILogger;
 
 /**
  * All logger target implementations within the logging framework must implement this interface.
  * @author eKameleon
  */
-interface vegas.logging.ITarget extends EventListener 
+interface vegas.logging.ITarget
 {
 
 

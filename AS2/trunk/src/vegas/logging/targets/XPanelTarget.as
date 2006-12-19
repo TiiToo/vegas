@@ -21,12 +21,11 @@
   
 */
 
+// FIXME : big bug when i use this target for the moment...
+
 import vegas.events.Delegate;
-import vegas.logging.ILogger;
-import vegas.logging.Log;
 import vegas.logging.LogEventLevel;
-import vegas.logging.targets.TraceTarget;
-import vegas.util.ConstructorUtil;
+import vegas.logging.targets.LineFormattedTarget;
 
 /**
  * Provides a logger target that uses the XPanel console to output log messages. 
@@ -43,9 +42,6 @@ import vegas.util.ConstructorUtil;
  * target.filters = ["namespace.*"] ;
  * target.level = LogEventLevel.ALL ; // level filter !
  * 
- * // register target
- * Log.addTarget(target); 
- * 
  * // create a log writer
  * var logger:ILogger = Log.getLogger("namespace.myApplication") ;
  * 
@@ -60,25 +56,26 @@ import vegas.util.ConstructorUtil;
  * </p>
  * @author eKameleon
  */
-class vegas.logging.targets.XPanelTarget extends TraceTarget {
+class vegas.logging.targets.XPanelTarget extends LineFormattedTarget
+{
 
     /**
      * Creates a new XPanelTarget instance.
      */ 
-	public function XPanelTarget( name:String ) 
+	public function XPanelTarget( sName:String ) 
 	{
 		super();
 		
-		if (name == null)
+		return ;
+		
+		if (sName == null)
 		{
-			name = "unknow" ;	
+			sName = "default" ;	
 		}
 		
-		_logger = Log.getLogger( ConstructorUtil.getPath(this) ) ;
-            
         _lc = new LocalConnection() ;
         _lc.onStatus = Delegate.create(this, _onStatus) ;
-        _lc.send( CONNECTION_ID, DISPATCH_MESSAGE, (new Date()).valueOf(), START + " " + name, LEVEL_START );
+        _lc.send( CONNECTION_ID, DISPATCH_MESSAGE, getTimer(), START + " " + sName, LEVEL_START );
 		
 	}
 
@@ -144,70 +141,59 @@ class vegas.logging.targets.XPanelTarget extends TraceTarget {
 
 	/**
      * Descendants of this class should override this method to direct the specified message to the desired output.
-     *
      * @param message String containing preprocessed log message which may include time, date, category, etc. 
-     *        based on property settings, such as <code>includeDate</code>, <code>includeCategory</code>, etc.
 	 */
-	public function internalLog( message , level:LogEventLevel):Void
+	public function internalLog( message , lv:Number ):Void
 	{
 	        
 	        var targetLevel:Number ;
 	        
-	    	switch (level)
+	    	switch (lv)
 	    	{
 	    		case LogEventLevel.DEBUG:
 	    		{
-	    			targetLevel = LEVEL_DEBUG;
+	    			targetLevel = LEVEL_DEBUG ;
 	    			break;
 	    		}
 	    		case LogEventLevel.ERROR:
 	    		{
-	    			targetLevel = LEVEL_ERROR;
+	    			targetLevel = LEVEL_ERROR ;
 	    			break;
 	    		}
 	    		case LogEventLevel.FATAL:
 	    		{
-	    			targetLevel = LEVEL_FATAL;
+	    			targetLevel = LEVEL_FATAL ;
 	    			break;
 	    		}
 	    		case LogEventLevel.INFO:
 	    		{
-	    			targetLevel = LEVEL_INFORMATION;
+	    			targetLevel = LEVEL_INFORMATION ;
 	    			break;
 	    		}
 	    		case LogEventLevel.WARN:
 	    		{
-	    			targetLevel = LEVEL_WARNING;
+	    			targetLevel = LEVEL_WARNING ;
 	    			break;
 	    		}
 	    		default:
 	    		{
-	    			targetLevel = LEVEL_ALL;
+	    			targetLevel = LEVEL_ALL ;
 	    			break;
 	    		}
 	    	}
-	    	
-			_lc.send( CONNECTION_ID , DISPATCH_MESSAGE , (new Date()).valueOf(), message, targetLevel ) ;
+			
+			_lc.send( CONNECTION_ID , DISPATCH_MESSAGE , getTimer(), "test", LEVEL_DEBUG ) ;
 	        
 	    }   
 
-   	/**
-   	 * Invoqued when the LocalConnection notify a status change.
-   	 */
-   	private function _onStatus( info ):Void
-	{
-		_logger.info( "> " + this + " onStatus : " + info.code ) ;
-	}
-		
 	/**
 	 * Internal LocalConnection reference.
 	 */
 	private var _lc:LocalConnection ;
-       
-    /**
-	 * The internal logger of this instance.
-	 */
-	private var _logger:ILogger ;
-
-
+      
+    private function _onStatus( oInfo ):Void
+    {
+    	//	
+    }
+      
 }

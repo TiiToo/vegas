@@ -46,9 +46,6 @@ import vegas.logging.targets.LineFormattedTarget;
  * traceTarget.includeLines = true ;
  * traceTarget.level = LogEventLevel.ALL ; // LogEventLevel.DEBUG (only the debug logs).
  * 
- * // start writing log data 
- * Log.addTarget(traceTarget); 
- * 
  * // get a logger for the 'myDebug' category 
  * // and send some data to it.
  * 

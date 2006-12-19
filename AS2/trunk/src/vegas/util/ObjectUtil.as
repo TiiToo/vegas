@@ -22,6 +22,7 @@
 */
 
 import vegas.util.Copier;
+import vegas.util.TypeUtil;
 
 /**
  * The {@code ObjectUtil} utility class is an all-static class with methods for working with object.
@@ -93,6 +94,34 @@ class vegas.util.ObjectUtil
         }
 		return obj;
     }
+
+	/**
+	 * Determines whether the specified Object instance is the same instance as the current object.
+	 */
+	static public function referenceEquals( o1, o2):Boolean
+	{
+		if( ( o1.valueOf() === null) && (o2 === null) )
+		{
+			return true;
+		}
+
+    	if( o1 === o2 )
+        {
+        	return true ;
+        }
+    
+    	if( ( o1 == null) || TypeUtil.typesMatch(o2, Object) )
+        {
+        	return false ;
+        }
+    
+		if( o1 !== o2 )
+		{
+        	return false;
+		}
+
+		return true;	
+	}
 
 	/**
 	 * Converts an object to an equivalent Boolean value.

@@ -23,7 +23,7 @@
 
 import vegas.errors.AbstractError;
 import vegas.errors.ErrorElement;
-import vegas.errors.ErrorFormat;
+import vegas.logging.LogEventLevel;
 
 /**
  * Thrown to indicate a warning message in an application or in the source code.
@@ -41,14 +41,11 @@ class vegas.errors.Warning extends AbstractError
 	}
 
 	/**
-	 * Returns the string representation of this instance.
-	 * @return the string representation of this instance
+	 * Returns the internal LogEventLevel used in the constructor of this instance.
 	 */
-	/*override*/ public function toString():String 
+	public function getLevel():Number
 	{
-		var msg:String = (new ErrorFormat()).formatToString(this) ;
-		getLogger().warn( msg ) ;
-		return msg ;
+		return LogEventLevel.WARN ;	
 	}
 	
 }

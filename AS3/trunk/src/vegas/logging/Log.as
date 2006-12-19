@@ -184,73 +184,61 @@ package vegas.logging
          */
         static public function hasIllegalCharacters( value:String ):Boolean
         {
-            
             var chars:Array = ILLEGALCHARACTERS.split("") ;
             var result:Boolean = StringUtil.indexOfAny( value , chars ) != -1 ;
             return result ;
-        
         }
         	
     	/**
-    	 *  Indicates whether a debug level log event will be processed by a
-    	 *  log target.
-    	 *
-    	 *  @return true if a debug level log event will be logged; otherwise false.
-    	 */
+	    	 * Indicates whether a debug level log event will be processed by a log target.
+		 * @return true if a debug level log event will be logged; otherwise false.
+	    	 */
     	static public function isDebug():Boolean
     	{
-    	    return (_targetLevel <= LogEventLevel.DEBUG.valueOf()) ? true : false;
+    	    return _targetLevel <= LogEventLevel.DEBUG.valueOf() ;
     	}
         
      	/**
-    	 *  Indicates whether an error level log event will be processed by a
-    	 *  log target.
-    	 *
-    	 *  @return true if an error level log event will be logged; otherwise false.
-    	 */
+		 * Indicates whether an error level log event will be processed by a log target.
+		 * @return true if an error level log event will be logged; otherwise false.
+		 */
     	static public function isError():Boolean
     	{
     	    return _targetLevel <= LogEventLevel.ERROR.valueOf() ;
     	}
         
      	/**
-	     *  Indicates whether a fatal level log event will be processed by a
-    	 *  log target.
-    	 *
-    	 *  @return true if a fatal level log event will be logged; otherwise false.
-    	 */
+		 *  Indicates whether a fatal level log event will be processed by a log target.
+		 *  @return true if a fatal level log event will be logged; otherwise false.
+		 */
     	static public function isFatal():Boolean
     	{
     	    return _targetLevel <= LogEventLevel.FATAL.valueOf() ;
     	}
         
      	/**
-    	 *  Indicates whether an info level log event will be processed by a
-    	 *  log target.
-    	 *
-    	 *  @return true if an info level log event will be logged; otherwise false.
-    	 */	
+		 * Indicates whether an info level log event will be processed by a log target.
+		 * @return true if an info level log event will be logged; otherwise false.
+		 */	
     	static public function isInfo():Boolean
     	{
     	    return _targetLevel <= LogEventLevel.INFO.valueOf() ;
     	}
         	
     	/**
-    	 *  Indicates whether a warn level log event will be processed by a
-    	 *  log target.
-    	 *
-    	 *  @return true if a warn level log event will be logged; otherwise false.
-    	 */
+		 * Indicates whether a warn level log event will be processed by a log target.
+		 * @return true if a warn level log event will be logged; otherwise false.
+		 */
     	static public function isWarn():Boolean
     	{
     	    return _targetLevel <= LogEventLevel.WARN.valueOf() ;
     	}
         
         /**
-         *  Stops the specified target from receiving notification of log events.
-         *
-         *  @param The specific target that should capture log events.
-         */
+		 *  Stops the specified target from receiving notification of log events.
+		 *
+		 *  @param The specific target that should capture log events.
+		 */
         static public function removeTarget(target:ITarget):void
         {
             if(target)
@@ -295,23 +283,23 @@ package vegas.logging
         }
       
         /**
-         *  An associative Array of existing loggers keyed by category
-         */
+          *  An associative Array of existing loggers keyed by category
+          */
     	static private var _loggers:HashMap = new HashMap() ;
 
         /**
-         *  Sentinal value for the target log level to indicate no logging.
-         */
+          *  Sentinal value for the target log level to indicate no logging.
+          */
     	static private var NONE:int = int.MAX_VALUE;
         
         /**
-         *  The most verbose supported log level among registered targets.
-         */
+          *  The most verbose supported log level among registered targets.
+          */
     	static private var _targetLevel:int = NONE ;
     	
         /**
-         *  Array of targets that should be searched any time a new logger is created.
-         */
+          *  Array of targets that should be searched any time a new logger is created.
+          */
         static private var _targets:Array = [];
         
         /**
@@ -352,11 +340,11 @@ package vegas.logging
         }
         
         /**
-         *  This method will ensure that a valid category string has been specified.
-         *  If the category is not valid an <code>InvalidCategoryError</code> will be thrown.
-         *  Categories can not contain any blanks or any of the following characters: []`*~,!#$%^&amp;()]{}+=\|'";?&gt;&lt;./&#64; 
-         *  or be less than 1 character in length.
-         */
+          *  This method will ensure that a valid category string has been specified.
+          *  If the category is not valid an <code>InvalidCategoryError</code> will be thrown.
+          *  Categories can not contain any blanks or any of the following characters: []`*~,!#$%^&amp;()]{}+=\|'";?&gt;&lt;./&#64; 
+          *  or be less than 1 character in length.
+          */
         static private function checkCategory(category:String):void
         {
             
@@ -373,9 +361,9 @@ package vegas.logging
         }
     
         /**
-         *  This method resets the Log's target level to the most verbose log level
-         *  for the currently registered targets.
-         */
+          *  This method resets the Log's target level to the most verbose log level
+          *  for the currently registered targets.
+          */
         static private function resetTargetLevel():void
         {
             var minLevel:int = NONE;

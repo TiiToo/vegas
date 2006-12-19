@@ -42,21 +42,28 @@ class vegas.data.list.ArrayList extends AbstractList
 		
 		var arg = arguments[0] ;
 		
-		if (arg instanceof Array) {
+		if (arg instanceof Array) 
+		{
 			
 			var it:Iterator = new ArrayIterator(arg) ;
-			while (it.hasNext()) {
+			while (it.hasNext()) 
+			{
 				insert(it.next()) ;
 			}
 			
-		} else if (arg instanceof Collection) {
+		} 
+		else if (arg instanceof Collection) 
+		{
 			
 			var it:Iterator = arg.iterator() ;
-			while (it.hasNext()) {
+			while (it.hasNext()) 
+			{
 				insert(it.next()) ;
 			}
 			
-		} else if (typeof (arg) == "number") {
+		}
+		else if (typeof (arg) == "number") 
+		{
 			
 			_a.length = arg ;
 			
@@ -73,7 +80,7 @@ class vegas.data.list.ArrayList extends AbstractList
 	}
 	
 	/**
-	 * ncreases the capacity of this ArrayList instance, if necessary, to ensure that it can hold at least the number of elements specified by the minimum capacity argument.
+	 * Increases the capacity of this ArrayList instance, if necessary, to ensure that it can hold at least the number of elements specified by the minimum capacity argument.
 	 */
 	public function ensureCapacity(n:Number):Void 
 	{

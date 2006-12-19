@@ -22,12 +22,16 @@
 */
 
 import vegas.core.CoreObject;
+import vegas.data.set.HashSet;
 import vegas.events.Event;
+import vegas.events.EventListener;
+import vegas.logging.errors.InvalidFilterError;
 import vegas.logging.ILogger;
 import vegas.logging.ITarget;
 import vegas.logging.Log;
 import vegas.logging.LogEvent;
 import vegas.logging.LogEventLevel;
+import vegas.string.StringFormatter;
 import vegas.string.WildExp;
 import vegas.util.ArrayUtil;
 
@@ -35,33 +39,135 @@ import vegas.util.ArrayUtil;
  * This class provides the basic functionality required by the logging framework for a target implementation. It handles the validation of filter expressions and provides a default level property. No implementation of the logEvent() method is provided.
  * @author eKameleon
  */
-class vegas.logging.AbstractTarget extends CoreObject implements ITarget 
+class vegas.logging.AbstractTarget extends CoreObject implements EventListener, ITarget 
 {
 
 	/**
 	 * Creates a new AbstractTarget instance.
 	 */
-	private function AbstractTarget() {
-		//
+	private function AbstractTarget()
+	{
+		_level = LogEventLevel.ALL ;
+		_set = new HashSet() ;
 	}
+
+	/**
+	 * The static field used when throws an Error when a character is invalid.
+	 */        
+	static public var CHARS_INVALID:String = "The following characters are not valid : []~$^&/\\(){}<>+=`!#%?,:;'\"@" ;
+
+	/**
+	 * The static field used when throws an Error when filter failed.
+	 */        
+	static public var ERROR_FILTER:String = "Error for filter \''{0}'" ;
+        
+	/**
+	 * The static field used when throws an Error when the character placement failed.
+	 */        
+	static public var CHAR_PLACEMENT:String = "'*' must be the right most character." ;
 
 	/**
 	 * In addition to the level setting, filters are used to provide a pseudo hierarchical mapping for processing only those events for a given category.
 	 */
-	public var filters:Array ;
+	public function get filters():Array 
+	{
+		return _filters ;	
+	}
 	
+	/**
+	 * (read-write) Sets the filters array of this target.
+	 */
+	public function set filters( value:Array ):Void
+	{
+		
+		if ( value != null && value.length > 0 )
+		{
+			
+			var filter:String ;
+			var index:Number ;
+			var len:Number = value.length ;
+			
+			for (var i:Number = 0; i<len ; i++)
+			{
+				
+				filter = value[i] ;
+				
+				// check for invalid characters
+				
+				if ( Log.hasIllegalCharacters(filter) )
+				{
+					throw new InvalidFilterError( (new StringFormatter(ERROR_FILTER)).format(filter) + CHARS_INVALID ) ;
+				}
+				
+				index = filter.indexOf("*") ;
+ 				
+ 				if ((index >= 0) && (index != (filter.length -1)))
+                {                        
+					throw new InvalidFilterError( (new StringFormatter(ERROR_FILTER)).format( filter) + CHAR_PLACEMENT ) ;
+				}
+				
+			}
+		}
+		else
+		{
+			value = ["*"] ; // if null was specified then default to all
+		}
+
+		if ( _set.size() > 0 )
+		{
+			//Log.removeTarget(this);
+			_filters = value;
+			//Log.addTarget(this);
+		}
+		else
+		{
+			_filters = value;
+		}
+	}
+        
 	/**
 	 * Provides access to the level this target is currently set at.
 	 */
-	public var level:Number ;
-	
+	public function get level():Number
+	{
+		return _level ;	
+	}
+
+	/**
+	 * (read-write) Sets the level of this target.
+	 */
+	public function set level( value:Number ):Void
+	{
+		//Log.removeTarget(this) ;
+		_level = value ;
+		//Log.addTarget(this) ;     
+	} 
+
+	/**
+	 * Inserts a category in the fllters if this category don't exist.
+	 * Returns a boolean if the category is add in the list.
+	 */
+	public function addCategory( category:String ):Boolean 
+	{
+		if ( _filters.indexOf( category ) == -1 ) 
+		{
+			return false ;
+		}
+		_filters.push( category ) ;
+		return true ;
+	}
+
 	/**
 	 * Sets up this target with the specified logger.
 	 * Note : this method is called by the framework and should not be called by the developer.
 	 */
-	public function addLogger(logger:ILogger):Void 
+	public function addLogger( logger:ILogger ):Void 
 	{
-		logger.addEventListener(LogEvent.LOG, this) ;
+		if ( !_set.contains(logger) )
+		{
+			_set.insert(logger) ;
+			logger.addEventListener( LogEvent.LOG, this ) ;
+		}
 	}
 
 	/**
@@ -89,11 +195,7 @@ class vegas.logging.AbstractTarget extends CoreObject implements ITarget
 	 */
 	public function handleEvent(e:Event) 
 	{
-		if ( level == LogEventLevel.ALL || level == LogEvent(e).level ) {
-			var category:String = LogEvent(e).getTarget().category ;
-			var isValid:Boolean = _isValidCategory(category) ;
-			if (isValid) logEvent(LogEvent(e)) ;
-		}
+		_logHandler( LogEvent(e) ) ;
 	}
 
     /**
@@ -106,14 +208,36 @@ class vegas.logging.AbstractTarget extends CoreObject implements ITarget
 	{
 		//
 	}
-			
+
+	/**
+	 * Removes a category in the fllters if this category exist.
+	 * Returns a boolean if the category is remove.
+	 */
+	public function removeCategory( category:String ):Boolean
+	{
+		var pos:Number = _filters.indexOf( category ) ;
+		if ( pos > -1) 
+		{
+			_filters.splice(pos, 1) ;
+			return true ;
+		}
+		else 
+		{
+			return false ;
+		}
+	}
+
 	/**
 	 * Stops this target from receiving events from the specified logger.
 	 * Note : this method is called by the framework and should not be called by the developer.
 	 */
 	public function removeLogger(logger:ILogger):Void 
 	{
-		logger.removeEventListener(LogEvent.LOG, this) ;
+		if (_set.contains(logger))
+		{
+			_set.remove(logger) ;
+			logger.removeEventListener(LogEvent.LOG, this) ;
+		}
 	}
 
 	/**
@@ -138,7 +262,11 @@ class vegas.logging.AbstractTarget extends CoreObject implements ITarget
 	 */
 	private function _isValidCategory(category:String):Boolean 
 	{
-		if (category == Log.DEFAULT_CATEGORY) return true ;
+		if ( category == Log.DEFAULT_CATEGORY ) 
+		{
+			return true ;
+		}
+		
 		var l:Number = filters.length ;
 		if (l > 0) 
 		{
@@ -159,5 +287,28 @@ class vegas.logging.AbstractTarget extends CoreObject implements ITarget
 			return true ;
 		}
 	}
+		
+	/**
+	 * Storage for the filters property.
+	 */
+	private var _filters:Array = [ "*" ] ;
 	
+	/**
+	 * Storage for the filters property.
+	 */
+	private var _level:Number ;
+	
+	/**
+	 * This method will call the <code>logEvent</code> method if the level of the event is appropriate for the current level.
+	 */
+	private function _logHandler( e:LogEvent ):Void
+	{
+		if ( e.level >= level )
+		{
+			logEvent(e) ;
+		}
+	}
+	
+	private var _set:HashSet ;
+
 }

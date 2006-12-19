@@ -21,6 +21,7 @@
   
 */
 
+import vegas.core.CoreObject;
 import vegas.core.IFormattable;
 import vegas.util.AttributeType;
 
@@ -30,7 +31,7 @@ import vegas.util.AttributeType;
  * @author eKameleon
  * @see ASSetPropFlags global and no documented function.
  */
-class vegas.util.Attribute implements IFormattable 
+class vegas.util.Attribute extends CoreObject implements IFormattable 
 {
 
 	/**

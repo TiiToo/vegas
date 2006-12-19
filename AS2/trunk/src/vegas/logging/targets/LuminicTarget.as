@@ -24,7 +24,6 @@
 import vegas.logging.LogEvent;
 import vegas.logging.targets.LineFormattedTarget;
 import vegas.maths.Range;
-import vegas.util.TypeUtil;
 
 /**
  * Provides a logger target that uses the FlashInspector console to output log messages. 
@@ -41,10 +40,6 @@ import vegas.util.TypeUtil;
  * target.filters = ["__TEST__"] ;
  * target.level = LogEventLevel.ALL ; // level filter !
  * 
- * // ----o register target
- * Log.addTarget(target); 
- * 
- * // ----o create a log writer
  * var logger:ILogger = Log.getLogger("__TEST__") ;
  * 
  * logger.debug("hello") ;
@@ -68,7 +63,7 @@ class vegas.logging.targets.LuminicTarget extends LineFormattedTarget
 	public function LuminicTarget(depth:Number, collapse:Boolean) 
 	{
 		_lc = new LocalConnection() ;
-		isCollapse = (collapse == false) ? false : true ;
+		isCollapse = collapse ;
 		setMaxDepth( depth || 4 ) ;
 	}
 
@@ -104,40 +99,6 @@ class vegas.logging.targets.LuminicTarget extends LineFormattedTarget
 	}
 
 	/**
-	 * Returns and format the string representation of the log event.
-	 */
-	/*override*/ public function formatLogEvent(ev:LogEvent):Object 
-	{
-		
-		var category:String = ev.getTarget().category ;
-		var level:String = ev.level.toString() ;
-		var msg = ev.context ;
-		var time:Date = new Date(ev.getTimeStamp()) ; 
-		
-		var context:Object = { loggerId:null , levelName:level , time:time };
-		
-		if ( !TypeUtil.typesMatch( msg, String ) && isCollapse ) 
-		{
-			context.argument = _serializeObj( msg , 1) ;	
-		}
-		else 
-		{
-			var data:Object = new Object();
-			data.type = "string" ;
-			data.value = formatMessage
-			(
-				msg.toString() , 
-				level, 
-				category, 
-				context.time
-			) ;
-			context.argument = data ;
-		}
-		
-		return context ;
-	}
-
-	/**
 	 * Returns the max depth to collaspe the structure of an object in the console.
 	 */
 	public function getMaxDepth():Number 
@@ -161,14 +122,34 @@ class vegas.logging.targets.LuminicTarget extends LineFormattedTarget
 	 */
 	/*override*/ public function logEvent(e:LogEvent) 
 	{
-       	var message = e.message ;
+		var message = e.message ;
         var level:String = LogEvent.getLevelString(e.level) ;
-        var category:String = e.currentTarget.category ;
-        var time:Date = new Date() ;
+		var category:String = e.currentTarget.category ;
+		var time:Date = new Date() ;
 
-        var context:Object = formatLogEvent(e) ;
-        
-        internalLog(context, e.level) ;
+		var context:Object = 
+		{
+			loggerId     : null ,
+			levelName    : level ,
+			time : time
+		} ;
+	    	
+		if (isCollapse) 
+		{
+			context.argument = _serializeObj( message , 1) ;
+		} 
+		else 
+		{
+			var data:Object = 
+			{
+				type  : "string" ,
+				value : formatMessage( message, level, category, time)
+			} ;
+			context.argument = data ;
+		}
+		
+		internalLog( context ) ;
+		
 	}
 
 	/**

@@ -21,6 +21,7 @@
   
 */
 
+import vegas.core.CoreObject;
 import vegas.core.IEquality;
 import vegas.data.Collection;
 import vegas.data.collections.CollectionFormat;
@@ -43,11 +44,11 @@ import vegas.util.serialize.Serializer;
  * <p>These operations allow linked lists to be used as a stack, queue, etc.</p>
  * @author eKameleon
  */
-class vegas.data.list.LinkedList implements List, Queue
+class vegas.data.list.LinkedList extends CoreObject implements List, Queue
 {
 
 	/**
-	 * Creates a new LinkedList.
+	 * Creates a new LinkedList instance.
 	 */
 	function LinkedList( c:Collection )
 	{
@@ -82,7 +83,7 @@ class vegas.data.list.LinkedList implements List, Queue
 	 */
 	public function clone() 
 	{
-		var list:LinkedList = new LinkedList(  ) ;
+		var list:LinkedList = new LinkedList() ;
 		for ( var e:LinkedListEntry = _header.next ; e != _header ; e = e.next )
 		{
             list.insert(e.element) ;
@@ -110,7 +111,7 @@ class vegas.data.list.LinkedList implements List, Queue
 	 * Returns {@code true} if this collection contains the specified element.
 	 * @return {@code true} if this collection contains the specified element.
 	 */
-	function containsAll(c : Collection):Boolean 
+	public function containsAll(c : Collection):Boolean 
 	{
 		var it:Iterator = c.iterator() ;
 		while(it.hasNext())
@@ -325,7 +326,7 @@ class vegas.data.list.LinkedList implements List, Queue
 	}
 
 	/**
-	 * Inserts all of the elements in the specified collection into this list at the specified position (optional operation).
+	 * Inserts all of the elements in the spe	cified collection into this list at the specified position (optional operation).
 	 */
     public function insertAllAt( index:Number, c:Collection):Boolean
     {
@@ -417,12 +418,12 @@ class vegas.data.list.LinkedList implements List, Queue
     public function lastIndexOf( o ):Number 
     {
         var index:Number = _size ;
-        if (o==null) 
+        if ( o == null ) 
         {
-            for (var e:LinkedListEntry = _header.previous; e != _header; e = e.previous) 
+            for (var e:LinkedListEntry = _header.previous ; e != _header ; e = e.previous) 
             {
                 index--;
-                if (e.element==null)
+                if ( e.element == null )
                 {
                     return index ;
                 }
@@ -430,7 +431,7 @@ class vegas.data.list.LinkedList implements List, Queue
         } 
         else 
         {
-            for (var e:LinkedListEntry = _header.previous ; e != _header ; e = e.previous ) 
+            for ( var e:LinkedListEntry = _header.previous ; e != _header ; e = e.previous ) 
             {
                 index-- ;
                 if (o instanceof IEquality)
@@ -473,7 +474,6 @@ class vegas.data.list.LinkedList implements List, Queue
         }
         return getFirst() ;
     }
-
 
     /**
      * Retrieves and removes the head (first element) of this list.
@@ -534,8 +534,6 @@ class vegas.data.list.LinkedList implements List, Queue
         return false;
     }
     
-
-   
 	/**
 	 * Removes all elements defined in the specified Collection in the list.
 	 * @return {@code true} if all elements are find and remove in the list.
@@ -668,7 +666,7 @@ class vegas.data.list.LinkedList implements List, Queue
 	function subList(fromIndex : Number, toIndex : Number) : List 
 	{
 		var l:List = new ArrayList() ;
-		var it:ListIterator = listIterator() ;
+		var it:ListIterator = listIterator(fromIndex) ;
 		var d:Number = (fromIndex - toIndex) + 1 ; 
 		for (var i:Number = fromIndex ; i<= d ; i++) 
 		{

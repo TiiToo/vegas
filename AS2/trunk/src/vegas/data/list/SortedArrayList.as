@@ -149,7 +149,10 @@ class vegas.data.list.SortedArrayList extends ArrayList
 	public function sort( compare , options:Number ):Array  
 	{
 		if (typeof(compare) != "function") return null ;
-		if (options) _options = options ;
+		if (options) 
+		{
+			_options = options ;
+		}
 		var compareFunc:Function = (compare instanceof IComparator) ? compare.compare : compare ;
 		return _a.sort(compareFunc , _options) ;
 	}

@@ -35,11 +35,11 @@ dynamic class vegas.logging.LogEvent extends DynamicEvent
 	/**
 	 * Creates a new LogEvent.
 	 */
-	public function LogEvent(msg:String, lv:Number, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
+	public function LogEvent( message , level:Number ) 
 	{
-		super(LogEvent.LOG, target, context, bubbles, eventPhase, time, stop) ;
-		message = msg || "" ;
-		level = lv || LogEventLevel.ALL ;
+		super( LogEvent.LOG ) ;
+		this.message = message || "" ;
+		this.level = isNaN(level) ? LogEventLevel.ALL : level ;
 	}
 
 	/**
@@ -55,7 +55,7 @@ dynamic class vegas.logging.LogEvent extends DynamicEvent
 	/**
 	 * Provides access to the message that was logged.
 	 */
-	public var message:String ;
+	public var message ;
 	
 	/**
 	 * Returns the shallow copy of the event.
@@ -63,37 +63,53 @@ dynamic class vegas.logging.LogEvent extends DynamicEvent
 	 */
 	/*override*/ public function clone() 
 	{
-		return new LogEvent(message, level) ;
+		return new LogEvent( message, level ) ;
 	}
 	
 	/**
 	 * Returns a string value representing the level specified.
 	 */
-	static public function getLevelString(value:Number):String 
+	static public function getLevelString( value:Number ):String 
 	{
 		
-		switch (value) {
+		switch (value) 
+		{
 			
-			case LogEventLevel.ALL : 
-				return LogEventLevel.ALL.toString() ;
+			case LogEventLevel.ALL :
+			{
+				return "ALL" ;
+			}
 			
 			case LogEventLevel.DEBUG :
-				return LogEventLevel.DEBUG.toString() ;
+			{
+				return "DEBUG" ;
+			}
 			
 			case LogEventLevel.ERROR :
-				return LogEventLevel.ERROR.toString() ;
-
+			{
+				return "ERROR" ;
+			}
+			
 			case LogEventLevel.FATAL :
-				return LogEventLevel.FATAL.toString() ;
-		
+			{
+				return "FATAL" ;
+			}
+			
 			case LogEventLevel.INFO :
-				return LogEventLevel.INFO.toString() ;
+			{
+				return "INFO" ;
+			}
 			
 			case LogEventLevel.WARN :
-				return LogEventLevel.WARN.toString() ;
-		
+			{
+				return "WARN" ;
+			}
+			
 			default :
-				return null ;
+			{
+				return "UNKNOWN" ;
+			}
+			
 		}
 	}
 

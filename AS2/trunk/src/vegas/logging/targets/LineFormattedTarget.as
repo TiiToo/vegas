@@ -42,27 +42,27 @@ class vegas.logging.targets.LineFormattedTarget extends AbstractTarget
 	/**
 	 * Indicates if the category for this target should added to the trace.
 	 */
-	public var includeCategory:Boolean ;
+	public var includeCategory:Boolean = false ;
 	
 	/**
 	 * Indicates if the date should be added to the trace.
 	 */
-	public var includeDate:Boolean ;
+	public var includeDate:Boolean = false ;
 	
 	/**
 	 * Indicates if the level for the event should added to the trace.
 	 */
-	public var includeLevel:Boolean ;
+	public var includeLevel:Boolean = false ;
 	
 	/**
 	 * Indicates if a line number should be added to the trace.
 	 */
-	public var includeLines:Boolean ; 
+	public var includeLines:Boolean = false ; 
 	
 	/**
 	 * Indicates if the time should be added to the trace.
 	 */
-	public var includeTime:Boolean ;
+	public var includeTime:Boolean = false ;
 
    	/**
      * The separator string.
@@ -71,8 +71,8 @@ class vegas.logging.targets.LineFormattedTarget extends AbstractTarget
 
 	/**
      * Descendants of this class should override this method to direct the specified message to the desired output.
-     *
      * @param message String containing preprocessed log message which may include time, date, category, etc. based on property settings, such as <code>includeDate</code>, <code>includeCategory</code>, etc.
+     * @param level the LogEventLevel of the message.
 	 */
 	public function internalLog( message , level:Number ):Void
 	{
@@ -82,14 +82,12 @@ class vegas.logging.targets.LineFormattedTarget extends AbstractTarget
 	/**
 	 * This method handles a LogEvent from an associated logger.
 	 */
-	/*override*/ public function logEvent(e:LogEvent) 
+	/*override*/ public function logEvent( e:LogEvent ) 
 	{
-		
 		var message = e.message ;
-		var level:String = LogEvent.getLevelString(e.level) ;
+		var level:String = LogEvent.getLevelString( e.level ) ;
 		var category:String = e.currentTarget.category ;
-		
-		message = formatMessage(message, level, category, new Date()) ;
+		message = formatMessage( message, level, category, new Date() ) ;
 		internalLog ( message, e.level ) ;
 	}
 

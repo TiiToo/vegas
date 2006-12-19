@@ -33,11 +33,9 @@ class vegas.data.list.LinkedListEntry
 	 */
 	function LinkedListEntry( element , next:LinkedListEntry , previous:LinkedListEntry)
 	{
-	
 		this.element = element ;
 		this.next = next ;
 		this.previous = previous ;	
-		
 	}
 	
 	/**

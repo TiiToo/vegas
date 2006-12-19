@@ -263,11 +263,10 @@ package vegas.logging
          */
         private var _loggerCount:uint = 0 ;
         
-         /**
-         * @private
-         * This method will call the <code>logEvent</code> method if the level of the
-         * event is appropriate for the current level.
-         */
+		/**
+		 * This method will call the <code>logEvent</code> method if the level of the
+		 * event is appropriate for the current level.
+		 */
         private function _logHandler( event:LogEvent ):void
         {
             if ( event.level.valueOf() >= level.valueOf() )

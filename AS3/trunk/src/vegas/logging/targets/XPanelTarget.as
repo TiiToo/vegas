@@ -24,13 +24,12 @@
 package vegas.logging.targets
 {
 
-	// FIXME : bug au premier build de l'application. Si la console XPanel vient de s'ouvrir il faut relancer le build une seconde fois !
-
     import flash.events.AsyncErrorEvent;    
    	import flash.events.StatusEvent;
 	import flash.events.SecurityErrorEvent;
     import flash.net.LocalConnection ;
-
+	import flash.utils.getTimer ;
+	
     import vegas.logging.LogEventLevel;
     
 	import vegas.util.ClassUtil ;
@@ -46,19 +45,15 @@ package vegas.logging.targets
         /**
          * Creates a new XPanelTarget instance.
          */ 
-        public function XPanelTarget( name:String="unknow" , restart:Boolean=true )
+        public function XPanelTarget( name:String="unknow"  )
         {
 			super();
 			
             _lc = new LocalConnection() ;
-            _lc.allowDomain("*") ;
     	    _lc.addEventListener ( AsyncErrorEvent.ASYNC_ERROR, _onAsyncError ) ;
     	    _lc.addEventListener ( StatusEvent.STATUS, _onStatus ) ;
     		_lc.addEventListener ( SecurityErrorEvent.SECURITY_ERROR , _onSecurityError ) ;   
-    		if (restart == true)
-    		{			
-	            _lc.send( CONNECTION_ID, DISPATCH_MESSAGE, new Date().valueOf(), START + " " + name, LEVEL_START );
-			}
+            _lc.send( CONNECTION_ID, DISPATCH_MESSAGE, getTimer(), START + " " + name, LEVEL_START );
             
         }
 
@@ -127,7 +122,7 @@ package vegas.logging.targets
 		 */
         override protected function formatMessage(message:*, level:String, category:String, date:Date):String 
         {
-	    	//message = (typeof message == "xml") ? (message as XML).toXMLString() : message.toString();
+	    	message = (typeof message == "xml") ? (message as XML).toXMLString() : message.toString();
 	    	return super.formatMessage(message, level, category, date) ;
     	}
  
@@ -175,8 +170,16 @@ package vegas.logging.targets
 	    			break;
 	    		}
 	    	}
-	    	
-			_lc.send( CONNECTION_ID , DISPATCH_MESSAGE , new Date().valueOf(), message, targetLevel ) ;
+	    	try
+			{
+				_lc.send( CONNECTION_ID , DISPATCH_MESSAGE , getTimer(), message, targetLevel ) ;
+			}
+			catch(e:Error)
+			{
+				
+				//
+				
+			}
 	        
 	    }   
 

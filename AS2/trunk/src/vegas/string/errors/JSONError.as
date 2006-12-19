@@ -21,7 +21,6 @@
   
 */
 
-import vegas.errors.ErrorFormat;
 import vegas.errors.FatalError;
 
 /**
@@ -36,9 +35,7 @@ class vegas.string.errors.JSONError extends FatalError
 	 */
 	public function JSONError(message:String, at:Number, source:String) 
 	{
-		super(message) ;
-		this.at = at ;
-		this.source = source ;
+		super( formatMessage(message, at, source ) ) ;
 	}
 
 	/**
@@ -51,17 +48,24 @@ class vegas.string.errors.JSONError extends FatalError
 	 */
 	public var source:String ;
 	
-	/**
-	 * Returns the string representation of the error.
-	 * @return the string representation of the error.
-	 */	
-	public function toString():String 
+	public function formatMessage( message:String , at:Number, source:String ):String
 	{
-		var ret:String = (new ErrorFormat()).formatToString(this) ;
-		if (!isNaN(at)) ret += ", at:" + at ;
-		if (source) ret += " in \"" + source + "\"";
-		getLogger().fatal( ret ) ;
+		var ret:String = message || "" ;
+		
+		if (!isNaN(at)) 
+		{
+			ret += ", at:" + at ;
+		}
+		
+		if (source) 
+		{
+			ret += " in \"" + source + "\"";
+		}
+		
+		this.at = at ;
+		this.source = source ;
+		
 		return ret ;
 	}
-  
+	
 }

@@ -47,7 +47,7 @@ class vegas.events.EventListenerCollection extends CoreObject implements Iterabl
 	{
 		_listeners = new SortedArrayList() ;
 		_listeners.setComparator(new EventListenerComparator()) ;
-		_listeners.setOptions(Array.NUMERIC) ;
+		_listeners.setOptions( Array.NUMERIC ) ;
 	}
 	
 	/**
@@ -61,7 +61,7 @@ class vegas.events.EventListenerCollection extends CoreObject implements Iterabl
 		var container:EventListenerContainer = new EventListenerContainer(listener) ;
 		container.enableAutoRemove(autoRemove) ;
 		container.setPriority(priority) ;
-		_listeners.insert(container) ;
+		_listeners.insert( container ) ;
 		return _listeners.size() ;
 	}
 

@@ -21,57 +21,42 @@
   
 */
 
-
-import vegas.core.types.Int;
-import vegas.util.serialize.Serializer;
-
 /**
  * Static class containing constants for use in the level  property.
  * @author eKameleon
  */
-class vegas.logging.LogEventLevel extends Int 
+class vegas.logging.LogEventLevel
 {
 	
 	/**
-	 * Creates a new LogEventLevel instance.
-	 */
-	public function LogEventLevel(name:String, value:Number) 
-	{
-		super(value) ;
-		_name = name ;
-	}
-
-	/**
 	 * Intended to force a target to process all messages (0).
 	 */
-	static public var ALL:LogEventLevel = new LogEventLevel("ALL", 0) ;
+	static public var ALL:Number = 0 ;
 
 	/**
 	 * Designates informational level messages that are fine grained and most helpful when debugging an application (2).
 	 */
-	static public var DEBUG:LogEventLevel = new LogEventLevel("DEBUG", 2) ;
+	static public var DEBUG:Number = 2 ;
 
 	/**
 	 * Designates error events that might still allow the application to continue running (8).
 	 */	
-	static public var ERROR:LogEventLevel = new LogEventLevel("ERROR", 8) ;
+	static public var ERROR:Number = 8 ;
 	
 	/**
 	 * Designates events that are very harmful and will eventually lead to application failure (1000).
 	 */
-	static public var FATAL:LogEventLevel = new LogEventLevel("FATAL", 1000) ;
+	static public var FATAL:Number = 1000 ;
 
 	/**
 	 * Designates informational messages that highlight the progress of the application at coarse-grained level (4).
 	 */
-	static public var INFO:LogEventLevel = new LogEventLevel("INFO", 4) ;	
+	static public var INFO:Number =  4 ;	
 
 	/**
 	 * Designates events that could be harmful to the application operation (6).
 	 */	
-	static public var WARN:LogEventLevel = new LogEventLevel("WARN", 6) ; ;
-	
-	static private var __ASPF__ = _global.ASSetPropFlags(LogEventLevel, null , 7, 7) ;
+	static public var WARN:Number = 6 ; ;
 	
 	/**
 	 * Returns true if the number level passed in argument is valid.
@@ -82,33 +67,12 @@ class vegas.logging.LogEventLevel extends Int
 		var l:Number = levels.length ;
 		while (--l > -1) 
 		{
-			if (level == levels[l])
+			if (level.valueOf() == levels[l].valueOf())
 			{
 				return true ;
 			}
 		}
 		return false ;
-	}
-	
-	/**
-	 * Returns the string representation of the object.
-	 */	
-	/*override*/ public function toString():String 
-	{ 
-		return _name ; 
-	}
-
-	/**
-	 * The name of this LogEventLevel instance.
-	 */
-	private var _name:String ;
-
-	/**
-	 * This method is used by the toSource method.
-	 */
-	/*protected*/ private function _getParams():Array 
-	{
-		return [ Serializer.toSource(_name) ].concat(super._getParams()) ;
 	}
 
 }

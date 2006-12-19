@@ -42,13 +42,16 @@ class vegas.data.collections.AbstractCollection extends CoreObject implements Co
 	 */
 	private function AbstractCollection(ar:Array) 
 	{
-		if(ar.length > 0) {
+		if(ar.length > 0) 
+		{
 			_a = [].concat(arguments[0]) ;
-		} else {
+		}
+		else 
+		{
 			_a = [] ;
 		}
 	}
-
+	
 	/**
 	 * Removes all of the elements from this collection (optional operation).
 	 */
@@ -65,7 +68,7 @@ class vegas.data.collections.AbstractCollection extends CoreObject implements Co
 	{
 		//
 	}
-
+	
 	/**
 	 * Returns {@code true} if this collection contains the specified element.
 	 * @return {@code true} if this collection contains the specified element.

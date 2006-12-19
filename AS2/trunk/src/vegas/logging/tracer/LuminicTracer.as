@@ -42,7 +42,8 @@ class vegas.logging.tracer.LuminicTracer
 	 * Returns the internal singleton LuminicTarget instance.
 	 * @return the internal singleton LuminicTarget instance.
 	 */	
-	static public function getInstance():LuminicTarget {
+	static public function getInstance():LuminicTarget 
+	{
 		return _instance ;
 	}
 
@@ -53,12 +54,12 @@ class vegas.logging.tracer.LuminicTracer
 	{
 		release() ;
 		category = namespace ;
-		if (category.length > 0) {
+		if (category.length > 0) 
+		{
 			_instance = new LuminicTarget(depth, collapse) ;
-			_instance.filters = [category] ;
+			_instance.filters = [ category ] ;
 			_instance.level = LogEventLevel.ALL ;
 			_instance.addLogger( _logger ) ;
-			Log.addTarget(_instance) ; 
 			_logger = Log.getLogger(namespace) ;
 		}
 	}

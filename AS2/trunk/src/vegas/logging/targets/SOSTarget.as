@@ -25,6 +25,7 @@ import vegas.data.iterator.Iterator;
 import vegas.data.queue.LinearQueue;
 import vegas.errors.Warning;
 import vegas.events.Delegate;
+import vegas.logging.LogEvent;
 import vegas.logging.LogEventLevel;
 import vegas.logging.targets.LineFormattedTarget;
 import vegas.logging.targets.SOSType;
@@ -53,9 +54,6 @@ import vegas.logging.targets.SOSType;
  * //target.levelPolicy = SOSType.DISABLE ; // SOSType.ENABLE default value
  * target.sendFoldLevelMessage(LogEventLevel.DEBUG, "Init SOS console", "test a fold message") ;
  * target.sendMessage("Init SOS console....") ;
- * 
- * // register target
- * Log.addTarget(target); 
  * 
  * // create a log writer
  * var logger:ILogger = Log.getLogger("monApplication") ;
@@ -96,12 +94,12 @@ class vegas.logging.targets.SOSTarget extends LineFormattedTarget
 		
 		// Init Colors
 		
-		setLevelColor(LogEventLevel.ALL) ;
-		setLevelColor(LogEventLevel.DEBUG) ;
-		setLevelColor(LogEventLevel.ERROR) ;
-		setLevelColor(LogEventLevel.FATAL) ;
-		setLevelColor(LogEventLevel.INFO) ;
-		setLevelColor(LogEventLevel.WARN) ;
+		setLevelColor( LogEventLevel.ALL ) ;
+		setLevelColor( LogEventLevel.DEBUG ) ;
+		setLevelColor( LogEventLevel.ERROR ) ;
+		setLevelColor( LogEventLevel.FATAL ) ;
+		setLevelColor( LogEventLevel.INFO ) ;
+		setLevelColor( LogEventLevel.WARN ) ;
 		
 		levelPolicy = SOSType.ENABLE ;
 		
@@ -153,7 +151,8 @@ class vegas.logging.targets.SOSTarget extends LineFormattedTarget
 	/**
 	 * Exit and close the SOS console.
 	 */
-	public function exit():Void {
+	public function exit():Void 
+	{
 		sendMessage(SOSType.EXIT) ;
 	}
 
@@ -163,7 +162,8 @@ class vegas.logging.targets.SOSTarget extends LineFormattedTarget
 	public function getFoldMessage( title:String, message:String, level:Number ):String
 	{
 		var msg:String = "";
-		msg += '!SOS<showFoldMessage key="' + String(level) + '">';
+		var levelName:String = LogEvent.getLevelString(level) ;
+		msg += '!SOS<showFoldMessage key="' + levelName + '">';
 		msg += '<title>' + title + '</title>';
 		msg += '<message><![CDATA[' + message + ']]></message>' ;
 		msg += '</showFoldMessage>' ;
@@ -183,7 +183,8 @@ class vegas.logging.targets.SOSTarget extends LineFormattedTarget
 	 */
 	public function getMessage( msg:String , level:Number ):String
 	{
-		return  "!SOS<showMessage key='" + String(level) + "'>" + String(msg) + "</showMessage>\n"  ;	
+		var levelName:String = LogEvent.getLevelString(level) ;
+		return  "!SOS<showMessage key='" + levelName + "'>" + msg + "</showMessage>\n"  ;	
 	}
 
 	/**
@@ -196,9 +197,7 @@ class vegas.logging.targets.SOSTarget extends LineFormattedTarget
 	
 	/**
      * Descendants of this class should override this method to direct the specified message to the desired output.
-     *
      * @param message String containing preprocessed log message which may include time, date, category, etc. 
-     *        based on property settings, such as <code>includeDate</code>, <code>includeCategory</code>, etc.
 	 */
 	/*override*/ public function internalLog( message , level:Number ):Void
 	{
@@ -222,7 +221,7 @@ class vegas.logging.targets.SOSTarget extends LineFormattedTarget
 	 */
 	public function sendLevelMessage(level:Number, message:String):Void 
 	{
-		if (levelPolicy == SOSType.ENABLE) 
+		if ( levelPolicy == SOSType.ENABLE ) 
 		{
 			message = getMessage(message, level) ;
 		}
@@ -264,12 +263,16 @@ class vegas.logging.targets.SOSTarget extends LineFormattedTarget
 	 * Sets the color for a specific level.
 	 * @see LogEventLevel
 	 */
-	public function setLevelColor( level:LogEventLevel, color:Number ):Void 
+	public function setLevelColor( level:Number, color:Number ):Void 
 	{
-		if (!LogEventLevel.isValidLevel(level)) return ;
+		if (!LogEventLevel.isValidLevel(level)) 
+		{
+			return ;
+		}
+		var levelName:String = LogEvent.getLevelString(level) ;
 		var msg:String = "!SOS<setKey>" ;
-		msg += "<name>" + level.toString() + "</name>" ;
-		msg += "<color>"+ (color || SOSType[level.toString()+"_COLOR"]) + "</color>" ;
+		msg += "<name>" + levelName + "</name>" ;
+		msg += "<color>"+ (color || SOSType[ levelName + "_COLOR" ]) + "</color>" ;
 		msg += "</setKey>\n" ;
 		sendMessage(msg) ;
 	}

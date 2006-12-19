@@ -32,6 +32,8 @@ import vegas.errors.IndexOutOfBoundsError;
 import vegas.errors.NoSuchElementError;
 import vegas.errors.UnsupportedOperation;
 
+// FIXME : with seek method if the value is out of bounds the error is throw but the message is [Object] ???? 
+
 /**
  * Converts a {@code LinkedList} to a specific {@code ListIterator}.
  * @author eKameleon
@@ -52,34 +54,7 @@ class vegas.data.iterator.LinkedListIterator extends CoreObject implements ListI
 		
 		_list = list ;
 		
-		_lastReturned = _list.getHeader() ;
-		_expectedModCount = _list.getModCount() ;
-		
-		var size:Number = _list.size() ;
-		
-		if (index < 0 || index > size)
-	    {
-	    	throw new IndexOutOfBoundsError(this + " constructor failed, index:" + index + ", size:" + size + "." ) ;
-	    }
-		
-		if ( index < ( size >> 1 ) ) 
-	    {
-			
-			_next = _list.getHeader().next ;
-			
-			for ( _nextIndex = 0 ; _nextIndex < index ; _nextIndex ++ )
-			{
-			    _next = _next.next ;
-			}
-	    } 
-	    else 
-	    {
-			_next = _list.getHeader()  ;
-			for ( _nextIndex = size ; _nextIndex > index ; _nextIndex-- )
-			{
-				_next = _next.previous ;
-			}
-		}
+		seek( index ) ;
 		
 	}
 
@@ -90,10 +65,9 @@ class vegas.data.iterator.LinkedListIterator extends CoreObject implements ListI
 	{
 	    if ( _list.getModCount() != _expectedModCount )
 	    {
-			trace( new ConcurrentModificationError(this + " check for comodification failed." ) ) ;
+			throw new ConcurrentModificationError(this + " check for comodification failed with a LinkedList." ) ;
 		}
     }
-
 
 	/**
 	 * Returns {@code true} if the iteration has more elements.
@@ -138,9 +112,6 @@ class vegas.data.iterator.LinkedListIterator extends CoreObject implements ListI
 	 */
 	public function insert( o ):Void 
 	{
-		
-		// FIXME bug ??
-		
 	    checkForComodification();
 	    _lastReturned = _list.getHeader() ;
 	    _list._insertBefore(o, _next) ;
@@ -189,7 +160,7 @@ class vegas.data.iterator.LinkedListIterator extends CoreObject implements ListI
 	 */
 	public function previous() 
 	{
-	    if (nextIndex == 0)
+	    if (_nextIndex == 0)
 	    {
 			throw new NoSuchElementError(this + " 'previous' method failed.");
 	    }
@@ -240,7 +211,7 @@ class vegas.data.iterator.LinkedListIterator extends CoreObject implements ListI
 	 */
 	public function reset() : Void 
 	{
-		// TODO Finish the reset method of the LinkedListIterator. 
+		seek(0) ;
 	}
 
 	/**
@@ -248,7 +219,34 @@ class vegas.data.iterator.LinkedListIterator extends CoreObject implements ListI
 	 */
 	public function seek(n : Number) : Void 
 	{
-		// TODO Finish the seek method of the LinkedListIterator.
+		_lastReturned = _list.getHeader() ;
+		_expectedModCount = _list.getModCount() ;
+		
+		var size:Number = _list.size() ;
+		
+		if (n < 0 || n > size)
+	    {
+	    	throw new IndexOutOfBoundsError(this + " seek failed, index:" + n + ", size:" + size + "." ) ;
+	    }
+		
+		if ( n < ( size >> 1 ) ) 
+	    {
+			
+			_next = _list.getHeader().next ;
+			
+			for ( _nextIndex = 0 ; _nextIndex < n ; _nextIndex ++ )
+			{
+			    _next = _next.next ;
+			}
+	    } 
+	    else 
+	    {
+			_next = _list.getHeader()  ;
+			for ( _nextIndex = size ; _nextIndex > n ; _nextIndex-- )
+			{
+				_next = _next.previous ;
+			}
+		}
 	}
 
 	/**
@@ -267,10 +265,29 @@ class vegas.data.iterator.LinkedListIterator extends CoreObject implements ListI
 	    
 	}
 
+	/**
+	 * The last list entry returned.
+	 */
 	private var _lastReturned:LinkedListEntry;
+	
+	/**
+	 * The list reference of this iterator.
+	 */
 	private var _list:LinkedList ;
+	
+	/**
+	 * The next entry.
+	 */
 	private var _next:LinkedListEntry ;
+	
+	/**
+	 * The next index in the iterator.
+	 */
 	private var _nextIndex:Number ;
+	
+	/**
+	 * The internal expected mod count value.
+	 */
 	private var _expectedModCount:Number ;
 
 }

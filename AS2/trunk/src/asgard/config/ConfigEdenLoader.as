@@ -27,9 +27,7 @@ import asgard.events.LoaderEvent;
 import asgard.net.EdenLoader;
 import asgard.net.URLRequest;
 
-import vegas.logging.ILogger;
-import vegas.logging.Log;
-import vegas.util.ConstructorUtil;
+import vegas.errors.Warning;
 
 /**
  * The ConfigEdenLoader class.
@@ -43,7 +41,6 @@ class asgard.config.ConfigEdenLoader extends EdenLoader
 	 */
 	function ConfigEdenLoader( config ) 
 	{
-		
 		super();
 		_oConfig = config || Config.getInstance() ;
 		
@@ -63,8 +60,6 @@ class asgard.config.ConfigEdenLoader extends EdenLoader
 		setFileName(s) ;	
 	}
 	
-	static public var LOGGER:ILogger = Log.getLogger( ConstructorUtil.getPath( new ConfigEdenLoader() ) ) ;
-
 	public function get path():String 
 	{
 		return getPath() ;	
@@ -134,14 +129,21 @@ class asgard.config.ConfigEdenLoader extends EdenLoader
 	
   	/*override*/ public function onLoadInit(e:LoaderEvent):Void 
   	{
-		LOGGER.info(this + ".onLoadInit() : Config has been loaded") ; 
+		// 
 	}
 
 	static public function protectConfig( oConfig ):Void 
 	{
-		oConfig.__resolve = function( p:String ) : String 
+		oConfig.__resolve = function( p:String ):String 
 		{
-			ConfigEdenLoader.LOGGER.warn("Config object : '" + p + "' property is undefined" ) ;
+			try
+			{
+				throw new Warning("Config object : '" + p + "' property is undefined") ;
+			}
+			catch(e)
+			{
+					
+			}
 			return "" ;
 		} ;
 		_global.ASSetPropFlags(oConfig, "__resolve", 7, 1) ;

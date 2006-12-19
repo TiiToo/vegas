@@ -23,7 +23,6 @@
 
 import vegas.logging.ILogger;
 import vegas.logging.Log;
-import vegas.logging.LogEventLevel;
 import vegas.logging.targets.SOSTarget;
 
 /**
@@ -110,17 +109,15 @@ class vegas.logging.tracer.SOSTracer
 	 */
 	static public function initialize(name:String, color:Number, includes:Boolean):Void 
 	{
-		_logger = Log.getLogger() ;
 		_instance = new SOSTarget(color) ;
+		_instance.filters = ["vegas.logging.targets.*"] ;
 		_instance.setAppName(name || "SOSTracer");
-		_instance.getIdentify() ;
-		_instance.level = LogEventLevel.ALL ;
 		if (includes)
 		{
 			setIncludes(true, true, true, true, true) ;
 		}
-		Log.addTarget(_instance) ; 
-		
+		_instance.getIdentify() ;
+		_logger = Log.getLogger("vegas.logging.targets.SOSTarget") ;
 	}
 	
 	/**

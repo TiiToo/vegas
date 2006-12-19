@@ -23,7 +23,7 @@
 
 import vegas.errors.AbstractError;
 import vegas.errors.ErrorElement;
-import vegas.errors.ErrorFormat;
+import vegas.logging.LogEventLevel;
 
 /**
  * The error throws when a fatal method or action is detected in the code.
@@ -42,14 +42,11 @@ class vegas.errors.FatalError extends AbstractError
 	}
 
 	/**
-	 * Returns the string representation of this instance.
-	 * @return the string representation of this instance
+	 * Returns the internal LogEventLevel used in the constructor of this instance.
 	 */
-	/*override*/ public function toString():String 
+	public function getLevel():Number
 	{
-		var msg:String = (new ErrorFormat()).formatToString(this) ;
-		getLogger().fatal( msg ) ;
-		return msg ;
+		return LogEventLevel.FATAL ;	
 	}
-	
+
 }

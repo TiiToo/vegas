@@ -27,7 +27,8 @@ import vegas.data.iterator.Iterator;
  * Implementing this interface allows an object to be iterable.
  * @author eKameleon
  */
-interface vegas.data.iterator.Iterable {
+interface vegas.data.iterator.Iterable 
+{
 	
 	/**
 	 * Returns an iterator.
