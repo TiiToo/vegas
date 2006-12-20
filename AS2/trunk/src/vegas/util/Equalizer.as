@@ -33,7 +33,10 @@ class vegas.util.Equalizer
 {
 
 	/**
-	 * Returns a deep copy of the specified object passed in argument. You can use a {@code ICopyable} instance or a native object.
+	 * Compares if two objects are equal by value. 
+	 * @param o1 the first object to compare
+	 * @param o2 the second object to compare
+	 * @return {@code true} if the 2 objects are equals.
 	 */	
 	static public function equals( o1, o2 ) 
 	{
@@ -89,6 +92,7 @@ class vegas.util.Equalizer
 
 	/**
 	 * Compares if two Arrays are equal by value. 
+	 * @return {@code true} if the 2 objects are equals.
 	 */
 	static public function arrayEquals( ar1, ar2 ):Boolean
     {
@@ -136,6 +140,7 @@ class vegas.util.Equalizer
 
 	/**
 	 * Compares if two Booleans are equal by value. 
+	 * @return {@code true} if the 2 objects are equals.
 	 */
 	static public function booleanEquals( b1 , b2 ):Boolean
     {
@@ -151,7 +156,8 @@ class vegas.util.Equalizer
     }
 
 	/**
-	 * Compares if two Dates are equal by value. 
+	 * Compares if two Dates are equal by value.
+	 * @return {@code true} if the 2 objects are equals.
 	 */
 	static public function dateEquals( d1 , d2 ):Boolean
 	{
@@ -167,7 +173,8 @@ class vegas.util.Equalizer
 	}
 	
 	/**
-	 * Compares if two Errors are equal by value. 
+	 * Compares if two Errors are equal by value.
+	 * @return {@code true} if the 2 objects are equals.
 	 */
 	static public function errorEquals( e1 , e2 ):Boolean
 	{
@@ -183,7 +190,8 @@ class vegas.util.Equalizer
 	}
 	
 	/**
-	 * Compares if two Functions are equal by value. 
+	 * Compares if two Functions are equal by value.
+	 * @return {@code true} if the 2 objects are equals.
 	 */
 	static public function functionEquals( f1 , f2:Function ):Boolean
 	{
@@ -199,7 +207,8 @@ class vegas.util.Equalizer
 	}
 
 	/**
-	 * Compares if two Numbers are equal by value. 
+	 * Compares if two Numbers are equal by value.
+	 * @return {@code true} if the 2 objects are equals.
 	 */
 	static public function numberEquals( n1 , n2 ):Boolean
 	{
@@ -228,7 +237,8 @@ class vegas.util.Equalizer
 	}
 	
 	/**
-	 * Compares if two Objects are equal by value. 
+	 * Compares if two Objects are equal by value.
+	 * @return {@code true} if the 2 objects are equals.
 	 */
 	static public function objectEquals( o1 , o2 ):Boolean
 	{
@@ -270,7 +280,8 @@ class vegas.util.Equalizer
 	}
 	
 	/**
-	 * Compares if two Strings are equal by value. 
+	 * Compares if two Strings are equal by value.
+	 * @return {@code true} if the 2 objects are equals.
 	 */
 	static public function stringEquals( s1 , s2 ):Boolean
     {
