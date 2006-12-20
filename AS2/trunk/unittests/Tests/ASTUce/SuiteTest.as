@@ -85,9 +85,9 @@ class Tests.ASTUce.SuiteTest extends TestCase
         
         t.run( result );
         
-        assertTrue( result.runCount     == 1, "SUIT_002a" );  // warning test
-        assertTrue( result.failureCount == 1, "SUIT_002b" );
-        assertTrue( !result.wasSuccessful(),  "SUIT_002c" );
+        assertTrue( result.runCount     == 1 , "SUIT_002a" ) ;  // warning test
+        assertTrue( result.failureCount == 1 , "SUIT_002b" ) ;
+        assertTrue( !result.wasSuccessful()  ,  "SUIT_002c" ) ;
 	}
     
     public function testOneTestCase()
@@ -96,10 +96,11 @@ class Tests.ASTUce.SuiteTest extends TestCase
         
         t.run( result );
         
-        assertTrue( result.runCount     == 1, "SUIT_003a" );  
-        assertTrue( result.failureCount == 0, "SUIT_003b" );
-        assertTrue( result.errorCount   == 0, "SUIT_003c" );
-        assertTrue( result.wasSuccessful(),   "SUIT_003d" );
+        assertTrue( result.runCount     == 1 , "SUIT_003a" );  
+        assertTrue( result.failureCount == 0 , "SUIT_003b" );
+        assertTrue( result.errorCount   == 0 , "SUIT_003c" );
+        assertTrue( result.wasSuccessful()   ,   "SUIT_003d" );
+        
 	}
     
     public function testNotPublicTestCase()
@@ -133,21 +134,26 @@ class Tests.ASTUce.SuiteTest extends TestCase
         
         t.run( result );
         
-        assertTrue( result.runCount     == 1, "SUIT_006a" );  
-        assertTrue( result.failureCount == 1, "SUIT_006b" );
-        assertTrue( result.errorCount   == 0, "SUIT_006c" );
+        assertTrue( result.runCount     == 1 , "SUIT_006a" );  
+        assertTrue( result.failureCount == 1 , "SUIT_006b" );
+        assertTrue( result.errorCount   == 0 , "SUIT_006c" );
 	}
     
     public function testInheritedTests()
 	{
+		
 		var suite:TestSuite = new TestSuite( InheritedTestCase );
 		suite.run( result );
+		
 		assertTrue( result.wasSuccessful() , "SUIT_007a" ); // FIXME fail find in the test here !!
+		
 		assertEquals( 2, result.runCount   ,   "SUIT_007b" );
+	
 	}
     
     public function testShadowedTests()
 	{
+				
         var suite:TestSuite = new TestSuite( OverrideTestCase );
         suite.run( result );
         assertEquals( 1, result.runCount, "SUIT_008" );

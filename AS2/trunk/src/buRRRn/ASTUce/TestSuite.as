@@ -217,7 +217,6 @@ class buRRRn.ASTUce.TestSuite implements ITest
            Here the design choice is to check if the argument "test" inherits from TestCase or from TestSuite, the only constructors
            "virtually implementing" ITest.
         */
-        /*!## TODO: check if instanceof ITest work for AS2 */
         if( test instanceof ITest || (test instanceof TestCase) || (test instanceof TestSuite) )
 		{
 			_tests.push( test );

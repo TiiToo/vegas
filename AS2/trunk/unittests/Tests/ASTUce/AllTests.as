@@ -22,16 +22,16 @@
 import buRRRn.ASTUce.*;
 
 class Tests.ASTUce.AllTests extends TestCase
-    {
+{
     
     function AllTests( name )
-        {
+	{
         super( name );
-        }
+	}
     
-    static function suite():TestSuite
-        {
-        var suite:TestSuite = new TestSuite( "ASTUce Tests" );
+    static public function suite():TestSuite
+	{
+		var suite:TestSuite = new TestSuite( "ASTUce Tests" );
         
         /* note:
            to shorten the detail display you can also directly
@@ -46,7 +46,6 @@ class Tests.ASTUce.AllTests extends TestCase
         suite.addTest( Tests.ASTUce.SuiteTest.suite() );
         
         return suite;
-        }
+	}
     
-    }
-
+}

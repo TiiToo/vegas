@@ -16,24 +16,21 @@ class Application
 	{
         
         // ASTUce configuration
-           
+        
         Config.verbose = false;
         
         // Config.showObjectSource = true;
         // Config.invertExpectedActual = false;
         // Config.testPrivateMethods = false;
         // Config.testInheritedTests = true;
-        //Config.testMyself = true ;
-		
+        
 		Config.showConstructorList = true ;
         Config.testMyself = true ;
 
-		//var suite:TestSuite = new TestSuite("Units Test");
-		//suite.addTest( Tests.AllTests.suite() );
-
-		//suite = new TestSuite( Tests.vegas.core.TestCoreObject ) ;
-
-        buRRRn.ASTUce.Application.main( );
+		// new TestSuite( Tests.vegas.core.TestCoreObject ) 
+		// new TestSuite(Tests.ASTUce.SuiteTest) 
+        
+        buRRRn.ASTUce.Application.main(  );
         
 	}
 	

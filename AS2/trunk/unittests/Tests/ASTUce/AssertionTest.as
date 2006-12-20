@@ -47,36 +47,36 @@ import buRRRn.ASTUce.TestCase;
    because fail() would never be reported.
 */
 class Tests.ASTUce.AssertionTest extends TestCase
+{
+    
+	function AssertionTest( name )
     {
-    
-    function AssertionTest( name )
-        {
         super( name );
-        }
+    }
     
-    function testFail()
-        {
+    public function testFail()
+	{
         /* attention:
            Also, we are testing fail,
            so we can't rely on fail() working.
            We have to throw the exception manually.
         */
         try
-            {
+		{
             fail();
-            }
+		}
         catch( e )
-            {
-            if( e instanceof AssertionFailedError )
-                {
-                return;
-                }
-            }
+		{
+			if( e instanceof AssertionFailedError )
+			{
+				return;
+			}
+		}
         
-        throw new AssertionFailedError( "ASSERT_001" );
-        }
+		throw new AssertionFailedError( "ASSERT_001" );
+	}
     
-    function testAssertEquals()
+    public function testAssertEquals()
         {
         /* attention:
            Object equality does not work the same in ActionScript and JAVA.
@@ -105,17 +105,17 @@ class Tests.ASTUce.AssertionTest extends TestCase
         fail( "ASSERT_002" );
         }
     
-    function testAssertEqualsNull()
+    public function testAssertEqualsNull()
         {
         assertEquals( null, null, "ASSERT_003" );
         }
     
-    function testAssertStringEquals()
+    public function testAssertStringEquals()
         {
         assertEquals( "a", "a", "ASSERT_004" );
         }
     
-    function testAssertNullNotEqualsString()
+    public function testAssertNullNotEqualsString()
         {
         try
             {
@@ -132,7 +132,7 @@ class Tests.ASTUce.AssertionTest extends TestCase
         fail( "ASSERT_005" );
         }
     
-    function testAssertStringNotEqualsNull()
+    public function testAssertStringNotEqualsNull()
 	{
         try
 		{
@@ -148,7 +148,7 @@ class Tests.ASTUce.AssertionTest extends TestCase
         fail( "ASSERT_006" );
 	}
     
-    function testAssertNullNotEqualsNull()
+    public function testAssertNullNotEqualsNull()
         {
         try
             {
@@ -165,7 +165,7 @@ class Tests.ASTUce.AssertionTest extends TestCase
         fail( "ASSERT_007" );
         }
     
-    function testAssertNull()
+    public function testAssertNull()
         {
         assertNull( null );
         
@@ -184,7 +184,7 @@ class Tests.ASTUce.AssertionTest extends TestCase
         fail( "ASSERT_008" );
         }
     
-    function testAssertNotNull()
+    public function testAssertNotNull()
         {
         assertNotNull( new Object() );
         
@@ -203,7 +203,7 @@ class Tests.ASTUce.AssertionTest extends TestCase
         fail( "ASSERT_009" );
         }
     
-    function testAssertTrue()
+    public function testAssertTrue()
         {
         assertTrue( true );
         
@@ -222,7 +222,7 @@ class Tests.ASTUce.AssertionTest extends TestCase
         fail( "ASSERT_010" );
         }
     
-    function testAssertFalse()
+    public function testAssertFalse()
         {
         assertFalse( false );
         
@@ -241,7 +241,7 @@ class Tests.ASTUce.AssertionTest extends TestCase
         fail( "ASSERT_011" );
         }
     
-    function testAssertSame()
+    public function testAssertSame()
         {
         var o = new Object();
         assertSame( o, o );
@@ -261,7 +261,7 @@ class Tests.ASTUce.AssertionTest extends TestCase
         fail( "ASSERT_012" );
         }
     
-    function testAssertNotSame()
+    public function testAssertNotSame()
         {
         assertNotSame( new Number(1), null );
         assertNotSame( null, new Number(1) );
@@ -284,7 +284,7 @@ class Tests.ASTUce.AssertionTest extends TestCase
         fail( "ASSERT_013" );
         }
     
-    function testAssertNotSameFailsNull()
+    public function testAssertNotSameFailsNull()
         {
         try
             {

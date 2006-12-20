@@ -134,12 +134,16 @@ class buRRRn.ASTUce.TestCase extends Assertion implements ITest
 
 		var runMethod;
         
+       
+        
 		assertNotNull( _name, Strings.methodNameNull ) ;
         
+         
 		assertNotUndefined( _name, Strings.methodNameUndef ) ;
         
 		try
 		{
+			
             if( ! ObjectUtil.hasProperty( this, _name ) )
 			{
 				throw new Error();

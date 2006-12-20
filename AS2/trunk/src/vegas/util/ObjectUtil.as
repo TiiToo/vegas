@@ -67,7 +67,7 @@ class vegas.util.ObjectUtil
 	 */
 	static public function hasProperty(o, prop:String):Boolean 
 	{
-		return (o.hasOwnProperty(prop) || o.__proto__.hasOwnProperty(prop)) ;
+		return ( o[prop] != undefined );
 	}
 
 	/**

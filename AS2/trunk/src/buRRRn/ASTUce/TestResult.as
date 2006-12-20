@@ -181,6 +181,7 @@ class buRRRn.ASTUce.TestResult extends CoreObject
 	 */
 	public function run( test:TestCase ):Void
 	{
+		
 		startTest( test ) ;
 
         var p:IProtectable = new IProtectable();
@@ -201,7 +202,7 @@ class buRRRn.ASTUce.TestResult extends CoreObject
 	{
 		try
 		{
-			p.protect();
+			p.protect() ;
 		}
         catch( e )
         {
@@ -226,7 +227,8 @@ class buRRRn.ASTUce.TestResult extends CoreObject
 		
 		_runTests += count;
         
-		var listeners:Array = cloneListeners();
+		var listeners:Array = cloneListeners() ;
+		
 		for( var i:Number = 0 ; i<listeners.length ; i++ )
 		{
 			listeners[i].startTest( test );
