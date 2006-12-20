@@ -24,6 +24,7 @@
 import buRRRn.ASTUce.TestResult;
 
 /**
+ * An ITest can be run and collect its results.
  * @author eKameleon
  */
 interface buRRRn.ASTUce.ITest 

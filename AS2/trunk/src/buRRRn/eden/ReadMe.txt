@@ -14,4 +14,4 @@
   
   project page: http://www.buRRRn.com/projects/eden.html
   
-  This version is compatible with Vegas for the moment... wait for use this package for the moment !
+  PS : This version is compatible with Vegas for the moment

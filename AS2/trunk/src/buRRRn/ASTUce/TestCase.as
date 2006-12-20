@@ -33,15 +33,22 @@ import vegas.util.ObjectUtil;
 import vegas.util.StringUtil;
 
 /**
- * A test case define the fixture to run multiple tests.
+ * A test case defines the fixture to run multiple tests. To define a test case :
+ * <ul>
+ * <li>implement a subclass of TestCase.</li>
+ * <li>define instance variables that store the state of the fixture.</li>
+ * <li>initialize the fixture state by overriding setUp</li>
+ * <li>clean-up after a test by overriding tearDown.</li>
+ * </ul>
+ * <p>Each test runs in its own fixture so there can be no side effects among test runs.</p>
  * @author eKameleon
  */
 class buRRRn.ASTUce.TestCase extends Assertion implements ITest 
 {
 	
 	/**
-	 * Creates a new TestCase instance.
 	 * Constructs a test case with the given name or null if name is not provided.
+	 * @param name the name of the test case.
 	 */
 	function TestCase( name:String ) 
 	{
@@ -183,7 +190,7 @@ class buRRRn.ASTUce.TestCase extends Assertion implements ITest
 	}
 
     /**
-     * Tears down the fixture, for example, close a network connection. 
+     * Tears down the fixture, for example close a network connection. 
      * This method is called after a test is executed.
 	 */
 	public function tearDown():Void

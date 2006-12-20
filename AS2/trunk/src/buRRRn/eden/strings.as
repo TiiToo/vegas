@@ -17,152 +17,152 @@
   the Initial Developer. All Rights Reserved.
   
   Contributor(s):
+
+   		- ALCARAZ Marc (aka eKameleon) <vegas@ekameleon.net>   		 
+   		Eden for VEGAS, use this version only with Vegas AS2 Framework Please.
+  
 */
 
-/* NameSpace: strings
-   Configure the eden library messages.
-   
-   exemple:
-   (code)
-   trace( String.format( buRRRn.eden.strings.pairIsIgnored, "toto", 5, 10 ) );
-   (end)
-   
-   attention:
-   Don't use eden to load its own resources message
-   this will cause an infinite loop.
-*/
+/**
+ * Configure the eden library messages.
+ * exemple:
+ * {@code
+ * trace( new StringFormatter( buRRRn.eden.strings.pairIsIgnored).format("toto", 5, 10 ) );
+ * }
+ * <p><b>Attention :</b> Don't use eden to load its own resources message this will cause an infinite loop.</p>
+ */
 class buRRRn.eden.strings extends Object
     {
     
-    /* StaticProperty: requirePairValue
-       multiSerialize require pairs of values
-    */
+    /**
+     * multiSerialize require pairs of values.
+     */
     static var requirePairValue:String = "multiSerialize require pairs of values";
     
-    /* Property: pairIsIgnored
-       name "{0}" is not a string, pair[{1},{2}] is ignored
-    */
+    /**
+     * name "{0}" is not a string, pair[{1},{2}] is ignored
+     */
     static var pairIsIgnored:String = "name \"{0}\" is not a string, pair[{1},{2}] is ignored";
     
-    /* Property: reservedKeyword
-       "{0}" is a reserved keyword
-    */
+    /**
+     * "{0}" is a reserved keyword
+     */
     static var reservedKeyword:String = "\"{0}\" is a reserved keyword";
     
-    /* Property: futurReservedKeyword
-       "{0}" is a future reserved keyword
-    */
+    /**
+     * "{0}" is a future reserved keyword
+     */
     static var futurReservedKeyword:String = "\"{0}\" is a future reserved keyword";
     
-    /* Property: notValidPath
-       "{0} is not a valid path
-    */
+    /**
+     * "{0} is not a valid path
+     */
     static var notValidPath:String = "\"{0}\" is not a valid path";
     
-    /* Property: unterminatedComment
-       unterminated comment
-    */
+    /**
+     * unterminated comment
+     */
     static var unterminatedComment:String = "unterminated comment";
     
-    /* Property: errorComment
-       syntax error (comment)
-    */
+    /**
+     * syntax error (comment)
+     */
     static var errorComment:String = "syntax error (comment)";
     
-    /* Property: errorIdentifier
-       bad identifier
-    */
+    /**
+     * bad identifier
+	 */
     static var errorIdentifier:String = "bad identifier";
     
-    /* Property: notValidConstructor
-       "{0}" is not a valid constructor
-    */
+    /**
+     * "{0}" is not a valid constructor
+     */
     static var notValidConstructor:String = "\"{0}\" is not a valid constructor";
     
-    /* Property: doesNotExist
-       "{0}" does not exists
-    */
+    /**
+     * "{0}" does not exists
+     */
     static var doesNotExist:String = "\"{0}\" does not exists";
     
-    /* Property: errorConstructor
-       bad constructor
-    */
+    /**
+     * bad constructor.
+     */
     static var errorConstructor:String = "bad constructor";
     
-    /* Property: errorLineTerminator
-       bad string (found line terminator in string)
-    */
+    /**
+     * bad string (found line terminator in string)
+     */
     static var errorLineTerminator:String = "bad string (found line terminator in string)";
     
-    /* Property: errorString
-       bad string (unterminated string)
-    */
+    /**
+     * bad string (unterminated string)
+     */
     static var errorString:String = "bad string (unterminated string)";
     
-    /* Property: errorArray
-       bad array (unterminated array)
-    */
+    /**
+     * bad array (unterminated array)
+     */
     static var errorArray:String = "bad array (unterminated array)";
     
-    /* Property: errorObject
-       bad object (unterminated object)
-    */
+    /**
+     * bad object (unterminated object)
+     */
     static var errorObject:String = "bad object (unterminated object)";
     
-    /* Property: malformedHexadecimal
-       bad number (malformed hexadecimal)
-    */
+    /**
+     * bad number (malformed hexadecimal)
+     */
     static var malformedHexadecimal:String = "bad number (malformed hexadecimal)";
     
-    /* Property: errorNumber
-       bad number (not finite)
-    */
+    /**
+     * bad number (not finite)
+     */
     static var errorNumber:String = "bad number (not finite)";
     
-    /* Property: extRefDoesNotExist
-       external reference "{0}" does not exists
-    */
+    /**
+     * external reference "{0}" does not exists
+     */
     static var extRefDoesNotExist:String = "external reference \"{0}\" does not exists";
     
-    /* Property: errorKeyword
-       syntax error
-    */
+    /**
+     * syntax error
+     */
     static var errorKeyword:String = "syntax error";
     
-    /* Property: notAuthorizedConstructor
-       "{0}" is not an authorized constructor
-    */
+    /**
+     * "{0}" is not an authorized constructor
+     */
     static var notAuthorizedConstructor:String = "\"{0}\" is not an authorized constructor";
     
-    /* Property: notAuthorizedExternalReference
-       "{0}" is not an authorized external reference
-    */
+    /**
+     * "{0}" is not an authorized external reference
+     */
     static var notAuthorizedExternalReference:String = "\"{0}\" is not an authorized external reference";
     
-    /* Property: notAuthorizedPath
-       "{0}" is not an authorized path
-    */
+    /**
+     * "{0}" is not an authorized path
+     */
     static var notAuthorizedPath:String = "\"{0}\" is not an authorized path";
     
-    /* Property: notValidFunction
-       "{0}" is not a valid function
-    */
+    /**
+     * "{0}" is not a valid function
+     */
     static var notValidFunction:String = "\"{0}\" is not a valid function";
     
-    /* Property: errorFunction
-       bad function
-    */
+    /**
+     * bad function
+     */
     static var errorFunction:String = "bad function";
     
-    /* Property: notFunctionCallAllowed
-       function call "{0}( {1} )"is not allowed
-    */
+    /**
+     * function call "{0}( {1} )"is not allowed
+	 */
     static var notFunctionCallAllowed:String = "function call \"{0}( {1} )\"is not allowed";
     
-    /* Property: notAuthorizedFunction
-       "{0}" is not an authorized function
-    */
+    /**
+     * "{0}" is not an authorized function
+     */
     static var notAuthorizedFunction:String = "\"{0}\" is not an authorized function";
     
-    }
+}
 

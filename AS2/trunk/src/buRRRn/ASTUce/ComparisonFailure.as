@@ -33,6 +33,9 @@ class buRRRn.ASTUce.ComparisonFailure extends AssertionFailedError
 
 	/**
 	 * Creates a new ComparisonFailure instance.
+	 * @param expected the expected string value.
+	 * @param actual the actual string value. 
+	 * @param message the identifying message or null.
 	 */	
 	function ComparisonFailure( expected, actual, message:String ) 
 	{
@@ -48,6 +51,7 @@ class buRRRn.ASTUce.ComparisonFailure extends AssertionFailedError
 
 	/**
 	 * Returns "..." in place of common prefix and "..." in place of common suffix between expected and actual.
+	 * @return "..." in place of common prefix and "..." in place of common suffix between expected and actual.
 	 */
 	public function getMessage():String
 	{

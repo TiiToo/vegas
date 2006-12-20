@@ -26,6 +26,7 @@ import buRRRn.ASTUce.AssertionFailedError;
 import buRRRn.ASTUce.ITest;
 
 /**
+ * A Listener for test progress
  * @author eKameleon
  */
 interface buRRRn.ASTUce.ITestListener 

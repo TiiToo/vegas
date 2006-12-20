@@ -1,3 +1,4 @@
+
 /*
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -17,8 +18,8 @@
   
   Contributor(s):
 
-   		- 2006-07-05 eKameleon (in Vegas Project) <vegas@ekameleon.net>
-   		Use this version only with Vegas AS2 Framework Please.
+   		- ALCARAZ Marc (aka eKameleon) <vegas@ekameleon.net>   		 
+   		Eden for VEGAS, use this version only with Vegas AS2 Framework Please.
   
 */
 
@@ -29,111 +30,133 @@ import vegas.util.ConstructorUtil;
 import vegas.util.StringUtil;
 
 /**
- * Constructor: ECMAScript
+ * The ECMAScript parser of eden.
  */
 class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
-    {
+{
     
-    var _ORC:String;
-    var inAssignement:Boolean;
-    var inConstructor:Boolean;
-    var inFunction:Boolean;
-    var source:String;
-    var scope;
-    var scopepath;
-    
+	/**
+	 * Creates a new ECMAScript instance.
+	 */
     function ECMAScript( source:String, scope, callback )
-        {
-        super( source, callback );
+	{
+        
+        super( source, callback ) ;
         
         if( scope == null )
-            {
+        {
             scope = _global; //default assignment scope
-            }
+        }
         
         var scopepath;
         
         if( scope != _global )
-            {
+		{
             scopepath = ConstructorUtil.getPath( scope );
-            }
+		}
         
-        if( config.autoAddScopePath &&
-            (scopepath != undefined) && (scopepath != "_global") )
-            {
-            addAuthorized( scopepath + ".*" );
-            }
+        if( config.autoAddScopePath && (scopepath != undefined) && (scopepath != "_global") )
+		{
+			addAuthorized( scopepath + ".*" );
+		}
         
-        this._ORC          = "\uFFFC"; //Object Replacement Character
-        this.inAssignement = false;
-        this.inConstructor = false;
-        this.inFunction    = false;
-        this.scope         = scope;
-        this.scopepath     = scopepath;
-        }
+        this._ORC          = "\uFFFC" ; // Object Replacement Character
+        this.inAssignement = false ;
+        this.inConstructor = false ;
+        this.inFunction    = false ;
+        this.scope         = scope ;
+        this.scopepath     = scopepath ;
+	}
+   
+   	/**
+   	 * Specified if the source is in assignement.
+   	 */
+    public var inAssignement:Boolean;
+
+    /**
+     * Specified if the source is in a constructor.
+     */
+	public var inConstructor:Boolean;
     
-    /* Method: eval
-    */
-    function eval()
-        {
+    /**
+     * Specified if the source is in Function.
+     */
+    public var inFunction:Boolean;
+    
+    /**
+     * The source of the parser.
+     */
+    public var source:String;
+    
+    /**
+     * The scope used in the parser.
+     */
+    public var scope;
+    
+    /**
+     * The path of the scope.
+     */
+    public var scopepath ; 
+  
+    /**
+     * Evaluates the source of this parser.
+     */
+    public function eval()
+	{
         var value, tmp;
         value = _ORC;
-        
         while( hasMoreChar() )
-            {
+		{
             next();
             scanSeparators();
-            
             tmp = scanValue();
-            
             if( tmp != _ORC )
-                {
-                value = tmp;
-                }
-            
+			{
+                value = tmp ;
+			}
             /* note: poor man semicolon auto-insertion */
             if( ch == " ")
-                {
+			{
                 ch = ";";
-                }
-            }
+			}
+		}
         
         return onParsed( value );
-        }
+	}
     
-    /* StaticMethod: evaluate
-    */
-    static function evaluate( source:String, scope, callback )
-        {
+    /**
+     * Evaluate the specified source value with the ECMAScript parser.
+     */
+    static public function evaluate( source:String, scope, callback )
+	{
         var parser = new buRRRn.eden.ECMAScript( source, scope, callback );
-        return parser.eval();
-        }
+        return parser.eval() ;
+	}
     
-    /* Method: isOctalNumber
-    */
-    function isOctalNumber( num ):Boolean
-        {
-        var i;
+    /**
+     * Returns {@code true} if the specified value is an octal number.
+     */
+    public function isOctalNumber( num ):Boolean
+	{
         
-        if( (num.indexOf( "." ) > -1) ||
-            (num.indexOf( "e" ) > -1) ||
-            (num.indexOf( "E" ) > -1) )
-            {
+        if( ( num.indexOf( "." ) > -1) || (num.indexOf( "e" ) > -1) || (num.indexOf( "E" ) > -1) )
+		{
             return false;
-            }
+		}
         
-        num = num.split("");
+        num = num.split("") ;
         
-        for( i=0; i<num.length; i++ )
-            {
+        var l:Number = num.length ;
+        for( var i:Number = 0 ; i<l ; i++ )
+		{
             if( !isOctalDigit( num[i] ) )
-                {
+			{
                 return false;
-                }
-            }
-        
-        return true;
-        }
+			}
+		}
+		
+		return true;
+	}
     
     /* Method: isDigitNumber
     */
@@ -1028,225 +1051,221 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
             }
         
         log( strings.errorObject );
-        }
+	}
     
-/* Method: scanNumber
-*/
-function scanNumber():Number
+	/**
+	 * Scans all numbers in the source.
+	 */
+	public function scanNumber():Number
     {
-    var num, oct, hex, sign, value, isSignedExp;
-    num  = "";
-    oct  = "";
-    hex  = "";
-    sign = "";
-    
-    if( ch == "-" )
+    	var value, isSignedExp ;
+    	var num:String  = "" ;
+    	var oct:String  = "" ; 
+    	var hex:String  = "" ;
+    	var sign:String = "" ;
+
+	    if( ch == "-" )
         {
-        sign = "-";
-        next();
-        }
-    
-    if( ch == "0" )
-        {
-        next();
-        
-        if( (ch == "x") || (ch == "X") )
-            {
-            next();
-            
-            while( isHexDigit( ch ) )
-                {
-                hex += ch;
-                next();
-                }
-            
-            if( hex == "" )
-                {
-                log( strings.malformedHexadecimal );
-                return NaN;
-                }
-            else
-                {
-                return Number( sign + "0x" + hex );
-                }
-            }
-        else
-            {
-            num += "0";
-            }
-        }
-    
-    while( isDigit( ch ) )
-        {
-        num += ch;
-        next();
-        }
-    
-    if( ch == "." )
-        {
-        num += ".";
-        next();
-        
-        while( isDigit( ch ) )
-            {
-            num += ch;
-            next();
-            }
+        	sign = "-";
+	        next();
         }
 
-    if( ch == "e" )
+		if( ch == "0" )
+		{
+    	    next();
+        
+        	if( (ch == "x") || (ch == "X") )
+        	{
+            	next() ; 
+				while( isHexDigit( ch ) )
+            	{
+					hex += ch;
+					next() ;
+				}
+				if( hex == "" )
+				{
+					log( strings.malformedHexadecimal ) ;
+					return NaN ;
+				}
+				else
+				{
+					return Number( sign + "0x" + hex );
+				}	
+			}
+			else
+			{
+				num += "0";
+			}
+		}
+    
+    	while( isDigit( ch ) )
         {
-        num += "e";
-        isSignedExp = next();
-        
-        if( (isSignedExp == "+") || (isSignedExp == "-") )
-            {
-            num += isSignedExp;
-            next();
-            }
-        
-        while( isDigit( ch ) )
-            {
-            num += ch;
-            next();
-            }
+        	num += ch;
+        	next();
         }
     
-    if( (num.charAt(0) == "0") && isOctalNumber( num ) )
+    	if( ch == "." )
         {
-        value = parseInt( sign + num );
+			num += "." ;
+        	next() ;
+			while( isDigit( ch ) )
+			{
+				num += ch ;
+				next() ;
+			}
         }
-    else
+
+    	if( ch == "e" )
         {
-        value = Number( sign + num );
+			num += "e" ;
+			isSignedExp = next() ;
+			if( (isSignedExp == "+") || (isSignedExp == "-") )
+			{
+				num += isSignedExp ;
+				next() ;
+            }
+        	while( isDigit( ch ) )
+            {
+            	num += ch;
+            	next();
+			}
+		}
+    
+		if( (num.charAt(0) == "0") && isOctalNumber( num ) )
+		{
+			value = parseInt( sign + num ) ;
+		}
+		else
+		{
+			value = Number( sign + num ) ;
+		}
+		
+		if( !isFinite( value ) )
+		{
+			log( strings.errorNumber );
+			return NaN;
+		}
+		else
+		{
+        	return value ;
         }
     
-    if( !isFinite( value ) )
-        {
-        log( strings.errorNumber );
-        return NaN;
-        }
-    else
-        {
-        return value;
-        }
     }
-    
-    /* Method: scanAssignement
-    */
-    function scanAssignement( path:String )
-        {
+ 
+    /**
+     * Scan all assignements in the specified path.
+     */
+    public function scanAssignement( path:String )
+	{
         var basescope, scope, obj, value;
-        basescope  = scope = this.scope;
-        
+        basescope = scope = this.scope ;
         if( path.indexOf( "." ) > -1 )
-            {
-            var objPath, i;
-            objPath = path.split( "." );
-            
-            for( i=0; i<objPath.length; i++ )
-                {
+		{
+			var objPath:Array = path.split( "." );
+			var l:Number = objPath.length ;
+			for( var i:Number = 0; i < l ; i++ )
+			{
                 path = objPath[i];
-                
                 if( i == objPath.length-1 )
-                    {
-                    break;
-                    }
-                
-                if( scope[path] == undefined )
-                    {
-                    scope[path] = {};
-                    }
-                
+				{
+					break ;
+				}
+				if( scope[path] == undefined )
+				{
+					scope[path] = {} ;
+				}
                 scope = scope[path];
-                }
-            }
-        
+			}
+		}
         scanWhiteSpace();
-        
-        if( ch == "=" )
-            {
+		if( ch == "=" )
+		{
             inAssignement = true;
             next();
-            scanWhiteSpace();
+			scanWhiteSpace();
+			if( isLineTerminator( ch ) )
+			{
+                return ;
+			}
+			
+			value = scanValue();
+			scope[path] = value;
             
-            if( isLineTerminator( ch ) )
-                {
-                /* TODO: check if undefineable value is not preferable here */
-                return;
-                }
-            
-            value = scanValue();
-            scope[path] = value;
-            
-            inAssignement = false;
-            }
+			inAssignement = false;
+		}
         
         this.scope = basescope;
-        }
+	}
     
-    /* PrivateMethod: _insertBracketForNumberIndex
-    */
-    function _insertBracketForNumberIndex( path:String )
-        {
-        if( !config.arrayIndexAsBracket )
-            {
-            return path;
-            }
-        
-        var paths = path.split( "." );
-        
-        for( var i=0; i<paths.length; i++ )
-            {
-            if( isDigitNumber( paths[i] ) )
-                {
-                paths[i] = "[" + paths[i] + "]";
-                }
-            else if( i != 0 )
-                {
-                paths[i] = "." + paths[i];
-                }
-            }
-        
-        return paths.join( "" );
-        }
-    
-    /* Method: scanExternalReference
-    */
-    function scanExternalReference( path:String )
-        {
+    /**
+     * Insert bracket for number index.
+     */
+    public function _insertBracketForNumberIndex( path:String )
+	{
+		if( !config.arrayIndexAsBracket )
+		{
+			return path;
+		}
+    	    
+		var paths = path.split( "." );
+		var l:Number = paths.length ;
+		for( var i:Number = 0 ; i < l ; i++ )
+		{
+			if( isDigitNumber( paths[i] ) )
+			{
+				paths[i] = "[" + paths[i] + "]" ;
+			}
+			else if( i != 0 )
+			{
+				paths[i] = "." + paths[i] ;
+			}
+		}
+		
+		return paths.join( "" ) ;
+	}
+
+    /**
+     * Scan all external references in the specified path.
+     */
+	public function scanExternalReference( path:String )
+	{
         var check, sign, target, valueTest;
         
-        check = false;
-        sign  = "";
-        
-        switch( path.charAt( 0 ) )
+		check = false;
+		sign  = "";
+		
+		switch( path.charAt( 0 ) )
+		{
+			
+            case "-" :
             {
-            case "-":
-            sign = "-";
-            path = path.substr( 1 );
-            break;
+            	sign = "-";
+            	path = path.substr( 1 );
+            	break;
+            }
             
             case "+":
-            path = path.substr( 1 );
-            break;
-            }
-        
-        check = doesExistInGlobal( path );
-        
-        if( check )
             {
-            
-            if( config.security && !isAuthorized( path ) )
-                {
-            	var formatter = new vegas.string.StringFormatter(strings.notAuthorizedExternalReference) ;
-            	log( formatter.format( path ) ) ;
-                return config.undefineable;
-                }
-//             else
-//                 {
-//                 trace( path + " is authorized (scanExternalReference)" );
-//                 }
+            	path = path.substr( 1 );
+            	break;
+            }
+		}
+        
+		check = doesExistInGlobal( path );
+		
+		if( check )
+		{
+			
+			if( config.security && !isAuthorized( path ) )
+			{
+				var formatter = new vegas.string.StringFormatter(strings.notAuthorizedExternalReference) ;
+				log( formatter.format( path ) ) ;
+				return config.undefineable;
+			}
+//          else
+//          {
+//          	trace( path + " is authorized (scanExternalReference)" );
+//          }
             
             path = this._insertBracketForNumberIndex( path );
             
@@ -1260,142 +1279,174 @@ function scanNumber():Number
                     }
                 
                 if( sign == "-" )
-                    {
-                    return -valueTest;
-                    }
-                
-                return valueTest;
+				{
+					return -valueTest;
                 }
-            }
+				
+            	return valueTest;
+        	}
+		}
 		var formatter = new vegas.string.StringFormatter(strings.extRefDoesNotExist) ;
 		log( formatter.format( path ) ) ;
-        return config.undefineable;
-        }
+		return config.undefineable;
+	}
     
-    /* Method: scanKeyword
-    */
-    function scanKeyword( pre:String )
-        {
-        if( pre == null )
-            {
-            pre = "";
-            }
-        
-        var word, baseword;
-        baseword = scanPath();
-        
+    /**
+     * Scan all keywords in the source.
+     */
+    public function scanKeyword( pre:String )
+	{
+		if( pre == null )
+		{
+			pre = "" ;
+		}
+		
+		var word, baseword;
+		baseword = scanPath() ;
         if( inFunction )
-            {
-            inFunction = false;
-            return baseword;
-            }
+		{
+			inFunction = false;
+			return baseword ;
+		}
+		
+		word = pre + baseword;
         
-            word = pre + baseword;
-        
-        if( word == undefined )
-            {
-            return _ORC;
-            }
+		if( word == undefined )
+		{
+			return _ORC ;
+		}
         
         switch( word )
+		{
+            
+            case "" :
+            case "_global" :
+            case "undefined" :
             {
-            case "":
-            case "_global":
-            case "undefined":
-            return config.undefineable;
+            	return config.undefineable;
+            }
             
             // Null literal
-            case "null":
-            return null;
+            
+            case "null" :
+            {
+            	return null;
+            }
             
             // Boolean literals
-            case "true":
-            return true;
+            
+            case "true" :
+            {
+            	return true ;
+            }
             
             case "false":
-            return false;
+            {
+            	return false;
+            }
             
             // Number literals
-            case "NaN":
-            return NaN;
             
-            case "new":
-            return scanConstructor();
+            case "NaN":
+            {
+            	return NaN;
+            }
+            
+            case "new" :
+            {
+            	return scanConstructor() ;
+            }
             
             default:
-            var externalReference = config.undefineable;
-            
-            /* coded in the train listening RUN-DMC "It's Tricky" ;) */
-            if( !doesExistInGlobal( baseword ) )
-                {
-                if( isValidPath( baseword ) )
-                    {
-                    createPath( baseword );
-                    }
-                else
-                    {
-                    return config.undefineable;
-                    }
-                }
-            else
-                {            
-                externalReference = scanExternalReference( word );
-                
-                if( (externalReference != config.undefineable) && inAssignement )
-                    {
-                    return externalReference;
-                    }
-                }
-            
-            if( !inAssignement )
-                {
-                scanAssignement( baseword );
-                }
-            
-            if( externalReference != config.undefineable )
-                {
-                return externalReference;
-                }
-            
-            return config.undefineable;
+            {
+            	var externalReference = config.undefineable;
+				/* coded in the train listening RUN-DMC "It's Tricky" ;) */
+            	if( !doesExistInGlobal( baseword ) )
+				{
+	                if( isValidPath( baseword ) )
+                	{
+	                    createPath( baseword );
+                	}
+                	else
+                	{
+	                    return config.undefineable;
+            		}
+            	}
+            	else
+				{            
+	                externalReference = scanExternalReference( word );
+                	
+                	if( (externalReference != config.undefineable) && inAssignement )
+                	{
+	                    return externalReference;
+            		}
+            	}
+	            
+            	if( !inAssignement )
+            	{
+                	scanAssignement( baseword );
+            	}
+				    	
+        		if( externalReference != config.undefineable )
+            	{
+                	return externalReference;
+            	}
+            	
+            	return config.undefineable ; 
             }
+    	}
         
-        log( strings.errorKeyword );
-        }
+		log( strings.errorKeyword );
+	}
     
-    /* Method: scanValue
-    */
-    function scanValue()
-        {
+    /**
+     * Scans all walues.
+     */
+    public function scanValue()
+	{
+        
         scanWhiteSpace();
         
         switch( ch )
+        {
+            
+            case "{" :
             {
-            case "{":
-            return scanObject();
+            	return scanObject();
+            }
             
-            case "[":
-            return scanArray();
+            case "[" :
+            {
+            	return scanArray();
+            }
             
-            case "\"": case "\'":
-            return scanString( ch );
+            case "\"" : case "\'" :
+            {
+            	return scanString( ch );
+            }
             
-            case "-": case "+":
-            if( isDigit( source.charAt( pos+1 ) ) )
-                {
-                return scanNumber();
+            case "-" : case "+" :
+            {
+            	if( isDigit( source.charAt( pos+1 ) ) )
+				{
+	                return scanNumber();
+				}
+            	else
+	            {
+    	            var ch_ = ch;
+        	        next();
+            	    return scanKeyword( ch_ );
                 }
-            else
-                {
-                var ch_ = ch;
-                next();
-                return scanKeyword( ch_ );
-                }
+            }
             
-            default:
-            return isDigit( ch ) ? scanNumber() : scanKeyword();
+            default :
+            {
+            	return isDigit( ch ) ? scanNumber() : scanKeyword();
             }
         }
     
     }
 
+	private var _ORC:String ;
+	
+}

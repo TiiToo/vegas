@@ -123,9 +123,9 @@ class buRRRn.ASTUce.Application
      */
     static private var _platform:String = "Flash ActionScript v2.0";
     	
-	/* StaticPrivateProperty: _version
-   	The version as string of the framework.
-	*/
+	/**
+	 * The version as string of the framework.
+	 */
 	static public var _version:String = "1.0.0.0 (VEGAS version)";
 	
 }

@@ -22,13 +22,14 @@
 */
 
 /**
+ * Run the the following method protected.
  * @author eKameleon
  */
 interface buRRRn.ASTUce.IProtectable 
 {
 	
 	/**
-	 * Protect an object with this method.
+	 * Run the the following method protected.
 	 */
 	 function protect():Void;
 	

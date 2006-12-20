@@ -33,6 +33,7 @@ import vegas.string.StringFormatter;
 import vegas.util.TypeUtil;
 
 /**
+ * This implementation of the ITestListener interface creates an ouput printer for the resut of all tests.
  * @author eKameleon
  */
 class buRRRn.ASTUce.ResultPrinter extends CoreObject implements ITestListener 
@@ -63,16 +64,26 @@ class buRRRn.ASTUce.ResultPrinter extends CoreObject implements ITestListener
 		return _writer ;
 	}
 
+    /**
+     * An error occurred.
+     */
 	public function addError(test : ITest, e : Error) : Void 
 	{
 		writeLine( "E" );
 	}
 
+    /**
+     * A failure occurred.
+     */
 	public function addFailure(test : ITest, afe : AssertionFailedError) : Void 
 	{
 		writeLine( "F" );
 	}
 
+	/**
+	 * Elapsed a time as string representation.
+	 * @return the time as string.
+	 */
     public function elapsedTimeAsString( runTime:Number ):String
 	{
 		var ms, s, m, h ;
@@ -81,14 +92,20 @@ class buRRRn.ASTUce.ResultPrinter extends CoreObject implements ITestListener
         s  = dat.getUTCSeconds();
         m  = dat.getUTCMinutes();
         h  = dat.getUTCHours();
-        return new StringFormatter( Strings.PrtElapsedTime).format( h, m, s, ms ) ;
+        return new StringFormatter( Strings.PrtElapsedTime ).format( h, m, s, ms ) ;
 	}
 
+    /**
+     * A test ended.
+     */
 	public function endTest(test : ITest) : Void 
 	{
 		//
 	}
 	
+	/**
+	 * Print a result in the printer.
+	 */
     public function print( result:TestResult, runTime:Number ):Void
 	{
         printHeader( runTime );
@@ -98,7 +115,7 @@ class buRRRn.ASTUce.ResultPrinter extends CoreObject implements ITestListener
 	}
 
 	/**
-	 * 
+	 * Print an error.
  	 */
     public function printErrors( result:TestResult ):Void
 	{
@@ -106,7 +123,7 @@ class buRRRn.ASTUce.ResultPrinter extends CoreObject implements ITestListener
 	}
 
 	/**
-	 * 
+	 * Print a failure.
 	 */
     public function printFailures( result:TestResult ):Void
 	{
@@ -123,7 +140,7 @@ class buRRRn.ASTUce.ResultPrinter extends CoreObject implements ITestListener
 	}
 
 	/**
-	 * 
+	 * Print a defect message.
 	 */	
     public function printDefects( booBoos:Array, /*Int*/ count:Number, type:String ):Void
 	{
@@ -151,7 +168,7 @@ class buRRRn.ASTUce.ResultPrinter extends CoreObject implements ITestListener
 	}
     
 	/**
-	 * 
+	 * Print a defect header.
 	 */
     public function printDefectHeader( booBoo:TestFailure, /*Int*/ count:Number ):Void
 	{
@@ -159,7 +176,7 @@ class buRRRn.ASTUce.ResultPrinter extends CoreObject implements ITestListener
 	}
     
 	/**
-	 * 
+	 * Print a defect trace.
 	 */
     public function printDefectTrace( booBoo:TestFailure ):Void
 	{
@@ -169,6 +186,9 @@ class buRRRn.ASTUce.ResultPrinter extends CoreObject implements ITestListener
         writeLine( "" );
 	}
     
+    /**
+     * Print the footer.
+     */
 	public function printFooter( result:TestResult ):Void
 	{
         if( result.wasSuccessful() == true )
@@ -185,11 +205,17 @@ class buRRRn.ASTUce.ResultPrinter extends CoreObject implements ITestListener
         writeLine( "" );
 	}
     
+    /**
+     * A test started.
+     */
 	public function startTest(test : ITest) : Void 
 	{
 		//
 	}
 
+	/**
+	 * Write a new message in the printer.
+	 */
     public function writeLine( message:String ):Void
 	{
 		writer.call(this, message) ;

@@ -1,3 +1,4 @@
+
 /*
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -17,8 +18,8 @@
   
   Contributor(s):
 
-   		- 2006-07-05 eKameleon (in Vegas Project) <vegas@ekameleon.net>
-   		Use this version only with Vegas AS2 Framework Please.
+   		- ALCARAZ Marc (aka eKameleon) <vegas@ekameleon.net>   		 
+   		Eden for VEGAS, use this version only with Vegas AS2 Framework Please.
   
 */
 
@@ -29,9 +30,9 @@ import vegas.util.ArrayUtil;
 import vegas.util.serialize.Serializer;
 import vegas.util.StringUtil;
 
-/* Singleton: Application
-   The eden application.
-*/
+/**
+ * The eden application.
+ */
 class buRRRn.eden.Application
     {
     

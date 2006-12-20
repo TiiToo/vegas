@@ -84,13 +84,6 @@ class buRRRn.ASTUce.TestFailure
 		return ( failedTest + " : " + exceptionMessage ) ;
 	}
 
-	/*
-	public function trace():Void
-	{
-        trace( toSource() ); //core2
-	}
-	*/
-
     private var _failedTest:ITest ;
     
     private var _thrownException:Error;

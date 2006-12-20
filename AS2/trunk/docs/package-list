@@ -42,6 +42,7 @@ lunas.display.group
 vegas.data.map
 vegas.util
 asgard.config
+buRRRn.eden
 vegas.events
 vegas.util.mvc
 asgard.net.remoting
@@ -53,6 +54,7 @@ vegas.errors
 asgard.media
 asgard.process
 asgard.system
+buRRRn.ASTUce
 lunas.events
 lunas.display.components.stepper
 vegas.data.collections

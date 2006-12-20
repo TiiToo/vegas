@@ -28,9 +28,9 @@ import buRRRn.ASTUce.Config;
 import buRRRn.ASTUce.Strings;
 
 import vegas.core.CoreObject;
-import vegas.core.IEquality;
 import vegas.core.types.NullObject;
 import vegas.string.StringFormatter;
+import vegas.util.Equalizer;
 import vegas.util.ObjectUtil;
 import vegas.util.serialize.Serializer;
 import vegas.util.TypeUtil;
@@ -55,7 +55,7 @@ class buRRRn.ASTUce.Assertion extends CoreObject
 			return ;
 		}
 		
-		if ( (expected != null) && expected.equals( actual ) )
+		if ( (expected != null) && Equalizer.equals(expected, actual ) )
 		{
 			return ;
 		}
@@ -189,7 +189,10 @@ class buRRRn.ASTUce.Assertion extends CoreObject
 		}
 		return (new StringFormatter( Strings.expectedButWas )).format(formatted, expected, actual) ;
 	}
-
+	
+	/**
+	 * Fails a test when 2 objects are not equals.
+	 */
 	static private function  _failNotEquals( expected, actual, message:String )
     {
     	
@@ -209,6 +212,9 @@ class buRRRn.ASTUce.Assertion extends CoreObject
     	fail( format( expected, actual, message ) );
     }
 
+	/**
+	 * Fails a test when 2 objects are not the same.
+	 */
     static function _failNotSame( expected, actual, message:String ):Void
 	{
 		var formatted:String = "";
@@ -218,7 +224,10 @@ class buRRRn.ASTUce.Assertion extends CoreObject
 		}
         fail( new StringFormatter( Strings.expectedSame).format( formatted, expected, actual ) ) ;
 	}
-	
+
+	/**
+	 * Fails a test when 2 objects are the same.
+	 */
     static function _failSame( expected, actual, message:String ):Void
 	{
 		var formatted:String = "";

@@ -269,15 +269,13 @@ class buRRRn.ASTUce.TestSuite implements ITest
         
         /*!## TODO: add error checking if path could not be found ? */
         var path:String = ConstructorUtil.getPath( theConstructor );
-        //trace( "path = " + path );
         
         /* attention:
            Dynamic instanciation hack using ECMAscript eval().
            
            Should work with any ECMA-262 hosts.
         */
-        /*!## TODO: use EDEN for dynamic instanciaion ? */
-        //var test = eval( "new "+path+"( \""+name+"\" )" );
+
         var tmp  = eval( path );
         var test = new tmp( name );
         

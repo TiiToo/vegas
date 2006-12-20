@@ -29,6 +29,7 @@ import vegas.core.CoreObject;
 import vegas.core.IRunnable;
 
 /**
+ * A trace based tool to run tests.
  * @author eKameleon
  */
 class buRRRn.ASTUce.MiniRunner extends CoreObject implements IRunnable 
@@ -52,14 +53,27 @@ class buRRRn.ASTUce.MiniRunner extends CoreObject implements IRunnable
         
 	}
 
+	/**
+	 * The TestSuite reference of this test tracer.
+	 */
     public var suite:TestSuite;
     
+    /**
+     * The TestResult reference of this test tracer.
+     */
     public var result:TestResult;
     
+    /**
+     * The ResultPrinter reference of this test tracer.
+     */
     public var printer:ResultPrinter;
 
+	/**
+	 * Run the tracer.
+	 */
 	public function run():Void 
 	{
+		
 		setUp();
         
         var time:Number = (new Date()).valueOf() ;

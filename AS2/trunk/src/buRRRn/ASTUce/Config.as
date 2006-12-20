@@ -28,85 +28,60 @@
 class buRRRn.ASTUce.Config 
 {
 
-    /* StaticProperty: verbose
-       Boolean configuring the getInfo method behaviour.
-       
-       true  - more verbose
-       false - less verbose
-    */
+    /**
+     * Boolean configuring the getInfo method behaviour, true for more verbose and false for less verbose.
+     */
     static public var verbose:Boolean = true;
-    
-    /* StaticProperty: showConstructorList
-       Boolean option to display all the constructors being tested.
-       
-       true  - show constructors list
-       false - don't show constructor list
-    */
+
+    /**
+     * Boolean option to display all the constructors being tested.
+     */
     static public var showConstructorList:Boolean = true;
     
-    /* StaticProperty: showObjectSource
-       Boolean option to display the source of objects being compared.
-       
-       true  - show the object source
-       false - don't show the source
-       
-       note:
-       It help you to debug to see
-       (code)
-       ## AssertionFailedError : expected:<{a:1,b:2,c:3}> but was:<{a:1,b:2,c:4}> ##
-       (end)
-       instead of
-       (code)
-       ## AssertionFailedError : expected:<[object Object]> but was:<[object Object]> ##
-       (end)
-    */
+    /**
+     * Boolean option to display the source of objects being compared.
+     * Note : It help you to debug to see 
+     * {@code
+     * ## AssertionFailedError : expected:<{a:1,b:2,c:3}> but was:<{a:1,b:2,c:4}> ##
+     * }
+     * instead of
+     * {@code
+     * ## AssertionFailedError : expected:<[object Object]> but was:<[object Object]> ##
+     * }
+     */
     static public var showObjectSource:Boolean = true;
     
-    /* StaticProperty: invertExpectedActual
-       Boolean option to invert the order of the arguments: expected, actual
-       in buRRRn.ASTUce.Assertion.
-       
-       true  - the argument order is: actual, expected. (inverted)
-       false - the argument order is: expected, actual. (default)
-    */
+    /**
+     * Boolean option to invert the order of the arguments: expected, actual in buRRRn.ASTUce.Assertion.
+     * <p>true  - the argument order is: actual, expected. (inverted)</p>
+     * <p>false - the argument order is: expected, actual. (default)</p>
+     */
     static public var invertExpectedActual:Boolean = false;
     
-    /* StaticProperty: testPrivateMethods
-       Boolean configuring the behaviour of ASTUce regarding private methods.
-       
-       true  - test private methods
-       false - don't test private methods
-       
-       note:
-       By default in ECMAScript all methods are public,
-       but by convention we use an underscore before the name
-       of a method to indicate its private nature.
-       
-       ASTUce will not test methods starting with an underscore
-       except if you force testPrivateMethods = true, then
-       methods as _testSomething will be tested by the framework.
-    */
-    /*!## TODO:
-          perharps if needed in the futur we will need
-          to provide this parameter per TestCase or TestSuite
-          instead of the global actual on/off parameter.
-    */
+    /**
+     * Boolean configuring the behaviour of ASTUce regarding private methods.
+     * <p>true  - test private methods</p>
+     * <p>false - don't test private methods</p>
+     * <p>Note : By default in ECMAScript all methods are public, but by convention we use an underscore before the name
+     * of a method to indicate its private nature.</p>
+     * <p>ASTUce will not test methods starting with an underscore except if you force testPrivateMethods = true, 
+     * then methods as _testSomething will be tested by the framework.</p>
+     */
     static public var testPrivateMethods:Boolean = false;
     
     /**
      * Boolean option allowing to iterate or not trough inherited tests.
-     * true iterate inherited tests
-     * false does NOT iterate inherited tests
-     * note:  If you set this option to false the following test SuiteTest( testInheritedTests ) will fail.
+     * <p>true iterate inherited tests</p>
+     * <p>false does NOT iterate inherited tests</p>
+     * <p>Note : If you set this option to false the following test SuiteTest( testInheritedTests ) will fail.</p>
      */
     static public var testInheritedTests:Boolean = true;
     
-    /* StaticProperty: testMyself
-       Boolean option allowing the ASTUce framework to test itself.
-       
-       true  - add to tests *buRRRn.Tests.AllTests.suite()*.
-       false - add nothing
-    */
-    static public var testMyself:Boolean = false;
+    /**
+     * Boolean option allowing the ASTUce framework to test itself.
+     * <p>true  - add to tests *buRRRn.Tests.AllTests.suite()*.</p>
+     * <p>false - add nothing</p>
+	 */
+	static public var testMyself:Boolean = false;
 
 }
