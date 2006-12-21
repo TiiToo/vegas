@@ -53,11 +53,6 @@ class vegas.core.types.Int extends Number implements IFormattable, IHashable, IS
 	}
 	
 	/**
-	 * Init the hashcode representation of the class.
-	 */
-	static private var _initHashCode:Boolean = HashCode.initialize(Int.prototype) ;
-	
-	/**
 	 * Returns a hash code value for the object.
 	 */
 	public function hashCode():Number 
@@ -69,7 +64,7 @@ class vegas.core.types.Int extends Number implements IFormattable, IHashable, IS
 	 * Returns a Eden representation of the object.
 	 * @return a string representing the source code of the object.
 	 */
-	function toSource(indent : Number, indentor : String) : String 
+	public function toSource(indent : Number, indentor : String) : String 
 	{
 		return Serializer.getSourceOf(this, _getParams()) ;
 	}	
@@ -94,6 +89,11 @@ class vegas.core.types.Int extends Number implements IFormattable, IHashable, IS
 	 * The internal value of the object.
 	 */	
 	private var _int:Number ;
+
+	/**
+	 * Init the hashcode representation of the class.
+	 */
+	static private var _initHashCode:Boolean = HashCode.initialize(Int.prototype) ;
 
 	/**
 	 * Returns a array of all values used by the toSource method. 

@@ -183,13 +183,13 @@ class Tests.eden.ECMAScriptTest extends TestCase
         
         assertEquals( s1, "", "EP_007a" );
         assertEquals( s2, "hello world", "EP_007b" );
-     	
+
      	/** TODO patch \x to test eden ?   
         var s = "\x0A" ; // problem with this expression !!
         
         assertEquals( s3, s, "EP_007c" ) ;
         */
-        
+
         //assertEquals( s4, new String(true), "EP_007d" );
         assertEquals( s5, new String(), "EP_007e" );
         assertEquals( s6, "\u6060", "EP_007f" );

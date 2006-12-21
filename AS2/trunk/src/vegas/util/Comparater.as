@@ -29,7 +29,7 @@ import vegas.util.TypeUtil;
  * The {@code Equalizer} utility class is an all-static class with a method to returns {@true} if two object are equals.
  * @author eKameleon
  */
-class vegas.util.Equalizer
+class vegas.util.Comparater
 {
 
 	/**
@@ -38,7 +38,7 @@ class vegas.util.Equalizer
 	 * @param o2 the second object to compare
 	 * @return {@code true} if the 2 objects are equals.
 	 */	
-	static public function equals( o1, o2 ) 
+	static public function compare( o1, o2 ) 
 	{
 		if (o1 === undefined && o2 === undefined) 
 		{
@@ -54,35 +54,35 @@ class vegas.util.Equalizer
 		}
 		else if (TypeUtil.typesMatch(o1, Array)) 
 		{
-			return arrayEquals(o1, o2) ;
+			return arrayCompare(o1, o2) ;
 		}
 		else if (TypeUtil.typesMatch(o1, Boolean)) 
 		{
-			return booleanEquals(o1, o2);
+			return booleanCompare(o1, o2);
 		}
 		else if (TypeUtil.typesMatch(o1, Date))
 		{
-			return dateEquals(o1, o2) ;
+			return dateCompare(o1, o2) ;
 		}
 		else if (TypeUtil.typesMatch(o1, Error))
 		{
-			errorEquals(o1, o2) ;	
+			return errorCompare(o1, o2) ;	
 		}
 		else if (TypeUtil.typesMatch(o1, Function))
 		{
-			return functionEquals(o1, o2) ;
+			return functionCompare(o1, o2) ;
 		}
 		else if (TypeUtil.typesMatch(o1, Number))
 		{
-			return numberEquals(o1, o2) ;
+			return numberCompare(o1, o2) ;
 		}
 		else if (TypeUtil.typesMatch(o1, String))
 		{
-			return stringEquals(o1, o2) ;
+			return stringCompare(o1, o2) ;
 		}
 		else if (typeof(o1) === "object")
 		{
-			return objectEquals(o1, o2) ;
+			return objectCompare(o1, o2) ;
 		}
 		else
 		{
@@ -94,7 +94,7 @@ class vegas.util.Equalizer
 	 * Compares if two Arrays are equal by value. 
 	 * @return {@code true} if the 2 objects are equals.
 	 */
-	static public function arrayEquals( ar1, ar2 ):Boolean
+	static public function arrayCompare( ar1, ar2 ):Boolean
     {
 	    
 	    if(ar1 == null || !TypeUtil.typesMatch(ar1, Array))
@@ -129,7 +129,7 @@ class vegas.util.Equalizer
             	continue ;
             }
         
-        	if( ! Equalizer.equals(ar1[i], ar2[i] ) )
+        	if( ! compare(ar1[i], ar2[i] ) )
             {
             	return false ;
             }
@@ -142,7 +142,7 @@ class vegas.util.Equalizer
 	 * Compares if two Booleans are equal by value. 
 	 * @return {@code true} if the 2 objects are equals.
 	 */
-	static public function booleanEquals( b1 , b2 ):Boolean
+	static public function booleanCompare( b1 , b2 ):Boolean
     {
     	if(b1 == null || !TypeUtil.typesMatch(b1, Boolean))
         {
@@ -159,7 +159,7 @@ class vegas.util.Equalizer
 	 * Compares if two Dates are equal by value.
 	 * @return {@code true} if the 2 objects are equals.
 	 */
-	static public function dateEquals( d1 , d2 ):Boolean
+	static public function dateCompare( d1 , d2 ):Boolean
 	{
     	if(d1 == null || !TypeUtil.typesMatch(d1, Date))
         {
@@ -176,7 +176,7 @@ class vegas.util.Equalizer
 	 * Compares if two Errors are equal by value.
 	 * @return {@code true} if the 2 objects are equals.
 	 */
-	static public function errorEquals( e1 , e2 ):Boolean
+	static public function errorCompare( e1 , e2 ):Boolean
 	{
     	if(e1 == null || !TypeUtil.typesMatch(e1, Error))
         {
@@ -193,7 +193,7 @@ class vegas.util.Equalizer
 	 * Compares if two Functions are equal by value.
 	 * @return {@code true} if the 2 objects are equals.
 	 */
-	static public function functionEquals( f1 , f2:Function ):Boolean
+	static public function functionCompare( f1 , f2:Function ):Boolean
 	{
     	if(f1 == null || !TypeUtil.typesMatch(f1, Function))
         {
@@ -210,7 +210,7 @@ class vegas.util.Equalizer
 	 * Compares if two Numbers are equal by value.
 	 * @return {@code true} if the 2 objects are equals.
 	 */
-	static public function numberEquals( n1 , n2 ):Boolean
+	static public function numberCompare( n1 , n2 ):Boolean
 	{
     	
     	if(n1 == null || !TypeUtil.typesMatch(n1, Number))
@@ -227,8 +227,8 @@ class vegas.util.Equalizer
 			return true ;
 		}
 
-		// hack ??
-        if (n1 == NaN && n2 == NaN)
+		// Test if the 2 objects are NaN
+        if ( isNaN(n1) && isNaN(n2) )
         {
         	return true ;	
         }
@@ -240,11 +240,11 @@ class vegas.util.Equalizer
 	 * Compares if two Objects are equal by value.
 	 * @return {@code true} if the 2 objects are equals.
 	 */
-	static public function objectEquals( o1 , o2 ):Boolean
+	static public function objectCompare( o1 , o2 ):Boolean
 	{
 		if ( TypeUtil.typesMatch(o2, Function ) )
 		{
-			return functionEquals( o2, o1 ) ;	
+			return functionCompare( o2, o1 ) ;	
 		}
 		if ( o1.valueOf() == null && o2 == null )
 		{
@@ -270,7 +270,7 @@ class vegas.util.Equalizer
 			{
 				continue ;	
 			}
-			if( !Equalizer.equals(o1[member], o2[member] ) )
+			if( !Comparater.compare(o1[member], o2[member] ) )
             {
             	return false;
             }
@@ -283,7 +283,7 @@ class vegas.util.Equalizer
 	 * Compares if two Strings are equal by value.
 	 * @return {@code true} if the 2 objects are equals.
 	 */
-	static public function stringEquals( s1 , s2 ):Boolean
+	static public function stringCompare( s1 , s2 ):Boolean
     {
     	if( (s1 == null) || !TypeUtil.typesMatch( s2 , String ) )
         {

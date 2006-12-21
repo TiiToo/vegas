@@ -19,12 +19,12 @@ class Application
         
         Config.verbose = false;
         
-        // Config.showObjectSource = true;
+        // Config.showObjectSource     = true;
         // Config.invertExpectedActual = false;
-        // Config.testPrivateMethods = false;
-        // Config.testInheritedTests = true;
+        // Config.testPrivateMethods   = false;
+        // Config.testInheritedTests   = false;
         
-		Config.showConstructorList = true ;
+		Config.showConstructorList = false ;
         Config.testMyself = true ;
 
 		// new TestSuite( Tests.vegas.core.TestCoreObject ) 

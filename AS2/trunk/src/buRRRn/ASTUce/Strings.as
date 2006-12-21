@@ -112,7 +112,7 @@ class buRRRn.ASTUce.Strings
 	/**
 	 * Time: {0}
 	 */
-	static public var PrtTime:String  = "Time: {0}";
+	static public var PrtTime:String  = "Time : {0}";
 	
 	/**
 	 * {0}h:{1}mn:{2}s:{3}ms
@@ -137,11 +137,11 @@ class buRRRn.ASTUce.Strings
 	/**
 	 * FAILURES!!!
 	 */
-	static public var PrtFailure:String = "FAILURES!!!";
+	static public var PrtFailure:String = "FAILURES !!!";
 	
 	/**
 	 * Tests run: {0},  Failures: {1},  Errors: {2}
 	 */
-	static public var PrtFailureDetails:String = "Tests run: {0},  Failures: {1},  Errors: {2}";
+	static public var PrtFailureDetails:String = "Tests run : {0},  Failures: {1},  Errors: {2}";
 	
 }

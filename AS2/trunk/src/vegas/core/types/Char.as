@@ -25,6 +25,7 @@ import vegas.core.HashCode;
 import vegas.core.IFormattable;
 import vegas.core.IHashable;
 import vegas.core.ISerializable;
+import vegas.util.ConstructorUtil;
 
 /**
  * An object of type Char contains a single field whose type is String.
@@ -57,18 +58,19 @@ class vegas.core.types.Char extends String implements IFormattable, IHashable, I
 	/**
 	 * Returns a hash code value for the object.
 	 */
-	public function hashCode():Number {
+	public function hashCode():Number 
+	{
 		return null ;
 	}
 	
 	/**
-	 * Returns a Eden representation of the object.
+	 * Returns a Eden reprensation of the object.
 	 * @return a string representing the source code of the object.
 	 */
-	public function toSource(indent : Number, indentor : String) : String 
+	public function toSource(indent:Number, indentor:String):String
 	{
-		return 'new vegas.core.types.Char("' + _char + '")' ;
-	}	
+		return "new " + ConstructorUtil.getPath(this) + "(" + _char + ")" ;
+	}
 
 	/**
 	 * Returns the string representation of this instance.

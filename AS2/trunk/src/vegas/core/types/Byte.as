@@ -22,6 +22,7 @@
 */
 
 import vegas.core.types.Bit;
+import vegas.util.ConstructorUtil;
 
 /**
  * {@code Byte} is represents a byte value.
@@ -37,7 +38,7 @@ import vegas.core.types.Bit;
  * }
  * @author eKameleon
  */
-class vegas.core.types.Byte extends Bit 
+class vegas.core.types.Byte extends Bit
 {
 
 	/**
@@ -75,9 +76,18 @@ class vegas.core.types.Byte extends Bit
 	static public var SHORT_TERA_BYTE:String = "TB";	
 
 	/**
+	 * Returns a Eden reprensation of the object.
+	 * @return a string representing the source code of the object.
+	 */
+	public function toSource(indent:Number, indentor:String):String
+	{
+		return "new " + ConstructorUtil.getPath(this) + "(" + (_bit  / BYTE) + "," + _comma  + ")" ;
+	}
+
+	/**
 	 * Returns a string representation of the object.
 	 */
-	public function toString():String 
+	public function toString(indent:Number, indentor:String):String 
 	{
 		if (_bit < Bit.KBYTE) 
 		{

@@ -30,7 +30,7 @@ import buRRRn.ASTUce.Strings;
 import vegas.core.CoreObject;
 import vegas.core.types.NullObject;
 import vegas.string.StringFormatter;
-import vegas.util.Equalizer;
+import vegas.util.Comparater;
 import vegas.util.ObjectUtil;
 import vegas.util.serialize.Serializer;
 import vegas.util.TypeUtil;
@@ -55,7 +55,7 @@ class buRRRn.ASTUce.Assertion extends CoreObject
 			return ;
 		}
 		
-		if ( (expected != null) && Equalizer.equals(expected, actual ) )
+		if ( (expected != null) && Comparater.compare(expected, actual ) )
 		{
 			return ;
 		}

@@ -22,6 +22,7 @@
 */
 
 import vegas.core.CoreObject;
+import vegas.util.ConstructorUtil;
 
 /**
  * Utilitarian object allowing to treat a null value as an object.
@@ -29,7 +30,7 @@ import vegas.core.CoreObject;
  * @author eKameleon
  * @see <a href="http://c2.com/cgi/wiki?NullObject">Null Object</a>
  */
-class vegas.core.types.NullObject extends CoreObject 
+class vegas.core.types.NullObject extends CoreObject
 {
 	
 	/**
@@ -39,7 +40,7 @@ class vegas.core.types.NullObject extends CoreObject
 	{
 		super();
 	}
-	
+
 	/**
 	 * Returns the string representation of this object.
 	 * @return the string representation of this object.

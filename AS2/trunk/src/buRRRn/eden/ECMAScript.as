@@ -1016,6 +1016,7 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
                 {
                 member = scanIdentifier();
                 scanWhiteSpace();
+                //scanSeparators(); // FIXME : test scanSeparator to use return after a {
                 
                 if( ch != ":" )
                     {

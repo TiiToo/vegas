@@ -16,39 +16,37 @@ class Tests.vegas.core.TestCoreObject extends TestCase
 		super(name);
 	}
 	
+	public var o:CoreObject ;
+	
+	public function setUp():Void
+	{
+		o = new CoreObject() ;
+	}
+	
 	public function testConstructor()
 	{
-		var o = new CoreObject() ;
-		assertNotNull( o, "CO_00 - constructor is null") ;
-		assertTrue( o instanceof CoreObject , "CO_00 - constructor is an instance of CoreObject.") ;
+		assertNotNull( o, "CO_00_01 - constructor is null") ;
+		assertTrue( o instanceof CoreObject , "CO_00_02 - constructor is an instance of CoreObject.") ;
 	}
 	
 	public function testInherit()
 	{
-		var o = new CoreObject() ;
 		assertTrue( o instanceof Object , "CO_01 - inherit Object failed.") ;
 	}	
 	
 	public function testHashCode():Void
 	{
-		var o:CoreObject = new CoreObject() ;
-		var result = o.hashCode() ;
-		assertTrue( !isNaN(result) , "CO_02 - hashCode failed : " + result ) ;
+		assertTrue( !isNaN(o.hashCode()) , "CO_02 - hashCode failed : " + o.hashCode() ) ;
 	}
 	
 	public function testToSource():Void
 	{
-		var o:CoreObject = new CoreObject() ;
-		var result = o.toSource() ;
-		assertEquals( result , "new vegas.core.CoreObject()", "CO_03 - toSource failed : " + result) ;
+		assertEquals( o.toSource() , "new vegas.core.CoreObject()", "CO_03 - toSource failed : " + o.toSource() ) ;
 	}
 
 	public function testToString():Void
 	{
-		var o:CoreObject = new CoreObject() ;
-		var result:String = o.toString() ;
-		assertEquals( result , "[CoreObject]", "CO_04 - toString failed : " + result) ;
+		assertEquals( o.toString() , "[CoreObject]", "CO_04 - toString failed : " + o.toString() ) ;
 	}
-
 
 }

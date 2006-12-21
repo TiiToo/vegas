@@ -24,6 +24,8 @@
 import vegas.core.HashCode;
 import vegas.core.IFormattable;
 import vegas.core.IHashable;
+import vegas.core.ISerializable;
+import vegas.util.ConstructorUtil;
 import vegas.util.MathsUtil;
 
 /**
@@ -35,23 +37,30 @@ import vegas.util.MathsUtil;
  * <p><b>Examples:</b></p>
  * {@code 
  *   import vegas.core.types.Bit ;
- *   trace(new Bit(1).toString()) ; // 1B
- *   trace(new Bit(1234).toString()) ; // 1.21KB
- *   trace(new Bit(15002344).toString()) ; // 14.31MB
+ *   trace(new Bit(1).toString()) ; // 1b
+ *   trace(new Bit(1234).toString()) ; // 1.21Kb
+ *   trace(new Bit(15002344).toString()) ; // 14.31Mb
  * }
  * @author eKameleon
  */
-class vegas.core.types.Bit extends Number implements IFormattable, IHashable 
+class vegas.core.types.Bit extends Number implements IFormattable, IHashable, ISerializable  
 {
 
 	/**
 	 * Creates a new Bit instance.
 	 * @param b value in bit
 	 */
-	public function Bit(n:Number) 
+	public function Bit(n:Number, floatingPoints:Number ) 
 	{
 		_bit = n ;
-		_comma = DEFAULT_FLOATING_POINTS ;
+		if (isNaN(floatingPoints))
+		{
+			_comma = DEFAULT_FLOATING_POINTS ;
+		}
+		else
+		{
+			setFloatingPoints(floatingPoints) ;	
+		}
 	}
 
 	/**
@@ -237,6 +246,15 @@ class vegas.core.types.Bit extends Number implements IFormattable, IHashable
 	{
 		_comma = (n > 0) ? n : 0 ;
 		return this ;
+	}
+	
+	/**
+	 * Returns a Eden reprensation of the object.
+	 * @return a string representing the source code of the object.
+	 */
+	public function toSource(indent:Number, indentor:String):String
+	{
+		return "new " + ConstructorUtil.getPath(this) + "(" + _bit + "," + _comma  + ")" ;
 	}
 
 	/**

@@ -147,7 +147,7 @@ class buRRRn.ASTUce.ResultPrinter extends CoreObject implements ITestListener
         var i:Number ;
         if( count == 0 )
 		{
-			return;
+			return ;
 		}
 		if( count == 1 )
 		{
