@@ -124,7 +124,7 @@ class buRRRn.ASTUce.TestSuite implements ITest
         if
         ( 
         	Config.testInheritedTests && 
-			( theConstructor["prototype"].__proto__ != TestCase.prototype ) &&
+			( theConstructor["prototype"].__proto__ != Function(TestCase).prototype ) &&
             ( theConstructor["prototype"].__proto__ != Object.prototype ) &&
             ( theConstructor["prototype"].__proto__ != null ) )
 		{

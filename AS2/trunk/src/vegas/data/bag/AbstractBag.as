@@ -25,9 +25,9 @@ import vegas.core.CoreObject;
 import vegas.core.types.Int;
 import vegas.data.Bag;
 import vegas.data.bag.BagFormat;
-import vegas.data.bag.BagIterator;
 import vegas.data.bag.HashBag;
 import vegas.data.Collection;
+import vegas.data.iterator.BagIterator;
 import vegas.data.iterator.Iterator;
 import vegas.data.List;
 import vegas.data.list.ArrayList;
@@ -44,12 +44,14 @@ import vegas.util.serialize.Serializer;
  * <p>To implement a bag, the programmer needs only to extend this class and provide implementations for the cursor, insert and size methods. For supporting the removal of elements, the cursor returned by the cursor method must additionally implement its remove method.</p>
  * @author eKameleon
  */
-class vegas.data.bag.AbstractBag extends CoreObject implements Bag {
+class vegas.data.bag.AbstractBag extends CoreObject implements Bag 
+{
 
 	/**
 	 * Creates a new AbstractBag instance.
 	 */
-	private function AbstractBag( m:Map ) {
+	private function AbstractBag( m:Map ) 
+	{
 		if (m) _setMap(m) ;
 	}
 	
@@ -94,7 +96,8 @@ class vegas.data.bag.AbstractBag extends CoreObject implements Bag {
 	{
 		var result:Boolean = true ;
 		var i:Iterator = b.uniqueSet().iterator() ;
-        while (i.hasNext()) {
+        while (i.hasNext()) 
+        {
 			var current = i.next();
             var contains:Boolean = getCount(current) >= b.getCount(current) ;
             result = result && contains ;

@@ -26,13 +26,13 @@ class Tests.vegas.AllTests extends TestCase
         //suite.simpleTrace = true;
         
         suite.addTest( Tests.vegas.core.AllTests.suite() ) ;
-        // suite.addTest( Tests.vegas.data.AllTests.suite() ) ;
-        // suite.addTest( Tests.vegas.errors.AllTests.suite() ) ;
-        // suite.addTest( Tests.vegas.events.AllTests.suite() ) ;
-        // suite.addTest( Tests.vegas.logging.AllTests.suite() ) ;
-        // suite.addTest( Tests.vegas.maths.AllTests.suite() ) ;
-        // suite.addTest( Tests.vegas.string.AllTests.suite() ) ;
-        // suite.addTest( Tests.vegas.util.AllTests.suite() ) ;
+        suite.addTest( Tests.vegas.data.AllTests.suite() ) ;
+        suite.addTest( Tests.vegas.errors.AllTests.suite() ) ;
+        suite.addTest( Tests.vegas.events.AllTests.suite() ) ;
+        suite.addTest( Tests.vegas.logging.AllTests.suite() ) ;
+        suite.addTest( Tests.vegas.maths.AllTests.suite() ) ;
+        suite.addTest( Tests.vegas.string.AllTests.suite() ) ;
+        suite.addTest( Tests.vegas.util.AllTests.suite() ) ;
         
         return suite ;
     

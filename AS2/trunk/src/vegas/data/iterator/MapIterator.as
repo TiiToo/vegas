@@ -31,7 +31,7 @@ import vegas.errors.UnsupportedOperation;
  * Converts a {@code Map} to an iterator.
  * @author eKameleon
  */
-class vegas.data.map.MapIterator extends CoreObject implements Iterator 
+class vegas.data.iterator.MapIterator extends CoreObject implements Iterator 
 {
 
 	/**

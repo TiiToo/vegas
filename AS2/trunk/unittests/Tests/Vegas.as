@@ -7,6 +7,8 @@ import buRRRn.ASTUce.Config;
 
 import Tests.VegasRunner;
 
+// TODO use the vegas.logging package to trace the tests.
+
 /**
  * The main Unit Tests application.
  * @author eKameleon
@@ -103,7 +105,10 @@ class Tests.Vegas extends DisplayObject
 			Vegas.application = new Vegas( target ) ;
 		}	
 	}
-	
+
+	/**
+	 * Invoqued when the Stage is resized.
+	 */	
 	public function onResize():Void
 	{
 		field._width = Stage.width  ;

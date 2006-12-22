@@ -26,9 +26,9 @@ import vegas.core.ICloneable;
 import vegas.data.iterator.ArrayIterator;
 import vegas.data.iterator.Iterable;
 import vegas.data.iterator.Iterator;
+import vegas.data.iterator.MapIterator;
 import vegas.data.Map;
 import vegas.data.map.MapFormat;
-import vegas.data.map.MapIterator;
 import vegas.util.serialize.Serializer;
 
 /**

@@ -31,7 +31,7 @@ import vegas.errors.UnsupportedOperation;
  * Converts an Bag to an iterator.
  * @author eKameleon
  */
-class vegas.data.bag.BagIterator extends CoreObject implements Iterator 
+class vegas.data.iterator.BagIterator extends CoreObject implements Iterator 
 {
 
 	/**
