@@ -1,6 +1,5 @@
 
 import vegas.core.ITimer;
-import vegas.events.BasicEvent;
 import vegas.events.Event;
 import vegas.events.EventListener;
 

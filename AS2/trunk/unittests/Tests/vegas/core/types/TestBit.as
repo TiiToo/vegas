@@ -1,6 +1,6 @@
 import buRRRn.ASTUce.TestCase;
 
-import vegas.core.types.Bit ;
+import vegas.core.types.Bit;
 
 // TODO finish methods testing.
 

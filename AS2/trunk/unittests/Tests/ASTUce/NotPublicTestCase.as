@@ -19,7 +19,7 @@
   Contributor(s):
 */
 
-import buRRRn.ASTUce.*;
+import buRRRn.ASTUce.TestCase;
 
 class Tests.ASTUce.NotPublicTestCase extends TestCase
     {

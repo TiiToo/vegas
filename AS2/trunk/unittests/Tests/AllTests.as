@@ -26,8 +26,8 @@ class Tests.AllTests extends TestCase
         
         // suite.simpleTrace = true;
         
-        //suite.addTest(  Tests.ASTUce.AllTests.suite() ) ; // OK full testing.
-		//suite.addTest(  Tests.eden.AllTests.suite()   ) ; // FIXME 2 errors for the moment in this library
+      	// suite.addTest(  Tests.ASTUce.AllTests.suite() ) ; // OK full testing.
+		// suite.addTest(  Tests.eden.AllTests.suite()   ) ; // FIXME 2 errors for the moment in this library
         
         suite.addTest(  Tests.vegas.AllTests.suite()  ) ;
         

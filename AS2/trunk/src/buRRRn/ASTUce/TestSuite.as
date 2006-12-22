@@ -28,7 +28,6 @@ import buRRRn.ASTUce.Strings;
 import buRRRn.ASTUce.TestCase;
 import buRRRn.ASTUce.TestResult;
 
-import vegas.core.CoreObject;
 import vegas.string.StringFormatter;
 import vegas.util.Attribute;
 import vegas.util.AttributeType;
@@ -81,7 +80,7 @@ class buRRRn.ASTUce.TestSuite implements ITest
         if( theConstructor["prototype"] == null )
 		{
 
-            addTest( _warning( new StringFormatter( Strings.objectNotCtor ).format( ConstructorUtil.getPath( theConstructor ) ) ) ) ;
+            addTest( _warning( (new StringFormatter( Strings.objectNotCtor )).format( ConstructorUtil.getPath( theConstructor ) ) ) ) ;
             return;
 		}
         else
@@ -99,7 +98,7 @@ class buRRRn.ASTUce.TestSuite implements ITest
         
         if( exp.startsWith( "_" ) )
 		{
-            addTest( _warning( new StringFormatter( Strings.ctorNotPublic ).format( ctorName ) ) );
+            addTest( _warning( (new StringFormatter( Strings.ctorNotPublic )).format( ctorName ) ) );
             return;
 		}
         
@@ -117,7 +116,9 @@ class buRRRn.ASTUce.TestSuite implements ITest
            set to true, so we set it to false to allow properties enumeration.
         */
         
-        var originalAttribute = Attribute.getAttribute( theConstructor["prototype"], null );
+        var parentAttribute:Attribute ;
+        var originalAttribute:Attribute = Attribute.getAttribute( theConstructor["prototype"], null );
+        
         Attribute.setAttribute( theConstructor["prototype"] , null, AttributeType.NONE , AttributeType.LOCKED );
         
         if
@@ -127,7 +128,7 @@ class buRRRn.ASTUce.TestSuite implements ITest
             ( theConstructor["prototype"].__proto__ != Object.prototype ) &&
             ( theConstructor["prototype"].__proto__ != null ) )
 		{
-            var parentAttribute = Attribute.getAttribute( theConstructor["prototype"].__proto__, null );
+            parentAttribute = Attribute.getAttribute( theConstructor["prototype"].__proto__, null );
             Attribute.setAttribute( theConstructor["prototype"].__proto__, null, AttributeType.NONE, AttributeType.LOCKED );
 		}
         
@@ -154,7 +155,7 @@ class buRRRn.ASTUce.TestSuite implements ITest
 		
 		if( testCount == 0 )
 		{
-			addTest( _warning( new StringFormatter( Strings.noTestsFound ).format( ctorName ) ) ) ;
+			addTest( _warning( (new StringFormatter( Strings.noTestsFound )).format( ctorName ) ) ) ;
 		}
 	}
 
@@ -262,7 +263,7 @@ class buRRRn.ASTUce.TestSuite implements ITest
         
         if( theConstructor["prototype"] == null )
 		{
-			return( _warning( (new StringFormatter( Strings.objectNotCtor ).format( ConstructorUtil.getPath( theConstructor ) ) ) ) ) ;
+			return( _warning( (new StringFormatter( Strings.objectNotCtor )).format( ConstructorUtil.getPath( theConstructor ) ) ) ) ;
 		}
         
         
@@ -277,7 +278,7 @@ class buRRRn.ASTUce.TestSuite implements ITest
         */
 
         var tmp  = eval( path );
-        var test = new tmp( name );
+        test = new tmp( name );
         
         /*!## TODO:
               use try/catch statement ?
@@ -306,12 +307,13 @@ class buRRRn.ASTUce.TestSuite implements ITest
 	/**
 	 * Runs the tests and collects their result in a TestResult.
 	 */
-	public function run(result : TestResult) : Void 
+	public function run(result:TestResult) : Void 
 	{
 		var l:Number = tests.length ;
+		var b:Boolean ;
 		for( var i:Number = 0 ; i < l ; i++ )
 		{
-			if( result.shouldStop() )
+			if ( result.shouldStop )
 			{
 				break ;
 			}

@@ -19,7 +19,8 @@
   Contributor(s):
 */
 
-import buRRRn.ASTUce.*;
+import buRRRn.ASTUce.TestCase;
+import buRRRn.ASTUce.TestSuite;
 
 class Tests.ASTUce.samples.AllTests extends TestCase
     {

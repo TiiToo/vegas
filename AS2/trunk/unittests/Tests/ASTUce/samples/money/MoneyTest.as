@@ -19,8 +19,7 @@
   Contributor(s):
 */
 
-import buRRRn.ASTUce.*;
-import buRRRn.ASTUce.samples.*;
+import buRRRn.ASTUce.TestCase;
 
 /* Class: MoneyTest
 */

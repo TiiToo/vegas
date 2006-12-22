@@ -19,8 +19,7 @@
   Contributor(s):
 */
 
-import buRRRn.ASTUce.*;
-import vegas.string.StringFormatter ;
+import buRRRn.ASTUce.TestCase;
 
 class Tests.eden.ECMAScriptTest extends TestCase
     {

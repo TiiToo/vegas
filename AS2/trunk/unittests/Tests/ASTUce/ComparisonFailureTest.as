@@ -19,7 +19,8 @@
   Contributor(s):
 */
 
-import buRRRn.ASTUce.*;
+import buRRRn.ASTUce.ComparisonFailure;
+import buRRRn.ASTUce.TestCase;
 
 class Tests.ASTUce.ComparisonFailureTest extends TestCase
     {

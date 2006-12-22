@@ -222,7 +222,7 @@ class buRRRn.ASTUce.Assertion extends CoreObject
 		{
 			formatted= message + " ";
 		}
-        fail( new StringFormatter( Strings.expectedSame).format( formatted, expected, actual ) ) ;
+        fail( (new StringFormatter( Strings.expectedSame)).format( formatted, expected, actual ) ) ;
 	}
 
 	/**
@@ -236,7 +236,7 @@ class buRRRn.ASTUce.Assertion extends CoreObject
 			formatted = message + " ";
 		}
         
-		fail( new StringFormatter( Strings.expectedNotSame ).format( formatted ) ) ;
+		fail( (new StringFormatter( Strings.expectedNotSame )).format( formatted ) ) ;
 	}
 
 }

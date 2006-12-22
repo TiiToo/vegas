@@ -1,7 +1,6 @@
 
 import buRRRn.ASTUce.TestCase;
 
-import Tests.vegas.core.TestInterfaces.RunnableImplementation;
 import Tests.vegas.core.TestInterfaces.SerializableImplementation;
 
 /**

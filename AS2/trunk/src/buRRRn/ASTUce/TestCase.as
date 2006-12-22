@@ -139,13 +139,10 @@ class buRRRn.ASTUce.TestCase extends Assertion implements ITest
     public function runTest():Void
 	{
 
-		var runMethod;
-        
-       
+		var runMethod:Function ;
         
 		assertNotNull( _name, Strings.methodNameNull ) ;
         
-         
 		assertNotUndefined( _name, Strings.methodNameUndef ) ;
         
 		try

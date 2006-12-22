@@ -28,6 +28,8 @@ import buRRRn.ASTUce.Strings;
 import buRRRn.ASTUce.TestFailure;
 import buRRRn.ASTUce.TestResult;
 
+import Tests.Vegas;
+
 import vegas.core.CoreObject;
 import vegas.string.StringFormatter;
 import vegas.util.TypeUtil;
@@ -36,16 +38,16 @@ import vegas.util.TypeUtil;
  * This implementation of the ITestListener interface creates an ouput printer for the resut of all tests.
  * @author eKameleon
  */
-class buRRRn.ASTUce.ResultPrinter extends CoreObject implements ITestListener 
+class Tests.VegasPrinter extends CoreObject implements ITestListener 
 {
 	
 	/**
 	 * Creates a new ResultPrinter instance.
 	 */
-	public function ResultPrinter( writer:Function ) 
+	public function VegasPrinter( writer:Function ) 
 	{
 		
-		_writer = Function( _global["trace"] ) ; //default writer
+		_writer = Vegas.tracer ;
         
         _column = 0 ;
         

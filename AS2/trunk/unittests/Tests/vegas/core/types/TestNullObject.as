@@ -1,7 +1,7 @@
 import buRRRn.ASTUce.TestCase;
 
-import vegas.core.types.NullObject;
 import vegas.core.CoreObject;
+import vegas.core.types.NullObject;
 
 /**
  * @author eKameleon

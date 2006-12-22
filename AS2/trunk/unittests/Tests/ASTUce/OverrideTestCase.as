@@ -19,7 +19,7 @@
   Contributor(s):
 */
 
-import buRRRn.ASTUce.*;
+
 
 class Tests.ASTUce.OverrideTestCase extends Tests.ASTUce.OneTestCase
     {

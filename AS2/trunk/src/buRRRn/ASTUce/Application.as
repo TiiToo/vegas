@@ -68,7 +68,7 @@ class buRRRn.ASTUce.Application
 		
 		trace( separator );
     
-    	var runner = new MiniRunner( "Main Tests" );
+    	var runner:MiniRunner = new MiniRunner( "Main Tests" );
     
     	if( Config.testMyself )
         {

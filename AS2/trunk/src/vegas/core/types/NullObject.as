@@ -22,7 +22,6 @@
 */
 
 import vegas.core.CoreObject;
-import vegas.util.ConstructorUtil;
 
 /**
  * Utilitarian object allowing to treat a null value as an object.

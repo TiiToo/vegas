@@ -19,7 +19,13 @@
   Contributor(s):
 */
 
-import buRRRn.ASTUce.*;
+import buRRRn.ASTUce.AssertionFailedError;
+import buRRRn.ASTUce.ITest;
+import buRRRn.ASTUce.ITestListener;
+import buRRRn.ASTUce.TestCase;
+import buRRRn.ASTUce.TestResult;
+
+import vegas.events.Delegate;
 
 class Tests.ASTUce.TestListenerTest extends TestCase implements ITestListener
     {
@@ -79,49 +85,46 @@ class Tests.ASTUce.TestListenerTest extends TestCase implements ITestListener
         }
     
     function testError()
-        {
+	{
         var test:TestCase = new TestCase( "noop" );
         
         test.runTest = function()
-            {
+		{
             throw new Error();
-            }
+		} ;
         
         test.run( _result );
         
         assertEquals( 1, _errorCount, "TL_001a" );
         assertEquals( 1, _endCount,   "TL_001b" );
-        }
+	}
     
     function testFailure()
-        {
+	{
         var test:TestCase = new TestCase( "noop" );
         
-        test.runTest = function()
-            {
-            fail();
-            }
+        test.runTest = Delegate.create(this, fail) ;
         
         test.run( _result );
         
         assertEquals( 1, _failureCount, "TL_002a" );
         assertEquals( 1, _endCount,     "TL_002b" );
-        }
+	}
     
     function testStartStop()
-        {
+	{
         var test:TestCase = new TestCase( "noop" );
         
         test.runTest = function()
-            {
+        {
             
-            }
+		} ;
         
         test.run( _result );
         
         assertEquals( 1, _startCount, "TL_003a" );
         assertEquals( 1, _endCount,   "TL_003b" );
-        }
+	}
     
-    }
+}
 

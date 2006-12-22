@@ -24,8 +24,6 @@
 import buRRRn.ASTUce.AssertionFailedError;
 import buRRRn.ASTUce.ITest;
 
-import vegas.core.CoreObject;
-
 /**
  * A TestFailure collects a failed test together with the caught exception.
  * @author eKameleon

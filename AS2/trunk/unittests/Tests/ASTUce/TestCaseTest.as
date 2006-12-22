@@ -19,9 +19,17 @@
   Contributor(s):
 */
 
-import buRRRn.ASTUce.*;
-import Tests.ASTUce.*;
+import buRRRn.ASTUce.AssertionFailedError;
+import buRRRn.ASTUce.ITest;
+import buRRRn.ASTUce.TestCase;
+import buRRRn.ASTUce.TestResult;
+import buRRRn.ASTUce.TestSuite;
+
+import Tests.ASTUce.NoArgTestCaseTest;
 import Tests.ASTUce.TestCaseTests.TornDown;
+import Tests.ASTUce.WasRun;
+
+import vegas.events.Delegate;
 
 class Tests.ASTUce.TestCaseTest extends TestCase
     {
@@ -47,13 +55,10 @@ class Tests.ASTUce.TestCaseTest extends TestCase
         {
         var failure:TestCase = new TestCase( "failure" );
         
-        failure.runTest = function()
-            {
-            fail();
-            } ;
+        failure.runTest = Delegate.create(this, fail) ;
         
         verifyFailure( failure );
-        }
+	}
     
     function testError()
 	{
