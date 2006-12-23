@@ -1,3 +1,26 @@
+/*
+
+  The contents of this file are subject to the Mozilla Public License Version
+  1.1 (the "License"); you may not use this file except in compliance with
+  the License. You may obtain a copy of the License at 
+  
+           http://www.mozilla.org/MPL/ 
+  
+  Software distributed under the License is distributed on an "AS IS" basis,
+  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+  for the specific language governing rights and limitations under the License. 
+  
+  The Original Code is Vegas Framework.
+  
+  The Initial Developer of the Original Code is
+  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
+  the Initial Developer. All Rights Reserved.
+  
+  Contributor(s) :
+  
+*/
+
 import buRRRn.ASTUce.TestCase;
 
 import vegas.core.types.Bit;
@@ -61,5 +84,16 @@ class Tests.vegas.core.types.TestByte extends TestCase
 		
 	}
 
+	public function testConstants():Void
+	{
+		
+		assertEquals( Byte.SHORT_BYTE      , "B"  , "BYTE_05_01 - Byte.SHORT_BYTE failed      : " + Byte.SHORT_BYTE      ) ;
+		assertEquals( Byte.SHORT_KILO_BYTE , "KB" , "BYTE_05_02 - Byte.SHORT_KILO_BYTE failed : " + Byte.SHORT_KILO_BYTE ) ;
+		assertEquals( Byte.SHORT_MEGA_BYTE , "MB" , "BYTE_05_03 - Byte.SHORT_MEGA_BYTE failed : " + Byte.SHORT_MEGA_BYTE ) ;
+		assertEquals( Byte.SHORT_GIGA_BYTE , "GB" , "BYTE_05_04 - Byte.SHORT_GIGA_BYTE failed : " + Byte.SHORT_GIGA_BYTE ) ;
+		assertEquals( Byte.SHORT_TERA_BYTE , "TB" , "BYTE_05_05 - Byte.SHORT_TERA_BYTE failed : " + Byte.SHORT_TERA_BYTE ) ;
+		
+	}
+	
 
 }

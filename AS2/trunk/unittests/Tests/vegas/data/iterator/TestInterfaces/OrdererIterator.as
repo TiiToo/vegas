@@ -21,34 +21,58 @@
   
 */
 
-import buRRRn.ASTUce.TestCase;
-import buRRRn.ASTUce.TestSuite;
+import vegas.core.CoreObject;
+import vegas.data.iterator.OrderedIterator;
 
 /**
  * @author eKameleon
  */
-class Tests.vegas.util.factory.AllTests extends TestCase 
+class Tests.vegas.data.iterator.TestInterfaces.OrdererIterator extends CoreObject implements OrderedIterator 
 {
-
-	/**
-	 * Creates a new AllTests instance.
-	 */	
-	function AllTests(name : String) 
+	
+	public function OrdererIterator() 
 	{
-		super(name);
+		super();
 	}
 
-	/**
-	 * Creates the Test list.
-	 */
-    static function suite():TestSuite
+	public function hasPrevious() : Boolean 
 	{
-        var suite:TestSuite = new TestSuite( "Tests.vegas.util.factory" );
-        
-        //suite.simpleTrace = true;
+		return null;
+	}
 
-        return suite ;
-    
-    }
+	public function previous() 
+	{
+	
+	}
+
+	public function hasNext() : Boolean 
+	{
+		return null;
+	}
+
+	public function key() 
+	{
+	
+	}
+
+	public function next() 
+	{
+	
+	}
+
+	public function remove() 
+	{
+	
+	}
+
+	public function reset() : Void 
+	{
+	
+	}
+
+	public function seek(n : Number) : Void 
+	{
+	
+	}
 
 }

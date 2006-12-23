@@ -21,34 +21,19 @@
   
 */
 
-import buRRRn.ASTUce.TestCase;
-import buRRRn.ASTUce.TestSuite;
+import vegas.core.CoreObject;
+import vegas.data.iterator.Iterable;
+import vegas.data.iterator.Iterator;
 
 /**
  * @author eKameleon
  */
-class Tests.vegas.util.factory.AllTests extends TestCase 
+class Tests.vegas.data.iterator.TestInterfaces.IterableImplementation extends CoreObject implements Iterable 
 {
-
-	/**
-	 * Creates a new AllTests instance.
-	 */	
-	function AllTests(name : String) 
+	
+	public function iterator() : Iterator 
 	{
-		super(name);
+		return null;
 	}
-
-	/**
-	 * Creates the Test list.
-	 */
-    static function suite():TestSuite
-	{
-        var suite:TestSuite = new TestSuite( "Tests.vegas.util.factory" );
-        
-        //suite.simpleTrace = true;
-
-        return suite ;
-    
-    }
 
 }
