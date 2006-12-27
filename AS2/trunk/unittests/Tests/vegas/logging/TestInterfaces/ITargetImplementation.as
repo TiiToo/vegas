@@ -21,42 +21,28 @@
   
 */
 
-import buRRRn.ASTUce.TestCase;
-import buRRRn.ASTUce.TestSuite;
+import vegas.logging.ILogger;
+import vegas.logging.ITarget;
 
 /**
  * @author eKameleon
  */
-class Tests.vegas.logging.AllTests extends TestCase 
+class Tests.vegas.logging.TestInterfaces.ITargetImplementation implements ITarget 
 {
-
-	/**
-	 * Creates a new AllTests instance.
-	 */	
-	function AllTests(name : String) 
+	
+	
+	public var isAddLogger:Boolean = false ;
+	
+	public var isRemoveLogger:Boolean = false ;
+	
+	public function addLogger( logger:ILogger ):Void 
 	{
-		super(name);
+		isAddLogger = true ;
 	}
 
-	/**
-	 * Creates the Test list.
-	 */
-    static function suite():TestSuite
+	public function removeLogger( logger:ILogger ):Void 
 	{
-        
-        var suite:TestSuite = new TestSuite( "Tests.vegas.logging" );
-        
-        // suite.simpleTrace = true;
-
-		suite.addTest( Tests.vegas.logging.errors.AllTests.suite() ) ;
-		suite.addTest( Tests.vegas.logging.targets.AllTests.suite() ) ;
-		suite.addTest( Tests.vegas.logging.tracer.AllTests.suite() ) ;
-
-		suite.addTest( new TestSuite( Tests.vegas.logging.TestILogger ) ) ;
-        suite.addTest( new TestSuite( Tests.vegas.logging.TestITarget ) ) ;
-        
-        return suite ;
-    
-    }
+		isRemoveLogger = true ;
+	}
 
 }

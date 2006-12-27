@@ -21,18 +21,18 @@
   
 */
 
-import asgard.geom.Trigo;
+import pegas.geom.Trigo;
 
-import vegas.core.CoreObject;
-import vegas.core.ICloneable;
-import vegas.core.IEquality;
-import vegas.core.ISerializable;
+import vegas.core.CoreObject ;
+import vegas.core.ICloneable ;
+import vegas.core.IEquality ;
+import vegas.core.ISerializable ;
 import vegas.util.TypeUtil;
 
 /**
  * @author eKameleon
  */
-dynamic class asgard.geom.Point extends CoreObject implements ICloneable, IEquality
+dynamic class pegas.geom.Point extends CoreObject implements ICloneable, IEquality
 {
 
 	/**

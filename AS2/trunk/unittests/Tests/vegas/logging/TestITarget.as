@@ -23,50 +23,36 @@
 
 import buRRRn.ASTUce.TestCase;
 
-import vegas.core.CoreObject;
+import Tests.vegas.logging.TestInterfaces.ITargetImplementation;
 
 /**
  * @author eKameleon
  */
-class Tests.vegas.core.TestCoreObject extends TestCase 
+class Tests.vegas.logging.TestITarget extends TestCase
 {
-
-	function TestCoreObject(name : String) 
+	
+	function TestITarget( name:String ) 
 	{
 		super(name);
 	}
 	
-	public var o:CoreObject ;
+	public var t:ITargetImplementation ;
 	
 	public function setUp():Void
 	{
-		o = new CoreObject() ;
-	}
-	
-	public function testConstructor()
-	{
-		assertNotNull( o, "CO_00_01 - constructor is null") ;
-		assertTrue( o instanceof CoreObject , "CO_00_02 - constructor is an instance of CoreObject.") ;
-	}
-	
-	public function testInherit()
-	{
-		assertTrue( o instanceof Object , "CO_01 - inherit Object failed.") ;
-	}	
-	
-	public function testHashCode():Void
-	{
-		assertTrue( !isNaN(o.hashCode()) , "CO_02 - hashCode failed : " + o.hashCode() ) ;
-	}
-	
-	public function testToSource():Void
-	{
-		assertEquals( o.toSource() , "new vegas.core.CoreObject()", "CO_03 - toSource failed : " + o.toSource() ) ;
+		t = new ITargetImplementation() ;
 	}
 
-	public function testToString():Void
+	public function testAddLogger():Void 
 	{
-		assertEquals( o.toString() , "[CoreObject]", "CO_04 - toString failed : " + o.toString() ) ;
+		t.addLogger() ;
+		assertTrue( t.isAddLogger, "ITARG_01 - addLogger method failed : " + t.isAddLogger ) ;
+	}
+
+	public function testRemoveLogger():Void 
+	{
+		t.removeLogger() ;
+		assertTrue( t.isRemoveLogger, "ITARG_02 - removeLogger method failed : " + t.isRemoveLogger ) ;
 	}
 
 }

@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is PEGAS Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -27,7 +27,7 @@ import buRRRn.ASTUce.TestSuite;
 /**
  * @author eKameleon
  */
-class Tests.vegas.logging.AllTests extends TestCase 
+class Tests.pegas.AllTests extends TestCase 
 {
 
 	/**
@@ -44,16 +44,11 @@ class Tests.vegas.logging.AllTests extends TestCase
     static function suite():TestSuite
 	{
         
-        var suite:TestSuite = new TestSuite( "Tests.vegas.logging" );
+        var suite:TestSuite = new TestSuite( "Tests.pegas" );
         
         // suite.simpleTrace = true;
-
-		suite.addTest( Tests.vegas.logging.errors.AllTests.suite() ) ;
-		suite.addTest( Tests.vegas.logging.targets.AllTests.suite() ) ;
-		suite.addTest( Tests.vegas.logging.tracer.AllTests.suite() ) ;
-
-		suite.addTest( new TestSuite( Tests.vegas.logging.TestILogger ) ) ;
-        suite.addTest( new TestSuite( Tests.vegas.logging.TestITarget ) ) ;
+        
+        suite.addTest(  Tests.pegas.geom.AllTests.suite()  ) ;
         
         return suite ;
     

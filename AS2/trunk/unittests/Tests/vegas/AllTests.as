@@ -44,7 +44,7 @@ class Tests.vegas.AllTests extends TestCase
     static function suite():TestSuite
 	{
         
-        var suite:TestSuite = new TestSuite( "Tests" );
+        var suite:TestSuite = new TestSuite( "Tests.vegas" );
         
         //suite.simpleTrace = true;
         

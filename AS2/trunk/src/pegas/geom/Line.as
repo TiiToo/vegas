@@ -21,7 +21,9 @@
   
 */
 
-import asgard.geom.Point;
+import pegas.geom.Point;
+
+// TODO create Unit Tests
 
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
@@ -37,7 +39,7 @@ import vegas.util.serialize.Serializer;
  * }
  * <p><b>Thanks :</b> Timothee Groleau >> http://timotheegroleau.com/Flash/articles/cubic_bezier/bezier_lib.as</p>
  */
-class asgard.geom.Line extends CoreObject implements ICloneable, IEquality 
+class pegas.geom.Line extends CoreObject implements ICloneable, IEquality 
 {
 	
 	/**

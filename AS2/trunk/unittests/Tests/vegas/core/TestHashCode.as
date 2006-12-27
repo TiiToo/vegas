@@ -31,9 +31,6 @@ import vegas.core.HashCode;
 class Tests.vegas.core.TestHashCode extends TestCase 
 {
 	
-	/**
-	 * Creates a new TestHashCode instance.
-	 */
 	function TestHashCode( name:String ) 
 	{
 		super(name);
