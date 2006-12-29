@@ -1,0 +1,133 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>asgard.display.DisplayObject</title><script src="../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../index-files";
+//--></script><link href="../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../overview-summary.html" title="Overview" rel="top"/><link href="package-summary.html" title="Package asgard.display" rel="up"/><link href="../../asgard/display/DisplayObjectCollector.html" title="Class asgard.display.DisplayObjectCollector" rel="prev"/><link href="../../asgard/display/DisplayLoaderCollector.html" title="Class asgard.display.DisplayLoaderCollector" rel="next"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><h1>Class asgard.display.DisplayObject</h1><div class="type_hierachy"><ul><li><a href="../../vegas/core/CoreObject.html" class="class_name" title="Class vegas.core.CoreObject">vegas.core.CoreObject</a><ul><li><a href="../../vegas/events/AbstractCoreEventDispatcher.html" class="class_name" title="Class vegas.events.AbstractCoreEventDispatcher">vegas.events.AbstractCoreEventDispatcher</a><ul><li><strong>asgard.display.DisplayObject</strong></li></ul></li></ul></li></ul></div><div class="type_description"><h2>Description</h2><p>
+ The DisplayObject class is the base class for all objects that can be displayed in the Flash Player.
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">import</span> asgard.display.DisplayObject ;
+ <span class="key">import</span> asgard.display.DisplayObjectCollector ;
+ 
+ <span class="key">var</span> mc:MovieClip = createEmptyMovieClip(<span class="str_const">"display"</span>, <span class="num_const">1</span>) ;
+ 
+ <span class="key">var</span> UIList = {} ;
+ UIList.CANVAS = <span class="str_const">"canvas"</span> ;
+ 
+ <span class="key">var</span> dCanvas = <span class="key">new</span> DisplayObject( <span class="str_const">"canvas"</span>, mc ) ;
+ 
+ trace(<span class="str_const">"&gt; DisplayObjectCollector contains canvas : "</span> + DisplayObjectCollector.containsDisplay(canvas))  ;
+ 
+ <span class="key">var</span> contains:Boolean = DisplayObjectCollector.contains(UIList.CANVAS) ;
+ trace(<span class="str_const">"contains 'canvas' DisplayObject : "</span> + contains) ;
+ 
+ <span class="key">var</span> canvas = DisplayObjectCollector.get(UIList.CANVAS) ;
+ canvas.move(<span class="num_const">25</span>, <span class="num_const">25</span>) ;
+ 
+ <span class="key">var</span> square:MovieClip = canvas.view ;
+ square.lineStyle(<span class="num_const">3</span>, 0xFF0000, <span class="num_const">100</span>, <span class="key">true</span>, <span class="str_const">"none"</span>, <span class="str_const">"square"</span> ) ;
+ square.beginFill(0xF2F10D, <span class="num_const">100</span>) ;
+ square.lineTo(<span class="num_const">150</span>,<span class="num_const">0</span>) ;
+ square.lineTo(<span class="num_const">150</span>,<span class="num_const">150</span>) ;
+ square.lineTo(<span class="num_const">0</span>,<span class="num_const">150</span>) ;
+ square.lineTo(<span class="num_const">0</span>,<span class="num_const">0</span>) ;
+ 
+ trace(<span class="str_const">"canvas : "</span> + canvas) ;
+ trace(<span class="str_const">"canvas name : '"</span> + canvas.getName() + <span class="str_const">"'"</span> ) ;
+ trace(<span class="str_const">"The root DisplayObject : "</span> + canvas.root + <span class="str_const">" : "</span> + canvas.root.view) ;
+ 
+ <span class="key">this</span>.onKeyDown = <span class="key">function</span> ()
+ {
+     <span class="key">var</span> code:Number = Key.getCode() ;
+     <span class="key">switch</span> (code)
+     {
+         <span class="key">case</span> Key.UP :
+         {
+             canvas.hide() ;
+             trace(<span class="str_const">"canvas idHide : "</span> + canvas.isVisible()) ;
+             <span class="key">break</span> ;
+         }
+         <span class="key">case</span> Key.DOWN :
+         {
+             canvas.show() ;
+             <span class="key">break</span> ;
+         }
+         <span class="key">case</span> Key.RIGHT :
+         {
+             canvas.rotation = <span class="num_const">25</span> ;
+             <span class="key">break</span> ;
+         }
+         <span class="key">case</span> Key.LEFT :
+         {
+             canvas.alpha = <span class="num_const">30</span> ;
+             <span class="key">break</span> ;
+         }
+     }
+ }
+ 
+ Key.addListener(<span class="key">this</span>) ;
+ </pre>
+ </p></div><div class="type_indexes"><div class="field_index"><h2>Field Index</h2><a href="#alpha" title="public alpha:Number">alpha</a>, <a href="#enabled" title="public enabled:Boolean">enabled</a>, <a href="#height" title="public height:Number">height</a>, <a href="#mouseX" title="public mouseX:String">mouseX</a>, <a href="#mouseY" title="public mouseY:String">mouseY</a>, <a href="#name" title="public name:String">name</a>, <a href="#root" title="public root:DisplayObject">root</a>, <a href="#rotation" title="public rotation:Number">rotation</a>, <a href="#view" title="public view">view</a>, <a href="#width" title="public width:Number">width</a>, <a href="#x" title="public x:Number">x</a>, <a href="#y" title="public y:Number">y</a></div><div class="method_index"><h2>Method Index</h2><div><code>new <a href="#DisplayObject" title="public function DisplayObject(sName:String, target)">DisplayObject()</a></code></div><a href="#createChild" title="public function createChild(o, name:String, depth:Number, init)">createChild()</a>, <a href="#getEnabled" title="public function getEnabled():Boolean">getEnabled()</a>, <a href="#getHeight" title="public function getHeight():Number">getHeight()</a>, <a href="#getLoader" title="public function getLoader():ILoader">getLoader()</a>, <a href="#getName" title="public function getName():String">getName()</a>, <a href="#getWidth" title="public function getWidth():Number">getWidth()</a>, <a href="#getX" title="public function getX():Number">getX()</a>, <a href="#getY" title="public function getY():Number">getY()</a>, <a href="#hide" title="public function hide():Void">hide()</a>, <a href="#isVisible" title="public function isVisible():Boolean">isVisible()</a>, <a href="#move" title="public function move(x:Number, y:Number):Void">move()</a>, <a href="#release" title="public function release():Void">release()</a>, <a href="#resolve" title="public function resolve(name:String)">resolve()</a>, <a href="#setEnabled" title="public function setEnabled(b:Boolean):Void">setEnabled()</a>, <a href="#setHeight" title="public function setHeight(n:Number):Void">setHeight()</a>, <a href="#setWidth" title="public function setWidth(n:Number):Void">setWidth()</a>, <a href="#setX" title="public function setX(n:Number):Void">setX()</a>, <a href="#setY" title="public function setY(n:Number):Void">setY()</a>, <a href="#show" title="public function show():Void">show()</a><h4>Inherited from <a href="../../vegas/events/AbstractCoreEventDispatcher.html" class="class_name" title="Class vegas.events.AbstractCoreEventDispatcher">AbstractCoreEventDispatcher</a></h4><div class="extra_info"><a href="../../vegas/events/AbstractCoreEventDispatcher.html#addEventListener" title="public function addEventListener(eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void">addEventListener()</a>, <a href="../../vegas/events/AbstractCoreEventDispatcher.html#addGlobalEventListener" title="public function addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void">addGlobalEventListener()</a>, <a href="../../vegas/events/AbstractCoreEventDispatcher.html#dispatchEvent" title="public function dispatchEvent(event, isQueue:Boolean, target, context):Event">dispatchEvent()</a>, <a href="../../vegas/events/AbstractCoreEventDispatcher.html#getEventDispatcher" title="public function getEventDispatcher():EventDispatcher">getEventDispatcher()</a>, <a href="../../vegas/events/AbstractCoreEventDispatcher.html#getEventListeners" title="public function getEventListeners(eventName:String):EventListenerCollection">getEventListeners()</a>, <a href="../../vegas/events/AbstractCoreEventDispatcher.html#getGlobalEventListeners" title="public function getGlobalEventListeners():EventListenerCollection">getGlobalEventListeners()</a>, <a href="../../vegas/events/AbstractCoreEventDispatcher.html#getParent" title="public function getParent():EventDispatcher">getParent()</a>, <a href="../../vegas/events/AbstractCoreEventDispatcher.html#getRegisteredEventNames" title="public function getRegisteredEventNames():Set">getRegisteredEventNames()</a>, <a href="../../vegas/events/AbstractCoreEventDispatcher.html#getTarget" title="public function getTarget()">getTarget()</a>, <a href="../../vegas/events/AbstractCoreEventDispatcher.html#hasEventListener" title="public function hasEventListener(eventName:String):Boolean">hasEventListener()</a>, <a href="../../vegas/events/AbstractCoreEventDispatcher.html#initEventDispatcher" title="public function initEventDispatcher():EventDispatcher">initEventDispatcher()</a>, <a href="../../vegas/events/AbstractCoreEventDispatcher.html#removeEventListener" title="public function removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener">removeEventListener()</a>, <a href="../../vegas/events/AbstractCoreEventDispatcher.html#removeGlobalEventListener" title="public function removeGlobalEventListener(listener):EventListener">removeGlobalEventListener()</a>, <a href="../../vegas/events/AbstractCoreEventDispatcher.html#setParent" title="public function setParent(parent:EventDispatcher):Void">setParent()</a></div><h4>Inherited from <a href="../../vegas/core/CoreObject.html" class="class_name" title="Class vegas.core.CoreObject">CoreObject</a></h4><div class="extra_info"><a href="../../vegas/core/CoreObject.html#hashCode" title="public function hashCode():Number">hashCode()</a>, <a href="../../vegas/core/CoreObject.html#toSource" title="public function toSource(indent:Number, indentor:String):String">toSource()</a>, <a href="../../vegas/core/CoreObject.html#toString" title="public function toString():String">toString()</a></div></div></div><div class="type_details"><div class="constructor_detail_list"><h2>Constructor Detail</h2><div class="method_details"><a name="DisplayObject"></a><h3>DisplayObject</h3><code class="method_synopsis">public function <strong class="method_name">DisplayObject</strong>(sName:<span class="unresolved_type_name">String</span>, target)</code><div class="method_info"><p>
+ Creates a new DisplayObject instance.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""></table></div></div></div><div class="field_detail_list"><h2>Field Detail</h2><a name="alpha"></a><h3>alpha</h3><div class="field_details"><code class="field_synopsis">public <strong class="field_name">alpha</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info">
+ [read-only] Indicates the alpha value of the display.
+	 </div></div><a name="enabled"></a><h3>enabled</h3><div class="field_details"><code class="field_synopsis">public <strong class="field_name">enabled</strong>:<span class="unresolved_type_name">Boolean</span></code><div class="field_info">
+ (read-write) Returns 'true' if the display is enabled.
+	 </div></div><a name="height"></a><h3>height</h3><div class="field_details"><code class="field_synopsis">public <strong class="field_name">height</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info">
+ (read-write) Returns the height of the display's view.
+	 </div></div><a name="mouseX"></a><h3>mouseX</h3><div class="field_details"><code class="field_synopsis">public <strong class="field_name">mouseX</strong>:<span class="unresolved_type_name">String</span> <em class="read_write_only">[Read Only]</em></code><div class="field_info">
+ [read-only] Indicates the x coordinate of the mouse position, in pixels.
+	 </div></div><a name="mouseY"></a><h3>mouseY</h3><div class="field_details"><code class="field_synopsis">public <strong class="field_name">mouseY</strong>:<span class="unresolved_type_name">String</span> <em class="read_write_only">[Read Only]</em></code><div class="field_info">
+ [read-only] Indicates the y coordinate of the mouse position, in pixels.
+	 </div></div><a name="name"></a><h3>name</h3><div class="field_details"><code class="field_synopsis">public <strong class="field_name">name</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ [read-write] Indicates the instance name of the DisplayObject.
+	 </div></div><a name="root"></a><h3>root</h3><div class="field_details"><code class="field_synopsis">public <strong class="field_name">root</strong>:<a href="../../asgard/display/DisplayObject.html" class="class_name" title="Class asgard.display.DisplayObject">DisplayObject</a> <em class="read_write_only">[Read Only]</em></code><div class="field_info">
+ [read-only] For a display object in a loaded SWF file, the root property is the top-most display object in the portion of the display list's tree structure represented by that SWF file.
+	 </div></div><a name="rotation"></a><h3>rotation</h3><div class="field_details"><code class="field_synopsis">public <strong class="field_name">rotation</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info">
+ [read-write] Indicates the rotation value of the DisplayObject.
+	 </div></div><a name="view"></a><h3>view</h3><div class="field_details"><code class="field_synopsis">public <strong class="field_name">view</strong></code><div class="field_info">
+ The view of the display.
+	 </div></div><a name="width"></a><h3>width</h3><div class="field_details"><code class="field_synopsis">public <strong class="field_name">width</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info">
+ (read-write) Sets the width of the display's view.
+	 </div></div><a name="x"></a><h3>x</h3><div class="field_details"><code class="field_synopsis">public <strong class="field_name">x</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info">
+ (read-write) Returns the x position of the display's view.
+	 </div></div><a name="y"></a><h3>y</h3><div class="field_details"><code class="field_synopsis">public <strong class="field_name">y</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info">
+ (read-write) Returns the y position of the display's view.
+	 </div></div></div><div class="method_detail_list"><h2>Method Detail</h2><div class="method_details alt_row"><a name="createChild"></a><h3>createChild</h3><code class="method_synopsis">public function <strong class="method_name">createChild</strong>(o, name:<span class="unresolved_type_name">String</span>, depth:<span class="unresolved_type_name">Number</span>, init)</code><div class="method_info"><p>
+ Create a new child in the view of the display.
+ </p><h4>See Also</h4><ul class="extra_info"><li><span class="unresolved_type_name">DisplayFactory.createChild</span></li></ul></div></div><div class="method_details"><a name="getEnabled"></a><h3>getEnabled</h3><code class="method_synopsis">public function <strong class="method_name">getEnabled</strong>():<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
+ Returns true if the display's view is enabled.
+	 </p></div></div><div class="method_details alt_row"><a name="getHeight"></a><h3>getHeight</h3><code class="method_synopsis">public function <strong class="method_name">getHeight</strong>():<span class="unresolved_type_name">Number</span></code><div class="method_info"><p>
+ Returns the height of the display's view.
+	 </p></div></div><div class="method_details"><a name="getLoader"></a><h3>getLoader</h3><code class="method_synopsis">public function <strong class="method_name">getLoader</strong>():<a href="../../asgard/net/ILoader.html" class="interface_name" title="Interface asgard.net.ILoader">ILoader</a></code><div class="method_info"><p>
+ Returns the loader of the display.
+	 </p></div></div><div class="method_details alt_row"><a name="getName"></a><h3>getName</h3><code class="method_synopsis">public function <strong class="method_name">getName</strong>():<span class="unresolved_type_name">String</span></code><div class="method_info"><p>
+ Returns the name of the display.
+	 </p></div></div><div class="method_details"><a name="getWidth"></a><h3>getWidth</h3><code class="method_synopsis">public function <strong class="method_name">getWidth</strong>():<span class="unresolved_type_name">Number</span></code><div class="method_info"><p>
+ Returns the width of the display's view.
+	 </p></div></div><div class="method_details alt_row"><a name="getX"></a><h3>getX</h3><code class="method_synopsis">public function <strong class="method_name">getX</strong>():<span class="unresolved_type_name">Number</span></code><div class="method_info"><p>
+ Return the x position of the display.
+	 </p></div></div><div class="method_details"><a name="getY"></a><h3>getY</h3><code class="method_synopsis">public function <strong class="method_name">getY</strong>():<span class="unresolved_type_name">Number</span></code><div class="method_info"><p>
+ Returns the y position of the display.
+	 </p></div></div><div class="method_details alt_row"><a name="hide"></a><h3>hide</h3><code class="method_synopsis">public function <strong class="method_name">hide</strong>():<span class="void_name">Void</span></code><div class="method_info"><p>
+ Hide the display.
+	 </p></div></div><div class="method_details"><a name="isVisible"></a><h3>isVisible</h3><code class="method_synopsis">public function <strong class="method_name">isVisible</strong>():<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
+ Returns 'true' if the display is visible.
+	 </p></div></div><div class="method_details alt_row"><a name="move"></a><h3>move</h3><code class="method_synopsis">public function <strong class="method_name">move</strong>(x:<span class="unresolved_type_name">Number</span>, y:<span class="unresolved_type_name">Number</span>):<span class="void_name">Void</span></code><div class="method_info"><p>
+ Move the display in a new position.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""></table></div></div><div class="method_details"><a name="release"></a><h3>release</h3><code class="method_synopsis">public function <strong class="method_name">release</strong>():<span class="void_name">Void</span></code><div class="method_info"><p>
+ Release the view of the display.
+	 </p></div></div><div class="method_details alt_row"><a name="setEnabled"></a><h3>setEnabled</h3><code class="method_synopsis">public function <strong class="method_name">setEnabled</strong>(b:<span class="unresolved_type_name">Boolean</span>):<span class="void_name">Void</span></code><div class="method_info"><p>
+ Sets the enabled state of the display.
+	 </p></div></div><div class="method_details"><a name="setHeight"></a><h3>setHeight</h3><code class="method_synopsis">public function <strong class="method_name">setHeight</strong>(n:<span class="unresolved_type_name">Number</span>):<span class="void_name">Void</span></code><div class="method_info"><p>
+ Sets the height of the display.
+	 </p></div></div><div class="method_details alt_row"><a name="setWidth"></a><h3>setWidth</h3><code class="method_synopsis">public function <strong class="method_name">setWidth</strong>(n:<span class="unresolved_type_name">Number</span>):<span class="void_name">Void</span></code><div class="method_info"><p>
+ Sets the width of the display.
+	 </p></div></div><div class="method_details"><a name="setX"></a><h3>setX</h3><code class="method_synopsis">public function <strong class="method_name">setX</strong>(n:<span class="unresolved_type_name">Number</span>):<span class="void_name">Void</span></code><div class="method_info"><p>
+ Sets the x position of the display.
+	 </p></div></div><div class="method_details alt_row"><a name="setY"></a><h3>setY</h3><code class="method_synopsis">public function <strong class="method_name">setY</strong>(n:<span class="unresolved_type_name">Number</span>):<span class="void_name">Void</span></code><div class="method_info"><p>
+ Sets the y position of the display.
+	 </p></div></div><div class="method_details"><a name="resolve"></a><h3>resolve</h3><code class="method_synopsis">public function <strong class="method_name">resolve</strong>(name:<span class="unresolved_type_name">String</span>)</code><div class="method_info"><p>
+ Returns an instance in a visual DisplayObject if exist else throws a Warning.
+ </p><h4>Throws</h4><table class="exceptions extra_info" summary=""><tr><td><a href="../../vegas/errors/Warning.html" class="class_name" title="Class vegas.errors.Warning">Warning</a></td><td></td></tr></table></div></div><div class="method_details alt_row"><a name="show"></a><h3>show</h3><code class="method_synopsis">public function <strong class="method_name">show</strong>():<span class="void_name">Void</span></code><div class="method_info"><p>
+ Show the display instance.
+	 </p></div></div></div></div><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package asgard.display" class="button">Package</a></li><li><span class="button nav_current">Class</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
