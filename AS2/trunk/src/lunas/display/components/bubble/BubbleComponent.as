@@ -130,9 +130,9 @@
 
 **/
 
-import asgard.display.Align;
-
 import lunas.display.components.AbstractComponent;
+
+import pegas.draw.Align;
 
 class lunas.display.components.bubble.BubbleComponent extends AbstractComponent {
 

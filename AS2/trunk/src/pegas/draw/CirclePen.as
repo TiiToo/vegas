@@ -21,8 +21,7 @@
   
 */
 
-import asgard.display.Align;
-
+import pegas.draw.Align;
 import pegas.draw.EasyPen;
 
 /**

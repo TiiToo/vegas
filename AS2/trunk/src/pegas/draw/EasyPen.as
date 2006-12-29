@@ -21,9 +21,8 @@
   
 */
 
-import asgard.display.Align;
-
 import pegas.draw.AbstractPen;
+import pegas.draw.Align;
 
 /**
  * @author eKameleon

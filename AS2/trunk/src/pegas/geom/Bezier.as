@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is PEGAS Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -125,19 +125,19 @@ class pegas.geom.Bezier
 		return new Point(x/pts.length,y/pts.length) ;
 	}
 
-	static public function split(p0:Point, p1:Point, p2:Point, p3:Point):Object 
+	static public function split(p0:Point, p1:Point, p2:Point, p3:Point):Object
 	{
-		var p01:Point = Line.getMiddle(p0, p1) ;
-		var p12:Point = Line.getMiddle(p1, p2);
-		var p23:Point = Line.getMiddle(p2, p3);
-		var p02:Point = Line.getMiddle(p01, p12);
-		var p13:Point = Line.getMiddle(p12, p23);
-		var p03:Point = Line.getMiddle(p02, p13);
-		return 
-		{
-			b0: {a:p0,  b:p01, c:p02, d:p03} ,
-			b1: {a:p03, b:p13, c:p23, d:p3 }  
+		var p0_1:Point = Line.getMiddle(p0, p1) ;
+		var p1_2:Point = Line.getMiddle(p1, p2);
+		var p2_3:Point = Line.getMiddle(p2, p3);
+		var p0_2:Point = Line.getMiddle(p0_1, p1_2);
+		var p1_3:Point = Line.getMiddle(p1_2, p2_3);
+		var p0_3:Point = Line.getMiddle(p0_2, p1_3);
+		var o:Object = {
+			b0 : { a:p0  , b:p0_1 , c:p0_2 , d:p0_3 } ,
+			b1 : { a:p0_3 , b:p1_3 , c:p2_3 , d:p3 }  
 		} ;
+		return o ; 
 	}
 	
 	static public function getCubicDerivative(c0:Number, c1:Number, c2:Number, c3:Number, t:Number):Number 
