@@ -25,7 +25,8 @@
 
 import asgard.display.DisplayLoader;
 import asgard.events.FlashPaperLoaderEvent;
-import asgard.geom.Point;
+
+import pegas.geom.Point;
 
 /**
  * This loader is used to load FlashPaper documents in a swf application.

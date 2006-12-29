@@ -21,11 +21,11 @@
   
 */
 
-import asgard.colors.ColorUtil;
-import asgard.events.ButtonEvent;
-import asgard.events.ButtonEventType;
-
 import lunas.display.components.button.AbstractButton;
+
+import pegas.colors.ColorUtil;
+import pegas.events.ButtonEvent;
+import pegas.events.ButtonEventType;
 
 /**
  * @author eKameleon

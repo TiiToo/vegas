@@ -25,7 +25,8 @@ import asgard.events.NetServerEvent;
 import asgard.events.NetServerEventType;
 import asgard.net.NetServerPolicy;
 import asgard.net.NetServerStatus;
-import asgard.process.Action;
+
+import pegas.process.Action;
 
 import vegas.core.HashCode;
 import vegas.core.IFormattable;

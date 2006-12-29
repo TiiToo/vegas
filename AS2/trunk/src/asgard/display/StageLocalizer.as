@@ -22,7 +22,8 @@
 */
 
 import asgard.display.StageAlign;
-import asgard.geom.Point;
+
+import pegas.geom.Point;
 
 /**
  * This static tool class defined the position of a point in the stage or in a specific display. This value change with the current Stage.align property.

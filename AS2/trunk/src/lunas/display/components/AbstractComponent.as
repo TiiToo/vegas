@@ -21,12 +21,12 @@
   
 */
 
-import asgard.events.UIEvent;
-import asgard.events.UIEventType;
-
 import lunas.display.components.IBuilder;
 import lunas.display.components.IStyle;
 import lunas.events.StyleEventType;
+
+import pegas.events.UIEvent;
+import pegas.events.UIEventType;
 
 import vegas.core.HashCode;
 import vegas.core.IHashable;

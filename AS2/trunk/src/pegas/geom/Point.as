@@ -23,10 +23,9 @@
 
 import pegas.geom.Trigo;
 
-import vegas.core.CoreObject ;
-import vegas.core.ICloneable ;
-import vegas.core.IEquality ;
-import vegas.core.ISerializable ;
+import vegas.core.CoreObject;
+import vegas.core.ICloneable;
+import vegas.core.IEquality;
 import vegas.util.TypeUtil;
 
 /**
@@ -42,7 +41,7 @@ dynamic class pegas.geom.Point extends CoreObject implements ICloneable, IEquali
 	{
 		var l:Number = arguments.length ;
 		var o1 = arguments[0] ; 
-		if (!l) 
+		if (l == 0) 
 		{
 			x = y = 0 ;
 		} 

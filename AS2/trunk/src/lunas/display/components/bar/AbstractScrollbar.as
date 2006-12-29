@@ -21,84 +21,21 @@
   
 */
 
-/** AbstractScrollbar
-
-	AUTHOR
-	
-		Name : AbstractScrollbar
-		Package : lunas.display.components.bar
-		Version : 1.0.0.0
-		Date :  2006-02-10
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-	
-		- autoResetPosition:Boolean
-	
-		- direction:Number [R/W]
-		
-		- duration:Number
-		
-		- easing:Function
-				
-		- isDragging:Boolean [Read Only]
-		
-		- noEasing:Boolean
-		
-			Cette propriété permet de définir si la barre utilise une Tween ou pas à chaque changement de la valeur position.
-		
-		- position:Number [R/W]
-	
-	METHOD SUMMARY
-		
-		- dragging():Void
-		
-		- getBar():MovieClip
-		
-		- getDirection():Number
-		
-		- getPosition():Number
-		
-		- getThumb():MovieClip
-		
-		- setDirection(n:Number):Void
-		
-		- setPosition(pos:Number, noEvent:Boolean):Void
-		
-		- startDragging():Void
-		
-		- stopDragging():Void
-	
-	EVENT TYPE SUMMARY
-	
-		- DRAG:EventType
-		
-		- CHANGE:EventType
-	
-	INHERIT
-	
-		MovieClip → AbstractComponent → AbstractProgressbar → AbstractScrollbar
-	
-**/
-
 import asgard.display.Direction;
-import asgard.events.ButtonEvent;
-import asgard.events.ButtonEventType;
-import asgard.transitions.easing.Back;
-import asgard.transitions.Tween;
 
 import lunas.display.components.bar.AbstractProgressbar;
 import lunas.display.components.IScrollbar;
+
+import pegas.events.ButtonEvent;
+import pegas.events.ButtonEventType;
+import pegas.transitions.easing.Back;
+import pegas.transitions.Tween;
 
 import vegas.util.MathsUtil;
 
 class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar implements IScrollbar 
 {
 
-	// ----o Constructor
-	
 	private function AbstractScrollbar() 
 	{
 		_eDrag = new ButtonEvent(ButtonEventType.DRAG, this) ;
@@ -110,24 +47,25 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 		
 	}
 
-	// ----o Constant
-	
 	static public var DRAG:String = ButtonEventType.DRAG ;
+
 	static public var START_DRAG:String = ButtonEventType.START_DRAG ;
+
 	static public var STOP_DRAG:String = ButtonEventType.STOP_DRAG ;
-	
-	static private var __ASPF__ = _global.ASSetPropFlags(AbstractScrollbar, null, 7, 7) ;
-	
-	// ----o Public Properties
 
 	public var duration:Number = 24  ;	
+
 	public var easing:Function = null ;
+
 	static public var invertPosField:Object = { _x : "_y" , _y : "_x" } ;
-	// public var isDragging:Boolean ; // [Read Only]
+
+	public function get isDragging():Boolean 
+	{
+		return getIsDragging() ;	
+	}
+
 	public var noEasing:Boolean = true ;
 	
-	// ----o Public Methods		
-
 	public function dragging():Void 
 	{
 		var sizeField:String = getSizeField() ;
@@ -201,7 +139,7 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 	public function viewPositionChanged( flag:Boolean ):Void 
 	{
 
-		if (_tw.running) 
+		if (_tw.getRunning()) 
 		{
 			_tw.stop() ;
 		}
@@ -242,14 +180,6 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 		}
 	}
 
-	// ----o Virtual Properties
-
-	public function get isDragging():Boolean 
-	{
-		return getIsDragging() ;	
-	}
-
-	// ----o Private Properties
 
 	private var _eDrag:ButtonEvent ;
 	private var _eStartDrag:ButtonEvent ;

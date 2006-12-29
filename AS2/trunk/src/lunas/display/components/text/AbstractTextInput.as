@@ -21,10 +21,10 @@
   
 */
 
-import asgard.events.FocusEvent;
-
 import lunas.display.components.text.AbstractTextArea;
 import lunas.display.group.TextInputGroup;
+
+import pegas.events.FocusEvent;
 
 import vegas.events.Delegate;
 

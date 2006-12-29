@@ -78,9 +78,9 @@
 ------------------------- */
 
 
-import asgard.geom.Point;
-
 import lunas.display.components.AbstractComponent;
+
+import pegas.geom.Point;
 
 class lunas.display.components.shape.LineComponent extends AbstractComponent {
 	

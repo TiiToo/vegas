@@ -136,10 +136,11 @@
 **/
 
 import asgard.display.ScrollPolicy;
-import asgard.events.UIEvent;
-import asgard.events.UIEventType;
 
 import lunas.display.components.text.AbstractLabel;
+
+import pegas.events.UIEvent;
+import pegas.events.UIEventType;
 
 import vegas.events.Delegate;
 

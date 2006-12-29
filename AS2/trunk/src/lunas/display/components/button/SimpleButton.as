@@ -130,10 +130,10 @@
 
 **/
 
-import asgard.events.ButtonEvent;
-import asgard.events.ButtonEventType;
-
 import lunas.display.components.button.AbstractButton;
+
+import pegas.events.ButtonEvent;
+import pegas.events.ButtonEventType;
 
 import vegas.events.Delegate;
 import vegas.events.EventListener;

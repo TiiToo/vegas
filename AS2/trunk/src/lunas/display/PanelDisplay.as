@@ -86,11 +86,12 @@
 **/
 
 import asgard.display.DisplayObject;
-import asgard.geom.Point;
 
 import lunas.display.components.container.PanelContainer;
 import lunas.events.PanelEvent;
 import lunas.events.PanelEventType;
+
+import pegas.geom.Point;
 
 import vegas.events.Delegate;
 import vegas.util.factory.DisplayFactory;

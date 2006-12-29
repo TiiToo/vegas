@@ -46,12 +46,13 @@
 import asgard.events.LoaderEvent;
 import asgard.events.LoaderEventType;
 import asgard.events.LocalizationEvent;
-import asgard.events.UIEventType;
 import asgard.net.LoaderListener;
 import asgard.system.ILocalizationLoader;
 import asgard.system.Lang;
 import asgard.system.Locale;
 import asgard.system.LocalizationLoader;
+
+import pegas.events.UIEventType;
 
 import vegas.data.map.HashMap;
 import vegas.events.AbstractCoreEventDispatcher;

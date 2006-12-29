@@ -23,12 +23,9 @@
 
 import pegas.geom.Point;
 
-// TODO create Unit Tests
-
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
 import vegas.core.IEquality;
-import vegas.core.ISerializable;
 import vegas.util.serialize.Serializer;
 
 /**

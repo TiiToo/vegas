@@ -80,10 +80,11 @@
 **/
 
 import asgard.display.Direction;
-import asgard.events.MouseEvent;
-import asgard.events.MouseEventType;
 
 import lunas.display.components.container.ScrollContainer;
+
+import pegas.events.MouseEvent;
+import pegas.events.MouseEventType;
 
 import vegas.events.Delegate;
 import vegas.events.TimerEvent;

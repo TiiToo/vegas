@@ -78,7 +78,7 @@
 	
 ----------  */
 
-import asgard.events.ButtonEventType;
+import pegas.events.ButtonEventType;
 
 class lunas.events.CellEventType {
 

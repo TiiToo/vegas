@@ -76,8 +76,9 @@
 **/
 
 import asgard.events.LoaderEvent;
-import asgard.events.UIEventType;
 import asgard.net.ParserLoader;
+
+import pegas.events.UIEventType;
 
 /**
  * @author eKameleon

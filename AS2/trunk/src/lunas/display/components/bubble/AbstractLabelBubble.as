@@ -43,11 +43,11 @@
 
 **/
 
-import asgard.events.UIEvent;
-import asgard.events.UIEventType;
-
 import lunas.display.components.bubble.BubbleComponent;
 import lunas.display.components.ILabel;
+
+import pegas.events.UIEvent;
+import pegas.events.UIEventType;
 
 /**
  * @author eKameleon

@@ -24,6 +24,7 @@
 import buRRRn.ASTUce.TestCase;
 
 import pegas.geom.Plane;
+import pegas.geom.Vector;
 
 import vegas.core.CoreObject;
 
@@ -125,4 +126,18 @@ class Tests.pegas.geom.TestPlane extends TestCase
 		assertTrue( p.equals(pe) , "PLANE_11 - equals method failed.") ;
 	}
 
+	// FIXME : finish test of the setPlane method
+
+	/*
+	public function testSetPlane():Void
+	{
+		var v0:Vector = new Vector(0,0,0) ;
+		var v1:Vector = new Vector(10,20,30) ;
+		var v2:Vector = new Vector(50,100,150) ;
+		var pl:Plane = new Plane() ;
+		pl.setPlane(v0, v1, v2) ;
+		assertTrue(false, "PLANE_11 - setPlane method failed : " + pl + " / " + pl.test) ;	
+	}
+	*/
+	
 }

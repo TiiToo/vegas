@@ -21,12 +21,12 @@
   
 */
 
-import asgard.events.ButtonEvent;
-import asgard.events.ButtonEventType;
-
 import lunas.display.components.AbstractComponent;
 import lunas.display.components.IButton;
 import lunas.display.group.RadioButtonGroup;
+
+import pegas.events.ButtonEvent;
+import pegas.events.ButtonEventType;
 
 import vegas.events.EventListener;
 

@@ -21,6 +21,8 @@
   
 */
 
+import pegas.geom.Vector;
+
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
 import vegas.core.ICopyable;
@@ -29,7 +31,8 @@ import vegas.util.ConstructorUtil;
 import vegas.util.serialize.Serializer;
 
 /**
- * Plane representation in a 3D space. Used maily to represent the frustrum planes of the camera.
+ * Plane representation is a two-dimensional doubly ruled surface in a 3D space. 
+ * Used maily to represent the frustrum planes of the camera.
  * @author eKameleon
  */
 class pegas.geom.Plane extends CoreObject implements ICloneable, ICopyable, IEquality
@@ -104,6 +107,45 @@ class pegas.geom.Plane extends CoreObject implements ICloneable, ICopyable, IEqu
 			return false ;	
 		} 	
 	}
+
+	/**
+	 * Sets the a, b, c, d coordinate of this Plane.
+	 * @param v0 the first Vector to defined the plan.
+	 * @param v1 the second Vector to defined the plan.
+	 * @param v2 the third Vector to defined the plan.
+	 */
+	// FIXME : problem with setPlane method if size = 0.
+	public function setPlane( v0:Vector , v1:Vector, v2:Vector ):Void
+	{
+		
+		if (v0 == null || v1 == null || v2 == null)
+		{
+			return ;	
+		}
+		
+		var rx1:Number = v1.x - v0.x ;
+		var ry1:Number = v1.y - v0.y ;
+		var rz1:Number = v1.z - v0.z ;
+
+		var rx2:Number = v2.x - v0.x ;
+		var ry2:Number = v2.y - v0.y ;
+		var rz2:Number = v2.z - v0.z ;
+	
+		a = (ry1 * rz2) - (ry2 * rz1) ;
+		b = (rz1 * rx2) - (rz2 * rx1) ;
+		c = (rx1 * ry2) - (rx2 * ry1) ;
+		
+		var size:Number = Math.sqrt( a * a + b * b + c * c );
+		
+		a /= size ;
+		b /= size ;
+		c /= size ;
+		
+		d = a * v1.x + b * v1.y + c * v1.z ;
+		
+	}
+
+	public var test:String ;
 
 	/**
 	 * Returns a Eden reprensation of the object.

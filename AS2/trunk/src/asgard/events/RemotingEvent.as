@@ -21,96 +21,20 @@
   
 */
 
-/** RemotingEvent
-
-	AUTHOR
-
-		Name : RemotingEvent
-		Package : asgard.remoting
-		Version : 1.0.0.0
-		Date :  2005-11-18
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	EVENT TYPE SUMMARY
-	
-		- const ActionEvent.CHANGED : "changed"
-		
-		- const ActionEvent.CLEARED : "cleared"
-		
-		- const ActionEvent.FINISHED  : "finished"
-		
-		- const ActionEvent.LOOPED : "looped"
-		
-		- const ActionEvent.PROGRESS : "progress"
-		
-		- const ActionEvent.RESUMED  : "resumed"
-		
-		- const ActionEvent.STARTED   : "started"
-		
-		- const ActionEvent.STOPPED   : "stopped"
-		
-		- const ActionEvent.TIMEOUT  : "onTimeOut"
-
-	PROPERTY SUMMARY
-	
-		- code:String
-		
-		- fault [R/W]
-		
-		- level:String
-		
-		- result [R/W]
-		
-	METHOD SUMMARY
-	
-		- clone()
-		
-		- getCode():String
-		
-		- getDescription():String
-		
-		- getDetail():String
-		
-		- getExceptionStack():String
-		
-		- getFault()
-		
-		- getLevel():String
-		
-		- getLine():String
-		
-		- getMethodName():String
-		
-		- getResult()
-		
-		- getResults()
-		
-		- setFault( oFault , methodName:String):Void
-		
-		- setMethodName( methodName:String ):Void 
-		
-		- setResult( oResult , sMethodName:String ):Void
-		
-	INHERIT
-	
-		CoreObject → BasicEvent → DynamicEvent → RemotingEvent
-
-	IMPLEMENTS 
-		
-		Event, ICloneable, IFormattable, IHashable, ISerializable
-
-**/
-
 import vegas.events.DynamicEvent;
 import vegas.util.serialize.Serializer;
 
-class asgard.events.RemotingEvent extends DynamicEvent {
+/**
+ * @author eKameleon
+ */
+class asgard.events.RemotingEvent extends DynamicEvent 
+{
 
-	// ----o Constructor
-	
-	public function RemotingEvent(type:String, target, oResult, oFault, sMethodName:String, sCode:String, sLevel:String, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number ){
+	/**
+	 * Creates a new RemotingEvent instance.
+	 */
+	public function RemotingEvent(type:String, target, oResult, oFault, sMethodName:String, sCode:String, sLevel:String, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number )
+	{
 		super(type, target, context, bubbles, eventPhase, time, stop) ;
 		code = sCode || null ;
 		level = sLevel || null ;
@@ -119,8 +43,6 @@ class asgard.events.RemotingEvent extends DynamicEvent {
 		if (sMethodName) setMethodName(sMethodName) ; 
 	}
 
-	// ----o Constants
-	
 	static public var ERROR:String = "onError" ;	
 	
 	static public var FAULT:String = "onFault" ;
@@ -137,14 +59,32 @@ class asgard.events.RemotingEvent extends DynamicEvent {
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(RemotingEvent, null , 7, 7) ;
 
-	// ----o Public Properties
-	
 	public var code:String ;
-	public var level:String ;
-	
-	// ----o Public Methods
 
-	public function clone() {
+	public function get fault() 
+	{
+		return getFault() ;	
+	}
+	
+	public function set fault(oFault):Void 
+	{
+		setFault(oFault) ;	
+	}
+
+	public var level:String ;
+
+	public function get result() 
+	{
+		return getResult() ;	
+	}
+	
+	public function set result(oResult):Void 
+	{
+		setResult(oResult) ;	
+	}
+	
+	public function clone() 
+	{
 		var e:RemotingEvent = new RemotingEvent(getType(), getTarget()) ;
 		e.code = code ;
 		e.setFault(getFault()) ;
@@ -154,47 +94,58 @@ class asgard.events.RemotingEvent extends DynamicEvent {
 		return e ;
 	}
 
-	public function getCode():String {
+	public function getCode():String 
+	{
 		return _sCode ;
 	}
 
-	public function getDescription():String {
+	public function getDescription():String 
+	{
 		return _sDescription ;
 	}
 
-	public function getDetail():String {
+	public function getDetail():String 
+	{
 		return _sDetail ;
 	}
 
-	public function getExceptionStack():String {
+	public function getExceptionStack():String 
+	{
 		return _sExceptionStack ;
 	}
 	
-	public function getFault() {
+	public function getFault() 
+	{
 		return _fault ;
 	}
 
-	public function getLevel():String {
+	public function getLevel():String 
+	{
 		return _sLevel ;
 	}
 	
-	public function getLine():String {
+	public function getLine():String 
+	{
 		return _sLine ;
 	}
 	
-	public function getMethodName():String {
+	public function getMethodName():String 
+	{
 		return _sMethodName ;
 	}
 
-	public function getResult() {
+	public function getResult() 
+	{
 		return _result ;	
 	}
 	
-	public function getResults() {
+	public function getResults() 
+	{
 		return _result ;	
 	}
 	
-	public function setFault( oFault , methodName:String):Void {
+	public function setFault( oFault , methodName:String):Void 
+	{
 		_fault = oFault || null ;	
 		if (_fault != null) {
 			_sCode = oFault.code || null ;
@@ -207,34 +158,16 @@ class asgard.events.RemotingEvent extends DynamicEvent {
 		if (methodName) setMethodName( methodName ) ;
 	}
 	
-	public function setMethodName( methodName:String ):Void {
+	public function setMethodName( methodName:String ):Void 
+	{
 		_sMethodName = methodName || null  ;	
 	}
 	
-	public function setResult( oResult , sMethodName:String ):Void {
+	public function setResult( oResult , sMethodName:String ):Void 
+	{
 		_result = oResult || null ;
 		if (sMethodName) setMethodName( sMethodName ) ;
 	}		
-
-	// ----o Virtual Properties
-
-	public function get fault() {
-		return getFault() ;	
-	}
-	
-	public function set fault(oFault):Void {
-		setFault(oFault) ;	
-	}
-
-	public function get result() {
-		return getResult() ;	
-	}
-	
-	public function set result(oResult):Void {
-		setResult(oResult) ;	
-	}
-	
-	// ----o Private Properties
 	
 	private var _fault ;
 	private var _result ;	
@@ -246,8 +179,6 @@ class asgard.events.RemotingEvent extends DynamicEvent {
 	private var _sLine:String ;
 	private var _sMethodName:String ;
 
-	// ----o Protected Methods
-	
 	/*protected*/ private function _getParams():Array {
 		var ar:Array = super._getParams() ;
 		ar.splice(2, null, Serializer.toSource(_result)) ;

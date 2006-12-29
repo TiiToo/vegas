@@ -22,10 +22,11 @@
 */
 
 import asgard.display.DisplayObject;
-import asgard.events.UIEvent;
-import asgard.events.UIEventType;
-import asgard.geom.Point;
-import asgard.geom.Rectangle;
+
+import pegas.events.UIEvent;
+import pegas.events.UIEventType;
+import pegas.geom.Point;
+import pegas.geom.Rectangle;
 
 import vegas.events.Delegate;
 import vegas.maths.Range;

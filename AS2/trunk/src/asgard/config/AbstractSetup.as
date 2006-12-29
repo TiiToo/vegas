@@ -21,88 +21,28 @@
   
 */
 
-/** AbstractSetup
-
-	AUTHOR
-	
-		Name : AbstractSetup
-		Package : asgard.config
-		Version : 1.0.0.0
-		Date :  2006-03-25
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		Private constructor
-	
-	PROPERTY SUMMARY
-	
-		- name:String
-		
-		- namespace:String
-		
-		- running:Boolean [Read Only]
-		
-		- version:String
-	
-	METHOD SUMMARY
-	
-		- getConfig():Config
-		
-		- getConfigLoader():ConfigLoader
-		
-		- getRunning():Boolean
-		
-		- notifyChange():Void
-		
-		- onLoadComplete(ev:ConfigEvent):Void
-		
-		- onLoadError(ev:ConfigEvent):Void
-		
-		- onLoadFinished(ev:ConfigEvent):Void
-		
-		- onLoadProgress(ev:ConfigEvent):Void
-		
-		- onLoadStarted(ev:ConfigEvent)
-		
-		- release():Void
-		
-		- run():Void
-		
-		- setConfig(conf:Config):Void
-	
-		- setLoader(sFileName:String, sPath:String, sSuffix:String):Void
-		
-		- update():Void 
-	
-	INHERIT
-	
-		CoreObject > EventDispatcher > AbstractSetup
-	
-	IMPLEMENT
-	
-		IFormattable, IHashable, IEventDispatcher, IRunnable, ISetup, EventTarget, LoaderListener, ISetup
-
-*/
-
 import asgard.config.Config;
 import asgard.config.ConfigLoader;
 import asgard.config.ISetup;
 import asgard.events.LoaderEvent;
 import asgard.events.LoaderEventType;
-import asgard.events.UIEvent;
-import asgard.events.UIEventType;
 import asgard.net.LoaderListener;
+
+import pegas.events.UIEvent;
+import pegas.events.UIEventType;
 
 import vegas.events.Delegate;
 import vegas.events.EventDispatcher;
 
-class asgard.config.AbstractSetup extends EventDispatcher implements ISetup, LoaderListener  {
+/**
+ * @author eKameleon
+ */
+class asgard.config.AbstractSetup extends EventDispatcher implements ISetup, LoaderListener  
+{
 
-	// ----o Constructor
-	
+	/**
+	 * Creates a new AbstractSetup instance.
+	 */
 	private function AbstractSetup( sFileName:String, sPath:String, sSuffix:String ) 
 	{
 
@@ -120,15 +60,17 @@ class asgard.config.AbstractSetup extends EventDispatcher implements ISetup, Loa
 
 	}
 
-	// ----o Public Properties
-	
 	public var name:String = null ;
+	
 	public var namespace:String = null  ;
-	// public var running:Boolean // [Read Only]
+	
+	public function get running():Boolean 
+	{
+		return getRunning() ;	
+	}
+	
 	public var version:String = null  ;
 	
-	// ----o Public Methods
-
 	public function getConfig():Config 
 	{
 		return Config.getInstance() ;
@@ -207,15 +149,8 @@ class asgard.config.AbstractSetup extends EventDispatcher implements ISetup, Loa
 		// override this method in you setup class.
 	}
 
-	// ----o Virtual Properties
-	
-	public function get running():Boolean {
-		return getRunning() ;	
-	}
-
-	// ----o Private Properties
-
 	private var _eChange : UIEvent ;
+
 	private var _loader:ConfigLoader ; 
 	
 }

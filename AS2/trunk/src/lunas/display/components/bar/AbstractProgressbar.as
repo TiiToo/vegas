@@ -21,51 +21,12 @@
   
 */
 
-/**	AbstractProgressbar
-
-	AUTHOR
-	
-		Name : AbstractProgressbar
-		Package : lunas.display.components.bar
-		Version : 1.0.0.0
-		Date :  2006-02-10
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-	
-		- autoResetPosition:Boolean
-	
-		- direction:Number [R/W]
-		
-		- position:Number [R/W]
-	
-	METHOD SUMMARY
-		
-		- getDirection():Number
-		
-		- getPosition():Number
-		
-		- setDirection(n:Number):Void
-		
-		- setPosition(pos:Number, noEvent:Boolean):Void
-		
-	EVENT TYPE SUMMARY
-	
-		- CHANGE:String
-
-	INHERIT
-	
-		MovieClip → AbstractComponent → AbstractProgressbar
-
-**/
-
 import asgard.display.Direction;
-import asgard.events.UIEventType;
 
 import lunas.display.components.AbstractComponent;
 import lunas.display.components.IProgressbar;
+
+import pegas.events.UIEventType;
 
 import vegas.maths.Range;
 

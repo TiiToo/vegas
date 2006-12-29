@@ -104,11 +104,11 @@
 
 */
 
-import asgard.events.UIEvent;
-import asgard.events.UIEventType;
-
 import lunas.display.components.AbstractComponent;
 import lunas.display.components.ILabel;
+
+import pegas.events.UIEvent;
+import pegas.events.UIEventType;
 
 class lunas.display.components.text.AbstractLabel extends AbstractComponent implements ILabel 
 {

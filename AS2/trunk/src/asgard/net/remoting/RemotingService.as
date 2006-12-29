@@ -92,7 +92,8 @@ import asgard.net.remoting.RemotingConnectionCollector;
 import asgard.net.remoting.RemotingFormat;
 import asgard.net.remoting.RemotingServiceResponder;
 import asgard.net.TimeoutPolicy;
-import asgard.process.AbstractAction;
+
+import pegas.process.AbstractAction;
 
 import vegas.events.Delegate;
 import vegas.events.EventListener;

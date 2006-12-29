@@ -1,0 +1,176 @@
+﻿/*
+
+  The contents of this file are subject to the Mozilla Public License Version
+  1.1 (the "License"); you may not use this file except in compliance with
+  the License. You may obtain a copy of the License at 
+  
+           http://www.mozilla.org/MPL/ 
+  
+  Software distributed under the License is distributed on an "AS IS" basis,
+  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+  for the specific language governing rights and limitations under the License. 
+  
+  The Original Code is Vegas Framework.
+  
+  The Initial Developer of the Original Code is
+  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
+  the Initial Developer. All Rights Reserved.
+  
+  Contributor(s) :
+  
+*/
+
+import pegas.events.ActionEventType;
+import pegas.process.AbstractAction;
+import pegas.process.Action;
+
+import vegas.data.iterator.Iterator;
+import vegas.data.queue.LinearQueue;
+import vegas.data.queue.TypedQueue;
+import vegas.events.Delegate;
+import vegas.events.EventListener;
+import vegas.util.serialize.Serializer;
+
+/**
+ * @author eKameleon
+ */
+class pegas.process.Sequencer extends AbstractAction 
+{
+	
+	/**
+	 * Creates a new Sequencer instance.
+	 */
+	public function Sequencer( ar:Array ) 
+	{
+		_queue = new TypedQueue(Action, new LinearQueue()) ; 
+		_runner = new Delegate(this, run) ;
+		var l:Number = ar.length ;
+		if (l>0) 
+		{
+			for (var i:Number = 0 ; i < l ; i++) 
+			{
+				var a:Action = ar[i] ;
+				if (a instanceof Action) addAction(ar[i]) ;		
+			}
+		}
+	}
+
+	/**
+	 * Adds a process(Action) in the Sequencer.
+	 * @return {@code true} if the method success.
+	 */
+	public function addAction(action:Action, isClone:Boolean):Boolean 
+	{
+		var a:Action = isClone ? action.clone() : action ;
+		var isEnqueue:Boolean = _queue.enqueue(a) ;
+		if (isEnqueue)
+		{
+			AbstractAction(a).addEventListener(ActionEventType.FINISH, _runner) ;
+		}
+		return isEnqueue ;
+	}
+	
+	/**
+	 * Removes all process in the Sequencer.
+	 */
+	public function clear():Void 
+	{
+		_queue.clear() ;
+	}
+
+	/**
+	 * Returns a shallow copy of this object.
+	 * @return a shallow copy of this object.
+	 */
+	public function clone() 
+	{
+		var s:Sequencer = new Sequencer() ;
+		var it:Iterator = _queue.iterator() ;
+		while (it.hasNext()) 
+		{
+			s.addAction(it.next().clone()) ;
+		}
+		return s ;
+	}
+
+	/**
+	 * Launchs the Sequencer with the first element in the internal Queue of this Sequencer.
+	 */
+	public function run():Void 
+	{
+		if (_queue.size() > 0) 
+		{
+			if (!running) notifyStarted() ;
+			else notifyProgress() ;
+			_setRunning(true) ;
+			_cur = _queue.poll() ;
+			_cur.run() ;
+		}
+		else 
+		{
+			if (running) 
+			{
+				_setRunning(false) ;
+				notifyFinished() ;
+			}
+		}
+	}
+	
+	/**
+	 * Returns the numbers of process in this Sequencer.
+	 */
+	public function size():Number 
+	{
+		return _queue.size() ;
+	}
+	
+	/**
+	 * Starts the Sequencer if is not in progress.
+	 */
+	public function start():Void 
+	{
+		if (!running) 
+		{
+			run() ;
+		}
+	}
+	
+	/**
+	 * Stops the Sequencer. Stop only the last process if is running.
+	 */
+	public function stop(noEvent:Boolean):Void 
+	{
+		if (running) 
+		{
+			_cur.removeEventListener(ActionEventType.FINISH, _runner) ;
+			_setRunning(false) ;
+			if (noEvent) return ;
+			notifyStopped() ;
+			notifyFinished() ;
+		}
+	}
+	
+	/**
+	 * Returns the array representation of all process in this Sequencer.
+	 */
+	public function toArray():Array 
+	{
+		return _queue.toArray() ;	
+	}
+
+	/**
+	 * Returns the source of the specified object passed in argument.
+	 * @return the source of the specified object passed in argument.
+	 */
+	public function toSource():String 
+	{
+		var sourceA:String = Serializer.toSource(toArray()) ;
+		return Serializer.getSourceOf(this, [sourceA]) ;
+	}
+
+	private var _cur ;
+	private var _queue:TypedQueue  ;
+	private var _runner:EventListener ;
+	
+}

@@ -110,10 +110,10 @@
 
 */
 
-import asgard.events.ButtonEvent;
-
 import lunas.display.components.cell.CellIndex;
 import lunas.display.components.ICell;
+
+import pegas.events.ButtonEvent;
 
 class lunas.events.CellEvent extends ButtonEvent 
 {

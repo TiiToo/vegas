@@ -31,6 +31,75 @@ class pegas.util.VectorUtil
 {
 
 	/**
+	 * Computes the addition of two Vectors.
+	 * @param v1 a Vector to concat.
+	 * @param v2 a Vector to concat.
+	 * @return the addition result of two Vectors.
+	 */
+	static public function getAddition( v1:Vector, v2:Vector ):Vector
+	{
+		return new Vector( (v1.x + v2.x) , (v1.y + v2.y) , (v1.z + v2.z) ) ;	
+	}
+
+	/**
+	* Returns the angle in radian between the two 3D vectors. The formula used here is very simple.
+	* It comes from the definition of the dot product between two vectors.
+	* @param v1	Vector The first Vector.
+	* @param v2	Vector The second Vector.
+	* @return the angle in radian between the two vectors.
+	*/
+	static public function getAngle ( v1:Vector, v2:Vector ):Number
+	{
+		var ncos:Number = (VectorUtil.getDot( v1, v2 )) / ( getNorm(v1) * getNorm(v2) );
+		var sin2:Number = 1 - (ncos * ncos) ;
+		if (sin2<0)
+		{
+			trace(" wrong "+ ncos ) ;
+			sin2 = 0 ;
+		}
+		// I took long time to find this bug. Who can guess that (1-cos*cos) is negative ? !
+		// sqrt returns a NaN for a negative value !
+		return  Math.atan2( Math.sqrt(sin2), ncos );
+	}
+
+	/**
+	 * Computes the cross product of the two Vectors.
+	 * @param v1 a {@code Vector}.
+	 * @param v2 a {@code Vector}.
+	 * @return the {@code Vector} resulting of the cross product.
+	 */
+	static public function getCross( v1:Vector, v2:Vector ):Vector
+	{
+		return new Vector
+		( 	
+			(v2.y * v1.z) - (v2.z * v1.y) ,
+			(v2.z * v1.x) - (v2.x * v1.z) ,
+			(v2.x * v1.y) - (v2.y * v1.x)
+		);
+	}
+	
+	/**
+	 * Computes the dot product of the two Vectors.
+	 * @param v1 a {@code Vector}.
+	 * @param v2 a {@code Vector}.
+	 * @return the dot product of the 2 Vectors.
+	 */
+	static public function getDot( v1:Vector, v2:Vector ):Number
+	{
+		return (v1.x * v2.x) + (v1.y * v2.y) + (v1.z * v2.z) ;	
+	}
+
+	/**
+	 * Computes the oposite Vector of the {@code Vector}.
+	 * @param {@code v} the Vector reference to negate.
+	 * @return a new negate {@code Vector} reference.
+	 */
+	public static function getNegate( v:Vector ):Vector
+	{
+		return new Vector( - v.x, - v.y, - v.z );
+	}	
+
+	/**
 	 * Computes the norm of the {@code Vector}.
 	 * @param v a Vector reference.
 	 * @return the norm of the specified {@code Vector}.
@@ -41,14 +110,37 @@ class pegas.util.VectorUtil
 	}
 
 	/**
-	 * Computes the oposite Vector of the {@code Vector}.
-	 * @param {@code v} the Vector reference to negate.
-	 * @return a new negate {@code Vector} reference.
+	 * Computes the power of the specified Vector.
+	 * @param v the Vector reference.
+	 * @param valut the value of the pow..
+	 * @return A new Vector powered by the method.
 	 */
-	public static function negate( v:Vector ): Vector
+	static public function getPow( v:Vector, value:Number ):Vector
 	{
-		return new Vector( - v.x, - v.y, - v.z );
-	}	
+		return new Vector( Math.pow( v.x, value ) , Math.pow( v.x, value ) ,  Math.pow( v.x, value ) ) ;
+	}
+
+	/**
+	 * Scales the specified Vector with the input value.
+	 * @param vector the Vector reference to transform.
+	 * @param value a real number to scale the current Vector.
+	 * @return A new Vector scaled by the value passed in second argument in this method.
+	 */
+	static public function getScale( v:Vector, value:Number ):Vector
+	{
+		return new Vector ( v.x * value , v.y * value , v.z * value ) ;
+	}
+
+	/**
+	 * Computes the substraction of two Vectors.
+	 * @param v1 a Vector to concat.
+	 * @param v2 a Vector to concat.
+	 * @return the substraction result of two Vectors.
+	 */
+	static public function getSubstraction( v1:Vector , v2:Vector ):Vector
+	{
+		return new Vector( (v1.x - v2.x) , (v1.y - v2.y) , (v1.z - v2.z) ) ;
+	}
 
 	/**
 	 * Normalize the specified {@code Vector} in parameter.
@@ -69,26 +161,15 @@ class pegas.util.VectorUtil
 	}
 
 	/**
-	 * Computes the power of the specified Vector.
-	 * @param v the Vector reference.
-	 * @param valut the value of the pow..
-	 * @return A new Vector powered by the method.
-	 */
-	static public function pow( v:Vector, value:Number ):Vector
-	{
-		return new Vector( Math.pow( v.x, value ) , Math.pow( v.x, value ) ,  Math.pow( v.x, value ) ) ;
-	}
-
-	/**
 	 * Scales the specified Vector with the input value.
 	 * @param vector the Vector reference to transform.
 	 * @param value a real number to scale the current Vector.
 	 */
-	static public function scale( vector:Vector, value:Number ):Void
+	static public function scale( v:Vector, value:Number ):Void
 	{
-		vector.x *= value ;
-		vector.y *= value ;
-		vector.z *= value ;
+		v.x *= value ;
+		v.y *= value ;
+		v.z *= value ;
 	}
 
 }

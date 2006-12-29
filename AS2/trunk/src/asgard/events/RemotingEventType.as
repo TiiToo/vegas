@@ -21,63 +21,24 @@
   
 */
 
-/**	RemotingEventType
+import pegas.events.ActionEventType;
 
-	AUTHOR
+/**
+ * @author eKameleon
+ */
+class asgard.events.RemotingEventType 
+{
 
-		Name : RemotingEventType
-		Package : asgard.remoting
-		Version : 1.0.0.0
-		Date :  2005-12-02
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	CONSTANT SUMMARY
-		
-		- RemotingEventType.ERROR:String 
-		
-			"onError"
-
-		- RemotingEventType.FAULT:String
-		
-			"onFault"
-		
-		- RemotingEventType.FINISHED:String
-		
-			"onFinished"
-		
-		- RemotingEventType.PROGRESS:String
-		
-			"onProgress"
-
-		- RemotingEventType.RESULT:String
-		
-			"onResult"
-	
-		- RemotingEventType.STARTED:String
-		
-			"onStarted"
-
-**/
-
-import asgard.events.ActionEventType;
-
-class asgard.events.RemotingEventType {
-
-	// ----o Constructor
-	
-	private function RemotingEventType() {
-		//
-	}
-
-	// ----o Constants
-	
 	static public var ERROR:String = "onError" ;	
+	
 	static public var FAULT:String = "onFault" ;
+	
 	static public var FINISHED:String = ActionEventType.FINISH ;
+	
 	static public var PROGRESS:String = ActionEventType.PROGRESS ;
+	
 	static public var RESULT:String = "onResult" ;
+	
 	static public var STARTED:String = ActionEventType.START ;
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(RemotingEventType, null , 7, 7) ;

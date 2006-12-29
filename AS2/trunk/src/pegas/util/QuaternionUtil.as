@@ -55,7 +55,7 @@ class pegas.util.QuaternionUtil
 	 * Returns the magnitude of the Quaternion, measured in the Euclidean norm.
 	 * @return the magnitude of the Quaternion, measured in the Euclidean norm.
 	 */
-	static public function getMagnitude(q:Quaternion):Number
+	static public function getMagnitude( q:Quaternion ):Number
 	{
 		var w:Number = q.w ;
 		var x:Number = q.x ;
@@ -68,7 +68,7 @@ class pegas.util.QuaternionUtil
 	 * Returns the multiplication of two Quaternions.
 	 * @return the multiplication of two Quaternions.
 	 */
-	static public function multiply( q1:Quaternion , q2:Quaternion ):Quaternion
+	static public function getMultiply( q1:Quaternion , q2:Quaternion ):Quaternion
 	{
 		var x1:Number = q1.x ; var y1:Number = q1.y ;
 		var z1:Number = q1.z ; var w1:Number = q1.w ;
@@ -89,7 +89,7 @@ class pegas.util.QuaternionUtil
 	 * Returns the multiplication of one Quaternions with a Vector.
 	 * @return the multiplication of one Quaternions with a Vector.
 	 */
-	static public function multiplyVector( q:Quaternion , v:Vector ):Quaternion
+	static public function getMultiplyVector( q:Quaternion , v:Vector ):Quaternion
 	{
 		var x1:Number = q.x ; var y1:Number = q.y ;
 		var z1:Number = q.z ; var w1:Number = q.w ;
