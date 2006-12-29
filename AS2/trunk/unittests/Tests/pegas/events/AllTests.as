@@ -27,7 +27,7 @@ import buRRRn.ASTUce.TestSuite;
 /**
  * @author eKameleon
  */
-class Tests.pegas.geom.AllTests extends TestCase 
+class Tests.pegas.events.AllTests extends TestCase 
 {
 
 	/**
@@ -44,20 +44,19 @@ class Tests.pegas.geom.AllTests extends TestCase
     static function suite():TestSuite
 	{
 
-        var suite:TestSuite = new TestSuite( "Tests.pegas.geom" );
+        var suite:TestSuite = new TestSuite( "Tests.pegas.events" );
         
         //suite.simpleTrace = true;
 
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestBezier ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestLine ) );
-		suite.addTest( new TestSuite( Tests.pegas.geom.TestPlane ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestPoint ) );
-		suite.addTest( new TestSuite( Tests.pegas.geom.TestQuaternion ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestRectangle ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestTransformMatrix ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestTrigo ) );
-        suite.addTest( new TestSuite( Tests.pegas.geom.TestVector ) );
-        suite.addTest( new TestSuite( Tests.pegas.geom.TestVertex ) );
+		// suite.addTest( new TestSuite( Tests.pegas.events.TestActionEvent ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.events.TestActionEventType ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.events.TestButtonEvent ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.events.TestButtonEventType ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.events.TestFocusEvent ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.events.TestMouseEvent ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.events.TestMouseEventType ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.events.TestUIEvent ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.events.TestUIEventType ) );
         
         return suite ;
     

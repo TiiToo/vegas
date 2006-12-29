@@ -27,7 +27,7 @@ import buRRRn.ASTUce.TestSuite;
 /**
  * @author eKameleon
  */
-class Tests.pegas.geom.AllTests extends TestCase 
+class Tests.pegas.util.AllTests extends TestCase 
 {
 
 	/**
@@ -44,20 +44,14 @@ class Tests.pegas.geom.AllTests extends TestCase
     static function suite():TestSuite
 	{
 
-        var suite:TestSuite = new TestSuite( "Tests.pegas.geom" );
+        var suite:TestSuite = new TestSuite( "Tests.pegas.util" );
         
-        //suite.simpleTrace = true;
+        // suite.simpleTrace = true;
 
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestBezier ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestLine ) );
-		suite.addTest( new TestSuite( Tests.pegas.geom.TestPlane ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestPoint ) );
-		suite.addTest( new TestSuite( Tests.pegas.geom.TestQuaternion ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestRectangle ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestTransformMatrix ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestTrigo ) );
-        suite.addTest( new TestSuite( Tests.pegas.geom.TestVector ) );
-        suite.addTest( new TestSuite( Tests.pegas.geom.TestVertex ) );
+		// suite.addTest( new TestSuite( Tests.pegas.pegas.util.TestPlaneUtil ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.pegas.util.TestQuaternionUtil ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.pegas.util.TestVectorUtil ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.pegas.util.TestVertexUtil ) ) ;
         
         return suite ;
     

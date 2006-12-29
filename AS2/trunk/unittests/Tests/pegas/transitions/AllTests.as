@@ -27,7 +27,7 @@ import buRRRn.ASTUce.TestSuite;
 /**
  * @author eKameleon
  */
-class Tests.pegas.geom.AllTests extends TestCase 
+class Tests.pegas.transitions.AllTests extends TestCase 
 {
 
 	/**
@@ -44,20 +44,17 @@ class Tests.pegas.geom.AllTests extends TestCase
     static function suite():TestSuite
 	{
 
-        var suite:TestSuite = new TestSuite( "Tests.pegas.geom" );
+        var suite:TestSuite = new TestSuite( "Tests.pegas.transitions" );
         
-        //suite.simpleTrace = true;
+        // suite.simpleTrace = true;
 
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestBezier ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestLine ) );
-		suite.addTest( new TestSuite( Tests.pegas.geom.TestPlane ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestPoint ) );
-		suite.addTest( new TestSuite( Tests.pegas.geom.TestQuaternion ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestRectangle ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestTransformMatrix ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestTrigo ) );
-        suite.addTest( new TestSuite( Tests.pegas.geom.TestVector ) );
-        suite.addTest( new TestSuite( Tests.pegas.geom.TestVertex ) );
+		suite.addTest(  Tests.pegas.transitions.easing.AllTests.suite() ) ;
+
+		// suite.addTest( new TestSuite( Tests.pegas.transitions.TestEase ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.transitions.TestMotion ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.transitions.TestTween ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.transitions.TestTweenEntry ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.transitions.TestTweenProvider ) );
         
         return suite ;
     

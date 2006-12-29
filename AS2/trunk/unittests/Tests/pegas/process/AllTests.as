@@ -27,7 +27,7 @@ import buRRRn.ASTUce.TestSuite;
 /**
  * @author eKameleon
  */
-class Tests.pegas.geom.AllTests extends TestCase 
+class Tests.pegas.process.AllTests extends TestCase 
 {
 
 	/**
@@ -44,21 +44,18 @@ class Tests.pegas.geom.AllTests extends TestCase
     static function suite():TestSuite
 	{
 
-        var suite:TestSuite = new TestSuite( "Tests.pegas.geom" );
+        var suite:TestSuite = new TestSuite( "Tests.pegas.process" );
         
         //suite.simpleTrace = true;
 
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestBezier ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestLine ) );
-		suite.addTest( new TestSuite( Tests.pegas.geom.TestPlane ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestPoint ) );
-		suite.addTest( new TestSuite( Tests.pegas.geom.TestQuaternion ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestRectangle ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestTransformMatrix ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestTrigo ) );
-        suite.addTest( new TestSuite( Tests.pegas.geom.TestVector ) );
-        suite.addTest( new TestSuite( Tests.pegas.geom.TestVertex ) );
-        
+		// suite.addTest( new TestSuite( Tests.pegas.process.TestAbstractAction ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.process.TestAction ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.process.TestActionProxy ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.process.TestBatch ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.process.TestMessage ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.process.TestPause ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.process.TestSequencer ) ) ;
+		       
         return suite ;
     
     }

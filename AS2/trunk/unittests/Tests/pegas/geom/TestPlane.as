@@ -24,7 +24,6 @@
 import buRRRn.ASTUce.TestCase;
 
 import pegas.geom.Plane;
-import pegas.geom.Vector;
 
 import vegas.core.CoreObject;
 

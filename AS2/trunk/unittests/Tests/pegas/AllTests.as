@@ -48,7 +48,14 @@ class Tests.pegas.AllTests extends TestCase
         
         // suite.simpleTrace = true;
         
+        suite.addTest(  Tests.pegas.colors.AllTests.suite()  ) ;
+        suite.addTest(  Tests.pegas.draw.AllTests.suite()  ) ;
+        suite.addTest(  Tests.pegas.events.AllTests.suite()  ) ;
         suite.addTest(  Tests.pegas.geom.AllTests.suite()  ) ;
+        suite.addTest(  Tests.pegas.process.AllTests.suite()  ) ;
+        suite.addTest(  Tests.pegas.transitions.AllTests.suite()  ) ;
+        suite.addTest(  Tests.pegas.ui.AllTests.suite()  ) ;
+        suite.addTest(  Tests.pegas.util.AllTests.suite()  ) ;
         
         return suite ;
     

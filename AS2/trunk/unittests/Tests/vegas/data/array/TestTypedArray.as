@@ -25,7 +25,8 @@ import buRRRn.ASTUce.TestCase;
 
 import vegas.data.array.TypedArray;
 import vegas.data.iterator.Iterator;
-import vegas.errors.TypeMismatchError;
+
+// FIXME : bug in catch(e:TypeMismatchError in Flash but not in MTASC ??)
 
 /**
  * @author eKameleon
@@ -84,7 +85,7 @@ class Tests.vegas.data.array.TestTypedArray extends TestCase
 			assertTrue( a instanceof Array , "TA_05_01 : concat failed, must be an Array." ) ;
 			assertEquals( a.length , 7     , "TA_05_02 : concat failed - size invalid : " + a.length ) ;
 		}
-		catch( e:TypeMismatchError )
+		catch( e /*TypeMismatchError*/ )
 		{
 			return ;	
 		}
@@ -113,14 +114,11 @@ class Tests.vegas.data.array.TestTypedArray extends TestCase
 			a.push("test") ; // String
 			fail("TA_08_02 : push failed with bad type value.") ;
 		}
-		catch( e:TypeMismatchError )
+		catch( e /*TypeMismatchError*/ )
 		{
 			return ;
 		}
-		finally
-		{
-			fail("TA_08_03 : push failed with bad type value.") ;
-		}
+		fail("TA_08_03 : push failed with bad type value.") ;
 	}
 
 	public function testSetType():Void
@@ -133,7 +131,7 @@ class Tests.vegas.data.array.TestTypedArray extends TestCase
 		{
 			a.push("hello world") ;
 		}
-		catch( e:TypeMismatchError )
+		catch( e /*TypeMismatchError*/ )
 		{
 			fail( "TA_09_03 : setType failed, type must be String." ) ;
 		}
@@ -174,7 +172,7 @@ class Tests.vegas.data.array.TestTypedArray extends TestCase
 			a.unshift("test") ;	
 			fail("TA_12_03 : unshift failed with bad type value.") ;
 		}
-		catch( e:TypeMismatchError )
+		catch( e /*TypeMismatchError*/ )
 		{
 			
 		}
@@ -187,14 +185,11 @@ class Tests.vegas.data.array.TestTypedArray extends TestCase
 			ta.validate("test") ;
 			fail( "TA_13_01 : validate failed with bad type value.") ;
 		}
-		catch( e:TypeMismatchError )
+		catch( e /*TypeMismatchError*/ )
 		{
 			return ;	
 		}
-		finally
-		{
-			fail("TA_13_02 : validate failed, the error thrown is an unknow error.") ;
-		}
+		fail("TA_13_02 : validate failed, the error thrown is an unknow error.") ;
 	}
 
 }

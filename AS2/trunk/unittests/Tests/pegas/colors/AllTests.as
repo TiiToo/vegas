@@ -27,7 +27,7 @@ import buRRRn.ASTUce.TestSuite;
 /**
  * @author eKameleon
  */
-class Tests.pegas.geom.AllTests extends TestCase 
+class Tests.pegas.colors.AllTests extends TestCase 
 {
 
 	/**
@@ -44,21 +44,21 @@ class Tests.pegas.geom.AllTests extends TestCase
     static function suite():TestSuite
 	{
 
-        var suite:TestSuite = new TestSuite( "Tests.pegas.geom" );
+        var suite:TestSuite = new TestSuite( "Tests.pegas.colors" );
         
         //suite.simpleTrace = true;
 
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestBezier ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestLine ) );
-		suite.addTest( new TestSuite( Tests.pegas.geom.TestPlane ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestPoint ) );
-		suite.addTest( new TestSuite( Tests.pegas.geom.TestQuaternion ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestRectangle ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestTransformMatrix ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestTrigo ) );
-        suite.addTest( new TestSuite( Tests.pegas.geom.TestVector ) );
-        suite.addTest( new TestSuite( Tests.pegas.geom.TestVertex ) );
-        
+		// suite.addTest( new TestSuite( Tests.pegas.colors.TestBasicColor ) );
+		// suite.addTest( new TestSuite( Tests.pegas.colors.TestColorHSV ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.colors.TestColorHTML ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.colors.TestColorRGB ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.colors.TestColorSVG ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.colors.TestColorUtil ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.colors.TestLightColor ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.colors.TestSolidColor ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.colors.TestTintColor ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.colors.TestTransformColor ) );
+		
         return suite ;
     
     }
