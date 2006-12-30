@@ -31,6 +31,7 @@ import vegas.logging.ITarget;
 import vegas.logging.Log;
 import vegas.logging.LogEvent;
 import vegas.logging.LogEventLevel;
+import vegas.logging.LogLogger;
 import vegas.string.StringFormatter;
 import vegas.string.WildExp;
 import vegas.util.ArrayUtil;
@@ -48,6 +49,7 @@ class vegas.logging.AbstractTarget extends CoreObject implements EventListener, 
 	private function AbstractTarget()
 	{
 		_level = LogEventLevel.ALL ;
+		_filters = [ "*" ] ;
 		_set = new HashSet() ;
 	}
 
@@ -76,36 +78,30 @@ class vegas.logging.AbstractTarget extends CoreObject implements EventListener, 
 	
 	/**
 	 * (read-write) Sets the filters array of this target.
+	 * If you use this virtual property the target is register in the {@code Log} singleton automatically.
 	 */
 	public function set filters( value:Array ):Void
 	{
 		
 		if ( value != null && value.length > 0 )
 		{
-			
 			var filter:String ;
 			var index:Number ;
 			var len:Number = value.length ;
-			
 			for (var i:Number = 0; i<len ; i++)
 			{
 				
 				filter = value[i] ;
-				
 				// check for invalid characters
-				
 				if ( Log.hasIllegalCharacters(filter) )
 				{
 					throw new InvalidFilterError( (new StringFormatter(ERROR_FILTER)).format(filter) + CHARS_INVALID ) ;
 				}
-				
 				index = filter.indexOf("*") ;
- 				
  				if ((index >= 0) && (index != (filter.length -1)))
                 {                        
 					throw new InvalidFilterError( (new StringFormatter(ERROR_FILTER)).format( filter) + CHAR_PLACEMENT ) ;
 				}
-				
 			}
 		}
 		else
@@ -115,9 +111,9 @@ class vegas.logging.AbstractTarget extends CoreObject implements EventListener, 
 
 		if ( _set.size() > 0 )
 		{
-			//Log.removeTarget(this);
+			Log.removeTarget(this);
 			_filters = value;
-			//Log.addTarget(this);
+			Log.addTarget(this);
 		}
 		else
 		{
@@ -135,12 +131,13 @@ class vegas.logging.AbstractTarget extends CoreObject implements EventListener, 
 
 	/**
 	 * (read-write) Sets the level of this target.
+	 * If you use this virtual property the target is register in the {@code Log} singleton automatically.
 	 */
 	public function set level( value:Number ):Void
 	{
-		//Log.removeTarget(this) ;
+		Log.removeTarget(this) ;
 		_level = value ;
-		//Log.addTarget(this) ;     
+		Log.addTarget(this) ;     
 	} 
 
 	/**
@@ -195,7 +192,16 @@ class vegas.logging.AbstractTarget extends CoreObject implements EventListener, 
 	 */
 	public function handleEvent(e:Event) 
 	{
-		_logHandler( LogEvent(e) ) ;
+		var event:LogEvent = LogEvent(e) ; 
+		if (  event.level >= level )
+		{
+			var category:String = LogLogger(event.getTarget()).category ;
+			var isValid:Boolean = _isValidCategory( category ) ;
+			if (isValid)
+			{
+				logEvent( event ) ;
+			}
+		}
 	}
 
     /**
@@ -235,7 +241,7 @@ class vegas.logging.AbstractTarget extends CoreObject implements EventListener, 
 	{
 		if (_set.contains(logger))
 		{
-			_set.remove(logger) ;
+			_set.remove( logger ) ;
 			logger.removeEventListener(LogEvent.LOG, this) ;
 		}
 	}
@@ -262,6 +268,7 @@ class vegas.logging.AbstractTarget extends CoreObject implements EventListener, 
 	 */
 	private function _isValidCategory(category:String):Boolean 
 	{
+		
 		if ( category == Log.DEFAULT_CATEGORY ) 
 		{
 			return true ;
@@ -291,23 +298,12 @@ class vegas.logging.AbstractTarget extends CoreObject implements EventListener, 
 	/**
 	 * Storage for the filters property.
 	 */
-	private var _filters:Array = [ "*" ] ;
+	private var _filters:Array ;
 	
 	/**
 	 * Storage for the filters property.
 	 */
 	private var _level:Number ;
-	
-	/**
-	 * This method will call the <code>logEvent</code> method if the level of the event is appropriate for the current level.
-	 */
-	private function _logHandler( e:LogEvent ):Void
-	{
-		if ( e.level >= level )
-		{
-			logEvent(e) ;
-		}
-	}
 	
 	private var _set:HashSet ;
 

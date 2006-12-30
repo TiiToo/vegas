@@ -43,9 +43,13 @@ class Tests.vegas.logging.errors.AllTests extends TestCase
 	 */
     static function suite():TestSuite
 	{
+        
         var suite:TestSuite = new TestSuite( "Tests.vegas.logging.errors" );
         
         //suite.simpleTrace = true;
+
+		suite.addTest( new TestSuite( Tests.vegas.logging.errors.TestInvalidCategoryError ) ) ;
+        suite.addTest( new TestSuite( Tests.vegas.logging.errors.TestInvalidFilterError ) ) ;
 
         return suite ;
     

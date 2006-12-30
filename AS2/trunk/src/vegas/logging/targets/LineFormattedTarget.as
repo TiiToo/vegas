@@ -23,6 +23,7 @@
 
 import vegas.logging.AbstractTarget;
 import vegas.logging.LogEvent;
+import vegas.logging.LogLogger;
 
 /**
  * All logger target implementations that have a formatted line style output should extend this class. It provides default behavior for including date, time, category, and level within the output.
@@ -86,9 +87,9 @@ class vegas.logging.targets.LineFormattedTarget extends AbstractTarget
 	{
 		var message = e.message ;
 		var level:String = LogEvent.getLevelString( e.level ) ;
-		var category:String = e.currentTarget.category ;
+		var category:String = LogLogger(e.getTarget()).category ;
 		message = formatMessage( message, level, category, new Date() ) ;
-		internalLog ( message, e.level ) ;
+		internalLog( message, e.level ) ;
 	}
 
 	/**

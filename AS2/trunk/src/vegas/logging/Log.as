@@ -21,21 +21,14 @@
   
 */
 
-import vegas.data.iterator.Iterator;
 import vegas.data.map.HashMap;
-import vegas.data.set.HashSet;
 import vegas.errors.ArgumentsError;
 import vegas.errors.Warning;
-import vegas.logging.AbstractTarget;
 import vegas.logging.errors.InvalidCategoryError;
 import vegas.logging.ILogger;
 import vegas.logging.ITarget;
-import vegas.logging.LogEventLevel;
 import vegas.logging.LogLogger;
 import vegas.util.StringUtil;
-
-// FIXME when the getLogger method is used after the declaration of the targets... the log event flow is failed.
-// TODO Refactoring all the vegas.logging.* package !!!!  
 
 /**
  * Provides psuedo-hierarchical logging capabilities with multiple format and output options.
@@ -80,51 +73,9 @@ class vegas.logging.Log
 	 */
 	static public function addTarget( target:ITarget ):Void 
 	{
-		
-		if (target)
+		if (target != null)
 		{
-			if (_targets.contains(target)) 
-			{
-				//throw new ArgumentsError( INVALID_TARGET );
-			}
-			else
-			{
-			
-				var filters:Array = target["filters"] ;
-				
-				var logger:ILogger ;
-				
-				if (_loggers.size() > 0)
-				{
-				
-					var it:Iterator = _loggers.iterator() ;
-	           		
-           			while ( it.hasNext() )
-            		{
-						
-						var log:ILogger = ILogger( it.next() ) ;
-						var cat:String = it.key() ;
-						if( categoryMatchInFilterList( cat, filters ) )
-						{
-		                	target.addLogger( log ); 
-						}
-						
-					}
-				}
-				
-				return ;
-				
-				_targets.insert(target);
-				
-				if ( _targetLevel == NONE )
-				{
-					_targetLevel = AbstractTarget(target).level ;
-				}	
-				else if (AbstractTarget(target).level.valueOf() < _targetLevel)
-				{
-					_targetLevel = AbstractTarget(target).level ;
-				}
-			}
+			target.addLogger( _logger ) ;
 		}
 		else
 		{
@@ -137,9 +88,7 @@ class vegas.logging.Log
 	 */
 	static public function flush():Void 
 	{
-		_loggers.clear() ;
-		_targets.clear() ;
-		_targetLevel = NONE ;
+		_categories.clear() ;
 	}
 	
 	/**
@@ -154,30 +103,16 @@ class vegas.logging.Log
 		
 		checkCategory( category ) ;
 		
-		var logger:ILogger = _loggers.get( category ) ;
-		
-		if(logger == null)
+		if( !_categories.containsKey(category) )
 		{
-			logger = new LogLogger( category ) ;
-
-			_loggers.put(category, logger) ;
-		
-			var target:ITarget;
-			
-			var it:Iterator = _targets.iterator() ;
-			while(it.hasNext())
-			{
-				target = ITarget(it.next()) ;
-				if( categoryMatchInFilterList( category, target["filters"] ) )
-				{
-					target.addLogger(logger);
-				}
-			} 
+			var logger:LogLogger = new LogLogger(category) ;
+			logger.isQueue = isQueue ;
+			logger.parent = _logger ; // bubbling event.
+			_categories.put(category, logger) ;
 		}
-		return logger ;
-		
+		return _categories.get(category) ;
 	}
-		
+
 	/**
 	 * This method checks the specified string value for illegal characters.
 	 * @param value The String to check for illegal characters. The following characters are not valid: []~$^&\/(){}<>+=`!#%?,:;'"@
@@ -188,101 +123,23 @@ class vegas.logging.Log
 		return (new StringUtil(value)).indexOfAny( ILLEGALCHARACTERS.split("") ) != -1 ;
 	}
 
-  	/**
-	 * Indicates whether a debug level log event will be processed by a log target.
-	 * @return true if a debug level log event will be logged; otherwise false.
-	 */
-    static public function isDebug():Boolean
-    {
-        return _targetLevel <= LogEventLevel.DEBUG ;
-    }
-        
-	/**
-	 * Indicates whether an error level log event will be processed by a log target.
-	 * @return true if an error level log event will be logged; otherwise false.
-	 */
-   	static public function isError():Boolean
-   	{
-   	    return _targetLevel <= LogEventLevel.ERROR ;
-   	}
-       
-	/**
-	 *  Indicates whether a fatal level log event will be processed by a log target.
-	 *  @return true if a fatal level log event will be logged; otherwise false.
-	 */
-   	static public function isFatal():Boolean
-   	{
-   	    return _targetLevel <= LogEventLevel.FATAL ;
-   	}
-       
-    	/**
-	 * Indicates whether an info level log event will be processed by a log target.
-	 * @return true if an info level log event will be logged; otherwise false.
-	 */	
-   	static public function isInfo():Boolean
-   	{
-   	    return _targetLevel <= LogEventLevel.INFO ;
-   	}
-       	
-  	/**
-	 * Indicates whether a warn level log event will be processed by a log target.
-	 * @return true if a warn level log event will be logged; otherwise false.
-	 */
-    static public function isWarn():Boolean
-    {
-        return _targetLevel <= LogEventLevel.WARN ;
-    }
-	
+
 	/**
 	 * Stops the specified target from receiving notification of log events.
 	 * @param specific target that should capture log events.
 	 */
 	static public function removeTarget(target:ITarget):Void 
 	{
-		if( target )
+		if( target != null )
 		{
-			if ( _targets.contains(target) )
-			{
-			
-				var filters:Array = AbstractTarget(target).filters ;
-        		var logger:ILogger ;
-				
-				var it:Iterator = _loggers.iterator() ;
-				while (it.hasNext())
-				{
-					
-					var log:ILogger = ILogger( it.next() ) ;
-					
-					var cat:String = it.key() ;
-					if( categoryMatchInFilterList( cat, filters ) )
-					{
-						target.removeLogger( log );
-					}
-				}
-				_targets.remove(target) ;
-        		
-        		resetTargetLevel() ;
-        		
-			}
-			else
-			{
-				throw new Warning( REMOVE_TARGET_FAILED ) ;	
-			}
+			target.removeLogger( _logger ) ;
 		}
 		else
 		{
-			throw new ArgumentsError( INVALID_TARGET );
+			throw new Warning( REMOVE_TARGET_FAILED ) ;	
 		}
 	}
 	
-	/**
-	 * Returns the number of ITargets in the internal Set of the Log singleton.
-	 */
-	static public function size():Number
-	{
-		return _targets.size() ;	
-	}
-
 	/**
 	 * Returns the string representation of this instance.
 	 * @return the string representation of this instance
@@ -300,7 +157,7 @@ class vegas.logging.Log
 	/**
 	 * The internal logger.
 	 */
-	static private var _loggers:HashMap = new HashMap() ;
+	static private var _logger:LogLogger = new LogLogger() ;
 
 	/**
 	 * Sentinal value for the target log level to indicate no logging.
@@ -311,40 +168,6 @@ class vegas.logging.Log
 	 * The most verbose supported log level among registered targets.
 	 */
     static private var _targetLevel:Number = Number.MAX_VALUE ;
-
-	/**
-	 *  Array of targets that should be searched any time a new logger is created.
-	 */
-	static private var _targets:HashSet = new HashSet() ;
-
-	/**
-	 * This method checks that the specified category matches any of the filter expressions provided in the <code>filters</code> Array.
-	 * @param category The category to match against
-	 * @param filters A list of Strings to check category against.
-	 * @return <code>true</code> if the specified category matches any of the filter expressions found in the filters list, <code>false</code> otherwise.
-	 */
-	static private function categoryMatchInFilterList(category:String, filters:Array):Boolean
-	{
-		var filter:String;
-		var result:Boolean = false;
-		var index:Number = -1;
-		var len:Number = filters.length ;
-		for( var i:Number = 0; i<len ; i++)
-		{
-			filter = filters[i] ;
-			index = filter.indexOf("*");
-			if(index == 0)
-			{
-				return true ;
-			}
-			index = (index < 0) ? index = category.length : index -1 ;
-			if( category.substring(0, index) == filter.substring(0, index) )
-			{
-				return true;
-			}
-		}
-        return false ;
-	}
 
     /**
 	 *  This method will ensure that a valid category string has been specified.
@@ -357,32 +180,15 @@ class vegas.logging.Log
             
 		if(category == null || category.length == 0)
 		{
-			throw new InvalidCategoryError( INVALID_LENGTH );
+			throw new InvalidCategoryError( INVALID_LENGTH ) ;
 		}
 		
 		if( hasIllegalCharacters(category) || (category.indexOf("*") != -1))
         {
-			throw new InvalidCategoryError( INVALID_CHARS ) ;
+        	throw new InvalidCategoryError( INVALID_CHARS ) ;
 		}
             
 	}
 
-	/**
-	 * This method resets the Log's target level to the most verbose log level for the currently registered targets.
- 	 */
-	static private function resetTargetLevel():Void
-	{
-		var minLevel:Number = NONE ;
-		var it:Iterator = _targets.iterator() ;
-		while(it.hasNext())
-		{
-			var next = it.next() ;
-			if ( minLevel == NONE || next.level < minLevel ) 
-			{
-				minLevel = next.level ;
-			}
-		}
-		_targetLevel = minLevel ;
-	}
 
 }

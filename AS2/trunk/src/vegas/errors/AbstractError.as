@@ -26,6 +26,7 @@ import vegas.core.IFormattable;
 import vegas.core.IHashable;
 import vegas.errors.ErrorElement;
 import vegas.errors.ErrorFormat;
+import vegas.logging.ILogger;
 import vegas.logging.Log;
 import vegas.logging.LogEventLevel;
 import vegas.util.ConstructorUtil;
@@ -42,12 +43,9 @@ class vegas.errors.AbstractError extends Error implements IFormattable, IHashabl
 	 */
 	private function AbstractError(message:String, e:ErrorElement) 
 	{
-		
 		this.message = message ;
 		this.errorElement = e ;
 		this.name = ConstructorUtil.getName(this) ;
-		Log.getLogger( ConstructorUtil.getPath(this) ).log( getLevel() , toString() ) ;
-		
 	}
 
 	/**
@@ -59,6 +57,18 @@ class vegas.errors.AbstractError extends Error implements IFormattable, IHashabl
 	 * The internal ErrorElement reference.
 	 */
 	public var errorElement:ErrorElement ;
+	
+	/**
+	 * Launch the external log of this error.
+	 */
+	public function log():Void
+	{
+		if (_logger == null)
+		{
+			_logger = Log.getLogger( ConstructorUtil.getPath(this) ) ;
+		}
+		_logger.log( getLevel() , "# " + name + " : " + message + " #" ) ;
+	}
 	
 	/**
 	 * Returns the internal LogEventLevel used in the constructor of this instance.
@@ -83,7 +93,13 @@ class vegas.errors.AbstractError extends Error implements IFormattable, IHashabl
 	 */
 	public function toString():String 
 	{
+		if ( arguments.caller == null)
+		{
+			log() ;
+		}
 		return (new ErrorFormat()).formatToString(this) ;
 	}
+
+	private var _logger:ILogger ;
 
 }

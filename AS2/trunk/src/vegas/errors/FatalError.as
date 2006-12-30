@@ -36,9 +36,9 @@ class vegas.errors.FatalError extends AbstractError
 	/**
 	 * Creates a new FatalError instance.
 	 */
-	public function FatalError(message:String, errorElement:ErrorElement) 
+	public function FatalError( msg:String, errorElement:ErrorElement ) 
 	{
-		super(message, errorElement) ;
+		super(msg, errorElement) ;
 	}
 
 	/**

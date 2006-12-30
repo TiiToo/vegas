@@ -21,22 +21,21 @@
   
 */
 
-import vegas.errors.ErrorElement;
-import vegas.errors.FatalError;
+import vegas.errors.AbstractError;
 
 /**
  * The error throws when an invalid category is find.
  * @author eKameleon
  */
-class vegas.logging.errors.InvalidCategoryError extends FatalError 
+class vegas.logging.errors.InvalidCategoryError extends AbstractError 
 {
 
 	/**
 	 * Creates a new {@code InvalidCategoryError} instance.
 	 */
-	public function InvalidCategoryError(msg:String, errorElement:ErrorElement) 
+	public function InvalidCategoryError( msg:String ) 
 	{
-		super(msg, errorElement) ;
+		super(msg) ;
 	}
   
 }

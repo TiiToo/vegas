@@ -43,10 +43,14 @@ class Tests.vegas.logging.tracer.AllTests extends TestCase
 	 */
     static function suite():TestSuite
 	{
+        
         var suite:TestSuite = new TestSuite( "Tests.vegas.logging.tracer" );
         
         //suite.simpleTrace = true;
-
+		
+		// suite.addTest( new TestSuite( Tests.vegas.logging.targets.TestLuminicTracer ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.logging.targets.TestSOSTracer ) ) ;
+        
         return suite ;
     
     }

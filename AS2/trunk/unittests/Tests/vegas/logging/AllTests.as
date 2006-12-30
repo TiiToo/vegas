@@ -52,9 +52,14 @@ class Tests.vegas.logging.AllTests extends TestCase
 		suite.addTest( Tests.vegas.logging.targets.AllTests.suite() ) ;
 		suite.addTest( Tests.vegas.logging.tracer.AllTests.suite() ) ;
 
+		// suite.addTest( new TestSuite( Tests.vegas.logging.TestAbstractTarget ) ) ;
 		suite.addTest( new TestSuite( Tests.vegas.logging.TestILogger ) ) ;
         suite.addTest( new TestSuite( Tests.vegas.logging.TestITarget ) ) ;
-        
+        // suite.addTest( new TestSuite( Tests.vegas.logging.TestLog ) ) ;
+	    suite.addTest( new TestSuite( Tests.vegas.logging.TestLogEvent ) ) ;
+	    // suite.addTest( new TestSuite( Tests.vegas.logging.TestLogEventLevel ) ) ;
+	    // suite.addTest( new TestSuite( Tests.vegas.logging.TestLogLogger ) ) ;
+	    
         return suite ;
     
     }

@@ -43,10 +43,18 @@ class Tests.vegas.logging.targets.AllTests extends TestCase
 	 */
     static function suite():TestSuite
 	{
+
         var suite:TestSuite = new TestSuite( "Tests.vegas.logging.targets" );
         
         //suite.simpleTrace = true;
 
+		// suite.addTest( new TestSuite( Tests.vegas.logging.targets.TestLineFormattedTarget ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.logging.targets.TestLuminicTarget ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.logging.targets.TestSOSTarget ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.logging.targets.TestSOSType ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.logging.targets.TestTraceTarget ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.logging.targets.TestXPanelTarget ) ) ;
+		
         return suite ;
     
     }

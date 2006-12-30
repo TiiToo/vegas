@@ -65,18 +65,12 @@ class vegas.logging.targets.XPanelTarget extends LineFormattedTarget
 	public function XPanelTarget( sName:String ) 
 	{
 		super();
-		
-		return ;
-		
 		if (sName == null)
 		{
 			sName = "default" ;	
 		}
-		
         _lc = new LocalConnection() ;
-        _lc.onStatus = Delegate.create(this, _onStatus) ;
         _lc.send( CONNECTION_ID, DISPATCH_MESSAGE, getTimer(), START + " " + sName, LEVEL_START );
-		
 	}
 
 	/**
@@ -181,8 +175,7 @@ class vegas.logging.targets.XPanelTarget extends LineFormattedTarget
 	    			break;
 	    		}
 	    	}
-			
-			_lc.send( CONNECTION_ID , DISPATCH_MESSAGE , getTimer(), "test", LEVEL_DEBUG ) ;
+			_lc.send( CONNECTION_ID , DISPATCH_MESSAGE , getTimer(), message, targetLevel ) ;
 	        
 	    }   
 
@@ -190,10 +183,5 @@ class vegas.logging.targets.XPanelTarget extends LineFormattedTarget
 	 * Internal LocalConnection reference.
 	 */
 	private var _lc:LocalConnection ;
-      
-    private function _onStatus( oInfo ):Void
-    {
-    	//	
-    }
       
 }
