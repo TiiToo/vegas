@@ -55,7 +55,26 @@ class Tests.vegas.util.AllTests extends TestCase
 		suite.addTest( Tests.vegas.util.serialize.AllTests.suite() ) ;
 		suite.addTest( Tests.vegas.util.visitor.AllTests.suite() ) ;
 
+        // suite.addTest( new TestSuite( Tests.vegas.util.TestAbstactTimer ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.util.TestAbstractTypeable ) ) ;
         // suite.addTest( new TestSuite( Tests.vegas.util.TestArrayUtil ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.util.TestAttribute ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.util.TestBooleanUtil ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.util.TestComparater ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.util.TestConstructorUtil ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.util.TestCopier ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.util.TestDateUtil ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.util.TestFrameBeacon ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.util.TestFrameTimer ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.util.TestFunctionTimer ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.util.TestMathsUtil ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.util.TestMixin ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.util.TestNumberUtil ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.util.TestObjectUtil ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.util.TestResolverProxy ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.util.TestStringUtil ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.util.TestTimer ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.util.TestTypeUtil ) ) ;
         
         return suite ;
     

@@ -47,6 +47,17 @@ class Tests.vegas.util.serialize.AllTests extends TestCase
         
         //suite.simpleTrace = true;
 
+		// suite.addTest( new TestSuite( Tests.vegas.util.serialize.TestArraySerializer ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.util.serialize.TestBooleanSerializer ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.util.serialize.TestDateSerializer ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.util.serialize.TestErrorSerializer ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.util.serialize.TestFunctionSerializer ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.util.serialize.TestNumberSerializer ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.util.serialize.TestObjectSerializer ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.util.serialize.TestSerializer ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.util.serialize.TestStringSerializer ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.util.serialize.TestXMLSerializer ) ) ;
+
         return suite ;
     
     }

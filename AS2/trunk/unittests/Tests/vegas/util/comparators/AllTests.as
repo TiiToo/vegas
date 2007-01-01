@@ -45,8 +45,14 @@ class Tests.vegas.util.comparators.AllTests extends TestCase
 	{
         var suite:TestSuite = new TestSuite( "Tests.vegas.util.comparators" );
         
-        //suite.simpleTrace = true;
-
+        // suite.simpleTrace = true;
+		
+		// suite.addTest( new TestSuite( Tests.vegas.util.factory.TestDateComparator ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.util.factory.TestNullComparator ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.util.factory.TestNumberComparator ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.util.factory.TestReverseComparator ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.util.factory.TestStringComparator ) ) ;
+        
         return suite ;
     
     }

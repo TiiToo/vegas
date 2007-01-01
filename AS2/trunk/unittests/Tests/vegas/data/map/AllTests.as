@@ -45,9 +45,14 @@ class Tests.vegas.data.map.AllTests extends TestCase
 	{
         var suite:TestSuite = new TestSuite( "Tests.vegas.data.map" );
         
-        //suite.simpleTrace = true;
+        // suite.simpleTrace = true;
 
-		//suite.addTest( new TestSuite( Tests.vegas.data.list.map.HashMap ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.list.map.HashMap ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.list.map.MapFormat ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.list.map.MapUtil ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.list.map.MultiHashMap ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.list.map.MultiMapFormat ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.list.map.TypedMap ) ) ;
         
         return suite ;
     

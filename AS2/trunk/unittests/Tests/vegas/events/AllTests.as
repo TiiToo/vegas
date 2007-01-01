@@ -49,7 +49,42 @@ class Tests.vegas.events.AllTests extends TestCase
 
 		suite.addTest( Tests.vegas.events.type.AllTests.suite() ) ;
 
+		// interfaces
+
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestEvent) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestEventListener ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.events.TestEventTarget ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.events.TestIDispatcher ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestIEventDispatcher ) ) ;
+
+		// class
+
         // suite.addTest( new TestSuite( Tests.vegas.events.TestAbstractCoreEventDispatcher ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestArrayEvent ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestBasicEvent ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestBooleanEvent ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestDelegate ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestDynamicEvent ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestEDispatcher ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestEventDispatcher ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestEventListenerBatch ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestEventListenerCollection ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestEventListenerComparator ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestEventListenerProxy ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestEventPhase ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestEventQueue ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestEventType ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestFastDispatcher ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestFrontController ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestModelChangedEvent ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestModelChangedEventType ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestNumberEvent ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestStringEvent ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestTextEvent ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestTimerEvent ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestTimerEventType ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestValidatorEvent ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestValidatorEventType ) ) ;
         
         return suite ;
     

@@ -47,7 +47,7 @@ class Tests.vegas.string.errors.AllTests extends TestCase
         
         //suite.simpleTrace = true;
 
-		//suite.addTest( new TestSuite( Tests.vegas.data.stack.SimpleStack ) ) ;
+		//suite.addTest( new TestSuite( Tests.vegas.string.errors.JSONError ) ) ;
         
         return suite ;
     

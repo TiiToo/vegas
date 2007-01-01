@@ -47,7 +47,10 @@ class Tests.vegas.data.collections.AllTests extends TestCase
         
         //suite.simpleTrace = true;
 
-		//suite.addTest( new TestSuite( Tests.vegas.data.collections.TestSimpleCollection  ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.collections.TestAbstractCollection  ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.collections.TestCollectionFormat  ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.collections.TestSimpleCollection  ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.collections.TestTypedCollection  ) ) ;
         
         return suite ;
     

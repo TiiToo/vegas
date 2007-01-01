@@ -47,7 +47,25 @@ class Tests.vegas.errors.AllTests extends TestCase
         
         //suite.simpleTrace = true;
 
+		suite.addTest( new TestSuite( Tests.vegas.errors.TestAbstractError ) ) ;
         // suite.addTest( new TestSuite( Tests.vegas.errors.TestArgumentOutOfBoundsError ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.errors.TestArgumentsError ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.errors.TestConcurrentModificationError ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.errors.TestErrorElement ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.errors.TestErrorFormat ) ) ; // ?? 
+        // suite.addTest( new TestSuite( Tests.vegas.errors.TestFatalError ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.errors.TestIllegalArgumentError ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.errors.TestIllegalStateError ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.errors.TestIndexOutOfBoundsError ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.errors.TestNoSuchElementError ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.errors.TestNullPointerError ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.errors.TestNumberFormatError ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.errors.TestRangeError ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.errors.TestRuntimeError ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.errors.TestTypeMismatchError ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.errors.TestUnsupportedOperation ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.errors.TestValueOutOfBoundsError ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.errors.TestWarning ) ) ;
         
         return suite ;
     

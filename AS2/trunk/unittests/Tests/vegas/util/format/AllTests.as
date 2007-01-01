@@ -47,6 +47,9 @@ class Tests.vegas.util.format.AllTests extends TestCase
         
         //suite.simpleTrace = true;
 
+		// suite.addTest( new TestSuite( Tests.vegas.util.format.TestAbstractFormatter ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.util.format.TestIFormatter ) ) ;
+
         return suite ;
     
     }

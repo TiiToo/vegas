@@ -45,9 +45,23 @@ class Tests.vegas.data.iterator.AllTests extends TestCase
 	{
         var suite:TestSuite = new TestSuite( "Tests.vegas.data.iterator" );
         
-        //suite.simpleTrace = true;
+        // suite.simpleTrace = true ;
 
-		//suite.addTest( new TestSuite( Tests.vegas.data.iterator.TestArrayIterator  ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.iterator.TestIterable ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.iterator.TestIterator ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.iterator.TestListIterator ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.iterator.TestOrdererIterator ) ) ;
+
+		// suite.addTest( new TestSuite( Tests.vegas.data.iterator.TestArrayFieldIterator ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.iterator.TestArrayIterator ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.iterator.TestBagIterator ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.iterator.TestLinkedListIterator ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.iterator.TestListItr ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.iterator.TestMapIterator ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.iterator.TestObjectIterator ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.iterator.TestPageByPageIterator ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.iterator.TestProtectedIterator ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.iterator.TestStringIterator ) ) ;
         
         return suite ;
     

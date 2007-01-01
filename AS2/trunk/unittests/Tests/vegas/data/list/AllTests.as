@@ -45,9 +45,13 @@ class Tests.vegas.data.list.AllTests extends TestCase
 	{
         var suite:TestSuite = new TestSuite( "Tests.vegas.data.list" );
         
-        //suite.simpleTrace = true;
+        // suite.simpleTrace = true;
 
-		//suite.addTest( new TestSuite( Tests.vegas.data.list.TestLinkedList  ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.list.TestAbstractList  ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.list.TestArrayList  ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.list.TestLinkedList  ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.list.TestLinkedListEntry  ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.list.TestSortedArrayList  ) ) ;
         
         return suite ;
     

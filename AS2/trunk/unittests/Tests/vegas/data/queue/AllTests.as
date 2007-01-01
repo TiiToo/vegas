@@ -45,9 +45,13 @@ class Tests.vegas.data.queue.AllTests extends TestCase
 	{
         var suite:TestSuite = new TestSuite( "Tests.vegas.data.queue" );
         
-        //suite.simpleTrace = true;
+        // suite.simpleTrace = true;
 
-		//suite.addTest( new TestSuite( Tests.vegas.data.queue.TestLinearQueue ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.queue.TestCircularQueue ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.queue.TestLinearQueue ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.data.queue.TestPriorityQueue ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.data.queue.TestQueueFormat ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.data.queue.TestTypedQueue ) ) ;
         
         return suite ;
     

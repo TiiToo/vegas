@@ -63,11 +63,20 @@ class vegas.errors.AbstractError extends Error implements IFormattable, IHashabl
 	 */
 	public function log():Void
 	{
+		getLogger().log( getLevel() , "# " + name + " : " + message + " #" ) ;
+	}
+	
+	/**
+	 * Returns the internal ILogger of the current Error.
+	 * @return the internal ILogger of the current Error.
+	 */
+	public function getLogger():ILogger
+	{
 		if (_logger == null)
 		{
 			_logger = Log.getLogger( ConstructorUtil.getPath(this) ) ;
 		}
-		_logger.log( getLevel() , "# " + name + " : " + message + " #" ) ;
+		return _logger ; 	
 	}
 	
 	/**

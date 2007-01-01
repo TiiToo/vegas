@@ -47,6 +47,15 @@ class Tests.vegas.events.type.AllTests extends TestCase
         
         //suite.simpleTrace = true;
 
+		// suite.addTest( new TestSuite( Tests.vegas.events.type.TestArrayDispatcher ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.events.type.TestBasicDispatcher ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.events.type.TestMovieClipDispatcher ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.events.type.TestNetConnectionDispatcher ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.events.type.TestSoundDispatcher ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.events.type.TestStaticDispatcher ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.events.type.TestTextFieldDispatcher ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.events.type.TestXMLDispatcher ) ) ;
+
         return suite ;
     
     }

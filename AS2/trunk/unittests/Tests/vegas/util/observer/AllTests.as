@@ -45,7 +45,10 @@ class Tests.vegas.util.observer.AllTests extends TestCase
 	{
         var suite:TestSuite = new TestSuite( "Tests.vegas.util.observer" );
         
-        //suite.simpleTrace = true;
+        // suite.simpleTrace = true ;
+
+		// suite.addTest( new TestSuite( Tests.vegas.util.observer.TestIObserver ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.util.observer.TestObservable ) ) ;
 
         return suite ;
     

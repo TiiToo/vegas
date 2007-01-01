@@ -47,6 +47,8 @@ class Tests.vegas.maths.AllTests extends TestCase
         
         //suite.simpleTrace = true;
 
+		// suite.addTest( new TestSuite( Tests.vegas.maths.TestFactor ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.maths.TestPrime ) ) ;
         // suite.addTest( new TestSuite( Tests.vegas.maths.TestRange ) ) ;
         
         return suite ;

@@ -47,6 +47,13 @@ class Tests.vegas.util.mvc.AllTests extends TestCase
         
         //suite.simpleTrace = true;
 
+		// suite.addTest( new TestSuite( Tests.vegas.util.mvc.TestAbstractController ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.util.mvc.TestAbstractModel ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.util.mvc.TestAbstractView ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.util.mvc.TestIController ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.util.mvc.TestIModel ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.util.mvc.TestIView ) ) ;
+
         return suite ;
     
     }

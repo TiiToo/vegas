@@ -47,7 +47,9 @@ class Tests.vegas.data.bag.AllTests extends TestCase
         
         //suite.simpleTrace = true;
 
-		//suite.addTest( new TestSuite( Tests.vegas.data.bag.TestHashBag  ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.bag.TestAbstractBag  ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.bag.TestBagFormat  ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.bag.TestHashBag  ) ) ;
         
         return suite ;
     

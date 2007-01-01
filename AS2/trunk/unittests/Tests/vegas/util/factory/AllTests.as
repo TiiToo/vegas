@@ -45,7 +45,12 @@ class Tests.vegas.util.factory.AllTests extends TestCase
 	{
         var suite:TestSuite = new TestSuite( "Tests.vegas.util.factory" );
         
-        //suite.simpleTrace = true;
+        // suite.addTest( new TestSuite( Tests.vegas.util.factory.TestContextMenuFactory ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.util.factory.TestDisplayFactory ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.util.factory.TestEventFactory ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.util.factory.TestPropertyFactory ) ) ;
+        
+        // suite.simpleTrace = true ;
 
         return suite ;
     

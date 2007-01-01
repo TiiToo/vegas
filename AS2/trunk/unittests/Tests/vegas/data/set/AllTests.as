@@ -45,9 +45,12 @@ class Tests.vegas.data.set.AllTests extends TestCase
 	{
         var suite:TestSuite = new TestSuite( "Tests.vegas.data.set" );
         
-        //suite.simpleTrace = true;
+        // suite.simpleTrace = true;
 
-		//suite.addTest( new TestSuite( Tests.vegas.data.set.HashSet ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.set.AbstractSet ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.set.HashSet ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.set.MultiHashSet ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.data.set.TypedSet ) ) ;
         
         return suite ;
     

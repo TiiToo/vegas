@@ -57,7 +57,26 @@ class Tests.vegas.data.AllTests extends TestCase
 		suite.addTest(  Tests.vegas.data.set.AllTests.suite() ) ;
 		suite.addTest(  Tests.vegas.data.stack.AllTests.suite() ) ;
 		
-        // suite.addTest( new TestSuite( Tests.vegas.data.TestIBag ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.data.TestBag ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.data.TestBidiMap ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.data.TestBoundable ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.data.TestBoundedCollection ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.data.TestBoundedMap ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.data.TestBoundedQueue ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.data.TestBoundedSet ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.data.TestBoundedStack ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.data.TestCollection ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.data.TestDictionnary ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.data.TestEntry ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.data.TestEnumeration ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.data.TestList ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.data.TestMap ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.data.TestMultiMap ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.data.TestQueue ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.data.TestSet ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.data.TestSortedBag ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.data.TestSortedMap ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.data.TestStack ) ) ;
         
         return suite ;
     

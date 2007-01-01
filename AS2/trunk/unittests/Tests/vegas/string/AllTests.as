@@ -49,7 +49,13 @@ class Tests.vegas.string.AllTests extends TestCase
 
 		suite.addTest( Tests.vegas.string.errors.AllTests.suite() ) ;
 
+		// suite.addTest( new TestSuite( Tests.vegas.string.TestGlob ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.string.TestHTMLStringFormatter ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.string.TestJSON ) ) ;
+		// suite.addTest( new TestSuite( Tests.vegas.string.TestLuhn ) ) ;
         // suite.addTest( new TestSuite( Tests.vegas.string.TestStringFormatter ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.string.TestUnicodeChar ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.string.TestWildExp ) ) ;
         
         return suite ;
     

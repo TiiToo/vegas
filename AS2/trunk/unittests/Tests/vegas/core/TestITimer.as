@@ -81,7 +81,7 @@ class Tests.vegas.core.TestITimer extends TestCase
 		assertTrue(i.isRestart, "ITIM_06 restart method failed." ) ;
 	}
 
-	public function TestRun() : Void 
+	public function TestRun():Void 
 	{
 		i.run() ;
 		assertTrue(i.isRunning, "ITIM_07 run method failed." ) ;
@@ -93,7 +93,7 @@ class Tests.vegas.core.TestITimer extends TestCase
 		assertTrue(i.isStarted, "ITIM_08 start method failed." ) ;
 	}
 
-	public function TestSetDelay() : Void 
+	public function TestSetDelay():Void 
 	{
 		i.setDelay(500) ;
 		assertEquals(i.getDelay(), 500, "ITIM_09 setDelay method failed." ) ;
