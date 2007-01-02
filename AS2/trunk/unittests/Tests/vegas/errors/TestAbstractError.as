@@ -59,7 +59,7 @@ class Tests.vegas.errors.TestAbstractError extends TestCase
 	
 	public function testInherit()
 	{
-		assertTrue( e instanceof AbstractError , "AE_01 - inherit Object failed.") ;
+		assertTrue( e instanceof AbstractError , "AE_01 - inherit AstractError failed.") ;
 	}	
 	
 	public function testHashCode():Void

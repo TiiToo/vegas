@@ -45,8 +45,8 @@ class Tests.vegas.core.types.AllTests extends TestCase
 	{
         var suite:TestSuite = new TestSuite( "Tests.vegas.core.types" );
         
-        //suite.simpleTrace = true;
-
+        // suite.simpleTrace = true;
+		
 		suite.addTest( new TestSuite( Tests.vegas.core.types.TestBit  ) ) ;
 		suite.addTest( new TestSuite( Tests.vegas.core.types.TestByte ) ) ;
 		suite.addTest( new TestSuite( Tests.vegas.core.types.TestChar ) ) ;
@@ -55,7 +55,7 @@ class Tests.vegas.core.types.AllTests extends TestCase
 		
         
         return suite ;
-    
+		
     }
 
 }

@@ -21,14 +21,15 @@
   
 */
 
+import vegas.errors.AbstractError;
 import vegas.errors.ErrorElement;
-import vegas.errors.FatalError;
+import vegas.logging.LogEventLevel;
 
 /**
  * Thrown to indicate that the requested operation is not supported.
  * @author eKameleon
  */
-class vegas.errors.UnsupportedOperation extends FatalError 
+class vegas.errors.UnsupportedOperation extends AbstractError 
 {
 
 	/**
@@ -37,6 +38,15 @@ class vegas.errors.UnsupportedOperation extends FatalError
 	public function UnsupportedOperation(message:String, errorElement:ErrorElement) 
 	{
 		super(message, errorElement) ;
+	}
+
+	/**
+	 * Returns the internal LogEventLevel used in the constructor of this instance.
+	 * You can overrides this method if you want change the internal LogEventLevel of the error.
+	 */
+	public function getLevel():Number
+	{
+		return LogEventLevel.FATAL ;	
 	}
 
 }

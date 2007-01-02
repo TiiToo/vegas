@@ -23,6 +23,7 @@
 
 import vegas.core.CoreObject;
 import vegas.core.IEquality;
+import vegas.util.Comparater;
 import vegas.util.ConstructorUtil;
 
 /**
@@ -54,16 +55,14 @@ class vegas.errors.ErrorElement extends CoreObject implements IEquality
 		{
 			return false ;
 		}
-		return 
-		(
-			o.getConstructorName() == getConstructorName() 
-			&& o.getConstructorPath() == getConstructorPath()
-			&& o.getFileName() == getFileName()
-			&& o.getLineNumber() == getLineNumber()
-			&& o.getMethodName()== getMethodName()
-			&& o.getThrower() == getThrower()
-		) ;
-		
+		var b1:Boolean = o.getConstructorName() == getConstructorName()  ;
+		var b2:Boolean = o.getConstructorPath() == getConstructorPath() ;
+		var b3:Boolean = Comparater.compare(o.getArguments(), getArguments()) ;
+		var b4:Boolean = o.getFileName() == getFileName() ;
+		var b5:Boolean = o.getLineNumber() == getLineNumber() ;
+		var b6:Boolean = o.getMethodName() == getMethodName() ;
+		var b7:Boolean = o.getThrower() == getThrower() ;
+		return b1 && b2 && b3 && b4 && b5 && b6 && b7 ;
 	}
 	
 	/**

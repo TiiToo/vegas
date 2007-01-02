@@ -22,13 +22,12 @@
 */
 
 import vegas.errors.ErrorElement;
-import vegas.errors.FatalError;
 
 /**
  * The error throws when an argument in a function is out of specified bounds.
  * @author eKameleon
  */
-class vegas.errors.ArgumentOutOfBoundsError extends FatalError 
+class vegas.errors.ArgumentOutOfBoundsError extends vegas.errors.AbstractError 
 {
 
 	/**
