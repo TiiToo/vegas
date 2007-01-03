@@ -26,156 +26,271 @@ import pegas.geom.Point;
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
 import vegas.core.IComparator;
+import vegas.core.ICopyable;
 import vegas.core.IEquality;
 
 // TODO creates unit tests.
+// TODO finish the documentation with getter/setter methods.
 
 /**
+ * The Rectangle class is used to create and modify Rectangle objects. 
+ * <p>A Rectangle object is an area defined by its position, as indicated by its top-left corner point (x, y), and by its width and its height.</p>
+ * <p>The x, y, width, and height properties of the Rectangle class are independent of each other; changing the value of one property has no effect on the others.</p>
+ * <p>To used this class with a FP8 and > with flash.display.BitmapData class and other flash.* classes you can use the method toFlash() to return a compatible reference of this object.</p> 
  * @author eKameleon
  */
-class pegas.geom.Rectangle extends CoreObject implements ICloneable, IComparator, IEquality
+class pegas.geom.Rectangle extends CoreObject implements ICloneable, IComparator, ICopyable, IEquality
 {
 
 	/**
-	 * Creates a new Rectangle instance.
+	 * Creates a new Rectangle instance whose top-left corner is specified by the x and y parameters.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import pegas.geom.Rectangle;
+	 * var rec:Rectangle = new Rectangle(5, 10, 50, 100);
+	 * trace( "output : " + rec.toString() ); // output : (x:5,y:10,width:50,height:100)
+	 * }
+	 * @param x The {@code x} coordinate of the top-left corner of the rectangle.
+	 * @param y The {@code y} coordinate of the top-left corner of the rectangle.
+	 * @param w The width of the rectangle in pixels.
+	 * @param h The height of the rectangle in pixels.
 	 */
-	public function Rectangle(p_x:Number, p_y:Number, p_w:Number, p_h:Number) 
+	public function Rectangle( x:Number, y:Number, w:Number, h:Number ) 
 	{
-		var l = arguments.length ;
-		if (isNaN(l)) 
+		if (arguments.length > 0) 
 		{
-			setEmpty() ;
+			this.x = x ;
+			this.y = y ;
+			this.width = w ;
+			this.height = h ;
 		}
 		else 
 		{
-			x = p_x ;
-			y = p_y ;
-			width = p_w ;
-			height = p_h ;
+			setEmpty() ;
 		}
 	}
 
-	// ----o Public Properties
-	
+	/**
+	 * Returns the sum of the y and height properties.
+	 */
 	public function get bottom():Number 
 	{
 		return getBottom() ;
 	}
 
+	/**
+	 * Sets the sum of the y and height properties.
+	 */
 	public function set bottom( n:Number ):Void 
 	{
 		setBottom(n) ;	
 	}	
 
+	/**
+	 * Returns the location of the Rectangle object's bottom-left corner, determined by the values of the x and y properties.
+	 * @return the location of the Rectangle object's bottom-left corner, determined by the values of the x and y properties.
+	 */
 	public function get bottomLeft():Point 
 	{
 		return getBottomLeft() ;
 	}
 
+	/**
+	 * Sets the location of the Rectangle object's bottom-left corner, determined by the values of the x and y properties.
+	 */
 	public function set bottomLeft( p:Point ):Void 
 	{
 		setBottomLeft(p) ;	
 	}	
 
+	/**
+	 * Returns the location of the Rectangle object's bottom-right corner, determined by the values of the x and y properties.
+	 * @return the location of the Rectangle object's bottom-right corner, determined by the values of the x and y properties.
+	 */
 	public function get bottomRight():Point 
 	{
 		return getBottomRight() ;
 	}
 
+	/**
+	 * Sets the location of the Rectangle object's bottom-right corner, determined by the values of the x and y properties.
+	 */
 	public function set bottomRight( p:Point ):Void 
 	{
 		setBottomRight(p) ;	
 	}	
-	
+
+	/**
+	 * Returns the location of the Rectangle object's center, determined by the values of the x and y properties.
+	 * @return the location of the Rectangle object's center, determined by the values of the x and y properties.
+	 */
 	public function get center():Point 
 	{
 		return getCenter() ;
 	}
 
+	/**
+	 * Returns the x coordinate of the top-left corner of the rectangle.
+	 * @return the x coordinate of the top-left corner of the rectangle.
+	 */
 	public function get left():Number 
 	{
 		return getLeft() ;
 	}
-
+	
+	/**
+	 * Sets the x coordinate of the top-left corner of the rectangle.
+	 */
 	public function set left( n:Number ):Void 
 	{
 		setLeft(n) ;	
 	}
 	
-	// public var center:Point ; // [R/W]
+	/**
+	 * The height of the rectangle in pixels.
+	 */
 	public var height:Number ;
 
+	/**
+	 * Returns the sum of the x and width properties.
+	 * @return the sum of the x and width properties.
+	 */
 	public function get right():Number 
 	{
 		return getRight() ;
 	}
 
+	/**
+	 * Sets the sum of the x and width properties.
+	 */
 	public function set right( n:Number ):Void 
 	{
 		setRight(n) ;	
 	}
 	
+	/**
+	 * Returns the size of the Rectangle object, expressed as a Point object with the values of the width and height properties.
+	 * @return the size of the Rectangle object, expressed as a Point object with the values of the width and height properties.
+	 */
 	public function get size():Point 
 	{
 		return getSize() ;	
 	}
 	
+	/**
+	 * Sets the size of the Rectangle object, expressed as a Point object with the values of the width and height properties.
+	 */
 	public function set size( o ):Void 
 	{
 		setSize(o) ;	
 	}
 
+	/**
+	 * Returns the y coordinate of the top-left corner of the rectangle.
+	 * @return the y coordinate of the top-left corner of the rectangle.
+	 */
 	public function get top():Number 
 	{
 		return getTop() ;
 	}
 
+	/**
+	 * Sets the y coordinate of the top-left corner of the rectangle.
+	 */
 	public function set top( n:Number ):Void 
 	{
 		setTop(n) ;	
 	}
 
+	/**
+	 * Returns the location of the Rectangle object's top-left corner determined by the x and y values of the point.
+	 * @return the location of the Rectangle object's top-left corner determined by the x and y values of the point.
+	 */
 	public function get topLeft():Point 
 	{
 		return getTopLeft() ;
 	}
 
+	/**
+	 * Sets the location of the Rectangle object's top-left corner determined by the x and y values of the point.
+	 */
 	public function set topLeft( p:Point ):Void 
 	{
 		setTopLeft(p) ;	
 	}	
 
+	/**
+	 * Returns the location of the Rectangle object's top-right corner determined by the x and y values of the point.
+	 * @return the location of the Rectangle object's top-right corner determined by the x and y values of the point.
+	 */
 	public function get topRight():Point 
 	{
 		return getTopRight() ;
 	}
 
+	/**
+	 * Sets the location of the Rectangle object's top-right corner determined by the x and y values of the point.
+	 */
 	public function set topRight( p:Point ):Void 
 	{
 		setTopRight(p) ;	
 	}	
 
+	/**
+	 * The width of the rectangle in pixels.
+	 */
 	public var width:Number ;
 	
+	/**
+	 * The x coordinate of the top-left corner of the rectangle.
+	 */
 	public var x:Number ;
 	
+	/**
+	 * The y coordinate of the top-left corner of the rectangle.
+	 */
 	public var y:Number ;
 	
+	/**
+	 * Returns a new Rectangle object with the same values for the x, y, width, and height properties as the original Rectangle object.
+	 * @return a new Rectangle object with the same values for the x, y, width, and height properties as the original Rectangle object.
+	 */
 	public function clone() 
 	{
 		return new Rectangle(x, y, width, height) ;
 	}
-	
-	public function contains(p_x:Number, p_y:Number):Boolean 
+
+	/**
+	 * Returns a new Rectangle object with the same values for the x, y, width, and height properties as the original Rectangle object.
+	 * @return a new Rectangle object with the same values for the x, y, width, and height properties as the original Rectangle object.
+	 */
+	public function copy() 
 	{
-		return (x <= p_x && x + width > p_x && y <= p_y && y + this.height > p_y) ;
+		return new Rectangle(x, y, width, height) ;
 	}
-	
+
+	/**
+	 * Determines whether the specified coordinates is contained within the rectangular region defined by this Rectangle object.
+	 * @return {@code true} if the specified coordinates is contained within the rectangular region defined by this Rectangle object.
+	 */
+	public function contains( p_x:Number, p_y:Number):Boolean 
+	{
+		return (this.x <= p_x && this.x + this.width > p_x && this.y <= p_y && this.y + this.height > p_y) ;
+	}
+
+	/**
+	 * Determines whether the specified point is contained within the rectangular region defined by this Rectangle object.
+	 * @return {@code true} if the specified point is contained within the rectangular region defined by this Rectangle object.
+	 */
 	public function containsPoint(pt:Point):Boolean 
 	{
 		return (pt.x >= x && pt.x < x + width && pt.y >= y && pt.y < y + height);
 	}
 	
+	/**
+	 * Determines whether the Rectangle object specified by the rect parameter is contained within this Rectangle object.
+	 * @return {@code true} if the specified Rectangle is contained within this Rectangle object. 
+	 */
 	public function containsRectangle(rec:Rectangle):Boolean 
 	{
 		var a:Number = rec.x + rec.width ;
@@ -184,7 +299,10 @@ class pegas.geom.Rectangle extends CoreObject implements ICloneable, IComparator
 		var d:Number = y + height ;
 		return (rec.x >= x && rec.x < c && rec.y >= y && rec.y < d && a > this.x && a <= c && b > y && b <= d) ;
 	}
-	
+
+	/**
+	 * Compares its two arguments for order.
+	 */
 	public function compare(o1, o2):Number 
 	{
 		var s1:Point = o1.getSize() ;
@@ -254,6 +372,9 @@ class pegas.geom.Rectangle extends CoreObject implements ICloneable, IComparator
 		return new Point(x + width, y) ;
 	}
 
+	/**
+	 * Increases the size of the Rectangle object by the specified amounts.
+	 */
 	public function inflate(dx:Number, dy:Number):Void 
 	{
 		x = x - dx;
@@ -262,6 +383,9 @@ class pegas.geom.Rectangle extends CoreObject implements ICloneable, IComparator
 		height = height + 2 * dy;
 	}
 	
+	/**
+	 * Increases the size of the Rectangle object.
+	 */
 	public function inflatePoint(pt:Point):Void 
 	{
 		x = x - pt.x;
@@ -270,6 +394,10 @@ class pegas.geom.Rectangle extends CoreObject implements ICloneable, IComparator
 		height = height + 2 * pt.y;
 	}
 	
+	/**
+	 * If the Rectangle object specified in the toIntersect parameter intersects with this Rectangle object, 
+	 * the intersection() method returns the area of intersection as a Rectangle object.
+	 */
 	public function intersection(toIntersect:Rectangle):Rectangle 
 	{
 		var rec:Rectangle = new Rectangle() ;
@@ -285,28 +413,43 @@ class pegas.geom.Rectangle extends CoreObject implements ICloneable, IComparator
 		return rec ;
 	}
 	
+	/**
+	 * Determines whether the object specified in the toIntersect parameter intersects with this Rectangle object.
+	 */
 	public function intersects(toIntersect:Rectangle):Boolean 
 	{
 		return !intersection(toIntersect).isEmpty() ;
 	}
-
+	
+	/**
+	 * Determines whether or not this Rectangle object is empty.
+	 */
 	public function isEmpty():Boolean 
 	{
 		return !(width > 0 || height > 0) ;
 	}
 	
+	/**
+	 * Adjusts the location of the Rectangle object, as determined by its top-left corner, by the specified amounts.
+	 */
 	public function offset(dx:Number, dy:Number):Void 
 	{
 		x = x + dx ;
 		y = y + dy ;
 	}
 	
+	/**
+	 * Adjusts the location of the Rectangle object using a Point object as a parameter.
+	 */
 	public function offsetPoint(pt:Point):Void 
 	{
 		x = x + pt.x ;
 		y = y + pt.y ;
 	}
 	
+	/**
+	 * Sets all of the Rectangle object's properties to 0.
+	 */
 	public function setEmpty():Void 
 	{
 		x = y = width = height = 0 ;
@@ -362,12 +505,19 @@ class pegas.geom.Rectangle extends CoreObject implements ICloneable, IComparator
 		y = value.y ;
 	}
 	
+	/**
+	 * Sets the size of this Rectangle object.
+	 */
 	public function setSize( value ):Void 
 	{
 		width = value.x ;
 		height = value.y ;
 	}
 	
+	/**
+	 * Returns a flash.geom.Rectangle reference of this Rectangle object.
+	 * @return a flash.geom.Rectangle reference of this Rectangle object.
+	 */
 	public function toFlash():flash.geom.Rectangle
 	{
 		return new flash.geom.Rectangle(x, y, width, height) ;
@@ -391,6 +541,9 @@ class pegas.geom.Rectangle extends CoreObject implements ICloneable, IComparator
 		return "{x:" + (x||0) + ",y:" + (y||0) + ",width:" + (width||0) + ",height:" + (height||0) + "}" ;
 	}
 	
+	/**
+	 * Adds two rectangles together to create a new Rectangle object, by filling in the horizontal and vertical space between the two rectangles.
+	 */
 	public function union(toUnion):Rectangle 
 	{
 		if (isEmpty()) 

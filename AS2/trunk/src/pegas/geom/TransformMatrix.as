@@ -21,109 +21,6 @@
   
 */
 
-/*
-
-	AUTHOR
-
-		Name : TransformMatrix
-		Package : asgard.geom
-		Version : 1.0.0.0
-		Date :  2005-12-20
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		Flash8 flash.geom.Matrix compatibilty for FP7
-		
-		La classe flash.geom.Matrix représente une matrice de transformation qui détermine la façon
-		de mapper des points d'un espace de coordonnées à l'autre. 
-
-	CONSTRUCTOR
-		
-		var m:TransformMatrix = new TransformMatrix(a:Number, b:Number, c:Number, d:Number, tx:Number, ty:Number) ;
-
-	PROPERTY SUMMARY
-	
-		- a:Number
-		
-			Dans la première ligne et la première colonne de l'objet Matrix,
-			la valeur affectant le positionnement des pixels sur l'axe x lors du redimensionnement ou de la rotation d'une image.
-			
-		- b:Number
-
-			Dans la première ligne et la deuxième colonne de l'objet Matrix, 
-			la valeur affectant le positionnement des pixels sur l'axe y lors de la rotation ou de l'inclinaison d'une image.
-		
-		- c:Number
-		
-			Dans la deuxième ligne et la première colonne de l'objet Matrix,
-			la valeur affectant le positionnement des pixels sur l'axe x lors de la rotation ou de l'inclinaison d'une image.
-
-		- d:Number
-		
-			Dans la deuxième ligne et la deuxième colonne de l'objet Matrix, 
-			la valeur affectant le positionnement des pixels sur l'axe y lors du redimensionnement ou de la rotation d'une image.
-		
-		- tx:Number
-		
-			La distance de translation de chaque point sur l'axe x.
-		
-		- ty:Number
-		
-			La distance de translation de chaque point sur l'axe y.
-		
-
-	METHOD SUMMARY
-
-		- clone():Matrix
-		
-		- concat(m:Matrix):Void
-		
-		- createBox(scaleX:Number, scaleY:Number, rotation:Number, x:Number, y:Number):Void
-		
-		- createGradientBox(width:Number, height:Number, rotation:Number, x:Number, y:Number):Void
-		
-		- deltaTransformPoint(p:Point):Point
-		
-			En partant d'un point dans l'espace de coordonnées de prétransformation, 
-			cette méthode renvoie les coordonnées de ce point suite à la transformation.
-		
-		- equals(o):Boolean
-		
-		- identity():Void
-		
-		- rotate( radians:Number ):Void
-		
-			rotate matrix in radians
-		
-		- rotateD( degrees:Number ):Void
-			
-			rotate matrix in degrees
-		
-		- scale(sx:Number, sy:Number):Void
-		
-		- transformPoint(p:Point):Point
-		
-		- translate(dx:Number, dy:Number):Void
-		
-		- toFlash():flash.geom.Matrix 
-		
-		- toSource( indent:Number, indentor:String):String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → TransformMatrix
-
-	IMPLEMENT SUMMARY
-	
-		ICloneable, IEquality, ISerializable, IFormattable
-		
-*/
-
 import pegas.geom.Point;
 import pegas.geom.Trigo;
 
@@ -133,6 +30,18 @@ import vegas.core.IEquality;
 import vegas.core.ISerializable;
 
 /**
+ * Represents a transformation matrix that determines how to map points from one coordinate space to another.
+ * <p>By setting the properties of a Matrix object and applying it to a MovieClip or BitmapData object you can perform various graphical transformations on the object. These transformation functions include translation (x and y repositioning), rotation, scaling, and skewing.</p>
+ * <p><b>Example :</b></p>
+ * {@code
+ * import pegas.geom.TransformMatrix;
+ * var matrix_1:TransformMatrix = new TransformMatrix();
+ * trace(matrix_1); // (a:1,b:0,c:0,d:1,tx:0,ty:0)
+ * 
+ * var matrix_2:TransformMatrix = new TransformMatrix(1, 2, 3, 4, 5, 6);
+ * trace(matrix_2); // (a:1,b:2,c:3,d:4,tx:5,ty:6)
+ * }
+ * The following example creates matrix_1 by sending no parameters to the Matrix constructor and matrix_2 by sending parameters to it. The TransformMatrix object matrix_1, which is created with no parameters, is an identity Matrix with the values (a:1,b:0,c:0,d:1,tx:0,ty:0).
  * @author eKameleon
  */
 class pegas.geom.TransformMatrix extends CoreObject implements ICloneable, IEquality, ISerializable 
@@ -141,61 +50,61 @@ class pegas.geom.TransformMatrix extends CoreObject implements ICloneable, IEqua
 	/**
 	 * Creates a new TransformMatrix instance.
 	 */
-	public function TransformMatrix(p_a:Number, p_b:Number, p_c:Number, p_d:Number, p_x:Number, p_y:Number) 
+	public function TransformMatrix( a:Number, b:Number, c:Number, d:Number, tx:Number, ty:Number) 
 	{
-		var l = arguments.length ;
-		if (l == 0) 
+		if (arguments.length == 0) 
 		{
 			identity() ;
 		}
 		else 
 		{
-			a = p_a ;
-			b = p_b ;
-			c = p_c ;
-			d = p_d ;
-			tx = p_x ;
-			ty = p_y ;
+			this.a = a ;
+			this.b = b ;
+			this.c = c ;
+			this.d = d ;
+			this.tx = tx ;
+			this.ty = ty ;
 		}
 	}
 
+	/**
+	 * The value in the first row and first column of the Matrix object, which affects the positioning of pixels along the x axis when scaling or rotating an image.
+	 */
 	public var a:Number ;
 
+	/**
+	 * The value in the first row and second column of the Matrix object, which affects the positioning of pixels along the y axis when rotating or skewing an image.
+	 */
 	public var b:Number ;
 
+	/**
+	 * The value in the second row and first column of the Matrix object, which affects the positioning of pixels along the x axis when rotating or skewing an image.
+	 */
 	public var c:Number ;
 
+	/**
+	 * The value in the second row and second column of the Matrix object, which affects the positioning of pixels along the y axis when scaling or rotating an image.
+	 */
 	public var d:Number ;
 
+	/**
+	 * The distance by which to translate each point along the x axis.
+	 */
 	public var tx:Number ;
 
+	/**
+	 * The distance by which to translate each point along the y axis.
+	 */
 	public var ty:Number ;
 		
 	public function clone() 
 	{
 		return new TransformMatrix(a, b, c, d, tx, ty) ;
 	}
-	
-	public function createBox(scaleX:Number, scaleY:Number, rotation:Number, x:Number, y:Number):Void 
-	{
-		var rr:Number = isNaN(rotation) ? 0 : rotation ;
-		var rx:Number = isNaN(x) ? 0 : x ;
-		var ry:Number = isNaN(y) ? 0 : y ;
-		identity() ;
-		rotate(rr) ;
-		scale(scaleX, scaleY) ;
-		tx = rx ;
-		ty = ry ;
-	}
-	
-	public function createGradientBox(width:Number, height:Number, rotation:Number, x:Number, y:Number):Void 
-	{
-		var rr = isNaN(rotation) ? 0 : rotation ;
-		var rx:Number = isNaN(x) ? 0 : x ;
-		var ry:Number = isNaN(y) ? 0 : y ;
-		createBox((width / 1638.400000) , (height / 1638.400000) , rr, rx + width / 2, ry + height / 2) ;
-	}
-	
+
+	/**
+	 * Concatenates a matrix with the current matrix, effectively combining the geometric effects of the two.
+	 */
 	public function concat(m:TransformMatrix):Void 
 	{
 		var r_a:Number = a * m.a ;
@@ -220,7 +129,36 @@ class pegas.geom.TransformMatrix extends CoreObject implements ICloneable, IEqua
 		tx = r_tx ;
 		ty = r_ty ;
 	}
+
+	/**
+	 * Includes parameters for scaling, rotation, and translation.
+	 */
+	public function createBox(scaleX:Number, scaleY:Number, rotation:Number, x:Number, y:Number):Void 
+	{
+		var rr:Number = isNaN(rotation) ? 0 : rotation ;
+		var rx:Number = isNaN(x) ? 0 : x ;
+		var ry:Number = isNaN(y) ? 0 : y ;
+		identity() ;
+		rotate(rr) ;
+		scale(scaleX, scaleY) ;
+		tx = rx ;
+		ty = ry ;
+	}
 	
+	/**
+	 * Creates the specific style of matrix expected by the MovieClip.beginGradientFill() method.
+	 */
+	public function createGradientBox(width:Number, height:Number, rotation:Number, x:Number, y:Number):Void 
+	{
+		var rr = isNaN(rotation) ? 0 : rotation ;
+		var rx:Number = isNaN(x) ? 0 : x ;
+		var ry:Number = isNaN(y) ? 0 : y ;
+		createBox((width / 1638.400000) , (height / 1638.400000) , rr, rx + width / 2, ry + height / 2) ;
+	}
+	
+	/**
+	 * Given a point in the pretransform coordinate space, returns the coordinates of that point after the transformation occurs.
+	 */
 	public function deltaTransformPoint(p:Point):Point 
 	{
 		return new Point(a * p.x + c * p.y , d * p.y + b * p.x) ;
@@ -230,7 +168,10 @@ class pegas.geom.TransformMatrix extends CoreObject implements ICloneable, IEqua
 	{
 		return ( o instanceof TransformMatrix && o.a == a && o.b == b && o.c == c && o.d == d && o.tx == tx && o.ty == ty) ;
 	}
-		
+	
+	/**
+	 * Sets each matrix property to a value that cause a transformed movie clip or geometric construct to be identical to the original.
+	 */
 	public function identity():Void 
 	{
 		a = d = 1 ;
@@ -238,6 +179,9 @@ class pegas.geom.TransformMatrix extends CoreObject implements ICloneable, IEqua
 		tx = ty = 0 ;
 	}
 	
+	/**
+	 * Performs the opposite transformation of the original matrix.
+	 */
 	public function invert():Void 
 	{
 		if (b == 0 && c == 0) 
@@ -271,6 +215,9 @@ class pegas.geom.TransformMatrix extends CoreObject implements ICloneable, IEqua
 		}
 	}
 	
+	/**
+	 * Sets the values in the current matrix so that the matrix can be used to apply a rotation transformation.
+	 */
 	public function rotate( radians:Number ):Void 
 	{
 		var c:Number = Math.cos(radians);
@@ -278,27 +225,26 @@ class pegas.geom.TransformMatrix extends CoreObject implements ICloneable, IEqua
 		concat(new TransformMatrix(c, s, -s, c, 0, 0)) ;
 	}
 	
+	/**
+	 * Sets the values in the current matrix so that the matrix can be used to apply a rotation transformation with a degrees value in argument.
+	 */
 	public function rotateD( degrees:Number ):Void 
 	{
 		rotate(Trigo.degreesToRadians(degrees)) ;
 	}
 	
+	/**
+	 * Modifies a matrix so that its effect, when applied, is to resize an image.
+	 */
 	public function scale(sx:Number, sy:Number):Void 
 	{
 		concat(new TransformMatrix(sx, 0, 0, sy, 0, 0));
 	}
-	
-	public function transformPoint(p:Point):Point 
-	{
-		return new Point( (a * p.x) + (c * p.y) + tx , (d * p.y) + (b * p.x) + ty ) ;
-	}
-	
-	public function translate(dx:Number, dy:Number):Void 
-	{
-		tx += dx ;
-		ty += dy ;
-	}
-	
+
+	/**
+	 * Returns a flash.geom.Matrix reference of this TransformMatrix object.
+	 * @return a flash.geom.Matrix reference of this TransformMatrix object.
+	 */
 	public function toFlash():flash.geom.Matrix
 	{
 		return new flash.geom.Matrix(a, b, c, d, tx, ty) ;
@@ -320,6 +266,23 @@ class pegas.geom.TransformMatrix extends CoreObject implements ICloneable, IEqua
 	public function toString():String 
 	{
 		return "[a:" + a + ",b:" + b + ",c:" + c + ",d:" + d + ",tx:" + tx + ",ty:" + ty +  "]" ;
+	}
+
+	/**
+	 * Applies the geometric transformation represented by the Matrix object to the specified point.
+	 */
+	public function transformPoint(p:Point):Point 
+	{
+		return new Point( (a * p.x) + (c * p.y) + tx , (d * p.y) + (b * p.x) + ty ) ;
+	}
+	
+	/**
+	 * Modifies a Matrix object so that the effect of its transformation is to move an object along the x and y axes.
+	 */
+	public function translate(dx:Number, dy:Number):Void 
+	{
+		tx += dx ;
+		ty += dy ;
 	}
 
 }

@@ -25,13 +25,19 @@ import pegas.geom.Trigo;
 
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
+import vegas.core.ICopyable;
 import vegas.core.IEquality;
 import vegas.util.TypeUtil;
 
+// TODO finish unit tests + documentation !!
+
 /**
+ * The Point class represents a location in a two-dimensional coordinate system, where x represents the horizontal axis and y represents the vertical axis.
+ * <p>The following code creates a point at (0,0) :</p>
+ * {@code var myPoint:Point = new Point() ; }
  * @author eKameleon
  */
-dynamic class pegas.geom.Point extends CoreObject implements ICloneable, IEquality
+dynamic class pegas.geom.Point extends CoreObject implements ICloneable, ICopyable, IEquality
 {
 
 	/**
@@ -58,41 +64,72 @@ dynamic class pegas.geom.Point extends CoreObject implements ICloneable, IEquali
 		}
 	}
 
+	/**
+	 * Returns the angle of this point in this referential.
+	 * @return the angle of this point in this referential.
+	 */
 	public function get angle():Number 
 	{
 		return getAngle() ;
 	}
-	
+
+	/**
+	 * Sets the angle of this point in this referential.
+	 */
 	public function set angle( n:Number ):Void 
 	{
 		setAngle(n) ;	
 	}
 	
+	/**
+	 * Returns the length of the line segment from (0,0) to this point.
+	 * @return the length of the line segment from (0,0) to this point.
+	 */
 	public function get length():Number 
 	{
 		return getLength() ;	
 	}
 	
+	/**
+	 * Sets the length of the line segment from (0,0) to this point.
+	 */
 	public function set length(n:Number):Void 
 	{
 		setLength(n) ;	
 	}
 
+	/**
+	 * The horizontal coordinate of the point.
+	 */
 	public var x:Number ;
 
+	/**
+	 * The vertical coordinate of the point.
+	 */
 	public var y:Number ;
 
+	/**
+	 * Transform the coordinates of this point to used absolute value for the x and y properties.
+	 */
 	public function abs():Void 
 	{
 		x = Math.abs(x) ;
 		y = Math.abs(y) ;
 	}
 	
+	/**
+	 * Returns a new Point reference with the absolute value of the coordinates of this Point object.
+	 * @return a new Point reference with the absolute value of the coordinates of this Point object.
+	 */
 	public function absNew():Point 
 	{
 		return clone().abs() ;
 	}
 
+	/**
+	 * Returns the angle value between this Point object and the specified Point passed in arguments.
+	 * @return the angle value between this Point object and the specified Point passed in arguments.
+	 */
 	public function angleBetween(p:Point):Number 
 	{
 		var dp:Number = dot(p) ;
@@ -101,41 +138,81 @@ dynamic class pegas.geom.Point extends CoreObject implements ICloneable, IEquali
 		return Trigo.acosD(a) ;
 	}
 	
+	/**
+	 * Returns the shallow copy of this object.
+	 * @return the shallow copy of this object.
+	 */
 	public function clone() 
 	{
 		return new Point(x, y) ;
 	}
+	
+	/**
+	 * Returns the deep copy of this object.
+	 * @return the deep copy of this object.
+	 */
+	public function copy() 
+	{
+		return new Point(x, y) ;
+	}
 
+	/**
+	 * Returns the cross value of the current Point object with the Point passed in argument.
+	 */
 	public function cross(p:Point):Number 
 	{
 		return ( x * p.y ) - (y * p.x) ;
 	}
 
+	/**
+	 * Returns the distance between p1 and p2 the 2 Points reference passed in argument.
+	 */
 	static public function distance(p1:Point, p2:Point):Number 
 	{
 		return p1.subtractNew(p2).getLength() ;
 	}
 	
+	/**
+	 * Returns the dot value of the current Point and the specified Point passed in argument.
+	 * @return the dot value of the current Point and the specified Point passed in argument.
+	 */
 	public function dot(p:Point):Number 
 	{
 		return (x * p.x) + (y * p.y) ;
 	}
 	
+	/**
+	 * Compares the specified object with this object for equality.
+	 * @return {@code true} if the the specified object is equal with this object.
+	 */
 	public function equals(o):Boolean 
 	{
 		return (o instanceof Point && o.x == x && o.y == y) ;
 	}
 	
+	/**
+	 * Returns the angle value of this Point object.
+	 * @return the angle value of this Point object.
+	 */
 	public function getAngle():Number 
 	{
 		return Trigo.atan2D(y, x) ;
 	}
 	
+	/**
+	 * Returns the direction of this Point.
+	 * @return the direction of this Point.
+	 * @see {@link normalize}.
+	 */
 	public function getDirection():Point 
 	{
 		return clone().normalize() ;
 	}
 	
+	/**
+	 * Returns the length of the line segment from (0,0) to this point.
+	 * @return the length of the line segment from (0,0) to this point.
+	 */
 	public function getLength():Number 
 	{
 		return Math.sqrt(x * x + y * y) ;
@@ -215,6 +292,9 @@ dynamic class pegas.geom.Point extends CoreObject implements ICloneable, IEquali
 		return new Point (x + p.x, y + p.y) ;
 	}
 
+	/**
+	 * Converts a pair of polar coordinates to a Cartesian point coordinate.
+	 */
 	static public function polar(len:Number, angle:Number):Point 
 	{
 		return new Point(len * Math.cos(angle), len * Math.sin(angle)) ;
@@ -296,6 +376,10 @@ dynamic class pegas.geom.Point extends CoreObject implements ICloneable, IEquali
 		p.y = ty ;
 	}
 
+	/**
+	 * Returns a flash.geom.Point reference of this Point object.
+	 * @return a flash.geom.Point reference of this Point object.
+	 */
 	public function toFlash():flash.geom.Point
 	{
 		return new flash.geom.Point(x,y) ;

@@ -32,9 +32,9 @@ import vegas.util.serialize.Serializer;
  * This class defined a Line equation.
  * <p><b>Example :</b></p>
  * {@code
- * var l:Line = new Line(p_a:Number, p_b:Number, p_c:Number) ;
+ * var l:Line = new Line(10, 20, 5) ;
+ * trace(l) ; // {a:10,b:20,c:5}
  * }
- * <p><b>Thanks :</b> Timothee Groleau >> http://timotheegroleau.com/Flash/articles/cubic_bezier/bezier_lib.as</p>
  */
 class pegas.geom.Line extends CoreObject implements ICloneable, IEquality 
 {

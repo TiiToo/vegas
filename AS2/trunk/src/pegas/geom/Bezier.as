@@ -27,9 +27,13 @@ import pegas.geom.Point;
 // TODO create unit tests
 
 /**
- * 	THANKS : 
- * 	- Robert Penner : http://www.robertpenner.com
- * 	- Timothee Groleau : http://timotheegroleau.com/Flash/articles/cubic_bezier/bezier_lib.as
+ * Static tool class to creates and manipulates Bezier curves.
+ * <p><b>Thanks :</b>
+ * <ul> 
+ * <li>Robert Penner : <a href="http://www.robertpenner.com">http://www.robertpenner.com</a></li>
+ * <li>Timothee Groleau : <a href="http://timotheegroleau.com/Flash/articles/cubic_bezier/bezier_lib.as">http://timotheegroleau.com/Flash/articles/cubic_bezier/bezier_lib.as</a></li>
+ * </ul>
+ * </p>
  */
 class pegas.geom.Bezier 
 {
@@ -112,7 +116,7 @@ class pegas.geom.Bezier
 	 * Returns the baryCenter of a collection of points.
 	 * @return the baryCenter of a collection of points.
 	 */
-	public static function getBaryCenter(pts:Array):Point 
+	static public function getBaryCenter(pts:Array):Point 
 	{
 		var nbp:Number = pts.length ;
 		var x:Number=0;
