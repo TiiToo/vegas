@@ -1,7 +1,6 @@
 asgard.display
 asgard.text
 lunas.display.components.button
-vegas.maths
 asgard.data.remoting
 asgard.date
 lunas.display.components.bar
@@ -32,6 +31,7 @@ vegas.logging.tracer
 vegas.string.errors
 lunas.display.components.cell
 lunas.display.components.shape
+pegas.maths
 pegas.process
 pegas.transitions.easing
 vegas.logging

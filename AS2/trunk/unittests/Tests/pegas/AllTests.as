@@ -52,6 +52,7 @@ class Tests.pegas.AllTests extends TestCase
         suite.addTest(  Tests.pegas.draw.AllTests.suite()  ) ;
         suite.addTest(  Tests.pegas.events.AllTests.suite()  ) ;
         suite.addTest(  Tests.pegas.geom.AllTests.suite()  ) ;
+        suite.addTest(  Tests.pegas.maths.AllTests.suite()  ) ;
         suite.addTest(  Tests.pegas.process.AllTests.suite()  ) ;
         suite.addTest(  Tests.pegas.transitions.AllTests.suite()  ) ;
         suite.addTest(  Tests.pegas.ui.AllTests.suite()  ) ;

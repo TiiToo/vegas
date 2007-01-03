@@ -53,7 +53,6 @@ class Tests.vegas.AllTests extends TestCase
         suite.addTest( Tests.vegas.errors.AllTests.suite() ) ;
         suite.addTest( Tests.vegas.events.AllTests.suite() ) ;
         suite.addTest( Tests.vegas.logging.AllTests.suite() ) ;
-        suite.addTest( Tests.vegas.maths.AllTests.suite() ) ;
         suite.addTest( Tests.vegas.string.AllTests.suite() ) ;
         suite.addTest( Tests.vegas.util.AllTests.suite() ) ;
         

@@ -27,7 +27,7 @@ import buRRRn.ASTUce.TestSuite;
 /**
  * @author eKameleon
  */
-class Tests.vegas.maths.AllTests extends TestCase 
+class Tests.pegas.maths.AllTests extends TestCase 
 {
 
 	/**
@@ -43,13 +43,13 @@ class Tests.vegas.maths.AllTests extends TestCase
 	 */
     static function suite():TestSuite
 	{
-        var suite:TestSuite = new TestSuite( "Tests.vegas.maths" );
+        var suite:TestSuite = new TestSuite( "Tests.pegas.maths" );
         
         //suite.simpleTrace = true;
 
-		// suite.addTest( new TestSuite( Tests.vegas.maths.TestFactor ) ) ;
-		// suite.addTest( new TestSuite( Tests.vegas.maths.TestPrime ) ) ;
-        // suite.addTest( new TestSuite( Tests.vegas.maths.TestRange ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.maths.TestFactor ) ) ;
+		// suite.addTest( new TestSuite( Tests.pegas.maths.TestPrime ) ) ;
+        // suite.addTest( new TestSuite( Tests.pegas.maths.TestRange ) ) ;
         
         return suite ;
     
