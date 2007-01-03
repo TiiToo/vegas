@@ -49,6 +49,7 @@ class Tests.pegas.geom.AllTests extends TestCase
         //suite.simpleTrace = true;
 
 		// suite.addTest( new TestSuite( Tests.pegas.geom.TestBezier ) );
+		suite.addTest( new TestSuite( Tests.pegas.geom.TestDimension ) );
 		// suite.addTest( new TestSuite( Tests.pegas.geom.TestLine ) );
 		suite.addTest( new TestSuite( Tests.pegas.geom.TestPlane ) );
 		// suite.addTest( new TestSuite( Tests.pegas.geom.TestPoint ) );

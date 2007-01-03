@@ -23,7 +23,6 @@
 
 // FIXME : big bug when i use this target for the moment...
 
-import vegas.events.Delegate;
 import vegas.logging.LogEventLevel;
 import vegas.logging.targets.LineFormattedTarget;
 
