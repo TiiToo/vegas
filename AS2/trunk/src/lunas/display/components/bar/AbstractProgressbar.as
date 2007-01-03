@@ -27,8 +27,7 @@ import lunas.display.components.AbstractComponent;
 import lunas.display.components.IProgressbar;
 
 import pegas.events.UIEventType;
-
-import vegas.maths.Range;
+import pegas.maths.Range;
 
 class lunas.display.components.bar.AbstractProgressbar extends AbstractComponent implements IProgressbar 
 {

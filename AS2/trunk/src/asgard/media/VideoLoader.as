@@ -25,6 +25,8 @@ import asgard.events.MediaEvent;
 import asgard.media.AbstractMediaLoader;
 import asgard.net.NetStreamStatus;
 
+import pegas.maths.Range;
+
 import vegas.errors.IllegalArgumentError;
 import vegas.errors.UnsupportedOperation;
 import vegas.errors.Warning;
@@ -32,7 +34,6 @@ import vegas.events.BasicEvent;
 import vegas.events.Delegate;
 import vegas.events.EventType;
 import vegas.events.TimerEventType;
-import vegas.maths.Range;
 import vegas.util.FrameTimer;
 import vegas.util.Timer;
 

@@ -21,120 +21,124 @@
   
 */
 
-/* LocalDate
-
-	AUTHOR
-	
-		Name : LocalDate
-		Package : asgard.date
-		Version : 1.0.0.0
-		Date :  2005-09-18
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	STATIC PROPERTIES
-	
-		Months
-		
-			- JANUARY : Fully written out string for january.
-			
-			- FEBRUARY : Fully written out string for february.
-			
-			- MARCH : Fully written out string for march.
-			
-			- APRIL : Fully written out string for april.
-			
-			- MAY : Fully written out string for may.
-			
-			- JUNE : Fully written out string for june.
-			
-			- JULY : Fully written out string for july.
-			
-			- AUGUST : Fully written out string for august.
-			
-			- SEPTEMBER : Fully written out string for september.
-			
-			- OCTOBER : Fully written out string for october.
-			
-			- NOVEMBER : Fully written out string for november.
-			
-			- DECEMBER : Fully written out string for december.
-		
-		Days
-		
-			- MONDAY : Fully written out string for monday.
-			
-			- TUESDAY : Fully written out string for tuesday.
-			
-			- WEDNESDAY : Fully written out string for wednesday.
-			
-			- THURSDAY : Fully written out string for thursday.
-			
-			- FRIDAY : Fully written out string for friday.
-			
-			- SATURDAY : Fully written out string for saturday.
-			
-			- SUNDAY : Fully written out string for sunday.
-
-
-	STATIC METHODS
-	
-		- getDays():Array
-		
-		- getMonths():Array
-	
-*/
-
-// TODO il faut finir la localization 
-
+/**
+ * This static enumeration class register all string constants to defined a date.
+ * @author eKameleon
+ */
 class asgard.date.LocalDate 
 {
 
-	// ----o Construtor
-	
-	private function LocalDate() 
-	{
-		//
-	}
-	
-	// ---- Statics Properties
-	
+	/**
+	 * Fully written out string for january.
+	 */
 	static public var JANUARY:String = "January" ;
+	
+	/**
+	 * Fully written out string for february.
+	 */
 	static public var FEBRUARY:String = "February" ;
+	
+	/**
+	 * Fully written out string for march.
+	 */
 	static public var MARCH:String = "March" ;
+	
+	/**
+	 * Fully written out string for april.
+	 */
 	static public var APRIL:String = "April" ;
+	
+	/**
+	 * Fully written out string for may.
+	 */
 	static public var MAY:String = "May" ;
+	
+	/**
+	 * Fully written out string for june.
+	 */
 	static public var JUNE:String = "June" ;
+	
+	/**
+	 * Fully written out string for july.
+	 */
 	static public var JULY:String = "July" ;
+	
+	/**
+	 * Fully written out string for august.
+	 */
 	static public var AUGUST:String = "August" ;
+	
+	/**
+	 * Fully written out string for september.
+	 */
 	static public var SEPTEMBER:String = "September" ;
+	
+	/**
+	 * Fully written out string for october.
+	 */
 	static public var OCTOBER:String = "October" ;
+	
+	/**
+	 * Fully written out string for november.
+	 */
 	static public var NOVEMBER:String = "November" ;
+	
+	/**
+	 * Fully written out string for december.
+	 */
 	static public var DECEMBER:String = "December" ;
 	
+	/**
+	 * Fully written out string for monday.
+	 */
 	static public var MONDAY:String = "Monday" ;
-	static public var TUESDAY:String = "Tuesday" ;
-	static public var WEDNESDAY:String = "Wednesday" ;
-	static public var THURSDAY:String = "Thursday" ;
-	static public var FRIDAY:String = "Friday" ;
-	static public var SATURDAY:String = "Saturday" ;
-	static public var SUNDAY:String = "Sunday" ;
-
-	// ---- Static Methods
 	
+	/**
+	 * Fully written out string for tuesday.
+	 */
+	static public var TUESDAY:String = "Tuesday" ;
+
+	/**
+	 * Fully written out string for wednesday.
+	 */
+	static public var WEDNESDAY:String = "Wednesday" ;
+	
+	/**
+	 * Fully written out string for thursday.
+	 */
+	static public var THURSDAY:String = "Thursday" ;
+	
+	/**
+	 * Fully written out string for friday.
+	 */
+	static public var FRIDAY:String = "Friday" ;
+
+	/**
+	 * Fully written out string for saturday.
+	 */
+	static public var SATURDAY:String = "Saturday" ;
+	
+	/**
+	 * Fully written out string for sunday.
+	 */
+	static public var SUNDAY:String = "Sunday" ;
+	
+	/**
+	 * Returns an array representation of all days constants.
+	 * @return an array representation of all days constants.
+	 */
 	static public function getDays():Array 
 	{
 		return [SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY] ;
 	}
 	
+	/**
+	 * Returns an array representation of all months constants.
+	 * @return an array representation of all months constants.
+	 */
 	static public function getMonths():Array 
 	{
-		return 
-		[
-			JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE,
-			JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER
-		] ;
+		return [ JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER ] ;
 	}
 
 }

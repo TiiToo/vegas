@@ -21,146 +21,151 @@
   
 */
 
-/**	DateFormatter
-
-	AUTHOR
-	
-		Name : DateFormatter
-		Package : asgard.date
-		Version : 1.0.0.0
-		Date :  2005-09-18
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTANT SUMMARY
-	
-		- DAY_AS_NUMBER : Placeholder for day in month as number in date format.
-		
-		- DAY_AS_TEXT : Placeholder for day in week as text in date format.
-		
-		- HOUR_IN_AM_PM : Placeholder for hour in am/pm (1 - 12) in date format.
-		
-		- HOUR_IN_DAY : Placeholder for hour in day (0 - 23) in date format.
-		
-		- MINUTE : Placeholder for minute in hour in date format.
-		
-		- MILLISECOND : Placeholder for millisecond in date format.
-
-		- MONTH_AS_NUMBER : Placeholder for month in year as number in date format.
-		
-		- MONTH_AS_TEXT : Placeholder for month in year as text in date format.
-		
-		- RANGE_DAY_AS_TEXT
-		
-		- RANGE_DAY_AS_NUMBER
-		
-		- RANGE_HOUR
-		
-		- RANGE_MILLISECOND
-		
-		- RANGE_MINUTE
-		
-		- RANGE_MONTH
-		
-		- RANGE_SECOND
-		
-		- QUOTE : Quotation beginning and ending token. 
-
-		- SECOND : Placeholder for second in minute in date format. 
-
-		- YEAR : Placeholder for year in date format.
-
-	PROPERTY SUMMARY
-	
-		- static DEFAULT_DATE_FORMAT:String
-		
-		- pattern:String [R/W]
-
-	METHOD SUMMARY
-	
-		- format(date:Date):String
-	
-		- formatDayAsNumber(day:Number, cpt:Number):String
-		
-		- formatDayAsText(day:Number, cpt:Number):String
-		
-		- formatHourInAmPm(hour:Number, cpt:Number):String
-		
-		- formatHourInDay(hour:Number, cpt:Number):String
-		
-		- formatMillisecond(millisecond:Number, cpt:Number):String
-		
-		- formatMinute(minute:Number, cpt:Number):String
-		
-		- formatMonthAsNumber(month:Number, cpt:Number):String
-		
-		- formatMonthAsText(month:Number, cpt:Number):String
-		
-		- formatSecond(second:Number, cpt:Number):String
-		
-		- formatYear(year:Number, cpt:Number):String
-		
-		- getZeros(cpt:Number):String
-	
-		- getPattern():String
-		
-		- setPattern(pattern:String)
-	
-	INHERIT
-	
-		CoreObject → AbstractFormatter
-	
-	IMPLEMENT
-	
-		IFormatter, IFormattable, IHashable
-	
-	TODO : améliorer la gestion des erreurs des méthodes de cette classe.
-	
-**/
-
 import asgard.date.LocalDate;
 
+import pegas.maths.Range;
+
 import vegas.errors.IllegalArgumentError;
-import vegas.maths.Range;
 import vegas.util.format.AbstractFormatter;
 
-class asgard.date.DateFormatter extends AbstractFormatter {
+/**
+ * DateFormatter formats a given date with a specified pattern.
+ * <p>Use the declared constants as placeholders for specific parts of the date-time.</p>
+ * <p>All characters from 'A' to 'Z' and from 'a' to 'z' are reserved, although not all of these characters are interpreted right now.</p> 
+ * <p>If you want to include plain text in the pattern put it into quotes (') to avoid interpretation.</p>
+ * <p>If you want a quote in the formatted date-time, put two quotes directly after one another. For example: {@code "hh 'o''clock'"}.</p>
+ * <p><b>Example :</b>
+ * {@code
+ * import asgard.date.DateFormatter ;
+ * 
+ * var f:DateFormatter = new DateFormatter() ;
+ * 
+ * f.pattern = "yyyy DDDD d MMMM - hh 'h' nn 'mn' ss 's'" ;
+ * var result:String = f.format() ;
+ * trace("pattern : " + f.pattern) ;
+ * trace("result  : " + result) ;
+ * 
+ * trace("----") ;
+ * 
+ * f.pattern = "DDDD d MMMM yyyy" ;
+ * var result:String = f.format(new Date(2005, 10, 22)) ;
+ * trace("pattern : " + f.pattern) ;
+ * trace("result  : " + result) ;
+ * }
+ * @author eKameleon
+ */
+class asgard.date.DateFormatter extends AbstractFormatter 
+{
 
-	// ----o Construtor
-	
-	public function DateFormatter(p:String) {
-		super(p || DEFAULT_DATE_FORMAT) ;
+	/**
+	 * Creates a new DateFormatter instance.
+	 * <p>If you do not pass-in a pattern or if the passed-in one is null or undefined the constant DEFAULT_DATE_FORMAT is used.</p>
+	 * @param pattern (optional) the pattern describing the date and time format.
+	 */
+	public function DateFormatter( pattern:String ) 
+	{
+		super( pattern || DEFAULT_DATE_FORMAT ) ;
 	}
 
-	// ----o Static Property
-	
+	/**
+	 * The default date format pattern {@code "dd.mm.yyyy HH:nn:ss"}.
+	 */
 	static public  var DEFAULT_DATE_FORMAT:String = "dd.mm.yyyy HH:nn:ss" ;
 	
-	// ----o CONSTANT
-	
+	/**
+	 * Placeholder for day in month as number in date format.
+	 */
 	static public var DAY_AS_NUMBER:String = "d";
+	
+	/**
+	 * Placeholder for day in week as text in date format.
+	 */
 	static public var DAY_AS_TEXT:String = "D";
+	
+	/**
+	 * Placeholder for hour in am/pm (1 - 12) in date format.
+	 */
 	static public var HOUR_IN_AM_PM:String = "h";
+	
+	/**
+	 * Placeholder for hour in day (0 - 23) in date format.
+	 */
 	static public var HOUR_IN_DAY:String = "H";
-	static public var MILLISECOND:String = "S";
-	static public var MONTH_AS_NUMBER:String = "m";
-	static public var MONTH_AS_TEXT:String = "M";
+
+	/**
+	 * Placeholder for minute in hour in date format.
+	 */
 	static public var MINUTE:String = "n";
+
+	/**
+	 * Placeholder for millisecond in date format.
+	 */
+	static public var MILLISECOND:String = "S";
+
+	/**
+	 * Placeholder for month in year as number in date format.
+	 */
+	static public var MONTH_AS_NUMBER:String = "m";
+	
+	/**
+	 * Placeholder for month in year as text in date format.
+	 */
+	static public var MONTH_AS_TEXT:String = "M";
+	
+	/**
+	 * Quotation beginning and ending token. 
+	 */
 	static public var QUOTE:String = "'";
+
+	/**
+	 * The internal range use to defined the days as text in the DateFormatter.
+	 */
 	static public var RANGE_DAY_AS_TEXT:Range = new Range(0, 6) ;
+
+	/**
+	 * The internal range use to defined the hours in the DateFormatter.
+	 */
 	static public var RANGE_HOUR:Range = new Range(0, 23) ;
+
+	/**
+	 * The internal range use to defined the minutes in the DateFormatter.
+	 */
 	static public var RANGE_MINUTE:Range = new Range(0, 59) ;
+
+	/**
+	 * The internal range use to defined the milliseconds in the DateFormatter.
+	 */
 	static public var RANGE_MILLISECOND:Range = new Range(0, 999) ;
+
+	/**
+	 * The internal range use to defined the months in the DateFormatter.
+	 */
 	static public var RANGE_MONTH:Range = new Range(0, 11) ;
+
+	/**
+	 * The internal range use to defined the seconds in the DateFormatter.
+	 */
 	static public var RANGE_SECOND:Range = new Range(0, 59) ;
+
+	/**
+	 * Placeholder for second in minute in date format.
+	 */
 	static public var SECOND:String = "s";
+
+	/**
+	 * Placeholder for year in date format.
+	 */
 	static public var YEAR:String = "y";
 	
-	// ----o Public Methods
-	
-	public function format(o):String {
-		if (!pattern) return "" ;
+	/**
+	 * Format a date based on the current style set for the Date Formatter.
+	 */
+	public function format(o):String 
+	{
+		if (pattern == null) 
+		{
+			return "" ;
+		}
 		var date:Date = (o instanceof Date) ? o : new Date() ;
 		var p:String = getPattern() ;
 		var a:Array = p.split("") ;
@@ -169,16 +174,20 @@ class asgard.date.DateFormatter extends AbstractFormatter {
 		var ch:String ; // current character
 		var i:Number = -1 ;
 		var r:String = "" ;
-		while (++i < l) {
+		while (++i < l) 
+		{
 			ch = a[i] ;
-			if (ch == DateFormatter.QUOTE) {
-				if (a[i + 1] == DateFormatter.QUOTE) {
+			if (ch == DateFormatter.QUOTE) 
+			{
+				if (a[i + 1] == DateFormatter.QUOTE) 
+				{
 					r += "'" ; 
 					i++ ;
 				}
 				var next:Number = i ;
 				var prev:Number ;
-				while (true) {
+				while (true) 
+				{
 					prev = next ;
 					next = p.indexOf("'", next + 1) ;
 					if (a[next + 1] != QUOTE) break ;
@@ -187,60 +196,84 @@ class asgard.date.DateFormatter extends AbstractFormatter {
 				}
 				r += p.substring(prev+1, next) ;
 				i = next ;
-			} else if (ch == YEAR) {
+			} 
+			else if (ch == YEAR) 
+			{
 				cpt = _count(ch, a.slice(i));
 				r += formatYear(date.getFullYear(), cpt);
 				i += cpt - 1 ;
-			} else if (ch == MONTH_AS_NUMBER) {
+			}
+			else if (ch == MONTH_AS_NUMBER) 
+			{
 				cpt = _count(ch, a.slice(i));
 				r += formatMonthAsNumber(date.getMonth(), cpt);
 				i += cpt - 1 ;
-			} else if (ch == MONTH_AS_TEXT) {
+			}
+			else if (ch == MONTH_AS_TEXT) 
+			{
 				cpt = _count(ch, a.slice(i));
 				r += formatMonthAsText(date.getMonth(), cpt) ;
 				i += cpt - 1 ;
-			} else if (ch == DAY_AS_NUMBER) {
+			} 
+			else if (ch == DAY_AS_NUMBER) 
+			{
 				cpt = _count(ch, a.slice(i)) ;
 				r += formatDayAsNumber(date.getDate(), cpt) ;
 				i += cpt - 1 ;
-			} else if (ch == DAY_AS_TEXT) {
+			}
+			else if (ch == DAY_AS_TEXT) 
+			{
 				cpt = _count(ch, a.slice(i)) ;
 				r += formatDayAsText(date.getDay(), cpt) ;
 				i += cpt - 1 ;
-			} else if (ch == HOUR_IN_AM_PM) {
+			} 
+			else if (ch == HOUR_IN_AM_PM) 
+			{
 				cpt = _count(ch, a.slice(i));
 				r += formatHourInAmPm(date.getHours(), cpt) ;
 				i += cpt - 1 ;
-			} else if (ch == HOUR_IN_DAY) {
+			} 
+			else if (ch == HOUR_IN_DAY) 
+			{
 				cpt = _count(ch, a.slice(i));
 				r += formatHourInDay(date.getHours(), cpt) ;
 				i += cpt - 1 ;
-			} else if (ch == MINUTE) {
+			} 
+			else if (ch == MINUTE) 
+			{
 				cpt = _count(ch, a.slice(i));
 				r += formatMinute(date.getMinutes(), cpt) ;
 				i += cpt - 1 ;
-			} else if (ch == SECOND) {
+			}
+			else if (ch == SECOND) 
+			{
 				cpt = _count(ch, a.slice(i));
 				r += formatSecond(date.getSeconds(), cpt) ;
 				i += cpt - 1 ;
-			} else if (ch == MILLISECOND) {
+			}
+			else if (ch == MILLISECOND) 
+			{
 				cpt = _count(ch, a.slice(i));
 				r += formatMillisecond(date.getMilliseconds(), cpt);
 				i += cpt - 1 ;
-			} else {
+			} 
+			else 
+			{
 				r += ch;
 			}
 		} 
 		return r ;
 	}
 
-	public function formatDayAsNumber(day:Number, cpt:Number):String {
+	public function formatDayAsNumber(day:Number, cpt:Number):String 
+	{
 		if (isNaN(cpt)) cpt = 0 ;
 		var string:String = day.toString();
 		return (getZeros(cpt - string.length) + string);
 	}
 	
-	public function formatDayAsText(day:Number, cpt:Number):String {
+	public function formatDayAsText(day:Number, cpt:Number):String 
+	{
 		if (RANGE_DAY_AS_TEXT.isOutOfRange(day)) throw new IllegalArgumentError() ;
 		if (isNaN(cpt)) cpt = 0 ;
 		var days:Array = LocalDate.getDays() ;
@@ -280,15 +313,23 @@ class asgard.date.DateFormatter extends AbstractFormatter {
 		return (getZeros(cpt - s.length) + s);
 	}
 	
-	public function formatMonthAsNumber(month:Number, cpt:Number):String {
-		if (RANGE_MONTH.isOutOfRange(month)) throw new IllegalArgumentError() ;
+	public function formatMonthAsNumber(month:Number, cpt:Number):String 
+	{
+		if (RANGE_MONTH.isOutOfRange(month)) 
+		{
+			throw new IllegalArgumentError() ;
+		}
 		if (isNaN(cpt)) cpt = 0 ;
 		var string:String = (month + 1).toString();
 		return (getZeros(cpt - string.length) + string) ;
 	}
 	
-	public function formatMonthAsText(month:Number, cpt:Number):String {
-		if (RANGE_MONTH.isOutOfRange(month)) throw new IllegalArgumentError() ;
+	public function formatMonthAsText(month:Number, cpt:Number):String 
+	{
+		if (RANGE_MONTH.isOutOfRange(month)) 
+		{
+			throw new IllegalArgumentError() ;
+		}
 		if (isNaN(cpt)) cpt = 0 ;
 		var r:String;
 		var months:Array = LocalDate.getMonths() ;
@@ -297,40 +338,76 @@ class asgard.date.DateFormatter extends AbstractFormatter {
 		return r;
 	}
 
-	public function formatSecond(second:Number, cpt:Number):String {
-		if (RANGE_SECOND.isOutOfRange(second)) throw new IllegalArgumentError() ;
+	/**
+	 * Format the second value passed in argument.
+	 * @return the second string representation of this DateFormatter.
+	 */
+	public function formatSecond(second:Number, cpt:Number):String 
+	{
+		if (RANGE_SECOND.isOutOfRange(second)) 
+		{
+			throw new IllegalArgumentError(this + " formatSecond method failed, the second value is out of range") ;
+		}
 		if (isNaN(cpt)) cpt = 0 ;
 		var s:String = second.toString();
 		return (getZeros(cpt - s.length) + s);
 	}
 
-	public function formatYear(year:Number, cpt:Number):String {
-		if (isNaN(year)) throw new IllegalArgumentError() ;
-		if (isNaN(cpt)) cpt = 0 ;
-		if (cpt < 4) return year.toString().substr(2) ;
+	/**
+	 * Format the year value passed in argument.
+	 * @return the year string representation of this DateFormatter.
+	 */
+	public function formatYear(year:Number, cpt:Number):String 
+	{
+		if (isNaN(year)) 
+		{
+			throw new IllegalArgumentError(this + " formatYear method failed, the year value must be a Number.") ;
+		}
+		if (isNaN(cpt)) 
+		{
+			cpt = 0 ;
+		}
+		if (cpt < 4) 
+		{
+			return year.toString().substr(2) ;
+		}
 		return (getZeros(cpt - 4) + year.toString());
 	}
 
-	public function getZeros(cpt:Number):String {
-		if (cpt < 1 || isNaN(cpt)) return "" ;
-		if (cpt < 2) return "0" ;
+	/**
+	 * Returns a string representation fill by 0 values or an empty string if the cpt value is NaN or <1.
+	 * @return a string representation fill by 0 values or an empty string if the cpt value is NaN or <1.
+	 */
+	public function getZeros(cpt:Number):String 
+	{
+		if (cpt < 1 || isNaN(cpt)) 
+		{
+			return "" ;
+		}
+		if (cpt < 2) 
+		{
+			return "0" ;
+		}
 		var r:String = "00";
 		cpt -= 2;
-		while (cpt) {
+		while (cpt) 
+		{
 			r += "0" ;
 			cpt-- ;
 		}
 		return r ;
 	}
 	
-	// ----o Private Methods
-	
-	private function _count(char:String, a:Array):Number {
+	private function _count(char:String, a:Array):Number 
+	{
 		if (!a) return 0 ;
 		var r:Number = 0 ;
 		var i:Number = -1 ;
 		var l:Number = a.length ;
-		while (++i < l && a[r] == char) r++ ;
+		while (++i < l && a[r] == char) 
+		{
+			r++ ;
+		}
 		return r ;
 	}
 

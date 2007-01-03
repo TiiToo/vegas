@@ -23,7 +23,7 @@
 
 import vegas.logging.LogEvent;
 import vegas.logging.targets.LineFormattedTarget;
-import vegas.maths.Range;
+import vegas.util.MathsUtil;
 
 /**
  * Provides a logger target that uses the FlashInspector console to output log messages. 
@@ -157,8 +157,7 @@ class vegas.logging.targets.LuminicTarget extends LineFormattedTarget
 	 */
 	public function setMaxDepth(value:Number) 
 	{
-		var r:Range = new Range(1, 255) ;
-		_maxDepth = r.clamp(value) ;
+		_maxDepth = MathsUtil.clamp(value, 1, 255) ;
 	}
 
 	/**

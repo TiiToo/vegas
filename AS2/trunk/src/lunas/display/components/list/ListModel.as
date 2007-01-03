@@ -107,12 +107,13 @@
 
 */
 
+import pegas.maths.Range;
+
 import vegas.data.iterator.ArrayIterator;
 import vegas.data.iterator.Iterable;
 import vegas.data.iterator.Iterator;
 import vegas.events.ModelChangedEvent;
 import vegas.events.ModelChangedEventType;
-import vegas.maths.Range;
 import vegas.util.ArrayUtil;
 import vegas.util.mvc.AbstractModel;
 

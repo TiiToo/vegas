@@ -29,6 +29,7 @@ import asgard.date.LocalDate;
 
 import vegas.core.HashCode;
 import vegas.core.ICloneable;
+import vegas.core.ICopyable;
 import vegas.core.IEquality;
 import vegas.core.IFormattable;
 import vegas.core.IHashable;
@@ -36,10 +37,41 @@ import vegas.core.ISerializable;
 import vegas.util.serialize.Serializer;
 
 /**
- * This class contains all tools to create a calendar.
+ * This class contains all tools to creates a calendar.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import asgard.date.Calendar ;
+ * 
+ * var c1:Calendar = new Calendar(2005, 2, 15) ;
+ * trace ("c1 getTime : " + c1.getTime()) ;
+ * trace ("c1 toSource : " + c1.toSource()) ;
+ * var c2:Calendar = new Calendar() ;
+ * 
+ * trace ("-- c1 : " + c1) ;
+ * trace ("-- c2 : " + c2) ;
+ * 
+ * trace ("> c1 after c2 : " + c1.after(c2)) ;
+ * trace ("> c2 after c1 : " + c2.after(c1)) ;
+ * trace ("> c1 before c2 : " + c1.before(c2)) ;
+ * 
+ * trace ("> c1 format : " + c1.format("dd/mm/yyyy HH' h' nn' mn' ss' s'")) ;
+ * 
+ * var clone:Calendar = c1.clone() ;
+ * trace ("-- c1 clone : " + clone) ;
+ * trace ("> c1 equals clone : " + c1.equals(clone)) ;
+ * 
+ * trace ("-----") ;
+ * var count:Number = Calendar.getDaysInMonth(2005, 11) ;
+ * trace ("> days in month 2005/12 : " + count) ;
+ * var first:String = Calendar.getFirstDay(2005, 11, true) ;
+ * trace ("> first day 2005/12 : " + first) ;
+ * 
+ * var fc:Array = Calendar.getFullMonthCalendar(2005, 11) ;
+ * trace ("> full calendar 2005/12 : " + fc) ;
+ * }
  * @author eKameleon
  */
-class asgard.date.Calendar extends Date implements ICloneable, IEquality, IFormattable, IHashable, ISerializable 
+class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEquality, IFormattable, IHashable, ISerializable 
 {
 
 	/**
@@ -94,7 +126,8 @@ class asgard.date.Calendar extends Date implements ICloneable, IEquality, IForma
 		var d:Date = new Date(date.getTime());
 		switch (field) 
 		{
-			case Calendar.MONTH:
+			case Calendar.MONTH :
+			{
 				var newMonth:Number = date.getMonth() + amount;
 				var years:Number = 0;
 				if (newMonth < 0) 
@@ -116,18 +149,22 @@ class asgard.date.Calendar extends Date implements ICloneable, IEquality, IForma
 				d.setMonth(newMonth) ;
 				d.setFullYear(date.getFullYear() + years) ;
 				break ;
-			
-			case Calendar.DAY:
+			}
+			case Calendar.DAY :
+			{
 				d.setDate(date.getDate() + amount) ;
 				break;
-			
-			case Calendar.YEAR:
+			}
+			case Calendar.YEAR :
+			{
 				d.setFullYear(date.getFullYear() + amount) ;
 				break;
-			
+			}
 			case Calendar.WEEK :
+			{
 				d.setDate(date.getDate() + 7);
 				break;
+			}
 		}
 		return d ;
 	}
@@ -150,8 +187,18 @@ class asgard.date.Calendar extends Date implements ICloneable, IEquality, IForma
 	
 	/**
 	 * Returns the shallow copy of this object.
+	 * @return the shallow copy of this object.
 	 */
 	public function clone() 
+	{
+		return new Calendar(valueOf()) ;
+	}
+	
+	/**
+	 * Returns the deep copy of this object.
+	 * @return the deep copy of this object.
+	 */
+	public function copy() 
 	{
 		return new Calendar(valueOf()) ;
 	}

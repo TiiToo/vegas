@@ -24,10 +24,11 @@
 import asgard.events.SoundModelEvent;
 import asgard.media.SoundModel;
 
+import pegas.maths.Range;
+
 import vegas.data.map.HashMap;
 import vegas.errors.Warning;
 import vegas.events.Delegate;
-import vegas.maths.Range;
 
 // TODO add events with setGain, setVolume and setPan methods !
 // TODO test volume, gain etc.

@@ -27,9 +27,9 @@ import pegas.events.UIEvent;
 import pegas.events.UIEventType;
 import pegas.geom.Point;
 import pegas.geom.Rectangle;
+import pegas.maths.Range;
 
 import vegas.events.Delegate;
-import vegas.maths.Range;
 
 /**
  * This class create a ZoomDisplay container to manipulate the scale and the offset position of the display with a mask.
