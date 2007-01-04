@@ -31,6 +31,7 @@ import vegas.util.FrameTimer;
 import vegas.util.Timer;
 
 /**
+ * The Motion class.
  * @author eKameleon
  */
 class pegas.transitions.Motion extends AbstractAction 
@@ -39,87 +40,146 @@ class pegas.transitions.Motion extends AbstractAction
 	/**
 	 * Creates a new Motion instance.
 	 */
-	private function Motion() 
+	function Motion() 
 	{
 		_oNext = new Delegate(this, nextFrame) ;
 	}
 
+	/**
+	 * Returns the duration of the tweened animation in frames or seconds.
+	 * @return the duration of the tweened animation in frames or seconds.
+	 */
 	public function get duration():Number 
 	{
 		return getDuration() ;
 	}
 	
+	/**
+	 * Sets the duration of the tweened animation in frames or seconds.
+	 */
 	public function set duration( n:Number ):Void 
 	{
 		setDuration(n) ;
 	}
-
+	
+	/**
+	 * Returns the number of frames per second of the tweened animation.
+	 * @return the number of frames per second of the tweened animation.
+	 */
 	public function get fps():Number 
 	{
 		return getFPS() ;
 	}
 	
+	/**
+	 * Sets the number of frames per second of the tweened animation.
+	 */
 	public function set fps( n:Number ):Void 
 	{
 		setFPS(n) ;
 	}
 
+	/**
+	 * Defined the internal prevTime value.
+	 */
 	public var prevTime:Number ;
 
+	/**
+	 * Returns the target reference of the object contrains by the Motion effect.
+	 * @return the target reference of the object contrains by the Motion effect.
+	 */
 	public function get target() 
 	{
 		return getTarget() ;	
 	}
 	
+	/**
+	 * Sets the target reference of the object contrains by the Motion effect.
+	 */
 	public function set target( oT ) 
 	{
 		setTarget( oT ) ;	
 	}
 
+	/**
+	 * Defined if the Motion used seconds or not.
+	 */
 	public var useSeconds:Boolean ;
 
+	/**
+	 * Returns a shallow copy of this object.
+	 * @return a shallow copy of this object.
+	 */
 	public function clone() 
 	{
 		//
 	}
 	
+	/**
+	 * Forwards the tweened animation directly to the end of the animation.
+	 */
 	public function fforward():Void 
 	{ 
 		setTime (_duration) ;
 		_fixTime() ;
 	}
 	
+	/**
+	 * Returns the duration of the tweened animation in frames or seconds.
+	 * @return the duration of the tweened animation in frames or seconds.
+	 */
 	public function getDuration():Number 
 	{ 
 		return _duration ;
 	}
 
+	/**
+	 * Returns the number of frames per second of the tweened animation.
+	 * @return the number of frames per second of the tweened animation.
+	 */
 	public function getFPS ():Number 
 	{ 
 		return _fps;
 	}
 
+	/**
+	 * Returns the target reference of the object contrains by the Motion effect.
+	 * @return the target reference of the object contrains by the Motion effect.
+	 */
 	public function getTarget() 
 	{
 		return _target ;
 	}
 
+	/**
+	 * Returns the current time within the duration of the animation.
+	 * @return the current time within the duration of the animation.
+	 */
 	public function getTime():Number 
 	{ 
 		return _time ;
 	}
 
+	/**
+	 * Forwards the tweened animation to the next frame.
+	 */
 	public function nextFrame():Void 
 	{ 
 		var t:Number = (useSeconds) ? ((getTimer() - _startTime) / 1000) : (_time + 1) ;
 		setTime(t) ;
 	}
 	
+	/**
+	 * Directs the tweened animation to the frame previous to the current frame.
+	 */
 	public function prevFrame():Void 
 	{
 		if (!useSeconds) setTime (_time - 1)  ;
 	}
 	
+	/**
+	 * Resumes a tweened animation from its stopped point in the animation.
+	 */
 	public function resume():Boolean 
 	{
 		if (_stopping && _time != duration) 
@@ -135,6 +195,9 @@ class pegas.transitions.Motion extends AbstractAction
 		}
 	}
 	
+	/**
+	 * Rewinds a tweened animation to the beginning of the tweened animation.
+	 */
 	public function rewind(t:Number):Void 
 	{
 		_time = t || 0 ;
@@ -142,6 +205,9 @@ class pegas.transitions.Motion extends AbstractAction
 		update() ;
 	}
 	
+	/**
+	 * Runs the object.
+	 */
 	public function run():Void 
 	{
 		notifyStarted() ;
@@ -149,11 +215,17 @@ class pegas.transitions.Motion extends AbstractAction
 		startInterval() ;
 	}
 
+	/**
+	 * Sets the duration of the tweened animation in frames or seconds
+	 */
 	public function setDuration(n:Number):Void 
 	{ 
 		_duration = (isNaN(n) || n <= 0 ) ? _global.Infinity : n ;
 	}
 	
+	/**
+	 * Sets the number of frames per second of the tweened animation.
+	 */
 	public function setFPS (n:Number):Void 
 	{
 		var tmp:Boolean = running ;
@@ -162,11 +234,17 @@ class pegas.transitions.Motion extends AbstractAction
 		if (tmp) _timer.start() ;
 	}
 	
+	/**
+	 * Sets the target reference of the object contrains by the Motion effect.
+	 */
 	public function setTarget(o):Void 
 	{
 		_target = o ;
 	}
 	
+	/**
+	 * Sets the current time within the duration of the animation.
+	 */
 	public function setTime(t:Number):Void 
 	{
 		prevTime = _time ;
@@ -192,6 +270,9 @@ class pegas.transitions.Motion extends AbstractAction
 		}
 	}
 
+	/**
+	 * Sets the internal timer of the tweened animation.
+	 */
 	public function setTimer(timer:ITimer):Void 
 	{
 		if (_timer) 
@@ -204,12 +285,18 @@ class pegas.transitions.Motion extends AbstractAction
 		_timer.addEventListener(TimerEventType.TIMER, _oNext ) ;
 	}
 	
+	/**
+	 * Starts the tweened animation from the beginning.
+	 */
 	public function start():Void 
 	{
 		_stopping = false ; 
 		run() ;
 	}
 	
+	/**
+	 * Starts the intenral interval of the tweened animation.
+	 */
 	public function startInterval():Void 
 	{
 		if (_fps) 
@@ -224,27 +311,32 @@ class pegas.transitions.Motion extends AbstractAction
 		_setRunning(true) ;
 	}
 	
+	/**
+	 * Stops the tweened animation at its current position.
+	 */
 	public function stop():Void 
 	{
 		stopInterval() ;
 		_stopping = true ;
 		notifyStopped() ;
 	}
-	
+
+	/**
+	 * Stops the intenral interval of the tweened animation.
+	 */
 	public function stopInterval():Void 
 	{
 		_timer.stop() ;
 		_setRunning(false) ;
 	}
 	
+	/**
+	 * Update the current object.
+	 */
 	public function update():Void 
 	{
 		//
 	}
-	
-
-
-	// ----o Private Properties
 	
 	private var _duration:Number ;
 	private var _fps:Number ;
@@ -255,9 +347,8 @@ class pegas.transitions.Motion extends AbstractAction
 	private var _time:Number ;
 	private var _timer:ITimer ;
 	
-	// ----o Private Methods
-	
-	private function _fixTime():Void {
+	private function _fixTime():Void 
+	{
 		if ( useSeconds) _startTime = getTimer() - _time * 1000 ;
 	}
 	

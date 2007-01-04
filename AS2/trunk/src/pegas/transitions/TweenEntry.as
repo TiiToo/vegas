@@ -25,6 +25,7 @@ import vegas.core.CoreObject;
 import vegas.core.ICloneable;
 
 /**
+ * A basic TweenEntry used in the Tween class to fill this model.
  * @author eKameleon
  */
 class pegas.transitions.TweenEntry extends CoreObject implements ICloneable 
@@ -41,6 +42,9 @@ class pegas.transitions.TweenEntry extends CoreObject implements ICloneable
 		prop = p ;
 	}
 
+	/**
+	 * Defined the begin value.
+	 */
 	public var begin:Number ;
 
 	public function get easing():Function 
@@ -53,11 +57,18 @@ class pegas.transitions.TweenEntry extends CoreObject implements ICloneable
 		setEasing(f) ;
 	}
 
+	/**
+	 * (read-write) Returns the finish value.
+	 * @return the finish value.
+	 */
 	public function get finish():Number 
 	{
 		return getFinish() ;
 	}
 	
+	/**
+	 * (read-write) Sets the finish value.
+	 */
 	public function set finish(n:Number):Void 
 	{
 		setFinish(n) ;
@@ -80,7 +91,8 @@ class pegas.transitions.TweenEntry extends CoreObject implements ICloneable
 		return _change ;	
 	}
 
-	public function getEasing():Function {
+	public function getEasing():Function 
+	{
 		return _easing ;	
 	}
 

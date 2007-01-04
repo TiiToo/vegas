@@ -96,6 +96,15 @@ class vegas.data.bag.HashBag extends AbstractBag
 	}
 	
 	/**
+	 * Returns the shallow copy of this bag.
+	 * @return the shallow copy of this bag.
+	 */
+	public function clone() 
+	{
+		return new HashBag(_map.clone()) ;
+	}
+
+	/**
 	 * Returns a Eden representation of the object.
 	 * @return a string representing the source code of the object.
 	 */

@@ -67,14 +67,14 @@ class Tests.Vegas extends DisplayObject
         
         // ASTUce configuration
         
-        Config.verbose = false;
+        Config.verbose = true ;
         
         // Config.showObjectSource     = true;
         // Config.invertExpectedActual = false;
         // Config.testPrivateMethods   = false;
         // Config.testInheritedTests   = false;
         
-		//Config.showConstructorList = false ;
+		// Config.showConstructorList = false ;
         Config.testMyself = true ;
 
 		// new TestSuite( Tests.vegas.core.TestCoreObject ) 

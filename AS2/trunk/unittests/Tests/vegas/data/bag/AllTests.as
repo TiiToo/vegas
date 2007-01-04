@@ -45,11 +45,11 @@ class Tests.vegas.data.bag.AllTests extends TestCase
 	{
         var suite:TestSuite = new TestSuite( "Tests.vegas.data.bag" );
         
-        //suite.simpleTrace = true;
+        // suite.simpleTrace = true;
 
-		// suite.addTest( new TestSuite( Tests.vegas.data.bag.TestAbstractBag  ) ) ;
-		// suite.addTest( new TestSuite( Tests.vegas.data.bag.TestBagFormat  ) ) ;
-		// suite.addTest( new TestSuite( Tests.vegas.data.bag.TestHashBag  ) ) ;
+		suite.addTest( new TestSuite( Tests.vegas.data.bag.TestAbstractBag  ) ) ;
+		suite.addTest( new TestSuite( Tests.vegas.data.bag.TestBagFormat  ) ) ;
+		suite.addTest( new TestSuite( Tests.vegas.data.bag.TestHashBag  ) ) ;
         
         return suite ;
     

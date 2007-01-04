@@ -1,5 +1,4 @@
-﻿
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -30,39 +29,41 @@ import pegas.transitions.Motion;
 import pegas.transitions.TweenEntry;
 import pegas.transitions.TweenProvider;
 
-/** 
-
-	CONSTRUCTOR
-	
-		var tw:Tween = new Tween( obj, prop:String, e:Function, b:Number, f:Number, d:Number , u:Boolean, auto:Boolean) ;
-		
-		var tw:Tween = new Tween( obj, ar:Array ) ;
-
-	EXAMPLE
-
-		import asgard.process.ActionEvent ;
-		import asgard.transitions.Tween ;
-		import asgard.transitions.easing.* ;
-	
-		import vegas.events.Delegate ;
-		import vegas.events.EventListener ;
-		
-		var onDebug:Function = function(ev:ActionEvent):Void {
-			trace (":: debug -> " + ev.type + " : " + ev.target ) ;
-		}
-		
-		var debug:EventListener = new Delegate(this, onDebug) ;
-		
-		var tw:Tween = new Tween (mc, "_x", Elastic.easeOut, mc._x, 400, 2, true, true) ;
-		tw.addEventListener("ALL", debug) ;
-
-
-*/
+/**
+ * The Tween class lets you use ActionScript to move, resize, and fade movie clips easily on the Stage by specifying a property of the target movie clip to be tween animated over a number of frames or seconds.
+ * The Tween class also lets you specify a variety of easing methods.
+ * <p>Easing refers to gradual acceleration or deceleration during an animation, which helps your animations appear more realistic.</p>
+ * <p><b>Example :</b></p>
+ * {@code
+ * import asgard.process.ActionEvent ;
+ * import asgard.transitions.Tween ;
+ * import asgard.transitions.easing.* ;
+ * 
+ * import vegas.events.Delegate ;
+ * import vegas.events.EventListener ;
+ * 
+ * var onDebug:Function = function(ev:ActionEvent):Void
+ * {
+ *     trace (":: debug -> " + ev.type + " : " + ev.target ) ;
+ * }
+ * 
+ * var debug:EventListener = new Delegate(this, onDebug) ;
+ * 
+ * var tw:Tween = new Tween (mc, "_x", Elastic.easeOut, mc._x, 400, 2, true, true) ;
+ * tw.addEventListener("ALL", debug) ;
+ * }
+ * @author eKameleon
+ */
 class pegas.transitions.Tween extends Motion 
 {
 
 	/**
 	 * Creates a new Tween instance.
+	 * <p><b>Usage :</b></p>
+	 * {@code
+	 * var tw:Tween = new Tween( obj, prop:String, e:Function, b:Number, f:Number, d:Number , u:Boolean, auto:Boolean) ;
+	 * var tw:Tween = new Tween( obj, ar:Array ) ;
+	 * }
 	 */
 	function Tween( args ) 
 	{
@@ -95,14 +96,38 @@ class pegas.transitions.Tween extends Motion
 			if (a) run() ;
 		}
 	}
-	
-	public function clear(Void):Void 
+
+	/**
+	 * (read-write) Returns the model of this Tween object.
+	 * @return the model of this Tween object.
+	 */
+	public function get tweenProvider():TweenProvider 
+	{
+		return getTweenProvider() ;
+	}
+
+	/**
+	 * (read-write) Sets the model of this Tween object.
+	 */
+	public function set tweenProvider( o ):Void 
+	{
+		setTweenProvider(o) ;
+	}
+
+	/**
+	 * Removes all entries in the model of this Tween object.
+	 */
+	public function clear():Void 
 	{
 		if (running) this.stop() ;
 		if (_model) _model.clear() ;
 		notifyCleared() ;
 	}
 
+	/**
+	 * Returns a shallow copy of this Tween object.
+	 * @return a shallow copy of this Tween object.
+	 */
 	/*override*/ public function clone() 
 	{
 		var t:Tween = new Tween() ;
@@ -113,17 +138,33 @@ class pegas.transitions.Tween extends Motion
 		return t ;
 	}
 
+	/**
+	 * Returns the TweenProvider model reference of this Tween object.
+	 * @return the TweenProvider model reference of this Tween object.
+	 */
 	public function getTweenProvider():TweenProvider 
 	{
 		return _model ;
 	}
 	
+	/**
+	 * Inserts a TweenEnry in the model of the Tween object.
+	 * @param entry a TweenEntry reference.
+	 */
 	public function insert( entry:TweenEntry ):Void 
 	{
 		if (!_model) setTweenProvider() ;
 		_model.insert( entry ) ;
 	}
 
+	/**
+	 * Inserts a new property in the Tween object.
+	 * @param prop the string representation of the number property.
+	 * @param easing the easing method used by the Tween on this property.
+	 * @param begin the begin value.
+	 * @param finish the finish value.
+	 * @return a TweenEntry defined by the specified arguments.
+	 */
 	public function insertProperty( prop , easing:Function, begin:Number, finish:Number):TweenEntry 
 	{
 		var e:TweenEntry = new TweenEntry(prop, easing, begin, finish) ;
@@ -131,18 +172,27 @@ class pegas.transitions.Tween extends Motion
 		return e ;
 	}
 
+	/**
+	 * Remove a TweenEntry in the Tween Object.
+	 */
 	public function remove(o:TweenEntry):Void 
 	{
 		if (running) stop() ;
 		_model.remove(o) ;
 	}	
-
+	
+	/**
+	 * Remove a property in the Tween Object.
+	 */
 	public function removeProperty(prop:String):Boolean 
 	{
 		if (running) stop() ;
 		return _model.remove(prop) ;
 	}
 
+	/**
+	 * Sets the model of this Tween object.
+	 */
 	public function setTweenProvider(o):Void 
 	{
 		if (o instanceof TweenProvider) 
@@ -159,11 +209,17 @@ class pegas.transitions.Tween extends Motion
 		}
 	}
 	
+	/**
+	 * The numbers of elements(properties) in the model of this Tween.
+	 */
 	public function size():Number 
 	{
 		return _model.size() ;
 	}
 	
+	/**
+	 * Update the current Tween in the time.
+	 */
 	/*override*/ public function update():Void 
 	{
 		var o = _target ;
@@ -180,21 +236,6 @@ class pegas.transitions.Tween extends Motion
 		notifyChanged() ;
 	}
 	
-	// ----o Virtual Properties
-
-	public function get tweenProvider():TweenProvider 
-	{
-		return getTweenProvider() ;
-	}
-
-	public function set tweenProvider(o):Void 
-	{
-		setTweenProvider(o) ;
-	}
-	
-	// ----o Private Properties
-	
 	private var _model:TweenProvider ;
-	
 
 }

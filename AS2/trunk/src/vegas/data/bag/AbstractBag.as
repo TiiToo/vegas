@@ -49,10 +49,14 @@ class vegas.data.bag.AbstractBag extends CoreObject implements Bag
 
 	/**
 	 * Creates a new AbstractBag instance.
+	 * @param m a Map reference.
 	 */
 	private function AbstractBag( m:Map ) 
 	{
-		if (m) _setMap(m) ;
+		if (m) 
+		{
+			_setMap(m) ;
+		}
 	}
 	
 	/**
@@ -67,14 +71,16 @@ class vegas.data.bag.AbstractBag extends CoreObject implements Bag
 
 	/**
 	 * Returns the shallow copy of this bag.
+	 * @return the shallow copy of this bag.
 	 */
 	public function clone() 
 	{
-		return new AbstractBag(_map.clone()) ;
+		return null ;
 	}
 
 	/**
 	 * Returns {@code true} if this bag contains the object passed in argument.
+	 * @return {@code true} if this bag contains the object passed in argument.
 	 */
 	public function contains(o):Boolean 
 	{
@@ -83,6 +89,7 @@ class vegas.data.bag.AbstractBag extends CoreObject implements Bag
 
 	/**
 	 * Returns {@code true} if thie bag contains all object in the passed collection in argument.
+	 * @return {@code true} if thie bag contains all object in the passed collection in argument.
 	 */
 	public function containsAll(c:Collection):Boolean 
 	{
@@ -91,6 +98,7 @@ class vegas.data.bag.AbstractBag extends CoreObject implements Bag
 	
 	/**
 	 * Returns {@code true} if thie bag contains all object in the passed bag in argument.
+	 * @return {@code true} if thie bag contains all object in the passed bag in argument.
 	 */
 	public function containsAllInBag(b:Bag):Boolean 
 	{
@@ -115,13 +123,14 @@ class vegas.data.bag.AbstractBag extends CoreObject implements Bag
 	}
 
 	/**
-	 * Returns the count 
+	 * Returns the count of the specified object passed in argument.
 	 */
 	public function getCount(o):Number 
 	{
         var result:Number = 0;
         var count:Number = MapUtil.getNumber(_map, o);
-        if (count != null) {
+        if (count != null) 
+        {
             result = count ;
         }
         return result;
