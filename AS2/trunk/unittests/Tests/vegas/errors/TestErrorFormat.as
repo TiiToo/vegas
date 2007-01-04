@@ -59,7 +59,7 @@ class Tests.vegas.errors.TestErrorFormat extends TestCase
 	
 	public function testImplement()
 	{
-		assertTrue( e instanceof IFormat , "ER_FORM_01 - inherit CoreObject failed.") ;
+		assertTrue( e instanceof IFormat , "ER_FORM_01 - inherit IFormat failed.") ;
 	}		
 	
 	public function testHashCode():Void

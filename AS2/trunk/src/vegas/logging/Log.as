@@ -31,7 +31,7 @@ import vegas.logging.LogLogger;
 import vegas.util.StringUtil;
 
 /**
- * Provides psuedo-hierarchical logging capabilities with multiple format and output options.
+ * Provides pseudo-hierarchical logging capabilities with multiple format and output options.
  * @author eKameleon
  */
 class vegas.logging.Log 
@@ -116,7 +116,7 @@ class vegas.logging.Log
 	/**
 	 * This method checks the specified string value for illegal characters.
 	 * @param value The String to check for illegal characters. The following characters are not valid: []~$^&\/(){}<>+=`!#%?,:;'"@
-	 * @return {code true} if there are any illegal characters found, false otherwise.
+	 * @return {@code true} if there are any illegal characters found, false otherwise.
 	 */
 	static public function hasIllegalCharacters(value:String):Boolean 
 	{
@@ -170,10 +170,10 @@ class vegas.logging.Log
     static private var _targetLevel:Number = Number.MAX_VALUE ;
 
     /**
-	 *  This method will ensure that a valid category string has been specified.
-	 *  If the category is not valid an <code>InvalidCategoryError</code> will be thrown.
-	 *  Categories can not contain any blanks or any of the following characters: []`*~,!#$%^&amp;()]{}+=\|'";?&gt;&lt;./&#64; 
-	 *  or be less than 1 character in length.
+	 * This method will ensure that a valid category string has been specified.
+	 * If the category is not valid an <code>InvalidCategoryError</code> will be thrown.
+	 * Categories can not contain any blanks or any of the following characters: []`*~,!#$%^&amp;()]{}+=\|'";?&gt;&lt;./&#64; 
+	 * or be less than 1 character in length.
 	 */
     static private function checkCategory(category:String):Void
 	{

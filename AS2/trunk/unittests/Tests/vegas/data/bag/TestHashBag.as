@@ -64,7 +64,6 @@ class Tests.vegas.data.bag.TestHashBag extends TestCase
 	{
 		assertNotNull( b, "HASH_BAG_01_01 - constructor is null") ;
 		assertTrue( b instanceof HashBag , "HASH_BAG_01_02 - constructor is an instance of HashBag.") ;
-		assertTrue( b instanceof AbstractBag , "HASH_BAG_01_02 - constructor is an instance of AbstractBag.") ;
 	}
 	
 	public function testInherit()

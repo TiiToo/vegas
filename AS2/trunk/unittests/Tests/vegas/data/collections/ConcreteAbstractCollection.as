@@ -21,39 +21,18 @@
   
 */
 
-import buRRRn.ASTUce.TestCase;
-import buRRRn.ASTUce.TestSuite;
+import vegas.data.collections.AbstractCollection;
 
 /**
+ * Uses this class in the TestAbstractCollection class.
  * @author eKameleon
  */
-class Tests.vegas.data.collections.AllTests extends TestCase 
+class Tests.vegas.data.collections.ConcreteAbstractCollection extends AbstractCollection
 {
 
-	/**
-	 * Creates a new AllTests instance.
-	 */	
-	function AllTests(name : String) 
+	function ConcreteAbstractCollection(ar:Array) 
 	{
-		super(name);
+		super(ar) ;
 	}
-
-	/**
-	 * Creates the Test list.
-	 */
-    static function suite():TestSuite
-	{
-        var suite:TestSuite = new TestSuite( "Tests.vegas.data.collections" );
-        
-        // suite.simpleTrace = true;
-
-		suite.addTest( new TestSuite( Tests.vegas.data.collections.TestAbstractCollection  ) ) ;
-		suite.addTest( new TestSuite( Tests.vegas.data.collections.TestCollectionFormat  ) ) ;
-		suite.addTest( new TestSuite( Tests.vegas.data.collections.TestSimpleCollection  ) ) ;
-		suite.addTest( new TestSuite( Tests.vegas.data.collections.TestTypedCollection  ) ) ;
-        
-        return suite ;
-    
-    }
 
 }

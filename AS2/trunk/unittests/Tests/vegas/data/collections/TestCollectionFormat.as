@@ -25,61 +25,61 @@ import buRRRn.ASTUce.TestCase;
 
 import vegas.core.CoreObject;
 import vegas.core.IFormat;
-import vegas.data.Bag;
-import vegas.data.bag.BagFormat;
-import vegas.data.bag.HashBag;
+import vegas.data.Collection;
+import vegas.data.collections.CollectionFormat;
 import vegas.data.collections.SimpleCollection;
 
 /**
  * @author eKameleon
  */
-class Tests.vegas.data.bag.TestBagFormat extends TestCase 
+class Tests.vegas.data.collections.TestCollectionFormat extends TestCase 
 {
 
-	function TestBagFormat(name : String) 
+	function TestCollectionFormat(name : String) 
 	{
 		super(name);
 	}
 	
-	public var f:BagFormat ;
+	public var f:CollectionFormat ;
 	
 	public function setUp():Void
 	{
-		f = new BagFormat() ;
+		f = new CollectionFormat() ;
 	}	
 
 	public function testConstructor()
 	{
-		assertNotNull( f, "BAG_FORM_00_01 - constructor is null") ;
-		assertTrue( f instanceof BagFormat , "BAG_FORM_00_02 - constructor is an instance of BagFormat.") ;
+		assertNotNull( f, "CO_FORM_00_01 - constructor is null") ;
+		assertTrue( f instanceof CollectionFormat , "CO_FORM_00_02 - constructor is an instance of CollectionFormat.") ;
 	}
 	
 	public function testInherit()
 	{
-		assertTrue( f instanceof CoreObject , "BAG_FORM_01 - inherit CoreObject failed.") ;
+		assertTrue( f instanceof CoreObject , "CO_FORM_01 - inherit CoreObject failed.") ;
 	}
 	
 	public function testImplement()
 	{
-		assertTrue( f instanceof IFormat , "BAG_FORM_01 - implement IFormat failed.") ;
+		assertTrue( f instanceof IFormat , "CO_FORM_01 - inherit CoreObject failed.") ;
 	}		
 	
 	public function testHashCode():Void
 	{
-		assertTrue( !isNaN(f.hashCode()) , "BAG_FORM_02 - hashCode failed : " + f.hashCode() ) ;
+		assertTrue( !isNaN(f.hashCode()) , "CO_FORM_02 - hashCode failed : " + f.hashCode() ) ;
 	}
 	
 	public function testToString():Void
 	{
-		assertEquals( f.toString() , "[BagFormat]", "BAG_FORM_03 - toString failed : " + f.toString() ) ;
+		assertEquals( f.toString() , "[CollectionFormat]", "CO_FORM_03 - toString failed : " + f.toString() ) ;
 	}
 
 	public function testFormatToString():Void
 	{
-		var b:Bag = new HashBag() ;
-		assertEquals( f.formatToString(b) , "{}" , "BAG_FORM_04_01 - formatToString failed : " + f.formatToString(b)) ;
-		b.insertAll( new SimpleCollection(["item1", "item2", "item2", "item3"]) ) ;
-		assertEquals( f.formatToString(b) , "{1:item1,2:item2,1:item3}" , "BAG_FORM_04_02 - formatToString failed : " + f.formatToString(b)) ;
+		var c:Collection = new SimpleCollection() ;
+		assertEquals( f.formatToString(c) , "{}" , "CO_FORM_04_01 - formatToString failed : " + f.formatToString(c)) ;
+		c.insert("item1") ;
+		c.insert("item2") ;
+		assertEquals( f.formatToString(c) , "{item1,item2}" , "CO_FORM_04_02 - formatToString failed : " + f.formatToString(c)) ;
 	}
 
 }

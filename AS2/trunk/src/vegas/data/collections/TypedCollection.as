@@ -41,7 +41,8 @@ class vegas.data.collections.TypedCollection extends AbstractTypeable implements
 	 * Creates a new TypedCollection.
 	 * @throws IllegalArgumentError if the specified collection in argument is {@code null} or {@code undefined} 
 	 */
-	public function TypedCollection(p_type:Function , co:Collection) {
+	public function TypedCollection(p_type:Function , co:Collection) 
+	{
 		super(p_type) ;
 		if (!co) 
 		{

@@ -66,7 +66,7 @@ class vegas.data.collections.AbstractCollection extends CoreObject implements Co
 	 */
 	public function clone() 
 	{
-		//
+		return null ;
 	}
 	
 	/**
@@ -85,6 +85,20 @@ class vegas.data.collections.AbstractCollection extends CoreObject implements Co
 	{ 
 		return _a[id] ;
 	}
+	
+	/**
+	 * Returns the index of an element in the collection.
+	 * @return the index of an element in the collection.
+	 */
+	public function indexOf(o):Number 
+	{
+		var l:Number = _a.length ;
+		for (var i:Number = 0 ; i<l ; i++) 
+		{
+			if (_a[i] == o) return i ;
+		}
+		return -1 ; 
+	}
 
 	/**
 	 * Ensures that this collection contains the specified element (optional operation).
@@ -97,19 +111,6 @@ class vegas.data.collections.AbstractCollection extends CoreObject implements Co
 		}
 		_a.push(o);
 		return true ;
-	}
-
-	/**
-	 * Returns the index of an element in the collection.
-	 */
-	public function indexOf(o):Number 
-	{
-		var l:Number = _a.length ;
-		for (var i:Number = 0 ; i<l ; i++) 
-		{
-			if (_a[i] == o) return i ;
-		}
-		return -1 ; 
 	}
 
 	/**
