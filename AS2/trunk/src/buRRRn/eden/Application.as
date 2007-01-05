@@ -163,10 +163,8 @@ class buRRRn.eden.Application
     /* StaticMethod: isAuthorized
        
     */
-    static function isAuthorized( path )
+    static function isAuthorized( path:String )
         {
-        
-	    path = new StringUtil(path) ;
         
         var strictMode:Boolean  = config.strictMode ;
         var pathMode:Boolean    = false ;
@@ -191,8 +189,7 @@ class buRRRn.eden.Application
                 value = value.toLowerCase();
                 }
            
-            value = new StringUtil(value) ;
-            return ( value.startsWith( firstLetter ) ) ;
+            return ( StringUtil.startsWith( value, firstLetter ) ) ;
             
             } ;
         
@@ -200,28 +197,29 @@ class buRRRn.eden.Application
 
         if( whiteList.length == 0 ) return false ;
         
-        var whiteListPath:StringUtil ;
+        var whiteListPath:String ;
 
         var len:Number = whiteList.length ;
 		
         for( var i:Number = 0 ; i<len; i++ )
-        	{
-            whiteListPath = new StringUtil(whiteList[i]);
-            path = new StringUtil(path) ;
-            if( pathMode &&
-                whiteListPath.endsWith( "*" ) && path.startsWith( whiteListPath.replace( "*", "" )  )
+        {
+            whiteListPath = whiteList[i];
+            if( 
+            	pathMode &&
+                	StringUtil.endsWith( whiteListPath, "*" ) && 
+                		StringUtil.startsWith( path, StringUtil.replace( whiteListPath, "*", "" )  )
             )
-                {
+            {
                 return true;
-                }
-            else if( path == whiteListPath.replace( ".*", "" ) )
-                {
+			}
+            else if( path == StringUtil.replace( whiteListPath, ".*", "" ) )
+            {
                 return true;
-                }
-            }
+			}
+		}
         
         return false;
-        }
+	}
     
-    }
+}
 

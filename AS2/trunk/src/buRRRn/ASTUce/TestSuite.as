@@ -94,9 +94,7 @@ class buRRRn.ASTUce.TestSuite implements ITest
            with "_" are considered private.
         */
         
-        var exp:StringUtil = new StringUtil(ctorName) ;
-        
-        if( exp.startsWith( "_" ) )
+        if( StringUtil.startsWith( ctorName, "_" ) )
 		{
             addTest( _warning( (new StringFormatter( Strings.ctorNotPublic )).format( ctorName ) ) );
             return;
@@ -412,9 +410,7 @@ class buRRRn.ASTUce.TestSuite implements ITest
  
 	private function _isPublicTestMethod( method:String ):Boolean
 	{
-		var exp:StringUtil = new StringUtil(method) ;
-		
-		return( _isTestMethod( method ) && !exp.startsWith( "_" ) ) ;
+		return( _isTestMethod( method ) && !StringUtil.startsWith( method, "_" ) ) ;
 	}
     
 	private function _isTestMethod( method:String ):Boolean
@@ -423,8 +419,7 @@ class buRRRn.ASTUce.TestSuite implements ITest
            and also by convention "_Test" and "_test" are considered valid private test methods.
         */
         method = method.toLowerCase();
-        var exp:StringUtil = new StringUtil(method) ;
-        return( exp.startsWith( "test" ) || exp.startsWith( "_test" ) ) ;
+        return( StringUtil.startsWith( method, "test" ) || StringUtil.startsWith( method, "_test" ) ) ;
 	}
      
 

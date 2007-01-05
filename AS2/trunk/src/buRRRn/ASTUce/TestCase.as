@@ -160,9 +160,7 @@ class buRRRn.ASTUce.TestCase extends Assertion implements ITest
 			fail( (new StringFormatter( Strings.methodNotFound )).format(_name) ) ;
 		}
         
-        var expr:StringUtil = new StringUtil(_name) ;
-        
-        if( expr.startsWith( "_" ) && ( Config.testPrivateMethods != true) ) 
+        if( StringUtil.startsWith(_name, "_" ) && ( Config.testPrivateMethods != true) ) 
 		{
 			fail( (new StringFormatter( Strings.methodshouldBePublic)).format( _name ) ) ; 
 		}

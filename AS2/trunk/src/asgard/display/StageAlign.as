@@ -98,16 +98,15 @@ class asgard.display.StageAlign
 	 */	
 	static public function getAlign(align:String, default_align:String):String 
 	{
-		var s:StringUtil = new StringUtil(align.toUpperCase()) ;
-		var r:String = s.reverse() ;
+		var r:String = StringUtil.reverse(align.toUpperCase()) ;
 		var aligns =  
 		{
 			B:BOTTOM, BL:BOTTOM_LEFT, BR:BOTTOM_RIGHT,
 			L:LEFT, R:RIGHT, T:TOP, TL:TOP_LEFT, TR:TOP_RIGHT
 		} ;
-		if (aligns[s]) 
+		if (aligns[align]) 
 		{
-			return aligns[s] ;
+			return aligns[align] ;
 		}
 		else if (aligns[r])
 		{

@@ -120,9 +120,8 @@ class vegas.logging.Log
 	 */
 	static public function hasIllegalCharacters(value:String):Boolean 
 	{
-		return (new StringUtil(value)).indexOfAny( ILLEGALCHARACTERS.split("") ) != -1 ;
+		return StringUtil.indexOfAny( value, ILLEGALCHARACTERS.split("") ) != -1 ;
 	}
-
 
 	/**
 	 * Stops the specified target from receiving notification of log events.

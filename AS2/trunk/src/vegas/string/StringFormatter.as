@@ -152,7 +152,7 @@ class vegas.string.StringFormatter extends AbstractFormatter
 				index = null ;
 				paddingChar = SPC ;
 				expValue = "" ;
-				if( expression.indexOfAny( [ ",", ":" ] ) == -1 ) 
+				if( StringUtil.indexOfAny( expression, [ ",", ":" ] ) == -1 ) 
 				{
 					index = parseInt( expression.toString() ) ;
 					expValue = getIndexValue( index ) ;
@@ -184,11 +184,11 @@ class vegas.string.StringFormatter extends AbstractFormatter
 					}
 					else if( spaceAlign > 0 ) 
 					{
-						expValue = (new StringUtil(expValue)).padLeft( spaceAlign, paddingChar ) ;
+						expValue = StringUtil.padLeft( expValue, spaceAlign, paddingChar ) ;
 					}
 					else 
 					{
-						expValue = (new StringUtil(expValue)).padRight( -spaceAlign, paddingChar ) ;
+						expValue = StringUtil.padRight( expValue, -spaceAlign, paddingChar ) ;
 					}
 					str += expValue ;
 				}

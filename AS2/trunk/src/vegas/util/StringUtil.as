@@ -25,7 +25,6 @@ import vegas.core.HashCode;
 import vegas.core.IComparable;
 import vegas.core.ICopyable;
 import vegas.core.ISerializable;
-import vegas.data.iterator.Iterable;
 import vegas.data.iterator.Iterator;
 import vegas.data.iterator.StringIterator;
 import vegas.errors.ArgumentsError;
@@ -36,7 +35,7 @@ import vegas.util.TypeUtil;
  * The {@code StringUtil} utility class is an extended String class with methods for working with string.
  * @author eKameleon
  */
-class vegas.util.StringUtil extends String implements IComparable, ICopyable, Iterable, ISerializable 
+class vegas.util.StringUtil extends String implements IComparable, ICopyable, ISerializable 
 {
 
 	/**
@@ -157,19 +156,19 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, It
 	 * Returns {@code true} if the string contains the specified caractere at the end.
 	 * @return {@code true} if the string contains the specified caractere at the end.
 	 */
-	public function endsWith( value:String ):Boolean 
+	static public function endsWith( str:String, value:String ):Boolean 
 	{
 		if (value == null) return false ;
-		if ( this.length < value.length ) return false ;
-		return StringUtil.compare( this.substr( this.length-value.length ), value) == 0;
+		if ( str.length < value.length ) return false ;
+		return StringUtil.compare( str.substr( str.length-value.length ), value) == 0;
 	}
 	
 	/**
 	 * Returns the first character in the string.
 	 */
-	public function firstChar():String 
+	static public function firstChar( str:String ):String 
 	{
-		return charAt(0) ;
+		return str.charAt(0) ;
 	}
 
 	/**
@@ -184,14 +183,17 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, It
 	/**
 	 * Reports the index of the first occurrence in this instance of any character in a specified array of Unicode characters.
 	 */
-	public function indexOfAny(ar:Array):Number 
+	static public function indexOfAny(str:String, ar:Array):Number 
 	{
 		var index:Number ;
 		var l:Number = ar.length ;
 		for (var i:Number = 0 ; i<l ; i++) 
 		{
-			index = this.indexOf(ar[i]) ;
-			if (index > -1) return index ;
+			index = str.indexOf(ar[i]) ;
+			if (index > -1) 
+			{
+				return index ;
+			}
 		}
 		return -1 ;
 	}
@@ -199,13 +201,25 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, It
 	/**
 	 * Inserts a specified instance of String at a specified index position in this instance.
 	 */
-	public function insert( startIndex:Number, value:String):String 
+	static public function insert( str:String, startIndex:Number, value:String):String 
 	{
-		var str:String = this.copy() ;
-		if( value == null ) return str ;
-		if( str == "" ) return value ;
-        if( startIndex == 0 ) return value + str ;
-       	else if( (startIndex == null) || (startIndex == str.length) ) return str + value ;
+		str = str.valueOf() ;
+		if( value == null ) 
+		{
+			return str ;
+		}
+		if( str == "" ) 
+		{
+			return value ;
+		}
+        if( startIndex == 0 )
+        {
+        	return value + str ;
+        }
+       	else if( (startIndex == null) || (startIndex == str.length) ) 
+       	{
+       		return str + value ;
+       	}
        	var strA:String = str.substr( 0, startIndex );
     	var strB:String = str.substr( startIndex ) ;
     	return strA + value + strB ;
@@ -213,39 +227,44 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, It
 	
 	/**
 	 * Returns {@code true} if this string is empty.
+	 * @param str the string object.
+	 * @return {@code true} if this string is empty.
 	 */
-	public function isEmpty():Boolean 
+	static public function isEmpty( str:String ):Boolean 
 	{
-		return length == 0 ;
+		return str.length == 0 ;
 	}
 	
 	/**
 	 * Returns a StringIterator reference of this string instance.
+	 * @param str the string object.
 	 * @return a StringIterator reference of this string instance.
 	 */
-	public function iterator():Iterator 
+	static public function iterator( str:String):Iterator 
 	{
-		return new StringIterator(this.toString()) ;
+		return new StringIterator( str.toString()) ;
 	}	
 	
 	/**
 	 * Returns the last char of the string. 
+	 * @param str the string object.
+	 * @return the last char of the string.
 	 */
-	public function lastChar():String 
+	static public function lastChar( str:String ):String 
 	{
-		return charAt(length - 1) ;
+		return str.charAt(str.length - 1) ;
 	}
 
 	/**
 	 * Reports the index position of the last occurrence in this instance of one or more characters specified in a Unicode array.
 	 */
-	public function lastIndexOfAny(ar:Array):Number 
+	static public function lastIndexOfAny(str:String, ar:Array):Number 
 	{
 		var index:Number = -1 ;
 		var l:Number = ar.length ;
 		for (var i:Number = 0 ; i<l ; i++) 
 		{
-			index = this.lastIndexOf(ar[i]) ;
+			index = str.lastIndexOf(ar[i]) ;
 			if (index > -1) 
 			{
 				return index ;
@@ -257,10 +276,10 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, It
 	/**
 	 * Right-aligns the characters in this instance, padding on the left with a specified Unicode character for a specified total length.
 	 */
-	public function padLeft(i:Number /*Int*/, char:String):String 
+	static public function padLeft(str:String, i:Number /*Int*/, char:String):String 
 	{
 		char = char || " " ;
-		var s:String = new String(this) ;
+		var s:String = new String( str ) ;
         var l:Number = s.length ;
         for (var k:Number = 0 ; k < (i - l) ; k++) 
         {
@@ -272,10 +291,10 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, It
 	/**
 	 * Left-aligns the characters in this string, padding on the right with a specified Unicode character, for a specified total length.
 	 */
-	public function padRight(i:Number /*Int*/ , char:String):String 
+	static public function padRight(str:String, i:Number /*Int*/ , char:String):String 
 	{
 		char = char || " " ;
-        var s:String = new String(this) ;
+        var s:String = new String( str ) ;
         var l:Number = s.length ;
 		for (var k:Number = 0 ; k < (i - l) ; k++) 
 		{
@@ -285,19 +304,21 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, It
     }
 	
 	/**
-	 * Repleace the 'search' string with the 'replace' String.
+	 * Replaces the 'search' string with the 'replace' String.
+	 * @param the string to transform.
+	 * @return the new string transform with this method.
 	 */
-	public function replace(search:String, replace:String):String 
+	static public function replace(str:String, search:String, replace:String):String 
 	{
-		return split(search).join(replace) ;
+		return str.split(search).join(replace) ;
 	}
 	
 	/**
 	 * Reverse the current instance.
 	 */
-	public function reverse():String 
+	static public function reverse( str:String ):String 
 	{  
-		var ar:Array = split("") ;
+		var ar:Array = str.split("") ;
 		ar.reverse() ;
 		return ar.join("") ;
 	}
@@ -308,9 +329,9 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, It
 	 * @param deleteCount Indicating the number of old character elements to remove.
 	 * @param value The elements to add to the string. If you don't specify any elements, splice simply removes elements from the string.
 	 */
-	public function splice(startIndex:Number, deleteCount:Number, value):String 
+	static public function splice( str:String, startIndex:Number, deleteCount:Number, value):String 
 	{
-		var a:Array = toArray() ;
+		var a:Array = StringUtil.toArray(str) ;
 		a = a.splice.apply(a, arguments) ;
 		return a.join("") ;
 	}
@@ -319,33 +340,33 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, It
 	 * Determines whether a specified string is a prefix of the current instance. 
 	 * @return {@code true} if the specified string is a prefix of the current instance.
 	 */
-	public function startsWith( value:String ):Boolean
+	static public function startsWith( str:String, value:String ):Boolean
    	{
 	   	if( value == null )
 		{
     	   	return false;
         }
 	    
-	    if( this.length < value.length )
+	    if( str.length < value.length )
         {
         	return false;
         }
 	    
-	    if( this.charAt( 0 ) != value.charAt( 0 ) )
+	    if( str.charAt( 0 ) != value.charAt( 0 ) )
         {
         	return false;
         }
 	    
-	   	return( StringUtil.compare( this.substr( 0, value.length), value) == 0);
+	   	return( StringUtil.compare( str.substr( 0, value.length), value) == 0);
 	}
 
 	/**
 	 * Returns an array representation of this instance.
 	 * @return an array representation of this instance.
 	 */
-	public function toArray():Array 
+	static public function toArray( str:String ):Array 
 	{
-		return split("") ;
+		return str.split("") ;
 	}
 	
 	/**
@@ -360,21 +381,21 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, It
 	/**
 	 * Returns the value of this string with the first character in uppercase.
 	 */
-	public function ucFirst():String 
+	static public function ucFirst(str:String):String 
 	{
-		return this.charAt(0).toUpperCase() + this.substring(1) ;
+		return str.charAt(0).toUpperCase() + str.substring(1) ;
 	}
 	
 	/**
 	 * Uppercase the first character of each word in a string.
 	 */
-	public function ucWords():String 
+	static public function ucWords( str:String ):String 
 	{
-		var ar:Array = split(" ") ;
+		var ar:Array = str.split(" ") ;
 		var l:Number = ar.length ;
 		while(--l > -1) 
 		{
-			ar[l] = (new StringUtil(ar[l])).ucFirst() ;
+			ar[l] = StringUtil.ucFirst(ar[l]) ;
 		}
 		return ar.join(" ") ;
 	}

@@ -259,14 +259,12 @@ class vegas.util.Comparater
 			return true ;
 		}
 		
-		var exp:StringUtil ;
 		for (var member:String in o1)
 		{
 			/* Note: by convention we consider members starting with __
            		to be internal properties which should not be compared.
         	*/
-			exp = new StringUtil(member) ;
-			if ( exp.startsWith("__") ) 
+			if ( StringUtil.startsWith(member, "__") ) 
 			{
 				continue ;	
 			}

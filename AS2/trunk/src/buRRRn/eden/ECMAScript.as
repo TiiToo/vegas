@@ -683,51 +683,49 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
             return config.undefineable;
             }
         
-        if( !isReservedKeyword( fcnPath ) &&
-            !isFutureReservedKeyword( fcnPath ) )
-            {
+        if( !isReservedKeyword( fcnPath ) && !isFutureReservedKeyword( fcnPath ) )
+		{
             fcnObj = eval( "_global." + fcnPath );
             
             if( fcnPath.indexOf( "." ) > -1 )
-                {
-                var s:StringUtil = new StringUtil(fcnPath) ;
-                fcnObjScope = eval( "_global." + s.replace( "."+fcnName, "" ) );
-                }
-            else
-                {
-                fcnObjScope = null;
-                }
+			{
+                fcnObjScope = eval( "_global." + StringUtil.replace( fcnPath, "."+fcnName, "" ) );
             }
-        else
+            else
             {
+                fcnObjScope = null;
+            }
+		}
+        else
+		{
             var formatter = new vegas.string.StringFormatter( strings.notValidFunction) ;
             log( formatter.format( fcnPath ) ) ;
             return config.undefineable;
-            }
+		}
         
         if( config.security && !isAuthorized( fcnPath ) )
-            {
+		{
             var formatter = new vegas.string.StringFormatter( strings.notAuthorizedFunction ) ;
             log( formatter.format( fcnPath ) ) ;
             return config.undefineable;
-            }
-//         else
-//             {
-//             trace( fcnPath + " is authorized (scanFunction)" );
-//             }
+		}
+//      else
+//      {
+//          trace( fcnPath + " is authorized (scanFunction)" );
+//      }
         
         if( fcnObj == undefined )
-            {
+        {
             var formatter = new vegas.string.StringFormatter( strings.doesNotExist ) ;
             log( formatter.format( fcnPath ) ) ;
             return config.undefineable;
-            }
+        }
         else
             {
             return fcnObj.apply( fcnObjScope, args );
             
 //             switch( args.length )
-//                 {
+//             {
 //                 case 9:
 //                 return fcnObj( args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8] );
 //                 case 8:
@@ -749,11 +747,11 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
 //                 case 0:
 //                 default:
 //                 return fcnObj();
-//                 }
-            }
+//             }
+	}
         
         log( strings.errorFunction );
-        }
+	}
     
     /* Method: scanConstructor
     */

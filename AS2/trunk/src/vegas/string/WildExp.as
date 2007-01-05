@@ -219,11 +219,16 @@ class vegas.string.WildExp extends CoreObject
 		if( _caseSensitive ) str = str.toLowerCase();
         if(_multiline) {
 			var lineTerminatorChars:Array = UnicodeChar.LINE_TERMINATOR_CHARS ;
-			if( str.indexOf( CRLF ) > -1 ) str = (new StringUtil(str)).replace(CRLF, ORC ) ;
+			if( str.indexOf( CRLF ) > -1 ) 
+			{
+				str = StringUtil.replace(str, CRLF, ORC ) ;
+			}
 			l = lineTerminatorChars.length ;
-			for( i=0 ; i<l ; i++ ) {
-				if( str.indexOf( lineTerminatorChars[i] ) > -1 ) {
-					str = (new StringUtil(str)).replace(lineTerminatorChars[i], ORC ) ;
+			for( i=0 ; i<l ; i++ ) 
+			{
+				if( str.indexOf( lineTerminatorChars[i] ) > -1 ) 
+				{
+					str = StringUtil.replace(str, lineTerminatorChars[i], ORC ) ;
 				}
             }
         }
@@ -235,7 +240,7 @@ class vegas.string.WildExp extends CoreObject
 			{
 				if( str.indexOf( whiteSpaceChars[j] ) > -1 ) 
 				{
-					str = (new StringUtil(str)).replace(whiteSpaceChars[j], ORC ) ;
+					str = StringUtil.replace(str, whiteSpaceChars[j], ORC ) ;
 				}
             }
         }

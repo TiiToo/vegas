@@ -161,20 +161,13 @@ import vegas.util.StringUtil;
 /**
  * @author eKameleon
  */
-class asgard.net.HTMLEntities {
-	
-	
-	// ----o Constructor
-	
-	private function HTMLEntities() 
-	{
-		//	
-	}
-	
-	
-	// ----o Public Properties
+class asgard.net.HTMLEntities 
+{
 
-	static var entities:Array = 
+	/**
+	 * Determinates all entities.
+	 */
+	static public var entities:Array = 
 	[ 
 		"&euro;", "&quot;", "&amp;", "&lt;", "&gt;", "&iexcl;", "&cent;", "&pound;", "&curren;", "&yen;",
 		"&brvbar;", "&sect;", "&uml;", "&copy;", "&ordf;", "&not;", "&shy;", "&reg;", "&macr;", "&deg;",
@@ -187,8 +180,11 @@ class asgard.net.HTMLEntities {
 		"&iuml;", "&eth;", "&ntilde;", "&ograve;", "&oacute;", "&ocirc;", "&otilde;", "&ouml;", "&divide;", "&oslash;",
 		"&ugrave;", "&uacute;", "&ucirc;", "&uuml;", "&yacute;", "&thorn;", "&nbsp;" 
 	];
-		
-	static var specialchars:Array = 
+	
+	/**
+	 * Determinates all special chars.
+	 */
+	static public var specialchars:Array = 
 	[ 
 		"€", "\"", "&", "<", ">", "¡", "¢", "£", "¤", "¥",
 		"¦", "§", "¨", "©", "ª", "¬", "­", "®", "¯", "°",
@@ -202,13 +198,14 @@ class asgard.net.HTMLEntities {
 		"ù", "ú", "û", "ü", "ý", "þ", "\u00A0" 
 	];
 
-	// ----o Public Methods
-
+	/**
+	 * Decodes the specified string.
+	 * @return the decode string.
+	 */
 	static function decode( text:String, removeCRLF:Boolean ):String 
 	{
 		var i:Number ;
 		var ch:String ;
-		var txt:StringUtil ;
 		var entity:String ;
 		var len:Number = entities.length ;
 		
@@ -221,8 +218,7 @@ class asgard.net.HTMLEntities {
 			
 			if( text.indexOf( entity ) > -1 )
 			{
-				txt = new StringUtil(text) ;
-				text = txt.replace( entity, ch );
+				text = StringUtil.replace( text, entity, ch );
 			}
 		}
 		
@@ -233,13 +229,15 @@ class asgard.net.HTMLEntities {
 		return text;
 	}
 
+	/**
+	 * Encodes the specified text passed in argument.
+	 * @return a string encode text.
+	 */
 	static function encode( text:String ):String
 	{
 		var i:Number ;
 		
 		var ch:String ;
-		
-		var txt:StringUtil ;
 		
 		var entity:String ;
 		
@@ -253,8 +251,7 @@ class asgard.net.HTMLEntities {
 			
 			if( text.indexOf( ch ) > -1 )
 			{
-				txt = new StringUtil(text) ;
-				text = txt.replace( ch, entity );
+				text = StringUtil.replace( text, ch, entity );
 			}
 		}
 		return text.toString() ;
