@@ -46,22 +46,33 @@ class vegas.logging.tracer.LuminicTracer
 	{
 		return _instance ;
 	}
+	
+	/**
+	 * Returns the internal ILogger of this tracer.
+	 */
+	static public function getLogger():ILogger
+	{
+		return _logger ;	
+	}
 
 	/**
 	 * Initialize the LuminicTracer.
 	 */
 	static public function initialize(namespace:String, depth:Number, collapse:Boolean):Void 
 	{
+		
 		release() ;
+		
 		category = namespace ;
-		if (category.length > 0) 
-		{
-			_instance = new LuminicTarget(depth, collapse) ;
-			_instance.filters = [ category ] ;
-			_instance.level = LogEventLevel.ALL ;
-			_instance.addLogger( _logger ) ;
-			_logger = Log.getLogger(namespace) ;
-		}
+		
+		_instance = new LuminicTarget( depth , collapse ) ;
+		_instance.filters = [ category ] ;
+		_instance.level = LogEventLevel.ALL ;
+		
+		Log.addTarget( _instance ) ;
+		
+		_logger = Log.getLogger(namespace) ;
+		
 	}
 
 	/**
@@ -69,7 +80,10 @@ class vegas.logging.tracer.LuminicTracer
 	 */
 	static public function release():Void 
 	{
-		Log.removeTarget(_instance) ;
+		if (_instance != null)
+		{
+			Log.removeTarget(_instance) ;
+		}
 		_instance = null ;
 		_logger = null ;
 	}

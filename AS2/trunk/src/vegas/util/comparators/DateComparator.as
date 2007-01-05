@@ -53,7 +53,8 @@ class vegas.util.comparators.DateComparator extends CoreObject implements IClone
 	 * Creates and returns a shallow copy of the object.
 	 * @return A new object that is a shallow copy of this instance.
 	 */	
-	public function clone() {
+	public function clone() 
+	{
 		return new DateComparator(date) ;
 	}
 
@@ -68,16 +69,26 @@ class vegas.util.comparators.DateComparator extends CoreObject implements IClone
 	 * </p>
 	 * @throws IllegalArgumentError if compare(a, b) and 'a' and 'b' must be Date or uint objects.
 	 */
-	public function compare(o1, o2):Number {
+	public function compare(o1, o2):Number 
+	{
 		var b1:Boolean = TypeUtil.typesMatch(o1, Number) || TypeUtil.typesMatch(o1, Date) ;
 		var b2:Boolean = TypeUtil.typesMatch(o2, Number) || TypeUtil.typesMatch(o2, Date) ;
 		if ( b1  && b2 ) 
 		{
 			var a:Number = (o1 instanceof Date) ? o1.valueOf() : o1 ;
 			var b:Number = (o2 instanceof Date) ? o2.valueOf() : o2 ;
-			if( a < b ) return -1;
-			else if( a > b ) return 1;
-			else return 0 ;
+			if( a < b ) 
+			{
+				return -1;
+			}
+			else if( a > b ) 
+			{
+				return 1;
+			}
+			else 
+			{
+				return 0 ;
+			}
 		}
 		else 
 		{

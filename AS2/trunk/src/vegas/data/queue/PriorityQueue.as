@@ -37,30 +37,38 @@ class vegas.data.queue.PriorityQueue extends LinearQueue
 	 * Creates a new PriorityQueue instance.
 	 * <p><b>Example :</b>
 	 * {@code
-	 *    var q:PriorityQueue = new PriorityQueue( ar ) ;
-	 *    var q:PriorityQueue = new PriorityQueue( comparator, ar)  ;
+	 * import vegas.data.queue.PriorityQueue ;
+	 * import vegas.util.comparators.StringComparator ;
+	 * 
+	 * var q:PriorityQueue = new PriorityQueue(null, ["item0", "item1"])  ;
+	 * 
+	 * trace ("queue size : " + q.size()) ;
+	 * trace ("enqueue item4 : " + q.enqueue ("item4")) ;
+	 * trace ("enqueue item3 : " + q.enqueue ("item2")) ;
+	 * trace ("enqueue item2 : " + q.enqueue ("item3")) ;
+	 * trace ("enqueue item2 : " + q.enqueue ("item1")) ;
+	 * 
+	 * trace("> " + q) ;
+	 * 
+	 * q.setComparator( new StringComparator() ) ;
+	 * 
+	 * trace("> " + q) ;
 	 * }
 	 * </p>
+	 * @param comp a IComparator object used in the PriorityQueue to defined the sort model when enqueue or modify the queue.
+	 * @param ar an Array with values to fill the queue.
+	 * @see IComparator
 	 */
-	public function PriorityQueue() 
+	public function PriorityQueue( comp:IComparator , ar:Array ) 
 	{
-		var l:Number = arguments.length ;
-		if (l > 0) 
+		setComparator(comp) ;
+		var l:Number = ar.length ;
+		if (l > 0)
 		{
-			var arg = arguments[0] ;
-			if (arg instanceof IComparator) 
+			for (var i:Number = 0 ; i<l ; i++)
 			{
-				_comparator = arg ;
-				arg = arguments[1] ;
-			}
-			else if (arg instanceof Array) 
-			{
-				constructor.apply(this, arg) ;				
-			}
-		} 
-		else 
-		{
-			throw new IllegalArgumentError("PriorityQueue in constructor arguments must not be 'null' or 'undefined'") ;
+				enqueue(ar[i]) ;	
+			}		
 		}
 	}
 
@@ -87,11 +95,20 @@ class vegas.data.queue.PriorityQueue extends LinearQueue
 	public function enqueue(o):Boolean 
 	{
 		var isEnqueue:Boolean = super.enqueue(o) ;
-		if ( isEnqueue && _comparator ) 
+		if ( isEnqueue && (_comparator != null) ) 
 		{
 			_a.sort(_comparator.compare) ;
 		}
 		return isEnqueue ;
+	}
+	
+	public function setComparator( comp:IComparator ):Void
+	{
+		_comparator = comp ;
+		if (_comparator != null)
+		{
+			_a.sort(_comparator.compare) ;
+		}
 	}
 	
 	/**

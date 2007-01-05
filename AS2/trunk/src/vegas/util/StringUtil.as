@@ -48,7 +48,17 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, It
 	}
 
 	/**
+	 * Returns 0 if the passed string is lower case else 1.
+	 * @return 0 if the passed string is lower case else 1.
+	 */
+	static public function caseValue( str:String ):Number
+	{
+		return ( str.toLowerCase() == str ) ? 0 : 1 ;
+	}
+
+	/**
 	 * Returns a shallow copy of this object.
+	 * @return a shallow copy of this object.
 	 */
 	public function clone() 
 	{
@@ -85,6 +95,37 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, It
         if( strA == strB ) return 0 ;
         else if( strA.length > strB.length ) return 1 ;
         else return -1 ;
+	}
+	
+	/**
+	 * Compares the two caracteres passed in argument for order.
+	 * @return <p>
+	 * <li>-1 if charA is "lower" than (less than, before, etc.) charB ;</li>
+	 * <li> 1 if charA is "higher" than (greater than, after, etc.) charB ;</li>
+	 * <li> 0 if charA and charB are equal.</li>
+	 * </p>
+	 */
+	static public function compareChars( charA:String, charB:String ):Number
+	{
+		var a:String = charA.charAt(0) ;
+		var b:String = charB.charAt(0) ;
+		if ( caseValue(a) < caseValue(b) ) 
+		{
+			return -1;
+		}
+		if ( caseValue(a) > caseValue(b) ) 
+		{
+			return 1 ;
+		}
+		if ( a < b ) 
+		{
+			return -1;
+		}
+		if ( a > b ) 
+		{
+			return 1;
+		}
+		return 0 ;
 	}
 	
 	/**

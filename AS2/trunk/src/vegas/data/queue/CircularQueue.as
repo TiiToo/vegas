@@ -35,6 +35,61 @@ import vegas.util.serialize.Serializer;
 
 /**
  * The CircularQueue class allows for storing objects in a circular queue of a predefined size.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import vegas.data.iterator.Iterator ;
+ * import vegas.data.queue.CircularQueue ;
+ * 
+ * var q:CircularQueue = new CircularQueue(5) ;
+ * 
+ * trace ("maxSize : " + q.maxSize()) ;
+ * trace ("enqueue item1 : " + q.enqueue ("item1")) ;
+ * trace ("enqueue item2 : " + q.enqueue ("item2")) ;
+ * trace ("enqueue item3 : " + q.enqueue ("item3")) ;
+ * trace ("enqueue item4 : " + q.enqueue ("item4")) ;
+ * trace ("enqueue item5 : " + q.enqueue ("item5")) ;
+ * trace ("enqueue item6 : " + q.enqueue ("item6")) ;
+ * 
+ * trace ("element : " + q.element()) ;
+ * trace ("dequeue : " + q.dequeue()) ;
+ * trace ("element : " + q.element()) ;
+ * trace ("size : " + q.size()) ;
+ * trace ("isFull : " + q.isFull()) ;
+ * trace ("array : " + q.toArray()) ;
+ * 
+ * trace("") ;
+ * 
+ * trace ("queue : " + q) ;
+ * 
+ * trace("") ;
+ * 
+ * trace ("dequeue : " + q.dequeue()) ;
+ * trace ("enqueue item6 : " + q.enqueue("item6")) ;
+ * trace ("enqueue item7 : " + q.enqueue("item7")) ;
+ * trace ("peek : " + q.peek()) ;
+ * trace ("size : " + q.size()) ;
+ * trace ("isFull : " + q.isFull()) ;
+ * 
+ * trace("") ;
+ * 
+ * trace ("q : " + q) ;
+ * 
+ * trace ("------- clone") ;
+ * 
+ * var clone:CircularQueue = q.clone() ;
+ * trace ("dequeue clone : " + clone.dequeue()) ;
+ * trace ("enqueue clone item8 : " + clone.enqueue("item8")) ;
+ * trace ("original queue : " + q) ;
+ * trace ("clone queue : " + clone) ;
+ * trace ("clone iterator :") ;
+ * var i:Iterator = clone.iterator() ;
+ * while (i.hasNext()) 
+ * {
+ *     trace ("\t+ " + i.next()) ;
+ * }
+ * trace("clone.toSource : " + clone.toSource()) ;
+ * 
+ * }
  * @author eKameleon
  */
 class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue, ICloneable, Collection, ISerializable {
@@ -90,6 +145,7 @@ class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue,
 	
 	/**
 	 * Retreives the first element in the queue object, return a boolean.
+	 * @return {@code true} if the first element in the queue is dequeue.
 	 */
 	public function dequeue():Boolean 
 	{
@@ -98,6 +154,7 @@ class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue,
 
 	/**
 	 * Returns the value of the first element in the queue.
+	 * @return the value of the first element in the queue.
 	 */
 	public function element() 
 	{
@@ -147,6 +204,7 @@ class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue,
 
 	/**
 	 * Returns {@code true} if the queue is empty.
+	 * @return {@code true} if the queue is empty.
 	 */
 	public function isEmpty():Boolean 
 	{
@@ -155,6 +213,7 @@ class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue,
 
 	/**
 	 * Returns {@code true} if the queue is full.
+	 * @return {@code true} if the queue is full.
 	 */
 	public function isFull():Boolean 
 	{
@@ -163,6 +222,7 @@ class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue,
 	
 	/**
 	 * Returns the iterator of the queue.
+	 * @return the iterator of the queue.
 	 * @see {@code vegas.data.iterator.ProtectedIterator}
 	 */
 	public function iterator():Iterator 
@@ -172,6 +232,7 @@ class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue,
 
 	/**
 	 * Returns the max number of occurrences in the given queue.
+	 * @return the max number of occurrences in the given queue.
 	 */
 	public function maxSize():Number 
 	{
@@ -180,6 +241,7 @@ class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue,
 	
 	/**
 	 * Returns the value of the first element in the queue or {@code null} if the queue is empty.
+	 * @return the value of the first element in the queue or {@code null} if the queue is empty.
 	 */
 	public function peek() 
 	{
@@ -188,8 +250,10 @@ class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue,
 	
 	/**
 	 * Returns the value of the first element in the queue and remove this value in the queue.
+	 * @return the value of the first element in the queue and remove this value in the queue.
 	 */
-	public function poll() {
+	public function poll() 
+	{
 		if (_front == _qSize) 
 		{
 			_front = 0 ; // loop back
@@ -220,6 +284,7 @@ class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue,
 	
 	/**
 	 * Returns the number of elements in the CircularQueue.
+	 * @return the number of elements in the CircularQueue.
 	 */
 	public function size():Number 
 	{
@@ -228,6 +293,7 @@ class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue,
 	
 	/**
 	 * Returns the array representation of the CircularQueue.
+	 * @return the array representation of the CircularQueue.
 	 */
 	public function toArray():Array 
 	{

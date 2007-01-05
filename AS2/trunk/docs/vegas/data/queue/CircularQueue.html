@@ -3,6 +3,61 @@
 document.quicknavBasePath="../../../index-files";
 //--></script><link href="../../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../../overview-summary.html" title="Overview" rel="top"/><link href="package-summary.html" title="Package vegas.data.queue" rel="up"/><link href="../../../vegas/data/queue/LinearQueue.html" title="Class vegas.data.queue.LinearQueue" rel="prev"/><link href="../../../vegas/data/MultiMap.html" title="Interface vegas.data.MultiMap" rel="next"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><h1>Class vegas.data.queue.CircularQueue</h1><div class="type_hierachy"><ul><li><a href="../../../vegas/core/CoreObject.html" class="class_name" title="Class vegas.core.CoreObject">vegas.core.CoreObject</a><ul><li><strong>vegas.data.queue.CircularQueue</strong></li></ul></li></ul></div><div class="interfaces"><h2>Implemented Interfaces</h2><code><a href="../../../vegas/data/BoundedQueue.html" class="interface_name" title="Interface vegas.data.BoundedQueue">BoundedQueue</a></code> <code><a href="../../../vegas/core/ICloneable.html" class="interface_name" title="Interface vegas.core.ICloneable">ICloneable</a></code> <code><a href="../../../vegas/data/Collection.html" class="interface_name" title="Interface vegas.data.Collection">Collection</a></code> <code><a href="../../../vegas/core/ISerializable.html" class="interface_name" title="Interface vegas.core.ISerializable">ISerializable</a></code> </div><div class="type_description"><h2>Description</h2><p>
  The CircularQueue class allows for storing objects in a circular queue of a predefined size.
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">import</span> vegas.data.iterator.Iterator ;
+ <span class="key">import</span> vegas.data.queue.CircularQueue ;
+ 
+ <span class="key">var</span> q:CircularQueue = <span class="key">new</span> CircularQueue(<span class="num_const">5</span>) ;
+ 
+ trace (<span class="str_const">"maxSize : "</span> + q.maxSize()) ;
+ trace (<span class="str_const">"enqueue item1 : "</span> + q.enqueue (<span class="str_const">"item1"</span>)) ;
+ trace (<span class="str_const">"enqueue item2 : "</span> + q.enqueue (<span class="str_const">"item2"</span>)) ;
+ trace (<span class="str_const">"enqueue item3 : "</span> + q.enqueue (<span class="str_const">"item3"</span>)) ;
+ trace (<span class="str_const">"enqueue item4 : "</span> + q.enqueue (<span class="str_const">"item4"</span>)) ;
+ trace (<span class="str_const">"enqueue item5 : "</span> + q.enqueue (<span class="str_const">"item5"</span>)) ;
+ trace (<span class="str_const">"enqueue item6 : "</span> + q.enqueue (<span class="str_const">"item6"</span>)) ;
+ 
+ trace (<span class="str_const">"element : "</span> + q.element()) ;
+ trace (<span class="str_const">"dequeue : "</span> + q.dequeue()) ;
+ trace (<span class="str_const">"element : "</span> + q.element()) ;
+ trace (<span class="str_const">"size : "</span> + q.size()) ;
+ trace (<span class="str_const">"isFull : "</span> + q.isFull()) ;
+ trace (<span class="str_const">"array : "</span> + q.toArray()) ;
+ 
+ trace(<span class="str_const">""</span>) ;
+ 
+ trace (<span class="str_const">"queue : "</span> + q) ;
+ 
+ trace(<span class="str_const">""</span>) ;
+ 
+ trace (<span class="str_const">"dequeue : "</span> + q.dequeue()) ;
+ trace (<span class="str_const">"enqueue item6 : "</span> + q.enqueue(<span class="str_const">"item6"</span>)) ;
+ trace (<span class="str_const">"enqueue item7 : "</span> + q.enqueue(<span class="str_const">"item7"</span>)) ;
+ trace (<span class="str_const">"peek : "</span> + q.peek()) ;
+ trace (<span class="str_const">"size : "</span> + q.size()) ;
+ trace (<span class="str_const">"isFull : "</span> + q.isFull()) ;
+ 
+ trace(<span class="str_const">""</span>) ;
+ 
+ trace (<span class="str_const">"q : "</span> + q) ;
+ 
+ trace (<span class="str_const">"------- clone"</span>) ;
+ 
+ <span class="key">var</span> clone:CircularQueue = q.clone() ;
+ trace (<span class="str_const">"dequeue clone : "</span> + clone.dequeue()) ;
+ trace (<span class="str_const">"enqueue clone item8 : "</span> + clone.enqueue(<span class="str_const">"item8"</span>)) ;
+ trace (<span class="str_const">"original queue : "</span> + q) ;
+ trace (<span class="str_const">"clone queue : "</span> + clone) ;
+ trace (<span class="str_const">"clone iterator :"</span>) ;
+ <span class="key">var</span> i:Iterator = clone.iterator() ;
+ <span class="key">while</span> (i.hasNext()) 
+ {
+     trace (<span class="str_const">"\t+ "</span> + i.next()) ;
+ }
+ trace(<span class="str_const">"clone.toSource : "</span> + clone.toSource()) ;
+ 
+ </pre>
  </p></div><div class="type_indexes"><div class="field_index"><h2>Field Index</h2><a href="#DEFAULT_SIZE" title="static public DEFAULT_SIZE:Number">DEFAULT_SIZE</a></div><div class="method_index"><h2>Method Index</h2><div><code>new <a href="#CircularQueue" title="public function CircularQueue(qSize:Number, elements:Array)">CircularQueue()</a></code></div><a href="#clear" title="public function clear():Void">clear()</a>, <a href="#clone" title="public function clone()">clone()</a>, <a href="#contains" title="public function contains(o):Boolean">contains()</a>, <a href="#dequeue" title="public function dequeue():Boolean">dequeue()</a>, <a href="#element" title="public function element()">element()</a>, <a href="#enqueue" title="public function enqueue(o):Boolean">enqueue()</a>, <a href="#get" title="public function get(id:Number)">get()</a>, <a href="#insert" title="public function insert(o):Boolean">insert()</a>, <a href="#isEmpty" title="public function isEmpty():Boolean">isEmpty()</a>, <a href="#isFull" title="public function isFull():Boolean">isFull()</a>, <a href="#iterator" title="public function iterator():Iterator">iterator()</a>, <a href="#maxSize" title="public function maxSize():Number">maxSize()</a>, <a href="#peek" title="public function peek()">peek()</a>, <a href="#poll" title="public function poll()">poll()</a>, <a href="#remove" title="public function remove(o):Boolean">remove()</a>, <a href="#size" title="public function size():Number">size()</a>, <a href="#toArray" title="public function toArray():Array">toArray()</a>, <a href="#toSource" title="public function toSource(indent:Number, indentor:String):String">toSource()</a>, <a href="#toString" title="public function toString():String">toString()</a><h4>Inherited from <a href="../../../vegas/core/CoreObject.html" class="class_name" title="Class vegas.core.CoreObject">CoreObject</a></h4><div class="extra_info"><a href="../../../vegas/core/CoreObject.html#hashCode" title="public function hashCode():Number">hashCode()</a></div></div></div><div class="type_details"><div class="constructor_detail_list"><h2>Constructor Detail</h2><div class="method_details"><a name="CircularQueue"></a><h3>CircularQueue</h3><code class="method_synopsis">public function <strong class="method_name">CircularQueue</strong>(qSize:<span class="unresolved_type_name">Number</span>, elements:<span class="unresolved_type_name">Array</span>)</code><div class="method_info"><p>
  Creates a new CircularQueue instance.
  </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>qSize</code></td><td>the max number of element in the queue
@@ -16,8 +71,10 @@ document.quicknavBasePath="../../../index-files";
  Returns <code> <span class="key">true</span></code> if the queue contains the object passed in argument.
 	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/Collection.html#contains" title="function contains(o):Boolean">contains()</a> in <a href="../../../vegas/data/Collection.html" class="interface_name" title="Interface vegas.data.Collection">vegas.data.Collection</a></p></div></div><div class="method_details"><a name="dequeue"></a><h3>dequeue</h3><code class="method_synopsis">public function <strong class="method_name">dequeue</strong>():<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
  Retreives the first element in the queue object, return a boolean.
+ </p><h4>Return</h4><p class="extra_info"> <code> <span class="key">true</span></code> if the first element in the queue is dequeue.
 	 </p></div></div><div class="method_details alt_row"><a name="element"></a><h3>element</h3><code class="method_synopsis">public function <strong class="method_name">element</strong>()</code><div class="method_info"><p>
  Returns the value of the first element in the queue.
+ </p><h4>Return</h4><p class="extra_info"> the value of the first element in the queue.
 	 </p></div></div><div class="method_details"><a name="enqueue"></a><h3>enqueue</h3><code class="method_synopsis">public function <strong class="method_name">enqueue</strong>(o):<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
  Enqueue a new element in the queue if the que is not full, return a boolean.
 	 </p></div></div><div class="method_details alt_row"><a name="get"></a><h3>get</h3><code class="method_synopsis">public function <strong class="method_name">get</strong>(id:<span class="unresolved_type_name">Number</span>)</code><div class="method_info"><p>
@@ -26,23 +83,31 @@ document.quicknavBasePath="../../../index-files";
  Insert an element in the queue. This method is unsupported in a CircularQueue.
  </p><h4>Throws</h4><table class="exceptions extra_info" summary=""><tr><td><a href="../../../vegas/errors/UnsupportedOperation.html" class="class_name" title="Class vegas.errors.UnsupportedOperation">UnsupportedOperation</a></td><td></td></tr></table><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/Collection.html#insert" title="function insert(o):Boolean">insert()</a> in <a href="../../../vegas/data/Collection.html" class="interface_name" title="Interface vegas.data.Collection">vegas.data.Collection</a></p></div></div><div class="method_details alt_row"><a name="isEmpty"></a><h3>isEmpty</h3><code class="method_synopsis">public function <strong class="method_name">isEmpty</strong>():<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
  Returns <code> <span class="key">true</span></code> if the queue is empty.
+ </p><h4>Return</h4><p class="extra_info"> <code> <span class="key">true</span></code> if the queue is empty.
 	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/Collection.html#isEmpty" title="function isEmpty():Boolean">isEmpty()</a> in <a href="../../../vegas/data/Collection.html" class="interface_name" title="Interface vegas.data.Collection">vegas.data.Collection</a></p></div></div><div class="method_details"><a name="isFull"></a><h3>isFull</h3><code class="method_synopsis">public function <strong class="method_name">isFull</strong>():<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
  Returns <code> <span class="key">true</span></code> if the queue is full.
+ </p><h4>Return</h4><p class="extra_info"> <code> <span class="key">true</span></code> if the queue is full.
 	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/BoundedQueue.html#isFull" title="function isFull():Boolean">isFull()</a> in <a href="../../../vegas/data/BoundedQueue.html" class="interface_name" title="Interface vegas.data.BoundedQueue">vegas.data.BoundedQueue</a></p></div></div><div class="method_details alt_row"><a name="iterator"></a><h3>iterator</h3><code class="method_synopsis">public function <strong class="method_name">iterator</strong>():<a href="../../../vegas/data/iterator/Iterator.html" class="interface_name" title="Interface vegas.data.iterator.Iterator">Iterator</a></code><div class="method_info"><p>
  Returns the iterator of the queue.
+ </p><h4>Return</h4><p class="extra_info"> the iterator of the queue.
  </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/Collection.html#iterator" title="function iterator():Iterator">iterator()</a> in <a href="../../../vegas/data/Collection.html" class="interface_name" title="Interface vegas.data.Collection">vegas.data.Collection</a></p><h4>See Also</h4><ul class="extra_info"><li> <code> vegas.data.iterator.ProtectedIterator</code>
 	 </li></ul></div></div><div class="method_details"><a name="maxSize"></a><h3>maxSize</h3><code class="method_synopsis">public function <strong class="method_name">maxSize</strong>():<span class="unresolved_type_name">Number</span></code><div class="method_info"><p>
  Returns the max number of occurrences in the given queue.
+ </p><h4>Return</h4><p class="extra_info"> the max number of occurrences in the given queue.
 	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/BoundedQueue.html#maxSize" title="function maxSize():Number">maxSize()</a> in <a href="../../../vegas/data/BoundedQueue.html" class="interface_name" title="Interface vegas.data.BoundedQueue">vegas.data.BoundedQueue</a></p></div></div><div class="method_details alt_row"><a name="peek"></a><h3>peek</h3><code class="method_synopsis">public function <strong class="method_name">peek</strong>()</code><div class="method_info"><p>
  Returns the value of the first element in the queue or <code> <span class="key">null</span></code> if the queue is empty.
+ </p><h4>Return</h4><p class="extra_info"> the value of the first element in the queue or <code> <span class="key">null</span></code> if the queue is empty.
 	 </p></div></div><div class="method_details"><a name="poll"></a><h3>poll</h3><code class="method_synopsis">public function <strong class="method_name">poll</strong>()</code><div class="method_info"><p>
  Returns the value of the first element in the queue and remove this value in the queue.
+ </p><h4>Return</h4><p class="extra_info"> the value of the first element in the queue and remove this value in the queue.
 	 </p></div></div><div class="method_details alt_row"><a name="remove"></a><h3>remove</h3><code class="method_synopsis">public function <strong class="method_name">remove</strong>(o):<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
  Remove the passed argument value. This method is unsupported in a CircularQueue.
  </p><h4>Throws</h4><table class="exceptions extra_info" summary=""><tr><td><a href="../../../vegas/errors/UnsupportedOperation.html" class="class_name" title="Class vegas.errors.UnsupportedOperation">UnsupportedOperation</a></td><td></td></tr></table><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/Collection.html#remove" title="function remove(o):Boolean">remove()</a> in <a href="../../../vegas/data/Collection.html" class="interface_name" title="Interface vegas.data.Collection">vegas.data.Collection</a></p></div></div><div class="method_details"><a name="size"></a><h3>size</h3><code class="method_synopsis">public function <strong class="method_name">size</strong>():<span class="unresolved_type_name">Number</span></code><div class="method_info"><p>
  Returns the number of elements in the CircularQueue.
+ </p><h4>Return</h4><p class="extra_info"> the number of elements in the CircularQueue.
 	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/Collection.html#size" title="function size():Number">size()</a> in <a href="../../../vegas/data/Collection.html" class="interface_name" title="Interface vegas.data.Collection">vegas.data.Collection</a></p></div></div><div class="method_details alt_row"><a name="toArray"></a><h3>toArray</h3><code class="method_synopsis">public function <strong class="method_name">toArray</strong>():<span class="unresolved_type_name">Array</span></code><div class="method_info"><p>
  Returns the array representation of the CircularQueue.
+ </p><h4>Return</h4><p class="extra_info"> the array representation of the CircularQueue.
 	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/Collection.html#toArray" title="function toArray():Array">toArray()</a> in <a href="../../../vegas/data/Collection.html" class="interface_name" title="Interface vegas.data.Collection">vegas.data.Collection</a></p></div></div><div class="method_details"><a name="toSource"></a><h3>toSource</h3><code class="method_synopsis">public function <strong class="method_name">toSource</strong>(indent:<span class="unresolved_type_name">Number</span>, indentor:<span class="unresolved_type_name">String</span>):<span class="unresolved_type_name">String</span></code><div class="method_info"><p>
  Returns a Eden reprensation of the object.
  </p><h4>Return</h4><p class="extra_info"> a string representing the source code of the object.

@@ -59,9 +59,20 @@ class vegas.util.comparators.ReverseComparator extends CoreObject implements ICo
 	 */
 	public function compare(o1, o2):Number 
 	{
-		return comparator.compare(o2, o1) ;
+		var value:Number = comparator.compare(o2, o1) ;
+		if (value == 0)
+		{
+			return 0 ;	
+		}
+		else if (value == 1)
+		{
+			return -1 ;
+		}
+		else 
+		{
+			return 1 ;	
+		}
 	}
-
 
 	/**
 	 * Compares the specified object with this object for equality.

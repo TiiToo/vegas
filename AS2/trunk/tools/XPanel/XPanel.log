@@ -1,28 +1,7 @@
-13:23:11 [0:00:00.022] [Debug] [1] [DEBUG] here is some myDebug info : 2.25 and true
-13:23:11 [0:00:00.023] [Debug] [2] [DEBUG] DEBUG !!
-13:23:11 [0:00:00.023] [Error] [3] [ERROR] ERROR !!
-13:23:11 [0:00:00.026] [Fatal] [4] [FATAL] FATAL !!
-13:23:11 [0:00:00.026] [Information] [5] [INFO] INFO !!
-13:23:11 [0:00:00.026] [Warning] [6] [WARN] WARNING !!
-13:23:11 [0:00:00.026] [Warning] [7] [WARN] 3,2,4
-13:33:40 [0:00:00.021] [Debug] [1] [DEBUG] hereis some myDebug info : 2.25 and true
-13:33:41 [0:00:00.021] [Debug] [2] [DEBUG] DEBUG !!
-13:33:41 [0:00:00.021] [Error] [3] [ERROR] ERROR !!
-13:33:41 [0:00:00.024] [Fatal] [4] [FATAL] FATAL !!
-13:33:41 [0:00:00.024] [Information] [5] [INFO] INFO !!
-13:33:41 [0:00:00.024] [Warning] [6] [WARN] WARNING !!
-13:33:41 [0:00:00.025] [Warning] [7] [WARN] 3,2,4
-13:51:38 [0:00:00.023] [Debug] [1] [DEBUG] hereis some myDebug info : 2.25 and true
-13:51:38 [0:00:00.023] [Debug] [2] [DEBUG] DEBUG !!
-13:51:38 [0:00:00.023] [Error] [3] [ERROR] ERROR !!
-13:51:38 [0:00:00.026] [Fatal] [4] [FATAL] FATAL !!
-13:51:38 [0:00:00.028] [Information] [5] [INFO] INFO !!
-13:51:38 [0:00:00.028] [Warning] [6] [WARN] WARNING !!
-13:51:38 [0:00:00.029] [Warning] [7] [WARN] 3,2,4
-13:51:50 [0:00:00.019] [Debug] [1] [DEBUG] here is some myDebug info : 2.25 and true
-13:51:51 [0:00:00.019] [Debug] [2] [DEBUG] DEBUG !!
-13:51:51 [0:00:00.020] [Error] [3] [ERROR] ERROR !!
-13:51:51 [0:00:00.023] [Fatal] [4] [FATAL] FATAL !!
-13:51:51 [0:00:00.024] [Information] [5] [INFO] INFO !!
-13:51:51 [0:00:00.024] [Warning] [6] [WARN] WARNING !!
-13:51:51 [0:00:00.024] [Warning] [7] [WARN] 3,2,4
+17:38:54 [0:00:00.026] [Debug] [1] here is some myDebug info : 2.25 and true
+17:38:54 [0:00:00.027] [Debug] [2] DEBUG !!
+17:38:54 [0:00:00.027] [Error] [3] ERROR !!
+17:38:54 [0:00:00.028] [Fatal] [4] FATAL !!
+17:38:54 [0:00:00.029] [Information] [5] INFO !!
+17:38:54 [0:00:00.029] [Warning] [6] WARNING !!
+17:38:54 [0:00:00.030] [Warning] [7] 3,2,4

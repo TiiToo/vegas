@@ -28,7 +28,8 @@ import vegas.core.IRunnable;
  * Factory of the pattern Decorator based on the prototype methods injection (Mixin).
  * @author eKameleon
  */
-class vegas.util.Mixin extends CoreObject implements IRunnable {
+class vegas.util.Mixin extends CoreObject implements IRunnable 
+{
 
 	/**
 	 * Creates a new Mixin instance.

@@ -1,4 +1,4 @@
-﻿/*
+/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -107,17 +107,21 @@ class vegas.logging.tracer.SOSTracer
 	 * @param color the default color of the application.
 	 * @param includes a boolean, {@code true} if you wan includes time, date, level and lines in your logs.
 	 */
-	static public function initialize(name:String, color:Number, includes:Boolean):Void 
+	static public function initialize(namespace:String, color:Number, includes:Boolean):Void 
 	{
+		namespace = namespace || "SOSTracer" ;
 		_instance = new SOSTarget(color) ;
-		_instance.filters = ["vegas.logging.targets.*"] ;
-		_instance.setAppName(name || "SOSTracer");
+		_instance.filters = [ namespace ] ;
+		_instance.setAppName(namespace ) ;
 		if (includes)
 		{
 			setIncludes(true, true, true, true, true) ;
 		}
 		_instance.getIdentify() ;
-		_logger = Log.getLogger("vegas.logging.targets.SOSTarget") ;
+		
+		Log.addTarget(_instance) ;
+		
+		_logger = Log.getLogger( namespace ) ;
 	}
 	
 	/**
@@ -125,8 +129,11 @@ class vegas.logging.tracer.SOSTracer
 	 */
 	static public function release():Void 
 	{
-		Log.removeTarget(_instance) ;
-		_instance.close() ;
+		if (_instance != null)
+		{
+			Log.removeTarget(_instance) ;
+			_instance.close() ;
+		}
 		_instance = null ;
 		_logger = null ;
 	}

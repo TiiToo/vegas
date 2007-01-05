@@ -26,6 +26,7 @@ import vegas.core.IComparator;
 import vegas.core.ISerializable;
 import vegas.errors.IllegalArgumentError;
 import vegas.util.serialize.Serializer;
+import vegas.util.StringUtil;
 import vegas.util.TypeUtil;
 
 /**
@@ -68,26 +69,57 @@ class vegas.util.comparators.StringComparator extends CoreObject implements ICom
 	{
 		if ( o1 == null || o2 == null) 
 		{
-			if (o1 == o2) return 0 ;
-			else if (o1 == null) return -1 ;
-			else return 1 ;
+			if (o1 == o2) 
+			{
+				return 0 ;
+			}
+			else if (o1 == null) 
+			{
+				return -1 ;
+			}
+			else 
+			{
+				return 1 ;
+			}
 		}
 		else 
 		{
 			if ( !TypeUtil.typesMatch(o1, String) || !TypeUtil.typesMatch(o2, String)) 
 			{
-				throw IllegalArgumentError(this + " : compare(), Arguments string expected") ;
+				throw IllegalArgumentError(this + " compare() method failed, Arguments string expected") ;
 			}
 			else 
 			{
+				o1 = o1.toString() ;
+				o2 = o2.toString() ;
 				if (ignoreCase) 
 				{
-					o1 = String(o1).toLowerCase() ;
-					o2 = String(o2).toLowerCase() ;
+					o1 = o1.toLowerCase() ;
+					o2 = o2.toLowerCase() ;
 				}
-				if (o1 == o2) return 0 ;
-				if (String(o1).length > String(o2).length) return 1 ;
-				else return -1 ;
+				if (o1 == o2) 
+				{
+					return 0 ;
+				}
+				var i:Number = 0 ;
+				var c:Number ;
+				while ( i < Math.min(o1.length,o2.length) )
+				{
+					c = StringUtil.compareChars( o1.charAt(i), o2.charAt(i));
+					if ( c != 0 ) 
+					{
+						return c;
+					}
+					i++ ;
+				}
+				if ( o1.length > o2.length ) 
+				{
+					return 1 ;
+				}
+				if (o1.length < o2.length ) 
+				{
+					return -1 ;
+				}
 			}
 		}
 	}
