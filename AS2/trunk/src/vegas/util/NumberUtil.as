@@ -31,7 +31,8 @@ class vegas.util.NumberUtil
 {
 
 	/**
-	 * Returns a copy by reference of this Number.
+	 * Returns a shallow copy by reference of this Number.
+	 * @return a shallow copy by reference of this Number.
 	 */
 	static public function clone(n:Number):Number 
 	{
@@ -39,7 +40,8 @@ class vegas.util.NumberUtil
 	}
 
 	/**
-	 * Returns a copy by value of this Number.
+	 * Returns a deep copy by value of this Number.
+	 * @return a deep copy by value of this Number.
 	 */
 	static public function copy(n:Number):Number 
 	{
@@ -61,6 +63,7 @@ class vegas.util.NumberUtil
 	
 	/**
 	 * Converts to an equivalent Boolean value.
+	 * @return an equivalent Boolean value of the passed-in number.
 	 */
 	static public function toBoolean(n:Number):Boolean 
 	{
@@ -73,11 +76,26 @@ class vegas.util.NumberUtil
 	
 	/***
 	 * Returns the exponential string reprsentation of the number passsed in argument.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.NumberUtil ;
+	 * 
+	 * var num:Number = 77.1234;
+	 * 
+	 * trace( NumberUtil.toExponential(num) ) ; // 7.71234e+1
+	 * trace( NumberUtil.toExponential(num, 4)) ; // 7.7123e+1
+	 * trace( NumberUtil.toExponential(num, 2)) ; // 7.71e+1
+	 * trace( NumberUtil.toExponential(77.1234) ) ; // 7.71234e+1
+	 * trace( NumberUtil.toExponential(77) ) ; // 7.7e+1
+	 * }
+	 * @param n the number to format.
+	 * @param fractionDigits An integer specifying the number of digits after the decimal point. Defaults to as many digits as necessary to specify the number.
+	 * @return the exponential string reprsentation of the number passsed in argument.
 	 */
-	static public function toExponential(p_n:Number, fractionDigits:Number):String 
+	static public function toExponential( n:Number, fractionDigits:Number):String 
 	{
 		var str:String ;
-        var x:Number = p_n ;
+        var x:Number = n ;
        	var s:String = "+" ;
         if( isNaN( x ) ) 
         {
@@ -94,7 +112,7 @@ class vegas.util.NumberUtil
 		}
         var l:Number = Math.floor( Math.log(x) / Math.LN10 ) ;
         var lm:Number = Math.pow( 10, l ) ;
-        var n:Number = x/lm ;
+       	n = x/lm ;
         if( fractionDigits == null ) 
         {
             str = n.toString();
@@ -104,21 +122,43 @@ class vegas.util.NumberUtil
         	fractionDigits = MathsUtil.clamp(fractionDigits, 0, 20) ;
             str = NumberUtil.toFixed( n, fractionDigits );
         }
-        str += "e" + s + l;
+        str += (l > 0) ? ("e" + s + l) : "" ;
         return str ;
 	}
 	
 	/**
 	 * Returns a string representing the number in fixed-point notation (*ECMA-262*).
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.NumberUtil ;
+	 * 
+	 * var n:Number = 12345.6789 ;
+	 * 
+	 * trace( NumberUtil.toFixed(n) ) ;
+	 * // Returns 12346: note rounding, no fractional part
+	 * 
+	 * trace( NumberUtil.toFixed( n , 1) ) ;
+	 * // Returns 12345.7: note rounding
+	 * 
+	 * trace( NumberUtil.toFixed( n , 6 ) );
+	 * // Returns 12345.678900 : note added zeros
+	 * }
+	 * @param n the number to fixed.
+	 * @param fractionDigits the number of digits to appear after the decimal point; this may be a value between 0 and 20, inclusive, and implementations may optionally support a larger range of values. If this argument is omitted, it is treated as 0.
+	 * @return A string representation of number that does not use exponential notation and has exactly {@code fractionDigits} digits after the decimal place. The number is rounded if necessary, and the fractional part is padded with zeros if necessary so that it has the specified length. If number is greater than 1e+21, this method simply calls Number.toString() and returns a string in exponential notation.
 	 */
-	static public function toFixed(p_n:Number, fractionDigits:Number):String 
+	static public function toFixed( n:Number, fractionDigits:Number):String 
 	{
-        var x:Number = p_n ;
+        var x:Number = n ;
+        
         if( isNaN( x )) 
         {
         	return "NaN" ;
         }
-        if (fractionDigits == null) fractionDigits = 0 ;
+        if (isNaN(fractionDigits)) 
+        {
+        	fractionDigits = 0 ;
+        }
        	fractionDigits = MathsUtil.clamp(fractionDigits, 0, 20) ;
         var m:Number = Math.pow( 10, fractionDigits );
         var r:Number = Math.round( x*m ) / m;
@@ -127,13 +167,17 @@ class vegas.util.NumberUtil
         if( d && (d.length < fractionDigits) ) 
         {
 			var len:Number = fractionDigits - d.length  ;
-			for( var i:Number=0; i< len ; i++ ) str += "0" ;
+			for( var i:Number=0; i< len ; i++ ) 
+			{
+				str += "0" ;
+			}
 		}
         return str;
     }
 	
 	/**
 	 * Converts to an equivalent Number value.
+	 * @return an equivalent Number value of the passed-in Number.
 	 */
 	static public function toNumber(n:Number):Number 
 	{
@@ -141,7 +185,8 @@ class vegas.util.NumberUtil
 	}
 	
 	/**
-	 * Converts to an equivalent Object value
+	 * Converts to an equivalent Object value.
+	 * @return an equivalent Object value of the passed-in number.
 	 */
 	static public function toObject(n:Number):Number 
 	{
@@ -150,10 +195,25 @@ class vegas.util.NumberUtil
 	
 	/**
 	 * Returns a string representing the number to a specified precision in fixed-point notation (*ECMA-262*).
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.NumberUtil ;
+	 * var num:Number = 5.123456 ;
+	 * 
+	 * trace( NumberUtil.toPrecision(num) )  ; // 5.123456
+	 * trace( NumberUtil.toPrecision(num, 4) ) ; // 5.123
+	 * trace( NumberUtil.toPrecision(num, 2) ) ; // 5.1
+	 * trace( NumberUtil.toPrecision(num, 1) ) ; // 5
+	 * trace( NumberUtil.toPrecision(1250, 2) ) ; // 1.3e+3
+	 * trace( NumberUtil.toPrecision(1250, 5) ) ; // 1250.0
+	 * }
+	 * @param n The number to format.
+	 * @param precision An integer specifying the number of digits after the decimal point.
+	 * @return A string representing a Number object in fixed-point or exponential notation rounded to precision significant digits.
 	 */
-	static public function toPrecision(p_n:Number, precision:Number):String 
+	static public function toPrecision(n:Number, precision:Number):String 
 	{
-		var x:Number = p_n ;
+		var x:Number = n ;
 		var str:String = x.toString() ;
 		if ( isNaN(x) ) 
 		{

@@ -26,7 +26,7 @@ import vegas.util.StringUtil;
 import vegas.util.TypeUtil;
 
 /**
- * The {@code Equalizer} utility class is an all-static class with a method to returns {@true} if two object are equals.
+ * The {@code Comparater} utility class is an all-static class with a method to returns {@true} if two object are equals.
  * @author eKameleon
  */
 class vegas.util.Comparater
@@ -34,8 +34,8 @@ class vegas.util.Comparater
 
 	/**
 	 * Compares if two objects are equal by value. 
-	 * @param o1 the first object to compare
-	 * @param o2 the second object to compare
+	 * @param o1 the first object to compare.
+	 * @param o2 the second object to compare.
 	 * @return {@code true} if the 2 objects are equals.
 	 */	
 	static public function compare( o1, o2 ) 

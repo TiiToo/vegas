@@ -94,26 +94,41 @@ class vegas.util.TypeUtil
 
 	/**
 	 * Compares the types of two objects.
+	 * @return {@code true} if the two objects are the same primitive type.
 	 */
-	static public function compare(o1, o2):Boolean {
+	static public function compare(o1, o2):Boolean 
+	{
 		return typeof(o1) == typeof(o2) ;
 	}
 
 	/**
 	 * Checks if the passed-in object is an explicit instance of the passed-in class.
+	 * @return {@code true} if the passed-in object is an explicit instance of the passed-in class.
 	 */
-	static public function isExplicitInstanceOf(o, c:Function):Boolean {
-		if (TypeUtil.isPrimitive(o)) {
+	static public function isExplicitInstanceOf(o, c:Function):Boolean 
+	{
+		if (TypeUtil.isPrimitive(o)) 
+		{
 			var tof:String = typeof(o) ;
-			if (c == String) return (tof == TypeUtil.STRING) ;
-			else if (c == Number) return (tof == TypeUtil.NUMBER) ;
-			else if (c == Boolean) return (tof == TypeUtil.BOOLEAN) ;
+			if (c == String) 
+			{
+				return (tof == TypeUtil.STRING) ;
+			}
+			else if (c == Number) 
+			{
+				return (tof == TypeUtil.NUMBER) ;
+			}
+			else if (c == Boolean) 
+			{
+				return (tof == TypeUtil.BOOLEAN) ;
+			}
 		} 
 		return (o instanceof c	&& !(o.__proto__ instanceof c));
 	}
 
 	/**
 	 * Checks if the passed-in object is an instance of the passed-in type.
+	 * @return {@code true} if the passed-in object is an instance of the passed-in type.
 	 */
 	static public function isInstanceOf(o, type:Function):Boolean 
 	{
@@ -126,6 +141,7 @@ class vegas.util.TypeUtil
 	
 	/**
 	 * Checks if the passed-in object is a primitive type.
+	 * @return {@code true} if the passed-in object is a primitive type.
 	 */
 	static public function isPrimitive(o):Boolean 
 	{
@@ -135,6 +151,7 @@ class vegas.util.TypeUtil
 	
 	/**
 	 * Checks if the result of an execution of the typeof method on the passed-in object matches the passed-in type.
+	 * @return {@code true} if the result of an execution of the typeof method on the passed-in object matches the passed-in type.
 	 */
 	static public function isTypeOf(o, type:String):Boolean 
 	{
@@ -193,7 +210,7 @@ class vegas.util.TypeUtil
 	 * @return the string representation of the type function passed in argument.
 	 * @see ConstructorUtil.
 	 */
-	static public function toString(type:Function):String 
+	static public function toString( type:Function ):String 
 	{
 		if (type === undefined) 
 		{
