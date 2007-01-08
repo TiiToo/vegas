@@ -82,10 +82,10 @@ class Tests.vegas.util.TestNumberUtil extends TestCase
 		assertEquals( NumberUtil.toFixed( n , 1) , '12345.7' , "N_U_06_02 - static toFixed method failed.") ;
 		assertEquals( NumberUtil.toFixed( n , 6 ) , '12345.678900' , "N_U_06_03 - static toFixed method failed." ) ;
 		
-		// FIXME : '123000000000000000000.00'
+		// FIXME : '123000000000000000000.00' in Mozilla examples for javascript 1.5
 		assertEquals( NumberUtil.toFixed( 1.23e+20 , 2 ) , 1.23e+20, "N_U_06_04 - static toFixed method failed.") ;
 		
-		// FIXME : '0.00'
+		// FIXME : '0.00' in Mozilla examples for javascript 1.5
 		assertEquals( NumberUtil.toFixed( 1.23e-10 , 2 ) , '0' , "N_U_06_05 - static toFixed method failed.") ;
 	}
 

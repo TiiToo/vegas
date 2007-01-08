@@ -44,7 +44,7 @@ import vegas.util.serialize.Serializer;
  * <p>These operations allow linked lists to be used as a stack, queue, etc.</p>
  * @author eKameleon
  */
-class vegas.data.list.LinkedList extends CoreObject implements List, Queue
+class vegas.data.list.LinkedList extends CoreObject implements IEquality, List, Queue
 {
 
 	/**

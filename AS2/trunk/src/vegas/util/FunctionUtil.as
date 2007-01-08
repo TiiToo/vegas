@@ -42,7 +42,8 @@ class vegas.util.FunctionUtil
 	 * Returns a copy by value of this object.
 	 * @return a copy by value of this object.
 	 */
-	static public function copy(f:Function):Function {
+	static public function copy(f:Function):Function 
+	{
 		return Function(f.valueOf()) ;
 	}
 

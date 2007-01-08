@@ -39,9 +39,10 @@ class vegas.util.comparators.StringComparator extends CoreObject implements ICom
 	/**
 	 * Creates a new StringCompator instance.
 	 */
-	function StringComparator( str:String ) 
+	function StringComparator( str:String , ignoreCase:Boolean) 
 	{
 		s = str ;
+		this.ignoreCase = ignoreCase ;
 	}
 
 	/**
@@ -92,7 +93,7 @@ class vegas.util.comparators.StringComparator extends CoreObject implements ICom
 			{
 				o1 = o1.toString() ;
 				o2 = o2.toString() ;
-				if (ignoreCase) 
+				if (ignoreCase == true) 
 				{
 					o1 = o1.toLowerCase() ;
 					o2 = o2.toLowerCase() ;

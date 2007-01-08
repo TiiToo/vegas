@@ -122,7 +122,7 @@ class vegas.string.StringFormatter extends AbstractFormatter
 			}
 		};
 		
-		var expression:StringUtil ; 
+		var expression:String ; 
 		var run:Boolean ;
 		var index:Number ;
 		var expValue:String ; 
@@ -135,14 +135,14 @@ class vegas.string.StringFormatter extends AbstractFormatter
 			next() ; 
 			if( ch == "{" ) 
 			{
-				expression = new StringUtil(next()) ;
+				expression = next() ;
 				run = true ;
 				while( run ) 
 				{
 					next() ;
 					if( ch != "}" ) 
 					{
-						expression = new StringUtil(expression + ch) ;
+						expression = expression + ch ;
 					}
 					else 
 					{
@@ -168,7 +168,7 @@ class vegas.string.StringFormatter extends AbstractFormatter
 						fPos = -1 ;
 					}
 					index = parseInt( expression.substring( 0, vPos ) ) ;
-					expValue = new StringUtil(getIndexValue( index )) ;
+					expValue = getIndexValue( index ) ;
 					if( fPos == -1 )
 					{
 						spaceAlign = parseInt( expression.substr( vPos+1 ) ) ;

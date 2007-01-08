@@ -35,7 +35,8 @@ class vegas.util.ObjectUtil
 	 * Returns the shallow copy of the object.
 	 * @return the shallow copy of the object.
 	 */
-	static public function clone(o) {
+	static public function clone(o) 
+	{
 		return o ;	
 	}
 
@@ -47,14 +48,22 @@ class vegas.util.ObjectUtil
 	{
 		var obj:Object = {} ;
 		var prop:String ;
-		for (prop in o) {
-			if( ! o.hasOwnProperty( prop ) ) {
+		for (prop in o) 
+		{
+			if( ! o.hasOwnProperty( prop ) ) 
+			{
 			  	continue ;
-		  	} else if ( o[prop] == undefined ) {
+		  	}
+		  	else if ( o[prop] == undefined ) 
+		  	{
 		  		obj[prop] = undefined ;
-		  	} else if ( o[prop] == null ) {
+		  	}
+		  	else if ( o[prop] == null ) 
+		  	{
 		  		obj[prop] = null ;
-			} else {
+			}
+			else 
+			{
 		  		obj[prop] = Copier.copy(obj[prop]) ; 
 		  	}
 		}

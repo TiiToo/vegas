@@ -49,8 +49,15 @@ class vegas.util.BooleanUtil
      */
 	static public function equals( b1:Boolean, b2:Boolean ):Boolean 
 	{
-		if ( !b2 ) return false ;
-		return b1.valueOf() == b2.valueOf() ;
+		if ( b1 == null ) 
+		{
+			return false ;
+		}
+		if ( b2 == null ) 
+		{
+			return false ;
+		}
+		return (b1.valueOf() == b2.valueOf()) ;
     }
 
 	/**

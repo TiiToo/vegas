@@ -21,13 +21,10 @@
   
 */
 
-import vegas.core.HashCode;
-import vegas.core.IComparable;
-import vegas.core.ICopyable;
-import vegas.core.ISerializable;
 import vegas.data.iterator.Iterator;
 import vegas.data.iterator.StringIterator;
 import vegas.errors.ArgumentsError;
+import vegas.util.comparators.StringComparator;
 import vegas.util.serialize.Serializer;
 import vegas.util.TypeUtil;
 
@@ -35,16 +32,8 @@ import vegas.util.TypeUtil;
  * The {@code StringUtil} utility class is an extended String class with methods for working with string.
  * @author eKameleon
  */
-class vegas.util.StringUtil extends String implements IComparable, ICopyable, ISerializable 
+class vegas.util.StringUtil
 {
-
-	/**
-	 * Creates a new StringUtil instance.
-	 */
-	public function StringUtil(s:String) 
-	{
-		super(s || "") ;
-	}
 
 	/**
 	 * Returns 0 if the passed string is lower case else 1.
@@ -59,41 +48,26 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, IS
 	 * Returns a shallow copy of this object.
 	 * @return a shallow copy of this object.
 	 */
-	public function clone() 
+	static public function clone( str:String ):String 
 	{
-		return this ;	
+		return str ;	
 	}
 
 	/**
 	 * Compares its two arguments for order. You can ignore the case of the 2 strings parameters.
+	 * @param o1 the first String object to compare.
+	 * @param o2 the second String object to compare.
+	 * @return <p>
+	 * <li>-1 if o1 is "lower" than (less than, before, etc.) o2 ;</li>
+	 * <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
+	 * <li> 0 if o1 and o2 are equal.</li>
+	 * </p>
+	 * @throws IllegalArgumentError if compare(a, b) and 'a' and 'b' must be String objects.
+	 * @see StringComparator
 	 */
 	static public function compare( strA:String , strB:String, ignoreCase:Boolean ):Number 
 	{
-		if( (strA == null) || (strB == null) ) 
-		{
-			if( strA == strB ) 
-			{
-				return 0 ;
-			}
-            else if( strA == null ) 
-            {
-            	return -1 ;
-            }
-            else 
-            {
-            	return 1 ;
-            }
-		}
-		strA = strA.toString() ;
-		strB = strB.toString() ;
-		if( ignoreCase ) 
-		{
-        	strA = strA.toLowerCase() ;
-        	strB = strB.toLowerCase() ;
-        }
-        if( strA == strB ) return 0 ;
-        else if( strA.length > strB.length ) return 1 ;
-        else return -1 ;
+		return (new StringComparator(null, ignoreCase)).compare(strA, strB) ;
 	}
 	
 	/**
@@ -129,8 +103,13 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, IS
 	
 	/**
 	 * Compares this object with the specified object for order.
+	 * @return <p>
+	 * <li>-1 if charA is "lower" than (less than, before, etc.) charB ;</li>
+	 * <li> 1 if charA is "higher" than (greater than, after, etc.) charB ;</li>
+	 * <li> 0 if charA and charB are equal.</li>
+	 * </p>
 	 */
-	public function compareTo( o ):Number 
+	static public function compareTo( str:String, o ):Number 
 	{
 		if (! TypeUtil.typesMatch(o, String)) 
 		{
@@ -140,20 +119,25 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, IS
 		{
 			return 1 ;
 		}
-		return StringUtil.compare(String(this.valueOf()), String(o.valueOf()) ) ;
+		return StringUtil.compare(String(str.valueOf()), String(o.valueOf()) ) ;
 	}
 	
 	/**
 	 * Returns a deep copy of this object.
 	 * @return a deep copy of this object.
 	 */
-	public function copy() 
+	static public function copy(str:String):String 
 	{
-		return new StringUtil( String(this.valueOf()) )  ;
+		return str.valueOf()  ;
 	}
 	
 	/**
 	 * Returns {@code true} if the string contains the specified caractere at the end.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.StringUtil ;
+	 * trace( StringUtil.endsWith("hello world", "d") ) ; // true
+	 * }
 	 * @return {@code true} if the string contains the specified caractere at the end.
 	 */
 	static public function endsWith( str:String, value:String ):Boolean 
@@ -165,6 +149,12 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, IS
 	
 	/**
 	 * Returns the first character in the string.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.StringUtil ;
+	 * trace( StringUtil.firstChar("hello world") ; // h
+	 * }
+	 * @return the first character in the string.
 	 */
 	static public function firstChar( str:String ):String 
 	{
@@ -172,16 +162,15 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, IS
 	}
 
 	/**
-	 * Returns a hash code value for the object.
-	 * @return a hash code value for the object.
-	 */
-	public function hashCode():Number 
-	{
-		return null ;
-	}
-	
-	/**
 	 * Reports the index of the first occurrence in this instance of any character in a specified array of Unicode characters.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.StringUtil ;
+	 * StringUtil.indexOfAny("hello world", [2, "hello", 5]) ; // 0
+	 * StringUtil.indexOfAny("Five = 5", [2, "hello", 5]) ; // 7
+	 * StringUtil.indexOfAny("actionscript is good", [2, "hello", 5]) ; // -1
+	 * }
+	 * @return the index of the first occurrence in this instance of any character in a specified array of Unicode characters.
 	 */
 	static public function indexOfAny(str:String, ar:Array):Number 
 	{
@@ -200,6 +189,16 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, IS
 	
 	/**
 	 * Inserts a specified instance of String at a specified index position in this instance.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.StringUtil ;
+	 * var result:String ;
+	 * result = StringUtil.insert("hello", 0, "a" ) ;  // ahello
+	 * result = StringUtil.insert("hello", -1, "a" ) ; // ahello
+	 * result = StringUtil.insert("hello", 10, "a" ) ; // helloa
+	 * result = StringUtil.insert("hello", 1, "a" ) ;  // haello
+	 * }
+	 * @return the string modified by the method.
 	 */
 	static public function insert( str:String, startIndex:Number, value:String):String 
 	{
@@ -212,11 +211,11 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, IS
 		{
 			return value ;
 		}
-        if( startIndex == 0 )
+        if( startIndex <= 0 )
         {
         	return value + str ;
         }
-       	else if( (startIndex == null) || (startIndex == str.length) ) 
+       	else if( isNaN(startIndex) || (startIndex >= str.length) ) 
        	{
        		return str + value ;
        	}
@@ -227,6 +226,12 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, IS
 	
 	/**
 	 * Returns {@code true} if this string is empty.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.StringUtil ;
+	 * var b1:Boolean = StringUtil.isEmpty("") ; // true
+	 * var b2:Boolean = StringUtil.isEmpty("hello world") ; // false
+	 * }
 	 * @param str the string object.
 	 * @return {@code true} if this string is empty.
 	 */
@@ -237,6 +242,14 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, IS
 	
 	/**
 	 * Returns a StringIterator reference of this string instance.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * var it:Iterator = vegas.util.StringUtil.iterator("hello") ;
+	 * while(it.hasNext())
+	 * {
+	 *     trace("-> " + it.next()) ;
+	 * }
+	 * }
 	 * @param str the string object.
 	 * @return a StringIterator reference of this string instance.
 	 */
@@ -247,6 +260,11 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, IS
 	
 	/**
 	 * Returns the last char of the string. 
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.StringUtil ;
+	 * trace( StringUtil.firstChar("hello world") ; // d
+	 * }
 	 * @param str the string object.
 	 * @return the last char of the string.
 	 */
@@ -257,6 +275,11 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, IS
 
 	/**
 	 * Reports the index position of the last occurrence in this instance of one or more characters specified in a Unicode array.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * vegas.util.StringUtil.lastChar("hello world") ; // the last char is 'd'.
+	 * }
+	 * @return the index position of the last occurrence in this instance of one or more characters specified in a Unicode array.
 	 */
 	static public function lastIndexOfAny(str:String, ar:Array):Number 
 	{
@@ -275,6 +298,16 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, IS
 	
 	/**
 	 * Right-aligns the characters in this instance, padding on the left with a specified Unicode character for a specified total length.
+	 * {@code
+	 * import vegas.util.StringUtil ;
+	 * 
+	 * var result:String = StringUtil.padLeft("hello", 8) ;
+	 * trace(result) ; //  "   hello"
+	 * 
+	 * var result:String = StringUtil.padLeft("hello", 8, ".") ;
+	 * trace(result) ; //  "...hello" 
+	 * }
+	 * @return The right-aligns the characters in this instance, padding on the left with a specified Unicode character for a specified total length.
 	 */
 	static public function padLeft(str:String, i:Number /*Int*/, char:String):String 
 	{
@@ -290,6 +323,17 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, IS
 	
 	/**
 	 * Left-aligns the characters in this string, padding on the right with a specified Unicode character, for a specified total length.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.StringUtil ;
+	 * 
+	 * var result:String = StringUtil.padRight("hello", 8) ;
+	 * trace(result) ; //  "hello   "
+	 * 
+	 * var result:String = StringUtil.padRight(hello", 8, ".") ;
+	 * trace(result) ; //  "hello..." 
+	 * }
+	 * @return The left-aligns the characters in this string, padding on the right with a specified Unicode character, for a specified total length.
 	 */
 	static public function padRight(str:String, i:Number /*Int*/ , char:String):String 
 	{
@@ -305,6 +349,10 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, IS
 	
 	/**
 	 * Replaces the 'search' string with the 'replace' String.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * vegas.util.StringUtil.replace("hello world", "hello", "hi") ; // "hello world" -> "hi world"
+	 * }
 	 * @param the string to transform.
 	 * @return the new string transform with this method.
 	 */
@@ -314,7 +362,12 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, IS
 	}
 	
 	/**
-	 * Reverse the current instance.
+	 * Reverses the current instance.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * var reverse:String = vegas.util.StringUtil.reverse("hello") ; // "olleh"
+	 * }
+	 * @return the reverse string of the specified string passed-in argument.
 	 */
 	static public function reverse( str:String ):String 
 	{  
@@ -325,6 +378,19 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, IS
 	
 	/**
 	 * Adds and removes elements in the string.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.StringUtil ;
+	 * 
+	 * var result:String = StringUtil.splice("hello world", 0, 1, "H") ;
+	 * trace(result) ; // Hello world
+	 * 
+	 * var result:String = StringUtil.splice("hello world", 6, 0, "life") ;
+	 * trace(result) ; // hello lifeworld
+	 * 
+	 * var result:String = StringUtil.splice("hello world", 6, 5, "life") ;
+	 * trace(result) ; // hello life
+	 * }
 	 * @param startIndex Index at which to start changing the string.
 	 * @param deleteCount Indicating the number of old character elements to remove.
 	 * @param value The elements to add to the string. If you don't specify any elements, splice simply removes elements from the string.
@@ -332,12 +398,20 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, IS
 	static public function splice( str:String, startIndex:Number, deleteCount:Number, value):String 
 	{
 		var a:Array = StringUtil.toArray(str) ;
-		a = a.splice.apply(a, arguments) ;
+		a.splice(startIndex, deleteCount, value) ;
 		return a.join("") ;
 	}
 
 	/**
 	 * Determines whether a specified string is a prefix of the current instance. 
+	 * <p><b>Example : </b></p>
+	 * {@code
+	 * import vegas.util.StringUtil ;
+	 * 
+	 * trace( StringUtil.startsWith("hello world", "h") ) ; // true
+	 * trace( StringUtil.startsWith("hello world", "hello") ) ; // true
+	 * trace( StringUtil.startsWith("hello world", "a") ) ; // false
+	 * }
 	 * @return {@code true} if the specified string is a prefix of the current instance.
 	 */
 	static public function startsWith( str:String, value:String ):Boolean
@@ -362,6 +436,11 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, IS
 
 	/**
 	 * Returns an array representation of this instance.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.StringUtil ;
+	 * trace( StringUtil.toArray("hello world" )) ; // h,e,l,l,o, ,w,o,r,l,d
+	 * }
 	 * @return an array representation of this instance.
 	 */
 	static public function toArray( str:String ):Array 
@@ -371,15 +450,27 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, IS
 	
 	/**
 	 * Returns a Eden representation of the object.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.StringUtil ;
+	 * var source:String = StringUtil.toSource("hello world") ;
+	 * trace(source) ; // "hello world"
+	 * }
 	 * @return a string representing the source code of the object.
 	 */
-	public function toSource(indent:Number, indentor:String):String 
+	static public function toSource(str:String, indent:Number, indentor:String):String 
 	{
-		return Serializer.getSourceOf(this, [toString()]) ;
+		return Serializer.toSource(str) ;
 	}
 	
 	/**
-	 * Returns the value of this string with the first character in uppercase.
+	 * Returns the value of this specified string with the first character in uppercase.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.StringUtil ;
+	 * trace( StringUtil.ucFirst("hello world" )) ; // Hello world
+	 * }
+	 * @return the value of this string with the first character in uppercase.
 	 */
 	static public function ucFirst(str:String):String 
 	{
@@ -388,6 +479,12 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, IS
 	
 	/**
 	 * Uppercase the first character of each word in a string.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.StringUtil ;
+	 * trace( StringUtil.ucWords("hello world" )) ; // Hello World
+	 * }
+	 * @return the string value with the first character in uppercase of each word in a string.
 	 */
 	static public function ucWords( str:String ):String 
 	{
@@ -399,8 +496,5 @@ class vegas.util.StringUtil extends String implements IComparable, ICopyable, IS
 		}
 		return ar.join(" ") ;
 	}
-	
-	static private var _initHashCode:Boolean = HashCode.initialize( StringUtil.prototype ) ;
-	
 	
 }
