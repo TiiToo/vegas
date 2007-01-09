@@ -21,15 +21,53 @@
   
 */
 
-import vegas.data.collections.SimpleCollection;
-import vegas.data.iterator.Iterator;
-import vegas.util.Mixin;
+import vegas.core.CoreObject;
+import vegas.data.Set;
+import vegas.data.set.HashSet;
 
 /**
  * Allow to link an object with multiple objets using {@code __resolve} method.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import vegas.util.ResolverMultiProxy ;
+ * 
+ * var o1:Object = {} ;
+ * o1.prop1 = 1 ;
+ * o1.toString = function() 
+ * {
+ *     return "object1" ;
+ * } ;
+ * o1.method1 = function( message:String )
+ * {
+ *    trace("method1 : " + message) ;
+ * }
+ * 
+ * var o2:Object = {} ;
+ * o2.toString = function() 
+ * {
+ *     return "object2" ;
+ * } ;
+ * o2.prop2 = 2 ;
+ * o2.method2 = function( message:String )
+ * {
+ *     trace("method2 : " + message) ;
+ * }
+ * 
+ * var proxy:ResolverMultiProxy = new ResolverMultiProxy() ;
+ * proxy.addProxy( o1 ) ;
+ * proxy.addProxy( o2 ) ;
+ * 
+ * trace("size : " + proxy.size()) ; // size : 2
+ * 
+ * trace(proxy.prop1) ; // 1
+ * trace(proxy.prop2) ; // 2
+ * 
+ * proxy.method1("hello world 1") ; // method1 : hello world 1
+ * proxy.method2("hello world 2") ; // method2 : hello world 2
+ * }
  * @author eKameleon
  */
-class vegas.util.ResolverMultiProxy 
+dynamic class vegas.util.ResolverMultiProxy extends CoreObject
 {
 	
 	/**
@@ -37,7 +75,7 @@ class vegas.util.ResolverMultiProxy
 	 */
 	function ResolverMultiProxy ( p_proxy ) 
 	{
-		_proxys = new SimpleCollection() ;
+		_set = new HashSet() ;
     }
 
 	/**
@@ -45,66 +83,88 @@ class vegas.util.ResolverMultiProxy
 	 */
 	public function addProxy( proxy ):Boolean 
 	{
-		if (_proxys.contains(proxy)) 
-		{
-			return false ;
-		}
-		return _proxys.insert(proxy) ;
+		return _set.insert(proxy) ;
 	}
 
 	/**
-	 * Initialize a proxy on a specific target.
+	 * Removes all proxy objects in this resolver.
 	 */
-	static public function initialize( target )  
+	public function clear():Void
 	{
-		var attributes:Array =[ "_proxys", "addProxy", "removeProxy", "__resolve" ];
-		var mix:Mixin = new Mixin(ResolverMultiProxy, target, attributes) ;
-		mix.run() ;
-    }
+		_set.clear() ;	
+	}
+
+	/**
+	 * Returns {@code true} if the specified proxy reference is register.
+	 * @return {@code true} if the specified proxy reference is register.
+	 */
+	public function containsProxy( proxy ):Boolean 
+	{
+		return _set.contains(proxy) ;
+	}
+
+	/**
+	 * Returns the unique Set of all objects register in this ResolverMultiProxy instance.
+	 * @return the unique Set of all objects register in this ResolverMultiProxy instance.
+	 */
+	public function getUniqueSet():Set
+	{
+		return _set.clone() ;	
+	}
 
 	/**
 	 * Removes a proxy reference in the proxy model.
 	 */
 	public function removeProxy( proxy ):Boolean 
 	{
-		return _proxys.remove( proxy ) ;
+		return _set.remove( proxy ) ;
 	}
 	
 	/**
 	 * Resolve the specified property name.
 	 */
-	public function __resolve( str:String ) 
+	public function __resolve( prop:String ) 
 	{
-		if ( _proxys.isEmpty() ) 
+		if ( _set.isEmpty() ) 
 		{
 			return ;
 		}
-		var it:Iterator = _proxys.iterator() ;
-		while (it.hasNext()) 
+		var ar:Array = _set.toArray() ;
+		var len:Number = ar.length ;
+		if (len > 0)
 		{
-			var proxy = it.next() ;
-			if( !proxy.hasOwnProperty( str ) ) 
+			while (--len > -1) 
 			{
-				if( proxy.__proto__[str] == undefined ) 
+				var proxy = ar[len] ;
+				if( !proxy.hasOwnProperty(prop) ) 
 				{
-					break ;
+					// do nothing
+				}
+				else if( typeof(proxy[prop]) == "function" ) 
+				{
+					return function() 
+					{
+						return proxy[prop].apply( proxy, arguments );
+					} ;
+				} 
+				else 
+				{
+					return proxy[prop] ;
 				}
 			}
-			else if( typeof(proxy[str]) == "function" ) 
-			{
-				return function() 
-				{
-					return proxy[str].apply( proxy, arguments );
-				};
-			} 
-			else 
-			{
-				return proxy[str];
-			}
-		}
-    }
+    	}
+	}
 	
-	private var _proxys:SimpleCollection ;
+	/**
+	 * Returns the number of object to delegate with this proxy.
+	 * @return the number of object to delegate with this proxy.
+	 */
+	public function size():Number 
+	{
+		return _set.size() ;
+	}
+	
+	private var _set:HashSet ;
 	
 }
 

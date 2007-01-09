@@ -22,6 +22,7 @@
 */
 
 import vegas.core.ICloneable;
+import vegas.core.ICopyable;
 import vegas.core.IFormattable;
 import vegas.core.IRunnable;
 import vegas.core.ITimer;
@@ -35,7 +36,8 @@ import vegas.events.TimerEventType;
  * @see EventDispatcher
  * @see TimerEvent
  */
-class vegas.util.AbstractTimer extends EventDispatcher implements ICloneable, ITimer, IFormattable, IRunnable {
+class vegas.util.AbstractTimer extends EventDispatcher implements ICloneable, ICopyable, ITimer, IFormattable, IRunnable 
+{
 
 	/**
 	 * Creates a new ITimer instance if you extend this class.
@@ -50,6 +52,7 @@ class vegas.util.AbstractTimer extends EventDispatcher implements ICloneable, IT
 
 	/**
 	 * (read-write) Returns the delay between timer events, in milliseconds.
+	 * @return the delay between timer events, in milliseconds.
 	 */
 	public function  get delay():Number 
 	{
@@ -66,6 +69,7 @@ class vegas.util.AbstractTimer extends EventDispatcher implements ICloneable, IT
 
 	/**
 	 * (read-write) Returns the number of repetitions. If zero, the timer repeats infinitely. If nonzero, the timer runs the specified number of times and then stops.
+	 * @return  the number of repetitions. If zero, the timer repeats infinitely. If nonzero, the timer runs the specified number of times and then stops.
 	 */
 	public function  get repeatCount():Number 
 	{
@@ -75,12 +79,14 @@ class vegas.util.AbstractTimer extends EventDispatcher implements ICloneable, IT
 	/**
 	 * (read-write) Sets the number of repetitions. If zero, the timer repeats infinitely. If nonzero, the timer runs the specified number of times and then stops.
 	 */
-	public function set repeatCount ( n:Number ):Void {
+	public function set repeatCount ( n:Number ):Void 
+	{
 		setRepeatCount(n) ;	
 	}
 	
 	/**
 	 * (read-only) Returns {@code true} if the timer is in progress.
+	 * @return {@code true} if the timer is in progress.
 	 */
 	public function get running():Boolean 
 	{
@@ -94,13 +100,28 @@ class vegas.util.AbstractTimer extends EventDispatcher implements ICloneable, IT
 	{
 		// override this method
 	}
+
+	/**
+	 * Returns a shallow copy of this object.
+	 * @return a shallow copy of this object.
+	 */
+	public function clone() 
+	{
+		return null ;
+	}
 	
-	public function clone() {
-		return new AbstractTimer(_delay, _repeatCount) ; // override this method
+	/**
+	 * Returns a deep copy of this object.
+	 * @return a deep copy of this object.
+	 */
+	/*override*/ public function copy() 
+	{
+		return null ;
 	}
 
 	/**
 	 * Returns the delay between timer events, in milliseconds.
+	 * @return the delay between timer events, in milliseconds.
 	 */
 	public function getDelay():Number 
 	{
@@ -109,6 +130,7 @@ class vegas.util.AbstractTimer extends EventDispatcher implements ICloneable, IT
 
 	/**
 	 * Returns the number of repetitions. If zero, the timer repeats infinitely. If nonzero, the timer runs the specified number of times and then stops.
+	 * @return the number of repetitions. If zero, the timer repeats infinitely. If nonzero, the timer runs the specified number of times and then stops.
 	 */
 	public function getRepeatCount():Number 
 	{
@@ -117,6 +139,7 @@ class vegas.util.AbstractTimer extends EventDispatcher implements ICloneable, IT
 
 	/**
 	 * Returns {@code true} if the timer is in progress.
+	 * @return {@code true} if the timer is in progress.
 	 */
 	public function getRunning():Boolean 
 	{
@@ -131,7 +154,10 @@ class vegas.util.AbstractTimer extends EventDispatcher implements ICloneable, IT
 		if (getRunning()) this.stop() ;
 		_setRunning(true) ;
 		run() ;
-		if (!noEvent) dispatchEvent( new TimerEvent( TimerEventType.RESTART, this) ) ;
+		if (!noEvent) 
+		{
+			dispatchEvent( new TimerEvent( TimerEventType.RESTART, this) ) ;
+		}
 	}
 
 	/**
@@ -207,7 +233,8 @@ class vegas.util.AbstractTimer extends EventDispatcher implements ICloneable, IT
 	/**
 	 * Protected methods to defined the running property when the timer is in progress.
 	 */
-	private function _setRunning(b:Boolean):Void {
+	private function _setRunning(b:Boolean):Void 
+	{
 		_running = b ;
 	}
 

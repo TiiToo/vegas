@@ -24,6 +24,7 @@
 import vegas.data.iterator.ArrayIterator;
 import vegas.data.iterator.Iterator;
 import vegas.events.Delegate;
+import vegas.util.ArrayUtil;
 
 /**
  * This singleton create a virtual Frame interval with a onEnterFrame event. 
@@ -66,17 +67,19 @@ import vegas.events.Delegate;
 class vegas.util.FrameBeacon 
 {
 
-	private function FrameBeacon() 
-	{
-		//
-	}
-
 	static private var __initBroadcaster = AsBroadcaster.initialize(FrameBeacon) ;	
 
 	static private var __initConstructor = FrameBeacon.initialize() ;
 
 	/**
-	 * Returns {@code true} if the {@code FrameBeacon} is in progress.
+	 * Returns {@code true} if the {@code FrameBeacon} is in progress (read only property).
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.FrameBeacon ;
+	 * FrameBeacon.start() ;
+	 * trace(FrameBeacon.running) ; // true
+	 * } 
+	 * @return {@code true} if the {@code FrameBeacon} is in progress.
 	 */
 	static public function get running():Boolean 
 	{
@@ -88,12 +91,25 @@ class vegas.util.FrameBeacon
 	 */
 	static public function addFrameListener(listener):Void  
 	{
-		if (! FrameBeacon.running) FrameBeacon.start() ;
+		if (!FrameBeacon.running) 
+		{
+			FrameBeacon.start() ;
+		}
 		FrameBeacon.addListener(listener) ;
 	}
 
 	/**
+	 * Returns {@code true} if the listener is registered in the FrameBeacon tool.
+	 * @return {@code true} if the listener is registered in the FrameBeacon tool.
+	 */
+	static public function containsListener(listener):Boolean
+	{
+		return ArrayUtil.contains( FrameBeacon._listeners, listener ) ;
+	}
+
+	/**
 	 * Initialize the protected MovieClip who notify the onEnterFrame event.
+	 * @return the internal reference of the movieclip used by the FrameBeacon tool class.
 	 */
 	static public function initialize():MovieClip 
 	{
@@ -103,6 +119,7 @@ class vegas.util.FrameBeacon
 
 	/**
 	 * Returns {@code true} if this instance is empty of listeners.
+	 * @return {@code true} if this instance is empty of listeners.
 	 */
 	static public function isEmpty():Boolean 
 	{
@@ -111,6 +128,7 @@ class vegas.util.FrameBeacon
 
 	/**
 	 * Returns the iterator of this FrameBeacon singleton.
+	 * @return the iterator of this FrameBeacon singleton.
 	 */
 	static public function iterator():Iterator 
 	{
@@ -125,13 +143,15 @@ class vegas.util.FrameBeacon
 		FrameBeacon.stop() ;
 		FrameBeacon._mc.swapDepths(_level0.getNextHighestDepth()) ;
 		FrameBeacon._mc.removeMovieClip () ;
+		FrameBeacon._mc = undefined ;
 	}
 
 	/**
 	 * Removes a listener who receive the onEnterFrame event.
 	 * If the {@code FrameBeacon} is empty the event broadcast is stopped.
 	 */
-	static public function removeFrameListener(listener):Void {
+	static public function removeFrameListener(listener):Void 
+	{
 		FrameBeacon.removeListener(listener) ;
 		if (FrameBeacon.isEmpty())
 		{
@@ -140,8 +160,8 @@ class vegas.util.FrameBeacon
 	}
 	
 	/**
-	 * Returns the number of listeners.
-	 * @return the number of listeners.
+	 * Returns the number of listeners in the tool.
+	 * @return the number of listeners in the tool.
 	 */
 	static public function size():Number 
 	{
@@ -172,16 +192,16 @@ class vegas.util.FrameBeacon
 	{
 		return "[FrameBeacon]" ;
 	}
-	
+
+	static private var addListener:Function ;
+
+	static private var broadcastMessage:Function;
+
 	static private var _listeners:Array = new Array() ;
 
 	static private var _mc:MovieClip ;
 
 	static private var _proxy:Function = Delegate.create( FrameBeacon, FrameBeacon.broadcastMessage , "onEnterFrame" ) ; 
-
-	static private var addListener:Function ;
-
-	static private var broadcastMessage:Function;
 
 	static private var removeListener:Function ;
 	

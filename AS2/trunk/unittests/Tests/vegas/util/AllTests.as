@@ -45,7 +45,7 @@ class Tests.vegas.util.AllTests extends TestCase
 	{
         var suite:TestSuite = new TestSuite( "Tests.vegas.util" );
         
-        // suite.simpleTrace = true;
+        // suite.simpleTrace = true ;
 		
 		suite.addTest( Tests.vegas.util.comparators.AllTests.suite() ) ;
 		suite.addTest( Tests.vegas.util.factory.AllTests.suite() ) ;
@@ -55,8 +55,8 @@ class Tests.vegas.util.AllTests extends TestCase
 		suite.addTest( Tests.vegas.util.serialize.AllTests.suite() ) ;
 		suite.addTest( Tests.vegas.util.visitor.AllTests.suite() ) ;
 		
-        // suite.addTest( new TestSuite( Tests.vegas.util.TestAbstactTimer ) ) ;
-        // suite.addTest( new TestSuite( Tests.vegas.util.TestAbstractTypeable ) ) ;
+        suite.addTest( new TestSuite( Tests.vegas.util.TestAbstactTimer ) ) ;
+        suite.addTest( new TestSuite( Tests.vegas.util.TestAbstractTypeable ) ) ;
         suite.addTest( new TestSuite( Tests.vegas.util.TestArrayUtil ) ) ;
         suite.addTest( new TestSuite( Tests.vegas.util.TestAttribute ) ) ;
         suite.addTest( new TestSuite( Tests.vegas.util.TestAttributeType ) ) ;
@@ -66,16 +66,17 @@ class Tests.vegas.util.AllTests extends TestCase
         suite.addTest( new TestSuite( Tests.vegas.util.TestCopier ) ) ;
         suite.addTest( new TestSuite( Tests.vegas.util.TestDateUtil ) ) ;
         suite.addTest( new TestSuite( Tests.vegas.util.TestErrorUtil ) ) ;
-        // suite.addTest( new TestSuite( Tests.vegas.util.TestFrameBeacon ) ) ;
-        // suite.addTest( new TestSuite( Tests.vegas.util.TestFrameTimer ) ) ;
+        suite.addTest( new TestSuite( Tests.vegas.util.TestFrameBeacon ) ) ;
+        suite.addTest( new TestSuite( Tests.vegas.util.TestFrameTimer ) ) ;
         suite.addTest( new TestSuite( Tests.vegas.util.TestFunctionUtil ) ) ;
         suite.addTest( new TestSuite( Tests.vegas.util.TestMathsUtil ) ) ;
         suite.addTest( new TestSuite( Tests.vegas.util.TestMixin ) ) ;
         suite.addTest( new TestSuite( Tests.vegas.util.TestNumberUtil ) ) ;
         suite.addTest( new TestSuite( Tests.vegas.util.TestObjectUtil ) ) ;
+        suite.addTest( new TestSuite( Tests.vegas.util.TestResolverMultiProxy ) ) ;
         suite.addTest( new TestSuite( Tests.vegas.util.TestResolverProxy ) ) ;
         suite.addTest( new TestSuite( Tests.vegas.util.TestStringUtil ) ) ;
-        // suite.addTest( new TestSuite( Tests.vegas.util.TestTimer ) ) ;
+        suite.addTest( new TestSuite( Tests.vegas.util.TestTimer ) ) ;
         suite.addTest( new TestSuite( Tests.vegas.util.TestTypeUtil ) ) ;
         
         return suite ;

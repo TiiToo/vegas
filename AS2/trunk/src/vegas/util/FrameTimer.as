@@ -82,7 +82,16 @@ class vegas.util.FrameTimer extends AbstractTimer
 	 */
 	/*override*/ public function clone() 
 	{
-		return new FrameTimer(_delay, _repeatCount) ;
+		return new FrameTimer( getDelay(), getRepeatCount() ) ;
+	}
+
+	/**
+	 * Returns a deep copy of this object.
+	 * @return a deep copy of this object.
+	 */
+	/*override*/ public function copy() 
+	{
+		return new FrameTimer( getDelay(), getRepeatCount() ) ;
 	}
 
 	/**
