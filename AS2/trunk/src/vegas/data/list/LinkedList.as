@@ -22,6 +22,8 @@
 */
 
 import vegas.core.CoreObject;
+import vegas.core.ICloneable;
+import vegas.core.ICopyable;
 import vegas.core.IEquality;
 import vegas.data.Collection;
 import vegas.data.collections.CollectionFormat;
@@ -35,6 +37,7 @@ import vegas.data.list.LinkedListEntry;
 import vegas.data.Queue;
 import vegas.errors.IndexOutOfBoundsError;
 import vegas.errors.NoSuchElementError;
+import vegas.util.Copier;
 import vegas.util.serialize.Serializer;
 
 /**
@@ -49,7 +52,7 @@ import vegas.util.serialize.Serializer;
  * }
  * @author eKameleon
  */
-class vegas.data.list.LinkedList extends CoreObject implements IEquality, List, Queue
+class vegas.data.list.LinkedList extends CoreObject implements ICloneable, ICopyable, IEquality, List, Queue
 {
 
 	/**
@@ -84,8 +87,8 @@ class vegas.data.list.LinkedList extends CoreObject implements IEquality, List, 
 	}
 	
 	/**
-	 * Returns the shallow copy of this queue.
-	 * @return the shallow copy of this queue.
+	 * Returns the shallow copy of this LinkedList.
+	 * @return the shallow copy of this LinkedList.
 	 */
 	public function clone() 
 	{
@@ -129,7 +132,21 @@ class vegas.data.list.LinkedList extends CoreObject implements IEquality, List, 
 		}
 		return true ;
 	}
-    
+   
+	/**
+	 * Returns the deep copy of this LinkedList.
+	 * @return the deep copy of this LinkedList.
+	 */
+	public function copy() 
+	{
+		var list:LinkedList = new LinkedList() ;
+		for ( var e:LinkedListEntry = _header.next ; e != _header ; e = e.next )
+		{
+            list.insert( Copier.copy(e.element) ) ;
+		}
+		return list ;	
+	} 
+
 	/**
 	 * Retrieves and removes the head of this queue.
 	 * @return {@code true} if the head of the queue is remove.

@@ -58,12 +58,14 @@ class Tests.vegas.util.AllTests extends TestCase
         // suite.addTest( new TestSuite( Tests.vegas.util.TestAbstactTimer ) ) ;
         // suite.addTest( new TestSuite( Tests.vegas.util.TestAbstractTypeable ) ) ;
         suite.addTest( new TestSuite( Tests.vegas.util.TestArrayUtil ) ) ;
-        // suite.addTest( new TestSuite( Tests.vegas.util.TestAttribute ) ) ;
+        suite.addTest( new TestSuite( Tests.vegas.util.TestAttribute ) ) ;
+        suite.addTest( new TestSuite( Tests.vegas.util.TestAttributeType ) ) ;
         suite.addTest( new TestSuite( Tests.vegas.util.TestBooleanUtil ) ) ;
         suite.addTest( new TestSuite( Tests.vegas.util.TestComparater ) ) ;
         suite.addTest( new TestSuite( Tests.vegas.util.TestConstructorUtil ) ) ;
-        // suite.addTest( new TestSuite( Tests.vegas.util.TestCopier ) ) ;
+        suite.addTest( new TestSuite( Tests.vegas.util.TestCopier ) ) ;
         suite.addTest( new TestSuite( Tests.vegas.util.TestDateUtil ) ) ;
+        suite.addTest( new TestSuite( Tests.vegas.util.TestErrorUtil ) ) ;
         // suite.addTest( new TestSuite( Tests.vegas.util.TestFrameBeacon ) ) ;
         // suite.addTest( new TestSuite( Tests.vegas.util.TestFrameTimer ) ) ;
         suite.addTest( new TestSuite( Tests.vegas.util.TestFunctionUtil ) ) ;

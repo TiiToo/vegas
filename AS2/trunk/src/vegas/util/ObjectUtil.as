@@ -64,7 +64,7 @@ class vegas.util.ObjectUtil
 			}
 			else 
 			{
-		  		obj[prop] = Copier.copy(obj[prop]) ; 
+		  		obj[prop] = Copier.copy( o[prop] ) ; 
 		  	}
 		}
 		return obj ;

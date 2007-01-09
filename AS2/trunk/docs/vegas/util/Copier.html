@@ -5,4 +5,15 @@ document.quicknavBasePath="../../index-files";
  The <code> Copier</code> utility class is an all-static class with a method to returns a copy representation of an object.
  </p></div><div class="type_indexes"><div class="method_index"><h2>Method Index</h2><a href="#copy" title="static public function copy(o)">copy()</a></div></div><div class="type_details"><div class="method_detail_list"><h2>Method Detail</h2><div class="method_details alt_row"><a name="copy"></a><h3>copy</h3><code class="method_synopsis">static public function <strong class="method_name">copy</strong>(o)</code><div class="method_info"><p>
  Returns a deep copy of the specified object passed in argument. You can use a <code> ICopyable</code> instance or a native object.
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">import</span> vegas.data.list.LinkedList ;
+ <span class="key">import</span> vegas.util.Copier ;
+ <span class="key">var</span> list:LinkedList = <span class="key">new</span> LinkedList() ;
+ list.insert(<span class="str_const">"item1"</span>) ;
+ list.insert(<span class="str_const">"item2"</span>) ;
+ <span class="key">var</span> copy:LinkedList = LinkedList(Copier.copy(list)) ;
+ trace( copy.equals(list) ) ; <span class="comment">// true</span>
+ </pre>
+ </p><h4>Return</h4><p class="extra_info"> a deep copy of the specified object passed in argument.
 	 </p></div></div></div></div><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.util" class="button">Package</a></li><li><span class="button nav_current">Class</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

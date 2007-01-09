@@ -44,11 +44,9 @@ class Tests.vegas.util.TestObjectUtil extends TestCase
 
 	public function testCopy():Void
 	{
-		var ar:Array = [2, 3, 4] ;
-		var o:Object = { prop1:ar , prop2:"hello world"} ;
-		var clone:Object = ObjectUtil.clone(o) ;
-		assertEquals( clone, o , "O_U_02_01 - static copy failed.") ;
-		assertTrue( clone.prop2 == o.prop2 , "O_U_02_02 - static copy failed : " + clone.prop1) ;
+		var o1:Object = { prop1:[2, 3, 4] , prop2:"hello world"} ;
+		var o2:Object = { prop1:[2, 3, 4], prop2:"hello world"} ;
+		assertEquals( o1, o2 , "O_U_02_01 - static copy failed.") ;
 	}
 	
 	public function testHasProperty():Void

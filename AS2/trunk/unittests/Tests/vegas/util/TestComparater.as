@@ -111,14 +111,14 @@ class Tests.vegas.util.TestComparater extends TestCase
 		var o1:Object = { prop1:"value1", prop2:"value2" } ;
 		var o2:Object = { prop1:"value1", prop2:"value2" } ;
 		var o3:Object = {} ;
-		assertTrue( Comparater.compare(o1, o1) , "COMP_01_17 - static compare failed with Object." ) ;
-		assertTrue( Comparater.compare(o1, o2) , "COMP_01_18 - static compare failed with Object." ) ;
-		assertFalse( Comparater.compare(o1, o3) , "COMP_01_18 - static compare failed with Object." ) ;
+		assertTrue( Comparater.compare(o1, o1) , "COMP_01_19 - static compare failed with Object." ) ;
+		assertTrue( Comparater.compare(o1, o2) , "COMP_01_20 - static compare failed with Object." ) ;
+		assertFalse( Comparater.compare(o1, o3) , "COMP_01_21 - static compare failed with Object." ) ;
 
 		// String
 		
-		assertTrue( Comparater.compare("hello", "hello") , "COMP_01_17 - static compare failed with Function." ) ;
-		assertFalse( Comparater.compare("hello", "world") , "COMP_01_18 - static compare failed with Function." ) ;
+		assertTrue( Comparater.compare("hello", "hello") , "COMP_01_22 - static compare failed with String." ) ;
+		assertFalse( Comparater.compare("hello", "world") , "COMP_01_23 - static compare failed with String." ) ;
 
 	}
 
@@ -182,9 +182,9 @@ class Tests.vegas.util.TestComparater extends TestCase
 	
 	public function testStringCompare():Void
     {
-		assertTrue( Comparater.stringCompare("hello", "hello") , "COMP_09_01 - static stringCompare failed with Function." ) ;
-		assertTrue( Comparater.stringCompare("", "") , "COMP_09_02 - static stringCompare failed with Function." ) ;
-		assertFalse( Comparater.stringCompare("hello", "world") , "COMP_09_03 - static stringCompare failed with Function." ) ;
+		assertTrue( Comparater.stringCompare("hello", "hello") , "COMP_09_01 - static stringCompare failed with String." ) ;
+		assertTrue( Comparater.stringCompare("", "") , "COMP_09_02 - static stringCompare failed with String." ) ;
+		assertFalse( Comparater.stringCompare("hello", "world") , "COMP_09_03 - static stringCompare failed with String." ) ;
     }
 
 }

@@ -22,7 +22,6 @@
 */
 
 import vegas.core.CoreObject;
-import vegas.core.IFormattable;
 import vegas.util.AttributeType;
 
 /**
@@ -31,20 +30,25 @@ import vegas.util.AttributeType;
  * @author eKameleon
  * @see ASSetPropFlags global and no documented function.
  */
-class vegas.util.Attribute extends CoreObject implements IFormattable 
+class vegas.util.Attribute extends CoreObject
 {
 
 	/**
 	 * Creates a new Attribute instance.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.Attribute ;
+	 * var attr:Attribute = new Attribute(true, true, true) ;
+	 * }
 	 * @param dontEnum a boolean to defined if the object is enumerable or not.
 	 * @param dontDelete a boolean to defined if the object can be remove or not.
 	 * @param readOnly a boolean to defined if the object is readable only or not.
 	 */
 	public function Attribute(dontEnum:Boolean, dontDelete:Boolean, readOnly:Boolean) 
 	{
-		dontEnum = dontEnum || false ;
-        dontDelete = dontDelete || false ;
-		readOnly = readOnly || false ;
+		this.dontEnum = dontEnum == true ;
+        this.dontDelete = dontDelete == true ;
+		this.readOnly = readOnly == true ;
 	}
 
 	/**
@@ -66,6 +70,7 @@ class vegas.util.Attribute extends CoreObject implements IFormattable
 	 * Returns the attribut instance and configuration of an object.
 	 * @param obj the object to defined the {@code Attribute} instance.
 	 * @param property the property in the object to check.
+	 * @return the attribut instance and configuration of an object.
 	 */
     static public function getAttribute(obj:Object, property:String):Attribute 
     {
@@ -99,7 +104,7 @@ class vegas.util.Attribute extends CoreObject implements IFormattable
 	 */
     static public function isDontEnum(obj, property:String):Boolean 
     {
-        return !obj.isPropertyEnumerable(obj) ;
+        return !obj.isPropertyEnumerable(property) ;
 	}
     
 	/**
@@ -153,11 +158,23 @@ class vegas.util.Attribute extends CoreObject implements IFormattable
 	{
         var data:Array = [];
         var sep:String = ",";
-        if(readOnly) data.push( "readOnly" ) ;
-		if(dontDelete) data.push( "dontDelete" ) ;
-		if(dontEnum) data.push( "dontEnum" ) ;
-        if(data.length == 0) data.push("none") ;
-        return "[Attribute : " + data.join( sep ) + "]";
+        if(readOnly) 
+        {
+        	data.push( "readOnly" ) ;
+        }
+		if(dontDelete) 
+		{
+			data.push( "dontDelete" ) ;
+		}
+		if(dontEnum) 
+		{
+			data.push( "dontEnum" ) ;
+		}
+        if(data.length == 0) 
+        {
+        	data.push("none") ;
+        }
+        return "[Attribute:" + data.join( sep ) + "]";
 	}
 	
 	/**

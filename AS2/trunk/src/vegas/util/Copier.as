@@ -25,6 +25,7 @@ import vegas.core.ICopyable;
 import vegas.util.ArrayUtil;
 import vegas.util.BooleanUtil;
 import vegas.util.DateUtil;
+import vegas.util.ErrorUtil;
 import vegas.util.FunctionUtil;
 import vegas.util.ObjectUtil;
 import vegas.util.TypeUtil;
@@ -38,6 +39,17 @@ class vegas.util.Copier
 
 	/**
 	 * Returns a deep copy of the specified object passed in argument. You can use a {@code ICopyable} instance or a native object.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.data.list.LinkedList ;
+	 * import vegas.util.Copier ;
+	 * var list:LinkedList = new LinkedList() ;
+	 * list.insert("item1") ;
+	 * list.insert("item2") ;
+	 * var copy:LinkedList = LinkedList(Copier.copy(list)) ;
+	 * trace( copy.equals(list) ) ; // true
+	 * }
+	 * @return a deep copy of the specified object passed in argument.
 	 */	
 	static public function copy( o ) 
 	{
@@ -76,6 +88,10 @@ class vegas.util.Copier
 		else if (TypeUtil.typesMatch(o, String))
 		{
 			return o.valueOf() ;
+		}
+		else if (TypeUtil.typesMatch(o, Error))
+		{
+			return ErrorUtil.copy(o) ;
 		}
 		else if (typeof(o) === "object")
 		{

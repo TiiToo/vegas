@@ -58,17 +58,17 @@ class vegas.util.AttributeType
 	/**
 	 * The DELETE_ONLY value(5).
 	 */
-	static public var DELETE_ONLY:Number = DONT_ENUM | READ_ONLY ; // 5
+	static public var DELETE_ONLY:Number = DONT_ENUM | READ_ONLY ;
 
 	/**
 	 * The ENUM_ONLY value(6).
 	 */
-	static public var ENUM_ONLY:Number = READ_ONLY | DONT_DELETE ; // 6
+	static public var ENUM_ONLY:Number = READ_ONLY | DONT_DELETE ;
 
 	/**
 	 * The LOCKED value(7).
 	 */
-	static public var LOCKED:Number = DONT_DELETE | DONT_ENUM | READ_ONLY ; // 7
+	static public var LOCKED:Number = DONT_DELETE | DONT_ENUM | READ_ONLY ;
 
 
 	static private var __ASPF__ = _global.ASSetPropFlags(AttributeType, null, 7, 7) ;
