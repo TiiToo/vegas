@@ -21,14 +21,14 @@
   
 */
 
+import vegas.errors.AbstractError;
 import vegas.errors.ErrorElement;
-import vegas.errors.FatalError;
 
 /**
  * Signals that a method has been invoked at an illegal or inappropriate time.
  * @author eKameleon
  */
-class vegas.errors.IllegalStateError extends FatalError 
+class vegas.errors.IllegalStateError extends AbstractError 
 {
 	
 	/**

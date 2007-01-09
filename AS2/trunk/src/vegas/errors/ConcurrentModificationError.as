@@ -21,14 +21,14 @@
   
 */
 
+import vegas.errors.AbstractError;
 import vegas.errors.ErrorElement;
-import vegas.errors.FatalError;
 
 /**
  * The error throws when methods that have detected concurrent modification of an object when such modification is not permissible.
  * @author eKameleon
  */
-class vegas.errors.ConcurrentModificationError extends FatalError 
+class vegas.errors.ConcurrentModificationError extends AbstractError 
 {
 
 	/**

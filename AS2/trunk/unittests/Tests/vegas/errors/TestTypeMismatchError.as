@@ -23,7 +23,7 @@
 
 import buRRRn.ASTUce.TestCase;
 
-import vegas.errors.FatalError;
+import vegas.errors.AbstractError;
 import vegas.errors.TypeMismatchError;
 
 /**
@@ -52,7 +52,7 @@ class Tests.vegas.errors.TestTypeMismatchError extends TestCase
 	
 	public function testInherit()
 	{
-		assertTrue( e instanceof FatalError , "TYPE_MIS_ER_01 - inherit FatalError failed.") ;
+		assertTrue( e instanceof AbstractError , "TYPE_MIS_ER_01 - inherit AbstractError failed.") ;
 	}	
 	
 	public function testHashCode():Void

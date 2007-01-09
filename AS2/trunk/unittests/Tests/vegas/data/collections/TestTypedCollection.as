@@ -34,9 +34,6 @@ import vegas.util.AbstractTypeable;
 class Tests.vegas.data.collections.TestTypedCollection extends TestCase 
 {
 	
-	/**
-	 * Creates a new TestCoreObject instance.
-	 */
 	function TestTypedCollection(name : String) 
 	{
 		super(name);

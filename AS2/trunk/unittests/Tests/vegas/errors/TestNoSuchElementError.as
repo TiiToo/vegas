@@ -23,7 +23,7 @@
 
 import buRRRn.ASTUce.TestCase;
 
-import vegas.errors.FatalError;
+import vegas.errors.AbstractError;
 import vegas.errors.NoSuchElementError;
 
 /**
@@ -52,7 +52,7 @@ class Tests.vegas.errors.TestNoSuchElementError extends TestCase
 	
 	public function testInherit()
 	{
-		assertTrue( e instanceof FatalError , "NO_SUCH_ELMT_ER_01 - inherit FatalError failed.") ;
+		assertTrue( e instanceof AbstractError , "NO_SUCH_ELMT_ER_01 - inherit AbstractError failed.") ;
 	}	
 	
 	public function testHashCode():Void

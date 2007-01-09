@@ -39,9 +39,6 @@ import vegas.util.TypeUtil;
 class Tests.vegas.data.bag.TestHashBag extends TestCase 
 {
 	
-	/**
-	 * Creates a new TestCoreObject instance.
-	 */
 	function TestHashBag(name : String) 
 	{
 		super(name);

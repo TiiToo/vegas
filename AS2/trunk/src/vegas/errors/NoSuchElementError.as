@@ -21,14 +21,14 @@
   
 */
 
+import vegas.errors.AbstractError;
 import vegas.errors.ErrorElement;
-import vegas.errors.FatalError;
 
 /**
  * Thrown by an Enumeration to indicate that there are no more elements in the enumeration.
  * @author eKameleon
  */
-class vegas.errors.NoSuchElementError extends FatalError 
+class vegas.errors.NoSuchElementError extends AbstractError 
 {
 
 	/**

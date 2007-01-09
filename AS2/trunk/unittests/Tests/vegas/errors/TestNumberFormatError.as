@@ -23,7 +23,7 @@
 
 import buRRRn.ASTUce.TestCase;
 
-import vegas.errors.FatalError;
+import vegas.errors.AbstractError;
 import vegas.errors.NumberFormatError;
 
 /**
@@ -52,7 +52,7 @@ class Tests.vegas.errors.TestNumberFormatError extends TestCase
 	
 	public function testInherit()
 	{
-		assertTrue( e instanceof FatalError , "NUM_FORM_ER_01 - inherit FatalError failed.") ;
+		assertTrue( e instanceof AbstractError , "NUM_FORM_ER_01 - inherit AbstractError failed.") ;
 	}	
 	
 	public function testHashCode():Void

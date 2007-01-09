@@ -41,9 +41,6 @@ import vegas.util.TypeUtil;
 class Tests.vegas.data.bag.TestAbstractBag extends TestCase 
 {
 	
-	/**
-	 * Creates a new TestCoreObject instance.
-	 */
 	function TestAbstractBag(name : String) 
 	{
 		super(name);

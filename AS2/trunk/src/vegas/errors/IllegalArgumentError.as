@@ -21,14 +21,14 @@
   
 */
 
+import vegas.errors.AbstractError;
 import vegas.errors.ErrorElement;
-import vegas.errors.FatalError;
 
 /**
  * The error throws when an argument in a function is illegal.
  * @author eKameleon
  */
-class vegas.errors.IllegalArgumentError extends FatalError 
+class vegas.errors.IllegalArgumentError extends AbstractError 
 {
 
 	/**

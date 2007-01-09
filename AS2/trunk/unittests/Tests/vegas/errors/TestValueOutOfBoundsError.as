@@ -23,7 +23,7 @@
 
 import buRRRn.ASTUce.TestCase;
 
-import vegas.errors.FatalError;
+import vegas.errors.AbstractError;
 import vegas.errors.ValueOutOfBoundsError;
 
 /**
@@ -52,7 +52,7 @@ class Tests.vegas.errors.TestValueOutOfBoundsError extends TestCase
 	
 	public function testInherit()
 	{
-		assertTrue( e instanceof FatalError , "VAL_OUT_OF_BOUND_ER_01 - inherit FatalError failed.") ;
+		assertTrue( e instanceof AbstractError , "VAL_OUT_OF_BOUND_ER_01 - inherit AbstractError failed.") ;
 	}	
 	
 	public function testHashCode():Void

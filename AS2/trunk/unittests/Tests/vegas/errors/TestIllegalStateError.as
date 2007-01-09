@@ -23,7 +23,7 @@
 
 import buRRRn.ASTUce.TestCase;
 
-import vegas.errors.FatalError;
+import vegas.errors.AbstractError;
 import vegas.errors.IllegalStateError;
 
 /**
@@ -52,7 +52,7 @@ class Tests.vegas.errors.TestIllegalStateError extends TestCase
 	
 	public function testInherit()
 	{
-		assertTrue( e instanceof FatalError , "ILLEG_STAT_ER_01 - inherit FatalError failed.") ;
+		assertTrue( e instanceof AbstractError , "ILLEG_STAT_ER_01 - inherit AbstractError failed.") ;
 	}	
 	
 	public function testHashCode():Void

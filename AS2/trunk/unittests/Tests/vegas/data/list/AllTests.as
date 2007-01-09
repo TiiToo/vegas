@@ -49,7 +49,7 @@ class Tests.vegas.data.list.AllTests extends TestCase
 
 		// suite.addTest( new TestSuite( Tests.vegas.data.list.TestAbstractList  ) ) ;
 		// suite.addTest( new TestSuite( Tests.vegas.data.list.TestArrayList  ) ) ;
-		// suite.addTest( new TestSuite( Tests.vegas.data.list.TestLinkedList  ) ) ;
+		suite.addTest( new TestSuite( Tests.vegas.data.list.TestLinkedList  ) ) ;
 		// suite.addTest( new TestSuite( Tests.vegas.data.list.TestLinkedListEntry  ) ) ;
 		// suite.addTest( new TestSuite( Tests.vegas.data.list.TestSortedArrayList  ) ) ;
         

@@ -32,17 +32,27 @@ import vegas.errors.IndexOutOfBoundsError;
 import vegas.errors.NoSuchElementError;
 import vegas.errors.UnsupportedOperation;
 
-// FIXME : with seek method if the value is out of bounds the error is throw but the message is [Object] ???? 
-
 /**
  * Converts a {@code LinkedList} to a specific {@code ListIterator}.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import vegas.data.iterator.LinkedListIterator ;
+ * import vegas.data.list.LinkedList ;
+ * 
+ * var list:LinkedList = new LinkedList() ;
+ * list.insert("item1") ;
+ * list.insert("item2") ;
+ * list.insert("item3") ;
+ * var it:LinkedListIterator = LinkedListIterator( list.listIterator(2) ) ;
+ * trace(it.hasPrevious() + " : " + it.previous()) ; // true : item2
+ * }
  * @author eKameleon
  */
 class vegas.data.iterator.LinkedListIterator extends CoreObject implements ListIterator
 {
 
 	/**
-	 * Creates a new ListItr instance.
+	 * Creates a new LinkedListIterator instance.
 	 */
 	function LinkedListIterator( index:Number , list:LinkedList )
 	{
@@ -52,9 +62,9 @@ class vegas.data.iterator.LinkedListIterator extends CoreObject implements ListI
 			throw new IllegalArgumentError(this + " constructor failed, the list passed in argument not must be 'null' or 'undefined'.") ;	
 		}
 		
-		_list = list ;
+		this._list = list ;
 		
-		seek( index ) ;
+		seek(index) ;
 		
 	}
 
@@ -63,7 +73,7 @@ class vegas.data.iterator.LinkedListIterator extends CoreObject implements ListI
 	 */
 	public function checkForComodification() 
 	{
-	    if ( _list.getModCount() != _expectedModCount )
+	    if ( this._list.getModCount() != this._expectedModCount )
 	    {
 			throw new ConcurrentModificationError(this + " check for comodification failed with a LinkedList." ) ;
 		}
@@ -71,10 +81,11 @@ class vegas.data.iterator.LinkedListIterator extends CoreObject implements ListI
 
 	/**
 	 * Returns {@code true} if the iteration has more elements.
+	 * @return {@code true} if the iteration has more elements.
 	 */	
 	public function hasNext():Boolean 
 	{
-		return _nextIndex != _list.size() ;
+		return this._nextIndex != this._list.size() ;
 	}
 
 	/**
@@ -91,7 +102,7 @@ class vegas.data.iterator.LinkedListIterator extends CoreObject implements ListI
 	 */
 	public function hasPrevious():Boolean 
 	{
-		 return _nextIndex != 0 ;
+		 return this._nextIndex != 0 ;
 	}
 
 	/**
@@ -112,15 +123,16 @@ class vegas.data.iterator.LinkedListIterator extends CoreObject implements ListI
 	 */
 	public function insert( o ):Void 
 	{
-	    checkForComodification();
-	    _lastReturned = _list.getHeader() ;
-	    _list._insertBefore(o, _next) ;
-	    _nextIndex ++ ;
-	    _expectedModCount ++ ;
+	    this.checkForComodification();
+	    this._lastReturned = this._list.getHeader() ;
+	    this._list._insertBefore(o, this._next) ;
+	    this._nextIndex ++ ;
+	    this._expectedModCount ++ ;
 	}
 
 	/**
 	 * Unsupported operation in this iterator, uses nextIndex() and previousIndex() method.
+	 * @throws UnsupportedOperation if the user call this method, this method is unsupported.
 	 */
 	public function key() 
 	{
@@ -130,53 +142,57 @@ class vegas.data.iterator.LinkedListIterator extends CoreObject implements ListI
 
 	/**
 	 * Returns the next element in the iteration.
+	 * @return the next element in the iteration.
 	 */
 	public function next() 
 	{
-		checkForComodification();
+		this.checkForComodification();
 		
-	    if ( _nextIndex == _list.size() )
+	    if ( this._nextIndex == this._list.size() )
 	    {
 			throw new NoSuchElementError(this + " 'next' method failed.");
 	    }
 
-	    _lastReturned = _next ;
-	    _next = _next.next ;
-	    _nextIndex ++ ;
+	    this._lastReturned = this._next ;
+	   this. _next = this._next.next ;
+	    this._nextIndex ++ ;
 	    
-	    return _lastReturned.element ;
+	    return this._lastReturned.element ;
 	}
 
 	/**
 	 * Returns the index of the element that would be returned by a subsequent call to next.
+	 * @return the index of the element that would be returned by a subsequent call to next.
 	 */
 	public function nextIndex() : Number 
 	{
-		return _nextIndex ; 
+		return this._nextIndex ; 
 	}
 
 	/**
 	 * Returns the previous element in the collection.
+	 * @return the previous element in the collection.
 	 */
 	public function previous() 
 	{
-	    if (_nextIndex == 0)
+	    if (this._nextIndex == 0)
 	    {
 			throw new NoSuchElementError(this + " 'previous' method failed.");
 	    }
 
-	    _lastReturned = _next = _next.previous ;
-	    _nextIndex-- ;
-	    checkForComodification();
-	    return _lastReturned.element ;
+	   	this._lastReturned = this._next = this._next.previous ;
+	    this._nextIndex-- ;
+	    this.checkForComodification();
+	    return this._lastReturned.element ;
 	}
 
 	/**
 	 * Returns the index of the element that would be returned by a subsequent call to previous.
+	 * @return the index of the element that would be returned by a subsequent call to previous.
 	 */
 	public function previousIndex() : Number 
 	{
-		return _nextIndex - 1 ;
+		return this._nextIndex - 1 ;
 	}
 
 	/**
@@ -184,26 +200,26 @@ class vegas.data.iterator.LinkedListIterator extends CoreObject implements ListI
 	 */
 	public function remove() 
 	{
-		checkForComodification() ;
-        var lastNext:LinkedListEntry = _lastReturned.next;
+		this.checkForComodification() ;
+        var lastNext:LinkedListEntry = this._lastReturned.next;
 		try 
 		{
-            _list._removeEntry( _lastReturned ) ;
+           this._list._removeEntry( this._lastReturned ) ;
         }
         catch ( e:NoSuchElementError ) 
         {
 			throw new IllegalStateError( this + " 'remove' method failed.") ;
 		}
-	    if ( _next == _lastReturned)
+	    if ( this._next == this._lastReturned)
 	    {
-			_next = lastNext ;
+			this._next = lastNext ;
 	    }
 		else
 		{
-			_nextIndex--;
+			this._nextIndex-- ;
 		}
-	    _lastReturned = _list.getHeader() ;
-	    _expectedModCount++;
+	    this._lastReturned = this._list.getHeader() ;
+	    this._expectedModCount++;
 	}
 
 	/**
@@ -217,11 +233,13 @@ class vegas.data.iterator.LinkedListIterator extends CoreObject implements ListI
 	/**
 	 * Change the position of the internal pointer of the iterator (optional operation).
 	 */
-	public function seek(n : Number) : Void 
+	public function seek(n:Number) : Void 
 	{
-		_lastReturned = _list.getHeader() ;
-		_expectedModCount = _list.getModCount() ;
+
+		this._lastReturned = this._list.getHeader() ;
 		
+		this._expectedModCount = this._list.getModCount() ;
+
 		var size:Number = _list.size() ;
 		
 		if (n < 0 || n > size)
@@ -260,34 +278,34 @@ class vegas.data.iterator.LinkedListIterator extends CoreObject implements ListI
 			throw new IllegalStateError(this + " 'set' method failed.");
 		}
 	    
-	    checkForComodification();
-	    _lastReturned.element = o ;
+	    this.checkForComodification();
+	    this._lastReturned.element = o ;
 	    
 	}
 
 	/**
 	 * The last list entry returned.
 	 */
-	private var _lastReturned:LinkedListEntry;
+	private var _lastReturned:LinkedListEntry = null ;
 	
 	/**
 	 * The list reference of this iterator.
 	 */
-	private var _list:LinkedList ;
+	private var _list:LinkedList = null ;
 	
 	/**
 	 * The next entry.
 	 */
-	private var _next:LinkedListEntry ;
+	private var _next:LinkedListEntry = null ;
 	
 	/**
 	 * The next index in the iterator.
 	 */
-	private var _nextIndex:Number ;
+	private var _nextIndex:Number = null ;
 	
 	/**
 	 * The internal expected mod count value.
 	 */
-	private var _expectedModCount:Number ;
+	private var _expectedModCount:Number = null ;
 
 }

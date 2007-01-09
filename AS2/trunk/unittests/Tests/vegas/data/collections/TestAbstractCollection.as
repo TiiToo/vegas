@@ -36,9 +36,6 @@ import vegas.data.iterator.Iterator;
 class Tests.vegas.data.collections.TestAbstractCollection extends TestCase 
 {
 	
-	/**
-	 * Creates a new TestCoreObject instance.
-	 */
 	function TestAbstractCollection(name : String) 
 	{
 		super(name);

@@ -42,6 +42,11 @@ import vegas.util.serialize.Serializer;
  * <p>Implements all optional list operations, and permits all elements (including null).</p>
  * <p>In addition to implementing the List interface, the {@code LinkedList} class provides uniformly named methods to get, remove and insert an element at the beginning and end of the list.</p>
  * <p>These operations allow linked lists to be used as a stack, queue, etc.</p>
+ * <p><b>Example :</b></p>
+ * {@code
+ * import vegas.data.list.LinkedList ;
+ * var list:LinkedList = new LinkedList() ;
+ * }
  * @author eKameleon
  */
 class vegas.data.list.LinkedList extends CoreObject implements IEquality, List, Queue
@@ -80,6 +85,7 @@ class vegas.data.list.LinkedList extends CoreObject implements IEquality, List, 
 	
 	/**
 	 * Returns the shallow copy of this queue.
+	 * @return the shallow copy of this queue.
 	 */
 	public function clone() 
 	{
@@ -230,6 +236,7 @@ class vegas.data.list.LinkedList extends CoreObject implements IEquality, List, 
 	
 	/**
 	 * Returns the header entry of this list.
+	 * @return the header entry of this list.
 	 */
 	public function getHeader():LinkedListEntry
 	{
@@ -326,7 +333,7 @@ class vegas.data.list.LinkedList extends CoreObject implements IEquality, List, 
 	}
 
 	/**
-	 * Inserts all of the elements in the spe	cified collection into this list at the specified position (optional operation).
+	 * Inserts all of the elements in the specified collection into this list at the specified position (optional operation).
 	 */
     public function insertAllAt( index:Number, c:Collection):Boolean
     {
@@ -404,10 +411,11 @@ class vegas.data.list.LinkedList extends CoreObject implements IEquality, List, 
 
 	/**
 	 * Returns the iterator of this object.
+	 * @return the iterator of this object.
 	 */
 	public function iterator():Iterator 
 	{
-		return listIterator() ;
+		return listIterator(0) ;
 	}
 
     /**
@@ -455,6 +463,7 @@ class vegas.data.list.LinkedList extends CoreObject implements IEquality, List, 
 
 	/**
 	 * Returns a list iterator of the elements in this list (in proper sequence).
+	 * @return a list iterator of the elements in this list (in proper sequence).
 	 */
 	public function listIterator():ListIterator 
 	{
@@ -536,28 +545,55 @@ class vegas.data.list.LinkedList extends CoreObject implements IEquality, List, 
     
 	/**
 	 * Removes all elements defined in the specified Collection in the list.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.data.collections.SimpleCollection ;
+	 * import vegas.data.list.LinkedList ;
+	 * var list:LinkedList = new LinkedList() ;
+	 * list.insert("item1") ;
+	 * list.insert("item2") ;
+	 * trace(list.removeAll(new SimpleCollection(["item1"])) ; // true
+	 * trace(list) ; // {item2}
+	 * }
 	 * @return {@code true} if all elements are find and remove in the list.
 	 */
 	public function removeAll(c:Collection) : Boolean 
 	{
-		var result:Boolean = true ;
-		var i:Iterator = c.iterator() ;
-		while( i.hasNext() )
+		if (c instanceof vegas.data.Collection)
 		{
-			var b:Boolean = remove( i.next()) ;
-			if ( !b )
+			var result:Boolean = true ;
+			var i:Iterator = c.iterator() ;
+			while( i.hasNext() )
 			{
-				result = false ;
+				var b:Boolean = remove( i.next()) ;
+				if ( !b )
+				{
+					result = false ;
+				}
 			}
+			return result ;
 		}
-		return result ;
+		else
+		{
+			return false ;	
+		}
 	}
 
     /**
      * Removes an element at the specified position in this list. 
      * This implementation first gets a list iterator pointing to the indexed element (with {@code listIterator(index)}). 
      * Then, it removes the element with <b>ListIterator</b> remove method.
-     * @param  id index of the element to be removed from the List.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.data.list.LinkedList ;
+	 * var list:LinkedList = new LinkedList() ;
+	 * list.insert("item1") ;
+	 * list.insert("item2") ;
+	 * trace(list.removeAt(1)) ; // item2
+	 * trace(list) ; // {item1}
+	 * }
+     * @param id index of the element to be removed from the List.
+     * @return the value removed in the list.
      */
 	public function removeAt(id : Number) 
 	{
@@ -566,8 +602,19 @@ class vegas.data.list.LinkedList extends CoreObject implements IEquality, List, 
 
     /**
      * Removes the specified count of elements at the specified position in this list.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.data.list.LinkedList ;
+	 * var list:LinkedList = new LinkedList() ;
+	 * list.insert("item1") ;
+	 * list.insert("item2") ;
+	 * list.insert("item3") ;
+	 * list.insert("item4") ;
+	 * list.insert("item5") ;
+	 * var result = list.removesAt(2, 2) ; // {item1,item2,item5}
+	 * trace(result + " : " + list) ; // item1 : {item2,item3,item4}
+	 * }
      * @param  id index of the first element to be removed from the List.
-     * @return len the number of elements that was removed from the list.
      */
 	public function removesAt(id:Number, len:Number) 
 	{
@@ -576,6 +623,17 @@ class vegas.data.list.LinkedList extends CoreObject implements IEquality, List, 
 
     /**
      * Removes and returns the first element from this list.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.data.list.LinkedList ;
+	 * var list:LinkedList = new LinkedList() ;
+	 * list.insert("item1") ;
+	 * list.insert("item2") ;
+	 * list.insert("item3") ;
+	 * list.insert("item4") ;
+	 * var result = list.removeFirst() ;
+	 * trace(result + " : " + list) ; // item1 : {item2,item3,item4}
+	 * }
      * @return the first element from this list.
      * @throws NoSuchElementException if this list is empty.
      */
@@ -586,6 +644,17 @@ class vegas.data.list.LinkedList extends CoreObject implements IEquality, List, 
 
     /**
      * Removes and returns the last element from this list.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.data.list.LinkedList ;
+	 * var list:LinkedList = new LinkedList() ;
+	 * list.insert("item1") ;
+	 * list.insert("item2") ;
+	 * list.insert("item3") ;
+	 * list.insert("item4") ;
+	 * var result = list.removeLast() ;
+	 * trace(result + " : " + list) ; // item4 : {item1,item2,item3}
+	 * }
      * @return the last element from this list.
      * @throws NoSuchElementException if this list is empty.
      */
@@ -596,6 +665,17 @@ class vegas.data.list.LinkedList extends CoreObject implements IEquality, List, 
 
 	/**
 	 * Removes from this list all the elements that are contained between the specific {@code from} and the specific {@code to} position in this list (optional operation).
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * 	var list:LinkedList = new LinkedList() ;
+	 * 	list.insert("item1") ;
+	 * 	list.insert("item2") ;
+	 * 	list.insert("item3") ;
+	 * 	list.insert("item4") ;
+	 * 	list.insert("item5") ;
+	 * 	list.removeRange(2, 4) ; 
+	 * 	trace(list) ; // {item1,item2,item5}
+	 * 	}
 	 */
 	public function removeRange(from:Number, to:Number):Void 
 	{
@@ -614,6 +694,22 @@ class vegas.data.list.LinkedList extends CoreObject implements IEquality, List, 
 
 	/**
 	 * Retains only the elements in this list that are contained in the specified collection (optional operation).
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.data.collections.SimpleCollection ;
+	 * import vegas.data.list.LinkedList ;
+	 * 
+	 * var list:LinkedList = new LinkedList() ;
+	 * list.insert("item1") ;
+	 * list.insert("item2") ;
+	 * list.insert("item3") ;
+	 * list.insert("item4") ;
+	 * list.insert("item5") ;
+	 * var c:SimpleCollection = new SimpleCollection( ["item2", "item4"] ) ;
+	 * var b:Boolean = list.retainAll( c ) ;
+	 * trace("list : " + list + ", is retain ? : " + b) ;
+	 * }
+	 * @return {@code true} if the retainAll operation is success.
 	 */
 	public function retainAll(c : Collection):Boolean 
 	{
@@ -624,7 +720,7 @@ class vegas.data.list.LinkedList extends CoreObject implements IEquality, List, 
 			var next = it.next() ;
 			if ( !c.contains( next ) )
 			{
-				remove(next) ;
+				it.remove(next) ;
 			} 
 		}
 		return c.size() == size() ;
@@ -632,6 +728,15 @@ class vegas.data.list.LinkedList extends CoreObject implements IEquality, List, 
 
     /**
      * Replaces the element at the specified position in this list with the specified element.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.data.list.LinkedList ;
+	 * var list:LinkedList = new LinkedList() ;
+	 * list.insert("item1") ;
+	 * list.insert("item2") ;
+	 * var old = list.setAt( 1, "ITEM2" ) ;
+	 * trace("list : " + list + ", old : " + old) ; // list : {item1,ITEM2}, old : item2
+	 * }
      * @param id index of element to replace.
      * @param o element to be stored at the specified position.
      * @return the element previously at the specified position.
@@ -653,6 +758,14 @@ class vegas.data.list.LinkedList extends CoreObject implements IEquality, List, 
 
 	/**
 	 * Returns the number of elements in this list.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.data.list.LinkedList ;
+	 * var list:LinkedList = new LinkedList() ;
+	 * list.insert("item1") ;
+	 * list.insert("item2") ;
+	 * trace(list.size()) ; // 2
+	 * }
 	 * @return the number of elements in this list.
 	 */
 	public function size():Number
@@ -662,21 +775,68 @@ class vegas.data.list.LinkedList extends CoreObject implements IEquality, List, 
 
 	/**
 	 * Returns a subList of the LinkedList. The subList is an ArrayList instance.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.data.list.LinkedList ;
+	 * 
+	 * var list:LinkedList = new LinkedList() ;
+	 * list.insert("item1") ;
+	 * list.insert("item2") ;
+	 * list.insert("item3") ;
+	 * list.insert("item4") ;
+	 * list.insert("item5") ;
+	 * 
+	 * trace( list.subList(2, 10) ) ; // {item3,item4,item5}
+	 * trace( list.subList(2, -1) ) ; // {}
+	 * trace( list.subList(2, 3) ) ; // {item3}
+	 * trace( list.subList() ) ; // {item1,item2,item3,item4,item5}
+	 * }
+	 * @return a subList of the LinkedList. The subList is an ArrayList instance.
+	 * @see ArrayList
 	 */
-	function subList(fromIndex : Number, toIndex : Number) : List 
+	public function subList(fromIndex : Number, toIndex : Number) : List 
 	{
+		if ( isNaN(fromIndex) )
+		{
+			return clone() ;	
+		}
+		
+		if (fromIndex <0)
+		{
+			fromIndex = 0 ;	
+		}
+		
+		if (toIndex < fromIndex)
+		{
+			toIndex = fromIndex ;
+		}
+		else if (toIndex > size())
+		{
+			toIndex = size() ;	
+		}
 		var l:List = new ArrayList() ;
 		var it:ListIterator = listIterator(fromIndex) ;
-		var d:Number = (fromIndex - toIndex) + 1 ; 
+		var d:Number = (toIndex - fromIndex) + 1 ; 
 		for (var i:Number = fromIndex ; i<= d ; i++) 
 		{
-			l.insert(it.next()) ;
+			var value = it.next();
+			l.insert(value) ;
 		}
 		return l ;
 	}
 
     /**
      * Returns an array containing all of the elements in this list in the correct order.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.data.list.LinkedList ;
+	 * var list:LinkedList = new LinkedList() ;
+	 * list.insert("item1") ;
+	 * list.insert("item2") ;
+	 * list.insert("item3") ;
+	 * list.insert("item4") ;
+	 * trace( list.toArray() ) ; // item1,item2,item3,item4
+	 * }
      * @return an array containing all of the elements in this list in the correct order.
      */
     public function toArray():Array 
@@ -692,6 +852,14 @@ class vegas.data.list.LinkedList extends CoreObject implements IEquality, List, 
 
 	/**
 	 * Returns a Eden representation of the object.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * var list:LinkedList = list.clone() ;
+	 * list.insert("item1") ;
+	 * list.insert("item2") ;
+	 * var source:String = list.toSource() ; 
+	 * trace(source) ; // new vegas.data.list.LinkedList(new vegas.data.collections.SimpleCollection(["item1","item2"]))
+	 * }
 	 * @return a string representing the source code of the object.
 	 */
 	public function toSource(indent:Number, indentor:String):String 
@@ -701,6 +869,14 @@ class vegas.data.list.LinkedList extends CoreObject implements IEquality, List, 
 
 	/**
 	 * Returns the string representation of this instance.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * var list:LinkedList = list.clone() ;
+	 * list.insert("item1") ;
+	 * list.insert("item2") ;
+	 * var source:String = list.toString() ; 
+	 * trace(source) ; // {item1,item2}
+	 * }
 	 * @return the string representation of this instance
 	 */
 	public function toString():String 
@@ -709,7 +885,8 @@ class vegas.data.list.LinkedList extends CoreObject implements IEquality, List, 
 	}
 
 	/**
-	 * Return the indexed entry.
+	 * Returns the indexed entry.
+	 * @return the indexed entry.
 	 */
 	private function _entry( index:Number ):LinkedListEntry
 	{
@@ -777,7 +954,7 @@ class vegas.data.list.LinkedList extends CoreObject implements IEquality, List, 
 	private var _header:LinkedListEntry ;
 	
 	/**
-	 * The mod count value.
+	 * The mod count value used by the LinkedListIterator.
 	 */
 	private var _modCount:Number = 0 ;
 	

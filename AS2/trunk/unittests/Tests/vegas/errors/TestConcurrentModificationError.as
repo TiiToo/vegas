@@ -23,8 +23,8 @@
 
 import buRRRn.ASTUce.TestCase;
 
+import vegas.errors.AbstractError;
 import vegas.errors.ConcurrentModificationError;
-import vegas.errors.FatalError;
 
 /**
  * @author eKameleon
@@ -52,7 +52,7 @@ class Tests.vegas.errors.TestConcurrentModificationError extends TestCase
 	
 	public function testInherit()
 	{
-		assertTrue( e instanceof FatalError , "CONC_M_ER_01 - inherit FatalError failed.") ;
+		assertTrue( e instanceof AbstractError , "CONC_M_ER_01 - inherit AbstractError failed.") ;
 	}	
 	
 	public function testHashCode():Void
