@@ -22,6 +22,7 @@
 */
 
 /**
+ * This static tool class enumerates the value used in the type argument in the {@code beginGradientFill()} method.
  * @author eKameleon
  */
 class pegas.draw.FillType 

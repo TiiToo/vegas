@@ -25,6 +25,10 @@ import pegas.draw.AbstractPen;
 import pegas.geom.Line;
 import pegas.geom.Point;
 
+/**
+ * This pen is the basic tool to draw a line in a MovieClip reference.
+ * @author eKameleon
+ */
 class pegas.draw.LinePen extends AbstractPen 
 {
 

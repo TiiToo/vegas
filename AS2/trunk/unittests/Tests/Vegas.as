@@ -29,6 +29,11 @@ import buRRRn.ASTUce.Config;
 
 import Tests.VegasRunner;
 
+import vegas.logging.ILogger;
+import vegas.logging.Log;
+import vegas.logging.targets.SOSTarget;
+import vegas.logging.targets.TraceTarget;
+
 // TODO use the vegas.logging package to trace the tests.
 
 /**
@@ -51,6 +56,17 @@ class Tests.Vegas extends DisplayObject
 		Stage.align = StageAlign.TOP_LEFT ;
         Stage.scaleMode = StageScaleMode.NO_SCALE ;
         Stage.showMenu = false ;
+        
+        var t1:SOSTarget = new SOSTarget() ;
+        t1.filters = ["Tests.*"] ;
+
+        var t2:TraceTarget = new TraceTarget() ;
+        t2.filters = ["Tests.*"] ;
+
+		Log.addTarget(t1) ;
+		Log.addTarget(t2) ;
+        
+        logger = Log.getLogger("Tests.Vegas") ;
         
         var format:TextFormat = new TextFormat("Courier New", 13) ;
         format.leftMargin  = 3 ;
@@ -87,6 +103,7 @@ class Tests.Vegas extends DisplayObject
    	static public var application:Vegas ;
    
    	public var field:TextField ;
+   	public var logger:ILogger ;
 
 	static public var separator:String = " ";
 
@@ -187,7 +204,7 @@ class Tests.Vegas extends DisplayObject
 	public function write( message ):Void
 	{
 		
-		trace( message ) ;
+		logger.debug( message ) ;
 		
 		var txt:String = field.text ? (field.text + "\r") : "" ;
 		txt += message.toString() ;

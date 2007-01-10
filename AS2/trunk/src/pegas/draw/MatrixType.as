@@ -22,6 +22,7 @@
 */
 
 /**
+ * This static tool class enumerates the value used in the matrix argument in the {@code beginGradientFill()} method.
  * @author eKameleon
  */
 class pegas.draw.MatrixType 

@@ -21,64 +21,190 @@
   
 */
 
-/** Bresenham
+import flash.display.BitmapData;
 
-	AUTHOR
-	
-		Name : Bresenham
-		Package : asgard.draw
-		Version : 1.0.0.0
-		Date :  2005-11-06
-		Author : eKameleon
-		URL : http://www.ekameleon.net
+import vegas.util.MathsUtil;
 
-	DESCRIPTION
-	
-		Permet de relier deux points p1(x , y) et p2(x , y) par un segment, sur une trame entière.
-		Pratique pour tracer une droite avec un pixel.
+/**
+ * Allows to connect two points p1 (X, y) and p2 (X, y) by a segment.
+ * With this algorithm it's easy to plot a straight line with a pixel.
+ * <p><b>Example :</b>
+ * {@code
+ * import pegas.draw.Bresenham ;
+ * 
+ * var mc:MovieClip = createEmptyMovieClip("container", 1) ;
+ * 
+ * MovieClip.prototype.drawLine = function () 
+ * {
+ *     var p1 = { x : 0 , y : 0 } ;
+ *     var p2 = { x : this._xmouse , y : this._ymouse } ;
+ *     var line:Array = Bresenham.getLine( p1, p2 ) ;
+ *     this.clear() ;
+ *     this.lineStyle(1, 0xFF0000, 100) ;
+ *     var l:Number = line.length ;
+ *     for (var i:Number = 0 ; i<l ; i++) 
+ *     {
+ *         var p = line[i] ;
+ *         this.lineTo( p.x , p.y ) ;
+ *     }
+ * }
+ * 
+ * this.onMouseDown = function () 
+ * {
+ *     mc.clear() ;
+ *     mc._x = mc._parent._xmouse ;
+ *     mc._y = mc._parent._ymouse ;
+ *     this.onMouseMove = function () 
+ *     {
+ *         mc.drawLine() ;
+ *     }
+ * }
+ * 
+ * this.onMouseUp = function () 
+ * {
+ *     delete onMouseMove ;
+ * }
+ * 
+ * }
+ * @author eKameleon
+ */
+class pegas.draw.Bresenham 
+{
 
-	USE
-	
-	[code]
-		import asgard.draw.Bresenham ;
+	/**
+	 * Creates a new Bresenham instance.
+	 */
+	public function Bresenham( bdTarget:BitmapData , nColor:Number ) 
+	{
+		_bdOutput = bdTarget ;
+		color = isNaN(nColor) ? 0xFFFFFF : nColor ;
+	}
 
-		var mc:MovieClip = createEmptyMovieClip("container", 1) ;
-	
-		MovieClip.prototype.drawLine = function () {
-			var p1 = { x : 0 , y : 0 } ;
-			var p2 = { x : this._xmouse , y : this._ymouse } ;	
-			var line:Array = Bresenham.getLine( p1, p2 ) ;
-			this.clear() ;
-			this.lineStyle(1, 0xFF0000, 100) ;
-			var l:Number = line.length ;
-			for (var i:Number = 0 ; i<l ; i++) {
-				var p = line[i] ;
-				this.lineTo( p.x , p.y ) ;
+	/**
+	 * Defines the color of the line. 
+	 */
+	public var color:Number ;
+
+	/**
+	 * Draw the line between 2 points with x and y coordinates.
+	 */
+	public function draw(p1, p2):Void 
+	{
+        
+		_bdOutput.draw() ;
+		
+		var error:Number ;
+		
+		var x0:Number = p1.x ;
+		var y0:Number = p1.y ;
+		
+		var x1:Number = p2.x ;
+		var y1:Number = p2.y ;
+		
+        var dx:Number = x1 - x0;
+        var dy:Number = y1 - y0;
+        var yi:Number = 1 ;
+       
+        if( dx < dy ) 
+        {
+			//-- swap end points
+            x0 ^= x1 ;
+			x1 ^= x0 ;
+			x0 ^= x1 ;
+            y0 ^= y1 ;
+			y1 ^= y0 ;
+			y0 ^= y1 ;
+        }
+
+        if( dx < 0 ) 
+        {
+			dx = -dx ;
+			yi = -yi ;
+        }
+       
+        if( dy < 0 ) 
+        {
+			dy = -dy ;
+			yi = -yi ;
+        }
+               
+        if( dy > dx ) 
+        {
+			error = -( dy >> 1 );
+            for( ; y1 < y0 ; y1++ ) 
+            {
+                _bdOutput.setPixel32(x1, y1, color) ;
+				error += dx ;
+				if( error > 0 ) {
+					x1 += yi;
+                   error -= dy ;
+				}
 			}
-		}
-
-		this.onMouseDown = function () {
-			mc.clear() ;
-			mc._x = mc._parent._xmouse ;
-			mc._y = mc._parent._ymouse ;
-			this.onMouseMove = function () {
-				mc.drawLine() ;
+		} 
+		else 
+		{
+			error = -( dx >> 1 );
+            for( ; x0 < x1 ; x0++ ) 
+            {
+				_bdOutput.setPixel32(x0, y0, color) ;
+				error += dy;
+				if( error > 0 )
+				{
+					y0 += yi;
+                    error -= dx;
+				}
 			}
-		}
+        }
+	}
 
-		this.onMouseUp = function () {
-			delete onMouseMove ;
+	/**
+	 * Returns an array representation of all points to draw a line between to point defines by the coordinates x and y in the passed-in arguments.
+	 * @return an array representation of all points to draw a line between to point defines by the coordinates x and y in the passed-in arguments.
+	 */
+	static public function getLine(p1, p2):Array 
+	{
+		
+		var dx,dy,x,y,s1,s2,e,temp,swap:Number ;
+		
+		dy = Math.abs( p2.y - p1.y ) ;
+		dx = Math.abs( p2.x - p1.x ) ;
+        s1 = MathsUtil.sign( p2.x - p1.x ) ;
+		s2 = MathsUtil.sign ( p2.y - p1.y ) ;
+		x = p1.x ;
+		y = p1.y ;
+		if (dy>dx) {
+			temp = dx ;
+			dx = dy ;
+			dy = temp ;
+			swap = 1 ;
+		} else  {
+			swap = 0 ;
 		}
-	[/code]
-	
-	METHOD SUMMARY
-	
-		- getLine(p1, p2):Array 
+		e = 2 * dy - dx ;
+		var ar:Array = [] ;
+		for ( var i:Number = 0 ; i<dx ;i++) {
+			ar.push ( {x:x ,y:y} ) ;
+			while (e>=0) {
+				if (swap==1) x+= s1 ;
+				else y+=s2 ;
+				e-=2*dx;
+			}
+			if (swap==1) y+=s2 ;
+			else x += s1 ;
+			e+=2*dy ;
+		}
+		return ar ;
+	}
 
-	TODO : test AS3 Andre Michelle implementation ! Bench & co...
-		http://blog.andre-michelle.com/2006/as3-bresenhams-line-algorithm/
+	private var _bdOutput:BitmapData ;
+
+}
+
+/*
+  TODO : test and implements in this class the AS3 Andre Michelle implementation ! Bench & co... 
+  http://blog.andre-michelle.com/2006/as3-bresenhams-line-algorithm/
 	
-	ActionScript:
+  ActionScript:
 	private function bresenham( x0: int, y0: int, x1: int, y1: int, value: int ): void
 	{
         var error: int;
@@ -134,125 +260,4 @@
                 }
         }
 	}
-	
-	
-	TODO !!!
-
-----------------*/
-
-import flash.display.BitmapData;
-
-import vegas.util.MathsUtil;
-
-class pegas.draw.Bresenham 
-{
-
-	/**
-	 * Creates a new Bresenham instance.
-	 */
-	public function Bresenham( bdTarget:BitmapData , nColor:Number ) 
-	{
-		_bdOutput = bdTarget ;
-		color = isNaN(nColor) ? 0xFFFFFF : nColor ;
-	}
-
-	public var color:Number ;
-
-	public function draw(p1, p2):Void 
-	{
-        
-		_bdOutput.draw() ;
-		
-		var error:Number ;
-		
-		var x0:Number = p1.x ;
-		var y0:Number = p1.y ;
-		
-		var x1:Number = p2.x ;
-		var y1:Number = p2.y ;
-		
-        var dx:Number = x1 - x0;
-        var dy:Number = y1 - y0;
-        var yi:Number = 1 ;
-       
-        if( dx < dy ) {
-			//-- swap end points
-            x0 ^= x1 ;
-			x1 ^= x0 ;
-			x0 ^= x1 ;
-            y0 ^= y1 ;
-			y1 ^= y0 ;
-			y0 ^= y1 ;
-        }
-
-        if( dx < 0 ) {
-			dx = -dx ;
-			yi = -yi ;
-        }
-       
-        if( dy < 0 ) {
-			dy = -dy ;
-			yi = -yi ;
-        }
-               
-        if( dy > dx ) {
-			error = -( dy >> 1 );
-            for( ; y1 < y0 ; y1++ ) {
-                _bdOutput.setPixel32(x1, y1, color) ;
-				error += dx ;
-				if( error > 0 ) {
-					x1 += yi;
-                   error -= dy ;
-				}
-			}
-		} else {
-			error = -( dx >> 1 );
-            for( ; x0 < x1 ; x0++ ) {
-				_bdOutput.setPixel32(x0, y0, color) ;
-				error += dy;
-				if( error > 0 ){
-					y0 += yi;
-                    error -= dx;
-				}
-			}
-        }
-	}
-
-	static public function getLine(p1, p2):Array 
-	{
-		
-		var dx,dy,x,y,s1,s2,e,temp,swap:Number ;
-		
-		dy = Math.abs( p2.y - p1.y ) ;
-		dx = Math.abs( p2.x - p1.x ) ;
-        s1 = MathsUtil.sign( p2.x - p1.x ) ;
-		s2 = MathsUtil.sign ( p2.y - p1.y ) ;
-		x = p1.x ;
-		y = p1.y ;
-		if (dy>dx) {
-			temp = dx ;
-			dx = dy ;
-			dy = temp ;
-			swap = 1 ;
-		} else  {
-			swap = 0 ;
-		}
-		e = 2 * dy - dx ;
-		var ar:Array = [] ;
-		for ( var i:Number = 0 ; i<dx ;i++) {
-			ar.push ( {x:x ,y:y} ) ;
-			while (e>=0) {
-				if (swap==1) x+= s1 ;
-				else y+=s2 ;
-				e-=2*dx;
-			}
-			if (swap==1) y+=s2 ;
-			else x += s1 ;
-			e+=2*dy ;
-		}
-		return ar ;
-	}
-
-	private var _bdOutput:BitmapData ;
-
-}
+*/

@@ -26,6 +26,7 @@ import pegas.draw.EasyPen;
 import pegas.geom.Rectangle;
 
 /**
+ * This pen is the basic tool to draw a rectangle in a MovieClip reference.
  * @author eKameleon
  */
 class pegas.draw.RectanglePen extends EasyPen 
@@ -34,19 +35,36 @@ class pegas.draw.RectanglePen extends EasyPen
 	/**
 	 * Creates a new RectanglePen instance.
 	 */
-	public function RectanglePen(target:MovieClip, isNew:Boolean) {
+	public function RectanglePen(target:MovieClip, isNew:Boolean) 
+	{
 		_rectangle = new Rectangle() ;
 		initialize(target, isNew) ;
 	}
 
+	/**
+	 * Defines the height of the shape rectangle. 
+	 */
 	public var h:Number ;
 
+	/**
+	 * Defines the width of the shape rectangle. 
+	 */
 	public var w:Number ;
 
+	/**
+	 * Defines the x position of the shape rectangle. 
+	 */
 	public var x:Number ;
 
+	/**
+	 * Defines the y position of the shape rectangle. 
+	 */
 	public var y:Number ;
-		
+	
+	/**
+	 * Returns a shallow copy of this object.
+	 * @return a shallow copy of this object.
+	 */
 	public function clone() 
 	{
 		var rec:RectanglePen = new RectanglePen(_target) ;
@@ -54,6 +72,9 @@ class pegas.draw.RectanglePen extends EasyPen
 		return rec ;
 	}
 	
+	/**
+	 * Draws the shape in the movieclip reference of this pen.
+	 */
 	public function draw(p_w:Number, p_h:Number, p_x:Number, p_y:Number, p_align:Number):Void {
 		if (arguments.length > 0) {
 			setRectangle(p_w, p_h, p_x, p_y, p_align) ;

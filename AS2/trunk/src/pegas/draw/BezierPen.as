@@ -21,14 +21,13 @@
   
 */
 
-// 	TODO : TESTER !!!
-
 import pegas.draw.AbstractPen;
 import pegas.geom.Bezier;
 import pegas.geom.Line;
 import pegas.geom.Point;
 
 /**
+ * This pen draw a bezier line curve in a MovieClip reference.
  * @author eKameleon
  */
 class pegas.draw.BezierPen extends AbstractPen 

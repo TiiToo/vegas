@@ -25,6 +25,7 @@ import pegas.draw.Corner;
 import pegas.draw.RectanglePen;
 
 /**
+ * This pen is the basic tool to corner rectangle in a MovieClip reference.
  * @author eKameleon
  */
 class pegas.draw.CornerRectanglePen extends RectanglePen 

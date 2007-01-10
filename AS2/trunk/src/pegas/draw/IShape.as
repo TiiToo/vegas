@@ -21,9 +21,16 @@
   
 */
 
+/**
+ * This interface implement the draw() method in all the tools used in PEGAS to draw in a movieclip reference.
+ * @author eKameleon
+ */
 interface pegas.draw.IShape 
 {
 
+	/**
+	 * Draws the shape in the movieclip reference.
+	 */
 	function draw():Void ;
 	
 }

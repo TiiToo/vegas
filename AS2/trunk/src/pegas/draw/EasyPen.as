@@ -25,6 +25,7 @@ import pegas.draw.AbstractPen;
 import pegas.draw.Align;
 
 /**
+ * This pen is the basic tool to draw in a MovieClip reference.
  * @author eKameleon
  */
 class pegas.draw.EasyPen extends AbstractPen 

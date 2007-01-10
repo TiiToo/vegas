@@ -25,6 +25,7 @@ import pegas.draw.Align;
 import pegas.draw.EasyPen;
 
 /**
+ * This pen draw an ellipse shape in a MovieClip reference.
  * @author eKameleon
  */
 class pegas.draw.EllipsePen extends EasyPen 
@@ -38,23 +39,45 @@ class pegas.draw.EllipsePen extends EasyPen
 		super(target, isNew);
 	}
 	
+	/**
+	 * This constant defines the theta value used in internal in all method of this pen.
+	 */
 	static public var THETA:Number = Math.PI/4;
 	
+	/**
+	 * Defines the height of this shape.
+	 */
 	public var h:Number ;
 
+	/**
+	 * Defines the width of this shape.
+	 */
 	public var w:Number ;
 
+	/**
+	 * Defines the x origin coordinate of this shape.
+	 */
 	public var x:Number ;
 
+	/**
+	 * Defines the y origin coordinate of this shape.
+	 */
 	public var y:Number ;
 	
+	/**
+	 * Returns the shallow copy of this object.
+	 * @return the shallow copy of this object.
+	 */
 	public function clone()
 	{
 		var pen:EllipsePen = new EllipsePen(getTarget()) ;
 		pen.setPen(x, y, w, h) ;
 		return pen ;
 	}
-	
+
+	/**
+	 * Draws the shape in the movieclip reference of this pen.
+	 */
 	public function draw( nX:Number, nY:Number, nWidth:Number, nHeight:Number, nAlign:Number):Void
 	{
 		if (arguments.length > 0) 
@@ -96,6 +119,9 @@ class pegas.draw.EllipsePen extends EasyPen
 		
 	}
 
+	/**
+	 * Sets the ellipse options to defined all values to draw the ellipse shape in the movieclip reference of this pen.
+	 */
 	public function setPen(nX:Number, nY:Number, nWidth:Number, nHeight:Number, nAlign:Number):Void
 	{
 		

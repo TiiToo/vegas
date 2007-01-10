@@ -27,6 +27,7 @@ import pegas.draw.EasyPen;
 import pegas.geom.Trigo;
 
 /**
+ * This pen draw a pie or chord arc shape in a MovieClip reference.
  * @author eKameleon
  */
 class pegas.draw.ArcPen extends EasyPen 
@@ -34,6 +35,8 @@ class pegas.draw.ArcPen extends EasyPen
 
 	/**
 	 * Creates a new ArcPen instance.
+	 * @param target the movieclip reference.
+	 * @param isNew if this flag is {@code true} the draw is localize in a new movieclip in the specified {@code target}.
 	 */
 	public function ArcPen(target:MovieClip, isNew:Boolean) 
 	{
@@ -41,18 +44,69 @@ class pegas.draw.ArcPen extends EasyPen
 		setAlign(Align.TOP_LEFT) ;
 	}
 
-	// -----o Public Properties
+	/**
+	 * (read-write) Returns the value of the angle used to draw an arc shape in the movieclip reference.
+	 * @return the value of the angle used to draw an arc shape in the movieclip reference.
+	 */
+	public function get angle():Number 
+	{
+		return getAngle() ;	
+	}
+	
+	/**
+	 * (read-write) Sets the value of the angle used to draw an arc shape in the movieclip reference.
+	 */
+	public function set angle(n:Number):Void 
+	{
+		setAngle(n) ;	
+	}
 
-	// public var angle:String ; // [R/W]
+	/**
+	 * Defines the radius value of the arc shape.
+	 */
 	public var radius:Number = 100;
-	public var x:Number = 0 ;
-	public var y:Number = 0 ;
-	public var yRadius:Number ;
-	// public var startAngle:String ; // [R/W]
+
+	/**
+	 * Defines the type of the arc, can be a chord or a pie arc.
+	 */
 	public var type:String = ArcType.CHORD ; // CHORD || PIE
+
+	/**
+	 * Defines the x origin position of the arc shape.
+	 */
+	public var x:Number = 0 ;
+
+	/**
+	 * Defines the y origin position of the arc shape.
+	 */
+	public var y:Number = 0 ;
+
+	/**
+	 * Defines the y origin position of the arc radius.
+	 */
+	public var yRadius:Number ;
+
+	/**
+	 * (read-write) Returns the value of the start angle to draw the arc in the movieclip reference.
+	 * @return the value of the start angle to draw the arc in the movieclip reference.
+	 */
+	public function get startAngle():Number 
+	{
+		return getStartAngle() ;	
+	}
 	
-	// -----o Public Methods
-	
+	/**
+	 * (read-write) Sets the value of the start angle to draw the arc in the movieclip reference.
+	 */
+	public function set startAngle(n:Number):Void 
+	{
+		setStartAngle(n) ;	
+	}
+
+	/**
+	 * Returns a shallow copy of this object.
+	 * @return a shallow copy of this object.
+	 */
 	public function clone() 
 	{
 		var arc:ArcPen = new ArcPen(_target) ;
@@ -66,7 +120,10 @@ class pegas.draw.ArcPen extends EasyPen
 		arc.setStartAngle(_startAngle, true) ;
 		return arc ;
 	}
-	
+
+	/**
+	 * Draws the shape in the movieclip reference of this pen.
+	 */
 	public function draw(p_angle:Number, p_startAngle:Number, p_x:Number, p_y:Number, p_align:Number):Void 
 	{
 		if (arguments.length > 0) 
@@ -115,6 +172,10 @@ class pegas.draw.ArcPen extends EasyPen
 		if (isEndFill) endFill() ;	
 	}
 
+	/**
+	 * Returns the value of the angle used to draw an arc shape in the movieclip reference.
+	 * @return the value of the angle used to draw an arc shape in the movieclip reference.
+	 */
 	public function getAngle():Number 
 	{ 
 		return _angle ;
@@ -125,6 +186,9 @@ class pegas.draw.ArcPen extends EasyPen
 		return Trigo.radiansToDegrees(_startAngle)  ;
 	}
 
+	/**
+	 * Initialize the pen.
+	 */
 	public function init():Void 
 	{
 		if (isNaN(x)) x = 0 ;
@@ -166,12 +230,17 @@ class pegas.draw.ArcPen extends EasyPen
 		}
 	}
 
-
+	/**
+	 * Sets the value of the angle used to draw an arc shape in the movieclip reference.
+	 */
 	public function setAngle(n:Number):Void 
 	{
 		_angle = Trigo.fixAngle(n) ;
 	}
 
+	/**
+	 * Sets the arc options to defined all values to draw the arc shape in the movieclip reference of this pen.
+	 */
 	public function setArc(p_angle:Number, p_startAngle:Number, p_x:Number, p_y:Number, p_align:Number):Void 
 	{
 		if (!isNaN(p_angle) ) setAngle(p_angle) ;
@@ -181,38 +250,22 @@ class pegas.draw.ArcPen extends EasyPen
 		y = (isNaN(p_y)) ? 0 : p_y ;
 	}
 
-	public function setStartAngle(n:Number):Void {
+	/**
+	 * Sets the value of the start angle to draw the arc in the movieclip reference.
+	 */
+	public function setStartAngle(n:Number):Void 
+	{
 		_startAngle = Trigo.degreesToRadians(n) ;
 	}
 
-	// ----o Virtual Properties
-
-	public function get angle():Number 
-	{
-		return getAngle() ;	
-	}
-	
-	public function set angle(n:Number):Void 
-	{
-		setAngle(n) ;	
-	}
-	
-	public function get startAngle():Number 
-	{
-		return getStartAngle() ;	
-	}
-	
-	public function set startAngle(n:Number):Void 
-	{
-		setStartAngle(n) ;	
-	}
-
-	// ----o Private  Properties
-
 	private var _angle:Number = 0 ;
+	
 	private var _angleMid:Number ;
+	
 	private var _nX:Number ;
+	
 	private var _nY:Number ;
+	
 	private var _startAngle:Number = 360 ;
 	
 }

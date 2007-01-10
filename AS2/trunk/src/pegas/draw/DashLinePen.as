@@ -25,6 +25,7 @@ import pegas.draw.LinePen;
 import pegas.geom.Point;
 
 /**
+ * This pen is the basic tool to draw a dash line in a MovieClip reference.
  * @author eKameleon
  */
 class pegas.draw.DashLinePen extends LinePen 

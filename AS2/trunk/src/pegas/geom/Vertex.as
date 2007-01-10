@@ -157,7 +157,7 @@ class pegas.geom.Vertex extends Vector3
 	 * Returns the {@code Vector3} representation of this Vertex in the world coordinate.
 	 * @return the {@code Vector3} representation of this Vertex in the world coordinate.
 	 */
-	public function getWorldVector3( Void ):Vector3
+	public function getWorldVector3():Vector3
 	{
 		return new Vector3( wx, wy, wz );
 	}

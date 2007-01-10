@@ -25,6 +25,7 @@ import vegas.core.CoreObject;
 import vegas.util.TypeUtil;
 
 /**
+ * This tool class is used to transform the fill color in a shap draw with the APIs of draw of the MovieClip class.
  * @author eKameleon
  * Thanks : ascb framework <http://www.person13.com/ascblibrary/>
  */

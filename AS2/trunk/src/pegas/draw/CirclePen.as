@@ -25,6 +25,7 @@ import pegas.draw.Align;
 import pegas.draw.EasyPen;
 
 /**
+ * This pen is the tool to draw a circle shape in a MovieClip reference.
  * @author eKameleon
  */
 class pegas.draw.CirclePen extends EasyPen 

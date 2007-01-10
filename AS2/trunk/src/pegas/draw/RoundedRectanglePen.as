@@ -26,6 +26,7 @@ import pegas.draw.CornerRectanglePen;
 import pegas.geom.Rectangle;
 
 /**
+ * This pen is the basic tool to draw a rectangle with rounded corners in a MovieClip reference.
  * @author eKameleon
  */
 class pegas.draw.RoundedRectanglePen extends CornerRectanglePen 
@@ -39,16 +40,27 @@ class pegas.draw.RoundedRectanglePen extends CornerRectanglePen
 		initialize(target, isNew) ;
 	}
 
+	/**
+	 * (read-write) Returns the round value of the rounded corner of this rectangle pen.
+	 * @return the round value of the rounded corner of this rectangle pen.
+	 */
 	public function get round():Number 
 	{
 		return getRound() ;	
 	}
 	
+	/**
+	 * Sets the round value of the rounded corner of this rectangle pen.
+	 */
 	public function set round(n:Number):Void 
 	{
 		setRound(n) ;	
 	}
 	
+	/**
+	 * Returns a shallow copy of this object.
+	 * @return a shallow copy of this object.
+	 */
 	public function clone() 
 	{
 		var rec:RoundedRectanglePen = new RoundedRectanglePen(_target) ;
@@ -56,6 +68,9 @@ class pegas.draw.RoundedRectanglePen extends CornerRectanglePen
 		return rec ;
 	}
 
+	/**
+	 * Draws the shape in the movieclip reference of this pen.
+	 */
 	public function draw(p_w:Number, p_h:Number, p_x:Number, p_y:Number, p_align:Number, p_round:Number, corner:Corner):Void 
 	{
 		
@@ -131,12 +146,20 @@ class pegas.draw.RoundedRectanglePen extends CornerRectanglePen
 
 	}
 	
-	public function drawCorner (x:Number, y:Number) 
+	/**
+	 * This internal method draw a corner in a specific position with the specified coordinates.
+	 * @param x the horizontal coordinate.
+	 * @param y the vertical coordinate.
+	 */
+	public function drawCorner (x:Number, y:Number):Void
 	{ 
 		curve (x,y) ; 
 		curve (x,y) ;
 	}
 	
+	/**
+	 * Draw a curve to draw the rounded corners of this rectangle.
+	 */
 	public function curve(x:Number , y:Number ):Void 
 	{
 		var cx, cy, px, py :Number  ;
@@ -147,12 +170,19 @@ class pegas.draw.RoundedRectanglePen extends CornerRectanglePen
 		py = y  + ( Math.sin ( _angle + _theta ) * _currentRadius ) ;
 		curveTo (cx, cy, px, py);
 	}
-		
+
+	/**
+	 * Returns the round value of the rounded corner of this rectangle pen.
+	 * @return  the round value of the rounded corner of this rectangle pen.
+	 */
 	public function getRound():Number 
 	{
 		return _round ;
 	}
-	
+
+	/**
+	 * Sets the rectangle options to draw the shape.
+	 */
 	public function setRectangle(p_w:Number, p_h:Number, p_x:Number, p_y:Number, p_align:Number, p_rnd:Number, p_corner:Corner):Void 
 	{
 		super.setRectangle(p_w, p_h, p_x, p_y, p_align) ;
@@ -160,12 +190,18 @@ class pegas.draw.RoundedRectanglePen extends CornerRectanglePen
 		if (p_corner) setCorner(p_corner, true) ;
 	}
 
+	/**
+	 * Sets the round value of the rounded corner of this rectangle pen.
+	 */
 	public function setRound(n:Number, noDraw:Boolean):Void 
 	{
 		_round = isNaN(n) ? 0 : n ;
 		if (!noDraw) draw() ;
 	}
 
+	/**
+	 * Internal method who simulates the draw of a corner if a corner is disabled with the corner property.
+	 */
 	public function simulateCorner () 
 	{
 		_angle = ( ( isNaN(_angle) ) ? (- Math.PI / 2) : (_angle + _theta) ) + _theta ;

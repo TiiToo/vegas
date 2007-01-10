@@ -22,12 +22,17 @@
 */
 
 /**
+ * This tool class transform a {@code Canvas} object with static methods.
  * @author eKameleon
  * Thanks : Peter Hall <www.peterjoel.com> ASVDrawing Class v1.0
  */
 class pegas.draw.CanvasTransform {
 
 	
+	/**
+	 * Creates a free form effect over a {@code Canvas} object}.
+	 * @return the method to be used to creates a free form effect over a {@code Canvas} object}.
+	 */
 	static public function createFreeform 
 	(
 		xMin:Number, yMin:Number, xMax:Number, yMax:Number,
@@ -48,6 +53,10 @@ class pegas.draw.CanvasTransform {
 		} ;
 	}
 	
+	/**
+	 * Creates a pinch effect over a {@code Canvas} object}.
+	 * @return the method to be used to creates a pinch effect over a {@code Canvas} object}.
+	 */
 	static public function createPinch(xMin:Number, yMin:Number, xMax:Number, yMax:Number, xAmount:Number, yAmount:Number):Function 
 	{
 		var w:Number = xMax - xMin ;
@@ -79,6 +88,10 @@ class pegas.draw.CanvasTransform {
 		} ;
 	}
 
+	/**
+	 * Creates a waves effect over a {@code Canvas} object}.
+	 * @return the method to be used to creates a waves effect over a {@code Canvas} object}.
+	 */
 	static public function createWaves
 	( 
 		xMin:Number, yMin:Number, xMax:Number, yMax:Number,
@@ -99,6 +112,10 @@ class pegas.draw.CanvasTransform {
 		} ;
 	}
 
+	/**
+	 * Creates a Whirl effect over a {@code Canvas} object}.
+	 * @return the method to be used to creates a Whirl effect over a {@code Canvas} object}.
+	 */
 	static public function createWhirl(centreX:Number, centreY:Number, radius:Number, amount:Number):Function 
 	{
 		var radius2:Number = radius * radius ;
@@ -116,6 +133,10 @@ class pegas.draw.CanvasTransform {
 		} ;
 	}
 	
+	/**
+	 * Returns the string representation of this singleton.
+	 * @return the string representation of this singleton.
+	 */
 	static public function toString():String 
 	{
 		return "[CanvasTransform]" ;
