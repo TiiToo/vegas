@@ -29,40 +29,49 @@ import vegas.util.ConstructorUtil;
 import vegas.util.serialize.Serializer;
 
 /**
- * Represents a vector in a 3D world with the coordinates x, y and z.
+ * Defines a Matrix with n rows and n columns.
  * @author eKameleon
  */
-class pegas.geom.Vector extends CoreObject implements ICloneable, ICopyable, IEquality
+class pegas.geom.Matrix extends CoreObject implements ICloneable, ICopyable, IEquality
 {
 	
 	/**
-	 * Creates a new {@code Vector} instance.
-	 * @param x the x coordinate.
-	 * @param y the y coordinate.
-	 * @param z the z coordinate.
-	 */ 	
-	public function Vector( x:Number, y:Number, z:Number) 
+	 * Creates a new Matrix instance.
+	 * @param r the number of rows in the matrix.
+	 * @param c the number of columns in the matrix.
+	 * @param ar the optional Matrix instance to fill the current Matrix.
+	 */
+	public function Matrix( r:Number, c:Number , ar:Array ) 
 	{
+		
 		super();
-		this.x = isNaN(x) ? 0 : x ;
-		this.y = isNaN(y) ? 0 : y ;
-		this.z = isNaN(z) ? 0 : z ;
+		
+		this.m = new Array(r);
+		
+		for (var i:Number = 0 ; i<r ; i++)
+		{
+			m[i] = new Array(c) ;	
+		}
+		
+		this.r = r ;
+		this.c = c ;
+		
 	}
 
 	/**
-	 * Defined the x coordinate.
+	 * Defined the number of columns in the Matrix.
 	 */
-	public var x:Number;
-
+	public var c:Number ;
+	
 	/**
-	 * Defined the y coordinate.
+	 * The matrix array
 	 */
-	public var y:Number;
-
+	public var m:Array ;
+	
 	/**
-	 * Defined the z coordinate.
+	 * Defined the number of rows in the Matrix.
 	 */
-	public var z:Number;
+	public var r:Number ;
 
 	/**
 	 * Returns a shallow copy of this instance.
@@ -70,7 +79,9 @@ class pegas.geom.Vector extends CoreObject implements ICloneable, ICopyable, IEq
 	 */
 	public function clone()
 	{
-		return new Vector(x, y, z) ;	
+		var matrix:Matrix = new Matrix(r, c) ;
+		// fill the matrix !!
+		return matrix ;	
 	}
 
 	/**
@@ -79,7 +90,9 @@ class pegas.geom.Vector extends CoreObject implements ICloneable, ICopyable, IEq
 	 */
 	public function copy()
 	{
-		return new Vector(x, y, z) ;	
+		var matrix:Matrix = new Matrix(r, c) ;
+		// fill the matrix !!
+		return matrix ;	
 	}
 	
 	/**
@@ -88,9 +101,10 @@ class pegas.geom.Vector extends CoreObject implements ICloneable, ICopyable, IEq
 	 */
 	public function equals(o):Boolean 
 	{
-		if ( o instanceof Vector)
+		if ( o instanceof Matrix )
 		{
-			return (o.x == x) && (o.y == y) && (o.z == z) ;
+			// test if all elements are equals in the 2 matrix
+			return (o.r == r) && (o.c == c) ;
 		}
 		else
 		{
@@ -104,16 +118,16 @@ class pegas.geom.Vector extends CoreObject implements ICloneable, ICopyable, IEq
 	 */
 	public function toSource(indent : Number, indentor : String):String 
 	{
-		return Serializer.getSourceOf(this, [x, y, z]) ;
+		return Serializer.getSourceOf(this, [Serializer.toSource(r), Serializer.toSource(c), Serializer.toSource(m)]) ;
 	}
 
 	/**
 	 * Returns the string representation of the object.
 	 * @return the string representation of the object.
 	 */ 	
-	public function toString(Void):String
+	public function toString():String
 	{
-		return "[" + ConstructorUtil.getName(this) + ":{" + x + "," + y + "," + z + "}]" ;
+		return "[" + ConstructorUtil.getName(this) + ":{" + r + "," + c + "}]" ;
 	}
 
 }

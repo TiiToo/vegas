@@ -25,7 +25,7 @@ import vegas.util.StringUtil;
 
 /**
  * This factory class creates virtual properties.
- * <p>You must defined your virtual properties in public if you use this class.</p>
+ * <p>You must defined your virtual properties in public if you use this class in AS2 class.</p>
  * @author eKameleon
  */
 class vegas.util.factory.PropertyFactory 
@@ -33,7 +33,7 @@ class vegas.util.factory.PropertyFactory
 
 	/**
 	 * Creates a new virtual property (read_write or read only).
-	 * @see addProperty method.
+	 * @see Object.addProperty method.
 	 */	
 	static public function create(o, propName:String, isPrototype:Boolean, isReadOnly:Boolean):Boolean 
 	{

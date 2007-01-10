@@ -48,13 +48,13 @@ class Tests.pegas.process.AllTests extends TestCase
         
         //suite.simpleTrace = true;
 
-		// suite.addTest( new TestSuite( Tests.pegas.process.TestAbstractAction ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.process.TestAction ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.process.TestActionProxy ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.process.TestBatch ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.process.TestMessage ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.process.TestPause ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.process.TestSequencer ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.process.TestAbstractAction ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.process.TestAction ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.process.TestActionProxy ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.process.TestBatch ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.process.TestMessage ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.process.TestPause ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.process.TestSequencer ) ) ;
 		       
         return suite ;
     

@@ -22,6 +22,7 @@
 */
 
 /**
+ * Static tool class to manipulate and transform {@code Plane} references.
  * @author eKameleon
  */
 class pegas.util.PlaneUtil 

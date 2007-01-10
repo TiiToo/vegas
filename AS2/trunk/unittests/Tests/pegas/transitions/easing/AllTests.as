@@ -46,22 +46,22 @@ class Tests.pegas.transitions.easing.AllTests extends TestCase
 
         var suite:TestSuite = new TestSuite( "Tests.pegas.transitions.easing" );
         
-        // suite.simpleTrace = true;
+        // TODO suite.simpleTrace = true;
 
-		// suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestBack ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestBounce ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestCirc ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestCubic ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestElastic ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestExpo ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestLinear ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestNone ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestQuad ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestQuart ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestQuint ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestRegular ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestSine ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestStrong ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestBack ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestBounce ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestCirc ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestCubic ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestElastic ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestExpo ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestLinear ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestNone ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestQuad ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestQuart ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestQuint ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestRegular ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestSine ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.transitions.easing.TestStrong ) ) ;
 		
         return suite ;
     

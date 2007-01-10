@@ -46,18 +46,24 @@ class Tests.pegas.geom.AllTests extends TestCase
 
         var suite:TestSuite = new TestSuite( "Tests.pegas.geom" );
         
-        //suite.simpleTrace = true;
+        // TODO suite.simpleTrace = true;
 
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestBezier ) );
+		// TODO suite.addTest( new TestSuite( Tests.pegas.geom.TestBezier ) );
 		suite.addTest( new TestSuite( Tests.pegas.geom.TestDimension ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestLine ) );
+		// TODO suite.addTest( new TestSuite( Tests.pegas.geom.TestLine ) );
+		suite.addTest( new TestSuite( Tests.pegas.geom.TestMatrix ) );
+		suite.addTest( new TestSuite( Tests.pegas.geom.TestMatrix4 ) );
 		suite.addTest( new TestSuite( Tests.pegas.geom.TestPlane ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestPoint ) );
+		// TODO suite.addTest( new TestSuite( Tests.pegas.geom.TestPoint ) );
+		suite.addTest( new TestSuite( Tests.pegas.geom.TestRay ) );
 		suite.addTest( new TestSuite( Tests.pegas.geom.TestQuaternion ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestRectangle ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestTransformMatrix ) );
-		// suite.addTest( new TestSuite( Tests.pegas.geom.TestTrigo ) );
-        suite.addTest( new TestSuite( Tests.pegas.geom.TestVector ) );
+		// TODO suite.addTest( new TestSuite( Tests.pegas.geom.TestRectangle ) );
+		// TODO suite.addTest( new TestSuite( Tests.pegas.geom.TestTransformMatrix ) );
+		// TODO suite.addTest( new TestSuite( Tests.pegas.geom.TestTrigo ) );
+		suite.addTest( new TestSuite( Tests.pegas.geom.TestUVCoordinate ) );
+		suite.addTest( new TestSuite( Tests.pegas.geom.TestVector2 ) );
+        suite.addTest( new TestSuite( Tests.pegas.geom.TestVector3 ) );
+        suite.addTest( new TestSuite( Tests.pegas.geom.TestVector4 ) );
         suite.addTest( new TestSuite( Tests.pegas.geom.TestVertex ) );
         
         return suite ;

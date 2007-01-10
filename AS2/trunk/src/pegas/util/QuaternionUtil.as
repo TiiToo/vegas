@@ -22,8 +22,8 @@
 */
 
 import pegas.geom.Quaternion;
-import pegas.geom.Vector;
-import pegas.util.VectorUtil;
+import pegas.geom.Vector3;
+import pegas.util.Vector3Util;
 
 /**
  * Static tool class to manipulate and transform {@code Quaternion} references.
@@ -86,10 +86,10 @@ class pegas.util.QuaternionUtil
 	}
 
 	/**
-	 * Returns the multiplication of one Quaternions with a Vector.
-	 * @return the multiplication of one Quaternions with a Vector.
+	 * Returns the multiplication of one Quaternions with a Vector3.
+	 * @return the multiplication of one Quaternions with a Vector3.
 	 */
-	static public function getMultiplyVector( q:Quaternion , v:Vector ):Quaternion
+	static public function getMultiplyVector3( q:Quaternion , v:Vector3 ):Quaternion
 	{
 		var x1:Number = q.x ; var y1:Number = q.y ;
 		var z1:Number = q.z ; var w1:Number = q.w ;
@@ -114,22 +114,22 @@ class pegas.util.QuaternionUtil
 	{
 		var magnitude:Number = QuaternionUtil.getMagnitude() ;
         q.w /= magnitude ;
-        VectorUtil.scale ( q , (1.0 / magnitude) );
+        Vector3Util.scale ( q , (1.0 / magnitude) );
 	}
 	
 	/**
 	 * Sets the elements of a Quaternion to represent the rotation around an arbitary axis.
 	 * @param q the Quaternion to set.
 	 * @param theta a real number representing angle input.
-	 * @param axis the {@code Vector} direction instance.
+	 * @param axis the {@code Vector3} direction instance.
 	 */
-	static public function rotationAxis( q:Quaternion, theta:Number, axis:Vector ):Void
+	static public function rotationAxis( q:Quaternion, theta:Number, axis:Vector3 ):Void
 	{
 		q.w = Math.cos( theta / 2.0 ) ;
 		q.x = axis.x ;
 		q.y = axis.y ;
 		q.z = axis.z ;
-		VectorUtil.scale( q , Math.sin(theta / 2.0) ) ;
+		Vector3Util.scale( q , Math.sin(theta / 2.0) ) ;
 	}
 	
 }

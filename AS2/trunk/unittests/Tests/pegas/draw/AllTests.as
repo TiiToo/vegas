@@ -48,29 +48,29 @@ class Tests.pegas.draw.AllTests extends TestCase
         
         //suite.simpleTrace = true;
 
-		// suite.addTest( new TestSuite( Tests.pegas.draw.TestAbstractPen ) );
-		// suite.addTest( new TestSuite( Tests.pegas.draw.TestAlign ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.draw.TestArcPen ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.draw.TestArcType ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.draw.TestBevelRectanglePen ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.draw.TestBezierPen ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.draw.TestBresenham ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.draw.TestCanvas ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.draw.TestCanvasTransform ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.draw.TestCirclePen ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.draw.TestCorner ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.draw.TestCornerRectangle ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.draw.TestDashLinePen ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.draw.TestEasyPen ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.draw.TestEllipsePen ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.draw.TestFillMatrix ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.draw.TestFillType ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.draw.TestIPen ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.draw.TestIShape ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.draw.TestLinePen ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.draw.TestMatrixType ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.draw.TestRectanglePen ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.draw.TestRoundedRectanglePen ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.draw.TestAbstractPen ) );
+		// TODO suite.addTest( new TestSuite( Tests.pegas.draw.TestAlign ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.draw.TestArcPen ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.draw.TestArcType ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.draw.TestBevelRectanglePen ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.draw.TestBezierPen ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.draw.TestBresenham ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.draw.TestCanvas ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.draw.TestCanvasTransform ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.draw.TestCirclePen ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.draw.TestCorner ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.draw.TestCornerRectangle ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.draw.TestDashLinePen ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.draw.TestEasyPen ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.draw.TestEllipsePen ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.draw.TestFillMatrix ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.draw.TestFillType ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.draw.TestIPen ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.draw.TestIShape ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.draw.TestLinePen ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.draw.TestMatrixType ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.draw.TestRectanglePen ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.draw.TestRoundedRectanglePen ) ) ;
         
         return suite ;
     

@@ -46,17 +46,17 @@ class Tests.pegas.events.AllTests extends TestCase
 
         var suite:TestSuite = new TestSuite( "Tests.pegas.events" );
         
-        //suite.simpleTrace = true;
+        // suite.simpleTrace = true;
 
-		// suite.addTest( new TestSuite( Tests.pegas.events.TestActionEvent ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.events.TestActionEventType ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.events.TestButtonEvent ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.events.TestButtonEventType ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.events.TestFocusEvent ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.events.TestMouseEvent ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.events.TestMouseEventType ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.events.TestUIEvent ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.events.TestUIEventType ) );
+		// TODO suite.addTest( new TestSuite( Tests.pegas.events.TestActionEvent ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.events.TestActionEventType ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.events.TestButtonEvent ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.events.TestButtonEventType ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.events.TestFocusEvent ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.events.TestMouseEvent ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.events.TestMouseEventType ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.events.TestUIEvent ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.events.TestUIEventType ) );
         
         return suite ;
     

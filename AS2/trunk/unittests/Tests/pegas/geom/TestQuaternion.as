@@ -24,7 +24,7 @@
 import buRRRn.ASTUce.TestCase;
 
 import pegas.geom.Quaternion;
-import pegas.geom.Vector;
+import pegas.geom.Vector3;
 
 /**
  * @author eKameleon
@@ -52,7 +52,7 @@ class Tests.pegas.geom.TestQuaternion extends TestCase
 	
 	public function testInherit()
 	{
-		assertTrue( q instanceof Vector , "QUAT_01 - inherit Vector failed.") ;
+		assertTrue( q instanceof Vector3 , "QUAT_01 - inherit Vector3 failed.") ;
 	}	
 	
 	public function testHashCode():Void

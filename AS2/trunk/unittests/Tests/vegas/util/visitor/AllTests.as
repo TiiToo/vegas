@@ -45,7 +45,7 @@ class Tests.vegas.util.visitor.AllTests extends TestCase
 	{
         var suite:TestSuite = new TestSuite( "Tests.vegas.util.visitor" );
         
-        //suite.simpleTrace = true;
+        // suite.simpleTrace = true;
 
 		// suite.addTest( new TestSuite( Tests.vegas.util.visitor.TestAbstractVisitable ) ) ;
 		// suite.addTest( new TestSuite( Tests.vegas.util.visitor.TestIVisitable ) ) ;

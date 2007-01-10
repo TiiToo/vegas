@@ -169,7 +169,7 @@ dynamic class pegas.geom.Point extends CoreObject implements ICloneable, ICopyab
 	 */
 	static public function distance(p1:Point, p2:Point):Number 
 	{
-		return p1.subtractNew(p2).getLength() ;
+		return (p1.subtractNew(p2)).getLength() ;
 	}
 	
 	/**

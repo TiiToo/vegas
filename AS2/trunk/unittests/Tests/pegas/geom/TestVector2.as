@@ -23,32 +23,32 @@
 
 import buRRRn.ASTUce.TestCase;
 
-import pegas.geom.Vector;
+import pegas.geom.Vector2;
 
 import vegas.core.CoreObject;
 
 /**
  * @author eKameleon
  */
-class Tests.pegas.geom.TestVector extends TestCase 
+class Tests.pegas.geom.TestVector2 extends TestCase 
 {
 	
-	function TestVector(name:String) 
+	function TestVector2(name:String) 
 	{
 		super(name);
 	}
 	
-	public var v:Vector;
+	public var v:Vector2;
 	
 	public function setUp():Void
 	{
-		v = new Vector(10, 20, 30) ;
+		v = new Vector2(10, 20) ;
 	}
 	
 	public function testConstructor()
 	{
 		assertNotNull( v, "VECT_00_01 - constructor is null") ;
-		assertTrue( v instanceof Vector , "VECT_00_02 - constructor is an instance of Vector.") ;
+		assertTrue( v instanceof Vector2 , "VECT_00_02 - constructor is an instance of Vector2.") ;
 	}
 	
 	public function testInherit()
@@ -63,12 +63,12 @@ class Tests.pegas.geom.TestVector extends TestCase
 	
 	public function testToSource():Void
 	{
-		assertEquals( v.toSource() , "new pegas.geom.Vector(10,20,30)", "VECT_03 - toSource failed : " + v.toSource() ) ;
+		assertEquals( v.toSource() , "new pegas.geom.Vector2(10,20)", "VECT_03 - toSource failed : " + v.toSource() ) ;
 	}
 
 	public function testToString():Void
 	{
-		assertEquals( v.toString() , "[Vector:{10,20,30}]", "VECT_04 - toString failed : " + v.toString() ) ;
+		assertEquals( v.toString() , "[Vector2:{10,20}]", "VECT_04 - toString failed : " + v.toString() ) ;
 	}
 	
 	public function testX():Void
@@ -81,38 +81,29 @@ class Tests.pegas.geom.TestVector extends TestCase
 		assertEquals( v.y , 20, "VECT_06 - y property failed : " + v.y ) ;
 	}
 
-	public function testZ():Void
-	{
-		assertEquals( v.z , 30, "VECT_07 - z property failed : " + v.z ) ;
-	}
-
 	public function testClone():Void
 	{
-		var clone:Vector = v.clone() ;
+		var clone:Vector2 = v.clone() ;
 		clone.x = 100 ;
 		clone.y = 200 ;
-		clone.z = 300 ;
-		assertTrue( clone instanceof Vector , "VECT_09 - clone method failed, must return a Vector reference." ) ;
-		assertFalse( v.x == clone.x, "VECT_09 - clone property failed, v.x:" + v.x + " must be different of clone.x:" + clone.x ) ;
-		assertFalse( v.y == clone.y, "VECT_09 - clone property failed, v.y:" + v.y + " must be different of clone.x:" + clone.y ) ;
-		assertFalse( v.z == clone.z, "VECT_09 - clone property failed, v.z:" + v.z + " must be different of clone.z:" + clone.z ) ;
+		assertTrue( clone instanceof Vector2 , "VECT_09_01 - clone method failed, must return a Vector2 reference." ) ;
+		assertFalse( v.x == clone.x, "VECT_09_02 - clone property failed, v.x:" + v.x + " must be different of clone.x:" + clone.x ) ;
+		assertFalse( v.y == clone.y, "VECT_09_03 - clone property failed, v.y:" + v.y + " must be different of clone.y:" + clone.y ) ;
 	}
 	
 	public function testCopy():Void
 	{
-		var copy:Vector = v.copy() ;
+		var copy:Vector2 = v.copy() ;
 		copy.x = 100 ;
 		copy.y = 200 ;
-		copy.z = 300 ;
-		assertTrue( copy instanceof Vector , "VECT_10 - copy method failed, must return a Vector reference." ) ;
-		assertFalse( v.x == copy.x, "VECT_10 - copy property failed, v.x:" + v.x + " must be different of copy.x:" + copy.x ) ;
-		assertFalse( v.y == copy.y, "VECT_10 - copy property failed, v.y:" + v.y + " must be different of copy.x:" + copy.y ) ;
-		assertFalse( v.z == copy.z, "VECT_10 - copy property failed, v.z:" + v.z + " must be different of copy.z:" + copy.z ) ;
+		assertTrue( copy instanceof Vector2 , "VECT_10_01 - copy method failed, must return a Vector2 reference." ) ;
+		assertFalse( v.x == copy.x, "VECT_10_02 - copy property failed, v.x:" + v.x + " must be different of copy.x:" + copy.x ) ;
+		assertFalse( v.y == copy.y, "VECT_10_03 - copy property failed, v.y:" + v.y + " must be different of copy.y:" + copy.y ) ;
 	}
 	
 	public function testEquals():Void
 	{
-		var ve:Vector = new Vector(10, 20, 30) ;
+		var ve:Vector2 = new Vector2(10, 20) ;
 		assertTrue( v.equals(ve) , "VECT_11 - equals method failed.") ;
 	}
 

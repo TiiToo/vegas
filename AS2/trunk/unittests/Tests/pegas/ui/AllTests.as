@@ -46,11 +46,11 @@ class Tests.pegas.ui.AllTests extends TestCase
 
         var suite:TestSuite = new TestSuite( "Tests.pegas.ui" );
         
-        // suite.simpleTrace = true;
+        // TODO suite.simpleTrace = true;
 
-		// suite.addTest( new TestSuite( Tests.pegas.pegas.ui.TestDoubleClick ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.pegas.ui.TestKeyboard ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.pegas.ui.TestKeysValidator ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.pegas.ui.TestDoubleClick ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.pegas.ui.TestKeyboard ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.pegas.ui.TestKeysValidator ) ) ;
         
         return suite ;
     

@@ -21,7 +21,7 @@
   
 */
 
-import pegas.geom.Vector;
+import pegas.geom.Vector3;
 
 import vegas.util.ConstructorUtil;
 import vegas.util.serialize.Serializer;
@@ -30,17 +30,17 @@ import vegas.util.serialize.Serializer;
  * Quaternions are hypercomplex numbers used to represent spatial rotations in three dimensions.
  * @author eKameleon
  */
-class pegas.geom.Quaternion extends Vector
+class pegas.geom.Quaternion extends Vector3
 {
 	
 	/**
-	 * Creates a new {@code Vector} instance.
+	 * Creates a new {@code Vector3} instance.
 	 * @param x the x coordinate.
 	 * @param y the y coordinate.
 	 * @param z the z coordinate.
 	 * @param w the transform component of the quaternion.
 	 */ 
-	public function Quaternion(x : Number, y : Number, z : Number, w:Number) 
+	public function Quaternion( x:Number, y:Number, z:Number, w:Number ) 
 	{
 		super(x, y, z);
 		this.w = isNaN(w) ? 0 : w ;
@@ -98,7 +98,7 @@ class pegas.geom.Quaternion extends Vector
 	 * Returns the string representation of the object.
 	 * @return the string representation of the object.
 	 */ 	
-	public function toString(Void):String
+	public function toString():String
 	{
 		return "[" + ConstructorUtil.getName(this) + ":{" + x + "," + y + "," + z + "," + w + "}]" ;
 	}

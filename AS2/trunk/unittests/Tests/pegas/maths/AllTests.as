@@ -47,9 +47,9 @@ class Tests.pegas.maths.AllTests extends TestCase
         
         //suite.simpleTrace = true;
 
-		// suite.addTest( new TestSuite( Tests.pegas.maths.TestFactor ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.maths.TestPrime ) ) ;
-        // suite.addTest( new TestSuite( Tests.pegas.maths.TestRange ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.maths.TestFactor ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.maths.TestPrime ) ) ;
+        // TODO suite.addTest( new TestSuite( Tests.pegas.maths.TestRange ) ) ;
         
         return suite ;
     

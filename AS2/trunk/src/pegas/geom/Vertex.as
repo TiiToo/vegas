@@ -21,7 +21,7 @@
   
 */
 
-import pegas.geom.Vector;
+import pegas.geom.Vector3;
 
 import vegas.util.ConstructorUtil;
 import vegas.util.serialize.Serializer;
@@ -30,7 +30,7 @@ import vegas.util.serialize.Serializer;
  * A Vertex is a point which can be represented in differents coordinates (local, world, screen).
  * @author eKameleon
  */
-class pegas.geom.Vertex extends Vector 
+class pegas.geom.Vertex extends Vector3 
 {
 	
 	/**
@@ -145,21 +145,21 @@ class pegas.geom.Vertex extends Vector
 	 public var wz:Number;	
 
 	/**
-	 * Returns the {@code Vector} representation of the transformed coordinate system of this Vertex.
-	 * @return the {@code Vector} representation of the transformed coordinate system of this Vertex.
+	 * Returns the {@code Vector3} representation of the transformed coordinate system of this Vertex.
+	 * @return the {@code Vector3} representation of the transformed coordinate system of this Vertex.
 	 */
-	public function getTransformVector():Vector
+	public function getTransformVector3():Vector3
 	{
-		return new Vector( tx, ty, tz ) ;	
+		return new Vector3( tx, ty, tz ) ;	
 	}
 
 	/**
-	 * Returns the {@code Vector} representation of this Vertex in the world coordinate.
-	 * @return the {@code Vector} representation of this Vertex in the world coordinate.
+	 * Returns the {@code Vector3} representation of this Vertex in the world coordinate.
+	 * @return the {@code Vector3} representation of this Vertex in the world coordinate.
 	 */
-	public function getWorldVector( Void ):Vector
+	public function getWorldVector3( Void ):Vector3
 	{
-		return new Vector( wx, wy, wz );
+		return new Vector3( wx, wy, wz );
 	}
 
 	/**
@@ -175,7 +175,7 @@ class pegas.geom.Vertex extends Vector
 	 * Returns the string representation of the object.
 	 * @return the string representation of the object.
 	 */ 	
-	public function toString(Void):String
+	public function toString():String
 	{
 		return "[" + ConstructorUtil.getName(this) + ":{x:" + x + ",y:" + y + ",z:" + z + ",tx:" + tx + ",ty:" + ty + ",tz:" + tz + "}]" ;
 	}

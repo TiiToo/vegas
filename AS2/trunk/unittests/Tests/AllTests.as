@@ -52,9 +52,9 @@ class Tests.AllTests extends TestCase
 		
 		// suite.addTest(  Tests.eden.AllTests.suite()   ) ; // FIXME 2 errors for the moment in this library
         
-        suite.addTest(  Tests.vegas.AllTests.suite() ) ;
+       	suite.addTest(  Tests.vegas.AllTests.suite() ) ;
         
-        // suite.addTest ( Tests.pegas.AllTests.suite() ) ;
+        suite.addTest ( Tests.pegas.AllTests.suite() ) ;
         
         return suite ;
     

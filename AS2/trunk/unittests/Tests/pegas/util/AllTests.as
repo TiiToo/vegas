@@ -46,12 +46,12 @@ class Tests.pegas.util.AllTests extends TestCase
 
         var suite:TestSuite = new TestSuite( "Tests.pegas.util" );
         
-        // suite.simpleTrace = true;
+        // TODO suite.simpleTrace = true;
 
-		// suite.addTest( new TestSuite( Tests.pegas.pegas.util.TestPlaneUtil ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.pegas.util.TestQuaternionUtil ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.pegas.util.TestVectorUtil ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.pegas.util.TestVertexUtil ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.pegas.util.TestPlaneUtil ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.pegas.util.TestQuaternionUtil ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.pegas.util.TestVector3Util ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.pegas.util.TestVertexUtil ) ) ;
         
         return suite ;
     

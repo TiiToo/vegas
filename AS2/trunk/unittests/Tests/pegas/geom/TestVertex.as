@@ -23,7 +23,7 @@
 
 import buRRRn.ASTUce.TestCase;
 
-import pegas.geom.Vector;
+import pegas.geom.Vector3;
 import pegas.geom.Vertex;
 
 /**
@@ -52,7 +52,7 @@ class Tests.pegas.geom.TestVertex extends TestCase
 	
 	public function testInherit()
 	{
-		assertTrue( v instanceof Vector , "VERTEX_01 - inherit Vector failed.") ;
+		assertTrue( v instanceof Vector3 , "VERTEX_01 - inherit Vector3 failed.") ;
 	}	
 	
 	public function testHashCode():Void
@@ -125,22 +125,22 @@ class Tests.pegas.geom.TestVertex extends TestCase
 		assertEquals( v.z , 30, "VERTEX_07 - z property failed : " + v.z ) ;
 	}
 	
-	public function testGetTransformVector():Void
+	public function testGetTransformVector3():Void
 	{
-		var tv:Vector = v.getTransformVector() ;
-		assertTrue(tv instanceof Vector, "VERTEX_16_01 - getTransformVector() method failed.") ;
-		assertEquals(tv.x, 100, "VERTEX_16_01 - getTransformVector() method failed with the x value.") ;
-		assertEquals(tv.y, 200, "VERTEX_16_02 - getTransformVector() method failed with the y value.") ;
-		assertEquals(tv.z, 300, "VERTEX_16_03 - getTransformVector() method failed with the z value.") ;
+		var tv:Vector3 = v.getTransformVector3() ;
+		assertTrue(tv instanceof Vector3, "VERTEX_16_01 - getTransformVector3() method failed.") ;
+		assertEquals(tv.x, 100, "VERTEX_16_01 - getTransformVector3() method failed with the x value.") ;
+		assertEquals(tv.y, 200, "VERTEX_16_02 - getTransformVector3() method failed with the y value.") ;
+		assertEquals(tv.z, 300, "VERTEX_16_03 - getTransformVector3() method failed with the z value.") ;
 	}
 
-	public function testGetWorldVector():Void
+	public function testGetWorldVector3():Void
 	{
-		var wv:Vector = v.getWorldVector() ;
-		assertTrue(wv instanceof Vector, "VERTEX_17_01 - getWorldVector() method failed.") ;
-		assertEquals(wv.x, 100, "VERTEX_17_01 - getWorldVector() method failed with the x value.") ;
-		assertEquals(wv.y, 200, "VERTEX_17_02 - getWorldVector() method failed with the y value.") ;
-		assertEquals(wv.z, 300, "VERTEX_17_03 - getWorldVector() method failed with the z value.") ;
+		var wv:Vector3 = v.getWorldVector3() ;
+		assertTrue(wv instanceof Vector3, "VERTEX_17_01 - getWorldVector3() method failed.") ;
+		assertEquals(wv.x, 100, "VERTEX_17_01 - getWorldVector3() method failed with the x value.") ;
+		assertEquals(wv.y, 200, "VERTEX_17_02 - getWorldVector3() method failed with the y value.") ;
+		assertEquals(wv.z, 300, "VERTEX_17_03 - getWorldVector3() method failed with the z value.") ;
 	}
 
 	public function testClone():Void
@@ -201,7 +201,7 @@ class Tests.pegas.geom.TestVertex extends TestCase
 
 	public function testEquals():Void
 	{
-		var ve:Vector = new Vertex(10, 20, 30, 100, 200, 300) ;
+		var ve:Vector3 = new Vertex(10, 20, 30, 100, 200, 300) ;
 		assertTrue( v.equals(ve) , "VERTEX_20 - equals method failed.") ;
 	}
 

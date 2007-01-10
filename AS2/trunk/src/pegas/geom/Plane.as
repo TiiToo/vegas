@@ -21,8 +21,6 @@
   
 */
 
-import pegas.geom.Vector;
-
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
 import vegas.core.ICopyable;
@@ -47,7 +45,6 @@ class pegas.geom.Plane extends CoreObject implements ICloneable, ICopyable, IEqu
 	 */ 
 	public function Plane( a:Number, b:Number, c:Number, d:Number ) 
 	{
-		super() ;
 		this.a = isNaN(a) ? 0 : a ;
 		this.b = isNaN(a) ? 0 : b ;
 		this.c = isNaN(a) ? 0 : c ;
@@ -109,45 +106,6 @@ class pegas.geom.Plane extends CoreObject implements ICloneable, ICopyable, IEqu
 	}
 
 	/**
-	 * Sets the a, b, c, d coordinate of this Plane.
-	 * @param v0 the first Vector to defined the plan.
-	 * @param v1 the second Vector to defined the plan.
-	 * @param v2 the third Vector to defined the plan.
-	 */
-	// FIXME : problem with setPlane method if size = 0.
-	public function setPlane( v0:Vector , v1:Vector, v2:Vector ):Void
-	{
-		
-		if (v0 == null || v1 == null || v2 == null)
-		{
-			return ;	
-		}
-		
-		var rx1:Number = v1.x - v0.x ;
-		var ry1:Number = v1.y - v0.y ;
-		var rz1:Number = v1.z - v0.z ;
-
-		var rx2:Number = v2.x - v0.x ;
-		var ry2:Number = v2.y - v0.y ;
-		var rz2:Number = v2.z - v0.z ;
-	
-		a = (ry1 * rz2) - (ry2 * rz1) ;
-		b = (rz1 * rx2) - (rz2 * rx1) ;
-		c = (rx1 * ry2) - (rx2 * ry1) ;
-		
-		var size:Number = Math.sqrt( a * a + b * b + c * c );
-		
-		a /= size ;
-		b /= size ;
-		c /= size ;
-		
-		d = a * v1.x + b * v1.y + c * v1.z ;
-		
-	}
-
-	public var test:String ;
-
-	/**
 	 * Returns a Eden reprensation of the object.
 	 * @return a string representing the source code of the object.
 	 */
@@ -160,7 +118,7 @@ class pegas.geom.Plane extends CoreObject implements ICloneable, ICopyable, IEqu
 	 * Returns the string representation of the object.
 	 * @return the string representation of the object.
 	 */ 	
-	public function toString(Void):String
+	public function toString():String
 	{
 		return "[" + ConstructorUtil.getName(this) + ":{" + a + "," + b + "," + c + "," + d + "}]" ;
 	}

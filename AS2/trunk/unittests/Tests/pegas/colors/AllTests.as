@@ -48,16 +48,16 @@ class Tests.pegas.colors.AllTests extends TestCase
         
         //suite.simpleTrace = true;
 
-		// suite.addTest( new TestSuite( Tests.pegas.colors.TestBasicColor ) );
-		// suite.addTest( new TestSuite( Tests.pegas.colors.TestColorHSV ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.colors.TestColorHTML ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.colors.TestColorRGB ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.colors.TestColorSVG ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.colors.TestColorUtil ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.colors.TestLightColor ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.colors.TestSolidColor ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.colors.TestTintColor ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.colors.TestTransformColor ) );
+		// TODO suite.addTest( new TestSuite( Tests.pegas.colors.TestBasicColor ) );
+		// TODO suite.addTest( new TestSuite( Tests.pegas.colors.TestColorHSV ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.colors.TestColorHTML ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.colors.TestColorRGB ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.colors.TestColorSVG ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.colors.TestColorUtil ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.colors.TestLightColor ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.colors.TestSolidColor ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.colors.TestTintColor ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.colors.TestTransformColor ) );
 		
         return suite ;
     

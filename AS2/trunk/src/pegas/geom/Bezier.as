@@ -24,8 +24,6 @@
 import pegas.geom.Line;
 import pegas.geom.Point;
 
-// TODO create unit tests
-
 /**
  * Static tool class to creates and manipulates Bezier curves.
  * <p><b>Thanks :</b>

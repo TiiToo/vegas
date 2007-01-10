@@ -46,15 +46,15 @@ class Tests.pegas.transitions.AllTests extends TestCase
 
         var suite:TestSuite = new TestSuite( "Tests.pegas.transitions" );
         
-        // suite.simpleTrace = true;
+        // TODO suite.simpleTrace = true;
 
 		suite.addTest(  Tests.pegas.transitions.easing.AllTests.suite() ) ;
 
-		// suite.addTest( new TestSuite( Tests.pegas.transitions.TestEase ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.transitions.TestMotion ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.transitions.TestTween ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.transitions.TestTweenEntry ) ) ;
-		// suite.addTest( new TestSuite( Tests.pegas.transitions.TestTweenProvider ) );
+		// TODO suite.addTest( new TestSuite( Tests.pegas.transitions.TestEase ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.transitions.TestMotion ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.transitions.TestTween ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.transitions.TestTweenEntry ) ) ;
+		// TODO suite.addTest( new TestSuite( Tests.pegas.transitions.TestTweenProvider ) );
         
         return suite ;
     
