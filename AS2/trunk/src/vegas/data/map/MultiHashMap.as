@@ -215,10 +215,11 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 
 	/**
 	 * Gets the collection mapped to the specified key. This method is a convenience method to typecast the result of get(key).
+	 * @return the collection mapped to the specified key
 	 */
 	public function get( key ) /*Collection*/ 
 	{
-		return _map.get(key) ;
+		return _map.get(key) || null ;
 	}
 
 	/**
@@ -231,6 +232,7 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 	
 	/**
 	 * This returns an array containing the combination of values from all keys.
+	 * @return returns an array containing the combination of values from all keys.
 	 */
 	public function getValues():Array 
 	{
@@ -315,8 +317,10 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 	/**
 	 * Adds a collection of values to the collection associated with the specified key.
 	 */
-	public function putCollection(key, c:Collection):Void {
-		if (!containsKey(key)) {
+	public function putCollection(key, c:Collection):Void 
+	{
+		if (!containsKey(key)) 
+		{
 			_map.put(key , createCollection()) ;
 		}
 		_map.get(key).insertAll(c) ;
@@ -333,9 +337,20 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 		var value = arguments[1] ;
 		if (key && value) 
 		{
-			var c:Collection = _map.get(key) ;
-			var b:Boolean = c.remove(value) ;
-			return (b) ? value : null ;
+			var c:Collection = Collection( this.get(key)) ;
+			if (c != null)
+			{
+				var b:Boolean = c.remove(value) ;
+				if (c.isEmpty())
+				{
+					_map.remove(key) ;	
+				}
+				return (b) ? value : null ;
+			}
+			else
+			{
+				return null ;	
+			}
 		}
 		else 
 		{

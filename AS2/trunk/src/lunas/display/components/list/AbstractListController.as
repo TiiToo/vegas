@@ -27,11 +27,15 @@ import lunas.events.CellEvent;
 import vegas.events.Event;
 import vegas.util.mvc.AbstractController;
 
+/**
+ * @author eKameleon
+ */
 class lunas.display.components.list.AbstractListController extends AbstractController 
 {
 
-	// ----o Constructor
-
+	/**
+	 * Creates  
+	 */
 	public function ListController() 
 	{ 
 		//

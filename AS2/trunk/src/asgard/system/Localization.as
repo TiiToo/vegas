@@ -186,9 +186,12 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 
 	public function getLocale( sID:String ) 
 	{
-		if (sID) {
+		if (sID) 
+		{
 			return this.get(_current)[sID] || null ;
-		} else {
+		}
+		else 
+		{
 			return this.get(_current) || null ;
 		}
 	}

@@ -21,118 +21,49 @@
   
 */
 
-/**	LocalizationLoaderEvent
-
-	AUTHOR
-
-		Name : LocalizationLoaderEvent
-		Package : asgard.events
-		Version : 1.0.0.0
-		Date :  2006-03-25
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-		
-	CONSTRUCTOR
-	
-		new LocalizationEvent(type:String, localization:Localization ) ;
-
-	METHOD SUMMARY
-	
-		- cancel():Void
-		
-		- clone():BasicEvent
-		
-		- getBubbles():Boolean
-		
-		- getContext()
-		
-		- getCurrent()
-		
-		- getCurrentTarget()
-		
-		- getEventPhase():Number
-		
-		- getLocale(sID:String):Locale
-		
-		- getTarget()
-		
-		- getTimeStamp():Number
-		
-		- getType():String
-		
-		- hashCode():Number
-		
-		- initEvent(type:String, bubbles:Boolean, cancelable:Boolean)
-		
-		- isCancelled():Boolean
-		
-		- isQueued():Boolean
-		
-		- queueEvent():Void
-		
-		- setBubbles(b:Boolean):Void
-		
-		- setContext(context):Void
-		
-		- setCurrentTarget(target):Void
-		
-		- setEventPhase(n:Number):Void
-		
-		- setTarget(target):Void
-		
-		- setType(type:String):Void
-		
-		- stopImmediatePropagation():Void
-		
-		- toSource(indent : Number, indentor : String):String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → BasicEvent → DynamicEvent → LoaderEvent → ConfigLoaderEvent
-		
-	IMPLEMENTS 
-		
-		Event, ICloneable, IFormattable, IHashable, ISerializable
-
-	SEE ALSO
-	
-		Locale, Localization
-
-**/
-
-import asgard.system.Locale;
 import asgard.system.Localization;
 
 import vegas.events.BasicEvent;
 
 /**
+ * The LocalizationEvent is used in the Localization singleton to notify a change.
  * @author eKameleon
  * @version 1.0.0.0
- * @date 2006-03-24
  */
-  
-class asgard.events.LocalizationEvent extends BasicEvent {
+class asgard.events.LocalizationEvent extends BasicEvent 
+{
 
-	// ----o Constructor
-		
+	/**
+	 * Creates a new LocalizationEvent instance.
+	 */
 	public function LocalizationEvent(type : String, localization:Localization, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) {
 		super(type, localization, context, bubbles, eventPhase, time, stop) ;
 	}
 	
-	// ----o Public Methods
-	
-	public function clone() {
+	/**
+	 * Returns a shallow copy of this object.
+	 * @return a shallow copy of this object.
+	 */
+	public function clone() 
+	{
 		return new LocalizationEvent( getType (), Localization.getInstance() ) ;
 	}
 	
-	public function getCurrent() {
+	/**
+	 * Returns the current Lang of the Localization singleton.
+	 * @return the current Lang of the Localization singleton.
+	 */
+	public function getCurrent() 
+	{
 		return Localization.getInstance().getCurrent() ;
 	}
 
-	public function getLocale(sID:String):Locale {
+	/**
+	 * Returns the current {@code Local} reference or the internal value of the Local property passed in argument with the string in argument.
+	 * @return the current {@code Local} reference or the internal value of the Local property passed in argument with the string in argument.
+	 */
+	public function getLocale(sID:String)
+	{
 		return Localization.getInstance().getLocale(sID) ;
 	}
 

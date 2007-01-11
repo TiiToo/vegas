@@ -24,30 +24,26 @@
 import asgard.config.ConfigCollector;
 import asgard.config.IConfigurable;
 
-import vegas.core.CoreObject;
 import vegas.errors.Warning;
+import vegas.util.mvc.AbstractModel;
 
 /**
- * This core class extend the CoreObject class and implement the IConfigurable interface.
+ * This core class extend the AbstractModel class and implement the IConfigurable interface.
  * A IConfigurable object handle a notification of the ConfigCollector class with the method setup(), you must override this method in your concrete class.
  * The IConfigurable objects are registered in the ConfigCollector to launch the setup of all IConfigurable object one time with the {@code ConfigCollector.run()} method when the Config is loaded for example. 
  * @author eKameleon
  */
-class asgard.config.ConfigurableObject extends CoreObject implements IConfigurable
+class asgard.config.ConfigurableModel extends AbstractModel implements IConfigurable
 {
-
+	
 	/**
-	 * Creates a new ConfigurableObject instance.
+	 * Creates a new ConfigurableModel instance.
 	 */
-	public function ConfigurableObject() 
+	function ConfigurableModel() 
 	{
-		
-		super();
-		
 		isConfigurable = true ;
-		
 	}
-
+	
 	/**
 	 * (read-write) Returns {@code true} if the object is configurable and receive the notification of the ConfigCollector in the setup() method.
 	 * @return {@code true} if the object is configurable and receive the notification of the ConfigCollector.
@@ -78,6 +74,7 @@ class asgard.config.ConfigurableObject extends CoreObject implements IConfigurab
 
 	/**
 	 * Invoqued when this object when the ConfigCollector is run.
+	 * Overrides this method.
 	 */
 	 public function setup():Void
 	 {
@@ -88,5 +85,4 @@ class asgard.config.ConfigurableObject extends CoreObject implements IConfigurab
 	 * Determinates if the object is configurable.
 	 */
 	 private var _isConfigurable:Boolean ;
-	 
 }

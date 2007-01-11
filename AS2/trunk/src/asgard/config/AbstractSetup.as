@@ -25,7 +25,6 @@ import asgard.config.Config;
 import asgard.config.ConfigLoader;
 import asgard.config.ISetup;
 import asgard.events.LoaderEvent;
-import asgard.events.LoaderEventType;
 import asgard.net.LoaderListener;
 
 import pegas.events.UIEvent;
@@ -35,6 +34,7 @@ import vegas.events.Delegate;
 import vegas.events.EventDispatcher;
 
 /**
+ * This class provides a skeletal implementation of the {@code ISetup} interface, to minimize the effort required to implement this interface.
  * @author eKameleon
  */
 class asgard.config.AbstractSetup extends EventDispatcher implements ISetup, LoaderListener  
@@ -42,6 +42,9 @@ class asgard.config.AbstractSetup extends EventDispatcher implements ISetup, Loa
 
 	/**
 	 * Creates a new AbstractSetup instance.
+	 * @param sFileName the name of the file to load.
+	 * @param sPath (optional) the path of the file to load.
+	 * @param sSuffix (optional) the suffix of the file to load
 	 */
 	private function AbstractSetup( sFileName:String, sPath:String, sSuffix:String ) 
 	{
@@ -49,43 +52,71 @@ class asgard.config.AbstractSetup extends EventDispatcher implements ISetup, Loa
 		_eChange = new UIEvent( UIEventType.CHANGE ) ;
 	
 		_loader = new ConfigLoader() ;
-		_loader.addEventListener(LoaderEventType.COMPLETE, new Delegate(this, onLoadComplete)) ;
-		_loader.addEventListener(LoaderEventType.INIT, new Delegate(this, onLoadInit)) ;
-		_loader.addEventListener(LoaderEventType.PROGRESS, new Delegate(this, onLoadProgress)) ;
-		_loader.addEventListener(LoaderEventType.START, new Delegate(this, onLoadStart)) ;
-		_loader.addEventListener(LoaderEventType.IO_ERROR, new Delegate(this, onLoadError)) ;
-		_loader.addEventListener(LoaderEventType.TIMEOUT, new Delegate(this, onLoadTimeOut)) ;
+		_loader.addEventListener(LoaderEvent.COMPLETE, new Delegate(this, onLoadComplete)) ;
+		_loader.addEventListener(LoaderEvent.INIT, new Delegate(this, onLoadInit)) ;
+		_loader.addEventListener(LoaderEvent.PROGRESS, new Delegate(this, onLoadProgress)) ;
+		_loader.addEventListener(LoaderEvent.START, new Delegate(this, onLoadStart)) ;
+		_loader.addEventListener(LoaderEvent.IO_ERROR, new Delegate(this, onLoadError)) ;
+		_loader.addEventListener(LoaderEvent.TIMEOUT, new Delegate(this, onLoadTimeOut)) ;
 
 		setLoader(sFileName, sPath, sSuffix) ;
 
 	}
 
+	/**
+	 * The name of this object.
+	 */
 	public var name:String = null ;
 	
+	/**
+	 * The namespace of this object.
+	 */
 	public var namespace:String = null  ;
 	
+	/**
+	 * (read-write) Returns {@code true} if the object is running.
+	 * @return {@code true} if the object is running.
+	 */
 	public function get running():Boolean 
 	{
 		return getRunning() ;	
 	}
 	
+	/**
+	 * The version of this object.
+	 */
 	public var version:String = null  ;
 	
+	/**
+	 * Returns the reference of the Config singleton.
+	 * @return the reference of the Config singleton.
+	 */
 	public function getConfig():Config 
 	{
 		return Config.getInstance() ;
 	}
-
+	
+	/**
+	 * Returns the reference of the ConfigLoader use by this object to load the configuration of the application.
+	 * @return the reference of the ConfigLoader use by this object to load the configuration of the application
+	 */
 	public function getConfigLoader():ConfigLoader 
 	{
 		return _loader ;
 	}
 	
+	/**
+	 * Returns {@code true} if the object is running.
+	 * @return {@code true} if the object is running.
+	 */
 	public function getRunning():Boolean 
 	{
 		return _loader.running ;
 	}
 
+	/**
+	 * Notify an UIEvent with the event type {@code UIEventType.CHANGE}.
+	 */
 	public function notifyChange():Void 
 	{
 		dispatchEvent( _eChange ) ;
@@ -122,6 +153,9 @@ class asgard.config.AbstractSetup extends EventDispatcher implements ISetup, Loa
 		// override
 	}
 	
+	/**
+	 * Calls this method to release the object.
+	 */
 	public function release():Void 
 	{
 		name = null ;
@@ -129,6 +163,9 @@ class asgard.config.AbstractSetup extends EventDispatcher implements ISetup, Loa
 		version = null  ;
 	}
 	
+	/**
+	 * Runs the command.
+	 */
 	public function run():Void 
 	{
 		if (!getRunning()) {
@@ -137,6 +174,9 @@ class asgard.config.AbstractSetup extends EventDispatcher implements ISetup, Loa
 		}
 	}
 	
+	/**
+	 * Sets the loader of this object.
+	 */
 	public function setLoader(sFileName:String, sPath:String, sSuffix:String):Void 
 	{
 		if (sFileName) _loader.setFileName(sFileName) ;
@@ -144,6 +184,9 @@ class asgard.config.AbstractSetup extends EventDispatcher implements ISetup, Loa
 		if (sSuffix) _loader.setSuffix(sSuffix) ;	
 	}
 
+	/**
+	 * Update the object.
+	 */
 	public function update():Void 
 	{
 		// override this method in you setup class.
