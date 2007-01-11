@@ -21,86 +21,6 @@
   
 */
 
-/** ListContainer
-
-	AUTHOR
-
-		Name : ListContainer
-		Package : lunas.display.components.container
-		Version : 1.0.0.0
-		Date :  2006-02-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-
-		- direction:Number [R/W]
-		
-		- itemCount:Number [R/W]
-		
-		- maskIsActive:Boolean [R/W]
-		
-		- space:Number [R/W]
-		
-		- thickness:Number
-
-	METHOD SUMMARY
-	
-		- changeChildsPosition():Void
-		
-		- draw():Void
-		
-		- getBackground():MovieClip
-		
-		- getBound():Object
-		
-		- getDirection():Number
-		
-		- getChildCount():Number
-		
-		- getCoordinateProperty():String
-		
-		- getChildPositionAt(n:Number):Number 
-		
-		- getMask():MovieClip
-		
-		- getMaskIsActive():Boolean
-		
-		- getSizeProperty():String
-		
-		- getSpace():Number
-		
-		- resize():Void
-		
-		- setDirection(n:Number):Void
-		
-		- setChildCount(n:Number):Void
-		
-		- setMaskIsActive (bool:Boolean)
-		
-		- setSpace(n:Number)
-		
-		- viewEnabled():Void
-	
-	EVENT SUMMARY
-
-		- UIEvent
-		
-	EVENT TYPE SUMMARY
-	
-		- SCROLL:UIEventType
-
-	INHERIT 
-	
-		MovieClip → AbstractComponent → AbstractContainer → SimpleContainer → ListContainer
-
-	SEE ALSO
-	
-		Direction
-	
-**/
-
 import asgard.display.Direction;
 
 import lunas.display.components.container.SimpleContainer;
@@ -108,28 +28,65 @@ import lunas.display.components.shape.RectangleComponent;
 
 import vegas.util.factory.DisplayFactory;
 
+/**
+ * @author eKameleon
+ */
 class lunas.display.components.container.ListContainer extends SimpleContainer 
 {
 
-	// ----o Constructor
-
-	public function ListContainer () 
+	/**
+	 * Creates a new ListContainer instance
+	 */
+	function ListContainer() 
 	{ 
+		_nDirection = Direction.VERTICAL ;
 		_createMask() ;
 		update() ;
 	}
 
-	// ----o CONSTANT
-	
-	static private var __ASPF__ = _global.ASSetPropFlags(ListContainer, null , 7, 7) ;
-
-	// ----o Public Properties
-
 	static public var MASK_RENDERER:Function = RectangleComponent ;
+
+	public function get direction():Number 
+	{
+		return getDirection() ;
+	}
 	
+	public function set direction(n:Number):Void 
+	{
+		setDirection( n ) ;
+	}
+	
+	public function get childCount():Number 
+	{
+		return getChildCount() ;
+	}
+	
+	public function set childCount(n:Number):Void 
+	{
+		setChildCount( n ) ;
+	}
+
+	public function get maskIsActive():Boolean 
+	{
+		return getMaskIsActive() ;
+	}
+	
+	public function set maskIsActive( b:Boolean ):Void 
+	{
+		setMaskIsActive( b ) ;
+	}
+
+	public function get space():Number 
+	{
+		return getSpace() ;
+	}
+	
+	public function set space(n:Number):Void 
+	{
+		setSpace( n ) ;
+	}	
+
 	public var thickness:Number = 1 ;
-	
-	// ----o Public Methods
 	
 	public function changeChildsPosition():Void 
 	{
@@ -219,7 +176,7 @@ class lunas.display.components.container.ListContainer extends SimpleContainer
 			var n2:Number = 0 ;
 			var p:String = isHorizontal ? "_width" : "_height" ;
 			var f:String = isHorizontal ? "_height" : "_width" ;
-			for (var i:Number=0 ; i<n ; i++) 
+			for (var i:Number = 0 ; i<n ; i++) 
 			{
 				var c = _oModel.getChildAt(i) ;
 				n1 += _nSpace + c[p];
@@ -231,7 +188,7 @@ class lunas.display.components.container.ListContainer extends SimpleContainer
 			_bound = 
 			{
 				w : (isHorizontal ? n1 : n2) + thickness , 
-				h : (isHorizontal? n2 : n1) + thickness 
+				h : (isHorizontal ? n2 : n1) + thickness 
 			} ;
 			break ;
 		}
@@ -244,7 +201,8 @@ class lunas.display.components.container.ListContainer extends SimpleContainer
 		}
 		else 
 		{
-			_bound = {
+			_bound = 
+			{
 				w : _mcContainer._width  ,
 				h : _mcContainer._height 
 			};
@@ -285,60 +243,20 @@ class lunas.display.components.container.ListContainer extends SimpleContainer
 		var l = _oModel.size() ;
 		while (--l > -1) _oModel.getChildAt(l).enabled = enabled ;
 	}
-	
-	// ----o Virtual Property
-	
-	public function get direction():Number 
-	{
-		return getDirection() ;
-	}
-	
-	public function set direction(n:Number):Void 
-	{
-		setDirection( n ) ;
-	}
-	
-	public function get childCount():Number 
-	{
-		return getChildCount() ;
-	}
-	
-	public function set childCount(n:Number):Void 
-	{
-		setChildCount( n ) ;
-	}
 
-	public function get maskIsActive():Boolean 
-	{
-		return getMaskIsActive() ;
-	}
-	
-	public function set maskIsActive( b:Boolean ):Void 
-	{
-		setMaskIsActive( b ) ;
-	}
-
-	public function get space():Number 
-	{
-		return getSpace() ;
-	}
-	
-	public function set space(n:Number):Void 
-	{
-		setSpace( n ) ;
-	}		
-
-	// ----o Private Properties
-	
 	private var _bMaskIsActive:Boolean ;
-	private var _bound:Object ;
-	private var _nDirection:Number = Direction.VERTICAL ; 
-	private var _nChildCount:Number = null ;
-	private var _nSpace:Number = 0 ;
-	private var _mcBackground:MovieClip ;
-	private var _mcMask:MovieClip ;
 
-	// ----o Private Methods
+	private var _bound:Object ;
+
+	private var _nDirection:Number ; 
+
+	private var _nChildCount:Number = null ;
+
+	private var _nSpace:Number = 0 ;
+
+	private var _mcBackground:MovieClip ;
+
+	private var _mcMask:MovieClip ;
 
 	private function _removeMask():Void 
 	{

@@ -21,64 +21,6 @@
   
 */
 
-/** AutoScrollContainer
-
-	AUTHOR
-
-		Name : AutoScrollContainer
-		Package : eka.container
-		Version : 1.0.0.1
-		Date :  2006-02-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-		
-		* autoScroll[boolean] (R/W)
-		
-			the auto scroll is active if this property is true.
-		
-		* scrollAutoRatio[Number] 
-		
-			% value between 0 and 50%.
-		
-		* scrollInterval[Number]
-		 
-			delay in ms to refresh the scroll value.
-	
-	METHOD SUMMARY
-	
-		* getScrollInterval()
-		
-		* setScrollInterval(n)
-	
-	EVENT SUMMARY
-	
-		- MouseEvent
-		
-		- UIEvent
-	
-	EVENT TYPE SUMMARY
-	
-		- ROLLOUT:MouseEventType
-		
-		- ROLLOVER:MouseEventType
-		
-		- SCROLL:UIEventType
-	
-	INHERIT
-	
-		AbstractComponent → AbstractContainer → SimpleContainer → ListContainer → ScrollContainer → AutoScrollContainer
-	
-	SEE ALSO
-	
-		Delegate, ITimer, Timer
-
-	TODO scrollAutoRation -> Virtual Property with Range between 0 & 50%
-
-**/
-
 import asgard.display.Direction;
 
 import lunas.display.components.container.ScrollContainer;
@@ -91,60 +33,108 @@ import vegas.events.TimerEvent;
 import vegas.events.TimerEventType;
 import vegas.util.Timer;
 
-class lunas.display.components.container.AutoScrollContainer extends ScrollContainer {
+/**
+ * @author ekameleon
+ */
+class lunas.display.components.container.AutoScrollContainer extends ScrollContainer 
+{
 	
-	// ----o Constructor
-
-	private function AutoScrollContainer () {
+	/**
+	 * Creates a new AutoScrollContainer instance.
+	 */
+	private function AutoScrollContainer() 
+	{
 		super() ;
 		_timer = new Timer(200);
 		_timer.addEventListener(TimerEventType.TIMER, new Delegate(this, _mouseEvent));
 		updateMouseEvent() ;
 	}
 	
-	// ----o Constant	
-	
 	static public var ROLLOUT:String = MouseEventType.ROLLOUT ;
+
 	static public var ROLLOVER:String = MouseEventType.ROLLOVER ;
 
-	// ----o Public Properties
-	
+	/**
+	 * Returns {@code true} if the auto scroll is active.
+	 * @return {@code true} if the auto scroll is active.
+	 */
+	public function get autoScroll():Boolean 
+	{
+		return getAutoScroll() ;	
+	}
+
+	/**
+	 * Sets the auto scroll activity.
+	 */
+	public function set autoScroll(b:Boolean):Void 
+	{
+		setAutoScroll(b) ;	
+	}
+
+	/**
+	 * Defines a value between 0 and 50%.
+	 */
 	public var scrollAutoRatio:Number = 10 ;
+
+	/**
+	 * Returns the delay in ms to refresh the scroll value.
+	 * @return the delay in ms to refresh the scroll value.
+	 */
+	public function get scrollInterval():Number 
+	{
+		return getScrollInterval() ;	
+	}
+	
+	/**
+	 * Sets the delay in ms to refresh the scroll value.
+	 */
+	public function set scrollInterval(n:Number):Void 
+	{
+		setScrollInterval(n) ;	
+	}
+	
 	public var useHandCursor = false ;
 
-	// ----o Public Methods
-
-	public function getAutoScroll():Boolean { 
+	public function getAutoScroll():Boolean 
+	{ 
 		return _auto ;
 	}
 
-	public function getIsOut():Boolean {
+	public function getIsOut():Boolean 
+	{
 		return (__mouse.x < __min.x) || (__mouse.x > __max.x) || (__mouse.y < __min.y) || (__mouse.y > __max.y) ;
 	}
 
-	public function getLimit():Object { 
+	public function getLimit():Object 
+	{ 
 		return { min : __min , max : __max } ;
 	}
 
-	public function getMousePos():Object { return __mouse; }
+	public function getMousePos():Object 
+	{ 
+		return __mouse ; 
+	}
 
-
-	public function getPosRatio():Number {
+	public function getPosRatio():Number 
+	{
 		var prop:String = (_nDirection == Direction.VERTICAL) ? "y" : "x" ;
 		var ratio:Number = Math.round (__mouse[prop] * 100 / __max[prop])  ;
 		return ratio ;
 	}
 	
-	public function getScrollInterval():Number { 
+	public function getScrollInterval():Number 
+	{ 
 		return _timer.getDelay() ;
 	} 
 
-	public function setAutoScroll(bool:Boolean):Void { 
+	public function setAutoScroll(bool:Boolean):Void 
+	{ 
 		_auto = bool ; 
 		stopMouseEvent() ;
 	}
 
-	public function setLocalizer () : Void {
+	public function setLocalizer () : Void 
+	{
 		var c:MovieClip = _mcMask ;
 		__min = { x: c._x, y: c._y } ;
 		__max = { 
@@ -153,90 +143,91 @@ class lunas.display.components.container.AutoScrollContainer extends ScrollConta
 		};
 	}
 	
-	public function setScrollInterval(n:Number):Void { 
+	public function setScrollInterval(n:Number):Void 
+	{ 
 		_timer.setDelay(n) ;
 	} 
 	
-	public function startMouseEvent() : Void {
+	public function startMouseEvent() : Void 
+	{
 		delete onRollOver ;
 		dispatchEvent(new MouseEvent(ROLLOVER, this)) ;
-		if (_auto) {
+		if (_auto) 
+		{
 			setLocalizer () ;
 			_timer.start() ;
 		}
 	}
 	
-	public function stopMouseEvent(noEvent:Boolean):Void {
-		if (noEvent != true) dispatchEvent(new MouseEvent(ROLLOUT, this)) ;
+	public function stopMouseEvent(noEvent:Boolean):Void 
+	{
+		if (noEvent != true) 
+		{
+			dispatchEvent(new MouseEvent(ROLLOUT, this)) ;
+		}
 		_timer.stop() ;
 		 updateMouseEvent() ;
 	}
 
-	public function updateMouseEvent():Void {
-		if (_auto && enabled) {
+	public function updateMouseEvent():Void 
+	{
+		if (_auto && enabled) 
+		{
 			onRollOver = Delegate.create(this, startMouseEvent) ;
 		}
 	}
 	
-	/*override*/ public function viewChanged():Void {
+	/*override*/ public function viewChanged():Void 
+	{
 		super.viewChanged() ;
 		stopMouseEvent(true) ;
 	}
 	
-	/*override*/ public function viewDestroyed():Void {
+	/*override*/ public function viewDestroyed():Void 
+	{
 		super.viewDestroyed() ;
 		_timer.stop() ;
 	}
 	
-	/*override*/ public function viewEnabled():Void {
+	/*override*/ public function viewEnabled():Void 
+	{
 		super.viewEnabled() ; 
 		if (enabled) 
 		{
 			startMouseEvent();
-		}else
+		}
+		else
 		{
 			stopMouseEvent() ;
 		}
 	}
 
-	// ----o Virtual Properties
-
-	public function get autoScroll():Boolean {
-		return getAutoScroll() ;	
-	}
-
-	public function set autoScroll(b:Boolean):Void {
-		setAutoScroll(b) ;	
-	}
-
-	public function get scrollInterval():Number {
-		return getScrollInterval() ;	
-	}
-
-	public function set scrollInterval(n:Number):Void {
-		setScrollInterval(n) ;	
-	}
-
-	// ----o Private Properties
-
 	private var _auto:Boolean = true;
+
 	private var __min:Object ;
+
 	private var __max:Object ;
+
 	private var __mouse:Object ;
+
 	private var _timer:Timer ;
 	
-	// ----o Private Methods
-		
-	private function _mouseEvent( e:TimerEvent ):Void {
+	private function _mouseEvent( e:TimerEvent ):Void 
+	{
 		__mouse = { x:_xmouse , y:_ymouse } ;
 		var nR:Number = getPosRatio() ;
 		var nMax:Number = scrollAutoRatio || 0 ;
 		var nS:Number = getScroll() ;
-		if (getIsOut()) {
+		if (getIsOut()) 
+		{
 			stopMouseEvent () ;
-		} else if (nR < nMax) {
+		}
+		else if (nR < nMax) 
+		{
 			setScroll(nS-1) ;
-		} else if ( nR> (100-nMax)) {
+		}
+		else if ( nR> (100-nMax)) 
+		{
 			setScroll(nS+1) ;
 		}
 		

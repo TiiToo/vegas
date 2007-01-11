@@ -21,72 +21,6 @@
  
 */
 
-/**
-
-	AUTHOR
-
-		Name : AbstractContainer
-		Package : lunas.display.components.container
-		Version : 1.0.0.0
-		Date :  2006-02-06
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- addChild( oChild )
-		
-		- addChildAt( oChild, index:Number )
-		
-		- clear():Void
-		
-		- contains(oChild):Boolean
-		
-		- getChildAt(index:Number)
-		
-		- getChildByKey(key:Number)
-		
-		- getChildByName(name:String)
-		
-		- iterator():Iterator
-		
-		- indexOf(oChild):Number
-		
-		- removeChild(oChild):Void
-		
-		- removeChildAt(index:Number):Void
-		
-		- removeChildsAt(index:Number, len:Number):Void
-		
-		- removeRange(from:Number, to:Number):Void
-		
-		- setChildIndex( oChild, index:Number):Void
-		
-		- size():Number
-		
-		- toString():String
-	
-	EVENT SUMMARY
-
-		UIEvent
-		
-	EVENT TYPE SUMMARY
-	
-		- ADDED:UIEventType
-		
-		- REMOVED:UIEventType
-
-	INHERIT 
-	
-		MovieClip → AbstractComponent → AbstractContainer
-
-	IMPLEMENTS
-	
-		IContainer, IHashable, Iterable
-
-*/
-
 import lunas.display.components.AbstractComponent;
 import lunas.display.components.container.ContainerModel;
 import lunas.display.components.IContainer;
@@ -98,19 +32,21 @@ import vegas.util.factory.DisplayFactory;
 import vegas.util.mvc.IController;
 import vegas.util.mvc.IView;
 
+/**
+ * @author eKameleon
+ */
 class lunas.display.components.container.AbstractContainer extends AbstractComponent implements IContainer, Iterable 
 {
 
-	// ----o Constructor
-
+	/**
+	 * Creates a new AbstractContainer instance.
+	 */
 	private function AbstractContainer () 
 	{ 
 		_createContainer() ;
 		_oModel = new ContainerModel() ;
 	}
 
-	// ----o Public Methods
-	
 	public function addChild( o , oInit) 
 	{
 		return addChildAt( o, size(), oInit) ;
@@ -204,15 +140,14 @@ class lunas.display.components.container.AbstractContainer extends AbstractCompo
 		return _oModel.toArray() ;	
 	}
 	
-	// ----o Private Properties
-
 	private var _mcContainer:MovieClip ;
+
 	private var _oController:IController ;
+
 	private var _oModel:ContainerModel ;
+
 	private var _oView:IView ;
 	
-	// ----o Private Methods
-
 	private function _createContainer():Void 
 	{
 		if (_mcContainer == undefined) 
