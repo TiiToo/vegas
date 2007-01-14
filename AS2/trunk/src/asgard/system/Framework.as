@@ -21,127 +21,126 @@
   
 */
 
-/** Framework
-
-	AUTHOR
-
-		Name : Framework
-		Package : asgard.system
-		Version : 1.0.0.0
-		Date : 2005-09-11
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-		
-	STATIC PROPERTY SUMMARY
-	
-		- COPYRIGHT
-		
-	STATIC METHOD SUMMARY
-	
-		- getAuthor():String
-		
-		- getLicence():String
-
-		- getLink():String
-		
-		- getMail():String
-		
-		- getName():String
-		
-		- getVersion():Version
-		
-		- setAuthor(s:String)
-		
-		- setLicence(s:String)
-
-		- setLink(s:String)
-		
-		- setMail(s:String)
-		
-		- setName(s:String)
-		
-		- setVersion(v:Version)
-		
-		- toString():String
-		
-*/
-
 import asgard.system.Version;
 
+/**
+ * This singleton can be used to defined the copyright of your applications or frameworks.
+ * @author eKameleon
+ */
 class asgard.system.Framework 
 {
 	
-	// -----o Constructor
-	
-	private function Framework() {}
-
-	// ----o Properties
-	
+	/**
+	 * This Object contains all the copyrights and properties of the application or the framework. 
+	 */
 	static public var COPYRIGHT = {} ;
 	
-	// ---- Methods
-	
+	/**
+	 * Returns the author of this project.
+	 * @return the author of this project.
+	 */
 	static public function getAuthor():String 
 	{
 		return COPYRIGHT.author ;
 	}
 	
+	/**
+	 * Returns the licence of this application or framework.
+	 * @return the licence of this application or framework.
+	 */
 	static public function getLicence():String 
 	{
 		return COPYRIGHT.licence ;
 	}
 	
+	/**
+	 * Returns the link of the project.
+	 * @return the link of the project.
+	 */
 	static public function getLink():String 
 	{
 		return COPYRIGHT.link ;
 	}
 	
+	/**
+	 * Returns the mail of this project.
+	 * @return the mail of this project.
+	 */
 	static public function getMail():String 
 	{
 		return COPYRIGHT.mail ;
 	}
 	
+	/**
+	 * Returns the name of the author (if it's different).
+	 * @return the name of the author (if it's different).
+	 */
 	static public function getName():String 
 	{
 		return COPYRIGHT.name ;
 	}
 	
+	/**
+	 * Returns the version of this project.
+	 * @return the version of this project.
+	 */
 	static public function getVersion():Version 
 	{
 		return COPYRIGHT.version ;
 	}
-		
+
+	/**
+	 * Sets the author of this project.
+	 */
 	static public function setAuthor(s:String):Void 
 	{
 		COPYRIGHT.author = s ;
 	}
 
+	/**
+	 * Sets the licence of this application or framework.
+	 */
 	static public function setLicence(s:String):Void 
 	{
 		COPYRIGHT.licence = s ;
 	}
 
+	/**
+	 * Sets the link of the project.
+	 */
 	static public function setLink(s:String):Void 
 	{
 		COPYRIGHT.link = s ;
 	}
-
+	
+	/**
+	 * Sets the mail of this project.
+	 */
 	static public function setMail (s:String):Void 
 	{
 		COPYRIGHT.mail = s ;
 	}
-	
+
+	/**
+	 * Sets the name of the author (if it's different).
+	 */
 	static public function setName(s:String):Void 
 	{
 		COPYRIGHT.name = s ;
 	}
-	
+
+	/**
+	 * Sets the version of this project.
+	 */
 	static public function setVersion(v:Version):Void 
 	{
 		COPYRIGHT.version = v ;
 	}
 	
+	/**
+	 * Returns the string representation of this singleton.
+	 * @return the string representation of this singleton.
+	 */
 	static public function toString():String 
 	{
 		var txt:String = "<" ;

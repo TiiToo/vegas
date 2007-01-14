@@ -21,51 +21,31 @@
   
 */
 
-/** ApplicationType
- 
-	AUTHOR
- 
-		Name : ApplicationType
-		Package : asgard.system
-		Version : 1.0.0.0
-		Date :  2005-09-15
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
- 
-	CONSTANT SUMMARY
-	
-		- FILE:String
-		
-			"file"
-		
-		- FTP:String
-		
-			"ftp"
-		
-		- HTTP:String
-		
-			"http"
-		
-		- HTTPS:String
-		
-			"https"
-	
-**/
+/**
+ * The enumeration of all types of the protocols of your swf application.
+ * @author eKameleon
+ */
+class asgard.system.ApplicationType 
+{
 
-class asgard.system.ApplicationType {
-
-	// ----o Constructor
-	
-	private function ApplicationType() {
-		//
-	}
-
-	// ----o Static Properties
-	
+	/**
+	 * The type of a file application.
+	 */
 	static public var FILE:String = "file" ;
+	
+	/**
+	 * The type of a FTP application.
+	 */
 	static public var FTP:String = "ftp" ;
+	
+	/**
+	 * Tge type of a HTTP application.
+	 */
 	static public var HTTP:String = "http" ;
+	
+	/**
+	 * The type of a HTTPS application.
+	 */
 	static public var HTTPS:String = "https" ;
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(ApplicationType, null , 7, 7) ;

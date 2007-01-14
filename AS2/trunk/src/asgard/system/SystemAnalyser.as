@@ -21,56 +21,6 @@
   
 */
 
-/* ---------- 	SystemAnalyser
-
-	AUTHOR
-
-		Name : SystemAnalyser
-		Package : asgard.system
-		Version : 1.0.0.0
-		Date :  2005-07-04
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION 
-		
-		Classe Singleton [DP], permet de récupérer toutes les informations du système de l'utilisateur.
-
-	PROPERTIES
-	
-		properties : tableau [Array] contenant les propriétés que le SystemAnalyser peut analyser.
-	
-	METHODS
-	
-		- getSystemProperty(prop:String) : Permet de récupérer la valeur d'une propriété de la classe System.capabilities
-		
-		- run() lance une recherche de toutes les propriétés de la classe System.capabilities définies dans le manager
-
-	EVENTS
-	
-		SystemEvent.VIEW_SYSTEM_EVENT 
-		
-			handler(ev:SystemEvent) 
-			
-				émis lors de l'analyse du System.capabilities.
-				
-			ev.context : un objet avec 2 propriétés 
-				
-				- id : chaine de caractère correspondant au nom de la propriété en cours d'analyse
-				- value : valeur de la propriété provenant du System.capabilities en cours d'analyse	
-				
-			ev.target : cible de l'instance du SystemAnalyser
-			
-			ev.type : nom de l'événement "viewSystem"
-	
-	NB 
-	
-		il est possible d'ajouter des propriétés ou de changer l'ordre d'analyse de celles ci
-		en réorganisant tout simplement le tableau public properties.
-
-----------  */
-
 import asgard.system.SystemAnalyserFormat;
 import asgard.system.SystemEvent;
 
@@ -79,24 +29,24 @@ import vegas.core.IRunnable;
 import vegas.data.iterator.ArrayIterator;
 import vegas.events.EventDispatcher;
 
-class asgard.system.SystemAnalyser extends EventDispatcher implements IRunnable, IFormattable {
+/**
+ * This Singleton check all properties in the System.capabilities class.
+ * <p>You can insert or remove properties or sort the analyse with the properties array.</p>
+ */
+class asgard.system.SystemAnalyser extends EventDispatcher implements IRunnable, IFormattable 
+{
 
-	// ----o Constructor
+	/**
+	 * Creates the SystemAnalyser singleton.
+	 */
+	private function SystemAnalyser() 
+	{
 	
-	private function SystemAnalyser() {}
-	
-	// ----o Static
-	
-	static private var __INSTANCE__:SystemAnalyser ;
-	
-	static public function getInstance(Void):SystemAnalyser {
-		if (__INSTANCE__ == undefined) __INSTANCE__ = new SystemAnalyser() ;
-		return __INSTANCE__ ;
-		
 	}
-	
-	// ----o Public Properties
-	
+
+	/**
+	 * The array representation of all properties to be check by the SystemAnalyser.
+	 */
 	public var properties:Array = [ 
 		"language", 
 		"os", 
@@ -116,25 +66,56 @@ class asgard.system.SystemAnalyser extends EventDispatcher implements IRunnable,
 		"hasScreenBroadcast", 
 		"hasScreenPlayback" 
 	] ;
+
+	/**
+	 * Returns the singleton reference of the SystemAnalyser class.
+	 * @return the singleton reference of the SystemAnalyser class.
+	 */
+	static public function getInstance(Void):SystemAnalyser {
+		if (__INSTANCE__ == undefined) __INSTANCE__ = new SystemAnalyser() ;
+		return __INSTANCE__ ;
 		
-	// ----o Public Methods
-	
-	public function getSystemProperty(prop:String) {
+	}
+
+	/**
+	 * Returns the value of the specified system property passed in argument.
+	 * @return the value of the specified system property passed in argument.
+	 * @see System.capabilities
+	 */
+	public function getSystemProperty(prop:String) 
+	{
 		return System.capabilities[prop] ;
 	}
 
-	public function run():Void { 
+	/**
+	 * Run the check of all properties.
+	 * This method dispatch a SystemEvent 
+	 * @see SystemEvent
+	 */
+	public function run():Void
+	{ 
         var it:ArrayIterator = new ArrayIterator(properties) ; 
-        while(it.hasNext()) { 
+        while(it.hasNext()) 
+        { 
             var cur:String = it.next() ; 
 			var ev:SystemEvent = new SystemEvent(this, cur, System.capabilities[cur]) ;
 			dispatchEvent( ev, false) ; 
         } 
 	}
 
-	public function toString():String {
+	/**
+	 * Returns the string representation of this object.
+	 * @return the string representation of this object.
+	 */
+	public function toString():String 
+	{
 		return (new SystemAnalyserFormat()).formatToString(this) ;
 	}
+
+	/**
+	 * The internal singleton of this class.
+	 */
+	static private var __INSTANCE__:SystemAnalyser ;
 
 	
 }

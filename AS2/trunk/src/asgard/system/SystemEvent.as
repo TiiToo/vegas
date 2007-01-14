@@ -21,124 +21,59 @@
   
 */
 
-/**	SystemEvent
-
-	AUTHOR
-
-		Name : SystemEvent
-		Package : asgard.system
-		Version : 1.0.0.0
-		Date :  2005-10-14
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-
-		- bubbles:Boolean [R/W]
-
-		- context [R/W]
-		
-			- context.id
-			- context.value
-
-		- currentTarget [R/W]
-		
-		- eventPhase:Number [R/W]
-		
-		- target [R/W]
-		
-		- type:String [R/W]
-
-	METHOD SUMMARY
-	
-		- cancel():Void
-		
-		- clone():BasicEvent
-		
-		- getBubbles():Boolean
-		
-		- getContext()
-		
-		- getCurrentTarget()
-		
-		- getEventPhase():Number
-		
-		- getTarget()
-		
-		- getTimeStamp():Number
-		
-		- getType():String
-		
-		- isCancelled():Boolean
-		
-		- isQueued():Boolean
-		
-		- queueEvent():Void
-		
-		- setBubbles(b:Boolean):Void
-		
-		- setContext(context):Void
-		
-		- setCurrentTarget(target):Void
-		
-		- setEventPhase(n:Number):Void
-		
-		- setTarget(target):Void
-		
-		- setType(type:String):Void
-		
-		- stopImmediatePropagation()
-		
-		- toSource(indent : Number, indentor : String):String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → BasicEvent → DynamicEvent
-
-	IMPLEMENTS 
-		
-		Event, ICloneable, IFormattable, IHashable, ISerializable
-
-**/
-
 import vegas.events.DynamicEvent;
 
-// TODO changer le setContext... par 2 propriétés property et value en direct.
-// TODO test method toSource()
+/**
+ * The SystemEvent dispatched by the SystemAnalyser singleton.
+ * @author eKameleon
+ */
+class asgard.system.SystemEvent extends DynamicEvent 
+{
 
-class asgard.system.SystemEvent extends DynamicEvent {
-
-	// ----o Constructor
-	
-	public function SystemEvent(target, property, value, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number){
+	/**
+	 * Creates a new SystemEvent instance.
+	 */
+	public function SystemEvent(target, property, value, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number)
+	{
 		super( VIEW_SYSTEM_EVENT , target, context, bubbles, eventPhase, time, stop) ;
-		setContext( {
-			id : property || null , 
-			value : value || null
-		}) ;
+		_property = property || null ;
+		_value = value || null ;
 	}
 
-	// ----o Static Properties
-
+	/**
+	 * The name of the event dispatched by the run method of the SystemAnalyser singleton.
+	 */
 	static public var VIEW_SYSTEM_EVENT:String = "viewSystem" ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(SystemEvent, ["VIEW_SYSTEM_EVENT"] , 7, 7) ;
-
-	// ----o Public Methods
-
-	public function clone() {
+	/**
+	 * Returns a shallow copy of this event.
+	 * @return a shallow copy of this event.
+	 */
+	public function clone() 
+	{
 		return new SystemEvent(_target, _context.property, _context.value) ;
 	}
 	
-	public function getProperty() {
-		return getContext().property ;
+	/**
+	 * Returns the system property.
+	 * @return the system property.
+	 */
+	public function getProperty():String
+	{
+		return _property ;
 	}
 
-	public function getValue() {
-		return getContext().value ;
+	/**
+	 * Returns the sytem value.
+	 * @return the sytem value.
+	 */
+	public function getValue() 
+	{
+		return _value ;
 	}
+
+	private var _property:String ;
+	
+	private var _value ;
 	
 }

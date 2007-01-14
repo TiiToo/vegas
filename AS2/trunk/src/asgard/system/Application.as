@@ -21,102 +21,103 @@
   
 */
 
-/** Application
- 
-	AUTHOR
- 
-		Name : Application
-		Package : asgard.system
-		Version : 1.0.0.0
-		Date :  2005-09-15
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
- 
-	STATIC METHOD SUMMARY
-		
-		- Application.isWeb : renvoie true si le fichier SWF est chargé 
-			dans une page web avec le protocole HTTP ou HTTPS.
-			
-		- Application.isOnline : renvoie true si le fichier SWF est chargé 
-			depuis internet avec n'importe quel protocole (HTTP, HTTPS ou FTP).
-		
-		- Application.isLocal : renvoie true si le fichier SWF est chargé
-			depuis un fichier local (c-a-d utilisation du protocole FILE).
-		
-		- Application.isLocalWeb : renvoie true si le fichier est local et si on peut detecter
-			la présence d'un moyen de communication entre le player flash et une aide a l'accessiblité.
-   			Note : fonctionne avec IE sur windows, non testé autres navigateurs et autres systemes.
-		
-		- Application.isProjector : renvoie true, si le fichier est local mais
-			n'est ni le flash IDE ni une page web locale.
-		
-		- Application.getIDEPath : renvoie le chemin du logiciel d'authoring Flash
-			si le fichier SWF est détecté étant en mode IDE.
-
-	SEE ALSO
-	
-		ApplicationType
-
-	THANKS 
-	
-		Zwetan NG > Burrrn.com [FMX] flash dans plusieurs environnements.
-
-**/
-
 import asgard.system.ApplicationType;
 
-class asgard.system.Application {
+/**
+ * Static tool class to localize the application status.
+ * <p><b>Thanks : Zwetan</b> NG > Burrrn.com [FMX] flash dans plusieurs environnements.</p>
+ * @author eKameleon
+ */
+class asgard.system.Application
+{
 
-	// ----o Constructor
-	
-	private function Application() {
-		//
-	}
-
-	// ----o Methods
-	
-	static public function getFullPath():String {
+	/**
+	 * Returns the full path of the application.
+	 * @return the full path of the application.
+	 */
+	static public function getFullPath():String 
+	{
 		return _level0._url ;
 	}
 	
-	static public function getProtocol():String {
+	/**
+	 * Returns the string representation of the protocol of this application.
+	 * @return the string representation of the protocol of this application.
+	 */
+	static public function getProtocol():String 
+	{
 		return Application.getFullPath().split("://")[0] ;
 	}
 	
-	static public function isFlashIDE():Boolean {
+	/**
+	 * Return {@code true} if the application is in the Flash IDE.
+	 * @return {@code true} if the application is in the Flash IDE.
+	 */
+	static public function isFlashIDE():Boolean 
+	{
 		return( _level0.$appPath != null );
 	}
 	
-	static public function isWeb():Boolean {
+	/**
+	 * Returns {@code true} if the application is a web application with the protocol HTTP ou HTTPS.
+	 * @return {@code true} if the application is a web application with the protocol HTTP ou HTTPS.
+	 */
+	static public function isWeb():Boolean 
+	{
 		var protocol:String = Application.getProtocol();
 		return( (protocol == ApplicationType.HTTP) || (protocol == ApplicationType.HTTPS) ) ;
 	}
 
-	static public function isOnline():Boolean {
+	/**
+	 * Returns {@code true} if the application is a online web application.
+	 * @return {@code true} if the application is a online web application.
+	 */
+	static public function isOnline():Boolean 
+	{
 		var protocol:String = Application.getProtocol() ;
 		return ( (protocol == ApplicationType.FTP) || Application.isWeb() );
 	}
 	
-	static public function isLocal():Boolean {
+	/**
+	 * Returns {@code true} if the application is a local application.
+	 * @return {@code true} if the application is a local application.
+	 */
+	static public function isLocal():Boolean 
+	{
 		var protocol:String = Application.getProtocol();
 		return( protocol == ApplicationType.FILE );
 	}
 	
-	static public function isLocalWeb():Boolean {
+	/**
+	 * Returns {@code true} if the application is a local web application.
+	 * @return {@code true} if the application is a local web application.
+	 */
+	static public function isLocalWeb():Boolean 
+	{
 		var activeX = System.capabilities.hasAccessibility ;
 		return( Application.isLocal() && (activeX == true) ) ;
 	}
 
-	static public function isProjector():Boolean {
-		return( 
+	/**
+	 * Returns {@code true} if the application is a projector.
+	 * @return {@code true} if the application is a projector.
+	 */
+	static public function isProjector():Boolean 
+	{
+		return
+		( 
 			Application.isLocal() &&
            !Application.isFlashIDE() &&
            !Application.isLocalWeb() 
 		) ;
 	}
 	
-	static public function getIDEPath():String {
+	/**
+	 * Returns the path of the IDE if the application is in the IDE of Flash.
+	 * @return the path of the IDE if the application is in the IDE of Flash.
+	 */
+	static public function getIDEPath():String 
+	{
 		return (Application.isFlashIDE()) ? _level0.$appPath : "" ;
 	}
 

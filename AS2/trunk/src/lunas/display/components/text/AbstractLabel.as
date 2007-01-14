@@ -21,89 +21,6 @@
   
 */
 
-/**
-
-	AUTHOR
-
-		Name : AbstractLabel
-		Package : lunas.display.components.text
-		Version : 1.0.0.0
-		Date :  2006-02-19
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : contact@ekameleon.net
-
-	PROPERTY SUMMARY
-
-		- autoSize:Boolean [R/W]
-
-		- html:Boolean [R/W]
-		
-		- label:String [R/W]
-
-		- multiline:Boolean [R/W]
-
-		- text:String [R/W] 
-
-			Par défaut utilise 'label'
-
-	METHOD SUMMARY
-	
-
-		- getAutoSize():Boolean
-
-		- getHTML():Boolean
-		
-		- getLabel():String
-
-		- getMultiline():Boolean)
-
-		- getText():String
-
-			Par défaut utilise 'getLabel'
-
-		- setHTML(b:Boolean):Void
-
-		- setAutoSize(b:Boolean):Void
-		
-		- setLabel(str:String):Void
-
-		- setMultiline(b:Boolean):Void
-
-		- setText(str:String):Void
-
-			Par défaut utilise 'setLabel'
-
-		- viewLabelChanged():Void
-
-			override this method !
-
-	IMPLEMENTS 
-	
-		ILabel, IEventTarget
-
-	EVENT SUMMARY
-
-		UIEvent
-
-	EVENT TYPE SUMMARY
-
-		UIEventType.LABEL_CHANGE
-
-	INHERIT 
-	
-		MovieClip → AbstractComponent → AbstractLabel
-
-	IMPLEMENTS
-	
-		ILabel
-
-	SEE ALSO
-	
-		IBuilder, IStyle
-
-*/
-
 import lunas.display.components.AbstractComponent;
 import lunas.display.components.ILabel;
 
@@ -113,14 +30,13 @@ import pegas.events.UIEventType;
 class lunas.display.components.text.AbstractLabel extends AbstractComponent implements ILabel 
 {
 
-	// ----o Constructor
-
+	/**
+	 * Creates a new AbstractLabel instance.
+	 */
 	private function AbstractLabel() 
 	{ 
 		super() ;		
 	}
-
-	// ----o Public Properties
 
 	public function get autoSize():Boolean 
 	{
@@ -171,8 +87,6 @@ class lunas.display.components.text.AbstractLabel extends AbstractComponent impl
 	{
 		setText(s) ;	
 	}
-
-	// ----o Public Methods
 
 	public function getAutoSize():Boolean 
 	{
@@ -235,12 +149,14 @@ class lunas.display.components.text.AbstractLabel extends AbstractComponent impl
 		// override this method when label property change
 	}
 
-	// ----o Private Properties
-	
 	private var _autoSize:Boolean ;
+
 	private var _html:Boolean ;
+
 	private var _label:String ;
+
 	private var _multiline:Boolean ;
 	
+
 }
 

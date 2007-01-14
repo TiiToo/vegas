@@ -128,9 +128,7 @@ class lunas.display.components.container.ListContainer extends SimpleContainer
 
 	public function getChildCount():Number 
 	{ 
-		return (_nChildCount >_oModel.size()) 
-			? _oModel.size() 
-			: _nChildCount ; 
+		return (_nChildCount >_oModel.size()) ? _oModel.size() : _nChildCount ; 
 	}
 	
 	public function getCoordinateProperty():String 
