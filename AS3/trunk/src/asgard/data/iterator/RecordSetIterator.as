@@ -14,55 +14,11 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
-*/
-
-/*	RecordSetIterator
-
-	AUTHOR
-	
-		Name : RecordSetIterator
-		Package : asgard.data.iterator
-		Version : 1.0.0.0
-		Date :  2005-08-14
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var it:RecordSetIterator = new RecordSetIterator(rs:RecordSet) ;
-
-	METHOD SUMMARY
-	
-		- hashCode():Number
-		
-		- hasNext():Boolean
-		
-		- key()
-		
-		- next()
-		
-		- reset():Void
-		
-		- remove()
-		
-		- seek(n:Number)
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → RecordSetIterator
-
-	IMPLEMENTS
-	
-		Iterator, IFormattable, IHashable
-
 */
 
 package asgard.data.iterator
@@ -77,16 +33,15 @@ package asgard.data.iterator
 	public class RecordSetIterator extends CoreObject implements Iterator
 	{
 		
-		// ----o Constructor
-		
+        /**
+         * Creates a new RecordSetIterator instance.
+         */ 
 		public function RecordSetIterator(rs:RecordSet)
 		{
 			_rs = rs ;
 			_k = -1;
 		}
 	
-		// ----o Public Methods
-
 		public function hasNext():Boolean 
 		{
 			return _k < (_rs.size() - 1) ;

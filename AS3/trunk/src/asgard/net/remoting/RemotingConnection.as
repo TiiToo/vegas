@@ -10,59 +10,15 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is ASGard Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
-*/
-
-/* RemotingConnection
-
-	AUTHOR
-
-		Name : RemotingConnection
-		Package : asgard.net.remoting
-		Version : 1.0.0.0
-		Date :  2006-08-10
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	PROPERTY SUMMARY
-	
-	 	- client:Object
-	 	 
-	 	- connected:Boolean
-	 	 
-		- connectedProxyType:String   
-		
-		- static defaultObjectEncoding:uint
-		
-		- objectEncoding:uint
-		
-		- proxyType:String
-		
-		- uri:String
-		
-		- usingTLS:Boolean
-		
-	METHOD SUMMARY
-	
-
-	
-	INHERIT
-	
-		EventDispatcher → NetConnection → RemotingConnection
-
-	SEE ALSO
-	
-		RemotingConnectionCollector
-
 */
 
 package asgard.net.remoting
@@ -74,8 +30,9 @@ package asgard.net.remoting
 	public class RemotingConnection extends NetServerConnection
 	{
 		
-		// ----o Constructor
-		
+		/**
+		 * Creates a new RemotingConnection instance.
+		 */
 		public function RemotingConnection( sURL:String=null )
 		{
 			
@@ -88,12 +45,9 @@ package asgard.net.remoting
 			
 		}
 
-		// ----o Constants
-	
 		static public const AMF_SERVER_DEBUG:String = "amf_server_debug" ;
+
 		static public const CREDENTIALS:String = "Credentials" ;
-	
-		// ----o Public Methods
 	
 		override public function clone():* 
 		{

@@ -14,19 +14,15 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-package asgard.util.mvc
+package vegas.util.mvc
 {
-	
-	import asgard.util.mvc.IController;
-	import asgard.util.mvc.IModel;
-	import asgard.util.mvc.IView;
 	
 	import vegas.core.CoreObject;
 

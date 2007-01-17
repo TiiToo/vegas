@@ -10,29 +10,15 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is ASGard Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
-*/
-
-/* RemotingEvent
-
-	AUTHOR
-
-		Name : RemotingEvent
-		Package : asgard.events
-		Version : 1.0.0.0
-		Date :  2006-08-13
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-		
 */
 
 package asgard.events
@@ -43,14 +29,9 @@ package asgard.events
 	public class RemotingEvent extends Event
 	{
 		
-		// -----o Constructor
-		
-		public function RemotingEvent(
-			
-			type:String, oResult:*=null, oFault:*=null
-			
-			, sMethodName:String=null, sCode:String=null, slevel:String=null
-			
+		public function RemotingEvent
+		(
+			type:String, oResult:*=null, oFault:*=null, sMethodName:String=null, sCode:String=null, slevel:String=null
 			, bubbles:Boolean=false, cancelable:Boolean=false
 		)
 		{
@@ -69,20 +50,25 @@ package asgard.events
 			
 		}
 	
-		// ----o Constants
-	
 		static public const ERROR:String = "onError" ;	
 
 		static public const FAULT:String = "onFault" ;
 		
 		static public const RESULT:String = "onResult" ;
 		
-		// ----o Public Properties
-		
 		public var code:String ;
+
 		public var level:String ;
 
-		// ----o Public Methods
+		public function get fault():* 
+		{
+			return getFault() ;	
+		}
+		
+		public function get result():*
+		{
+			return getResult() ;	
+		}
 
 		public function getCode():String 
 		{
@@ -165,32 +151,26 @@ package asgard.events
 				setMethodName( methodName ) ;
 			} 
 		}		
-
-		// ----o Virtual Properties
-
-		public function get fault():* 
-		{
-			return getFault() ;	
-		}
-		
-		public function get result():*
-		{
-			return getResult() ;	
-		}
-		
-		// ----o Private Properties
 		
 		private var _fault:* ;
+
 		private var _result:* ;	
+
 		private var _code:String ;
 		
+
 		private var _description:String ;
+
 		private var _detail : String ;
+
 		private var _exceptionStack:String ;
+
 		private var _level:String ;
+
 		private var _line:String ;
+
 		private var _methodName:String ;
 	
-		
 	}
+
 }

@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -22,21 +22,7 @@
 */
 
 /**
-
-	AUTHOR
-
-		Name : DisplayObjectCollector
-		Package : asgard.display
-		Version : 1.0.0.0
-		Date :  2006-10-17
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-*/
-
-/**
  * @author eKameleon.
- * @version 1.0.0.0
  */
 package asgard.display
 {
@@ -59,6 +45,7 @@ package asgard.display
 	
 		/**
 		 * Returns 'true' if the DisplayObjectCollector contains the display's name.
+		 * @return 'true' if the DisplayObjectCollector contains the display's name.
 		 */	
 		static public function contains( sName:String ):Boolean 
 		{
@@ -66,7 +53,8 @@ package asgard.display
 		}
 
 		/**
-		 * Returns a DisplayObject.
+		 * Returns the DisplayObject register in the collector with the name passed in argument.
+		 * @return the DisplayObject register in the collector with the name passed in argument.
 		 */	
 		static public function get(sName:String):DisplayObject 
 		{
@@ -106,6 +94,7 @@ package asgard.display
 	
 		/**
 		 * Returns 'true' if the DisplayObjectCollector is 'empty'.
+		 * @return 'true' if the DisplayObjectCollector is 'empty'.
 		 */
 		static public function isEmpty():Boolean 
 		{
@@ -122,6 +111,7 @@ package asgard.display
 
 		/**
 		 * Returns the size of the DisplayObjectCollector.
+		 * @return the size of the DisplayObjectCollector.
 		 */
 		static public function size():uint 	
 		{

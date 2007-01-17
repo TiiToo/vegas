@@ -21,94 +21,6 @@
   
 */
 
-/** ColorHTML
-
-	AUTHOR
-
-		Name : ColorHTML
-		Package : asgard.colors
-		Version : 1.0.0.0
-		Date :  2006-10-16
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	USE
-	
-		import asgard.colors.ColorHTML ;
-		
-		var n:Number = ColorHTML.htmlToNumber( "#FF0000" ) ;
-		trace("convert #FF0000 : "  + n) ;
-		
-		var c:ColorHTML = ColorHTML.YELLOW ;
-		trace(c.toString() + " : " + c.valueOf()) ;
-	
-	CONSTANT SUMMARY
-	
-		- AQUA:ColorHTML
-		
-		- BLACK:ColorHTML
-		
-		- BLUE:ColorHTML
-		
-		- FUCHSIA:ColorHTML
-		
-		- GRAY:ColorHTML
-		
-		- GREEN:ColorHTML
-		
-		- LIME:ColorHTML
-		
-		- OLIVE:ColorHTML
-		
-		- MAROON:ColorHTML
-		
-		- NAVY:ColorHTML
-		
-		- PURPLE:ColorHTML
-		
-		- RED:ColorHTML
-		
-		- SILVER:ColorHTML
-		
-		- TEAL:ColorHTML
-		
-		- WHITE:ColorHTML
-		
-		- YELLOW:ColorHTML
-
-	METHOD SUMMARY
-		
-		- equals(o):Boolean
-		
-		- static hexToHtml( hex:Number ):String
-		
-		- static htmlToNumber( sHTML:String ):Number
-		
-		- toBoolean():Boolean
-		
-		- toObject():Object
-		
-		- toString():String
-				
-		- valueOf():Number
-
-	INHERIT
-	
-		CoreObject → ColorHTML
-
-	IMPLEMENTS
-	
-		IConvertible, IEquality, IFormattable
-
-	SEE ALSO
-	
-		Basic HTML data types - W3C HTML 4 Specifications :
-			
-			http://www.w3.org/TR/html4/types.html (chap 6.5)
-
-*/
-
 package asgard.colors
 {
 
@@ -131,8 +43,6 @@ package asgard.colors
 			this.value = value ;
 		}
 
-		// ----o Constants
-		
 		static public const AQUA:ColorHTML    = new ColorHTML(0x00FFFF , "Aqua") ;
 		
 		static public const BLACK:ColorHTML   = new ColorHTML(0x000000 , "Black") ;
@@ -165,9 +75,8 @@ package asgard.colors
 		
 		static public const YELLOW:ColorHTML  = new ColorHTML(0xFFFF00 , "Yellow") ;
 
-		// ----o Public Properties
-		
-		/**
+
+    	/**
 		 * The name of the color.
 		 */
 		public var name:String ;
@@ -176,8 +85,6 @@ package asgard.colors
 		 * The value of the color.
 		 */
 		public var value:Number ;
-
-		// ----o Public Methods
 
 		public function equals( o:* ):Boolean 
 		{

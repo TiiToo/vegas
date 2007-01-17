@@ -21,43 +21,33 @@
   
 */
 
-/*	AbstractAction
-
-	AUTHOR
-	
-		Name : AbstractAction
-		Package : asgard.process
-		Version : 1.0.0.0
-		Date :  2005-08-14
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-*/
-
-package asgard.process
+package pegas.process
 {
 		
-	import asgard.events.ActionEvent ;
-	import asgard.process.IAction ;
+	import pegas.events.ActionEvent;
 	
 	import vegas.events.AbstractCoreEventBroadcaster;
 
+    /**
+     * @author eKameleon
+     */ 
 	public class AbstractAction extends AbstractCoreEventBroadcaster implements IAction
 	{
 		
-		// ----o Constructor
-		
+		/**
+		 * Creates a new AbstractAction instance.
+		 */
 		public function AbstractAction()
 		{
 			//
 		}
 
-		// ----o Public Properties
-	
 		public var looping:Boolean ;
 	
-		// ----o Public Methods
+		public function get running():Boolean 
+		{
+			return getRunning() ;	
+		}
 	
 		public function clone():*
 		{
@@ -80,20 +70,6 @@ package asgard.process
 			var eStart:ActionEvent = new ActionEvent(ActionEvent.START) ;
 			dispatchEvent( eStart ) ;
 		}
-		
-		public function run(...arguments):void 
-		{
-		// 
-		}
-
-		// ----o Virtual Properties
-	
-		public function get running():Boolean 
-		{
-			return getRunning() ;	
-		}
-	
-		// ----o Protected Methods
 		
 		protected function notifyChanged():void 
 		{
@@ -142,15 +118,19 @@ package asgard.process
 			var eTimeOut:ActionEvent = new ActionEvent(ActionEvent.TIMEOUT) ;
 			dispatchEvent(eTimeOut) ;
 		}
+		
+		public function run(...arguments):void 
+		{
+		// 
+		}
 
 		protected function setRunning(b:Boolean):void
 		{
 			_isRunning = b ;	
 		}
 
-		// ----o Private Properties
-		
 		private var _isRunning:Boolean ;
 
 	}
+
 }

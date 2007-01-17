@@ -10,60 +10,46 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is ASGard Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/* NetServerConnection
-
-	AUTHOR
-
-		Name : NetServerConnection
-		Package : asgard.net
-		Version : 1.0.0.0
-		Date :  2006-08-14
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-		
-*/
-
-
 package asgard.net
 {
 
+	import asgard.events.NetServerEvent;
+	
 	import flash.events.IOErrorEvent;
-	import flash.events.NetStatusEvent ;
-	import flash.events.SecurityErrorEvent;	
-	import flash.events.TimerEvent ;
+	import flash.events.NetStatusEvent;
+	import flash.events.SecurityErrorEvent;
+	import flash.events.TimerEvent;
 	import flash.net.NetConnection;
 	import flash.net.ObjectEncoding;
 	import flash.utils.Timer;
-
-	import asgard.events.NetServerEvent;
-	import asgard.net.NetServerStatus ;
-	import asgard.net.TimeoutPolicy ;
-
+	
 	import vegas.core.HashCode;
 	import vegas.core.ICloneable;
-	import vegas.core.IHashable; 
+	import vegas.core.IHashable;
 	import vegas.core.IRunnable;
 	import vegas.core.ISerializable;
-	
 	import vegas.util.ClassUtil;
 
+	/**
+	 * @author eKameleon
+	 */
 	public class NetServerConnection extends NetConnection implements ICloneable, IHashable, IRunnable, ISerializable
 	{
 		
-		// ----o Constructor
-		
+		/**
+		 * Creates a new NetServerConnection instance.
+		 */
 		public function NetServerConnection()
 		{
 			super();
@@ -175,8 +161,6 @@ package asgard.net
 			return "[" + ClassUtil.getName(this) + "]" ;
 		}
 		
-		// ----o Protected Methods
-		
 		protected function notifyClose():void 
 		{
 			dispatchEvent( _eClose ) ;	
@@ -228,8 +212,6 @@ package asgard.net
 		private var _eTimeOut:NetServerEvent ;
 		private var _policy:TimeoutPolicy ;
 		private var _timer:Timer ;
-		
-		// ----o Private Methods
 		
 		private function _onStatus( e:NetStatusEvent ):void
 		{

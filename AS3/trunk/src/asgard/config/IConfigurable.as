@@ -10,36 +10,29 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is ASGard Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/* IConfigurable (interface)
-
-	AUTHOR
-
-		Name : IConfigurable
-		Package : asgard.config
-		Version : 1.0.0.0
-		Date :  2006-09-02
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-*/	
-
 package asgard.config
 {
+
+    /**
+     * @author eKameleon
+     */ 
     public interface IConfigurable
     {
      
+        /**
+         * Setup the IConfigurable object.
+         */
         function setup():void ;
         
     }

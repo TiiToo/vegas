@@ -10,58 +10,44 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is ASGard AS3 Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/* RemotingService
-
-	AUTHOR
-
-		Name : RemotingService
-		Package : asgard.net.remoting
-		Version : 1.0.0.0
-		Date :  2006-08-15
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-*/
-
 package asgard.net.remoting
 {
 
-	import asgard.process.AbstractAction;
-	
-	import asgard.data.remoting.RecordSet ;
-	import asgard.events.ActionEvent;
+	import asgard.data.remoting.RecordSet;
 	import asgard.events.NetServerEvent;
-	import asgard.events.RemotingEvent ;
-	import asgard.net.TimeoutPolicy ;
-
-	import flash.events.TimerEvent ;	
+	import asgard.events.RemotingEvent;
+	import asgard.net.TimeoutPolicy;
+	
+	import flash.events.TimerEvent;
+	import flash.net.Responder;
 	import flash.net.registerClassAlias;
-	import flash.net.Responder ;
-
 	import flash.utils.Timer;
-
+	
+	import pegas.events.ActionEvent;
+	import pegas.process.AbstractAction;
+	
 	import vegas.core.ICloneable;
+	import vegas.errors.Warning;
 	import vegas.events.AbstractCoreEventBroadcaster;
 	import vegas.util.ClassUtil;
-	import vegas.errors.Warning;
 
 	public class RemotingService extends AbstractAction implements ICloneable
 	{
 		
-		// ----o Constructor
-		
+		/**
+		 * Creates a new RemotingService instance.
+		 */
 		public function RemotingService( gatewayUrl:String=null , serviceName:String=null , responder:Responder=null )
 		{
 			
@@ -76,22 +62,75 @@ package asgard.net.remoting
 			
 		}
 		
-		// ----o Constants
-		
 		static public const DEFAULT_DELAY:uint = 8000 ; // 8 secondes
+
 		static public const LEVEL_ERROR:String = "error" ;
 
-		// ----o Public Properties
+		public function get gatewayUrl():String 
+		{ 
+			return getGatewayUrl() ;
+		}
 	
+		public function set gatewayUrl(sUrl:String):void 
+		{ 
+			setGatewayUrl(sUrl) ;
+		}
+
+		public function get isProxy():Boolean 
+		{ 
+			return getIsProxy() ;
+		}
+	
+		public function set isProxy(b:Boolean):void 
+		{ 
+			setIsProxy(b) ;
+		}
+
+		public function get params():Array 
+		{ 
+			return getParams() ;
+		}
+	
+		public function set params(ar:Array):void 
+		{ 
+			setParams(ar) ;	
+		}
+
+		public function get methodName():String 
+		{ 
+			return getMethodName() ;	
+		}
+	
+		public function set methodName(sName:String):void 
+		{ 
+			setMethodName(sName) ;
+		}
+
 		public var multipleSimultaneousAllowed:Boolean = false ;
 
-		// ----o Public Methods
+		public function get serviceName():String 
+		{ 
+			return getServiceName() ;	
+		}
+	
+		public function set serviceName(sName:String):void 
+		{ 
+			setServiceName(sName) ;
+		}
 
+        /**
+         * Returns a shallow copy of this object.
+         * @return a shallow copy of this object.
+         */
 		override public function clone():*
 		{
-			return new RemotingService( getGatewayUrl() , getServiceName() ) ; // TODO : TODO voir pour le responder !
+			return new RemotingService( getGatewayUrl() , getServiceName() ) ; // TODO : see the responder !
 		}
 		
+		/**
+		 * Returns the internal RemotingConnection reference.
+		 * @return the internal RemotingConnection reference.
+		 */
 		public function getConnection():RemotingConnection 
 		{
 			return _rc ;	
@@ -276,55 +315,7 @@ package asgard.net.remoting
 
 		// ----o Virtual Properties
 
-		public function get gatewayUrl():String 
-		{ 
-			return getGatewayUrl() ;
-		}
-	
-		public function set gatewayUrl(sUrl:String):void 
-		{ 
-			setGatewayUrl(sUrl) ;
-		}
 
-		public function get isProxy():Boolean 
-		{ 
-			return getIsProxy() ;
-		}
-	
-		public function set isProxy(b:Boolean):void 
-		{ 
-			setIsProxy(b) ;
-		}
-
-		public function get params():Array 
-		{ 
-			return getParams() ;
-		}
-	
-		public function set params(ar:Array):void 
-		{ 
-			setParams(ar) ;	
-		}
-
-		public function get methodName():String 
-		{ 
-			return getMethodName() ;	
-		}
-	
-		public function set methodName(sName:String):void 
-		{ 
-			setMethodName(sName) ;
-		}
-
-		public function get serviceName():String 
-		{ 
-			return getServiceName() ;	
-		}
-	
-		public function set serviceName(sName:String):void 
-		{ 
-			setServiceName(sName) ;
-		}
 
 		// ----o Protected Methods
 
@@ -381,8 +372,6 @@ package asgard.net.remoting
 		private var _serviceName:String = null ;
 		
 		private var _timer:Timer ;
-		
-		// ----o Private Methods
 		
 		private function _onResult( data:* ):void
 		{

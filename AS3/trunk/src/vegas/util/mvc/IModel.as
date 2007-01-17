@@ -14,46 +14,41 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-package asgard.util.mvc
+package vegas.util.mvc
 {
 	
-	import asgard.util.mvc.IModel;
-	import asgard.util.mvc.IView;
+	import asgard.events.ModelChangedEvent;
+		
+	import vegas.core.ICloneable;
 
 	/**
-	 * Defines the representation of a controller in a specific type of the MVC implementation.
+	 * Defines the representation of a model in a specific type of the MVC implementation.
 	 * @author eKameleon
 	 */
-	public interface IController
+	public interface IModel extends ICloneable
 	{
+
+		/**
+		 * Adds a view in the model.
+		 */
+		function addView(view:IView):void ;
 		
 		/**
-		 * Returns the model of this controller.
+		 * Notify a ModelChangedEvent to the views.
 		 */
-		function getModel():IModel ;
-
+		function notifyChanged( event:ModelChangedEvent ):void ;
+		
 		/**
-		 * Returns the view of this controller.
+		 * Removes a view in the model.
 		 */
-		function getView():IView ;
-	
-		/**
-		 * Sets the model of this controller. 
-		 */
-		function setModel(oModel:IModel):void ;
-
-		/**
-		 * Sets the view of this controller.
-		 */
-		function setView(oView:IView):void ;
-	
+		function removeView(view:IView):void ;
+		
 	}
-	
 }

@@ -22,6 +22,8 @@
 
 */
 
+import vegas.string.StringFormatter ;
+
 package vegas.string.eden
 {
 
@@ -271,7 +273,7 @@ package vegas.string.eden
 				case "while": 
 				case "with":
 				
-					var formatter:* = new vegas.string.StringFormatter( strings.reservedKeyword ) ;
+					var formatter:* = new StringFormatter( strings.reservedKeyword ) ;
 					log( formatter.format( identifier ) ) ;
 					return true ;
 				

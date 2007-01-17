@@ -10,80 +10,66 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is ASGard Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/* ParserLoader
-
-	AUTHOR
-
-		Name : ParserLoader
-		Package : asgard.net
-		Version : 1.0.0.0
-		Date :  2006-08-16
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-*/
-
 package asgard.net
 {
 	
-	import flash.events.Event ;
-	import flash.net.URLRequest;
+	import flash.events.Event;
 	import flash.net.URLLoader;
 	import flash.net.URLLoaderDataFormat;
+	import flash.net.URLRequest;
 	import flash.net.URLVariables;
 
+	/**
+	 * @author eKameleon
+	 */
 	public class ParserLoader extends URLLoader
 	{
 		
-		// ----o Constructor
-		
+        /**
+         * Creates a new ParserLoader instance.
+         */ 
 		public function ParserLoader(request:URLRequest=null)
 		{
 			super(request);
 			addEventListener(Event.COMPLETE, complete) ;
 		}
-	
-		// ----o Public Properties
-		
+
 		/**
 		 * Use deserializer method if this property is 'true'.
 		 */
 		public var isDeserialize:Boolean = true ;	
 
-		// ----o Public Methods
-
 		/**
 		 * Returns a deserialize method to use in the ParserLoader when loading is complete.
 		 * override this method.
+		 * @return a deserialize method to use in the ParserLoader when loading is complete.
 		 */
 		public function getDeserializer():Function
 		{
 			return null ;	
 		}
 		
-		// ----o Protected Methods
-		
 		protected function complete(e:Event):void
 		{
 			
 			var deserialize:Function ;
 			
-			switch (dataFormat) {
+			switch (dataFormat) 
+			{
 			
 				case URLLoaderDataFormat.TEXT :
-					
+				{
 					if ( getDeserializer() != null && isDeserialize )
 					{
 						deserialize = getDeserializer() ;
@@ -92,8 +78,9 @@ package asgard.net
 					}
 					
 					break ;
-				
+			    }
 				case URLLoaderDataFormat.VARIABLES :
+				{
 					
 					data = new URLVariables(data) ;
 					if ( getDeserializer() != null && isDeserialize )
@@ -105,12 +92,13 @@ package asgard.net
 						}
 					}
 					break ;
-
+                }
 				case URLLoaderDataFormat.BINARY :
 				default :
+				{
 					//
 					break ;
-
+                }
 			}
 			
 		}

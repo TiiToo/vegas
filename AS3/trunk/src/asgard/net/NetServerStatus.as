@@ -1,4 +1,4 @@
- /*
+/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -10,55 +10,15 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is ASGard Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
-*/
-
-/* NetServerStatus
-
-	AUTHOR
-
-		Name : NetServerStatus
-		Package : asgard.net
-		Version : 1.0.0.0
-		Date :  2006-04-20
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTANT SUMMARY
-	
-		- CLOSED:NetServerStatus ("closed")
-		
-		- FAILED:NetServerStatus ("failed")
-		
-		- INVALID:NetServerStatus ("invalidapp")
-		
-		- REJECTED:NetServerStatus ("rejected")
-		
-		- SHUTDOWN:NetServerStatus ("appshutdown")
-		
-		- SUCCESS:NetServerStatus ("success")
-
-	METHOD SUMMARY
-	
-		- static format(code:String):String
-		
-		- toSource(indent : Number, indentor : String):String
-		
-		- toString():String
-		
-		- static validate(o):Boolean
-		 
-		- valueOf():*
-
 */
 
 package asgard.net
@@ -66,17 +26,19 @@ package asgard.net
 	
 	import vegas.core.CoreObject;
 
+	/**
+	 * @author eKameleon
+	 */
 	public class NetServerStatus extends CoreObject
 	{
 
-		// ----o Constructor
-		
+        /**
+         * Creates a new NetServerStatus instance.
+         */ 
 		public function NetServerStatus( value:String )
 		{
 			_value = value ;
 		}
-	
-		// ----o Constants
 	
 		static public const BAD_VERSION:NetServerStatus = new NetServerStatus("badversion") ;
 		
@@ -91,8 +53,6 @@ package asgard.net
 		static public const SHUTDOWN:NetServerStatus = new NetServerStatus("appshutdown") ;
 		
 		static public const SUCCESS:NetServerStatus = new NetServerStatus("success") ;
-		
-		// ----o Public Methods
 		
 		/**
 		 * Convert onStatus code value in NetConnection.onStatus in a ConnectionStatus valid string.
@@ -131,8 +91,6 @@ package asgard.net
 		{
 			return _value ;
 		}
-		
-		// ----o Private Properties
 		
 		private var _value:String ;
 		

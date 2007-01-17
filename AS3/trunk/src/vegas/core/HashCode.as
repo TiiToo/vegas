@@ -73,18 +73,24 @@ package vegas.core
 		 * Initialize the hashcode value of an object.
 		 * @return {@code true}
 		 */
-		static public function initialize( o:* ):Boolean {
+		static public function initialize( o:* ):Boolean 
+		{
+		
 			if (o.hasOwnProperty("hasCode")) return false ;
 			
-			o["hashCode"] = function ():uint {
+			o["hashCode"] = function ():uint 
+			{
 				if (this.__hashcode__ == null) {
 					this.__hashcode__ = HashCode.next() ;
 					this.setPropertyIsEnumerable("__hashcode__", false) ;
 				}
 				return this.__hashcode__ ;
 			} ;
+			
 			o.setPropertyIsEnumerable("hashCode", false) ;
+
 			return true ;
+			
 		}
 
 		/**

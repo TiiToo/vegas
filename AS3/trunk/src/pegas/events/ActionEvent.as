@@ -14,61 +14,27 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/*	ActionEvent
-
-	AUTHOR
-
-		Name : ActionEvent
-		Package : asgard.events
-		Version : 1.0.0.0
-		Date :  2005-11-22
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	EVENT SUMMARY
-
-		- const ActionEvent.CHANGED : "changed"
-		
-		- const ActionEvent.CLEARED : "cleared"
-		
-		- const ActionEvent.FINISHED  : "finished"
-		
-		- const ActionEvent.LOOPED : "looped"
-		
-		- const ActionEvent.PROGRESS : "progress"
-		
-		- const ActionEvent.RESUMED  : "resumed"
-		
-		- const ActionEvent.STARTED   : "started"
-		
-		- const ActionEvent.STOPPED   : "stopped"
-		
-		- const ActionEvent.TIMEOUT  : "onTimeOut"
-		
-	INHERIT
-	
-		flash.events.Event → ActionEvent
-
-*/
-
-
-package asgard.events
+package pegas.events
 {
+	
 	import flash.events.Event;
 
+    /**
+     * @author eKameleon
+     */
 	public class ActionEvent extends Event
 	{
 		
-		// ----o Constructor
-		
+		/**
+		 * Creates a new ActionEvent instance.
+		 */
 		public function ActionEvent
 		(
 		
@@ -79,9 +45,7 @@ package asgard.events
 			super(type, bubbles, cancelable);
 			_oInfo = info ;
 		}
-		
-		// ----o Constants
-		
+
 		static public const CHANGE:String = "onChanged" ;
 		
 		static public const CLEAR:String = "onCleared" ;
@@ -102,8 +66,6 @@ package asgard.events
 		
 		static public const TIMEOUT:String = "onTimeOut" ;
 		
-		// ----o Public Methods
-		
 		override public function clone():Event 
 		{
 			return new ActionEvent(type, getInfo()) ;
@@ -118,8 +80,6 @@ package asgard.events
 		{
 			_oInfo = oInfo ;	
 		}
-		
-		// ----o Private Properties
 		
 		private var _oInfo:* ;
 		

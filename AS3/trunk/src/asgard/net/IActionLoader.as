@@ -10,44 +10,28 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is ASGard Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/* IActionLoader (interface)
-
-	AUTHOR
-
-		Name : IActionLoader
-		Package : asgard.config
-		Version : 1.0.0.0
-		Date :  2008-09-02
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-*/
-
 package asgard.net
 {
 
-    import asgard.process.IAction;
-
-    import flash.net.URLLoader ;
-    import flash.net.URLRequest ;
+    import flash.net.URLLoader;
+    import flash.net.URLRequest;
+    
+    import pegas.process.IAction;
 
     public interface IActionLoader extends IAction
     {
 
-        // ----o Public Properties
-    
         /**
          * (Read-write) The data received from the load operation. 
          */
@@ -60,8 +44,6 @@ package asgard.net
         function get parsing():Boolean ;
         function set parsing( b:Boolean ):void ;
 
-        // ----o Public Methods
-        
         /**
          * Closes the load operation in progress.
          */

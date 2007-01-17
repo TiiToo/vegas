@@ -14,29 +14,43 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2006
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-package asgard.util.observer
+package vegas.util.mvc
 {
 	
 	/**
-	 * A class can implement the IObserver interface when it wants to be informed of changes in observable objects.
+	 * Defines the representation of a controller in a specific type of the MVC implementation.
 	 * @author eKameleon
 	 */
-	public interface IObserver
+	public interface IController
 	{
+		
+		/**
+		 * Returns the model of this controller.
+		 */
+		function getModel():IModel ;
 
 		/**
-		 * This method is called whenever the observed object is changed.
-		 * @param o the observable object.
-		 * @param arg an argument passed to the notifyObservers method.
+		 * Returns the view of this controller.
 		 */
-		function update(o:Observable, arg:*) ;
+		function getView():IView ;
+	
+		/**
+		 * Sets the model of this controller. 
+		 */
+		function setModel(oModel:IModel):void ;
 
+		/**
+		 * Sets the view of this controller.
+		 */
+		function setView(oView:IView):void ;
+	
 	}
+	
 }

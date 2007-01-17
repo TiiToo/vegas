@@ -21,50 +21,6 @@
   
 */
 
-/*	ProxyArray
-
-	AUTHOR
-
-		Name : ProxyArray
-		Package : vegas.data.array
-		Version : 1.0.0.0
-		Date :  2006-07-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-	    - clone():*
-	    
-	    - copy():*
-	
-		- hashCode():Number
-		
-		- iterator()
-		
-		- toSource(...arguments:Array):String
-		
-		- toString():String
-		
-	INHERIT
-	
-	    Object → Array → ProxyArray
-	    
-	IMPLEMENTS
-	
-    	ICloneable, ICopyable, IFormattable, IHashable, Iterable, ISerializable
-	
-	SEE ALSO
-	
-	    Array, Proxy
-	
-    EXAMPLE
-
-
-
-*/
-
 package vegas.data.array
 {
 

@@ -10,84 +10,50 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is ASGard AS3 Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/* RemotingAuthentification
-
-	AUTHOR
-
-		Name : RemotingAuthentification
-		Package : asgard.net.remoting
-		Version : 2.0.0.0
-		Date : 2006-08-14
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		new RemotingAuthentification(id:String, pass:String) ;
-
-	PROPERTY SUMMARY
-	
-		- userid:String
-		
-			Définit/Renvoie un ID de connexion à utiliser pour établir une connexion au serveur. 
-		
-		- password:String
-
-			Définit/Renvoie un mot de passe à utiliser pour établir une connexion au serveur. 
-
-	METHOD SUMMARY
-	
-		- hashCode():String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → RemotingAuthentification
-		
-	IMPLEMENTS
-	
-		IHashable, IFormattable
-
-*/ 
-
 package asgard.net.remoting
 {
 	import vegas.core.CoreObject;
-
+    
+    /**
+     * @author eKameleon
+     */
 	public class RemotingAuthentification extends CoreObject
 	{
 		
-		// ----o Constructor
-		
+		/**
+		 * Creates a new RemotingAuthentification instance.
+		 */
 		public function RemotingAuthentification(id:String=null, pass:String=null)
 		{
-			super();
-			
 			userid = id ;
 			password = pass ;
-			
 		}
 	
-		// ----o Public Properties
-	
+	    /**
+	     * Defines and returns an ID of connection to be used to be connected with the server. 
+	     */
 		public var userid:String ;
+
+	    /**
+	     * Defines and returns a password of connection to be used to be connected with the server. 
+	     */
 		public var password:String ;
-		
-		// ----o Public Methods
-		
+        
+        /**
+         * Returns the object representation of this instance.
+         * @return the object representation of this instance.
+         */
 		public function toObject():Object
 		{
 			return { userid : userid , 	password : password } ;

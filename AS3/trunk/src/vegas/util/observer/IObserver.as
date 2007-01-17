@@ -14,42 +14,29 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-package asgard.util.mvc
+package vegas.util.observer
 {
 	
-	import asgard.events.ModelChangedEvent;
-	import asgard.util.mvc.IView;
-		
-	import vegas.core.ICloneable;
-
 	/**
-	 * Defines the representation of a model in a specific type of the MVC implementation.
+	 * A class can implement the IObserver interface when it wants to be informed of changes in observable objects.
 	 * @author eKameleon
 	 */
-	public interface IModel extends ICloneable
+	public interface IObserver
 	{
 
 		/**
-		 * Adds a view in the model.
+		 * This method is called whenever the observed object is changed.
+		 * @param o the observable object.
+		 * @param arg an argument passed to the notifyObservers method.
 		 */
-		function addView(view:IView):void ;
-		
-		/**
-		 * Notify a ModelChangedEvent to the views.
-		 */
-		function notifyChanged( event:ModelChangedEvent ):void ;
-		
-		/**
-		 * Removes a view in the model.
-		 */
-		function removeView(view:IView):void ;
-		
+		function update(o:Observable, arg:*) ;
+
 	}
 }

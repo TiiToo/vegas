@@ -14,45 +14,34 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-20057
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/*	Sequencer
-
-	AUTHOR
-	
-		Name : Sequencer
-		Package : asgard.process
-		Version : 1.0.0.0
-		Date :  2005-08-14
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-*/
-
 // TODO : ajouter un Timer pour les action "next" en cas de besoin pour laisser le temps d'initialiser l'action courante avant de passer à la suivante.
 
-package asgard.process
+package pegas.process
 {
 	
-	import asgard.events.ActionEvent ;
-	import asgard.process.IAction ;
+	import asgard.events.ActionEvent;
 	
-	import vegas.data.iterator.Iterator ;
-	import vegas.data.queue.LinearQueue ;
-	import vegas.data.queue.TypedQueue ;
-	import vegas.util.Serializer ;
+	import vegas.data.iterator.Iterator;
+	import vegas.data.queue.LinearQueue;
+	import vegas.data.queue.TypedQueue;
+	import vegas.util.Serializer;
 	
+	/**
+	 * @author eKameleon
+	 */
 	public class Sequencer extends AbstractAction
 	{
 		
-		// ----o Constructor
-		
+		/**
+		 * Creates a new Sequencer instance.
+		 */
 		public function Sequencer( ar:Array=null )
 		{
 		
@@ -77,8 +66,6 @@ package asgard.process
 			}
 			
 		}
-		
-		// ----o Public Methods
 		
 		public function addAction(action:IAction, isClone:Boolean=false):Boolean 
 		{

@@ -10,61 +10,20 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is ASGard Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/* JSONConfigLoader
 
-	AUTHOR
 
-		Name : JSONConfigLoader
-		Package : asgard.config
-		Version : 1.0.0.0
-		Date :  2008-09-02
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-		
-	EXAMPLE
-	
-    	import asgard.config.Config ;
-        import asgard.config.JSONConfigLoader;
-        import asgard.config.IConfigLoader;
-        
-        import flash.events.Event ;
-        
-        var complete:Function = function ( e:Event ):void
-        {
-            var data:* = Config.getInstance() ;
-            for (var prop:String in data)
-            {
-                trace("> " + prop + " : " + data[prop]) ;
-                if (data[prop] as Object)
-                {
-                    for (var key:String in data[prop]) 
-                    {
-                    
-                        trace("    > " + key + " : " + data[prop][key]) ;
-                    }
-                }
-            }
-        }
-        
-        var loader:IConfigLoader = new EdenConfigLoader() ;
-        loader.addEventListener(Event.COMPLETE, complete) ;
-        loader.path = "config/" ;
-        loader.load() ;
-		
-*/
-
+    
 package asgard.config
 {
     
@@ -73,11 +32,43 @@ package asgard.config
    
     import flash.net.URLLoader;
 
+    /**
+     * <p><b>Example :</b></p>
+     * <code>
+     * import asgard.config.Config ;
+     * import asgard.config.JSONConfigLoader;
+     * import asgard.config.IConfigLoader;
+     * import flash.events.Event ;
+     *        
+     * var complete:Function = function ( e:Event ):void
+     * {
+     *     var data:* = Config.getInstance() ;
+     *     for (var prop:String in data)
+     *     {
+     *         trace("> " + prop + " : " + data[prop]) ;
+     *         if (data[prop] as Object)
+     *         {
+     *             for (var key:String in data[prop]) 
+     *             {
+     *                 trace("    > " + key + " : " + data[prop][key]) ;
+     *             }
+     *         }
+     *    }
+     * }
+     *        
+     * var loader:IConfigLoader = new EdenConfigLoader() ;
+     * loader.addEventListener(Event.COMPLETE, complete) ;
+     * loader.path = "config/" ;
+     * loader.load() ;
+     * </code>	
+     * @author eKameleon
+     */
     public class JSONConfigLoader extends AbstractConfigLoader
     {
         
-        // ----o Constructor
-        
+        /**
+         * Creates a new JSONConfigLoader instance.
+         */
         public function JSONConfigLoader( name:String="" )
         {
 
@@ -87,10 +78,9 @@ package asgard.config
             
         }
         
-        // ----o Public Methods
-    
         /**
-         * Return the original loader in the constructor. Override this method.
+         * Returns the original loader in the constructor. 
+         * @return the original loader in the constructor.
          */ 
         override public function getLoader():URLLoader
         {

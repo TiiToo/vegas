@@ -21,68 +21,6 @@
   
 */
 
-/** RemotingService
-
-	AUTHOR
-	
-		Name : RemotingService
-		Package : asgard.net.remoting
-		Version : 1.0.0.0
-		Date :  2006-05-26
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
- 	DESCRIPTION
-	
-		- gatewayUrl:String [R/W]
-
-		- isDynamic:Boolean [R/W]
-		
-		- methodName:String [R/W]
-		
-		- params:Array [R/W]
-		
-		- serviceName:String [R/W]
-		
-	METHOD SUMMARY
-	
-		- addEventListener(eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void
-		
-		- addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void
-		
-		- dispatchEvent( event , [isQueue, [target, [context]]]):Event
-		
-		- getEventDispatcher():EventDispatcher 
-		
- 		- getEventListeners(eventName:String):EventListenerCollection
-		
-		- getGlobalEventListeners():EventListenerCollection
-		
-		- getParent():EventDispatcher
-		
-		- getRegisteredEventNames():Set
-		
-		- initEventDispatcher():EventDispatcher 
-		
- 		- hasEventListener(eventName:String):Boolean
-		
-		- removeEventListener(eventName:String, listener, useCapture:Boolean ):EventListener
-		
-		- removeGlobalEventListener(o):EventListener
-		
-		- setParent(parent:EventDispatcher):Void
-	
-	INHERIT
-
-		 CoreObject → AbstractCoreEventDispatcher → AbstractAction → RemotingService
- 
- 	IMPLEMENTS
- 
-		Action, EventTarget, IEventDispatcher, IFormattable, IHashable
-
-*/
-
 // TODO rajouter les logs et les erreurs.
 
 import asgard.events.RemotingEvent;

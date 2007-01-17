@@ -14,18 +14,22 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2006
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-package asgard.util.visitor
+/**
+ * The basic IVisitable interface. 
+ * @author eKameleon
+ */
+package vegas.util.visitor
 {
 	
 	/**
-	 * The basic IVisitor interface. 
+	 * The basic IVisitable interface. 
 	 * @author eKameleon
 	 */
 	public interface IVisitable
@@ -34,7 +38,7 @@ package asgard.util.visitor
 		/**
 		 * Accept a IVisitor object 
 		 */
-		function accept( visitor:IVisitor ) ;
+		function accept( visitor:IVisitor ):* ;
 		
 	}
 }

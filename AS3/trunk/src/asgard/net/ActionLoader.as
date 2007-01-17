@@ -10,31 +10,16 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is ASGard Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
-
-/* ActionLoader
-
-	AUTHOR
-
-		Name : ActionLoader
-		Package : asgard.config
-		Version : 1.0.0.0
-		Date :  2008-09-02
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-*/
-
 
 // TODO : finir de cabler les propriétés et méthodes de URLLoader.
 // TODO : créer asgard.net.MassiveLoader
@@ -42,9 +27,8 @@
 package asgard.net
 {
 
-    import asgard.events.ActionEvent ;
-    import asgard.net.IActionLoader ;
-
+    import asgard.events.ActionEvent;
+    
     import flash.events.Event;
     import flash.events.HTTPStatusEvent;
     import flash.events.IOErrorEvent;
@@ -53,19 +37,23 @@ package asgard.net
     import flash.events.TimerEvent;
     import flash.net.URLLoader;
     import flash.net.URLRequest;
+    import flash.utils.Timer;
     import flash.utils.getDefinitionByName;
-    import flash.utils.Timer ;
-
+    
     import vegas.events.AbstractCoreEventBroadcaster;
-    import vegas.logging.Log ;
-    import vegas.logging.ILogger 
-    import vegas.util.ClassUtil ;
+    import vegas.logging.ILogger;
+    import vegas.logging.Log;
+    import vegas.util.ClassUtil;
 
+    /**
+     * @author eKameleon
+     */
     public class ActionLoader extends AbstractCoreEventBroadcaster implements IActionLoader
     {
 
-        // ----o Constructor
-        
+        /**
+         * Creates a new ActionLoader instance.
+         */
         public function ActionLoader()
         {
             super();
@@ -88,14 +76,10 @@ package asgard.net
             
         }
         
-		// ----o Constants
-		
 		/**
 		 * The default value of the delay before the ActionEvent.TIMEOUT event.
 		 */
 		static public const DEFAULT_DELAY:uint = 8000 ; // 8 secondes
-        
-        // ----o Public Properties
         
         /**
          * (read-only) Indicates the number of bytes that have been loaded thus far during the load operation.
@@ -114,13 +98,16 @@ package asgard.net
     	}
         
         /**
-         * (read-write) The data received from the load operation. 
+         * (read-write) Returns the data received from the load operation. 
          */
         public function get data():*
     	{
     		return _loader.data ;	
     	}
-    	
+   
+        /**
+         * (read-write) Sets the data received from the load operation. 
+         */
         public function set data( value:* ):void
     	{
     		_loader.data = value ;	
@@ -163,10 +150,9 @@ package asgard.net
     	    _isParsing = b ;	
     	}
 
-        // ----o Public Methods
-
         /**
-         * Returns a clone.
+         * Returns a shallow copy of this object.
+         * @return a shallow copy of this object.
          */
         public function clone():*
         {
@@ -296,8 +282,6 @@ package asgard.net
 			
 		}
 
-        // ----o Protected Methods
-        
         /**
          * Dispatch Event.COMPLETE event after all the received data is decoded and placed in the data property. 
          */
@@ -363,28 +347,26 @@ package asgard.net
         }
 
         /**
-         * @protected
-         * Set the running property.
+         * Sets the running property.
          */
         protected function setRunning( b:Boolean ):void
         {
             _isRunning = b ;
         }
 
-        // ----o Protected Properties
-        
         protected var _loader:URLLoader = null ;
+
         protected var _logger:ILogger ;
+
         protected var _request:URLRequest = null ;
 
-        // ----o Private Properties
-        
   		private var _isRunning:Boolean = false ;
+
   		private var _isParsing:Boolean = false ;
+
   		private var _policy:TimeoutPolicy = null ;
+
   		private var _timer:Timer = null ;
-  		
-  		// ----o Private Methods
   		
   		private function _onTimeOut(e:TimerEvent):void
   		{
