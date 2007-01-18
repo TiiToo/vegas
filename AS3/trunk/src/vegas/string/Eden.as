@@ -34,7 +34,7 @@ package vegas.string
 	import vegas.util.Serializer ;
 	import vegas.util.StringUtil ;	
     
-	public class Eden
+	dynamic public class Eden
 	{
 		
 		/**

@@ -22,21 +22,21 @@
 
 */
 
-import vegas.string.StringFormatter ;
-
 package vegas.string.eden
 {
 
 	import flash.utils.getDefinitionByName;
-
-	import vegas.util.ClassUtil ;
-	import vegas.util.StringUtil ;
-
+	
+	import vegas.string.StringFormatter;
+	import vegas.util.ClassUtil;
+	import vegas.util.StringUtil;
+	
 	public class ECMAScript extends GenericParser
 	{
 		
-		// ----o Constructor
-		
+		/**
+		 * Creates a new ECMAScript instance.
+		 */
 		public function ECMAScript( sc:String, scope:*, callback:* )
 		{
 			super(sc , callback);

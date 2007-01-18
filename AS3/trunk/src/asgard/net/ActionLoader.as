@@ -27,8 +27,6 @@
 package asgard.net
 {
 
-    import asgard.events.ActionEvent;
-    
     import flash.events.Event;
     import flash.events.HTTPStatusEvent;
     import flash.events.IOErrorEvent;
@@ -39,6 +37,8 @@ package asgard.net
     import flash.net.URLRequest;
     import flash.utils.Timer;
     import flash.utils.getDefinitionByName;
+    
+    import pegas.events.ActionEvent;
     
     import vegas.events.AbstractCoreEventBroadcaster;
     import vegas.logging.ILogger;

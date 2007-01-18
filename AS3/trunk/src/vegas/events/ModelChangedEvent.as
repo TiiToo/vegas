@@ -21,7 +21,7 @@
   
 */
 
-package asgard.events
+package vegas.events
 {
 	
 	import flash.events.Event;

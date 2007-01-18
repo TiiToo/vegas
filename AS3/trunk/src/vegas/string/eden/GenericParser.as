@@ -31,13 +31,16 @@ package vegas.string.eden
 	public class GenericParser
 	{
 		
-		// ----o Constructor
+		import vegas.string.Eden ;
 		
+		/**
+		 * Creates a new GenericParser instance.
+		 */
 		public function GenericParser( source:String, callback:* )
         {
         	if( callback == null )
             {
-            	callback = vegas.string.Eden ;
+            	callback = Eden ;
             }
 			
 	        //delegates

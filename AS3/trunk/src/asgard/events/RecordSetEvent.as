@@ -24,16 +24,18 @@
 package asgard.events
 {
 	
-	import asgard.data.remoting.RecordSet ;	
-	import asgard.events.ModelChangedEvent;
-
-	import flash.events.Event ;
+	import asgard.data.remoting.RecordSet;
+	
+	import flash.events.Event;
+	
+	import vegas.events.ModelChangedEvent;
 
 	public class RecordSetEvent extends ModelChangedEvent
 	{
 		
-		// ----o Constructor
-		
+		/**
+		 * Creates a new RecordSetEvent instance.
+		 */
 		public function RecordSetEvent
 		(
 			eventName:String , rs:RecordSet = null
@@ -48,20 +50,28 @@ package asgard.events
 				, bubbles, cancelable);
 		}
 		
-		// ----o Constants
-
 		static public const ADD_ITEMS:String = "addItems" ; 
+
 		static public const CLEAR_ITEMS:String = "clear" ;
+
 		static public const MODEL_CHANGED:String = "modelChanged" ;
+
 		static public const REMOVE_ITEMS:String = "removeItems" ;
+
 		static public const SORT_ITEMS:String = "sortItems" ;
+
 		static public const UPDATE_ALL:String = "updateAll" ;
+
 		static public const UPDATE_FIELD:String = "updateField" ;
+
 		static public const UPDATE_ITEMS:String = "updateItems" ;
+
 		static public const UPDATE_ROWS:String = "updateRows" ;
 
-		// ----o Public Methods
-
+        /**
+         * Returns a shallow copy of this instance.
+         * @return a shallow copy of this instance.
+         */
 		override public function clone():Event
 		{
 			return new RecordSetEvent(eventName, getRecordSet(), data, fieldName
@@ -69,20 +79,24 @@ package asgard.events
 				, bubbles, cancelable) ;
 		}
 		
+		/**
+		 * Returns the RecordSet reference of this event.
+		 * @return the RecordSet reference of this event.
+		 */
 		public function getRecordSet():RecordSet
 		{
 			return _rs ;
 		}
 
+		/**
+		 * Sets the RecordSet reference of this event.
+		 */
 		public function setRecordSet(rs:RecordSet):void
 		{
 			_rs = rs ;
 		}
 
-		// ----o Private Properties
-		
 		private var _rs:RecordSet ;
-		
 
 	}
 }

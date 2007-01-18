@@ -24,9 +24,8 @@
 package vegas.util.mvc
 {
 	
-	import asgard.events.ModelChangedEvent;
-		
 	import vegas.core.ICloneable;
+	import vegas.events.ModelChangedEvent;
 
 	/**
 	 * Defines the representation of a model in a specific type of the MVC implementation.

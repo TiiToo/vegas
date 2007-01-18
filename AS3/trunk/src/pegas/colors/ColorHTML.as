@@ -21,7 +21,7 @@
   
 */
 
-package asgard.colors
+package pegas.colors
 {
 
 	import vegas.core.CoreObject;
@@ -30,6 +30,9 @@ package asgard.colors
 	import vegas.util.ObjectUtil ;
 	import vegas.util.StringUtil ;
 
+    /**
+     * @author eKameleon
+     */
 	public class ColorHTML extends CoreObject implements IConvertible, IEquality
 	{
 		
