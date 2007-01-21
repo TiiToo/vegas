@@ -48,8 +48,22 @@ class Tests.pegas.geom.TestDimension extends TestCase
 	
 	public function testConstructor()
 	{
+		
 		assertNotNull( d, "DIM_00_01 - constructor is null") ;
-		assertTrue( d instanceof Dimension, "DIM_00_02 - constructor is an instance of Plane.") ;
+		assertTrue( d instanceof Dimension, "DIM_00_02 - constructor is an instance of Dimension.") ;
+		
+		var d1:Dimension = new Dimension() ;
+		assertEquals( d1.width  , 0 , "DIM_00_03_01 - constructor failed with 0 argument : " + d1) ;
+		assertEquals( d1.height , 0 , "DIM_00_03_02 - constructor failed with 0 argument : " + d1) ;
+		
+		var d2:Dimension = new Dimension( d ) ;
+		assertEquals( d2.width  , 100, "DIM_00_03_03 - constructor failed with a Dimension argument : " + d2) ;
+		assertEquals( d2.height , 200, "DIM_00_03_04 - constructor failed with a Dimension argument : " + d2) ;
+
+		var d3:Dimension = new Dimension( 50 , 60 ) ;
+		assertEquals( d3.width  , 50, "DIM_00_03_05 - constructor failed with a width value in the first argument : " + d3) ;
+		assertEquals( d3.height , 60, "DIM_00_03_06 - constructor failed with a height value in the second argument : " + d3) ;
+		
 	}
 	
 	public function testInherit()

@@ -21,8 +21,6 @@
   
 */
 
-// TODO create unit tests.
-
 /**
  * Implements the static behaviours of the trigometric manipulations.
  * <p>Thanks : <b>Robert Penner</b>, Robert Penner's Programming Macromedia Flash MX
@@ -36,9 +34,9 @@ class pegas.geom.Trigo
 {
 	
 	/**
-	 * Calculates the arccosine of the passed angle.
+	 * Returns the inverse cosine of a slope ratio and returns its angle in degrees.
 	 * @param ratio a value between -1 and 1 inclusive.
-	 * @return the arccosine of the passed angle in degrees.
+	 * @return the inverse cosine of a slope ratio and returns its angle in degrees.
 	 */
 	static public function acosD (ratio:Number) : Number 
 	{

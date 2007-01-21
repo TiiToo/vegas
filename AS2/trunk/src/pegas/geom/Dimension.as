@@ -29,7 +29,6 @@ import vegas.core.ICopyable;
 import vegas.core.IEquality;
 import vegas.util.ConstructorUtil;
 import vegas.util.serialize.Serializer;
-import vegas.util.TypeUtil;
 
 /**
  * The Dimension class encapsulates the width and height of a componentin a single object.
@@ -43,30 +42,23 @@ class pegas.geom.Dimension extends CoreObject implements IEquality, ICloneable, 
 	 */
 	function Dimension()
 	{
-		if (arguments.length > 0)
+		width  = 0 ;
+		height = 0 ;
+		var l:Number = arguments.length ;
+		if (l > 0)
 		{
 			var arg1 = arguments[0] ;
 			var arg2 = arguments[1] ;
-			if ( arg1 instanceof Dimension )
+			if ( l == 1 && arg1 instanceof Dimension )
 			{
 				width  = arg1.width  ;
-				height = arg2.height ;
+				height = arg1.height ;
 			}
-			else if ( TypeUtil.typesMatch(arg1, Number) && TypeUtil.typesMatch(arg2 ,Number) )
+			else if ( l == 2 )
 			{
-				width  = arg1 ;
-				height = arg2 ;
+				width  = isNaN(arg1) ? 0 : arg1 ;
+				height = isNaN(arg2) ? 0 : arg2 ;
 			}
-			else
-			{
-				width  = 0 ;
-				height = 0 ;
-			}
-		}
-		else
-		{
-			width  = 0 ;
-			height = 0 ;
 		}
 	}
 	

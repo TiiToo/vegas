@@ -54,7 +54,7 @@ class Tests.pegas.geom.AllTests extends TestCase
 		suite.addTest( new TestSuite( Tests.pegas.geom.TestMatrix ) );
 		suite.addTest( new TestSuite( Tests.pegas.geom.TestMatrix4 ) );
 		suite.addTest( new TestSuite( Tests.pegas.geom.TestPlane ) );
-		// TODO suite.addTest( new TestSuite( Tests.pegas.geom.TestPoint ) );
+		suite.addTest( new TestSuite( Tests.pegas.geom.TestPoint ) );
 		suite.addTest( new TestSuite( Tests.pegas.geom.TestRay ) );
 		suite.addTest( new TestSuite( Tests.pegas.geom.TestQuaternion ) );
 		// TODO suite.addTest( new TestSuite( Tests.pegas.geom.TestRectangle ) );

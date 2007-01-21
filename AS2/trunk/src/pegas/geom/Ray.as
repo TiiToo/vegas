@@ -32,7 +32,9 @@ import vegas.util.ConstructorUtil;
 import vegas.util.serialize.Serializer;
 
 /**
- * This means half of a line, it is infinite in one direction, but ends at a certain point in the other direction..
+ * This means half of a line, it is infinite in one direction, but ends at a certain point in the other direction.
+ * In Euclidean geometry, a ray (or half-line) given two distinct points A (the origin) and B on the ray, is the set of points C on the line containing points A and B such that A is not strictly between C and B. 
+ * In geometry, a ray starts at one point, then goes on forever in one direction : (A) -- (B) -- ((C)) -->
  * @author eKameleon
  */
 class pegas.geom.Ray extends CoreObject implements ICloneable, ICopyable, IEquality
@@ -40,6 +42,15 @@ class pegas.geom.Ray extends CoreObject implements ICloneable, ICopyable, IEqual
 	
 	/**
 	 * Creates a new Ray instance.
+	 * <p><b>Usage :</b></p>
+	 * <p>With a Ray object passed in the argument of the constructor :</p>
+	 * {@code
+	 * var r:Ray = new Ray( r:Ray) ;
+	 * }
+	 * <p>With 2 Vector3 objects passed in the arguments of the constuctor : </p>
+	 * {@code
+	 * var r:Ray = new Ray( r:Vector3 , p:Vector3 ) ;
+	 * }
 	 */
 	public function Ray() 
 	{
@@ -51,7 +62,7 @@ class pegas.geom.Ray extends CoreObject implements ICloneable, ICopyable, IEqual
 			p = r.p ;
 			v = r.v ;
 		}
-		else if ( arguments.length == 3)
+		else if ( arguments.length == 2)
 		{
 			if (arguments[0] instanceof Vector3)
 			{
@@ -60,7 +71,7 @@ class pegas.geom.Ray extends CoreObject implements ICloneable, ICopyable, IEqual
 			if (arguments[1] instanceof Vector3)
 			{
 				v = arguments[1].clone() ;
-			}	
+			}
 		}
 		update() ;
 	}

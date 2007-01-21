@@ -233,6 +233,11 @@ class vegas.util.Comparater
         	return true ;	
         }
 
+		if ( n1.toString() == n2.toString() ) 
+		{
+			return true ;	
+		}
+
 		return false ;
 	}
 	

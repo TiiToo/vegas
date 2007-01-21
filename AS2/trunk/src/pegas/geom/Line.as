@@ -29,7 +29,7 @@ import vegas.core.IEquality;
 import vegas.util.serialize.Serializer;
 
 /**
- * This class defined a Line equation.
+ * Defines a linear equation of the form : {@code ax + by = c} with fixed real coefficients a, b and c such that a and b are not both zero.
  * <p><b>Example :</b></p>
  * {@code
  * var l:Line = new Line(10, 20, 5) ;
@@ -66,6 +66,11 @@ class pegas.geom.Line extends CoreObject implements ICloneable, IEquality
 
 	/**
 	 * Returns a shallow copy of this instance.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * var l1:Line = new Line(10, 20, 30) ;
+	 * var l2:Line = l1.clone() ;
+	 * }
 	 * @return a shallow copy of this instance.
 	 */
 	public function clone() 
@@ -75,6 +80,11 @@ class pegas.geom.Line extends CoreObject implements ICloneable, IEquality
 
 	/**
 	 * Returns a deep copy of this instance.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * var l1:Line = new Line(10, 20, 30) ;
+	 * var l2:Line = l1.copy() ;
+	 * }
 	 * @return a deep copy of this instance.
 	 */
 	public function copy()
@@ -84,9 +94,15 @@ class pegas.geom.Line extends CoreObject implements ICloneable, IEquality
 
 	/**
 	 * Returns the distance between two points.
+	 * {@code
+	 * var p1:Point = new Point(10,20) ;
+	 * var p2:Point = new Point(40,60) ;
+	 * trace(Line.distance(p1,p2) ) ; // 50
+	 * }
 	 * @return the distance between two points.
 	 */
-	static public function distance(p1:Point, p2:Point):Number {
+	static public function distance( p1:Point, p2:Point ):Number 
+	{
 		return Point.distance(p1, p2) ;
 	}
 
@@ -94,26 +110,30 @@ class pegas.geom.Line extends CoreObject implements ICloneable, IEquality
 	 * Compares the specified object with this object for equality.
 	 * @return {@code true} if the the specified object is equal with this object.
 	 */
-	public function equals(o):Boolean 
+	public function equals( o ):Boolean 
 	{
 		return (o instanceof Line && o.a == a && o.b == b && o.c == c) ;
 	}
 
 	/**
-	 * Returns a line equation as two properties (a,b) such that (y = a*x + b) for any x or a unique c property such that (x = c) for all y.
+	 * Returns a 
 	 * The function takes two points as parameter, p0 and p1 containing two properties x and y.
 	 * @return a line equation as two properties (a,b) such that (y = a*x + b) for any x or a unique c property such that (x = c) for all y.
 	 */
-	static public function getLine(p1:Point, p2:Point):Line {
+	static public function getLine( p1:Point, p2:Point ):Line 
+	{
 		var x0:Number = p1.x;
 		var y0:Number = p1.y;
 		var x1:Number = p2.x;
 		var y1:Number = p2.y;
 		var l:Line = new Line() ;
-		if (x0 == x1) {
+		if (x0 == x1) 
+		{
 			if (y0 == y1) l = null ;
 			else l.c = x0 ; // Otherwise, the line is a vertical line
-		} else {
+		}
+		else 
+		{
 			l.a = (y0 - y1) / (x0 - x1) ;
 			l.b = y0 - (l.a * x0) ;
 		}
@@ -187,8 +207,7 @@ class pegas.geom.Line extends CoreObject implements ICloneable, IEquality
 	}
 	
 	/**
-	 * Returns a line equation as two properties (a,b) such that (y = a*x + b) for any x 
-	 * or a unique c property such that (x = c) for all y.
+	 * Returns a line equation as two properties (a,b) such that (y = a*x + b) for any x or a unique c property such that (x = c) for all y.
 	 * The function takes two parameters, a point p(x,y) through which the line passes and a direction vector v(x,y).
 	 * @return a line equation as two properties (a,b) such that (y = a*x + b) for any x.
 	 */
@@ -227,7 +246,7 @@ class pegas.geom.Line extends CoreObject implements ICloneable, IEquality
 	 */ 
 	public function toString():String 
 	{
-		return "[a:" + (isNaN(a) ? 0 : a) + ", b:" + (isNaN(b) ? 0 : b) + ", c:" + (isNaN(c) ? 0 : c) + ")" ;
+		return "[Line a:" + (isNaN(a) ? 0 : a) + ", b:" + (isNaN(b) ? 0 : b) + ", c:" + (isNaN(c) ? 0 : c) + ")" ;
 	}
 
 }
