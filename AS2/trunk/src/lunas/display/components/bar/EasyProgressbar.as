@@ -21,54 +21,21 @@
   
 */
 
-/**	EasyProgressbar
-
-	AUTHOR
-	
-		Name : EasyProgressbar
-		Package : lunas.display.components.bar
-		Version : 1.0.0.0
-		Date :  2006-02-21
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : contact@ekameleon.net
-
-	PROPERTY SUMMARY
-	
-		- autoResetPosition:Boolean
-	
-		- direction:Number [R/W]
-		
-		- position:Number [R/W]
-	
-	METHOD SUMMARY
-		
-		- getDirection():Number
-		
-		- getPosition():Number
-
-		- resize():Void
-				
-		- setDirection(n:Number):Void
-		
-		- setPosition(pos:Number, noEvent:Boolean):Void
-
-	EVENT TYPE SUMMARY
-	
-		- CHANGE:EventType
-	
-**/
-
 import asgard.display.Direction;
 
 import lunas.display.components.bar.AbstractProgressbar;
 import lunas.display.components.shape.RectangleComponent;
 
+/**
+ * The EasyProgressbar component.
+ * @author eKameleon
+ */
 class lunas.display.components.bar.EasyProgressbar extends AbstractProgressbar 
 {
 
-	// ----o Constructor
-	
+	/**
+	 * Creates a new EasyProgressbar instance.
+	 */
 	public function EasyProgressbar() 
 	{
 		super() ;
@@ -77,18 +44,15 @@ class lunas.display.components.bar.EasyProgressbar extends AbstractProgressbar
 		setSize(150, 6) ;
 	}
 
-	// ----o Constant
-	
 	static public var BACKGROUND_RENDERER:Function = RectangleComponent ;
+
 	static public var BAR_RENDERER:Function = RectangleComponent ;
 	
-	// ----o Public Properties
-
 	public var background:MovieClip ;
-	public var bar:MovieClip ;
-	public var border:Number = 0 ;
 
-	// ----o Public Methods		
+	public var bar:MovieClip ;
+
+	public var border:Number = 0 ;
 
 	public function resize():Void 
 	{
@@ -103,7 +67,6 @@ class lunas.display.components.bar.EasyProgressbar extends AbstractProgressbar
 		bar.setSize(__w, __h) ;
 	}
 
-
 	public function viewChanged():Void 
 	{
 		_refreshBackground() ;
@@ -114,8 +77,6 @@ class lunas.display.components.bar.EasyProgressbar extends AbstractProgressbar
 	{
 		resize() ;
 	}
-
-	// ----o Private Methods
 
 	private function _createBackground():Void 
 	{

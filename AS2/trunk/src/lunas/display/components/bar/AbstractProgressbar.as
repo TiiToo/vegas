@@ -29,28 +29,27 @@ import lunas.display.components.IProgressbar;
 import pegas.events.UIEventType;
 import pegas.maths.Range;
 
+/**
+ * This abstract class is used to create progress bar.
+ * @author eKameleon
+ */
 class lunas.display.components.bar.AbstractProgressbar extends AbstractComponent implements IProgressbar 
 {
 
-	// ----o Constructor
-	
+	/**
+	 * Creates a new AbstractProgressbar instance. 
+	 */
 	private function AbstractProgressbar() 
 	{
 		_rPercent = Range.PERCENT_RANGE ;
 		_nDirection = Direction.HORIZONTAL ;
 	}
 
-	// ----o Constant
-	
 	static public var CHANGE:String = UIEventType.CHANGE ;
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(AbstractProgressbar, null, 7, 7) ;
 	
-	// ----o Public Properties
-	
 	public var autoResetPosition:Boolean = false ;
-
-	// ----o Virtual Properties
 
 	public function get direction():Number 
 	{
@@ -71,8 +70,6 @@ class lunas.display.components.bar.AbstractProgressbar extends AbstractComponent
 	{
 		setPosition(n) ;	
 	}
-
-	// ----o Public Methods		
 
 	public function getDirection():Number 
 	{ 
@@ -97,10 +94,11 @@ class lunas.display.components.bar.AbstractProgressbar extends AbstractComponent
 		if (pos != _position) 
 		{
 			_position = pos ;
-			
 			viewPositionChanged(flag) ;
-			
-			if (!noEvent) notifyChanged() ;
+			if (!noEvent) 
+			{
+				notifyChanged() ;
+			}
 		}
 	}
 	
@@ -119,10 +117,10 @@ class lunas.display.components.bar.AbstractProgressbar extends AbstractComponent
 		// override this method
 	}
 
-	// ----o Private Properties
-
 	private var _nDirection:Number ;
+
 	private var _position:Number = 0 ;
+
 	private var _rPercent:Range ;
 	
 }

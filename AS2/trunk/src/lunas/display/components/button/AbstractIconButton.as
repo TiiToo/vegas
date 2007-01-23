@@ -60,7 +60,9 @@ class lunas.display.components.button.AbstractIconButton extends AbstractButton
 		if (getIcon() != undefined) 
 		{
 			return attachMovie( getIcon(), "_mcIcon", isNaN(depth) ? 4 : depth ) ;
-		} else {
+		} 
+		else 
+		{
 			return null ;
 		}
 	}
