@@ -36,7 +36,7 @@ package vegas.util.observer
 		 * @param o the observable object.
 		 * @param arg an argument passed to the notifyObservers method.
 		 */
-		function update(o:Observable, arg:*) ;
+		function update(o:Observable, arg:*):* ;
 
 	}
 }

@@ -27,7 +27,9 @@ package vegas.util.observer
 	import vegas.core.CoreObject;
 	import vegas.data.iterator.Iterator;
 	import vegas.data.list.ArrayList;
-	import vegas.errors.NullPointerError;
+	//import vegas.errors.NullPointerError;
+	
+	import vegas.util.observer.IObserver ;
 	
 	/**
 	 * This class represents an observable object, or "data" in the model-view paradigm. It can be subclassed to represent an object that the application wants to have observed.
@@ -47,11 +49,11 @@ package vegas.util.observer
 		/**
 		 *  Adds an observer to the set of observers for this object, provided that it is not the same as some observer already in the set.
 	 	 */
-		public function addObserver(o:Observer):Boolean 
+		public function addObserver( o:IObserver ):Boolean 
 		{
 			if (o == null) 
 			{
-				throw new NullPointerError(this + " the passed object in argument not must be 'null' or 'undefined'.") ;
+				throw new Error(this + " the passed object in argument not must be 'null' or 'undefined'.") ;
 			}
 			if (!_obs.contains(o)) 
 			{
@@ -64,7 +66,7 @@ package vegas.util.observer
 		/**
 		 * Indicates that this object has no longer changed, or that it has already notified all of its observers of its most recent change, so that the hasChanged method will now return false.
 		 */
-		public function clearChanged():Void 
+		public function clearChanged():void
 		{
 			_changed = false ;
 		}
@@ -80,7 +82,7 @@ package vegas.util.observer
 		/**
 		 * If this object has changed, as indicated by the hasChanged method, then notify all of its observers and then call the clearChanged method to indicate that this object has no longer changed.
 		 */
-		public function notifyObservers( arg:* ):Void 
+		public function notifyObservers( arg:* ):void
 		{
 			if (arg == undefined) 
 			{
@@ -95,16 +97,20 @@ package vegas.util.observer
 			var it:Iterator = _obsMemory.iterator() ;
 			while(it.hasNext()) 
 			{
-				IObserver(it.next()).update(this, arg) ;
+				var o:IObserver = it.next() as IObserver ;
+				if (o != null)
+				{
+				    o.update(this, arg) ;
+				}
 			}
 		}
 	
 		/**
 		 * Removes an observer from the set of observers of this object.
 		 */
-		public function removeObservers(o:Observer):Void 
+		public function removeObservers( o:IObserver ):void
 		{
-			if (o == undefined) 
+			if (o == null) 
 			{
 				_obs.clear() ;
 			}
@@ -117,7 +123,7 @@ package vegas.util.observer
 		/**
 		 * Marks this Observable object as having been changed; the hasChanged method will now return true
 		 */
-		public function setChanged():Void 
+		public function setChanged():void 
 		{
 			_changed = true ;
 		}
