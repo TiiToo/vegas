@@ -21,83 +21,13 @@
   
 */
 
-/* AbstractSet
-
-	AUTHOR
-	
-		Name : AbstractSet
-		Package : vegas.data.sets
-		Version : 1.0.0.0
-		Date : 2006-07-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	DESCRIPTION
-	
-		A collection that contains no duplicate elements.
-		
-		It makes no guarantees as to the iteration order of the set.
-	
-	METHOD SUMMARY
-
-		- clear():void
-		
-		- clone():*
-		
-		- copy():*
-				
-		- contains(o:*):Boolean
-		
-		- containsAll(c:Collection):Boolean
-		
-		- equals(o:*):Boolean
-		
-		- get(id)
-		
-		- hashCode():uint
-		
-		- indexOf(o:*, fromIndex:uint=0):int
-		
-		- insert(o:*):Boolean
-		
-		- insertAll(c:Collection):Boolean
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- remove(o):*
-		
-		- removeAll(c:Collection):Boolean
-		
-		- retainAll(c:Collection):Boolean
-		
-		- size():Number
-		
-		- toArray():Array
-		
-		- toSource(...arguments:Array):String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → AbstractCollection → SimpleCollection → AbstractSet → HashSet
-
-	IMPLEMENTS
-	
-		Collection, ICloneable, ICopyable, IEquality, IFormattable, IHashable, ISerialzable, Iterable, Set
-
-*/
-
 package vegas.data.sets
 {
 	
 	import vegas.data.Collection ; 
 	import vegas.data.iterator.ArrayIterator 
 	import vegas.data.iterator.Iterator 
-	import vegas.data.map.HashMap;
+	import vegas.data.map.ArrayMap;
 	import vegas.util.Copier ;
 	import vegas.util.Serializer ;
 	
@@ -111,7 +41,7 @@ package vegas.data.sets
 			
 			super(null) ;
 			
-			_map = new HashMap() ;
+			_map = new ArrayMap() ;
 			
 			if (init == null) return ;
 			
@@ -198,7 +128,7 @@ package vegas.data.sets
 		
 		// ----o Private Properties
 		
-		private var _map:HashMap ;
+		private var _map:ArrayMap ;
 		
 	}
 }
