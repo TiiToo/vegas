@@ -21,35 +21,8 @@
   
 */
 
-/** IButton [Interface]
-
-	AUTHOR
-	
-		Name : IButton
-		Package : lunas.display.components
-		Version : 1.0.0.0
-		Date :  2006-02-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- getLabel():String
-		
-		- getSelected():Boolean
-		
-		- getToggle():Boolean
-		
-		- setLabel(str:String):Void
-		
-		- setSelected(b:Boolean, noEvent:Boolean):Void
-		
-		- setToggle(b:Boolean):Void
-	
-**/
-
-interface lunas.display.components.IButton {
+interface lunas.display.components.IButton 
+{
 	
 	function getLabel():String ;
 	

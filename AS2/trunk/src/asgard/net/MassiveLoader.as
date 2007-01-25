@@ -126,7 +126,6 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener
 		{
 			loader.setName( "loader_library" + HashCode.next() ) ;
 		} 
-		
 		_qBuffer.enqueue(loader) ;
 		
 		return loader.getName() ;

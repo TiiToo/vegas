@@ -21,230 +21,87 @@
   
 */
 
-/** AbstractCell
-
-	AUTHOR
-
-		Name : AbstractCell
-		Package : lunas.display.components.cell
-		Version : 1.0.0.0
-		Date :  2006-02-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-
-		- cellIndex:CellIndex [Read Only]
-		
-		- data:Object
-		
-		- index:Number
-		
-		- label:String [R/W]
-		
-		- listOwner:MovieClip [R/W]
-		
-		- selected:Boolean [R/W]
-		
-		- toggle:Boolean [R/W]
-	
-	METHOD SUMMARY
-
-		- getDataLabel():String
-		
-			Renvoi une chaîne contenant le nom du champ de données du composant CellRenderer.
-		
-		- getCellIndex():Object
-		
-			Renvoi un objet avec deux champs, columnIndex et rowIndex, indiquant la position de la cellule. 
-		
-		- getIcon():String
-		
-		- getIconDepth():String
-		
-		- getIconTarget():MovieClip
-		
-		- getLabel():String
-		
-		- getListOwner()	
-		
-			Référence à la liste contenant la cellule
-		
-		- getPreferredHeight():Number
-			
-			Renvoi la hauteur que devrait avoir une cellule dans la liste.
-		
-		- getPreferredWidth()
-		
-			Renvoi la largeur que devrait avoir une cellule dans la liste.
-		
-		- getSelected():Boolean
-		
-		- getSize(w:Number, h:Number):Object
-		
-		- getToggle():Boolean
-		
-		- resetIconColor():Void
-		
-		- setCellIndex( itemIndex:Number , columnIndex:Number ):Void
-		
-			Défini un objet ayant les 2 propriétés itemIndex et columnIndex
-		
-		- setIcon(str:String):Void
-		
-		- setIconColor(hex:Number):Void
-		
-		- setLabel(str:String):Void
-
-		- setListOwner(owner:MovieClip):Void
-		
-			Permet de définir la référence vers la liste contenant la cellule.
-		
-		- setSelected(b:Boolean, noEvent:Boolean):Void
-
-		- setSize()
-			
-			Définit la largeur et la hauteur d'une cellule. (tous les composants ont cette méthode)
-		
-		- setToggle(b:Boolean):Void
-		
-		- setValue()
-		
-			Définit le contenu à afficher dans la cellule.
-		
-		- viewIconChanged():Void
-		
-		- viewLabelChanged():Void
-
-	EVENT SUMMARY
-	
-		ButtonEvent
-		
-		- CLICK:MouseEventType
-		
-		- UP:ButtonEventType
-		
-		- DISABLED:ButtonEventType
-		
-		- DOUBLE_CLICK:MouseEventType
-		
-		- DOWN:ButtonEventType
-		
-		- ICON_CHANGE:ButtonEventType
-		
-		- LABEL_CHANGE:ButtonEventType
-		
-		- MOUSE_UP:MouseEventType
-		
-		- MOUSE_DOWN:MouseEventType
-		
-		- OUT:ButtonEventType
-		
-		- OUT_SELECTED:ButtonEventType
-		
-		- OVER:ButtonEventType
-		
-		- OVER_SELECTED:ButtonEventType
-		
-		- ROLLOUT:MouseEventType
-		
-		- ROLLOVER:MouseEventType
-		
-		- SELECT:ButtonEventType
-		
-		- UNSELECT:ButtonEventType
-		
-		- UP:ButtonEventType
-
-	IMPLEMENTS 
-	
-		IButton, ICell, IEventTarget
-
-	INHERIT 
-	
-		MovieClip → AbstractComponent → AbstractButton → AbstractIconButton → AbstractCell
-
-	SEE ALSO
-	
-		IBuilder, IStyle
-	
-**/
-
 import lunas.display.components.button.AbstractIconButton;
 import lunas.display.components.cell.CellDecorator;
 import lunas.display.components.cell.CellIndex;
 import lunas.display.components.ICell;
 import lunas.events.CellEvent;
 
-class lunas.display.components.cell.AbstractCell extends AbstractIconButton implements ICell {
+/**
+ * @author eKameleon
+ */
+class lunas.display.components.cell.AbstractCell extends AbstractIconButton implements ICell 
+{
 
-	// ----o Constructor
-
-	public function AbstractCell() { 
+	/**
+	 * Creates a new AbstractCell instance.
+	 */
+	public function AbstractCell() 
+	{ 
 		_cellDecorator = new CellDecorator() ;
 	}
 
-	// ----o Public Properties
+	public function get cellIndex():CellIndex 
+	{
+		return getCellIndex() ;	
+	}
 	
-	//public var cellIndex:CellIndex ; // [Read Only]
-	//public var listOwner:MovieClip ; // [R/W]
+	public function get listOwner():MovieClip 
+	{
+		return getListOwner() ;
+	}
 
-	// ----o Public Methods
-	
-	public function getCellIndex():CellIndex {
+	public function set listOwner(mcList:MovieClip):Void 
+	{
+		setListOwner(mcList) ;
+	}
+
+	public function getCellIndex():CellIndex 
+	{
 		return _cellDecorator.getCellIndex() ;
 	}
 	
-	public function getListOwner():MovieClip {
+	public function getListOwner():MovieClip 
+	{
 		return _cellDecorator.getListOwner() ;
 	}
 
-	public function getPreferredHeight():Number {
+	public function getPreferredHeight():Number 
+	{
 		return _cellDecorator.getPreferredHeight() ;	
 	}
 
-	public function getPreferredWidth():Number {
+	public function getPreferredWidth():Number 
+	{
 		return _cellDecorator.getPreferredWidth() ;
 	}
 
-	public function initButtonEvent():Void {
+	public function initButtonEvent():Void 
+	{
 		_eButton = new CellEvent(null, this) ;	
 	}
 
-	public function setCellIndex( itemIndex:Number , columnIndex:Number ):Void {
+	public function setCellIndex( itemIndex:Number , columnIndex:Number ):Void 
+	{
 		_cellDecorator.setCellIndex(itemIndex, columnIndex) ;
 	}
 
-	public function setListOwner(owner:MovieClip):Void {
+	public function setListOwner(owner:MovieClip):Void 
+	{
 		_cellDecorator.setListOwner(owner) ;
 	}
 	
-	/*override*/ public function setSize(w:Number, h:Number):Void {
+	/*override*/ public function setSize(w:Number, h:Number):Void 
+	{
 		var s:Object = _cellDecorator.getSize(w, h) ;
 		super.setSize(s.w, s.h) ;
 	}
 	
-	public function setValue ():Void {
+	public function setValue():Void 
+	{
 		// override
 	}
 
-	// ----o Virtual Properties
-	
-	public function get cellIndex():CellIndex {
-		return getCellIndex() ;	
-	}
-	
-	public function get listOwner():MovieClip {
-		return getListOwner() ;
-	}
-
-	public function set listOwner(mcList:MovieClip):Void {
-		setListOwner(mcList) ;
-	}
-
-	// ----o Private Properties
-	
 	private var _cellDecorator:CellDecorator ;
 
 }
