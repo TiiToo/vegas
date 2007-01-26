@@ -21,7 +21,7 @@
   
 */
 
-// FIXME : big bug when i use this target for the moment...
+// FIXME : Bug with for..in loop with a logger inside bug with XPanel ??? IMPORTANT FIX THIS BUG PLEASE.
 
 import vegas.logging.LogEventLevel;
 import vegas.logging.targets.LineFormattedTarget;
@@ -61,15 +61,9 @@ class vegas.logging.targets.XPanelTarget extends LineFormattedTarget
     /**
      * Creates a new XPanelTarget instance.
      */ 
-	public function XPanelTarget( sName:String ) 
+	public function XPanelTarget() 
 	{
-		super();
-		if (sName == null)
-		{
-			sName = "default" ;	
-		}
-        _lc = new LocalConnection() ;
-        _lc.send( CONNECTION_ID, DISPATCH_MESSAGE, getTimer(), START + " " + sName, LEVEL_START );
+		this.includeLevel = false ;
 	}
 
 	/**
@@ -127,10 +121,6 @@ class vegas.logging.targets.XPanelTarget extends LineFormattedTarget
 	 */
 	static public var START:String = "Started" ;
 
-    /**
-	 * The name of the connection
-	 */
-    public var name:String ;
 
 	/**
      * Descendants of this class should override this method to direct the specified message to the desired output.
@@ -138,49 +128,55 @@ class vegas.logging.targets.XPanelTarget extends LineFormattedTarget
 	 */
 	public function internalLog( message , lv:Number ):Void
 	{
+		var lvl:Number ;
+	   	switch (lv)
+	   	{
+	   		case LogEventLevel.DEBUG:
+	   		{
+	   			lvl = LEVEL_DEBUG ;
+	   			break;
+	   		}
+	   		case LogEventLevel.ERROR:
+	   		{
+	   			lvl = LEVEL_ERROR ;
+	   			break;
+	   		}
+	   		case LogEventLevel.FATAL:
+	   		{
+	   			lvl = LEVEL_FATAL ;
+	   			break;
+	   		}
+	   		case LogEventLevel.INFO:
+	   		{
+	   			lvl = LEVEL_INFORMATION ;
+	  			break;
+	   		}
+	   		case LogEventLevel.WARN:
+	   		{
+	   			lvl = LEVEL_WARNING ;
+	   			break;
+	   		}
+	   		default:
+	   		{
+	  			lvl = LEVEL_ALL ;
+	   			break;
+	   		}
+	   	}
+    		
+    	if ( _lc == null)
+    	{
+    		_lc = new LocalConnection() ;
+    		_lc.send( CONNECTION_ID , DISPATCH_MESSAGE , getTimer(), "START", LEVEL_START ) ;
+    	}
+		
+		_lc.send( CONNECTION_ID , DISPATCH_MESSAGE , getTimer(), message.toString(), lvl ) ;
+   		
 	        
-	        var targetLevel:Number ;
-	        
-	    	switch (lv)
-	    	{
-	    		case LogEventLevel.DEBUG:
-	    		{
-	    			targetLevel = LEVEL_DEBUG ;
-	    			break;
-	    		}
-	    		case LogEventLevel.ERROR:
-	    		{
-	    			targetLevel = LEVEL_ERROR ;
-	    			break;
-	    		}
-	    		case LogEventLevel.FATAL:
-	    		{
-	    			targetLevel = LEVEL_FATAL ;
-	    			break;
-	    		}
-	    		case LogEventLevel.INFO:
-	    		{
-	    			targetLevel = LEVEL_INFORMATION ;
-	    			break;
-	    		}
-	    		case LogEventLevel.WARN:
-	    		{
-	    			targetLevel = LEVEL_WARNING ;
-	    			break;
-	    		}
-	    		default:
-	    		{
-	    			targetLevel = LEVEL_ALL ;
-	    			break;
-	    		}
-	    	}
-			_lc.send( CONNECTION_ID , DISPATCH_MESSAGE , getTimer(), message, targetLevel ) ;
-	        
-	    }   
+	}   
 
 	/**
 	 * Internal LocalConnection reference.
 	 */
-	private var _lc:LocalConnection ;
-      
+	static private var _lc:LocalConnection ;
+	
 }
