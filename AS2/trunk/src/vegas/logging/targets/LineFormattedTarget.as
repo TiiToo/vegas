@@ -19,6 +19,8 @@
   
   Contributor(s) :
   
+  Andy Herrman (aherrman@gmail.com) - Added the option to display milliseconds in the Time format.
+   
 */
 
 import vegas.logging.AbstractTarget;
@@ -59,7 +61,12 @@ class vegas.logging.targets.LineFormattedTarget extends AbstractTarget
 	 * Indicates if a line number should be added to the trace.
 	 */
 	public var includeLines:Boolean = false ; 
-	
+
+  	/**
+	 * Indicates if the milliseconds should be added to the trace. Only relevant when includeTime is {@code true}.
+     */
+  	public var includeMilliseconds:Boolean = false ;
+
 	/**
 	 * Indicates if the time should be added to the trace.
 	 */
@@ -127,6 +134,7 @@ class vegas.logging.targets.LineFormattedTarget extends AbstractTarget
 	
 	/**
 	 * This method format the log message.
+	 * @return the format log message.
 	 */
     private function formatMessage(message, level:String, category:String, date:Date):String 
     {
@@ -168,6 +176,8 @@ class vegas.logging.targets.LineFormattedTarget extends AbstractTarget
     
 	/**
 	 * This method format the current Date passed in argument.
+	 * @param d the Date object to format.
+	 * @return the format time in the message.
 	 */
 	private function _formatTime(d:Date):String 
 	{
@@ -175,11 +185,16 @@ class vegas.logging.targets.LineFormattedTarget extends AbstractTarget
 		time += _getDigit(d.getHours()) ;
 		time += ":" + _getDigit(d.getMinutes()) ;
 		time += ":" + _getDigit(d.getSeconds()) ;
+		if( includeMilliseconds ) 
+		{
+      		time += ":" + _getDigit(d.getMilliseconds()) ;
+    	}
 		return time ;
 	}
 	
 	/**
 	 * Returns the string representation of a number and use digit conversion.
+	 * @return the string representation of a number and use digit conversion.
 	 */
 	private function _getDigit(n:Number):String 
 	{
