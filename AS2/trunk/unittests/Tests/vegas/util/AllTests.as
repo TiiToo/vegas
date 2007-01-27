@@ -54,7 +54,7 @@ class Tests.vegas.util.AllTests extends TestCase
 		suite.addTest( Tests.vegas.util.observer.AllTests.suite() ) ;
 		suite.addTest( Tests.vegas.util.serialize.AllTests.suite() ) ;
 		suite.addTest( Tests.vegas.util.visitor.AllTests.suite() ) ;
-		
+				
         suite.addTest( new TestSuite( Tests.vegas.util.TestAbstactTimer ) ) ;
         suite.addTest( new TestSuite( Tests.vegas.util.TestAbstractTypeable ) ) ;
         suite.addTest( new TestSuite( Tests.vegas.util.TestArrayUtil ) ) ;
