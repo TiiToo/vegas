@@ -106,9 +106,7 @@ class pegas.geom.Quaternion extends Vector3
 	// Inspired by the MSDN documentation : <http://msdn2.microsoft.com/en-us/library/microsoft.windowsmobile.directx.quaternion_methods.aspx>
 	// TODO static adds() : Adds two quaternions.
 	// OK conjugate() : Returns the conjugate of a quaternion.
-	// TODO copy() : Returns a copy of the quaternion.
 	// TODO dot() : Returns the dot product of two quaternions.
-	// TODO equals() : Returns {@code true} if the 2 quaternions are equals.
 	// TODO exp() : Calculates the exponential of a quaternion.
 	// TODO invert() : Conjugates and renormalizes a quaternion.
 	// TODO ln() : Calculates the natural logarithm of a quaternion.
@@ -119,7 +117,7 @@ class pegas.geom.Quaternion extends Vector3
 	// ok rotationAxis() : Builds a quaternion is rotated around an arbitary axis.
 	// TODO rotationMatrix : Builds a quaternion from a rotation matrix.
 	// TODO rotationYawPicthRoll : Builds a quaternion with the given yaw, pitch and roll. ??
-	// TODO slerp() : Interpolates between tow quaternions, using spherical liner interpolation.
+	// TODO slerp() : Interpolates between two quaternions, using spherical linear interpolation.
 	// TODO size() : Returns the length of a quaternion.
 	// TODO sizeSquare() : Returns the square of the length of a quaternion.
 	// TODO squad() : Interpolates between quaternions, using spherical quadrangle interpolation.

@@ -23,7 +23,6 @@
 
 import vegas.core.IComparator;
 import vegas.data.queue.LinearQueue;
-import vegas.errors.IllegalArgumentError;
 
 /**
  * This queue orders elements according to an order specified at construction time, which is specified either according to their natural order or according to a IComparator object.

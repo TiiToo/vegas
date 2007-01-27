@@ -23,6 +23,7 @@
 
 import vegas.core.CoreObject;
 import vegas.core.IComparator;
+import vegas.core.IEquality;
 import vegas.errors.IllegalArgumentError;
 import vegas.events.EventListenerContainer;
 
@@ -30,7 +31,7 @@ import vegas.events.EventListenerContainer;
  * This comparator is used in the {@code EventDispatcher} class to ordered all {@code EventLister} with a priority value.
  * @author eKameleon
  */
-class vegas.events.EventListenerComparator extends CoreObject implements IComparator 
+class vegas.events.EventListenerComparator extends CoreObject implements IComparator, IEquality
 {
 
 	/**

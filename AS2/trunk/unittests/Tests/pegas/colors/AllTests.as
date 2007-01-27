@@ -46,7 +46,7 @@ class Tests.pegas.colors.AllTests extends TestCase
 
         var suite:TestSuite = new TestSuite( "Tests.pegas.colors" );
         
-        //suite.simpleTrace = true;
+        // suite.simpleTrace = true;
 
 		// TODO suite.addTest( new TestSuite( Tests.pegas.colors.TestBasicColor ) );
 		// TODO suite.addTest( new TestSuite( Tests.pegas.colors.TestColorHSV ) ) ;

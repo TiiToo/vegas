@@ -302,6 +302,13 @@ class pegas.geom.Rectangle extends CoreObject implements ICloneable, IComparator
 
 	/**
 	 * Compares its two arguments for order.
+	 * @param o1 the first object to compare.
+	 * @param o2 the second object to compare.
+	 * @return <p>
+	 * <li>-1 if o1 is "lower" than (less than, before, etc.) o2 ;</li>
+	 * <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
+	 * <li> 0 if o1 and o2 are equal.</li>
+	 * </p>
 	 */
 	public function compare(o1, o2):Number 
 	{

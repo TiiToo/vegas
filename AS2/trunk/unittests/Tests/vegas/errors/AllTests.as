@@ -50,6 +50,7 @@ class Tests.vegas.errors.AllTests extends TestCase
 		suite.addTest( new TestSuite( Tests.vegas.errors.TestAbstractError ) ) ;
 		suite.addTest( new TestSuite( Tests.vegas.errors.TestArgumentOutOfBoundsError ) ) ;
 		suite.addTest( new TestSuite( Tests.vegas.errors.TestArgumentsError ) ) ;
+		suite.addTest( new TestSuite( Tests.vegas.errors.TestClassCastError ) ) ; 
 		suite.addTest( new TestSuite( Tests.vegas.errors.TestConcurrentModificationError ) ) ;
 		suite.addTest( new TestSuite( Tests.vegas.errors.TestErrorElement ) ) ;
 		suite.addTest( new TestSuite( Tests.vegas.errors.TestErrorFormat ) ) ; 

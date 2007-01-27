@@ -23,30 +23,37 @@
 
 import vegas.core.CoreObject;
 import vegas.core.IComparator;
-import vegas.core.ISerializable;
-import vegas.errors.IllegalArgumentError;
-import vegas.util.serialize.Serializer;
+import vegas.errors.ClassCastError;
 import vegas.util.TypeUtil;
 
 /**
- * This comparator compare Number objects.
+ * This comparator compare two Number objects.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import vegas.util.comparators.NumberComparator ;
+ * 
+ * var c:NumberComparator = new NumberComparator() ;
+ * 
+ * trace( c.compare(0,0) ) ; // 0
+ * trace( c.compare(1,1) ) ; // 0
+ * trace( c.compare(-1,-1) ) ; // 0
+ * trace( c.compare(0.1,0.1) ) ; // 0
+ * trace( c.compare( Number(Math.cos(25)) , 0.991202811863474 ) ) ; // 0
+ * trace( c.compare(1, 0) ) ; // 1
+ * trace( c.compare(0, 1) ) ; // -1
+ * }
  * @author eKameleon
  */
-class vegas.util.comparators.NumberComparator extends CoreObject implements IComparator, ISerializable 
+class vegas.util.comparators.NumberComparator extends CoreObject implements IComparator
 {
 
 	/**
 	 * Creates a new NumberCompator instance.
 	 */
-	public function NumberComparator( p_n:Number ) 
+	public function NumberComparator() 
 	{
-		n = p_n ;
+		//
 	}
-
-	/**
-	 * The number value to compare.
-	 */	
-	public var n ;
 
 	/**
 	 * Returns an integer value to compare two Number objects.
@@ -57,12 +64,16 @@ class vegas.util.comparators.NumberComparator extends CoreObject implements ICom
 	 * <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
 	 * <li> 0 if o1 and o2 are equal.</li>
 	 * </p>
-	 * @throws IllegalArgumentError if compare(a, b) and 'a' and 'b' must be Number objects.
+	 * @throws ClassCastError if compare(a, b) and 'a' and 'b' must be Number objects.
 	 */
 	public function compare(o1, o2):Number 
 	{
+		
 		if ( TypeUtil.typesMatch(o1, Number) && TypeUtil.typesMatch(o2, Number )) 
 		{
+			// fix float bug with Math methods and float number operations.
+			o1 = Number(o1.toString()) ; 
+			o2 = Number(o2.toString()) ;
 			if( o1 < o2 )
 			{
 				return -1;
@@ -78,33 +89,8 @@ class vegas.util.comparators.NumberComparator extends CoreObject implements ICom
 		}
 		else 
 		{
-			throw IllegalArgumentError(this + " : compare(), Arguments number expected") ;
+			throw new ClassCastError(this + " compare method failed, Arguments number expected") ;
 		}
 	}
 
-	/**
-	 * Compares the specified object with this object for equality.
-	 * @return {@code true} if the the specified object is equal with this object.
-	 */
-	public function equals(o):Boolean 
-	{
-		if (TypeUtil.typesMatch(o, Number) ) 
-		{
-			return compare(n, o) == 0 ;
-		}
-		else 
-		{
-			return false ;
-		}
-	}
-
-	/**
-	 * Returns a Eden representation of the object.
-	 * @return a string representing the source code of the object.
-	 */
-	public function toSource(indent:Number, indentor:String):String 
-	{
-		return Serializer.getSourceOf(this, [Serializer.toSource(n)]) ;
-	}
-	
 }

@@ -67,7 +67,7 @@ class vegas.util.StringUtil
 	 */
 	static public function compare( strA:String , strB:String, ignoreCase:Boolean ):Number 
 	{
-		return (new StringComparator(null, ignoreCase)).compare(strA, strB) ;
+		return (new StringComparator(ignoreCase)).compare(strA, strB) ;
 	}
 	
 	/**

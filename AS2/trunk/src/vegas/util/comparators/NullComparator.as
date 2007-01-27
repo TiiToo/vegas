@@ -24,25 +24,64 @@
 import vegas.core.CoreObject;
 import vegas.core.IComparator;
 import vegas.core.ISerializable;
-import vegas.errors.IllegalArgumentError;
+import vegas.util.comparators.ComparableComparator;
 import vegas.util.serialize.Serializer;
 
 /**
  * This comparator compare Null objects.
+ * When comparing two non-null objects, the ComparableComparator is used if the nonNullComparator isnt' define.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import vegas.util.comparators.NullComparator;
+ * 
+ * var comp1:NullComparator = new NullComparator(null, true) ;
+ * var comp2:NullComparator = new NullComparator(null, false) ;
+ * 
+ * var n = null ;
+ * var o = {} ;
+ * 
+ * trace( comp1.compare(n, n) ) ; // 0
+ * trace( comp1.compare(n, o) ) ; // 1
+ * trace( comp1.compare(o, n) ) ; // -1
+ * 
+ * trace("----") ;
+ * 
+ * trace( comp2.compare(n, n) ) ; // 0
+ * trace( comp2.compare(n, o) ) ; // -1
+ * trace( comp2.compare(o, n) ) ; // 1
+ * }
  * @author eKameleon
  */
-class vegas.util.comparators.NullComparator extends CoreObject implements IComparator, ISerializable 
+class vegas.util.comparators.NullComparator extends CoreObject implements IComparator
 {
 
 	/**
 	 * Creates a new NullCompator instance.
+	 * @param nonNullComparator the comparator to use when comparing two non-null objects.
+	 * @param nullsAreHigh a {@code true} value indicates that null should be compared as higher than a non-null object. A {@code false} value indicates that null should be compared as lower than a non-null object. 
 	 */
-	public function NullComparator( o ) {
-		_oNull = o ;
+	public function NullComparator( nonNullComparator:IComparator, nullsAreHigh:Boolean ) 
+	{
+		this.nonNullComparator = nonNullComparator || null ;
+		this.nullsAreHigh = nullsAreHigh || false  ;
 	}
 	
 	/**
-	 * Returns an integer value to compare two 'null' objects.
+	 * Defines the comparator to use when comparing two non-null objects.
+	 */
+	public var nonNullComparator:IComparator = null ;
+
+	/**
+	 * Defines that null should be compared as higher than a non-null object. 
+	 */
+	public var nullsAreHigh:Boolean = false ;
+	
+	/**
+	 * Perform a comparison between two objects. 
+	 * If both objects are null, a 0 value is returned. 
+	 * If one object is null and the other is not, the result is determined on whether the Comparator was constructed to have nulls as higher or lower than other objects.
+	 * If neither object is null, an underlying comparator specified in the constructor (or the default) is used to compare the non-null objects.
+	 * The default IComparator used to compare two non-null objects is the ComparableComparator.
 	 * @param o1 the first 'null' object to compare.
 	 * @param o2 the second 'null' object to compare.
 	 * @return <p>
@@ -50,38 +89,46 @@ class vegas.util.comparators.NullComparator extends CoreObject implements ICompa
 	 * <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
 	 * <li> 0 if o1 and o2 are equal.</li>
 	 * </p>
-	 * @throws IllegalArgumentError if compare(a, b) and 'a' and 'b' must be Number objects.
+	 * @see ComparableComparator
 	 */
 	public function compare(o1, o2):Number 
 	{
-		if (o1 == null && o2 == null) 
+		if (o1 == null && o2 == null)
 		{
-			return (o1 == o2) ? 1 : -1 ;
-		} 
-		else 
+			return 0 ;
+		}			
+		else if (o1 == null && o2 != null)
 		{
-			throw IllegalArgumentError(this + " : compare(), Arguments 'null' expected") ; ;
+			return nullsAreHigh ? 1 : -1 ;
+		}
+		else if (o1 != null && o2 == null)
+		{
+			return nullsAreHigh ? -1 : 1 ;
+		}
+		else
+		{
+			if ( nonNullComparator != null )
+			{
+				return nonNullComparator.compare(o1, o2) ;	
+			}
+			else
+			{
+				return ComparableComparator.getInstance().compare(o1, o2) ;
+			}
 		}
 	}
-
+	
 	/**
-	 * Compares the specified object with this object for equality.
-	 * @return {@code true} if the the specified object is equal with this object.
-	 */
-	public function equals(o):Boolean 
-	{
-		if (_oNull) return (_oNull == null && o == null) ;
-		else return (o == null) ;
-	}
-
-	/**
-	 * Returns a Eden representation of the object.
+	 * Returns a Eden reprensation of the object.
 	 * @return a string representing the source code of the object.
 	 */
-	public function toSource(indent:Number, indentor:String):String {
-		return Serializer.getSourceOf(this, [Serializer.toSource(_oNull)]) ;
+	public function toSource(indent : Number, indentor : String):String 
+	{
+		var sources:Array = [
+			ISerializable(nonNullComparator).toSource() || "null" , 
+			Serializer.toSource( nullsAreHigh )
+		] ;
+		return Serializer.getSourceOf(this, sources ) ;
 	}
-	
-	private var _oNull ;
 	
 }

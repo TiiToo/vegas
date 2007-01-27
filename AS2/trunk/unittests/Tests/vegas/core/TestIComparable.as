@@ -42,7 +42,9 @@ class Tests.vegas.core.TestIComparable extends TestCase
 	public function testCompareTo():Void
 	{
 		var o:ComparableImplementation = new ComparableImplementation() ;
-		assertEquals( o.compareTo(this), 0 , "ICOMP_TO compareTo method failed.") ;
+		assertEquals( o.compareTo(0), 0 , "ICOMP_TO compareTo method failed.") ;
+		assertEquals( o.compareTo(1), 1 , "ICOMP_TO compareTo method failed.") ;
+		assertEquals( o.compareTo(-1), -1 , "ICOMP_TO compareTo method failed.") ;
 	}
 
 

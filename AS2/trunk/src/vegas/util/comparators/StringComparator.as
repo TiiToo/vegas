@@ -23,33 +23,46 @@
 
 import vegas.core.CoreObject;
 import vegas.core.IComparator;
-import vegas.core.ISerializable;
-import vegas.errors.IllegalArgumentError;
-import vegas.util.serialize.Serializer;
+import vegas.errors.ClassCastError;
 import vegas.util.StringUtil;
 import vegas.util.TypeUtil;
 
 /**
  * This comparator compare String objects.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import vegas.util.comparators.StringComparator ;
+ * 
+ * var comp1:StringComparator = new StringComparator() ;
+ * var comp2:StringComparator = new StringComparator(true) ; // ignore case
+ * 
+ * var s0:String = "HELLO" ;
+ * var s1:String = "hello" ;
+ * var s2:String = "welcome" ;
+ * var s3:String = "world" ;
+ * 
+ * trace( comp1.compare(s1, s2) ) ;  -1
+ * trace( comp1.compare(s2, s1) ) ;   1
+ * trace( comp1.compare(s1, s3) ) ;  -1
+ * trace( comp1.compare(s1, s1) ) ;  0
+ * 
+ * trace( comp1.compare(s1, s0) ) ;  -1
+ * trace( comp2.compare(s1, s0) ) ;  0
+ * }
  * @author eKameleon
  */
-class vegas.util.comparators.StringComparator extends CoreObject implements IComparator, ISerializable 
+class vegas.util.comparators.StringComparator extends CoreObject implements IComparator
 {
 
 	/**
 	 * Creates a new StringCompator instance.
+	 * @param ignoreCase a boolean to define if the comparator ignore case or not.
 	 */
-	function StringComparator( str:String , ignoreCase:Boolean) 
+	function StringComparator( ignoreCase:Boolean ) 
 	{
-		s = str ;
 		this.ignoreCase = ignoreCase ;
 	}
 
-	/**
-	 * The string object to compare.
-	 */
-	public var s:String ;
-	
 	/**
 	 * Allow to take into account the case for comparison.
 	 */
@@ -64,7 +77,7 @@ class vegas.util.comparators.StringComparator extends CoreObject implements ICom
 	 * <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
 	 * <li> 0 if o1 and o2 are equal.</li>
 	 * </p>
-	 * @throws IllegalArgumentError if compare(a, b) and 'a' and 'b' must be String objects.
+	 * @throws IllegalArgumentError if compare(a, b) and 'a' or 'b' aren't String objects.
 	 */
 	public function compare(o1, o2):Number 
 	{
@@ -87,7 +100,7 @@ class vegas.util.comparators.StringComparator extends CoreObject implements ICom
 		{
 			if ( !TypeUtil.typesMatch(o1, String) || !TypeUtil.typesMatch(o2, String)) 
 			{
-				throw IllegalArgumentError(this + " compare() method failed, Arguments string expected") ;
+				throw new ClassCastError(this + " compare method failed, Arguments string expected.") ;
 			}
 			else 
 			{
@@ -124,30 +137,33 @@ class vegas.util.comparators.StringComparator extends CoreObject implements ICom
 			}
 		}
 	}
-
+	
 	/**
-	 * Compares the specified object with this object for equality.
-	 * @return {@code true} if the the specified object is equal with this object.
+	 * Returns the {@code StringComparator} singleton with the a {@code true} ignoreCase property.
+	 * Clients are encouraged to use the value returned from this method instead of constructing a new instance to reduce allocation and garbage collection overhead when multiple StringComparators may be used in the same application.
+	 * @return the {@code StringComparator} singleton with the a {@code true} ignoreCase property.
 	 */
-	public function equals(o):Boolean 
+	static public function getIgnoreCaseStringComparator():StringComparator
 	{
-		if (TypeUtil.typesMatch(o, String)) 
+		if ( _ignoreCaseComparator == null )
 		{
-			return compare(s, o) == 0 ;
+			_ignoreCaseComparator = new StringComparator(true) ;	
 		}
-		else 
-		{
-			return false ;
-		}
-	}
-
-	/**
-	 * Returns a Eden representation of the object.
-	 * @return a string representing the source code of the object.
-	 */
-	public function toSource(indent:Number, indentor:String):String 
-	{
-		return Serializer.getSourceOf(this, [s.toString()]) ;
+		return _ignoreCaseComparator ;
 	}
 	
+	/**
+	 * Returns a Eden reprensation of the object.
+	 * @return a string representing the source code of the object.
+	 */
+	public function toSource(indent : Number, indentor : String):String 
+	{
+		return "new vegas.util.comparators.StringComparator(" + ( (ignoreCase == true) ? "true" : "false") + ")" ;
+	}
+
+	/**
+	 * The internal ignoreCase StringComparator.
+	 */
+	static private var _ignoreCaseComparator ;
+
 }

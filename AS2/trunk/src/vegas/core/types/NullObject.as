@@ -25,7 +25,8 @@ import vegas.core.CoreObject;
 
 /**
  * Utilitarian object allowing to treat a null value as an object.
- * Note : usefull for some polymorphic situation.
+ * A Null Object can be useful in recursive structures, typical of CompositePattern. But it is also useful in other contexts too. For example, it's commonly used in StrategyPattern (where no particular strategy is needed).
+ * Usefull for some polymorphic situation.
  * @author eKameleon
  * @see <a href="http://c2.com/cgi/wiki?NullObject">Null Object</a>
  */

@@ -27,14 +27,26 @@ import vegas.core.ISerializable;
 import vegas.util.serialize.Serializer;
 
 /**
- * Reverse an IComparator.
+ * Reverse an IComparator object. For example if the comparator must return 1 the reverse comparator return -1.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import vegas.util.comparators.ReverseComparator ;
+ * import vegas.util.comparators.StringComparator ;
+ * 
+ * var c:StringComparator = new StringComparator() ;
+ * var s:ReverseComparator = new ReverseComparator( c ) ;
+ * 
+ * trace( c.compare( "hello", "world" ) ) ; // -1
+ * trace( s.compare( "hello", "world" ) ) ; // 1
+ * }
  * @author eKameleon
  */
-class vegas.util.comparators.ReverseComparator extends CoreObject implements IComparator, ISerializable 
+class vegas.util.comparators.ReverseComparator extends CoreObject implements IComparator
 {
 
 	/**
 	 * Creates a new ReverseComparator instance.
+	 * @param c the {@code IComparator} to be reverse.
 	 */
 	public function ReverseComparator( c:IComparator ) 
 	{
@@ -42,70 +54,33 @@ class vegas.util.comparators.ReverseComparator extends CoreObject implements ICo
 	}
 	
 	/**
-	 * The IComparator instance to reverse.
+	 * The {@code IComparator} instance to reverse.
 	 */	
 	public var comparator:IComparator ;
 	
 	/**
-	 * Returns an integer value to compare two Date objects.
-	 * @param o1 the first Date object to compare.
-	 * @param o2 the second Date object to compare.
+	 * Returns an integer value to compare two objects but the value is reverse.
+	 * The compare method use the internal compare method of the {@code IComparator} defined in the comparator property or in the constructor of this object.
+	 * @param o1 the first object to compare.
+	 * @param o2 the second object to compare.
 	 * @return <p>
-	 * <li>-1 if o1 is "lower" than (less than, before, etc.) o2 ;</li>
-	 * <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
+	 * <li> 1 if o1 is "lower" than (less than, before, etc.) o2 ;</li>
+	 * <li> -1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
 	 * <li> 0 if o1 and o2 are equal.</li>
 	 * </p>
-	 * @throws IllegalArgumentError if compare(a, b) and 'a' and 'b' must be Date or uint objects.
 	 */
 	public function compare(o1, o2):Number 
 	{
-		var value:Number = comparator.compare(o2, o1) ;
-		if (value == 0)
-		{
-			return 0 ;	
-		}
-		else if (value == 1)
-		{
-			return -1 ;
-		}
-		else 
-		{
-			return 1 ;	
-		}
-	}
-
-	/**
-	 * Compares the specified object with this object for equality.
-	 * @return {@code true} if the the specified object is equal with this object.
-	 */
-	public function equals(o):Boolean 
-	{
-		if ( this == o )  
-		{
-			return true ;
-		}
-		else if (null == o) 
-		{
-			return false ;
-		}
-		else if ( o.constructor == this.constructor ) 
-		{
-			var rc:ReverseComparator = ReverseComparator(o) ;
-			return comparator.equals(rc.comparator) ;
-		}
-		else 
-		{
-			return false ;
-		}
-	}
-
-	/**
-	 * Returns a Eden representation of the object.
-	 * @return a string representing the source code of the object.
-	 */
-	public function toSource(indent:Number, indentor:String):String 
-	{
-		return Serializer.getSourceOf(this, [Serializer.toSource(comparator)]) ;
+		return comparator.compare(o2, o1) ;
 	}
 	
+	/**
+	 * Returns a Eden reprensation of the object.
+	 * @return a string representing the source code of the object.
+	 */
+	public function toSource(indent : Number, indentor : String):String 
+	{
+		return Serializer.getSourceOf(this,[ ISerializable(comparator).toSource() || "null" ] ) ;
+	}
+
 }

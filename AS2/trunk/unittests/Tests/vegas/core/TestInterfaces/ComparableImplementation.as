@@ -21,17 +21,29 @@
   
 */
 
+import vegas.core.CoreObject;
 import vegas.core.IComparable;
 
 /**
  * @author eKameleon
  */
-class Tests.vegas.core.TestInterfaces.ComparableImplementation implements IComparable 
+class Tests.vegas.core.TestInterfaces.ComparableImplementation extends CoreObject implements IComparable 
 {
 	
-	function compareTo(o):Number 
+	function compareTo( o ):Number 
 	{
-		return 0 ;
+		if (o > 0)
+		{
+			return 1 ;
+		}
+		else if (o < 0)
+		{
+			return -1 ;	
+		}
+		else
+		{
+			return 0 ;	
+		}
 	}
 
 }

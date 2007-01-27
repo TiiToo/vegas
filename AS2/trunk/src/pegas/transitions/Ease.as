@@ -23,32 +23,57 @@
 
 import vegas.util.ConstructorUtil;
 
+/**
+ * This static abstract class provides a skeletal implementation for all easing class in the pegas.transitions.easing directory.
+ * @author eKameleon
+ */
 class pegas.transitions.Ease 
 {
 
+	/**
+	 * The name of the easeIn static method in a Ease class.
+	 */
 	static public var EASE_IN:String = "easeIn" ; 
 
+	/**
+	 * The name of the easeOut static method in a Ease class.
+	 */
 	static public var EASE_IN_OUT:String = "easeInOut" ;
 
+	/**
+	 * The name of the easeInOut static method in a Ease class.
+	 */
 	static public var EASE_OUT:String = "easeOut" ;
 		
-	static private var __ASPF__ = _global.ASSetPropFlags(Ease, null , 7, 7) ;
-	
+	/**
+	 * The ease-in method use in a Tween effect.
+	 */	
 	static public function easeIn (t:Number, b:Number, c:Number, d:Number):Number 
 	{
 		return null ;
 	}
-	
+
+	/**
+	 * The ease-out method use in a Tween effect.
+	 */	
 	static public function easeOut (t:Number, b:Number, c:Number, d:Number):Number 
 	{
 		return null ;
 	}
-	
+
+	/**
+	 * The ease-in-out method use in a Tween effect.
+	 */	
 	static public function easeInOut (t:Number, b:Number, c:Number, d:Number):Number 
 	{
 		return null ;
 	}
 	
+	/**
+	 * Returns {@code true} if the passed-in method is a valid easing class.
+	 * The constructor in argument must be a subconstructor of the Ease class.
+	 * @return {@code true} if the passed-in method is a valid easing class.
+	 */
 	static public function validate( c:Function ):Boolean 
 	{
 		 return ConstructorUtil.isSubConstructorOf(c, Ease) ;

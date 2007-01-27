@@ -21,7 +21,7 @@
   
 */
 
-import pegas.geom.Matrix ;
+import pegas.geom.Matrix;
 
 /**
  * Static tool class to manipulate and transform {@code Matrix} references.

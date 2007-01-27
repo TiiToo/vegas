@@ -22,42 +22,45 @@
 */
 
 import vegas.core.CoreObject;
-import vegas.core.ICloneable;
 import vegas.core.IComparator;
-import vegas.core.ISerializable;
-import vegas.errors.IllegalArgumentError;
-import vegas.util.serialize.Serializer;
+import vegas.errors.ClassCastError;
+import vegas.util.comparators.NumberComparator;
 import vegas.util.TypeUtil;
 	
 /**
  * This comparator compare Date objects.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import vegas.util.comparators.DateComparator;
+ * 
+ * var comp:DateComparator = new DateComparator() ;
+ * 
+ * var d1:Date   = new Date(2007, 1, 1) ;
+ * var d2:Number =  1170284400000 ;
+ * var d3:Date   = new Date(2007, 2, 2) ;
+ * var d4:Number = 1172790000000 ;
+ * 
+ * trace( comp.compare(d1, d1) ) ; // 0
+ * trace( comp.compare(d1, d2) ) ; // 0
+ * trace( comp.compare(d2, d1) ) ; // 0
+ * trace( comp.compare(d1, d3) ) ; // -1
+ * trace( comp.compare(d1, d4) ) ; // -1
+ * trace( comp.compare(d3, d1) ) ; // 1
+ * trace( comp.compare(d4, d1) ) ; // 1
+ * }
  * @author eKameleon
  */
-class vegas.util.comparators.DateComparator extends CoreObject implements ICloneable, IComparator, ISerializable 
+class vegas.util.comparators.DateComparator extends CoreObject implements IComparator
 {
 
 	/**
 	 * Creates a new DateCompator instance.
 	 */
-	public function DateComparator(p_date) 
+	public function DateComparator() 
 	{
-		date = p_date ;
+		//
 	}
 	
-	/**
-	 * The current Date reference.
-	 */
-	public var date ;
-	
-	/**
-	 * Creates and returns a shallow copy of the object.
-	 * @return A new object that is a shallow copy of this instance.
-	 */	
-	public function clone() 
-	{
-		return new DateComparator(date) ;
-	}
-
 	/**
 	 * Returns an integer value to compare two Date objects.
 	 * @param o1 the first Date object to compare.
@@ -73,52 +76,16 @@ class vegas.util.comparators.DateComparator extends CoreObject implements IClone
 	{
 		var b1:Boolean = TypeUtil.typesMatch(o1, Number) || TypeUtil.typesMatch(o1, Date) ;
 		var b2:Boolean = TypeUtil.typesMatch(o2, Number) || TypeUtil.typesMatch(o2, Date) ;
-		if ( b1  && b2 ) 
+		if ( b1 && b2 ) 
 		{
 			var a:Number = (o1 instanceof Date) ? o1.valueOf() : o1 ;
 			var b:Number = (o2 instanceof Date) ? o2.valueOf() : o2 ;
-			if( a < b ) 
-			{
-				return -1;
-			}
-			else if( a > b ) 
-			{
-				return 1;
-			}
-			else 
-			{
-				return 0 ;
-			}
+			return (new NumberComparator()).compare(a, b) ;
 		}
 		else 
 		{
-			throw new IllegalArgumentError(this + ".compare(a, b), 'a' and 'b' must be Date or uint objects.") ;
+			throw new ClassCastError(this + ".compare(a, b), 'a' and 'b' must be Date or Number objects.") ;
 		}
 	}
 
-	/**
-	 * Compares the specified object with this object for equality.
-	 * @return {@code true} if the the specified object is equal with this object.
-	 */
-	public function equals(o):Boolean 
-	{
-		if (o instanceof Date) 
-		{
-			return compare(date, o) == 0 ;
-		}
-		else 
-		{
-			return false ;
-		}
-	}
-
-	/**
-	 * Returns a Eden representation of the object.
-	 * @return a string representing the source code of the object.
-	 */
-	public function toSource(indent:Number, indentor:String):String
-	{
-		return Serializer.getSourceOf(this, [Serializer.toSource(date)]) ;
-	}
-	
 }

@@ -47,7 +47,7 @@ class Tests.AllTests extends TestCase
         var suite:TestSuite = new TestSuite( "Tests" );
         
         // suite.simpleTrace = true;
-        
+
       	// suite.addTest(  Tests.ASTUce.AllTests.suite() ) ; // OK full testing.
 		
 		// suite.addTest(  Tests.eden.AllTests.suite()   ) ; // FIXME 2 errors for the moment in this library

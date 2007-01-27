@@ -23,7 +23,7 @@
 
 import buRRRn.ASTUce.TestCase;
 
-import vegas.util.AttributeType ;
+import vegas.util.AttributeType;
 
 /**
  * @author eKameleon

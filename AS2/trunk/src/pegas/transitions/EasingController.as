@@ -26,7 +26,25 @@ import vegas.data.Map;
 import vegas.data.map.HashMap;
 
 /**
- * The EasingController register all the Easing in an application.
+ * The EasingController register easing methods. 
+ * This controller can be use with an external configuration or a dynamic easing engine.
+ * This controller centralize all easing method in the application.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import pegas.transitions.easing.* ;
+ * import pegas.transitions.EasingController ;
+ * import pegas.transitions.Tween ;
+ * 
+ * var controller:EasingController = new EasingController() ;
+ * controller.insert( "elastic_ease_out", Elastic.easeOut ) ;
+ * controller.insert( "elastic_ease_in", Elastic.easeIn ) ;
+ * 
+ * // in the code
+ * 
+ * var easing:Function = controller.getEasing( "elastic_ease_out" ) ;
+ * 
+ * var tw:Tween = new Tween( mc, "_x" , easing, mc._x, 500, 24 ) ; // mc a movieclip on the _root.
+ * }
  * @author eKameleon
  */
 class pegas.transitions.EasingController extends CoreObject 
@@ -39,6 +57,14 @@ class pegas.transitions.EasingController extends CoreObject
 	public function EasingController() 
 	{
 		_map = new HashMap() ;
+	}
+
+	/**
+	 * Removes all elements in this controller.
+	 */
+	public function clear():Void 
+	{
+		_map.clear() ;	
 	}
 
 	/**

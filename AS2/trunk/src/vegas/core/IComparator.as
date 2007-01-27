@@ -21,17 +21,22 @@
   
 */
 
-import vegas.core.IEquality;
-
 /**
  * A comparison function, which imposes a total ordering on some collection of objects.
  * @author eKameleon
  */
-interface vegas.core.IComparator extends IEquality 
+interface vegas.core.IComparator
 {
 
 	/**
 	 * Compares its two arguments for order.
+	 * @param o1 the first object to compare.
+	 * @param o2 the second object to compare.
+	 * @return <p>
+	 * <li>-1 if o1 is "lower" than (less than, before, etc.) o2 ;</li>
+	 * <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
+	 * <li> 0 if o1 and o2 are equal.</li>
+	 * </p>
 	 */
 	function compare(o1, o2):Number ;
 	
