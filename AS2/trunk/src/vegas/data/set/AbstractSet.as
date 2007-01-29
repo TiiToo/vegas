@@ -37,17 +37,20 @@ class vegas.data.set.AbstractSet extends AbstractCollection implements Set
 	/**
 	 * Creates a new AbstractSet instance.
 	 */
-	private function AbstractSet(ar) {
+	private function AbstractSet(ar) 
+	{
 		super(ar);
 	}
 	
 	/**
-	 * Returns  true if this set contains all of the elements of the specified collection.
+	 * Returns {@code true} if this set contains all of the elements of the specified collection.
+	 * @return {@code true} if this set contains all of the elements of the specified collection.
 	 */
 	public function containsAll(c:Collection):Boolean 
 	{
 		var it:Iterator = c.iterator() ;
-		while(it.hasNext()) {
+		while(it.hasNext()) 
+		{
 			if ( ! contains(it.next()) ) return false ;
 		}
 		return true ;

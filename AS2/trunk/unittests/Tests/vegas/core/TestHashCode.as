@@ -64,11 +64,24 @@ class Tests.vegas.core.TestHashCode extends TestCase
 		assertTrue( Number(next) > previous , "HASH_04 - nextName method failed, previous:" + previous + ", next:" + next ) ;
 	}
 	
-	public function initialize():Void 
+	public function testInitialize():Void 
 	{
 		var o = {} ;
 		var b = HashCode.initialize(o) ;
-		assertTrue( b , "HASH_05 - initialize method failed : " + b ) ;
-	}	
+		assertNotUndefined(o["hashCode"] , "HASH_05_00 - initialize method failed the hashCode method not must be undefined." ) ;
+		assertNotNull( o["hashCode"] , "HASH_05_01 - initialize method failed." ) ;
+		assertEquals( typeof o["hashCode"] , "function" , "HASH_05_02 - initialize method failed : " + typeof o["hashCode"] ) ;
+		assertTrue( b , "HASH_05_03 - initialize method failed : " + b ) ;
+		assertFalse( isNaN(o.hashCode()) , "HASH_05_04 - initialize method failed : " + o.hashCode() ) ; 
+	}
+	
+	public function testCompare():Void
+	{
+		var o1 = {} ;
+		var o2 = {} ;
+		assertEquals( HashCode.compare(o1, o1) , 0 , "HASH_06_01 - compare method failed : " + HashCode.compare(o1, o1) ) ;
+		assertEquals( HashCode.compare(o1, o2) , -1 , "HASH_06_02 - compare method failed : " + HashCode.compare(o1, o2) ) ;
+		assertEquals( HashCode.compare(o2, o1) , 1 , "HASH_06_03 - compare method failed : " + HashCode.compare(o2, o1) ) ;
+	}
 
 }

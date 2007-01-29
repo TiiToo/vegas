@@ -72,8 +72,8 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 	}
 	
 	/**
-	 * Returns true if this map contains a mapping for the specified key.
-	 * @return true if this map contains a mapping for the specified key.
+	 * Returns {@code true} if this map contains a mapping for the specified key.
+	 * @return {@code true} if this map contains a mapping for the specified key.
 	 */
 	public function containsKey( key ):Boolean 
 	{
@@ -81,8 +81,8 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 	}
 	
 	/**
-	 * Returns true if this map maps one or more keys to the specified value.
-	 * @return true if this map maps one or more keys to the specified value.
+	 * Returns {@code true} if this map maps one or more keys to the specified value.
+	 * @return {@code true} if this map maps one or more keys to the specified value.
 	 */
 	public function containsValue( value ):Boolean 
 	{
@@ -175,11 +175,14 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 	{
 		var r ;
 		var i:Number = indexOfKey(key) ;
-		if (i<0) {
+		if (i<0) 
+		{
 			_keys.push(key) ;
 			_values.push(value) ;
 			return null ;
-		} else {
+		}
+		else 
+		{
 			r = _values[i] ;
 			_values[i] = value ;
 			return r ;
@@ -194,7 +197,8 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 		var aV:Array = m.getValues() ;
 		var aK:Array = m.getKeys() ;
 		var l:Number = aK.length ;
-		for (var i:Number = 0 ; i<l ; i = i - (-1) ) {
+		for (var i:Number = 0 ; i<l ; i = i - (-1) ) 
+		{
 			put(aK[i], aV[i]) ;
 		}
 	}
@@ -206,7 +210,8 @@ class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable,
 	{
 		var r = null ;
 		var i:Number = indexOfKey(key) ;
-		if (i > -1) {
+		if (i > -1) 
+		{
 			r = _values[i] ;
 			_values.splice(i, 1) ;
 			_keys.splice(i, 1) ;

@@ -33,7 +33,8 @@ class vegas.util.serialize.FunctionSerializer
 	 * Returns "(function)" beacause eden serialize data and not function.
 	 * @return "(function)" beacause eden serialize data and not function.
 	 */
-	static public function toSource( f:Function ):String {
+	static public function toSource( f:Function ):String 
+	{
 		return '(function)' ;
     }
 

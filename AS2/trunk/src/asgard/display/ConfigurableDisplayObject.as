@@ -21,11 +21,10 @@
   
 */
 
+import asgard.config.Config;
 import asgard.config.ConfigCollector;
 import asgard.config.IConfigurable;
 import asgard.display.DisplayObject;
-
-import vegas.errors.Warning;
 
 /**
  * This display is IConfigurable and is ready to uses the Config model of ASGard.
@@ -62,15 +61,32 @@ class asgard.display.ConfigurableDisplayObject extends DisplayObject implements 
 	}
 
 	/**
-	 * Invoqued by the ConfigCollector when the ConfigCollector is running.
+	 * Invoqued by the ConfigCollector when the ConfigCollector is running.*
+	 * By default this method launch a search in the Config object with the name of the display and initialize the display.
+	 * If you want use your custom setup method override this method.
 	 */
-	public function setup() : Void 
+	/*override*/ public function setup():Void 
 	{
-		
-		throw new Warning("> " + this + ".setup(), you must override this method !") ;
-		
+		var config:Object = Config.getInstance()[getName()] ; 
+		if ( config != null ) 
+		{
+			for (var prop:String in config)
+			{
+				this[prop] = config[prop] ; 
+			}
+			update() ;		
+		}
+	}	 
+	
+	/**
+	 * Update the display.
+	 * You must override this method. This method is launch by the setup() method when the Config is checked.
+	 */	
+	public function update() : Void 
+	{
+		// overrides this method.
 	}
-	 
+	
 	private var _isConfigurable:Boolean ;
 
 }

@@ -27,6 +27,34 @@
  */
 class vegas.core.HashCode 
 {
+	
+	/**
+	 * Compares two elements by the order of the hash code of the elements.
+	 * @param o1 the first object.
+	 * @param o2 the second object.
+	 * @return <p>
+	 * <li>-1 if o1 is "lower" than (less than, before, etc.) o2 ;</li>
+	 * <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
+	 * <li> 0 if o1 and o2 are equal.</li>
+	 * </p>
+	 */
+	static public function compare( o1, o2 ):Number
+	{
+		var a:Number = HashCode.identify(o1) ;
+		var b:Number = HashCode.identify(o2) ;
+		if (a < b)
+		{
+			return -1 ;
+		}
+		if (a > b)
+		{
+			return 1 ;	
+		}
+		else
+		{
+			return 0 ;	
+		}
+	}
 
 	/**
 	 * Compare two IHashable objects.
@@ -74,7 +102,7 @@ class vegas.core.HashCode
 	 */
 	static public function initialize(o):Boolean 
 	{
-		o.hashCode = function () 
+		o["hashCode"] = function () 
 		{
 			if (isNaN(this.__hashcode__)) 
 			{

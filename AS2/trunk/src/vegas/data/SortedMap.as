@@ -33,31 +33,37 @@ interface vegas.data.SortedMap extends Map
 
 	/**
 	 * Returns the comparator associated with this sorted map, or null if it uses its keys' natural ordering.
+	 * @return the comparator associated with this sorted map, or null if it uses its keys' natural ordering.
 	 */
 	function comparator():IComparator ;
 	
 	/**
 	 * Returns the first (lowest) key currently in this sorted map.
+	 * @return the first (lowest) key currently in this sorted map.
 	 */
 	function firstKey() ;
 	
 	/**
 	 * Returns a view of the portion of this sorted map whose keys are strictly less than toKey.
+	 * @return a view of the portion of this sorted map whose keys are strictly less than toKey.
 	 */
 	function heapMap(toKey):SortedMap ;
 	
 	/**
 	 * Returns the last (highest) key currently in this sorted map.
+	 * @return the last (highest) key currently in this sorted map.
 	 */
 	function lastKey() ;
 	
 	/**
 	 * Returns a view of the portion of this sorted map whose keys range from fromKey, inclusive, to toKey, exclusive.
+	 * @return a view of the portion of this sorted map whose keys range from fromKey, inclusive, to toKey, exclusive.
 	 */
 	function subMap(fromKey, toKey):SortedMap ;
 	
 	/**
 	 * Returns a view of the portion of this sorted map whose keys are greater than or equal to fromKey.
+	 * @return a view of the portion of this sorted map whose keys are greater than or equal to fromKey.
 	 */
 	function tailMap(fromKey):SortedMap ;
 	

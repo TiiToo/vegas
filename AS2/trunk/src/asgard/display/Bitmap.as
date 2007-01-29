@@ -84,15 +84,24 @@ class asgard.display.Bitmap extends DisplayObject
 		
 		super( sName, target ) ;
 		
+
+		
 		clear() ;
 		
 		setPixelSnapping(pixelSnapping, true) ;
+		
 		setSmoothing(smoothing, true) ;
 		
 		setBitmapData(bmp) ;
 		
 	}
-	
+
+	/**
+	 * The depth of the internal container of this display.
+	 * Overrides this protected constant if you want change this level in your extended display of this Bitmap display.
+	 */
+	/*protected*/ static private var CONTAINER_DEPTH:Number = 100 ;
+
 	/**
 	 * Returns the BitmapData object being referenced.
 	 */
@@ -172,7 +181,8 @@ class asgard.display.Bitmap extends DisplayObject
 	 */
 	public function clear():Void
 	{
-		_container = view.createEmptyMovieClip("__container__", __CONTAINER_DEPTH__) ;
+		_container = view.createEmptyMovieClip("__container__", CONTAINER_DEPTH ) ;
+		_container.view = _container.createEmptyMovieClip("view", 1) ; 
 	}
 	
 	/**
@@ -185,10 +195,20 @@ class asgard.display.Bitmap extends DisplayObject
 	
 	/**
 	 * Returns the BitmapData reference.
+	 * @return the BitmapData reference.
 	 */
 	public function getBitmapData():BitmapData
 	{
 		return _bmp ;	
+	}
+
+	/**
+	 * Returns the bmp content target who contains the view of the BitmapData.
+	 * @return the bmp content target.
+	 */
+	public function getContent():MovieClip
+	{
+		return _container.view ;	
 	}
 
 	/**
@@ -213,6 +233,7 @@ class asgard.display.Bitmap extends DisplayObject
 	/*override*/ public function release():Void
 	{
 		super.release() ;
+		dispose() ;
 		_container.removeMovieClip() ;	
 	}
 
@@ -221,7 +242,15 @@ class asgard.display.Bitmap extends DisplayObject
 	 */
 	public function setBitmapData(bmp:BitmapData):Void
 	{
-		_bmp = bmp ;
+		if (_bmp != null)
+		{
+			_bmp.dispose() ;
+			_bmp = null ;	
+		}
+		if ( bmp != null )
+		{
+			_bmp = bmp.clone() ;
+		}
 		update() ;	
 	}
 
@@ -250,8 +279,7 @@ class asgard.display.Bitmap extends DisplayObject
 	 */
 	public function update():Void
 	{
-		clear() ;
-		_container.attachBitmap(_bmp, 1, getPixelSnapping(), getSmoothing()) ;
+		_container.view.attachBitmap(_bmp, 1, getPixelSnapping(), getSmoothing()) ;
 	}
 
 	/**
@@ -273,10 +301,5 @@ class asgard.display.Bitmap extends DisplayObject
 	 * The default value of the BitmapData smoothing propety.
 	 */
 	private var _smoothing:Boolean = false ;
-	
-	/**
-	 * The depth of the internal container of this display.
-	 */
-	static private var __CONTAINER_DEPTH__:Number = 100 ;
 
 }
