@@ -90,6 +90,9 @@ class asgard.display.DisplayLoader extends AbstractLoader
 	
 	/**
 	 * Creates a new DisplayLoader instance.
+	 * @param mcTarget the target of this loader.
+	 * @param nDepth the depth of the internal movieclip use to load the external content.
+	 * @param bAutoShow indicates if the external content (picture, swf) is show when is loading.
 	 */
 	function DisplayLoader( mcTarget:MovieClip, nDepth:Number, bAutoShow:Boolean ) 
 	{
@@ -101,11 +104,11 @@ class asgard.display.DisplayLoader extends AbstractLoader
 			throw new IllegalArgumentError(this + " mcTarget argument not must be 'undefined' or 'null'.") ;
 		}
 		
-		nDepth = (isNaN(nDepth)) ? 1 : nDepth ;
+		nDepth = (isNaN(nDepth)) ? _uniqueID++ : nDepth ;
 		
 		HashCode.identify( mcTarget ) ;
 		
-		_container = mcTarget.createEmptyMovieClip("__container__" + HashCode.nextName() , nDepth ) ;
+		_container = mcTarget.createEmptyMovieClip("__container__" +  HashCode.nextName(), nDepth ) ;
 		
 		HashCode.identify( _container ) ;
 		
@@ -116,6 +119,7 @@ class asgard.display.DisplayLoader extends AbstractLoader
 
 	/**
 	 * Returns the absolute url of the root swf object.
+	 * @return the absolute url of the root swf object.
 	 */
 	static public function getLoaderUrl():String 
 	{
@@ -124,10 +128,11 @@ class asgard.display.DisplayLoader extends AbstractLoader
 
 	/**
 	 * Returns the view of this loader.
+	 * @return the view of this loader.
 	 */
 	public function getView():MovieClip 
 	{
-		return MovieClip(super.getContent()) ;
+		return super.getContent() ;
 	}
 	
 	/**
@@ -257,5 +262,11 @@ class asgard.display.DisplayLoader extends AbstractLoader
 	 * The boolean to indicated if the loader is collected.
 	 */
 	private var _isCollected:Boolean ;
+
+	/**
+	 * The internal uniqueID to creates a new container.
+	 */
+	static private var _uniqueID:Number = 0 ;
+
 
 }
