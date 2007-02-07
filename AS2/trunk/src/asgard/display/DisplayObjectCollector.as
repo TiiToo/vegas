@@ -112,8 +112,7 @@ class asgard.display.DisplayObjectCollector
 	}
 
 	/**
-	 * Returns {@code true} if the collector is empty.
-	 * @return {@code true} if the collector is empty.
+	 * Removes the DisplayObject in the collector specified by the argument {@code sName}.
 	 */
 	static public function remove(sName:String):Void 
 	{

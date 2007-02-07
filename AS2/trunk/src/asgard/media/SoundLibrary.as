@@ -134,7 +134,7 @@ class asgard.media.SoundLibrary extends SoundModel
 
 	/**
 	 * Adds new sound in the model.
-	 * <p>If the id allready exist in the model, the current sound is remove in the model before the new sound must be inserted in the model</p>
+	 * <p>If the id already exist in the model, the current sound is remove in the model before the new sound must be inserted in the model</p>
 	 * <p>Example
 	 * {@code
 	 *   var sLib:SoundLibrary = new SoundLibrary();
