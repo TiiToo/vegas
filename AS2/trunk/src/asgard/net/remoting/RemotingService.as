@@ -68,20 +68,69 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction
 		
 	}
 	
-	// ----o Constants
-	
 	static public var DEFAULT_DELAY:Number = 8000 ; // 8 secondes
 
 	static public var LEVEL_ERROR:String = "error" ;
 
-	static private var __ASPF__ = _global.ASSetPropFlags(RemotingService, null , 7, 7) ;
+	public function get gatewayUrl():String 
+	{ 
+		return getGatewayUrl() ;
+	}
 	
-	// ----o Public Properties
-	
-	public var multipleSimultaneousAllowed:Boolean ;
-	
-	// ----o Public Methods
+	public function set gatewayUrl(sUrl:String):Void 
+	{ 
+		setGatewayUrl(sUrl) ;
+	}
 
+	public function get isProxy():Boolean 
+	{ 
+		return getIsProxy() ;
+	}
+	
+	public function set isProxy(b:Boolean):Void 
+	{ 
+		setIsProxy(b) ;
+	}
+
+	public function get params():Array 
+	{ 
+		return getParams() ;
+	}
+	
+	public function set params(ar:Array):Void 
+	{ 
+		setParams(ar) ;
+	}
+
+	public function get methodName():String 
+	{ 
+		return getMethodName() ;
+	}
+	
+	public function set methodName(sName:String):Void 
+	{ 
+		setMethodName(sName) ;
+	}
+	
+	/**
+	 * Defines if the service can lauch multiple simultaneous connections.
+	 */
+	public var multipleSimultaneousAllowed:Boolean ;
+
+	public function get serviceName():String 
+	{ 
+		return getServiceName() ;
+	}
+	
+	public function set serviceName(sName:String):Void 
+	{ 
+		setServiceName(sName) ;
+	}
+	
+	/**
+	 * Returns a shallow copy of this object.
+	 * @return a shallow copy of this object.
+	 */
 	public function clone() 
 	{
 		return new RemotingService( getGatewayUrl() , getServiceName() ) ; // TODO voir pour le responder !
@@ -276,57 +325,6 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction
 		return (new RemotingFormat()).formatToString(this) ;	
 	}
 
-	// ----o Virtual Properties
-
-	public function get gatewayUrl():String 
-	{ 
-		return getGatewayUrl() ;
-	}
-	
-	public function set gatewayUrl(sUrl:String):Void 
-	{ 
-		setGatewayUrl(sUrl) ;
-	}
-
-	public function get isProxy():Boolean 
-	{ 
-		return getIsProxy() ;
-	}
-	
-	public function set isProxy(b:Boolean):Void 
-	{ 
-		setIsProxy(b) ;
-	}
-
-	public function get params():Array 
-	{ 
-		return getParams() ;
-	}
-	
-	public function set params(ar:Array):Void 
-	{ 
-		setParams(ar) ;
-	}
-
-	public function get methodName():String 
-	{ 
-		return getMethodName() ;
-	}
-	
-	public function set methodName(sName:String):Void 
-	{ 
-		setMethodName(sName) ;
-	}
-
-	public function get serviceName():String 
-	{ 
-		return getServiceName() ;
-	}
-	
-	public function set serviceName(sName:String):Void 
-	{ 
-		setServiceName(sName) ;
-	}
 
 	// ----o Private Properties
 	
@@ -363,8 +361,6 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction
 	private var _timer:Timer ;
 	
 	private var _timerListener:EventListener ;
-
-	// ----o Private Methods
 
 	private function __resolve__( methodName:String ):Function 
 	{

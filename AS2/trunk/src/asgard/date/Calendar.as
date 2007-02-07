@@ -330,6 +330,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 
 	/**
 	 * Returns the hashcode representation of this object.
+	 * @return the hashcode representation of this object.
 	 */
 	public function hashCode():Number 
 	{

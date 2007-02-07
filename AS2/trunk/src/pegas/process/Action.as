@@ -25,11 +25,21 @@ import vegas.core.IRunnable;
 
 interface pegas.process.Action extends IRunnable 
 {
-	
+
+	/**
+	 * Returns a shallow copy of this object.
+	 * @return a shallow copy of this object.
+	 */
 	function clone() ;
-	
+
+	/**
+	 * Notify an ActionEvent when the process is finished.
+	 */
 	function notifyFinished():Void ;
-	
+
+	/**
+	 * Notify an ActionEvent when the process is started.
+	 */
 	function notifyStarted():Void ;
 	
 }

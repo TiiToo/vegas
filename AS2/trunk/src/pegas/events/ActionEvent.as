@@ -25,6 +25,7 @@ import vegas.events.DynamicEvent;
 import vegas.util.serialize.Serializer;
 
 /**
+ * The ActionEvent is notify by all the objects who implements the Action interface.
  * @author eKameleon
  */
 class pegas.events.ActionEvent extends DynamicEvent 
@@ -63,16 +64,27 @@ class pegas.events.ActionEvent extends DynamicEvent
 
 	static public var TIMEOUT:String = "onTimeOut" ;
 
+	/**
+	 * Returns the shallow copy of this object.
+	 * @return the shallow copy of this object.
+	 */
+	public function clone() 
+	{
+		return new ActionEvent(getType(), getTarget()) ;
+	}
+
+	/**
+	 * Returns the info object of this event.
+	 * @return the info object of this event.
+	 */
 	public function getInfo() 
 	{
 		return _oInfo ;
 	}
 
-	public function clone() 
-	{
-		return new ActionEvent(getType(), getTarget()) ;
-	}
-	
+	/**
+	 * Sets the info object of this event.
+	 */
 	public function setInfo( oInfo ):Void 
 	{
 		_oInfo = oInfo ;	

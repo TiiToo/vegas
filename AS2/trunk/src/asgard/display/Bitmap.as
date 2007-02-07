@@ -84,8 +84,6 @@ class asgard.display.Bitmap extends DisplayObject
 		
 		super( sName, target ) ;
 		
-
-		
 		clear() ;
 		
 		setPixelSnapping(pixelSnapping, true) ;
@@ -104,6 +102,7 @@ class asgard.display.Bitmap extends DisplayObject
 
 	/**
 	 * Returns the BitmapData object being referenced.
+	 * @return the BitmapData object being referenced.
 	 */
 	public function get bitmapData():BitmapData
 	{
@@ -119,7 +118,8 @@ class asgard.display.Bitmap extends DisplayObject
 	}
 	
 	/**
-	 * (read-only) Returns the bitmap container reference. 
+	 * (read-only) Returns the bitmap container reference.
+	 * @return the bitmap container reference. 
 	 */
 	public function get container():MovieClip
 	{

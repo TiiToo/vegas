@@ -21,48 +21,18 @@
   
 */
 
-/** Config
-
-	AUTHOR
-
-		Name : Config
-		Package : asgard.config
-		Version : 1.0.0.0
-		Date :  2006-03-25
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		Cette classe permet de stocker toutes les propriétés récupérées dans un fichier de configuration externe.
-		
-	INHERIT
-	
-		CoreObject → Config
-	
-	IMPLEMENTS
-	
-		IFormattable, IHashable
-
-**/	
-
 import vegas.core.CoreObject;
 
 /**
  * @author eKameleon
  */
-
 dynamic class asgard.config.Config extends CoreObject 
 {
 	
-	// ----o Constructor
-	
-	private function Config() {
+	private function Config() 
+	{
 		super();
 	}
-
-	// ----o Public Methods 
 
 	static public function getInstance():Config 
 	{
@@ -72,9 +42,8 @@ dynamic class asgard.config.Config extends CoreObject
 		
 	}
 
-	// ----o Private Properties
-	
 	static private var __instance:Config ;
+
 	private var prototype ;
 	
 }

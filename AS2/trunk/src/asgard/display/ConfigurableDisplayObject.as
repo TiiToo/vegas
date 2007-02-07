@@ -74,8 +74,8 @@ class asgard.display.ConfigurableDisplayObject extends DisplayObject implements 
 			{
 				this[prop] = config[prop] ; 
 			}
-			update() ;		
 		}
+		update() ;	
 	}	 
 	
 	/**

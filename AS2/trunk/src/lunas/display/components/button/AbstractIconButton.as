@@ -107,9 +107,8 @@ class lunas.display.components.button.AbstractIconButton extends AbstractButton
 		// override this method when icon property change
 	}
 	
-	// ----o Private Properties
-	
 	private var _mcIcon:MovieClip ;
+
 	private var _sIcon:String ;
 	
 

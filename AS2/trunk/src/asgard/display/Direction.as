@@ -22,7 +22,7 @@
 */
 
 /**
- * he PixelSnapping class is an enumeration of constant values for setting the direction of a Display or a component.
+ * An enumeration of constant values for setting the direction of a Display or a component.
  */
 class asgard.display.Direction 
 {
@@ -49,10 +49,14 @@ class asgard.display.Direction
 		switch (str.toLowerCase()) 
 		{
 			case "vertical" :
+			{
 				return Direction.VERTICAL ;
+			}
 			default :
+			{
 				return Direction.HORIZONTAL ;
 				break ;
+			}
 		}
 	}
 
