@@ -113,6 +113,7 @@ class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEv
 
 	/**
 	 * Returns the EventDispatcher reference of the parent of this instance.
+	 * @return the EventDispatcher reference of the parent of this instance.
 	 */
 	public function getParent():EventDispatcher 
 	{
@@ -177,6 +178,14 @@ class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEv
 	}
 
 	/**
+	 * Sets the internal {@code EventDispatcher} reference.
+	 */
+	public function setEventDispatcher( e:EventDispatcher ):Void 
+	{
+		_oED = e || initEventDispatcher() ;
+	}
+
+	/**
 	 * Sets the parent EventDispatcher reference of this instance.
 	 */
 	public function setParent(parent:EventDispatcher):Void 
@@ -185,7 +194,7 @@ class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEv
 	}
 
 	/**
-	 * The internal EventDispatcher reference.
+	 * The protected internal EventDispatcher reference.
 	 */
 	private var _oED:EventDispatcher ;
 

@@ -38,6 +38,6 @@ interface andromeda.model.IModel
 	 * Sets the id of this IModel .
 	 * @return the id of this IModel .
 	 */
-	function setID( id ) ;
+	function setID( id ):Void ;
 	
 }

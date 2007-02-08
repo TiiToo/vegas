@@ -44,6 +44,8 @@ class andromeda.model.AbstractModelObject extends AbstractModel implements IMode
 	{
 		super( id ) ;
 		initEvent() ;
+		setEventTypeCHANGE(  ModelObjectEvent.CHANGE_CURRENT_VO ) ;
+		setEventTypeCLEAR( ModelObjectEvent.CLEAR_VO ) ;
 	}
 
 	/**
@@ -75,36 +77,21 @@ class andromeda.model.AbstractModelObject extends AbstractModel implements IMode
 	}
 
 	/**
-	 * The event name use in the {@code addVO} method.
-	 */
-	public function getEventTypeADD():String
-	{
-		return ModelObjectEvent.ADD_VO ;
-	}
-	
-	/**
-	 * The event name use in the {@code setVO} method.
+	 * Returns the event name use in the {@code setVO} method.
+	 * @return the event name use in the {@code setVO} method.
 	 */
 	public function getEventTypeCHANGE():String
 	{
-		return ModelObjectEvent.CHANGE_CURRENT_VO ;
+		return _eChange.getType() ;
 	}
 
 	/**
-	 * The event name use in the {@code clearVO} method.
+	 * Returns the event name use in the {@code clear} method.
+	 * @return the event name use in the {@code clear} method.
 	 */
 	public function getEventTypeCLEAR():String
 	{
-		return ModelObjectEvent.CLEAR_VO ;
-	}
-
-	/**
-	 * The event name use in the {@code removeVO} method.
-	 * you can override this method to change the nature of the remove event.
-	 */
-	public function getEventTypeREMOVE():String
-	{
-		return ModelObjectEvent.REMOVE_VO ;
+		return _eClear.getType() ;
 	}
 
 	/**
@@ -130,6 +117,22 @@ class andromeda.model.AbstractModelObject extends AbstractModel implements IMode
 		_vo = vo ;
 		_eChange.setVO(vo) ;
 		dispatchEvent( _eChange ) ;
+	}
+	
+	/**
+	 * Returns the event name use in the {@code setVO} method.
+	 */
+	public function setEventTypeCHANGE( type:String ):Void
+	{
+		_eChange.setType( type ) ;
+	}
+
+	/**
+	 * Returns the event name use in the {@code clear} method.
+	 */
+	public function setEventTypeCLEAR( type:String ):Void
+	{
+		_eClear.setType( type ) ;
 	}
 
 	/**

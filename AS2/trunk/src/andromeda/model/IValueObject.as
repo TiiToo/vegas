@@ -38,6 +38,6 @@ interface andromeda.model.IValueObject
 	 * Sets the id of this IValueObject.
 	 * @return the id of this IValueObject.
 	 */
-	function setID( id ) ;
+	function setID( id ):Void ;
 	
 }

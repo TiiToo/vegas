@@ -43,6 +43,7 @@ class andromeda.model.array.PageableArrayModel extends AbstractModelObject imple
 	function PageableArrayModel( id ) 
 	{
 		super( id ) ;
+		setEventTypeUPDATE( ModelObjectEvent.UPDATE_VO ) ;
 		_a = new Array() ;
 	}
 
@@ -86,11 +87,12 @@ class andromeda.model.array.PageableArrayModel extends AbstractModelObject imple
 	}
 
 	/**
-	 * The event name use in the {@code addVO} method.
+	 * Returns the event name use in the {@code addVO} method.
+	 * @return the event name use in the {@code addVO} method.
 	 */
 	public function getEventTypeUPDATE():String
 	{
-		return ModelObjectEvent.UPDATE_VO ;
+		return _eUpdate.getType() ;
 	}
 
 	/**
@@ -207,6 +209,14 @@ class andromeda.model.array.PageableArrayModel extends AbstractModelObject imple
 	}
 
 	/**
+	 * Sets the event name use in the {@code addVO} method.
+	 */
+	public function setEventTypeUPDATE( type:String ):Void
+	{
+		_eUpdate.setType( type ) ;
+	}
+
+	/**
 	 * Returns the number of elements in the model.
 	 * @return the number of elements in the model.
 	 */
@@ -235,13 +245,15 @@ class andromeda.model.array.PageableArrayModel extends AbstractModelObject imple
 	private var _eUpdate:ArrayEvent ;
 
 	/**
+	 * The current PageByPageIterator instance.
+	 */
+	private var _itPage:PageByPageIterator ;
+	
+	/**
 	 * The numbers of items in the list (16 default icons in the list).
 	 */
 	private var _voCount:Number = 1 ;
 	
-	/**
-	 * The current PageByPageIterator instance.
-	 */
-	private var _itPage:PageByPageIterator ;
+
 
 }

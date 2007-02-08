@@ -51,13 +51,11 @@ class andromeda.model.AbstractValueObject extends CoreObject implements IValueOb
 
 	/**
 	 * (read-write) Sets the id of this IValueObject.
-	 * @return the id of this IValueObject.
 	 */
 	public function set id( id ):Void 
 	{
 		setID( id ) ;
 	}
-
 
 	/**
 	 * Returns the id of this IValueObject. This method is use to register this object in a category of models.

@@ -25,6 +25,7 @@ import andromeda.model.IModel;
 import andromeda.model.ModelCollector;
 
 import vegas.events.AbstractCoreEventDispatcher;
+import vegas.events.EventDispatcher;
 
 /**
  * This class provides a skeletal implementation of the {@code IModel} interface, to minimize the effort required to implement this interface.
@@ -43,13 +44,56 @@ class andromeda.model.AbstractModel extends AbstractCoreEventDispatcher implemen
 	}
 
 	/**
+	 * Returns the {@code id} of this IModelObject.
+	 * @return the {@code id} of this IModelObject.
+	 */
+	public function get id() 
+	{
+		return getID() ;
+	}
+
+	/**
+	 * Sets the {@code id} of this IModelObject.
+	 */
+	public function set id( id ):Void 
+	{
+		setID( id ) ;
+	}
+	
+	/**
+	 * (read-only) Returns the value of the isGlobal flag of this model. Use the {@code setGlobal} method to modify this value.
+	 * @return {@code true} if the model use a global EventDispatcher to dispatch this events.
+	 */
+	public function get isGlobal():Boolean 
+	{
+		return getIsGlobal() ;
+	}
+	
+	/**
 	 * Returns the {@code id} of this IModelObject. This method is use to register this object in a category of models.
-	 * You can overrides this method to change the nature of the natural id property of this object but this hack don't modify the value of the {@code id} property. 
 	 * @return the {@code id} of this IModelObject.
 	 */
 	public function getID() 
 	{
 		return _id ;
+	}
+
+	/**
+	 * Returns the value of the isGlobal flag of this model.
+	 * @return {@code true} if the model use a global EventDispatcher to dispatch this events.
+	 */
+	public function getIsGlobal():Boolean 
+	{
+		return _isGlobal ;
+	}
+
+	/**
+	 * Init the EventDispatcher reference of this EventTarget object. 
+	 * Uses a global EventDispatcher to used this model with the FrontController of the application.
+	 */
+	public function initEventDispatcher():EventDispatcher
+	{
+		return EventDispatcher.getInstance() ;	
 	}
 
 	/**
@@ -61,9 +105,23 @@ class andromeda.model.AbstractModel extends AbstractCoreEventDispatcher implemen
 	}
 
 	/**
+	 * Sets if the model use a global {@code EventDispatcher} to dispatch this events, if the {@code flag} value is {@code false} the model use a local EventDispatcher.  
+	 */
+	public function setGlobal( flag:Boolean , channel:String ):Void 
+	{
+		_isGlobal = flag ;
+		setEventDispatcher( flag ? EventDispatcher.getInstance( channel ) : null ) ;
+	}
+
+	/**
 	 * The internal id property of this IModelObject. By default the id equals the hashCode() value.
 	 */
 	private var _id ;
+	
+	/**
+	 * The internal flag to indicate if the 
+	 */
+	private var _isGlobal ;
 
 	/**
 	 * Internal method to register the IModel in the ModelCollector with the specified id in argument.
@@ -71,15 +129,11 @@ class andromeda.model.AbstractModel extends AbstractCoreEventDispatcher implemen
 	 */
 	private function _setID( id ):Void 
 	{
-		
 		if ( ModelCollector.contains( _id ) )
 		{
 			ModelCollector.remove( this._id ) ;
 		}
-		
 		this._id = id ;
-		
 		ModelCollector.insert ( this._id, this ) ;
-		
 	}
 }

@@ -46,6 +46,8 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 	function MapModel( id ) 
 	{
 		super( id ) ;
+		setEventTypeADD( ModelObjectEvent.ADD_VO ) ;
+		setEventTypeREMOVE( ModelObjectEvent.REMOVE_VO ) ;
 		_map = initializeMap() ;
 	}
 
@@ -96,6 +98,25 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 	public function containsByID( id ):Boolean
 	{
 		return _map.containsKey( id ) ;
+	}
+
+
+	/**
+	 * Returns the event name use in the {@code addVO} method.
+	 * @return the event name use in the {@code addVO} method.
+	 */
+	public function getEventTypeADD():String
+	{
+		return _eAdd.getType() ;
+	}
+	
+	/**
+	 * Returns the event name use in the {@code removeVO} method.
+	 * @return the event name use in the {@code removeVO} method.
+	 */
+	public function getEventTypeREMOVE():String
+	{
+		return _eRemove.getType() ;
 	}
 
 	/**
@@ -157,6 +178,21 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 		}
 	}
 	
+	/**
+	 * Sets the event name use in the {@code addVO} method.
+	 */
+	public function setEventTypeADD( type:String ):Void
+	{
+		_eAdd.setType( type ) ;
+	}
+	
+	/**
+	 * Sets the event name use in the {@code removeVO} method.
+	 */
+	public function setEventTypeREMOVE( type:String ):Void
+	{
+		_eRemove.setType( type ) ;
+	}
 
 	/**
 	 * Returns the number of IValueObject in this model.
@@ -181,7 +217,5 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 	 * The internal map of this model.
 	 */
 	private var _map : Object;
-
-
 
 }
