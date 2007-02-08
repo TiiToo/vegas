@@ -27,7 +27,7 @@ import andromeda.model.ModelCollector;
 import vegas.events.AbstractCoreEventDispatcher;
 
 /**
- * This class provides a skeletal implementation of the {@code IModelObject} interface, to minimize the effort required to implement this interface.
+ * This class provides a skeletal implementation of the {@code IModel} interface, to minimize the effort required to implement this interface.
  * @author eKameleon
  */
 class andromeda.model.AbstractModel extends AbstractCoreEventDispatcher implements IModel
