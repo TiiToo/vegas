@@ -39,6 +39,8 @@ asgard.date
 pegas.process
 lunas.display.components.shape
 pegas.util
+andromeda.ioc.core
+andromeda.ioc.factory
 vegas.events
 lunas.display.components.cell
 lunas.events

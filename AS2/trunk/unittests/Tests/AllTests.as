@@ -54,6 +54,8 @@ class Tests.AllTests extends TestCase
         
        	suite.addTest(  Tests.vegas.AllTests.suite() ) ;
         
+        suite.addTest ( Tests.andromeda.AllTests.suite() ) ;
+        
         suite.addTest ( Tests.pegas.AllTests.suite() ) ;
         
         return suite ;

@@ -37,10 +37,13 @@ class andromeda.model.AbstractModel extends AbstractCoreEventDispatcher implemen
 	/**
 	 * Creates a new AbstractModel instance.
 	 * @param id the id of the model.
+	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */	
-	function AbstractModel( id ) 
+	function AbstractModel( id , bGlobal:Boolean , sChannel:String ) 
 	{
 		_setID( id || hashCode() ) ;
+		setGlobal( bGlobal , sChannel ) ;
 	}
 
 	/**
@@ -105,7 +108,9 @@ class andromeda.model.AbstractModel extends AbstractCoreEventDispatcher implemen
 	}
 
 	/**
-	 * Sets if the model use a global {@code EventDispatcher} to dispatch this events, if the {@code flag} value is {@code false} the model use a local EventDispatcher.  
+	 * Sets if the model use a global {@code EventDispatcher} to dispatch this events, if the {@code flag} value is {@code false} the model use a local EventDispatcher.
+	 * @param flag the flag to use a global event flow or a local event flow.
+	 * @param channel the name of the global event flow if the {@code flag} argument is {@code true}.  
 	 */
 	public function setGlobal( flag:Boolean , channel:String ):Void 
 	{

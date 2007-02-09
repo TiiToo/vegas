@@ -42,10 +42,12 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 	/**
 	 * Creates a new MapModel instance.
 	 * @param id the id of this model.
+	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */	
-	function MapModel( id ) 
+	function MapModel( id , bGlobal:Boolean , sChannel:String ) 
 	{
-		super( id ) ;
+		super( id , bGlobal, sChannel ) ;
 		setEventTypeADD( ModelObjectEvent.ADD_VO ) ;
 		setEventTypeREMOVE( ModelObjectEvent.REMOVE_VO ) ;
 		_map = initializeMap() ;

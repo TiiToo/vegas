@@ -1,6 +1,10 @@
  
-   VEGAS version 0.7
+   VEGAS version 0.8
  
+   LICENCE 
+
+	Mozilla Public License 1.1 (MPL 1.1) (read Licence.txt)
+
    PROJECT PAGES
 
 	- http://osflash.org/asgard
@@ -14,7 +18,7 @@
    ABOUT
 
     * Author : eKameleon
-    * Version : 0.7
+    * Version : 0.8
     * Link : http://www.ekameleon.net/blog
     * Mail : vegas@ekameleon.net 
 

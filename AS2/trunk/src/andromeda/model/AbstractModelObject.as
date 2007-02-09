@@ -39,12 +39,14 @@ class andromeda.model.AbstractModelObject extends AbstractModel implements IMode
 	/**
 	 * Creates a new AbstractModelObject instance.
 	 * @param id the id of this model.
+	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */	
-	function AbstractModelObject( id ) 
+	function AbstractModelObject( id , bGlobal:Boolean , sChannel:String ) 
 	{
-		super( id ) ;
+		super( id , bGlobal, sChannel ) ;
 		initEvent() ;
-		setEventTypeCHANGE(  ModelObjectEvent.CHANGE_CURRENT_VO ) ;
+		setEventTypeCHANGE( ModelObjectEvent.CHANGE_CURRENT_VO ) ;
 		setEventTypeCLEAR( ModelObjectEvent.CLEAR_VO ) ;
 	}
 

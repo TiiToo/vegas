@@ -39,22 +39,30 @@ class andromeda.model.array.PageableArrayModel extends AbstractModelObject imple
 	
 	/**
 	 * Creates a new PageableArrayModel instance.
+	 * @param id the id of this model.
+	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */
-	function PageableArrayModel( id ) 
+	function PageableArrayModel( id , bGlobal:Boolean , sChannel:String ) 
 	{
-		super( id ) ;
+		super( id , bGlobal, sChannel) ;
 		setEventTypeUPDATE( ModelObjectEvent.UPDATE_VO ) ;
 		_a = new Array() ;
 	}
 
 	/**
 	 * Inserts all IValueObject in the array passed in argument.
+	 * @param datas The array of all value objects to insert in the model.
+	 * @param noClear (optional) If this argument is is {@code true} the clear method isn't called. 
 	 */
-	public function addAllVO( datas:Array ):Void
+	public function addAllVO( datas:Array , noClear:Boolean):Void
 	{
 	
-		clear() ;
-		
+		if ( !noClear )
+		{
+			clear() ;
+		}
+
 		var len:Number = datas.length ;
 		for (var i:Number = 0 ; i<len ; i++)
 		{

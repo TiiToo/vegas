@@ -1404,7 +1404,8 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
     public function scanValue()
 	{
         
-        scanWhiteSpace();
+        // FIXME : use a clear white space before launch the deserialize ??
+        scanSeparators(); // FIXME : i have change the scanWhite with a scanSeperators
         
         switch( ch )
         {

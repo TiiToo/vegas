@@ -1,0 +1,188 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>andromeda.ioc.factory.EdenObjectFactory</title><script src="../../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../../index-files";
+//--></script><link href="../../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../../overview-summary.html" title="Overview" rel="top"/><link href="package-summary.html" title="Package andromeda.ioc.factory" rel="up"/><link href="../../../andromeda/ioc/factory/IObjectFactory.html" title="Interface andromeda.ioc.factory.IObjectFactory" rel="prev"/><link href="../../../andromeda/ioc/core/ObjectDefinitionContainer.html" title="Class andromeda.ioc.core.ObjectDefinitionContainer" rel="next"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><h1>Class andromeda.ioc.factory.EdenObjectFactory</h1><div class="type_hierachy"><ul><li><a href="../../../vegas/core/CoreObject.html" class="class_name" title="Class vegas.core.CoreObject">vegas.core.CoreObject</a><ul><li><a href="../../../andromeda/ioc/core/ObjectDefinitionContainer.html" class="class_name" title="Class andromeda.ioc.core.ObjectDefinitionContainer">andromeda.ioc.core.ObjectDefinitionContainer</a><ul><li><a href="../../../andromeda/ioc/factory/ObjectFactory.html" class="class_name" title="Class andromeda.ioc.factory.ObjectFactory">andromeda.ioc.factory.ObjectFactory</a><ul><li><strong>andromeda.ioc.factory.EdenObjectFactory</strong></li></ul></li></ul></li></ul></li></ul></div><div class="interfaces"><h2>Implemented Interfaces</h2><code><a href="../../../vegas/core/IFactory.html" class="interface_name" title="Interface vegas.core.IFactory">IFactory</a></code> </div><div class="type_description"><h2>Description</h2><p>
+ This builder use a eden object to creates all Objects with the IObjectDefinitionContainer.
+ <p><b>Example :</b></p>
+ 1 - The eden application file : <b>"application.eden"</b>
+ <pre> 
+   {
+        objects : 
+        [
+            {   
+                id            : <span class="str_const">"address"</span>  ,
+                type          : <span class="str_const">"test.Address"</span> ,
+                properties    : 
+                [ 
+                    { name : <span class="str_const">"city"</span>   , value : <span class="str_const">"Marseille"</span> } ,
+                    { name : <span class="str_const">"street"</span> , value : <span class="str_const">"xx xxx xxxxxxxxxxx"</span> } ,
+                    { name : <span class="str_const">"zip"</span>    , value : <span class="num_const">13004</span> } 
+                ]
+            }
+            ,
+            {   
+                id         : <span class="str_const">"job_dev"</span>  ,
+                type       : <span class="str_const">"test.Job"</span> ,
+                properties : [ { name:<span class="str_const">"name"</span> , value:<span class="str_const">"AS Developper"</span> } ]
+            }
+            ,
+            {   
+                id            : <span class="str_const">"user"</span> , 
+                type          : <span class="str_const">"test.User"</span> , 
+                arguments     : 
+                [ 
+                    { value :<span class="str_const">"eKameleon"</span> } , 
+                    { value :<span class="str_const">"ALCARAZ"</span>   } , 
+                    { ref   :<span class="str_const">"address"</span>   } 
+                ] ,
+                singleton     : <span class="key">true</span> ,
+                assemblyName  : <span class="str_const">""</span> , <span class="comment">// not implemented yet</span>
+                destroy       : <span class="str_const">"destroy"</span> ,  <span class="comment">// not fully implemented yet</span>
+                init          : <span class="str_const">"initialize"</span> ,
+                properties : 
+                [
+                    { name:<span class="str_const">"age"</span>       , value : <span class="num_const">30</span>          } ,
+                    { name:<span class="str_const">"firstName"</span> , value : <span class="str_const">"Marc"</span>      } , 
+                    { name:<span class="str_const">"job"</span>       , ref   : <span class="str_const">"job_dev"</span>      } , 
+                    { name:<span class="str_const">"setMail"</span>   , arguments  :  [ { value :<span class="str_const">"vegas@ekameleon.net"</span> } ] } , <span class="comment">// method</span>
+                    { name:<span class="str_const">"url"</span>       , value : <span class="str_const">"http://www.ekameleon.net/blog"</span> }
+                ]
+             }
+         ]
+    }
+ </pre>
+ 2 - The ActionScript test code :
+ <pre>
+  <span class="key">import</span> test.User ;
+ 
+  <span class="key">import</span> andromeda.ioc.factory.EdenObjectFactory ;
+ 
+  <span class="key">var</span> loader:LoadVars = <span class="key">new</span> LoadVars() ;
+  loader.onData = <span class="key">function</span> ( source:String ):Void
+  {
+     app = buRRRn.eden.Application.deserialize(source) ;
+     
+     <span class="key">var</span> factory:EdenObjectFactory = <span class="key">new</span> EdenObjectFactory() ;
+     factory.create( app.objects ) ;
+     
+     trace(<span class="str_const">"--- User"</span>) ;
+     
+     <span class="key">var</span> user:User = factory.getObject(<span class="str_const">"user"</span>) ;
+     
+     trace(<span class="str_const">"User : "</span> + user) ;
+     trace(<span class="str_const">"User pseudo : "</span> + user.pseudo ) ; <span class="comment">// ekameleon</span>
+     trace(<span class="str_const">"User firstName : "</span> + user.firstName ) ; <span class="comment">// Marc</span>
+     trace(<span class="str_const">"User name : "</span> + user.name ) ; <span class="comment">// ALCARAZ</span>
+     trace(<span class="str_const">"User age : "</span> + user.age ) ; <span class="comment">// 30</span>
+     trace(<span class="str_const">"User mail : "</span> + user.mail ) ; <span class="comment">// vegas@ekameleon.net</span>
+     trace(<span class="str_const">"User url : "</span> + user.url  ) ; <span class="comment">// http://www.ekameleon.net/blog</span>
+     trace(<span class="str_const">"User job : "</span> + user.job ) ; <span class="comment">// [Job AS Developper]</span>
+     trace(<span class="str_const">"User address : "</span> + user.address) ; <span class="comment">// [Address]</span>
+     trace(<span class="str_const">"User address city : "</span> + user.address.city) ; <span class="comment">// Marseille</span>
+     trace(<span class="str_const">"User address street : "</span> + user.address.street) ; <span class="comment">// xx xxx xxxxxxxxxxx</span>
+     trace(<span class="str_const">"User address zip : "</span> + user.address.zip) ; <span class="comment">// 13004</span>
+  }
+ 
+  loader.load(<span class="str_const">"application.eden"</span>) ;
+ </pre>
+ 
+ 3 - The <b>test.User</b> class.
+ <pre>
+ <span class="key">import</span> test.Address ;
+ <span class="key">import</span> test.Job ;
+ <span class="key">import</span> vegas.core.CoreObject ;
+
+ <span class="key">class</span> test.User <span class="key">extends</span> CoreObject
+ {
+ 
+     <span class="key">public</span> <span class="key">function</span> User( pseudo:String, name:String, address:Address )
+     {
+         <span class="key">this</span>.pseudo  = pseudo ;
+         <span class="key">this</span>.name = name ;
+         <span class="key">this</span>.address = address ;
+     }
+     
+     <span class="key">public</span> <span class="key">var</span> address:Address ;
+     <span class="key">public</span> <span class="key">var</span> age:Number ;
+     <span class="key">public</span> <span class="key">var</span> firstName:String ;
+     <span class="key">public</span> <span class="key">var</span> job:Job ;
+     <span class="key">public</span> <span class="key">var</span> mail:String ;
+     <span class="key">public</span> <span class="key">var</span> name:String ;
+     <span class="key">public</span> <span class="key">var</span> pseudo:String ;
+     <span class="key">public</span> <span class="key">var</span> url:String ;
+     
+     <span class="key">public</span> <span class="key">function</span> destroy():Void
+     {
+         trace( <span class="key">this</span> + <span class="str_const">" destroy."</span>) ;
+     }
+     
+     <span class="key">public</span> <span class="key">function</span> initialize():Void
+     {
+         trace( <span class="key">this</span> + <span class="str_const">" initialize."</span>) ;
+     }
+     
+     <span class="key">public</span> <span class="key">function</span> setMail( sMail:String ):Void
+     {
+         mail = sMail ;
+     }
+ }
+ </pre>
+ 4 - The <b>test.Address</b> class.
+ <pre>
+ <span class="key">import</span> vegas.core.CoreObject ;
+ 
+ <span class="key">class</span> test.Address <span class="key">extends</span> CoreObject
+ {
+ 
+     <span class="key">public</span> <span class="key">function</span> Address() {}
+     
+     <span class="key">public</span> <span class="key">var</span> city:String ;
+     <span class="key">public</span> <span class="key">var</span> street:String
+     <span class="key">public</span> <span class="key">var</span> zip:Number ;
+ }
+ </pre>
+ 5 - The <b>test.Job</b> class.
+ <pre>
+ <span class="key">import</span> vegas.core.CoreObject ;
+ <span class="key">import</span> vegas.util.ConstructorUtil;
+ 
+ <span class="key">class</span> test.Job <span class="key">extends</span> CoreObject
+ {
+
+     <span class="key">public</span> <span class="key">function</span> Job() {}
+     
+     <span class="key">public</span> <span class="key">var</span> name:String ;
+     
+     <span class="key">public</span> <span class="key">function</span> toString():String
+     {
+         <span class="key">return</span> <span class="str_const">"["</span> + ConstructorUtil.getName(<span class="key">this</span>) + <span class="str_const">" "</span> + name + <span class="str_const">"]"</span> ;
+     }
+ }
+ </pre>
+ </p></div><div class="type_indexes"><div class="field_index"><h2>Field Index</h2><a href="#ARGUMENTS" title="static public ARGUMENTS:String">ARGUMENTS</a>, <a href="#NAME" title="static public NAME:String">NAME</a>, <a href="#OBJECT_DESTROY_METHOD_NAME" title="static public OBJECT_DESTROY_METHOD_NAME:String">OBJECT_DESTROY_METHOD_NAME</a>, <a href="#OBJECT_ID" title="static public OBJECT_ID:String">OBJECT_ID</a>, <a href="#OBJECT_INIT_METHOD_NAME" title="static public OBJECT_INIT_METHOD_NAME:String">OBJECT_INIT_METHOD_NAME</a>, <a href="#OBJECT_PROPERTIES" title="static public OBJECT_PROPERTIES:String">OBJECT_PROPERTIES</a>, <a href="#OBJECT_SINGLETON" title="static public OBJECT_SINGLETON:String">OBJECT_SINGLETON</a>, <a href="#REFERENCE" title="static public REFERENCE:String">REFERENCE</a>, <a href="#TYPE" title="static public TYPE:String">TYPE</a>, <a href="#VALUE" title="static public VALUE:String">VALUE</a><h4>Inherited from <a href="../../../andromeda/ioc/factory/ObjectFactory.html" class="class_name" title="Class andromeda.ioc.factory.ObjectFactory">ObjectFactory</a></h4><div class="extra_info"><a href="../../../andromeda/ioc/factory/ObjectFactory.html#singletons" title="public singletons:HashMap">singletons</a></div></div><div class="method_index"><h2>Method Index</h2><div><code>new <a href="#EdenObjectFactory" title="public function EdenObjectFactory()">EdenObjectFactory()</a></code></div><a href="#create" title="public function create()">create()</a><h4>Inherited from <a href="../../../andromeda/ioc/factory/ObjectFactory.html" class="class_name" title="Class andromeda.ioc.factory.ObjectFactory">ObjectFactory</a></h4><div class="extra_info"><a href="../../../andromeda/ioc/factory/ObjectFactory.html#containsObject" title="public function containsObject(name:String):Boolean">containsObject()</a>, <a href="../../../andromeda/ioc/factory/ObjectFactory.html#getObject" title="public function getObject(name:String)">getObject()</a>, <a href="../../../andromeda/ioc/factory/ObjectFactory.html#isSingleton" title="public function isSingleton(name:String):Boolean">isSingleton()</a>, <a href="../../../andromeda/ioc/factory/ObjectFactory.html#removeSingleton" title="public function removeSingleton(name:String):Void">removeSingleton()</a></div><h4>Inherited from <a href="../../../andromeda/ioc/core/ObjectDefinitionContainer.html" class="class_name" title="Class andromeda.ioc.core.ObjectDefinitionContainer">ObjectDefinitionContainer</a></h4><div class="extra_info"><a href="../../../andromeda/ioc/core/ObjectDefinitionContainer.html#addObjectDefinition" title="public function addObjectDefinition(name:String, definition:IObjectDefinition):Void">addObjectDefinition()</a>, <a href="../../../andromeda/ioc/core/ObjectDefinitionContainer.html#containsObjectDefinition" title="public function containsObjectDefinition(name:String):Boolean">containsObjectDefinition()</a>, <a href="../../../andromeda/ioc/core/ObjectDefinitionContainer.html#getObjectDefinition" title="public function getObjectDefinition(name:String):IObjectDefinition">getObjectDefinition()</a>, <a href="../../../andromeda/ioc/core/ObjectDefinitionContainer.html#sizeObjectDefinition" title="public function sizeObjectDefinition():Number">sizeObjectDefinition()</a></div><h4>Inherited from <a href="../../../vegas/core/CoreObject.html" class="class_name" title="Class vegas.core.CoreObject">CoreObject</a></h4><div class="extra_info"><a href="../../../vegas/core/CoreObject.html#hashCode" title="public function hashCode():Number">hashCode()</a>, <a href="../../../vegas/core/CoreObject.html#toSource" title="public function toSource(indent:Number, indentor:String):String">toSource()</a>, <a href="../../../vegas/core/CoreObject.html#toString" title="public function toString():String">toString()</a></div></div></div><div class="type_details"><div class="constructor_detail_list"><h2>Constructor Detail</h2><div class="method_details"><a name="EdenObjectFactory"></a><h3>EdenObjectFactory</h3><code class="method_synopsis">public function <strong class="method_name">EdenObjectFactory</strong>()</code><div class="method_info"><p>
+ Creates a new EdenObjectFactory instance.
+	 </p></div></div></div><div class="field_detail_list"><h2>Field Detail</h2><a name="ARGUMENTS"></a><h3>ARGUMENTS</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">ARGUMENTS</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ Defines the label of the arguments in a method or a constructor object.
+	 </div></div><a name="NAME"></a><h3>NAME</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">NAME</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ Defines the label of the name in a property object.
+	 </div></div><a name="OBJECT_DESTROY_METHOD_NAME"></a><h3>OBJECT_DESTROY_METHOD_NAME</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">OBJECT_DESTROY_METHOD_NAME</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ The name of the external object property to register the destroy method name.
+	 </div></div><a name="OBJECT_ID"></a><h3>OBJECT_ID</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">OBJECT_ID</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ The name of the external object property to define the id of the object.
+	 </div></div><a name="OBJECT_INIT_METHOD_NAME"></a><h3>OBJECT_INIT_METHOD_NAME</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">OBJECT_INIT_METHOD_NAME</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ The name of the external object property to register the init method name.
+	 </div></div><a name="OBJECT_PROPERTIES"></a><h3>OBJECT_PROPERTIES</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">OBJECT_PROPERTIES</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ The name of the external object property to register the properties.
+	 </div></div><a name="OBJECT_SINGLETON"></a><h3>OBJECT_SINGLETON</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">OBJECT_SINGLETON</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ The name of the external object property to define the singleton flag of the object.
+	 </div></div><a name="TYPE"></a><h3>TYPE</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">TYPE</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ Defines the label of the type of the object.
+	 </div></div><a name="REFERENCE"></a><h3>REFERENCE</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">REFERENCE</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ Defines the label of the reference in a property object.
+	 </div></div><a name="VALUE"></a><h3>VALUE</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">VALUE</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ Defines the label of the value in a property object.
+	 </div></div></div><div class="method_detail_list"><h2>Method Detail</h2><div class="method_details alt_row"><a name="create"></a><h3>create</h3><code class="method_synopsis">public function <strong class="method_name">create</strong>()</code><div class="method_info"><p>
+ Create the objects and fill the IObjectDefinitionContainer.
+ <p><b>Parameters</b></p>
+ <code> edenObject</code> An object who contains all the "objects" settings.
+	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/core/IFactory.html#create" title="function create()">create()</a> in <a href="../../../vegas/core/IFactory.html" class="interface_name" title="Interface vegas.core.IFactory">vegas.core.IFactory</a></p></div></div></div></div><ul class="main_nav" id="main_nav"><li><a href="../../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package andromeda.ioc.factory" class="button">Package</a></li><li><span class="button nav_current">Class</span></li><li><a href="../../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
