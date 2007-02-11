@@ -24,6 +24,8 @@
 import asgard.net.DataFormat;
 import asgard.net.URLLoader;
 
+import vegas.errors.Warning;
+
 /**
  * @author eKameleon
  */
@@ -65,7 +67,15 @@ class asgard.net.ParserLoader extends URLLoader
 		}
 		
 		var deserialize:Function = getDeserializer() ;
-		setData( deserialize( source )  ) ;
+
+		try
+		{
+			setData( deserialize( source )  ) ;
+		}
+		catch(e:Error)
+		{
+			throw new Warning( this + " parsing failed in deserializeData method, " + e.toString() ) ; 	
+		}
 		
 	}
 	

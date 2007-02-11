@@ -24,6 +24,7 @@
 import andromeda.model.IModel;
 import andromeda.model.ModelCollector;
 
+import vegas.core.IRunnable;
 import vegas.events.AbstractCoreEventDispatcher;
 import vegas.events.EventDispatcher;
 
@@ -31,7 +32,7 @@ import vegas.events.EventDispatcher;
  * This class provides a skeletal implementation of the {@code IModel} interface, to minimize the effort required to implement this interface.
  * @author eKameleon
  */
-class andromeda.model.AbstractModel extends AbstractCoreEventDispatcher implements IModel
+class andromeda.model.AbstractModel extends AbstractCoreEventDispatcher implements IModel, IRunnable
 {
 	
 	/**
@@ -100,6 +101,15 @@ class andromeda.model.AbstractModel extends AbstractCoreEventDispatcher implemen
 	}
 
 	/**
+	 * Run the first process with this model.
+	 * Overrides this method if you want implement a command process.
+	 */
+	public function run() : Void 
+	{
+		//
+	}
+
+	/**
 	 * Sets the {@code id} of this IModelObject.
 	 */
 	public function setID( id ):Void 
@@ -141,4 +151,5 @@ class andromeda.model.AbstractModel extends AbstractCoreEventDispatcher implemen
 		this._id = id ;
 		ModelCollector.insert ( this._id, this ) ;
 	}
+
 }

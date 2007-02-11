@@ -44,22 +44,22 @@ class buRRRn.eden.Application
        Allows to display messages in the console.
     */
     static function _trace( message:String )
-        {
+    {
         trace( message );
-        }
+    }
     
     /* StaticMethod: log
        Add a message to the logs queue.
     */
     static function log( message:String )
-        {
+    {
         logs.push( message );
         
         if( config.verbose )
-            {
+        {
             _trace( message );
-            }
         }
+	}
     
     /** 
     * StaticMethod: showLogs
@@ -129,18 +129,18 @@ class buRRRn.eden.Application
        
     */
     static function addAuthorized( path:String, /*...*/ pathN )
-        {
+    {
         
         var l:Number = arguments.length ;
         
         for( var i:Number = 0 ; i<l; i++ )
-            {
+    	{
             if( ! ArrayUtil.contains(config.authorized, arguments[i] ) )
-                {
+            {
                 config.authorized.push( arguments[i] );
-                }
             }
         }
+    }
     
     /* StaticMethod: removeAuthorized
        
