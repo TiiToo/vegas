@@ -47,8 +47,8 @@ class Tests.vegas.data.stack.AllTests extends TestCase
         
         // suite.simpleTrace = true ;
 
-		// suite.addTest( new TestSuite( Tests.vegas.data.stack.SimpleStack ) ) ;
-		// suite.addTest( new TestSuite( Tests.vegas.data.stack.TypedStack ) ) ;
+		suite.addTest( new TestSuite( Tests.vegas.data.stack.TestSimpleStack ) ) ;
+		suite.addTest( new TestSuite( Tests.vegas.data.stack.TestTypedStack ) ) ;
         
         return suite ;
     

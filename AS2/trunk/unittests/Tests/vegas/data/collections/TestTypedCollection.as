@@ -53,7 +53,7 @@ class Tests.vegas.data.collections.TestTypedCollection extends TestCase
 		}
 		catch(e:Error)
 		{
-			assertEquals(e.toString(), "[IllegalArgumentError] [type Object] constructor failed, the argument 'type' must not be 'null' or 'undefined'.", "TYPED_CO_01_00 - constructor is null") ;	
+			assertEquals(e.toString(), "[IllegalArgumentError] TypedCollection constructor failed, the argument 'type' must not be 'null' or 'undefined'.", "TYPED_CO_01_00 - constructor throw error failed : " + e.toString()) ;	
 		}
 		c = new TypedCollection(String, new SimpleCollection()) ;
 		assertNotNull( c, "TYPED_CO_01_01 - constructor is null") ;
