@@ -447,9 +447,9 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	 */
 	public function resolve( name:String )
 	{
-		if ( view[name] != null )
+		if ( view[ name ] != null)
 		{
-			return view["name"] ;
+			return view[name] ;
 		}
 		else
 		{
