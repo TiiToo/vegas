@@ -25,6 +25,32 @@ import vegas.data.iterator.ArrayIterator;
 
 /**
  * Converts an array to an iterator but this iterator return the value of a specific field if the array is an array of objects.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import vegas.data.iterator.ArrayFieldIterator ;
+ * 
+ * var ar:Array = [
+ *     { label : "item1", date : new Date(2005, 10, 12) } ,
+ *     { label : "item2", date : new Date(2004, 2, 22) } ,
+ *     { label : "item3", date : new Date(2005, 4, 3) }
+ * ] ;
+ * 
+ * trace (" --- browse 'label' field") ;
+ * 
+ * var it:ArrayFieldIterator = new ArrayFieldIterator(ar, "label") ;
+ * while (it.hasNext()) 
+ * {
+ *     trace (it.next() + " : " + it.key()) ;
+ * }
+ * 
+ * trace(" --- browse 'date' field") ;
+ * 
+ * var it:ArrayFieldIterator = new ArrayFieldIterator(ar, "date") ;
+ * while (it.hasNext())
+ * {
+ *     trace (it.next() + " : " + it.key()) ;
+ * }
+ * }
  * @author eKameleon
  */
 class vegas.data.iterator.ArrayFieldIterator extends ArrayIterator 

@@ -28,7 +28,41 @@ import vegas.data.list.AbstractList;
 
 /**
  * Resizable-array implementation of the List interface.
- * Implements all optional list operations, and permits all elements, including null. 
+ * Implements all optional list operations, and permits all elements, including null.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import vegas.data.list.ArrayList ;
+ * import vegas.data.List ;
+ * import vegas.data.iterator.ListIterator ;
+ * 
+ * import vegas.util.ConstructorUtil ;
+ * 
+ * var a:Array = ["item0", "item1", "item2", "item3", "item4"] ;
+ * 
+ * var list:ArrayList = new ArrayList(a) ;
+ * trace("constructor :: " + ConstructorUtil.getPath(list)) ;
+ * trace ("list : " + list.size() + " >> " + list) ;
+ * trace ("list.toSource : " + list.toSource()) ;
+ * trace ("----") ;
+ * 
+ * var it:ListIterator = list.listIterator(2) ;
+ * while(it.hasNext())
+ * {
+ *     trace(">> " + it.next() + " : " + it.key()) ;
+ *     it.remove() ;
+ * }
+ * trace ("next : " + list) ;
+ * 
+ * trace ("---- ListIterator hasPrevious") ;
+ * 
+ * var cpt = list.size() ;
+ * while(it.hasPrevious())
+ * {
+ *     it.previous() ;
+ *     it.set("changeItem" +  cpt--) ;
+ * }
+ * trace ("list : " + list) ;
+ * }
  * @author eKameleon
  */
 class vegas.data.list.ArrayList extends AbstractList 

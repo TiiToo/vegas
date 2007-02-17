@@ -27,7 +27,7 @@ import vegas.events.Event;
 import vegas.events.EventDispatcher;
 import vegas.events.EventListener;
 import vegas.events.EventType;
-import vegas.events.TimerEventType;
+import vegas.events.TimerEvent;
 import vegas.util.Timer;
 
 /**
@@ -56,7 +56,7 @@ class asgard.display.StageResizer extends EventDispatcher implements EventListen
 	public function StageResizer(autoResize:Boolean, delay:Number) 
 	{
 		_timer = new Timer(isNaN(delay) ? DEFAULT_DELAY : delay, 1) ;
-		_timer.addEventListener(TimerEventType.TIMER, this) ;
+		_timer.addEventListener(TimerEvent.TIMER, this) ;
 		Stage.addListener(this) ;
 		if (autoResize) 
 		{

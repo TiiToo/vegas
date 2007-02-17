@@ -28,7 +28,6 @@ import vegas.core.IRunnable;
 import vegas.core.ITimer;
 import vegas.events.EventDispatcher;
 import vegas.events.TimerEvent;
-import vegas.events.TimerEventType;
 
 /**
  * This abstract class is used to create concrete {@code ITimer} implementations.
@@ -156,7 +155,7 @@ class vegas.util.AbstractTimer extends EventDispatcher implements ICloneable, IC
 		run() ;
 		if (!noEvent) 
 		{
-			dispatchEvent( new TimerEvent( TimerEventType.RESTART, this) ) ;
+			dispatchEvent( new TimerEvent( TimerEvent.RESTART, this) ) ;
 		}
 	}
 
@@ -196,7 +195,7 @@ class vegas.util.AbstractTimer extends EventDispatcher implements ICloneable, IC
 	{
 		if (getRunning()) return ;
 		_count = 0 ;
-		dispatchEvent( new TimerEvent(TimerEventType.START, this) ) ;
+		dispatchEvent( new TimerEvent(TimerEvent.START, this) ) ;
 		restart(true) ;
 	}
 	
@@ -207,7 +206,7 @@ class vegas.util.AbstractTimer extends EventDispatcher implements ICloneable, IC
 	{
 		_setRunning(false) ;
 		clear() ;
-		dispatchEvent( new TimerEvent(TimerEventType.STOP, this) ) ;
+		dispatchEvent( new TimerEvent(TimerEvent.STOP, this) ) ;
 	}
 	
 	/**

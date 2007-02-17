@@ -29,7 +29,6 @@ import asgard.net.AbstractLoader;
 import vegas.errors.IllegalArgumentError;
 import vegas.events.Delegate;
 import vegas.events.TimerEvent;
-import vegas.events.TimerEventType;
 import vegas.util.FrameTimer;
 
 /**
@@ -43,13 +42,16 @@ class asgard.media.AbstractMediaLoader extends AbstractLoader implements IMediaL
 	
 	/**
 	 * Creates a new AbstractMediaLoader instance.
+	 * @param mcTarget the target of the IMediaLoader.
+	 * @param sName the name of the IMediaLoader.
 	 */
 	private function AbstractMediaLoader( mcTarget:MovieClip , sName:String) 
 	{
 		
 		super();
 		
-		if (!mcTarget) {
+		if (!mcTarget) 
+		{
 			throw new IllegalArgumentError(this + " 'mcTarget' argument in constructor is undefined.") ;
 		}
 		
@@ -60,12 +62,13 @@ class asgard.media.AbstractMediaLoader extends AbstractLoader implements IMediaL
 		_oSound = new Sound(_mcTarget) ;
 		
 		_timer = new FrameTimer(24) ;
-		_timer.addEventListener(TimerEventType.TIMER, new Delegate(this, onProgress));
+		_timer.addEventListener(TimerEvent.TIMER, new Delegate(this, onProgress));
 		
 	}
 
 	/**
 	 * Returns the duration of the media.
+	 * @return the duration of the media.
 	 */
 	public function get duration():Number 
 	{
@@ -74,6 +77,7 @@ class asgard.media.AbstractMediaLoader extends AbstractLoader implements IMediaL
 
 	/**
 	 * (read-write) Returns the position of the media.
+	 * @return the position of the media.
 	 */
 	public function get position():Number 
 	{
@@ -90,6 +94,7 @@ class asgard.media.AbstractMediaLoader extends AbstractLoader implements IMediaL
 
 	/**
 	 * (read-write) Returns the volume of the media.
+	 * @return the volume of the media.
 	 */
 	public function get volume():Number 
 	{
@@ -106,7 +111,8 @@ class asgard.media.AbstractMediaLoader extends AbstractLoader implements IMediaL
 
 	/**
 	 * Returns the duration of the media.
-	 * override this method 
+	 * overrides this method.
+	 * @return the duration of the media.
 	 */
 	public function getDuration():Number 
 	{
@@ -116,6 +122,7 @@ class asgard.media.AbstractMediaLoader extends AbstractLoader implements IMediaL
 	/**
 	 * Returns the position of the media.
 	 * override this method.
+	 * @return the position of the media.
 	 */
 	public function getPosition():Number 
 	{
@@ -123,7 +130,8 @@ class asgard.media.AbstractMediaLoader extends AbstractLoader implements IMediaL
 	}
 
 	/**
-	 * Return the sound's media reference.
+	 * Returns the sound's media reference.
+	 * @return the sound's media reference.
 	 */
 	public function getSound():Sound 
 	{
@@ -132,6 +140,7 @@ class asgard.media.AbstractMediaLoader extends AbstractLoader implements IMediaL
 
 	/**
 	 * Returns the volume of the media.
+	 * @return the volume of the media.
 	 */
 	public function getVolume():Number 
 	{
@@ -147,7 +156,8 @@ class asgard.media.AbstractMediaLoader extends AbstractLoader implements IMediaL
 	}
 
 	/**
-	 * Returns 'true' if the media auto play.
+	 * Returns {@code true} if the media auto play.
+	 * @return {@code true} if the media auto play.
 	 */
 	public function isAutoPlay():Boolean 
 	{
@@ -155,7 +165,8 @@ class asgard.media.AbstractMediaLoader extends AbstractLoader implements IMediaL
 	}
 
 	/**
-	 * Returns 'true' if the media is loaded.
+	 * Returns {@code true} if the media is loaded.
+	 * @return {@code true} if the media is loaded.
 	 */
 	public function isLoaded():Boolean 
 	{
@@ -163,7 +174,8 @@ class asgard.media.AbstractMediaLoader extends AbstractLoader implements IMediaL
 	}
 
 	/**
-	 * Returns 'true' if the media loop.
+	 * Returns {@code true} if the media loop.
+	 * @return {@code true} if the media loop.
 	 */
 	public function isLoop():Boolean 
 	{
@@ -171,7 +183,8 @@ class asgard.media.AbstractMediaLoader extends AbstractLoader implements IMediaL
 	}
 	
 	/**
-	 * Returns 'true' if the media is playing.
+	 * Returns {@code true} if the media is playing.
+	 * @return {@code true} if the media is playing.
 	 */
 	public function isPlaying():Boolean 
 	{
@@ -179,7 +192,8 @@ class asgard.media.AbstractMediaLoader extends AbstractLoader implements IMediaL
 	}
 
 	/**
-	 * Returns 'true' if the media is resumed.
+	 * Returns {@code true} if the media is resumed.
+	 * @return {@code true} if the media is resumed.
 	 */
 	public function isResumed():Boolean 
 	{

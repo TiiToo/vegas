@@ -63,7 +63,8 @@ class vegas.data.set.MultiHashSet extends MultiHashMap implements Set
 		var m:MultiHashSet = new MultiHashSet() ;
 		var vItr:Iterator = valueIterator() ;
 		var kItr:Iterator = keyIterator() ;
-		while (kItr.hasNext()) {
+		while (kItr.hasNext()) 
+		{
 			var key = kItr.next() ;
 			var value = vItr.next() ;
 			m.putCollection(key, value) ;
@@ -73,17 +74,27 @@ class vegas.data.set.MultiHashSet extends MultiHashMap implements Set
 
 	/**
 	 * Checks whether the map contains the value specified .
+	 * @param o the object to search in this instance.
+	 * @return {@code true} if the MultiHashSet container the passed-in object.
 	 */
-	public function contains(o):Boolean {
+	public function contains(o):Boolean 
+	{
 		var len:Number = arguments.length ;
-		if (len == 1) {
+		if (len == 1) 
+		{
 			var value = arguments[0] ;
 			var it:Iterator = _map.iterator() ;
-			while (it.hasNext()) {
+			while (it.hasNext()) 
+			{
 				var cur = it.next() ;
-				if (cur.contains(value)) return true;
+				if (cur.contains(value)) 
+				{
+					return true ;
+				}
 			}
-		} else if (len == 2) {
+		} 
+		else if (len == 2) 
+		{
 			return ( getSet(arguments[0] ).contains(arguments[1]) == true);
 		}
 		return false ;
@@ -93,12 +104,14 @@ class vegas.data.set.MultiHashSet extends MultiHashMap implements Set
 	 * Creates a new instance of the map value Collection(Set) container.
 	 * This method can be overridden to use your own collection type.
 	 */
-	/*override*/ public function createCollection():Collection {
+	/*override*/ public function createCollection():Collection 
+	{
 		return new HashSet() ;	
 	}
 
 	/**
 	 * This method is unsupported, use getSet method.
+	 * @param a number
 	 * @throws UnsupportedOperation the MultiHashSet does not support the get() method, use getSet()
 	 */
 	public function get( id:Number ) 
@@ -119,20 +132,24 @@ class vegas.data.set.MultiHashSet extends MultiHashMap implements Set
 
 	/**
 	 * This method always throws an {@code UnsupportedOperation} because this method is not supported by this Set.
-	 *
-	 * @throws UnsupportedOperation
+	 * @param o a object to insert.
+	 * @throws UnsupportedOperation the MultiHashSet instance does not support the insert() method.
 	 */
-	public function insert(o):Boolean {
+	public function insert(o):Boolean 
+	{
 		throw new UnsupportedOperation("This MultiHashSet does not support the insert() method.") ;
 		return null ;
 	}
 
 	/**
 	 * Adds the value to the Set associated with the specified key.
+	 * @return {@code true} if the value is inserted in the object.
 	 */
-	/*override*/ public function put(key, value):Boolean {
+	/*override*/ public function put(key, value):Boolean 
+	{
 		if(_internalSet.contains(value)) return false ;
-		if (!containsKey(key)) {
+		if (!containsKey(key)) 
+		{
 			_map.put(key , createCollection()) ;
 		}
 		var b:Boolean = _map.get(key).insert(value) ;
@@ -142,16 +159,20 @@ class vegas.data.set.MultiHashSet extends MultiHashMap implements Set
 	/**
 	 * Adds a collection of values to the collection associated with the specified key.
 	 */
-	/*override*/ public function putCollection(key, c:Collection):Void {
-		if (!containsKey(key)) {
+	/*override*/ public function putCollection(key, c:Collection):Void 
+	{
+		if (!containsKey(key)) 
+		{
 			_map.put(key , createCollection()) ;
 		}
 		var s:HashSet = _map.get(key) ;
 		var it:Iterator = c.iterator() ;
 		var value ;
-		while(it.hasNext()) {
+		while(it.hasNext()) 
+		{
 			value = it.next() ;
-			if (_internalSet.insert(value)) {
+			if (_internalSet.insert(value)) 
+			{
 				s.insert(value) ;
 			}	
 		}
@@ -161,27 +182,35 @@ class vegas.data.set.MultiHashSet extends MultiHashMap implements Set
 	 * Removes a specific value from map.
 	 * <p><b>Note :</b> Use Set implementation and not Map implementation !</p>
 	 */
-	/*override*/ public function remove( o /* key, value*/ ):Boolean {
+	/*override*/ public function remove( o /* key, value*/ ):Boolean 
+	{
 		var len:Number = arguments.length ;
 		var key ;
 		var value ;
-		if (len == 2) {
+		if (len == 2) 
+		{
 			key = arguments[0] ;
 			value = arguments[1] ;
 			var c:Collection = _map.get(key) ;
 			var b:Boolean = c.remove(value) ;
 			return _internalSet.remove(value) ;
-		} else {
+		}
+		else 
+		{
 			key = arguments[0] ;
 			var s:Set = _map.get(key) ;
-			if (s) {
+			if (s) 
+			{
 				var it:Iterator = s.iterator() ;
-				while(it.hasNext()) {
+				while(it.hasNext()) 
+				{
 					_internalSet.remove(it.next()) ;
 				}
 				_map.remove(key) ;
 				return true ;
-			} else {
+			}
+			else 
+			{
 				return false ;	
 			}
 			
@@ -192,7 +221,8 @@ class vegas.data.set.MultiHashSet extends MultiHashMap implements Set
 	 * Returns an array containing the combination of values from all keys.
 	 * @return an array containing the combination of values from all keys.
 	 */
-	function toArray():Array {
+	public function toArray():Array 
+	{
 		return getValues() ;
 	}
 

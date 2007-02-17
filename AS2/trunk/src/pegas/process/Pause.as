@@ -24,11 +24,12 @@
 import pegas.process.AbstractAction;
 
 import vegas.events.Delegate;
-import vegas.events.TimerEventType;
+import vegas.events.TimerEvent;
 import vegas.util.serialize.Serializer;
 import vegas.util.Timer;
 
 /**
+ * This IAction object create a pause in the process.
  * @author eKameleon
  */
 class pegas.process.Pause extends AbstractAction 
@@ -36,32 +37,53 @@ class pegas.process.Pause extends AbstractAction
 
 	/**
 	 * Creates a new Pause instance.
+	 * @param duration the duration of the pause.
+	 * @param seconds the flag to indicates if the duration is in second or not.
 	 */
-	public function Pause(duration:Number, seconds:Boolean) {
+	public function Pause(duration:Number, seconds:Boolean) 
+	{
 		setDuration(duration) ;
 		useSeconds = seconds ;
 		_timer = new Timer() ;
 		_timer.setRepeatCount(1) ;
-		_timer.addEventListener(TimerEventType.TIMER, new Delegate(this, notifyFinished)) ;
+		_timer.addEventListener(TimerEvent.TIMER, new Delegate(this, notifyFinished)) ;
 	}
 
+	/**
+	 * (read-write) Returns the duration of the process.
+	 * @return the duration of the process.
+	 */
 	public function get duration():Number 
 	{
 		return getDuration() ;	
 	}
 	
+	/**
+	 * (read-write) Sets the duration of the process.
+	 */
 	public function set duration( n:Number ):Void 
 	{
 		setDuration(n) ;	
 	}
 
+	/**
+	 * Indicates if the process use seconds or not.
+	 */
 	public var useSeconds:Boolean ;
 	
+	/**
+	 * Returns a shallow copy of this object.
+	 * @return a shallow copy of this object.
+	 */
 	public function clone() 
 	{
 		return new Pause(_duration, useSeconds) ;
 	}
 	
+	/**
+	 * Returns the duration of the process.
+	 * @return the duration of the process.
+	 */
 	public function getDuration():Number 
 	{
 		var d:Number = _duration ;
@@ -69,6 +91,9 @@ class pegas.process.Pause extends AbstractAction
 		return d ;
 	}
 
+	/**
+	 * Runs the process.
+	 */
 	public function run():Void 
 	{
 		if (_timer.running) return ;
@@ -77,17 +102,26 @@ class pegas.process.Pause extends AbstractAction
 		_timer.setDelay(getDuration()) ;
 		_timer.start() ;
 	}
-	
+
+	/**
+	 * Sets the duration of the process.
+	 */
 	public function setDuration(duration:Number):Void 
 	{
 		_duration = (isNaN(duration) && duration < 0) ? 0 : duration ;
 	}
 	
+	/**
+	 * Start the pause process.
+	 */
 	public function start():Void 
 	{
 		run() ;
 	}
 
+	/**
+	 * Stop the pause process.
+	 */
 	public function stop():Void 
 	{
 		if (_timer.running) 
@@ -98,14 +132,22 @@ class pegas.process.Pause extends AbstractAction
 			notifyFinished() ;	
 		}
 	}
-	
+
+	/**
+	 * Returns a Eden reprensation of the object.
+	 * @return a string representing the source code of the object.
+	 */
 	/*override*/ public function toSource(indent:Number, indentor:String):String 
 	{
 		var sourceA:String = Serializer.toSource(_duration) ;
 		var sourceB:String = Serializer.toSource(useSeconds) ;
 		return Serializer.getSourceOf(this, [sourceA, sourceB]) ;
 	}
-		
+
+	/**
+	 * Returns the string representation of this instance.
+	 * @return the string representation of this instance.
+	 */
 	public function toString():String 
 	{
 		return "[Pause : " + getDuration() + (useSeconds ? "s" : "ms") + "]" ;

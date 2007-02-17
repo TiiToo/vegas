@@ -42,16 +42,38 @@ class Tests.vegas.data.stack.TestTypedStack extends TestCase
 	public function testConstructor()
 	{
 		var c:TypedStack ;
+		
+		var isThrow:Boolean = false ;
+		
 		try
 		{
 			c = new TypedStack() ;
 		}
 		catch(e:Error)
 		{
-			assertEquals(e.toString(), "[IllegalArgumentError] TypedStack constructor failed, the argument 'type' must not be 'null' or 'undefined'.", "TYPED_CO_01_00 - constructor throw error failed : " + e.toString()) ;	
+			assertEquals(e.toString(), "[IllegalArgumentError] TypedStack constructor failed, the argument 'type' must not be 'null' or 'undefined'.", "TYPED_CO_01_00 - constructor throw error failed : " + e.toString()) ;
+			isThrow = true ;	
 		}
+		
+		assertTrue(isThrow, "TYPED_CO_01_01 - constructor throw error failed with the type in the first argument of the constructor.") ;
+		
+		isThrow = false ;
+		
+		try
+		{
+			c = new TypedStack(String, null) ;
+		}
+		catch(e:Error)
+		{
+			assertEquals(e.toString(), "[IllegalArgumentError] TypedStack constructor failed, argument 'stack' must not be 'null' or 'undefined'.", "TYPED_CO_01_02 - constructor throw error failed : " + e.toString()) ;	
+			isThrow = true ;	
+		}
+		
+		assertTrue(isThrow, "TYPED_CO_01_03 - constructor throw error failed with the Stack object in the second argument of the constructor.") ;
+		
 		c = new TypedStack(String, new SimpleStack()) ;
-		assertNotNull( c, "TYPED_STACK_01_01 - constructor is null") ;
+		
+		assertNotNull( c, "TYPED_STACK_01_04 - constructor is null") ;
 		assertTrue( c instanceof TypedStack , "TYPED_STACK_01_02 - constructor is an instance of TypedStack.") ;
 	}
 	

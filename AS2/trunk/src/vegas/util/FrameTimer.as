@@ -22,7 +22,6 @@
 */
 
 import vegas.events.TimerEvent;
-import vegas.events.TimerEventType;
 import vegas.util.AbstractTimer;
 import vegas.util.FrameBeacon;
 
@@ -115,7 +114,7 @@ class vegas.util.FrameTimer extends AbstractTimer
 	{
 		if (++_next >= _delay) 
 		{
-			dispatchEvent( new TimerEvent(TimerEventType.TIMER, this) ) ;
+			dispatchEvent( new TimerEvent(TimerEvent.TIMER, this) ) ;
 			_next = 0 ;
 			_count ++ ;
 		}

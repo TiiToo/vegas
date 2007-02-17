@@ -33,7 +33,7 @@ import vegas.errors.Warning;
 import vegas.events.Delegate;
 import vegas.events.EventListener;
 import vegas.events.EventTarget;
-import vegas.events.TimerEventType;
+import vegas.events.TimerEvent;
 import vegas.util.Timer;
 
 // TODO : vérifier le cablage du système événementiel.
@@ -54,10 +54,10 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener
 		super() ;
 		
 		_timer = new Timer(120, 1) ;
-		_timer.addEventListener(TimerEventType.TIMER, new Delegate(this, _next)) ;
+		_timer.addEventListener( TimerEvent.TIMER, new Delegate(this, _next) ) ;
 			
 		_timerComplete = new Timer(120, 1) ;
-		_timerComplete.addEventListener(TimerEventType.TIMER, new Delegate(this, _onLoadComplete)) ;
+		_timerComplete.addEventListener(TimerEvent.TIMER, new Delegate(this, _onLoadComplete)) ;
 		
 		_listenerComplete = new Delegate(this, onLoadComplete) ;
 		_listenerError    = new Delegate(this, onLoadError) ;
@@ -134,6 +134,7 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener
 
 	/**
 	 * Returns the delay between 2 loader when the MassiveLoader is running.
+	 * @return the delay between 2 loader when the MassiveLoader is running.
 	 */
 	public function getDelay():Number 
 	{
@@ -142,6 +143,7 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener
 
 	/**
 	 * Returns {@code true} if the massive loader is in progress.
+	 * @return {@code true} if the massive loader is in progress.
 	 */
 	public function getRunning():Boolean 
 	{
@@ -150,6 +152,7 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener
 
 	/**
 	 * Returns {@code true} is the buffer is empty.
+	 * @return {@code true} is the buffer is empty.
 	 */
 	public function isEmpty():Boolean 
 	{
@@ -188,6 +191,9 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener
 		// overrides this method.
 	}
 
+	/**
+	 * Invoqued when the loading failed.
+	 */
 	public function onLoadError(e:LoaderEvent):Void 
 	{
 		if (isEmpty()) 
@@ -200,6 +206,9 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener
 		}
 	}
 
+	/**
+	 * Invoqued when the loading is complete and the content initialize.
+	 */
 	public function onLoadInit( e:LoaderEvent ):Void 
 	{
 		if (isEmpty()) 
@@ -212,18 +221,24 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener
 		}
 	}
 
+	/**
+	 * Invoqued during the load progress.
+	 */
 	public function onLoadProgress(e : LoaderEvent) : Void 
 	{
 		// internal method - override this method
 	}
 
+	/**
+	 * Invoqued when the loading start.
+	 */
 	public function onLoadStart(e : LoaderEvent) : Void 
 	{
 		// internal method - override this method
 	}
 
 	/**
-	 * invoqué quand le chargement d'un ILoader n'a pas réussi dans le délais prévu.
+	 * Invoqued if the loading is out of time.
 	 */
 	public function onLoadTimeOut(e : LoaderEvent) : Void 
 	{
@@ -238,7 +253,7 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener
 	}
 	
 	/**
-	 * Permet de lancer le chargement massif de tous les ILoader placé en queue dans le MassiveLoader.
+	 * Run the MassiveLoader.
 	 */
 	public function run():Void 
 	{
@@ -246,7 +261,7 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener
 	}
 
 	/**
-	 * Permet de définir le délais entre chaque chargement d'un nouveau ILoader 
+	 * Defines the delay between 2 loadings in the internal queue. 
 	 */
 	public function setDelay(n:Number):Void 
 	{
@@ -255,7 +270,8 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener
 	}
 	
 	/**
-	 * Renvoi le nombre de ILoader encore présent dans le buffer du MassiveLoader 
+	 * Returns the number of ILoader in the buffer of the MassiveLoader.
+	 * @return the number of ILoader in the buffer of the MassiveLoader.
 	 */
 	 public function size():Number 
 	 {
@@ -263,7 +279,8 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener
 	}
 	
 	/**
-	 * Renvoi la liste des ILoader défini dans le MassiveLoader.
+	 * Returns the array representation of the MassiveLoader.
+	 * @return the array representation of the MassiveLoader.
 	 */
 	public function toArray():Array 
 	{

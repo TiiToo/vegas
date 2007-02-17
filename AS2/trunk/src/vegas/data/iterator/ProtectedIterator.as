@@ -42,7 +42,8 @@ class vegas.data.iterator.ProtectedIterator extends CoreObject implements Iterat
 	}
 
 	/**
-	 * Returns true if the iteration has more elements.
+	 * Returns {@code true} if the iteration has more elements.
+	 * @return {@code true} if the iteration has more elements.
 	 */	
 	public function hasNext():Boolean 
 	{
@@ -51,6 +52,7 @@ class vegas.data.iterator.ProtectedIterator extends CoreObject implements Iterat
 
 	/**
 	 * Returns the current key of the internal pointer of the iterator (optional operation).
+	 * @return the current key of the internal pointer of the iterator (optional operation).
 	 */
 	public function key() 
 	{
@@ -59,6 +61,7 @@ class vegas.data.iterator.ProtectedIterator extends CoreObject implements Iterat
 
 	/**
 	 * Returns the next element in the iteration.
+	 * @return the next element in the iteration.
 	 */
 	public function next() 
 	{
@@ -67,7 +70,7 @@ class vegas.data.iterator.ProtectedIterator extends CoreObject implements Iterat
 
 	/**
 	 * Unsupported method in all ProtectedIterator.
-	 * @throws UnsupportedOperation
+	 * @throws UnsupportedOperation the remove method is unsupported in a ProtectedIterator instance.
 	 */
 	public function remove() 
 	{
@@ -76,7 +79,7 @@ class vegas.data.iterator.ProtectedIterator extends CoreObject implements Iterat
 
 	/**
 	 * Unsupported method in all ProtectedIterator.
-	 * @throws UnsupportedOperation
+	 * @throws UnsupportedOperation the reset method is unsupported in a ProtectedIterator instance.
 	 */
 	public function reset():Void 
 	{
@@ -85,7 +88,7 @@ class vegas.data.iterator.ProtectedIterator extends CoreObject implements Iterat
 
 	/**
 	 * Unsupported method in all ProtectedIterator.
-	 * @throws UnsupportedOperation
+	 * @throws UnsupportedOperation the seek method is unsupported in a ProtectedIterator instance.
 	 */
 	public function seek(n:Number):Void 
 	{

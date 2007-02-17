@@ -33,6 +33,31 @@ import vegas.data.Stack;
 /**
  * The based implementation of the Stack interface.
  * The Stack interface represents a last-in-first-out (LIFO) stack of objects.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import vegas.data.iterator.Iterator ;
+ * import vegas.data.Stack ;
+ * import vegas.data.stack.SimpleStack ;
+ * 
+ * var s:Stack = new SimpleStack() ;
+ * 
+ * s.push("item1") ;
+ * s.push("item2") ;
+ * s.push("item3") ;
+ * 
+ * trace ("stack peek : " + s.peek()) ;
+ * trace ("stack pop : " + s.pop()) ;
+ * 
+ * trace ("stack.toSource : " + s.toSource()) ;
+ * trace ("toString : " + s) ;
+ * 
+ * trace ("stack iterator") ;
+ * var i:Iterator = s.iterator() ;
+ * while (i.hasNext())
+ * {
+ *     trace ( " - " + i.next()) ;
+ * }
+ * }
  * @author eKameleon
  */
 class vegas.data.stack.SimpleStack extends AbstractCollection implements Iterable, ICloneable, Collection, Stack 
@@ -84,6 +109,7 @@ class vegas.data.stack.SimpleStack extends AbstractCollection implements Iterabl
 
 	/**
 	 * Removes the object at the top of this stack and returns that object as the value of this function.
+	 * @return the removed object value.
 	 */
 	public function pop() 
 	{
@@ -100,6 +126,7 @@ class vegas.data.stack.SimpleStack extends AbstractCollection implements Iterabl
 
 	/**
 	 * Returns the index of an element in the Stack.
+	 * @return the index of an element in the Stack.
 	 */
 	public function search(o):Number 
 	{

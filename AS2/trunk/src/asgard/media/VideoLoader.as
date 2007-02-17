@@ -33,7 +33,7 @@ import vegas.errors.Warning;
 import vegas.events.BasicEvent;
 import vegas.events.Delegate;
 import vegas.events.EventType;
-import vegas.events.TimerEventType;
+import vegas.events.TimerEvent;
 import vegas.util.FrameTimer;
 import vegas.util.Timer;
 
@@ -46,6 +46,9 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	
 	/**
 	 * Creates a new VideoLoader instance.
+	 * @param mcTarget the target of this VideoLoader.
+	 * @param video the video reference of this VideoLoader (default use a Video instance in the mcTarget with the instance name : "video").
+	 * @param sName the name of the VideoLoader.
 	 */
 	function VideoLoader( mcTarget:MovieClip , video:Video , sName:String ) 
 	{
@@ -80,12 +83,18 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		setVolume( VideoLoader.VOLUME_DEFAULT ) ;
 		
 		_timerHeadTime = new Timer(100, 1) ;
-		_timerHeadTime.addEventListener(TimerEventType.TIMER, new Delegate(this, _onFrameUpdate)) ;
+		_timerHeadTime.addEventListener(TimerEvent.TIMER, new Delegate(this, _onFrameUpdate)) ;
 		
 	}
 	
+	/**
+	 * The default buffer time value.
+	 */
 	static public var BUFFER_TIME_DEFAULT:Number = 4 ;
 
+	/**
+	 * The default sound' volume of the video.
+	 */
 	static public var VOLUME_DEFAULT:Number = 60 ;
 
 	/**
@@ -98,7 +107,8 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	}
 
 	/**
-	 * Returns the number of bytes loaded (streamed) for the specified 
+	 * Returns the number of bytes loaded (streamed) for the specified object.
+	 * @return the number of bytes loaded (streamed) for the specified object.
 	 */
 	public function getBytesLoaded():Number 
 	{
@@ -108,6 +118,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 
 	/**
 	 * Returns the size, in bytes, of the specified object.
+	 * @return the size, in bytes, of the specified object.
 	 */
 	public function getBytesTotal():Number 
 	{
@@ -117,6 +128,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 
 	/**
 	 * Returns the duration of the loader.
+	 * @return the duration of the loader.
 	 */
 	/*override*/ public function getDuration():Number 
 	{
@@ -124,7 +136,8 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	}
 	
 	/**
-	 * Rerturns the height of the loader.
+	 * Returns the height of the loader.
+	 * @return the height of the loader.
 	 */
 	public function getHeight() : Number 
 	{
@@ -133,6 +146,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 
 	/**
 	 * Returns the MedaData object.
+	 * @return the MedaData object.
 	 */
 	public function getMetaData() 
 	{
@@ -141,6 +155,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 
 	/**
 	 * Returns the current time of the loader.
+	 * @return the current time of the loader.
 	 */
 	public function getTime():Number 
 	{
@@ -149,6 +164,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 
 	/**
 	 * Returns the current position of the loader.
+	 * @return the current position of the loader.
 	 */
 	public function getPosition():Number 
 	{
@@ -157,6 +173,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 
 	/**
 	 * Returns the internal video reference.
+	 * @return the internal video reference.
 	 */
 	public function getVideo():Video 
 	{
@@ -165,6 +182,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 
 	/**
 	 * Returns the width of the loader.
+	 * @return the width of the loader.
 	 */
 	public function getWidth():Number 
 	{
@@ -172,7 +190,8 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	}
 	
 	/**
-	 * Returns 'true' if the loader auto size.
+	 * Returns {@code true} if the loader auto size.
+	 * @return {@code true} if the loader auto size.
 	 */
 	public function isAutoSize():Boolean 
 	{
@@ -263,16 +282,25 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		super.release() ;
 	}
 	
+	/**
+	 * Sets the flag of the autoSize property.
+	 */
 	public function setAutoSize(b:Boolean):Void 
 	{
 		_bAutoSize = b ;
 	}
-	
+
+	/**
+	 * Sets the delay time of the bugger of the video.
+	 */	
 	public function setBufferTime(n:Number):Void 
 	{
 		_nBufferTime = n ;
 	}
 	
+	/**
+	 * Sets the duration property.
+	 */
 	public function setDuration(n:Number):Void 
 	{
 		_duration = (n>0) ? n : 0 ;
@@ -306,32 +334,26 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 
 	/**
 	 * Sets the url of the loader.
+	 * @throws Warning if the url is invalid and the video can't be loading.
 	 */
 	public function setUrl( sURL:String ):Void 
 	{
-		try 
+		if (sURL) 
 		{
-			if (sURL) 
+			super.setUrl( sURL ) ;
+			setLoaded(false) ;
+			if (isPlaying()) 
 			{
-				super.setUrl( sURL ) ;
-				setLoaded(false) ;
-				if (isPlaying()) 
-				{
-					this.play(0);
-				}
-				else 
-				{
-					_load() ;
-				}
+				this.play(0);
 			}
 			else 
 			{
-				throw new Warning( toString() + " got invalid url property, can't load." );
+				_load() ;
 			}
-		} 
-		catch (e:Warning) 
+		}
+		else 
 		{
-			trace("> " + this + " : " + e.toString()) ;	
+			throw new Warning( toString() + " got invalid url property, can't load." );
 		}
 	}
 
@@ -357,20 +379,14 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 
 	/**
 	 * Internal load method.
+	 * @throws if the url property is invalid.
 	 */
 	private function _load():Void 
 	{
-		try 
+
+		if ( this.getUrl() == undefined ) 
 		{
-			if ( this.getUrl() == undefined ) 
-			{
-				throw new UnsupportedOperation( toString() + " can't play without any valid url property, loading fails.");
-			}
-		} 
-		catch (e:UnsupportedOperation) 
-		{
-			trace(e.toString()) ;
-			// return ;
+			throw new UnsupportedOperation( toString() + " can't play without any valid url property, loading fails.");
 		}
 		
 		setLoaded(true) ;
@@ -438,60 +454,60 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		switch ( info.code ) {
 			
 			case NetStreamStatus.PLAY_START.toString() :
-					
-					trace( toString() + " stream starts playing.");
-		
-					
-					break;
-					
+			{
+				trace( toString() + " stream starts playing.");
+				break;
+			}		
 			case NetStreamStatus.PLAY_STOP.toString() :
-					
-					notifyEvent(MediaEvent.MEDIA_FINISH) ;
-					
-					trace(toString() + " stream stops playing.");
-					
-					if (isLoop()) 
-					{
-						this.play(0) ;
-					}
-					else 
-					{
-						this.stop() ;	
-					}
-					
-					break;
+			{
+				notifyEvent(MediaEvent.MEDIA_FINISH) ;
 			
+				trace(toString() + " stream stops playing.");
+				
+				if (isLoop()) 
+				{
+					this.play(0) ;
+				}
+				else 
+				{
+					this.stop() ;	
+				}
+				
+				break;
+			}
 			case NetStreamStatus.PLAY_STREAM_NOT_FOUND.toString() :
-			
+			{
 				trace(toString() + " stream not found.");
 				stopProgress() ;
 				break ;
-			
+			}
 			case NetStreamStatus.SEEK_INVALID_TIME.toString() :
-				
+			{
 				trace( toString() + " seeks invalid time in '" + this.getUrl() + "'.");
 				break;
-				
+			}	
 			case NetStreamStatus.BUFFER_FULL.toString() :
-				
+			{
 				trace( toString() + " stream buffer is full." );
 				break;
-
-			case 'NetConnection.Connect.Closed' : 
+			}
+			case 'NetConnection.Connect.Closed' :
+			{ 
 				stopProgress() ;
 				trace(toString() + " local connection closed.");
 				break ;
-				
-			case 'NetConnection.Connect.Success' : 
-				
+			}	
+			case 'NetConnection.Connect.Success' :
+			{
 				trace(toString() + " local connection successful.");
 				break ;
-				
-			case 'NetConnection.Connect.Failed' : 
+			}	
+			case 'NetConnection.Connect.Failed' :
+			{ 
 				
 				trace( toString() + " local connection failed");
 				break ;
-				
+			}
 		}
 	}
 

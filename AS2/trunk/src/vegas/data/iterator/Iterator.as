@@ -30,16 +30,19 @@ interface vegas.data.iterator.Iterator
 
 	/**
 	 * Returns {@code true} if the iteration has more elements.
+	 * @return {@code true} if the iteration has more elements.
 	 */	
 	function hasNext():Boolean ;
 
 	/**
 	 * Returns the current key of the internal pointer of the iterator (optional operation).
+	 * @return the current key of the internal pointer of the iterator (optional operation).
 	 */
 	function key() ;
 
 	/**
 	 * Returns the next element in the iteration.
+	 * @return the next element in the iteration.
 	 */
 	function next() ;
 	

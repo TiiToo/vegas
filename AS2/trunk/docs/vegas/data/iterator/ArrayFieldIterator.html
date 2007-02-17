@@ -3,6 +3,32 @@
 document.quicknavBasePath="../../../index-files";
 //--></script><link href="../../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../../overview-summary.html" title="Overview" rel="top"/><link href="package-summary.html" title="Package vegas.data.iterator" rel="up"/><link href="../../../vegas/data/iterator/ArrayIterator.html" title="Class vegas.data.iterator.ArrayIterator" rel="prev"/><link href="../../../vegas/data/Enumeration.html" title="Interface vegas.data.Enumeration" rel="next"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><h1>Class vegas.data.iterator.ArrayFieldIterator</h1><div class="type_hierachy"><ul><li><a href="../../../vegas/core/CoreObject.html" class="class_name" title="Class vegas.core.CoreObject">vegas.core.CoreObject</a><ul><li><a href="../../../vegas/data/iterator/ArrayIterator.html" class="class_name" title="Class vegas.data.iterator.ArrayIterator">vegas.data.iterator.ArrayIterator</a><ul><li><strong>vegas.data.iterator.ArrayFieldIterator</strong></li></ul></li></ul></li></ul></div><div class="type_description"><h2>Description</h2><p>
  Converts an array to an iterator but this iterator return the value of a specific field if the array is an array of objects.
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">import</span> vegas.data.iterator.ArrayFieldIterator ;
+ 
+ <span class="key">var</span> ar:Array = [
+     { label : <span class="str_const">"item1"</span>, date : <span class="key">new</span> Date(<span class="num_const">2005</span>, <span class="num_const">10</span>, <span class="num_const">12</span>) } ,
+     { label : <span class="str_const">"item2"</span>, date : <span class="key">new</span> Date(<span class="num_const">2004</span>, <span class="num_const">2</span>, <span class="num_const">22</span>) } ,
+     { label : <span class="str_const">"item3"</span>, date : <span class="key">new</span> Date(<span class="num_const">2005</span>, <span class="num_const">4</span>, <span class="num_const">3</span>) }
+ ] ;
+ 
+ trace (<span class="str_const">" --- browse 'label' field"</span>) ;
+ 
+ <span class="key">var</span> it:ArrayFieldIterator = <span class="key">new</span> ArrayFieldIterator(ar, <span class="str_const">"label"</span>) ;
+ <span class="key">while</span> (it.hasNext()) 
+ {
+     trace (it.next() + <span class="str_const">" : "</span> + it.key()) ;
+ }
+ 
+ trace(<span class="str_const">" --- browse 'date' field"</span>) ;
+ 
+ <span class="key">var</span> it:ArrayFieldIterator = <span class="key">new</span> ArrayFieldIterator(ar, <span class="str_const">"date"</span>) ;
+ <span class="key">while</span> (it.hasNext())
+ {
+     trace (it.next() + <span class="str_const">" : "</span> + it.key()) ;
+ }
+ </pre>
  </p></div><div class="type_indexes"><div class="field_index"><h2>Field Index</h2><a href="#fieldName" title="public fieldName:String">fieldName</a></div><div class="method_index"><h2>Method Index</h2><div><code>new <a href="#ArrayFieldIterator" title="public function ArrayFieldIterator(p_a:Array, p_fieldName:String)">ArrayFieldIterator()</a></code></div><a href="#next" title="public function next()">next()</a><h4>Inherited from <a href="../../../vegas/data/iterator/ArrayIterator.html" class="class_name" title="Class vegas.data.iterator.ArrayIterator">ArrayIterator</a></h4><div class="extra_info"><a href="../../../vegas/data/iterator/ArrayIterator.html#hasNext" title="public function hasNext():Boolean">hasNext()</a>, <a href="../../../vegas/data/iterator/ArrayIterator.html#key" title="public function key()">key()</a>, <a href="../../../vegas/data/iterator/ArrayIterator.html#remove" title="public function remove()">remove()</a>, <a href="../../../vegas/data/iterator/ArrayIterator.html#reset" title="public function reset():Void">reset()</a>, <a href="../../../vegas/data/iterator/ArrayIterator.html#seek" title="public function seek(n:Number):Void">seek()</a>, <a href="../../../vegas/data/iterator/ArrayIterator.html#toSource" title="public function toSource():String">toSource()</a></div><h4>Inherited from <a href="../../../vegas/core/CoreObject.html" class="class_name" title="Class vegas.core.CoreObject">CoreObject</a></h4><div class="extra_info"><a href="../../../vegas/core/CoreObject.html#hashCode" title="public function hashCode():Number">hashCode()</a>, <a href="../../../vegas/core/CoreObject.html#toString" title="public function toString():String">toString()</a></div></div></div><div class="type_details"><div class="constructor_detail_list"><h2>Constructor Detail</h2><div class="method_details"><a name="ArrayFieldIterator"></a><h3>ArrayFieldIterator</h3><code class="method_synopsis">public function <strong class="method_name">ArrayFieldIterator</strong>(p_a:<span class="unresolved_type_name">Array</span>, p_fieldName:<span class="unresolved_type_name">String</span>)</code><div class="method_info"><p>
  Creates a new ArrayFieldIterator instance.
 	 </p></div></div></div><div class="field_detail_list"><h2>Field Detail</h2><a name="fieldName"></a><h3>fieldName</h3><div class="field_details"><code class="field_synopsis">public <strong class="field_name">fieldName</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">

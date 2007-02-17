@@ -33,19 +33,24 @@ import vegas.util.TypeUtil;
  * TypedSet is a wrapper for Set instances that ensures that only values of a specific type can be added to the wrapped Set.
  * @author eKameleon
  */
-class vegas.data.set.TypedSet extends AbstractTypeable implements ICloneable, Set {
+class vegas.data.set.TypedSet extends AbstractTypeable implements ICloneable, Set 
+{
 
 	/**
 	 * Creates a new TypedSet instance.
 	 */
-	public function TypedSet(p_type:Function , p_set:Set) 
+	public function TypedSet( type:Function , set:Set) 
 	{
-		super(p_type) ;
-		if (!p_set) throw new IllegalArgumentError("TypedSet constructor failed, argument 'p_set' must not be 'null' or 'undefined'.") ;
-		_set = p_set ;
-		if (_set.size() > 0) {
+		super( type ) ;
+		if (!set) throw new IllegalArgumentError("TypedSet constructor failed, argument 'p_set' must not be 'null' or 'undefined'.") ;
+		_set = set ;
+		if (_set.size() > 0) 
+		{
 			var it:Iterator = _set.iterator() ;
-			while (it.hasNext()) validate(it.next()) ;
+			while (it.hasNext()) 
+			{
+				validate(it.next()) ;
+			}
 		}
 	}
 
@@ -87,6 +92,7 @@ class vegas.data.set.TypedSet extends AbstractTypeable implements ICloneable, Se
 
 	/**
 	 * Adds the specified element to this set if it is not already present.
+	 * @param o the object to insert in the Set.
 	 */
     public function insert(o):Boolean 
     {
@@ -95,8 +101,8 @@ class vegas.data.set.TypedSet extends AbstractTypeable implements ICloneable, Se
     }
 
 	/**
-	 * Returns true if this set contains no elements.
-	 * @return true if this set contains no elements.
+	 * Returns {@code true} if this set contains no elements.
+	 * @return {@code true} if this set contains no elements.
 	 */
 	public function isEmpty():Boolean 
 	{
@@ -122,6 +128,7 @@ class vegas.data.set.TypedSet extends AbstractTypeable implements ICloneable, Se
 
 	/**
 	 * Sets the type of the ITypeable object.
+	 * @param type the type function use to restrict all elements in this Set.
 	 */
 	public function setType(type:Function):Void 
 	{

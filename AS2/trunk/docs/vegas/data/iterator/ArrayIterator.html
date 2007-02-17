@@ -3,6 +3,38 @@
 document.quicknavBasePath="../../../index-files";
 //--></script><link href="../../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../../overview-summary.html" title="Overview" rel="top"/><link href="package-summary.html" title="Package vegas.data.iterator" rel="up"/><link href="../../../vegas/data/iterator/BagIterator.html" title="Class vegas.data.iterator.BagIterator" rel="prev"/><link href="../../../vegas/data/iterator/ArrayFieldIterator.html" title="Class vegas.data.iterator.ArrayFieldIterator" rel="next"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><h1>Class vegas.data.iterator.ArrayIterator</h1><div class="type_hierachy"><ul><li><a href="../../../vegas/core/CoreObject.html" class="class_name" title="Class vegas.core.CoreObject">vegas.core.CoreObject</a><ul><li><strong>vegas.data.iterator.ArrayIterator</strong></li></ul></li></ul></div><div class="interfaces"><h2>Implemented Interfaces</h2><code><a href="../../../vegas/data/iterator/Iterator.html" class="interface_name" title="Interface vegas.data.iterator.Iterator">Iterator</a></code> </div><div class="type_description"><h2>Description</h2><p>
  Converts an <code> Array</code> to an iterator.
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">import</span> vegas.data.iterator.ArrayIterator ;
+ <span class="key">import</span> vegas.data.iterator.Iterator ;
+ 
+ <span class="key">var</span> ar:Array = [<span class="str_const">"item1"</span>, <span class="str_const">"item2"</span>, <span class="str_const">"item3"</span>, <span class="str_const">"item4"</span>] ;
+ <span class="key">var</span> it:Iterator = <span class="key">new</span> ArrayIterator(ar) ;
+ 
+ <span class="key">while</span> (it.hasNext())
+ {
+     trace (it.next()) ;
+ }
+ 
+ trace (<span class="str_const">"--- it reset"</span>) ;
+ 
+ it.reset() ;
+ <span class="key">while</span> (it.hasNext()) 
+ {
+     trace (it.next() + <span class="str_const">" : "</span> + it.key()) ;
+ }
+ 
+ trace (<span class="str_const">"--- it seek 2"</span>) ;
+ 
+ it.seek(<span class="num_const">2</span>) ;
+ <span class="key">while</span> (it.hasNext())
+ {
+     trace (it.next()) ;
+ }
+ 
+ trace (<span class="str_const">"---"</span>) ;
+ 
+ </pre>
  </p></div><div class="type_indexes"><div class="method_index"><h2>Method Index</h2><div><code>new <a href="#ArrayIterator" title="public function ArrayIterator(a:Array)">ArrayIterator()</a></code></div><a href="#hasNext" title="public function hasNext():Boolean">hasNext()</a>, <a href="#key" title="public function key()">key()</a>, <a href="#next" title="public function next()">next()</a>, <a href="#remove" title="public function remove()">remove()</a>, <a href="#reset" title="public function reset():Void">reset()</a>, <a href="#seek" title="public function seek(n:Number):Void">seek()</a>, <a href="#toSource" title="public function toSource():String">toSource()</a><h4>Inherited from <a href="../../../vegas/core/CoreObject.html" class="class_name" title="Class vegas.core.CoreObject">CoreObject</a></h4><div class="extra_info"><a href="../../../vegas/core/CoreObject.html#hashCode" title="public function hashCode():Number">hashCode()</a>, <a href="../../../vegas/core/CoreObject.html#toString" title="public function toString():String">toString()</a></div></div></div><div class="type_details"><div class="constructor_detail_list"><h2>Constructor Detail</h2><div class="method_details"><a name="ArrayIterator"></a><h3>ArrayIterator</h3><code class="method_synopsis">public function <strong class="method_name">ArrayIterator</strong>(a:<span class="unresolved_type_name">Array</span>)</code><div class="method_info"><p>
  Creates a new ArrayIterator instance.
  </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>a</code></td><td>the array to enumerate with the iterator.

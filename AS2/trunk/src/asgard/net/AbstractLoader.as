@@ -26,7 +26,7 @@ import asgard.net.ILoader;
 
 import vegas.events.AbstractCoreEventDispatcher;
 import vegas.events.Delegate;
-import vegas.events.TimerEventType;
+import vegas.events.TimerEvent;
 import vegas.util.Timer;
 
 /**
@@ -49,6 +49,7 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 
 	/**
 	 * (read-only) Returns the current bytes value of the external data to load during the loading.
+	 * @return the current bytes value of the external data to load during the loading.
 	 */
 	public function get bytesLoaded():Number 
 	{
@@ -57,6 +58,7 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 
 	/**
 	 * (read-only) Returns the total bytes value of the external data to load.
+	 * @return the total bytes value of the external data to load.
 	 */
 	public function get bytesTotal():Number 
 	{
@@ -65,6 +67,7 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 
 	/**
 	 * (read-write) Returns the current data value of this loader.
+	 * @return the current data value of this loader.
 	 */
 	public function get data() 
 	{
@@ -97,6 +100,7 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 
 	/**
 	 * (read-only) Returns the percent value during the loading.
+	 * @return the percent value during the loading.
 	 */
 	public function get percent():Number 
 	{
@@ -206,6 +210,7 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 
 	/**
 	 * Returns the delay of the timeout error.
+	 * @return the delay of the timeout error.
 	 */
 	public function getTimeOut():Number 
 	{
@@ -214,6 +219,7 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 
 	/**
 	 * Returns the url of the loader.
+	 * @return the url of the loader.
 	 */
 	public function getUrl():String 
 	{
@@ -519,13 +525,13 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 	/*protected*/ private function _setInitTimer( f:Function ) 
 	{
 		_tInit = new Timer(150, 1) ;	
-		_tInit.addEventListener(TimerEventType.TIMER, new Delegate(this, f || onLoadInit)) ;
+		_tInit.addEventListener(TimerEvent.TIMER, new Delegate(this, f || onLoadInit)) ;
 	}
 
 	/*protected*/ private function _setProgressTimer( f:Function ) 
 	{
 		_tProgress = new Timer(50) ;
-		_tProgress.addEventListener(TimerEventType.TIMER, new Delegate(this, f || _onLoadProgress)) ;
+		_tProgress.addEventListener(TimerEvent.TIMER, new Delegate(this, f || _onLoadProgress)) ;
 	}
 
 	/*protected*/ private function _setRunning( b:Boolean ):Void 

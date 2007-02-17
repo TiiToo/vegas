@@ -27,6 +27,50 @@ import vegas.util.MathsUtil;
 
 /**
  * Converts an object to an iterator.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import vegas.data.iterator.ObjectIterator ;
+ * import vegas.data.iterator.Iterator ;
+ * 
+ * var o:Object = {} ;
+ * for (var i:Number = 0 ; i<5; i++)
+ * {
+ *      o["prop"+i] = "item"+i ;
+ * }
+ * 
+ * var it:Iterator = new ObjectIterator(o) ;
+ * trace ("-- object iterator") ;
+ * 
+ * while (it.hasNext())
+ * {
+ *     var next = it.next() ;
+ *     var index = ObjectIterator(it).index() ;
+ *     var key = it.key() ;
+ *     trace ("it >> " + index + " :: " + key + " : " + next) ;
+ * }
+ * 
+ * trace ("-- it seek 1") ;
+ * 
+ * it.seek(1) ;
+ * 
+ * while (it.hasNext())
+ * {
+ *     it.next() ;
+ *     trace ("it remove : " + it.remove()) ;
+ * }
+ * 
+ * trace ("-- it reset") ;
+ * 
+ * it.reset() ;
+ * 
+ * while (it.hasNext())
+ * {
+ *     var next = it.next() ;
+ *     var index = ObjectIterator(it).index() ;
+ *     var key = it.key() ;
+ *     trace ("it >> " + index + " :: " + key + " : " + next) ;
+ * }
+ * }
  * @author eKameleon
  */
 class vegas.data.iterator.ObjectIterator extends CoreObject implements Iterator 

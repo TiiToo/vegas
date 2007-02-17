@@ -28,6 +28,38 @@ import vegas.util.serialize.Serializer;
 
 /**
  * Converts an {@code Array} to an iterator.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import vegas.data.iterator.ArrayIterator ;
+ * import vegas.data.iterator.Iterator ;
+ * 
+ * var ar:Array = ["item1", "item2", "item3", "item4"] ;
+ * var it:Iterator = new ArrayIterator(ar) ;
+ * 
+ * while (it.hasNext())
+ * {
+ *     trace (it.next()) ;
+ * }
+ * 
+ * trace ("--- it reset") ;
+ * 
+ * it.reset() ;
+ * while (it.hasNext()) 
+ * {
+ *     trace (it.next() + " : " + it.key()) ;
+ * }
+ * 
+ * trace ("--- it seek 2") ;
+ * 
+ * it.seek(2) ;
+ * while (it.hasNext())
+ * {
+ *     trace (it.next()) ;
+ * }
+ * 
+ * trace ("---") ;
+ * 
+ * }
  * @author eKameleon
  */
 class vegas.data.iterator.ArrayIterator extends CoreObject implements Iterator 

@@ -26,7 +26,7 @@ import pegas.process.AbstractAction;
 import vegas.core.ITimer;
 import vegas.events.Delegate;
 import vegas.events.EventListener;
-import vegas.events.TimerEventType;
+import vegas.events.TimerEvent;
 import vegas.util.FrameTimer;
 import vegas.util.Timer;
 
@@ -278,11 +278,11 @@ class pegas.transitions.Motion extends AbstractAction
 		if (_timer) 
 		{
 			_timer.stop();
-			_timer.removeEventListener(TimerEventType.TIMER, _oNext) ;
+			_timer.removeEventListener(TimerEvent.TIMER, _oNext) ;
 			_timer = null ;
 		}
 		_timer = timer ;
-		_timer.addEventListener(TimerEventType.TIMER, _oNext ) ;
+		_timer.addEventListener(TimerEvent.TIMER, _oNext ) ;
 	}
 	
 	/**

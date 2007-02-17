@@ -22,7 +22,6 @@
 */
 
 import vegas.events.TimerEvent;
-import vegas.events.TimerEventType;
 import vegas.util.AbstractTimer;
 
 /**
@@ -34,7 +33,6 @@ import vegas.util.AbstractTimer;
  * import vegas.events.Delegate ;
  * import vegas.events.EventListener ;
  * import vegas.events.TimerEvent ;
- * import vegas.events.TimerEventType ;
  * import vegas.util.Timer  ;
  * 
  * function onTimer(event:TimerEvent):Void 
@@ -45,9 +43,9 @@ import vegas.util.AbstractTimer;
  * var timeListener:EventListener = new Delegate(this, onTimer) ;
  * 
  * var myTimer:Timer = new Timer(1500, 3) ;
- * myTimer.addEventListener(TimerEventType.START, timeListener);
- * myTimer.addEventListener(TimerEventType.STOP, timeListener);
- * myTimer.addEventListener(TimerEventType.TIMER, timeListener);
+ * myTimer.addEventListener(TimerEvent.START, timeListener);
+ * myTimer.addEventListener(TimerEvent.STOP, timeListener);
+ * myTimer.addEventListener(TimerEvent.TIMER, timeListener);
  * myTimer.start();
  * }
  * @author eKameleon
@@ -123,7 +121,7 @@ class vegas.util.Timer extends AbstractTimer
 	 */
 	private function _next():Void 
 	{
-		dispatchEvent( new TimerEvent(TimerEventType.TIMER, this) ) ;
+		dispatchEvent( new TimerEvent(TimerEvent.TIMER, this) ) ;
 		_count ++ ;
 		if (_repeatCount != 0 && _repeatCount == _count) 
 		{

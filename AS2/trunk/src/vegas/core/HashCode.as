@@ -71,7 +71,7 @@ class vegas.core.HashCode
 
 	/**
 	 * Indenfity the hashcode value of an object.
-	 * 
+	 * @return the hashcode value of an object.
 	 */
 	static public function identify(o):Number 
 	{

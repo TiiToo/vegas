@@ -22,8 +22,6 @@
 */
 
 import vegas.core.ICloneable;
-import vegas.core.IFormattable;
-import vegas.core.ISerializable;
 import vegas.data.iterator.Iterable;
 import vegas.data.iterator.Iterator;
 import vegas.data.Stack;
@@ -34,26 +32,52 @@ import vegas.util.TypeUtil;
 
 /**
  * TypedQueue is a wrapper for Stack instances that ensures that only values of a specific type can be added to the wrapped stack.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import vegas.data.Stack ;
+ * import vegas.data.stack.SimpleStack ;
+ * import vegas.data.stack.TypedStack ;
+ * 
+ * var s:Stack = new SimpleStack() ;
+ * s.push("item1") ;
+ * s.push("item2") ;
+ * s.push("item3") ;
+ * 
+ * var ts:Stack = new TypedStack(String, s) ;
+ * ts.push("item4") ;
+ * 
+ * trace("stack >> " + ts.size() + " : " + ts) ;
+ * trace("stack.toSource : " + ts.toSource()) ;
+ * 
+ * ts.push(2) ;
+ * }
  * @author eKameleon
  */
-class vegas.data.stack.TypedStack extends AbstractTypeable implements ICloneable, Iterable, ISerializable, Stack, IFormattable 
+class vegas.data.stack.TypedStack extends AbstractTypeable implements ICloneable, Iterable, Stack 
 {
 
 	/**
 	 * Creates a new TypedStack instance.
+	 * @param type the type class of this ITypeable object.
+	 * @param stack the Stack reference protected with this ITypeable object.
+	 * @throws IllegalArgumentError if the {@code type} argument is {@code null} or {@code undefined}.
+	 * @throws IllegalArgumentError if the {@code stack} argument is {@code null} or {@code undefined}.
 	 */
-	public function TypedStack(p_type:Function , p_stack:Stack) 
+	public function TypedStack( type:Function , stack:Stack) 
 	{
-		super(p_type) ;
-		if (!p_stack) 
+		super( type ) ;
+		if ( stack == null  ) 
 		{
-			throw new IllegalArgumentError("TypedStack constructor, argument 'p_stack' must not be 'null' or 'undefined'.") ;
+			throw new IllegalArgumentError("TypedStack constructor failed, argument 'stack' must not be 'null' or 'undefined'.") ;
 		}
-		_stack = p_stack ;
+		_stack = stack ;
 		if (_stack.size() > 0) 
 		{
 			var it:Iterator = _stack.iterator() ;
-			while (it.hasNext()) validate(it.next()) ;
+			while (it.hasNext()) 
+			{
+				validate(it.next()) ;
+			}
 		}
 	}
 

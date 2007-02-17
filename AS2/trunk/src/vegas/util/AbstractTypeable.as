@@ -40,6 +40,7 @@ class vegas.util.AbstractTypeable extends CoreObject implements ITypeable, IVali
 
 	/**
 	 * Creates a new ITypeable instance if you extend this class.
+	 * @param type the Type of this ITypeable object.
 	 */
 	private function AbstractTypeable(type:Function) 
 	{
@@ -54,6 +55,7 @@ class vegas.util.AbstractTypeable extends CoreObject implements ITypeable, IVali
 
 	/**
 	 * Returns the type of the ITypeable object.
+	 * @return the type of the ITypeable object.
 	 */
 	public function getType():Function 
 	{
@@ -69,7 +71,7 @@ class vegas.util.AbstractTypeable extends CoreObject implements ITypeable, IVali
 	}
 
 	/**
-	 * Returns true if the IValidator object validate the value.
+	 * Returns {@code true} if the IValidator object validate the value.
 	 * @return {@code true} is this specific value is valid.
 	 */
 	public function supports( value ):Boolean 

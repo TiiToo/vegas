@@ -38,7 +38,6 @@ import vegas.events.EventListener;
 import vegas.events.EventListenerCollection;
 import vegas.events.IEventDispatcher;
 import vegas.events.TimerEvent;
-import vegas.events.TimerEventType;
 import vegas.util.factory.DisplayFactory;
 import vegas.util.FrameTimer;
 import vegas.util.MathsUtil;
@@ -68,7 +67,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 		_eStyleChange     = new UIEvent( UIEventType.STYLE_CHANGE, this) ;
 		
 		___timer___ = new FrameTimer(24, 1) ;
-		___timer___.addEventListener(TimerEventType.TIMER, new Delegate(this, _redraw)) ;
+		___timer___.addEventListener(TimerEvent.TIMER, new Delegate(this, _redraw)) ;
 		
 		initialize() ;
 		

@@ -40,7 +40,6 @@ import vegas.events.EventListener;
 import vegas.events.EventListenerCollection;
 import vegas.events.IEventDispatcher;
 import vegas.events.TimerEvent;
-import vegas.events.TimerEventType;
 import vegas.util.ConstructorUtil;
 import vegas.util.Timer;
 import vegas.util.TypeUtil;
@@ -56,8 +55,6 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 	 */
 	function NetServerConnection() 
 	{
-		
-		super() ;
 		
 		_dispatcher = initEventDispatcher() ;
 		
@@ -231,15 +228,16 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 		_policy = policy ;
 		if (_policy == NetServerPolicy.LIMIT) 
 		{
-			_timer.addEventListener(TimerEventType.TIMER, _timeOut) ;
+			_timer.addEventListener(TimerEvent.TIMER, _timeOut) ;
 		}
 		else 
 		{
-			_timer.removeEventListener(TimerEventType.TIMER, _timeOut) ;
+			_timer.removeEventListener(TimerEvent.TIMER, _timeOut) ;
 		}
 	}
 
-	public function setParent(parent:EventDispatcher):Void {
+	public function setParent(parent:EventDispatcher):Void 
+	{
 		_dispatcher.parent = parent ;
 	}
 
@@ -258,11 +256,19 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 		}
 	}
 
+	/**
+	 * Returns the string Eden representation of this object.
+	 * @return the string Eden representation of this object.
+	 */
 	/*override*/ public function toSource(indent : Number, indentor : String) : String 
 	{
 		return null ;
 	}
 	
+	/**
+	 * Returns the string representation of this object.
+	 * @return the string representation of this object.
+	 */
 	public function toString():String 
 	{
 		return "[" + ConstructorUtil.getName(this) + "]" ;
@@ -297,33 +303,40 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 		{
 			
 			case NetServerStatus.BAD_VERSION :
+			{
 				notifyStatus(NetServerStatus.BAD_VERSION) ;
 				break ;
-			
+			}
 			case NetServerStatus.CLOSED :
+			{
 				notifyStatus(NetServerStatus.CLOSED) ;
 				break ;
-			
+			}
 			case NetServerStatus.FAILED :
+			{
 				notifyStatus(NetServerStatus.FAILED, oInfo) ;
 				break ;
-			
+			}
 			case NetServerStatus.INVALID :
+			{
 				notifyStatus(NetServerStatus.INVALID) ;
 				break ;
-				
+			}	
 			case NetServerStatus.REJECTED :
+			{
 				notifyStatus(NetServerStatus.REJECTED) ;
 				break ;
-			
+			}
 			case NetServerStatus.SHUTDOWN :
+			{
 				notifyStatus(NetServerStatus.SHUTDOWN) ;
 				break ;
-			
+			}
 			case NetServerStatus.SUCCESS :
+			{
 				notifyStatus(NetServerStatus.SUCCESS) ;
 				break ;
-			
+			}
 		}
 		
 		notifyFinished() ;

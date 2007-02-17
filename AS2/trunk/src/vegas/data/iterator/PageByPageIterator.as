@@ -28,6 +28,55 @@ import vegas.util.MathsUtil;
 
 /**
  * An iterator page by page over an array who return an new array of elements.
+ * If the step size value is {@code 1} the next and previous methods returns the single value element in the data array.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import vegas.data.iterator.PageByPageIterator
+ * 
+ * var ar:Array = [1, 2, 3, 4, 5, 6, 7, 8] ;
+ * 
+ * var it:PageByPageIterator = new PageByPageIterator(1, ar) ;
+ *
+ * var next:Function = function()
+ * {
+ *     if (!it.hasNext())
+ *     {
+ *         it.reset() ;
+ *     }
+ *     var next = it.next()
+ *     trace( "> " + next + " : " + it.currentPage() ) ;
+ * }
+ * 
+ * var prev:Function = function()
+ * {
+ *     if ( !it.hasPrevious())
+ *     {
+ *         it.lastPage() ;
+ *     }
+ *     var prev = it.previous() ;
+ *     trace( "> " + prev + " : " + it.currentPage() ) ;
+ * }
+ * 
+ * Key.addListener(this) ;
+ * 
+ * onKeyDown = function()
+ * {
+ *     var code:Number = Key.getCode() ;
+ *     switch (code)
+ *     {
+ *         case Key.LEFT :
+ *         {
+ *             prev() ;
+ *             break ;
+ *         }
+ *         case Key.RIGHT :
+ *         {
+ *             next() ;
+ *             break ;
+ *         }
+ *     }
+ * }
+ * }
  * @author eKameleon
  */
 class vegas.data.iterator.PageByPageIterator extends CoreObject implements OrderedIterator 
@@ -35,6 +84,8 @@ class vegas.data.iterator.PageByPageIterator extends CoreObject implements Order
 	
 	/**
 	 * Creates a new PageByPageIterator.
+	 * @param stepSize the step size value.
+	 * @param data the array to enumerate.
 	 * @throws UnsupportedOperation if the data array is empty.
 	 */
 	public function PageByPageIterator( stepSize:Number, data:Array )
@@ -48,7 +99,6 @@ class vegas.data.iterator.PageByPageIterator extends CoreObject implements Order
 			_currentPage = 0 ;
 			_step = (stepSize > 1) ? stepSize : DEFAULT_STEP ; 
 			_pageCount =  Math.ceil(len / _step) ;
-			
 		}
 		else
 		{
@@ -57,6 +107,9 @@ class vegas.data.iterator.PageByPageIterator extends CoreObject implements Order
 		
 	}
 
+	/**
+	 * The default step value in all the PageByPageIterators.
+	 */
 	static public var DEFAULT_STEP:Number = 1 ;
 
 	/**
@@ -67,10 +120,19 @@ class vegas.data.iterator.PageByPageIterator extends CoreObject implements Order
 	{
 		return _currentPage ;
 	}
+	
+	/**
+	 * Returns the step size of this PageByPageIterator.
+	 * @return the step size of this PageByPageIterator.
+	 */
+	public function getStepSize():Number
+	{
+		return _step ;	
+	}
 
 	/**
 	 * Checks to see if there is a previous element that can be iterated to.
-	 * @return true if the iterator has more elements.
+	 * @return {@code true} if the iterator has more elements.
 	 */
 	public function hasPrevious() : Boolean 
 	{
@@ -78,8 +140,8 @@ class vegas.data.iterator.PageByPageIterator extends CoreObject implements Order
 	}
 
 	/**
-	 * Returns true if the iteration has more elements.
-	 * @return true if the iterator has more elements.
+	 * Returns {@code true} if the iteration has more elements.
+	 * @return {@code true} if the iterator has more elements.
 	 */
 	public function hasNext() : Boolean 
 	{
@@ -88,32 +150,42 @@ class vegas.data.iterator.PageByPageIterator extends CoreObject implements Order
 
 	/**
 	 * Returns the current page number.
+	 * @return the current page number.
 	 */
 	public function key() 
 	{
 		return _currentPage ;
 	}
+	
+	/**
+	 * Seek the iterator in the last page of this object.
+	 */
+	public function lastPage():Void
+	{
+		seek( _pageCount + 1 ) ;
+	}
 
 	/**
-	 * Gets the next page of elements.
+	 * Returns the next Array page of elements or the next element in the Array if the getStepSize() value is 1.
+	 * @return the next Array page of elements or the next element in the Array if the getStepSize() value is 1.
 	 */
 	public function next() 
 	{
-		if (hasNext())
+		var index:Number = _step * _key++ ;
+		_currentPage = _key ;
+		if (_step > 1)
 		{
-			var index:Number = _step * _key++ ;
-			_currentPage = _key ;
-			var next:Array = _data.slice(index, index + _step) ;
-			return next ;
+			return _data.slice(index, index + _step) ;
 		}
 		else
 		{
-			return null ;
-		} 
+			return _data[index] ;
+		}
 	}
 
 	/**
 	 * Returns the numbers of page of this iterator.
+	 * @return the numbers of page of this iterator.
 	 */
 	public function pageCount():Number
 	{
@@ -121,27 +193,27 @@ class vegas.data.iterator.PageByPageIterator extends CoreObject implements Order
 	}
 
 	/**
-	 * Gets the previous element from the collection.
+	 * Returns the previous Array page of elements or the previous element in the Array if the getStepSize() value is 1.
+	 * @return the previous element from the collection.
 	 */
 	public function previous() 
 	{
-		if (hasPrevious())
+		_currentPage -- ;
+		_key -- ;
+		var index:Number = _step * (_key-1) ;
+		if (_step > 1)
 		{
-			_currentPage -- ;
-			_key -- ;
-			var index:Number = _step * (_key-1) ;
-			var prev:Array = _data.slice(index, index + _step) ;
-			return prev ;
+			return _data.slice(index, index + _step) ;
 		}
 		else
 		{
-			return null ;
-		} 
+			return _data[index] ;	
+		}
 	}
 
 	/**
 	 * Unsupported operation in a PageByPageIterator.
-	 * @throws UnsupportedOperation
+	 * @throws UnsupportedOperation the method remove() in this iterator is unsupported. 
 	 */
 	public function remove() 
 	{
@@ -149,7 +221,7 @@ class vegas.data.iterator.PageByPageIterator extends CoreObject implements Order
 	}
 
 	/**
-	 * Reset the key pointer of the iterator.
+	 * Resets the key pointer of the iterator.
 	 */
 	public function reset():Void 
 	{
@@ -162,7 +234,7 @@ class vegas.data.iterator.PageByPageIterator extends CoreObject implements Order
 	 */
 	public function seek(n : Number):Void 
 	{
-		_key = MathsUtil.clamp( n, 0, (_pageCount-1) ) ;
+		_key = MathsUtil.clamp( n++, 0, _pageCount+1 ) ;
 		_currentPage = _key ;
 	}
 

@@ -30,7 +30,6 @@ import pegas.events.MouseEventType;
 
 import vegas.events.Delegate;
 import vegas.events.TimerEvent;
-import vegas.events.TimerEventType;
 import vegas.util.Timer;
 
 /**
@@ -46,7 +45,7 @@ class lunas.display.components.container.AutoScrollContainer extends ScrollConta
 	{
 		super() ;
 		_timer = new Timer(200);
-		_timer.addEventListener(TimerEventType.TIMER, new Delegate(this, _mouseEvent));
+		_timer.addEventListener(TimerEvent.TIMER, new Delegate(this, _mouseEvent));
 		updateMouseEvent() ;
 	}
 	

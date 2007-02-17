@@ -15,6 +15,7 @@ vegas.util.format
 asgard.events
 vegas.util.observer
 lunas.display.components.button
+andromeda.data.iterator
 buRRRn.eden
 lunas.display.components.text
 buRRRn.ASTUce
@@ -22,6 +23,7 @@ asgard.config
 asgard.data.iterator
 pegas.colors
 vegas.data.set
+andromeda.data.map
 andromeda.model
 vegas.logging.targets
 buRRRn.ASTUce.samples
@@ -48,6 +50,7 @@ lunas.display.group
 vegas.logging.errors
 lunas.display.components.container
 asgard.text
+andromeda.data.tree
 vegas.data.queue
 vegas.util.mvc
 vegas.util

@@ -32,7 +32,7 @@ import pegas.process.AbstractAction;
 import pegas.process.Action;
 
 import vegas.events.Delegate;
-import vegas.events.TimerEventType;
+import vegas.events.TimerEvent;
 import vegas.util.Timer;
 
 /**
@@ -58,7 +58,7 @@ class asgard.media.PrintScreen extends AbstractAction implements Action
 		_rec = new Rectangle() ;
 		
 		_timer = new Timer( DEFAULT_PROGRESS_DELAY ) ;
-		_timer.addEventListener( TimerEventType.TIMER , new Delegate(this, _onTimer ) ) ;
+		_timer.addEventListener( TimerEvent.TIMER , new Delegate(this, _onTimer ) ) ;
 		
 		setTarget( display ) ;
 		

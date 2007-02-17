@@ -30,6 +30,9 @@ class vegas.data.list.LinkedListEntry
 
 	/**
 	 * Creates a new LinkedListEntry instance.
+	 * @param element the value of the entry in the LinkedList
+	 * @param the next LinkedListEntry of this entry.
+	 * @param the previous LinkedListEntry of this entry.
 	 */
 	function LinkedListEntry( element , next:LinkedListEntry , previous:LinkedListEntry)
 	{

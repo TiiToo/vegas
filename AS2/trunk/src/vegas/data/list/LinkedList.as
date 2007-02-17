@@ -47,8 +47,110 @@ import vegas.util.serialize.Serializer;
  * <p>These operations allow linked lists to be used as a stack, queue, etc.</p>
  * <p><b>Example :</b></p>
  * {@code
+ * import vegas.data.Collection ;
+ * import vegas.data.collections.SimpleCollection ;
+ * import vegas.data.iterator.Iterator ;
+ * import vegas.data.iterator.ListIterator ;
  * import vegas.data.list.LinkedList ;
- * var list:LinkedList = new LinkedList() ;
+ * 
+ * var c1:Collection = new SimpleCollection() ;
+ * c1.insert("item0") ;
+ * c1.insert("item1") ;
+ * c1.insert("item2") ;
+ * c1.insert("item3") ;
+ * c1.insert("item4") ;
+ * c1.insert("item5") ;
+ * c1.insert("item6") ;
+ * c1.insert("item7") ;
+ * c1.insert("item8") ;
+ * c1.insert("item9") ;
+ * 
+ * trace("c1 : " + c1) ;
+ * 
+ * var c2:Collection = new SimpleCollection() ;
+ * c2.insert("item7") ;
+ * c2.insert("item8") ;
+ * 
+ * trace("c2 : " + c1) ;
+ * 
+ * var list:LinkedList = new LinkedList(c1) ;
+ * 
+ * trace ("list toSource : " + list.toSource()) ;
+ * 
+ * trace ("-----") ;
+ * 
+ * trace ("create list : " + list) ;
+ * 
+ * trace("list.contains('item1') : " + list.contains("item1") ) ;
+ * 
+ * list.insertAt(2,'test')
+ * trace("list.insertAt(2,'test')" + list ) ;
+ * 
+ * list.removeAt(2) ;
+ * trace ("list.removeAt(2) : " + list) ;
+ * 
+ * list.remove("item4") ;
+ * trace ("list.remove('item4') : " + list) ;
+ * 
+ * list.removeFirst() ;
+ * trace ("list.removeFirst() : " + list) ;
+ * 
+ * list.removeLast() ;
+ * trace ("list.removeLast() : " + list) ;
+ * 
+ * list.removesAt(1, 4) ;
+ * trace ("list.removesAt(1, 4) : " + list) ;
+ * 
+ * list.removeRange(1, 3) ;
+ * trace ("list.removeRange(1, 3) : " + list) ;
+ * 
+ * trace ("-----") ;
+ * 
+ * list.insertAllAt(0, c2) ;
+ * trace ("list.insertAllAt(0, c2) : " + list) ;
+ * 
+ * trace ("--- ListIterator") ;
+ * 
+ * var it:ListIterator = list.listIterator() ;
+ * var i = 0 ;
+ * while (it.hasNext())
+ * {
+ *     it.next() ;
+ *     it.set("element" + i++) ;
+ * }
+ * trace (">> " + list) ;
+ * 
+ * trace ("---") ;
+ * 
+ * var it:ListIterator = list.listIterator(list.size()) ;
+ * while(it.hasPrevious())
+ * {
+ *     trace (it.previous()) ;
+ * }
+ * 
+ * //*
+ * trace ("-----") ;
+ * 
+ * list.insertFirst("begin") ;
+ * trace ("list.insertFirst('begin') : " + list) ;
+ *  
+ * list.insertLast("end") ;
+ * trace ("list.insertLast('end') : " + list) ;
+ * 
+ * trace ("list.getFirst() : " + list.getFirst()) ;
+ * trace ("list.getLast() : " + list.getLast()) ;
+ * 
+ * list.removeFirst() ;
+ * trace ("list.removeFirst() : " + list) ;
+ * 
+ * list.removeLast() ;
+ * trace ("list.removeLast() : " + list) ;
+ * 
+ * trace ("---- clear") ;
+ * list.clear() ;
+ * 
+ * trace("list.size() : " + list.size()) ;
+ * trace("list.isEmpty : " + list.isEmpty() ) ;
  * }
  * @author eKameleon
  */
