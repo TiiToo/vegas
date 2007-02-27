@@ -43,7 +43,7 @@ class andromeda.model.AbstractModel extends AbstractCoreEventDispatcher implemen
 	 */	
 	function AbstractModel( id , bGlobal:Boolean , sChannel:String ) 
 	{
-		_setID( id || hashCode() ) ;
+		setID( id || hashCode() ) ;
 		setGlobal( bGlobal , sChannel ) ;
 	}
 
@@ -134,9 +134,9 @@ class andromeda.model.AbstractModel extends AbstractCoreEventDispatcher implemen
 	private var _id ;
 	
 	/**
-	 * The internal flag to indicate if the 
+	 * The internal flag to indicate if the model is global.
 	 */
-	private var _isGlobal ;
+	private var _isGlobal:Boolean ;
 
 	/**
 	 * Internal method to register the IModel in the ModelCollector with the specified id in argument.

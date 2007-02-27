@@ -52,6 +52,9 @@ class pegas.process.AbstractAction extends AbstractCoreEventDispatcher implement
 		
 	}
 	
+	/**
+	 * The flag to determinate if the Action object is looped.
+	 */
 	public var looping:Boolean ;
 
 	/**

@@ -33,6 +33,7 @@ import vegas.events.EventListener;
 import vegas.util.serialize.Serializer;
 
 /**
+ * A Sequencer of Action process.
  * @author eKameleon
  */
 class pegas.process.Sequencer extends AbstractAction 
@@ -119,6 +120,7 @@ class pegas.process.Sequencer extends AbstractAction
 	
 	/**
 	 * Returns the numbers of process in this Sequencer.
+	 * @return the numbers of process in this Sequencer.
 	 */
 	public function size():Number 
 	{
@@ -153,6 +155,7 @@ class pegas.process.Sequencer extends AbstractAction
 	
 	/**
 	 * Returns the array representation of all process in this Sequencer.
+	 * @return the array representation of all process in this Sequencer.
 	 */
 	public function toArray():Array 
 	{

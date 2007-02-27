@@ -39,6 +39,7 @@ class vegas.data.collections.AbstractCollection extends CoreObject implements Co
 	
 	/**
 	 * Creates a new AbstractCollection.
+	 * @param ar (optional) an array to fill the collection.
 	 */
 	private function AbstractCollection(ar:Array) 
 	{
@@ -80,6 +81,7 @@ class vegas.data.collections.AbstractCollection extends CoreObject implements Co
 
 	/**
 	 * Returns the element from this collection at the passed index.
+	 * @return the element from this collection at the passed index.
 	 */
 	public function get(id:Number) 
 	{ 
@@ -166,6 +168,7 @@ class vegas.data.collections.AbstractCollection extends CoreObject implements Co
 
 	/**
 	 * Returns the number of elements in this collection.
+	 * @return the number of elements in this collection.
 	 */
 	public function size():Number 
 	{ 
@@ -174,6 +177,7 @@ class vegas.data.collections.AbstractCollection extends CoreObject implements Co
 
 	/**
 	 * Returns an array containing all of the elements in this collection.
+	 * @return an array containing all of the elements in this collection.
 	 */
 	public function toArray():Array 
 	{ 

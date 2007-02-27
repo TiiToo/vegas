@@ -46,7 +46,7 @@ class Tests.vegas.core.TestCoreObject extends TestCase
 	public function testConstructor()
 	{
 		assertNotNull( o, "CO_00_01 - constructor is null") ;
-		assertTrue( o instanceof CoreObject , "CO_00_02 - constructor is an instance of CoreObject.") ;
+		assertFalse( o instanceof CoreObject , "CO_00_02 - constructor is an instance of CoreObject.") ;
 	}
 	
 	public function testInherit()

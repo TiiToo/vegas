@@ -125,7 +125,8 @@ class vegas.events.BasicEvent extends CoreObject implements Event
 	}
 
 	/**
-	 * The event target.
+	 * Returns the event target.
+	 * @return the event target.
 	 */
 	public function getTarget() {
 		return _target ;
@@ -133,6 +134,7 @@ class vegas.events.BasicEvent extends CoreObject implements Event
 	
 	/**
 	 * Returns the timestamp of the event.
+	 * @return the timestamp of the event.
 	 */
 	public function getTimeStamp():Number 
 	{
@@ -140,7 +142,8 @@ class vegas.events.BasicEvent extends CoreObject implements Event
 	}
 	
 	/**
-	 * The type of event.
+	 * Returns the type of event.
+	 * @return the type of event.
 	 */
 	public function getType():String 
 	{

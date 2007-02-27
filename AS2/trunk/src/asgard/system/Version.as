@@ -120,11 +120,13 @@ import vegas.util.factory.PropertyFactory;
 import vegas.util.MathsUtil;
 
 
-class asgard.system.Version extends CoreObject implements IComparable, IEquality, ISerializable {
+class asgard.system.Version extends CoreObject implements IComparable, IEquality, ISerializable 
+{
 	
 	// -----o Constructor
 	
-	public function Version( p_major:Number, p_minor:Number, p_build:Number, p_revision:Number ) {
+	public function Version( p_major:Number, p_minor:Number, p_build:Number, p_revision:Number ) 
+	{
 		major = _checkValue( p_major, 0xF ) ; // max : 15
 		minor = _checkValue( p_minor, 0xF ) ; // max : 15
 		build = _checkValue( p_build, 0xFFF ) ; // max : 4095

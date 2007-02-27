@@ -131,6 +131,7 @@ class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEv
 
 	/**
 	 * Returns the target of this instance.
+	 * @return the target of this instance.
 	 */
 	public function getTarget() 
 	{

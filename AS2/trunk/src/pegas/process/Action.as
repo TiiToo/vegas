@@ -23,6 +23,10 @@
 
 import vegas.core.IRunnable;
 
+/**
+ * This interface represents a process object.
+ * @author eKameleon
+ */
 interface pegas.process.Action extends IRunnable 
 {
 
