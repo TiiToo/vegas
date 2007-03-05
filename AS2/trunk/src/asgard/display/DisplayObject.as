@@ -29,6 +29,7 @@ import asgard.net.ILoader;
 import vegas.errors.IllegalArgumentError;
 import vegas.errors.Warning;
 import vegas.events.AbstractCoreEventDispatcher;
+import vegas.util.ConstructorUtil;
 import vegas.util.factory.DisplayFactory;
 
 /**
@@ -244,7 +245,8 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	public var view ;
 	
 	/**
-	 * (read-write) Sets the width of the display's view.
+	 * (read-write) Returns the width of the display's view.
+	 * @return the width of the display's view.
 	 */
 	public function get width():Number 
 	{
@@ -252,7 +254,7 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	}
 
 	/**
-	 * (read-write) Returns the width of the display's view.
+	 * (read-write) Sets the width of the display's view.
 	 */
 	public function set width(n:Number):Void 
 	{
@@ -261,6 +263,7 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 
 	/**
 	 * (read-write) Returns the x position of the display's view.
+	 * @return the x position of the display's view.
 	 */
 	public function get x():Number 
 	{
@@ -277,6 +280,7 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	
 	/**
 	 * (read-write) Returns the y position of the display's view.
+	 * @return the y position of the display's view.
 	 */
 	public function get y():Number 
 	{
@@ -292,7 +296,8 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	}
 
 	/**
-	 * Create a new child in the view of the display.
+	 * Creates and returns a new child in the view of the display.
+	 * @return a new Child in the view of the display
 	 * @see DisplayFactory.createChild
 	 */
 	public function createChild( o , name:String , depth:Number , init ) 
@@ -301,7 +306,8 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	}
 	
 	/**
-	 * Returns true if the display's view is enabled.
+	 * Returns {@code true} if the display's view is enabled.
+	 * @return {@code true} if the display's view is enabled.
 	 */
 	public function getEnabled():Boolean 
 	{ 
@@ -309,7 +315,8 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	} 
 	
 	/**
-	 * Returns the height of the display's view.
+	 * Returns the {@code height} of the display's view.
+	 * @return the {@code height} of the display's view.
 	 */
 	public function getHeight():Number 
 	{ 
@@ -318,6 +325,7 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	
 	/**
 	 * Returns the loader of the display.
+	 * @return the loader of the display.
 	 */
 	public function getLoader():ILoader 
 	{
@@ -326,6 +334,7 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	
 	/**
 	 * Returns the name of the display.
+	 * @return the name of the display.
 	 */
 	public function getName():String
 	{
@@ -333,7 +342,8 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	}
 
 	/**
-	 * Returns the width of the display's view.
+	 * Returns the {@code width} of the display's view.
+	 * @return the {@code width} of the display's view.
 	 */
 	public function getWidth():Number 
 	{ 
@@ -341,7 +351,8 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	}
 
 	/**
-	 * Return the x position of the display.
+	 * Returns the {@code x} position of the display.
+	 * @return the {@code x} position of the display.
 	 */
 	public function getX():Number 
 	{ 
@@ -349,7 +360,8 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	}
 
 	/**
-	 * Returns the y position of the display.
+	 * Returns the {@code y} position of the display.
+	 * @return the {@code y} position of the display.
 	 */
 	public function getY():Number 
 	{ 
@@ -372,7 +384,8 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	}
 
 	/**
-	 * Returns 'true' if the display is visible.
+	 * Returns {@code true} if the display is visible.
+	 * @return {@code true} if the display is visible.
 	 */
 	public function isVisible():Boolean 
 	{
@@ -442,8 +455,9 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	}
 	
 	/**
-	 * Returns an instance in a visual DisplayObject if exist else throws a Warning.
-	 * @throws Warning
+	 * Returns an instance in a visual DisplayObject if exist else throws a Warning error.
+	 * @return an instance in a visual DisplayObject if exist else throws a Warning error.
+	 * @throws Warning if the resolve failed with the specified instance name.
 	 */
 	public function resolve( name:String )
 	{
@@ -455,6 +469,17 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 		{
 			throw new Warning( this + " resolve failed with the view : '" + name );
 		}
+	}
+	
+	/**
+	 * Returns the visual instance creates with the specified visual class and the instance name in argument.
+	 * @param clazz the visual class.
+	 * @param name the name of the instance in the view scope of the display. 
+	 * @throws Warning if the resolve failed with the specified instance name.
+	 */
+	public function resolveVisual( clazz:Function , name:String )
+	{
+		return ConstructorUtil.createVisualInstance( clazz , resolve( name ) ) ;
 	}
 	
 	/**
@@ -498,13 +523,9 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	 */
 	private function _setName( name:String ) : Void 
 	{
-
 		DisplayObjectCollector.remove( _sName ) ;
-		
 		_sName = name ;
-		
 		DisplayObjectCollector.insert ( _sName, this ) ;
-		
 	}
 	
 }
