@@ -21,115 +21,6 @@
   
 */
 
-/** SimpleButton
-
-	AUTHOR
-
-		Name : SimpleButton
-		Package : lunas.display.components.button
-		Version : 1.0.0.0
-		Date :  2006-05-20
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		SimpleButton s'utilise directement dans les paramètres de liaision d'un clip dans la bibliothèque des symboles.
-		Il faut que le clip possède en interne 4 images clés ayant pour nom d'étiquette :
-			- disabled : état visuel lorsque le bouton est désactivé.
-			- down     : état visuel lorsque l'utilisateur clique sur le bouton.
-		    - over     : état visuel lorsque l'utilisateur passe la souris sur le bouton.
-			- up       : état visuel de base du bouton (souvant la première image clé.
- 
- 		Remarque : la méthode 'stop()' est invoqué lorsque le bouton apparait sur la scène.
-
-	PROPERTY SUMMARY
-
-		- index:Number
-		
-		- data:Object
-		
-		- label:String [R/W]
-		
-		- selected:Boolean [R/W]
-		
-		- toggle:Boolean [R/W]
-	
-	METHOD SUMMARY
-		
-		- getLabel():String
-		
-		- getSelected():Boolean
-		
-		- getToggle():Boolean
-		
-		- setLabel(str:String):Void
-		
-		- setSelected(b:Boolean, noEvent:Boolean):Void
-		
-		- setToggle(b:Boolean):Void
-		
-		- final viewEnabled():Void
-		
-		- viewLabelChanged():Void
-		
-			override this method !
-
-	EVENT SUMMARY
-	
-		ButtonEvent
-	
-	EVENT TYPE SUMMARY
-	
-		- ButtonEvent.CLICK:String
-		
-		- ButtonEvent.DISABLED:String
-		
-		- ButtonEvent.DOUBLE_CLICK:String
-		
-		- ButtonEvent.DOWN:String
-		
-		- ButtonEvent.ICON_CHANGE:String
-		
-		- ButtonEvent.LABEL_CHANGE:String
-		
-		- ButtonEvent.MOUSE_UP:String
-		
-		- ButtonEvent.MOUSE_DOWN:String
-		
-		- ButtonEvent.OUT:String
-		
-		- ButtonEvent.OUT_SELECTED:String
-		
-		- ButtonEvent.OVER:String
-		
-		- ButtonEvent.OVER_SELECTED:String
-		
-		- ButtonEvent.ROLLOUT:String
-		
-		- ButtonEvent.ROLLOVER:String
-		
-		- ButtonEvent.SELECT:String
-		
-		- ButtonEvent.UNSELECT:String
-		
-		- ButtonEvent.UP:String
-
-	IMPLEMENTS 
-	
-		IButton, IEventTarget
-
-	INHERIT 
-	
-		MovieClip → AbstractComponent → AbstractButton → SimpleButton  
-
-	SEE ALSO
-	
-		IBuilder, IButton, IStyle
-
-**/
-
 import lunas.display.components.button.AbstractButton;
 
 import pegas.events.ButtonEvent;
@@ -138,11 +29,27 @@ import pegas.events.ButtonEventType;
 import vegas.events.Delegate;
 import vegas.events.EventListener;
 
-class lunas.display.components.button.SimpleButton extends AbstractButton {
+/**
+ * The SimpleButton class is use over a clip with the 4 frame's labels with the name :
+ * <ul>
+ * <li>"disabled" : the frame when the button is disabled.</li>
+ * <li>"down"     : the frame when the button is down.</li>
+ * <li>"over"     : the frame when the button is over.</li>
+ * <li>"up"       : the first frame when the button is up.</li>
+ * </ul>
+ * <p>The {@code stop()} method is call in the first frame of the component when the constructor is launched.</p>
+ * @author eKameleon
+ * @see pegas.events.ButtonEvent
+ * @see pegas.events.ButtonEventType
+ */
+class lunas.display.components.button.SimpleButton extends AbstractButton 
+{
 
-	// ----o Constructor
-
-	public function SimpleButton () {
+	/**
+	 * Creates a new SimpleButton instance.
+	 */
+	public function SimpleButton () 
+	{
 		
 		super() ;
 		
@@ -160,33 +67,47 @@ class lunas.display.components.button.SimpleButton extends AbstractButton {
 			
 	}
 
-	// ----o Public Methods
-
-	public function disabled( e:ButtonEvent ): Void {
+	/**
+	 * Invoqued when the button is disabled.
+	 */
+	public function disabled( e:ButtonEvent ): Void 
+	{
 		getView().gotoAndStop(ButtonEventType.DISABLED) ;
 	}	
-	public function down( e:ButtonEvent ): Void {
+	
+	/**
+	 * Invoqued when the button is down.
+	 */
+	public function down( e:ButtonEvent ): Void 
+	{
 		getView().gotoAndStop(ButtonEventType.DOWN) ;
 	}
 
 	/**
-	 * Cette méthode permet de déléguer les changements visuels du bouton vers une autre 'vue',
-	 * pour cela il suffit d'écraser cette méthode.
+	 * This method delegate the reference of the different views of the button over a other movieclip.
+	 * You can override this method.	 
 	 */
-	public function getView():MovieClip {
+	public function getView():MovieClip 
+	{
 		return this ;
 	}
 
-	public function over( e:ButtonEvent ):Void {
+	/**
+	 * Invoqued when the button is over.
+	 */
+	public function over( e:ButtonEvent ):Void 
+	{
 		getView().gotoAndStop(ButtonEventType.OVER) ;
 	}
 
-	public function up( e:ButtonEvent ):Void {
+	/**
+	 * Invoqued when the button is up.
+	 */
+	public function up( e:ButtonEvent ):Void 
+	{
 		getView().gotoAndStop(ButtonEventType.UP) ;
 	}
 
-	// ----o Private Properties
-	
 	private var _listenerDisabled:EventListener ;
 	private var _listenerDown:EventListener ;
 	private var _listenerOver:EventListener ;

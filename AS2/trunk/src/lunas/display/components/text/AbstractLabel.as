@@ -27,6 +27,10 @@ import lunas.display.components.ILabel;
 import pegas.events.UIEvent;
 import pegas.events.UIEventType;
 
+/**
+ * The AbstractLabel class.
+ * @author eKameleon
+ */
 class lunas.display.components.text.AbstractLabel extends AbstractComponent implements ILabel 
 {
 
@@ -128,8 +132,15 @@ class lunas.display.components.text.AbstractLabel extends AbstractComponent impl
 	public function setLabel(str:String):Void 
 	{
 		_label = str.toString() ; 
-		viewLabelChanged() ;
-		update() ;
+		if ( arguments[1] == true )
+		{
+			//
+		}
+		else
+		{
+			viewLabelChanged() ;
+			update() ;
+		}
 		dispatchEvent(new UIEvent( UIEventType.LABEL_CHANGE ) ) ;
 	}
 	

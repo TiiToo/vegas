@@ -78,8 +78,8 @@ class andromeda.model.ModelCollector
 	
 	/**
 	 * Insert a IModel in the collector and indexed it with the string name in the first parameter.
-	 * @param sName the name of the display to register it.
-	 * @param dObject the IModel reference.
+	 * @param id the id key of the model in the collector.
+	 * @param model the IModel reference register in the map of the collector.
 	 * @return {@code true} if the  specified model is inserted in the model.
 	 * @throws Warning if the specified name is already registered in the collector.
 	 */

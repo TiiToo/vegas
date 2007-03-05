@@ -46,8 +46,6 @@ class andromeda.model.AbstractModelObject extends AbstractModel implements IMode
 	{
 		super( id , bGlobal, sChannel ) ;
 		initEvent() ;
-		setEventTypeCHANGE( ModelObjectEvent.CHANGE_CURRENT_VO ) ;
-		setEventTypeCLEAR( ModelObjectEvent.CLEAR_VO ) ;
 	}
 
 	/**
@@ -102,8 +100,8 @@ class andromeda.model.AbstractModelObject extends AbstractModel implements IMode
 	 */
 	public function initEvent():Void
 	{
-		_eChange = createNewModelObjectEvent( getEventTypeCHANGE() ) ;
-		_eClear  = createNewModelObjectEvent( getEventTypeCLEAR() ) ;
+		_eChange = createNewModelObjectEvent( ModelObjectEvent.CHANGE_CURRENT_VO ) ;
+		_eClear  = createNewModelObjectEvent( ModelObjectEvent.CLEAR_VO ) ;
 	}
 
 	/**

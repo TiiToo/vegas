@@ -1399,7 +1399,7 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
 	}
     
     /**
-     * Scans all walues.
+     * Scans all values.
      */
     public function scanValue()
 	{

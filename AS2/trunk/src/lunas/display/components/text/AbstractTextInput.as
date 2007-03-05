@@ -139,7 +139,8 @@ class lunas.display.components.text.AbstractTextInput extends AbstractTextArea
 	 * If this property is null, there is no limit to the amount of text a user can enter. The default value is null.
 	 * @return the maximum number of characters that the text field can contain. 
 	 */
-	public function getMaxChars():Number { 
+	public function getMaxChars():Number 
+	{ 
 		return field.maxChars ; 
 	}
 	
@@ -147,7 +148,8 @@ class lunas.display.components.text.AbstractTextInput extends AbstractTextArea
 	 * Returns a Boolean value indicating whether the text field is a password field (true) or not (false).
 	 * @return a Boolean value indicating whether the text field is a password field (true) or not (false).
 	 */
-	public function getPassword():Boolean { 
+	public function getPassword():Boolean 
+	{ 
 		return field.password ; 
 	}
 
@@ -155,7 +157,7 @@ class lunas.display.components.text.AbstractTextInput extends AbstractTextArea
 	 * Returns a Boolean value indicating whether the text field is a priority field (true) or not (false).
 	 * @return a Boolean value indicating whether the text field is a priority field (true) or not (false).
 	 */
-	public function getPriority(Void):Boolean 
+	public function getPriority():Boolean 
 	{ 
 		return _priority ; 
 	}
@@ -164,7 +166,7 @@ class lunas.display.components.text.AbstractTextInput extends AbstractTextArea
 	 * Returns the set of characters that a user can enter in the text field.
 	 * @return the set of characters that a user can enter in the text field.
 	 */
-	public function getRestrict(Void):String 
+	public function getRestrict():String 
 	{ 
 		return field.restrict ;
 	}

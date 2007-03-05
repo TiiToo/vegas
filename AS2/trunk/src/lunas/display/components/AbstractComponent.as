@@ -56,6 +56,8 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 		
 		_dispatcher = initEventDispatcher() ;
 		
+		_focusrect = false ;
+		
 		_eAdded           = new UIEvent( UIEventType.ADDED, this) ;
 		_eChange          = new UIEvent( UIEventType.CHANGE, this) ;
 		_eDestroy         = new UIEvent( UIEventType.DESTROY, this) ;

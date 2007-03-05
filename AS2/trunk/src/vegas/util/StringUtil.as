@@ -34,6 +34,18 @@ import vegas.util.TypeUtil;
  */
 class vegas.util.StringUtil
 {
+	
+	/**
+	 * Contains a list of all white space chars.
+	 */
+	static public var WHITE_SPACE_CHARS:Array = 
+	[ 
+		"\u0009", "\u000A", "\u000B", "\u000C", "\u000D",
+		"\u0020", "\u00A0", "\u2000", "\u2001", "\u2002",
+		"\u2003", "\u2004", "\u2005", "\u2006", "\u2007",
+		"\u2008", "\u2009", "\u200A", "\u200B", "\u3000",
+        "\uFEFF" 
+    ];
 
 	/**
 	 * Returns 0 if the passed string is lower case else 1.
@@ -462,7 +474,45 @@ class vegas.util.StringUtil
 	{
 		return Serializer.toSource(str) ;
 	}
-	
+
+	/**
+	 * Removes all occurrences of a set of specified characters (or strings)
+	 * from the beginning and end of this instance.
+	 */
+	static public function trim( str:String,  trimChars:Array )
+    {
+    	if( (trimChars == null) || (trimChars.length == 0) )
+        {
+        	trimChars = WHITE_SPACE_CHARS ;
+        }
+    	return _trimHelper( str, trimChars, true, true );
+    }
+
+	/**
+	 * Removes all occurrences of a set of characters specified in an array from the end of this instance.
+	 */
+	static public function trimEnd( str:String , trimChars:Array )
+    {
+    	if( (trimChars == null) || (trimChars.length == 0) )
+        {
+        	trimChars = WHITE_SPACE_CHARS;
+        }
+    	return _trimHelper( str, trimChars, null, true );
+    }
+
+	/**
+	 * Removes all occurrences of a set of characters specified 
+	 * in an array from the beginning of this instance.
+	 */
+	static public function trimStart( str:String, trimChars:Array )
+    {
+    	if( (trimChars == null) || (trimChars.length == 0) )
+        {
+        	trimChars = WHITE_SPACE_CHARS;
+        }
+    	return _trimHelper( str, trimChars, true ) ;
+    }
+
 	/**
 	 * Returns the value of this specified string with the first character in uppercase.
 	 * <p><b>Example :</b></p>
@@ -496,5 +546,45 @@ class vegas.util.StringUtil
 		}
 		return ar.join(" ") ;
 	}
-	
+
+	/**
+	 * Helper method used by trim, trimStart and trimEnd methods.
+	 */
+	static private function _trimHelper( str:String, trimChars:Array, trimStart:Boolean, trimEnd:Boolean )
+    {
+	    if( trimStart == null )
+        {
+    	    trimStart = false;
+        }
+    	
+    	if( trimEnd == null )
+        {
+        	trimEnd = false;
+        }
+    	
+    	var iLeft, iRight;
+    	var s:String = copy(str) ;
+    
+    	if( trimStart )
+        {
+        	for( iLeft=0; (iLeft<s.length) && (trimChars.contains( s.charAt( iLeft ) )); iLeft++ )
+        	{
+	    	    
+    	    }
+        	s = s.substr( iLeft );
+        }
+    
+    	if( trimEnd )
+        {
+        	for( iRight=s.length-1; (iRight>=0) && (trimChars.contains( s.charAt( iRight ) )); iRight-- )
+            {            
+            
+            }
+        
+        	s = s.substring( 0, iRight+1 );
+        }
+    
+    	return s ;
+    }
+
 }

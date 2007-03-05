@@ -26,38 +26,62 @@ import lunas.display.components.IBuilder;
 import vegas.core.CoreObject;
 
 /**
+ * This class provides a skeletal implementation of the {@code IBuilder} interface, to minimize the effort required to implement this interface.
  * @author eKameleon
  */
 class lunas.display.components.AbstractBuilder extends CoreObject implements IBuilder 
 {
 	
+	/**
+	 * Creates a new AbstractBuilder instance.
+	 * @param mc the target of the component reference to build.
+	 */
 	private function AbstractBuilder( mc:MovieClip ) 
 	{
 		target = mc ;
 	}
 
+	/**
+	 * The target reference of the component to build.
+	 */
 	public var target:MovieClip ;
 	
+	/**
+	 * Clear the view of the component.
+	 */
 	public function clear():Void 
 	{
 		// override
 	}
 	
+	/**
+	 * Run the build of the component.
+	 */
 	public function run():Void 
 	{
 		// override
 	}
 
+	/**
+	 * Returns the target reference of the component.
+	 * @return the target reference of the component.
+	 */
 	public function getTarget():MovieClip 
 	{
 		return target ;
 	}
 	
+	/**
+	 * Sets the target reference of the component.
+	 */
 	public function setTarget(t:MovieClip):Void 
 	{
 		target = t ;
 	}
 	
+	/**
+	 * Update the view of the component.
+	 */
 	public function update():Void 
 	{
 		// override

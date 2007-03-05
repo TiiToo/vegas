@@ -43,7 +43,7 @@ class andromeda.model.AbstractModel extends AbstractCoreEventDispatcher implemen
 	 */	
 	function AbstractModel( id , bGlobal:Boolean , sChannel:String ) 
 	{
-		setID( id || hashCode() ) ;
+		setID( id ) ;
 		setGlobal( bGlobal , sChannel ) ;
 	}
 
@@ -92,15 +92,6 @@ class andromeda.model.AbstractModel extends AbstractCoreEventDispatcher implemen
 	}
 
 	/**
-	 * Init the EventDispatcher reference of this EventTarget object. 
-	 * Uses a global EventDispatcher to used this model with the FrontController of the application.
-	 */
-	public function initEventDispatcher():EventDispatcher
-	{
-		return EventDispatcher.getInstance() ;	
-	}
-
-	/**
 	 * Run the first process with this model.
 	 * Overrides this method if you want implement a command process.
 	 */
@@ -144,7 +135,7 @@ class andromeda.model.AbstractModel extends AbstractCoreEventDispatcher implemen
 	 */
 	private function _setID( id ):Void 
 	{
-		if ( ModelCollector.contains( _id ) )
+		if ( ModelCollector.contains( this._id ) )
 		{
 			ModelCollector.remove( this._id ) ;
 		}

@@ -24,13 +24,13 @@
 import andromeda.model.IModelObject;
 import andromeda.model.IValueObject;
 
-import vegas.events.DynamicEvent;
+import vegas.events.BasicEvent;
 
 /**
  * The ModelObjectEvent is the basic event use in a IModelObject to notify changed.
  * @author eKameleon
  */
-class andromeda.events.ModelObjectEvent extends DynamicEvent 
+class andromeda.events.ModelObjectEvent extends BasicEvent 
 {
 	
 	/**
@@ -76,7 +76,7 @@ class andromeda.events.ModelObjectEvent extends DynamicEvent
 	 */
 	public function getTarget():IModelObject
 	{
-		return IModelObject( target ) ;	
+		return IModelObject( super.getTarget() ) ;	
 	}
 	
 	/**
