@@ -44,13 +44,10 @@ class asgard.text.StyleSheet extends TextField.StyleSheet implements IFormattabl
 	 */
 	function StyleSheet( str:String ) 
 	{
-		super();
-		
 		if (str != null)
 		{
 			parseCSS(str) ;
 		}
-		
 	}
 
 	/**

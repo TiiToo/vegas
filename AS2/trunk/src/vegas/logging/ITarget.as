@@ -30,7 +30,6 @@ import vegas.logging.ILogger;
 interface vegas.logging.ITarget
 {
 
-
 	/**
 	 * In addition to the level setting, filters are used to provide a pseudo hierarchical mapping for processing only those events for a given category.
 	 */

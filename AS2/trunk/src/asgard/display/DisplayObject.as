@@ -467,7 +467,7 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 		}
 		else
 		{
-			throw new Warning( this + " resolve failed with the view : '" + name );
+			throw new Warning( this + " resolve failed with the view : '" + name + "'" );
 		}
 	}
 	
