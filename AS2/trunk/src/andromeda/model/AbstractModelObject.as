@@ -121,6 +121,7 @@ class andromeda.model.AbstractModelObject extends AbstractModel implements IMode
 	
 	/**
 	 * Returns the event name use in the {@code setVO} method.
+	 * @return the event name use in the {@code setVO} method.
 	 */
 	public function setEventTypeCHANGE( type:String ):Void
 	{
@@ -129,6 +130,7 @@ class andromeda.model.AbstractModelObject extends AbstractModel implements IMode
 
 	/**
 	 * Returns the event name use in the {@code clear} method.
+	 * @return the event name use in the {@code clear} method.
 	 */
 	public function setEventTypeCLEAR( type:String ):Void
 	{

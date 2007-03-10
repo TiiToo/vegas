@@ -147,8 +147,8 @@ class asgard.media.PrintScreen extends AbstractAction implements Action
 	}
 
 	/**
-	 * Returns the buffer of this PrintScreent.
-	 * @return the buffer of this PrintScreent.
+	 * Returns the Array representation of the PrintScreen's buffer.
+	 * @return the Array representation of the PrintScreen's buffer.
 	 */
 	public function getBuffer():Array
 	{

@@ -32,7 +32,9 @@ import vegas.events.FrontController;
 import vegas.util.TypeUtil;
 
 /**
+ * The NetSeverGateway create a gateway between the Flash client and the FMS server.
  * @author eKameleon
+ * @see NetServerConnection
  */
 class asgard.net.NetServerGateway extends CoreObject 
 {
@@ -42,10 +44,7 @@ class asgard.net.NetServerGateway extends CoreObject
 	 */
 	public function NetServerGateway() 
 	{
-	
-		super();
 		_controller = initController() ;
-		
 	}
 
 	/**
@@ -125,15 +124,15 @@ class asgard.net.NetServerGateway extends CoreObject
 	/**
 	 * Remove an entry into the Gateway controller.
 	 * @param eventName:String
-	 * @return Void
 	 */
-	public function remove( eventName:String ) /*Void*/ 
+	public function remove( eventName:String ):Void 
 	{
 		_controller.remove(eventName) ;
 	}
 
 	/**
 	 * Set the NetServerGateway controller reference.
+	 * @param NetServerConnection the AMF connector reference. 
 	 */
 	public function setConnection( connection:NetServerConnection ):Void 
 	{
@@ -146,7 +145,7 @@ class asgard.net.NetServerGateway extends CoreObject
 	}
 
 	/**
-	 * Set the NetServerGateway controller reference.
+	 * Sets the NetServerGateway controller reference.
 	 */
 	public function setController( controller:FrontController ):Void 
 	{
