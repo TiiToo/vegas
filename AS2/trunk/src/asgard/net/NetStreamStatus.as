@@ -21,100 +21,26 @@
   
 */
 
-/** NetStreamStatus
-
-	AUTHOR
-
-		Name : NetStreamStatus
-		Package : asgard.net
-		Version : 1.0.0.0
-		Date :  2006-06-24
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTANT SUMMARY
-	
-		- static BUFFER_EMPTY:NetStreamStatus
-		
-		- static BUFFER_FULL:NetStreamStatus
-	
-		- static BUFFER_FLUSH:NetStreamStatus
-
-		- static PAUSE:NetStreamStatus
-
-		- static PLAY_FAILED:NetStreamStatus
-	
-		- static PLAY_RESET:NetStreamStatus
-		
-		- static PLAY_PUBLISH:NetStreamStatus
-		
-		- static PLAY_START:NetStreamStatus
-		
-		- static PLAY_STOP:NetStreamStatus
-		
-		- static PLAY_STREAM_NOT_FOUND:NetStreamStatus
-
-		- static PLAY_UNPUBLISH:NetStreamStatus
-
-		- static PUBLISH_START:NetStreamStatus
-		
-		- static PUBLISH_BAD_NAME:NetStreamStatus
-		
-		- static PUBLISH_IDLE:NetStreamStatus
-
-		- static RECORD_FAILED:NetStreamStatus
-		
-		- static RECORD_NOACCESS:NetStreamStatus
-		
-		- static RECORD_START:NetStreamStatus
-		
-		- static RECORD_STOP:NetStreamStatus
-
-		- static SEEK_FAILED:NetStreamStatus
-		
-		- static SEEK_INVALID_TIME:NetStreamStatus
-
-		- static SEEK_NOTIFY:NetStreamStatus
-
-		- static UNPAUSE:NetStreamStatus
-
-		- static UNPUBLISH_SUCCESS:NetStreamStatus
-
-	METHOD SUMMARY
-	
-		- hashCode():Number
-	
-		- toString():String
-
-	IMPLEMENTS
-	
-		IFormattable, IHashabled
-
-**/
-
-import vegas.core.CoreObject;
+import vegas.core.CoreObject ;
 
 /**
  * @author eKameleon
  * @version 1.0.0.0
  **/	
-class asgard.net.NetStreamStatus extends CoreObject {
+class asgard.net.NetStreamStatus extends CoreObject 
+{
 	
-	// ----o Constructor
-	
+	/**
+	 * Creates a new NetStreamStatus instance.
+	 */
 	private function NetStreamStatus( sCode:String , sLevel:String) {
 		code = sCode ;
 		level = sLevel ;
 	}
 
-	// ----o Level
-	
 	static public var ERROR:String = "error" ;
 	
 	static public var STATUS:String = "status" ;
-	
-	// ----o Status
 	
 	/**
 	 * Data is not being received quickly enough to fill the buffer. Data flow will be interrupted until the buffer refills.
@@ -237,15 +163,22 @@ class asgard.net.NetStreamStatus extends CoreObject {
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(NetStreamStatus, null , 7, 7) ;
 
-	// ----o Public Properties
-	
+	/**
+	 * The code of the NetStream information.
+	 */
 	public var code:String ;
 	
+	/**
+	 * The level of the NetStream status information.
+	 */
 	public var level:String ;
 
-	// ----o Public Methods
-
-	public function toString():String {
+	/**
+	 * Returns the string representation of this object.
+	 * @return the string representation of this object.
+	 */
+	public function toString():String 
+	{
 		return code ;	
 	}
 

@@ -67,6 +67,7 @@ class vegas.events.EventListenerCollection extends CoreObject implements Iterabl
 
 	/**
 	 * Returns the iterator of this collection.
+	 * @return the iterator of this collection.
 	 */
 	public function iterator():Iterator 
 	{
@@ -154,6 +155,7 @@ class vegas.events.EventListenerCollection extends CoreObject implements Iterabl
 	
 	/**
 	 * Returns the number of {@code EventListener} in this collection.
+	 * @return the number of {@code EventListener} in this collection.
 	 */
 	public function size():Number 
 	{

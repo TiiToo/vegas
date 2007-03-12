@@ -37,7 +37,10 @@ class andromeda.model.AbstractValueObject extends CoreObject implements IValueOb
 	 */
 	public function AbstractValueObject() 
 	{
-		_id = hashCode() ;
+		if ( _id == null)
+		{
+			_id = hashCode() ;
+		}
 	}
 
 	/**
