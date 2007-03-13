@@ -78,6 +78,7 @@ class pegas.process.Sequencer extends AbstractAction
 	public function clear():Void 
 	{
 		_queue.clear() ;
+		_cur = null ;
 	}
 
 	/**
@@ -96,14 +97,29 @@ class pegas.process.Sequencer extends AbstractAction
 	}
 
 	/**
+	 * Returns the current process in progress.
+	 * @return the current process in progress.
+	 */
+	public function getCurrent()
+	{
+		return _cur ;	
+	}
+
+	/**
 	 * Launchs the Sequencer with the first element in the internal Queue of this Sequencer.
 	 */
 	public function run():Void 
 	{
 		if (_queue.size() > 0) 
 		{
-			if (!running) notifyStarted() ;
-			else notifyProgress() ;
+			if (!running) 
+			{
+				notifyStarted() ;
+			}
+			else 
+			{
+				notifyProgress() ;
+			}
 			_setRunning(true) ;
 			_cur = _queue.poll() ;
 			_cur.run() ;

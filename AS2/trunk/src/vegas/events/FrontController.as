@@ -22,6 +22,7 @@
 */
 
 import vegas.core.CoreObject;
+import vegas.data.iterator.Iterator;
 import vegas.data.Map;
 import vegas.data.map.HashMap;
 import vegas.events.BasicEvent;
@@ -45,6 +46,22 @@ class vegas.events.FrontController extends CoreObject
 	{
 		_map = new HashMap() ;
 		_oE = oE || EventDispatcher.getInstance(name); 
+	}
+	
+	/**
+	 * Removes all entries in the FrontController. 
+	 */
+	public function clear():Void
+	{
+		if ( size() > 0 )
+		{
+			var it:Iterator = _map.keyIterator() ;
+			while(it.hasNext())
+			{
+				remove(it.next()) ;	
+			}
+			_map.clear() ;
+		}	
 	}
 	
 	/**
@@ -102,11 +119,23 @@ class vegas.events.FrontController extends CoreObject
 	public function remove(eventName:String):Void 
 	{
 		var listener:EventListener = _map.remove.apply(this, arguments ) ;
-		if (listener) _oE.removeEventListener(eventName, listener);
+		if (listener) 
+		{
+			_oE.removeEventListener(eventName, listener);
+		}
+	}
+	
+	/**
+	 * Returns the number of entries in the FrontController.
+	 * @return the number of entries in the FrontController.
+	 */
+	public function size():Number
+	{
+		return _map.size() ;
 	}
 
 	/**
-	 * Internal HashMap instance.
+	 * Internal HashMap reference.
 	 */
 	private var _map:Map ;
 	
