@@ -116,10 +116,10 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 
 	/**
  	 * Adds the specified amount of time to the this instance.
-	 * @param {Date} date	The JavaScript Date object to perform addition on
-	 * @param {string} field	The this field constant to be used for performing addition.
-	 * @param {Integer} amount	The number of units (measured in the field constant) to add to the date.
-	 * @return {@code Date}
+	 * @param date The Date object to perform addition on
+	 * @param field The this field constant to be used for performing addition.
+	 * @param amount The number of units (measured in the field constant) to add to the date.
+	 * @return the new {@code Date} object.
 	 */
 	static public function add(date:Date, field:String, amount:Number):Date 
 	{
@@ -170,6 +170,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	}
 	
 	/**
+	 * Returns {@code true} if the current time of this Calendar is after the time of Calendar when; false otherwise.
 	 * @return {@code true} if the current time of this Calendar is after the time of Calendar when; false otherwise.
 	 */
 	public function after(d:Date):Boolean 
@@ -178,6 +179,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	}
 
 	/**
+	 * Returns {@code true} if the current time of this Calendar is before the time of Calendar when; false otherwise.
 	 * @return {@code true} if the current time of this Calendar is before the time of Calendar when; false otherwise. 
 	 */
 	public function before(d:Date):Boolean 
@@ -203,6 +205,10 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 		return new Calendar(valueOf()) ;
 	}
 	
+	/**
+	 * Compares the specified object with this object for equality.
+	 * @return {@code true} if the the specified object is equal with this object.
+	 */
 	public function equals(o):Boolean 
 	{
 		return o instanceof Date && o.valueOf() == valueOf() ;
@@ -210,6 +216,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 
 	/**
 	 * Format the current Calendar date.
+	 * @return the format string representation of the current Calendar date.
 	 */
 	public function format(pattern:String):String 
 	{
@@ -218,6 +225,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 
 	/**
 	 * Returns the array representation of all days in the current month.
+	 * @return the array representation of all days in the current month.
 	 */
 	static public function getCurrentFullMonthCalendar():Array 
 	{
@@ -231,17 +239,20 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	static public function getDaysInMonth(y:Number, m:Number):Number 
 	{
 		var monthDays:Array = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31] ;
-		if (((y%4 == 0) && !(y%100 == 0) ) || (y%400 == 0)) monthDays[1] = 29 ;
+		if (((y%4 == 0) && !(y%100 == 0) ) || (y%400 == 0)) 
+		{
+			monthDays[1] = 29 ;
+		}
 		return monthDays[m] ;
 	}
 
 	/**
-	* Calculates the number of days the specified date is from January 1 of the specified calendar year.
-	* Passing January 1 to this function would return an offset value of zero.
-	* @param {Date}	date The JavaScript date for which to find the offset
-	* @param {Integer} calendarYear	The calendar year to use for determining the offset
-	* @return {Integer}	The number of days since January 1 of the given year
-	*/
+	 * Calculates the number of days the specified date is from January 1 of the specified calendar year.
+	 * Passing January 1 to this function would return an offset value of zero.
+	 * @param date The Date for which to find the offset
+	 * @param calendarYear The calendar year to use for determining the offset
+	 * @return The number of days since January 1 of the given year
+	 */
 	static public function getDayOffset(date:Date, calendarYear:Number):Number 
 	{
 		var beginYear = Calendar.getJan1(calendarYear); // Find the start of the year. This will be in week 1.
@@ -250,6 +261,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 
 	/**
 	 * Returns the first day in the specified month.
+	 * @return the first day in the specified month.
 	 */
 	static public function getFirstDay(y:Number , m:Number, nameFlag:Boolean) 
 	{
@@ -259,6 +271,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	
 	/**
 	 * Returns an array representation of a full month.
+	 * @return an array representation of a full month.
 	 */
 	static public function getFullMonthCalendar(y:Number, m:Number):Array 
 	{
@@ -273,33 +286,72 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	}
 
 	/**
-	* Retrieves a JavaScript Date object representing January 1 of any given year.
-	* @param {Number} calendarYear	The calendar year for which to retrieve January 1
-	* @return {Date} January 1 of the calendar year specified.
-	*/
+	 * Retrieves a Date object representing January 1 of any given year.
+	 * @param calendarYear	The calendar year for which to retrieve January 1
+	 * @return January 1 of the calendar year specified.
+	 */
 	static public function getJan1(calendarYear:Number):Date 
 	{
 		return new Date(calendarYear, 0, 1) ; 
 	}
+	
+	/**
+	 * Returns the {@code Date} of the next month of the specified {@code Date} object.
+	 * @return the {@code Data} of the next month of the specified {@code Date} object.
+	 */
+	static public function getNextMonth( date:Date ):Date
+	{
+		var today:Date = ( date == undefined) ? new Date() : date ;
+		var thisMonth:Number = today.getMonth() ;
+		if( thisMonth < 11 )
+		{
+			today.setMonth(thisMonth + 1) ;
+		}
+		else
+		{
+			today.setMonth(0);
+			today.setFullYear(today.getFullYear() + 1);
+		}
+		return today ;
+	}
 
 	/**
-	* Calculates the week number for the given date. This function assumes that week 1 is the
+	 * Returns the {@code Date} of the previous month of the specified {@code Date} object.
+	 * @return the {@code Date} of the previous month of the specified {@code Date} object.
+	 */
+	public static function getPreviousMonth( date:Date ):Date
+	{
+		var today:Date = ( date == undefined) ? new Date() : date ;
+		var thisMonth:Number = today.getMonth();
+		if(thisMonth > 0)
+		{
+			today.setMonth(thisMonth - 1);
+		}
+		else
+		{
+			today.setMonth(11);
+			today.setFullYear(today.getFullYear() - 1);
+		}
+		return today;
+	}
+
+	/**
+	* Calculates the week number for the given date. This function assumes that week 1 is the 
 	* week in which January 1 appears, regardless of whether the week consists of a full 7 days.
-	* The calendar year can be specified to help find what a the week number would be for a given
-	* date if the date overlaps years. For instance, a week may be considered week 1 of 2005, or
-	* week 53 of 2004. Specifying the optional calendarYear allows one to make this distinction
-	* easily.
-	* @param {Date}	date The date for which to find the week number
-	* @param {Integer} calendarYear	OPTIONAL 
-	* 	- The calendar year to use for determining the week number. Default is the calendar year of parameter "date".
-	* @param {Integer} weekStartsOn	OPTIONAL - The integer (0-6) representing which day a week begins on. Default is 0 (for Sunday).
-	* @return {Integer}	The week number of the given date.
+	* The calendar year can be specified to help find what a the week number would be for a given date if the date overlaps years. 
+	* For instance, a week may be considered week 1 of 2005, or week 53 of 2004. 
+	* Specifying the optional calendarYear allows one to make this distinction easily.
+	* @param date The date for which to find the week number
+	* @param calendarYear (optional) The calendar year to use for determining the week number. Default is the calendar year of parameter "date".
+	* @param weekStartsOn (optional) The integer (0-6) representing which day a week begins on. Default is 0 (for Sunday).
+	* @return The week number of the given date.
 	*/
 	static public function getWeekNumber(date:Date, calendarYear:Number, weekStartsOn:Number):Number 
 	{
 		if (isNaN(weekStartsOn)) weekStartsOn = 0 ;
 		if (isNaN(calendarYear)) calendarYear = date.getFullYear();
-		var weekNum = -1 ;
+		
+		var weekNum:Number = -1 ;
 		
 		var jan1:Date = Calendar.getJan1(calendarYear);
 		var jan1DayOfWeek:Number = jan1.getDay() ;
@@ -308,7 +360,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 		var day:Number = date.getDate();
 		var year:Number = date.getFullYear();
 		
-		var dayOffset = Calendar.getDayOffset(date, calendarYear); // Days since Jan 1, Calendar Year
+		var dayOffset:Number = Calendar.getDayOffset(date, calendarYear); // Days since Jan 1, Calendar Year
 			
 		if (dayOffset < 0 && dayOffset >= (-1 * jan1DayOfWeek)) 
 		{
@@ -329,6 +381,19 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	};
 
 	/**
+	 * Returns {@code true} if the current or specified {@code Date} if the last day in the current or specified month.
+	 * @return {@code true} if the current or specified {@code Date} if the last day in the current or specified month.
+	 */
+	static public function isEndOfMonth( date:Date ):Boolean
+	{
+		var today:Date = (date == undefined) ? new Date() : date ;
+		var y:Number = today.getYear() ;
+		var m:Number = today.getMonth() ;
+		var lastDate:Number = getDaysInMonth( y , m ) ; 
+		return today.getDate().valueOf() == lastDate.valueOf() ;
+	}
+
+	/**
 	 * Returns the hashcode representation of this object.
 	 * @return the hashcode representation of this object.
 	 */
@@ -338,11 +403,19 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	}
 
 	/**
+	 * Registers this object to be use with AMF protocol. Use this method with Flash remoting class mapping for example.
+	 */
+	static public function register( registerName:String ):Void
+	{
+		Object.registerClass( registerName || "Calendar", Calendar) ;
+	}
+
+	/**
 	* Subtracts the specified amount of time from the this instance.
-	* @param {Date} date	The JavaScript Date object to perform subtraction on
-	* @param {Integer} field	The this field constant to be used for performing subtraction.
-	* @param {Integer} amount	The number of units (measured in the field constant) to subtract from the date.
-	* @return {date}
+	* @param date The Date object to perform subtraction on
+	* @param field	The this field constant to be used for performing subtraction.
+	* @param amount	The number of units (measured in the field constant) to subtract from the date.
+	* @return the new Date object.
 	*/
 	static public function subtract(date:Date, field:String, amount:Number):Date 
 	{
@@ -351,6 +424,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 
 	/**
 	 * Returns the Eden string representation of this object.
+	 * @return the Eden string representation of this object.
 	 */
 	public function toSource(indent:Number, indentor:String):String 
 	{
