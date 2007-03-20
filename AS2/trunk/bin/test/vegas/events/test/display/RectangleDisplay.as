@@ -3,10 +3,10 @@ import vegas.events.Delegate ;
 import vegas.events.EventDispatcher ;
 import vegas.util.factory.PropertyFactory ;
 
-import lunas.geom.Point ;
-import lunas.geom.Rectangle ;
-import lunas.events.MouseEvent ;
-import lunas.events.MouseEventType ;
+import pegas.geom.Point ;
+import pegas.geom.Rectangle ;
+import pegas.events.MouseEvent ;
+import pegas.events.MouseEventType ;
 
 class test.display.RectangleDisplay extends EventDispatcher {
     
