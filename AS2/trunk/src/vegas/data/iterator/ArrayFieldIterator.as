@@ -72,6 +72,7 @@ class vegas.data.iterator.ArrayFieldIterator extends ArrayIterator
 	
 	/**
 	 * Returns the next field element in the iteration.
+	 * @return the next field element in the iteration.
 	 */
 	public function next() 
 	{

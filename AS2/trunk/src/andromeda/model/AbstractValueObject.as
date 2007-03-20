@@ -37,7 +37,7 @@ class andromeda.model.AbstractValueObject extends CoreObject implements IValueOb
 	 */
 	public function AbstractValueObject() 
 	{
-		if ( _id == null)
+		if ( _id == null )
 		{
 			_id = hashCode() ;
 		}
@@ -57,7 +57,7 @@ class andromeda.model.AbstractValueObject extends CoreObject implements IValueOb
 	 */
 	public function set id( id ):Void 
 	{
-		setID( id ) ;
+		this.setID( id ) ;
 	}
 
 	/**
@@ -67,7 +67,7 @@ class andromeda.model.AbstractValueObject extends CoreObject implements IValueOb
 	 */
 	public function getID() 
 	{
-		return _id ;
+		return this._id ;
 	}
 
 	/**
@@ -76,7 +76,7 @@ class andromeda.model.AbstractValueObject extends CoreObject implements IValueOb
 	 */
 	public function setID( id ):Void 
 	{
-		_id = id ;
+		this._id = id ;
 	}
 
 	/**

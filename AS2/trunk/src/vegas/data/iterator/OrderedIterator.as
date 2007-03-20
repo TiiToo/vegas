@@ -37,6 +37,7 @@ interface vegas.data.iterator.OrderedIterator extends Iterator
 
 	/**
 	 * Returns the previous element in the collection.
+	 * @return the previous element in the collection.
 	 */
 	function previous() ;
 	

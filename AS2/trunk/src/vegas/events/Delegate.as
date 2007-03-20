@@ -98,6 +98,7 @@ class vegas.events.Delegate extends CoreObject implements ICloneable, EventListe
 	
 	/**
 	 * Returns the array of all arguments called in the proxy method.
+	 * @return the array of all arguments called in the proxy method.
 	 */
 	public function getArguments():Array 
 	{
@@ -106,20 +107,27 @@ class vegas.events.Delegate extends CoreObject implements ICloneable, EventListe
 
 	/**
 	 * Returns the proxy method reference.
+	 * @return the proxy method reference.
 	 */
-	public function getMethod():Function {
+	public function getMethod():Function 
+	{
 		return _m ;
 	}
 	
 	/**
 	 * Returns the scope reference.
+	 * @return the scope reference.
 	 */
 	public function getScope() 
 	{
 		return _s ;
 	}
 	
-	public function handleEvent(e:Event) {
+	/**
+	 * Handles the event.
+	 */
+	public function handleEvent(e:Event) 
+	{
 		return _m.apply(_s, [e].concat(_a));
 	}
 
