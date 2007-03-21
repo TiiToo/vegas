@@ -32,6 +32,14 @@ class vegas.events.ArrayEvent extends DynamicEvent
 	
 	/**
 	 * Creates a new ArrayEvent instance.
+	 * @param type the string type of the instance.
+	 * @param ar The array object of this event. 
+	 * @param target the target of the event.
+	 * @param context the optional context object of the event.
+	 * @param bubbles indicates if the event is a bubbling event.
+	 * @param eventPhase the current EventPhase of the event.
+	 * @param time this parameter is used in the Eden deserialization.
+	 * @param stop this parameter is used in the Eden deserialization.
 	 */
 	public function ArrayEvent(type:String, ar:Array, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
 	{
@@ -51,6 +59,7 @@ class vegas.events.ArrayEvent extends DynamicEvent
 	
 	/**
 	 * Returns the array instance.
+	 * @return the array instance.
 	 */
 	public function getArray():Array
 	{

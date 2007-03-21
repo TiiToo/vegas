@@ -25,7 +25,6 @@ import vegas.events.Event;
 
 /**
  * The {@code EventListener} interface is the primary method for handling events. Users implement the EventListener interface and register their listener on an {@code EventTarget} using the {@code addEventListener method}. The users should also remove their EventListener from its {@code EventTarget} after they have completed using the listener.
- * 
  * @author eKameleon
  */
 interface vegas.events.EventListener 

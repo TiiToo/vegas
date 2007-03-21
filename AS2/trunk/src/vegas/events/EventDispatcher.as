@@ -44,7 +44,6 @@ import vegas.util.TypeUtil;
  * <p>{@code EventDispatcher} is an AS2 port of the <b>Java.schst.net EventDispatcher</b>. Inspired by the NotificationCenter of Apple's Cocoa-Framework.
  * <li>EventDispatcher JAVA : Stephan Schmid - http://schst.net/</li><li>Cocoa-Framework : http://developer.apple.com/cocoa/</li><li>Notification center : http://developer.apple.com/documentation/Cocoa/Conceptual/Notifications/index.html</li>
  * </p>
- * 
  * @author eKameleon
  */
 class vegas.events.EventDispatcher extends CoreObject implements IEventDispatcher 
@@ -160,6 +159,7 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 
 	/**
 	 * Returns the {@code EventListenerCollection} of the specified event name.
+	 * @return the {@code EventListenerCollection} of the specified event name.
 	 */
 	public function getEventListeners(eventName:String):EventListenerCollection 
 	{
@@ -168,7 +168,8 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 	}
 	
 	/**
-	 * Returns the {@code EventListenerCollection} of this EventDispatcher.
+	 * Returns the global {@code EventListenerCollection} of this EventDispatcher.
+	 * @return the global {@code EventListenerCollection} of this EventDispatcher.
 	 */
 	public function getGlobalEventListeners():EventListenerCollection 
 	{
@@ -177,6 +178,7 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 
 	/**
 	 * Returns a global {@code EventDispatcher} singleton. Uses this method to create [@code FrontController} patterns for example.
+	 * @return a global {@code EventDispatcher} singleton.
 	 */
 	static public function getInstance(name:String):EventDispatcher 
 	{
@@ -199,6 +201,7 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 	
 	/**
 	 * Returns the current target of this EventDispatcher.
+	 * @return the current target of this EventDispatcher.
 	 */
 	public function getTarget() 
 	{
@@ -215,7 +218,7 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 	}
 
 	/**
-	 * Release all global EventDispatcher instances in your application.
+	 * Release the specified EventDispatcher singleton in your application.
 	 */
 	static public function release(name:String):EventDispatcher 
 	{
@@ -227,7 +230,7 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 	}
 
 	/**
-	 * Remove the EventDispatcher child reference of this EventDispatcher instance.
+	 * Removes the EventDispatcher child reference of this EventDispatcher instance.
 	 */
 	public function removeChild( child:EventDispatcher ):Void 
 	{
