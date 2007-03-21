@@ -19,7 +19,9 @@ document.quicknavBasePath="../../index-files";
  </p><h4>Throws</h4><table class="exceptions extra_info" summary=""><tr><td><a href="../../vegas/errors/Warning.html" class="class_name" title="Class vegas.errors.Warning">Warning</a></td><td>if the the specified name isn't register in the collector.
 	 </td></tr></table></div></div><div class="method_details alt_row"><a name="insert"></a><h3>insert</h3><code class="method_synopsis">static public function <strong class="method_name">insert</strong>(id, model:<a href="../../andromeda/model/IModel.html" class="interface_name" title="Interface andromeda.model.IModel">IModel</a>):<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
  Insert a IModel in the collector and indexed it with the string name in the first parameter.
- </p><h4>Parameters</h4><table class="arguments extra_info" summary=""></table><h4>Return</h4><p class="extra_info"> <code> <span class="key">true</span></code> if the  specified model is inserted in the model.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>id</code></td><td>the id key of the model in the collector.
+ </td></tr><tr><td><code>model</code></td><td>the IModel reference register in the map of the collector.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> <code> <span class="key">true</span></code> if the  specified model is inserted in the model.
  </p><h4>Throws</h4><table class="exceptions extra_info" summary=""><tr><td><a href="../../vegas/errors/Warning.html" class="class_name" title="Class vegas.errors.Warning">Warning</a></td><td>if the specified name is already registered in the collector.
 	 </td></tr></table></div></div><div class="method_details"><a name="isEmpty"></a><h3>isEmpty</h3><code class="method_synopsis">static public function <strong class="method_name">isEmpty</strong>():<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
  Returns <code> <span class="key">true</span></code> if the collector is empty.

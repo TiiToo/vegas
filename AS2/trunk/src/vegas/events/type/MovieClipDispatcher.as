@@ -21,97 +21,56 @@
   
 */
 
-/** ---------- MovieClipDispatcher 1.0.0
-
-	AUTHOR
-
-		Name : MovieClipDispatcher
-		Package : vegas.events.type
-		Version : 1.0.0.0
-		Date :  2005-10-12
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		Cette classe utilise le modèle EDispatcher (compatibilité avec anciens projets)
-		Cette classe est dépréciée dans Vegas.
-
-	METHOD SUMMARY
-
-		- addEventListener(eventName:String, obj, func):Void 
-		
-		- dispatchEvent(ev):Void
-		
-		- eventListenerExists(eventName:String, obj , func):Boolean
-		
-		- removeAllEventListeners(eventName:String):Void
-		
-		- removeEventListener(eventName:String, obj, func):Void
-		
-		- updateEvent(eventName:String, oInit):Void
-
-	INHERIT
-	
-		Object > MovieClip > MovieClipDispatcher
-
-	IMPLEMENT
-	
-		IDispatcher, IHashable, IFormattable
-		
-----------  */
-
 import vegas.core.HashCode;
 import vegas.core.IFormattable;
 import vegas.core.IHashable;
 import vegas.events.EDispatcher;
 import vegas.events.IDispatcher;
 
-class vegas.events.type.MovieClipDispatcher extends MovieClip implements IDispatcher, IFormattable, IHashable {
+class vegas.events.type.MovieClipDispatcher extends MovieClip implements IDispatcher, IFormattable, IHashable 
+{
 
-	// ----o Constructor
-	
-	private function MovieClipDispatcher() {
+	private function MovieClipDispatcher() 
+	{
 		//
 	}
 
-	// ----o Init HashCode
-	
 	static private var _initHashCode:Boolean = HashCode.initialize(MovieClipDispatcher.prototype) ;
-	
-
-	// ----o EventDispatcher
 	
 	static private var _initDispatcher = EDispatcher.initialize(MovieClipDispatcher.prototype) ; 
 		
-	// ----o Public Properties
-
-	public function addEventListener(eventName:String, obj, func):Void {
+	public function addEventListener(eventName:String, obj, func):Void 
+	{
 		//
 	}
 	
-	public function dispatchEvent(ev):Void {
+	public function dispatchEvent(ev):Void 
+	{
 		//
 	}
 		
-	public function eventListenerExists(eventName:String, obj , func):Boolean { 
+	public function eventListenerExists(eventName:String, obj , func):Boolean 
+	{ 
 		return undefined ;
 	}
 
-	public function hashCode():Number {
+	public function hashCode():Number 
+	{
 		return null ;
 	}
 	
-	public function removeAllEventListeners(eventName:String):Void {
+	public function removeAllEventListeners(eventName:String):Void 
+	{
 		//
 	}
 	
-	public function removeEventListener(eventName:String, obj, func):Void {
+	public function removeEventListener(eventName:String, obj, func):Void 
+	{
 		//
 	}
 	
-	public function updateEvent(eventName:String, oInit):Void {
+	public function updateEvent(eventName:String, oInit):Void 
+	{
 		//
 	}
 

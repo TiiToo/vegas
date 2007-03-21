@@ -21,9 +21,6 @@
   
 */
 
-// TODO il faut rajouter des erreurs en cas de date invalide
-// TODO il faut finir la localization 
-
 import asgard.date.DateFormatter;
 import asgard.date.LocalDate;
 
@@ -34,6 +31,7 @@ import vegas.core.IEquality;
 import vegas.core.IFormattable;
 import vegas.core.IHashable;
 import vegas.core.ISerializable;
+import vegas.util.MathsUtil;
 import vegas.util.serialize.Serializer;
 
 /**
@@ -76,6 +74,13 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 
 	/**
 	 * Creates a new Calendar instance.
+	 * @param yearOrTimevalue (optional) If other parameters are specified, this number represents a year (such as 1965); otherwise, it represents a time value. If the number represents a year, a value of 0 to 99 indicates 1900 through 1999; otherwise all four digits of the year must be specified. If the number represents a time value (no other parameters are specified), it is the number of milliseconds before or after 0:00:00 GMT January 1, 1970; a negative values represents a time before 0:00:00 GMT January 1, 1970, and a positive value represents a time after.
+	 * @param month (optional) An integer from 0 (January) to 11 (December).
+	 * @param date (optional) An integer from 1 to 31.
+	 * @param hour (optional) An integer from 0 (midnight) to 23 (11 p.m.).
+	 * @param minute (optional) An integer from 0 to 59.
+	 * @param second (optional) An integer from 0 to 59.
+	 * @param millisecond (optional) An integer from 0 to 999 of milliseconds.
 	 */
 	public function Calendar(yearOrTimevalue:Number, month:Number, date:Number, hour:Number, minute:Number, second:Number, millisecond:Number) 
 	{
@@ -83,36 +88,34 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	}
 
 	/**
-	* Constant field representing Day
-	* @type String
-	*/
+  	 * Constant field representing Day
+	 */
 	static public var DAY:String = "D" ;
-	
+
 	/**
-	* Constant field representing Month
-	* @type String
-	*/	
+	 * The default offset use in the getFullMonthCalendar() method.
+	 */
+	static public var DEFAULT_FULL_MONTH_OFFSET:Number = 0 ;
+
+	/**
+	 * Constant field representing Month
+	 */	
 	static public var MONTH:String = "M" ;
 	
 	/**
-	* Constant field representing Week
-	* @type String
-	*/
+	 * Constant field representing Week
+	 */
 	static public var WEEK:String = "W" ;
 	
 	/**
-	* Constant field representing Year
-	* @type String
-	*/
+	 * Constant field representing Year
+	 */
 	static public var YEAR:String = "Y" ;
 
 	/**
-	* Constant field representing one day, in milliseconds
-	* @type Integer
-	*/
+	 * Constant field representing one day, in milliseconds
+	 */
 	static public var ONE_DAY_MS:Number = 1000*60*60*24 ;
-
-	static private var __ASPF__ = _global.ASSetPropFlags(Calendar, null , 7, 7) ;
 
 	/**
  	 * Adds the specified amount of time to the this instance.
@@ -121,9 +124,9 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	 * @param amount The number of units (measured in the field constant) to add to the date.
 	 * @return the new {@code Date} object.
 	 */
-	static public function add(date:Date, field:String, amount:Number):Date 
+	static public function add( date:Date, field:String, amount:Number ):Calendar 
 	{
-		var d:Date = new Date(date.getTime());
+		var c:Calendar = new Calendar( date.valueOf() );
 		switch (field) 
 		{
 			case Calendar.MONTH :
@@ -146,27 +149,27 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 						years += 1;
 					}
 				}
-				d.setMonth(newMonth) ;
-				d.setFullYear(date.getFullYear() + years) ;
+				c.setMonth(newMonth) ;
+				c.setFullYear(date.getFullYear() + years) ;
 				break ;
 			}
 			case Calendar.DAY :
 			{
-				d.setDate(date.getDate() + amount) ;
+				c.setDate( date.getDate() + amount ) ;
 				break;
 			}
 			case Calendar.YEAR :
 			{
-				d.setFullYear(date.getFullYear() + amount) ;
+				c.setFullYear(date.getFullYear() + amount) ;
 				break;
 			}
 			case Calendar.WEEK :
 			{
-				d.setDate(date.getDate() + 7);
+				c.setDate( date.getDate() + 7 ) ;
 				break;
 			}
 		}
-		return d ;
+		return c ;
 	}
 	
 	/**
@@ -175,16 +178,16 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	 */
 	public function after(d:Date):Boolean 
 	{
-		return d.getTime() < getTime() ;
+		return d.valueOf() < valueOf() ;
 	}
 
 	/**
 	 * Returns {@code true} if the current time of this Calendar is before the time of Calendar when; false otherwise.
 	 * @return {@code true} if the current time of this Calendar is before the time of Calendar when; false otherwise. 
 	 */
-	public function before(d:Date):Boolean 
+	public function before( d:Date ):Boolean 
 	{
-		return d.getTime() > getTime() ;
+		return d.valueOf() > valueOf() ;
 	}
 	
 	/**
@@ -216,6 +219,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 
 	/**
 	 * Format the current Calendar date.
+	 * @param pattern The {@code String} representation of the format pattern.
 	 * @return the format string representation of the current Calendar date.
 	 */
 	public function format(pattern:String):String 
@@ -225,19 +229,23 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 
 	/**
 	 * Returns the array representation of all days in the current month.
+	 * @param offset the day offset value between 0 and 6 to fill the calendar. The default value is 0 (Sunday). 
 	 * @return the array representation of all days in the current month.
 	 */
-	static public function getCurrentFullMonthCalendar():Array 
+	static public function getCurrentFullMonthCalendar( offset:Number ):Array 
 	{
-		var d:Date = new Date() ;
-		return getFullMonthCalendar(d.getFullYear(), d.getMonth()) ;
+		return getFullMonthCalendar( null, offset ) ;
 	}
 
 	/**
 	 * Returns the numbers of days in a specified month.
+	 * @param d The specified {@code Date} object.
+	 * @return the numbers of days in a specified month.
 	 */
-	static public function getDaysInMonth(y:Number, m:Number):Number 
+	static public function getDaysInMonth( d:Date ):Number 
 	{
+		var y:Number = d.getFullYear() ;
+		var m:Number = d.getMonth() ;
 		var monthDays:Array = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31] ;
 		if (((y%4 == 0) && !(y%100 == 0) ) || (y%400 == 0)) 
 		{
@@ -253,34 +261,73 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	 * @param calendarYear The calendar year to use for determining the offset
 	 * @return The number of days since January 1 of the given year
 	 */
-	static public function getDayOffset(date:Date, calendarYear:Number):Number 
+	static public function getDayOffset( date:Date, calendarYear:Number ):Number 
 	{
+		if (date == null)
+		{
+			date = new Date() ;	
+		}
 		var beginYear = Calendar.getJan1(calendarYear); // Find the start of the year. This will be in week 1.
 		return Math.ceil( (date.getTime() - beginYear.getTime()) / Calendar.ONE_DAY_MS );
 	}
 
 	/**
 	 * Returns the first day in the specified month.
+	 * @param d The specified {@code Date} object of this method. 
 	 * @return the first day in the specified month.
 	 */
-	static public function getFirstDay(y:Number , m:Number, nameFlag:Boolean) 
+	static public function getFirstDay( d:Date, nameFlag:Boolean) 
 	{
-		var d:Number = (new Date (y, m)).getDay() ;
-		return nameFlag ? LocalDate.getDays()[d] : d ;
+		if (d == null)
+		{
+			d = new Date() ;
+		}
+		var firstDay:Date = new Date( d.getFullYear(), d.getMonth()) ;
+		return nameFlag ? LocalDate.getDays()[firstDay.getDay() ] : firstDay.getDay()  ;
 	}
 	
 	/**
-	 * Returns an array representation of a full month.
+	 * Returns an array representation of all days in a full month. The array can begin with null values if the first day in the first week are previous days of the previous month.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import asgard.date.Calendar ;
+	 * var ar:Array = Calendar.getFullMonthCalendar( new Date(2007,03) , 1 ) ;
+	 * trace(ar) ;
+	 * }
+	 * @param d (optional) The specified {@code Date} to return the full month calendar. The default value is the current {@code Date} object.
+	 * @param offset the day offset value between 0 and 6 to fill the calendar. The default value is 0 (Sunday). 
 	 * @return an array representation of a full month.
 	 */
-	static public function getFullMonthCalendar(y:Number, m:Number):Array 
+	static public function getFullMonthCalendar( d:Date , offset:Number ):Array 
 	{
-		var min:Number = getFirstDay (y , m) ;
-		var max:Number = min + getDaysInMonth (y, m) ;
+		
+		if (d == null)
+		{
+			d = new Date() ;	
+		}
+		
+		if (isNaN(offset))
+		{
+			offset = DEFAULT_FULL_MONTH_OFFSET ;
+		}
+
+		offset = MathsUtil.clamp(offset, 0, 6) ; 
+		
+		var y:Number = d.getFullYear() ;
+		var m:Number = d.getMonth() ;
+		var min:Number = getFirstDay ( d ) - offset ;
+		
+		if (min < 0)
+		{
+			min += 7 ;
+		}
+		
+		var max:Number = min + getDaysInMonth ( d ) ;
 		var ar:Array = new Array () ;
 		for (var i:Number = 0 ; i < max ; i++) 
 		{
-			ar[i] = (i < min) ? null : (i - min + 1) ;
+			var date:Number = (i - min + 1)  ;
+			ar[i] = (i < min) ? null : new Calendar(y, m, date) ;
 		}
 		return ar ;
 	}
@@ -299,9 +346,9 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	 * Returns the {@code Date} of the next month of the specified {@code Date} object.
 	 * @return the {@code Data} of the next month of the specified {@code Date} object.
 	 */
-	static public function getNextMonth( date:Date ):Date
+	static public function getNextMonth( date:Date ):Calendar
 	{
-		var today:Date = ( date == undefined) ? new Date() : date ;
+		var today:Calendar = new Calendar( (date != null) ? date.valueOf() : null )  ;
 		var thisMonth:Number = today.getMonth() ;
 		if( thisMonth < 11 )
 		{
@@ -319,9 +366,9 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	 * Returns the {@code Date} of the previous month of the specified {@code Date} object.
 	 * @return the {@code Date} of the previous month of the specified {@code Date} object.
 	 */
-	public static function getPreviousMonth( date:Date ):Date
+	static public function getPreviousMonth( date:Date ):Calendar
 	{
-		var today:Date = ( date == undefined) ? new Date() : date ;
+		var today:Calendar = new Calendar( (date != null) ? date.valueOf() : null )  ;
 		var thisMonth:Number = today.getMonth();
 		if(thisMonth > 0)
 		{
@@ -336,16 +383,16 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	}
 
 	/**
-	* Calculates the week number for the given date. This function assumes that week 1 is the 
-	* week in which January 1 appears, regardless of whether the week consists of a full 7 days.
-	* The calendar year can be specified to help find what a the week number would be for a given date if the date overlaps years. 
-	* For instance, a week may be considered week 1 of 2005, or week 53 of 2004. 
-	* Specifying the optional calendarYear allows one to make this distinction easily.
-	* @param date The date for which to find the week number
-	* @param calendarYear (optional) The calendar year to use for determining the week number. Default is the calendar year of parameter "date".
-	* @param weekStartsOn (optional) The integer (0-6) representing which day a week begins on. Default is 0 (for Sunday).
-	* @return The week number of the given date.
-	*/
+	 * Calculates the week number for the given date. This function assumes that week 1 is the 
+	 * week in which January 1 appears, regardless of whether the week consists of a full 7 days.
+	 * The calendar year can be specified to help find what a the week number would be for a given date if the date overlaps years. 
+	 * For instance, a week may be considered week 1 of 2005, or week 53 of 2004. 
+	 * Specifying the optional calendarYear allows one to make this distinction easily.
+ 	 * @param date The date for which to find the week number
+	 * @param calendarYear (optional) The calendar year to use for determining the week number. Default is the calendar year of parameter "date".
+	 * @param weekStartsOn (optional) The integer (0-6) representing which day a week begins on. Default is 0 (for Sunday).
+	 * @return The week number of the given date.
+	 */
 	static public function getWeekNumber(date:Date, calendarYear:Number, weekStartsOn:Number):Number 
 	{
 		if (isNaN(weekStartsOn)) weekStartsOn = 0 ;
@@ -389,7 +436,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 		var today:Date = (date == undefined) ? new Date() : date ;
 		var y:Number = today.getYear() ;
 		var m:Number = today.getMonth() ;
-		var lastDate:Number = getDaysInMonth( y , m ) ; 
+		var lastDate:Number = getDaysInMonth( today ) ; 
 		return today.getDate().valueOf() == lastDate.valueOf() ;
 	}
 
@@ -421,6 +468,15 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	{
 		return Calendar.add(date, field, (amount*-1));
 	}
+	
+	/**
+	 * Returns the {@code Date} representation of this object.
+	 * @return the {@code Date} representation of this object.
+	 */
+	public function toDate():Date
+	{
+		return new Date( valueOf() ) ;	
+	}
 
 	/**
 	 * Returns the Eden string representation of this object.
@@ -432,5 +488,4 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	}
 
 	static private var _initHashCode:Boolean = HashCode.initialize(Calendar.prototype) ;
-
 }

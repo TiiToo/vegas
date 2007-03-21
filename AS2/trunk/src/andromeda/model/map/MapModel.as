@@ -48,8 +48,6 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 	function MapModel( id , bGlobal:Boolean , sChannel:String ) 
 	{
 		super( id , bGlobal, sChannel ) ;
-		setEventTypeADD( ModelObjectEvent.ADD_VO ) ;
-		setEventTypeREMOVE( ModelObjectEvent.REMOVE_VO ) ;
 		_map = initializeMap() ;
 	}
 
@@ -136,8 +134,8 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 	/*override*/ public function initEvent():Void
 	{
 		super.initEvent() ;
-		_eAdd    = createNewModelObjectEvent( getEventTypeADD() ) ;
-		_eRemove = createNewModelObjectEvent( getEventTypeREMOVE() ) ; 
+		_eAdd    = createNewModelObjectEvent( ModelObjectEvent.ADD_VO ) ;
+		_eRemove = createNewModelObjectEvent( ModelObjectEvent.REMOVE_VO ) ; 
 	}
 
 	/**

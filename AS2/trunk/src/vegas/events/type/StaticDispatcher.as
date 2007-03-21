@@ -21,61 +21,28 @@
   
 */
 
-/** ---------- StaticDispatcher
-
-	AUTHOR
-	
-		Name : StaticDispatcher
-		Package : vegas.events.type
-		Version : 1.0.0.0
-		Date :  2005.10-12
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-  
-	DESCRIPTION
-
-		Cette classe utilise le modèle EDispatcher (compatibilité avec anciens projets)
-		Cette classe est dépréciée dans Vegas.
-
-	METHOD SUMMARY
-
-		- static addEventListener(eventName:String, obj, func):Void 
-		
-		- static dispatchEvent(ev):Void
-		
-		- static eventListenerExists(eventName:String, obj , func):Boolean
-		
-		- static removeAllEventListeners(eventName:String):Void
-		
-		- static removeEventListener(eventName:String, obj, func):Void
-		
-		- static updateEvent(eventName:String, oInit):Void
-
-----------  */
-
 import vegas.events.EDispatcher;
 
-class vegas.events.type.StaticDispatcher {
+class vegas.events.type.StaticDispatcher 
+{
 
-	// ----o Constructor
-	
-	private function StaticDispatcher() {
+	private function StaticDispatcher() 
+	{
 		//
 	}
 
-	// ----o Init EDispatcher Methods
-
 	static private var __initDispatcher = EDispatcher.initialize (StaticDispatcher) ;
 
-	// ----o Public Properties
-
 	static public function addEventListener(eventName:String, obj, func):Void {}
+
 	static public function dispatchEvent(ev):Void {}
+
 	static public function eventListenerExists(eventName:String, obj , func):Boolean { return undefined; }
+
 	static public function removeAllEventListeners(eventName:String):Void {}
+
 	static public function removeEventListener(eventName:String, obj, func):Void {}
+
 	static public function updateEvent(eventName:String, oInit):Void {}
 	
 }

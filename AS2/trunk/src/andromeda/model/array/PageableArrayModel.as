@@ -30,6 +30,8 @@ import vegas.data.iterator.Iterator;
 import vegas.data.iterator.PageByPageIterator;
 import vegas.events.ArrayEvent;
 
+// TODO change the ArrayEvent with a BasicEvent when the pageCount value is 1.
+
 /**
  * Defines an array model with a 'page by page' iterator.
  * @author eKameleon
@@ -46,7 +48,6 @@ class andromeda.model.array.PageableArrayModel extends AbstractModelObject imple
 	function PageableArrayModel( id , bGlobal:Boolean , sChannel:String ) 
 	{
 		super( id , bGlobal, sChannel) ;
-		setEventTypeUPDATE( ModelObjectEvent.UPDATE_VO ) ;
 		_a = new Array() ;
 	}
 
@@ -57,12 +58,10 @@ class andromeda.model.array.PageableArrayModel extends AbstractModelObject imple
 	 */
 	public function addAllVO( datas:Array , noClear:Boolean):Void
 	{
-	
 		if ( !noClear )
 		{
 			clear() ;
 		}
-
 		var len:Number = datas.length ;
 		for (var i:Number = 0 ; i<len ; i++)
 		{
@@ -73,7 +72,6 @@ class andromeda.model.array.PageableArrayModel extends AbstractModelObject imple
 			}	
 		}
 		refresh() ;
-		
 	}
 
 	/**
@@ -145,7 +143,7 @@ class andromeda.model.array.PageableArrayModel extends AbstractModelObject imple
 	/*override*/ public function initEvent():Void
 	{
 		super.initEvent() ;
-		_eUpdate = new ArrayEvent( getEventTypeUPDATE() ) ;
+		_eUpdate = new ArrayEvent( ModelObjectEvent.UPDATE_VO ) ;
 	}
 
 	/**

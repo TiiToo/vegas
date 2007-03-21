@@ -21,80 +21,36 @@
   
 */
 
-/** ---------- NetConnectionDispatcher
-
-	AUTHOR
-	
-		Name : NetConnectionDispatcher
-		Package : vegas.events.type
-		Version : 1.0.0.0
-		Date :  2005-10-12
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
- 
-	DESCRIPTION
-
-		Cette classe utilise le modèle EDispatcher (compatibilité avec anciens projets)
-		Cette classe est dépréciée dans Vegas.
-
-	METHOD SUMMARY
-
-		- addEventListener(eventName:String, obj, func):Void 
-		
-		- dispatchEvent(ev):Void
-		
-		- eventListenerExists(eventName:String, obj , func):Boolean
-		
-		- removeAllEventListeners(eventName:String):Void
-		
-		- removeEventListener(eventName:String, obj, func):Void
-		
-		- updateEvent(eventName:String, oInit):Void
-
-	INHERIT
-	
-		Object > NetConnection > NetConnectionDispatcher
-
-	IMPLEMENT
-	
-		IDispatcher, IFormattable, IHashable
-
-----------  */
-
 import vegas.core.HashCode;
 import vegas.core.IFormattable;
 import vegas.core.IHashable;
 import vegas.events.EDispatcher;
 import vegas.events.IDispatcher;
 
-class vegas.events.type.NetConnectionDispatcher extends NetConnection implements IDispatcher, IFormattable, IHashable {
+class vegas.events.type.NetConnectionDispatcher extends NetConnection implements IDispatcher, IFormattable, IHashable 
+{
 
-	// ----o Constructor
-	
 	private function NetConnectionDispatcher() {}
 
-	// ----o Init HashCode
-	
 	static private var _initHashCode:Boolean = HashCode.initialize(NetConnectionDispatcher.prototype) ;
 	
-
-	// ----o Init EDispatcher Methods
-
 	static private var __initDispatcher = EDispatcher.initialize (NetConnectionDispatcher.prototype) ;
 
-	// ----o Public Properties
-
 	public function addEventListener(eventName:String, obj, func):Void {}
+	
 	public function dispatchEvent(ev):Void {}
+	
 	public function eventListenerExists(eventName:String, obj , func):Boolean { return undefined; }
-	public function removeAllEventListeners(eventName:String):Void {}
-	public function removeEventListener(eventName:String, obj, func):Void {}
-	public function updateEvent(eventName:String, oInit):Void {}
-
-	public function hashCode():Number {
+	
+	public function hashCode():Number 
+	{
 		return null ;
 	}
 	
+	public function removeAllEventListeners(eventName:String):Void {}
+	
+	public function removeEventListener(eventName:String, obj, func):Void {}
+	
+	public function updateEvent(eventName:String, oInit):Void {}
 
 }

@@ -21,84 +21,47 @@
   
 */
 
-/** ---------- BasicDispatcher
-
-	AUTHOR
-		
-		Name : BasicDispatcher
-		Package : vegas.events.type
-		Version : 1.0.0.0
-		Date :  2005-10-12
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		Cette classe utilise le modèle EDispatcher (compatibilité avec anciens projets)
-		Cette classe est dépréciée dans Vegas.
-
-	METHOD SUMMARY
-
-		- addEventListener(eventName:String, obj, func):Void 
-		
-		- dispatchEvent(ev):Void
-		
-		- eventListenerExists(eventName:String, obj , func):Boolean
-		
-		- removeAllEventListeners(eventName:String):Void
-		
-		- removeEventListener(eventName:String, obj, func):Void
-		
-		- updateEvent(eventName:String, oInit):Void
-
-	INHERIT
-	
-		CoreObject > BasicDispatcher
-
-	IMPLEMENT
-	
-		IDispatcher, IFormattable, IHashable
-
-----------  */
-
 import vegas.core.CoreObject;
 import vegas.events.EDispatcher;
 import vegas.events.IDispatcher;
 
-class vegas.events.type.BasicDispatcher extends CoreObject implements IDispatcher {
+class vegas.events.type.BasicDispatcher extends CoreObject implements IDispatcher 
+{
 
-	// ----o Constructor
-	
-	private function BasicDispatcher() {
+	private function BasicDispatcher() 
+	{
 		super() ;
 		EDispatcher.initialize(this) ; 
 		
 	}
 
-	// ----o Public Properties
-
-	public function addEventListener(eventName:String, obj, func):Void {
+	public function addEventListener(eventName:String, obj, func):Void 
+	{
 		//
 	}
 	
-	public function dispatchEvent(ev):Void {
+	public function dispatchEvent(ev):Void 
+	{
 		//
 	}
 		
-	public function eventListenerExists(eventName:String, obj , func):Boolean { 
+	public function eventListenerExists(eventName:String, obj , func):Boolean 
+	{ 
 		return undefined ;
 	}
 	
-	public function removeAllEventListeners(eventName:String):Void {
+	public function removeAllEventListeners(eventName:String):Void 
+	{
 		//
 	}
 	
-	public function removeEventListener(eventName:String, obj, func):Void {
+	public function removeEventListener(eventName:String, obj, func):Void 
+	{
 		//
 	}
 	
-	public function updateEvent(eventName:String, oInit):Void {
+	public function updateEvent(eventName:String, oInit):Void 
+	{
 		//
 	}
 
