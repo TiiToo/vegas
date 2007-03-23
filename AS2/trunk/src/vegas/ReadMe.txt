@@ -1,5 +1,5 @@
  
-   VEGAS version 0.8
+   VEGAS version 0.9
  
    LICENCE 
 
@@ -11,14 +11,17 @@
 	- http://vegas.riaforge.org/
 	- http://code.google.com/p/vegas/
 
-   BLOG
 
-        - http://www.ekameleon.net/blog/
+   DOCUMENTATION & CO
+
+        - http://www.ekameleon.net/blog/ (french blog)
+	- http://vegas.ekameleon.net/docs (AS2 reference)
+	- http://code.google.com/p/vegas/issues/list (issues)
 
    ABOUT
 
     * Author : eKameleon
-    * Version : 0.8
+    * Version : 0.9
     * Link : http://www.ekameleon.net/blog
     * Mail : vegas@ekameleon.net 
 

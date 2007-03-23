@@ -159,6 +159,9 @@ class asgard.date.DateFormatter extends AbstractFormatter
 	
 	/**
 	 * Format a date based on the current style set for the Date Formatter.
+	 * <p>If the passed-in {@code date} is {@code null} or {@code undefined}, the current date-time will be used instead.
+	 * @param o the date-time value to format into a date-time string.
+	 * @return The formatted date-time string representation.
 	 */
 	public function format(o):String 
 	{
@@ -248,7 +251,8 @@ class asgard.date.DateFormatter extends AbstractFormatter
 			else if (ch == SECOND) 
 			{
 				cpt = _count(ch, a.slice(i));
-				r += formatSecond(date.getSeconds(), cpt) ;
+				r += formatSecond( date.getSeconds(), cpt ) ;
+				trace(date.getSeconds() + " : " + r) ;
 				i += cpt - 1 ;
 			}
 			else if (ch == MILLISECOND) 
@@ -267,47 +271,97 @@ class asgard.date.DateFormatter extends AbstractFormatter
 
 	public function formatDayAsNumber(day:Number, cpt:Number):String 
 	{
-		if (isNaN(cpt)) cpt = 0 ;
+		if (isNaN(cpt)) 
+		{
+			cpt = 0 ;
+		}
 		var string:String = day.toString();
 		return (getZeros(cpt - string.length) + string);
 	}
 	
 	public function formatDayAsText(day:Number, cpt:Number):String 
 	{
-		if (RANGE_DAY_AS_TEXT.isOutOfRange(day)) throw new IllegalArgumentError() ;
-		if (isNaN(cpt)) cpt = 0 ;
+		if (RANGE_DAY_AS_TEXT.isOutOfRange(day)) 
+		{
+			throw new IllegalArgumentError(this + " formatDayAsText method failed, the day value is out of range.") ;
+		}
+		if (isNaN(cpt)) 
+		{
+			cpt = 0 ;
+		}
 		var days:Array = LocalDate.getDays() ;
 		var r:String = days[day] ;
 		if (cpt < 4) return r.substr(0, 2);
 		return r ;
 	}
 
-	public function formatHourInAmPm(hour:Number, cpt:Number):String {
-		if (RANGE_HOUR.isOutOfRange(hour)) throw new IllegalArgumentError() ;
-		if (isNaN(cpt)) cpt = 0 ;
+	/**
+	 * Formats the specified hour value in a string representation with the am-pm notation.
+	 * @return the specified hour value in a string representation with the am-pm notation.
+	 */
+	public function formatHourInAmPm(hour:Number, cpt:Number):String 
+	{
+		if (RANGE_HOUR.isOutOfRange(hour)) 
+		{
+			throw new IllegalArgumentError(this + " formatHourInAmPm method failed, the hour value is out of range.") ;
+		}
+		if (isNaN(cpt)) 
+		{
+			cpt = 0 ;
+		}
 		var s:String ;
-		if (hour == 0) s = (12).toString() ;
-		else if (hour > 12) s = (hour - 12).toString() ;
-		else s = hour.toString();
+		if (hour == 0) 
+		{
+			s = (12).toString() ;
+		}
+		else if (hour > 12) 
+		{
+			s = (hour - 12).toString() ;
+		}
+		else 
+		{
+			s = hour.toString();
+		}
 		return (getZeros(cpt - s.length) + s);
 	}
 	
-	public function formatHourInDay(hour:Number, cpt:Number):String {
-		if (RANGE_HOUR.isOutOfRange(hour)) throw new IllegalArgumentError() ;
-		if (isNaN(cpt)) cpt = 0 ;
+	/**
+	 * Formats an hour number in string expression.
+	 */
+	public function formatHourInDay(hour:Number, cpt:Number):String 
+	{
+		if (RANGE_HOUR.isOutOfRange(hour))
+		{
+			throw new IllegalArgumentError(this + " formatHourInDay method failed, the hour value is out of range.") ;
+		}
+		if (isNaN(cpt)) 
+		{
+			cpt = 0 ;
+		}
 		var s:String = hour.toString();
 		return (getZeros(cpt - s.length) + s) ;
 	}
 
-	public function formatMillisecond(millisecond:Number, cpt:Number):String {
-		if (RANGE_MILLISECOND.isOutOfRange(millisecond)) throw new IllegalArgumentError() ;
-		if (isNaN(cpt)) cpt = 0 ;
+	public function formatMillisecond(millisecond:Number, cpt:Number):String 
+	{
+		if (RANGE_MILLISECOND.isOutOfRange(millisecond)) 
+		{
+			throw new IllegalArgumentError(this + " formatMillisecond method failed, the millisecond value is out of range.");
+		}
+		if (isNaN(cpt)) 
+		{
+			cpt = 0 ;
+		}
 		var s:String = millisecond.toString();
 		return (getZeros(cpt - s.length) + s) ;
 	}
 
-	public function formatMinute(minute:Number, cpt:Number):String {
-		if (RANGE_MINUTE.isOutOfRange(minute)) throw new IllegalArgumentError() ;
+	public function formatMinute(minute:Number, cpt:Number):String 
+	{
+		if (RANGE_MINUTE.isOutOfRange(minute)) 
+		{
+			throw new IllegalArgumentError(this + " formatMinute method failed, the minute value is out of range.") ;
+		}
 		if (isNaN(cpt)) cpt = 0 ;
 		var s:String = minute.toString();
 		return (getZeros(cpt - s.length) + s);
@@ -317,7 +371,7 @@ class asgard.date.DateFormatter extends AbstractFormatter
 	{
 		if (RANGE_MONTH.isOutOfRange(month)) 
 		{
-			throw new IllegalArgumentError() ;
+			throw new IllegalArgumentError(this + " formatMonthAsNumber method failed, the month value is out of range.") ;
 		}
 		if (isNaN(cpt)) cpt = 0 ;
 		var string:String = (month + 1).toString();
@@ -328,7 +382,7 @@ class asgard.date.DateFormatter extends AbstractFormatter
 	{
 		if (RANGE_MONTH.isOutOfRange(month)) 
 		{
-			throw new IllegalArgumentError() ;
+			throw new IllegalArgumentError(this + " formatMonthAsText method failed, the month value is out of range.") ;
 		}
 		if (isNaN(cpt)) cpt = 0 ;
 		var r:String;
@@ -346,10 +400,13 @@ class asgard.date.DateFormatter extends AbstractFormatter
 	{
 		if (RANGE_SECOND.isOutOfRange(second)) 
 		{
-			throw new IllegalArgumentError(this + " formatSecond method failed, the second value is out of range") ;
+			throw new IllegalArgumentError(this + " formatSecond method failed, the second value is out of range.") ;
 		}
-		if (isNaN(cpt)) cpt = 0 ;
-		var s:String = second.toString();
+		if (isNaN(cpt))
+		{
+			cpt = 0 ;
+		}
+		var s:String = second.toString() ;
 		return (getZeros(cpt - s.length) + s);
 	}
 

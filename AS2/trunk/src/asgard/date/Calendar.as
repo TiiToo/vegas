@@ -122,11 +122,11 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	 * @param date The Date object to perform addition on
 	 * @param field The this field constant to be used for performing addition.
 	 * @param amount The number of units (measured in the field constant) to add to the date.
-	 * @return the new {@code Date} object.
+	 * @return the new {@code Calendar} object.
 	 */
 	static public function add( date:Date, field:String, amount:Number ):Calendar 
 	{
-		var c:Calendar = new Calendar( date.valueOf() );
+		var c:Calendar = new Calendar( (date == null) ? new Date() : date.valueOf() );
 		switch (field) 
 		{
 			case Calendar.MONTH :
@@ -458,12 +458,12 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	}
 
 	/**
-	* Subtracts the specified amount of time from the this instance.
-	* @param date The Date object to perform subtraction on
-	* @param field	The this field constant to be used for performing subtraction.
-	* @param amount	The number of units (measured in the field constant) to subtract from the date.
-	* @return the new Date object.
-	*/
+	 * Subtracts the specified amount of time from the this instance.
+ 	 * @param date The Date object to perform subtraction on
+	 * @param field	The this field constant to be used for performing subtraction.
+	 * @param amount The number of units (measured in the field constant) to subtract from the date.
+	 * @return the new {@code Calendar} object.
+	 */
 	static public function subtract(date:Date, field:String, amount:Number):Date 
 	{
 		return Calendar.add(date, field, (amount*-1));
