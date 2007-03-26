@@ -126,7 +126,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	 */
 	static public function add( date:Date, field:String, amount:Number ):Calendar 
 	{
-		var c:Calendar = new Calendar( (date == null) ? new Date() : date.valueOf() );
+		var c:Calendar = new Calendar( (date == null) ? (new Date()).valueOf() : date.valueOf() );
 		switch (field) 
 		{
 			case Calendar.MONTH :
@@ -146,7 +146,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 					while (newMonth > 11) 
 					{
 						newMonth -= 12;
-						years += 1;
+						years += 1 ;
 					}
 				}
 				c.setMonth(newMonth) ;
@@ -348,7 +348,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	 */
 	static public function getNextMonth( date:Date ):Calendar
 	{
-		var today:Calendar = new Calendar( (date != null) ? date.valueOf() : null )  ;
+		var today:Date = date || new Date() ;
 		var thisMonth:Number = today.getMonth() ;
 		if( thisMonth < 11 )
 		{
@@ -359,7 +359,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 			today.setMonth(0);
 			today.setFullYear(today.getFullYear() + 1);
 		}
-		return today ;
+		return new Calendar( today.valueOf() ) ;
 	}
 
 	/**
@@ -368,7 +368,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	 */
 	static public function getPreviousMonth( date:Date ):Calendar
 	{
-		var today:Calendar = new Calendar( (date != null) ? date.valueOf() : null )  ;
+		var today:Date = date || new Date() ;
 		var thisMonth:Number = today.getMonth();
 		if(thisMonth > 0)
 		{
@@ -379,7 +379,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 			today.setMonth(11);
 			today.setFullYear(today.getFullYear() - 1);
 		}
-		return today;
+		return new Calendar( today.valueOf() ) ;
 	}
 
 	/**

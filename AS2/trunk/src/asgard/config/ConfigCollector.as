@@ -26,48 +26,53 @@ import asgard.config.IConfigurable;
 import vegas.data.iterator.Iterator;
 import vegas.data.list.ArrayList;
 
-// TODO utiliser un Set et pas une ArrayList !!
+// TODO Use a Set and not an ArrayList ??
 
 /**
+ * The ConfigCollector class.
  * @author eKameleon
  * @version 1.0.0.0
- **/
-
+ */
 class asgard.config.ConfigCollector 
 {
 	
 	/**
-	 * constructor
-	 */
-    private function ConfigCollector() 
-    {
-		//
-    }
-
-	/**
-	 * Public Methods
-	 */
-	
+	 * Returns {@code true} if the collector contains the specified {@code IConfigurable} object.
+	 * @return {@code true} if the collector contains the specified {@code IConfigurable} object.
+	 */	
 	static public function contains( conf:IConfigurable ) :Boolean 
 	{
 		return _list.contains( conf ) ;	
 	}
 	
+	/**
+	 * Inserts an IConfigurable object in the collector.
+	 */
 	static public function insert( conf:IConfigurable ) :Boolean 
 	{
 		return _list.insert( conf ) ;
 	}
 	
+	/**
+	 * Returns the {@code Iterator} of this collector.
+	 * @return the {@code Iterator} of this collector.
+	 */
 	static public function iterator() :Iterator
 	{
 		return _list.iterator() ;	
 	}
 	
+	/**
+	 * Removes the specified {@code IConfigurable} object in the collector.
+	 */
 	static public function remove( conf:IConfigurable ) :Void 
 	{
 		_list.remove( conf ) ;
 	}
 	
+	/**
+	 * Run the {@code ConfigCollector} command to invoqued the {@code setup()} method of all {@code IConfigurable} object registered in the collector.
+	 */
 	static public function run():Void
 	{
 		if (size() > 0)
@@ -80,15 +85,18 @@ class asgard.config.ConfigCollector
 		}	
 	}
 	
+	/**
+	 * Returns the number of elements in the collector.
+	 * @return the number of elements in the collector.
+	 */
 	static public function size():Number
 	{
 		return _list.size() ;
 	}
 	
 	/**
-	 * Private Methods
+	 * The internal ArrayList of this collector.
 	 */
-	
 	static private var _list:ArrayList = new ArrayList() ;
 	
 }

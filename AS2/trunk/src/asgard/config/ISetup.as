@@ -21,44 +21,6 @@
   
 */
 
-/** ISetup
-
-	AUTHOR
-	
-		Name : ISetup
-		Package : asgard.config
-		Version : 1.0.0.0
-		Date :  2006-03-27
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- getConfig():Config
-		
-		- getConfigLoader():ConfigLoader
-		
-		- getRunning():Boolean
-		
-		- notifyChange():Void
-		
-		- release():Void
-		
-		- run():Void
-		
-		- setConfig(conf:Config):Void
-	
-		- setLoader(sFileName:String, sPath:String, sSuffix:String):Void
-		
-		- update():Void 
-	
-	
-	IMPLEMENT
-	
-		IRunnable
-
-*/
 
 import asgard.config.Config;
 import asgard.config.ConfigLoader;
@@ -66,6 +28,7 @@ import asgard.config.ConfigLoader;
 import vegas.core.IRunnable;
 
 /**
+ * This interface defines a tool to invoqued the configuration of your application.
  * @author eKameleon
  */
 interface asgard.config.ISetup extends IRunnable 

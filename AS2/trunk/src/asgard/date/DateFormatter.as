@@ -203,7 +203,7 @@ class asgard.date.DateFormatter extends AbstractFormatter
 			else if (ch == YEAR) 
 			{
 				cpt = _count(ch, a.slice(i));
-				r += formatYear(date.getFullYear(), cpt);
+				r += formatYear( date.getFullYear(), cpt );
 				i += cpt - 1 ;
 			}
 			else if (ch == MONTH_AS_NUMBER) 
@@ -414,9 +414,9 @@ class asgard.date.DateFormatter extends AbstractFormatter
 	 * Format the year value passed in argument.
 	 * @return the year string representation of this DateFormatter.
 	 */
-	public function formatYear(year:Number, cpt:Number):String 
+	public function formatYear( year:Number, cpt:Number ):String 
 	{
-		if (isNaN(year)) 
+		if ( isNaN(year) ) 
 		{
 			throw new IllegalArgumentError(this + " formatYear method failed, the year value must be a Number.") ;
 		}

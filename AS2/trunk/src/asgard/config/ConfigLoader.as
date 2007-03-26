@@ -31,6 +31,7 @@ import vegas.logging.ILogger;
 import vegas.logging.Log;
 
 /**
+ * The ConfigLoader class based on the JSON notation.
  * @author eKameleon
  */
 class asgard.config.ConfigLoader extends JSONLoader 
@@ -137,6 +138,10 @@ class asgard.config.ConfigLoader extends JSONLoader
 		_logger.info(this + ".onLoadInit() : Config has been loaded") ; 
 	}
 
+	/**
+	 * Protect the Config object passed in argument.
+	 * @param oConfig the config object to protect.
+	 */
 	static public function protectConfig( oConfig ):Void 
 	{
 		var logger:ILogger = Log.getLogger("asgard.config") ;

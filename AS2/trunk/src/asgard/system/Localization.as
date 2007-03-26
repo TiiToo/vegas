@@ -21,28 +21,6 @@
   
 */
 
-/**
-
-	TODO DESCRIPTION (à traduire)
-	
-		La classe Localization permet de gérer via des fichiers textes au format JSON ou Eden de charger le contenu textuel d'une 
-		application en fonction des paramètres de langues choisis par l'utilisateurs.
-		
-		Il est possible de définir plusieurs instances de la classe Localization pour gérer plusieurs éléments dans l'application, 
-		mais pour cela il faut utiliser la propriété statique getInstance(sName). Ainsi toutes les instances deviennent des Singletons
-		réutilisables un peu partout dans l'application assez rapidement.
-		
-		Cette classe fonctionne sur un modèle reposant sur une HashMap contenant des instances de la classe Locale indexées par des identifiants de type Lang.
-		Si un objet de type Locale est défini pour une Lang donné, le localizer ne cherche pas à rechargé le fichier externe de configuration.
-		
-		A noter que la classe Localization utilise en interne une instance de la classe LocalizationLoader qui permet de définir plus facilement certains
-		paramètres définissant précisément l'url des fichiers à charger.
-		
-		Chaque fichier chargé donc contenir dans son nom principal un suffix de type _LANG qui permet de le différencier en fonction de la langue choisie.
-
-
-*/	
-
 import asgard.events.LoaderEvent;
 import asgard.events.LoaderEventType;
 import asgard.events.LocalizationEvent;
@@ -52,24 +30,28 @@ import asgard.system.Lang;
 import asgard.system.Locale;
 import asgard.system.LocalizationLoader;
 
-import pegas.events.UIEventType;
-
 import vegas.data.map.HashMap;
 import vegas.events.AbstractCoreEventDispatcher;
 import vegas.events.Delegate;
 import vegas.events.EventListener;
 
 /**
- * The singleton Localization tool.
+ * The Localization class allows to manage via textual files with JSON or Eden format to charge the textual contents 
+ * of an application according to the parameters of languages chosen by the users.
+ * <p>It is possible to define several singletons of the Localization class to manage several elements in the application, but for this it's necessary to use the static property getInstance(sName). 
+ * Thus all the authorities become of Singletons reusable a little everywhere in the application rather quickly.</p> 
  * @author eKameleon
+ * @see Lang
+ * @see Locale
  */
 class asgard.system.Localization extends AbstractCoreEventDispatcher implements LoaderListener 
 {
 	
 	/**
-	 * Creates the Localizationb Singleton.
+	 * Creates a new Localization instance.
+	 * @param sName the name of the object.
 	 */
-	private function Localization(sName:String) 
+	public function Localization(sName:String) 
 	{
 
 		super();
@@ -91,24 +73,49 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 		
 	}
 
-	static public var CHANGE:String = UIEventType.CHANGE  ;
+	/**
+	 * The name of the event when the localization is changed.
+	 */
+	static public var CHANGE:String = "change"  ;
 	
+	/**
+	 * The name of the event invoqued when the localization is completed.
+	 */
 	static public var COMPLETE:String = "onLoadComplete" ;
 	
+	/**
+	 * The name of the event invoqued when the localization is finished.
+	 */
 	static public var FINISH:String = "onLoadFinished" ;
 	
+	/**
+	 * The name of the event invoqued when the localization failed with an i/o error.
+	 */
 	static public var IO_ERROR:String = "onLoadError" ;
 	
+	/**
+	 * The name of the event invoqued when the localization is in progress.
+	 */
 	static public var PROGRESS:String = "onLoadProgress" ;
 	
+	/**
+	 * The name of the event invoqued when the localization is started.
+	 */
 	static public var START:String = "onLoadStarted" ;
-	
+
+	/**
+	 * The name of the event invoqued when the localization is out of time.
+	 */
 	static public var TIMEOUT:String = "onTimeOut" ;
 
+	/**
+	 * The default singleton name of the Localization singletons.
+	 */
 	static public var DEFAULT_NAME:String = "" ;
 	
 	/**
-	 * (read-write) Returns the current localization.
+	 * (read-write) Returns the current {@code Lang} object selected in the current localization.
+	 * @return the current {@code Lang} object.
 	 */
 	public function get current():Lang 
 	{
@@ -116,7 +123,7 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	}
 	
 	/**
-	 * (read-write) Sets the current localization.
+	 * (read-write) Sets the current {@code Lang} object.
 	 */
 	public function set current(lang:Lang):Void
 	{
@@ -132,7 +139,7 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	}
 	
 	/**
-	 * Clear the internal map.
+	 * Removes all singletons in the internal map of this object..
 	 */
 	public function clear():Void 
 	{
@@ -148,16 +155,28 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 		return _map.containsKey(lang) ;
 	}
 	
+	/**
+	 * Returns the current {@code Locale} object defines with the specified {@code Lang} object in argument.
+	 * @return the current {@code Locale} object defines with the specified {@code Lang} object in argument.
+	 */
 	public function get(lang:Lang):Locale 
 	{
 		return _map.get(lang) ;
 	}
 	
+	/**
+	 * Returns the current {@code Lang} reference of this instance.
+	 * @return the current {@code Lang} reference of this instance.
+	 */
 	public function getCurrent():Lang 
 	{
 		return _current ;
 	} 
 	
+	/**
+	 * Returns a {@code Localization} singleton reference with the specified name passed-in argument.
+	 * @return a {@code Localization} singleton reference with the specified name passed-in argument.
+	 */
 	static public function getInstance( sName:String ):Localization 
 	{
 		sName = sName || Localization.DEFAULT_NAME  ;
@@ -173,17 +192,30 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 		return _sName ;	
 	}
 
+	/**
+	 * Releases the specified {@code Localization} singleton with the specified name in argument.
+	 * @return the reference of the removed Localization object.
+	 */
 	static public function release(sName:String):Localization 
 	{
 		if (!sName) sName = Localization.DEFAULT_NAME ;
 		return Localization.__mInstances.remove(sName) ;
 	}
 
+	/**
+	 * Returns the ILocalizationLoader reference of this instance.
+	 * @return the ILocalizationLoader reference of this instance.
+	 */
 	public function getLoader():ILocalizationLoader
 	{
 		return _loader ;
 	}
 
+	/**
+	 * Returns the locale object with all this properties.
+	 * @param sID (optional) if this key is specified the method return the value of the specified key in the current locale object.  
+	 * @return the locale object with all this properties.
+	 */
 	public function getLocale( sID:String ) 
 	{
 		if (sID) 
@@ -198,6 +230,7 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 
 	/**
 	 * Returns {@code true} if the Localization model is empty.
+	 * @return {@code true} if the Localization model is empty.
 	 */
 	public function isEmpty():Boolean 
 	{
@@ -245,16 +278,25 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 		notifyChange() ;
 	}
 
+	/**
+	 * Invoqued when the localization loading is in progress. Overrides this method.
+	 */
 	public function onLoadProgress( e:LoaderEvent ):Void 
 	{
 		// override
 	}
 
+	/**
+	 * Invoqued when the localization loading is started. Overrides this method.
+	 */
 	public function onLoadStart( e:LoaderEvent ):Void 
 	{
 		// override
 	}
-
+	
+	/**
+	 * Invoqued when the localization loading is out of time. Overrides this method.
+	 */
 	public function onLoadTimeOut( e:LoaderEvent ):Void 
 	{
 		// override
@@ -270,10 +312,11 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 
 	/**
 	 * Remove the specified Lang in the Localization model.
+	 * @param lang a valid Lang object. This argument is valid if the {@link Lang.validate} method return {@code true}.
 	 */
 	public function remove(lang:Lang):Void 
 	{
-		if (Lang.validate(lang)) 
+		if ( Lang.validate(lang) ) 
 		{
 			_map.remove(lang) ;
 		}

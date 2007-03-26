@@ -30,7 +30,7 @@ import asgard.net.URLRequest;
 import vegas.errors.Warning;
 
 /**
- * The ConfigEdenLoader class.
+ * The ConfigEdenLoader class based on the Eden notation.
  * @author eKameleon
  */
 class asgard.config.ConfigEdenLoader extends EdenLoader 

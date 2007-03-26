@@ -24,6 +24,7 @@
 import vegas.core.CoreObject;
 
 /**
+ * The dynamic Config singleton. This object is a global reference to register all external properties.
  * @author eKameleon
  */
 dynamic class asgard.config.Config extends CoreObject 

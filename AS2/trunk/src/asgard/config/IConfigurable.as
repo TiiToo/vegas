@@ -21,21 +21,8 @@
   
 */
 
-/** IConfigurable (interface)
-
-	AUTHOR
-
-		Name : IConfigurable
-		Package : asgard.config
-		Version : 1.0.0.0
-		Date :  2006-08-18
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-*/	
-
 /**
+ * The IConfigurable interface.
  * @author eKameleon
  */
 interface asgard.config.IConfigurable 
