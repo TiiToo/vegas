@@ -27,6 +27,8 @@ import vegas.data.collections.TypedCollection;
 import vegas.data.iterator.Iterator;
 
 /**
+ * A batch is a collection of {@code Action} objects. All {@code Action} objects are processed as a single unit.
+ * This class use an internal typed {@code SimpleCollection} to register all {@code Action} objects.  
  * @author eKameleon
  */
 class pegas.process.Batch extends TypedCollection implements IRunnable 
@@ -40,6 +42,10 @@ class pegas.process.Batch extends TypedCollection implements IRunnable
 		super(IRunnable, new SimpleCollection()) ;
   	}
 
+	/**
+	 * Returns a shallow copy of the object.
+	 * @return a shallow copy of the object.
+	 */
 	public function clone() 
 	{
 		var b:Batch = new Batch() ;
@@ -48,6 +54,9 @@ class pegas.process.Batch extends TypedCollection implements IRunnable
 		return b ;
 	}
 	
+	/**
+	 * Runs the process.
+	 */
  	public function run():Void 
  	{
 		var ar:Array = toArray() ;

@@ -34,37 +34,62 @@ class pegas.process.Message extends Pause
 	/**
 	 * Creates a new Message instance.
 	 */
-	public function Message(p_msg:String, p_face:String, p_duration:Number, p_to:Number, seconds:Boolean ) 
+	public function Message( msg:String, face:String, duration:Number, to:Number, seconds:Boolean ) 
 	{
-		super(p_duration || 1500, seconds) ;
-		message = p_msg ;
-		face = p_face ;
-		to = p_to ;
+		super( isNaN(duration) ? 1500 : duration, seconds) ;
+		this.message = msg ;
+		this.face = face ;
+		this.to = to ;
 	}
 	
+	/**
+	 * Determinates a value to send the message in the local application.
+	 */
 	static public var ME:Number = 0 ;
 
+	/**
+	 * Determinates a value to send the message to all users.
+	 */
 	static public var ALL:Number = 1 ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(Message, null , 7, 7) ;
-	
+	/**
+	 * The message value.
+	 */
 	public var message:String ;
 
+	/**
+	 * An optional face value.
+	 */
 	public var face:String ;
 
+	/**
+	 * An optional to value.
+	 */
 	public var to:Number ;
 	
+	/**
+	 * Returns a shallow copy of the object.
+	 * @return a shallow copy of the object.
+	 */
 	public function clone() 
 	{
 		return new Message(message, face, _duration, to, useSeconds) ;
 	}
 
+	/**
+	 * Returns the Eden string representation of the object.
+	 * @return the Eden string representation of the object.
+	 */
 	/*override*/ public function toSource(indent:Number, indentor:String):String 
 	{
 		return Serializer.getSourceOf(this, [message, face, duration, to, Serializer.toSource(useSeconds) ]) ;
 	}
 	
-	public function toString(Void):String 
+	/**
+	 * Returns the string representation of the object.
+	 * @return the string representation of the object.
+	 */
+	public function toString():String 
 	{
 		return "[Message : " + message + "]" ;
 	}

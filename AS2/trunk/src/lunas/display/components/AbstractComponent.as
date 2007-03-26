@@ -671,7 +671,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function viewChanged():Void 
 	{
-		
+		// overrides
 	}
 	
 	/**
@@ -680,7 +680,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function viewDestroyed():Void 
 	{
-		
+		// overrides
 	}	
 	
 	/**
@@ -689,7 +689,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function viewEnabled():Void 
 	{
-		
+		// overrides
 	}
 	
 	/**
@@ -698,7 +698,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function viewResize():Void 
 	{
-		
+		// overrides
 	}
 	
 	/**
@@ -707,7 +707,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function viewStyleChanged():Void 
 	{
-		
+		// overrides
 	}
 	
 	/**
@@ -716,7 +716,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function viewStyleSheetChanged():Void 
 	{
-		//
+		// overrides
 	}
 
 	private var _builder:IBuilder ;

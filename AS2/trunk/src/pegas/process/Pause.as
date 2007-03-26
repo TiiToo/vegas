@@ -29,7 +29,7 @@ import vegas.util.serialize.Serializer;
 import vegas.util.Timer;
 
 /**
- * This IAction object create a pause in the process.
+ * This {@code Action} object create a pause in the process.
  * @author eKameleon
  */
 class pegas.process.Pause extends AbstractAction 

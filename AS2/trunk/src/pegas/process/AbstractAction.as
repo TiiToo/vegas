@@ -28,7 +28,7 @@ import vegas.core.ICloneable;
 import vegas.events.AbstractCoreEventDispatcher;
 
 /**
- * This class simplify the implementation of the Action interface.
+ * This class simplify the implementation of the {@code Action} interface.
  * @author eKameleon
  */
 class pegas.process.AbstractAction extends AbstractCoreEventDispatcher implements Action, ICloneable
