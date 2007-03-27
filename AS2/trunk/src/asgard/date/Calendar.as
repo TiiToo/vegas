@@ -479,12 +479,41 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	}
 
 	/**
+	 * Returns the Calendar reference of the "tomorrow" {@code Calendar} object of the specified {@code Date} in argument.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * trace ( "toDay     : " + (new Calendar()).format("DDDD yyyy-mm-dd") ) ;
+	 * trace ( "tomorrow  : " + (Calendar.tomorrow()).format("DDDD yyyy-mm-dd") ) ;
+	 * }
+	 * @return the Calendar reference of the "tomorrow" {@code Calendar} object of the specified {@code Date} in argument.
+	 */
+	static public function tomorrow( d:Date ):Calendar
+	{
+		return new Calendar( (d || new Date()).valueOf() + ONE_DAY_MS ) ;
+	}
+
+	/**
 	 * Returns the Eden string representation of this object.
 	 * @return the Eden string representation of this object.
 	 */
 	public function toSource(indent:Number, indentor:String):String 
 	{
 		return Serializer.getSourceOf(this, [Serializer.toSource(valueOf())]) ;
+	}
+	
+	/**
+	 * Returns the Calendar reference of the "yesterday" {@code Calendar} object of the specified {@code Date} in argument.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * trace ( "yesterday : " + (Calendar.yesterday()).format("DDDD yyyy-mm-dd") ) ;
+	 * trace ( "toDay     : " + (new Calendar()).format("DDDD yyyy-mm-dd") ) ;
+	 * }
+	 * @return the Calendar reference of the "yesterday" {@code Calendar} object of the specified {@code Date} in argument.
+	 */
+	static public function yesterday ( d:Date ):Calendar
+	{
+		d = d || new Date() ;
+		return new Calendar( (d || new Date()).valueOf() - ONE_DAY_MS ) ;
 	}
 
 	static private var _initHashCode:Boolean = HashCode.initialize(Calendar.prototype) ;
