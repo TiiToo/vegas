@@ -30,6 +30,11 @@ import asgard.net.URLRequestHeader;
 import asgard.net.URLVariables;
 
 import vegas.events.Delegate;
+import vegas.logging.ILogger;
+import vegas.logging.Log;
+import vegas.util.ConstructorUtil;
+
+// FIXME : IMPORTANT ici tout vérifier et Tests !!!!
 
 /**
  * The URLLoader class.
@@ -44,10 +49,14 @@ class asgard.net.URLLoader extends AbstractLoader
 	function URLLoader() 
 	{
 		super() ;
+		_logger = Log.getLogger( ConstructorUtil.getPath(this) ) ;
 		setDataFormat(DataFormat.TEXT) ;
 		_setInitTimer(super.onLoadInit) ;
 	}
 
+	/**
+	 * The default content type of this {@code ILoader} object.
+	 */
 	static public var DEFAULT_CONTENT_TYPE:String = "application/x-www-form-urlencoded" ;
 	
 	/**
@@ -74,6 +83,9 @@ class asgard.net.URLLoader extends AbstractLoader
 		getContent().addRequestHeader(header, headerValue) ;
 	}
 
+	/**
+	 * Check the external data.
+	 */
 	public function checkData():Void 
 	{
 		deserializeData() ;
@@ -88,32 +100,48 @@ class asgard.net.URLLoader extends AbstractLoader
 		// override thid method
 	}
 
+	/**
+	 * Returns the content loader object of this ILoader.
+	 * @return the content loader object of this ILoader.
+	 */
 	/*override*/ public function getContent():LoadVars 
 	{
 		return LoadVars( super.getContent() );
 	}
 	
+	/**
+	 * Returns the content type of this ILoader.
+	 */
 	public function getContentType():String 
 	{
 		return getContent().contentType ;	
 	}
 	
+	/**
+	 * Returns the data format of this {@code ILoader}.
+	 * @return the data format of this {@code ILoader}.
+	 */
 	public function getDataFormat():String 
 	{
 		return _sDataFormat ;
 	}
 
+	/**
+	 * Initialize the internal {@code Event} of this {@code ILoader}.
+	 */
 	public function initEvent():Void 
 	{
 		_e = new URLLoaderEvent(null, this) ;
 	}
-	
+
+	/**
+	 * Returns {@code true} if the external file is loaded.
+	 * @return {@code true} if the external file is loaded.
+	 */	
 	public function isLoaded():Boolean 
 	{
 		return getContent().loaded ;	
 	}	
-	
-	// FIXME : IMPORTANT ici tout vérifier et Tests !!!!
 
 	/**
 	 * Load the external content in the loader.
@@ -132,7 +160,6 @@ class asgard.net.URLLoader extends AbstractLoader
 			
 			if (request.getUrl() != undefined) 
 			{
-				//trace("request url not undefined : " + request.getUrl()) ;
 				setUrl( request.getUrl() ) ;
 			}
 			
@@ -163,7 +190,7 @@ class asgard.net.URLLoader extends AbstractLoader
 		}
 		
 		var receive:LoadVars = new LoadVars() ;
-		// receive.onHTTPStatus = Delegate.create(this, _onHTTPStatus, receive) ;
+		receive.onHTTPStatus = Delegate.create(this, _onHTTPStatus, receive) ;
 		receive.onData = Delegate.create(this, _onData) ;
 
 		setContent( receive ) ;
@@ -190,16 +217,27 @@ class asgard.net.URLLoader extends AbstractLoader
   			
   	}
   
+  	/**
+  	 * Sets the content loader object.
+  	 */
 	public function setContent(o:LoadVars):Void 
 	{
 		super.setContent( o );
 	}
 	
+	/**
+	 * Sets the content type value of this ILoader.
+	 */
 	public function setContentType(sType:String):Void 
 	{
 		getContent().contentType = sType || DEFAULT_CONTENT_TYPE ;
 	}
 	
+	/**
+	 * Sets the data format of the specified ILoader.
+	 * @param s the string value of the current DataFormat of this ILoader.
+	 * @see DataFormat
+	 */
 	public function setDataFormat(s:String):Void 
 	{
 		s = DataFormat.validate(s) ? s : DataFormat.TEXT ;
@@ -207,6 +245,8 @@ class asgard.net.URLLoader extends AbstractLoader
 	}
 
 	private var _aHeaders:Array ;
+
+	private var _logger:ILogger ;
 
 	private var _sContentType:String = URLRequest.DEFAULT_CONTENT_TYPE ;
 
@@ -296,7 +336,7 @@ class asgard.net.URLLoader extends AbstractLoader
           	httpStatusType = "serverError";
      	}
      	
-     	trace("> " + this + " HTTP status : " + httpStatusType) ;
+     	_logger.warn( this + " HTTP status : " + httpStatusType ) ;
   		
   	}
 }

@@ -21,114 +21,6 @@
   
 */
 
-/** SharedData
-
-	AUTHOR
-
-		Name : SharedData
-		Package : asgard.net
-		Version : 1.0.0.0
-		Date :  2006-05-04
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	PROPERTY SUMMARY
-	
-		- data [Read Only]
-		
-		- isConnected:Boolean [Read Only]
-		
-	METHOD SUMMARY
-	
-		- addEventListener( eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void
-		
-		- addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void
-		
-		- clear():Void
-		
-		- close():Void
-		
-		- connect(nc:NetServerConnection):Boolean
-		
-		- dispatchEvent(event, isQueue:Boolean, target, context):Event
-		
-		- fireEvent( e ):Void
-		
-		- flush():Void 
-		
-		- getData()
-		
-		- getDispatcher():EventDispatcher
-		
-		- getEventDispatcher():EventDispatcher
-		
-		- getEventListeners(eventName:String):EventListenerCollection
-		
-		- getGlobalEventListeners():EventListenerCollection
-		
-		- getIsConnected():Boolean
-		
-		- getRegisteredEventNames():Set
-		
-		- getParent():EventDispatcher
-		
-		- getProperty(sName:String)
-		
-		- hashCode():Number
-		
-		- hasEventListener(eventName:String):Boolean
-		
-		- initEventDispatcher():EventDispatcher
-		
-		- initialize(sName:String, nc:NetServerConnection, persistant:Boolean, autoConnect:Boolean):Void
-		
-		- lock():Void
-		
-		- removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener
-		
-		- removeGlobalEventListener( listener ):EventListener
-		
-		- reset():Void
-		
-		- setParent(parent:EventDispatcher):Void	INHERIT
-	
-		- setFps(n:Number):Boolean
-	
-		- setProperty(sName:String, value ):Void
-		
-		- size():Number
-	
-		- unlock():Void
-
-	EVENT TYPE SUMMARY
-
-		- CHANGE:SharedDataEventType
-		
-		- CLEAR:SharedDataEventType
-		
-		- CLOSE:SharedDataEventType
-		
-		- DELETE:SharedDataEventType
-		
-		- FIRE:SharedDateEventType
-		
-		- REJECT:SharedDataEventType
-		
-		- SUCCESS:SharedDataEventType
-		
-		- SYNCHRONISED:SharedDataEventType
-
-	INHERIT
-	
-		SharedObject → SharedData
-
-	IMPLEMENTS
-	
-		Action, EventTarget, IEventDispatcher, IHashable, IFormattable
-
-**/
-
 import asgard.events.SharedDataEvent;
 import asgard.events.SharedDataEventType;
 import asgard.net.NetServerConnection;
@@ -140,13 +32,15 @@ import vegas.events.Delegate;
 /**
  * @author eKameleon
  * @version 1.0.0.0
- * @date 2006-05-04
  */
-class asgard.net.SharedData extends AbstractCoreEventDispatcher {
+class asgard.net.SharedData extends AbstractCoreEventDispatcher 
+{
 	
-	// ----o Constructor
-	
-	function SharedData( sName:String, nc:NetServerConnection, persistant:Boolean, autoConnect:Boolean) {
+	/**
+	 * Creates a new SharedData instance.
+	 */
+	function SharedData( sName:String, nc:NetServerConnection, persistant:Boolean, autoConnect:Boolean) 
+	{
 		
 		super();
 		
@@ -166,99 +60,117 @@ class asgard.net.SharedData extends AbstractCoreEventDispatcher {
 		
 	}
 
-	// ----o Public Methods
 
-	public function clear():Void {
+	public function get data() 
+	{
+		return getData() ; 
+	}
+	
+	public function get isConnected():Boolean 
+	{
+		return getIsConnected() ;	
+	}
+
+	public function clear():Void 
+	{
 		_so.clear() ;
 	}
 
- 	public function close():Void { 
-		if (_isConnected) {
+ 	public function close():Void 
+ 	{
+		if (_isConnected) 
+		{
 			_so.close() ;
 			_isConnected = false ;
 			dispatchEvent(_eClose) ;
 		}
 	}
 	
-	public function connect(nc:NetServerConnection):Boolean {
+	public function connect(nc:NetServerConnection):Boolean 
+	{
 		close() ;
 		_isConnected = _so.connect(nc) ;
 		return _isConnected ;
 	}
 
-	public function fireEvent( eContext ):Void {
+	public function fireEvent( eContext ):Void 
+	{
   		_so.send(SharedDataEventType.FIRE, eContext );
   	}
 
-	public function flush():Void {
+	public function flush():Void 
+	{
 		_so.flush() ;
 	}	
 	
-	public function getData() {
+	public function getData() 
+	{
 		return _so.data ;	
 	}
 	
-	public function getIsConnected():Boolean {
+	public function getIsConnected():Boolean 
+	{
 		return _isConnected ;	
 	}
 
-	public function getProperty(sName:String) {
+	public function getProperty(sName:String) 
+	{
   		return _so.data[sName];
   	}
 
-	public function initialize(sName:String, nc:NetServerConnection, persistant:Boolean, autoConnect:Boolean):Void {
-		if (_so ) {
+	public function initialize(sName:String, nc:NetServerConnection, persistant:Boolean, autoConnect:Boolean):Void 
+	{
+		if (_so ) 
+		{
 			_so.close() ;
 		}
 		_so = SharedObject.getRemote(sName, nc.uri, persistant) ;
 		_so.onSync = Delegate.create(this, _onSync) ;
 		_so[SharedDataEventType.FIRE] = Delegate.create(this, _onFired) ;	
-		if (autoConnect) connect(nc) ;
+		if (autoConnect) 
+		{
+			connect(nc) ;
+		}
 	}
 
-	public function lock():Void {
+	public function lock():Void 
+	{
 		_so.setFps(0);
 	}
 
-	public function reset():Void {
+	public function reset():Void 
+	{
 		var o:Object = getData() ;
-		for (var each:String in o) {
+		for (var each:String in o) 
+		{
 			delete o[each] ;
 		}
 	}	
 	
-	public function setFps(n:Number):Boolean {
+	public function setFps(n:Number):Boolean 
+	{
   		return _so.setFps(n);
   	}
   	
-  	public function setProperty(sName:String, value ):Void {
+  	public function setProperty(sName:String, value ):Void 
+  	{
   		_so.data[sName] = value ;
 		_so.flush() ;
   	}
 
-	public function size():Number {
+	public function size():Number 
+	{
 		return _so.getSize() ;	
 	}
 
 	/**
 	 * Unlock Method like server side SSAS !! Test this method !!
 	 */
- 	public function unlock():Void {
+ 	public function unlock():Void 
+ 	{
 		_so.setFps(0) ;
 		_so.setFps(-1) ;
 	}
-
-	// ----o Virtual Properties
-	
-	public function get data() { 
-		return getData() ; 
-	}
-	
-	public function get isConnected():Boolean {
-		return getIsConnected() ;	
-	}
-	
-	// ----o Private Properties
 
 	private var _eChange:SharedDataEvent ;
 	private var _eClear:SharedDataEvent;
@@ -274,21 +186,23 @@ class asgard.net.SharedData extends AbstractCoreEventDispatcher {
 	
 	private var _so:SharedObject ;
 		
-	// ----o Private Methods
-	
-	private function _onSync( list ):Void {
+	private function _onSync( list ):Void 
+	{
 		
-		if (_isFirst) {
+		if (_isFirst) 
+		{
 			_isFirst = false ;
 			dispatchEvent(_eSync) ;
-			for (var name:String in _so.data ) {
+			for (var name:String in _so.data ) 
+			{
 				_eChange.setProperty(name, _so.data[name]) ;
 				dispatchEvent( _eChange ) ;
 			}
 			return ;
 		}
 		
-		for (var prop:String in list) {
+		for (var prop:String in list) 
+		{
 			
 			var item:Object = list[prop] ;
 			var code:SharedDataStatus = SharedDataStatus.format( item.code )  ;
@@ -302,36 +216,43 @@ class asgard.net.SharedData extends AbstractCoreEventDispatcher {
 			trace (txt) ;
 			//***/
 			
-			switch (code) {
-
+			switch (code) 
+			{
 				case SharedDataStatus.CLEAR :
+				{
 					dispatchEvent(_eClear);
 					break ;
-
+				}
 				case SharedDataStatus.CHANGE :
+				{
 					_eChange.setProperty(name, value) ;
 					dispatchEvent(_eChange);
 					break ;
-					
+				}	
 				case SharedDataStatus.DELETE :
+				{
 					_eDelete.setProperty(name) ;
 					dispatchEvent(_eDelete );
 					break ;
-
+				}
 				case SharedDataStatus.REJECT :
+				{
 					_eReject.setProperty(name, value) ;
 					dispatchEvent(_eReject );
 					break ;
-
+				}
 				case SharedDataStatus.SUCCESS :
+				{
 					_eSuccess.setProperty(name, value) ;
 					dispatchEvent(_eSuccess );
 					break ;
+				}
 			}
    		}
 	}
 
-	private function _onFired( eventContext ):Void {
+	private function _onFired( eventContext ):Void 
+	{
 		_eFire.setContext ( eventContext ) ;
    		dispatchEvent( _eFire ) ;
 	}

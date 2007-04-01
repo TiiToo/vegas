@@ -68,6 +68,8 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 		_eResize          = new UIEvent( UIEventType.RESIZE , this) ;
 		_eStyleChange     = new UIEvent( UIEventType.STYLE_CHANGE, this) ;
 		
+		_listenerStyleChange = new Delegate(this, viewStyleChanged) ;
+		
 		___timer___ = new FrameTimer(24, 1) ;
 		___timer___.addEventListener(TimerEvent.TIMER, new Delegate(this, _redraw)) ;
 		
@@ -610,18 +612,13 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function setStyle(s:IStyle):Void 
 	{
-		if (_style != undefined) {
-			_style.removeEventListener(StyleEventType.STYLE_CHANGED, this) ;
-			_style.removeEventListener(StyleEventType.STYLE_SHEET_CHANGED, new Delegate(this, viewStyleChanged)) ;
-			_style = undefined ;
-		}
+		_unregisterStyle() ;
 		if (s == undefined) 
 		{
 			return ;
 		}
 		_style = s ; 
-		_style.addEventListener(StyleEventType.STYLE_CHANGED, new Delegate(this, viewStyleChanged)) ;
-		_style.addEventListener(StyleEventType.STYLE_SHEET_CHANGED, new Delegate(this, viewStyleChanged)) ;
+		_registerStyle() ;
 		if (___isLock___) 
 		{
 			return ;
@@ -756,13 +753,24 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	private var _eResize:UIEvent ;
 	
 	private var _eStyleChange:UIEvent ;
-		
+
+	private var _listenerStyleChange:EventListener ;
+	
 	static private var _initHashCode:Boolean = HashCode.initialize(AbstractComponent.prototype) ;
 
 	private function _redraw(ev:TimerEvent):Void 
 	{
 		___timer___.stop() ;
 		update() ;
+	}
+	
+	private function _registerStyle():Void
+	{
+		if (_style != null)
+		{
+			_style.addEventListener(StyleEventType.STYLE_CHANGED, _listenerStyleChange) ;
+			_style.addEventListener(StyleEventType.STYLE_SHEET_CHANGED, _listenerStyleChange) ;
+		}
 	}
 	
 	private function onUnload():Void 
@@ -772,5 +780,15 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 		dispatchEvent(_eDestroy) ;
 	}
 
+	private function _unregisterStyle():Void
+	{
+		if ( _style != null ) 
+		{
+			_style.removeEventListener(StyleEventType.STYLE_CHANGED, _listenerStyleChange) ;
+			_style.removeEventListener(StyleEventType.STYLE_SHEET_CHANGED, _listenerStyleChange ) ;
+			_style = null ;
+		}
+
+	}
 	
 }

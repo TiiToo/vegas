@@ -21,80 +21,69 @@
   
 */
 
-/** SharedDataStatus
-
-	AUTHOR
-
-		Name : SharedDataStatus
-		Package : asgard.net
-		Version : 1.0.0.0
-		Date :  2006-05-04
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTANT SUMMARY
-	
-		- CHANGE:SharedDataStatus ("change")
-		
-		- CLEAR:SharedDataStatus ("clear")
-		
-		- DELETE:SharedDataStatus ("delete")
-		
-		- REJECT:SharedDataStatus ("reject")
-		
-		- SUCCESS:SharedDataStatus ("success")
-
-	METHOD SUMMARY
-	
-		- static format(code:String):String
-		
-		- static validate(o):Boolean
-
-**/
-
 import vegas.util.ArrayUtil;
 
 /**
+ * The SharedData status enumeration list.
  * @author eKameleon
  * @version 1.0.0.0
  **/	
-class asgard.net.SharedDataStatus extends String {
+class asgard.net.SharedDataStatus extends String 
+{
 	
-	// ----o Constructor
-	
-	private function SharedDataStatus( s:String ) {
+	/**
+	 * Creates a new SharedDataStatus instance.
+	 * @param s the String value of the SharedDataStatus instance.
+	 */
+	public function SharedDataStatus( s:String ) 
+	{
 		super(s) ;
 	}
 
-	// ----o Constants
-	
-	static public var CHANGE:SharedDataStatus = new SharedDataStatus("change") ;
-	
-	static public var CLEAR:SharedDataStatus = new SharedDataStatus("clear") ;
+	/**
+	 * The "change" SharedDataStatus.
+	 */
+	static public var CHANGE:SharedDataStatus  = new SharedDataStatus("change") ;
 
-	static public var DELETE:SharedDataStatus = new SharedDataStatus("delete") ;
+	/**
+	 * The "clear" SharedDataStatus.
+	 */
+	static public var CLEAR:SharedDataStatus   = new SharedDataStatus("clear") ;
 
-	static public var REJECT:SharedDataStatus = new SharedDataStatus("reject") ;
-	
+	/**
+	 * The "delete" SharedDataStatus.
+	 */
+	static public var DELETE:SharedDataStatus  = new SharedDataStatus("delete") ;
+
+	/**
+	 * The "reject" SharedDataStatus.
+	 */
+	static public var REJECT:SharedDataStatus  = new SharedDataStatus("reject") ;
+
+	/**
+	 * The "success" SharedDataStatus.
+	 */
 	static public var SUCCESS:SharedDataStatus = new SharedDataStatus("success") ;
-
-	static private var __ASPF__ = _global.ASSetPropFlags(SharedDataStatus, null , 7, 7) ;
-
-	// ----o Public Methods
 
 	/**
 	 * Convert onSync code value in SharedData.onSync.
 	 */
-	static public function format(code:String):SharedDataStatus {
+	static public function format(code:String):SharedDataStatus 
+	{
 		var status:Array = [CHANGE, CLEAR, DELETE, REJECT, SUCCESS] ;
 		var l:Number = status.length ;
-		while(--l > -1) {
+		while(--l > -1) 
+		{
 			if (status[l].toString() == code) return status[l] ;	
 		}
 	}
 
-	static public function validate( o ):Boolean {
+	/**
+	 * Returns {@code true} if the specified value is a valid SharedDataStatus object.
+	 * @return {@code true} if the specified value is a valid SharedDataStatus object.
+	 */
+	static public function validate( o ):Boolean 
+	{
 		var status:Array = [CHANGE, CLEAR, DELETE, REJECT, SUCCESS] ;
 		return ArrayUtil.contains(status, o) ;	
 	}

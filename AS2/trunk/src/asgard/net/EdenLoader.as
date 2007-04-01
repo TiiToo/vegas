@@ -24,7 +24,9 @@
 import asgard.net.ParserLoader;
 
 /**
+ * This ParserLoader use the Eden string format to deserialize the external datas.
  * @author eKameleon
+ * @see buRRRn.eden.Application
  */
 class asgard.net.EdenLoader extends ParserLoader 
 {

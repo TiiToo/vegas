@@ -40,6 +40,7 @@ class asgard.net.StyleSheetLoader extends URLLoader
 	function StyleSheetLoader() 
 	{
 		super();
+		_styleSheet = initStyleSheet() ;
 	}
 
 	/**
@@ -47,7 +48,35 @@ class asgard.net.StyleSheetLoader extends URLLoader
 	 */
 	public function deserializeData():Void 
 	{
-		setData( new StyleSheet( this.getData() )  ) ;
+		_styleSheet.parseCSS( this.getData() ) ; 
+		setData( _styleSheet ) ;
+	}
+
+	/**
+	 * Returns the styleSheet reference of this event.
+	 * @return the styleSheet reference of this event.
+	 */
+	public function getStyleSheet():StyleSheet
+	{
+		return _styleSheet ;	
+	}
+
+	/**
+	 * Creates and returns the internal defaut {@code StyleSheet} reference (this method is invoqued in the constructor).
+	 * You can overrides this method if you wan use a global {@code StyleSheet} singleton.
+	 * @return the default internal {@code StyleSheet} reference.
+	 */
+	public function initStyleSheet():StyleSheet 
+	{
+		return new StyleSheet() ;
+	}
+
+	/**
+	 * Sets the styleSheet reference of this ILoader.
+	 */
+	public function setStyleSheet( css:StyleSheet ):Void
+	{
+		_styleSheet = css ;
 	}
 
 	/**
@@ -61,5 +90,10 @@ class asgard.net.StyleSheetLoader extends URLLoader
 			throw new UnsupportedOperation( this + " the method setDataFormat is unsupported, the dataFormat is only a DataFormat.TEXT.") ;
 		}
 	}
+	
+	/**
+	 * The internal StyleSheet reference.
+	 */
+	private var _styleSheet:StyleSheet ;
 
 }
