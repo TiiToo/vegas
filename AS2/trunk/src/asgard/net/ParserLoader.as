@@ -27,6 +27,7 @@ import asgard.net.URLLoader;
 import vegas.errors.Warning;
 
 /**
+ * This ILoader use an internal parser when the external datas are loading.
  * @author eKameleon
  */
 class asgard.net.ParserLoader extends URLLoader 

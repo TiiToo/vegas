@@ -21,8 +21,14 @@
   
 */
 
+import asgard.events.CuePointEvent;
 import asgard.events.MediaEvent;
+import asgard.events.NetServerEvent;
+import asgard.events.NetServerEventType;
 import asgard.media.AbstractMediaLoader;
+import asgard.media.FLVMetaData;
+import asgard.net.NetServerConnection;
+import asgard.net.NetServerStatus;
 import asgard.net.NetStreamStatus;
 
 import pegas.maths.Range;
@@ -34,6 +40,9 @@ import vegas.events.BasicEvent;
 import vegas.events.Delegate;
 import vegas.events.EventType;
 import vegas.events.TimerEvent;
+import vegas.logging.ILogger;
+import vegas.logging.Log;
+import vegas.util.ConstructorUtil;
 import vegas.util.FrameTimer;
 import vegas.util.Timer;
 
@@ -55,6 +64,8 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		
 		super(mcTarget, sName);
 		
+		_logger = Log.getLogger( ConstructorUtil.getPath( this ) ) ;
+		
 		_oVideo = video ? video : _mcTarget.video ;
 		
 		if (_oVideo == undefined) 
@@ -62,28 +73,16 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 			throw new IllegalArgumentError( toString() + " failed. Invalid video object was passed in the constructor.") ;
 		}
 		
-		_oNC = new NetConnection() ;
-		_oNC.onStatus = Delegate.create(this, _onStatus) ;
-		_oNC.connect(null) ;
-		
-		_oNS = new NetStream( _oNC ) ;
-		
-		_oNS["onMetaData"] = Delegate.create(this, _onMetaData) ;
-		_oNS.onStatus = Delegate.create(this, _onStatus) ;
-		
-		_oVideo.attachVideo(_oNS);
-		_mcTarget.attachAudio(_oNS);
-		
-		setContent( _oNS );
+		_timerHeadTime = new Timer(100, 1) ;
+		_timerHeadTime.addEventListener(TimerEvent.TIMER, new Delegate(this, _onFrameUpdate)) ;
 
 		setAutoPlay( true ) ;
 		setAutoSize( false ) ;
 		setBufferTime( VideoLoader.BUFFER_TIME_DEFAULT );
 		setPlaying ( false ) ;
 		setVolume( VideoLoader.VOLUME_DEFAULT ) ;
-		
-		_timerHeadTime = new Timer(100, 1) ;
-		_timerHeadTime.addEventListener(TimerEvent.TIMER, new Delegate(this, _onFrameUpdate)) ;
+
+		setConnection(null) ;
 		
 	}
 	
@@ -145,12 +144,21 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	}
 
 	/**
-	 * Returns the MedaData object.
-	 * @return the MedaData object.
+	 * Returns the {@code FLVMetaData} of the current FLV video.
+	 * @return the {@code FLVMetaData} of the current FLV video.
 	 */
-	public function getMetaData() 
+	public function getMetaData():FLVMetaData 
 	{
 		return _oMetaData ;	
+	}
+	
+	/**
+	 * Returns the NetConnection reference of this loader.
+	 * @return the NetConnection reference of this loader.
+	 */
+	public function getConnection():NetServerConnection
+	{
+		return _oNC ;	
 	}
 
 	/**
@@ -199,6 +207,24 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	}
 
 	/**
+	 * Returns {@code true} if the video is a progressive download video.
+	 * @return {@code true} if the video is a progressive download video.
+	 */
+	public function isProgressive():Boolean
+	{
+		return (_oNC.uri == "null" || _oNC.uri == null ) ;	
+	}
+	
+	/**
+	 * Returns {@code true} if the video is a stream video.
+	 * @return {@code true} if the video is a stream video.
+	 */
+	public function isStream():Boolean
+	{
+		return _oNC.uri != null && _oNC.uri != 'null' ;	
+	}
+
+	/**
 	 * Load the external video.
 	 */
 	public function load(sURL:String):Void 
@@ -225,7 +251,9 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		{
 			
 			setResumed(true) ;
+			
 			_oNS.pause(true) ;	
+			
 			stopProgress() ;
 			if (noEvent != true) 
 			{
@@ -249,7 +277,10 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	public function play(n:Number, noEvent:Boolean):Void 
 	{
 		
-		if (!isLoaded()) _load();
+		if (!isLoaded()) 
+		{
+			_load();
+		}
 		
 		if (!isNaN(n)) 
 		{
@@ -261,7 +292,9 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		}
 		
 		_oNS.pause(false) ;
+		
 		startProgress() ;
+		
 		if (noEvent != true) 
 		{
 			notifyEvent(MediaEvent.MEDIA_START) ;
@@ -277,9 +310,22 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		_oMetaData = null  ;
 		_oNS.close() ;
 		_oNC.close() ;
+		_oNC = null ;
+		_oNS = null ;
 		_oVideo.clear() ;
 		_duration = 0 ;
 		super.release() ;
+	}
+	
+	/**
+	 * Notify an CuePointEvent object with the specified info object in argument.
+	 * @param info the primitive CuePoint information object.
+	 * @see CuePoint
+	 * @see CuePointEvent
+	 */
+	public function notifyCuePoint( info:Object ):Void
+	{
+		dispatchEvent( new CuePointEvent( CuePointEvent.INFO, this, info ) ) ;	
 	}
 	
 	/**
@@ -304,6 +350,39 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	public function setDuration(n:Number):Void 
 	{
 		_duration = (n>0) ? n : 0 ;
+	}
+	
+	/**
+	 * Sets the NetConnection reference of this VideoLoader.
+	 * @param nc The NetConnection reference of this VideoLoader.
+	 */
+	public function setConnection( nc:NetConnection ):Void
+	{
+
+		stopProgress() ;
+	
+		if (nc == null)
+		{
+			_oNC = new NetServerConnection()  ;
+			_oNC.connect(null) ;
+		}
+		else
+		{
+			
+			if (nc instanceof NetServerConnection)
+			{
+				_oNC = NetServerConnection(nc) ;	
+			}
+			else
+			{
+				_oNC = NetServerConnection( ConstructorUtil.createVisualInstance( NetServerConnection, nc ) ) ; 	
+			}
+			
+		}
+		
+		_oNC.addEventListener( NetServerEventType.NET_STATUS , new Delegate(this, _onNetServerStatus) ) ;
+
+		
 	}
 
 	/**
@@ -384,20 +463,40 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	private function _load():Void 
 	{
 
-		if ( this.getUrl() == undefined ) 
+		if ( this.getUrl() == null ) 
 		{
-			throw new UnsupportedOperation( toString() + " can't play without any valid url property, loading fails.");
+			throw new UnsupportedOperation( this + " can't play without any valid url property, loading fails.");
 		}
 		
 		setLoaded(true) ;
+		
 		_oMetaData = null ;
+
+		_oNS = new NetStream( _oNC ) ;
 		_oNS.setBufferTime( _nBufferTime ) ;
+		_oNS.onStatus = Delegate.create(this, _onNetStreamStatus) ;
+		_oNS["onCuePoint"] = Delegate.create(this, _onCuePoint) ; 
+		_oNS["onMetaData"] = Delegate.create(this, _onMetaData) ;
+		
+		_oNS.toString = function()
+		{
+			return "[NetStream]" ;
+		} ;
+		
+		setContent( _oNS ) ;
+		
+		_oVideo.attachVideo(_oNS) ;
+		_mcTarget.attachAudio(_oNS) ;
+				
 		_oNS.play( this.getUrl() );
+
 		startProgress() ;
+
 		if (!isAutoPlay() ) 
 		{
-			this.pause(true) ;
+			// this.pause(true) ;
 		} 
+
 		super.load();
 		
 	}
@@ -405,12 +504,14 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	private var _bAutoSize : Boolean ;
 
 	private var _duration:Number ;
+
+	private var _logger:ILogger ;
 	
 	private var _nBufferTime : Number;	
 
-	private var _oMetaData ;
+	private var _oMetaData:FLVMetaData ;
 	
-	private var _oNC:NetConnection ;
+	private var _oNC:NetServerConnection ;
 	
 	private var _oNS:NetStream ;
 	
@@ -421,48 +522,88 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	private var _timerHeadTime:Timer ;
 	
 	/**
+	 * Invoqued when the onCuePoint callback method is fired over the internal NetStream of this loader.
+	 */
+	private function _onCuePoint ( info:Object ) : Void
+	{
+		notifyCuePoint( info ) ;
+	}
+	
+	/**
 	 * Invoqued when the onMetaData changed.
 	 */
 	private function _onMetaData (info:Object):Void 
 	{
 		
-		_oMetaData = info ;
+		_oMetaData = new FLVMetaData(info) ;
 		
 		/*
 		for (var props in info) 
 		{
-			trace(">>>> " + this + ".onMetaData -> " + props + " : " + info[props]) ;
+			_logger.infog( this + " onMetaData, " + props + " : " + info[props]) ;
 		}
 		*/
 		setDuration( isNaN(info.duration) ? 0 : parseInt(info.duration) ) ;
 		
-		if (isAutoSize()) 
+		if ( isAutoSize() ) 
 		{
 			setSize( info.width , info.height) ;	
 		}
 
 	}
 	
+	private function _onNetServerStatus( e:NetServerEvent ):Void
+	{
+		
+		var status:NetServerStatus = e.getStatus() ;
+
+		switch ( true ) 
+		{
+
+			case status.equals( NetServerStatus.CLOSED )  :
+			{ 
+				_logger.info(this + " connect closed.") ;
+				stopProgress() ;
+				break ;
+			}	
+			
+			case status.equals( NetServerStatus.SUCCESS )  :
+			{
+				_logger.info(this + " connect success.") ;
+				break ;
+			}	
+			
+			case status.equals( NetServerStatus.FAILED )  :
+			{ 
+				_logger.warn(this + " connect failed.") ;
+				break ;
+			}
+		}	
+	}
+	
 	/**
 	 * Invoqued when the status of the stream change.
 	 */
-	private function _onStatus(info:Object):Void 
+	private function _onNetStreamStatus( info:Object ):Void 
 	{
 		
-		trace("> " + this + " : " + info.code) ;
+		_logger.debug( this + " stream status : " + info ) ;
 		
-		switch ( info.code ) {
+		var code:String = info.code ;
+		
+		switch ( true ) 
+		{
 			
-			case NetStreamStatus.PLAY_START.toString() :
+			case NetStreamStatus.PLAY_START.equals(code) :
 			{
-				trace( toString() + " stream starts playing.");
+				_logger.info( this + " stream starts playing.");
 				break;
 			}		
-			case NetStreamStatus.PLAY_STOP.toString() :
+			case NetStreamStatus.PLAY_STOP.equals(code) :
 			{
 				notifyEvent(MediaEvent.MEDIA_FINISH) ;
 			
-				trace(toString() + " stream stops playing.");
+				_logger.info( this + " stream stops playing.");
 				
 				if (isLoop()) 
 				{
@@ -475,39 +616,27 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 				
 				break;
 			}
-			case NetStreamStatus.PLAY_STREAM_NOT_FOUND.toString() :
+			
+			case NetStreamStatus.PLAY_STREAM_NOT_FOUND.equals(code) :
 			{
-				trace(toString() + " stream not found.");
+				_logger.warn( this + " stream not found.");
 				stopProgress() ;
 				break ;
 			}
-			case NetStreamStatus.SEEK_INVALID_TIME.toString() :
+			
+			case NetStreamStatus.SEEK_INVALID_TIME.equals(code) :
 			{
-				trace( toString() + " seeks invalid time in '" + this.getUrl() + "'.");
+				_logger.warn( this + " seeks invalid time in '" + this.getUrl() + "'.");
 				break;
 			}	
-			case NetStreamStatus.BUFFER_FULL.toString() :
+			
+			case NetStreamStatus.BUFFER_FULL.equals(code) :
 			{
-				trace( toString() + " stream buffer is full." );
+				_logger.warn( this + " stream buffer is full." );
 				break;
 			}
-			case 'NetConnection.Connect.Closed' :
-			{ 
-				stopProgress() ;
-				trace(toString() + " local connection closed.");
-				break ;
-			}	
-			case 'NetConnection.Connect.Success' :
-			{
-				trace(toString() + " local connection successful.");
-				break ;
-			}	
-			case 'NetConnection.Connect.Failed' :
-			{ 
-				
-				trace( toString() + " local connection failed");
-				break ;
-			}
+			
+
 		}
 	}
 
@@ -519,6 +648,17 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		_oNS.pause(true) ;					
 		stopProgress() ;				
 	}
-		
+
+	/**
+	 * Start the load progress timer.
+	 */
+	/*override*/ private function _startLoadProgress():Void
+	{
+		if ( isProgressive() )
+		{
+			_tLoadProgress.start() ;
+		}
+	}
+			
 
 }

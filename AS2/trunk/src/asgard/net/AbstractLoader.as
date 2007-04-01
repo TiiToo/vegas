@@ -84,6 +84,7 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 
 	/**
 	 * (read-write) Returns the name value of this loader.
+	 * @return the name value of this loader.
 	 */
 	public function get name():String 
 	{
@@ -239,9 +240,9 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 	 */
 	public function load():Void 
 	{
-		if (_tProgress.running) 
+		if (_tLoadProgress.running) 
 		{
-			_tProgress.stop() ;
+			_stopLoadProgress() ;
 		}
 		if ( this.getUrl() != null ) 
 		{
@@ -249,7 +250,7 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 			_nLastBytesLoaded = 0;
 			_nTime = getTimer();
 			_setRunning(true) ;
-			_tProgress.start() ;
+			_startLoadProgress() ;
 		} 
 		else 
 		{
@@ -304,10 +305,11 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 	 */
 	public function release():Void 
 	{
-		_setRunning(false) ; // TODO test this instruction !!
+		_setRunning(false) ;
 		_tInit.stop() ;
-		_tProgress.stop() ;
+		_stopLoadProgress() ;
 	}
+
 
 	/**
 	 * Run the command.
@@ -483,7 +485,7 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 	/**
 	 * The internal progress timer.
 	 */
-	private var _tProgress:Timer ;
+	private var _tLoadProgress:Timer ;
 
 	/**
 	 * Check the current timeout during the loading.
@@ -511,7 +513,7 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 		_checkTimeOut( getBytesLoaded(), getTimer() ) ;
 		if ( getBytesLoaded() > 4 && getBytesLoaded() == getBytesTotal()) 
 		{
-			_tProgress.stop() ;
+			_stopLoadProgress() ;
 			notifyEvent( getEventTypePROGRESS() );
 			notifyEvent( getEventTypeCOMPLETE() ) ;
 			_startInitTimer() ;
@@ -530,8 +532,8 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 
 	/*protected*/ private function _setProgressTimer( f:Function ) 
 	{
-		_tProgress = new Timer(50) ;
-		_tProgress.addEventListener(TimerEvent.TIMER, new Delegate(this, f || _onLoadProgress)) ;
+		_tLoadProgress = new Timer(50) ;
+		_tLoadProgress.addEventListener(TimerEvent.TIMER, new Delegate(this, f || _onLoadProgress)) ;
 	}
 
 	/*protected*/ private function _setRunning( b:Boolean ):Void 
@@ -543,6 +545,15 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 	{
 		_tInit.start() ;	
 	}
+	
+	/**
+	 * Stop the load progress timer.
+	 */
+	private function _startLoadProgress():Void
+	{
+		_tLoadProgress.start() ;
+	}
+	
 
 	/*protected*/ private function _stopInitTimer():Void 
 	{
@@ -550,6 +561,14 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 		{
 			_tInit.stop() ;
 		}	
+	}
+
+	/**
+	 * Stop the load progress timer.
+	 */
+	private function _stopLoadProgress():Void
+	{
+		_tLoadProgress.stop() ;
 	}
 
 }

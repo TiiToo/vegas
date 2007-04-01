@@ -21,57 +21,50 @@
   
 */
 
-/** NetServerEventType
-
-	AUTHOR
-
-		Name : NetServerEventType
-		Package : asgard.events
-		Version : 1.0.0.0
-		Date :  2005-11-22
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	CONSTANT SUMMARY
-
-		- ACCEPT:NetServerEventType
-
-		- CLOSE:NetServerEventType
-		
-		- FINISH:NetServerEventType
-		
-		- START:NetServerEventType
-		
-		- TIMEOUT:NetServerEventType
-**/
-
 /**
+ * This enumeration static class defined all NetServer event types.
  * @author eKameleon
  * @version 1.0.0.0
- **/	
-class asgard.events.NetServerEventType extends String {
+ */	
+class asgard.events.NetServerEventType extends String 
+{
 
-	// ----o Constructor
-	
-	private function NetServerEventType(s:String) {
+	/**
+	 * Creates a new NetServerEventType instance.
+	 */
+	private function NetServerEventType(s:String) 
+	{
 		super(s) ;
 	}
 
-	// ----o Static Properties
-	
+	/**
+	 * The name of the NetServerEvent when the connection is accepted.
+	 */
 	static public var ACCEPTED:NetServerEventType = new NetServerEventType("onAccepted") ;
-	
+
+	/**
+	 * The name of the NetServerEvent when the connection is closed.
+	 */
 	static public var CLOSE:NetServerEventType = new NetServerEventType("onClosed") ;
 	
+	/**
+	 * The name of the NetServerEvent when the connection is finished.
+	 */
 	static public var FINISH:NetServerEventType = new NetServerEventType("onFinished") ;
 	
+	/**
+	 * The name of the NetServerEvent when the connection is started.
+	 */
 	static public var START:NetServerEventType = new NetServerEventType("onStarted") ;
 
+	/**
+	 * The name of the NetServerEvent when the connection status is changed.
+	 */
 	static public var NET_STATUS:NetServerEventType = new NetServerEventType("onStatus") ;
 
+	/**
+	 * The name of the NetServerEvent when the connection is out of time.
+	 */
 	static public var TIMEOUT:NetServerEventType = new NetServerEventType("onTimeOut") ;
-	
-	static private var __ASPF__ = _global.ASSetPropFlags(NetServerEventType, null , 7, 7) ;
 	
 }

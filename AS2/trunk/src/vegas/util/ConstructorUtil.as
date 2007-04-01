@@ -50,7 +50,10 @@ class vegas.util.ConstructorUtil
 	 */
 	static public function createInstance(c:Function, args:Array) 
 	{
-		if (!c) return null ;
+		if (!c)
+		{
+			return null ;
+		}
 		var i = ConstructorUtil.createBasicInstance(c) ;
 		c.apply(i, args) ;
 		return i ;
@@ -67,7 +70,13 @@ class vegas.util.ConstructorUtil
     static public function createVisualInstance(c:Function, oVisual, oInit) 
     {
     	oVisual.__proto__ = c.prototype ;
-		if (oInit) for (var each:String in oInit) oVisual[each] = oInit[each] ;	
+		if (oInit) 
+		{
+			for (var each:String in oInit) 
+			{
+				oVisual[each] = oInit[each] ;
+			}
+		}	
 		c.apply(oVisual) ;   
 		return oVisual ;
     }
@@ -80,7 +89,10 @@ class vegas.util.ConstructorUtil
 	static public function getName(instance, scope):String 
 	{
 		var path:String = getPath(instance, scope) ;
-		if (path == null) return null ;
+		if (path == null)
+		{
+			return null ;
+		}
 		var p:Array = path.split(".") ;
 		return p.pop() || null ;
 	}

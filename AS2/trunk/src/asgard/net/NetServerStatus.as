@@ -21,61 +21,27 @@
   
 */
 
-/** NetServerStatus
-
-	AUTHOR
-
-		Name : NetServerStatus
-		Package : asgard.net
-		Version : 1.0.0.0
-		Date :  2006-04-20
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTANT SUMMARY
-	
-		- CLOSED:NetServerStatus ("closed")
-		
-		- FAILED:NetServerStatus ("failed")
-		
-		- INVALID:NetServerStatus ("invalidapp")
-		
-		- REJECTED:NetServerStatus ("rejected")
-		
-		- SHUTDOWN:NetServerStatus ("appshutdown")
-		
-		- SUCCESS:NetServerStatus ("success")
-
-	METHOD SUMMARY
-	
-		- static format(code:String):String
-		
-		- toSource(indent : Number, indentor : String):String
-		
-		- static validate(o):Boolean
-
-**/
-
+import vegas.core.IEquality;
 import vegas.core.ISerializable;
 import vegas.util.ArrayUtil;
 
 /**
+ * Defines the NetServer status.
  * @author eKameleon
  * @version 1.0.0.0
- **/	
-class asgard.net.NetServerStatus extends String implements ISerializable 
+ */	
+class asgard.net.NetServerStatus extends String implements IEquality, ISerializable 
 {
 	
-	// ----o Constructor
-	
+	/**
+	 * Creates a new NetServerStatus instance.
+	 * @param s the String value of this object.
+	 */
 	public function NetServerStatus( s:String ) 
 	{
 		super(s) ;
 	}
 
-	// ----o Constants
-	
 	static public var BAD_VERSION:NetServerStatus = new NetServerStatus("badversion") ;
 	
 	static public var CLOSED:NetServerStatus = new NetServerStatus("closed") ;
@@ -90,9 +56,14 @@ class asgard.net.NetServerStatus extends String implements ISerializable
 	
 	static public var SUCCESS:NetServerStatus = new NetServerStatus("success") ;
 
-	static private var __ASPF__ = _global.ASSetPropFlags(NetServerStatus, null , 7, 7) ;
-
-	// ----o Public Methods
+	/**
+	 * Compares the specified object with this object for equality.
+	 * @return {@code true} if the the specified object is equal with this object.
+	 */
+	public function equals(o):Boolean
+	{
+		return o.valueOf() == valueOf() ;	
+	}
 
 	/**
 	 * Convert onStatus code value in NetConnection.onStatus in a ConnectionStatus valid string.
@@ -102,16 +73,28 @@ class asgard.net.NetServerStatus extends String implements ISerializable
 		code = code.split(".").pop().toLowerCase() ;
 		var status:Array = [BAD_VERSION, CLOSED, FAILED, INVALID, REJECTED, SHUTDOWN, SUCCESS] ;
 		var l:Number = status.length ;
-		while(--l > -1) {
-			if (status[l].toString() == code) return status[l] ;	
+		while(--l > -1) 
+		{
+			if (status[l].toString() == code) 
+			{
+				return status[l] ;
+			}	
 		}
 	}
-
+	
+	/**
+	 * Returns the Eden String representation of this object.
+	 * @return the Eden String representation of this object.
+	 */
 	public function toSource(indent : Number, indentor : String):String 
 	{
 		return "new asgard.net.NetServerStatus(\"" + toString() + "\")" ;
 	}
 
+	/**
+	 * Validate if the specified object is a valid status value.
+	 * @return {@code true} if the specified object is a valid status value.
+	 */
 	static public function validate( o ):Boolean 
 	{
 		var status:Array = [BAD_VERSION, CLOSED, FAILED, INVALID, REJECTED, SHUTDOWN, SUCCESS] ;

@@ -103,7 +103,7 @@ class test.mvc.diaporama.model.GalleryModel extends AbstractModel implements IRu
 	 * Returns the singleton instance of GalleryModel.
 	 * @return singleton instance of GalleryModel.
 	 */
-	public static function getInstance():GalleryModel 
+	static public function getInstance():GalleryModel 
 	{
 		if ( _instance == null )
 		{

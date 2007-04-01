@@ -33,9 +33,9 @@ class asgard.events.NetServerGatewayEvent extends BasicEvent
 	/**
 	 * Creates a new NetServerGatewayEvent instance.
 	 */
-	public function NetServerGatewayEvent(type:String, target, context) 
+	public function NetServerGatewayEvent(type:String, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
 	{
-		super(type, target, context);
+		super(type, context, bubbles, eventPhase, time, stop) ;
 	}
 	
 	/**

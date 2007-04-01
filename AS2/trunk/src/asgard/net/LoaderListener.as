@@ -26,10 +26,10 @@
  * @version 1.0.0.0
  * @date 2006-03-24
  */
- 
 import asgard.events.LoaderEvent;
 
-interface asgard.net.LoaderListener {
+interface asgard.net.LoaderListener 
+{
 
 	function onLoadComplete(e:LoaderEvent):Void ;
 	

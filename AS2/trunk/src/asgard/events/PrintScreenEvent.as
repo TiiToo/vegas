@@ -16,10 +16,7 @@ class asgard.events.PrintScreenEvent extends ActionEvent
 	 * @param type the type of the event.
 	 * @param target the PrintScreen target reference of this event.
 	 */
-	public function PrintScreenEvent
-	( 
-		type:String, target:PrintScreen, bubbles:Boolean, eventPhase:Number, time:Number, stop : Number
-	) 
+	public function PrintScreenEvent( type:String, target:PrintScreen, bubbles:Boolean, eventPhase:Number, time:Number, stop : Number ) 
 	{
 		super(type, target, null, null, bubbles, eventPhase, time, stop);
 	}

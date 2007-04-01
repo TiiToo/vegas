@@ -135,7 +135,7 @@ class test.mvc.diaporama.Gallery extends DisplayObject
 	 */
 	public function onMouseDown():Void
 	{
-		if (_root._xmouse < Stage/2)
+		if (_root._xmouse < Stage.width/2)
 		{
 			GalleryModel.getInstance().prev() ;
 		}

@@ -21,88 +21,50 @@
   
 */
 
-/** RemotingAuthentification
-
-	AUTHOR
-
-		Name : RemotingAuthentification
-		Package : asgard.net.remoting
-		Version : 2.0.0.0
-		Date : 2006-05-02
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		new RemotingAuthentification(id:String, pass:String) ;
-
-	PROPERTY SUMMARY
-	
-		- userID:String
-		
-			Définit/Renvoie un ID de connexion à utiliser pour établir une connexion au serveur. 
-		
-		- password:String
-
-			Définit/Renvoie un mot de passe à utiliser pour établir une connexion au serveur. 
-
-	METHOD SUMMARY
-	
-		- hashCode():String
-				
-		- toObject():Object
-	
-	 	- toSource():String
-
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → RemotingAuthentification
-		
-	IMPLEMENTS
-	
-		IHashable, IFormattable, ISerializable
-
-*/ 
-
 import vegas.core.CoreObject;
 
 /**
+ * This class is used to create a credential authentification with a Flash remoting method.
  * @author eKameleon
  * @date 2006-05-02
  */
 class asgard.net.remoting.RemotingAuthentification extends CoreObject 
 {
 	
-	// ----o Constructor
-	
+	/**
+	 * Creates a new RemotingAuthentification instance.
+	 * @param id the id of the authentification.
+	 * @param pass the password of the authentification.
+	 */
 	public function RemotingAuthentification(id:String, pass:String) 
 	{
-
-		super();
-
 		userid = id ;
 		password = pass ;
-
-		
 	}
 
-	// ----o Public Properties
-	
+	/**
+	 * The user id.
+	 */
 	public var userid:String ;
+	
+	/**
+	 * The user password.
+	 */
 	public var password:String ;
 	
-	// ----o Public Methods
-	
+	/**
+	 * Returns the {@code Object} representation of this object.
+	 * @return the {@code Object} representation of this object.
+	 */
 	public function toObject():Object
 	{
 		return { userid : userid , password: password } ; 
 	}
-	
-	// -----o Public Methods
-	
+
+	/**
+	 * Returns the Eden string representation of this object.
+	 * @return the Eden string representation of this object.
+	 */	
 	/*override*/ public function toSource():String
 	{
 		return 'new asgard.remoting.RemotingAuthentification("' + userid + '","' + password + '")' ;	

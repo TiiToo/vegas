@@ -21,59 +21,56 @@
   
 */
 
-/**
-	
-	AUTHOR
-	
-		Name : TimeOutPolicy
-		Package : asgard.net
-		Version : 1.0.0.0
-		Date :  3 nov. 06
-		Author : eKameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-*/
-
 import vegas.core.CoreObject;
 import vegas.util.serialize.Serializer;
 
 /**
+ * Defines the policy of the timeout states in the application.
  * @author eKameleon
  */
 class asgard.net.TimeoutPolicy extends CoreObject 
 {
 	
+	/**
+	 * Creates a new TimeoutPolicy instance.
+	 * @param the value of this policy object.
+	 */
 	public function TimeoutPolicy( value:Number ) 
 	{
 		super();
 		_value = value ;
 	}
 
-	// ----o Public Properties
-	
 	static public var INFINITY:TimeoutPolicy = new TimeoutPolicy(0) ;
 			
 	static public var LIMIT:TimeoutPolicy = new TimeoutPolicy(1) ;
 	
-	// -----o Public Methods
-		
+	/**
+	 * Returns the Eden string representation of this object.
+	 * @return the Eden string representation of this object.
+	 */		
 	/*override*/ public function toSource():String
 	{
 		return "new asgard.net.TimeoutPolicy(" + Serializer.toSource(_value) + ")" ;
 	}
-		
+
+	/**
+	 * Returns the string representation of this object.
+	 * @return the string representation of this object.
+	 */		
 	/*override*/ public function toString():String
 	{
 		return String(_value) ;	
 	}
 	
+	/**
+	 * Returns the primitive value of this object.
+	 * @return the primitive value of this object.
+	 */
 	public function valueOf()
 	{
 		return _value ;
 	}
-		
-	// ----o Private Properties
 		
 	private var _value:Number ;	
 

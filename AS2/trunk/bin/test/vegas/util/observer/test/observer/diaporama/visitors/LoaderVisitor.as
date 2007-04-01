@@ -19,13 +19,17 @@ class test.observer.diaporama.visitors.LoaderVisitor extends CoreObject implemen
 
 	/**
 	 * Creates a new LoaderVisitor instance.
+	 * @param bAutoShow the flag to indicates if the picture is auto show when is initialize.
+	 * @param url the url of the external picture.
 	 */
-	public function LoaderVisitor( bAutoShow:Boolean ) 
+	public function LoaderVisitor( bAutoShow:Boolean , url:String ) 
 	{
 		
 		super();
 		
 		autoShow = bAutoShow ;
+		
+		this.url = url ;
 		
 	}
 
@@ -33,17 +37,26 @@ class test.observer.diaporama.visitors.LoaderVisitor extends CoreObject implemen
 	 * Defined if the picture is show when is loading.
 	 */
 	public var autoShow:Boolean ;
+	
+	/**
+	 * The url string representation of this object.
+	 */
+	public var url:String ;
 
 	/**
 	 * Load a Picture object with this current url. Visit the IVisitable object. 
 	 */
 	public function visit( o:IVisitable ):Void
 	{
+		
 		if (o instanceof Picture)
 		{
+			
 			trace("> " + this + " visit " + o) ;
+		
 			var view = Picture(o).view ;
-			var url:String = Picture(o).url ;
+			
+			var url:String = this.url || Picture(o).url ;
 			
 			// clear the picture.
 			Picture(o).accept( new ClearVisitor() ) ;
@@ -87,5 +100,6 @@ class test.observer.diaporama.visitors.LoaderVisitor extends CoreObject implemen
 		}
 		
 	}
+
 
 }

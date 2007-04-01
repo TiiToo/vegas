@@ -24,22 +24,32 @@
 import vegas.core.CoreObject ;
 
 /**
+ * The NetStream status object who contains the level and the status value of all NetStreams in the application.
  * @author eKameleon
  * @version 1.0.0.0
- **/	
+ */	
 class asgard.net.NetStreamStatus extends CoreObject 
 {
 	
 	/**
 	 * Creates a new NetStreamStatus instance.
+	 * @param sCode the {@code String} code value.
+	 * @param sLevel the {@code String} level value.
 	 */
-	private function NetStreamStatus( sCode:String , sLevel:String) {
+	public function NetStreamStatus( sCode:String , sLevel:String) 
+	{
 		code = sCode ;
 		level = sLevel ;
 	}
 
+	/**
+	 * The 'error' level code.
+	 */
 	static public var ERROR:String = "error" ;
 	
+	/**
+	 * The 'status' level code.
+	 */
 	static public var STATUS:String = "status" ;
 	
 	/**
@@ -172,6 +182,15 @@ class asgard.net.NetStreamStatus extends CoreObject
 	 * The level of the NetStream status information.
 	 */
 	public var level:String ;
+
+	/**
+	 * Compares the specified object with this object for equality.
+	 * @return {@code true} if the the specified object is equal with this object.
+	 */
+	public function equals(o):Boolean
+	{
+		return o.toString() == toString() ;	
+	}
 
 	/**
 	 * Returns the string representation of this object.

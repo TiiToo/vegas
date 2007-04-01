@@ -26,7 +26,7 @@ import asgard.net.ParserLoader;
 import vegas.string.JSON;
 
 /**
- * This loader use JSon class to deserialize this datas.
+ * This loader use JSON class to deserialize this datas.
  * @author eKameleon
  */
 class asgard.net.JSONLoader extends ParserLoader 

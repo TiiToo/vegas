@@ -24,6 +24,7 @@
 import vegas.core.IRunnable;
 
 /**
+ * This interface defines the ILoader implementation.
  * @author eKameleon
  */
 interface asgard.net.ILoader extends IRunnable 

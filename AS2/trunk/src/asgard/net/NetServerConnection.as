@@ -48,25 +48,22 @@ import vegas.util.TypeUtil;
  * This class extends the NetConnection class and defined an implementation based on VEGAS to used Flash Remoting or Flash MediaServer (with AMF protocol).
  * @author eKameleon
  */	
-dynamic class asgard.net.NetServerConnection extends NetConnection implements Action, IEventDispatcher, IFormattable, IHashable, ISerializable {
+dynamic class asgard.net.NetServerConnection extends NetConnection implements Action, IEventDispatcher, IFormattable, IHashable, ISerializable 
+{
 	
 	/**
 	 * Creates a new NetServerConnection instance.
 	 */
 	function NetServerConnection() 
 	{
-		
 		_dispatcher = initEventDispatcher() ;
-		
 		_eClose = new NetServerEvent( NetServerEventType.CLOSE , this ) ;
 		_eFinish = new NetServerEvent( NetServerEventType.FINISH , this ) ;
 		_eStart = new NetServerEvent( NetServerEventType.START , this ) ;
 		_eStatus = new NetServerEvent( NetServerEventType.NET_STATUS , this ) ;
 		_eTimeOut = new NetServerEvent( NetServerEventType.TIMEOUT , this ) ;		
-		
 		_timer = new Timer(8000, 1) ;
 		_timeOut = new Delegate(this, _onTimeOut) ;
-		
 	}
 
 	/**
@@ -74,6 +71,7 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 	 * @see NetServerGateway
 	 */
 	public var receiveSharedEvent:Function ;
+
 
 	public function addEventListener( eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void 
 	{
@@ -85,21 +83,38 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 		_dispatcher.addGlobalEventListener(listener, priority, autoRemove) ;
 	}
 
+	/**
+	 * Returns the shallow copy of this object.
+	 * @return the shallow copy of this object.
+	 */
 	public function clone() 
 	{
 		return new NetServerConnection() ;	
 	}
 
+	/**
+	 * Close the connection.
+	 * @param noEvent if this argument is {@code true} the event propagation is disabled.
+	 */
 	/*override*/ public function close( noEvent:Boolean ):Void 
 	{
 		super.close() ;
 		_timer.stop() ;
-		if (!noEvent) notifyClose() ;
+		if (!noEvent) 
+		{
+			notifyClose() ;
+		}
 	}
 
+	/**
+	 * Connect the client with this method.
+	 */
 	/*override*/ public function connect():Boolean 
 	{
-		if (isConnected) return false ;
+		if (isConnected) 
+		{
+			return false ;
+		}
 		notifyStarted() ;
 		return super.connect.apply(this, arguments) ;
 	}
@@ -297,7 +312,7 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 		
 		var code:NetServerStatus = NetServerStatus.format(oInfo.code) ;
 		
-		// trace("> " + this + ".onStatus(" + arguments + ")") ;
+		// trace("> " + this + ".onStatus(" + oInfo.code+ ")") ;
 		
 		switch (code) 
 		{
@@ -352,7 +367,5 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 		notifyFinished() ;
 		close() ;
 	}
-
-
 
 }

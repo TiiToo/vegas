@@ -21,93 +21,59 @@
   
 */
 
-/** NetServerInfo
-
-	AUTHOR
-
-		Name : NetServerInfo
-		Package : asgard.net
-		Version : 1.0.0.0
-		Date :  2006-06-14
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-
-		- code:String
-		
-		- description:String
-		
-		- level:String
-
-	METHOD SUMMARY
-	
-		- hashCode():Number
-		
-		- toObject():Object
-		
-		- toSource(indent : Number, indentor : String):String
-		
-		- toString():String
-
-	INHERIT
-	
-		Object → CoreObject → NetServerInfo
-	
-	IMPLEMENT
-	
-		IFormattable, IHashable, ISerializable
-
-**/
-
 import vegas.core.CoreObject;
 import vegas.util.serialize.Serializer;
 
 /**
+ * Defines the information object in a onStatus callback method.
  * @author eKameleon
  * @version 1.0.0.0
- **/	
+ */	
 class asgard.net.NetServerInfo extends CoreObject 
 {
 	
-	// ----o Constructor
-	
+	/**
+	 * Creates a new NetServerInfo object.
+	 * @param oInfo a primitive object with the properties 'code', 'level' and 'description'.
+	 */
 	public function NetServerInfo( oInfo ) 
 	{
-		
 		description = oInfo.description || null ;
-		
 		code = oInfo.code || null ;
-		
 		level = oInfo.level || null ;
-		
-		_oInfo = toObject() ;
-		
 	}
 
-	// ----o Public Properties
-	
+	/**
+	 * The code of this information object.
+	 */
 	public var code:String ;
+	
+	/**
+	 * The description of this information object.
+	 */
 	public var description:String ;
+	
+	/**
+	 * The level of this information object.
+	 */
 	public var level:String ;
 
-	// ----o Public Methods
-
+	/**
+	 * Returns the {@code Object} representation of this instance.
+	 * @return the {@code Object} representation of this instance.
+	 */
 	public function toObject():Object 
 	{
-		
 		return { description:description, code:code, level:level } ;
-			
 	}
 
+	/**
+	 * Returns the Eden String representation of the object.
+	 * @return the Eden String representation of the object.
+	 */	
 	public function toSource(indent : Number, indentor : String):String 
 	{
 		return "new asgard.net.NetServerInfo(" + Serializer.toSource(toObject()) + ")" ;
 	}
-
-	// ----o Private Properties
-	
-	private var _oInfo ;
 
 }
