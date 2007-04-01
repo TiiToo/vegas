@@ -30,7 +30,6 @@ import vegas.core.ICopyable;
 import vegas.core.IEquality;
 
 // TODO creates unit tests.
-// TODO finish the documentation with getter/setter methods.
 
 /**
  * The Rectangle class is used to create and modify Rectangle objects. 
@@ -72,6 +71,7 @@ class pegas.geom.Rectangle extends CoreObject implements ICloneable, IComparator
 
 	/**
 	 * Returns the sum of the y and height properties.
+	 * @return the sum of the y and height properties.
 	 */
 	public function get bottom():Number 
 	{
@@ -330,50 +330,91 @@ class pegas.geom.Rectangle extends CoreObject implements ICloneable, IComparator
 		return ( (o instanceof Rectangle) && (o.x == x) && (o.y == y) && (o.width == width) && (o.height == height)) ;
 	}
 	
+	/**
+	 * Returns the sum of the y and height properties.
+	 * @return the sum of the y and height properties.
+	 */
 	public function getBottom():Number 
 	{
 		return y + height ;
 	}
 
+	/**
+	 * Returns the location of the Rectangle object's bottom-left corner, determined by the values of the x and y properties.
+	 * @return the location of the Rectangle object's bottom-left corner, determined by the values of the x and y properties.
+	 */
 	public function getBottomLeft():Point 
 	{
 		return new Point(x, y + height) ;
 	}
 
+	/**
+	 * Returns the location of the Rectangle object's bottom-right corner, determined by the values of the x and y properties.
+	 * @return the location of the Rectangle object's bottom-right corner, determined by the values of the x and y properties.
+	 */
 	public function getBottomRight():Point 
 	{
 		return new Point(x + width, y + height) ;
 	}
 
+	/**
+	 * Returns the location of the Rectangle object's center, determined by the values of the x and y properties.
+	 * @return the location of the Rectangle object's center, determined by the values of the x and y properties.
+	 */
 	public function getCenter():Point 
 	{
 		return new Point(x + width/2, y + height/2);
 	}
 
+	/**
+	 * Returns the x coordinate of the top-left corner of the rectangle.
+	 * @return the x coordinate of the top-left corner of the rectangle.
+	 */
 	public function getLeft():Number 
 	{
 		return x ;
 	}
 	
+	/**
+	 * Returns the sum of the x and width properties.
+	 * @return the sum of the x and width properties.
+	 */
 	public function getRight():Number 
 	{
 		return x + width ;
 	}
 	
-	public function getSize():Point {
+	/**
+	 * Returns the size of the Rectangle object, expressed as a Point object with the values of the width and height properties.
+	 * @return the size of the Rectangle object, expressed as a Point object with the values of the width and height properties.
+	 */
+	public function getSize():Point 
+	{
 		return new Point(width, height) ;
 	}
 	
+	/**
+	 * Returns the y coordinate of the top-left corner of the rectangle.
+	 * @return the y coordinate of the top-left corner of the rectangle.
+	 */
 	public function getTop():Number 
 	{
 		return y ;
 	}	
 	
+	/**
+	 * Returns the location of the Rectangle object's top-left corner determined by the x and y values of the point.
+	 * @return the location of the Rectangle object's top-left corner determined by the x and y values of the point.
+	 */
 	public function getTopLeft():Point 
 	{
 		return new Point(x, y) ;
 	}
 
+	/**
+	 * Returns the location of the Rectangle object's top-right corner determined by the x and y values of the point.
+	 * @return the location of the Rectangle object's top-right corner determined by the x and y values of the point.
+	 */
 	public function getTopRight():Point 
 	{
 		return new Point(x + width, y) ;
@@ -453,7 +494,43 @@ class pegas.geom.Rectangle extends CoreObject implements ICloneable, IComparator
 		x = x + pt.x ;
 		y = y + pt.y ;
 	}
-	
+
+	/**
+	 * Sets the sum of the y and height properties.
+	 */
+	public function setBottom(n:Number):Void 
+	{
+		height = n - y ;
+	}
+
+	/**
+	 * Sets the location of the Rectangle object's bottom-left corner, determined by the values of the x and y properties.
+	 */
+	public function setBottomLeft(value):Void 
+	{
+		width = width + (x - value.x) ;
+		height = value.y - y ;
+		x = value.x ;
+	}
+
+	/**
+	 * Sets the location of the Rectangle object's bottom-right corner, determined by the values of the x and y properties.
+	 */
+	public function setBottomRight(value):Void 
+	{
+		width = value.x - x;
+		height = value.y - y;
+	}
+
+	/**
+	 * Sets the x and y coordinates of the top-left corner of the rectangle if the specified value in argument is the middle of the Rectangle.
+	 */
+	public function setCenter( value ):Void 
+	{
+		x = value.x - ( width / 2 )  ;
+		y = value.y - ( height / 2 ) ;
+	}
+
 	/**
 	 * Sets all of the Rectangle object's properties to 0.
 	 */
@@ -462,41 +539,35 @@ class pegas.geom.Rectangle extends CoreObject implements ICloneable, IComparator
 		x = y = width = height = 0 ;
 	}
 
-	public function setBottom(n:Number):Void 
-	{
-		height = n - y ;
-	}
-
-	public function setBottomLeft(value):Void 
-	{
-		width = width + (x - value.x) ;
-		height = value.y - y ;
-		x = value.x ;
-	}
-
-	public function setBottomRight(value):Void 
-	{
-		width = value.x - x;
-		height = value.y - y;
-	}
-
+	/**
+	 * Sets the x coordinate of the top-left corner of the rectangle.
+	 */
 	public function setLeft(n:Number):Void 
 	{
 		width = width + (x - n) ;
 		x = n ;
 	}
-	
+
+	/**
+	 * Sets the sum of the x and width properties.
+	 */
 	public function setRight(n:Number):Void 
 	{
 		width = n - x ;
 	}
 	
+	/**
+	 * Sets the y coordinate of the top-left corner of the rectangle.
+	 */
 	public function setTop(n:Number):Void
 	{
 		height = height + (y - n);
 		y = n ;
 	}
 
+	/**
+	 * Sets the location of the Rectangle object's top-left corner determined by the x and y values of the point.
+	 */
 	public function setTopLeft(value):Void 
 	{
 		width = width + (x - value.x) ;
@@ -505,6 +576,9 @@ class pegas.geom.Rectangle extends CoreObject implements ICloneable, IComparator
 		y = value.y ;
 	}
 
+	/**
+	 * Sets the location of the Rectangle object's top-right corner determined by the x and y values of the point.
+	 */
 	public function setTopRight(value):Void 
 	{
 		width = value.x - x;
@@ -527,7 +601,14 @@ class pegas.geom.Rectangle extends CoreObject implements ICloneable, IComparator
 	 */
 	public function toFlash():flash.geom.Rectangle
 	{
-		return new flash.geom.Rectangle(x, y, width, height) ;
+		if (flash.geom.Rectangle != null)
+		{
+			return new flash.geom.Rectangle(x, y, width, height) ;
+		}
+		else
+		{
+			return null ;	
+		}
 	}
 
 	/**

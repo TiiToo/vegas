@@ -53,60 +53,108 @@ class asgard.display.StageLocalizer
 		var y1:Number = p.y ;
 		var x2:Number = middle.x ;
 		var y2:Number = middle.y ;
-		if (x1 > x2 && y1 > y2) return StageAlign.BOTTOM_RIGHT ;
-		else if (x1 < x2 && y1 > y2 ) return StageAlign.BOTTOM_LEFT ;
-		else if (x1 > x2 && y1 < y2) return StageAlign.TOP_RIGHT ;
-		else if (x1 < x2 && y1 < y2 ) return StageAlign.TOP_LEFT ;
-		else if (x1 == x2 && y1 > y2) return StageAlign.BOTTOM ;
-		else if (x1 == x2 && y1 < y2 ) return StageAlign.TOP ;
-		else if (x1 < x2 && y1 == y2 ) return StageAlign.LEFT ;
-		else if (x1 > x2 && y1 == y2 ) return StageAlign.RIGHT ;
-		else return StageAlign.CENTER ;
+		if (x1 > x2 && y1 > y2) 
+		{
+			return StageAlign.BOTTOM_RIGHT ;
+		}
+		else if (x1 < x2 && y1 > y2 ) 
+		{
+			return StageAlign.BOTTOM_LEFT ;
+		}
+		else if (x1 > x2 && y1 < y2) 
+		{
+			return StageAlign.TOP_RIGHT ;
+		}
+		else if (x1 < x2 && y1 < y2 ) 
+		{
+			return StageAlign.TOP_LEFT ;
+		}
+		else if (x1 == x2 && y1 > y2) 
+		{
+			return StageAlign.BOTTOM ;
+		}
+		else if (x1 == x2 && y1 < y2 ) 
+		{
+			return StageAlign.TOP ;
+		}
+		else if (x1 < x2 && y1 == y2 ) 
+		{
+			return StageAlign.LEFT ;
+		}
+		else if (x1 > x2 && y1 == y2 ) 
+		{
+			return StageAlign.RIGHT ;
+		}
+		else 
+		{
+			return StageAlign.CENTER ;
+		}
 	}
 
 	/**
 	 * Returns the Point representation of the middle of the Stage. This property is defined with the current Stage.align value.
+	 * @return the Point representation of the middle of the Stage. This property is defined with the current Stage.align value.
 	 */
-	static public function getMiddle():Point {
+	static public function getMiddle():Point 
+	{
 		var middle:Point = new Point(0, 0) ;
 		switch (Stage.align) 
 		{
 			case StageAlign.BOTTOM : // bottom
+			{
 				middle.x = WIDTH / 2 ;
 				middle.y = -  ((Stage.height / 2) - HEIGHT)  ;
 				break ;
+			}
 			case StageAlign.BOTTOM_LEFT : // bottom left
+			{
 				middle.x = Stage.width / 2 ;
 				middle.y = -  ((Stage.height / 2) - HEIGHT)  ;
 				break ;
+			}
 			case StageAlign.BOTTOM_RIGHT : // bottom right
+			{
 				middle.x =  - (Stage.width - WIDTH) + Stage.width  / 2   ;
 				middle.y = -  ((Stage.height / 2) - HEIGHT)  ;
 				break ;
+			}
 			case StageAlign.LEFT : // left
+			{
 				middle.x = Stage.width / 2 ;
 				middle.y = HEIGHT / 2  ;
 				break ;
+			}
 			case StageAlign.RIGHT : // right
+			{
 				middle.x =  - (Stage.width - WIDTH) + Stage.width  / 2   ;
 				middle.y = HEIGHT / 2  ;
 				break ;
+			}
 			case StageAlign.TOP : // top
+			{
 				middle.x = WIDTH / 2 ;
 				middle.y = Stage.height / 2 ;
 				break ;
+			}
 			case StageAlign.TOP_LEFT : // top left
+			{
 				middle.x = Stage.width / 2 ;
 				middle.y = Stage.height / 2 ;
 				break ;
+			}
 			case StageAlign.TOP_RIGHT : // top right
+			{
 				middle.x =  - (Stage.width - WIDTH) + Stage.width  / 2   ;
 				middle.y = Stage.height / 2 ;
 				break ;
-			default : 
+			}
+			default :
+			{ 
 				middle.x = WIDTH / 2 ;
 				middle.y = HEIGHT / 2 ;
+			}
 		}
+		
 		return middle ;
 	}
 	

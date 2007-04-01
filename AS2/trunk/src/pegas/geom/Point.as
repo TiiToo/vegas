@@ -720,7 +720,14 @@ dynamic class pegas.geom.Point extends Vector2
 	 */
 	public function toFlash():flash.geom.Point
 	{
-		return new flash.geom.Point(x,y) ;
+		if (flash.geom.Point != null)
+		{
+			return new flash.geom.Point(x,y) ;
+		}
+		else
+		{
+			return null ;	
+		}
 	}
 
 	// ----o Static Private -  MTASC HACK - Macromedia FP8 Compatibility
