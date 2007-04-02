@@ -72,12 +72,26 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 	 */
 	public var receiveSharedEvent:Function ;
 
-
+	/**
+	 * Allows the registration of event listeners on the event target.
+	 * @param eventName A string representing the event type to listen for. If eventName value is "ALL" addEventListener use addGlobalListener
+	 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the {@code EventListener} interface.
+	 * @param useCapture Determinates if the event flow use capture or not.
+	 * @param priority Determines the priority level of the event listener.
+	 * @param autoRemove Apply a removeEventListener after the first trigger
+	 */
 	public function addEventListener( eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void 
 	{
 		_dispatcher.addEventListener.apply(_dispatcher, arguments);
 	}
-	
+
+	/**
+	 * Allows the registration of global event listeners on the event target.
+	 * 
+	 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the <b>EventListener</b> interface.
+	 * @param priority Determines the priority level of the event listener.
+	 * @param autoRemove Apply a removeEventListener after the first trigger
+	 */
 	public function addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void 
 	{
 		_dispatcher.addGlobalEventListener(listener, priority, autoRemove) ;
@@ -119,34 +133,59 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 		return super.connect.apply(this, arguments) ;
 	}
 
+	/**
+	 * Dispatches an event into the event flow.
+	 * @param event The Event object that is dispatched into the event flow.
+	 * @param isQueue if the EventDispatcher isn't register to the event type the event is bufferized.
+	 * @param target the target of the event.
+	 * @param contect the context of the event.
+	 * @return the reference of the event dispatched in the event flow.
+	 */
 	public function dispatchEvent(event, isQueue:Boolean, target, context):Event 
 	{
 		return _dispatcher.dispatchEvent(event, isQueue, target, context) ;
 	}
 	
 	/**
-	 * Return timeout interval duration.
+	 * Returns the timeout interval duration.
+	 * @return the timeout interval duration.
 	 */
 	public function getDelay():Number 
 	{
 		return _timer.getDelay() ;	
 	}
 
+	/**
+	 * Returns the internal {@code EventDispatcher} reference.
+	 * @return the internal {@code EventDispatcher} reference.
+	 */
 	public function getDispatcher():EventDispatcher 
 	{
 		return _dispatcher ;
 	}
 
+	/**
+	 * Returns the internal {@code EventDispatcher} reference.
+	 * @return the internal {@code EventDispatcher} reference.
+	 */
 	public function getEventDispatcher():EventDispatcher 
 	{
 		return _dispatcher ;
 	}
 	
+	/**
+	 * Returns the {@code EventListenerCollection} of the specified event name.
+	 * @return the {@code EventListenerCollection} of the specified event name.
+	 */
 	public function getEventListeners(eventName:String):EventListenerCollection 
 	{
 		return _dispatcher.getEventListeners(eventName) ;
 	}
 
+	/**
+	 * Returns the {@code EventListenerCollection} of this EventDispatcher.
+	 * @return the {@code EventListenerCollection} of this EventDispatcher.
+	 */
 	public function getGlobalEventListeners():EventListenerCollection 
 	{
 		return _dispatcher.getGlobalEventListeners() ;
@@ -156,27 +195,48 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 	{
 		return _policy ;	
 	}
-	
+
+	/**
+	 * Returns a {@code Set} of all register event's name in this EventListener.
+	 * @return a {@code Set} of all register event's name in this EventListener.
+	 */	
 	public function getRegisteredEventNames():Set 
 	{
 		return _dispatcher.getRegisteredEventNames() ;
 	}
 	
+	/**
+	 * Returns the EventDispatcher parent reference of this instance.
+	 * @return the EventDispatcher parent reference of this instance.
+	 */
 	public function getParent():EventDispatcher 
 	{
 		return _dispatcher.parent ;
 	}
 
+	/**
+	 * Returns a hash code value for the object.
+	 * @return a hash code value for the object.
+	 */
 	public function hashCode():Number 
 	{
 		return null ;
 	}
-	
+
+	/**
+	 * Checks whether the EventDispatcher object has any listeners registered for a specific type of event.
+	 * This allows you to determine where altered handling of an event type has been introduced in the event flow heirarchy by an EventDispatcher object.
+	 */ 
 	public function hasEventListener(eventName:String):Boolean 
 	{
 		return _dispatcher.hasEventListener(eventName) ;
 	}
-
+	
+	/**
+	 * Creates and returns the internal {@code EventDispatcher} reference (this method is invoqued in the constructor).
+	 * You can overrides this method if you wan use a global {@code EventDispatcher} singleton.
+	 * @return the internal {@code EventDispatcher} reference.
+	 */
 	public function initEventDispatcher():EventDispatcher 
 	{
 		return new EventDispatcher(this) ;
@@ -208,20 +268,42 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 	{
 		dispatchEvent(_eTimeOut) ;	
 	}
-	
+
+	/** 
+	 * Removes a listener from the EventDispatcher object.
+	 * If there is no matching listener registered with the {@code EventDispatcher} object, then calling this method has no effect.
+	 * @param Specifies the type of event.
+	 * @param the class name(string) or a {@code EventListener} object.
+	 */
 	public function removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener 
 	{
 		return _dispatcher.removeEventListener(eventName, listener, useCapture) ;
 	}
 
+	/** 
+	 * Removes a global listener from the EventDispatcher object.
+	 * If there is no matching listener registered with the EventDispatcher object, then calling this method has no effect.
+	 * @param the string representation of the class name of the EventListener or a EventListener object.
+	 */
 	public function removeGlobalEventListener( listener ):EventListener 
 	{
 		return _dispatcher.removeGlobalEventListener(listener) ;
 	}
-
+	
+	/**
+	 * Runs the process of this NetServerConnection.
+	 */
 	public function run():Void 
 	{
 		connect(uri) ;	
+	}
+
+	/**
+	 * Sets the internal {@code EventDispatcher} reference.
+	 */
+	public function setEventDispatcher( e:EventDispatcher ):Void 
+	{
+		_dispatcher = e || initEventDispatcher() ;
 	}
 
 	/**
@@ -251,6 +333,9 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 		}
 	}
 
+	/**
+	 * Sets the parent EventDispatcher reference of this instance.
+	 */
 	public function setParent(parent:EventDispatcher):Void 
 	{
 		_dispatcher.parent = parent ;
