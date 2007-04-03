@@ -21,83 +21,71 @@
   
 */
 
-import asgard.media.CuePoint;
+import asgard.text.StyleSheet;
 
 import vegas.events.BasicEvent;
+import vegas.events.EventType;
 
 /**
- * This event contains a CuePoint reference.
+ * This event contains a StyleSheet reference.
  * @author eKameleon
  */
-class asgard.events.CuePointEvent extends BasicEvent 
+class asgard.events.StyleSheetEvent extends BasicEvent 
 {
-
+	
 	/**
-	 * Creates a new CuePointEvent instance.
-	 * @param type the string type of the instance. 
+	 * Creates a new StyleSheetEvent instance.
+	 * @param type the string type of the instance.
+	 * @param css the {@code StyleSheet} reference of this event. 
 	 * @param target the target of the event.
-	 * @param oInfo the cuepoint info primitive object.
 	 * @param context the optional context object of the event.
 	 * @param bubbles indicates if the event is a bubbling event.
 	 * @param eventPhase the current EventPhase of the event.
 	 * @param time this parameter is used in the Eden deserialization.
 	 * @param stop this parameter is used in the Eden deserialization.
 	 */	
-	public function CuePointEvent( type:String, target, oInfo, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number ) 
+	public function StyleSheetEvent( type:String , css:StyleSheet , target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
 	{
 		super(type, target, context, bubbles, eventPhase, time, stop);
-		setCuePoint(oInfo) ;
+		if (css != null)
+		{
+			setStyleSheet(css) ;
+		}
 	}
 
 	/**
-	 * The name of the event when a new cue point info is notifyed.
+	 * The event type name of this event when a StyleSheet change. 
 	 */
-	static public var INFO:String = "onCuePointInfo" ;
+	static public var CHANGE:String = EventType.CHANGE ;
 
 	/**
-	 * Returns the CuePoint of this event.
-	 * @return the CuePoint of this event.
+	 * Returns a shallow copy of the event.
+	 * @return a shallow copy of the event.
 	 */
-	public function getCuePoint():CuePoint
+	public function clone() 
 	{
-		return _cp ;	
+		return new StyleSheetEvent(getType(), getStyleSheet(), getTarget(), getContext()) ;
+	}
+
+	/**
+	 * Returns the styleSheet reference of this event.
+	 * @return the styleSheet reference of this event.
+	 */
+	public function getStyleSheet():StyleSheet
+	{
+		return _styleSheet ;	
 	}
 	
 	/**
-	 * Returns the name of the CuePoint.
-	 * @return the name of the CuePoint.
+	 * Sets the styleSheet reference of this event.
 	 */
-	public function getName():String
+	public function setStyleSheet( css:StyleSheet ):Void
 	{
-		return _cp.name ;
-	}
-	
-	/**
-	 * Returns the time value of the CuePoint.
-	 * @return the time value of the CuePoint.
-	 */
-	public function getTime():String
-	{
-		return _cp.time ;
-	}
-	
-	/**
-	 * Returns the type value of the CuePoint.
-	 * @return the type value of the CuePoint.
-	 */
-	public function getType():String
-	{
-		return _cp.type ;
+		_styleSheet = css ;	
 	}
 
 	/**
-	 * Sets the CuePoint of this event.
+	 * The internal styleSheet reference of this event.
 	 */
-	public function setCuePoint( o ):Void
-	{
-		_cp = new CuePoint(o) ;	
-	}
-
-	private var _cp ;
-
+	private var _styleSheet:StyleSheet ;
 }

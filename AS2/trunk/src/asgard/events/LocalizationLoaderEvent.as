@@ -21,62 +21,6 @@
   
 */
 
-/**	LocalizationLoaderEvent
-
-	AUTHOR
-
-		Name : LocalizationLoaderEvent
-		Package : asgard.events
-		Version : 1.0.0.0
-		Date :  2006-02-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-		
-	CONSTRUCTOR
-	
-		new LocalizationLoaderEvent(type : String, loader:LocalizationLoader ) ;
-
-	METHOD SUMMARY
-	
-		- clone()
-	
-		- getBytesLoaded():Number
-	
-		- getBytesTotal():Number
-
-		- getData()
-
-		- getLoader():ILoader
-
-		- getLocalization(lang:Lang):Locale
-		
-		- getName():String
-	
-		- getPercent():Number
-		
-		- getTarget():Object
-		
-		- getType():String
-		
-		- setTarget(target:Object):Void
-		
-		- setType(type:String):Void
-		
-		- toSource():String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → BasicEvent → DynamicEvent → LoaderEvent → LocalizationLoaderEvent
-		
-	IMPLEMENTS
-	
-		Event, ICloneable, IFormattable, IHashable, ISerializable
-
-*/
-
 import asgard.events.LoaderEvent;
 import asgard.net.ILoader;
 import asgard.system.ILocalizationLoader;
@@ -87,13 +31,14 @@ import asgard.system.Locale;
  * @author eKameleon
  * @version 1.0.0.0
  */
- 
 class asgard.events.LocalizationLoaderEvent extends LoaderEvent 
 {
 
-	// ----o Constructor
-		
-	public function LocalizationLoaderEvent(
+	/**
+	 * Creates a new LocalizationLoaderEvent instance.
+	 */
+	public function LocalizationLoaderEvent
+	(
 		type : String, loader:ILocalizationLoader
 		, nCode:Number
 		, sError:String
@@ -109,19 +54,21 @@ class asgard.events.LocalizationLoaderEvent extends LoaderEvent
 		
 	}
 	
-	// ----o Constant
-	
 	static public var CHANGE:String = "change" ;
 
-	static private var __ASPF__ = _global.ASSetPropFlags(Lang, ["CHANGE"] , 7, 7) ;
-	
-	// ----o Public Methods
-	
+	/**
+	 * Creates and returns a shallow copy of this instance.
+	 * @return a shallow copy of this instance.
+	 */
 	public function clone() 
 	{
 		return new LocalizationLoaderEvent( getType(), ILocalizationLoader(getLoader())) ;
 	}
 	
+	/**
+	 * Returns the {@code Locale} instance of thie event.
+	 * @return the {@code Locale} instance of thie event.
+	 */
 	public function getLocalization(lang:Lang):Locale 
 	{
 		return ILocalizationLoader(getLoader()).getLocalization(lang) ;

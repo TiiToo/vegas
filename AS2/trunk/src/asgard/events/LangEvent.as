@@ -53,7 +53,8 @@ class asgard.events.LangEvent extends DynamicEvent
 	}
 	
 	/**
-	 * Returns the string instance.
+	 * Returns the {@code Lang} instance.
+	 * @return the {@code Lang} reference.
 	 */
 	public function getLang():Lang
 	{

@@ -81,6 +81,7 @@ class asgard.events.MediaEvent extends LoaderEvent
 
 	/**
 	 * Returns the duration of the media.
+	 * @return the duration of the media.
 	 */
 	public function getDuration():Number 
 	{
@@ -89,6 +90,7 @@ class asgard.events.MediaEvent extends LoaderEvent
 
 	/**
 	 * Returns the load of the media.
+	 * @return the load of the media.
 	 */
 	public function getLoader():IMediaLoader 
 	{
@@ -97,6 +99,7 @@ class asgard.events.MediaEvent extends LoaderEvent
 
 	/**
 	 * Returns the position of the media.
+	 * @return the position of the media.
 	 */
 	public function getPosition():Number 
 	{
@@ -105,6 +108,7 @@ class asgard.events.MediaEvent extends LoaderEvent
 	
 	/**
 	 * Returns the volume of the media.
+	 * @return the volume of the media.
 	 */
 	public function getVolume():Number 
 	{

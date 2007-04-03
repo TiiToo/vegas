@@ -27,6 +27,7 @@ import vegas.events.BasicEvent;
 import vegas.util.serialize.Serializer;
 
 /**
+ * The ILoader Event.
  * @author eKameleon
  */
 class asgard.events.LoaderEvent extends BasicEvent 
@@ -100,6 +101,7 @@ class asgard.events.LoaderEvent extends BasicEvent
 	
 	/**
 	 * Returns the shallow copy of this object.
+	 * @return the shallow copy of this object.
 	 */
 	public function clone() 
 	{
@@ -108,6 +110,7 @@ class asgard.events.LoaderEvent extends BasicEvent
 
 	/**
 	 * Returns the current bytes value of the external data to load during the loading.
+	 * @return the current bytes value of the external data to load during the loading.
 	 */
 	public function getBytesLoaded():Number 
 	{
@@ -116,6 +119,7 @@ class asgard.events.LoaderEvent extends BasicEvent
 	
 	/**
 	 * Returns the total bytes value of the external data to load.
+	 * @return the total bytes value of the external data to load.
 	 */
 	public function getBytesTotal():Number 
 	{
@@ -124,6 +128,7 @@ class asgard.events.LoaderEvent extends BasicEvent
 
 	/**
 	 * Returns the data of the loader.
+	 * @return the data of the loader.
 	 */
 	public function getData() 
 	{
@@ -132,6 +137,7 @@ class asgard.events.LoaderEvent extends BasicEvent
 
 	/**
 	 * Returns the loader reference.
+	 * @return the loader reference.
 	 */
 	public function getLoader():ILoader 
 	{
@@ -140,6 +146,7 @@ class asgard.events.LoaderEvent extends BasicEvent
 
 	/**
 	 * Returns the name of the loader.
+	 * @return the name of the loader.
 	 */
 	public function getName():String 
 	{
@@ -148,6 +155,7 @@ class asgard.events.LoaderEvent extends BasicEvent
 	
 	/**
 	 * Returns the percent value of the loader when is in progress.
+	 * @return the percent value of the loader when is in progress.
 	 */
 	public function getPercent():Number 
 	{
