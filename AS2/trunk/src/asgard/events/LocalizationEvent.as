@@ -36,7 +36,8 @@ class asgard.events.LocalizationEvent extends BasicEvent
 	/**
 	 * Creates a new LocalizationEvent instance.
 	 */
-	public function LocalizationEvent(type : String, localization:Localization, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) {
+	public function LocalizationEvent(type : String, localization:Localization, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
+	{
 		super(type, localization, context, bubbles, eventPhase, time, stop) ;
 	}
 	
