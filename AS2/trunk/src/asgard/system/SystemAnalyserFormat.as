@@ -21,47 +21,33 @@
   
 */
 
-/* ---------- 	SystemAnalyserIFormat
-
-	AUTHOR
-
-		Name : SystemAnalyserIFormat
-		Package : asgard.system
-		Version : 1.0.0.0
-		Date :  2005-07-04
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		formatToString(o):String
-
-	IMPLEMENTS
-	
-		IFormat
-
-----------  */
-
 import asgard.system.SystemAnalyser;
 
 import vegas.core.IFormat;
 import vegas.data.iterator.ArrayIterator;
 
-class asgard.system.SystemAnalyserFormat implements IFormat {
+/**
+ * This IFormat class can converts a SystemAnalyser instance to a custom string representation.
+ * @author eKameleon
+ */
+class asgard.system.SystemAnalyserFormat implements IFormat 
+{
 
-	// ----o Constructor
-	
+	/**
+	 * Creates a new SystemAnalyserFormat instance.
+	 */
 	public function SystemAnalyserFormat() {}
 		
-	
-	// ----o Public Methods
-
-	public function formatToString(o):String {
+	/**
+	 * Converts the object to a custom string representation.
+	 */	
+	public function formatToString(o):String 
+	{
 		var s:SystemAnalyser = SystemAnalyser(o) ;
 		var it:ArrayIterator = new ArrayIterator(s.properties) ; 
 		var txt:String = "[SystemAnalyser : " ;
-        while(it.hasNext()) { 
+        while(it.hasNext()) 
+        { 
             var cur:String = it.next() ; 
 			txt += "\r\t" + cur + " : " + System.capabilities[cur] ; 
         } 

@@ -125,6 +125,16 @@ class vegas.util.TypeUtil
 		} 
 		return (o instanceof c	&& !(o.__proto__ instanceof c));
 	}
+	
+	
+	/**
+	 * Checks if the passed-in object is a generic object.
+	 * @return {@code true} if the passed-in object is a generic object.
+	 */
+	static public function isGenericObject(o):Boolean
+	{
+		return o.__proto__ == Object.prototype ;
+	}
 
 	/**
 	 * Checks if the passed-in object is an instance of the passed-in type.
@@ -148,6 +158,7 @@ class vegas.util.TypeUtil
 		var tof:String = typeof(o) ;
 		return (tof == TypeUtil.STRING || tof == TypeUtil.NUMBER || tof == TypeUtil.BOOLEAN) ;
 	}
+
 	
 	/**
 	 * Checks if the result of an execution of the typeof method on the passed-in object matches the passed-in type.

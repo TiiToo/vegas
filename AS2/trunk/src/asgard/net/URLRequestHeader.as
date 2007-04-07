@@ -21,70 +21,45 @@
   
 */
 
-/** URLRequestHeader
-
-	AUTHOR
-
-		Name : URLRequestHeader
-		Package : asgard.net
-		Version : 1.0.0.0
-		Date :  2006-03-22
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-
-		- name:String
-			An HTTP request header name (such as Content-Type or SOAPAction).
-		
-		- value:String
-			The value associated with the name property (such as text/plain).
-
-	METHOD SUMMARY
-	
-		- hashCode():Number
-
-		- toString():String
-		
-	INHERIT
-	
-		CoreObject > URLRequestHeader
-		
-	IMPLEMENTS
-	
-		IFormattable, IHashable
-
-**/
-
 import vegas.core.CoreObject;
 import vegas.util.ConstructorUtil;
 
 /**
+ * A URLRequestHeader object encapsulates a single HTTP request header and consists of a name/value pair.
  * @author eKameleon
  */
- 
-class asgard.net.URLRequestHeader extends CoreObject {
+class asgard.net.URLRequestHeader extends CoreObject 
+{
 	
-	// ----o Constructor
-	
-	public function URLRequestHeader(sName:String, sValue:String) {
+	/**
+	 * Creates a new URLRequestHeader instance.
+	 * @param sName An HTTP request header name (such as Content-Type or SOAPAction).
+	 * @param sValue The value associated with the name property (such as text/plain).
+	 */
+	public function URLRequestHeader(sName:String, sValue:String) 
+	{
 		super() ;
 		name = sName || "" ;
 		value = sValue || "" ;
 	}
 
-	// ----o Public Properties
-	
+	/**
+	 * An HTTP request header name (such as Content-Type or SOAPAction).
+	 */
 	public var name:String ;
 	
+	/**
+	 * The value associated with the name property (such as text/plain).
+	 */
 	public var value:String ;
 	
-	// ----o Public Methods
-	
-	/*override*/ public function toString():String {
+	/**
+	 * Returns the {@code String} representation of this object.
+	 * @return the {@code String} representation of this object.
+	 */	
+	/*override*/ public function toString():String 
+	{
 		return "[" + ConstructorUtil.getName(this) + " name:" + name + ", value:" + value + "]" ;
 	}
 
-	
 }

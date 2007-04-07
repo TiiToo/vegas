@@ -24,7 +24,7 @@
 import vegas.core.CoreObject;
 
 /**
- * 
+ * The FLVMetaData instances contains all datas values injected in the external FLV video.
  * <p>More informations in the <a href='http://www.buraks.com/flvmdi/'>flvmdi page</a> write by Burak.</p>
  * @author eKameleon
  */
@@ -33,6 +33,7 @@ class asgard.media.FLVMetaData extends CoreObject
 	
 	/**
 	 * Creates a new FLVMetaData object.
+	 * @param o An object with all MetaData properties to fill this instance.
 	 */
 	public function FLVMetaData( o ) 
 	{

@@ -1,3 +1,31 @@
+/*
+
+  The contents of this file are subject to the Mozilla Public License Version
+  1.1 (the "License"); you may not use this file except in compliance with
+  the License. You may obtain a copy of the License at 
+  
+        http://www.mozilla.org/MPL/ 
+  
+  Software distributed under the License is distributed on an "AS IS" basis,
+  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+  for the specific language governing rights and limitations under the License. 
+  
+  The Original Code is Vegas Framework.
+  
+  The Initial Developer of the Original Code is
+  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
+  the Initial Developer. All Rights Reserved.
+  
+  Contributor(s) :
+  
+*/
+
+import asgard.events.HTTPStatusEvent;
+import asgard.events.IOErrorEvent;
+import asgard.events.ProgressEvent;
+import asgard.events.SecurityErrorEvent;
+
 import vegas.core.HashCode;
 import vegas.core.IFormattable;
 import vegas.data.Set;
@@ -9,10 +37,6 @@ import vegas.events.EventListenerCollection;
 import vegas.events.EventType;
 import vegas.events.IEventDispatcher;
 import vegas.util.ConstructorUtil;
-
-// TODO ProgressEvent (like AS3)
-// TODO SecurityErrorEvent (like AS3)
-// TODO all events
 
 /**
  * The FileReference class provides a means to upload and download files between a user's computer and a server. 
@@ -215,16 +239,19 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 
 	/**
 	 * Dispatched when an upload fails and an HTTP status code is available to describe the failure.
+	 * In AS2 the flash.net.FileReference class don't return the status code of the HTTP error.
 	 */
-	/*protected*/ private function onHTTPError(file:FileReference):Void 
+	/*protected*/ private function onHTTPError( file:FileReference ):Void 
 	{
+		dispatchEvent( new HTTPStatusEvent( HTTPStatusEvent.HTTP_STATUS , null, this ) ) ;	
 	}
 
 	/**
 	 * Dispatched when the upload or download fails.
 	 */
-	/*protected*/ private function onIOError(file:FileReference):Void 
+	/*protected*/ private function onIOError( file:FileReference ):Void 
 	{
+		dispatchEvent( new IOErrorEvent( IOErrorEvent.IO_ERROR , this + " io error notify with the file : " + file.name , this.hashCode(), this ) ) ; 
 	}
 
 	/**
@@ -240,14 +267,15 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	 */
 	/*protected*/ private function onProgress( file:FileReference, bytesLoaded:Number, bytesTotal:Number ):Void
 	{
-		// TODO dispatch ProgressEvent
+		dispatchEvent( new ProgressEvent( ProgressEvent.PROGRESS, bytesLoaded, bytesTotal, this ) ); 
 	}
 
 	/**
 	 * Dispatched when a call to the {@code FileReference.upload()} or {@code FileReference.download()} method tries to upload a file to a server or get a file from a server that is outside the caller's security sandbox.
 	 */
-	/*protected*/ private function onSecurityError(file:FileReference, errorString:String):Void 
+	/*protected*/ private function onSecurityError( file:FileReference, errorString:String ):Void 
 	{
+		dispatchEvent( new SecurityErrorEvent( SecurityErrorEvent.SECURITY_ERROR, errorString, this.hashCode() , this) );
 	}
 
 	/**

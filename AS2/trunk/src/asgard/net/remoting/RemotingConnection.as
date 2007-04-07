@@ -21,109 +21,22 @@
   
 */
 
-
-/** RemotingConnection
-
-	AUTHOR
-
-		Name : RemotingConnection
-		Package : asgard.net.remoting
-		Version : 1.0.0.0
-		Date :  2006-05-26
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	PROPERTY SUMMARY
-	
-		- isConnected:Boolean
-		
-		- uri:String
-		
-	METHOD SUMMARY
-	
-		- addEventListener( eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void
-	
-		- addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void
-	
-		- addHeader()
-		
-		- call(remoteMethod:String, resultObject:Object):Void
-		
-		- close():Void
-	
-		- connect(targetURI:String):Boolean
-	
-		- dispatchEvent(event, isQueue:Boolean, target, context):Event
-	
-		- static getConnection( sURL:String ):RemotingConnection
-	
-		- getDelay():Number
-
-		- getDispatcher():EventDispatcher
-		
-		- getEventDispatcher():EventDispatcher
-		
-		- getEventListeners(eventName:String):EventListenerCollection
-		
-		- getGlobalEventListeners():EventListenerCollection
-		
-		- getLimitPolicy():ConnectionPolicy
-		
-		- getRegisteredEventNames():Set
-		
-		- getParent():EventDispatcher
-		
-		- hashCode():Number
-		
-		- hasEventListener(eventName:String):Boolean
-		
-		- initEventDispatcher():EventDispatcher
-		
-		- removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener
-		
-		- removeGlobalEventListener( listener ):EventListener
-		
-		- setCredentials( authentification:RemotingAuthentification ):Void
-		
-		- setDelay(n:Number, useSeconds:Boolean):Void
-		
-		- setLimitPolicy( policy:NetServerPolicy ):Void
-		
-		- setParent(parent:EventDispatcher):Void	INHERIT
-	
-		- startDebug():Void
-		
-		- stopDebug():Void
-		
-		- toString():String
-	
-	INHERIT
-	
-		NetConnection → NetServerConnection → RemotingConnection
-
-	IMPLEMENTS
-	
-		Action, EventTarget, IEventDispatcher, IHashable, IFormattable
-
-	SEE ALSO
-	
-		RemotingConnectionCollector
-
-*/
-
 import asgard.net.NetServerConnection;
 import asgard.net.remoting.RemotingAuthentification;
 import asgard.net.remoting.RemotingConnectionCollector;
 
 /**
+ * The NetServerConnection object used in the RemotingService class to connect the client with the server.
  * @author eKameleon
  * @version 1.0.0.0
- **/	
-class asgard.net.remoting.RemotingConnection extends NetServerConnection {
-	
-	// ----o Constructor
-	
+ */	
+class asgard.net.remoting.RemotingConnection extends NetServerConnection 
+{
+
+	/**
+	 * Creates a new RemotingConnection instance.
+	 * @param sURL the url of the connection.
+	 */	
 	function RemotingConnection( sURL:String ) {
 		
 		super() ;
@@ -132,13 +45,14 @@ class asgard.net.remoting.RemotingConnection extends NetServerConnection {
 		
 	}
 	
-	// ----o Constants
-	
 	static public var AMF_SERVER_DEBUG:String = "amf_server_debug" ;
+
 	static public var CREDENTIALS:String = "Credentials" ;
-
-	// ----o Public Methods
-
+	
+	/**
+	 * Returns the shallow copy of this object.
+	 * @return the shallow copy of this object.
+	 */
 	public function clone() {
 		return new RemotingConnection( uri ) ;	
 	}
@@ -151,14 +65,16 @@ class asgard.net.remoting.RemotingConnection extends NetServerConnection {
 		return RemotingConnectionCollector.get(sUrl) ;
 	}
 
-	public function setCredentials( authentification:RemotingAuthentification ):Void  {
+	public function setCredentials( authentification:RemotingAuthentification ):Void  
+	{
 		
 		var o:Object = (authentification == null) ? null : authentification.toObject() ;
 		addHeader( RemotingConnection.CREDENTIALS , false, o);
 		
 	}
 
-	public function startDebug():Void {
+	public function startDebug():Void 
+	{
 		var oDebug:Object = {
 			amf:false, 
 			error:true,
@@ -172,7 +88,8 @@ class asgard.net.remoting.RemotingConnection extends NetServerConnection {
 		addHeader( RemotingConnection.AMF_SERVER_DEBUG, true, oDebug) ;
 	}
 	
-	public function stopDebug():Void {
+	public function stopDebug():Void 
+	{
 		addHeader( RemotingConnection.AMF_SERVER_DEBUG, true, undefined) ;
 	}
 	

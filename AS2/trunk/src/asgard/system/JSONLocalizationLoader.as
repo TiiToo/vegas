@@ -32,15 +32,16 @@ import asgard.system.Localization;
 import vegas.errors.IllegalArgumentError;
 
 /**
+ * The ILocalizationLoader based on a external JSON string document.
  * @author eKameleon
  */
-class asgard.system.LocalizationLoader extends JSONLoader implements ILocalizationLoader
+class asgard.system.JSONLocalizationLoader extends JSONLoader implements ILocalizationLoader
 {
 	
 	/**
 	 * Creates a new LocalizationLoader instance.
 	 */
-	function LocalizationLoader() 
+	function JSONLocalizationLoader() 
 	{
 		super() ;
 	}

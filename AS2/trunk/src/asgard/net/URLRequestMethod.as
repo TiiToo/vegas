@@ -21,55 +21,31 @@
   
 */
 
-/** URLRequest
-
-	AUTHOR
-
-		Name : URLRequestMethod
-		Package : asgard.net
-		Version : 1.0.0.0
-		Date :  2006-03-22
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTANT SUMMARY
-	
-		static const GET:String = "GET" 
-			Specifies that the URLRequest is a GET.
-
-		static const POST:String = "POST"
-			Specifies that the URLRequest is a POST.
-	
-	METHOD SUMMARY
-
-		static validate(sMethod:String):Boolean
-
-**/
-
 /**
+ * The URLRequestMethod class provides values that specify whether the URLRequest object should use the {@code POST} method or the {@code GET} method when sending data to a server.
  * @author eKameleon
  */
- 
-class asgard.net.URLRequestMethod {
+class asgard.net.URLRequestMethod 
+{
 	
-	// ----o Constructor
-	
-	private function URLRequestMethod() {
-		//	
-	}
-	
-	// ----o Constants
-	
+	/**
+	 * Specifies that the URLRequest object is a GET.
+	 */
 	static public var GET:String = "GET" ;
 	
+	/**
+	 * Specifies that the URLRequest object is a POST.
+	 */
 	static public var POST:String = "POST" ;
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(URLRequestMethod, null , 7, 7) ;
 	
-	// ----o Public Methods
-	
-	static public function validate(sMethod:String):Boolean {
+	/**
+	 * Returns {@code true} if the String value passed-in argument is a valid method.
+	 * @return {@code true} if the String value passed-in argument is a valid method.
+	 */
+	static public function validate(sMethod:String):Boolean 
+	{
 		return (sMethod == URLRequestMethod.GET) || (sMethod == URLRequestMethod.POST) ;
 	}
 	

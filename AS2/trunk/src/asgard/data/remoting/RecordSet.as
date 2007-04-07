@@ -21,115 +21,6 @@
   
 */
 
-/*	RecordSet
-
-	AUTHOR
-	
-		Name : RecordSet
-		Package : asgard.data.remoting
-		Version : 1.0.0.0
-		Date :  2005-05-25
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var rs:RecordSet = new RecordSet( oRaw ) ;
-
-	METHOD SUMMARY
-	
-		- addView(listener:EventListener):Void
-		
-		- clone()
-		
-		- iterator():Iterator
-		
-		- notifyChanged(ev:ModelChangedEvent):Void
-		
-		- removeView(listener:EventListener):Void
-				
-		- toString():String
-
-	EVENT TYPE SUMMARY
-
-		- RecordSetEvent.ADD_ITEMS:String
-		
-		- RecordSetEvent.CLEAR_ITEMS:String
-		
-		- RecordSetEvent.REMOVE_ITEMS:String
-		
-		- RecordSetEvent.SORT_ITEMS:String
-		
-		- RecordSetEvent.UPDATE_ITEMS:String
-
-	INHERIT
-	
-		CoreObject → AbstractCoreEventDispatcher → AbstractModel → RecordSet
-
-	IMPLEMENTS 
-	
-		IEventDispatcher, IFormattable, IHashable, IModel, EventTarget
-
-	HISTORY
-	
-		2006-05-29 : add in constructor parsing if serverInfo is not null !
-
-	EXAMPLE
-	 
-	   	import asgard.data.remoting.RecordSet ;
-		import asgard.events.RemotingEvent ;
-		import asgard.net.remoting.RemotingService ;
-		
-		import vegas.data.iterator.Iterator ;
-		import vegas.events.Delegate ;
-		
-	 	var gatewayUrl:String = "http://localhost/lesson/remoting/php/gateway.php" ;
-		var serviceName:String = "Gallery" ;
-		
-		var onFault:Function  = function(e:RemotingEvent):Void {
-			var type:String = e.getType() ;
-			var target:RemotingService = e.getTarget() ;
-			trace("> " + e.getType() + " > " + e.getCode()) ;
-			trace("> level : " + e.getLevel()) ;
-			trace("> line  : " + e.getLine()) ;
-			trace("> methodName : " + e.getMethodName()) ;
-			trace("> description : " +  e.getDescription()) ;
-		} ;	
-
-		var onFinish:Function = function (e:RemotingEvent):Void {
-			trace(">> " +  e.getType()) ;
-		} ;
-
-		var onResult:Function = function(e:RemotingEvent):Void {
-			var type:String = e.getType() ;
-			var target:RemotingService = e.getTarget() ;
-			var result:RecordSet = e.getResult() ;
-			trace(">> " + type + " : " + target) ;
-			trace("------ use RecordSetIterator") ;
-			trace(">>>> " + result) ;
-			var it:Iterator = result.iterator() ;
-			while(it.hasNext()) {
-				trace("   > " + it.next().title ) ;
-			}
-		} ;
-
-		var onStart:Function = function (e:RemotingEvent):Void {
-			trace(">> " +  e.getType()) ;
-		} ;
-		
-		var service:RemotingService = new RemotingService( gatewayUrl, serviceName ) ;
-		service.addEventListener( RemotingEvent.FAULT, new Delegate(this, onFault)  ) ;
-		service.addEventListener( RemotingEvent.FINISH, new Delegate(this, onFinish)  ) ;
-		service.addEventListener( RemotingEvent.RESULT, new Delegate(this, onResult)  ) ;
-		service.addEventListener( RemotingEvent.START, new Delegate(this, onStart)  ) ;
-		
-		service.methodName = "getGallery" ;
-		service.params = ["gallery"] ;
-		service.trigger() ;
- 
-*/
-
 import asgard.data.iterator.RecordSetIterator;
 import asgard.events.RecordSetEvent;
 import asgard.net.remoting.RemotingService;
@@ -146,13 +37,72 @@ import vegas.util.mvc.AbstractModel;
 // TODO finir de mettre en place la sérialization avec toSource():String
 
 /**
+ * <p><b>Example :</b></p>
+ * {@code
+ * import asgard.data.remoting.RecordSet ;
+ * import asgard.events.RemotingEvent ;
+ * import asgard.net.remoting.RemotingService ;
+ * 
+ * import vegas.data.iterator.Iterator ;
+ * import vegas.events.Delegate ;
+ * 
+ * var gatewayUrl:String = "http://localhost/remoting/php/gateway.php" ; // sets your gateway url
+ * var serviceName:String = "Gallery" ;
+ * 
+ * var onFault:Function  = function(e:RemotingEvent):Void 
+ * {
+ *     var type:String = e.getType() ;
+ *     var target:RemotingService = e.getTarget() ;
+ *     trace("> " + e.getType() + " > " + e.getCode()) ;
+ *     trace("> level : " + e.getLevel()) ;
+ *     trace("> line  : " + e.getLine()) ;
+ *     trace("> methodName : " + e.getMethodName()) ;
+ *     trace("> description : " +  e.getDescription()) ;
+ * } ;
+ * 
+ * var onFinish:Function = function (e:RemotingEvent):Void 
+ * {
+ *     trace(">> " +  e.getType()) ;
+ * } ;
+ * 
+ * var onResult:Function = function(e:RemotingEvent):Void 
+ * {
+ *     var type:String = e.getType() ;
+ *     var target:RemotingService = e.getTarget() ;
+ *     var result:RecordSet = e.getResult() ;
+ *     trace(">> " + type + " : " + target) ;
+ *     trace("------ use RecordSetIterator") ;
+ *     trace(">>>> " + result) ;
+ *     var it:Iterator = result.iterator() ;
+ *     while(it.hasNext()) 
+ *     {
+ *         trace("   > " + it.next().title ) ;
+ *     }
+ * } ;
+ * 
+ * var onStart:Function = function (e:RemotingEvent):Void 
+ * {
+ *     trace(">> " +  e.getType()) ;
+ * } ;
+ * 
+ * var service:RemotingService = new RemotingService( gatewayUrl, serviceName ) ;
+ * service.addEventListener( RemotingEvent.FAULT, new Delegate(this, onFault)  ) ;
+ * service.addEventListener( RemotingEvent.FINISH, new Delegate(this, onFinish)  ) ;
+ * service.addEventListener( RemotingEvent.RESULT, new Delegate(this, onResult)  ) ;
+ * service.addEventListener( RemotingEvent.START, new Delegate(this, onStart)  ) ;
+ * 
+ * service.methodName = "getGallery" ;
+ * service.params = ["gallery"] ;
+ * service.trigger() ;
+ * }
  * @author eKameleon
  */
 class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable 
 {
 
-	// ----o Constructor
-	
+	/**
+	 * Creates a new RecordSet instance.
+	 */
 	public function RecordSet( o ) {
 		
 		_eAdd    = new RecordSetEvent(RecordSetEvent.ADD_ITEMS, this) ;
@@ -164,10 +114,10 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable
 		_items = [] ;
 		mTiles = [] ;
 		
-		// trace(">> " + this + " constructor : " + serverInfo) ;
-		
-		if (serverInfo == null) {
-			if (serverinfo != null) {
+		if (serverInfo == null) 
+		{
+			if (serverinfo != null) 
+			{
 				serverInfo = serverinfo ;
 			}
 		}
@@ -185,7 +135,7 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable
 			}		
 		}
 		
-		// ??? voir ici ce qui cloche en comparaison avec script MM.
+		// TODO ??? voir ici ce qui cloche en comparaison avec script MM.
 		
 		if (serverInfo) 
 		{
@@ -194,13 +144,11 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable
 
 	}
 
-	// ----o Public Properties
-	
 	public var serverInfo:Object ;
+
 	public var serverinfo:Object ;
+
 	public var serviceName:String ; 
-	
-	// ----o Public Methods
 
 	public function addItem(oItem) 
 	{
@@ -255,6 +203,9 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable
 		notifyChanged(_eClear) ;
 	}
 
+	/**
+	 * Returns {@code true} if the specified item is in the model.
+	 */
 	public  function contains( oItem ):Boolean 
 	{
 		return ArrayUtil.contains(_items, oItem) ;
@@ -401,7 +352,7 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable
 		
 		mRecordsAvailable = 0 ;
 		
-		// implémenter setData ici !
+		// implements setData !
 		// setData((serverInfo.cursor == null) ? 0 : (serverInfo.cursor - 1), serverInfo.initialData);
 		
 		var aItems:Array = oRaw.serverInfo.initialData ;
@@ -420,6 +371,14 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable
 		
 		//serverInfo = null ;
 		
+	}
+
+	/**
+	 * Register the RecordSet instance.
+	 */
+	static public function register():Boolean 
+	{
+		return Object.registerClass( "RecordSet", asgard.data.remoting.RecordSet ) ;
 	}
 
 	public function removeItem(oItem) 
@@ -569,17 +528,7 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable
 
 	private var _nc ;
 
-	// ----o Register Class - AMF deserialization
-
-	static private function _registerRecordSet():Boolean 
-	{
-		Object.registerClass( "RecordSet", asgard.data.remoting.RecordSet );
-		return( true );
-	}
-
-	static private var _initRegister:Boolean = _registerRecordSet() ;	
-
-	// ----o Private Methods
+	static private var _initRegister:Boolean = register() ;	
 
 	/**
 	

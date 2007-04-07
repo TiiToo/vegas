@@ -24,6 +24,8 @@
 import vegas.data.map.HashMap;
 import vegas.util.ArrayUtil;
 
+// TODO change the full string of the Lang reference + localization.
+
 /**
  * The Lang class register all international lang of the application. Use this class in the Localization model of ASGard.
  * @author eKameleon

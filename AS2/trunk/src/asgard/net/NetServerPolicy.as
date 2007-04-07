@@ -21,38 +21,22 @@
   
 */
 
-/** NetServerPolicy
-
-	AUTHOR
-
-		Name : NetServerPolicy
-		Package : asgard.net
-		Version : 1.0.0.0
-		Date :  2006-04-20
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-**/
-
 /**
+ * The static enumeration class with all NetServer policy constants.
  * @author eKameleon
  * @version 1.0.0.0
- **/	
+ */	
 class asgard.net.NetServerPolicy extends Number 
 {
 	
-	// ----o Constructor
-	
-	private function NetServerPolicy( n:Number ) 
-	{
-		super(n) ;
-	}
-
-	// ----o Public Properties
-	
+	/**
+	 * Determinates if the NetServerConnection use an INFINITY policy.
+	 */
 	static public var INFINITY:NetServerPolicy = new NetServerPolicy(0) ;
 	
+	/**
+	 * Determinates if the NetServerConnection use a LIMIT policy.
+	 */
 	static public var LIMIT:NetServerPolicy = new NetServerPolicy(1) ;
 
 	static private var __ASPF__ = _global.ASSetPropFlags(NetServerPolicy, null , 7, 7) ;

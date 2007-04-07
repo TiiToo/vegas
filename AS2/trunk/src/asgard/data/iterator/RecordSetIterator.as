@@ -21,50 +21,6 @@
   
 */
 
-/**	RecordSetIterator
-
-	AUTHOR
-	
-		Name : RecordSetIterator
-		Package : asgard.data.iterator
-		Version : 1.0.0.0
-		Date :  2005-05-25
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var it:RecordSetIterator = new RecordSetIterator(rs:RecordSet) ;
-
-	METHOD SUMMARY
-	
-		- hashCode():Number
-		
-		- hasNext():Boolean
-		
-		- key()
-		
-		- next()
-		
-		- reset():Void
-		
-		- remove()
-		
-		- seek(n:Number)
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → RecordSetIterator
-
-	IMPLEMENTS
-	
-		Iterator, IFormattable, IHashable
-
-**/
-
 import asgard.data.remoting.RecordSet;
 
 import vegas.core.CoreObject;
@@ -72,44 +28,71 @@ import vegas.data.iterator.Iterator;
 import vegas.util.MathsUtil;
 
 /**
+ * Converts an {@code RecordSet} instance to an iterator.
  * @author eKameleon
  */
-class asgard.data.iterator.RecordSetIterator extends CoreObject implements Iterator {
+class asgard.data.iterator.RecordSetIterator extends CoreObject implements Iterator 
+{
 
-	// ----o Constructor
-	
+	/**
+	 * Creates a new RecordSetIterator instance.
+	 * @param rs the RecordSet reference of this iterator.
+	 */
 	public function RecordSetIterator(rs:RecordSet) {
 		_rs = rs ;
 		_k = -1;
 	}
 
-	// ----o Public Methods
-
-	function hasNext() : Boolean {
+	/**
+	 * Returns {@code true} if the iteration has more elements.
+	 * @return {@code true} if the iteration has more elements.
+	 */	
+	public function hasNext() : Boolean 
+	{
 		return _k < (_rs.size() - 1) ;
 	}
 
-	function key() {
+	/**
+	 * Returns the current key of the internal pointer of the iterator (optional operation).
+	 * @return the current key of the internal pointer of the iterator (optional operation).
+	 */
+	public function key() 
+	{
 		return _k ;
 	}
 
-	function next() {
+	/**
+	 * Returns the next element in the iteration.
+	 * @return the next element in the iteration.
+	 */
+	public function next() 
+	{
 		return _rs.getItemAt( ++_k );
 	}
 
-	function remove() {
+	/**
+	 * Removes from the underlying collection the last element returned by the iterator (optional operation).
+	 */
+	public function remove() 
+	{
 		return _rs.removeItemAt(_k--);
 	}
 
-	function reset() : Void {
+	/**
+	 * Reset the internal pointer of the iterator (optional operation).
+	 */
+	public function reset() : Void 
+	{
 		_k = -1 ;
 	}
 
-	function seek(n : Number) : Void {
+	/**
+	 * Change the position of the internal pointer of the iterator (optional operation).
+	 */	
+	public function seek(n : Number) : Void 
+	{
 		_k = MathsUtil.clamp ((n-1), -1, _rs.size()) ;
 	}
-	
-	// ----o Private Properties
 	
 	private var _k:Number ; 
 	private var _rs:RecordSet ;

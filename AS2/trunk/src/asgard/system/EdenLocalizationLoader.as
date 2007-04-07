@@ -34,7 +34,6 @@ import vegas.errors.IllegalArgumentError;
 /**
  * The ILocalizationLoader based on a external Eden string document.
  * @author eKameleon
- * @date 2006-03-24
  */
 class asgard.system.EdenLocalizationLoader extends EdenLoader implements ILocalizationLoader
 {

@@ -22,32 +22,7 @@
 */
 
 /* ---------- Version
-
-	AUTHOR
-
-		Name : Version
-		Package : asgard.system
-		Version : 1.0.0.0
-		Date : 2005-06-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	DESCRIPTION
-
-		Represents a version number for a constructor, an environnement, a platform or other.
 		
-	DETAIL
-		
-			1 5 432 10
-		0x  F F FFF FF
-			| |  |   |
-			| |  |   \revision (max 255)
-			| |  \build (max 4095)
-			| \minor (max 15)
-			\major (max 15)
-   
-		max version number is v15.15.4095.255
 
 	CONSTRUCTOR
 	
@@ -98,18 +73,8 @@
 		IComparable
    
 	NOTE
-		value ranges are:
-			0xF    - 0 ->    15
-			0xFF   - 0 ->   255
-			0xFFF  - 0 ->  4095
-	
-			max total value = 0xFFFFFFF
-   
-	THANKS 
-	
-		Zwetan : http://www.zwetan.com/
-		[ML] Burrrn :: [FMX] coding session 05 (FCNG.buRRRn.com)
-	
+
+
 ----------  */
 
 import vegas.core.CoreObject;
@@ -119,46 +84,147 @@ import vegas.core.ISerializable;
 import vegas.util.factory.PropertyFactory;
 import vegas.util.MathsUtil;
 
-
+/**
+ * Represents a version number for a constructor, an environnement, a platform or other.
+ * <p>Informations :</p>
+ * {@code
+ * 		1 5 432 10
+ * 		0x  F F FFF FF
+ * 		| |  |   |
+ * 		| |  |   \revision (max 255)
+ * 		| |  \build (max 4095)
+ * 		| \minor (max 15)
+ * 		\major (max 15)
+ * 		
+ * 		max version number is v15.15.4095.255
+ * }
+ * <p><b>Note : </b>value ranges are
+ * <ul>
+ * <li>0xF    - 0 ->    15</li>
+ * <li>0xFF   - 0 ->   255</li>
+ * <li>0xFFF  - 0 ->  4095</li>
+ * </ul>
+ * Max total value = 0xFFFFFFF
+ * </p>
+ * Thanks : Zwetan : http://www.zwetan.com/ in the post "[FMX] coding session 05" (FCNG.buRRRn.com)
+ * @author eKameleon
+ */
 class asgard.system.Version extends CoreObject implements IComparable, IEquality, ISerializable 
 {
 	
-	// -----o Constructor
-	
-	public function Version( p_major:Number, p_minor:Number, p_build:Number, p_revision:Number ) 
+	/**
+	 * Creates a new Version instance with the specified major, minor, build, and revision numbers.
+	 */
+	public function Version( major:Number, minor:Number, build:Number, revision:Number ) 
 	{
-		major = _checkValue( p_major, 0xF ) ; // max : 15
-		minor = _checkValue( p_minor, 0xF ) ; // max : 15
-		build = _checkValue( p_build, 0xFFF ) ; // max : 4095
-		revision = _checkValue( p_revision, 0xFF ) ;  // max : 255
+		this.major = _checkValue( major, 0xF ) ; // max : 15
+		this.minor = _checkValue( minor, 0xF ) ; // max : 15
+		this.build = _checkValue( build, 0xFFF ) ; // max : 4095
+		this.revision = _checkValue( revision, 0xFF ) ;  // max : 255
 		_value = major << 24 | minor << 20 | build << 8 | revision ;
 	}
-	
-	// ----o Public Properties
-	
-	public var build:Number ; // [RW]
-	public var major:Number ; // [RW]
-	public var minor:Number ; // [RW]
-	public var revision:Number ; // [RW]
 
-	// -----o Public Methods
+	/**
+	 * Returns the value of the build component of the version number for the current Version object.
+	 * @return the value of the build component of the version number for the current Version object.
+	 */
+	public function get build():Number 
+	{
+		return getBuild() ;
+	}
 	
-	public function compareTo(o):Number {
+	/**
+	 * Sets the value of the build component of the version number for the current Version object.
+	 */
+	public function set build( n:Number ):Void
+	{
+		setBuild(n) ;	
+	}
+
+	/**
+	 * Returns the value of the major component of the version number for the current Version object.
+	 * @return the value of the major component of the version number for the current Version object.
+	 */
+	public function get major():Number
+	{
+		return getMajor() ;	
+	}
+	
+	/**
+	 * Sets the value of the major component of the version number for the current Version object.
+	 */
+	public function set major( n:Number ):Void
+	{
+		setMajor(n) ;
+	}
+	
+	/**
+	 * Returns the value of the minor component of the version number for the current Version object.
+	 * @return the value of the minor component of the version number for the current Version object.
+	 */
+	public function get minor():Number
+	{
+		return getMinor() ;
+	}
+	
+	/**
+	 * Sets the value of the minor component of the version number for the current Version object.
+	 */
+	public function set minor( n:Number ):Void
+	{
+		setMinor( n ) ;	
+	}
+	
+	/**
+	 * Returns the value of the revision component of the version number for the current Version object.
+	 * @return the value of the revision component of the version number for the current Version object.
+	 */
+	public function get revision():Number
+	{
+		return getRevision() ;
+	}
+	
+	/**
+	 * Sets the value of the revision component of the version number for the current Version object.
+	 */
+	public function set revision( n:Number ):Void
+	{
+		setRevision( n ) ;	
+	}
+
+	
+	/**
+	 * Compares the current Version object to a specified object or Version and returns an indication of their relative values.
+	 * @return the compare value 1, -1 or 0
+	 */
+	public function compareTo(o):Number 
+	{
 		if( o == null ) return 1 ;
         if( equals( o )  ) return 0 ;
         else if ( valueOf() > o.valueOf() ) return 1 ; 
 		return -1;
     }
 
-	public function equals(o):Boolean {
+	/**
+	 * Returns a value indicating whether two Version object represent the same value.
+	 * @return a value indicating whether two Version object represent the same value.
+	 */
+	public function equals(o):Boolean 
+	{
 		if( o == null ) return false ;
         if( !(o instanceof Version) ) return false;
 		return( valueOf() == o.valueOf() );
     }
 
-	public function fromString(str:String):Version {
+	/**
+	 * Creates and returns a new Version with the specified string passed-in argument.
+	 * @return a new Version with the specified string passed-in argument.
+	 */
+	public function fromString(str:String):Version 
+	{
 		var args:Array = str.split(".") ;
-		var ver:Version  = new Version( 
+		var ver:Version  = new Version
+		( 
 			parseInt( args[0] ) ,
             parseInt( args[1] ) ,
             parseInt( args[2] ) ,
@@ -167,70 +233,109 @@ class asgard.system.Version extends CoreObject implements IComparable, IEquality
 		return ver ;
     }
 
-	public function getBuild():Number {
+	/**
+	 * Returns the value of the build component of the version number for the current Version object.
+	 * @return the value of the build component of the version number for the current Version object.
+	 */
+	public function getBuild():Number 
+	{
 		return( (_value & 0x00FFF00) >> 8 ) ;
     }
-	
-	
-	public function getMajor():Number {
+
+	/**
+	 * Returns the value of the major component of the version number for the current Version object.
+	 * @return the value of the major component of the version number for the current Version object.
+	 */
+	public function getMajor():Number 
+	{
 		return( (_value & 0xF000000) >> 24 );
     }
-	
 
-	public function getMinor():Number {
+	/**
+	 * Returns the value of the minor component of the version number for the current Version object.
+	 * @return the value of the minor component of the version number for the current Version object.
+	 */
+	public function getMinor():Number 
+	{
 		return( (_value & 0x0F00000) >> 20 ) ;
     }
-
-	public function getRevision():Number {
+    
+	/**
+	 * Returns the value of the revision component of the version number for the current Version object.
+	 * @return the value of the revision component of the version number for the current Version object.
+	 */
+	public function getRevision():Number 
+	{
 		return( _value & 0x00000FF ) ;
     }
 
-	public function setBuild( value:Number ):Void {
+	/**
+	 * Sets the value of the build component of the version number for the current Version object.
+	 */
+	public function setBuild( value:Number ):Void 
+	{
 		var n:Number = _checkValue( value, 0xFFF );
 		_value = ( (_value & 0xFF000FF) | (n << 8) );
     }
 
-	public function setMajor( value:Number ):Void {
+	/**
+	 * Sets the value of the major component of the version number for the current Version object.
+	 */
+	public function setMajor( value:Number ):Void 
+	{
 		var n:Number = _checkValue( value, 0xF );
 		_value = ( (_value & 0x0FFFFFF) | (n << 24) ) ;
     }
 
-	public function setMinor( value:Number ):Void {
+	/**
+	 * Sets the value of the minor component of the version number for the current Version object.
+	 */
+	public function setMinor( value:Number ):Void 
+	{
 		var n:Number = _checkValue( value, 0xF );
 		_value = ( (_value & 0xF0FFFFF) | (n << 20) );
     }
 
-	public function setRevision( value:Number ) {
+	/**
+	 * Sets the value of the revision component of the version number for the current Version object.
+	 */
+	public function setRevision( value:Number ) 
+	{
 		var n:Number = _checkValue( value, 0xFF );
 		_value = ( (_value & 0xFFFFF00) | n );
     }
 
-	public function toSource(indent:Number, indentor:String):String {
-		return "new Version(" + major + "," + minor + "," + build + "," + revision + ")" ;
+	/**
+	 * Returns the Eden {@code String} representation of the object.
+	 * @return the Eden {@code String} representation of the object.
+	 */
+	public function toSource(indent:Number, indentor:String):String 
+	{
+		return "new asgard.system.Version(" + major + "," + minor + "," + build + "," + revision + ")" ;
 	}
 
-	public function toString():String {
+	/**
+	 * Returns the {@code String} representation of the object.
+	 * @return the {@code String} representation of the object.
+	 */
+	public function toString():String 
+	{
 		return [major, minor, build, revision].join(".") ;
     }
 
-	public function valueOf():Number {
+	/**
+	 * Returns the primivite value of this object.
+	 * @return the primivite value of this object.
+	 */
+	public function valueOf():Number 
+	{
 		return _value ;
     }
 	
-	// -----o Virtual Properties
-	
-	static private var __BUILD__:Boolean = PropertyFactory.create(Version, "build", true) ;
-	static private var __MAJOR__:Boolean = PropertyFactory.create(Version, "major", true) ;
-	static private var __MINOR__:Boolean = PropertyFactory.create(Version, "minor", true) ;
-	static private var __REVISION__:Boolean = PropertyFactory.create(Version, "revision", true) ;;
-	
-	// -----o Private Properties
-	
 	private var _value:Number ;
 	
-	// -----o Private Methods
-	
-	private function _checkValue( value:Number, max:Number) {
+	private function _checkValue( value:Number, max:Number) 
+	{
 		return MathsUtil.clamp(value, 0, max) ;
 	}
 

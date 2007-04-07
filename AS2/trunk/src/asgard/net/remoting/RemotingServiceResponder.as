@@ -21,34 +21,6 @@
   
 */
 
-/** RemotingServiceResponder
-
-	AUTHOR
-
-		Name : RemotingServiceResponder
-		Package : asgard.net.remoting
-		Version : 1.0.0.0
-		Date :  2006-05-26
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- getMethodName():String
-		
-		- getService()
-
-		- onResult( oResult ):Void
-		
-		- onStatus( oFault:Object ):Void
-		
-		- setMethodName(sName:String):Void
-
-		- setService( service )
-
-**/
-
 import asgard.data.remoting.RecordSet;
 import asgard.events.RemotingEvent;
 
@@ -56,41 +28,61 @@ import vegas.core.CoreObject;
 import vegas.events.Delegate;
 
 /**
+ * The RemotingServiceResponder class provides an object that is used in the RemotingService instances to handle return values from the server.
  * @author eKameleon
  */
 class asgard.net.remoting.RemotingServiceResponder extends CoreObject 
 {
 	
-	// ----o Constructor
-	
+	/**
+	 * Creates a new RemotingServiceResponder.
+	 * @param scope the object who handle the values from the server.
+	 * @param resultMethod The function invoked if the call to the server succeeds and returns a result.
+	 * @param faultMethod The function invoked if the server returns an error.
+	 */	
 	public function RemotingServiceResponder( scope, resultMethod:Function, faultMethod:Function) 
 	{
 		
 		super();
 		
-		if (!faultMethod) faultMethod = scope["onFault"] ;
-		if (!resultMethod) resultMethod = scope["onResult"] ;
+		if (!faultMethod) 
+		{
+			faultMethod = scope["onFault"] ;
+		}
 		
-		_eFault = new RemotingEvent( RemotingEvent.FAULT, null) ;
+		if (!resultMethod) 
+		{
+			resultMethod = scope["onResult"] ;
+		}
+		
+		_eFault  = new RemotingEvent( RemotingEvent.FAULT, null) ;
 		_eResult = new RemotingEvent( RemotingEvent.RESULT, null) ;
-		
-		_fault = new Delegate(scope, faultMethod) ;
-		_result = new Delegate(scope, resultMethod) ;
+		_fault   = new Delegate(scope, faultMethod) ;
+		_result  = new Delegate(scope, resultMethod) ;
 		
 	}
 	
-	// ----o Public Methods
-
+	/**
+	 * Returns the name of the method.
+	 * @return the name of the method.
+	 */
 	public function getMethodName():String 
 	{
 		return _methodName ;
 	}
 	
+	/**
+	 * Returns the service reference of this responder.
+	 * @return the service reference of this responder.
+	 */
 	public function getService() 
 	{
 		return _service ;	
 	}
 	
+	/**
+	 * Invoked if the call to the server succeeds and returns a result.
+	 */
 	public function onResult( oResult ):Void 
 	{
 		if (oResult instanceof RecordSet) 
@@ -102,25 +94,32 @@ class asgard.net.remoting.RemotingServiceResponder extends CoreObject
 		_result.run() ;
 	}
 
+	/**
+	 * Invoked if the server returns an error.
+	 */
 	public function onStatus( oFault:Object ):Void 
 	{
 		_eFault.setFault(oFault, _methodName) ;
 		_fault.setArguments( _eFault );
 		_fault.run();
 	}
-
+	
+	/**
+	 * Sets the name of the method.
+	 */
 	public function setMethodName(sName:String):Void 
 	{
 		_methodName = sName ;
 	}
 
+	/**
+	 * Sets the service reference.
+	 */
 	public function setService( service ) 
 	{
 		_service = service ;
 	}
 
-	// ----o Private Properties
-	
 	private var _eFault:RemotingEvent ;
 	private var _eResult:RemotingEvent ;
 	

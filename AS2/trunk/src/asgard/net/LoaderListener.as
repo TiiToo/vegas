@@ -22,9 +22,9 @@
 */
 
 /**
+ * The LoaderListener class.
  * @author eKameleon
  * @version 1.0.0.0
- * @date 2006-03-24
  */
 import asgard.events.LoaderEvent;
 

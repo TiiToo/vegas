@@ -21,7 +21,7 @@
   
 */
 
-// TODO rajouter les logs et les erreurs.
+// TODO add logs and errors.
 
 import asgard.events.RemotingEvent;
 import asgard.net.remoting.RemotingAuthentification;
@@ -39,13 +39,18 @@ import vegas.events.TimerEvent;
 import vegas.util.Timer;
 
 /**
+ * This class provides a service object to communicate with a remoting gateway server.
  * @author eKameleon
  */
 dynamic class asgard.net.remoting.RemotingService extends AbstractAction 
 {
 	
-	// ----o Constructor
-	
+	/**
+	 * Creates a new RemotingService instance.
+	 * @param gatewayUrl the url of the gateway of the remoting service.
+	 * @param serviceName the name of the service in the server.
+	 * @param responder (optional) The RemotingServiceResponder use to receive data from the server.
+	 */
 	function RemotingService( gatewayUrl:String , serviceName:String , responder:RemotingServiceResponder ) 
 	{
 		
@@ -287,7 +292,10 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction
 	
 	public function setResponder( responder:RemotingServiceResponder ):Void 
 	{
-		if (_responder) _responder.setService(null) ;
+		if (_responder) 
+		{
+			_responder.setService(null) ;
+		}
 		_responder = responder || new RemotingServiceResponder(this, onResult, onFault) ;
 		_responder.setService(this) ;
 	}
@@ -319,15 +327,16 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction
 	{
 		run() ;	
 	}
-
+	
+	/**
+	 * Returns the {@code String} representation of this object.
+	 * @return  the {@code String} representation of this object.
+	 */
 	public function toString():String 
 	{
 		return (new RemotingFormat()).formatToString(this) ;	
 	}
 
-
-	// ----o Private Properties
-	
 	private var _args:Array ;
 	
 	private var _authentification:RemotingAuthentification ;
@@ -362,6 +371,9 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction
 	
 	private var _timerListener:EventListener ;
 
+	/**
+	 * Resolve an unknow method over the RemotingService instance.
+	 */
 	private function __resolve__( methodName:String ):Function 
 	{
 		
@@ -370,7 +382,8 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction
 			return null ;
 		}
 		
-		if(methodName == "__path__") {
+		if(methodName == "__path__") 
+		{
 			return null ; // hack pour le toString avec ConstructorUtil.getName !!
 		}
 		
@@ -380,7 +393,8 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction
 		var rc:RemotingConnection = _rc ;
 		var serviceName:String = _serviceName ;
 
-		return function () {
+		return function () 
+		{
 			var args:Array = [ serviceName + "." + methodName , responder ].concat(arguments) ;
 			return rc.call.apply( rc, args ); 
 		} ;

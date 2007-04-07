@@ -21,65 +21,49 @@
   
 */
 
-/** URLVariables
-
-	AUTHOR
-
-		Name : URLVariables
-		Package : asgard.net
-		Version : 1.0.0.0
-		Date :  2006-03-23
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-	 	- decode():Void
-
-		- hashCode():Number
-
-		- toSource():String
-
-		- toString():String
-		
-	INHERIT
-	
-		CoreObject → URLVariables
-		
-	IMPLEMENTS
-	
-		IFormattable, IHashable, ISerializable
-
-**/
-
 import vegas.core.CoreObject;
 import vegas.core.ISerializable;
 
 /**
+ * The {@code URLVariables} class allows you to transfer variables between a Flash® application and a server.
+ * Use {@code URLVariables} objects with methods of the {@code URLLoader} class, with the data property of the {@code URLRequest} class, and with flash.net package functions.
  * @author eKameleon
  */
- 
-dynamic class asgard.net.URLVariables extends CoreObject implements ISerializable {
+dynamic class asgard.net.URLVariables extends CoreObject implements ISerializable 
+{
 	
-	// ----o Constructor
-	
-	public function URLVariables( source:String ) {
+	/**
+	 * Creates a new URLVariables object.
+	 */
+	public function URLVariables( source:String ) 
+	{
 		super() ;
 		if (source) decode(source)  ;
 	}
 
-	// ----o Public Methods
-	
-	public function decode(source:String):Void {
+	/**
+	 * Converts the variable string to properties of the specified URLVariables object.
+	 */
+	public function decode(source:String):Void 
+	{
 		LoadVars.prototype.decode.apply(this, [source]) ;
 	}
-	
-	public function toSource(indent:Number, indentor:String):String {
+
+	/**
+	 * Returns the EDEN {@code String} representation of this object.
+	 * @return the EDEN {@code String} representation of this object.
+	 */	
+	public function toSource(indent:Number, indentor:String):String 
+	{
 		return "new URLVariables(" + toString() + ")" ;	
 	}
-	
-	/*override*/ public function toString():String {
+
+	/**
+	 * Returns the {@code String} representation of this object.
+	 * @return the {@code String} representation of this object.
+	 */	
+	/*override*/ public function toString():String 
+	{
 		return LoadVars.prototype.toString.call(this) ;
 	}
 

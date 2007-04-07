@@ -25,10 +25,10 @@ import asgard.events.LoaderEvent;
 import asgard.events.LoaderEventType;
 import asgard.events.LocalizationEvent;
 import asgard.net.LoaderListener;
+import asgard.system.EdenLocalizationLoader;
 import asgard.system.ILocalizationLoader;
 import asgard.system.Lang;
 import asgard.system.Locale;
-import asgard.system.LocalizationLoader;
 
 import vegas.data.map.HashMap;
 import vegas.events.AbstractCoreEventDispatcher;
@@ -69,7 +69,7 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 		_start = new Delegate(this, onLoadStart) ;
 		_timeOut = new Delegate(this, onLoadTimeOut) ;
 		
-		setLoader( new LocalizationLoader() ) ;
+		setLoader( new EdenLocalizationLoader() ) ;
 		
 	}
 
@@ -203,7 +203,7 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	}
 
 	/**
-	 * Returns the ILocalizationLoader reference of this instance.
+	 * Returns the ILocalizationLoader reference of this instance (default an EdenLocalizationLoader instance).
 	 * @return the ILocalizationLoader reference of this instance.
 	 */
 	public function getLoader():ILocalizationLoader
@@ -342,7 +342,7 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	}
 	
 	/**
-	 * Sets the current loader of this Localization.
+	 * Sets the current loader of this Localization (default an EdenLocalizationLoader instance).
 	 */
 	public function setLoader( loader:ILocalizationLoader ):Void
 	{
@@ -358,6 +358,11 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 			AbstractCoreEventDispatcher(_loader).removeEventListener(LoaderEventType.IO_ERROR, _error) ;
 			AbstractCoreEventDispatcher(_loader).removeEventListener(LoaderEventType.TIMEOUT, _timeOut) ;
 			
+		}
+		
+		if (loader == null)
+		{
+			loader = new EdenLocalizationLoader() ;
 		}
 		
 		_loader = loader ;

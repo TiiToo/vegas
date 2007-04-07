@@ -25,19 +25,29 @@ import vegas.events.DynamicEvent;
 import vegas.util.serialize.Serializer;
 
 /**
- * The {@code TextEvent} to dispatch an event with a string text.
+ * The {@code TextEvent} to dispatch an event when a user enters text in a text field or clicks a hyperlink in an HTML-enabled text field. 
+ * There are two types of text events : {@code TextEvent.LINK} and {@code TextEvent.TEXT_INPUT}.
  * @author eKameleon
  */
-class vegas.events.TextEvent extends DynamicEvent 
+class asgard.events.TextEvent extends DynamicEvent 
 {
 
 	/**
-	 * Creates a new TextEvent instance.
+	 * Creates an Event object that contains information about error events. 
+	 * Event objects are passed as parameters to event listeners.
+	 * @param type The type of the event. Event listeners can access this information through the inherited type property. There is only one type of error event: ErrorEvent.ERROR.
+	 * @param type Text to be displayed as an error message. Event listeners can access this information through the text property.
+	 * @param target the target of the event.
+	 * @param context the optional context object of the event.
+	 * @param bubbles indicates if the event is a bubbling event.
+	 * @param eventPhase the current EventPhase of the event.
+	 * @param time this parameter is used in the Eden deserialization.
+	 * @param stop this parameter is used in the Eden deserialization.
 	 */
-	public function TextEvent(type:String, txt:String, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number)
+	public function TextEvent(type:String, text:String, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number)
 	{
 		super(type, target, context, bubbles, eventPhase, time, stop) ;
-		text = txt ;
+		this.text = text ;
 	}
 
 	/**

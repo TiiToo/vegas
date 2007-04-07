@@ -21,45 +21,20 @@
   
 */
 
-/* Locale
-
-	AUTHOR
-
-		Name : Locale
-		Package : asgard.system
-		Version : 1.0.0.0
-		Date :  2006-02-20
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		Cette classe permet de stocker toutes les propriétés récupérées dans un fichier de configuration externe.
-		
-	INHERIT
-	
-		CoreObject
-			|
-			Locale
-	
-	IMPLEMENTS
-	
-		IFormattable, IHashable
-	
-*/	
-
 import vegas.core.CoreObject;
 
 /**
+ * The dynamic Locale reference to register all external locale properties.
  * @author eKameleon
  */
-
-dynamic class asgard.system.Locale extends CoreObject {
+dynamic class asgard.system.Locale extends CoreObject 
+{
 	
-	// ----o Constructor
-	
-	public function Locale() {
+	/**
+	 * Creates a new Locale instance.
+	 */
+	public function Locale() 
+	{
 		super();
 	}
 

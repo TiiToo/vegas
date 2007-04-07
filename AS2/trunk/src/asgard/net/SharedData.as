@@ -30,6 +30,7 @@ import vegas.events.AbstractCoreEventDispatcher;
 import vegas.events.Delegate;
 
 /**
+ * The {@code SharedData} class is used to read and store limited amounts of data on a user's computer or on a server.
  * @author eKameleon
  * @version 1.0.0.0
  */
@@ -41,8 +42,6 @@ class asgard.net.SharedData extends AbstractCoreEventDispatcher
 	 */
 	function SharedData( sName:String, nc:NetServerConnection, persistant:Boolean, autoConnect:Boolean) 
 	{
-		
-		super();
 		
 		_isConnected = false ;
 		_isFirst = true ;
@@ -210,10 +209,10 @@ class asgard.net.SharedData extends AbstractCoreEventDispatcher
 			var value = _so.data[name] ;
 
 			//**** DEBUG
-			var txt:String = "> " + this + "._onSync :: " + code ;
-			if(name) txt += " , name:" + name ;
-			if(value) txt += " , value:" + value ;
-			trace (txt) ;
+			// var txt:String = "> " + this + "._onSync :: " + code ;
+			// if(name) txt += " , name:" + name ;
+			// if(value) txt += " , value:" + value ;
+			// trace (txt) ;
 			//***/
 			
 			switch (code) 

@@ -14,11 +14,13 @@ import vegas.util.StringUtil;
  * <p>Analytics tracking code must be placed in your HTML code above any of these calls.<br />
  * <b>Example</b>
  * {@code
- *   //<![CDATA[
- *     <script type="text/javascript" src="http://www.google-analytics.com/urchin.js"></script>
- *	   _uacct = "YOUR_GOOGLE_TRACK_ID";
- *	   urchinTracker();	
- *	 //]]>
+ *    
+ *    //<![CDATA[
+ *    <script type="text/javascript" src="http://www.google-analytics.com/urchin.js"></script>
+ *    _uacct = "YOUR_GOOGLE_TRACK_ID";
+ *    urchinTracker();	
+ *    //]]>
+ *    
  * }
  * </p>
  * <p>Check if {@code ExternalInterface.available}.<br />

@@ -21,48 +21,35 @@
   
 */
 
-/* LangFormat
-
-	AUTHOR
-
-		Name : LangStrigifier
-		Package : asgard.system
-		Version : 1.0.0.0
-		Date :  2005-07-04
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- formatToString(o):String
-	
-	IMPLEMENTS
-	
-		IFormat
-	
-*/
-
 import vegas.core.IFormat;
 import vegas.data.iterator.Iterator;
 import vegas.data.map.HashMap;
 
+/**
+ * The Lang {@code IFormat} class.
+ */
 class asgard.system.LangFormat implements IFormat 
 {
 
-	// ----o Constructor
-	
+	/**
+	 * Creates a new LangFormat class.
+	 */
 	public function LangFormat() {}
-		
-	// ----o Public Methods
 
-	public function formatToString(o):String {
+	/**
+	 * Returns the string formated representation of the specified object.
+	 * @return the string formated representation of the specified object.
+	 */
+	public function formatToString(o):String 
+	{
 		var l:HashMap = o.LANGS ;
 		var txt:String = "[Lang" ;
-		if (l.size() > 0) {
+		if (l.size() > 0) 
+		{
 			txt += " : " ;
 			var it:Iterator = l.iterator() ;
-			while(it.hasNext()) { 
+			while(it.hasNext()) 
+			{ 
 				txt += "\r\t" + it.next() ;
 			} 
 			txt += "\r" ;
