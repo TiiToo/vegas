@@ -1,24 +1,36 @@
 ﻿
-import vegas.events.Event ;
 import test.events.Author ;
 
-class test.events.AnyClass {
+import vegas.events.Event ;
 
-	// ----o Constructor
-	
+/**
+ * The AnyClass class
+ */
+class test.events.AnyClass 
+{
+
+	/**
+	 * Creates a new AnyClass object.
+	 */
 	public function AnyClass() {}
 	
-	// ----o Public Methods
-
-    public function login( ev:Event ) {
+	/**
+	 * The login method of this class.
+	 */
+    public function login( ev:Event ) 
+	{
 		trace (this + " -> login method : " + ev) ;
 		trace ("type : " + ev.getType()) ;
 		trace ("target : " + ev.getTarget()) ;
 		trace ("context : " + ev.getContext()) ;
     }
 	
-	public function toString():String {
-		return "[AnyClass Object]" ;
+	/**
+	 * Returns the String representation of the object.
+	 */
+	public function toString():String 
+	{
+		return "[AnyClass]" ;
 	}
 	
 }

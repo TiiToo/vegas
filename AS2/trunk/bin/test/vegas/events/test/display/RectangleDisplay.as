@@ -1,82 +1,77 @@
 ﻿
 import vegas.events.Delegate ;
 import vegas.events.EventDispatcher ;
-import vegas.util.factory.PropertyFactory ;
+
+import asgard.display.DisplayObject ;
 
 import pegas.geom.Point ;
 import pegas.geom.Rectangle ;
 import pegas.events.MouseEvent ;
 import pegas.events.MouseEventType ;
 
-class test.display.RectangleDisplay extends EventDispatcher {
-    
-	// ----o BlackList Properties
+class test.display.RectangleDisplay extends DisplayObject
+{
 
-	public static var className:String = "RectangleDisplay" ;
-	public static var classPackage:String = "test.display";
-	public static var version:String = "1.0.0.0";
-	public static var author:String = "ekameleon";
-	public static var link:String = "http://www.ekameleon.net" ;
-
-	// ----o Constructor
+	/**
+	 * Creates a new RectangleDisplay instance.
+	 */
+	public function RectangleDisplay( name:String, target:MovieClip, rec:Rectangle, color:Number ) 
+	{
 	
-	public function RectangleDisplay(target:MovieClip, rec:Rectangle, color:Number) {
-		_target = target ;
-		_target.onPress = Delegate.create(this, _press) ;
-		_target.onRelease = _target.onReleaseOutside = Delegate.create(this, _release) ;
-		_target.useHandCursor = false ;
+		super( name , target ) ;
+		
+		// initialize the display
+	
 		this.rec = rec ;
 		this.color = isNaN(color) ? 0xFFFFFF : color ;
+				
+		// behaviour
+		
+		view.onPress          = Delegate.create(this, _press) ;
+		view.onRelease        = Delegate.create(this, _release) ; 
+		view.onReleaseOutside = Delegate.create(this, _release) ;
+		view.useHandCursor = false ;
+
+		// update the view of this display
+		
 		this.draw() ;
+		
 	}
 	
-	// ----o Public Properties
 
-	public var parent ;
 	public var color:Number ;
+	
 	public var rec:Rectangle ;
 
-	// ----o Public Methods
-
-	public function draw():Void {
+	/**
+	 * Draw the rectangle shape of this display.
+	 */
+	public function draw():Void 
+	{
+		
 		var p0:Point = rec.getTopLeft() ;
 		var p1:Point = rec.getBottomRight() ;
-		_target.clear() ;
-		_target.lineStyle(2, 0, 100) ;
-		_target.beginFill(color, 100) ;
-		_target.moveTo(p0.x, p0.y) ;
-		_target.lineTo(p1.x, p0.y) ;
-		_target.lineTo(p1.x, p1.y) ;
-		_target.lineTo(p0.x, p1.y) ;
-		_target.lineTo(p0.x, p0.y) ;
-		_target.endFill() ;
+		
+		view.clear() ;
+		view.lineStyle(2, 0, 100) ;
+		view.beginFill(color, 100) ;
+		view.moveTo(p0.x, p0.y) ;
+		view.lineTo(p1.x, p0.y) ;
+		view.lineTo(p1.x, p1.y) ;
+		view.lineTo(p0.x, p1.y) ;
+		view.lineTo(p0.x, p0.y) ;
+		view.endFill() ;
 	}
 
-	public function getTarget():MovieClip {
-		return _target ;
-	}
-
-	public function toString():String {
-		return "[" + _target + "]"
-	}
-	
-	// ----o Virtual Properties
-
-	static private var __TARGET__:Boolean = PropertyFactory.create(RectangleDisplay, "target", true, true) ; 
-
-	// ----o Private Properties
-
-	private var _target:MovieClip ;
-
-	// ----o Private Methods
-
-	private function _press():Void {
-		var ev:MouseEvent = new MouseEvent(MouseEventType.CLICK) ;
+	private function _press():Void 
+	{
+		var ev:MouseEvent = new MouseEvent( MouseEventType.CLICK ) ;
 		ev.buttonDown = true ;
 		dispatchEvent(ev)
 	}
 
-	private function _release():Void {
+	private function _release():Void 
+	{
 		var ev:MouseEvent = new MouseEvent(MouseEventType.MOUSE_UP) ;
 		ev.buttonDown = false ;
 		dispatchEvent(ev)

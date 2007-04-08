@@ -29,6 +29,8 @@ import vegas.events.EventListener;
 import vegas.events.EventListenerCollection;
 import vegas.events.IEventDispatcher;
 
+// TODO test bubbling/capturing
+
 /**
  * This abstract class is used to create concrete {@code IEventDispatcher} implementations. This class used an internal {@code EventDispatcher} object by composition.
  * <p>You can overrides the internal {@code EventDispatcher} instance with the {@code initEventDispatcher} method. Used a global singleton reference in this method to register all events in a {@code FrontController} for example.</p>
@@ -189,7 +191,7 @@ class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEv
 	/**
 	 * Sets the parent EventDispatcher reference of this instance.
 	 */
-	public function setParent(parent:EventDispatcher):Void 
+	public function setParent( parent:EventDispatcher ):Void 
 	{
 		_oED.parent = parent ;
 	}

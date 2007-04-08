@@ -2,34 +2,52 @@
 import vegas.events.Event ;
 import vegas.events.EventListener;
 
-class test.events.DebugHandler implements EventListener {
+/**
+ * The DebugHandler class.
+ */
+class test.events.DebugHandler implements EventListener 
+{
 
-	// ----o Constructor
-	
-	public function DebugHandler(name) {
-		_name = name || "noName" ;
+	/**
+	 * Creates a new DebugHandler instance.
+	 */
+	public function DebugHandler(name) 
+	{
+		_name = name || "default" ;
 	}
 	
-	// ----o Public Methods
-
-	public function getName():String {
-		return _name ;
+	/**
+	 * Returns tne name of the debugger.
+	 */
+	public function getName():String 
+	{
+		return _name || "" ;
 	}
 
-    public function handleEvent(e:Event) {
-        trace("-------- DebugHandler : Event has been triggered.");
-        trace("Event type     : " + e.getType()) ;
-        trace("Event target   : " + e.getTarget()) ;
-        trace("Event context  : " + e.getContext()) ;
-        trace("Event in queue : " + e.isQueued()) ;
+	/**
+	 * Handles the event.
+	 */
+    public function handleEvent(e:Event) 
+    {
+        trace( "-------- DebugHandler : Event has been triggered." ) ;
+        trace( "Event type     : " + e.getType()    ) ;
+        trace( "Event target   : " + e.getTarget()  ) ;
+        trace( "Event context  : " + e.getContext() ) ;
+        trace( "Event in queue : " + e.isQueued()   ) ;
     }
 	
-	public function toString():String {
-		return "<DebugHandler>" + _name + "</DebugHandler>" ;
+	/**
+	 * Returns the String representation of the object.
+	 * @return the String representation of the object.
+	 */
+	public function toString():String 
+	{
+		return "[DebugHandler name:" + _name + "]" ;
 	}
 	
-	// ----o Private Properties
-	
+	/**
+	 * The internal private name property of this instance.
+	 */
 	private var _name:String ;
 	
 }

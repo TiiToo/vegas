@@ -63,6 +63,7 @@ class Tests.vegas.events.AllTests extends TestCase
         // suite.addTest( new TestSuite( Tests.vegas.events.TestArrayEvent ) ) ;
         // suite.addTest( new TestSuite( Tests.vegas.events.TestBasicEvent ) ) ;
         // suite.addTest( new TestSuite( Tests.vegas.events.TestBooleanEvent ) ) ;
+        // suite.addTest( new TestSuite( Tests.vegas.events.TestDateEvent ) ) ;
         // suite.addTest( new TestSuite( Tests.vegas.events.TestDelegate ) ) ;
         // suite.addTest( new TestSuite( Tests.vegas.events.TestDynamicEvent ) ) ;
         // suite.addTest( new TestSuite( Tests.vegas.events.TestEDispatcher ) ) ;
@@ -80,7 +81,6 @@ class Tests.vegas.events.AllTests extends TestCase
         // suite.addTest( new TestSuite( Tests.vegas.events.TestModelChangedEventType ) ) ;
         // suite.addTest( new TestSuite( Tests.vegas.events.TestNumberEvent ) ) ;
         // suite.addTest( new TestSuite( Tests.vegas.events.TestStringEvent ) ) ;
-        // suite.addTest( new TestSuite( Tests.vegas.events.TestTextEvent ) ) ;
         // suite.addTest( new TestSuite( Tests.vegas.events.TestTimerEvent ) ) ;
         // suite.addTest( new TestSuite( Tests.vegas.events.TestTimerEventType ) ) ;
         // suite.addTest( new TestSuite( Tests.vegas.events.TestValidatorEvent ) ) ;

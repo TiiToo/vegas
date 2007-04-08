@@ -36,6 +36,9 @@ import vegas.events.IEventDispatcher;
 import vegas.util.factory.EventFactory;
 import vegas.util.TypeUtil;
 
+// TODO implement capturing with addGlobalEventDispatcher ?
+// TODO test bubbling/capturing
+
 /**
  * Stores the listeners object an notifies them with the DOM Events level 2/3 of the W3C.
  * The EventDispatcher class implements the IEventDispatcher interface. 
@@ -51,15 +54,45 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 
 	/**
 	 * Creates a new EventDispatcher instannce.
+	 * @param target The IEventDispatcher scope reference of this instance.
+	 * @param parent The parent EventDispatcher reference of this instance.
+	 * @param name The name value of this instance. 
 	 */
-	public function EventDispatcher( target:IEventDispatcher , parent:EventDispatcher ) 
+	public function EventDispatcher( target:IEventDispatcher , parent:EventDispatcher , name:String ) 
 	{
+		
 		_globalListeners = new EventListenerCollection() ;
 		_captures = new HashMap() ;
 		_listeners = new HashMap() ;
 		_queue = new EventQueue() ;
 		_target = target || this ;
+		
 		this.parent = parent || null ;
+		
+		_setName( name ) ;
+		
+	}
+
+	/**
+	 * Determinates the default singleton name.
+	 */
+	static public var DEFAULT_SINGLETON_NAME:String = "__default__" ;
+
+	/**
+	 * [read-write] Indicates the instance name of the EventDispatcher.
+	 * @return the name of this EventDispatcher.
+	 */
+	public function get name():String 
+	{
+		return _sName ;
+	}
+
+	/**
+	 * [read-write] Set the instance name of the DisplayObject.
+	 */
+	public function set name( sName:String ):Void 
+	{
+		_setName( sName ) ;
 	}
 
 	/**
@@ -85,7 +118,9 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 	 */
 	public function addEventListener( eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void 
 	{
+		
 		priority = isNaN(priority) ? 0 : priority ;
+		
 		if (eventName == "ALL") 
 		{
 			addGlobalEventListener(listener, priority, autoRemove) ;
@@ -93,7 +128,10 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 		else 
 		{
 			var map:HashMap = (!useCapture) ? _listeners : _captures ;
-			if (!map.containsKey(eventName)) map.put(eventName, new EventListenerCollection()) ;
+			if (!map.containsKey(eventName)) 
+			{
+				map.put(eventName, new EventListenerCollection()) ;
+			}
 			var col:EventListenerCollection = map.get(eventName) ;
 			col.addListener(listener, autoRemove, priority) ;	
 			_dispatchQueuedEvents() ;
@@ -127,7 +165,10 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 			return null ;
 		}
 		var e:Event = EventFactory.create(event, target || this, context) ;
-		if (e == null) return null ;
+		if (e == null) 
+		{
+			return null ;
+		}
 		var phase:Number = e.getEventPhase() ;
 		if (phase == EventPhase.AT_TARGET) 
 		{
@@ -163,7 +204,10 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 	 */
 	public function getEventListeners(eventName:String):EventListenerCollection 
 	{
-		if ( _listeners.containsKey(eventName) ) return _listeners.get(eventName) ;
+		if ( _listeners.containsKey(eventName) ) 
+		{
+			return _listeners.get(eventName) ;
+		}
 		return new EventListenerCollection() ;
 	}
 	
@@ -182,14 +226,26 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 	 */
 	static public function getInstance(name:String):EventDispatcher 
 	{
-		if (!name) name = "__default__" ;
+		if (!name) 
+		{
+			name = DEFAULT_SINGLETON_NAME ;
+		}
 		if (!EventDispatcher.instances.containsKey(name)) 
 		{
-			EventDispatcher.instances.put(name, new EventDispatcher()) ;
+			EventDispatcher.instances.put(name, new EventDispatcher(null, null, name)) ;
 		}
 		return EventDispatcher(EventDispatcher.instances.get(name));
 	}
-	
+
+	/**
+	 * Returns the name of the display.
+	 * @return the name of the display.
+	 */
+	public function getName():String
+	{
+		return _sName;
+	}
+
 	/**
 	 * Returns a {@code Set} of all register event's name in this EventListener.
 	 * @return a {@code Set} of all register event's name in this EventListener.
@@ -231,6 +287,7 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 
 	/**
 	 * Removes the EventDispatcher child reference of this EventDispatcher instance.
+	 * @param child The EventDispatcher child reference of this instance.
 	 */
 	public function removeChild( child:EventDispatcher ):Void 
 	{
@@ -323,7 +380,12 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 	 * The internal EventQueue buffer. 
 	 */
 	private var _queue:EventQueue ;
-	
+
+	/**
+	 * The internal name's property of the instance.
+	 */
+	private var _sName:String = null ;
+
 	/**
 	 * The internal IEventDispatcher target.
 	 */
@@ -346,7 +408,10 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 					e.setCurrentTarget(current.getTarget()) ;
 					e.setEventPhase(EventPhase.BUBBLING_PHASE) ;
 					current.dispatchEvent(e) ;
-					if (e["stop"] >= EventPhase.STOP ) return false ;
+					if (e["stop"] >= EventPhase.STOP ) 
+					{
+						return false ;
+					}
 				}
 				i++ ;
 			}
@@ -367,7 +432,10 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 				e.setCurrentTarget(current.getTarget()) ;
 				e.setEventPhase(EventPhase.CAPTURING_PHASE) ;
 				current.dispatchEvent(e) ;
-				if (e["stop"] >= EventPhase.STOP ) return false ;
+				if (e["stop"] >= EventPhase.STOP ) 
+				{
+					return false ;
+				}
 			}
 		}
 		return true ;
@@ -390,7 +458,10 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 
 	private function _getParents():Array 
 	{
-		if (parent == null) return null ;
+		if (parent == null) 
+		{
+			return null ;
+		}
 		var ar:Array = [] ;
 		var tmp:EventDispatcher = parent ;
 		while(tmp != null) 
@@ -399,6 +470,38 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 			tmp = tmp.parent ;
 		}
 		return ar ;
+	}
+
+	private function _propagate(e:Event, isQueue:Boolean):Event 
+	{
+		
+		if (e["stop"] >= EventPhase.STOP ) 
+		{
+			return e ; // hack the interface limitation
+		}
+		
+		if (_listeners.containsKey(e.getType())) 
+		{
+            var col:EventListenerCollection = EventListenerCollection(_listeners.get(e.getType())) ;
+            col.propagate(e) ;
+        }
+        
+        if (e.isCancelled()) 
+        {
+        	return e ;
+        }
+        
+        _globalListeners.propagate(e);
+        
+        if (isQueue == false || e.isCancelled()) 
+        {
+        	return e ;
+        }
+        
+        _queue.enqueue(e) ;
+        
+        return e ;
+        
 	}
 
 	private function _propagateBubble(e:Event):Void 
@@ -420,19 +523,12 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
         }
 	}
 	
-	private function _propagate(e:Event, isQueue:Boolean):Event 
+	/**
+	 * Internal method to sets the name of the instance.
+	 */
+	/*protected*/ private function _setName( name:String ) : Void 
 	{
-		if (e["stop"] >= EventPhase.STOP ) return e ; // hack the interface limitation
-		if (_listeners.containsKey(e.getType())) 
-		{
-            var col:EventListenerCollection = EventListenerCollection(_listeners.get(e.getType())) ;
-            col.propagate(e) ;
-        }
-        if (e.isCancelled()) return e ;
-        _globalListeners.propagate(e);
-        if (isQueue == false || e.isCancelled()) return e ;
-        _queue.enqueue(e) ;
-        return e;
+		_sName = name ;
 	}
-	
+
 }

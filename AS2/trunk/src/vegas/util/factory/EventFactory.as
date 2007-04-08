@@ -35,6 +35,9 @@ class vegas.util.factory.EventFactory
 
 	/**
 	 * Creates a new Event's object.
+	 * @param o If this object is a {@code String} this value is the type of the new event or this argument is an Event object or a generic object to creates a new Event.
+	 * @param target (optional) The scope of the target of the new Event.
+	 * @param context (optional) The context of the new Event.
 	 */
 	static public function create(o, target:EventTarget, context:Object):Event 
 	{
@@ -64,10 +67,16 @@ class vegas.util.factory.EventFactory
 				return null ;
 			}
 			e = new BasicEvent(o.type, o.target , o.context) ;
-			if (target) e.setTarget(target) ;
-			if (context) e.setContext(context) ;
+			if (target) 
+			{
+				e.setTarget(target) ;
+			}
+			if (context) 
+			{
+				e.setContext(context) ;
+			}
 		}
-		if (!e.getCurrentTarget()) 
+		if ( e.getCurrentTarget() == null ) 
 		{
 			e.setCurrentTarget(e.getTarget()) ;
 		}

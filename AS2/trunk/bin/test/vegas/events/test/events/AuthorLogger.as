@@ -1,29 +1,37 @@
 ﻿
+import test.events.Author ;
+
 import vegas.events.Event ;
 import vegas.events.EventListener ;
 
-class test.events.AuthorLogger implements EventListener {
+class test.events.AuthorLogger implements EventListener 
+{
     
-	// ----o Constructor
-	
-	public function AuthorLogger() {
-		//
-	}
-	
-	// ----o Public Methods
+    /**
+     * Creates a new AuthorLogger instance.
+     */
+    public function AuthorLogger() 
+    {
+        //
+    }
     
-    public function handleEvent(e:Event) {
+    /**
+     * Handle the event.
+     */
+    public function handleEvent(e:Event) 
+    {
         
-		var eventType:String = e.getType();
-		var eventContext = e.getContext();
-		var eventTarget = e.getTarget();
-        var username:String = e.getContext().getUsername() ;
+        var type:String   = e.getType();
+        var author:Author  = Author( e.getTarget() ) ;
+        var name:String   = author.getUsername() ;
         
-		trace("-------- AuthorLogger : Event has been triggered");
-		trace("event-type    : " + eventType) ;
-		trace("event-context : " + eventContext) ;
-		trace("event-target : " + eventTarget) ;
-		// now place the logging code here...
-		
+        trace("AuthorLogger : Event has been triggered");
+        
+        trace( "event-type   : " + type ) ;
+        trace( "event-target : " + author ) ;
+        trace( "author-name  : " + name ) ;
+        
+        trace("---") ;
+        
     }
 }
