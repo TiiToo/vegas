@@ -60,23 +60,23 @@ class asgard.net.remoting.RemotingFormat extends CoreObject implements IFormat
 			{
 				txt += "[\r" ;
 				var it:Iterator = r.iterator() ;
-				while (it.hasNext()) 
+				while ( it.hasNext() ) 
 				{
-					var o = it.next() ;
-					if (TypeUtil.isExplicitInstanceOf( o, Object))
+					var item = it.next() ;
+					if (TypeUtil.isExplicitInstanceOf( item, Object ) )
 					{
 						txt += "\t[\r" ;
 						for (var prop:String in o) 
 						{
-							txt += "\t\t " + prop + " : " + o[prop] + "\r" ;
+							txt += "\t\t " + prop + " : " + item[prop] + "\r" ;
 						}
 						txt += "\t] " ; 
-						txt += (it.hasNext()) ? "," : "" ;
+						txt += ( it.hasNext() ) ? "," : "" ;
 						txt += "\r" ;
 					}
 					else
 					{
-						txt += "\t" + o + "\r" ;
+						txt += "\t" + item + "\r" ;
 					}
 				}	
 			} 

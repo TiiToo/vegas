@@ -1,0 +1,71 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>vegas.string.WildExp</title><script src="../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../index-files";
+//--></script><link href="../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../overview-summary.html" title="Overview" rel="top"/><link href="package-summary.html" title="Package vegas.string" rel="up"/><link href="../../vegas/util/AbstractTimer.html" title="Class vegas.util.AbstractTimer" rel="prev"/><link href="../../vegas/string/UnicodeChar.html" title="Class vegas.string.UnicodeChar" rel="next"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><h1>Class vegas.string.WildExp</h1><div class="type_hierachy"><ul><li><a href="../../vegas/core/CoreObject.html" class="class_name" title="Class vegas.core.CoreObject">vegas.core.CoreObject</a><ul><li><strong>vegas.string.WildExp</strong></li></ul></li></ul></div><div class="type_description"><h2>Description</h2><p>
+ A wild expression is constructed like a regular expression but is based on a globbing algorithm like the one you found for searching files on a hard-drive.
+ <p><b>Syntax :</b>
+ 	<p>1. ? : match any unique char - exactly 1 char must be found</p>
+ 	<p>2. * : match any number of chars - at least 0 or more any chars can be found</p>
+ 	<p>3. ! : ignore next char</p>
+ </p>
+ <p><b>Rules :</b>
+	<p>1. "*" is equal to "**" to "***" to an infinity number of "*" chars</p>
+	<p>2. "*?" is concatened to "*" (more precisely "*?*")</p>
+	<p>3. "*" if for zero char to infinity chars</p>
+	<p>4. "!*" ignore the pattern and look for the char "*" in string</p>
+	<p>5. "!?" ignore the pattern and look for the char "?" in string</p>
+	</p>
+	<p><b>Tips and tricks :</b>
+	
+	<p><b>1. find all the words in a string</b>
+	<pre> 
+	<span class="key">import</span> vegas.string.WildExp ;
+	<span class="key">var</span> we:WildExp = <span class="key">new</span> WildExp( <span class="str_const">"*"</span>, WildExp.IGNORECASE | WildExp.MULTIWORD );
+	result = we.test( <span class="str_const">"any phrases with words inside"</span> );
+	<span class="comment">//result = [ "any", "phrases", "with", "words", "inside" ];</span>
+	</pre>
+	</p>
+	<p><b>2. find comments in a string</b>
+	<pre> 
+	<span class="key">import</span> vegas.string.WildExp ;
+	<span class="key">var</span> we:WildExp = <span class="key">new</span> WildExp( <span class="str_const">"*/!**!*!/*"</span>, WildExp.IGNORECASE | WildExp.MULTIWORD );
+	result = we.test( <span class="str_const">"toto = \"123\"; /*hello world*/"</span> );
+	<span class="comment">//result = [ "toto = \"123\"; ", "hello world" ] ;</span>
+	</pre>
+	</p>
+	<p><b>3. find the name, arguments and body of a function</b>
+	<pre> 
+	<span class="key">import</span> vegas.string.WildExp ;
+	<span class="key">var</span> we:WildExp = <span class="key">new</span> WildExp( <span class="str_const">"function *(*)*{*}"</span>, WildExp.IGNORECASE | WildExp.MULTIWORD );
+	result = we.test( <span class="str_const">"function toto( a, b, c )r\n{\treturn \"hello world\";r\n\t}"</span> );
+	<span class="comment">//result = [ "toto", " a, b, c ", "\r\n", "\treturn \"hello world\";\r\n\t" ];</span>
+	</pre>
+	</p>
+	<p>Thanks Zwetan : <a href='http://groups.google.com/group/FCNG/browse_thread/thread/467e11b594bb180d/4baedfcc0d2cd95f?lnk=st&q=%5BFMX%5D+WildExp&rnum=1#4baedfcc0d2cd95f'>WildExp in FCNG</a></p>
+	
+	</p><h4>See Also</h4><ul class="extra_info"><li><span class="unresolved_type_name">vegas.string.StringUtil</span></li><li><a href="../../vegas/string/UnicodeChar.html" class="class_name" title="Class vegas.string.UnicodeChar">UnicodeChar</a></li></ul></div><div class="type_indexes"><div class="field_index"><h2>Field Index</h2><a href="#IGNORECASE" title="static public IGNORECASE:Number">IGNORECASE</a>, <a href="#MULTILINE" title="static public MULTILINE:Number">MULTILINE</a>, <a href="#MULTIWORD" title="static public MULTIWORD:Number">MULTIWORD</a>, <a href="#NONE" title="static public NONE:Number">NONE</a>, <a href="#questionMarks" title="public questionMarks:Array">questionMarks</a>, <a href="#source" title="public source:String">source</a>, <a href="#wildcards" title="public wildcards:Array">wildcards</a></div><div class="method_index"><h2>Method Index</h2><div><code>new <a href="#WildExp" title="public function WildExp(pattern:String, flag:Number)">WildExp()</a></code></div><a href="#addToQuestionMarks" title="public function addToQuestionMarks(chr:String):Void">addToQuestionMarks()</a>, <a href="#addToWildcards" title="public function addToWildcards(chr:String):Void">addToWildcards()</a>, <a href="#test" title="public function test(str:String)">test()</a>, <a href="#toString" title="public function toString():String">toString()</a><h4>Inherited from <a href="../../vegas/core/CoreObject.html" class="class_name" title="Class vegas.core.CoreObject">CoreObject</a></h4><div class="extra_info"><a href="../../vegas/core/CoreObject.html#hashCode" title="public function hashCode():Number">hashCode()</a>, <a href="../../vegas/core/CoreObject.html#toSource" title="public function toSource(indent:Number, indentor:String):String">toSource()</a></div></div></div><div class="type_details"><div class="constructor_detail_list"><h2>Constructor Detail</h2><div class="method_details"><a name="WildExp"></a><h3>WildExp</h3><code class="method_synopsis">public function <strong class="method_name">WildExp</strong>(pattern:<span class="unresolved_type_name">String</span>, flag:<span class="unresolved_type_name">Number</span>)</code><div class="method_info"><p>
+ Creates a new WildExp instance.
+	 </p></div></div></div><div class="field_detail_list"><h2>Field Detail</h2><a name="NONE"></a><h3>NONE</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">NONE</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info">
+ const the NONE value (0).
+	 </div></div><a name="IGNORECASE"></a><h3>IGNORECASE</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">IGNORECASE</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info">
+ const the IGNORECASE value (1).
+	 </div></div><a name="MULTILINE"></a><h3>MULTILINE</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">MULTILINE</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info">
+ const the MULTILINE value (2).
+	 </div></div><a name="MULTIWORD"></a><h3>MULTIWORD</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">MULTIWORD</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info">
+ const the MULTIWORD value (4).
+	 </div></div><a name="wildcards"></a><h3>wildcards</h3><div class="field_details"><code class="field_synopsis">public <strong class="field_name">wildcards</strong>:<span class="unresolved_type_name">Array</span></code><div class="field_info">
+ The array of all wildcards.
+	 </div></div><a name="questionMarks"></a><h3>questionMarks</h3><div class="field_details"><code class="field_synopsis">public <strong class="field_name">questionMarks</strong>:<span class="unresolved_type_name">Array</span></code><div class="field_info">
+ The array of all question marks.
+	 </div></div><a name="source"></a><h3>source</h3><div class="field_details"><code class="field_synopsis">public <strong class="field_name">source</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ The source of this wildcard.
+	 </div></div></div><div class="method_detail_list"><h2>Method Detail</h2><div class="method_details alt_row"><a name="addToQuestionMarks"></a><h3>addToQuestionMarks</h3><code class="method_synopsis">public function <strong class="method_name">addToQuestionMarks</strong>(chr:<span class="unresolved_type_name">String</span>):<span class="void_name">Void</span></code><div class="method_info"><p>
+ Adds a caracter in the questionMarks array, only if the array isn't empty.
+	 </p></div></div><div class="method_details"><a name="addToWildcards"></a><h3>addToWildcards</h3><code class="method_synopsis">public function <strong class="method_name">addToWildcards</strong>(chr:<span class="unresolved_type_name">String</span>):<span class="void_name">Void</span></code><div class="method_info"><p>
+ Adds a caracter in the wildcards array, only if the array isn't empty.
+	 </p></div></div><div class="method_details alt_row"><a name="test"></a><h3>test</h3><code class="method_synopsis">public function <strong class="method_name">test</strong>(str:<span class="unresolved_type_name">String</span>)</code><div class="method_info"><p>
+ Test the specific expression in argument.
+	 </p></div></div><div class="method_details"><a name="toString"></a><h3>toString</h3><code class="method_synopsis">public function <strong class="method_name">toString</strong>():<span class="unresolved_type_name">String</span></code><div class="method_info"><p>
+ Returns the string representation of this object.
+ </p><h4>Return</h4><p class="extra_info"> the string representation of this object.
+	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../vegas/core/IFormattable.html#toString" title="function toString():String">toString()</a> in <a href="../../vegas/core/IFormattable.html" class="interface_name" title="Interface vegas.core.IFormattable">vegas.core.IFormattable</a></p><h4>Overrides</h4><p class="extra_info"><a href="../../vegas/core/CoreObject.html#toString" title="public function toString():String">toString()</a> in <a href="../../vegas/core/CoreObject.html" class="class_name" title="Class vegas.core.CoreObject">vegas.core.CoreObject</a></p></div></div></div></div><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.string" class="button">Package</a></li><li><span class="button nav_current">Class</span></li><li><a href="WildExp.as.html" title="Source code of vegas.string.WildExp" class="button">Source</a></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

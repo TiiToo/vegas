@@ -492,9 +492,9 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 
 		startProgress() ;
 
-		if (!isAutoPlay() ) 
+		if ( isAutoPlay() == false ) 
 		{
-			// this.pause(true) ;
+			this.pause(true) ;
 		} 
 
 		super.load();

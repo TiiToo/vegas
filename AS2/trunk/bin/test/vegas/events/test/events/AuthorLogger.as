@@ -25,13 +25,11 @@ class test.events.AuthorLogger implements EventListener
         var author:Author  = Author( e.getTarget() ) ;
         var name:String   = author.getUsername() ;
         
-        trace("AuthorLogger : Event has been triggered");
+        trace("-------- AuthorLogger : Event has been triggered");
         
         trace( "event-type   : " + type ) ;
         trace( "event-target : " + author ) ;
         trace( "author-name  : " + name ) ;
-        
-        trace("---") ;
         
     }
 }

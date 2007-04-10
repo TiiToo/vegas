@@ -243,7 +243,7 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 	 */
 	public function getName():String
 	{
-		return _sName;
+		return _sName || null ;
 	}
 
 	/**

@@ -1,0 +1,268 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><script src="../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../index-files";
+//--></script><link href="../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../overview-summary.html" title="Overview" rel="top"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><pre><span class="lineno" id="1">     1  </span><span class="comment">/*
+<span class="lineno" id="2">     2  </span>  The contents of this file are subject to the Mozilla Public License Version
+<span class="lineno" id="3">     3  </span>  1.1 (the "License"); you may not use this file except in compliance with
+<span class="lineno" id="4">     4  </span>  the License. You may obtain a copy of the License at 
+<span class="lineno" id="5">     5  </span>  http://www.mozilla.org/MPL/ 
+<span class="lineno" id="6">     6  </span>  
+<span class="lineno" id="7">     7  </span>  Software distributed under the License is distributed on an "AS IS" basis,
+<span class="lineno" id="8">     8  </span>  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+<span class="lineno" id="9">     9  </span>  for the specific language governing rights and limitations under the License. 
+<span class="lineno" id="10">    10  </span>  
+<span class="lineno" id="11">    11  </span>  The Original Code is ASTUce: ActionScript Test Unit compact edition. 
+<span class="lineno" id="12">    12  </span>  
+<span class="lineno" id="13">    13  </span>  The Initial Developer of the Original Code is
+<span class="lineno" id="14">    14  </span>  Zwetan Kjukov &lt;zwetan@gmail.com&gt;.
+<span class="lineno" id="15">    15  </span>  Portions created by the Initial Developer are Copyright (C) 2004-2006
+<span class="lineno" id="16">    16  </span>  the Initial Developer. All Rights Reserved.
+<span class="lineno" id="17">    17  </span>  
+<span class="lineno" id="18">    18  </span>  Contributor(s):
+<span class="lineno" id="19">    19  </span>   
+<span class="lineno" id="20">    20  </span>   	- Marc ALCARAZ (aka eKameleon) : adaptation to VEGAS framework.
+<span class="lineno" id="21">    21  </span>     
+<span class="lineno" id="22">    22  </span>*/</span>
+<span class="lineno" id="23">    23  </span>
+<span class="lineno" id="24">    24  </span><span class="key">import</span> buRRRn.ASTUce.AssertionFailedError;
+<span class="lineno" id="25">    25  </span><span class="key">import</span> buRRRn.ASTUce.IProtectable;
+<span class="lineno" id="26">    26  </span><span class="key">import</span> buRRRn.ASTUce.ITest;
+<span class="lineno" id="27">    27  </span><span class="key">import</span> buRRRn.ASTUce.ITestListener;
+<span class="lineno" id="28">    28  </span><span class="key">import</span> buRRRn.ASTUce.TestCase;
+<span class="lineno" id="29">    29  </span><span class="key">import</span> buRRRn.ASTUce.TestFailure;
+<span class="lineno" id="30">    30  </span>
+<span class="lineno" id="31">    31  </span><span class="key">import</span> vegas.core.CoreObject;
+<span class="lineno" id="32">    32  </span><span class="key">import</span> vegas.util.ArrayUtil;
+<span class="lineno" id="33">    33  </span>
+<span class="lineno" id="34">    34  </span><span class="comment doc">/**
+<span class="lineno" id="35">    35  </span> * A TestResult collects the results of executing a test case.
+<span class="lineno" id="36">    36  </span> * It is an instance of the Collecting Parameter pattern.
+<span class="lineno" id="37">    37  </span> * The test framework distinguishes between failures and errors.
+<span class="lineno" id="38">    38  </span> * A failure is anticipated and checked for with assertions.
+<span class="lineno" id="39">    39  </span> * Errors are unanticipated problems like an ArrayIndexOutOfBoundsException.
+<span class="lineno" id="40">    40  </span> * @author eKameleon
+<span class="lineno" id="41">    41  </span> */</span>
+<span class="lineno" id="42">    42  </span><span class="key">class</span> buRRRn.ASTUce.TestResult <span class="key">extends</span> CoreObject 
+<span class="lineno" id="43">    43  </span>{
+<span class="lineno" id="44">    44  </span>
+<span class="lineno" id="45">    45  </span>	<span class="comment doc">/**
+<span class="lineno" id="46">    46  </span>	 * Creates a new TestResult instance.
+<span class="lineno" id="47">    47  </span>	 */</span>
+<span class="lineno" id="48">    48  </span>	<span class="key">public</span> <span class="key">function</span> TestResult() 
+<span class="lineno" id="49">    49  </span>	{
+<span class="lineno" id="50">    50  </span>		<span class="key">super</span>();
+<span class="lineno" id="51">    51  </span>		_failures  = [] ;
+<span class="lineno" id="52">    52  </span>        _errors    = [] ;
+<span class="lineno" id="53">    53  </span>        _listeners = [] ;
+<span class="lineno" id="54">    54  </span>        _runTests  = <span class="num_const">0</span> ;
+<span class="lineno" id="55">    55  </span>        _stop      = <span class="key">false</span> ;
+<span class="lineno" id="56">    56  </span>	}
+<span class="lineno" id="57">    57  </span>
+<span class="lineno" id="58">    58  </span>    <span class="comment doc">/**
+<span class="lineno" id="59">    59  </span>     * (read-only) Returns an Array for the errors.
+<span class="lineno" id="60">    60  </span>     */</span>
+<span class="lineno" id="61">    61  </span>    <span class="key">public</span> <span class="key">function</span> get errors():Array
+<span class="lineno" id="62">    62  </span>	{
+<span class="lineno" id="63">    63  </span>		<span class="key">return</span> _errors;
+<span class="lineno" id="64">    64  </span>	}
+<span class="lineno" id="65">    65  </span>
+<span class="lineno" id="66">    66  </span>    <span class="comment doc">/**
+<span class="lineno" id="67">    67  </span>     * (read-only) Returns the number of detected errors.
+<span class="lineno" id="68">    68  </span>     */</span>
+<span class="lineno" id="69">    69  </span>	<span class="key">public</span> <span class="key">function</span> get errorCount():Number
+<span class="lineno" id="70">    70  </span>	{
+<span class="lineno" id="71">    71  </span>		<span class="key">return</span> _errors.length;
+<span class="lineno" id="72">    72  </span>	}
+<span class="lineno" id="73">    73  </span>    
+<span class="lineno" id="74">    74  </span>    <span class="comment doc">/**
+<span class="lineno" id="75">    75  </span>     * (read-only) Returns the number of detected failures.
+<span class="lineno" id="76">    76  </span>     */</span>
+<span class="lineno" id="77">    77  </span>    <span class="key">public</span> <span class="key">function</span> get failureCount():Number
+<span class="lineno" id="78">    78  </span>	{
+<span class="lineno" id="79">    79  </span>		<span class="key">return</span> _failures.length;
+<span class="lineno" id="80">    80  </span>	}
+<span class="lineno" id="81">    81  </span>    
+<span class="lineno" id="82">    82  </span>    <span class="comment doc">/**
+<span class="lineno" id="83">    83  </span>     * (read-only) Returns an Array for the failures.
+<span class="lineno" id="84">    84  </span>     */</span>
+<span class="lineno" id="85">    85  </span>	<span class="key">public</span> <span class="key">function</span> get failures():Array
+<span class="lineno" id="86">    86  </span>	{
+<span class="lineno" id="87">    87  </span>		<span class="key">return</span> _failures;
+<span class="lineno" id="88">    88  </span>	}
+<span class="lineno" id="89">    89  </span>
+<span class="lineno" id="90">    90  </span>    <span class="comment doc">/**
+<span class="lineno" id="91">    91  </span>     * (read-only) Returns the number of run tests.
+<span class="lineno" id="92">    92  </span>     */</span>
+<span class="lineno" id="93">    93  </span>    <span class="key">public</span> <span class="key">function</span> get runCount():Number
+<span class="lineno" id="94">    94  </span>	{
+<span class="lineno" id="95">    95  </span>		<span class="key">return</span> _runTests;
+<span class="lineno" id="96">    96  </span>	}
+<span class="lineno" id="97">    97  </span>    
+<span class="lineno" id="98">    98  </span>    <span class="comment doc">/**
+<span class="lineno" id="99">    99  </span>     * (read-only) Checks whether the test run should stop.
+<span class="lineno" id="100">   100  </span>     */</span>
+<span class="lineno" id="101">   101  </span>    <span class="key">public</span> <span class="key">function</span> get shouldStop():Boolean
+<span class="lineno" id="102">   102  </span>	{
+<span class="lineno" id="103">   103  </span>		<span class="key">return</span> _stop;
+<span class="lineno" id="104">   104  </span>	}
+<span class="lineno" id="105">   105  </span>
+<span class="lineno" id="106">   106  </span>    <span class="comment doc">/**
+<span class="lineno" id="107">   107  </span>     * Adds an error to the list of errors.
+<span class="lineno" id="108">   108  </span>     * The passed in exception caused the error.
+<span class="lineno" id="109">   109  </span>     */</span>
+<span class="lineno" id="110">   110  </span>    <span class="key">public</span> <span class="key">function</span> addError( test:ITest, e:Error ):Void
+<span class="lineno" id="111">   111  </span>	{
+<span class="lineno" id="112">   112  </span>		_errors.push( <span class="key">new</span> TestFailure( test, e ) );
+<span class="lineno" id="113">   113  </span>        
+<span class="lineno" id="114">   114  </span>		<span class="key">var</span> listeners:Array = cloneListeners() ;
+<span class="lineno" id="115">   115  </span>        <span class="key">var</span> len:Number = listeners.length ;
+<span class="lineno" id="116">   116  </span>        <span class="key">for</span>( <span class="key">var</span> i:Number = <span class="num_const">0</span> ; i&lt;len ; i++ )
+<span class="lineno" id="117">   117  </span>		{
+<span class="lineno" id="118">   118  </span>			listeners[i].addError( test, e );
+<span class="lineno" id="119">   119  </span>		}
+<span class="lineno" id="120">   120  </span>		
+<span class="lineno" id="121">   121  </span>	}
+<span class="lineno" id="122">   122  </span>
+<span class="lineno" id="123">   123  </span>	<span class="comment doc">/**
+<span class="lineno" id="124">   124  </span>	 * Adds a failure to the list of failures. 
+<span class="lineno" id="125">   125  </span>	 * The passed in exception caused the failure.
+<span class="lineno" id="126">   126  </span>	 */</span>
+<span class="lineno" id="127">   127  </span>	<span class="key">public</span> <span class="key">function</span> addFailure( test:ITest, afe:AssertionFailedError ):Void
+<span class="lineno" id="128">   128  </span>	{
+<span class="lineno" id="129">   129  </span>		_failures.push( <span class="key">new</span> TestFailure( test, afe ) ) ;
+<span class="lineno" id="130">   130  </span>        <span class="key">var</span> listeners:Array = cloneListeners() ;
+<span class="lineno" id="131">   131  </span>        <span class="key">for</span>( <span class="key">var</span> i:Number = <span class="num_const">0</span> ; i&lt;listeners.length ; i++ )
+<span class="lineno" id="132">   132  </span>		{
+<span class="lineno" id="133">   133  </span>			listeners[i].addFailure( test, afe );
+<span class="lineno" id="134">   134  </span>		}
+<span class="lineno" id="135">   135  </span>	}
+<span class="lineno" id="136">   136  </span>	
+<span class="lineno" id="137">   137  </span>	<span class="comment doc">/**
+<span class="lineno" id="138">   138  </span>	 * Registers a TestListener.
+<span class="lineno" id="139">   139  </span>	 */</span>
+<span class="lineno" id="140">   140  </span>	<span class="key">public</span> <span class="key">function</span> addListener( listener:ITestListener ):Void
+<span class="lineno" id="141">   141  </span>	{
+<span class="lineno" id="142">   142  </span>		_listeners.push( listener );
+<span class="lineno" id="143">   143  </span>	}
+<span class="lineno" id="144">   144  </span>
+<span class="lineno" id="145">   145  </span>    <span class="comment doc">/**
+<span class="lineno" id="146">   146  </span>     * Returns a copy of the listeners.
+<span class="lineno" id="147">   147  </span>     */</span>
+<span class="lineno" id="148">   148  </span>    <span class="key">public</span> <span class="key">function</span> cloneListeners():Array
+<span class="lineno" id="149">   149  </span>	{
+<span class="lineno" id="150">   150  </span>        <span class="key">return</span> [].concat(_listeners) ;
+<span class="lineno" id="151">   151  </span>	}
+<span class="lineno" id="152">   152  </span>
+<span class="lineno" id="153">   153  </span>    <span class="comment doc">/**
+<span class="lineno" id="154">   154  </span>     * Informs the result that a test was completed.
+<span class="lineno" id="155">   155  </span>     */</span>
+<span class="lineno" id="156">   156  </span>	<span class="key">public</span> <span class="key">function</span> endTest( test:ITest ):Void
+<span class="lineno" id="157">   157  </span>	{
+<span class="lineno" id="158">   158  </span>		<span class="key">var</span> listeners:Array = cloneListeners();
+<span class="lineno" id="159">   159  </span>		<span class="key">var</span> len:Number = listeners.length ;
+<span class="lineno" id="160">   160  </span>        <span class="key">for</span>( <span class="key">var</span> i:Number = <span class="num_const">0</span> ; i&lt;len ; i++ )
+<span class="lineno" id="161">   161  </span>		{
+<span class="lineno" id="162">   162  </span>			listeners[i].endTest( test );
+<span class="lineno" id="163">   163  </span>		}
+<span class="lineno" id="164">   164  </span>	}
+<span class="lineno" id="165">   165  </span>
+<span class="lineno" id="166">   166  </span>	<span class="comment doc">/**
+<span class="lineno" id="167">   167  </span>	 * Unregisters a TestListener.
+<span class="lineno" id="168">   168  </span>	 */</span>
+<span class="lineno" id="169">   169  </span>    <span class="key">public</span> <span class="key">function</span> removeListener( listener:ITestListener ):Void
+<span class="lineno" id="170">   170  </span>	{
+<span class="lineno" id="171">   171  </span>		<span class="key">var</span> index:Number ;
+<span class="lineno" id="172">   172  </span>		index = ArrayUtil.indexOf( _listeners, listener );
+<span class="lineno" id="173">   173  </span>		<span class="key">if</span>( index &gt; -<span class="num_const">1</span> )
+<span class="lineno" id="174">   174  </span>        {
+<span class="lineno" id="175">   175  </span>			_listeners.splice( index, <span class="num_const">1</span> );
+<span class="lineno" id="176">   176  </span>		}
+<span class="lineno" id="177">   177  </span>	}
+<span class="lineno" id="178">   178  </span>	
+<span class="lineno" id="179">   179  </span>	<span class="comment doc">/**
+<span class="lineno" id="180">   180  </span>	 * Runs a TestCase.
+<span class="lineno" id="181">   181  </span>	 */</span>
+<span class="lineno" id="182">   182  </span>	<span class="key">public</span> <span class="key">function</span> run( test:TestCase ):Void
+<span class="lineno" id="183">   183  </span>	{
+<span class="lineno" id="184">   184  </span>		
+<span class="lineno" id="185">   185  </span>		startTest( test ) ;
+<span class="lineno" id="186">   186  </span>
+<span class="lineno" id="187">   187  </span>        <span class="key">var</span> p:IProtectable = <span class="key">new</span> IProtectable();
+<span class="lineno" id="188">   188  </span>        p.protect = <span class="key">function</span>()
+<span class="lineno" id="189">   189  </span>		{
+<span class="lineno" id="190">   190  </span>			<span class="key">return</span> test.runBare();
+<span class="lineno" id="191">   191  </span>		} ;
+<span class="lineno" id="192">   192  </span>        
+<span class="lineno" id="193">   193  </span>        runProtected( test, p );
+<span class="lineno" id="194">   194  </span>
+<span class="lineno" id="195">   195  </span>        endTest( test );
+<span class="lineno" id="196">   196  </span>	}
+<span class="lineno" id="197">   197  </span>
+<span class="lineno" id="198">   198  </span>	<span class="comment doc">/**
+<span class="lineno" id="199">   199  </span>	 * Runs a TestCase.
+<span class="lineno" id="200">   200  </span>	 */</span>
+<span class="lineno" id="201">   201  </span>    <span class="key">public</span> <span class="key">function</span> runProtected( test:ITest, p:IProtectable ):Void
+<span class="lineno" id="202">   202  </span>	{
+<span class="lineno" id="203">   203  </span>		<span class="key">try</span>
+<span class="lineno" id="204">   204  </span>		{
+<span class="lineno" id="205">   205  </span>			p.protect() ;
+<span class="lineno" id="206">   206  </span>		}
+<span class="lineno" id="207">   207  </span>        <span class="key">catch</span>( e )
+<span class="lineno" id="208">   208  </span>        {
+<span class="lineno" id="209">   209  </span>			<span class="key">if</span>( e <span class="key">instanceof</span> AssertionFailedError )
+<span class="lineno" id="210">   210  </span>			{
+<span class="lineno" id="211">   211  </span>				addFailure( test, e );
+<span class="lineno" id="212">   212  </span>			}
+<span class="lineno" id="213">   213  </span>            <span class="key">else</span> <span class="key">if</span>( e <span class="key">instanceof</span> Error )
+<span class="lineno" id="214">   214  </span>			{
+<span class="lineno" id="215">   215  </span>				addError( test, e );
+<span class="lineno" id="216">   216  </span>			}
+<span class="lineno" id="217">   217  </span>		}    
+<span class="lineno" id="218">   218  </span>	}
+<span class="lineno" id="219">   219  </span>
+<span class="lineno" id="220">   220  </span>    <span class="comment doc">/**
+<span class="lineno" id="221">   221  </span>     * Informs the result that a test will be started.
+<span class="lineno" id="222">   222  </span>     */</span>
+<span class="lineno" id="223">   223  </span>	<span class="key">public</span> <span class="key">function</span> startTest( test:ITest ):Void
+<span class="lineno" id="224">   224  </span>	{
+<span class="lineno" id="225">   225  </span>		
+<span class="lineno" id="226">   226  </span>		<span class="key">var</span> count:Number = test.countTestCases();
+<span class="lineno" id="227">   227  </span>		
+<span class="lineno" id="228">   228  </span>		_runTests += count;
+<span class="lineno" id="229">   229  </span>        
+<span class="lineno" id="230">   230  </span>		<span class="key">var</span> listeners:Array = cloneListeners() ;
+<span class="lineno" id="231">   231  </span>		
+<span class="lineno" id="232">   232  </span>		<span class="key">for</span>( <span class="key">var</span> i:Number = <span class="num_const">0</span> ; i&lt;listeners.length ; i++ )
+<span class="lineno" id="233">   233  </span>		{
+<span class="lineno" id="234">   234  </span>			listeners[i].startTest( test );
+<span class="lineno" id="235">   235  </span>		}
+<span class="lineno" id="236">   236  </span>	}
+<span class="lineno" id="237">   237  </span>    
+<span class="lineno" id="238">   238  </span>	<span class="comment doc">/**
+<span class="lineno" id="239">   239  </span>	 * Marks that the test run should stop.
+<span class="lineno" id="240">   240  </span>	 */</span>
+<span class="lineno" id="241">   241  </span>	<span class="key">public</span> <span class="key">function</span> stop():Void
+<span class="lineno" id="242">   242  </span>	{
+<span class="lineno" id="243">   243  </span>		_stop = <span class="key">true</span> ;	
+<span class="lineno" id="244">   244  </span>	}
+<span class="lineno" id="245">   245  </span>	
+<span class="lineno" id="246">   246  </span>    <span class="comment doc">/**
+<span class="lineno" id="247">   247  </span>     * Returns whether the entire test was successful or not.
+<span class="lineno" id="248">   248  </span>     * @return whether the entire test was successful or not.
+<span class="lineno" id="249">   249  </span>     */</span>
+<span class="lineno" id="250">   250  </span>  	<span class="key">public</span> <span class="key">function</span> wasSuccessful():Boolean
+<span class="lineno" id="251">   251  </span>	{
+<span class="lineno" id="252">   252  </span>		<span class="key">return</span>( (failureCount == <span class="num_const">0</span>) &amp;&amp; (errorCount == <span class="num_const">0</span>) );
+<span class="lineno" id="253">   253  </span>	}
+<span class="lineno" id="254">   254  </span>
+<span class="lineno" id="255">   255  </span>	<span class="key">private</span> <span class="key">var</span> _errors:Array;
+<span class="lineno" id="256">   256  </span>
+<span class="lineno" id="257">   257  </span>    <span class="key">private</span> <span class="key">var</span> _failures:Array;
+<span class="lineno" id="258">   258  </span>    
+<span class="lineno" id="259">   259  </span>    <span class="key">private</span> <span class="key">var</span> _listeners:Array;
+<span class="lineno" id="260">   260  </span>    
+<span class="lineno" id="261">   261  </span>    <span class="key">private</span> <span class="key">var</span> _runTests:Number;
+<span class="lineno" id="262">   262  </span>    
+<span class="lineno" id="263">   263  </span>    <span class="key">private</span> <span class="key">var</span> _stop:Boolean;
+<span class="lineno" id="264">   264  </span>
+<span class="lineno" id="265">   265  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package buRRRn.ASTUce" class="button">Package</a></li><li><a href="TestResult.html" title="Detail of buRRRn.ASTUce.TestResult API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

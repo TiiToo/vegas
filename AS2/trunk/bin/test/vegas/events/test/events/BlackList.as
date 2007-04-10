@@ -1,28 +1,37 @@
-﻿import vegas.events.Event ;
+﻿
+import test.events.Author ;
+
+import vegas.core.CoreObject ;
+import vegas.events.Event ;
 import vegas.events.EventListener ;
+import vegas.util.ArrayUtil ;
 
-class test.events.BlackList implements EventListener {
+class test.events.BlackList extends CoreObject implements EventListener 
+{
     
-	// ----o Constructor
-	
-	public function BlackList() {}
-	
-
-	// ----o Public Methods
-
-	public function handleEvent(ev:Event) {
-		var name:String  = ev.getContext().getUsername() ;
-		if ( name == "ekameleon" ) {
-			ev.cancel() ; // cancel the event
+    /**
+     * Creates a new BlackList instance.
+     */
+    public function BlackList() {}
+    
+    /**
+     * The static 'black list' array representation.
+     */
+    static public var BLACK_LIST:Array = [ "ekameleon" , "kronos" ] ;
+    
+    /**
+     * Handles the event.
+     */
+    public function handleEvent(ev:Event) 
+    {
+        
+        var name:String  = Author( ev.getContext() ).getUsername() ;
+        
+        if ( ArrayUtil.contains( BLACK_LIST, name ) ) 
+        {
+            ev.cancel() ; // cancel the event
         }
+        
     }
-
-	public function toString():String {
-		return "<BlackList>" ;
-	}
-
-	// ----o Private Properties
-
-	private var _username:String ;
     
 }
