@@ -39,8 +39,8 @@ class lunas.display.components.bar.EasyProgressbar extends AbstractProgressbar
 	public function EasyProgressbar() 
 	{
 		super() ;
-		_createBackground() ;
-		_createBar() ;
+		createChild(BACKGROUND_RENDERER, "background", 0) ;
+		createChild(BAR_RENDERER, "bar", 1) ;
 		setSize(150, 6) ;
 	}
 
@@ -48,12 +48,24 @@ class lunas.display.components.bar.EasyProgressbar extends AbstractProgressbar
 
 	static public var BAR_RENDERER:Function = RectangleComponent ;
 	
+	/**
+	 * The background reference of this bar
+	 */
 	public var background:MovieClip ;
 
+	/**
+	 * The thumb reference of this bar.
+	 */
 	public var bar:MovieClip ;
 
+	/**
+	 * The border thickness of this bar.
+	 */
 	public var border:Number = 0 ;
 
+	/**
+	 * Resize the bar.
+	 */
 	public function resize():Void 
 	{
 		bar._x = border ;
@@ -67,42 +79,32 @@ class lunas.display.components.bar.EasyProgressbar extends AbstractProgressbar
 		bar.setSize(__w, __h) ;
 	}
 
+	/**
+	 * Invoqued when the component is changed.
+	 */
 	public function viewChanged():Void 
 	{
-		_refreshBackground() ;
-		_refreshBar() ;
-	}
-
-	public function viewPositionChanged():Void 
-	{
-		resize() ;
-	}
-
-	private function _createBackground():Void 
-	{
-		createChild(BACKGROUND_RENDERER, "background", 0) ;
-	}
-	
-	private function _createBar():Void 
-	{
-		createChild(BAR_RENDERER, "bar", 1) ;
-	}
-
-	private function _refreshBackground():Void 
-	{
-		background.refresh( {
+		
+		background.refresh( 
+		{
 			t : 1 , la : 100 , lc : 0xFFFFFF ,
 			fc : 0xD0330D , fa : 100
 		} ) ;
 		background.setSize(_w, _h) ;
-	}
-
-	private function _refreshBar():Void 
-	{
+		
 		bar.refresh( {
 			t : null , la : null , lc : null ,
 			fc : 0xF8E2B1 , fa : 100
 		} ) ;
+		resize() ;
+		
+	}
+	
+	/**
+	 * Invoqued when the position of the bar is changed.
+	 */
+	public function viewPositionChanged():Void 
+	{
 		resize() ;
 	}
 

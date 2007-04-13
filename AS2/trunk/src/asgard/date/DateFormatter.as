@@ -252,7 +252,6 @@ class asgard.date.DateFormatter extends AbstractFormatter
 			{
 				cpt = _count(ch, a.slice(i));
 				r += formatSecond( date.getSeconds(), cpt ) ;
-				trace(date.getSeconds() + " : " + r) ;
 				i += cpt - 1 ;
 			}
 			else if (ch == MILLISECOND) 

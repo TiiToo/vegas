@@ -97,6 +97,23 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	static public var VOLUME_DEFAULT:Number = 60 ;
 
 	/**
+	 * (read-only) Returns the current time of the loader.
+	 * @return the current time of the loader.
+	 */
+	public function get time():Number
+	{
+		return getTime() ;	
+	}
+
+	/**
+	 * (read-only) Sets the current time of the loader.
+	 */
+	public function set time(n:Number):Void
+	{
+		setTime(n) ;	
+	}
+
+	/**
 	 * Clear the video.
 	 */
 	public function clear():Void
@@ -398,7 +415,9 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	 */
 	/*override*/ public function setPosition(n:Number):Void 
 	{
-		setTime(Math.ceil(Range.PERCENT_RANGE.clamp(n) * 100 / getDuration())) ;
+		var time = n * 100 / getDuration() ;
+		trace(time + " / " + getDuration()) ;
+		setTime(n) ;
 	}
 
 	/**
@@ -537,12 +556,11 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		
 		_oMetaData = new FLVMetaData(info) ;
 		
-		/*
 		for (var props in info) 
 		{
-			_logger.infog( this + " onMetaData, " + props + " : " + info[props]) ;
+			_logger.info( this + " onMetaData, " + props + " : " + info[props]) ;
 		}
-		*/
+		
 		setDuration( isNaN(info.duration) ? 0 : parseInt(info.duration) ) ;
 		
 		if ( isAutoSize() ) 
@@ -589,6 +607,8 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		
 		_logger.debug( this + " stream status : " + info ) ;
 		
+		trace(this + " stream status : " + info.code ) ;
+		
 		var code:String = info.code ;
 		
 		switch ( true ) 
@@ -632,7 +652,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 			
 			case NetStreamStatus.BUFFER_FULL.equals(code) :
 			{
-				_logger.warn( this + " stream buffer is full." );
+				_logger.info( this + " stream buffer is full." );
 				break;
 			}
 			
