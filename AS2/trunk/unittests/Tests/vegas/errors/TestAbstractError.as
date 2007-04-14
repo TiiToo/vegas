@@ -27,8 +27,9 @@ import Tests.vegas.errors.ConcreteAbstractError;
 
 import vegas.errors.AbstractError;
 import vegas.errors.ErrorElement;
-import vegas.logging.ILogger;
+import vegas.logging.ILogable;
 import vegas.logging.LogEventLevel;
+import vegas.logging.LogLogger;
 
 /**
  * @author eKameleon
@@ -94,14 +95,21 @@ class Tests.vegas.errors.TestAbstractError extends TestCase
 	
 	public function testGetLogger():Void
 	{
-		var logger:ILogger = e.getLogger() ;
-		assertNotNull( logger , "AE_08_01 - getLogger method failed, the logger not must be 'null' or 'undefined'.") ;
-		assertTrue( logger instanceof ILogger , "AE_08_02 - getLogger method failed, the logger must be an instance or implementation of the interface ILogger.") ;
+		assertTrue( e instanceof ILogable, "AE_08_00 - getLogger method failed, the logger must be 'ILogable'.") ;
+		assertNotNull( e.getLogger() , "AE_08_01 - getLogger method failed, the logger not must be 'null' or 'undefined'.") ;
+		assertTrue( e.getLogger() instanceof LogLogger , "AE_08_02 - getLogger method failed, the logger must be an instance or implementation of the interface ILogger.") ;
+		// note .. in Flash i must create a test with the LogLogger class and not the ILogger interface ! In mtasc the ILogger interface is true.
 	}
 	
 	public function testGetLevel():Void
 	{
 		assertEquals( e.getLevel() , LogEventLevel.ERROR , "AE_09 - getLevel method failed : " + e.getLevel()) ;
 	}
+
+	public function testSetLogger():Void
+	{
+		// TODO create this test.
+	}
+
 
 }

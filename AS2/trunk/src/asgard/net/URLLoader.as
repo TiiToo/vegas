@@ -30,9 +30,6 @@ import asgard.net.URLRequestHeader;
 import asgard.net.URLVariables;
 
 import vegas.events.Delegate;
-import vegas.logging.ILogger;
-import vegas.logging.Log;
-import vegas.util.ConstructorUtil;
 
 // FIXME : IMPORTANT ici tout vérifier et Tests !!!!
 
@@ -49,7 +46,7 @@ class asgard.net.URLLoader extends AbstractLoader
 	function URLLoader() 
 	{
 		super() ;
-		_logger = Log.getLogger( ConstructorUtil.getPath(this) ) ;
+		setLogger() ;
 		setDataFormat(DataFormat.TEXT) ;
 		_setInitTimer(super.onLoadInit) ;
 	}
@@ -246,8 +243,6 @@ class asgard.net.URLLoader extends AbstractLoader
 
 	private var _aHeaders:Array ;
 
-	private var _logger:ILogger ;
-
 	private var _sContentType:String = URLRequest.DEFAULT_CONTENT_TYPE ;
 
 	private var _sDataFormat:String ;
@@ -336,7 +331,7 @@ class asgard.net.URLLoader extends AbstractLoader
           	httpStatusType = "serverError";
      	}
      	
-     	_logger.warn( this + " HTTP status : " + httpStatusType ) ;
+     	getLogger().warn( this + " HTTP status : " + httpStatusType ) ;
   		
   	}
 }

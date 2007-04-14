@@ -36,7 +36,7 @@ import vegas.events.IEventDispatcher;
  * <p>You can overrides the internal {@code EventDispatcher} instance with the {@code initEventDispatcher} method. Used a global singleton reference in this method to register all events in a {@code FrontController} for example.</p>
  * @author eKameleon
  */
-class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEventDispatcher 
+class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEventDispatcher
 {
 
 	/**

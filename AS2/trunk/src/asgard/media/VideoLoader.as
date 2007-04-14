@@ -31,8 +31,6 @@ import asgard.net.NetServerConnection;
 import asgard.net.NetServerStatus;
 import asgard.net.NetStreamStatus;
 
-import pegas.maths.Range;
-
 import vegas.errors.IllegalArgumentError;
 import vegas.errors.UnsupportedOperation;
 import vegas.errors.Warning;
@@ -41,7 +39,6 @@ import vegas.events.Delegate;
 import vegas.events.EventType;
 import vegas.events.TimerEvent;
 import vegas.logging.ILogger;
-import vegas.logging.Log;
 import vegas.util.ConstructorUtil;
 import vegas.util.FrameTimer;
 import vegas.util.Timer;
@@ -64,7 +61,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		
 		super(mcTarget, sName);
 		
-		_logger = Log.getLogger( ConstructorUtil.getPath( this ) ) ;
+		setLogger() ;
 		
 		_oVideo = video ? video : _mcTarget.video ;
 		
@@ -523,8 +520,6 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	private var _bAutoSize : Boolean ;
 
 	private var _duration:Number ;
-
-	private var _logger:ILogger ;
 	
 	private var _nBufferTime : Number;	
 
@@ -558,7 +553,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		
 		for (var props in info) 
 		{
-			_logger.info( this + " onMetaData, " + props + " : " + info[props]) ;
+			getLogger().info( this + " onMetaData, " + props + " : " + info[props]) ;
 		}
 		
 		setDuration( isNaN(info.duration) ? 0 : parseInt(info.duration) ) ;
@@ -580,20 +575,20 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 
 			case status.equals( NetServerStatus.CLOSED )  :
 			{ 
-				_logger.info(this + " connect closed.") ;
+				getLogger().info(this + " connect closed.") ;
 				stopProgress() ;
 				break ;
 			}	
 			
 			case status.equals( NetServerStatus.SUCCESS )  :
 			{
-				_logger.info(this + " connect success.") ;
+				getLogger().info(this + " connect success.") ;
 				break ;
 			}	
 			
 			case status.equals( NetServerStatus.FAILED )  :
 			{ 
-				_logger.warn(this + " connect failed.") ;
+				getLogger().warn(this + " connect failed.") ;
 				break ;
 			}
 		}	
@@ -605,7 +600,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	private function _onNetStreamStatus( info:Object ):Void 
 	{
 		
-		_logger.debug( this + " stream status : " + info ) ;
+		getLogger().debug( this + " stream status : " + info ) ;
 		
 		trace(this + " stream status : " + info.code ) ;
 		
@@ -616,14 +611,14 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 			
 			case NetStreamStatus.PLAY_START.equals(code) :
 			{
-				_logger.info( this + " stream starts playing.");
+				getLogger().info( this + " stream starts playing.");
 				break;
 			}		
 			case NetStreamStatus.PLAY_STOP.equals(code) :
 			{
 				notifyEvent(MediaEvent.MEDIA_FINISH) ;
 			
-				_logger.info( this + " stream stops playing.");
+				getLogger().info( this + " stream stops playing.");
 				
 				if (isLoop()) 
 				{
@@ -639,20 +634,20 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 			
 			case NetStreamStatus.PLAY_STREAM_NOT_FOUND.equals(code) :
 			{
-				_logger.warn( this + " stream not found.");
+				getLogger().warn( this + " stream not found.");
 				stopProgress() ;
 				break ;
 			}
 			
 			case NetStreamStatus.SEEK_INVALID_TIME.equals(code) :
 			{
-				_logger.warn( this + " seeks invalid time in '" + this.getUrl() + "'.");
+				getLogger().warn( this + " seeks invalid time in '" + this.getUrl() + "'.");
 				break;
 			}	
 			
 			case NetStreamStatus.BUFFER_FULL.equals(code) :
 			{
-				_logger.info( this + " stream buffer is full." );
+				getLogger().info( this + " stream buffer is full." );
 				break;
 			}
 			

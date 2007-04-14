@@ -49,7 +49,7 @@ class asgard.config.ConfigLoader extends JSONLoader
 		
 		ConfigLoader.protectConfig( _oConfig ) ;
 		
-		_logger = Log.getLogger("asgard.config") ;
+		setLogger() ;
 		
 	}
 
@@ -135,7 +135,7 @@ class asgard.config.ConfigLoader extends JSONLoader
 
   	/*override*/ public function onLoadInit(e:LoaderEvent):Void 
   	{
-		_logger.info(this + ".onLoadInit() : Config has been loaded") ; 
+		getLogger().info(this + ".onLoadInit() : Config has been loaded") ; 
 	}
 
 	/**
@@ -169,8 +169,6 @@ class asgard.config.ConfigLoader extends JSONLoader
 	}
 	
 	private var _fileName:String = null ;
-
-	private var _logger:ILogger ;
 
 	private var _oConfig:Config ;
 

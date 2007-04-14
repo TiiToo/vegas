@@ -26,6 +26,7 @@ import vegas.core.IFormattable;
 import vegas.core.IHashable;
 import vegas.errors.ErrorElement;
 import vegas.errors.ErrorFormat;
+import vegas.logging.ILogable;
 import vegas.logging.ILogger;
 import vegas.logging.Log;
 import vegas.logging.LogEventLevel;
@@ -35,7 +36,7 @@ import vegas.util.ConstructorUtil;
  * This class provides a Abstract implementation to creates Error classes with an internal logging model. 
  * @author eKameleon
  */
-class vegas.errors.AbstractError extends Error implements IFormattable, IHashable 
+class vegas.errors.AbstractError extends Error implements IFormattable, IHashable, ILogable
 {
     
 	/**
@@ -46,6 +47,7 @@ class vegas.errors.AbstractError extends Error implements IFormattable, IHashabl
 		this.message = message ;
 		this.errorElement = e ;
 		this.name = ConstructorUtil.getName(this) ;
+		this._logger = Log.getLogger( ConstructorUtil.getPath(this) ) ;
 	}
 
 	/**
@@ -72,10 +74,6 @@ class vegas.errors.AbstractError extends Error implements IFormattable, IHashabl
 	 */
 	public function getLogger():ILogger
 	{
-		if (_logger == null)
-		{
-			_logger = Log.getLogger( ConstructorUtil.getPath(this) ) ;
-		}
 		return _logger ; 	
 	}
 	
@@ -90,10 +88,19 @@ class vegas.errors.AbstractError extends Error implements IFormattable, IHashabl
 	
 	/**
 	 * Returns a hashcode value for the object.
+	 * @return a hashcode value for the object.
 	 */
 	public function hashCode():Number 
 	{
 		return null ;
+	}
+	
+	/**
+	 * Sets the internal {@code ILogger} reference of this {@code ILogable} object.
+	 */
+	public function setLogger( log:ILogger ):Void 
+	{
+		_logger = log ;
 	}
 
 	/**

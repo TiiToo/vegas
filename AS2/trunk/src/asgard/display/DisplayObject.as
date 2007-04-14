@@ -99,7 +99,7 @@ import vegas.util.factory.DisplayFactory;
  * }
  * @author eKameleon
  */
-class asgard.display.DisplayObject extends AbstractCoreEventDispatcher 
+class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 {
 
 	/**

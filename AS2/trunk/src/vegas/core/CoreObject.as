@@ -25,6 +25,8 @@ import vegas.core.HashCode;
 import vegas.core.IFormattable;
 import vegas.core.IHashable;
 import vegas.core.ISerializable;
+import vegas.logging.ILogger;
+import vegas.logging.Log;
 import vegas.util.ConstructorUtil;
 
 /**
@@ -51,7 +53,16 @@ class vegas.core.CoreObject implements IFormattable, IHashable, ISerializable
 	{
 		//
 	}
-	
+
+	/**
+	 * Returns the internal ILogger of the current Error.
+	 * @return the internal ILogger of the current Error.
+	 */
+	public function getLogger():ILogger
+	{
+		return _logger ; 	
+	}
+
 	/**
 	 * Returns a hashcode value for the object.
 	 * @return a hashcode value for the object.
@@ -59,6 +70,18 @@ class vegas.core.CoreObject implements IFormattable, IHashable, ISerializable
 	public function hashCode():Number 
 	{
 		return null ;
+	}
+
+	/**
+	 * Sets the internal {@code ILogger} reference of this {@code ILogable} object.
+	 */
+	public function setLogger( log:ILogger ):Void 
+	{
+		if (log == null)
+		{
+			_logger = Log.getLogger( ConstructorUtil.getPath(this) ) ;
+		}		
+		_logger = log ;
 	}
 
 	/**
@@ -78,6 +101,11 @@ class vegas.core.CoreObject implements IFormattable, IHashable, ISerializable
 	{
 		return "[" + ConstructorUtil.getName(this) + "]" ;
 	}
+
+	/**
+	 * The internal ILogger reference of this object.
+	 */
+	private var _logger:ILogger ;
 
 	static private var _initHashCode:Boolean = HashCode.initialize(CoreObject.prototype) ;
 	
