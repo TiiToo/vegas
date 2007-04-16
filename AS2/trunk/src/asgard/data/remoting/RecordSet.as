@@ -35,7 +35,12 @@ import vegas.util.mvc.AbstractModel;
 // TODO finir la documentation
 // TODO voir toute la gestion remote et local du RecordSet (finir) !!!!
 // TODO finir de mettre en place la sérialization avec toSource():String
-
+// TODO place a method in the RecordSet class to inject this feature only if the user want use this method.
+/*if (oResult instanceof RecordSet) // in the onResult method of the Responder ??  
+	{
+		RecordSet(oResult).setParentService( getService() ) ;
+	}
+*/
 /**
  * <p><b>Example :</b></p>
  * {@code

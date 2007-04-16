@@ -52,7 +52,8 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	/**
 	 * Creates a new AbstractComponent instance.
 	 */
-	private function AbstractComponent() { 
+	private function AbstractComponent() 
+	{ 
 		
 		_dispatcher = initEventDispatcher() ;
 		

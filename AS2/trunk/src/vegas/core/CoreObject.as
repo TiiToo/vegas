@@ -55,8 +55,8 @@ class vegas.core.CoreObject implements IFormattable, IHashable, ISerializable
 	}
 
 	/**
-	 * Returns the internal ILogger of the current Error.
-	 * @return the internal ILogger of the current Error.
+	 * Returns the internal {@code ILogger} reference of this {@code ILogable} object.
+	 * @return the internal {@code ILogger} reference of this {@code ILogable} object.
 	 */
 	public function getLogger():ILogger
 	{

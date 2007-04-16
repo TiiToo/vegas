@@ -21,7 +21,6 @@
   
 */
 
-import asgard.data.remoting.RecordSet;
 import asgard.events.RemotingEvent;
 
 import vegas.core.CoreObject;
@@ -85,10 +84,6 @@ class asgard.net.remoting.RemotingServiceResponder extends CoreObject
 	 */
 	public function onResult( oResult ):Void 
 	{
-		if (oResult instanceof RecordSet) 
-		{
-			oResult.setParentService( getService() ) ;
-		}
 		_eResult.setResult( oResult, _methodName ) ;
 		_result.setArguments( _eResult ) ;
 		_result.run() ;
