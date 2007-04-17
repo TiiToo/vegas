@@ -120,6 +120,15 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 	}
 
 	/**
+	 * Returns the event name use in the {@code addVO} method.
+	 * @return the event name use in the {@code addVO} method.
+	 */
+	public function getEventTypeUPDATE():String
+	{
+		return _eUpdate.getType() ;
+	}
+
+	/**
 	 * Returns the IValueObject defined by the id passed in argument.
 	 * @return the IValueObject defined by the id passed in argument.
 	 */
@@ -136,6 +145,7 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 		super.initEvent() ;
 		_eAdd    = createNewModelObjectEvent( ModelObjectEvent.ADD_VO ) ;
 		_eRemove = createNewModelObjectEvent( ModelObjectEvent.REMOVE_VO ) ; 
+		_eUpdate = createNewModelObjectEvent( ModelObjectEvent.UPDATE_VO ) ;
 	}
 
 	/**
@@ -195,6 +205,32 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 	}
 
 	/**
+	 * Sets the event name use in the {@code addVO} method.
+	 */
+	public function setEventTypeUPDATE( type:String ):Void
+	{
+		_eUpdate.setType( type ) ;
+	}
+
+	/**
+	 * Update a value object in the model.
+	 * @throw Warning if the value object passed-in argument don't exist.
+	 */
+	public function updateVO( vo:IValueObject ):Void
+	{
+		if ( _map.containsKey( vo.getID() ) )
+		{
+			_map.put( vo.getID() , vo ) ;
+			_eUpdate.setVO( vo ) ;
+			dispatchEvent( _eUpdate  ) ;
+		}
+		else
+		{
+			throw Warning( this + " updateVO method failed, the value object passed in argument don't exist in the model.") ;
+		}
+	}
+
+	/**
 	 * Returns the number of IValueObject in this model.
 	 * @return the number of IValueObject in this model.
 	 */
@@ -212,6 +248,11 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 	 * The internal ModelObjectEvent use in the removeVO method.
 	 */
 	private var _eRemove:ModelObjectEvent ;
+
+	/**
+	 * The internal ModelObjectEvent when the update event type is use.
+	 */
+	private var _eUpdate:ModelObjectEvent ;
 
 	/**
 	 * The internal map of this model.
