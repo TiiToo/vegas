@@ -92,6 +92,15 @@ class vegas.events.FrontController extends CoreObject
 	}
 
 	/**
+	 * Returns the internal EventDispatcher singleton reference of this FrontController.
+	 * @return the internal EventDispatcher singleton reference of this FrontController.
+	 */
+	public function getEventDispatcher():EventDispatcher
+	{
+		return _oE ;		
+	}
+
+	/**
 	 * Returns an EventListener reference.
 	 * @param  eventName the name of the event type mapped in the FrontController.
 	 * @return an EventListener  
@@ -108,7 +117,7 @@ class vegas.events.FrontController extends CoreObject
 	 */
 	public function insert(eventName:String, listener:EventListener):Void 
 	{
-		_map.put.apply( this, arguments ) ;
+		_map.put( eventName, listener ) ;
 		_oE.addEventListener(eventName, listener) ;
 	}
 	

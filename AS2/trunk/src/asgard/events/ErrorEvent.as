@@ -46,7 +46,7 @@ class asgard.events.ErrorEvent extends TextEvent
 	 */
 	public function ErrorEvent(type : String, text:String, id:Number, target, context, bubbles : Boolean, eventPhase : Number, time : Number, stop : Number) 
 	{
-		super(type, target, context, bubbles, eventPhase, time, stop);
+		super(type, text, target, context, bubbles, eventPhase, time, stop);
 		errorID = isNaN(id) ? 0 : id ;
 	}
 

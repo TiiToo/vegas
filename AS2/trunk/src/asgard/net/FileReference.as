@@ -54,7 +54,8 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	public function FileReference() 
 	{
 		_dispatcher = initEventDispatcher() ;
-		addListener(this) ;
+		initEvents() ;
+		this.addListener(this) ;
 	}
 
 	/**
@@ -79,7 +80,7 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	 */
 	public function addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void 
 	{
-		_dispatcher.addGlobalEventListener(listener, priority, autoRemove) ;
+		_dispatcher.addGlobalEventListener.apply(_dispatcher, arguments) ;
 	}
 
 	/**
@@ -92,7 +93,7 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	 */
 	public function dispatchEvent(event, isQueue:Boolean, target, context):Event 
 	{
-		return _dispatcher.dispatchEvent(event, isQueue, target, context) ;
+		return _dispatcher.dispatchEvent.apply(_dispatcher, arguments) ;
 	}
 
 	/**
@@ -111,6 +112,78 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	public function getEventListeners(eventName:String):EventListenerCollection 
 	{
 		return _dispatcher.getEventListeners(eventName) ;
+	}
+	
+	/**
+	 * Returns the event name use if the process is cancel.
+	 * @return the event name use if the process is cancel.
+	 */
+	public function getEventTypeCANCEL():String
+	{
+		return _eCancel.getType() ;
+	}
+
+	/**
+	 * Returns the event name use if the process is complete.
+	 * @return the event name use if the process is complete.
+	 */
+	public function getEventTypeCOMPLETE():String
+	{
+		return _eComplete.getType() ;
+	}
+
+	/**
+	 * Returns the event name use when a HTTPStatusEvent is invoqued.
+	 * @return the event name use when a HTTPStatusEvent is invoqued.
+	 */
+	public function getEventTypeHTTPError():String
+	{
+		return _eHTTPError.getType() ;
+	}
+
+	/**
+	 * Returns the event name use when a IOErrorEvent is invoqued.
+	 * @return the event name use when a IOErrorEvent is invoqued.
+	 */
+	public function getEventTypeIOError():String
+	{
+		return _eIOError.getType() ;
+	}
+
+	/**
+	 * Returns the event name use when the upload or the download is started.
+	 * @return the event name use when the upload or the download is started.
+	 */
+	public function getEventTypeOpen():String
+	{
+		return _eOpen.getType() ;
+	}
+	
+	/**
+	 * Returns the event name use when the process is in progress.
+	 * @return the event name use when the process is in progress.
+	 */
+	public function getEventTypeProgress():String
+	{
+		return _eProgress.getType() ;
+	}
+
+	/**
+	 * Returns the event name use when a SecurityErrorEvent is invoqued.
+	 * @return the event name use when a SecurityErrorEvent is invoqued.
+	 */
+	public function getEventTypeSecurityError():String
+	{
+		return _eSecurity.getType() ;
+	}
+
+	/**
+	 * Returns the event name use when the file is selected.
+	 * @return the event name use when the file is selected.
+	 */
+	public function getEventTypeSelect():String
+	{
+		return _eSelect.getType() ;
 	}
 
 	/**
@@ -157,6 +230,23 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	{
 		return _dispatcher.hasEventListener(eventName) ;
 	}
+	
+	/**
+	 * Initialize all internal events of this object.
+	 */
+	public function initEvents():Void
+	{
+		_eCancel    = new BasicEvent ( EventType.CANCEL , this ) ;
+		_eComplete  = new BasicEvent ( EventType.COMPLETE , this ) ;
+		_eHTTPError = new HTTPStatusEvent( HTTPStatusEvent.HTTP_STATUS , null, this ) ;
+		_eIOError   = new IOErrorEvent ( IOErrorEvent.IO_ERROR , null , null , this ) ;
+		_eOpen      = new BasicEvent( EventType.OPEN , this ) ;
+		_eProgress  = new ProgressEvent( ProgressEvent.PROGRESS, null, null, this ) ;
+		_eSecurity  = new SecurityErrorEvent( SecurityErrorEvent.SECURITY_ERROR, null, null , this) ;
+		_eSelect    = new BasicEvent( EventType.SELECT , this ) ;
+	}
+
+
 
 	/**
 	 * Creates and returns the internal {@code EventDispatcher} reference (this method is invoqued in the constructor).
@@ -176,7 +266,7 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	 */
 	public function removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener 
 	{
-		return _dispatcher.removeEventListener(eventName, listener, useCapture) ;
+		return _dispatcher.removeEventListener.apply(_dispatcher, arguments) ;
 	}
 
 	/** 
@@ -186,7 +276,7 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	 */
 	public function removeGlobalEventListener( listener ):EventListener 
 	{
-		return _dispatcher.removeGlobalEventListener(listener) ;
+		return _dispatcher.removeGlobalEventListener.apply(_dispatcher, arguments) ;
 	}
 
 	/**
@@ -195,6 +285,72 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	public function setEventDispatcher( e:EventDispatcher ):Void 
 	{
 		_dispatcher = e || initEventDispatcher() ;
+	}
+	
+	/**
+	 * Sets the event name use if the process is cancel.
+	 */
+	public function setEventTypeCANCEL( type:String ):Void
+	{
+		_eCancel.setType( type ) ;
+	}
+
+	/**
+	 * Sets the event name use if the process is complete.
+	 */
+	public function setEventTypeCOMPLETE( type:String ):Void
+	{
+		_eComplete.setType( type ) ;
+	}
+
+	/**
+	 * Sets the event name use when a HTTPStatusEvent is invoqued.
+	 */
+	public function setEventTypeHTTPError( type:String ):Void
+	{
+		_eHTTPError.setType( type ) ;
+	}
+
+	/**
+	 * Sets the event name use when a IOErrorEvent is invoqued.
+	 */
+	public function setEventTypeIOError( type:String ):Void
+	{
+		_eIOError.setType( type ) ;
+	}
+
+	/**
+	 * Sets the event name use when the upload or the download is started.
+	 */
+	public function setEventTypeOpen( type:String ):Void
+	{
+		_eOpen.setType( type ) ;
+	}
+	
+	/**
+	 * Sets the event name use when the process is in progress.
+	 */
+	public function setEventTypeProgress( type:String ):Void
+	{
+		_eProgress.setType( type ) ;
+	}
+
+	/**
+	 * Returns the event name use when a SecurityErrorEvent is invoqued.
+	 * @return the event name use when a SecurityErrorEvent is invoqued.
+	 */
+	public function setEventTypeSecurityError( type:String ):Void
+	{
+		_eSecurity.setType( type ) ;
+	}
+
+	/**
+	 * Returns the event name use when the file is selected.
+	 * @return the event name use when the file is selected.
+	 */
+	public function setEventTypeSelect( type:String ):Void
+	{
+		_eSelect.setType( type ) ;
 	}
 
 	/**
@@ -211,13 +367,35 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	 */
 	public function toString():String 
 	{
-		return "[" + ConstructorUtil.getName(this) + "]" ;
+		var str:String = "[" + ConstructorUtil.getName(this) ;
+		if (name.length > 0)
+		{
+			str += " name:" + name ;	
+		}
+		str += "]" ;
+		return str ;
 	}
 	
 	/**
 	 * The internal EventDispatcher reference of this object.
 	 */
 	private var _dispatcher:EventDispatcher ;
+
+	private var _eCancel:Event ;
+	
+	private var _eComplete:Event ;
+	
+	private var _eHTTPError:Event ;
+	
+	private var _eIOError:Event ;
+	
+	private var _eOpen:Event ;
+	
+	private var _eProgress:Event ;
+	
+	private var _eSecurity:Event ;
+	
+	private var _eSelect:Event ;
 
 	static private var _initHashCode:Boolean = HashCode.initialize( FileReference.prototype ) ;
 
@@ -226,7 +404,7 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	 */
 	/*protected*/ private function onCancel( file:FileReference ):Void
 	{
-		dispatchEvent( new BasicEvent( EventType.CANCEL , this ) ) ;
+		dispatchEvent( _eCancel ) ;
 	}
 	
 	/**
@@ -234,7 +412,7 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	 */
 	/*protected*/ private function onComplete( file:FileReference ):Void
 	{
-		dispatchEvent( new BasicEvent( EventType.COMPLETE , this ) ) ;
+		dispatchEvent( _eComplete ) ;
 	}
 
 	/**
@@ -243,7 +421,7 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	 */
 	/*protected*/ private function onHTTPError( file:FileReference ):Void 
 	{
-		dispatchEvent( new HTTPStatusEvent( HTTPStatusEvent.HTTP_STATUS , null, this ) ) ;	
+		dispatchEvent( _eHTTPError ) ;	
 	}
 
 	/**
@@ -251,7 +429,9 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	 */
 	/*protected*/ private function onIOError( file:FileReference ):Void 
 	{
-		dispatchEvent( new IOErrorEvent( IOErrorEvent.IO_ERROR , this + " io error notify with the file : " + file.name , this.hashCode(), this ) ) ; 
+		IOErrorEvent(_eIOError).text = this + " io error notify with the file : " + file.name ;
+		IOErrorEvent(_eIOError).errorID = this.hashCode() ;
+		dispatchEvent( _eIOError ) ; 
 	}
 
 	/**
@@ -259,7 +439,7 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	 */
 	/*protected*/ private function onOpen( file:FileReference ):Void
 	{
-		dispatchEvent( new BasicEvent( EventType.OPEN , this ) ) ;
+		dispatchEvent( _eOpen ) ;
 	}
 	
 	/**
@@ -267,7 +447,9 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	 */
 	/*protected*/ private function onProgress( file:FileReference, bytesLoaded:Number, bytesTotal:Number ):Void
 	{
-		dispatchEvent( new ProgressEvent( ProgressEvent.PROGRESS, bytesLoaded, bytesTotal, this ) ); 
+		ProgressEvent(_eProgress).bytesLoaded = bytesLoaded ;
+		ProgressEvent(_eProgress).bytesTotal  = bytesTotal ;
+		dispatchEvent( _eProgress ); 
 	}
 
 	/**
@@ -275,7 +457,9 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	 */
 	/*protected*/ private function onSecurityError( file:FileReference, errorString:String ):Void 
 	{
-		dispatchEvent( new SecurityErrorEvent( SecurityErrorEvent.SECURITY_ERROR, errorString, this.hashCode() , this) );
+		SecurityErrorEvent(_eSecurity).text    = errorString ;
+		SecurityErrorEvent(_eSecurity).errorID = hashCode() ;
+		dispatchEvent( _eSecurity );
 	}
 
 	/**
@@ -283,7 +467,7 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	 */
 	/*protected*/ private function onSelect( file:FileReference ):Void
 	{
-		dispatchEvent( new BasicEvent( EventType.SELECT , this ) ) ;
+		dispatchEvent( _eSelect ) ;
 	}
 
 }
