@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -124,36 +124,36 @@ import lunas.display.components.button.AbstractButton;
 import lunas.display.components.button.EasyButtonBuilder;
 import lunas.display.components.button.EasyButtonStyle;
 
-class lunas.display.components.button.EasyButton extends AbstractButton {
+class lunas.display.components.button.EasyButton extends AbstractButton 
+{
 
-	// ----o Constructor
-
-	public function EasyButton () { 
+	/**
+	 * Creates a new EasyButton instance.
+	 */
+	public function EasyButton () 
+	{ 
 		super() ;
-
 	}
 	
-	// ----o Public Properties
-	
 	public var background:MovieClip ;
+
 	public var field:TextField ;
 
-	// ----o Public Methods
-	
-	public function getBuilderRenderer():Function {
+	public function getBuilderRenderer():Function 
+	{
 		return EasyButtonBuilder ;
 	}
 	
-	public function getStyleRenderer():Function {
+	public function getStyleRenderer():Function 
+	{
 		return EasyButtonStyle ;
 	}
 	
-	public function viewLabelChanged():Void {
+	public function viewLabelChanged():Void 
+	{
 		update() ;
 	}
 
-	// ----o Private properties
-		
 	private var _h:Number = 20 ;
 	private var _w:Number = 150 ;
 

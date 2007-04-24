@@ -143,7 +143,7 @@ class asgard.events.RemotingEvent extends DynamicEvent
 	{
 		return _result ;	
 	}
-	
+
 	public function setFault( oFault , methodName:String):Void 
 	{
 		_fault = oFault || null ;	

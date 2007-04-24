@@ -27,6 +27,7 @@ import lunas.events.StyleEventType;
 
 import pegas.events.UIEvent;
 import pegas.events.UIEventType;
+import pegas.process.ILockable;
 
 import vegas.core.HashCode;
 import vegas.core.IHashable;
@@ -46,7 +47,7 @@ import vegas.util.MathsUtil;
  * This class provides a skeletal implementation of all the components in Lunas, to minimize the effort required to implement this interface.
  * @author eKameleon
  */
-class lunas.display.components.AbstractComponent extends MovieClip implements IEventDispatcher, IHashable 
+class lunas.display.components.AbstractComponent extends MovieClip implements IEventDispatcher, IHashable, ILockable
 {
 
 	/**
@@ -444,6 +445,15 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	public function initEventDispatcher():EventDispatcher 
 	{
 		return new EventDispatcher(this) ;
+	}
+	
+	/**
+	 * Returns {@code true} if the components is locked.
+	 * @return {@code true} if the components is locked.
+	 */
+	public function isLocked():Boolean 
+	{
+		return ___isLock___ ;
 	}
 	
 	/**

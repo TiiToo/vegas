@@ -26,6 +26,8 @@ import asgard.display.DisplayLoaderCollector;
 import asgard.display.DisplayObjectCollector;
 import asgard.net.ILoader;
 
+import pegas.process.ILockable;
+
 import vegas.errors.IllegalArgumentError;
 import vegas.errors.Warning;
 import vegas.events.AbstractCoreEventDispatcher;
@@ -99,7 +101,7 @@ import vegas.util.factory.DisplayFactory;
  * }
  * @author eKameleon
  */
-class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
+class asgard.display.DisplayObject extends AbstractCoreEventDispatcher implements ILockable
 {
 
 	/**
@@ -382,6 +384,15 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 			view._visible = false ;	
 		}
 	}
+	
+	/**
+	 * Returns {@code true} if the display is locked.
+	 * @return {@code true} if the display is locked.
+	 */
+	public function isLocked():Boolean 
+	{
+		return ___isLock___ ;
+	}
 
 	/**
 	 * Returns {@code true} if the display is visible.
@@ -390,6 +401,14 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	public function isVisible():Boolean 
 	{
 		return view._visible  ;	
+	}
+
+	/**
+	 * Locks the object.
+	 */
+	public function lock():Void 
+	{
+		___isLock___ = true ;
 	}
 
 	/**
@@ -412,6 +431,34 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 		view.removeMovieClip() ;
 		_loader.release() ;
 		delete _sName ;
+	}
+
+	/**
+	 * Returns an instance in a visual DisplayObject if exist else throws a Warning error.
+	 * @return an instance in a visual DisplayObject if exist else throws a Warning error.
+	 * @throws Warning if the resolve failed with the specified instance name.
+	 */
+	public function resolve( name:String )
+	{
+		if ( view[ name ] != null)
+		{
+			return view[name] ;
+		}
+		else
+		{
+			throw new Warning( this + " resolve failed with the view : '" + name + "'" );
+		}
+	}
+	
+	/**
+	 * Returns the visual instance creates with the specified visual class and the instance name in argument.
+	 * @param clazz the visual class.
+	 * @param name the name of the instance in the view scope of the display. 
+	 * @throws Warning if the resolve failed with the specified instance name.
+	 */
+	public function resolveVisual( clazz:Function , name:String )
+	{
+		return ConstructorUtil.createVisualInstance( clazz , resolve( name ) ) ;
 	}
 	
 	/**
@@ -455,34 +502,6 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	}
 	
 	/**
-	 * Returns an instance in a visual DisplayObject if exist else throws a Warning error.
-	 * @return an instance in a visual DisplayObject if exist else throws a Warning error.
-	 * @throws Warning if the resolve failed with the specified instance name.
-	 */
-	public function resolve( name:String )
-	{
-		if ( view[ name ] != null)
-		{
-			return view[name] ;
-		}
-		else
-		{
-			throw new Warning( this + " resolve failed with the view : '" + name + "'" );
-		}
-	}
-	
-	/**
-	 * Returns the visual instance creates with the specified visual class and the instance name in argument.
-	 * @param clazz the visual class.
-	 * @param name the name of the instance in the view scope of the display. 
-	 * @throws Warning if the resolve failed with the specified instance name.
-	 */
-	public function resolveVisual( clazz:Function , name:String )
-	{
-		return ConstructorUtil.createVisualInstance( clazz , resolve( name ) ) ;
-	}
-	
-	/**
 	 * Show the display instance.
 	 */
 	public function show():Void 
@@ -496,6 +515,19 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 			view._visible = true ;	
 		}
 	}
+	
+	/**
+	 * Unlocks the display.
+	 */
+	public function unLock():Void 
+	{
+		___isLock___ = false ;
+	}
+
+	/**
+	 * The internal flag to indicates if the display is locked or not.
+	 */	
+	private var ___isLock___:Boolean = false ;
 	
 	/**
 	 * The internal loader of the display.

@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Andromeda Framework based on VEGAS.
+  The Original Code is PEGAS Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -21,38 +21,27 @@
   
 */
 
-import vegas.events.FrontController;
-
 /**
- * The singleton FrontController of the application.
+ * This interface is implemented by all objects lockable.
  * @author eKameleon
  */
-class andromeda.controller.ApplicationController extends FrontController 
+interface pegas.process.ILockable 
 {
-	
-	/**
-	 * Singleton of the global FrontController in the application.
-	 */
-	private function ApplicationController() 
-	{
-		//
-	}
-	
-	/**
-	 * Returns the singleton instance of the ApplicationController.
-	 */
-	static public function getInstance():ApplicationController 
-	{
-		if ( ! _instance ) 
-		{
-			_instance = new ApplicationController() ;
-		}
-		return _instance ;
-	}
 
 	/**
-	 * The internal singleton reference of the Controller.
+	 * Returns {@code true} if the object is locked.
+	 * @return {@code true} if the object is locked.
 	 */
-	static private var _instance:ApplicationController ;
-
+	function isLocked():Boolean ;
+	
+	/**
+	 * Locks the object.
+	 */
+	function lock():Void ;
+	
+	/**
+	 * Unlocks the object.
+	 */
+	function unLock():Void ; 
+	
 }

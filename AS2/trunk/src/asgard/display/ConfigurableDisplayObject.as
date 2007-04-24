@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -35,6 +35,8 @@ class asgard.display.ConfigurableDisplayObject extends DisplayObject implements 
 	
 	/**
 	 * Creates a new ConfigurableDisplayObject instance.
+	 * @param sName:String the name of the display.
+	 * @param target:MovieClip the DisplayObject instance control this target.
 	 */
 	public function ConfigurableDisplayObject(sName:String, target) 
 	{
@@ -42,11 +44,19 @@ class asgard.display.ConfigurableDisplayObject extends DisplayObject implements 
 		isConfigurable = true ;
 	}
 
+	/**
+	 * Returns {@code true} if the display is configurable.
+	 * @return {@code true} if the display is configurable.
+	 */
 	public function get isConfigurable():Boolean
 	{
 		return _isConfigurable ;
 	}
 	
+	/**
+	 * Sets if the display is configurable.
+	 * @param b a boolean flag to determinaites if the display is configurable.
+	 */
 	public function set isConfigurable(b:Boolean):Void
 	{
 		_isConfigurable = (b == true) ;
