@@ -123,19 +123,15 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 		setW( n ) ;	
 	}
 
-	/**
-	 * This Method do nothing when the use click on the ProtectScreen
-	 */	
-	 public function doNothing():Void
-	 {
-	 	getLogger().warn( this + " do nothing ..." ) ;
-	 }
-	 
+	 /**
+	  * Draw the display.
+	  */
 	 public function draw():Void
 	 {
 	 	_bgDraw.clear() ;
 		_bgDraw.beginFill( themeColor, themeAlpha) ;
-		_bgDraw.draw( w, h ) ;	
+		_bgDraw.draw( w, h ) ;
+		_bgDraw.endFill() ;
 	 }
 
 	/**
@@ -174,6 +170,18 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 		update() ;
 	}
 
+
+	/**
+	 * Sets the virtual width and height values of the component.
+	 */
+	public function setSize( w:Number, n:Number ) : Void 
+	{
+		_w = MathsUtil.clamp(n, minWidth, maxWidth) ;
+		_h = MathsUtil.clamp(n, minHeight, maxHeight) ;
+		notifyResized() ;
+		update() ;
+	}
+	
 	/**
 	 * Sets the virtual width value of the component.
 	 */
@@ -194,6 +202,16 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 			return ;
 		}
 		draw() ;
+		viewChanged() ;
+	}
+	
+	/**
+	 * This method is invoqued after the draw() method in the update() method.
+	 * Overrides this method.
+	 */
+	public function viewChanged():Void
+	{
+		// overrides
 	}
 	
 	/**

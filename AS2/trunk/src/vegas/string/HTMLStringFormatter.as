@@ -63,6 +63,10 @@ class vegas.string.HTMLStringFormatter
 
 	/**
 	 * Use the bold method to format and display a string in a document.
+	 * {@code
+	 * var s:String = HTMLStringFormatter.bold("hello world") ;
+	 * trace("bold : " + s) ; // bold : <b>hello world</b>
+	 * }
 	 * @param str the string to be formatted.
 	 * @return the string formatted with the method.
 	 */
@@ -105,6 +109,11 @@ class vegas.string.HTMLStringFormatter
 
 	/**
 	 * Use the italics method to format and display a string in a document.
+	 * {@code
+	 * import vegas.string.HTMLStringFormatter ;
+	 * var s:String = HTMLStringFormatter.italics("hello world") ;
+	 * trace("italics : " + s) ; // italics : <i>hello world</i>
+	 * }
 	 * @param str the string to be formatted.
 	 * @return the string formatted with the method.
 	 */
@@ -115,6 +124,11 @@ class vegas.string.HTMLStringFormatter
 
 	/**
 	 * Creates an HTML hypertext link that requests another URL.
+	 * {@code
+	 * import vegas.string.HTMLStringFormatter ;
+	 * var s:String = HTMLStringFormatter.link("hello world", "http://ekameleon.net/blog", "_blank") ;
+	 * trace("link : " + s) ; // link : <a href="http://google.fr" target="_blank">hello world</a>
+	 * }
 	 * @param str the string to be formatted.
 	 * @param url any string that specifies the HREF of the A tag; it should be a valid URL (relative or absolute).
 	 * @param target (optional) this value defined to the anchor tag forces the load of that link into the targeted window.
@@ -122,14 +136,41 @@ class vegas.string.HTMLStringFormatter
 	 */
 	static public function link( str:String , url:String , target:String ):String
 	{
-		var s:String = '<a href="' + url + '"' ;
+		var s:String = '<a href=\"' + url + '\"' ;
 		if (target != null)
 		{
-			s += ' target="' + target + '"' ;
+			s += ' target=\"' + target + '\"' ;
 		}
 		s += ">" + str + "</a>" ;
 		return s ; 
 	}	
+
+	/**
+	 * Creates an HTML paragraph HTML string in a document.
+	 * {@code 
+	 * import vegas.string.HTMLStringFormatter ;
+	 * 
+	 * var s:String = HTMLStringFormatter.paragraph("hello world") ;
+	 * trace("paragraph : " + s) ; // paragraph : <p>hello world</p>
+	 * 
+	 * var s:String = HTMLStringFormatter.paragraph("hello world", "myStyle") ;
+	 * trace("paragraph : " + s) ; // paragraph : <p class="myStyle">hello world</p>
+	 *} 
+	 * @param str the string to be formatted.
+	 * @param style (optional) the style class name of the tag.
+	 * @return the string formatted with the method.
+	 */
+	static public function paragraph( str:String, style:String ):String
+	{
+		var s:String = '<p' ;
+		if (style.length > 0)
+		{
+			s += ' class=\"' + style + '\"' ;
+		} ;
+		s += '>' ;
+		s += str + '</p>' ;
+		return s ;
+	}
 
 	/**
 	 * Use the small method to format and display a string in a document.
@@ -138,7 +179,34 @@ class vegas.string.HTMLStringFormatter
 	 */
 	static public function small( str:String ):String
 	{
-		return 	"<small>" + str + "</small>" ;
+		return "<small>" + str + "</small>" ;
+	}
+
+	/**
+	 * Creates an HTML span string in a document.
+	 * {@code 
+	 * import vegas.string.HTMLStringFormatter ;
+	 * 
+	 * var sP:String = HTMLStringFormatter.span("hello world") ;
+	 * trace("span : " + sP) ; // span : <span>hello world</span>
+	 * 
+	 * var sP:String = HTMLStringFormatter.span("hello world", "myStyle") ;
+	 * trace("span : " + sP) ; // span : <span class="myStyle">hello world</span>
+	 *} 
+	 * @param str the string to be formatted.
+	 * @param style (optional) the style class name of the tag.
+	 * @return the string formatted with the method.
+	 */
+	static public function span( str:String, style:String ):String
+	{
+		var s:String = '<span' ;
+		if (style.length > 0)
+		{
+			s += ' class=\"' + style + '\"' ;
+		} ;
+		s += '>' ;
+		s += str + '</span>' ;
+		return s ;
 	}
 
 	/**
@@ -173,6 +241,11 @@ class vegas.string.HTMLStringFormatter
 
 	/**
 	 * Use the underline method to format and display a string in a document.
+	 * {@code
+	 * import vegas.string.HTMLStringFormatter ;
+	 * var s:String = HTMLStringFormatter.underline("hello world") ;
+	 * trace("underline : " + s) ; // underline : <u>hello world</u>
+	 * }
 	 * @param str the string to be formatted.
 	 * @return the string formatted with the method.
 	 */
