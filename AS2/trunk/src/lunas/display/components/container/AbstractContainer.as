@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -33,6 +33,7 @@ import vegas.util.mvc.IController;
 import vegas.util.mvc.IView;
 
 /**
+ * The Skeletal implementation of the IContainer interface.
  * @author eKameleon
  */
 class lunas.display.components.container.AbstractContainer extends AbstractComponent implements IContainer, Iterable 
@@ -86,7 +87,20 @@ class lunas.display.components.container.AbstractContainer extends AbstractCompo
 	{
 		return _oModel.getChildByName(name) ;
 	}
-		
+	
+	/**
+	 * Returns the internal model reference of this container.
+	 * @return the internal model reference of this container.
+	 */
+	public function getModel():ContainerModel
+	{
+		return _oModel ;	
+	}
+	
+	/**
+	 * Returns the {@code Iterator} of this container.
+	 * @return the {@code Iterator} of this container.
+	 */
 	public function iterator():Iterator 
 	{
 		return _oModel.iterator() ;
@@ -148,6 +162,9 @@ class lunas.display.components.container.AbstractContainer extends AbstractCompo
 
 	private var _oView:IView ;
 	
+	/**
+	 * Creates the container reference of this component.
+	 */
 	private function _createContainer():Void 
 	{
 		if (_mcContainer == undefined) 
@@ -156,6 +173,9 @@ class lunas.display.components.container.AbstractContainer extends AbstractCompo
 		}
 	}	
 	
+	/**
+	 * Refresh the depths of all childs in the container.
+	 */
 	private function _refreshDepths():Void
 	{
 		var ar:Array = _oModel.toArray() ;

@@ -21,54 +21,14 @@
   
 */
 
-/** IContainer [Interface]
-
-	AUTHOR
-	
-		Name : IContainer
-		Package : lunas.display.components
-		Version : 1.0.0.0
-		Date :  2006-02-11
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- addChild( o , oInit)
-		
-		- addChildAt(o, index:Number, oInit) 
-		
-		- clear():Void
-		
-		- contains( oChild ):Boolean
-		
-		- getChildAt(index:Number) 
-		
-		- getChildByKey(key:Number)
-		
-		- getChildByName(name:String)
-		
-		- getIterator():Iterator
-	
-		- indexOf( oChild ):Number
-	
-		- removeChild( oChild ):Void
-		
-		- removeChildAt(index:Number):Void
-	
-		- removeChildsAt(index:Number, len:Number):Void
-		
-		- removeRange(from:Number, to:Number):Void
-		
-		- setChildIndex( oChild, index:Number):Void
-		
-		- size():Number
-**/
-
 import vegas.data.iterator.Iterator;
 
-interface lunas.display.components.IContainer {
+/**
+ * This interface is used to creates container components.
+ * @author eKameleon
+ */
+interface lunas.display.components.IContainer 
+{
 	
 	function addChild( o , oInit) ;
 		

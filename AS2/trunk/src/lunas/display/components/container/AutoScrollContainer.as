@@ -213,6 +213,7 @@ class lunas.display.components.container.AutoScrollContainer extends ScrollConta
 	
 	private function _mouseEvent( e:TimerEvent ):Void 
 	{
+		
 		__mouse = { x:_xmouse , y:_ymouse } ;
 		var nR:Number = getPosRatio() ;
 		var nMax:Number = scrollAutoRatio || 0 ;
@@ -229,6 +230,7 @@ class lunas.display.components.container.AutoScrollContainer extends ScrollConta
 		{
 			setScroll(nS+1) ;
 		}
+		
 		
 	}
 	

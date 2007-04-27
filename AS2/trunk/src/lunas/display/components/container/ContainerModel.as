@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -21,88 +21,6 @@
   
 */
 
-/** ContainerModel
-
-	AUTHOR
-
-		Name : ContainerModel
-		Package : lunas.display.components.container
-		Version : 1.0.0.0
-		Date :  2006-02-06
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- addChild( oChild )
-		
-		- addChildAt( oChild, index:Number )
-		
-		- addModelListener(oL):Void
-		
-		- clear():Void
-		
-		- contains(oChild):Boolean
-		
-		- getChildAt(index:Number)
-		
-		- getChildByKey(key:Number)
-		
-		- getChildByName(name:String)
-		
-		- indexOf(oChild):Number
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- notifyChanged(e:IEvent):Void
-		
-		- removeChild(oChild)
-		
-		- removeChildAt(index:Number)
-		
-		- removeChildsAt(index:Number, len:Number):Array
-		
-		- removeModelListener(oL):Void
-		
-		- removeRange(from:Number, to:Number):Array
-		
-		- setChildIndex( oChild, index:Number):Void
-		
-		- size():Number
-		
-		- toArray():Array
-		
-		- toString():String
-	
-	EVENT SUMMARY
-	
-		- EventType
-	
-	EVENT TYPE SUMMARY
-
-		- ADD_ITEMS:ModelChangedEventType
-		
-		- CLEAR_ITEMS:ModelChangedEventType
-		
-		- REMOVE_ITEMS:ModelChangedEventType
-			
-		- UPDATE_ITEMS:ModelChangedEventType
-
-	IMPLEMENTS 
-	
-		IModel
-
-	INHERIT 
-	
-		CoreObject → AbstractCoreEventDispatcher → AbstractModel → ContainerModel
-
-	TODO Create a PageableModel Abstract class.
-
-**/
-
 import vegas.data.iterator.ArrayIterator;
 import vegas.data.iterator.Iterable;
 import vegas.data.iterator.Iterator;
@@ -111,11 +29,16 @@ import vegas.events.ModelChangedEventType;
 import vegas.util.ArrayUtil;
 import vegas.util.mvc.AbstractModel;
 
+/**
+ * The model of the containers.
+ */
 class lunas.display.components.container.ContainerModel extends AbstractModel implements Iterable 
 {
 
-	// ----o Constructor
-
+	/**
+	 * Creates a new ContainerModel instance.
+	 * @param childs An Array of items.
+	 */
 	public function ContainerModel( childs:Array ) 
 	{ 
 		super() ;
@@ -128,18 +51,15 @@ class lunas.display.components.container.ContainerModel extends AbstractModel im
 		_eUpdate = new ModelChangedEvent(ModelChangedEventType.UPDATE_ITEMS, this) ;
 		
 	}
-
-	// ----o Constant
 	
 	static public var ADD_ITEMS:String = ModelChangedEventType.ADD_ITEMS ; 
+
 	static public var CLEAR_ITEMS:String = ModelChangedEventType.CLEAR_ITEMS ; 
+
 	static public var REMOVE_ITEMS:String = ModelChangedEventType.REMOVE_ITEMS ; 
+
 	static public var UPDATE_ITEMS:String = ModelChangedEventType.UPDATE_ITEMS ;
 
-	static private var __ASPF__ = _global.ASSetPropFlags(ContainerModel, null , 7, 7) ;
-
-	// ----o Public Methods
-	
 	public function addChild( oChild ) 
 	{
 		return addChildAt(oChild, size()) ; 
@@ -171,12 +91,19 @@ class lunas.display.components.container.ContainerModel extends AbstractModel im
 
 	}
 	
+	/**
+	 * Removes all elements in this model.
+	 */
 	public function clear():Void 
 	{
 		_eClear.removedItems = _model.splice(0) ;
 		notifyChanged(_eClear) ;
 	}
 	
+	/**
+	 * Returns a shallow copy of this model.
+	 * @return a shallow copy of this model.
+	 */
 	public function clone() 
 	{
 		return new ContainerModel(toArray()) ;
@@ -274,18 +201,24 @@ class lunas.display.components.container.ContainerModel extends AbstractModel im
 		}
 	}
 	
+	/**
+	 * Returns the number of elements in this model.
+	 * @return the number of elements in this model.
+	 */
 	public function size():Number 
 	{
 		return _model.length ;
 	}
 	
+	/**
+	 * Returns the {@code Array} representation of the object.
+	 * @return the {@code Array} representation of the object.
+	 */	
 	public function toArray():Array 
 	{
 		return [].concat(_model) ;
 	}
 	
-	// ----o Private Properties
-
 	private var _model:Array ;
 	private var _eAdd:ModelChangedEvent ;
 	private var _eClear:ModelChangedEvent ;

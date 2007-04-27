@@ -118,6 +118,11 @@ class lunas.display.components.container.ListContainer extends SimpleContainer
 		return _bound ;
 	}
 
+	/**
+	 * Returns the direction value of this component.
+	 * @return the direction value of this component.
+	 * @see Direction
+	 */
 	public function getDirection():Number 
 	{ 
 		return (_nDirection == Direction.VERTICAL) ? Direction.VERTICAL : Direction.HORIZONTAL ;

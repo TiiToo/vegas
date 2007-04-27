@@ -25,14 +25,19 @@ import asgard.display.Direction;
 
 import lunas.display.components.container.ListContainer;
 
+import pegas.events.ActionEvent;
 import pegas.events.UIEvent;
 import pegas.events.UIEventType;
 import pegas.transitions.easing.Back;
 import pegas.transitions.Tween;
+import pegas.transitions.TweenEntry;
 
+import vegas.events.Delegate;
+import vegas.events.EventListener;
 import vegas.util.MathsUtil;
 
 /**
+ * This container can be scrolled.
  * @author eKameleon
  */
 class lunas.display.components.container.ScrollContainer extends ListContainer 
@@ -46,35 +51,66 @@ class lunas.display.components.container.ScrollContainer extends ListContainer
 		super() ;
 	}
 
+	/**
+	 * The name of the event dispatched when the scroll change.
+	 */
 	static public var SCROLL:String = UIEventType.SCROLL ;
 
+	/**
+	 * Returns the bottom scroll value.
+	 * @return the bottom scroll value.
+	 */
 	public function get bottomScroll():Number 
 	{
 		return getBottomScroll() ;	
 	}
 
+	/**
+	 * Returns the maxscroll value.
+	 * @return the maxscroll value.
+	 */
 	public function get maxscroll():Number 
 	{
 		return getMaxscroll() ;	
 	}
 
+	/**
+	 * Returns the scroll value of this container.
+	 * @return the scroll value of this container.
+	 */
 	public function get scroll():Number 
 	{
 		return getScroll() ;	
 	}
-
+	
+	/**
+	 * Sets the scroll value of this container.
+	 */
 	public function set scroll(n:Number):Void 
 	{
 		setScroll( n ) ;	
 	}
 
+	/**
+	 * Indicates if the scroll is fixed.
+	 */
 	public var fixScroll:Boolean = true ;	
 
+	/**
+	 * Indicates if the scroll use an easing effect.
+	 */
 	public var noScrollEasing:Boolean ;
 
 	public var scrollEasing:Function = undefined ;
 
 	public var scrollDuration:Number = 12  ;
+
+	public function addChildAt(o, index:Number, oInit) 
+	{
+		var c:MovieClip = super.addChildAt(o, index, oInit) ;
+		_refreshChilds() ;
+		return c ;
+	}
 
 	public function clearScroll():Void 
 	{ 
@@ -90,7 +126,7 @@ class lunas.display.components.container.ScrollContainer extends ListContainer
 	public function getContainerPos():Number 
 	{
 		var index:Number = getScroll() - 1 ;
-		var prop:String = (_nDirection == Direction.HORIZONTAL) ? "_x" : "_y" ;
+		var prop:String = _getPosProperty() ;
 		return - _oModel.getChildAt(index)[prop] ;
 	}
 
@@ -108,7 +144,7 @@ class lunas.display.components.container.ScrollContainer extends ListContainer
 
 	public function viewDestroyed():Void 
 	{
-		_removeTween() ;
+		_clearTween() ;
 	}
 
 	public function setScroll(n:Number, noEvent:Boolean):Void  
@@ -128,7 +164,7 @@ class lunas.display.components.container.ScrollContainer extends ListContainer
 
 	public function speedScroll(n:Number):Void 
 	{
-		_removeTween() ;
+		_clearTween() ;
 		_scroll = (getMaxscroll() > 0) ? n : 1 ;
 		_mcContainer[_getPosProperty()] = getContainerPos() ;
 	}
@@ -136,14 +172,14 @@ class lunas.display.components.container.ScrollContainer extends ListContainer
 	public function viewChanged():Void 
 	{
 		super.viewChanged() ; 
-		_removeTween() ;
+		_clearTween() ;
 		if (fixScroll) speedScroll(1) ;
 	}
 	
 	public function viewEnabled():Void 
 	{
 		super.viewEnabled() ; 
-		_removeTween() ;
+		_clearTween() ;
 		if (fixScroll) speedScroll(1) ;
 	}
 
@@ -151,44 +187,81 @@ class lunas.display.components.container.ScrollContainer extends ListContainer
 	{
 		dispatchEvent(new UIEvent( UIEventType.SCROLL, this)) ;
 	}
-
+	
 	private var _scroll:Number = 0 ;
 
+	private var _changeListener:EventListener ;
+
 	private var _tw:Tween ;
-	
-	private function _getPosProperty(Void):String 
+
+	private var _entry:TweenEntry ;
+
+	private function _changeScroll():Void 
 	{
-		return (_nDirection == Direction.HORIZONTAL) ? "_x" : "_y" ;
-	}
-		
-	private function _removeTween() :Void 
-	{
-		_tw.stop() ; 
-		_tw = null ;
-	}
-	
-	private function _changeScroll() : Void 
-	{
-		_tw.stop() ;
+		if (_tw.running)
+		{
+			_tw.stop() ;
+		}
+
 		var prop:String = _getPosProperty() ;
-		var pos:Number = getContainerPos () ;
+		var pos:Number  = getContainerPos () ;
+
 		if (noScrollEasing) 
 		{
-			_mcContainer[prop] = pos ; 
+			_mcContainer[prop] = pos ;
+			_refreshChilds() ;
 		} 
 		else 
 		{
-			_tw = new Tween 
-			( 
-				_mcContainer, 
-				prop, 
-				scrollEasing || Back.easeOut, 
-				_mcContainer[prop], 
-				pos ,
-				isNaN(scrollDuration) ? 24 : scrollDuration		 
-			) ;
+		
+			_tw.clear() ;
+			
+			_entry.prop   = prop ;
+			_entry.easing = scrollEasing || Back.easeOut ;
+			_entry.begin  = _mcContainer[prop] ;
+			_entry.finish = pos ;
+			
+			_tw.insert( _entry ) ;
+			_tw.duration = isNaN( scrollDuration ) ? 24 : scrollDuration ;
 			_tw.run() ;
+			
 		}
 	}
 	
+	private function _clearTween() :Void 
+	{
+		_tw.stop() ; 
+	}
+
+	/*override*/ private function _createContainer():Void 
+	{
+
+		super._createContainer() ;
+		
+		_changeListener = new Delegate(this, _refreshChilds ) ;
+		
+		_tw = new Tween( _mcContainer ) ;
+		_tw.addEventListener( ActionEvent.CHANGE , _changeListener ) ;
+		
+		_entry = new TweenEntry() ;
+
+	}
+	
+	/**
+	 * Returns the position property with the current direction property.
+	 * @return the position property with the current direction property.
+	 */
+	private function _getPosProperty():String 
+	{
+		return (_nDirection == Direction.HORIZONTAL) ? "_x" : "_y" ;
+	}
+	
+	/**
+	 * Invoqued to refreshChilds during the scroll of this container.
+	 */
+	/*protected*/ private function _refreshChilds() : Void 
+	{
+		// overrides this method.
+	}
+
 }
