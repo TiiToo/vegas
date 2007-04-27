@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -137,8 +137,8 @@ class lunas.display.components.container.AutoScrollContainer extends ScrollConta
 		var c:MovieClip = _mcMask ;
 		__min = { x: c._x, y: c._y } ;
 		__max = { 
-			x: c._x + c.w , 
-			y: c._y + c.h 
+			x: c._x + c._width , 
+			y: c._y + c._height 
 		};
 	}
 	
@@ -149,7 +149,7 @@ class lunas.display.components.container.AutoScrollContainer extends ScrollConta
 	
 	public function startMouseEvent() : Void 
 	{
-		delete onRollOver ;
+		delete this.onRollOver ;
 		dispatchEvent(new MouseEvent(ROLLOVER, this)) ;
 		if (_auto) 
 		{

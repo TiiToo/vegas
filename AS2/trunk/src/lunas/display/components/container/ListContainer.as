@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -24,9 +24,8 @@
 import asgard.display.Direction;
 
 import lunas.display.components.container.SimpleContainer;
-import lunas.display.components.shape.RectangleComponent;
 
-import vegas.util.factory.DisplayFactory;
+import pegas.draw.RectanglePen;
 
 /**
  * @author eKameleon
@@ -43,8 +42,6 @@ class lunas.display.components.container.ListContainer extends SimpleContainer
 		_createMask() ;
 		update() ;
 	}
-
-	static public var MASK_RENDERER:Function = RectangleComponent ;
 
 	public function get direction():Number 
 	{
@@ -246,6 +243,8 @@ class lunas.display.components.container.ListContainer extends SimpleContainer
 
 	private var _bound:Object ;
 
+	private var _maskPen:RectanglePen ;
+
 	private var _nDirection:Number ; 
 
 	private var _nChildCount:Number = null ;
@@ -256,39 +255,43 @@ class lunas.display.components.container.ListContainer extends SimpleContainer
 
 	private var _mcMask:MovieClip ;
 
+	private function _createMask():Void 
+	{
+		if (_mcMask == null) 
+		{
+			_mcMask = createEmptyMovieClip( "_mcMask", 100 ) ;
+			_maskPen = new RectanglePen( _mcMask ) ;
+		}
+	}
+
 	private function _removeMask():Void 
 	{
 		if (_mcMask != undefined) 
 		{
 			_mcMask.removeMovieClip () ;
+			_maskPen = null ;
 		}
 	}
 
 	private function _refreshMask():Void 
 	{
+		
+		_maskPen.clear() ;
+		_maskPen.beginFill( 0 , 0 ) ;
+		_maskPen.draw( _bound.w , _bound.h ) ;
+		_maskPen.endFill() ;
+		
+		return ;
 		if (_bMaskIsActive) 
 		{
-			_mcMask.setSize(_bound.w , _bound.h) ;
 			_mcContainer.setMask(_mcMask) ;
 		}
 		else 
 		{
 			_mcContainer.setMask(null) ;
-			_mcMask.setSize(_bound.w , _bound.h) ;
 		}
 	}
 
-	private function _createMask():Void 
-	{
-		if (_mcMask == undefined) 
-		{
-			var init = {
-				w : 100 , h : 100 ,
-				fc:0 , fa:0 , t:0, lc:0 , la:0
-			};
-			
-			var m = DisplayFactory.createChild( ListContainer.MASK_RENDERER, "_mcMask", 100, this, init) ;
-		}
-	}
+
 
 }
