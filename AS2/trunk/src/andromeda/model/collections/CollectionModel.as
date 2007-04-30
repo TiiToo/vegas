@@ -130,8 +130,8 @@ class andromeda.model.collections.CollectionModel extends AbstractModelObject
 	}
 
 	/**
-	 * Initialize the internal Map instance in the constructor of the class.
-	 * You can overrides this method if you want change the default HashMap use in this model.
+	 * Initialize the internal Collection instance in the constructor of the class.
+	 * You can overrides this method if you want change the default SimpleCollection use in this model.
 	 */
 	public function initializeCollection():Collection
 	{

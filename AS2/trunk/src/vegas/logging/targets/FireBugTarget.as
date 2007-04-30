@@ -21,11 +21,12 @@
   
 */
 
-
 import vegas.logging.LogEventLevel;
 import vegas.logging.targets.LineFormattedTarget;
 
 /**
+ * Provides a logger target that uses the FireBug console extension in Firefox to output log messages. 
+ * You can download the FireBug and test this target : https://addons.mozilla.org/fr/firefox/addon/1843
  * @author eKameleon
  */
 class vegas.logging.targets.FireBugTarget extends LineFormattedTarget 
@@ -79,9 +80,13 @@ class vegas.logging.targets.FireBugTarget extends LineFormattedTarget
 			}		
 			
 		}
-		if ( flash.external.ExternalInterface )
+		if ( flash.external.ExternalInterface.available )
 		{
     		flash.external.ExternalInterface.call( methodName, [message] ) ;
+		}
+		else
+		{
+			getURL("javascript:" + methodName + "('"+ message +"');");	
 		}
 	}
 

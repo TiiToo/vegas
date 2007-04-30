@@ -25,6 +25,7 @@ import vegas.core.HashCode;
 import vegas.core.IFormattable;
 import vegas.core.IHashable;
 import vegas.core.ISerializable;
+import vegas.logging.ILogable;
 import vegas.logging.ILogger;
 import vegas.logging.Log;
 import vegas.util.ConstructorUtil;
@@ -43,7 +44,7 @@ import vegas.util.ConstructorUtil;
  * </p>
  * @author eKameleon
  */
-class vegas.core.CoreObject implements IFormattable, IHashable, ISerializable 
+class vegas.core.CoreObject implements IFormattable, IHashable, ILogable, ISerializable 
 {
 
 	/**
