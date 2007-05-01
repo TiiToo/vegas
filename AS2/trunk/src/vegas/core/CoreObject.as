@@ -27,7 +27,6 @@ import vegas.core.IHashable;
 import vegas.core.ISerializable;
 import vegas.logging.ILogable;
 import vegas.logging.ILogger;
-import vegas.logging.Log;
 import vegas.util.ConstructorUtil;
 
 /**
@@ -78,10 +77,6 @@ class vegas.core.CoreObject implements IFormattable, IHashable, ILogable, ISeria
 	 */
 	public function setLogger( log:ILogger ):Void 
 	{
-		if (log == null)
-		{
-			_logger = Log.getLogger( ConstructorUtil.getPath(this) ) ;
-		}		
 		_logger = log ;
 	}
 

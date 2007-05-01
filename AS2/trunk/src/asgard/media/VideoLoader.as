@@ -38,7 +38,6 @@ import vegas.events.BasicEvent;
 import vegas.events.Delegate;
 import vegas.events.EventType;
 import vegas.events.TimerEvent;
-import vegas.logging.ILogger;
 import vegas.util.ConstructorUtil;
 import vegas.util.FrameTimer;
 import vegas.util.Timer;
@@ -548,13 +547,13 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	 */
 	private function _onMetaData (info:Object):Void 
 	{
-		
-		_oMetaData = new FLVMetaData(info) ;
-		
+
 		for (var props in info) 
 		{
 			getLogger().info( this + " onMetaData, " + props + " : " + info[props]) ;
 		}
+		
+		_oMetaData = new FLVMetaData(info) ;
 		
 		setDuration( isNaN(info.duration) ? 0 : parseInt(info.duration) ) ;
 		
@@ -600,11 +599,9 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	private function _onNetStreamStatus( info:Object ):Void 
 	{
 		
-		getLogger().debug( this + " stream status : " + info ) ;
-		
-		trace(this + " stream status : " + info.code ) ;
-		
 		var code:String = info.code ;
+		
+		getLogger().debug( this + " stream status : " + code + ", level : " + (info.level || "") ) ;
 		
 		switch ( true ) 
 		{
