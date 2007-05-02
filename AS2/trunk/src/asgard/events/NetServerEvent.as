@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -21,7 +21,6 @@
   
 */
 
-import asgard.events.NetServerEventType;
 import asgard.net.NetServerConnection;
 import asgard.net.NetServerInfo;
 import asgard.net.NetServerStatus;
@@ -31,14 +30,14 @@ import vegas.events.DynamicEvent;
 /**
  * @author eKameleon
  * @version 1.0.0.0
- **/	
+ */	
 class asgard.events.NetServerEvent extends DynamicEvent 
 {
 
 	/**
 	 * Creates a new NetServerEvent instance.
 	 */
-	public function NetServerEvent( type:NetServerEventType, connection:NetServerConnection, status:NetServerStatus, info, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number )
+	public function NetServerEvent( type:String, connection:NetServerConnection, status:NetServerStatus, info, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number )
 	{
 		super(type, connection, context, bubbles, eventPhase, time, stop) ;
 		setInfo(info) ;
@@ -51,7 +50,7 @@ class asgard.events.NetServerEvent extends DynamicEvent
 	 */
 	public function clone() 
 	{
-		return new NetServerEvent( NetServerEventType(getType()), NetServerConnection(getTarget()), getStatus(), getInfo(), getTarget(), getContext()) ;
+		return new NetServerEvent( getType(), NetServerConnection(getTarget()), getStatus(), getInfo(), getTarget(), getContext()) ;
 	}
 
 	/**

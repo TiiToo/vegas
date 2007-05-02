@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -32,7 +32,7 @@ class asgard.events.NetServerEventType extends String
 	/**
 	 * Creates a new NetServerEventType instance.
 	 */
-	private function NetServerEventType(s:String) 
+	public function NetServerEventType(s:String) 
 	{
 		super(s) ;
 	}

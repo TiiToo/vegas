@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -83,6 +83,30 @@ class vegas.util.factory.DisplayFactory
 		{
 			return p_target.attachMovie(oChild, p_name, p_depth, p_init) ;
 		}
+	}
+	
+	/**
+	 * Returns the depth of the display instance (MovieClip, TextField, Video).
+	 * @param display The display reference (MovieClip, TextField, Video).
+	 * @return the depth of the display instance (MovieClip, TextField, Video).
+	 */
+	static public function getDepth( display ):Number
+	{
+		return MovieClip.prototype.getDepth.call( display ) ;
+	}
+	
+	/**
+	 * Swaps the stacking, or depth level (z-order), of the specified display with display that is specified by the target parameter, or with the display that currently occupies the depth level that is specified in the target parameter.
+	 * @param display An MovieClip, TextField or Video display object.
+	 * @param target This parameter can take one of two forms:
+	 * <bl>
+	 * <li>A Number that specifies the depth level where the display is to be placed.</li>
+	 * <li>A String that specifies the display instance whose depth is swapped with the movie clip for which the method is being applied. Both displays must have the same parent movie clip.</li>
+	 * </bl>
+	 */
+	static public function swapDepths( display, target ):Void
+	{
+		MovieClip.prototype.swapDepths.call( display, target ) ;
 	}
 	
 }

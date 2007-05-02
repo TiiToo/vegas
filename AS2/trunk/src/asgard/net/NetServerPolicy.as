@@ -1,4 +1,4 @@
- /*
+﻿ /*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -24,10 +24,17 @@
 /**
  * The static enumeration class with all NetServer policy constants.
  * @author eKameleon
- * @version 1.0.0.0
  */	
 class asgard.net.NetServerPolicy extends Number 
 {
+	
+	/**
+	 * Creates a new NetServerPolicy instance.
+	 */
+	function NetServerPolicy( value:Number )
+	{
+		super( value ) ;
+	}	
 	
 	/**
 	 * Determinates if the NetServerConnection use an INFINITY policy.
@@ -38,7 +45,5 @@ class asgard.net.NetServerPolicy extends Number
 	 * Determinates if the NetServerConnection use a LIMIT policy.
 	 */
 	static public var LIMIT:NetServerPolicy = new NetServerPolicy(1) ;
-
-	static private var __ASPF__ = _global.ASSetPropFlags(NetServerPolicy, null , 7, 7) ;
 
 }

@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -40,6 +40,8 @@ import vegas.events.EventListener;
 import vegas.events.EventListenerCollection;
 import vegas.events.IEventDispatcher;
 import vegas.events.TimerEvent;
+import vegas.logging.ILogable;
+import vegas.logging.ILogger;
 import vegas.util.ConstructorUtil;
 import vegas.util.Timer;
 import vegas.util.TypeUtil;
@@ -48,22 +50,27 @@ import vegas.util.TypeUtil;
  * This class extends the NetConnection class and defined an implementation based on VEGAS to used Flash Remoting or Flash MediaServer (with AMF protocol).
  * @author eKameleon
  */	
-dynamic class asgard.net.NetServerConnection extends NetConnection implements Action, IEventDispatcher, IFormattable, IHashable, ISerializable 
+class asgard.net.NetServerConnection extends NetConnection implements Action, IEventDispatcher, IFormattable, IHashable, ILogable, ISerializable 
 {
 	
 	/**
 	 * Creates a new NetServerConnection instance.
 	 */
-	function NetServerConnection() 
+	function NetServerConnection( bGlobal:Boolean , sChannel:String ) 
 	{
-		_dispatcher = initEventDispatcher() ;
-		_eClose = new NetServerEvent( NetServerEventType.CLOSE , this ) ;
-		_eFinish = new NetServerEvent( NetServerEventType.FINISH , this ) ;
-		_eStart = new NetServerEvent( NetServerEventType.START , this ) ;
-		_eStatus = new NetServerEvent( NetServerEventType.NET_STATUS , this ) ;
-		_eTimeOut = new NetServerEvent( NetServerEventType.TIMEOUT , this ) ;		
-		_timer = new Timer(8000, 1) ;
-		_timeOut = new Delegate(this, _onTimeOut) ;
+		setGlobal( bGlobal , sChannel ) ;	
+		_timer   = new Timer(8000, 1) ;
+		_timeOut = new Delegate(this, _onTimeOut) ;		
+		initEvent() ;
+	}
+
+	/**
+	 * (read-only) Returns the value of the isGlobal flag of this model. Use the {@code setGlobal} method to modify this value.
+	 * @return {@code true} if the model use a global EventDispatcher to dispatch this events.
+	 */
+	public function get isGlobal():Boolean 
+	{
+		return getIsGlobal() ;
 	}
 
 	/**
@@ -134,6 +141,16 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 	}
 
 	/**
+	 * Returns and creates a new empty ModelObjectEvent. You can override this method.
+	 * @param type the type of the event.
+	 * @return a new empty ModelObjectEvent with the type specified in argument.
+	 */
+	public function createNewEvent( type:String ):NetServerEvent 
+	{
+		return new NetServerEvent( type || null , this ) ;
+	}
+
+	/**
 	 * Dispatches an event into the event flow.
 	 * @param event The Event object that is dispatched into the event flow.
 	 * @param isQueue if the EventDispatcher isn't register to the event type the event is bufferized.
@@ -154,7 +171,7 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 	{
 		return _timer.getDelay() ;	
 	}
-
+	
 	/**
 	 * Returns the internal {@code EventDispatcher} reference.
 	 * @return the internal {@code EventDispatcher} reference.
@@ -181,6 +198,51 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 	{
 		return _dispatcher.getEventListeners(eventName) ;
 	}
+	
+	/**
+	 * Returns the event name use in the connection is closed.
+	 * @return the event name use in the connection is closed.
+	 */
+	public function getEventTypeCLOSE():String
+	{
+		return _eClose.getType() ;
+	}
+
+	/**
+	 * Returns the event name use in the connection is finished.
+	 * @return the event name use in the connection is finished.
+	 */
+	public function getEventTypeFINISH():String
+	{
+		return _eFinish.getType() ;
+	}
+	
+	/**
+	 * Returns the event name use in the connection is started.
+	 * @return the event name use in the connection is started.
+	 */
+	public function getEventTypeSTART():String
+	{
+		return _eStart.getType() ;
+	}
+	
+	/**
+	 * Returns the event name use in the connection status changed.
+	 * @return the event name use in the connection status changed.
+	 */
+	public function getEventTypeSTATUS():String
+	{
+		return _eStatus.getType() ;
+	}
+
+	/**
+	 * Returns the event name use in the connection is out of time.
+	 * @return the event name use in the connection is out of time.
+	 */
+	public function getEventTypeTIMEOUT():String
+	{
+		return _eTimeOut.getType() ;
+	}
 
 	/**
 	 * Returns the {@code EventListenerCollection} of this EventDispatcher.
@@ -191,9 +253,32 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 		return _dispatcher.getGlobalEventListeners() ;
 	}
 
+	/**
+	 * Returns the value of the isGlobal flag of this model.
+	 * @return {@code true} if the model use a global EventDispatcher to dispatch this events.
+	 */
+	public function getIsGlobal():Boolean 
+	{
+		return _isGlobal ;
+	}
+	
+	/**
+	 * Returns the NetServerPolicy value of this object.
+	 * @return the NetServerPolicy value of this object.
+	 * @see NetServerPolicy
+	 */
 	public function getLimitPolicy():NetServerPolicy 
 	{
 		return _policy ;	
+	}
+	
+	/**
+	 * Returns the internal {@code ILogger} reference of this {@code ILogable} object.
+	 * @return the internal {@code ILogger} reference of this {@code ILogable} object.
+	 */
+	public function getLogger():ILogger
+	{
+		return _logger ; 	
 	}
 
 	/**
@@ -233,6 +318,19 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 	}
 	
 	/**
+	 * This method is invoqued in the constructor of the class to initialize all events.
+	 * Overrides this method.
+	 */
+	public function initEvent():Void
+	{
+		_eClose   = createNewEvent( NetServerEventType.CLOSE ) ;
+		_eFinish  = createNewEvent( NetServerEventType.FINISH ) ;
+		_eStart   = createNewEvent( NetServerEventType.START ) ;
+		_eStatus  = createNewEvent( NetServerEventType.NET_STATUS ) ;
+		_eTimeOut = createNewEvent( NetServerEventType.TIMEOUT ) ;	
+	}
+	
+	/**
 	 * Creates and returns the internal {@code EventDispatcher} reference (this method is invoqued in the constructor).
 	 * You can overrides this method if you wan use a global {@code EventDispatcher} singleton.
 	 * @return the internal {@code EventDispatcher} reference.
@@ -249,7 +347,7 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 
 	public function notifyFinished():Void 
 	{
-		dispatchEvent(_eFinish) ;
+		dispatchEvent( _eFinish ) ;
 	}
 
 	public function notifyStarted():Void 
@@ -266,7 +364,7 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 
 	public function notifyTimeOut():Void 
 	{
-		dispatchEvent(_eTimeOut) ;	
+		dispatchEvent( _eTimeOut ) ;	
 	}
 
 	/** 
@@ -317,7 +415,59 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 	}
 
 	/**
-	 * Use limit timeout interval.
+	 * Sets the event name use in the connection is closed.
+	 */
+	public function setEventTypeCLOSE( type:String ):Void
+	{
+		_eClose.setType( type ) ;
+	}
+
+	/**
+	 * Sets the event name use in the connection is finished.
+	 */
+	public function setEventTypeFINISH( type:String ):Void
+	{
+		_eFinish.setType( type ) ;
+	}
+	
+	/**
+	 * Sets the event name use in the connection is started.
+	 */
+	public function setEventTypeSTART( type:String ):Void
+	{
+		_eStart.setType( type ) ;
+	}
+	
+	/**
+	 * Sets the event name use in the connection status changed.
+	 */
+	public function setEventTypeSTATUS( type:String ):Void
+	{
+		_eStatus.setType( type ) ;
+	}
+
+	/**
+	 * Sets the event name use in the connection is out of time.
+	 */
+	public function setEventTypeTIMEOUT( type:String ):Void
+	{
+		_eTimeOut.setType( type ) ;
+	}
+
+	/**
+	 * Sets if the model use a global {@code EventDispatcher} to dispatch this events, if the {@code flag} value is {@code false} the model use a local EventDispatcher.
+	 * @param flag the flag to use a global event flow or a local event flow.
+	 * @param channel the name of the global event flow if the {@code flag} argument is {@code true}.  
+	 */
+	public function setGlobal( flag:Boolean , channel:String ):Void 
+	{
+		_isGlobal = flag ;
+		setEventDispatcher( flag ? EventDispatcher.getInstance( channel ) : null ) ;
+	}
+
+	/**
+	 * Sets if the connection use the limit timeout interval.
+	 * @param policy the NetServerPolicy.INFINITY or NetServerPolicy.LIMIT values.
 	 * @see NetServerPolicy
 	 */
 	public function setLimitPolicy( policy:NetServerPolicy ):Void 
@@ -331,6 +481,14 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 		{
 			_timer.removeEventListener(TimerEvent.TIMER, _timeOut) ;
 		}
+	}
+
+	/**
+	 * Sets the internal {@code ILogger} reference of this {@code ILogable} object.
+	 */
+	public function setLogger( log:ILogger ):Void 
+	{
+		_logger = log ;
 	}
 
 	/**
@@ -380,10 +538,12 @@ dynamic class asgard.net.NetServerConnection extends NetConnection implements Ac
 	private var _eStart:NetServerEvent ;
 	private var _eStatus:NetServerEvent ;
 	private var _eTimeOut:NetServerEvent ;
+	private var _isGlobal:Boolean ;
+	private var _logger:ILogger ;
 	private var _policy:NetServerPolicy ;
 	private var _timer:Timer ;
 	private var _timeOut:EventListener ;
-	
+
 	static private var _initHashCode:Boolean = HashCode.initialize(NetServerConnection.prototype) ;
 
 	/**

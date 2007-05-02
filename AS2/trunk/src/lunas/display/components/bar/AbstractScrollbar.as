@@ -33,39 +33,71 @@ import pegas.transitions.Tween;
 
 import vegas.util.MathsUtil;
 
+/**
+ * The abstract class of all scrollbar components based on LunAS.
+ * @author eKameleon
+ */
 class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar implements IScrollbar 
 {
 
+	/**
+	 * Creates a new AbstractScrollbar instance.
+	 */
 	private function AbstractScrollbar() 
 	{
 		_eDrag = new ButtonEvent(ButtonEventType.DRAG, this) ;
 		_eStartDrag = new ButtonEvent(ButtonEventType.START_DRAG, this) ;
 		_eStopDrag = new ButtonEvent(ButtonEventType.STOP_DRAG, this) ;
-		
-		 // Fix bug with MTASC ! I must declare the value with Static Property in the constructor
 		_nDirection = Direction.VERTICAL ;
-		
 	}
 
+	/**
+	 * The name of the event when the user drag the scrollbar.
+	 */
 	static public var DRAG:String = ButtonEventType.DRAG ;
 
+	/**
+	 * The name of the event when the user start to drag the scrollbar.
+	 */
 	static public var START_DRAG:String = ButtonEventType.START_DRAG ;
 
+	/**
+	 * The name of the event when the user stop to drag the scrollbar.
+	 */
 	static public var STOP_DRAG:String = ButtonEventType.STOP_DRAG ;
 
+	/**
+	 * Indicates the duration of the easing effect if is active.
+	 */
 	public var duration:Number = 24  ;	
 
+	/**
+	 * Indicates the easing method if the easing effect is active.
+	 */
 	public var easing:Function = null ;
 
+	/**
+	 * A static object use to defines the inverse property name of the bar.
+	 */
 	static public var invertPosField:Object = { _x : "_y" , _y : "_x" } ;
 
+	/**
+	 * (read-only) Returns {@code true} if the bar is dragging.
+	 * @return {@code true} if the bar is dragging.
+	 */
 	public function get isDragging():Boolean 
 	{
 		return getIsDragging() ;	
 	}
 
+	/**
+	 * Determinates if the bar use easing effects or not.
+	 */
 	public var noEasing:Boolean = true ;
 	
+	/**
+	 * Invoqued when the bar is dragging.
+	 */
 	public function dragging():Void 
 	{
 		var sizeField:String = getSizeField() ;
@@ -79,6 +111,10 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 		notifyDrag() ;
 	}
 
+	/**
+	 * Returns the background bar reference. Overrides this method in the concrete implementations.
+	 * @return the background bar reference.
+	 */
 	public function getBar():MovieClip 
 	{
 		return null ; // override this method !
@@ -99,26 +135,42 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 		return (getDirection() == Direction.VERTICAL) ? "_ymouse" : "_xmouse" ;
 	}
 	
+	/**
+	 * Returns the thumb reference. Overrides this method in the concrete implementations.
+	 * @return the thumb reference.
+	 */
 	public function getThumb():MovieClip 
 	{
 		return null ; // override this method !
 	}
 
+	/**
+	 * Dispatchs an event when the user drag the bar.
+	 */
 	public function notifyDrag():Void 
 	{
 		dispatchEvent( _eDrag ) ;
 	}
 
+	/**
+	 * Dispatchs an event when the user start to drag the bar.
+	 */
 	public function notifyStartDrag():Void
 	{
 		dispatchEvent( _eStartDrag ) ;	
 	}
-	
+
+	/**
+	 * Dispatchs an event when the user stop to drag the bar.
+	 */
 	public function notifyStopDrag():Void
 	{
 		dispatchEvent( _eStopDrag ) ;	
 	}
 
+	/**
+	 * Invoqued when the user start to drag the bar.
+	 */
 	public function startDragging():Void 
 	{
 		notifyStartDrag() ;
@@ -129,6 +181,9 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 		this.onMouseMove = dragging ;
 	}
 
+	/**
+	 * Invoqued when the user stop to drag the bar.
+	 */
 	public function stopDragging():Void 
 	{
 		_isDragging = false ;
@@ -136,6 +191,9 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 		notifyStopDrag() ;
 	}
 	
+	/**
+	 * Invoqued when the position value of the bar is changed.
+	 */
 	public function viewPositionChanged( flag:Boolean ):Void 
 	{
 
