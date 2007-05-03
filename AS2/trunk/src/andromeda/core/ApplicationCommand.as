@@ -39,14 +39,16 @@ class andromeda.core.ApplicationCommand
 	static public function changeLoader( message:String , percent:Number ):Void
 	{
 		
+
+		
 		percent = (percent > 0 ) ? percent : 0 ;
 
 		if ( DisplayObjectCollector.contains( ApplicationList.APPLICATION_LOADER ) ) 
 		{
 			
-			var loader:ILoaderDisplay  = ILoaderDisplay( DisplayObjectCollector.get(ApplicationList.APPLICATION_LOADER) ) ;
+			var loader:ILoaderDisplay = ILoaderDisplay( DisplayObjectCollector.get(ApplicationList.APPLICATION_LOADER) ) ;
 			
-			if (!loader.isVisible())
+			if ( !loader.isVisible() )
 			{
 				showLoader() ;	
 			}

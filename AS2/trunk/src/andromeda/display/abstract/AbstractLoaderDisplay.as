@@ -21,6 +21,8 @@
   
 */
 
+import andromeda.core.ApplicationDepthList;
+import andromeda.core.ApplicationList;
 import andromeda.display.abstract.ILoaderDisplay;
 
 import asgard.display.ConfigurableDisplayObject;
@@ -39,9 +41,9 @@ class andromeda.display.abstract.AbstractLoaderDisplay extends ConfigurableDispl
 	 * @param sName:String the name of the display.
 	 * @param target:MovieClip the DisplayObject instance control this target.
 	 */
-	public function AbstractLoaderDisplay(sName : String, target) 
+	public function AbstractLoaderDisplay( target ) 
 	{
-		super(sName, target);
+		super( ApplicationList.APPLICATION_LOADER, target.createEmptyMovieClip( ApplicationList.APPLICATION_LOADER, ApplicationDepthList.LOADER_DEPTH )  ) ;
 	}
 
 	/**
@@ -77,7 +79,6 @@ class andromeda.display.abstract.AbstractLoaderDisplay extends ConfigurableDispl
 	{
 		setPercent(n) ;
 	}
-
 
 	/**
 	 * Returns the label value.
@@ -161,6 +162,6 @@ class andromeda.display.abstract.AbstractLoaderDisplay extends ConfigurableDispl
 	/**
 	 * The internal position value of this loader display.
 	 */
-	private var _percent:Number ;
+	private var _percent:Number = 0 ;
 	
 }
