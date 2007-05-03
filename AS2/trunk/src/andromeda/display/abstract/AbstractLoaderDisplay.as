@@ -126,6 +126,7 @@ class andromeda.display.abstract.AbstractLoaderDisplay extends ConfigurableDispl
 	{
 		_label   = message || null ;
 		_percent = Range.PERCENT_RANGE.clamp( (percent>0) ? percent : 0 ) ;
+		update() ;
 	}
 	
 	/**
