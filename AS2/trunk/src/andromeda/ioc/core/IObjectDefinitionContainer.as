@@ -1,4 +1,4 @@
-import andromeda.ioc.core.IObjectDefinition;
+﻿import andromeda.ioc.core.IObjectDefinition;
 /*
 
   The contents of this file are subject to the Mozilla Public License Version

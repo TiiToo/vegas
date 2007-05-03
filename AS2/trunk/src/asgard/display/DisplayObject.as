@@ -223,7 +223,6 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher implement
 	{
 		return __ROOT__ ;
 	}
-
 	
 	/**
 	 * [read-write] Indicates the rotation value of the DisplayObject.

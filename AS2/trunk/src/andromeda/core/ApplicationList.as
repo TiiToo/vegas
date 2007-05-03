@@ -21,13 +21,26 @@
   
 */
 
-import vegas.events.EventListener;
-
 /**
- * Defines a IController in the application. All IController objects implements the EventListener class.
+ * The list of all global displays of the application.
  * @author eKameleon
  */
-interface andromeda.controller.IController extends EventListener
+class andromeda.core.ApplicationList 
 {
-	
+
+	/**
+	 * The name of the application loader display.
+	 */
+	static public var APPLICATION_LOADER:String = "application_loader" ;
+
+	/**
+	 * The name of the protect screen display.
+	 */
+	static public var PROTECT_SCREEN:String = "protect_screen" ;
+
+	/**
+	 * The name of the sound display.
+	 */
+	static public var SOUND:String = "sound" ;
+
 }

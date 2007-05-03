@@ -1,4 +1,4 @@
-import andromeda.ioc.core.ObjectDefinition;
+﻿import andromeda.ioc.core.ObjectDefinition;
 import andromeda.ioc.factory.ObjectFactory;
 
 import vegas.core.IFactory;
