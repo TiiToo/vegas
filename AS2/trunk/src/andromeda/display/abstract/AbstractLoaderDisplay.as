@@ -21,8 +21,6 @@
   
 */
 
-import andromeda.core.ApplicationDepthList;
-import andromeda.core.ApplicationList;
 import andromeda.display.abstract.ILoaderDisplay;
 
 import asgard.display.ConfigurableDisplayObject;
@@ -38,12 +36,13 @@ class andromeda.display.abstract.AbstractLoaderDisplay extends ConfigurableDispl
 	
 	/**
 	 * Abstract constructor, this constructor must be override.
-	 * @param sName:String the name of the display.
-	 * @param target:MovieClip the DisplayObject instance control this target.
+	 * @param sName the name of the display.
+	 * @param target the DisplayObject instance control this target.
+	 * @param depth the depth of the view reference of this display.
 	 */
-	public function AbstractLoaderDisplay( target ) 
+	public function AbstractLoaderDisplay( sName:String , target , depth:Number ) 
 	{
-		super( ApplicationList.APPLICATION_LOADER, target.createEmptyMovieClip( ApplicationList.APPLICATION_LOADER, ApplicationDepthList.LOADER_DEPTH )  ) ;
+		super( sName , target.createEmptyMovieClip( sName, depth )  ) ;
 	}
 
 	/**

@@ -439,13 +439,13 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher implement
 	 * @return an instance in a visual DisplayObject if exist else throws a Warning error.
 	 * @throws Warning if the resolve failed with the specified instance name.
 	 */
-	public function resolve( name:String , depth:Number )
+	public function resolve( name:String , depth )
 	{
 		if ( view[ name ] != null)
 		{
-			if (!isNaN(depth))
+			if ( !isNaN(depth) )
 			{
-				MovieClip.prototype.swapDepths.call( view[name] , depth ) ;	
+				DisplayFactory.swapDepths( view[name] , depth ) ;	
 			}
 			return view[name] ;
 		}
@@ -462,7 +462,7 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher implement
 	 * @param depth (optional) the depth value of the visual reference.
 	 * @throws Warning if the resolve failed with the specified instance name.
 	 */
-	public function resolveVisual( clazz:Function , name:String , depth:Number)
+	public function resolveVisual( clazz:Function , name:String , depth )
 	{
 		return ConstructorUtil.createVisualInstance( clazz , resolve( name , depth ) ) ;
 	}

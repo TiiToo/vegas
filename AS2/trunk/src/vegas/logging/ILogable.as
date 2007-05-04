@@ -1,5 +1,4 @@
-import vegas.logging.ILogger;
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -21,6 +20,8 @@ import vegas.logging.ILogger;
   Contributor(s) :
   
 */
+
+import vegas.logging.ILogger;
 
 /**
  * Implementing this interface allows an object who contains an {@code ILogger} reference.
