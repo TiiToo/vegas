@@ -1,4 +1,4 @@
- /*
+﻿ /*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -34,14 +34,24 @@ class asgard.net.NetServerInfo extends CoreObject
 	
 	/**
 	 * Creates a new NetServerInfo object.
-	 * @param oInfo a primitive object with the properties 'code', 'level' and 'description'.
+	 * @param oInfo a primitive object with the properties 'code', 'level', 'description' and 'application'.
 	 */
 	public function NetServerInfo( oInfo ) 
 	{
-		description = oInfo.description || null ;
-		code = oInfo.code || null ;
-		level = oInfo.level || null ;
+		if ( oInfo != null )
+		{
+			description = oInfo.description || null ;
+			code        = oInfo.code || null ;
+			level       = oInfo.level || null ;
+			application = oInfo.application || null ;
+		} 
 	}
+
+	/**
+	 * This object exist if the server return an application error object. 
+	 * This property exist with FMS when the SSAS {@code application.rejectConnection()} method is invoqued. 
+	 */
+	public var application ;
 
 	/**
 	 * The code of this information object.
@@ -64,7 +74,7 @@ class asgard.net.NetServerInfo extends CoreObject
 	 */
 	public function toObject():Object 
 	{
-		return { description:description, code:code, level:level } ;
+		return { description:description, code:code, level:level , application:application } ;
 	}
 
 	/**
@@ -74,6 +84,33 @@ class asgard.net.NetServerInfo extends CoreObject
 	public function toSource(indent : Number, indentor : String):String 
 	{
 		return "new asgard.net.NetServerInfo(" + Serializer.toSource(toObject()) + ")" ;
+	}
+	
+	/**
+	 * Returns the String representation of this object.
+	 * @return the String representation of this object.
+	 */
+	public function toString():String
+	{
+		var s:String = "[NetServerInfo" ;
+		if (code != null)
+		{
+			s += ",code:'" + code + "'" ;	
+		}
+		if (level != null)
+		{
+			s += ",level:'" + level + "'" ;	
+		}
+		if (description != null)
+		{
+			s += ",description:'" + description + "'" ;	
+		}
+		if (application != null)
+		{
+			s += ",application:" + application  ;	
+		}
+		s += "]" ;
+		return s ;
 	}
 
 }

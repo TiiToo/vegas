@@ -1,4 +1,4 @@
- /*
+﻿ /*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -42,18 +42,39 @@ class asgard.net.NetServerStatus extends String implements IEquality, ISerializa
 		super(s) ;
 	}
 
+	/**
+	 * Packet encoded in an unidentified format.
+	 */
 	static public var BAD_VERSION:NetServerStatus = new NetServerStatus("badversion") ;
 	
+	/**
+	 * The connection was closed successfully.
+	 */
 	static public var CLOSED:NetServerStatus = new NetServerStatus("closed") ;
 
+	/**
+	 * The connection attempt failed or the NetConnection.call method was not able to invoke the server-side method or command.
+	 */
 	static public var FAILED:NetServerStatus = new NetServerStatus("failed") ;
 
+	/**
+	 *  The application name specified during connect is invalid.
+	 */
 	static public var INVALID:NetServerStatus = new NetServerStatus("invalidapp") ;
 	
+	/**
+	 * The connection attempt did not have permission to access the application.
+	 */
 	static public var REJECTED:NetServerStatus = new NetServerStatus("rejected") ;
 	
+	/**
+	 *  The specified application is shutting down.
+	 */
 	static public var SHUTDOWN:NetServerStatus = new NetServerStatus("appshutdown") ;
 	
+	/**
+	 * The connection attempt succeeded.
+	 */
 	static public var SUCCESS:NetServerStatus = new NetServerStatus("success") ;
 
 	/**

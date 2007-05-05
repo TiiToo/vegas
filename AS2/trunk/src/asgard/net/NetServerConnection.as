@@ -55,6 +55,8 @@ class asgard.net.NetServerConnection extends NetConnection implements Action, IE
 	
 	/**
 	 * Creates a new NetServerConnection instance.
+	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */
 	function NetServerConnection( bGlobal:Boolean , sChannel:String ) 
 	{
@@ -554,52 +556,57 @@ class asgard.net.NetServerConnection extends NetConnection implements Action, IE
 	{
 		
 		_timer.stop() ;
-		
+
 		var code:NetServerStatus = NetServerStatus.format(oInfo.code) ;
 		
-		// trace("> " + this + ".onStatus(" + oInfo.code+ ")") ;
+		getLogger().warn(this + " status : " + code) ;
 		
 		switch (code) 
 		{
-			
+
+			case NetServerStatus.SUCCESS :
+			{
+				notifyStatus( NetServerStatus.SUCCESS, oInfo ) ;
+				notifyFinished() ;
+				break ;
+			}
 			case NetServerStatus.BAD_VERSION :
 			{
-				notifyStatus(NetServerStatus.BAD_VERSION) ;
+				notifyStatus(NetServerStatus.BAD_VERSION, oInfo) ;
+				notifyFinished() ;
 				break ;
 			}
 			case NetServerStatus.CLOSED :
 			{
-				notifyStatus(NetServerStatus.CLOSED) ;
+				notifyStatus(NetServerStatus.CLOSED, oInfo) ;
 				break ;
 			}
 			case NetServerStatus.FAILED :
 			{
 				notifyStatus(NetServerStatus.FAILED, oInfo) ;
+				notifyFinished() ;
 				break ;
 			}
 			case NetServerStatus.INVALID :
 			{
-				notifyStatus(NetServerStatus.INVALID) ;
+				notifyStatus(NetServerStatus.INVALID, oInfo) ;
+				notifyFinished() ;
 				break ;
 			}	
 			case NetServerStatus.REJECTED :
 			{
-				notifyStatus(NetServerStatus.REJECTED) ;
+				notifyStatus(NetServerStatus.REJECTED, oInfo) ;
+				notifyFinished() ;
 				break ;
 			}
 			case NetServerStatus.SHUTDOWN :
 			{
-				notifyStatus(NetServerStatus.SHUTDOWN) ;
+				notifyStatus(NetServerStatus.SHUTDOWN, oInfo) ;
+				notifyFinished() ;
 				break ;
 			}
-			case NetServerStatus.SUCCESS :
-			{
-				notifyStatus(NetServerStatus.SUCCESS) ;
-				break ;
-			}
+
 		}
-		
-		notifyFinished() ;
 		
 	}
 
