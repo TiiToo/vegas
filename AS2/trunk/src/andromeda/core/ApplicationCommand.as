@@ -39,8 +39,6 @@ class andromeda.core.ApplicationCommand
 	static public function changeLoader( message:String , percent:Number ):Void
 	{
 		
-
-		
 		percent = (percent > 0 ) ? percent : 0 ;
 
 		if ( DisplayObjectCollector.contains( ApplicationList.APPLICATION_LOADER ) ) 
@@ -64,7 +62,10 @@ class andromeda.core.ApplicationCommand
 	static public function hideLoader():Void
 	{
 		unprotectScreen() ;
-		DisplayObjectCollector.get(ApplicationList.APPLICATION_LOADER).hide();
+		if ( DisplayObjectCollector.contains( ApplicationList.APPLICATION_LOADER ) ) 
+		{
+			DisplayObjectCollector.get(ApplicationList.APPLICATION_LOADER).hide();
+		}
 	}
 
 	/**
@@ -81,7 +82,10 @@ class andromeda.core.ApplicationCommand
 	static public function showLoader():Void
 	{
 		protectScreen() ;
-		DisplayObjectCollector.get(ApplicationList.APPLICATION_LOADER).show() ;
+		if ( DisplayObjectCollector.contains( ApplicationList.APPLICATION_LOADER ) ) 
+		{
+			DisplayObjectCollector.get(ApplicationList.APPLICATION_LOADER).show() ;
+		}
 	}
 	
 	/**
