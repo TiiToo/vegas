@@ -1,7 +1,0 @@
-17:38:54 [0:00:00.026] [Debug] [1] here is some myDebug info : 2.25 and true
-17:38:54 [0:00:00.027] [Debug] [2] DEBUG !!
-17:38:54 [0:00:00.027] [Error] [3] ERROR !!
-17:38:54 [0:00:00.028] [Fatal] [4] FATAL !!
-17:38:54 [0:00:00.029] [Information] [5] INFO !!
-17:38:54 [0:00:00.029] [Warning] [6] WARNING !!
-17:38:54 [0:00:00.030] [Warning] [7] 3,2,4

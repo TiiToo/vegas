@@ -1,0 +1,54 @@
+THIS PROGRAM IS FREEWARE (with a little JOBWARE*)
+
+This program and its constituents may not be sold or be part of a sale.
+
+Duplication and distribution for private purposes is permitted if the complete
+package remains unchanged and there is no financial charge.
+
+This program may be distributed via the Internet as a free of charge copy.
+Access may not be reduced to a specific circle of friends or acquaintances. 
+
+Distribution on CD ROM may take place only with the author’s agreement. 
+Please contact the author (see below). 
+
+This program is used at your own risk. The author does not take any 
+responsibility for the operation of the program or any of its parts. 
+
+
+*JOBWARE 
+...means that the only purpose of this software is finding YOU. But only if 
+you are a professional Flash-developer looking for new challenges and a job 
+in a great team. Mailto:jobs@powerflasher.com (german language necessary).
+
+
+PLUGINS
+
+All files in the plugins Directory are under GNU GPL license. See license.txt there.
+
+The plugin-architekture is GNU GPL.
+
+Copyright (C) 2004  Powerflasher GmbH 
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. 
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. 
+You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA. 
+
+We can help you publishing your plugin on the SOS Website (sos.powerflasher.com).
+
+The Author:
+POWERFLASHER GmbH
+Belvedereallee 5
+52070 AAchen
+Germany
+http://www.powerflasher.com
+mailto:sos@powerflasher.com
+
+
+About POWERFLASHER GmbH Germany
+-------------------------------
+POWERFLASHER develops multimedia applications and is with over 500 references one of 
+the leading European supplier for Macromedia Flash solutions.  The team of 15 speci-
+alists  has  positioned  itself as a service provider for creative and technological 
+innovative Flash content with clients like AOL, Bayer AG, Dell, Lycos, Microsoft and 
+many more. POWERFLASHER is focused on creating Flash applications, RIAs, games (more 
+than 150 game-references), WBTs and everything whats possible with Macromedia Flash. 
+POWERFLASHER is Macromedia Associate Partner. 

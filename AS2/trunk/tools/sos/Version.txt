@@ -1,0 +1,35 @@
+1.04 (Build 31) 20060116
+	- SOSUtil does not install Flash Player 7 any more
+	- Performance Issue fixed
+
+1.04 (Build 30) 20041117
+	- added Testfeature: <showMessage key='soso'/>All Chars possible here
+	
+1.04 (Build 29) 20041110
+	- release 1.04
+
+1.04 Beta2 (Build 28) 20041108
+	- new GFX
+	- Image Directory removed
+	- Licence integrated
+	- error.log enabled	
+
+1.04 Beta1 (Build 27)
+	- SOS opens on Doubleclick to TrayIcon
+	- Delete ASO in SysteTrayMenu
+	
+1.04 Beta1 (Build 26)
+	- improved tail(now only deletes the file on clear, xml log possible)
+	- log tail config
+	- ErrorScreen no Standard Java Dialog any more
+	- updated Doku
+	- add "exit", "show" and "hide" command
+	- close to tray, add "exit" to context menu
+	- add "hide" to Console Menu
+	- SOSUtil includes Flash7 Player
+	
+1.04 Alpha 16
+	- close all dialogs with escape
+	- open help in local browser
+	- all config in registy no more config.xml
+	- add commands to docu
