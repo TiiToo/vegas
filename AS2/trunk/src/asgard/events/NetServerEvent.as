@@ -28,6 +28,7 @@ import asgard.net.NetServerStatus;
 import vegas.events.DynamicEvent;
 
 /**
+ * This Event contains the NetServerConnection and status of a connection in the application.
  * @author eKameleon
  * @version 1.0.0.0
  */	

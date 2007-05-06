@@ -77,6 +77,25 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	}
 
 	/**
+	 * (read-write) Returns {@code true} if the background use full size (Stage.width and Stage.height).
+	 * @return {@code true} if the background use full size (Stage.width and Stage.height).
+	 */
+	public function get isFull():Boolean
+	{
+		return _isFull ;
+	}
+
+	/**
+	 * Sets if the background use full size (Stage.width and Stage.height).
+	 * @param b A boolean flag to indicates if the display use full size or not.
+	 */
+	public function set isFull(b:Boolean):Void
+	{
+		_isFull = b ;
+		update() ;
+	}
+
+	/**
 	 * This property defined the mimimun height of this component.
 	 */
 	public var minHeight:Number ;
@@ -100,6 +119,21 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	 * The alpha value of the screen.
 	 */
 	public var themeAlpha:Number = 100 ;
+
+	/**
+	 * The alpha value of the border of this display.
+	 */
+	public var themeBorderAlpha:Number = null ;
+
+	/**
+	 * The color value of the border of this display.
+	 */
+	public var themeBorderColor:Number = null ;
+
+	/**
+	 * The thickness of the border of this display.
+	 */
+	public var themeBorderThickness:Number = null ;
 
 	/**
 	 * The color value of the screen.
@@ -129,8 +163,9 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	 public function draw():Void
 	 {
 	 	_bgDraw.clear() ;
+	 	_bgDraw.lineStyle( themeBorderThickness, themeBorderColor, themeBorderAlpha ) ;
 		_bgDraw.beginFill( themeColor, themeAlpha) ;
-		_bgDraw.draw( w, h ) ;
+		_bgDraw.draw(getW(), getH() ) ;
 		_bgDraw.endFill() ;
 	 }
 
@@ -140,7 +175,7 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	 */
 	public function getH():Number 
 	{ 
-		return isNaN(_h) ? 0 : _h ;
+		return _isFull ? Stage.height : (isNaN(_h) ? 0 : _h) ;
 	}
 
 	/**
@@ -149,7 +184,7 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	 */
 	public function getW():Number 
 	{ 
-		return isNaN(_w) ? 0 : _w ;
+		return _isFull ? Stage.width : (isNaN(_w) ? 0 : _w) ;
 	}
 	
 	/**
@@ -174,10 +209,10 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	/**
 	 * Sets the virtual width and height values of the component.
 	 */
-	public function setSize( w:Number, n:Number ) : Void 
+	public function setSize( w:Number, h:Number ) : Void 
 	{
-		_w = MathsUtil.clamp(n, minWidth, maxWidth) ;
-		_h = MathsUtil.clamp(n, minHeight, maxHeight) ;
+		_w = MathsUtil.clamp( w , minWidth, maxWidth) ;
+		_h = MathsUtil.clamp( h , minHeight, maxHeight) ;
 		notifyResized() ;
 		update() ;
 	}
@@ -222,6 +257,8 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	private var _eResize:UIEvent ;
 
 	private var _h:Number ;
+
+	private var _isFull:Boolean ;
 	
 	private var _w:Number ;
 

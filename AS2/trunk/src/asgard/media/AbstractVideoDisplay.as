@@ -49,8 +49,12 @@ class asgard.media.AbstractVideoDisplay extends ConfigurableDisplayObject
 		
 		_oVideo = video ? video : view.video ;
 		
-		_oVideo.width  = view._width ;
-		_oVideo.height = view._height ;
+		_oVideo._width  = view._width ;
+		_oVideo._height = view._height ;
+		_oVideo.toString = function()
+		{
+			return "[Video]" ;	
+		} ;
 		
 		_oSound = new Sound( view ) ;
 		_oSound.setVolume( VOLUME_DEFAULT ) ;

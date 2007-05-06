@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -81,7 +81,7 @@ class asgard.config.ConfigurableObject extends CoreObject implements IConfigurab
 	 */
 	 public function setup():Void
 	 {
-	 	throw new Warning("> " + this + ".setup(), you must override this method !") ;
+	 	throw new Warning( this + ".setup(), you must override this method !" ) ;
 	 }
 	
 	/**

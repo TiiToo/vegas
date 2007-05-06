@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -72,12 +72,19 @@ class asgard.events.ProgressEvent extends BasicEvent
 	public var bytesTotal:Number ;
 
 	/**
+	 * The percentage of the process.
+	 */
+	public var percent:Number ;
+
+	/**
 	 * Returns the shallow copy of this event.
 	 * @return the shallow copy of this event.
 	 */
 	public function clone() 
 	{
-		return new ProgressEvent(getType(), getTarget(), bytesLoaded, bytesTotal, getContext()) ;
+		var e:ProgressEvent = new ProgressEvent(getType(), getTarget(), bytesLoaded, bytesTotal, getContext()) ;
+		e.percent = this.percent ;
+		return e ;
 	}
 
 }
