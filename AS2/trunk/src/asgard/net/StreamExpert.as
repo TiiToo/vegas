@@ -49,12 +49,10 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	private function StreamExpert( streamID:String ) 
 	{
 		
-		// globalize the dispath of the events of this object.
-		setEventDispatcher( EventDispatcher.getInstance() ) ;
-		
 		initEvent() ;
 		
 		_streamID = streamID ;		
+		
 		_tProgress = new Timer( DEFAULT_DELAY ) ;
 		_tProgress.addEventListener( TimerEvent.TIMER , new Delegate(this, _onProgress) ) ;
 		
@@ -99,6 +97,15 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	 * The name of the event when the stream is stopped.
 	 */
 	static public var STREAM_PLAY_STOP:String = "onStreamPlayStop" ;
+
+	/**
+	 * (read-only) Returns the value of the isGlobal flag of this model. Use the {@code setGlobal} method to modify this value.
+	 * @return {@code true} if the model use a global EventDispatcher to dispatch this events.
+	 */
+	public function get isGlobal():Boolean 
+	{
+		return getIsGlobal() ;
+	}
 
 	/**
 	 * Returns {@code true} if the stream is loop when the stream is finished.
@@ -196,6 +203,15 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 			_map.put( streamID, new StreamExpert( streamID ) ) ;
 		}
 		return _map.get( streamID ) ;
+	}
+	
+	/**
+	 * Returns the value of the isGlobal flag of this model.
+	 * @return {@code true} if the model use a global EventDispatcher to dispatch this events.
+	 */
+	public function getIsGlobal():Boolean 
+	{
+		return _isGlobal ;
 	}
 	
 	/**
@@ -360,6 +376,17 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	}
 
 	/**
+	 * Sets if the model use a global {@code EventDispatcher} to dispatch this events, if the {@code flag} value is {@code false} the model use a local EventDispatcher.
+	 * @param flag the flag to use a global event flow or a local event flow.
+	 * @param channel the name of the global event flow if the {@code flag} argument is {@code true}.  
+	 */
+	public function setGlobal( flag:Boolean , channel:String ):Void 
+	{
+		_isGlobal = flag ;
+		setEventDispatcher( flag ? EventDispatcher.getInstance( channel ) : null ) ;
+	}
+
+	/**
 	 * Sets the delay of the internal timer to notify the progress of the Stream.
 	 * @param n the delay of the internal Timer of this object.
 	 */
@@ -395,16 +422,28 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	}
 
 	private var _ePlayFinish:Event ;
+	
 	private var _ePlayLoop:Event ;
+	
 	private var _ePlayPause:Event ;
+	
 	private var _ePlayProgress:Event ;
+	
 	private var _ePlayResume:Event ;
+	
 	private var _ePlayStart:Event ;
+	
 	private var _ePlayStop:Event ;
+	
 	private var _isLoop:Boolean = false ;
+	
+	private var _isGlobal:Boolean ;
+	
 	static private var _map:HashMap  ;
+	
 	private var _streamID:String ;
-	private var _tProgress:Timer ;		
+	
+	private var _tProgress:Timer ;
 	
 	/**
 	 * Invoqued when the stream is in progress.

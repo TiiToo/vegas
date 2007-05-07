@@ -21,7 +21,7 @@
   
 */
 
-import pegas.events.ActionEventType;
+import pegas.events.ActionEvent;
 import pegas.process.AbstractAction;
 import pegas.process.Action;
 
@@ -67,7 +67,7 @@ class pegas.process.Sequencer extends AbstractAction
 		var isEnqueue:Boolean = _queue.enqueue(a) ;
 		if (isEnqueue)
 		{
-			AbstractAction(a).addEventListener(ActionEventType.FINISH, _runner) ;
+			AbstractAction(a).addEventListener( ActionEvent.FINISH, _runner ) ;
 		}
 		return isEnqueue ;
 	}
@@ -161,7 +161,7 @@ class pegas.process.Sequencer extends AbstractAction
 	{
 		if (running) 
 		{
-			_cur.removeEventListener(ActionEventType.FINISH, _runner) ;
+			_cur.removeEventListener(ActionEvent.FINISH, _runner) ;
 			_setRunning(false) ;
 			if (noEvent) return ;
 			notifyStopped() ;
