@@ -26,7 +26,6 @@ import andromeda.model.ModelCollector;
 
 import vegas.core.IRunnable;
 import vegas.events.AbstractCoreEventDispatcher;
-import vegas.events.EventDispatcher;
 
 /**
  * This class provides a skeletal implementation of the {@code IModel} interface, to minimize the effort required to implement this interface.
@@ -43,8 +42,8 @@ class andromeda.model.AbstractModel extends AbstractCoreEventDispatcher implemen
 	 */	
 	function AbstractModel( id , bGlobal:Boolean , sChannel:String ) 
 	{
+		super( bGlobal , sChannel ) ;
 		setID( id ) ;
-		setGlobal( bGlobal , sChannel ) ;
 	}
 
 	/**
@@ -65,30 +64,12 @@ class andromeda.model.AbstractModel extends AbstractCoreEventDispatcher implemen
 	}
 	
 	/**
-	 * (read-only) Returns the value of the isGlobal flag of this model. Use the {@code setGlobal} method to modify this value.
-	 * @return {@code true} if the model use a global EventDispatcher to dispatch this events.
-	 */
-	public function get isGlobal():Boolean 
-	{
-		return getIsGlobal() ;
-	}
-	
-	/**
 	 * Returns the {@code id} of this IModelObject. This method is use to register this object in a category of models.
 	 * @return the {@code id} of this IModelObject.
 	 */
 	public function getID() 
 	{
 		return _id ;
-	}
-
-	/**
-	 * Returns the value of the isGlobal flag of this model.
-	 * @return {@code true} if the model use a global EventDispatcher to dispatch this events.
-	 */
-	public function getIsGlobal():Boolean 
-	{
-		return _isGlobal ;
 	}
 
 	/**
@@ -109,26 +90,10 @@ class andromeda.model.AbstractModel extends AbstractCoreEventDispatcher implemen
 	}
 
 	/**
-	 * Sets if the model use a global {@code EventDispatcher} to dispatch this events, if the {@code flag} value is {@code false} the model use a local EventDispatcher.
-	 * @param flag the flag to use a global event flow or a local event flow.
-	 * @param channel the name of the global event flow if the {@code flag} argument is {@code true}.  
-	 */
-	public function setGlobal( flag:Boolean , channel:String ):Void 
-	{
-		_isGlobal = flag ;
-		setEventDispatcher( flag ? EventDispatcher.getInstance( channel ) : null ) ;
-	}
-
-	/**
 	 * The internal id property of this IModelObject. By default the id equals the hashCode() value.
 	 */
 	private var _id ;
 	
-	/**
-	 * The internal flag to indicate if the model is global.
-	 */
-	private var _isGlobal:Boolean ;
-
 	/**
 	 * Internal method to register the IModel in the ModelCollector with the specified id in argument.
 	 * @see ModelCollector.

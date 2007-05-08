@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is PEGAS Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -30,6 +30,7 @@ import vegas.data.queue.LinearQueue;
 import vegas.data.queue.TypedQueue;
 import vegas.events.Delegate;
 import vegas.events.EventListener;
+import vegas.events.EventTarget;
 import vegas.util.serialize.Serializer;
 
 /**
@@ -41,6 +42,7 @@ class pegas.process.Sequencer extends AbstractAction
 	
 	/**
 	 * Creates a new Sequencer instance.
+	 * @param ar An Array of {@code Action} objects.
 	 */
 	public function Sequencer( ar:Array ) 
 	{
@@ -52,7 +54,10 @@ class pegas.process.Sequencer extends AbstractAction
 			for (var i:Number = 0 ; i < l ; i++) 
 			{
 				var a:Action = ar[i] ;
-				if (a instanceof Action) addAction(ar[i]) ;		
+				if (a instanceof Action) 
+				{
+					addAction(ar[i]) ;
+				}		
 			}
 		}
 	}
@@ -67,7 +72,7 @@ class pegas.process.Sequencer extends AbstractAction
 		var isEnqueue:Boolean = _queue.enqueue(a) ;
 		if (isEnqueue)
 		{
-			AbstractAction(a).addEventListener( ActionEvent.FINISH, _runner ) ;
+			EventTarget(a).addEventListener( ActionEvent.FINISH, _runner ) ;
 		}
 		return isEnqueue ;
 	}
@@ -161,7 +166,7 @@ class pegas.process.Sequencer extends AbstractAction
 	{
 		if (running) 
 		{
-			_cur.removeEventListener(ActionEvent.FINISH, _runner) ;
+			EventTarget(_cur).removeEventListener(ActionEvent.FINISH, _runner) ;
 			_setRunning(false) ;
 			if (noEvent) return ;
 			notifyStopped() ;
@@ -188,7 +193,7 @@ class pegas.process.Sequencer extends AbstractAction
 		return Serializer.getSourceOf(this, [sourceA]) ;
 	}
 
-	private var _cur ;
+	private var _cur:Action ;
 	private var _queue:TypedQueue  ;
 	private var _runner:EventListener ;
 	

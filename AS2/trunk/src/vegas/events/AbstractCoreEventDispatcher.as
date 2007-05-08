@@ -41,12 +41,23 @@ class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEv
 
 	/**
 	 * Creates a new AbstractCoreEventDispatcher.
+	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */
-	private function AbstractCoreEventDispatcher() 
+	private function AbstractCoreEventDispatcher( bGlobal:Boolean , sChannel:String  ) 
 	{
-		super() ;
 		_oED = initEventDispatcher() ;
+		setGlobal( bGlobal , sChannel ) ;	
 	}		
+
+	/**
+	 * (read-only) Returns the value of the isGlobal flag of this model. Use the {@code setGlobal} method to modify this value.
+	 * @return {@code true} if the model use a global EventDispatcher to dispatch this events.
+	 */
+	public function get isGlobal():Boolean 
+	{
+		return getIsGlobal() ;
+	}
 
 	/**
 	 * Allows the registration of event listeners on the event target.
@@ -111,6 +122,15 @@ class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEv
 	public function getGlobalEventListeners():EventListenerCollection 
 	{
 		return _oED.getGlobalEventListeners.apply(_oED, arguments) ;
+	}
+	
+	/**
+	 * Returns the value of the isGlobal flag of this model.
+	 * @return {@code true} if the model use a global EventDispatcher to dispatch this events.
+	 */
+	public function getIsGlobal():Boolean 
+	{
+		return _isGlobal ;
 	}
 
 	/**
@@ -189,6 +209,17 @@ class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEv
 	}
 
 	/**
+	 * Sets if the model use a global {@code EventDispatcher} to dispatch this events, if the {@code flag} value is {@code false} the model use a local EventDispatcher.
+	 * @param flag the flag to use a global event flow or a local event flow.
+	 * @param channel the name of the global event flow if the {@code flag} argument is {@code true}.  
+	 */
+	public function setGlobal( flag:Boolean , channel:String ):Void 
+	{
+		_isGlobal = flag ;
+		setEventDispatcher( flag ? EventDispatcher.getInstance( channel ) : null ) ;
+	}
+
+	/**
 	 * Sets the parent EventDispatcher reference of this instance.
 	 */
 	public function setParent( parent:EventDispatcher ):Void 
@@ -201,4 +232,9 @@ class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEv
 	 */
 	private var _oED:EventDispatcher ;
 
+	/**
+	 * The internal flag to indicate if the event flow is global.
+	 */
+	private var _isGlobal:Boolean ;
+	
 }

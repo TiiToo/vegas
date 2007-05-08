@@ -22,16 +22,15 @@
 */
 
 import pegas.events.ActionEvent;
-import pegas.process.Action;
+import pegas.process.SimpleAction;
 
 import vegas.core.ICloneable;
-import vegas.events.AbstractCoreEventDispatcher;
 
 /**
- * This class simplify the implementation of the {@code Action} interface.
+ * This class simplify a full implementation of the {@code Action} interface.
  * @author eKameleon
  */
-class pegas.process.AbstractAction extends AbstractCoreEventDispatcher implements Action, ICloneable
+class pegas.process.AbstractAction extends SimpleAction implements ICloneable
 {
 
 	/**
@@ -42,12 +41,10 @@ class pegas.process.AbstractAction extends AbstractCoreEventDispatcher implement
 		
 		_eChange = new ActionEvent(ActionEvent.CHANGE, this) ;
 		_eClear = new ActionEvent(ActionEvent.CLEAR, this) ;
-		_eFinish = new ActionEvent(ActionEvent.FINISH, this) ;
 		_eInfo = new ActionEvent(ActionEvent.INFO, this) ;
 		_eLoop = new ActionEvent(ActionEvent.LOOP, this) ;
 		_eProgress = new ActionEvent(ActionEvent.PROGRESS, this) ;
 		_eResume = new ActionEvent(ActionEvent.RESUME, this) ;
-		_eStart = new ActionEvent(ActionEvent.START, this) ;
 		_eStop = new ActionEvent(ActionEvent.STOP, this) ;
 		
 	}
@@ -58,30 +55,12 @@ class pegas.process.AbstractAction extends AbstractCoreEventDispatcher implement
 	public var looping:Boolean ;
 
 	/**
-	 * (read-only) Returns {@code true} if the process is in progress.
-	 * @return {@code true} if the process is in progress.
-	 */
-	public function get running():Boolean 
-	{
-		return getRunning() ;	
-	}
-	
-	/**
 	 * Returns a shallow copy of this object.
 	 * @return a shallow copy of this object.
 	 */
 	public function clone() 
 	{
 		//
-	}
-
-	/**
-	 * Returns {@code true} if the process is in progress.
-	 * @return {@code true} if the process is in progress.
-	 */
-	public function getRunning():Boolean 
-	{
-		return _isRunning ;	
 	}
 
 	/**
@@ -99,14 +78,6 @@ class pegas.process.AbstractAction extends AbstractCoreEventDispatcher implement
 	{
 		dispatchEvent(_eClear) ;
 	}	
-
-	/**
-	 * Notify an ActionEvent when the process is finished.
-	 */
-	public function notifyFinished():Void 
-	{
-		dispatchEvent(_eFinish) ;
-	}
 
 	/**
 	 * Notify an ActionEvent when an info is dispatched.
@@ -141,14 +112,6 @@ class pegas.process.AbstractAction extends AbstractCoreEventDispatcher implement
 	}
 
 	/**
-	 * Notify an ActionEvent when the process is started.
-	 */
-	public function notifyStarted():Void 
-	{
-		dispatchEvent(_eStart) ;
-	}
-
-	/**
 	 * Notify an ActionEvent when the process is stopped.
 	 */
 	public function notifyStopped():Void 
@@ -165,14 +128,6 @@ class pegas.process.AbstractAction extends AbstractCoreEventDispatcher implement
 	}
 
 	/**
-	 * Run the process.
-	 */
-	public function run():Void 
-	{
-		// 
-	}
-
-	/**
 	 * Returns a Eden representation of the object.
 	 * @param indent:Number optional the starting of the indenting
 	 * @param identor:String the string value used to do the indentation
@@ -185,21 +140,10 @@ class pegas.process.AbstractAction extends AbstractCoreEventDispatcher implement
 
 	private var _eChange:ActionEvent ;
 	private var _eClear:ActionEvent ;
-	private var _eFinish:ActionEvent ;
 	private var _eInfo:ActionEvent ;
 	private var _eLoop:ActionEvent ;
 	private var _eProgress:ActionEvent ;
 	private var _eResume:ActionEvent ;
-	private var _eStart:ActionEvent ;
 	private var _eStop:ActionEvent ;
-	private var _isRunning:Boolean ;
-
-	/**
-	 * This protected method is an internal method to change the _isRunning value.
-	 */
-	/*protected*/ private function _setRunning(b:Boolean):Void 
-	{
-		_isRunning = b ;	
-	}
 
 }
