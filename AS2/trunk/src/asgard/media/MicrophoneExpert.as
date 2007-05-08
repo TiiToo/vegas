@@ -90,6 +90,15 @@ class asgard.media.MicrophoneExpert extends AbstractCoreEventDispatcher
 	static public var DEFAULT_MICRO_SILENCE_TIMEOUT:Number = 1000 ;
 
 	/**
+	 * Returns {@code true} if the MicrophoneExpert contains the specified camera id.
+	 * @return {@code true} if the CameraExpert contains the specified camera id.
+	 */
+	static public function contains( microID:String  ):Boolean
+	{
+		return _map.containsKey( microID ) ;	
+	}
+
+	/**
 	 * Returns the Microphone reference of this object.
 	 * @return the Microphone reference of this object.
 	 */

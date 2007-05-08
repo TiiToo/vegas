@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -83,7 +83,9 @@ class asgard.date.Time extends CoreObject
 	 */
 	public var minutes:Number;
 	
-	/** Amount of seconds. */
+	/**
+	 *  Amount of seconds.
+	 */
 	public var seconds:Number;
 	
 	/** 

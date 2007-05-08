@@ -110,6 +110,15 @@ class asgard.media.CameraExpert extends AbstractCoreEventDispatcher
 	static public var DEFAULT_CAMERA_QUALITY_LEVEL:Number = 0 ;
 	
 	/**
+	 * Returns {@code true} if the CameraExpert contains the specified camera id.
+	 * @return {@code true} if the CameraExpert contains the specified camera id.
+	 */
+	static public function contains( cameraID:String  ):Boolean
+	{
+		return _map.containsKey( cameraID ) ;	
+	}
+	
+	/**
 	 * Returns the Camera client reference.
 	 * @return the Camera client reference.
 	 */

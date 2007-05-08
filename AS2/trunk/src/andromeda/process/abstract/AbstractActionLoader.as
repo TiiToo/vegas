@@ -5,7 +5,7 @@ import asgard.config.Config;
 import asgard.events.LoaderEvent;
 import asgard.net.ILoader;
 
-import pegas.process.AbstractAction;
+import pegas.process.SimpleAction;
 
 import vegas.events.Delegate;
 import vegas.events.EventTarget;
@@ -14,7 +14,7 @@ import vegas.events.EventTarget;
  * This skeletal class simplify the implementation of the process with an internal ILoader process in the application.
  * @author eKameleon
  */
-class andromeda.process.abstract.AbstractActionLoader extends AbstractAction 
+class andromeda.process.abstract.AbstractActionLoader extends SimpleAction 
 {
 
 	/**
