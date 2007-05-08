@@ -420,7 +420,7 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	{
 		
 		var progress:Number = getStream().progress ;
-
+		
 		if (progress == 100)
 		{
 			dispatchEvent( _ePlayFinish ) ;

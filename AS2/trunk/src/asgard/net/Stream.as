@@ -26,6 +26,8 @@ import asgard.media.FLVMetaData;
 import asgard.net.NetStreamStatus;
 import asgard.net.StreamCollector;
 
+import pegas.maths.Range;
+
 import vegas.core.IHashable;
 import vegas.data.Set;
 import vegas.events.Delegate;
@@ -77,7 +79,7 @@ class asgard.net.Stream extends NetStream implements IEventDispatcher, IHashable
 	public function get progress():Number
 	{
 		var percent:Number = Math.round( this.time * 100 / getDuration() ) ;
-		return ( isNaN(percent) || !isFinite(percent) ) ? 0 : percent ;
+		return Range.PERCENT_RANGE.clamp( ( isNaN(percent) || !isFinite(percent) ) ? 0 : percent ) ;
 	}
 
 	/**
