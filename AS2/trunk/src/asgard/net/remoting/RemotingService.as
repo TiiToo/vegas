@@ -216,12 +216,16 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction
 		notifyFinished() ;
 	}
 
+	/**
+	 * Run the process of the remoting service.
+	 */
 	public function run():Void 
 	{
 		
 		_rc = RemotingConnection.getConnection( _gatewayUrl ) ;
 		
-		if (_rc == null ) {
+		if (_rc == null ) 
+		{
 			// ici notifier qu'il est impossible de lancer la connection.	
 		}
 		

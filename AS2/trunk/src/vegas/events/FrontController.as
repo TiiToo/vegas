@@ -25,7 +25,6 @@ import vegas.core.CoreObject;
 import vegas.data.iterator.Iterator;
 import vegas.data.Map;
 import vegas.data.map.HashMap;
-import vegas.events.BasicEvent;
 import vegas.events.Event;
 import vegas.events.EventDispatcher;
 import vegas.events.EventListener;
@@ -40,12 +39,14 @@ class vegas.events.FrontController extends CoreObject
 	
 	/**
 	 * Creates a new FrontController instance.
+	 * @param channel the channel of this FrontController.
+	 * @param target the EventDispatcher reference to switch with the default EventDispatcher singleton in the controller.
 	 * <p><b>Example :</b> {@code var oC = new FrontController() ;}</p>
 	 */
-	function FrontController( oE:EventDispatcher , name) 
+	function FrontController( channel:String , target:EventDispatcher ) 
 	{
 		_map = new HashMap() ;
-		_oE = oE || EventDispatcher.getInstance(name); 
+		_dispatcher = target || EventDispatcher.getInstance( channel ) ; 
 	}
 	
 	/**
@@ -79,16 +80,7 @@ class vegas.events.FrontController extends CoreObject
 	 */
 	public function fireEvent(e:Event):Void 
 	{
-		_oE.dispatchEvent(e) ;
-	}
-
-	/**
-	 * Dispatch an event into the FrontController with a simple event type.
-	 * @param type an event type to dispatch a {@code BasicEvent}.
-	 */
-	public function fireEventType( type:String ):Void 
-	{
-		_oE.dispatchEvent( new BasicEvent(type) ) ;
+		_dispatcher.dispatchEvent(e) ;
 	}
 
 	/**
@@ -97,7 +89,7 @@ class vegas.events.FrontController extends CoreObject
 	 */
 	public function getEventDispatcher():EventDispatcher
 	{
-		return _oE ;		
+		return _dispatcher ;		
 	}
 
 	/**
@@ -115,10 +107,10 @@ class vegas.events.FrontController extends CoreObject
 	 * @param eventName the name of the event type.
 	 * @param listener the {@code EventListener} mapped in the FrontController with the specified event type.
 	 */
-	public function insert(eventName:String, listener:EventListener):Void 
+	public function insert( eventName:String, listener:EventListener ):Void 
 	{
 		_map.put( eventName, listener ) ;
-		_oE.addEventListener(eventName, listener) ;
+		_dispatcher.addEventListener(eventName, listener) ;
 	}
 	
 	/**
@@ -130,8 +122,17 @@ class vegas.events.FrontController extends CoreObject
 		var listener:EventListener = _map.remove.apply(this, arguments ) ;
 		if (listener) 
 		{
-			_oE.removeEventListener(eventName, listener);
+			_dispatcher.removeEventListener(eventName, listener);
 		}
+	}
+	
+	/**
+	 * Sets the EventDispatcher reference of this FrontController.
+	 * @param target The EventDispatcher reference of this FrontController.
+	 */
+	public function setEventDispatcher( target:EventDispatcher )
+	{
+		_dispatcher = target ;
 	}
 	
 	/**
@@ -151,6 +152,6 @@ class vegas.events.FrontController extends CoreObject
 	/**
 	 * Internal EventDispatcher instance.
 	 */
-	private var _oE:EventDispatcher ;
+	private var _dispatcher:EventDispatcher ;
 
 }

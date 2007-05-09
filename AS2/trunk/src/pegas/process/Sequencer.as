@@ -131,6 +131,7 @@ class pegas.process.Sequencer extends AbstractAction
 		}
 		else 
 		{
+			_cur = null ;
 			if (running) 
 			{
 				_setRunning(false) ;
