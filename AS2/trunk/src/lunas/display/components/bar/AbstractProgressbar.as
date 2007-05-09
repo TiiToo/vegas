@@ -47,8 +47,6 @@ class lunas.display.components.bar.AbstractProgressbar extends AbstractComponent
 
 	static public var CHANGE:String = UIEventType.CHANGE ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(AbstractProgressbar, null, 7, 7) ;
-	
 	public var autoResetPosition:Boolean = false ;
 
 	public function get direction():Number 
@@ -94,22 +92,29 @@ class lunas.display.components.bar.AbstractProgressbar extends AbstractComponent
 		if (pos != _position) 
 		{
 			_position = pos ;
+			
 			viewPositionChanged(flag) ;
-			if (!noEvent) 
+			
+			if ( noEvent != true ) 
 			{
 				notifyChanged() ;
 			}
+			
 		}
 	}
 	
 	public function viewChanged():Void 
 	{
+		
 		var memPos:Number = getPosition() ;
+		
 		setPosition(0, true, true) ;
+		
 		if (!autoResetPosition) 
 		{
 			setPosition( memPos, true, true) ;
 		}
+		
 	}
 
 	public function viewPositionChanged(flag:Boolean):Void 

@@ -51,11 +51,11 @@ class andromeda.display.ProtectScreenDisplay extends BackgroundDisplay
 		background.useHandCursor = false ;
 		
 		themeAlpha = 0 ;
-		themeColor = 0x000000 ;
+		themeColor = 0 ;
 		
 		hide() ;
 						
-		onResize() ;
+		isFull = true ;
 	}
 
 	/**
@@ -71,7 +71,7 @@ class andromeda.display.ProtectScreenDisplay extends BackgroundDisplay
 	 */
 	public function onResize():Void
 	{
-		setSize( Stage.width , Stage.height ) ;
+		update() ;
 	}
 
 }

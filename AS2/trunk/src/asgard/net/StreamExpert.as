@@ -253,7 +253,6 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 			getLogger().warn( this + " start play failed with an unknow Stream id : " + getStreamID() ) ;	
 		}
 	}
-	
 
 	/**
 	 * This method start the stream.
@@ -266,6 +265,43 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 			getStream().play.apply( getStream(), arguments ) ;
 			dispatchEvent( _ePlayStart ) ;	
 			_tProgress.start() ;
+		}
+		else
+		{
+			getLogger().warn( this + " start play failed with an unknow Stream id : " + getStreamID() ) ;	
+		}
+	}
+
+	/**
+	 * Specifies whether incoming audio plays on the specified stream. 
+	 * This method is available only to clients subscribed to the specified stream, not to the stream's publisher.
+	 * @param flag A Boolean value that specifies whether incoming audio plays on the specified stream (true) or not (false). The default value is true.
+	 */
+	public function receiveAudio( flag:Boolean ):Void
+	{
+		if ( StreamCollector.contains( getStreamID() ) )
+		{
+			getStream().receiveAudio( flag ) ;
+		}
+		else
+		{
+			getLogger().warn( this + " start play failed with an unknow Stream id : " + getStreamID() ) ;	
+		}
+	}
+
+	/**
+	 * Specifies whether incoming video will play on the specified stream, or specifies the frame rate of the video. 
+	 * This method is available only to clients subscribed to the specified stream, not to the stream's publisher.
+	 * @param value A Boolean value that specifies whether incoming video plays on the specified stream (true) or not (false). 
+	 * The default value is true.
+	 * Or a number that specifies the frame rate per second of the incoming video. 
+	 * The default rate is the frame rate of the FLV file or live stream being played.
+	 */
+	public function receiveVideo( value ):Void
+	{
+		if ( StreamCollector.contains( getStreamID() ) )
+		{
+			getStream().receiveVideo( value ) ;
 		}
 		else
 		{

@@ -295,7 +295,22 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher implement
 	{
 		setY(n) ;	
 	}
-
+	
+	/**
+	 * Attachs and returns a new child in the view of the display with the specified symbol id.
+	 * @param fConstructor the constructor to use to overrides the default constructor and prototype of the visual object.
+	 * @param id the symbol id in the library of the animation.
+	 * @param name the name of the instance.
+	 * @param depth the depth of the instance.
+	 * @param init An object to initialize the new instance.
+	 * @return a new Child in the view of the display
+	 * @see DisplayFactory.attachChild
+	 */
+	public function attachChild( fConstructor:Function , id:String, name:String , depth:Number , init ) 
+	{
+		return DisplayFactory.attachChild( fConstructor , id, name , depth , view, init ) ;
+	}
+	
 	/**
 	 * Creates and returns a new child in the view of the display.
 	 * @return a new Child in the view of the display

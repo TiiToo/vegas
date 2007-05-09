@@ -164,8 +164,8 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	 {
 	 	_bgDraw.clear() ;
 	 	_bgDraw.lineStyle( themeBorderThickness, themeBorderColor, themeBorderAlpha ) ;
-		_bgDraw.beginFill( themeColor, themeAlpha) ;
-		_bgDraw.draw(getW(), getH() ) ;
+		_bgDraw.beginFill( themeColor, themeAlpha ) ;
+		_bgDraw.draw( getW(), getH() ) ;
 		_bgDraw.endFill() ;
 	 }
 
@@ -175,7 +175,7 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	 */
 	public function getH():Number 
 	{ 
-		return _isFull ? Stage.height : (isNaN(_h) ? 0 : _h) ;
+		return _isFull ? Stage.height : _h ;
 	}
 
 	/**
@@ -184,7 +184,7 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	 */
 	public function getW():Number 
 	{ 
-		return _isFull ? Stage.width : (isNaN(_w) ? 0 : _w) ;
+		return _isFull ? Stage.width : _w ;
 	}
 	
 	/**
@@ -258,7 +258,7 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 
 	private var _h:Number ;
 
-	private var _isFull:Boolean ;
+	private var _isFull:Boolean = false ;
 	
 	private var _w:Number ;
 
