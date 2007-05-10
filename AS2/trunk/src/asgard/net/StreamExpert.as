@@ -49,7 +49,7 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	{
 		
 		initEvent() ;
-		
+
 		_streamID = streamID ;		
 		
 		_tProgress = new Timer( DEFAULT_DELAY ) ;
@@ -238,6 +238,22 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	}
 
 	/**
+	 * Close the Stream.
+	 */	
+	public function close():Void
+	{
+		if ( StreamCollector.contains( getStreamID() ) )
+		{
+			var s:Stream = getStream() ;
+			s.close() ;
+		}
+		else
+		{
+			getLogger().warn( this + " start play failed with an unknow Stream id : " + getStreamID() ) ;	
+		}
+	}
+
+	/**
 	 * Pause the Stream.
 	 */
 	public function pause():Void
@@ -262,7 +278,8 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 		
 		if ( StreamCollector.contains( getStreamID() ) )
 		{
-			getStream().play.apply( getStream(), arguments ) ;
+			var s:Stream = getStream() ;
+			s.play.apply( getStream(), arguments ) ;
 			dispatchEvent( _ePlayStart ) ;	
 			_tProgress.start() ;
 		}

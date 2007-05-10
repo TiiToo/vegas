@@ -134,6 +134,7 @@ class asgard.media.AbstractVideoDisplay extends ConfigurableDisplayObject
 	 */
 	public function clear():Void
 	{
+		view.attachAudio(null) ;
 		_oVideo.attachVideo(null) ;
 		_oVideo.clear() ;
 	}

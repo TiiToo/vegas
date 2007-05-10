@@ -1,4 +1,4 @@
-import asgard.system.Application;
+﻿import asgard.system.Application;
 
 import flash.external.ExternalInterface;
 

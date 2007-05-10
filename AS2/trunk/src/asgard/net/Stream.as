@@ -22,8 +22,8 @@
 */
 
 import asgard.events.CuePointEvent;
+import asgard.events.StreamEvent;
 import asgard.media.FLVMetaData;
-import asgard.net.NetStreamStatus;
 import asgard.net.StreamCollector;
 
 import pegas.maths.Range;
@@ -54,10 +54,13 @@ class asgard.net.Stream extends NetStream implements IEventDispatcher, IHashable
 	 * Creates the Stream singleton.
 	 * @param nc the NetConnection of this Stream Object.
 	 * @param id the id of this Stream object.
+	 * @param bGlobal (optional) the flag to use a global event flow or a local event flow.
+	 * @param sChannel (optional) the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */
-	public function Stream( nc:NetConnection , id:String ) 
+	public function Stream( nc:NetConnection , id:String , bGlobal:Boolean , sChannel:String ) 
 	{
 		super(nc) ;
+		setGlobal( bGlobal, sChannel ) ; 
 		setID( id ) ;
 		initEvent() ;
 		this.onStatus = Delegate.create(this, _onStreamStatus) ; 
@@ -164,6 +167,24 @@ class asgard.net.Stream extends NetStream implements IEventDispatcher, IHashable
 	{
 		return isNaN(_duration) ? 0 : _duration ;
 	}
+	
+	/**
+	 * Returns the event name when the stream notifyCuePoint method is invoqued.
+	 * @return the event name when the stream notifyCuePoint method is invoqued.
+	 */
+	public function getEventTypeCUE_POINT():String
+	{
+		return _eCuePoint.getType() ;	
+	}
+
+	/**
+	 * Returns the event name when the stream notifyStatus method is invoqued.
+	 * @return the event name when the stream notifyStatus method is invoqued.
+	 */
+	public function getEventTypeNET_STATUS():String
+	{
+		return _eStatus.getType() ;	
+	}	
 
 	/**
 	 * Returns the {@code EventListenerCollection} of this EventDispatcher.
@@ -248,11 +269,11 @@ class asgard.net.Stream extends NetStream implements IEventDispatcher, IHashable
 	
 	/**
 	 * This method is invoqued in the constructor of the class to initialize all events.
-	 * Overrides this method.
 	 */
 	public function initEvent():Void
 	{
-
+		_eCuePoint = new CuePointEvent( CuePointEvent.INFO, this ) ;
+ 		_eStatus = new StreamEvent( StreamEvent.NET_STATUS , this , this ) ;
 	}
 	
 	/**
@@ -273,7 +294,18 @@ class asgard.net.Stream extends NetStream implements IEventDispatcher, IHashable
 	 */
 	public function notifyCuePoint( info:Object ):Void
 	{
-		dispatchEvent( new CuePointEvent( CuePointEvent.INFO, this, info ) ) ;	
+		_eCuePoint.setCuePoint( info ) ;
+		dispatchEvent( _eCuePoint ) ;	
+	}
+	
+	/**
+	 * Notify a StreamEvent when the status of the Stream is changed.
+	 * @param info An info object.
+	 */
+	public function notifyStatus( info ):Void
+	{
+		_eStatus.setInfo( info ) ;
+		dispatchEvent( _eStatus ) ;	
 	}
 
 	/** 
@@ -296,7 +328,6 @@ class asgard.net.Stream extends NetStream implements IEventDispatcher, IHashable
 	{
 		return _dispatcher.removeGlobalEventListener(listener) ;
 	}
-	
 
 	/**
 	 * Sets the duration property.
@@ -313,6 +344,22 @@ class asgard.net.Stream extends NetStream implements IEventDispatcher, IHashable
 	{
 		_dispatcher = e || initEventDispatcher() ;
 	}
+
+	/**
+	 * Sets the event name when the stream notifyCuePoint method is invoqued.
+	 */
+	public function setEventTypeCUE_POINT( type:String ):Void
+	{
+		_eCuePoint.setType( type ) ;
+	}
+
+	/**
+	 * Sets the event name when the stream notifyStatus method is invoqued.
+	 */
+	public function setEventTypeNET_STATUS( type:String ):Void
+	{
+		_eStatus.setType( type ) ;
+	}	
 
 	/**
 	 * Sets if the model use a global {@code EventDispatcher} to dispatch this events, if the {@code flag} value is {@code false} the model use a local EventDispatcher.
@@ -376,8 +423,10 @@ class asgard.net.Stream extends NetStream implements IEventDispatcher, IHashable
 	}
 	
 	private var _dispatcher:EventDispatcher ;
-	
+
 	private var _duration:Number ;
+	private var _eCuePoint:CuePointEvent ;
+	private var _eStatus:StreamEvent ;
 	private var _id ;
 	private var _isGlobal:Boolean ;
 	private var _isPlaying:Boolean = false ;
@@ -389,6 +438,7 @@ class asgard.net.Stream extends NetStream implements IEventDispatcher, IHashable
 	 */
 	private function onCuePoint( info:Object ):Void
 	{
+		getLogger().info( this + " onCuePoint.") ;
 		notifyCuePoint( info ) ;
 	}
 
@@ -415,6 +465,7 @@ class asgard.net.Stream extends NetStream implements IEventDispatcher, IHashable
 	private function onPlayStatus( oInfo:Object ):Void
 	{
 		getLogger().info( this + " play status code:" + oInfo.code + " , level:" + oInfo.level ) ;
+		notifyStatus( oInfo ) ;
 	}
 
 	/**
@@ -422,47 +473,8 @@ class asgard.net.Stream extends NetStream implements IEventDispatcher, IHashable
 	 */
 	private function _onStreamStatus( oInfo:Object ):Void
 	{
-		
 		getLogger().info( this + " status code: " + oInfo.code + " , level:" + oInfo.level ) ;
-		
-		/*
-		
-		switch ( oInfo.code )
-		{
-			
-			case NetStreamStatus.PLAY_PUBLISH.toString() :
-			{
-				break ;
-			}
-			case NetStreamStatus.PLAY_RESET.toString() :
-			{
-				break ;
-			}
-			case NetStreamStatus.PLAY_START.toString() : 
-			{
-				break ;
-			}
-			case NetStreamStatus.PLAY_STOP.toString() : 
-			{
-				break ;
-			}
-			case NetStreamStatus.PLAY_STREAM_NOT_FOUND.toString() :
-			{
-				break ;	
-			}
-			case NetStreamStatus.PLAY_UNPUBLISH.toString() :
-			{
-				break ;	
-			}
-			case NetStreamStatus.UNPUBLISH_SUCCESS.toString() :
-			{
-				break ;
-			}	
-
-		}
-		*/
-		dispatchEvent( new NetServerStatusEvent( ) ) ;
-
+		notifyStatus( oInfo ) ;
 	}
 	
 	/**

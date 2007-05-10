@@ -21,7 +21,7 @@
   
 */
 
-import vegas.core.CoreObject ;
+import vegas.core.CoreObject;
 
 /**
  * The NetStream status object who contains the level and the status value of all NetStreams in the application.
@@ -171,8 +171,6 @@ class asgard.net.NetStreamStatus extends CoreObject
 	 */
 	static public var UNPUBLISH_SUCCESS:NetStreamStatus = new NetStreamStatus("NetStream.Unpublish.Success", STATUS) ;	
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(NetStreamStatus, null , 7, 7) ;
-
 	/**
 	 * The code of the NetStream information.
 	 */
