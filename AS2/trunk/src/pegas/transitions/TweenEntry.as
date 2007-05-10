@@ -28,7 +28,7 @@ import vegas.core.ICloneable;
  * A basic TweenEntry used in the Tween class to fill this model.
  * @author eKameleon
  */
-class pegas.transitions.TweenEntry extends CoreObject implements ICloneable 
+class pegas.transitions.TweenEntry extends CoreObject implements ICloneable
 {
 	
 	/**
