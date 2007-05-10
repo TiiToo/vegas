@@ -82,7 +82,14 @@ class pegas.process.Sequencer extends AbstractAction
 	 */
 	public function clear():Void 
 	{
+		if (running) 
+		{
+			EventTarget(_cur).removeEventListener(ActionEvent.FINISH, _runner) ;
+			_cur = null ;
+			_setRunning(false) ;
+		}
 		_queue.clear() ;
+		// notify Event
 		_cur = null ;
 	}
 
@@ -131,6 +138,7 @@ class pegas.process.Sequencer extends AbstractAction
 		}
 		else 
 		{
+			EventTarget(_cur).removeEventListener(ActionEvent.FINISH, _runner) ;
 			_cur = null ;
 			if (running) 
 			{
@@ -168,8 +176,12 @@ class pegas.process.Sequencer extends AbstractAction
 		if (running) 
 		{
 			EventTarget(_cur).removeEventListener(ActionEvent.FINISH, _runner) ;
+			_cur = null ;
 			_setRunning(false) ;
-			if (noEvent) return ;
+			if (noEvent) 
+			{
+				return ;
+			}
 			notifyStopped() ;
 			notifyFinished() ;
 		}

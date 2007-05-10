@@ -425,6 +425,8 @@ class asgard.net.Stream extends NetStream implements IEventDispatcher, IHashable
 		
 		getLogger().info( this + " status code: " + oInfo.code + " , level:" + oInfo.level ) ;
 		
+		/*
+		
 		switch ( oInfo.code )
 		{
 			
@@ -458,6 +460,8 @@ class asgard.net.Stream extends NetStream implements IEventDispatcher, IHashable
 			}	
 
 		}
+		*/
+		dispatchEvent( new NetServerStatusEvent( ) ) ;
 
 	}
 	

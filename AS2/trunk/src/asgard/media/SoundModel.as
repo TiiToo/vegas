@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -27,6 +27,8 @@ import vegas.data.map.HashMap;
 import vegas.errors.ArgumentsError;
 import vegas.events.Event;
 import vegas.util.mvc.AbstractModel;
+
+// FIXME refactoring this class with andromeda model implementation !!!!
 
 /**
  * Sound model to manage sounds.

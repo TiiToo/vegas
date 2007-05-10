@@ -1,11 +1,11 @@
-import asgard.media.PrintScreen;
+﻿import asgard.media.PrintScreen;
 
 import flash.display.BitmapData;
 
 import pegas.events.ActionEvent;
 
 /**
- * The ActionEvent is notify by all the objects who implements the Action interface.
+ * The PrintScreenEvent is notify by all the objects who implements the Action interface.
  * @author eKameleon
  */
 class asgard.events.PrintScreenEvent extends ActionEvent 
