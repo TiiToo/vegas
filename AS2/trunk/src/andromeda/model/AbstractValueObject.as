@@ -72,7 +72,6 @@ class andromeda.model.AbstractValueObject extends CoreObject implements IValueOb
 
 	/**
 	 * Sets the id of this IValueObject.
-	 * @return the id of this IValueObject.
 	 */
 	public function setID( id ):Void 
 	{

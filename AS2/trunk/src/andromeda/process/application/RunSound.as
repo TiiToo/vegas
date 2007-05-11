@@ -14,9 +14,9 @@ import asgard.net.URLRequest;
 import vegas.events.Delegate;
 /**
  * This process load an external swf library of sounds use in this application.
- * Use ApplicationSoundLibrary.getInstance().getSound( SoundList.ID_SOUND ).start() to launch a sound in the library when the library is loading.
+ * Use SoundLibrary model with model.getSound( SoundList.ID_SOUND ).start() to launch a sound in the library when the library is loading.
  * @author eKameleon
- * @see ApplicationSoundLibrary
+ * @see andromeda.media.SoundLibrary
  */
 class andromeda.process.application.RunSound extends AbstractActionLoader
 {

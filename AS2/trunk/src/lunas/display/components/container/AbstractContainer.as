@@ -180,8 +180,9 @@ class lunas.display.components.container.AbstractContainer extends AbstractCompo
 	{
 		var ar:Array = _oModel.toArray() ;
 		var l:Number = ar.length ;
-		while(--l > -1)
+		while(l--)
 		{
+			trace(l) ;
 			MovieClip.prototype.swapDephts(ar[l], l) ;	
 		}
 	}

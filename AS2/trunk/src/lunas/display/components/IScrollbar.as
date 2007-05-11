@@ -21,47 +21,14 @@
   
 */
 
-/** IScrollbar [Interface]
-
-	AUTHOR
-	
-		Name : IScrollbar
-		Package : lunas.display.components
-		Version : 1.0.0.0
-		Date :  2006-02-13
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : contact@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- dragging():Void
-		
-		- getBar():MovieClip
-		
-		- getDirection():Number
-		
-		- getPosition():Number
-		
-		- getThumb():MovieClip
-		
-		- setDirection(n:Number):Void
-		
-		- setPosition(pos:Number, noEvent:Boolean):Void
-		
-		- startDragging():Void
-		
-		- stopDragging():Void
-
-	INHERIT
-	
-		IBar → IProgressbar → IScrollbar
-
-**/
-
 import lunas.display.components.IProgressbar;
 
-interface lunas.display.components.IScrollbar extends IProgressbar {
+/**
+ * The IScrollbar interface.
+ * @author eKameleon
+ */
+interface lunas.display.components.IScrollbar extends IProgressbar 
+{
 	
 	function dragging():Void ;
 	

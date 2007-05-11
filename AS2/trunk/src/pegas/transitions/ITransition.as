@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Library.
+  The Original Code is PEGAS Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -21,27 +21,24 @@
   
 */
 
-import vegas.events.EventListener;
+import pegas.process.Action;
 
 /**
- * The IStyle interface.
+ * The ITransition interface define all process in the application who creates transition effects.
  * @author eKameleon
  */
-interface lunas.display.components.IStyle 
+interface pegas.transitions.ITransition extends Action 
 {
+
+	/**
+	 * Returns the id of this ITransition .
+	 * @return the id of this ITransition .
+	 */
+	function getID() ;
 	
-	function addEventListener(eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void ;
-		
-	function getStyle(prop:String) ;
-
-	function getStyleSheet():TextField.StyleSheet ;
-
-	function removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener ;
-
-	function setStyle():Void ;
-	
-	function setStyleSheet(ss:TextField.StyleSheet):Void ;
-
-	function update():Void ;
+	/**
+	 * Sets the id of this ITransition .
+	 */
+	function setID( id ):Void ;
 	
 }

@@ -33,6 +33,14 @@ class pegas.events.ActionEvent extends DynamicEvent
 
 	/**
 	 * Creates a new ActionEvent instance.
+	 * @param type the string type of the instance. 
+	 * @param target the target of the event.
+	 * @param info The information object of this event.
+	 * @param context the optional context object of the event.
+	 * @param bubbles indicates if the event is a bubbling event.
+	 * @param eventPhase the current EventPhase of the event.
+	 * @param time this parameter is used in the Eden deserialization.
+	 * @param stop this parameter is used in the Eden deserialization.
 	 */
 	public function ActionEvent
 	(

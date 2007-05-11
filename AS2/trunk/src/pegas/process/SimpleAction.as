@@ -35,9 +35,12 @@ class pegas.process.SimpleAction extends AbstractCoreEventDispatcher implements 
 	
 	/**
 	 * Creates a new SimpleAction instance.
+	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */
-	function SimpleAction() 
+	function SimpleAction( bGlobal:Boolean, sChannel:String ) 
 	{
+		super(bGlobal, sChannel);		
 		_eFinish = new ActionEvent(ActionEvent.FINISH, this) ;
 		_eStart = new ActionEvent(ActionEvent.START, this) ;
 	}

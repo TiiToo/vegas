@@ -21,43 +21,12 @@
   
 */
 
-/** IStepper [Interface]
-
-	AUTHOR
-	
-		Name : IStepper
-		Package : lunas.display.components
-		Version : 1.0.0.0
-		Date :  2006-02-11
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- getNextValue():Number
-		
-		- getPreviousValue():Number
-	
-		- getMaximum():Number
-		
-		- getMinimum():Number
-		
-		- getValue():Number
-		
-		- getStepSize():Number
-		
-		- setMaximum(n:Number):Void
-		
-		- setMinimum(n:Number):Void
-		
-		- setStepSize(n:Number):Void
-		
-		- setValue(n:Number):Void
-	
-----------  */
-
-interface lunas.display.components.IStepper {
+/**
+ * The IStepper interface.
+ * @author eKameleon
+ */
+interface lunas.display.components.IStepper 
+{
 	
 	function getNextValue():Number ;
 	
