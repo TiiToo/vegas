@@ -17,6 +17,8 @@ class andromeda.process.application.RunStyle extends AbstractActionLoader
 	
 	/**
 	 * Creates a new RunStyle instance.
+	 * @param model the StyleModel to use in this process.
+	 * @param url the url of the external css to load.
 	 */
 	public function RunStyle( model:StyleModel , url:String ) 
 	{

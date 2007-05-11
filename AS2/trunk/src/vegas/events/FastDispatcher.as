@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -62,6 +62,7 @@ class vegas.events.FastDispatcher extends CoreObject implements Iterable
 
 	/**
 	 * Creates a new FastDispatcher instance.
+	 * @param ar an Array of listeners object.
 	 */
 	public function FastDispatcher( ar:Array ) {
 		_listeners = (ar.length > 0) ? [].concat(ar) : [] ;
@@ -89,7 +90,8 @@ class vegas.events.FastDispatcher extends CoreObject implements Iterable
 	 * Returns a shallow copy of this instance.
 	 * @return a shallow copy of this instance.
 	 */
-	public function clone() {
+	public function clone() 
+	{
 		return new FastDispatcher(_listeners) ;
 	}
 	

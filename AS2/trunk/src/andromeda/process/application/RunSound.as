@@ -1,6 +1,7 @@
 ﻿
 import andromeda.core.ApplicationDepthList;
 import andromeda.core.ApplicationList;
+import andromeda.media.SoundLibrary;
 import andromeda.process.abstract.AbstractActionLoader;
 
 import asgard.config.Config;
@@ -8,7 +9,6 @@ import asgard.display.DisplayLoader;
 import asgard.display.DisplayLoaderCollector;
 import asgard.display.DisplayObjectCollector;
 import asgard.events.LoaderEvent;
-import asgard.media.ApplicationSoundLibrary;
 import asgard.net.URLRequest;
 
 import vegas.events.Delegate;
@@ -23,17 +23,24 @@ class andromeda.process.application.RunSound extends AbstractActionLoader
 
 	/**
 	 * Creates a new RunSound instance.
+	 * @param model the SoundLibrary model of this process.
 	 * @param applicationID the name of the application display.
 	 */	
-	public function RunSound( applicationID:String ) 
+	public function RunSound( model:SoundLibrary, applicationID:String ) 
 	{
 		this.applicationID = applicationID ;
+		this.model = model ;
 	}
 
 	/**
 	 * The display application reference.
 	 */
 	public var applicationID:String ;
+
+	/**
+	 * The SoundLibrary reference of this process.
+	 */
+	public var model:SoundLibrary ;
 
 	/**
 	 * initialize the sound library of the application.
@@ -46,11 +53,14 @@ class andromeda.process.application.RunSound extends AbstractActionLoader
 		
 		getLogger().debug(this + " initialize : " + sounds ) ;
 		
-		if (sounds instanceof Array && sounds.length > 0)
+		if (model == null)
 		{
-			var soundLibrary:ApplicationSoundLibrary = ApplicationSoundLibrary.getInstance() ;
-			soundLibrary.initialize( DisplayLoaderCollector.get( ApplicationList.SOUND ).getContent() ) ;
-			soundLibrary.addSounds(Config.getInstance().sound.sounds) ;
+			getLogger().warn(this + " the initialize of this process failed with an empty SoundLibrary model.") ;	
+		}
+		else if (sounds instanceof Array && sounds.length > 0)
+		{
+			model.initialize( DisplayLoaderCollector.get( ApplicationList.SOUND ).getContent() ) ;
+			model.addSounds(Config.getInstance().sound.sounds) ;
 		}
 		
 		notifyFinished() ;
@@ -82,10 +92,13 @@ class andromeda.process.application.RunSound extends AbstractActionLoader
   			}
 		}		
 
- 		var config:Config = Config.getInstance() ;
+ 		var config:Config = getConfig() ;
  		var path:String = config.libraryPath || "" ;
  		var sounds:Array = config.sound.sounds ;
  		var url:String = config.sound.url || "" ;
+ 		
+ 		getLogger().info(this + " sound url : " + url ) ;
+ 		getLogger().info(this + " sounds : " + sounds ) ;
  		
  		if (sounds instanceof Array && sounds.length > 0)
  		{
