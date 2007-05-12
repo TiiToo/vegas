@@ -615,7 +615,6 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 				if (_isFull)
 				{
 					_checkStop() ;
-						
 				}
 				break ;
 			}
