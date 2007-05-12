@@ -64,6 +64,8 @@ class asgard.media.AbstractMediaLoader extends AbstractLoader implements IMediaL
 		_timer = new FrameTimer(24) ;
 		_timer.addEventListener(TimerEvent.TIMER, new Delegate(this, onProgress));
 		
+
+		
 	}
 
 	/**

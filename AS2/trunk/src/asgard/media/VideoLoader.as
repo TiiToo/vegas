@@ -72,6 +72,8 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		_timerHeadTime = new Timer(100, 1) ;
 		_timerHeadTime.addEventListener(TimerEvent.TIMER, new Delegate(this, _onFrameUpdate)) ;
 
+		addEventListener(MediaEvent.MEDIA_PROGRESS , new Delegate(this, _onMediaProgress)) ;
+
 		setAutoPlay( true ) ;
 		setAutoSize( false ) ;
 		setBufferTime( VideoLoader.BUFFER_TIME_DEFAULT );
@@ -411,7 +413,8 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	 */
 	/*override*/ public function setPosition(n:Number):Void 
 	{
-		var time = n * 100 / getDuration() ;
+		var time = n * getDuration() / 100 ;
+		trace(time) ;
 		setTime(n) ;
 	}
 
@@ -592,7 +595,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		}	
 	}
 	
-	private var _isStop:Boolean = false ;
+	private var _isFull:Boolean = false ;
 	
 	/**
 	 * Invoqued when the status of the stream change.
@@ -609,32 +612,23 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 			
 			case NetStreamStatus.BUFFER_EMPTY.equals(code) :
 			{
-				
-				if ( _isStop )
+				if (_isFull)
 				{
-					notifyEvent(MediaEvent.MEDIA_FINISH) ;
-					if (isLoop()) 
-					{
-						this.play(0) ;
-					}
-					else 
-					{
-						this.stop() ;	
-					}
-					_isStop = false ;	
+					_checkStop() ;
+						
 				}
 				break ;
 			}
 			
 			case NetStreamStatus.PLAY_START.equals(code) :
 			{
-				_isStop = false ;
+				_isFull = false ;
 				// getLogger().info( this + " stream starts playing.");
 				break;
 			}		
 			case NetStreamStatus.PLAY_STOP.equals(code) :
 			{
-				_isStop = true ;
+				_isFull = true ;
 				break;
 			}
 			
@@ -659,6 +653,23 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 
 		}
 	}
+	
+	private function _checkStop():Void
+	{
+		if (_isFull)
+		{
+			_isFull = false ;
+			notifyEvent(MediaEvent.MEDIA_FINISH) ;
+			if (isLoop()) 
+			{
+				this.play(0) ;
+			}
+			else 
+			{
+				this.stop() ;	
+			}
+		}
+	}
 
 	/**
 	 * Invoqued when the frame update.
@@ -677,6 +688,15 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		if ( isProgressive() )
 		{
 			_tLoadProgress.start() ;
+		}
+	}
+	
+	private function _onMediaProgress( e:MediaEvent ):Void
+	{
+		if ( e.getPosition() == 100 )
+		{
+			_isFull = true ;
+			_checkStop() ;	
 		}
 	}
 			
