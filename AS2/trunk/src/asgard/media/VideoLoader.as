@@ -607,8 +607,9 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		switch ( true ) 
 		{
 			
-			case NetStreamStatus.BUFFER_EMPTY :
+			case NetStreamStatus.BUFFER_EMPTY.equals(code) :
 			{
+				
 				if ( _isStop )
 				{
 					notifyEvent(MediaEvent.MEDIA_FINISH) ;
