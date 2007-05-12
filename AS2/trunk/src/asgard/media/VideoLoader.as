@@ -412,7 +412,6 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	/*override*/ public function setPosition(n:Number):Void 
 	{
 		var time = n * 100 / getDuration() ;
-		trace(time + " / " + getDuration()) ;
 		setTime(n) ;
 	}
 
@@ -593,6 +592,8 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		}	
 	}
 	
+	private var _isStop:Boolean = false ;
+	
 	/**
 	 * Invoqued when the status of the stream change.
 	 */
@@ -606,26 +607,33 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		switch ( true ) 
 		{
 			
+			case NetStreamStatus.BUFFER_EMPTY :
+			{
+				if ( _isStop )
+				{
+					notifyEvent(MediaEvent.MEDIA_FINISH) ;
+					if (isLoop()) 
+					{
+						this.play(0) ;
+					}
+					else 
+					{
+						this.stop() ;	
+					}
+					_isStop = false ;	
+				}
+				break ;
+			}
+			
 			case NetStreamStatus.PLAY_START.equals(code) :
 			{
-				getLogger().info( this + " stream starts playing.");
+				_isStop = false ;
+				// getLogger().info( this + " stream starts playing.");
 				break;
 			}		
 			case NetStreamStatus.PLAY_STOP.equals(code) :
 			{
-				notifyEvent(MediaEvent.MEDIA_FINISH) ;
-			
-				getLogger().info( this + " stream stops playing.");
-				
-				if (isLoop()) 
-				{
-					this.play(0) ;
-				}
-				else 
-				{
-					this.stop() ;	
-				}
-				
+				_isStop = true ;
 				break;
 			}
 			
@@ -647,7 +655,6 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 				getLogger().info( this + " stream buffer is full." );
 				break;
 			}
-			
 
 		}
 	}
