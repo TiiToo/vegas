@@ -21,20 +21,6 @@
   
 */
 
-/**
-	
-	AUTHOR
-	
-		Name : AbstractHScrollList
-		Package : lunas.display.components.list
-		Version : 1.0.0.0
-		Date :  8 nov. 06
-		Author : eKameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-*/
-
 import asgard.display.Direction;
 import asgard.display.ScrollContainerPolicy;
 

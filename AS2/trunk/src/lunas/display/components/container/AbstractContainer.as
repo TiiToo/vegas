@@ -182,7 +182,6 @@ class lunas.display.components.container.AbstractContainer extends AbstractCompo
 		var l:Number = ar.length ;
 		while(l--)
 		{
-			trace(l) ;
 			MovieClip.prototype.swapDephts(ar[l], l) ;	
 		}
 	}

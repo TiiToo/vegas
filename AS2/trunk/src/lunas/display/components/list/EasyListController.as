@@ -21,58 +21,6 @@
   
 */
 
-/** EasyListController
-
-	AUTHOR
-
-		Name : EasyListController
-		Package : lunas.display.components.list
-		Version : 1.0.0.0
-		Date :  2006-02-17
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- getModel():IModel
-		
-		- getView():IView
-		
-		- setModel(oModel:IModel):Void
-		
-		- setView(oView:IView):Void
-		
-		- toString():String
-		
-		- viewClear():Void
-		
-		- viewCreateAt(container:MovieClip, index:Number):MovieClip
-		
-		- viewRemove(first:Number, last:Number)
-		
-		- viewRollOut 
-		
-			override this method - Out of a cell.
-			
-		- viewRollOver():Void
-		
-			override this method - Over of a cell.
-		
-		- viewSelect(ev:IEvent):Void
-		
-			Invoqué quand une cellule est sélectionnée dans la liste, notifie un événement UIEventType.CHANGE
-
-	IMPLEMENTS 
-	
-		IView
-
-	INHERIT 
-	
-		AbstractController → ListController → EasyListController
-
-**/
-
 import lunas.display.components.list.AbstractListController;
 import lunas.display.components.list.EasyList;
 import lunas.display.components.list.ListModel;
@@ -83,6 +31,9 @@ import lunas.events.CellEventType;
 import vegas.events.Delegate;
 import vegas.events.Event;
 
+/** 
+ * @author eKameleon
+ */
 class lunas.display.components.list.EasyListController extends AbstractListController 
 {
 
@@ -94,8 +45,6 @@ class lunas.display.components.list.EasyListController extends AbstractListContr
 		//
 	}
 
-	// ----o Public Methods
-	
 	public function viewCreateAt(index:Number):MovieClip 
 	{
 		if ( isNaN(index) ) return null ;

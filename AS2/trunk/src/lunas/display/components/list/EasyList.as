@@ -21,193 +21,10 @@
   
 */
 
-/** EasyList
-
-	AUTHOR
-
-		Name : EasyList
-		Package : lunas.display.components.list
-		Version : 1.0.0.0
-		Date :  2006-02-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		Exemple de liste autoScrollable.
-
-	CONSTANT SUMMARY
-	
-		- AUTO:Number
-		
-			auto scroll
-		
-		- NONE:Number
-		
-			no auto scroll
-			
-		- SCROLL_ON_CLICK:Number
-		
-			scroll when user select an item.
-	
-	PROPERTY SUMMARY
-	
-		- dataProvider [R/W]
-		
-		- labelField:String [R/W]
-		
-		- rowCount:Number [R/W]
-		
-		- rowHeight:Number [R/W]
-		
-		- rowWidth:Number [R/W]
-		
-		- scrollPolicy:Number [R/W]
-		
-		- selectedIndex:Number [R/W]
-		
-		- selectedItem [R/W]
-
-	METHOD SUMMARY
-		
-		- addItem( oItem )
-		
-		- addItemAt( oItem, index:Number )
-		
-		- clear():Void
-		
-		- contains(oItem):Boolean
-		
-		- createItemAt(index:Number):MovieClip
-		
-			Internal method. Can be override.
-		
-		- editField(index:Number, fieldName:String, newData):Void
-		
-		- getContainer():MovieClip
-		
-		- getDataProvider():ListModel
-		
-			return the model.
-		
-		- getItemAt(index:Number)
-		
-		- getItemByKey(key:Number)
-		
-		- getIterator():Iterator
-		
-		- getLabelField():String
-		
-		- getRowCount():Number
-		
-		- getRowHeight():Number
-		
-		- getRowWidth():Number
-		
-		- getScrollPolicy():Number
-		
-		- getSelectedIndex():Number
-		
-		- getSelectedItem()
-		
-		- indexOf(oItem):Number
-		
-		- removeItem(oItem)
-		
-		- removeItemAt(index:Number)
-		
-		- removeItemsAt(index:Number, len:Number):Array
-		
-		- removeRange(from:Number, to:Number):Array
-		
-		- replaceItemAt(index:Number, oItem):Void
-		
-		- selectedItemAt(index:Number):Void
-		
-		- selectedItemNext():Void
-		
-		- selectedItemPrev():Void
-		
-		- setDataProvider(data)
-		
-			DESCRIPTION 
-			
-				clear list and initialize the model.
-			
-			PARAMS
-			
-				- data : an Array or a Iterable Object
-		
-		- setItemIndex( oItem, index:Number):Void
-		
-		- setLabelField(s:String, render:Boolean ):Void
-		
-			TODO :: mettre en place l'option render
-		
-		- setRowCount(n:Number):Void
-		
-		- setRowHeight(n:Number, noRender:Boolean):Void
-		
-		- setRowWidth(n:Number, noRender:Boolean):Void
-		
-		- setScrollPolicy(value:Number):Void
-		
-		- setSelectedIndex(index:Number):Void
-		
-		- setSelectedItem(item):Void
-		
-		- size():Number
-		
-		- toString():String
-		
-		- unSelect():Void
-		
-		- viewDrag : rafraichir l'affichage si l'utilisateur utilise une scrollbar
-
-		- viewResize():Void
-		
-			override this method (AbstractComponent Method must be overriding)
-		
-		- viewRollOut 
-		
-			override this method - Out of a cell.
-			
-		- viewRollOver():Void
-		
-			override this method - Over of a cell.
-		
-		- viewSelect(ev:IEvent):Void
-		
-			Invoqué quand une cellule est sélectionnée dans la liste, notifie un événement UIEventType.CHANGE
-	
-	EVENT SUMMARY
-
-		UIEvent
-		
-	EVENT TYPE SUMMARY
-	
-		- ADDED:UIEventType
-		
-		- REMOVED:UIEventType
-
-	INHERIT 
-	
-		MovieClip → AbstractComponent → AbstractList → EasyList
-
-	SEE ALSO
-	
-		UIEventType, UIEvent, IEvent
-
-	TODO :: finir les tests du composant
-	TODO :: voir si je peux placer le resize dans le builder directement
-	TODO :: ajouter scrollPolicy CLICK_AND_SCROLL SCROLL NOSCROLL
-	TODO :: vérifier les rollOverItem et rollOutItem et renvoyer l'identifiant de la cellule sur laquelle on passe et la cellule
-			dans le paramètre child de l'événement !
-	
-	ADD :: 2006-02-10 scrollPolicy (NONE, AUTO, SCROLL_ON_CLICK, FULL)
-	
-**/
+// TODO finir les tests du composant
+// TODO voir si je peux placer le resize dans le builder directement
+// TODO ajouter scrollPolicy CLICK_AND_SCROLL SCROLL NOSCROLL
+// TODO vérifier les rollOverItem et rollOutItem et renvoyer l'identifiant de la cellule sur laquelle on passe et la cellule dans le paramètre child de l'événement !
 
 import asgard.display.Direction;
 
@@ -222,16 +39,17 @@ import lunas.display.components.shape.RectangleComponent;
 
 import vegas.events.Event;
 
-class lunas.display.components.list.EasyList extends AbstractList {
+class lunas.display.components.list.EasyList extends AbstractList 
+{
 
-	// ----o Constructor
-
-	public function EasyList() {
+	/**
+	 * Creates a  new EasyList instance.
+	 */
+	public function EasyList() 
+	{
 		super() ;
 		update() ;
 	}
-	
-	// ----o Constants
 	
 	static public var BACKGROUND_RENDERER:Function = RectangleComponent ;
 	
@@ -242,17 +60,30 @@ class lunas.display.components.list.EasyList extends AbstractList {
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(EasyList, null, 7, 7) ;
 	
-	// ----o Public Properties
-	
 	public var cellRenderer:Function = EasyCell ;
+
 	public var containerRenderer:Function = AutoScrollContainer ;
 
-	// public var scrollPolicy:Number ; // [R/W]
+	public function get scrollPolicy():Number 
+	{
+		return getScrollPolicy() ;	
+	}
 	
-	// public var vPosition:Number ; // [R/W]
+	public function set scrollPolicy(n:Number):Void 
+	{
+		setScrollPolicy(n) ;	
+	}
 	
-	// ----o Public Methods
-
+	public function get vPositiony():Number 
+	{
+		return getVPosition() ;	
+	}
+	
+	public function set vPosition(n:Number):Void 
+	{
+		setVPosition(n) ;	
+	}
+	
 	/*override*/ public function draw():Void {
 		resize() ; // recalculer la taille du composant avant d'utiliser le builder.
 	}
@@ -334,30 +165,6 @@ class lunas.display.components.list.EasyList extends AbstractList {
 	{
 		notifyScroll() ;
 	}
-
-	// ----o Virtual Properties
-
-	public function get scrollPolicy():Number 
-	{
-		return getScrollPolicy() ;	
-	}
-	
-	public function set scrollPolicy(n:Number):Void 
-	{
-		setScrollPolicy(n) ;	
-	}
-	
-	public function get vPositiony():Number 
-	{
-		return getVPosition() ;	
-	}
-	
-	public function set vPosition(n:Number):Void 
-	{
-		setVPosition(n) ;	
-	}
-
-	// ----o Private Properties
 	
 	private var _scrollPolicy:Number = EasyList.AUTO ;
 	private var _h:Number = 18 ;

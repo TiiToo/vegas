@@ -21,92 +21,6 @@
   
 */
 
-/**
-
-	AUTHOR
-
-		Name : ListModel
-		Package : lunas.display.components.list
-		Version : 1.0.0.0
-		Date :  2006-02-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- addItem( oItem )
-		
-		- addItemAt( oItem, index:Number )
-		
-		- addModelListener(oL):Void
-		
-		- clear():Void
-		
-		- contains(oItem):Boolean
-		
-		- getItemAt(index:Number)
-		
-		- getItemByKey(key:Number)
-		
-		- indexOf(oItem):Number
-		
-		- indexOfField(fieldName:String, value):Number
-		
-		- isEmpty():Boolean
-		
-		- notifyChanged(e:IEvent):Void
-		
-		- removeItem(oItem)
-		
-		- removeItemAt(index:Number)
-		
-		- removeItemsAt(index:Number, len:Number):Array
-		
-		- removeModelListener(oL):Void
-		
-		- removeRange(from:Number, to:Number):Array
-		
-		- setItemIndex( oItem, index:Number):Void
-		
-		- size():Number
-		
-		- sortItems(compareFunc:Function, options:Number):Void
-		
-		- sortItemsBy( fieldNames , options ):Void
-		
-		- toArray():Array
-		
-		- toString():String
-	
-	EVENT SUMMARY
-	
-		- ModelChangedEvent
-	
-	EVENT TYPE SUMMARY
-
-		- ModelChangedEventType.ADD_ITEMS:String
-		
-		- ModelChangedEventType.CLEAR_ITEMS:String
-		
-		- ModelChangedEventType.REMOVE_ITEMS:String
-		
-		- ModelChangedEventType.SORT_ITEMS:String
-					
-		- ModelChangedEventType.UPDATE_ITEMS:String
-
-	INHERIT 
-	
-		CoreObject → AbstractCoreEventDispatcher → AbstractModel → ListModel
-
-	IMPLEMENTS 
-	
-		IEventDispatcher, IFormattable, IHashable, IModel, EventTarget
-
-	TODO Create a PageableModel Abstract class.
-
-*/
-
 import pegas.maths.Range;
 
 import vegas.data.iterator.ArrayIterator;
@@ -117,19 +31,21 @@ import vegas.events.ModelChangedEventType;
 import vegas.util.ArrayUtil;
 import vegas.util.mvc.AbstractModel;
 
+/**
+ * @author eKameleon
+ */
 class lunas.display.components.list.ListModel extends AbstractModel implements Iterable 
 {
 
-	// ----o Constructor
-
+	/**
+	 * Creates a new ListModel instance.
+	 */
 	public function ListModel () 
 	{ 
 		super() ;
 		_model = [] ;
 	}
 
-	// ----o Constant
-	
 	static public var ADD_ITEMS:String = ModelChangedEventType.ADD_ITEMS ; 
 	static public var CLEAR_ITEMS:String = ModelChangedEventType.CLEAR_ITEMS ; 
 	static public var REMOVE_ITEMS:String = ModelChangedEventType.REMOVE_ITEMS ; 
@@ -137,8 +53,6 @@ class lunas.display.components.list.ListModel extends AbstractModel implements I
 
 	static private var __ASPF__ = _global.ASSetPropFlags(ListModel, null , 7, 7) ;
 
-	// ----o Public Methods
-	
 	public function addItem( oItem ) 
 	{
 		return addItemAt(oItem, size()) ; 
@@ -316,15 +230,14 @@ class lunas.display.components.list.ListModel extends AbstractModel implements I
 	}
 	
 	/**
-	 * Returns an Array representation of the model.
+	 * Returns the Array representation of this Object.
+	 * @return the Array representation of this Object.
 	 */
 	public function toArray():Array 
 	{
 		return [].concat(_model) ;
 	}
 	
-	// ----o Private Properties
-
 	private var _model:Array ;
 
 }

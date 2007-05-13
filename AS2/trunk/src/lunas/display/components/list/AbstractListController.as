@@ -34,14 +34,12 @@ class lunas.display.components.list.AbstractListController extends AbstractContr
 {
 
 	/**
-	 * Creates  
+	 * Creates a new ListController instance.
 	 */
 	public function ListController() 
 	{ 
 		//
 	}
-
-	// ----o Public Methods
 
 	public function unSelect():Void
 	{
@@ -127,8 +125,6 @@ class lunas.display.components.list.AbstractListController extends AbstractContr
 	{
 		// override this method
 	}
-	
-	// ----o Private Properties
 	
 	private var _oldCell:ICell ;
 

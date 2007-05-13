@@ -21,48 +21,6 @@
   
 */
 
-/** ListView
-
-	AUTHOR
-
-		Name : ListView
-		Package : lunas.display.components.list
-		Version : 1.0.0.0
-		Date :  2006-02-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-
-		- getController():IController
-
-		- getViewContainer():MovieClip
-		
-		- handleEvent(e:Event)
-		
-		- registerWithModel( oModel:IModel ):Void
-		
-		- setController(oController:IController):Void
-		
-		- setModel(oModel:IModel):Void
-		
-		- setViewContainer(mcContainer:MovieClip):Void
-		
-	INHERIT
-	
-		CoreObject → AbstractView → ListView
-
-	IMPLEMENTS 
-	
-		IView, IFormattable
-		
-	IMPLEMENTS 
-	
-		EventListener, IFormattable, IHashable, IView
-
-*/
-
 import lunas.display.components.container.ContainerModel;
 import lunas.display.components.list.AbstractListController;
 
@@ -72,16 +30,19 @@ import vegas.util.mvc.AbstractView;
 import vegas.util.mvc.IController;
 import vegas.util.mvc.IModel;
 
-class lunas.display.components.list.ListView extends AbstractView {
+/**
+ * @author eKameleon
+ */
+class lunas.display.components.list.ListView extends AbstractView 
+{
 
-	// ----o Constructor
-
+	/**
+	 * Creates a new ListView instance.
+	 */
 	public function ListView(oModel:IModel, oController:IController, mcContainer:MovieClip) 
 	{ 
 		super(oModel, oController, mcContainer) ;
 	}
-
-	// ----o Public Methods
 
 	public function handleEvent(ev:ModelChangedEvent):Void 
 	{

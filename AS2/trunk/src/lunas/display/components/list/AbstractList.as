@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -21,155 +21,6 @@
   
 */
 
-/** AbstractList
-
-	AUTHOR
-
-		Name : AbstractList
-		Package : lunas.display.components.list
-		Version : 1.0.0.0
-		Date :  2006-02-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-	
-		- dataProvider [R/W]
-		
-		- labelField:String [R/W]
-		
-		- rowCount:Number [R/W]
-		
-		- rowHeight:Number [R/W]
-		
-		- rowWidth:Number [R/W]
-		
-		- selectedIndex:Number [R/W]
-		
-		- selectedItem [R/W]
-
-	METHOD SUMMARY
-		
-		
-		- addItem( oItem )
-		
-		- addItemAt( oItem, index:Number )
-		
-		- clear():Void
-		
-		- contains(oItem):Boolean
-		
-		- editField(index:Number, fieldName:String, newData):Void
-		
-		- getContainer():MovieClip
-		
-		- getDataProvider():ListModel
-		
-			return the model.
-		
-		- getItemAt(index:Number)
-		
-		- getItemByKey(key:Number)
-		
-		- getIterator():Iterator
-		
-		- getLabelField():String
-		
-		- getRowCount():Number
-		
-		- getRowHeight():Number
-		
-		- getRowWidth():Number
-		
-		- getSelectedIndex():Number
-		
-		- getSelectedItem()
-		
-		- indexOf(oItem):Number
-		
-		- notifyScroll():Void
-		
-		- removeItem(oItem)
-		
-		- removeItemAt(index:Number)
-		
-		- removeItemsAt(index:Number, len:Number):Array
-		
-		- removeRange(from:Number, to:Number):Array
-		
-		- replaceItemAt(index:Number, oItem):Void
-		
-		- selectedItemAt(index:Number):Void
-		
-		- selectedItemNext():Void
-		
-		- selectedItemPrev():Void
-		
-		- setDataProvider(data)
-		
-			DESCRIPTION 
-			
-				clear list and initialize the model.
-			
-			PARAMS
-			
-				- data : an Array or a Iterable Object
-		
-		- setItemIndex( oItem, index:Number)
-		
-			Permet de redÃ©finir un item contenu dans la liste. Renvoie l'ancienne valeur de l'item changÃ©.
-		
-		- setLabelField(s:String, render:Boolean ):Void
-		
-			TODO :: mettre en place l'option render
-		
-		- setRowCount(n:Number):Void
-		
-		- setRowHeight(n:Number, noRender:Boolean):Void
-		
-		- setRowWidth(n:Number, noRender:Boolean):Void
-		
-		- setSelectedIndex(index:Number, noEvent:Boolean):Void
-		
-		- setSelectedItem(item, noEvent:Boolean):Void
-		
-		- size():Number
-		
-		- sortItems(compareFunc:Function, options:Number):Void 
-		
-		- sortItemsBy(fieldNames , options ):Void
-		
-		- toString():String
-		
-		- unSelect():Void
-		
-	
-	EVENT SUMMARY
-
-		UIEvent
-		
-	EVENT TYPE SUMMARY
-	
-		- ADDED:UIEventType
-		
-		- REMOVED:UIEventType
-
-	INHERIT 
-	
-		MovieClip → AbstractComponent → AbstractList
-
-	SEE ALSO
-	
-		UIEventType, UIEvent, IEvent
-
-	TODO add sort methods !!
-	
-	TODO add addItems to optimize massive data's entries.
-	TODO add ADDED & REMOVED events
-	
-**/
-
 import lunas.display.components.AbstractComponent;
 import lunas.display.components.list.AbstractListController;
 import lunas.display.components.list.ListModel;
@@ -184,17 +35,19 @@ import vegas.util.ConstructorUtil;
 import vegas.util.mvc.IController;
 import vegas.util.mvc.IView;
 
+/**
+ * @author eKameleon
+ */
 class lunas.display.components.list.AbstractList extends AbstractComponent implements Iterable 
 {
 
-	// ----o Constructor
-
+	/**
+	 * Creates a new AbstractList instance.
+	 */
 	private function AbstractList () 
 	{ 
 		super() ;
 	}
-	
-	// ----o Public Properties
 	
 	public var cellRenderer:Function ; // override
 	
@@ -538,8 +391,6 @@ class lunas.display.components.list.AbstractList extends AbstractComponent imple
 	{
 		_selectedItem = item ; // TODO search the index object !!
 		var index:Number = indexOf(item) ;
-		trace(index) ;
-		
 		if (index > -1)
 		{
 			setSelectedIndex(index, noEvent) ;
@@ -574,8 +425,6 @@ class lunas.display.components.list.AbstractList extends AbstractComponent imple
 		_selectedIndex = null ;
 	}
 
-	// ----o Private Properties
-	
 	private var _eScroll:UIEvent ;
 	private var _labelField:String ;
 	private var _rowCount:Number ;

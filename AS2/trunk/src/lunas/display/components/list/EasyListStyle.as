@@ -21,88 +21,26 @@
   
 */
 
-/** EasyListStyle
-
-	AUTHOR
-	
-		Name : EasyListStyle
-		Package : lunas.display.components.list
-		Version : 1.0.0.0
-		Date :  2006-02-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-	
-		- styleSheet:TextField.StyleSheet [R/W]
-			
-			Feuille de style des textes contenus dans le widget ou composant.
-
-	METHOD SUMMARY
-	
-		- addEventListener(e:EventType, oL, f:Function):Void
-		
-		- getStyle (prop:String) 
-			renvoie la valeur d'une propriété de style si elle existe.
-		
-		- getStyleSheet () 
-			Renvoi la feuille de style du composant
-		
-		- removeEventListener(e:EventType, oL):Void
-		
-		- setStyle (props:Object) ou ( prop:String , value ) 
-			
-			Définir une ou plusieurs propriétés du style
-		
-		- setStyleSheet (ss)
-			
-			Permet de définir une feuille de style pour le composant
-		
-		- update():Void
-
-	
-	PROTECTED METHOD SUMMARY
-	
-		- initialize() 
-			
-			Méthode interne invoquée à la création de l'instance de style, peut être surchargée en cas de besoin pour initialiser les propriétés par défaut
-			de la feuille de style.
-
-		- styleChanged()
-			
-			Méthode interne pouvant être surchargée si nécessaire dans certaines feuilles de style.
-
-		- styleSheetChanged()
-			
-			Méthore interne pouvant être surchargée si nécessaire dans certaines feuilles de style.
-	
-	EVENT SUMMARY
-	
-		- StyleEvent
-		
-			- StyleEventType.STYLE_CHANGED
-			- StyleEventType.STYLE_SHEET_CHANGED
-			
-**/
-
 import lunas.display.components.AbstractStyle;
 import lunas.display.components.button.EasyButtonStyle;
 
-class lunas.display.components.list.EasyListStyle extends AbstractStyle {
+/**
+ * @author eKameleon
+ */
+class lunas.display.components.list.EasyListStyle extends AbstractStyle 
+{
 
-	// ----o Constructor 
 	
-	public function EasyListStyle( init:Object ) {
+	/**
+	 * Creates a new EasyListStyle instance.
+	 */
+	public function EasyListStyle( init:Object ) 
+	{
 		super(init) ;
 	}
 
-	// ----o Constant
-	
 	static public var LABEL_STYLE_NAME:String = "EasyButtonLabel" ;
 
-	// ----o Public Properties
-	
 	var themeColor:Number = 0xFFFFFF ;
 	var themeDisabled:Number = 0xFFFFFF  ;
 	var themeAlpha:Number = 20 ;

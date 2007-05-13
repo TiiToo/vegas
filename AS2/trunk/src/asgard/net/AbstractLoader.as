@@ -24,6 +24,8 @@
 import asgard.events.LoaderEvent;
 import asgard.net.ILoader;
 
+import pegas.maths.Range;
+
 import vegas.events.AbstractCoreEventDispatcher;
 import vegas.events.Delegate;
 import vegas.events.TimerEvent;
@@ -196,7 +198,8 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 	 */
 	public function getPercent():Number 
 	{
-		var n:Number = Math.min(100, Math.ceil( getBytesLoaded() / ( getBytesTotal() / 100 ) ) );
+		var n:Number = Math.round( getBytesLoaded() * 100 / getBytesTotal() ) ;
+		n = Range.PERCENT_RANGE.clamp( n > 0 ? n : 0 ) ;
 		return (isNaN(n)) ? 0 : n ;
 	}
 	
@@ -554,7 +557,6 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 		_tLoadProgress.start() ;
 	}
 	
-
 	/*protected*/ private function _stopInitTimer():Void 
 	{
 		if (_tInit.running) 

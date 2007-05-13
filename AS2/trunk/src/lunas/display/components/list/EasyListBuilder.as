@@ -21,40 +21,6 @@
   
 */
 
-/** EasyListBuilder
-
-	AUTHOR
-		
-		Name : EasyListBuilder
-		Package : lunas.display.components.list
-		Version : 1.0.0.0
-		Date :  2006-02-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-
-
-	PROPERTY SUMMARY
-	
-		- target:MovieClip
-
-	METHOD SUMMARY
-	
-		- clear():Void
-		
-		- execute(e:IEvent):Void
-		
-		- toString():String
-		
-		- update():Void
-
-	INHERIT
-	
-		CoreObject → AbstractBuilder → EasyListBuilder
-
-**/
 
 import asgard.display.Direction;
 
@@ -63,30 +29,35 @@ import lunas.display.components.list.AbstractListBuilder;
 import lunas.display.components.list.EasyList;
 import lunas.display.components.list.EasyListStyle;
 
-class lunas.display.components.list.EasyListBuilder extends AbstractListBuilder {
+/**
+ * @author eKameleon
+ */
+class lunas.display.components.list.EasyListBuilder extends AbstractListBuilder 
+{
 	
-	// ----o Constructor
-
-	private function EasyListBuilder( mc:MovieClip ) {
+	/**
+	 * Creates a new EasyListBuilder instance.
+	 */
+	private function EasyListBuilder( mc:MovieClip ) 
+	{
 		super(mc) ;
 	}
 
-	// ----o Public Properties
-	
 	public var background:MovieClip ;
 		
-	// ----o Public Methods
-
-	public function clear():Void {
+	public function clear():Void 
+	{
 		if(background) background.removeMovieClip() ;
 		super.clear() ;
 	}
 
-	public function getContainerRenderer():Function {
+	public function getContainerRenderer():Function 
+	{
 		return AutoScrollContainer ;
 	}
 
-	public function getMargin():Number {
+	public function getMargin():Number 
+	{
 		var s:EasyListStyle = target.getStyle() ;
 		var m:Number = 0 ;
 		if (!isNaN(s.thickness)) m += s.thickness ;
@@ -94,23 +65,25 @@ class lunas.display.components.list.EasyListBuilder extends AbstractListBuilder 
 		return m ;
 	}
 
-	public function run():Void {
+	public function run():Void 
+	{
 		_createBackground() ;
 		super.run() ;
 	}
 		
-	public function update():Void {
+	public function update():Void 
+	{
 		super.update() ;
 		_refreshBackground() ;	
 	}
 
-	// ----o Private Methods
-
-	private function _createBackground():Void {
+	private function _createBackground():Void 
+	{
 		background = target.createChild( EasyList.BACKGROUND_RENDERER, "_mcBackground", 0) ;
 	}
 	
-	private function _refreshBackground():Void {
+	private function _refreshBackground():Void 
+	{
 		var s:EasyListStyle = target.getStyle() ;
 		background.refresh ( {
 			t : isNaN(s.thickness) ? 0 : s.thickness ,
@@ -122,7 +95,8 @@ class lunas.display.components.list.EasyListBuilder extends AbstractListBuilder 
 		background.setSize( target.getW() , target.getH() ) ;
 	}
 	
-	private function _refreshContainer():Void {
+	private function _refreshContainer():Void 
+	{
 		var s:EasyListStyle = target.getStyle() ;
 		var c:MovieClip = target.getContainer() ;
 		var margin:Number = getMargin() ;
