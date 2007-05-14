@@ -22,6 +22,7 @@
 */
 
 import asgard.net.Stream;
+import asgard.net.StreamExpert;
 
 import vegas.data.map.HashMap;
 import vegas.errors.Warning;
@@ -107,6 +108,10 @@ class asgard.net.StreamCollector
 	 */
 	static public function remove( id ):Void 
 	{
+		if (StreamExpert.contains( id ) )
+		{
+			StreamExpert.release( id ) ;
+		}
 		_map.remove( id ) ;
 	}
 

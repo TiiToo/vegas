@@ -39,9 +39,10 @@ class pegas.transitions.AbstractTransition extends AbstractCoreEventDispatcher i
 	 * @param bGlobal the flag to use a global event flow or a local event flow.
 	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */	
-	function AbstractTransition( bGlobal:Boolean, sChannel:String ) 
+	function AbstractTransition( id, bGlobal:Boolean, sChannel:String ) 
 	{
 		super(bGlobal, sChannel);
+		setID( id ) ;
 		_eFinish = new TransitionEvent( ActionEvent.FINISH , this ) ;
 		_eStart  = new TransitionEvent( ActionEvent.START  , this ) ;
 	}

@@ -29,6 +29,8 @@ import vegas.data.map.HashMap;
 import vegas.events.AbstractCoreEventDispatcher;
 import vegas.events.Delegate;
 import vegas.events.Event;
+import vegas.events.EventDispatcher;
+import vegas.events.EventListener;
 import vegas.events.StringEvent;
 import vegas.events.TimerEvent;
 import vegas.util.ConstructorUtil;
@@ -38,7 +40,7 @@ import vegas.util.Timer;
  * This singleton controls a Stream instance.
  * @author eKameleon
  */
-class asgard.net.StreamExpert extends AbstractCoreEventDispatcher 
+class asgard.net.StreamExpert extends AbstractCoreEventDispatcher implements EventListener
 {
 	
 	/**
@@ -112,6 +114,33 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	public function set isLoop(b:Boolean):Void
 	{
 		_isLoop = b ; 	
+	}
+
+
+	/**
+	 * Close the Stream.
+	 */	
+	public function close():Void
+	{
+		if ( StreamCollector.contains( getStreamID() ) )
+		{
+			var s:Stream = getStream() ;
+			s.close() ;
+		}
+		else
+		{
+			getLogger().warn( this + " start play failed with an unknow Stream id : " + getStreamID() ) ;	
+		}
+	}
+	
+	/**
+	 * Returns {@code true} if the StreamExpert factory contains the specified {@code StreamExpert} ID.
+	 * @param streamID the stream id of the StreamExpert singleton.
+	 * @return {@code true} if the StreamExpert factory contains the specified {@code StreamExpert} ID.
+	 */
+	static public function contains( streamID:String ):Boolean
+	{
+		return _map.containsKey( streamID ) ;
 	}
 
 	/**
@@ -223,6 +252,17 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	}
 
 	/**
+	 * Handles the event of the internal Stream of this object. 
+	 * Use the static registerStream method to active this callback method.
+	 */
+	public function handleEvent(e:Event)
+	{
+		// getLogger().warn(this, 
+		// e.setCurrentTarget(this) ;
+		// dispatchEvent(e) ;
+	}
+
+	/**
 	 * This method is invoqued in the constructor of the class to initialize all events.
 	 * Overrides this method.
 	 */
@@ -235,22 +275,6 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 		_ePlayResume   = new StringEvent   ( STREAM_PLAY_RESUME , getStreamID() ) ;
 		_ePlayStart    = new StringEvent   ( STREAM_PLAY_START , getStreamID() ) ;
 		_ePlayStop     = new StringEvent   ( STREAM_PLAY_STOP , getStreamID() ) ;
-	}
-
-	/**
-	 * Close the Stream.
-	 */	
-	public function close():Void
-	{
-		if ( StreamCollector.contains( getStreamID() ) )
-		{
-			var s:Stream = getStream() ;
-			s.close() ;
-		}
-		else
-		{
-			getLogger().warn( this + " start play failed with an unknow Stream id : " + getStreamID() ) ;	
-		}
 	}
 
 	/**
@@ -327,12 +351,31 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	}
 
 	/**
+	 * Registers the Stream object of this expert to handles this events.
+	 */
+	public function registerStream():Void
+	{
+		if ( StreamCollector.containsStream( getStream() ) )
+		{
+			getStream().setParent( EventDispatcher(this) ) ;
+		}
+		else
+		{
+			getLogger().warn( this + " registerStream failed with an unknow or empty Stream object.") ;	
+		}
+	}
+
+	/**
 	 * Release the specified StreamExpert singleton.
 	 * @param streamID the stream id of the StreamExpert singleton.
 	 * @return the removed StreamExpert singleton or null .
 	 */
 	static public function release( streamID:String ):StreamExpert
 	{
+		if ( StreamCollector.contains( streamID ) )
+		{
+			StreamExpert.getInstance(streamID).unregisterStream() ;
+		}
 		return _map.remove( streamID ) ;
 	}
 
@@ -443,6 +486,21 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	{
 		return "[" + ConstructorUtil.getName(this) + ( getStreamID() != null ? (":" + getStreamID()) : "" ) + "]" ;	
 	}
+	
+	/**
+	 * Unregisters the Stream object of this expert to handles this events.
+	 */
+	public function unregisterStream():Void
+	{
+		if ( StreamCollector.containsStream( getStream() ) )
+		{
+			getStream().setParent( null ) ;
+		}
+		else
+		{
+			getLogger().warn( this + " registerStream failed with an unknow or empty Stream object.") ;	
+		}
+	}
 
 	private var _ePlayFinish:Event ;
 	
@@ -495,5 +553,7 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 		}
 
 	}
+	
+
 
 }
