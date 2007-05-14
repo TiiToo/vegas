@@ -66,7 +66,7 @@ interface andromeda.display.abstract.ILoaderDisplay
 	 * @param message the value of the message to show.
 	 * @param percent the value of the percent position of this loader.
 	 */
-	function setLoader( message:String, percent:Number ):Void ;
+	function setLoader( message, percent:Number ):Void ;
 	
 	/**
 	 * Sets the percent of the loader in percent.

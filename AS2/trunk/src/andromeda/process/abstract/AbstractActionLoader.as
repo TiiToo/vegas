@@ -74,13 +74,13 @@ class andromeda.process.abstract.AbstractActionLoader extends SimpleAction
 	
 	private function _onLoadComplete(ev:LoaderEvent):Void
 	{
-	    getLogger().debug(  this + " load complete." ) ;
+	    getLogger().debug( this + " load complete." ) ;
 	}	
 	
 	private function _onLoadProgress (ev:LoaderEvent):Void
 	{
 	    getLogger().info(  this + " load progress : " + ev.getPercent() + "%") ;
-	   	ApplicationCommand.changeLoader("Sound Library " + ev.getPercent() + "%", ev.getPercent() ) ;
+	   	ApplicationCommand.changeLoader( this + " " + ev.getPercent() + "%", ev.getPercent() ) ;
 	}
 	
 	private function _onLoadTimeout (ev:LoaderEvent):Void

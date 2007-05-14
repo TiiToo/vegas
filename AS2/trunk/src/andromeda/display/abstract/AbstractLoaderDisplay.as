@@ -121,9 +121,9 @@ class andromeda.display.abstract.AbstractLoaderDisplay extends ConfigurableDispl
 	 * @param message the value of the message to show.
 	 * @param percent the value of the percent position of this loader.
 	 */
-	public function setLoader( message:String, percent:Number ):Void
+	public function setLoader( message, percent:Number ):Void
 	{
-		_label   = message || null ;
+		_label   = message.toString() || null ;
 		_percent = Range.PERCENT_RANGE.clamp( (percent>0) ? percent : 0 ) ;
 		update() ;
 	}

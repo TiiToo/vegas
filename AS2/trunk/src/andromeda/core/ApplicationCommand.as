@@ -36,7 +36,7 @@ class andromeda.core.ApplicationCommand
 	/**
 	 * Change the loader's values (message and percent).
 	 */
-	static public function changeLoader( message:String , percent:Number ):Void
+	static public function changeLoader( message , percent:Number ):Void
 	{
 		
 		percent = (percent > 0 ) ? percent : 0 ;
