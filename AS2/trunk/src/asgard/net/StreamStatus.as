@@ -44,6 +44,21 @@ class asgard.net.StreamStatus
 	static public var BUFFER_FLUSH:String = "NetStream.Buffer.Flush" ;
 
 	/**
+	 * A recorded stream failed to delete.
+	 */
+	static public var CLEAR_FAILED:String = "NetStream.Clear.Failed" ;
+
+	/**
+	 * A recorded stream was deleted successfully.
+	 */
+	static public var CLEAR_SUCCESS:String = "NetStream.Clear.Success" ;
+
+	/**
+	 * An attempt to use a Stream method failed.
+	 */
+	static public var FAILED:String = "NetStream.failed" ;
+
+	/**
 	 * The stream is paused.
 	 */
 	static public var PAUSE:String = "NetStream.Pause.Notify" ;	
@@ -59,6 +74,11 @@ class asgard.net.StreamStatus
 	 * such as the subscriber not having read access.
 	 */
 	static public var PLAY_FAILED:String = "NetStream.Play.Failed" ;	
+	
+	/**
+	 * Data is playing slower than the normal speed.
+	 */
+	static public var PLAY_INSUFFICIENT_BW:String = "NetStream.Play.InsufficientBW" ;
 	
 	/**
 	 * Caused by a play list reset.

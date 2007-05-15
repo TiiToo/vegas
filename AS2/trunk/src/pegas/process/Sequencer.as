@@ -79,18 +79,24 @@ class pegas.process.Sequencer extends AbstractAction
 	
 	/**
 	 * Removes all process in the Sequencer.
+	 * @param noEvent A boolean flag to disabled the events dispatched by this method if is {@code true}.
+	 * @param callback Function to map and check the current process in progress in the sequencer before reset it.
 	 */
-	public function clear():Void 
+	public function clear( noEvent:Boolean, callback:Function ):Void 
 	{
 		if (running) 
 		{
 			EventTarget(_cur).removeEventListener(ActionEvent.FINISH, _runner) ;
-			_cur = null ;
+			if (callback != null)
+			{
+				callback.call( this, _cur ) ;
+			}
 			_setRunning(false) ;
 		}
-		_queue.clear() ;
-		// notify Event
 		_cur = null ;
+		_queue.clear() ;
+		if (noEvent) return ;
+		notifyCleared() ;
 	}
 
 	/**
@@ -170,18 +176,21 @@ class pegas.process.Sequencer extends AbstractAction
 	
 	/**
 	 * Stops the Sequencer. Stop only the last process if is running.
+	 * @param noEvent A boolean flag to disabled the events dispatched by this method if is {@code true}.
+	 * @param callback Function to map and check the current process in progress in the sequencer before reset it.
 	 */
-	public function stop(noEvent:Boolean):Void 
+	public function stop( noEvent:Boolean , callback:Function )
 	{
 		if (running) 
 		{
 			EventTarget(_cur).removeEventListener(ActionEvent.FINISH, _runner) ;
+			if (callback != null)
+			{
+				callback.call( this, _cur ) ;
+			}
 			_cur = null ;
 			_setRunning(false) ;
-			if (noEvent) 
-			{
-				return ;
-			}
+			if (noEvent) return ;
 			notifyStopped() ;
 			notifyFinished() ;
 		}
