@@ -45,15 +45,29 @@ class lunas.display.components.bar.AbstractProgressbar extends AbstractComponent
 		_nDirection = Direction.HORIZONTAL ;
 	}
 
+	/**
+	 * The name of the event dispatched when the component change.
+	 */
 	static public var CHANGE:String = UIEventType.CHANGE ;
 	
+	/**
+	 * This flag indicates of the position is auto reset. 
+	 */
 	public var autoResetPosition:Boolean = false ;
 
+	/**
+	 * Returns the direction value of this component.
+	 * @return the direction value of this component.
+	 * @see Direction
+	 */
 	public function get direction():Number 
 	{
 		return getDirection() ;
 	}
-	
+
+	/**
+	 * Sets the direction value of this component.
+	 */
 	public function set direction(n:Number):Void 
 	{
 		setDirection(n) ;	
@@ -69,24 +83,40 @@ class lunas.display.components.bar.AbstractProgressbar extends AbstractComponent
 		setPosition(n) ;	
 	}
 
+	/**
+	 * Returns the direction value of this component.
+	 * @return the direction value of this component.
+	 * @see Direction
+	 */
 	public function getDirection():Number 
 	{ 
 		return (_nDirection == Direction.HORIZONTAL) ? Direction.HORIZONTAL : Direction.VERTICAL ;
 	}
-	
+
+	/**
+	 * Returns the position value of this component.
+	 * @return the position value of this component.
+	 */
 	public function getPosition():Number 
 	{
 		return isNaN(_position) ? 0 : _position ;
 	}
 
+	/**
+	 * Sets the direction value of this component.
+	 */
 	public function setDirection(n:Number):Void 
 	{
 		_nDirection = (n == Direction.HORIZONTAL) ? Direction.HORIZONTAL : Direction.VERTICAL ;
 		update() ;
 	}
 
+	/**
+	 * Sets the position value of this component.
+	 */
 	public function setPosition(pos:Number, noEvent:Boolean, flag:Boolean):Void 
 	{
+
 		pos = _rPercent.clamp(pos) ;
 		
 		if (pos != _position) 
@@ -103,6 +133,9 @@ class lunas.display.components.bar.AbstractProgressbar extends AbstractComponent
 		}
 	}
 	
+	/**
+	 * Invoqued when the view of the bar changed.
+	 */
 	public function viewChanged():Void 
 	{
 		
@@ -110,7 +143,7 @@ class lunas.display.components.bar.AbstractProgressbar extends AbstractComponent
 		
 		setPosition(0, true, true) ;
 		
-		if (!autoResetPosition) 
+		if ( autoResetPosition == false ) 
 		{
 			setPosition( memPos, true, true) ;
 		}

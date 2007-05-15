@@ -21,40 +21,14 @@
   
 */
 
-/** Builder [Interface]
-
-	AUTHOR
-
-		Name : Builder
-		Package : lunas.display.components
-		Version : 1.0.0.0
-		Date :  2006-01-04
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-
-	METHOD SUMMARY
-	
-		- clear():Void
-		
-		- getTarget():MovieClip
-		
-		- run():Void
-		
-		- setTarget(t:MovieClip):Void
-		
-		- update():Void
-
-	INHERIT
-	
-		IRunnable
-
-**/
-
 import vegas.core.IRunnable;
 
-interface lunas.display.components.IBuilder extends IRunnable {
+/**
+ * The IBuilder interface.
+ * @author eKameleon
+ */
+interface lunas.display.components.IBuilder extends IRunnable 
+{
 
 	function clear():Void ;
 	

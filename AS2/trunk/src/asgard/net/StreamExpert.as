@@ -30,7 +30,6 @@ import vegas.events.AbstractCoreEventDispatcher;
 import vegas.events.Delegate;
 import vegas.events.Event;
 import vegas.events.EventDispatcher;
-import vegas.events.EventListener;
 import vegas.events.StringEvent;
 import vegas.events.TimerEvent;
 import vegas.util.ConstructorUtil;
@@ -40,7 +39,7 @@ import vegas.util.Timer;
  * This singleton controls a Stream instance.
  * @author eKameleon
  */
-class asgard.net.StreamExpert extends AbstractCoreEventDispatcher implements EventListener
+class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 {
 	
 	/**
@@ -252,17 +251,6 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher implements Eve
 	}
 
 	/**
-	 * Handles the event of the internal Stream of this object. 
-	 * Use the static registerStream method to active this callback method.
-	 */
-	public function handleEvent(e:Event)
-	{
-		// getLogger().warn(this, 
-		// e.setCurrentTarget(this) ;
-		// dispatchEvent(e) ;
-	}
-
-	/**
 	 * This method is invoqued in the constructor of the class to initialize all events.
 	 * Overrides this method.
 	 */
@@ -389,6 +377,18 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher implements Eve
 			getStream().pause( false ) ;
 			dispatchEvent( _ePlayResume ) ;
 			_tProgress.start() ;
+		}
+		else
+		{
+			getLogger().warn( this + " start play failed with an unknow Stream id : " + getStreamID() ) ;	
+		}
+	}
+
+	public function seek( offset:Number ):Void
+	{
+		if ( StreamCollector.contains( getStreamID() ) )
+		{
+			getStream().seek( offset ) ;
 		}
 		else
 		{

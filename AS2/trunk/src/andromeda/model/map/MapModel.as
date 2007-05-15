@@ -53,12 +53,14 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 
 	/**
 	 * Inserts a value object in the model.
+	 * @throws IllegalArgumentError if the argument of this method is 'null' or 'undefined'. 
+	 * @throws Warning if the {@code IValueObject} passed in argument is already register in the model.
 	 */
 	public function addVO( vo:IValueObject ):Void
 	{
 		if (vo == null)
 		{
-			throw new IllegalArgumentError( this + " addVO method failed, the IValueObject passed in argument not must be 'null' or 'undefined'.") ;	
+			throw new IllegalArgumentError( this + " addVO method failed, the argument passed in argument not must be 'null' or 'undefined'.") ;	
 		}
 		validate(vo) ;
 		if ( !_map.containsKey( vo.getID() ) )
@@ -69,7 +71,7 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 		}
 		else
 		{
-			throw new Warning( this + " addVO method failed, the id passed in argument already register in the model, you must remove this 'id' key before add a noew value object.") ;	
+			throw new Warning( this + " addVO method failed, the IValueObject passed in argument already register in the model, you must remove this 'id' key before add a noew value object.") ;	
 		}
 	}
 	

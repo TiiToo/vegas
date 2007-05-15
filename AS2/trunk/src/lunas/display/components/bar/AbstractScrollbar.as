@@ -45,9 +45,9 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 	 */
 	private function AbstractScrollbar() 
 	{
-		_eDrag = new ButtonEvent(ButtonEventType.DRAG, this) ;
+		_eDrag      = new ButtonEvent(ButtonEventType.DRAG, this) ;
 		_eStartDrag = new ButtonEvent(ButtonEventType.START_DRAG, this) ;
-		_eStopDrag = new ButtonEvent(ButtonEventType.STOP_DRAG, this) ;
+		_eStopDrag  = new ButtonEvent(ButtonEventType.STOP_DRAG, this) ;
 		_nDirection = Direction.VERTICAL ;
 	}
 
@@ -107,7 +107,7 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 		var size:Number =  b[sizeField] - t[sizeField] ;
 		var pos:Number = this[mouseField] - _mouseOffset ;
 		pos = MathsUtil.getPercent( MathsUtil.clamp(pos, 0, size), size ) ;
-		setPosition( pos ) ;
+		setPosition( pos , null, ( arguments[0] == true ? true : null ) ) ;
 		notifyDrag() ;
 	}
 
@@ -120,16 +120,28 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 		return null ; // override this method !
 	}
 
+	/**
+	 * Returns {@code true} if the component is dragging.
+	 * @return {@code true} if the component is dragging.
+	 */
 	public function getIsDragging():Boolean 
 	{
 		return _isDragging ;
 	}
 	
+	/**
+	 * Returns the string representation of the current size field property of this component with the current direction value.
+	 * @return the string representation of the current size field property of this component with the current direction value.
+	 */
 	public function getSizeField():String 
 	{
 		return (getDirection() == Direction.VERTICAL) ? "_height" : "_width" ;
 	}
-	
+
+	/**
+	 * Returns the string representation of the current mouse field property of this component with the current direction value.
+	 * @return the string representation of the current mouse field property of this component with the current direction value.
+	 */
 	public function getMouseField():String 
 	{
 		return (getDirection() == Direction.VERTICAL) ? "_ymouse" : "_xmouse" ;

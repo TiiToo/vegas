@@ -559,7 +559,7 @@ class asgard.net.NetServerConnection extends NetConnection implements Action, IE
 
 		var code:NetServerStatus = NetServerStatus.format(oInfo.code) ;
 		
-		getLogger().warn(this + " status : " + code) ;
+		getLogger().info(this + " status : " + code) ;
 		
 		switch (code) 
 		{
