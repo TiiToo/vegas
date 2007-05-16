@@ -70,7 +70,7 @@ class vegas.util.comparators.DateComparator extends CoreObject implements ICompa
 	 * <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
 	 * <li> 0 if o1 and o2 are equal.</li>
 	 * </p>
-	 * @throws IllegalArgumentError if compare(a, b) and 'a' and 'b' must be Date or uint objects.
+	 * @throws ClassCastError if compare(a, b) and 'a' and 'b' must be Date or uint objects.
 	 */
 	public function compare(o1, o2):Number 
 	{

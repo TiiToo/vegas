@@ -112,6 +112,15 @@ class andromeda.model.queue.QueueModel extends AbstractModelObject
 	}
 
 	/**
+	 * Returns the internal Queue reference of this model.
+	 * @return the internal Queue reference of this model.
+	 */
+	public function getQueue():Queue
+	{
+		return _queue ;	
+	}
+
+	/**
 	 * This method is invoqued in the constructor of the class to initialize all events.
 	 */
 	/*override*/ public function initEvent():Void

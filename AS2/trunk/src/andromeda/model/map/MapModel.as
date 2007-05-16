@@ -129,6 +129,15 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 	{
 		return _eUpdate.getType() ;
 	}
+	
+	/**
+	 * Returns the internal map of this model.
+	 * @return the internal map of this model.
+	 */
+	public function getMap():Map
+	{
+		return _map ;	
+	}
 
 	/**
 	 * Returns the IValueObject defined by the id passed in argument.
