@@ -26,7 +26,7 @@ import lunas.events.StyleEvent;
 import lunas.events.StyleEventType;
 
 import vegas.events.AbstractCoreEventDispatcher;
-import vegas.string.StringFormatter;
+import vegas.string.HTMLStringFormatter;
 import vegas.util.TypeUtil;
 
 /**
@@ -45,7 +45,6 @@ class lunas.display.components.AbstractStyle extends AbstractCoreEventDispatcher
 		{
 			this[prop] = init[prop] ;
 		}
-		_styleFormatter = new StringFormatter("<span class='{0}'>{1}</span>") ;
 		initialize() ;
 		update() ;
 	}
@@ -93,14 +92,22 @@ class lunas.display.components.AbstractStyle extends AbstractCoreEventDispatcher
 		// overrides
 	}
 	
-	public function getFieldText( sLabel:String , styleName:String ):String 
+	/**
+	 * Returns the formatting string representation of the specified label in argument.
+	 * @param str The String to format.
+	 * @param styleName The optional style name of the string (use span tag to format the string).
+	 * @return the formatting string representation of the specified label in argument.
+	 */
+	public function getFieldText( str:String , styleName:String ):String 
 	{
-		var txt:String = "" ;
-		if (sLabel.length > 0) 
+		if ( str.length > 0 ) 
 		{
-			txt = _styleFormatter.format( styleName || getLabelStyleName(), sLabel) ;
+			return HTMLStringFormatter.span( str , (styleName || getLabelStyleName()) ) ;
 		}
-		return txt ;
+		else
+		{
+			return "" ;	
+		}
 	}
 
 	/**
@@ -119,15 +126,6 @@ class lunas.display.components.AbstractStyle extends AbstractCoreEventDispatcher
 	public function getStyle(prop:String) 
 	{ 
 		return this[prop] || null ;
-	}
-	
-	/**
-	 * Returns the style formatter reference of this instance.
-	 * @return the style formatter reference of this instance.
-	 */
-	public function getStyleFormatter():StringFormatter 
-	{
-		return _styleFormatter ;	
 	}
 
 	/**
@@ -213,6 +211,5 @@ class lunas.display.components.AbstractStyle extends AbstractCoreEventDispatcher
 
 	private var _labelStyleName:String = null ;
 	private var _oS:TextField.StyleSheet ;
-	private var _styleFormatter:StringFormatter ;
 
 }
