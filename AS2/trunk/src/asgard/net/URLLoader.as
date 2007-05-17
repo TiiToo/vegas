@@ -306,6 +306,7 @@ class asgard.net.URLLoader extends AbstractLoader
   	private function _onHTTPStatus( httpStatus:Number , loader)
   	{
   		var httpStatusType:String = "unknow httpstatus" ;
+     	
      	if(httpStatus < 100) 
      	{
           	httpStatusType = "flashError";
@@ -331,7 +332,7 @@ class asgard.net.URLLoader extends AbstractLoader
           	httpStatusType = "serverError";
      	}
      	
-     	getLogger().warn( this + " HTTP status : " + httpStatusType ) ;
+     	getLogger().warn( this + " HTTP status:" + httpStatus + ", type:" + httpStatusType ) ;
   		
   	}
 }
