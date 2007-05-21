@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -59,7 +59,10 @@ class vegas.data.set.HashSet extends AbstractSet
 		}
 		if ( it != null ) 
 		{
-			while (it.hasNext()) insert(it.next()) ;
+			while (it.hasNext()) 
+			{
+				insert(it.next()) ;
+			}
 		}
 	}
 

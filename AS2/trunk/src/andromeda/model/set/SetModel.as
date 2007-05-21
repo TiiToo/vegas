@@ -25,53 +25,50 @@ import andromeda.events.ModelObjectEvent;
 import andromeda.model.AbstractModelObject;
 import andromeda.model.IValueObject;
 
-import vegas.data.iterator.Iterable;
 import vegas.data.iterator.Iterator;
-import vegas.data.Map;
-import vegas.data.map.HashMap;
+import vegas.data.Set;
+import vegas.data.set.HashSet;
 import vegas.errors.IllegalArgumentError;
 import vegas.errors.Warning;
 
 /**
- * This model use an internal Map to register value objects with a specific key.
+ * This model use an internal {@code Set} to register value objects.
  * @author eKameleon
  */
-class andromeda.model.map.MapModel extends AbstractModelObject implements Iterable
+class andromeda.model.set.SetModel extends AbstractModelObject 
 {
-
+	
 	/**
-	 * Creates a new MapModel instance.
+	 * Creates a new SetModel instance.
 	 * @param id the id of this model.
 	 * @param bGlobal the flag to use a global event flow or a local event flow.
-	 * @param sChannel (optional) the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */	
-	function MapModel( id , bGlobal:Boolean , sChannel:String ) 
+	function SetModel(id, bGlobal : Boolean, sChannel : String) 
 	{
-		super( id , bGlobal, sChannel ) ;
-		_map = initializeMap() ;
+		super(id, bGlobal, sChannel);
+		_set = initializeSet() ;
 	}
-
+	
 	/**
 	 * Inserts a value object in the model.
-	 * @throws IllegalArgumentError if the argument of this method is 'null' or 'undefined'. 
-	 * @throws Warning if the {@code IValueObject} passed in argument is already register in the model.
 	 */
-	public function addVO( vo:IValueObject ):Void
+	public function addVO( vo:IValueObject ):Boolean
 	{
 		if (vo == null)
 		{
-			throw new IllegalArgumentError( this + " addVO method failed, the argument passed in argument not must be 'null' or 'undefined'.") ;	
+			throw new IllegalArgumentError( this + " addVO method failed, the IValueObject passed in argument not must be 'null' or 'undefined'.") ;	
 		}
 		validate(vo) ;
-		if ( !_map.containsKey( vo.getID() ) )
+		if ( _set.insert( vo.getID() , vo ) )
 		{
-			_map.put( vo.getID() , vo ) ;
 			_eAdd.setVO( vo ) ;
 			dispatchEvent( _eAdd ) ;
+			return true ;
 		}
 		else
 		{
-			throw new Warning( this + " addVO method failed, the IValueObject passed in argument already register in the model, you must remove this 'id' key before add a noew value object.") ;	
+			return false ;	
 		}
 	}
 	
@@ -80,7 +77,7 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 	 */
 	public function clear():Void
 	{
-		_map.clear() ;
+		_set.clear() ;
 		super.clear() ;
 	}
 
@@ -90,18 +87,17 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 	 */
 	public function contains( vo:IValueObject ):Boolean
 	{
-		return _map.containsValue( vo ) ;
-	}
-	
-	/**
-	 * Returns {@code true} if the model contains the specified id key in argument.
-	 * @return {@code true} if the model contains the specified id key in argument
-	 */
-	public function containsByID( id ):Boolean
-	{
-		return _map.containsKey( id ) ;
+		return _set.contains( vo ) ;
 	}
 
+	/**
+	 * Returns the internal {@code Set} of this model.
+	 * @return the internal {@code Set} of this model.
+	 */
+	public function getSet():Set
+	{
+		return _set ;	
+	}
 
 	/**
 	 * Returns the event name use in the {@code addVO} method.
@@ -122,30 +118,12 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 	}
 
 	/**
-	 * Returns the event name use in the {@code updateVO} method.
-	 * @return the event name use in the {@code updateVO} method.
-	 */
-	public function getEventTypeUPDATE():String
-	{
-		return _eUpdate.getType() ;
-	}
-	
-	/**
-	 * Returns the internal map of this model.
-	 * @return the internal map of this model.
-	 */
-	public function getMap():Map
-	{
-		return _map ;	
-	}
-
-	/**
-	 * Returns the IValueObject defined by the id passed in argument.
-	 * @return the IValueObject defined by the id passed in argument.
+	 * Returns the IValueObject defined by the index passed in argument.
+	 * @return the IValueObject defined by the index passed in argument.
 	 */
 	public function getVO( id ):IValueObject
 	{
-		return _map.get( id ) ;
+		return _set.get( id ) ;
 	}
 
 	/**
@@ -156,16 +134,24 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 		super.initEvent() ;
 		_eAdd    = createNewModelObjectEvent( ModelObjectEvent.ADD_VO ) ;
 		_eRemove = createNewModelObjectEvent( ModelObjectEvent.REMOVE_VO ) ; 
-		_eUpdate = createNewModelObjectEvent( ModelObjectEvent.UPDATE_VO ) ;
 	}
 
 	/**
-	 * Initialize the internal Map instance in the constructor of the class.
-	 * You can overrides this method if you want change the default HashMap use in this model.
+	 * Initialize the internal Set instance in the constructor of the class.
+	 * You can overrides this method if you want change the default HashSet use in this model.
 	 */
-	public function initializeMap():Map
+	public function initializeSet():Set
 	{
-		return new HashMap() ;	
+		return new HashSet() ;	
+	}
+
+	/**
+	 * Returns {@code true} if this model is empty.
+	 * @return {@code true} if this model is empty.
+	 */
+	public function isEmpty():Boolean 
+	{ 
+		return _set.isEmpty() ;
 	}
 
 	/**
@@ -174,7 +160,7 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 	 */
 	public function iterator():Iterator
 	{
-		return _map.iterator() ;	
+		return _set.iterator() ;	
 	}
 
 	/**
@@ -187,9 +173,9 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 			throw new IllegalArgumentError( this + " removeVO method failed, the IValueObject passed in argument not must be 'null' or 'undefined'.") ;	
 		}
 		validate(vo) ;
-		if ( _map.containsKey( vo.getID() ) )
+		if ( _set.contains( vo ) )
 		{
-			_map.remove( vo.getID() ) ;
+			_set.remove( vo ) ;
 			_eRemove.setVO( vo ) ;
 			dispatchEvent( _eRemove ) ;
 		}
@@ -216,39 +202,27 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 	}
 
 	/**
-	 * Sets the event name use in the {@code addVO} method.
-	 */
-	public function setEventTypeUPDATE( type:String ):Void
-	{
-		_eUpdate.setType( type ) ;
-	}
-
-	/**
-	 * Update a value object in the model.
-	 * @throw Warning if the value object passed-in argument don't exist.
-	 */
-	public function updateVO( vo:IValueObject ):Void
-	{
-		if ( _map.containsKey( vo.getID() ) )
-		{
-			_map.put( vo.getID() , vo ) ;
-			_eUpdate.setVO( vo ) ;
-			dispatchEvent( _eUpdate  ) ;
-		}
-		else
-		{
-			throw Warning( this + " updateVO method failed, the value object passed in argument don't exist in the model.") ;
-		}
-	}
-
-	/**
 	 * Returns the number of IValueObject in this model.
 	 * @return the number of IValueObject in this model.
 	 */
 	public function size():Number
 	{
-		return _map.size() ;
+		return _set.size() ;
 	}
+
+	/**
+	 * Returns the {@code Array} representation of this object.
+	 * @return the {@code Array} representation of this object.
+	 */
+	public function toArray():Array
+	{
+		return _set.toArray() ;	
+	}
+	
+	/**
+	 * The internal {@code Set} reference of this model.
+	 */
+	private var _set:Set ;
 
 	/**
 	 * The internal ModelObjectEvent use in the addVO method.
@@ -259,15 +233,5 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 	 * The internal ModelObjectEvent use in the removeVO method.
 	 */
 	private var _eRemove:ModelObjectEvent ;
-
-	/**
-	 * The internal ModelObjectEvent when the update event type is use.
-	 */
-	private var _eUpdate:ModelObjectEvent ;
-
-	/**
-	 * The internal map of this model.
-	 */
-	private var _map:Map ;
 
 }
