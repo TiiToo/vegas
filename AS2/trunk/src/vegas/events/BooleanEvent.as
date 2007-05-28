@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -36,8 +36,11 @@ class vegas.events.BooleanEvent extends DynamicEvent
 	public function BooleanEvent(type:String, b:Boolean, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
 	{
 		
-		super(type, target, context, bubbles, eventPhase, time, stop);
-		_b = b ;
+		super(type, target, context, bubbles, eventPhase, time, stop) ;
+		if (b)
+		{
+			this._b = b ;
+		}
 		
 	}
 
