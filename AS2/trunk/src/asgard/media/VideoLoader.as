@@ -60,8 +60,6 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		
 		super(mcTarget, sName);
 		
-		setLogger() ;
-		
 		_oVideo = video ? video : _mcTarget.video ;
 		
 		if (_oVideo == undefined) 
@@ -244,6 +242,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	 */
 	public function load(sURL:String):Void 
 	{
+		getVideo().clear() ;
 		setUrl(sURL) ;
 	}
 	
