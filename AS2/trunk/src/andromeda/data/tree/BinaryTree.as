@@ -22,30 +22,48 @@
 */
 
 
-import andromeda.data.tree.Node;
+import andromeda.data.tree.BinaryTreeNode;
 
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
+import vegas.core.IComparator;
 import vegas.core.ISerializable;
+import vegas.util.comparators.NumberComparator;
 
 /**
+ * A Binary tree {@code BinaryTree} register datas in a recursive manner so that you can access it quickly 
+ * by using a key. 
+ * <p>Therefore, a {@code BinaryTree} automatically sorts data as it is inserted.</p>
+ * <p>For a {@code BinaryTree} to be valid, every node has to follow two rules:</p>
+ * <p>
+ * <li>The data value in the left subtree must be less than the data value in the current node.</li>
+ * <li>The data value in the right subtree must be greater than the data value in the current node.</li>
+ * </p> 
  * @author eKameleon
+ * @see IComparator
  */
 class andromeda.data.tree.BinaryTree extends CoreObject implements ICloneable, ISerializable 
 {
 
 	/**
 	 * Creates a new BinaryTree instance.
+	 * @param comp a IComparator object used in this tree to defined the sort model when insert or modify the tree.
 	 */
-	public function BinaryTree() 
+	public function BinaryTree( comp:IComparator ) 
 	{
 		root = null ;
+		setComparator( comp ) ;
 	}
+	
+	/**
+	 * The default IComparator used in the BinaryTree instances if the IComparator defined in the setComparator method is null.
+	 */
+	static public var DEFAULT_COMPARATOR:IComparator = new NumberComparator() ;
 
 	/**
 	 * The root Node of this BinaryTree.
 	 */
-	public var root:Node ;
+	public var root:BinaryTreeNode ;
 	
 	/**
 	 * Returns the shallow copy of this BinaryTree instance.
@@ -60,10 +78,19 @@ class andromeda.data.tree.BinaryTree extends CoreObject implements ICloneable, I
 	 * Returns {@code true} if the BinaryTree contains the specified value.
 	 * @return {@code true} if the BinaryTree contains the specified value.
 	 */
-	public function contains(data:Number):Boolean 
+	public function contains( data ):Boolean 
 	{
         return _contains(root, data) ;
     }
+    
+    /**
+	 * Returns the internal IComparator reference.
+	 * @return the internal IComparator reference.
+	 */
+	public function getComparator():IComparator 
+	{
+		return _comparator ;
+	}
     
     /**
      * Changes the tree by inserting a duplicate node on each node's left.
@@ -82,20 +109,17 @@ class andromeda.data.tree.BinaryTree extends CoreObject implements ICloneable, I
 	 * }
 	 * @param a number value to be insert in the BinaryTree.
 	 */
-	public function insert(data:Number):Void 
+	public function insert( data ):Void 
 	{
 		root = _insert(root, data) ;
 	}
 	
     /**
      * Calls recursive lookup for input number.
-     * {@code
-     * inst.lookup(data);
-     * }
-     * @param  data  a real number.
+     * @param data The data value to find.
      * @return {@code true} if the given target is in the binary tree.
     **/
-    public function lookup(data:Number):Boolean
+    public function lookup( data ):Boolean
     {
         return _lookup( root, data ) ;
     }
@@ -126,15 +150,29 @@ class andromeda.data.tree.BinaryTree extends CoreObject implements ICloneable, I
 	{
         return _min(root);
     }
+    
+   	/**
+	 * Sets the IComparator reference of this object.
+	 * @param comp the IComparator reference of this object.
+	 */
+	public function setComparator( comp:IComparator ):Void
+	{
+		_comparator = comp || DEFAULT_COMPARATOR ;
+	}
 	
+	/**
+	 * Returns the numbers of nodes in this tree.
+	 * @return the numbers of nodes in this tree.
+	 */
 	public function size():Number 
 	{
-		return _size(root) ;
+		return (root == null) ? 0 : root.size() ;
 	}
+
     /**
      * Given a binary tree, prints out all of its root-to-leaf paths, one per line.
      * @return the string representation of the paths.
-    **/
+     */
     public function printPaths():String
     {
         var s = "\r## printPaths\r\r";
@@ -166,30 +204,40 @@ class andromeda.data.tree.BinaryTree extends CoreObject implements ICloneable, I
 		return txt ;
 	}
 
-	private function _contains(node:Node, data:Number):Boolean 
+	/**
+	 * The internal IComparator reference.
+	 */
+	private var _comparator:IComparator = null ;
+
+	/**
+	 * Returns {@code true} if the specified node contains the specified data.
+	 * @return {@code true} if the specified node contains the specified data.
+	 */
+	private function _contains(node:BinaryTreeNode, data):Boolean 
 	{
-        if (node == null) 
+        if (BinaryTreeNode == null) 
         {
         	return false ;
         }
-        if (data == node.data) 
-        {
+        var result:Number = _comparator.compare(data, node.data) ;
+        if (result == 0 )
+		{
         	return true ;
         }
-        else if (data < node.data ) 
+        else if ( result == -1 ) 
         {
-        	return _contains(node.left, data) ;
+        	return _contains( node.left, data ) ;
         }
         else 
         {
-        	return _contains( node.right, data) ;
+        	return _contains( node.right, data ) ;
         }
     }
     
-    private function _getDoubleTree( node:Node ):String
+    private function _getDoubleTree( node:BinaryTreeNode ):String
     {
         var s:String = "doubleTreeRecurs\r" ;
-        var oldLeft:Node ;
+        var oldLeft:BinaryTreeNode ;
 
         if (node==null) 
         {
@@ -207,70 +255,68 @@ class andromeda.data.tree.BinaryTree extends CoreObject implements ICloneable, I
         s += _getDoubleTree( node.right );
 
         oldLeft = node.left ;
-        node.left = new Node(node.data);
-        node.left.left = oldLeft ;
+        node.setLeft( new BinaryTreeNode( node.data ) ) ;
+        node.left.setLeft( oldLeft ) ;
         
         return s ;
     }
 	/**
-	 * Recursive insert, given a node pointer, recursive down and insert the given data into the tree.
-	 * @param node a Node instance.
+	 * Recursive insert, given a BinaryTreeNode pointer, recursive down and insert the given data into the tree.
+	 * @param BinaryTreeNode a BinaryTreeNode instance.
 	 * @param data a real number.
-	 * @return the new Node pointer (the standard way to communicate a changed pointer back to the caller).
+	 * @return the new BinaryTreeNode pointer (the standard way to communicate a changed pointer back to the caller).
 	 */
-	private function _insert(node:Node, data:Number):Node 
+	private function _insert(node:BinaryTreeNode, data ):BinaryTreeNode 
 	{
 		if (node == null) 
 		{
-			node = new Node(data) ;
+			node = new BinaryTreeNode(data) ;
 		}
         else 
         {
-            if ( data <= node.data) 
+        	var result:Number = _comparator.compare(data, node.data) ;
+            if ( result > -1 ) 
             {
-            	node.left = _insert(node.left, data) ;
+            	node.setRight( _insert(node.right, data) ) ;
             }
             else 
             {
-            	node.right = _insert(node.right, data) ;
+            	node.setLeft( _insert(node.left, data) ) ;
             }
         }
         return node ;
     }
     
 	/**
-     * Recursive lookup, given a node, recur down searching for the given data.
-     * <p><b>Example :</b></p>
-     * {@code
-     * inst.lookupRecurs(node,data);
-     * }
-     * @param node a Node instance ($root).
-     * @param data a real number.
+     * Recursive lookup, given a BinaryTreeNode, recur down searching for the given data.
+     * @param BinaryTreeNode a BinaryTreeNode instance ($root).
+     * @param data The data in the node.
      * @return a boolean if the data is find.
 	 */
-    private function _lookup(node:Node,data:Number):Boolean
+    private function _lookup( node:BinaryTreeNode, data ):Boolean
     {
-        if (node==null)
+        if ( BinaryTreeNode == null || _comparator == null )
         {
         	return false ;
         }
-        if (data == node.data)
+		var result:Number = _comparator.compare(data, node.data) ;
+        if (result == 0)
         {
         	return true;
         }
-        else if (data<node.data)
+        else if ( result == -1 )
         {
         	return _lookup( node.left,data)  ;
         }
         else 
         {
-        	return _lookup(node.right, data );
+        	return _lookup( node.right, data );
         }
     }
 	
-	private function _maxDepth(node:Node):Number 
+	private function _maxDepth( node:BinaryTreeNode):Number 
 	{
-        if (node == null)
+        if ( node == null)
         {
         	return 0 ;
         }
@@ -282,9 +328,9 @@ class andromeda.data.tree.BinaryTree extends CoreObject implements ICloneable, I
         }
     }
 
-	private function _max(node:Node):Number 
+	private function _max(node:BinaryTreeNode):Number 
 	{
-        var cur:Node = node ;
+        var cur:BinaryTreeNode = node ;
 		while (cur.right !=null ) 
 		{
 			cur = cur.right ;
@@ -292,9 +338,9 @@ class andromeda.data.tree.BinaryTree extends CoreObject implements ICloneable, I
         return cur.data ;
     }
 
-	private function _min(node:Node):Number 
+	private function _min(node:BinaryTreeNode):Number 
 	{
-        var cur:Node = node ;
+        var cur:BinaryTreeNode = node ;
 		while (cur.left !=null )
 		{
 			cur = cur.left ;
@@ -312,7 +358,7 @@ class andromeda.data.tree.BinaryTree extends CoreObject implements ICloneable, I
 		return s ;
 	}
 	
-    private function _printPathsRecurs(node:Node, path:Array, pathLen:Number):String
+    private function _printPathsRecurs(node:BinaryTreeNode, path:Array, pathLen:Number):String
     {
         
         var s:String = "# printPathsRecurs\r";
@@ -322,7 +368,7 @@ class andromeda.data.tree.BinaryTree extends CoreObject implements ICloneable, I
         	return "" ;
         }
 
-        // append this node to the path array
+        // append this BinaryTreeNode to the path array
         
         trace("???? : " + node.data) ;
         
@@ -345,30 +391,20 @@ class andromeda.data.tree.BinaryTree extends CoreObject implements ICloneable, I
         return s ;
     }
     
-	private function _size(node:Node):Number 
+	private function _toString( node:BinaryTreeNode ):String 
 	{
-		if (node == null) 
-		{
-			return 0 ;
-		}
-		else 
-		{
-			return _size(node.left) + _size(node.right) ;
-		}
-	}
-	
-	private function _toString(node:Node):String 
-	{
-		if (node==null) 
+		if ( node==null ) 
 		{
 			return "" ;
 		}
-        // left, node itself, right
+        // left, BinaryTreeNode itself, right
 		var txt:String = "" ;
-        txt += "L --- " + _toString(node.left) + " : " + node.data + "\r" ; 
-        txt += "R --- " + _toString(node.right) ;
+        txt += "L --- " + _toString( node.left) + " : " + node.data + "\r" ; 
+        txt += "R --- " + _toString( node.right) ;
 		return txt ;
     }
+    
+   
 	
 
 }

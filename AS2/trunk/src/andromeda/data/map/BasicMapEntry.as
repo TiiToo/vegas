@@ -38,7 +38,7 @@ class andromeda.data.map.BasicMapEntry extends CoreObject implements Entry
 	 */
 	public function BasicMapEntry( key , value ) 
 	{
-		this.key = key ;
+		this.key   = key ;
 		this.value = value ;
 	}
 

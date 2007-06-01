@@ -119,31 +119,57 @@ class pegas.draw.Align
 		switch (str.toLowerCase()) 
 		{
 			case "l" : 
+			{
 				return Align.LEFT ;
+			}
 			case "r" :
+			{
 				return Align.RIGHT ;
+			}
 			case "t" :
+			{
 				return Align.TOP ;
+			}
 			case "b" :
+			{
 				return Align.BOTTOM ;
+			}
 			case "tl" :
+			{
 				return Align.TOP_LEFT ;
+			}
 			case "tr" :
+			{
 				return Align.TOP_RIGHT ;
+			}
 			case "bl" :
+			{
 				return Align.BOTTOM_LEFT ;
+			}
 			case "br" :
+			{
 				return Align.BOTTOM_RIGHT ;
+			}
 			case "lt" :
+			{
 				return Align.LEFT_TOP ;
+			}
 			case "rt" :
+			{
 				return Align.RIGHT_TOP ;
+			}
 			case "lb" :
+			{
 				return Align.LEFT_BOTTOM ;
+			}
 			case "rb" :
+			{
 				return Align.RIGHT_BOTTOM ;
+			}	
 			default :
+			{
 				return Align.CENTER ;
+			}
 		}
 	}
 

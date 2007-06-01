@@ -156,7 +156,17 @@ class asgard.media.AbstractVideoDisplay extends ConfigurableDisplayObject
 	{
 		return _oVideo ;
 	}
-	
+
+	/**
+	 * Sets the virtual width and height values of the component.
+	 */
+	public function setSize( w:Number, h:Number ) : Void 
+	{
+		view._width = w ;
+		view._height = h ;
+		update() ;
+	}
+
 	/**
 	 * Internal sound object.
 	 */

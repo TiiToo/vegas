@@ -82,7 +82,7 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	 */
 	public function get isFull():Boolean
 	{
-		return _isFull ;
+		return getIsFull() ;
 	}
 
 	/**
@@ -91,8 +91,7 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	 */
 	public function set isFull(b:Boolean):Void
 	{
-		_isFull = b ;
-		update() ;
+		setIsFull(b) ;
 	}
 
 	/**
@@ -160,14 +159,25 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	 /**
 	  * Draw the display.
 	  */
-	 public function draw():Void
+	 public function draw( w:Number , h:Number ):Void
 	 {
+	 	var $w:Number = isNaN(w) ? getW() : w ;
+	 	var $h:Number = isNaN(h) ? getH() : h ;
 	 	_bgDraw.clear() ;
 	 	_bgDraw.lineStyle( themeBorderThickness, themeBorderColor, themeBorderAlpha ) ;
 		_bgDraw.beginFill( themeColor, themeAlpha ) ;
-		_bgDraw.draw( getW(), getH() ) ;
+		_bgDraw.draw( $w, $h ) ;
 		_bgDraw.endFill() ;
 	 }
+
+	/**
+	 * Returns {@code true} if the background use full size (Stage.width and Stage.height).
+	 * @return {@code true} if the background use full size (Stage.width and Stage.height).
+	 */
+	public function getIsFull():Boolean
+	{
+		return _isFull ;
+	}
 
 	/**
 	 * (read-only) Returns the virtual height value of this component.
@@ -175,7 +185,7 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	 */
 	public function getH():Number 
 	{ 
-		return _isFull ? Stage.height : _h ;
+		return isFull ? Stage.height : _h ;
 	}
 
 	/**
@@ -184,7 +194,7 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	 */
 	public function getW():Number 
 	{ 
-		return _isFull ? Stage.width : _w ;
+		return isFull ? Stage.width : _w ;
 	}
 	
 	/**
@@ -194,7 +204,18 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	{
 		dispatchEvent(_eResize) ;
 	}
-	
+
+	/**
+	 * Sets if the background use full size (Stage.width and Stage.height).
+	 * @param b A boolean flag to indicates if the display use full size or not.
+	 */
+	public function setIsFull(b:Boolean):Void
+	{
+		_isFull = b ;
+		getLogger().error(this + " set isFull :" + _isFull) ;
+		update() ;
+	}
+
 	/**
 	 * Sets the virtual height value of the component.
 	 */

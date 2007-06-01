@@ -278,7 +278,24 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher implement
 	{
 		setX(n) ;	
 	}
-	
+
+	/**
+	 * (read-write) Returns the xscale value of the display's view.
+	 * @return the xscale value of the display's view.
+	 */
+	public function get xscale():Number 
+	{
+		return view._xscale ;	
+	}
+
+	/**
+	 * (read-write) Sets the xscale value of the display's view.
+	 */
+	public function set xscale(n:Number):Void 
+	{
+		view._xscale = n ;	
+	}
+
 	/**
 	 * (read-write) Returns the y position of the display's view.
 	 * @return the y position of the display's view.
@@ -295,7 +312,24 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher implement
 	{
 		setY(n) ;	
 	}
-	
+
+	/**
+	 * (read-write) Returns the yscale value of the display's view.
+	 * @return the yscale value of the display's view.
+	 */
+	public function get yscale():Number 
+	{
+		return view._yscale ;	
+	}
+
+	/**
+	 * (read-write) Sets the yscale value of the display's view.
+	 */
+	public function set yscale(n:Number):Void 
+	{
+		view._yscale = n ;	
+	}
+
 	/**
 	 * Attachs and returns a new child in the view of the display with the specified symbol id.
 	 * @param fConstructor the constructor to use to overrides the default constructor and prototype of the visual object.

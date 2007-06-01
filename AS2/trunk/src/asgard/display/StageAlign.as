@@ -102,7 +102,7 @@ class asgard.display.StageAlign
 		var aligns =  
 		{
 			B:BOTTOM, BL:BOTTOM_LEFT, BR:BOTTOM_RIGHT,
-			L:LEFT, R:RIGHT, T:TOP, TL:TOP_LEFT, TR:TOP_RIGHT
+			L:LEFT, R:RIGHT, T:TOP, TL:TOP_LEFT, TR:TOP_RIGHT, C:CENTER
 		} ;
 		if (aligns[align]) 
 		{

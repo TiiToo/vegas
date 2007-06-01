@@ -101,6 +101,10 @@ class vegas.data.queue.PriorityQueue extends LinearQueue
 		return isEnqueue ;
 	}
 	
+	/**
+	 * Sets the IComparator reference of this object.
+	 * @param comp the IComparator reference of this object.
+	 */
 	public function setComparator( comp:IComparator ):Void
 	{
 		_comparator = comp ;
