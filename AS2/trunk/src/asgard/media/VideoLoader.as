@@ -193,6 +193,15 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	}
 
 	/**
+	 * Returns the internal NetStream reference of this video loader.
+	 * @return the internal NetStream reference of this video loader.
+	 */
+	public function getStream():NetStream
+	{
+		return _oNS ;	
+	}
+
+	/**
 	 * Returns the internal video reference.
 	 * @return the internal video reference.
 	 */

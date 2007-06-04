@@ -212,7 +212,6 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	public function setIsFull(b:Boolean):Void
 	{
 		_isFull = b ;
-		getLogger().error(this + " set isFull :" + _isFull) ;
 		update() ;
 	}
 
