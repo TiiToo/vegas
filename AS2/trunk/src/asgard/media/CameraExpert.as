@@ -374,6 +374,7 @@ class asgard.media.CameraExpert extends AbstractCoreEventDispatcher
 	private function _onCameraStatus( oInfo:Object ):Void
 	{
 		var code:String = oInfo.code ;
+		getLogger().fatal(this + " camera status : " + code) ;
 		switch( code )
 		{
 			case CameraStatus.MUTED :
