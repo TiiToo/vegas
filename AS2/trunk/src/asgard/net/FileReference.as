@@ -50,12 +50,23 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	
 	/**
 	 * Creates a new FileReference instance.
+	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */
-	public function FileReference() 
+	public function FileReference(  bGlobal:Boolean , sChannel:String ) 
 	{
-		_dispatcher = initEventDispatcher() ;
-		initEvents() ;
 		this.addListener(this) ;
+		initEvents() ;
+		setGlobal( bGlobal , sChannel ) ;
+	}
+
+	/**
+	 * (read-only) Returns the value of the isGlobal flag of this instance. Use the {@code setGlobal} method to modify this value.
+	 * @return {@code true} if the instance use a global EventDispatcher to dispatch this events.
+	 */
+	public function get isGlobal():Boolean 
+	{
+		return getIsGlobal() ;
 	}
 
 	/**
@@ -193,6 +204,15 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	public function getGlobalEventListeners():EventListenerCollection 
 	{
 		return _dispatcher.getGlobalEventListeners() ;
+	}
+	
+	/**
+	 * Returns the value of the isGlobal flag of this instance.
+	 * @return {@code true} if the instance use a global EventDispatcher to dispatch this events.
+	 */
+	public function getIsGlobal():Boolean 
+	{
+		return _isGlobal ;
 	}
 
 	/**
@@ -354,6 +374,17 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	}
 
 	/**
+	 * Sets if the instance use a global {@code EventDispatcher} to dispatch this events, if the {@code flag} value is {@code false} the instance use a local EventDispatcher.
+	 * @param flag the flag to use a global event flow or a local event flow.
+	 * @param channel the name of the global event flow if the {@code flag} argument is {@code true}.  
+	 */
+	public function setGlobal( flag:Boolean , channel:String ):Void 
+	{
+		_isGlobal = flag ;
+		setEventDispatcher( flag ? EventDispatcher.getInstance( channel ) : null ) ;
+	}
+
+	/**
 	 * Sets the parent EventDispatcher reference of this instance.
 	 */
 	public function setParent(parent:EventDispatcher):Void 
@@ -399,6 +430,11 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 
 	static private var _initHashCode:Boolean = HashCode.initialize( FileReference.prototype ) ;
 
+	/**
+	 * The internal flag to indicate if the event flow is global.
+	 */
+	private var _isGlobal:Boolean ;
+	
 	/**
 	 * Dispatched when a file upload or download is canceled by the user.
 	 */

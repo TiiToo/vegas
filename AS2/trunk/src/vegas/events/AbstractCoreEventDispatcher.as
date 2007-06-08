@@ -52,7 +52,7 @@ class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEv
 
 	/**
 	 * (read-only) Returns the value of the isGlobal flag of this model. Use the {@code setGlobal} method to modify this value.
-	 * @return {@code true} if the model use a global EventDispatcher to dispatch this events.
+	 * @return {@code true} if the instance use a global EventDispatcher to dispatch this events.
 	 */
 	public function get isGlobal():Boolean 
 	{
@@ -126,7 +126,7 @@ class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEv
 	
 	/**
 	 * Returns the value of the isGlobal flag of this model.
-	 * @return {@code true} if the model use a global EventDispatcher to dispatch this events.
+	 * @return {@code true} if the instance use a global EventDispatcher to dispatch this events.
 	 */
 	public function getIsGlobal():Boolean 
 	{
@@ -209,7 +209,7 @@ class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEv
 	}
 
 	/**
-	 * Sets if the model use a global {@code EventDispatcher} to dispatch this events, if the {@code flag} value is {@code false} the model use a local EventDispatcher.
+	 * Sets if the instance use a global {@code EventDispatcher} to dispatch this events, if the {@code flag} value is {@code false} the instance use a local EventDispatcher.
 	 * @param flag the flag to use a global event flow or a local event flow.
 	 * @param channel the name of the global event flow if the {@code flag} argument is {@code true}.  
 	 */
