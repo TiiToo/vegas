@@ -28,7 +28,7 @@ import lunas.display.components.IScrollbar;
 
 import pegas.events.ButtonEvent;
 import pegas.events.ButtonEventType;
-import pegas.transitions.easing.Back;
+import pegas.transitions.easing.Expo;
 import pegas.transitions.Tween;
 
 import vegas.util.MathsUtil;
@@ -239,7 +239,7 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 			( 
 				t, 
 				posField, 
-				easing || Back.easeOut ,
+				easing || Expo.easeOut ,
 				t[posField] ,  
 				pos , 
 				isNaN(duration) ? 24 : duration

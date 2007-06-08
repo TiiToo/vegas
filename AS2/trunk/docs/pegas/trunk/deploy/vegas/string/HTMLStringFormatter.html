@@ -1,0 +1,116 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>vegas.string.HTMLStringFormatter</title><script src="../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../index-files";
+//--></script><link href="../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../overview-summary.html" title="Overview" rel="top"/><link href="package-summary.html" title="Package vegas.string" rel="up"/><link href="../../vegas/string/JSON.html" title="Class vegas.string.JSON" rel="prev"/><link href="../../vegas/string/Glob.html" title="Class vegas.string.Glob" rel="next"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><h1>Class vegas.string.HTMLStringFormatter</h1><div class="type_hierachy"><ul><li><strong>vegas.string.HTMLStringFormatter</strong></li></ul></div><div class="type_description"><h2>Description</h2><p>
+ This static tool class defined each of the following methods returns a copy of the string wrapped inside an HTML tag.
+ For example, <code> HTMLStringFormatter.bold(<span class="str_const">"test"</span>)</code> returns <code> &lt;b&gt;test&lt;/b&gt;</code>.
+ Compatibility with Javascript String HTML wrappers, this methods are native in the Javascript String class. 
+ </p></div><div class="type_indexes"><div class="method_index"><h2>Method Index</h2><a href="#anchor" title="static public function anchor(str:String, name:String):String">anchor()</a>, <a href="#big" title="static public function big(str:String):String">big()</a>, <a href="#blink" title="static public function blink(str:String):String">blink()</a>, <a href="#bold" title="static public function bold(str:String):String">bold()</a>, <a href="#fixed" title="static public function fixed(str:String):String">fixed()</a>, <a href="#fontColor" title="static public function fontColor(str:String, color:String):String">fontColor()</a>, <a href="#fontSize" title="static public function fontSize(str:String, size:Number):String">fontSize()</a>, <a href="#italics" title="static public function italics(str:String):String">italics()</a>, <a href="#link" title="static public function link(str:String, url:String, target:String):String">link()</a>, <a href="#paragraph" title="static public function paragraph(str:String, style:String):String">paragraph()</a>, <a href="#small" title="static public function small(str:String):String">small()</a>, <a href="#span" title="static public function span(str:String, style:String):String">span()</a>, <a href="#strike" title="static public function strike(str:String):String">strike()</a>, <a href="#sub" title="static public function sub(str:String):String">sub()</a>, <a href="#sup" title="static public function sup(str:String):String">sup()</a>, <a href="#underline" title="static public function underline(str:String):String">underline()</a></div></div><div class="type_details"><div class="method_detail_list"><h2>Method Detail</h2><div class="method_details alt_row"><a name="anchor"></a><h3>anchor</h3><code class="method_synopsis">static public function <strong class="method_name">anchor</strong>(str:<span class="unresolved_type_name">String</span>, name:<span class="unresolved_type_name">String</span>):<span class="unresolved_type_name">String</span></code><div class="method_info"><p>
+ Creates an HTML anchor that is used as a hypertext target.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>str</code></td><td>the string to be formatted.
+ </td></tr><tr><td><code>name</code></td><td>the name of the anchor.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> the string formatted with the method.
+	 </p></div></div><div class="method_details"><a name="big"></a><h3>big</h3><code class="method_synopsis">static public function <strong class="method_name">big</strong>(str:<span class="unresolved_type_name">String</span>):<span class="unresolved_type_name">String</span></code><div class="method_info"><p>
+ Use the big method to format and display a string in a document.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>str</code></td><td>the string to be formatted.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> the string formatted with the method.
+	 </p></div></div><div class="method_details alt_row"><a name="blink"></a><h3>blink</h3><code class="method_synopsis">static public function <strong class="method_name">blink</strong>(str:<span class="unresolved_type_name">String</span>):<span class="unresolved_type_name">String</span></code><div class="method_info"><p>
+ Use the blink method to format and display a string in a document.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>str</code></td><td>the string to be formatted.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> the string formatted with the method.
+	 </p></div></div><div class="method_details"><a name="bold"></a><h3>bold</h3><code class="method_synopsis">static public function <strong class="method_name">bold</strong>(str:<span class="unresolved_type_name">String</span>):<span class="unresolved_type_name">String</span></code><div class="method_info"><p>
+ Use the bold method to format and display a string in a document.
+ <pre>
+ <span class="key">var</span> s:String = HTMLStringFormatter.bold(<span class="str_const">"hello world"</span>) ;
+ trace(<span class="str_const">"bold : "</span> + s) ; <span class="comment">// bold : &lt;b&gt;hello world&lt;/b&gt;</span>
+ </pre>
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>str</code></td><td>the string to be formatted.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> the string formatted with the method.
+	 </p></div></div><div class="method_details alt_row"><a name="fixed"></a><h3>fixed</h3><code class="method_synopsis">static public function <strong class="method_name">fixed</strong>(str:<span class="unresolved_type_name">String</span>):<span class="unresolved_type_name">String</span></code><div class="method_info"><p>
+ Use the fixed method to format and display a string in a document.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>str</code></td><td>the string to be formatted.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> the string formatted with the method.
+	 </p></div></div><div class="method_details"><a name="fontColor"></a><h3>fontColor</h3><code class="method_synopsis">static public function <strong class="method_name">fontColor</strong>(str:<span class="unresolved_type_name">String</span>, color:<span class="unresolved_type_name">String</span>):<span class="unresolved_type_name">String</span></code><div class="method_info"><p>
+ Use the fontColor method to format and display a string in a document.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>str</code></td><td>the string to be formatted.
+ </td></tr><tr><td><code>color</code></td><td>the string hexadecimal RGB triplet with the format rrggbb.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> the string formatted with the method.
+	 </p></div></div><div class="method_details alt_row"><a name="fontSize"></a><h3>fontSize</h3><code class="method_synopsis">static public function <strong class="method_name">fontSize</strong>(str:<span class="unresolved_type_name">String</span>, size:<span class="unresolved_type_name">Number</span>):<span class="unresolved_type_name">String</span></code><div class="method_info"><p>
+ Use the fontColor method to format and display a string in a document.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>str</code></td><td>the string to be formatted.
+ </td></tr><tr><td><code>size</code></td><td>an Integer representing the size of the font.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> the string formatted with the method.
+	 </p></div></div><div class="method_details"><a name="italics"></a><h3>italics</h3><code class="method_synopsis">static public function <strong class="method_name">italics</strong>(str:<span class="unresolved_type_name">String</span>):<span class="unresolved_type_name">String</span></code><div class="method_info"><p>
+ Use the italics method to format and display a string in a document.
+ <pre>
+ <span class="key">import</span> vegas.string.HTMLStringFormatter ;
+ <span class="key">var</span> s:String = HTMLStringFormatter.italics(<span class="str_const">"hello world"</span>) ;
+ trace(<span class="str_const">"italics : "</span> + s) ; <span class="comment">// italics : &lt;i&gt;hello world&lt;/i&gt;</span>
+ </pre>
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>str</code></td><td>the string to be formatted.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> the string formatted with the method.
+	 </p></div></div><div class="method_details alt_row"><a name="link"></a><h3>link</h3><code class="method_synopsis">static public function <strong class="method_name">link</strong>(str:<span class="unresolved_type_name">String</span>, url:<span class="unresolved_type_name">String</span>, target:<span class="unresolved_type_name">String</span>):<span class="unresolved_type_name">String</span></code><div class="method_info"><p>
+ Creates an HTML hypertext link that requests another URL.
+ <pre>
+ <span class="key">import</span> vegas.string.HTMLStringFormatter ;
+ <span class="key">var</span> s:String = HTMLStringFormatter.link(<span class="str_const">"hello world"</span>, <span class="str_const">"http://ekameleon.net/blog"</span>, <span class="str_const">"_blank"</span>) ;
+ trace(<span class="str_const">"link : "</span> + s) ; <span class="comment">// link : &lt;a href="http://google.fr" target="_blank"&gt;hello world&lt;/a&gt;</span>
+ </pre>
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>str</code></td><td>the string to be formatted.
+ </td></tr><tr><td><code>url</code></td><td>any string that specifies the HREF of the A tag; it should be a valid URL (relative or absolute).
+ </td></tr><tr><td><code>target</code></td><td>(optional) this value defined to the anchor tag forces the load of that link into the targeted window.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> the string formatted with the method.
+	 </p></div></div><div class="method_details"><a name="paragraph"></a><h3>paragraph</h3><code class="method_synopsis">static public function <strong class="method_name">paragraph</strong>(str:<span class="unresolved_type_name">String</span>, style:<span class="unresolved_type_name">String</span>):<span class="unresolved_type_name">String</span></code><div class="method_info"><p>
+ Creates an HTML paragraph HTML string in a document.
+ <pre> 
+ <span class="key">import</span> vegas.string.HTMLStringFormatter ;
+ 
+ <span class="key">var</span> s:String = HTMLStringFormatter.paragraph(<span class="str_const">"hello world"</span>) ;
+ trace(<span class="str_const">"paragraph : "</span> + s) ; <span class="comment">// paragraph : &lt;p&gt;hello world&lt;/p&gt;</span>
+ 
+ <span class="key">var</span> s:String = HTMLStringFormatter.paragraph(<span class="str_const">"hello world"</span>, <span class="str_const">"myStyle"</span>) ;
+ trace(<span class="str_const">"paragraph : "</span> + s) ; <span class="comment">// paragraph : &lt;p class="myStyle"&gt;hello world&lt;/p&gt;</span>
+</pre> 
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>str</code></td><td>the string to be formatted.
+ </td></tr><tr><td><code>style</code></td><td>(optional) the style class name of the tag.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> the string formatted with the method.
+	 </p></div></div><div class="method_details alt_row"><a name="small"></a><h3>small</h3><code class="method_synopsis">static public function <strong class="method_name">small</strong>(str:<span class="unresolved_type_name">String</span>):<span class="unresolved_type_name">String</span></code><div class="method_info"><p>
+ Use the small method to format and display a string in a document.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>str</code></td><td>the string to be formatted.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> the string formatted with the method.
+	 </p></div></div><div class="method_details"><a name="span"></a><h3>span</h3><code class="method_synopsis">static public function <strong class="method_name">span</strong>(str:<span class="unresolved_type_name">String</span>, style:<span class="unresolved_type_name">String</span>):<span class="unresolved_type_name">String</span></code><div class="method_info"><p>
+ Creates an HTML span string in a document.
+ <pre> 
+ <span class="key">import</span> vegas.string.HTMLStringFormatter ;
+ 
+ <span class="key">var</span> sP:String = HTMLStringFormatter.span(<span class="str_const">"hello world"</span>) ;
+ trace(<span class="str_const">"span : "</span> + sP) ; <span class="comment">// span : &lt;span&gt;hello world&lt;/span&gt;</span>
+ 
+ <span class="key">var</span> sP:String = HTMLStringFormatter.span(<span class="str_const">"hello world"</span>, <span class="str_const">"myStyle"</span>) ;
+ trace(<span class="str_const">"span : "</span> + sP) ; <span class="comment">// span : &lt;span class="myStyle"&gt;hello world&lt;/span&gt;</span>
+</pre> 
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>str</code></td><td>the string to be formatted.
+ </td></tr><tr><td><code>style</code></td><td>(optional) the style class name of the tag.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> the string formatted with the method.
+	 </p></div></div><div class="method_details alt_row"><a name="strike"></a><h3>strike</h3><code class="method_synopsis">static public function <strong class="method_name">strike</strong>(str:<span class="unresolved_type_name">String</span>):<span class="unresolved_type_name">String</span></code><div class="method_info"><p>
+ Use the strike method to format and display a string in a document.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>str</code></td><td>the string to be formatted.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> the string formatted with the method.
+	 </p></div></div><div class="method_details"><a name="sub"></a><h3>sub</h3><code class="method_synopsis">static public function <strong class="method_name">sub</strong>(str:<span class="unresolved_type_name">String</span>):<span class="unresolved_type_name">String</span></code><div class="method_info"><p>
+ Use the sub method to format and display a string in a document.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>str</code></td><td>the string to be formatted.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> the string formatted with the method.
+	 </p></div></div><div class="method_details alt_row"><a name="sup"></a><h3>sup</h3><code class="method_synopsis">static public function <strong class="method_name">sup</strong>(str:<span class="unresolved_type_name">String</span>):<span class="unresolved_type_name">String</span></code><div class="method_info"><p>
+ Use the sup method to format and display a string in a document.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>str</code></td><td>the string to be formatted.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> the string formatted with the method.
+	 </p></div></div><div class="method_details"><a name="underline"></a><h3>underline</h3><code class="method_synopsis">static public function <strong class="method_name">underline</strong>(str:<span class="unresolved_type_name">String</span>):<span class="unresolved_type_name">String</span></code><div class="method_info"><p>
+ Use the underline method to format and display a string in a document.
+ <pre>
+ <span class="key">import</span> vegas.string.HTMLStringFormatter ;
+ <span class="key">var</span> s:String = HTMLStringFormatter.underline(<span class="str_const">"hello world"</span>) ;
+ trace(<span class="str_const">"underline : "</span> + s) ; <span class="comment">// underline : &lt;u&gt;hello world&lt;/u&gt;</span>
+ </pre>
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>str</code></td><td>the string to be formatted.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> the string formatted with the method.
+	 </p></div></div></div></div><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.string" class="button">Package</a></li><li><span class="button nav_current">Class</span></li><li><a href="HTMLStringFormatter.as.html" title="Source code of vegas.string.HTMLStringFormatter" class="button">Source</a></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

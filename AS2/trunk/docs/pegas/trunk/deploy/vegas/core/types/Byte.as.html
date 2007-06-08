@@ -1,0 +1,118 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><script src="../../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../../index-files";
+//--></script><link href="../../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../../overview-summary.html" title="Overview" rel="top"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><pre><span class="lineno" id="1">     1  </span><span class="comment">/*
+<span class="lineno" id="2">     2  </span>
+<span class="lineno" id="3">     3  </span>  The contents of this file are subject to the Mozilla Public License Version
+<span class="lineno" id="4">     4  </span>  1.1 (the "License"); you may not use this file except in compliance with
+<span class="lineno" id="5">     5  </span>  the License. You may obtain a copy of the License at 
+<span class="lineno" id="6">     6  </span>  
+<span class="lineno" id="7">     7  </span>           http://www.mozilla.org/MPL/ 
+<span class="lineno" id="8">     8  </span>  
+<span class="lineno" id="9">     9  </span>  Software distributed under the License is distributed on an "AS IS" basis,
+<span class="lineno" id="10">    10  </span>  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+<span class="lineno" id="11">    11  </span>  for the specific language governing rights and limitations under the License. 
+<span class="lineno" id="12">    12  </span>  
+<span class="lineno" id="13">    13  </span>  The Original Code is Vegas Framework.
+<span class="lineno" id="14">    14  </span>  
+<span class="lineno" id="15">    15  </span>  The Initial Developer of the Original Code is
+<span class="lineno" id="16">    16  </span>  ALCARAZ Marc (aka eKameleon)  &lt;vegas@ekameleon.net&gt;.
+<span class="lineno" id="17">    17  </span>  Portions created by the Initial Developer are Copyright (C) 2004-2007
+<span class="lineno" id="18">    18  </span>  the Initial Developer. All Rights Reserved.
+<span class="lineno" id="19">    19  </span>  
+<span class="lineno" id="20">    20  </span>  Contributor(s) :
+<span class="lineno" id="21">    21  </span>  
+<span class="lineno" id="22">    22  </span>*/</span>
+<span class="lineno" id="23">    23  </span>
+<span class="lineno" id="24">    24  </span><span class="key">import</span> vegas.core.types.Bit;
+<span class="lineno" id="25">    25  </span><span class="key">import</span> vegas.util.ConstructorUtil;
+<span class="lineno" id="26">    26  </span>
+<span class="lineno" id="27">    27  </span><span class="comment doc">/**
+<span class="lineno" id="28">    28  </span> * {@code Byte} is represents a byte value.
+<span class="lineno" id="29">    29  </span> * &lt;p&gt;{@code Byte} can be used for a different kind of formatting of a byte value.
+<span class="lineno" id="30">    30  </span> * It allows to access the value as bit, kilo-bit, mega-bit, giga-bit, tera-bit, byte, kilo-byte, mega-byte, giga-byte and tera-byte.
+<span class="lineno" id="31">    31  </span> * &lt;/p&gt;
+<span class="lineno" id="32">    32  </span> * &lt;p&gt;&lt;b&gt;Examples:&lt;/b&gt;&lt;/p&gt;
+<span class="lineno" id="33">    33  </span> * {@code 
+<span class="lineno" id="34">    34  </span> *   import vegas.core.types.Byte ;
+<span class="lineno" id="35">    35  </span> *   trace(new Byte(1).toString()) ; // 1B
+<span class="lineno" id="36">    36  </span> *   trace(new Byte(1234).toString()) ; // 1.21KB
+<span class="lineno" id="37">    37  </span> *   trace(new Byte(15002344).toString()) ; // 14.31MB
+<span class="lineno" id="38">    38  </span> * }
+<span class="lineno" id="39">    39  </span> * @author eKameleon
+<span class="lineno" id="40">    40  </span> */</span>
+<span class="lineno" id="41">    41  </span><span class="key">class</span> vegas.core.types.Byte <span class="key">extends</span> Bit
+<span class="lineno" id="42">    42  </span>{
+<span class="lineno" id="43">    43  </span>
+<span class="lineno" id="44">    44  </span>	<span class="comment doc">/**
+<span class="lineno" id="45">    45  </span>	 * Creates a new Byte instance.
+<span class="lineno" id="46">    46  </span>	 * @param bytes value in byte
+<span class="lineno" id="47">    47  </span>	 */</span>
+<span class="lineno" id="48">    48  </span>	<span class="key">public</span> <span class="key">function</span> Byte( bytes:Number ) 
+<span class="lineno" id="49">    49  </span>	{
+<span class="lineno" id="50">    50  </span>		<span class="key">super</span>( bytes * BYTE );
+<span class="lineno" id="51">    51  </span>	}
+<span class="lineno" id="52">    52  </span>
+<span class="lineno" id="53">    53  </span>	<span class="comment doc">/**
+<span class="lineno" id="54">    54  </span>	 * Shortname of byte.
+<span class="lineno" id="55">    55  </span>	 */</span>
+<span class="lineno" id="56">    56  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">var</span> SHORT_BYTE:String = <span class="str_const">"B"</span> ;
+<span class="lineno" id="57">    57  </span>
+<span class="lineno" id="58">    58  </span>	<span class="comment doc">/**
+<span class="lineno" id="59">    59  </span>	 * Shortname of kilo-byte.
+<span class="lineno" id="60">    60  </span>	 */</span>
+<span class="lineno" id="61">    61  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">var</span> SHORT_KILO_BYTE:String = <span class="str_const">"KB"</span>;
+<span class="lineno" id="62">    62  </span>
+<span class="lineno" id="63">    63  </span>	<span class="comment doc">/**
+<span class="lineno" id="64">    64  </span>	 * Shortname of mega-byte.
+<span class="lineno" id="65">    65  </span>	 */</span>
+<span class="lineno" id="66">    66  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">var</span> SHORT_MEGA_BYTE:String = <span class="str_const">"MB"</span>;
+<span class="lineno" id="67">    67  </span>
+<span class="lineno" id="68">    68  </span>	<span class="comment doc">/**
+<span class="lineno" id="69">    69  </span>	 * Shortname of giga-byte.
+<span class="lineno" id="70">    70  </span>	 */</span>
+<span class="lineno" id="71">    71  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">var</span> SHORT_GIGA_BYTE:String = <span class="str_const">"GB"</span>;
+<span class="lineno" id="72">    72  </span>
+<span class="lineno" id="73">    73  </span>	<span class="comment doc">/**
+<span class="lineno" id="74">    74  </span>	 * Shortname of tera-byte.
+<span class="lineno" id="75">    75  </span>	 */</span>
+<span class="lineno" id="76">    76  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">var</span> SHORT_TERA_BYTE:String = <span class="str_const">"TB"</span>;	
+<span class="lineno" id="77">    77  </span>
+<span class="lineno" id="78">    78  </span>	<span class="comment doc">/**
+<span class="lineno" id="79">    79  </span>	 * Returns a Eden reprensation of the object.
+<span class="lineno" id="80">    80  </span>	 * @return a string representing the source code of the object.
+<span class="lineno" id="81">    81  </span>	 */</span>
+<span class="lineno" id="82">    82  </span>	<span class="key">public</span> <span class="key">function</span> toSource(indent:Number, indentor:String):String
+<span class="lineno" id="83">    83  </span>	{
+<span class="lineno" id="84">    84  </span>		<span class="key">return</span> <span class="str_const">"new "</span> + ConstructorUtil.getPath(<span class="key">this</span>) + <span class="str_const">"("</span> + (_bit  / BYTE) + <span class="str_const">","</span> + _comma  + <span class="str_const">")"</span> ;
+<span class="lineno" id="85">    85  </span>	}
+<span class="lineno" id="86">    86  </span>
+<span class="lineno" id="87">    87  </span>	<span class="comment doc">/**
+<span class="lineno" id="88">    88  </span>	 * Returns a string representation of the object.
+<span class="lineno" id="89">    89  </span>	 */</span>
+<span class="lineno" id="90">    90  </span>	<span class="key">public</span> <span class="key">function</span> toString(indent:Number, indentor:String):String 
+<span class="lineno" id="91">    91  </span>	{
+<span class="lineno" id="92">    92  </span>		<span class="key">if</span> (_bit &lt; Bit.KBYTE) 
+<span class="lineno" id="93">    93  </span>		{
+<span class="lineno" id="94">    94  </span>			<span class="key">return</span> getBytes() + Byte.SHORT_BYTE ;
+<span class="lineno" id="95">    95  </span>		}
+<span class="lineno" id="96">    96  </span>		<span class="key">else</span> <span class="key">if</span>(_bit &lt; Bit.MBYTE) 
+<span class="lineno" id="97">    97  </span>		{
+<span class="lineno" id="98">    98  </span>			<span class="key">return</span> getKBytes() + Byte.SHORT_KILO_BYTE ;
+<span class="lineno" id="99">    99  </span>		}
+<span class="lineno" id="100">   100  </span>		<span class="key">else</span> <span class="key">if</span>(_bit &lt; Bit.GBYTE) 
+<span class="lineno" id="101">   101  </span>		{
+<span class="lineno" id="102">   102  </span>			<span class="key">return</span> getMegaBytes() + Byte.SHORT_MEGA_BYTE ;
+<span class="lineno" id="103">   103  </span>		}
+<span class="lineno" id="104">   104  </span>		<span class="key">else</span> <span class="key">if</span>(_bit &lt; Bit.TBYTE) 
+<span class="lineno" id="105">   105  </span>		{
+<span class="lineno" id="106">   106  </span>			<span class="key">return</span> getGigaBytes() + Byte.SHORT_GIGA_BYTE ;
+<span class="lineno" id="107">   107  </span>		}
+<span class="lineno" id="108">   108  </span>		<span class="key">else</span> 
+<span class="lineno" id="109">   109  </span>		{
+<span class="lineno" id="110">   110  </span>			<span class="key">return</span> getTeraBytes() + Byte.SHORT_TERA_BYTE ;
+<span class="lineno" id="111">   111  </span>		}
+<span class="lineno" id="112">   112  </span>	}
+<span class="lineno" id="113">   113  </span>	
+<span class="lineno" id="114">   114  </span>}
+<span class="lineno" id="115">   115  </span></pre><ul class="main_nav" id="main_nav"><li><a href="../../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.core.types" class="button">Package</a></li><li><a href="Byte.html" title="Detail of vegas.core.types.Byte API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
