@@ -423,7 +423,14 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher implement
 	 */
 	public function hide():Void 
 	{
-		view._visible = false ;	
+		if (_loader != null) 
+		{
+			_loader.hide() ;
+		}
+		else 
+		{
+			view._visible = false ;	
+		}
 	}
 	
 	/**
@@ -554,7 +561,14 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher implement
 	 */
 	public function show():Void 
 	{
-		view._visible = true ;	
+		if (_loader != null) 
+		{
+			_loader.show() ;
+		}
+		else 
+		{
+			view._visible = true ;	
+		}
 	}
 	
 	/**
