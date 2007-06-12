@@ -448,7 +448,14 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher implement
 	 */
 	public function isVisible():Boolean 
 	{
-		return view._visible  ;	
+		if (_loader != null) 
+		{
+			return _loader.isVisible() ;
+		}
+		else 
+		{
+			return view._visible ;	
+		}
 	}
 
 	/**
