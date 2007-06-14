@@ -77,7 +77,7 @@ class pegas.transitions.TransitionController extends AbstractCoreEventDispatcher
 		}
 		else
 		{
-			throw new IllegalArgumentError( this + " insert failed with if the passed-in ITransition object don't contains an empty ID.") ;	
+			throw new IllegalArgumentError( this + " insert failed if the passed-in ITransition object don't contains an empty ID.") ;	
 		}
 	}
 	

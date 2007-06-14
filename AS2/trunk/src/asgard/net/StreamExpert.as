@@ -99,6 +99,46 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	static public var STREAM_PLAY_STOP:String = "onStreamPlayStop" ;
 
 	/**
+	 * Specifies whether audio should be sent over the stream (from a Microphone object passed as source) 
+	 * or not (null passed as source). This method is available only to the publisher of the specified stream.
+	 * @param source The source of the audio to be transmitted. 
+	 * Valid values are a Microphone object and null.
+	 */
+	public function attachAudio( source:Microphone ):Void
+	{
+		if ( StreamCollector.contains( getStreamID() ) )
+		{
+			getStream().attachAudio(source) ;
+		}
+		else
+		{
+			getLogger().warn( this + " attachAudio failed with an unknow Stream id : " + getStreamID() ) ;	
+		}
+	}
+
+	/**
+	 * Specifies whether audio should be sent over the stream (from a Microphone object passed as source) 
+	 * or not (null passed as source). This method is available only to the publisher of the specified stream.
+	 * @param source The source of the video transmission. 
+	 * Valid values are a Camera object (which starts capturing video) and null. 
+	 * If you pass null, Flash stops capturing video, and any additional parameters you send are ignored.
+	 * @param snapShotMilliseconds An optional integer that specifies whether the video stream is continuous, a single frame, or a series of single frames used to create time-lapse photography.
+	 */
+	public function attachVideo(source:Camera , snapShotMilliseconds:Number ):Void
+	{
+		if ( StreamCollector.contains( getStreamID() ) )
+		{
+			getStream().attachVideo( source , snapShotMilliseconds ) ;
+		}
+		else
+		{
+			getLogger().warn( this + " attachVideo failed with an unknow Stream id : " + getStreamID() ) ;	
+		}
+	}
+
+		
+
+	/**
 	 * Returns {@code true} if the stream is loop when the stream is finished.
 	 * @return {@code true} if the stream is loop when the stream is finished.
 	 */
@@ -123,8 +163,7 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	{
 		if ( StreamCollector.contains( getStreamID() ) )
 		{
-			var s:Stream = getStream() ;
-			s.close() ;
+			getStream().close() ;
 		}
 		else
 		{
@@ -297,7 +336,29 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 		}
 		else
 		{
-			getLogger().warn( this + " start play failed with an unknow Stream id : " + getStreamID() ) ;	
+			getLogger().warn( this + " play failed with an unknow Stream id : " + getStreamID() ) ;	
+		}
+	}
+	
+	/**
+	 * Sends streaming audio, video, and text messages from the client to the Flash Media Server.
+	 * Optionally recording the stream during transmission. 
+	 * This method is available only to the publisher of the specified stream.
+	 * @param name A string value that identifies the stream. If you pass false, the publish operation stops. 
+	 * Subscribers to this stream must pass this same name when they call {@code NetStream.play()}. 
+	 * You don’t need to include a file extension for the stream name.
+	 * @param howToPublish An optional string that specifies how to publish the stream. 
+	 * Valid values are "record", "append", and "live". The default value is "live".
+	 */
+	public function publish( name , howToPublish:String ):Void
+	{
+		if ( StreamCollector.contains( getStreamID() ) )
+		{
+			getStream().publish( name, howToPublish ) ;
+		}
+		else
+		{
+			getLogger().warn( this + " publish failed with an unknow Stream id : " + getStreamID() ) ;	
 		}
 	}
 
@@ -499,6 +560,22 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 		else
 		{
 			getLogger().warn( this + " registerStream failed with an unknow or empty Stream object.") ;	
+		}
+	}
+	
+	/**
+	 * Update the audio activity notify by the external stream publish.
+	 * @param level The audio activity level value.
+	 */
+	public function updateAudioActivity( level:Number ):Void
+	{
+		if ( StreamCollector.containsStream( getStream() ) )
+		{
+			getStream().updateAudioActivity( level ) ;
+		}
+		else
+		{
+			getLogger().warn( this + " updateAudioActivity failed with an unknow or empty Stream object.") ;	
 		}
 	}
 

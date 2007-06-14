@@ -36,6 +36,7 @@ import vegas.events.EventDispatcher;
 import vegas.events.EventListener;
 import vegas.events.EventListenerCollection;
 import vegas.events.IEventDispatcher;
+import vegas.events.NumberEvent;
 import vegas.logging.ILogable;
 import vegas.logging.ILogger;
 import vegas.util.ConstructorUtil;
@@ -187,6 +188,15 @@ class asgard.net.Stream extends NetStream implements IEventDispatcher, IHashable
 	}	
 
 	/**
+	 * Returns the event name when the stream update the audio activity.
+	 * @return the event name when the stream update the audio activity.
+	 */
+	public function getEventTypeUPDATE_AUDIO_ACTIVITY():String
+	{
+		return _eUpdateAudioActivity.getType() ;
+	}
+
+	/**
 	 * Returns the {@code EventListenerCollection} of this EventDispatcher.
 	 * @return the {@code EventListenerCollection} of this EventDispatcher.
 	 */
@@ -274,6 +284,7 @@ class asgard.net.Stream extends NetStream implements IEventDispatcher, IHashable
 	{
 		_eCuePoint = new CuePointEvent( CuePointEvent.INFO, this ) ;
  		_eStatus = new StreamEvent( StreamEvent.NET_STATUS , this , this ) ;
+ 		_eUpdateAudioActivity = new NumberEvent( StreamEvent.AUDIO_ACTIVITY_UPDATE , null, this) ;
 	}
 	
 	/**
@@ -360,6 +371,14 @@ class asgard.net.Stream extends NetStream implements IEventDispatcher, IHashable
 	{
 		_eStatus.setType( type ) ;
 	}	
+	
+	/**
+	 * Sets the event name when the stream update the audio activity.
+	 */
+	public function setEventTypeUPDATE_AUDIO_ACTIVITY( type:String ):Void
+	{
+		_eUpdateAudioActivity.setType( type ) ;
+	}
 
 	/**
 	 * Sets if the model use a global {@code EventDispatcher} to dispatch this events, if the {@code flag} value is {@code false} the model use a local EventDispatcher.
@@ -421,12 +440,23 @@ class asgard.net.Stream extends NetStream implements IEventDispatcher, IHashable
 	{
 		return "[" + ConstructorUtil.getName(this) + "]" ;	
 	}
-	
+
+	/**
+	 * Update the audio activity notify by the external stream publish.
+	 * @param level The audio activity level value.
+	 */
+	public function updateAudioActivity( level:Number ):Void
+	{
+		_eUpdateAudioActivity.setNumber(level) ;
+		dispatchEvent( _eUpdateAudioActivity );
+	}
+
 	private var _dispatcher:EventDispatcher ;
 
 	private var _duration:Number ;
 	private var _eCuePoint:CuePointEvent ;
 	private var _eStatus:StreamEvent ;
+	private var _eUpdateAudioActivity:NumberEvent ;
 	private var _id ;
 	private var _isGlobal:Boolean ;
 	private var _isPlaying:Boolean = false ;
