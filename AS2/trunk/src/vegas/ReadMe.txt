@@ -1,5 +1,5 @@
  
-   VEGAS version 0.9
+   VEGAS version 1 Release Candidate 1
  
    LICENCE 
 

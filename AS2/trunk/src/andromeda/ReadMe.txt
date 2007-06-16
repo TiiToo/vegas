@@ -1,5 +1,5 @@
  
-   Andromeda version alpha(0)
+   Andromeda version 0.5 (VEGAS extension)
  
    LICENCE 
 

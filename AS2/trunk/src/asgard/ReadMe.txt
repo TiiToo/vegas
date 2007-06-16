@@ -1,5 +1,5 @@
  
-   ASGARD version 0.7 (VEGAS Project extension)
+   ASGARD version 1 Release Candidate (VEGAS Project extension)
  
    PROJECT PAGES
 

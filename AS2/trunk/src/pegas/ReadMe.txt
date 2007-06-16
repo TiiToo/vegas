@@ -1,5 +1,5 @@
  
-   PEGAS version 0.1 - VEGAS EXTENSION
+   PEGAS version 1 Release Candidate - VEGAS EXTENSION
  
    PROJECT PAGES
 
