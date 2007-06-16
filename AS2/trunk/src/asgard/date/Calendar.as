@@ -23,6 +23,7 @@
 
 import asgard.date.DateFormatter;
 import asgard.date.LocalDate;
+import asgard.date.Time;
 
 import vegas.core.HashCode;
 import vegas.core.ICloneable;
@@ -98,9 +99,29 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	static public var DEFAULT_FULL_MONTH_OFFSET:Number = 0 ;
 
 	/**
+	 * Constant field representing hours.
+	 */
+	static public var HOUR:String = "h" ;
+
+	/**
+	 * Constant field representing milliseconds.
+	 */
+	static public var MILLISECOND:String = "ms" ;
+
+	/**
+	 * Constant field representing minutes.
+	 */
+	static public var MINUTE:String = "mn" ;
+
+	/**
 	 * Constant field representing Month
 	 */	
 	static public var MONTH:String = "M" ;
+
+	/**
+	 * Constant field representing seconds.
+	 */
+	static public var SECOND:String = "s" ;
 	
 	/**
 	 * Constant field representing Week
@@ -119,6 +140,21 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 
 	/**
  	 * Adds the specified amount of time to the this instance.
+ 	 * <p>Examples :</p>
+ 	 * {@code
+ 	 * import asgard.date.Calendar ;
+ 	 *
+ 	 * var begin:Calendar = new Calendar( 2007, 5 , 14, 11, 30, 0 ) ;
+ 	 * var duration:Number = 50 ;
+ 	 * 
+ 	 * var end:Calendar = Calendar.add( begin, Calendar.MINUTE , 50 ) ;
+ 	 *
+ 	 * var sBegin:String = begin.format("MM dd yyyy hh:nn:ss") ;
+ 	 * var sFinish:String   = end.format("MM dd yyyy hh:nn:ss") ;
+ 	 * 
+ 	 * trace( "start  : " + sBegin ) ;
+ 	 * trace( "finish : " + sFinish ) ;
+ 	 * }
 	 * @param date The Date object to perform addition on
 	 * @param field The this field constant to be used for performing addition.
 	 * @param amount The number of units (measured in the field constant) to add to the date.
@@ -129,6 +165,36 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 		var c:Calendar = new Calendar( (date == null) ? (new Date()).valueOf() : date.valueOf() );
 		switch (field) 
 		{
+			case Calendar.MILLISECOND :
+			{
+				c.setTime( c.getTime() + amount ) ; 
+				break ;
+			}
+			case Calendar.SECOND :
+			{
+				c.setTime( c.getTime() + (amount * Time.SECOND) ) ;
+				break ;	
+			}
+			case Calendar.MINUTE :
+			{
+				c.setTime( c.valueOf() + (amount * Time.MINUTE) ) ;
+				break ;
+			}
+			case Calendar.HOUR :
+			{
+				c.setTime( c.getTime() + (amount * Time.HOUR) ) ;
+				break ;
+			}
+			case Calendar.DAY :
+			{
+				c.setDate( date.getDate() + amount ) ;
+				break;
+			}
+			case Calendar.WEEK :
+			{
+				c.setDate( date.getDate() + 7 ) ;
+				break;
+			}
 			case Calendar.MONTH :
 			{
 				var newMonth:Number = date.getMonth() + amount;
@@ -153,19 +219,9 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 				c.setFullYear(date.getFullYear() + years) ;
 				break ;
 			}
-			case Calendar.DAY :
-			{
-				c.setDate( date.getDate() + amount ) ;
-				break;
-			}
 			case Calendar.YEAR :
 			{
 				c.setFullYear(date.getFullYear() + amount) ;
-				break;
-			}
-			case Calendar.WEEK :
-			{
-				c.setDate( date.getDate() + 7 ) ;
 				break;
 			}
 		}
