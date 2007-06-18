@@ -241,7 +241,10 @@ class lunas.display.components.container.ListContainer extends SimpleContainer
 	public function viewEnabled():Void 
 	{
 		var l = _oModel.size() ;
-		while (--l > -1) _oModel.getChildAt(l).enabled = enabled ;
+		while (--l > -1) 
+		{
+			_oModel.getChildAt(l).enabled = enabled ;
+		}
 	}
 
 	private var _bMaskIsActive:Boolean ;
@@ -282,12 +285,11 @@ class lunas.display.components.container.ListContainer extends SimpleContainer
 	{
 		
 		_maskPen.clear() ;
-		_maskPen.beginFill( 0 , 0 ) ;
+		_maskPen.beginFill( 0xff0000 , 40 ) ;
 		_maskPen.draw( _bound.w , _bound.h ) ;
 		_maskPen.endFill() ;
 		
-		return ;
-		if (_bMaskIsActive) 
+		if ( _bMaskIsActive ) 
 		{
 			_mcContainer.setMask(_mcMask) ;
 		}
