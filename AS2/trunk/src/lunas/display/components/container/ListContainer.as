@@ -285,7 +285,7 @@ class lunas.display.components.container.ListContainer extends SimpleContainer
 	{
 		
 		_maskPen.clear() ;
-		_maskPen.beginFill( 0xff0000 , 40 ) ;
+		_maskPen.beginFill( 0 , 0 ) ;
 		_maskPen.draw( _bound.w , _bound.h ) ;
 		_maskPen.endFill() ;
 		
