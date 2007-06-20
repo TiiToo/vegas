@@ -32,6 +32,14 @@ class vegas.events.BooleanEvent extends DynamicEvent
 	
 	/**
 	 * Creates a new BooleanEvent instance.
+	 * @param type the string type of the instance.
+	 * @param b The {@code Boolean} flag object of this event. 
+	 * @param target the target of the event.
+	 * @param context the optional context object of the event.
+	 * @param bubbles indicates if the event is a bubbling event.
+	 * @param eventPhase the current EventPhase of the event.
+	 * @param time this parameter is used in the Eden deserialization.
+	 * @param stop this parameter is used in the Eden deserialization.
 	 */
 	public function BooleanEvent(type:String, b:Boolean, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
 	{

@@ -1,3 +1,8 @@
+﻿import asgard.events.FullScreenEvent;
+
+import pegas.events.UIEventType;
+
+import vegas.events.AbstractCoreEventDispatcher;
 /*
 
   The contents of this file are subject to the Mozilla Public License Version
@@ -10,7 +15,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Luna Framework.
+  The Original Code is ASGard Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -26,9 +31,22 @@
  * @since Flash Player 9.0.28.0
  * @author eKameleon
  */
-class asgard.display.StageDisplayState 
+class asgard.display.StageDisplayState extends AbstractCoreEventDispatcher
 {
 
+	/**
+	 * Creates a new StageDisplayState instance.
+	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+	 */
+	public function StageDisplayState(bGlobal:Boolean , sChannel:String  ) 
+	{
+		super( bGlobal , sChannel ) ;
+		Stage.addListener( this ) ;
+		_available   = Stage[StageDisplayState.METHOD_NAME] != null ;
+		_eFullscreen = new FullScreenEvent( FullScreenEvent.FULLSCREEN , null, this ) ;
+	}
+	
 	/**
 	 * Specifies the state to enter full screen mode.
 	 */
@@ -43,5 +61,113 @@ class asgard.display.StageDisplayState
 	 * Specifies the state to leave full screen mode.
 	 */
 	static public var NORMAL:String = "normal" ;
+
+	/**
+	 * Indicates whether this player is in a container that offers a StageDisplayState interface.
+	 * @return {@code true} if this player is in a container that offers a StageDisplayState interface.
+	 */
+	public function get available():Boolean
+	{
+		return _available ;
+	}
+	
+	/**
+	 * Returns the string representation of the state of the display.
+	 * @return the string representation of the state of the display.
+	 */
+	public function get displayState():String
+	{
+		return Stage[METHOD_NAME] ;
+	}
+	
+	/**
+	 * Sets the string representation of the state of the display.
+	 */
+	public function set displayState( state:String ):Void
+	{
+		Stage[METHOD_NAME] = (state == FULLSCREEN) ? state : NORMAL ;
+	}
+	
+	/**
+	 * Returns the event name when the stage display state is changed.
+	 * @return the event name when the stage display state is changed.
+	 */
+	public function getEventTypeFULLSCREEN():String
+	{
+		return _eFullscreen.getType() ;		
+	}
+	
+	/**
+	 * Returns the internal singleton reference of this class.
+	 * @return the internal singleton reference of this class.
+	 */
+	static public function getInstance():StageDisplayState
+	{
+		if (_instance == null)
+		{
+			_instance = new StageDisplayState() ;	
+		}
+		return _instance ;
+	}
+	
+	/**
+	 * Returns {@code true} if the stage use the fullscreen mode.
+	 * @return {@code true} if the stage use the fullscreen mode.
+	 */
+	public function isFullscreen():Boolean
+	{
+		return Stage[METHOD_NAME] == FULLSCREEN ;
+	}	
+	
+	/**
+	 * Returns {@code true} if the stage use the fullscreen mode.
+	 * @return {@code true} if the stage use the fullscreen mode.
+	 */
+	public function isNormal():Boolean
+	{
+		return Stage[METHOD_NAME] == FULLSCREEN ;
+	}
+	
+	/**
+	 * Sets the event name when the stage display state is changed.
+	 */
+	public function setEventTypeFULLSCREEN( type:String ):Void
+	{
+		_eFullscreen.setType( type ) ;		
+	}
+	
+	/**
+	 * Toggle the fullscreen mode of the application.
+	 */
+	public function toggleFullScreen():Void 
+	{
+		displayState = (displayState == NORMAL) ? FULLSCREEN : NORMAL ; 
+	} 
+	
+	/**
+	 * Indicates whether this player is in a container that offers a StageDisplayState interface.
+	 */
+	private var _available:Boolean ;
+	
+	/**
+	 * The event invoqued when the stage display state change.
+	 */
+	private var _eFullscreen:FullScreenEvent ;
+	
+	/**
+	 * The internal singleton of this class.
+	 */
+	static private var _instance:StageDisplayState ;
+	
+	/**
+	 * Invoqued when the stage state change.
+	 */
+	public function onFullScreen( b:Boolean ):Void
+	{
+		getLogger().fatal(this + " on fullscreen : " + b) ;
+		trace(this + " on fullscreen : " + b) ;
+        _eFullscreen.setBoolean( b ) ;
+        dispatchEvent( _eFullscreen ) ;
+	}
 	
 }

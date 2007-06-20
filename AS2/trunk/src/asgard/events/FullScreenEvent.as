@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is ASGard Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -21,21 +21,19 @@
   
 */
 
-import asgard.date.Calendar;
-
-import vegas.events.DynamicEvent;
+import vegas.events.BooleanEvent;
 
 /**
- * The {@code CalendarEvent} to dispatch an event with a {@code Calendar} object.
+ * The {@code FullScreenEvent} to dispatch an event in a {@code StageDisplayState} object.
  * @author eKameleon
  */
-class asgard.events.CalendarEvent extends DynamicEvent 
+class asgard.events.FullScreenEvent extends BooleanEvent 
 {
 	
 	/**
-	 * Creates a new CalendarEvent instance.
+	 * Creates a new FullScreenEvent instance.
 	 * @param type the string type of the instance.
-	 * @param cal The {@code Calendar} object of this event. 
+	 * @param b The {@code Boolean} flag object of this event. 
 	 * @param target the target of the event.
 	 * @param context the optional context object of the event.
 	 * @param bubbles indicates if the event is a bubbling event.
@@ -43,13 +41,24 @@ class asgard.events.CalendarEvent extends DynamicEvent
 	 * @param time this parameter is used in the Eden deserialization.
 	 * @param stop this parameter is used in the Eden deserialization.
 	 */
-	public function CalendarEvent(type:String, cal:Calendar, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
+	public function FullScreenEvent(type:String, b:Boolean, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
 	{
-		
-		super(type, target, context, bubbles, eventPhase, time, stop);
-		_cal = cal ;
-		
+		super(type, b, target, context, bubbles, eventPhase, time, stop);
 	}
+
+	/**
+	 * The FullScreenEvent.FULL_SCREEN constant defines the value of the type property of a fullScreen event object.
+	 */
+	static public var FULLSCREEN:String = "fullscreen" ;
+
+	/**
+	 * (read_only) Indicates whether the Stage object is in full-screen mode (true) or not (false).
+	 * @return {@code true} if the Stage object is in full-screen mode.
+	 */	
+	public function get fullScreen():Boolean
+	{
+		return this.getBoolean() ;	
+	} 
 
 	/**
 	 * Creates and returns a shallow copy of this instance.
@@ -57,29 +66,7 @@ class asgard.events.CalendarEvent extends DynamicEvent
 	 */
 	public function clone() 
 	{
-		return new CalendarEvent(getType(), getCalendar(), getTarget(), getContext()) ;
+		return new FullScreenEvent(getType(), getBoolean(), getTarget(), getContext()) ;
 	}
 	
-	/**
-	 * Returns the {@code Date} instance.
-	 * @return the {@code Date} instance.
-	 */
-	public function getCalendar():Calendar
-	{
-		return _cal ;	
-	}
-	
-	/**
-	 * Sets the {@code Calendar} instance.
-	 */
-	public function setCalendar(cal:Calendar):Void
-	{
-		_cal = cal ;
-	}
-	
-	/**
-	 * The internal {@code Calendar} instance.
-	 */
-	private var _cal:Calendar ;
-
 }
