@@ -21,6 +21,7 @@
   
 */
 
+import asgard.date.Time;
 import asgard.events.ProgressEvent;
 import asgard.net.Stream;
 import asgard.net.StreamCollector;
@@ -32,6 +33,7 @@ import vegas.events.Event;
 import vegas.events.EventDispatcher;
 import vegas.events.StringEvent;
 import vegas.events.TimerEvent;
+import vegas.string.StringFormatter;
 import vegas.util.ConstructorUtil;
 import vegas.util.Timer;
 
@@ -51,6 +53,8 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 		
 		initEvent() ;
 
+		_formatter = new StringFormatter() ;
+
 		_streamID = streamID ;		
 		
 		_tProgress = new Timer( DEFAULT_DELAY ) ;
@@ -62,6 +66,11 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	 * The default delay of the internal timer of this object.
 	 */
 	static public var DEFAULT_DELAY:Number = 150  ;
+
+	/**
+	 * The time pattern to format the time in the getTimeString() method.
+	 */
+	static public var DEFAULT_TIME_PATTERN:String = "{0}:{1}:{2}" ;
 
 	/**
 	 * The name of the event when the stream is finished.
@@ -136,8 +145,6 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 		}
 	}
 
-		
-
 	/**
 	 * Returns {@code true} if the stream is loop when the stream is finished.
 	 * @return {@code true} if the stream is loop when the stream is finished.
@@ -154,7 +161,6 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	{
 		_isLoop = b ; 	
 	}
-
 
 	/**
 	 * Close the Stream.
@@ -290,6 +296,43 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	}
 
 	/**
+	 * Returns the formatted string representation of the time position of the stream passed in argument.
+	 * @param pattern the optional string pattern to format the hours, the minutes and the seconds of the passed-in time. 
+	 * By default the method use the static constant DEFAULT_TIME_PATTERN with the value "{0}:{1}:{2}".
+	 * <li>{0} is the representation of the hours value.</li>
+	 * <li>{1} is the representation of the minutes value.</li>
+	 * <li>{2} is the representation of the seconds value.</li>
+	 * @return the formatted string representation of the time position of the stream passed in argument.
+	 * @see StringFormatter
+	 */
+	public function getTimeString( pattern:String ):String
+	{
+	
+		var time:Number ;
+
+		if ( StreamCollector.contains( getStreamID() ) )
+		{
+			time = getStream().time ;
+		}
+	
+		var t:Time = new Time( isNaN(time)? 0 : time , "s" ) ;
+		
+		_formatter.pattern = pattern || DEFAULT_TIME_PATTERN ;
+		
+		var hours:Number   = t.getHours(0) ;
+		var minutes:Number = t.getMinutes(0) ;
+		var seconds:Number = t.getSeconds(0) ;
+
+		return _formatter.format
+		(
+			( (hours < 10)   ? "0" : "" ) +  hours.toString() ,
+			( (minutes < 10) ? "0" : "" ) +  minutes.toString() ,
+			( (seconds < 10) ? "0" : "" ) +  seconds.toString() 
+		) ;	
+		
+	}
+
+	/**
 	 * This method is invoqued in the constructor of the class to initialize all events.
 	 * Overrides this method.
 	 */
@@ -330,7 +373,7 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 		if ( StreamCollector.contains( getStreamID() ) )
 		{
 			var s:Stream = getStream() ;
-			s.play.apply( getStream(), arguments ) ;
+			s.play.apply( s, arguments ) ;
 			dispatchEvent( _ePlayStart ) ;	
 			_tProgress.start() ;
 		}
@@ -592,6 +635,8 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	private var _ePlayStart:Event ;
 	
 	private var _ePlayStop:Event ;
+	
+	private var _formatter:StringFormatter ;
 	
 	private var _isLoop:Boolean = false ;
 	

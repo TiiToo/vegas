@@ -75,7 +75,7 @@ class asgard.display.ConfigurableDisplayObject extends DisplayObject implements 
 	 * By default this method launch a search in the Config object with the name of the display and initialize the display.
 	 * If you want use your custom setup method override this method.
 	 */
-	/*override*/ public function setup():Void 
+	public function setup():Void 
 	{
 		var config:Object = Config.getInstance()[getName()] ; 
 		if ( config != null ) 
