@@ -1,9 +1,4 @@
-﻿import asgard.events.FullScreenEvent;
-
-import pegas.events.UIEventType;
-
-import vegas.events.AbstractCoreEventDispatcher;
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -25,6 +20,10 @@ import vegas.events.AbstractCoreEventDispatcher;
   Contributor(s) :
   
 */
+
+import asgard.events.FullScreenEvent;
+
+import vegas.events.AbstractCoreEventDispatcher;
 
 /**
  * The StageDisplayState class provides constant values to enter and leave full screen mode.
@@ -164,8 +163,6 @@ class asgard.display.StageDisplayState extends AbstractCoreEventDispatcher
 	 */
 	public function onFullScreen( b:Boolean ):Void
 	{
-		getLogger().fatal(this + " on fullscreen : " + b) ;
-		trace(this + " on fullscreen : " + b) ;
         _eFullscreen.setBoolean( b ) ;
         dispatchEvent( _eFullscreen ) ;
 	}
