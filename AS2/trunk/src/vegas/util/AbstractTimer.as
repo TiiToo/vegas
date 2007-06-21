@@ -128,6 +128,15 @@ class vegas.util.AbstractTimer extends EventDispatcher implements ICloneable, IC
 	}
 
 	/**
+	 * Returns the current counter value of the timer.
+	 * @return the current counter value of the timer.
+	 */
+	public function getCount():Number
+	{
+		return _count ;	
+	}
+
+	/**
 	 * Returns the number of repetitions. If zero, the timer repeats infinitely. If nonzero, the timer runs the specified number of times and then stops.
 	 * @return the number of repetitions. If zero, the timer repeats infinitely. If nonzero, the timer runs the specified number of times and then stops.
 	 */
