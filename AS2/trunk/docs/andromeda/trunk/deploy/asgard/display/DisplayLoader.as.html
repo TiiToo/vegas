@@ -1,0 +1,275 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><script src="../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../index-files";
+//--></script><link href="../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../overview-summary.html" title="Overview" rel="top"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><pre><span class="lineno" id="1">     1  </span><span class="comment">/*
+<span class="lineno" id="2">     2  </span>
+<span class="lineno" id="3">     3  </span>  The contents of this file are subject to the Mozilla Public License Version
+<span class="lineno" id="4">     4  </span>  1.1 (the "License"); you may not use this file except in compliance with
+<span class="lineno" id="5">     5  </span>  the License. You may obtain a copy of the License at 
+<span class="lineno" id="6">     6  </span>  
+<span class="lineno" id="7">     7  </span>           http://www.mozilla.org/MPL/ 
+<span class="lineno" id="8">     8  </span>  
+<span class="lineno" id="9">     9  </span>  Software distributed under the License is distributed on an "AS IS" basis,
+<span class="lineno" id="10">    10  </span>  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+<span class="lineno" id="11">    11  </span>  for the specific language governing rights and limitations under the License. 
+<span class="lineno" id="12">    12  </span>  
+<span class="lineno" id="13">    13  </span>  The Original Code is Vegas Framework.
+<span class="lineno" id="14">    14  </span>  
+<span class="lineno" id="15">    15  </span>  The Initial Developer of the Original Code is
+<span class="lineno" id="16">    16  </span>  ALCARAZ Marc (aka eKameleon)  &lt;vegas@ekameleon.net&gt;.
+<span class="lineno" id="17">    17  </span>  Portions created by the Initial Developer are Copyright (C) 2004-2007
+<span class="lineno" id="18">    18  </span>  the Initial Developer. All Rights Reserved.
+<span class="lineno" id="19">    19  </span>  
+<span class="lineno" id="20">    20  </span>  Contributor(s) :
+<span class="lineno" id="21">    21  </span>  
+<span class="lineno" id="22">    22  </span>*/</span>
+<span class="lineno" id="23">    23  </span>
+<span class="lineno" id="24">    24  </span><span class="key">import</span> asgard.display.DisplayLoaderCollector;
+<span class="lineno" id="25">    25  </span><span class="key">import</span> asgard.events.DisplayLoaderEvent;
+<span class="lineno" id="26">    26  </span><span class="key">import</span> asgard.net.AbstractLoader;
+<span class="lineno" id="27">    27  </span><span class="key">import</span> asgard.net.URLRequest;
+<span class="lineno" id="28">    28  </span>
+<span class="lineno" id="29">    29  </span><span class="key">import</span> vegas.core.HashCode;
+<span class="lineno" id="30">    30  </span><span class="key">import</span> vegas.errors.IllegalArgumentError;
+<span class="lineno" id="31">    31  </span>
+<span class="lineno" id="32">    32  </span><span class="comment doc">/**
+<span class="lineno" id="33">    33  </span> * The DisplayLoader class is used to load SWF files or image (JPG, PNG, or GIF) files. 
+<span class="lineno" id="34">    34  </span> * &lt;p&gt;Use the load() method to initiate loading.&lt;/p&gt;
+<span class="lineno" id="35">    35  </span> * &lt;p&gt;&lt;b&gt;Example :&lt;/b&gt;&lt;/p&gt;
+<span class="lineno" id="36">    36  </span> * {@code
+<span class="lineno" id="37">    37  </span> * import asgard.display.DisplayLoader ;
+<span class="lineno" id="38">    38  </span> * import asgard.events.LoaderEvent ;
+<span class="lineno" id="39">    39  </span> * import asgard.events.LoaderEventType ;
+<span class="lineno" id="40">    40  </span> * import asgard.net.URLRequest ;
+<span class="lineno" id="41">    41  </span> * 
+<span class="lineno" id="42">    42  </span> * import vegas.events.Delegate ;
+<span class="lineno" id="43">    43  </span> * 
+<span class="lineno" id="44">    44  </span> * var onLoadError = function(ev:LoaderEvent):Void
+<span class="lineno" id="45">    45  </span> * {
+<span class="lineno" id="46">    46  </span> *     trace("&gt; " + ev.getType() + " : " + ev.error ) ;
+<span class="lineno" id="47">    47  </span> * }
+<span class="lineno" id="48">    48  </span> * 
+<span class="lineno" id="49">    49  </span> * var onLoadComplete = function(ev:LoaderEvent):Void
+<span class="lineno" id="50">    50  </span> * {
+<span class="lineno" id="51">    51  </span> *     trace(ev.getTarget() + " &gt; " + ev.getType() ) ;
+<span class="lineno" id="52">    52  </span> * }
+<span class="lineno" id="53">    53  </span> * 
+<span class="lineno" id="54">    54  </span> * var onLoadInit = function(ev:LoaderEvent):Void
+<span class="lineno" id="55">    55  </span> * {
+<span class="lineno" id="56">    56  </span> *     trace(ev.getTarget() + " &gt; " + ev.getType() ) ;
+<span class="lineno" id="57">    57  </span> * }
+<span class="lineno" id="58">    58  </span> * 
+<span class="lineno" id="59">    59  </span> * var onLoadProgress = function (ev:LoaderEvent):Void
+<span class="lineno" id="60">    60  </span> * {
+<span class="lineno" id="61">    61  </span> *     trace(ev.getTarget() + " &gt; " + ev.getType() + " : " + ev.getPercent() + "%") ;
+<span class="lineno" id="62">    62  </span> * }
+<span class="lineno" id="63">    63  </span> * 
+<span class="lineno" id="64">    64  </span> * var onLoadStart = function (ev:LoaderEvent):Void
+<span class="lineno" id="65">    65  </span> * {
+<span class="lineno" id="66">    66  </span> *     trace(ev.getTarget() + " &gt; " + ev.getType() ) ;
+<span class="lineno" id="67">    67  </span> * }
+<span class="lineno" id="68">    68  </span> * 
+<span class="lineno" id="69">    69  </span> * var url:String = "pic/picture.jpg" ;
+<span class="lineno" id="70">    70  </span> * var mc:MovieClip = createEmptyMovieClip("container", 1) ;
+<span class="lineno" id="71">    71  </span> * 
+<span class="lineno" id="72">    72  </span> * mc._x = 25 ;
+<span class="lineno" id="73">    73  </span> * mc._y = 25 ;
+<span class="lineno" id="74">    74  </span> * 
+<span class="lineno" id="75">    75  </span> * var loader:DisplayLoader = new DisplayLoader(mc) ;
+<span class="lineno" id="76">    76  </span> * loader.addEventListener(LoaderEventType.COMPLETE, new Delegate(this, onLoadComplete)) ;
+<span class="lineno" id="77">    77  </span> * loader.addEventListener(LoaderEventType.IO_ERROR, new Delegate(this, onLoadError)) ;
+<span class="lineno" id="78">    78  </span> * loader.addEventListener(LoaderEventType.INIT, new Delegate(this, onLoadInit)) ;
+<span class="lineno" id="79">    79  </span> * loader.addEventListener(LoaderEventType.PROGRESS, new Delegate(this, onLoadProgress)) ;
+<span class="lineno" id="80">    80  </span> * loader.addEventListener(LoaderEventType.START, new Delegate(this, onLoadStart)) ;
+<span class="lineno" id="81">    81  </span> * 
+<span class="lineno" id="82">    82  </span> * var request:URLRequest = new URLRequest(url);
+<span class="lineno" id="83">    83  </span> * loader.load(request) ;
+<span class="lineno" id="84">    84  </span> * 
+<span class="lineno" id="85">    85  </span> * }
+<span class="lineno" id="86">    86  </span> * @author eKameleon
+<span class="lineno" id="87">    87  </span> */</span>
+<span class="lineno" id="88">    88  </span><span class="key">class</span> asgard.display.DisplayLoader <span class="key">extends</span> AbstractLoader 
+<span class="lineno" id="89">    89  </span>{
+<span class="lineno" id="90">    90  </span>	
+<span class="lineno" id="91">    91  </span>	<span class="comment doc">/**
+<span class="lineno" id="92">    92  </span>	 * Creates a new DisplayLoader instance.
+<span class="lineno" id="93">    93  </span>	 * @param mcTarget the target of this loader.
+<span class="lineno" id="94">    94  </span>	 * @param nDepth the depth of the internal movieclip use to load the external content.
+<span class="lineno" id="95">    95  </span>	 * @param bAutoShow indicates if the external content (picture, swf) is show when is loading.
+<span class="lineno" id="96">    96  </span>	 */</span>
+<span class="lineno" id="97">    97  </span>	<span class="key">function</span> DisplayLoader( mcTarget:MovieClip, nDepth:Number, bAutoShow:Boolean ) 
+<span class="lineno" id="98">    98  </span>	{
+<span class="lineno" id="99">    99  </span>		
+<span class="lineno" id="100">   100  </span>		<span class="key">super</span>() ;
+<span class="lineno" id="101">   101  </span>		
+<span class="lineno" id="102">   102  </span>		<span class="key">if</span> (! mcTarget) 
+<span class="lineno" id="103">   103  </span>		{
+<span class="lineno" id="104">   104  </span>			<span class="key">throw</span> <span class="key">new</span> IllegalArgumentError(<span class="key">this</span> + <span class="str_const">" mcTarget argument not must be 'undefined' or 'null'."</span>) ;
+<span class="lineno" id="105">   105  </span>		}
+<span class="lineno" id="106">   106  </span>		
+<span class="lineno" id="107">   107  </span>		nDepth = (isNaN(nDepth)) ? _uniqueID++ : nDepth ;
+<span class="lineno" id="108">   108  </span>		
+<span class="lineno" id="109">   109  </span>		HashCode.identify( mcTarget ) ;
+<span class="lineno" id="110">   110  </span>		
+<span class="lineno" id="111">   111  </span>		_container = mcTarget.createEmptyMovieClip(<span class="str_const">"__container__"</span> +  HashCode.nextName(), nDepth ) ;
+<span class="lineno" id="112">   112  </span>		
+<span class="lineno" id="113">   113  </span>		HashCode.identify( _container ) ;
+<span class="lineno" id="114">   114  </span>		
+<span class="lineno" id="115">   115  </span>		_isAutoShow = (bAutoShow == <span class="key">null</span>) ? <span class="key">true</span> : bAutoShow ;
+<span class="lineno" id="116">   116  </span>		_isCollected = <span class="key">false</span> ;
+<span class="lineno" id="117">   117  </span>		
+<span class="lineno" id="118">   118  </span>	}
+<span class="lineno" id="119">   119  </span>
+<span class="lineno" id="120">   120  </span>	<span class="comment doc">/**
+<span class="lineno" id="121">   121  </span>	 * Returns the absolute url of the root swf object.
+<span class="lineno" id="122">   122  </span>	 * @return the absolute url of the root swf object.
+<span class="lineno" id="123">   123  </span>	 */</span>
+<span class="lineno" id="124">   124  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">function</span> getLoaderUrl():String 
+<span class="lineno" id="125">   125  </span>	{
+<span class="lineno" id="126">   126  </span>		<span class="key">return</span> _root._url ;
+<span class="lineno" id="127">   127  </span>	}
+<span class="lineno" id="128">   128  </span>
+<span class="lineno" id="129">   129  </span>	<span class="comment doc">/**
+<span class="lineno" id="130">   130  </span>	 * Returns the view of this loader.
+<span class="lineno" id="131">   131  </span>	 * @return the view of this loader.
+<span class="lineno" id="132">   132  </span>	 */</span>
+<span class="lineno" id="133">   133  </span>	<span class="key">public</span> <span class="key">function</span> getView():MovieClip 
+<span class="lineno" id="134">   134  </span>	{
+<span class="lineno" id="135">   135  </span>		<span class="key">return</span> <span class="key">super</span>.getContent() ;
+<span class="lineno" id="136">   136  </span>	}
+<span class="lineno" id="137">   137  </span>	
+<span class="lineno" id="138">   138  </span>	<span class="comment doc">/**
+<span class="lineno" id="139">   139  </span>	 * Hide the view of this loader.
+<span class="lineno" id="140">   140  </span>	 */</span>
+<span class="lineno" id="141">   141  </span>	<span class="key">public</span> <span class="key">function</span> hide():Void 
+<span class="lineno" id="142">   142  </span>	{
+<span class="lineno" id="143">   143  </span>		_container._visible = <span class="key">false</span> ;
+<span class="lineno" id="144">   144  </span>	}
+<span class="lineno" id="145">   145  </span>
+<span class="lineno" id="146">   146  </span>	<span class="comment doc">/**
+<span class="lineno" id="147">   147  </span>	 * Init the internal event of this loader.
+<span class="lineno" id="148">   148  </span>	 */</span>
+<span class="lineno" id="149">   149  </span>	<span class="comment">/*override*/</span> <span class="key">public</span> <span class="key">function</span> initEvent():Void 
+<span class="lineno" id="150">   150  </span>	{
+<span class="lineno" id="151">   151  </span>		_e = <span class="key">new</span> DisplayLoaderEvent(<span class="key">null</span>, <span class="key">this</span>) ;
+<span class="lineno" id="152">   152  </span>	}
+<span class="lineno" id="153">   153  </span>
+<span class="lineno" id="154">   154  </span>	<span class="comment doc">/**
+<span class="lineno" id="155">   155  </span>	 * Return {@code true} if the view of this loader is visible when is loading.
+<span class="lineno" id="156">   156  </span>	 * @return {@code true} if the view of this loader is visible when is loading
+<span class="lineno" id="157">   157  </span>	 */</span>
+<span class="lineno" id="158">   158  </span>	<span class="key">public</span> <span class="key">function</span> isAutoShow():Boolean 
+<span class="lineno" id="159">   159  </span>	{
+<span class="lineno" id="160">   160  </span>		<span class="key">return</span> _isAutoShow ;	
+<span class="lineno" id="161">   161  </span>	}
+<span class="lineno" id="162">   162  </span>	
+<span class="lineno" id="163">   163  </span>	<span class="comment doc">/**
+<span class="lineno" id="164">   164  </span>	 * Return {@code true} if the view of this loader is visible.
+<span class="lineno" id="165">   165  </span>	 * @return {@code true} if the view of this loader is visible.
+<span class="lineno" id="166">   166  </span>	 */</span>
+<span class="lineno" id="167">   167  </span>	<span class="key">public</span> <span class="key">function</span> isVisible():Boolean 
+<span class="lineno" id="168">   168  </span>	{
+<span class="lineno" id="169">   169  </span>		<span class="key">return</span> _container._visible ;	
+<span class="lineno" id="170">   170  </span>	}
+<span class="lineno" id="171">   171  </span>
+<span class="lineno" id="172">   172  </span>	<span class="comment doc">/**
+<span class="lineno" id="173">   173  </span>	 * Load the current URLRequest.
+<span class="lineno" id="174">   174  </span>	 */</span>
+<span class="lineno" id="175">   175  </span>	<span class="comment">/*override*/</span> <span class="key">public</span> <span class="key">function</span> load(request:URLRequest):Void 
+<span class="lineno" id="176">   176  </span>	{
+<span class="lineno" id="177">   177  </span>		<span class="key">if</span> (request.getUrl() != undefined) 
+<span class="lineno" id="178">   178  </span>		{
+<span class="lineno" id="179">   179  </span>			setUrl( request.getUrl() );
+<span class="lineno" id="180">   180  </span>		}
+<span class="lineno" id="181">   181  </span>		release() ;
+<span class="lineno" id="182">   182  </span>		setContent( _container.createEmptyMovieClip(<span class="str_const">"__mcExternal"</span>, <span class="num_const">1</span>) ) ;
+<span class="lineno" id="183">   183  </span>		getContent().loadMovie( <span class="key">super</span>.getUrl() );
+<span class="lineno" id="184">   184  </span>		hide();
+<span class="lineno" id="185">   185  </span>		<span class="key">super</span>.load() ;
+<span class="lineno" id="186">   186  </span>	}
+<span class="lineno" id="187">   187  </span>
+<span class="lineno" id="188">   188  </span>	<span class="comment doc">/**
+<span class="lineno" id="189">   189  </span>	 * Invoqued when the loading is finish and the loader is init.
+<span class="lineno" id="190">   190  </span>	 */</span>
+<span class="lineno" id="191">   191  </span>	<span class="comment">/*override*/</span> <span class="key">public</span> <span class="key">function</span> onLoadInit():Void 
+<span class="lineno" id="192">   192  </span>	{
+<span class="lineno" id="193">   193  </span>		<span class="key">if</span> (_sName) 
+<span class="lineno" id="194">   194  </span>		{
+<span class="lineno" id="195">   195  </span>			
+<span class="lineno" id="196">   196  </span>			<span class="key">if</span> (!(DisplayLoaderCollector.contains(_sName))) 
+<span class="lineno" id="197">   197  </span>			{
+<span class="lineno" id="198">   198  </span>				
+<span class="lineno" id="199">   199  </span>				_isCollected = <span class="key">true</span> ;
+<span class="lineno" id="200">   200  </span>				DisplayLoaderCollector.insert( _sName, <span class="key">this</span> ) ;
+<span class="lineno" id="201">   201  </span>				
+<span class="lineno" id="202">   202  </span>			} 
+<span class="lineno" id="203">   203  </span>			<span class="key">else</span> 
+<span class="lineno" id="204">   204  </span>			{
+<span class="lineno" id="205">   205  </span>				_isCollected = <span class="key">false</span> ;
+<span class="lineno" id="206">   206  </span>				<span class="comment">// TODO créer une erreur.</span>
+<span class="lineno" id="207">   207  </span>				notifyError( <span class="key">this</span> + <span class="str_const">" can't be collected to [DisplayCollector] with '"</span> + _sName + <span class="str_const">"' name. This name already exists."</span> ) ;
+<span class="lineno" id="208">   208  </span>			}
+<span class="lineno" id="209">   209  </span>		}
+<span class="lineno" id="210">   210  </span>		
+<span class="lineno" id="211">   211  </span>		<span class="key">super</span>.onLoadInit();
+<span class="lineno" id="212">   212  </span>		
+<span class="lineno" id="213">   213  </span>		<span class="key">if</span> (_isAutoShow)
+<span class="lineno" id="214">   214  </span>		{
+<span class="lineno" id="215">   215  </span>			show() ;
+<span class="lineno" id="216">   216  </span>		}
+<span class="lineno" id="217">   217  </span>		
+<span class="lineno" id="218">   218  </span>	}
+<span class="lineno" id="219">   219  </span>	
+<span class="lineno" id="220">   220  </span>	<span class="comment doc">/**
+<span class="lineno" id="221">   221  </span>	 * Release the loader.
+<span class="lineno" id="222">   222  </span>	 */</span>
+<span class="lineno" id="223">   223  </span>	<span class="comment">/*override*/</span> <span class="key">public</span> <span class="key">function</span> release():Void 
+<span class="lineno" id="224">   224  </span>	{
+<span class="lineno" id="225">   225  </span>		<span class="key">super</span>.release() ;
+<span class="lineno" id="226">   226  </span>		getContent().removeMovieClip() ;
+<span class="lineno" id="227">   227  </span>		_container._visible = _isAutoShow ;
+<span class="lineno" id="228">   228  </span>		<span class="key">if</span> (_isCollected) 
+<span class="lineno" id="229">   229  </span>		{
+<span class="lineno" id="230">   230  </span>			DisplayLoaderCollector.remove(_sName) ;
+<span class="lineno" id="231">   231  </span>			_isCollected = <span class="key">false</span> ;	
+<span class="lineno" id="232">   232  </span>		}	
+<span class="lineno" id="233">   233  </span>	}
+<span class="lineno" id="234">   234  </span>	
+<span class="lineno" id="235">   235  </span>	<span class="comment doc">/**
+<span class="lineno" id="236">   236  </span>	 * Sets if the view is show when the content is loading.
+<span class="lineno" id="237">   237  </span>	 */</span>
+<span class="lineno" id="238">   238  </span>	<span class="key">public</span> <span class="key">function</span> setAutoShow(b:Boolean):Void 
+<span class="lineno" id="239">   239  </span>	{
+<span class="lineno" id="240">   240  </span>		_isAutoShow = b ;
+<span class="lineno" id="241">   241  </span>	}
+<span class="lineno" id="242">   242  </span>
+<span class="lineno" id="243">   243  </span>	<span class="comment doc">/**
+<span class="lineno" id="244">   244  </span>	 * Show the view of the loader.
+<span class="lineno" id="245">   245  </span>	 */</span>
+<span class="lineno" id="246">   246  </span>	<span class="key">public</span> <span class="key">function</span> show():Void 
+<span class="lineno" id="247">   247  </span>	{
+<span class="lineno" id="248">   248  </span>		_container._visible = <span class="key">true</span> ;
+<span class="lineno" id="249">   249  </span>	}
+<span class="lineno" id="250">   250  </span>
+<span class="lineno" id="251">   251  </span>	<span class="comment doc">/**
+<span class="lineno" id="252">   252  </span>	 * The internal container of this loader.
+<span class="lineno" id="253">   253  </span>	 */</span>
+<span class="lineno" id="254">   254  </span>	<span class="key">private</span> <span class="key">var</span> _container:MovieClip ;
+<span class="lineno" id="255">   255  </span>
+<span class="lineno" id="256">   256  </span>	<span class="comment doc">/**
+<span class="lineno" id="257">   257  </span>	 * The boolean value to indicated if the view is auto show when the content is loading.
+<span class="lineno" id="258">   258  </span>	 */</span>
+<span class="lineno" id="259">   259  </span>	<span class="key">private</span> <span class="key">var</span> _isAutoShow:Boolean ;
+<span class="lineno" id="260">   260  </span>
+<span class="lineno" id="261">   261  </span>	<span class="comment doc">/**
+<span class="lineno" id="262">   262  </span>	 * The boolean to indicated if the loader is collected.
+<span class="lineno" id="263">   263  </span>	 */</span>
+<span class="lineno" id="264">   264  </span>	<span class="key">private</span> <span class="key">var</span> _isCollected:Boolean ;
+<span class="lineno" id="265">   265  </span>
+<span class="lineno" id="266">   266  </span>	<span class="comment doc">/**
+<span class="lineno" id="267">   267  </span>	 * The internal uniqueID to creates a new container.
+<span class="lineno" id="268">   268  </span>	 */</span>
+<span class="lineno" id="269">   269  </span>	<span class="key">static</span> <span class="key">private</span> <span class="key">var</span> _uniqueID:Number = <span class="num_const">0</span> ;
+<span class="lineno" id="270">   270  </span>
+<span class="lineno" id="271">   271  </span>
+<span class="lineno" id="272">   272  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package asgard.display" class="button">Package</a></li><li><a href="DisplayLoader.html" title="Detail of asgard.display.DisplayLoader API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

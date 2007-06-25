@@ -1,0 +1,130 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><script src="../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../index-files";
+//--></script><link href="../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../overview-summary.html" title="Overview" rel="top"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><pre><span class="lineno" id="1">     1  </span> <span class="comment">/*
+<span class="lineno" id="2">     2  </span>
+<span class="lineno" id="3">     3  </span>  The contents of this file are subject to the Mozilla Public License Version
+<span class="lineno" id="4">     4  </span>  1.1 (the "License"); you may not use this file except in compliance with
+<span class="lineno" id="5">     5  </span>  the License. You may obtain a copy of the License at 
+<span class="lineno" id="6">     6  </span>  
+<span class="lineno" id="7">     7  </span>           http://www.mozilla.org/MPL/ 
+<span class="lineno" id="8">     8  </span>  
+<span class="lineno" id="9">     9  </span>  Software distributed under the License is distributed on an "AS IS" basis,
+<span class="lineno" id="10">    10  </span>  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+<span class="lineno" id="11">    11  </span>  for the specific language governing rights and limitations under the License. 
+<span class="lineno" id="12">    12  </span>  
+<span class="lineno" id="13">    13  </span>  The Original Code is Vegas Framework.
+<span class="lineno" id="14">    14  </span>  
+<span class="lineno" id="15">    15  </span>  The Initial Developer of the Original Code is
+<span class="lineno" id="16">    16  </span>  ALCARAZ Marc (aka eKameleon)  &lt;vegas@ekameleon.net&gt;.
+<span class="lineno" id="17">    17  </span>  Portions created by the Initial Developer are Copyright (C) 2004-2007
+<span class="lineno" id="18">    18  </span>  the Initial Developer. All Rights Reserved.
+<span class="lineno" id="19">    19  </span>  
+<span class="lineno" id="20">    20  </span>  Contributor(s) :
+<span class="lineno" id="21">    21  </span>  
+<span class="lineno" id="22">    22  </span>*/</span>
+<span class="lineno" id="23">    23  </span>
+<span class="lineno" id="24">    24  </span><span class="key">import</span> vegas.util.StringUtil;
+<span class="lineno" id="25">    25  </span>
+<span class="lineno" id="26">    26  </span><span class="comment doc">/**
+<span class="lineno" id="27">    27  </span> * This static tool class encode or decode the HTML entities in a string.
+<span class="lineno" id="28">    28  </span> * @author eKameleon
+<span class="lineno" id="29">    29  </span> */</span>
+<span class="lineno" id="30">    30  </span><span class="key">class</span> asgard.net.HTMLEntities 
+<span class="lineno" id="31">    31  </span>{
+<span class="lineno" id="32">    32  </span>
+<span class="lineno" id="33">    33  </span>	<span class="comment doc">/**
+<span class="lineno" id="34">    34  </span>	 * Determinates all entities.
+<span class="lineno" id="35">    35  </span>	 */</span>
+<span class="lineno" id="36">    36  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">var</span> entities:Array = 
+<span class="lineno" id="37">    37  </span>	[ 
+<span class="lineno" id="38">    38  </span>		<span class="str_const">"&amp;euro;"</span>, <span class="str_const">"&amp;quot;"</span>, <span class="str_const">"&amp;amp;"</span>, <span class="str_const">"&amp;lt;"</span>, <span class="str_const">"&amp;gt;"</span>, <span class="str_const">"&amp;iexcl;"</span>, <span class="str_const">"&amp;cent;"</span>, <span class="str_const">"&amp;pound;"</span>, <span class="str_const">"&amp;curren;"</span>, <span class="str_const">"&amp;yen;"</span>,
+<span class="lineno" id="39">    39  </span>		<span class="str_const">"&amp;brvbar;"</span>, <span class="str_const">"&amp;sect;"</span>, <span class="str_const">"&amp;uml;"</span>, <span class="str_const">"&amp;copy;"</span>, <span class="str_const">"&amp;ordf;"</span>, <span class="str_const">"&amp;not;"</span>, <span class="str_const">"&amp;shy;"</span>, <span class="str_const">"&amp;reg;"</span>, <span class="str_const">"&amp;macr;"</span>, <span class="str_const">"&amp;deg;"</span>,
+<span class="lineno" id="40">    40  </span>		<span class="str_const">"&amp;plusmn;"</span>, <span class="str_const">"&amp;sup2;"</span>, <span class="str_const">"&amp;sup3;"</span>, <span class="str_const">"&amp;acute;"</span>, <span class="str_const">"&amp;micro;"</span>, <span class="str_const">"&amp;para;"</span>, <span class="str_const">"&amp;middot;"</span>, <span class="str_const">"&amp;cedil;"</span>, <span class="str_const">"&amp;sup1;"</span>, <span class="str_const">"&amp;ordm;"</span>,
+<span class="lineno" id="41">    41  </span>		<span class="str_const">"&amp;raquo;"</span>, <span class="str_const">"&amp;frac14;"</span>, <span class="str_const">"&amp;frac12;"</span>, <span class="str_const">"&amp;frac34;"</span>, <span class="str_const">"&amp;iquest;"</span>, <span class="str_const">"&amp;Agrave;"</span>, <span class="str_const">"&amp;Aacute;"</span>, <span class="str_const">"&amp;Atilde;"</span>, <span class="str_const">"&amp;Auml;"</span>, <span class="str_const">"&amp;Aring;"</span>,
+<span class="lineno" id="42">    42  </span>		<span class="str_const">"&amp;AElig;"</span>, <span class="str_const">"&amp;Ccedil;"</span>, <span class="str_const">"&amp;Egrave;"</span>, <span class="str_const">"&amp;Eacute;"</span>, <span class="str_const">"&amp;Ecirc;"</span>, <span class="str_const">"&amp;Igrave;"</span>, <span class="str_const">"&amp;Iacute;"</span>, <span class="str_const">"&amp;Icirc;"</span>, <span class="str_const">"&amp;Iuml;"</span>, <span class="str_const">"&amp;ETH;"</span>,
+<span class="lineno" id="43">    43  </span>		<span class="str_const">"&amp;Ntilde;"</span>, <span class="str_const">"&amp;Ograve;"</span>, <span class="str_const">"&amp;Oacute;"</span>, <span class="str_const">"&amp;Ocirc;"</span>, <span class="str_const">"&amp;Otilde;"</span>, <span class="str_const">"&amp;Ouml;"</span>, <span class="str_const">"&amp;times;"</span>, <span class="str_const">"&amp;Oslash;"</span>, <span class="str_const">"&amp;Ugrave;"</span>, <span class="str_const">"&amp;Uacute;"</span>,
+<span class="lineno" id="44">    44  </span>		<span class="str_const">"&amp;Ucirc;"</span>, <span class="str_const">"&amp;Uuml;"</span>, <span class="str_const">"&amp;Yacute;"</span>, <span class="str_const">"&amp;THORN;"</span>, <span class="str_const">"&amp;szlig;"</span>, <span class="str_const">"&amp;agrave;"</span>, <span class="str_const">"&amp;aacute;"</span>, <span class="str_const">"&amp;acirc;"</span>, <span class="str_const">"&amp;atilde;"</span>, <span class="str_const">"&amp;auml;"</span>,
+<span class="lineno" id="45">    45  </span>		<span class="str_const">"&amp;aring;"</span>, <span class="str_const">"&amp;aelig;"</span>, <span class="str_const">"&amp;ccedil;"</span>, <span class="str_const">"&amp;egrave;"</span>, <span class="str_const">"&amp;eacute;"</span>, <span class="str_const">"&amp;ecirc;"</span>, <span class="str_const">"&amp;euml;"</span>, <span class="str_const">"&amp;igrave;"</span>, <span class="str_const">"&amp;iacute;"</span>, <span class="str_const">"&amp;icirc;"</span>,
+<span class="lineno" id="46">    46  </span>		<span class="str_const">"&amp;iuml;"</span>, <span class="str_const">"&amp;eth;"</span>, <span class="str_const">"&amp;ntilde;"</span>, <span class="str_const">"&amp;ograve;"</span>, <span class="str_const">"&amp;oacute;"</span>, <span class="str_const">"&amp;ocirc;"</span>, <span class="str_const">"&amp;otilde;"</span>, <span class="str_const">"&amp;ouml;"</span>, <span class="str_const">"&amp;divide;"</span>, <span class="str_const">"&amp;oslash;"</span>,
+<span class="lineno" id="47">    47  </span>		<span class="str_const">"&amp;ugrave;"</span>, <span class="str_const">"&amp;uacute;"</span>, <span class="str_const">"&amp;ucirc;"</span>, <span class="str_const">"&amp;uuml;"</span>, <span class="str_const">"&amp;yacute;"</span>, <span class="str_const">"&amp;thorn;"</span>, <span class="str_const">"&amp;nbsp;"</span> 
+<span class="lineno" id="48">    48  </span>	];
+<span class="lineno" id="49">    49  </span>	
+<span class="lineno" id="50">    50  </span>	<span class="comment doc">/**
+<span class="lineno" id="51">    51  </span>	 * Determinates all special chars.
+<span class="lineno" id="52">    52  </span>	 */</span>
+<span class="lineno" id="53">    53  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">var</span> specialchars:Array = 
+<span class="lineno" id="54">    54  </span>	[ 
+<span class="lineno" id="55">    55  </span>		<span class="str_const">"€"</span>, <span class="str_const">"\""</span>, <span class="str_const">"&amp;"</span>, <span class="str_const">"&lt;"</span>, <span class="str_const">"&gt;"</span>, <span class="str_const">"¡"</span>, <span class="str_const">"¢"</span>, <span class="str_const">"£"</span>, <span class="str_const">"¤"</span>, <span class="str_const">"¥"</span>,
+<span class="lineno" id="56">    56  </span>		<span class="str_const">"¦"</span>, <span class="str_const">"§"</span>, <span class="str_const">"¨"</span>, <span class="str_const">"©"</span>, <span class="str_const">"ª"</span>, <span class="str_const">"¬"</span>, <span class="str_const">"­"</span>, <span class="str_const">"®"</span>, <span class="str_const">"¯"</span>, <span class="str_const">"°"</span>,
+<span class="lineno" id="57">    57  </span>		<span class="str_const">"±"</span>, <span class="str_const">"²"</span>, <span class="str_const">"³"</span>, <span class="str_const">"´"</span>, <span class="str_const">"µ"</span>, <span class="str_const">"¶"</span>, <span class="str_const">"·"</span>, <span class="str_const">"¸"</span>, <span class="str_const">"¹"</span>, <span class="str_const">"º"</span>,
+<span class="lineno" id="58">    58  </span>		<span class="str_const">"»"</span>, <span class="str_const">"¼"</span>, <span class="str_const">"½"</span>, <span class="str_const">"¾"</span>, <span class="str_const">"¿"</span>, <span class="str_const">"À"</span>, <span class="str_const">"Á"</span>, <span class="str_const">"Ã"</span>, <span class="str_const">"Ä"</span>, <span class="str_const">"Å"</span>,
+<span class="lineno" id="59">    59  </span>		<span class="str_const">"Æ"</span>, <span class="str_const">"Ç"</span>, <span class="str_const">"È"</span>, <span class="str_const">"É"</span>, <span class="str_const">"Ê"</span>, <span class="str_const">"Ì"</span>, <span class="str_const">"Í"</span>, <span class="str_const">"Î"</span>, <span class="str_const">"Ï"</span>, <span class="str_const">"Ð"</span>,
+<span class="lineno" id="60">    60  </span>		<span class="str_const">"Ñ"</span>, <span class="str_const">"Ò"</span>, <span class="str_const">"Ó"</span>, <span class="str_const">"Ô"</span>, <span class="str_const">"Õ"</span>, <span class="str_const">"Ö"</span>, <span class="str_const">"×"</span>, <span class="str_const">"Ø"</span>, <span class="str_const">"Ù"</span>, <span class="str_const">"Ú"</span>,
+<span class="lineno" id="61">    61  </span>		<span class="str_const">"Û"</span>, <span class="str_const">"Ü"</span>, <span class="str_const">"Ý"</span>, <span class="str_const">"Þ"</span>, <span class="str_const">"ß"</span>, <span class="str_const">"à"</span>, <span class="str_const">"á"</span>, <span class="str_const">"â"</span>, <span class="str_const">"ã"</span>, <span class="str_const">"ä"</span>,
+<span class="lineno" id="62">    62  </span>		<span class="str_const">"å"</span>, <span class="str_const">"æ"</span>, <span class="str_const">"ç"</span>, <span class="str_const">"è"</span>, <span class="str_const">"é"</span>, <span class="str_const">"ê"</span>, <span class="str_const">"ë"</span>, <span class="str_const">"ì"</span>, <span class="str_const">"í"</span>, <span class="str_const">"î"</span>,
+<span class="lineno" id="63">    63  </span>		<span class="str_const">"ï"</span>, <span class="str_const">"ð"</span>, <span class="str_const">"ñ"</span>, <span class="str_const">"ò"</span>, <span class="str_const">"ó"</span>, <span class="str_const">"ô"</span>, <span class="str_const">"õ"</span>, <span class="str_const">"ö"</span>, <span class="str_const">"÷"</span>, <span class="str_const">"ø"</span>,
+<span class="lineno" id="64">    64  </span>		<span class="str_const">"ù"</span>, <span class="str_const">"ú"</span>, <span class="str_const">"û"</span>, <span class="str_const">"ü"</span>, <span class="str_const">"ý"</span>, <span class="str_const">"þ"</span>, <span class="str_const">"u00A0"</span> 
+<span class="lineno" id="65">    65  </span>	];
+<span class="lineno" id="66">    66  </span>
+<span class="lineno" id="67">    67  </span>	<span class="comment doc">/**
+<span class="lineno" id="68">    68  </span>	 * Decodes the specified string.
+<span class="lineno" id="69">    69  </span>	 * @return the decode string.
+<span class="lineno" id="70">    70  </span>	 */</span>
+<span class="lineno" id="71">    71  </span>	<span class="key">static</span> <span class="key">function</span> decode( text:String, removeCRLF:Boolean ):String 
+<span class="lineno" id="72">    72  </span>	{
+<span class="lineno" id="73">    73  </span>		<span class="key">var</span> i:Number ;
+<span class="lineno" id="74">    74  </span>		<span class="key">var</span> ch:String ;
+<span class="lineno" id="75">    75  </span>		<span class="key">var</span> entity:String ;
+<span class="lineno" id="76">    76  </span>		<span class="key">var</span> len:Number = entities.length ;
+<span class="lineno" id="77">    77  </span>		
+<span class="lineno" id="78">    78  </span>		<span class="key">for</span>( i=<span class="num_const">0</span>; i&lt;len ; i++ )
+<span class="lineno" id="79">    79  </span>		{
+<span class="lineno" id="80">    80  </span>			ch = specialchars[ i ];
+<span class="lineno" id="81">    81  </span>			entity = entities[ i ];
+<span class="lineno" id="82">    82  </span>			
+<span class="lineno" id="83">    83  </span>			<span class="comment">// trace(ch + " : " + i) ;</span>
+<span class="lineno" id="84">    84  </span>			
+<span class="lineno" id="85">    85  </span>			<span class="key">if</span>( text.indexOf( entity ) &gt; -<span class="num_const">1</span> )
+<span class="lineno" id="86">    86  </span>			{
+<span class="lineno" id="87">    87  </span>				text = StringUtil.replace( text, entity, ch );
+<span class="lineno" id="88">    88  </span>			}
+<span class="lineno" id="89">    89  </span>		}
+<span class="lineno" id="90">    90  </span>		
+<span class="lineno" id="91">    91  </span>		<span class="key">if</span>( removeCRLF )
+<span class="lineno" id="92">    92  </span>		{
+<span class="lineno" id="93">    93  </span>			text = text.replace( <span class="str_const">"r\n"</span>, <span class="str_const">""</span> );
+<span class="lineno" id="94">    94  </span>		}
+<span class="lineno" id="95">    95  </span>		<span class="key">return</span> text;
+<span class="lineno" id="96">    96  </span>	}
+<span class="lineno" id="97">    97  </span>
+<span class="lineno" id="98">    98  </span>	<span class="comment doc">/**
+<span class="lineno" id="99">    99  </span>	 * Encodes the specified text passed in argument.
+<span class="lineno" id="100">   100  </span>	 * @return a string encode text.
+<span class="lineno" id="101">   101  </span>	 */</span>
+<span class="lineno" id="102">   102  </span>	<span class="key">static</span> <span class="key">function</span> encode( text:String ):String
+<span class="lineno" id="103">   103  </span>	{
+<span class="lineno" id="104">   104  </span>		<span class="key">var</span> i:Number ;
+<span class="lineno" id="105">   105  </span>		
+<span class="lineno" id="106">   106  </span>		<span class="key">var</span> ch:String ;
+<span class="lineno" id="107">   107  </span>		
+<span class="lineno" id="108">   108  </span>		<span class="key">var</span> entity:String ;
+<span class="lineno" id="109">   109  </span>		
+<span class="lineno" id="110">   110  </span>		<span class="key">var</span> len:Number = entities.length ;
+<span class="lineno" id="111">   111  </span>		
+<span class="lineno" id="112">   112  </span>		<span class="key">for</span>( i=<span class="num_const">0</span>; i&lt;len; i++ )
+<span class="lineno" id="113">   113  </span>		{
+<span class="lineno" id="114">   114  </span>			
+<span class="lineno" id="115">   115  </span>			ch = specialchars[i];
+<span class="lineno" id="116">   116  </span>			entity = entities[i];
+<span class="lineno" id="117">   117  </span>			
+<span class="lineno" id="118">   118  </span>			<span class="key">if</span>( text.indexOf( ch ) &gt; -<span class="num_const">1</span> )
+<span class="lineno" id="119">   119  </span>			{
+<span class="lineno" id="120">   120  </span>				text = StringUtil.replace( text, ch, entity );
+<span class="lineno" id="121">   121  </span>			}
+<span class="lineno" id="122">   122  </span>		}
+<span class="lineno" id="123">   123  </span>		<span class="key">return</span> text.toString() ;
+<span class="lineno" id="124">   124  </span>	}
+<span class="lineno" id="125">   125  </span>
+<span class="lineno" id="126">   126  </span>}
+<span class="lineno" id="127">   127  </span></pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package asgard.net" class="button">Package</a></li><li><a href="HTMLEntities.html" title="Detail of asgard.net.HTMLEntities API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

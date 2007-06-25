@@ -1,0 +1,291 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><script src="../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../index-files";
+//--></script><link href="../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../overview-summary.html" title="Overview" rel="top"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><pre><span class="lineno" id="1">     1  </span><span class="comment">/*
+<span class="lineno" id="2">     2  </span>
+<span class="lineno" id="3">     3  </span>  The contents of this file are subject to the Mozilla Public License Version
+<span class="lineno" id="4">     4  </span>  1.1 (the "License"); you may not use this file except in compliance with
+<span class="lineno" id="5">     5  </span>  the License. You may obtain a copy of the License at 
+<span class="lineno" id="6">     6  </span>  
+<span class="lineno" id="7">     7  </span>           http://www.mozilla.org/MPL/ 
+<span class="lineno" id="8">     8  </span>  
+<span class="lineno" id="9">     9  </span>  Software distributed under the License is distributed on an "AS IS" basis,
+<span class="lineno" id="10">    10  </span>  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+<span class="lineno" id="11">    11  </span>  for the specific language governing rights and limitations under the License. 
+<span class="lineno" id="12">    12  </span>  
+<span class="lineno" id="13">    13  </span>  The Original Code is PEGAS Framework.
+<span class="lineno" id="14">    14  </span>  
+<span class="lineno" id="15">    15  </span>  The Initial Developer of the Original Code is
+<span class="lineno" id="16">    16  </span>  ALCARAZ Marc (aka eKameleon)  &lt;vegas@ekameleon.net&gt;.
+<span class="lineno" id="17">    17  </span>  Portions created by the Initial Developer are Copyright (C) 2004-2007
+<span class="lineno" id="18">    18  </span>  the Initial Developer. All Rights Reserved.
+<span class="lineno" id="19">    19  </span>  
+<span class="lineno" id="20">    20  </span>  Contributor(s) :
+<span class="lineno" id="21">    21  </span>  
+<span class="lineno" id="22">    22  </span>*/</span>
+<span class="lineno" id="23">    23  </span>
+<span class="lineno" id="24">    24  </span><span class="key">import</span> pegas.geom.Point;
+<span class="lineno" id="25">    25  </span><span class="key">import</span> pegas.geom.Trigo;
+<span class="lineno" id="26">    26  </span>
+<span class="lineno" id="27">    27  </span><span class="key">import</span> vegas.core.CoreObject;
+<span class="lineno" id="28">    28  </span><span class="key">import</span> vegas.core.ICloneable;
+<span class="lineno" id="29">    29  </span><span class="key">import</span> vegas.core.IEquality;
+<span class="lineno" id="30">    30  </span><span class="key">import</span> vegas.core.ISerializable;
+<span class="lineno" id="31">    31  </span>
+<span class="lineno" id="32">    32  </span><span class="comment doc">/**
+<span class="lineno" id="33">    33  </span> * Represents a transformation matrix that determines how to map points from one coordinate space to another.
+<span class="lineno" id="34">    34  </span> * &lt;p&gt;By setting the properties of a Matrix object and applying it to a MovieClip or BitmapData object you can perform various graphical transformations on the object. These transformation functions include translation (x and y repositioning), rotation, scaling, and skewing.&lt;/p&gt;
+<span class="lineno" id="35">    35  </span> * &lt;p&gt;&lt;b&gt;Example :&lt;/b&gt;&lt;/p&gt;
+<span class="lineno" id="36">    36  </span> * {@code
+<span class="lineno" id="37">    37  </span> * import pegas.geom.TransformMatrix;
+<span class="lineno" id="38">    38  </span> * var matrix_1:TransformMatrix = new TransformMatrix();
+<span class="lineno" id="39">    39  </span> * trace(matrix_1); // (a:1,b:0,c:0,d:1,tx:0,ty:0)
+<span class="lineno" id="40">    40  </span> * 
+<span class="lineno" id="41">    41  </span> * var matrix_2:TransformMatrix = new TransformMatrix(1, 2, 3, 4, 5, 6);
+<span class="lineno" id="42">    42  </span> * trace(matrix_2); // (a:1,b:2,c:3,d:4,tx:5,ty:6)
+<span class="lineno" id="43">    43  </span> * }
+<span class="lineno" id="44">    44  </span> * The following example creates matrix_1 by sending no parameters to the Matrix constructor and matrix_2 by sending parameters to it. The TransformMatrix object matrix_1, which is created with no parameters, is an identity Matrix with the values (a:1,b:0,c:0,d:1,tx:0,ty:0).
+<span class="lineno" id="45">    45  </span> * @author eKameleon
+<span class="lineno" id="46">    46  </span> */</span>
+<span class="lineno" id="47">    47  </span><span class="key">class</span> pegas.geom.TransformMatrix <span class="key">extends</span> CoreObject <span class="key">implements</span> ICloneable, IEquality, ISerializable 
+<span class="lineno" id="48">    48  </span>{
+<span class="lineno" id="49">    49  </span>
+<span class="lineno" id="50">    50  </span>	<span class="comment doc">/**
+<span class="lineno" id="51">    51  </span>	 * Creates a new TransformMatrix instance.
+<span class="lineno" id="52">    52  </span>	 */</span>
+<span class="lineno" id="53">    53  </span>	<span class="key">public</span> <span class="key">function</span> TransformMatrix( a:Number, b:Number, c:Number, d:Number, tx:Number, ty:Number) 
+<span class="lineno" id="54">    54  </span>	{
+<span class="lineno" id="55">    55  </span>		<span class="key">if</span> (arguments.length == <span class="num_const">0</span>) 
+<span class="lineno" id="56">    56  </span>		{
+<span class="lineno" id="57">    57  </span>			identity() ;
+<span class="lineno" id="58">    58  </span>		}
+<span class="lineno" id="59">    59  </span>		<span class="key">else</span> 
+<span class="lineno" id="60">    60  </span>		{
+<span class="lineno" id="61">    61  </span>			<span class="key">this</span>.a = a ;
+<span class="lineno" id="62">    62  </span>			<span class="key">this</span>.b = b ;
+<span class="lineno" id="63">    63  </span>			<span class="key">this</span>.c = c ;
+<span class="lineno" id="64">    64  </span>			<span class="key">this</span>.d = d ;
+<span class="lineno" id="65">    65  </span>			<span class="key">this</span>.tx = tx ;
+<span class="lineno" id="66">    66  </span>			<span class="key">this</span>.ty = ty ;
+<span class="lineno" id="67">    67  </span>		}
+<span class="lineno" id="68">    68  </span>	}
+<span class="lineno" id="69">    69  </span>
+<span class="lineno" id="70">    70  </span>	<span class="comment doc">/**
+<span class="lineno" id="71">    71  </span>	 * The value in the first row and first column of the Matrix object, which affects the positioning of pixels along the x axis when scaling or rotating an image.
+<span class="lineno" id="72">    72  </span>	 */</span>
+<span class="lineno" id="73">    73  </span>	<span class="key">public</span> <span class="key">var</span> a:Number ;
+<span class="lineno" id="74">    74  </span>
+<span class="lineno" id="75">    75  </span>	<span class="comment doc">/**
+<span class="lineno" id="76">    76  </span>	 * The value in the first row and second column of the Matrix object, which affects the positioning of pixels along the y axis when rotating or skewing an image.
+<span class="lineno" id="77">    77  </span>	 */</span>
+<span class="lineno" id="78">    78  </span>	<span class="key">public</span> <span class="key">var</span> b:Number ;
+<span class="lineno" id="79">    79  </span>
+<span class="lineno" id="80">    80  </span>	<span class="comment doc">/**
+<span class="lineno" id="81">    81  </span>	 * The value in the second row and first column of the Matrix object, which affects the positioning of pixels along the x axis when rotating or skewing an image.
+<span class="lineno" id="82">    82  </span>	 */</span>
+<span class="lineno" id="83">    83  </span>	<span class="key">public</span> <span class="key">var</span> c:Number ;
+<span class="lineno" id="84">    84  </span>
+<span class="lineno" id="85">    85  </span>	<span class="comment doc">/**
+<span class="lineno" id="86">    86  </span>	 * The value in the second row and second column of the Matrix object, which affects the positioning of pixels along the y axis when scaling or rotating an image.
+<span class="lineno" id="87">    87  </span>	 */</span>
+<span class="lineno" id="88">    88  </span>	<span class="key">public</span> <span class="key">var</span> d:Number ;
+<span class="lineno" id="89">    89  </span>
+<span class="lineno" id="90">    90  </span>	<span class="comment doc">/**
+<span class="lineno" id="91">    91  </span>	 * The distance by which to translate each point along the x axis.
+<span class="lineno" id="92">    92  </span>	 */</span>
+<span class="lineno" id="93">    93  </span>	<span class="key">public</span> <span class="key">var</span> tx:Number ;
+<span class="lineno" id="94">    94  </span>
+<span class="lineno" id="95">    95  </span>	<span class="comment doc">/**
+<span class="lineno" id="96">    96  </span>	 * The distance by which to translate each point along the y axis.
+<span class="lineno" id="97">    97  </span>	 */</span>
+<span class="lineno" id="98">    98  </span>	<span class="key">public</span> <span class="key">var</span> ty:Number ;
+<span class="lineno" id="99">    99  </span>		
+<span class="lineno" id="100">   100  </span>	<span class="key">public</span> <span class="key">function</span> clone() 
+<span class="lineno" id="101">   101  </span>	{
+<span class="lineno" id="102">   102  </span>		<span class="key">return</span> <span class="key">new</span> TransformMatrix(a, b, c, d, tx, ty) ;
+<span class="lineno" id="103">   103  </span>	}
+<span class="lineno" id="104">   104  </span>
+<span class="lineno" id="105">   105  </span>	<span class="comment doc">/**
+<span class="lineno" id="106">   106  </span>	 * Concatenates a matrix with the current matrix, effectively combining the geometric effects of the two.
+<span class="lineno" id="107">   107  </span>	 */</span>
+<span class="lineno" id="108">   108  </span>	<span class="key">public</span> <span class="key">function</span> concat(m:TransformMatrix):Void 
+<span class="lineno" id="109">   109  </span>	{
+<span class="lineno" id="110">   110  </span>		<span class="key">var</span> r_a:Number = a * m.a ;
+<span class="lineno" id="111">   111  </span>		<span class="key">var</span> r_d:Number = d * m.d ;
+<span class="lineno" id="112">   112  </span>		<span class="key">var</span> r_b:Number = <span class="num_const">0</span> ;
+<span class="lineno" id="113">   113  </span>		<span class="key">var</span> r_c:Number = <span class="num_const">0</span> ;
+<span class="lineno" id="114">   114  </span>		<span class="key">var</span> r_tx:Number = tx * m.a + m.tx ;
+<span class="lineno" id="115">   115  </span>		<span class="key">var</span> r_ty:Number = ty * m.d + m.ty ;
+<span class="lineno" id="116">   116  </span>		<span class="key">if</span> (b != <span class="num_const">0</span> || c != <span class="num_const">0</span> || m.b != <span class="num_const">0</span> || m.c != <span class="num_const">0</span>) 
+<span class="lineno" id="117">   117  </span>		{
+<span class="lineno" id="118">   118  </span>			r_a = r_a + b * m.c ;
+<span class="lineno" id="119">   119  </span>			r_d = r_d + c * m.b ;
+<span class="lineno" id="120">   120  </span>			r_b = r_b + (a * m.b + b * m.d) ;
+<span class="lineno" id="121">   121  </span>			r_c = r_c + (c * m.a + d * m.c) ;
+<span class="lineno" id="122">   122  </span>			r_tx = r_tx + ty * m.c ;
+<span class="lineno" id="123">   123  </span>			r_ty = r_ty + tx * m.b ;
+<span class="lineno" id="124">   124  </span>		}
+<span class="lineno" id="125">   125  </span>		a = r_a ;
+<span class="lineno" id="126">   126  </span>		b = r_b ;
+<span class="lineno" id="127">   127  </span>		c = r_c ;
+<span class="lineno" id="128">   128  </span>		d = r_d ;
+<span class="lineno" id="129">   129  </span>		tx = r_tx ;
+<span class="lineno" id="130">   130  </span>		ty = r_ty ;
+<span class="lineno" id="131">   131  </span>	}
+<span class="lineno" id="132">   132  </span>
+<span class="lineno" id="133">   133  </span>	<span class="comment doc">/**
+<span class="lineno" id="134">   134  </span>	 * Includes parameters for scaling, rotation, and translation.
+<span class="lineno" id="135">   135  </span>	 */</span>
+<span class="lineno" id="136">   136  </span>	<span class="key">public</span> <span class="key">function</span> createBox(scaleX:Number, scaleY:Number, rotation:Number, x:Number, y:Number):Void 
+<span class="lineno" id="137">   137  </span>	{
+<span class="lineno" id="138">   138  </span>		<span class="key">var</span> rr:Number = isNaN(rotation) ? <span class="num_const">0</span> : rotation ;
+<span class="lineno" id="139">   139  </span>		<span class="key">var</span> rx:Number = isNaN(x) ? <span class="num_const">0</span> : x ;
+<span class="lineno" id="140">   140  </span>		<span class="key">var</span> ry:Number = isNaN(y) ? <span class="num_const">0</span> : y ;
+<span class="lineno" id="141">   141  </span>		identity() ;
+<span class="lineno" id="142">   142  </span>		rotate(rr) ;
+<span class="lineno" id="143">   143  </span>		scale(scaleX, scaleY) ;
+<span class="lineno" id="144">   144  </span>		tx = rx ;
+<span class="lineno" id="145">   145  </span>		ty = ry ;
+<span class="lineno" id="146">   146  </span>	}
+<span class="lineno" id="147">   147  </span>	
+<span class="lineno" id="148">   148  </span>	<span class="comment doc">/**
+<span class="lineno" id="149">   149  </span>	 * Creates the specific style of matrix expected by the MovieClip.beginGradientFill() method.
+<span class="lineno" id="150">   150  </span>	 */</span>
+<span class="lineno" id="151">   151  </span>	<span class="key">public</span> <span class="key">function</span> createGradientBox(width:Number, height:Number, rotation:Number, x:Number, y:Number):Void 
+<span class="lineno" id="152">   152  </span>	{
+<span class="lineno" id="153">   153  </span>		<span class="key">var</span> rr = isNaN(rotation) ? <span class="num_const">0</span> : rotation ;
+<span class="lineno" id="154">   154  </span>		<span class="key">var</span> rx:Number = isNaN(x) ? <span class="num_const">0</span> : x ;
+<span class="lineno" id="155">   155  </span>		<span class="key">var</span> ry:Number = isNaN(y) ? <span class="num_const">0</span> : y ;
+<span class="lineno" id="156">   156  </span>		createBox((width / <span class="num_const">1638</span>.<span class="num_const">400000</span>) , (height / <span class="num_const">1638</span>.<span class="num_const">400000</span>) , rr, rx + width / <span class="num_const">2</span>, ry + height / <span class="num_const">2</span>) ;
+<span class="lineno" id="157">   157  </span>	}
+<span class="lineno" id="158">   158  </span>	
+<span class="lineno" id="159">   159  </span>	<span class="comment doc">/**
+<span class="lineno" id="160">   160  </span>	 * Given a point in the pretransform coordinate space, returns the coordinates of that point after the transformation occurs.
+<span class="lineno" id="161">   161  </span>	 */</span>
+<span class="lineno" id="162">   162  </span>	<span class="key">public</span> <span class="key">function</span> deltaTransformPoint(p:Point):Point 
+<span class="lineno" id="163">   163  </span>	{
+<span class="lineno" id="164">   164  </span>		<span class="key">return</span> <span class="key">new</span> Point(a * p.x + c * p.y , d * p.y + b * p.x) ;
+<span class="lineno" id="165">   165  </span>	}
+<span class="lineno" id="166">   166  </span>	
+<span class="lineno" id="167">   167  </span>	<span class="key">public</span> <span class="key">function</span> equals(o):Boolean 
+<span class="lineno" id="168">   168  </span>	{
+<span class="lineno" id="169">   169  </span>		<span class="key">return</span> ( o <span class="key">instanceof</span> TransformMatrix &amp;&amp; o.a == a &amp;&amp; o.b == b &amp;&amp; o.c == c &amp;&amp; o.d == d &amp;&amp; o.tx == tx &amp;&amp; o.ty == ty) ;
+<span class="lineno" id="170">   170  </span>	}
+<span class="lineno" id="171">   171  </span>	
+<span class="lineno" id="172">   172  </span>	<span class="comment doc">/**
+<span class="lineno" id="173">   173  </span>	 * Sets each matrix property to a value that cause a transformed movie clip or geometric construct to be identical to the original.
+<span class="lineno" id="174">   174  </span>	 */</span>
+<span class="lineno" id="175">   175  </span>	<span class="key">public</span> <span class="key">function</span> identity():Void 
+<span class="lineno" id="176">   176  </span>	{
+<span class="lineno" id="177">   177  </span>		a = d = <span class="num_const">1</span> ;
+<span class="lineno" id="178">   178  </span>		b = c = <span class="num_const">0</span> ;
+<span class="lineno" id="179">   179  </span>		tx = ty = <span class="num_const">0</span> ;
+<span class="lineno" id="180">   180  </span>	}
+<span class="lineno" id="181">   181  </span>	
+<span class="lineno" id="182">   182  </span>	<span class="comment doc">/**
+<span class="lineno" id="183">   183  </span>	 * Performs the opposite transformation of the original matrix.
+<span class="lineno" id="184">   184  </span>	 */</span>
+<span class="lineno" id="185">   185  </span>	<span class="key">public</span> <span class="key">function</span> invert():Void 
+<span class="lineno" id="186">   186  </span>	{
+<span class="lineno" id="187">   187  </span>		<span class="key">if</span> (b == <span class="num_const">0</span> &amp;&amp; c == <span class="num_const">0</span>) 
+<span class="lineno" id="188">   188  </span>		{
+<span class="lineno" id="189">   189  </span>			a = <span class="num_const">1</span> / a ;
+<span class="lineno" id="190">   190  </span>			d = <span class="num_const">1</span> / d ;
+<span class="lineno" id="191">   191  </span>			b = <span class="num_const">0</span> ;
+<span class="lineno" id="192">   192  </span>			c = <span class="num_const">0</span> ;
+<span class="lineno" id="193">   193  </span>			tx = - a * tx ;
+<span class="lineno" id="194">   194  </span>			ty = - d * ty ;
+<span class="lineno" id="195">   195  </span>		}
+<span class="lineno" id="196">   196  </span>		<span class="key">else</span> 
+<span class="lineno" id="197">   197  </span>		{
+<span class="lineno" id="198">   198  </span>			<span class="key">var</span> a0:Number = a ;
+<span class="lineno" id="199">   199  </span>			<span class="key">var</span> a1:Number = b ;
+<span class="lineno" id="200">   200  </span>			<span class="key">var</span> a2:Number = c ;
+<span class="lineno" id="201">   201  </span>			<span class="key">var</span> a3:Number = d ;
+<span class="lineno" id="202">   202  </span>			<span class="key">var</span> det:Number = a0 * a3 - a1 * a2;
+<span class="lineno" id="203">   203  </span>			<span class="key">if</span> (det == <span class="num_const">0</span>) identity() ;
+<span class="lineno" id="204">   204  </span>			<span class="key">else</span> 
+<span class="lineno" id="205">   205  </span>			{
+<span class="lineno" id="206">   206  </span>				det = <span class="num_const">1</span> / det ;
+<span class="lineno" id="207">   207  </span>				a = a3 * det ;
+<span class="lineno" id="208">   208  </span>				b = -a1 * det ;
+<span class="lineno" id="209">   209  </span>				c = -a2 * det ;
+<span class="lineno" id="210">   210  </span>				d = a0 * det ;
+<span class="lineno" id="211">   211  </span>				<span class="key">var</span> p:Point = deltaTransformPoint( <span class="key">new</span> Point(tx, ty) ) ;
+<span class="lineno" id="212">   212  </span>				tx = - p.x ;
+<span class="lineno" id="213">   213  </span>				ty = - p.y ;
+<span class="lineno" id="214">   214  </span>			}
+<span class="lineno" id="215">   215  </span>		}
+<span class="lineno" id="216">   216  </span>	}
+<span class="lineno" id="217">   217  </span>	
+<span class="lineno" id="218">   218  </span>	<span class="comment doc">/**
+<span class="lineno" id="219">   219  </span>	 * Sets the values in the current matrix so that the matrix can be used to apply a rotation transformation.
+<span class="lineno" id="220">   220  </span>	 */</span>
+<span class="lineno" id="221">   221  </span>	<span class="key">public</span> <span class="key">function</span> rotate( radians:Number ):Void 
+<span class="lineno" id="222">   222  </span>	{
+<span class="lineno" id="223">   223  </span>		<span class="key">var</span> c:Number = Math.cos(radians);
+<span class="lineno" id="224">   224  </span>		<span class="key">var</span> s:Number = Math.sin(radians);
+<span class="lineno" id="225">   225  </span>		concat(<span class="key">new</span> TransformMatrix(c, s, -s, c, <span class="num_const">0</span>, <span class="num_const">0</span>)) ;
+<span class="lineno" id="226">   226  </span>	}
+<span class="lineno" id="227">   227  </span>	
+<span class="lineno" id="228">   228  </span>	<span class="comment doc">/**
+<span class="lineno" id="229">   229  </span>	 * Sets the values in the current matrix so that the matrix can be used to apply a rotation transformation with a degrees value in argument.
+<span class="lineno" id="230">   230  </span>	 */</span>
+<span class="lineno" id="231">   231  </span>	<span class="key">public</span> <span class="key">function</span> rotateD( degrees:Number ):Void 
+<span class="lineno" id="232">   232  </span>	{
+<span class="lineno" id="233">   233  </span>		rotate(Trigo.degreesToRadians(degrees)) ;
+<span class="lineno" id="234">   234  </span>	}
+<span class="lineno" id="235">   235  </span>	
+<span class="lineno" id="236">   236  </span>	<span class="comment doc">/**
+<span class="lineno" id="237">   237  </span>	 * Modifies a matrix so that its effect, when applied, is to resize an image.
+<span class="lineno" id="238">   238  </span>	 */</span>
+<span class="lineno" id="239">   239  </span>	<span class="key">public</span> <span class="key">function</span> scale(sx:Number, sy:Number):Void 
+<span class="lineno" id="240">   240  </span>	{
+<span class="lineno" id="241">   241  </span>		concat(<span class="key">new</span> TransformMatrix(sx, <span class="num_const">0</span>, <span class="num_const">0</span>, sy, <span class="num_const">0</span>, <span class="num_const">0</span>));
+<span class="lineno" id="242">   242  </span>	}
+<span class="lineno" id="243">   243  </span>
+<span class="lineno" id="244">   244  </span>	<span class="comment doc">/**
+<span class="lineno" id="245">   245  </span>	 * Returns a flash.geom.Matrix reference of this TransformMatrix object.
+<span class="lineno" id="246">   246  </span>	 * @return a flash.geom.Matrix reference of this TransformMatrix object.
+<span class="lineno" id="247">   247  </span>	 */</span>
+<span class="lineno" id="248">   248  </span>	<span class="key">public</span> <span class="key">function</span> toFlash():flash.geom.Matrix
+<span class="lineno" id="249">   249  </span>	{
+<span class="lineno" id="250">   250  </span>		<span class="key">return</span> <span class="key">new</span> flash.geom.Matrix(a, b, c, d, tx, ty) ;
+<span class="lineno" id="251">   251  </span>	}
+<span class="lineno" id="252">   252  </span>
+<span class="lineno" id="253">   253  </span>	<span class="comment doc">/**
+<span class="lineno" id="254">   254  </span>	 * Returns a Eden reprensation of the object.
+<span class="lineno" id="255">   255  </span>	 * @return a string representing the source code of the object.
+<span class="lineno" id="256">   256  </span>	 */</span>
+<span class="lineno" id="257">   257  </span>	<span class="key">public</span> <span class="key">function</span> toSource( indent:Number, indentor:String):String 
+<span class="lineno" id="258">   258  </span>	{
+<span class="lineno" id="259">   259  </span>		<span class="key">return</span> <span class="str_const">"new TransformMatrix("</span> + a + <span class="str_const">","</span> + b + <span class="str_const">","</span> + c + <span class="str_const">","</span> + d + <span class="str_const">","</span> + tx + <span class="str_const">","</span> + ty + <span class="str_const">")"</span> ;
+<span class="lineno" id="260">   260  </span>	}
+<span class="lineno" id="261">   261  </span>
+<span class="lineno" id="262">   262  </span>	<span class="comment doc">/**
+<span class="lineno" id="263">   263  </span>	 * Returns the string representation of the object.
+<span class="lineno" id="264">   264  </span>	 * @return the string representation of the object.
+<span class="lineno" id="265">   265  </span>	 */</span> 
+<span class="lineno" id="266">   266  </span>	<span class="key">public</span> <span class="key">function</span> toString():String 
+<span class="lineno" id="267">   267  </span>	{
+<span class="lineno" id="268">   268  </span>		<span class="key">return</span> <span class="str_const">"[a:"</span> + a + <span class="str_const">",b:"</span> + b + <span class="str_const">",c:"</span> + c + <span class="str_const">",d:"</span> + d + <span class="str_const">",tx:"</span> + tx + <span class="str_const">",ty:"</span> + ty +  <span class="str_const">"]"</span> ;
+<span class="lineno" id="269">   269  </span>	}
+<span class="lineno" id="270">   270  </span>
+<span class="lineno" id="271">   271  </span>	<span class="comment doc">/**
+<span class="lineno" id="272">   272  </span>	 * Applies the geometric transformation represented by the Matrix object to the specified point.
+<span class="lineno" id="273">   273  </span>	 */</span>
+<span class="lineno" id="274">   274  </span>	<span class="key">public</span> <span class="key">function</span> transformPoint(p:Point):Point 
+<span class="lineno" id="275">   275  </span>	{
+<span class="lineno" id="276">   276  </span>		<span class="key">return</span> <span class="key">new</span> Point( (a * p.x) + (c * p.y) + tx , (d * p.y) + (b * p.x) + ty ) ;
+<span class="lineno" id="277">   277  </span>	}
+<span class="lineno" id="278">   278  </span>	
+<span class="lineno" id="279">   279  </span>	<span class="comment doc">/**
+<span class="lineno" id="280">   280  </span>	 * Modifies a Matrix object so that the effect of its transformation is to move an object along the x and y axes.
+<span class="lineno" id="281">   281  </span>	 */</span>
+<span class="lineno" id="282">   282  </span>	<span class="key">public</span> <span class="key">function</span> translate(dx:Number, dy:Number):Void 
+<span class="lineno" id="283">   283  </span>	{
+<span class="lineno" id="284">   284  </span>		tx += dx ;
+<span class="lineno" id="285">   285  </span>		ty += dy ;
+<span class="lineno" id="286">   286  </span>	}
+<span class="lineno" id="287">   287  </span>
+<span class="lineno" id="288">   288  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package pegas.geom" class="button">Package</a></li><li><a href="TransformMatrix.html" title="Detail of pegas.geom.TransformMatrix API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

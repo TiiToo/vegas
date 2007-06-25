@@ -1,0 +1,376 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><script src="../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../index-files";
+//--></script><link href="../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../overview-summary.html" title="Overview" rel="top"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><pre><span class="lineno" id="1">     1  </span><span class="comment">/*
+<span class="lineno" id="2">     2  </span>
+<span class="lineno" id="3">     3  </span>  The contents of this file are subject to the Mozilla Public License Version
+<span class="lineno" id="4">     4  </span>  1.1 (the "License"); you may not use this file except in compliance with
+<span class="lineno" id="5">     5  </span>  the License. You may obtain a copy of the License at 
+<span class="lineno" id="6">     6  </span>  
+<span class="lineno" id="7">     7  </span>           http://www.mozilla.org/MPL/ 
+<span class="lineno" id="8">     8  </span>  
+<span class="lineno" id="9">     9  </span>  Software distributed under the License is distributed on an "AS IS" basis,
+<span class="lineno" id="10">    10  </span>  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+<span class="lineno" id="11">    11  </span>  for the specific language governing rights and limitations under the License. 
+<span class="lineno" id="12">    12  </span>  
+<span class="lineno" id="13">    13  </span>  The Original Code is Vegas Framework.
+<span class="lineno" id="14">    14  </span>  
+<span class="lineno" id="15">    15  </span>  The Initial Developer of the Original Code is
+<span class="lineno" id="16">    16  </span>  ALCARAZ Marc (aka eKameleon)  &lt;vegas@ekameleon.net&gt;.
+<span class="lineno" id="17">    17  </span>  Portions created by the Initial Developer are Copyright (C) 2004-2007
+<span class="lineno" id="18">    18  </span>  the Initial Developer. All Rights Reserved.
+<span class="lineno" id="19">    19  </span>  
+<span class="lineno" id="20">    20  </span>  Contributor(s) :
+<span class="lineno" id="21">    21  </span>  
+<span class="lineno" id="22">    22  </span>*/</span>
+<span class="lineno" id="23">    23  </span>
+<span class="lineno" id="24">    24  </span><span class="key">import</span> vegas.core.CoreObject;
+<span class="lineno" id="25">    25  </span><span class="key">import</span> vegas.string.UnicodeChar;
+<span class="lineno" id="26">    26  </span><span class="key">import</span> vegas.util.StringUtil;
+<span class="lineno" id="27">    27  </span>
+<span class="lineno" id="28">    28  </span><span class="comment doc">/**
+<span class="lineno" id="29">    29  </span> * A wild expression is constructed like a regular expression but is based on a globbing algorithm like the one you found for searching files on a hard-drive.
+<span class="lineno" id="30">    30  </span> * &lt;p&gt;&lt;b&gt;Syntax :&lt;/b&gt;
+<span class="lineno" id="31">    31  </span> * 	&lt;p&gt;1. ? : match any unique char - exactly 1 char must be found&lt;/p&gt;
+<span class="lineno" id="32">    32  </span> * 	&lt;p&gt;2. * : match any number of chars - at least 0 or more any chars can be found&lt;/p&gt;
+<span class="lineno" id="33">    33  </span> * 	&lt;p&gt;3. ! : ignore next char&lt;/p&gt;
+<span class="lineno" id="34">    34  </span> * &lt;/p&gt;
+<span class="lineno" id="35">    35  </span> * &lt;p&gt;&lt;b&gt;Rules :&lt;/b&gt;
+<span class="lineno" id="36">    36  </span> *	&lt;p&gt;1. "*" is equal to "**" to "***" to an infinity number of "*" chars&lt;/p&gt;
+<span class="lineno" id="37">    37  </span> *	&lt;p&gt;2. "*?" is concatened to "*" (more precisely "*?*")&lt;/p&gt;
+<span class="lineno" id="38">    38  </span> *	&lt;p&gt;3. "*" if for zero char to infinity chars&lt;/p&gt;
+<span class="lineno" id="39">    39  </span> *	&lt;p&gt;4. "!*" ignore the pattern and look for the char "*" in string&lt;/p&gt;
+<span class="lineno" id="40">    40  </span> *	&lt;p&gt;5. "!?" ignore the pattern and look for the char "?" in string&lt;/p&gt;
+<span class="lineno" id="41">    41  </span> *	&lt;/p&gt;
+<span class="lineno" id="42">    42  </span> *	&lt;p&gt;&lt;b&gt;Tips and tricks :&lt;/b&gt;
+<span class="lineno" id="43">    43  </span> *	
+<span class="lineno" id="44">    44  </span> *	&lt;p&gt;&lt;b&gt;1. find all the words in a string&lt;/b&gt;
+<span class="lineno" id="45">    45  </span> *	{@code 
+<span class="lineno" id="46">    46  </span> *	import vegas.string.WildExp ;
+<span class="lineno" id="47">    47  </span> *	var we:WildExp = new WildExp( "*", WildExp.IGNORECASE | WildExp.MULTIWORD );
+<span class="lineno" id="48">    48  </span> *	result = we.test( "any phrases with words inside" );
+<span class="lineno" id="49">    49  </span> *	//result = [ "any", "phrases", "with", "words", "inside" ];
+<span class="lineno" id="50">    50  </span> *	}
+<span class="lineno" id="51">    51  </span> *	&lt;/p&gt;
+<span class="lineno" id="52">    52  </span> *	&lt;p&gt;&lt;b&gt;2. find comments in a string&lt;/b&gt;
+<span class="lineno" id="53">    53  </span> *	{@code 
+<span class="lineno" id="54">    54  </span> *	import vegas.string.WildExp ;
+<span class="lineno" id="55">    55  </span> *	var we:WildExp = new WildExp( "*\/!**!*!/\*", WildExp.IGNORECASE | WildExp.MULTIWORD );
+<span class="lineno" id="56">    56  </span> *	result = we.test( "toto = \"123\"; /\*hello world*\/" );
+<span class="lineno" id="57">    57  </span> *	//result = [ "toto = \"123\"; ", "hello world" ] ;
+<span class="lineno" id="58">    58  </span> *	}
+<span class="lineno" id="59">    59  </span> *	&lt;/p&gt;
+<span class="lineno" id="60">    60  </span> *	&lt;p&gt;&lt;b&gt;3. find the name, arguments and body of a function&lt;/b&gt;
+<span class="lineno" id="61">    61  </span> *	{@code 
+<span class="lineno" id="62">    62  </span> *	import vegas.string.WildExp ;
+<span class="lineno" id="63">    63  </span> *	var we:WildExp = new WildExp( "function *(*)*{*}", WildExp.IGNORECASE | WildExp.MULTIWORD );
+<span class="lineno" id="64">    64  </span> *	result = we.test( "function toto( a, b, c )\r\n{\treturn \"hello world\";\r\n\t}" );
+<span class="lineno" id="65">    65  </span> *	//result = [ "toto", " a, b, c ", "\r\n", "\treturn \"hello world\";\r\n\t" ];
+<span class="lineno" id="66">    66  </span> *	}
+<span class="lineno" id="67">    67  </span> *	&lt;/p&gt;
+<span class="lineno" id="68">    68  </span> *	&lt;p&gt;Thanks Zwetan : &lt;a href='http://groups.google.com/group/FCNG/browse_thread/thread/467e11b594bb180d/4baedfcc0d2cd95f?lnk=st&amp;q=%5BFMX%5D+WildExp&amp;rnum=1#4baedfcc0d2cd95f'&gt;WildExp in FCNG&lt;/a&gt;&lt;/p&gt;
+<span class="lineno" id="69">    69  </span> *	
+<span class="lineno" id="70">    70  </span> *	@see vegas.string.StringUtil replace() method
+<span class="lineno" id="71">    71  </span> *	@see vegas.string.UnicodeChar WHITE_SPACE_CHARS and LINE_TERMINATOR_CHARS constants
+<span class="lineno" id="72">    72  </span> *	@author eKameleon
+<span class="lineno" id="73">    73  </span> */</span>
+<span class="lineno" id="74">    74  </span><span class="key">class</span> vegas.string.WildExp <span class="key">extends</span> CoreObject 
+<span class="lineno" id="75">    75  </span>{
+<span class="lineno" id="76">    76  </span>
+<span class="lineno" id="77">    77  </span>	<span class="comment doc">/**
+<span class="lineno" id="78">    78  </span>	 * Creates a new WildExp instance.
+<span class="lineno" id="79">    79  </span>	 */</span>
+<span class="lineno" id="80">    80  </span>	<span class="key">public</span> <span class="key">function</span> WildExp (pattern:String, flag:Number) 
+<span class="lineno" id="81">    81  </span>	{
+<span class="lineno" id="82">    82  </span>		
+<span class="lineno" id="83">    83  </span>		<span class="key">if</span>( isNaN(flag) ) 
+<span class="lineno" id="84">    84  </span>		{
+<span class="lineno" id="85">    85  </span>			flag = NONE ;
+<span class="lineno" id="86">    86  </span>		}
+<span class="lineno" id="87">    87  </span>       	wildcards = [] ;
+<span class="lineno" id="88">    88  </span>		questionMarks = [] ;
+<span class="lineno" id="89">    89  </span>		
+<span class="lineno" id="90">    90  </span>		_caseSensitive = <span class="key">true</span> ;
+<span class="lineno" id="91">    91  </span>		_multiline = <span class="key">false</span> ;
+<span class="lineno" id="92">    92  </span>		_multiword = <span class="key">false</span> ;
+<span class="lineno" id="93">    93  </span>		_wildcardFound = <span class="key">false</span>;
+<span class="lineno" id="94">    94  </span>		_questionMarksFound = <span class="key">false</span> ;
+<span class="lineno" id="95">    95  </span>    
+<span class="lineno" id="96">    96  </span>		<span class="key">switch</span>(flag) 
+<span class="lineno" id="97">    97  </span>		{
+<span class="lineno" id="98">    98  </span>        	<span class="key">case</span> IGNORECASE : <span class="comment">// 1</span>
+<span class="lineno" id="99">    99  </span>        	{
+<span class="lineno" id="100">   100  </span>				_caseSensitive = <span class="key">false</span> ;
+<span class="lineno" id="101">   101  </span>				<span class="key">break</span> ;
+<span class="lineno" id="102">   102  </span>        	}
+<span class="lineno" id="103">   103  </span>        	<span class="key">case</span> MULTILINE :
+<span class="lineno" id="104">   104  </span>        	{
+<span class="lineno" id="105">   105  </span>				_multiline = <span class="key">true</span> ; <span class="comment">// 2</span>
+<span class="lineno" id="106">   106  </span>				<span class="key">break</span> ;
+<span class="lineno" id="107">   107  </span>        	}
+<span class="lineno" id="108">   108  </span>			<span class="key">case</span> IGNORECASE | MULTILINE : <span class="comment">// 3</span>
+<span class="lineno" id="109">   109  </span>			{
+<span class="lineno" id="110">   110  </span>				_caseSensitive = <span class="key">false</span> ;
+<span class="lineno" id="111">   111  </span>				_multiline = <span class="key">true</span> ;
+<span class="lineno" id="112">   112  </span>				<span class="key">break</span> ;
+<span class="lineno" id="113">   113  </span>			}
+<span class="lineno" id="114">   114  </span>			<span class="key">case</span> MULTIWORD : <span class="comment">// 4</span>
+<span class="lineno" id="115">   115  </span>			{
+<span class="lineno" id="116">   116  </span>				_multiword = <span class="key">true</span> ;
+<span class="lineno" id="117">   117  </span>				<span class="key">break</span> ;
+<span class="lineno" id="118">   118  </span>			}
+<span class="lineno" id="119">   119  </span>			<span class="key">case</span> IGNORECASE | MULTIWORD : <span class="comment">// 5</span>
+<span class="lineno" id="120">   120  </span>			{
+<span class="lineno" id="121">   121  </span>				_caseSensitive = <span class="key">false</span> ;
+<span class="lineno" id="122">   122  </span>				_multiword = <span class="key">true</span> ;
+<span class="lineno" id="123">   123  </span>				<span class="key">break</span> ;
+<span class="lineno" id="124">   124  </span>			}
+<span class="lineno" id="125">   125  </span>			<span class="key">case</span> MULTILINE | MULTIWORD : <span class="comment">// 6</span>
+<span class="lineno" id="126">   126  </span>			{
+<span class="lineno" id="127">   127  </span>				_multiline = <span class="key">true</span> ;
+<span class="lineno" id="128">   128  </span>				_multiword = <span class="key">true</span> ;
+<span class="lineno" id="129">   129  </span>				<span class="key">break</span> ;
+<span class="lineno" id="130">   130  </span>			}
+<span class="lineno" id="131">   131  </span>			<span class="key">case</span> IGNORECASE | MULTILINE | MULTIWORD : <span class="comment">// 7</span>
+<span class="lineno" id="132">   132  </span>			{
+<span class="lineno" id="133">   133  </span>				_caseSensitive = <span class="key">false</span> ;
+<span class="lineno" id="134">   134  </span>				_multiline = <span class="key">true</span> ;
+<span class="lineno" id="135">   135  </span>				_multiword = <span class="key">true</span> ;
+<span class="lineno" id="136">   136  </span>				<span class="key">break</span> ;
+<span class="lineno" id="137">   137  </span>			}
+<span class="lineno" id="138">   138  </span>			<span class="key">case</span> NONE : 
+<span class="lineno" id="139">   139  </span>			<span class="key">default</span> :
+<span class="lineno" id="140">   140  </span>			{
+<span class="lineno" id="141">   141  </span>				
+<span class="lineno" id="142">   142  </span>			}
+<span class="lineno" id="143">   143  </span>        }
+<span class="lineno" id="144">   144  </span>		
+<span class="lineno" id="145">   145  </span>		<span class="key">if</span>( _caseSensitive ) {
+<span class="lineno" id="146">   146  </span>			pattern = pattern.toLowerCase();
+<span class="lineno" id="147">   147  </span>		}
+<span class="lineno" id="148">   148  </span>        
+<span class="lineno" id="149">   149  </span>		source = pattern ;
+<span class="lineno" id="150">   150  </span>    
+<span class="lineno" id="151">   151  </span>    }
+<span class="lineno" id="152">   152  </span>	
+<span class="lineno" id="153">   153  </span>	<span class="comment doc">/**
+<span class="lineno" id="154">   154  </span>	 * const the NONE value (0).
+<span class="lineno" id="155">   155  </span>	 */</span>	
+<span class="lineno" id="156">   156  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">var</span> NONE:Number = <span class="num_const">0</span> ;
+<span class="lineno" id="157">   157  </span>
+<span class="lineno" id="158">   158  </span>	<span class="comment doc">/**
+<span class="lineno" id="159">   159  </span>	 * const the IGNORECASE value (1).
+<span class="lineno" id="160">   160  </span>	 */</span>	
+<span class="lineno" id="161">   161  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">var</span> IGNORECASE:Number = <span class="num_const">1</span> ;
+<span class="lineno" id="162">   162  </span>
+<span class="lineno" id="163">   163  </span>	<span class="comment doc">/**
+<span class="lineno" id="164">   164  </span>	 * const the MULTILINE value (2).
+<span class="lineno" id="165">   165  </span>	 */</span>	
+<span class="lineno" id="166">   166  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">var</span> MULTILINE:Number = <span class="num_const">2</span> ;
+<span class="lineno" id="167">   167  </span>	
+<span class="lineno" id="168">   168  </span>	<span class="comment doc">/**
+<span class="lineno" id="169">   169  </span>	 * const the MULTIWORD value (4).
+<span class="lineno" id="170">   170  </span>	 */</span>	
+<span class="lineno" id="171">   171  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">var</span> MULTIWORD:Number = <span class="num_const">4</span> ;
+<span class="lineno" id="172">   172  </span>
+<span class="lineno" id="173">   173  </span>	<span class="key">static</span> <span class="key">private</span> <span class="key">var</span> __ASPF__ = _global.ASSetPropFlags(WildExp, <span class="key">null</span> , <span class="num_const">7</span>, <span class="num_const">7</span>) ;
+<span class="lineno" id="174">   174  </span>
+<span class="lineno" id="175">   175  </span>	<span class="comment doc">/**
+<span class="lineno" id="176">   176  </span>	 * The array of all wildcards.
+<span class="lineno" id="177">   177  </span>	 */</span>		
+<span class="lineno" id="178">   178  </span>	<span class="key">public</span> <span class="key">var</span> wildcards:Array ;
+<span class="lineno" id="179">   179  </span>	
+<span class="lineno" id="180">   180  </span>	<span class="comment doc">/**
+<span class="lineno" id="181">   181  </span>	 * The array of all question marks.
+<span class="lineno" id="182">   182  </span>	 */</span>
+<span class="lineno" id="183">   183  </span>	<span class="key">public</span> <span class="key">var</span> questionMarks:Array ;
+<span class="lineno" id="184">   184  </span>	
+<span class="lineno" id="185">   185  </span>	<span class="comment doc">/**
+<span class="lineno" id="186">   186  </span>	 * The source of this wildcard.
+<span class="lineno" id="187">   187  </span>	 */</span>
+<span class="lineno" id="188">   188  </span>	<span class="key">public</span> <span class="key">var</span> source:String ;
+<span class="lineno" id="189">   189  </span>	
+<span class="lineno" id="190">   190  </span>	<span class="comment doc">/**
+<span class="lineno" id="191">   191  </span>	 * Adds a caracter in the questionMarks array, only if the array isn't empty.
+<span class="lineno" id="192">   192  </span>	 */</span>
+<span class="lineno" id="193">   193  </span>	<span class="key">public</span> <span class="key">function</span> addToQuestionMarks(chr:String):Void 
+<span class="lineno" id="194">   194  </span>	{
+<span class="lineno" id="195">   195  </span>		<span class="key">var</span> l:Number = questionMarks.length ;
+<span class="lineno" id="196">   196  </span>		<span class="key">if</span>( l == <span class="num_const">0</span> ) <span class="key">return</span> ;
+<span class="lineno" id="197">   197  </span>        questionMarks[l-<span class="num_const">1</span>] += chr ;
+<span class="lineno" id="198">   198  </span>    }
+<span class="lineno" id="199">   199  </span>	
+<span class="lineno" id="200">   200  </span>	<span class="comment doc">/**
+<span class="lineno" id="201">   201  </span>	 * Adds a caracter in the wildcards array, only if the array isn't empty.
+<span class="lineno" id="202">   202  </span>	 */</span>
+<span class="lineno" id="203">   203  </span>	<span class="key">public</span> <span class="key">function</span> addToWildcards(chr:String):Void 
+<span class="lineno" id="204">   204  </span>	{
+<span class="lineno" id="205">   205  </span>		<span class="key">var</span> l:Number = wildcards.length ;
+<span class="lineno" id="206">   206  </span>		<span class="key">if</span>( l == <span class="num_const">0</span> ) <span class="key">return</span> ;
+<span class="lineno" id="207">   207  </span>		wildcards[l-<span class="num_const">1</span>] += chr ;
+<span class="lineno" id="208">   208  </span>    }
+<span class="lineno" id="209">   209  </span>
+<span class="lineno" id="210">   210  </span>	<span class="comment doc">/**
+<span class="lineno" id="211">   211  </span>	 * Test the specific expression in argument.
+<span class="lineno" id="212">   212  </span>	 */</span>
+<span class="lineno" id="213">   213  </span>	<span class="key">public</span> <span class="key">function</span> test(str:String) 
+<span class="lineno" id="214">   214  </span>	{
+<span class="lineno" id="215">   215  </span>		<span class="key">var</span> segment, result:Array ;
+<span class="lineno" id="216">   216  </span>		<span class="key">var</span> i, j, k, l:Number ;
+<span class="lineno" id="217">   217  </span>		<span class="key">var</span> ORC:String  = <span class="str_const">"uFFFC"</span>;
+<span class="lineno" id="218">   218  </span>		<span class="key">var</span> CRLF:String = <span class="str_const">"r\n"</span>;
+<span class="lineno" id="219">   219  </span>		<span class="key">if</span>( _caseSensitive ) str = str.toLowerCase();
+<span class="lineno" id="220">   220  </span>        <span class="key">if</span>(_multiline) {
+<span class="lineno" id="221">   221  </span>			<span class="key">var</span> lineTerminatorChars:Array = UnicodeChar.LINE_TERMINATOR_CHARS ;
+<span class="lineno" id="222">   222  </span>			<span class="key">if</span>( str.indexOf( CRLF ) &gt; -<span class="num_const">1</span> ) 
+<span class="lineno" id="223">   223  </span>			{
+<span class="lineno" id="224">   224  </span>				str = StringUtil.replace(str, CRLF, ORC ) ;
+<span class="lineno" id="225">   225  </span>			}
+<span class="lineno" id="226">   226  </span>			l = lineTerminatorChars.length ;
+<span class="lineno" id="227">   227  </span>			<span class="key">for</span>( i=<span class="num_const">0</span> ; i&lt;l ; i++ ) 
+<span class="lineno" id="228">   228  </span>			{
+<span class="lineno" id="229">   229  </span>				<span class="key">if</span>( str.indexOf( lineTerminatorChars[i] ) &gt; -<span class="num_const">1</span> ) 
+<span class="lineno" id="230">   230  </span>				{
+<span class="lineno" id="231">   231  </span>					str = StringUtil.replace(str, lineTerminatorChars[i], ORC ) ;
+<span class="lineno" id="232">   232  </span>				}
+<span class="lineno" id="233">   233  </span>            }
+<span class="lineno" id="234">   234  </span>        }
+<span class="lineno" id="235">   235  </span>		<span class="key">if</span>( _multiword ) 
+<span class="lineno" id="236">   236  </span>		{
+<span class="lineno" id="237">   237  </span>			<span class="key">var</span> whiteSpaceChars:Array = UnicodeChar.WHITE_SPACE_CHARS ; 
+<span class="lineno" id="238">   238  </span>			l = whiteSpaceChars.length ;
+<span class="lineno" id="239">   239  </span>			<span class="key">for</span>( j=<span class="num_const">0</span> ; j&lt;l ; j++ ) 
+<span class="lineno" id="240">   240  </span>			{
+<span class="lineno" id="241">   241  </span>				<span class="key">if</span>( str.indexOf( whiteSpaceChars[j] ) &gt; -<span class="num_const">1</span> ) 
+<span class="lineno" id="242">   242  </span>				{
+<span class="lineno" id="243">   243  </span>					str = StringUtil.replace(str, whiteSpaceChars[j], ORC ) ;
+<span class="lineno" id="244">   244  </span>				}
+<span class="lineno" id="245">   245  </span>            }
+<span class="lineno" id="246">   246  </span>        }
+<span class="lineno" id="247">   247  </span>		<span class="key">if</span>( str.indexOf( ORC ) &gt; -<span class="num_const">1</span> ) 
+<span class="lineno" id="248">   248  </span>		{
+<span class="lineno" id="249">   249  </span>			segment = str.split( ORC ) ;
+<span class="lineno" id="250">   250  </span>			result = [] ;
+<span class="lineno" id="251">   251  </span>			l = segment.length ;
+<span class="lineno" id="252">   252  </span>			<span class="key">for</span>( k=<span class="num_const">0</span> ; k&lt;l ; k++ ) 
+<span class="lineno" id="253">   253  </span>			{
+<span class="lineno" id="254">   254  </span>				<span class="key">if</span>( _testMatch( segment[k], source ) ) result.push( segment[k] ) ;
+<span class="lineno" id="255">   255  </span>		    }
+<span class="lineno" id="256">   256  </span>			<span class="key">return</span> ( result.length &gt; <span class="num_const">0</span> ) ? result : <span class="key">false</span> ;
+<span class="lineno" id="257">   257  </span>        }
+<span class="lineno" id="258">   258  </span>		<span class="key">return</span> _testMatch( str, source ) ;
+<span class="lineno" id="259">   259  </span>    }
+<span class="lineno" id="260">   260  </span>
+<span class="lineno" id="261">   261  </span>	<span class="comment doc">/**
+<span class="lineno" id="262">   262  </span>	 * Returns the string representation of this object.
+<span class="lineno" id="263">   263  </span>	 * @return the string representation of this object.
+<span class="lineno" id="264">   264  </span>	 */</span>	
+<span class="lineno" id="265">   265  </span>	<span class="key">public</span> <span class="key">function</span> toString():String 
+<span class="lineno" id="266">   266  </span>	{
+<span class="lineno" id="267">   267  </span>		<span class="key">return</span> source ;
+<span class="lineno" id="268">   268  </span>	}
+<span class="lineno" id="269">   269  </span>	
+<span class="lineno" id="270">   270  </span>	<span class="key">private</span> <span class="key">var</span> _caseSensitive:Boolean ;
+<span class="lineno" id="271">   271  </span>
+<span class="lineno" id="272">   272  </span>	<span class="key">private</span> <span class="key">var</span> _multiline = <span class="key">false</span> ;
+<span class="lineno" id="273">   273  </span>
+<span class="lineno" id="274">   274  </span>	<span class="key">private</span> <span class="key">var</span> _multiword = <span class="key">false</span> ;
+<span class="lineno" id="275">   275  </span>
+<span class="lineno" id="276">   276  </span>	<span class="key">private</span> <span class="key">var</span> _wildcardFound = <span class="key">false</span>;
+<span class="lineno" id="277">   277  </span>
+<span class="lineno" id="278">   278  </span>	<span class="key">private</span> <span class="key">var</span> _questionMarksFound = <span class="key">false</span>;
+<span class="lineno" id="279">   279  </span>	
+<span class="lineno" id="280">   280  </span>	<span class="key">private</span> <span class="key">function</span> _testMatch(str:String, pattern:String, ignoreChar:String ):Boolean 
+<span class="lineno" id="281">   281  </span>	{
+<span class="lineno" id="282">   282  </span>		
+<span class="lineno" id="283">   283  </span>		str = <span class="key">new</span> String(str) ;
+<span class="lineno" id="284">   284  </span>		pattern = <span class="key">new</span> String(pattern) ;
+<span class="lineno" id="285">   285  </span>				
+<span class="lineno" id="286">   286  </span>		<span class="key">var</span> c, c1, pat, pat1:String ;
+<span class="lineno" id="287">   287  </span>		c = str.charAt( <span class="num_const">0</span> ) ;
+<span class="lineno" id="288">   288  </span>		c1 = str.charAt( <span class="num_const">1</span> ) ;
+<span class="lineno" id="289">   289  </span>		pat = pattern.charAt( <span class="num_const">0</span> ) ;
+<span class="lineno" id="290">   290  </span>		pat1 = pattern.charAt( <span class="num_const">1</span> ) ;
+<span class="lineno" id="291">   291  </span>    
+<span class="lineno" id="292">   292  </span>		<span class="key">if</span>( pat != <span class="str_const">"?"</span> ) _questionMarksFound = <span class="key">false</span> ;
+<span class="lineno" id="293">   293  </span>        <span class="key">if</span>( pat == <span class="str_const">"!"</span> ) <span class="key">return</span> _testMatch( str, pattern.substr( <span class="num_const">1</span> ), pat1 );
+<span class="lineno" id="294">   294  </span>        
+<span class="lineno" id="295">   295  </span>		<span class="key">if</span>( pat == <span class="str_const">"?"</span> &amp;&amp; ignoreChar != <span class="str_const">"?"</span> ) 
+<span class="lineno" id="296">   296  </span>		{
+<span class="lineno" id="297">   297  </span>			<span class="key">if</span>( c != <span class="str_const">""</span> ) 
+<span class="lineno" id="298">   298  </span>			{
+<span class="lineno" id="299">   299  </span>				<span class="key">if</span>( _questionMarksFound ) addToQuestionMarks( c );
+<span class="lineno" id="300">   300  </span>                <span class="key">else</span> questionMarks.push( c ) ;
+<span class="lineno" id="301">   301  </span>				_questionMarksFound = <span class="key">true</span> ;
+<span class="lineno" id="302">   302  </span>				<span class="key">if</span> ((pat1 == <span class="str_const">""</span>) &amp;&amp; (_wildcardFound == <span class="key">true</span>)) pattern += <span class="str_const">"*"</span> ;
+<span class="lineno" id="303">   303  </span>                <span class="key">return</span> _testMatch( str.substr( <span class="num_const">1</span> ), pattern.substr( <span class="num_const">1</span> ) ) ;
+<span class="lineno" id="304">   304  </span>            } 
+<span class="lineno" id="305">   305  </span>            <span class="key">else</span> 
+<span class="lineno" id="306">   306  </span>            {
+<span class="lineno" id="307">   307  </span>				<span class="key">return</span> <span class="key">false</span> ;
+<span class="lineno" id="308">   308  </span>            }
+<span class="lineno" id="309">   309  </span>        }
+<span class="lineno" id="310">   310  </span>		
+<span class="lineno" id="311">   311  </span>		<span class="key">if</span>( pat == <span class="str_const">"*"</span> &amp;&amp; ignoreChar != <span class="str_const">"*"</span> ) 
+<span class="lineno" id="312">   312  </span>		{
+<span class="lineno" id="313">   313  </span>			_wildcardFound = <span class="key">true</span> ;
+<span class="lineno" id="314">   314  </span>			<span class="key">if</span>( pat1 != <span class="str_const">"*"</span> ) wildcards.push( <span class="str_const">""</span> );
+<span class="lineno" id="315">   315  </span>            <span class="key">if</span>( pat1 == <span class="str_const">""</span> ) 
+<span class="lineno" id="316">   316  </span>            {
+<span class="lineno" id="317">   317  </span>				addToWildcards( str ) ;
+<span class="lineno" id="318">   318  </span>				<span class="key">return</span> <span class="key">true</span> ;
+<span class="lineno" id="319">   319  </span>            }
+<span class="lineno" id="320">   320  </span>			<span class="key">if</span>( pattern.substr(<span class="num_const">1</span>).indexOf( <span class="str_const">"*"</span> ) &gt; -<span class="num_const">1</span> ) 
+<span class="lineno" id="321">   321  </span>			{
+<span class="lineno" id="322">   322  </span>				<span class="key">while</span>( str != <span class="str_const">""</span> ) 
+<span class="lineno" id="323">   323  </span>				{
+<span class="lineno" id="324">   324  </span>					<span class="key">if</span>( pat1 == <span class="str_const">"*"</span> ) <span class="key">break</span> ;
+<span class="lineno" id="325">   325  </span>					<span class="key">if</span>( pat1 == <span class="str_const">"?"</span> ) 
+<span class="lineno" id="326">   326  </span>					{
+<span class="lineno" id="327">   327  </span>						pattern = pattern.substr(<span class="num_const">1</span>) ;
+<span class="lineno" id="328">   328  </span>						<span class="key">break</span> ;
+<span class="lineno" id="329">   329  </span>					}
+<span class="lineno" id="330">   330  </span>					<span class="key">if</span>( str == <span class="str_const">""</span> ) <span class="key">return</span> <span class="key">false</span> ;
+<span class="lineno" id="331">   331  </span>					<span class="key">if</span>( str.charAt(<span class="num_const">0</span>) == pat1 ) <span class="key">break</span> ;
+<span class="lineno" id="332">   332  </span>					<span class="key">if</span>( pat1 == <span class="str_const">"!"</span> ) 
+<span class="lineno" id="333">   333  </span>					{
+<span class="lineno" id="334">   334  </span>						ignoreChar = pattern.charAt( <span class="num_const">2</span> ) ;
+<span class="lineno" id="335">   335  </span>						pattern = pattern.substr( <span class="num_const">2</span> ) ;
+<span class="lineno" id="336">   336  </span>						pat1 = pattern.charAt( <span class="num_const">1</span> ) ;
+<span class="lineno" id="337">   337  </span>					}
+<span class="lineno" id="338">   338  </span>					<span class="key">if</span>( str.charAt(<span class="num_const">0</span>) == ignoreChar ) 
+<span class="lineno" id="339">   339  </span>					{
+<span class="lineno" id="340">   340  </span>						str = str.substr(<span class="num_const">1</span>) ; <span class="key">continue</span> ;
+<span class="lineno" id="341">   341  </span>					}
+<span class="lineno" id="342">   342  </span>					addToWildcards( str.charAt( <span class="num_const">0</span> ) ) ;
+<span class="lineno" id="343">   343  </span>					str = str.substr(<span class="num_const">1</span>) ;
+<span class="lineno" id="344">   344  </span>				}
+<span class="lineno" id="345">   345  </span>				<span class="key">return</span> _testMatch( str, pattern.substr( <span class="num_const">1</span> ), ignoreChar ) ;
+<span class="lineno" id="346">   346  </span>			} 
+<span class="lineno" id="347">   347  </span>			<span class="key">else</span> 
+<span class="lineno" id="348">   348  </span>			{
+<span class="lineno" id="349">   349  </span>				<span class="key">var</span> found:Number = str.lastIndexOf( pat1 ) ;
+<span class="lineno" id="350">   350  </span>				<span class="key">if</span>( found != -<span class="num_const">1</span> ) 
+<span class="lineno" id="351">   351  </span>				{
+<span class="lineno" id="352">   352  </span>					addToWildcards( str.substring( <span class="num_const">0</span>, found ) ) ;
+<span class="lineno" id="353">   353  </span>					<span class="key">return</span> _testMatch( str.substr( found ), pattern.substr( <span class="num_const">1</span> ) ) ;
+<span class="lineno" id="354">   354  </span>                }
+<span class="lineno" id="355">   355  </span>                <span class="key">else</span> <span class="key">if</span>( pat1 == <span class="str_const">"?"</span> ) 
+<span class="lineno" id="356">   356  </span>                {
+<span class="lineno" id="357">   357  </span>					<span class="key">if</span>( pattern.charAt(<span class="num_const">2</span>) == <span class="str_const">""</span> ) <span class="key">return</span> str.length &gt;= <span class="num_const">1</span> ;
+<span class="lineno" id="358">   358  </span>                    <span class="key">else</span> <span class="key">return</span> _testMatch( str.substr( <span class="num_const">1</span> ), pattern.substr( <span class="num_const">1</span> ) );
+<span class="lineno" id="359">   359  </span>                }
+<span class="lineno" id="360">   360  </span>				<span class="key">return</span> <span class="key">false</span>;
+<span class="lineno" id="361">   361  </span>            }
+<span class="lineno" id="362">   362  </span>        }
+<span class="lineno" id="363">   363  </span>		
+<span class="lineno" id="364">   364  </span>		<span class="key">if</span>( pat == <span class="str_const">""</span> ) <span class="key">return</span>( c == <span class="str_const">""</span> );
+<span class="lineno" id="365">   365  </span>        <span class="key">if</span>( c != pat ) <span class="key">return</span> <span class="key">false</span> ;
+<span class="lineno" id="366">   366  </span>		
+<span class="lineno" id="367">   367  </span>        <span class="key">if</span>( c != <span class="str_const">""</span> ) <span class="key">return</span> _testMatch( str.substr( <span class="num_const">1</span> ), pattern.substr( <span class="num_const">1</span> ) ) ;
+<span class="lineno" id="368">   368  </span>        <span class="key">else</span> <span class="key">return</span> <span class="key">false</span> ;
+<span class="lineno" id="369">   369  </span>        
+<span class="lineno" id="370">   370  </span>    }
+<span class="lineno" id="371">   371  </span>
+<span class="lineno" id="372">   372  </span>
+<span class="lineno" id="373">   373  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.string" class="button">Package</a></li><li><a href="WildExp.html" title="Detail of vegas.string.WildExp API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

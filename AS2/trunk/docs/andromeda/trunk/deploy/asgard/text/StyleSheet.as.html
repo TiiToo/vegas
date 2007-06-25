@@ -1,0 +1,85 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><script src="../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../index-files";
+//--></script><link href="../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../overview-summary.html" title="Overview" rel="top"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><pre><span class="lineno" id="1">     1  </span><span class="comment">/*
+<span class="lineno" id="2">     2  </span>
+<span class="lineno" id="3">     3  </span>  The contents of this file are subject to the Mozilla Public License Version
+<span class="lineno" id="4">     4  </span>  1.1 (the "License"); you may not use this file except in compliance with
+<span class="lineno" id="5">     5  </span>  the License. You may obtain a copy of the License at 
+<span class="lineno" id="6">     6  </span>  
+<span class="lineno" id="7">     7  </span>           http://www.mozilla.org/MPL/ 
+<span class="lineno" id="8">     8  </span>  
+<span class="lineno" id="9">     9  </span>  Software distributed under the License is distributed on an "AS IS" basis,
+<span class="lineno" id="10">    10  </span>  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+<span class="lineno" id="11">    11  </span>  for the specific language governing rights and limitations under the License. 
+<span class="lineno" id="12">    12  </span>  
+<span class="lineno" id="13">    13  </span>  The Original Code is Vegas Framework.
+<span class="lineno" id="14">    14  </span>  
+<span class="lineno" id="15">    15  </span>  The Initial Developer of the Original Code is
+<span class="lineno" id="16">    16  </span>  ALCARAZ Marc (aka eKameleon)  &lt;vegas@ekameleon.net&gt;.
+<span class="lineno" id="17">    17  </span>  Portions created by the Initial Developer are Copyright (C) 2004-2007
+<span class="lineno" id="18">    18  </span>  the Initial Developer. All Rights Reserved.
+<span class="lineno" id="19">    19  </span>  
+<span class="lineno" id="20">    20  </span>  Contributor(s) :
+<span class="lineno" id="21">    21  </span>  
+<span class="lineno" id="22">    22  </span>*/</span>
+<span class="lineno" id="23">    23  </span>
+<span class="lineno" id="24">    24  </span><span class="key">import</span> vegas.core.HashCode;
+<span class="lineno" id="25">    25  </span><span class="key">import</span> vegas.core.IFormattable;
+<span class="lineno" id="26">    26  </span><span class="key">import</span> vegas.core.IHashable;
+<span class="lineno" id="27">    27  </span><span class="key">import</span> vegas.util.ConstructorUtil;
+<span class="lineno" id="28">    28  </span>
+<span class="lineno" id="29">    29  </span><span class="comment doc">/**
+<span class="lineno" id="30">    30  </span> * The StyleSheet class lets you create a StyleSheet object that contains text formatting rules for font size, color, and other styles.
+<span class="lineno" id="31">    31  </span> * You can then apply styles defined by a style sheet to a TextField object that contains HTML or XML-formatted text. The text in the TextField object is automatically formatted according to the tag styles defined by the StyleSheet object. You can use text styles to define new formatting tags, redefine built-in HTML tags, or create style classes that you can apply to certain HTML tags.
+<span class="lineno" id="32">    32  </span> * &lt;p&gt;To apply styles to a TextField object, assign the StyleSheet object to a TextField object's styleSheet property.&lt;/p&gt;
+<span class="lineno" id="33">    33  </span> * This class is polymorph with the AS3 flash.text.StyleSheet class.
+<span class="lineno" id="34">    34  </span> * @author eKameleon
+<span class="lineno" id="35">    35  </span> * @see TextField.StyleSheet
+<span class="lineno" id="36">    36  </span> */</span>
+<span class="lineno" id="37">    37  </span><span class="key">class</span> asgard.text.StyleSheet <span class="key">extends</span> TextField.StyleSheet <span class="key">implements</span> IFormattable, IHashable
+<span class="lineno" id="38">    38  </span>{
+<span class="lineno" id="39">    39  </span>	
+<span class="lineno" id="40">    40  </span>	<span class="comment doc">/**
+<span class="lineno" id="41">    41  </span>	 * Creates a new StyleSheet instance.
+<span class="lineno" id="42">    42  </span>	 * @param str an optional css text to be parsed. You can use the class URLLoader to load the external CSS file.
+<span class="lineno" id="43">    43  </span>	 * @see URLLoader
+<span class="lineno" id="44">    44  </span>	 */</span>
+<span class="lineno" id="45">    45  </span>	<span class="key">function</span> StyleSheet( str:String ) 
+<span class="lineno" id="46">    46  </span>	{
+<span class="lineno" id="47">    47  </span>		<span class="key">if</span> (str != <span class="key">null</span>)
+<span class="lineno" id="48">    48  </span>		{
+<span class="lineno" id="49">    49  </span>			parseCSS(str) ;
+<span class="lineno" id="50">    50  </span>		}
+<span class="lineno" id="51">    51  </span>	}
+<span class="lineno" id="52">    52  </span>
+<span class="lineno" id="53">    53  </span>	<span class="comment doc">/**
+<span class="lineno" id="54">    54  </span>	 * [read-only] An array that contains the names (as strings) of all of the styles registered in this style sheet.
+<span class="lineno" id="55">    55  </span>	 */</span>
+<span class="lineno" id="56">    56  </span>	<span class="key">public</span> <span class="key">function</span> get styleNames():Array
+<span class="lineno" id="57">    57  </span>	{
+<span class="lineno" id="58">    58  </span>		<span class="key">return</span> getStyleNames() ;	
+<span class="lineno" id="59">    59  </span>	}
+<span class="lineno" id="60">    60  </span>
+<span class="lineno" id="61">    61  </span>	<span class="comment doc">/**
+<span class="lineno" id="62">    62  </span>	 * Returns a hashcode value for the object.
+<span class="lineno" id="63">    63  </span>	 * @return a hashcode value for the object.
+<span class="lineno" id="64">    64  </span>	 */</span>
+<span class="lineno" id="65">    65  </span>	<span class="key">public</span> <span class="key">function</span> hashCode():Number 
+<span class="lineno" id="66">    66  </span>	{
+<span class="lineno" id="67">    67  </span>		<span class="key">return</span> <span class="key">null</span> ;
+<span class="lineno" id="68">    68  </span>	}
+<span class="lineno" id="69">    69  </span>
+<span class="lineno" id="70">    70  </span>	<span class="comment doc">/**
+<span class="lineno" id="71">    71  </span>	 * Returns the string representation of this instance.
+<span class="lineno" id="72">    72  </span>	 * @return the string representation of this instance.
+<span class="lineno" id="73">    73  </span>	 */</span>
+<span class="lineno" id="74">    74  </span>	<span class="key">public</span> <span class="key">function</span> toString():String 
+<span class="lineno" id="75">    75  </span>	{
+<span class="lineno" id="76">    76  </span>		<span class="key">return</span> <span class="str_const">"["</span> + ConstructorUtil.getName(<span class="key">this</span>) + <span class="str_const">"]"</span> ;
+<span class="lineno" id="77">    77  </span>	}
+<span class="lineno" id="78">    78  </span>
+<span class="lineno" id="79">    79  </span>
+<span class="lineno" id="80">    80  </span>	<span class="key">static</span> <span class="key">private</span> <span class="key">var</span> _initHashCode:Boolean = HashCode.initialize( asgard.text.StyleSheet.prototype) ;
+<span class="lineno" id="81">    81  </span>
+<span class="lineno" id="82">    82  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package asgard.text" class="button">Package</a></li><li><a href="StyleSheet.html" title="Detail of asgard.text.StyleSheet API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

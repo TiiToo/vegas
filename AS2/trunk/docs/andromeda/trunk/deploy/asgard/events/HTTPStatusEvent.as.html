@@ -1,0 +1,60 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><script src="../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../index-files";
+//--></script><link href="../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../overview-summary.html" title="Overview" rel="top"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><pre><span class="lineno" id="1">     1  </span><span class="key">import</span> vegas.events.DynamicEvent;
+<span class="lineno" id="2">     2  </span>
+<span class="lineno" id="3">     3  </span><span class="comment doc">/**
+<span class="lineno" id="4">     4  </span> * The HTTPStatusEvent are dispatched when a network request returns an HTTP status code. 
+<span class="lineno" id="5">     5  </span> * There is only one type of HTTPStatus event : {@code HTTPStatusEvent.HTTP_STATUS}.
+<span class="lineno" id="6">     6  </span> * @author eKameleon
+<span class="lineno" id="7">     7  </span> */</span>
+<span class="lineno" id="8">     8  </span><span class="key">class</span> asgard.events.HTTPStatusEvent <span class="key">extends</span> DynamicEvent 
+<span class="lineno" id="9">     9  </span>{
+<span class="lineno" id="10">    10  </span>	
+<span class="lineno" id="11">    11  </span>	<span class="comment doc">/**
+<span class="lineno" id="12">    12  </span>	 * Creates an Event object that contains specific information about HTTP status events.
+<span class="lineno" id="13">    13  </span>	 * @param type the string type of the instance.
+<span class="lineno" id="14">    14  </span>	 * @param status Numeric status. Event listeners can access this information through the status property (default 0).
+<span class="lineno" id="15">    15  </span>	 * @param target the target of the event.
+<span class="lineno" id="16">    16  </span>	 * @param context the optional context object of the event.
+<span class="lineno" id="17">    17  </span>	 * @param bubbles indicates if the event is a bubbling event.
+<span class="lineno" id="18">    18  </span>	 * @param eventPhase the current EventPhase of the event.
+<span class="lineno" id="19">    19  </span>	 * @param time this parameter is used in the Eden deserialization.
+<span class="lineno" id="20">    20  </span>	 * @param stop this parameter is used in the Eden deserialization.
+<span class="lineno" id="21">    21  </span>	 */</span>
+<span class="lineno" id="22">    22  </span>	<span class="key">public</span> <span class="key">function</span> HTTPStatusEvent(type : String, status:Number, target, context, bubbles : Boolean, eventPhase : Number, time : Number, stop : Number) 
+<span class="lineno" id="23">    23  </span>	{
+<span class="lineno" id="24">    24  </span>		<span class="key">super</span>(type, target, context, bubbles, eventPhase, time, stop);
+<span class="lineno" id="25">    25  </span>		_status = isNaN(status) ? <span class="num_const">0</span> : status ;
+<span class="lineno" id="26">    26  </span>	}
+<span class="lineno" id="27">    27  </span>	
+<span class="lineno" id="28">    28  </span>	<span class="comment doc">/**
+<span class="lineno" id="29">    29  </span>	 * Defines the value of the type property of a httpStatus event object.
+<span class="lineno" id="30">    30  </span>	 */</span>
+<span class="lineno" id="31">    31  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">var</span> HTTP_STATUS:String = <span class="str_const">"httpStatus"</span> ;
+<span class="lineno" id="32">    32  </span>	
+<span class="lineno" id="33">    33  </span>	<span class="comment doc">/**
+<span class="lineno" id="34">    34  </span>	 * (read only) The HTTP status code returned by the server. 
+<span class="lineno" id="35">    35  </span>	 * For example, a value of 404 indicates that the server has not found a match for the requested URI. 
+<span class="lineno" id="36">    36  </span>	 * HTTP status codes can be found in sections 10.4 and 10.5 of the HTTP specification at ftp://ftp.isi.edu/in-notes/rfc2616.txt.
+<span class="lineno" id="37">    37  </span>	 */</span>
+<span class="lineno" id="38">    38  </span>	<span class="key">public</span> <span class="key">function</span> get status():Number
+<span class="lineno" id="39">    39  </span>	{
+<span class="lineno" id="40">    40  </span>		<span class="key">return</span> _status ;	
+<span class="lineno" id="41">    41  </span>	}
+<span class="lineno" id="42">    42  </span>	
+<span class="lineno" id="43">    43  </span>	<span class="comment doc">/**
+<span class="lineno" id="44">    44  </span>	 * The internal HTTP status code.
+<span class="lineno" id="45">    45  </span>	 */</span>
+<span class="lineno" id="46">    46  </span>	<span class="key">private</span> <span class="key">var</span> _status:Number ;
+<span class="lineno" id="47">    47  </span>
+<span class="lineno" id="48">    48  </span>	<span class="comment doc">/**
+<span class="lineno" id="49">    49  </span>	 * Returns the shallow copy of this event.
+<span class="lineno" id="50">    50  </span>	 * @return the shallow copy of this event.
+<span class="lineno" id="51">    51  </span>	 */</span>
+<span class="lineno" id="52">    52  </span>	<span class="key">public</span> <span class="key">function</span> clone() 
+<span class="lineno" id="53">    53  </span>	{
+<span class="lineno" id="54">    54  </span>		<span class="key">return</span> <span class="key">new</span> HTTPStatusEvent(getType(), _status, getTarget(), getContext()) ;
+<span class="lineno" id="55">    55  </span>	}
+<span class="lineno" id="56">    56  </span>
+<span class="lineno" id="57">    57  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package asgard.events" class="button">Package</a></li><li><a href="HTTPStatusEvent.html" title="Detail of asgard.events.HTTPStatusEvent API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

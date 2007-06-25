@@ -44,164 +44,200 @@ document.quicknavBasePath="../../index-files";
 <span class="lineno" id="41">    41  </span>
 <span class="lineno" id="42">    42  </span>	<span class="comment doc">/**
 <span class="lineno" id="43">    43  </span>	 * Creates a new AbstractCoreEventDispatcher.
-<span class="lineno" id="44">    44  </span>	 */</span>
-<span class="lineno" id="45">    45  </span>	<span class="key">private</span> <span class="key">function</span> AbstractCoreEventDispatcher() 
-<span class="lineno" id="46">    46  </span>	{
-<span class="lineno" id="47">    47  </span>		<span class="key">super</span>() ;
-<span class="lineno" id="48">    48  </span>		_oED = initEventDispatcher() ;
-<span class="lineno" id="49">    49  </span>	}		
-<span class="lineno" id="50">    50  </span>
-<span class="lineno" id="51">    51  </span>	<span class="comment doc">/**
-<span class="lineno" id="52">    52  </span>	 * Allows the registration of event listeners on the event target.
-<span class="lineno" id="53">    53  </span>	 * @param eventName A string representing the event type to listen for. If eventName value is "ALL" addEventListener use addGlobalListener
-<span class="lineno" id="54">    54  </span>	 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the {@code EventListener} interface.
-<span class="lineno" id="55">    55  </span>	 * @param useCapture Determinates if the event flow use capture or not.
-<span class="lineno" id="56">    56  </span>	 * @param priority Determines the priority level of the event listener.
-<span class="lineno" id="57">    57  </span>	 * @param autoRemove Apply a removeEventListener after the first trigger
-<span class="lineno" id="58">    58  </span>	 */</span>
-<span class="lineno" id="59">    59  </span>	<span class="key">public</span> <span class="key">function</span> addEventListener( eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void 
-<span class="lineno" id="60">    60  </span>	{
-<span class="lineno" id="61">    61  </span>		_oED.addEventListener.apply(_oED, arguments) ;
-<span class="lineno" id="62">    62  </span>	}
-<span class="lineno" id="63">    63  </span>
-<span class="lineno" id="64">    64  </span>	<span class="comment doc">/**
-<span class="lineno" id="65">    65  </span>	 * Allows the registration of global event listeners on the event target.
-<span class="lineno" id="66">    66  </span>	 * 
-<span class="lineno" id="67">    67  </span>	 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the &lt;b&gt;EventListener&lt;/b&gt; interface.
-<span class="lineno" id="68">    68  </span>	 * @param priority Determines the priority level of the event listener.
-<span class="lineno" id="69">    69  </span>	 * @param autoRemove Apply a removeEventListener after the first trigger
-<span class="lineno" id="70">    70  </span>	 */</span>
-<span class="lineno" id="71">    71  </span>	<span class="key">public</span> <span class="key">function</span> addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void 
-<span class="lineno" id="72">    72  </span>	{
-<span class="lineno" id="73">    73  </span>		_oED.addGlobalEventListener.apply(_oED, arguments) ;
-<span class="lineno" id="74">    74  </span>	}		
-<span class="lineno" id="75">    75  </span>
-<span class="lineno" id="76">    76  </span>	<span class="comment doc">/**
-<span class="lineno" id="77">    77  </span>	 * Dispatches an event into the event flow.
-<span class="lineno" id="78">    78  </span>	 * @param event The Event object that is dispatched into the event flow.
-<span class="lineno" id="79">    79  </span>	 * @param isQueue if the EventDispatcher isn't register to the event type the event is bufferized.
-<span class="lineno" id="80">    80  </span>	 * @param target the target of the event.
-<span class="lineno" id="81">    81  </span>	 * @param contect the context of the event.
-<span class="lineno" id="82">    82  </span>	 * @return the reference of the event dispatched in the event flow.
-<span class="lineno" id="83">    83  </span>	 */</span>
-<span class="lineno" id="84">    84  </span>	<span class="key">public</span> <span class="key">function</span> dispatchEvent(event, isQueue:Boolean, target, context):Event 
-<span class="lineno" id="85">    85  </span>	{
-<span class="lineno" id="86">    86  </span>		<span class="key">return</span> _oED.dispatchEvent.apply(_oED, arguments) ;	
-<span class="lineno" id="87">    87  </span>	}
-<span class="lineno" id="88">    88  </span>
-<span class="lineno" id="89">    89  </span>	<span class="comment doc">/**
-<span class="lineno" id="90">    90  </span>	 * Returns the internal {@code EventDispatcher} reference.
-<span class="lineno" id="91">    91  </span>	 * @return the internal {@code EventDispatcher} reference.
-<span class="lineno" id="92">    92  </span>	 */</span>
-<span class="lineno" id="93">    93  </span>	<span class="key">public</span> <span class="key">function</span> getEventDispatcher():EventDispatcher 
-<span class="lineno" id="94">    94  </span>	{
-<span class="lineno" id="95">    95  </span>		<span class="key">return</span> _oED ;
-<span class="lineno" id="96">    96  </span>	}
-<span class="lineno" id="97">    97  </span>
-<span class="lineno" id="98">    98  </span>	<span class="comment doc">/**
-<span class="lineno" id="99">    99  </span>	 * Returns the {@code EventListenerCollection} of the specified event name.
-<span class="lineno" id="100">   100  </span>	 * @return the {@code EventListenerCollection} of the specified event name.
-<span class="lineno" id="101">   101  </span>	 */</span>
-<span class="lineno" id="102">   102  </span>	<span class="key">public</span> <span class="key">function</span> getEventListeners(eventName:String):EventListenerCollection 
-<span class="lineno" id="103">   103  </span>	{
-<span class="lineno" id="104">   104  </span>		<span class="key">return</span> _oED.getEventListeners.apply(_oED, arguments) ;
-<span class="lineno" id="105">   105  </span>	}
-<span class="lineno" id="106">   106  </span>
-<span class="lineno" id="107">   107  </span>	<span class="comment doc">/**
-<span class="lineno" id="108">   108  </span>	 * Returns the {@code EventListenerCollection} of this EventDispatcher.
-<span class="lineno" id="109">   109  </span>	 * @return the {@code EventListenerCollection} of this EventDispatcher.
-<span class="lineno" id="110">   110  </span>	 */</span>
-<span class="lineno" id="111">   111  </span>	<span class="key">public</span> <span class="key">function</span> getGlobalEventListeners():EventListenerCollection 
-<span class="lineno" id="112">   112  </span>	{
-<span class="lineno" id="113">   113  </span>		<span class="key">return</span> _oED.getGlobalEventListeners.apply(_oED, arguments) ;
-<span class="lineno" id="114">   114  </span>	}
-<span class="lineno" id="115">   115  </span>
-<span class="lineno" id="116">   116  </span>	<span class="comment doc">/**
-<span class="lineno" id="117">   117  </span>	 * Returns the EventDispatcher reference of the parent of this instance.
-<span class="lineno" id="118">   118  </span>	 * @return the EventDispatcher reference of the parent of this instance.
-<span class="lineno" id="119">   119  </span>	 */</span>
-<span class="lineno" id="120">   120  </span>	<span class="key">public</span> <span class="key">function</span> getParent():EventDispatcher 
-<span class="lineno" id="121">   121  </span>	{
-<span class="lineno" id="122">   122  </span>		<span class="key">return</span> _oED.parent ;
-<span class="lineno" id="123">   123  </span>	}
-<span class="lineno" id="124">   124  </span>
-<span class="lineno" id="125">   125  </span>	<span class="comment doc">/**
-<span class="lineno" id="126">   126  </span>	 * Returns a {@code Set} of all register event's name in this EventListener.
-<span class="lineno" id="127">   127  </span>	 * @return a {@code Set} of all register event's name in this EventListener.
-<span class="lineno" id="128">   128  </span>	 */</span>
-<span class="lineno" id="129">   129  </span>	<span class="key">public</span> <span class="key">function</span> getRegisteredEventNames():Set 
-<span class="lineno" id="130">   130  </span>	{
-<span class="lineno" id="131">   131  </span>		<span class="key">return</span> _oED.getRegisteredEventNames.apply(_oED, arguments) ;
-<span class="lineno" id="132">   132  </span>	}
-<span class="lineno" id="133">   133  </span>
-<span class="lineno" id="134">   134  </span>	<span class="comment doc">/**
-<span class="lineno" id="135">   135  </span>	 * Returns the target of this instance.
-<span class="lineno" id="136">   136  </span>	 * @return the target of this instance.
-<span class="lineno" id="137">   137  </span>	 */</span>
-<span class="lineno" id="138">   138  </span>	<span class="key">public</span> <span class="key">function</span> getTarget() 
-<span class="lineno" id="139">   139  </span>	{
-<span class="lineno" id="140">   140  </span>		<span class="key">return</span> _oED.getTarget() ;	
-<span class="lineno" id="141">   141  </span>	}
-<span class="lineno" id="142">   142  </span>
-<span class="lineno" id="143">   143  </span>	<span class="comment doc">/**
-<span class="lineno" id="144">   144  </span>	 * Checks whether the EventDispatcher object has any listeners registered for a specific type of event.
-<span class="lineno" id="145">   145  </span>	 * This allows you to determine where altered handling of an event type has been introduced in the event flow heirarchy by an EventDispatcher object.
-<span class="lineno" id="146">   146  </span>	 */</span> 
-<span class="lineno" id="147">   147  </span>	<span class="key">public</span> <span class="key">function</span> hasEventListener(eventName:String):Boolean 
-<span class="lineno" id="148">   148  </span>	{
-<span class="lineno" id="149">   149  </span>		<span class="key">return</span> _oED.hasEventListener.apply(_oED, arguments) ;
-<span class="lineno" id="150">   150  </span>	}
-<span class="lineno" id="151">   151  </span>
-<span class="lineno" id="152">   152  </span>	<span class="comment doc">/**
-<span class="lineno" id="153">   153  </span>	 * Creates and returns the internal {@code EventDispatcher} reference (this method is invoqued in the constructor).
-<span class="lineno" id="154">   154  </span>	 * You can overrides this method if you wan use a global {@code EventDispatcher} singleton.
-<span class="lineno" id="155">   155  </span>	 * @return the internal {@code EventDispatcher} reference.
-<span class="lineno" id="156">   156  </span>	 */</span>
-<span class="lineno" id="157">   157  </span>	<span class="key">public</span> <span class="key">function</span> initEventDispatcher():EventDispatcher 
-<span class="lineno" id="158">   158  </span>	{
-<span class="lineno" id="159">   159  </span>		<span class="key">return</span> <span class="key">new</span> EventDispatcher( <span class="key">this</span> ) ;
-<span class="lineno" id="160">   160  </span>	}
-<span class="lineno" id="161">   161  </span>
-<span class="lineno" id="162">   162  </span>	<span class="comment doc">/** 
-<span class="lineno" id="163">   163  </span>	 * Removes a listener from the EventDispatcher object.
-<span class="lineno" id="164">   164  </span>	 * If there is no matching listener registered with the {@code EventDispatcher} object, then calling this method has no effect.
-<span class="lineno" id="165">   165  </span>	 * @param Specifies the type of event.
-<span class="lineno" id="166">   166  </span>	 * @param the class name(string) or a {@code EventListener} object.
-<span class="lineno" id="167">   167  </span>	 */</span>
-<span class="lineno" id="168">   168  </span>	<span class="key">public</span> <span class="key">function</span> removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener 
-<span class="lineno" id="169">   169  </span>	{
-<span class="lineno" id="170">   170  </span>		<span class="key">return</span> _oED.removeEventListener.apply(_oED, arguments) ;
-<span class="lineno" id="171">   171  </span>	}
-<span class="lineno" id="172">   172  </span>
-<span class="lineno" id="173">   173  </span>	<span class="comment doc">/** 
-<span class="lineno" id="174">   174  </span>	 * Removes a global listener from the EventDispatcher object.
-<span class="lineno" id="175">   175  </span>	 * If there is no matching listener registered with the EventDispatcher object, then calling this method has no effect.
-<span class="lineno" id="176">   176  </span>	 * @param the string representation of the class name of the EventListener or a EventListener object.
-<span class="lineno" id="177">   177  </span>	 */</span>
-<span class="lineno" id="178">   178  </span>	<span class="key">public</span> <span class="key">function</span> removeGlobalEventListener( listener ):EventListener 
-<span class="lineno" id="179">   179  </span>	{
-<span class="lineno" id="180">   180  </span>		<span class="key">return</span> _oED.removeGlobalEventListener.apply(_oED, arguments) ;
-<span class="lineno" id="181">   181  </span>	}
-<span class="lineno" id="182">   182  </span>
-<span class="lineno" id="183">   183  </span>	<span class="comment doc">/**
-<span class="lineno" id="184">   184  </span>	 * Sets the internal {@code EventDispatcher} reference.
-<span class="lineno" id="185">   185  </span>	 */</span>
-<span class="lineno" id="186">   186  </span>	<span class="key">public</span> <span class="key">function</span> setEventDispatcher( e:EventDispatcher ):Void 
-<span class="lineno" id="187">   187  </span>	{
-<span class="lineno" id="188">   188  </span>		_oED = e || initEventDispatcher() ;
-<span class="lineno" id="189">   189  </span>	}
-<span class="lineno" id="190">   190  </span>
-<span class="lineno" id="191">   191  </span>	<span class="comment doc">/**
-<span class="lineno" id="192">   192  </span>	 * Sets the parent EventDispatcher reference of this instance.
-<span class="lineno" id="193">   193  </span>	 */</span>
-<span class="lineno" id="194">   194  </span>	<span class="key">public</span> <span class="key">function</span> setParent( parent:EventDispatcher ):Void 
-<span class="lineno" id="195">   195  </span>	{
-<span class="lineno" id="196">   196  </span>		_oED.parent = parent ;
-<span class="lineno" id="197">   197  </span>	}
-<span class="lineno" id="198">   198  </span>
-<span class="lineno" id="199">   199  </span>	<span class="comment doc">/**
-<span class="lineno" id="200">   200  </span>	 * The protected internal EventDispatcher reference.
-<span class="lineno" id="201">   201  </span>	 */</span>
-<span class="lineno" id="202">   202  </span>	<span class="key">private</span> <span class="key">var</span> _oED:EventDispatcher ;
-<span class="lineno" id="203">   203  </span>
-<span class="lineno" id="204">   204  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.events" class="button">Package</a></li><li><a href="AbstractCoreEventDispatcher.html" title="Detail of vegas.events.AbstractCoreEventDispatcher API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
+<span class="lineno" id="44">    44  </span>	 * @param bGlobal the flag to use a global event flow or a local event flow.
+<span class="lineno" id="45">    45  </span>	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+<span class="lineno" id="46">    46  </span>	 */</span>
+<span class="lineno" id="47">    47  </span>	<span class="key">private</span> <span class="key">function</span> AbstractCoreEventDispatcher( bGlobal:Boolean , sChannel:String  ) 
+<span class="lineno" id="48">    48  </span>	{
+<span class="lineno" id="49">    49  </span>		_oED = initEventDispatcher() ;
+<span class="lineno" id="50">    50  </span>		setGlobal( bGlobal , sChannel ) ;	
+<span class="lineno" id="51">    51  </span>	}		
+<span class="lineno" id="52">    52  </span>
+<span class="lineno" id="53">    53  </span>	<span class="comment doc">/**
+<span class="lineno" id="54">    54  </span>	 * (read-only) Returns the value of the isGlobal flag of this model. Use the {@code setGlobal} method to modify this value.
+<span class="lineno" id="55">    55  </span>	 * @return {@code true} if the instance use a global EventDispatcher to dispatch this events.
+<span class="lineno" id="56">    56  </span>	 */</span>
+<span class="lineno" id="57">    57  </span>	<span class="key">public</span> <span class="key">function</span> get isGlobal():Boolean 
+<span class="lineno" id="58">    58  </span>	{
+<span class="lineno" id="59">    59  </span>		<span class="key">return</span> getIsGlobal() ;
+<span class="lineno" id="60">    60  </span>	}
+<span class="lineno" id="61">    61  </span>
+<span class="lineno" id="62">    62  </span>	<span class="comment doc">/**
+<span class="lineno" id="63">    63  </span>	 * Allows the registration of event listeners on the event target.
+<span class="lineno" id="64">    64  </span>	 * @param eventName A string representing the event type to listen for. If eventName value is "ALL" addEventListener use addGlobalListener
+<span class="lineno" id="65">    65  </span>	 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the {@code EventListener} interface.
+<span class="lineno" id="66">    66  </span>	 * @param useCapture Determinates if the event flow use capture or not.
+<span class="lineno" id="67">    67  </span>	 * @param priority Determines the priority level of the event listener.
+<span class="lineno" id="68">    68  </span>	 * @param autoRemove Apply a removeEventListener after the first trigger
+<span class="lineno" id="69">    69  </span>	 */</span>
+<span class="lineno" id="70">    70  </span>	<span class="key">public</span> <span class="key">function</span> addEventListener( eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void 
+<span class="lineno" id="71">    71  </span>	{
+<span class="lineno" id="72">    72  </span>		_oED.addEventListener.apply(_oED, arguments) ;
+<span class="lineno" id="73">    73  </span>	}
+<span class="lineno" id="74">    74  </span>
+<span class="lineno" id="75">    75  </span>	<span class="comment doc">/**
+<span class="lineno" id="76">    76  </span>	 * Allows the registration of global event listeners on the event target.
+<span class="lineno" id="77">    77  </span>	 * 
+<span class="lineno" id="78">    78  </span>	 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the &lt;b&gt;EventListener&lt;/b&gt; interface.
+<span class="lineno" id="79">    79  </span>	 * @param priority Determines the priority level of the event listener.
+<span class="lineno" id="80">    80  </span>	 * @param autoRemove Apply a removeEventListener after the first trigger
+<span class="lineno" id="81">    81  </span>	 */</span>
+<span class="lineno" id="82">    82  </span>	<span class="key">public</span> <span class="key">function</span> addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void 
+<span class="lineno" id="83">    83  </span>	{
+<span class="lineno" id="84">    84  </span>		_oED.addGlobalEventListener.apply(_oED, arguments) ;
+<span class="lineno" id="85">    85  </span>	}		
+<span class="lineno" id="86">    86  </span>
+<span class="lineno" id="87">    87  </span>	<span class="comment doc">/**
+<span class="lineno" id="88">    88  </span>	 * Dispatches an event into the event flow.
+<span class="lineno" id="89">    89  </span>	 * @param event The Event object that is dispatched into the event flow.
+<span class="lineno" id="90">    90  </span>	 * @param isQueue if the EventDispatcher isn't register to the event type the event is bufferized.
+<span class="lineno" id="91">    91  </span>	 * @param target the target of the event.
+<span class="lineno" id="92">    92  </span>	 * @param contect the context of the event.
+<span class="lineno" id="93">    93  </span>	 * @return the reference of the event dispatched in the event flow.
+<span class="lineno" id="94">    94  </span>	 */</span>
+<span class="lineno" id="95">    95  </span>	<span class="key">public</span> <span class="key">function</span> dispatchEvent(event, isQueue:Boolean, target, context):Event 
+<span class="lineno" id="96">    96  </span>	{
+<span class="lineno" id="97">    97  </span>		<span class="key">return</span> _oED.dispatchEvent.apply(_oED, arguments) ;	
+<span class="lineno" id="98">    98  </span>	}
+<span class="lineno" id="99">    99  </span>
+<span class="lineno" id="100">   100  </span>	<span class="comment doc">/**
+<span class="lineno" id="101">   101  </span>	 * Returns the internal {@code EventDispatcher} reference.
+<span class="lineno" id="102">   102  </span>	 * @return the internal {@code EventDispatcher} reference.
+<span class="lineno" id="103">   103  </span>	 */</span>
+<span class="lineno" id="104">   104  </span>	<span class="key">public</span> <span class="key">function</span> getEventDispatcher():EventDispatcher 
+<span class="lineno" id="105">   105  </span>	{
+<span class="lineno" id="106">   106  </span>		<span class="key">return</span> _oED ;
+<span class="lineno" id="107">   107  </span>	}
+<span class="lineno" id="108">   108  </span>
+<span class="lineno" id="109">   109  </span>	<span class="comment doc">/**
+<span class="lineno" id="110">   110  </span>	 * Returns the {@code EventListenerCollection} of the specified event name.
+<span class="lineno" id="111">   111  </span>	 * @return the {@code EventListenerCollection} of the specified event name.
+<span class="lineno" id="112">   112  </span>	 */</span>
+<span class="lineno" id="113">   113  </span>	<span class="key">public</span> <span class="key">function</span> getEventListeners(eventName:String):EventListenerCollection 
+<span class="lineno" id="114">   114  </span>	{
+<span class="lineno" id="115">   115  </span>		<span class="key">return</span> _oED.getEventListeners.apply(_oED, arguments) ;
+<span class="lineno" id="116">   116  </span>	}
+<span class="lineno" id="117">   117  </span>
+<span class="lineno" id="118">   118  </span>	<span class="comment doc">/**
+<span class="lineno" id="119">   119  </span>	 * Returns the {@code EventListenerCollection} of this EventDispatcher.
+<span class="lineno" id="120">   120  </span>	 * @return the {@code EventListenerCollection} of this EventDispatcher.
+<span class="lineno" id="121">   121  </span>	 */</span>
+<span class="lineno" id="122">   122  </span>	<span class="key">public</span> <span class="key">function</span> getGlobalEventListeners():EventListenerCollection 
+<span class="lineno" id="123">   123  </span>	{
+<span class="lineno" id="124">   124  </span>		<span class="key">return</span> _oED.getGlobalEventListeners.apply(_oED, arguments) ;
+<span class="lineno" id="125">   125  </span>	}
+<span class="lineno" id="126">   126  </span>	
+<span class="lineno" id="127">   127  </span>	<span class="comment doc">/**
+<span class="lineno" id="128">   128  </span>	 * Returns the value of the isGlobal flag of this model.
+<span class="lineno" id="129">   129  </span>	 * @return {@code true} if the instance use a global EventDispatcher to dispatch this events.
+<span class="lineno" id="130">   130  </span>	 */</span>
+<span class="lineno" id="131">   131  </span>	<span class="key">public</span> <span class="key">function</span> getIsGlobal():Boolean 
+<span class="lineno" id="132">   132  </span>	{
+<span class="lineno" id="133">   133  </span>		<span class="key">return</span> _isGlobal ;
+<span class="lineno" id="134">   134  </span>	}
+<span class="lineno" id="135">   135  </span>
+<span class="lineno" id="136">   136  </span>	<span class="comment doc">/**
+<span class="lineno" id="137">   137  </span>	 * Returns the EventDispatcher reference of the parent of this instance.
+<span class="lineno" id="138">   138  </span>	 * @return the EventDispatcher reference of the parent of this instance.
+<span class="lineno" id="139">   139  </span>	 */</span>
+<span class="lineno" id="140">   140  </span>	<span class="key">public</span> <span class="key">function</span> getParent():EventDispatcher 
+<span class="lineno" id="141">   141  </span>	{
+<span class="lineno" id="142">   142  </span>		<span class="key">return</span> _oED.parent ;
+<span class="lineno" id="143">   143  </span>	}
+<span class="lineno" id="144">   144  </span>
+<span class="lineno" id="145">   145  </span>	<span class="comment doc">/**
+<span class="lineno" id="146">   146  </span>	 * Returns a {@code Set} of all register event's name in this EventListener.
+<span class="lineno" id="147">   147  </span>	 * @return a {@code Set} of all register event's name in this EventListener.
+<span class="lineno" id="148">   148  </span>	 */</span>
+<span class="lineno" id="149">   149  </span>	<span class="key">public</span> <span class="key">function</span> getRegisteredEventNames():Set 
+<span class="lineno" id="150">   150  </span>	{
+<span class="lineno" id="151">   151  </span>		<span class="key">return</span> _oED.getRegisteredEventNames.apply(_oED, arguments) ;
+<span class="lineno" id="152">   152  </span>	}
+<span class="lineno" id="153">   153  </span>
+<span class="lineno" id="154">   154  </span>	<span class="comment doc">/**
+<span class="lineno" id="155">   155  </span>	 * Returns the target of this instance.
+<span class="lineno" id="156">   156  </span>	 * @return the target of this instance.
+<span class="lineno" id="157">   157  </span>	 */</span>
+<span class="lineno" id="158">   158  </span>	<span class="key">public</span> <span class="key">function</span> getTarget() 
+<span class="lineno" id="159">   159  </span>	{
+<span class="lineno" id="160">   160  </span>		<span class="key">return</span> _oED.getTarget() ;	
+<span class="lineno" id="161">   161  </span>	}
+<span class="lineno" id="162">   162  </span>
+<span class="lineno" id="163">   163  </span>	<span class="comment doc">/**
+<span class="lineno" id="164">   164  </span>	 * Checks whether the EventDispatcher object has any listeners registered for a specific type of event.
+<span class="lineno" id="165">   165  </span>	 * This allows you to determine where altered handling of an event type has been introduced in the event flow heirarchy by an EventDispatcher object.
+<span class="lineno" id="166">   166  </span>	 */</span> 
+<span class="lineno" id="167">   167  </span>	<span class="key">public</span> <span class="key">function</span> hasEventListener(eventName:String):Boolean 
+<span class="lineno" id="168">   168  </span>	{
+<span class="lineno" id="169">   169  </span>		<span class="key">return</span> _oED.hasEventListener.apply(_oED, arguments) ;
+<span class="lineno" id="170">   170  </span>	}
+<span class="lineno" id="171">   171  </span>
+<span class="lineno" id="172">   172  </span>	<span class="comment doc">/**
+<span class="lineno" id="173">   173  </span>	 * Creates and returns the internal {@code EventDispatcher} reference (this method is invoqued in the constructor).
+<span class="lineno" id="174">   174  </span>	 * You can overrides this method if you wan use a global {@code EventDispatcher} singleton.
+<span class="lineno" id="175">   175  </span>	 * @return the internal {@code EventDispatcher} reference.
+<span class="lineno" id="176">   176  </span>	 */</span>
+<span class="lineno" id="177">   177  </span>	<span class="key">public</span> <span class="key">function</span> initEventDispatcher():EventDispatcher 
+<span class="lineno" id="178">   178  </span>	{
+<span class="lineno" id="179">   179  </span>		<span class="key">return</span> <span class="key">new</span> EventDispatcher( <span class="key">this</span> ) ;
+<span class="lineno" id="180">   180  </span>	}
+<span class="lineno" id="181">   181  </span>
+<span class="lineno" id="182">   182  </span>	<span class="comment doc">/** 
+<span class="lineno" id="183">   183  </span>	 * Removes a listener from the EventDispatcher object.
+<span class="lineno" id="184">   184  </span>	 * If there is no matching listener registered with the {@code EventDispatcher} object, then calling this method has no effect.
+<span class="lineno" id="185">   185  </span>	 * @param Specifies the type of event.
+<span class="lineno" id="186">   186  </span>	 * @param the class name(string) or a {@code EventListener} object.
+<span class="lineno" id="187">   187  </span>	 */</span>
+<span class="lineno" id="188">   188  </span>	<span class="key">public</span> <span class="key">function</span> removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener 
+<span class="lineno" id="189">   189  </span>	{
+<span class="lineno" id="190">   190  </span>		<span class="key">return</span> _oED.removeEventListener.apply(_oED, arguments) ;
+<span class="lineno" id="191">   191  </span>	}
+<span class="lineno" id="192">   192  </span>
+<span class="lineno" id="193">   193  </span>	<span class="comment doc">/** 
+<span class="lineno" id="194">   194  </span>	 * Removes a global listener from the EventDispatcher object.
+<span class="lineno" id="195">   195  </span>	 * If there is no matching listener registered with the EventDispatcher object, then calling this method has no effect.
+<span class="lineno" id="196">   196  </span>	 * @param the string representation of the class name of the EventListener or a EventListener object.
+<span class="lineno" id="197">   197  </span>	 */</span>
+<span class="lineno" id="198">   198  </span>	<span class="key">public</span> <span class="key">function</span> removeGlobalEventListener( listener ):EventListener 
+<span class="lineno" id="199">   199  </span>	{
+<span class="lineno" id="200">   200  </span>		<span class="key">return</span> _oED.removeGlobalEventListener.apply(_oED, arguments) ;
+<span class="lineno" id="201">   201  </span>	}
+<span class="lineno" id="202">   202  </span>
+<span class="lineno" id="203">   203  </span>	<span class="comment doc">/**
+<span class="lineno" id="204">   204  </span>	 * Sets the internal {@code EventDispatcher} reference.
+<span class="lineno" id="205">   205  </span>	 */</span>
+<span class="lineno" id="206">   206  </span>	<span class="key">public</span> <span class="key">function</span> setEventDispatcher( e:EventDispatcher ):Void 
+<span class="lineno" id="207">   207  </span>	{
+<span class="lineno" id="208">   208  </span>		_oED = e || initEventDispatcher() ;
+<span class="lineno" id="209">   209  </span>	}
+<span class="lineno" id="210">   210  </span>
+<span class="lineno" id="211">   211  </span>	<span class="comment doc">/**
+<span class="lineno" id="212">   212  </span>	 * Sets if the instance use a global {@code EventDispatcher} to dispatch this events, if the {@code flag} value is {@code false} the instance use a local EventDispatcher.
+<span class="lineno" id="213">   213  </span>	 * @param flag the flag to use a global event flow or a local event flow.
+<span class="lineno" id="214">   214  </span>	 * @param channel the name of the global event flow if the {@code flag} argument is {@code true}.  
+<span class="lineno" id="215">   215  </span>	 */</span>
+<span class="lineno" id="216">   216  </span>	<span class="key">public</span> <span class="key">function</span> setGlobal( flag:Boolean , channel:String ):Void 
+<span class="lineno" id="217">   217  </span>	{
+<span class="lineno" id="218">   218  </span>		_isGlobal = flag ;
+<span class="lineno" id="219">   219  </span>		setEventDispatcher( flag ? EventDispatcher.getInstance( channel ) : <span class="key">null</span> ) ;
+<span class="lineno" id="220">   220  </span>	}
+<span class="lineno" id="221">   221  </span>
+<span class="lineno" id="222">   222  </span>	<span class="comment doc">/**
+<span class="lineno" id="223">   223  </span>	 * Sets the parent EventDispatcher reference of this instance.
+<span class="lineno" id="224">   224  </span>	 */</span>
+<span class="lineno" id="225">   225  </span>	<span class="key">public</span> <span class="key">function</span> setParent( parent:EventDispatcher ):Void 
+<span class="lineno" id="226">   226  </span>	{
+<span class="lineno" id="227">   227  </span>		_oED.parent = parent ;
+<span class="lineno" id="228">   228  </span>	}
+<span class="lineno" id="229">   229  </span>
+<span class="lineno" id="230">   230  </span>	<span class="comment doc">/**
+<span class="lineno" id="231">   231  </span>	 * The protected internal EventDispatcher reference.
+<span class="lineno" id="232">   232  </span>	 */</span>
+<span class="lineno" id="233">   233  </span>	<span class="key">private</span> <span class="key">var</span> _oED:EventDispatcher ;
+<span class="lineno" id="234">   234  </span>
+<span class="lineno" id="235">   235  </span>	<span class="comment doc">/**
+<span class="lineno" id="236">   236  </span>	 * The internal flag to indicate if the event flow is global.
+<span class="lineno" id="237">   237  </span>	 */</span>
+<span class="lineno" id="238">   238  </span>	<span class="key">private</span> <span class="key">var</span> _isGlobal:Boolean ;
+<span class="lineno" id="239">   239  </span>	
+<span class="lineno" id="240">   240  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.events" class="button">Package</a></li><li><a href="AbstractCoreEventDispatcher.html" title="Detail of vegas.events.AbstractCoreEventDispatcher API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

@@ -1,0 +1,553 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><script src="../../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../../index-files";
+//--></script><link href="../../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../../overview-summary.html" title="Overview" rel="top"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><pre><span class="lineno" id="1">     1  </span><span class="comment">/*
+<span class="lineno" id="2">     2  </span>
+<span class="lineno" id="3">     3  </span>  The contents of this file are subject to the Mozilla Public License Version
+<span class="lineno" id="4">     4  </span>  1.1 (the "License"); you may not use this file except in compliance with
+<span class="lineno" id="5">     5  </span>  the License. You may obtain a copy of the License at 
+<span class="lineno" id="6">     6  </span>  
+<span class="lineno" id="7">     7  </span>           http://www.mozilla.org/MPL/ 
+<span class="lineno" id="8">     8  </span>  
+<span class="lineno" id="9">     9  </span>  Software distributed under the License is distributed on an "AS IS" basis,
+<span class="lineno" id="10">    10  </span>  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+<span class="lineno" id="11">    11  </span>  for the specific language governing rights and limitations under the License. 
+<span class="lineno" id="12">    12  </span>  
+<span class="lineno" id="13">    13  </span>  The Original Code is Vegas Framework.
+<span class="lineno" id="14">    14  </span>  
+<span class="lineno" id="15">    15  </span>  The Initial Developer of the Original Code is
+<span class="lineno" id="16">    16  </span>  ALCARAZ Marc (aka eKameleon)  &lt;vegas@ekameleon.net&gt;.
+<span class="lineno" id="17">    17  </span>  Portions created by the Initial Developer are Copyright (C) 2004-2007
+<span class="lineno" id="18">    18  </span>  the Initial Developer. All Rights Reserved.
+<span class="lineno" id="19">    19  </span>  
+<span class="lineno" id="20">    20  </span>  Contributor(s) :
+<span class="lineno" id="21">    21  </span>  
+<span class="lineno" id="22">    22  </span>*/</span>
+<span class="lineno" id="23">    23  </span>
+<span class="lineno" id="24">    24  </span><span class="key">import</span> asgard.data.iterator.RecordSetIterator;
+<span class="lineno" id="25">    25  </span><span class="key">import</span> asgard.events.RecordSetEvent;
+<span class="lineno" id="26">    26  </span><span class="key">import</span> asgard.net.remoting.RemotingService;
+<span class="lineno" id="27">    27  </span>
+<span class="lineno" id="28">    28  </span><span class="key">import</span> vegas.data.iterator.Iterable;
+<span class="lineno" id="29">    29  </span><span class="key">import</span> vegas.data.iterator.Iterator;
+<span class="lineno" id="30">    30  </span><span class="key">import</span> vegas.errors.Warning;
+<span class="lineno" id="31">    31  </span><span class="key">import</span> vegas.util.ArrayUtil;
+<span class="lineno" id="32">    32  </span><span class="key">import</span> vegas.util.mvc.AbstractModel;
+<span class="lineno" id="33">    33  </span>
+<span class="lineno" id="34">    34  </span><span class="comment">// TODO setDeliveryMode : see RecordSet class (macromedia in mc.remoting package).</span>
+<span class="lineno" id="35">    35  </span><span class="comment">// TODO finir la documentation</span>
+<span class="lineno" id="36">    36  </span><span class="comment">// TODO voir toute la gestion remote et local du RecordSet (finir) !!!!</span>
+<span class="lineno" id="37">    37  </span><span class="comment">// TODO finir de mettre en place la sérialization avec toSource():String</span>
+<span class="lineno" id="38">    38  </span><span class="comment">// TODO place a method in the RecordSet class to inject this feature only if the user want use this method.</span>
+<span class="lineno" id="39">    39  </span><span class="comment">/*if (oResult instanceof RecordSet) // in the onResult method of the Responder ??  
+<span class="lineno" id="40">    40  </span>	{
+<span class="lineno" id="41">    41  </span>		RecordSet(oResult).setParentService( getService() ) ;
+<span class="lineno" id="42">    42  </span>	}
+<span class="lineno" id="43">    43  </span>*/</span>
+<span class="lineno" id="44">    44  </span><span class="comment doc">/**
+<span class="lineno" id="45">    45  </span> * &lt;p&gt;&lt;b&gt;Example :&lt;/b&gt;&lt;/p&gt;
+<span class="lineno" id="46">    46  </span> * {@code
+<span class="lineno" id="47">    47  </span> * import asgard.data.remoting.RecordSet ;
+<span class="lineno" id="48">    48  </span> * import asgard.events.RemotingEvent ;
+<span class="lineno" id="49">    49  </span> * import asgard.net.remoting.RemotingService ;
+<span class="lineno" id="50">    50  </span> * 
+<span class="lineno" id="51">    51  </span> * import vegas.data.iterator.Iterator ;
+<span class="lineno" id="52">    52  </span> * import vegas.events.Delegate ;
+<span class="lineno" id="53">    53  </span> * 
+<span class="lineno" id="54">    54  </span> * var gatewayUrl:String = "http://localhost/remoting/php/gateway.php" ; // sets your gateway url
+<span class="lineno" id="55">    55  </span> * var serviceName:String = "Gallery" ;
+<span class="lineno" id="56">    56  </span> * 
+<span class="lineno" id="57">    57  </span> * var onFault:Function  = function(e:RemotingEvent):Void 
+<span class="lineno" id="58">    58  </span> * {
+<span class="lineno" id="59">    59  </span> *     var type:String = e.getType() ;
+<span class="lineno" id="60">    60  </span> *     var target:RemotingService = e.getTarget() ;
+<span class="lineno" id="61">    61  </span> *     trace("&gt; " + e.getType() + " &gt; " + e.getCode()) ;
+<span class="lineno" id="62">    62  </span> *     trace("&gt; level : " + e.getLevel()) ;
+<span class="lineno" id="63">    63  </span> *     trace("&gt; line  : " + e.getLine()) ;
+<span class="lineno" id="64">    64  </span> *     trace("&gt; methodName : " + e.getMethodName()) ;
+<span class="lineno" id="65">    65  </span> *     trace("&gt; description : " +  e.getDescription()) ;
+<span class="lineno" id="66">    66  </span> * } ;
+<span class="lineno" id="67">    67  </span> * 
+<span class="lineno" id="68">    68  </span> * var onFinish:Function = function (e:RemotingEvent):Void 
+<span class="lineno" id="69">    69  </span> * {
+<span class="lineno" id="70">    70  </span> *     trace("&gt;&gt; " +  e.getType()) ;
+<span class="lineno" id="71">    71  </span> * } ;
+<span class="lineno" id="72">    72  </span> * 
+<span class="lineno" id="73">    73  </span> * var onResult:Function = function(e:RemotingEvent):Void 
+<span class="lineno" id="74">    74  </span> * {
+<span class="lineno" id="75">    75  </span> *     var type:String = e.getType() ;
+<span class="lineno" id="76">    76  </span> *     var target:RemotingService = e.getTarget() ;
+<span class="lineno" id="77">    77  </span> *     var result:RecordSet = e.getResult() ;
+<span class="lineno" id="78">    78  </span> *     trace("&gt;&gt; " + type + " : " + target) ;
+<span class="lineno" id="79">    79  </span> *     trace("------ use RecordSetIterator") ;
+<span class="lineno" id="80">    80  </span> *     trace("&gt;&gt;&gt;&gt; " + result) ;
+<span class="lineno" id="81">    81  </span> *     var it:Iterator = result.iterator() ;
+<span class="lineno" id="82">    82  </span> *     while(it.hasNext()) 
+<span class="lineno" id="83">    83  </span> *     {
+<span class="lineno" id="84">    84  </span> *         trace("   &gt; " + it.next().title ) ;
+<span class="lineno" id="85">    85  </span> *     }
+<span class="lineno" id="86">    86  </span> * } ;
+<span class="lineno" id="87">    87  </span> * 
+<span class="lineno" id="88">    88  </span> * var onStart:Function = function (e:RemotingEvent):Void 
+<span class="lineno" id="89">    89  </span> * {
+<span class="lineno" id="90">    90  </span> *     trace("&gt;&gt; " +  e.getType()) ;
+<span class="lineno" id="91">    91  </span> * } ;
+<span class="lineno" id="92">    92  </span> * 
+<span class="lineno" id="93">    93  </span> * var service:RemotingService = new RemotingService( gatewayUrl, serviceName ) ;
+<span class="lineno" id="94">    94  </span> * service.addEventListener( RemotingEvent.FAULT, new Delegate(this, onFault)  ) ;
+<span class="lineno" id="95">    95  </span> * service.addEventListener( RemotingEvent.FINISH, new Delegate(this, onFinish)  ) ;
+<span class="lineno" id="96">    96  </span> * service.addEventListener( RemotingEvent.RESULT, new Delegate(this, onResult)  ) ;
+<span class="lineno" id="97">    97  </span> * service.addEventListener( RemotingEvent.START, new Delegate(this, onStart)  ) ;
+<span class="lineno" id="98">    98  </span> * 
+<span class="lineno" id="99">    99  </span> * service.methodName = "getGallery" ;
+<span class="lineno" id="100">   100  </span> * service.params = ["gallery"] ;
+<span class="lineno" id="101">   101  </span> * service.trigger() ;
+<span class="lineno" id="102">   102  </span> * }
+<span class="lineno" id="103">   103  </span> * @author eKameleon
+<span class="lineno" id="104">   104  </span> */</span>
+<span class="lineno" id="105">   105  </span><span class="key">class</span> asgard.data.remoting.RecordSet <span class="key">extends</span> AbstractModel <span class="key">implements</span> Iterable 
+<span class="lineno" id="106">   106  </span>{
+<span class="lineno" id="107">   107  </span>
+<span class="lineno" id="108">   108  </span>	<span class="comment doc">/**
+<span class="lineno" id="109">   109  </span>	 * Creates a new RecordSet instance.
+<span class="lineno" id="110">   110  </span>	 */</span>
+<span class="lineno" id="111">   111  </span>	<span class="key">public</span> <span class="key">function</span> RecordSet( o ) {
+<span class="lineno" id="112">   112  </span>		
+<span class="lineno" id="113">   113  </span>		_eAdd    = <span class="key">new</span> RecordSetEvent(RecordSetEvent.ADD_ITEMS, <span class="key">this</span>) ;
+<span class="lineno" id="114">   114  </span>		_eClear  = <span class="key">new</span> RecordSetEvent(RecordSetEvent.CLEAR_ITEMS, <span class="key">this</span>);
+<span class="lineno" id="115">   115  </span>		_eRemove = <span class="key">new</span> RecordSetEvent(RecordSetEvent.REMOVE_ITEMS, <span class="key">this</span>) ;
+<span class="lineno" id="116">   116  </span>		_eSort   = <span class="key">new</span> RecordSetEvent(RecordSetEvent.SORT_ITEMS, <span class="key">this</span>) ;
+<span class="lineno" id="117">   117  </span>		_eUpdate = <span class="key">new</span> RecordSetEvent(RecordSetEvent.UPDATE_ITEMS, <span class="key">this</span>) ;
+<span class="lineno" id="118">   118  </span>		
+<span class="lineno" id="119">   119  </span>		_items = [] ;
+<span class="lineno" id="120">   120  </span>		mTiles = [] ;
+<span class="lineno" id="121">   121  </span>		
+<span class="lineno" id="122">   122  </span>		<span class="key">if</span> (serverInfo == <span class="key">null</span>) 
+<span class="lineno" id="123">   123  </span>		{
+<span class="lineno" id="124">   124  </span>			<span class="key">if</span> (serverinfo != <span class="key">null</span>) 
+<span class="lineno" id="125">   125  </span>			{
+<span class="lineno" id="126">   126  </span>				serverInfo = serverinfo ;
+<span class="lineno" id="127">   127  </span>			}
+<span class="lineno" id="128">   128  </span>		}
+<span class="lineno" id="129">   129  </span>		
+<span class="lineno" id="130">   130  </span>		<span class="key">if</span> (o) 
+<span class="lineno" id="131">   131  </span>		{
+<span class="lineno" id="132">   132  </span>		
+<span class="lineno" id="133">   133  </span>			<span class="key">if</span> (o <span class="key">instanceof</span> Array)
+<span class="lineno" id="134">   134  </span>			{
+<span class="lineno" id="135">   135  </span>				mTiles = o ;
+<span class="lineno" id="136">   136  </span>			} 
+<span class="lineno" id="137">   137  </span>			<span class="key">else</span> 
+<span class="lineno" id="138">   138  </span>			{
+<span class="lineno" id="139">   139  </span>				parse(o) ;
+<span class="lineno" id="140">   140  </span>			}		
+<span class="lineno" id="141">   141  </span>		}
+<span class="lineno" id="142">   142  </span>		
+<span class="lineno" id="143">   143  </span>		<span class="comment">// TODO ??? voir ici ce qui cloche en comparaison avec script MM.</span>
+<span class="lineno" id="144">   144  </span>		
+<span class="lineno" id="145">   145  </span>		<span class="key">if</span> (serverInfo) 
+<span class="lineno" id="146">   146  </span>		{
+<span class="lineno" id="147">   147  </span>			parse(<span class="key">this</span>) ;	
+<span class="lineno" id="148">   148  </span>		}
+<span class="lineno" id="149">   149  </span>
+<span class="lineno" id="150">   150  </span>	}
+<span class="lineno" id="151">   151  </span>
+<span class="lineno" id="152">   152  </span>	<span class="key">public</span> <span class="key">var</span> serverInfo:Object ;
+<span class="lineno" id="153">   153  </span>
+<span class="lineno" id="154">   154  </span>	<span class="key">public</span> <span class="key">var</span> serverinfo:Object ;
+<span class="lineno" id="155">   155  </span>
+<span class="lineno" id="156">   156  </span>	<span class="key">public</span> <span class="key">var</span> serviceName:String ; 
+<span class="lineno" id="157">   157  </span>
+<span class="lineno" id="158">   158  </span>	<span class="key">public</span> <span class="key">function</span> addItem(oItem) 
+<span class="lineno" id="159">   159  </span>	{
+<span class="lineno" id="160">   160  </span>		<span class="key">return</span> addItemAt(size(), oItem) ; 
+<span class="lineno" id="161">   161  </span>	}
+<span class="lineno" id="162">   162  </span>
+<span class="lineno" id="163">   163  </span>	<span class="key">public</span> <span class="key">function</span> addItemAt(index:Number, oItem) 
+<span class="lineno" id="164">   164  </span>	{
+<span class="lineno" id="165">   165  </span>		<span class="key">var</span> l:Number = size() ;
+<span class="lineno" id="166">   166  </span>		<span class="key">var</span> b:Boolean = <span class="key">true</span> ;
+<span class="lineno" id="167">   167  </span>		
+<span class="lineno" id="168">   168  </span>		<span class="key">if</span> (index &gt;= <span class="num_const">0</span> &amp;&amp; index &lt; l ) {
+<span class="lineno" id="169">   169  </span>			
+<span class="lineno" id="170">   170  </span>			_items.splice(index, <span class="num_const">0</span>, oItem) ;
+<span class="lineno" id="171">   171  </span>			
+<span class="lineno" id="172">   172  </span>		} <span class="key">else</span> {
+<span class="lineno" id="173">   173  </span>			
+<span class="lineno" id="174">   174  </span>			 <span class="key">if</span> (index == l) {
+<span class="lineno" id="175">   175  </span>			 	_items[index] = oItem ;	
+<span class="lineno" id="176">   176  </span>			 } <span class="key">else</span> {
+<span class="lineno" id="177">   177  </span>			 	<span class="key">return</span> <span class="key">null</span> ;	
+<span class="lineno" id="178">   178  </span>			 }
+<span class="lineno" id="179">   179  </span>		}
+<span class="lineno" id="180">   180  </span>		oItem.__ID__ = _id ++ ;
+<span class="lineno" id="181">   181  </span>		_eAdd.index = index ;
+<span class="lineno" id="182">   182  </span>		notifyChanged( _eAdd ) ;
+<span class="lineno" id="183">   183  </span>		<span class="key">return</span> oItem ;
+<span class="lineno" id="184">   184  </span>	}
+<span class="lineno" id="185">   185  </span>
+<span class="lineno" id="186">   186  </span>	<span class="key">public</span> <span class="key">function</span> checkLocal():Boolean 
+<span class="lineno" id="187">   187  </span>	{
+<span class="lineno" id="188">   188  </span>		<span class="key">try</span> {
+<span class="lineno" id="189">   189  </span>			<span class="key">if</span> ( isLocal()) {
+<span class="lineno" id="190">   190  </span>				<span class="key">return</span> <span class="key">false</span> ;
+<span class="lineno" id="191">   191  </span>			} <span class="key">else</span> {
+<span class="lineno" id="192">   192  </span>				<span class="key">throw</span> <span class="key">new</span> Warning(<span class="key">this</span> + <span class="str_const">" Operation not allowed on partial recordset"</span>) ;
+<span class="lineno" id="193">   193  </span>			}
+<span class="lineno" id="194">   194  </span>		} <span class="key">catch</span> (e:Warning) {
+<span class="lineno" id="195">   195  </span>			trace(e.toString()) ;
+<span class="lineno" id="196">   196  </span>			<span class="key">return</span> <span class="key">true</span> ;
+<span class="lineno" id="197">   197  </span>		}
+<span class="lineno" id="198">   198  </span>	}
+<span class="lineno" id="199">   199  </span>	
+<span class="lineno" id="200">   200  </span>	<span class="comment doc">/**
+<span class="lineno" id="201">   201  </span>	 * Removes all the items from a RecordSet
+<span class="lineno" id="202">   202  </span>	 */</span>
+<span class="lineno" id="203">   203  </span>	<span class="key">public</span> <span class="key">function</span> clear():Void 
+<span class="lineno" id="204">   204  </span>	{
+<span class="lineno" id="205">   205  </span>		_id = <span class="num_const">0</span> ;
+<span class="lineno" id="206">   206  </span>		mTiles = <span class="key">new</span> Array();
+<span class="lineno" id="207">   207  </span>		_eClear.removedItems = _items.splice(<span class="num_const">0</span>) ;
+<span class="lineno" id="208">   208  </span>		notifyChanged(_eClear) ;
+<span class="lineno" id="209">   209  </span>	}
+<span class="lineno" id="210">   210  </span>
+<span class="lineno" id="211">   211  </span>	<span class="comment doc">/**
+<span class="lineno" id="212">   212  </span>	 * Returns {@code true} if the specified item is in the model.
+<span class="lineno" id="213">   213  </span>	 */</span>
+<span class="lineno" id="214">   214  </span>	<span class="key">public</span>  <span class="key">function</span> contains( oItem ):Boolean 
+<span class="lineno" id="215">   215  </span>	{
+<span class="lineno" id="216">   216  </span>		<span class="key">return</span> ArrayUtil.contains(_items, oItem) ;
+<span class="lineno" id="217">   217  </span>	}
+<span class="lineno" id="218">   218  </span>
+<span class="lineno" id="219">   219  </span>	<span class="key">public</span> <span class="key">function</span> editField(index:Number, fieldName:String , value):Void 
+<span class="lineno" id="220">   220  </span>	{
+<span class="lineno" id="221">   221  </span>		
+<span class="lineno" id="222">   222  </span>		<span class="key">if</span> ( checkLocal() ) <span class="key">return</span> ;
+<span class="lineno" id="223">   223  </span>		<span class="key">if</span> (index&lt;<span class="num_const">0</span> || index &gt; size()) <span class="key">return</span> ;
+<span class="lineno" id="224">   224  </span>		_items[index][fieldName] = value ;
+<span class="lineno" id="225">   225  </span>		
+<span class="lineno" id="226">   226  </span>	}	
+<span class="lineno" id="227">   227  </span>
+<span class="lineno" id="228">   228  </span>	<span class="key">public</span> <span class="key">function</span> filter(filter:Function, context):RecordSet 
+<span class="lineno" id="229">   229  </span>	{
+<span class="lineno" id="230">   230  </span>		
+<span class="lineno" id="231">   231  </span>		<span class="key">if</span> ( checkLocal() ) {
+<span class="lineno" id="232">   232  </span>		  <span class="key">return</span> <span class="key">null</span> ;
+<span class="lineno" id="233">   233  </span>		}
+<span class="lineno" id="234">   234  </span>
+<span class="lineno" id="235">   235  </span>		<span class="key">var</span> rs:RecordSet = <span class="key">new</span> RecordSet() ;
+<span class="lineno" id="236">   236  </span>		rs.setColumnNames(mTiles) ;
+<span class="lineno" id="237">   237  </span>	
+<span class="lineno" id="238">   238  </span>		<span class="key">var</span> len:Number = size() ;
+<span class="lineno" id="239">   239  </span>		<span class="key">for</span>(<span class="key">var</span> i:Number = <span class="num_const">0</span>; i &lt; len ; i++) {
+<span class="lineno" id="240">   240  </span>			<span class="key">var</span> item:Object = getItemAt(i) ;
+<span class="lineno" id="241">   241  </span>			<span class="key">if</span> ((item != <span class="key">null</span>) &amp;&amp; (item != <span class="num_const">1</span>) &amp;&amp; filter(item, context))	{
+<span class="lineno" id="242">   242  </span>				rs.addItem(item);
+<span class="lineno" id="243">   243  </span>			}
+<span class="lineno" id="244">   244  </span>		}
+<span class="lineno" id="245">   245  </span>		<span class="key">return</span> rs ;
+<span class="lineno" id="246">   246  </span>		
+<span class="lineno" id="247">   247  </span>	}
+<span class="lineno" id="248">   248  </span>
+<span class="lineno" id="249">   249  </span>
+<span class="lineno" id="250">   250  </span>	<span class="key">public</span> <span class="key">function</span> getColumnNames():Array 
+<span class="lineno" id="251">   251  </span>	{
+<span class="lineno" id="252">   252  </span>		<span class="key">return</span> mTiles ;
+<span class="lineno" id="253">   253  </span>	}
+<span class="lineno" id="254">   254  </span>
+<span class="lineno" id="255">   255  </span>	<span class="key">public</span> <span class="key">function</span> getItemAt(id:Number) 
+<span class="lineno" id="256">   256  </span>	{
+<span class="lineno" id="257">   257  </span>		<span class="key">if</span> (isEmpty() || (id &lt; <span class="num_const">0</span>) || (id &gt;= size()) ) {
+<span class="lineno" id="258">   258  </span>			<span class="key">return</span> <span class="key">null</span> ;
+<span class="lineno" id="259">   259  </span>		}
+<span class="lineno" id="260">   260  </span>		<span class="key">if</span> (isLocal()) {
+<span class="lineno" id="261">   261  </span>			<span class="key">return</span> _items[id] ;
+<span class="lineno" id="262">   262  </span>		}
+<span class="lineno" id="263">   263  </span>	}
+<span class="lineno" id="264">   264  </span>
+<span class="lineno" id="265">   265  </span>
+<span class="lineno" id="266">   266  </span>	<span class="comment doc">/**
+<span class="lineno" id="267">   267  </span>	 * Returns a unique ID corresponding to the record, at the specified index.
+<span class="lineno" id="268">   268  </span>	 * The RecordSet object assigns each record a unique ID. The ID is not part 
+<span class="lineno" id="269">   269  </span>	 * of the record; it is a separate item that is associated with the record
+<span class="lineno" id="270">   270  </span>	 * internally within the RecordSet object. Unlike a record index, its ID will
+<span class="lineno" id="271">   271  </span>	 * not change when the RecordSet object is sorted or when records are added or
+<span class="lineno" id="272">   272  </span>	 * deleted. When a record is deleted, its ID is retired and will never be used
+<span class="lineno" id="273">   273  </span>	 * again in this RecordSet object.
+<span class="lineno" id="274">   274  </span>	 */</span>
+<span class="lineno" id="275">   275  </span>	<span class="key">public</span> <span class="key">function</span> getItemID( index:Number ) 
+<span class="lineno" id="276">   276  </span>	{
+<span class="lineno" id="277">   277  </span>		<span class="key">return</span> _items[index].hashCode() ;
+<span class="lineno" id="278">   278  </span>	}
+<span class="lineno" id="279">   279  </span>
+<span class="lineno" id="280">   280  </span>	<span class="comment doc">/**
+<span class="lineno" id="281">   281  </span>	 * Returns the number of records in the local RecordSet.
+<span class="lineno" id="282">   282  </span>	 */</span>
+<span class="lineno" id="283">   283  </span>	<span class="key">public</span> <span class="key">function</span> getLocalLength():Number 
+<span class="lineno" id="284">   284  </span>	{
+<span class="lineno" id="285">   285  </span>		<span class="key">return</span> size() ;	
+<span class="lineno" id="286">   286  </span>	}
+<span class="lineno" id="287">   287  </span>
+<span class="lineno" id="288">   288  </span>	<span class="key">public</span> <span class="key">function</span> getLength():Number 
+<span class="lineno" id="289">   289  </span>	{
+<span class="lineno" id="290">   290  </span>		<span class="key">return</span> size() ;	
+<span class="lineno" id="291">   291  </span>	}
+<span class="lineno" id="292">   292  </span>
+<span class="lineno" id="293">   293  </span>	<span class="comment doc">/**
+<span class="lineno" id="294">   294  </span>	 * Returns the number of records that have been downloaded from the server.
+<span class="lineno" id="295">   295  </span>	 * The count does not include records that have been requested but not yet arrived.
+<span class="lineno" id="296">   296  </span>	 * For local RecordSet objects, this will always return the same value as the getLocalLength method.
+<span class="lineno" id="297">   297  </span>	 */</span>
+<span class="lineno" id="298">   298  </span>	<span class="key">public</span> <span class="key">function</span> getNumberAvailable():Number 
+<span class="lineno" id="299">   299  </span>	{
+<span class="lineno" id="300">   300  </span>		<span class="key">return</span> isLocal() ? size() : mRecordsAvailable ; 
+<span class="lineno" id="301">   301  </span>	}
+<span class="lineno" id="302">   302  </span>
+<span class="lineno" id="303">   303  </span>	<span class="comment doc">/**
+<span class="lineno" id="304">   304  </span>	 * Returns the number of records available on the server. 
+<span class="lineno" id="305">   305  </span>	 */</span>
+<span class="lineno" id="306">   306  </span>	<span class="key">public</span> <span class="key">function</span> getRemoteLength():Number 
+<span class="lineno" id="307">   307  </span>	{
+<span class="lineno" id="308">   308  </span>		<span class="key">if</span>( isLocal())
+<span class="lineno" id="309">   309  </span>			<span class="key">return</span> mRecordsAvailable ;
+<span class="lineno" id="310">   310  </span>		<span class="key">else</span>
+<span class="lineno" id="311">   311  </span>			<span class="key">return</span> mTotalCount ;
+<span class="lineno" id="312">   312  </span>	}
+<span class="lineno" id="313">   313  </span>
+<span class="lineno" id="314">   314  </span>	<span class="key">public</span> <span class="key">function</span> indexOf( oItem ):Number 
+<span class="lineno" id="315">   315  </span>	{
+<span class="lineno" id="316">   316  </span>		<span class="key">return</span> ArrayUtil.indexOf(_items, oItem) ;
+<span class="lineno" id="317">   317  </span>	}
+<span class="lineno" id="318">   318  </span>
+<span class="lineno" id="319">   319  </span>	<span class="key">public</span> <span class="key">function</span> indexOfField(fieldName:String, value):Number 
+<span class="lineno" id="320">   320  </span>	{
+<span class="lineno" id="321">   321  </span>		<span class="key">var</span> l:Number = _items.length ;
+<span class="lineno" id="322">   322  </span>		<span class="key">while</span> (--l &gt; -<span class="num_const">1</span>) {
+<span class="lineno" id="323">   323  </span>			<span class="key">if</span> (_items[l][fieldName] == value) <span class="key">return</span> l ;
+<span class="lineno" id="324">   324  </span>		}
+<span class="lineno" id="325">   325  </span>		<span class="key">return</span> -<span class="num_const">1</span> ;
+<span class="lineno" id="326">   326  </span>	}
+<span class="lineno" id="327">   327  </span>
+<span class="lineno" id="328">   328  </span>	<span class="key">public</span> <span class="key">function</span> isEmpty():Boolean 
+<span class="lineno" id="329">   329  </span>	{
+<span class="lineno" id="330">   330  </span>		<span class="key">return</span> _items.length == <span class="num_const">0</span> ;
+<span class="lineno" id="331">   331  </span>	}
+<span class="lineno" id="332">   332  </span>
+<span class="lineno" id="333">   333  </span>	<span class="key">function</span> isFullyPopulated():Boolean 
+<span class="lineno" id="334">   334  </span>	{
+<span class="lineno" id="335">   335  </span>		<span class="key">return</span> isLocal() ;
+<span class="lineno" id="336">   336  </span>	}
+<span class="lineno" id="337">   337  </span>
+<span class="lineno" id="338">   338  </span>	<span class="key">function</span> isLocal():Boolean 
+<span class="lineno" id="339">   339  </span>	{
+<span class="lineno" id="340">   340  </span>		<span class="key">return</span> mRecordSetID == <span class="key">null</span> ;
+<span class="lineno" id="341">   341  </span>	}
+<span class="lineno" id="342">   342  </span>
+<span class="lineno" id="343">   343  </span>	<span class="comment doc">/**
+<span class="lineno" id="344">   344  </span>	 * Returns a new instance of RecordSetIterator for the RecordSet in use.
+<span class="lineno" id="345">   345  </span>	 */</span>
+<span class="lineno" id="346">   346  </span>	<span class="key">public</span> <span class="key">function</span> iterator():Iterator 
+<span class="lineno" id="347">   347  </span>	{
+<span class="lineno" id="348">   348  </span>		<span class="key">return</span> <span class="key">new</span> RecordSetIterator(<span class="key">this</span>) ;
+<span class="lineno" id="349">   349  </span>	}
+<span class="lineno" id="350">   350  </span>
+<span class="lineno" id="351">   351  </span>	<span class="key">public</span> <span class="key">function</span> parse( oRaw ):Void 
+<span class="lineno" id="352">   352  </span>	{
+<span class="lineno" id="353">   353  </span>		
+<span class="lineno" id="354">   354  </span>		clear();
+<span class="lineno" id="355">   355  </span>		
+<span class="lineno" id="356">   356  </span>		mTiles = oRaw.serverInfo.columnNames ;
+<span class="lineno" id="357">   357  </span>		
+<span class="lineno" id="358">   358  </span>		mRecordsAvailable = <span class="num_const">0</span> ;
+<span class="lineno" id="359">   359  </span>		
+<span class="lineno" id="360">   360  </span>		<span class="comment">// implements setData !</span>
+<span class="lineno" id="361">   361  </span>		<span class="comment">// setData((serverInfo.cursor == null) ? 0 : (serverInfo.cursor - 1), serverInfo.initialData);</span>
+<span class="lineno" id="362">   362  </span>		
+<span class="lineno" id="363">   363  </span>		<span class="key">var</span> aItems:Array = oRaw.serverInfo.initialData ;
+<span class="lineno" id="364">   364  </span>		
+<span class="lineno" id="365">   365  </span>		
+<span class="lineno" id="366">   366  </span>		<span class="key">var</span> l:Number = aItems.length ;
+<span class="lineno" id="367">   367  </span>		<span class="key">for</span> (<span class="key">var</span> i:Number = <span class="num_const">0</span> ; i&lt;l ; i++) {
+<span class="lineno" id="368">   368  </span>			<span class="key">var</span> item:Object = {} ;
+<span class="lineno" id="369">   369  </span>			<span class="key">var</span> aProperties = aItems[i] ;
+<span class="lineno" id="370">   370  </span>			<span class="key">var</span> count:Number = aProperties.length ;
+<span class="lineno" id="371">   371  </span>			<span class="key">for</span> (<span class="key">var</span> j:Number = <span class="num_const">0</span> ; j&lt;count ; j++) {
+<span class="lineno" id="372">   372  </span>				item[ mTiles[ j ] ] = aProperties[j] ;
+<span class="lineno" id="373">   373  </span>			}
+<span class="lineno" id="374">   374  </span>			_items.push( item );
+<span class="lineno" id="375">   375  </span>		}
+<span class="lineno" id="376">   376  </span>		
+<span class="lineno" id="377">   377  </span>		<span class="comment">//serverInfo = null ;</span>
+<span class="lineno" id="378">   378  </span>		
+<span class="lineno" id="379">   379  </span>	}
+<span class="lineno" id="380">   380  </span>
+<span class="lineno" id="381">   381  </span>	<span class="comment doc">/**
+<span class="lineno" id="382">   382  </span>	 * Register the RecordSet instance.
+<span class="lineno" id="383">   383  </span>	 */</span>
+<span class="lineno" id="384">   384  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">function</span> register():Boolean 
+<span class="lineno" id="385">   385  </span>	{
+<span class="lineno" id="386">   386  </span>		<span class="key">return</span> Object.registerClass( <span class="str_const">"RecordSet"</span>, asgard.data.remoting.RecordSet ) ;
+<span class="lineno" id="387">   387  </span>	}
+<span class="lineno" id="388">   388  </span>
+<span class="lineno" id="389">   389  </span>	<span class="key">public</span> <span class="key">function</span> removeItem(oItem) 
+<span class="lineno" id="390">   390  </span>	{
+<span class="lineno" id="391">   391  </span>		<span class="key">var</span> index:Number = indexOf(oItem) ;
+<span class="lineno" id="392">   392  </span>		<span class="key">if</span> (index &gt; -<span class="num_const">1</span>) {
+<span class="lineno" id="393">   393  </span>			<span class="key">return</span> removeItemAt(index) ;
+<span class="lineno" id="394">   394  </span>		} <span class="key">else</span> {
+<span class="lineno" id="395">   395  </span>			<span class="key">return</span> <span class="key">null</span> ;
+<span class="lineno" id="396">   396  </span>		}
+<span class="lineno" id="397">   397  </span>	}
+<span class="lineno" id="398">   398  </span>	
+<span class="lineno" id="399">   399  </span>	<span class="key">public</span> <span class="key">function</span> removeItemAt(index:Number) 
+<span class="lineno" id="400">   400  </span>	{
+<span class="lineno" id="401">   401  </span>		<span class="key">var</span> ret = getItemAt(index) ; 
+<span class="lineno" id="402">   402  </span>		removeItemsAt(index, <span class="num_const">1</span>);
+<span class="lineno" id="403">   403  </span>		<span class="key">return</span> ret;
+<span class="lineno" id="404">   404  </span>	}
+<span class="lineno" id="405">   405  </span>
+<span class="lineno" id="406">   406  </span>	<span class="key">public</span> <span class="key">function</span> removeItemsAt(index:Number, len:Number):Array 
+<span class="lineno" id="407">   407  </span>	{
+<span class="lineno" id="408">   408  </span>		<span class="key">var</span> oldItems = _items.splice(index, len) ;
+<span class="lineno" id="409">   409  </span>		_eRemove.firstItem = index ;
+<span class="lineno" id="410">   410  </span>		_eRemove.lastItem = index + len - <span class="num_const">1</span> ;
+<span class="lineno" id="411">   411  </span>		_eRemove.removedItems = [].concat(oldItems) ;
+<span class="lineno" id="412">   412  </span>		notifyChanged ( _eRemove ) ;
+<span class="lineno" id="413">   413  </span>		<span class="key">return</span> oldItems ;
+<span class="lineno" id="414">   414  </span>	}
+<span class="lineno" id="415">   415  </span>	
+<span class="lineno" id="416">   416  </span>	<span class="key">public</span> <span class="key">function</span> removeRange(from:Number, to:Number):Array 
+<span class="lineno" id="417">   417  </span>	{
+<span class="lineno" id="418">   418  </span>		<span class="key">if</span> (isNaN(from)) <span class="key">return</span> <span class="key">null</span> ;
+<span class="lineno" id="419">   419  </span>		<span class="key">return</span> removeItemsAt(from, to - from) ;
+<span class="lineno" id="420">   420  </span>	}
+<span class="lineno" id="421">   421  </span>	
+<span class="lineno" id="422">   422  </span>	<span class="comment doc">/**
+<span class="lineno" id="423">   423  </span>	 * Replaces a record in the RecordSet object at the specified index.
+<span class="lineno" id="424">   424  </span>	 */</span>
+<span class="lineno" id="425">   425  </span>	<span class="key">public</span> <span class="key">function</span> replaceItemAt( index:Number, item:Object ):Void 
+<span class="lineno" id="426">   426  </span>	{
+<span class="lineno" id="427">   427  </span>		<span class="key">if</span> (index&gt;=<span class="num_const">0</span> &amp;&amp; index&lt;=size()) {
+<span class="lineno" id="428">   428  </span>			<span class="key">var</span> tmpID = getItemID(index) ;
+<span class="lineno" id="429">   429  </span>			_items[index] = item ;
+<span class="lineno" id="430">   430  </span>			_items[index].__ID__ = tmpID ;
+<span class="lineno" id="431">   431  </span>			_eUpdate.index = index ;
+<span class="lineno" id="432">   432  </span>			notifyChanged( _eUpdate ) ;
+<span class="lineno" id="433">   433  </span>		}
+<span class="lineno" id="434">   434  </span>	}
+<span class="lineno" id="435">   435  </span>	
+<span class="lineno" id="436">   436  </span>	<span class="key">public</span> <span class="key">function</span> setItemIndex( oItem, index:Number):Void 
+<span class="lineno" id="437">   437  </span>	{
+<span class="lineno" id="438">   438  </span>		<span class="key">var</span> id:Number = indexOf(oItem) ;
+<span class="lineno" id="439">   439  </span>		<span class="key">if</span> (id == -<span class="num_const">1</span> || id == index) <span class="key">return</span> ;
+<span class="lineno" id="440">   440  </span>		<span class="key">else</span> {
+<span class="lineno" id="441">   441  </span>			<span class="key">var</span> tmp = oItem ;
+<span class="lineno" id="442">   442  </span>			_items.splice(id, <span class="num_const">1</span>) ;
+<span class="lineno" id="443">   443  </span>			_items.splice(index, <span class="num_const">0</span>, tmp) ;
+<span class="lineno" id="444">   444  </span>			_eUpdate.index = index ;
+<span class="lineno" id="445">   445  </span>			notifyChanged( _eUpdate ) ;
+<span class="lineno" id="446">   446  </span>		}
+<span class="lineno" id="447">   447  </span>	}
+<span class="lineno" id="448">   448  </span>
+<span class="lineno" id="449">   449  </span>	<span class="key">public</span> <span class="key">function</span> setColumnNames(ar:Array):Void 
+<span class="lineno" id="450">   450  </span>	{
+<span class="lineno" id="451">   451  </span>		mTiles = ar ;	
+<span class="lineno" id="452">   452  </span>	}
+<span class="lineno" id="453">   453  </span>
+<span class="lineno" id="454">   454  </span>	<span class="key">public</span> <span class="key">function</span> setParentService( service ):Void 
+<span class="lineno" id="455">   455  </span>	{
+<span class="lineno" id="456">   456  </span>		_nc = service.getConnection() ;
+<span class="lineno" id="457">   457  </span>	}
+<span class="lineno" id="458">   458  </span>
+<span class="lineno" id="459">   459  </span>	<span class="comment doc">/**
+<span class="lineno" id="460">   460  </span>	 * Returns the number of records in the RecordSet.
+<span class="lineno" id="461">   461  </span>	 */</span>
+<span class="lineno" id="462">   462  </span>	<span class="key">public</span> <span class="key">function</span> size():Number 
+<span class="lineno" id="463">   463  </span>	{
+<span class="lineno" id="464">   464  </span>		<span class="key">if</span> (isLocal()) {
+<span class="lineno" id="465">   465  </span>			<span class="key">return</span> _items.length ;
+<span class="lineno" id="466">   466  </span>		} <span class="key">else</span> {
+<span class="lineno" id="467">   467  </span>			<span class="key">return</span> mTotalCount ;
+<span class="lineno" id="468">   468  </span>		}
+<span class="lineno" id="469">   469  </span>	}
+<span class="lineno" id="470">   470  </span>	
+<span class="lineno" id="471">   471  </span>	<span class="key">public</span> <span class="key">function</span> sortItems(compareFunc:Function, options:Number):Void 
+<span class="lineno" id="472">   472  </span>	{
+<span class="lineno" id="473">   473  </span>		<span class="key">if</span> (checkLocal()) <span class="key">return</span> ;
+<span class="lineno" id="474">   474  </span>		_items.sort(compareFunc, options) ;
+<span class="lineno" id="475">   475  </span>		notifyChanged(_eSort) ;
+<span class="lineno" id="476">   476  </span>	}
+<span class="lineno" id="477">   477  </span>
+<span class="lineno" id="478">   478  </span>	<span class="key">public</span> <span class="key">function</span> sortItemsBy( fieldNames , options ):Void 
+<span class="lineno" id="479">   479  </span>	{
+<span class="lineno" id="480">   480  </span>		<span class="key">if</span> (checkLocal()) <span class="key">return</span> ;
+<span class="lineno" id="481">   481  </span>		_items.sortOn( fieldNames, options ) ;
+<span class="lineno" id="482">   482  </span>		notifyChanged(_eSort) ;
+<span class="lineno" id="483">   483  </span>	}
+<span class="lineno" id="484">   484  </span>	
+<span class="lineno" id="485">   485  </span>	<span class="key">public</span> <span class="key">function</span> toArray():Array 
+<span class="lineno" id="486">   486  </span>	{
+<span class="lineno" id="487">   487  </span>		<span class="key">return</span> _items ;
+<span class="lineno" id="488">   488  </span>	}
+<span class="lineno" id="489">   489  </span>
+<span class="lineno" id="490">   490  </span>	<span class="comment">// ----o Virtual Properties</span>
+<span class="lineno" id="491">   491  </span>
+<span class="lineno" id="492">   492  </span>	<span class="key">public</span> <span class="key">function</span> get columnNames():Array 
+<span class="lineno" id="493">   493  </span>	{
+<span class="lineno" id="494">   494  </span>		<span class="key">return</span> getColumnNames() ;
+<span class="lineno" id="495">   495  </span>	}
+<span class="lineno" id="496">   496  </span>
+<span class="lineno" id="497">   497  </span>	<span class="key">public</span> <span class="key">function</span> get items():Array 
+<span class="lineno" id="498">   498  </span>	{
+<span class="lineno" id="499">   499  </span>		<span class="key">return</span> _items ;
+<span class="lineno" id="500">   500  </span>	}
+<span class="lineno" id="501">   501  </span>
+<span class="lineno" id="502">   502  </span>	<span class="key">public</span> <span class="key">function</span> get length():Number 
+<span class="lineno" id="503">   503  </span>	{
+<span class="lineno" id="504">   504  </span>		<span class="key">return</span> getLength() ;
+<span class="lineno" id="505">   505  </span>	}
+<span class="lineno" id="506">   506  </span>	
+<span class="lineno" id="507">   507  </span>	<span class="comment">// ----o Private Properties</span>
+<span class="lineno" id="508">   508  </span>	
+<span class="lineno" id="509">   509  </span>	<span class="key">private</span> <span class="key">var</span> mTiles : Array;
+<span class="lineno" id="510">   510  </span>	<span class="key">private</span> <span class="key">var</span> _items : Array ;
+<span class="lineno" id="511">   511  </span>
+<span class="lineno" id="512">   512  </span>	<span class="key">private</span> <span class="key">var</span> _eAdd:RecordSetEvent = <span class="key">null</span> ;
+<span class="lineno" id="513">   513  </span>	<span class="key">private</span> <span class="key">var</span> _eClear:RecordSetEvent = <span class="key">null</span> ;
+<span class="lineno" id="514">   514  </span>	<span class="key">private</span> <span class="key">var</span> _eRemove:RecordSetEvent = <span class="key">null</span> ;
+<span class="lineno" id="515">   515  </span>	<span class="key">private</span> <span class="key">var</span> _eSort:RecordSetEvent = <span class="key">null</span> ;
+<span class="lineno" id="516">   516  </span>	<span class="key">private</span> <span class="key">var</span> _eUpdate:RecordSetEvent = <span class="key">null</span> ;
+<span class="lineno" id="517">   517  </span>
+<span class="lineno" id="518">   518  </span>	<span class="key">private</span> <span class="key">var</span> _id:Number = <span class="num_const">0</span> ;
+<span class="lineno" id="519">   519  </span>
+<span class="lineno" id="520">   520  </span>	<span class="comment">// -- server-associated RecordSet only</span>
+<span class="lineno" id="521">   521  </span>	
+<span class="lineno" id="522">   522  </span>	<span class="key">private</span> <span class="key">var</span> mDeliveryMode:String;	
+<span class="lineno" id="523">   523  </span>	<span class="key">private</span> <span class="key">var</span> mRecordsAvailable:Number ;
+<span class="lineno" id="524">   524  </span>	<span class="key">private</span> <span class="key">var</span> mRecordSetID:Number = <span class="key">null</span> ;
+<span class="lineno" id="525">   525  </span>	<span class="key">private</span> <span class="key">var</span> mRecordSetService:RemotingService ;
+<span class="lineno" id="526">   526  </span>	<span class="key">private</span> <span class="key">var</span> mTotalCount:Number ;
+<span class="lineno" id="527">   527  </span>
+<span class="lineno" id="528">   528  </span>	<span class="comment">// -- only if deliverymode = "page"</span>
+<span class="lineno" id="529">   529  </span>	<span class="key">private</span> <span class="key">var</span> mPageSize:Number;
+<span class="lineno" id="530">   530  </span>	<span class="key">private</span> <span class="key">var</span> mNumPrefetchPages:Number;
+<span class="lineno" id="531">   531  </span>	<span class="key">private</span> <span class="key">var</span> mAllNotified:Boolean;
+<span class="lineno" id="532">   532  </span>	<span class="key">private</span> <span class="key">var</span> mOutstandingRecordCount:Number;
+<span class="lineno" id="533">   533  </span>
+<span class="lineno" id="534">   534  </span>	<span class="key">private</span> <span class="key">var</span> _nc ;
+<span class="lineno" id="535">   535  </span>
+<span class="lineno" id="536">   536  </span>	<span class="key">static</span> <span class="key">private</span> <span class="key">var</span> _initRegister:Boolean = register() ;	
+<span class="lineno" id="537">   537  </span>
+<span class="lineno" id="538">   538  </span>	<span class="comment doc">/**
+<span class="lineno" id="539">   539  </span>	
+<span class="lineno" id="540">   540  </span>	private function getRecordSetService():RemotingService {
+<span class="lineno" id="541">   541  </span>		// see MM code
+<span class="lineno" id="542">   542  </span>		return mRecordSetService ;
+<span class="lineno" id="543">   543  </span>	}
+<span class="lineno" id="544">   544  </span>	
+<span class="lineno" id="545">   545  </span>	private function setData( ) {
+<span class="lineno" id="546">   546  </span>		trace("&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; " + this + " : " + arguments) ;	
+<span class="lineno" id="547">   547  </span>	}
+<span class="lineno" id="548">   548  </span>
+<span class="lineno" id="549">   549  </span>	*/</span>
+<span class="lineno" id="550">   550  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package asgard.data.remoting" class="button">Package</a></li><li><a href="RecordSet.html" title="Detail of asgard.data.remoting.RecordSet API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

@@ -13,7 +13,6 @@ vegas.util.comparators
 buRRRn.ASTUce.samples
 vegas.events.type
 vegas.logging.targets
-vegas.logging.tracer
 vegas.string.errors
 vegas.logging
 vegas.data.map

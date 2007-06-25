@@ -1,0 +1,63 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>buRRRn.eden.strings</title><script src="../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../index-files";
+//--></script><link href="../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../overview-summary.html" title="Overview" rel="top"/><link href="package-summary.html" title="Package buRRRn.eden" rel="up"/><link href="../../pegas/colors/ColorHTML.html" title="Class pegas.colors.ColorHTML" rel="prev"/><link href="../../buRRRn/eden/GenericParser.html" title="Class buRRRn.eden.GenericParser" rel="next"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><h1>Class buRRRn.eden.strings</h1><div class="type_hierachy"><ul><li><strong>buRRRn.eden.strings</strong></li></ul></div><div class="type_description"><h2>Description</h2><p>
+ Configure the eden library messages.
+ exemple:
+ <pre>
+ trace( <span class="key">new</span> StringFormatter( buRRRn.eden.strings.pairIsIgnored).format(<span class="str_const">"toto"</span>, <span class="num_const">5</span>, <span class="num_const">10</span> ) );
+ </pre>
+ <p><b>Attention :</b> Don't use eden to load its own resources message this will cause an infinite loop.</p>
+ </p></div><div class="type_indexes"><div class="field_index"><h2>Field Index</h2><a href="#doesNotExist" title="static doesNotExist:String">doesNotExist</a>, <a href="#errorArray" title="static errorArray:String">errorArray</a>, <a href="#errorComment" title="static errorComment:String">errorComment</a>, <a href="#errorConstructor" title="static errorConstructor:String">errorConstructor</a>, <a href="#errorFunction" title="static errorFunction:String">errorFunction</a>, <a href="#errorIdentifier" title="static errorIdentifier:String">errorIdentifier</a>, <a href="#errorKeyword" title="static errorKeyword:String">errorKeyword</a>, <a href="#errorLineTerminator" title="static errorLineTerminator:String">errorLineTerminator</a>, <a href="#errorNumber" title="static errorNumber:String">errorNumber</a>, <a href="#errorObject" title="static errorObject:String">errorObject</a>, <a href="#errorString" title="static errorString:String">errorString</a>, <a href="#extRefDoesNotExist" title="static extRefDoesNotExist:String">extRefDoesNotExist</a>, <a href="#futurReservedKeyword" title="static futurReservedKeyword:String">futurReservedKeyword</a>, <a href="#malformedHexadecimal" title="static malformedHexadecimal:String">malformedHexadecimal</a>, <a href="#notAuthorizedConstructor" title="static notAuthorizedConstructor:String">notAuthorizedConstructor</a>, <a href="#notAuthorizedExternalReference" title="static notAuthorizedExternalReference:String">notAuthorizedExternalReference</a>, <a href="#notAuthorizedFunction" title="static notAuthorizedFunction:String">notAuthorizedFunction</a>, <a href="#notAuthorizedPath" title="static notAuthorizedPath:String">notAuthorizedPath</a>, <a href="#notFunctionCallAllowed" title="static notFunctionCallAllowed:String">notFunctionCallAllowed</a>, <a href="#notValidConstructor" title="static notValidConstructor:String">notValidConstructor</a>, <a href="#notValidFunction" title="static notValidFunction:String">notValidFunction</a>, <a href="#notValidPath" title="static notValidPath:String">notValidPath</a>, <a href="#pairIsIgnored" title="static pairIsIgnored:String">pairIsIgnored</a>, <a href="#requirePairValue" title="static requirePairValue:String">requirePairValue</a>, <a href="#reservedKeyword" title="static reservedKeyword:String">reservedKeyword</a>, <a href="#unterminatedComment" title="static unterminatedComment:String">unterminatedComment</a></div></div><div class="type_details"><div class="field_detail_list"><h2>Field Detail</h2><a name="requirePairValue"></a><h3>requirePairValue</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">requirePairValue</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ multiSerialize require pairs of values.
+     </div></div><a name="pairIsIgnored"></a><h3>pairIsIgnored</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">pairIsIgnored</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ name "{0}" is not a string, pair[{1},{2}] is ignored
+     </div></div><a name="reservedKeyword"></a><h3>reservedKeyword</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">reservedKeyword</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ "{0}" is a reserved keyword
+     </div></div><a name="futurReservedKeyword"></a><h3>futurReservedKeyword</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">futurReservedKeyword</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ "{0}" is a future reserved keyword
+     </div></div><a name="notValidPath"></a><h3>notValidPath</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">notValidPath</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ "{0} is not a valid path
+     </div></div><a name="unterminatedComment"></a><h3>unterminatedComment</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">unterminatedComment</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ unterminated comment
+     </div></div><a name="errorComment"></a><h3>errorComment</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">errorComment</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ syntax error (comment)
+     </div></div><a name="errorIdentifier"></a><h3>errorIdentifier</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">errorIdentifier</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ bad identifier
+	 </div></div><a name="notValidConstructor"></a><h3>notValidConstructor</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">notValidConstructor</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ "{0}" is not a valid constructor
+     </div></div><a name="doesNotExist"></a><h3>doesNotExist</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">doesNotExist</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ "{0}" does not exists
+     </div></div><a name="errorConstructor"></a><h3>errorConstructor</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">errorConstructor</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ bad constructor.
+     </div></div><a name="errorLineTerminator"></a><h3>errorLineTerminator</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">errorLineTerminator</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ bad string (found line terminator in string)
+     </div></div><a name="errorString"></a><h3>errorString</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">errorString</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ bad string (unterminated string)
+     </div></div><a name="errorArray"></a><h3>errorArray</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">errorArray</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ bad array (unterminated array)
+     </div></div><a name="errorObject"></a><h3>errorObject</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">errorObject</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ bad object (unterminated object)
+     </div></div><a name="malformedHexadecimal"></a><h3>malformedHexadecimal</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">malformedHexadecimal</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ bad number (malformed hexadecimal)
+     </div></div><a name="errorNumber"></a><h3>errorNumber</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">errorNumber</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ bad number (not finite)
+     </div></div><a name="extRefDoesNotExist"></a><h3>extRefDoesNotExist</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">extRefDoesNotExist</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ external reference "{0}" does not exists
+     </div></div><a name="errorKeyword"></a><h3>errorKeyword</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">errorKeyword</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ syntax error
+     </div></div><a name="notAuthorizedConstructor"></a><h3>notAuthorizedConstructor</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">notAuthorizedConstructor</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ "{0}" is not an authorized constructor
+     </div></div><a name="notAuthorizedExternalReference"></a><h3>notAuthorizedExternalReference</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">notAuthorizedExternalReference</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ "{0}" is not an authorized external reference
+     </div></div><a name="notAuthorizedPath"></a><h3>notAuthorizedPath</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">notAuthorizedPath</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ "{0}" is not an authorized path
+     </div></div><a name="notValidFunction"></a><h3>notValidFunction</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">notValidFunction</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ "{0}" is not a valid function
+     </div></div><a name="errorFunction"></a><h3>errorFunction</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">errorFunction</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ bad function
+     </div></div><a name="notFunctionCallAllowed"></a><h3>notFunctionCallAllowed</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">notFunctionCallAllowed</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ function call "{0}( {1} )"is not allowed
+	 </div></div><a name="notAuthorizedFunction"></a><h3>notAuthorizedFunction</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">notAuthorizedFunction</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ "{0}" is not an authorized function
+     </div></div></div></div><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package buRRRn.eden" class="button">Package</a></li><li><span class="button nav_current">Class</span></li><li><a href="strings.as.html" title="Source code of buRRRn.eden.strings" class="button">Source</a></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
