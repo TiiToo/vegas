@@ -166,6 +166,17 @@ class lunas.display.components.container.ListContainer extends SimpleContainer
 		return _nSpace ;
 	}
 	
+	/**
+	 * Use the mask protection.
+	 */
+	public function lockMask():Void
+	{
+		_bLockMask = true;	
+	}
+	
+	/**
+	 * Invoqued when the container size change.
+	 */
 	public function resize():Void 
 	{
 		if (_nChildCount > 0) 
@@ -238,6 +249,14 @@ class lunas.display.components.container.ListContainer extends SimpleContainer
 		if (_oModel.size() > 0) update() ;
 	}
 	
+	/**
+	 * Unlock the mask protection.
+	 */
+	public function unlockMask():Void
+	{
+		_bLockMask = false;	
+	}
+	
 	public function viewEnabled():Void 
 	{
 		var l = _oModel.size() ;
@@ -246,9 +265,12 @@ class lunas.display.components.container.ListContainer extends SimpleContainer
 			_oModel.getChildAt(l).enabled = enabled ;
 		}
 	}
+		
 
 	private var _bMaskIsActive:Boolean ;
-
+	
+	private var _bLockMask:Boolean = false ;
+	
 	private var _bound:Object ;
 
 	private var _maskPen:RectanglePen ;
@@ -289,7 +311,7 @@ class lunas.display.components.container.ListContainer extends SimpleContainer
 		_maskPen.draw( _bound.w , _bound.h ) ;
 		_maskPen.endFill() ;
 		
-		if ( _bMaskIsActive ) 
+		if ( _bMaskIsActive && _bLockMask == false ) 
 		{
 			_mcContainer.setMask(_mcMask) ;
 		}

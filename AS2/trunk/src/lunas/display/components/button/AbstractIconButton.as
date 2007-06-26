@@ -51,7 +51,7 @@ class lunas.display.components.button.AbstractIconButton extends AbstractButton
 		setIcon(sIcon) ;	
 	}
 	
-	public function attachIcon(depth:Number):MovieClip 
+	public function attachIcon(depth:Number, target:MovieClip):MovieClip 
 	{
 		if (_mcIcon) 
 		{
@@ -59,7 +59,11 @@ class lunas.display.components.button.AbstractIconButton extends AbstractButton
 		}
 		if (getIcon() != undefined) 
 		{
-			return attachMovie( getIcon(), "_mcIcon", isNaN(depth) ? 4 : depth ) ;
+			if (target == null)
+			{
+				target = this ;
+			}
+			return target.attachMovie( getIcon(), "_mcIcon", isNaN(depth) ? 4 : depth ) ;
 		} 
 		else 
 		{
@@ -94,12 +98,25 @@ class lunas.display.components.button.AbstractIconButton extends AbstractButton
 		dispatchEvent(new ButtonEvent( ButtonEventType.ICON_CHANGE )) ;
 	}
 
+	/**	
+	 * Sets the icon color of this component.
+	 * @see Color.setRGB
+	 */
 	public function setIconColor(hex:Number):Void 
 	{
 		resetIconColor() ; 
-		if ( _mcIcon && !isNaN(hex) ) {
+		if ( _mcIcon && !isNaN(hex) ) 
+		{
 			(new Color(_mcIcon)).setRGB (hex) ;
 		}
+	}
+
+	/**
+	 * Sets the icon reference of this component.
+	 */
+	public function setIconTarget( target:MovieClip ):Void
+	{ 
+		_mcIcon = target ;
 	}
 
 	public function viewIconChanged():Void 
