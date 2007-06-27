@@ -159,7 +159,10 @@ class vegas.util.AbstractTimer extends EventDispatcher implements ICloneable, IC
 	 */
 	public function restart(noEvent:Boolean):Void 
 	{
-		if (getRunning()) this.stop() ;
+		if (getRunning()) 
+		{
+			this.stop() ;
+		}
 		_setRunning(true) ;
 		run() ;
 		if (!noEvent) 

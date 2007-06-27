@@ -192,7 +192,7 @@ class andromeda.ui.ApplicationContextMenu extends ConfigurableObject
 		
 		// check config
 		
-		var conf:Array = Config.getInstance()[ApplicationID.CONTEXT_MENU] ;
+		var conf:Array = Array(Config.getInstance()[ ApplicationID.CONTEXT_MENU ]) ;
 		if (conf) 
 		{
 			var l:Number = conf.length ;
@@ -217,7 +217,7 @@ class andromeda.ui.ApplicationContextMenu extends ConfigurableObject
 		
 		// check fullscreen mode in the config of the application.
 		
-		if (conf.isFullScreen)
+		if ( Config.getInstance().isFullScreen )
 		{
 			addFullScreen() ;
 		}
