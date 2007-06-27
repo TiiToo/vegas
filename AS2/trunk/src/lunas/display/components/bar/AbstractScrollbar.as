@@ -108,7 +108,7 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 		var pos:Number = this[mouseField] - _mouseOffset ;
 		pos = MathsUtil.getPercent( MathsUtil.clamp(pos, 0, size), size ) ;
 		setPosition( pos , null, ( arguments[0] == true ? true : null ) ) ;
-		notifyDrag() ;
+		notifyDrag(pos) ;
 	}
 
 	/**
@@ -159,8 +159,9 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 	/**
 	 * Dispatchs an event when the user drag the bar.
 	 */
-	public function notifyDrag():Void 
+	public function notifyDrag( position:Number ):Void 
 	{
+		_eDrag.position = position ;
 		dispatchEvent( _eDrag ) ;
 	}
 

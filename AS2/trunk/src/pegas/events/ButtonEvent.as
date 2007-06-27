@@ -133,9 +133,10 @@
 import pegas.events.MouseEvent;
 
 /**
+ * The event invoqued in the button or thumbs of the applications.
  * @author eKameleon
  */
-class pegas.events.ButtonEvent extends MouseEvent 
+dynamic class pegas.events.ButtonEvent extends MouseEvent 
 {
 
 	/**
@@ -156,12 +157,18 @@ class pegas.events.ButtonEvent extends MouseEvent
 	
 	}
 
-	public function clone() {
+	/**
+	 * Returns a shallow copy of this objet.
+	 * @return a shallow copy of this objet.
+	 */
+	public function clone() 
+	{
 		var prop:String ;
 		var props:Array = ["localX", "localY", "relatedObject", "ctrlKey", "altKey", "shiftKey", "buttonDown", "delta"] ;
 		var be:ButtonEvent = new ButtonEvent(_type, _target) ;
 		var l:Number = props.length ;
-		while(--l > -1) {
+		while(--l > -1) 
+		{
 			prop = props[l] ;
 			be[prop] = this[prop] ;
 		}

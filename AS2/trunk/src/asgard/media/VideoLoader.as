@@ -421,9 +421,8 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	 */
 	/*override*/ public function setPosition(n:Number):Void 
 	{
-		var time = n * getDuration() / 100 ;
-		trace(time) ;
-		setTime(n) ;
+		var time = Math.round(n * getDuration() / 100) ;
+		setTime(time) ;
 	}
 
 	/**
