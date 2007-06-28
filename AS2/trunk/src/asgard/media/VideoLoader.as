@@ -289,6 +289,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 			
 			setResumed(false) ;
 			_oNS.pause( false ) ;
+			_startLoadProgress() ;
 			startProgress() ;
 			
 		}
