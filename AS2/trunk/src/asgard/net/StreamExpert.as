@@ -352,6 +352,7 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	 */
 	public function pause():Void
 	{
+		_global.clearTimeout(_timeout) ;
 		if ( StreamCollector.contains( getStreamID() ) )
 		{
 			getStream().pause( true ) ;
@@ -369,7 +370,7 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	 */
 	public function play( name:Object, start:Number, len:Number, reset:Object ):Void
 	{
-		
+		_global.clearTimeout(_timeout) ;
 		if ( StreamCollector.contains( getStreamID() ) )
 		{
 			var s:Stream = getStream() ;
@@ -395,6 +396,7 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	 */
 	public function publish( name , howToPublish:String ):Void
 	{
+		_global.clearTimeout(_timeout) ;
 		if ( StreamCollector.contains( getStreamID() ) )
 		{
 			getStream().publish( name, howToPublish ) ;
@@ -476,6 +478,7 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	 */
 	public function resume():Void
 	{
+		_global.clearTimeout(_timeout) ;
 		if ( StreamCollector.contains( getStreamID() ) )
 		{
 			getStream().pause( false ) ;
@@ -488,8 +491,12 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 		}
 	}
 
+	/**
+	 * 
+	 */
 	public function seek( offset:Number ):Void
 	{
+		_global.clearTimeout(_timeout) ;
 		if ( StreamCollector.contains( getStreamID() ) )
 		{
 			getStream().seek( offset ) ;
@@ -567,14 +574,23 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	
 	/**
 	 * This method stop stream.
+	 * @param time the optional time value to seek the video before to stop it.
 	 */
-	public function stop():Void
+	public function stop( nTime:Number ):Void
 	{
+		_global.clearTimeout(_timeout) ;				
+		if (_tProgress.running)
+		{
+			_tProgress.stop() ;
+		}
 		if ( StreamCollector.contains( getStreamID() ) )
 		{
 			getStream().stop() ;
-			_tProgress.stop() ;
 			dispatchEvent( _ePlayStop ) ;
+			if (nTime > -1)
+			{
+				_timeout = _global.setTimeout(this, "seek", 150, nTime) ;
+			}
 		}
 		else
 		{
@@ -644,7 +660,10 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	
 	private var _streamID:String ;
 	
+	private var _timeout:Number ;
+	
 	private var _tProgress:Timer ;
+		
 	
 	/**
 	 * Invoqued when the stream is in progress.
