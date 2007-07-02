@@ -61,7 +61,7 @@ class andromeda.core.ApplicationCommand
 	 */
 	static public function hideLoader():Void
 	{
-		if (_lockLoader == false)
+		if ( ! _lockLoader )
 		{
 			unprotectScreen() ;
 			if ( DisplayObjectCollector.contains( ApplicationList.APPLICATION_LOADER ) ) 
