@@ -61,13 +61,34 @@ class andromeda.core.ApplicationCommand
 	 */
 	static public function hideLoader():Void
 	{
-		unprotectScreen() ;
-		if ( DisplayObjectCollector.contains( ApplicationList.APPLICATION_LOADER ) ) 
+		if (_lockLoader == false)
 		{
-			DisplayObjectCollector.get(ApplicationList.APPLICATION_LOADER).hide();
+			unprotectScreen() ;
+			if ( DisplayObjectCollector.contains( ApplicationList.APPLICATION_LOADER ) ) 
+			{
+				DisplayObjectCollector.get(ApplicationList.APPLICATION_LOADER).hide();
+			}
 		}
 	}
+	
+	/**
+	 * Returns (@code true} if the loader is locked.
+	 * @return (@code true} if the loader is locked.
+	 */
+	static public function isLockLoader():Boolean
+	{
+		return _lockLoader ;	
+	}
 
+	/**
+	 * Locks the loader. The loader is alway visible.
+	 */
+	static public function lockLoader():Void
+	{
+		_lockLoader = true ;
+		showLoader() ;	
+	}
+	
 	/**
 	 * Protect the application with the protect screen.
 	 */
@@ -89,11 +110,36 @@ class andromeda.core.ApplicationCommand
 	}
 	
 	/**
+	 * Unlocks the loader. The loader is visible or invisible when the user use the hideLoader or showLoader methods.
+	 * @param b (optional) the boolean flag value to indicates if the loader must be visible or not after the unlock process of the loader.
+	 */
+	static public function unlockLoader( b:Boolean ):Void
+	{
+		_lockLoader = false ;
+		if ( b != null )
+		{	
+			if ( b == true )
+			{
+				showLoader() ;
+			}
+			else
+			{
+				hideLoader() ;	
+			}
+		}
+	}
+	
+	/**
 	 * Unprotect the application with the protect screen.
 	 */
 	static public function unprotectScreen():Void
 	{
 		DisplayObjectCollector.get(ApplicationList.PROTECT_SCREEN).hide() ;
 	}
+	
+	/**
+	 * This internal value lock the loader. The loader is always visible.
+	 */
+	static private var _lockLoader:Boolean ;
 
 }
