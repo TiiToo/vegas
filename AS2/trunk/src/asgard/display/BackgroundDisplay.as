@@ -49,7 +49,7 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	
 		background = view.createEmptyMovieClip( "background", 0 ) ;
 
-		_bgDraw  = new RectanglePen(background) ;
+		_bgDraw  = initBackgroundPen() ;
 		_eResize = new UIEvent( UIEventType.RESIZE , this) ;
 		
 	}
@@ -171,6 +171,15 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	 }
 
 	/**
+	 * Returns the {@code IPen} reference used to draw the background of this display.
+	 * @return the {@code IPen} reference used to draw the background of this display.
+	 */
+	public function getBackgroundPen():IPen
+	{
+		return _bgDraw ;	
+	}
+
+	/**
 	 * Returns {@code true} if the background use full size (Stage.width and Stage.height).
 	 * @return {@code true} if the background use full size (Stage.width and Stage.height).
 	 */
@@ -195,6 +204,17 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	public function getW():Number 
 	{ 
 		return isFull ? Stage.width : _w ;
+	}
+	
+	/**
+	 * Init the pen to draw the background of this display.
+	 * This method is invoqued in the constructor of the class.
+	 * You can override this method to change the shape of the background.
+	 * @return the IPen reference to draw the background of the display.
+	 */
+	public function initBackgroundPen():IPen
+	{
+		return new RectanglePen(background) ;	
 	}
 	
 	/**
