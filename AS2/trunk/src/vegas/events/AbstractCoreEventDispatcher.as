@@ -46,7 +46,6 @@ class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEv
 	 */
 	private function AbstractCoreEventDispatcher( bGlobal:Boolean , sChannel:String  ) 
 	{
-		_oED = initEventDispatcher() ;
 		setGlobal( bGlobal , sChannel ) ;	
 	}		
 
@@ -215,8 +214,8 @@ class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEv
 	 */
 	public function setGlobal( flag:Boolean , channel:String ):Void 
 	{
-		_isGlobal = flag ;
-		setEventDispatcher( flag ? EventDispatcher.getInstance( channel ) : null ) ;
+		_isGlobal = (flag == true) ;
+		setEventDispatcher( _isGlobal ? EventDispatcher.getInstance( channel ) : null ) ;
 	}
 
 	/**
