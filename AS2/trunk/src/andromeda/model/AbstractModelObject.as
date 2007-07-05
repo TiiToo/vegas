@@ -49,6 +49,11 @@ class andromeda.model.AbstractModelObject extends AbstractModel implements IMode
 	}
 
 	/**
+	 * This property defined if the setCurrentVO method can accept the same vo in argument as the current one. 
+	 */
+	public var security:Boolean = true ;
+
+	/**
 	 * Clear the model.
 	 */	
 	public function clear():Void
@@ -109,7 +114,7 @@ class andromeda.model.AbstractModelObject extends AbstractModel implements IMode
 	 */
 	public function setCurrentVO( vo:IValueObject ):Void
 	{
-		if ( vo == _vo)
+		if ( vo == _vo && security )
 		{
 			return ;	
 		}
