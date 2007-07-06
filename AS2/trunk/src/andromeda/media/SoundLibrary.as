@@ -31,7 +31,6 @@ import vegas.errors.Warning;
 import vegas.events.Delegate;
 
 // TODO add events with setGain, setVolume and setPan methods !
-// TODO test volume, gain etc.
 
 /**
  * Sound library to register all sounds in an application.
@@ -134,6 +133,39 @@ class andromeda.media.SoundLibrary extends SoundModel
 	 * The range of all pans in the sound library.
 	 */
 	static public var RANGE_PAN:Range = new Range(-100, 100) ;
+
+	/**
+	 * (read-write) Determinates the value of the pan of all sounds in the library.
+	 */
+	public function get pan():Number
+	{
+		return getPan() ;
+	}
+
+	/**
+	 * (read-write) Sets the value of the pan of all sounds in the library.
+	 * This value is a number between -100 and 100.
+	 */
+	public function set pan( value:Number ):Void
+	{
+		setPan( value ) ;
+	}
+
+	/**
+	 * (read-write) Determinates the volume percent value of this library.
+	 */
+	public function get volume():Number
+	{
+		return getVolume() ;
+	}	
+
+	/**
+	 * (read-write) Sets the volume value for all sounds in the library. This value is a number between 0 and 100.
+	 */
+	public function set volume( value:Number) : Void
+	{
+		setVolume( value ) ;
+	}
 
 	/**
 	 * Adds new sound in the model.

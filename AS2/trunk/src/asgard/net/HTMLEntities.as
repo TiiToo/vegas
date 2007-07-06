@@ -90,7 +90,7 @@ class asgard.net.HTMLEntities
 		
 		if( removeCRLF )
 		{
-			text = text.replace( "\r\n", "" );
+			text = StringUtil.replace( text, "\r\n", "" );
 		}
 		return text;
 	}

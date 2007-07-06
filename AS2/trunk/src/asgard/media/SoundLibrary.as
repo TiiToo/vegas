@@ -27,8 +27,10 @@ import asgard.media.SoundModel;
 import pegas.maths.Range;
 
 import vegas.data.map.HashMap;
+import vegas.errors.UnsupportedOperation;
 import vegas.errors.Warning;
 import vegas.events.Delegate;
+import vegas.util.ConstructorUtil;
 
 // TODO add events with setGain, setVolume and setPan methods !
 // TODO test volume, gain etc.
@@ -114,6 +116,7 @@ class asgard.media.SoundLibrary extends SoundModel
 	function SoundLibrary() 
 	{
 		super();
+		throw new UnsupportedOperation( ConstructorUtil.getPath(this) + " is depreciated. You must use the andromeda.media.SoundLibrary class.") ;
 		_mGain = new HashMap() ;
 	}
 

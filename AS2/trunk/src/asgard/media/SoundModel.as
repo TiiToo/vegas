@@ -25,7 +25,9 @@ import asgard.events.SoundModelEvent;
 
 import vegas.data.map.HashMap;
 import vegas.errors.ArgumentsError;
+import vegas.errors.UnsupportedOperation;
 import vegas.events.Event;
+import vegas.util.ConstructorUtil;
 import vegas.util.mvc.AbstractModel;
 
 // FIXME refactoring this class with andromeda model implementation !!!!
@@ -44,6 +46,9 @@ class asgard.media.SoundModel extends AbstractModel
 	function SoundModel() 
 	{
 		super();
+		
+		throw new UnsupportedOperation( ConstructorUtil.getPath(this) + " is depreciated. You must use the andromeda.media.SoundModel class.") ;
+		
 		initEvent() ;
 		_bIsOn = true ;
 		_map = new HashMap() ;
