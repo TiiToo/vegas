@@ -188,7 +188,7 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 	{
 		notifyStartDrag() ;
 		var mouseField:String = (_nDirection == Direction.VERTICAL) ? "_ymouse" : "_xmouse" ;
-		_mouseOffset = (getThumb())[mouseField] ;
+		_mouseOffset = (getThumb())[ mouseField ] ;
 		dragging() ;
 		_isDragging = true ;
 		this.onMouseMove = dragging ;
@@ -225,11 +225,11 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 		var size:Number =  b[sizeField] - t[sizeField] ;
 		var pos:Number = (getPosition() / 100) *  size  ;
 		
-		if (!isDragging) 
+		if ( !isDragging ) 
 		{
 			t[invertPosField[posField]] =  0 ;
 		} 
-		
+
 		if ( flag || _isDragging || noEasing ) 
 		{
 			t[posField] = pos ;

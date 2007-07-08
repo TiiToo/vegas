@@ -416,14 +416,6 @@ class asgard.net.Stream extends NetStream implements IEventDispatcher, IHashable
 	}
 	
 	/**
-	 * Sets the play activity of the loader.
-	 */
-	public function setPlaying(b:Boolean):Void 
-	{
-		_isPlaying = b ;
-	}
-
-	/**
 	 * Stops the currently playing and returns to the begining of the stream. 
 	 */
 	public function stop():Void
@@ -459,7 +451,6 @@ class asgard.net.Stream extends NetStream implements IEventDispatcher, IHashable
 	private var _eUpdateAudioActivity:NumberEvent ;
 	private var _id ;
 	private var _isGlobal:Boolean ;
-	private var _isPlaying:Boolean = false ;
 	private var _logger:ILogger ;
 	private var _oMetaData:FLVMetaData ;
 

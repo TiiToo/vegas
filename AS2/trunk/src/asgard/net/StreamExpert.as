@@ -108,6 +108,14 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	static public var STREAM_PLAY_STOP:String = "onStreamPlayStop" ;
 
 	/**
+	 * (read-only) Returns {@code true] if the play activity of the Stream in in progress.
+	 */
+	public function get isPlaying():Boolean 
+	{
+		return _isPlaying ;
+	}
+
+	/**
 	 * Specifies whether audio should be sent over the stream (from a Microphone object passed as source) 
 	 * or not (null passed as source). This method is available only to the publisher of the specified stream.
 	 * @param source The source of the audio to be transmitted. 
@@ -355,6 +363,7 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 		_global.clearTimeout(_timeout) ;
 		if ( StreamCollector.contains( getStreamID() ) )
 		{
+			setPlaying(false) ;
 			getStream().pause( true ) ;
 			dispatchEvent( _ePlayPause ) ;	
 			_tProgress.stop() ;
@@ -374,6 +383,7 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 		if ( StreamCollector.contains( getStreamID() ) )
 		{
 			var s:Stream = getStream() ;
+			setPlaying(true) ;
 			s.play.apply( s, arguments ) ;
 			dispatchEvent( _ePlayStart ) ;	
 			_tProgress.start() ;
@@ -482,6 +492,7 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 		if ( StreamCollector.contains( getStreamID() ) )
 		{
 			getStream().pause( false ) ;
+			setPlaying(true) ;
 			dispatchEvent( _ePlayResume ) ;
 			_tProgress.start() ;
 		}
@@ -571,7 +582,15 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	{
 		_tProgress.setDelay( n ) ;	
 	}
-	
+
+	/**
+	 * Sets the play activity of the Stream.
+	 */
+	public function setPlaying(b:Boolean):Void 
+	{
+		_isPlaying = b ;
+	}
+
 	/**
 	 * This method stop stream.
 	 * @param time the optional time value to seek the video before to stop it.
@@ -585,6 +604,7 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 		}
 		if ( StreamCollector.contains( getStreamID() ) )
 		{
+			setPlaying(false) ;
 			getStream().stop() ;
 			dispatchEvent( _ePlayStop ) ;
 			if (nTime > -1)
@@ -656,6 +676,8 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	
 	private var _isLoop:Boolean = false ;
 	
+	private var _isPlaying:Boolean = false ;
+	
 	static private var _map:HashMap  ;
 	
 	private var _streamID:String ;
@@ -663,7 +685,6 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	private var _timeout:Number ;
 	
 	private var _tProgress:Timer ;
-		
 	
 	/**
 	 * Invoqued when the stream is in progress.
