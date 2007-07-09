@@ -56,7 +56,7 @@ class vegas.logging.LogEventLevel
 	/**
 	 * Designates events that could be harmful to the application operation (6).
 	 */	
-	static public var WARN:Number = 6 ; ;
+	static public var WARN:Number = 6 ;
 	
 	/**
 	 * Returns true if the number level passed in argument is valid.

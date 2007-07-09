@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -65,7 +65,7 @@ class asgard.display.ScrollContainerPolicy extends Number
 	/**
 	 * The scroll is active with SCROLL_ON_CLICK and AUTO mode.
 	 */
-	static public var FULL:ScrollContainerPolicy = new ScrollContainerPolicy(AUTO | SCROLL_ON_CLICK, "full") ; ;
+	static public var FULL:ScrollContainerPolicy = new ScrollContainerPolicy(AUTO | SCROLL_ON_CLICK, "full") ;
 
 	static private var __ASPF__ = _global.ASSetPropFlags(ScrollContainerPolicy, null , 7, 7) ;
 

@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -21,74 +21,10 @@
   
 */
 	
-/**	CellEventType
-
-	AUTHOR
-
-		Name : CellEventType
-		Package : asgard.events
-		Version : 1.0.0.0
-		Date :  2006-02-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	CONSTRUCTOR
-	
-		Private
-	
-	CONSTANT SUMMARY
-	
-		- CLICK:String
-		
-		- DISABLED:String
-		
-		- DOUBLE_CLICK:String
-		
-		- DOWN:String
-		
-		- DRAG:String
-		
-		- ICON_CHANGE:String
-		
-		- LABEL_CHANGE:String
-		
-		- MOUSE_UP:String
-		
-		- MOUSE_DOWN:String
-		
-		- OUT:String
-		
-		- OUT_SELECTED:String
-		
-		- OVER:String
-		
-		- OVER_SELECTED:String
-		
-		- ROLLOUT:String
-		
-		- ROLLOVER:String
-		
-		- SELECT:String
-		
-		- UNSELECT:String
-		
-		- UP:String
-	
-	
-----------  */
-
 import pegas.events.ButtonEventType;
 
-class lunas.events.CellEventType {
-
-	// ----o Constructor
-	
-	private function CellEventType() {
-		//
-	}
-
-	// ----o Static Properties
+class lunas.events.CellEventType 
+{
 
 	static public var CLICK:String = ButtonEventType.CLICK ;
 	
@@ -108,13 +44,13 @@ class lunas.events.CellEventType {
 	
 	static public var MOUSE_DOWN:String = ButtonEventType.MOUSE_DOWN ;
 	
-	static public var OUT:String = ButtonEventType.OUT ; ;
+	static public var OUT:String = ButtonEventType.OUT ;
 	
-	static public var OUT_SELECTED:String = ButtonEventType.OUT_SELECTED ; ;
+	static public var OUT_SELECTED:String = ButtonEventType.OUT_SELECTED ;
 	
-	static public var OVER:String = ButtonEventType.OVER ; ;
+	static public var OVER:String = ButtonEventType.OVER ;
 	
-	static public var OVER_SELECTED:String = ButtonEventType.OVER_SELECTED ; ;
+	static public var OVER_SELECTED:String = ButtonEventType.OVER_SELECTED ;
 	
 	static public var ROLLOUT:String = ButtonEventType.ROLLOUT ;
 	
@@ -125,7 +61,5 @@ class lunas.events.CellEventType {
 	static public var UNSELECT:String = ButtonEventType.UNSELECT ;
 	
 	static public var UP:String = "up" ;
-
-	static private var __ASPF__ = _global.ASSetPropFlags(CellEventType, null , 7, 7) ;
 
 }
