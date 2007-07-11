@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -35,7 +35,7 @@ class asgard.events.NetServerGatewayEvent extends BasicEvent
 	 */
 	public function NetServerGatewayEvent(type:String, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
 	{
-		super(type, context, bubbles, eventPhase, time, stop) ;
+		super(type, target, context, bubbles, eventPhase, time, stop) ;
 	}
 	
 	/**

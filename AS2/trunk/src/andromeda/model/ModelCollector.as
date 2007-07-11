@@ -83,7 +83,7 @@ class andromeda.model.ModelCollector
 	 * @return {@code true} if the  specified model is inserted in the model.
 	 * @throws Warning if the specified name is already registered in the collector.
 	 */
-	static public function insert( id , model:IModel):Boolean 
+	static public function insert( id , model:IModel ):Boolean 
 	{
 		if ( contains(id) ) 
 		{

@@ -1,4 +1,5 @@
-﻿/*
+﻿import andromeda.core.Identifiable;
+/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -25,18 +26,9 @@
  * This interface define a value object, the value object are use for example in the models.
  * @author eKameleon
  */
-interface andromeda.model.IValueObject 
+interface andromeda.model.IValueObject extends Identifiable
 {
 	
-	/**
-	 * Returns the id of this IValueObject.
-	 * @return the id of this IValueObject.
-	 */
-	function getID() ;
-	
-	/**
-	 * Sets the id of this IValueObject.
-	 */
-	function setID( id ):Void ;
+	//	
 	
 }

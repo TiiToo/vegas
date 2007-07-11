@@ -171,7 +171,7 @@ class andromeda.ioc.core.ObjectDefinition extends CoreObject implements IObjectD
 	/**
 	 * The internal Map of all singletons.
 	 */
-	private var _singleton : Boolean;;
+	private var _singleton:Boolean ;
 	
 	/**
 	 * The type of the IDefinition object.

@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -366,7 +366,7 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable
 		var l:Number = aItems.length ;
 		for (var i:Number = 0 ; i<l ; i++) {
 			var item:Object = {} ;
-			var aProperties = aItems[i] ;
+			var aProperties:Array = aItems[i] ;
 			var count:Number = aProperties.length ;
 			for (var j:Number = 0 ; j<count ; j++) {
 				item[ mTiles[ j ] ] = aProperties[j] ;
@@ -383,7 +383,7 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable
 	 */
 	static public function register():Boolean 
 	{
-		return Object.registerClass( "RecordSet", asgard.data.remoting.RecordSet ) ;
+		return Object.registerClass( "RecordSet", RecordSet ) ;
 	}
 
 	public function removeItem(oItem) 

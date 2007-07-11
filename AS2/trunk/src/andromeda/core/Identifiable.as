@@ -1,4 +1,3 @@
-﻿import andromeda.core.Identifiable;
 /*
 
   The contents of this file are subject to the Mozilla Public License Version
@@ -23,12 +22,21 @@
 */
 
 /**
- * The IModel interface define all models in the application.
+ * This interface defines a common structure for classes that has an ID.
  * @author eKameleon
  */
-interface andromeda.model.IModel extends Identifiable
+interface andromeda.core.Identifiable 
 {
+
+	/**
+	 * Returns the id of this object.
+	 * @return the id of this object.
+	 */
+	function getID() ;
 	
-	//
-		
+	/**
+	 * Sets the id of the object.
+	 */
+	function setID( id ):Void ; 
+
 }
