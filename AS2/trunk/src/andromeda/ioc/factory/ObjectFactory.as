@@ -39,7 +39,7 @@ class andromeda.ioc.factory.ObjectFactory extends ObjectDefinitionContainer impl
 {
 	
 	/**
-	 * Creates a new LightContainer instance.
+	 * Creates a new ObjectFactory instance.
 	 */
 	function ObjectFactory() 
 	{
@@ -99,14 +99,15 @@ class andromeda.ioc.factory.ObjectFactory extends ObjectDefinitionContainer impl
 	}
 
 	/**
-	 * Removes and destroy a singleton in the LightContainer. Invoke the 'destroy' method of this object is it's define in the IObjectDefinition of this singleton.
+	 * Removes and destroy a singleton in the container. 
+	 * Invoke the 'destroy' method of this object is it's define in the IObjectDefinition of this singleton.
 	 * @param name The name of the singleton to remove.
 	 */
 	public function removeSingleton( name:String ):Void
 	{
 		if ( isSingleton(name) )
 		{
-			_invokeIDestroyMethod( singletons.get(name), getObjectDefinition(name) ) ;
+			_invokeDestroyMethod( singletons.get(name), getObjectDefinition(name) ) ;
 			singletons.remove( name ) ;	
 		}
 	}
@@ -178,7 +179,7 @@ class andromeda.ioc.factory.ObjectFactory extends ObjectDefinitionContainer impl
 	/**
 	 * Invoque the destroy method of the specified object, if the init method is define in the IDefinition object.
 	 */
-	private function _invokeIDestroyMethod( o , definition:IObjectDefinition ):Void
+	private function _invokeDestroyMethod( o , definition:IObjectDefinition ):Void
 	{
 		if( definition.getDestroyMethodName() ) 
 		{

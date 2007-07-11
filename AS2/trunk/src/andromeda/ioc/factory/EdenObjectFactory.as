@@ -181,6 +181,11 @@ class andromeda.ioc.factory.EdenObjectFactory extends ObjectFactory implements I
 	static public var ARGUMENTS:String = "arguments" ;  
 
 	/**
+	 * Defines the label of the assembly name property of the object.
+	 */
+	static public var ASSEMBLY_NAME:String = "assemblyName" ;
+
+	/**
 	 * Defines the label of the name in a property object.
 	 */
 	static public var NAME:String = "name" ;  
@@ -253,9 +258,8 @@ class andromeda.ioc.factory.EdenObjectFactory extends ObjectFactory implements I
 		if ( o != null )
 		{
 			
-			var assemblyName:String =  o.assemblyName ;
-			
 			var args:Array          =  o[ ARGUMENTS ] ;
+			var assemblyName:String =  o[ ASSEMBLY_NAME ] ;
 			var destroy:String      =  o[ OBJECT_DESTROY_METHOD_NAME ] ;
 			var id:String           =  o[ OBJECT_ID ] ;
 			var init:String         =  o[ OBJECT_INIT_METHOD_NAME ] ;
