@@ -118,18 +118,30 @@ class vegas.util.ResolverProxy extends CoreObject
 	 */
 	public function __resolve( name:String ) 
 	{
-		if ( _proxy == null ) return ;
-		if( !_proxy.hasOwnProperty( name ) ) {
+		
+		if ( _proxy == null ) 
+		{
+			return ;
+		}
+		
+		if( !_proxy.hasOwnProperty( name ) ) 
+		{
 			if( _proxy.__proto__[name] == undefined ) return ;
         }
-		if( typeof(_proxy[name]) == "function" ) {
+		
+		if( typeof(_proxy[name]) == "function" ) 
+		{
 			var p = _proxy ; 
-			return function() {
+			return function() 
+			{
 				return p[name].apply( p, arguments );
 			};
-		} else {
-			return _proxy[name];
+		} 
+		else 
+		{
+			return _proxy[name] ;
 		}
+		
     }
 
 	/**
