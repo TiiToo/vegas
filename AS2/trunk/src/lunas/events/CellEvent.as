@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Library.
+  The Original Code is LunAS Library.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -21,95 +21,6 @@
   
 */
 
-/*
-
-	AUTHOR
-
-		Name : CellEvent
-		Package : asgard.events
-		Version : 1.0.0.0
-		Date :  2006-04-03
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-		
-	CONSTRUCTOR
-	
-		new CellEvent(e:EventType, target) ;
-
-	PROPERTY SUMMARY
-
-		- altKey:Boolean (default = false)
-		
-			Reserved for future use (not currently functional).
-		
-		- buttonDown:Boolean (default = false)
-		
-			Indicates whether the left mouse button is depressed.
-		
-		- ctrlKey:Boolean (default = false)
-		
-			Indicates whether the control(Ctrl) key modifier is activated.
-		
-		- delta:Number (default = 0)
-		
-			A number indicating how many lines should be scrolled for each notch the user rolls the mouse wheel.
-			A positive delta value indicates an upward scroll.
-			A negative value indicates a downward scroll. 
-			Typical values are 1 to 3, but faster scrolling may produce larger values.
-			This parameter is used only for the MouseEventType.mouseWheel event.
-		
-		- localX:Number (default = 0) 
-		
-			The horizontal coordinate at which the event occurred relative to the containing sprite.
-		
-		- localY:Number (default = 0) 
-		
-			The vertical coordinate at which the event occurred relative to the containing sprite.
-		
-		- relatedObject:InteractiveObject (default = null) 
-		
-			Indicates the complementary InteractiveObject instance that is affected by the event.
-			For example, when a mouseOut event occurs, the relatedObject represents the display list object to which the pointing device now points.
-		
-		- shiftKey:Boolean (default = false)
-		
-			Indicates whether the Shift(Shift) key modifier is activated.
-
-	METHOD SUMMARY
-	
-		- getIndex():Number
-	
-		- getCellIndex():CellIndex
-	
-		- getTarget():Object
-		
-		- getType():String
-		
-		- setTarget(target:Object):Void
-		
-		- setType(type:String):Void
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject
-			|
-			BasicEvent
-				|
-		 		DynamicEvent
-			 		|
-		 			MouseEvent
-						|
-						ButtonEvent
-		
-	IMPLEMENTS
-	
-		IEvent
-
-*/
-
 import lunas.display.components.cell.CellIndex;
 import lunas.display.components.ICell;
 
@@ -118,16 +29,55 @@ import pegas.events.ButtonEvent;
 class lunas.events.CellEvent extends ButtonEvent 
 {
 
-	// ----o Constructor
-	
+	/**
+	 * Creates a new CellEvent instance.
+	 */
 	public function CellEvent(type:String, target:ICell) 
 	{
 		super(type, target) ;
 		_cell = target ;
 	}
 
-	// ----o Public Methods
+	static public var CLICK:String = ButtonEvent.CLICK ;
+	
+	static public var DISABLED:String = ButtonEvent.DISABLED ;
+	
+	static public var DOUBLE_CLICK:String = ButtonEvent.DOUBLE_CLICK ;
+	
+	static public var DOWN:String = ButtonEvent.DOWN ;
 
+	static public var DRAG:String = ButtonEvent.DRAG ;
+	
+	static public var ICON_CHANGE:String = ButtonEvent.ICON_CHANGE ;
+	
+	static public var LABEL_CHANGE:String = ButtonEvent.LABEL_CHANGE ;
+	
+	static public var MOUSE_UP:String = ButtonEvent.MOUSE_UP ;
+	
+	static public var MOUSE_DOWN:String = ButtonEvent.MOUSE_DOWN ;
+	
+	static public var OUT:String = ButtonEvent.OUT ;
+	
+	static public var OUT_SELECTED:String = ButtonEvent.OUT_SELECTED ;
+	
+	static public var OVER:String = ButtonEvent.OVER ;
+	
+	static public var OVER_SELECTED:String = ButtonEvent.OVER_SELECTED ;
+	
+	static public var ROLLOUT:String = ButtonEvent.ROLLOUT ;
+	
+	static public var ROLLOVER:String = ButtonEvent.ROLLOVER ;
+		
+	static public var SELECT:String = ButtonEvent.SELECT ;
+	
+	static public var UNSELECT:String = ButtonEvent.UNSELECT ;
+	
+	static public var UP:String = "up" ;
+
+	/**
+	 * Returns a shallow copy of the object.
+	 * @return a shallow copy of the object.
+	 */
 	public function clone() 
 	{
 		var prop:String ;
@@ -141,17 +91,23 @@ class lunas.events.CellEvent extends ButtonEvent
 		return be ;
 	}
 	
+	/**
+	 * Returns the {@code ICell} reference of this event.
+	 * @return the {@code ICell} reference of this event.
+	 */
 	public function getCell():ICell 
 	{
 		return _cell ;	
 	}
 	
+	/**
+	 * Returns the {@code CellIndex} value of this event.
+	 * @return the {@code CellIndex} value of this event.
+	 */	
 	public function getCellIndex():CellIndex 
 	{
 		return _cell.getCellIndex() ;	
 	}
-	
-	// ----o Private Properties
-	
+
 	private var _cell:ICell ;
 }

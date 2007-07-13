@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Library.
+  The Original Code is LunAS Library.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -21,9 +21,8 @@
   
 */
 
-import lunas.display.components.IStyle;
+import lunas.core.IStyle;
 import lunas.events.StyleEvent;
-import lunas.events.StyleEventType;
 
 import vegas.events.AbstractCoreEventDispatcher;
 import vegas.string.HTMLStringFormatter;
@@ -169,7 +168,7 @@ class lunas.display.components.AbstractStyle extends AbstractCoreEventDispatcher
 			}
 		}
 		
-		dispatchEvent( new StyleEvent(StyleEventType.STYLE_CHANGED, this)) ;
+		dispatchEvent( new StyleEvent(StyleEvent.STYLE_CHANGED, this)) ;
 		
 		
 	}
@@ -181,7 +180,7 @@ class lunas.display.components.AbstractStyle extends AbstractCoreEventDispatcher
 	{
 		_oS = ss ;
 		styleSheetChanged() ;
-		dispatchEvent(new StyleEvent(StyleEventType.STYLE_SHEET_CHANGED, this)) ;
+		dispatchEvent(new StyleEvent(StyleEvent.STYLE_SHEET_CHANGED, this)) ;
 	}
 
 	/**

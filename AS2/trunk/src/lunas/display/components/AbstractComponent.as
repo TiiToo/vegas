@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Library.
+  The Original Code is LunAS Library.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -21,9 +21,9 @@
   
 */
 
+import lunas.core.IStyle;
 import lunas.display.components.IBuilder;
-import lunas.display.components.IStyle;
-import lunas.events.StyleEventType;
+import lunas.events.StyleEvent;
 
 import pegas.events.UIEvent;
 import pegas.events.UIEventType;
@@ -779,8 +779,8 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	{
 		if (_style != null)
 		{
-			_style.addEventListener(StyleEventType.STYLE_CHANGED, _listenerStyleChange) ;
-			_style.addEventListener(StyleEventType.STYLE_SHEET_CHANGED, _listenerStyleChange) ;
+			_style.addEventListener(StyleEvent.STYLE_CHANGED, _listenerStyleChange) ;
+			_style.addEventListener(StyleEvent.STYLE_SHEET_CHANGED, _listenerStyleChange) ;
 		}
 	}
 	
@@ -795,8 +795,8 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	{
 		if ( _style != null ) 
 		{
-			_style.removeEventListener(StyleEventType.STYLE_CHANGED, _listenerStyleChange) ;
-			_style.removeEventListener(StyleEventType.STYLE_SHEET_CHANGED, _listenerStyleChange ) ;
+			_style.removeEventListener(StyleEvent.STYLE_CHANGED, _listenerStyleChange) ;
+			_style.removeEventListener(StyleEvent.STYLE_SHEET_CHANGED, _listenerStyleChange ) ;
 			_style = null ;
 		}
 

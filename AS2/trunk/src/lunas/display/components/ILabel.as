@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Library.
+  The Original Code is LunAS Library.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -21,39 +21,9 @@
   
 */
 
-/** ILabel [Interface]
 
-	AUTHOR
-	
-		Name : ILabel
-		Package : lunas.display.components
-		Version : 1.0.0.0
-		Date :  2006-02-19
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- getAutoSize():Boolean
-		
-		- getHTML():Boolean
-		
-		- getLabel():String
-		
-		- getText():String
-		
-		- setHTML(b:Boolean):Void
-		
-		- setAutoSize(b:Boolean):Void
-		
-		- setLabel(str:String):Void
-		
-		- setText(str:String):Void
-	
-----------  */
-
-interface lunas.display.components.ILabel {
+interface lunas.display.components.ILabel 
+{
 	
 	function getAutoSize():Boolean ;
 	

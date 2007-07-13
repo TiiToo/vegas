@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Library.
+  The Original Code is LunAS Library.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -21,51 +21,8 @@
   
 */
 
-/**	PanelEventType
-
-	AUTHOR
-
-		Name : PanelEventType
-		Package : lunas.events
-		Version : 1.0.0.0
-		Date :  2006-02-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	CONSTRUCTOR
-	
-		Private
-	
-	CONSTANT SUMMARY
-	
-		- CREATE:PanelEventType 
-		
-			"onCreate"
-		
-		- DESTROY:PanelEventType
-		
-			"onDestroy"
-		
-		- HIDE:PanelEventType
-		
-			"onHide"
-		
-		- SHOW:PanelEventType 
-		
-			"onShow"
-		
-**/
-
-class lunas.events.PanelEventType {
-
-	// ----o Constructor
-	
-	private function PanelEventType() {
-		//
-	}
-
-	// ----o Static Properties
+class lunas.events.PanelEventType 
+{
 
 	static public var CREATE:String = "onCreate" ;
 	
@@ -74,7 +31,5 @@ class lunas.events.PanelEventType {
 	static public var HIDE:String = "onHide" ;
 	
 	static public var SHOW:String = "onShow" ;
-	
-	static private var __ASPF__ = _global.ASSetPropFlags(PanelEventType, null , 7, 7) ;
 	
 }

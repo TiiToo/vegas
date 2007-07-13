@@ -43,7 +43,5 @@ class pegas.events.MouseEventType
 	static public var ROLLOUT:String = "rollOut" ;
 	
 	static public var ROLLOVER:String = "rollOver" ;
-	
-	static private var __ASPF__ = _global.ASSetPropFlags(MouseEventType, null , 7, 7) ;
 
 }

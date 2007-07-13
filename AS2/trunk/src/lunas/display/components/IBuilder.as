@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Library.
+  The Original Code is LunAS Library.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -32,9 +32,9 @@ interface lunas.display.components.IBuilder extends IRunnable
 
 	function clear():Void ;
 	
-	function getTarget():MovieClip ;
+	function getTarget() ;
 	
-	function setTarget(t:MovieClip):Void ;
+	function setTarget(t):Void ;
 	
 	function update():Void ;
 	

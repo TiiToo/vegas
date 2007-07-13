@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Library.
+  The Original Code is LunAS Library.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -21,27 +21,15 @@
   
 */
 
-import vegas.events.EventListener;
-
 /**
- * The IStyle interface.
+ * The IDirectionable interface.
  * @author eKameleon
  */
-interface lunas.display.components.IStyle 
+interface lunas.core.IDirectionable 
 {
 	
-	function addEventListener(eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void ;
-		
-	function getStyle(prop:String) ;
-
-	function getStyleSheet():TextField.StyleSheet ;
-
-	function removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener ;
-
-	function setStyle():Void ;
+	function getDirection():Number ;
 	
-	function setStyleSheet(ss:TextField.StyleSheet):Void ;
-
-	function update():Void ;
+	function setDirection(n:Number):Void ;
 	
 }

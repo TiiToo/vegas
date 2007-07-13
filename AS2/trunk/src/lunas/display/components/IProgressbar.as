@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Library.
+  The Original Code is LunAS Library.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -21,38 +21,10 @@
   
 */
 
-/** IProgressbar [Interface]
-
-	AUTHOR
-	
-		Name : IProgressbar
-		Package : lunas.display.components
-		Version : 1.0.0.0
-		Date :  2006-02-21
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-	
-		- getDirection():Number
-		
-		- getPosition():Number
-		
-		- setDirection(n:Number):Void
-		
-		- setPosition(pos:Number, noEvent:Boolean):Void
-	
-	INHERIT
-	
-		IBar → IProgressbar
-	
-*/
-
 import lunas.display.components.IBar;
 
-interface lunas.display.components.IProgressbar extends IBar {
+interface lunas.display.components.IProgressbar extends IBar 
+{
 	
 	// function getDirection():Number ;
 	

@@ -25,6 +25,7 @@ import vegas.events.DynamicEvent;
 import vegas.util.serialize.Serializer;
 
 /**
+ * The UIEvent class.
  * @author eKameleon
  */
 class pegas.events.UIEvent extends DynamicEvent 

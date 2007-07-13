@@ -153,7 +153,8 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher implement
 	}
 
 	/**
-	 * (read-write) Returns 'true' if the display is enabled.
+	 * (read-write) Returns 'true' if the display is enabled. The default value of enabled is true. 
+	 * Returns 'true' if the display is enabled. The default value of enabled is true.
 	 */
 	public function get enabled():Boolean 
 	{

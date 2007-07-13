@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Library.
+  The Original Code is LunAS Library.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -21,40 +21,21 @@
   
 */
 
-/** StyleEvent
+import vegas.core.IRunnable;
 
-	AUTHOR
-	
-		Name : StyleEvent
-		Package : lunas.events
-		Version : 1.0.0.0
-		Date :  2006-02-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
+/**
+ * The IBuilder interface.
+ * @author eKameleon
+ */
+interface lunas.core.IBuilder extends IRunnable 
+{
 
-	CONSTANT SUMMARY
+	function clear():Void ;
 	
-		- STYLE_CHANGED:StyleEventType
+	function getTarget() ;
 	
-		- STYLE_SHEET_CHANGED:StyleEventType
+	function setTarget( target ):Void ;
 	
-*/
-
-class lunas.events.StyleEventType {
+	function update():Void ;
 	
-	// ----o Constructor
-	
-	private function StyleEventType() {
-		//
-	}
-	
-	// ----o Constant
-	
-	static public var STYLE_CHANGED:String = "onStyleChanged" ;
-
-	static public var STYLE_SHEET_CHANGED:String = "onStyleSheetChanged" ;
-
-	static private var __ASPF__ = _global.ASSetPropFlags(StyleEventType, null , 7, 7) ;
-
 }

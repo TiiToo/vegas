@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Library.
+  The Original Code is LunAS Library.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -34,17 +34,17 @@ class lunas.display.components.AbstractBuilder extends CoreObject implements IBu
 	
 	/**
 	 * Creates a new AbstractBuilder instance.
-	 * @param mc the target of the component reference to build.
+	 * @param target The target of the component reference to build.
 	 */
-	private function AbstractBuilder( mc:MovieClip ) 
+	private function AbstractBuilder( target ) 
 	{
-		target = mc ;
+		this.target = target ;
 	}
 
 	/**
 	 * The target reference of the component to build.
 	 */
-	public var target:MovieClip ;
+	public var target ;
 	
 	/**
 	 * Clear the view of the component.
@@ -66,7 +66,7 @@ class lunas.display.components.AbstractBuilder extends CoreObject implements IBu
 	 * Returns the target reference of the component.
 	 * @return the target reference of the component.
 	 */
-	public function getTarget():MovieClip 
+	public function getTarget()
 	{
 		return target ;
 	}
@@ -74,7 +74,7 @@ class lunas.display.components.AbstractBuilder extends CoreObject implements IBu
 	/**
 	 * Sets the target reference of the component.
 	 */
-	public function setTarget(t:MovieClip):Void 
+	public function setTarget( t ):Void 
 	{
 		target = t ;
 	}

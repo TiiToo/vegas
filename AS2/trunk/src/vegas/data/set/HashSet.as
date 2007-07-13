@@ -163,6 +163,5 @@ class vegas.data.set.HashSet extends AbstractSet
 	private var _map:HashMap ;
 	
 	static private var PRESENT = new Object() ;
-	
 
 }

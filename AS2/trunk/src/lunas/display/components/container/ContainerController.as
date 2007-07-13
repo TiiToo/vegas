@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Library.
+  The Original Code is LunAS Library.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -20,45 +20,6 @@
   Contributor(s) :
   
 */
-
-/** ContainerController
-
-	AUTHOR
-
-		Name : ContainerController
-		Package : lunas.display.components.container
-		Version : 1.0.0.0
-		Date :  2006-02-06
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- getModel():IModel
-		
-		- getView():IView
-		
-		- removeItems(items:Array):Void
-		
-			Méthode interne, permet de supprimer les childs dans le Container.
-			Cette méthode ne change pas le modèle.
-		
-		- setModel(oModel:IModel):Void
-		
-		- setView(oView:IView):Void
-
-	IMPLEMENTS 
-	
-		IController, IFormattable
-
-	INHERIT 
-	
-		CoreObject → AbstractController → ContainerController
-
-	TODO : AbstractContainerController ???
-
-**/
 
 import vegas.util.mvc.AbstractController;
 

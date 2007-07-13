@@ -75,7 +75,7 @@ class buRRRn.ASTUce.Application
         
         	runner.setUp = function()
             {
-            	this.suite.addTest( Tests.AllTests.suite() );
+            	// this.suite.addTest( Tests.AllTests.suite() );
             } ;
         
         }

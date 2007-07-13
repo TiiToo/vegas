@@ -53,6 +53,26 @@ class pegas.events.MouseEvent extends DynamicEvent
 		delta = isNaN(p_delta) ? 0 : p_delta ;
 		
 	}
+	
+	static public var CLICK:String = "click" ;
+	
+	static public var DOUBLE_CLICK:String = "doubleClick" ;
+	
+	static public var MOUSE_DOWN:String = "mouseDown" ;
+	
+	static public var MOUSE_MOVE:String = "mouseMove" ;
+	
+	static public var MOUSE_OUT:String = "mouseOut" ;
+	
+	static public var MOUSE_OVER:String = "mouseOver" ;
+	
+	static public var MOUSE_UP:String = "mouseUp" ;
+	
+	static public var MOUSE_WHEEL:String = "mouseWheel" ;
+	
+	static public var ROLLOUT:String = "rollOut" ;
+	
+	static public var ROLLOVER:String = "rollOver" ;
 
 	/**
 	 * Reserved for future use (not currently functional).

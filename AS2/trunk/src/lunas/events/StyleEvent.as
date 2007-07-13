@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Library.
+  The Original Code is LunAS Library.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -21,97 +21,119 @@
   
 */
 
-/** StyleEvent
-
-	AUTHOR
-	
-		Name : StyleEvent
-		Package : lunas.events
-		Version : 1.0.0.0
-		Date :  2006-02-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- cancel():Void
-		
-		- clone():BasicEvent
-		
-		- getBubbles():Boolean
-		
-		- getContext()
-		
-		- getCurrentTarget()
-		
-		- getEventPhase():Number
-		
-		+ getStyle():IStyle
-		
-		- getTarget()
-		
-		- getTimeStamp():Number
-		
-		- getType():String
-		
-		- initEvent(type:String, bubbles:Boolean, cancelable:Boolean)
-		
-		- isCancelled():Boolean
-		
-		- isQueued():Boolean
-		
-		- queueEvent():Void
-		
-		- setBubbles(b:Boolean):Void
-		
-		- setContext(context):Void
-		
-		- setCurrentTarget(target):Void
-		
-		- setEventPhase(n:Number):Void
-		
-		- setTarget(target):Void
-		
-		- setType(type:String):Void
-		
-		- stopImmediatePropagation():Void
-		
-		- toString():String
-
-	TODO : finir la documentation 
-
-----------------*/
-
-import lunas.display.components.IStyle;
+import lunas.core.IStyle;
 
 import vegas.events.BasicEvent;
+import vegas.events.EventPhase;
+import vegas.util.ConstructorUtil;
 
-class lunas.events.StyleEvent extends BasicEvent {
+/**
+ * The {@code StyleEvent} to dispatch an event with an {@code IStyle} object.
+ */
+class lunas.events.StyleEvent extends BasicEvent 
+{
 
-	// ----o Constructor 
-	
-	public function StyleEvent(type:String, style:IStyle) {
-		super(type) ;
+	/**
+	 * Creates a new IStyle instance.
+	 * @param type the string type of the instance. 
+	 * @param style the IStyle reference of this event.
+	 * @param target the target of the event.
+	 * @param context the optional context object of the event.
+	 * @param bubbles indicates if the event is a bubbling event.
+	 * @param eventPhase the current EventPhase of the event.
+	 * @param time this parameter is used in the Eden deserialization.
+	 * @param stop this parameter is used in the Eden deserialization.
+	 */
+	public function StyleEvent(type:String, style:IStyle, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
+	{
+		super(type, target, context, bubbles, eventPhase, time, stop) ;
 		_style = style ;
 	}
 	
-	// ----o Public Methods
+	/**
+	 * The type event name of the StyleEvent when the style is changed in the component.
+	 */
+	static public var STYLE_CHANGED:String = "onStyleChanged" ;
+
+	/**
+	 * The type event name of the StyleEvent when the styleSheet in the IStyle is changed.
+	 */
+	static public var STYLE_SHEET_CHANGED:String = "onStyleSheetChanged" ;
 	
-	public function clone() {
+	/**
+	 * Returns a shallow copy of the object.
+	 * @return a shallow copy of the object.
+	 */
+	public function clone() 
+	{
 		return new StyleEvent(getType(), getStyle()) ;
 	}
 	
-	public function getStyle():IStyle {
+	/**
+	 * Returns the IStyle reference of this event.
+	 * @return the IStyle reference of this event.
+	 */
+	public function getStyle():IStyle 
+	{
 		return _style ;
 	}
 	
-	public function toString():String {
-		return '[StyleEvent : ' + getType() + ', ' + getStyle() + ']';
-
+	/**
+	 * Sets the IStyle reference of this event.
+	 */
+	public function setStyle( style:IStyle ):Void 
+	{
+		_style = style ;
 	}
 	
-	// ----o Private Properties
+	public function toString():String 
+	{
+		var phase:Number = getEventPhase() ;
+		var name:String = ConstructorUtil.getName(this);
+		var txt:String = "[" + name ;
+		if (getType()) 
+		{
+			txt += " " + getType() ;
+		}
+		if (getStyle() != null)
+		{
+			txt += ", " + getStyle() ;			
+		}
+		switch (phase) 
+		{
+			case EventPhase.CAPTURING_PHASE :
+			{
+				txt += ", CAPTURING" ;
+				break;
+			}
+			case EventPhase.AT_TARGET:
+			{
+				txt += ", AT TARGET" ;
+				break ;
+			}
+			case EventPhase.BUBBLING_PHASE:
+			{
+				txt += ", BUBBLING" ;
+				break ;
+			}
+			default :
+			{
+				txt += ", (inactive)" ;
+				break;
+			}
+		}
+		if (getBubbles() && phase != EventPhase.BUBBLING_PHASE) 
+		{
+			txt += ", bubbles" ;
+		}
+		if (isCancelled()) 
+		{
+			txt += ", can cancel" ;
+		}
+		txt += "]" ;
+		return txt ;
+
+	}
 	
 	private var _style:IStyle ;
 	
