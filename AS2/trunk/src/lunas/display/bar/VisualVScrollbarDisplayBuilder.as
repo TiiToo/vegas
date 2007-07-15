@@ -21,7 +21,8 @@
   
 */
 
-import lunas.display.components.AbstractBuilder;
+import lunas.core.AbstractBuilder;
+import lunas.display.bar.VisualVScrollbarDisplay;
 
 import vegas.events.Delegate;
 
@@ -29,51 +30,64 @@ import vegas.events.Delegate;
  * The IBuilder of the VisualVScrollbar component.
  * @author eKameleon
  */
-class lunas.display.components.bar.VisualVScrollbarBuilder extends AbstractBuilder 
+class lunas.display.bar.VisualVScrollbarDisplayBuilder extends AbstractBuilder 
 {
 	
 	/**
 	 * Creates a new VisualVScrollbarBuilder instance.
 	 */	
-	function VisualVScrollbarBuilder(mc : MovieClip) 
+	function VisualVScrollbarDisplayBuilder( component:VisualVScrollbarDisplay ) 
 	{
-		super(mc);
+		super( component );
 	}
 	
+	/**
+	 * The bar reference.
+	 */
 	public var bar:MovieClip ;
 
+	/**
+	 * The target reference of the component to build.
+	 */
+	public var target:VisualVScrollbarDisplay ;
+
+	/**
+	 * The thumb reference.
+	 */
 	public var thumb:MovieClip ;
 	
+	/**
+	 * Clear the view of the component.
+	 */
 	public function clear():Void 
 	{
 		//
 	}
-
+	
+	/**
+	 * Run the build of the component.
+	 */
 	public function run():Void 
 	{
-		_createBar() ;
-		_createThumb() ;
+		
+		bar = target.resolve("bar") ;
+		bar.onPress = Delegate.create( target, target.dragging ) ;
+		bar.useHandCursor = false ;
+		
+		thumb = target.resolve("thumb") ;
+
+		thumb.onPress          = Delegate.create( target , target.startDragging ) ;
+		thumb.onRelease        = Delegate.create( target , target.stopDragging  ) ;
+		thumb.onReleaseOutside = Delegate.create( target , target.stopDragging  ) ;
+
 	}
 
+	/**
+	 * Update the component.
+	 */
 	public function update():Void 
 	{
 		bar._height = target.getH() ;
-	}
-
-	private function _createBar():Void 
-	{
-		bar = target.bar ;
-		bar.onPress = Delegate.create(target, target.dragging) ;
-		bar.useHandCursor = false ;
-	}
-
-	private function _createThumb():Void 
-	{
-		thumb = target.thumb ;
-		thumb.onPress = Delegate.create(target, target.startDragging) ;
-		thumb.onRelease = Delegate.create(target, target.stopDragging) ;
-		thumb.onReleaseOutside = thumb.onRelease ;
-		thumb.useHandCursor = false ;
 	}
 
 }

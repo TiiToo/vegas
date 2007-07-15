@@ -21,56 +21,29 @@
   
 */
 
-/** PanelContainerController
-
-	AUTHOR
-
-		Name : PanelContainerController
-		Package : lunas.display.components.container
-		Version : 1.0.0.0
-		Date :  2006-02-10
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- getModel():IModel
-		
-		- getView():IView
-		
-		- hideAt(index:Number):Void
-		
-		- removeItems(items:Array):Void
-		
-		- setModel(oModel:IModel):Void
-		
-		- setView(oView:IView):Void
-
-	IMPLEMENTS 
-	
-		IController
-
-	INHERIT 
-	
-		CoreObject → AbstractController → ContainerController → PanelContainerController
-
-**/
-
 import lunas.display.components.container.ContainerController;
 import lunas.display.components.container.ContainerModel;
 
-class lunas.display.components.container.PanelContainerController extends ContainerController {
+/**
+ * The PanelContainer controller.
+ * @author eKameleon
+ */
+class lunas.display.components.container.PanelContainerController extends ContainerController 
+{
 
-	// ----o Constructor
-
-	public function PanelContainerController() { 
+	/**
+	 * Creates a new PanelContainerController instance.
+	 */
+	public function PanelContainerController() 
+	{ 
 		//
 	}
 
-	// ----o Public Methods
-
-	public function hideAt(index:Number):Void {
+	/**
+	 * Hides the item at the passed-in index value.
+	 */
+	public function hideAt(index:Number):Void 
+	{
 		ContainerModel(getModel()).getChildAt(index)._visible = false ;
 	}
 

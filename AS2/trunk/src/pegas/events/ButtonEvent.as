@@ -32,6 +32,13 @@ dynamic class pegas.events.ButtonEvent extends MouseEvent
 
 	/**
 	 * Creates a new ButtonEvent instance.
+	 * @param type the string type of the instance. 
+	 * @param target the target of the event.
+	 * @param context the optional context object of the event.
+	 * @param bubbles indicates if the event is a bubbling event.
+	 * @param eventPhase the current EventPhase of the event.
+	 * @param time this parameter is used in the Eden deserialization.
+	 * @param stop this parameter is used in the Eden deserialization.
 	 */
 	public function ButtonEvent
 	(
@@ -48,44 +55,119 @@ dynamic class pegas.events.ButtonEvent extends MouseEvent
 	
 	}
 
-	static public var CLICK:String = MouseEvent.CLICK ;
+	/**
+	 * Defines the value of the type property of a click event object.
+	 */
+	static public var CLICK:String = "click" ;
 	
+	/**
+	 * Defines the value of the type property of a disabled button.
+	 */
 	static public var DISABLED:String = "disabled" ;
 	
-	static public var DOUBLE_CLICK:String = MouseEvent.DOUBLE_CLICK ;
+	/**
+	 * Defines the value of the type property of a doubleClick event object.
+	 */
+	static public var DOUBLE_CLICK:String = "doubleClick" ;
 	
+	/**
+	 * Defines the value of the type property of a down event object.
+	 */
 	static public var DOWN:String = "down" ;
 
+	/**
+	 * Defines the value of the type property of a drag event object.
+	 */
 	static public var DRAG:String = "drag" ;
 	
+	/**
+	 * Defines the value of the type property of an icon change event object.
+	 */
 	static public var ICON_CHANGE:String = "onIconChanged" ;
 	
+	/**
+	 * Defines the value of the type property of a label change event object.
+	 */
 	static public var LABEL_CHANGE:String = "onLabelChanged" ;
 	
-	static public var MOUSE_UP:String = MouseEvent.MOUSE_UP ;
+	/**
+	 * Defines the value of the type property of a mouseDown event object.
+	 */
+	static public var MOUSE_DOWN:String = "mouseDown" ;
 	
-	static public var MOUSE_DOWN:String = MouseEvent.MOUSE_DOWN ;
+	/**
+	 * Defines the value of the type property of a mouseMove event object.
+	 */
+	static public var MOUSE_MOVE:String = "mouseMove" ;
 	
+	/**
+	 * Defines the value of the type property of a mouseOut event object.
+	 */
+	static public var MOUSE_OUT:String = "mouseOut" ;
+	
+	/**
+	 * Defines the value of the type property of a mouseOver event object.
+	 */
+	static public var MOUSE_OVER:String = "mouseOver" ;
+	
+	/**
+	 * Defines the value of the type property of a mouseUp event object.
+	 */
+	static public var MOUSE_UP:String = "mouseUp" ;
+	
+	/**
+	 * Defines the value of the type property of an out event object.
+	 */
 	static public var OUT:String = "out" ;
 	
+	/**
+	 * Defines the value of the type property of an out selected event object.
+	 */
 	static public var OUT_SELECTED:String = "outSelected" ;
 	
+	/**
+	 * Defines the value of the type property of an over event object.
+	 */
 	static public var OVER:String = "over" ;
 	
+	/**
+	 * Defines the value of the type property of a over selected event object.
+	 */
 	static public var OVER_SELECTED:String = "overSelected" ;
-	
-	static public var ROLLOUT:String = MouseEvent.ROLLOUT ;
-	
-	static public var ROLLOVER:String = MouseEvent.ROLLOVER ;
-		
+
+	/**
+	 * Defines the value of the type property of a rollOut event object.
+	 */	
+	static public var ROLLOUT:String = "rollOut";
+
+	/**
+	 * Defines the value of the type property of a rollOver event object.
+	 */
+	static public var ROLLOVER:String = "rollOver" ;
+
+	/**
+	 * Defines the value of the type property of a select event object.
+	 */
 	static public var SELECT:String = "select" ;
 	
+	/**
+	 * Defines the value of the type property of a start drag event object.
+	 */
 	static public var START_DRAG:String = "startDrag" ;
-	
+
+	/**
+	 * Defines the value of the type property of a stop drag event object.
+	 */
 	static public var STOP_DRAG:String = "stopDrag" ;
 	
+	/**
+	 * Defines the value of the type property of an unselect event object.
+	 */
 	static public var UNSELECT:String = "unselect" ;
 	
+	/**
+	 * Defines the value of the type property of an 'up' event object.
+	 */
 	static public var UP:String = "up" ;
 
 	/**

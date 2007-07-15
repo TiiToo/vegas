@@ -27,6 +27,10 @@ import pegas.events.MouseEventType;
 import vegas.events.Event;
 import vegas.events.FastDispatcher;
 
+/**
+ * This class defines a double click manager in your applications.
+ * @author eKameleon
+ */
 class pegas.ui.DoubleClick 
 {
 

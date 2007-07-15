@@ -21,73 +21,27 @@
   
 */
 
-/**	VisualVScrollbar
-
-	AUTHOR
-	
-		Name : VisualVScrollbar
-		Package : lunas.display.components.bar
-		Version : 1.0.0.0
-		Date :  2006-02-14
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-	
-		- autoResetPosition:Boolean
-	
-		- direction:Number [R/W]
-		
-		- position:Number [R/W]
-	
-	METHOD SUMMARY
-		
-		- dragging():Void
-		
-		- getBar():MovieClip
-		
-		- getDirection():Number
-		
-		- getPosition():Number
-		
-		- getThumb():MovieClip
-		
-		- setDirection(n:Number):Void
-		
-		- setPosition(pos:Number, noEvent:Boolean):Void
-		
-		- startDragging():Void
-		
-		- stopDragging():Void
-	
-	EVENT TYPE SUMMARY
-	
-		- DRAG:EventType
-		
-		- CHANGE:EventType
-	
-**/
-
 import lunas.display.components.bar.AbstractScrollbar;
 import lunas.display.components.bar.VisualVScrollbarBuilder;
 
+/**
+ * The VisualVScrollbar class.
+ * @author eKameleon
+ */
 class lunas.display.components.bar.VisualVScrollbar extends AbstractScrollbar 
 {
 
-	// ----o Constructor
-	
+	/**
+	 * Creates a new VisualVScrollbar instance.
+	 */
 	public function VisualVScrollbar() 
 	{
 		super() ;
 	}
 
-	// ----o Public Properties
-
 	public var bar:MovieClip ;
-	public var thumb:MovieClip ;
 
-	// ----o Public Methods		
+	public var thumb:MovieClip ;
 
 	public function getBar():MovieClip 
 	{

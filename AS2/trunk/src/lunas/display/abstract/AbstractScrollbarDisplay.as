@@ -27,10 +27,10 @@ import lunas.core.IScrollbar;
 import lunas.display.abstract.AbstractProgressbarDisplay;
 
 import pegas.events.ButtonEvent;
-import pegas.events.ButtonEventType;
 import pegas.transitions.easing.Expo;
 import pegas.transitions.Tween;
 
+import vegas.events.Delegate;
 import vegas.util.MathsUtil;
 
 /**
@@ -42,31 +42,33 @@ class lunas.display.abstract.AbstractScrollbarDisplay extends AbstractProgressba
 
 	/**
 	 * Creates a new AbstractScrollbar instance.
+	 * @param sName:String the name of the display.
+	 * @param target:MovieClip the DisplayObject instance control this target.
 	 */
 	private function AbstractScrollbarDisplay( sName:String, target:MovieClip ) 
 	{ 
 		
 		super ( sName, target ) ;
-		_eDrag      = new ButtonEvent(ButtonEventType.DRAG, this) ;
-		_eStartDrag = new ButtonEvent(ButtonEventType.START_DRAG, this) ;
-		_eStopDrag  = new ButtonEvent(ButtonEventType.STOP_DRAG, this) ;
+		_eDrag      = new ButtonEvent( ButtonEvent.DRAG, this ) ;
+		_eStartDrag = new ButtonEvent( ButtonEvent.START_DRAG, this ) ;
+		_eStopDrag  = new ButtonEvent( ButtonEvent.STOP_DRAG, this ) ;
 		_nDirection = Direction.VERTICAL ;
 	}
 
 	/**
 	 * The name of the event when the user drag the scrollbar.
 	 */
-	static public var DRAG:String = ButtonEventType.DRAG ;
+	static public var DRAG:String = ButtonEvent.DRAG ;
 
 	/**
 	 * The name of the event when the user start to drag the scrollbar.
 	 */
-	static public var START_DRAG:String = ButtonEventType.START_DRAG ;
+	static public var START_DRAG:String = ButtonEvent.START_DRAG ;
 
 	/**
 	 * The name of the event when the user stop to drag the scrollbar.
 	 */
-	static public var STOP_DRAG:String = ButtonEventType.STOP_DRAG ;
+	static public var STOP_DRAG:String = ButtonEvent.STOP_DRAG ;
 
 	/**
 	 * Indicates the duration of the easing effect if is active.
@@ -102,15 +104,21 @@ class lunas.display.abstract.AbstractScrollbarDisplay extends AbstractProgressba
 	 */
 	public function dragging():Void 
 	{
+
 		var sizeField:String = getSizeField() ;
 		var mouseField:String = getMouseField() ;
+
 		var b:MovieClip = getBar() ;
 		var t:MovieClip = getThumb() ;
+		
 		var size:Number =  b[sizeField] - t[sizeField] ;
-		var pos:Number = this[mouseField] - _mouseOffset ;
+		var pos:Number = view[mouseField] - _mouseOffset ;
+
 		pos = MathsUtil.getPercent( MathsUtil.clamp(pos, 0, size), size ) ;
 		setPosition( pos , null, ( arguments[0] == true ? true : null ) ) ;
+
 		notifyDrag(pos) ;
+		
 	}
 
 	/**
@@ -193,7 +201,7 @@ class lunas.display.abstract.AbstractScrollbarDisplay extends AbstractProgressba
 		_mouseOffset = (getThumb())[ mouseField ] ;
 		dragging() ;
 		_isDragging = true ;
-		this.onMouseMove = dragging ;
+		view.onMouseMove = Delegate.create(this, dragging) ;
 	}
 
 	/**
@@ -202,7 +210,7 @@ class lunas.display.abstract.AbstractScrollbarDisplay extends AbstractProgressba
 	public function stopDragging():Void 
 	{
 		_isDragging = false ;
-		delete this.onMouseMove ;
+		delete view.onMouseMove ;
 		notifyStopDrag() ;
 	}
 	

@@ -22,11 +22,10 @@
 */
 
 import vegas.events.BasicEvent;
-import vegas.events.ModelChangedEventType;
 import vegas.util.serialize.Serializer;
 
 /**
- * This event is used in the MVC model with the IModel implementations.
+ * This event is used with some models.
  * @author eKameleon
  */
 class vegas.events.ModelChangedEvent extends BasicEvent 
@@ -56,7 +55,7 @@ class vegas.events.ModelChangedEvent extends BasicEvent
 	)
 	{
 		
-		super(name || ModelChangedEventType.MODEL_CHANGED, target, context, bubbles, eventPhase, time, stop) ;
+		super(name || MODEL_CHANGED, target, context, bubbles, eventPhase, time, stop) ;
 		
 		this.data = data || null ;
 		this.fieldName = fieldName || null ;
@@ -122,7 +121,15 @@ class vegas.events.ModelChangedEvent extends BasicEvent
 	 * The index of the first item that was added, changed, or removed. 
 	 */
 	public var firstItem:Number = null ;
+	
+	/**
+	 * The index of the item of this event.
+	 */
 	public var index:Number = null ;
+
+	/**
+	 * The lastItem value of this event.
+	 */	
 	public var lastItem:Number = null ;
 	
 	/**

@@ -22,10 +22,11 @@
 */
 
 import asgard.display.ConfigurableDisplayObject;
+import asgard.display.DisplayObject;
 
+import lunas.core.IBuilder;
 import lunas.core.IGroupable;
 import lunas.core.IStyle;
-import lunas.display.components.IBuilder;
 import lunas.events.StyleEvent;
 
 import pegas.events.UIEvent;
@@ -33,6 +34,7 @@ import pegas.events.UIEvent;
 import vegas.events.Delegate;
 import vegas.events.EventListener;
 import vegas.events.TimerEvent;
+import vegas.util.ConstructorUtil;
 import vegas.util.FrameTimer;
 import vegas.util.MathsUtil;
 
@@ -51,7 +53,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	private function AbstractComponentDisplay( sName:String, target:MovieClip ) 
 	{ 
 		
-		super ( sName, target ) ;
+		super ( (sName != null) ? sName : getDefaultName(this) , target ) ;
 		
 		view.onUnload = Delegate.create(this, _onUnload) ;
 		view._focusrect = false ;
@@ -201,6 +203,24 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	public var tabEnabled:Boolean = false ; // not supposed to receive focus
 
 	/**
+	 * A Boolean value that, when set to true (the default), indicates whether a pointing hand (hand cursor) displays when the mouse rolls over a button. 
+	 * If this property is set to false, the arrow pointer is used instead. 
+	 */
+	public function get useHandCursor():Boolean 
+	{
+		return view.useHandCursor ;
+	}
+
+	/**
+	 * Sets A Boolean value that, when set to true (the default), indicates whether a pointing hand (hand cursor) displays when the mouse rolls over a button. 
+	 * If this property is set to false, the arrow pointer is used instead. a Boolean value that indicates whether a movie clip is enabled. The default value of enabled is true. 
+	 */
+	public function set useHandCursor( b:Boolean ):Void 
+	{
+		view.useHandCursor = b ;
+	}
+
+	/**
 	 * The view of the display.
 	 */
 	public var view:MovieClip ;
@@ -264,11 +284,21 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	}
 
 	/**
-	 * Returns the constructor of the IBuilder of this instance. 
+	 * Returns the constructor function of the {@code IBuilder} of this instance.
+	 * @return the constructor function of the {@code IBuilder} of this instance.
 	 */
 	public function getBuilderRenderer():Function 
 	{
 		return null ; // override
+	}
+	
+	/**
+	 * Returns the default name of the component display passed-in argument.
+	 * @return the default name of the component display passed-in argument.
+	 */
+	static public function getDefaultName( display:DisplayObject ):String
+	{
+		return ConstructorUtil.getName(display) + (_counterName ++) ;
 	}
 	
 	/**
@@ -356,7 +386,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	 */
 	public function notifyChanged():Void 
 	{
-		dispatchEvent(_eChange) ;
+		dispatchEvent( _eChange ) ;
 	}
 
 	/**
@@ -504,6 +534,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	 */
 	public function update():Void 
 	{
+		trace(this + " update.") ;
 		if ( isLocked() ) 
 		{
 			return ;
@@ -653,5 +684,11 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 		}
 
 	}
+	
+	/**
+	 * The internal static counter name to create default component names.
+	 */
+	static private var _counterName:Number = 0 ; 
+	
 	
 }

@@ -55,7 +55,7 @@
 	
 		- align [R/W] 
 		
-			un nombre :
+			a number :
 			
 				- BubbleComponent.BOTTOM
 				- BubbleComponent.BOTTOM_LEFT
@@ -66,7 +66,7 @@
 				- BubbleComponent.TOP_LEFT
 				- BubbleComponent.TOP_RIGHT
 			
-			ou une chaine de caractère :
+			a string :
 			
 				"l" : left
 				"r" : right

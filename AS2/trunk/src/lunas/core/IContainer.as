@@ -21,22 +21,43 @@
   
 */
 
+import vegas.data.iterator.Iterator;
+
 /**
- * The IDirectionable interface.
+ * This interface is used to creates container components.
  * @author eKameleon
  */
-interface lunas.core.IDirectionable 
+interface lunas.core.IContainer 
 {
 	
-	/**
-	 * Returns the direction value of this object.
-	 * @return the direction value of this object.
-	 */
-	function getDirection():Number ;
+	function addChild( o , oInit) ;
+		
+	function addChildAt(o, index:Number, oInit)  ;
+
+	function clear():Void ;
 	
-	/**
-	 * Sets the direction value of this object.
-	 */
-	function setDirection(n:Number):Void ;
+	function contains( oChild ):Boolean ;
 	
+	function getChildAt(index:Number) ;
+	
+	function getChildByKey(key:Number) ;
+	
+	function getChildByName(name:String) ;
+	
+	function iterator():Iterator ;
+
+	function indexOf( oChild ):Number ;
+
+	function removeChild( oChild ):Void ;
+	
+	function removeChildAt(index:Number):Void ;
+	
+	function removeChildsAt(index:Number, len:Number):Void ;
+	
+	function removeRange(from:Number, to:Number):Void ;
+	
+	function setChildIndex( oChild, index:Number):Void ;
+	
+	function size():Number ;
+	 
 }
