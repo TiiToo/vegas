@@ -112,13 +112,7 @@ class lunas.model.ContainerModel extends AbstractModel implements Iterable
 	 */
 	public function clone() 
 	{
-		return new ContainerModel
-		( 
-			getID()    , 
-			isGlobal() , 
-			isGlobal() ? getEventDispatcher().getName() : null ,  
-			toArray()
-		) ;
+		return new ContainerModel ( getID(), isGlobal, ( isGlobal ? getEventDispatcher().getName() : null ), toArray() ) ;
 	}
 	
 	/**

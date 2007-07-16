@@ -21,7 +21,6 @@
   
 */
 
-
 import lunas.core.IStyle;
 import lunas.events.StyleEvent;
 

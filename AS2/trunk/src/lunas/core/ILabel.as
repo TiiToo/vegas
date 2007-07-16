@@ -26,27 +26,63 @@
  * Use the Text control to create blocks of multiline noneditable text.
  * @author eKameleon
  */
-interface lunas.display.components.ILabel 
+interface lunas.core.ILabel 
 {
-
-	function getAutoSize():Boolean ;
 	
+	/**
+	 * Returns the automatic sizing and alignment of labels value.
+	 * @return the automatic sizing and alignment of labels value.
+	 * @see TextFieldAutoSize
+	 */
+	function getAutoSize():String ;
+	
+	/**
+	 * Returns a flag that indicates whether the text field contains an HTML representation.
+	 * @return a flag that indicates whether the text field contains an HTML representation.
+	 */
 	function getHTML():Boolean ;
 	
+	/**
+	 * Returns the string representation of the label.
+	 * @return the string representation of the label.
+	 */
 	function getLabel():String ;
-	
+
+	/**
+	 * Returns if the label is a multiline label.
+	 * @return if the label is a multiline label.
+	 */
 	function getMultiline():Boolean ;
-	
+
+	/**
+	 * Returns the string text representation of the label.
+	 */
 	function getText():String ;
 	
-	function setAutoSize(b:Boolean):Void ;
+	/**
+	 * Sets the automatic sizing and alignment of labels.
+	 */
+	function setAutoSize(b:String):Void ;
 	
+	/**
+	 * Sets a flag that indicates whether the text field contains an HTML representation.
+	 * @param b The flag that indicates whether the text field contains an HTML representation. 
+	 */
 	function setHTML(b:Boolean):Void ;
 	
+	/**
+	 * Sets the string representation of the label.
+	 */
 	function setLabel(str:String):Void ;
 	
+	/**
+	 * Sets if the label is a multiline label.
+	 */
 	function setMultiline(b:Boolean):Void ;
 	
+	/**
+	 * Sets the string text representation of the label.
+	 */
 	function setText(str:String):Void ;
 
 

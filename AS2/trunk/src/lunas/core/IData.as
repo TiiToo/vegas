@@ -1,5 +1,4 @@
-﻿import lunas.core.IData;
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -22,19 +21,22 @@
   
 */
 
-interface lunas.core.IButton extends IData
+/**
+ * The IData interface defines the interface for components that have a data property.
+ * @author eKameleon
+ */
+interface lunas.core.IData 
 {
-	
-	function getLabel():String ;
-	
-	function getSelected():Boolean ;
-	
-	function getToggle():Boolean ;
-	
-	function setLabel(str:String):Void ;
 
-	function setSelected (b:Boolean, noEvent:Boolean):Void ;
+	/**
+	 * Returns the data value object to render or edit.
+	 * @return the data value object to render or edit.
+	 */
+	function getData() ;
 	
-	function setToggle(b:Boolean):Void ;
+	/**
+	 * Sets the data value object to render or edit.
+	 */
+	function setData( value ):Void ;
 	
 }

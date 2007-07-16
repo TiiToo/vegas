@@ -113,6 +113,16 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 	{
 		setToggle(b);	
 	}	
+
+
+	/**
+	 * Returns the data value object to render or edit.
+	 * @return the data value object to render or edit.
+	 */
+	public function getData()
+	{
+		return data ;	
+	}
 	
 	/**
 	 * Returns the text label for a button instance.
@@ -182,6 +192,14 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 			_scope.onRelease        = Delegate.create(this, _onRelease) ;
 			_scope.onReleaseOutside = Delegate.create(this, _onRelease) ;
 		}
+	}
+
+	/**
+	 * Sets the data value object to render or edit.
+	 */
+	public function setData( value ):Void 
+	{
+		data = value ;	
 	}
 
 	/**

@@ -28,7 +28,7 @@ import pegas.events.UIEvent;
 import pegas.events.UIEventType;
 
 /**
- * The AbstractLabel class.
+ * This abstract class is the skeletal implementation of the {@code ILabel} interface.
  * @author eKameleon
  */
 class lunas.display.components.text.AbstractLabel extends AbstractComponent implements ILabel 
@@ -42,21 +42,36 @@ class lunas.display.components.text.AbstractLabel extends AbstractComponent impl
 		super() ;		
 	}
 
-	public function get autoSize():Boolean 
+	/**
+	 * Returns the automatic sizing and alignment of labels value.
+	 * @return the automatic sizing and alignment of labels value.
+	 * @see TextFieldAutoSize
+	 */
+	public function get autoSize():Boolean
 	{
 		return getAutoSize() ;	
 	}
 
-	public function set autoSize(b:Boolean) 
+	/**
+	 * Sets the automatic sizing and alignment of labels value.
+	 */
+	public function set autoSize( b:Boolean ) 
 	{
-		setAutoSize(b) ;	
+		setAutoSize( b ) ;	
 	}
 
+	/**
+	 * Returns a flag that indicates whether the label contains an HTML representation.
+	 * @return a flag that indicates whether the label contains an HTML representation.
+	 */
 	public function get html():Boolean 
 	{
 		return getHTML() ;	
 	}
 
+	/**
+	 * Sets the html flag that indicates whether the label contains an HTML representation.
+	 */
 	public function set html(b:Boolean) 
 	{
 		setHTML(b) ;	
@@ -92,7 +107,7 @@ class lunas.display.components.text.AbstractLabel extends AbstractComponent impl
 		setText(s) ;	
 	}
 
-	public function getAutoSize():Boolean 
+	public function getAutoSize():Boolean
 	{
 		return _autoSize ;
 	}
@@ -117,7 +132,7 @@ class lunas.display.components.text.AbstractLabel extends AbstractComponent impl
 		return getLabel() ;
 	}
 
-	public function setAutoSize(b:Boolean):Void 
+	public function setAutoSize( b:Boolean ):Void 
 	{
 		_autoSize = b ;
 		update() ;

@@ -21,68 +21,13 @@
   
 */
 
-/** ICell [interface]
-
-	AUTHOR
-
-		Name : ICell
-		Package : lunas.display.components
-		Version : 1.0.0.0
-		Date :  2006-02-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-		
-		Interface pour tous les composants de type Cellule (liste, tableau etc.)
-
-	METHOD SUMMARY
-	
-		- getDataLabel():String
-		
-			Renvoi une chaîne contenant le nom du champ de données du composant CellRenderer.
-		
-		- getCellIndex():Object
-		
-			Renvoi un objet avec deux champs, columnIndex et rowIndex, indiquant la position de la cellule. 
-		
-		- getListOwner():MovieClip
-		
-			Référence à la liste contenant la cellule
-		
-		- getPreferredHeight():Number
-			
-			Renvoi la hauteur que devrait avoir une cellule dans la liste.
-		
-		- getPreferredWidth()
-		
-			Renvoi la largeur que devrait avoir une cellule dans la liste.
-		
-		- getSize(w:Number, h:Number):Object
-		
-		- setCellIndex( itemIndex:Number , columnIndex:Number ):Void
-		
-			Défini un objet ayant les 2 propriétés itemIndex et columnIndex
-		
-		- setListOwner(owner:MovieClip):Void
-		
-			Permet de définir la référence vers la liste contenant la cellule.
-		
-		- setSize(w:Number, h:Number):Void
-			
-			Définit la largeur et la hauteur d'une cellule. (tous les composants ont cette méthode)
-		
-		- setValue():Void
-		
-			Définit le contenu à afficher dans la cellule.
-	
-		
-----------  */
-
 import lunas.display.components.cell.CellIndex;
 
-interface lunas.display.components.ICell {
+/**
+ * @author eKameleon
+ */
+interface lunas.display.components.ICell 
+{
 	
 	function getCellIndex():CellIndex ;
 	
