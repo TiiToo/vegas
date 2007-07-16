@@ -1,4 +1,4 @@
-﻿import andromeda.core.Identifiable;
+﻿import vegas.core.Identifiable;
 /*
 
   The contents of this file are subject to the Mozilla Public License Version

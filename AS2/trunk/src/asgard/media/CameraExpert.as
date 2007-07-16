@@ -49,6 +49,10 @@ class asgard.media.CameraExpert extends AbstractCoreEventDispatcher
 		_cameraID = cameraID ;
 		initEvent() ;
 		_cam = Camera.get( cameraIndex ) ;
+		_cam.toString = function():String
+		{
+			return "[Camera]" ;
+		} ;
 		_cam.onActivity = Delegate.create(this, _onCameraActivity ) ;
 		_cam.onStatus   = Delegate.create(this, _onCameraStatus ) ;
 		updateCamera() ;

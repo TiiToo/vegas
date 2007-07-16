@@ -49,6 +49,10 @@ class asgard.media.MicrophoneExpert extends AbstractCoreEventDispatcher
 		_microID = microID ;
 		initEvent() ;
 		_mic = Microphone.get( microIndex ) ;
+		_mic.toString = function():String
+		{
+			return "[Microphone]" ;
+		} ;
 		_mic.onActivity = Delegate.create(this, _onMicroActivity ) ;
 		_mic.onStatus   = Delegate.create(this, _onMicroStatus ) ;
 		updateMicrophone() ;

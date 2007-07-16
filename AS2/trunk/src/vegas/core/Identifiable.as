@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Andromeda Framework based on VEGAS.
+  The Original Code is Vegas Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -25,7 +25,7 @@
  * This interface defines a common structure for classes that has an ID.
  * @author eKameleon
  */
-interface andromeda.core.Identifiable 
+interface vegas.core.Identifiable 
 {
 
 	/**

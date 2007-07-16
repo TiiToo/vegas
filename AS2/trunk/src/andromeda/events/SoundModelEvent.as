@@ -24,13 +24,14 @@
 
 import andromeda.media.SoundModel;
 
+import vegas.core.Identifiable;
 import vegas.events.BasicEvent;
 
 /**
  * The SoundModelEvent class.
  * @author eKameleon
  */
-class andromeda.events.SoundModelEvent extends BasicEvent
+class andromeda.events.SoundModelEvent extends BasicEvent implements Identifiable
 {
 
 	/**
@@ -105,7 +106,7 @@ class andromeda.events.SoundModelEvent extends BasicEvent
 	 * Returns the id of the sound reference in the model.
 	 * @return the id of the sound reference in the model.
 	 */
-	public function getID():String
+	public function getID()
 	{
 		return _id ;	
 	}
@@ -140,9 +141,9 @@ class andromeda.events.SoundModelEvent extends BasicEvent
 	/**
 	 * Sets the id of the sound reference.
 	 */
-	public function setID( sID:String ):Void
+	public function setID( id ):Void
 	{
-		_id = sID ;	
+		_id = id ;	
 	}
 
 	/**

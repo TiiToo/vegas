@@ -74,7 +74,7 @@ class asgard.net.StreamCollector
 		{
 			throw new Warning("[StreamCollector] get(" + id + ") failed. The specified id isn't register in the collector." ) ;
 		} ;
-		return Stream( _map.get( id ) ) ;	
+		return Stream( _map.get( id ) ) || null ;	
 	}
 	
 	/**

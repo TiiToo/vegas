@@ -136,16 +136,16 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	/**
 	 * Specifies whether audio should be sent over the stream (from a Microphone object passed as source) 
 	 * or not (null passed as source). This method is available only to the publisher of the specified stream.
-	 * @param source The source of the video transmission. 
+	 * @param camSource The source of the video transmission. 
 	 * Valid values are a Camera object (which starts capturing video) and null. 
 	 * If you pass null, Flash stops capturing video, and any additional parameters you send are ignored.
 	 * @param snapShotMilliseconds An optional integer that specifies whether the video stream is continuous, a single frame, or a series of single frames used to create time-lapse photography.
 	 */
-	public function attachVideo(source:Camera , snapShotMilliseconds:Number ):Void
+	public function attachVideo( camSource:Camera , snapShotMilliseconds:Number ):Void
 	{
 		if ( StreamCollector.contains( getStreamID() ) )
 		{
-			getStream().attachVideo( source , snapShotMilliseconds ) ;
+			getStream().attachVideo.apply( getStream() , arguments ) ;
 		}
 		else
 		{
@@ -273,7 +273,7 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 		{
 			_map.put( streamID, new StreamExpert( streamID ) ) ;
 		}
-		return _map.get( streamID ) ;
+		return _map.get( streamID ) || null ;
 	}
 	
 	/**
@@ -406,9 +406,12 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	 */
 	public function publish( name , howToPublish:String ):Void
 	{
+		
 		_global.clearTimeout(_timeout) ;
+		
 		if ( StreamCollector.contains( getStreamID() ) )
 		{
+			getLogger().fatal( this + ".... publish " + getStream()) ;
 			getStream().publish( name, howToPublish ) ;
 		}
 		else
@@ -716,6 +719,4 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 
 	}
 	
-
-
 }

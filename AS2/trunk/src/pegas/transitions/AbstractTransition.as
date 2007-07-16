@@ -25,13 +25,15 @@ import pegas.events.ActionEvent;
 import pegas.events.TransitionEvent;
 import pegas.transitions.ITransition;
 
+import vegas.core.Identifiable;
 import vegas.errors.UnsupportedOperation;
 import vegas.events.AbstractCoreEventDispatcher;
 
 /**
+ * This abstract class defines the skeletal implementation of the ITransition interface.
  * @author eKameleon
  */
-class pegas.transitions.AbstractTransition extends AbstractCoreEventDispatcher implements ITransition 
+class pegas.transitions.AbstractTransition extends AbstractCoreEventDispatcher implements Identifiable, ITransition 
 {
 
 	/**

@@ -28,6 +28,7 @@ import asgard.net.StreamCollector;
 
 import pegas.maths.Range;
 
+import vegas.core.Identifiable;
 import vegas.core.IHashable;
 import vegas.data.Set;
 import vegas.events.Delegate;
@@ -48,7 +49,7 @@ import vegas.util.ConstructorUtil;
  * using NetStream.play(). You can publish or play live (real-time) data and previously recorded data.
  * @author eKameleon
  */
-class asgard.net.Stream extends NetStream implements IEventDispatcher, IHashable, ILogable
+class asgard.net.Stream extends NetStream implements Identifiable, IEventDispatcher, IHashable, ILogable
 {
 	
 	/**
@@ -430,7 +431,13 @@ class asgard.net.Stream extends NetStream implements IEventDispatcher, IHashable
 	 */
 	public function toString():String
 	{
-		return "[" + ConstructorUtil.getName(this) + "]" ;	
+		var txt:String = "[" + ConstructorUtil.getName(this) ;
+		if (getID() != null)
+		{
+			txt += " " + getID() ;	
+		}
+		txt += "]" ;
+		return txt ;	
 	}
 
 	/**
