@@ -81,9 +81,14 @@ class lunas.display.abstract.AbstractScrollbarDisplay extends AbstractProgressba
 	public var easing:Function = null ;
 
 	/**
-	 * A static object use to defines the inverse property name of the bar.
+	 * A static object use to defines the inverse position property name of the bar.
 	 */
 	static public var invertPosField:Object = { _x : "_y" , _y : "_x" } ;
+
+	/**
+	 * A static object use to defines the inverse size properties name of the bar.
+	 */
+	static public var invertSizeField:Object = { _width : "_height" , _height : "_width" } ;
 
 	/**
 	 * (read-only) Returns {@code true} if the bar is dragging.
@@ -237,7 +242,7 @@ class lunas.display.abstract.AbstractScrollbarDisplay extends AbstractProgressba
 		
 		if ( !isDragging ) 
 		{
-			t[invertPosField[posField]] =  0 ;
+			t[invertPosField[posField]] = b[invertPosField[posField]] + ( b[ invertSizeField[sizeField] ] - t[ invertSizeField[sizeField] ] ) / 2 ;
 		} 
 
 		if ( flag || _isDragging || noEasing ) 

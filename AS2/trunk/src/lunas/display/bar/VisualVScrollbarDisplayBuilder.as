@@ -72,10 +72,8 @@ class lunas.display.bar.VisualVScrollbarDisplayBuilder extends AbstractBuilder
 		
 		bar = target.resolve("bar") ;
 		bar.onPress = Delegate.create( target, target.dragging ) ;
-		bar.useHandCursor = false ;
 		
 		thumb = target.resolve("thumb") ;
-
 		thumb.onPress          = Delegate.create( target , target.startDragging ) ;
 		thumb.onRelease        = Delegate.create( target , target.stopDragging  ) ;
 		thumb.onReleaseOutside = Delegate.create( target , target.stopDragging  ) ;
