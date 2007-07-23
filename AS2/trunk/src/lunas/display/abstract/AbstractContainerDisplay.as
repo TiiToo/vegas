@@ -76,7 +76,6 @@ class lunas.display.abstract.AbstractContainerDisplay extends AbstractComponentD
 	public function addChild( o , oInit ) 
 	{
 		return addChildAt( o, size(), oInit , arguments[2] ) ;
-		
 	}
 	
 	/**
