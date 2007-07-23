@@ -115,7 +115,7 @@ class pegas.events.UIEvent extends DynamicEvent
 
 	public function clone() 
 	{
-		return new UIEvent(getType(), getTarget()) ;
+		return new UIEvent( getType(), getTarget() ) ;
 	}
 	
 	/*protected*/ private function _getParams():Array 

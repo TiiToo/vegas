@@ -58,16 +58,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 		view.onUnload = Delegate.create(this, _onUnload) ;
 		view._focusrect = false ;
 		
-		_eAdded           = new UIEvent( UIEvent.ADDED, this) ;
-		_eChange          = new UIEvent( UIEvent.CHANGE, this) ;
-		_eCreate          = new UIEvent( UIEvent.CREATE, this) ;
-		_eDestroy         = new UIEvent( UIEvent.DESTROY, this) ;
-		_eEnabledChanged  = new UIEvent( UIEvent.ENABLED_CHANGE , this) ;
-		_eInit            = new UIEvent( UIEvent.INIT , this) ;
-		_eRemoved         = new UIEvent( UIEvent.REMOVED, this) ;
-		_eRender          = new UIEvent( UIEvent.RENDER, this) ;
-		_eResize          = new UIEvent( UIEvent.RESIZE , this) ;
-		_eStyleChange     = new UIEvent( UIEvent.STYLE_CHANGE, this) ;
+		initEvent() ;
 		
 		_listenerStyleChange = new Delegate(this, viewStyleChanged) ;
 		
@@ -370,7 +361,24 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	{
 		dispatchEvent( _eInit ) ;
 	}
-
+	
+	/**
+	 * Initialize all events dispatched in this components.
+	 */
+	public function initEvent():Void
+	{
+		_eAdded           = new UIEvent( UIEvent.ADDED   , this) ;
+		_eChange          = new UIEvent( UIEvent.CHANGE  , this) ;
+		_eCreate          = new UIEvent( UIEvent.CREATE  , this) ;
+		_eDestroy         = new UIEvent( UIEvent.DESTROY , this) ;
+		_eEnabledChanged  = new UIEvent( UIEvent.ENABLED_CHANGE , this) ;
+		_eInit            = new UIEvent( UIEvent.INIT    , this) ;
+		_eRemoved         = new UIEvent( UIEvent.REMOVED , this) ;
+		_eRender          = new UIEvent( UIEvent.RENDER  , this) ;
+		_eResize          = new UIEvent( UIEvent.RESIZE  , this) ;
+		_eStyleChange     = new UIEvent( UIEvent.STYLE_CHANGE, this) ;	
+	}
+	
 	/**
 	 * Notify when a new child is added in the component.
 	 */
@@ -534,7 +542,6 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	 */
 	public function update():Void 
 	{
-		trace(this + " update.") ;
 		if ( isLocked() ) 
 		{
 			return ;
