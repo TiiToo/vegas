@@ -35,8 +35,8 @@ class asgard.display.ConfigurableDisplayObject extends DisplayObject implements 
 	
 	/**
 	 * Creates a new ConfigurableDisplayObject instance.
-	 * @param sName:String the name of the display.
-	 * @param target:MovieClip the DisplayObject instance control this target.
+	 * @param sName the name of the display.
+	 * @param target the DisplayObject instance control this target.
 	 */
 	public function ConfigurableDisplayObject(sName:String, target) 
 	{

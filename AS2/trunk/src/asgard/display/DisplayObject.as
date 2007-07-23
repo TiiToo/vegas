@@ -106,8 +106,8 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher implement
 
 	/**
 	 * Creates a new DisplayObject instance.
-	 * @param sName:String the name of the display.
-	 * @param target:MovieClip the DisplayObject instance control this target.
+	 * @param sName the name of the display.
+	 * @param target the DisplayObject instance control this target.
 	 */
     public function DisplayObject( sName:String , target ) 
     {
