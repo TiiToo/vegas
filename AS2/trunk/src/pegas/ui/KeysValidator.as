@@ -21,124 +21,145 @@
   
 */
 
-/*
-		
-	PARAMS
-	
-		keys : 
-			un tableau facultatif contenant une collection de touche définissant 
-			la validation nécessaire pour lancer une action.
-
-	CONSTANT SUMMARY
-	
-		- CODE:Number  (0)
-		
-		- ASCII:Number (1)
-
-	PROPERTY SUMMARY
-	
-		- codePolicy[R/W] [Number] : vaut CODE(0) ou ASCII(1) (par défaut vaut CODE)
-	
-			Permet de notifier une validation en fonction de la méthode Key.getCode() ou Key.getASCII
-	
-	METHOD SUMMARY
-	
-		- addEventListener( eventName:String, listener, autoRemove:Boolean, priority:Number ):Void
-	
-		- clear()
-		
-		- countKeys()
-		
-			renvoi le nombre de touches nécessaires pour valider l'action
-		
-		- insert(keyCode:Number)
-		
-			insère une nouvelle touche dans la liste des touches à presser
-		
-		- remove(keyCode:Number)
-		
-			supprimer une touche dans la liste des touches.
-		
-		- removeEventListener(eventName:String, listener):EventListener 
-		
-		- setCodePolicy(code:Number)
-		
-			code vaut CODE(0) ou ASCII(1)
-		
-		- supports(value)
-		
-			renvoi true si la valeur existe dans la liste des touches
-		
-		- toString():String
-		
-		- validate(value)
-		
-			Permet de valider une valeur.
-
-	
-		
-		
-*/
-
-import vegas.core.CoreObject;
 import vegas.core.IValidator;
 import vegas.data.iterator.Iterator;
 import vegas.data.set.HashSet;
-import vegas.events.EventDispatcher;
-import vegas.events.EventListener;
+import vegas.events.AbstractCoreEventDispatcher;
 import vegas.events.ValidatorEvent;
-import vegas.events.ValidatorEventType;
 
 /**
  * Set a collection of keys to validate an action.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import vegas.events.Delegate ;
+ * import vegas.events.EventListener ;
+ * import vegas.events.ValidatorEvent ;
+ * 
+ * import pegas.ui.Keyboard ;
+ * import pegas.ui.KeysValidator ;
+ * 
+ * var onDebug:Function = function (ev:ValidatorEvent):Void
+ * {
+ *     trace ( this + " : " + ev.type ) ;
+ * }
+ * 
+ * var debug:EventListener = new Delegate(this, onDebug) ;
+ * 
+ * var code_F:Number = Keyboard.getCharCode("f") ;
+ * 
+ * trace ("code F key : " + code_F) ;
+ * trace ("code CTRL key : " + Keyboard.CONTROL) ;
+ * 
+ * var validator:KeysValidator = new KeysValidator() ;
+ * validator.addEventListener(ValidatorEvent.VALID, debug) ;
+ * validator.addEventListener(ValidatorEvent.INVALID, debug) ;
+ * 
+ * validator.codePolicy = KeysValidator.ASCII ; // ASCII or CODE
+ *
+ * validator.insert( Keyboard.CONTROL ) ;
+ * validator.insert(code_F) ;
+ * 
+ * trace ("count keys : " + validator.countKeys()) ;
+ * 
+ * // Disabled Shortcuts in the flashplayer to test this example !
+ * 
+ * }
  * @author eKameleon
- * @see asgard.ui.Keyboard (key manager with F1..F12, etc. key codes)
+ * @see pegas.ui.Keyboard (key manager with F1..F12, etc. key codes)
  */
-class pegas.ui.KeysValidator extends CoreObject implements IValidator 
+class pegas.ui.KeysValidator extends AbstractCoreEventDispatcher implements IValidator 
 {
 	
 	/**
 	 * Creates a new KeysValidator instance.
+	 * @param keys An array of key codes to initialize the validator.
+	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */
-	public function KeysValidator( keys:Array ) 
+	public function KeysValidator( keys:Array ,bGlobal:Boolean , sChannel:String ) 
 	{
-		Key.addListener(this) ;
-		_dispatcher = new EventDispatcher() ;
-		_set = new HashSet(keys) ;
+		_cp  = KeysValidator.CODE ;
+		_set = new HashSet( keys ) ;
 		_reset() ;
+		enabled = true ;
 	}
 
+	/**
+	 * Indicates the code policy when the validator use the Key.getCode() method.
+	 */
 	static public var CODE:Number = 0 ;
 
+	/**
+	 * Indicates the code policy when the validator use the Key.ASCII() method.
+	 */
 	static public var ASCII:Number = 1 ;
 	
 	static private var __ASPF__ = _global.ASSetPropFlags(KeysValidator, null, 7, 7) ;
 	
+	/**
+	 * Switch the validate process of this validator to use the {@code Key.getCode()} or the {@code Key.getASCII()} method.
+	 * This virtual property value is KeysValidator.CODE (0) ou KeysValidator.ASCII (1).
+	 * The default value of this property is KeysValidator.CODE (0).
+	 */
 	public function get codePolicy():Number 
 	{
 		return _cp ;
 	}
-	
+
+	/**
+	 * Switch the validate process of this validator to use the {@code Key.getCode()} or the {@code Key.getASCII()} method.
+	 * This virtual property value is KeysValidator.CODE (0) ou KeysValidator.ASCII (1).
+	 * The default value of this property is KeysValidator.CODE (0).
+	 */
 	public function set codePolicy(n:Number):Void 
 	{
 		setCodePolicy(n) ;
 	}
 	
-	public function addEventListener( eventName:String, listener, autoRemove:Boolean, priority:Number ):Void 
+	/**
+	 * Indicates if the validator is active (true) or not (false).
+	 */
+	public function get enabled():Boolean
 	{
-		_dispatcher.addEventListener(eventName, listener, autoRemove, priority) ;
+		return _enabled ;	
 	}
-
+	
+	/**
+	 * Indicates if the validator is active (true) or not (false).
+	 */
+	public function set enabled(b:Boolean):Void
+	{
+		_enabled = b ;
+		if( _enabled ) 
+		{
+			Key.addListener(this) ;
+		}
+		else
+		{
+			Key.removeListener(this) ;	
+		}	
+	}
+	
+	/**
+	 * Clear all elements in this key validator.
+	 */
 	public function clear():Void 
 	{
 		_set.clear() ;
 	}
 	
+	/**
+	 * Returns the number of key codes in the internal collection of this validator.
+	 * @return the number of key codes in the internal collection of this validator.
+	 */
 	public function countKeys():Number 
 	{
 		return _set.size() ;
 	}
-
+	
+	/**
+	 * Inserts a new keyCode in the internal {@code Set} of this validator if it is not already present..
+	 */
 	public function insert(keyCode:Number):Boolean 
 	{
 		var b:Boolean = _set.insert(keyCode) ;
@@ -146,6 +167,9 @@ class pegas.ui.KeysValidator extends CoreObject implements IValidator
 		return b ;
 	}
 	
+	/**
+	 * Removes the specified key code in the validator if it's exist.
+	 */
 	public function remove(keyCode:Number):Boolean 
 	{
 		var b:Boolean = _set.remove(keyCode) ;
@@ -153,21 +177,37 @@ class pegas.ui.KeysValidator extends CoreObject implements IValidator
 		return b ;
 	}
 	
-	public function removeEventListener(eventName:String, listener):EventListener 
-	{
-		return _dispatcher.removeEventListener(eventName, listener) ;
-	}
-	
+	/**
+	 * Sets and Switch the validate process of this validator to use the {@code Key.getCode()} or the {@code Key.getASCII()} method.
+	 * This virtual property value is KeysValidator.CODE (0) ou KeysValidator.ASCII (1).
+	 * The default value of this property is KeysValidator.CODE (0).
+	 */
 	public function setCodePolicy(code:Number):Void 
 	{
 		_cp = code ;
 	}
 	
+	/**
+	 * Returns {@code true} if the passed-in value is support by the validator.
+	 * @return {@code true} if the passed-in value is support by the validator.
+	 */
 	public function supports(value):Boolean 
 	{
 		return _it.next() == value ;
 	}
+
+	/**
+	 * Returns an Array representation of all key codes in this validator.
+	 * @return an Array representation of all key codes in this validator.
+	 */
+	public function toArray():Array
+	{
+		return _set.toArray() ;
+	}
 	
+	/**
+	 * Validates the specified value in argument.
+	 */	
 	public function validate(value):Void 
 	{
 		if ( supports(value) ) 
@@ -175,40 +215,65 @@ class pegas.ui.KeysValidator extends CoreObject implements IValidator
 			if (!_it.hasNext()) 
 			{
 				_reset() ;
-				_dispatcher.dispatchEvent(new ValidatorEvent(ValidatorEventType.VALID, this)) ;
+				dispatchEvent(new ValidatorEvent( ValidatorEvent.VALID, this)) ;
 			}
 		} 
 		else 
 		{
 			_reset() ;
-			_dispatcher.dispatchEvent(new ValidatorEvent(ValidatorEventType.INVALID, this)) ;
+			dispatchEvent( new ValidatorEvent( ValidatorEvent.INVALID, this) ) ;
 		}
 	}
 	
+	private var _cp:Number ;
 
+	/**
+	 * The enabled flag of this validator.
+	 */
+	private var _enabled:Boolean ;
 	
-	private var _cp:Number = KeysValidator.CODE ; // codePolicy property
-	private var _dispatcher:EventDispatcher ;
+	/**
+	 * The internal {@code Set} of this validator.
+	 */
 	private var _set:HashSet ;
+	
+	/**
+	 * The internal iterator of this validator.
+	 */
 	private var _it:Iterator ;
 	
+	/**
+	 * Reset the validator iterator.
+	 */
 	private function _reset():Void 
 	{
 		_it = _set.iterator() ;
 	}
 	
+	/**
+	 * Invoqued when the key is down.
+	 */
 	private function onKeyDown():Void 
 	{
 		var code:Number ;
-		if (_cp == KeysValidator.ASCII) {
+		if (_cp == KeysValidator.ASCII) 
+		{
 			code = Key.getAscii() ;
-			if (code == 0 || code == undefined ) code = Key.getCode() ;
-		} else {
+			if (code == 0 || code == undefined ) 
+			{
+				code = Key.getCode() ;
+			}
+		} 
+		else 
+		{
 			code = Key.getCode() ;
 		}
 		validate(code) ;
 	}
 	
+	/**
+	 * Invoqued when the keys are up.
+	 */
 	private function onKeyUp():Void 
 	{
 		_reset() ;

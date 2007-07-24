@@ -26,6 +26,7 @@ import lunas.display.abstract.AbstractComponentDisplay;
 import lunas.group.RadioButtonGroup;
 
 import pegas.events.ButtonEvent;
+import pegas.ui.DoubleClick;
 
 import vegas.events.Delegate;
 import vegas.events.EventListener;
@@ -61,6 +62,26 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 	 * A number value to indicated the index of this IButton.
 	 */
 	public var index:Number ;
+
+	/**
+	 * Specifies whether the object receives doubleClick events.
+	 */
+	public function get doubleClickEnabled():Boolean
+	{
+		return _doubleClickEnabled ;
+	}
+	
+	/**
+	 * Specifies whether the object receives doubleClick events.
+	 */
+	public function set doubleClickEnabled( b:Boolean ):Void
+	{
+		_doubleClickEnabled = b ;
+		if (b)
+		{
+			DoubleClick.initialize() ;	
+		}
+	} 
 
 	/**
 	 * Returns the text label for a button instance.
@@ -277,6 +298,8 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 		// override this method when label property change
 	}
 
+	private var _doubleClickEnabled:Boolean ;
+
 	private var _eButton:ButtonEvent ;
 
 	private var _label:String ;
@@ -298,6 +321,7 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 
 	private function _onPress():Void 
 	{
+		
 		if (_toggle) 
 		{
 			setSelected (!_selected);
@@ -306,8 +330,11 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 		{
 			_fireButtonEvent(ButtonEvent.DOWN) ;
 		}
-		_fireButtonEvent(ButtonEvent.CLICK) ;
+		
+		_fireButtonEvent( (_doubleClickEnabled && DoubleClick.ISDOUBLE) ? ButtonEvent.DOUBLE_CLICK : ButtonEvent.CLICK  ) ;
+		
 		_fireButtonEvent(ButtonEvent.MOUSE_DOWN) ;
+		
 	}
 
 	private function _onRelease():Void 
