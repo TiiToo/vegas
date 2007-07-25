@@ -21,6 +21,7 @@
   
 */
 
+import lunas.core.Iconifiable;
 import lunas.display.abstract.AbstractButtonDisplay;
 
 import pegas.colors.ColorUtil;
@@ -31,7 +32,7 @@ import pegas.events.ButtonEventType;
  * This abstract class determinates the skeletal implementation to implement an icon button displays.
  * @author eKameleon
  */
-class lunas.display.abstract.AbstractButtonIconDisplay extends AbstractButtonDisplay 
+class lunas.display.abstract.AbstractButtonIconDisplay extends AbstractButtonDisplay implements Iconifiable
 {
 
 	/**
@@ -77,9 +78,12 @@ class lunas.display.abstract.AbstractButtonIconDisplay extends AbstractButtonDis
 	
 	/**
 	 * Attach and returns a new Icon in the component.
+	 * @param depth (optional) the depth of the icon (default value is the constant DEFAULT_ICON_DETH)
+	 * @param target (optional) the other scope parent reference of the icon.
+	 * @param name (optional) the name of the view icon reference.
 	 * @return a new Icon MovieClip reference attached in the view or the specified scope.
 	 */
-	public function attachIcon(depth:Number, target:MovieClip , name:String ):MovieClip 
+	public function attachIcon( depth:Number, target:MovieClip , name:String ):MovieClip 
 	{
 		
 		if (getIconTarget() != null) 

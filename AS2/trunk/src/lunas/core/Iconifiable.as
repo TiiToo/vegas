@@ -32,16 +32,16 @@ interface lunas.core.Iconifiable
 	/**
 	 * Sets a string that specifies the linkage identifier of a symbol in the library to be used as an icon for a button instance.
 	 */
-	public function setIcon( str:String ):Void ;
+	function setIcon( str:String ):Void ;
 	
 	/**
 	 * Sets the icon reference of the display.
 	 */
-	public function setIconTarget( target:MovieClip ):Void ;
+	function setIconTarget( target:MovieClip ):Void ;
 
 	/**
 	 * Invoqued when the icon property is changed.
 	 */
-	public function viewIconChanged():Void ;
+	function viewIconChanged():Void ;
 
 }

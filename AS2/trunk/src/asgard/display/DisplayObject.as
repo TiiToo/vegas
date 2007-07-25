@@ -247,6 +247,30 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher implement
 	public var view ;
 	
 	/**
+	 * (read-write) Returns {@code true} if the display is visible.
+	 * @return {@code true} if the display is visible.
+	 */
+	public function get visible():Boolean
+	{
+		return isVisible() ;
+	}
+	
+	/**
+	 * (read-write) Sets if the display is visible.
+	 */
+	public function set visible(b:Boolean):Void
+	{
+		if (b)
+		{
+			show() ;
+		}
+		else
+		{
+			hide() ;	
+		}	
+	}
+	
+	/**
 	 * (read-write) Returns the width of the display's view.
 	 * @return the width of the display's view.
 	 */
