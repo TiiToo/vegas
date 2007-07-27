@@ -40,7 +40,6 @@ import vegas.events.EventListener;
  * <p>The {@code stop()} method is call in the first frame of the component when the constructor is launched.</p>
  * @author eKameleon
  * @see pegas.events.ButtonEvent
- * @see pegas.events.ButtonEventType
  */
 class lunas.display.components.button.SimpleButton extends AbstractButton 
 {
@@ -58,10 +57,10 @@ class lunas.display.components.button.SimpleButton extends AbstractButton
 		_listenerOver = new Delegate(this, over) ;
 		_listenerUp = new Delegate(this, up) ;
 		
-		addEventListener (ButtonEventType.DISABLED, _listenerDisabled) ;
-		addEventListener (ButtonEventType.DOWN, _listenerDown) ;
-		addEventListener (ButtonEventType.OVER, _listenerOver) ;
-		addEventListener (ButtonEventType.UP, _listenerUp) ;
+		addEventListener (ButtonEvent.DISABLED, _listenerDisabled) ;
+		addEventListener (ButtonEvent.DOWN, _listenerDown) ;
+		addEventListener (ButtonEvent.OVER, _listenerOver) ;
+		addEventListener (ButtonEvent.UP, _listenerUp) ;
 	
 		getView().stop() ;
 			
@@ -72,7 +71,7 @@ class lunas.display.components.button.SimpleButton extends AbstractButton
 	 */
 	public function disabled( e:ButtonEvent ): Void 
 	{
-		getView().gotoAndStop(ButtonEventType.DISABLED) ;
+		getView().gotoAndStop(ButtonEvent.DISABLED) ;
 	}	
 	
 	/**
@@ -80,7 +79,7 @@ class lunas.display.components.button.SimpleButton extends AbstractButton
 	 */
 	public function down( e:ButtonEvent ): Void 
 	{
-		getView().gotoAndStop(ButtonEventType.DOWN) ;
+		getView().gotoAndStop(ButtonEvent.DOWN) ;
 	}
 
 	/**
@@ -97,7 +96,7 @@ class lunas.display.components.button.SimpleButton extends AbstractButton
 	 */
 	public function over( e:ButtonEvent ):Void 
 	{
-		getView().gotoAndStop(ButtonEventType.OVER) ;
+		getView().gotoAndStop(ButtonEvent.OVER) ;
 	}
 
 	/**
