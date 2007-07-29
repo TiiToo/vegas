@@ -162,91 +162,94 @@ document.quicknavBasePath="../../index-files";
 <span class="lineno" id="159">   159  </span>	 */</span>
 <span class="lineno" id="160">   160  </span>	<span class="key">public</span> <span class="key">function</span> restart(noEvent:Boolean):Void 
 <span class="lineno" id="161">   161  </span>	{
-<span class="lineno" id="162">   162  </span>		<span class="key">if</span> (getRunning()) <span class="key">this</span>.stop() ;
-<span class="lineno" id="163">   163  </span>		_setRunning(<span class="key">true</span>) ;
-<span class="lineno" id="164">   164  </span>		run() ;
-<span class="lineno" id="165">   165  </span>		<span class="key">if</span> (!noEvent) 
-<span class="lineno" id="166">   166  </span>		{
-<span class="lineno" id="167">   167  </span>			dispatchEvent( <span class="key">new</span> TimerEvent( TimerEvent.RESTART, <span class="key">this</span>) ) ;
-<span class="lineno" id="168">   168  </span>		}
-<span class="lineno" id="169">   169  </span>	}
-<span class="lineno" id="170">   170  </span>
-<span class="lineno" id="171">   171  </span>	<span class="comment doc">/**
-<span class="lineno" id="172">   172  </span>	 * Run the timer. Overrides this method.
-<span class="lineno" id="173">   173  </span>	 * @see IRunnable
-<span class="lineno" id="174">   174  </span>	 */</span>
-<span class="lineno" id="175">   175  </span>	<span class="key">public</span> <span class="key">function</span> run():Void 
-<span class="lineno" id="176">   176  </span>	{
-<span class="lineno" id="177">   177  </span>		<span class="comment">// override this method</span>
-<span class="lineno" id="178">   178  </span>	}
-<span class="lineno" id="179">   179  </span>	
-<span class="lineno" id="180">   180  </span>	<span class="comment doc">/**
-<span class="lineno" id="181">   181  </span>	 * Sets the delay between timer events, in milliseconds.
-<span class="lineno" id="182">   182  </span>	 */</span>
-<span class="lineno" id="183">   183  </span>	<span class="key">public</span> <span class="key">function</span> setDelay(n:Number):Void 
-<span class="lineno" id="184">   184  </span>	{
-<span class="lineno" id="185">   185  </span>		_delay = (n &gt; <span class="num_const">0</span>) ? n : <span class="num_const">0</span> ;
-<span class="lineno" id="186">   186  </span>		<span class="key">if</span> (getRunning()) 
-<span class="lineno" id="187">   187  </span>		{
-<span class="lineno" id="188">   188  </span>			restart() ;
-<span class="lineno" id="189">   189  </span>		}
-<span class="lineno" id="190">   190  </span>	}
-<span class="lineno" id="191">   191  </span>
-<span class="lineno" id="192">   192  </span>	<span class="comment doc">/**
-<span class="lineno" id="193">   193  </span>	 * Sets the number of repetitions. If zero, the timer repeats infinitely. If nonzero, the timer runs the specified number of times and then stops.
-<span class="lineno" id="194">   194  </span>	 */</span>
-<span class="lineno" id="195">   195  </span>	<span class="key">public</span> <span class="key">function</span> setRepeatCount(n:Number):Void
-<span class="lineno" id="196">   196  </span>	{
-<span class="lineno" id="197">   197  </span>		_repeatCount = (n &gt; <span class="num_const">0</span>) ? n : <span class="num_const">0</span> ;
-<span class="lineno" id="198">   198  </span>	}
-<span class="lineno" id="199">   199  </span>
-<span class="lineno" id="200">   200  </span>	<span class="comment doc">/**
-<span class="lineno" id="201">   201  </span>	 * Starts the timer, if it is not already running.
-<span class="lineno" id="202">   202  </span>	 */</span>
-<span class="lineno" id="203">   203  </span>	<span class="key">public</span> <span class="key">function</span> start():Void 
-<span class="lineno" id="204">   204  </span>	{
-<span class="lineno" id="205">   205  </span>		<span class="key">if</span> (getRunning()) <span class="key">return</span> ;
-<span class="lineno" id="206">   206  </span>		_count = <span class="num_const">0</span> ;
-<span class="lineno" id="207">   207  </span>		dispatchEvent( <span class="key">new</span> TimerEvent(TimerEvent.START, <span class="key">this</span>) ) ;
-<span class="lineno" id="208">   208  </span>		restart(<span class="key">true</span>) ;
-<span class="lineno" id="209">   209  </span>	}
-<span class="lineno" id="210">   210  </span>	
-<span class="lineno" id="211">   211  </span>	<span class="comment doc">/**
-<span class="lineno" id="212">   212  </span>	 * Stops the timer.
-<span class="lineno" id="213">   213  </span>	 */</span>
-<span class="lineno" id="214">   214  </span>	<span class="key">public</span> <span class="key">function</span> stop():Void 
-<span class="lineno" id="215">   215  </span>	{
-<span class="lineno" id="216">   216  </span>		_setRunning(<span class="key">false</span>) ;
-<span class="lineno" id="217">   217  </span>		clear() ;
-<span class="lineno" id="218">   218  </span>		dispatchEvent( <span class="key">new</span> TimerEvent(TimerEvent.STOP, <span class="key">this</span>) ) ;
-<span class="lineno" id="219">   219  </span>	}
-<span class="lineno" id="220">   220  </span>	
-<span class="lineno" id="221">   221  </span>	<span class="comment doc">/**
-<span class="lineno" id="222">   222  </span>	 * The internal counter of the timer.
-<span class="lineno" id="223">   223  </span>	 */</span>
-<span class="lineno" id="224">   224  </span>	<span class="key">private</span> <span class="key">var</span> _count:Number ;
-<span class="lineno" id="225">   225  </span>	
-<span class="lineno" id="226">   226  </span>	<span class="comment doc">/**
-<span class="lineno" id="227">   227  </span>	 * The internal delay of the timer.
-<span class="lineno" id="228">   228  </span>	 */</span>
-<span class="lineno" id="229">   229  </span>	<span class="key">private</span> <span class="key">var</span> _delay:Number ;
-<span class="lineno" id="230">   230  </span>	
-<span class="lineno" id="231">   231  </span>	<span class="comment doc">/**
-<span class="lineno" id="232">   232  </span>	 * The internal repeat counter of the timer.
-<span class="lineno" id="233">   233  </span>	 */</span>
-<span class="lineno" id="234">   234  </span>	<span class="key">private</span> <span class="key">var</span> _repeatCount:Number ;
-<span class="lineno" id="235">   235  </span>	
-<span class="lineno" id="236">   236  </span>	<span class="comment doc">/**
-<span class="lineno" id="237">   237  </span>	 * Determintates if the timer is in progress or not.
-<span class="lineno" id="238">   238  </span>	 */</span>
-<span class="lineno" id="239">   239  </span>	<span class="key">private</span> <span class="key">var</span> _running:Boolean ;
-<span class="lineno" id="240">   240  </span>	
-<span class="lineno" id="241">   241  </span>	<span class="comment doc">/**
-<span class="lineno" id="242">   242  </span>	 * Protected methods to defined the running property when the timer is in progress.
-<span class="lineno" id="243">   243  </span>	 */</span>
-<span class="lineno" id="244">   244  </span>	<span class="key">private</span> <span class="key">function</span> _setRunning(b:Boolean):Void 
-<span class="lineno" id="245">   245  </span>	{
-<span class="lineno" id="246">   246  </span>		_running = b ;
-<span class="lineno" id="247">   247  </span>	}
-<span class="lineno" id="248">   248  </span>
-<span class="lineno" id="249">   249  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.util" class="button">Package</a></li><li><a href="AbstractTimer.html" title="Detail of vegas.util.AbstractTimer API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
+<span class="lineno" id="162">   162  </span>		<span class="key">if</span> (getRunning()) 
+<span class="lineno" id="163">   163  </span>		{
+<span class="lineno" id="164">   164  </span>			<span class="key">this</span>.stop() ;
+<span class="lineno" id="165">   165  </span>		}
+<span class="lineno" id="166">   166  </span>		_setRunning(<span class="key">true</span>) ;
+<span class="lineno" id="167">   167  </span>		run() ;
+<span class="lineno" id="168">   168  </span>		<span class="key">if</span> (!noEvent) 
+<span class="lineno" id="169">   169  </span>		{
+<span class="lineno" id="170">   170  </span>			dispatchEvent( <span class="key">new</span> TimerEvent( TimerEvent.RESTART, <span class="key">this</span>) ) ;
+<span class="lineno" id="171">   171  </span>		}
+<span class="lineno" id="172">   172  </span>	}
+<span class="lineno" id="173">   173  </span>
+<span class="lineno" id="174">   174  </span>	<span class="comment doc">/**
+<span class="lineno" id="175">   175  </span>	 * Run the timer. Overrides this method.
+<span class="lineno" id="176">   176  </span>	 * @see IRunnable
+<span class="lineno" id="177">   177  </span>	 */</span>
+<span class="lineno" id="178">   178  </span>	<span class="key">public</span> <span class="key">function</span> run():Void 
+<span class="lineno" id="179">   179  </span>	{
+<span class="lineno" id="180">   180  </span>		<span class="comment">// override this method</span>
+<span class="lineno" id="181">   181  </span>	}
+<span class="lineno" id="182">   182  </span>	
+<span class="lineno" id="183">   183  </span>	<span class="comment doc">/**
+<span class="lineno" id="184">   184  </span>	 * Sets the delay between timer events, in milliseconds.
+<span class="lineno" id="185">   185  </span>	 */</span>
+<span class="lineno" id="186">   186  </span>	<span class="key">public</span> <span class="key">function</span> setDelay(n:Number):Void 
+<span class="lineno" id="187">   187  </span>	{
+<span class="lineno" id="188">   188  </span>		_delay = (n &gt; <span class="num_const">0</span>) ? n : <span class="num_const">0</span> ;
+<span class="lineno" id="189">   189  </span>		<span class="key">if</span> (getRunning()) 
+<span class="lineno" id="190">   190  </span>		{
+<span class="lineno" id="191">   191  </span>			restart() ;
+<span class="lineno" id="192">   192  </span>		}
+<span class="lineno" id="193">   193  </span>	}
+<span class="lineno" id="194">   194  </span>
+<span class="lineno" id="195">   195  </span>	<span class="comment doc">/**
+<span class="lineno" id="196">   196  </span>	 * Sets the number of repetitions. If zero, the timer repeats infinitely. If nonzero, the timer runs the specified number of times and then stops.
+<span class="lineno" id="197">   197  </span>	 */</span>
+<span class="lineno" id="198">   198  </span>	<span class="key">public</span> <span class="key">function</span> setRepeatCount(n:Number):Void
+<span class="lineno" id="199">   199  </span>	{
+<span class="lineno" id="200">   200  </span>		_repeatCount = (n &gt; <span class="num_const">0</span>) ? n : <span class="num_const">0</span> ;
+<span class="lineno" id="201">   201  </span>	}
+<span class="lineno" id="202">   202  </span>
+<span class="lineno" id="203">   203  </span>	<span class="comment doc">/**
+<span class="lineno" id="204">   204  </span>	 * Starts the timer, if it is not already running.
+<span class="lineno" id="205">   205  </span>	 */</span>
+<span class="lineno" id="206">   206  </span>	<span class="key">public</span> <span class="key">function</span> start():Void 
+<span class="lineno" id="207">   207  </span>	{
+<span class="lineno" id="208">   208  </span>		<span class="key">if</span> (getRunning()) <span class="key">return</span> ;
+<span class="lineno" id="209">   209  </span>		_count = <span class="num_const">0</span> ;
+<span class="lineno" id="210">   210  </span>		dispatchEvent( <span class="key">new</span> TimerEvent(TimerEvent.START, <span class="key">this</span>) ) ;
+<span class="lineno" id="211">   211  </span>		restart(<span class="key">true</span>) ;
+<span class="lineno" id="212">   212  </span>	}
+<span class="lineno" id="213">   213  </span>	
+<span class="lineno" id="214">   214  </span>	<span class="comment doc">/**
+<span class="lineno" id="215">   215  </span>	 * Stops the timer.
+<span class="lineno" id="216">   216  </span>	 */</span>
+<span class="lineno" id="217">   217  </span>	<span class="key">public</span> <span class="key">function</span> stop():Void 
+<span class="lineno" id="218">   218  </span>	{
+<span class="lineno" id="219">   219  </span>		_setRunning(<span class="key">false</span>) ;
+<span class="lineno" id="220">   220  </span>		clear() ;
+<span class="lineno" id="221">   221  </span>		dispatchEvent( <span class="key">new</span> TimerEvent(TimerEvent.STOP, <span class="key">this</span>) ) ;
+<span class="lineno" id="222">   222  </span>	}
+<span class="lineno" id="223">   223  </span>	
+<span class="lineno" id="224">   224  </span>	<span class="comment doc">/**
+<span class="lineno" id="225">   225  </span>	 * The internal counter of the timer.
+<span class="lineno" id="226">   226  </span>	 */</span>
+<span class="lineno" id="227">   227  </span>	<span class="key">private</span> <span class="key">var</span> _count:Number ;
+<span class="lineno" id="228">   228  </span>	
+<span class="lineno" id="229">   229  </span>	<span class="comment doc">/**
+<span class="lineno" id="230">   230  </span>	 * The internal delay of the timer.
+<span class="lineno" id="231">   231  </span>	 */</span>
+<span class="lineno" id="232">   232  </span>	<span class="key">private</span> <span class="key">var</span> _delay:Number ;
+<span class="lineno" id="233">   233  </span>	
+<span class="lineno" id="234">   234  </span>	<span class="comment doc">/**
+<span class="lineno" id="235">   235  </span>	 * The internal repeat counter of the timer.
+<span class="lineno" id="236">   236  </span>	 */</span>
+<span class="lineno" id="237">   237  </span>	<span class="key">private</span> <span class="key">var</span> _repeatCount:Number ;
+<span class="lineno" id="238">   238  </span>	
+<span class="lineno" id="239">   239  </span>	<span class="comment doc">/**
+<span class="lineno" id="240">   240  </span>	 * Determintates if the timer is in progress or not.
+<span class="lineno" id="241">   241  </span>	 */</span>
+<span class="lineno" id="242">   242  </span>	<span class="key">private</span> <span class="key">var</span> _running:Boolean ;
+<span class="lineno" id="243">   243  </span>	
+<span class="lineno" id="244">   244  </span>	<span class="comment doc">/**
+<span class="lineno" id="245">   245  </span>	 * Protected methods to defined the running property when the timer is in progress.
+<span class="lineno" id="246">   246  </span>	 */</span>
+<span class="lineno" id="247">   247  </span>	<span class="key">private</span> <span class="key">function</span> _setRunning(b:Boolean):Void 
+<span class="lineno" id="248">   248  </span>	{
+<span class="lineno" id="249">   249  </span>		_running = b ;
+<span class="lineno" id="250">   250  </span>	}
+<span class="lineno" id="251">   251  </span>
+<span class="lineno" id="252">   252  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.util" class="button">Package</a></li><li><a href="AbstractTimer.html" title="Detail of vegas.util.AbstractTimer API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

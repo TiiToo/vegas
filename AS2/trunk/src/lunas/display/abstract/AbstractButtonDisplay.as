@@ -135,7 +135,6 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 		setToggle(b);	
 	}	
 
-
 	/**
 	 * Returns the data value object to render or edit.
 	 * @return the data value object to render or edit.

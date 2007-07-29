@@ -22,19 +22,44 @@
   
 */
 
+/**
+ * This interface defines all methods to implement in a button display components.
+ */
 interface lunas.core.IButton extends IData
 {
 	
+	/**
+	 * Returns the text label for a button instance.
+	 * @return the text label for a button instance.
+	 */
 	function getLabel():String ;
-	
+
+	/**
+	 * Returns a Boolean value indicating whether the button is selected (true) or not (false). The default value is false.
+	 * @return a Boolean value indicating whether the button is selected (true) or not (false)
+	 */
 	function getSelected():Boolean ;
-	
+
+	/**
+	 * Returns a boolean value indicating whether the button behaves as a toggle switch (true) or not (false). 
+	 * @return a boolean value indicating whether the button behaves as a toggle switch (true) or not (false).
+	 */
 	function getToggle():Boolean ;
-	
+
+	/**
+	 * Sets the text label for a button instance.
+	 */
 	function setLabel(str:String):Void ;
 
+	/**
+	 * Sets a Boolean value indicating whether the button is selected (true) or not (false). The default value is false.
+	 */
 	function setSelected (b:Boolean, noEvent:Boolean):Void ;
-	
+
+	/**
+	 * Sets a boolean value indicating whether the button behaves as a toggle switch (true) or not (false). 
+	 * The default value is false.
+	 */
 	function setToggle(b:Boolean):Void ;
 	
 }

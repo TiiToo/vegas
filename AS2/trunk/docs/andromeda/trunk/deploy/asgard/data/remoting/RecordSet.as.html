@@ -369,7 +369,7 @@ document.quicknavBasePath="../../../index-files";
 <span class="lineno" id="366">   366  </span>		<span class="key">var</span> l:Number = aItems.length ;
 <span class="lineno" id="367">   367  </span>		<span class="key">for</span> (<span class="key">var</span> i:Number = <span class="num_const">0</span> ; i&lt;l ; i++) {
 <span class="lineno" id="368">   368  </span>			<span class="key">var</span> item:Object = {} ;
-<span class="lineno" id="369">   369  </span>			<span class="key">var</span> aProperties = aItems[i] ;
+<span class="lineno" id="369">   369  </span>			<span class="key">var</span> aProperties:Array = aItems[i] ;
 <span class="lineno" id="370">   370  </span>			<span class="key">var</span> count:Number = aProperties.length ;
 <span class="lineno" id="371">   371  </span>			<span class="key">for</span> (<span class="key">var</span> j:Number = <span class="num_const">0</span> ; j&lt;count ; j++) {
 <span class="lineno" id="372">   372  </span>				item[ mTiles[ j ] ] = aProperties[j] ;
@@ -386,7 +386,7 @@ document.quicknavBasePath="../../../index-files";
 <span class="lineno" id="383">   383  </span>	 */</span>
 <span class="lineno" id="384">   384  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">function</span> register():Boolean 
 <span class="lineno" id="385">   385  </span>	{
-<span class="lineno" id="386">   386  </span>		<span class="key">return</span> Object.registerClass( <span class="str_const">"RecordSet"</span>, asgard.data.remoting.RecordSet ) ;
+<span class="lineno" id="386">   386  </span>		<span class="key">return</span> Object.registerClass( <span class="str_const">"RecordSet"</span>, RecordSet ) ;
 <span class="lineno" id="387">   387  </span>	}
 <span class="lineno" id="388">   388  </span>
 <span class="lineno" id="389">   389  </span>	<span class="key">public</span> <span class="key">function</span> removeItem(oItem) 

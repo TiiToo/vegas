@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -28,6 +28,9 @@
  */
 import asgard.events.LoaderEvent;
 
+/**
+ * This interface determinates the callback methods defines in a ILoader listener.
+ */
 interface asgard.net.LoaderListener 
 {
 

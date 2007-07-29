@@ -30,12 +30,25 @@ import vegas.core.IRunnable;
 interface lunas.core.IBuilder extends IRunnable 
 {
 
+	/**
+	 * Clear the view of the component.
+	 */
 	function clear():Void ;
-	
+
+	/**
+	 * Returns the target reference of the component.
+	 * @return the target reference of the component.
+	 */
 	function getTarget() ;
-	
+
+	/**
+	 * Sets the target reference of the component.
+	 */
 	function setTarget( target ):Void ;
-	
+
+	/**
+	 * Update the view of the component.
+	 */
 	function update():Void ;
 	
 }

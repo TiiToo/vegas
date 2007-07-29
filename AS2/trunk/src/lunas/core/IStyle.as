@@ -29,15 +29,33 @@ import vegas.events.EventTarget;
  */
 interface lunas.core.IStyle extends EventTarget
 {
-	
+
+	/**
+	 * Returns the value of the specified property if it's exist in the object, else returns null.
+	 * @return the value of the specified property if it's exist in the object or {@code null}.
+	 */
 	function getStyle(prop:String) ;
 
+	/**
+	 * Returns the style sheet reference of this object.
+	 * @return the style sheet reference of this object.
+	 */
 	function getStyleSheet():TextField.StyleSheet ;
 
+	/**
+	 * Sets the properties of this {@code IStyle} object.
+	 */
 	function setStyle():Void ;
-	
+
+	/**
+	 * Sets the style sheet if this {@code IStyle} object.
+	 */
 	function setStyleSheet(ss:TextField.StyleSheet):Void ;
 
+	/**
+	 * Update the {@code IStyle} object.
+	 * You can override this method.
+	 */
 	function update():Void ;
 	
 }

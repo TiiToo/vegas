@@ -77,7 +77,7 @@ document.quicknavBasePath="../../index-files";
 <span class="lineno" id="74">    74  </span>		{
 <span class="lineno" id="75">    75  </span>			<span class="key">throw</span> <span class="key">new</span> Warning(<span class="str_const">"[StreamCollector] get("</span> + id + <span class="str_const">") failed. The specified id isn't register in the collector."</span> ) ;
 <span class="lineno" id="76">    76  </span>		} ;
-<span class="lineno" id="77">    77  </span>		<span class="key">return</span> Stream( _map.get( id ) ) ;	
+<span class="lineno" id="77">    77  </span>		<span class="key">return</span> Stream( _map.get( id ) ) || <span class="key">null</span> ;	
 <span class="lineno" id="78">    78  </span>	}
 <span class="lineno" id="79">    79  </span>	
 <span class="lineno" id="80">    80  </span>	<span class="comment doc">/**

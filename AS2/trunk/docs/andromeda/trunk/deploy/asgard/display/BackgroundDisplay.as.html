@@ -52,7 +52,7 @@ document.quicknavBasePath="../../index-files";
 <span class="lineno" id="49">    49  </span>	
 <span class="lineno" id="50">    50  </span>		background = view.createEmptyMovieClip( <span class="str_const">"background"</span>, <span class="num_const">0</span> ) ;
 <span class="lineno" id="51">    51  </span>
-<span class="lineno" id="52">    52  </span>		_bgDraw  = <span class="key">new</span> RectanglePen(background) ;
+<span class="lineno" id="52">    52  </span>		_bgDraw  = initBackgroundPen() ;
 <span class="lineno" id="53">    53  </span>		_eResize = <span class="key">new</span> UIEvent( UIEventType.RESIZE , <span class="key">this</span>) ;
 <span class="lineno" id="54">    54  </span>		
 <span class="lineno" id="55">    55  </span>	}
@@ -174,115 +174,135 @@ document.quicknavBasePath="../../index-files";
 <span class="lineno" id="171">   171  </span>	 }
 <span class="lineno" id="172">   172  </span>
 <span class="lineno" id="173">   173  </span>	<span class="comment doc">/**
-<span class="lineno" id="174">   174  </span>	 * Returns {@code true} if the background use full size (Stage.width and Stage.height).
-<span class="lineno" id="175">   175  </span>	 * @return {@code true} if the background use full size (Stage.width and Stage.height).
+<span class="lineno" id="174">   174  </span>	 * Returns the {@code IPen} reference used to draw the background of this display.
+<span class="lineno" id="175">   175  </span>	 * @return the {@code IPen} reference used to draw the background of this display.
 <span class="lineno" id="176">   176  </span>	 */</span>
-<span class="lineno" id="177">   177  </span>	<span class="key">public</span> <span class="key">function</span> getIsFull():Boolean
+<span class="lineno" id="177">   177  </span>	<span class="key">public</span> <span class="key">function</span> getBackgroundPen():IPen
 <span class="lineno" id="178">   178  </span>	{
-<span class="lineno" id="179">   179  </span>		<span class="key">return</span> _isFull ;
+<span class="lineno" id="179">   179  </span>		<span class="key">return</span> _bgDraw ;	
 <span class="lineno" id="180">   180  </span>	}
 <span class="lineno" id="181">   181  </span>
 <span class="lineno" id="182">   182  </span>	<span class="comment doc">/**
-<span class="lineno" id="183">   183  </span>	 * (read-only) Returns the virtual height value of this component.
-<span class="lineno" id="184">   184  </span>	 * @return the virtual height value of this component.
+<span class="lineno" id="183">   183  </span>	 * Returns {@code true} if the background use full size (Stage.width and Stage.height).
+<span class="lineno" id="184">   184  </span>	 * @return {@code true} if the background use full size (Stage.width and Stage.height).
 <span class="lineno" id="185">   185  </span>	 */</span>
-<span class="lineno" id="186">   186  </span>	<span class="key">public</span> <span class="key">function</span> getH():Number 
-<span class="lineno" id="187">   187  </span>	{ 
-<span class="lineno" id="188">   188  </span>		<span class="key">return</span> isFull ? Stage.height : _h ;
+<span class="lineno" id="186">   186  </span>	<span class="key">public</span> <span class="key">function</span> getIsFull():Boolean
+<span class="lineno" id="187">   187  </span>	{
+<span class="lineno" id="188">   188  </span>		<span class="key">return</span> _isFull ;
 <span class="lineno" id="189">   189  </span>	}
 <span class="lineno" id="190">   190  </span>
 <span class="lineno" id="191">   191  </span>	<span class="comment doc">/**
-<span class="lineno" id="192">   192  </span>	 * (read-only) Returns the virtual width value of this component.
-<span class="lineno" id="193">   193  </span>	 * @return the virtual width value of this component.
+<span class="lineno" id="192">   192  </span>	 * (read-only) Returns the virtual height value of this component.
+<span class="lineno" id="193">   193  </span>	 * @return the virtual height value of this component.
 <span class="lineno" id="194">   194  </span>	 */</span>
-<span class="lineno" id="195">   195  </span>	<span class="key">public</span> <span class="key">function</span> getW():Number 
+<span class="lineno" id="195">   195  </span>	<span class="key">public</span> <span class="key">function</span> getH():Number 
 <span class="lineno" id="196">   196  </span>	{ 
-<span class="lineno" id="197">   197  </span>		<span class="key">return</span> isFull ? Stage.width : _w ;
+<span class="lineno" id="197">   197  </span>		<span class="key">return</span> isFull ? Stage.height : _h ;
 <span class="lineno" id="198">   198  </span>	}
-<span class="lineno" id="199">   199  </span>	
+<span class="lineno" id="199">   199  </span>
 <span class="lineno" id="200">   200  </span>	<span class="comment doc">/**
-<span class="lineno" id="201">   201  </span>	 * Notify an event when you resize the component.
-<span class="lineno" id="202">   202  </span>	 */</span>
-<span class="lineno" id="203">   203  </span>	<span class="key">public</span> <span class="key">function</span> notifyResized():Void 
-<span class="lineno" id="204">   204  </span>	{
-<span class="lineno" id="205">   205  </span>		dispatchEvent(_eResize) ;
-<span class="lineno" id="206">   206  </span>	}
-<span class="lineno" id="207">   207  </span>
-<span class="lineno" id="208">   208  </span>	<span class="comment doc">/**
-<span class="lineno" id="209">   209  </span>	 * Sets if the background use full size (Stage.width and Stage.height).
-<span class="lineno" id="210">   210  </span>	 * @param b A boolean flag to indicates if the display use full size or not.
-<span class="lineno" id="211">   211  </span>	 */</span>
-<span class="lineno" id="212">   212  </span>	<span class="key">public</span> <span class="key">function</span> setIsFull(b:Boolean):Void
-<span class="lineno" id="213">   213  </span>	{
-<span class="lineno" id="214">   214  </span>		_isFull = b ;
-<span class="lineno" id="215">   215  </span>		update() ;
-<span class="lineno" id="216">   216  </span>	}
-<span class="lineno" id="217">   217  </span>
-<span class="lineno" id="218">   218  </span>	<span class="comment doc">/**
-<span class="lineno" id="219">   219  </span>	 * Sets the virtual height value of the component.
-<span class="lineno" id="220">   220  </span>	 */</span>
-<span class="lineno" id="221">   221  </span>	<span class="key">public</span> <span class="key">function</span> setH( n:Number ) : Void 
-<span class="lineno" id="222">   222  </span>	{
-<span class="lineno" id="223">   223  </span>		_h = MathsUtil.clamp(n, minHeight, maxHeight) ;
-<span class="lineno" id="224">   224  </span>		notifyResized() ;
-<span class="lineno" id="225">   225  </span>		update() ;
+<span class="lineno" id="201">   201  </span>	 * (read-only) Returns the virtual width value of this component.
+<span class="lineno" id="202">   202  </span>	 * @return the virtual width value of this component.
+<span class="lineno" id="203">   203  </span>	 */</span>
+<span class="lineno" id="204">   204  </span>	<span class="key">public</span> <span class="key">function</span> getW():Number 
+<span class="lineno" id="205">   205  </span>	{ 
+<span class="lineno" id="206">   206  </span>		<span class="key">return</span> isFull ? Stage.width : _w ;
+<span class="lineno" id="207">   207  </span>	}
+<span class="lineno" id="208">   208  </span>	
+<span class="lineno" id="209">   209  </span>	<span class="comment doc">/**
+<span class="lineno" id="210">   210  </span>	 * Init the pen to draw the background of this display.
+<span class="lineno" id="211">   211  </span>	 * This method is invoqued in the constructor of the class.
+<span class="lineno" id="212">   212  </span>	 * You can override this method to change the shape of the background.
+<span class="lineno" id="213">   213  </span>	 * @return the IPen reference to draw the background of the display.
+<span class="lineno" id="214">   214  </span>	 */</span>
+<span class="lineno" id="215">   215  </span>	<span class="key">public</span> <span class="key">function</span> initBackgroundPen():IPen
+<span class="lineno" id="216">   216  </span>	{
+<span class="lineno" id="217">   217  </span>		<span class="key">return</span> <span class="key">new</span> RectanglePen(background) ;	
+<span class="lineno" id="218">   218  </span>	}
+<span class="lineno" id="219">   219  </span>	
+<span class="lineno" id="220">   220  </span>	<span class="comment doc">/**
+<span class="lineno" id="221">   221  </span>	 * Notify an event when you resize the component.
+<span class="lineno" id="222">   222  </span>	 */</span>
+<span class="lineno" id="223">   223  </span>	<span class="key">public</span> <span class="key">function</span> notifyResized():Void 
+<span class="lineno" id="224">   224  </span>	{
+<span class="lineno" id="225">   225  </span>		dispatchEvent(_eResize) ;
 <span class="lineno" id="226">   226  </span>	}
 <span class="lineno" id="227">   227  </span>
-<span class="lineno" id="228">   228  </span>
-<span class="lineno" id="229">   229  </span>	<span class="comment doc">/**
-<span class="lineno" id="230">   230  </span>	 * Sets the virtual width and height values of the component.
+<span class="lineno" id="228">   228  </span>	<span class="comment doc">/**
+<span class="lineno" id="229">   229  </span>	 * Sets if the background use full size (Stage.width and Stage.height).
+<span class="lineno" id="230">   230  </span>	 * @param b A boolean flag to indicates if the display use full size or not.
 <span class="lineno" id="231">   231  </span>	 */</span>
-<span class="lineno" id="232">   232  </span>	<span class="key">public</span> <span class="key">function</span> setSize( w:Number, h:Number ) : Void 
+<span class="lineno" id="232">   232  </span>	<span class="key">public</span> <span class="key">function</span> setIsFull(b:Boolean):Void
 <span class="lineno" id="233">   233  </span>	{
-<span class="lineno" id="234">   234  </span>		_w = MathsUtil.clamp( w , minWidth, maxWidth) ;
-<span class="lineno" id="235">   235  </span>		_h = MathsUtil.clamp( h , minHeight, maxHeight) ;
-<span class="lineno" id="236">   236  </span>		notifyResized() ;
-<span class="lineno" id="237">   237  </span>		update() ;
-<span class="lineno" id="238">   238  </span>	}
-<span class="lineno" id="239">   239  </span>	
-<span class="lineno" id="240">   240  </span>	<span class="comment doc">/**
-<span class="lineno" id="241">   241  </span>	 * Sets the virtual width value of the component.
-<span class="lineno" id="242">   242  </span>	 */</span>
-<span class="lineno" id="243">   243  </span>	<span class="key">public</span> <span class="key">function</span> setW( n:Number ):Void 
-<span class="lineno" id="244">   244  </span>	{
-<span class="lineno" id="245">   245  </span>		_w = MathsUtil.clamp(n, minWidth, maxWidth) ; 
-<span class="lineno" id="246">   246  </span>		notifyResized() ;
-<span class="lineno" id="247">   247  </span>		update() ;
-<span class="lineno" id="248">   248  </span>	}
-<span class="lineno" id="249">   249  </span>
-<span class="lineno" id="250">   250  </span>	<span class="comment doc">/**
-<span class="lineno" id="251">   251  </span>	 * Update the display.
-<span class="lineno" id="252">   252  </span>	 */</span>	
-<span class="lineno" id="253">   253  </span>	<span class="comment">/*override*/</span> <span class="key">public</span> <span class="key">function</span> update():Void 
-<span class="lineno" id="254">   254  </span>	{
-<span class="lineno" id="255">   255  </span>		<span class="key">if</span> ( isLocked() ) 
-<span class="lineno" id="256">   256  </span>		{
-<span class="lineno" id="257">   257  </span>			<span class="key">return</span> ;
-<span class="lineno" id="258">   258  </span>		}
-<span class="lineno" id="259">   259  </span>		draw() ;
-<span class="lineno" id="260">   260  </span>		viewChanged() ;
-<span class="lineno" id="261">   261  </span>	}
-<span class="lineno" id="262">   262  </span>	
-<span class="lineno" id="263">   263  </span>	<span class="comment doc">/**
-<span class="lineno" id="264">   264  </span>	 * This method is invoqued after the draw() method in the update() method.
-<span class="lineno" id="265">   265  </span>	 * Overrides this method.
-<span class="lineno" id="266">   266  </span>	 */</span>
-<span class="lineno" id="267">   267  </span>	<span class="key">public</span> <span class="key">function</span> viewChanged():Void
-<span class="lineno" id="268">   268  </span>	{
-<span class="lineno" id="269">   269  </span>		<span class="comment">// overrides</span>
-<span class="lineno" id="270">   270  </span>	}
-<span class="lineno" id="271">   271  </span>	
-<span class="lineno" id="272">   272  </span>	<span class="comment doc">/**
-<span class="lineno" id="273">   273  </span>	 * The internal pen to draw the background of the display.
-<span class="lineno" id="274">   274  </span>	 */</span>
-<span class="lineno" id="275">   275  </span>	<span class="key">private</span> <span class="key">var</span> _bgDraw:IPen ;
-<span class="lineno" id="276">   276  </span>
-<span class="lineno" id="277">   277  </span>	<span class="key">private</span> <span class="key">var</span> _eResize:UIEvent ;
-<span class="lineno" id="278">   278  </span>
-<span class="lineno" id="279">   279  </span>	<span class="key">private</span> <span class="key">var</span> _h:Number ;
-<span class="lineno" id="280">   280  </span>
-<span class="lineno" id="281">   281  </span>	<span class="key">private</span> <span class="key">var</span> _isFull:Boolean = <span class="key">false</span> ;
+<span class="lineno" id="234">   234  </span>		_isFull = b ;
+<span class="lineno" id="235">   235  </span>		update() ;
+<span class="lineno" id="236">   236  </span>	}
+<span class="lineno" id="237">   237  </span>
+<span class="lineno" id="238">   238  </span>	<span class="comment doc">/**
+<span class="lineno" id="239">   239  </span>	 * Sets the virtual height value of the component.
+<span class="lineno" id="240">   240  </span>	 */</span>
+<span class="lineno" id="241">   241  </span>	<span class="key">public</span> <span class="key">function</span> setH( n:Number ) : Void 
+<span class="lineno" id="242">   242  </span>	{
+<span class="lineno" id="243">   243  </span>		_h = MathsUtil.clamp(n, minHeight, maxHeight) ;
+<span class="lineno" id="244">   244  </span>		notifyResized() ;
+<span class="lineno" id="245">   245  </span>		update() ;
+<span class="lineno" id="246">   246  </span>	}
+<span class="lineno" id="247">   247  </span>
+<span class="lineno" id="248">   248  </span>
+<span class="lineno" id="249">   249  </span>	<span class="comment doc">/**
+<span class="lineno" id="250">   250  </span>	 * Sets the virtual width and height values of the component.
+<span class="lineno" id="251">   251  </span>	 */</span>
+<span class="lineno" id="252">   252  </span>	<span class="key">public</span> <span class="key">function</span> setSize( w:Number, h:Number ) : Void 
+<span class="lineno" id="253">   253  </span>	{
+<span class="lineno" id="254">   254  </span>		_w = MathsUtil.clamp( w , minWidth, maxWidth) ;
+<span class="lineno" id="255">   255  </span>		_h = MathsUtil.clamp( h , minHeight, maxHeight) ;
+<span class="lineno" id="256">   256  </span>		notifyResized() ;
+<span class="lineno" id="257">   257  </span>		update() ;
+<span class="lineno" id="258">   258  </span>	}
+<span class="lineno" id="259">   259  </span>	
+<span class="lineno" id="260">   260  </span>	<span class="comment doc">/**
+<span class="lineno" id="261">   261  </span>	 * Sets the virtual width value of the component.
+<span class="lineno" id="262">   262  </span>	 */</span>
+<span class="lineno" id="263">   263  </span>	<span class="key">public</span> <span class="key">function</span> setW( n:Number ):Void 
+<span class="lineno" id="264">   264  </span>	{
+<span class="lineno" id="265">   265  </span>		_w = MathsUtil.clamp(n, minWidth, maxWidth) ; 
+<span class="lineno" id="266">   266  </span>		notifyResized() ;
+<span class="lineno" id="267">   267  </span>		update() ;
+<span class="lineno" id="268">   268  </span>	}
+<span class="lineno" id="269">   269  </span>
+<span class="lineno" id="270">   270  </span>	<span class="comment doc">/**
+<span class="lineno" id="271">   271  </span>	 * Update the display.
+<span class="lineno" id="272">   272  </span>	 */</span>	
+<span class="lineno" id="273">   273  </span>	<span class="comment">/*override*/</span> <span class="key">public</span> <span class="key">function</span> update():Void 
+<span class="lineno" id="274">   274  </span>	{
+<span class="lineno" id="275">   275  </span>		<span class="key">if</span> ( isLocked() ) 
+<span class="lineno" id="276">   276  </span>		{
+<span class="lineno" id="277">   277  </span>			<span class="key">return</span> ;
+<span class="lineno" id="278">   278  </span>		}
+<span class="lineno" id="279">   279  </span>		draw() ;
+<span class="lineno" id="280">   280  </span>		viewChanged() ;
+<span class="lineno" id="281">   281  </span>	}
 <span class="lineno" id="282">   282  </span>	
-<span class="lineno" id="283">   283  </span>	<span class="key">private</span> <span class="key">var</span> _w:Number ;
-<span class="lineno" id="284">   284  </span>
-<span class="lineno" id="285">   285  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package asgard.display" class="button">Package</a></li><li><a href="BackgroundDisplay.html" title="Detail of asgard.display.BackgroundDisplay API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
+<span class="lineno" id="283">   283  </span>	<span class="comment doc">/**
+<span class="lineno" id="284">   284  </span>	 * This method is invoqued after the draw() method in the update() method.
+<span class="lineno" id="285">   285  </span>	 * Overrides this method.
+<span class="lineno" id="286">   286  </span>	 */</span>
+<span class="lineno" id="287">   287  </span>	<span class="key">public</span> <span class="key">function</span> viewChanged():Void
+<span class="lineno" id="288">   288  </span>	{
+<span class="lineno" id="289">   289  </span>		<span class="comment">// overrides</span>
+<span class="lineno" id="290">   290  </span>	}
+<span class="lineno" id="291">   291  </span>	
+<span class="lineno" id="292">   292  </span>	<span class="comment doc">/**
+<span class="lineno" id="293">   293  </span>	 * The internal pen to draw the background of the display.
+<span class="lineno" id="294">   294  </span>	 */</span>
+<span class="lineno" id="295">   295  </span>	<span class="key">private</span> <span class="key">var</span> _bgDraw:IPen ;
+<span class="lineno" id="296">   296  </span>
+<span class="lineno" id="297">   297  </span>	<span class="key">private</span> <span class="key">var</span> _eResize:UIEvent ;
+<span class="lineno" id="298">   298  </span>
+<span class="lineno" id="299">   299  </span>	<span class="key">private</span> <span class="key">var</span> _h:Number ;
+<span class="lineno" id="300">   300  </span>
+<span class="lineno" id="301">   301  </span>	<span class="key">private</span> <span class="key">var</span> _isFull:Boolean = <span class="key">false</span> ;
+<span class="lineno" id="302">   302  </span>	
+<span class="lineno" id="303">   303  </span>	<span class="key">private</span> <span class="key">var</span> _w:Number ;
+<span class="lineno" id="304">   304  </span>
+<span class="lineno" id="305">   305  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package asgard.display" class="button">Package</a></li><li><a href="BackgroundDisplay.html" title="Detail of asgard.display.BackgroundDisplay API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

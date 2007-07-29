@@ -10,6 +10,7 @@ vegas.data.stack
 pegas.maths
 vegas.events.type
 vegas.data.list
+andromeda.ui
 vegas.data.collections
 andromeda.process.abstract
 vegas.util.format
@@ -19,6 +20,7 @@ andromeda.data.iterator
 buRRRn.eden
 andromeda.model.collections
 buRRRn.ASTUce
+andromeda.system
 asgard.config
 asgard.data.iterator
 pegas.colors
@@ -32,10 +34,10 @@ andromeda.model.array
 asgard.net
 vegas.core
 andromeda.model.map
+andromeda.events
 pegas.events
 vegas.util.serialize
 asgard.date
-andromeda.events
 pegas.process
 pegas.util
 andromeda.text
@@ -56,6 +58,7 @@ pegas.draw
 andromeda.display.abstract
 andromeda.display
 vegas.errors
+andromeda.logging
 vegas.util.factory
 asgard.media
 vegas.data.bag
