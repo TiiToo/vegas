@@ -27,7 +27,7 @@ document.quicknavBasePath="../../index-files";
  
  trace (<span class="str_const">" Deserialize"</span>) ;
   
- <span class="key">var</span> source:String = <span class="str_const">"[ {\"prop1\":0xFF0000, \"prop2\":2, \"prop3\":\"hello\", \"prop4\":true} , 2, true, * 3, [3, 2] ]"</span> ;
+ <span class="key">var</span> source:String = <span class="str_const">"[ {\"prop1\":0xFF0000, prop2:2, prop3:\"hello\", prop4:true} , 2, true, * 3, [3, 2] ]"</span> ;
   
  <span class="key">var</span> o = JSON.deserialize(source) ;
  <span class="key">for</span> (<span class="key">var</span> prop:String <span class="key">in</span> o) 

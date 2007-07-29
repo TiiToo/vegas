@@ -1,4 +1,4 @@
-/*
+﻿/*
 
 	Licence
 	
@@ -28,10 +28,11 @@
 		- Alcaraz Marc (aka eKameleon) 2006-01-24 <vegas@ekameleon.net> 
 		
 			- Refactoring AS2 and MTASC Compatibilty
-			
 			- Add Hexa Digits in 'deserialize' method
+			- Supports in the objects deserialization the key property with quote, double quote or not surrounded by quotes.
+			- Supports in string simple or double quotes.			
 			
-			NOTE : EDEN Hexa digits code inspiration -> http://code.google.com/p/edenrr/
+		 	NOTE : EDEN Hexa digits code inspiration -> http://code.google.com/p/edenrr/
 
   The contents of this file are subject to the Mozilla Public License Version 1.1 (the "License") ;
   you may not use this file except in compliance with the License. You may obtain a copy of the License at :
@@ -82,7 +83,7 @@ import vegas.string.errors.JSONError;
  * 
  * trace (" Deserialize") ;
  *  
- * var source:String = '[ {"prop1":0xFF0000, "prop2":2, "prop3":"hello", "prop4":true} , 2, true, * 3, [3, 2] ]' ;
+ * var source:String = '[ {"prop1":0xFF0000, prop2:2, prop3:"hello", prop4:true} , 2, true, * 3, [3, 2] ]' ;
  *  
  * var o = JSON.deserialize(source) ;
  * for (var prop:String in o) 
@@ -122,6 +123,7 @@ class vegas.string.JSON
 		var _string:Function ;
 		var _next:Function ;
 		var _array:Function ;
+		var _key:Function ;
 		var _object:Function ;
 		var _number:Function ;
 		var _word:Function ;
@@ -150,87 +152,141 @@ class vegas.string.JSON
             return ch;
         } ;
 		
-        _white = function () {
-           while (ch) {
-                if (ch <= ' ') {
+        _white = function () 
+        {
+           while (ch) 
+           {
+                if (ch <= ' ') 
+                {
                     _next();
-                } else if (ch == '/') {
-                    switch (_next()) {
+                }
+                else if (ch == '/') 
+                {
+                    switch (_next()) 
+                    {
                         case '/':
+                        {
                             while (_next() && ch != '\n' && ch != '\r') {}
                             break;
+						}
                         case '*':
-                            _next();
-                            for (;;) {
-                                if (ch) {
-                                    if (ch == '*') {
-                                        if (_next() == '/') {
+                        {
+                            
+                            _next() ;
+                            
+                            for (;;) 
+                            {
+                                if (ch) 
+                                {
+                                
+                                    if (ch == '*') 
+                                    {
+                                        if (_next() == '/') 
+                                        {
                                             _next();
                                             break;
                                         }
-                                    } else {
+                                    } 
+                                    else 
+                                    {
                                         _next();
                                     }
-                                } else {
+                                
+                                } 
+                                else 
+                                {
                                     _error("Unterminated Comment");
                                 }
                             }
                             break;
+                        }
                         default:
+                        {
                             _error("Syntax Error");
+                        }
                     }
-                } else {
-                    break;
+                } 
+                else 
+                {
+                    break ;
                 }
             }
         };
 		
-        _string = function () {
+        _string = function () 
+        {
             var i, s = '', t, u;
+			
 			var outer:Boolean = false;
 			
-            if (ch == '"') {
-				while (_next()) {
-                    if (ch == '"') {
+            if (ch == '"' || ch == "'") 
+            {
+            	var outerChar:String = ch ;
+				while (_next()) 
+				{
+                    if (ch == outerChar) 
+                    {
                         _next();
-                        return s;
-                    } else if (ch == '\\') {
-                        switch (_next()) {
-                        case 'b':
-                            s += '\b';
-                            break;
-                        case 'f':
-                            s += '\f';
-                            break;
-                        case 'n':
-                            s += '\n';
-                            break;
-                        case 'r':
-                            s += '\r';
-                            break;
-                        case 't':
-                            s += '\t';
-                            break;
-                        case 'u':
-                            u = 0;
-                            for (i = 0; i < 4; i += 1) {
-                                t = parseInt(_next(), 16);
-                                if (!isFinite(t)) {
-                                    outer = true;
+                        return s ;
+                    }
+                    else if (ch == '\\') 
+                    {
+                        switch ( _next() ) 
+                        {
+                        	case 'b':
+                        	{
+                            	s += '\b';
+                            	break;
+                        	}
+                        	case 'f':
+                        	{
+	                            s += '\f';
+    	                        break;
+                        	}
+        	                case 'n':
+        	                {
+            	                s += '\n';
+                	            break;
+        	                }
+                    	    case 'r':
+                    	    {
+                        	    s += '\r';
+                            	break;
+                    	    }
+                        	case 't':
+                        	{
+                            	s += '\t';
+                            	break;
+                        	}
+                        	case 'u':
+                        	{
+                            	u = 0;
+                            	for (i = 0; i < 4; i += 1) 
+                            	{
+                                	t = parseInt(_next(), 16);
+                                	if (!isFinite(t)) 
+                                	{
+                                    	outer = true;
+										break;
+                                	}
+                                	u = u * 16 + t;
+                            	}
+								if(outer) 
+								{
+									outer = false;
 									break;
-                                }
-                                u = u * 16 + t;
-                            }
-							if(outer) {
-								outer = false;
-								break;
-							}
-                            s += String.fromCharCode(u);
-                            break;
-                        default:
-                            s += ch;
+								}
+                            	s += String.fromCharCode(u);
+                            	break;
+                        	}
+                        	default:
+                        	{
+                            	s += ch;
+                        	}
                         }
-                    } else {
+                    } 
+                    else 
+                    {
                         s += ch;
                     }
                 }
@@ -238,133 +294,225 @@ class vegas.string.JSON
             _error("Bad String");
         };
 		
-        _array = function() {
+        _array = function() 
+        {
             var a = [];
-            if (ch == '[') {
+            if (ch == '[') 
+            {
                 _next();
                 _white();
-                if (ch == ']') {
+                if (ch == ']') 
+                {
                     _next();
                     return a;
                 }
-                while (ch) {
+                while (ch) 
+                {
                     a.push(_value());
                     _white();
-                    if (ch == ']') {
+                    if (ch == ']') 
+                    {
                         _next();
                         return a;
-                    } else if (ch != ',') {
+                    }
+                    else if (ch != ',') 
+                    {
                         break;
                     }
                     _next();
-                    _white();
+                    _white() ;
                 }
             }
             _error("Bad Array");
         };
+        
+		_key = function()
+		{
+	    	var s = ch;
+	    	var outer:Boolean = false;
 		
-        _object = function () {
+			var semiColon:Number   = source.indexOf(':', at);
+			var quoteIndex:Number  = source.indexOf('"', at) ;
+			var squoteIndex:Number = source.indexOf("'", at) ;
+
+			if( (quoteIndex <= semiColon && quoteIndex > -1) || (squoteIndex <= semiColon && squoteIndex > -1))
+			{
+				var s = _string();
+				_white() ;
+				if(ch == ':')
+				{
+					return s;
+				}
+				else
+				{
+					_error("Bad key");
+				}
+			}
+	
+			while ( _next() ) //Use key handling 
+     	  	{
+            	if (ch == ':') 
+            	{
+                	return s;
+            	} 
+            	if(ch <= ' ')
+            	{
+				            	
+				}
+            	else
+            	{
+	            	s += ch;
+            	}
+	    	}
+	    	
+			_error("Bad key") ;
+		
+		} ;
+		
+        _object = function () 
+        {
             var k, o = {} ;
-            if (ch == '{') {
+            if (ch == '{') 
+            {
                 _next();
                 _white();
-                if (ch == '}') {
+                if (ch == '}') 
+                {
                     _next();
                     return o;
                 }
-                while (ch) {
-                    k = _string();
-                    _white();
-                    if (ch != ':') {
+                while (ch) 
+                {
+                    
+                    k = _key() ;
+                    
+                    _white() ;
+                    
+                    if (ch != ':') 
+                    {
                         break;
                     }
+                    
                     _next();
-                    o[k] = _value();
+                    
+                    o[k] = _value() ;
+                    
                     _white();
-                    if (ch == '}') {
+                    
+                    if (ch == '}') 
+                    {
                         _next();
                         return o;
-                    } else if (ch != ',') {
+                    }
+                    else if (ch != ',') 
+                    {
                         break;
                     }
+          
                     _next();
                     _white();
+          
                 }
             }
             _error("Bad Object") ;
         };
 		
-        _number = function () {
+        _number = function () 
+        {
             
             var n = '' ;
             var v:Number ;
 			var hex:String = '' ;
 			var sign:String = '' ;
 			
-            if (ch == '-') {
+            if (ch == '-') 
+            {
                 n = '-';
                 sign = n ;
                 _next();
             }
             
-            if( ch == "0" ) {
+            if( ch == "0" ) 
+            {
         		_next() ;
-				if( ( ch == "x") || ( ch == "X") ) {
+				if( ( ch == "x") || ( ch == "X") ) 
+				{
             		_next();
-            		while( _isHexDigit( ch ) ) {
+            		while( _isHexDigit( ch ) ) 
+            		{
                 		hex += ch ;
                 		_next();
                 	}
-            		if( hex == "" ) {   
+            		if( hex == "" ) 
+            		{   
             			_error("mal formed Hexadecimal") ;
-					} else {
+					}
+					else 
+					{
 						return Number( sign + "0x" + hex ) ;
 					}
-            	} else {
+            	} 
+            	else 
+            	{
 	            	n += "0" ;
             	}
 			}
 				
-            while ( _isDigit(ch) ) {
+            while ( _isDigit(ch) ) 
+            {
                 n += ch;
                 _next();
             }
-            if (ch == '.') {
+            
+            if (ch == '.') 
+            {
                 n += '.';
-                while (_next() && ch >= '0' && ch <= '9') {
+                while (_next() && ch >= '0' && ch <= '9') 
+                {
                     n += ch;
                 }
             }
             v = 1 * n ;
-            if (!isFinite(v)) {
+            if (!isFinite(v)) 
+            {
                 _error("Bad Number");
-            } else {
+            }
+            else 
+            {
                 return v;
             }
-        };
+        } ;
 		
         _word = function () 
         {
             switch (ch) 
             {
                 case 't':
-                    if (_next() == 'r' && _next() == 'u' && _next() == 'e') {
+                {
+                    if (_next() == 'r' && _next() == 'u' && _next() == 'e') 
+                    {
                         _next();
                         return true;
                     }
                     break;
-                case 'f':
+                }
+                case 'f' :
+                {
                     if (_next() == 'a' && _next() == 'l' && _next() == 's' && _next() == 'e') {
                         _next();
                         return false;
                     }
                     break;
+				}
                 case 'n':
-                    if (_next() == 'u' && _next() == 'l' && _next() == 'l') {
+                {
+                    if (_next() == 'u' && _next() == 'l' && _next() == 'l') 
+                    {
                         _next();
                         return null;
                     }
                     break;
+				}
             }
             _error("Syntax Error");
         };
@@ -375,15 +523,16 @@ class vegas.string.JSON
             switch (ch) 
             {
             
-                case '{':
+                case '{' :
                     return _object();
-                case '[':
+                case '[' :
                     return _array();
-                case '"':
+                case '"' :
+                case "'" :
                     return _string();
-                case '-':
+                case '-' :
                     return _number();
-                default:
+                default :
                     return ch >= '0' && ch <= '9' ? _number() : _word();
             }
         };
@@ -426,7 +575,8 @@ class vegas.string.JSON
 			{
 				if (o) 
 				{
-					if (o instanceof Array) {
+					if (o instanceof Array) 
+					{
 						
 						l = o.length ;
 						

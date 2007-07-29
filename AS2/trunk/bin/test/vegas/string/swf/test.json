@@ -1,0 +1,20 @@
+{ 
+
+    test1 :
+    {
+		prop1   : 1 ,
+		prop2   : "hello world 1" ,
+		prop3   : 'hello world 2' ,
+		"prop4" : "hello world 3" ,
+		"prop5" : 'hello world 4' ,
+		'prop6' : "hello world 5" ,
+		'prop7' : 'hello world 6' 
+	}
+	, 
+	test2 : {
+	
+		prop1:1,prop2:2,
+		prop3:3 , prop4 :4		
+	
+	}
+}
