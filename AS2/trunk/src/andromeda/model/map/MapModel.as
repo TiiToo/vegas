@@ -224,6 +224,14 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 	}
 
 	/**
+	 * Sets the internal map of this model. By default the initializeMap() method is used in the passed-in argument is null.
+	 */
+	public function setMap( m:Map ):Void
+	{
+		_map = m || initializeMap() ;	
+	}
+
+	/**
 	 * Update a value object in the model.
 	 * @throw Warning if the value object passed-in argument don't exist.
 	 */

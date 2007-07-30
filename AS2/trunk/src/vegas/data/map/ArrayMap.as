@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -35,7 +35,10 @@ class vegas.data.map.ArrayMap extends HashMap
 	 */
 	public function ArrayMap() 
 	{
-		Function(HashMap).apply(this, arguments) ; 
+		if ( arguments.caller == null )
+		{
+			Function( HashMap ).apply(this, [].concat(arguments) ) ;
+		} 
 	}
 
 	/**

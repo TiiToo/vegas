@@ -1,4 +1,4 @@
-import vegas.core.CoreObject;
+﻿import vegas.core.CoreObject;
 import vegas.core.IComparable;
 import vegas.core.IComparator;
 import vegas.errors.ClassCastError;
