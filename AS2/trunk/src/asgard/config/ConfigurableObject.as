@@ -24,8 +24,8 @@
 import asgard.config.ConfigCollector;
 import asgard.config.IConfigurable;
 
-import vegas.core.CoreObject;
 import vegas.errors.Warning;
+import vegas.events.AbstractCoreEventDispatcher;
 
 /**
  * This core class extend the CoreObject class and implement the IConfigurable interface.
@@ -33,19 +33,18 @@ import vegas.errors.Warning;
  * The IConfigurable objects are registered in the ConfigCollector to launch the setup of all IConfigurable object one time with the {@code ConfigCollector.run()} method when the Config is loaded for example. 
  * @author eKameleon
  */
-class asgard.config.ConfigurableObject extends CoreObject implements IConfigurable
+class asgard.config.ConfigurableObject extends AbstractCoreEventDispatcher implements IConfigurable
 {
 
 	/**
 	 * Creates a new ConfigurableObject instance.
+	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */
-	public function ConfigurableObject() 
+	public function ConfigurableObject( bGlobal:Boolean , sChannel:String ) 
 	{
-		
-		super();
-		
+		super( bGlobal , sChannel ) ;	
 		isConfigurable = true ;
-		
 	}
 
 	/**
