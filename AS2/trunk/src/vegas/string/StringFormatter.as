@@ -201,4 +201,22 @@ class vegas.string.StringFormatter extends AbstractFormatter
 		return str ;		
 	}
 	
+	/**
+	 * Returns a singleton reference of the StringFormatter class.
+	 * @return a singleton reference of the StringFormatter class.
+	 */
+	static public function getInstance():StringFormatter
+	{
+		if (_instance == null)
+		{
+			_instance = new StringFormatter() ;	
+		}
+		return _instance ;
+	}
+	
+	/**
+	 * The internal singleton reference of this class.
+	 */
+	static private var _instance:StringFormatter ;
+	
 }
