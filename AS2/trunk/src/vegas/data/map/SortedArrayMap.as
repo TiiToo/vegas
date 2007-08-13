@@ -159,8 +159,9 @@ class vegas.data.map.SortedArrayMap extends ArrayMap
 	/**
 	 * Sorts the elements in the list according to one or more fields in the array.
 	 * @param fieldName A string that identifies a field to be used as the sort value.
+	 * @param opts (optional) The option number value to use to sort this map. 
      */
-	public function sortOn( fieldName ):Void 
+	public function sortOn( fieldName , opts:Number ):Void 
 	{
 		
 		var max:Number = size() ;
@@ -168,6 +169,11 @@ class vegas.data.map.SortedArrayMap extends ArrayMap
 		if (fieldName == null && !(max > 0) )
 		{
 			return ;	
+		}
+		
+		if ( !isNaN(opts) )
+		{
+			_options = opts ;	
 		}
 		
 		var result:Array ;
