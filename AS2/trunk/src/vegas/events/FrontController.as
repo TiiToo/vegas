@@ -86,7 +86,7 @@ class vegas.events.FrontController extends CoreObject
 	 * Dispatch an event into the FrontController
 	 * @param e an event to dispatch.
 	 */
-	public function fireEvent(e:Event):Void 
+	public function fireEvent( e ):Void 
 	{
 		_dispatcher.dispatchEvent(e) ;
 	}
@@ -171,7 +171,7 @@ class vegas.events.FrontController extends CoreObject
 	 * Sets the EventDispatcher reference of this FrontController.
 	 * @param target The EventDispatcher reference of this FrontController.
 	 */
-	public function setEventDispatcher( target:EventDispatcher )
+	public function setEventDispatcher( target:EventDispatcher ):Void
 	{
 		_dispatcher = target ;
 	}

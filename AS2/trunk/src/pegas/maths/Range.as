@@ -75,7 +75,13 @@ class pegas.maths.Range extends CoreObject implements ICloneable, IEquality
 	 * Range between -255 and 255.
 	 */
 	static public var COLOR_RANGE:Range = new Range(-255, 255) ;
-	
+
+	/**
+	 * Range reference between 0 and 1.
+	 */
+    static public var UNITY_RANGE:Range = new Range(0, 1) ;
+
+
 	static private var __ASPF__ = _global.ASSetPropFlags(Range, null , 7, 7) ;
 	
 	/**
@@ -96,6 +102,15 @@ class pegas.maths.Range extends CoreObject implements ICloneable, IEquality
 		return MathsUtil.clamp(value, min, max) ;
 	}
 	
+	/**
+	 * Returns a shallow copy of the object.
+	 * @return a shallow copy of the object.
+	 */
+	public function clone() 
+	{
+		return new Range(min, max) ;
+	}
+
 	/**
 	 * Creates a new range by combining two existing ranges.
 	 * <li>either range can be {@code null}, in which case the other range is returned.</li>
@@ -126,19 +141,21 @@ class pegas.maths.Range extends CoreObject implements ICloneable, IEquality
 	}
 	
 	/**
-	 * Returns a shallow copy of the object.
-	 */
-	public function clone() 
-	{
-		return new Range(min, max) ;
-	}
-	
-	/**
 	 * Returns {@code true} if the Range instance contains the value passed in argument.
+	 * @return {@code true} if the Range instance contains the value passed in argument.
 	 */
 	public function contains(value:Number):Boolean 
 	{
 		return !isOutOfRange(value) ;
+	}
+	
+	/**
+	 * Returns a deep copy of the object.
+	 * @return a deep copy of the object.
+	 */
+	public function copy() 
+	{
+		return new Range(min, max) ;
 	}
 	
 	/**
@@ -180,6 +197,7 @@ class pegas.maths.Range extends CoreObject implements ICloneable, IEquality
 	
 	/**
 	 * Returns {@code true} if the value is out of the range.
+	 * @return {@code true} if the value is out of the range.
 	 */
 	public function isOutOfRange(value:Number):Boolean 
 	{
@@ -187,7 +205,8 @@ class pegas.maths.Range extends CoreObject implements ICloneable, IEquality
 	}
 
 	/**
-	 * Returns true if the range in argument overlap the current range.
+	 * Returns {@code true} if the range in argument overlap the current range.
+	 * @return {@code true} if the range in argument overlap the current range.
 	 */
 	public function overlap(r:Range):Boolean 
 	{
@@ -204,7 +223,7 @@ class pegas.maths.Range extends CoreObject implements ICloneable, IEquality
 	}
 
 	/**
-	 * Returns a Eden reprensation of the object.
+	 * Returns the Eden reprensation of the object.
 	 * @return a string representing the source code of the object.
 	 */
 	public function toSource(indent:Number, indentor:String):String 

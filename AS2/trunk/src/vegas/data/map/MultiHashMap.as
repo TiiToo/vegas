@@ -402,6 +402,7 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 
 	/**
 	 * Returns a Collection of all values in the MultiHashMap.
+	 * @return a Collection of all values in the MultiHashMap.
 	 */
 	public function values():Collection 
 	{
@@ -411,6 +412,7 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 
 	/**
 	 * Returns the iterator of all values in the MultiHashMap.
+	 * @return the iterator of all values in the MultiHashMap.
 	 */
 	public function valueIterator():Iterator 
 	{
