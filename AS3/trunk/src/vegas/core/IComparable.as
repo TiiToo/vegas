@@ -35,7 +35,7 @@ package vegas.core
 		/**
 		 * Compares this object with the specified object for order.
 		 */
-		function compareTo(o):Number ;	
+		function compareTo( o:* ):Number ;	
 	
 	}
 }

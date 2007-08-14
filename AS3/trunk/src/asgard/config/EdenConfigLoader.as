@@ -21,64 +21,16 @@
   
 */
 
-
-/*	EdenConfigLoader
-
-	AUTHOR
-
-		Name : EdenConfigLoader
-		Package : asgard.config
-		Version : 1.0.0.0
-		Date :  2008-09-01
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-		
-	EXAMPLE
-	
-    	import asgard.config.Config ;
-        import asgard.config.EdenConfigLoader;
-        import asgard.config.IConfigLoader;
-        
-        import flash.events.Event ;
-        
-        var complete:Function = function ( e:Event ):void
-        {
-            var data:* = Config.getInstance() ;
-            for (var prop:String in data)
-            {
-                trace("> " + prop + " : " + data[prop]) ;
-                if (data[prop] as Object)
-                {
-                    for (var key:String in data[prop]) 
-                    {
-                    
-                        trace("    > " + key + " : " + data[prop][key]) ;
-                    }
-                }
-            }
-        }
-        
-        var loader:IConfigLoader = new EdenConfigLoader() ;
-        loader.addEventListener(Event.COMPLETE, complete) ;
-        loader.path = "config/" ;
-        loader.load() ;
-		
-*/
-
-// TODO : voir si il est nécessaire d'ajouter des fonctions liées à EDEN.
-
 package asgard.config
 {
-    
-    import asgard.config.AbstractConfigLoader;
-    import asgard.net.EdenLoader;
-   
-    import flash.net.URLLoader;
-
-    import vegas.string.eden.Config ;
-
-    /**
+	import flash.net.URLLoader;
+	
+	import asgard.config.AbstractConfigLoader;
+	import asgard.net.EdenLoader;
+	
+	import vegas.string.eden.Config;
+	
+	/**
      * @author eKameleon
      */
     public class EdenConfigLoader extends AbstractConfigLoader
@@ -94,8 +46,6 @@ package asgard.config
             default_file_suffix = ".eden" ;
             
         }
-        
-        // ----o Public Methods
     
         public function getEdenProperty( prop:String ):*
         {

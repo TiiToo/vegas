@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -23,17 +23,15 @@
 
 package vegas.logging
 {
-
-    import vegas.logging.errors.InvalidFilterError ;
-
-    import vegas.events.AbstractCoreEventBroadcaster ;
-    import vegas.util.StringUtil ;
-
+	import vegas.events.AbstractCoreEventDispatcher;
+	import vegas.logging.errors.InvalidFilterError;
+	import vegas.util.StringUtil;
+	
 	/**
 	 * This class provides the basic functionality required by the logging framework for a target implementation. It handles the validation of filter expressions and provides a default level property. No implementation of the logEvent() method is provided.
 	 * @author eKameleon
 	 */
-    public class AbstractTarget extends AbstractCoreEventBroadcaster implements ITarget
+    public class AbstractTarget extends AbstractCoreEventDispatcher implements ITarget
     {
         
 		/**

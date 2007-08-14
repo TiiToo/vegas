@@ -24,7 +24,6 @@
 package vegas.data
 {
 	
-	import vegas.core.IComparator;
 	import vegas.core.IComparer;
 	
 	/**

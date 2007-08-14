@@ -21,146 +21,19 @@
   
 */
 
-/* CircularQueue
-
-	AUTHOR
-
-		Name : CircularQueue
-		Package : vegas.data.queue
-		Version : 1.0.0.0
-		Date :  2005-10-28
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		Abstract data type (ADT) http://en.wikipedia.org/wiki/Abstract_data_type
-			Concept de programmation objet.
-			Type de données d'un objet uniquement manipulables via les
-			fonctions définies dans l'objet lui-même.
-
-		a circular bounded queue
-
-	CONSTRUCTOR
-	
-		var q:CircularQueue = new CircularQueue( qSize:uint ) 
-
-	METHODS
-	
-		- clear():void
-		
-		- clone():*
-		
-		- dequeue():Boolean
-		
-			retreive the first element in the queue object, return a boolean.
-		
-		- element():*
-		
-		- enqueue(o):Boolean
-		
-			enqueue a new element in the queue if the que is not full, return a boolean
-		
-		- isEmpty():Boolean
-		
-		- isFull():Boolean
-		
-		- iterator():Iterator
-		
-			return a ProtectedIterator
-		
-		- maxSize():Number
-		
-		- peek():*
-		
-		- poll():*
-		
-		- size():Number
-		
-		- toArray():Array
-		
-		- toSource():String
-		
-		- toString():String
-
-	IMPLEMENTS
-	
-		BoundedQueue, Collection, ICloneable, IFormattable, IHashable, ISerializable, Iterable, Queue 
-
-	EXAMPLE
-	
-			var q:CircularQueue = new CircularQueue(5) ;
-
-			trace ("maxSize : " + q.maxSize()) ;
-			trace ("enqueue item1 : " + q.enqueue ("item1")) ;
-			trace ("enqueue item2 : " + q.enqueue ("item2")) ;
-			trace ("enqueue item3 : " + q.enqueue ("item3")) ;
-			trace ("enqueue item4 : " + q.enqueue ("item4")) ;
-			trace ("enqueue item5 : " + q.enqueue ("item5")) ;
-			trace ("enqueue item6 : " + q.enqueue ("item6")) ;
-			
-			trace ("element : " + q.element()) ;
-			trace ("dequeue : " + q.dequeue()) ;
-			trace ("element : " + q.element()) ;
-			trace ("size : " + q.size()) ;
-			trace ("isFull : " + q.isFull()) ; 
-			trace ("array : " + q.toArray()) ;
-			
-			trace("") ;
-			
-			trace ("queue : " + q) ;
-			
-			trace("") ;
-			
-			trace ("dequeue : " + q.dequeue()) ;
-			trace ("enqueue item6 : " + q.enqueue("item6")) ;
-			trace ("enqueue item7 : " + q.enqueue("item7")) ;
-			trace ("peek : " + q.peek()) ;
-			trace ("size : " + q.size()) ;
-			trace ("isFull : " + q.isFull()) ; 
-			
-			trace("") ;
-			
-			trace ("q : " + q) ;
-			
-			trace ("------- clone") ;
-			
-			var clone:CircularQueue = q.clone() ;
-			trace ("dequeue clone : " + clone.dequeue()) ;
-			trace ("enqueue clone item8 : " + clone.enqueue("item8")) ;
-			trace ("original queue : " + q) ;
-			trace ("clone queue : " + clone) ;
-			trace ("clone iterator :") ;
-			var i:Iterator = clone.iterator() ;
-			while (i.hasNext()) {
-				trace ("\t+ " + i.next()) ;
-			}
-			trace("clone.toSource : " + clone.toSource()) ;
-	
-**/
-
 package vegas.data.queue
 {
-
 	import vegas.core.CoreObject;
-	
 	import vegas.data.BoundedQueue;
-	import vegas.data.Collection;
 	import vegas.data.iterator.ArrayIterator;
-	import vegas.data.iterator.Iterator ;
-	import vegas.data.iterator.ProtectedIterator ;
-	import vegas.data.queue.QueueFormat ;
+	import vegas.data.iterator.Iterator;
+	import vegas.data.iterator.ProtectedIterator;
+	import vegas.data.queue.QueueFormat;
+	import vegas.util.Copier;
+	import vegas.util.Serializer;
 	
-	import vegas.errors.UnsupportedOperation ;
-	
-	import vegas.util.Copier ;
-	import vegas.util.Serializer ;
-
 	public class CircularQueue extends CoreObject implements BoundedQueue
 	{
-		
-		// ----o Constructor
 		
 		public function CircularQueue( qSize:uint=uint.MAX_VALUE , ar:Array=null )
 		{
@@ -177,12 +50,8 @@ package vegas.data.queue
 			}
 		}
 
-		// ----o Static Properties
-	
 		static public var MAX_CAPACITY:uint = uint.MAX_VALUE ;
 
-		// ----o Public Methods
-		
 		public function clear():void
 		{
 			_queue = new Array(_qSize) ;
@@ -301,8 +170,6 @@ package vegas.data.queue
 			return (new QueueFormat()).formatToString(this) ;
 		}
 
-		// ----o Private Properties
-	
 		private var _queue:Array ;
 	    private var _rear:uint ; // The array index for the next object to be stored in the queue.
 		private var _front:uint ; // The array index for the next object to be removed from the queue.

@@ -28,35 +28,52 @@ package asgard.net
 	import vegas.util.Serializer ;
 
 	/**
+	 * Defines the information object in a onStatus callback method.
 	 * @author eKameleon
-	 */
+	 * @version 1.0.0.0
+	 */	
 	public class NetServerInfo extends CoreObject
 	{
 		
 		/**
-		 * Creates a new NetServerInfo instance.
+		 * Creates a new NetServerInfo object.
+		 * @param oInfo a primitive object with the properties 'code', 'level', 'description' and 'application'.
 		 */
-		public function NetServerInfo( oInfo:*=null )
+		public function NetServerInfo( oInfo:* = null )
 		{
 
-			if (oInfo != null)
+			if ( oInfo != null )
 			{
 
-				description = oInfo.description ;
-			
-				code = oInfo.code ;
-			
-				level = oInfo.level ;
+				description  = oInfo.description || null ;
+				code         = oInfo.code ;
+				level        = oInfo.level ;
+				application  = oInfo.application || null ;
 			}
 		
 			_oInfo = toObject() ;
 		
 		}
-	
+
+		/**
+		 * This object exist if the server return an application error object. 
+		 * This property exist with FMS when the SSAS {@code application.rejectConnection()} method is invoqued. 
+	  	 */
+		public var application:* ;
+
+		/**
+		 * The code of this information object.
+		 */
 		public var code:String = null ;
 
+		/**
+		 * The description of this information object.
+		 */
 		public var description:String = null ;
 
+		/**
+		 * The level of this information object.
+		 */
 		public var level:String = null ;
 
         /**
@@ -65,9 +82,7 @@ package asgard.net
          */ 	
 		public function toObject():Object 
 		{
-			
-			return { description:description, code:code, level:level } ;
-			
+			return { description:description, code:code, level:level , application:application } ;
 		}
 
 		override public function toSource(...arguments):String 
@@ -75,7 +90,32 @@ package asgard.net
 			return "new asgard.net.NetServerInfo(" + Serializer.toSource(toObject()) + ")" ;
 		}
 
-		// ----o Private Properties
+		/**
+		 * Returns the String representation of this object.
+		 * @return the String representation of this object.
+		 */
+		override public function toString():String
+		{
+			var s:String = "[NetServerInfo" ;
+			if (code != null)
+			{
+				s += ",code:'" + code + "'" ;	
+			}
+			if (level != null)
+			{
+				s += ",level:'" + level + "'" ;	
+			}
+			if (description != null)
+			{
+				s += ",description:'" + description + "'" ;	
+			}
+			if (application != null)
+			{
+				s += ",application:" + application  ;	
+			}
+			s += "]" ;
+			return s ;
+		}
 	
 		private var _oInfo:Object ;
 		

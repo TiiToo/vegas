@@ -14,38 +14,12 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
-
-/**	BagFormat
-
-	AUTHOR
-
-		Name : BagFormat
-		Package : vegas.data.queue
-		Version : 1.0.0.0
-		Date :  2006-07-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- formatToString(o):String
-	
-	INHERIT
-
-		CoreObject → BagFormat
-
-	IMPLEMENT
-	
-		IFormat, IFormattable, IHashable, ISerializable
-	
-**/
 
 package vegas.data.bag
 {
@@ -56,29 +30,35 @@ package vegas.data.bag
 	import vegas.data.Bag;
 	import vegas.data.iterator.Iterator;
 
+	/**
+  	 * Converts a Bag to a custom string representation.
+	 * @author eKameleon
+	 */
 	public class BagFormat extends CoreObject implements IFormat
 	{
 		
-		// ----o Constructor
-		
+		/**
+	 	 * Creates a new BagFormat instance.
+		 */
 		public function BagFormat()
 		{
 			super();
 		}
 		
-		// ----o Public Methods
-		
+		/**
+		 * Converts the object to a custom string representation.
+		 */	
 		public function formatToString(o:*):String
 		{
 			if ( ! o is Bag) return null ;
 			var s:String = "{" ;
-			var it:Iterator = o.uniqueSet().iterator() ;
+			var it:Iterator = (o as Bag).uniqueSet().iterator() ;
 			var cur:* ;
 			var count:uint ;
 			while (it.hasNext()) 
 			{
 				cur = it.next() ;
-				count = o.getCount(cur) ;
+				count = (o as Bag).getCount(cur) ;
 				s += count + ":" + cur ;
 				if (it.hasNext())
 				{

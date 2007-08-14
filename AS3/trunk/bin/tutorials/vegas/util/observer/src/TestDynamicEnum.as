@@ -1,19 +1,30 @@
 package
 {
-	public class TestDynamicEnum
+	
+	import flash.display.Sprite;
+	
+	import test.User;
+	
+	public class TestDynamicEnum extends Sprite
 	{
 		
-		        	var u:User = new User("eka", 29) ;
-
-        	u.setPropertyIsEnumerable("name", false) ;
-        	
-        	for (var prop:String in u)
-        	{
-        		trace(prop + " : " + u[prop]) ;	
-        	
-        	}
-        	
-        	u.speak("hello world") ;
-            
+		/**
+		 * Creates a new TestDynamicEnum instance.
+		 */
+		public function TestDynamicEnum()
+		{
+		
+			var u:User = new User("eka", 29) ;
+	
+			u.setPropertyIsEnumerable("name", false) ;
+	        	
+			for ( var prop:String in u )
+			{
+				trace( prop + " : " + u[prop] ) ;	
+			}
+			
+  		}	    	
+	
 	}
+
 }

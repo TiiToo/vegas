@@ -21,48 +21,6 @@
   
 */
 
-/**	MapIterator
-
-	AUTHOR
-
-		Name : MapIterator
-		Package : vegas.data.map
-		Version : 1.0.0.0
-		Date :  2005-04-24
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- hashCode():Number
-		
-		- hasNext():Boolean
-		
-		- key():*
-		
-		- next():*
-		
-		- reset():Void
-		
-		- remove():*
-		
-		- seek(n:Number)
-		
-		- toSource(...arguments:Array):String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → MapIterator
-		
-	IMPLEMENTS
-	
-		IFormattable, IHashable, Iterator, ISerializable
-
-*/
-
 package vegas.data.iterator
 {
  
@@ -74,16 +32,12 @@ package vegas.data.iterator
     public class MapIterator extends CoreObject implements Iterator
     {
         
-        // ----o Constructor
-        
         public function MapIterator(m:Map)
         {
 		    _m = m ;
     		_i = new ArrayIterator(m.getKeys()) ;
     		_k = null ;
         }
-        
-        // ----o Public Methods
         
         public function hasNext():Boolean
         {
@@ -122,8 +76,6 @@ package vegas.data.iterator
             return "new vegas.data.iterator.MapIterator(" + Serializer.toSource(_m) + ")" ;
         }
     
-    	// ----o Private Properties
-	
     	private var _m:Map ; 
     	private var _i:ArrayIterator ; 
     	private var _k:* ; // current key

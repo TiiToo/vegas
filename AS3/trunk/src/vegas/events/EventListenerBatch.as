@@ -14,117 +14,71 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/** EventListenerBatch
-
-	AUTHOR
-
-		Name : EventListenerBatch
-		Package : vegas.events.dom
-		Version : 1.0.0.0
-		Date :  2006-07-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	DESCRIPTION
-	
-		Cette classe permet d'enregistrer plusieurs écouteurs qui seront invoqué en même temps lors de la notification
-		 d'un ou plusieurs événements.
-	
-	USAGE
-	
-		import flash.events.Event ;
-		import vegas.events.Delegate ;
-		import vegas.events.EventBroadcaster ;
-		import vegas.events.EventListener ;
-		import vegas.events.EventListenerBatch ;
-				
-		var EVENT_TYPE:String = "onTest" ;
-				
-		var action1:Function = function (e:Event):void {
-			trace ("> action1 : " + e.type) ;
-		}
-				
-		var action2:Function = function (e:Event):void {
-			trace ("> action2 : " + e.type) ;
-		}
-				
-		var oListener1:EventListener = new Delegate(this, action1) ;
-		var oListener2:EventListener = new Delegate(this, action2) ;
-				
-		var batch:EventListenerBatch = new EventListenerBatch() ;
-		batch.insert(oListener1) ;
-		batch.insert(oListener2) ;
-				
-		var e:Event = new Event( EVENT_TYPE , this ) ;
-				
-		EventBroadcaster.getInstance().addListener(EVENT_TYPE, batch) ;
-		EventBroadcaster.getInstance().dispatchEvent( e ) ;
-	
-	 METHOD SUMMARY
-	
-		- clear():void
-		
-		- clone()
-		
-		- contains(o):Boolean
-		
-		- get(id:Number):EventListener
-
- 		- handleEvent(e:Event):*
-
-		- insert( oListener:EventListener ):Boolean
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- remove( oR:EventListener ):Boolean
-		
-		- size():Number
-		
-		- toArray():Array
-	
-	INHERIT
-	
-		CoreObject → AbstractTypeable → TypedCollection → EventListenerBatch
-
-	IMPLEMENTS 
-
-		IFormattable, IHashable, IRunnable, ISerializable, Iterable, Typeable, Validator
-	
-*/	
-
 package vegas.events
 {
-	
 	import flash.events.Event;
-	import vegas.data.Collection;
+	
 	import vegas.data.collections.SimpleCollection;
 	import vegas.data.collections.TypedCollection;
 	import vegas.data.iterator.Iterator;
-	import vegas.util.Copier ;
+	import vegas.util.Copier;
 	
+	/**
+ 	 * It handles several {@code EventListener} as one {@code EventListener}.
+	 * <p><b>Example : </b></p>
+	 * {@code
+	 * 	
+	 * import vegas.events.* ;
+	 * 
+	 * var EVENT_TYPE:String = "onTest" ;
+	 * 
+	 * var action1:Function = function (e:Event):Void 
+	 * {
+	 *    trace ("> action1 : " + e.getType()) ;
+	 * }
+	 * 
+	 * var action2:Function = function (e:Event):Void 
+	 * {
+	 *     trace ("> action2 : " + e.getType()) ;
+	 * }
+	 * 
+ 	 * var oListener1:EventListener = new Delegate(this, action1) ;
+	 * var oListener2:EventListener = new Delegate(this, action2) ;
+	 * 
+	 * var batch:EventListenerBatch = new EventListenerBatch() ;
+	 * batch.insert(oListener1) ;
+	 * batch.insert(oListener2) ;
+	 * 	
+	 * var e:Event = new BasicEvent( EVENT_TYPE , this ) ;
+	 * 	
+	 * EventDispatcher.getInstance().registerEventListener(EVENT_TYPE, batch) ;
+	 * EventDispatcher.getInstance().dispatchEvent( e ) ;
+	 * }
+	 */
 	public class EventListenerBatch extends TypedCollection implements EventListener
 	{
 		
-		// ----o Constructor
-		
+		/**
+		 * Creates a new EventListenerBatch instance.
+	 	 */
 		public function EventListenerBatch()
 		{
 			super(EventListener, new SimpleCollection());
 		}
 
-		// ----o Public Methods
-
-		override public function clone():* {
+		/**
+	 	 * Returns a shallow copy of this instance.
+	 	 * @return a shallow copy of this instance.
+	 	 */	
+		override public function clone():* 
+		{
 			var b:EventListenerBatch = new EventListenerBatch() ;
 			var it:Iterator = iterator() ;
 			while (it.hasNext()) 
@@ -134,7 +88,12 @@ package vegas.events
 			return b ;
 		}
 
-		override public function copy():* {
+		/**
+	 	 * Returns a deep copy of this instance.
+	 	 * @return a deep copy of this instance.
+	 	 */	
+		override public function copy():* 
+		{
 			var b:EventListenerBatch = new EventListenerBatch() ;
 			var it:Iterator = iterator() ;
 			while (it.hasNext()) 
@@ -144,6 +103,9 @@ package vegas.events
 			return b ;
 		}
 		
+		/**
+		 * Handles the event.
+	 	 */
 		public function handleEvent(e:Event):*
 		{
 			var ar:Array = toArray() ;
@@ -156,6 +118,7 @@ package vegas.events
 					ar[i].handleEvent.call(ar[i], e) ; 
 				}
 			}
+			return ;
 		}
 		
 	}

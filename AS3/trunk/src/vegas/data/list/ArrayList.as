@@ -21,101 +21,56 @@
   
 */
 
-/* ArrayList [Interface]
-
-    AUTHOR
-
-    	Name : ArrayList
-    	Package : vegas.data
-    	Version : 1.0.0.0
-    	Date :  2006-07-08
-    	Author : ekameleon
-    	URL : http://www.ekameleon.net
-    	Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- clear():Void
-		
-		- clone():*
-		
-		- containsAll(c:Collection):Boolean
-		
-		- copy():*
-		
-		- contains(o:*):Boolean
-		
-		- containsAll(c:Collection):Boolean
-		
-		- ensureCapacity( capacity:uint ):void 
-		
-		- get(key:*):*
-		
-		- indexOf(o:*):int
-		
-		- insert(o:*):Boolean
-		
-		- insertAll(c:Collection):Boolean
-		
-		- insertAllAt(id:uint, c:Collection):Boolean
-		
-		- insertAt(id:uint, o:*):void
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- lastIndexOf(o:*):int
-		
-		- listIterator():ListIterator
-		
-		- remove(o):Boolean
-		
-		- removeAll(c:Collection):Boolean
-
-		- retainAll(c:Collection):Boolean
-
-		- removeAt(id:uint):*
-		
-		- retainAll(c:Collection):Boolean
-		
-		- setAt(id:uint, o:*):void
-		
-		- size():Number
-		
-		- subList(fromIndex:uint, toIndex:uint):List
-		
-		- toArray():Array
-		
-		- toSource(...arguments:Array):String
-		
-		- toString():String
-
-    INHERIT
-    
-	    CoreObject → AbstractCollection → SimpleCollection → AbstractList → ArrayList
-    
-    IMPLEMENTS
-    
-        Collection, ICloneable, ICopyable, IEquality, IFormattable, ISerialzable, Iterable, List
-
-**/
-
 package vegas.data.list
 {
+	import vegas.data.Collection;
+	import vegas.data.iterator.Iterator;
+	import vegas.util.Copier;
 
-	import vegas.data.Collection ;
-	import vegas.data.iterator.Iterator ;
-	import vegas.util.Copier ;
-		
+	/**
+	 * Resizable-array implementation of the List interface.
+	 * Implements all optional list operations, and permits all elements, including null.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.data.list.ArrayList ;
+	 * import vegas.data.List ;
+	 * import vegas.data.iterator.ListIterator ;
+	 * 
+	 * import vegas.util.ConstructorUtil ;
+	 * 
+	 * var a:Array = ["item0", "item1", "item2", "item3", "item4"] ;
+	 * 
+	 * var list:ArrayList = new ArrayList(a) ;
+	 * trace("constructor :: " + ConstructorUtil.getPath(list)) ;
+	 * trace ("list : " + list.size() + " >> " + list) ;
+	 * trace ("list.toSource : " + list.toSource()) ;
+	 * trace ("----") ;
+	 * 
+	 * var it:ListIterator = list.listIterator(2) ;
+	 * while(it.hasNext())
+	 * {
+	 *     trace(">> " + it.next() + " : " + it.key()) ;
+	 *     it.remove() ;
+	 * }
+	 * trace ("next : " + list) ;
+	 * 
+	 * trace ("---- ListIterator hasPrevious") ;
+	 * 
+	 * var cpt = list.size() ;
+	 * while(it.hasPrevious())
+ 	 * {
+	 *     it.previous() ;
+	 *     it.set("changeItem" +  cpt--) ;
+ 	 * }
+	 * trace ("list : " + list) ;
+	 * }
+	 * @author eKameleon
+ 	 */
 	public class ArrayList extends AbstractList
 	{
 		
-		// ----o Constructor
-		
 		/**
-		 * ArrayList constructor.
-		 * 
+		 * Creates a new ArrayList instance.
 		 * @use 
 		 * 	new ArrayList() ;
 		 * 	new ArrayList(ar:Array) ;
@@ -123,8 +78,7 @@ package vegas.data.list
 		 *  new ArrayList( capacity:uint ) ;
 		 * 
 		 */
-		
-		public function ArrayList( init:*=null )
+		public function ArrayList( init:* = null )
 		{
 			
 			var ar:Array ;			
@@ -136,7 +90,7 @@ package vegas.data.list
 			else if (init is Collection)
 			{
 				ar = [] ;
-				var it:Iterator = init.iterator() ;
+				var it:Iterator = (init as Collection).iterator() ;
 				while (it.hasNext()) {
 					insert(it.next()) ;
 				}
@@ -153,19 +107,28 @@ package vegas.data.list
 			super(ar) ;
 			
 		}
-		
-		// ----o Public Methods
 	
+		/**
+		 * Creates and returns a shallow copy of the object.
+	 	 * @return A new object that is a shallow copy of this instance.
+		 */		
 		override public function clone():* 
 		{
 			return new ArrayList(toArray()) ;
 		}
-	
+		
+		/**
+		 * Returns the deep copy of the object.
+		 * @return the deep copy of the object.
+		 */
 		override public function copy():*
 		{
 			return new ArrayList( Copier.copy(toArray())) ;
 		}
-	
+
+		/**
+		 * Increases the capacity of this ArrayList instance, if necessary, to ensure that it can hold at least the number of elements specified by the minimum capacity argument.
+		 */
 		public function ensureCapacity( capacity:uint ):void 
 		{
 			_a.length = capacity ;

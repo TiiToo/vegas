@@ -21,46 +21,6 @@
   
 */
 
-/**	EventListenerComparator
-
-	AUTHOR
-	
-		Name : EventListenerComparator
-		Package : vegas.events.dom
-		Version : 1.0.0.0
-		Date :  2006-07-16
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		new EventListenerComparator(container:EventListenerContainer) ;
-	
-	METHOD SUMMARY
-	
-		- compare(o1, o2) : return a number
-			
-			RETURNS 
-			
-				- -1 if o1 is "lower" than o2 ;
-				-  1 if o1 is "higher" than o2 ;
-				-  0 if o1 and o2 are equal.
-		
-		- equals(o) : return a boolean
-		
-		- toString()
-
-	INHERIT
-	
-		CoreObject → EventListenerComparator
-
-	IMPLEMENTS
-	
-		IComparator, IFormattable, IHashable, ISerializable
-
-*/
-
 package vegas.events.dom
 {
 	import vegas.core.IComparator;
@@ -71,16 +31,13 @@ package vegas.events.dom
 	internal public class EventListenerComparator extends CoreObject implements IComparator
 	{
 		
-		// ----o Constructor
-		
 		public function EventListenerComparator()
 		{
 			super();
 		}
 		
-		// ----o Public Methods
-
-		public function clone():* {
+		public function clone():* 
+		{
 			return new EventListenerComparator() ;
 		}
 
@@ -93,8 +50,8 @@ package vegas.events.dom
 		{
 			if ( o1 is EventListenerContainer && o2 is EventListenerContainer ) 
 			{
-				var p1:uint = o1.getPriority() ;
-				var p2:uint = o2.getPriority() ;
+				var p1:uint = (o1 as EventListenerContainer).getPriority() ;
+				var p2:uint = (o2 as EventListenerContainer).getPriority() ;
 				if( p1 < p2 )
 				{
 					return 1 ;

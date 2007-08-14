@@ -21,48 +21,13 @@
   
 */
 
-/** EventListenerContainer
-
-	AUTHOR
-	
-		Name : EventListenerContainer
-		Package : vegas.events.dom
-		Version : 1.0.0.0
-		Date :  2006-07-16
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- enableAutoRemove(enable:Boolean):void
-		
-		- getPriority():uint
-		
-		- isAutoRemoveEnabled():Boolean
-		
-		- getListener():EventListener
-		
-		- setPriority(n:uint):void
-		
-		- toString():String
-	
-	INHERIT
-	
-		CoreObject → EventListenerContainer
-	
-	IMPLEMENT
-
-		IFormattable, IHashable, ISerializable
-	
-*/
-
 package vegas.events.dom
 {
-	
 	import vegas.core.CoreObject;
-	import vegas.util.Serializer ;
-
+	import vegas.events.EventListener;
+	import vegas.util.ClassUtil;
+	import vegas.util.Serializer;
+	
 	internal class EventListenerContainer extends CoreObject
 	{
 		

@@ -23,25 +23,22 @@
 
 package vegas.data.array
 {
-
-    import vegas.core.HashCode;
-    import vegas.core.ICloneable;
-    import vegas.core.ICopyable;
-    import vegas.core.ISerializable;
-    import vegas.core.IFormattable;
-    import vegas.core.IHashable;
-
-    import vegas.data.iterator.ArrayIterator;
-    import vegas.data.iterator.Iterable;
-    import vegas.data.iterator.Iterator;
-    
-    import vegas.util.ClassUtil ;
-    import vegas.util.Copier ;
-    import vegas.util.Serializer ;
-        
-    import flash.utils.Proxy;
-    import flash.utils.flash_proxy 
-    
+	import flash.utils.Proxy;
+	import flash.utils.flash_proxy;
+	
+	import vegas.core.HashCode;
+	import vegas.core.ICloneable;
+	import vegas.core.ICopyable;
+	import vegas.core.IFormattable;
+	import vegas.core.IHashable;
+	import vegas.core.ISerializable;
+	import vegas.data.iterator.ArrayIterator;
+	import vegas.data.iterator.Iterable;
+	import vegas.data.iterator.Iterator;
+	import vegas.util.ClassUtil;
+	import vegas.util.Copier;
+	import vegas.util.Serializer;
+	
     /**
      * The ProxyArray class.
      * <p><b>Example :</b></p>
@@ -81,10 +78,10 @@ package vegas.data.array
         /**
          * Init Proxy.
          */
-        flash_proxy override function callProperty( methodName:*, ... args):* 
+        flash_proxy override function callProperty( ...name:*)  ;
         {
             var res:* ;
-            switch (methodName.toString()) 
+            switch ( Object(methodName).toString() ) 
             {
             
                 default :
@@ -98,7 +95,7 @@ package vegas.data.array
         /**
          * Init Proxy getProperty.
          */
-        flash_proxy override function getProperty(name:*):* 
+        flash_proxy override function getProperty( name ):* 
         {
             return _ar[name];
         }
@@ -106,7 +103,7 @@ package vegas.data.array
         /**
          * Init Proxy setProperty.
          */
-        flash_proxy override function setProperty(name:*, value:*):void 
+        flash_proxy override function setProperty( name , value ):void 
         {
             _ar[name] = value;
         }

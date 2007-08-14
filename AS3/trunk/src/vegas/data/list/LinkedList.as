@@ -21,92 +21,11 @@
   
 */
 
-/* LinkedLis [Interface]
-
-    AUTHOR
-
-    	Name : LinkedList
-    	Package : vegas.data
-    	Version : 1.0.0.0
-    	Date :  2006-07-08
-    	Author : ekameleon
-    	URL : http://www.ekameleon.net
-    	Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- clear():Void
-		
-		- clone():*
-		
-		- containsAll(c:Collection):Boolean
-		
-		- copy():*
-		
-		- contains(o:*):Boolean
-		
-		- containsAll(c:Collection):Boolean
-		
-		- ensureCapacity( capacity:uint ):void 
-		
-		- get(key:*):*
-		
-		- indexOf(o:*):int
-		
-		- insert(o:*):Boolean
-		
-		- insertAll(c:Collection):Boolean
-		
-		- insertAllAt(id:uint, c:Collection):Boolean
-		
-		- insertAt(id:uint, o:*):void
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- lastIndexOf(o:*):int
-		
-		- listIterator():ListIterator
-		
-		- remove(o):Boolean
-		
-		- removeAll(c:Collection):Boolean
-
-		- retainAll(c:Collection):Boolean
-
-		- removeAt(id:uint):*
-		
-		- retainAll(c:Collection):Boolean
-		
-		- setAt(id:uint, o:*):void
-		
-		- size():Number
-		
-		- subList(fromIndex:uint, toIndex:uint):List
-		
-		- toArray():Array
-		
-		- toSource(...arguments:Array):String
-		
-		- toString():String
-
-    INHERIT
-    
-	    CoreObject → AbstractCollection → SimpleCollection → AbstractList → ArrayList → LinkedList
-    
-    IMPLEMENTS
-    
-        Collection, ICloneable, ICopyable, IEquality, IFormattable, ISerialzable, Iterable, List, Queue
-
-**/
-
 package vegas.data.list
 {
-
 	import vegas.data.Queue;
-	import vegas.util.Copier ;
-
+	import vegas.util.Copier;
+	
 	public class LinkedList extends ArrayList implements Queue
 	{
 		

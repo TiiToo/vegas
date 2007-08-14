@@ -35,88 +35,15 @@
 
 */
  
-/* JSON
-
-	AUTHOR
-	
-		Name : JSON
-		Package : vegas.string
-		Version : 1.0.0.0
-		Date :  2006-07-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-
-		JSON (JavaScript object Notation) is a lightweight data-interchange format.
-			
-		Serializer & deserializer in AS2.
-		
-		MORE INFORMATION IN : http://www.json.org/
-	
-		ADD HEXA DIGITS in deserialize method - EDEN inspiration : http://www.burrrn.com/projects/eden.html
-	
-	METHOD SUMMARY
-	
-		- static deserialize(source:String):*
-		
-		- static serialize(o:*):String
-	
-	EXAMPLE
-
-		import vegas.string.JSON ;
-				
-		// --- Init
-		var a:Array = [2, true, "hello"] ;
-		var o:Object = { prop1 : 1 , prop2 : 2 } ;
-		var s:String = "hello world" ;
-		var n:Number = 4 ;
-		var b:Boolean = true ;
-					
-		trace ("*** Serialize") ;
-		trace("* a : " + JSON.serialize( a ) )  ;	
-		trace("* o : " + JSON.serialize( o ) )  ;
-		trace("* s : " + JSON.serialize( s ) )  ;
-		trace("* n : " + JSON.serialize( n ) )  ;
-		trace("* b : " + JSON.serialize( b ) )  ;
-				
-		trace ("*** Deserialize") ;
-		
-		var source:String = '[ {"prop1":0xFF0000, "prop2":2, "prop3":"hello", "prop4":true} , 2, true,	3, [3, 2] ]' ;
-		
-		import vegas.util.ClassUtil ;
-		
-		var result:* = JSON.deserialize(source) ;
-		for (var prop:String in result) 
-		{
-			trace(prop + " : " + result[prop] + " -> " + ClassUtil.getPath(result[prop])) ;
-		}
-		
-		trace ("*** JSONError") ;
-		
-		var source:String = "[3, 2," ; // test1
-		//var source:String = '{"prop1":coucou"}' ; // test2
-		var o = JSON.deserialize(source) ;
-		for (var prop:String in o) {
-			trace(prop + " : " + o[prop]) ;
-		}
-	
-**/
-
-// TODO REFACTORING PLEASE - type and co... !!!!!! 
-
 package vegas.string
 {
-	
-	import vegas.string.errors.JSONError ;
+	import vegas.string.errors.JSONError;
 	
 	public class JSON
 	{
 		
-	// ----o Public Methods
-
-	static public function deserialize(source:String):* {
+		static public function deserialize(source:String):* 
+		{
 		
 		source = new String(source) ; // Speed
 		var at:Number = 0 ;
@@ -181,13 +108,16 @@ package vegas.string
                         default:
                             _error("Syntax Error");
                     }
-                } else {
+                } 
+                else 
+                {
                     break;
                 }
             }
         };
 		
-        _string = function ():* {
+        _string = function ():* 
+        {
             
             var i:* = '' ;
             var s:* = '' ; 
@@ -249,7 +179,8 @@ package vegas.string
             return null ;
         } ;
 		
-        _array = function():* {
+        _array = function():* 
+        {
             var a:Array = [];
             if (ch == '[') {
                 _next();
@@ -275,7 +206,8 @@ package vegas.string
             return null ;
         };
 		
-        _object = function ():* {
+        _object = function ():* 
+        {
             var k:* = {} ;
             var o:* = {} ;
             if (ch == '{') {
@@ -314,7 +246,8 @@ package vegas.string
             _error("Bad Object") ;
         };
 		
-        _number = function ():* {
+        _number = function ():* 
+        {
             
             var n:* = '' ;
             var v:* ;
@@ -429,7 +362,7 @@ package vegas.string
 						if (o is Array) 
 						{
 						
-							l = o.length ;
+							l = (o as Array).length ;
 						
 							for (i = 0 ; i < l ; ++i) 
 							{
@@ -440,7 +373,7 @@ package vegas.string
 							return '[' + s + ']';
 						
 						}
-						else if (typeof(o.toString) != 'undefined') 
+						else if (typeof((o as Array).toString) != 'undefined') 
 						{
 							
 							for (var prop:String in o) 
@@ -466,9 +399,11 @@ package vegas.string
 				
 					l = o.length ;
 					s = '"';
-					for (i = 0 ; i < l ; i += 1) {
+					for (i = 0 ; i < l ; i += 1) 
+					{
 						c = o.charAt(i);
-						if (c >= ' ') {
+						if (c >= ' ') 
+						{
 							if (c == '\\' || c == '"') 
 							{
 								s += '\\';

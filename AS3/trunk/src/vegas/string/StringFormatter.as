@@ -21,87 +21,18 @@
   
 */
 
-/**	StringFormatter
-
-	AUTHOR
-	
-		Name : StringFormatter
-		Package : vegas.string
-		Version : 1.0.0.0
-		Date :  2006-07-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		Replaces the pattern item in a specified String with the text 
-		equivalent of the value of a specified Object instance.
-
-	USAGE
-	
-		var f:StringFormatter = new StringFormatter() ;
-		f.pattern = "Brad's dog has {0,-4:_} fleas." ;
-		var result:String = f.format(42) ;
-		trace (">> " + result) ;
-
-		f.pattern = "Brad's dog has {0,6:#} fleas.";
-		var result:String = f.format(41) ;
-		trace (">> " + result) ;
-
-		f.pattern = "Brad's dog has {0,-8} fleas." ;
-		var result:String = f.format(12) ;
-		trace (">> " + result) ;
-
-		f.pattern = "{3} {2} {1} {0}" ;
-		var result:String = f.format("a", "b", "c", "d") ;
-		trace (">> " + result) ;
-
-	PROPERTY SUMMARY
-	
-		- pattern:String [R/W]
-
-	METHOD SUMMARY
-
-		- clone():*
-		
-		- copy():*
-
-		- format(...arguments:Array):String
-
-		- hashCode():Number
-		
-		- toSource(indent : Number, indentor : String):String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → AbstractFormatter → StringFormatter
-
-	IMPLEMENT
-	
-		IFormattable, IFormatter, IHashable, ISerializable
-
-*/
-
 package vegas.string
 {
-	
 	import vegas.util.AbstractFormatter;
-	import vegas.util.StringUtil ;
+	import vegas.util.StringUtil;
 	
 	public class StringFormatter extends AbstractFormatter
 	{
-		
-		// ----o Constructor
 		
 		public function StringFormatter( pattern:String )
 		{
 			super(pattern)
 		}
-		
-		// ----o Public Methods
 		
 		override public function format(...arguments:Array):String 
 		{

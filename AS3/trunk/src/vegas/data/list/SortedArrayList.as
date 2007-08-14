@@ -21,93 +21,12 @@
   
 */
 
-/* SortedArrayList [Interface]
-
-    AUTHOR
-
-    	Name : SortedArrayList
-    	Package : vegas.data
-    	Version : 1.0.0.0
-    	Date :  2006-07-08
-    	Author : ekameleon
-    	URL : http://www.ekameleon.net
-    	Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- clear():Void
-		
-		- clone():*
-		
-		- containsAll(c:Collection):Boolean
-		
-		- copy():*
-		
-		- contains(o:*):Boolean
-		
-		- containsAll(c:Collection):Boolean
-		
-		- ensureCapacity( capacity:uint ):void 
-		
-		- get(key:*):*
-		
-		- indexOf(o:*):int
-		
-		- insert(o:*):Boolean
-		
-		- insertAll(c:Collection):Boolean
-		
-		- insertAllAt(id:uint, c:Collection):Boolean
-		
-		- insertAt(id:uint, o:*):void
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- lastIndexOf(o:*):int
-		
-		- listIterator():ListIterator
-		
-		- remove(o):Boolean
-		
-		- removeAll(c:Collection):Boolean
-
-		- retainAll(c:Collection):Boolean
-
-		- removeAt(id:uint):*
-		
-		- retainAll(c:Collection):Boolean
-		
-		- setAt(id:uint, o:*):void
-		
-		- size():Number
-		
-		- subList(fromIndex:uint, toIndex:uint):List
-		
-		- toArray():Array
-		
-		- toSource(...arguments:Array):String
-		
-		- toString():String
-
-    INHERIT
-    
-	    CoreObject → AbstractCollection → SimpleCollection → AbstractList → ArrayList → SortedArrayList
-    
-    IMPLEMENTS
-    
-        Collection, ICloneable, IComparer, ICopyable, IFormattable, ISerialzable, Iterable, List
-
-**/
-
 package vegas.data.list
 {
-
 	import vegas.core.IComparator;
 	import vegas.core.IComparer;
-	import vegas.data.Collection ;
-	import vegas.util.Copier ;
+	import vegas.data.Collection;
+	import vegas.util.Copier;
 	import vegas.util.Serializer;
 	
 	public class SortedArrayList extends ArrayList implements IComparer
@@ -122,7 +41,25 @@ package vegas.data.list
 			options = opt ;
 		}
 		
-		// ----o Public Methods
+		public function get comparator():IComparator 
+		{
+			return _comparator ;
+		}
+		
+		public function set comparator(comp:IComparator):void 
+		{
+			_comparator = comp ;
+			_sort() ;
+		}
+
+		public function get options():uint {
+			return _options ;
+		}
+	
+		public function set options(o:*):void{
+			_options = o ;
+			_sort() ;
+		}
 	
 		override public function clone():*
 		{
@@ -162,13 +99,13 @@ package vegas.data.list
 		}
 
 			
-		public function sort( compare:*=null , opts:uint=0 ):Array  
+		public function sort( compare:* = null , opts:uint = 0 ):Array  
 		{
 			if ( compare == null) return null ;
 			var f:Function ;
 			if (compare is IComparator) 
 			{
-				f = compare.compare ;
+				f = (compare as IComparator).compare ;
 			}
 			else if (compare is Function)
 			{
@@ -181,7 +118,7 @@ package vegas.data.list
 			return _a.sort(f , opts) ;
 		}
 	
-		public function sortOn( fieldName:*, opts:*=null ):Array  
+		public function sortOn( fieldName:*, opts:* = null ):Array  
 		{
 			return _a.sortOn(fieldName, opts) ;
 		}
@@ -190,36 +127,11 @@ package vegas.data.list
 			return Serializer.getSourceOf(this, [toArray(), comparator, options] ) ;
 		}
 		
-		// ----o Virtual Properties
-
-		public function get comparator():IComparator 
-		{
-			return _comparator ;
-		}
-		
-		public function set comparator(comp:IComparator):void 
-		{
-			_comparator = comp ;
-			_sort() ;
-		}
-
-		public function get options():uint {
-			return _options ;
-		}
-	
-		public function set options(o:*):void{
-			_options = o ;
-			_sort() ;
-		}
-		
-		// ----o Private Properties
-		
 		private var _comparator:IComparator ;
 		private var _options:* ;
 
-		// ----o Private Methods
-	
-		private function _sort():void {
+		private function _sort():void 
+		{
 			sort( _comparator.compare , _options) ;
 		}
 

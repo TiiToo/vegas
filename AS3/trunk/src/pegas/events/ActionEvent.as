@@ -35,12 +35,7 @@ package pegas.events
 		/**
 		 * Creates a new ActionEvent instance.
 		 */
-		public function ActionEvent
-		(
-		
-			type:String, info:*=null , bubbles:Boolean=false, cancelable:Boolean=false
-		
-		)
+		public function ActionEvent( type:String , info:* = null , bubbles:Boolean = false , cancelable:Boolean = false )
 		{
 			super(type, bubbles, cancelable);
 			_oInfo = info ;

@@ -23,12 +23,11 @@
 
 package pegas.process
 {
-	
 	import vegas.core.ICloneable;
 	import vegas.core.IRunnable;
-	import vegas.events.IEventBroadcaster;
-
-	public interface IAction extends ICloneable, IRunnable, IEventBroadcaster
+	import vegas.events.IEventDispatcher;
+	
+	public interface IAction extends ICloneable, IRunnable, IEventDispatcher
 	{
 		
 		function notifyFinished():void ;

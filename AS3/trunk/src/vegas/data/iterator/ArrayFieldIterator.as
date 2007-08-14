@@ -21,52 +21,6 @@
   
 */
 
-/* ArrayFieldIterator
-
-	AUTHOR
-
-		Name : ArrayFieldIterator
-		Package : vegas.data.iterator
-		Version : 1.0.0.0
-		Date :  2006-07-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var it:ArrayFieldIterator = new ArrayFieldIterator(ar:Array, fieldName:String) ;
-
-	METHOD SUMMARY
-	
-		- hashCode():uint
-	
-		- hasNext():Boolean
-		
-		- key():*
-		
-		- next():*
-		
-		- reset():Void
-		
-		- remove():*
-		
-		- seek(n:Number)
-		
-		- toSource(...arguments:Array):String
-
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → ArrayIterator → ArrayFieldIterator
-
-	IMPLEMENTS
-	
-		Iterator, IFormattable, IHashable, ISerializable
-
-**/
-
 package vegas.data.iterator
 {
    
@@ -75,21 +29,16 @@ package vegas.data.iterator
     public class ArrayFieldIterator extends ArrayIterator
     {
     
-        // ----o Constructor
-        
         public function ArrayFieldIterator(a:Array, fieldName:String=null)
         {
 		    super(a) ;
     		this.fieldName = fieldName ;
         }
         
-        // ----o Public Properties
-	
     	public var fieldName:String ;
     	
-	    // ----o Public Methods	
-
-    	override public function next():* {
+    	override public function next():* 
+    	{
 	    	var o:* = _a[++_k] ;
     		return (fieldName != null) ? o[fieldName] : o ;
     	}

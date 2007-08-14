@@ -14,132 +14,55 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/* AbstractBag
-
-	AUTHOR
-	
-		Name : AbstractBag
-		Package : vegas.data.bag
-		Version : 1.0.0.0
-		Date :  2005-11-05
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- clear():*
-		
-		- contains(o:*):Boolean
-		
-		+ containsAll(c:Collection):Boolean
-		
-			(Violation)  Returns true if the bag contains all elements in the given collection, respecting cardinality.
-		
-		+ containsAllInBag(b:Bag):Boolean
-		
-		- hashCode():Number
-		
-		+ insertAll(c:Collection):Boolean 
-		
-		+ insertCopies(o, i:Number):Boolean 
-			
-			Add i copies of the given object to the bag and keep a count.
-			
-		+ getCount(o:*):uint
-		
-			Return the number of occurrences (cardinality) of the given object currently in the bag.
-		
-		- get(key:*):*
-		
-			throw UnsupportedOperation
-		
-		- insert(o:*):Boolean
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- remove(o:*):*
-		
-		+ removeAll(c:Collection):Boolean
-		
-			(Violation)  Remove all elements represented in the given collection, respecting cardinality.
-		
-		+ removeCopies(o:*, i:uint):Boolean
-		
-			Remove the given number of occurrences from the bag.
-		
-		+ retainAll(c:Collection):Boolean
-		
-			(Violation)  Remove any members of the bag that are not in the given collection, respecting cardinality.
-		
-		+ retainAllInBag(b:Bag):Boolean
-		
-		- size():uint
-
-		- toArray():Array
-		
-		- toSource():String
-		
-		- toString():String
-		
-		+ uniqueSet():Set
-		
-			The Set of unique members that represent all members in the bag.
-
- 	INHERIT
-	
-		CoreObject → AbstractBag
-
-	IMPLEMENTS
-	
-		Bag, Collection, ICloneable, ICopyable, IFormattable, ISerialzable, Iterable
-
-*/
-
 package vegas.data.bag
 {
-
-	import vegas.core.CoreObject ;	
-
+	import vegas.core.CoreObject;
 	import vegas.data.Bag;
-	import vegas.data.bag.BagFormat ;
-	import vegas.data.bag.HashBag ;
 	import vegas.data.Collection;
+	import vegas.data.List;
+	import vegas.data.Map;
+	import vegas.data.Set;
+	import vegas.data.bag.BagFormat;
+	import vegas.data.bag.HashBag;
 	import vegas.data.iterator.BagIterator;
 	import vegas.data.iterator.Iterator;
-	import vegas.data.List ;
-	import vegas.data.list.ArrayList ;
-	import vegas.data.Map ;
-	import vegas.data.map.MapUtil ;
-	import vegas.data.Set ;
-	import vegas.data.sets.HashSet ;
-
+	import vegas.data.list.ArrayList;
+	import vegas.data.map.MapUtil;
+	import vegas.data.sets.HashSet;
 	import vegas.errors.IllegalArgumentError;
 	import vegas.errors.UnsupportedOperation;
+	import vegas.util.Serializer;
 	
-	import vegas.util.Serializer;	
-
+	/**
+	 * This class provides a skeletal implementation of the {@code Bag} interface, to minimize the effort required to implement this interface.
+	 * <p>To implement a bag, the programmer needs only to extend this class and provide implementations for the cursor, insert and size methods. For supporting the removal of elements, the cursor returned by the cursor method must additionally implement its remove method.</p>
+	 * @author eKameleon
+	 */
 	public class AbstractBag extends CoreObject implements Bag
 	{
 		
-		// ----o Constructor
-		
+		/**
+	 	 * Creates a new AbstractBag instance.
+	 	 * @param m a Map reference.
+	 	 */
 		public function AbstractBag( m:Map )
 		{
-			if (m != null) _setMap(m) ;
+			if (m != null) 
+			{
+				_setMap(m) ;
+			}
 		}
 		
-		// ----o Public Methods
-     
+		/**
+		 * Removes all of the elements from this bag.
+		 */
 		public function clear():void 
 		{
 			_mods ++ ;
@@ -147,27 +70,37 @@ package vegas.data.bag
 			_total = 0 ;
 		}
 	 
+		/**
+		 * Returns the shallow copy of this bag.
+		 * @return the shallow copy of this bag.
+		 */
 		public function clone():*
 		{
 			return null ;
 		}
-     
-		public function copy():*
-		{
-			return null ;
-		}
-	 
+
+		/**
+		 * Returns {@code true} if this bag contains the object passed in argument.
+		 * @return {@code true} if this bag contains the object passed in argument.
+		 */
 		public function contains(o:*):Boolean 
 		{
 			return _map.containsKey(o);
 		}
      
-	 
+		/**
+		 * Returns {@code true} if thie bag contains all object in the passed collection in argument.
+		 * @return {@code true} if thie bag contains all object in the passed collection in argument.
+		 */
 	    public function containsAll(c:Collection):Boolean 
 	    {
 	    	return containsAllInBag(new HashBag(c)) ;
 	    }
-     
+
+		/**
+		 * Returns {@code true} if thie bag contains all object in the passed bag in argument.
+		 * @return {@code true} if thie bag contains all object in the passed bag in argument.
+		 */     
 		public function containsAllInBag(b:Bag):Boolean 
 		{
 			var result:Boolean = true ;
@@ -179,12 +112,28 @@ package vegas.data.bag
 	        }
 	        return result;
 		}
+
+		/**
+		 * Returns the deep copy of this bag.
+		 * @return the deep copy of this bag.
+		 */
+		public function copy():*
+		{
+			return null ;
+		}
 	
+		/**
+		 * Unsupported by bag objects.
+		 * @throws UnsupportedOperation the 'get' method is unsupported with a bag object.
+		 */	
 		public function get(key:*):*
 		{
 			throw new UnsupportedOperation(this + " 'get' method is unsupported.") ;
 		}
 
+		/**
+		 * Returns the count of the specified object passed in argument.
+	 	*/
 		public function getCount(o:*):uint
 		{
         	var result:uint = 0;
@@ -196,22 +145,35 @@ package vegas.data.bag
 	        return result;
 		}
 
+		/**
+		 * This method is used in the BagIterator class.
+		 */
 		public function getModCount():uint
 		{
 			return _mods ;
 		}
 
+		/**
+		 * Unsupported by bag objects.
+		 * @throws UnsupportedOperation the 'indexOf' method is unsupported with a bag object.
+		 */	
 		public function indexOf(o:*, fromIndex:uint=0):int
 		{
 			throw new UnsupportedOperation(this + " 'indexOf' method is unsupported.") ;
 		}
 
+		/**
+		 * Add 1 copy of the given object to the bag and keep a count. 
+		 */	
 		public function insert(o:*):Boolean 
 		{
 		
 			return insertCopies(o, 1) ;
 		}
-			
+
+		/**
+		 * Insert all elements represented in the given collection.
+		 */			
     	public function insertAll(c:Collection):Boolean 
     	{
     		var changed:Boolean = false;
@@ -224,6 +186,9 @@ package vegas.data.bag
 	        return changed;
     	}
 
+		/**
+		 * Add n copies of the given object to the bag and keep a count. 
+		 */
     	public function insertCopies(o:*, nCopies:uint):Boolean 
     	{
     		_mods++ ;
@@ -240,21 +205,35 @@ package vegas.data.bag
 	        }
     	}
 
+		/**
+		 * Returns {@code true} if the bag is empty.
+		 * @return {@code true} if the bag is empty.
+		 */
 		public function isEmpty():Boolean 
 		{
 			return _map.isEmpty() ;
     	}
-	
+
+		/**
+	 	 * Returns the bag iterator.
+		 * @return the bag iterator.
+	 	 */
 		public function iterator():Iterator 
 		{
 			return new BagIterator(this, _extractList().iterator()) ;
 		}
 
+		/**
+		 * Removes the object in argument in the bag.
+	 	 */
 		public function remove(o:*):* 
 		{
 			return removeCopies(o, getCount(o));
 		}
 
+		/**
+		 * (Violation) Removes all elements represented in the given collection, respecting cardinality.
+		 */
     	public function removeAll(c:Collection):Boolean 
     	{
         	var result:Boolean = false ;
@@ -270,6 +249,9 @@ package vegas.data.bag
     	    return result ;
     	}
 
+		/**
+		 * Removes the given number of occurrences from the bag.
+		 */
     	public function removeCopies(o:*, nCopies:uint):Boolean 
     	{
 			_mods++;
@@ -290,11 +272,17 @@ package vegas.data.bag
     	    return result;
     	} 
 
+		/**
+		 * (Violation) Removes any members of the bag that are not in the given collection, respecting cardinality.
+		 */
     	public function retainAll(c:Collection):Boolean 
     	{
     		return retainAllInBag(new HashBag(c));
     	}
 
+		/**
+		 * (Violation) Removes any members of the bag that are not in the given bag.
+		 */
 		public function retainAllInBag(b:Bag):Boolean 
 		{
 	    	var result:Boolean = false ;
@@ -321,33 +309,50 @@ package vegas.data.bag
 	        return result;
 	    }
 	
+		/**
+		 * Returns the number of elements in this bag (its cardinality).
+		 * @return the number of elements in this bag (its cardinality).
+		 */
 		public function size():uint
 		{
 			return _total ;
 		}
 	
-	
+		/**
+		 * Returns the array representation of the bag.
+		 * @return the array representation of the bag.
+	 	 */
 		public function toArray():Array 
 		{
 			return _extractList().toArray();
 		}
 
+		/**
+	 	 * Returns the Eden reprensation of the object.
+	 	 * @return a string representing the source code of the object.
+	 	 */
 		override public function toSource(...arguments:Array):String 
 		{
 			return Serializer.getSourceOf(this, [_map]) ;
 		}
 	
+		/**
+		 * Returns the string representation of this instance.
+		 * @return the string representation of this instance.
+		 */
 		override public function toString():String 
 		{
 			return (new BagFormat()).formatToString(this) ;
 		}
 		
+		/**
+		 * Returns the Set of unique members that represent all members in the bag.
+		 * @return the Set of unique members that represent all members in the bag.
+		 */
     	public function uniqueSet():Set 
     	{
     		return new HashSet(_map.getKeys()) ;
     	}
-
-		// ----o Protected Methods
 
 		protected function _calcTotalSize():uint
 		{
@@ -384,7 +389,6 @@ package vegas.data.bag
 	        }
 	        _map = m ;
 		}
-		// ----o Private Properties
 
 		private var _map:Map = null ;	
 		private var _mods:uint = 0 ;

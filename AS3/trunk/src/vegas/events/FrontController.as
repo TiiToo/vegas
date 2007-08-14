@@ -14,123 +14,58 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/** FrontController
-
-	AUTHOR
-	
-		Name : FrontController
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2006-07-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var oC:FrontController = new FrontController([oE:EventBroadcaster=null, name:String=null) ;
-
-	METHOD SUMMARY
-	
-		- contains(eventName:String):Boolean
-		
-		- fireEvent(ev:Event):void
-
-        - fireEventType( type:String ):void 
-  		
-		- getListener(eventName:String):EventListener 
-		
-		- initialize
-		 
-		- insert(eventName:String, listener:EventListener):void
-		
-		- remove(eventName:String):void
-	
-	INHERIT
-	
-		CoreObject → FrontController
-	
-	IMPLEMENTS 
-
-		IFormattable, IHashable, ISerializable
-
-    EXAMPLE
-    
-        import flash.events.Event ;
-    
-        import vegas.events.Delegate ;
-        import vegas.events.EventListener ;
-        import vegas.events.FrontController ;
-    
-        public class MyMainClass 
-        {
-        
-            function MyMainClass() 
-            {
-    
-                trace("------- Test FrontController") ;
-            
-                var listener:EventListener = new Delegate(this, test) ;
-            
-                var controller:FrontController = new FrontController() ;
-                controller.insert(Event.CHANGE, change) ; // with Function
-                controller.insert(Event.INIT, listener) ; // with EventListener
-            
-                controller.fireEvent( new Event(Event.INIT ) ) ;
-                controller.fireEventType( Event.CHANGE ) ;
-            
-                trace("---------") ;
-            
-            }
-
-            public function change(e:Event):void {
-            
-                trace("change > " + e) ;
-            
-            }
-        
-            public function test( e:Event ):void {
-            
-                trace("test > " + e) ;
-            
-            }
-
-        }
-    
-*/
-
 package vegas.events
 {
-    
-    import flash.events.Event ;
-    
-    import vegas.core.CoreObject;
-    import vegas.data.map.ArrayMap;
-    
+	import flash.events.Event;
+	
+	import vegas.core.CoreObject;
+	import vegas.data.iterator.Iterator;
+	import vegas.data.map.ArrayMap;
+	import vegas.data.map.HashMap;
+	
+	/**
+	 * The Front Controller pattern defines a single EventDispatcher that is responsible for processing application requests.
+  	 * <p>A front controller centralizes functions such as view selection, security, and templating, and applies them consistently across all pages or views. Consequently, when the behavior of these functions need to change, only a small part of the application needs to be changed: the controller and its helper classes.</p>
+ 	 * @author eKameleon
+ 	 */
     public class FrontController extends CoreObject
     {
         
-        // ----o Constructor
-        
-        public function FrontController( oE:EventBroadcaster=null , name:String=null )
+		/**
+		 * Creates a new FrontController instance.
+		 * @param channel the channel of this FrontController.
+		 * @param target the EventDispatcher reference to switch with the default EventDispatcher singleton in the controller.
+		 * <p><b>Example :</b> {@code var oC = new FrontController() ;}</p>
+		 */
+        public function FrontController( channel:String=null, target:EventDispatcher=null )
         {
 		    _map = new ArrayMap() ;
-		    if (name == null) 
-		    {
-			    name = EventBroadcaster.DEFAULT_DISPATCHER_NAME ;
-		    }
-    		_oE = (oE == null) ? EventBroadcaster.getInstance(name) : oE ; 
+    		_dispatcher = target || EventDispatcher.getInstance(channel) ; 
     		
         }
-        
-    	// ----o Public Methods 
+
+		/**
+ 	 	 * Removes all entries in the FrontController. 
+		 */
+		public function clear():void
+		{
+			if ( size() > 0 )
+			{
+				var it:Iterator = _map.keyIterator() ;
+				while(it.hasNext())
+				{
+					remove(it.next()) ;	
+				}
+				_map.clear() ;
+			}	
+		}
 
     	/**
     	 * Returns 'true' if the eventName is registered in the FrontController.
@@ -140,24 +75,58 @@ package vegas.events
     	{
     		return _map.containsKey(eventName) ;	
     	}
-    
+    	
     	/**
     	 * Dispatch an event into the FrontController
     	 * @param e:Event 
     	 */
-    	public function fireEvent(e:Event):void 
+    	public function fireEvent( e:* ):void 
     	{
-  	        _oE.dispatchEvent(e) ;
+    		if (e is String)
+    		{
+    			_dispatcher.dispatchEvent(new Event(e)) ;	
+    		}
+    		else
+    		{
+    			_dispatcher.dispatchEvent(e) ;		
+    		}
+  	        
     	}
 
-    	/**
-    	 * Dispatch a simple event into the FrontController with a specific type.
-    	 * @param e:Event 
-    	 */
-    	public function fireEventType( type:String ):void 
-    	{
-  	        _oE.dispatchEvent( new Event(type) ) ;
-    	}
+		/**
+		 * Flush all global FrontController singletons.
+	 	*/
+		static public function flush():void 
+		{
+			FrontController.instances.clear() ;
+		}
+
+		/**
+	 	 * Returns the internal EventDispatcher singleton reference of this FrontController.
+	 	 * @return the internal EventDispatcher singleton reference of this FrontController.
+	 	 */
+		public function getEventDispatcher():EventDispatcher
+		{
+			return _dispatcher ;		
+		}
+
+		/**
+	 	 * Returns a global {@code FrontController} singleton.
+		 * @param channel The channel of the FrontController (default the EventDispatcher.DEFAULT_SINGLETON_NAME value).
+	 	 * @return a global {@code FrontController} singleton.
+		 */
+		static public function getInstance(channel:String):FrontController 
+		{
+			if (!channel) 
+			{
+				channel = EventDispatcher.DEFAULT_SINGLETON_NAME ;
+			}
+			if (!FrontController.instances.containsKey( channel )) 
+			{
+				FrontController.instances.put( channel , new FrontController(channel) ) ;
+			}
+			return FrontController(FrontController.instances.get(channel));
+		}
 
     	/**
     	 * Returns a EventListener
@@ -165,20 +134,11 @@ package vegas.events
     	 * @param  eventName:String
     	 * @return an EventListener or a event callback Function.
     	 */
-    	public function getListener(eventName:String):* {
+    	public function getListener(eventName:String):* 
+    	{
     		return _map.get(eventName) ;
     	}
     
-       	/**
-    	 * Initialize all Commands - override this method.
-    	 */
-    	public function initialize():void
-    	{
-    		
-    		// override this method.
-    		
-    	}
-    	
     	/**
     	 * Add a new entry into the FrontController.
     	 * @param eventName:String
@@ -187,7 +147,7 @@ package vegas.events
     	public function insert(eventName:String, listener:*):void 
     	{
     		_map.put.apply( this, arguments ) ;
-    		_oE.addListener(eventName, listener) ;
+    		_dispatcher.registerEventListener(eventName, listener) ;
     	}
     	
     	/**
@@ -200,13 +160,56 @@ package vegas.events
     		var listener:* = _map.remove( eventName ) ;
     		if (listener) 
     		{
-    		    _oE.removeListener(eventName, listener);
+    		    _dispatcher.unregisterEventListener(eventName, listener);
     		}
     	}
     	
-        // ----o Private Properties
-        
-       	private var _oE:EventBroadcaster ;
+    	/**
+		 * Removes a global FrontController singleton.
+		 */
+		static public function removeInstance( channel:String ):Boolean 
+		{
+			if (!FrontController.instances.containsKey(channel)) 
+			{
+				return FrontController.instances.remove(channel) != null ;
+			}
+			else 
+			{
+				return false ;
+			}
+		}
+   
+		/**
+		 * Sets the EventDispatcher reference of this FrontController.
+		 * @param target The EventDispatcher reference of this FrontController.
+		 */
+		public function setEventDispatcher( target:EventDispatcher ):void
+		{
+			_dispatcher = target ;
+		}  	
+   
+    	/**
+    	 * Returns the number of elements in the controller.
+    	 * @return the number of elements in the controller.
+    	 */
+	   	public function size():int
+    	{
+    		return _map.size() ;
+    	}
+ 
+		/**
+	     * Internal EventDispatcher instance.
+		 */
+       	private var _dispatcher:EventDispatcher ;
+ 		
+ 		/**
+	 	 * The static internal hashmap to register all global instances in your applications.
+	 	 */	
+		static private var instances:HashMap = new HashMap() ;
+
+		/**
+		 * Internal HashMap reference.
+		 */
         private var _map:ArrayMap ;
         
     }

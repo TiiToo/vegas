@@ -21,65 +21,18 @@
   
 */
 
-/** Luhn
-
-	AUTHOR
-	
-		Name : 	Luhn
-		Package : vegas.string
-		Version : 1.0.0.0
-		Date :  2006-07-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		Algorithme "module 10" ou "mod 10", développé en 1960 pour valider l'identification de certains nombres.
-		
-		La méthode consiste en une simple formule de vérification de somme (CheckSum) et permet de valider
-		par exemple les numéros de carte de crédit, certains numéros de comptes etc.
-		
-		L'algorithme fait parti du domaine public. 
-		Il n'a aucun but au niveau de la sécurisation des données,
-		il permet surtout l'utilisation de nombres aléatoires.
-		
-	USE
-	
-		Luhn.isValid( str:String )
-	
-	METHOD SUMMARY
-	
-		- isValid(str:String):Boolean
-	
-	EXAMPLE
-	
-		import vegas.string.Luhn ;
-		
-		var code:String = "456565654" ;
-		trace (code + " isValid : " + Luhn.isValid(code)) ;
-
-	THANKS : 
-	
-		ShoeBox : http://www.shoe-box.org/blog/
-	
-		Formule de Luhn : http://fr.wikipedia.org/wiki/Formule_de_Luhn
-
-**/
-
 package vegas.string
 {
 	public class Luhn
 	{
 		
-		// ----o Static Methods
-	
 		static public function isValid(str:String):Boolean 
-			{	
+		{	
 			var	n:Number ;
 			var sum:uint = 0 ;
 			var l:uint = str.length ;
-			for (var i:uint = 0 ; i<l ; i++){
+			for (var i:uint = 0 ; i<l ; i++)
+			{
 				n = Number(str.charAt(i)) * ( i%2 == 1 ? 2 : 1) ;
 				sum += n - ((n > 9) ? 9 : 0) ;
 			}

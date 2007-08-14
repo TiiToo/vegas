@@ -42,15 +42,18 @@ package asgard.net
 	import vegas.util.ClassUtil;
 
 	/**
+ 	 * This class extends the NetConnection class and defined an implementation based on VEGAS to used Flash Remoting or Flash MediaServer (with AMF protocol).
 	 * @author eKameleon
-	 */
+	 */	
 	public class NetServerConnection extends NetConnection implements ICloneable, IHashable, IRunnable, ISerializable
 	{
 		
 		/**
 		 * Creates a new NetServerConnection instance.
+	 	 * @param bGlobal the flag to use a global event flow or a local event flow.
+		 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 		 */
-		public function NetServerConnection()
+		public function NetServerConnection( bGlobal:Boolean = null , sChannel:String = null )
 		{
 			super();
 			
@@ -62,7 +65,7 @@ package asgard.net
 			
 			_timer = new Timer(DEFAULT_DELAY, 1) ;
 			
-			objectEncoding = ObjectEncoding.AMF0 ;
+			objectEncoding = ObjectEncoding.AMF0 ; // DEFAULT
 			
 			addEventListener( IOErrorEvent.IO_ERROR , onIOError) ;
 			addEventListener( NetStatusEvent.NET_STATUS, _onStatus) ;
@@ -70,32 +73,35 @@ package asgard.net
 			
 		}
 		
-		// ----o Init HashCode
-		
 		static private var _initHashCode:Boolean = HashCode.initialize(NetServerConnection.prototype) ;
-		
-		// ----o Constants
 		
 		static public const DEFAULT_DELAY:uint = 8000 ; // 8 secondes
 		
-		// ----o Public Properties
-		
 		public var noEvent:Boolean = false ;
 		
-		// -----o Public Methods
-		
+		/**
+		 * Returns the shallow copy of this object.
+	 	 * @return the shallow copy of this object.
+		 */
 		public function clone():*
 		{
 			return new NetServerConnection() ;
 		}
 		
+		/**
+		 * Close the connection.
+		 * @param noEvent if this argument is {@code true} the event propagation is disabled.
+		 */		
 		override public function close():void 
 		{
 			super.close() ;
 			_timer.stop() ;
 			if (!noEvent) notifyClose() ;
 		}
-		
+
+		/**
+		 * Connect the client with this method.
+		 */
 		override public function connect(command:String, ... arguments):void
 		{
 			notifyStarted() ;
@@ -177,7 +183,7 @@ package asgard.net
 			dispatchEvent( _eStart ) ;
 		}
 		
-		protected function notifyStatus( status:NetServerStatus , info:*=null ):void 
+		protected function notifyStatus( status:NetServerStatus , info:* = null ):void 
 		{
 			_eStatus.setInfo(info) ;
 			_eStatus.setStatus(status) ;
@@ -218,7 +224,7 @@ package asgard.net
 			
 			_timer.stop() ;
 			
-			var code:NetServerStatus = NetServerStatus.format(e.info.code) ;
+			var code:NetServerStatus = NetServerStatus.format( e.info.code ) ;
 			
 			// trace("> " + this + "._onStatus(" + code + ")") ;
 			

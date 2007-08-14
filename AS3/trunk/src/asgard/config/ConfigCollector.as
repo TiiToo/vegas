@@ -24,11 +24,11 @@
 package asgard.config
 {
 
-    import asgard.config.IConfigurable ;
-
-    import vegas.data.iterator.Iterator ;
-    import vegas.data.list.ArrayList;
-    
+	import asgard.config.IConfigurable;
+	
+	import vegas.data.iterator.Iterator;
+	import vegas.data.list.ArrayList;
+	
     /**
      * @author eKameleon
      * @version 1.0.0.0
@@ -75,8 +75,6 @@ package asgard.config
     	{
     		return _list.size() ;
     	}
-    	
-   	    // ----o Private Properties
     	    
    	    static private var _list:ArrayList = new ArrayList() ;
         

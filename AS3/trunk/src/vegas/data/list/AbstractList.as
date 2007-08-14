@@ -21,105 +21,21 @@
   
 */
 
-/* AbstractList [Interface]
-
-    AUTHOR
-
-    	Name : AbstractList
-    	Package : vegas.data
-    	Version : 1.0.0.0
-    	Date :  2006-07-08
-    	Author : ekameleon
-    	URL : http://www.ekameleon.net
-    	Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- clear():Void
-		
-		- clone():*
-		
-		- containsAll(c:Collection):Boolean
-		
-		- copy():*
-		
-		- contains(o:*):Boolean
-		
-		- containsAll(c:Collection):Boolean
-		
-		- get(key:*):*
-		
-		- indexOf(o:*):int
-		
-		- insert(o:*):Boolean
-		
-		- insertAll(c:Collection):Boolean
-		
-		- insertAllAt(id:uint, c:Collection):Boolean
-		
-		- insertAt(id:uint, o:*):void
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- lastIndexOf(o:*):int
-		
-		- listIterator():ListIterator
-		
-		- remove(o):Boolean
-		
-		- removeAll(c:Collection):Boolean
-
-		- retainAll(c:Collection):Boolean
-
-		- removeAt(id:uint):*
-		
-		- retainAll(c:Collection):Boolean
-		
-		- setAt(id:uint, o:*):void
-		
-		- size():Number
-		
-		- subList(fromIndex:uint, toIndex:uint):List
-		
-		- toArray():Array
-		
-		- toSource(...arguments:Array):String
-		
-		- toString():String
-
-    INHERIT
-    
-	    CoreObject → AbstractCollection → SimpleCollection → AbstractList
-    
-    IMPLEMENTS
-    
-        Collection, ICloneable, ICopyable, IEquality, IFormattable, ISerialzable, Iterable, List
-
-**/
-
 package vegas.data.list
 {
-	
-	import vegas.data.Collection ;
+	import vegas.data.Collection;
+	import vegas.data.List;
 	import vegas.data.collections.SimpleCollection;
 	import vegas.data.iterator.ListIterator;
-	import vegas.data.List;
-	import vegas.errors.IndexOutOfBoundsError ;
-	import vegas.errors.IllegalArgumentError ;
-
+	import vegas.errors.IndexOutOfBoundsError;
+	
 	public class AbstractList extends SimpleCollection implements List
 	{
-		
-		// ----o Constructor
 		
 		public function AbstractList( ar:Array=null )
 		{
 			super(ar);
 		}
-		
-		// ----o Public Methods
 		
 		// TODO implements all equals methods in ADT
 		public function equals(o:*):Boolean {
@@ -203,36 +119,31 @@ package vegas.data.list
 			return l ;
 		}	
 		
-		// ----o Private Properties
-		
 		private var _modCount:Number = 0 ;
 		
 	}
-	
-
-	
 }
 
-import vegas.core.CoreObject ;
+import vegas.core.CoreObject;
+import vegas.data.Collection;
+import vegas.data.List;
+import vegas.data.iterator.ListIterator;
+import vegas.data.list.AbstractList;
+import vegas.errors.ConcurrentModificationError;
+import vegas.errors.IllegalArgumentError;
+import vegas.errors.IllegalStateError;
+import vegas.errors.IndexOutOfBoundsError;
+import vegas.errors.NoSuchElementError;
+import vegas.util.MathsUtil;
 
-import vegas.data.Collection ;
-import vegas.data.List ;
-import vegas.data.list.AbstractList ;
-import vegas.data.iterator.ListIterator ;
+class ListItr extends CoreObject implements ListIterator 
+{
 
-import vegas.errors.ConcurrentModificationError ;
-import vegas.errors.IllegalArgumentError ;
-import vegas.errors.IllegalStateError ;
-import vegas.errors.IndexOutOfBoundsError ;
-import vegas.errors.NoSuchElementError ;
-
-import vegas.util.MathsUtil ;
-
-class ListItr extends CoreObject implements ListIterator {
-
-	// ----o Construtor
-	
-	function ListItr( li:List ) {
+	/**
+	 * Creates a new ListItr instance.
+	 */
+	function ListItr( li:List ) 
+	{
 		if (!li) 
 		{
 			throw new IllegalArgumentError(this + " constructor, 'list' must not be 'null' nor 'undefined'.") ;
@@ -242,10 +153,9 @@ class ListItr extends CoreObject implements ListIterator {
 		_listast = -1 ;
 		_expectedModCount = AbstractList(_list).getModCount() ;
 	}
-
-	// ----o Public Methods
 	
-	public function checkForComodification():void {
+	public function checkForComodification():void 
+	{
 		var l:AbstractList = AbstractList(_list) ;
 	   	if (l.getModCount() != _expectedModCount) 
    		{
@@ -263,9 +173,11 @@ class ListItr extends CoreObject implements ListIterator {
 		return _key != 0 ;
 	}
 
-	public function insert(o:*):void {
+	public function insert(o:*):void 
+	{
 		checkForComodification() ;
-		try {
+		try 
+		{
 			_list.insertAt(_key++, o) ;
 			_listast = -1 ;
 			_expectedModCount = AbstractList(_list).getModCount() ;
@@ -281,7 +193,8 @@ class ListItr extends CoreObject implements ListIterator {
 		return _key ;
 	}
 
-	public function next():* {
+	public function next():* 
+	{
 		if (hasNext()) 
 		{
 			var next:* = _list.get(_key) ;
@@ -303,7 +216,8 @@ class ListItr extends CoreObject implements ListIterator {
 	public function previous():*
 	{
 		checkForComodification() ;
-		try {
+		try 
+		{
 			var i:Number = _key - 1 ;
 			var prev:* = _list.get(i) ;
 			_listast = _key  = i ;
@@ -330,16 +244,20 @@ class ListItr extends CoreObject implements ListIterator {
 			if (_listast < _key) _key -- ;
 			_listast = -1 ;
 			_expectedModCount = AbstractList(_list).getModCount() ;
-		} catch (e:ConcurrentModificationError) {
+		} 
+		catch (e:ConcurrentModificationError) 
+		{
 			throw new ConcurrentModificationError() ;
 		}
 	}	
 
-	public function reset():void {
+	public function reset():void 
+	{
 		_key = 0 ;
 	}
 
-	public function seek(position:*):void {
+	public function seek(position:*):void 
+	{
 		_key = MathsUtil.clamp(position, 0, _list.size()) ;
 		_listast = _key - 1 ;
 	}
@@ -348,7 +266,8 @@ class ListItr extends CoreObject implements ListIterator {
 	{
 		if (_listast == -1) throw new IllegalStateError() ;
 		checkForComodification() ;
-		try {
+		try 
+		{
 			_list.setAt(_listast, o) ;
 			_expectedModCount = AbstractList(_list).getModCount() ;
 		}
@@ -358,8 +277,6 @@ class ListItr extends CoreObject implements ListIterator {
 		}
 	}	
 
-	// ----o Private Properties
-	
 	private var _list:List ;
 	private var _key:uint ;
 	private var _listast:int ;

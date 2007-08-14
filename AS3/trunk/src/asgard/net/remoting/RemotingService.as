@@ -23,30 +23,32 @@
 
 package asgard.net.remoting
 {
-
-	import asgard.data.remoting.RecordSet;
-	import asgard.events.NetServerEvent;
-	import asgard.events.RemotingEvent;
-	import asgard.net.TimeoutPolicy;
-	
 	import flash.events.TimerEvent;
 	import flash.net.Responder;
 	import flash.net.registerClassAlias;
 	import flash.utils.Timer;
 	
-	import pegas.events.ActionEvent;
+	import asgard.events.RemotingEvent;
+	import asgard.net.TimeoutPolicy;
+	
 	import pegas.process.AbstractAction;
 	
 	import vegas.core.ICloneable;
 	import vegas.errors.Warning;
-	import vegas.events.AbstractCoreEventBroadcaster;
 	import vegas.util.ClassUtil;
 
+	/**
+	 * This class provides a service object to communicate with a remoting gateway server.
+	 * @author eKameleon
+ 	 */
 	public class RemotingService extends AbstractAction implements ICloneable
 	{
 		
 		/**
 		 * Creates a new RemotingService instance.
+	 	 * @param gatewayUrl the url of the gateway of the remoting service.
+		 * @param serviceName the name of the service in the server.
+	 	 * @param responder (optional) The RemotingServiceResponder use to receive data from the server.
 		 */
 		public function RemotingService( gatewayUrl:String=null , serviceName:String=null , responder:Responder=null )
 		{
@@ -202,8 +204,8 @@ package asgard.net.remoting
 					
 		}
 
-		override public function run(...arguments:Array):void {
-		
+		override public function run(...arguments:Array):void 
+		{
 						
 			_rc = RemotingConnection.getConnection( _gatewayUrl ) ;
 
@@ -347,8 +349,6 @@ package asgard.net.remoting
 			
 		}
 
-		// ----o Private Properties
-	
 		private var _args:Array ;
 		
 		private var _authentification:RemotingAuthentification ;
@@ -378,22 +378,6 @@ package asgard.net.remoting
 			
 			_timer.stop() ; // stop timeout interval
 			
-			/* 
-			
-			// Use RemotingService.registerClassAlias(RecordSet, "RecordSet") when you want use RecordSet AMF object.
-			
-			if (data.hasOwnProperty("serverInfo") )
-			{
-				data = new RecordSet(data) ;
-			}
-			
-			*/
-			
-			if (data is RecordSet) 
-			{
-				data.setParentService( this ) ;
-			}
-
 			_result = data ;
 			
 			setRunning(false) ;
@@ -431,9 +415,5 @@ package asgard.net.remoting
 		}
 
 	}
-	
-	// ----o Register RecordSet class to deserialization.
-	
-	RecordSet.register() ;
 	
 }

@@ -21,184 +21,177 @@
   
 */
 
-/* AbstractTypeable
-
-	AUTHOR
-
-		Name : AbstractTypeable
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date :  2006-07-06
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		private
-
-	METHOD SUMMARY
-
-		- clear():void
-		
-		- clone():*
-		
-		- copy():*
-				
-		- contains(o:*):Boolean
-			
-		- get(key:*):*
-
-		- getType():*
-
-		- hashCode():uint
-		
-		- indexOf(o:*, fromIndex:uint=0):int
-		
-		- insert(o:*):Boolean
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- remove(o):*
-
-		- setType(type:*):void
-			
-		- size():uint
-
-		- supports(value):Boolean
-
-		- toArray():Array
-		
-		- toSource(...arguments:Array):String
-		
-		- toString():String
-		
-		- validate(value:*):Boolean
-	
-	INHERIT
-	
-		CoreObject → AbstractTypeable → AbstractTypeable
-	
-	IMPLEMENTS 
-
-		Collection, ICloneable, ICopyable, IFormattable, IHashable ISerializable, Iterable, ITypeable, IValidator
-
-*/
-
 package vegas.data.collections
 {
-
-	import vegas.errors.IllegalArgumentError ;
-
 	import vegas.data.Collection;
-	import vegas.data.iterator.Iterator ;
-	
+	import vegas.data.iterator.Iterator;
+	import vegas.errors.IllegalArgumentError;
 	import vegas.util.AbstractTypeable;
-	import vegas.util.ClassUtil ;
+	import vegas.util.ClassUtil;
 	
-
+	/**
+	 * TypedCollection is a wrapper for Collection instances that ensures that only values of a specific type can be added to the wrapped collection.
+	 * @author eKameleon
+	 */	
 	public class TypedCollection extends AbstractTypeable implements Collection
 	{
 		
-		// ----o Constructor
-		
+		/**
+		 * Creates a new TypedCollection.
+		 * @throws IllegalArgumentError if the specified collection in argument is {@code null} or {@code undefined} 
+	 	 */
 		public function TypedCollection(type:*, co:Collection=null)
 		{
 			super(type);
-			if (co == null) {
+			if (co == null) 
+			{
 				throw new IllegalArgumentError("Argument 'co' must not be 'null' or 'undefined'.") ;
 			}
-			if (co.size() > 0) {
+			if (co.size() > 0) 
+			{
 				var it:Iterator = co.iterator() ;
-				while ( it.hasNext() ) validate(it.next()) ;
+				while ( it.hasNext() ) 
+				{
+					validate(it.next()) ;
+				}
 			}
 			_co = co ;
 		}
 		
-		// ----o Public Methods
-		
+		/**
+		 * Removes all of the elements from this collection (optional operation).
+	 	 */
 		public function clear():void 
 		{
 			_co.clear() ;
 		}
 		
+		/**
+		 * Returns a shallow copy of this collection.
+	 	 * @return a shallow copy of this collection.
+	 	 */
 		public function clone():* 
 		{
 			return new TypedCollection(getType(), _co) ;
 		}
 		
+		/**
+		 * Returns a deep copy of this collection.
+	 	 * @return a deep copy of this collection.
+	 	 */
 		public function copy():*
 		{
 			return new TypedCollection(getType(), _co.clone()) ;
 		}
 
+		/**
+		 * Returns {@code true} if this collection contains the specified element.
+		 * @return {@code true} if this collection contains the specified element.
+	 	 */
 		public function contains(o:*):Boolean
 		{
 			return _co.contains(o) ;
 		}
 
+		/**
+		 * Returns the element from this collection at the passed index.
+		 */
     	public function get(key:*):*
     	{
     		return _co.get(key) ;	
     	}
-
+    	
+		/**
+		 * Returns the index of an element in the collection.
+	 	 * @return the index of an element in the collection.
+	 	 */
 		public function indexOf(o:*, fromIndex:uint=0):int
 		{
 			return _co.indexOf(o, fromIndex) ;
 		}
 
+		/**
+		 * Inserts an elements into the Collection.
+		 */
 		public function insert(o:*):Boolean
 		{
 			return _co.insert(o) ;
 		}
-		
+	
+		/**
+		 * Returns {@code true} if this collection contains no elements.
+		 * @return {@code true} if the collection is empty else {@code false}.
+		 */
 		public function isEmpty():Boolean
 		{
 			return _co.isEmpty();
 		}
-	
+
+		/**
+		 * Returns an iterator over the elements in this collection.
+		 * @return an iterator over the elements in this collection.
+		 */
 		public function iterator():Iterator
 		{
 			return _co.iterator() ;
 		}
-		
+
+		/**
+		 * Removes a single instance of the specified element from this collection, if it is present (optional operation).
+	 	 */
 		public function remove(o:*):*
 		{
 			return _co.remove(o) ;
 		}
-	
+
+		/**
+		 * Sets the type of the ITypeable object.
+		 */
 		override public function setType(type:*):void
 		{
 			super.setType(type) ;
 			_co.clear() ;
 		}
 		
+		/**
+		 * Returns the number of elements in this collection.
+		 */
 		public function size():uint
 		{
 			return _co.size() ;
 		}
 		
+		/**
+	 	 * Returns an array containing all of the elements in this collection.
+		 * @return an array representation of all the elements in this wrapped collection.
+		 */
 		public function toArray():Array
 		{
 			return _co.toArray() ;
 		}
 
+		/**
+		 * Returns the Eden representation of the object.
+		 * @return a string representing the source code of the object.
+	 	 */
 		override public function toSource(...arguments):String
 		{
 			return 'new ' + ClassUtil.getPath(this) + '(' + ClassUtil.getName(getType()) + ',' + _co.toSource() + ')' ;
 		}
 		
-	
+		/**
+		 * Returns the string representation of this instance.
+		 * @return the string representation of this instance.
+		 */
 		override public function toString():String
 		{
 			return _co.toString() ;
 		}
-		
-		// ----o Private Properties
-		
-		private var _co:Collection ;
+
+		/**
+	 	 * The internal collection of this wrapped Collection.
+		 */
+		protected var _co:Collection ;
 		
 	}
 	

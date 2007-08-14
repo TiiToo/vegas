@@ -25,13 +25,20 @@ package asgard.events
 {
 	
 	import flash.events.Event;
-
+	
+	/**
+	 * The RemotingEvent class.
+	 * @author eKameleon
+	 */
 	public class RemotingEvent extends Event
 	{
 		
+		/**
+	 	 * Creates a new RemotingEvent instance.
+		 */
 		public function RemotingEvent
 		(
-			type:String, oResult:*=null, oFault:*=null, sMethodName:String=null, sCode:String=null, slevel:String=null
+			type:String, oResult:* = null, oFault:* = null, sMethodName:String=null, sCode:String=null, slevel:String=null
 			, bubbles:Boolean=false, cancelable:Boolean=false
 		)
 		{
@@ -120,14 +127,19 @@ package asgard.events
 			return _result ;	
 		}
 	
-		public function setFault( fault:*=null , methodName:String=null):void {
+		public function setFault( fault:* = null , methodName:String=null):void 
+		{
+		
 			_fault = fault || null ;	
 			
 			if (_fault != null) 
 			{
 				_code = (_fault.hasOwnProperty("code")) ? fault.code : null ;
 				_detail = (_fault.hasOwnProperty("details")) ? fault.details : null ;
-				if (_fault.hasOwnProperty("description"))_description = fault.description ;
+				if (_fault.hasOwnProperty("description"))
+				{
+					_description = fault.description ;
+				}
 				if (_fault.hasOwnProperty("exceptionStack"))_exceptionStack = fault.exceptionStack ;
 				if (_fault.hasOwnProperty("level"))_level = fault.level ;
 				if (_fault.hasOwnProperty("line"))_line = fault.line ;
@@ -143,7 +155,7 @@ package asgard.events
 			_methodName = methodName ;	
 		}
 	
-		public function setResult( result:*=null , methodName:String=null ):void
+		public function setResult( result:* = null , methodName:String = null ):void
 		{
 			_result = result ;
 			if (methodName != null)
@@ -158,7 +170,6 @@ package asgard.events
 
 		private var _code:String ;
 		
-
 		private var _description:String ;
 
 		private var _detail : String ;

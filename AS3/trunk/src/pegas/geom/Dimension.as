@@ -23,14 +23,12 @@
 
 package pegas.geom
 {
-    
-    import pegas.geom.Rectangle ;
-    
-    import vegas.core.CoreObject;
-    import vegas.util.Serializer;
-    import vegas.util.TypeUtil;
-    ;
-    /**
+	import flash.geom.Rectangle;
+	
+	import vegas.core.CoreObject;
+	import vegas.util.Serializer;
+	
+	/**
      * The Dimension class encapsulates the width and height of a componentin a single object.
      * @author eKameleon
      */

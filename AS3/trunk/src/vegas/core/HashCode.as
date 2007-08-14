@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -76,11 +76,15 @@ package vegas.core
 		static public function initialize( o:* ):Boolean 
 		{
 		
-			if (o.hasOwnProperty("hasCode")) return false ;
+			if (o.hasOwnProperty("hashCode")) 
+			{
+				return false ;
+			}
 			
 			o["hashCode"] = function ():uint 
 			{
-				if (this.__hashcode__ == null) {
+				if (this.__hashcode__ == null) 
+				{
 					this.__hashcode__ = HashCode.next() ;
 					this.setPropertyIsEnumerable("__hashcode__", false) ;
 				}

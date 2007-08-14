@@ -21,79 +21,15 @@
   
 */
 
-/* ObjectIterator
-
-	AUTHOR
-	
-		Name : ObjectIterator
-		Package : vegas.data.iterator
-		Version : 1.0.0.0
-		Date :  2006-07-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		Permet de parcourir les attributs d'un objet à condition que les attributs soient énumérables."
-		PS : iterator d'objets (plus lent qu'un for..in classique)
-
-	METHOD SUMMARY
-	
-		- hashCode():uint
-	
-		- hasNext():Boolean
-		
-			renvoi true si il existe encore une propriété dans l'objet
-		
-		- index():int
-			
-			récupère la position du pointeur 
-		
-		- key():*
-		
-			récupère le nom de l'attribut en cours aprés un it.next()
-		
-		- next():*
-		
-			récupère le prochain attribut dans l'objet
-		
-		- remove():*
-		
-			supprime une propriété aprés un it.next()
-		
-		- reset():void
-		
-			Réinitialise l'iterator
-		
-		- seek(position:*):void
-		
-			Permet de changer l'index de l'iterator (entre 0 et nombre de propriétés dans l'objet)
-
- 		- toSource(...arguments:Array):String 
- 		
- 		- toString():String
-
-	INHERIT
-	
-		CoreObject → ObjectIterator
-
-	IMPLEMENTS
-	
-		IFormattable, IHashable, Iterator, ISerializable
-
-*/
-
 package vegas.data.iterator
 {
+	
 	import vegas.core.CoreObject;
 	import vegas.util.MathsUtil;
 	import vegas.util.Serializer ;
 	
 	public class ObjectIterator extends CoreObject implements Iterator
 	{
-		
-		// ----o Constructor
 		
 		public function ObjectIterator(o:Object)
 		{
@@ -111,8 +47,6 @@ package vegas.data.iterator
 			} 
 			_len = _a.length ;
 		}
-		
-		// ----o Public Methods
 		
 		public function hasNext():Boolean
 		{
@@ -158,8 +92,6 @@ package vegas.data.iterator
             return Serializer.getSourceOf(this, [_o] ) ;
         }
 
-		// ----o Private Properties
-	
 		private var _a:Array ;
 		private var _k:int ;
 		private var _o:Object ;

@@ -31,7 +31,7 @@ package vegas.data
 	 * Defines a type of Bag that maintains a sorted order among its unique representative members.
 	 * @author eKameleon
 	 */	
-	public interface SortedBag extends Bag implements IComparer
+	public interface SortedBag extends Bag, IComparer
 	{
 	
 		/**

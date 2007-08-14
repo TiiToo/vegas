@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -26,20 +26,16 @@ package vegas.logging.targets
 
 	// TODO : corriger les types de la sérialization (le problème reste que cette console est prévue à la base pour AS1/AS2)
 	// FIXME : Problème avec le logger ... boucle infinie dans l'événement StatusEvent !!!!
-
-
-    import flash.events.AsyncErrorEvent;
-    import flash.events.SecurityErrorEvent;
-    import flash.events.StatusEvent;
-    import flash.net.LocalConnection;
-	import flash.xml.XMLNode ;
+	import flash.events.AsyncErrorEvent;
+	import flash.events.SecurityErrorEvent;
+	import flash.events.StatusEvent;
+	import flash.net.LocalConnection;
+	import flash.xml.XMLNode;
 	
-    import vegas.logging.LogEvent;    
-    import vegas.logging.LogEventLevel;
-  
-    import vegas.maths.Range;
-    import vegas.util.ClassUtil ;
-
+	import pegas.maths.Range;
+	
+	import vegas.logging.LogEvent;
+	
 	/**
 	 * Provides a logger target that uses the FlashInspector console to output log messages. 
 	 * Thanks Pablo Costantini and LuminicBox <a href='http://www.luminicbox.com/blog/default.aspx?page=post&id=2'>FlashInspector</a>.
@@ -112,7 +108,8 @@ package vegas.logging.targets
             var category:String = event.currentTarget.category ;
             var time:Date = new Date() ;
 
-            var context:Object = {
+            var context:Object = 
+            {
 			    loggerId     : null ,
     			levelName    : level ,
     			time : time
@@ -166,9 +163,12 @@ package vegas.logging.targets
     			case "number" :
     			case "undefined" :
     			case "null" :
+    			{
     				type.inspectable = false ;
     				break ;
-    			default :	
+    			}
+    			default :
+    			{	
     				if(o is Date) 
     				{
 	    				type.inspectable = false ;
@@ -188,7 +188,7 @@ package vegas.logging.targets
     					type.name = "xmlnode" ;
     					type.stringify = true ;
     				}
-
+    			}
     		}
     		
     		return type ;

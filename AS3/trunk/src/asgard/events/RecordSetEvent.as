@@ -29,7 +29,11 @@ package asgard.events
 	import flash.events.Event;
 	
 	import vegas.events.ModelChangedEvent;
-
+	
+	/**
+	 * The RecordSetEvent class.
+	 * @author eKameleon
+	 */
 	public class RecordSetEvent extends ModelChangedEvent
 	{
 		

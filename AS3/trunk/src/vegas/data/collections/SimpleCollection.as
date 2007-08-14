@@ -14,104 +14,48 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/* SimpleCollection
-
-	AUTHOR
-	
-		Name : SimpleCollection
-		Package : vegas.data.collections
-		Version : 1.0.0.0
-		Date : 2005-04-25
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-
-		- clear():void
-		
-		- clone():*
-		
-		- copy():*
-				
-		- contains(o:*):Boolean
-		
-		- containsAll(c:Collection):Boolean
-		
-		- get(id)
-		
-		- hashCode():uint
-		
-		- indexOf(o:*, fromIndex:uint=0):int
-		
-		- insert(o:*):Boolean
-		
-		- insertAll(c:Collection):Boolean
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- remove(o):Boolean
-		
-		- removeAll(c:Collection):Boolean
-		
-		- retainAll(c:Collection):Boolean
-		
-		- size():Number
-		
-		- toArray():Array
-		
-		- toSource(...arguments:Array):String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → AbstractCollection → SimpleCollection
-
-	IMPLEMENTS
-	
-		Collection, ICloneable, ICopyable, IFormattable, IHashable, ISerialzable, Iterable
-
-*/
-
 package vegas.data.collections
 {
+	import vegas.data.Collection;
+	import vegas.data.iterator.Iterator;
+	import vegas.util.Copier;
 	
-	import vegas.data.Collection ;
-	import vegas.data.iterator.Iterator ;
-	import vegas.util.Copier ;
-	
+	/**
+ 	 * A simple representation of the {@code Collection} interface.
+	 * @author eKameleon
+ 	 */
 	public class SimpleCollection extends AbstractCollection
 	{
 		
-		// ----o Constructor
-		
+		/**
+		 * Creates a new SimpleCollection instance.
+		 * @param ar an optional array to fill the collection.
+	 	 */
 		public function SimpleCollection( ar:Array=null )
 		{
 			super(ar);
 		}
 		
-		// ----o Public Methods
-		
+		/**
+		 * Returns a shallow copy of this collection (optional operation).
+		 * @return a shallow copy of this collection.
+		 */
 		override public function clone():*
 		{
 			return new SimpleCollection(toArray()) ;
 		}
 
-		override public function copy():*
-		{
-			return new SimpleCollection( Copier.copy(toArray()) ) ;
-		}
-
+		/**
+		 * Returns {@code true} if this collection contains all of the elements of the specified collection.
+		 * @return {@code true} if this collection contains all of the elements of the specified collection.
+	 	 */
 		public function containsAll(c:Collection):Boolean 
 		{
 			var it:Iterator = c.iterator() ;
@@ -123,7 +67,19 @@ package vegas.data.collections
 			}
 			return true ;
 		}
-		
+
+		/**
+		 * Returns a deep copy of this collection (optional operation).
+		 * @return a deep copy of this collection.
+		 */
+		override public function copy():*
+		{
+			return new SimpleCollection( Copier.copy(toArray()) ) ;
+		}
+
+		/**
+		 * Appends all of the elements in the specified collection to the end of this Collection, in the order that they are returned by the specified collection's iterator (optional operation).
+	 	 */
 		public function insertAll(c:Collection):Boolean 
 		{
 			if (c.size() > 0) 
@@ -138,6 +94,9 @@ package vegas.data.collections
 			}
 		}
 	
+		/**
+		 * Removes from this Collection all the elements that are contained in the specified Collection (optional operation).
+		 */
 		public function removeAll(c:Collection):Boolean 
 		{
 			var b:Boolean = false ;
@@ -153,6 +112,9 @@ package vegas.data.collections
 			return b ;
 		}
 
+		/**
+		 * Retains only the elements in this Collection that are contained in the specified Collection (optional operation).
+		 */
 		public function retainAll(c:Collection):Boolean 
 		{
 			var b:Boolean = false ;

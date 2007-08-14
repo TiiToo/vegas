@@ -75,8 +75,8 @@ package vegas.util.comparators
 			var b2:Boolean = (o2 is Number) || (o2 is Date) ;
 			if ( b1 && b2 ) 
 			{
-				var a:Number = (o1 is Date) ? o1.valueOf() : o1 ;
-				var b:Number = (o2 is Date) ? o2.valueOf() : o2 ;
+				var a:Number = (o1 is Date) ? (o1 as Date).valueOf() : o1 ;
+				var b:Number = (o2 is Date) ? (o2 as Date).valueOf() : o2 ;
 				if( a < b ) 
 				{
 					return -1;

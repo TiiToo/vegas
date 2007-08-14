@@ -14,39 +14,30 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/**	EventListener [Interface]
-
-	AUTHOR
-	
-		Name : EventListener
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2006-07-06
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- handleEvent(e:Event):*
-		 
-*/
-
 package vegas.events
 {
+	import flash.events.Event;
 	
-	import flash.events.Event ;
-	
+	/**
+	 * The {@code EventListener} interface is the primary method for handling events. Users implement the EventListener interface and register their listener on an {@code EventTarget} using the {@code addEventListener method}. The users should also remove their EventListener from its {@code EventTarget} after they have completed using the listener.
+	 * @author eKameleon
+ 	 */
 	public interface EventListener
 	{
+		
+		/**
+		 * This method is called whenever an event occurs of the type for which the EventListener interface was registered.
+	 	 * @param e The Event contains contextual information about the event.
+		 */
 		function handleEvent(e:Event):* ;
+		
 	}
 	
 }

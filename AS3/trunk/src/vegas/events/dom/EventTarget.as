@@ -21,35 +21,10 @@
   
 */
 
-/* EventTarget [interface]
-
-	AUTHOR
-	
-		Name : EventTarget
-		Package : vegas.events
-		Version : 1.0.0.0
-		Date :  2006-07-16
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- addEventListener(eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void
-		
-		- dispatchEvent( event:* , [ isQueue:Boolean, [ target:*, [ context:* ]]]) :IEvent
-		
-		- removeEventListener(eventName:String, listener:*, useCapture:Boolean ):EventListener
-
-	SEE ALSO :
-	
-		Document Object Model (DOM) Level 2 Events Specification
-			- http://www.w3.org/TR/2000/REC-DOM-Level-2-Events-20001113/
-	
-*/
-
 package vegas.events.dom
 {
+	import vegas.events.EventListener;
+	
 	public interface EventTarget
 	{
 		

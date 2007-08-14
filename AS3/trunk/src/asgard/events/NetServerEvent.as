@@ -23,21 +23,24 @@
 
 package asgard.events
 {
-	
 	import flash.events.Event;
 	
-	import asgard.net.NetServerConnection ;
-	import asgard.net.NetServerInfo ;
-	import asgard.net.NetServerStatus ;
-
-	import vegas.core.ICloneable ;
-
+	import asgard.net.NetServerConnection;
+	import asgard.net.NetServerInfo;
+	import asgard.net.NetServerStatus;
+	
+	/**
+	 * This Event contains the NetServerConnection and status of a connection in the application.
+	 * @author eKameleon
+ 	 * @version 1.0.0.0
+	 */	
 	public class NetServerEvent extends Event
 	{
 		
-		// ----o Constructor
-		
-		public function NetServerEvent(type:String, connection:NetServerConnection=null, status:NetServerStatus=null, info:*=null)
+		/**
+	 	 * Creates a new NetServerEvent instance.
+	 	 */
+		public function NetServerEvent(type:String, connection:NetServerConnection=null, status:NetServerStatus=null, info:* = null)
 		{
 			super(type) ;
 			setConnection(connection) ;
@@ -45,22 +48,40 @@ package asgard.events
 			setStatus( status ) ;
 		}
 
-		// ----o Constants
-
+		/**
+		 * The name of the NetServerEvent when the connection is accepted.
+		 */
 		static public const ACCEPTED:String = "onAccepted" ;
 	
-		static public const CLOSE:String = "onClosed" ;
-		
+		/**
+		 * The name of the NetServerEvent when the connection is closed.
+		 */
+	 	static public const CLOSE:String = "onClosed" ;
+
+		/**
+		 * The name of the NetServerEvent when the connection is finished.
+		 */
 		static public const FINISH:String = "onFinished" ;
 	
+		/**
+		 * The name of the NetServerEvent when the connection is started.
+		 */
 		static public const START:String = "onStarted" ;
-		
+	
+		/**
+		 * The name of the NetServerEvent when the connection status is changed.
+		 */
 		static public const NET_STATUS:String = "onStatus" ;
 
+		/**
+		 * The name of the NetServerEvent when the connection is out of time.
+		 */
 		static public const TIMEOUT:String = "onTimeOut" ;
 
-		// ----o Public Methods
-
+		/**
+	 	 * Returns a shallow copy of this object.
+		 * @return a shallow copy of this object.
+		 */
 		override public function clone():Event
 		{
 			var e:NetServerEvent = new NetServerEvent( type , getConnection(), getStatus(), getInfo()) ;
@@ -68,34 +89,53 @@ package asgard.events
 			e.setStatus(e.getStatus()) ;
 			return e ;
 		}
-
+		
+		/**
+		 * Returns the NetServerConnection target of this event.
+		 * @return the NetServerConnection target of this event.
+		 */
 		public function getConnection():NetServerConnection
 		{
 			return _connection ;
 		}
 
+		/**
+		 * Returns the NetServerInfo reference of this event.
+		 * @return the NetServerInfo reference of this event.
+		 */
 		public function getInfo():NetServerInfo 
 		{
 			return _info ;	
 		}
 	
+		/**
+	 	 * Returns the NetServerStatus reference of this event.
+		 * @return the NetServerStatus reference of this event.
+	 	 */
 		public function getStatus():NetServerStatus 
 		{
 			return _status ;	
 		}
 
+		/**
+		 * Sets the NetServerConnection target of this event.
+		 */
 		public function setConnection(connection:NetServerConnection):void
 		{
 			_connection = connection ;
 		}
 
+		/**
+		 * Sets the NetServerInfo reference of this event.
+	 	 * @param oInfo the info {@code Object} used to define the NetServerInfo reference.
+	 	 */
 		public function setInfo( oInfo:* ):void 
 		{
 			if (oInfo is NetServerInfo) 
 			{
 				_info = oInfo ;
 			} 
-			else if (typeof(oInfo) == "object") 
+			else if ( oInfo is Object ) 
 			{
 				_info = new NetServerInfo(oInfo) ;	
 			} 	
@@ -105,18 +145,15 @@ package asgard.events
 			}
 		}
 	
+		/**
+		 * Sets the NetServerStatus reference of this event.
+		 * @param status the NetServerStatus of this event.
+		 */
 		public function setStatus(status:NetServerStatus):void 
 		{
 			_status = NetServerStatus.validate(status) ? status : null ;
 		}
 		
-		public function toSource():String
-		{
-			return "new NetServerEvent()" ; 
-		}
-
-		// ----o Private Properties
-	
 		private var _connection:NetServerConnection ;
 		private var _status:NetServerStatus ;
 		private var _info:NetServerInfo ;

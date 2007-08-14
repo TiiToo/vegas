@@ -21,44 +21,9 @@
   
 */
 
-/**	OrderedIterator [Interface]
-
-	AUTHOR
-
-		Name : OrderedIterator
-		Package : vegas.data.iterator
-		Version : 1.0.0.0
-		Date :  2006-07-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- hasNext():Boolean
-
- 		- hasPrevious():Boolean		
- 
-		- key():*
-		
-		- next():*
-		
-		- previous():*
-		
-		- remove():*
-		
-		- reset():void
-		
-		- seek(position:*):void
-	
-	INHERIT
-	
-		Iterator → OrderedIterator
-	
-**/
-
 package vegas.data.iterator
 {
+
     public interface OrderedIterator extends Iterator
     {
         

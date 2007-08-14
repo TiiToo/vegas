@@ -23,25 +23,32 @@
 
 package asgard.net.remoting
 {
-	
-	import asgard.data.iterator.RecordSetIterator;
-	import asgard.data.remoting.RecordSet;
 	import asgard.net.remoting.RemotingService;
 	
-	import vegas.core.IFormat;
 	import vegas.core.CoreObject;
-
-    /**
+	import vegas.core.IFormat;
+	import vegas.data.iterator.Iterable;
+	import vegas.data.iterator.Iterator;
+	import vegas.util.TypeUtil;
+	
+	/**
+	 * The instances of this class can converts an object to a custom string representation.
      * @author eKameleon
      */
 	public class RemotingFormat extends CoreObject implements IFormat
 	{
 
+		/**
+		 * Creates a new RemotingFormat instance.
+		 */
 		public function RemotingFormat()
 		{
 			super();
 		}
 
+		/**
+		 * Converts the object to a custom string representation.
+		 */	
 		public function formatToString(o:*):String 
 		{
 			var rs:RemotingService = RemotingService(o);
@@ -52,22 +59,30 @@ package asgard.net.remoting
 			if (rs.getServiceName()) txt += "\r\tresult : " ;
 			if (r != undefined) 
 			{
-				if (r is RecordSet) 
+				if (r instanceof Iterable) 
 				{
 					txt += "[\r" ;
-					var it:RecordSetIterator = r.iterator() ;
-					while (it.hasNext()) 
+					var it:Iterator = (r as Iterable).iterator() ;
+					while ( it.hasNext() ) 
 					{
-						var oC:* = it.next() ;
-						txt += "\t[\r" ;
-						for (var prop:String in oC) 
+						var item:* = it.next() ;
+						if (TypeUtil.isExplicitInstanceOf( item, Object ) )
 						{
-							txt += "\t\t " + prop + " : " + oC[prop] + "\r" ;
+							txt += "\t[\r" ;
+							for (var prop:String in o) 
+							{
+								txt += "\t\t " + prop + " : " + item[prop] + "\r" ;
+							}	
+							txt += "\t] " ; 
+							txt += ( it.hasNext() ) ? "," : "" ;
+							txt += "\r" ;
 						}
-						txt += "\t] " ; 
-						txt += (it.hasNext()) ? ",\r" : "\r" ;
+						else
+						{
+							txt += "\t" + item + "\r" ;
+						}
 					}	
-				}
+				} 
 				else 
 				{
 					txt += r  + "\r";
@@ -77,7 +92,10 @@ package asgard.net.remoting
 			else 
 			{
 				txt += "empty";
-				if (rs.getServiceName() || rs.getMethodName()) txt += "\r" ;
+				if (rs.getServiceName() || rs.getMethodName()) 
+				{
+					txt += "\r" ;
+				}
 				txt += "]" ;
 			}
 			return txt ;

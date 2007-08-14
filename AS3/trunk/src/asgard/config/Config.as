@@ -26,35 +26,26 @@
 
 package asgard.config
 {
-    
-    import vegas.core.CoreObject; 
-    import vegas.data.map.HashMap;
-
-    import vegas.core.IFormattable;
-    import vegas.util.ClassUtil 
-    ;
-
-   /**
+	import vegas.core.CoreObject;
+	import vegas.core.IFormattable;
+	import vegas.data.map.HashMap;
+	import vegas.util.ClassUtil;
+	
+	/**
     * @author eKameleon
     */
-    dynamic public class Config implements IFormattable
+    dynamic public class Config extends CoreObject implements IFormattable
     {
-        
-        // ----o Constructor
         
         public function Config()
         {
             super();
         }
 
-	    // ----o Protected Properties
-	    
 	   /**
         * The map who contains all configs.
         */
 	    static protected var instances:HashMap = new HashMap() ;
-
-        // ----o Public Methods
 
         /**
          * clear all configs in the global map.
@@ -111,7 +102,7 @@ package asgard.config
 	
 	    }
 	    
-	    public function toString():String
+	    override public function toString():String
 	    {
 	        return "[" + ClassUtil.getName(this) + "]" ;
 	    }

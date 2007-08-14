@@ -23,10 +23,10 @@
 
 package asgard.net
 {
-	
 	import vegas.core.CoreObject;
-
+	
 	/**
+	 * Defines the NetServer status.
 	 * @author eKameleon
 	 */
 	public class NetServerStatus extends CoreObject
@@ -34,26 +34,57 @@ package asgard.net
 
         /**
          * Creates a new NetServerStatus instance.
+	 	 * @param s the String value of this object.
          */ 
 		public function NetServerStatus( value:String )
 		{
 			_value = value ;
 		}
 	
+		/**
+	 	 * Packet encoded in an unidentified format.
+	 	 */	
 		static public const BAD_VERSION:NetServerStatus = new NetServerStatus("badversion") ;
 		
+		/**
+	 	 * The connection was closed successfully.
+	 	 */
 		static public const CLOSED:NetServerStatus = new NetServerStatus("closed") ;
-	
+
+		/**
+		 * The connection attempt failed or the NetConnection.call method was not able to invoke the server-side method or command.
+		 */
 		static public const FAILED:NetServerStatus = new NetServerStatus("failed") ;
-	
+
+		/**
+		 * The application name specified during connect is invalid.
+		 */
 		static public const INVALID:NetServerStatus = new NetServerStatus("invalidapp") ;
 		
+		/**
+	 	 * The connection attempt did not have permission to access the application.
+	 	 */
 		static public const REJECTED:NetServerStatus = new NetServerStatus("rejected") ;
 		
+		/**
+	 	 *  The specified application is shutting down.
+	 	 */
 		static public const SHUTDOWN:NetServerStatus = new NetServerStatus("appshutdown") ;
-		
+	
+		/**
+	 	 * The connection attempt succeeded.
+	 	 */
 		static public const SUCCESS:NetServerStatus = new NetServerStatus("success") ;
-		
+
+		/**
+	 	 * Compares the specified object with this object for equality.
+	 	 * @return {@code true} if the the specified object is equal with this object.
+	 	 */
+		public function equals( o:* ):Boolean
+		{
+			return o.valueOf() == valueOf() ;	
+		}
+
 		/**
 		 * Convert onStatus code value in NetConnection.onStatus in a ConnectionStatus valid string.
 		 */
@@ -72,21 +103,38 @@ package asgard.net
 			return null ;
 		}
 
+		/**
+		 * Returns the Eden String representation of this object.
+		 * @return the Eden String representation of this object.
+		 */
 		override public function toSource(...arguments:Array):String 
 		{
 			return "new asgard.net.NetServerStatus(\"" + toString() + "\")" ;
 		}
-
+		
+		/**
+		 * Returns the String representation of the object.
+		 * @return the String representation of the object.
+		 */
 		override public function toString():String
 		{
 			return _value ;
 		}
 
-		static public function validate( o:* ):Boolean {
+		/**
+		 * Validate if the specified object is a valid status value.
+		 * @return {@code true} if the specified object is a valid status value.
+		 */
+		static public function validate( o:* ):Boolean 
+		{
 			var status:Array = [BAD_VERSION, CLOSED, FAILED, INVALID, REJECTED, SHUTDOWN, SUCCESS] ;
 			return status.indexOf(o) > -1 ;	
 		}	
 		
+		/**
+		 * Returns the primitive value of this object.
+		 * @return the primitive value of this object.
+		 */
 		public function valueOf():*
 		{
 			return _value ;

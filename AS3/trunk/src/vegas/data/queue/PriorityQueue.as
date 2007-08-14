@@ -21,86 +21,17 @@
   
 */
 
-/* PriorityQueue
-
-	AUTHOR
-	
-		Name : PriorityQueue
-		Package : vegas.data.queue
-		Version : 1.0.0.0
-		Date : 2006-07-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-
-		- comparator:IComparator [R/W]
-
-	METHOD SUMMARY
-
-		- clear():void
-		
-		- clone():*
-
-		- contains(o:*):Boolean
-		
-		- copy():*
-		
-		- dequeue():Boolean 
-		
-		- element():* 
-		
-		- enqueue(o:*):Boolean
-		
-		- get(key:*):*
-		
-		- hashCode():uint
-		
-		- indexOf(o:*, fromIndex:uint=0):int
-		
-		- insert(o:*):Boolean
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- peek():*
-		
-		- poll():*
-		
-		- remove(o):*
-		
-		- size():uint
-		
-		- toArray():Array
-		
-		- toSource(...arguments:Array):String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → AbstractCollection → SimpleCollection → LinearQueue → PriorityQueue
-
-	IMPLEMENTS
-	
-		Collection, ICloneable, IComparer, ICopyable, IFormattable, IHashable, ISerialzable, Iterable, Queue
-
-*/
-
 package vegas.data.queue
 {
-	
 	import vegas.core.IComparator;
 	import vegas.core.IComparer;
-	import vegas.errors.IllegalArgumentError;
-	import vegas.util.Copier ;
+	import vegas.util.Copier;
 	
+	/**
+	 * 
+	 */
 	public class PriorityQueue extends LinearQueue implements IComparer
 	{
-		
-		// ----o Constructor
 		
 		/**
 		 * PriorityQueue constructor

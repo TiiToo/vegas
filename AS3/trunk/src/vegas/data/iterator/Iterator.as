@@ -21,34 +21,6 @@
   
 */
 
-/** Iterator [Interface]
-
-	AUTHOR
-
-		Name : Iterator
-		Package : vegas.data.iterator
-		Version : 1.0.0.0
-		Date :  2006-07-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- hasNext():Boolean
-		
-		- key():*
-		
-		- next():*
-		
-		- remove():*
-		
-		- reset():void
-		
-		- seek(position:*):void
-
-**/
-
 package vegas.data.iterator
 {
     

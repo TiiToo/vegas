@@ -21,159 +21,8 @@
   
 */
 
-/*	MultiHashMap
-
-	AUTHOR
-
-		Name : MultiHashMap
-		Package : vegas.data.map
-		Version : 1.0.0.0
-		Date :  2006-07-11
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var m:MultiHashMap = new MultiHashMap( m:Map ) ;
-	
-	ARGUMENTS
-	
-		m : copies the input map creating an independant copy
-		
-	METHOD SUMMARY
-	
-		- clear()
-		
-		- clone()
-		
-		- containsKey(key)
-		
-		- containsValue()
-		
-		- createCollection():Collection
-		
-			Creates a new instance of the map value Collection container.
-			This method can be overridden to use your own collection type.
-			
-		- get(key)
-		
-		- getkeys()
-		
-		- getValues()
-		
-		- isEmpty():Boolean
-		
-		- iterator([key]) 
-		
-		- keyIterator()
-				
-		- put(key, value)
-		
-			Adds the value to the collection associated with the specified key.
-		
-		- putCollection(key, collection:Collection)
-		
-		- putAll(map:Map) 
-		
-		- remove(o:*):* 
-		
-			If value is undefined; removes all values associated with the specified key.
-			
-			If value is defined, removes a specific value from map.
-		
-		- removeByKey(key:*, value:*):*
-		
-		- size():Number
-		
-		- toSource():String
-		
-		- toString():String
-		
-		- totalSize():Number
-		
-		- values()
-		
-			Gets a collection containing all the values in the map.
-		
-		- valueIterator()
-			
-			get a iterator to browse collections in MultiMap
-	
-	INHERIT
-	
-		CoreObject → MultiHashMap
-	
-	IMPLEMENTS
-	
-		ICloneable, ICopyable, IFormattable, IHashable, ISerializable, Iterable, Map, MultiMap
-
-	EXAMPLE
-	
-		import vegas.data.map.HashMap;
-		import vegas.data.map.MultiHashMap;
-		import vegas.data.iterator.Iterator;
-		
-		var hash:HashMap = new vegas.data.map.HashMap() ;
-		hash.put("key1", "valueD1") ;
-		hash.put("key2", "valueD2") ;
-		hash.put("key3", "valueD3") ;
-
-		trace ("--- user map argument in constructor") ;
-		var map:MultiHashMap = new vegas.data.map.MultiHashMap(hash) ;
-		
-		map.put("key1", "valueA1") ;
-		map.put("key1", "valueA2") ;
-		map.put("key1", "valueA3") ;
-		map.put("key2", "valueB1") ;
-		map.put("key2", "valueB2") ;
-		map.put("key3", "valueC1") ;
-		map.put("key3", "valueC2") ;
-		
-		trace("> map toString : " + map) ;
-		trace("> map toSource : " + map.toSource()) ;
-		
-		trace(" ") ;
-		
-		trace ("> key1 : " + map.get("key1")) ;
-		trace ("> key2 : " + map.get("key2")) ;
-		trace ("> key3 : " + map.get("key3")) ;
-				
-		trace ("\r--- different size") ;
-		
-		trace ("> map size : " + map.size()) ;
-		trace ("> map totalSize : " + map.totalSize()) ;
-		
-		trace( "\r--- removeByKey 'key' : 'valueA2' " ) ;
-		trace ("> remove in 'key1' the value 'valueA2' : " + map.removeByKey("key1", "valueA2")) ;
-		trace ("> map totalSize : " + map.totalSize()) ;
-		
-		trace ("\r--- remove a value in key1 >> " + map.get("key1")) ;
-		
-		trace ("\r--- use a key iterator : key1") ;
-		var it:Iterator = map.iteratorByKey("key1") ;
-		while(it.hasNext()) {
-			trace ("\t :: " + it.next()) ;
-		}
-			
-		trace ("\r--- putCollection key2 in key1") ;
-		map.putCollection("key1", map.get("key2")) ;
-		trace ("key1 >> " + map.get("key1")) ;
-			
-		trace ("\r--- clone MultiMap") ;
-		var clone:MultiHashMap = map.clone() ;
-		clone.remove("key1") ;
-				
-		trace ("map size : " + map.totalSize()) ;
-		trace ("clone size : " + clone.totalSize()) ;
-
-*/
-
-// TODO Finir !!!! + Test
-
 package vegas.data.map
 {
-	
 	import vegas.core.CoreObject;
 	import vegas.data.Collection;
 	import vegas.data.Map;
@@ -183,29 +32,119 @@ package vegas.data.map
 	import vegas.data.iterator.Iterator;
 	import vegas.util.Copier;
 	import vegas.util.Serializer;
-
+	
+	/**
+ 	 * The default implementation of the {@code MultiMap} interface.
+ 	 * <p><b>Example :</b></p>
+	 * {@code
+ 	 * import vegas.data.Collection ;
+	 * import vegas.data.iterator.Iterator ;
+	 * import vegas.data.map.HashMap ;
+	 * import vegas.data.Map ;
+	 * import vegas.data.MultiMap ;
+	 * import vegas.data.map.MultiHashMap ;
+ 	 * 
+	 * var map1:HashMap = new HashMap() ;
+	 * map1.put("key1", "valueD1") ;
+	 * map1.put("key2", "valueD2") ;
+	 * trace ("> map1 : " + map1) ;
+	 * trace ("> map1 containsKey 'key1' : " + map1.containsKey("key1")) ;
+	 * 
+	 * trace ("--- use a map argument in constructor") ;
+	 * 
+	 * var map:MultiHashMap = new MultiHashMap(map1) ;
+	 * map.put("key1", "valueA1") ;
+	 * map.put("key1", "valueA2") ;
+	 * map.put("key1", "valueA3") ;
+	 * map.put("key2", "valueA2") ;
+	 * map.put("key2", "valueB1") ;
+ 	 * map.put("key2", "valueB2") ;
+ 	 * map.put("key3", "valueC1") ;
+ 	 * map.put("key3", "valueC2") ;
+	 * 
+ 	 * trace ("init map : " + map) ;
+	 * trace ("\r--- toSource MultiMap") ;
+	 * 
+	 * trace("map toSource : " + map.toSource()) ;
+ 	 * 
+	 * trace ("\r--- put values in MultiMap") ;
+	 * 
+	 * trace ("key1 >> " + map.get("key1")) ;
+	 * 
+	 * trace ("key2 >> " + map.get("key2")) ;
+	 * 
+	 * trace ("key3 >> " + map.get("key3")) ;
+	 * 
+	 * trace ("\r--- toString MultiMap") ;
+	 * 
+	 * trace (map) ;
+	 * 
+	 * map.remove("key1", "valueA2") ;
+	 * 
+	 * trace ("\r--- remove a value in key1 >> " + map.get("key1")) ;
+	 * 
+	 * trace ("\r--- use iterator") ;
+	 * 
+	 * var it:Iterator = map.iterator() ;
+	 * while(it.hasNext()) 
+	 * {
+	 *     trace ("\t :: " + it.next()) ;
+	 * }
+	 * 
+	 * trace ("\r--- use a key iterator : key1") ;
+	 * var it:Iterator = map.iterator("key1") ;
+	 * while(it.hasNext()) 
+	 * {
+	 *     trace ("\t :: " + it.next()) ;
+	 * }
+	 * 
+	 * trace ("\r--- putCollection key2 in key1") ;
+	 * map.putCollection("key1", map.get("key2")) ;
+	 * trace ("key1 >> " + map.get("key1")) ;
+	 * 
+	 * trace ("\r--- different size") ;
+	 * trace ("map size : " + map.size()) ;
+	 * trace ("map totalSize : " + map.totalSize()) ;
+	 * 
+	 * trace ("\r--- clone MultiMap") ;
+	 * var clone:MultiMap = map.clone() ;
+	 * clone.remove("key1") ;
+	 * 
+	 * trace("clone : " + clone) ;
+	 * trace ("clone size : " + clone.totalSize()) ;
+	 * trace ("map size : " + map.totalSize()) ;
+	 * 
+	 * trace ("\r--- valueIterator") ;
+	 * var it:Iterator = map.valueIterator() ;
+	 * while(it.hasNext()) 
+	 * {
+	*      trace("\t> " + it.next()) ;
+ 	* }
+	* 
+ 	* } 
+ 	* @author eKameleon
+ 	* @see MultiMap
+ 	*/
 	public class MultiHashMap extends CoreObject implements MultiMap
 	{
 		
-		// ----o Constructor
-		
+		/**
+		 * Creates a new MultiHashMap instance.
+		 */
 		public function MultiHashMap( m:Map=null )
 		{
 
-			__map = new HashMap ;
+			__map = new HashMap() ;
 			if (m == null) return ;
 			if (m.size() > 0) 
 			{
-				var m:Map = m.copy() ;
-				putAll(m) ;
+				putAll(m.copy()) ;
 			}
 			
 		}
-		
-		// ----o Public Methods
 
 		/**
-		 * This clears each collection in the map, and so may be slow.
+		 * Removes all elements in this map.
 		 */
 		public function clear():void 
 		{
@@ -213,15 +152,17 @@ package vegas.data.map
 		}
 
 		/**
-		 * Clones the map.
+		 * Returns a shallow copy of this object.
+		 * @return a shallow copy of this object.
 		 */
 		public function clone():* 
 		{
 			var m:MultiHashMap = new MultiHashMap() ;
 			var kItr:Iterator = keyIterator() ;
 			var vItr:Iterator = valueIterator() ;
-			while (kItr.hasNext()) {
-				var key:* = kItr.next() ;
+			while (kItr.hasNext()) 
+			{
+				var key:*   = kItr.next() ;
 				var value:* = vItr.next() ;
 				m.putCollection(key, value) ;
 			}
@@ -250,24 +191,33 @@ package vegas.data.map
 			var len:uint = arguments.length ;
 			if (len == 1) {
 				var it:Iterator = __map.iterator() ;
-				while (it.hasNext()) {
-					var cur:* = it.next() ;
-					if (cur.contains(value)) return true;
+				while (it.hasNext()) 
+				{
+					var cur:Collection = it.next() ;
+					if (cur.contains(value)) 
+					{
+						return true;
+					}
 				}
-			} else if (len == 2) {
+			} 
+			else if (len == 2) 
+			{
 				return ( get(arguments[0] ).contains(arguments[1]) == true);
 			}
 			return false ;
 		}
 
 		/**
-		 * Copy the map.
+		 * Returns a deep copy of the map.
+		 * @return a deep copy of the map.
 		 */
-		public function copy():* {
+		public function copy():* 
+		{
 			var m:MultiHashMap = new MultiHashMap() ;
 			var vItr:Iterator = valueIterator() ;
 			var kItr:Iterator = keyIterator() ;
-			while (kItr.hasNext()) {
+			while (kItr.hasNext()) 
+			{
 				var key:* = Copier.copy(kItr.next()) ;
 				var value:* = Copier.copy(vItr.next()) ;
 				m.putCollection(key, value) ;
@@ -279,7 +229,8 @@ package vegas.data.map
 		 * Creates a new instance of the map value Collection container.
 		 * This method can be overridden to use your own collection type.
 		 */
-		public function createCollection():Collection {
+		public function createCollection():Collection 
+		{
 			return new SimpleCollection() ;	
 		}
 
@@ -305,7 +256,7 @@ package vegas.data.map
 		public function getValues():Array 
 		{
 			var result:Array = [] ;
-			var values:* = __map.getValues() ;
+			var values:Array = __map.getValues() ;
 			var l:uint = values.length ;
 			for (var i:uint = 0 ; i<l ; i++) 
 			{
@@ -397,6 +348,7 @@ package vegas.data.map
 	    
 		/**
 		 * Removes a specific value from map with a specific key.
+		 * @param o the key to remove in the map.
 		 */
 		public function remove(o:*):*
 		{
@@ -405,14 +357,17 @@ package vegas.data.map
 		   
 		/**
 		 * Removes a specific value from all the map.
+		 * @param key the key to remove in the map
+		 * @param value (optional) if this value is defined removes a specific value from map else removes all values associated with the specified key.
+		 * @return the removed value.
 		 */
-		public function removeByKey( key:*=null, value:*=null ):*
+		public function removeByKey( key:* , value:* ):*
 		{
 			
 			if (key != null && value != null) 
 			{
 				
-				var c:* = __map.get(key) ;
+				var c:Collection = __map.get(key) ;
 				var b:Boolean = c.remove(value) ;
 				return (b) ? value : null ;
 				
@@ -422,23 +377,36 @@ package vegas.data.map
 		}
 
 		/**
-		 * Gets the size of the collection mapped to the specified key.
+		 * Returns the size of the collection mapped to the specified key.
+		 * @return the size of the collection mapped to the specified key.
 		 */
 		public function size():uint
 		{
 			return __map.size() ;
 		}
 
+		/**
+		 * Returns a Eden representation of the object.
+		 * @return a string representing the source code of the object.
+		 */
 		override public function toSource(...arguments:Array):String 
 		{
 			return Serializer.getSourceOf(this, [__map]) ;
 		}
-	
+
+		/**
+		 * Returns the string representation of this instance.
+		 * @return the string representation of this instance
+		 */
 		override public function toString():String 
 		{
 			return (new MultiMapFormat()).formatToString(this) ;
 		}
 
+		/**
+	 	 * Returns the total size of the map by counting all the values.
+	 	 * @return the total size of the map by counting all the values.
+	 	 */
     	public function totalSize():uint 
     	{
     		var result:uint = 0 ;
@@ -451,20 +419,29 @@ package vegas.data.map
 			}
 			return result ;
     	}
-	
+
+		/**
+		 * Returns a Collection of all values in the MultiHashMap.
+		 * @return a Collection of all values in the MultiHashMap.
+	 	 */
     	public function values():Collection 
     	{
 			var ar:Array = getValues() ;
 			return new SimpleCollection(ar) ;
     	}
 	
+		/**
+		 * Returns the iterator of all values in the MultiHashMap.
+		 * @return the iterator of all values in the MultiHashMap.
+		 */
 	    public function valueIterator():Iterator 
 	    {
 	    	return new ArrayIterator(__map.getValues()) ;
 	    }
-
-		// ----o Protected Properties
 			
+		/**
+		 * The internal Map of this MultiHashMap class.
+		 */
 		protected var __map:HashMap ;
 
 	}

@@ -21,80 +21,9 @@
   
 */
 
-/* StringIterator
-
-	AUTHOR
-	
-		Name : StringIterator
-		Package : vegas.data.iterator
-		Version : 1.0.0.0
-		Date :  2006-07-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		Permet de parcourir les attributs d'un objet à condition que les attributs soient énumérables."
-		PS : iterator d'objets (plus lent qu'un for..in classique)
-
-	METHOD SUMMARY
-	
-		- hashCode():uint
-	
-		- hasNext():Boolean
-		
-			renvoi true si il existe encore une propriété dans l'objet
-		
-		- key():*
-		
-			récupère le nom de l'attribut en cours aprés un it.next()
-		
-		- next():*
-		
-			récupère le prochain attribut dans l'objet
-		
-		- remove():*
-		
-			supprime une propriété aprés un it.next()
-		
-		- reset():void
-		
-			Réinitialise l'iterator
-		
-		- seek(position:*):void
-		
-			Permet de changer l'index de l'iterator (entre 0 et nombre de propriétés dans l'objet)
-
- 		- toSource(...arguments:Array):String 
- 		
- 		- toString():String
-
-	INHERIT
-	
-		CoreObject → StringIterator
-
-	IMPLEMENTS
-	
-		IFormattable, IHashable, Iterator, ISerializable
-
-	EXAMPLE
-	
-		var it:StringIterator = new StringIterator( "Hello World" ) ;
-		trace(it) ;
-		while(it.hasNext()) 
-		{
-		
-		    var value:* = it.next() ;
-		    var key:* = it.key() ;
-		    trace("key : " + key + " / value : " + value) ;
-			
-		}
-
-*/
-
 package vegas.data.iterator
 {
+
 	import vegas.core.CoreObject;
 	import vegas.errors.UnsupportedOperation ;
 	import vegas.util.MathsUtil ;
@@ -103,8 +32,6 @@ package vegas.data.iterator
 	public class StringIterator extends CoreObject implements Iterator
 	{
 		
-		// ----o Constructor
-		
 		public function StringIterator(s:String)
 		{
 			_s = s ;
@@ -112,11 +39,6 @@ package vegas.data.iterator
 			_size = s.length ;
 		}
 		
-		// -----o Public MEthods
-		
-		/**
-		 * renvoi true si il existe encore une propriété dans l'objet.
-		 */
 		public function hasNext():Boolean
 		{
 			return _k < _size-1  ;
@@ -153,8 +75,6 @@ package vegas.data.iterator
             return Serializer.getSourceOf(this, [_s] ) ;
         }
 
-		// ----o Private Properties
-		
 		private var _s:String ;
 		private var _k:Number ;
 		private var _size:Number ;

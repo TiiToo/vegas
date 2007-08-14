@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -25,8 +25,6 @@ package vegas.util
 {
     
     import vegas.errors.ArgumentOutOfBoundsError;
-    import vegas.util.Copier;
-    import vegas.util.Serializer ;
 
 	/**
 	 * Array tool class.
@@ -128,7 +126,7 @@ package vegas.util
     	{
             var len:Number = ar.length ;
             var i:Number = 0 ;
-            if( thisObject == null ) thisObject = _global ;
+            if( thisObject == null ) thisObject = global ;
             for( i=0; i<len; i++ ) 
                 {
                 if( callback.call( thisObject, ar[i], i, ar ) ) return true ;
@@ -164,6 +162,4 @@ package vegas.util
     }    
     
 }
-
-include "../../vegas/core/global.as" ;
 

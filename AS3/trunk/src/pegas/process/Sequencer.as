@@ -21,13 +21,11 @@
   
 */
 
-// TODO : ajouter un Timer pour les action "next" en cas de besoin pour laisser le temps d'initialiser l'action courante avant de passer à la suivante.
-
 package pegas.process
 {
+	import pegas.events.ActionEvent;
 	
-	import asgard.events.ActionEvent;
-	
+	import vegas.core.IRunnable;
 	import vegas.data.iterator.Iterator;
 	import vegas.data.queue.LinearQueue;
 	import vegas.data.queue.TypedQueue;
@@ -109,7 +107,7 @@ package pegas.process
 				notifyProgress() ;
 				
 				_cur = _queue.poll() ;
-				_cur.run() ;
+				(_cur as IRunnable).run() ;
 				
 			}
 			else 
@@ -140,7 +138,7 @@ package pegas.process
 		{
 			if ( getRunning() ) 
 			{
-				_cur.removeEventListener(ActionEvent.FINISH, run) ;
+				_cur.unregisterEventListener(ActionEvent.FINISH, run) ;
 				setRunning(false) ;
 				if (noEvent) return ;
 				notifyStopped() ;

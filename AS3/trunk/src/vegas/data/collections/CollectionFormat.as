@@ -14,72 +14,54 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2007
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/**	CollectionFormat
-
-	AUTHOR
-
-		Name : CollectionFormat
-		Package : vegas.data.collections
-		Version : 1.0.0.0
-		Date :  2006-07-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- formatToString(o):String
-	
-	INHERIT
-	
-		CoreObject → CollectionFormat
-	
-	IMPLEMENT
-	
-		IFormat, IFormattable, IHashable, ISerializable
-	
-**/
-
 package vegas.data.collections
 {
-
-	import vegas.core.IFormat;
 	import vegas.core.CoreObject;
+	import vegas.core.IFormat;
+	import vegas.data.Collection;
 	
-	import vegas.data.Collection ;
-	import vegas.data.iterator.Iterator ;
-
+	/**
+	 * Converts a Collection to a custom string representation.
+	 * @author eKameleon
+ 	 */
 	public class CollectionFormat extends CoreObject implements IFormat
 	{
 		
-		// ----o Constructor
-		
+		/**
+		 * Creates a new Collectionformat instance.
+		 */
 		public function CollectionFormat()
 		{
 			super();
 		}
 		
-		// ----o Public Methods
-		
+		/**
+		 * Converts the object to a custom string representation.
+	 	 */	
 		public function formatToString(o:*):String
 		{
 			if (o is Collection)
 			{
 				var r:String = "{";
-				if (o.size() > 0) 
+				var c:Collection = o as Collection ;
+				if (c.size() > 0) 
 				{
-					var ar:Array = o.toArray() ;
+					var ar:Array = c.toArray() ;
 					var l:Number = ar.length ;
-					for (var i:Number = 0 ; i < l ; i++) {
+					for (var i:Number = 0 ; i < l ; i++) 
+					{
 						r += ar[i] ;
-						if (i < (l-1)) r += ",";
+						if (i < (l-1)) 
+						{
+							r += "," ;
+						}
 					}
 					r += "}";
 				}

@@ -1,37 +1,44 @@
 package vegas.data.sets
 {
-	
-	import vegas.data.Collection ;
-	import vegas.data.iterator.Iterator ;
+	import vegas.data.Collection;
 	import vegas.data.Map;
-	import vegas.data.map.MultiHashMap;
 	import vegas.data.Set;
-	import vegas.data.sets.HashSet ;
-
-	import vegas.errors.UnsupportedOperation ;
-
-	import vegas.util.Copier ;
-
+	import vegas.data.iterator.Iterator;
+	import vegas.data.map.MultiHashMap;
+	import vegas.data.sets.HashSet;
+	import vegas.errors.UnsupportedOperation;
+	import vegas.util.Copier;
+	
+	/**
+	 * The MultiHashSet is a MutliHashMap that contains no duplicate elements in a specified key.
+	 * @author eKameleon
+	 * @see MultiMap
+	 */
 	public class MultiHashSet extends MultiHashMap implements Set
 	{
 		
-		// ----o Constructor
-		
-		public function MultiHashSet(m:Map=null)
+		/**
+		 * Creates a new MultiHashSet instance.
+		 */
+	 	public function MultiHashSet(m:Map=null)
 		{
 			super(m) ;
 			_internalSet = new HashSet() ;
 		}
 		
-		// ----o Public Methods
-
+		/**
+	 	 * This clears each collection in the map, and so may be slow.
+		 */
 		override public function clear():void
 		{
 			super.clear() ;
 			_internalSet.clear() ;
 		}
 		
-
+		/**
+		 * Returns the shallow copy of this object.
+		 * @return the shallow copy of this object.
+		 */
 		override public function clone():*
 		{
 			var m:MultiHashSet = new MultiHashSet() ;
@@ -45,7 +52,11 @@ package vegas.data.sets
 			return m ;
 		}
 		
-		
+		/**
+		 * Checks whether the map contains the value specified .
+		 * @param o the object to search in this instance.
+		 * @return {@code true} if the MultiHashSet container the passed-in object.
+		 */
 		public function contains(o:*):Boolean
 		{
 			
@@ -55,7 +66,7 @@ package vegas.data.sets
 			
 			while (it.hasNext()) 
 			{
-				var cur:* = it.next() ;
+				var cur:Collection = it.next() ;
 				if (cur == null) continue ;
 				if (cur.contains(value)) 
 				{
@@ -64,7 +75,13 @@ package vegas.data.sets
 			}
 			return false ;
 		}
-		
+	
+		/**
+		 * Checks whether the map contains the value specified with the specified key.
+		 * @param key the specified key in the MultiHashSet to search the value.
+		 * @param value the object to search in this instance.
+		 * @return {@code true} if the MultiHashSet container the passed-in object.
+	 	 */
 		public function containsByKey(key:*, value:*):Boolean
 		{
 			var s:Set = getSet(key) ;
@@ -83,8 +100,9 @@ package vegas.data.sets
 			var m:MultiHashSet = new MultiHashSet() ;
 			var vItr:Iterator = valueIterator() ;
 			var kItr:Iterator = keyIterator() ;
-			while (kItr.hasNext()) {
-				var key:* = Copier.copy(kItr.next()) ;
+			while (kItr.hasNext()) 
+			{
+				var key:*   = Copier.copy(kItr.next()) ;
 				var value:* = Copier.copy(vItr.next()) ;
 				m.putCollection(key, value) ;
 			}
@@ -95,21 +113,35 @@ package vegas.data.sets
 		 * Creates a new instance of the map value Collection(Set) container.
 		 * This method can be overridden to use your own collection type.
 		 */
-		override public function createCollection():Collection {
+		override public function createCollection():Collection 
+		{
 			return new HashSet() ;	
 		}
 
+		/**
+		 * This method is unsupported, use getSet method.
+		 * @throws UnsupportedOperation the MultiHashSet does not support the get() method, use getSet()
+		 */
 		override public function get(key:*):*
 		{
 			throw new UnsupportedOperation("This MultiHashSet does not support the get() method, use getSet().") ;
 			return null ;
 		}
 
+		/**
+		 * Returns the Set defined in the map with the specified key.
+		 * @param key the key in the map 
+		 * @return the Set defined in the map with the specified key.
+		 */
 		public function getSet( key:* ):Set 
 		{
 			return super.get(key) ;
 		}
 
+		/**
+		 * This method always throws an {@code UnsupportedOperation} because this method is not supported by this Set.
+		 * @throw UnsupportedOperation the MultiHashSet instance does not support the indexOf() method.
+		 */		
 		public function indexOf(o:*, fromIndex:uint=0):int
 		{
 			throw new UnsupportedOperation("This MultiHashSet does not support the indexOf() method.") ;
@@ -117,10 +149,10 @@ package vegas.data.sets
 		}
 		
 		/**
-		 * Not Supported operation with MultiHashSet
-		 * @param o:*
-		 * @return Boolean
-		 * @throw UnsupportedOperation
+		 * This method always throws an {@code UnsupportedOperation} because this method is not supported by this Set.
+		 * @param o an object to insert in the MultiHashSet.
+		 * @return nothing (null)
+		 * @throw UnsupportedOperation the MultiHashSet instance does not support the insert() method.
 		 */		
 		public function insert(o:*):Boolean
 		{
@@ -130,6 +162,7 @@ package vegas.data.sets
 
 		/**
 		 * Adds the value to the Set associated with the specified key.
+		 * @return {@code true} if the value is inserted in the object.
 		 */
 		override public function put(key:*, value:*):*
 		{
@@ -189,9 +222,10 @@ package vegas.data.sets
 		}
 		   
 		/**
-		 * Removes a specific value from all the map.
+		 * Removes a specific value from map with the specific passed-in key value.
+		 * <p><b>Note :</b> Use Set implementation and not Map implementation !</p>
 		 */
-		override public function removeByKey( key:*=null, value:*=null ):*
+		override public function removeByKey( key:*, value:* ):*
 		{
 			
 			var c:Collection = __map.get(key) ;
@@ -206,14 +240,16 @@ package vegas.data.sets
 			}
 			
 		}
-		
+
+		/**
+		 * Returns an array containing the combination of values from all keys.
+	 	 * @return an array containing the combination of values from all keys.
+		 */
 		public function toArray():Array
 		{
 			return getValues() ;
 		}
 
-		// ----o Private Properties
-		
 		private var _internalSet:HashSet ;
 
 	}

@@ -21,24 +21,6 @@
   
 */
 
-/** Iterable [Interface]
-
-	AUTHOR
-
-		Name : Iterable
-		Package : vegas.data.iterator
-		Version : 1.0.0.0
-		Date :  2006-07-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-		
-	METHOD SUMMARY
-	
-		- iterator():Iterator
-
-**/
-
 package vegas.data.iterator
 {
     

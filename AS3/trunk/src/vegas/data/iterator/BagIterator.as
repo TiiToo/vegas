@@ -21,42 +21,6 @@
   
 */
 
-/**	BagIterator
-
-	AUTHOR
-	
-		Name : BagIterator
-		Package : vegas.data.iterator
-		Version : 1.0.0.0
-		Date :  2006-07-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-		
-	METHODS SUMMARY
-	
-		- hasNext():Boolean
-		
-		- key():*
-		
-		- next():*
-		
-		- remove():*
-		
-		- reset():void
-		
-		- seek(position:*):void
-
-	IHNERIT
-	
-		CoreObject → BagIterator
-
-	IMPLEMENTS 
-	
-		IFormattable, IHashable, Iterator
-
-*/
-
 package vegas.data.iterator
 {
 	
@@ -72,8 +36,6 @@ package vegas.data.iterator
 	public class BagIterator extends CoreObject implements Iterator
 	{
 		
-		// ----o Constructor
-		
 		public function BagIterator( parent:AbstractBag, support:Iterator  )
 		{
 			_parent = parent;
@@ -81,8 +43,6 @@ package vegas.data.iterator
 			_current = null;
 			_mods = parent.getModCount() ;
 		}
-		
-		// ----o Public Methods
 		
 		public function hasNext():Boolean
 		{
@@ -129,8 +89,6 @@ package vegas.data.iterator
             return Serializer.getSourceOf(this, [_parent, _support] ) ;
         }
 
-		// ----o Private Properties
-	
 		private var _parent:AbstractBag = null ;
 		private var _support:Iterator = null ;
 		private var _current:* = null ;

@@ -21,52 +21,14 @@
   
 */
 
-/*	EventListenerCollection
-
-	AUTHOR
-	
-		Name : EventListenerCollection
-		Package : vegas.events.dom
-		Version : 1.0.0.0
-		Date :  2006-07-16
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- addListener( listener:EventListener, autoRemove:Boolean, priority:Number ):Number 
-		
-		- hashCode():uint
-		
-		- iterator():Iterator
-		
-		- propagate(e:IEvent):IEvent
-		
-		- removeListener( listener:* ):EventListenerContainer
-		
-		- size():uint
-		
-		- toSource(...arguments:Array):String
-		
-		- toString():String
-	
-	IMPLEMENTS
-	
-		CoreObject → EventListenerCollection
-	
-	IMPLEMENTS 
-	
-		IFormattable, IHashable, ISerializable, Iterable
-	
-*/
-
 package vegas.events.dom
 {
 	import vegas.core.CoreObject;
 	import vegas.data.iterator.Iterable;
-	import vegas.data.list.SortedArrayList ;
-	import vegas.util.ClassUtil ;
+	import vegas.data.iterator.Iterator;
+	import vegas.data.list.SortedArrayList;
+	import vegas.events.EventListener;
+	import vegas.util.ClassUtil;
 	
 	internal class EventListenerCollection extends CoreObject implements Iterable
 	{
@@ -172,7 +134,7 @@ package vegas.events.dom
 			}
 			return null ;
 		}
-	
+		
 		public function size():uint 
 		{
 			return _listeners.size() ;
@@ -184,5 +146,6 @@ package vegas.events.dom
 	    private var _listeners:SortedArrayList  ;
 
 	}
+
 	
 }

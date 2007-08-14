@@ -23,17 +23,20 @@
 
 package asgard.net.remoting
 {
-
-	import asgard.events.NetServerEvent ;	
 	import asgard.net.NetServerConnection;
 
+	/**
+	 * The NetServerConnection object used in the RemotingService class to connect the client with the server.
+	 * @author eKameleon
+ 	 * @version 1.0.0.0
+	 */	
 	public class RemotingConnection extends NetServerConnection
 	{
 		
 		/**
 		 * Creates a new RemotingConnection instance.
 		 */
-		public function RemotingConnection( sURL:String=null )
+		public function RemotingConnection( sURL:String = null )
 		{
 			
 			super() ;
@@ -45,15 +48,29 @@ package asgard.net.remoting
 			
 		}
 
+		/**
+		 * The string value of the amf server debug attribut.
+		 */
 		static public const AMF_SERVER_DEBUG:String = "amf_server_debug" ;
-
+		
+		/**
+		 * The "credentials" constant.
+		 */
 		static public const CREDENTIALS:String = "Credentials" ;
-	
+		
+		/**
+		 * Returns a shallow copy of this object.
+		 * @return a shallow copy of this object.
+		 */
 		override public function clone():* 
 		{
 			return new RemotingConnection( uri ) ;	
 		}
-
+		
+		/**
+		 * Returns the RemotingConnection reference defines with the specified url representation.
+		 * @return the RemotingConnection reference defines with the specified url representation.
+		 */
 		static public function getConnection( sUrl:String ):RemotingConnection 
 		{
 			if ( ! RemotingConnectionCollector.contains(sUrl) ) 
@@ -63,11 +80,17 @@ package asgard.net.remoting
 			return RemotingConnectionCollector.get(sUrl) ;
 		}
 
+		/**
+		 * Sets the credentials authentification value of this connection.
+		 */
 		public function setCredentials( authentification:RemotingAuthentification=null ):void  
 		{
 			addHeader( RemotingConnection.CREDENTIALS , false, authentification.toObject());
 		}
-	
+		
+		/**
+		 * Start the debug mode of this connection.
+		 */
 		public function startDebug():void
 		{
 			var oDebug:Object = 
@@ -84,6 +107,9 @@ package asgard.net.remoting
 			addHeader( RemotingConnection.AMF_SERVER_DEBUG, true, oDebug) ;
 		}
 	
+		/**
+		 * Stop the debug mode of this connection.
+		 */
 		public function stopDebug():void
 		{
 			addHeader( RemotingConnection.AMF_SERVER_DEBUG, true, undefined) ;

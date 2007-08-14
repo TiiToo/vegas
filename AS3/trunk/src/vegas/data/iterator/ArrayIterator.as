@@ -21,52 +21,6 @@
   
 */
 
-/**	ArrayIterator
-
-	AUTHOR
-	
-		Name : ArrayIterator
-		Package : vegas.data.iterator
-		Version : 1.0.0.0
-		Date :  20056-07-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var it:ArrayIterator = new ArrayIterator(ar:Array) ;
-
-	METHOD SUMMARY
-	
-		- hashCode():Number
-		
-		- hasNext():Boolean
-		
-		- key():*
-		
-		- next():*
-		
-		- reset():Void
-		
-		- remove():*
-		
-		- seek(position:*)
-
-		- toSource(...arguments:Array):String
-
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → ArrayIterator
-
-	IMPLEMENTS
-	
-		Iterator, IFormattable, IHashable, ISerializable
-
-**/
-
 package vegas.data.iterator
 {
     
@@ -81,16 +35,12 @@ package vegas.data.iterator
     public class ArrayIterator extends CoreObject implements Iterator
     {
         
-        // ----o Constructor
-        
         public function ArrayIterator( a:Array )
         {
  		   _a = a ;
     	   _k = -1 ;
         }
         
-        // ----o Public Methods
- 
         public function hasNext():Boolean
         {
             return (_k < _a.length - 1);
@@ -126,9 +76,8 @@ package vegas.data.iterator
             return "new " + ClassUtil.getPath(this) + "(" + Serializer.toSource(_a) + ")" ;
         }
 
-        // -----o Private Properties
-	
 	    protected var _a:Array ; // current array
+
     	protected var _k:Number ; // current key
 
     }

@@ -23,15 +23,14 @@
 
 package pegas.process
 {
-		
 	import pegas.events.ActionEvent;
 	
-	import vegas.events.AbstractCoreEventBroadcaster;
-
-    /**
+	import vegas.events.AbstractCoreEventDispatcher;
+	
+	/**
      * @author eKameleon
      */ 
-	public class AbstractAction extends AbstractCoreEventBroadcaster implements IAction
+	public class AbstractAction extends AbstractCoreEventDispatcher implements IAction
 	{
 		
 		/**

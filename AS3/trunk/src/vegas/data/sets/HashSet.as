@@ -23,20 +23,25 @@
 
 package vegas.data.sets
 {
-	
-	import vegas.data.Collection ; 
-	import vegas.data.iterator.ArrayIterator 
-	import vegas.data.iterator.Iterator 
+	import vegas.data.Collection;
+	import vegas.data.iterator.ArrayIterator;
+	import vegas.data.iterator.Iterator;
 	import vegas.data.map.ArrayMap;
-	import vegas.util.Copier ;
-	import vegas.util.Serializer ;
+	import vegas.util.Copier;
+	import vegas.util.Serializer;
 	
+	/**
+	 * Hash Set based implementation of the Set interface. 
+	 * @author eKameleon
+ 	*/
 	public class HashSet extends AbstractSet
 	{
 		
-		// ----o Constructor
-		
-		public function HashSet( init:*=null )
+		/**
+		 * Creates a new HashSet instance.
+		 * <p>You can use an optional parameter in this constructor with different type : an Array or a Collection instance to fill the Set object.</p>
+		 */
+		public function HashSet( init:* = undefined )
 		{
 			
 			super(null) ;
@@ -53,10 +58,11 @@ package vegas.data.sets
 			}
 			else if (init is Collection) 
 			{
-				it = init.iterator() ;
+				it = (init as Collection).iterator() ;
 			}
 			
-			if (it != null) {
+			if (it != null) 
+			{
 				
 				while (it.hasNext())
 				{
@@ -67,68 +73,105 @@ package vegas.data.sets
 			
 		}
 		
-		// ----o Constants
-	
-		static private const PRESENT:Object = new Object() ;
-		
-		// ----o Publlic Methods
-		
+		/**
+		 * Removes all of the elements from this Set (optional operation).
+		 */
 		override public function clear():void
 		{
 			_map.clear() ;
 		}
-		
+
+		/**
+		 * Returns a shallow copy of this Set (optional operation).
+		 * @return a shallow copy of this Set (optional operation).
+		 */
 		override public function clone():*
 		{
 			return new HashSet(toArray()) ;
 		}
-				
+	
+		/**
+		 * Returns {@code true} if this Set contains the specified element.
+	 	 * @return {@code true} if this Set contains the specified element.
+		 */	
 		override public function contains(o:*):Boolean 
 		{
 			return _map.containsKey(o) ;
 	    }
 
+		/**
+		 * Returns a deep copy of this Set (optional operation).
+		 * @return a deep copy of this Set (optional operation).
+		 */
 		override public function copy():*
 		{
 			return new HashSet( Copier.copy(toArray())) ;
 		}
 
+		/**
+		 * Adds the specified element to this set if it is not already present.
+		 */
 		override public function insert(o:*):Boolean 
 		{
 			return _map.put(o, PRESENT) == null ;
     	}
 
+		/**
+		 * Returns true if this set contains no elements.
+		 * @return true if this set contains no elements.
+		 */
 		override public function isEmpty():Boolean 
 		{
 			return _map.isEmpty() ;
 		}
 
+		/**
+		 * Returns an iterator over the elements in this Set.
+		 * @return an iterator over the elements in this Set.
+		 */
 		override public function iterator():Iterator 
 		{
 			return _map.keyIterator() ;
 		}
 
-    	override public function remove(o:*):* {
+		/**
+		 * Removes the specified element from this set if it is present.
+		 */
+    	override public function remove(o:*):* 
+    	{
 			return _map.remove(o) == PRESENT ;
     	}
-	
-		override public function size():uint {
+
+		/**
+	 	 * Returns the number of elements in this set (its cardinality).
+		 * @return the number of elements in this set (its cardinality).
+		 */
+		override public function size():uint 
+		{
 			return _map.size() ;
 		}
 	
+		/**
+		 * Returns the array representation of all the elements of this Set.
+		 * @return the array representation of all the elements of this Set.
+		 */
 		override public function toArray():Array 
 		{
 			return _map.getKeys() ;
 		}
-	
+
+		/**
+		 * Returns the Eden representation of this object.
+		 * @return the string representing the source code of the object.
+		 */
 		override public function toSource(...arguments:Array):String 
 		{
 			return Serializer.getSourceOf(this, [toArray()]) ;
 		}
 		
-		// ----o Private Properties
-		
 		private var _map:ArrayMap ;
+		
+		static private const PRESENT:Object = new Object() ;
 		
 	}
 }

@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -21,93 +21,16 @@
   
 */
 
-/**	BasicEvent
-
-	AUTHOR
-	
-		Name : BasicEvent
-		Package : vegas.events.dom
-		Version : 1.0.0.0
-		Date :  2005-10-13
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var e:BasicEvent = new BasicEvent(type:String, target, context) ;
-
-	METHOD SUMMARY
-	
-		- cancel():void
-		
-		- clone():BasicEvent
-		
-		- getBubbles():Boolean
-		
-		- getContext():*
-		
-		- getCurrentTarget():*
-		
-		- getEventPhase():uint
-		
-		- getTarget():*
-		
-		- getTimeStamp():uint
-		
-		- getType():String
-		
-		- hashCode():Number
-		
-		- initEvent(type:String, bubbles:Boolean, cancelable:Boolean):void
-		
-		- isCancelled():Boolean
-		
-		- isQueued():Boolean
-		
-		- queueEvent():void
-		
-		- setBubbles(b:Boolean):void
-		
-		- setContext(context:*):void
-		
-		- setCurrentTarget(target:*):void
-		
-		- setEventPhase(phase:uint):void
-		
-		- setTarget(target:*):void
-		
-		- setType(type:String):void
-		
-		- stopImmediatePropagation():void
-		
-		- toSource(...arguments:Array):String
-		
-		- toString():String
-	
-	INHERIT
-	
-		CoreObject → BasicEvent
-	
-	IMPLEMENTS 
-		
-		ICloneable, IEvent, IFormattable, IHashable, ISerializable
-
-*/
 package vegas.events.dom
 {
-	
-	import vegas.core.CoreObject ;
-	
-	import vegas.util.ClassUtil ;
-	import vegas.util.Serializer ;
+	import vegas.core.CoreObject;
+	import vegas.util.ClassUtil;
+	import vegas.util.Serializer;
 	
 	public class BasicEvent extends CoreObject implements IEvent
 	{
 		
-		// ----o Constructor
-		
-		public function BasicEvent(type:String, target:*=null, context:*=null, bubbles:Boolean=false, ...rest:Array)
+		public function BasicEvent(type:String, target:* = null , context:* =null, bubbles:Boolean=false, ...rest:Array)
 		{
 			
 			super() ;
@@ -121,14 +44,22 @@ package vegas.events.dom
 			{
 			
 				_eventPhase = isNaN(rest[0]) ? EventPhase.AT_TARGET : rest[0] ;
-				_time = isNaN(rest[1]) ? new Date().valueOf() : rest[1]  ;
+				_time = isNaN(rest[1]) ? (new Date()).valueOf() : rest[1]  ;
 				_stop = isNaN(rest[2]) ? EventPhase.NONE : rest[2] ;
 				
 			}
 			
 		}
 		
-		// ----o Public Methods
+		public function get stop():uint
+		{
+			return _stop ;
+		}
+
+		public function set stop( value:uint ):void
+		{
+			_stop = value ;
+		}
 
 		public function clone():*
 		{
@@ -208,12 +139,12 @@ package vegas.events.dom
 			_bubbles = b ;
 		}
 
-		public function setContext(context:*=null):void
+		public function setContext( context:* = null ):void
 		{
 			_context = context ;
 		}
 
-		public function setCurrentTarget(target:*=null):void
+		public function setCurrentTarget( target:* =null ):void
 		{
 			_currentTarget = target ;
 		}
@@ -223,7 +154,7 @@ package vegas.events.dom
 			_eventPhase = phase ;
 		}
 
-		public function setTarget(target:*=null):void
+		public function setTarget( target:* = null ):void
 		{
 			_target = target
 		}
@@ -247,7 +178,8 @@ package vegas.events.dom
 			return Serializer.getSourceOf(this, _getParams()) ;
 		}
 
-		override public function toString():String {
+		override public function toString():String 
+		{
 			var phase:uint = getEventPhase() ;
 			var	name:String = ClassUtil.getName(this);
 			var txt:String = "[" + name ;
@@ -279,20 +211,6 @@ package vegas.events.dom
 			return txt ;
 		}
 
-		// ----o Virtual Properties
-
-		public function get stop():uint
-		{
-			return _stop ;
-		}
-
-		public function set stop( value:uint ):void
-		{
-			_stop = value ;
-		}
-
-		// ----o Private Properties
-
 		private var _bubbles:Boolean ;
 		private var _context:* = null ;
 		private var _currentTarget:* ;
@@ -304,7 +222,6 @@ package vegas.events.dom
 		private var _time:uint ;
 		private var _type:String ;
 
-		// ----o Protected Methods
 	
 		protected function _getParams():Array 
 		{

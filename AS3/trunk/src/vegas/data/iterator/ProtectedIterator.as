@@ -21,49 +21,6 @@
   
 */
 
-/**	ProtectedIterator
-
-	AUTHOR
-
-		Name : ProtectedIterator
-		Package : vegas.data.iterator
-		Version : 1.0.0.0
-		Date :  2006-07-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var pIterator:Iterator = new ProtectedIterator(it:Iterator) ;
-
-	DESCRIPTION
-	
-		Protège un objet implémenté avec l'interface Iterator.
-		Cette classe permet de bloquer les méthodes remove, reset et seek d'un Iterator.
-
-	METHOD SUMMARY
-	
-		- hasNext():Boolean
-		
-		- key():*
-		
-		- next():*
-		 
-		- toSource(...arguments:Array):String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → ProtectedIterator
-
-	IMPLEMENTS
-	
-		IFormattable, IHashable, Iterator, ISerializable
-
-**/
-
 package vegas.data.iterator
 {
 

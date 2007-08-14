@@ -106,7 +106,7 @@ package vegas.util
     
     	    if( !isNaN(indent) ) indent++;
     
-	        for( var member:String in _global ) 
+	        for( var member:String in global ) 
 	        {
         	
         	    if( isGlobalReserved( member ) )
@@ -119,22 +119,22 @@ package vegas.util
             	    continue;
             	}
         
-        	    if( _global.hasOwnProperty( member ) ) 
+        	    if( global.hasOwnProperty( member ) ) 
         	    {
 				      
-            	    if( _global[member] === undefined )
+            	    if( global[member] === undefined )
 	                {
                 	    source.push( member + ":" + "undefined" );
     	                continue;
                 	}
 	            
-                	if( _global[member] === null )
+                	if( global[member] === null )
 	                {
                     	source.push( member + ":" + "null" );
 	                    continue;
                 	}
 	            
-            	    source.push( member + ":" + _global[member].toSource( indent, indentor ) );
+            	    source.push( member + ":" + global[member].toSource( indent, indentor ) );
             	}
 	        }
     	
@@ -225,4 +225,3 @@ package vegas.util
     }
 }
 
-include "../../vegas/core/global.as" ;

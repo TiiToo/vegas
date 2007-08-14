@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -24,10 +24,9 @@
 package vegas.core
 {
 	
-	import vegas.core.IFormattable ;
-	import vegas.core.IHashable ;
-	import vegas.core.ISerializable ;
-	import vegas.util.ClassUtil ;
+	import vegas.logging.ILogable;
+	import vegas.logging.ILogger;
+	import vegas.util.ClassUtil;
 
 	/**
 	 * CoreObject offers a default implementation of the IFormattable, IHashable and ISerializable interfaces.
@@ -44,7 +43,7 @@ package vegas.core
 	 * @author eKameleon
 	 * @version 1.0.0.0
 	 */
-	public class CoreObject implements IFormattable, IHashable, ISerializable
+	public class CoreObject extends Object implements IFormattable, IHashable, ILogable, ISerializable
 	{
 		
 		/**
@@ -52,10 +51,19 @@ package vegas.core
 		 */
 		function CoreObject() 
 		{
-		//				
+					
 		}
 		
 		HashCode.initialize(CoreObject.prototype) ;
+
+		/**
+		 * Returns the internal {@code ILogger} reference of this {@code ILogable} object.
+		 * @return the internal {@code ILogger} reference of this {@code ILogable} object.
+		 */
+		public function getLogger():ILogger
+		{
+			return _logger ; 	
+		}
 		
 		/**
 		 * Returns a hashcode value for the object.
@@ -63,6 +71,14 @@ package vegas.core
 		public function hashCode():uint 
 		{
 			return null ;
+		}
+	
+		/**
+		 * Sets the internal {@code ILogger} reference of this {@code ILogable} object.
+		 */
+		public function setLogger( log:ILogger ):void 
+		{
+			_logger = log ;
 		}
 
 		/**
@@ -82,6 +98,11 @@ package vegas.core
 		{
 			return "[" + ClassUtil.getName(this) + "]" ;
 		}
+
+		/**
+		 * The internal ILogger reference of this object.
+		 */
+		private var _logger:ILogger ;
 
 	}
 	

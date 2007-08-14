@@ -21,40 +21,6 @@
   
 */
 
-/* ClassUtil
-
-	AUTHOR
-	
-		Name : ClassUtil
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date : 2006-07-05
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	DESCRIPTION
-	
-		Constructor tools.
-	
-	METHOD SUMMARY
-	
-		- createNewInstance(c:Class, initProperties:Object=null):*
-	
-		- getName(instance:*):String
-		
-		- getPackage(instance:*):String
-		
-		- getPath(instance:*):String
-		
-		- getSuperName(instance:*):String
-		
-		- getSuperPackage(instance:*):String
-
-		- getSuperPath(instance:*):String
-
-**/
-
 package vegas.util
 {
 	
@@ -67,12 +33,10 @@ package vegas.util
 	public class ClassUtil
 	{
 		
-		// ----o Public Methods
-		
-		static public function createNewInstance(c:Class, initProperties:Object=null):*
+		static public function createNewInstance(c:Class, initProperties:Object=null) :* 
 		{
 			
-			var instance:Object = new c ;
+			var instance:Object = new c() ;
 			if (initProperties != null) 
 			{
 				for (var prop:String in initProperties)
@@ -80,6 +44,7 @@ package vegas.util
         			instance[prop] = initProperties[prop];
 				}
 			}
+			return instance ;
 			
 		}
 		
@@ -139,12 +104,8 @@ package vegas.util
 			return _formatPath(flash.utils.getQualifiedSuperclassName(instance)) ;
 		}
 	
-		// ----o Private Properties
-	
 		private static var _counter:uint = 0;
 
-		// ----o Private Methods
-		
 		static private function _formatName( path:String ):String 
 		{
 			var a:Array = path.split(".") ;
@@ -154,10 +115,13 @@ package vegas.util
 		static private function _formatPackage( path:String ):String 
 		{
 			var a:Array = path.split(".") ;
-			if (a.length > 1) {
+			if (a.length > 1) 
+			{
 				a.pop() ;
 	            return a.join(".") ;
-			} else {
+			}
+			else 
+			{
 				return null ;
 			}
 		}

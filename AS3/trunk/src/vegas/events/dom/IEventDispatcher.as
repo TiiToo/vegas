@@ -21,48 +21,10 @@
   
 */
 
-/* IEventDispatcher [Interface]
-
-	AUTHOR
-	
-		Name : IEventDispatcher
-		Package : vegas.events.dom
-		Version : 1.0.0.0
-		Date :  2006-07-16
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- addEventListener(eventName:String, listener:EventListener, useCapture:Boolean, priority:uint, autoRemove:Boolean):void
-		
-		- addGlobalEventListener(listener:EventListener, priority:uint, autoRemove:Boolean):void
-		
-		- dispatchEvent( event:* , [isQueue:Boolean, [target:*, [context:*]]]):IEvent
-		
-		- getEventListeners(eventName:String) : EventListenerCollection
-		
-		- getGlobalEventListeners():EventListenerCollection
-		
-		- getRegisteredEventNames():Set
-			
-		- hasEventListener(eventName:String):Boolean
-		
-		- removeEventListener(eventName:String, listener, useCapture:Boolean ):EventListener
-		
-		- removeGlobalEventListener(listener:*):EventListener
-
-	INHERIT
-	
-		EventTarget → IEventDispatcher
-
-*/
-
 package vegas.events.dom
 {
-	
 	import vegas.data.Set;
+	import vegas.events.EventListener;
 	
 	public interface IEventDispatcher extends EventTarget
 	{

@@ -21,87 +21,23 @@
   
 */
 
-/* TypedMap
-
-	AUTHOR
-
-		Name : TypedMap
-		Package : vegas.data.map
-		Version : 1.0.0.0
-		Date :  2006-07-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-
-		- clear()
-
-		- containsKey( key:* ):Boolean
-	
-		- containsValue( value:* ):Boolean
-
-		- get(key:*):*
-	
-		- getKeys():Array
-	
-		- getValues():Array
-
-		- getType():*
-
-		- isEmpty():Boolean
-	
-		- iterator():Iterator
-
-		- keyIterator():Iterator
-
-		- put(key:*, value:*):*
-	
-		- putAll(m:Map):void
-
-		- remove(o:*):*
-	
-		- setType(type:*):void
-	
-		- size():Number
-
-		- supports(value:*):Boolean
-		
-        - toSource(...arguments:Array):String
-
-		- toString():String
-
-		- validate(value:*):void
-
-    INHERIT
-    
-   		CoreObject → AbstractTypeable → TypedMap
-
-	IMPLEMENTS
-	
-        ICloneable, IFormattable, IHashable, ISerializable, Iterable, ITypeable, IValidator
-
-*/
-
 package vegas.data.map
 {
-	
-	import vegas.util.AbstractTypeable;
-	
 	import vegas.data.Map;
 	import vegas.data.iterator.Iterator;
-
+	import vegas.errors.IllegalArgumentError;
+	import vegas.util.AbstractTypeable;
+	import vegas.util.ClassUtil;
+	
 	public class TypedMap extends AbstractTypeable implements Map
 	{
-		
-		// ----o Constructor
 		
 		public function TypedMap(type:*, map:Map)
 		{
 			super(type) ;
 			if (!map) 
 			{
-				throw new IllegalArgumentError(this " constructor, argument 'map' must not be 'null' or 'undefined'.") ;
+				throw new IllegalArgumentError(this + " constructor, argument 'map' must not be 'null' or 'undefined'.") ;
 			}
 			if (map.size() > 0) {
 				var it:Iterator = map.iterator() ;
@@ -112,9 +48,7 @@ package vegas.data.map
 			}
 			_map = map ;
 		}
-		
-		// ----o Public Methods
-		
+
 		public function clear():void
 		{
 			_map.clear() ;
@@ -213,8 +147,6 @@ package vegas.data.map
 			return _map.toString() ;
 		}
 
-		// ----o Private Properties
-		
 		private var _map:Map ;
 	
 	}

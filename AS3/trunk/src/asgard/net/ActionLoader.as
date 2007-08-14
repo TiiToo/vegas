@@ -26,29 +26,28 @@
 
 package asgard.net
 {
-
-    import flash.events.Event;
-    import flash.events.HTTPStatusEvent;
-    import flash.events.IOErrorEvent;
-    import flash.events.ProgressEvent;
-    import flash.events.SecurityErrorEvent;
-    import flash.events.TimerEvent;
-    import flash.net.URLLoader;
-    import flash.net.URLRequest;
-    import flash.utils.Timer;
-    import flash.utils.getDefinitionByName;
-    
-    import pegas.events.ActionEvent;
-    
-    import vegas.events.AbstractCoreEventBroadcaster;
-    import vegas.logging.ILogger;
-    import vegas.logging.Log;
-    import vegas.util.ClassUtil;
-
-    /**
+	import flash.events.Event;
+	import flash.events.HTTPStatusEvent;
+	import flash.events.IOErrorEvent;
+	import flash.events.ProgressEvent;
+	import flash.events.SecurityErrorEvent;
+	import flash.events.TimerEvent;
+	import flash.net.URLLoader;
+	import flash.net.URLRequest;
+	import flash.utils.Timer;
+	import flash.utils.getDefinitionByName;
+	
+	import pegas.events.ActionEvent;
+	
+	import vegas.events.AbstractCoreEventDispatcher;
+	import vegas.logging.ILogger;
+	import vegas.logging.Log;
+	import vegas.util.ClassUtil;
+	
+	/**
      * @author eKameleon
      */
-    public class ActionLoader extends AbstractCoreEventBroadcaster implements IActionLoader
+    public class ActionLoader extends AbstractCoreEventDispatcher implements IActionLoader
     {
 
         /**
