@@ -50,6 +50,19 @@ class pegas.transitions.TransitionController extends AbstractCoreEventDispatcher
 	}
 
 	/**
+	 * Returns the singleton instance of TransitionController class.
+	 * @return singleton instance of TransitionController class.
+	 */
+	public static function getInstance():TransitionController
+	{
+		if ( _instance == null )
+		{
+			_instance = new TransitionController() ;
+		}
+		return _instance ;
+	}
+
+	/**
 	 * Returns a ITransition reference register in the TransitionController with the specified {@code id} passed in argument.
 	 * @param  id the {@code id} of the ITransition object mapped in the TransitionController.
 	 * @return the ITransition object mapped in the TransitionController.  
@@ -124,6 +137,11 @@ class pegas.transitions.TransitionController extends AbstractCoreEventDispatcher
 			throw new IllegalArgumentError(this + " run method failed, the 'id' passed in argument isn't register in this TransitionController : " + id) ;	
 		}
 	}
+
+	/**
+	 * The singleton reference of this class.
+	 */
+	static private var _instance:TransitionController ;
 
 	/**
 	 * Internal HashMap instance.

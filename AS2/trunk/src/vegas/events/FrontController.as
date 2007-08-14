@@ -75,6 +75,14 @@ class vegas.events.FrontController extends CoreObject
 	}
 
 	/**
+	 * Flush all global FrontController singletons.
+	 */
+	static public function flush():Void 
+	{
+		FrontController.instances.clear() ;
+	}
+
+	/**
 	 * Dispatch an event into the FrontController
 	 * @param e an event to dispatch.
 	 */
@@ -90,6 +98,24 @@ class vegas.events.FrontController extends CoreObject
 	public function getEventDispatcher():EventDispatcher
 	{
 		return _dispatcher ;		
+	}
+
+	/**
+	 * Returns a global {@code FrontController} singleton.
+	 * @param channel The channel of the FrontController (default the EventDispatcher.DEFAULT_SINGLETON_NAME value).
+	 * @return a global {@code FrontController} singleton.
+	 */
+	static public function getInstance(channel:String):FrontController 
+	{
+		if (!channel) 
+		{
+			channel = EventDispatcher.DEFAULT_SINGLETON_NAME ;
+		}
+		if (!FrontController.instances.containsKey( channel )) 
+		{
+			FrontController.instances.put( channel , new FrontController(channel) ) ;
+		}
+		return FrontController(FrontController.instances.get(channel));
 	}
 
 	/**
@@ -127,6 +153,21 @@ class vegas.events.FrontController extends CoreObject
 	}
 	
 	/**
+	 * Removes a global FrontController singleton.
+	 */
+	static public function removeInstance( channel:String ):Boolean 
+	{
+		if (!FrontController.instances.containsKey(channel)) 
+		{
+			return FrontController.instances.remove(channel) != null ;
+		}
+		else 
+		{
+			return false ;
+		}
+	}
+	
+	/**
 	 * Sets the EventDispatcher reference of this FrontController.
 	 * @param target The EventDispatcher reference of this FrontController.
 	 */
@@ -153,5 +194,10 @@ class vegas.events.FrontController extends CoreObject
 	 * Internal EventDispatcher instance.
 	 */
 	private var _dispatcher:EventDispatcher ;
+
+	/**
+	 * The static internal hashmap to register all global instances in your applications.
+	 */	
+	static private var instances:HashMap = new HashMap() ;
 
 }
