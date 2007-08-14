@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is ASGard Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -37,14 +37,15 @@ class asgard.net.remoting.RemotingConnection extends NetServerConnection
 	 * Creates a new RemotingConnection instance.
 	 * @param sURL the url of the connection.
 	 */	
-	function RemotingConnection( sURL:String ) {
-		
+	function RemotingConnection( sURL:String ) 
+	{
 		super() ;
-
 		if (sURL) this.connect( sURL );
-		
 	}
-	
+
+	/**
+	 * The string value of the amf server debug attribut.
+	 */
 	static public var AMF_SERVER_DEBUG:String = "amf_server_debug" ;
 
 	static public var CREDENTIALS:String = "Credentials" ;
@@ -53,10 +54,15 @@ class asgard.net.remoting.RemotingConnection extends NetServerConnection
 	 * Returns the shallow copy of this object.
 	 * @return the shallow copy of this object.
 	 */
-	public function clone() {
+	public function clone() 
+	{
 		return new RemotingConnection( uri ) ;	
 	}
-
+	
+	/**
+	 * Returns the RemotingConnection reference defines with the specified url representation.
+	 * @return the RemotingConnection reference defines with the specified url representation.
+	 */
 	static public function getConnection( sUrl:String ):RemotingConnection 
 	{
 		if ( ! RemotingConnectionCollector.contains(sUrl) ) {
@@ -65,6 +71,9 @@ class asgard.net.remoting.RemotingConnection extends NetServerConnection
 		return RemotingConnectionCollector.get(sUrl) ;
 	}
 
+	/**
+	 * Sets the credentials authentification value of this connection.
+	 */
 	public function setCredentials( authentification:RemotingAuthentification ):Void  
 	{
 		
@@ -73,6 +82,9 @@ class asgard.net.remoting.RemotingConnection extends NetServerConnection
 		
 	}
 
+	/**
+	 * Start the debug mode of this connection.
+	 */
 	public function startDebug():Void 
 	{
 		var oDebug:Object = {
@@ -87,7 +99,10 @@ class asgard.net.remoting.RemotingConnection extends NetServerConnection
 		};
 		addHeader( RemotingConnection.AMF_SERVER_DEBUG, true, oDebug) ;
 	}
-	
+
+	/**
+	 * Stop the debug mode of this connection.
+	 */
 	public function stopDebug():Void 
 	{
 		addHeader( RemotingConnection.AMF_SERVER_DEBUG, true, undefined) ;

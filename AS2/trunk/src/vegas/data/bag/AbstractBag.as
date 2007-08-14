@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -189,6 +189,7 @@ class vegas.data.bag.AbstractBag extends CoreObject implements Bag
 	
 	/**
 	 * Returns {@code true} if the bag is empty.
+	 * @return {@code true} if the bag is empty.
 	 */
 	public function isEmpty():Boolean 
 	{
@@ -197,6 +198,7 @@ class vegas.data.bag.AbstractBag extends CoreObject implements Bag
 	
 	/**
 	 * Returns the bag iterator.
+	 * @return the bag iterator.
 	 */
 	public function iterator():Iterator 
 	{
@@ -295,6 +297,7 @@ class vegas.data.bag.AbstractBag extends CoreObject implements Bag
 
 	/**
 	 * Returns the number of elements in this bag (its cardinality).
+	 * @return the number of elements in this bag (its cardinality).
 	 */
 	public function size():Number 
 	{
@@ -303,6 +306,7 @@ class vegas.data.bag.AbstractBag extends CoreObject implements Bag
 	
 	/**
 	 * Returns the array representation of the bag.
+	 * @return the array representation of the bag.
 	 */
 	public function toArray():Array 
 	{
@@ -310,7 +314,7 @@ class vegas.data.bag.AbstractBag extends CoreObject implements Bag
 	}
 
 	/**
-	 * Returns a Eden reprensation of the object.
+	 * Returns the Eden reprensation of the object.
 	 * @return a string representing the source code of the object.
 	 */
 	public function toSource(indent:Number, indentor:String):String 
@@ -329,6 +333,7 @@ class vegas.data.bag.AbstractBag extends CoreObject implements Bag
 
 	/**
 	 * Returns the Set of unique members that represent all members in the bag.
+	 * @return the Set of unique members that represent all members in the bag.
 	 */
 	public function uniqueSet():Set 
 	{

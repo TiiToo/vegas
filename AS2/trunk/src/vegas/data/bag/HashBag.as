@@ -49,7 +49,7 @@ import vegas.util.serialize.Serializer;
  *	trace (" + bag insertAll c1 : " + bag.insertAll(c1)) ;
  *	trace (" + bag insertAll c2 : " + bag.insertAll(c2)) ;
  *	trace (" > bag : " + bag) ;
- *	trace (" > bag.touSource : " + bag.toSource()) ;
+ *	trace (" > bag.toSource : " + bag.toSource()) ;
  *	
  *	trace ("---- contains") ;
  *	trace (" > bag containsAll c2 : " + bag.containsAll(c2)) ;
@@ -105,7 +105,7 @@ class vegas.data.bag.HashBag extends AbstractBag
 	}
 
 	/**
-	 * Returns a Eden representation of the object.
+	 * Returns the Eden representation of the object.
 	 * @return a string representing the source code of the object.
 	 */
 	/*override*/ public function toSource(indent:Number, indentor:String):String 

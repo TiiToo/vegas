@@ -26,7 +26,7 @@ import vegas.data.collections.AbstractCollection;
 import vegas.data.iterator.Iterator;
 
 /**
- * A simple representation of the ICollection interface.
+ * A simple representation of the {@code Collection} interface.
  * @author eKameleon
  */
 class vegas.data.collections.SimpleCollection extends AbstractCollection 
@@ -43,6 +43,7 @@ class vegas.data.collections.SimpleCollection extends AbstractCollection
 
 	/**
 	 * Returns a shallow copy of this collection (optional operation).
+	 * @return a shallow copy of this collection.
 	 */
 	public function clone() 
 	{
@@ -50,7 +51,8 @@ class vegas.data.collections.SimpleCollection extends AbstractCollection
 	}
 	
 	/**
-	 * Returns  true if this collection contains all of the elements of the specified collection.
+	 * Returns {@code true} if this collection contains all of the elements of the specified collection.
+	 * @return {@code true} if this collection contains all of the elements of the specified collection.
 	 */
 	public function containsAll(c:Collection):Boolean 
 	{

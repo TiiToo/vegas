@@ -103,7 +103,7 @@ class vegas.data.collections.AbstractCollection extends CoreObject implements Co
 	}
 
 	/**
-	 * Ensures that this collection contains the specified element (optional operation).
+	 * Inserts an element in the collection.
 	 */
 	public function insert(o):Boolean 
 	{

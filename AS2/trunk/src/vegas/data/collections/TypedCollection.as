@@ -65,7 +65,8 @@ class vegas.data.collections.TypedCollection extends AbstractTypeable implements
 	}
 	
 	/**
-	 * Returns a shallow copy of this collection (optional operation).
+	 * Returns a shallow copy of this collection.
+	 * @return a shallow copy of this collection.
 	 */
 	public function clone() 
 	{
@@ -90,7 +91,7 @@ class vegas.data.collections.TypedCollection extends AbstractTypeable implements
 	}
 
 	/**
-	 * Ensures that this collection contains the specified element (optional operation).
+	 * Inserts an elements into the Collection.
 	 */
     public function insert(o):Boolean 
     {
@@ -99,7 +100,7 @@ class vegas.data.collections.TypedCollection extends AbstractTypeable implements
     }
 
 	/**
-	 * Returns  true if this collection contains no elements.
+	 * Returns {@code true} if this collection contains no elements.
 	 * @return {@code true} if the collection is empty else {@code false}.
 	 */
 	public function isEmpty():Boolean 
@@ -109,6 +110,7 @@ class vegas.data.collections.TypedCollection extends AbstractTypeable implements
 
 	/**
 	 * Returns an iterator over the elements in this collection.
+	 * @return an iterator over the elements in this collection.
 	 */
 	public function iterator():Iterator 
 	{
@@ -150,7 +152,7 @@ class vegas.data.collections.TypedCollection extends AbstractTypeable implements
 	}
 
 	/**
-	 * Returns a Eden representation of the object.
+	 * Returns the Eden representation of the object.
 	 * @return a string representing the source code of the object.
 	 */
 	public function toSource(indent:Number, indentor:String):String 

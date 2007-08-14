@@ -25,6 +25,7 @@ import vegas.events.DynamicEvent;
 import vegas.util.serialize.Serializer;
 
 /**
+ * The RemotingEvent class.
  * @author eKameleon
  */
 class asgard.events.RemotingEvent extends DynamicEvent 
