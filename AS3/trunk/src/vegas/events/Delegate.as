@@ -63,7 +63,7 @@ package vegas.events
  	   {
     		if (arguments.length > 0) 
     		{
-			    _a = _a.concat( arguments) ;
+			    _a = [].concat( arguments , _a ) ;
                 _p = Delegate.create.apply(this, [_s].concat([_m], _a) ) ;
 		    }
     	}
@@ -85,16 +85,19 @@ package vegas.events
 		 */
  	   static public function create(scope:*, method:Function, ...arguments:Array):Function 
  	   {
- 	       
- 	       var s:* = scope ;
- 	       var m:Function = method ;
- 	       var a:Array = arguments ;
- 	       var f:Function = function():* {	
-      			var args:Array = a.concat(arguments) ;
-    			return m.apply(s, args) ;
-    		} ;
-
-    		return f;
+			var f:Function = function( ...args:Array ):* 
+			{	
+				var s:* = f["s"] ;
+				var m:Function = f["m"] ;
+				var a:Array = [].concat(args, f["a"]) ;
+				trace("scope :: " + s) ;
+				trace("method :: " + m) ;
+				return m.apply( s , a ) ;
+			} ;
+			f["s"] = scope ;
+			f["m"] = method ;
+			f["a"] = arguments ;
+			return f ;
 	    }	
 	
 		/**
@@ -129,7 +132,7 @@ package vegas.events
 		 */
         public function handleEvent(e:Event):*
         {
-            return _m.apply(_s, [e].concat(_a));
+        	Delegate.create.apply( this, [_s].concat([_m], [].concat(e, _a)) )() ;
         }
 
 		/**
@@ -137,7 +140,10 @@ package vegas.events
 		 */
 	    public function run( ...arguments:Array ):void
 	    {
-		    addArguments(arguments) ;
+	    	if (arguments.length > 0)
+	    	{
+	    		addArguments.apply(this, arguments) ;
+	    	}
     		_p() ;
 	    }
 
@@ -150,9 +156,7 @@ package vegas.events
 		    {
 			    _a = [].concat(arguments) ;
 			    _p = Delegate.create.apply(this, [_s].concat([_m], _a) ) ;
-
     		}
-    		
 	    }
 
     	private var _m:Function ; // method

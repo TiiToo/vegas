@@ -23,14 +23,17 @@
 
 package vegas.events
 {
+	
 	import flash.events.EventDispatcher;
 	
 	import vegas.core.HashCode;
 	import vegas.data.map.ArrayMap;
+	import vegas.logging.ILogable;
+	import vegas.logging.ILogger;
 	import vegas.util.ClassUtil;
 	import vegas.util.Serializer;
 	
-	public class EventDispatcher extends flash.events.EventDispatcher implements IEventDispatcher
+	public class EventDispatcher extends flash.events.EventDispatcher implements IEventDispatcher, ILogable
     {
 		
         /**
@@ -82,6 +85,15 @@ package vegas.events
     		return vegas.events.EventDispatcher(instances.get(name)) ;
     		
 	    }
+ 
+ 		/**
+		 * Returns the internal {@code ILogger} reference of this {@code ILogable} object.
+		 * @return the internal {@code ILogger} reference of this {@code ILogable} object.
+		 */
+		public function getLogger():ILogger
+		{
+			return _logger ; 	
+		}
  
 	 	/**
 	 	 * Returns the name of the display.
@@ -142,7 +154,15 @@ package vegas.events
     			return false ;
         	}
 	    }
-
+	    
+		/**
+		 * Sets the internal {@code ILogger} reference of this {@code ILogable} object.
+		 */
+		public function setLogger( log:ILogger ):void 
+		{
+			_logger = log ;
+		}
+		
         /**
          * Returns a string representing the source code of the EventDispatcher object.
          */
@@ -185,6 +205,11 @@ package vegas.events
 		 * The static internal hashmap to register all global instances in your applications.
 		 */	
         static private var instances:ArrayMap = new ArrayMap() ;
+
+		/**
+		 * The internal ILogger reference of this object.
+		 */
+		private var _logger:ILogger ;
 
 		/**
 		 * The internal name's property of the instance.

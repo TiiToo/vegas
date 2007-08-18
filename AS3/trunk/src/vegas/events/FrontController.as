@@ -48,7 +48,6 @@ package vegas.events
         {
 		    _map = new ArrayMap() ;
     		_dispatcher = target || EventDispatcher.getInstance(channel) ; 
-    		
         }
 
 		/**
