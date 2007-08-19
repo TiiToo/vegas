@@ -14,37 +14,11 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
-*/
-
-/**	MapFormat
-
-	AUTHOR
-
-		Name : MapFormat
-		Package : vegas.data.map
-		Version : 1.0.0.0
-		Date :  2006-07-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- formatToString(o):String
-	
-	INHERIT
-
-		CoreObject → MapFormat
-
-	IMPLEMENT
-	
-		IFormat, IFormattable, IHashable, ISerializable
-	
 */
 
 package vegas.data.map
@@ -56,18 +30,24 @@ package vegas.data.map
 	import vegas.data.iterator.ArrayIterator ;
 	import vegas.data.iterator.Iterator ;
 
+	/**
+ 	 * Converts a Map to a custom string representation.
+	 * @author eKameleon
+	 */
 	public class MapFormat extends CoreObject implements IFormat
 	{
 		
-		// ----o Constructor
-		
+		/**
+		 * Creates a new MapFormat instance.
+		 */
 		public function MapFormat()
 		{
 			super();
 		}
 
-		// ----o Public Methods
-		
+		/**
+		 * Converts the object to a custom string representation.
+		 */	
 		public function formatToString(o:*):String
 		{
 		    var m:Map = o as Map ;
@@ -75,7 +55,8 @@ package vegas.data.map
     		var r:String = "{";
     		var vIterator:Iterator = new ArrayIterator(m.getValues());
     		var kIterator:Iterator = new ArrayIterator(m.getKeys());
-    		while (kIterator.hasNext()) {
+    		while (kIterator.hasNext()) 
+    		{
     			var k:* = kIterator.next() ;
     			var v:* = vIterator.next() ;
     			r += k + ":" + v ;

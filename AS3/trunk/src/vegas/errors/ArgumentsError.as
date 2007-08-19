@@ -21,22 +21,23 @@
   
 */
 
-package vegas.core
+package vegas.errors
 {
-
+	
 	/**
-	 * Provides functionality to format the value of an object into a string representation.
+	 * The error throws when the arguments in a function failed the method.
 	 * @author eKameleon
-	 */
-	public interface IFormattable
-	{
-
+ 	 */	
+    public class ArgumentsError extends AbstractError
+    {
+    
 		/**
-		 * Returns the string representation of this instance.
-		 * @return the string representation of this instance
-		 */
-		function toString():String ;
-
-	}
-
+	 	 * Creates a new ArgumentsError instance.
+	 	 */
+        public function ArgumentsError(message:String="", id:int=0)
+        {
+            super(message, id);
+        }
+        
+    }
 }

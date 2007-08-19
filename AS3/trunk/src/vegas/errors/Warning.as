@@ -14,73 +14,40 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/** Warning
-
-	AUTHOR
-
-		Name : Warning
-		Package : vegas.errors
-		Version : 1.0.0.0
-		Date : 2006-07-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	PROPERTY SUMMARY
-		
-		- message:String
-		
-		- name:String [Read Only]
-	
-	METHOD SUMMARY
-	
-		- getCategory():String
-		
-			get internal logger's category.
-		
-		- getLogger():ILogger 
-		
-			get internal Logger.
-		
-		- toString():String
-
-	INHERIT
-	
-		Object → Error → AbstractError → Warning
-	
-	IMPLEMENT
-	
-		IFormattable, IHashable
-
-**/
-
 package vegas.errors
 {
+	
+	import vegas.logging.LogEventLevel;
+   
+   	/**
+	 * Thrown to indicate a warning message in an application or in the source code.
+	 * @author eKameleon
+ 	 */ 
     public class Warning extends AbstractError
     {
-        
-        // ----o Constructor
-        
+	
+		/**
+		 * Creates a new Warning instance.
+		 */
         public function Warning(message:String="", id:int=0)
         {
             super(message, id);
         }
         
-    	// ----o Public Methods
-	
-	    override public function toString():String {
-    		var msg:String = "!! " + name + " : " + message + " !!" ;
-    		getLogger().warn( msg ) ;
-    		return msg ;
-    	}
-        
+		/**
+		 * Returns the internal LogEventLevel used in the constructor of this instance.
+		 */
+		public function getLevel():LogEventLevel
+		{
+			return LogEventLevel.WARN ;	
+		}
         
     }
 }

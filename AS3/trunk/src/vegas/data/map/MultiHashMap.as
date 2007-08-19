@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -29,6 +29,7 @@ package vegas.data.map
 	import vegas.data.MultiMap;
 	import vegas.data.collections.SimpleCollection;
 	import vegas.data.iterator.ArrayIterator;
+	import vegas.data.iterator.Iterable;
 	import vegas.data.iterator.Iterator;
 	import vegas.util.Copier;
 	import vegas.util.Serializer;
@@ -135,7 +136,12 @@ package vegas.data.map
 		{
 
 			__map = new HashMap() ;
-			if (m == null) return ;
+			
+			if (m == null) 
+			{
+				return ;
+			}
+			
 			if (m.size() > 0) 
 			{
 				putAll(m.copy()) ;
@@ -288,7 +294,7 @@ package vegas.data.map
 		 */
 		public function iteratorByKey( key:* ):Iterator
 		{
-			return __map.get(key).iterator() ;
+			return (__map.get(key) as Iterable).iterator() ;
 		}
 
 		/**

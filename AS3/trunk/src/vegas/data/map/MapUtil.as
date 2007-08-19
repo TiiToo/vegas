@@ -14,42 +14,35 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/** MapUtil
-
-	AUTHOR
-	
-		Name : MapUtil
-		Package : vegas.data.map
-		Version : 1.0.0.0
-		Date :  2006-07-10
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- static getNumber(map:Map, key):Number
-		
-*/
-
 package vegas.data.map
 {
 	
-	import vegas.data.Map ;
+	import vegas.data.Map;
 	
+	/**
+	 * The MapUtil utility class is an all-static class with methods for working with map.
+	 * @author eKameleon
+	 */
 	public class MapUtil
 	{
 		
+		/**
+		 * Returns the value of the specified key in the map with a Number representation.
+		 * @param map the map used by this method.
+		 * @param key the key in the map to used to return the number value.
+		 * @return the value of the specified key in the map with a Number representation.
+		 */
 		static public function getNumber(map:Map, key:*):Number 
 		{
-        	if (map != null) {
+        	if (map != null) 
+        	{
 	            var answer:* = map.get(key) ;
 	            if (answer != null) 
 	            {

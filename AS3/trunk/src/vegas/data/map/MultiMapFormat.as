@@ -14,37 +14,11 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
-*/
-
-/**	MultiMapFormat
-
-	AUTHOR
-
-		Name : MultiMapFormat
-		Package : vegas.data.map
-		Version : 1.0.0.0
-		Date :  2006-07-14
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- formatToString(o):String
-	
-	INHERIT
-
-		CoreObject → MultiMapFormat
-
-	IMPLEMENT
-	
-		IFormat, IFormattable, IHashable, ISerializable
-	
 */
 
 package vegas.data.map
@@ -55,19 +29,24 @@ package vegas.data.map
 	import vegas.data.Map ;
 	import vegas.data.MultiMap;
 	
-
+	/**
+	 * Converts a MultiMap to a custom string representation.
+	 * @author eKameleon
+ 	 */
 	public class MultiMapFormat extends CoreObject implements IFormat
 	{
 		
-		// ----o Constructor
-		
+		/**
+	 	 * Creates a new MultiMapFormat instance.
+		 */
 		public function MultiMapFormat()
 		{
 			super();
 		}
 		
-		// ----o Public Methods
-		
+		/**
+		 * Converts the object to a custom string representation.
+		 */
 		public function formatToString(o:*):String
 		{
 		    var m:MultiMap = (o as MultiMap) ;

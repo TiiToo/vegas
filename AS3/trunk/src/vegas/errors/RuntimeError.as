@@ -21,22 +21,23 @@
   
 */
 
-package vegas.core
+package vegas.errors
 {
-
+	
 	/**
-	 * Provides functionality to format the value of an object into a string representation.
-	 * @author eKameleon
-	 */
-	public interface IFormattable
-	{
-
+	 * Thrown when an error is invoqued at runtime.
+ 	 * @author eKameleon
+ 	 */
+    public class RuntimeError extends AbstractError
+    {
+    
 		/**
-		 * Returns the string representation of this instance.
-		 * @return the string representation of this instance
+		 * Creates a new RuntimeError instance.
 		 */
-		function toString():String ;
-
-	}
-
+        public function RuntimeError(message:String="", id:int=0)
+        {
+            super(message, id);
+        }
+        
+    }
 }

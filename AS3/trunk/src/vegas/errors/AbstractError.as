@@ -14,52 +14,13 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/** AbstractError
-
-	AUTHOR
-
-		Name : AbstractError
-		Package : vegas.errors
-		Version : 1.0.0.0
-		Date : 2006-07-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	PROPERTY SUMMMARY
-		
-		- message:String
-		
-		- name:String [Read Only]
-	
-	METHOD SUMMARY
-	
-		- getCategory():String
-		
-			get internal logger's category.
-		
-		- getLogger():ILogger 
-		
-			get internal Logger.
-		
-		- toString():String
-
-	INHERIT
-	
-		Object → Error → AbstractError
-	
-	IMPLEMENT
-	
-		IFormattable, IHashable
-
-**/
 
 // TODO add toSource() !!
 
@@ -69,35 +30,56 @@ package vegas.errors
     import vegas.core.HashCode;
     import vegas.core.IFormattable;
     import vegas.core.IHashable;
+    import vegas.logging.ILogable;
     import vegas.logging.ILogger;
     import vegas.logging.Log;
+    import vegas.logging.LogEventLevel ;
     import vegas.util.ClassUtil;
     
-    internal class AbstractError extends Error implements IFormattable, IHashable
+    /**
+	 * This class provides a Abstract implementation to creates Error classes with an internal logging model. 
+	 * @author eKameleon
+ 	 */
+    internal class AbstractError extends Error implements IFormattable, IHashable, ILogable
     {
         
-        // ----o Constructor
-        
+		/**
+		 * Creates a new AbstractError only if you inherit this class.
+		 */
         public function AbstractError(message:String="", id:int=0)
         {
             super(message, id);
-            name = ClassUtil.getName(this) ;
+            name    = ClassUtil.getName(this) ;
             _logger = Log.getLogger( ClassUtil.getPath(this) ) ;
             
         }
         
-       	// ----o Init HashCode
-	
-    	HashCode.initialize(AbstractError.prototype) ;
-
-	    // ----o Public Methods
-	    
+       	// Init HashCode
+	   	HashCode.initialize(AbstractError.prototype) ;
+		
+		/**
+		 * Returns the category value of the internal ILogger of this object.
+		 * @return the category value of the internal ILogger of this object.
+		 */
     	public function getCategory():String 
     	{
-		    return _logger["category"] ;
+		    return _logger.category ;
     	}
+    	
+   		/**
+		 * Returns the internal LogEventLevel used in the constructor of this instance.
+	 	 * You can overrides this method if you want change the internal LogEventLevel of the error.
+		 */
+		public function getLevel():LogEventLevel
+		{
+			return LogEventLevel.ERROR ;	
+		}
 	    
-	    public function getLogger():* //ILogger 
+		/**
+		 * Returns the internal {@code ILogger} reference of this {@code ILogable} object.
+		 * @return the internal {@code ILogger} reference of this {@code ILogable} object.
+		 */
+		public function getLogger():ILogger
 	    {
 		    return _logger ;
     	}
@@ -106,14 +88,32 @@ package vegas.errors
 	    {
 		    return null ;
     	}
+    	
+   		/**
+		 * Launch the external log of this error.
+	 	 */
+		public function log():void
+		{
+			getLogger().log( getLevel() , "# " + name + " : " + message + " #" ) ;
+		}
 
+		/**
+		 * Sets the internal {@code ILogger} reference of this {@code ILogable} object.
+		 */
+		public function setLogger( log:ILogger ):void 
+		{
+			_logger = log ;
+		}
+
+		/**
+		 * Returns the string representation of this instance.
+		 * @return the string representation of this instance
+	 	 */
 	    public function toString():String 
 	    {
 		    return super.toString() ;
     	}
-	        
-    	// ----o Private Properties
-	    
+
     	private var _logger:ILogger ;
 
     }

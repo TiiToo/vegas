@@ -14,12 +14,14 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
+
+// TODO implements all equals methods in ADT
 
 package vegas.data.list
 {
@@ -29,23 +31,54 @@ package vegas.data.list
 	import vegas.data.iterator.ListIterator;
 	import vegas.errors.IndexOutOfBoundsError;
 	
+	/**
+ 	 * This class provides a skeletal implementation of the List interface to minimize the effort required to implement this interface.
+	 * @author eKameleon
+ 	 */
 	public class AbstractList extends SimpleCollection implements List
 	{
 		
+		/**
+	 	 * Creates a new AbstractList instance.
+	 	 */
 		public function AbstractList( ar:Array=null )
 		{
 			super(ar);
 		}
 		
-		// TODO implements all equals methods in ADT
-		public function equals(o:*):Boolean {
+		/**
+		 * Compares the specified object with this object for equality.
+		 * @return {@code true} if the the specified object is equal with this object.
+		 */
+		public function equals(o:*):Boolean 
+		{
 			return false ;
 		}
 
-		public function getModCount():Number {
+		/**
+	 	 * This method is used by the {@code ListItr} class only.
+	 	 */
+		public function getModCount():Number 
+		{
 			return _modCount ;
 		}
 		
+		/**
+		 * Inserts the specified element at the specified position in this list (optional operation).
+	     * @param id index at which the specified element is to be inserted.
+	     * @param o element to be inserted.
+		 */
+		public function insertAt(id:uint, o:*):void 
+		{
+			if (id<0 || id>size()) {
+				throw new IndexOutOfBoundsError() ;
+			}
+			_a.splice(id, 0, o) ;
+		}
+
+		/**
+		 * Inserts all of the elements in the specified collection into this list at the specified position (optional operation).
+		 */
 		public function insertAllAt(id:uint, c:Collection):Boolean 
 		{
 			if (id <0 || id > size()) return false ;
@@ -55,41 +88,57 @@ package vegas.data.list
 			_a = aB.concat(aC, aE) ;
 			return true ;
 		}
-		public function insertAt(id:uint, o:*):void 
-		{
-			if (id<0 || id>size()) {
-				throw new IndexOutOfBoundsError() ;
-			}
-			_a.splice(id, 0, o) ;
-		}
-
+	
+	    /**
+	     * Returns the index in this list of the last occurrence of the specified element, or -1 if the list does not contain this element.
+	     * @param o element to search for.
+	     * @return the index in this list of the last occurrence of the specified element, or -1 if the list does not contain this element.
+     	 */
 		public function lastIndexOf(o:*):int 
 		{
 			return _a.lastIndexOf(o) ;
 		}
-	
+
+		/**
+		 * Returns a list iterator of the elements in this list (in proper sequence).
+	 	 * @return a list iterator of the elements in this list (in proper sequence).
+		 */
 		public function listIterator( position:uint=0 ):ListIterator 
 		{
 			var li:ListIterator = new ListItr(this) ;
 			li.seek(position) ;
 			return li ;
 		}
-	
+
+	    /**
+	     * Removes an element at the specified position in this list.
+	     * @param  id index of the element to be removed from the List.
+	     */
 		public function removeAt(id:uint):* 
 		{
 			return removesAt(id, 1) ;
 		}
 
-		public function removeRange(from:uint , to:uint):void {
+		/**
+		 * Removes from this list all the elements that are contained between the specific {@code from} and the specific {@code to} position in this list (optional operation).
+	 	 */
+		public function removeRange(from:uint , to:uint):void 
+		{
 			if (from == 0) return ;
 			var it:ListIterator = listIterator(from) ;
 			var l:Number = to - from ;
-			for (var i:Number = 0 ; i<l ; i++) {
+			for (var i:Number = 0 ; i<l ; i++) 
+			{
 				it.next() ; 
 				it.remove() ;
 			}
 		}
 
+	    /**
+	     * Removes the specified count of elements at the specified position in this list.
+	     * @param  id index of the first element to be removed from the List.
+	     * @return len the number of elements that was removed from the list.
+     	 */
 		public function removesAt(id:uint, len:uint):* {
 			var d:uint = len - id ;
 			var old:* = _a.slice(id, d) ;
@@ -97,23 +146,37 @@ package vegas.data.list
 			return old ; 
 		}
 	
+	    /**
+	     * Replaces the element at the specified position in this list with the specified element.
+	     * @param id index of element to replace.
+	     * @param o element to be stored at the specified position.
+     	 * @return the element previously at the specified position.
+	     */
 		public function setAt(id:uint, o:*):void 
 		{
 			if (_a[id] === undefined) return ;
 			_a[id] = o ;
 		}
 
+		/**
+		 * Sets the modCount property of this list.
+		 */
 		public function setModCount(n:uint):void
 		{
 			_modCount = n ;
 		}
-	
+
+		/**
+		 * Returns a subList of the LinkedList. The subList is an ArrayList instance.
+		 * @return a subList of the LinkedList. The subList is an ArrayList instance.
+		 */
 		public function subList(begin:uint, end:uint):List 
 		{
 			var l:List = new AbstractList() ;
 			var it:ListIterator = listIterator() ;
 			var d:Number = (end - begin) + 1 ; 
-			for (var i:Number = begin ; i<= d ; i++) {
+			for (var i:Number = begin ; i<= d ; i++) 
+			{
 				l.insert(it.next()) ;
 			}
 			return l ;

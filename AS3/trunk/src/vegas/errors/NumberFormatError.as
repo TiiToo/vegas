@@ -21,22 +21,23 @@
   
 */
 
-package vegas.core
+package vegas.errors
 {
-
+	
 	/**
-	 * Provides functionality to format the value of an object into a string representation.
+	 * Thrown to indicate that the application has attempted to convert a string to one of the numeric types, but that the string does not have the appropriate format.
 	 * @author eKameleon
 	 */
-	public interface IFormattable
-	{
-
+    public class NumberFormatError extends AbstractError
+    {
+    
 		/**
-		 * Returns the string representation of this instance.
-		 * @return the string representation of this instance
+		 * Creates a new NumberFormatError instance.
 		 */
-		function toString():String ;
-
-	}
-
+        public function NumberFormatError(message:String="", id:int=0)
+        {
+            super(message, id);
+        }
+        
+    }
 }

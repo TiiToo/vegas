@@ -14,58 +14,26 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/** ConcurrentModificationError
-
-	AUTHOR
-
-		Name : ConcurrentModificationError
-		Package : vegas.errors
-		Version : 1.0.0.0
-		Date : 2006-07-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	PROPERTY SUMMARY
-	
-		- message:String
-		
-		- name:String
-	
-	METHOD SUMMARY
-	
-		- getCategory():String
-		
-			get internal logger's category.
-		
-		- getLogger():ILogger 
-		
-			get internal Logger.
-		
-		- toString():String
-
-	INHERIT
-	
-		Object → Error → AbstractError → FatalError → ConcurrentModificationError
-	
-	IMPLEMENT
-	
-		IFormattable
-
-**/
-
 package vegas.errors
 {
+
+	/**
+	 * The error throws when methods that have detected concurrent modification of an object when such modification is not permissible.
+	 * @author eKameleon
+ 	 */
 	public class ConcurrentModificationError extends FatalError
 	{
 		
+		/**
+		 * Creates a new ConcurrentModificationError instance.
+		 */
 		public function ConcurrentModificationError(message:String="", id:int=0)
         {
             super(message, id);

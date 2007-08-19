@@ -14,57 +14,27 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/** TypeMismatchError
-
-	AUTHOR
-
-		Name : TypeMismatchError
-		Package : vegas.errors
-		Version : 1.0.0.0
-		Date : 2006-07-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	PROPERTY SUMMARY
-	
-		- message:String
-		
-		- name:String
-	
-	METHOD SUMMARY
-	
-		- getCategory():String
-		
-			get internal logger's category.
-		
-		- getLogger():ILogger 
-		
-			get internal Logger.
-		
-		- toString():String
-
-	INHERIT
-	
-		Object → Error → AbstractError → FatalError → TypeMismatchError
-	
-	IMPLEMENT
-	
-		IFormattable
-
-**/
 
 package vegas.errors
 {
+
+	/**
+	 * Exception thrown on a type mismatch when trying to set a bean property.
+	 * @author eKameleon
+ 	 */
     public class TypeMismatchError extends FatalError
     {
+
+		/**
+		 * Creates a new TypeMismatchError instance.
+		 */
         public function TypeMismatchError(message:String="", id:int=0)
         {
             super(message, id);

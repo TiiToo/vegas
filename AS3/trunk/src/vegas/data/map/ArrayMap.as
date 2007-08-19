@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2007
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -34,8 +34,10 @@ package vegas.data.map
     import vegas.util.Serializer ;
 
 	/**
+	 * ArrayMap is an Map implementation based on two arrays to defines the collections of the keys and the values.
+	 * This implementation sort all elements in the map with the natural order of the keys and values arrays. 
 	 * @author eKameleon
-	 */
+ 	*/
     public class ArrayMap extends CoreObject implements Map
     {
         
@@ -82,76 +84,129 @@ package vegas.data.map
             return m ;
         }
 
+		/**
+		 * Returns {@code true} if this map contains a mapping for the specified key.
+		 * @return {@code true} if this map contains a mapping for the specified key.
+		 */
         public function containsKey(key:*):Boolean
         {
             return indexOfKey(key) > -1 ;
         }
-        
+
+		/**
+		 * Returns {@code true} if this map maps one or more keys to the specified value.
+		 * @return {@code true} if this map maps one or more keys to the specified value.
+		 */
         public function containsValue(value:*):Boolean
         {
     		return indexOfValue(value) > -1 ;
         }
 
+		/**
+		 * Returns a deep copy of the map.
+	 	 * @return a deep copy of the map.
+		 */
 		public function copy():*
 		{
 			return new ArrayMap( Copier.copy(getKeys()) , Copier.copy(getValues()) ) ;
 		}
 
+		/**
+		 * Returns the value to which this map maps the specified key.
+		 * @return the value to which this map maps the specified key.
+	 	 */
         public function get(key:*):* 
         {
             return _values[indexOfKey(key)] ;
         }
-
+        
+		/**
+		 * Returns an array of all the keys in the map.
+		 * @return an array of all the keys in the map.
+	 	 */
         public function getKeys():Array
         {
             return _keys.slice() ;
         }
 
+		/**
+		 * Returns an array of all the values in the map.
+		 * @return an array of all the values in the map.
+		 */
         public function getValues():Array
         {
             return _values.slice() ;
         }
-
+		
+		/**
+		 * Returns the index position in the ArrayMap of the specified key.
+		 * @return the index position in the ArrayMap of the specified key.
+		 */
 	    public function indexOfKey(key:*):int 
 	    {
             return _keys.indexOf(key) ;
 	    }
-	
+
+		/**
+		 * Returns the index position in the ArrayMap of the specified value.
+		 * @return the index position in the ArrayMap of the specified value.
+		 */
     	public function indexOfValue(value:*):int
     	{
     		return _values.indexOf(value) ;
 	    }
 
+		/**
+	 	 * Returns {@code true} if this map contains no key-value mappings.
+		 * @return {@code true} if this map contains no key-value mappings.
+	 	 */
         public function isEmpty():Boolean
         {
 	        return (size() < 1) ;
         }
-        
+
+		/**
+	 	 * Returns the values iterator of this map.
+		 * @return the values iterator of this map.
+	 	 */
         public function iterator():Iterator
         {
             return new MapIterator(this) ;
         }
-        
+
+		/**
+	 	 * Returns the keys iterator of this map.
+		 * @return the keys iterator of this map.
+	 	 */
         public function keyIterator():Iterator
         {
             return new ArrayIterator(_keys) ;
         }
-        
+
+		/**
+		 * Associates the specified value with the specified key in this map (optional operation).
+		 */
         public function put(key:*, value:*):*
         {
 		    var r:* ;
     		var i:int = indexOfKey(key) ;
-		    if (i<0) {
+		    if (i<0) 
+		    {
 			    _keys.push(key) ;
     			_values.push(value) ;
     			return null ;
-    		} else {
+    		}
+    		else 
+    		{
     			r = _values[i] ;
     			_values[i] = value ;
     			return r ;
     		}
         }
-        
+
+		/**
+		 * Copies all of the mappings from the specified map to this map (optional operation).
+		 */
         public function putAll(m:Map):void
         {
 		    var aV:Array = m.getValues() ;
@@ -162,6 +217,9 @@ package vegas.data.map
     		}
         }
         
+		/**
+		 * Removes the mapping for this key from this map if it is present (optional operation).
+		 */
         public function remove(o:*):*
         {
 		    var r:* = null ;
@@ -174,24 +232,66 @@ package vegas.data.map
     		return r ;
         }
         
+		/**
+		 * Sets the value of the "key" in the HashMap (ArrayMap) with the specified index.
+		 * @return the old 'key' value in the map if exist.
+		 */
+		public function setKeyAt( index:uint, key:* ):* 
+		{
+			var old:* = _keys[index] ;
+			if (old === undefined)
+			{
+				return null ;	
+			}
+			_keys[index] = key ;
+			return old ;
+		}
+		
+		/**
+		 * Sets the value of the "value" in the HashMap (ArrayMap) with the specified index.
+		 * @return the old value in the map if exist.
+		 */
+		public function setValueAt( index:Number, value:* ):* 
+		{
+			var old:* = _values[index] ;
+			if (old === undefined)
+			{
+				return null ;	
+			}
+			_values[index] = value ;
+			return old ;
+		}
+
+		/**
+		 * Returns the number of key-value mappings in this map.
+		 * @return the number of key-value mappings in this map.
+		 */
         public function size():uint
         {
             return _keys.length ;
         }
         
+		/**
+		 * Returns a Eden representation of the object.
+		 * @return a string representing the source code of the object.
+	 	 */
         override public function toSource(...arguments):String
         {
     		return Serializer.getSourceOf(this, [_keys, _values]) ;
         }
-        
+
+		/**
+		 * Returns the string representation of this instance.
+		 * @return the string representation of this instance
+		 */
         override public function toString():String
         {
 		    return new MapFormat().formatToString(this) ;
         }
 
-	    private var _keys:Array ;
+	    protected var _keys:Array ;
 
-    	private var _values:Array ;
+    	protected var _values:Array ;
     	
     }
 }

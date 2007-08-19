@@ -21,22 +21,23 @@
   
 */
 
-package vegas.core
+package vegas.errors
 {
-
+	
 	/**
-	 * Provides functionality to format the value of an object into a string representation.
+	 * Thrown to indicate that the code has attempted to cast an object to a subclass of which it is not an instance.
 	 * @author eKameleon
-	 */
-	public interface IFormattable
-	{
-
+ 	 */	
+    public class ClassCastError extends AbstractError
+    {
+    
 		/**
-		 * Returns the string representation of this instance.
-		 * @return the string representation of this instance
-		 */
-		function toString():String ;
-
-	}
-
+	 	 * Creates a new ClassCastError instance.
+	 	 */
+        public function ClassCastError(message:String="", id:int=0)
+        {
+            super(message, id);
+        }
+        
+    }
 }

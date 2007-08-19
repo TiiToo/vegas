@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -27,11 +27,21 @@ package vegas.util.comparators
 	import vegas.core.CoreObject;
 	import vegas.core.ICloneable;
 	import vegas.core.IComparator;
-	import vegas.core.ICopyable ;
-	import vegas.errors.IllegalArgumentError;
+	import vegas.core.ICopyable;
 	
 	/**
-	 * Reverse an IComparator.
+	 * Reverse an IComparator object. For example if the comparator must return 1 the reverse comparator return -1.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.comparators.ReverseComparator ;
+	 * import vegas.util.comparators.StringComparator ;
+	 * 
+	 * var c:StringComparator = new StringComparator() ;
+	 * var s:ReverseComparator = new ReverseComparator( c ) ;
+	 * 
+	 * trace( c.compare( "hello", "world" ) ) ; // -1
+	 * trace( s.compare( "hello", "world" ) ) ; // 1
+	 * }
 	 * @author eKameleon
 	 */
 	public class ReverseComparator extends CoreObject implements IComparator, ICloneable, ICopyable
@@ -39,15 +49,17 @@ package vegas.util.comparators
 		
 		/**
 		 * Creates a new ReverseComparator instance.
-		 */
-		public function ReverseComparator( comp:IComparator=null )
+	 	 * @param comp the {@code IComparator} to be reverse.
+	 	 */
+	 	public function ReverseComparator( comp:IComparator=null )
 		{
-			if (comp == null) 
-			{
-				throw new IllegalArgumentError(this + " constructor argument 'comp' not mmust be 'null' or 'undefined'.") ;
-			}
-			_comp = comp ;
+			comparator = comp ;
 		}
+
+		/**
+		 * The {@code IComparator} instance to reverse.
+		 */	
+		public var comparator:IComparator ;
 
 		/**
 		 * Creates and returns a shallow copy of the object.
@@ -55,7 +67,7 @@ package vegas.util.comparators
 		 */	
 		public function clone():* 
 		{
-			return new ReverseComparator( _comp ) ;
+			return new ReverseComparator( comparator ) ;
 		}
 
 		/**
@@ -67,11 +79,10 @@ package vegas.util.comparators
 		 * <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
 		 * <li> 0 if o1 and o2 are equal.</li>
 		 * </p>
-		 * @throw IllegalArgumentError if compare(a, b) and 'a' and 'b' must be Date or uint objects.
 		 */
 		public function compare(o1:*, o2:*):int
 		{
-			return _comp.compare(o2, o1) ;
+			return comparator.compare(o2, o1) ;
 		}
 
 		/**
@@ -80,10 +91,27 @@ package vegas.util.comparators
 		 */
 		public function copy():*
 		{
-			return new ReverseComparator( _comp ) ;
+			return new ReverseComparator( comparator ) ;
 		}
-	
-		private var _comp:IComparator ;
-		
+
+		/**
+		 * Returns the singleton instance of a ReverseComparator.
+		 * Developers are encouraged to use the comparator returned from this method instead of constructing a new instance to reduce allocation and GC overhead when multiple comparable comparators may be used in the same application.
+	 	 * @return the singleton instance of a ReverseComparator.
+		 */
+		static public function getInstance():ReverseComparator
+		{
+			if (_instance == null)
+			{
+				_instance = new ReverseComparator() ;
+			}
+			return _instance ;	
+		}
+
+		/**
+	  	 * The internal static singleton of this class.
+	 	 */
+		static private var _instance:ReverseComparator ;
+
 	}
 }

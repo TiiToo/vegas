@@ -21,22 +21,23 @@
   
 */
 
-package vegas.core
+package vegas.errors
 {
-
+	
 	/**
-	 * Provides functionality to format the value of an object into a string representation.
+	 * A RangeError exception is thrown when a numeric value is outside the acceptable range.
 	 * @author eKameleon
 	 */
-	public interface IFormattable
-	{
-
+    public class RangeError extends AbstractError
+    {
+    
 		/**
-		 * Returns the string representation of this instance.
-		 * @return the string representation of this instance
+		 * Creates a new RangeError instance.
 		 */
-		function toString():String ;
-
-	}
-
+        public function RangeError(message:String="", id:int=0)
+        {
+            super(message, id);
+        }
+        
+    }
 }

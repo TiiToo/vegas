@@ -21,22 +21,23 @@
   
 */
 
-package vegas.core
+package vegas.errors
 {
-
+	
 	/**
-	 * Provides functionality to format the value of an object into a string representation.
-	 * @author eKameleon
-	 */
-	public interface IFormattable
-	{
-
+	 * Thrown when an application attempts to use 'null' in a case where an object is required.
+	 * @author ekameleon
+ 	 */
+    public class NullPointerError extends AbstractError
+    {
+    
 		/**
-		 * Returns the string representation of this instance.
-		 * @return the string representation of this instance
+		 * Creates a new NullPointerError instance.
 		 */
-		function toString():String ;
-
-	}
-
+        public function NullPointerError(message:String="", id:int=0)
+        {
+            super(message, id);
+        }
+        
+    }
 }

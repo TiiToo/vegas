@@ -26,40 +26,24 @@ package vegas.util.comparators
 
 	import vegas.core.CoreObject;
 	import vegas.core.ICloneable;
+	import vegas.core.IComparable;
 	import vegas.core.IComparator;
 	import vegas.core.ICopyable;
 	import vegas.errors.ClassCastError;
+	import vegas.errors.NullPointerError;
 	
 	/**
-	 * This comparator compare Date objects.
-	 * <p><b>Example :</b></p>
- 	 * {@code
- 	 * import vegas.util.comparators.DateComparator;
-	 * 
- 	 * var comp:DateComparator = new DateComparator() ;
- 	 * 
- 	 * var d1:Date   = new Date(2007, 1, 1) ;
- 	 * var d2:Number =  1170284400000 ;
-	 * var d3:Date   = new Date(2007, 2, 2) ;
- 	 * var d4:Number = 1172790000000 ;
- 	 * 
-	 * trace( comp.compare(d1, d1) ) ; // 0
-	 * trace( comp.compare(d1, d2) ) ; // 0
-	 * trace( comp.compare(d2, d1) ) ; // 0
-	 * trace( comp.compare(d1, d3) ) ; // -1
-	 * trace( comp.compare(d1, d4) ) ; // -1
-	 * trace( comp.compare(d3, d1) ) ; // 1
-	 * trace( comp.compare(d4, d1) ) ; // 1
- 	 * }
+ 	 * A Comparator that compares IComparable objects.
 	 * @author eKameleon
  	 */
-	public class DateComparator extends CoreObject implements IComparator, ICloneable, ICopyable
+	public class ComparableComparator extends CoreObject implements IComparator, ICloneable, ICopyable
 	{
 		
 		/**
-		 * Creates a new DateCompator instance.
+		 * Creates a new ComparableComparator instance.
+	 	 * This constructor whose use should be avoided.
 		 */
-		public function DateComparator()
+		public function ComparableComparator()
 		{
 			super();
 		}
@@ -70,33 +54,34 @@ package vegas.util.comparators
 		 */			
 		public function clone():* 
 		{
-			return new DateComparator() ;
+			return new ComparableComparator() ;
 		}
 
 		/**
-		 * Returns an integer value to compare two Date objects.
-		 * @param o1 the first Date object to compare.
-		 * @param o2 the second Date object to compare.
+		 * Returns an integer value to compare two objects in parameters.
+		 * @param o1 the first object to compare.
+	 	 * @param o2 the second object to compare.
 		 * @return <p>
 		 * <li>-1 if o1 is "lower" than (less than, before, etc.) o2 ;</li>
 		 * <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
-		 * <li> 0 if o1 and o2 are equal.</li>
-		 * </p>
-		 * @throws ClassCastError if compare(a, b) and 'a' and 'b' must be Date or uint objects.
-	 	 */
+	 	 * <li> 0 if o1 and o2 are equal.</li>
+	  	 * </p>
+		 * @throws NullPointerError when the {@code o1} object is {@code null} or {@code undefined}.
+		 * @throws ClassCastError it the {@code o1} object is not a {@code IComparable} object.
+		 */
 		public function compare(o1:*, o2:*):int
 		{
-			var b1:Boolean = (o1 is Number) || (o1 is Date) ;
-			var b2:Boolean = (o2 is Number) || (o2 is Date) ;
-			if ( b1 && b2 ) 
+			if (o1 == null)
 			{
-				var a:Number = (o1 is Date) ? (o1 as Date).valueOf() : o1 ;
-				var b:Number = (o2 is Date) ? (o2 as Date).valueOf() : o2 ;
-				return (new NumberComparator()).compare(a, b) ;
+				throw new NullPointerError(this + " compare method failed, the o1 object is 'null' or 'undefined'.") ;	
 			}
-			else 
+			if ( o1 instanceof IComparable )
 			{
-				throw new ClassCastError(this + ".compare(a, b), 'a' and 'b' must be Date or Number objects.") ;
+				return (o1 as IComparable).compareTo(o2) ;	
+			}
+			else
+			{
+				throw new ClassCastError(this + " compare method failed, the o1 object is not a IComparable object : " + o1) ; 	
 			}
 		}
 		
@@ -106,19 +91,19 @@ package vegas.util.comparators
 		 */	
 		public function copy():*
 		{
-			return new DateComparator() ;
+			return new ComparableComparator() ;
 		}
-		
+
 		/**
-		 * Returns the singleton instance of a DateComparator.
+		 * Returns the singleton instance of a ComparableComparator.
 		 * Developers are encouraged to use the comparator returned from this method instead of constructing a new instance to reduce allocation and GC overhead when multiple comparable comparators may be used in the same application.
-	 	 * @return the singleton instance of a DateComparator.
+	 	 * @return the singleton instance of a ComparableComparator.
 		 */
-		static public function getInstance():DateComparator
+		static public function getInstance():ComparableComparator
 		{
 			if (_instance == null)
 			{
-				_instance = new DateComparator() ;
+				_instance = new ComparableComparator() ;
 			}
 			return _instance ;	
 		}
@@ -126,7 +111,7 @@ package vegas.util.comparators
 		/**
 	  	 * The internal static singleton of this class.
 	 	 */
-		static private var _instance:DateComparator ;
-		
+		static private var _instance:ComparableComparator ;
+
 	}
 }

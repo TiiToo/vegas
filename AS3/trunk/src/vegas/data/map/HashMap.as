@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -311,6 +311,7 @@ package vegas.data.map
 
 		/**
 		 * Returns the number of key-value mappings in this map.
+		 * @return the number of key-value mappings in this map.
 		 */
         public function size():uint
         {
@@ -318,7 +319,8 @@ package vegas.data.map
         }
 
 		/**
-		 * Returns the Eden representation of this map.
+		 * Returns the eden String representation of this map.
+		 * @return the eden String representation of this map.
 		 */        
         public function toSource(...arguments:Array):String
         {
@@ -327,6 +329,7 @@ package vegas.data.map
  
 		/**
 		 * Returns the String representation of this map.
+		 * @return the String representation of this map.
 		 */
         public function toString():String
         {

@@ -21,22 +21,23 @@
   
 */
 
-package vegas.core
+package vegas.errors
 {
-
+	
 	/**
-	 * Provides functionality to format the value of an object into a string representation.
+	 * An exception for converted values exceeding bounds.
 	 * @author eKameleon
 	 */
-	public interface IFormattable
-	{
-
+    public class ValueOutOfBoundsError extends AbstractError
+    {
+    
 		/**
-		 * Returns the string representation of this instance.
-		 * @return the string representation of this instance
-		 */
-		function toString():String ;
-
-	}
-
+	 	 * Creates a new ValueOutOfBoundsErrorError instance.
+	 	 */
+        public function ValueOutOfBoundsError(message:String="", id:int=0)
+        {
+            super(message, id);
+        }
+        
+    }
 }

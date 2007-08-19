@@ -14,75 +14,43 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/** FatalError
-
-	AUTHOR
-
-		Name : FatalError
-		Package : vegas.errors
-		Version : 1.0.0.0
-		Date : 2006-07-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	PROPERTY SUMMARY
-	
-		- message:String
-		
-		- name:String
-	
-	METHOD SUMMARY
-	
-		- getCategory():String
-		
-			get internal logger's category.
-		
-		- getLogger():ILogger 
-		
-			get internal Logger.
-		
-		- toString():String
-
-	INHERIT
-	
-		Object → Error → AbstractError → FatalError
-	
-	IMPLEMENT
-	
-		IFormattable, IHashable
-
-**/
-
 package vegas.errors
 {
-    
+	
+	import vegas.logging.LogEventLevel ;
+	
+    /**
+	 * The error throws when a fatal method or action is detected in the code.
+	 * This error notify a fatal level message in the vegas.errors.* logging category.
+	 * @author eKameleon
+ 	 */
     public class FatalError extends AbstractError
     {
-        
-        // ----o Constructor
-        
+ 
+ 		/**
+	 	 * Creates a new FatalError instance.
+	 	 */
         function FatalError(message:String="", id:int=0)
         {
            super(message, id);
         }
         
-        // ----o Public Methods
-        
-        override public function toString():String {
-            
-            var msg:String = "## " + name + " : " + message + " ##" ;
-		    getLogger().fatal(msg) ;
-		    return msg ;
-            
-        }
+ 		/**
+	 	 * Returns the internal LogEventLevel used in the constructor of this instance.
+	 	 * @return the internal LogEventLevel used in the constructor of this instance.
+	 	 */
+		override public function getLevel():LogEventLevel
+		{
+			return LogEventLevel.FATAL ;	
+		}
         
     }
+    
 }

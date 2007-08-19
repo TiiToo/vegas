@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -36,6 +36,7 @@ package vegas.data
     
     	/**
 		 * Returns {@code true} if this list contains all of the elements of the specified collection.
+		 * @return {@code true} if this list contains all of the elements of the specified collection.
 		 */
     	function containsAll(c:Collection):Boolean ;
 
@@ -56,11 +57,13 @@ package vegas.data
 
 		/**
 		 * Returns the index in this list of the last occurrence of the specified element, or -1 if this list does not contain this element.
+		 * @return the index in this list of the last occurrence of the specified element, or -1 if this list does not contain this element.
 		 */
     	function lastIndexOf(o:*):int ;
 
 		/**
 		 * Returns a list iterator of the elements in this list (in proper sequence).
+		 * @return a list iterator of the elements in this list (in proper sequence).
 		 */
     	function listIterator( position:uint=0 ):ListIterator ;
 
@@ -96,6 +99,7 @@ package vegas.data
 	
 		/**
 		 * Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.
+		 * @return a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.
 		 */
 	    function subList(fromIndex:uint, toIndex:uint):List ;
     
