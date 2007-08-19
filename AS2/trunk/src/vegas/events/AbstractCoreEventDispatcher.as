@@ -88,7 +88,7 @@ class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEv
 	 * @param event The Event object that is dispatched into the event flow.
 	 * @param isQueue if the EventDispatcher isn't register to the event type the event is bufferized.
 	 * @param target the target of the event.
-	 * @param contect the context of the event.
+	 * @param context the context of the event.
 	 * @return the reference of the event dispatched in the event flow.
 	 */
 	public function dispatchEvent(event, isQueue:Boolean, target, context):Event 
@@ -181,8 +181,8 @@ class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEv
 	/** 
 	 * Removes a listener from the EventDispatcher object.
 	 * If there is no matching listener registered with the {@code EventDispatcher} object, then calling this method has no effect.
-	 * @param Specifies the type of event.
-	 * @param the class name(string) or a {@code EventListener} object.
+	 * @param type Specifies the type of event.
+	 * @param listener the class name(string) or a {@code EventListener} object.
 	 */
 	public function removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener 
 	{

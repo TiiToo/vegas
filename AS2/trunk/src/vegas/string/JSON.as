@@ -498,7 +498,8 @@ class vegas.string.JSON
                 }
                 case 'f' :
                 {
-                    if (_next() == 'a' && _next() == 'l' && _next() == 's' && _next() == 'e') {
+                    if (_next() == 'a' && _next() == 'l' && _next() == 's' && _next() == 'e') 
+                    {
                         _next();
                         return false;
                     }

@@ -75,14 +75,6 @@ class vegas.events.FrontController extends CoreObject
 	}
 
 	/**
-	 * Flush all global FrontController singletons.
-	 */
-	static public function flush():Void 
-	{
-		FrontController.instances.clear() ;
-	}
-
-	/**
 	 * Dispatch an event into the FrontController
 	 * @param e an event to dispatch.
 	 */
@@ -91,6 +83,14 @@ class vegas.events.FrontController extends CoreObject
 		_dispatcher.dispatchEvent(e) ;
 	}
 
+	/**
+	 * Flush all global FrontController singletons.
+	 */
+	static public function flush():Void 
+	{
+		FrontController.instances.clear() ;
+	}
+	
 	/**
 	 * Returns the internal EventDispatcher singleton reference of this FrontController.
 	 * @return the internal EventDispatcher singleton reference of this FrontController.

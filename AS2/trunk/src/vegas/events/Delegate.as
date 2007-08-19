@@ -136,7 +136,10 @@ class vegas.events.Delegate extends CoreObject implements ICloneable, EventListe
 	 */
 	public function run():Void 
 	{
-		addArguments.apply(this, arguments) ;
+		if (arguments.length > 0)
+		{
+			addArguments.apply(this, arguments) ;
+		}
 		_p() ;
 	}
 
@@ -145,7 +148,8 @@ class vegas.events.Delegate extends CoreObject implements ICloneable, EventListe
 	 */
 	public function setArguments():Void 
 	{
-		if (arguments.length > 0) {
+		if (arguments.length > 0) 
+		{
 			_a = [].concat(arguments) ;
 			_p.a = _a ;
 		}
