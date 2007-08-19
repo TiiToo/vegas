@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -179,11 +179,11 @@ class vegas.util.comparators.StringComparator extends CoreObject implements ICom
 	/**
 	 * The internal Case StringComparator.
 	 */
-	static private var _comparator ;
+	static private var _comparator:StringComparator ;
 
 	/**
 	 * The internal ignoreCase StringComparator.
 	 */
-	static private var _ignoreCaseComparator ;
+	static private var _ignoreCaseComparator:StringComparator ;
 
 }

@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -34,7 +34,8 @@ class vegas.errors.ClassCastError extends AbstractError
 	/**
 	 * Creates a new ClassCastError instance.
 	 */
-	function ClassCastError(message : String, e : ErrorElement) {
+	function ClassCastError(message : String, e : ErrorElement) 
+	{
 		super(message, e);
 	}
 

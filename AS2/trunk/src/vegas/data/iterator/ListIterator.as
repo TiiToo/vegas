@@ -37,11 +37,13 @@ interface vegas.data.iterator.ListIterator extends OrderedIterator
 
 	/**
 	 * Returns the index of the element that would be returned by a subsequent call to next.
+	 * @return the index of the element that would be returned by a subsequent call to next.
 	 */
 	function nextIndex():Number ;	
 	
 	/**
 	 * Returns the index of the element that would be returned by a subsequent call to previous.
+	 * @return the index of the element that would be returned by a subsequent call to previous.
 	 */
 	function previousIndex():Number ;
 	

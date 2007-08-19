@@ -35,6 +35,11 @@ import vegas.util.TypeUtil;
 class vegas.util.StringUtil
 {
 	
+    /**
+	 * Represents the empty string.
+	 */
+	static public var EMPTY:String = "" ;
+	
 	/**
 	 * Contains a list of all white space chars.
 	 */

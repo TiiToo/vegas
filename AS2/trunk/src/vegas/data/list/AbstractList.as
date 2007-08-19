@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -140,6 +140,7 @@ class vegas.data.list.AbstractList extends AbstractCollection implements List
 
 	/**
 	 * Returns a list iterator of the elements in this list (in proper sequence).
+	 * @return a list iterator of the elements in this list (in proper sequence).
 	 */
 	public function listIterator():ListIterator 
 	{ 
@@ -181,19 +182,6 @@ class vegas.data.list.AbstractList extends AbstractCollection implements List
 		return removesAt(id, 1) ;
 	}
 
-    /**
-     * Removes the specified count of elements at the specified position in this list.
-     * @param  id index of the first element to be removed from the List.
-     * @return len the number of elements that was removed from the list.
-     */
-	public function removesAt(id:Number, len:Number) 
-	{
-		var d:Number = len - id ;
-		var old = _a.slice(id, d) ;
-		_a.splice(id, len);
-		return old ; 
-	}
-
 	/**
 	 * Removes from this list all the elements that are contained between the specific {@code from} and the specific {@code to} position in this list (optional operation).
 	 */
@@ -209,6 +197,19 @@ class vegas.data.list.AbstractList extends AbstractCollection implements List
 		}
 	}
 
+    /**
+     * Removes the specified count of elements at the specified position in this list.
+     * @param  id index of the first element to be removed from the List.
+     * @return len the number of elements that was removed from the list.
+     */
+	public function removesAt(id:Number, len:Number) 
+	{
+		var d:Number = len - id ;
+		var old = _a.slice(id, d) ;
+		_a.splice(id, len);
+		return old ; 
+	}
+	
 	/**
 	 * Retains only the elements in this list that are contained in the specified collection (optional operation).
 	 */
@@ -249,6 +250,7 @@ class vegas.data.list.AbstractList extends AbstractCollection implements List
 
 	/**
 	 * Returns a subList of the LinkedList. The subList is an ArrayList instance.
+	 * @return a subList of the LinkedList. The subList is an ArrayList instance.
 	 */
 	public function subList(begin:Number, end:Number):List 
 	{

@@ -25,7 +25,6 @@ import vegas.core.CoreObject;
 import vegas.data.iterator.Iterator;
 import vegas.data.Map;
 import vegas.data.map.HashMap;
-import vegas.events.Event;
 import vegas.events.EventDispatcher;
 import vegas.events.EventListener;
 

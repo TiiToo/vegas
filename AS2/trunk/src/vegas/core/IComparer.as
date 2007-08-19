@@ -21,22 +21,24 @@
   
 */
 
-import vegas.errors.AbstractError;
-import vegas.errors.ErrorElement;
+import vegas.core.IComparator;
 
 /**
- * Thrown to indicate that the application has attempted to convert a string to one of the numeric types, but that the string does not have the appropriate format.
+ * This interface defined an object who contains an IComparator instance.
  * @author eKameleon
  */
-class vegas.errors.NumberFormatError extends AbstractError 
+interface vegas.core.IComparer
 {
+
+		/**
+		 * Returns the IComparator reference of this object.
+		 * @return the IComparator reference of this object.
+		 */
+		function getComparator():IComparator ;
+
+		/**
+		 * Sets the IComparator reference of this object.
+		 */
+		function setComparator(comp:IComparator):Void ;
 	
-	/**
-	 * Creates a new NumberFormatError instance.
-	 */
-	public function NumberFormatError(message:String, errorElement:ErrorElement) 
-	{
-		super(message, errorElement) ;
-	}
-  
 }

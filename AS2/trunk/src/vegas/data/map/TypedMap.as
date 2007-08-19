@@ -82,6 +82,7 @@ class vegas.data.map.TypedMap extends AbstractTypeable implements ICloneable, Ma
 
 	/**
 	 * Returns {@code true} if this map contains a mapping for the specified key.
+	 * @return {@code true} if this map contains a mapping for the specified key.
 	 */
 	public function containsKey(o):Boolean 
 	{
@@ -90,6 +91,7 @@ class vegas.data.map.TypedMap extends AbstractTypeable implements ICloneable, Ma
 
 	/**
 	 * Returns {@code true} if this map maps one or more keys to the specified value.
+	 * @return {@code true} if this map maps one or more keys to the specified value.
 	 */
 	public function containsValue(o):Boolean 
 	{
@@ -98,6 +100,7 @@ class vegas.data.map.TypedMap extends AbstractTypeable implements ICloneable, Ma
 
 	/**
 	 * Returns the value to which this map maps the specified key.
+	 * @return the value to which this map maps the specified key.
 	 */
 	public function get(key) 
 	{
@@ -106,6 +109,7 @@ class vegas.data.map.TypedMap extends AbstractTypeable implements ICloneable, Ma
 
 	/**
 	 * Returns an array of all the keys in the map.
+	 * @return an array of all the keys in the map.
 	 */
 	public function getKeys():Array 
 	{
@@ -114,6 +118,7 @@ class vegas.data.map.TypedMap extends AbstractTypeable implements ICloneable, Ma
 
 	/**
 	 * Returns an array of all the values in the map.
+	 * @return an array of all the values in the map.
 	 */
 	public function getValues():Array 
 	{
@@ -122,6 +127,7 @@ class vegas.data.map.TypedMap extends AbstractTypeable implements ICloneable, Ma
 
 	/**
 	 * Returns {@code true} if this map contains no key-value mappings.
+	 * @return {@code true} if this map contains no key-value mappings.
 	 */
 	public function isEmpty():Boolean 
 	{
@@ -130,6 +136,7 @@ class vegas.data.map.TypedMap extends AbstractTypeable implements ICloneable, Ma
 
 	/**
 	 * Returns the values iterator of this map.
+	 * @return the values iterator of this map.
 	 */
 	public function iterator():Iterator 
 	{
@@ -137,7 +144,8 @@ class vegas.data.map.TypedMap extends AbstractTypeable implements ICloneable, Ma
 	}
 
 	/**
-	 * Returns the keys iterator of this map. 
+	 * Returns the keys iterator of this map.
+	 * @return the keys iterator of this map.
 	 */
 	public function keyIterator():Iterator 
 	{
@@ -184,6 +192,7 @@ class vegas.data.map.TypedMap extends AbstractTypeable implements ICloneable, Ma
 
 	/**
 	 * Returns the number of key-value mappings in this map.
+	 * @return the number of key-value mappings in this map.
 	 */
 	public function size():Number 
 	{

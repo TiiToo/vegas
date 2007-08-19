@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -73,7 +73,21 @@ class vegas.util.comparators.ReverseComparator extends CoreObject implements ICo
 	{
 		return comparator.compare(o2, o1) ;
 	}
-	
+
+	/**
+	 * Returns the singleton instance of a ReverseComparator.
+	 * Developers are encouraged to use the comparator returned from this method instead of constructing a new instance to reduce allocation and GC overhead when multiple comparable comparators may be used in the same application.
+ 	 * @return the singleton instance of a ReverseComparator.
+	 */
+	static public function getInstance():ReverseComparator
+	{
+		if (_instance == null)
+		{
+			_instance = new ReverseComparator() ;
+		}
+		return _instance ;	
+	}
+
 	/**
 	 * Returns a Eden reprensation of the object.
 	 * @return a string representing the source code of the object.
@@ -82,5 +96,10 @@ class vegas.util.comparators.ReverseComparator extends CoreObject implements ICo
 	{
 		return Serializer.getSourceOf(this,[ ISerializable(comparator).toSource() || "null" ] ) ;
 	}
+
+	/**
+  	 * The internal static singleton of this class.
+ 	 */
+	static private var _instance:ReverseComparator ;
 
 }

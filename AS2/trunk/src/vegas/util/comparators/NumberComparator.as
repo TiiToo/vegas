@@ -68,7 +68,6 @@ class vegas.util.comparators.NumberComparator extends CoreObject implements ICom
 	 */
 	public function compare(o1, o2):Number 
 	{
-		
 		if ( TypeUtil.typesMatch(o1, Number) && TypeUtil.typesMatch(o2, Number )) 
 		{
 			// fix float bug with Math methods and float number operations.
@@ -92,5 +91,24 @@ class vegas.util.comparators.NumberComparator extends CoreObject implements ICom
 			throw new ClassCastError(this + " compare method failed, Arguments number expected") ;
 		}
 	}
+	
+	/**
+	 * Returns the singleton instance of a NumberComparator.
+	 * Developers are encouraged to use the comparator returned from this method instead of constructing a new instance to reduce allocation and GC overhead when multiple comparable comparators may be used in the same application.
+ 	 * @return the singleton instance of a NumberComparator.
+	 */
+	static public function getInstance():NumberComparator
+	{
+		if (_instance == null)
+		{
+			_instance = new NumberComparator() ;
+		}
+		return _instance ;	
+	}
+
+	/**
+  	 * The internal static singleton of this class.
+ 	 */
+	static private var _instance:NumberComparator ;
 
 }

@@ -21,22 +21,19 @@
   
 */
 
-import vegas.errors.AbstractError;
-import vegas.errors.ErrorElement;
+import vegas.core.IComparator;
 
 /**
- * Thrown to indicate that the application has attempted to convert a string to one of the numeric types, but that the string does not have the appropriate format.
+ * Interface implemented by classes that can format an specific string expression.
  * @author eKameleon
+ * @version 1.0.0.0
  */
-class vegas.errors.NumberFormatError extends AbstractError 
+interface vegas.core.IFormatter
 {
-	
+
 	/**
-	 * Creates a new NumberFormatError instance.
+	 * Format a string expression.
 	 */
-	public function NumberFormatError(message:String, errorElement:ErrorElement) 
-	{
-		super(message, errorElement) ;
-	}
-  
+	function format( /*...arguments*/ ):String ;
+	
 }
