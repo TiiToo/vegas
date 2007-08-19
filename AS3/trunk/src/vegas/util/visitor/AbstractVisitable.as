@@ -53,7 +53,7 @@ package vegas.util.visitor
 		 * Accept a IVisitor object. 
 		 * You can overrides this method in complexe Visitor pattern implementation.
 		 */
-		public function accept(visitor:IVisitor)
+		public function accept(visitor:IVisitor):void
 		{
 			visitor.visit(this) ;
 		}

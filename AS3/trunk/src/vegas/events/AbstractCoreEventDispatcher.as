@@ -41,7 +41,7 @@ package vegas.events
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
 		 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 		 */
-        public function AbstractCoreEventDispatcher( bGlobal:Boolean , sChannel:String ) 
+        public function AbstractCoreEventDispatcher( bGlobal:Boolean = false , sChannel:String = null ) 
         {
     		setGlobal( bGlobal , sChannel ) ;	
         }
@@ -64,6 +64,19 @@ package vegas.events
 		 * @param useWeakReference Indicates if the listener is a weak reference.
 		 */
         public function addEventListener(type:String, listener:Function, useCapture:Boolean=false, priority:int=0.0, useWeakReference:Boolean=false):void
+        {
+            _dispatcher.addEventListener(type, listener, useCapture, priority, useWeakReference) ;
+        }
+
+		/**
+		 * Allows the registration of event listeners on the event target.
+		 * @param type A string representing the event type to listen for. If eventName value is "ALL" addEventListener use addGlobalListener
+		 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the {@code EventListener} interface.
+	 	 * @param useCapture Determinates if the event flow use capture or not.
+		 * @param priority Determines the priority level of the event listener.
+		 * @param useWeakReference Indicates if the listener is a weak reference.
+		 */
+        VEGAS function addEventListener(type:String, listener:* , useCapture:Boolean=false, priority:int=0.0, useWeakReference:Boolean=false):void
         {
             _dispatcher.VEGAS::addEventListener(type, listener, useCapture, priority, useWeakReference) ;
         }

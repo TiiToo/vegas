@@ -36,10 +36,12 @@ package vegas.logging
         
 		/**
 		 * Creates a new AbstractTarget instance.
+		 * @param bGlobal the flag to use a global event flow or a local event flow.
+		 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 		 */
-        public function AbstractTarget()
+        public function AbstractTarget( bGlobal:Boolean = false , sChannel:String = null )
         {
-            super();
+            super( bGlobal , sChannel );
         }
 
 		/**

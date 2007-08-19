@@ -24,9 +24,8 @@
 package vegas.core.types
 {
 	
-    import vegas.core.CoreObject;
-    import vegas.core.HashCode ;
-
+	import vegas.core.CoreObject;
+	
 	/**
 	 * An object of type Char contains a single field whose type is String.
 	 * @author eKameleon

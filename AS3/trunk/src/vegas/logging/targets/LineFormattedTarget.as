@@ -39,10 +39,12 @@ package vegas.logging.targets
         
 		/**
 		 * Creates a new LineFormattedTarget instance.
+		 * @param bGlobal the flag to use a global event flow or a local event flow.
+		 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 		 */
-        public function LineFormattedTarget()
+        public function LineFormattedTarget( bGlobal:Boolean = false , sChannel:String = null )
         {
-            super();
+			super( bGlobal , sChannel );
         }
         
     	/**

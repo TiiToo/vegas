@@ -38,7 +38,7 @@ package vegas.util.visitor
 		/**
 		 * Accept a IVisitor object 
 		 */
-		function accept( visitor:IVisitor ):* ;
+		function accept( visitor:IVisitor ):void ;
 		
 	}
 }

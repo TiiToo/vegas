@@ -43,12 +43,12 @@ package vegas.string.eden
 			
 			if (scope == null)
 			{
-				scope = _global ;
+				scope = global ;
 			}
 			
 			var sp:* ; // scope path
 			
-        	if( scope != _global )
+        	if( scope != global )
             {
            	 	sp = ClassUtil.getPath( scope );
             }
@@ -152,7 +152,7 @@ package vegas.string.eden
 	    public function isDigitNumber( num:String ):Boolean
         {
     	    var i:uint ;
-	        var numarr:* = num.split( "" );
+	        var numarr:Array = num.split( "" );
 	        for( i=0; i<numarr.length; i++ )
             {
     	        if( !this.isDigit( numarr[i] ) )
@@ -375,7 +375,7 @@ package vegas.string.eden
                 
             }
 			
-			if( Config.autoAddScopePath && (scopepath != undefined) && (scope != _global) )
+			if( Config.autoAddScopePath && (scopepath != undefined) && (scope != global) )
             {
 				path = scopepath + "." + path;
             }
@@ -403,7 +403,7 @@ package vegas.string.eden
 			var i:uint ;
 			var paths:* ;
 			var subpath:* ;
-			var scope:* = _global;
+			var scope:* = global;
 			
 			if( path.indexOf( "." ) > -1 )
 			{

@@ -23,15 +23,14 @@
 
 package vegas.util.mvc
 {
-
+	import vegas.events.AbstractCoreEventDispatcher;
 	import vegas.events.ModelChangedEvent;
-	import vegas.events.AbstractCoreEventBroadcaster;
-
-    /**
+	
+	/**
      * Abstract class to creates IModel implementations.
      * @author eKameleon
      */
-	public class AbstractModel extends AbstractCoreEventBroadcaster implements IModel
+	public class AbstractModel extends AbstractCoreEventDispatcher implements IModel
 	{
 		
 		/**
@@ -47,7 +46,7 @@ package vegas.util.mvc
 		 */
 		public function addView(view:IView):void
 		{
-			addListener(ModelChangedEvent.MODEL_CHANGED, view) ;
+			VEGAS::addEventListener( ModelChangedEvent.MODEL_CHANGED, view ) ;
 		}
 
 		/**

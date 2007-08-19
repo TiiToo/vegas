@@ -23,11 +23,10 @@
 
 package vegas.util.mvc
 {
-
 	import flash.display.DisplayObject;
 	
 	import vegas.events.EventListener;
-
+	
 	/**
 	 * Defines the representation of a view in a specific type of the MVC implementation.
 	 * @author eKameleon
