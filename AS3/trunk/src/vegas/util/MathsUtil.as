@@ -14,54 +14,36 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/** MathsUtil
-
-	AUTHOR
-
-		Name : MathsUtil
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date :  2006-07-07
-		Author : eKameleon
-		URL : http://www.ekameleon.net
-
-	METHOD SUMMARY
-
-		- clamp(value:Number, min:Number, max:Number) 
-		
-			bound a numeric value between 2 numbers.
-			
-		- getPercent(nValue:Number, nMax:Number):Number
-		
-			return a percentage or null.
-			
-		- round(n:Number, floatCount:Number) 
-		
-			rounds a number by a count of floating points
-
-		- sign(n:Number)
-			
-			return 1 if the value is positive or -1
-
-**/
-
 package vegas.util
 {
     
     import vegas.errors.IllegalArgumentError ;
-    
+   
+   /**
+    * The {@code MathUtil} utility class is an all-static class with methods for working with numbers.
+     * @author eKameleon
+     */ 
     public class MathsUtil
     {
         
-	    static public function clamp(value:Number, min:Number, max:Number):Number {
-		    if (isNaN(value)) {
+       	/**
+	     * Bounds a numeric value between 2 numbers.
+	     * @param value the value to clamp.
+	     * @param min the min value of the range.
+	     * @param max the max value of the range.
+	     * @return a bound numeric value between 2 numbers.
+	     */
+	    static public function clamp(value:Number, min:Number, max:Number):Number 
+	    {
+		    if (isNaN(value)) 
+		    {
     			throw new IllegalArgumentError("MathsUtils.clamp, argument 'value' must not be 'null' or 'undefined' or 'NaN'") ;
     		}
     		if (isNaN(min)) min = value ;
@@ -69,13 +51,49 @@ package vegas.util
     		return Math.max(Math.min(value, max), min) ;
     	}
     	
-    	static public function getPercent(nValue:Number=NaN, nMax:Number=NaN):Number {
+    	/**
+    	 * Rounds and returns a number by a count of floating points.
+	     * @param n the number to round.
+	     * @param floatCount the count of number after the point.
+    	 * @return the floor value of a number by a count of floating points.
+	     */
+    	static public function floor(n:Number, floatCount:Number):Number 
+    	{
+		    if (isNaN(n)) 
+    		{
+			    throw new IllegalArgumentError("MathsUtil.floor, Argument 'n' must not be 'null' or 'undefined'.") ;
+    		}
+		    var r:Number = 1 ;
+    		var i:Number = -1 ;
+		    while (++i < floatCount) 
+		    {
+    			r *= 10 ;
+		    }
+    		return Math.floor(n*r) / r  ;
+    	}
+    	
+    	/**
+	     * Returns a percentage or null.
+	     * @param nValue the current value.
+    	 * @param nMax the max value.
+    	 * @return a percentage value or null.
+    	 */
+    	static public function getPercent(nValue:Number=NaN, nMax:Number=NaN):Number 
+    	{
     		var nP:Number = (nValue / nMax) * 100 ;
     		return (isNaN(nP) || !isFinite(nP)) ? NaN : nP ;
     	}
-    		
-    	static public function round(n:Number, floatCount:Number):Number {
-    		if (isNaN(n)) {
+    	
+    	/**
+    	 * Rounds and returns a number by a count of floating points.
+	     * @param n the number to round.
+    	 * @param floatCount the count of number after the point.
+    	 * @return the round of a number by a count of floating points.
+	     */
+    	static public function round(n:Number, floatCount:Number):Number 
+    	{
+    		if (isNaN(n)) 
+    		{
     			throw new IllegalArgumentError("MathsUtil.round, Argument 'n' must not be 'null' or 'undefined'.") ;
     		}
     		var r:Number = 1 ;
@@ -84,8 +102,15 @@ package vegas.util
     		return Math.round(n*r) / r  ;
     	}
     	
-    	static public function sign( n:Number ):Number {
-	    	if (isNaN(n)) {
+    	/**
+	     * Returns 1 if the value is positive or -1.
+    	 * @param n the number to defined this sign.
+	     * @return 1 if the value is positive or -1.
+    	 */
+    	static public function sign( n:Number ):Number 
+    	{
+	    	if (isNaN(n)) 
+	    	{
     			throw new IllegalArgumentError("MathsUtil.sign, Argument 'n' must not be 'null' or 'undefined'.") ;
 		    }
     		return n<0 ? -1 : 1 ;

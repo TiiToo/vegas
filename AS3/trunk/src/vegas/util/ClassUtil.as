@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -30,12 +30,25 @@ package vegas.util
 	import vegas.core.HashCode ;
 	import vegas.core.IHashable;
 	
+	/**
+     * The {@code ClassUtil} utility class is an all-static class with methods for working with function the Class in AS3.
+     * @author eKameleon
+     */
 	public class ClassUtil
 	{
 		
-		static public function createNewInstance(c:Class, initProperties:Object=null) :* 
+		/**
+    	 * Creates an instance with the passed-in Class.
+    	 * @param c the class to instanciate.
+    	 * @param initProperties An object with all properties to to pass over the new instance.
+    	 * @return a new instance of the specified Class in argument.
+    	 */
+		static public function createNewInstance(c:Class = null , initProperties:Object = null ) :* 
 		{
-			
+			if ( c == null )
+			{
+			    return null ;
+			}
 			var instance:Object = new c() ;
 			if (initProperties != null) 
 			{
@@ -47,12 +60,20 @@ package vegas.util
 			return instance ;
 			
 		}
-		
+	
+		/**
+	     * Returns the name string representation of the specified instance passed in arguments.
+    	 * @param instance the reference of the object to apply reflexion.
+    	 */
 		static public function getName(instance:*):String 
 		{
 			return _formatName(getPath(instance)) ;
 		}
 		
+		/**
+		 * Returns the unique name of the specified instance in argument.
+		 * @return the unique name of the specified instance in argument.
+		 */
 		static public function getUniqueName(instance:*):String
 		{
 			var name:String = getName(instance) ;
@@ -79,11 +100,19 @@ package vegas.util
 			return name + count ;
 		}
 
+    	/**
+    	 * Returns the package string representation of the specified instance passed in arguments.
+    	 * @param instance the reference of the object to apply reflexion.
+    	 */
 		static public function getPackage(instance:*):String 
 		{
 			return _formatPackage(getPath(instance)) ;
 		}	
 
+    	/**
+    	 * Returns the full path string representation of the specified instance passed in arguments (package + name).
+    	 * @param instance the reference of the object to apply reflexion.
+    	 */
 		static public function getPath(instance:*):String 
 		{
             return _formatPath(flash.utils.getQualifiedClassName(instance)) ;

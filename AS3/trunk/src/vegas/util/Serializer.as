@@ -14,80 +14,29 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/** Serializer
-
-	AUTHOR
-	
-		Name : Serializer
-		Package : vegas.util.serialize
-		Version : 1.0.0.0
-		Date : 2006-07-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	DESCRIPTION
-	
-		  Allows an object to control its own serialization.
-	
-	METHOD SUMMARY
-	
-		- static getSourceOf(o, params:Array):String
-		
-		- static toSource( o, [indent:Number], [indentor:String] ) ;
-		
-			PARAMETERS
-			
-				- indent : optional the starting of the indenting
-				- indentor : the string value used to do the indentation
-		
-			RETURN
-			
-				a string representing the source code of the object.
-
-	NOTE
-	
-		To add a diffrent syntax formating it should be possible to add a 3rd *formater* argument
-		and override the implementation of the method in all core objects.
-
-	THANKS
-	
-		Zwetan Core2 framework inspired by Mozilla SpiderMonkey.
-
-**/
-
-// TODO Compléter avec les classes de bases AS3
-
 package vegas.util
 {
     
     import vegas.core.ISerializable;
-    import vegas.util.ArrayUtil ;
-    import vegas.util.ClassUtil;
-    import vegas.util.BooleanUtil ;
-    import vegas.util.DateUtil ;
-    import vegas.util.ErrorUtil ;
-    import vegas.util.FunctionUtil ;
-    import vegas.util.NumberUtil ;
-    import vegas.util.ObjectUtil ;
-    import vegas.util.StringUtil ;
 
     public class Serializer
     {
         
-	    // ----o Properties
-	
+	    /**
+    	 * Global reserved words in an array.
+    	 */
 	    static public var GLOBAL_RESERVED:Array = ["_global"] ;
 	
-    	// ----o Methods
-
+    	/**
+    	 * Returns {@code true} if the current word if a global word reserved.
+    	 */
     	static public function isGlobalReserved( name:String ):Boolean 
 	    {
 		    var l:Number = GLOBAL_RESERVED.length ;

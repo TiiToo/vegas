@@ -21,62 +21,6 @@
   
 */
 
-/* Stack [Interface]
-
-	AUTHOR
-	
-		Name : Stack
-		Package : vegas.data
-		Version : 1.0.0.0
-		Date :  2006-07-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- clear():void
-		
-		- clone(:*
-
-		- getType():*
-
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- peek():*
-		
-		- pop():*
-		
-		- push(o):*
-		
-		- search(o):Number
-
-		- setType(type:*):void
-
-		- size():uint
-		
-		- supports(value:*):Boolean
-
-		- toArray():Array
-	
-        - toSource(...arguments:Array):String
-
-		- toString():String
-
-		- validate(value:*):void
-
-    INHERIT
-    
-    	CoreObject → AbstractTypeable → TypedStack
-    	
-	IMPLEMENTS
-	
-		ICloneable, Iterable, IFormattable, ISerializable, ITypeable, IValidator
-
-**/
-
 package vegas.data.stack
 {
 
@@ -88,8 +32,6 @@ package vegas.data.stack
 
 	public class TypedStack extends AbstractTypeable implements Stack
 	{
-		
-		// ----o Constructor
 		
 		public function TypedStack(type:*, stack:Stack)
 		{
@@ -107,8 +49,6 @@ package vegas.data.stack
 			}
 
 		}
-				
-		// ----o Public Methods
 
 		public function clear():void
 		{
@@ -181,8 +121,6 @@ package vegas.data.stack
 			return _stack.toString() ;
 		}
 
-		// ----o Private Properties
-		
 		private var _stack:Stack ;
 		
 	}

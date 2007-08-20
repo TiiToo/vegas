@@ -27,9 +27,10 @@ package vegas.events
 	import flash.events.Event;
 
     /**
+     * This event is used with some models.
      * @author eKameleon
      */
-	public class ModelChangedEvent extends Event
+	public class ModelChangedEvent extends BasicEvent
 	{
 		
 		/**
@@ -40,10 +41,11 @@ package vegas.events
 			eventName:String=null
 			, data:* = null, fieldName:String = null
 			, firstItem:uint=0, index:uint=0, lastItem:uint=0
-			, removedIDs:Array = null , removedItems:Array = null
+			, removedIDs:Array = null , removedItems:Array = null 
+			, target:Object = null, context:* = null 
 			, bubbles:Boolean = false, cancelable:Boolean = false
 		) {
-			super(ModelChangedEvent.MODEL_CHANGED, bubbles, cancelable);
+			super(ModelChangedEvent.MODEL_CHANGED, target, context, bubbles, cancelable);
 			this.eventName = eventName ;
 			this.data = data ;
 			this.fieldName = fieldName ;
@@ -53,25 +55,55 @@ package vegas.events
 			this.removedIDs = removedIDs ;
 			this.removedItems = removedItems ;
 		}
-		
+
+    	/**
+    	 * The type of a ModelChangedEvent when an item is added in this model.
+    	 */
 		static public const ADD_ITEMS:String = "addItems" ; 
 
+    	/**
+    	 * The type of a ModelChangedEvent when clear all items in the model.
+	     */
 		static public const CLEAR_ITEMS:String = "clear" ;
 
+    	/**
+	     * The type of a ModelChangedEvent when the model is changed.
+	     */
 		static public const MODEL_CHANGED:String = "modelChanged" ;
 
+	    /**
+    	 * The type of a ModelChangedEvent when an item is removed in this model.
+    	 */
 		static public const REMOVE_ITEMS:String = "removeItems" ;
 
+    	/**
+    	 * The type of a ModelChangedEvent when the model is sorted.
+    	 */
 		static public const SORT_ITEMS:String = "sortItems" ;
 
+    	/**
+    	 * The type of a ModelChangedEvent when all is update in the model.
+	     */
 		static public const UPDATE_ALL:String = "updateAll" ;
 
+    	/**
+    	 * The type of a ModelChangedEvent when a field in the model is updated.
+    	 */
 		static public const UPDATE_FIELD:String = "updateField" ;
 
-		static public const UPDATE_ITEMS:String = "updateItems" ;
+    	/**
+	     * The type of a ModelChangedEvent when an item in the model changed.
+	     */
+	    static public const UPDATE_ITEMS:String = "updateItems" ;
 
+	    /**
+    	 * The data of this event.
+	     */
 		public var data:* = null ;
-
+        
+        /**
+         * The event name of this event (same like type value).
+         */
 		public var eventName:String = null ;
 		
 		/**
@@ -84,8 +116,14 @@ package vegas.events
          */
 		public var firstItem:uint = 0 ;
 
+    	/**
+    	 * The index of the item of this event.
+    	 */
 		public var index:uint = 0  ;
 
+    	/**
+    	 * The lastItem value of this event.
+    	 */	
 		public var lastItem:uint = 0 ;
 
         /**
@@ -104,11 +142,7 @@ package vegas.events
 		 */
 		override public function clone():Event
 		{
-			return new ModelChangedEvent(
-				eventName, data, fieldName
-				, firstItem, index, lastItem, removedIDs, removedItems
-				, bubbles, cancelable
-			);
+			return new ModelChangedEvent( eventName, data, fieldName , firstItem, index, lastItem, removedIDs, removedItems , bubbles, cancelable ) ;
 		}
 		
 	}

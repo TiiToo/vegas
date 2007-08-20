@@ -14,40 +14,20 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/** FunctionUtil
-
-	AUTHOR
-	
-		Name : FunctionUtil
-		Package : vegas.util.type
-		Version : 1.0.0.0
-		Date :  2006-07-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- static clone(f:Function):Function
-		
-		- static copy(f:Function):Function
-		
-		- static equals( f1:Function, f2:Function ):Boolean
-
-		- static toSource( f:Function ):String
-
-**/
-
 package vegas.util
 {
     
+    /**
+     * The {@code FunctionUtil} utility class is an all-static class with methods for working with function.
+     * @author eKameleon
+     */
     public class FunctionUtil
     {
     
@@ -69,7 +49,7 @@ package vegas.util
     	}
     
     	/**
-    	 * Compare if two Functions are equal by reference.
+    	 * Compares if two Functions are equal by reference.
      	 */
     	static public function equals( f1:Function, f2:Function ):Boolean 
     	{

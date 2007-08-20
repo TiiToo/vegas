@@ -14,51 +14,12 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
-
-/* ObjectUtil
-
-	AUTHOR
-
-		Name : ObjectUtil
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date : 2006-01-13
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- static clone(o)
-		
-		- static copy(o)
-			
-			Returns a copy by value of this object.
-			
-			See : ICopyable
-			
-    	- static isEmpty(o):Boolean
-
-		- static isSimple(value:Object):Boolean
-
-		- static memberwiseClone( o )
-			 Creates a shallow copy of the current Object.
-		
-		- static toBoolean(o):Boolean
-		
-		- static toNumber(o):Number
-		
-		- static toObject(o):Object
-		
-		- static toSource(o):String
-			
-**/
 
 package vegas.util
 {
@@ -66,15 +27,27 @@ package vegas.util
     import flash.utils.ByteArray;
     import vegas.util.Copier ;
     
+    /**
+     * The {@code ObjectUtil} utility class is an all-static class with methods for working with object.
+     * @author eKameleon
+     */
     public class ObjectUtil
     {
         
+       	/**
+	     * Returns the shallow copy of the object.
+    	 * @return the shallow copy of the object.
+    	 */
         static public function clone(o:Object):Object 
         {
 		    return o ;	
-        }   
-
-        static public function copy(o:*):*
+        }
+        
+    	/**
+    	 * Returns the deep copy of the object.
+    	 * @return the deep copy of the object.
+	     */ 
+	    static public function copy(o:*):*
         {
 			var obj:Object = {} ;
 			var prop:String ;
@@ -92,6 +65,9 @@ package vegas.util
 			return obj ;
         }
         
+        /**
+         * Copy the primitive object passed-in argument.
+         */
         static public function copyPrimitive(o:Object):Object
         {
             var buffer:ByteArray = new ByteArray();
@@ -100,6 +76,10 @@ package vegas.util
             return buffer.readObject();
         }
 
+    	/**
+    	 * Returns {@code true} if the passed object is empty of enumerable property.
+    	 * @return {@code true} if the passed object is empty of enumerable property.
+    	 */
         static public function isEmpty(o:Object):Boolean 
         {
             for (var each:String in o) 
@@ -108,8 +88,13 @@ package vegas.util
             }
         	return true ;
         }
-
-		static public function isSimple(value:Object):Boolean {
+        
+        /**
+         * Returns {@code true} if the specified object is a simple object.
+         * @return {@code true} if the specified object is a simple object.
+         */ 
+		static public function isSimple(value:Object):Boolean 
+		{
 			
 			var tof:String = typeof(value);
         	switch (tof)
@@ -131,7 +116,10 @@ package vegas.util
         	}
 
 		}
-
+    
+    	/**
+	     * Creates a shallow copy of the current Object.
+    	 */
 	    static public function memberwiseClone( o:* ):Object 
     	{
     	    var obj:Object = {} ;
@@ -141,22 +129,35 @@ package vegas.util
             }
         	return obj;
         }
-
+	
+	    /**
+    	 * Converts an object to an equivalent Boolean value.
+    	 */
         static public function toBoolean(o:*):Boolean 
         {
         	return (new Boolean( o.valueOf() )).valueOf() ;
         }
 
+    	/**
+    	 * Converts an object to an equivalent Number value.
+    	 */
     	static public function toNumber(o:*):Number 
 	    {
             return (new Number( o.valueOf() )).valueOf() ;
     	}
 
+    	/**
+	     * Converts an object to an equivalent Object value.
+    	 */
    	    static public function toObject(o:*):Object 
         {
       		return o.valueOf() as Object ;
     	}
-    	
+    
+       /**
+        * Returns the string representation of the source of the specified object.
+        * @return the string representation of the source of the specified object.
+        */	
  	   static public function toSource( ...arguments ):String 
  	   {
  	        var o:Object = arguments[0] ;
@@ -165,8 +166,10 @@ package vegas.util
 		    var each:String ;
     		var source:Array = [] ;
     		if (isNaN(indent)) indent ++ ;
-    		for (each in o) {
-    			if ( o.hasOwnProperty(each) ) {
+    		for (each in o) 
+    		{
+    			if ( o.hasOwnProperty(each) ) 
+    			{
     				if (o[each] === undefined) source.push( each + ":" + "undefined") ;
     				else if (o[each] === null) source.push( each + ":" + "null") ;
     				else source.push( each + ":" + Serializer.toSource(o[each], indent, indentor) ) ;

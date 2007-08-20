@@ -31,11 +31,18 @@ package vegas.util
     import vegas.errors.TypeMismatchError;
     import vegas.util.ClassUtil;
 
+    /**
+     * This abstract class is used to create concrete {@code ITypeable} implementations.
+     * @author eKameleon
+     * @see ITypeable
+     * @see IValidator
+     */
     public class AbstractTypeable extends CoreObject implements ITypeable, IValidator
     {
         
         /**
          * Creates a new AbstractTypeable instance.
+         * @param type the Type of this ITypeable object.
          */ 
         public function AbstractTypeable(type:*)
         {
@@ -49,23 +56,35 @@ package vegas.util
             
         }
         
-        // ----o Public Methods
-        
+	    /**
+    	 * Returns the type of the ITypeable object.
+    	 * @return the type of the ITypeable object.
+    	 */
         public function getType():*
         {
     		return _type ;
         }
-		     
+
+	    /**
+    	 * Sets the type of the ITypeable object.
+    	 */
         public function setType(type:*):void
         {
     	    _type = type ;
         }
         
+       	/**
+	     * Returns {@code true} if the IValidator object validate the value.
+    	 * @return {@code true} is this specific value is valid.
+	     */
         public function supports(value:*):Boolean
         {
         	return value is _type ;
         }
         
+       	/**
+	     * Evaluates the condition it checks and updates the IsValid property.
+	     */
         public function validate(value:*):void
         {
 		    var name:String = ClassUtil.getName(this) ;
@@ -75,6 +94,9 @@ package vegas.util
     		}
         }
         
+       	/**
+	     * The internal type function.
+	     */
     	private var _type:* ;
         
     }
