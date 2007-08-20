@@ -88,7 +88,7 @@ package vegas.events
 		 */
         public function dispatchEvent( event:Event ):Boolean
         {
-            return _dispatcher.dispatchEvent(event) ;
+            return _dispatcher.dispatchEvent( event ) ;
         }
  
 	 	/**

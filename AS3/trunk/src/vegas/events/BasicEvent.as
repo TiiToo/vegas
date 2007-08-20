@@ -1,8 +1,21 @@
-
+﻿
 package vegas.events 
-{	import flash.events.Event;	
-	/**	 * @author eKameleon	 */	class BasicEvent extends Event 
-	{
+{
+	
+	import flash.events.Event;
+	import flash.events.EventPhase;
+	import vegas.util.ClassUtil;
+	
+	/**
+	 * {@code BasicEvent} is the basical event structure to work with {@link vegas.events.EventDispatcher}.
+	 * <p><b>Example</b></p>
+	 * {@code var e:BasicEvent = new BasicEvent(type:String, target, context) ; } 
+	 * @author  eKameleon
+	 * @see Event	
+	 */
+	public class BasicEvent extends Event 
+	{
+
 		/**
 		 * Constructs a new {@code BasicEvent} instance.
 		 * <p>
@@ -18,13 +31,87 @@ package vegas.events
 		 * @param time this optional parameter is used in the eden deserialization to copy the timestamp value of this event.
 	 	 */
 		public function BasicEvent(type : String, target:* = null , context:* = null , bubbles:Boolean = false , cancelable:Boolean = false, time:Number = 0 )
-		{			
-			super(type, bubbles, cancelable);
+		{
+			
+			super((getType() != null) ? getType() : type, bubbles, cancelable);
 			
 			_context = (getContext() != null) ? getContext() : context ;
 			_target  = (getTarget() != null)  ? getTarget()  : target ;			
 			_time    = ( time > 0) ? time : ( (new Date()).valueOf() ) ;
-			 		}
+			_type    = (getType() != null) ? getType() : type ;
+			 
+		}
+		
+
+		/**
+		 * Returns the optional context of this event.
+		 * @return an object, corresponding the optional context of this event.
+		 */
+		public function get context():*
+		{
+			return getContext() ;	
+		}
+		
+		/**
+		 * Sets the optional context of this event.
+		 */
+		public function set context(o:*):void 
+		{
+			setContext(o) ;	
+		}
+		
+		/**
+		 * Returns the event target.
+		 * @return the event target.
+		 */
+		public override function get target():Object
+		{
+			return getTarget() ;	
+		}
+	
+		/**
+		 * Sets the event target.
+		 */
+		public function set target(o:Object):void 
+		{
+			setTarget(o) ;	
+		}
+		
+		/**
+		 * Returns the timestamp of the event.
+		 * @return the timestamp of the event.
+		 */
+		public function get timeStamp():Number 
+		{
+			return getTimeStamp() ;	
+		}
+		
+		/**
+		 * Returns the type of event.
+		 * @return the type of event.
+		 */
+		public override function get type():String 
+		{
+			return _type ;	
+		}
+	
+		/**
+		 * Sets the type of event.
+		 */
+		public function set type(s:String):void 
+		{
+			setType(s) ;	
+		}
+
+		/**
+		 * Returns the shallow copy of this event.
+		 * @return the shallow copy of this event.
+		 */
+		public override function clone():Event 
+		{
+			return new BasicEvent(getType(), getTarget(), getContext()) ;
+		}
+
 		/**
 		 * Returns the optional context of this event.
 		 * @return an object, corresponding the optional context of this event.
@@ -38,7 +125,7 @@ package vegas.events
 		 * Returns the event target.
 	 	 * @return the event target.
 		 */
-		public function getTarget():* 
+		public function getTarget():Object 
 		{
 			return _target ;
 		}
@@ -58,7 +145,7 @@ package vegas.events
 		 */
 		public function getType():String 
 		{
-			return this.type ;
+			return _type ;
 		}
 
 		/**
@@ -72,7 +159,7 @@ package vegas.events
 		/**
 	 	 * Sets the event target.
 		 */
-		public function setTarget(target:*):void 
+		public function setTarget(target:Object):void 
 		{
 			_target = target || null ;
 		}
@@ -82,23 +169,50 @@ package vegas.events
 		 */
 		public function setType( type:String ):void 
 		{
-			this.type = type || null ;
+			_type = type || null ;
+		}
+	
+		/**
+	 	 * Returns the string representation of this event.
+	 	 * @return the string representation of this event.
+	 	 */
+		public override function toString():String 
+		{
+			var name:String = ClassUtil.getName(this);
+			var txt:String = "[" + name ;
+			txt += " type=" + type ;
+			if (target != null)
+			{
+				txt += " target=" + target ;
+			}
+			if (context != undefined)
+			{
+				txt += " context=" + context ;
+			}	
+			txt += " eventphase=" + eventPhase ;
+			txt += " bubbles=" + bubbles ;
+			txt += " cancelable=" + cancelable ;
+			txt += "]" ;
+			return txt ;
 		}
 
 		private var _context:* = null ;
 	
-		private var _target:* = null ;
+		private var _target:Object = null ;
 	
 		private var _time:Number ;
 
+		private var _type:String ;
+		
 		/**
 		 * Sets the timestamp of the event (used this method only in internal in the Event class).
 		 */
-		/*protected*/ private function _setTimeStamp( time:Number ):void 
+		protected function setTimeStamp( time:Number ):void 
 		{
 			_time = (time >= 0) ? time : (new Date()).valueOf() ;	
 		}
 
 	}
 	
-		}
+		
+}
