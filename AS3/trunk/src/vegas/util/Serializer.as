@@ -21,6 +21,13 @@
   
 */
 
+// TODO implements serializers like AS2
+
+/**
+ * Allows an object to control its own serialization with an EDEN representation.
+ * Thanks : Zwetan Core2 framework inspired by Mozilla SpiderMonkey.
+ * @author eKameleon
+ */
 package vegas.util
 {
     
@@ -106,7 +113,8 @@ package vegas.util
 	    	return decal + "{" + decal + source.join( "," + decal ) + decal + "}" ;
 	    }
 	    
-		static public function getSourceOf(o:*, params:Array):String {
+		static public function getSourceOf(o:*, params:Array):String 
+		{
 		    var path:String = ClassUtil.getPath(o) ;
     		var source:String = "new " + path + "(" ;
     		var l:uint = params.length ;

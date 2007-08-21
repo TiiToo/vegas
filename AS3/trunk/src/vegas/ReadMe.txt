@@ -1,20 +1,33 @@
  
-   VEGAS version 0.1 AS3
+   VEGAS AS3 - version 1 beta 1
  
-    * Project : http://www.ekameleon.net/vegas/ -- comming soon --
-    * Trac : http://live.burrrn.com/wiki/VEGAS
+   LICENCE 
+
+	Mozilla Public License 1.1 (MPL 1.1) (read Licence.txt)
+
+   PROJECT PAGES
+
+	- http://code.google.com/p/vegas/
+	- http://osflash.org/asgard
+	- http://vegas.riaforge.org/
+
+   DOCUMENTATION & CO
+
+    - http://code.google.com/p/vegas/ (tutorials and install)
+    - http://code.google.com/p/vegas/issues/list (issues)
+    - http://www.ekameleon.net/blog/ (french blog)
+    - http://vegas.ekameleon.net/docs (AS2 reference)
 
    ABOUT
 
     * Author : eKameleon
-    * Version : 0.1 AS3
+    * Version : 1 beta 1 AS3
     * Link : http://www.ekameleon.net/blog
     * Mail : vegas@ekameleon.net 
 
    THANKS
 
-    * Zwetan : ECMAScript Concepts and hosting | http://zwetan.com/
-    * Faya : http://www.djellyfish.com/
+    * Zwetan : ECMAScript Concepts and hosting | http://www.zwetan.com/
     * Stephan Schmid : Event model framework inspiration | http://schst.net/
     * OSFlash - Second SVN Hosting : http://www.osflash.org
     * PowerFlasher - FDT OpenSource Licence : http://powerflasher.com/ 

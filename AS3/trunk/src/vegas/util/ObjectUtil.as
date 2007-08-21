@@ -51,14 +51,22 @@ package vegas.util
         {
 			var obj:Object = {} ;
 			var prop:String ;
-			for (prop in o) {
-				if( ! o.hasOwnProperty( prop ) ) {
+			for (prop in o) 
+			{
+				if( ! o.hasOwnProperty( prop ) ) 
+				{
 				  	continue ;
-			  	} else if ( o[prop] == undefined ) {
+			  	}
+			  	else if ( o[prop] == undefined ) 
+			  	{
 			  		obj[prop] = undefined ;
-			  	} else if ( o[prop] == null ) {
+			  	} 
+			  	else if ( o[prop] == null ) 
+			  	{
 			  		obj[prop] = null ;
-				} else {
+				}
+				else 
+				{
 			  		obj[prop] = Copier.copy(obj[prop]) ; 
 			  	}
 			}

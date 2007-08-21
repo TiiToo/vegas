@@ -32,7 +32,8 @@ package vegas.core
 	{
 
 		/**
-		 * Compares its two arguments for order.
+		 * Compares its two arguments for order. Returns a negative integer, zero, or a positive integer as the first argument is less than, equal to, or greater than the second.
+		 * @return a negative integer, zero, or a positive integer as the first argument is less than, equal to, or greater than the second.
 		 */
 		function compare(o1:*, o2:*):int ;
 

@@ -27,7 +27,7 @@ package vegas.util
     import vegas.errors.ArgumentOutOfBoundsError;
 
 	/**
-	 * Array tool class.
+	 * Array static tool class.
 	 * @author eKameleon
 	 */
     public class ArrayUtil 
@@ -56,12 +56,18 @@ package vegas.util
     	{
     		var a:Array = [] ;
     		var l:uint = ar.length ;
-    		for (var i:uint = 0 ; i < l ; i++) {
-    			if( ar[i] === undefined ) {
+    		for (var i:uint = 0 ; i < l ; i++) 
+    		{
+    			if( ar[i] === undefined ) 
+    			{
     				a[i] = undefined ;
-    			} else if( ar[i] === null ) {
+    			}
+    			else if( ar[i] === null ) 
+    			{
     				a[i] = null ;
-            } else {
+    			}
+            	else 
+            	{
     				a[i] = Copier.copy(ar[i]) ; // TODO test !!
     			}
     		}

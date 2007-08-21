@@ -29,7 +29,6 @@ package vegas.util
     import vegas.core.IValidator;
     import vegas.errors.IllegalArgumentError;
     import vegas.errors.TypeMismatchError;
-    import vegas.util.ClassUtil;
 
     /**
      * This abstract class is used to create concrete {@code ITypeable} implementations.

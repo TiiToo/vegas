@@ -21,30 +21,6 @@
   
 */
 
-/** Copier
-
-	AUTHOR
-	
-		Name : Copier
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date : 2006-07-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- static copy(o)
-			
-			return a deep copy of the object.
-
-	SEE ALSO
-
-		ICopyable
-
-**/
-
 package vegas.util
 {
 
@@ -57,15 +33,30 @@ package vegas.util
     import vegas.util.ObjectUtil;
     import vegas.util.TypeUtil;
 
-    /**
-     * @author eKameleon
-     * @version 1.0.0.0
-     */
-
+	/**
+ 	 * The {@code Copier} utility class is an all-static class with a method to returns a copy representation of an object.
+ 	 * @author eKameleon
+ 	 * @see ICopyable
+ 	 */
 	public class Copier
 	{
 
-        static public function copy( o:* ):* {
+		/**
+		 * Returns a deep copy of the specified object passed in argument. You can use a {@code ICopyable} instance or a native object.
+	 	 * <p><b>Example :</b></p>
+		 * {@code
+		 * import vegas.data.list.LinkedList ;
+		 * import vegas.util.Copier ;
+		 * var list:LinkedList = new LinkedList() ;
+		 * list.insert("item1") ;
+		 * list.insert("item2") ;
+		 * var copy:LinkedList = Copier.copy(list) as LinkedList ; // LinkedList is ICopyable !
+	 	 * trace( copy.equals(list) ) ; // true
+	 	 * }
+	 	 * @return a deep copy of the specified object passed in argument.
+	 	 */	
+        static public function copy( o:* ):* 
+        {
 		    if (o === undefined) 
 		    {
 		        return undefined ;
@@ -88,7 +79,7 @@ package vegas.util
     		}
     		else if (o is Date) 
     		{
-    		    return DateUtil.copy( o ) ;
+    		    return DateUtil.copy( o as Date ) ;
     		}
     		else if ( o is Function ) 
     		{
@@ -104,7 +95,7 @@ package vegas.util
     		}
     		else if (o is Object) 
     		{
-    		    return ObjectUtil.copy(o) ;
+    		    return ObjectUtil.copy( o ) ;
     		}
     		else 
     		{

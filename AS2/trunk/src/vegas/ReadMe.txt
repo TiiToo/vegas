@@ -1,5 +1,5 @@
  
-   VEGAS version 1 Release Candidate 1
+   VEGAS AS2 - version 1 Release Candidate 2
  
    LICENCE 
 
@@ -7,21 +7,21 @@
 
    PROJECT PAGES
 
+	- http://code.google.com/p/vegas/
 	- http://osflash.org/asgard
 	- http://vegas.riaforge.org/
-	- http://code.google.com/p/vegas/
-
 
    DOCUMENTATION & CO
 
-        - http://www.ekameleon.net/blog/ (french blog)
-	- http://vegas.ekameleon.net/docs (AS2 reference)
-	- http://code.google.com/p/vegas/issues/list (issues)
+    - http://code.google.com/p/vegas/ (tutorials and install)
+    - http://code.google.com/p/vegas/issues/list (issues)
+    - http://www.ekameleon.net/blog/ (french blog)
+    - http://vegas.ekameleon.net/docs (AS2 reference)
 
    ABOUT
 
     * Author : eKameleon
-    * Version : 0.9
+    * Version : 1 RC2
     * Link : http://www.ekameleon.net/blog
     * Mail : vegas@ekameleon.net 
 

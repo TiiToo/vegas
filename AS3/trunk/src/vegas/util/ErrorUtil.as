@@ -21,35 +21,58 @@
   
 */
 
-/** ErrorUtil
-
-	AUTHOR
-	
-		Name : ErrorUtil
-		Package : vegas.util
-		Version : 1.0.0.0
-		Date :  2006-07-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		EDEN Compatibility to serialize ECMAScript data.
-
-	METHOD SUMMARY
-	
-		- static toSource(e:Error):String
-	
-**/
-
 
 package vegas.util
 {
+
+	/**
+	 * The {@code ErrorUtil} utility class is an all-static class with methods for working with Error.
+	 * @author eKameleon
+	 */
     public class ErrorUtil
     {
         
-	    static public function toSource( e:Error ):String {
+		/**
+	 	 * Returns a shallow copy by reference of this specified error.
+	 	 * @return a shallow copy by reference of this specified error.
+	 	 */
+		static public function clone(e:Error):Error 
+		{
+			return new Error(e.message) ;
+		}
+
+		/**
+	 	 * Returns a deep copy by value of this specified error.
+	 	 * @return a deep copy by value of this specified error.
+	 	 */
+		static public function copy(e:Error):Error 
+		{
+			return new Error( (e.message).valueOf() ) ;
+		}        
+
+		/**
+		 * Compares if two Errors are equal by reference.
+		 * @return {@code true} if the two Errors are equal by reference.
+	 	 */
+		static public function equals( e1:Error = null , e2:Error = null ):Boolean 
+		{
+    		if(e1 == null)
+        	{
+	        	return false ;
+        	}
+    		if(e2 == null)
+        	{
+	        	return false ;
+        	}
+			return e1.toString() == e2.toString() ;
+    	}
+
+		/**
+	 	 * Returns a string representing the source code of the object.
+	 	 * @return a string representing the source code of the object.
+ 	 	 */
+	    static public function toSource( e:Error ):String 
+	    {
 		    return 'new Error(\"' + e.message + '")' ;
         }
         
