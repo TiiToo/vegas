@@ -80,7 +80,7 @@ class vegas.util.comparators.DateComparator extends CoreObject implements ICompa
 		{
 			var a:Number = (o1 instanceof Date) ? o1.valueOf() : o1 ;
 			var b:Number = (o2 instanceof Date) ? o2.valueOf() : o2 ;
-			return (new NumberComparator()).compare(a, b) ;
+			return NumberComparator.getInstance().compare(a, b) ;
 		}
 		else 
 		{

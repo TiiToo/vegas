@@ -77,7 +77,7 @@ class vegas.util.comparators.StringComparator extends CoreObject implements ICom
 	 * <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
 	 * <li> 0 if o1 and o2 are equal.</li>
 	 * </p>
-	 * @throws IllegalArgumentError if compare(a, b) and 'a' or 'b' aren't String objects.
+	 * @throws ClassCastError if compare(a, b) and 'a' or 'b' aren't String objects.
 	 */
 	public function compare(o1, o2):Number 
 	{
