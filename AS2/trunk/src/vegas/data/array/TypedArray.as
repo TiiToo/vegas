@@ -37,16 +37,14 @@ import vegas.util.TypeUtil;
 /**
  * {@code TypedArray} acts like a normal array but assures that only objects of a specific type are added to the array.
  * 
- * <p><b>Example :</b>
- * {@ code
+ * <p><b>Example :</b></p>
+ * {@code
  * import vegas.data.array.TypedArray ;
  * 
  * var ta:TypedArray = new TypedArray(String, ["item1", "item2", "item3"]) ;
  * trace ("ta : " + ta) ; // output : ta : item1,item2,item3
  * ta.push(2) ; // [TypeMismatchError] TypedArray.validate('value':2) is mismatch
  * }
- * </p>
- * 
  * @author eKameleon 
  */
  class vegas.data.array.TypedArray extends Array implements ICloneable, IFormattable, ISerializable, ITypeable, IValidator 
@@ -54,10 +52,15 @@ import vegas.util.TypeUtil;
 
 	/**
 	 * Creates a new TypedArray instance.
+	 * @param type the Type(Function) of all objects in this collection.
+	 * @param ar the default array of values to fill this collection.
 	 */
 	public function TypedArray(type:Function, ar:Array) 
 	{
-		if (!type) throw new IllegalArgumentError("TypedArray constructor, argument 'type' must not be 'null' nor 'undefined'.") ;
+		if (!type) 
+		{
+			throw new IllegalArgumentError("TypedArray constructor, argument 'type' must not be 'null' nor 'undefined'.") ;
+		}
 		_type = type ;
 		var l:Number = ar.length ;
 		if (l > 0) 
@@ -76,6 +79,7 @@ import vegas.util.TypeUtil;
 	
 	/**
 	 * Creates and returns a shallow copy of the object.
+	 * @return a shallow copy of the object. 
 	 */	
 	public function clone() 
 	{
@@ -118,7 +122,8 @@ import vegas.util.TypeUtil;
 	}
 
 	/**
-	 * Returns the type of the ITypeable object.
+	 * Returns the type of the {@code ITypeable} object.
+	 * @return the type of the {@code ITypeable} object.
 	 */
 	public function getType():Function 
 	{
@@ -127,6 +132,7 @@ import vegas.util.TypeUtil;
 
 	/**
 	 * Returns a hashcode value for the object.
+	 * @return a hashcode value for the object.
 	 */
 	public function hashCode():Number 
 	{
@@ -135,6 +141,7 @@ import vegas.util.TypeUtil;
 
 	/**
 	 * Returns the iterator of the object.
+	 * @return the iterator of the object.
 	 */
 	public function iterator():Iterator 
 	{
@@ -174,7 +181,8 @@ import vegas.util.TypeUtil;
 	}
 
 	/**
-	 * Returns true if the IValidator object validate the value.
+	 * Returns {@code true} if the {@code IValidator} object validate the value.
+	 * @return {@code true} if the {@code IValidator} object validate the value.
 	 */
 	public function supports(value):Boolean 
 	{
@@ -182,8 +190,8 @@ import vegas.util.TypeUtil;
 	}
 
 	/**
-	 * Returns a Eden reprensation of the object.
-	 * @return a string representing the source code of the object.
+	 * Returns a eden string reprensation of the object.
+	 * @return a eden string representing the source code of the object.
 	 */
 	public function toSource(indent:Number, indentor:String):String 
 	{
