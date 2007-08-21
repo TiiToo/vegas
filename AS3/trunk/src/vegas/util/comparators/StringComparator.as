@@ -59,7 +59,7 @@ package vegas.util.comparators
 	{
 		
 		/**
-		 * Creates a new StringCompator instance.
+		 * Creates a new StringComparator instance.
 		 * @param ignoreCase a boolean to define if the comparator ignore case or not.
 	 	 */
 		public function StringComparator( ignoreCase:Boolean=false )

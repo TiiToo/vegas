@@ -60,7 +60,7 @@ package vegas.util.comparators
 	{
 		
 		/**
-		 * Creates a new NullCompator instance.
+		 * Creates a new NullComparator instance.
 		 * @param nonNullComparator the comparator to use when comparing two non-null objects.
 		 * @param nullsAreHigh a {@code true} value indicates that null should be compared as higher than a non-null object. A {@code false} value indicates that null should be compared as lower than a non-null object. 
 		 */
@@ -139,6 +139,26 @@ package vegas.util.comparators
 		{
 			return new NullComparator( nonNullComparator, nullsAreHigh) ;
 		}
+
+		/**
+		 * Returns the singleton instance of a ReverseComparator.
+		 * Developers are encouraged to use the comparator returned from this method instead of constructing a new instance to reduce allocation and GC overhead when multiple comparable comparators may be used in the same application.
+	 	 * @return the singleton instance of a ReverseComparator.
+		 */
+		static public function getInstance():NullComparator
+		{
+			if (_instance == null)
+			{
+				_instance = new NullComparator() ;
+			}
+			return _instance ;	
+		}
+
+		/**
+	  	 * The internal static singleton of this class.
+	 	 */
+		static private var _instance:NullComparator ;
+
 		
 	}
 }

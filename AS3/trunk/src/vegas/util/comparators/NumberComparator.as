@@ -52,7 +52,7 @@ package vegas.util.comparators
 	{
 		
 		/**
-		 * Creates a new NumberCompator instance.
+		 * Creates a new NumberComparator instance.
 		 */
 		public function NumberComparator() 
 		{

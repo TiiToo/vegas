@@ -75,7 +75,7 @@ package vegas.util.comparators
 			{
 				throw new NullPointerError(this + " compare method failed, the o1 object is 'null' or 'undefined'.") ;	
 			}
-			if ( o1 instanceof IComparable )
+			if ( o1 is IComparable )
 			{
 				return (o1 as IComparable).compareTo(o2) ;	
 			}

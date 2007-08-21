@@ -57,7 +57,7 @@ package vegas.util.comparators
 	{
 		
 		/**
-		 * Creates a new DateCompator instance.
+		 * Creates a new DateComparator instance.
 		 */
 		public function DateComparator()
 		{
@@ -92,7 +92,7 @@ package vegas.util.comparators
 			{
 				var a:Number = (o1 is Date) ? (o1 as Date).valueOf() : o1 ;
 				var b:Number = (o2 is Date) ? (o2 as Date).valueOf() : o2 ;
-				return (new NumberComparator()).compare(a, b) ;
+				return NumberComparator.getInstance().compare(a, b) ;
 			}
 			else 
 			{
