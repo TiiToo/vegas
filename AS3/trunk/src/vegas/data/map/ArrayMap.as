@@ -48,8 +48,8 @@ package vegas.data.map
         {
             super();
             
-            var k:* = arguments[0] ;
-    		var v:* = arguments[1] ;
+            var k:Array = arguments[0] as Array ;
+    		var v:Array = arguments[1] as Array ;
     		
     		if (k == null ||  v == null) 
     		{
@@ -58,8 +58,8 @@ package vegas.data.map
     		}
     		else 
             {
-    		    var b:Boolean =  (k is Array && v is Array && k.length > 0 && k.length == v.length) ;
-    		    _keys = b ? [].concat(k) : [] ;
+    		    var b:Boolean =  ( k.length > 0 && k.length == v.length ) ;
+    		    _keys   = b ? [].concat(k) : [] ;
         		_values = b ? [].concat(v) : [] ;
             }
         }

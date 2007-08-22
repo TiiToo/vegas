@@ -43,9 +43,12 @@ class pegas.process.Sequencer extends AbstractAction
 	/**
 	 * Creates a new Sequencer instance.
 	 * @param ar An Array of {@code Action} objects.
+	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */
-	public function Sequencer( ar:Array ) 
+	public function Sequencer( ar:Array , bGlobal:Boolean, sChannel:String ) 
 	{
+		super(bGlobal, sChannel);
 		_queue = new TypedQueue(Action, new LinearQueue()) ; 
 		_runner = new Delegate(this, run) ;
 		var l:Number = ar.length ;

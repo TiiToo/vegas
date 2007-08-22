@@ -95,7 +95,7 @@ package vegas.data.array
         /**
          * Init Proxy getProperty.
          */
-        flash_proxy override function getProperty( name ):* 
+        flash_proxy override function getProperty( name:String ):* 
         {
             return _ar[name];
         }

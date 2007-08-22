@@ -341,22 +341,34 @@ class asgard.net.NetServerConnection extends NetConnection implements Action, IE
 	{
 		return new EventDispatcher(this) ;
 	}
-
+	
+	/**
+	 * Invoqued when the connection is closed.
+	 */
 	public function notifyClose():Void 
 	{
 		dispatchEvent( _eClose ) ;	
 	}
 
+	/**
+	 * Invoqued when the connection is finished.
+	 */
 	public function notifyFinished():Void 
 	{
 		dispatchEvent( _eFinish ) ;
 	}
 
+	/**
+	 * Invoqued when the connection is started.
+	 */
 	public function notifyStarted():Void 
 	{
 		dispatchEvent( _eStart ) ;
 	}
 	
+	/**
+	 * Invoqued when the status of the connection is changed.
+	 */
 	public function notifyStatus( status:NetServerStatus , info ):Void 
 	{
 		_eStatus.setInfo(info) ;
@@ -364,6 +376,9 @@ class asgard.net.NetServerConnection extends NetConnection implements Action, IE
 		dispatchEvent( _eStatus ) ;	
 	}
 
+	/**
+	 * Invoqued when the connection is timeout.
+	 */
 	public function notifyTimeOut():Void 
 	{
 		dispatchEvent( _eTimeOut ) ;	

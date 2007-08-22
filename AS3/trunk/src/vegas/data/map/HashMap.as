@@ -26,21 +26,17 @@ package vegas.data.map
 
     import flash.utils.Proxy;
     import flash.utils.getDefinitionByName;
-
-    import vegas.core.HashCode ;
-    import vegas.core.ICloneable ;
-    import vegas.core.IFormattable ;
-
-    import vegas.data.iterator.ArrayIterator  ;
-    import vegas.data.iterator.Iterator  ;
-    import vegas.data.iterator.MapIterator  ;
-    import vegas.data.Map ;
-    import vegas.data.map.MapFormat ;
-
-	import vegas.util.Copier ;
-    import vegas.util.Serializer ;
-
-	/**
+    
+    import vegas.core.HashCode;
+    import vegas.data.Map;
+    import vegas.data.iterator.ArrayIterator;
+    import vegas.data.iterator.Iterator;
+    import vegas.data.iterator.MapIterator;
+    import vegas.data.map.MapFormat;
+    import vegas.util.Copier;
+    import vegas.util.Serializer;
+    
+    /**
 	 * This class is not the same AS2 vegas.data.map.HashMap, see ArrayMap to compare AS2 and AS3 class.
 	 * <p><b>Example :</b></p>
 	 * <p>

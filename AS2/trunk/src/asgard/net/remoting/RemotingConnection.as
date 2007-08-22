@@ -36,18 +36,26 @@ class asgard.net.remoting.RemotingConnection extends NetServerConnection
 	/**
 	 * Creates a new RemotingConnection instance.
 	 * @param sURL the url of the connection.
+	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */	
-	function RemotingConnection( sURL:String ) 
+	function RemotingConnection( sURL:String , bGlobal:Boolean , sChannel:String ) 
 	{
-		super() ;
-		if (sURL) this.connect( sURL );
+		super( bGlobal , sChannel ) ;
+		if ( sURL != null && sURL.length > 0 ) 
+		{
+			this.connect( sURL );
+		}
 	}
 
 	/**
 	 * The string value of the amf server debug attribut.
 	 */
 	static public var AMF_SERVER_DEBUG:String = "amf_server_debug" ;
-
+	
+	/**
+	 * The string representation of the Credentials namespace.
+	 */
 	static public var CREDENTIALS:String = "Credentials" ;
 	
 	/**
@@ -65,7 +73,8 @@ class asgard.net.remoting.RemotingConnection extends NetServerConnection
 	 */
 	static public function getConnection( sUrl:String ):RemotingConnection 
 	{
-		if ( ! RemotingConnectionCollector.contains(sUrl) ) {
+		if ( ! RemotingConnectionCollector.contains(sUrl) ) 
+		{
 			RemotingConnectionCollector.insert(sUrl, new RemotingConnection( sUrl ));
 		}
 		return RemotingConnectionCollector.get(sUrl) ;
@@ -76,10 +85,8 @@ class asgard.net.remoting.RemotingConnection extends NetServerConnection
 	 */
 	public function setCredentials( authentification:RemotingAuthentification ):Void  
 	{
-		
 		var o:Object = (authentification == null) ? null : authentification.toObject() ;
 		addHeader( RemotingConnection.CREDENTIALS , false, o);
-		
 	}
 
 	/**

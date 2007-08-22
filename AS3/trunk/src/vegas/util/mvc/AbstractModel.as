@@ -44,9 +44,9 @@ package vegas.util.mvc
 		/**
 		 * Adds a view in the model.
 		 */
-		public function addView(view:IView):void
+		public function addView( view:IView ):void
 		{
-			VEGAS::addEventListener( ModelChangedEvent.MODEL_CHANGED, view ) ;
+            this.VEGAS::addEventListener(ModelChangedEvent.MODEL_CHANGED, view ) ;
 		}
 
 		/**

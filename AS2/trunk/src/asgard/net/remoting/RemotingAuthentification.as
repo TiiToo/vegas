@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -26,7 +26,6 @@ import vegas.core.CoreObject;
 /**
  * This class is used to create a credential authentification with a Flash remoting method.
  * @author eKameleon
- * @date 2006-05-02
  */
 class asgard.net.remoting.RemotingAuthentification extends CoreObject 
 {

@@ -24,26 +24,14 @@
 package vegas.data.array
 {
 
-    import vegas.core.CoreObject ;
-    import vegas.core.HashCode ;
-    import vegas.core.ICloneable;
-    import vegas.core.IFormattable;
-    import vegas.core.IHashable ;
-    import vegas.core.ISerializable;    
     import vegas.core.ITypeable;
     import vegas.core.IValidator;
-   
-    import vegas.data.iterator.ArrayIterator ;
-    import vegas.data.iterator.Iterable;    
-    import vegas.data.iterator.Iterator;    
-   
-    import vegas.errors.IllegalArgumentError ;
-    import vegas.errors.TypeMismatchError ;
-
-    import vegas.util.ClassUtil ;    
-    import vegas.util.Serializer ;
-
-	/**
+    import vegas.errors.IllegalArgumentError;
+    import vegas.errors.TypeMismatchError;
+    import vegas.util.ClassUtil;
+    import vegas.util.Serializer;
+    
+    /**
 	 * {@code TypedArray} acts like a normal array but assures that only objects of a specific type are added to the array.
 	 * 
 	 * <p>Example :
@@ -136,9 +124,9 @@ package vegas.data.array
     			
     			var cur:* = arguments[j] ;
     			
-    			if (cur as Array) 
+    			if (cur is Array) 
     			{
-    				l2 = cur.length ;
+    				l2 = (cur as Array).length ;
     				k = -1 ;
     				while (++k < l2) 
     				{

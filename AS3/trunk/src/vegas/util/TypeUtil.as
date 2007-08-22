@@ -26,8 +26,6 @@
 package vegas.util
 {
     
-    import vegas.util.ClassUtil;
-    
     /**
      * The {@code TypeUtil} utility class is an all-static class with methods for checking and working with the type of the object in AS2.
      * @author eKameleon

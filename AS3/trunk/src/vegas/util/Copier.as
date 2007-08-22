@@ -26,14 +26,10 @@ package vegas.util
 
     import vegas.core.ICopyable;
     import vegas.util.ArrayUtil;
-    import vegas.util.BooleanUtil;
     import vegas.util.DateUtil;
-    import vegas.util.FunctionUtil;
-    import vegas.util.NumberUtil ;
     import vegas.util.ObjectUtil;
-    import vegas.util.TypeUtil;
-
-	/**
+    
+    /**
  	 * The {@code Copier} utility class is an all-static class with a method to returns a copy representation of an object.
  	 * @author eKameleon
  	 * @see ICopyable

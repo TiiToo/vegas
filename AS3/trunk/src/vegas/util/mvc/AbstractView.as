@@ -23,12 +23,13 @@
 
 package vegas.util.mvc
 {
-	
-	import flash.display.DisplayObject;
-	
-	import vegas.core.CoreObject;
-
-	/**
+    import flash.display.DisplayObject;
+    import flash.display.Stage;
+    import flash.events.Event;
+    
+    import vegas.core.CoreObject;
+    
+    /**
 	 * Abstract class to creates IView implementations.
 	 * @author eKameleon
 	 */
@@ -56,7 +57,7 @@ package vegas.util.mvc
 		 */
 		public function getDisplay():DisplayObject
 		{
-			return _mcContainer ;
+			return _display ;
 		}
 
 		/**
@@ -65,7 +66,7 @@ package vegas.util.mvc
 		 */
 		public function handleEvent(e:Event):*
 		{
-			//
+			return null ;
 		}
 
 		/**
@@ -97,13 +98,13 @@ package vegas.util.mvc
 		 */
 		public function setDisplay( display:DisplayObject=null ):void
 		{
-			_display = (display == null) ? root : display ;
+			_display = (display == null) ? Stage.root : display ;
 		}		
 	
 		/**
 		 * Internal display view reference.
 		 */
-		private var _display:MovieClip ;
+		private var _display:DisplayObject ;
 
 		/**
 		 * Internal controller.

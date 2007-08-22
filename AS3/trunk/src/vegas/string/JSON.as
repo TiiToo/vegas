@@ -42,9 +42,10 @@
  
 package vegas.string
 {
-	import vegas.string.errors.JSONError;
-
-	/**
+    import vegas.core.IFormattable;
+    import vegas.string.errors.JSONError;
+    
+    /**
 	 * JSON (JavaScript object Notation) is a lightweight data-interchange format.
 	 * <p>Serializer & deserializer in AS2.</p>
 	 * <p>More information in the official site : <a href="http://www.JSON.org/">http://www.JSON.org</a></p>
@@ -617,7 +618,8 @@ package vegas.string
 							return '[' + s + ']';
 						
 						}
-						else if (typeof(o.toString) != 'undefined') 
+						// TODO test the IFormattable test ?? fixbug in FDT3 but not in Flex (no bug in Flex)
+						else if ( typeof( (o as IFormattable ).toString ) != 'undefined') 
 						{
 							
 							for (var prop:String in o) 
@@ -647,11 +649,11 @@ package vegas.string
 				case 'string' :
 				{
 				
-					l = o.length ;
+					l = (o as String).length ;
 					s = '"' ;
 					for (i = 0 ; i < l ; i += 1) 
 					{
-						c = o.charAt(i);
+						c = (o as String).charAt(i) ;
 						if (c >= ' ') 
 						{
 							if (c == '\\' || c == '"') 

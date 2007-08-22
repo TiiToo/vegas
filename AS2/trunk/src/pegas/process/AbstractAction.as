@@ -35,17 +35,22 @@ class pegas.process.AbstractAction extends SimpleAction implements ICloneable
 
 	/**
 	 * Creates a new AbstractAction instance.
+	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */	
-	private function AbstractAction() 
+	private function AbstractAction( bGlobal:Boolean, sChannel:String ) 
 	{
 		
-		_eChange = new ActionEvent(ActionEvent.CHANGE, this) ;
-		_eClear = new ActionEvent(ActionEvent.CLEAR, this) ;
-		_eInfo = new ActionEvent(ActionEvent.INFO, this) ;
-		_eLoop = new ActionEvent(ActionEvent.LOOP, this) ;
-		_eProgress = new ActionEvent(ActionEvent.PROGRESS, this) ;
-		_eResume = new ActionEvent(ActionEvent.RESUME, this) ;
-		_eStop = new ActionEvent(ActionEvent.STOP, this) ;
+		super(bGlobal, sChannel);
+		
+		_eChange   = new ActionEvent( ActionEvent.CHANGE   , this ) ;
+		_eClear    = new ActionEvent( ActionEvent.CLEAR    , this ) ;
+		_eInfo     = new ActionEvent( ActionEvent.INFO     , this ) ;
+		_eLoop     = new ActionEvent( ActionEvent.LOOP     , this ) ;
+		_eProgress = new ActionEvent( ActionEvent.PROGRESS , this ) ;
+		_eResume   = new ActionEvent( ActionEvent.RESUME   , this ) ;
+		_eStop     = new ActionEvent( ActionEvent.STOP     , this ) ;
+		_eTimeout  = new ActionEvent( ActionEvent.TIMEOUT  , this ) ;
 		
 	}
 	
@@ -124,11 +129,11 @@ class pegas.process.AbstractAction extends SimpleAction implements ICloneable
 	 */
 	public function notifyTimeOut():Void
 	{
-		dispatchEvent( new ActionEvent(ActionEvent.TIMEOUT ) ) ;
+		dispatchEvent( _eTimeout ) ;
 	}
 
 	/**
-	 * Returns a Eden representation of the object.
+	 * Returns a eden representation of the object.
 	 * @param indent:Number optional the starting of the indenting
 	 * @param identor:String the string value used to do the indentation
 	 * @return a string representing the source code of the object.
@@ -145,5 +150,6 @@ class pegas.process.AbstractAction extends SimpleAction implements ICloneable
 	private var _eProgress:ActionEvent ;
 	private var _eResume:ActionEvent ;
 	private var _eStop:ActionEvent ;
-
+	private var _eTimeout:ActionEvent ;
+	
 }

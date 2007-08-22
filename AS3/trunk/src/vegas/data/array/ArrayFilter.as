@@ -26,9 +26,6 @@ package vegas.data.array
     
     import vegas.events.AbstractCoreEventDispatcher ;
     import vegas.events.BasicEvent 
-    import flash.events.EventPhase;
-    import vegas.events.BasicEvent;
-    import vegas.events.BasicEvent;;
         
     /**
      * This filter contains all constants and methods to sort the Arrays in the application.

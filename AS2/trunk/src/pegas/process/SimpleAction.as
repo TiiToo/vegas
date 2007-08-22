@@ -60,7 +60,7 @@ class pegas.process.SimpleAction extends AbstractCoreEventDispatcher implements 
 	 */
 	public function clone() 
 	{
-		//
+		return new SimpleAction() ;
 	}
 
 	/**
