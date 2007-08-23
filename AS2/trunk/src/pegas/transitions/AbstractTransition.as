@@ -38,6 +38,7 @@ class pegas.transitions.AbstractTransition extends AbstractCoreEventDispatcher i
 
 	/**
 	 * Creates a new AbstractTransition instance.
+	 * @param id the 'id' value of the ITransition object.
 	 * @param bGlobal the flag to use a global event flow or a local event flow.
 	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */	

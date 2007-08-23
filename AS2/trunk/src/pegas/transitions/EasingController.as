@@ -89,6 +89,19 @@ class pegas.transitions.EasingController extends CoreObject
 	}
 	
 	/**
+	 * Returns the singleton instance of EasingController.
+	 * @return singleton instance of EasingController.
+	 */
+	public static function getInstance():EasingController 
+	{
+		if ( _instance == null )
+		{
+			_instance = new EasingController() ;
+		}
+		return _instance ;
+	}
+	
+	/**
 	 * Adds a new entry into the EasingController.
 	 * @param id the {@code id} of the easing method mapped in the EasingController.
 	 * @param easingMethod the function to register in the EasingController.
@@ -115,6 +128,11 @@ class pegas.transitions.EasingController extends CoreObject
 	{
 		return _map.size() ;
 	}	
+
+	/**
+	 * The internal singleton reference.
+	 */
+	private static var _instance:EasingController;
 
 	/**
 	 * Internal HashMap instance.
