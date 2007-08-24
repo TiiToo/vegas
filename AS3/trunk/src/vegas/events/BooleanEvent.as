@@ -28,6 +28,10 @@ package vegas.events
     
     /**
      * The {@code BooleanEvent} to dispatch an event with a Boolean object.
+     * {@code
+     * var e:Event = new BooleanEvent("change", true) ;
+     * trace( (e as BooleanEvent).getBoolean() ) ;
+     * } 
      * @author eKameleon
      */
 	public class BooleanEvent extends BasicEvent 

@@ -28,6 +28,10 @@ package vegas.events
     
     /**
      * The {@code NumberEvent} to dispatch an event with a Number object.
+     * {@code
+     * var e:Event = new NumberEvent("change", 10) ;
+     * trace( (e as NumberEvent).getNumber() ) ;
+     * }
      * @author eKameleon
      */
 	public class NumberEvent extends BasicEvent 

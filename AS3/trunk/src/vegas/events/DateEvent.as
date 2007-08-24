@@ -28,6 +28,10 @@ package vegas.events
     
     /**
      * The {@code DateEvent} to dispatch an event with a Date object.
+     * {@code
+     * var e:Event = new DateEvent("change", new Date()) ;
+     * trace( (e as DateEvent).getDate() ) ;
+     * }  
      * @author eKameleon
      */
 	public class DateEvent extends BasicEvent 
@@ -35,6 +39,7 @@ package vegas.events
         
 		/**
 		 * Creates a new {@code DateEvent} instance.
+		 * 
 		 * @param type the string type of the instance. 
 		 * @param date the Date object of this event. 
 		 * @param target the target of the event.
