@@ -39,12 +39,10 @@ package vegas.events
 	{
 
 		/**
-		 * Constructs a new {@code BasicEvent} instance.
-		 * <p>
+		 * Creates a new {@code BasicEvent} instance.
 		 * {@code
-		 *     var e:BasicEvent = new BasicEvent(type, target, context, [bubbles:Boolean, [eventPhase:Number, [time:Number, [stop:Boolean]]]]) ;
-	 	* }
-		 * </p>
+		 * var e:BasicEvent = new BasicEvent( type:String, [target:Object, [context:*, [bubbles:Boolean, [cancelable:Boolean, [time:Number]]]]]) ;
+	 	 * }
 		 * @param type the string type of the instance. 
 		 * @param target the target of the event.
 		 * @param context the optional context object of the event.
@@ -200,22 +198,7 @@ package vegas.events
 	 	 */
 		public override function toString():String 
 		{
-			var name:String = ClassUtil.getName(this);
-			var txt:String = "[" + name ;
-			txt += " type=" + type ;
-			if (target != null)
-			{
-				txt += " target=" + target ;
-			}
-			if (context != undefined)
-			{
-				txt += " context=" + context ;
-			}	
-			txt += " eventphase=" + eventPhase ;
-			txt += " bubbles=" + bubbles ;
-			txt += " cancelable=" + cancelable ;
-			txt += "]" ;
-			return txt ;
+			return formatToString( ClassUtil.getName(this), "type", "target", "context", "bubbles", "cancelable", "eventPhase" ); 
 		}
 
 		private var _context:* = null ;

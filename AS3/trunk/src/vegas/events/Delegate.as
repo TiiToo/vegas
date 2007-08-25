@@ -90,8 +90,6 @@ package vegas.events
 				var s:* = f["s"] ;
 				var m:Function = f["m"] ;
 				var a:Array = [].concat(args, f["a"]) ;
-				trace("scope :: " + s) ;
-				trace("method :: " + m) ;
 				return m.apply( s , a ) ;
 			} ;
 			f["s"] = scope ;

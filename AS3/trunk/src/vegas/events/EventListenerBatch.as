@@ -41,12 +41,12 @@ package vegas.events
 	 * 
 	 * var action1:Function = function (e:Event):Void 
 	 * {
-	 *    trace ("> action1 : " + e.getType()) ;
+	 *    trace ( "action1 : " + e.type ) ;
 	 * }
 	 * 
 	 * var action2:Function = function (e:Event):Void 
 	 * {
-	 *     trace ("> action2 : " + e.getType()) ;
+	 *     trace ( "action2 : " + e.type ) ;
 	 * }
 	 * 
  	 * var oListener1:EventListener = new Delegate(this, action1) ;

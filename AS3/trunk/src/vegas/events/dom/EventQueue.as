@@ -14,79 +14,48 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/**	EventQueue
-
-	AUTHOR
-	
-		Name : EventQueue
-		Package : vegas.events.dom
-		Version : 1.0.0.0
-		Date :  2005-10-13
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		Classe utilisée par la classe !EventDispatcher (en AS3 cette classe est une classe privée)
-
-	METHOD SUMMARY
-	
-		- enqueue(e:Event):Void
-		
-		- getQueuedEvents([eventType:String]):Queue
-
-			return a queue with all events
-			
-			return queued events of a specific event name
-		
-		- size():Number
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → EventQueue
-
-	IMPLEMENTS
-
-		IFormattable, IHashable
-
-**/
-
 package vegas.events.dom
 {
 
 	import vegas.core.CoreObject;
-	import vegas.data.iterator.Iterator;
 	import vegas.data.Queue;
+	import vegas.data.iterator.Iterator;
 	import vegas.data.queue.LinearQueue;
 
-	internal public class EventQueue extends CoreObject
+    /**
+     * Internal class used in {@code vegas.events.dom.EventDispatcher} class to bufferize the events if no EventListener are registered with the event type of the event.
+     */
+	public internal class EventQueue extends CoreObject
 	{
 		
-		// ----o Constructor
-		
+	    /**
+	     * Creates a new EventQueue instance.
+	     */
 		public function EventQueue()
 		{
 			_events = new LinearQueue() ;
 		}
 
-		// ----o Public Methods
-    
+	    /**
+	     * Enqueue an event in the buffer if no EventListener are registered in the EventListener.
+	     */
     	public function enqueue( e:IEvent ):void 
 	    {
 	        e.queueEvent() ;
 	        _events.enqueue(e);
 	    }
 
+	    /**
+	     * Returns a queue with all events bufferized.
+	     * @return a queue with all events bufferized.
+	     */
     	public function getQueuedEvents( ...arguments:Array ):Queue 
     	{
 			if ( arguments[0] is String ) 
@@ -112,13 +81,17 @@ package vegas.events.dom
 			}
 	    }
 	    
+	    /**
+         * The size of this buffer.
+         */
 		public function size():uint
 		{
 			return _events.size() ;
 		}
-	
-		// ----o Private Properties
-	
+
+    	/**
+	     * Internal LinearQueue used by this this instance.
+    	 */
     	private var _events:LinearQueue = null ;
     	
 	}

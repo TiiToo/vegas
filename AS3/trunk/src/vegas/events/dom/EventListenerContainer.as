@@ -25,53 +25,75 @@ package vegas.events.dom
 {
 	import vegas.core.CoreObject;
 	import vegas.events.EventListener;
-	import vegas.util.ClassUtil;
-	import vegas.util.Serializer;
 	
+	/**
+     * Internal class in the {@code EventDispatcher} class to register in an {@code EventCollection} an {@code EventListener}.
+     * @author eKameleon
+     * @see EventListenerCollection
+     * @see EventListenerComparator
+     */
 	internal class EventListenerContainer extends CoreObject
 	{
 		
+		/**
+	     * Creates a new EventListenerContainer instance.
+	     * @param listener an {@code EventListener}
+	     */	
 		public function EventListenerContainer( listener:EventListener )
 		{
 			super();
 			_listener = listener ;
 		}
 
-		// ----o Public Properties
-	
+	    /**
+	     * Determinates if the listener use capture flow event or not.
+	     */	
 		public var useCapture:Boolean ;
 
-		// ----o Public Methods
-    
-		public function enableAutoRemove(enable:Boolean):void {
+	    /**
+    	 * Enables the auto remove option in the EventListener.
+    	 * @param enable a boolean to indicated if the EventListener is autoRemove at the end of the event flow.
+	    */
+		public function enableAutoRemove(enable:Boolean):void 
+		{
         	_autoRemove = enable;
 	    }
 
-		public function getPriority():uint {
+	    /**
+	     * Returns the priority of the {@code EventListener}. This priority is used in the {@code EventListenerComparator}.
+	     * @return the priority of the {@code EventListener}. This priority is used in the {@code EventListenerComparator}.
+	     * @see EventListenerComparator
+	     */
+		public function getPriority():uint 
+		{
 			return _priority || 0 ;
 		}
-    
+
+        /**
+         * Returns {@code true} if the {@code EventListener} is auto remove at the end of the event flow.
+         * @return {@code true} if the {@code EventListener} is auto remove at the end of the event flow.
+         */
 	    public function isAutoRemoveEnabled():Boolean 
 	    {
      	   return _autoRemove;
 	    }
 
+	    /**
+	     * Returns the {@code EventListener} reference.
+	     * @return the {@code EventListener} reference.
+	     */
 	    public function getListener():EventListener 
 	    {
     	    return _listener ;
 	    }
     
+        /**
+         * Sets the priority of the {@code EventListener}.
+         */
 		public function setPriority(n:uint=0):void
 		{
 			_priority = n ;
 		}
-
-		override public function toSource(...arguments:Array):String 
-		{
-			return "new " + ClassUtil.getPath(this) + "(" + Serializer.toSource(_listener) + ")" ;
-		}
-
-		// ----o Private Properties
 
 		private var _autoRemove:Boolean = false ;
 	    private var _listener:EventListener = null ;

@@ -31,25 +31,101 @@ package vegas.data.queue
 	import vegas.data.queue.QueueFormat;
 	import vegas.util.Copier;
 	import vegas.util.Serializer;
-	
+
+    /**
+     * The CircularQueue class allows for storing objects in a circular queue of a predefined size.
+     * <p><b>Example :</b></p>
+     * {@code
+     * import vegas.data.iterator.Iterator ;
+     * import vegas.data.queue.CircularQueue ;
+     * 
+     * var q:CircularQueue = new CircularQueue(5) ;
+     * 
+     * trace ("maxSize : " + q.maxSize()) ;
+     * trace ("enqueue item1 : " + q.enqueue ("item1")) ;
+     * trace ("enqueue item2 : " + q.enqueue ("item2")) ;
+     * trace ("enqueue item3 : " + q.enqueue ("item3")) ;
+     * trace ("enqueue item4 : " + q.enqueue ("item4")) ;
+     * trace ("enqueue item5 : " + q.enqueue ("item5")) ;
+     * trace ("enqueue item6 : " + q.enqueue ("item6")) ;
+     * 
+     * trace ("element : " + q.element()) ;
+     * trace ("dequeue : " + q.dequeue()) ;
+     * trace ("element : " + q.element()) ;
+     * trace ("size : " + q.size()) ;
+     * trace ("isFull : " + q.isFull()) ;
+     * trace ("array : " + q.toArray()) ;
+     * 
+     * trace("") ;
+     * 
+     * trace ("queue : " + q) ;
+     * 
+     * trace("") ;
+     * 
+     * trace ("dequeue : " + q.dequeue()) ;
+     * trace ("enqueue item6 : " + q.enqueue("item6")) ;
+     * trace ("enqueue item7 : " + q.enqueue("item7")) ;
+     * trace ("peek : " + q.peek()) ;
+     * trace ("size : " + q.size()) ;
+     * trace ("isFull : " + q.isFull()) ;
+     * 
+     * trace("") ;
+     * 
+     * trace ("q : " + q) ;
+     * 
+     * trace ("------- clone") ;
+     * 
+     * var clone:CircularQueue = q.clone() ;
+     * trace ("dequeue clone : " + clone.dequeue()) ;
+     * trace ("enqueue clone item8 : " + clone.enqueue("item8")) ;
+     * trace ("original queue : " + q) ;
+     * trace ("clone queue : " + clone) ;
+     * trace ("clone iterator :") ;
+     * var i:Iterator = clone.iterator() ;
+     * while (i.hasNext()) 
+     * {
+     *     trace ("\t+ " + i.next()) ;
+     * }
+     * trace("clone.toSource : " + clone.toSource()) ;
+     * 
+     * }
+     * @author eKameleon
+     */
 	public class CircularQueue extends CoreObject implements BoundedQueue
 	{
-		
-		public function CircularQueue( qSize:uint=uint.MAX_VALUE , ar:Array=null )
-		{
-			_qSize = ( isNaN(qSize) ? CircularQueue.MAX_CAPACITY : qSize ) + 1 ;
-			clear() ;
-			if (ar == null) return ;
-			var l:uint = ar.length ;
-			if (l > 0)
-			{
-				for (var i:uint = 0 ; i<l ; i++)
-				{
-					enqueue(ar[i]) ;
-				}
-			}
-		}
 
+    	/**
+    	 * Creates a new CircularQueue instance.
+    	 * @param qSize the max number of element in the queue
+    	 * @param elements an array with elements to enqueue in the current stack.
+    	 */
+		public function CircularQueue( qSize:uint=uint.MAX_VALUE , elements:Array=null )
+		{
+			
+			_qSize = ( isNaN(qSize) ? CircularQueue.MAX_CAPACITY : qSize ) + 1 ;
+			
+			clear() ;
+			
+			if (elements == null) 
+			{
+			    return ;
+			}
+			else
+			{
+			    var l:Number = elements.length ;
+			    if (l > 0)
+			    {
+    				for (var i:Number = 0 ; i<l ; i++)
+				    {
+    					enqueue( elements[i] ) ;
+	    			}
+		    	}
+		    }
+        }
+
+	    /**
+	     * The default numbers of elements in the queue.
+	     */
 		static public var MAX_CAPACITY:uint = uint.MAX_VALUE ;
 
 		public function clear():void

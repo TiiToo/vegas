@@ -24,47 +24,65 @@
 package vegas.events.dom
 {
 	
-	internal class EventListenerCollection //extends CoreObject implements Iterable
+	import vegas.core.CoreObject ;
+	import vegas.data.iterator.Iterable ;
+	
+	/**
+     * Internal class used in the EventDispatcher to collect {@code EventListener} for a specific event type.  
+     * @author eKameleon
+     */
+	internal class EventListenerCollection extends CoreObject implements Iterable
 	{
 		
-		/*
-		
+	    /**
+	     * Creates a new EventListenerCollection instance.
+	     */
 		public function EventListenerCollection()
 		{
-			super() ;
-			_listeners = new SortedArrayList() ;
-			_listeners.setComparator( new EventListenerComparator() ) ;
+    		_listeners = new SortedArrayList() ;
+			_listeners.setComparator( EventListenerComparator.getInstance() ) ;
 			_listeners.setOptions( Array.NUMERIC ) ;
 		}
 		
-		// ----o Public Methods
-	
-		public function addListener( listener:EventListener, autoRemove:Boolean, priority:uint ):uint 
+	    /**
+	     * Adds an {@code EventListener} in the collection 
+	     * @param listener the EventListener in the collection
+	     * @param autoRemove this EventListener is autoRemove when the event flow is finished.
+	     * @param priority the priority value of the EventListener.
+	     * @return The new size of the collection.
+	     */
+        public function addListener( listener:EventListener, autoRemove:Boolean, priority:uint ):uint 
 		{
-			
 			var container:EventListenerContainer = new EventListenerContainer(listener) ;
 			container.enableAutoRemove(autoRemove) ;
 			container.setPriority(priority) ;
-			
 			_listeners.insert(container) ;
-			
 			return _listeners.size() ;
-			
 		}
-		
+
+	    /**
+	     * Returns the iterator of this collection.
+	     * @return the iterator of this collection.
+	     */
 		public function iterator():Iterator
 		{
 			return _listeners.iterator() ;
 		}
 	
-		public function propagate(e:Event):Event 
+	    /**
+	     * Propagates an event in the event flow of all {@code EventListener} in this collection.
+	     */
+		public function propagate( e:Event ):Event 
 		{
 			var remove:Array = new Array() ;
 			var l:uint = _listeners.size() ;
 			for (var i:Number = 0 ; i<l ; i++) 
 			{
 				
-				if (e["stop"] == EventPhase.STOP_IMMEDIATE) break ;
+				if (e["stop"] == EventPhase.STOP_IMMEDIATE) 
+				{
+				    break ;
+				}
 				
 				var container:EventListenerContainer = _listeners.get(i) ;
 			
@@ -91,15 +109,21 @@ package vegas.events.dom
 			return e ;
 		}
 
-		public function removeListener( listener:* ):EventListenerContainer {
+	    /**
+	     * Removes an {@code EventListener} in the collection.
+	     * @return the EventListenerContainer of the listener removes in the collection.
+	     */
+		public function removeListener( listener:* ):EventListenerContainer 
+		{
 			
 			if (listener is EventListener) 
 			{
-			
 				var it:Iterator = _listeners.iterator() ;
-				while(it.hasNext()) {
+				while(it.hasNext()) 
+				{
 					var container:EventListenerContainer = it.next() ;
-					if (container.getListener() == listener) {
+					if (container.getListener() == listener) 
+					{
 						_listeners.remove(container) ;
 						return container ;
 					}
@@ -108,7 +132,7 @@ package vegas.events.dom
 			else if ( listener is uint ) 
 			{
 			
-				return _listeners.removeAt(listener) ;
+				return _listeners.removeAt( listener ) ;
 			
 			} 
 			else if ( listener is String))  // constructorName
@@ -116,10 +140,12 @@ package vegas.events.dom
 				var it:Iterator = _listeners.iterator() ;
 				var container:EventListenerContainer ;
 				var constructorName:String ;
-				while(it.hasNext()) {
+				while(it.hasNext()) 
+				{
 					container = it.next() ;
 					constructorName = ClassUtil.getName(container) ;
-					if (constructorName == listener) {
+					if (constructorName == listener) 
+					{
 						_listeners.remove(container) ;
 						return container ;
 					}
@@ -128,21 +154,20 @@ package vegas.events.dom
 			}
 			return null ;
 		}
-		
+
+	    /**
+	     * Returns the number of {@code EventListener} in this collection.
+	     * @return the number of {@code EventListener} in this collection.
+	     */
 		public function size():uint 
 		{
 			return _listeners.size() ;
 		}
 	
-		// ----o Private Properties
-	
 		private var _autoRemove:Boolean = false ;
+
 	    private var _listeners:SortedArrayList  ;
-	     * 
-	     * 
-	     */
 
 	}
-
 	
 }

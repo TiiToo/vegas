@@ -41,11 +41,9 @@ package vegas.events
 		 */
         public function EventDispatcher(target:IEventDispatcher=null)
         {
-            
             super(target);
             HashCode.initialize(this) ;
             target = (target == null) ? this : target ;
-           
         }
  
  		/**
@@ -57,6 +55,14 @@ package vegas.events
          * Returns the target reference.
          */
         public var target:IEventDispatcher ;
+        
+        /**
+         * Registers an {@code EventListener} object with an EventDispatcher object so that the listener receives notification of an event.
+         */
+        VEGAS function addEventListener(type:String, listener:*, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void
+        {    
+        	registerEventListener(type, listener, useCapture, priority, useWeakReference) ;
+        }
         
         /**
           * Clear all globals EventBroadcaster instances.
@@ -113,15 +119,10 @@ package vegas.events
 			return null ;
    		}
 		
-		VEGAS function addEventListener(type:String, listener:*, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void
-        {    
-        	registerEventListener(type, listener, useCapture, priority, useWeakReference) ;
-        }
-		
         /**
          * Registers an {@code EventListener} object with an EventDispatcher object so that the listener receives notification of an event.
          */
-        public function registerEventListener(type:String, listener:*, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void
+        public function registerEventListener( type:String, listener:*, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false ):void
         {    
 
             var func:Function ;

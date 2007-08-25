@@ -67,7 +67,7 @@ class vegas.events.EventListenerComparator extends CoreObject implements ICompar
 		}
 		else 
 		{
-			throw new IllegalArgumentError(this + ".compare(" + o1 + "," + o2 + "), arguments must be EventListenerContainer") ;
+			throw new IllegalArgumentError(this + ".compare(" + o1 + "," + o2 + "), arguments must be EventListenerContainer.") ;
 		}
 	}
 	

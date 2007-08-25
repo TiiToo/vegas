@@ -14,68 +14,50 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/* EventPhase
-
-	AUTHOR
-
-		Name : EventPhase
-		Package : vegas.events.dom
-		Version : 1.0.0.0
-		Date :  2006-07-16
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	CONSTANT SUMMARY
-
-		static const AT_TARGET:Number
-			
-			The target phase(2).
-			
-		static const BUBBLING_PHASE:Number
-			
-			The bubbling phase(3).
-			
-		static const CAPTURING_PHASE:Number
-			
-			The capturing phase(1).
-		
-		static const NONE:Number
-			
-			The default phase(0)
-		
-		static const STOP:Number
-		
-			Stop the phase(4). Use only by the Event and EventDispatcher class.
-		
-		static const STOP_IMMEDIATE:Number
-		
-			Stop the phase immediately (4). Use only by the Event and EventDispatcher class.
-	
-*/
-
+/**
+ * The EventPhase class provides values for the eventPhase property of the IEvent implementations. 
+ * @author eKameleon
+ */
 package vegas.events.dom
 {
 	public class EventPhase
 	{
 		
+	    /**
+	     * The target phase, which is the second phase of the event flow (2).
+	     */
 		static public const AT_TARGET:uint = 2 ;
-	
+	    
+	    /**
+	     * The bubbling phase, which is the third phase of the event flow (3).
+	     */
 		static public const BUBBLING_PHASE:uint = 3 ;
-	
+	    
+	   	/**
+	     * The capturing phase, which is the first phase of the event flow (1).
+	     */
 		static public const CAPTURING_PHASE:uint = 1 ;
 	
+    	/**
+    	 * The default phase(0)
+    	 */
 		static public const NONE:uint = 0 ;
-	
+
+    	/**
+	     * Stop the phase in progress (8). Use only by the vegas.events.dom.IEvent and vegas.events.dom.EventDispatcher class.
+	     */
 		static public const STOP:uint = 8 ;
-	
+
+	    /**
+	     * Stop the phase immediately (10). Use only by the vegas.events.dom.IEvent and vegas.events.dom.EventDispatcher class.
+	     */
 		static public const STOP_IMMEDIATE:uint = 10 ;
 		
 	}

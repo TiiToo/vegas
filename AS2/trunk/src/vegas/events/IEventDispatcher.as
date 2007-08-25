@@ -35,7 +35,6 @@ interface vegas.events.IEventDispatcher extends EventTarget
 
 	/**
 	 * Allows the registration of global event listeners on the event target.
-	 * 
 	 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the <b>EventListener</b> interface.
 	 * @param priority Determines the priority level of the event listener.
 	 * @param autoRemove Apply a removeEventListener after the first trigger

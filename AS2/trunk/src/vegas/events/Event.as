@@ -39,16 +39,19 @@ interface vegas.events.Event extends ICloneable
 		
 	/**
 	 * Returns {@code true} if this event is a bubbling event.
+	 * @return {@code true} if this event is a bubbling event.
 	 */
 	function getBubbles():Boolean ;
 		
 	/**
-	 * Returns the event context
+	 * Returns the event context.
+	 * @return the event context.
 	 */
 	function getContext() ;
 		
 	/**
 	 * Returns the current target of this event in a capturing or a bubbling phase.
+	 * @return the current target of this event in a capturing or a bubbling phase.
 	 */
 	function getCurrentTarget() ;
 		
@@ -74,6 +77,9 @@ interface vegas.events.Event extends ICloneable
 	 */
 	function getType():String ;
 	
+	/**
+	 * Initialize the event.
+	 */
 	function initEvent(type:String, bubbles:Boolean, cancelable:Boolean):Void ;
 	
 	/**

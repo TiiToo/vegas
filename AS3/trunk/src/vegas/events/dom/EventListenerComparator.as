@@ -28,24 +28,43 @@ package vegas.events.dom
 
 	import vegas.errors.IllegalArgumentError ;
 
+    /**
+     * This comparator is used in the {@code EventDispatcher} class to ordered all {@code EventLister} with a priority value.
+     * @author eKameleon
+     */
 	internal public class EventListenerComparator extends CoreObject implements IComparator
 	{
-		
+
+	    /**
+	     * Creates the EventListenerComparator instance.
+	     */
 		public function EventListenerComparator()
 		{
 			super();
 		}
 		
+		/**
+		 * Returns a shallow copy of this object.
+		 * @return a shallow copy of this object.
+		 */
 		public function clone():* 
 		{
 			return new EventListenerComparator() ;
 		}
 
+		/**
+		 * Returns a deep copy of this object.
+		 * @return a deep copy of this object.
+		 */
 		public function copy():*
 		{
 			return new EventListenerComparator() ;
 		}
 
+	    /**
+	     * Compares its two arguments for order.
+	     * @return -1 if o1 is "lower" than o2, 1 if o1 is "higher" than o2 and 0 if o1 and o2 are equal.
+	     */
 		public function compare(o1:*, o2:*):int
 		{
 			if ( o1 is EventListenerContainer && o2 is EventListenerContainer ) 
@@ -67,9 +86,28 @@ package vegas.events.dom
 			}
 			else 
 			{
-				throw new IllegalArgumentError(this + ".compare(" + o1 + "," + o2 + "), arguments must be EventListenerContainer") ;
+				throw new IllegalArgumentError(this + ".compare(" + o1 + "," + o2 + "), arguments must be EventListenerContainer.") ;
 			}
 		}
+	
+		/**
+		 * Returns the singleton instance of this class.
+		 * Developers are encouraged to use the comparator returned from this method instead of constructing a new instance to reduce allocation and GC overhead when multiple comparable comparators may be used in the same application.
+	 	 * @return the singleton instance of this class.
+		 */
+		static public function getInstance():EventListenerComparator
+		{
+			if (_instance == null)
+			{
+				_instance = new EventListenerComparator() ;
+			}
+			return _instance ;	
+		}
+
+		/**
+	  	 * The internal static singleton of this class.
+	 	 */
+		static private var _instance:EventListenerComparator ;
 		
 	}
 }

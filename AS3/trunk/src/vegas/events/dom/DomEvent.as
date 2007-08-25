@@ -23,14 +23,13 @@
 
 package vegas.events.dom
 {
-	import vegas.core.CoreObject;
 	import vegas.util.ClassUtil;
 	import vegas.util.Serializer;
 	
-	public class BasicEvent extends CoreObject implements IEvent
+	public class DomEvent extends BasicEvent implements IEvent
 	{
 		
-		public function BasicEvent(type:String, target:* = null , context:* =null, bubbles:Boolean=false, ...rest:Array)
+		public function DomEvent(type:String, target:* = null , context:* =null, bubbles:Boolean=false, ...rest:Array)
 		{
 			
 			super() ;
@@ -63,7 +62,7 @@ package vegas.events.dom
 
 		public function clone():*
 		{
-			return new BasicEvent(getType(), getTarget(), getContext()) ;
+			return new DomEvent(getType(), getTarget(), getContext()) ;
 		}
 
 		public function cancel():void 
@@ -73,7 +72,7 @@ package vegas.events.dom
 		
 		public function copy():*
 		{
-			return new BasicEvent(getType(), getTarget(), getContext(), getBubbles(), getEventPhase(), getTimeStamp(), stop) ;
+			return new DomEvent(getType(), getTarget(), getContext(), getBubbles(), getEventPhase(), getTimeStamp(), stop) ;
 		}
 		
 		public function getBubbles():Boolean
@@ -174,7 +173,8 @@ package vegas.events.dom
 			_stop = EventPhase.STOP_IMMEDIATE ;
 		}
 
-		override public function toSource(...arguments:Array):String {
+		override public function toSource(...arguments:Array):String 
+		{
 			return Serializer.getSourceOf(this, _getParams()) ;
 		}
 

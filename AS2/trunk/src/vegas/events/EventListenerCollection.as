@@ -75,7 +75,7 @@ class vegas.events.EventListenerCollection extends CoreObject implements Iterabl
 	}
 	
 	/**
-	 * Propagate an event in the event flow of all {@code EventListener} in this collection.
+	 * Propagates an event in the event flow of all {@code EventListener} in this collection.
 	 */
 	public function propagate(e:Event):Event 
 	{

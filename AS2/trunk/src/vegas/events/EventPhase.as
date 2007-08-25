@@ -34,7 +34,7 @@ class vegas.events.EventPhase
 	static public var AT_TARGET:Number = 2 ;
 	
 	/**
-	 * The bubbling phase, , which is the third phase of the event flow (3).
+	 * The bubbling phase, which is the third phase of the event flow (3).
 	 */
 	static public var BUBBLING_PHASE:Number = 3 ;
 	
@@ -49,12 +49,12 @@ class vegas.events.EventPhase
 	static public var NONE:Number = 0 ;
 	
 	/**
-	 * Stop the phase in progress (4). Use only by the Event and EventDispatcher class.
+	 * Stop the phase in progress (8). Use only by the Event and EventDispatcher class.
 	 */
 	static public var STOP:Number = 8 ;
 	
 	/**
-	 * Stop the phase immediately (4). Use only by the Event and EventDispatcher class.
+	 * Stop the phase immediately (10). Use only by the Event and EventDispatcher class.
 	 */
 	static public var STOP_IMMEDIATE:Number = 10 ;
 	
