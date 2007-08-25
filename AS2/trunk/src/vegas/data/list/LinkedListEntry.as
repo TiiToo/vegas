@@ -21,11 +21,13 @@
   
 */
 
+import vegas.core.CoreObject ;
+
 /**
  * Internal class in the {@code LinkedList} class to defined all entries in the list and the links betweens alls.
  * @author eKameleon
  */
-class vegas.data.list.LinkedListEntry 
+class vegas.data.list.LinkedListEntry extends CoreObject
 {
 
 	/**

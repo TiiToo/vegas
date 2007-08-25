@@ -23,27 +23,22 @@
 
 package asgard.data.remoting
 {
-	
-	
 	import asgard.data.iterator.RecordSetIterator;
 	import asgard.events.RecordSetEvent;
 	import asgard.net.NetServerConnection;
 	import asgard.net.remoting.RemotingService;
 	
-	import flash.net.registerClassAlias;
-	import flash.utils.setTimeout;
-	
 	import vegas.data.iterator.Iterable;
 	import vegas.data.iterator.Iterator;
 	import vegas.errors.Warning;
 	import vegas.util.mvc.AbstractModel;
-
+	
 	public class RecordSet extends AbstractModel implements Iterable
 	{
 		
 		// ----o Constructor
 		
-		public function RecordSet( o:*=null )
+		public function RecordSet( o:* = null )
 		{
 	
 			_eAdd    = new RecordSetEvent(RecordSetEvent.ADD_ITEMS) ;

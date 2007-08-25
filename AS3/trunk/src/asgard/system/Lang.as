@@ -123,7 +123,7 @@ package asgard.system
 		static public function validate( lang:* ):Boolean 
 		{
 		
-			var sLang:String = lang.toString() ;
+			var sLang:String = (lang as String).toString() ;
 		
 			var langs:Array = LANGS.getKeys() ;
 			for each ( var current:String in langs )

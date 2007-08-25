@@ -26,6 +26,7 @@ package pegas.geom
 	import flash.geom.Rectangle;
 	
 	import vegas.core.CoreObject;
+	import vegas.util.ClassUtil;
 	import vegas.util.Serializer;
 	
 	/**
@@ -72,7 +73,7 @@ package pegas.geom
     	 * Returns a shallow copy of this instance.
     	 * @return a shallow copy of this instance.
     	 */
-    	public function clone()
+    	public function clone():*
     	{
     		return new Dimension(width, height) ;	
     	}
@@ -81,7 +82,7 @@ package pegas.geom
     	 * Returns a deep copy of this instance.
     	 * @return a deep copy of this instance.
     	 */
-    	public function copy()
+    	public function copy():*
     	{
     		return new Dimension(width, height) ;	
     	}
@@ -102,9 +103,9 @@ package pegas.geom
     	 * Compares the specified object with this object for equality.
     	 * @return {@code true} if the the specified object is equal with this object.
     	 */
-    	public function equals( o ):Boolean
+    	public function equals( o:* ):Boolean
     	{
-    		return (o instanceof Dimension) && (o.width = width) && (o.height == height) ; 
+    		return o is Dimension && (o as Dimension).width == width && (o as Dimension).height ; 
     	}
     	
     	/**
@@ -154,7 +155,7 @@ package pegas.geom
     	 */
     	override public function toString():String 
     	{
-    		return "[" + ConstructorUtil.getName(this) + " width:" + width + ",height:" + height + "]" ;
+    		return "[" + ClassUtil.getName(this) + " width:" + width + ",height:" + height + "]" ;
     	}
     
     }

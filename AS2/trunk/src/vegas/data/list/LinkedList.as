@@ -698,10 +698,10 @@ class vegas.data.list.LinkedList extends CoreObject implements ICloneable, ICopy
 		}
 	}
 
-    /**
-     * Removes an element at the specified position in this list. 
-     * This implementation first gets a list iterator pointing to the indexed element (with {@code listIterator(index)}). 
-     * Then, it removes the element with <b>ListIterator</b> remove method.
+	/**
+      * Removes an element at the specified position in this list. 
+      * This implementation first gets a list iterator pointing to the indexed element (with {@code listIterator(index)}). 
+	 *Then, it removes the element with <b>ListIterator</b> remove method.
 	 * <p><b>Example :</b></p>
 	 * {@code
 	 * import vegas.data.list.LinkedList ;
@@ -839,7 +839,7 @@ class vegas.data.list.LinkedList extends CoreObject implements ICloneable, ICopy
 			var next = it.next() ;
 			if ( !c.contains( next ) )
 			{
-				it.remove(next) ;
+				it.remove() ;
 			} 
 		}
 		return c.size() == size() ;

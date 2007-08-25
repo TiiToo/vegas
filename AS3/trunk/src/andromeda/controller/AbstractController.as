@@ -46,10 +46,9 @@ package andromeda.controller
 		/**
 		 * Handles the event.
 		 */
-		public function handleEvent(e : Event):* 
+		public function handleEvent(e : Event):void 
 		{
-			// overrides this method.
-			return ;
+			
 		}
 		
 	}
