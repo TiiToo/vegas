@@ -32,8 +32,6 @@ package vegas.data.list
 	public class SortedArrayList extends ArrayList implements IComparer
 	{
 
-		// ----o Constructor
-
 		public function SortedArrayList(init:*, comp:IComparator=null, opt:uint=0)
 		{
 			super(init);

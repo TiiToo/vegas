@@ -46,7 +46,7 @@ package vegas.util.mvc
 		 */
 		public function addView( view:IView ):void
 		{
-            this.VEGAS::addEventListener(ModelChangedEvent.MODEL_CHANGED, view ) ;
+            registerEventListener(ModelChangedEvent.MODEL_CHANGED, view ) ;
 		}
 
 		/**
@@ -70,7 +70,7 @@ package vegas.util.mvc
 		 */
 		public function removeView(view:IView):void
 		{
-			removeListener(ModelChangedEvent.MODEL_CHANGED, view) ;
+			unregisterEventListener(ModelChangedEvent.MODEL_CHANGED, view) ;
 		}
 		
 	}

@@ -21,32 +21,6 @@
   
 */
 
-/**	QueueFormat
-
-	AUTHOR
-
-		Name : QueueFormat
-		Package : vegas.data.queue
-		Version : 1.0.0.0
-		Date :  2006-07-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-	
-		- formatToString(o):String
-	
-	INHERIT
-
-		CoreObject → QueueFormat
-
-	IMPLEMENT
-	
-		IFormat, IFormattable, IHashable, ISerializable
-	
-**/
-
 package vegas.data.queue
 {
 	import vegas.core.IFormat;
@@ -57,14 +31,10 @@ package vegas.data.queue
 	public class QueueFormat extends CoreObject implements IFormat
 	{
 		
-		// ----o Constructor
-		
 		public function QueueFormat()
 		{
 			super();
 		}
-		
-		// ----o Public Methods
 		
 		public function formatToString(o:*):String
 		{

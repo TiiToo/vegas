@@ -130,7 +130,7 @@ package vegas.events
 		/**
 		 * Handles the event.
 		 */
-        public function handleEvent(e:Event):*
+        public function handleEvent(e:Event):void
         {
         	Delegate.create.apply( this, [_s].concat([_m], [].concat(e, _a)) )() ;
         }

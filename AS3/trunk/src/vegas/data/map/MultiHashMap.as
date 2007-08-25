@@ -184,33 +184,36 @@ package vegas.data.map
 		}
 
 		/**
-		 * Checks whether the map contains the value specified or at the specified key contains the value.
-		 * @example
-		 * <code>
-		 * 		var b:Boolean = map.containsValue(key, value) ;
-		 * 		
-		 * 		var b:Boolean = map.containsValue(value) ;
-		 * </code>
+		 * Checks whether the map contains the value specified.
+		 * <p><b>Example :</b></p>
+		 * {@code
+		 * var b:Boolean = map.containsValue(value) ;
+		 * }
+		 * @return {@code true} if the List contains the specified value.
 		 */
 		public function containsValue( value:* ):Boolean 
 		{
-			var len:uint = arguments.length ;
-			if (len == 1) {
-				var it:Iterator = __map.iterator() ;
-				while (it.hasNext()) 
-				{
-					var cur:Collection = it.next() ;
-					if (cur.contains(value)) 
-					{
-						return true;
-					}
-				}
-			} 
-			else if (len == 2) 
+			var it:Iterator = __map.iterator() ;
+			while (it.hasNext()) 
 			{
-				return ( get(arguments[0] ).contains(arguments[1]) == true);
+				var cur:Collection = it.next() as Collection ;
+				if ( cur != null && cur.contains(value) ) 
+				{
+					return true;
+				}
 			}
-			return false ;
+		} 
+
+		/**
+		 * Checks whether the map contains the value specified or at the specified key contains the value.
+		 * <p><b>Example :</b></p>
+		 * {
+		 * var b:Boolean = map.containsValue(key, value) ;
+		 * }
+		 */
+		public function containsValueByKey( key:*, value:* ):Boolean 
+		{
+			return ( get( key ) as Collection ).contains( value ) == true ;
 		}
 
 		/**

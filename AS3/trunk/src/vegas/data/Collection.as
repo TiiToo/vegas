@@ -50,7 +50,7 @@ package vegas.data
 		/**
 		 * Returns the element from this collection at the passed index.
 		 */
-    	function get(key:*):* ;
+    	function get( key:* ) :* ;
 
 		/**
 		 * Returns the position of the passed object in the collection.

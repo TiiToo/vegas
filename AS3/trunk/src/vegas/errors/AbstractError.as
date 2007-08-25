@@ -21,9 +21,6 @@
   
 */
 
-
-// TODO add toSource() !!
-
 package vegas.errors
 {
     
@@ -94,7 +91,10 @@ package vegas.errors
 	 	 */
 		public function log():void
 		{
-			getLogger().log( getLevel() , "# " + name + " : " + message + " #" ) ;
+		    if ( getLogger() != null )
+	        {
+			    getLogger().log( getLevel() , name + " : " + message ) ;
+	        }
 		}
 
 		/**
@@ -109,9 +109,10 @@ package vegas.errors
 		 * Returns the string representation of this instance.
 		 * @return the string representation of this instance
 	 	 */
-	    public function toString():String 
+	    public function toString( ):String 
 	    {
-		    return super.toString() ;
+            log() ;
+		    return name + " " + message ;
     	}
 
     	private var _logger:ILogger ;

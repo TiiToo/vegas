@@ -32,54 +32,54 @@ package vegas.data.bag
 	 * Implements Bag, using a HashMap to provide the data storage. This is the standard implementation of a bag.
 	 * <p><b>Example : </b>
 	 * {@code
-	 *	import vegas.data.Bag ;
-	 *	import vegas.data.bag.HashBag ;
-	 *	import vegas.data.Collection ;
- 	 *	import vegas.data.collections.SimpleCollection ;
-	 *	import vegas.data.Set ;
+	 * import vegas.data.Bag ;
+	 * import vegas.data.bag.HashBag ;
+	 * import vegas.data.Collection ;
+ 	 * import vegas.data.collections.SimpleCollection ;
+	 * import vegas.data.Set ;
 	 *	
-	 *	var c1:Collection = new SimpleCollection( ["item1", "item1", "item3"] ) ;
-	 *	var c2:Collection = new SimpleCollection( ["item1", "item2", "item3", "item4", "item5"] ) ;
+	 * var c1:Collection = new SimpleCollection( ["item1", "item1", "item3"] ) ;
+	 * var c2:Collection = new SimpleCollection( ["item1", "item2", "item3", "item4", "item5"] ) ;
 	 *	
-	 *	trace ("c1 collection : " + c1) ;
-	 *	trace ("c2 collection : " + c2) ;
+	 * trace ("c1 collection : " + c1) ;
+	 * trace ("c2 collection : " + c2) ;
 	 *	
-	 *	trace ("---- create a new HashBag") ;
-	 *	var bag:Bag = new HashBag ;
+	 * trace ("---- create a new HashBag") ;
+	 * var bag:Bag = new HashBag ;
 	 *		
-	 *	trace ("---- insert") ;
- 	 *	trace (" + bag insertAll c1 : " + bag.insertAll(c1)) ;
-	 *	trace (" + bag insertAll c2 : " + bag.insertAll(c2)) ;
-	 *	trace (" > bag : " + bag) ;
-	 *	trace (" > bag.toSource : " + bag.toSource()) ;
+	 * trace ("---- insert") ;
+ 	 * trace (" + bag insertAll c1 : " + bag.insertAll(c1)) ;
+	 * trace (" + bag insertAll c2 : " + bag.insertAll(c2)) ;
+	 * trace (" > bag : " + bag) ;
+	 * trace (" > bag.toSource : " + bag.toSource()) ;
 	 *	
-	 *	trace ("---- contains") ;
-	 *	trace (" > bag containsAll c2 : " + bag.containsAll(c2)) ;
+	 * trace ("---- contains") ;
+	 * trace (" > bag containsAll c2 : " + bag.containsAll(c2)) ;
 	 *	
-	 *	trace ("---- insert") ;
-	 *	trace (" + bag insert item2 : " + bag.insert("item2")) ;
-	 *	trace (" > bag : " + bag) ;
-	 *	trace (" + bag insertCopies 2xitem2 : " + bag.insertCopies("item2", 2)) ;
-	 *	trace (" > bag : " + bag) ;
+	 * trace ("---- insert") ;
+	 * trace (" + bag insert item2 : " + bag.insert("item2")) ;
+	 * trace (" > bag : " + bag) ;
+	 * trace (" + bag insertCopies 2xitem2 : " + bag.insertCopies("item2", 2)) ;
+	 * trace (" > bag : " + bag) ;
 	 *	
-	 *	trace ("---- remove") ;
-	 *	trace (" > bag removeCopies 1 x item2 : " + bag.removeCopies("item2", 1)) ;
+	 * trace ("---- remove") ;
+	 * trace (" > bag removeCopies 1 x item2 : " + bag.removeCopies("item2", 1)) ;
 	 *	
- 	 *	trace ("---- size") ;
- 	 *	trace (" - bag getCount item2 : " + bag.getCount("item2")) ;
-	 *	trace (" > bag size : " + bag.size()) ;
+ 	 * trace ("---- size") ;
+ 	 * trace (" - bag getCount item2 : " + bag.getCount("item2")) ;
+	 * trace (" > bag size : " + bag.size()) ;
 	 *	
-	 *	trace ("---- retain") ;
-	 *	trace (" > bag : " + bag) ;
-	 *	trace (" > bag retainAll c1 : " + bag.retainAll(c1)) ;
- 	 *	trace (" > bag : " + bag) ;
+	 * trace ("---- retain") ;
+	 * trace (" > bag : " + bag) ;
+	 * trace (" > bag retainAll c1 : " + bag.retainAll(c1)) ;
+ 	 * trace (" > bag : " + bag) ;
  	 *		
- 	 *	trace ("----") ;
-	 *	var s:Set = bag.uniqueSet() ;
-	 *	trace("bag uniqueSet : " + s) ;
-	 *}
-	 *</p>
-	 *@author eKameleon
+ 	 * trace ("----") ;
+	 * var s:Set = bag.uniqueSet() ;
+	 * trace("bag uniqueSet : " + s) ;
+	 * }
+	 * </p>
+	 * @author eKameleon
  	 */
 	public class HashBag extends AbstractBag
 	{

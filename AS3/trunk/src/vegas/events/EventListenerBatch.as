@@ -106,7 +106,7 @@ package vegas.events
 		/**
 		 * Handles the event.
 	 	 */
-		public function handleEvent(e:Event):*
+		public function handleEvent(e:Event):void
 		{
 			var ar:Array = toArray() ;
 			var i:int = -1 ;

@@ -21,70 +21,6 @@
   
 */
 
-/* TypedQueue
-
-	AUTHOR
-
-		Name : TypedQueue
-		Package : vegas.data.queue
-		Version : 1.0.0.0
-		Date :  2006-07-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		var ta:TypedQueue = new TypedQueue( type:* , queue:Queue) 
-
-	METHOD SUMMARY
-	
-		- clear():Void
-		
-		- dequeue() : removes the head of this queue and return true if removes.
-		
-		- element() : Retrieves, but does not remove, the head of this queue.
-		
-		- enqueue(o) : Inserts the specified element into this queue, if possible and return true.
-		
-		- getType():* : return the type of the TypedQueue
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- peek():*
-		
-			Retrieves, but does not remove, the head of this queue, returning null if this queue is empty.
-		
-		- poll():*
-		
-			Retrieves and removes the head of this queue.
-		
-		- setType(type:*) : set the type and clear TypedArray
-		
-		- size():uint
-		
-		- supports(value:*):Boolean
-
-		- toArray():Array
-	
-        - toSource(...arguments:Array):String
-
-		- toString():String
-
-		- validate(value:*):void
-
-	INHERIT
-	
-		CoreObject → AbstractTypeable → TypedQueue
-
-	IMPLEMENTS 
-
-		ICloneable, ICopyable, IFormattable, IHashable, ISerializable, Iterable, ITypeable, IValidator, Queue
-
-*/
-
 package vegas.data.queue
 {
 
@@ -96,8 +32,6 @@ package vegas.data.queue
 
 	public class TypedQueue extends AbstractTypeable implements Queue
 	{
-		
-		// ----o Constructor
 		
 		public function TypedQueue(type:*, queue:Queue=null)
 		{
@@ -114,8 +48,6 @@ package vegas.data.queue
 			}
 			_queue = queue ;
 		}
-		
-		// ----o Public Methods
 
 		public function clear():void
 		{
@@ -198,8 +130,6 @@ package vegas.data.queue
 		{
 			return _queue.toString() ;
 		}
-		
-		// -----o Private Properties
 	
 		private var _queue:Queue ;
 	}

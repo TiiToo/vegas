@@ -36,11 +36,13 @@ package vegas.data
 	
 		/**
 		 * Returns the first (lowest) member.
+		 * @return the first (lowest) member.
 		 */
 		function first():* ;
 	
 		/**
 		 * Returns the last (highest) member.
+		 * @return the last (highest) member.
 		 */
 		function last():* ;
 		

@@ -24,11 +24,11 @@
 package vegas.util
 {
 
-    import vegas.core.ICopyable;
-    import vegas.util.ArrayUtil;
-    import vegas.util.DateUtil;
-    import vegas.util.ObjectUtil;
-    
+	import vegas.core.ICopyable;
+	import vegas.util.ArrayUtil;
+	import vegas.util.DateUtil;
+	import vegas.util.ObjectUtil;
+	
     /**
  	 * The {@code Copier} utility class is an all-static class with a method to returns a copy representation of an object.
  	 * @author eKameleon
@@ -63,7 +63,7 @@ package vegas.util
     		}
     		if (o is ICopyable) 
     		{
-    		    return o.copy() ;
+    		    return (o as ICopyable).copy() ;
     		}
     		else if (o as Array) 
     		{
@@ -83,11 +83,11 @@ package vegas.util
     	    }
     		else if (o is Number) 
     		{
-    		    return o.valueOf() ;
+    		    return (o as Number).valueOf() ;
     		}
     		else if (o is String) 
     		{
-    		    return o.valueOf() ;
+    		    return (o as String).valueOf() ;
     		}
     		else if (o is Object) 
     		{

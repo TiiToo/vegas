@@ -64,9 +64,9 @@ package vegas.util.mvc
 		 * This method is called whenever an event occurs of the type for which the EventListener interface was registered.
 		 * @param e The Event contains contextual information about the event.
 		 */
-		public function handleEvent(e:Event):*
+		public function handleEvent(e:Event):void
 		{
-			return null ;
+			//
 		}
 
 		/**

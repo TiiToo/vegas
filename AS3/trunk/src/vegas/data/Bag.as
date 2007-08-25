@@ -26,7 +26,6 @@ package vegas.data
 	
 	/**
 	 * Defines a collection that counts the number of times an object appears in the collection.
-	 * 
 	 * @author eKameleon
 	 */
     public interface Bag extends Collection

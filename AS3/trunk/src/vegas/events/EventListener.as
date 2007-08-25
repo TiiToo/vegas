@@ -36,7 +36,7 @@ package vegas.events
 		 * This method is called whenever an event occurs of the type for which the EventListener interface was registered.
 	 	 * @param e The Event contains contextual information about the event.
 		 */
-		function handleEvent(e:Event):* ;
+		function handleEvent(e:Event):void ;
 		
 	}
 	

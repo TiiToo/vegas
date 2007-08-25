@@ -65,7 +65,7 @@ package vegas.events
 		 */
         public function addEventListener(type:String, listener:Function, useCapture:Boolean=false, priority:int=0.0, useWeakReference:Boolean=false):void
         {
-            _dispatcher.addEventListener(type, listener, useCapture, priority, useWeakReference) ;
+            _dispatcher.addEventListener( type, listener, useCapture, priority, useWeakReference ) ;
         }
 
 		/**
@@ -78,7 +78,7 @@ package vegas.events
 		 */
         VEGAS function addEventListener(type:String, listener:* , useCapture:Boolean=false, priority:int=0.0, useWeakReference:Boolean=false):void
         {
-            _dispatcher.VEGAS::addEventListener(type, listener, useCapture, priority, useWeakReference) ;
+            _dispatcher.registerEventListener(type, listener, useCapture, priority, useWeakReference) ;
         }
 
 		/**

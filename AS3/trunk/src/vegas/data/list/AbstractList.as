@@ -70,7 +70,8 @@ package vegas.data.list
 		 */
 		public function insertAt(id:uint, o:*):void 
 		{
-			if (id<0 || id>size()) {
+			if (id<0 || id>size()) 
+			{
 				throw new IndexOutOfBoundsError() ;
 			}
 			_a.splice(id, 0, o) ;
@@ -152,10 +153,18 @@ package vegas.data.list
 	     * @param o element to be stored at the specified position.
      	 * @return the element previously at the specified position.
 	     */
-		public function setAt(id:uint, o:*):void 
+		public function setAt(id:uint, o:*):*
 		{
-			if (_a[id] === undefined) return ;
-			_a[id] = o ;
+			if (_a[id] === undefined) 
+			{
+				return null ;
+			}
+			else
+			{
+				var old:* = _a[id] ;
+				_a[id] = o ;
+				return old ;
+			}
 		}
 
 		/**

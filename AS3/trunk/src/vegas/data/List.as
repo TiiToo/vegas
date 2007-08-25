@@ -94,8 +94,10 @@ package vegas.data
 
 		/**
 		 * Replaces the element at the specified position in this list with the specified element (optional operation).
+	     * @param id index of element to replace.
+	     * @param o element to be stored at the specified position.
 		 */
-    	function setAt(id:uint, o:*):void ;
+    	function setAt(id:uint, o:*):* ;
 	
 		/**
 		 * Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.

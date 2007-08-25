@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -23,17 +23,11 @@
 
 package vegas.events.dom
 {
-	import vegas.core.CoreObject;
-	import vegas.data.iterator.Iterable;
-	import vegas.data.iterator.Iterator;
-	import vegas.data.list.SortedArrayList;
-	import vegas.events.EventListener;
-	import vegas.util.ClassUtil;
 	
-	internal class EventListenerCollection extends CoreObject implements Iterable
+	internal class EventListenerCollection //extends CoreObject implements Iterable
 	{
 		
-		// ----o Constructor
+		/*
 		
 		public function EventListenerCollection()
 		{
@@ -63,7 +57,7 @@ package vegas.events.dom
 			return _listeners.iterator() ;
 		}
 	
-		public function propagate(e:IEvent):IEvent 
+		public function propagate(e:Event):Event 
 		{
 			var remove:Array = new Array() ;
 			var l:uint = _listeners.size() ;
@@ -144,6 +138,9 @@ package vegas.events.dom
 	
 		private var _autoRemove:Boolean = false ;
 	    private var _listeners:SortedArrayList  ;
+	     * 
+	     * 
+	     */
 
 	}
 
