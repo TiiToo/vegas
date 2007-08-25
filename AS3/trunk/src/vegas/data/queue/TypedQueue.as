@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -24,113 +24,183 @@
 package vegas.data.queue
 {
 
-	import vegas.errors.IllegalArgumentError ;
-	import vegas.data.iterator.Iterator ;
-	import vegas.data.Queue;
-	import vegas.util.AbstractTypeable;
-	import vegas.util.ClassUtil ;
+    import vegas.data.Queue;
+    import vegas.data.iterator.Iterator;
+    import vegas.errors.IllegalArgumentError;
+    import vegas.util.AbstractTypeable;
+    import vegas.util.ClassUtil;
 
-	public class TypedQueue extends AbstractTypeable implements Queue
-	{
-		
-		public function TypedQueue(type:*, queue:Queue=null)
-		{
-			super(type);
-			if (queue == null) {
-				throw new IllegalArgumentError(this + " argument 'queue' must not be 'null' or 'undefined'.") ;
-			}
-			if (queue.size() > 0) {
-				var it:Iterator = queue.iterator() ;
-				while ( it.hasNext() )
-				{
-					validate(it.next()) ;
-				} 
-			}
-			_queue = queue ;
-		}
+    /**
+     * TypedQueue is a wrapper for Queue instances that ensures that only values of a specific type can be added to the wrapped queue.
+     * @author eKameleon
+     */
+    public class TypedQueue extends AbstractTypeable implements Queue
+    {
+        
+        /**
+         * Creates a new TypedQueue instance.
+         * @param type The type of all elements insert in the Queue.
+         * @param queue The Queue to be wrapped. 
+         */
+        public function TypedQueue(type:*, queue:Queue=null)
+        {
+            super(type);
+            if (queue == null) 
+            {
+                throw new IllegalArgumentError(this + " argument 'queue' must not be 'null' or 'undefined'.") ;
+            }
+            if (queue.size() > 0) 
+            {
+                var it:Iterator = queue.iterator() ;
+                while ( it.hasNext() )
+                {
+                    validate(it.next()) ;
+                } 
+            }
+            _queue = queue ;
+        }
 
-		public function clear():void
-		{
-			_queue.clear() ;
-		}
+        /**
+         * Removes all elements in this typed queue.
+         */
+        public function clear():void
+        {
+            _queue.clear() ;
+        }
 
-		public function clone():* 
-		{
-			return new TypedQueue(getType(), _queue) ;
-		}
-	
-		public function contains(o:*):Boolean
-		{
-			return _queue.contains(o) ;
-		}
-		
-		public function copy():*
-		{
-			return new TypedQueue(getType(), _queue.clone()) ;
-		}
-		
-		public function dequeue():Boolean
-		{
-			return _queue.dequeue() ;
-		}
-		
-		public function element():*
-		{
-			return _queue.element() ;
-		}
+        /**
+         * Returns the shallow copy of this object.
+         * @return the shallow copy of this object.
+         */
+        public function clone():* 
+        {
+            return new TypedQueue(getType(), _queue) ;
+        }
+    
+        public function contains(o:*):Boolean
+        {
+            return _queue.contains(o) ;
+        }
 
-		public function enqueue(o:*):Boolean
-		{
-			validate(o) ;
-			return _queue.enqueue(o) ;  
-		}
-		
-		public function isEmpty():Boolean
-		{
-			return _queue.isEmpty()  ;
-		}
+        /**
+         * Returns the deep copy of this object.
+         * @return the deep copy of this object.
+         */
+        public function copy():*
+        {
+            return new TypedQueue(getType(), _queue.clone()) ;
+        }
 
-		public function iterator():Iterator
-		{
-			return _queue.iterator() ;
-		}
+        /**
+         * Removes the head of this queue and return true if removes.
+         * @return {@code true} if the Queue is dequeue.
+         */
+        public function dequeue():Boolean
+        {
+            return _queue.dequeue() ;
+        }
+        
+        /**
+         * Retrieves, but does not remove, the head of this queue.
+         */
+        public function element():*
+        {
+            return _queue.element() ;
+        }
 
-		public function peek():*
-		{
-			return _queue.peek() ;
-		}	
+        /**
+         * Inserts the specified element into this queue, if possible and return true.
+         */
+        public function enqueue(o:*):Boolean
+        {
+            validate(o) ;
+            return _queue.enqueue(o) ;  
+        }
 
-		public function poll():*
-		{
-			return _queue.poll() ;
-		}
+        /**
+         * Returns {@code true} if this queue is empty.
+         * @return {@code true} if this queue is empty.
+         */
+        public function isEmpty():Boolean
+        {
+            return _queue.isEmpty()  ;
+        }
 
-		override public function setType(type:*):void
-		{
-			super.setType(type) ;
-			_queue.clear() ;
-		}
-		
-		public function size():uint
-		{
-			return _queue.size() ;
-		}
+    	/**
+	     * Returns the iterator representation of the object.
+	     * @return the iterator representation of the object.
+    	 */
+        public function iterator():Iterator
+        {
+            return _queue.iterator() ;
+        }
 
-		public function toArray():Array
-		{
-			return _queue.toArray() ;
-		}
+	    /**
+    	 * Retrieves, but does not remove, the head of this queue, returning null if this queue is empty.
+    	 */
+        public function peek():*
+        {
+            return _queue.peek() ;
+        }    
 
-		override public function toSource(...arguments:Array):String
-		{
-			return 'new ' + ClassUtil.getPath(this) + '(' + ClassUtil.getName(getType()) + ',' + _queue.toSource() + ')' ;
-		}
+    	/**
+	     * Retrieves and removes the head of this queue.
+    	 */
+        public function poll():*
+        {
+            return _queue.poll() ;
+        }
 
-		override public function toString():String
-		{
-			return _queue.toString() ;
-		}
-	
-		private var _queue:Queue ;
-	}
+	    /**
+	     * Sets the type of this ITypeable object.
+	     */
+        public override function setType(type:*):void
+        {
+            super.setType(type) ;
+            _queue.clear() ;
+        }
+
+	    /**
+	     * Returns the size of this Queue.
+	     * @return the size of this Queue.
+	     */
+        public function size():uint
+        {
+            return _queue.size() ;
+        }
+
+    	/**
+    	 * Returns an array representation of this queue.
+    	 * @return an array representation of this queue.
+    	 */
+        public function toArray():Array
+        {
+            return _queue.toArray() ;
+        }
+
+    	/**
+    	 * Returns the eden representation of the object.
+    	 * @return the string representing the source code of the object.
+    	 */
+        public override function toSource(...arguments:Array):String
+        {
+            return 'new ' + ClassUtil.getPath(this) + '(' + ClassUtil.getName(getType()) + ',' + _queue.toSource() + ')' ;
+        }
+
+    	/**
+    	 * Returns the string representation of this instance.
+    	 * @return the string representation of this instance
+    	 */
+        public override function toString():String
+        {
+            return _queue.toString() ;
+        }
+   
+   	    /**
+	     * The internal queue reference.
+    	 */	
+        private var _queue:Queue ;
+    
+    }
+
 }

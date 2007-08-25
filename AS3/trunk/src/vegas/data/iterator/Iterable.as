@@ -23,13 +23,19 @@
 
 package vegas.data.iterator
 {
-    
-    import vegas.data.iterator.Iterator ;
-    
+
+    /**
+     * Implementing this interface allows an object to be iterable.
+     * @author eKameleon
+     */    
     public interface Iterable
     {
-       
-       function iterator():Iterator ;
+
+    	/**
+    	 * Returns the iterator reference of the object.
+	     * @return the iterator reference of the object.
+    	 */
+        function iterator():Iterator ;
 	
     }
 }

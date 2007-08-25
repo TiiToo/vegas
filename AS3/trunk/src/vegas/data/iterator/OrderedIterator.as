@@ -24,11 +24,22 @@
 package vegas.data.iterator
 {
 
+    /**
+     * Defines an iterator that operates over an ordered collection. This iterator allows both forward and reverse iteration through the collection.
+     * @author eKameleon
+     */
     public interface OrderedIterator extends Iterator
     {
-        
+
+    	/**
+    	 * Checks to see if there is a previous element that can be iterated to.
+    	 */
         function hasPrevious():Boolean ;
 
+    	/**
+    	 * Returns the previous element in the collection.
+    	 * @return the previous element in the collection.
+	     */
     	function previous():* ;
         
     }

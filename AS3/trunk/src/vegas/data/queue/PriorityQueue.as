@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -23,71 +23,197 @@
 
 package vegas.data.queue
 {
-	import vegas.core.IComparator;
-	import vegas.core.IComparer;
-	import vegas.util.Copier;
-	
-	/**
-	 * 
-	 */
-	public class PriorityQueue extends LinearQueue implements IComparer
-	{
-		
-		/**
-		 * PriorityQueue constructor
-		 * 
-		 * 		var q:Queue = new PriorityQueue() ;
-		 * 		var q:Queue = new PriorityQueue( comparator:IComparator=null , ar:Array:null ) ;
-		 * 
-		 */
-		public function PriorityQueue(comp:IComparator=null, ar:Array=null)
-		{
-			super(ar) ;
-			comparator = comp ;
-			if (size() > 0) _sort() ;
-		}
-		
-		// ----o Public Methods
-	
-		override public function clone():* 
-		{
-			return new PriorityQueue(comparator, toArray());
-		}
-	
-		public function get comparator():IComparator {
-			return _comparator ;
-		}
+    import vegas.core.IComparator;
+    import vegas.core.IComparer;
+    import vegas.util.Copier;
+    
+    /**
+     * This queue orders elements according to an order specified at construction time, which is specified either according to their natural order or according to a IComparator object.
+     * @author eKameleon
+     * @see IComparator
+     */
+    public class PriorityQueue extends LinearQueue implements IComparer
+    {
+        
+        /**
+         * Creates a new PriorityQueue instance.
+         * <p><b>Example :</b>
+         * {@code
+         * import vegas.data.queue.PriorityQueue ;
+         * import vegas.errors.ClassCastError ;
+         * import vegas.util.comparators.NumberComparator ;
+         * import vegas.util.comparators.StringComparator ;
+         * 
+         * var init:Array = [5, 4, 3, 2, 1] ;
+         * var q:PriorityQueue = new PriorityQueue( NumberComparator.getInstance() , PriorityQueue.NUMERIC , init )  ;
+         * 
+         * trace ("queue size : " + q.size()) ;
+         * trace("queue " + q) ;
+         * 
+         * q.options = PriorityQueue.NUMERIC + PriorityQueue.DESCENDING ;
+         * trace("queue " + q) ;
+         * 
+         * try
+         * {
+         *     trace ("enqueue item4 : " + q.enqueue ("item4")) ;
+         * }
+         * catch( e:ClassCastError )
+         * {
+         *     trace( e ) ;
+         * }
+         * 
+         * q.clear() ;
+         * 
+         * q.comparator = new StringComparator() ;
+         * q.options    = PriorityQueue.CASEINSENSITIVE | PriorityQueue.DESCENDING ;
+         * 
+         * trace ("enqueue item4 : " + q.enqueue ("item4")) ;
+         * trace ("enqueue item2 : " + q.enqueue ("item2")) ;
+         * trace ("enqueue item3 : " + q.enqueue ("item3")) ;
+         * trace ("enqueue item1 : " + q.enqueue ("item1")) ;
+         *
+         * trace("queue " + q) ;
+         * 
+         * q.options = PriorityQueue.CASEINSENSITIVE ;
+         * trace("queue " + q) ;
+         * }
+         * </p>
+         * @param comp An optional IComparator object used in the PriorityQueue to defined the sort model when enqueue or modify the queue.
+         * @param ar An optional Array with values to fill the queue.
+         * @see IComparator
+         */
+        public function PriorityQueue(comp:IComparator=null, options:uint=0, ar:Array=null )
+        {
+            super(ar) ;
+            this.comparator = comp ;
+            this.options    = options ;
+            if (size() > 0) 
+            {
+                _sort() ;
+            }
+        }
 
-		public function set comparator(comp:IComparator):void {
-			_comparator = comp ;
-			_sort() ;
-		}
-		
-		override public function copy():* 
-		{
-			return new PriorityQueue(comparator, Copier.copy(toArray())) ;
-		}
-		
-		override public function enqueue(o:*):Boolean {
-			var isEnqueue:Boolean = super.enqueue(o) ;
-			if ( isEnqueue && _comparator != null ) {
-				_sort() ;
-			}
-			return isEnqueue ;
-		}
-		
-		// ----o Private Properties
-	
-		private var _comparator:IComparator = null ;
-		
-		// ----o Protected Methods
-		
-		protected function _sort():void 
-		{
-			if (size() && _comparator != null) {
-				_a.sort(_comparator.compare, Array.NUMERIC) ;
-			}
-		}
-		
-	}
+        /**
+         * Specifies case-insensitive sorting for the Array class sorting methods. You can use this constant
+         * for the <code>options</code> parameter in the <code>sort()</code> or <code>sortOn()</code> method. 
+         * <p>The value of this constant is 1.</p>
+         */
+        public static const CASEINSENSITIVE:uint = 1;
+    
+        /**
+         * Specifies descending sorting for the Array class sorting methods. 
+          * You can use this constant for the <code>options</code> parameter in the <code>sort()</code>
+          * or <code>sortOn()</code> method. 
+           * <p>The value of this constant is 2.</p>
+         */
+        public static const DESCENDING:uint = 2;
+
+        /**
+         * Specifies the default numeric sorting value for the Array class sorting methods.
+         * <p>The value of this constant is 0.</p>
+         */
+        public static const NONE:uint = 0;
+
+        /**
+         * Specifies numeric (instead of character-string) sorting for the Array class sorting methods. 
+         * Including this constant in the <code>options</code>
+          * parameter causes the <code>sort()</code> and <code>sortOn()</code> methods 
+          * to sort numbers as numeric values, not as strings of numeric characters.  
+         * Without the <code>NUMERIC</code> constant, sorting treats each array element as a 
+          * character string and produces the results in Unicode order. 
+          *
+          * <p>For example, given the array of values <code>[2005, 7, 35]</code>, if the <code>NUMERIC</code> 
+          * constant is <strong>not</strong> included in the <code>options</code> parameter, the 
+          * sorted array is <code>[2005, 35, 7]</code>, but if the <code>NUMERIC</code> constant <strong>is</strong> included, 
+          * the sorted array is <code>[7, 35, 2005]</code>. </p>
+           * 
+           * <p>This constant applies only to numbers in the array; it does 
+          * not apply to strings that contain numeric data such as <code>["23", "5"]</code>.</p>
+           * 
+           * <p>The value of this constant is 16.</p>
+          */
+        public static const NUMERIC:uint = 16;
+        
+        /**
+         * Returns the internal IComparator reference of this object.
+         * @return the internal IComparator reference of this object.
+         */
+        public function get comparator():IComparator 
+        {
+            return _comparator ;
+        }
+
+        /**
+         * Sets the internal IComparator reference of this object.
+         */
+        public function set comparator(comp:IComparator):void 
+        {
+            _comparator = comp ;
+            _sort() ;
+        }
+
+        /**
+         * (read-write) Returns the options to sort the elements in the list.
+         */
+        public function get options():uint
+        {
+            return _options ;
+        }
+
+        /**
+         * (read-write) Sets the options to sort the elements in the list.
+          */
+        public function set options( o:uint ):void 
+        {
+            _options = o ;
+            _sort() ;
+        }
+
+        /**
+         * Returns a shallow copy of this object.
+         * @return a shallow copy of this object.
+         */
+        public override function clone():* 
+        {
+            return new PriorityQueue(comparator, options, toArray());
+        }
+
+        /**
+         * Returns a deep copy of this object.
+         * @return a deep copy of this object.
+         */
+        public override function copy():* 
+        {
+            return new PriorityQueue(comparator, Copier.copy(toArray())) ;
+        }
+
+        /**
+         * Inserts the specified element into this queue, if possible.
+         */
+        public override function enqueue(o:*):Boolean 
+        {
+            var isEnqueue:Boolean = super.enqueue(o) ;
+            if ( isEnqueue && _comparator != null ) 
+            {
+                _sort() ;
+            }
+            return isEnqueue ;
+        }
+        
+        protected var _comparator:IComparator ;
+
+        protected var _options:uint = 0 ;
+    
+        /**
+         * The internal IComparator reference.
+         */
+        protected function _sort():void 
+        {
+            if ( size() > 0 && _comparator != null) 
+            {
+                _a.sort( _comparator.compare, _options ) ;
+            }
+        }
+        
+    }
 }

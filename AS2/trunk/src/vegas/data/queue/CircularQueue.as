@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -92,32 +92,42 @@ import vegas.util.serialize.Serializer;
  * }
  * @author eKameleon
  */
-class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue, ICloneable, Collection, ISerializable {
+class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue, ICloneable, Collection, ISerializable 
+{
 
 	/**
 	 * Creates a new CircularQueue instance.
 	 * @param qSize the max number of element in the queue
-	 * @param elaments an array with elements to enqueue in the current stack.
+	 * @param elements an array with elements to enqueue in the current stack.
 	 */
-	public function CircularQueue( qSize:Number , elements:Array) {
-		_qSize = (qSize || CircularQueue.DEFAULT_SIZE) + 1 ;
+	public function CircularQueue( qSize:Number , elements:Array) 
+	{
+		_qSize = ( isNaN(qSize) ? CircularQueue.MAX_CAPACITY : qSize ) + 1 ;
 		clear() ;
-		var l:Number = elements.length ;
-		if (l > 0) for (var i:Number = 0 ; i<l ; i++) 
+		if (elements == null)
 		{
-			enqueue(elements[i]) ;
+		    return ;
+		}
+		else
+		{
+			var l:Number = elements.length ;
+			if (l > 0) for (var i:Number = 0 ; i<l ; i++) 
+			{
+				enqueue(elements[i]) ;
+			}
 		}
 	}
 	
 	/**
 	 * The default numbers of elements in the queue.
 	 */
-	static public var DEFAULT_SIZE:Number = Number.MAX_VALUE ;
+	static public var MAX_CAPACITY:Number = Number.MAX_VALUE ;
 
 	/**
 	 * Clear all elements in the queue.
 	 */
-	public function clear():Void {
+	public function clear():Void 
+	{
 		_queue = new Array(_qSize) ;
 		_count = 0 ;
 		_rear = 0 ;
@@ -126,6 +136,7 @@ class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue,
 
 	/**
 	 * Returns a shallow copy of the queue.
+	 * @return a shallow copy of the queue.
 	 */
 	public function clone() 
 	{
@@ -136,10 +147,18 @@ class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue,
 
 	/**
 	 * Returns {@code true} if the queue contains the object passed in argument.
+	 * @return {@code true} if the queue contains the object passed in argument.
 	 */
-	public function contains(o):Boolean {
+	public function contains(o):Boolean 
+	{
 		var l:Number = _queue.length ;
-		for (var i:Number = 0 ; i<l ; i++) if (_queue[i] == o) return true ;
+		for (var i:Number = 0 ; i<l ; i++) 
+		{
+			if (_queue[i] == o) 
+			{
+				return true ;
+			}
+		}
 		return false ; 
 	}
 	
@@ -297,13 +316,17 @@ class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue,
 	 */
 	public function toArray():Array 
 	{
-		if (_count == 0) {
+		if (_count == 0) 
+		{
 			return new Array() ;
-		} else {
+		} 
+		else 
+		{
 			var r:Array = new Array(_count) ;
 			var i:Number = (_front == _qSize) ? 0 : _front ;
 			var cpt:Number = 0 ;
-			while (cpt < _count) {
+			while (cpt < _count) 
+			{
 				r[cpt++] = _queue[i++] ;
 				if (i == _qSize) i = 0 ;
 			}
@@ -312,7 +335,7 @@ class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue,
 	}
 
 	/**
-	 * Returns a Eden reprensation of the object.
+	 * Returns a eden reprensation of the object.
 	 * @return a string representing the source code of the object.
 	 */
 	public function toSource(indent:Number, indentor:String):String 

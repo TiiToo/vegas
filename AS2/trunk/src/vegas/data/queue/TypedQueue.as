@@ -38,11 +38,16 @@ class vegas.data.queue.TypedQueue extends AbstractTypeable implements Iterable, 
 
 	/**
 	 * Creates a new TypedQueue instance.
+	 * @param type The type of all elements insert in the Queue.
+	 * @param queue The Queue to be wrapped. 
 	 */
 	public function TypedQueue(type:Function, queue:Queue) 
 	{
 		super(type) ;
-		if (!queue) throw new IllegalArgumentError("TypedQueue constructor failed, the argument 'queue' must not be 'null' or 'undefined'.") ;
+		if (!queue) 
+		{
+			throw new IllegalArgumentError("TypedQueue constructor failed, the argument 'queue' must not be 'null' or 'undefined'.") ;
+		}
 		_queue = queue ;
 		if (_queue.size() > 0) 
 		{
@@ -63,7 +68,8 @@ class vegas.data.queue.TypedQueue extends AbstractTypeable implements Iterable, 
 	}
 
 	/**
-	 * Returns a shallow copy of this TypedQueue instance.
+	 * Returns the shallow copy of this object.
+	 * @return the shallow copy of this object.
 	 */
 	public function clone() 
 	{
@@ -72,6 +78,7 @@ class vegas.data.queue.TypedQueue extends AbstractTypeable implements Iterable, 
 
 	/**
 	 * Removes the head of this queue and return true if removes.
+	 * @return {@code true} if the Queue is dequeue.
 	 */
 	public function dequeue():Boolean 
 	{
@@ -105,8 +112,8 @@ class vegas.data.queue.TypedQueue extends AbstractTypeable implements Iterable, 
 	}
 
 	/**
-	 * Returns an iterator.
-	 * @return an Iterator.
+	 * Returns the iterator representation of the object.
+	 * @return the iterator representation of the object.
 	 */
 	public function iterator():Iterator 
 	{
@@ -132,13 +139,15 @@ class vegas.data.queue.TypedQueue extends AbstractTypeable implements Iterable, 
 	/**
 	 * Sets the type of this ITypeable object.
 	 */
-	public function setType(type:Function):Void {
+	public function setType(type:Function):Void 
+	{
 		super.setType(type) ;
 		_queue.clear() ;
 	}
 
 	/**
 	 * Returns the size of this queue.
+	 * @return the size of this queue.
 	 */
 	public function size():Number 
 	{
@@ -147,6 +156,7 @@ class vegas.data.queue.TypedQueue extends AbstractTypeable implements Iterable, 
 
 	/**
 	 * Returns an array representation of this queue.
+	 * @return an array representation of this queue.
 	 */
 	public function toArray():Array 
 	{
@@ -154,8 +164,8 @@ class vegas.data.queue.TypedQueue extends AbstractTypeable implements Iterable, 
 	}
 
 	/**
-	 * Returns a Eden representation of the object.
-	 * @return a string representing the source code of the object.
+	 * Returns the eden representation of the object.
+	 * @return the string representing the source code of the object.
 	 */
 	public function toSource(indent:Number, indentor:String):String 
 	{

@@ -14,165 +14,124 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/* LinearQueue
-
-	AUTHOR
-	
-		Name : LinearQueue
-		Package : vegas.data.queue
-		Version : 1.0.0.0
-		Date : 2006-07-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-
-		- clear():void
-		
-		- clone():*
-		
-		- copy():*
-				
-		- contains(o:*):Boolean
-		
-		- dequeue():Boolean 
-		
-		- element():* 
-		
-		- enqueue(o:*):Boolean
-		
-		- get(key:*):*
-		
-		- hashCode():uint
-		
-		- indexOf(o:*, fromIndex:uint=0):int
-		
-		- insert(o:*):Boolean
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- peek():*
-		
-		- poll():*
-		
-		- remove(o):*
-		
-		- size():uint
-		
-		- toArray():Array
-		
-		- toSource(...arguments:Array):String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → AbstractCollection → SimpleCollection → LinearQueue
-
-	IMPLEMENTS
-	
-		Collection, ICloneable, ICopyable, IFormattable, IHashable, ISerialzable, Iterable, Queue
-
-	EXAMPLE
-	
-		var q:LinearQueue = new LinearQueue() ;
-		trace("enqueue item1 : " + q.enqueue("item1")) ;
-		trace("enqueue item1 : " + q.enqueue("item2")) ;
-		trace("enqueue item1 : " + q.enqueue("item3")) ;
-		trace("enqueue item1 : " + q.enqueue("item4")) ;
-		
-		trace("poll : " + q.poll()) ;
-		
-		trace("queue : " + q) ;
-		trace("queue toSource : " + q.toSource()) ;
-		trace("queue toArray : " + q.toArray()) ;
-
-*/
-
 package vegas.data.queue
 {
-	import vegas.data.collections.SimpleCollection;
-	import vegas.data.Queue;
-	
-	import vegas.util.Copier ;
+    
+    import vegas.data.Queue;
+    import vegas.data.collections.SimpleCollection;
+    import vegas.util.Copier;
 
-	public class LinearQueue extends SimpleCollection implements Queue
-	{
-		
-		// ----o Constructor
-		
-		public function LinearQueue( ar:Array=null )
-		{
-			super(ar);
-		}
-		
-		// ----o Public Methods
-		
+    /**
+     * LinearQueue stores values in a 'first-in, first-out' manner.
+     * <p><b>Example :</b></p>
+     * import vegas.data.queue.LinearQueue ;
+     * 
+     * var q:LinearQueue = new LinearQueue(["item0", "item1"])  ;
+     * trace ("queue size : " + q.size()) ;
+     * trace ("enqueue item2 : " + q.enqueue ("item2")) ;
+     * trace ("enqueue item3 : " + q.enqueue ("item3")) ;
+     * trace ("enqueue item4 : " + q.enqueue ("item4")) ;
+     * 
+     * trace ("------- element") ;
+     * trace ("element : " + q.element()) ;
+     * trace ("peek : " + q.peek()) ;
+     * 
+     * trace ("------- dequeue") ;
+     * trace ("dequeue : " + q.dequeue()) ;
+     * 
+     * trace ("------- iterator") ;
+     * var it = q.iterator() ;
+     * while (it.hasNext()) 
+     * {
+     *     trace (it.next()) ;
+     * }
+     * 
+     * trace ("queue size : " + q.size() ) ;
+     * trace ("queue toSource : " + q.toSource()) ;
+     * }
+     * @author eKameleon
+     */
+    public class LinearQueue extends SimpleCollection implements Queue
+    {
+        
+        /**
+         * Creates a new LinearQueue instance.
+         * @param ar an optional array to fill the collection.
+         */
+        public function LinearQueue( ar:Array=null )
+        {
+            super(ar);
+        }
+        
+        /**
+         * Returns a shallow copy of this collection (optional operation).
+         * @return a shallow copy of this collection.
+         */
+        override public function clone():*
+        {
+            return new LinearQueue(toArray()) ;
+        }
 
-		override public function clone():*
-		{
-			return new LinearQueue(toArray()) ;
-		}
-		
-		override public function copy():*
-		{
-			return new LinearQueue(Copier.copy(toArray())) ;
-		}
-	
+        /**
+         * Returns a deep copy of this collection (optional operation).
+         * @return a deep copy of this collection.
+         */
+        override public function copy():*
+        {
+            return new LinearQueue(Copier.copy(toArray())) ;
+        }
+    
         /**
          * Retrieves and removes the head of this queue.
          */
-    	public function dequeue():Boolean 
-    	{
-    		return poll() != null  ;
-    	}
+        public function dequeue():Boolean 
+        {
+            return poll() != null  ;
+        }
 
-	    /**
-	     * Retrieves, but does not remove, the head of this queue.
-	     */
-    	public function element():* 
-    	{
-    		return _a[0] ;
-    	}
-    	
-	    /**
-	     * Inserts the specified element into this queue, if possible.
-	     */
-    	public function enqueue(o:*):Boolean 
-    	{
-    		if (o == null) return false ;
-			_a.push(o) ;
-			return true ;
-    	}
+        /**
+         * Retrieves, but does not remove, the head of this queue.
+         */
+        public function element():* 
+        {
+            return _a[0] ;
+        }
+        
+        /**
+         * Inserts the specified element into this queue, if possible.
+         */
+        public function enqueue(o:*):Boolean 
+        {
+            if (o == null) return false ;
+            _a.push(o) ;
+            return true ;
+        }
 
         /**
          * Retrieves, but does not remove, the head of this queue, returning null if this queue is empty.
          */
-    	public function peek():* 
-    	{
-    		if (isEmpty()) return null ;
-			return _a[0] ;
-    	}
-	
-	    /**
-	     * Retrieves and removes the head of this queue.
-	     */
-    	public function poll():*
-    	{
-			if (isEmpty()) return null ;
-			return _a.shift() ;	
-    	}
-	
-		
-	}
+        public function peek():* 
+        {
+            if (isEmpty()) return null ;
+            return _a[0] ;
+        }
+    
+        /**
+         * Retrieves and removes the head of this queue.
+         */
+        public function poll():*
+        {
+            if (isEmpty()) return null ;
+            return _a.shift() ;    
+        }
+    
+        
+    }
 }

@@ -25,58 +25,107 @@ package vegas.data.iterator
 {
 
 	import vegas.core.CoreObject;
-	import vegas.errors.UnsupportedOperation ;
-	import vegas.util.MathsUtil ;
-	import vegas.util.Serializer ;
+	import vegas.errors.UnsupportedOperation;
+	import vegas.util.MathsUtil;
+	import vegas.util.Serializer;
 
+    /**
+     * Converts a string to an iterator.
+     * <p><b>Example :</b></p>
+     * {@code
+     * import  vegas.data.iterator.Iterator ;
+     * import  vegas.data.iterator.StringIterator ;
+     * 
+     * var s = "Hello world" ;
+     * 
+     * var it:Iterator = new StringIterator(s) ;
+     * it.seek(1) ;
+     * while(it.hasNext())
+     * {
+     *     var char:String = it.next() ;
+     *     trace (it.key() + ' : ' + char) ;
+     * }
+     * trace (s) ;
+     * }
+     * @author eKameleon
+     */
 	public class StringIterator extends CoreObject implements Iterator
 	{
 		
+		/**
+	     * Creates a new StringIterator instance.
+	     * @param s the String object to enumerate.
+	     */
 		public function StringIterator(s:String)
 		{
 			_s = s ;
 			_k = -1 ;
 			_size = s.length ;
 		}
-		
+
+    	/**
+	     * Returns {@code true} if the iteration has more elements.
+    	 * @return {@code true} if the iteration has more elements.
+	     */	
 		public function hasNext():Boolean
 		{
 			return _k < _size-1  ;
 		}
 
+    	/**
+    	 * Returns the current key of the internal pointer of the iterator (optional operation).
+    	 * @return the current key of the internal pointer of the iterator (optional operation).
+	     */
 		public function key():*
 		{
 			return _k ;
 		}
 
+    	/**
+	     * Returns the next element in the iteration.
+    	 * @return the next element in the iteration.
+	     */
 		public function next():*
 		{
 			return _s.charAt( ++_k );
 		}
-		
+
+    	/**
+    	 * Removes from the underlying collection the last element returned by the iterator (optional operation).
+    	 */
 		public function remove():*
 		{
 			throw new UnsupportedOperation("This " + this + " does not support the reset() method.") ;
 			return null ;
 		}
-		
+
+    	/**
+    	 * Reset the internal pointer of the iterator (optional operation).
+	     */
 		public function reset():void
 		{
 			_k = -1 ;
 		}
 
+    	/**
+    	 * Change the position of the internal pointer of the iterator (optional operation).
+	     */
 		public function seek(position:*):void
 		{
 			_k = MathsUtil.clamp ((position-1), -1, _size-1) ;
 		}
 
-        override public function toSource(...arguments:Array):String 
+        /**
+         * Returns the eden String representation of this object.
+         * @return the eden String representation of this object.
+         */
+        public override function toSource(...arguments:Array):String 
         {
             return Serializer.getSourceOf(this, [_s] ) ;
         }
 
-		private var _s:String ;
 		private var _k:Number ;
+		private var _s:String ;
 		private var _size:Number ;
 	
 	}

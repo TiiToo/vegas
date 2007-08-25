@@ -131,21 +131,21 @@ class vegas.data.iterator.PageByPageIterator extends CoreObject implements Order
 	}
 
 	/**
-	 * Checks to see if there is a previous element that can be iterated to.
-	 * @return {@code true} if the iterator has more elements.
-	 */
-	public function hasPrevious() : Boolean 
-	{
-		return _key > 1 ;
-	}
-
-	/**
 	 * Returns {@code true} if the iteration has more elements.
 	 * @return {@code true} if the iterator has more elements.
 	 */
 	public function hasNext() : Boolean 
 	{
 		return _key < _pageCount ;
+	}
+
+	/**
+	 * Checks to see if there is a previous element that can be iterated to.
+	 * @return {@code true} if the iterator has more elements.
+	 */
+	public function hasPrevious() : Boolean 
+	{
+		return _key > 1 ;
 	}
 
 	/**

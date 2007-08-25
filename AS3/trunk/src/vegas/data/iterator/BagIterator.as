@@ -25,17 +25,23 @@ package vegas.data.iterator
 {
 	
 	import vegas.core.CoreObject;
-	
-	import vegas.data.bag.AbstractBag ;
+	import vegas.data.bag.AbstractBag;
+	import vegas.errors.ConcurrentModificationError;
+	import vegas.errors.UnsupportedOperation;
+	import vegas.util.Serializer;
 
-	import vegas.errors.ConcurrentModificationError ;
-	import vegas.errors.UnsupportedOperation ;
-
-	import vegas.util.Serializer ;
-
+    /**
+     * Converts an Bag to an iterator.
+     * @author eKameleon
+     */
 	public class BagIterator extends CoreObject implements Iterator
 	{
 		
+		/**
+	     * Creates a new BagIterator instance.
+	     * @param parent the bag (@code AbstractBag) used in this iterator.
+	     * @param support the iterator to support this iterator.
+	     */
 		public function BagIterator( parent:AbstractBag, support:Iterator  )
 		{
 			_parent = parent;
@@ -44,25 +50,42 @@ package vegas.data.iterator
 			_mods = parent.getModCount() ;
 		}
 		
+    	/**
+    	 * Returns {@code true} if the iteration has more elements.
+    	 * @return {@code true} if the iteration has more elements.
+    	 */	
 		public function hasNext():Boolean
 		{
 			return _support.hasNext() ;
 		}
 
+    	/**
+	     * Unsupported method in all BagIterator.
+    	 * @throws UnsupportedOperation {@ode key} method in unsupported.
+    	 */
 		public function key():*
 		{
 			throw new UnsupportedOperation(this + " 'key' method is unsupported.") ;
 		}
 
+    	/**
+    	 * Returns the next element in the iteration.
+    	 * @return the next element in the iteration.
+    	 * @throws ConcurrentModificationError the next method failed with an internal concurrent modification.
+    	 */
 		public function next():*
 		{
-			if (_parent.getModCount() != _mods) {
+			if (_parent.getModCount() != _mods) 
+			{
 				throw new ConcurrentModificationError(this + " concurrent modification impossible in 'next' method.");
 			}
     	    _current = _support.next() ;
 			return _current;
 		}
 
+    	/**
+    	 * Removes from the underlying collection the last element returned by the iterator (optional operation).
+    	 */
 		public function remove():*
 		{
 			if (_parent.getModCount() != _mods) 
@@ -74,17 +97,29 @@ package vegas.data.iterator
 			_mods++ ;
 		}
 		
+    	/**
+    	 * Unsupported method in all BagIterator.
+    	 * @throws UnsupportedOperation {@code reset} method in unsupported.
+    	 */
 		public function reset():void
 		{
 			throw new UnsupportedOperation(this + " 'reset' method is unsupported.") ;
 		}
-		
+
+    	/**
+    	 * Unsupported method in all BagIterator.
+    	 * @throws UnsupportedOperation {@code seek} method in unsupported.
+    	 */
 		public function seek(position:*):void
 		{
 			throw new UnsupportedOperation(this + " 'seek' method is unsupported.") ;
 		}
 
-        override public function toSource(...arguments:Array):String 
+        /**
+         * Returns the eden String representation of this object.
+         * @return the eden String representation of this object.
+         */
+        public override function toSource(...arguments:Array):String 
         {
             return Serializer.getSourceOf(this, [_parent, _support] ) ;
         }

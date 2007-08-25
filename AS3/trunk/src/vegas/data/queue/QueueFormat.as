@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -23,19 +23,30 @@
 
 package vegas.data.queue
 {
-	import vegas.core.IFormat;
-	import vegas.core.CoreObject;
-	import vegas.data.iterator.Iterator;
-	import vegas.data.Queue;
 	
+	import vegas.core.CoreObject;
+	import vegas.core.IFormat;
+	import vegas.data.Queue;
+	import vegas.data.iterator.Iterator;
+
+	/**
+ 	 * Converts a Queue to a custom string representation.
+	 * @author eKameleon
+	 */
 	public class QueueFormat extends CoreObject implements IFormat
 	{
-		
+
+		/**
+		 * Creates a new QueueFormat instance.
+		 */
 		public function QueueFormat()
 		{
 			super();
 		}
-		
+
+		/**
+		 * Converts the object to a custom string representation.
+		 */	
 		public function formatToString(o:*):String
 		{
 			var q:Queue = Queue(o);

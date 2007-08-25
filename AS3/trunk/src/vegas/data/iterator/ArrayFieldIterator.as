@@ -24,25 +24,70 @@
 package vegas.data.iterator
 {
    
-    import vegas.util.Serializer ;
-    
+    import vegas.util.Serializer;
+
+    /**
+     * Converts an array to an iterator but this iterator return the value of a specific field if the array is an array of objects.
+     * <p><b>Example :</b></p>
+     * {@code
+     * import vegas.data.iterator.ArrayFieldIterator ;
+     * 
+     * var ar:Array = 
+     * [
+     *     { label : "item1", date : new Date(2005, 10, 12) } ,
+     *     { label : "item2", date : new Date(2004, 2, 22) } ,
+     *     { label : "item3", date : new Date(2005, 4, 3) }
+     * ] ;
+     * 
+     * trace (" --- browse 'label' field") ;
+     * 
+     * var it:ArrayFieldIterator = new ArrayFieldIterator(ar, "label") ;
+     * while (it.hasNext()) 
+     * {
+     *     trace (it.next() + " : " + it.key()) ;
+     * }
+     * 
+     * trace(" --- browse 'date' field") ;
+     * 
+     * var it:ArrayFieldIterator = new ArrayFieldIterator(ar, "date") ;
+     * while (it.hasNext())
+     * {
+     *     trace (it.next() + " : " + it.key()) ;
+     * }
+     * }
+     * @author eKameleon
+     */
     public class ArrayFieldIterator extends ArrayIterator
     {
     
+    	/**
+    	 * Creates a new ArrayFieldIterator instance.
+    	 */
         public function ArrayFieldIterator(a:Array, fieldName:String=null)
         {
 		    super(a) ;
     		this.fieldName = fieldName ;
         }
-        
+
+    	/**
+    	 * The field used in the next method to return the next value in the array.
+    	 */	
     	public var fieldName:String ;
-    	
-    	override public function next():* 
+        
+	    /**
+	     * Returns the next field element in the iteration.
+	     * @return the next field element in the iteration.
+	     */
+    	public override function next():* 
     	{
 	    	var o:* = _a[++_k] ;
     		return (fieldName != null) ? o[fieldName] : o ;
     	}
-
+    	
+        /**
+         * Returns the eden String representation of this object.
+         * @return the eden String representation of this object.
+         */
         override public function toSource(...arguments:Array):String 
         {
             var sourceA:String = Serializer.toSource(_a) ;

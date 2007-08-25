@@ -22,7 +22,7 @@
 */
 
 /**
- * An iterator over a collection.
+ * This interface defines the iterator pattern over a collection. 
  * @author eKameleon
  */
 interface vegas.data.iterator.Iterator 

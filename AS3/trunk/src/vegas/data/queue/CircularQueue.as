@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -126,8 +126,11 @@ package vegas.data.queue
 	    /**
 	     * The default numbers of elements in the queue.
 	     */
-		static public var MAX_CAPACITY:uint = uint.MAX_VALUE ;
-
+		public static var MAX_CAPACITY:uint = uint.MAX_VALUE ;
+    
+    	/**
+         * Clear all elements in the queue.
+	     */
 		public function clear():void
 		{
 			_queue = new Array(_qSize) ;
@@ -135,78 +138,138 @@ package vegas.data.queue
 			_rear = 0 ;
 			_front = 0 ;
 		}
-		
+	
+    	/**
+	     * Returns a shallow copy of the queue.
+	     * @return a shallow copy of the queue.
+	     */
 		public function clone():*
 		{
 			var s:Number = _qSize - 1 ;
 			var a:Array = toArray() ;
 			return new CircularQueue(s , a) ;
 		}
-		
+
+	    /**
+	     * Returns {@code true} if the queue contains the object passed in argument.
+	     * @return {@code true} if the queue contains the object passed in argument.
+	     */
 		public function contains(o:*):Boolean
 		{
 			return _queue.indexOf(o) != -1 ;
 		}
-		
+
+    	/**
+	     * Returns a deep copy of the queue.
+	     * @return a deep copy of the queue.
+	     */
 		public function copy():*
 		{
 			return new CircularQueue(maxSize(), Copier.copy(toArray())) ;
 		}
-		
+
+	    /**
+    	 * Retreives the first element in the queue object, return a boolean.
+    	 * @return {@code true} if the first element in the queue is dequeue.
+    	 */
 		public function dequeue():Boolean
 		{
 			return poll() != null  ;
 		}
-		
+
+    	/**
+    	 * Returns the value of the first element in the queue.
+    	 * @return the value of the first element in the queue.
+    	 */
 		public function element():*
 		{
 			return _queue[_front] ;
 		}
 
+	    /**
+	     * Enqueue a new element in the queue if the que is not full, return a boolean.
+	     */
 		public function enqueue(o:*):Boolean
 		{
 			var next:uint = _rear + 1 ;
 			if ( (next == _front) || ( ( next == _qSize) && (_front == 0) )) 
 			{
 				return false ;
-			} else {
+			} 
+			else 
+			{
 				_queue[_rear++] = o ;
 				_count ++ ;
-				if (_rear == _qSize) _rear = 0 ;
+				if (_rear == _qSize) 
+				{
+				    _rear = 0 ;   
+				}
 			}
 			return true ;
 		}
-		
+	
+	    /**
+	     * Returns {@code true} if the queue is empty.
+	     * @return {@code true} if the queue is empty.
+	     */
 		public function isEmpty():Boolean
 		{
 			return _count == 0 ;
 		}
-		
+
+	    /**
+	     * Returns {@code true} if the queue is full.
+	     * @return {@code true} if the queue is full.
+	     */
 		public function isFull():Boolean
 		{
 			return _count == maxSize() ;
 		}
-		
+
+	    /**
+	     * Returns the iterator of the queue.
+	     * @return the iterator of the queue.
+	     * @see {@code vegas.data.iterator.ProtectedIterator}
+	     */
 		public function iterator():Iterator
 		{
 			return (new ProtectedIterator(new ArrayIterator(toArray()))) ;
 		}
-		
+
+    	/**
+    	 * Returns the max number of occurrences in the given queue.
+    	 * @return the max number of occurrences in the given queue.
+	     */
 		public function maxSize():uint
 		{
 			return _qSize -1 ;
 		}
-		
+
+    	/**
+    	 * Returns the value of the first element in the queue or {@code null} if the queue is empty.
+    	 * @return the value of the first element in the queue or {@code null} if the queue is empty.
+    	 */
 		public function peek():*
 		{
 			return isEmpty() ? null : _queue[_front] ;
 		}
-		
+
+	    /**
+    	 * Returns the value of the first element in the queue and remove this value in the queue.
+    	 * @return the value of the first element in the queue and remove this value in the queue.
+    	 */
 		public function poll():*
 		{
-			if (_front == _qSize) _front = 0 ; // loop back
-        	if (_front == _rear) return null;  // queue is empty
-        	else  {
+			if (_front == _qSize) 
+			{
+			    _front = 0 ; // loop back
+			}
+        	if (_front == _rear) 
+        	{
+        	    return null;  // queue is empty
+        	}
+        	else  
+        	{
             	_count-- ;
             	var mem:* = _queue[_front] ;
             	_queue[_front] = undefined ;
@@ -214,34 +277,54 @@ package vegas.data.queue
             	return mem ; // return mem object
         	}
 		}
-		
+
+	    /**
+	     * Returns the number of elements in the CircularQueue.
+	     * @return the number of elements in the CircularQueue.
+	     */
 		public function size():uint
 		{
 			return _count ;
 		}
 
+	    /**
+	     * Returns the array representation of the CircularQueue.
+	     * @return the array representation of the CircularQueue.
+	     */
 		public function toArray():Array
 		{
-		if (_count == 0) {
-			return new Array() ;
-		} else {
-			var r:Array = new Array(_count) ;
-			var i:Number = (_front == _qSize) ? 0 : _front ;
-			var cpt:uint = 0 ;
-			while (cpt < _count) {
-				r[cpt++] = _queue[i++] ;
-				if (i == _qSize) i = 0 ;
-			}
-			return r ;
+		    if (_count == 0) 
+		    {
+			    return new Array() ;
+		    } 
+		    else 
+		    {
+			    var r:Array = new Array(_count) ;
+			    var i:Number = (_front == _qSize) ? 0 : _front ;
+			    var cpt:uint = 0 ;
+			    while (cpt < _count) 
+			    {
+				    r[cpt++] = _queue[i++] ;
+				    if (i == _qSize) i = 0 ;
+			    }
+			    return r ;
+		    }
 		}
-		}
-		
-		override public function toSource(...arguments:Array):String
+
+	    /**
+	     * Returns a eden reprensation of the object.
+	     * @return a string representing the source code of the object.
+	     */
+		public override function toSource(...arguments:Array):String
 		{
 			return Serializer.getSourceOf(this, [_qSize - 1, toArray()]) ;
 		}
-		
-		override public function toString():String
+
+	    /**
+	     * Returns the string representation of this instance.
+	     * @return the string representation of this instance
+	     */
+		public override function toString():String
 		{
 			return (new QueueFormat()).formatToString(this) ;
 		}

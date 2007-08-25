@@ -24,53 +24,115 @@
 package vegas.data.iterator
 {
     
-    import vegas.core.CoreObject ;
-    
-    import vegas.data.iterator.Iterator ;
-    
-    import vegas.util.ClassUtil ;
-    import vegas.util.MathsUtil ;
-    import vegas.util.Serializer ;
+    import vegas.core.CoreObject;
+    import vegas.util.ClassUtil;
+    import vegas.util.MathsUtil;
+    import vegas.util.Serializer;
 
+    /**
+     * Converts an {@code Array} to an iterator.
+     * <p><b>Example :</b></p>
+     * {@code
+     * import vegas.data.iterator.ArrayIterator ;
+     * import vegas.data.iterator.Iterator ;
+     * 
+     * var ar:Array = ["item1", "item2", "item3", "item4"] ;
+     * var it:Iterator = new ArrayIterator(ar) ;
+     * 
+     * while (it.hasNext())
+     * {
+     *     trace (it.next()) ;
+     * }
+     * 
+     * trace ("--- it reset") ;
+     * 
+     * it.reset() ;
+     * while (it.hasNext()) 
+     * {
+     *     trace (it.next() + " : " + it.key()) ;
+     * }
+     * 
+     * trace ("--- it seek 2") ;
+     * 
+     * it.seek(2) ;
+     * while (it.hasNext())
+     * {
+     *     trace (it.next()) ;
+     * }
+     * 
+     * trace ("---") ;
+     * 
+     * }
+     * @author eKameleon
+     */
     public class ArrayIterator extends CoreObject implements Iterator
     {
         
+    	/**
+	     * Creates a new ArrayIterator instance.
+    	 * @param a the array to enumerate with the iterator.
+	     */
         public function ArrayIterator( a:Array )
         {
  		   _a = a ;
     	   _k = -1 ;
         }
         
+    	/**
+    	 * Returns {@code true} if the iteration has more elements.
+    	 * @return {@code true} if the iteration has more elements.
+    	 */	
         public function hasNext():Boolean
         {
             return (_k < _a.length - 1);
         }
-
+        
+    	/**
+    	 * Returns the current key of the internal pointer of the iterator (optional operation).
+    	 * @return the current key of the internal pointer of the iterator (optional operation).
+    	 */
         public function key():*
         {
             return _k ;
         }
         
+    	/**
+    	 * Returns the next element in the iteration.
+    	 * @return the next element in the iteration.
+    	 */
         public function next():*
         {
            return _a[++_k] ;
         }
         
+    	/**
+    	 * Removes from the underlying collection the last element returned by the iterator (optional operation).
+    	 */
         public function remove():*
         {
             return _a.splice( _k-- , 1 );
         }
         
+        /**
+    	 * Reset the internal pointer of the iterator (optional operation).
+    	 */
         public function reset():void
         {
             _k = -1 ;
         }        
 
+	    /**
+    	 * Change the position of the internal pointer of the iterator (optional operation).
+    	 */		
         public function seek(position:*):void
         {
 		    _k = MathsUtil.clamp ((position-1), -1, _a.length) ;
         }
 
+        /**
+         * Returns the eden String representation of this object.
+         * @return the eden String representation of this object.
+         */
         override public function toSource(...arguments:Array):String 
         {
             return "new " + ClassUtil.getPath(this) + "(" + Serializer.toSource(_a) + ")" ;

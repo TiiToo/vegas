@@ -69,7 +69,8 @@ class vegas.data.iterator.ArrayIterator extends CoreObject implements Iterator
 	 * Creates a new ArrayIterator instance.
 	 * @param a the array to enumerate with the iterator.
 	 */
-	public function ArrayIterator(a:Array) {
+	public function ArrayIterator(a:Array) 
+	{
 		_a = a ;
 		_k = -1 ;
 	}

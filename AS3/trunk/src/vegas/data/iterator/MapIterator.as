@@ -29,9 +29,17 @@ package vegas.data.iterator
     import vegas.errors.UnsupportedOperation ;
     import vegas.util.Serializer ;
 
+    /**
+     * Converts a {@code Map} to an iterator.
+     * @author eKameleon
+     */
     public class MapIterator extends CoreObject implements Iterator
     {
         
+       /**
+	    * Creates a new MapIterator instance.
+	    * @param m the Map reference of this iterator. 
+	    */
         public function MapIterator(m:Map)
         {
 		    _m = m ;
@@ -39,39 +47,64 @@ package vegas.data.iterator
     		_k = null ;
         }
         
+    	/**
+    	 * Returns {@code true} if the iteration has more elements.
+    	 * @return {@code true} if the iteration has more elements.
+    	 */	
         public function hasNext():Boolean
         {
             return _i.hasNext() ;
         }
 
+    	/**
+    	 * Returns the current key of the internal pointer of the iterator (optional operation).
+    	 * @return the current key of the internal pointer of the iterator (optional operation).
+    	 */
         public function key():*
         {
             return _k ;
         }
         
+       	/**
+	     * Returns the next element in the iteration.
+	     * @return the next element in the iteration.
+	     */
         public function next():*
         {
 		    _k = _i.next() ;
     		return _m.get(_k) ;
         }
-        
+
+    	/**
+    	 * Removes from the underlying collection the last element returned by the iterator (optional operation).
+    	 */
         public function remove():*
         {
 		    _i.remove() ;
     		return _m.remove(_k) ;
         }
-        
+
+    	/**
+    	 * Reset the internal pointer of the iterator (optional operation).
+    	 */
         public function reset():void
         {
             _i.reset() ;
         }        
 
+    	/**
+    	 * Change the position of the internal pointer of the iterator (optional operation).
+    	 */	
         public function seek(position:*):void
         {
 		    throw new UnsupportedOperation("This Iterator does not support the seek() method.") ;
         }
-
-        override public function toSource(...arguments:Array):String 
+        
+        /**
+         * Returns the eden String representation of this object.
+         * @return the eden String representation of this object.
+         */
+        public override function toSource(...arguments:Array):String 
         {
             return "new vegas.data.iterator.MapIterator(" + Serializer.toSource(_m) + ")" ;
         }

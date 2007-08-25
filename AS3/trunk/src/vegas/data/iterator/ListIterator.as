@@ -31,27 +31,27 @@ package vegas.data.iterator
     public interface ListIterator extends OrderedIterator
     {
         
-        	/**
-			 * Inserts the specified element into the list (optional operation).
-			 */
-        	function insert(o:*):void ;
+        /**
+		 * Inserts the specified element into the list (optional operation).
+		 */
+        function insert(o:*):void ;
 
-			/**
-	 	 	 * Returns the index of the element that would be returned by a subsequent call to next.
-		 	 * @return the index of the element that would be returned by a subsequent call to next.
-		 	 */
-        	function nextIndex():uint ;	
+		/**
+	 	 * Returns the index of the element that would be returned by a subsequent call to next.
+		 * @return the index of the element that would be returned by a subsequent call to next.
+		 */
+        function nextIndex():uint ;	
 
-			/**
-	 	 	 * Returns the index of the element that would be returned by a subsequent call to previous.
-		 	 * @return the index of the element that would be returned by a subsequent call to previous.
-		 	 */
-        	function previousIndex():int ;
+		/**
+	 	 * Returns the index of the element that would be returned by a subsequent call to previous.
+		 * @return the index of the element that would be returned by a subsequent call to previous.
+		 */
+        function previousIndex():int ;
 	
-			/**
-			 * Replaces the last element returned by next or previous with the specified element (optional operation).
-			 */
-        	function set(o:*):void ;
+		/**
+		 * Replaces the last element returned by next or previous with the specified element (optional operation).
+		 */
+        function set(o:*):void ;
         
     }
 }

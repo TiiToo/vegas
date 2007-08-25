@@ -47,6 +47,7 @@ class vegas.data.iterator.MapIterator extends CoreObject implements Iterator
 
 	/**
 	 * Returns {@code true} if the iteration has more elements.
+	 * @return {@code true} if the iteration has more elements.
 	 */	
 	public function hasNext():Boolean 
 	{
@@ -55,6 +56,7 @@ class vegas.data.iterator.MapIterator extends CoreObject implements Iterator
 
 	/**
 	 * Returns the current key of the internal pointer of the iterator (optional operation).
+	 * @return the current key of the internal pointer of the iterator (optional operation).
 	 */
 	public function key() 
 	{
@@ -63,6 +65,7 @@ class vegas.data.iterator.MapIterator extends CoreObject implements Iterator
 
 	/**
 	 * Returns the next element in the iteration.
+	 * @return the next element in the iteration.
 	 */
 	public function next() 
 	{

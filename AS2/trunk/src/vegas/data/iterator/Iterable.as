@@ -31,8 +31,8 @@ interface vegas.data.iterator.Iterable
 {
 	
 	/**
-	 * Returns an iterator.
-	 * @return an Iterator.
+	 * Returns the iterator reference of the object.
+	 * @return the iterator reference of the object.
 	 */
 	function iterator():Iterator ;
 	

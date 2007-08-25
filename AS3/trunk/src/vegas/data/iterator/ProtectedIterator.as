@@ -25,60 +25,104 @@ package vegas.data.iterator
 {
 
     import vegas.core.CoreObject;
-    import vegas.data.iterator.Iterator ;
-    import vegas.errors.UnsupportedOperation ;
-    import vegas.util.Serializer ;
-    
+    import vegas.errors.UnsupportedOperation;
+    import vegas.util.Serializer;
+  
+    /**
+     * Protect an iterator. This class protect the remove, reset and seek method.
+     * <p><b>Example :</b></p>
+     * {@code
+     * import vegas.data.iterator.StringIterator ;
+     * import vegas.data.iterator.ProtectedIterator ;
+     * 
+     * var it:ProtectedIterator = new ProtectedIterator( new StringIterator( "hello world" ) ) ;
+     * while (it.hasNext())
+     * {
+     *     trace( it.next() ) ;
+     * }
+     * }
+     * @author eKameleon 
+     */
     public class ProtectedIterator extends CoreObject implements Iterator
     {
         
-        // ----o Constructor
-        
+	    /**
+	     * Creates a new ProtectedIterator instance.
+	     * @param iterator the iterator to protected.
+	     */
         public function ProtectedIterator(i:Iterator)
         {
 		    _i = i ;
         }
         
-        // ----o Public Methods
-        
+	    /**
+    	 * Returns {@code true} if the iteration has more elements.
+    	 * @return {@code true} if the iteration has more elements.
+    	 */	
         public function hasNext():Boolean
         {
             return _i.hasNext() ;
         }
-        
+
+	    /**
+    	 * Returns the current key of the internal pointer of the iterator (optional operation).
+    	 * @return the current key of the internal pointer of the iterator (optional operation).
+    	 */
         public function key():*
         {
             return _i.key() ;
         }
-        
+
+    	/**
+	     * Returns the next element in the iteration.
+	     * @return the next element in the iteration.
+	     */
         public function next():*
         {
             return _i.next() ;
         }
-        
+
+    	/**
+    	 * Unsupported method in all ProtectedIterator.
+	     * @throws UnsupportedOperation the remove method is unsupported in a ProtectedIterator instance.
+    	 */
         public function remove():*
         {
             throw new UnsupportedOperation("This Iterator does not support the remove() method.") ;
         }
-        
+ 
+    	/**
+    	 * Unsupported method in all ProtectedIterator.
+    	 * @throws UnsupportedOperation the reset method is unsupported in a ProtectedIterator instance.
+    	 */
         public function reset():void
         {
             throw new UnsupportedOperation("This Iterator does not support the reset() method.") ;
         }
-        
+
+    	/**
+    	 * Unsupported method in all ProtectedIterator.
+    	 * @throws UnsupportedOperation the seek method is unsupported in a ProtectedIterator instance.
+    	 */
         public function seek(position:*):void
         {
             throw new UnsupportedOperation("This Iterator does not support the seek() method.") ;
         }
-        
-        override public function toSource(...arguments:Array):String 
+ 
+        /**
+         * Returns the eden String representation of this object.
+         * @return the eden String representation of this object.
+         */
+        public override function toSource(...arguments:Array):String 
         {
             return Serializer.getSourceOf(this, [_i]) ;
         }
-        
-    	// ----o Private Properties
-	
+
+    	/**
+    	 * Internal iterator.
+    	 */
 	    private var _i:Iterator ;
 	    
     }
+
 }

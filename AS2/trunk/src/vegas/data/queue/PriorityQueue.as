@@ -81,7 +81,8 @@ class vegas.data.queue.PriorityQueue extends LinearQueue
 	}
 	
 	/**
-	 * Returns the internal IComparator reference.
+	 * Returns the internal IComparator reference of this object.
+	 * @return the internal IComparator reference of this object.
 	 */
 	public function comparator():IComparator 
 	{

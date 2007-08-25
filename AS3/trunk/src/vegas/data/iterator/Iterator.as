@@ -23,20 +23,45 @@
 
 package vegas.data.iterator
 {
-    
+
+    /**
+     * This interface defines the iterator pattern over a collection. 
+     * @author eKameleon
+     */
     public interface Iterator
     {
-        
+
+	    /**
+    	 * Returns {@code true} if the iteration has more elements.
+    	 * @return {@code true} if the iteration has more elements.
+    	 */	
         function hasNext():Boolean ;
-     
+
+    	/**
+	     * Returns the current key of the internal pointer of the iterator (optional operation).
+    	 * @return the current key of the internal pointer of the iterator (optional operation).
+    	 */
         function key():* ;
-       
+
+    	/**
+    	 * Returns the next element in the iteration.
+    	 * @return the next element in the iteration.
+    	 */
         function next():* ;
-    	
+
+    	/**
+    	 * Removes from the underlying collection the last element returned by the iterator (optional operation).
+    	 */
         function remove():* ;
-     
+
+    	/**
+    	 * Reset the internal pointer of the iterator (optional operation).
+    	 */
         function reset():void ;
-     
+
+    	/**
+	     * Change the position of the internal pointer of the iterator (optional operation).
+    	 */
         function seek( position:* ):void ;
         
     }

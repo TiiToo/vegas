@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -48,7 +48,8 @@ class vegas.data.iterator.BagIterator extends CoreObject implements Iterator
 	}
 
 	/**
-	 * Returns true if the iteration has more elements.
+	 * Returns {@code true} if the iteration has more elements.
+	 * @return {@code true} if the iteration has more elements.
 	 */	
 	public function hasNext():Boolean 
 	{
@@ -66,6 +67,7 @@ class vegas.data.iterator.BagIterator extends CoreObject implements Iterator
 
 	/**
 	 * Returns the next element in the iteration.
+	 * @return the next element in the iteration.
 	 */
 	public function next() 
 	{
