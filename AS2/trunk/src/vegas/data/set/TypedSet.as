@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -155,8 +155,8 @@ class vegas.data.set.TypedSet extends AbstractTypeable implements ICloneable, Se
 	}
 
 	/**
-	 * Returns a Eden representation of this object.
-	 * @return a string representing the source code of the object.
+	 * Returns a eden String representation of this object.
+	 * @return a string representation the source code of the object.
 	 */
 	public function toSource(indent:Number, indentor:String):String 
 	{

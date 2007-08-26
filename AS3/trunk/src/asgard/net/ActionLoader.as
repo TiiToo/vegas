@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2007
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -35,7 +35,6 @@ package asgard.net
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	import flash.utils.Timer;
-	import flash.utils.getDefinitionByName;
 	
 	import pegas.events.ActionEvent;
 	
@@ -45,6 +44,7 @@ package asgard.net
 	import vegas.util.ClassUtil;
 	
 	/**
+	 * The ActionLoader class.
      * @author eKameleon
      */
     public class ActionLoader extends AbstractCoreEventDispatcher implements IActionLoader
@@ -52,10 +52,12 @@ package asgard.net
 
         /**
          * Creates a new ActionLoader instance.
+		 * @param bGlobal the flag to use a global event flow or a local event flow.
+		 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}. 
          */
-        public function ActionLoader()
+        public function ActionLoader( bGlobal:Boolean = false , sChannel:String = null )
         {
-            super();
+            super( bGlobal , sChannel );
             
             _loader = getLoader() ;
             _loader.addEventListener( Event.COMPLETE , complete ) ;

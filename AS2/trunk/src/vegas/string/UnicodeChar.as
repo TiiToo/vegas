@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -110,17 +110,17 @@ class vegas.string.UnicodeChar
 	static public var CR:String = "\u000D" ;
 
 	/**
-	 * Paragraph Separator utf8 representation (line terminators).
+	 * Line Separator utf8 representation (line terminators).
 	 */
 	static public var LS:String = "\u2028" ;
 
 	/**
-	 * Line Separator utf8 representation (line terminators).
+	 * Paragraph Separator utf8 representation (line terminators).
 	 */
 	static public var PS:String = "\u2029" ;	
 
 	/**
-	 * array with all line terminators characters
+	 * Array with all line terminators characters
 	 */
 	static public var LINE_TERMINATOR_CHARS:Array = [ LF, CR, LS, PS ] ;
 	

@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -25,16 +25,53 @@ package vegas.string
 {
 	import vegas.util.AbstractFormatter;
 	import vegas.util.StringUtil;
-	
+
+    /**
+     * Replaces the pattern item in a specified String with the text equivalent of the value of a specified Object instance.
+     * <p><b>Usage :</b>
+     * {@code
+     * import vegas.string.StringFormatter ;
+     * 
+     * var f:StringFormatter ;
+     * var result:String ;
+     * 
+     * f = new StringFormatter() ;
+     * f.pattern = "Brad's dog has {0,-4:_} fleas." ;
+     * result = f.format(42) ;
+     * trace (">> " + result) ;
+     * 
+     * f.pattern = "Brad's dog has {0,6:#} fleas.";
+     * result = f.format(41) ;
+     * trace (">> " + result) ;
+     * 
+     * f.pattern = "Brad's dog has {0,-8} fleas." ;
+     * result = f.format(12) ;
+     * trace (">> " + result) ;
+     * 
+     * f.pattern = "{3} {2} {1} {0}" ;
+     * result = f.format("a", "b", "c", "d") ;
+     * trace (">> " + result) ;
+     * }
+     * </p>
+     * @author eKameleon
+     */
 	public class StringFormatter extends AbstractFormatter
 	{
-		
+
+    	/**
+    	 * Creates a new StringFormatter instance.
+    	 * @param pattern the format pattern.
+    	 */
 		public function StringFormatter( pattern:String )
 		{
 			super(pattern)
 		}
 		
-		override public function format(...arguments:Array):String 
+		/**
+	     * Format the pattern with all the arguments passed in this method.
+	     * @return the new string representation of the pattern. 
+	     */
+		public override function format(...arguments:Array):String 
 		{
 			return StringUtil.format.apply(null, [pattern].concat(arguments)) ; 
 		}

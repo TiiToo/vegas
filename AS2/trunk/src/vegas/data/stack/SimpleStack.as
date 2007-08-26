@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -73,8 +73,8 @@ class vegas.data.stack.SimpleStack extends AbstractCollection implements Iterabl
 	}
 
 	/**
-	 * Returns a shallow copy of this Set (optional operation).
-	 * @return a shallow copy of this Set (optional operation).
+	 * Returns a shallow copy of this object.
+	 * @return a shallow copy of this object.
 	 */
 	public function clone() 
 	{
@@ -83,6 +83,7 @@ class vegas.data.stack.SimpleStack extends AbstractCollection implements Iterabl
 
 	/**
 	 * Returns an element but if id = 0, it's the last element in the stack.
+	 * @return an element but if id = 0, it's the last element in the stack.
 	 */
 	public function get(id:Number) 
 	{ 
@@ -117,7 +118,7 @@ class vegas.data.stack.SimpleStack extends AbstractCollection implements Iterabl
 	}
 
 	/**
-	 * Pushes an item onto the top of this stack.
+	 * Pushes an item into the top of this stack.
 	 */
 	public function push(o):Void 
 	{

@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -23,9 +23,28 @@
 
 package vegas.string
 {
+	
+	/**
+     * It is a simple checksum formula used to validate a variety of account numbers, such as credit card numbers, etc.
+     * <p>The Luhn algorithm or Luhn formula, also known as the "modulus 10" or "mod 10" algorithm, was developed in the 1960s as a method of validating identification numbers.</p>
+     * <p><b>example</b><br>
+     * {@code
+     * import vegas.string.Luhn ;
+     * 
+     * var code:String = "456565654" ;
+     * trace (code + " isValid : " + Luhn.isValid(code)) ;
+     * }
+     * </p>
+     * @see <a href='http://fr.wikipedia.org/wiki/Formule_de_Luhn'>Luhn Formula</a> 
+     * @author eKameleon
+     */
 	public class Luhn
 	{
-		
+
+	    /**
+    	 * Returns {@code true} if the expression in argument is a valid Luhn value.
+    	 * @return {@code true} if the expression in argument is a valid Luhn value.
+    	 */
 		static public function isValid(str:String):Boolean 
 		{	
 			var	n:Number ;

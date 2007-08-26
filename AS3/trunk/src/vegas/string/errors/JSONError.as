@@ -14,60 +14,27 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
 
-/** JSONError
-
-	AUTHOR
-
-		Name : JSONError
-		Package : vegas.errors
-		Version : 1.0.0.0
-		Date : 2006-07-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	PROPERTY SUMMARY
-	
-		- message:String
-		
-		- name:String
-	
-	METHOD SUMMARY
-	
-		- getCategory():String
-		
-			get internal logger's category.
-		
-		- getLogger():ILogger 
-		
-			get internal Logger.
-		
-		- toString():String
-
-	INHERIT
-	
-		Object → Error → AbstractError → FatalError → JSONError
-	
-	IMPLEMENT
-	
-		IFormattable, IHashable
-
-*/
-
 package vegas.string.errors
 {
 	import vegas.errors.FatalError;
 
+    /**
+     * This JSONError is throw in the JSON static methods.
+     * @author eKameleon
+     */
 	public class JSONError extends FatalError
 	{
-		
+
+    	/**
+    	 * Creates a new JSONError instance.
+    	 */
 		public function JSONError(message:String, at:uint, source:String)
 		{
 			super(message);
@@ -75,19 +42,26 @@ package vegas.string.errors
 			this.source = source ;
 		}
 		
-		// ----o Public Properties
-		
+		/**
+		 * The position of char with an error parsing in the JSON String representation.
+		 */
 		public var at:uint ;
+		
+		/**
+		 * The String source representation with a bad parsing.
+		 */
 		public var source:String ;
-
-		// ----o Public Methods
-
-        override public function toString():String {
-            
+        
+        /**
+         * Returns a String representation of the object.
+         * @return a String representation of the object.
+         */
+        public override function toString():String 
+        {
             var msg:String = "## " + name + " : " + message + " ##" ;
             if (!isNaN(at)) msg += ", at:" + at ;
 			if (source) msg += " in \"" + source + "\"";
-		    //this.getLogger().fatal(msg) ;
+		    log(msg) ;
 		    return msg ;
             
         }

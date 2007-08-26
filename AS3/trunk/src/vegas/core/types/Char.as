@@ -38,7 +38,7 @@ package vegas.core.types
          */  
         public function Char( value:String="" )
         {
-            _ch = value.substring(0, 1) ; ;
+            _ch = value.substring(0, 1) ;
         }
 
 		/**

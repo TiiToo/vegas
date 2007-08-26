@@ -14,80 +14,12 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
-
-/* SimpleStack
-
-	AUTHOR
-	
-		Name : SimpleStack
-		Package : vegas.data.stack
-		Version : 1.0.0.0
-		Date :  2006-07-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- clear():void
-		
-		- clone(:*
-
-		- contains(o:*):Boolean
-
-		- copy():*
-
-		- get(key:*):*
-
-		- hashCode():uint
-		
-		- indexOf(o:*, fromIndex:uint=0):int
-
-		- insert(o:*):Boolean
-
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- peek():*
-		
-		- pop():*
-		
-		- push(o):*
-
-		- remove(o):*
-
-		- search(o):Number
-		
-		- size():uint
-		
-		- toArray():Array ;
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → AbstractCollection → SimpleStack
-
-	IMPLEMENTS
-	
-		Collection, ICloneable, ICopyable, IFormattable, Iterable, ISerializable, Stack
-
-	EXAMPLE
-	
-		var stack:Stack = new SimpleStack(["item1", "item2"]) ;
-		trace("push : " + stack.push("item3")) ;
-		trace("toSource : " + stack.toSource()) ;
-		trace("pop : " + stack.pop()) ;
-		trace("stack : " + stack) ;			
-
-**/
 
 package vegas.data.stack
 {
@@ -97,61 +29,107 @@ package vegas.data.stack
 	import vegas.data.iterator.ProtectedIterator;
 	import vegas.data.Stack;
 	import vegas.util.Copier ;
-
+    
+    /**
+     * The based implementation of the Stack interface.
+     * The Stack interface represents a last-in-first-out (LIFO) stack of objects.
+     * <p><b>Example :</b></p>
+     * {@code 
+     * var stack:Stack = new SimpleStack(["item1", "item2"]) ;
+     * trace("push : " + stack.push("item3")) ;
+     * trace("toSource : " + stack.toSource()) ;
+     * trace("pop : " + stack.pop()) ;
+     * trace("stack : " + stack) ;
+     * }
+     */		
 	public class SimpleStack extends AbstractCollection implements Stack
 	{
 
-		// ----o Constructor
-		
+    	/**
+    	 * Creates a new SimpleStack instance.
+    	 * @param ar an array to fill the Stack
+    	 */
 		public function SimpleStack(ar:Array=null)
 		{
 			super(ar);
 		}
 		
-		// ----o Public Methods
-	
-		override public function clone():* 
+		/**
+	     * Returns a shallow copy of this object.
+	     * @return a shallow copy of this object.
+	     */
+		public override function clone():* 
 		{
 			return new SimpleStack(toArray()) ;
 		}
 
-		override public function copy():*
+		/**
+	     * Returns a deep copy of this object.
+	     * @return a deep copy of this object.
+	     */
+		public override function copy():*
 		{
 			return new SimpleStack(Copier.copy(toArray())) ;
 		}
 
-		override public function get(key:*):*
+    	/**
+    	 * Returns an element but if id = 0, it's the last element in the stack.
+    	 * @return an element but if id = 0, it's the last element in the stack.
+    	 */
+		public override function get(key:*):*
 		{ 
 			var a:Array = toArray() ;
 			return a[key] ;
 		}
-
-		override public function iterator():Iterator 
+    	
+    	/**
+	     * Returns an iterator over the elements in this Stack.
+	     * @return an iterator over the elements in this Stack.
+	     */
+		public override function iterator():Iterator 
 		{
 			return (new ProtectedIterator(new ArrayIterator(toArray()))) ;
 		}
 
+    	/**
+    	 * Looks at the object at the top of this stack without removing it from the stack.
+	     */
 		public function peek():*
 		{
 			return _a[_a.length - 1] ;
 		}
 
+    	/**
+    	 * Removes the object at the top of this stack and returns that object as the value of this function.
+    	 * @return the removed object value.
+    	 */
 		public function pop():*
 		{
 			return isEmpty() ? null : _a.pop() ;
 		}
 
+    	/**
+    	 * Pushes an item into the top of this stack.
+    	 */
 		public function push(o:*):void
 		{
 			_a.push(o) ;
 		}
 
+    	/**
+    	 * Returns the index of an element in the Stack.
+    	 * @return the index of an element in the Stack.
+    	 */
 		public function search(o:*):uint
 		{
 			return indexOf(o) ;
 		}
 
-		override public function toArray():Array 
+    	/**
+    	 * Returns the array representation of all the elements of this Stack.
+    	 * @return the array representation of all the elements of this Stack.
+    	 */
+		public override function toArray():Array 
 		{
 			var aReverse:Array = _a.slice() ;
 			aReverse.reverse() ;

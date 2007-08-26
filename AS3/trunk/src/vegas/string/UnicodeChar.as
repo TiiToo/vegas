@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -101,60 +101,149 @@ package vegas.string
 {
     
     import vegas.core.types.Char ;
-    
+
+
+    /**
+     * ECMA 262 Unicode IFormat-Control Characters tools.
+     * <p><b>Example :</b></p>
+     * {@code
+     * import vegas.string.UnicodeChar ;
+     * import vegas.core.types.Char ;
+     *   
+     * trace (UnicodeChar.WHITE_SPACE_CHARS.length) ;
+     *   
+     * var str:String = UnicodeChar.TAB + "coucou" ;
+     * trace (str) ;
+     *  
+     * var s:Char = new Char('\t') ;
+     * var b:Boolean = UnicodeChar.isWhiteSpace(s) ;
+     * trace ("isWhiteSpace : " + b) ;
+     *  
+     * var unicode:String = "0040" ;
+     * var char:Char = UnicodeChar.toChar(unicode) ;
+     * trace(">> " + char) ;
+     * }
+     * @author eKameleon
+     * @see <a href='http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf'>ECMAScript 262 specifications</a>
+     */
     public class UnicodeChar
     {
     
-           	// ---- Special Char
+	    /**
+    	 * Back Slash utf8 representation (special char).
+    	 */
+       	static public const BACK_SLASH:String = "\u005C" ;	
+
+	    /**
+    	 * Back Space utf8 representation (special char).
+    	 */
+	    static public const BACK_SPACE:String = "\u0008" ;
+
+	    /**
+    	 * Simple Quote utf8 representation (special char).
+    	 */
+        static public const SIMPLE_QUOTE:String = "\u0027" ;
+
+	    /**
+    	 * Double Quote utf8 representation (special char).
+    	 */
+        static public const DOUBLE_QUOTE:String = "\u0022" ;
+	
+    	/**
+    	 * Tab utf8 representation (whitespace).
+    	 */
+        static public const TAB:String = "\u0009" ;
+
+	    /**
+    	 * Vertical Tab utf8 representation (whitespace).
+    	 */
+        static public const VT:String = "\u000B" ;
         
-        	static public const BACK_SLASH:String = "\u005C" ;	
-	        static public const BACK_SPACE:String = "\u0008" ;
-    	    static public const SIMPLE_QUOTE:String = "\u0027" ;
-    	    static public const DOUBLE_QUOTE:String = "\u0022" ;
-	
-        	// ---- WhiteSpace
+    	/**
+    	 * Form Feed utf8 representation (whitespace).
+    	 */
+        static public const FF:String = "\u000C" ;
+   
+   	   /**
+	    * Space utf8 representation (whitespace).
+	    */
+        static public const SP:String = "\u0020" ;
 
-        	static public const TAB:String = "\u0009" ;
-        	static public const VT:String = "\u000B" ;
-        	static public const FF:String = "\u000C" ;
-        	static public const SP:String = "\u0020" ;
-        	static public const NBSP:String = "\u00A0" ;
+    	/**
+    	 * No-break space utf8 representation (whitespace).
+    	 */
+        static public const NBSP:String = "\u00A0" ;
 
-        	static public const WHITE_SPACE_CHARS:Array = [ TAB, VT, FF, SP, NBSP ] ;
-	
-	        // ---- Line Terminators
-	
-        	static public const LF:String = "\u000A" ;
-        	static public const CR:String = "\u000D" ;
-        	static public const LS:String = "\u2028" ;	
-        	static public const PS:String = "\u2029" ;	
+    	/**
+    	 * Array with all whitespace characters. NB : USP no implement (Any other Unicode "space separator")
+    	 */
+        static public const WHITE_SPACE_CHARS:Array = [ TAB, VT, FF, SP, NBSP ] ;
+        
+       	/**
+	     * Line Feed utf8 representation (line terminators).
+	     */
+        static public const LF:String = "\u000A" ;
+        
+    	/**
+    	 * Carriage Return utf8 representation (line terminators).
+    	 */
+        static public const CR:String = "\u000D" ;
 
-	        static public const LINE_TERMINATOR_CHARS:Array = [ LF, CR, LS, PS ] ;
-	
-        	// ----o Public Methods
-	
-	        static public function isWhiteSpace( char:String ):Boolean 
-	        {
-        		var c:Char = new Char(char) ;
-		        return (WHITE_SPACE_CHARS.indexOf(c) != -1) ;
-        	}
+    	/**
+    	 * Line Separator utf8 representation (line terminators).
+	     */        
+        static public const LS:String = "\u2028" ;	
 
-        	static public function isLineTerminators( char:String ):Boolean 
-        	{
-		        var c:Char = new Char(char) ;
-        		return (LINE_TERMINATOR_CHARS.indexOf(c) != -1) ;
-        	}
+    	/**
+    	 * Paragraph Separator utf8 representation (line terminators).
+	     */   
+        static public const PS:String = "\u2029" ;	
 
-	        static public function toChar( unicode:String ):Char 
-	        {
-        		return new Char(String.fromCharCode(parseInt( unicode, 16))) ;
-        	}
+    	/**
+    	 * Array with all line terminators characters
+    	 */
+	    static public const LINE_TERMINATOR_CHARS:Array = [ LF, CR, LS, PS ] ;
 
-            static public function toUnicode(n:Number):String 
-            {
-    		    var hex:String = n.toString(16) ;
-        		while( hex.length < 4 ) hex = "0" + hex ;
-        		return hex ;
-        	}
+    	/**
+    	 * Returns {@code true} of the specified character is a whitespace.
+    	 * @return {@code true} of the specified character is a whitespace.
+    	 */
+	    static public function isWhiteSpace( char:String ):Boolean 
+	    {
+            var c:Char = new Char(char) ;
+		    return (WHITE_SPACE_CHARS.indexOf(c) != -1) ;
+        }
+
+    	/**
+    	 * Returns {@code true} of the specified character is a line terminator.
+    	 * @return {@code true} of the specified character is a line terminator.
+    	 */
+        static public function isLineTerminators( char:String ):Boolean 
+        {
+		    var c:Char = new Char(char) ;
+        	return (LINE_TERMINATOR_CHARS.indexOf(c) != -1) ;
+        }
+
+    	/**
+    	 * Converts a unicode representation and returns this char's string.
+    	 * @return The char of the unicode representation.
+    	 */
+	    static public function toChar( unicode:String ):Char 
+	    {
+            return new Char(String.fromCharCode(parseInt( unicode, 16))) ;
+        }
+
+	    /**
+    	 * Converts an unicode number value and returns this string representation.
+	     * @return The string representation of a unicode number.
+    	 */
+        static public function toUnicode(n:Number):String 
+        {
+    	    var hex:String = n.toString(16) ;
+        	while( hex.length < 4 ) hex = "0" + hex ;
+        	return hex ;
+        }
+    
     }
+
 }

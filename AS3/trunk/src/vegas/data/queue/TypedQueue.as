@@ -76,7 +76,11 @@ package vegas.data.queue
         {
             return new TypedQueue(getType(), _queue) ;
         }
-    
+
+		/**
+		 * Returns {@code true} if the queue contains value.
+		 * @return {@code true} if the queue contains value.
+		 */
         public function contains(o:*):Boolean
         {
             return _queue.contains(o) ;

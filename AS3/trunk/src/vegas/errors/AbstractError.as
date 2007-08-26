@@ -88,12 +88,13 @@ package vegas.errors
     	
    		/**
 		 * Launch the external log of this error.
+		 * @param msg The optional message to log in the internal ILogger of this ILogable object.
 	 	 */
-		public function log():void
+		public function log( msg:String=null ):void
 		{
 		    if ( getLogger() != null )
 	        {
-			    getLogger().log( getLevel() , name + " : " + message ) ;
+			    getLogger().log( getLevel() , (msg != null) ? msg : name + " : " + message ) ;
 	        }
 		}
 

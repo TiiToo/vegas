@@ -113,14 +113,16 @@ class vegas.data.iterator.ArrayIterator extends CoreObject implements Iterator
 	/**
 	 * Reset the internal pointer of the iterator (optional operation).
 	 */
-	public function reset():Void {
+	public function reset():Void 
+	{
 		_k = -1 ;
 	}
 
 	/**
 	 * Change the position of the internal pointer of the iterator (optional operation).
 	 */		
-	public function seek(n:Number):Void {
+	public function seek(n:Number):Void 
+	{
 		_k = MathsUtil.clamp ((n-1), -1, _a.length) ;
 	}
 

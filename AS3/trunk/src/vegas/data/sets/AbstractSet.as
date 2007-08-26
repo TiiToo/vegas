@@ -14,75 +14,11 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
-*/
-
-/* AbstractSet
-
-	AUTHOR
-	
-		Name : AbstractSet
-		Package : vegas.data.sets
-		Version : 1.0.0.0
-		Date : 2006-07-09
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	METHOD SUMMARY
-
-		- clear():void
-		
-		- clone():*
-		
-		- copy():*
-				
-		- contains(o:*):Boolean
-		
-		- containsAll(c:Collection):Boolean
-		
-		- equals(o:*):Boolean
-		
-		- get(id)
-		
-		- hashCode():uint
-		
-		- indexOf(o:*, fromIndex:uint=0):int
-		
-		- insert(o:*):Boolean
-		
-		- insertAll(c:Collection):Boolean
-		
-		- isEmpty():Boolean
-		
-		- iterator():Iterator
-		
-		- remove(o):Boolean
-		
-		- removeAll(c:Collection):Boolean
-		
-		- retainAll(c:Collection):Boolean
-		
-		- size():Number
-		
-		- toArray():Array
-		
-		- toSource(...arguments:Array):String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → AbstractCollection → SimpleCollection → AbstractSet
-
-	IMPLEMENTS
-	
-		Collection, ICloneable, ICopyable, IEquality, IFormattable, IHashable, ISerialzable, Iterable, Set
-
 */
 
 package vegas.data.sets
@@ -93,18 +29,26 @@ package vegas.data.sets
 	import vegas.data.collections.SimpleCollection;
 	import vegas.data.Set ;
 
+    /**
+     * This class provides a skeletal implementation of the Set interface to minimize the effort required to implement this interface.
+     * A collection that contains no duplicate elements.
+     * @author eKameleon
+     */
 	internal class AbstractSet extends SimpleCollection implements IEquality, Set
 	{
 		
-		// ----o Constructor
-		
+		/**
+	     * Creates a new AbstractSet instance.
+	     */
 		public function AbstractSet( ar:Array )
 		{
 			super(ar) ;		
 		}
 		
-		// ----o Public Methods
-		
+		/**
+	     * Compares the specified object with this object for equality.
+	     * @return {@code true} if the the specified object is equal with this object.
+	     */
 		public function equals(o:*):Boolean 
 		{
 			

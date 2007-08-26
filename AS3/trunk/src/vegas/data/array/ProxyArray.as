@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2005
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -23,6 +23,7 @@
 
 package vegas.data.array
 {
+    
 	import flash.utils.Proxy;
 	import flash.utils.flash_proxy;
 	
@@ -42,20 +43,42 @@ package vegas.data.array
     /**
      * The ProxyArray class.
      * <p><b>Example :</b></p>
-     * <p>{@code
-     * var a:ProxyArray = new ProxyArray() ;
-     * a.push("item1") ;
-     * a.push("item2") ;
-     * a.push("item3") ;
-     * a.push("item4") ;
+     * {@code
+     * import vegas.data.array.ProxyArray ;
      * 
-     * trace("> " + a) ;
-     * trace("source : " + a.toSource()) ;
-     * var a2:ProxyArray = new ProxyArray( [[1, 2], [3, 4]] ) ;
+     * var a1:ProxyArray = new ProxyArray() ;
+     * 
+     * a1.push("item1") ;
+     * a1.push("item2") ;
+     * a1.push("item3") ;
+     * a1.push("item4") ;
+     * 
+     * for (var prop:String in a1)
+     * {
+     *     trace( prop + " : " + a1[prop] ) ;
+     * }
+     * 
+     * trace("----") ;
+     * 
+     * for each( var item:* in a1)
+     * {
+     *     trace(  item ) ;
+     * }
+     * 
+     * trace("----") ;
+     * 
+     * trace("proxy array toString : " + a1) ;
+     * trace("proxy array toSource : " + a1.toSource()) ;
+     * 
+     * var a2:ProxyArray = new ProxyArray( [[1, 2], [0, 4]] ) ;
+     * 
      * var copy:ProxyArray = a2.copy() ;
-     * copy[1][0] = "new value" ;  
+     * copy[1][0] = 3 ;
+     * copy[2] = [5,6] ;
+     * copy[3] = [7,8] ;
+     *
      * trace(a2 + " : " + copy) ;
-	 * }
+     * }
 	 * </p>
      * @author eKameleon
      */
@@ -65,9 +88,9 @@ package vegas.data.array
 		/**
 		 * Creates a new ProxyArray instance.
 		 */        
-        public function ProxyArray( ar:Array=null )
+        public function ProxyArray( datas:Array = null )
         {
-            _ar = (ar == null) ? [] : [].concat(ar)  ;
+            _ar = (datas == null) ? [] : [].concat(datas)  ;
         }
 		
     	/**
@@ -76,40 +99,27 @@ package vegas.data.array
 		HashCode.initialize(ProxyArray.prototype) ;
 		
         /**
-         * Init Proxy.
+         * Overrides the behavior of an object property that can be called as a function. 
+         * When a method of the object is invoked, this method is called. 
+         * While some objects can be called as functions, some object properties can also be called as functions. 
          */
-        flash_proxy override function callProperty( ...name:*)  ;
+        flash_proxy override function callProperty( methodName:*  , ...rest:Array ):* 
         {
             var res:* ;
-            switch ( Object(methodName).toString() ) 
+            switch ( methodName.toString() ) 
             {
-            
                 default :
-                    res = _ar[methodName].apply(_ar, args);
+                {
+                    res = _ar[methodName].apply(_ar, rest);
                     break;
-                    
+                }
             }
             return res ;
-        }
-        
-        /**
-         * Init Proxy getProperty.
-         */
-        flash_proxy override function getProperty( name:String ):* 
-        {
-            return _ar[name];
-        }
-		
-        /**
-         * Init Proxy setProperty.
-         */
-        flash_proxy override function setProperty( name , value ):void 
-        {
-            _ar[name] = value;
         }
 		
 		/**
 		 * Creates and returns a shallow copy of the object.
+		 * @return a shallow copy of the object.
 		 */	
         public function clone():*
         {
@@ -118,11 +128,23 @@ package vegas.data.array
 		
 		/**
 		 * Creates and returns a deep copy of the object.
+		 * @return a deep copy of the object.
 		 */	
         public function copy():*
         {
             return new ProxyArray(Copier.copy(_ar)) ;
 		}
+		
+		/**
+         * Overrides any request for a property's value. 
+         * If the property can't be found, the method returns undefined. 
+         * For more information on this behavior, see the ECMA-262 Language Specification, 3rd Edition. 
+         */
+        flash_proxy override function getProperty( name:* ):* 
+        {
+            //trace( "getProperty " + name + " value : " + _ar[name] ) ; 
+            return _ar[name];
+        }
 		
 		/**
 		 * Returns a hashcode value for the object.
@@ -134,14 +156,57 @@ package vegas.data.array
 
 		/**
 		 * Returns the iterator of the object.
+		 * @return the iterator of the object.
 		 */
     	public function iterator():Iterator 
     	{
 		    return new ArrayIterator(_ar) ;
 	    }
-
+	    
+	    /**
+	     * Allows enumeration of the proxied object's properties by index number to retrieve property names. 
+	     * However, you cannot enumerate the properties of the Proxy class themselves. 
+	     * This function supports implementing for...in and for each..in loops on the object to retrieve the desired names. 
+	     */
+	    flash_proxy override function nextName(index:int):String 
+        {
+            return _index.toString() ;
+        }
+	    
+	    /**
+	     * Allows enumeration of the proxied object's properties by index number. 
+	     * However, you cannot enumerate the properties of the Proxy class themselves. 
+	     * This function supports implementing for...in and for each..in loops on the object to retrieve property index values.
+	     */ 
+	    flash_proxy override function nextNameIndex ( index:int ):int 
+	    {
+	        _index = index ;
+            return (index < _ar.length) ? index + 1 : 0 ;
+        }
+        
+        private var _index:int ;
+        
+        /**
+         * Allows enumeration of the proxied object's properties by index number to retrieve property values. However, you cannot enumerate the properties of the Proxy class themselves. This function supports implementing for...in and for each..in loops on the object to retrieve the desired values. 
+         */
+        flash_proxy override function nextValue(index:int):* 
+        {
+            return _ar[index-1] ;
+        } 
+        
+        /**
+         * Overrides a call to change a property's value. 
+         * If the property can't be found, this method creates a property with the specified name and value.
+         * @param name The name of the property to modify.
+         * @param value The value to set the property to.
+         */
+        flash_proxy override function setProperty( name:* , value:* ):void 
+        {
+            _ar[name] = value ;
+        }
+        
 		/**
-		 * Returns a Eden reprensation of the object.
+		 * Returns a eden String reprensation of the object.
 		 * @return a string representing the source code of the object.
 		 */
         public function toSource(...arguments):String

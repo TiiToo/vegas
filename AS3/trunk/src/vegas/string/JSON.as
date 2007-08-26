@@ -618,8 +618,7 @@ package vegas.string
 							return '[' + s + ']';
 						
 						}
-						// TODO test the IFormattable test ?? fixbug in FDT3 but not in Flex (no bug in Flex)
-						else if ( typeof( (o as IFormattable ).toString ) != 'undefined') 
+						else if ( typeof( o.toString ) != 'undefined') 
 						{
 							
 							for (var prop:String in o) 

@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -160,6 +160,7 @@ class vegas.data.stack.TypedStack extends AbstractTypeable implements ICloneable
 
 	/**
 	 * Returns the number of elements in this Stack.
+	 * @return the number of elements in this Stack.
 	 */
 	public function size():Number 
 	{
@@ -176,8 +177,8 @@ class vegas.data.stack.TypedStack extends AbstractTypeable implements ICloneable
 	}
 
 	/**
-	 * Returns a Eden representation of the object.
-	 * @return a string representing the source code of the object.
+	 * Returns a eden representation of the object.
+	 * @return a string representation the source code of the object.
 	 */
 	public function toSource(indent:Number, indentor:String):String 
 	{
