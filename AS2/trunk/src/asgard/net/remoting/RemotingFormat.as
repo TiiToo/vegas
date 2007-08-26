@@ -31,6 +31,7 @@ import vegas.util.TypeUtil;
 
 /**
  * The instances of this class can converts an object to a custom string representation.
+ * @author eKameleon
  */
 class asgard.net.remoting.RemotingFormat extends CoreObject implements IFormat 
 {

@@ -58,7 +58,7 @@ class asgard.net.NetServerStatus extends String implements IEquality, ISerializa
 	static public var FAILED:NetServerStatus = new NetServerStatus("failed") ;
 
 	/**
-	 *  The application name specified during connect is invalid.
+	 * The application name specified during connect is invalid.
 	 */
 	static public var INVALID:NetServerStatus = new NetServerStatus("invalidapp") ;
 	

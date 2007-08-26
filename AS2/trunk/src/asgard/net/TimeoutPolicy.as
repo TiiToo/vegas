@@ -41,13 +41,19 @@ class asgard.net.TimeoutPolicy extends CoreObject
 		_value = value ;
 	}
 
+	/**
+	 * This constant defines the 'infinity' timeout policy value(0).
+	 */
 	static public var INFINITY:TimeoutPolicy = new TimeoutPolicy(0) ;
-			
+
+	/**
+	 * This constant defines the 'limit' timeout policy value(1).
+	 */
 	static public var LIMIT:TimeoutPolicy = new TimeoutPolicy(1) ;
 	
 	/**
-	 * Returns the Eden string representation of this object.
-	 * @return the Eden string representation of this object.
+	 * Returns the eden string representation of this object.
+	 * @return the eden string representation of this object.
 	 */		
 	/*override*/ public function toSource():String
 	{

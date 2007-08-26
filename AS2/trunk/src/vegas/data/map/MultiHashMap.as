@@ -248,8 +248,7 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 
 	/**
 	 * Returns whether this MultiHashSet contains any mappings.
-	 * 
-	 * @return {@code true} if this MultiHashSet contains any mappings else {@code false}
+	 * @return {@code true} if this MultiHashMap contains any mappings else {@code false}
 	 */
 	public function isEmpty():Boolean 
 	{

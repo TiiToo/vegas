@@ -51,7 +51,7 @@ class asgard.events.NetServerEvent extends DynamicEvent
 	 */
 	public function clone() 
 	{
-		return new NetServerEvent( getType(), NetServerConnection(getTarget()), getStatus(), getInfo(), getTarget(), getContext()) ;
+		return new NetServerEvent( getType(), NetServerConnection(getTarget()), getStatus(), getInfo(), getContext()) ;
 	}
 
 	/**
