@@ -99,82 +99,86 @@ document.quicknavBasePath="../../../index-files";
 <span class="lineno" id="96">    96  </span>	
 <span class="lineno" id="97">    97  </span>	<span class="comment doc">/**
 <span class="lineno" id="98">    98  </span>	 * Returns {@code true} if the iteration has more elements.
-<span class="lineno" id="99">    99  </span>	 */</span>	
-<span class="lineno" id="100">   100  </span>	<span class="key">public</span> <span class="key">function</span> hasNext():Boolean 
-<span class="lineno" id="101">   101  </span>	{
-<span class="lineno" id="102">   102  </span>		<span class="key">return</span> _k &lt;  (_len - <span class="num_const">1</span>) ;
-<span class="lineno" id="103">   103  </span>	}
-<span class="lineno" id="104">   104  </span>
-<span class="lineno" id="105">   105  </span>	<span class="comment doc">/**
-<span class="lineno" id="106">   106  </span>	 * Returns the current index of the internal pointer of the iterator (optional operation).
-<span class="lineno" id="107">   107  </span>	 */</span>
-<span class="lineno" id="108">   108  </span>	<span class="key">public</span> <span class="key">function</span> index():Number 
-<span class="lineno" id="109">   109  </span>	{
-<span class="lineno" id="110">   110  </span>		<span class="key">return</span> _k ;
-<span class="lineno" id="111">   111  </span>	}
-<span class="lineno" id="112">   112  </span>
-<span class="lineno" id="113">   113  </span>	<span class="comment doc">/**
-<span class="lineno" id="114">   114  </span>	 * Returns the current key value of the internal pointer of the iterator (optional operation).
-<span class="lineno" id="115">   115  </span>	 */</span>
-<span class="lineno" id="116">   116  </span>	<span class="key">public</span> <span class="key">function</span> key() 
-<span class="lineno" id="117">   117  </span>	{
-<span class="lineno" id="118">   118  </span>		<span class="key">return</span> _a[_k] ;
-<span class="lineno" id="119">   119  </span>	}
-<span class="lineno" id="120">   120  </span>
-<span class="lineno" id="121">   121  </span>	<span class="comment doc">/**
-<span class="lineno" id="122">   122  </span>	 * Returns the next element in the iteration.
-<span class="lineno" id="123">   123  </span>	 */</span>
-<span class="lineno" id="124">   124  </span>	<span class="key">public</span> <span class="key">function</span> next() 
-<span class="lineno" id="125">   125  </span>	{
-<span class="lineno" id="126">   126  </span>		<span class="key">return</span> _o[ _a[++_k] ] ;
-<span class="lineno" id="127">   127  </span>	}
-<span class="lineno" id="128">   128  </span>
-<span class="lineno" id="129">   129  </span>	<span class="comment doc">/**
-<span class="lineno" id="130">   130  </span>	 * Removes from the object the last element returned by the iterator (optional operation).
-<span class="lineno" id="131">   131  </span>	 */</span>
-<span class="lineno" id="132">   132  </span>	<span class="key">public</span> <span class="key">function</span> remove() 
-<span class="lineno" id="133">   133  </span>	{
-<span class="lineno" id="134">   134  </span>		<span class="key">var</span> p:String = _a[_k] ;
-<span class="lineno" id="135">   135  </span>		_a.splice(_k--, <span class="num_const">1</span>) ;
-<span class="lineno" id="136">   136  </span>		<span class="key">delete</span> _o[p] ;
-<span class="lineno" id="137">   137  </span>		_len -- ;
-<span class="lineno" id="138">   138  </span>		<span class="key">return</span> p ;
-<span class="lineno" id="139">   139  </span>	}
-<span class="lineno" id="140">   140  </span>
-<span class="lineno" id="141">   141  </span>	<span class="comment doc">/**
-<span class="lineno" id="142">   142  </span>	 * Reset the internal pointer of the iterator (optional operation).
-<span class="lineno" id="143">   143  </span>	 */</span>
-<span class="lineno" id="144">   144  </span>	<span class="key">public</span> <span class="key">function</span> reset():Void 
-<span class="lineno" id="145">   145  </span>	{
-<span class="lineno" id="146">   146  </span>		_k = -<span class="num_const">1</span> ;
-<span class="lineno" id="147">   147  </span>	}
-<span class="lineno" id="148">   148  </span>	
-<span class="lineno" id="149">   149  </span>	<span class="comment doc">/**
-<span class="lineno" id="150">   150  </span>	 * Change the position of the internal pointer of the iterator (optional operation).
-<span class="lineno" id="151">   151  </span>	 */</span>
-<span class="lineno" id="152">   152  </span>	<span class="key">public</span> <span class="key">function</span> seek(n:Number):Void 
-<span class="lineno" id="153">   153  </span>	{
-<span class="lineno" id="154">   154  </span>		_k = MathsUtil.clamp ((n-<span class="num_const">1</span>), -<span class="num_const">1</span>, _len) ;
-<span class="lineno" id="155">   155  </span>	}
-<span class="lineno" id="156">   156  </span>	
-<span class="lineno" id="157">   157  </span>	<span class="comment doc">/**
-<span class="lineno" id="158">   158  </span>	 * The internal array.
-<span class="lineno" id="159">   159  </span>	 */</span>
-<span class="lineno" id="160">   160  </span>	<span class="key">private</span> <span class="key">var</span> _a:Array ;
-<span class="lineno" id="161">   161  </span>	
-<span class="lineno" id="162">   162  </span>	<span class="comment doc">/**
-<span class="lineno" id="163">   163  </span>	 * The internal key.
-<span class="lineno" id="164">   164  </span>	 */</span>
-<span class="lineno" id="165">   165  </span>	<span class="key">private</span> <span class="key">var</span> _k:Number ;
-<span class="lineno" id="166">   166  </span>	
-<span class="lineno" id="167">   167  </span>	<span class="comment doc">/**
-<span class="lineno" id="168">   168  </span>	 * The internal object reference.
-<span class="lineno" id="169">   169  </span>	 */</span>
-<span class="lineno" id="170">   170  </span>	<span class="key">private</span> <span class="key">var</span> _o ;
-<span class="lineno" id="171">   171  </span>	
-<span class="lineno" id="172">   172  </span>	<span class="comment doc">/**
-<span class="lineno" id="173">   173  </span>	 * The internal size of the array.
-<span class="lineno" id="174">   174  </span>	 */</span>
-<span class="lineno" id="175">   175  </span>	<span class="key">private</span> <span class="key">var</span> _len:Number ;
-<span class="lineno" id="176">   176  </span>	
-<span class="lineno" id="177">   177  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.data.iterator" class="button">Package</a></li><li><a href="ObjectIterator.html" title="Detail of vegas.data.iterator.ObjectIterator API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
+<span class="lineno" id="99">    99  </span>	 * @return {@code true} if the iteration has more elements.
+<span class="lineno" id="100">   100  </span>	 */</span>	
+<span class="lineno" id="101">   101  </span>	<span class="key">public</span> <span class="key">function</span> hasNext():Boolean 
+<span class="lineno" id="102">   102  </span>	{
+<span class="lineno" id="103">   103  </span>		<span class="key">return</span> _k &lt;  (_len - <span class="num_const">1</span>) ;
+<span class="lineno" id="104">   104  </span>	}
+<span class="lineno" id="105">   105  </span>
+<span class="lineno" id="106">   106  </span>	<span class="comment doc">/**
+<span class="lineno" id="107">   107  </span>	 * Returns the current index of the internal pointer of the iterator (optional operation).
+<span class="lineno" id="108">   108  </span>	 * @return the current index of the internal pointer of the iterator (optional operation).
+<span class="lineno" id="109">   109  </span>	 */</span>
+<span class="lineno" id="110">   110  </span>	<span class="key">public</span> <span class="key">function</span> index():Number 
+<span class="lineno" id="111">   111  </span>	{
+<span class="lineno" id="112">   112  </span>		<span class="key">return</span> _k ;
+<span class="lineno" id="113">   113  </span>	}
+<span class="lineno" id="114">   114  </span>
+<span class="lineno" id="115">   115  </span>	<span class="comment doc">/**
+<span class="lineno" id="116">   116  </span>	 * Returns the current key value of the internal pointer of the iterator (optional operation).
+<span class="lineno" id="117">   117  </span>	 * @return the current key value of the internal pointer of the iterator (optional operation).
+<span class="lineno" id="118">   118  </span>	 */</span>
+<span class="lineno" id="119">   119  </span>	<span class="key">public</span> <span class="key">function</span> key() 
+<span class="lineno" id="120">   120  </span>	{
+<span class="lineno" id="121">   121  </span>		<span class="key">return</span> _a[_k] ;
+<span class="lineno" id="122">   122  </span>	}
+<span class="lineno" id="123">   123  </span>
+<span class="lineno" id="124">   124  </span>	<span class="comment doc">/**
+<span class="lineno" id="125">   125  </span>	 * Returns the next element in the iteration.
+<span class="lineno" id="126">   126  </span>	 * @return the next element in the iteration.
+<span class="lineno" id="127">   127  </span>	 */</span>
+<span class="lineno" id="128">   128  </span>	<span class="key">public</span> <span class="key">function</span> next() 
+<span class="lineno" id="129">   129  </span>	{
+<span class="lineno" id="130">   130  </span>		<span class="key">return</span> _o[ _a[++_k] ] ;
+<span class="lineno" id="131">   131  </span>	}
+<span class="lineno" id="132">   132  </span>
+<span class="lineno" id="133">   133  </span>	<span class="comment doc">/**
+<span class="lineno" id="134">   134  </span>	 * Removes from the object the last element returned by the iterator (optional operation).
+<span class="lineno" id="135">   135  </span>	 */</span>
+<span class="lineno" id="136">   136  </span>	<span class="key">public</span> <span class="key">function</span> remove() 
+<span class="lineno" id="137">   137  </span>	{
+<span class="lineno" id="138">   138  </span>		<span class="key">var</span> p:String = _a[_k] ;
+<span class="lineno" id="139">   139  </span>		_a.splice(_k--, <span class="num_const">1</span>) ;
+<span class="lineno" id="140">   140  </span>		<span class="key">delete</span> _o[p] ;
+<span class="lineno" id="141">   141  </span>		_len -- ;
+<span class="lineno" id="142">   142  </span>		<span class="key">return</span> p ;
+<span class="lineno" id="143">   143  </span>	}
+<span class="lineno" id="144">   144  </span>
+<span class="lineno" id="145">   145  </span>	<span class="comment doc">/**
+<span class="lineno" id="146">   146  </span>	 * Reset the internal pointer of the iterator (optional operation).
+<span class="lineno" id="147">   147  </span>	 */</span>
+<span class="lineno" id="148">   148  </span>	<span class="key">public</span> <span class="key">function</span> reset():Void 
+<span class="lineno" id="149">   149  </span>	{
+<span class="lineno" id="150">   150  </span>		_k = -<span class="num_const">1</span> ;
+<span class="lineno" id="151">   151  </span>	}
+<span class="lineno" id="152">   152  </span>	
+<span class="lineno" id="153">   153  </span>	<span class="comment doc">/**
+<span class="lineno" id="154">   154  </span>	 * Change the position of the internal pointer of the iterator (optional operation).
+<span class="lineno" id="155">   155  </span>	 */</span>
+<span class="lineno" id="156">   156  </span>	<span class="key">public</span> <span class="key">function</span> seek(n:Number):Void 
+<span class="lineno" id="157">   157  </span>	{
+<span class="lineno" id="158">   158  </span>		_k = MathsUtil.clamp ((n-<span class="num_const">1</span>), -<span class="num_const">1</span>, _len) ;
+<span class="lineno" id="159">   159  </span>	}
+<span class="lineno" id="160">   160  </span>	
+<span class="lineno" id="161">   161  </span>	<span class="comment doc">/**
+<span class="lineno" id="162">   162  </span>	 * The internal array.
+<span class="lineno" id="163">   163  </span>	 */</span>
+<span class="lineno" id="164">   164  </span>	<span class="key">private</span> <span class="key">var</span> _a:Array ;
+<span class="lineno" id="165">   165  </span>	
+<span class="lineno" id="166">   166  </span>	<span class="comment doc">/**
+<span class="lineno" id="167">   167  </span>	 * The internal key.
+<span class="lineno" id="168">   168  </span>	 */</span>
+<span class="lineno" id="169">   169  </span>	<span class="key">private</span> <span class="key">var</span> _k:Number ;
+<span class="lineno" id="170">   170  </span>	
+<span class="lineno" id="171">   171  </span>	<span class="comment doc">/**
+<span class="lineno" id="172">   172  </span>	 * The internal object reference.
+<span class="lineno" id="173">   173  </span>	 */</span>
+<span class="lineno" id="174">   174  </span>	<span class="key">private</span> <span class="key">var</span> _o ;
+<span class="lineno" id="175">   175  </span>	
+<span class="lineno" id="176">   176  </span>	<span class="comment doc">/**
+<span class="lineno" id="177">   177  </span>	 * The internal size of the array.
+<span class="lineno" id="178">   178  </span>	 */</span>
+<span class="lineno" id="179">   179  </span>	<span class="key">private</span> <span class="key">var</span> _len:Number ;
+<span class="lineno" id="180">   180  </span>	
+<span class="lineno" id="181">   181  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.data.iterator" class="button">Package</a></li><li><a href="ObjectIterator.html" title="Detail of vegas.data.iterator.ObjectIterator API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

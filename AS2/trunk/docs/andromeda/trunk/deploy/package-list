@@ -60,12 +60,14 @@ andromeda.display
 vegas.errors
 andromeda.logging
 vegas.util.factory
+andromeda.controller.transitions
 asgard.media
 vegas.data.bag
 pegas.transitions.easing
 vegas.string.errors
 pegas.transitions
 andromeda.model.stack
+andromeda.controller.display
 andromeda.controller
 vegas.data.map
 andromeda.model.set

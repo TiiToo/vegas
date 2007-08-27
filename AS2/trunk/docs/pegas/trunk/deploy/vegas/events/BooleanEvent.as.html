@@ -46,42 +46,45 @@ document.quicknavBasePath="../../index-files";
 <span class="lineno" id="43">    43  </span>	 */</span>
 <span class="lineno" id="44">    44  </span>	<span class="key">public</span> <span class="key">function</span> BooleanEvent(type:String, b:Boolean, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
 <span class="lineno" id="45">    45  </span>	{
-<span class="lineno" id="46">    46  </span>		
-<span class="lineno" id="47">    47  </span>		<span class="key">super</span>(type, target, context, bubbles, eventPhase, time, stop) ;
-<span class="lineno" id="48">    48  </span>		<span class="key">if</span> (b)
-<span class="lineno" id="49">    49  </span>		{
-<span class="lineno" id="50">    50  </span>			<span class="key">this</span>._b = b ;
-<span class="lineno" id="51">    51  </span>		}
-<span class="lineno" id="52">    52  </span>		
-<span class="lineno" id="53">    53  </span>	}
-<span class="lineno" id="54">    54  </span>
-<span class="lineno" id="55">    55  </span>	<span class="comment doc">/**
-<span class="lineno" id="56">    56  </span>	 * Creates and returns a shallow copy of this instance.
-<span class="lineno" id="57">    57  </span>	 */</span>
-<span class="lineno" id="58">    58  </span>	<span class="key">public</span> <span class="key">function</span> clone() 
-<span class="lineno" id="59">    59  </span>	{
-<span class="lineno" id="60">    60  </span>		<span class="key">return</span> <span class="key">new</span> BooleanEvent(getType(), getBoolean(), getTarget(), getContext()) ;
-<span class="lineno" id="61">    61  </span>	}
-<span class="lineno" id="62">    62  </span>	
-<span class="lineno" id="63">    63  </span>	<span class="comment doc">/**
-<span class="lineno" id="64">    64  </span>	 * Returns the boolean instance.
-<span class="lineno" id="65">    65  </span>	 */</span>
-<span class="lineno" id="66">    66  </span>	<span class="key">public</span> <span class="key">function</span> getBoolean():Boolean
-<span class="lineno" id="67">    67  </span>	{
-<span class="lineno" id="68">    68  </span>		<span class="key">return</span> _b ;	
-<span class="lineno" id="69">    69  </span>	}
-<span class="lineno" id="70">    70  </span>	
-<span class="lineno" id="71">    71  </span>	<span class="comment doc">/**
-<span class="lineno" id="72">    72  </span>	 * Sets the boolean instance.
-<span class="lineno" id="73">    73  </span>	 */</span>
-<span class="lineno" id="74">    74  </span>	<span class="key">public</span> <span class="key">function</span> setBoolean(b:Boolean):Void
-<span class="lineno" id="75">    75  </span>	{
-<span class="lineno" id="76">    76  </span>		_b = b ;	
-<span class="lineno" id="77">    77  </span>	}
-<span class="lineno" id="78">    78  </span>	
-<span class="lineno" id="79">    79  </span>	<span class="comment doc">/**
-<span class="lineno" id="80">    80  </span>	 * The internal boolean instance.
-<span class="lineno" id="81">    81  </span>	 */</span>
-<span class="lineno" id="82">    82  </span>	<span class="key">private</span> <span class="key">var</span> _b:Boolean ;
-<span class="lineno" id="83">    83  </span>
-<span class="lineno" id="84">    84  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.events" class="button">Package</a></li><li><a href="BooleanEvent.html" title="Detail of vegas.events.BooleanEvent API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
+<span class="lineno" id="46">    46  </span>		<span class="key">super</span>(type, target, context, bubbles, eventPhase, time, stop) ;
+<span class="lineno" id="47">    47  </span>		<span class="key">if</span> (b === <span class="key">null</span> || b === undefined )
+<span class="lineno" id="48">    48  </span>		{
+<span class="lineno" id="49">    49  </span>			<span class="key">this</span>._b = <span class="key">false</span> ;
+<span class="lineno" id="50">    50  </span>		}
+<span class="lineno" id="51">    51  </span>		<span class="key">else</span>
+<span class="lineno" id="52">    52  </span>		{
+<span class="lineno" id="53">    53  </span>			<span class="key">this</span>._b = Boolean(b) ;	
+<span class="lineno" id="54">    54  </span>		}
+<span class="lineno" id="55">    55  </span>	}
+<span class="lineno" id="56">    56  </span>
+<span class="lineno" id="57">    57  </span>	<span class="comment doc">/**
+<span class="lineno" id="58">    58  </span>	 * Creates and returns a shallow copy of this instance.
+<span class="lineno" id="59">    59  </span>	 */</span>
+<span class="lineno" id="60">    60  </span>	<span class="key">public</span> <span class="key">function</span> clone() 
+<span class="lineno" id="61">    61  </span>	{
+<span class="lineno" id="62">    62  </span>		<span class="key">return</span> <span class="key">new</span> BooleanEvent(getType(), getBoolean(), getTarget(), getContext()) ;
+<span class="lineno" id="63">    63  </span>	}
+<span class="lineno" id="64">    64  </span>	
+<span class="lineno" id="65">    65  </span>	<span class="comment doc">/**
+<span class="lineno" id="66">    66  </span>	 * Returns the boolean value register in this event.
+<span class="lineno" id="67">    67  </span>	 * @return the boolean value register in this event.
+<span class="lineno" id="68">    68  </span>	 */</span>
+<span class="lineno" id="69">    69  </span>	<span class="key">public</span> <span class="key">function</span> getBoolean():Boolean
+<span class="lineno" id="70">    70  </span>	{
+<span class="lineno" id="71">    71  </span>		<span class="key">return</span> _b ;	
+<span class="lineno" id="72">    72  </span>	}
+<span class="lineno" id="73">    73  </span>	
+<span class="lineno" id="74">    74  </span>	<span class="comment doc">/**
+<span class="lineno" id="75">    75  </span>	 * Sets the boolean value register in this event.
+<span class="lineno" id="76">    76  </span>	 */</span>
+<span class="lineno" id="77">    77  </span>	<span class="key">public</span> <span class="key">function</span> setBoolean(b:Boolean):Void
+<span class="lineno" id="78">    78  </span>	{
+<span class="lineno" id="79">    79  </span>		_b = b ;	
+<span class="lineno" id="80">    80  </span>	}
+<span class="lineno" id="81">    81  </span>	
+<span class="lineno" id="82">    82  </span>	<span class="comment doc">/**
+<span class="lineno" id="83">    83  </span>	 * The internal boolean instance.
+<span class="lineno" id="84">    84  </span>	 */</span>
+<span class="lineno" id="85">    85  </span>	<span class="key">private</span> <span class="key">var</span> _b:Boolean ;
+<span class="lineno" id="86">    86  </span>
+<span class="lineno" id="87">    87  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.events" class="button">Package</a></li><li><a href="BooleanEvent.html" title="Detail of vegas.events.BooleanEvent API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

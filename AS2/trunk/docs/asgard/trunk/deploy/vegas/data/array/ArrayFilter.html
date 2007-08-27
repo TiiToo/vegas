@@ -1,0 +1,156 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>vegas.data.array.ArrayFilter</title><script src="../../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../../index-files";
+//--></script><link href="../../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../../overview-summary.html" title="Overview" rel="top"/><link href="package-summary.html" title="Package vegas.data.array" rel="up"/><link href="../../../vegas/data/array/TypedArray.html" title="Class vegas.data.array.TypedArray" rel="prev"/><link href="../../../vegas/core/types/NullObject.html" title="Class vegas.core.types.NullObject" rel="next"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><h1>Class vegas.data.array.ArrayFilter</h1><div class="type_hierachy"><ul><li><a href="../../../vegas/core/CoreObject.html" class="class_name" title="Class vegas.core.CoreObject">vegas.core.CoreObject</a><ul><li><a href="../../../vegas/events/AbstractCoreEventDispatcher.html" class="class_name" title="Class vegas.events.AbstractCoreEventDispatcher">vegas.events.AbstractCoreEventDispatcher</a><ul><li><strong>vegas.data.array.ArrayFilter</strong></li></ul></li></ul></li></ul></div><div class="type_description"><h2>Description</h2><p>
+ This filter contains all constants and methods to sort the Arrays in the application.
+ <p><b>Example : </b></p>
+ <pre>
+ <span class="key">import</span> vegas.data.array.ArrayFilter ;
+ 
+ <span class="key">import</span> vegas.events.Delegate ;
+ <span class="key">import</span> vegas.events.Event ;
+ 
+ <span class="key">var</span> debug:Function = <span class="key">function</span> ():Void
+ {
+     trace(<span class="str_const">"filter : "</span> + af.filter ) ;
+     trace(<span class="str_const">"is NONE               : "</span> + af.isNone() )
+     trace(<span class="str_const">"is CASEINSENSITIVE    : "</span> + af.isCaseInsensitive() ) ;
+     trace(<span class="str_const">"is DESCENDING         : "</span> + af.isDescending() ) ;
+     trace(<span class="str_const">"is NUMERIC            : "</span> + af.isNumeric() ) ;
+     trace(<span class="str_const">"is RETURNINDEXEDARRAY : "</span> + af.isReturnIndexedArray() ) ;
+     trace(<span class="str_const">"is UNIQUESORT         : "</span> + af.isUniqueSort() ) ;
+     trace(<span class="str_const">"---"</span>) ;
+ }
+ 
+ <span class="key">var</span> change:Function = <span class="key">function</span> ( e:Event ):Void
+ {
+     trace( e ) ;
+ }
+ 
+ <span class="key">var</span> af:ArrayFilter = ArrayFilter.getInstance() ;
+ af.addEventListener( ArrayFilter.CHANGE, <span class="key">new</span> Delegate(<span class="key">this</span>, change ) ) ;
+ 
+ debug() ;
+ 
+ af.setCaseInsensitive( <span class="key">true</span> ) ;
+ af.setDescending( <span class="key">true</span> ) ;
+ af.setNumeric( <span class="key">true</span> ) ;
+ af.setReturnIndexedArray( <span class="key">true</span> ) ;
+ af.setUniqueSort( <span class="key">true</span> ) ;
+ debug() ;
+ 
+ af.setCaseInsensitive( <span class="key">false</span> ) ;
+ debug() ;
+ 
+ af.setDescending( <span class="key">false</span> ) ;
+ debug() ;
+ 
+ af.setNumeric( <span class="key">false</span> ) ;
+ debug() ;
+ 
+ af.setReturnIndexedArray( <span class="key">false</span>) ;
+ debug() ;
+ 
+ af.setUniqueSort( <span class="key">false</span> ) ;
+ debug() ;
+ 
+ </pre>
+ </p></div><div class="type_indexes"><div class="field_index"><h2>Field Index</h2><a href="#CASEINSENSITIVE" title="static public CASEINSENSITIVE:Number">CASEINSENSITIVE</a>, <a href="#CHANGE" title="static public CHANGE:String">CHANGE</a>, <a href="#DESCENDING" title="static public DESCENDING:Number">DESCENDING</a>, <a href="#filter" title="public filter:Number">filter</a>, <a href="#NONE" title="static public NONE:Number">NONE</a>, <a href="#NUMERIC" title="static public NUMERIC:Number">NUMERIC</a>, <a href="#RETURNINDEXEDARRAY" title="static public RETURNINDEXEDARRAY:Number">RETURNINDEXEDARRAY</a>, <a href="#UNIQUESORT" title="static public UNIQUESORT:Number">UNIQUESORT</a>, <a href="#useEvent" title="public useEvent:Boolean">useEvent</a><h4>Inherited from <a href="../../../vegas/events/AbstractCoreEventDispatcher.html" class="class_name" title="Class vegas.events.AbstractCoreEventDispatcher">AbstractCoreEventDispatcher</a></h4><div class="extra_info"><a href="../../../vegas/events/AbstractCoreEventDispatcher.html#isGlobal" title="public isGlobal:Boolean">isGlobal</a></div></div><div class="method_index"><h2>Method Index</h2><div><code>new <a href="#ArrayFilter" title="public function ArrayFilter(bGlobal:Boolean, sChannel:String)">ArrayFilter()</a></code></div><a href="#contains" title="static public function contains(nFilter:Number, nOption:Number):Boolean">contains()</a>, <a href="#getEventTypeCHANGE" title="public function getEventTypeCHANGE():String">getEventTypeCHANGE()</a>, <a href="#getFilter" title="public function getFilter():Number">getFilter()</a>, <a href="#getInstance" title="static public function getInstance():ArrayFilter">getInstance()</a>, <a href="#isCaseInsensitive" title="public function isCaseInsensitive():Boolean">isCaseInsensitive()</a>, <a href="#isDescending" title="public function isDescending():Boolean">isDescending()</a>, <a href="#isNone" title="public function isNone():Boolean">isNone()</a>, <a href="#isNumeric" title="public function isNumeric():Boolean">isNumeric()</a>, <a href="#isReturnIndexedArray" title="public function isReturnIndexedArray():Boolean">isReturnIndexedArray()</a>, <a href="#isUniqueSort" title="public function isUniqueSort():Boolean">isUniqueSort()</a>, <a href="#notifyChange" title="public function notifyChange():Void">notifyChange()</a>, <a href="#setCaseInsensitive" title="public function setCaseInsensitive(b:Boolean):Void">setCaseInsensitive()</a>, <a href="#setDescending" title="public function setDescending(b:Boolean):Void">setDescending()</a>, <a href="#setEventTypeCHANGE" title="public function setEventTypeCHANGE(type:String):Void">setEventTypeCHANGE()</a>, <a href="#setFilter" title="public function setFilter(n:Number):Void">setFilter()</a>, <a href="#setNone" title="public function setNone():Void">setNone()</a>, <a href="#setNumeric" title="public function setNumeric(b:Boolean):Void">setNumeric()</a>, <a href="#setReturnIndexedArray" title="public function setReturnIndexedArray(b:Boolean):Void">setReturnIndexedArray()</a>, <a href="#setUniqueSort" title="public function setUniqueSort(b:Boolean):Void">setUniqueSort()</a><h4>Inherited from <a href="../../../vegas/events/AbstractCoreEventDispatcher.html" class="class_name" title="Class vegas.events.AbstractCoreEventDispatcher">AbstractCoreEventDispatcher</a></h4><div class="extra_info"><a href="../../../vegas/events/AbstractCoreEventDispatcher.html#addEventListener" title="public function addEventListener(eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void">addEventListener()</a>, <a href="../../../vegas/events/AbstractCoreEventDispatcher.html#addGlobalEventListener" title="public function addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void">addGlobalEventListener()</a>, <a href="../../../vegas/events/AbstractCoreEventDispatcher.html#dispatchEvent" title="public function dispatchEvent(event, isQueue:Boolean, target, context):Event">dispatchEvent()</a>, <a href="../../../vegas/events/AbstractCoreEventDispatcher.html#getEventDispatcher" title="public function getEventDispatcher():EventDispatcher">getEventDispatcher()</a>, <a href="../../../vegas/events/AbstractCoreEventDispatcher.html#getEventListeners" title="public function getEventListeners(eventName:String):EventListenerCollection">getEventListeners()</a>, <a href="../../../vegas/events/AbstractCoreEventDispatcher.html#getGlobalEventListeners" title="public function getGlobalEventListeners():EventListenerCollection">getGlobalEventListeners()</a>, <a href="../../../vegas/events/AbstractCoreEventDispatcher.html#getIsGlobal" title="public function getIsGlobal():Boolean">getIsGlobal()</a>, <a href="../../../vegas/events/AbstractCoreEventDispatcher.html#getParent" title="public function getParent():EventDispatcher">getParent()</a>, <a href="../../../vegas/events/AbstractCoreEventDispatcher.html#getRegisteredEventNames" title="public function getRegisteredEventNames():Set">getRegisteredEventNames()</a>, <a href="../../../vegas/events/AbstractCoreEventDispatcher.html#getTarget" title="public function getTarget()">getTarget()</a>, <a href="../../../vegas/events/AbstractCoreEventDispatcher.html#hasEventListener" title="public function hasEventListener(eventName:String):Boolean">hasEventListener()</a>, <a href="../../../vegas/events/AbstractCoreEventDispatcher.html#initEventDispatcher" title="public function initEventDispatcher():EventDispatcher">initEventDispatcher()</a>, <a href="../../../vegas/events/AbstractCoreEventDispatcher.html#removeEventListener" title="public function removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener">removeEventListener()</a>, <a href="../../../vegas/events/AbstractCoreEventDispatcher.html#removeGlobalEventListener" title="public function removeGlobalEventListener(listener):EventListener">removeGlobalEventListener()</a>, <a href="../../../vegas/events/AbstractCoreEventDispatcher.html#setEventDispatcher" title="public function setEventDispatcher(e:EventDispatcher):Void">setEventDispatcher()</a>, <a href="../../../vegas/events/AbstractCoreEventDispatcher.html#setGlobal" title="public function setGlobal(flag:Boolean, channel:String):Void">setGlobal()</a>, <a href="../../../vegas/events/AbstractCoreEventDispatcher.html#setParent" title="public function setParent(parent:EventDispatcher):Void">setParent()</a></div><h4>Inherited from <a href="../../../vegas/core/CoreObject.html" class="class_name" title="Class vegas.core.CoreObject">CoreObject</a></h4><div class="extra_info"><a href="../../../vegas/core/CoreObject.html#getLogger" title="public function getLogger():ILogger">getLogger()</a>, <a href="../../../vegas/core/CoreObject.html#hashCode" title="public function hashCode():Number">hashCode()</a>, <a href="../../../vegas/core/CoreObject.html#setLogger" title="public function setLogger(log:ILogger):Void">setLogger()</a>, <a href="../../../vegas/core/CoreObject.html#toSource" title="public function toSource(indent:Number, indentor:String):String">toSource()</a>, <a href="../../../vegas/core/CoreObject.html#toString" title="public function toString():String">toString()</a></div></div></div><div class="type_details"><div class="constructor_detail_list"><h2>Constructor Detail</h2><div class="method_details"><a name="ArrayFilter"></a><h3>ArrayFilter</h3><code class="method_synopsis">public function <strong class="method_name">ArrayFilter</strong>(bGlobal:<span class="unresolved_type_name">Boolean</span>, sChannel:<span class="unresolved_type_name">String</span>)</code><div class="method_info"><p>
+ Creates a new ArrayFilter instance.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>bGlobal</code></td><td>the flag to use a global event flow or a local event flow.
+ </td></tr><tr><td><code>sChannel</code></td><td>the name of the global event flow if the <code> bGlobal</code> argument is <code> <span class="key">true</span></code>.
+	 </td></tr></table></div></div></div><div class="field_detail_list"><h2>Field Detail</h2><a name="CASEINSENSITIVE"></a><h3>CASEINSENSITIVE</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">CASEINSENSITIVE</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info">
+ Specifies case-insensitive sorting for the Array class sorting methods. You can use this constant
+ for the <code>options</code> parameter in the <code>sort()</code> or <code>sortOn()</code> method. 
+ <p>The value of this constant is 1.</p>
+	 </div></div><a name="CHANGE"></a><h3>CHANGE</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">CHANGE</strong>:<span class="unresolved_type_name">String</span></code><div class="field_info">
+ The change event occurs when the filter value is changed.
+	 </div></div><a name="DESCENDING"></a><h3>DESCENDING</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">DESCENDING</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info">
+ Specifies descending sorting for the Array class sorting methods. 
+ You can use this constant for the <code>options</code> parameter in the <code>sort()</code>
+ or <code>sortOn()</code> method. 
+ <p>The value of this constant is 2.</p>
+	 </div></div><a name="NONE"></a><h3>NONE</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">NONE</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info">
+ Specifies the default numeric sorting value for the Array class sorting methods.
+ <p>The value of this constant is 0.</p>
+	 </div></div><a name="NUMERIC"></a><h3>NUMERIC</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">NUMERIC</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info">
+ Specifies numeric (instead of character-string) sorting for the Array class sorting methods. 
+ Including this constant in the <code>options</code>
+ parameter causes the <code>sort()</code> and <code>sortOn()</code> methods 
+ to sort numbers as numeric values, not as strings of numeric characters.  
+ Without the <code>NUMERIC</code> constant, sorting treats each array element as a 
+ character string and produces the results in Unicode order. 
+
+ <p>For example, given the array of values <code>[2005, 7, 35]</code>, if the <code>NUMERIC</code> 
+ constant is <strong>not</strong> included in the <code>options</code> parameter, the 
+ sorted array is <code>[2005, 35, 7]</code>, but if the <code>NUMERIC</code> constant <strong>is</strong> included, 
+ the sorted array is <code>[7, 35, 2005]</code>. </p>
+ 
+ <p>This constant applies only to numbers in the array; it does 
+ not apply to strings that contain numeric data such as <code>["23", "5"]</code>.</p>
+ 
+ <p>The value of this constant is 16.</p>
+	 </div></div><a name="RETURNINDEXEDARRAY"></a><h3>RETURNINDEXEDARRAY</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">RETURNINDEXEDARRAY</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info">
+ Specifies that a sort returns an array that consists of array indices as a result of calling
+ the <code>sort()</code> or <code>sortOn()</code> method. You can use this constant
+ for the <code>options</code> parameter in the <code>sort()</code> or <code>sortOn()</code> 
+ method, so you have access to multiple views on the array elements while the original array is unmodified. 
+ <p>The value of this constant is 8.</p>
+ 	 </div></div><a name="UNIQUESORT"></a><h3>UNIQUESORT</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">UNIQUESORT</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info">
+ Specifies the unique sorting requirement for the Array class sorting methods. 
+ You can use this constant for the <code>options</code> parameter in the <code>sort()</code> or <code>sortOn()</code> method. 
+ The unique sorting option terminates the sort if any two elements or fields being sorted have identical values. 
+ <p>The value of this constant is 4.</p>
+	 </div></div><a name="filter"></a><h3>filter</h3><div class="field_details"><code class="field_synopsis">public <strong class="field_name">filter</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info">
+ Returns the current filter value of this object.
+ </div></div><a name="useEvent"></a><h3>useEvent</h3><div class="field_details"><code class="field_synopsis">public <strong class="field_name">useEvent</strong>:<span class="unresolved_type_name">Boolean</span></code><div class="field_info">
+ Indicates if the change event is notify or not when the filter value change.
+	 </div></div></div><div class="method_detail_list"><h2>Method Detail</h2><div class="method_details alt_row"><a name="contains"></a><h3>contains</h3><code class="method_synopsis">static public function <strong class="method_name">contains</strong>(nFilter:<span class="unresolved_type_name">Number</span>, nOption:<span class="unresolved_type_name">Number</span>):<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
+ Returns <code> <span class="key">true</span></code> if the filter number value contains the option number value.
+ </p><h4>Return</h4><p class="extra_info"> <code> <span class="key">true</span></code> if the filter number value contains the option number value.
+	 </p></div></div><div class="method_details"><a name="getEventTypeCHANGE"></a><h3>getEventTypeCHANGE</h3><code class="method_synopsis">public function <strong class="method_name">getEventTypeCHANGE</strong>():<span class="unresolved_type_name">String</span></code><div class="method_info"><p>
+ Returns the event name of the change event of this object.
+ </p><h4>Return</h4><p class="extra_info"> the event name of the change event of this object.
+	 </p></div></div><div class="method_details alt_row"><a name="getInstance"></a><h3>getInstance</h3><code class="method_synopsis">static public function <strong class="method_name">getInstance</strong>():<a href="../../../vegas/data/array/ArrayFilter.html" class="class_name" title="Class vegas.data.array.ArrayFilter">ArrayFilter</a></code><div class="method_info"><p>
+ Returns the singleton reference of this class.
+ </p><h4>Return</h4><p class="extra_info"> the singleton reference of this class.
+	 </p></div></div><div class="method_details"><a name="getFilter"></a><h3>getFilter</h3><code class="method_synopsis">public function <strong class="method_name">getFilter</strong>():<span class="unresolved_type_name">Number</span></code><div class="method_info"><p>
+ Returns the current filter value of this object.
+ </p><h4>Return</h4><p class="extra_info"> the current filter value of this object.
+	 </p></div></div><div class="method_details alt_row"><a name="isCaseInsensitive"></a><h3>isCaseInsensitive</h3><code class="method_synopsis">public function <strong class="method_name">isCaseInsensitive</strong>():<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
+ Returns <code> <span class="key">true</span></code> if the CASEINSENSITIVE option value exist in the current filter.
+ </p><h4>Return</h4><p class="extra_info"> <code> <span class="key">true</span></code> if the CASEINSENSITIVE option value exist in the current filter.
+	 </p></div></div><div class="method_details"><a name="isDescending"></a><h3>isDescending</h3><code class="method_synopsis">public function <strong class="method_name">isDescending</strong>():<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
+ Returns <code> <span class="key">true</span></code> if the DESCENDING option value exist in the current filter.
+ </p><h4>Return</h4><p class="extra_info"> <code> <span class="key">true</span></code> if the DESCENDING option value exist in the current filter.
+	 </p></div></div><div class="method_details alt_row"><a name="isNone"></a><h3>isNone</h3><code class="method_synopsis">public function <strong class="method_name">isNone</strong>():<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
+ Returns <code> <span class="key">true</span></code> if the filter is NONE.
+ </p><h4>Return</h4><p class="extra_info"> <code> <span class="key">true</span></code> if the filter is NONE.
+	 </p></div></div><div class="method_details"><a name="isNumeric"></a><h3>isNumeric</h3><code class="method_synopsis">public function <strong class="method_name">isNumeric</strong>():<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
+ Returns <code> <span class="key">true</span></code> if the NUMERIC option value exist in the current filter.
+ </p><h4>Return</h4><p class="extra_info"> <code> <span class="key">true</span></code> if the NUMERIC option value exist in the current filter.
+	 </p></div></div><div class="method_details alt_row"><a name="isReturnIndexedArray"></a><h3>isReturnIndexedArray</h3><code class="method_synopsis">public function <strong class="method_name">isReturnIndexedArray</strong>():<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
+ Returns <code> <span class="key">true</span></code> if the RETURNINDEXEDARRAY option value exist in the current filter.
+ </p><h4>Return</h4><p class="extra_info"> <code> <span class="key">true</span></code> if the RETURNINDEXEDARRAY option value exist in the current filter.
+	 </p></div></div><div class="method_details"><a name="isUniqueSort"></a><h3>isUniqueSort</h3><code class="method_synopsis">public function <strong class="method_name">isUniqueSort</strong>():<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
+ Returns <code> <span class="key">true</span></code> if the UNIQUESORT option value exist in the current filter.
+ </p><h4>Return</h4><p class="extra_info"> <code> <span class="key">true</span></code> if the UNIQUESORT option value exist in the current filter.
+	 </p></div></div><div class="method_details alt_row"><a name="notifyChange"></a><h3>notifyChange</h3><code class="method_synopsis">public function <strong class="method_name">notifyChange</strong>():<span class="void_name">Void</span></code><div class="method_info"><p>
+ Notify a change in this object.
+	 </p></div></div><div class="method_details"><a name="setCaseInsensitive"></a><h3>setCaseInsensitive</h3><code class="method_synopsis">public function <strong class="method_name">setCaseInsensitive</strong>(b:<span class="unresolved_type_name">Boolean</span>):<span class="void_name">Void</span></code><div class="method_info"><p>
+ Sets the CASEINSENSITIVE option value in the current filter.
+	 </p></div></div><div class="method_details alt_row"><a name="setDescending"></a><h3>setDescending</h3><code class="method_synopsis">public function <strong class="method_name">setDescending</strong>(b:<span class="unresolved_type_name">Boolean</span>):<span class="void_name">Void</span></code><div class="method_info"><p>
+ Sets the DESCENDING option value in the current filter.
+	 </p></div></div><div class="method_details"><a name="setEventTypeCHANGE"></a><h3>setEventTypeCHANGE</h3><code class="method_synopsis">public function <strong class="method_name">setEventTypeCHANGE</strong>(type:<span class="unresolved_type_name">String</span>):<span class="void_name">Void</span></code><div class="method_info"><p>
+ Sets the event name of the change event of this object.
+	 </p></div></div><div class="method_details alt_row"><a name="setFilter"></a><h3>setFilter</h3><code class="method_synopsis">public function <strong class="method_name">setFilter</strong>(n:<span class="unresolved_type_name">Number</span>):<span class="void_name">Void</span></code><div class="method_info"><p>
+ Sets the current filter value of this object.
+	 </p></div></div><div class="method_details"><a name="setNone"></a><h3>setNone</h3><code class="method_synopsis">public function <strong class="method_name">setNone</strong>():<span class="void_name">Void</span></code><div class="method_info"><p>
+ Sets the NONE option value in the current filter.
+	 </p></div></div><div class="method_details alt_row"><a name="setNumeric"></a><h3>setNumeric</h3><code class="method_synopsis">public function <strong class="method_name">setNumeric</strong>(b:<span class="unresolved_type_name">Boolean</span>):<span class="void_name">Void</span></code><div class="method_info"><p>
+ Sets the NUMERIC option value in the current filter.
+	 </p></div></div><div class="method_details"><a name="setReturnIndexedArray"></a><h3>setReturnIndexedArray</h3><code class="method_synopsis">public function <strong class="method_name">setReturnIndexedArray</strong>(b:<span class="unresolved_type_name">Boolean</span>):<span class="void_name">Void</span></code><div class="method_info"><p>
+ Sets the RETURNINDEXEDARRAY option value in the current filter.
+	 </p></div></div><div class="method_details alt_row"><a name="setUniqueSort"></a><h3>setUniqueSort</h3><code class="method_synopsis">public function <strong class="method_name">setUniqueSort</strong>(b:<span class="unresolved_type_name">Boolean</span>):<span class="void_name">Void</span></code><div class="method_info"><p>
+ Sets the UNIQUESORT option value in the current filter.
+	 </p></div></div></div></div><ul class="main_nav" id="main_nav"><li><a href="../../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.data.array" class="button">Package</a></li><li><span class="button nav_current">Class</span></li><li><a href="ArrayFilter.as.html" title="Source code of vegas.data.array.ArrayFilter" class="button">Source</a></li><li><a href="../../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

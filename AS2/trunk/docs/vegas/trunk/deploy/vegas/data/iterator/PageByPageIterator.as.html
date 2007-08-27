@@ -134,21 +134,21 @@ document.quicknavBasePath="../../../index-files";
 <span class="lineno" id="131">   131  </span>	}
 <span class="lineno" id="132">   132  </span>
 <span class="lineno" id="133">   133  </span>	<span class="comment doc">/**
-<span class="lineno" id="134">   134  </span>	 * Checks to see if there is a previous element that can be iterated to.
+<span class="lineno" id="134">   134  </span>	 * Returns {@code true} if the iteration has more elements.
 <span class="lineno" id="135">   135  </span>	 * @return {@code true} if the iterator has more elements.
 <span class="lineno" id="136">   136  </span>	 */</span>
-<span class="lineno" id="137">   137  </span>	<span class="key">public</span> <span class="key">function</span> hasPrevious() : Boolean 
+<span class="lineno" id="137">   137  </span>	<span class="key">public</span> <span class="key">function</span> hasNext() : Boolean 
 <span class="lineno" id="138">   138  </span>	{
-<span class="lineno" id="139">   139  </span>		<span class="key">return</span> _key &gt; <span class="num_const">1</span> ;
+<span class="lineno" id="139">   139  </span>		<span class="key">return</span> _key &lt; _pageCount ;
 <span class="lineno" id="140">   140  </span>	}
 <span class="lineno" id="141">   141  </span>
 <span class="lineno" id="142">   142  </span>	<span class="comment doc">/**
-<span class="lineno" id="143">   143  </span>	 * Returns {@code true} if the iteration has more elements.
+<span class="lineno" id="143">   143  </span>	 * Checks to see if there is a previous element that can be iterated to.
 <span class="lineno" id="144">   144  </span>	 * @return {@code true} if the iterator has more elements.
 <span class="lineno" id="145">   145  </span>	 */</span>
-<span class="lineno" id="146">   146  </span>	<span class="key">public</span> <span class="key">function</span> hasNext() : Boolean 
+<span class="lineno" id="146">   146  </span>	<span class="key">public</span> <span class="key">function</span> hasPrevious() : Boolean 
 <span class="lineno" id="147">   147  </span>	{
-<span class="lineno" id="148">   148  </span>		<span class="key">return</span> _key &lt; _pageCount ;
+<span class="lineno" id="148">   148  </span>		<span class="key">return</span> _key &gt; <span class="num_const">1</span> ;
 <span class="lineno" id="149">   149  </span>	}
 <span class="lineno" id="150">   150  </span>
 <span class="lineno" id="151">   151  </span>	<span class="comment doc">/**

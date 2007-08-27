@@ -1,0 +1,574 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><script src="../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../index-files";
+//--></script><link href="../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../overview-summary.html" title="Overview" rel="top"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><pre><span class="lineno" id="1">     1  </span><span class="comment">/*
+<span class="lineno" id="2">     2  </span>
+<span class="lineno" id="3">     3  </span>  The contents of this file are subject to the Mozilla Public License Version
+<span class="lineno" id="4">     4  </span>  1.1 (the "License"); you may not use this file except in compliance with
+<span class="lineno" id="5">     5  </span>  the License. You may obtain a copy of the License at 
+<span class="lineno" id="6">     6  </span>  
+<span class="lineno" id="7">     7  </span>           http://www.mozilla.org/MPL/ 
+<span class="lineno" id="8">     8  </span>  
+<span class="lineno" id="9">     9  </span>  Software distributed under the License is distributed on an "AS IS" basis,
+<span class="lineno" id="10">    10  </span>  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+<span class="lineno" id="11">    11  </span>  for the specific language governing rights and limitations under the License. 
+<span class="lineno" id="12">    12  </span>  
+<span class="lineno" id="13">    13  </span>  The Original Code is Vegas Framework.
+<span class="lineno" id="14">    14  </span>  
+<span class="lineno" id="15">    15  </span>  The Initial Developer of the Original Code is
+<span class="lineno" id="16">    16  </span>  ALCARAZ Marc (aka eKameleon)  &lt;vegas@ekameleon.net&gt;.
+<span class="lineno" id="17">    17  </span>  Portions created by the Initial Developer are Copyright (C) 2004-2007
+<span class="lineno" id="18">    18  </span>  the Initial Developer. All Rights Reserved.
+<span class="lineno" id="19">    19  </span>  
+<span class="lineno" id="20">    20  </span>  Contributor(s) :
+<span class="lineno" id="21">    21  </span>  
+<span class="lineno" id="22">    22  </span>*/</span>
+<span class="lineno" id="23">    23  </span>
+<span class="lineno" id="24">    24  </span><span class="comment">// TODO il faut fixer le bug du focus !</span>
+<span class="lineno" id="25">    25  </span>
+<span class="lineno" id="26">    26  </span><span class="key">import</span> asgard.display.DisplayLoader;
+<span class="lineno" id="27">    27  </span><span class="key">import</span> asgard.events.FlashPaperLoaderEvent;
+<span class="lineno" id="28">    28  </span>
+<span class="lineno" id="29">    29  </span><span class="key">import</span> pegas.geom.Point;
+<span class="lineno" id="30">    30  </span>
+<span class="lineno" id="31">    31  </span><span class="comment doc">/**
+<span class="lineno" id="32">    32  </span> * This loader is used to load FlashPaper documents in a swf application.
+<span class="lineno" id="33">    33  </span> * @author eKameleon
+<span class="lineno" id="34">    34  </span> * @version 1.0.0.0
+<span class="lineno" id="35">    35  </span> * @see FlashPaperTool
+<span class="lineno" id="36">    36  </span> * @see FlashPaperUIElement
+<span class="lineno" id="37">    37  </span> */</span>
+<span class="lineno" id="38">    38  </span><span class="key">class</span> asgard.display.FlashPaperLoader <span class="key">extends</span> DisplayLoader 
+<span class="lineno" id="39">    39  </span>{
+<span class="lineno" id="40">    40  </span>	
+<span class="lineno" id="41">    41  </span>	<span class="comment doc">/**
+<span class="lineno" id="42">    42  </span>	 * Creates a new FlashPaperLoader instance.
+<span class="lineno" id="43">    43  </span>	 */</span>
+<span class="lineno" id="44">    44  </span>	<span class="key">function</span> FlashPaperLoader( mcTarget:MovieClip, nDepth:Number, bAutoShow:Boolean  ) 
+<span class="lineno" id="45">    45  </span>	{
+<span class="lineno" id="46">    46  </span>		
+<span class="lineno" id="47">    47  </span>		<span class="key">super</span>(mcTarget, nDepth, bAutoShow) ;
+<span class="lineno" id="48">    48  </span>	
+<span class="lineno" id="49">    49  </span>		_eEnableScroll = <span class="key">new</span> FlashPaperLoaderEvent( getEventTypeENABLE_SCROLL() , <span class="key">this</span> ) ;
+<span class="lineno" id="50">    50  </span>		_ePageChange   = <span class="key">new</span> FlashPaperLoaderEvent( getEventTypePAGE_CHANGE() , <span class="key">this</span> )  ;
+<span class="lineno" id="51">    51  </span>		_eToolChange   = <span class="key">new</span> FlashPaperLoaderEvent( getEventTypeTOOL_CHANGE() , <span class="key">this</span> )  ;
+<span class="lineno" id="52">    52  </span>		_eAreaChange   = <span class="key">new</span> FlashPaperLoaderEvent( getEventTypeVISIBLE_AREA_CHANGE() , <span class="key">this</span>) ;
+<span class="lineno" id="53">    53  </span>		_eZoomChange   = <span class="key">new</span> FlashPaperLoaderEvent( getEventTypeVISIBLE_ZOOM_CHANGE() , <span class="key">this</span>) ;
+<span class="lineno" id="54">    54  </span>	
+<span class="lineno" id="55">    55  </span>
+<span class="lineno" id="56">    56  </span>		
+<span class="lineno" id="57">    57  </span>	}
+<span class="lineno" id="58">    58  </span>
+<span class="lineno" id="59">    59  </span>	<span class="comment doc">/**
+<span class="lineno" id="60">    60  </span>	 * Used to prevent the user from scrolling the document.
+<span class="lineno" id="61">    61  </span>	 */</span>
+<span class="lineno" id="62">    62  </span>	<span class="key">public</span> <span class="key">function</span> enableScrolling(b:Boolean):Void 
+<span class="lineno" id="63">    63  </span>	{
+<span class="lineno" id="64">    64  </span>		<span class="key">if</span>(_fp) 
+<span class="lineno" id="65">    65  </span>		{
+<span class="lineno" id="66">    66  </span>			_fp.enableScrolling(b) ;
+<span class="lineno" id="67">    67  </span>		}
+<span class="lineno" id="68">    68  </span>		_isEnableScrolling = b ;
+<span class="lineno" id="69">    69  </span>	}
+<span class="lineno" id="70">    70  </span>	
+<span class="lineno" id="71">    71  </span>	<span class="comment doc">/**
+<span class="lineno" id="72">    72  </span>	 * Searches for the text in the Find text box.
+<span class="lineno" id="73">    73  </span>	 * The search begins from the end of the current selection.
+<span class="lineno" id="74">    74  </span>	 * To start from the beginning of the document, call setSelectionRange(null) first.
+<span class="lineno" id="75">    75  </span>	 * If text is found, the specific range can be found by calling getTextSelectionRange().
+<span class="lineno" id="76">    76  </span>	 * @Returns true if text is found, false if not.
+<span class="lineno" id="77">    77  </span>	 */</span>
+<span class="lineno" id="78">    78  </span>	<span class="key">public</span> <span class="key">function</span> findNext():Boolean 
+<span class="lineno" id="79">    79  </span>	{
+<span class="lineno" id="80">    80  </span>		<span class="key">return</span> _fp.findNext() ;	
+<span class="lineno" id="81">    81  </span>	}
+<span class="lineno" id="82">    82  </span>
+<span class="lineno" id="83">    83  </span>	<span class="comment doc">/**
+<span class="lineno" id="84">    84  </span>	 * 	Returns the current page number (as displayed in the toolbar). The first page is page 1.
+<span class="lineno" id="85">    85  </span>	 */</span>
+<span class="lineno" id="86">    86  </span>	<span class="key">public</span> <span class="key">function</span> getCurrentPage():Number 
+<span class="lineno" id="87">    87  </span>	{
+<span class="lineno" id="88">    88  </span>		<span class="key">return</span> _fp.getCurrentPage() ;
+<span class="lineno" id="89">    89  </span>	}
+<span class="lineno" id="90">    90  </span>	
+<span class="lineno" id="91">    91  </span>	<span class="comment doc">/**
+<span class="lineno" id="92">    92  </span>	 * Returns the currently active tool. If no tool is active, an empty string is returned.
+<span class="lineno" id="93">    93  </span>	 * &lt;p&gt;The following are currently supported values :&lt;/p&gt;
+<span class="lineno" id="94">    94  </span>	 * &lt;p&gt;&lt;li&gt;&lt;b&gt;""&lt;/b&gt; no tool&lt;/li&gt;&lt;li&gt;&lt;b&gt;pan&lt;/b&gt; the hand tool&lt;/li&gt;&lt;li&gt;&lt;b&gt;select&lt;/b&gt; the text selection tool&lt;/b&gt;&lt;/li&gt;&lt;/p&gt;
+<span class="lineno" id="95">    95  </span>	 */</span>
+<span class="lineno" id="96">    96  </span>	<span class="key">public</span> <span class="key">function</span> getCurrentTool():String 
+<span class="lineno" id="97">    97  </span>	{
+<span class="lineno" id="98">    98  </span>		<span class="key">return</span> _fp.getCurrentTool() ;	
+<span class="lineno" id="99">    99  </span>	}
+<span class="lineno" id="100">   100  </span>			
+<span class="lineno" id="101">   101  </span>	<span class="comment doc">/**
+<span class="lineno" id="102">   102  </span>	 * Returns the current zoom level.
+<span class="lineno" id="103">   103  </span>	 */</span>
+<span class="lineno" id="104">   104  </span>	<span class="key">public</span> <span class="key">function</span> getCurrentZoom():Number 
+<span class="lineno" id="105">   105  </span>	{
+<span class="lineno" id="106">   106  </span>		<span class="key">return</span> _fp.getCurrentZoom() ;
+<span class="lineno" id="107">   107  </span>	}
+<span class="lineno" id="108">   108  </span>	
+<span class="lineno" id="109">   109  </span>	<span class="comment doc">/**
+<span class="lineno" id="110">   110  </span>	 * Returns any text in the Find text box as a Unicode string.
+<span class="lineno" id="111">   111  </span>	 */</span>
+<span class="lineno" id="112">   112  </span>	<span class="key">public</span> <span class="key">function</span> getFindText():String 
+<span class="lineno" id="113">   113  </span>	{
+<span class="lineno" id="114">   114  </span>		<span class="key">return</span> _fp.getFindText() ;	
+<span class="lineno" id="115">   115  </span>	}
+<span class="lineno" id="116">   116  </span>
+<span class="lineno" id="117">   117  </span>	<span class="comment doc">/**
+<span class="lineno" id="118">   118  </span>	 * Returns true if the loaded document is a FlashPaper.
+<span class="lineno" id="119">   119  </span>	 */</span>
+<span class="lineno" id="120">   120  </span>	<span class="key">public</span> <span class="key">function</span> getIsFlashPaperDocument():Boolean 
+<span class="lineno" id="121">   121  </span>	{
+<span class="lineno" id="122">   122  </span>		<span class="key">return</span> ( getContent().isFlashPaperDocument() == <span class="key">true</span> ) ;
+<span class="lineno" id="123">   123  </span>	}
+<span class="lineno" id="124">   124  </span>
+<span class="lineno" id="125">   125  </span>	<span class="comment doc">/**
+<span class="lineno" id="126">   126  </span>	 * Returns the total number of pages loaded
+<span class="lineno" id="127">   127  </span>	 */</span>
+<span class="lineno" id="128">   128  </span>	<span class="key">public</span> <span class="key">function</span> getLoadedPages():Number 
+<span class="lineno" id="129">   129  </span>	{
+<span class="lineno" id="130">   130  </span>		<span class="key">return</span> _fp.getLoadedPages ;
+<span class="lineno" id="131">   131  </span>	}
+<span class="lineno" id="132">   132  </span>			
+<span class="lineno" id="133">   133  </span>	<span class="comment doc">/**
+<span class="lineno" id="134">   134  </span>	 * Returns the total number of pages in the document.
+<span class="lineno" id="135">   135  </span>	 */</span>
+<span class="lineno" id="136">   136  </span>	<span class="key">public</span> <span class="key">function</span> getNumberOfPages():Number 
+<span class="lineno" id="137">   137  </span>	{ 
+<span class="lineno" id="138">   138  </span>		<span class="key">return</span> _fp.getNumberOfPages() ;		
+<span class="lineno" id="139">   139  </span>	}
+<span class="lineno" id="140">   140  </span>	
+<span class="lineno" id="141">   141  </span>	<span class="comment doc">/**
+<span class="lineno" id="142">   142  </span>	 * Returns the selected text as a Unicode string. If no text is selected, an empty string is returned.
+<span class="lineno" id="143">   143  </span>	 */</span>
+<span class="lineno" id="144">   144  </span>	<span class="key">public</span> <span class="key">function</span> getSelectedText():String 
+<span class="lineno" id="145">   145  </span>	{
+<span class="lineno" id="146">   146  </span>		<span class="key">return</span> _fp.getSelectedText() ;
+<span class="lineno" id="147">   147  </span>	}
+<span class="lineno" id="148">   148  </span>
+<span class="lineno" id="149">   149  </span>	<span class="comment doc">/**
+<span class="lineno" id="150">   150  </span>	 * Returns the width of the sidebar. A document with no outline always returns zero.
+<span class="lineno" id="151">   151  </span>	 */</span>
+<span class="lineno" id="152">   152  </span>	<span class="key">public</span> <span class="key">function</span> getSidebarWidth():Number 
+<span class="lineno" id="153">   153  </span>	{
+<span class="lineno" id="154">   154  </span>		<span class="key">return</span> _fp.getSidebarWidth() ;	
+<span class="lineno" id="155">   155  </span>	}
+<span class="lineno" id="156">   156  </span>
+<span class="lineno" id="157">   157  </span>	<span class="comment doc">/**
+<span class="lineno" id="158">   158  </span>	 * Returns an object describing the current text selection. If no text is selected, this function returns null.
+<span class="lineno" id="159">   159  </span>	 */</span>
+<span class="lineno" id="160">   160  </span>	<span class="key">public</span> <span class="key">function</span> getTextSelectionRange() 
+<span class="lineno" id="161">   161  </span>	{
+<span class="lineno" id="162">   162  </span>		<span class="key">return</span> _fp.getTextSelectionRange() ;
+<span class="lineno" id="163">   163  </span>	}
+<span class="lineno" id="164">   164  </span>
+<span class="lineno" id="165">   165  </span>	<span class="comment doc">/**
+<span class="lineno" id="166">   166  </span>	 * Returns a string describing the type of user interface that is included in the document.
+<span class="lineno" id="167">   167  </span>	 * The standard Macromedia FlashPaper viewer always returns the string 'Macromedia FlashPaper Default Viewer'.
+<span class="lineno" id="168">   168  </span>	 * @return a string describing the type of user interface that is included in the document.
+<span class="lineno" id="169">   169  </span>	 */</span>
+<span class="lineno" id="170">   170  </span>	<span class="key">public</span> <span class="key">function</span> getViewerType():String 
+<span class="lineno" id="171">   171  </span>	{
+<span class="lineno" id="172">   172  </span>		<span class="key">return</span> _fp.getViewerType() ;	
+<span class="lineno" id="173">   173  </span>	}
+<span class="lineno" id="174">   174  </span>	
+<span class="lineno" id="175">   175  </span>	<span class="comment doc">/**
+<span class="lineno" id="176">   176  </span>	 * Returns an integer indicating the version of the user interface code in this particular document.
+<span class="lineno" id="177">   177  </span>	 */</span>
+<span class="lineno" id="178">   178  </span>	<span class="key">public</span> <span class="key">function</span> getViewerVersion():Number 
+<span class="lineno" id="179">   179  </span>	{
+<span class="lineno" id="180">   180  </span>		<span class="key">return</span> _fp.getViewerVersion() ;	
+<span class="lineno" id="181">   181  </span>	}
+<span class="lineno" id="182">   182  </span>	
+<span class="lineno" id="183">   183  </span>	<span class="comment doc">/**
+<span class="lineno" id="184">   184  </span>	 * Returns an object describing the current visible area of the document.
+<span class="lineno" id="185">   185  </span>	 */</span>
+<span class="lineno" id="186">   186  </span>	<span class="key">public</span> <span class="key">function</span> getVisibleArea() 
+<span class="lineno" id="187">   187  </span>	{
+<span class="lineno" id="188">   188  </span>		<span class="key">return</span> _fp.getVisibleArea() ;
+<span class="lineno" id="189">   189  </span>	}
+<span class="lineno" id="190">   190  </span>
+<span class="lineno" id="191">   191  </span>	<span class="comment doc">/**
+<span class="lineno" id="192">   192  </span>	 * Handles an anchor or URL link request.
+<span class="lineno" id="193">   193  </span>	 */</span>
+<span class="lineno" id="194">   194  </span>	<span class="key">public</span> <span class="key">function</span> goToLinkTarget(linktarget:String, window ):Void 
+<span class="lineno" id="195">   195  </span>	{
+<span class="lineno" id="196">   196  </span>		_fp.goToLinkTarget(linktarget, window) ;
+<span class="lineno" id="197">   197  </span>	}
+<span class="lineno" id="198">   198  </span>
+<span class="lineno" id="199">   199  </span>	<span class="comment doc">/**
+<span class="lineno" id="200">   200  </span>	 * Hide the FlashPaper Official Logo.
+<span class="lineno" id="201">   201  </span>	 */</span>
+<span class="lineno" id="202">   202  </span>	<span class="key">public</span> <span class="key">function</span> hideLogo():Void 
+<span class="lineno" id="203">   203  </span>	{
+<span class="lineno" id="204">   204  </span>		_isLogoVisible = <span class="key">false</span> ;
+<span class="lineno" id="205">   205  </span>		getContent().toolbar_mc.brandClip_mc._visible = <span class="key">false</span> ;	
+<span class="lineno" id="206">   206  </span>	}
+<span class="lineno" id="207">   207  </span>
+<span class="lineno" id="208">   208  </span>	<span class="comment doc">/**
+<span class="lineno" id="209">   209  </span>	 * Hide the tool bar's background.
+<span class="lineno" id="210">   210  </span>	 */</span>
+<span class="lineno" id="211">   211  </span>	<span class="key">public</span> <span class="key">function</span> hideToolBarBackground():Void 
+<span class="lineno" id="212">   212  </span>	{
+<span class="lineno" id="213">   213  </span>		getContent().toolbar_mc.toolbarBg_mc._visible = <span class="key">false</span> ;
+<span class="lineno" id="214">   214  </span>		_isToolBarBackgroundVisible = <span class="key">false</span> ;
+<span class="lineno" id="215">   215  </span>	}
+<span class="lineno" id="216">   216  </span>	
+<span class="lineno" id="217">   217  </span>	<span class="comment doc">/**
+<span class="lineno" id="218">   218  </span>	 * Init Event Class use in the loader.
+<span class="lineno" id="219">   219  </span>	 */</span>
+<span class="lineno" id="220">   220  </span>	<span class="key">public</span> <span class="key">function</span> initEvent():Void 
+<span class="lineno" id="221">   221  </span>	{
+<span class="lineno" id="222">   222  </span>		_e = <span class="key">new</span> FlashPaperLoaderEvent(<span class="key">null</span>, <span class="key">this</span>) ;	
+<span class="lineno" id="223">   223  </span>	}
+<span class="lineno" id="224">   224  </span>
+<span class="lineno" id="225">   225  </span>	<span class="comment doc">/**
+<span class="lineno" id="226">   226  </span>	 * Returns true if the official FlashPaper logo is visible.
+<span class="lineno" id="227">   227  </span>	 */</span>
+<span class="lineno" id="228">   228  </span>	<span class="key">public</span> <span class="key">function</span> isLogoVisible():Boolean 
+<span class="lineno" id="229">   229  </span>	{
+<span class="lineno" id="230">   230  </span>		<span class="key">return</span> _isLogoVisible ;	
+<span class="lineno" id="231">   231  </span>	}
+<span class="lineno" id="232">   232  </span>	
+<span class="lineno" id="233">   233  </span>	<span class="comment doc">/**
+<span class="lineno" id="234">   234  </span>	 * Returns true if the tool bar's background is visible.
+<span class="lineno" id="235">   235  </span>	 */</span>
+<span class="lineno" id="236">   236  </span>	<span class="key">public</span> <span class="key">function</span> isToolBarBackgroundVisible():Boolean 
+<span class="lineno" id="237">   237  </span>	{
+<span class="lineno" id="238">   238  </span>		<span class="key">return</span> _isToolBarBackgroundVisible ;	
+<span class="lineno" id="239">   239  </span>	}
+<span class="lineno" id="240">   240  </span>
+<span class="lineno" id="241">   241  </span>	<span class="comment">/*override*/</span> <span class="key">public</span> <span class="key">function</span> onLoadInit():Void 
+<span class="lineno" id="242">   242  </span>	{
+<span class="lineno" id="243">   243  </span>
+<span class="lineno" id="244">   244  </span>		<span class="key">var</span> c:MovieClip = getContent() ;
+<span class="lineno" id="245">   245  </span>		
+<span class="lineno" id="246">   246  </span>		<span class="key">var</span> b:Boolean = c.isFlashPaperDocument() ;
+<span class="lineno" id="247">   247  </span>		
+<span class="lineno" id="248">   248  </span>		_fixSelectionManagement(c) ;
+<span class="lineno" id="249">   249  </span>		
+<span class="lineno" id="250">   250  </span>		_fp = c.getIFlashPaper() ;
+<span class="lineno" id="251">   251  </span>		_fp.addListener(<span class="key">this</span>) ;
+<span class="lineno" id="252">   252  </span>		
+<span class="lineno" id="253">   253  </span>		_default_h = c._height ;
+<span class="lineno" id="254">   254  </span>		_default_w = c._width ;
+<span class="lineno" id="255">   255  </span>		
+<span class="lineno" id="256">   256  </span>		update() ;
+<span class="lineno" id="257">   257  </span>	
+<span class="lineno" id="258">   258  </span>		<span class="key">super</span>.onLoadInit() ;
+<span class="lineno" id="259">   259  </span>		
+<span class="lineno" id="260">   260  </span>	}
+<span class="lineno" id="261">   261  </span>
+<span class="lineno" id="262">   262  </span>	<span class="comment doc">/**
+<span class="lineno" id="263">   263  </span>	 * 	Simulates a user clicking the Print button.
+<span class="lineno" id="264">   264  </span>	 * 	The document must be fully loaded before you call this function.
+<span class="lineno" id="265">   265  </span>	 * 	This function returns false if the document is not fully loaded.
+<span class="lineno" id="266">   266  </span>	 */</span>
+<span class="lineno" id="267">   267  </span>	<span class="key">public</span> <span class="key">function</span> printTheDocument():Boolean 
+<span class="lineno" id="268">   268  </span>	{
+<span class="lineno" id="269">   269  </span>		<span class="key">return</span> _fp.printTheDocument() ;	
+<span class="lineno" id="270">   270  </span>	}
+<span class="lineno" id="271">   271  </span>
+<span class="lineno" id="272">   272  </span>	<span class="comment doc">/**
+<span class="lineno" id="273">   273  </span>	 * Release the loader.
+<span class="lineno" id="274">   274  </span>	 */</span>
+<span class="lineno" id="275">   275  </span>	<span class="key">public</span> <span class="key">function</span> release():Void 
+<span class="lineno" id="276">   276  </span>	{
+<span class="lineno" id="277">   277  </span>		_fp = <span class="key">null</span> ;
+<span class="lineno" id="278">   278  </span>		<span class="key">super</span>.release() ;	
+<span class="lineno" id="279">   279  </span>	}
+<span class="lineno" id="280">   280  </span>
+<span class="lineno" id="281">   281  </span>	<span class="comment doc">/**
+<span class="lineno" id="282">   282  </span>	 * Sets the current page. The view scrolls as necessary to ensure the page is visible, but does not adjust zoom.
+<span class="lineno" id="283">   283  </span>	 */</span>
+<span class="lineno" id="284">   284  </span>	<span class="key">public</span> <span class="key">function</span> setCurrentPage(pageNumber:Number):Void 
+<span class="lineno" id="285">   285  </span>	{
+<span class="lineno" id="286">   286  </span>		_fp.setCurrentPage(pageNumber) ;
+<span class="lineno" id="287">   287  </span>	}
+<span class="lineno" id="288">   288  </span>			
+<span class="lineno" id="289">   289  </span>	<span class="comment doc">/**
+<span class="lineno" id="290">   290  </span>	 * 	Sets the current zoom level.
+<span class="lineno" id="291">   291  </span>	 * 	You can pass a number indicating a zoom percentage (for example, 100 for a 100% view).
+<span class="lineno" id="292">   292  </span>	 * 	You can also pass the string width to zoom to the current fit-to-width magnification for this document, or pass the string page for the fit-to-page magnification.
+<span class="lineno" id="293">   293  </span>	 */</span>
+<span class="lineno" id="294">   294  </span>	<span class="key">public</span> <span class="key">function</span> setCurrentZoom(percent:Number):Void 
+<span class="lineno" id="295">   295  </span>	{
+<span class="lineno" id="296">   296  </span>		_fp.setCurrentZoom(percent) ;	
+<span class="lineno" id="297">   297  </span>	}
+<span class="lineno" id="298">   298  </span>		
+<span class="lineno" id="299">   299  </span>	<span class="comment doc">/**
+<span class="lineno" id="300">   300  </span>	 * Makes the given tool the active tool. This function returns false if the argument is invalid or the given tool is disabled.
+<span class="lineno" id="301">   301  </span>	 *	The following are currently supported values :
+<span class="lineno" id="302">   302  </span>	 *		- "" : no tool.
+<span class="lineno" id="303">   303  </span>	 *		- "pan" : hand tool.
+<span class="lineno" id="304">   304  </span>	 *		- "select" : text selection tool. 
+<span class="lineno" id="305">   305  </span>	 *	@see FlashPaperTool
+<span class="lineno" id="306">   306  </span>	 */</span>
+<span class="lineno" id="307">   307  </span>	<span class="key">public</span> <span class="key">function</span> setCurrentTool(tool:String):Boolean 
+<span class="lineno" id="308">   308  </span>	{
+<span class="lineno" id="309">   309  </span>		<span class="key">return</span> _fp.setCurrentTool(tool) ;
+<span class="lineno" id="310">   310  </span>	}
+<span class="lineno" id="311">   311  </span>
+<span class="lineno" id="312">   312  </span>	<span class="comment doc">/**
+<span class="lineno" id="313">   313  </span>	 * Sets the text in the Find text box to a Unicode string value.
+<span class="lineno" id="314">   314  </span>	 * This call does not perform a find operation or alter the current selection.
+<span class="lineno" id="315">   315  </span>	 */</span>
+<span class="lineno" id="316">   316  </span>	<span class="key">public</span> <span class="key">function</span> setFindText(s:String):Void 
+<span class="lineno" id="317">   317  </span>	{
+<span class="lineno" id="318">   318  </span>		_fp.setFindText(s) ;	
+<span class="lineno" id="319">   319  </span>	}
+<span class="lineno" id="320">   320  </span>		
+<span class="lineno" id="321">   321  </span>	<span class="comment doc">/**
+<span class="lineno" id="322">   322  </span>	 * Sets the width of the sidebar. Pass zero to hide the sidebar completely.
+<span class="lineno" id="323">   323  </span>	 * A document with no outline ignores this call.
+<span class="lineno" id="324">   324  </span>	 */</span>
+<span class="lineno" id="325">   325  </span>	<span class="key">public</span> <span class="key">function</span> setSidebarWidth(w:Number):Void 
+<span class="lineno" id="326">   326  </span>	{
+<span class="lineno" id="327">   327  </span>		_fp.setSidebarWidth(w) ;
+<span class="lineno" id="328">   328  </span>	}
+<span class="lineno" id="329">   329  </span>
+<span class="lineno" id="330">   330  </span>	<span class="comment doc">/**
+<span class="lineno" id="331">   331  </span>	 * Sets the display size of the document, in pixels.
+<span class="lineno" id="332">   332  </span>	 */</span>
+<span class="lineno" id="333">   333  </span>	<span class="key">public</span> <span class="key">function</span> setSize(nW:Number, nH:Number, noRender:Boolean):Void 
+<span class="lineno" id="334">   334  </span>	{
+<span class="lineno" id="335">   335  </span>		_w = isNaN(nW) ? <span class="key">null</span> : nW ;	
+<span class="lineno" id="336">   336  </span>		_h = isNaN(nW) ? <span class="key">null</span> : nH ;
+<span class="lineno" id="337">   337  </span>		<span class="key">if</span> (!noRender) update() ;
+<span class="lineno" id="338">   338  </span>	}
+<span class="lineno" id="339">   339  </span>
+<span class="lineno" id="340">   340  </span>	<span class="comment doc">/**
+<span class="lineno" id="341">   341  </span>	 * Selects the given range of text.
+<span class="lineno" id="342">   342  </span>	 * You may pass null to deselect all text.
+<span class="lineno" id="343">   343  </span>	 * Invalid ranges are clipped to document ranges 
+<span class="lineno" id="344">   344  </span>	 * (this allows you to set a range that begins with zero and ends with a large number,
+<span class="lineno" id="345">   345  </span>	 *  such as 999999, to select the entire document).
+<span class="lineno" id="346">   346  </span>	 */</span>
+<span class="lineno" id="347">   347  </span>	<span class="key">public</span> <span class="key">function</span> setTextSelectionRange( selection <span class="comment">/*SelectionRange*/</span> , skipBroadcast:Boolean):Void 
+<span class="lineno" id="348">   348  </span>	{
+<span class="lineno" id="349">   349  </span>		_fp.setTextSelectionRange( selection, skipBroadcast ) ;
+<span class="lineno" id="350">   350  </span>	}
+<span class="lineno" id="351">   351  </span>
+<span class="lineno" id="352">   352  </span>	<span class="comment doc">/**
+<span class="lineno" id="353">   353  </span>	 * Adjusts the currently visible page/zoom/scroll to match the visible area described by the area object.
+<span class="lineno" id="354">   354  </span>	 */</span>
+<span class="lineno" id="355">   355  </span>	<span class="key">public</span> <span class="key">function</span> setVisibleArea(area, skipBroadcast:Boolean):Void 
+<span class="lineno" id="356">   356  </span>	{
+<span class="lineno" id="357">   357  </span>		_fp.setVisibleArea(area, skipBroadcast) ;
+<span class="lineno" id="358">   358  </span>	}
+<span class="lineno" id="359">   359  </span>
+<span class="lineno" id="360">   360  </span>	<span class="comment doc">/**
+<span class="lineno" id="361">   361  </span>	 * The official FlashPaper logo is visible.
+<span class="lineno" id="362">   362  </span>	 */</span>
+<span class="lineno" id="363">   363  </span>	<span class="key">public</span> <span class="key">function</span> showLogo():Void 
+<span class="lineno" id="364">   364  </span>	{
+<span class="lineno" id="365">   365  </span>		getContent().toolbar_mc.brandClip_mc._visible = <span class="key">true</span> ;
+<span class="lineno" id="366">   366  </span>		_isLogoVisible = <span class="key">true</span> ;
+<span class="lineno" id="367">   367  </span>	}
+<span class="lineno" id="368">   368  </span>
+<span class="lineno" id="369">   369  </span>	<span class="comment doc">/**
+<span class="lineno" id="370">   370  </span>	 * The Toolbar Background is visible.
+<span class="lineno" id="371">   371  </span>	 */</span>
+<span class="lineno" id="372">   372  </span>	<span class="key">public</span> <span class="key">function</span> showToolBarBackground():Void 
+<span class="lineno" id="373">   373  </span>	{
+<span class="lineno" id="374">   374  </span>		getContent().toolbar_mc.toolbarBg_mc._visible = <span class="key">true</span> ;
+<span class="lineno" id="375">   375  </span>		_isToolBarBackgroundVisible = <span class="key">true</span> ;
+<span class="lineno" id="376">   376  </span>	}
+<span class="lineno" id="377">   377  </span>	
+<span class="lineno" id="378">   378  </span>	<span class="comment doc">/**
+<span class="lineno" id="379">   379  </span>	 * Hides or displays part of the user interface in the FlashPaper document.
+<span class="lineno" id="380">   380  </span>	 * &lt;p&gt;The currently supported, case-sensitive values for part are the following :
+<span class="lineno" id="381">   381  </span>	 * &lt;li&gt;"PrevNext" : The Previous Page and Next Page toolbar buttons are hidden or shown.&lt;/li&gt;
+<span class="lineno" id="382">   382  </span>	 * &lt;li&gt;"Print" The Print toolbar button is hidden or shown.&lt;/li&gt;
+<span class="lineno" id="383">   383  </span>	 * &lt;li&gt;"Tool" All tool selection buttons on the toolbar are hidden or shown.&lt;/li&gt;
+<span class="lineno" id="384">   384  </span>	 * &lt;li&gt;"Zoom" All zoom-related controls on the toolbar are hidden or shown.&lt;/li&gt;
+<span class="lineno" id="385">   385  </span>	 * &lt;li&gt;"Find" All text-search-related controls on the toolbar are hidden or shown.&lt;/li&gt;
+<span class="lineno" id="386">   386  </span>	 * &lt;li&gt;"Pop" The Open Document in New Browser Window toolbar button is hidden or shown.&lt;/li&gt;
+<span class="lineno" id="387">   387  </span>	 * &lt;li&gt;"Sidebar" The sidebar (displaying the document outline) is hidden or shown.&lt;/li&gt;
+<span class="lineno" id="388">   388  </span>	 * &lt;li&gt;"Page" The Current Page and Number of Pages fields in the toolbar are hidden or shown.&lt;/li&gt;
+<span class="lineno" id="389">   389  </span>	 * &lt;li&gt;"Overflow" The Overflow menu on the toolbar is hidden or shown.&lt;/li&gt;
+<span class="lineno" id="390">   390  </span>	 * &lt;li&gt;"ZoomKeys" This value doesn't affect the user interface ; it is used to enable or disable various keys used to zoom in or out of the document (for example, +, -, p, w).&lt;/li&gt;
+<span class="lineno" id="391">   391  </span>	 * &lt;/p&gt;
+<span class="lineno" id="392">   392  </span>	 */</span>
+<span class="lineno" id="393">   393  </span>	<span class="key">public</span> <span class="key">function</span> showUIElement(part:String, flag:Boolean):Void 
+<span class="lineno" id="394">   394  </span>	{
+<span class="lineno" id="395">   395  </span>		_fp.showUIElement(part, flag) ;
+<span class="lineno" id="396">   396  </span>	}
+<span class="lineno" id="397">   397  </span>	
+<span class="lineno" id="398">   398  </span>	<span class="comment doc">/**
+<span class="lineno" id="399">   399  </span>	 * Refresh the view.
+<span class="lineno" id="400">   400  </span>	 */</span>
+<span class="lineno" id="401">   401  </span>	<span class="key">public</span> <span class="key">function</span> update():Void 
+<span class="lineno" id="402">   402  </span>	{
+<span class="lineno" id="403">   403  </span>		<span class="key">if</span> (getIsFlashPaperDocument()) 
+<span class="lineno" id="404">   404  </span>		{
+<span class="lineno" id="405">   405  </span>			<span class="key">var</span> w:Number = isNaN(_w) ? _default_w : _w ; 
+<span class="lineno" id="406">   406  </span>			<span class="key">var</span> h:Number = isNaN(_h)? _default_h : _h ;
+<span class="lineno" id="407">   407  </span>			enableScrolling(_isEnableScrolling) ;
+<span class="lineno" id="408">   408  </span>			_fp.setSize(w, h) ;
+<span class="lineno" id="409">   409  </span>			<span class="key">if</span> (!isLogoVisible()) 
+<span class="lineno" id="410">   410  </span>			{
+<span class="lineno" id="411">   411  </span>				hideLogo() ;
+<span class="lineno" id="412">   412  </span>			}
+<span class="lineno" id="413">   413  </span>			<span class="key">if</span> (!isToolBarBackgroundVisible()) 
+<span class="lineno" id="414">   414  </span>			{
+<span class="lineno" id="415">   415  </span>				hideToolBarBackground() ;
+<span class="lineno" id="416">   416  </span>			}
+<span class="lineno" id="417">   417  </span>		}
+<span class="lineno" id="418">   418  </span>	}
+<span class="lineno" id="419">   419  </span>
+<span class="lineno" id="420">   420  </span>	<span class="comment doc">/**
+<span class="lineno" id="421">   421  </span>	 * (protected) Returns the event type of the internal event when the FlashPaperLoader change this enable scroll value.
+<span class="lineno" id="422">   422  </span>	 * Overrides this method if you want custom your object.
+<span class="lineno" id="423">   423  </span>	 */</span>
+<span class="lineno" id="424">   424  </span>	<span class="comment">/*protected*/</span> <span class="key">function</span> getEventTypeENABLE_SCROLL():String
+<span class="lineno" id="425">   425  </span>	{
+<span class="lineno" id="426">   426  </span>		<span class="key">return</span> FlashPaperLoaderEvent.ENABLE_SCROLL ;	
+<span class="lineno" id="427">   427  </span>	}
+<span class="lineno" id="428">   428  </span>	
+<span class="lineno" id="429">   429  </span>	<span class="comment doc">/**
+<span class="lineno" id="430">   430  </span>	 * (protected) Returns the event type of the internal event when the FlashPaperLoader change this current page value.
+<span class="lineno" id="431">   431  </span>	 * Overrides this method if you want custom your object.
+<span class="lineno" id="432">   432  </span>	 */</span>
+<span class="lineno" id="433">   433  </span>	<span class="comment">/*protected*/</span> <span class="key">function</span> getEventTypePAGE_CHANGE():String
+<span class="lineno" id="434">   434  </span>	{
+<span class="lineno" id="435">   435  </span>		<span class="key">return</span> FlashPaperLoaderEvent.PAGE_CHANGE ;	
+<span class="lineno" id="436">   436  </span>	}
+<span class="lineno" id="437">   437  </span>
+<span class="lineno" id="438">   438  </span>	<span class="comment doc">/**
+<span class="lineno" id="439">   439  </span>	 * (protected) Returns the event type of the internal event when the FlashPaperLoader change this current tool value.
+<span class="lineno" id="440">   440  </span>	 * Overrides this method if you want custom your object.
+<span class="lineno" id="441">   441  </span>	 */</span>
+<span class="lineno" id="442">   442  </span>	<span class="comment">/*protected*/</span> <span class="key">function</span> getEventTypeTOOL_CHANGE():String
+<span class="lineno" id="443">   443  </span>	{
+<span class="lineno" id="444">   444  </span>		<span class="key">return</span> FlashPaperLoaderEvent.TOOL_CHANGE ;	
+<span class="lineno" id="445">   445  </span>	}
+<span class="lineno" id="446">   446  </span>
+<span class="lineno" id="447">   447  </span>	<span class="comment doc">/**
+<span class="lineno" id="448">   448  </span>	 * (protected) Returns the event type of the internal event when the FlashPaperLoader change this visible area.
+<span class="lineno" id="449">   449  </span>	 * Overrides this method if you want custom your object.
+<span class="lineno" id="450">   450  </span>	 */</span>
+<span class="lineno" id="451">   451  </span>	<span class="comment">/*protected*/</span> <span class="key">function</span> getEventTypeVISIBLE_AREA_CHANGE():String
+<span class="lineno" id="452">   452  </span>	{
+<span class="lineno" id="453">   453  </span>		<span class="key">return</span> FlashPaperLoaderEvent.VISIBLE_AREA_CHANGE ;	
+<span class="lineno" id="454">   454  </span>	}
+<span class="lineno" id="455">   455  </span>	
+<span class="lineno" id="456">   456  </span>	<span class="comment doc">/**
+<span class="lineno" id="457">   457  </span>	 * (protected) Returns the event type of the internal event when the FlashPaperLoader change this zoom value.
+<span class="lineno" id="458">   458  </span>	 * Overrides this method if you want custom your object.
+<span class="lineno" id="459">   459  </span>	 */</span>
+<span class="lineno" id="460">   460  </span>	<span class="comment">/*protected*/</span> <span class="key">function</span> getEventTypeVISIBLE_ZOOM_CHANGE():String
+<span class="lineno" id="461">   461  </span>	{
+<span class="lineno" id="462">   462  </span>		<span class="key">return</span> FlashPaperLoaderEvent.ZOOM_CHANGE ;	
+<span class="lineno" id="463">   463  </span>	}
+<span class="lineno" id="464">   464  </span>
+<span class="lineno" id="465">   465  </span>	<span class="key">private</span> <span class="key">var</span> _default_h:Number ;
+<span class="lineno" id="466">   466  </span>	
+<span class="lineno" id="467">   467  </span>	<span class="key">private</span> <span class="key">var</span> _default_w:Number ;
+<span class="lineno" id="468">   468  </span>
+<span class="lineno" id="469">   469  </span>	<span class="key">private</span> <span class="key">var</span> _eAreaChange:FlashPaperLoaderEvent ;
+<span class="lineno" id="470">   470  </span>	
+<span class="lineno" id="471">   471  </span>	<span class="key">private</span> <span class="key">var</span> _eEnableScroll:FlashPaperLoaderEvent ; 
+<span class="lineno" id="472">   472  </span>	
+<span class="lineno" id="473">   473  </span>	<span class="key">private</span> <span class="key">var</span> _ePageChange:FlashPaperLoaderEvent ;
+<span class="lineno" id="474">   474  </span>	
+<span class="lineno" id="475">   475  </span>	<span class="key">private</span> <span class="key">var</span> _eToolChange:FlashPaperLoaderEvent ;
+<span class="lineno" id="476">   476  </span>	
+<span class="lineno" id="477">   477  </span>	<span class="key">private</span> <span class="key">var</span> _eZoomChange:FlashPaperLoaderEvent ;
+<span class="lineno" id="478">   478  </span>	
+<span class="lineno" id="479">   479  </span>	<span class="key">private</span> <span class="key">var</span> _fp <span class="comment">/*IFlashPaper*/</span> = <span class="key">null</span> ; 
+<span class="lineno" id="480">   480  </span>	
+<span class="lineno" id="481">   481  </span>	<span class="key">private</span> <span class="key">var</span> _h:Number = <span class="key">null</span> ;
+<span class="lineno" id="482">   482  </span>	
+<span class="lineno" id="483">   483  </span>	<span class="key">private</span> <span class="key">var</span> _isEnableScrolling:Boolean = <span class="key">true</span> ;
+<span class="lineno" id="484">   484  </span>	
+<span class="lineno" id="485">   485  </span>	<span class="key">private</span> <span class="key">var</span> _isLogoVisible:Boolean = <span class="key">true</span> ;
+<span class="lineno" id="486">   486  </span>	
+<span class="lineno" id="487">   487  </span>	<span class="key">private</span> <span class="key">var</span> _isToolBarBackgroundVisible:Boolean = <span class="key">true</span> ;
+<span class="lineno" id="488">   488  </span>	
+<span class="lineno" id="489">   489  </span>	<span class="key">private</span> <span class="key">var</span> _w:Number = <span class="key">null</span> ;	
+<span class="lineno" id="490">   490  </span>		
+<span class="lineno" id="491">   491  </span>	<span class="comment doc">/**
+<span class="lineno" id="492">   492  </span>	 * Fix the selection management.
+<span class="lineno" id="493">   493  </span>	 */</span>
+<span class="lineno" id="494">   494  </span>	<span class="key">static</span> <span class="key">private</span> <span class="key">function</span> _fixSelectionManagement(mc:MovieClip):Void 
+<span class="lineno" id="495">   495  </span>	{
+<span class="lineno" id="496">   496  </span>		<span class="key">var</span> main:MovieClip = mc.gMainView.m_mainMC ;
+<span class="lineno" id="497">   497  </span>		
+<span class="lineno" id="498">   498  </span>		<span class="key">if</span> (<span class="key">typeof</span> (main.onMouseDown) == <span class="str_const">"function"</span> &amp;&amp; main.hasSafeSelectionManagement === undefined) 
+<span class="lineno" id="499">   499  </span>		{
+<span class="lineno" id="500">   500  </span>      		main.onMouseDown =  <span class="key">function</span>() 
+<span class="lineno" id="501">   501  </span>      		{
+<span class="lineno" id="502">   502  </span>         		<span class="key">var</span> fpfocus:MovieClip = _global.FPUI.Component.focusedComponent;
+<span class="lineno" id="503">   503  </span>         		
+<span class="lineno" id="504">   504  </span>         		<span class="key">if</span> (fpfocus != <span class="key">null</span>) 
+<span class="lineno" id="505">   505  </span>         		{
+<span class="lineno" id="506">   506  </span>		            <span class="key">var</span> hitFocused:Boolean = <span class="key">false</span>;
+<span class="lineno" id="507">   507  </span>            		<span class="key">if</span> (fpfocus._visible) 
+<span class="lineno" id="508">   508  </span>            		{
+<span class="lineno" id="509">   509  </span>	               		<span class="key">var</span> p:Point = <span class="key">new</span> Point(_root._xmouse, _root._ymouse);
+<span class="lineno" id="510">   510  </span>	               		_root.localToGlobal(p) ;
+<span class="lineno" id="511">   511  </span>	               		hitFocused = fpfocus.hitTest(p.x, p.y, <span class="key">true</span>);
+<span class="lineno" id="512">   512  </span>            		}
+<span class="lineno" id="513">   513  </span>            		<span class="key">if</span> (hitFocused == <span class="key">false</span>) 
+<span class="lineno" id="514">   514  </span>            		{
+<span class="lineno" id="515">   515  </span>						<span class="comment">//Selection.setFocus(null) ;</span>
+<span class="lineno" id="516">   516  </span>						<span class="key">if</span> (<span class="key">typeof</span> (fpfocus.onComponentKillFocus) == <span class="str_const">"function"</span>) 
+<span class="lineno" id="517">   517  </span>						{
+<span class="lineno" id="518">   518  </span>                  			fpfocus.onComponentKillFocus();
+<span class="lineno" id="519">   519  </span>               			}
+<span class="lineno" id="520">   520  </span>            		}
+<span class="lineno" id="521">   521  </span>         		}
+<span class="lineno" id="522">   522  </span>      		} ;
+<span class="lineno" id="523">   523  </span>      		
+<span class="lineno" id="524">   524  </span>   		}
+<span class="lineno" id="525">   525  </span>	}	
+<span class="lineno" id="526">   526  </span>	
+<span class="lineno" id="527">   527  </span>	<span class="comment doc">/**
+<span class="lineno" id="528">   528  </span>	 * Invoqued when the page changed.
+<span class="lineno" id="529">   529  </span>	 */</span>
+<span class="lineno" id="530">   530  </span>	<span class="key">private</span> <span class="key">function</span> onPageChanged(newPageNumber:Number):Void 
+<span class="lineno" id="531">   531  </span>	{
+<span class="lineno" id="532">   532  </span>		_ePageChange.newPageNumber = newPageNumber ;
+<span class="lineno" id="533">   533  </span>		dispatchEvent( _ePageChange ) ;
+<span class="lineno" id="534">   534  </span>	}
+<span class="lineno" id="535">   535  </span>	
+<span class="lineno" id="536">   536  </span>	<span class="comment doc">/**
+<span class="lineno" id="537">   537  </span>	 * Invoqued when a tool changed.
+<span class="lineno" id="538">   538  </span>	 */</span>
+<span class="lineno" id="539">   539  </span>	<span class="key">private</span> <span class="key">function</span> onToolChanged(newTool:String):Void 
+<span class="lineno" id="540">   540  </span>	{
+<span class="lineno" id="541">   541  </span>		dispatchEvent( _eToolChange ) ;
+<span class="lineno" id="542">   542  </span>	}
+<span class="lineno" id="543">   543  </span>
+<span class="lineno" id="544">   544  </span>	<span class="comment doc">/**
+<span class="lineno" id="545">   545  </span>	 * Invoqued when the enable scrolling value changed.
+<span class="lineno" id="546">   546  </span>	 */</span>
+<span class="lineno" id="547">   547  </span>	<span class="key">private</span> <span class="key">function</span> onEnableScrolling(b:Boolean):Void 
+<span class="lineno" id="548">   548  </span>	{
+<span class="lineno" id="549">   549  </span>		_eEnableScroll.isEnabledScrolling = b ;
+<span class="lineno" id="550">   550  </span>		dispatchEvent( _eEnableScroll ) ;
+<span class="lineno" id="551">   551  </span>	}
+<span class="lineno" id="552">   552  </span>
+<span class="lineno" id="553">   553  </span>	<span class="comment doc">/**
+<span class="lineno" id="554">   554  </span>	 * Invoqued when the zoom value changed.
+<span class="lineno" id="555">   555  </span>	 */</span>
+<span class="lineno" id="556">   556  </span>	<span class="key">private</span> <span class="key">function</span> onZoomChanged(percent:Number):Void 
+<span class="lineno" id="557">   557  </span>	{
+<span class="lineno" id="558">   558  </span>		_eZoomChange.currentZoom = percent ;
+<span class="lineno" id="559">   559  </span>		dispatchEvent( _eZoomChange ) ;
+<span class="lineno" id="560">   560  </span>	}
+<span class="lineno" id="561">   561  </span>
+<span class="lineno" id="562">   562  </span>	<span class="comment doc">/**
+<span class="lineno" id="563">   563  </span>	 * Invoqued when the visible area changed.
+<span class="lineno" id="564">   564  </span>	 */</span>
+<span class="lineno" id="565">   565  </span>	<span class="key">private</span> <span class="key">function</span> onVisibleAreaChanged():Void 
+<span class="lineno" id="566">   566  </span>	{
+<span class="lineno" id="567">   567  </span>		_eAreaChange.newVisibleArea = _fp.getVisibleArea() ;
+<span class="lineno" id="568">   568  </span>		dispatchEvent( _eAreaChange ) ;
+<span class="lineno" id="569">   569  </span>	}
+<span class="lineno" id="570">   570  </span>	
+<span class="lineno" id="571">   571  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package asgard.display" class="button">Package</a></li><li><a href="FlashPaperLoader.html" title="Detail of asgard.display.FlashPaperLoader API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

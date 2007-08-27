@@ -204,4 +204,22 @@ document.quicknavBasePath="../../index-files";
 <span class="lineno" id="201">   201  </span>		<span class="key">return</span> str ;		
 <span class="lineno" id="202">   202  </span>	}
 <span class="lineno" id="203">   203  </span>	
-<span class="lineno" id="204">   204  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.string" class="button">Package</a></li><li><a href="StringFormatter.html" title="Detail of vegas.string.StringFormatter API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
+<span class="lineno" id="204">   204  </span>	<span class="comment doc">/**
+<span class="lineno" id="205">   205  </span>	 * Returns a singleton reference of the StringFormatter class.
+<span class="lineno" id="206">   206  </span>	 * @return a singleton reference of the StringFormatter class.
+<span class="lineno" id="207">   207  </span>	 */</span>
+<span class="lineno" id="208">   208  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">function</span> getInstance():StringFormatter
+<span class="lineno" id="209">   209  </span>	{
+<span class="lineno" id="210">   210  </span>		<span class="key">if</span> (_instance == <span class="key">null</span>)
+<span class="lineno" id="211">   211  </span>		{
+<span class="lineno" id="212">   212  </span>			_instance = <span class="key">new</span> StringFormatter() ;	
+<span class="lineno" id="213">   213  </span>		}
+<span class="lineno" id="214">   214  </span>		<span class="key">return</span> _instance ;
+<span class="lineno" id="215">   215  </span>	}
+<span class="lineno" id="216">   216  </span>	
+<span class="lineno" id="217">   217  </span>	<span class="comment doc">/**
+<span class="lineno" id="218">   218  </span>	 * The internal singleton reference of this class.
+<span class="lineno" id="219">   219  </span>	 */</span>
+<span class="lineno" id="220">   220  </span>	<span class="key">static</span> <span class="key">private</span> <span class="key">var</span> _instance:StringFormatter ;
+<span class="lineno" id="221">   221  </span>	
+<span class="lineno" id="222">   222  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.string" class="button">Package</a></li><li><a href="StringFormatter.html" title="Detail of vegas.string.StringFormatter API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

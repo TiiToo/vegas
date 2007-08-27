@@ -701,10 +701,10 @@ document.quicknavBasePath="../../../index-files";
 <span class="lineno" id="698">   698  </span>		}
 <span class="lineno" id="699">   699  </span>	}
 <span class="lineno" id="700">   700  </span>
-<span class="lineno" id="701">   701  </span>    <span class="comment doc">/**
-<span class="lineno" id="702">   702  </span>     * Removes an element at the specified position in this list. 
-<span class="lineno" id="703">   703  </span>     * This implementation first gets a list iterator pointing to the indexed element (with {@code listIterator(index)}). 
-<span class="lineno" id="704">   704  </span>     * Then, it removes the element with &lt;b&gt;ListIterator&lt;/b&gt; remove method.
+<span class="lineno" id="701">   701  </span>	<span class="comment doc">/**
+<span class="lineno" id="702">   702  </span>      * Removes an element at the specified position in this list. 
+<span class="lineno" id="703">   703  </span>      * This implementation first gets a list iterator pointing to the indexed element (with {@code listIterator(index)}). 
+<span class="lineno" id="704">   704  </span>	 *Then, it removes the element with &lt;b&gt;ListIterator&lt;/b&gt; remove method.
 <span class="lineno" id="705">   705  </span>	 * &lt;p&gt;&lt;b&gt;Example :&lt;/b&gt;&lt;/p&gt;
 <span class="lineno" id="706">   706  </span>	 * {@code
 <span class="lineno" id="707">   707  </span>	 * import vegas.data.list.LinkedList ;
@@ -842,7 +842,7 @@ document.quicknavBasePath="../../../index-files";
 <span class="lineno" id="839">   839  </span>			<span class="key">var</span> next = it.next() ;
 <span class="lineno" id="840">   840  </span>			<span class="key">if</span> ( !c.contains( next ) )
 <span class="lineno" id="841">   841  </span>			{
-<span class="lineno" id="842">   842  </span>				it.remove(next) ;
+<span class="lineno" id="842">   842  </span>				it.remove() ;
 <span class="lineno" id="843">   843  </span>			} 
 <span class="lineno" id="844">   844  </span>		}
 <span class="lineno" id="845">   845  </span>		<span class="key">return</span> c.size() == size() ;

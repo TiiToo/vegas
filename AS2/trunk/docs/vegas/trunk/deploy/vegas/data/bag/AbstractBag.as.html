@@ -192,214 +192,219 @@ document.quicknavBasePath="../../../index-files";
 <span class="lineno" id="189">   189  </span>	
 <span class="lineno" id="190">   190  </span>	<span class="comment doc">/**
 <span class="lineno" id="191">   191  </span>	 * Returns {@code true} if the bag is empty.
-<span class="lineno" id="192">   192  </span>	 */</span>
-<span class="lineno" id="193">   193  </span>	<span class="key">public</span> <span class="key">function</span> isEmpty():Boolean 
-<span class="lineno" id="194">   194  </span>	{
-<span class="lineno" id="195">   195  </span>		<span class="key">return</span> _map.isEmpty() ;
-<span class="lineno" id="196">   196  </span>    }
-<span class="lineno" id="197">   197  </span>	
-<span class="lineno" id="198">   198  </span>	<span class="comment doc">/**
-<span class="lineno" id="199">   199  </span>	 * Returns the bag iterator.
-<span class="lineno" id="200">   200  </span>	 */</span>
-<span class="lineno" id="201">   201  </span>	<span class="key">public</span> <span class="key">function</span> iterator():Iterator 
-<span class="lineno" id="202">   202  </span>	{
-<span class="lineno" id="203">   203  </span>		<span class="key">return</span> <span class="key">new</span> BagIterator(<span class="key">this</span>, _extractList().iterator()) ;
-<span class="lineno" id="204">   204  </span>	}
-<span class="lineno" id="205">   205  </span>
-<span class="lineno" id="206">   206  </span>	<span class="comment doc">/**
-<span class="lineno" id="207">   207  </span>	 * Removes the object in argument in the bag.
-<span class="lineno" id="208">   208  </span>	 */</span>
-<span class="lineno" id="209">   209  </span>	<span class="key">public</span> <span class="key">function</span> remove(o):Boolean 
-<span class="lineno" id="210">   210  </span>	{
-<span class="lineno" id="211">   211  </span>		<span class="key">return</span> removeCopies(o, getCount(o));
-<span class="lineno" id="212">   212  </span>	}
-<span class="lineno" id="213">   213  </span>
-<span class="lineno" id="214">   214  </span>	<span class="comment doc">/**
-<span class="lineno" id="215">   215  </span>	 * (Violation) Removes all elements represented in the given collection, respecting cardinality.
-<span class="lineno" id="216">   216  </span>	 */</span>
-<span class="lineno" id="217">   217  </span>	<span class="key">public</span> <span class="key">function</span> removeAll(c:Collection):Boolean 
-<span class="lineno" id="218">   218  </span>	{
-<span class="lineno" id="219">   219  </span>        <span class="key">var</span> result:Boolean = <span class="key">false</span> ;
-<span class="lineno" id="220">   220  </span>        <span class="key">if</span> (c != <span class="key">null</span>) 
-<span class="lineno" id="221">   221  </span>        {
-<span class="lineno" id="222">   222  </span>            <span class="key">var</span> i:Iterator = c.iterator() ;
-<span class="lineno" id="223">   223  </span>            <span class="key">while</span> (i.hasNext()) 
-<span class="lineno" id="224">   224  </span>            {
-<span class="lineno" id="225">   225  </span>				<span class="key">var</span> next = i.next() ;
-<span class="lineno" id="226">   226  </span>                <span class="key">var</span> changed:Boolean = removeCopies(next, <span class="num_const">1</span>) ;
-<span class="lineno" id="227">   227  </span>                result = result || changed ;
-<span class="lineno" id="228">   228  </span>            }
-<span class="lineno" id="229">   229  </span>        }
-<span class="lineno" id="230">   230  </span>        <span class="key">return</span> result ;
-<span class="lineno" id="231">   231  </span>    }
-<span class="lineno" id="232">   232  </span>
-<span class="lineno" id="233">   233  </span>	<span class="comment doc">/**
-<span class="lineno" id="234">   234  </span>	 * Removes the given number of occurrences from the bag.
-<span class="lineno" id="235">   235  </span>	 */</span>
-<span class="lineno" id="236">   236  </span>	<span class="key">public</span> <span class="key">function</span> removeCopies(o, nCopies:Number):Boolean 
-<span class="lineno" id="237">   237  </span>	{
-<span class="lineno" id="238">   238  </span>		_mods++;
-<span class="lineno" id="239">   239  </span>        <span class="key">var</span> result:Boolean = <span class="key">false</span>;
-<span class="lineno" id="240">   240  </span>        <span class="key">var</span> count:Number = getCount(o) ;
-<span class="lineno" id="241">   241  </span>        <span class="key">if</span> (nCopies &lt;= <span class="num_const">0</span>) 
-<span class="lineno" id="242">   242  </span>        {
-<span class="lineno" id="243">   243  </span>        	result = <span class="key">false</span>;
-<span class="lineno" id="244">   244  </span>        }
-<span class="lineno" id="245">   245  </span>        <span class="key">else</span> <span class="key">if</span> (count &gt; nCopies) 
-<span class="lineno" id="246">   246  </span>        {
-<span class="lineno" id="247">   247  </span>            _map.put(o, <span class="key">new</span> Int(count - nCopies)) ;
-<span class="lineno" id="248">   248  </span>            result = <span class="key">true</span> ;
-<span class="lineno" id="249">   249  </span>            _total -= nCopies ;
-<span class="lineno" id="250">   250  </span>        } 
-<span class="lineno" id="251">   251  </span>        <span class="key">else</span> <span class="comment">// count &gt; 0 &amp;&amp; count &lt;= i </span>
-<span class="lineno" id="252">   252  </span>        {   
-<span class="lineno" id="253">   253  </span>            result = (_map.remove(o) != <span class="key">null</span>) ; <span class="comment">// need to remove all</span>
-<span class="lineno" id="254">   254  </span>            _total -= count ;
-<span class="lineno" id="255">   255  </span>        }
-<span class="lineno" id="256">   256  </span>        <span class="key">return</span> result;
-<span class="lineno" id="257">   257  </span>	}
-<span class="lineno" id="258">   258  </span>
-<span class="lineno" id="259">   259  </span>	<span class="comment doc">/**
-<span class="lineno" id="260">   260  </span>	 * (Violation) Removes any members of the bag that are not in the given collection, respecting cardinality.
-<span class="lineno" id="261">   261  </span>	 */</span>
-<span class="lineno" id="262">   262  </span>	<span class="key">public</span> <span class="key">function</span> retainAll(c:Collection):Boolean 
-<span class="lineno" id="263">   263  </span>	{
-<span class="lineno" id="264">   264  </span>		<span class="key">return</span> retainAllInBag(<span class="key">new</span> HashBag(c));
-<span class="lineno" id="265">   265  </span>	}
-<span class="lineno" id="266">   266  </span>
-<span class="lineno" id="267">   267  </span>	<span class="comment doc">/**
-<span class="lineno" id="268">   268  </span>	 * (Violation) Removes any members of the bag that are not in the given bag.
-<span class="lineno" id="269">   269  </span>	 */</span>
-<span class="lineno" id="270">   270  </span>	<span class="key">public</span> <span class="key">function</span> retainAllInBag(b:Bag):Boolean 
-<span class="lineno" id="271">   271  </span>	{
-<span class="lineno" id="272">   272  </span>        <span class="key">var</span> result:Boolean = <span class="key">false</span> ;
-<span class="lineno" id="273">   273  </span>        <span class="key">var</span> excess:Bag = <span class="key">new</span> HashBag() ;
-<span class="lineno" id="274">   274  </span>        <span class="key">var</span> i:Iterator = uniqueSet().iterator() ;
-<span class="lineno" id="275">   275  </span>        <span class="key">while</span> (i.hasNext()) 
-<span class="lineno" id="276">   276  </span>        {
-<span class="lineno" id="277">   277  </span>            <span class="key">var</span> cur = i.next() ;
-<span class="lineno" id="278">   278  </span>            <span class="key">var</span> count1:Number = getCount(cur) ;
-<span class="lineno" id="279">   279  </span>            <span class="key">var</span> count2:Number = b.getCount(cur) ;
-<span class="lineno" id="280">   280  </span>            <span class="key">if</span> ( <span class="num_const">1</span> &lt;= count2 &amp;&amp; count2 &lt;= count1) 
-<span class="lineno" id="281">   281  </span>            {
-<span class="lineno" id="282">   282  </span>                excess.insertCopies(cur, count1 - count2) ;
-<span class="lineno" id="283">   283  </span>            }
-<span class="lineno" id="284">   284  </span>            <span class="key">else</span> 
-<span class="lineno" id="285">   285  </span>            {
-<span class="lineno" id="286">   286  </span>                excess.insertCopies(cur, count1) ;
-<span class="lineno" id="287">   287  </span>            }
-<span class="lineno" id="288">   288  </span>        }
-<span class="lineno" id="289">   289  </span>        <span class="key">if</span> (!excess.isEmpty()) 
-<span class="lineno" id="290">   290  </span>        {
-<span class="lineno" id="291">   291  </span>        	result = removeAll(excess) ;
-<span class="lineno" id="292">   292  </span>        }
-<span class="lineno" id="293">   293  </span>        <span class="key">return</span> result;
-<span class="lineno" id="294">   294  </span>    }
-<span class="lineno" id="295">   295  </span>
-<span class="lineno" id="296">   296  </span>	<span class="comment doc">/**
-<span class="lineno" id="297">   297  </span>	 * Returns the number of elements in this bag (its cardinality).
-<span class="lineno" id="298">   298  </span>	 */</span>
-<span class="lineno" id="299">   299  </span>	<span class="key">public</span> <span class="key">function</span> size():Number 
-<span class="lineno" id="300">   300  </span>	{
-<span class="lineno" id="301">   301  </span>		<span class="key">return</span> _total ;
-<span class="lineno" id="302">   302  </span>	}
-<span class="lineno" id="303">   303  </span>	
-<span class="lineno" id="304">   304  </span>	<span class="comment doc">/**
-<span class="lineno" id="305">   305  </span>	 * Returns the array representation of the bag.
-<span class="lineno" id="306">   306  </span>	 */</span>
-<span class="lineno" id="307">   307  </span>	<span class="key">public</span> <span class="key">function</span> toArray():Array 
-<span class="lineno" id="308">   308  </span>	{
-<span class="lineno" id="309">   309  </span>		<span class="key">return</span> _extractList().toArray();
-<span class="lineno" id="310">   310  </span>	}
-<span class="lineno" id="311">   311  </span>
-<span class="lineno" id="312">   312  </span>	<span class="comment doc">/**
-<span class="lineno" id="313">   313  </span>	 * Returns a Eden reprensation of the object.
-<span class="lineno" id="314">   314  </span>	 * @return a string representing the source code of the object.
-<span class="lineno" id="315">   315  </span>	 */</span>
-<span class="lineno" id="316">   316  </span>	<span class="key">public</span> <span class="key">function</span> toSource(indent:Number, indentor:String):String 
-<span class="lineno" id="317">   317  </span>	{
-<span class="lineno" id="318">   318  </span>		<span class="key">return</span> Serializer.getSourceOf(<span class="key">this</span>, [Serializer.toSource(_map)]) ;
-<span class="lineno" id="319">   319  </span>	}
-<span class="lineno" id="320">   320  </span>
-<span class="lineno" id="321">   321  </span>	<span class="comment doc">/**
-<span class="lineno" id="322">   322  </span>	 * Returns the string representation of this instance.
-<span class="lineno" id="323">   323  </span>	 * @return the string representation of this instance.
-<span class="lineno" id="324">   324  </span>	 */</span>
-<span class="lineno" id="325">   325  </span>	<span class="key">public</span> <span class="key">function</span> toString():String 
-<span class="lineno" id="326">   326  </span>	{
-<span class="lineno" id="327">   327  </span>		<span class="key">return</span> (<span class="key">new</span> BagFormat()).formatToString(<span class="key">this</span>) ;
-<span class="lineno" id="328">   328  </span>	}
-<span class="lineno" id="329">   329  </span>
-<span class="lineno" id="330">   330  </span>	<span class="comment doc">/**
-<span class="lineno" id="331">   331  </span>	 * Returns the Set of unique members that represent all members in the bag.
-<span class="lineno" id="332">   332  </span>	 */</span>
-<span class="lineno" id="333">   333  </span>	<span class="key">public</span> <span class="key">function</span> uniqueSet():Set 
-<span class="lineno" id="334">   334  </span>	{
-<span class="lineno" id="335">   335  </span>		<span class="key">return</span> <span class="key">new</span> HashSet(_map.getKeys()) ;
-<span class="lineno" id="336">   336  </span>	}
-<span class="lineno" id="337">   337  </span>
-<span class="lineno" id="338">   338  </span>	<span class="comment doc">/**
-<span class="lineno" id="339">   339  </span>	 * The internal map.
-<span class="lineno" id="340">   340  </span>	 */</span>
-<span class="lineno" id="341">   341  </span>	<span class="key">private</span> <span class="key">var</span> _map:Map = <span class="key">null</span> ;
-<span class="lineno" id="342">   342  </span>	
+<span class="lineno" id="192">   192  </span>	 * @return {@code true} if the bag is empty.
+<span class="lineno" id="193">   193  </span>	 */</span>
+<span class="lineno" id="194">   194  </span>	<span class="key">public</span> <span class="key">function</span> isEmpty():Boolean 
+<span class="lineno" id="195">   195  </span>	{
+<span class="lineno" id="196">   196  </span>		<span class="key">return</span> _map.isEmpty() ;
+<span class="lineno" id="197">   197  </span>    }
+<span class="lineno" id="198">   198  </span>	
+<span class="lineno" id="199">   199  </span>	<span class="comment doc">/**
+<span class="lineno" id="200">   200  </span>	 * Returns the bag iterator.
+<span class="lineno" id="201">   201  </span>	 * @return the bag iterator.
+<span class="lineno" id="202">   202  </span>	 */</span>
+<span class="lineno" id="203">   203  </span>	<span class="key">public</span> <span class="key">function</span> iterator():Iterator 
+<span class="lineno" id="204">   204  </span>	{
+<span class="lineno" id="205">   205  </span>		<span class="key">return</span> <span class="key">new</span> BagIterator(<span class="key">this</span>, _extractList().iterator()) ;
+<span class="lineno" id="206">   206  </span>	}
+<span class="lineno" id="207">   207  </span>
+<span class="lineno" id="208">   208  </span>	<span class="comment doc">/**
+<span class="lineno" id="209">   209  </span>	 * Removes the object in argument in the bag.
+<span class="lineno" id="210">   210  </span>	 */</span>
+<span class="lineno" id="211">   211  </span>	<span class="key">public</span> <span class="key">function</span> remove(o):Boolean 
+<span class="lineno" id="212">   212  </span>	{
+<span class="lineno" id="213">   213  </span>		<span class="key">return</span> removeCopies(o, getCount(o));
+<span class="lineno" id="214">   214  </span>	}
+<span class="lineno" id="215">   215  </span>
+<span class="lineno" id="216">   216  </span>	<span class="comment doc">/**
+<span class="lineno" id="217">   217  </span>	 * (Violation) Removes all elements represented in the given collection, respecting cardinality.
+<span class="lineno" id="218">   218  </span>	 */</span>
+<span class="lineno" id="219">   219  </span>	<span class="key">public</span> <span class="key">function</span> removeAll(c:Collection):Boolean 
+<span class="lineno" id="220">   220  </span>	{
+<span class="lineno" id="221">   221  </span>        <span class="key">var</span> result:Boolean = <span class="key">false</span> ;
+<span class="lineno" id="222">   222  </span>        <span class="key">if</span> (c != <span class="key">null</span>) 
+<span class="lineno" id="223">   223  </span>        {
+<span class="lineno" id="224">   224  </span>            <span class="key">var</span> i:Iterator = c.iterator() ;
+<span class="lineno" id="225">   225  </span>            <span class="key">while</span> (i.hasNext()) 
+<span class="lineno" id="226">   226  </span>            {
+<span class="lineno" id="227">   227  </span>				<span class="key">var</span> next = i.next() ;
+<span class="lineno" id="228">   228  </span>                <span class="key">var</span> changed:Boolean = removeCopies(next, <span class="num_const">1</span>) ;
+<span class="lineno" id="229">   229  </span>                result = result || changed ;
+<span class="lineno" id="230">   230  </span>            }
+<span class="lineno" id="231">   231  </span>        }
+<span class="lineno" id="232">   232  </span>        <span class="key">return</span> result ;
+<span class="lineno" id="233">   233  </span>    }
+<span class="lineno" id="234">   234  </span>
+<span class="lineno" id="235">   235  </span>	<span class="comment doc">/**
+<span class="lineno" id="236">   236  </span>	 * Removes the given number of occurrences from the bag.
+<span class="lineno" id="237">   237  </span>	 */</span>
+<span class="lineno" id="238">   238  </span>	<span class="key">public</span> <span class="key">function</span> removeCopies(o, nCopies:Number):Boolean 
+<span class="lineno" id="239">   239  </span>	{
+<span class="lineno" id="240">   240  </span>		_mods++;
+<span class="lineno" id="241">   241  </span>        <span class="key">var</span> result:Boolean = <span class="key">false</span>;
+<span class="lineno" id="242">   242  </span>        <span class="key">var</span> count:Number = getCount(o) ;
+<span class="lineno" id="243">   243  </span>        <span class="key">if</span> (nCopies &lt;= <span class="num_const">0</span>) 
+<span class="lineno" id="244">   244  </span>        {
+<span class="lineno" id="245">   245  </span>        	result = <span class="key">false</span>;
+<span class="lineno" id="246">   246  </span>        }
+<span class="lineno" id="247">   247  </span>        <span class="key">else</span> <span class="key">if</span> (count &gt; nCopies) 
+<span class="lineno" id="248">   248  </span>        {
+<span class="lineno" id="249">   249  </span>            _map.put(o, <span class="key">new</span> Int(count - nCopies)) ;
+<span class="lineno" id="250">   250  </span>            result = <span class="key">true</span> ;
+<span class="lineno" id="251">   251  </span>            _total -= nCopies ;
+<span class="lineno" id="252">   252  </span>        } 
+<span class="lineno" id="253">   253  </span>        <span class="key">else</span> <span class="comment">// count &gt; 0 &amp;&amp; count &lt;= i </span>
+<span class="lineno" id="254">   254  </span>        {   
+<span class="lineno" id="255">   255  </span>            result = (_map.remove(o) != <span class="key">null</span>) ; <span class="comment">// need to remove all</span>
+<span class="lineno" id="256">   256  </span>            _total -= count ;
+<span class="lineno" id="257">   257  </span>        }
+<span class="lineno" id="258">   258  </span>        <span class="key">return</span> result;
+<span class="lineno" id="259">   259  </span>	}
+<span class="lineno" id="260">   260  </span>
+<span class="lineno" id="261">   261  </span>	<span class="comment doc">/**
+<span class="lineno" id="262">   262  </span>	 * (Violation) Removes any members of the bag that are not in the given collection, respecting cardinality.
+<span class="lineno" id="263">   263  </span>	 */</span>
+<span class="lineno" id="264">   264  </span>	<span class="key">public</span> <span class="key">function</span> retainAll(c:Collection):Boolean 
+<span class="lineno" id="265">   265  </span>	{
+<span class="lineno" id="266">   266  </span>		<span class="key">return</span> retainAllInBag(<span class="key">new</span> HashBag(c));
+<span class="lineno" id="267">   267  </span>	}
+<span class="lineno" id="268">   268  </span>
+<span class="lineno" id="269">   269  </span>	<span class="comment doc">/**
+<span class="lineno" id="270">   270  </span>	 * (Violation) Removes any members of the bag that are not in the given bag.
+<span class="lineno" id="271">   271  </span>	 */</span>
+<span class="lineno" id="272">   272  </span>	<span class="key">public</span> <span class="key">function</span> retainAllInBag(b:Bag):Boolean 
+<span class="lineno" id="273">   273  </span>	{
+<span class="lineno" id="274">   274  </span>        <span class="key">var</span> result:Boolean = <span class="key">false</span> ;
+<span class="lineno" id="275">   275  </span>        <span class="key">var</span> excess:Bag = <span class="key">new</span> HashBag() ;
+<span class="lineno" id="276">   276  </span>        <span class="key">var</span> i:Iterator = uniqueSet().iterator() ;
+<span class="lineno" id="277">   277  </span>        <span class="key">while</span> (i.hasNext()) 
+<span class="lineno" id="278">   278  </span>        {
+<span class="lineno" id="279">   279  </span>            <span class="key">var</span> cur = i.next() ;
+<span class="lineno" id="280">   280  </span>            <span class="key">var</span> count1:Number = getCount(cur) ;
+<span class="lineno" id="281">   281  </span>            <span class="key">var</span> count2:Number = b.getCount(cur) ;
+<span class="lineno" id="282">   282  </span>            <span class="key">if</span> ( <span class="num_const">1</span> &lt;= count2 &amp;&amp; count2 &lt;= count1) 
+<span class="lineno" id="283">   283  </span>            {
+<span class="lineno" id="284">   284  </span>                excess.insertCopies(cur, count1 - count2) ;
+<span class="lineno" id="285">   285  </span>            }
+<span class="lineno" id="286">   286  </span>            <span class="key">else</span> 
+<span class="lineno" id="287">   287  </span>            {
+<span class="lineno" id="288">   288  </span>                excess.insertCopies(cur, count1) ;
+<span class="lineno" id="289">   289  </span>            }
+<span class="lineno" id="290">   290  </span>        }
+<span class="lineno" id="291">   291  </span>        <span class="key">if</span> (!excess.isEmpty()) 
+<span class="lineno" id="292">   292  </span>        {
+<span class="lineno" id="293">   293  </span>        	result = removeAll(excess) ;
+<span class="lineno" id="294">   294  </span>        }
+<span class="lineno" id="295">   295  </span>        <span class="key">return</span> result;
+<span class="lineno" id="296">   296  </span>    }
+<span class="lineno" id="297">   297  </span>
+<span class="lineno" id="298">   298  </span>	<span class="comment doc">/**
+<span class="lineno" id="299">   299  </span>	 * Returns the number of elements in this bag (its cardinality).
+<span class="lineno" id="300">   300  </span>	 * @return the number of elements in this bag (its cardinality).
+<span class="lineno" id="301">   301  </span>	 */</span>
+<span class="lineno" id="302">   302  </span>	<span class="key">public</span> <span class="key">function</span> size():Number 
+<span class="lineno" id="303">   303  </span>	{
+<span class="lineno" id="304">   304  </span>		<span class="key">return</span> _total ;
+<span class="lineno" id="305">   305  </span>	}
+<span class="lineno" id="306">   306  </span>	
+<span class="lineno" id="307">   307  </span>	<span class="comment doc">/**
+<span class="lineno" id="308">   308  </span>	 * Returns the array representation of the bag.
+<span class="lineno" id="309">   309  </span>	 * @return the array representation of the bag.
+<span class="lineno" id="310">   310  </span>	 */</span>
+<span class="lineno" id="311">   311  </span>	<span class="key">public</span> <span class="key">function</span> toArray():Array 
+<span class="lineno" id="312">   312  </span>	{
+<span class="lineno" id="313">   313  </span>		<span class="key">return</span> _extractList().toArray();
+<span class="lineno" id="314">   314  </span>	}
+<span class="lineno" id="315">   315  </span>
+<span class="lineno" id="316">   316  </span>	<span class="comment doc">/**
+<span class="lineno" id="317">   317  </span>	 * Returns the Eden reprensation of the object.
+<span class="lineno" id="318">   318  </span>	 * @return a string representing the source code of the object.
+<span class="lineno" id="319">   319  </span>	 */</span>
+<span class="lineno" id="320">   320  </span>	<span class="key">public</span> <span class="key">function</span> toSource(indent:Number, indentor:String):String 
+<span class="lineno" id="321">   321  </span>	{
+<span class="lineno" id="322">   322  </span>		<span class="key">return</span> Serializer.getSourceOf(<span class="key">this</span>, [Serializer.toSource(_map)]) ;
+<span class="lineno" id="323">   323  </span>	}
+<span class="lineno" id="324">   324  </span>
+<span class="lineno" id="325">   325  </span>	<span class="comment doc">/**
+<span class="lineno" id="326">   326  </span>	 * Returns the string representation of this instance.
+<span class="lineno" id="327">   327  </span>	 * @return the string representation of this instance.
+<span class="lineno" id="328">   328  </span>	 */</span>
+<span class="lineno" id="329">   329  </span>	<span class="key">public</span> <span class="key">function</span> toString():String 
+<span class="lineno" id="330">   330  </span>	{
+<span class="lineno" id="331">   331  </span>		<span class="key">return</span> (<span class="key">new</span> BagFormat()).formatToString(<span class="key">this</span>) ;
+<span class="lineno" id="332">   332  </span>	}
+<span class="lineno" id="333">   333  </span>
+<span class="lineno" id="334">   334  </span>	<span class="comment doc">/**
+<span class="lineno" id="335">   335  </span>	 * Returns the Set of unique members that represent all members in the bag.
+<span class="lineno" id="336">   336  </span>	 * @return the Set of unique members that represent all members in the bag.
+<span class="lineno" id="337">   337  </span>	 */</span>
+<span class="lineno" id="338">   338  </span>	<span class="key">public</span> <span class="key">function</span> uniqueSet():Set 
+<span class="lineno" id="339">   339  </span>	{
+<span class="lineno" id="340">   340  </span>		<span class="key">return</span> <span class="key">new</span> HashSet(_map.getKeys()) ;
+<span class="lineno" id="341">   341  </span>	}
+<span class="lineno" id="342">   342  </span>
 <span class="lineno" id="343">   343  </span>	<span class="comment doc">/**
-<span class="lineno" id="344">   344  </span>	 * The internal mod value.
-<span class="lineno" id="345">   345  </span>	 */</span>	
-<span class="lineno" id="346">   346  </span>	<span class="key">private</span> <span class="key">var</span> _mods:Number = <span class="num_const">0</span> ;
+<span class="lineno" id="344">   344  </span>	 * The internal map.
+<span class="lineno" id="345">   345  </span>	 */</span>
+<span class="lineno" id="346">   346  </span>	<span class="key">private</span> <span class="key">var</span> _map:Map = <span class="key">null</span> ;
 <span class="lineno" id="347">   347  </span>	
 <span class="lineno" id="348">   348  </span>	<span class="comment doc">/**
-<span class="lineno" id="349">   349  </span>	 * The internal total value.
-<span class="lineno" id="350">   350  </span>	 */</span>
-<span class="lineno" id="351">   351  </span>	<span class="key">private</span> <span class="key">var</span> _total:Number = <span class="num_const">0</span> ;
+<span class="lineno" id="349">   349  </span>	 * The internal mod value.
+<span class="lineno" id="350">   350  </span>	 */</span>	
+<span class="lineno" id="351">   351  </span>	<span class="key">private</span> <span class="key">var</span> _mods:Number = <span class="num_const">0</span> ;
 <span class="lineno" id="352">   352  </span>	
 <span class="lineno" id="353">   353  </span>	<span class="comment doc">/**
-<span class="lineno" id="354">   354  </span>	 * This method calculate the total value. 
+<span class="lineno" id="354">   354  </span>	 * The internal total value.
 <span class="lineno" id="355">   355  </span>	 */</span>
-<span class="lineno" id="356">   356  </span>	<span class="key">private</span> <span class="key">function</span> _calcTotalSize():Number 
-<span class="lineno" id="357">   357  </span>	{
-<span class="lineno" id="358">   358  </span>        _total = _extractList().size() ;
-<span class="lineno" id="359">   359  </span>        <span class="key">return</span> _total ;
-<span class="lineno" id="360">   360  </span>    }
-<span class="lineno" id="361">   361  </span>
-<span class="lineno" id="362">   362  </span>	<span class="comment doc">/**
-<span class="lineno" id="363">   363  </span>	 * Returns a List.
-<span class="lineno" id="364">   364  </span>	 */</span>
-<span class="lineno" id="365">   365  </span>	<span class="key">private</span> <span class="key">function</span> _extractList():List 
-<span class="lineno" id="366">   366  </span>	{
-<span class="lineno" id="367">   367  </span>        <span class="key">var</span> result:List = <span class="key">new</span> ArrayList() ;
-<span class="lineno" id="368">   368  </span>        <span class="key">var</span> i:Iterator  = uniqueSet().iterator();
-<span class="lineno" id="369">   369  </span>        <span class="key">while</span> (i.hasNext()) 
-<span class="lineno" id="370">   370  </span>        {
-<span class="lineno" id="371">   371  </span>            <span class="key">var</span> current = i.next() ;
-<span class="lineno" id="372">   372  </span>			<span class="key">var</span> l:Number = getCount(current) ;
-<span class="lineno" id="373">   373  </span>            <span class="key">while</span> (--l &gt; -<span class="num_const">1</span>) 
-<span class="lineno" id="374">   374  </span>            {
-<span class="lineno" id="375">   375  </span>            	result.insert(current);
-<span class="lineno" id="376">   376  </span>            }
-<span class="lineno" id="377">   377  </span>        }
-<span class="lineno" id="378">   378  </span>        <span class="key">return</span> result ;
-<span class="lineno" id="379">   379  </span>    }
-<span class="lineno" id="380">   380  </span>
-<span class="lineno" id="381">   381  </span>	<span class="comment doc">/**
-<span class="lineno" id="382">   382  </span>	 * Returns the internal map reference.
-<span class="lineno" id="383">   383  </span>	 */</span>
-<span class="lineno" id="384">   384  </span>	<span class="key">private</span> <span class="key">function</span> _getMap():Map 
-<span class="lineno" id="385">   385  </span>	{
-<span class="lineno" id="386">   386  </span>		<span class="key">return</span> _map ;
-<span class="lineno" id="387">   387  </span>	}
-<span class="lineno" id="388">   388  </span>	
-<span class="lineno" id="389">   389  </span>	<span class="comment doc">/**
-<span class="lineno" id="390">   390  </span>	 * Sets the internal map reference.
-<span class="lineno" id="391">   391  </span>	 * @throws IllegalArgumentError
-<span class="lineno" id="392">   392  </span>	 */</span>
-<span class="lineno" id="393">   393  </span>	<span class="key">private</span> <span class="key">function</span> _setMap(m:Map):Void 
-<span class="lineno" id="394">   394  </span>	{
-<span class="lineno" id="395">   395  </span>		<span class="key">if</span> (m == <span class="key">null</span> || m.isEmpty() == <span class="key">false</span>) 
-<span class="lineno" id="396">   396  </span>		{
-<span class="lineno" id="397">   397  </span>            <span class="key">throw</span> <span class="key">new</span> IllegalArgumentError(<span class="str_const">"In this bag, the map must be non-null and empty."</span>) ;
-<span class="lineno" id="398">   398  </span>        }
-<span class="lineno" id="399">   399  </span>        _map = m ;
-<span class="lineno" id="400">   400  </span>	}
-<span class="lineno" id="401">   401  </span>
-<span class="lineno" id="402">   402  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.data.bag" class="button">Package</a></li><li><a href="AbstractBag.html" title="Detail of vegas.data.bag.AbstractBag API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
+<span class="lineno" id="356">   356  </span>	<span class="key">private</span> <span class="key">var</span> _total:Number = <span class="num_const">0</span> ;
+<span class="lineno" id="357">   357  </span>	
+<span class="lineno" id="358">   358  </span>	<span class="comment doc">/**
+<span class="lineno" id="359">   359  </span>	 * This method calculate the total value. 
+<span class="lineno" id="360">   360  </span>	 */</span>
+<span class="lineno" id="361">   361  </span>	<span class="key">private</span> <span class="key">function</span> _calcTotalSize():Number 
+<span class="lineno" id="362">   362  </span>	{
+<span class="lineno" id="363">   363  </span>        _total = _extractList().size() ;
+<span class="lineno" id="364">   364  </span>        <span class="key">return</span> _total ;
+<span class="lineno" id="365">   365  </span>    }
+<span class="lineno" id="366">   366  </span>
+<span class="lineno" id="367">   367  </span>	<span class="comment doc">/**
+<span class="lineno" id="368">   368  </span>	 * Returns a List.
+<span class="lineno" id="369">   369  </span>	 */</span>
+<span class="lineno" id="370">   370  </span>	<span class="key">private</span> <span class="key">function</span> _extractList():List 
+<span class="lineno" id="371">   371  </span>	{
+<span class="lineno" id="372">   372  </span>        <span class="key">var</span> result:List = <span class="key">new</span> ArrayList() ;
+<span class="lineno" id="373">   373  </span>        <span class="key">var</span> i:Iterator  = uniqueSet().iterator();
+<span class="lineno" id="374">   374  </span>        <span class="key">while</span> (i.hasNext()) 
+<span class="lineno" id="375">   375  </span>        {
+<span class="lineno" id="376">   376  </span>            <span class="key">var</span> current = i.next() ;
+<span class="lineno" id="377">   377  </span>			<span class="key">var</span> l:Number = getCount(current) ;
+<span class="lineno" id="378">   378  </span>            <span class="key">while</span> (--l &gt; -<span class="num_const">1</span>) 
+<span class="lineno" id="379">   379  </span>            {
+<span class="lineno" id="380">   380  </span>            	result.insert(current);
+<span class="lineno" id="381">   381  </span>            }
+<span class="lineno" id="382">   382  </span>        }
+<span class="lineno" id="383">   383  </span>        <span class="key">return</span> result ;
+<span class="lineno" id="384">   384  </span>    }
+<span class="lineno" id="385">   385  </span>
+<span class="lineno" id="386">   386  </span>	<span class="comment doc">/**
+<span class="lineno" id="387">   387  </span>	 * Returns the internal map reference.
+<span class="lineno" id="388">   388  </span>	 */</span>
+<span class="lineno" id="389">   389  </span>	<span class="key">private</span> <span class="key">function</span> _getMap():Map 
+<span class="lineno" id="390">   390  </span>	{
+<span class="lineno" id="391">   391  </span>		<span class="key">return</span> _map ;
+<span class="lineno" id="392">   392  </span>	}
+<span class="lineno" id="393">   393  </span>	
+<span class="lineno" id="394">   394  </span>	<span class="comment doc">/**
+<span class="lineno" id="395">   395  </span>	 * Sets the internal map reference.
+<span class="lineno" id="396">   396  </span>	 * @throws IllegalArgumentError
+<span class="lineno" id="397">   397  </span>	 */</span>
+<span class="lineno" id="398">   398  </span>	<span class="key">private</span> <span class="key">function</span> _setMap(m:Map):Void 
+<span class="lineno" id="399">   399  </span>	{
+<span class="lineno" id="400">   400  </span>		<span class="key">if</span> (m == <span class="key">null</span> || m.isEmpty() == <span class="key">false</span>) 
+<span class="lineno" id="401">   401  </span>		{
+<span class="lineno" id="402">   402  </span>            <span class="key">throw</span> <span class="key">new</span> IllegalArgumentError(<span class="str_const">"In this bag, the map must be non-null and empty."</span>) ;
+<span class="lineno" id="403">   403  </span>        }
+<span class="lineno" id="404">   404  </span>        _map = m ;
+<span class="lineno" id="405">   405  </span>	}
+<span class="lineno" id="406">   406  </span>
+<span class="lineno" id="407">   407  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.data.bag" class="button">Package</a></li><li><a href="AbstractBag.html" title="Detail of vegas.data.bag.AbstractBag API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

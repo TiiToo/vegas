@@ -251,160 +251,160 @@ document.quicknavBasePath="../../../index-files";
 <span class="lineno" id="248">   248  </span>
 <span class="lineno" id="249">   249  </span>	<span class="comment doc">/**
 <span class="lineno" id="250">   250  </span>	 * Returns whether this MultiHashSet contains any mappings.
-<span class="lineno" id="251">   251  </span>	 * 
-<span class="lineno" id="252">   252  </span>	 * @return {@code true} if this MultiHashSet contains any mappings else {@code false}
-<span class="lineno" id="253">   253  </span>	 */</span>
-<span class="lineno" id="254">   254  </span>	<span class="key">public</span> <span class="key">function</span> isEmpty():Boolean 
-<span class="lineno" id="255">   255  </span>	{
-<span class="lineno" id="256">   256  </span>		<span class="key">return</span> _map.isEmpty() ;
-<span class="lineno" id="257">   257  </span>	}
-<span class="lineno" id="258">   258  </span>	
-<span class="lineno" id="259">   259  </span>	<span class="comment doc">/**
-<span class="lineno" id="260">   260  </span>	 * Gets an iterator for the collection mapped to the specified key.
-<span class="lineno" id="261">   261  </span>	 */</span>
-<span class="lineno" id="262">   262  </span>	<span class="key">public</span> <span class="key">function</span> iterator( <span class="comment">/*key*/</span> ):Iterator 
-<span class="lineno" id="263">   263  </span>	{
-<span class="lineno" id="264">   264  </span>		<span class="key">var</span> key = arguments[<span class="num_const">0</span>] ;
-<span class="lineno" id="265">   265  </span>		<span class="key">if</span> (key) 
-<span class="lineno" id="266">   266  </span>		{
-<span class="lineno" id="267">   267  </span>			<span class="key">return</span> _map.get(key).iterator() ;
-<span class="lineno" id="268">   268  </span>		}
-<span class="lineno" id="269">   269  </span>		<span class="key">else</span> 
-<span class="lineno" id="270">   270  </span>		{
-<span class="lineno" id="271">   271  </span>			<span class="key">return</span> _map.iterator() ;
-<span class="lineno" id="272">   272  </span>		}
-<span class="lineno" id="273">   273  </span>	}
-<span class="lineno" id="274">   274  </span>
-<span class="lineno" id="275">   275  </span>	<span class="comment doc">/**
-<span class="lineno" id="276">   276  </span>	 * Gets an iterator for the map to iterate keys.
-<span class="lineno" id="277">   277  </span>	 */</span>
-<span class="lineno" id="278">   278  </span>	<span class="key">public</span> <span class="key">function</span> keyIterator():Iterator 
-<span class="lineno" id="279">   279  </span>	{
-<span class="lineno" id="280">   280  </span>		<span class="key">return</span> _map.keyIterator() ;
-<span class="lineno" id="281">   281  </span>	}
-<span class="lineno" id="282">   282  </span>
-<span class="lineno" id="283">   283  </span>	<span class="comment doc">/**
-<span class="lineno" id="284">   284  </span>	 * Adds the value to the collection associated with the specified key.
-<span class="lineno" id="285">   285  </span>	 */</span>
-<span class="lineno" id="286">   286  </span>	<span class="key">public</span> <span class="key">function</span> put(key, value) 
-<span class="lineno" id="287">   287  </span>	{
-<span class="lineno" id="288">   288  </span>		<span class="key">if</span> (!containsKey(key)) 
-<span class="lineno" id="289">   289  </span>		{
-<span class="lineno" id="290">   290  </span>			_map.put(key , createCollection()) ;
-<span class="lineno" id="291">   291  </span>		}
-<span class="lineno" id="292">   292  </span>		<span class="key">var</span> b:Boolean = _map.get(key).insert(value) ;
-<span class="lineno" id="293">   293  </span>		<span class="key">return</span> b ? value : <span class="key">null</span> ;
-<span class="lineno" id="294">   294  </span>	}
-<span class="lineno" id="295">   295  </span>
-<span class="lineno" id="296">   296  </span>	<span class="comment doc">/**
-<span class="lineno" id="297">   297  </span>	 * Override superclass to ensure that MultiMap instances are correctly handled.
-<span class="lineno" id="298">   298  </span>	 */</span>
-<span class="lineno" id="299">   299  </span>	<span class="key">public</span> <span class="key">function</span> putAll(map:Map):Void 
-<span class="lineno" id="300">   300  </span>	{
-<span class="lineno" id="301">   301  </span>		<span class="key">var</span> it:Iterator = map.iterator() ;
-<span class="lineno" id="302">   302  </span>		<span class="key">while</span> (it.hasNext()) 
-<span class="lineno" id="303">   303  </span>		{
-<span class="lineno" id="304">   304  </span>			<span class="key">var</span> value = it.next() ;
-<span class="lineno" id="305">   305  </span>			<span class="key">var</span> key = it.key() ;
-<span class="lineno" id="306">   306  </span>			<span class="key">if</span> (value <span class="key">instanceof</span> Collection) 
-<span class="lineno" id="307">   307  </span>			{
-<span class="lineno" id="308">   308  </span>				putCollection(key, value) ;
-<span class="lineno" id="309">   309  </span>			}
-<span class="lineno" id="310">   310  </span>			<span class="key">else</span> 
-<span class="lineno" id="311">   311  </span>			{
-<span class="lineno" id="312">   312  </span>				put(key, value) ;
-<span class="lineno" id="313">   313  </span>			}
-<span class="lineno" id="314">   314  </span>		}
-<span class="lineno" id="315">   315  </span>	}
-<span class="lineno" id="316">   316  </span>	
-<span class="lineno" id="317">   317  </span>	<span class="comment doc">/**
-<span class="lineno" id="318">   318  </span>	 * Adds a collection of values to the collection associated with the specified key.
-<span class="lineno" id="319">   319  </span>	 */</span>
-<span class="lineno" id="320">   320  </span>	<span class="key">public</span> <span class="key">function</span> putCollection(key, c:Collection):Void 
-<span class="lineno" id="321">   321  </span>	{
-<span class="lineno" id="322">   322  </span>		<span class="key">if</span> (!containsKey(key)) 
-<span class="lineno" id="323">   323  </span>		{
-<span class="lineno" id="324">   324  </span>			_map.put(key , createCollection()) ;
-<span class="lineno" id="325">   325  </span>		}
-<span class="lineno" id="326">   326  </span>		_map.get(key).insertAll(c) ;
-<span class="lineno" id="327">   327  </span>	}
-<span class="lineno" id="328">   328  </span>	
-<span class="lineno" id="329">   329  </span>	<span class="comment doc">/**
-<span class="lineno" id="330">   330  </span>	 * Removes a specific value from map.
-<span class="lineno" id="331">   331  </span>	 * @param key the key to remove in the map
-<span class="lineno" id="332">   332  </span>	 * @param value (optional) if this value is defined removes a specific value from map else removes all values associated with the specified key.
-<span class="lineno" id="333">   333  </span>	 * @return the removed value.
-<span class="lineno" id="334">   334  </span>	 */</span>
-<span class="lineno" id="335">   335  </span>	<span class="key">public</span> <span class="key">function</span> remove(key <span class="comment">/*, value*/</span> ) 
-<span class="lineno" id="336">   336  </span>	{
-<span class="lineno" id="337">   337  </span>		<span class="key">var</span> value = arguments[<span class="num_const">1</span>] ;
-<span class="lineno" id="338">   338  </span>		<span class="key">if</span> (key &amp;&amp; value) 
-<span class="lineno" id="339">   339  </span>		{
-<span class="lineno" id="340">   340  </span>			<span class="key">var</span> c:Collection = Collection( <span class="key">this</span>.get(key)) ;
-<span class="lineno" id="341">   341  </span>			<span class="key">if</span> (c != <span class="key">null</span>)
-<span class="lineno" id="342">   342  </span>			{
-<span class="lineno" id="343">   343  </span>				<span class="key">var</span> b:Boolean = c.remove(value) ;
-<span class="lineno" id="344">   344  </span>				<span class="key">if</span> (c.isEmpty())
-<span class="lineno" id="345">   345  </span>				{
-<span class="lineno" id="346">   346  </span>					_map.remove(key) ;	
-<span class="lineno" id="347">   347  </span>				}
-<span class="lineno" id="348">   348  </span>				<span class="key">return</span> (b) ? value : <span class="key">null</span> ;
-<span class="lineno" id="349">   349  </span>			}
-<span class="lineno" id="350">   350  </span>			<span class="key">else</span>
-<span class="lineno" id="351">   351  </span>			{
-<span class="lineno" id="352">   352  </span>				<span class="key">return</span> <span class="key">null</span> ;	
-<span class="lineno" id="353">   353  </span>			}
-<span class="lineno" id="354">   354  </span>		}
-<span class="lineno" id="355">   355  </span>		<span class="key">else</span> 
-<span class="lineno" id="356">   356  </span>		{
-<span class="lineno" id="357">   357  </span>			<span class="key">return</span> _map.remove(key) ;
-<span class="lineno" id="358">   358  </span>		}
-<span class="lineno" id="359">   359  </span>	}
-<span class="lineno" id="360">   360  </span>	
-<span class="lineno" id="361">   361  </span>	<span class="comment doc">/**
-<span class="lineno" id="362">   362  </span>	 * Returns the size of the collection mapped to the specified key.
-<span class="lineno" id="363">   363  </span>	 * @return the size of the collection mapped to the specified key.
-<span class="lineno" id="364">   364  </span>	 */</span>
-<span class="lineno" id="365">   365  </span>	<span class="key">public</span> <span class="key">function</span> size():Number 
-<span class="lineno" id="366">   366  </span>	{
-<span class="lineno" id="367">   367  </span>		<span class="key">return</span> _map.size() ;
-<span class="lineno" id="368">   368  </span>	}
-<span class="lineno" id="369">   369  </span>
-<span class="lineno" id="370">   370  </span>	<span class="comment doc">/**
-<span class="lineno" id="371">   371  </span>	 * Returns a Eden representation of the object.
-<span class="lineno" id="372">   372  </span>	 * @return a string representing the source code of the object.
-<span class="lineno" id="373">   373  </span>	 */</span>
-<span class="lineno" id="374">   374  </span>	<span class="key">public</span> <span class="key">function</span> toSource(indent:Number, indentor:String):String 
-<span class="lineno" id="375">   375  </span>	{
-<span class="lineno" id="376">   376  </span>		<span class="key">var</span> sourceA:String = Serializer.toSource(_map) ;
-<span class="lineno" id="377">   377  </span>		<span class="key">return</span> Serializer.getSourceOf(<span class="key">this</span>, [sourceA]) ;
-<span class="lineno" id="378">   378  </span>	}
-<span class="lineno" id="379">   379  </span>
-<span class="lineno" id="380">   380  </span>	<span class="comment doc">/**
-<span class="lineno" id="381">   381  </span>	 * Returns the string representation of this instance.
-<span class="lineno" id="382">   382  </span>	 * @return the string representation of this instance
-<span class="lineno" id="383">   383  </span>	 */</span>
-<span class="lineno" id="384">   384  </span>	<span class="key">public</span> <span class="key">function</span> toString():String 
-<span class="lineno" id="385">   385  </span>	{
-<span class="lineno" id="386">   386  </span>		<span class="key">return</span> (<span class="key">new</span> MultiMapFormat()).formatToString(<span class="key">this</span>) ;
-<span class="lineno" id="387">   387  </span>	}
-<span class="lineno" id="388">   388  </span>
-<span class="lineno" id="389">   389  </span>	<span class="comment doc">/**
-<span class="lineno" id="390">   390  </span>	 * Gets the total size of the map by counting all the values.
-<span class="lineno" id="391">   391  </span>	 */</span>
-<span class="lineno" id="392">   392  </span>	<span class="key">public</span> <span class="key">function</span> totalSize():Number 
-<span class="lineno" id="393">   393  </span>	{
-<span class="lineno" id="394">   394  </span>		<span class="key">var</span> result:Number = <span class="num_const">0</span> ;
-<span class="lineno" id="395">   395  </span>		<span class="key">var</span> it:Iterator = _map.iterator() ;
-<span class="lineno" id="396">   396  </span>		<span class="key">while</span> (it.hasNext()) 
-<span class="lineno" id="397">   397  </span>		{
-<span class="lineno" id="398">   398  </span>			result += (it.next().size() || <span class="num_const">0</span>) ;
-<span class="lineno" id="399">   399  </span>		}
-<span class="lineno" id="400">   400  </span>		<span class="key">return</span> result ;
-<span class="lineno" id="401">   401  </span>	}
-<span class="lineno" id="402">   402  </span>
-<span class="lineno" id="403">   403  </span>	<span class="comment doc">/**
-<span class="lineno" id="404">   404  </span>	 * Returns a Collection of all values in the MultiHashMap.
+<span class="lineno" id="251">   251  </span>	 * @return {@code true} if this MultiHashMap contains any mappings else {@code false}
+<span class="lineno" id="252">   252  </span>	 */</span>
+<span class="lineno" id="253">   253  </span>	<span class="key">public</span> <span class="key">function</span> isEmpty():Boolean 
+<span class="lineno" id="254">   254  </span>	{
+<span class="lineno" id="255">   255  </span>		<span class="key">return</span> _map.isEmpty() ;
+<span class="lineno" id="256">   256  </span>	}
+<span class="lineno" id="257">   257  </span>	
+<span class="lineno" id="258">   258  </span>	<span class="comment doc">/**
+<span class="lineno" id="259">   259  </span>	 * Gets an iterator for the collection mapped to the specified key.
+<span class="lineno" id="260">   260  </span>	 */</span>
+<span class="lineno" id="261">   261  </span>	<span class="key">public</span> <span class="key">function</span> iterator( <span class="comment">/*key*/</span> ):Iterator 
+<span class="lineno" id="262">   262  </span>	{
+<span class="lineno" id="263">   263  </span>		<span class="key">var</span> key = arguments[<span class="num_const">0</span>] ;
+<span class="lineno" id="264">   264  </span>		<span class="key">if</span> (key) 
+<span class="lineno" id="265">   265  </span>		{
+<span class="lineno" id="266">   266  </span>			<span class="key">return</span> _map.get(key).iterator() ;
+<span class="lineno" id="267">   267  </span>		}
+<span class="lineno" id="268">   268  </span>		<span class="key">else</span> 
+<span class="lineno" id="269">   269  </span>		{
+<span class="lineno" id="270">   270  </span>			<span class="key">return</span> _map.iterator() ;
+<span class="lineno" id="271">   271  </span>		}
+<span class="lineno" id="272">   272  </span>	}
+<span class="lineno" id="273">   273  </span>
+<span class="lineno" id="274">   274  </span>	<span class="comment doc">/**
+<span class="lineno" id="275">   275  </span>	 * Gets an iterator for the map to iterate keys.
+<span class="lineno" id="276">   276  </span>	 */</span>
+<span class="lineno" id="277">   277  </span>	<span class="key">public</span> <span class="key">function</span> keyIterator():Iterator 
+<span class="lineno" id="278">   278  </span>	{
+<span class="lineno" id="279">   279  </span>		<span class="key">return</span> _map.keyIterator() ;
+<span class="lineno" id="280">   280  </span>	}
+<span class="lineno" id="281">   281  </span>
+<span class="lineno" id="282">   282  </span>	<span class="comment doc">/**
+<span class="lineno" id="283">   283  </span>	 * Adds the value to the collection associated with the specified key.
+<span class="lineno" id="284">   284  </span>	 */</span>
+<span class="lineno" id="285">   285  </span>	<span class="key">public</span> <span class="key">function</span> put(key, value) 
+<span class="lineno" id="286">   286  </span>	{
+<span class="lineno" id="287">   287  </span>		<span class="key">if</span> (!containsKey(key)) 
+<span class="lineno" id="288">   288  </span>		{
+<span class="lineno" id="289">   289  </span>			_map.put(key , createCollection()) ;
+<span class="lineno" id="290">   290  </span>		}
+<span class="lineno" id="291">   291  </span>		<span class="key">var</span> b:Boolean = _map.get(key).insert(value) ;
+<span class="lineno" id="292">   292  </span>		<span class="key">return</span> b ? value : <span class="key">null</span> ;
+<span class="lineno" id="293">   293  </span>	}
+<span class="lineno" id="294">   294  </span>
+<span class="lineno" id="295">   295  </span>	<span class="comment doc">/**
+<span class="lineno" id="296">   296  </span>	 * Override superclass to ensure that MultiMap instances are correctly handled.
+<span class="lineno" id="297">   297  </span>	 */</span>
+<span class="lineno" id="298">   298  </span>	<span class="key">public</span> <span class="key">function</span> putAll(map:Map):Void 
+<span class="lineno" id="299">   299  </span>	{
+<span class="lineno" id="300">   300  </span>		<span class="key">var</span> it:Iterator = map.iterator() ;
+<span class="lineno" id="301">   301  </span>		<span class="key">while</span> (it.hasNext()) 
+<span class="lineno" id="302">   302  </span>		{
+<span class="lineno" id="303">   303  </span>			<span class="key">var</span> value = it.next() ;
+<span class="lineno" id="304">   304  </span>			<span class="key">var</span> key = it.key() ;
+<span class="lineno" id="305">   305  </span>			<span class="key">if</span> (value <span class="key">instanceof</span> Collection) 
+<span class="lineno" id="306">   306  </span>			{
+<span class="lineno" id="307">   307  </span>				putCollection(key, value) ;
+<span class="lineno" id="308">   308  </span>			}
+<span class="lineno" id="309">   309  </span>			<span class="key">else</span> 
+<span class="lineno" id="310">   310  </span>			{
+<span class="lineno" id="311">   311  </span>				put(key, value) ;
+<span class="lineno" id="312">   312  </span>			}
+<span class="lineno" id="313">   313  </span>		}
+<span class="lineno" id="314">   314  </span>	}
+<span class="lineno" id="315">   315  </span>	
+<span class="lineno" id="316">   316  </span>	<span class="comment doc">/**
+<span class="lineno" id="317">   317  </span>	 * Adds a collection of values to the collection associated with the specified key.
+<span class="lineno" id="318">   318  </span>	 */</span>
+<span class="lineno" id="319">   319  </span>	<span class="key">public</span> <span class="key">function</span> putCollection(key, c:Collection):Void 
+<span class="lineno" id="320">   320  </span>	{
+<span class="lineno" id="321">   321  </span>		<span class="key">if</span> (!containsKey(key)) 
+<span class="lineno" id="322">   322  </span>		{
+<span class="lineno" id="323">   323  </span>			_map.put(key , createCollection()) ;
+<span class="lineno" id="324">   324  </span>		}
+<span class="lineno" id="325">   325  </span>		_map.get(key).insertAll(c) ;
+<span class="lineno" id="326">   326  </span>	}
+<span class="lineno" id="327">   327  </span>	
+<span class="lineno" id="328">   328  </span>	<span class="comment doc">/**
+<span class="lineno" id="329">   329  </span>	 * Removes a specific value from map.
+<span class="lineno" id="330">   330  </span>	 * @param key the key to remove in the map
+<span class="lineno" id="331">   331  </span>	 * @param value (optional) if this value is defined removes a specific value from map else removes all values associated with the specified key.
+<span class="lineno" id="332">   332  </span>	 * @return the removed value.
+<span class="lineno" id="333">   333  </span>	 */</span>
+<span class="lineno" id="334">   334  </span>	<span class="key">public</span> <span class="key">function</span> remove(key <span class="comment">/*, value*/</span> ) 
+<span class="lineno" id="335">   335  </span>	{
+<span class="lineno" id="336">   336  </span>		<span class="key">var</span> value = arguments[<span class="num_const">1</span>] ;
+<span class="lineno" id="337">   337  </span>		<span class="key">if</span> (key &amp;&amp; value) 
+<span class="lineno" id="338">   338  </span>		{
+<span class="lineno" id="339">   339  </span>			<span class="key">var</span> c:Collection = Collection( <span class="key">this</span>.get(key)) ;
+<span class="lineno" id="340">   340  </span>			<span class="key">if</span> (c != <span class="key">null</span>)
+<span class="lineno" id="341">   341  </span>			{
+<span class="lineno" id="342">   342  </span>				<span class="key">var</span> b:Boolean = c.remove(value) ;
+<span class="lineno" id="343">   343  </span>				<span class="key">if</span> (c.isEmpty())
+<span class="lineno" id="344">   344  </span>				{
+<span class="lineno" id="345">   345  </span>					_map.remove(key) ;	
+<span class="lineno" id="346">   346  </span>				}
+<span class="lineno" id="347">   347  </span>				<span class="key">return</span> (b) ? value : <span class="key">null</span> ;
+<span class="lineno" id="348">   348  </span>			}
+<span class="lineno" id="349">   349  </span>			<span class="key">else</span>
+<span class="lineno" id="350">   350  </span>			{
+<span class="lineno" id="351">   351  </span>				<span class="key">return</span> <span class="key">null</span> ;	
+<span class="lineno" id="352">   352  </span>			}
+<span class="lineno" id="353">   353  </span>		}
+<span class="lineno" id="354">   354  </span>		<span class="key">else</span> 
+<span class="lineno" id="355">   355  </span>		{
+<span class="lineno" id="356">   356  </span>			<span class="key">return</span> _map.remove(key) ;
+<span class="lineno" id="357">   357  </span>		}
+<span class="lineno" id="358">   358  </span>	}
+<span class="lineno" id="359">   359  </span>	
+<span class="lineno" id="360">   360  </span>	<span class="comment doc">/**
+<span class="lineno" id="361">   361  </span>	 * Returns the size of the collection mapped to the specified key.
+<span class="lineno" id="362">   362  </span>	 * @return the size of the collection mapped to the specified key.
+<span class="lineno" id="363">   363  </span>	 */</span>
+<span class="lineno" id="364">   364  </span>	<span class="key">public</span> <span class="key">function</span> size():Number 
+<span class="lineno" id="365">   365  </span>	{
+<span class="lineno" id="366">   366  </span>		<span class="key">return</span> _map.size() ;
+<span class="lineno" id="367">   367  </span>	}
+<span class="lineno" id="368">   368  </span>
+<span class="lineno" id="369">   369  </span>	<span class="comment doc">/**
+<span class="lineno" id="370">   370  </span>	 * Returns a Eden representation of the object.
+<span class="lineno" id="371">   371  </span>	 * @return a string representing the source code of the object.
+<span class="lineno" id="372">   372  </span>	 */</span>
+<span class="lineno" id="373">   373  </span>	<span class="key">public</span> <span class="key">function</span> toSource(indent:Number, indentor:String):String 
+<span class="lineno" id="374">   374  </span>	{
+<span class="lineno" id="375">   375  </span>		<span class="key">var</span> sourceA:String = Serializer.toSource(_map) ;
+<span class="lineno" id="376">   376  </span>		<span class="key">return</span> Serializer.getSourceOf(<span class="key">this</span>, [sourceA]) ;
+<span class="lineno" id="377">   377  </span>	}
+<span class="lineno" id="378">   378  </span>
+<span class="lineno" id="379">   379  </span>	<span class="comment doc">/**
+<span class="lineno" id="380">   380  </span>	 * Returns the string representation of this instance.
+<span class="lineno" id="381">   381  </span>	 * @return the string representation of this instance
+<span class="lineno" id="382">   382  </span>	 */</span>
+<span class="lineno" id="383">   383  </span>	<span class="key">public</span> <span class="key">function</span> toString():String 
+<span class="lineno" id="384">   384  </span>	{
+<span class="lineno" id="385">   385  </span>		<span class="key">return</span> (<span class="key">new</span> MultiMapFormat()).formatToString(<span class="key">this</span>) ;
+<span class="lineno" id="386">   386  </span>	}
+<span class="lineno" id="387">   387  </span>
+<span class="lineno" id="388">   388  </span>	<span class="comment doc">/**
+<span class="lineno" id="389">   389  </span>	 * Gets the total size of the map by counting all the values.
+<span class="lineno" id="390">   390  </span>	 */</span>
+<span class="lineno" id="391">   391  </span>	<span class="key">public</span> <span class="key">function</span> totalSize():Number 
+<span class="lineno" id="392">   392  </span>	{
+<span class="lineno" id="393">   393  </span>		<span class="key">var</span> result:Number = <span class="num_const">0</span> ;
+<span class="lineno" id="394">   394  </span>		<span class="key">var</span> it:Iterator = _map.iterator() ;
+<span class="lineno" id="395">   395  </span>		<span class="key">while</span> (it.hasNext()) 
+<span class="lineno" id="396">   396  </span>		{
+<span class="lineno" id="397">   397  </span>			result += (it.next().size() || <span class="num_const">0</span>) ;
+<span class="lineno" id="398">   398  </span>		}
+<span class="lineno" id="399">   399  </span>		<span class="key">return</span> result ;
+<span class="lineno" id="400">   400  </span>	}
+<span class="lineno" id="401">   401  </span>
+<span class="lineno" id="402">   402  </span>	<span class="comment doc">/**
+<span class="lineno" id="403">   403  </span>	 * Returns a Collection of all values in the MultiHashMap.
+<span class="lineno" id="404">   404  </span>	 * @return a Collection of all values in the MultiHashMap.
 <span class="lineno" id="405">   405  </span>	 */</span>
 <span class="lineno" id="406">   406  </span>	<span class="key">public</span> <span class="key">function</span> values():Collection 
 <span class="lineno" id="407">   407  </span>	{
@@ -414,15 +414,16 @@ document.quicknavBasePath="../../../index-files";
 <span class="lineno" id="411">   411  </span>
 <span class="lineno" id="412">   412  </span>	<span class="comment doc">/**
 <span class="lineno" id="413">   413  </span>	 * Returns the iterator of all values in the MultiHashMap.
-<span class="lineno" id="414">   414  </span>	 */</span>
-<span class="lineno" id="415">   415  </span>	<span class="key">public</span> <span class="key">function</span> valueIterator():Iterator 
-<span class="lineno" id="416">   416  </span>	{
-<span class="lineno" id="417">   417  </span>		<span class="key">return</span> <span class="key">new</span> ArrayIterator(_map.getValues()) ;
-<span class="lineno" id="418">   418  </span>	}
-<span class="lineno" id="419">   419  </span>
-<span class="lineno" id="420">   420  </span>	<span class="comment doc">/**
-<span class="lineno" id="421">   421  </span>	 * The internal HashMap.
-<span class="lineno" id="422">   422  </span>	 */</span>
-<span class="lineno" id="423">   423  </span>	<span class="key">private</span> <span class="key">var</span> _map:HashMap ;
-<span class="lineno" id="424">   424  </span>	
-<span class="lineno" id="425">   425  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.data.map" class="button">Package</a></li><li><a href="MultiHashMap.html" title="Detail of vegas.data.map.MultiHashMap API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
+<span class="lineno" id="414">   414  </span>	 * @return the iterator of all values in the MultiHashMap.
+<span class="lineno" id="415">   415  </span>	 */</span>
+<span class="lineno" id="416">   416  </span>	<span class="key">public</span> <span class="key">function</span> valueIterator():Iterator 
+<span class="lineno" id="417">   417  </span>	{
+<span class="lineno" id="418">   418  </span>		<span class="key">return</span> <span class="key">new</span> ArrayIterator(_map.getValues()) ;
+<span class="lineno" id="419">   419  </span>	}
+<span class="lineno" id="420">   420  </span>
+<span class="lineno" id="421">   421  </span>	<span class="comment doc">/**
+<span class="lineno" id="422">   422  </span>	 * The internal HashMap.
+<span class="lineno" id="423">   423  </span>	 */</span>
+<span class="lineno" id="424">   424  </span>	<span class="key">private</span> <span class="key">var</span> _map:HashMap ;
+<span class="lineno" id="425">   425  </span>	
+<span class="lineno" id="426">   426  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.data.map" class="button">Package</a></li><li><a href="MultiHashMap.html" title="Detail of vegas.data.map.MultiHashMap API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

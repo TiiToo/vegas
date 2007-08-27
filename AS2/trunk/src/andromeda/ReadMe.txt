@@ -1,23 +1,35 @@
  
-   Andromeda version 0.5 (VEGAS extension)
+   Andromeda AS2 - version 0.6 (VEGAS extension)
  
    LICENCE 
 
 	Mozilla Public License 1.1 (MPL 1.1) (read Licence.txt)
 
+
    PROJECT PAGES
 
+	- http://code.google.com/p/andromed-as/
+	- http://code.google.com/p/vegas/
 	- http://osflash.org/asgard
 	- http://vegas.riaforge.org/
-	- http://code.google.com/p/vegas/
 
-   BLOG
+   DOCUMENTATION & CO
 
-        - http://www.ekameleon.net/blog/
+    - http://code.google.com/p/vegas/ (tutorials and install)
+    - http://code.google.com/p/vegas/issues/list (issues)
+    - http://www.ekameleon.net/blog/ (french blog)
+    - http://vegas.ekameleon.net/docs (AS2 reference)
 
    ABOUT
 
     * Author : eKameleon
-    * Version : alpha(0)
+    * Version : 0.6
     * Link : http://www.ekameleon.net/blog
     * Mail : vegas@ekameleon.net 
+
+
+   THANKS
+
+    * Zwetan : ECMAScript Concepts and hosting | http://zwetan.com/
+    * OSFlash - Second SVN Hosting : http://www.osflash.org
+    * PowerFlasher - FDT OpenSource Licence : http://powerflasher.com/ 

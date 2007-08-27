@@ -35,36 +35,30 @@ document.quicknavBasePath="../../index-files";
 <span class="lineno" id="32">    32  </span>
 <span class="lineno" id="33">    33  </span>	<span class="comment doc">/**
 <span class="lineno" id="34">    34  </span>	 * Allows the registration of event listeners on the event target.
-<span class="lineno" id="35">    35  </span>	 * 
-<span class="lineno" id="36">    36  </span>	 * @param eventName A string representing the event type to listen for. If eventName value is {@code ALL} this method use {@code addGlobalListener}
-<span class="lineno" id="37">    37  </span>	 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the {@code EventListener} interface.
-<span class="lineno" id="38">    38  </span>	 * @param useCapture Determinates if the event flow use capture or not.
-<span class="lineno" id="39">    39  </span>	 * @param priority Determines the priority level of the event listener.
-<span class="lineno" id="40">    40  </span>	 * @param autoRemove Apply a removeEventListener after the first trigger
-<span class="lineno" id="41">    41  </span>	 * 
-<span class="lineno" id="42">    42  </span>	 */</span>
-<span class="lineno" id="43">    43  </span>	<span class="key">function</span> addEventListener( eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void ;
-<span class="lineno" id="44">    44  </span>
-<span class="lineno" id="45">    45  </span>	<span class="comment doc">/**
-<span class="lineno" id="46">    46  </span>	 * Dispatches an event into the event flow.
-<span class="lineno" id="47">    47  </span>	 * 
-<span class="lineno" id="48">    48  </span>	 * @param event The Event object that is dispatched into the event flow.
-<span class="lineno" id="49">    49  </span>	 * @param isQueue if the EventDispatcher isn't register to the event type the event is bufferized.
-<span class="lineno" id="50">    50  </span>	 * @param target the target of the event.
-<span class="lineno" id="51">    51  </span>	 * @param contect the context of the event.
-<span class="lineno" id="52">    52  </span>	 * 
-<span class="lineno" id="53">    53  </span>	 * @return the reference of the event dispatched in the event flow.
-<span class="lineno" id="54">    54  </span>	 * 
-<span class="lineno" id="55">    55  </span>	 */</span>
-<span class="lineno" id="56">    56  </span>	<span class="key">function</span> dispatchEvent(event, isQueue:Boolean, target, context):Event ;
-<span class="lineno" id="57">    57  </span>
-<span class="lineno" id="58">    58  </span>	<span class="comment doc">/** 
-<span class="lineno" id="59">    59  </span>	 * Removes a listener from the {@code EventDispatcher} object.
-<span class="lineno" id="60">    60  </span>	 * &lt;p&gt;If there is no matching listener registered with the EventDispatcher object, then calling this method has no effect.&lt;/p&gt;
-<span class="lineno" id="61">    61  </span>	 * 
-<span class="lineno" id="62">    62  </span>	 * @param Specifies the type of event.
-<span class="lineno" id="63">    63  </span>	 * @param the class name(string) or a EventListener object.
-<span class="lineno" id="64">    64  </span>	 */</span>
-<span class="lineno" id="65">    65  </span>	<span class="key">function</span> removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener ;
-<span class="lineno" id="66">    66  </span>	
-<span class="lineno" id="67">    67  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.events" class="button">Package</a></li><li><a href="EventTarget.html" title="Detail of vegas.events.EventTarget API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
+<span class="lineno" id="35">    35  </span>	 * @param eventName A string representing the event type to listen for. If eventName value is {@code ALL} this method use {@code addGlobalListener}
+<span class="lineno" id="36">    36  </span>	 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the {@code EventListener} interface.
+<span class="lineno" id="37">    37  </span>	 * @param useCapture Determinates if the event flow use capture or not.
+<span class="lineno" id="38">    38  </span>	 * @param priority Determines the priority level of the event listener.
+<span class="lineno" id="39">    39  </span>	 * @param autoRemove Apply a removeEventListener after the first trigger
+<span class="lineno" id="40">    40  </span>	 */</span>
+<span class="lineno" id="41">    41  </span>	<span class="key">function</span> addEventListener( eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void ;
+<span class="lineno" id="42">    42  </span>
+<span class="lineno" id="43">    43  </span>	<span class="comment doc">/**
+<span class="lineno" id="44">    44  </span>	 * Dispatches an event into the event flow.
+<span class="lineno" id="45">    45  </span>	 * @param event The Event object that is dispatched into the event flow.
+<span class="lineno" id="46">    46  </span>	 * @param isQueue if the EventDispatcher isn't register to the event type the event is bufferized.
+<span class="lineno" id="47">    47  </span>	 * @param target the target of the event.
+<span class="lineno" id="48">    48  </span>	 * @param contect the context of the event.
+<span class="lineno" id="49">    49  </span>	 * @return the reference of the event dispatched in the event flow.
+<span class="lineno" id="50">    50  </span>	 */</span>
+<span class="lineno" id="51">    51  </span>	<span class="key">function</span> dispatchEvent(event, isQueue:Boolean, target, context):Event ;
+<span class="lineno" id="52">    52  </span>
+<span class="lineno" id="53">    53  </span>	<span class="comment doc">/** 
+<span class="lineno" id="54">    54  </span>	 * Removes a listener from the {@code EventDispatcher} object.
+<span class="lineno" id="55">    55  </span>	 * &lt;p&gt;If there is no matching listener registered with the EventDispatcher object, then calling this method has no effect.&lt;/p&gt;
+<span class="lineno" id="56">    56  </span>	 * @param Specifies the type of event.
+<span class="lineno" id="57">    57  </span>	 * @param the class name(string) or a EventListener object.
+<span class="lineno" id="58">    58  </span>	 */</span>
+<span class="lineno" id="59">    59  </span>	<span class="key">function</span> removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener ;
+<span class="lineno" id="60">    60  </span>	
+<span class="lineno" id="61">    61  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.events" class="button">Package</a></li><li><a href="EventTarget.html" title="Detail of vegas.events.EventTarget API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

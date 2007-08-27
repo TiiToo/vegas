@@ -139,27 +139,31 @@ document.quicknavBasePath="../../index-files";
 <span class="lineno" id="136">   136  </span>	 */</span>
 <span class="lineno" id="137">   137  </span>	<span class="key">public</span> <span class="key">function</span> run():Void 
 <span class="lineno" id="138">   138  </span>	{
-<span class="lineno" id="139">   139  </span>		addArguments.apply(<span class="key">this</span>, arguments) ;
-<span class="lineno" id="140">   140  </span>		_p() ;
-<span class="lineno" id="141">   141  </span>	}
-<span class="lineno" id="142">   142  </span>
-<span class="lineno" id="143">   143  </span>	<span class="comment doc">/**
-<span class="lineno" id="144">   144  </span>	 * Sets or change arguments of proxy method.
-<span class="lineno" id="145">   145  </span>	 */</span>
-<span class="lineno" id="146">   146  </span>	<span class="key">public</span> <span class="key">function</span> setArguments():Void 
-<span class="lineno" id="147">   147  </span>	{
-<span class="lineno" id="148">   148  </span>		<span class="key">if</span> (arguments.length &gt; <span class="num_const">0</span>) {
-<span class="lineno" id="149">   149  </span>			_a = [].concat(arguments) ;
-<span class="lineno" id="150">   150  </span>			_p.a = _a ;
-<span class="lineno" id="151">   151  </span>		}
-<span class="lineno" id="152">   152  </span>	}
-<span class="lineno" id="153">   153  </span>
-<span class="lineno" id="154">   154  </span>	<span class="key">private</span> <span class="key">var</span> _m:Function ; <span class="comment">// method</span>
-<span class="lineno" id="155">   155  </span>
-<span class="lineno" id="156">   156  </span>	<span class="key">private</span> <span class="key">var</span> _s:Object ; <span class="comment">// scope</span>
+<span class="lineno" id="139">   139  </span>		<span class="key">if</span> (arguments.length &gt; <span class="num_const">0</span>)
+<span class="lineno" id="140">   140  </span>		{
+<span class="lineno" id="141">   141  </span>			addArguments.apply(<span class="key">this</span>, arguments) ;
+<span class="lineno" id="142">   142  </span>		}
+<span class="lineno" id="143">   143  </span>		_p() ;
+<span class="lineno" id="144">   144  </span>	}
+<span class="lineno" id="145">   145  </span>
+<span class="lineno" id="146">   146  </span>	<span class="comment doc">/**
+<span class="lineno" id="147">   147  </span>	 * Sets or change arguments of proxy method.
+<span class="lineno" id="148">   148  </span>	 */</span>
+<span class="lineno" id="149">   149  </span>	<span class="key">public</span> <span class="key">function</span> setArguments():Void 
+<span class="lineno" id="150">   150  </span>	{
+<span class="lineno" id="151">   151  </span>		<span class="key">if</span> (arguments.length &gt; <span class="num_const">0</span>) 
+<span class="lineno" id="152">   152  </span>		{
+<span class="lineno" id="153">   153  </span>			_a = [].concat(arguments) ;
+<span class="lineno" id="154">   154  </span>			_p.a = _a ;
+<span class="lineno" id="155">   155  </span>		}
+<span class="lineno" id="156">   156  </span>	}
 <span class="lineno" id="157">   157  </span>
-<span class="lineno" id="158">   158  </span>	<span class="key">private</span> <span class="key">var</span> _a:Array ; <span class="comment">// arguments</span>
+<span class="lineno" id="158">   158  </span>	<span class="key">private</span> <span class="key">var</span> _m:Function ; <span class="comment">// method</span>
 <span class="lineno" id="159">   159  </span>
-<span class="lineno" id="160">   160  </span>	<span class="key">private</span> <span class="key">var</span> _p:Function; <span class="comment">// proxy</span>
+<span class="lineno" id="160">   160  </span>	<span class="key">private</span> <span class="key">var</span> _s:Object ; <span class="comment">// scope</span>
 <span class="lineno" id="161">   161  </span>
-<span class="lineno" id="162">   162  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.events" class="button">Package</a></li><li><a href="Delegate.html" title="Detail of vegas.events.Delegate API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
+<span class="lineno" id="162">   162  </span>	<span class="key">private</span> <span class="key">var</span> _a:Array ; <span class="comment">// arguments</span>
+<span class="lineno" id="163">   163  </span>
+<span class="lineno" id="164">   164  </span>	<span class="key">private</span> <span class="key">var</span> _p:Function; <span class="comment">// proxy</span>
+<span class="lineno" id="165">   165  </span>
+<span class="lineno" id="166">   166  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.events" class="button">Package</a></li><li><a href="Delegate.html" title="Detail of vegas.events.Delegate API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

@@ -83,7 +83,7 @@ document.quicknavBasePath="../../../index-files";
 <span class="lineno" id="80">    80  </span>		{
 <span class="lineno" id="81">    81  </span>			<span class="key">var</span> a:Number = (o1 <span class="key">instanceof</span> Date) ? o1.valueOf() : o1 ;
 <span class="lineno" id="82">    82  </span>			<span class="key">var</span> b:Number = (o2 <span class="key">instanceof</span> Date) ? o2.valueOf() : o2 ;
-<span class="lineno" id="83">    83  </span>			<span class="key">return</span> (<span class="key">new</span> NumberComparator()).compare(a, b) ;
+<span class="lineno" id="83">    83  </span>			<span class="key">return</span> NumberComparator.getInstance().compare(a, b) ;
 <span class="lineno" id="84">    84  </span>		}
 <span class="lineno" id="85">    85  </span>		<span class="key">else</span> 
 <span class="lineno" id="86">    86  </span>		{
@@ -91,4 +91,23 @@ document.quicknavBasePath="../../../index-files";
 <span class="lineno" id="88">    88  </span>		}
 <span class="lineno" id="89">    89  </span>	}
 <span class="lineno" id="90">    90  </span>
-<span class="lineno" id="91">    91  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.util.comparators" class="button">Package</a></li><li><a href="DateComparator.html" title="Detail of vegas.util.comparators.DateComparator API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
+<span class="lineno" id="91">    91  </span>	<span class="comment doc">/**
+<span class="lineno" id="92">    92  </span>	 * Returns the singleton instance of a DateComparator.
+<span class="lineno" id="93">    93  </span>	 * Developers are encouraged to use the comparator returned from this method instead of constructing a new instance to reduce allocation and GC overhead when multiple comparable comparators may be used in the same application.
+<span class="lineno" id="94">    94  </span> 	 * @return the singleton instance of a DateComparator.
+<span class="lineno" id="95">    95  </span>	 */</span>
+<span class="lineno" id="96">    96  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">function</span> getInstance():DateComparator
+<span class="lineno" id="97">    97  </span>	{
+<span class="lineno" id="98">    98  </span>		<span class="key">if</span> (_instance == <span class="key">null</span>)
+<span class="lineno" id="99">    99  </span>		{
+<span class="lineno" id="100">   100  </span>			_instance = <span class="key">new</span> DateComparator() ;
+<span class="lineno" id="101">   101  </span>		}
+<span class="lineno" id="102">   102  </span>		<span class="key">return</span> _instance ;	
+<span class="lineno" id="103">   103  </span>	}
+<span class="lineno" id="104">   104  </span>
+<span class="lineno" id="105">   105  </span>	<span class="comment doc">/**
+<span class="lineno" id="106">   106  </span>  	 * The internal static singleton of this class.
+<span class="lineno" id="107">   107  </span> 	 */</span>
+<span class="lineno" id="108">   108  </span>	<span class="key">static</span> <span class="key">private</span> <span class="key">var</span> _instance:DateComparator ;
+<span class="lineno" id="109">   109  </span>
+<span class="lineno" id="110">   110  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.util.comparators" class="button">Package</a></li><li><a href="DateComparator.html" title="Detail of vegas.util.comparators.DateComparator API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

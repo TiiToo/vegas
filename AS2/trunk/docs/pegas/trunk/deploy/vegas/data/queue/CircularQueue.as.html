@@ -95,268 +95,291 @@ document.quicknavBasePath="../../../index-files";
 <span class="lineno" id="92">    92  </span> * }
 <span class="lineno" id="93">    93  </span> * @author eKameleon
 <span class="lineno" id="94">    94  </span> */</span>
-<span class="lineno" id="95">    95  </span><span class="key">class</span> vegas.data.queue.CircularQueue <span class="key">extends</span> CoreObject <span class="key">implements</span> BoundedQueue, ICloneable, Collection, ISerializable {
-<span class="lineno" id="96">    96  </span>
-<span class="lineno" id="97">    97  </span>	<span class="comment doc">/**
-<span class="lineno" id="98">    98  </span>	 * Creates a new CircularQueue instance.
-<span class="lineno" id="99">    99  </span>	 * @param qSize the max number of element in the queue
-<span class="lineno" id="100">   100  </span>	 * @param elaments an array with elements to enqueue in the current stack.
-<span class="lineno" id="101">   101  </span>	 */</span>
-<span class="lineno" id="102">   102  </span>	<span class="key">public</span> <span class="key">function</span> CircularQueue( qSize:Number , elements:Array) {
-<span class="lineno" id="103">   103  </span>		_qSize = (qSize || CircularQueue.DEFAULT_SIZE) + <span class="num_const">1</span> ;
-<span class="lineno" id="104">   104  </span>		clear() ;
-<span class="lineno" id="105">   105  </span>		<span class="key">var</span> l:Number = elements.length ;
-<span class="lineno" id="106">   106  </span>		<span class="key">if</span> (l &gt; <span class="num_const">0</span>) <span class="key">for</span> (<span class="key">var</span> i:Number = <span class="num_const">0</span> ; i&lt;l ; i++) 
-<span class="lineno" id="107">   107  </span>		{
-<span class="lineno" id="108">   108  </span>			enqueue(elements[i]) ;
-<span class="lineno" id="109">   109  </span>		}
-<span class="lineno" id="110">   110  </span>	}
-<span class="lineno" id="111">   111  </span>	
-<span class="lineno" id="112">   112  </span>	<span class="comment doc">/**
-<span class="lineno" id="113">   113  </span>	 * The default numbers of elements in the queue.
-<span class="lineno" id="114">   114  </span>	 */</span>
-<span class="lineno" id="115">   115  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">var</span> DEFAULT_SIZE:Number = Number.MAX_VALUE ;
-<span class="lineno" id="116">   116  </span>
-<span class="lineno" id="117">   117  </span>	<span class="comment doc">/**
-<span class="lineno" id="118">   118  </span>	 * Clear all elements in the queue.
-<span class="lineno" id="119">   119  </span>	 */</span>
-<span class="lineno" id="120">   120  </span>	<span class="key">public</span> <span class="key">function</span> clear():Void {
-<span class="lineno" id="121">   121  </span>		_queue = <span class="key">new</span> Array(_qSize) ;
-<span class="lineno" id="122">   122  </span>		_count = <span class="num_const">0</span> ;
-<span class="lineno" id="123">   123  </span>		_rear = <span class="num_const">0</span> ;
-<span class="lineno" id="124">   124  </span>		_front = <span class="num_const">0</span> ;
-<span class="lineno" id="125">   125  </span>	}
-<span class="lineno" id="126">   126  </span>
-<span class="lineno" id="127">   127  </span>	<span class="comment doc">/**
-<span class="lineno" id="128">   128  </span>	 * Returns a shallow copy of the queue.
-<span class="lineno" id="129">   129  </span>	 */</span>
-<span class="lineno" id="130">   130  </span>	<span class="key">public</span> <span class="key">function</span> clone() 
-<span class="lineno" id="131">   131  </span>	{
-<span class="lineno" id="132">   132  </span>		<span class="key">var</span> s:Number = _qSize - <span class="num_const">1</span> ;
-<span class="lineno" id="133">   133  </span>		<span class="key">var</span> a:Array = toArray() ;
-<span class="lineno" id="134">   134  </span>		<span class="key">return</span> <span class="key">new</span> CircularQueue(s , a) ;
+<span class="lineno" id="95">    95  </span><span class="key">class</span> vegas.data.queue.CircularQueue <span class="key">extends</span> CoreObject <span class="key">implements</span> BoundedQueue, ICloneable, Collection, ISerializable 
+<span class="lineno" id="96">    96  </span>{
+<span class="lineno" id="97">    97  </span>
+<span class="lineno" id="98">    98  </span>	<span class="comment doc">/**
+<span class="lineno" id="99">    99  </span>	 * Creates a new CircularQueue instance.
+<span class="lineno" id="100">   100  </span>	 * @param qSize the max number of element in the queue
+<span class="lineno" id="101">   101  </span>	 * @param elements an array with elements to enqueue in the current stack.
+<span class="lineno" id="102">   102  </span>	 */</span>
+<span class="lineno" id="103">   103  </span>	<span class="key">public</span> <span class="key">function</span> CircularQueue( qSize:Number , elements:Array) 
+<span class="lineno" id="104">   104  </span>	{
+<span class="lineno" id="105">   105  </span>		_qSize = ( isNaN(qSize) ? CircularQueue.MAX_CAPACITY : qSize ) + <span class="num_const">1</span> ;
+<span class="lineno" id="106">   106  </span>		clear() ;
+<span class="lineno" id="107">   107  </span>		<span class="key">if</span> (elements == <span class="key">null</span>)
+<span class="lineno" id="108">   108  </span>		{
+<span class="lineno" id="109">   109  </span>		    <span class="key">return</span> ;
+<span class="lineno" id="110">   110  </span>		}
+<span class="lineno" id="111">   111  </span>		<span class="key">else</span>
+<span class="lineno" id="112">   112  </span>		{
+<span class="lineno" id="113">   113  </span>			<span class="key">var</span> l:Number = elements.length ;
+<span class="lineno" id="114">   114  </span>			<span class="key">if</span> (l &gt; <span class="num_const">0</span>) <span class="key">for</span> (<span class="key">var</span> i:Number = <span class="num_const">0</span> ; i&lt;l ; i++) 
+<span class="lineno" id="115">   115  </span>			{
+<span class="lineno" id="116">   116  </span>				enqueue(elements[i]) ;
+<span class="lineno" id="117">   117  </span>			}
+<span class="lineno" id="118">   118  </span>		}
+<span class="lineno" id="119">   119  </span>	}
+<span class="lineno" id="120">   120  </span>	
+<span class="lineno" id="121">   121  </span>	<span class="comment doc">/**
+<span class="lineno" id="122">   122  </span>	 * The default numbers of elements in the queue.
+<span class="lineno" id="123">   123  </span>	 */</span>
+<span class="lineno" id="124">   124  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">var</span> MAX_CAPACITY:Number = Number.MAX_VALUE ;
+<span class="lineno" id="125">   125  </span>
+<span class="lineno" id="126">   126  </span>	<span class="comment doc">/**
+<span class="lineno" id="127">   127  </span>	 * Clear all elements in the queue.
+<span class="lineno" id="128">   128  </span>	 */</span>
+<span class="lineno" id="129">   129  </span>	<span class="key">public</span> <span class="key">function</span> clear():Void 
+<span class="lineno" id="130">   130  </span>	{
+<span class="lineno" id="131">   131  </span>		_queue = <span class="key">new</span> Array(_qSize) ;
+<span class="lineno" id="132">   132  </span>		_count = <span class="num_const">0</span> ;
+<span class="lineno" id="133">   133  </span>		_rear = <span class="num_const">0</span> ;
+<span class="lineno" id="134">   134  </span>		_front = <span class="num_const">0</span> ;
 <span class="lineno" id="135">   135  </span>	}
 <span class="lineno" id="136">   136  </span>
 <span class="lineno" id="137">   137  </span>	<span class="comment doc">/**
-<span class="lineno" id="138">   138  </span>	 * Returns {@code true} if the queue contains the object passed in argument.
-<span class="lineno" id="139">   139  </span>	 */</span>
-<span class="lineno" id="140">   140  </span>	<span class="key">public</span> <span class="key">function</span> contains(o):Boolean {
-<span class="lineno" id="141">   141  </span>		<span class="key">var</span> l:Number = _queue.length ;
-<span class="lineno" id="142">   142  </span>		<span class="key">for</span> (<span class="key">var</span> i:Number = <span class="num_const">0</span> ; i&lt;l ; i++) <span class="key">if</span> (_queue[i] == o) <span class="key">return</span> <span class="key">true</span> ;
-<span class="lineno" id="143">   143  </span>		<span class="key">return</span> <span class="key">false</span> ; 
-<span class="lineno" id="144">   144  </span>	}
-<span class="lineno" id="145">   145  </span>	
-<span class="lineno" id="146">   146  </span>	<span class="comment doc">/**
-<span class="lineno" id="147">   147  </span>	 * Retreives the first element in the queue object, return a boolean.
-<span class="lineno" id="148">   148  </span>	 * @return {@code true} if the first element in the queue is dequeue.
-<span class="lineno" id="149">   149  </span>	 */</span>
-<span class="lineno" id="150">   150  </span>	<span class="key">public</span> <span class="key">function</span> dequeue():Boolean 
-<span class="lineno" id="151">   151  </span>	{
-<span class="lineno" id="152">   152  </span>		<span class="key">return</span> poll() != <span class="key">null</span>  ;
-<span class="lineno" id="153">   153  </span>	}
-<span class="lineno" id="154">   154  </span>
-<span class="lineno" id="155">   155  </span>	<span class="comment doc">/**
-<span class="lineno" id="156">   156  </span>	 * Returns the value of the first element in the queue.
-<span class="lineno" id="157">   157  </span>	 * @return the value of the first element in the queue.
-<span class="lineno" id="158">   158  </span>	 */</span>
-<span class="lineno" id="159">   159  </span>	<span class="key">public</span> <span class="key">function</span> element() 
-<span class="lineno" id="160">   160  </span>	{
-<span class="lineno" id="161">   161  </span>		<span class="key">return</span> _queue[_front] ;
-<span class="lineno" id="162">   162  </span>	}	
-<span class="lineno" id="163">   163  </span>
-<span class="lineno" id="164">   164  </span>	<span class="comment doc">/**
-<span class="lineno" id="165">   165  </span>	 * Enqueue a new element in the queue if the que is not full, return a boolean.
-<span class="lineno" id="166">   166  </span>	 */</span>
-<span class="lineno" id="167">   167  </span>	<span class="key">public</span> <span class="key">function</span> enqueue(o):Boolean 
-<span class="lineno" id="168">   168  </span>	{
-<span class="lineno" id="169">   169  </span>		<span class="key">var</span> next:Number = _rear + <span class="num_const">1</span> ;
-<span class="lineno" id="170">   170  </span>		<span class="key">if</span> ( (next == _front) || ( ( next == _qSize) &amp;&amp; (_front == <span class="num_const">0</span>) )) 
-<span class="lineno" id="171">   171  </span>		{
-<span class="lineno" id="172">   172  </span>			<span class="key">return</span> <span class="key">false</span> ;
-<span class="lineno" id="173">   173  </span>		}
-<span class="lineno" id="174">   174  </span>		<span class="key">else</span> 
-<span class="lineno" id="175">   175  </span>		{
-<span class="lineno" id="176">   176  </span>			_queue[_rear++] = o ;
-<span class="lineno" id="177">   177  </span>			_count ++ ;
-<span class="lineno" id="178">   178  </span>			<span class="key">if</span> (_rear == _qSize) 
-<span class="lineno" id="179">   179  </span>			{
-<span class="lineno" id="180">   180  </span>				_rear = <span class="num_const">0</span> ;
-<span class="lineno" id="181">   181  </span>			}
-<span class="lineno" id="182">   182  </span>		}
-<span class="lineno" id="183">   183  </span>		<span class="key">return</span> <span class="key">true</span> ;
-<span class="lineno" id="184">   184  </span>	}
-<span class="lineno" id="185">   185  </span>
-<span class="lineno" id="186">   186  </span>	<span class="comment doc">/**
-<span class="lineno" id="187">   187  </span>	 * Returns an element in the queue with the id passed in argument. This method is unsupported in a CircularQueue.
-<span class="lineno" id="188">   188  </span>	 * @throws UnsupportedOperation
-<span class="lineno" id="189">   189  </span>	 */</span>
-<span class="lineno" id="190">   190  </span>	<span class="key">public</span> <span class="key">function</span> get(id:Number) 
-<span class="lineno" id="191">   191  </span>	{ 
-<span class="lineno" id="192">   192  </span>		<span class="key">throw</span> <span class="key">new</span> UnsupportedOperation(<span class="key">this</span> + <span class="str_const">" 'get' method us unsupported in a CircularQueue"</span>) ;
-<span class="lineno" id="193">   193  </span>	}
-<span class="lineno" id="194">   194  </span>
-<span class="lineno" id="195">   195  </span>	<span class="comment doc">/**
-<span class="lineno" id="196">   196  </span>	 * Insert an element in the queue. This method is unsupported in a CircularQueue.
-<span class="lineno" id="197">   197  </span>	 * @throws UnsupportedOperation
-<span class="lineno" id="198">   198  </span>	 */</span>
-<span class="lineno" id="199">   199  </span>	<span class="key">public</span> <span class="key">function</span> insert(o):Boolean 
-<span class="lineno" id="200">   200  </span>	{
-<span class="lineno" id="201">   201  </span>		<span class="key">throw</span> <span class="key">new</span> UnsupportedOperation(<span class="key">this</span> + <span class="str_const">" 'insert' method us unsupported in a CircularQueue"</span>) ;
-<span class="lineno" id="202">   202  </span>		<span class="key">return</span> <span class="key">false</span> ;
+<span class="lineno" id="138">   138  </span>	 * Returns a shallow copy of the queue.
+<span class="lineno" id="139">   139  </span>	 * @return a shallow copy of the queue.
+<span class="lineno" id="140">   140  </span>	 */</span>
+<span class="lineno" id="141">   141  </span>	<span class="key">public</span> <span class="key">function</span> clone() 
+<span class="lineno" id="142">   142  </span>	{
+<span class="lineno" id="143">   143  </span>		<span class="key">var</span> s:Number = _qSize - <span class="num_const">1</span> ;
+<span class="lineno" id="144">   144  </span>		<span class="key">var</span> a:Array = toArray() ;
+<span class="lineno" id="145">   145  </span>		<span class="key">return</span> <span class="key">new</span> CircularQueue(s , a) ;
+<span class="lineno" id="146">   146  </span>	}
+<span class="lineno" id="147">   147  </span>
+<span class="lineno" id="148">   148  </span>	<span class="comment doc">/**
+<span class="lineno" id="149">   149  </span>	 * Returns {@code true} if the queue contains the object passed in argument.
+<span class="lineno" id="150">   150  </span>	 * @return {@code true} if the queue contains the object passed in argument.
+<span class="lineno" id="151">   151  </span>	 */</span>
+<span class="lineno" id="152">   152  </span>	<span class="key">public</span> <span class="key">function</span> contains(o):Boolean 
+<span class="lineno" id="153">   153  </span>	{
+<span class="lineno" id="154">   154  </span>		<span class="key">var</span> l:Number = _queue.length ;
+<span class="lineno" id="155">   155  </span>		<span class="key">for</span> (<span class="key">var</span> i:Number = <span class="num_const">0</span> ; i&lt;l ; i++) 
+<span class="lineno" id="156">   156  </span>		{
+<span class="lineno" id="157">   157  </span>			<span class="key">if</span> (_queue[i] == o) 
+<span class="lineno" id="158">   158  </span>			{
+<span class="lineno" id="159">   159  </span>				<span class="key">return</span> <span class="key">true</span> ;
+<span class="lineno" id="160">   160  </span>			}
+<span class="lineno" id="161">   161  </span>		}
+<span class="lineno" id="162">   162  </span>		<span class="key">return</span> <span class="key">false</span> ; 
+<span class="lineno" id="163">   163  </span>	}
+<span class="lineno" id="164">   164  </span>	
+<span class="lineno" id="165">   165  </span>	<span class="comment doc">/**
+<span class="lineno" id="166">   166  </span>	 * Retreives the first element in the queue object, return a boolean.
+<span class="lineno" id="167">   167  </span>	 * @return {@code true} if the first element in the queue is dequeue.
+<span class="lineno" id="168">   168  </span>	 */</span>
+<span class="lineno" id="169">   169  </span>	<span class="key">public</span> <span class="key">function</span> dequeue():Boolean 
+<span class="lineno" id="170">   170  </span>	{
+<span class="lineno" id="171">   171  </span>		<span class="key">return</span> poll() != <span class="key">null</span>  ;
+<span class="lineno" id="172">   172  </span>	}
+<span class="lineno" id="173">   173  </span>
+<span class="lineno" id="174">   174  </span>	<span class="comment doc">/**
+<span class="lineno" id="175">   175  </span>	 * Returns the value of the first element in the queue.
+<span class="lineno" id="176">   176  </span>	 * @return the value of the first element in the queue.
+<span class="lineno" id="177">   177  </span>	 */</span>
+<span class="lineno" id="178">   178  </span>	<span class="key">public</span> <span class="key">function</span> element() 
+<span class="lineno" id="179">   179  </span>	{
+<span class="lineno" id="180">   180  </span>		<span class="key">return</span> _queue[_front] ;
+<span class="lineno" id="181">   181  </span>	}	
+<span class="lineno" id="182">   182  </span>
+<span class="lineno" id="183">   183  </span>	<span class="comment doc">/**
+<span class="lineno" id="184">   184  </span>	 * Enqueue a new element in the queue if the que is not full, return a boolean.
+<span class="lineno" id="185">   185  </span>	 */</span>
+<span class="lineno" id="186">   186  </span>	<span class="key">public</span> <span class="key">function</span> enqueue(o):Boolean 
+<span class="lineno" id="187">   187  </span>	{
+<span class="lineno" id="188">   188  </span>		<span class="key">var</span> next:Number = _rear + <span class="num_const">1</span> ;
+<span class="lineno" id="189">   189  </span>		<span class="key">if</span> ( (next == _front) || ( ( next == _qSize) &amp;&amp; (_front == <span class="num_const">0</span>) )) 
+<span class="lineno" id="190">   190  </span>		{
+<span class="lineno" id="191">   191  </span>			<span class="key">return</span> <span class="key">false</span> ;
+<span class="lineno" id="192">   192  </span>		}
+<span class="lineno" id="193">   193  </span>		<span class="key">else</span> 
+<span class="lineno" id="194">   194  </span>		{
+<span class="lineno" id="195">   195  </span>			_queue[_rear++] = o ;
+<span class="lineno" id="196">   196  </span>			_count ++ ;
+<span class="lineno" id="197">   197  </span>			<span class="key">if</span> (_rear == _qSize) 
+<span class="lineno" id="198">   198  </span>			{
+<span class="lineno" id="199">   199  </span>				_rear = <span class="num_const">0</span> ;
+<span class="lineno" id="200">   200  </span>			}
+<span class="lineno" id="201">   201  </span>		}
+<span class="lineno" id="202">   202  </span>		<span class="key">return</span> <span class="key">true</span> ;
 <span class="lineno" id="203">   203  </span>	}
 <span class="lineno" id="204">   204  </span>
 <span class="lineno" id="205">   205  </span>	<span class="comment doc">/**
-<span class="lineno" id="206">   206  </span>	 * Returns {@code true} if the queue is empty.
-<span class="lineno" id="207">   207  </span>	 * @return {@code true} if the queue is empty.
+<span class="lineno" id="206">   206  </span>	 * Returns an element in the queue with the id passed in argument. This method is unsupported in a CircularQueue.
+<span class="lineno" id="207">   207  </span>	 * @throws UnsupportedOperation
 <span class="lineno" id="208">   208  </span>	 */</span>
-<span class="lineno" id="209">   209  </span>	<span class="key">public</span> <span class="key">function</span> isEmpty():Boolean 
-<span class="lineno" id="210">   210  </span>	{
-<span class="lineno" id="211">   211  </span>		<span class="key">return</span> _count == <span class="num_const">0</span> ;
+<span class="lineno" id="209">   209  </span>	<span class="key">public</span> <span class="key">function</span> get(id:Number) 
+<span class="lineno" id="210">   210  </span>	{ 
+<span class="lineno" id="211">   211  </span>		<span class="key">throw</span> <span class="key">new</span> UnsupportedOperation(<span class="key">this</span> + <span class="str_const">" 'get' method us unsupported in a CircularQueue"</span>) ;
 <span class="lineno" id="212">   212  </span>	}
 <span class="lineno" id="213">   213  </span>
 <span class="lineno" id="214">   214  </span>	<span class="comment doc">/**
-<span class="lineno" id="215">   215  </span>	 * Returns {@code true} if the queue is full.
-<span class="lineno" id="216">   216  </span>	 * @return {@code true} if the queue is full.
+<span class="lineno" id="215">   215  </span>	 * Insert an element in the queue. This method is unsupported in a CircularQueue.
+<span class="lineno" id="216">   216  </span>	 * @throws UnsupportedOperation
 <span class="lineno" id="217">   217  </span>	 */</span>
-<span class="lineno" id="218">   218  </span>	<span class="key">public</span> <span class="key">function</span> isFull():Boolean 
+<span class="lineno" id="218">   218  </span>	<span class="key">public</span> <span class="key">function</span> insert(o):Boolean 
 <span class="lineno" id="219">   219  </span>	{
-<span class="lineno" id="220">   220  </span>		<span class="key">return</span> _count == maxSize() ;
-<span class="lineno" id="221">   221  </span>	}
-<span class="lineno" id="222">   222  </span>	
-<span class="lineno" id="223">   223  </span>	<span class="comment doc">/**
-<span class="lineno" id="224">   224  </span>	 * Returns the iterator of the queue.
-<span class="lineno" id="225">   225  </span>	 * @return the iterator of the queue.
-<span class="lineno" id="226">   226  </span>	 * @see {@code vegas.data.iterator.ProtectedIterator}
+<span class="lineno" id="220">   220  </span>		<span class="key">throw</span> <span class="key">new</span> UnsupportedOperation(<span class="key">this</span> + <span class="str_const">" 'insert' method us unsupported in a CircularQueue"</span>) ;
+<span class="lineno" id="221">   221  </span>		<span class="key">return</span> <span class="key">false</span> ;
+<span class="lineno" id="222">   222  </span>	}
+<span class="lineno" id="223">   223  </span>
+<span class="lineno" id="224">   224  </span>	<span class="comment doc">/**
+<span class="lineno" id="225">   225  </span>	 * Returns {@code true} if the queue is empty.
+<span class="lineno" id="226">   226  </span>	 * @return {@code true} if the queue is empty.
 <span class="lineno" id="227">   227  </span>	 */</span>
-<span class="lineno" id="228">   228  </span>	<span class="key">public</span> <span class="key">function</span> iterator():Iterator 
+<span class="lineno" id="228">   228  </span>	<span class="key">public</span> <span class="key">function</span> isEmpty():Boolean 
 <span class="lineno" id="229">   229  </span>	{
-<span class="lineno" id="230">   230  </span>		<span class="key">return</span> (<span class="key">new</span> ProtectedIterator(<span class="key">new</span> ArrayIterator(toArray()))) ;
+<span class="lineno" id="230">   230  </span>		<span class="key">return</span> _count == <span class="num_const">0</span> ;
 <span class="lineno" id="231">   231  </span>	}
 <span class="lineno" id="232">   232  </span>
 <span class="lineno" id="233">   233  </span>	<span class="comment doc">/**
-<span class="lineno" id="234">   234  </span>	 * Returns the max number of occurrences in the given queue.
-<span class="lineno" id="235">   235  </span>	 * @return the max number of occurrences in the given queue.
+<span class="lineno" id="234">   234  </span>	 * Returns {@code true} if the queue is full.
+<span class="lineno" id="235">   235  </span>	 * @return {@code true} if the queue is full.
 <span class="lineno" id="236">   236  </span>	 */</span>
-<span class="lineno" id="237">   237  </span>	<span class="key">public</span> <span class="key">function</span> maxSize():Number 
+<span class="lineno" id="237">   237  </span>	<span class="key">public</span> <span class="key">function</span> isFull():Boolean 
 <span class="lineno" id="238">   238  </span>	{
-<span class="lineno" id="239">   239  </span>		<span class="key">return</span> _qSize -<span class="num_const">1</span> ;
+<span class="lineno" id="239">   239  </span>		<span class="key">return</span> _count == maxSize() ;
 <span class="lineno" id="240">   240  </span>	}
 <span class="lineno" id="241">   241  </span>	
 <span class="lineno" id="242">   242  </span>	<span class="comment doc">/**
-<span class="lineno" id="243">   243  </span>	 * Returns the value of the first element in the queue or {@code null} if the queue is empty.
-<span class="lineno" id="244">   244  </span>	 * @return the value of the first element in the queue or {@code null} if the queue is empty.
-<span class="lineno" id="245">   245  </span>	 */</span>
-<span class="lineno" id="246">   246  </span>	<span class="key">public</span> <span class="key">function</span> peek() 
-<span class="lineno" id="247">   247  </span>	{
-<span class="lineno" id="248">   248  </span>		<span class="key">return</span> isEmpty() ? <span class="key">null</span> : _queue[_front] ;
-<span class="lineno" id="249">   249  </span>	}
-<span class="lineno" id="250">   250  </span>	
-<span class="lineno" id="251">   251  </span>	<span class="comment doc">/**
-<span class="lineno" id="252">   252  </span>	 * Returns the value of the first element in the queue and remove this value in the queue.
-<span class="lineno" id="253">   253  </span>	 * @return the value of the first element in the queue and remove this value in the queue.
-<span class="lineno" id="254">   254  </span>	 */</span>
-<span class="lineno" id="255">   255  </span>	<span class="key">public</span> <span class="key">function</span> poll() 
-<span class="lineno" id="256">   256  </span>	{
-<span class="lineno" id="257">   257  </span>		<span class="key">if</span> (_front == _qSize) 
-<span class="lineno" id="258">   258  </span>		{
-<span class="lineno" id="259">   259  </span>			_front = <span class="num_const">0</span> ; <span class="comment">// loop back</span>
-<span class="lineno" id="260">   260  </span>		}
-<span class="lineno" id="261">   261  </span>        <span class="key">if</span> (_front == _rear) 
-<span class="lineno" id="262">   262  </span>        {
-<span class="lineno" id="263">   263  </span>        	<span class="key">return</span> <span class="key">null</span>;  <span class="comment">// queue is empty</span>
-<span class="lineno" id="264">   264  </span>        }
-<span class="lineno" id="265">   265  </span>        <span class="key">else</span>  
-<span class="lineno" id="266">   266  </span>        {
-<span class="lineno" id="267">   267  </span>            _count-- ;
-<span class="lineno" id="268">   268  </span>            <span class="key">var</span> mem = _queue[_front] ;
-<span class="lineno" id="269">   269  </span>            _queue[_front] = undefined ;
-<span class="lineno" id="270">   270  </span>            _front++ ;
-<span class="lineno" id="271">   271  </span>            <span class="key">return</span> mem ; <span class="comment">// return mem object</span>
-<span class="lineno" id="272">   272  </span>        }
-<span class="lineno" id="273">   273  </span>	}	
-<span class="lineno" id="274">   274  </span>	
-<span class="lineno" id="275">   275  </span>	<span class="comment doc">/**
-<span class="lineno" id="276">   276  </span>	 * Remove the passed argument value. This method is unsupported in a CircularQueue.
-<span class="lineno" id="277">   277  </span>	 * @throws UnsupportedOperation
-<span class="lineno" id="278">   278  </span>	 */</span>
-<span class="lineno" id="279">   279  </span>	<span class="key">public</span> <span class="key">function</span> remove(o):Boolean 
-<span class="lineno" id="280">   280  </span>	{
-<span class="lineno" id="281">   281  </span>		<span class="key">throw</span> <span class="key">new</span> UnsupportedOperation(<span class="key">this</span> + <span class="str_const">" 'remove' method us unsupported in a CircularQueue"</span>) ;
-<span class="lineno" id="282">   282  </span>		<span class="key">return</span> <span class="key">false</span> ;
-<span class="lineno" id="283">   283  </span>	}
-<span class="lineno" id="284">   284  </span>	
-<span class="lineno" id="285">   285  </span>	<span class="comment doc">/**
-<span class="lineno" id="286">   286  </span>	 * Returns the number of elements in the CircularQueue.
-<span class="lineno" id="287">   287  </span>	 * @return the number of elements in the CircularQueue.
-<span class="lineno" id="288">   288  </span>	 */</span>
-<span class="lineno" id="289">   289  </span>	<span class="key">public</span> <span class="key">function</span> size():Number 
-<span class="lineno" id="290">   290  </span>	{
-<span class="lineno" id="291">   291  </span>		<span class="key">return</span> _count ;
-<span class="lineno" id="292">   292  </span>	}
+<span class="lineno" id="243">   243  </span>	 * Returns the iterator of the queue.
+<span class="lineno" id="244">   244  </span>	 * @return the iterator of the queue.
+<span class="lineno" id="245">   245  </span>	 * @see {@code vegas.data.iterator.ProtectedIterator}
+<span class="lineno" id="246">   246  </span>	 */</span>
+<span class="lineno" id="247">   247  </span>	<span class="key">public</span> <span class="key">function</span> iterator():Iterator 
+<span class="lineno" id="248">   248  </span>	{
+<span class="lineno" id="249">   249  </span>		<span class="key">return</span> (<span class="key">new</span> ProtectedIterator(<span class="key">new</span> ArrayIterator(toArray()))) ;
+<span class="lineno" id="250">   250  </span>	}
+<span class="lineno" id="251">   251  </span>
+<span class="lineno" id="252">   252  </span>	<span class="comment doc">/**
+<span class="lineno" id="253">   253  </span>	 * Returns the max number of occurrences in the given queue.
+<span class="lineno" id="254">   254  </span>	 * @return the max number of occurrences in the given queue.
+<span class="lineno" id="255">   255  </span>	 */</span>
+<span class="lineno" id="256">   256  </span>	<span class="key">public</span> <span class="key">function</span> maxSize():Number 
+<span class="lineno" id="257">   257  </span>	{
+<span class="lineno" id="258">   258  </span>		<span class="key">return</span> _qSize -<span class="num_const">1</span> ;
+<span class="lineno" id="259">   259  </span>	}
+<span class="lineno" id="260">   260  </span>	
+<span class="lineno" id="261">   261  </span>	<span class="comment doc">/**
+<span class="lineno" id="262">   262  </span>	 * Returns the value of the first element in the queue or {@code null} if the queue is empty.
+<span class="lineno" id="263">   263  </span>	 * @return the value of the first element in the queue or {@code null} if the queue is empty.
+<span class="lineno" id="264">   264  </span>	 */</span>
+<span class="lineno" id="265">   265  </span>	<span class="key">public</span> <span class="key">function</span> peek() 
+<span class="lineno" id="266">   266  </span>	{
+<span class="lineno" id="267">   267  </span>		<span class="key">return</span> isEmpty() ? <span class="key">null</span> : _queue[_front] ;
+<span class="lineno" id="268">   268  </span>	}
+<span class="lineno" id="269">   269  </span>	
+<span class="lineno" id="270">   270  </span>	<span class="comment doc">/**
+<span class="lineno" id="271">   271  </span>	 * Returns the value of the first element in the queue and remove this value in the queue.
+<span class="lineno" id="272">   272  </span>	 * @return the value of the first element in the queue and remove this value in the queue.
+<span class="lineno" id="273">   273  </span>	 */</span>
+<span class="lineno" id="274">   274  </span>	<span class="key">public</span> <span class="key">function</span> poll() 
+<span class="lineno" id="275">   275  </span>	{
+<span class="lineno" id="276">   276  </span>		<span class="key">if</span> (_front == _qSize) 
+<span class="lineno" id="277">   277  </span>		{
+<span class="lineno" id="278">   278  </span>			_front = <span class="num_const">0</span> ; <span class="comment">// loop back</span>
+<span class="lineno" id="279">   279  </span>		}
+<span class="lineno" id="280">   280  </span>        <span class="key">if</span> (_front == _rear) 
+<span class="lineno" id="281">   281  </span>        {
+<span class="lineno" id="282">   282  </span>        	<span class="key">return</span> <span class="key">null</span>;  <span class="comment">// queue is empty</span>
+<span class="lineno" id="283">   283  </span>        }
+<span class="lineno" id="284">   284  </span>        <span class="key">else</span>  
+<span class="lineno" id="285">   285  </span>        {
+<span class="lineno" id="286">   286  </span>            _count-- ;
+<span class="lineno" id="287">   287  </span>            <span class="key">var</span> mem = _queue[_front] ;
+<span class="lineno" id="288">   288  </span>            _queue[_front] = undefined ;
+<span class="lineno" id="289">   289  </span>            _front++ ;
+<span class="lineno" id="290">   290  </span>            <span class="key">return</span> mem ; <span class="comment">// return mem object</span>
+<span class="lineno" id="291">   291  </span>        }
+<span class="lineno" id="292">   292  </span>	}	
 <span class="lineno" id="293">   293  </span>	
 <span class="lineno" id="294">   294  </span>	<span class="comment doc">/**
-<span class="lineno" id="295">   295  </span>	 * Returns the array representation of the CircularQueue.
-<span class="lineno" id="296">   296  </span>	 * @return the array representation of the CircularQueue.
+<span class="lineno" id="295">   295  </span>	 * Remove the passed argument value. This method is unsupported in a CircularQueue.
+<span class="lineno" id="296">   296  </span>	 * @throws UnsupportedOperation
 <span class="lineno" id="297">   297  </span>	 */</span>
-<span class="lineno" id="298">   298  </span>	<span class="key">public</span> <span class="key">function</span> toArray():Array 
+<span class="lineno" id="298">   298  </span>	<span class="key">public</span> <span class="key">function</span> remove(o):Boolean 
 <span class="lineno" id="299">   299  </span>	{
-<span class="lineno" id="300">   300  </span>		<span class="key">if</span> (_count == <span class="num_const">0</span>) {
-<span class="lineno" id="301">   301  </span>			<span class="key">return</span> <span class="key">new</span> Array() ;
-<span class="lineno" id="302">   302  </span>		} <span class="key">else</span> {
-<span class="lineno" id="303">   303  </span>			<span class="key">var</span> r:Array = <span class="key">new</span> Array(_count) ;
-<span class="lineno" id="304">   304  </span>			<span class="key">var</span> i:Number = (_front == _qSize) ? <span class="num_const">0</span> : _front ;
-<span class="lineno" id="305">   305  </span>			<span class="key">var</span> cpt:Number = <span class="num_const">0</span> ;
-<span class="lineno" id="306">   306  </span>			<span class="key">while</span> (cpt &lt; _count) {
-<span class="lineno" id="307">   307  </span>				r[cpt++] = _queue[i++] ;
-<span class="lineno" id="308">   308  </span>				<span class="key">if</span> (i == _qSize) i = <span class="num_const">0</span> ;
-<span class="lineno" id="309">   309  </span>			}
-<span class="lineno" id="310">   310  </span>			<span class="key">return</span> r ;
-<span class="lineno" id="311">   311  </span>		}
-<span class="lineno" id="312">   312  </span>	}
-<span class="lineno" id="313">   313  </span>
-<span class="lineno" id="314">   314  </span>	<span class="comment doc">/**
-<span class="lineno" id="315">   315  </span>	 * Returns a Eden reprensation of the object.
-<span class="lineno" id="316">   316  </span>	 * @return a string representing the source code of the object.
-<span class="lineno" id="317">   317  </span>	 */</span>
-<span class="lineno" id="318">   318  </span>	<span class="key">public</span> <span class="key">function</span> toSource(indent:Number, indentor:String):String 
-<span class="lineno" id="319">   319  </span>	{
-<span class="lineno" id="320">   320  </span>		<span class="key">var</span> sourceA:String = Serializer.toSource(_qSize - <span class="num_const">1</span>) ;
-<span class="lineno" id="321">   321  </span>		<span class="key">var</span> sourceB:String = Serializer.toSource(toArray()) ;
-<span class="lineno" id="322">   322  </span>		<span class="key">return</span> Serializer.getSourceOf(<span class="key">this</span>, [sourceA, sourceB]) ;
-<span class="lineno" id="323">   323  </span>	}
-<span class="lineno" id="324">   324  </span>	
-<span class="lineno" id="325">   325  </span>	<span class="comment doc">/**
-<span class="lineno" id="326">   326  </span>	 * Returns the string representation of this instance.
-<span class="lineno" id="327">   327  </span>	 * @return the string representation of this instance
-<span class="lineno" id="328">   328  </span>	 */</span>
-<span class="lineno" id="329">   329  </span>	<span class="key">public</span> <span class="key">function</span> toString():String 
-<span class="lineno" id="330">   330  </span>	{
-<span class="lineno" id="331">   331  </span>		<span class="key">return</span> (<span class="key">new</span> QueueFormat()).formatToString(<span class="key">this</span>) ;
-<span class="lineno" id="332">   332  </span>	}
-<span class="lineno" id="333">   333  </span>
-<span class="lineno" id="334">   334  </span>	<span class="comment doc">/**
-<span class="lineno" id="335">   335  </span>	 * The internal array.
-<span class="lineno" id="336">   336  </span>	 */</span>
-<span class="lineno" id="337">   337  </span>	<span class="key">private</span> <span class="key">var</span> _queue:Array ;
-<span class="lineno" id="338">   338  </span>	
-<span class="lineno" id="339">   339  </span>	<span class="comment doc">/**
-<span class="lineno" id="340">   340  </span>	 * The array index for the next object to be stored in the queue.
-<span class="lineno" id="341">   341  </span>	 */</span>
-<span class="lineno" id="342">   342  </span>    <span class="key">private</span> <span class="key">var</span> _rear:Number ;
-<span class="lineno" id="343">   343  </span>    
-<span class="lineno" id="344">   344  </span>    <span class="comment doc">/**
-<span class="lineno" id="345">   345  </span>     * The array index for the next object to be removed from the queue.
-<span class="lineno" id="346">   346  </span>     */</span> 
-<span class="lineno" id="347">   347  </span>	<span class="key">private</span> <span class="key">var</span> _front:Number ;
-<span class="lineno" id="348">   348  </span>	
-<span class="lineno" id="349">   349  </span>	<span class="comment doc">/**
-<span class="lineno" id="350">   350  </span>	 * The number of objects currently stored in the queue.
+<span class="lineno" id="300">   300  </span>		<span class="key">throw</span> <span class="key">new</span> UnsupportedOperation(<span class="key">this</span> + <span class="str_const">" 'remove' method us unsupported in a CircularQueue"</span>) ;
+<span class="lineno" id="301">   301  </span>		<span class="key">return</span> <span class="key">false</span> ;
+<span class="lineno" id="302">   302  </span>	}
+<span class="lineno" id="303">   303  </span>	
+<span class="lineno" id="304">   304  </span>	<span class="comment doc">/**
+<span class="lineno" id="305">   305  </span>	 * Returns the number of elements in the CircularQueue.
+<span class="lineno" id="306">   306  </span>	 * @return the number of elements in the CircularQueue.
+<span class="lineno" id="307">   307  </span>	 */</span>
+<span class="lineno" id="308">   308  </span>	<span class="key">public</span> <span class="key">function</span> size():Number 
+<span class="lineno" id="309">   309  </span>	{
+<span class="lineno" id="310">   310  </span>		<span class="key">return</span> _count ;
+<span class="lineno" id="311">   311  </span>	}
+<span class="lineno" id="312">   312  </span>	
+<span class="lineno" id="313">   313  </span>	<span class="comment doc">/**
+<span class="lineno" id="314">   314  </span>	 * Returns the array representation of the CircularQueue.
+<span class="lineno" id="315">   315  </span>	 * @return the array representation of the CircularQueue.
+<span class="lineno" id="316">   316  </span>	 */</span>
+<span class="lineno" id="317">   317  </span>	<span class="key">public</span> <span class="key">function</span> toArray():Array 
+<span class="lineno" id="318">   318  </span>	{
+<span class="lineno" id="319">   319  </span>		<span class="key">if</span> (_count == <span class="num_const">0</span>) 
+<span class="lineno" id="320">   320  </span>		{
+<span class="lineno" id="321">   321  </span>			<span class="key">return</span> <span class="key">new</span> Array() ;
+<span class="lineno" id="322">   322  </span>		} 
+<span class="lineno" id="323">   323  </span>		<span class="key">else</span> 
+<span class="lineno" id="324">   324  </span>		{
+<span class="lineno" id="325">   325  </span>			<span class="key">var</span> r:Array = <span class="key">new</span> Array(_count) ;
+<span class="lineno" id="326">   326  </span>			<span class="key">var</span> i:Number = (_front == _qSize) ? <span class="num_const">0</span> : _front ;
+<span class="lineno" id="327">   327  </span>			<span class="key">var</span> cpt:Number = <span class="num_const">0</span> ;
+<span class="lineno" id="328">   328  </span>			<span class="key">while</span> (cpt &lt; _count) 
+<span class="lineno" id="329">   329  </span>			{
+<span class="lineno" id="330">   330  </span>				r[cpt++] = _queue[i++] ;
+<span class="lineno" id="331">   331  </span>				<span class="key">if</span> (i == _qSize) i = <span class="num_const">0</span> ;
+<span class="lineno" id="332">   332  </span>			}
+<span class="lineno" id="333">   333  </span>			<span class="key">return</span> r ;
+<span class="lineno" id="334">   334  </span>		}
+<span class="lineno" id="335">   335  </span>	}
+<span class="lineno" id="336">   336  </span>
+<span class="lineno" id="337">   337  </span>	<span class="comment doc">/**
+<span class="lineno" id="338">   338  </span>	 * Returns a eden reprensation of the object.
+<span class="lineno" id="339">   339  </span>	 * @return a string representing the source code of the object.
+<span class="lineno" id="340">   340  </span>	 */</span>
+<span class="lineno" id="341">   341  </span>	<span class="key">public</span> <span class="key">function</span> toSource(indent:Number, indentor:String):String 
+<span class="lineno" id="342">   342  </span>	{
+<span class="lineno" id="343">   343  </span>		<span class="key">var</span> sourceA:String = Serializer.toSource(_qSize - <span class="num_const">1</span>) ;
+<span class="lineno" id="344">   344  </span>		<span class="key">var</span> sourceB:String = Serializer.toSource(toArray()) ;
+<span class="lineno" id="345">   345  </span>		<span class="key">return</span> Serializer.getSourceOf(<span class="key">this</span>, [sourceA, sourceB]) ;
+<span class="lineno" id="346">   346  </span>	}
+<span class="lineno" id="347">   347  </span>	
+<span class="lineno" id="348">   348  </span>	<span class="comment doc">/**
+<span class="lineno" id="349">   349  </span>	 * Returns the string representation of this instance.
+<span class="lineno" id="350">   350  </span>	 * @return the string representation of this instance
 <span class="lineno" id="351">   351  </span>	 */</span>
-<span class="lineno" id="352">   352  </span>	<span class="key">private</span> <span class="key">var</span> _count:Number ;
-<span class="lineno" id="353">   353  </span>
-<span class="lineno" id="354">   354  </span>	<span class="comment doc">/**
-<span class="lineno" id="355">   355  </span>	 * The number of objects in the array : queue size + 1
-<span class="lineno" id="356">   356  </span>	 */</span>
-<span class="lineno" id="357">   357  </span>    <span class="key">private</span> <span class="key">var</span> _qSize:Number ;
-<span class="lineno" id="358">   358  </span>
-<span class="lineno" id="359">   359  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.data.queue" class="button">Package</a></li><li><a href="CircularQueue.html" title="Detail of vegas.data.queue.CircularQueue API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
+<span class="lineno" id="352">   352  </span>	<span class="key">public</span> <span class="key">function</span> toString():String 
+<span class="lineno" id="353">   353  </span>	{
+<span class="lineno" id="354">   354  </span>		<span class="key">return</span> (<span class="key">new</span> QueueFormat()).formatToString(<span class="key">this</span>) ;
+<span class="lineno" id="355">   355  </span>	}
+<span class="lineno" id="356">   356  </span>
+<span class="lineno" id="357">   357  </span>	<span class="comment doc">/**
+<span class="lineno" id="358">   358  </span>	 * The internal array.
+<span class="lineno" id="359">   359  </span>	 */</span>
+<span class="lineno" id="360">   360  </span>	<span class="key">private</span> <span class="key">var</span> _queue:Array ;
+<span class="lineno" id="361">   361  </span>	
+<span class="lineno" id="362">   362  </span>	<span class="comment doc">/**
+<span class="lineno" id="363">   363  </span>	 * The array index for the next object to be stored in the queue.
+<span class="lineno" id="364">   364  </span>	 */</span>
+<span class="lineno" id="365">   365  </span>    <span class="key">private</span> <span class="key">var</span> _rear:Number ;
+<span class="lineno" id="366">   366  </span>    
+<span class="lineno" id="367">   367  </span>    <span class="comment doc">/**
+<span class="lineno" id="368">   368  </span>     * The array index for the next object to be removed from the queue.
+<span class="lineno" id="369">   369  </span>     */</span> 
+<span class="lineno" id="370">   370  </span>	<span class="key">private</span> <span class="key">var</span> _front:Number ;
+<span class="lineno" id="371">   371  </span>	
+<span class="lineno" id="372">   372  </span>	<span class="comment doc">/**
+<span class="lineno" id="373">   373  </span>	 * The number of objects currently stored in the queue.
+<span class="lineno" id="374">   374  </span>	 */</span>
+<span class="lineno" id="375">   375  </span>	<span class="key">private</span> <span class="key">var</span> _count:Number ;
+<span class="lineno" id="376">   376  </span>
+<span class="lineno" id="377">   377  </span>	<span class="comment doc">/**
+<span class="lineno" id="378">   378  </span>	 * The number of objects in the array : queue size + 1
+<span class="lineno" id="379">   379  </span>	 */</span>
+<span class="lineno" id="380">   380  </span>    <span class="key">private</span> <span class="key">var</span> _qSize:Number ;
+<span class="lineno" id="381">   381  </span>
+<span class="lineno" id="382">   382  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.data.queue" class="button">Package</a></li><li><a href="CircularQueue.html" title="Detail of vegas.data.queue.CircularQueue API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

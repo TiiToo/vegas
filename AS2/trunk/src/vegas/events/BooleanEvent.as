@@ -43,13 +43,15 @@ class vegas.events.BooleanEvent extends DynamicEvent
 	 */
 	public function BooleanEvent(type:String, b:Boolean, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
 	{
-		
 		super(type, target, context, bubbles, eventPhase, time, stop) ;
-		if (b)
+		if (b === null || b === undefined )
 		{
-			this._b = b ;
+			this._b = false ;
 		}
-		
+		else
+		{
+			this._b = Boolean(b) ;	
+		}
 	}
 
 	/**
@@ -61,7 +63,8 @@ class vegas.events.BooleanEvent extends DynamicEvent
 	}
 	
 	/**
-	 * Returns the boolean instance.
+	 * Returns the boolean value register in this event.
+	 * @return the boolean value register in this event.
 	 */
 	public function getBoolean():Boolean
 	{
@@ -69,7 +72,7 @@ class vegas.events.BooleanEvent extends DynamicEvent
 	}
 	
 	/**
-	 * Sets the boolean instance.
+	 * Sets the boolean value register in this event.
 	 */
 	public function setBoolean(b:Boolean):Void
 	{

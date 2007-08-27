@@ -1,0 +1,327 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><script src="../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../index-files";
+//--></script><link href="../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../overview-summary.html" title="Overview" rel="top"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><pre><span class="lineno" id="1">     1  </span><span class="comment">/*
+<span class="lineno" id="2">     2  </span>
+<span class="lineno" id="3">     3  </span>  The contents of this file are subject to the Mozilla Public License Version
+<span class="lineno" id="4">     4  </span>  1.1 (the "License"); you may not use this file except in compliance with
+<span class="lineno" id="5">     5  </span>  the License. You may obtain a copy of the License at 
+<span class="lineno" id="6">     6  </span>  
+<span class="lineno" id="7">     7  </span>           http://www.mozilla.org/MPL/ 
+<span class="lineno" id="8">     8  </span>  
+<span class="lineno" id="9">     9  </span>  Software distributed under the License is distributed on an "AS IS" basis,
+<span class="lineno" id="10">    10  </span>  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+<span class="lineno" id="11">    11  </span>  for the specific language governing rights and limitations under the License. 
+<span class="lineno" id="12">    12  </span>  
+<span class="lineno" id="13">    13  </span>  The Original Code is Vegas Framework.
+<span class="lineno" id="14">    14  </span>  
+<span class="lineno" id="15">    15  </span>  The Initial Developer of the Original Code is
+<span class="lineno" id="16">    16  </span>  ALCARAZ Marc (aka eKameleon)  &lt;vegas@ekameleon.net&gt;.
+<span class="lineno" id="17">    17  </span>  Portions created by the Initial Developer are Copyright (C) 2004-2007
+<span class="lineno" id="18">    18  </span>  the Initial Developer. All Rights Reserved.
+<span class="lineno" id="19">    19  </span>  
+<span class="lineno" id="20">    20  </span>  Contributor(s) :
+<span class="lineno" id="21">    21  </span>  
+<span class="lineno" id="22">    22  </span>*/</span>
+<span class="lineno" id="23">    23  </span>
+<span class="lineno" id="24">    24  </span><span class="key">import</span> vegas.core.CoreObject;
+<span class="lineno" id="25">    25  </span><span class="key">import</span> vegas.util.MathsUtil;
+<span class="lineno" id="26">    26  </span>
+<span class="lineno" id="27">    27  </span><span class="comment doc">/**
+<span class="lineno" id="28">    28  </span> * The {@code Time} object is a holder for a time difference.
+<span class="lineno" id="29">    29  </span> * &lt;p&gt;{@code Time} splits a time difference (distance between two dates) into 
+<span class="lineno" id="30">    30  </span> * days, hours, minutes, seconds and milliseconds to offers methods to access the time difference value.
+<span class="lineno" id="31">    31  </span> * @author eKameleon
+<span class="lineno" id="32">    32  </span> */</span>
+<span class="lineno" id="33">    33  </span><span class="key">class</span> asgard.date.Time <span class="key">extends</span> CoreObject
+<span class="lineno" id="34">    34  </span>{
+<span class="lineno" id="35">    35  </span>	
+<span class="lineno" id="36">    36  </span>	<span class="comment doc">/**
+<span class="lineno" id="37">    37  </span>	 * Creates a new {@code Time} instance.
+<span class="lineno" id="38">    38  </span>     * @param timeDifference The time size of the time difference for the passed-in {@code format}.
+<span class="lineno" id="39">    39  </span>     * @param format (optional) "d"/"h"/"m"/"s"/"ms" for the unit of the amout, default case is "ms".
+<span class="lineno" id="40">    40  </span>     */</span>
+<span class="lineno" id="41">    41  </span>	<span class="key">public</span> <span class="key">function</span> Time( timeDifference:Number, format:String ) 
+<span class="lineno" id="42">    42  </span>	{
+<span class="lineno" id="43">    43  </span>		setValue( timeDifference, format) ;
+<span class="lineno" id="44">    44  </span>	}
+<span class="lineno" id="45">    45  </span>
+<span class="lineno" id="46">    46  </span>	<span class="comment doc">/** 
+<span class="lineno" id="47">    47  </span>	 * Factor from ms to second. 
+<span class="lineno" id="48">    48  </span>	 */</span>
+<span class="lineno" id="49">    49  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">var</span> SECOND:Number = <span class="num_const">1000</span>;
+<span class="lineno" id="50">    50  </span>	
+<span class="lineno" id="51">    51  </span>	<span class="comment doc">/** 
+<span class="lineno" id="52">    52  </span>	 * Factor from ms to minute.
+<span class="lineno" id="53">    53  </span>	 */</span>
+<span class="lineno" id="54">    54  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">var</span> MINUTE:Number = SECOND*<span class="num_const">60</span>;
+<span class="lineno" id="55">    55  </span>	
+<span class="lineno" id="56">    56  </span>	<span class="comment doc">/** 
+<span class="lineno" id="57">    57  </span>	 * Factor from ms to hour.
+<span class="lineno" id="58">    58  </span>	 */</span>
+<span class="lineno" id="59">    59  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">var</span> HOUR:Number = MINUTE * <span class="num_const">60</span> ;
+<span class="lineno" id="60">    60  </span>	
+<span class="lineno" id="61">    61  </span>	<span class="comment doc">/** 
+<span class="lineno" id="62">    62  </span>	 * Factor from ms to day.
+<span class="lineno" id="63">    63  </span>	 */</span>
+<span class="lineno" id="64">    64  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">var</span> DAY:Number = HOUR * <span class="num_const">24</span> ;
+<span class="lineno" id="65">    65  </span>
+<span class="lineno" id="66">    66  </span>	<span class="comment doc">/** 
+<span class="lineno" id="67">    67  </span>	 * Amount of days.
+<span class="lineno" id="68">    68  </span>	 */</span>
+<span class="lineno" id="69">    69  </span>	<span class="key">public</span> <span class="key">var</span> days:Number;
+<span class="lineno" id="70">    70  </span>
+<span class="lineno" id="71">    71  </span>	<span class="comment doc">/**
+<span class="lineno" id="72">    72  </span>	 * Time difference in ms.
+<span class="lineno" id="73">    73  </span>	 */</span>
+<span class="lineno" id="74">    74  </span>	<span class="key">public</span> <span class="key">var</span> ms:Number;
+<span class="lineno" id="75">    75  </span>	
+<span class="lineno" id="76">    76  </span>	<span class="comment doc">/**  
+<span class="lineno" id="77">    77  </span>	 * Amount of hours.
+<span class="lineno" id="78">    78  </span>	 */</span>
+<span class="lineno" id="79">    79  </span>	<span class="key">public</span> <span class="key">var</span> hours:Number;
+<span class="lineno" id="80">    80  </span>	
+<span class="lineno" id="81">    81  </span>	<span class="comment doc">/**
+<span class="lineno" id="82">    82  </span>	 *  Amount of minutes.
+<span class="lineno" id="83">    83  </span>	 */</span>
+<span class="lineno" id="84">    84  </span>	<span class="key">public</span> <span class="key">var</span> minutes:Number;
+<span class="lineno" id="85">    85  </span>	
+<span class="lineno" id="86">    86  </span>	<span class="comment doc">/**
+<span class="lineno" id="87">    87  </span>	 *  Amount of seconds.
+<span class="lineno" id="88">    88  </span>	 */</span>
+<span class="lineno" id="89">    89  </span>	<span class="key">public</span> <span class="key">var</span> seconds:Number;
+<span class="lineno" id="90">    90  </span>	
+<span class="lineno" id="91">    91  </span>	<span class="comment doc">/** 
+<span class="lineno" id="92">    92  </span>	 * Amount of milliseconds.
+<span class="lineno" id="93">    93  </span>	 */</span>
+<span class="lineno" id="94">    94  </span>	<span class="key">public</span> <span class="key">var</span> milliSeconds:Number;
+<span class="lineno" id="95">    95  </span>	
+<span class="lineno" id="96">    96  </span>	<span class="comment doc">/** 
+<span class="lineno" id="97">    97  </span>	 * Flag if the instance need to be evaluated by {@link #evaluate}.
+<span class="lineno" id="98">    98  </span>	 */</span>
+<span class="lineno" id="99">    99  </span>	<span class="key">public</span> <span class="key">var</span> doEval:Boolean = <span class="key">true</span>;	
+<span class="lineno" id="100">   100  </span>
+<span class="lineno" id="101">   101  </span>	<span class="comment doc">/**
+<span class="lineno" id="102">   102  </span>	 * Splits the time distance from ms (source value) into the different units.
+<span class="lineno" id="103">   103  </span>	 */</span>
+<span class="lineno" id="104">   104  </span>	<span class="key">public</span> <span class="key">function</span> evaluate():Void 
+<span class="lineno" id="105">   105  </span>	{
+<span class="lineno" id="106">   106  </span>		<span class="key">var</span> negative = MathsUtil.sign(ms) ;
+<span class="lineno" id="107">   107  </span>		<span class="key">var</span> rest:Number = ms ;
+<span class="lineno" id="108">   108  </span>		
+<span class="lineno" id="109">   109  </span>		days = rest / DAY ;
+<span class="lineno" id="110">   110  </span>		rest -= negative * Math.floor(days) * DAY ;
+<span class="lineno" id="111">   111  </span>		
+<span class="lineno" id="112">   112  </span>		hours = rest / HOUR;
+<span class="lineno" id="113">   113  </span>		rest -= negative * Math.floor(hours) * HOUR ;
+<span class="lineno" id="114">   114  </span>		
+<span class="lineno" id="115">   115  </span>		minutes = rest / MINUTE;
+<span class="lineno" id="116">   116  </span>		rest -= negative * Math.floor(minutes) * MINUTE ;
+<span class="lineno" id="117">   117  </span>		
+<span class="lineno" id="118">   118  </span>		seconds = rest / SECOND ;
+<span class="lineno" id="119">   119  </span>		rest -= negative * Math.floor(seconds)*SECOND ;
+<span class="lineno" id="120">   120  </span>		
+<span class="lineno" id="121">   121  </span>		milliSeconds = rest;
+<span class="lineno" id="122">   122  </span>		
+<span class="lineno" id="123">   123  </span>		doEval = <span class="key">false</span> ;
+<span class="lineno" id="124">   124  </span>	}
+<span class="lineno" id="125">   125  </span>	
+<span class="lineno" id="126">   126  </span>	<span class="comment doc">/**
+<span class="lineno" id="127">   127  </span>	 * Returns the amount of days are contained within the time.
+<span class="lineno" id="128">   128  </span>	 * &lt;p&gt;It will not round the result if you pass-in nothing.&lt;/p&gt;
+<span class="lineno" id="129">   129  </span>	 * @param round (optional) the number of decimal spaces
+<span class="lineno" id="130">   130  </span>	 * @return The time difference in days.
+<span class="lineno" id="131">   131  </span>	 */</span>
+<span class="lineno" id="132">   132  </span>	<span class="key">public</span> <span class="key">function</span> getDays(round:Number):Number 
+<span class="lineno" id="133">   133  </span>	{
+<span class="lineno" id="134">   134  </span>		<span class="key">if</span> (doEval) 
+<span class="lineno" id="135">   135  </span>		{
+<span class="lineno" id="136">   136  </span>			evaluate() ;
+<span class="lineno" id="137">   137  </span>		}
+<span class="lineno" id="138">   138  </span>		<span class="key">return</span> isNaN(round) ? days : MathsUtil.floor(days, round) ;
+<span class="lineno" id="139">   139  </span>	}
+<span class="lineno" id="140">   140  </span>
+<span class="lineno" id="141">   141  </span>	<span class="comment doc">/**
+<span class="lineno" id="142">   142  </span>	 * Returns the amount of hours are contained within the time.
+<span class="lineno" id="143">   143  </span>	 * &lt;p&gt;It will not round the result if you pass-in nothing.&lt;/p&gt;
+<span class="lineno" id="144">   144  </span>	 * @param round (optional) the number of decimal spaces
+<span class="lineno" id="145">   145  </span>	 * @return The time difference in hours.
+<span class="lineno" id="146">   146  </span>	 */</span>
+<span class="lineno" id="147">   147  </span>	<span class="key">public</span> <span class="key">function</span> getHours(round:Number):Number 
+<span class="lineno" id="148">   148  </span>	{
+<span class="lineno" id="149">   149  </span>		<span class="key">if</span> (doEval) 
+<span class="lineno" id="150">   150  </span>		{
+<span class="lineno" id="151">   151  </span>			evaluate() ;
+<span class="lineno" id="152">   152  </span>		}
+<span class="lineno" id="153">   153  </span>		<span class="key">return</span> isNaN(round) ? hours : MathsUtil.floor(hours, round);
+<span class="lineno" id="154">   154  </span>	}
+<span class="lineno" id="155">   155  </span>
+<span class="lineno" id="156">   156  </span>	<span class="comment doc">/**
+<span class="lineno" id="157">   157  </span>	 * Returns the amount of milliseconds are contained within the time.
+<span class="lineno" id="158">   158  </span>	 * &lt;p&gt;It will not round the result if you pass-in nothing.&lt;/p&gt;
+<span class="lineno" id="159">   159  </span>	 * @param round (optional) the number of decimal spaces.
+<span class="lineno" id="160">   160  </span>	 * @return The time difference in milliseconds.
+<span class="lineno" id="161">   161  </span>	 */</span>
+<span class="lineno" id="162">   162  </span>	<span class="key">public</span> <span class="key">function</span> getMilliSeconds(round:Number):Number 
+<span class="lineno" id="163">   163  </span>	{
+<span class="lineno" id="164">   164  </span>		<span class="key">if</span> (doEval) 
+<span class="lineno" id="165">   165  </span>		{
+<span class="lineno" id="166">   166  </span>			evaluate();
+<span class="lineno" id="167">   167  </span>		}
+<span class="lineno" id="168">   168  </span>		<span class="key">return</span> isNaN(round) ? milliSeconds : MathsUtil.floor(milliSeconds, round) ;
+<span class="lineno" id="169">   169  </span>	}
+<span class="lineno" id="170">   170  </span>
+<span class="lineno" id="171">   171  </span>	<span class="comment doc">/**
+<span class="lineno" id="172">   172  </span>	 * Returns the amount of minutes are contained within the time.
+<span class="lineno" id="173">   173  </span>	 * &lt;p&gt;It will not round the result if you pass-in nothing.&lt;/p&gt;
+<span class="lineno" id="174">   174  </span>	 * @param round (optional) the number of decimal spaces
+<span class="lineno" id="175">   175  </span>	 * @return The time difference in minutes.
+<span class="lineno" id="176">   176  </span>	 */</span>
+<span class="lineno" id="177">   177  </span>	<span class="key">public</span> <span class="key">function</span> getMinutes(round:Number):Number 
+<span class="lineno" id="178">   178  </span>	{
+<span class="lineno" id="179">   179  </span>		<span class="key">if</span> (doEval) 
+<span class="lineno" id="180">   180  </span>		{
+<span class="lineno" id="181">   181  </span>			evaluate() ;
+<span class="lineno" id="182">   182  </span>		}
+<span class="lineno" id="183">   183  </span>		<span class="key">return</span> isNaN(round) ? minutes :MathsUtil.floor(minutes, round) ;
+<span class="lineno" id="184">   184  </span>	}
+<span class="lineno" id="185">   185  </span>	<span class="comment doc">/**
+<span class="lineno" id="186">   186  </span>	 * Returns the amount of seconds are contained within the time.
+<span class="lineno" id="187">   187  </span>	 * &lt;p&gt;It will not round the result if you pass-in nothing.&lt;/p&gt;
+<span class="lineno" id="188">   188  </span>	 * @param round (optional) the number of decimal spaces
+<span class="lineno" id="189">   189  </span>	 * @return The time difference in seconds
+<span class="lineno" id="190">   190  </span>	 */</span>
+<span class="lineno" id="191">   191  </span>	<span class="key">public</span> <span class="key">function</span> getSeconds(round:Number):Number 
+<span class="lineno" id="192">   192  </span>	{
+<span class="lineno" id="193">   193  </span>		<span class="key">if</span> (doEval) 
+<span class="lineno" id="194">   194  </span>		{
+<span class="lineno" id="195">   195  </span>			evaluate();
+<span class="lineno" id="196">   196  </span>		}
+<span class="lineno" id="197">   197  </span>		<span class="key">return</span> isNaN(round) ? seconds : MathsUtil.floor(seconds, round) ;
+<span class="lineno" id="198">   198  </span>	}
+<span class="lineno" id="199">   199  </span>
+<span class="lineno" id="200">   200  </span>	<span class="comment doc">/**
+<span class="lineno" id="201">   201  </span>	 * Returns the time distance in days.
+<span class="lineno" id="202">   202  </span>	 * @return The time difference in days.
+<span class="lineno" id="203">   203  </span>	 */</span>
+<span class="lineno" id="204">   204  </span>	<span class="key">public</span> <span class="key">function</span> inDays():Number 
+<span class="lineno" id="205">   205  </span>	{
+<span class="lineno" id="206">   206  </span>		<span class="key">return</span> ms / DAY ;
+<span class="lineno" id="207">   207  </span>	}
+<span class="lineno" id="208">   208  </span>
+<span class="lineno" id="209">   209  </span>	<span class="comment doc">/**
+<span class="lineno" id="210">   210  </span>	 * Returns the time distance in hours.
+<span class="lineno" id="211">   211  </span>	 * @return The time difference in hours.
+<span class="lineno" id="212">   212  </span>	 */</span>
+<span class="lineno" id="213">   213  </span>	<span class="key">public</span> <span class="key">function</span> inHours():Number 
+<span class="lineno" id="214">   214  </span>	{
+<span class="lineno" id="215">   215  </span>		<span class="key">return</span> ms / HOUR ;
+<span class="lineno" id="216">   216  </span>	}
+<span class="lineno" id="217">   217  </span>
+<span class="lineno" id="218">   218  </span>	<span class="comment doc">/**
+<span class="lineno" id="219">   219  </span>	 * Returns the time difference in milliseconds.
+<span class="lineno" id="220">   220  </span>	 * @return the time difference in milliseconds.
+<span class="lineno" id="221">   221  </span>	 */</span>
+<span class="lineno" id="222">   222  </span>	<span class="key">public</span> <span class="key">function</span> inMilliSeconds():Number 
+<span class="lineno" id="223">   223  </span>	{
+<span class="lineno" id="224">   224  </span>		<span class="key">return</span> ms;
+<span class="lineno" id="225">   225  </span>	}
+<span class="lineno" id="226">   226  </span>
+<span class="lineno" id="227">   227  </span>	<span class="comment doc">/**
+<span class="lineno" id="228">   228  </span>	 * Returns the time distance in minutes.
+<span class="lineno" id="229">   229  </span>	 * @return The time difference in minutes.
+<span class="lineno" id="230">   230  </span>	 */</span>
+<span class="lineno" id="231">   231  </span>	<span class="key">public</span> <span class="key">function</span> inMinutes():Number 
+<span class="lineno" id="232">   232  </span>	{
+<span class="lineno" id="233">   233  </span>		<span class="key">return</span> ms / MINUTE;
+<span class="lineno" id="234">   234  </span>	}
+<span class="lineno" id="235">   235  </span>	
+<span class="lineno" id="236">   236  </span>	<span class="comment doc">/**
+<span class="lineno" id="237">   237  </span>	 * Returns The time difference in seconds.
+<span class="lineno" id="238">   238  </span>	 * @return The time difference in seconds.
+<span class="lineno" id="239">   239  </span>	 */</span>
+<span class="lineno" id="240">   240  </span>	<span class="key">public</span> <span class="key">function</span> inSeconds():Number 
+<span class="lineno" id="241">   241  </span>	{
+<span class="lineno" id="242">   242  </span>		<span class="key">return</span> ms / SECOND ;
+<span class="lineno" id="243">   243  </span>	}
+<span class="lineno" id="244">   244  </span>
+<span class="lineno" id="245">   245  </span>	<span class="comment doc">/**
+<span class="lineno" id="246">   246  </span>	 * Removes the passed-in {@code timeDifference} from the current time.
+<span class="lineno" id="247">   247  </span>	 * @param timeDifference time difference to be removed from the current time
+<span class="lineno" id="248">   248  </span>	 * @return A new instance with the resulting amount of time
+<span class="lineno" id="249">   249  </span>	 */</span>
+<span class="lineno" id="250">   250  </span>	<span class="key">public</span> <span class="key">function</span> minus(timeDifference:Time):Time 
+<span class="lineno" id="251">   251  </span>	{
+<span class="lineno" id="252">   252  </span>		<span class="key">return</span> <span class="key">new</span> Time(ms-timeDifference.valueOf());
+<span class="lineno" id="253">   253  </span>	}
+<span class="lineno" id="254">   254  </span>
+<span class="lineno" id="255">   255  </span>	<span class="comment doc">/**
+<span class="lineno" id="256">   256  </span>	 * Adds the passed-in {@code timedistance} to the current time.
+<span class="lineno" id="257">   257  </span>	 * @param timeDifference time difference to be added to the current time.
+<span class="lineno" id="258">   258  </span>	 * @return A new instance with the resulting amount of time.
+<span class="lineno" id="259">   259  </span>	 */</span>
+<span class="lineno" id="260">   260  </span>	<span class="key">public</span> <span class="key">function</span> plus( timeDifference:Time ):Time 
+<span class="lineno" id="261">   261  </span>	{
+<span class="lineno" id="262">   262  </span>		<span class="key">return</span> <span class="key">new</span> Time( ms + timeDifference.valueOf() );
+<span class="lineno" id="263">   263  </span>	}
+<span class="lineno" id="264">   264  </span>
+<span class="lineno" id="265">   265  </span>	<span class="comment doc">/** 
+<span class="lineno" id="266">   266  </span>	 * Sets the time of the instance.
+<span class="lineno" id="267">   267  </span>	 * 
+<span class="lineno" id="268">   268  </span>	 * &lt;p&gt;Uses "ms" if no format or a wrong format was passed-in.&lt;/p&gt;
+<span class="lineno" id="269">   269  </span>	 * &lt;p&gt;Uses {@code Number.MAX_VALUE} if {@code Infinity} was passed-in.&lt;/p&gt;
+<span class="lineno" id="270">   270  </span>     * @param time size of the time difference for the passed-in {@code format}
+<span class="lineno" id="271">   271  </span>     * @param format (optional) "d"/"h"/"m"/"s"/"ms" for the unit of the amout. Default value is ms.
+<span class="lineno" id="272">   272  </span>	 */</span>
+<span class="lineno" id="273">   273  </span>	<span class="key">public</span> <span class="key">function</span> setValue(timeDifference:Number, format:String):Time 
+<span class="lineno" id="274">   274  </span>	{
+<span class="lineno" id="275">   275  </span>		
+<span class="lineno" id="276">   276  </span>		<span class="key">if</span> (timeDifference == Infinity) 
+<span class="lineno" id="277">   277  </span>		{
+<span class="lineno" id="278">   278  </span>			timeDifference = Number.MAX_VALUE;
+<span class="lineno" id="279">   279  </span>		}
+<span class="lineno" id="280">   280  </span>		
+<span class="lineno" id="281">   281  </span>		<span class="key">switch</span> (format) 
+<span class="lineno" id="282">   282  </span>		{
+<span class="lineno" id="283">   283  </span>			<span class="key">case</span> <span class="str_const">"d"</span> :
+<span class="lineno" id="284">   284  </span>			{
+<span class="lineno" id="285">   285  </span>				ms = timeDifference * DAY ;
+<span class="lineno" id="286">   286  </span>				<span class="key">break</span>;
+<span class="lineno" id="287">   287  </span>			}
+<span class="lineno" id="288">   288  </span>			<span class="key">case</span> <span class="str_const">"h"</span> :
+<span class="lineno" id="289">   289  </span>			{
+<span class="lineno" id="290">   290  </span>				ms = timeDifference * HOUR ;
+<span class="lineno" id="291">   291  </span>				<span class="key">break</span>;
+<span class="lineno" id="292">   292  </span>			}
+<span class="lineno" id="293">   293  </span>			<span class="key">case</span> <span class="str_const">"m"</span> :
+<span class="lineno" id="294">   294  </span>			{
+<span class="lineno" id="295">   295  </span>				ms = timeDifference * MINUTE ;
+<span class="lineno" id="296">   296  </span>				<span class="key">break</span>;
+<span class="lineno" id="297">   297  </span>			}
+<span class="lineno" id="298">   298  </span>			<span class="key">case</span> <span class="str_const">"s"</span>:
+<span class="lineno" id="299">   299  </span>			{
+<span class="lineno" id="300">   300  </span>				ms = timeDifference * SECOND ;
+<span class="lineno" id="301">   301  </span>				<span class="key">break</span>;
+<span class="lineno" id="302">   302  </span>			}
+<span class="lineno" id="303">   303  </span>			<span class="key">default</span>:
+<span class="lineno" id="304">   304  </span>			{
+<span class="lineno" id="305">   305  </span>				ms = timeDifference ;
+<span class="lineno" id="306">   306  </span>			}
+<span class="lineno" id="307">   307  </span>		}
+<span class="lineno" id="308">   308  </span>		
+<span class="lineno" id="309">   309  </span>		doEval = <span class="key">true</span> ;
+<span class="lineno" id="310">   310  </span>		
+<span class="lineno" id="311">   311  </span>		<span class="key">return</span> <span class="key">this</span> ;
+<span class="lineno" id="312">   312  </span>		
+<span class="lineno" id="313">   313  </span>	}
+<span class="lineno" id="314">   314  </span>
+<span class="lineno" id="315">   315  </span>	<span class="comment doc">/**
+<span class="lineno" id="316">   316  </span>	 * Returns the value of the time distance (in ms).
+<span class="lineno" id="317">   317  </span>	 * @return The value of this object in ms.
+<span class="lineno" id="318">   318  </span>	 */</span>
+<span class="lineno" id="319">   319  </span>	<span class="key">public</span> <span class="key">function</span> valueOf():Number 
+<span class="lineno" id="320">   320  </span>	{
+<span class="lineno" id="321">   321  </span>		<span class="key">return</span> ms;
+<span class="lineno" id="322">   322  </span>	}
+<span class="lineno" id="323">   323  </span>
+<span class="lineno" id="324">   324  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package asgard.date" class="button">Package</a></li><li><a href="Time.html" title="Detail of asgard.date.Time API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

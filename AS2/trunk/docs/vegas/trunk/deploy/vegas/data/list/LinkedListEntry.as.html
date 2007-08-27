@@ -24,39 +24,41 @@ document.quicknavBasePath="../../../index-files";
 <span class="lineno" id="21">    21  </span>  
 <span class="lineno" id="22">    22  </span>*/</span>
 <span class="lineno" id="23">    23  </span>
-<span class="lineno" id="24">    24  </span><span class="comment doc">/**
-<span class="lineno" id="25">    25  </span> * Internal class in the {@code LinkedList} class to defined all entries in the list and the links betweens alls.
-<span class="lineno" id="26">    26  </span> * @author eKameleon
-<span class="lineno" id="27">    27  </span> */</span>
-<span class="lineno" id="28">    28  </span><span class="key">class</span> vegas.data.list.LinkedListEntry 
-<span class="lineno" id="29">    29  </span>{
-<span class="lineno" id="30">    30  </span>
-<span class="lineno" id="31">    31  </span>	<span class="comment doc">/**
-<span class="lineno" id="32">    32  </span>	 * Creates a new LinkedListEntry instance.
-<span class="lineno" id="33">    33  </span>	 * @param element the value of the entry in the LinkedList
-<span class="lineno" id="34">    34  </span>	 * @param the next LinkedListEntry of this entry.
-<span class="lineno" id="35">    35  </span>	 * @param the previous LinkedListEntry of this entry.
-<span class="lineno" id="36">    36  </span>	 */</span>
-<span class="lineno" id="37">    37  </span>	<span class="key">function</span> LinkedListEntry( element , next:LinkedListEntry , previous:LinkedListEntry)
-<span class="lineno" id="38">    38  </span>	{
-<span class="lineno" id="39">    39  </span>		<span class="key">this</span>.element = element ;
-<span class="lineno" id="40">    40  </span>		<span class="key">this</span>.next = next ;
-<span class="lineno" id="41">    41  </span>		<span class="key">this</span>.previous = previous ;	
-<span class="lineno" id="42">    42  </span>	}
-<span class="lineno" id="43">    43  </span>	
-<span class="lineno" id="44">    44  </span>	<span class="comment doc">/**
-<span class="lineno" id="45">    45  </span>	 * The element of this entry.
-<span class="lineno" id="46">    46  </span>	 */</span>
-<span class="lineno" id="47">    47  </span>	<span class="key">public</span> <span class="key">var</span> element ;
-<span class="lineno" id="48">    48  </span>	
-<span class="lineno" id="49">    49  </span>	<span class="comment doc">/**
-<span class="lineno" id="50">    50  </span>	 * The next entry.
-<span class="lineno" id="51">    51  </span>	 */</span>
-<span class="lineno" id="52">    52  </span>	<span class="key">public</span> <span class="key">var</span> next:LinkedListEntry ;
-<span class="lineno" id="53">    53  </span>	
-<span class="lineno" id="54">    54  </span>	<span class="comment doc">/**
-<span class="lineno" id="55">    55  </span>	 * The previous entry.
-<span class="lineno" id="56">    56  </span>	 */</span>
-<span class="lineno" id="57">    57  </span>	<span class="key">public</span> <span class="key">var</span> previous:LinkedListEntry ;
-<span class="lineno" id="58">    58  </span>	
-<span class="lineno" id="59">    59  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.data.list" class="button">Package</a></li><li><a href="LinkedListEntry.html" title="Detail of vegas.data.list.LinkedListEntry API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
+<span class="lineno" id="24">    24  </span><span class="key">import</span> vegas.core.CoreObject ;
+<span class="lineno" id="25">    25  </span>
+<span class="lineno" id="26">    26  </span><span class="comment doc">/**
+<span class="lineno" id="27">    27  </span> * Internal class in the {@code LinkedList} class to defined all entries in the list and the links betweens alls.
+<span class="lineno" id="28">    28  </span> * @author eKameleon
+<span class="lineno" id="29">    29  </span> */</span>
+<span class="lineno" id="30">    30  </span><span class="key">class</span> vegas.data.list.LinkedListEntry <span class="key">extends</span> CoreObject
+<span class="lineno" id="31">    31  </span>{
+<span class="lineno" id="32">    32  </span>
+<span class="lineno" id="33">    33  </span>	<span class="comment doc">/**
+<span class="lineno" id="34">    34  </span>	 * Creates a new LinkedListEntry instance.
+<span class="lineno" id="35">    35  </span>	 * @param element the value of the entry in the LinkedList
+<span class="lineno" id="36">    36  </span>	 * @param the next LinkedListEntry of this entry.
+<span class="lineno" id="37">    37  </span>	 * @param the previous LinkedListEntry of this entry.
+<span class="lineno" id="38">    38  </span>	 */</span>
+<span class="lineno" id="39">    39  </span>	<span class="key">function</span> LinkedListEntry( element , next:LinkedListEntry , previous:LinkedListEntry)
+<span class="lineno" id="40">    40  </span>	{
+<span class="lineno" id="41">    41  </span>		<span class="key">this</span>.element = element ;
+<span class="lineno" id="42">    42  </span>		<span class="key">this</span>.next = next ;
+<span class="lineno" id="43">    43  </span>		<span class="key">this</span>.previous = previous ;	
+<span class="lineno" id="44">    44  </span>	}
+<span class="lineno" id="45">    45  </span>	
+<span class="lineno" id="46">    46  </span>	<span class="comment doc">/**
+<span class="lineno" id="47">    47  </span>	 * The element of this entry.
+<span class="lineno" id="48">    48  </span>	 */</span>
+<span class="lineno" id="49">    49  </span>	<span class="key">public</span> <span class="key">var</span> element ;
+<span class="lineno" id="50">    50  </span>	
+<span class="lineno" id="51">    51  </span>	<span class="comment doc">/**
+<span class="lineno" id="52">    52  </span>	 * The next entry.
+<span class="lineno" id="53">    53  </span>	 */</span>
+<span class="lineno" id="54">    54  </span>	<span class="key">public</span> <span class="key">var</span> next:LinkedListEntry ;
+<span class="lineno" id="55">    55  </span>	
+<span class="lineno" id="56">    56  </span>	<span class="comment doc">/**
+<span class="lineno" id="57">    57  </span>	 * The previous entry.
+<span class="lineno" id="58">    58  </span>	 */</span>
+<span class="lineno" id="59">    59  </span>	<span class="key">public</span> <span class="key">var</span> previous:LinkedListEntry ;
+<span class="lineno" id="60">    60  </span>	
+<span class="lineno" id="61">    61  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.data.list" class="button">Package</a></li><li><a href="LinkedListEntry.html" title="Detail of vegas.data.list.LinkedListEntry API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

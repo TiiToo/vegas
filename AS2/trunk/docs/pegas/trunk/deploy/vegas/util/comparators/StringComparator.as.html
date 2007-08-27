@@ -80,7 +80,7 @@ document.quicknavBasePath="../../../index-files";
 <span class="lineno" id="77">    77  </span>	 * &lt;li&gt; 1 if o1 is "higher" than (greater than, after, etc.) o2 ;&lt;/li&gt;
 <span class="lineno" id="78">    78  </span>	 * &lt;li&gt; 0 if o1 and o2 are equal.&lt;/li&gt;
 <span class="lineno" id="79">    79  </span>	 * &lt;/p&gt;
-<span class="lineno" id="80">    80  </span>	 * @throws IllegalArgumentError if compare(a, b) and 'a' or 'b' aren't String objects.
+<span class="lineno" id="80">    80  </span>	 * @throws ClassCastError if compare(a, b) and 'a' or 'b' aren't String objects.
 <span class="lineno" id="81">    81  </span>	 */</span>
 <span class="lineno" id="82">    82  </span>	<span class="key">public</span> <span class="key">function</span> compare(o1, o2):Number 
 <span class="lineno" id="83">    83  </span>	{
@@ -182,11 +182,11 @@ document.quicknavBasePath="../../../index-files";
 <span class="lineno" id="179">   179  </span>	<span class="comment doc">/**
 <span class="lineno" id="180">   180  </span>	 * The internal Case StringComparator.
 <span class="lineno" id="181">   181  </span>	 */</span>
-<span class="lineno" id="182">   182  </span>	<span class="key">static</span> <span class="key">private</span> <span class="key">var</span> _comparator ;
+<span class="lineno" id="182">   182  </span>	<span class="key">static</span> <span class="key">private</span> <span class="key">var</span> _comparator:StringComparator ;
 <span class="lineno" id="183">   183  </span>
 <span class="lineno" id="184">   184  </span>	<span class="comment doc">/**
 <span class="lineno" id="185">   185  </span>	 * The internal ignoreCase StringComparator.
 <span class="lineno" id="186">   186  </span>	 */</span>
-<span class="lineno" id="187">   187  </span>	<span class="key">static</span> <span class="key">private</span> <span class="key">var</span> _ignoreCaseComparator ;
+<span class="lineno" id="187">   187  </span>	<span class="key">static</span> <span class="key">private</span> <span class="key">var</span> _ignoreCaseComparator:StringComparator ;
 <span class="lineno" id="188">   188  </span>
 <span class="lineno" id="189">   189  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.util.comparators" class="button">Package</a></li><li><a href="StringComparator.html" title="Detail of vegas.util.comparators.StringComparator API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

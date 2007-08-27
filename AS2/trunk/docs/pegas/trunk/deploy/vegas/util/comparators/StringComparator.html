@@ -37,7 +37,7 @@ document.quicknavBasePath="../../../index-files";
  <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
  <li> 0 if o1 and o2 are equal.</li>
  </p>
- </p><h4>Throws</h4><table class="exceptions extra_info" summary=""><tr><td><span class="unresolved_type_name">IllegalArgumentError</span></td><td>if compare(a, b) and 'a' or 'b' aren't String objects.
+ </p><h4>Throws</h4><table class="exceptions extra_info" summary=""><tr><td><a href="../../../vegas/errors/ClassCastError.html" class="class_name" title="Class vegas.errors.ClassCastError">ClassCastError</a></td><td>if compare(a, b) and 'a' or 'b' aren't String objects.
 	 </td></tr></table><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/core/IComparator.html#compare" title="function compare(o1, o2):Number">compare()</a> in <a href="../../../vegas/core/IComparator.html" class="interface_name" title="Interface vegas.core.IComparator">vegas.core.IComparator</a></p></div></div><div class="method_details"><a name="getStringComparator"></a><h3>getStringComparator</h3><code class="method_synopsis">static public function <strong class="method_name">getStringComparator</strong>():<a href="../../../vegas/util/comparators/StringComparator.html" class="class_name" title="Class vegas.util.comparators.StringComparator">StringComparator</a></code><div class="method_info"><p>
  Returns the <code> StringComparator</code> singleton with the a <code> <span class="key">false</span></code> ignoreCase property.
  Clients are encouraged to use the value returned from this method instead of constructing a new instance to reduce allocation and garbage collection overhead when multiple StringComparators may be used in the same application.

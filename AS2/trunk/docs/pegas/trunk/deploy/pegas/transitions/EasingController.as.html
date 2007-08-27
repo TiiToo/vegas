@@ -92,35 +92,53 @@ document.quicknavBasePath="../../index-files";
 <span class="lineno" id="89">    89  </span>	}
 <span class="lineno" id="90">    90  </span>	
 <span class="lineno" id="91">    91  </span>	<span class="comment doc">/**
-<span class="lineno" id="92">    92  </span>	 * Adds a new entry into the EasingController.
-<span class="lineno" id="93">    93  </span>	 * @param id the {@code id} of the easing method mapped in the EasingController.
-<span class="lineno" id="94">    94  </span>	 * @param easingMethod the function to register in the EasingController.
-<span class="lineno" id="95">    95  </span>	 */</span>
-<span class="lineno" id="96">    96  </span>	<span class="key">public</span> <span class="key">function</span> insert( id:String, easingMethod:Function ):Void 
-<span class="lineno" id="97">    97  </span>	{
-<span class="lineno" id="98">    98  </span>		_map.put( id, easingMethod ) ;
-<span class="lineno" id="99">    99  </span>	}
-<span class="lineno" id="100">   100  </span>	
-<span class="lineno" id="101">   101  </span>	<span class="comment doc">/**
-<span class="lineno" id="102">   102  </span>	 * Remove an entry into the EasingController.
-<span class="lineno" id="103">   103  </span>	 * @param id the name of the easing method mapped in the EasingController.
-<span class="lineno" id="104">   104  </span>	 */</span>
-<span class="lineno" id="105">   105  </span>	<span class="key">public</span> <span class="key">function</span> remove( id:String ):Void 
-<span class="lineno" id="106">   106  </span>	{
-<span class="lineno" id="107">   107  </span>		_map.remove(id) ;
-<span class="lineno" id="108">   108  </span>	}
-<span class="lineno" id="109">   109  </span>
-<span class="lineno" id="110">   110  </span>	<span class="comment doc">/**
-<span class="lineno" id="111">   111  </span>	 * Returns the number of elements in the EasingController.
-<span class="lineno" id="112">   112  </span>	 * @return the number of elements in the EasingController.
-<span class="lineno" id="113">   113  </span>	 */</span>
-<span class="lineno" id="114">   114  </span>	<span class="key">public</span> <span class="key">function</span> size():Number
-<span class="lineno" id="115">   115  </span>	{
-<span class="lineno" id="116">   116  </span>		<span class="key">return</span> _map.size() ;
-<span class="lineno" id="117">   117  </span>	}	
-<span class="lineno" id="118">   118  </span>
-<span class="lineno" id="119">   119  </span>	<span class="comment doc">/**
-<span class="lineno" id="120">   120  </span>	 * Internal HashMap instance.
-<span class="lineno" id="121">   121  </span>	 */</span>
-<span class="lineno" id="122">   122  </span>	<span class="key">private</span> <span class="key">var</span> _map:Map ;
-<span class="lineno" id="123">   123  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package pegas.transitions" class="button">Package</a></li><li><a href="EasingController.html" title="Detail of pegas.transitions.EasingController API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
+<span class="lineno" id="92">    92  </span>	 * Returns the singleton instance of EasingController.
+<span class="lineno" id="93">    93  </span>	 * @return singleton instance of EasingController.
+<span class="lineno" id="94">    94  </span>	 */</span>
+<span class="lineno" id="95">    95  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">function</span> getInstance():EasingController 
+<span class="lineno" id="96">    96  </span>	{
+<span class="lineno" id="97">    97  </span>		<span class="key">if</span> ( _instance == <span class="key">null</span> )
+<span class="lineno" id="98">    98  </span>		{
+<span class="lineno" id="99">    99  </span>			_instance = <span class="key">new</span> EasingController() ;
+<span class="lineno" id="100">   100  </span>		}
+<span class="lineno" id="101">   101  </span>		<span class="key">return</span> _instance ;
+<span class="lineno" id="102">   102  </span>	}
+<span class="lineno" id="103">   103  </span>	
+<span class="lineno" id="104">   104  </span>	<span class="comment doc">/**
+<span class="lineno" id="105">   105  </span>	 * Adds a new entry into the EasingController.
+<span class="lineno" id="106">   106  </span>	 * @param id the {@code id} of the easing method mapped in the EasingController.
+<span class="lineno" id="107">   107  </span>	 * @param easingMethod the function to register in the EasingController.
+<span class="lineno" id="108">   108  </span>	 */</span>
+<span class="lineno" id="109">   109  </span>	<span class="key">public</span> <span class="key">function</span> insert( id:String, easingMethod:Function ):Void 
+<span class="lineno" id="110">   110  </span>	{
+<span class="lineno" id="111">   111  </span>		_map.put( id, easingMethod ) ;
+<span class="lineno" id="112">   112  </span>	}
+<span class="lineno" id="113">   113  </span>	
+<span class="lineno" id="114">   114  </span>	<span class="comment doc">/**
+<span class="lineno" id="115">   115  </span>	 * Remove an entry into the EasingController.
+<span class="lineno" id="116">   116  </span>	 * @param id the name of the easing method mapped in the EasingController.
+<span class="lineno" id="117">   117  </span>	 */</span>
+<span class="lineno" id="118">   118  </span>	<span class="key">public</span> <span class="key">function</span> remove( id:String ):Void 
+<span class="lineno" id="119">   119  </span>	{
+<span class="lineno" id="120">   120  </span>		_map.remove(id) ;
+<span class="lineno" id="121">   121  </span>	}
+<span class="lineno" id="122">   122  </span>
+<span class="lineno" id="123">   123  </span>	<span class="comment doc">/**
+<span class="lineno" id="124">   124  </span>	 * Returns the number of elements in the EasingController.
+<span class="lineno" id="125">   125  </span>	 * @return the number of elements in the EasingController.
+<span class="lineno" id="126">   126  </span>	 */</span>
+<span class="lineno" id="127">   127  </span>	<span class="key">public</span> <span class="key">function</span> size():Number
+<span class="lineno" id="128">   128  </span>	{
+<span class="lineno" id="129">   129  </span>		<span class="key">return</span> _map.size() ;
+<span class="lineno" id="130">   130  </span>	}	
+<span class="lineno" id="131">   131  </span>
+<span class="lineno" id="132">   132  </span>	<span class="comment doc">/**
+<span class="lineno" id="133">   133  </span>	 * The internal singleton reference.
+<span class="lineno" id="134">   134  </span>	 */</span>
+<span class="lineno" id="135">   135  </span>	<span class="key">private</span> <span class="key">static</span> <span class="key">var</span> _instance:EasingController;
+<span class="lineno" id="136">   136  </span>
+<span class="lineno" id="137">   137  </span>	<span class="comment doc">/**
+<span class="lineno" id="138">   138  </span>	 * Internal HashMap instance.
+<span class="lineno" id="139">   139  </span>	 */</span>
+<span class="lineno" id="140">   140  </span>	<span class="key">private</span> <span class="key">var</span> _map:Map ;
+<span class="lineno" id="141">   141  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package pegas.transitions" class="button">Package</a></li><li><a href="EasingController.html" title="Detail of pegas.transitions.EasingController API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

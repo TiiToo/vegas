@@ -38,48 +38,47 @@ document.quicknavBasePath="../../index-files";
 <span class="lineno" id="35">    35  </span>
 <span class="lineno" id="36">    36  </span>	<span class="comment doc">/**
 <span class="lineno" id="37">    37  </span>	 * Allows the registration of global event listeners on the event target.
-<span class="lineno" id="38">    38  </span>	 * 
-<span class="lineno" id="39">    39  </span>	 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the &lt;b&gt;EventListener&lt;/b&gt; interface.
-<span class="lineno" id="40">    40  </span>	 * @param priority Determines the priority level of the event listener.
-<span class="lineno" id="41">    41  </span>	 * @param autoRemove Apply a removeEventListener after the first trigger
-<span class="lineno" id="42">    42  </span>	 */</span>
-<span class="lineno" id="43">    43  </span>	<span class="key">function</span> addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void ;
-<span class="lineno" id="44">    44  </span>
-<span class="lineno" id="45">    45  </span>	<span class="comment doc">/**
-<span class="lineno" id="46">    46  </span>	 * Returns the {@code EventListenerCollection} of the specified event name.
-<span class="lineno" id="47">    47  </span>	 * @return the {@code EventListenerCollection} of the specified event name.
-<span class="lineno" id="48">    48  </span>	 */</span>
-<span class="lineno" id="49">    49  </span>	<span class="key">function</span> getEventListeners(eventName:String):EventListenerCollection ;
-<span class="lineno" id="50">    50  </span>
-<span class="lineno" id="51">    51  </span>	<span class="comment doc">/**
-<span class="lineno" id="52">    52  </span>	 * Returns the {@code EventListenerCollection} of this EventDispatcher.
-<span class="lineno" id="53">    53  </span>	 * @return the {@code EventListenerCollection} of this EventDispatcher.
-<span class="lineno" id="54">    54  </span>	 */</span>
-<span class="lineno" id="55">    55  </span>	<span class="key">function</span> getGlobalEventListeners():EventListenerCollection ;
-<span class="lineno" id="56">    56  </span>
-<span class="lineno" id="57">    57  </span>	<span class="comment doc">/**
-<span class="lineno" id="58">    58  </span>	 * Returns a {@code Set} of all register event's name in this EventListener.
-<span class="lineno" id="59">    59  </span>	 * @return a {@code Set} of all register event's name in this EventListener.
-<span class="lineno" id="60">    60  </span>	 */</span>
-<span class="lineno" id="61">    61  </span>	<span class="key">function</span> getRegisteredEventNames():Set ;
-<span class="lineno" id="62">    62  </span>
-<span class="lineno" id="63">    63  </span>	<span class="comment doc">/**
-<span class="lineno" id="64">    64  </span>	 * Checks whether the EventDispatcher object has any listeners registered for a specific type of event.
-<span class="lineno" id="65">    65  </span>	 * This allows you to determine where altered handling of an event type has been introduced in the event flow heirarchy by an EventDispatcher object.
-<span class="lineno" id="66">    66  </span>	 */</span> 
-<span class="lineno" id="67">    67  </span>	<span class="key">function</span> hasEventListener(eventName:String):Boolean ;
-<span class="lineno" id="68">    68  </span>
-<span class="lineno" id="69">    69  </span>	<span class="comment doc">/** 
-<span class="lineno" id="70">    70  </span>	 * Removes a global listener from the EventDispatcher object.
-<span class="lineno" id="71">    71  </span>	 * If there is no matching listener registered with the EventDispatcher object, then calling this method has no effect.
-<span class="lineno" id="72">    72  </span>	 * @param the string representation of the class name of the EventListener or a EventListener object.
-<span class="lineno" id="73">    73  </span>	 */</span>
-<span class="lineno" id="74">    74  </span>	<span class="key">function</span> removeGlobalEventListener( listener ):EventListener ;
-<span class="lineno" id="75">    75  </span>	
-<span class="lineno" id="76">    76  </span>	<span class="comment doc">/**
-<span class="lineno" id="77">    77  </span>	 * Returns the string representation of this object.
-<span class="lineno" id="78">    78  </span>	 * @return the string representation of this object.
-<span class="lineno" id="79">    79  </span>	 */</span>
-<span class="lineno" id="80">    80  </span>	<span class="key">function</span> toString():String ;
-<span class="lineno" id="81">    81  </span>	
-<span class="lineno" id="82">    82  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.events" class="button">Package</a></li><li><a href="IEventDispatcher.html" title="Detail of vegas.events.IEventDispatcher API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
+<span class="lineno" id="38">    38  </span>	 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the &lt;b&gt;EventListener&lt;/b&gt; interface.
+<span class="lineno" id="39">    39  </span>	 * @param priority Determines the priority level of the event listener.
+<span class="lineno" id="40">    40  </span>	 * @param autoRemove Apply a removeEventListener after the first trigger
+<span class="lineno" id="41">    41  </span>	 */</span>
+<span class="lineno" id="42">    42  </span>	<span class="key">function</span> addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void ;
+<span class="lineno" id="43">    43  </span>
+<span class="lineno" id="44">    44  </span>	<span class="comment doc">/**
+<span class="lineno" id="45">    45  </span>	 * Returns the {@code EventListenerCollection} of the specified event name.
+<span class="lineno" id="46">    46  </span>	 * @return the {@code EventListenerCollection} of the specified event name.
+<span class="lineno" id="47">    47  </span>	 */</span>
+<span class="lineno" id="48">    48  </span>	<span class="key">function</span> getEventListeners(eventName:String):EventListenerCollection ;
+<span class="lineno" id="49">    49  </span>
+<span class="lineno" id="50">    50  </span>	<span class="comment doc">/**
+<span class="lineno" id="51">    51  </span>	 * Returns the {@code EventListenerCollection} of this EventDispatcher.
+<span class="lineno" id="52">    52  </span>	 * @return the {@code EventListenerCollection} of this EventDispatcher.
+<span class="lineno" id="53">    53  </span>	 */</span>
+<span class="lineno" id="54">    54  </span>	<span class="key">function</span> getGlobalEventListeners():EventListenerCollection ;
+<span class="lineno" id="55">    55  </span>
+<span class="lineno" id="56">    56  </span>	<span class="comment doc">/**
+<span class="lineno" id="57">    57  </span>	 * Returns a {@code Set} of all register event's name in this EventListener.
+<span class="lineno" id="58">    58  </span>	 * @return a {@code Set} of all register event's name in this EventListener.
+<span class="lineno" id="59">    59  </span>	 */</span>
+<span class="lineno" id="60">    60  </span>	<span class="key">function</span> getRegisteredEventNames():Set ;
+<span class="lineno" id="61">    61  </span>
+<span class="lineno" id="62">    62  </span>	<span class="comment doc">/**
+<span class="lineno" id="63">    63  </span>	 * Checks whether the EventDispatcher object has any listeners registered for a specific type of event.
+<span class="lineno" id="64">    64  </span>	 * This allows you to determine where altered handling of an event type has been introduced in the event flow heirarchy by an EventDispatcher object.
+<span class="lineno" id="65">    65  </span>	 */</span> 
+<span class="lineno" id="66">    66  </span>	<span class="key">function</span> hasEventListener(eventName:String):Boolean ;
+<span class="lineno" id="67">    67  </span>
+<span class="lineno" id="68">    68  </span>	<span class="comment doc">/** 
+<span class="lineno" id="69">    69  </span>	 * Removes a global listener from the EventDispatcher object.
+<span class="lineno" id="70">    70  </span>	 * If there is no matching listener registered with the EventDispatcher object, then calling this method has no effect.
+<span class="lineno" id="71">    71  </span>	 * @param the string representation of the class name of the EventListener or a EventListener object.
+<span class="lineno" id="72">    72  </span>	 */</span>
+<span class="lineno" id="73">    73  </span>	<span class="key">function</span> removeGlobalEventListener( listener ):EventListener ;
+<span class="lineno" id="74">    74  </span>	
+<span class="lineno" id="75">    75  </span>	<span class="comment doc">/**
+<span class="lineno" id="76">    76  </span>	 * Returns the string representation of this object.
+<span class="lineno" id="77">    77  </span>	 * @return the string representation of this object.
+<span class="lineno" id="78">    78  </span>	 */</span>
+<span class="lineno" id="79">    79  </span>	<span class="key">function</span> toString():String ;
+<span class="lineno" id="80">    80  </span>	
+<span class="lineno" id="81">    81  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.events" class="button">Package</a></li><li><a href="IEventDispatcher.html" title="Detail of vegas.events.IEventDispatcher API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
