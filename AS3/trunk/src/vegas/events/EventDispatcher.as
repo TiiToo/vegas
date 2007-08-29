@@ -39,7 +39,7 @@ package vegas.events
         /**
 		 * Aggregates an instance of the EventDispatcher class.
 		 */
-        public function EventDispatcher(target:IEventDispatcher=null)
+        public function EventDispatcher( target:IEventDispatcher=null )
         {
             super(target);
             HashCode.initialize(this) ;

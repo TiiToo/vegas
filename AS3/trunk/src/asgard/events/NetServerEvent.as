@@ -23,18 +23,20 @@
 
 package asgard.events
 {
-	import flash.events.Event;
-	
 	import asgard.net.NetServerConnection;
 	import asgard.net.NetServerInfo;
 	import asgard.net.NetServerStatus;
+	
+	import flash.events.Event;
+	
+	import vegas.events.BasicEvent;
 	
 	/**
 	 * This Event contains the NetServerConnection and status of a connection in the application.
 	 * @author eKameleon
  	 * @version 1.0.0.0
 	 */	
-	public class NetServerEvent extends Event
+	public class NetServerEvent extends BasicEvent    
 	{
 		
 		/**

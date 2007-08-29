@@ -86,14 +86,15 @@ class vegas.data.array.ArrayFilter extends AbstractCoreEventDispatcher
 
 	/**
 	 * Creates a new ArrayFilter instance.
+	 * @param value the default filter value of this instance. If this argument is null the filter value is ArrayFilter.NONE(0). 
 	 * @param bGlobal the flag to use a global event flow or a local event flow.
 	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */
-	public function ArrayFilter(bGlobal:Boolean , sChannel:String  ) 
+	public function ArrayFilter( value:Number, bGlobal:Boolean , sChannel:String  ) 
 	{
-		setGlobal( bGlobal , sChannel ) ;
+		super( bGlobal , sChannel ) ;
 		_eChange = new BasicEvent( CHANGE , this ) ;
-		_filter = NONE ;
+		setFilter( value ) ;
 	}
 	
    	/**

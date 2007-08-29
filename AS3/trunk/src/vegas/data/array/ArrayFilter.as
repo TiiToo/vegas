@@ -86,14 +86,15 @@ package vegas.data.array
     {
         
         /**
-         * Creates a new ArrayFilter instance.
-         * @param bGlobal the flag to use a global event flow or a local event flow.
-         * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
-         */
-        public function ArrayFilter(bGlobal:Boolean=false, sChannel:String=null)
+          * Creates a new ArrayFilter instance.
+          * @param value the default filter value of this instance. If this argument is null the filter value is ArrayFilter.NONE(0). 
+          * @param bGlobal the flag to use a global event flow or a local event flow.
+          * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+          */
+        public function ArrayFilter( value:uint=0, bGlobal:Boolean=false, sChannel:String=null)
         {
             super(bGlobal, sChannel);
-            _filter  = NONE ;
+            setFilter( value ) ;
             _eChange = new BasicEvent( CHANGE , this ) ;
         }
 

@@ -26,6 +26,7 @@ package asgard.net
 
 	import asgard.events.NetServerEvent;
 	
+	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.events.NetStatusEvent;
 	import flash.events.SecurityErrorEvent;
@@ -39,13 +40,17 @@ package asgard.net
 	import vegas.core.IHashable;
 	import vegas.core.IRunnable;
 	import vegas.core.ISerializable;
+	import vegas.events.EventDispatcher;
+	import vegas.events.IEventDispatcher;
+	import vegas.logging.ILogable;
+	import vegas.logging.ILogger;
 	import vegas.util.ClassUtil;
 
 	/**
  	 * This class extends the NetConnection class and defined an implementation based on VEGAS to used Flash Remoting or Flash MediaServer (with AMF protocol).
 	 * @author eKameleon
 	 */	
-	public class NetServerConnection extends NetConnection implements ICloneable, IHashable, IRunnable, ISerializable
+	public class NetServerConnection extends NetConnection implements ICloneable, IEventDispatcher, IHashable, ILogable, IRunnable, ISerializable
 	{
 		
 		/**
@@ -53,29 +58,29 @@ package asgard.net
 	 	 * @param bGlobal the flag to use a global event flow or a local event flow.
 		 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 		 */
-		public function NetServerConnection( bGlobal:Boolean = null , sChannel:String = null )
+		public function NetServerConnection( bGlobal:Boolean = false , sChannel:String = null )
 		{
-			super();
 			
-			_eClose = new NetServerEvent( NetServerEvent.CLOSE ) ;
-			_eFinish = new NetServerEvent( NetServerEvent.FINISH ) ;
-			_eStart = new NetServerEvent( NetServerEvent.START ) ;
-			_eStatus = new NetServerEvent( NetServerEvent.NET_STATUS ) ;
-			_eTimeOut = new NetServerEvent( NetServerEvent.TIMEOUT ) ;
+			setGlobal( bGlobal , sChannel ) ;	
 			
 			_timer = new Timer(DEFAULT_DELAY, 1) ;
 			
-			objectEncoding = ObjectEncoding.AMF0 ; // DEFAULT
+			objectEncoding = ObjectEncoding.AMF0 ; // DEFAULT AMF0
 			
-			addEventListener( IOErrorEvent.IO_ERROR , onIOError) ;
-			addEventListener( NetStatusEvent.NET_STATUS, _onStatus) ;
-			addEventListener( SecurityErrorEvent.SECURITY_ERROR, onSecurityError);
+			initEvent() ;
+			
+			addEventListener( IOErrorEvent.IO_ERROR             , onIOError) ;
+			addEventListener( NetStatusEvent.NET_STATUS         , _onStatus) ;
+			addEventListener( SecurityErrorEvent.SECURITY_ERROR , onSecurityError);
 			
 		}
 		
-		static private var _initHashCode:Boolean = HashCode.initialize(NetServerConnection.prototype) ;
+		private static var _initHashCode:Boolean = HashCode.initialize(NetServerConnection.prototype) ;
 		
-		static public const DEFAULT_DELAY:uint = 8000 ; // 8 secondes
+		/**
+	     * The default internal timeout delay value in milliseconds.
+	     */
+		public static const DEFAULT_DELAY:uint = 8000 ; // 8 secondes
 		
 		public var noEvent:Boolean = false ;
 		
@@ -92,22 +97,80 @@ package asgard.net
 		 * Close the connection.
 		 * @param noEvent if this argument is {@code true} the event propagation is disabled.
 		 */		
-		override public function close():void 
+		public override function close():void 
 		{
 			super.close() ;
 			_timer.stop() ;
-			if (!noEvent) notifyClose() ;
+			if (!noEvent) 
+			{
+			    notifyClose() ;
+			}
 		}
 
 		/**
 		 * Connect the client with this method.
 		 */
-		override public function connect(command:String, ... arguments):void
+		public override function connect(command:String, ... arguments):void
 		{
 			notifyStarted() ;
 			super.connect.apply(this, [command].concat(arguments)) ;
 		}
-		
+
+    	/**
+    	 * Returns and creates a new empty ModelObjectEvent. You can override this method.
+    	 * @param type the type of the event.
+    	 * @return a new empty ModelObjectEvent with the type specified in argument.
+    	 */
+	    public function createNewEvent( type:String ):NetServerEvent
+	    {
+    		return new NetServerEvent( type || null , this ) ;
+    	}
+
+    	/**
+    	 * Returns the event name use in the connection is closed.
+    	 * @return the event name use in the connection is closed.
+    	 */
+	    public function getEventTypeCLOSE():String
+	    {
+    		return _eClose.type ;
+    	}
+    
+    	/**
+	     * Returns the event name use in the connection is finished.
+	     * @return the event name use in the connection is finished.
+	     */
+	    public function getEventTypeFINISH():String
+	    {
+    		return _eFinish.type ;
+    	}
+        	
+    	/**
+    	 * Returns the event name use in the connection is started.
+	     * @return the event name use in the connection is started.
+	     */
+    	public function getEventTypeSTART():String
+    	{
+		    return _eStart.type ;
+	    }
+    	
+    	/**
+	     * Returns the event name use in the connection status changed.
+	     * @return the event name use in the connection status changed.
+	     */
+	    public function getEventTypeSTATUS():String
+	    {
+            return _eStatus.type ;
+	    }
+    
+        /**
+	     * Returns the event name use in the connection is out of time.
+    	 * @return the event name use in the connection is out of time.
+    	 */
+	    public function getEventTypeTIMEOUT():String
+	    {
+    		return _eTimeOut.type ;
+    	}
+
 		/**
 		 * Returns timeout interval duration.
 		 */
@@ -116,15 +179,125 @@ package asgard.net
 			return _timer.delay ;
 		}
 		
-		public function getTimeoutPolicy():TimeoutPolicy {
+    	/**
+	     * Returns the singleton instance of class.
+	     * @return singleton instance of class.
+	     */
+	    public static function getInstance():NetServerConnection
+	    {
+    		if ( _instance == null )
+		    {
+    			_instance = new NetServerConnection() ;
+		    }
+		    return _instance ;
+	    }
+		
+    	/**
+	     * Returns the value of the isGlobal flag of this model.
+	     * @return {@code true} if the model use a global EventDispatcher to dispatch this events.
+	     */
+	    public function getIsGlobal():Boolean 
+	    {
+    		return _isGlobal ;
+    	}
+    	
+    	/**
+    	 * Returns the internal {@code ILogger} reference of this {@code ILogable} object.
+    	 * @return the internal {@code ILogger} reference of this {@code ILogable} object.
+    	 */
+    	public function getLogger():ILogger
+    	{
+		    return _logger ; 	
+	    }
+	
+	    /**
+	     * Returns the TimeoutPolicy value of this object.
+	     * @return the TimeoutPolicy value of this object.
+	     * @see TimeoutPolicy
+	     */
+		public function getTimeoutPolicy():TimeoutPolicy 
+		{
 			return _policy ;	
 		}
-		
+	
+	    /**
+	     * Returns a hash code value for the object.
+	     * @return a hash code value for the object.
+	     */
 		public function hashCode():uint
 		{
 			return null ;
 		}
 		
+    	/**
+    	 * This method is invoqued in the constructor of the class to initialize all events.
+    	 * Overrides this method.
+    	 */
+    	public function initEvent():void
+    	{
+    	    _eClose = new NetServerEvent( NetServerEvent.CLOSE ) ;
+			_eFinish = new NetServerEvent( NetServerEvent.FINISH ) ;
+			_eStart = new NetServerEvent( NetServerEvent.START ) ;
+			_eStatus = new NetServerEvent( NetServerEvent.NET_STATUS ) ;
+			_eTimeOut = new NetServerEvent( NetServerEvent.TIMEOUT ) ;
+	    }
+	    
+	    /**
+	     * Creates and returns the internal {@code EventDispatcher} reference (this method is invoqued in the constructor).
+	     * You can overrides this method if you wan use a global {@code EventDispatcher} singleton.
+	     * @return the internal {@code EventDispatcher} reference.
+	     */
+	    public function initEventDispatcher():EventDispatcher 
+	    {
+    		return new EventDispatcher( this ) ;
+    	}
+
+    	/**
+    	 * Invoqued when the connection is closed.
+    	 */
+		protected function notifyClose():void 
+		{
+			dispatchEvent( _eClose ) ;	
+		}
+
+    	/**
+	     * Invoqued when the connection is finished.
+    	 */
+		protected function notifyFinished():void 
+		{
+			dispatchEvent(_eFinish) ;
+		}
+
+    	/**
+    	 * Invoqued when the connection is started.
+    	 */
+		protected function notifyStarted():void 
+		{
+			_timer.start() ;
+			dispatchEvent( _eStart ) ;
+		}
+		
+    	/**
+    	 * Invoqued when the status of the connection is changed.
+    	 */
+		protected function notifyStatus( status:NetServerStatus , info:* = null ):void 
+		{
+			_eStatus.setInfo(info) ;
+			_eStatus.setStatus(status) ;
+			dispatchEvent( _eStatus ) ;	
+		}
+	
+    	/**
+	     * Invoqued when the connection is timeout.
+	     */
+	    protected function notifyTimeOut():void
+		{
+			dispatchEvent(_eTimeOut) ;	
+		}
+
+	    /**
+	     * Runs the process of this NetServerConnection.
+	     */
 		public function run( ...arguments:Array ):void 
 		{
 			connect(uri) ;	
@@ -139,7 +312,66 @@ package asgard.net
 			if (useSeconds) t = Math.round(t * 1000) ;
 			_timer.delay = t ;
 		}
-		
+
+    	/**
+	     * Sets the internal {@code EventDispatcher} reference.
+	     */
+	    public function setEventDispatcher( e:EventDispatcher ):void 
+	    {
+    		_dispatcher = e || initEventDispatcher() ;
+    	}
+
+	    /**
+	     * Sets the event name use in the connection is closed.
+	     */
+	    public function setEventTypeCLOSE( type:String ):void
+	    {
+    		_eClose.type = type ;
+    	}
+
+    	/**
+	     * Sets the event name use in the connection is finished.
+	     */
+	    public function setEventTypeFINISH( type:String ):void
+	    {
+    		_eFinish.type = type ;
+    	}
+	
+    	/**
+	     * Sets the event name use in the connection is started.
+	     */
+    	public function setEventTypeSTART( type:String ):void
+	    {
+    		_eStart.type = type ;
+    	}
+	    
+	    /**
+	     * Sets the event name use in the connection status changed.
+	     */
+	    public function setEventTypeSTATUS( type:String ):void
+	    {
+    		_eStatus.type = type ;
+    	}
+        
+	    /**
+	     * Sets the event name use in the connection is out of time.
+	     */
+	    public function setEventTypeTIMEOUT( type:String ):void
+	    {
+    		_eTimeOut.type = type ;
+    	}
+
+    	/**
+    	 * Sets if the model use a global {@code EventDispatcher} to dispatch this events, if the {@code flag} value is {@code false} the model use a local EventDispatcher.
+    	 * @param flag the flag to use a global event flow or a local event flow.
+	     * @param channel the name of the global event flow if the {@code flag} argument is {@code true}.  
+	     */
+    	public function setGlobal( flag:Boolean , channel:String ):void 
+    	{
+		    _isGlobal = flag ;
+    		setEventDispatcher( flag ? EventDispatcher.getInstance( channel ) : null ) ;
+        }
+
 		/**
 		 * Use limit timeout interval.
 		 * @see TimeoutPolicy
@@ -157,66 +389,79 @@ package asgard.net
 			}
 		}
 		
+    	/**
+    	 * Sets the internal {@code ILogger} reference of this {@code ILogable} object.
+    	 */
+	    public function setLogger( log:ILogger ):void 
+    	{
+		    _logger = log ;
+	    }
+		
+    	/**
+	     * Use this method to dispatch in FMS application an event.
+	     */
+	    public function sharedEvent( event:* = null , context:* = null ):void 
+	    {
+    		if (event is Event) 
+		    {
+    			this.call( event.type, null, event ) ;
+		    }
+		    else if ( event is String ) 
+		    {
+    			this.call( event, null, context ) ;
+		    }
+	    }
+	
+    	/**
+    	 * Returns the string Eden representation of this object.
+    	 * @return the string Eden representation of this object.
+    	 */
 		public function toSource(...arguments:Array):String
 		{
 			return "new asgard.net.NetServerConnection()" ;
 		}
-		
-		override public function toString():String
+	
+	    /**
+	     * Returns the string representation of this object.
+	     * @return the string representation of this object.
+	     */
+		public override function toString():String
 		{
 			return "[" + ClassUtil.getName(this) + "]" ;
-		}
-		
-		protected function notifyClose():void 
-		{
-			dispatchEvent( _eClose ) ;	
-		}
-		
-		protected function notifyFinished():void 
-		{
-			dispatchEvent(_eFinish) ;
-		}
-		
-		protected function notifyStarted():void 
-		{
-			_timer.start() ;
-			dispatchEvent( _eStart ) ;
-		}
-		
-		protected function notifyStatus( status:NetServerStatus , info:* = null ):void 
-		{
-			_eStatus.setInfo(info) ;
-			_eStatus.setStatus(status) ;
-			dispatchEvent( _eStatus ) ;	
-		}
-		
-		protected function notifyTimeOut():void
-		{
-			dispatchEvent(_eTimeOut) ;	
 		}
 		
 		protected function onIOError(e:IOErrorEvent):void
 		{
 			_timer.stop() ;
-			trace("> " + this + "onIOError : " + e) ;
 			notifyFinished() ;
 		}
 		
 		protected function onSecurityError(e:SecurityErrorEvent):void
 		{
 			_timer.stop() ;
-			trace("> " + this + "onSecurityError : " + e) ;
 			notifyFinished() ;
 		}
 		
-		// ----o Private Properties
+		private var _dispatcher:EventDispatcher ;
 		
 		private var _eClose:NetServerEvent ;
+
 		private var _eFinish:NetServerEvent ;
+
 		private var _eStart:NetServerEvent ;
+
 		private var _eStatus:NetServerEvent ;
+
 		private var _eTimeOut:NetServerEvent ;
+
+	    private static var _instance:NetServerConnection;
+	    
+	    private var _isGlobal:Boolean ;
+	    
+	    private var _logger:ILogger ;
+
 		private var _policy:TimeoutPolicy ;
+
 		private var _timer:Timer ;
 		
 		private function _onStatus( e:NetStatusEvent ):void
@@ -232,48 +477,53 @@ package asgard.net
 			{
 				
 				case NetServerStatus.BAD_VERSION :
-					notifyStatus( NetServerStatus.BAD_VERSION ) ;
+				{
+					notifyStatus( NetServerStatus.BAD_VERSION , e.info) ;
 					break ;
-				
+				}
 				case NetServerStatus.CLOSED :
-					notifyStatus(NetServerStatus.CLOSED) ;
+				{
+					notifyStatus(NetServerStatus.CLOSED, e.info) ;
 					break ;
-				
+				}
 				case NetServerStatus.FAILED :
+				{
 					notifyStatus(NetServerStatus.FAILED, e.info) ;
 					break ;
-				
+				}
 				case NetServerStatus.INVALID :
-					notifyStatus(NetServerStatus.INVALID) ;
+				{
+					notifyStatus(NetServerStatus.INVALID, e.info) ;
 					break ;
-					
+				}	
 				case NetServerStatus.REJECTED :
-					notifyStatus(NetServerStatus.REJECTED) ;
+				{
+					notifyStatus(NetServerStatus.REJECTED, e.info) ;
 					break ;
-				
+				}
 				case NetServerStatus.SHUTDOWN :
-					notifyStatus(NetServerStatus.SHUTDOWN) ;
+				{
+					notifyStatus(NetServerStatus.SHUTDOWN, e.info) ;
 					break ;
-				
+				}
 				case NetServerStatus.SUCCESS :
-					notifyStatus(NetServerStatus.SUCCESS) ;
+				{
+					notifyStatus(NetServerStatus.SUCCESS, e.info) ;
 					break ;
-				
+				}
 			}
-			
 			notifyFinished() ;
-			
 		}
 		
+		/**
+	     * Invoqued when the connection is out of time.
+	     */
 		public function _onTimeOut(e:TimerEvent):void 
 		{
-			
-			_timer.stop() ;
-			
-			notifyTimeOut() ;
-			notifyFinished() ;
-			close() ;
-			
+			this._timer.stop() ;
+    		this.notifyTimeOut() ;
+			this.notifyFinished() ;
+			this.close() ;
 		}
 		
 		

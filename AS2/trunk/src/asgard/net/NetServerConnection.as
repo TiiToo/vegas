@@ -61,10 +61,15 @@ class asgard.net.NetServerConnection extends NetConnection implements Action, IE
 	function NetServerConnection( bGlobal:Boolean , sChannel:String ) 
 	{
 		setGlobal( bGlobal , sChannel ) ;	
-		_timer   = new Timer(8000, 1) ;
+		_timer   = new Timer(DEFAULT_DELAY, 1) ;
 		_timeOut = new Delegate(this, _onTimeOut) ;		
 		initEvent() ;
 	}
+
+	/**
+	 * The default internal timeout delay value in milliseconds.
+	 */
+	public static var DEFAULT_DELAY:Number = 8000 ; // 8 secondes
 
 	/**
 	 * (read-only) Returns the value of the isGlobal flag of this model. Use the {@code setGlobal} method to modify this value.
@@ -427,14 +432,6 @@ class asgard.net.NetServerConnection extends NetConnection implements Action, IE
 	}
 
 	/**
-	 * Sets the internal {@code EventDispatcher} reference.
-	 */
-	public function setEventDispatcher( e:EventDispatcher ):Void 
-	{
-		_dispatcher = e || initEventDispatcher() ;
-	}
-
-	/**
 	 * Set timeout interval duration.
 	 */
 	public function setDelay(n:Number, useSeconds:Boolean):Void 
@@ -442,6 +439,14 @@ class asgard.net.NetServerConnection extends NetConnection implements Action, IE
 		var t:Number = (n > 0) ? n : 0 ;
 		if (useSeconds) t = Math.round(t * 1000) ;
 		_timer.setDelay(t) ;
+	}
+
+	/**
+	 * Sets the internal {@code EventDispatcher} reference.
+	 */
+	public function setEventDispatcher( e:EventDispatcher ):Void 
+	{
+		_dispatcher = e || initEventDispatcher() ;
 	}
 
 	/**
