@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -40,7 +40,7 @@ class asgard.net.NetServerGateway extends CoreObject
 {
 	
 	/**
-	 * Creates a new Gateway instance.
+	 * Creates a new NetServerGateway instance.
 	 */
 	public function NetServerGateway() 
 	{
@@ -72,6 +72,19 @@ class asgard.net.NetServerGateway extends CoreObject
 	public function getController():FrontController 
 	{
 		return _controller ;
+	}
+
+	/**
+	 * Returns the singleton instance of class.
+	 * @return singleton instance of class.
+	 */
+	public static function getInstance():NetServerGateway 
+	{
+		if ( _instance == null )
+		{
+			_instance = new NetServerGateway() ;
+		}
+		return _instance ;
 	}
 
 	/**
@@ -153,6 +166,12 @@ class asgard.net.NetServerGateway extends CoreObject
 	}
 
 	private var _connection:NetServerConnection ;
+	
 	private var _controller:FrontController ;
 
+	/**
+	 * The internal singleton reference of this class.
+	 */
+	private static var _instance : NetServerGateway;
+	
 }

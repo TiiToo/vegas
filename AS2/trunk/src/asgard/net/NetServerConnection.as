@@ -256,6 +256,19 @@ class asgard.net.NetServerConnection extends NetConnection implements Action, IE
 	}
 
 	/**
+	 * Returns the singleton instance of class.
+	 * @return singleton instance of class.
+	 */
+	public static function getInstance():NetServerConnection
+	{
+		if ( _instance == null )
+		{
+			_instance = new NetServerConnection() ;
+		}
+		return _instance ;
+	}
+
+	/**
 	 * Returns the value of the isGlobal flag of this model.
 	 * @return {@code true} if the model use a global EventDispatcher to dispatch this events.
 	 */
@@ -555,6 +568,7 @@ class asgard.net.NetServerConnection extends NetConnection implements Action, IE
 	private var _eStart:NetServerEvent ;
 	private var _eStatus:NetServerEvent ;
 	private var _eTimeOut:NetServerEvent ;
+	private static var _instance:NetServerConnection;
 	private var _isGlobal:Boolean ;
 	private var _logger:ILogger ;
 	private var _policy:NetServerPolicy ;
