@@ -5,52 +5,70 @@ document.quicknavBasePath="../../index-files";
 <span class="lineno" id="2">     2  </span><span class="key">import</span> andromeda.model.IValueObject;
 <span class="lineno" id="3">     3  </span>
 <span class="lineno" id="4">     4  </span><span class="key">import</span> vegas.core.CoreObject;
-<span class="lineno" id="5">     5  </span><span class="key">import</span> vegas.util.ConstructorUtil;
-<span class="lineno" id="6">     6  </span>
-<span class="lineno" id="7">     7  </span><span class="comment doc">/**
-<span class="lineno" id="8">     8  </span> * This class is a basic implementation of the IValueObject interface. This class is really useful with a remote 'AMF' value object.
-<span class="lineno" id="9">     9  </span> * @author eKameleon
-<span class="lineno" id="10">    10  </span> */</span>
-<span class="lineno" id="11">    11  </span><span class="key">class</span> andromeda.model.SimpleValueObject <span class="key">extends</span> CoreObject <span class="key">implements</span> IValueObject 
-<span class="lineno" id="12">    12  </span>{
-<span class="lineno" id="13">    13  </span>	
-<span class="lineno" id="14">    14  </span>	<span class="comment doc">/**
-<span class="lineno" id="15">    15  </span>	 * Creates a new SimpleValueObject instance.
-<span class="lineno" id="16">    16  </span>	 */</span>
-<span class="lineno" id="17">    17  </span>	<span class="key">public</span> <span class="key">function</span> SimpleValueObject() 
-<span class="lineno" id="18">    18  </span>	{
-<span class="lineno" id="19">    19  </span>		<span class="key">super</span>();
-<span class="lineno" id="20">    20  </span>	}
-<span class="lineno" id="21">    21  </span>
-<span class="lineno" id="22">    22  </span>	<span class="comment doc">/**
-<span class="lineno" id="23">    23  </span>	 * The id of this value object.
-<span class="lineno" id="24">    24  </span>	 */</span>
-<span class="lineno" id="25">    25  </span>	<span class="key">public</span> <span class="key">var</span> id ;
-<span class="lineno" id="26">    26  </span>
-<span class="lineno" id="27">    27  </span>	<span class="comment doc">/**
-<span class="lineno" id="28">    28  </span>	 * Returns the id of the value object.
-<span class="lineno" id="29">    29  </span>	 * @return the id of the value object.
-<span class="lineno" id="30">    30  </span>	 */</span>
-<span class="lineno" id="31">    31  </span>	<span class="key">public</span> <span class="key">function</span> getID() 
-<span class="lineno" id="32">    32  </span>	{
-<span class="lineno" id="33">    33  </span>		<span class="key">return</span> <span class="key">this</span>.id ;
-<span class="lineno" id="34">    34  </span>	}
-<span class="lineno" id="35">    35  </span>	
-<span class="lineno" id="36">    36  </span>	<span class="comment doc">/**
-<span class="lineno" id="37">    37  </span>	 * Sets the id of the value object.
-<span class="lineno" id="38">    38  </span>	 */</span>
-<span class="lineno" id="39">    39  </span>	<span class="key">public</span> <span class="key">function</span> setID(id) : Void 
-<span class="lineno" id="40">    40  </span>	{
-<span class="lineno" id="41">    41  </span>		<span class="key">this</span>.id = id ;		
-<span class="lineno" id="42">    42  </span>	}
-<span class="lineno" id="43">    43  </span>
-<span class="lineno" id="44">    44  </span>	<span class="comment doc">/**
-<span class="lineno" id="45">    45  </span>	 * Returns the {@code String} representation of this object.
-<span class="lineno" id="46">    46  </span>	 * @return the {@code String} representation of this object.
-<span class="lineno" id="47">    47  </span>	 */</span>
-<span class="lineno" id="48">    48  </span>	<span class="key">public</span> <span class="key">function</span> toString():String
-<span class="lineno" id="49">    49  </span>	{
-<span class="lineno" id="50">    50  </span>		<span class="key">return</span> <span class="str_const">"["</span> + ConstructorUtil.getName(<span class="key">this</span>) + <span class="str_const">" "</span> + id + <span class="str_const">"]"</span> ;
-<span class="lineno" id="51">    51  </span>	}
-<span class="lineno" id="52">    52  </span>
-<span class="lineno" id="53">    53  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package andromeda.model" class="button">Package</a></li><li><a href="SimpleValueObject.html" title="Detail of andromeda.model.SimpleValueObject API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
+<span class="lineno" id="5">     5  </span><span class="key">import</span> vegas.core.Identifiable;
+<span class="lineno" id="6">     6  </span><span class="key">import</span> vegas.core.IEquality;
+<span class="lineno" id="7">     7  </span><span class="key">import</span> vegas.util.ConstructorUtil;
+<span class="lineno" id="8">     8  </span>
+<span class="lineno" id="9">     9  </span><span class="comment doc">/**
+<span class="lineno" id="10">    10  </span> * This class is a basic implementation of the IValueObject interface. This class is really useful with a remote 'AMF' value object.
+<span class="lineno" id="11">    11  </span> * @author eKameleon
+<span class="lineno" id="12">    12  </span> */</span>
+<span class="lineno" id="13">    13  </span><span class="key">class</span> andromeda.model.SimpleValueObject <span class="key">extends</span> CoreObject <span class="key">implements</span> IEquality, IValueObject 
+<span class="lineno" id="14">    14  </span>{
+<span class="lineno" id="15">    15  </span>	
+<span class="lineno" id="16">    16  </span>	<span class="comment doc">/**
+<span class="lineno" id="17">    17  </span>	 * Creates a new SimpleValueObject instance.
+<span class="lineno" id="18">    18  </span>	 */</span>
+<span class="lineno" id="19">    19  </span>	<span class="key">public</span> <span class="key">function</span> SimpleValueObject() 
+<span class="lineno" id="20">    20  </span>	{
+<span class="lineno" id="21">    21  </span>		<span class="key">super</span>();
+<span class="lineno" id="22">    22  </span>	}
+<span class="lineno" id="23">    23  </span>
+<span class="lineno" id="24">    24  </span>	<span class="comment doc">/**
+<span class="lineno" id="25">    25  </span>	 * The id of this value object.
+<span class="lineno" id="26">    26  </span>	 */</span>
+<span class="lineno" id="27">    27  </span>	<span class="key">public</span> <span class="key">var</span> id ;
+<span class="lineno" id="28">    28  </span>
+<span class="lineno" id="29">    29  </span>	<span class="comment doc">/**
+<span class="lineno" id="30">    30  </span>	 * Compares the specified object with this object for equality. This method compares the ids of the objects with the {@code Identifiable.getID()} method.
+<span class="lineno" id="31">    31  </span>	 * @return {@code true} if the the specified object is equal with this object.
+<span class="lineno" id="32">    32  </span>	 */</span>
+<span class="lineno" id="33">    33  </span>	<span class="key">public</span> <span class="key">function</span> equals( o ):Boolean
+<span class="lineno" id="34">    34  </span>	{
+<span class="lineno" id="35">    35  </span>		<span class="key">if</span> (o <span class="key">instanceof</span> Identifiable)
+<span class="lineno" id="36">    36  </span>		{
+<span class="lineno" id="37">    37  </span>			<span class="key">return</span> Identifiable(o).getID() == <span class="key">this</span>.getID() ;			
+<span class="lineno" id="38">    38  </span>		}
+<span class="lineno" id="39">    39  </span>		<span class="key">else</span>
+<span class="lineno" id="40">    40  </span>		{
+<span class="lineno" id="41">    41  </span>			<span class="key">return</span> <span class="key">false</span> ;
+<span class="lineno" id="42">    42  </span>		}
+<span class="lineno" id="43">    43  </span>	}
+<span class="lineno" id="44">    44  </span>
+<span class="lineno" id="45">    45  </span>	<span class="comment doc">/**
+<span class="lineno" id="46">    46  </span>	 * Returns the id of the value object.
+<span class="lineno" id="47">    47  </span>	 * @return the id of the value object.
+<span class="lineno" id="48">    48  </span>	 */</span>
+<span class="lineno" id="49">    49  </span>	<span class="key">public</span> <span class="key">function</span> getID() 
+<span class="lineno" id="50">    50  </span>	{
+<span class="lineno" id="51">    51  </span>		<span class="key">return</span> <span class="key">this</span>.id ;
+<span class="lineno" id="52">    52  </span>	}
+<span class="lineno" id="53">    53  </span>	
+<span class="lineno" id="54">    54  </span>	<span class="comment doc">/**
+<span class="lineno" id="55">    55  </span>	 * Sets the id of the value object.
+<span class="lineno" id="56">    56  </span>	 */</span>
+<span class="lineno" id="57">    57  </span>	<span class="key">public</span> <span class="key">function</span> setID(id) : Void 
+<span class="lineno" id="58">    58  </span>	{
+<span class="lineno" id="59">    59  </span>		<span class="key">this</span>.id = id ;		
+<span class="lineno" id="60">    60  </span>	}
+<span class="lineno" id="61">    61  </span>
+<span class="lineno" id="62">    62  </span>	<span class="comment doc">/**
+<span class="lineno" id="63">    63  </span>	 * Returns the {@code String} representation of this object.
+<span class="lineno" id="64">    64  </span>	 * @return the {@code String} representation of this object.
+<span class="lineno" id="65">    65  </span>	 */</span>
+<span class="lineno" id="66">    66  </span>	<span class="key">public</span> <span class="key">function</span> toString():String
+<span class="lineno" id="67">    67  </span>	{
+<span class="lineno" id="68">    68  </span>		<span class="key">return</span> <span class="str_const">"["</span> + ConstructorUtil.getName(<span class="key">this</span>) + <span class="str_const">" "</span> + id + <span class="str_const">"]"</span> ;
+<span class="lineno" id="69">    69  </span>	}
+<span class="lineno" id="70">    70  </span>
+<span class="lineno" id="71">    71  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package andromeda.model" class="button">Package</a></li><li><a href="SimpleValueObject.html" title="Detail of andromeda.model.SimpleValueObject API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
