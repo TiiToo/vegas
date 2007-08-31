@@ -77,11 +77,11 @@ class vegas.data.list.AbstractList extends AbstractCollection implements List
 		return _modCount ;
 	}
 
-	/**
-	 * Inserts the specified element at the specified position in this list (optional operation).
+    /**
+     * Inserts the specified element at the specified position in this list (optional operation).
      * @param id index at which the specified element is to be inserted.
      * @param o element to be inserted.
-	 */
+     */
 	public function insertAt(id:Number, o):Void 
 	{
 		if (id<0 || id>size()) throw new IndexOutOfBoundsError() ;
