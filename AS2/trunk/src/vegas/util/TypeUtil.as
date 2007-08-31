@@ -129,6 +129,17 @@ class vegas.util.TypeUtil
 	
 	/**
 	 * Checks if the passed-in object is a generic object.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.TypeUtil ;
+	 * 
+	 * trace( TypeUtil.isGenericObject( {} ) ) ; // true
+	 * trace( TypeUtil.isGenericObject( new Object() ) ) ; // true
+	 * trace( TypeUtil.isGenericObject( new Date() ) ) ; // false
+	 * trace( TypeUtil.isGenericObject( new vegas.core.CoreObject() ) ) ; // false
+	 * trace( TypeUtil.isGenericObject( new Number(2) ) ) ; // false
+	 * trace( TypeUtil.isGenericObject( 2 ) ) ; // false
+	 * }
 	 * @return {@code true} if the passed-in object is a generic object.
 	 */
 	static public function isGenericObject(o):Boolean

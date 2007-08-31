@@ -29,9 +29,57 @@ import vegas.errors.IllegalArgumentError;
  */
 class vegas.util.MathsUtil 
 {
+
+	/**
+	 * Rounds and returns the ceiling of the specified number or expression. 
+	 * The ceiling of a number is the closest integer that is greater than or equal to the number.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.MathsUtil ;
+	 * var n = MathsUtil.ceil(4.572525153, 2) ;
+	 * trace ("n : " + n) ; // n : 4.58
+	 * 
+	 * var n = MathsUtil.ceil(4.572525153, -1) ;
+	 * trace ("n : " + n) ; // n : 5
+	 * }
+	 * @param n the number to round.
+	 * @param floatCount the count of number after the point.
+	 * @return the ceil value of a number by a count of floating points.
+	 */
+	static public function ceil(n:Number, floatCount:Number):Number 
+	{
+		if (isNaN(n)) 
+		{
+			throw new IllegalArgumentError("MathsUtil.floor, Argument 'n' must not be 'null' or 'undefined'.") ;
+		}
+		var r:Number = 1 ;
+		var i:Number = -1 ;
+		while (++i < floatCount) 
+		{
+			r *= 10 ;
+		}
+		return Math.floor(n*r) / r  ;
+	}
+	
 	
 	/**
 	 * Bounds a numeric value between 2 numbers.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.MathsUtil ;
+	 * 
+	 * var n = MathsUtil.clamp(4, 5, 10) ;
+	 * trace ("n : " + n) ;
+	 * 
+	 * var n = MathsUtil.clamp(12, 5, 10) ;
+	 * trace ("n : " + n) ;
+	 * 
+	 * var n = MathsUtil.clamp(6, 5, 10) ;
+	 * trace ("n : " + n) ;
+	 * 
+	 * var n = MathsUtil.clamp(null, 5, 10) ;
+	 * trace ("n : " + n) ;
+	 * }
 	 * @param value the value to clamp.
 	 * @param min the min value of the range.
 	 * @param max the max value of the range.
@@ -55,7 +103,18 @@ class vegas.util.MathsUtil
 	}
 	
 	/**
-	 * Rounds and returns a number by a count of floating points.
+	 * Rounds and returns the number or expression specified in the parameter n. 
+	 * The floor is the closest integer that is less than or equal to the specified number or expression.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.MathsUtil ;
+	 * 
+	 * var n = MathsUtil.floor(4.572525153, 2) ;
+	 * trace ("n : " + n) ; // n : 4.57
+	 * 
+	 * var n = MathsUtil.floor(4.572525153, -1) ;
+	 * trace ("n : " + n) ; // n : 4
+	 * }
 	 * @param n the number to round.
 	 * @param floatCount the count of number after the point.
 	 * @return the floor value of a number by a count of floating points.
@@ -76,7 +135,13 @@ class vegas.util.MathsUtil
 	}
 	
 	/**
-	 * Returns a percentage or null.
+	 * Returns a percentage value or null.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.MathsUtil ;
+	 * trace( MathsUtil.getPercent( 50 , 100 ) + "%" ) ; // 50%
+	 * trace( MathsUtil.getPercent( 68 , 425 ) + "%" ) ; // 16% 
+	 * }
 	 * @param nValue the current value.
 	 * @param nMax the max value.
 	 * @return a percentage value or null.
@@ -89,6 +154,16 @@ class vegas.util.MathsUtil
 	
 	/**
 	 * Rounds and returns a number by a count of floating points.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.MathsUtil ;
+	 * 
+	 * var n = MathsUtil.round(4.572525153, 2) ;
+	 * trace ("n : " + n) ;
+	 * 
+	 * var n = MathsUtil.round(4.572525153, -1) ;
+	 * trace ("n : " + n) ;
+	 * }
 	 * @param n the number to round.
 	 * @param floatCount the count of number after the point.
 	 * @return the round of a number by a count of floating points.
@@ -110,6 +185,19 @@ class vegas.util.MathsUtil
 	
 	/**
 	 * Returns 1 if the value is positive or -1.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.MathsUtil ;
+	 * 
+	 * n = MathsUtil.sign(-150) ;
+	 * trace ("n : " + n) ;
+	 * 
+	 * n = MathsUtil.sign(200) ;
+	 * trace ("n : " + n) ;
+	 * 
+	 * n = MathsUtil.sign(0) ;
+	 * trace ("n : " + n) ;
+	 * }
 	 * @param n the number to defined this sign.
 	 * @return 1 if the value is positive or -1.
 	 */

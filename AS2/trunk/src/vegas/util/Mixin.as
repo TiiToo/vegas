@@ -53,38 +53,66 @@ class vegas.util.Mixin extends CoreObject implements IRunnable
 		return _ar ;
 	}
 
-	public function getConstructor():Function {
+	/**
+	 * Returns the function constructor to used to create a mixin.
+	 * @return the function constructor to used to create a mixin.
+	 */
+	public function getConstructor():Function 
+	{
 		return _c ;
 	}	
-	
-	public function getTarget() {
+
+	/**
+	 * Returns the target reference to injected new method with the mixin.
+	 * @return the target reference to injected new method with the mixin.
+	 */
+	public function getTarget() 
+	{
 		return _target ;
 	}
 
-	public function run():Void {
-		if ( !_ar || !_c || !_target ) return ;
+	/**
+	 * Runs the process.
+	 */
+	public function run():Void 
+	{
+		if ( !_ar || !_c || !_target ) 
+		{
+			return ;
+		}
 		var instance = new _c() ;
 		var l:Number = _ar.length ;
-		while(--l > -1) {
+		while(--l > -1) 
+		{
 			var prop:String = _ar[l] ;
 			_target[prop] = instance[prop] ; 
 		}
 		_global.ASSetPropFlags(_target, _ar, 1, 1) ;
 	}
 
-	public function setAttributes(ar:Array):Void {
+	/**
+	 * Sets the array of all attributes.
+	 */
+	public function setAttributes(ar:Array):Void 
+	{
 		_ar = ar ;
 	}
 
-	public function setConstructor(f:Function):Void {
+	/**
+	 * Sets the function constructor to used to create a mixin.
+	 */
+	public function setConstructor(f:Function):Void 
+	{
 		_c = f ;
 	}
 
-	public function setTarget(o):Void {
+	/**
+	 * Sets the target reference to injected new method with the mixin.
+	 */
+	public function setTarget(o):Void 
+	{
 		_target = o ;
 	}
-	
-	// ----o Private Properties
 	
 	private var _ar:Array ;
 	private var _c:Function ;
