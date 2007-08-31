@@ -1,1 +1,1 @@
-{project:"EdenLoader",author:"ekameleon",version:"1.0.0.0",mail:"contact@ekameleon.net"}
+{project:"EdenLoader",author:"ekameleon",version:"1.0.0.0",mail:"contact@ekameleon.net", error:new Error("file_error")}
