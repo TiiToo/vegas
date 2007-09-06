@@ -25,6 +25,9 @@ import pegas.process.AbstractAction;
 
 import vegas.events.Delegate;
 
+/**
+ * This {@code Action} object run a proxy method.
+ */
 class pegas.process.ActionProxy extends AbstractAction 
 {
 
@@ -42,14 +45,21 @@ class pegas.process.ActionProxy extends AbstractAction
 	public var func:Function ;
 	public var obj:Object ;
 	
-	public function clone() 
+	/**
+	 * Returns a shallow copy of this object.
+	 * @return a shallow copy of this object.
+	 */
+	/*override*/ public function clone() 
 	{
 		var p:ActionProxy = new ActionProxy(obj, func);
 		p.args = args ;
 		return p ;
 	}
 	
-	public function run():Void 
+	/**
+	 * Run the process.
+	 */
+	/*override*/ public function run():Void 
 	{
 		notifyStarted() ;
 		_setRunning(true) ;

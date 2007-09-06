@@ -127,7 +127,9 @@ package vegas.string.eden
         {
             var i:uint;
 			
-            if( (num.indexOf( "." ) > -1) || (num.indexOf( "e" ) > -1) || (num.indexOf( "E" ) > -1) )
+			var s:String = num as String ;
+			
+            if( ( num.indexOf( "." ) > -1) || (num.indexOf( "e" ) > -1) || (num.indexOf( "E" ) > -1) )
             {
                 return false ;
             }
@@ -240,6 +242,7 @@ package vegas.string.eden
 		 */
 		public function isReservedKeyword( identifier:String ):Boolean
         {
+			
 			if( !Config.strictMode )
             {
 				identifier = identifier.toLowerCase();
@@ -272,14 +275,16 @@ package vegas.string.eden
 				case "void":
 				case "while": 
 				case "with":
+				{
 				
 					var formatter:* = new StringFormatter( strings.reservedKeyword ) ;
 					log( formatter.format( identifier ) ) ;
 					return true ;
-				
+				}
 				default:
-				
+				{
 					return false ;
+				}
             }
         }
 		

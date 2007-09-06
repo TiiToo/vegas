@@ -134,7 +134,7 @@ class pegas.process.Pause extends AbstractAction
 	}
 
 	/**
-	 * Returns a Eden reprensation of the object.
+	 * Returns a eden reprensation of the object.
 	 * @return a string representing the source code of the object.
 	 */
 	/*override*/ public function toSource(indent:Number, indentor:String):String 

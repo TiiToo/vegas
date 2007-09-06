@@ -23,30 +23,29 @@
 
 package asgard.net
 {
-
-	import asgard.events.NetServerEvent;
-	
-	import flash.events.Event;
-	import flash.events.IOErrorEvent;
-	import flash.events.NetStatusEvent;
-	import flash.events.SecurityErrorEvent;
-	import flash.events.TimerEvent;
-	import flash.net.NetConnection;
-	import flash.net.ObjectEncoding;
-	import flash.utils.Timer;
-	
-	import vegas.core.HashCode;
-	import vegas.core.ICloneable;
-	import vegas.core.IHashable;
-	import vegas.core.IRunnable;
-	import vegas.core.ISerializable;
-	import vegas.events.EventDispatcher;
-	import vegas.events.IEventDispatcher;
-	import vegas.logging.ILogable;
-	import vegas.logging.ILogger;
-	import vegas.util.ClassUtil;
-
-	/**
+    import flash.events.Event;
+    import flash.events.IOErrorEvent;
+    import flash.events.NetStatusEvent;
+    import flash.events.SecurityErrorEvent;
+    import flash.events.TimerEvent;
+    import flash.net.NetConnection;
+    import flash.net.ObjectEncoding;
+    import flash.utils.Timer;
+    
+    import asgard.events.NetServerEvent;
+    
+    import vegas.core.HashCode;
+    import vegas.core.ICloneable;
+    import vegas.core.IHashable;
+    import vegas.core.IRunnable;
+    import vegas.core.ISerializable;
+    import vegas.events.EventDispatcher;
+    import vegas.events.IEventDispatcher;
+    import vegas.logging.ILogable;
+    import vegas.logging.ILogger;
+    import vegas.util.ClassUtil;
+    
+    /**
  	 * This class extends the NetConnection class and defined an implementation based on VEGAS to used Flash Remoting or Flash MediaServer (with AMF protocol).
 	 * @author eKameleon
 	 */	
@@ -295,6 +294,14 @@ package asgard.net
 			dispatchEvent(_eTimeOut) ;	
 		}
 
+       /**
+        * Registers an {@code EventListener} object with an EventDispatcher object so that the listener receives notification of an event.
+        */
+       public function registerEventListener(type:String, listener:*, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void 
+       {
+           // TODO finish this implementation.           
+       }
+
 	    /**
 	     * Runs the process of this NetServerConnection.
 	     */
@@ -404,7 +411,7 @@ package asgard.net
 	    {
     		if (event is Event) 
 		    {
-    			this.call( event.type, null, event ) ;
+    			this.call( (event as Event).type, null, event ) ;
 		    }
 		    else if ( event is String ) 
 		    {
@@ -429,6 +436,14 @@ package asgard.net
 		{
 			return "[" + ClassUtil.getName(this) + "]" ;
 		}
+		
+	    /**
+         * Removes an {@code EventListener} from the EventDispatcher object.
+         */
+       public function unregisterEventListener(type:String, listener:*, useCapture:Boolean = false):void 
+       {
+           // TODO finish this implementation
+       }
 		
 		protected function onIOError(e:IOErrorEvent):void
 		{

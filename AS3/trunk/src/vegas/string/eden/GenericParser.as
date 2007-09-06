@@ -75,20 +75,21 @@ package vegas.string.eden
 	        
         }
 		
-		
-    	// ----o Public Properties
-		
         public var source:String;
+
 	    public var pos:Number;
+
 	    public var ch:String;
 	    
 	    public var log:Function;
+
 	    public var onParsed:Function;
+
 	  	public var isAuthorized:Function;
+
 	    public var addAuthorized:Function;
+
 	    public var removeAuthorized:Function;
-		
-	   	// ----o Public Methods
 		
 	    /**
 		 *Method: getCharAt
@@ -135,7 +136,7 @@ package vegas.string.eden
 		 */
     	public function eval( ...arguments:Array ):*
         {
-        
+        	return null ;
         }
 		
 	    /**

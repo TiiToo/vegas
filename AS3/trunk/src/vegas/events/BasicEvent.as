@@ -23,11 +23,10 @@
 
 package vegas.events 
 {
-	
-	import flash.events.Event;
-	import flash.events.EventPhase;
-	import vegas.util.ClassUtil;
-	
+    import flash.events.Event;
+    
+    import vegas.util.ClassUtil;
+    
 	/**
 	 * {@code BasicEvent} is the basical event structure to work with {@link vegas.events.EventDispatcher}.
 	 * <p><b>Example</b></p>

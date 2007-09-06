@@ -92,7 +92,7 @@ package vegas.events.dom
 		/**
 	     * Sets the context of this event.
 	     */
-		function setContext(context:*=null):void ;
+		function setContext( context:* =null ):void ;
 		
 		/**
 	     * Sets the current target of this event in a bubbling or capturing phase.

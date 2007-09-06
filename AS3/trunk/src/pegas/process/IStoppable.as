@@ -21,20 +21,21 @@
   
 */
 
-package vegas.data
+package pegas.process
 {
 	
-	/**
-	 * Defines a map that allows bidirectional lookup between key and values.
-	 * @author eKameleon
-	 */
-	public interface BidiMap extends Map
+    /**
+     * This interface provides a stoppable process. 
+     * @author ekameleon
+     */
+	public interface ILockable
 	{
-		
-		/**
-		 * Gets a view of this map where the keys and values are reversed.
-		 */
-		function inverseBidiMap():Map ;
-		
+
+    	/**
+    	 * Stop the process.
+    	 */
+    	function stop():Boolean ;
+	
 	}
+	
 }

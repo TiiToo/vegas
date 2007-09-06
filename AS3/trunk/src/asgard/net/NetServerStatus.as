@@ -23,8 +23,9 @@
 
 package asgard.net
 {
-	import vegas.core.CoreObject;
-	
+    
+    import vegas.core.CoreObject;
+    
 	/**
 	 * Defines the NetServer status.
 	 * @author eKameleon

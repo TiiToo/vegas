@@ -23,16 +23,19 @@
 
 package vegas.events.dom
 {
-	import vegas.util.ClassUtil;
-	import vegas.util.Serializer;
-	
-	public class DomEvent extends BasicEvent implements IEvent
+    import flash.events.Event;
+    
+    import vegas.events.BasicEvent;
+    import vegas.util.ClassUtil;
+    import vegas.util.Serializer;
+    
+    public class DomEvent extends BasicEvent implements IEvent
 	{
 		
-		public function DomEvent(type:String, target:* = null , context:* =null, bubbles:Boolean=false, ...rest:Array)
+		public function DomEvent(type:String, target:Object = null , context:* =null, bubbles:Boolean=false, time:Number = 0 )
 		{
 			
-			super() ;
+			super( type, target, context, bubbles, cancelable, time ) ;
 			
 			_type = type || null ;
 			_target = target ;
@@ -60,7 +63,7 @@ package vegas.events.dom
 			_stop = value ;
 		}
 
-		public function clone():*
+		public override function clone():Event
 		{
 			return new DomEvent(getType(), getTarget(), getContext()) ;
 		}
@@ -109,6 +112,11 @@ package vegas.events.dom
 		{
 			return _type ;
 		}
+
+        public function hashCode() : uint
+        {
+        	return ;
+        }
 
 		public function initEvent(type:String, bubbles:Boolean, cancelable:Boolean):void
 		{
@@ -239,7 +247,8 @@ package vegas.events.dom
 		protected function _setTimeStamp( nTime:Number=NaN ):void 
 		{
 			_time = ( isNaN(nTime) || nTime < 0 ) ? (new Date()).valueOf() : nTime ;	
-		}
+        }        
+        
 
-	}
+    }
 }

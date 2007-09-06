@@ -44,7 +44,7 @@ package vegas.errors
 		/**
 		 * Returns the internal LogEventLevel used in the constructor of this instance.
 		 */
-		public function getLevel():LogEventLevel
+		public override function getLevel():LogEventLevel
 		{
 			return LogEventLevel.WARN ;	
 		}

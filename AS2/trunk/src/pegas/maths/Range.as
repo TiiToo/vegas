@@ -183,7 +183,7 @@ class pegas.maths.Range extends CoreObject implements ICloneable, IEquality
 		var size:Number = range.size() ;
 		var lower:Number = size * lowerMargin ;
 		var upper:Number = size * upperMargin ;
-		return new Range( range.min , range.max ) ;
+		return new Range( range.min - lower , range.max + upper ) ;
 	}
 	
 	/**

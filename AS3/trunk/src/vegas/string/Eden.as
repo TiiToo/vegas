@@ -66,7 +66,7 @@ package vegas.string
 	    /** 
 	     * Display all the logs in the console.
 	     */
-	    static public function showLogs():*
+	    static public function showLogs():void
     	{
     		var l:uint = logs.length ;
         	for( var i:uint=0; i<l ; i++ )

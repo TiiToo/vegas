@@ -21,20 +21,32 @@
   
 */
 
-package vegas.data
+package pegas.process
 {
 	
-	/**
-	 * Defines a map that allows bidirectional lookup between key and values.
-	 * @author eKameleon
-	 */
-	public interface BidiMap extends Map
+    /**
+     * This interface is implemented by all objects lockable.
+     * @author eKameleon
+     */
+	public interface ILockable
 	{
-		
-		/**
-		 * Gets a view of this map where the keys and values are reversed.
-		 */
-		function inverseBidiMap():Map ;
+
+    	/**
+    	 * Returns {@code true} if the object is locked.
+    	 * @return {@code true} if the object is locked.
+    	 */
+    	function isLocked():Boolean ;
+	
+    	/**
+	     * Locks the object.
+    	 */
+    	function lock():void ;
+	
+    	/**
+    	 * Unlocks the object.
+	     */
+	    function unLock():void ; 
 		
 	}
+	
 }

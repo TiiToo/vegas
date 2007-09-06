@@ -23,15 +23,26 @@
 
 package pegas.process
 {
+	
 	import vegas.core.ICloneable;
 	import vegas.core.IRunnable;
 	import vegas.events.IEventDispatcher;
 	
-	public interface IAction extends ICloneable, IRunnable, IEventDispatcher
+    /**
+     * This interface represents a process object.
+     * @author eKameleon
+     */
+	public interface IAction extends ICloneable, IEventDispatcher, IRunnable
 	{
-		
+
+    	/**
+    	 * Notify an ActionEvent when the process is finished.
+    	 */
 		function notifyFinished():void ;
-	
+
+	    /**
+    	 * Notify an ActionEvent when the process is started.
+    	 */
 		function notifyStarted():void ;
 		
 	}

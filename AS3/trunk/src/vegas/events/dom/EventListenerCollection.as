@@ -23,10 +23,15 @@
 
 package vegas.events.dom
 {
-	
-	import vegas.core.CoreObject ;
-	import vegas.data.iterator.Iterable ;
-	
+    import flash.events.Event;
+    
+    import vegas.core.CoreObject;
+    import vegas.data.iterator.Iterable;
+    import vegas.data.iterator.Iterator;
+    import vegas.data.list.SortedArrayList;
+    import vegas.events.EventListener;
+    import vegas.util.ClassUtil;
+    
 	/**
      * Internal class used in the EventDispatcher to collect {@code EventListener} for a specific event type.  
      * @author eKameleon
@@ -155,7 +160,8 @@ package vegas.events.dom
 			return null ;
 		}
 
-	    /**
+import vegas.data.list.SortedArrayList;
+/**
 	     * Returns the number of {@code EventListener} in this collection.
 	     * @return the number of {@code EventListener} in this collection.
 	     */

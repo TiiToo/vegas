@@ -23,16 +23,25 @@
 
 package pegas.colors
 {
-
-	import vegas.core.CoreObject;
-	import vegas.core.IConvertible;
-	import vegas.core.IEquality;
-	import vegas.util.ObjectUtil ;
-	import vegas.util.StringUtil ;
-
-    /**
-     * @author eKameleon
-     */
+    import vegas.core.CoreObject;
+    import vegas.core.IConvertible;
+    import vegas.core.IEquality;
+    import vegas.util.ObjectUtil;
+    import vegas.util.StringUtil;
+    
+	/**
+ 	 * Enumeration static class to defined Basic HTML data types : <a href="http://www.w3.org/TR/html4/types.html">W3C HTML 4 Specifications</a> (chap 6.5)
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import pegas.colors.ColorHTML ;
+	 * 
+	 * var n:Number = ColorHTML.htmlToNumber( "#FF0000" ) ;
+	 * trace("convert #FF0000 : "  + n) ;
+	 * 
+	 * var c:ColorHTML = ColorHTML.YELLOW ;
+	 * trace(c.toString() + " : " + c.valueOf()) ;
+ 	 * }
+ 	 */
 	public class ColorHTML extends CoreObject implements IConvertible, IEquality
 	{
 		

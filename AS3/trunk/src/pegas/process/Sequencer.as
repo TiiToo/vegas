@@ -23,65 +23,91 @@
 
 package pegas.process
 {
-	import pegas.events.ActionEvent;
-	
-	import vegas.core.IRunnable;
-	import vegas.data.iterator.Iterator;
-	import vegas.data.queue.LinearQueue;
-	import vegas.data.queue.TypedQueue;
-	import vegas.util.Serializer;
-	
+    import pegas.events.ActionEvent;
+    
+    import vegas.data.iterator.Iterator;
+    import vegas.data.queue.LinearQueue;
+    import vegas.data.queue.TypedQueue;
+    import vegas.util.Serializer;
+    
 	/**
+	 * A Sequencer of IAction process.
 	 * @author eKameleon
 	 */
-	public class Sequencer extends AbstractAction
+	public class Sequencer extends Action
 	{
 		
-		/**
-		 * Creates a new Sequencer instance.
-		 */
-		public function Sequencer( ar:Array=null )
+    	/**
+	     * Creates a new Sequencer instance.
+    	 * @param ar An Array of {@code Action} objects.
+    	 * @param bGlobal the flag to use a global event flow or a local event flow.
+    	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+    	 */
+		public function Sequencer( ar:Array = null , bGlobal:Boolean = false , sChannel:String = null )
 		{
-		
-			super();
-			
-			_queue = new TypedQueue(IAction, new LinearQueue()) ; 
-			
+			super(bGlobal, sChannel);
+			_queue = new TypedQueue( IAction, new LinearQueue() ) ; 
 			if (ar != null)
 			{
-				var l:uint = ar.length ;
+				var l:Number = ar.length ;
 				if (l>0) 
 				{
 					for (var i:Number = 0 ; i < l ; i++) 
 					{
-						var a:IAction = ar[i] ;
-						if (a is IAction)
+						if (ar[i] is IAction)
 						{
-							addAction(a) ;		
+							addAction(ar[i]) ;		
 						} 
 					}
 				}
 			}
-			
 		}
 		
+    	/**
+    	 * Adds a process(Action) in the Sequencer.
+    	 * @return {@code true} if the method success.
+    	 */
 		public function addAction(action:IAction, isClone:Boolean=false):Boolean 
 		{
-			var a:IAction = action ;
+			var a:IAction = isClone ? action.clone() : action ;
 			var isEnqueue:Boolean = _queue.enqueue(a) ;
 			if (isEnqueue)
 			{
-				a.addEventListener(ActionEvent.FINISH, run) ;
+				a.addEventListener( ActionEvent.FINISH, run ) ;
 			}
 			return isEnqueue ;
 		}
-		
-		public function clear():void 
+
+    	/**
+	     * Removes all process in the Sequencer.
+    	 * @param noEvent A boolean flag to disabled the events dispatched by this method if is {@code true}.
+    	 * @param callback Function to map and check the current process in progress in the sequencer before reset it.
+    	 */
+		public function clear( noEvent:Boolean = false , callback:Function = null ):void 
 		{
-			_queue.clear() ;
+		    if (running) 
+		    {
+			    _cur.removeEventListener( ActionEvent.FINISH, run) ;
+			    if (callback != null)
+			    {
+    				callback.call( this, _cur ) ;
+			    }
+			    setRunning(false) ;
+		    }
+		    _cur = null ;
+		    _queue.clear() ;
+		    if (noEvent) 
+		    {
+		        return ;
+		    }
+		    notifyCleared() ;
 		}
-		
-		override public function clone():*
+
+    	/**
+    	 * Returns a shallow copy of this object.
+    	 * @return a shallow copy of this object.
+    	 */
+		public override function clone():*
 		{
 			var s:Sequencer = new Sequencer() ;
 			var it:Iterator = _queue.iterator() ;
@@ -91,74 +117,112 @@ package pegas.process
 			}
 			return s ;
 		}
-		
-		override public function run(...arguments:Array):void 
+        
+    	/**
+    	 * Returns the current process in progress.
+    	 * @return the current process in progress.
+    	 */
+	    public function getCurrent():IAction
+	    {
+            return _cur ;	
+    	}
+        
+    	/**
+    	 * Launchs the Sequencer with the first element in the internal Queue of this Sequencer.
+    	 */
+		public override function run(...arguments:Array):void 
 		{
-			
 			if (_queue.size() > 0) 
 			{
-				
 				if (!running) 
 				{
 					notifyStarted() ;
 					setRunning(true) ;
 				}
-				
-				notifyProgress() ;
-				
+				else
+				{
+				    notifyProgress() ;
+				}
 				_cur = _queue.poll() ;
-				(_cur as IRunnable).run() ;
-				
+				_cur.run() ;
 			}
 			else 
 			{
-				if ( getRunning() ) 
+			    _cur.removeEventListener( ActionEvent.FINISH, run ) ;
+			    _cur = null ;
+				if ( running() ) 
 				{
 					setRunning(false) ;
 					notifyFinished() ;
 				}
 			}
-			
 		}	
-		
+
+    	/**
+    	 * Returns the numbers of process in this Sequencer.
+    	 * @return the numbers of process in this Sequencer.
+    	 */
 		public function size():uint
 		{
 			return _queue.size() ;
 		}
-		
+
+    	/**
+    	 * Starts the Sequencer if is not in progress.
+    	 */
 		public function start():void 
 		{
-			if ( !getRunning() ) 
+			if ( !running ) 
 			{
 				run() ;
 			}
 		}
 		
-		public function stop(noEvent:Boolean):void 
+    	/**
+    	 * Stops the Sequencer. Stop only the last process if is running.
+    	 * @param noEvent A boolean flag to disabled the events dispatched by this method if is {@code true}.
+    	 * @param callback Function to map and check the current process in progress in the sequencer before reset it.
+    	 */
+		public function stop( noEvent:Boolean = false , callback:Function = null ):void 
 		{
-			if ( getRunning() ) 
+			if ( running ) 
 			{
-				_cur.unregisterEventListener(ActionEvent.FINISH, run) ;
+				_cur.addEventListener(ActionEvent.FINISH, run) ;
+				if (callback != null)
+			    {
+    				callback.call( this, _cur ) ;
+			    }
+			    _cur = null ;
 				setRunning(false) ;
-				if (noEvent) return ;
+				if ( noEvent == true ) 
+				{
+				    return ;
+				}
 				notifyStopped() ;
 				notifyFinished() ;
 			}
 		}
-		
+
+    	/**
+    	 * Returns the array representation of all process in this Sequencer.
+    	 * @return the array representation of all process in this Sequencer.
+    	 */
 		public function toArray():Array 
 		{
 			return _queue.toArray() ;	
 		}
-		
-		override public function toSource(...arguments:Array):String 
+
+    	/**
+    	 * Returns the source of the specified object passed in argument.
+	     * @return the source of the specified object passed in argument.
+    	 */
+		public override function toSource(...arguments:Array):String 
 		{
 			return Serializer.getSourceOf(this, [toArray()]) ;
 		}
 		
-		// ----o Private Properties	
+		private var _cur:IAction ;
 		
-		private var _cur:* ;
 		private var _queue:TypedQueue  ;
 		
 	}

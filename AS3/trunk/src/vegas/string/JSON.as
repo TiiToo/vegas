@@ -39,10 +39,9 @@
 			NOTE : eden Hexa digits code inspiration -> http://code.google.com/p/edenrr/
 
 */
- 
 package vegas.string
 {
-    import vegas.core.IFormattable;
+    
     import vegas.string.errors.JSONError;
     
     /**

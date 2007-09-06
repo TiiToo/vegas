@@ -23,32 +23,42 @@
 
 package vegas.events
 {
-	
-	import flash.events.EventDispatcher;
-	
-	import vegas.core.HashCode;
-	import vegas.data.map.ArrayMap;
-	import vegas.logging.ILogable;
-	import vegas.logging.ILogger;
-	import vegas.util.ClassUtil;
-	import vegas.util.Serializer;
-	
-	public class EventDispatcher extends flash.events.EventDispatcher implements IEventDispatcher, ILogable
+
+    import flash.events.EventDispatcher;
+    
+    import vegas.core.HashCode;
+    import vegas.data.map.ArrayMap;
+    import vegas.logging.ILogable;
+    import vegas.logging.ILogger;
+    import vegas.util.ClassUtil;
+    import vegas.util.Serializer;
+   
+   /**
+    * Stores the listeners object an notifies them with the DOM Events level 2/3 of the W3C.
+    * The EventDispatcher class implements the IEventDispatcher interface. 
+    * This object allows any object to be an {@code EventTarget}.
+    * <p><b>Thanks</b>:</p>
+    * <p>{@code EventDispatcher} is an AS2 port of the <b>Java.schst.net EventDispatcher</b>. Inspired by the NotificationCenter of Apple's Cocoa-Framework.
+    * <li>EventDispatcher JAVA : Stephan Schmid - http://schst.net/</li><li>Cocoa-Framework : http://developer.apple.com/cocoa/</li><li>Notification center : http://developer.apple.com/documentation/Cocoa/Conceptual/Notifications/index.html</li>
+    * </p>
+     * @author eKameleon
+    */
+    public class EventDispatcher extends flash.events.EventDispatcher implements IEventDispatcher, ILogable
     {
-		
+        
         /**
-		 * Aggregates an instance of the EventDispatcher class.
-		 */
-        public function EventDispatcher( target:IEventDispatcher=null )
+         * Aggregates an instance of the EventDispatcher class.
+         */
+        public function EventDispatcher( target:IEventDispatcher = null )
         {
-            super(target);
+            super( target );
             HashCode.initialize(this) ;
-            target = (target == null) ? this : target ;
+            this.target = (target == null) ? this : target ;
         }
  
- 		/**
-	 	 * Determinates the default singleton name.
-		 */
+         /**
+          * Determinates the default singleton name.
+         */
         static public const DEFAULT_SINGLETON_NAME:String = "__default__" ;
         
         /**
@@ -61,64 +71,64 @@ package vegas.events
          */
         VEGAS function addEventListener(type:String, listener:*, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void
         {    
-        	registerEventListener(type, listener, useCapture, priority, useWeakReference) ;
+            registerEventListener(type, listener, useCapture, priority, useWeakReference) ;
         }
         
         /**
-          * Clear all globals EventBroadcaster instances.
-          */
-    	static public function flush():void 
-  	    {
-		    instances.clear() ;
+         * Clear all globals EventBroadcaster instances.
+         */
+        static public function flush():void 
+        {
+            instances.clear() ;
         }
 
         /**
-          * Create and return a globalEventBroadcaster instance.
-          */
-	    static public function getInstance(name:String=null):vegas.events.EventDispatcher
-	    {
-		    
-		    if (name == null) 
-		    {
-		    	name = DEFAULT_SINGLETON_NAME ;
-		    }
-		    
-    		if (! instances.containsKey(name)) 
-    		{
-    			instances.put(name, new vegas.events.EventDispatcher()) ;
-    		}
+         * Create and return a globalEventBroadcaster instance.
+         */
+        static public function getInstance(name:String=null):vegas.events.EventDispatcher
+        {
+            
+            if (name == null) 
+            {
+                name = DEFAULT_SINGLETON_NAME ;
+            }
+            
+            if (! instances.containsKey(name)) 
+            {
+                instances.put(name, new vegas.events.EventDispatcher()) ;
+            }
 
-    		return vegas.events.EventDispatcher(instances.get(name)) ;
-    		
-	    }
+            return vegas.events.EventDispatcher(instances.get(name)) ;
+            
+        }
  
- 		/**
-		 * Returns the internal {@code ILogger} reference of this {@code ILogable} object.
-		 * @return the internal {@code ILogger} reference of this {@code ILogable} object.
-		 */
-		public function getLogger():ILogger
-		{
-			return _logger ; 	
-		}
+        /**
+         * Returns the internal {@code ILogger} reference of this {@code ILogable} object.
+         * @return the internal {@code ILogger} reference of this {@code ILogable} object.
+         */
+        public function getLogger():ILogger
+        {
+            return _logger ;     
+        }
  
-	 	/**
-	 	 * Returns the name of the display.
-		 * @return the name of the display.
-		 */
-		public function getName():String
-		{
-			return _sName || null ;
-		}
+        /**
+         * Returns the name of the display.
+         * @return the name of the display.
+         */
+        public function getName():String
+        {
+            return _sName || null ;
+        }
  
         /**
          * Returns the hashCode of the EventDispatcher object.
          * @return the hashCode of the EventDispatcher object.
          */
-		public function hashCode():uint 
-		{
-			return null ;
-   		}
-		
+        public function hashCode():uint 
+        {
+            return null ;
+        }
+        
         /**
          * Registers an {@code EventListener} object with an EventDispatcher object so that the listener receives notification of an event.
          */
@@ -144,42 +154,42 @@ package vegas.events
          * Removes a global EventDispatcher instance.
          */
         static public function removeInstance(name:String=null):Boolean 
- 	    {
- 	        if (name == null) name = vegas.events.EventDispatcher.DEFAULT_SINGLETON_NAME ;
-      		if (!instances.containsKey(name)) 
-    		{
-    			return instances.remove(name) != null ;
-	     	}
-	        else 
-	        {
-    			return false ;
-        	}
-	    }
-	    
-		/**
-		 * Sets the internal {@code ILogger} reference of this {@code ILogable} object.
-		 */
-		public function setLogger( log:ILogger ):void 
-		{
-			_logger = log ;
-		}
-		
+         {
+             if (name == null) name = vegas.events.EventDispatcher.DEFAULT_SINGLETON_NAME ;
+              if (!instances.containsKey(name)) 
+            {
+                return instances.remove(name) != null ;
+             }
+            else 
+            {
+                return false ;
+            }
+        }
+        
+        /**
+         * Sets the internal {@code ILogger} reference of this {@code ILogable} object.
+         */
+        public function setLogger( log:ILogger ):void 
+        {
+            _logger = log ;
+        }
+        
         /**
          * Returns a string representing the source code of the EventDispatcher object.
          */
-		public function toSource(...arguments:Array):String 
-		{
-			return "new vegas.events.EventDispatcher(" + Serializer.toSource(target) + ")" ;
-		}
+        public function toSource(...arguments:Array):String 
+        {
+            return "new vegas.events.EventDispatcher(" + Serializer.toSource(target) + ")" ;
+        }
 
         /**
          * Returns a string representing the specified EventDispatcher object (ECMA-262).
          * @return a string representing the specified EventDispatcher object (ECMA-262).
          */
-		override public function toString():String 
-		{
-			return "[" + ClassUtil.getName(this) + "]" ;
-		}
+        override public function toString():String 
+        {
+            return "[" + ClassUtil.getName(this) + "]" ;
+        }
 
         /**
          * Removes an {@code EventListener} from the EventDispatcher object.
@@ -202,20 +212,20 @@ package vegas.events
             
         }
         
-		/**
-		 * The static internal hashmap to register all global instances in your applications.
-		 */	
+        /**
+         * The static internal hashmap to register all global instances in your applications.
+         */    
         static private var instances:ArrayMap = new ArrayMap() ;
 
-		/**
-		 * The internal ILogger reference of this object.
-		 */
-		private var _logger:ILogger ;
+        /**
+         * The internal ILogger reference of this object.
+         */
+        private var _logger:ILogger ;
 
-		/**
-		 * The internal name's property of the instance.
-		 */
-		private var _sName:String = null ;
+        /**
+         * The internal name's property of the instance.
+         */
+        private var _sName:String = null ;
 
     }
     

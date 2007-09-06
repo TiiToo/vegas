@@ -30,22 +30,43 @@ package pegas.maths
 	import vegas.errors.ArgumentOutOfBoundsError;
 	import vegas.errors.IllegalArgumentError;
 	import vegas.util.MathsUtil;
-	
+
+    /**
+     * Represents an immutable range of values.
+     * <p><b>Example :</b></p>
+     * {@code
+     * import pegas.maths.Range ;
+     * 
+     * var r1:Range = new Range(10, 120) ;
+     * var r2:Range = new Range(100, 150) ;
+     * 
+     * trace ("r1 : " + r1) ; // r1 : [Range<10,120>]
+     * trace ("r2 : " + r2) ; // r2 : [Range<100,150>]
+     * 
+     * trace ("r2.toSource() : " + r2.toSource()) ; // r2.toSource() : new pegas.maths.Range(100,150)
+     * trace ("r1 contains 50 : " + r1.contains(50)) ; // r1 contains 50 : true
+     * trace ("r1 isOutOfRange 5 : " + r1.isOutOfRange(5)) ; // r1 isOutOfRange 5 : true
+     * trace ("r1 overlap r2 : " + r1.overlap(r2)) ; // r1 overlap r2 : true
+     * trace ("r1 clamp 5 : " + r1.clamp(5)) ; // r1 clamp 5 : 10
+     * trace ("r1 clamp 121 : " + r1.clamp(121)) ; // r1 clamp 121 : 120
+     * }
+     * @author eKameleon
+     */
     public class Range extends CoreObject implements ICloneable, ICopyable, IEquality
     {
         
 		/**
 		 * Creates a new Range instance.
-		 * use <pre>var r:Range = new Range(p_min:Number, p_max:Number) ;</pre>
+		 * use <pre>var r:Range = new Range( min:Number, max:Number) ;</pre>
 	 	 */ 
-        public function Range(p_min:Number, p_max:Number)
+        public function Range( min:Number, max:Number)
         {
-		    if (p_max < p_min)
+		    if ( max < min)
 		    {
 		        throw new ArgumentOutOfBoundsError("Range constructor : 'max' argument is < of 'min' argument") ;
 		    }
-    		min = p_min ;
-    		max = p_max ;
+    		this.min = min ;
+    		this.max = max ;
         }
 
 		/**
@@ -169,7 +190,7 @@ package pegas.maths
 			var size:Number = range.size() ;
 			var lower:Number = size * lowerMargin ;
 			var upper:Number = size * upperMargin ;
-			return new Range( range.min , range.max ) ;
+			return new Range( range.min - lower , range.max + upper ) ;
 		}
         
 		/**

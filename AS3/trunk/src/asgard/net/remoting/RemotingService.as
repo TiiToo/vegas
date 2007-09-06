@@ -31,7 +31,7 @@ package asgard.net.remoting
 	import asgard.events.RemotingEvent;
 	import asgard.net.TimeoutPolicy;
 	
-	import pegas.process.AbstractAction;
+	import pegas.process.Action;
 	
 	import vegas.core.ICloneable;
 	import vegas.errors.Warning;
@@ -41,7 +41,7 @@ package asgard.net.remoting
 	 * This class provides a service object to communicate with a remoting gateway server.
 	 * @author eKameleon
  	 */
-	public class RemotingService extends AbstractAction implements ICloneable
+	public class RemotingService extends Action implements ICloneable
 	{
 		
 		/**
