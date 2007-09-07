@@ -40,7 +40,7 @@ package pegas.process
 		 */
 		public function Action( bGlobal:Boolean = false , sChannel:String = null )
 		{
-			super(bGlobal, sChannel) ;	
+			super( bGlobal, sChannel ) ;	
 		}
 
 	    /**

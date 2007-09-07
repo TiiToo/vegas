@@ -84,7 +84,7 @@ package asgard.events
 	 	 * Returns a shallow copy of this object.
 		 * @return a shallow copy of this object.
 		 */
-		override public function clone():Event
+		public override function clone():Event
 		{
 			var e:NetServerEvent = new NetServerEvent( type , getConnection(), getStatus(), getInfo()) ;
 			e.setInfo (e.getInfo()) ;

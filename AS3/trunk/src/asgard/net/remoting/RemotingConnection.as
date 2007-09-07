@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is ASGard Framework.
+  The Original Code is ASGard AS3 Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -23,6 +23,7 @@
 
 package asgard.net.remoting
 {
+	
 	import asgard.net.NetServerConnection;
 
 	/**
@@ -33,9 +34,10 @@ package asgard.net.remoting
 	public class RemotingConnection extends NetServerConnection
 	{
 		
-		/**
-		 * Creates a new RemotingConnection instance.
-		 */
+	    /**
+    	 * Creates a new RemotingConnection instance.
+    	 * @param sURL the url of the connection.
+    	 */	
 		public function RemotingConnection( sURL:String = null )
 		{
 			
@@ -51,18 +53,18 @@ package asgard.net.remoting
 		/**
 		 * The string value of the amf server debug attribut.
 		 */
-		static public const AMF_SERVER_DEBUG:String = "amf_server_debug" ;
+		public static const AMF_SERVER_DEBUG:String = "amf_server_debug" ;
 		
 		/**
 		 * The "credentials" constant.
 		 */
-		static public const CREDENTIALS:String = "Credentials" ;
+		public static const CREDENTIALS:String = "Credentials" ;
 		
 		/**
 		 * Returns a shallow copy of this object.
 		 * @return a shallow copy of this object.
 		 */
-		override public function clone():* 
+		public override function clone():* 
 		{
 			return new RemotingConnection( uri ) ;	
 		}
@@ -71,7 +73,7 @@ package asgard.net.remoting
 		 * Returns the RemotingConnection reference defines with the specified url representation.
 		 * @return the RemotingConnection reference defines with the specified url representation.
 		 */
-		static public function getConnection( sUrl:String ):RemotingConnection 
+		public static function getConnection( sUrl:String ):RemotingConnection 
 		{
 			if ( ! RemotingConnectionCollector.contains(sUrl) ) 
 			{

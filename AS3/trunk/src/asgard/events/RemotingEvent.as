@@ -23,38 +23,34 @@
 
 package asgard.events
 {
-	
-	import flash.events.Event;
+
+    import flash.events.Event ;	
+	import vegas.events.BasicEvent ;
 	
 	/**
 	 * The RemotingEvent class.
+	 * @param type the string type of the instance. 
+	 * @param target the target of the event.
+	 * @param context the optional context object of the event.
+	 * @param bubbles indicates if the event is a bubbling event.
+	 * @param cancelable indicates if the event is a cancelable event.
+	 * @param time this optional parameter is used in the eden deserialization to copy the timestamp value of this event.
 	 * @author eKameleon
 	 */
-	public class RemotingEvent extends Event
+	public class RemotingEvent extends BasicEvent
 	{
 		
 		/**
 	 	 * Creates a new RemotingEvent instance.
 		 */
-		public function RemotingEvent
-		(
-			type:String, oResult:* = null, oFault:* = null, sMethodName:String=null, sCode:String=null, slevel:String=null
-			, bubbles:Boolean=false, cancelable:Boolean=false
-		)
+		public function RemotingEvent( type:String , target:Object = null , result:* = null , fault:* = null, methodName:String = null, code:String = null, level:String = null , context:* = null , bubbles:Boolean = false , cancelable:Boolean = false, time:Number = 0 )
 		{
-			
-			super(type, bubbles, cancelable);
-			
-			this.code = sCode ;
-			
-			this.level = slevel ;
-			
-			setMethodName(sMethodName) ;
-			
-			setResult(oResult) ;
-			
-			setFault(oFault) ;
-			
+			super( type, target, context, bubbles, cancelable, time );
+			this.code = code ;
+			this.level = level ;
+			setMethodName( methodName ) ;
+			setResult( result) ;
+			setFault( fault) ;
 		}
 	
 		static public const ERROR:String = "onError" ;	
@@ -76,6 +72,15 @@ package asgard.events
 		{
 			return getResult() ;	
 		}
+		
+		/**
+	 	 * Returns a shallow copy of this object.
+		 * @return a shallow copy of this object.
+		 */
+		public override function clone():Event
+		{
+			return new RemotingEvent( type , target, getResult(), getFault(), getMethodName(), code, level, context ) ;
+    	}
 
 		public function getCode():String 
 		{
@@ -118,11 +123,6 @@ package asgard.events
 		}
 	
 		public function getResult():*
-		{
-			return _result ;	
-		}
-	
-		public function getResults():*
 		{
 			return _result ;	
 		}

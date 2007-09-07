@@ -24,16 +24,18 @@
 package andromeda.events
 {
 
-	import andromeda.model.IModelObject ;
-	import andromeda.model.IValueObject ;
-
+	import andromeda.model.IModelObject;
+	import andromeda.model.IValueObject;
+	
 	import flash.events.Event;
+	
+	import vegas.events.BasicEvent;
 
 	/**
 	 * The ModelObjectEvent is the basic event use in a IModelObject to notify changed.
 	 * @author eKameleon
 	 */
-	public class ModelObjectEvent extends Event
+	public class ModelObjectEvent extends BasicEvent
 	{
 		
 		/**
@@ -41,10 +43,16 @@ package andromeda.events
 		 * @param type the type of the event.
 		 * @param (optional) model the IModelObject reference of this event.
 		 * @param (optional) the IValueObject of this event.
+		 * @param target the target of the event.
+		 * @param info The information object of this event.
+		 * @param context the optional context object of the event.
+		 * @param bubbles indicates if the event is a bubbling event.
+		 * @param cancelable indicates if the event is a cancelable event.
+		 * @param time this optional parameter is used in the eden deserialization to copy the timestamp value of this event.
 		 */	
-		public function ModelObjectEvent(type:String, model:IModelObject=null , vo:IValueObject=null, bubbles:Boolean=false, cancelable:Boolean=false)
+		public function ModelObjectEvent(type:String, model:IModelObject=null , vo:IValueObject=null, target:Object = null , context:* = null, bubbles:Boolean=false, cancelable:Boolean=false , time:Number = 0 )
 		{
-			super(type, bubbles, cancelable);
+			super(type, target, context, bubbles, cancelable, time );
 			setVO( vo ) ;
 			setModel ( model ) ;
 		}
@@ -73,6 +81,15 @@ package andromeda.events
 		 * Default event type when the removeVO method is invoqued.
 		 */
 		static public var UPDATE_VO:String = "onUpdateVO" ;
+		
+		/**
+    	 * Returns the shallow copy of this object.
+    	 * @return the shallow copy of this object.
+    	 */
+		public override function clone():Event 
+		{
+			return new ModelObjectEvent( type, getModel() , getVO(), target, context ) ;
+		}
 		
 		/**
 		 * Returns the IModelObject reference of this event.

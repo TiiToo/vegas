@@ -42,12 +42,12 @@ class asgard.net.remoting.RemotingAuthentification extends CoreObject
 	}
 
 	/**
-	 * The user id.
+	 * Defines and returns an ID of connection to be used to be connected with the server.
 	 */
 	public var userid:String ;
 	
 	/**
-	 * The user password.
+	 * Defines and returns a password of connection to be used to be connected with the server. 
 	 */
 	public var password:String ;
 	

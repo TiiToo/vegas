@@ -104,7 +104,6 @@ package pegas.process
 	     */
 		public function notifyFinished():void 
 		{
-		    trace("end : " + this) ;
 			dispatchEvent(_eFinish) ;
 		}
 

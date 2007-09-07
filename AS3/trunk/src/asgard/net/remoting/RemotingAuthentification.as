@@ -23,17 +23,21 @@
 
 package asgard.net.remoting
 {
-	import vegas.core.CoreObject;
+	
+	import vegas.core.CoreObject ;
     
     /**
+     * This class is used to create a credential authentification with a Flash remoting method.
      * @author eKameleon
      */
 	public class RemotingAuthentification extends CoreObject
 	{
 		
-		/**
-		 * Creates a new RemotingAuthentification instance.
-		 */
+	    /**
+    	 * Creates a new RemotingAuthentification instance.
+    	 * @param id the id of the authentification.
+    	 * @param pass the password of the authentification.
+    	 */
 		public function RemotingAuthentification(id:String=null, pass:String=null)
 		{
 			userid = id ;
@@ -41,7 +45,7 @@ package asgard.net.remoting
 		}
 	
 	    /**
-	     * Defines and returns an ID of connection to be used to be connected with the server. 
+	     * Defines and returns an ID of connection to be used to be connected with the server.
 	     */
 		public var userid:String ;
 

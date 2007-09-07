@@ -23,22 +23,135 @@
 
 package asgard.net.remoting
 {
-	import flash.events.TimerEvent;
-	import flash.net.Responder;
-	import flash.net.registerClassAlias;
-	import flash.utils.Timer;
-	
 	import asgard.events.RemotingEvent;
 	import asgard.net.TimeoutPolicy;
+	
+	import flash.events.TimerEvent;
+	import flash.net.Responder;
+	import flash.utils.Timer;
 	
 	import pegas.process.Action;
 	
 	import vegas.core.ICloneable;
 	import vegas.errors.Warning;
 	import vegas.util.ClassUtil;
+	import flash.net.ObjectEncoding;
 
 	/**
 	 * This class provides a service object to communicate with a remoting gateway server.
+	 * <p><b>Example : RemotingService and classmapping</b></p>
+	 * <p>Value object : test.User :</p>
+	 * {@code
+	 * package test
+	 * {
+	 *     import flash.net.registerClassAlias ;
+	 *  
+	 *     public class User
+	 *     {
+	 *          
+	 *         public function User( init:Object = null )
+	 *         {
+	 *             if (init != null)
+	 *             {
+	 *                 this.name = init.name ;
+	 *                 this.age  = init.age ;
+	 *                 this.url  = init.url ;
+	 *             }
+	 *         }
+	 * 
+	 *         public var age:uint ;
+	 *         public var name:String ;
+	 *         public var url:String ;
+	 * 
+	 *         static public function register():void
+	 *         {
+	 *             registerClassAlias("test.User", User) ;
+	 *         }
+	 * 
+	 *         public function toString():String
+	 *         {
+	 *             return "[User name:" + name + ", age:" + this.age + ", url:" + this.url + "]"  ;
+	 *         }
+	 *         
+	 *     }
+	 * }
+	 * }
+	 * <p>TestRemotingService :</p>
+	 * {@code
+	 * package
+	 * {
+	 * 
+	 *     import asgard.events.RemotingEvent;
+	 *     import asgard.net.remoting.RemotingService;
+	 *     import flash.display.Sprite;
+	 *     import pegas.events.ActionEvent;
+	 *     import test.User;
+	 * 
+	 *     public class TestRemotingService extends Sprite
+	 *     {
+	 * 
+	 *         public function TestRemotingService()
+	 *         {
+	 *              User.register() ; // register the User class for class mapping
+	 *              
+	 *              var service:RemotingService = new RemotingService() ;
+	 * 
+	 *              service.addEventListener( RemotingEvent.ERROR  , onError    ) ;
+	 *              service.addEventListener( RemotingEvent.FAULT  , onFault    ) ;
+	 *              service.addEventListener( ActionEvent.FINISH   , onFinish   ) ;
+	 *              service.addEventListener( ActionEvent.PROGRESS , onProgress ) ;
+	 *              service.addEventListener( RemotingEvent.RESULT , onResult   ) ;
+	 *              service.addEventListener( ActionEvent.START    , onStart    ) ;
+	 *              service.addEventListener( ActionEvent.TIMEOUT  , onTimeOut  ) ;
+	 *              
+	 *              service.gatewayUrl = "http://localhost/work/vegas/php/gateway.php" ;
+	 *              service.serviceName = "Test" ;
+	 *              service.methodName = "getUser" ;
+	 *              service.params = ["eka", 30, "http://www.ekameleon.net"] ;
+	 *              
+	 *              service.trigger() ;
+	 *         }
+	 *         
+	 *         public function onError(e:RemotingEvent):void
+	 *         {
+	 *             trace("> " + e.type + " : " + e.code) ;
+	 *         }
+	 * 
+	 *         public function onFinish(e:ActionEvent):void
+	 *         {
+	 *              trace("> " + e.type) ;
+	 *         }
+	 * 
+	 *         public function onFault(e:RemotingEvent):void
+	 *         {
+	 *              trace("> " + e.type + " : " + e.getCode() + " :: " + e.getDescription()) ;
+	 *         }
+	 *         
+	 *         public function onProgress(e:ActionEvent):void
+	 *         {
+	 *             trace("> " + e.type ) ;
+	 *         }
+	 * 
+	 *         public function onResult( e:RemotingEvent ):void
+	 *         {
+	 *              trace("-----------") ;
+	 *              trace("> result : " + e.result) ;
+	 *              trace("-----------") ;
+	 *         }
+	 * 
+	 *         public function onStart(e:ActionEvent):void
+	 *         {
+	 *             trace("> " + e.type ) ;
+	 *         }
+	 * 
+	 *         public function onTimeOut(e:ActionEvent):void
+	 *         {
+	 *             trace("> " + e.type ) ;
+	 *         }
+	 * 
+	 *     }
+	 * }
+	 * }
 	 * @author eKameleon
  	 */
 	public class RemotingService extends Action implements ICloneable
@@ -49,11 +162,13 @@ package asgard.net.remoting
 	 	 * @param gatewayUrl the url of the gateway of the remoting service.
 		 * @param serviceName the name of the service in the server.
 	 	 * @param responder (optional) The RemotingServiceResponder use to receive data from the server.
+	 	 * @param bGlobal (optional) The flag to use a global event flow or a local event flow.
+	     * @param sChannel (optional) The name of the global event flow if the {@code bGlobal} argument is {@code true}.
 		 */
-		public function RemotingService( gatewayUrl:String=null , serviceName:String=null , responder:Responder=null )
+		public function RemotingService( gatewayUrl:String=null , serviceName:String=null , responder:Responder=null , bGlobal:Boolean = false , sChannel:String = null )
 		{
 			
-			super();
+			super( bGlobal, sChannel );
 			
 			setGatewayUrl( gatewayUrl );
 			setServiceName( serviceName ) ;
@@ -63,58 +178,107 @@ package asgard.net.remoting
 			setTimeoutPolicy(TimeoutPolicy.LIMIT) ;
 			
 		}
-		
+	
+	    /**
+    	 * The default delay value before notify the timeout event.
+    	 */
 		static public const DEFAULT_DELAY:uint = 8000 ; // 8 secondes
 
+    	/**
+    	 * The string representation value of the level error of the service.
+    	 */
 		static public const LEVEL_ERROR:String = "error" ;
 
+    	/**
+	     * Returns a string containing a dot delimited path from the root of the Flash Remoting Server to the service name. 
+    	 * @return a string containing a dot delimited path from the root of the Flash Remoting Server to the service name.
+    	 */
 		public function get gatewayUrl():String 
 		{ 
 			return getGatewayUrl() ;
 		}
 	
+		/**
+	     * Sets a string containing a dot delimited path from the root of the Flash Remoting Server to the service name. 
+	     */
 		public function set gatewayUrl(sUrl:String):void 
 		{ 
 			setGatewayUrl(sUrl) ;
 		}
 
+	    /**
+    	 * Returns the proxy policy boolean value of this RemotingService.
+    	 * @return the proxy policy boolean value of this RemotingService.
+    	 */
 		public function get isProxy():Boolean 
 		{ 
 			return getIsProxy() ;
 		}
-	
+
+        /**
+	     * Sets the proxy policy boolean value of this RemotingService.
+	     */
 		public function set isProxy(b:Boolean):void 
 		{ 
 			setIsProxy(b) ;
 		}
+		
+		/**
+		 * The object encoding (AMF version) for the internal NetConnection instance.
+		 */
+		public var objectEncoding:uint = ObjectEncoding.AMF0 ;
 
+	    /**
+    	 * Returns the Array representation of all arguments to pass in the service method.
+    	 * @return the Array representation of all arguments to pass in the service method.
+    	 */
 		public function get params():Array 
 		{ 
 			return getParams() ;
 		}
-	
+
+	    /**
+    	 * Sets the Array representation of all arguments to pass in the service method.
+    	 */
 		public function set params(ar:Array):void 
 		{ 
 			setParams(ar) ;	
 		}
 
+    	/**
+    	 * Returns the name of the server-side service's method.
+    	 * @return the name of the server-side service's method.
+    	 */
 		public function get methodName():String 
 		{ 
 			return getMethodName() ;	
 		}
-	
+
+    	/**
+    	 * Sets the name of the server-side service's method.
+    	 */
 		public function set methodName(sName:String):void 
 		{ 
 			setMethodName(sName) ;
 		}
 
+    	/**
+    	 * Defines if the service can lauch multiple simultaneous connections.
+    	 */
 		public var multipleSimultaneousAllowed:Boolean = false ;
 
+    	/**
+    	 * Returns the name of the server-side service.
+    	 * @return the name of the server-side service.
+    	 */
 		public function get serviceName():String 
 		{ 
 			return getServiceName() ;	
 		}
-	
+
+    	/**
+    	 * Sets the name of the server-side service.
+    	 */
 		public function set serviceName(sName:String):void 
 		{ 
 			setServiceName(sName) ;
@@ -124,7 +288,7 @@ package asgard.net.remoting
          * Returns a shallow copy of this object.
          * @return a shallow copy of this object.
          */
-		override public function clone():*
+		public override function clone():*
 		{
 			return new RemotingService( getGatewayUrl() , getServiceName() ) ; // TODO : see the responder !
 		}
@@ -138,55 +302,153 @@ package asgard.net.remoting
 			return _rc ;	
 		}
 
-		/**
-		 * Returns timeout interval duration.
-		 */
+    	/**
+    	 * Returns the timeout interval duration.
+    	 * @return the timeout interval duration.
+    	 */
 		public function getDelay():uint
 		{
 			return _timer.delay ;
 		}
 
-		public function getIsProxy():Boolean 
+        /**
+		 * Returns the event name use in the notifyError method.
+		 * @return the event name use in the notifyError method.
+		 */
+		public function getEventTypeERROR():String
 		{
-			return _isProxy ;	
+			return _eError.type ;
 		}
-	
+
+        /**
+		 * Returns the event name use in the notifyFault method.
+		 * @return the event name use in the notifyFault method.
+		 */
+		public function getEventTypeFAULT():String
+		{
+			return _eFault.type ;
+		}
+        
+        /**
+		 * Returns the event name use in the notifyResult method.
+		 * @return the event name use in the notifyResult method.
+		 */
+		public function getEventTypeRESULT():String
+		{
+			return _eResult.type ;
+		}
+
+    	/**
+    	 * Returns a string containing a dot delimited path from the root of the Flash Remoting Server to the service name. 
+    	 * @return a string containing a dot delimited path from the root of the Flash Remoting Server to the service name.
+    	 */
 		public function getGatewayUrl():String 
 		{
 			return _gatewayUrl ;	
 		}
 
-        /**
-         * Returns the timeout policy.
-         */
-		public function getTimeoutPolicy():TimeoutPolicy 
+    	/**
+	     * Returns the proxy policy boolean value of this RemotingService.
+    	 * @return the proxy policy boolean value of this RemotingService.
+    	 */
+		public function getIsProxy():Boolean 
 		{
-			return _policy ;	
+			return _isProxy ;	
 		}
 
+	    /**
+	     * Returns the name of the server-side service's method.
+	     * @return the name of the server-side service's method.
+	     */
 		public function getMethodName():String 
 		{
 			return _methodName ;
 		}
-
+        
+    	/**
+    	 * Returns the Array representation of all arguments to pass in the service method.
+    	 * @return the Array representation of all arguments to pass in the service method.
+    	 */
 		public function getParams():Array 
 		{
 			return _args  ;	
 		}
-
+        
+    	/**
+    	 * Returns the RemotingServiceResponder reference of the instance.
+    	 * @return the RemotingServiceResponder reference of the instance.
+    	 */
 		public function getResponder():Responder 
 		{
 			return _responder ;
 		}
-
+	
+	    /**
+    	 * Returns the result value returns by the server after a trigger process.
+    	 * @return the result value returns by the server.
+	     */
 		public function getResult():*
 		{
 			return _result ;	
 		}
 
+    	/**
+    	 * Returns the name of the server-side service.
+    	 * @return the name of the server-side service.
+    	 */
 		public function getServiceName():String
 		{
 			return _serviceName ;
+		}
+		
+	    /**
+         * Returns the timeout policy value of this service.
+         * @return the timeout policy value of this service.
+         * @see TimeoutPolicy
+         */
+		public function getTimeoutPolicy():TimeoutPolicy 
+		{
+			return _policy ;	
+		}
+		
+        /**
+         * Initialize the internal events of this process.
+         */
+        public override function initEvent():void
+        {
+            super.initEvent() ;
+			_eError    = new RemotingEvent( RemotingEvent.ERROR  , this ) ;
+			_eFault    = new RemotingEvent( RemotingEvent.FAULT  , this ) ;
+			_eResult   = new RemotingEvent( RemotingEvent.RESULT , this ) ;
+        }
+        
+        /**
+    	 * Notify a RemotingEvent 'error event'.
+    	 */
+		protected function notifyError( code:String = null ):void 
+		{
+			setRunning(false) ;
+			_eError.code = (code == null) ? RemotingEvent.ERROR : code ;
+			dispatchEvent( _eError ) ;
+			notifyFinished() ;
+		}	
+
+    	/**
+    	 * Notify a RemotingEvent 'fault event'.
+    	 */
+		protected function notifyFault( fault:Object = null ):void
+		{
+			_eFault.setFault(fault, _methodName) ;
+			dispatchEvent( _eFault ) ;
+		}
+		
+		/**
+    	 * Notify a RemotingEvent 'result event'.
+    	 */
+		protected function notifyResult():void
+		{
+			_eResult.setResult(_result , _methodName) ;
+			dispatchEvent( _eResult ) ;
 		}
 
 		/**
@@ -194,71 +456,138 @@ package asgard.net.remoting
 		 */
 		static public function registerClassAlias( classObject:Class, aliasName:String=null  ):void
 		{
-			
 			if (aliasName == null)
 			{
-				aliasName = ClassUtil.getPath(classObject) ;
+				aliasName = ClassUtil.getPath( classObject ) ;
 			}
-			
 			flash.net.registerClassAlias(aliasName, classObject) ;	
-					
 		}
 
-		override public function run(...arguments:Array):void 
+    	/**
+    	 * Run the process of the remoting service.
+    	 */
+		public override function run(...arguments:Array):void 
 		{
-						
+			
 			_rc = RemotingConnection.getConnection( _gatewayUrl ) ;
-
-	
+			
+			_rc.objectEncoding = objectEncoding ;
+			
 			if ( (_rc == null) && !(_rc is RemotingConnection) ) 
 			{
 				throw new Warning(this + ", You can't run the RemotingConnection.") ;
 			}
-		
 			if (_authentification != null)
 			{
 				_rc.setCredentials(_authentification) ;
 			}
-			
 			if (getRunning() && multipleSimultaneousAllowed == false)  
 			{
 				notifyProgress() ;
 			}
 			else 
 			{
-				
 				notifyStarted() ;
-
 				_result = null ;
-				
 				setRunning(true) ;	
-
 				var args:Array = [_serviceName + "." + _methodName , getResponder()].concat(_args) ;
-				
 				_rc.call.apply( _rc, args );
-				
 				_timer.start() ;
-						
 			} 
 		}
-
+        
+    	/**
+    	 * Defines a set of credentials to be presented to the server on all subsequent requests.
+    	 * @param authentification The RemotingAuthentification instance to presented to the server.
+    	 * @see RemotingAuthentification
+	     */
 		public function setCredentials( authentification:RemotingAuthentification=null ):void  
 		{			
 			_authentification = authentification ;
 		}
 
-		/**
-		 * Set timeout interval duration.
-		 */
+    	/**
+    	 * Set timeout interval duration.
+    	 * @param time the delay value of the timeout event notification.
+    	 * @param useSeconds Indicates if the time value is in seconds {@code true} or milliseconds {@code false}.
+    	 */
 		public function setDelay( time:uint , useSeconds:Boolean=false):void 
 		{
 			if (useSeconds) time = Math.round(time * 1000) ;
 			_timer.delay = time ;
 		}
+	    
+	    /**
+		 * Sets the event name use in the notifyError method.
+		 */
+		public function setEventTypeERROR( type:String ):void
+		{
+			_eError.type = type ;
+		}
+
+        /**
+		 * Sets the event name use in the notifyFault method.
+		 */
+		public function setEventTypeFAULT( type:String ):void
+		{
+			_eFault.type = type ;
+		}
+        
+        /**
+		 * Sets the event name use in the notifyResult method.
+		 */
+		public function setEventTypeRESULT( type:String ):void
+		{
+			_eResult.type = type ;
+		}
 		
+		/**
+	     * Sets a string containing a dot delimited path from the root of the Flash Remoting Server to the service name. 
+	     */
 		public function setGatewayUrl( url:String ):void 
 		{
 			_gatewayUrl = url ;
+		}
+		
+		/**
+    	 * Sets the proxy policy of this RemotingService. 
+    	 * If the passed-in argument is {@code true} the RemotingService instances uses proxy to resolve all methods.
+	     */
+		public function setIsProxy(b:Boolean):void 
+		{
+			_isProxy = b ;
+		}
+
+	    /**
+    	 * Sets the Array representation of all arguments to pass in the service method.
+    	 */
+		public function setParams(args:Array):void 
+		{
+			_args = args ;	
+		}
+
+    	/**
+	     * Sets the name of the server-side service's method.
+    	 */
+		public function setMethodName( sName:String ):void 
+		{
+			_methodName = sName ;	
+		}
+
+    	/**
+    	 * Sets the RemotingServiceResponder reference of the instance.
+	     */
+		public function setResponder( responder:Responder=null ):void 
+		{
+			_responder = (responder == null) ?  _internalResponder : responder ;
+		}
+	    
+    	/**
+    	 * Sets the name of the server-side service.
+    	 */
+		public function setServiceName( sName:String ):void 
+		{
+			_serviceName = sName ;	
 		}
 		
 		/**
@@ -268,7 +597,6 @@ package asgard.net.remoting
 		public function setTimeoutPolicy( policy:TimeoutPolicy ):void 
 		{
 			_policy = policy ;
-			
 			if (_policy == TimeoutPolicy.LIMIT) 
 			{
 				_timer.addEventListener(TimerEvent.TIMER_COMPLETE, _onTimeOut) ;
@@ -277,81 +605,35 @@ package asgard.net.remoting
 			{
 				_timer.removeEventListener(TimerEvent.TIMER_COMPLETE, _onTimeOut) ;
 			}
-			
-		}
-
-		public function setParams(args:Array):void 
-		{
-			_args = args ;	
 		}
 	
-		public function setIsProxy(b:Boolean):void 
-		{
-			_isProxy = b ;
-		}
-		
-		public function setMethodName( sName:String ):void 
-		{
-			_methodName = sName ;	
-		}
-	
-		public function setResponder( responder:Responder=null ):void 
-		{
-			_responder = (responder == null) ?  _internalResponder : responder ;
-		}
-
-		public function setServiceName( sName:String ):void 
-		{
-			_serviceName = sName ;	
-		}
-
+	    /**
+	     * Triggers the process to launch the method of the current service server side.
+	     */
 		public function trigger():void 
 		{
 			run() ;	
 		}
-
-		override public function toString():String 
+	
+	    /**
+	     * Returns the {@code String} representation of this object.
+	     * @return the {@code String} representation of this object.
+	     */
+		public override function toString():String 
 		{
 			return (new RemotingFormat()).formatToString(this) ;	
 		}
 
-		// ----o Virtual Properties
-
-
-
-		// ----o Protected Methods
-
-		protected function notifyError( code:String ):void 
-		{
-			
-			setRunning(false) ;
-			
-			var eError:RemotingEvent = new RemotingEvent(RemotingEvent.ERROR) ;
-			eError.code = (code == null) ? RemotingEvent.ERROR : code ;
-			dispatchEvent( eError ) ;
-			
-			notifyFinished() ;
-			
-		}	
-
-		protected function notifyFault(fault:Object):void
-		{
-			var eFault:RemotingEvent = new RemotingEvent(RemotingEvent.FAULT) ;
-			eFault.setFault(fault, _methodName) ;
-			dispatchEvent( eFault ) ;
-		}
-
-		protected function notifyResult():void
-		{
-			
-			var eResult:RemotingEvent = new RemotingEvent(RemotingEvent.RESULT, _result, _methodName) ;
-			dispatchEvent( eResult ) ;
-			
-		}
 
 		private var _args:Array ;
 		
 		private var _authentification:RemotingAuthentification ;
+		
+		private var _eError:RemotingEvent ;
+        
+        private var _eFault:RemotingEvent ;
+        
+        private var _eResult:RemotingEvent ;
 		
 		private var _gatewayUrl:String = null  ;
 
@@ -360,7 +642,9 @@ package asgard.net.remoting
 		private var _isProxy:Boolean = false ;
 		
 		private var _methodName:String ; 
-
+        
+        private var _objectEncoding:uint ;
+        
 		private var _policy:TimeoutPolicy ;
 
 		private var _rc:RemotingConnection = null ;
@@ -375,43 +659,27 @@ package asgard.net.remoting
 		
 		private function _onResult( data:* ):void
 		{
-			
 			_timer.stop() ; // stop timeout interval
-			
 			_result = data ;
-			
 			setRunning(false) ;
-
 			notifyResult() ;
-
 			notifyFinished() ;
-
 		}
 
 		private function _onStatus( fault:Object ):void 
 		{
-
 			_timer.stop() ; // stop timeout interval
-
 			setRunning(false) ;
-			
 			notifyFault(fault) ;
-			
 			notifyFinished() ;
-
 		}
 
 		private function _onTimeOut(e:TimerEvent):void 
 		{
-			
 			_timer.stop() ;
-			
 			setRunning(false) ;
-			
 			notifyTimeOut() ;
-
-			notifyFinished() ;
-			
+    		notifyFinished() ;
 		}
 
 	}

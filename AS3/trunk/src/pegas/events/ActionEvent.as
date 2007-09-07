@@ -102,14 +102,23 @@ package pegas.events
          * The name of the event when the process is cleared.
          */		
 		static public const TIMEOUT:String = "onTimeOut" ;
-	
+	    
+	    /**
+    	 * (read-only) Returns the info object of this event.
+    	 * @return the info object of this event.
+    	 */
+	    public function get info():*
+	    {
+	        return getInfo() ;
+	    }
+	    
 	    /**
     	 * Returns the shallow copy of this object.
     	 * @return the shallow copy of this object.
     	 */
 		public override function clone():Event 
 		{
-			return new ActionEvent(type, getInfo()) ;
+			return new ActionEvent( type, target, getInfo(), context ) ;
 		}
 
     	/**
