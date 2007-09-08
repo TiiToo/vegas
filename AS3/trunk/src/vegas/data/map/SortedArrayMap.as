@@ -39,11 +39,7 @@ package vegas.data.map
 		 */	     
         public function SortedArrayMap( ...arguments:Array )
         {
-			/*if ( arguments.caller == null )
-			{
-				Function( HashMap ).apply(this, [].concat(arguments)) ;
-			} 
-			*/
+            super( arguments[0] , arguments[1] ) ;
 			sortBy = SortedArrayMap.KEY ;
         }
 

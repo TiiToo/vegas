@@ -35,6 +35,17 @@ document.quicknavBasePath="../../index-files";
  </p><h4>Return</h4><p class="extra_info"> <code> <span class="key">true</span></code> if the passed-in object is an explicit instance of the passed-in class.
 	 </p></div></div><div class="method_details alt_row"><a name="isGenericObject"></a><h3>isGenericObject</h3><code class="method_synopsis">static public function <strong class="method_name">isGenericObject</strong>(o):<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
  Checks if the passed-in object is a generic object.
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">import</span> vegas.util.TypeUtil ;
+ 
+ trace( TypeUtil.isGenericObject( {} ) ) ; <span class="comment">// true</span>
+ trace( TypeUtil.isGenericObject( <span class="key">new</span> Object() ) ) ; <span class="comment">// true</span>
+ trace( TypeUtil.isGenericObject( <span class="key">new</span> Date() ) ) ; <span class="comment">// false</span>
+ trace( TypeUtil.isGenericObject( <span class="key">new</span> vegas.core.CoreObject() ) ) ; <span class="comment">// false</span>
+ trace( TypeUtil.isGenericObject( <span class="key">new</span> Number(<span class="num_const">2</span>) ) ) ; <span class="comment">// false</span>
+ trace( TypeUtil.isGenericObject( <span class="num_const">2</span> ) ) ; <span class="comment">// false</span>
+ </pre>
  </p><h4>Return</h4><p class="extra_info"> <code> <span class="key">true</span></code> if the passed-in object is a generic object.
 	 </p></div></div><div class="method_details"><a name="isInstanceOf"></a><h3>isInstanceOf</h3><code class="method_synopsis">static public function <strong class="method_name">isInstanceOf</strong>(o, type:<span class="unresolved_type_name">Function</span>):<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
  Checks if the passed-in object is an instance of the passed-in type.

@@ -132,159 +132,170 @@ document.quicknavBasePath="../../index-files";
 <span class="lineno" id="129">   129  </span>	
 <span class="lineno" id="130">   130  </span>	<span class="comment doc">/**
 <span class="lineno" id="131">   131  </span>	 * Checks if the passed-in object is a generic object.
-<span class="lineno" id="132">   132  </span>	 * @return {@code true} if the passed-in object is a generic object.
-<span class="lineno" id="133">   133  </span>	 */</span>
-<span class="lineno" id="134">   134  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">function</span> isGenericObject(o):Boolean
-<span class="lineno" id="135">   135  </span>	{
-<span class="lineno" id="136">   136  </span>		<span class="key">return</span> o.__proto__ == Object.prototype ;
-<span class="lineno" id="137">   137  </span>	}
-<span class="lineno" id="138">   138  </span>
-<span class="lineno" id="139">   139  </span>	<span class="comment doc">/**
-<span class="lineno" id="140">   140  </span>	 * Checks if the passed-in object is an instance of the passed-in type.
-<span class="lineno" id="141">   141  </span>	 * @return {@code true} if the passed-in object is an instance of the passed-in type.
-<span class="lineno" id="142">   142  </span>	 */</span>
-<span class="lineno" id="143">   143  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">function</span> isInstanceOf(o, type:Function):Boolean 
-<span class="lineno" id="144">   144  </span>	{
-<span class="lineno" id="145">   145  </span>		<span class="key">if</span> (type === Object) 
-<span class="lineno" id="146">   146  </span>		{
-<span class="lineno" id="147">   147  </span>			<span class="key">return</span> <span class="key">true</span> ;
-<span class="lineno" id="148">   148  </span>		}
-<span class="lineno" id="149">   149  </span>		<span class="key">return</span> (o <span class="key">instanceof</span> type) ;
-<span class="lineno" id="150">   150  </span>	}
-<span class="lineno" id="151">   151  </span>	
-<span class="lineno" id="152">   152  </span>	<span class="comment doc">/**
-<span class="lineno" id="153">   153  </span>	 * Checks if the passed-in object is a primitive type.
-<span class="lineno" id="154">   154  </span>	 * @return {@code true} if the passed-in object is a primitive type.
-<span class="lineno" id="155">   155  </span>	 */</span>
-<span class="lineno" id="156">   156  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">function</span> isPrimitive(o):Boolean 
-<span class="lineno" id="157">   157  </span>	{
-<span class="lineno" id="158">   158  </span>		<span class="key">var</span> tof:String = <span class="key">typeof</span>(o) ;
-<span class="lineno" id="159">   159  </span>		<span class="key">return</span> (tof == TypeUtil.STRING || tof == TypeUtil.NUMBER || tof == TypeUtil.BOOLEAN) ;
-<span class="lineno" id="160">   160  </span>	}
-<span class="lineno" id="161">   161  </span>
+<span class="lineno" id="132">   132  </span>	 * &lt;p&gt;&lt;b&gt;Example :&lt;/b&gt;&lt;/p&gt;
+<span class="lineno" id="133">   133  </span>	 * {@code
+<span class="lineno" id="134">   134  </span>	 * import vegas.util.TypeUtil ;
+<span class="lineno" id="135">   135  </span>	 * 
+<span class="lineno" id="136">   136  </span>	 * trace( TypeUtil.isGenericObject( {} ) ) ; // true
+<span class="lineno" id="137">   137  </span>	 * trace( TypeUtil.isGenericObject( new Object() ) ) ; // true
+<span class="lineno" id="138">   138  </span>	 * trace( TypeUtil.isGenericObject( new Date() ) ) ; // false
+<span class="lineno" id="139">   139  </span>	 * trace( TypeUtil.isGenericObject( new vegas.core.CoreObject() ) ) ; // false
+<span class="lineno" id="140">   140  </span>	 * trace( TypeUtil.isGenericObject( new Number(2) ) ) ; // false
+<span class="lineno" id="141">   141  </span>	 * trace( TypeUtil.isGenericObject( 2 ) ) ; // false
+<span class="lineno" id="142">   142  </span>	 * }
+<span class="lineno" id="143">   143  </span>	 * @return {@code true} if the passed-in object is a generic object.
+<span class="lineno" id="144">   144  </span>	 */</span>
+<span class="lineno" id="145">   145  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">function</span> isGenericObject(o):Boolean
+<span class="lineno" id="146">   146  </span>	{
+<span class="lineno" id="147">   147  </span>		<span class="key">return</span> o.__proto__ == Object.prototype ;
+<span class="lineno" id="148">   148  </span>	}
+<span class="lineno" id="149">   149  </span>
+<span class="lineno" id="150">   150  </span>	<span class="comment doc">/**
+<span class="lineno" id="151">   151  </span>	 * Checks if the passed-in object is an instance of the passed-in type.
+<span class="lineno" id="152">   152  </span>	 * @return {@code true} if the passed-in object is an instance of the passed-in type.
+<span class="lineno" id="153">   153  </span>	 */</span>
+<span class="lineno" id="154">   154  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">function</span> isInstanceOf(o, type:Function):Boolean 
+<span class="lineno" id="155">   155  </span>	{
+<span class="lineno" id="156">   156  </span>		<span class="key">if</span> (type === Object) 
+<span class="lineno" id="157">   157  </span>		{
+<span class="lineno" id="158">   158  </span>			<span class="key">return</span> <span class="key">true</span> ;
+<span class="lineno" id="159">   159  </span>		}
+<span class="lineno" id="160">   160  </span>		<span class="key">return</span> (o <span class="key">instanceof</span> type) ;
+<span class="lineno" id="161">   161  </span>	}
 <span class="lineno" id="162">   162  </span>	
 <span class="lineno" id="163">   163  </span>	<span class="comment doc">/**
-<span class="lineno" id="164">   164  </span>	 * Checks if the result of an execution of the typeof method on the passed-in object matches the passed-in type.
-<span class="lineno" id="165">   165  </span>	 * @return {@code true} if the result of an execution of the typeof method on the passed-in object matches the passed-in type.
+<span class="lineno" id="164">   164  </span>	 * Checks if the passed-in object is a primitive type.
+<span class="lineno" id="165">   165  </span>	 * @return {@code true} if the passed-in object is a primitive type.
 <span class="lineno" id="166">   166  </span>	 */</span>
-<span class="lineno" id="167">   167  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">function</span> isTypeOf(o, type:String):Boolean 
+<span class="lineno" id="167">   167  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">function</span> isPrimitive(o):Boolean 
 <span class="lineno" id="168">   168  </span>	{
-<span class="lineno" id="169">   169  </span>		<span class="key">return</span> <span class="key">typeof</span>(o) == type ;
-<span class="lineno" id="170">   170  </span>	}
-<span class="lineno" id="171">   171  </span>
-<span class="lineno" id="172">   172  </span>	<span class="comment doc">/**
-<span class="lineno" id="173">   173  </span>	 * Checks if the type of the passed-in object matches the passed-in type.
-<span class="lineno" id="174">   174  </span>	 * &lt;p&gt;&lt;b&gt;Example :&lt;/b&gt;
-<span class="lineno" id="175">   175  </span>	 * {@code
-<span class="lineno" id="176">   176  </span>	 * import vegas.util.TypeUtil ;
-<span class="lineno" id="177">   177  </span>	 * 
-<span class="lineno" id="178">   178  </span>	 * var s1:String = "hello world" ;
-<span class="lineno" id="179">   179  </span>	 * var s2:String = new String("hello world") ;
-<span class="lineno" id="180">   180  </span>	 * trace("s1 is string : " + TypeUtil.typesMatch( s1, String )) ; // output : 'true'
-<span class="lineno" id="181">   181  </span>	 * trace("s2 is string : " + TypeUtil.typesMatch( s2, String )) ; // output : 'true'
-<span class="lineno" id="182">   182  </span>	 * }
-<span class="lineno" id="183">   183  </span>	 * &lt;/p&gt;
-<span class="lineno" id="184">   184  </span>	 * @see ConstructorUtil
-<span class="lineno" id="185">   185  </span>	 */</span>
-<span class="lineno" id="186">   186  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">function</span> typesMatch(o, type:Function):Boolean 
-<span class="lineno" id="187">   187  </span>	{
-<span class="lineno" id="188">   188  </span>		<span class="key">if</span> (type === Object) 
-<span class="lineno" id="189">   189  </span>		{
-<span class="lineno" id="190">   190  </span>			<span class="key">return</span> <span class="key">true</span> ;
-<span class="lineno" id="191">   191  </span>		}
-<span class="lineno" id="192">   192  </span>		<span class="key">if</span> ( TypeUtil.isPrimitive(o) ) 
-<span class="lineno" id="193">   193  </span>		{
-<span class="lineno" id="194">   194  </span>			<span class="key">var</span> tof:String = <span class="key">typeof</span>(o);
-<span class="lineno" id="195">   195  </span>			<span class="key">if</span> (tof == TypeUtil.STRING &amp;&amp; (type === String || ConstructorUtil.isSubConstructorOf(type, String)))
-<span class="lineno" id="196">   196  </span>			{
-<span class="lineno" id="197">   197  </span>				<span class="key">return</span> <span class="key">true</span> ;
-<span class="lineno" id="198">   198  </span>			}
-<span class="lineno" id="199">   199  </span>			<span class="key">else</span> <span class="key">if</span> (tof == TypeUtil.BOOLEAN &amp;&amp; (type === Boolean || ConstructorUtil.isSubConstructorOf(type, Boolean)))
-<span class="lineno" id="200">   200  </span>			{
-<span class="lineno" id="201">   201  </span>				<span class="key">return</span> <span class="key">true</span> ;
-<span class="lineno" id="202">   202  </span>			}
-<span class="lineno" id="203">   203  </span>			<span class="key">else</span> <span class="key">if</span> (tof == TypeUtil.NUMBER &amp;&amp; (type === Number || ConstructorUtil.isSubConstructorOf(type, Number)))
-<span class="lineno" id="204">   204  </span>			{
-<span class="lineno" id="205">   205  </span>				<span class="key">return</span> <span class="key">true</span> ;
-<span class="lineno" id="206">   206  </span>			}
-<span class="lineno" id="207">   207  </span>			<span class="key">else</span>
-<span class="lineno" id="208">   208  </span>			{
-<span class="lineno" id="209">   209  </span>				<span class="key">return</span> <span class="key">false</span> ;
-<span class="lineno" id="210">   210  </span>			}
-<span class="lineno" id="211">   211  </span>		}
-<span class="lineno" id="212">   212  </span>		<span class="key">else</span> 
-<span class="lineno" id="213">   213  </span>		{
-<span class="lineno" id="214">   214  </span>			<span class="key">return</span> (isInstanceOf(o, type));
-<span class="lineno" id="215">   215  </span>		}
-<span class="lineno" id="216">   216  </span>	}
-<span class="lineno" id="217">   217  </span>	
-<span class="lineno" id="218">   218  </span>	<span class="comment doc">/**
-<span class="lineno" id="219">   219  </span>	 * Returns the string representation of the constructor function passed in argument.
-<span class="lineno" id="220">   220  </span>	 * &lt;p&gt;If the constructor function is a custom class the method use the ConstructorUtil class.&lt;/p&gt;
-<span class="lineno" id="221">   221  </span>	 * @return the string representation of the type function passed in argument.
-<span class="lineno" id="222">   222  </span>	 * @see ConstructorUtil.
-<span class="lineno" id="223">   223  </span>	 */</span>
-<span class="lineno" id="224">   224  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">function</span> toString( type:Function ):String 
-<span class="lineno" id="225">   225  </span>	{
-<span class="lineno" id="226">   226  </span>		<span class="key">if</span> (type === undefined) 
-<span class="lineno" id="227">   227  </span>		{
-<span class="lineno" id="228">   228  </span>			<span class="key">return</span> <span class="str_const">"undefined"</span> ;
-<span class="lineno" id="229">   229  </span>		}
-<span class="lineno" id="230">   230  </span>		<span class="key">if</span> (type === <span class="key">null</span>) 
-<span class="lineno" id="231">   231  </span>		{
-<span class="lineno" id="232">   232  </span>			<span class="key">return</span> <span class="str_const">"null"</span> ;
-<span class="lineno" id="233">   233  </span>		}
-<span class="lineno" id="234">   234  </span>		<span class="key">var</span> instance = ConstructorUtil.createBasicInstance(type) ;
-<span class="lineno" id="235">   235  </span>		<span class="key">var</span> path:String = ConstructorUtil.getPath(instance) ;
-<span class="lineno" id="236">   236  </span>		<span class="key">if</span> ( path != <span class="key">null</span>) 
-<span class="lineno" id="237">   237  </span>		{
-<span class="lineno" id="238">   238  </span>			<span class="key">return</span> path ;
-<span class="lineno" id="239">   239  </span>		}
-<span class="lineno" id="240">   240  </span>		<span class="key">else</span> <span class="key">if</span> (type == Array) 
-<span class="lineno" id="241">   241  </span>		{
-<span class="lineno" id="242">   242  </span>			<span class="key">return</span> <span class="str_const">"Array"</span> ;
-<span class="lineno" id="243">   243  </span>		}
-<span class="lineno" id="244">   244  </span>		<span class="key">else</span> <span class="key">if</span> (type == Boolean) 
-<span class="lineno" id="245">   245  </span>		{
-<span class="lineno" id="246">   246  </span>			<span class="key">return</span> <span class="str_const">"Boolean"</span> ;
-<span class="lineno" id="247">   247  </span>		}
-<span class="lineno" id="248">   248  </span>		<span class="key">else</span> <span class="key">if</span> (type == Color) 
-<span class="lineno" id="249">   249  </span>		{
-<span class="lineno" id="250">   250  </span>			<span class="key">return</span> <span class="str_const">"Color"</span> ;
-<span class="lineno" id="251">   251  </span>		}
-<span class="lineno" id="252">   252  </span>		<span class="key">else</span> <span class="key">if</span> (type == Date) 
-<span class="lineno" id="253">   253  </span>		{
-<span class="lineno" id="254">   254  </span>			<span class="key">return</span> <span class="str_const">"Date"</span> ;
-<span class="lineno" id="255">   255  </span>		}
-<span class="lineno" id="256">   256  </span>		<span class="key">else</span> <span class="key">if</span> (type == Error) 
-<span class="lineno" id="257">   257  </span>		{
-<span class="lineno" id="258">   258  </span>			<span class="key">return</span> <span class="str_const">"Error"</span> ;
-<span class="lineno" id="259">   259  </span>		}
-<span class="lineno" id="260">   260  </span>		<span class="key">else</span> <span class="key">if</span> (type == Number)
-<span class="lineno" id="261">   261  </span>		{
-<span class="lineno" id="262">   262  </span>			<span class="key">return</span> <span class="str_const">"Number"</span> ;
-<span class="lineno" id="263">   263  </span>		}
-<span class="lineno" id="264">   264  </span>		<span class="key">else</span> <span class="key">if</span> (type == String) 
-<span class="lineno" id="265">   265  </span>		{
-<span class="lineno" id="266">   266  </span>			<span class="key">return</span> <span class="str_const">"String"</span> ;
-<span class="lineno" id="267">   267  </span>		}
-<span class="lineno" id="268">   268  </span>		<span class="key">else</span> <span class="key">if</span> (type == XML) 
-<span class="lineno" id="269">   269  </span>		{
-<span class="lineno" id="270">   270  </span>			<span class="key">return</span> <span class="str_const">"XML"</span> ;
-<span class="lineno" id="271">   271  </span>		}
-<span class="lineno" id="272">   272  </span>		<span class="key">else</span> <span class="key">if</span> (type == XMLNode) 
-<span class="lineno" id="273">   273  </span>		{
-<span class="lineno" id="274">   274  </span>			<span class="key">return</span> <span class="str_const">"XMLNode"</span> ;
-<span class="lineno" id="275">   275  </span>		}
-<span class="lineno" id="276">   276  </span>		<span class="key">else</span> <span class="key">if</span> (type == Function) 
-<span class="lineno" id="277">   277  </span>		{
-<span class="lineno" id="278">   278  </span>			<span class="key">return</span> <span class="str_const">"Function"</span> ;
-<span class="lineno" id="279">   279  </span>		}
-<span class="lineno" id="280">   280  </span>		<span class="key">else</span> 
-<span class="lineno" id="281">   281  </span>		{
-<span class="lineno" id="282">   282  </span>			<span class="key">return</span> <span class="str_const">"Object"</span> ;
-<span class="lineno" id="283">   283  </span>		}
-<span class="lineno" id="284">   284  </span>	}
-<span class="lineno" id="285">   285  </span>
-<span class="lineno" id="286">   286  </span>}
-<span class="lineno" id="287">   287  </span></pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.util" class="button">Package</a></li><li><a href="TypeUtil.html" title="Detail of vegas.util.TypeUtil API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
+<span class="lineno" id="169">   169  </span>		<span class="key">var</span> tof:String = <span class="key">typeof</span>(o) ;
+<span class="lineno" id="170">   170  </span>		<span class="key">return</span> (tof == TypeUtil.STRING || tof == TypeUtil.NUMBER || tof == TypeUtil.BOOLEAN) ;
+<span class="lineno" id="171">   171  </span>	}
+<span class="lineno" id="172">   172  </span>
+<span class="lineno" id="173">   173  </span>	
+<span class="lineno" id="174">   174  </span>	<span class="comment doc">/**
+<span class="lineno" id="175">   175  </span>	 * Checks if the result of an execution of the typeof method on the passed-in object matches the passed-in type.
+<span class="lineno" id="176">   176  </span>	 * @return {@code true} if the result of an execution of the typeof method on the passed-in object matches the passed-in type.
+<span class="lineno" id="177">   177  </span>	 */</span>
+<span class="lineno" id="178">   178  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">function</span> isTypeOf(o, type:String):Boolean 
+<span class="lineno" id="179">   179  </span>	{
+<span class="lineno" id="180">   180  </span>		<span class="key">return</span> <span class="key">typeof</span>(o) == type ;
+<span class="lineno" id="181">   181  </span>	}
+<span class="lineno" id="182">   182  </span>
+<span class="lineno" id="183">   183  </span>	<span class="comment doc">/**
+<span class="lineno" id="184">   184  </span>	 * Checks if the type of the passed-in object matches the passed-in type.
+<span class="lineno" id="185">   185  </span>	 * &lt;p&gt;&lt;b&gt;Example :&lt;/b&gt;
+<span class="lineno" id="186">   186  </span>	 * {@code
+<span class="lineno" id="187">   187  </span>	 * import vegas.util.TypeUtil ;
+<span class="lineno" id="188">   188  </span>	 * 
+<span class="lineno" id="189">   189  </span>	 * var s1:String = "hello world" ;
+<span class="lineno" id="190">   190  </span>	 * var s2:String = new String("hello world") ;
+<span class="lineno" id="191">   191  </span>	 * trace("s1 is string : " + TypeUtil.typesMatch( s1, String )) ; // output : 'true'
+<span class="lineno" id="192">   192  </span>	 * trace("s2 is string : " + TypeUtil.typesMatch( s2, String )) ; // output : 'true'
+<span class="lineno" id="193">   193  </span>	 * }
+<span class="lineno" id="194">   194  </span>	 * &lt;/p&gt;
+<span class="lineno" id="195">   195  </span>	 * @see ConstructorUtil
+<span class="lineno" id="196">   196  </span>	 */</span>
+<span class="lineno" id="197">   197  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">function</span> typesMatch(o, type:Function):Boolean 
+<span class="lineno" id="198">   198  </span>	{
+<span class="lineno" id="199">   199  </span>		<span class="key">if</span> (type === Object) 
+<span class="lineno" id="200">   200  </span>		{
+<span class="lineno" id="201">   201  </span>			<span class="key">return</span> <span class="key">true</span> ;
+<span class="lineno" id="202">   202  </span>		}
+<span class="lineno" id="203">   203  </span>		<span class="key">if</span> ( TypeUtil.isPrimitive(o) ) 
+<span class="lineno" id="204">   204  </span>		{
+<span class="lineno" id="205">   205  </span>			<span class="key">var</span> tof:String = <span class="key">typeof</span>(o);
+<span class="lineno" id="206">   206  </span>			<span class="key">if</span> (tof == TypeUtil.STRING &amp;&amp; (type === String || ConstructorUtil.isSubConstructorOf(type, String)))
+<span class="lineno" id="207">   207  </span>			{
+<span class="lineno" id="208">   208  </span>				<span class="key">return</span> <span class="key">true</span> ;
+<span class="lineno" id="209">   209  </span>			}
+<span class="lineno" id="210">   210  </span>			<span class="key">else</span> <span class="key">if</span> (tof == TypeUtil.BOOLEAN &amp;&amp; (type === Boolean || ConstructorUtil.isSubConstructorOf(type, Boolean)))
+<span class="lineno" id="211">   211  </span>			{
+<span class="lineno" id="212">   212  </span>				<span class="key">return</span> <span class="key">true</span> ;
+<span class="lineno" id="213">   213  </span>			}
+<span class="lineno" id="214">   214  </span>			<span class="key">else</span> <span class="key">if</span> (tof == TypeUtil.NUMBER &amp;&amp; (type === Number || ConstructorUtil.isSubConstructorOf(type, Number)))
+<span class="lineno" id="215">   215  </span>			{
+<span class="lineno" id="216">   216  </span>				<span class="key">return</span> <span class="key">true</span> ;
+<span class="lineno" id="217">   217  </span>			}
+<span class="lineno" id="218">   218  </span>			<span class="key">else</span>
+<span class="lineno" id="219">   219  </span>			{
+<span class="lineno" id="220">   220  </span>				<span class="key">return</span> <span class="key">false</span> ;
+<span class="lineno" id="221">   221  </span>			}
+<span class="lineno" id="222">   222  </span>		}
+<span class="lineno" id="223">   223  </span>		<span class="key">else</span> 
+<span class="lineno" id="224">   224  </span>		{
+<span class="lineno" id="225">   225  </span>			<span class="key">return</span> (isInstanceOf(o, type));
+<span class="lineno" id="226">   226  </span>		}
+<span class="lineno" id="227">   227  </span>	}
+<span class="lineno" id="228">   228  </span>	
+<span class="lineno" id="229">   229  </span>	<span class="comment doc">/**
+<span class="lineno" id="230">   230  </span>	 * Returns the string representation of the constructor function passed in argument.
+<span class="lineno" id="231">   231  </span>	 * &lt;p&gt;If the constructor function is a custom class the method use the ConstructorUtil class.&lt;/p&gt;
+<span class="lineno" id="232">   232  </span>	 * @return the string representation of the type function passed in argument.
+<span class="lineno" id="233">   233  </span>	 * @see ConstructorUtil.
+<span class="lineno" id="234">   234  </span>	 */</span>
+<span class="lineno" id="235">   235  </span>	<span class="key">static</span> <span class="key">public</span> <span class="key">function</span> toString( type:Function ):String 
+<span class="lineno" id="236">   236  </span>	{
+<span class="lineno" id="237">   237  </span>		<span class="key">if</span> (type === undefined) 
+<span class="lineno" id="238">   238  </span>		{
+<span class="lineno" id="239">   239  </span>			<span class="key">return</span> <span class="str_const">"undefined"</span> ;
+<span class="lineno" id="240">   240  </span>		}
+<span class="lineno" id="241">   241  </span>		<span class="key">if</span> (type === <span class="key">null</span>) 
+<span class="lineno" id="242">   242  </span>		{
+<span class="lineno" id="243">   243  </span>			<span class="key">return</span> <span class="str_const">"null"</span> ;
+<span class="lineno" id="244">   244  </span>		}
+<span class="lineno" id="245">   245  </span>		<span class="key">var</span> instance = ConstructorUtil.createBasicInstance(type) ;
+<span class="lineno" id="246">   246  </span>		<span class="key">var</span> path:String = ConstructorUtil.getPath(instance) ;
+<span class="lineno" id="247">   247  </span>		<span class="key">if</span> ( path != <span class="key">null</span>) 
+<span class="lineno" id="248">   248  </span>		{
+<span class="lineno" id="249">   249  </span>			<span class="key">return</span> path ;
+<span class="lineno" id="250">   250  </span>		}
+<span class="lineno" id="251">   251  </span>		<span class="key">else</span> <span class="key">if</span> (type == Array) 
+<span class="lineno" id="252">   252  </span>		{
+<span class="lineno" id="253">   253  </span>			<span class="key">return</span> <span class="str_const">"Array"</span> ;
+<span class="lineno" id="254">   254  </span>		}
+<span class="lineno" id="255">   255  </span>		<span class="key">else</span> <span class="key">if</span> (type == Boolean) 
+<span class="lineno" id="256">   256  </span>		{
+<span class="lineno" id="257">   257  </span>			<span class="key">return</span> <span class="str_const">"Boolean"</span> ;
+<span class="lineno" id="258">   258  </span>		}
+<span class="lineno" id="259">   259  </span>		<span class="key">else</span> <span class="key">if</span> (type == Color) 
+<span class="lineno" id="260">   260  </span>		{
+<span class="lineno" id="261">   261  </span>			<span class="key">return</span> <span class="str_const">"Color"</span> ;
+<span class="lineno" id="262">   262  </span>		}
+<span class="lineno" id="263">   263  </span>		<span class="key">else</span> <span class="key">if</span> (type == Date) 
+<span class="lineno" id="264">   264  </span>		{
+<span class="lineno" id="265">   265  </span>			<span class="key">return</span> <span class="str_const">"Date"</span> ;
+<span class="lineno" id="266">   266  </span>		}
+<span class="lineno" id="267">   267  </span>		<span class="key">else</span> <span class="key">if</span> (type == Error) 
+<span class="lineno" id="268">   268  </span>		{
+<span class="lineno" id="269">   269  </span>			<span class="key">return</span> <span class="str_const">"Error"</span> ;
+<span class="lineno" id="270">   270  </span>		}
+<span class="lineno" id="271">   271  </span>		<span class="key">else</span> <span class="key">if</span> (type == Number)
+<span class="lineno" id="272">   272  </span>		{
+<span class="lineno" id="273">   273  </span>			<span class="key">return</span> <span class="str_const">"Number"</span> ;
+<span class="lineno" id="274">   274  </span>		}
+<span class="lineno" id="275">   275  </span>		<span class="key">else</span> <span class="key">if</span> (type == String) 
+<span class="lineno" id="276">   276  </span>		{
+<span class="lineno" id="277">   277  </span>			<span class="key">return</span> <span class="str_const">"String"</span> ;
+<span class="lineno" id="278">   278  </span>		}
+<span class="lineno" id="279">   279  </span>		<span class="key">else</span> <span class="key">if</span> (type == XML) 
+<span class="lineno" id="280">   280  </span>		{
+<span class="lineno" id="281">   281  </span>			<span class="key">return</span> <span class="str_const">"XML"</span> ;
+<span class="lineno" id="282">   282  </span>		}
+<span class="lineno" id="283">   283  </span>		<span class="key">else</span> <span class="key">if</span> (type == XMLNode) 
+<span class="lineno" id="284">   284  </span>		{
+<span class="lineno" id="285">   285  </span>			<span class="key">return</span> <span class="str_const">"XMLNode"</span> ;
+<span class="lineno" id="286">   286  </span>		}
+<span class="lineno" id="287">   287  </span>		<span class="key">else</span> <span class="key">if</span> (type == Function) 
+<span class="lineno" id="288">   288  </span>		{
+<span class="lineno" id="289">   289  </span>			<span class="key">return</span> <span class="str_const">"Function"</span> ;
+<span class="lineno" id="290">   290  </span>		}
+<span class="lineno" id="291">   291  </span>		<span class="key">else</span> 
+<span class="lineno" id="292">   292  </span>		{
+<span class="lineno" id="293">   293  </span>			<span class="key">return</span> <span class="str_const">"Object"</span> ;
+<span class="lineno" id="294">   294  </span>		}
+<span class="lineno" id="295">   295  </span>	}
+<span class="lineno" id="296">   296  </span>
+<span class="lineno" id="297">   297  </span>}
+<span class="lineno" id="298">   298  </span></pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.util" class="button">Package</a></li><li><a href="TypeUtil.html" title="Detail of vegas.util.TypeUtil API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

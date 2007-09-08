@@ -46,36 +46,43 @@ package vegas.data
 
 		/**
 		 * Returns {@code true} if this map contains a mapping for the specified key.
+		 * @return {@code true} if this map contains a mapping for the specified key.
 		 */
         function containsKey( key:* ):Boolean ;
 	
 		/**
 		 * Returns {@code true} if this map maps one or more keys to the specified value.
+		 * @return {@code true} if this map maps one or more keys to the specified value.
 		 */
     	function containsValue( value:* ):Boolean ;
 
 		/**
 		 * Returns the value to which this map maps the specified key.
+		 * @return the value to which this map maps the specified key.
 		 */
 	    function get(key:*):* ;
 	
 		/**
 		 * Returns an array of all the keys in the map.
+		 * @return an array of all the keys in the map.
 		 */
     	function getKeys():Array ;
 
 		/**
 		 * Returns an array of all the values in the map.
+		 * @return an array of all the values in the map.
 		 */
     	function getValues():Array ;
 
 		/**
 		 * Returns {@code true} if this map contains no key-value mappings.
+		 * @return {@code true} if this map contains no key-value mappings.
 		 */
 	    function isEmpty():Boolean ;
 	
 		/**
-		 * Returns the keys iterator of this map. 
+		 * Returns the keys iterator of this map.
+		 * @return the keys iterator of this map.
 		 */
         function keyIterator():Iterator ;
 
@@ -96,6 +103,7 @@ package vegas.data
 	
 		/**
 		 * Returns the number of key-value mappings in this map.
+		 * @return the number of key-value mappings in this map.
 		 */
     	function size():uint ;
 

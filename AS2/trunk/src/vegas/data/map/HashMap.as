@@ -33,7 +33,7 @@ import vegas.util.serialize.Serializer;
 
 /**
  * Hash table based implementation of the Map interface. 
- * <p><b>Attention :</b> this class is the ArrayMap class in the AS3 version of VEGAS.</p>
+ * <p><b>Warning :</b> this class is the ArrayMap class in the AS3 version of VEGAS.</p>
  * @author eKameleon
  */
 class vegas.data.map.HashMap extends CoreObject implements ICloneable, Iterable, Map 

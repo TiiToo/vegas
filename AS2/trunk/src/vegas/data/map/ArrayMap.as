@@ -41,6 +41,8 @@ class vegas.data.map.ArrayMap extends HashMap
 		} 
 	}
 
+	// TODO setKeyAt : verify if the key exist or not in the Map and notify an Error ?
+
 	/**
 	 * Sets the value of the "key" in the HashMap (ArrayMap) with the specified index.
 	 * @return the old 'key' value in the map if exist.

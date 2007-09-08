@@ -11,6 +11,54 @@ package vegas.data.sets
 	
 	/**
 	 * The MultiHashSet is a MutliHashMap that contains no duplicate elements in a specified key.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.data.Collection ;
+	 * import vegas.data.collections.SimpleCollection ;
+	 * import vegas.data.sets.MultiHashSet ;
+	 * 
+	 * var s:MultiHashSet = new MultiHashSet() ;
+	 * 
+	 * trace("----- Test put()") ;
+	 * 
+	 * trace("insert key1:valueA1 : " + s.put("key1", "valueA1")) ;
+	 * trace("insert key1:valueA2 : " + s.put("key1", "valueA2"))
+	 * trace("insert key1:valueA2 : " + s.put("key1", "valueA2")) ;
+	 * trace("insert key1:valueA3 : " + s.put("key1", "valueA3")) ;
+	 * trace("insert key2:valueA2 : " + s.put("key2", "valueA2")) ;
+	 * trace("insert key2:valueB1 : " + s.put("key2", "valueB1")) ;
+	 * trace("insert key2:valueB2 : " + s.put("key2", "valueB2")) ;
+	 * 
+	 * trace("size : " + s.size()) ;
+	 * trace("totalSize : " + s.totalSize()) ;
+	 * 
+	 * trace("---- Test toArray") ;
+	 * 
+	 * var ar:Array = s.toArray() ;
+	 * trace("s.toArray : " + ar) ;
+	 * 
+	 * trace("----- Test contains") ;
+	 * 
+	 * trace("contains valueA1 : " + s.contains("valueA1") ) ;
+	 * trace("contains valueA1 in key1 : " + s.containsByKey("key1", "valueA1") ) ;
+	 * trace("contains valueA1 in key2 : " + s.containsByKey("key2", "valueA1") ) ;
+	 * 
+	 * trace("---- Test removeBy(key, value)") ;
+	 * 
+	 * trace("remove key1:valueA2 : " + s.removeByKey("key1", "valueA2")) ;
+	 * trace("insert key1:valueA2 : " + s.put("key1", "valueA2")) ;
+	 * trace("insert key1:valueA2 : " + s.put("key1", "valueA2")) ;
+	 * 
+	 * trace("---- Test remove(key)") ;
+	 * 
+	 * trace("remove key2 : " + s.remove("key2")) ;
+	 * trace("size : " + s.size()) ;
+	 * 
+	 * trace("---- Test putCollection(key, co:Collection)") ;
+	 * var co:Collection = new SimpleCollection(["valueA1", "valueA4", "valueA1"]) ;
+	 * s.putCollection("key1", co) ;
+	 * trace("s.toString : " + s) ;
+	 * }
 	 * @author eKameleon
 	 * @see MultiMap
 	 */
@@ -29,7 +77,7 @@ package vegas.data.sets
 		/**
 	 	 * This clears each collection in the map, and so may be slow.
 		 */
-		override public function clear():void
+		public override function clear():void
 		{
 			super.clear() ;
 			_internalSet.clear() ;
@@ -39,7 +87,7 @@ package vegas.data.sets
 		 * Returns the shallow copy of this object.
 		 * @return the shallow copy of this object.
 		 */
-		override public function clone():*
+		public override function clone():*
 		{
 			var m:MultiHashSet = new MultiHashSet() ;
 			var kItr:Iterator = keyIterator() ;
@@ -95,7 +143,7 @@ package vegas.data.sets
 			}
 		}
 
-		override public function copy():*
+		public override function copy():*
 		{
 			var m:MultiHashSet = new MultiHashSet() ;
 			var vItr:Iterator = valueIterator() ;
@@ -113,7 +161,7 @@ package vegas.data.sets
 		 * Creates a new instance of the map value Collection(Set) container.
 		 * This method can be overridden to use your own collection type.
 		 */
-		override public function createCollection():Collection 
+		public override function createCollection():Collection 
 		{
 			return new HashSet() ;	
 		}
@@ -122,7 +170,7 @@ package vegas.data.sets
 		 * This method is unsupported, use getSet method.
 		 * @throws UnsupportedOperation the MultiHashSet does not support the get() method, use getSet()
 		 */
-		override public function get(key:*):*
+		public override function get(key:*):*
 		{
 			throw new UnsupportedOperation("This MultiHashSet does not support the get() method, use getSet().") ;
 			return null ;
@@ -164,7 +212,7 @@ package vegas.data.sets
 		 * Adds the value to the Set associated with the specified key.
 		 * @return {@code true} if the value is inserted in the object.
 		 */
-		override public function put(key:*, value:*):*
+		public override function put(key:*, value:*):*
 		{
 			if(_internalSet.contains(value)) 
 			{
@@ -181,7 +229,7 @@ package vegas.data.sets
 		/**
 		 * Adds a collection of values to the collection associated with the specified key.
 		 */
-		override public function putCollection(key:*, c:Collection):void {
+		public override function putCollection(key:*, c:Collection):void {
 			if (!containsKey(key)) 
 			{
 				__map.put(key , createCollection()) ;
@@ -202,7 +250,7 @@ package vegas.data.sets
 		/**
 		 * Removes a specific value from map with a specific key.
 		 */
-		override public function remove(o:*):*
+		public override function remove(o:*):*
 		{
 			var s:Set = __map.get(o) ;
 			if (s != null) 
@@ -225,7 +273,7 @@ package vegas.data.sets
 		 * Removes a specific value from map with the specific passed-in key value.
 		 * <p><b>Note :</b> Use Set implementation and not Map implementation !</p>
 		 */
-		override public function removeByKey( key:*, value:* ):*
+		public override function removeByKey( key:*, value:* ):*
 		{
 			
 			var c:Collection = __map.get(key) ;

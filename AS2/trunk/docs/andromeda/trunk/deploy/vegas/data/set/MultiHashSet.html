@@ -3,6 +3,50 @@
 document.quicknavBasePath="../../../index-files";
 //--></script><link href="../../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../../overview-summary.html" title="Overview" rel="top"/><link href="package-summary.html" title="Package vegas.data.set" rel="up"/><link href="../../../vegas/data/set/TypedSet.html" title="Class vegas.data.set.TypedSet" rel="prev"/><link href="../../../vegas/data/set/HashSet.html" title="Class vegas.data.set.HashSet" rel="next"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><h1>Class vegas.data.set.MultiHashSet</h1><div class="type_hierachy"><ul><li><a href="../../../vegas/core/CoreObject.html" class="class_name" title="Class vegas.core.CoreObject">vegas.core.CoreObject</a><ul><li><a href="../../../vegas/data/map/HashMap.html" class="class_name" title="Class vegas.data.map.HashMap">vegas.data.map.HashMap</a><ul><li><a href="../../../vegas/data/map/MultiHashMap.html" class="class_name" title="Class vegas.data.map.MultiHashMap">vegas.data.map.MultiHashMap</a><ul><li><strong>vegas.data.set.MultiHashSet</strong></li></ul></li></ul></li></ul></li></ul></div><div class="interfaces"><h2>Implemented Interfaces</h2><code><a href="../../../vegas/data/Set.html" class="interface_name" title="Interface vegas.data.Set">Set</a></code> </div><div class="type_description"><h2>Description</h2><p>
  The MultiHashSet is a MutliHashMap that contains no duplicate elements in a specified key.
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">import</span> vegas.data.Collection ;
+ <span class="key">import</span> vegas.data.collections.SimpleCollection ;
+ <span class="key">import</span> vegas.data.set.MultiHashSet ;
+ 
+ <span class="key">var</span> s:MultiHashSet = <span class="key">new</span> MultiHashSet() ;
+
+ trace(<span class="str_const">"----- Test put()"</span>) ;
+ 
+ trace(<span class="str_const">"insert key1:valueA1 : "</span> + s.put(<span class="str_const">"key1"</span>, <span class="str_const">"valueA1"</span>)) ;
+ trace(<span class="str_const">"insert key1:valueA2 : "</span> + s.put(<span class="str_const">"key1"</span>, <span class="str_const">"valueA2"</span>))
+ trace(<span class="str_const">"insert key1:valueA2 : "</span> + s.put(<span class="str_const">"key1"</span>, <span class="str_const">"valueA2"</span>)) ;
+ trace(<span class="str_const">"insert key1:valueA3 : "</span> + s.put(<span class="str_const">"key1"</span>, <span class="str_const">"valueA3"</span>)) ;
+ trace(<span class="str_const">"insert key2:valueA2 : "</span> + s.put(<span class="str_const">"key2"</span>, <span class="str_const">"valueA2"</span>)) ;
+ trace(<span class="str_const">"insert key2:valueB1 : "</span> + s.put(<span class="str_const">"key2"</span>, <span class="str_const">"valueB1"</span>)) ;
+ trace(<span class="str_const">"insert key2:valueB2 : "</span> + s.put(<span class="str_const">"key2"</span>, <span class="str_const">"valueB2"</span>)) ;
+ 
+ trace(<span class="str_const">"size : "</span> + s.size()) ;
+ trace(<span class="str_const">"totalSize : "</span> + s.totalSize()) ;
+ 
+ trace(<span class="str_const">"---- Test toArray"</span>) ;
+ <span class="key">var</span> ar:Array = s.toArray() ;
+ trace(<span class="str_const">"s.toArray : "</span> + ar) ;
+ 
+ trace(<span class="str_const">"----- Test contains"</span>) ;
+ trace(<span class="str_const">"contains valueA1 : "</span> + s.contains(<span class="str_const">"valueA1"</span>) ) ;
+ trace(<span class="str_const">"contains valueA1 in key1 : "</span> + s.contains(<span class="str_const">"key1"</span>, <span class="str_const">"valueA1"</span>) ) ;
+ trace(<span class="str_const">"contains valueA1 in key2 : "</span> + s.contains(<span class="str_const">"key2"</span>, <span class="str_const">"valueA1"</span>) ) ;
+ 
+ trace(<span class="str_const">"---- Test remove(key, value)"</span>) ;
+ trace(<span class="str_const">"remove key1:valueA2 : "</span> + s.remove(<span class="str_const">"key1"</span>, <span class="str_const">"valueA2"</span>)) ;
+ trace(<span class="str_const">"insert key1:valueA2 : "</span> + s.put(<span class="str_const">"key1"</span>, <span class="str_const">"valueA2"</span>)) ;
+ trace(<span class="str_const">"insert key1:valueA2 : "</span> + s.put(<span class="str_const">"key1"</span>, <span class="str_const">"valueA2"</span>)) ;
+ 
+ trace(<span class="str_const">"---- Test remove(key)"</span>) ;
+ trace(<span class="str_const">"remove key2 : "</span> + s.remove(<span class="str_const">"key2"</span>)) ;
+ trace(<span class="str_const">"size : "</span> + s.size()) ;
+ 
+ trace(<span class="str_const">"---- Test putCollection(key, co:Collection)"</span>) ;
+ <span class="key">var</span> co:Collection = <span class="key">new</span> SimpleCollection([<span class="str_const">"valueA1"</span>, <span class="str_const">"valueA4"</span>, <span class="str_const">"valueA1"</span>]) ;
+ s.putCollection(<span class="str_const">"key1"</span>, co) ;
+ trace(<span class="str_const">"s.toString : "</span> + s) ;
+ </pre>
  </p><h4>See Also</h4><ul class="extra_info"><li><span class="unresolved_type_name">MultiMap</span></li></ul></div><div class="type_indexes"><div class="method_index"><h2>Method Index</h2><div><code>new <a href="#MultiHashSet" title="public function MultiHashSet()">MultiHashSet()</a></code></div><a href="#clear" title="public function clear():Void">clear()</a>, <a href="#clone" title="public function clone()">clone()</a>, <a href="#contains" title="public function contains(o):Boolean">contains()</a>, <a href="#createCollection" title="public function createCollection():Collection">createCollection()</a>, <a href="#get" title="public function get(id:Number)">get()</a>, <a href="#getSet" title="public function getSet(key)">getSet()</a>, <a href="#insert" title="public function insert(o):Boolean">insert()</a>, <a href="#put" title="public function put(key, value):Boolean">put()</a>, <a href="#putCollection" title="public function putCollection(key, c:Collection):Void">putCollection()</a>, <a href="#remove" title="public function remove(o):Boolean">remove()</a>, <a href="#toArray" title="public function toArray():Array">toArray()</a><h4>Inherited from <a href="../../../vegas/data/map/MultiHashMap.html" class="class_name" title="Class vegas.data.map.MultiHashMap">MultiHashMap</a></h4><div class="extra_info"><a href="../../../vegas/data/map/MultiHashMap.html#containsKey" title="public function containsKey(key):Boolean">containsKey()</a>, <a href="../../../vegas/data/map/MultiHashMap.html#containsValue" title="public function containsValue(value):Boolean">containsValue()</a>, <a href="../../../vegas/data/map/MultiHashMap.html#getKeys" title="public function getKeys():Array">getKeys()</a>, <a href="../../../vegas/data/map/MultiHashMap.html#getValues" title="public function getValues():Array">getValues()</a>, <a href="../../../vegas/data/map/MultiHashMap.html#isEmpty" title="public function isEmpty():Boolean">isEmpty()</a>, <a href="../../../vegas/data/map/MultiHashMap.html#iterator" title="public function iterator():Iterator">iterator()</a>, <a href="../../../vegas/data/map/MultiHashMap.html#keyIterator" title="public function keyIterator():Iterator">keyIterator()</a>, <a href="../../../vegas/data/map/MultiHashMap.html#putAll" title="public function putAll(map:Map):Void">putAll()</a>, <a href="../../../vegas/data/map/MultiHashMap.html#size" title="public function size():Number">size()</a>, <a href="../../../vegas/data/map/MultiHashMap.html#toSource" title="public function toSource(indent:Number, indentor:String):String">toSource()</a>, <a href="../../../vegas/data/map/MultiHashMap.html#toString" title="public function toString():String">toString()</a>, <a href="../../../vegas/data/map/MultiHashMap.html#totalSize" title="public function totalSize():Number">totalSize()</a>, <a href="../../../vegas/data/map/MultiHashMap.html#valueIterator" title="public function valueIterator():Iterator">valueIterator()</a>, <a href="../../../vegas/data/map/MultiHashMap.html#values" title="public function values():Collection">values()</a></div><h4>Inherited from <a href="../../../vegas/data/map/HashMap.html" class="class_name" title="Class vegas.data.map.HashMap">HashMap</a></h4><div class="extra_info"><a href="../../../vegas/data/map/HashMap.html#indexOfKey" title="public function indexOfKey(key):Number">indexOfKey()</a>, <a href="../../../vegas/data/map/HashMap.html#indexOfValue" title="public function indexOfValue(value):Number">indexOfValue()</a></div><h4>Inherited from <a href="../../../vegas/core/CoreObject.html" class="class_name" title="Class vegas.core.CoreObject">CoreObject</a></h4><div class="extra_info"><a href="../../../vegas/core/CoreObject.html#getLogger" title="public function getLogger():ILogger">getLogger()</a>, <a href="../../../vegas/core/CoreObject.html#hashCode" title="public function hashCode():Number">hashCode()</a>, <a href="../../../vegas/core/CoreObject.html#setLogger" title="public function setLogger(log:ILogger):Void">setLogger()</a></div></div></div><div class="type_details"><div class="constructor_detail_list"><h2>Constructor Detail</h2><div class="method_details"><a name="MultiHashSet"></a><h3>MultiHashSet</h3><code class="method_synopsis">public function <strong class="method_name">MultiHashSet</strong>()</code><div class="method_info"><p>
  Creates a new MultiHashSet instance.
 	 </p></div></div></div><div class="method_detail_list"><h2>Method Detail</h2><div class="method_details alt_row"><a name="clear"></a><h3>clear</h3><code class="method_synopsis">public function <strong class="method_name">clear</strong>():<span class="void_name">Void</span></code><div class="method_info"><p>

@@ -26,12 +26,11 @@ package vegas.data.map
     
     import vegas.core.CoreObject;
     import vegas.data.Map;
-    import vegas.data.iterator.ArrayIterator ;
-    import vegas.data.iterator.Iterator ;
-    import vegas.data.iterator.MapIterator ;
-    import vegas.data.map.MapFormat ;
-    import vegas.util.Copier ;
-    import vegas.util.Serializer ;
+    import vegas.data.iterator.ArrayIterator;
+    import vegas.data.iterator.Iterator;
+    import vegas.data.iterator.MapIterator;
+    import vegas.util.Copier;
+    import vegas.util.Serializer;
 
 	/**
 	 * ArrayMap is an Map implementation based on two arrays to defines the collections of the keys and the values.
@@ -43,10 +42,11 @@ package vegas.data.map
         
 		/**
 		 * Creates a new ArrayMap instance.
+		 * @param keys An optional Array of all keys to fill in this Map.
+		 * @param values An optional Array of all values to fill in this Map. This Array must have the same size like the 'keys' argument.
 		 */        
         public function ArrayMap( ...arguments:Array )
         {
-            super();
             
             var k:Array = arguments[0] as Array ;
     		var v:Array = arguments[1] as Array ;
@@ -183,9 +183,11 @@ package vegas.data.map
             return new ArrayIterator(_keys) ;
         }
 
-		/**
-		 * Associates the specified value with the specified key in this map (optional operation).
-		 */
+        /**
+    	 * Associates the specified value with the specified key in this map.
+    	 * @param key the key to register the value.
+    	 * @param value the value to be mapped in the map.
+    	 */
         public function put(key:*, value:*):*
         {
 		    var r:* ;
@@ -272,10 +274,10 @@ package vegas.data.map
         }
         
 		/**
-		 * Returns a Eden representation of the object.
+		 * Returns a eden representation of the object.
 		 * @return a string representing the source code of the object.
 	 	 */
-        override public function toSource(...arguments):String
+        public override function toSource(...arguments):String
         {
     		return Serializer.getSourceOf(this, [_keys, _values]) ;
         }
@@ -284,7 +286,7 @@ package vegas.data.map
 		 * Returns the string representation of this instance.
 		 * @return the string representation of this instance
 		 */
-        override public function toString():String
+        public override function toString():String
         {
 		    return new MapFormat().formatToString(this) ;
         }

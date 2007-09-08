@@ -30,6 +30,50 @@ import vegas.errors.UnsupportedOperation;
 
 /**
  * The MultiHashSet is a MutliHashMap that contains no duplicate elements in a specified key.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import vegas.data.Collection ;
+ * import vegas.data.collections.SimpleCollection ;
+ * import vegas.data.set.MultiHashSet ;
+ * 
+ * var s:MultiHashSet = new MultiHashSet() ;
+ *
+ * trace("----- Test put()") ;
+ * 
+ * trace("insert key1:valueA1 : " + s.put("key1", "valueA1")) ;
+ * trace("insert key1:valueA2 : " + s.put("key1", "valueA2"))
+ * trace("insert key1:valueA2 : " + s.put("key1", "valueA2")) ;
+ * trace("insert key1:valueA3 : " + s.put("key1", "valueA3")) ;
+ * trace("insert key2:valueA2 : " + s.put("key2", "valueA2")) ;
+ * trace("insert key2:valueB1 : " + s.put("key2", "valueB1")) ;
+ * trace("insert key2:valueB2 : " + s.put("key2", "valueB2")) ;
+ * 
+ * trace("size : " + s.size()) ;
+ * trace("totalSize : " + s.totalSize()) ;
+ * 
+ * trace("---- Test toArray") ;
+ * var ar:Array = s.toArray() ;
+ * trace("s.toArray : " + ar) ;
+ * 
+ * trace("----- Test contains") ;
+ * trace("contains valueA1 : " + s.contains("valueA1") ) ;
+ * trace("contains valueA1 in key1 : " + s.contains("key1", "valueA1") ) ;
+ * trace("contains valueA1 in key2 : " + s.contains("key2", "valueA1") ) ;
+ * 
+ * trace("---- Test remove(key, value)") ;
+ * trace("remove key1:valueA2 : " + s.remove("key1", "valueA2")) ;
+ * trace("insert key1:valueA2 : " + s.put("key1", "valueA2")) ;
+ * trace("insert key1:valueA2 : " + s.put("key1", "valueA2")) ;
+ * 
+ * trace("---- Test remove(key)") ;
+ * trace("remove key2 : " + s.remove("key2")) ;
+ * trace("size : " + s.size()) ;
+ * 
+ * trace("---- Test putCollection(key, co:Collection)") ;
+ * var co:Collection = new SimpleCollection(["valueA1", "valueA4", "valueA1"]) ;
+ * s.putCollection("key1", co) ;
+ * trace("s.toString : " + s) ;
+ * }
  * @author eKameleon
  * @see MultiMap
  */

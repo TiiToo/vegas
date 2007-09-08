@@ -28,39 +28,49 @@ document.quicknavBasePath="../../index-files";
 <span class="lineno" id="25">    25  </span>
 <span class="lineno" id="26">    26  </span><span class="key">import</span> vegas.events.Delegate;
 <span class="lineno" id="27">    27  </span>
-<span class="lineno" id="28">    28  </span><span class="key">class</span> pegas.process.ActionProxy <span class="key">extends</span> AbstractAction 
-<span class="lineno" id="29">    29  </span>{
-<span class="lineno" id="30">    30  </span>
-<span class="lineno" id="31">    31  </span>	<span class="comment doc">/**
-<span class="lineno" id="32">    32  </span>	 * Creates a new ActionProxy instance.
-<span class="lineno" id="33">    33  </span>	 */</span>
-<span class="lineno" id="34">    34  </span>	<span class="key">public</span> <span class="key">function</span> ActionProxy(o:Object, f:Function) 
-<span class="lineno" id="35">    35  </span>	{
-<span class="lineno" id="36">    36  </span>		obj = o ;
-<span class="lineno" id="37">    37  </span>		func = f ;
-<span class="lineno" id="38">    38  </span>		args = arguments.splice(<span class="num_const">2</span>) ;
-<span class="lineno" id="39">    39  </span>	}
-<span class="lineno" id="40">    40  </span>
-<span class="lineno" id="41">    41  </span>	<span class="key">public</span> <span class="key">var</span> args:Array ;
-<span class="lineno" id="42">    42  </span>	<span class="key">public</span> <span class="key">var</span> func:Function ;
-<span class="lineno" id="43">    43  </span>	<span class="key">public</span> <span class="key">var</span> obj:Object ;
-<span class="lineno" id="44">    44  </span>	
-<span class="lineno" id="45">    45  </span>	<span class="key">public</span> <span class="key">function</span> clone() 
-<span class="lineno" id="46">    46  </span>	{
-<span class="lineno" id="47">    47  </span>		<span class="key">var</span> p:ActionProxy = <span class="key">new</span> ActionProxy(obj, func);
-<span class="lineno" id="48">    48  </span>		p.args = args ;
-<span class="lineno" id="49">    49  </span>		<span class="key">return</span> p ;
-<span class="lineno" id="50">    50  </span>	}
-<span class="lineno" id="51">    51  </span>	
-<span class="lineno" id="52">    52  </span>	<span class="key">public</span> <span class="key">function</span> run():Void 
+<span class="lineno" id="28">    28  </span><span class="comment doc">/**
+<span class="lineno" id="29">    29  </span> * This {@code Action} object run a proxy method.
+<span class="lineno" id="30">    30  </span> */</span>
+<span class="lineno" id="31">    31  </span><span class="key">class</span> pegas.process.ActionProxy <span class="key">extends</span> AbstractAction 
+<span class="lineno" id="32">    32  </span>{
+<span class="lineno" id="33">    33  </span>
+<span class="lineno" id="34">    34  </span>	<span class="comment doc">/**
+<span class="lineno" id="35">    35  </span>	 * Creates a new ActionProxy instance.
+<span class="lineno" id="36">    36  </span>	 */</span>
+<span class="lineno" id="37">    37  </span>	<span class="key">public</span> <span class="key">function</span> ActionProxy(o:Object, f:Function) 
+<span class="lineno" id="38">    38  </span>	{
+<span class="lineno" id="39">    39  </span>		obj = o ;
+<span class="lineno" id="40">    40  </span>		func = f ;
+<span class="lineno" id="41">    41  </span>		args = arguments.splice(<span class="num_const">2</span>) ;
+<span class="lineno" id="42">    42  </span>	}
+<span class="lineno" id="43">    43  </span>
+<span class="lineno" id="44">    44  </span>	<span class="key">public</span> <span class="key">var</span> args:Array ;
+<span class="lineno" id="45">    45  </span>	<span class="key">public</span> <span class="key">var</span> func:Function ;
+<span class="lineno" id="46">    46  </span>	<span class="key">public</span> <span class="key">var</span> obj:Object ;
+<span class="lineno" id="47">    47  </span>	
+<span class="lineno" id="48">    48  </span>	<span class="comment doc">/**
+<span class="lineno" id="49">    49  </span>	 * Returns a shallow copy of this object.
+<span class="lineno" id="50">    50  </span>	 * @return a shallow copy of this object.
+<span class="lineno" id="51">    51  </span>	 */</span>
+<span class="lineno" id="52">    52  </span>	<span class="comment">/*override*/</span> <span class="key">public</span> <span class="key">function</span> clone() 
 <span class="lineno" id="53">    53  </span>	{
-<span class="lineno" id="54">    54  </span>		notifyStarted() ;
-<span class="lineno" id="55">    55  </span>		_setRunning(<span class="key">true</span>) ;
-<span class="lineno" id="56">    56  </span>		Delegate.create.apply(<span class="key">this</span>, [obj, func].concat(args)) ();
-<span class="lineno" id="57">    57  </span>		_setRunning(<span class="key">false</span>) ;
-<span class="lineno" id="58">    58  </span>		notifyFinished() ;
-<span class="lineno" id="59">    59  </span>	}
-<span class="lineno" id="60">    60  </span>
-<span class="lineno" id="61">    61  </span>}
-<span class="lineno" id="62">    62  </span>
-<span class="lineno" id="63">    63  </span></pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package pegas.process" class="button">Package</a></li><li><a href="ActionProxy.html" title="Detail of pegas.process.ActionProxy API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
+<span class="lineno" id="54">    54  </span>		<span class="key">var</span> p:ActionProxy = <span class="key">new</span> ActionProxy(obj, func);
+<span class="lineno" id="55">    55  </span>		p.args = args ;
+<span class="lineno" id="56">    56  </span>		<span class="key">return</span> p ;
+<span class="lineno" id="57">    57  </span>	}
+<span class="lineno" id="58">    58  </span>	
+<span class="lineno" id="59">    59  </span>	<span class="comment doc">/**
+<span class="lineno" id="60">    60  </span>	 * Run the process.
+<span class="lineno" id="61">    61  </span>	 */</span>
+<span class="lineno" id="62">    62  </span>	<span class="comment">/*override*/</span> <span class="key">public</span> <span class="key">function</span> run():Void 
+<span class="lineno" id="63">    63  </span>	{
+<span class="lineno" id="64">    64  </span>		notifyStarted() ;
+<span class="lineno" id="65">    65  </span>		_setRunning(<span class="key">true</span>) ;
+<span class="lineno" id="66">    66  </span>		Delegate.create.apply(<span class="key">this</span>, [obj, func].concat(args)) ();
+<span class="lineno" id="67">    67  </span>		_setRunning(<span class="key">false</span>) ;
+<span class="lineno" id="68">    68  </span>		notifyFinished() ;
+<span class="lineno" id="69">    69  </span>	}
+<span class="lineno" id="70">    70  </span>
+<span class="lineno" id="71">    71  </span>}
+<span class="lineno" id="72">    72  </span>
+<span class="lineno" id="73">    73  </span></pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package pegas.process" class="button">Package</a></li><li><a href="ActionProxy.html" title="Detail of pegas.process.ActionProxy API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

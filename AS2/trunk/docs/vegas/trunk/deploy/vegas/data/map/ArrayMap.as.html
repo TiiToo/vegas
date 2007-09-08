@@ -44,34 +44,36 @@ document.quicknavBasePath="../../../index-files";
 <span class="lineno" id="41">    41  </span>		} 
 <span class="lineno" id="42">    42  </span>	}
 <span class="lineno" id="43">    43  </span>
-<span class="lineno" id="44">    44  </span>	<span class="comment doc">/**
-<span class="lineno" id="45">    45  </span>	 * Sets the value of the "key" in the HashMap (ArrayMap) with the specified index.
-<span class="lineno" id="46">    46  </span>	 * @return the old 'key' value in the map if exist.
-<span class="lineno" id="47">    47  </span>	 */</span>
-<span class="lineno" id="48">    48  </span>	<span class="key">public</span> <span class="key">function</span> setKeyAt( index:Number, key ) 
-<span class="lineno" id="49">    49  </span>	{
-<span class="lineno" id="50">    50  </span>		<span class="key">var</span> old = _keys[index] ;
-<span class="lineno" id="51">    51  </span>		<span class="key">if</span> (old === undefined)
-<span class="lineno" id="52">    52  </span>		{
-<span class="lineno" id="53">    53  </span>			<span class="key">return</span> <span class="key">null</span> ;	
-<span class="lineno" id="54">    54  </span>		}
-<span class="lineno" id="55">    55  </span>		_keys[index] = key ;
-<span class="lineno" id="56">    56  </span>		<span class="key">return</span> old ;
-<span class="lineno" id="57">    57  </span>	}
-<span class="lineno" id="58">    58  </span>
-<span class="lineno" id="59">    59  </span>	<span class="comment doc">/**
-<span class="lineno" id="60">    60  </span>	 * Sets the value of the "value" in the HashMap (ArrayMap) with the specified index.
-<span class="lineno" id="61">    61  </span>	 * @return the old value in the map if exist.
-<span class="lineno" id="62">    62  </span>	 */</span>
-<span class="lineno" id="63">    63  </span>	<span class="key">public</span> <span class="key">function</span> setValueAt( index:Number, value ) 
-<span class="lineno" id="64">    64  </span>	{
-<span class="lineno" id="65">    65  </span>		<span class="key">var</span> old = _values[index] ;
-<span class="lineno" id="66">    66  </span>		<span class="key">if</span> (old === undefined)
-<span class="lineno" id="67">    67  </span>		{
-<span class="lineno" id="68">    68  </span>			<span class="key">return</span> <span class="key">null</span> ;	
-<span class="lineno" id="69">    69  </span>		}
-<span class="lineno" id="70">    70  </span>		_values[index] = value ;
-<span class="lineno" id="71">    71  </span>		<span class="key">return</span> old ;
-<span class="lineno" id="72">    72  </span>	}
-<span class="lineno" id="73">    73  </span>
-<span class="lineno" id="74">    74  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.data.map" class="button">Package</a></li><li><a href="ArrayMap.html" title="Detail of vegas.data.map.ArrayMap API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
+<span class="lineno" id="44">    44  </span>	<span class="comment">// TODO setKeyAt : verify if the key exist or not in the Map and notify an Error ?</span>
+<span class="lineno" id="45">    45  </span>
+<span class="lineno" id="46">    46  </span>	<span class="comment doc">/**
+<span class="lineno" id="47">    47  </span>	 * Sets the value of the "key" in the HashMap (ArrayMap) with the specified index.
+<span class="lineno" id="48">    48  </span>	 * @return the old 'key' value in the map if exist.
+<span class="lineno" id="49">    49  </span>	 */</span>
+<span class="lineno" id="50">    50  </span>	<span class="key">public</span> <span class="key">function</span> setKeyAt( index:Number, key ) 
+<span class="lineno" id="51">    51  </span>	{
+<span class="lineno" id="52">    52  </span>		<span class="key">var</span> old = _keys[index] ;
+<span class="lineno" id="53">    53  </span>		<span class="key">if</span> (old === undefined)
+<span class="lineno" id="54">    54  </span>		{
+<span class="lineno" id="55">    55  </span>			<span class="key">return</span> <span class="key">null</span> ;	
+<span class="lineno" id="56">    56  </span>		}
+<span class="lineno" id="57">    57  </span>		_keys[index] = key ;
+<span class="lineno" id="58">    58  </span>		<span class="key">return</span> old ;
+<span class="lineno" id="59">    59  </span>	}
+<span class="lineno" id="60">    60  </span>
+<span class="lineno" id="61">    61  </span>	<span class="comment doc">/**
+<span class="lineno" id="62">    62  </span>	 * Sets the value of the "value" in the HashMap (ArrayMap) with the specified index.
+<span class="lineno" id="63">    63  </span>	 * @return the old value in the map if exist.
+<span class="lineno" id="64">    64  </span>	 */</span>
+<span class="lineno" id="65">    65  </span>	<span class="key">public</span> <span class="key">function</span> setValueAt( index:Number, value ) 
+<span class="lineno" id="66">    66  </span>	{
+<span class="lineno" id="67">    67  </span>		<span class="key">var</span> old = _values[index] ;
+<span class="lineno" id="68">    68  </span>		<span class="key">if</span> (old === undefined)
+<span class="lineno" id="69">    69  </span>		{
+<span class="lineno" id="70">    70  </span>			<span class="key">return</span> <span class="key">null</span> ;	
+<span class="lineno" id="71">    71  </span>		}
+<span class="lineno" id="72">    72  </span>		_values[index] = value ;
+<span class="lineno" id="73">    73  </span>		<span class="key">return</span> old ;
+<span class="lineno" id="74">    74  </span>	}
+<span class="lineno" id="75">    75  </span>
+<span class="lineno" id="76">    76  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.data.map" class="button">Package</a></li><li><a href="ArrayMap.html" title="Detail of vegas.data.map.ArrayMap API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

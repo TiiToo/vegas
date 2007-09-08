@@ -133,6 +133,7 @@ package vegas.data.map
         
     	/**
     	 * Returns a shallow copy of this HashMap instance: the keys and values themselves are not cloned.
+    	 * @return a shallow copy of this HashMap instance: the keys and values themselves are not cloned.
     	 */
         public function clone():*
         {
@@ -143,6 +144,7 @@ package vegas.data.map
 
 		/**
 		 * Returns a deep copy ot this HashMap instance.
+		 * @return a deep copy ot this HashMap instance.
 		 */
 		public function copy():*
 		{
@@ -151,6 +153,7 @@ package vegas.data.map
 
 		/**
 		 * Returns true if this map contains a mapping for the specified key.
+		 * @return true if this map contains a mapping for the specified key.
 		 */
         public function containsKey(key:*):Boolean
         {
@@ -159,6 +162,7 @@ package vegas.data.map
   
 	 	/**
 		 * Returns true if this map maps one or more keys to the specified value.
+		 * @return true if this map maps one or more keys to the specified value.
 		 */
         public function containsValue(value:*):Boolean
         {
@@ -167,6 +171,7 @@ package vegas.data.map
 
 		/**
 		 * Returns the value to which this map maps the specified key.
+		 * @return the value to which this map maps the specified key.
 		 */
         public function get(key:*):* 
         {
@@ -175,6 +180,7 @@ package vegas.data.map
 
 		/**
 		 * Returns an array representation of all keys in the map.
+		 * @return an array representation of all keys in the map.
 		 */
         public function getKeys():Array
         {
@@ -187,6 +193,7 @@ package vegas.data.map
 
 		/**
 		 * Returns an array representation of all values in the map.
+		 * @return an array representation of all values in the map.
 		 */
         public function getValues():Array
         {
@@ -199,6 +206,7 @@ package vegas.data.map
 
 		/**
 		 * Returns the hashcode value of this object.
+		 * @return the hashcode value of this object.
 		 */
         public function hashCode():uint
         {
@@ -207,6 +215,7 @@ package vegas.data.map
 
 		/**
 		 * Returns true if this map contains no key-value mappings.
+		 * @return true if this map contains no key-value mappings.
 		 */
         public function isEmpty():Boolean
         {
@@ -215,6 +224,7 @@ package vegas.data.map
 
 		/**
 		 * Returns the values iterator of this map.
+		 * @return the values iterator of this map.
 		 */
         public function iterator():Iterator
         {
@@ -223,6 +233,7 @@ package vegas.data.map
 
 		/**
 		 * Returns the keys iterator of this map.
+		 * @return the keys iterator of this map.
 		 */
         public function keyIterator():Iterator
         {

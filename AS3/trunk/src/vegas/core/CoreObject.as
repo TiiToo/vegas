@@ -51,7 +51,7 @@ package vegas.core
 		 */
 		function CoreObject() 
 		{
-					
+		    //
 		}
 		
 		HashCode.initialize(CoreObject.prototype) ;
