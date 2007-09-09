@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -25,12 +25,10 @@ package vegas.logging.targets
 {
 
     import vegas.logging.AbstractTarget;
-    import vegas.logging.LogEvent ;
+    import vegas.logging.LogEvent;
     import vegas.logging.LogEventLevel;
-
-    import vegas.util.* ;
-
-	/**
+    
+    /**
 	 * All logger target implementations that have a formatted line style output should extend this class. It provides default behavior for including date, time, category, and level within the output.
 	 * @author eKameleon
 	 */
@@ -101,7 +99,7 @@ package vegas.logging.targets
             var level:String = LogEvent.getLevelString(event.level) ;
             var category:String = event.currentTarget.category ;
             
-            message = formatMessage(message, level, category, new Date()) ;
+            message = formatMessage(message, level, category, new Date() ) ;
             internalLog ( message , event.level ) ;
         
         }

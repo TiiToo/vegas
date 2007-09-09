@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -32,6 +32,19 @@ package pegas.process
     
 	/**
 	 * A Sequencer of IAction process.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * var seq:Sequencer = new Sequencer() ;
+	 * seq.addEventListener( ActionEvent.START  , handleEvent ) ;
+	 * seq.addEventListener( ActionEvent.PROGRESS , handleEvent ) ;
+	 * seq.addEventListener( ActionEvent.FINISH , handleEvent ) ;
+	 * 
+	 * seq.addAction( new Pause(10, true) );
+	 * seq.addAction( new Pause( 2, true) ) ;
+	 * seq.addAction( new Pause( 5, true) ) ;
+	 * seq.addAction( new Pause( 10, true) ) ;
+	 * seq.run() ;
+	 * }
 	 * @author eKameleon
 	 */
 	public class Sequencer extends Action
@@ -150,7 +163,7 @@ package pegas.process
 			{
 			    _cur.removeEventListener( ActionEvent.FINISH, run ) ;
 			    _cur = null ;
-				if ( running() ) 
+				if ( running == true ) 
 				{
 					setRunning(false) ;
 					notifyFinished() ;

@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -78,7 +78,7 @@ package vegas.util
     	 * @param nMax the max value.
     	 * @return a percentage value or null.
     	 */
-    	static public function getPercent(nValue:Number=NaN, nMax:Number=NaN):Number 
+    	static public function getPercent(nValue:Number = NaN, nMax:Number = NaN):Number 
     	{
     		var nP:Number = (nValue / nMax) * 100 ;
     		return (isNaN(nP) || !isFinite(nP)) ? NaN : nP ;

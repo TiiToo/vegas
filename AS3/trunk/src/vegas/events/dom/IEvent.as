@@ -1,4 +1,4 @@
-package vegas.events.dom
+﻿package vegas.events.dom
 {
 	
 	import vegas.core.ICloneable;
@@ -92,12 +92,12 @@ package vegas.events.dom
 		/**
 	     * Sets the context of this event.
 	     */
-		function setContext( context:* =null ):void ;
+		function setContext( context:* = null ):void ;
 		
 		/**
 	     * Sets the current target of this event in a bubbling or capturing phase.
 	     */
-		function setCurrentTarget(target:*=null):void ;
+		function setCurrentTarget( target:* = null ):void ;
 		
 		/**
 	     * Sets the {@code EventPhase} of this event.
@@ -107,7 +107,7 @@ package vegas.events.dom
 		/**
 	     * Sets the target of this event.
 	     */
-		function setTarget(target:*=null):void ;
+		function setTarget( target:* = null ):void ;
 		
 		/**
 	     * Sets the event type.

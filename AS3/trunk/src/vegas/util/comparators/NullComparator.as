@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -23,14 +23,11 @@
 
 package vegas.util.comparators
 {
-
-	import vegas.core.CoreObject;
-	import vegas.core.ICloneable;
-	import vegas.core.IComparator;
-	import vegas.core.ICopyable;
-
-	import vegas.errors.IllegalArgumentError;
-	
+    import vegas.core.CoreObject;
+    import vegas.core.ICloneable;
+    import vegas.core.IComparator;
+    import vegas.core.ICopyable;
+    
 	/**
 	 * This comparator compare Null objects.
  	 * When comparing two non-null objects, the ComparableComparator is used if the nonNullComparator isnt' define.

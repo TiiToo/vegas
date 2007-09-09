@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -24,16 +24,14 @@
 package vegas.logging.targets
 {
 
-    import flash.events.AsyncErrorEvent;    
-   	import flash.events.StatusEvent;
-	import flash.events.SecurityErrorEvent;
-    import flash.net.LocalConnection ;
-	import flash.utils.getTimer ;
-	
+    import flash.events.AsyncErrorEvent;
+    import flash.events.SecurityErrorEvent;
+    import flash.events.StatusEvent;
+    import flash.net.LocalConnection;
+    import flash.utils.getTimer;
+    
     import vegas.logging.LogEventLevel;
     
-	import vegas.util.ClassUtil ;
-	
 	/**
 	 * Provides a logger target that uses the XPanel console to output log messages. 
 	 * Thanks Farata System and <a href='http://www.faratasystems.com/xpanel/readme.pdf'>XPanel</a> console.

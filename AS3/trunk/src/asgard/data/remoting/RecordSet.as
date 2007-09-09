@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -171,8 +171,9 @@ package asgard.data.remoting
 			var len:uint = size() ;
 			for(var i:uint = 0; i < len ; i++) 
 			{
-				var item:Object = getItemAt(i) ;
-				if ((item != null) && (item != 1) && filter(item, context))	{
+				var item:* = getItemAt(i) ;
+				if ((item != null) && (item != 1) && filter( item, context ))	
+				{
 					rs.addItem(item);
 				}
 			}

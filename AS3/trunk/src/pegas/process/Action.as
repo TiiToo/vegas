@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -23,9 +23,8 @@
 
 package pegas.process
 {
+    import pegas.events.ActionEvent;
     
-	import pegas.events.ActionEvent;
-	
     /**
      * This class simplify a full implementation of the {@code Action} interface.
      * @author eKameleon

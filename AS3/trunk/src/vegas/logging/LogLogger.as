@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -25,10 +25,8 @@ package vegas.logging
 {
     
     import flash.events.EventDispatcher;
-    import flash.events.Event;
-    import flash.events.IEventDispatcher;
-
-	/**
+    
+    /**
 	 * The logger that is used within the logging framework. This class dispatches events for each message logged using the log() method.
 	 * @author eKameleon
 	 */

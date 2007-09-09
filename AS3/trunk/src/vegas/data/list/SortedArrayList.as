@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -40,7 +40,7 @@ package vegas.data.list
     	/**
     	 * Creates a new SortedArrayList instance. 
     	 */
-		public function SortedArrayList(init:*, comp:IComparator=null, opt:uint=0)
+		public function SortedArrayList(init:* = null , comp:IComparator=null, opt:uint=0)
 		{
 			super(init);
 			comparator = comp ;

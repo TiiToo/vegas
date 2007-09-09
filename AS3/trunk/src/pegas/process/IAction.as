@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -23,11 +23,10 @@
 
 package pegas.process
 {
-	
-	import vegas.core.ICloneable;
-	import vegas.core.IRunnable;
-	import vegas.events.IEventDispatcher;
-	
+    import vegas.core.ICloneable;
+    import vegas.core.IRunnable;
+    import vegas.events.IEventDispatcher;
+    
     /**
      * This interface represents a process object.
      * @author eKameleon

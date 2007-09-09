@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -616,7 +616,7 @@ package vegas.util
 	 	 * @param deleteCount Indicating the number of old character elements to remove.
 		 * @param value The elements to add to the string. If you don't specify any elements, splice simply removes elements from the string.
 	 	 */	
-	    static public function splice(str:String, startIndex:uint, deleteCount:uint=0, value :*= null ):String 
+	    static public function splice(str:String, startIndex:uint, deleteCount:uint=0, value:* = null ):String 
 	    {
 			var a:Array = StringUtil.toArray(str) ;
 			a.splice(startIndex, deleteCount, value) ;

@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -29,6 +29,18 @@ package pegas.process
     
     /**
      * This {@code IAction} object create a pause in the process.
+     * <p><b>Example :</b></p>
+     * {@code
+     * var handleEvent:Function = function( ...args:Array ) :void
+     * {
+     *     trace( this + " " + args) ;
+     * }
+     * var p:Pause = new Pause(10, true) ;
+     * p.duration = 2 ;
+     * p.addEventListener( ActionEvent.START  , handleEvent ) ;
+     * p.addEventListener( ActionEvent.FINISH , handleEvent ) ;
+     * p.run() ;
+	 * }
      * @author eKameleon
      */
 	public class Pause extends Action
@@ -41,18 +53,23 @@ package pegas.process
     	 * @param bGlobal the flag to use a global event flow or a local event flow.
     	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 		 */
-		public function Pause( duration:Number=0 , seconds:Boolean=false, bGlobal:Boolean = false , sChannel:String = null )
+		public function Pause( duration:Number = 0 , seconds:Boolean = false , bGlobal:Boolean = false , sChannel:String = null )
 		{
-			
 			super(bGlobal, sChannel) ;
-			
-			_timer = new Timer( 1000 , 1 ) ;
+			_setDuration( duration ) ;
+			_setUseSeconds( seconds ) ;
+			_timer = new Timer( delay , 1 ) ;
 		    _timer.addEventListener( TimerEvent.TIMER_COMPLETE , _onFinished ) ;
 		    _timer.addEventListener( TimerEvent.TIMER , _onTimer ) ;	
-			
-			this.duration = duration ;
-		    this.useSeconds = seconds ;
-		    
+		}
+		
+		/**
+		 * (read-only) Returns the delay of the pause in ms. This property use the duration and useSeconds properties to defined the delay.
+		 * @return the delay of the pause in ms.
+		 */
+		public function get delay():Number
+		{
+		    return useSeconds ? ( Math.round( duration * 1000 ) ) : duration ; 
 		}
 
     	/**
@@ -69,13 +86,26 @@ package pegas.process
 	     */
 	    public function set duration( n:Number ):void 
 	    {
-    		_duration = (isNaN(duration) && duration < 0) ? 0 : duration ;	
+    		_duration = (isNaN(n) && n < 0 && !isFinite(n) ) ? 0 : n ;
+    		_timer.delay = delay ;	
     	}
 	
     	/**
-	     * Indicates if the process use seconds or not.
+	     * (read-write) Indicates if the process use seconds or not.
 	     */
-	    public var useSeconds:Boolean ;	
+	    public function get useSeconds():Boolean
+	    {
+	        return _useSeconds ;
+	    }	
+	    
+    	/**
+	     * (read-write) Indicates if the process use seconds or not.
+	     */
+	    public function set useSeconds( b:Boolean ):void
+	    {
+	        _useSeconds = b ;
+	        _timer.delay = delay ;	
+	    }	
 	
     	/**
     	 * Returns a shallow copy of this object.
@@ -97,10 +127,9 @@ package pegas.process
     		}
 		    notifyStarted() ;
 		    setRunning( true ) ;
-		    _timer.delay = useSeconds ? ( Math.round( duration * 1000 ) ) : duration ; 
 		    _timer.start() ;
 	    }
-
+        
     	/**
 	    * Start the pause process.
 	    */
@@ -122,22 +151,54 @@ package pegas.process
 			    notifyFinished() ;	
 		    }
 	    }
+	    
+	   	/**
+    	 * Returns the string representation of this instance.
+    	 * @return the string representation of this instance.
+    	 */
+	    public override function toString():String 
+	    {
+    		return "[Pause duration:" + duration + (useSeconds ? "s" : "ms") + "]" ;
+    	}
 
-	    private var _duration:Number ;
+	    private var _duration:Number = 0;
 	    
 	    private var _timer:Timer ;
 
+        private var _useSeconds:Boolean = false ;
+
+        /**
+         * Invoqued when the internal timer of this process is finished.
+         */
         private function _onFinished(e:TimerEvent):void
         {
-            trace(e) ;
+            setRunning( false ) ;
             notifyFinished() ;
         }
-
+        
+        /**
+         * Invoqued when the timer of this process is in progress.
+         */
         private function _onTimer(e:TimerEvent):void
         {
-            trace(e) ;
+            notifyProgress() ;
         }
 
+        /**
+    	 * Sets the duration of the process and not refresh the Timer delay value.
+	     */        
+        private function _setDuration( n:Number ):void 
+	    {
+    		_duration = (isNaN(n) && n < 0 && !isFinite(n) ) ? 0 : n ;
+    	}
+    	
+    	/**
+    	 * Sets the useSeconds value of the process and not refresh the Timer delay value.
+	     */        
+        private function _setUseSeconds( b:Boolean ):void 
+	    {
+    		_useSeconds = b ;
+    	}
 
 	}
 

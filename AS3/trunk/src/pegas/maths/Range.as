@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -23,14 +23,14 @@
 
 package pegas.maths
 {
-	import vegas.core.CoreObject;
-	import vegas.core.ICloneable;
-	import vegas.core.ICopyable;
-	import vegas.core.IEquality;
-	import vegas.errors.ArgumentOutOfBoundsError;
-	import vegas.errors.IllegalArgumentError;
-	import vegas.util.MathsUtil;
-
+    import vegas.core.CoreObject;
+    import vegas.core.ICloneable;
+    import vegas.core.ICopyable;
+    import vegas.core.IEquality;
+    import vegas.errors.ArgumentOutOfBoundsError;
+    import vegas.errors.IllegalArgumentError;
+    import vegas.util.MathsUtil;
+    
     /**
      * Represents an immutable range of values.
      * <p><b>Example :</b></p>

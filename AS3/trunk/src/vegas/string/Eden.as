@@ -88,7 +88,7 @@ package vegas.string
 		 * Dynamically interpret a source string.
 		 * That's it, a small and fast ECMAScript parser.
 		 */
-		static public function deserialize( source:String, scope:*=null, callback:*=null ):*
+		static public function deserialize( source:String="hello", scope:* = null, callback:* = null ):*
         {
 	        return ECMAScript.evaluate( source, scope, callback ) ;
         }

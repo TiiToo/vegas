@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -36,7 +36,7 @@ package pegas.process
     {
         
     	/**
-    	 * Creates a new BatchTransition instance.
+    	 * Creates a new BatchProcess instance.
     	 * @param bGlobal the flag to use a global event flow or a local event flow.
     	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
     	 */
@@ -82,7 +82,7 @@ package pegas.process
 	     */
     	public function clearProcess( action:IAction ):void
     	{
-		    // overrides
+		    // overrides this method
 	    }
 
         /**

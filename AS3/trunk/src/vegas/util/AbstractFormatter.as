@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -23,15 +23,15 @@
 
 package vegas.util
 {
-
-	import vegas.core.CoreObject;
-	import vegas.core.ICloneable ;
-	import vegas.core.ICopyable ;
-	import vegas.core.IFormatter;
-	import vegas.util.Serializer 
-	import flash.utils.getDefinitionByName;
-
-	/**
+    import flash.utils.getDefinitionByName;
+    
+    import vegas.core.CoreObject;
+    import vegas.core.ICloneable;
+    import vegas.core.ICopyable;
+    import vegas.core.IFormatter;
+    import vegas.util.Serializer;
+    
+    /**
 	 * Abstract class to creates classes who implemented IFormatter interface.
 	 * @author eKameleon
 	 * @version 1.0.0.0

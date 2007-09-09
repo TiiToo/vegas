@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -44,7 +44,7 @@ package vegas.events.dom
 	     */
 		public function EventListenerCollection()
 		{
-    		_listeners = new SortedArrayList() ;
+			_listeners = new SortedArrayList() ;
 			_listeners.setComparator( EventListenerComparator.getInstance() ) ;
 			_listeners.setOptions( Array.NUMERIC ) ;
 		}
@@ -159,7 +159,6 @@ package vegas.events.dom
 			}
 			return null ;
 		}
-
 import vegas.data.list.SortedArrayList;
 /**
 	     * Returns the number of {@code EventListener} in this collection.

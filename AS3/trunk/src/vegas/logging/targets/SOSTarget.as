@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -24,18 +24,15 @@
 package vegas.logging.targets
 {
     
-    import flash.events.Event ;
-    import flash.events.IOErrorEvent ;
-    import flash.events.SecurityErrorEvent ;
+    import flash.events.Event;
+    import flash.events.IOErrorEvent;
+    import flash.events.SecurityErrorEvent;
+    import flash.net.XMLSocket;
     
-    import flash.net.ObjectEncoding;
-    import flash.net.XMLSocket ;
-        
     import vegas.data.iterator.Iterator;
     import vegas.data.queue.LinearQueue;
-    
     import vegas.logging.LogEventLevel;
-       
+    
 	/**
 	 * Provides a logger target that uses the SOS console to output log messages. 
 	 * Thanks PowerFlasher and the <a href='http://sos.powerflasher.de/english/english.html'>SOS Console</a>
@@ -294,7 +291,7 @@ package vegas.logging.targets
 	    {
 		    if (_isConnected) 
 		    {
-    			_xs..send(msg) ;
+    			_xs.send(msg) ;
     		}
     		else 
     		{

@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -23,21 +23,20 @@
 
 package vegas.data.list
 {
-	import vegas.core.CoreObject;
-	import vegas.core.IEquality;
-	import vegas.data.Collection;
-	import vegas.data.List;
-	import vegas.data.Queue;
-	import vegas.data.collections.SimpleCollection;
-	import vegas.data.iterator.Iterator;
-	import vegas.data.iterator.ListIterator;
-	import vegas.errors.IllegalArgumentError;
-	import vegas.errors.IndexOutOfBoundsError ;
-	import vegas.errors.NoSuchElementError ;
-	import vegas.util.Copier;
-	import vegas.util.Serializer;
-	import vegas.data.collections.CollectionFormat;
-	
+    import vegas.core.CoreObject;
+    import vegas.core.IEquality;
+    import vegas.data.Collection;
+    import vegas.data.List;
+    import vegas.data.Queue;
+    import vegas.data.collections.CollectionFormat;
+    import vegas.data.collections.SimpleCollection;
+    import vegas.data.iterator.Iterator;
+    import vegas.data.iterator.ListIterator;
+    import vegas.errors.IndexOutOfBoundsError;
+    import vegas.errors.NoSuchElementError;
+    import vegas.util.Copier;
+    import vegas.util.Serializer;
+    
 	/**
      * Linked list implementation of the List and Queue interface. 
      * <p>Implements all optional list operations, and permits all elements (including null).</p>
@@ -1138,6 +1137,7 @@ package vegas.data.list
 }
 import vegas.core.CoreObject;
 import vegas.data.iterator.ListIterator;
+import vegas.data.list.LinkedList;
 import vegas.data.list.LinkedListEntry;
 import vegas.errors.ClassCastError;
 import vegas.errors.ConcurrentModificationError;
@@ -1145,7 +1145,6 @@ import vegas.errors.IllegalStateError;
 import vegas.errors.IndexOutOfBoundsError;
 import vegas.errors.NoSuchElementError;
 import vegas.errors.UnsupportedOperation;
-import vegas.data.list.LinkedList;
 
 /**
  * Converts a {@code LinkedList} to a specific {@code ListIterator}.

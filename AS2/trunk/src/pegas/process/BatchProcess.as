@@ -39,7 +39,7 @@ class pegas.process.BatchProcess extends SimpleAction
 {
 	
 	/**
-	 * Creates a new BatchTransition instance.
+	 * Creates a new BatchProcess instance.
 	 * @param bGlobal the flag to use a global event flow or a local event flow.
 	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */

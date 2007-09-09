@@ -25,8 +25,8 @@ package vegas.util
 {
     
     import vegas.errors.ArgumentOutOfBoundsError;
-
-	/**
+    
+    /**
 	 * Array static tool class.
 	 * @author eKameleon
 	 */
@@ -167,7 +167,7 @@ package vegas.util
         /**
          * Returns a string representing the source code of the array.
          */
-	    static public function toSource(ar:Array, indent:Number=NaN, indentor:String=null):String 
+	    static public function toSource(ar:Array, indent:Number = NaN , indentor:String = null ):String 
 	    {
     		var i:Number;
     		var source:Array = [] ;
