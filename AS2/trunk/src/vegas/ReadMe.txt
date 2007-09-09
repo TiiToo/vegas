@@ -20,7 +20,7 @@
 
    ABOUT
 
-    * Author : eKameleon
+    * Author : ALCARAZ Marc (aka eKameleon)
     * Version : 1 RC2
     * Link : http://www.ekameleon.net/blog
     * Mail : vegas@ekameleon.net 
@@ -28,7 +28,5 @@
    THANKS
 
     * Zwetan : ECMAScript Concepts and hosting | http://zwetan.com/
-    * Faya
     * Stephan Schmid : Event model framework inspiration | http://schst.net/
-    * OSFlash - Second SVN Hosting : http://www.osflash.org
     * PowerFlasher - FDT OpenSource Licence : http://powerflasher.com/ 

@@ -1,31 +1,30 @@
  
-   ASGARD version 1 Release Candidate (VEGAS Project extension)
+   ASGard AS2 version 1 Release Candidate 2 (VEGAS Project extension)
  
+   LICENCE 
+
+	Mozilla Public License 1.1 (MPL 1.1) (read Licence.txt)
+
    PROJECT PAGES
 
+	- http://code.google.com/p/vegas/
 	- http://osflash.org/asgard
 	- http://vegas.riaforge.org/
-	- http://code.google.com/p/vegas/
 
-   BLOG
+   DOCUMENTATION & CO
 
-        - http://www.ekameleon.net/blog/
+    - http://code.google.com/p/vegas/ (tutorials and install)
+    - http://code.google.com/p/vegas/issues/list (issues)
+    - http://www.ekameleon.net/blog/ (french blog)
+    - http://vegas.ekameleon.net/docs (AS2 reference)
 
-   DESCRIPTION
-   
-       Principal extension based on VEGAS.
-	
    ABOUT
 
-    * Author : eKameleon
-    * Version : 0.7
+    * Author : ALCARAZ Marc (aka eKameleon)
+    * Version : 1 RC2
     * Link : http://www.ekameleon.net/blog
     * Mail : vegas@ekameleon.net 
 
    THANKS
 
     * Zwetan : ECMAScript Concepts and hosting | http://zwetan.com/
-    * Faya
-    * Stephan Schmid : Event model framework inspiration | http://schst.net/
-    * OSFlash - Second SVN Hosting : http://www.osflash.org
-    * PowerFlasher - FDT OpenSource Licence : http://powerflasher.com/ 

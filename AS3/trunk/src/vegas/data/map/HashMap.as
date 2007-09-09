@@ -160,7 +160,7 @@ package vegas.data.map
             return _keys[ key ] != null ;
         }
   
-         /**
+        /**
          * Returns true if this map maps one or more keys to the specified value.
          * @return true if this map maps one or more keys to the specified value.
          */
@@ -246,21 +246,15 @@ package vegas.data.map
         public function put(key:*, value:*):*
         {
             var r:* = null ;
-
             if ( containsKey( key ) )
             {
                 r = _keys[ key ] ;
                 remove( key );
-                
             }
-            
             var count:uint = _values[ value ] ;
-            
             _values[ value ] = (count > 0) ? count+1 : 1 ;
-            
             _size++ ;
             _keys[ key ] = value ;
-            
             return r ;
         }
  
@@ -278,42 +272,34 @@ package vegas.data.map
             }
         }
  
-         /**
+        /**
          * Removes the mapping for this key from this map if present.
          */
         public function remove(o:*):*
         {
-            
             var key:* = o ;
             var r:* = null ;
             var value:* ;
-            
             if ( containsKey( key ) ) 
             {
-
                 _size -- ;
-
                 value = _keys[ key ];
-                
                 var count:uint = _values[ value ];
                 if (count > 1)
                 {
                     _values[ value ] = count - 1;
-                } else
+                } 
+                else
                 {
                     delete _values[ value ];
                 }
-                
                 delete _keys[ key ] ;
-                
                 return value ;
-                
             }
             else 
             {
                 return null ;
             }
-            
         }
 
         /**

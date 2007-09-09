@@ -1,10 +1,9 @@
  
-   Andromeda AS2 - version 0.6 (VEGAS extension)
+   Andromeda AS2 - version 0.9 (VEGAS extension)
  
    LICENCE 
 
 	Mozilla Public License 1.1 (MPL 1.1) (read Licence.txt)
-
 
    PROJECT PAGES
 
@@ -22,8 +21,8 @@
 
    ABOUT
 
-    * Author : eKameleon
-    * Version : 0.6
+    * Author : ALCARAZ Marc (aka eKameleon)
+    * Version : 0.9
     * Link : http://www.ekameleon.net/blog
     * Mail : vegas@ekameleon.net 
 
@@ -31,5 +30,3 @@
    THANKS
 
     * Zwetan : ECMAScript Concepts and hosting | http://zwetan.com/
-    * OSFlash - Second SVN Hosting : http://www.osflash.org
-    * PowerFlasher - FDT OpenSource Licence : http://powerflasher.com/ 

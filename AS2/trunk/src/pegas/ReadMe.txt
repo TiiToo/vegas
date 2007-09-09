@@ -1,27 +1,31 @@
  
-   PEGAS version 1 Release Candidate - VEGAS EXTENSION
+   PEGAS AS2 version 1 Release Candidate 2 - VEGAS EXTENSION
  
+   LICENCE 
+
+	Mozilla Public License 1.1 (MPL 1.1) (read Licence.txt)
+
    PROJECT PAGES
 
-	- http://osflash.org/vegas
-	- http://vegas.riaforge.org/
 	- http://code.google.com/p/vegas/
+	- http://osflash.org/asgard
+	- http://vegas.riaforge.org/
 
-   BLOG
+   DOCUMENTATION & CO
 
-        - http://www.ekameleon.net/blog/
+    - http://code.google.com/p/vegas/ (tutorials and install)
+    - http://code.google.com/p/vegas/issues/list (issues)
+    - http://www.ekameleon.net/blog/ (french blog)
+    - http://vegas.ekameleon.net/docs (AS2 reference)
 
    ABOUT
 
-    * Author : eKameleon
-    * Version : 0.1
+    * Author : ALCARAZ Marc (aka eKameleon)
+    * Version : 1 RC2
     * Link : http://www.ekameleon.net/blog
     * Mail : vegas@ekameleon.net 
+
 
    THANKS
 
     * Zwetan : ECMAScript Concepts and hosting | http://zwetan.com/
-    * Faya : http://www.djellyfish.com/
-    * Stephan Schmid : Event model framework inspiration | http://schst.net/
-    * OSFlash - Second SVN Hosting : http://www.osflash.org
-    * PowerFlasher - FDT OpenSource Licence : http://powerflasher.com/ 
