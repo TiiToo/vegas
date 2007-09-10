@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -24,19 +24,17 @@
 package net.ekameleon.util
 {
 	
-	public class AgessaCalculator
-	{
+	public class PrecompteCalculator
+    {
 		
 		// ----o Constructor
 		
-		public function AgessaCalculator( value:Number=0 )
+		public function PrecompteCalculator( value:Number=0 )
 		{
 		
 			this.value = isNaN(value) ? 0 : value ;
 			
 		}
-		
-		// ----o Constants
 		
 		static public const MAX_PERCENT:Number = 0.1 ;
 		static public const MIN_PERCENT:Number = 0.97 ;
@@ -44,12 +42,12 @@ package net.ekameleon.util
 		static public const CSG:Number = 7.5 ;
 		static public const CRDS:Number = 0.5 ;
 		
-		// ----o Private Properties
-		
 		public var value:uint ;
 		
-		// -----o Public Methods
-
+		/**
+		 * Returns the authors value of the precompte.
+		 * @return the authors value of the precompte.
+		 */
 		public function get authors():Number
 		{
 			return Math.round(value / 100) ;
@@ -97,7 +95,7 @@ package net.ekameleon.util
 
 		public function toFormatString():String
 		{
-			var calculator:AgessaCalculator = this ;
+			var calculator:PrecompteCalculator = this ;
 			var s:String = "" ;
 			s += "> Montant brut HT : " + calculator.value + " €\r" ;
 			s += "  * Cotisation maladie veuvage 0.85 % du montant brut HT : " + calculator.widowhood + " €\r" ;

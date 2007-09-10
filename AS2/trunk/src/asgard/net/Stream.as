@@ -319,7 +319,18 @@ class asgard.net.Stream extends NetStream implements Identifiable, IEventDispatc
 		_eStatus.setInfo( info ) ;
 		dispatchEvent( _eStatus ) ;	
 	}
-
+	
+	/**
+	 * Release this Stream in the StreamCollector of the application.
+	 */
+	public function release():Void
+	{
+		if ( StreamCollector.contains( this._id ) )
+		{
+			StreamCollector.remove( this._id ) ;
+		}
+	}
+	
 	/** 
 	 * Removes a listener from the EventDispatcher object.
 	 * If there is no matching listener registered with the {@code EventDispatcher} object, then calling this method has no effect.
@@ -511,10 +522,7 @@ class asgard.net.Stream extends NetStream implements Identifiable, IEventDispatc
 	 */
 	private function _setID( id ):Void 
 	{
-		if ( StreamCollector.contains( this._id ) )
-		{
-			StreamCollector.remove( this._id ) ;
-		}
+		release() ;
 		this._id = id ;
 		if (this._id != null)
 		{

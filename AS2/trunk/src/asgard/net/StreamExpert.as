@@ -411,7 +411,7 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 		
 		if ( StreamCollector.contains( getStreamID() ) )
 		{
-			getLogger().info( this + " publish " + getStream()) ;
+			getLogger().info( this + " publish " + getStreamID() + " : " + name ) ;
 			getStream().publish( name, howToPublish ) ;
 		}
 		else

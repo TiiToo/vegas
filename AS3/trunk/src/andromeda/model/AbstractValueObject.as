@@ -23,14 +23,16 @@
 
 package andromeda.model
 {
-	
-	import vegas.core.CoreObject;
-
-	/**
+    
+    import vegas.core.CoreObject;
+    import vegas.core.IEquality;
+    import vegas.core.Identifiable;
+    
+    /**
 	 * This class provides a skeletal implementation of the {@code IValueObject} interface, to minimize the effort required to implement this interface.
 	 * @author eKameleon
 	 */
-	public class AbstractValueObject extends CoreObject implements IValueObject
+	public class AbstractValueObject extends CoreObject implements IEquality, IValueObject
 	{
 		
 		/**
@@ -58,7 +60,23 @@ package andromeda.model
 		{
 			_id = id ;
 		}
-	
+		
+		/**
+		 * Compares the specified object with this object for equality. This method compares the ids of the objects with the {@code Identifiable.getID()} method.
+		 * @return {@code true} if the the specified object is equal with this object.
+		 */
+		public function equals( o:* ):Boolean
+		{
+			if (o instanceof Identifiable)
+			{
+				return ( o as Identifiable ).id == this.id ;			
+			}
+			else
+			{
+				return false ;
+			}
+		}
+		
 		/**
 		 * The internal id of this IValueObject
 		 */

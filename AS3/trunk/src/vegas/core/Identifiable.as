@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Andromeda Framework based on VEGAS.
+  The Original Code is Vegas Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -21,16 +21,26 @@
   
 */
 
-package andromeda.model
+package vegas.core
 {
-    import vegas.core.Identifiable;
-    
-    /**
-	 * This interface define a value object, the value object are use for example in the models.
+	
+	/**
+	 * This interface defines a common structure for classes that has an ID.
 	 * @author eKameleon
 	 */
-	public interface IValueObject extends Identifiable
-	{
+	public interface Identifiable
+    {
 		
+		/**
+		 * Returns the id of this object.
+		 * @return the id of this object.
+		 */
+		function get id():* ;
+	
+		/**
+	 	 * Sets the id of the object.
+	 	 */
+		function set id( id:* ):void ;
+		 
 	}
 }

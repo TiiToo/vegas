@@ -23,25 +23,15 @@
 
 package andromeda.model
 {
-
-	/**
+    import vegas.core.Identifiable;
+    
+    /**
 	 * The IModel interface define all models in the application.
 	 * @author eKameleon
 	 */	
-	public interface IModel
+	public interface IModel extends Identifiable
 	{
 		
-		/**
-		 * Returns the id of this IModel .
-		 * @return the id of this IModel .
-		 */
-		function get id():* ;
-		
-		/**
-		 * Sets the id of this IModel .
-		 * @return the id of this IModel .
-		 */
-		function set id( value:* ):void ;
-		
 	}
+
 }
