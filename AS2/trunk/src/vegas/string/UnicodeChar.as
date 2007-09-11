@@ -22,33 +22,63 @@
 */
 
 import vegas.core.types.Char;
+import vegas.util.StringUtil;
 
 /**
  * ECMA 262 Unicode IFormat-Control Characters tools.
  * <p><b>Example :</b></p>
  * {@code
  * import vegas.string.UnicodeChar ;
- * import vegas.core.types.Char ;
- *   
- * trace (UnicodeChar.WHITE_SPACE_CHARS.length) ;
- *   
- * var str:String = UnicodeChar.TAB + "coucou" ;
- * trace (str) ;
- *  
- * var s:Char = new Char('\t') ;
- * var b:Boolean = UnicodeChar.isWhiteSpace(s) ;
- * trace ("isWhiteSpace : " + b) ;
- *  
- * var unicode:String = "0040" ;
- * var char:Char = UnicodeChar.toChar(unicode) ;
- * trace(">> " + char) ;
+ * 
+ * trace( "## The White space chars array." ) ;
+ * 
+ * // The length of the UnicodeChar.WHITE_SPACE_CHARS array : 5
+ * trace ("The length of the UnicodeChar.WHITE_SPACE_CHARS array : " + UnicodeChar.WHITE_SPACE_CHARS.length) ;
+ * 
+ * trace("---------") ;
+ * 
+ * trace( "## Use the UnicodeChar constants." ) ;
+ * // | UnicodeChar.TAB hello world : |	hello world
+ * trace ("| UnicodeChar.TAB hello world : " +  "|" + UnicodeChar.TAB + "hello world" ) ;
+ * 
+ * trace("---------") ;
+ * 
+ * trace( "## Test if a charactere is a whitespace." ) ;
+ * // UnicodeChar.TAB isWhiteSpace : true
+ * trace ("UnicodeChar.TAB isWhiteSpace : " + UnicodeChar.isWhiteSpace( UnicodeChar.TAB ) ) ;
+ * 
+ * trace("---------") ;
+ * 
+ * trace( "## Converts a String unicode number representation in this character representation." ) ;
+ * // UnicodeChar.toChar("0040" ) : @
+ * trace( 'UnicodeChar.toChar("0040" ) : ' + UnicodeChar.toChar( "0040" ) ) ;
+ * 
+ * trace("---------") ;
+ * 
+ * trace( "## Use a UnicodeChar instance and this proxy process." ) ;
+ * var u:UnicodeChar = new UnicodeChar() ;
+ * // u.u5c0f() + u.u98fc() + u.u5f3e() + u.u0040() ) : 小飼弾@
+ * trace( 'u.u5c0f() + u.u98fc() + u.u5f3e()) : ' + u.u5c0f() + u.u98fc() + u.u5f3e()  ) ;
  * }
  * @author eKameleon
  * @see <a href='http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf'>ECMAScript 262 specifications</a>
  */
-class vegas.string.UnicodeChar 
+dynamic class vegas.string.UnicodeChar 
 {
 
+	/**
+	 * Creates a new UnicodeChar instance.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * var u:UnicodeChar = new UnicodeChar() ;
+	 * trace( u.u0040() ) ; // @
+	 * }
+	 */
+	public function UnicodeChar()
+	{
+		//	
+	}
+	
 	/**
 	 * Back Slash utf8 representation (special char).
 	 */
@@ -187,5 +217,16 @@ class vegas.string.UnicodeChar
 		}
 		return hex ;
 	}
-
+	
+	/**
+	 * Resolve the methods used over this instance.
+	 * If this instance receive an unknow method with the format "uXXXX" this method returns the unicode Char.  
+	 */
+	private function __resolve( name:String ) 
+	{
+  		return function() 
+  		{ 
+  			return UnicodeChar.toChar( "" + StringUtil.replace( name, 'u' , "" ) ) ; 
+  		} ;
+	};
 }

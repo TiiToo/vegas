@@ -44,9 +44,9 @@ package vegas.events.dom
 	     */
 		public function EventListenerCollection()
 		{
-			_listeners = new SortedArrayList() ;
-			_listeners.setComparator( EventListenerComparator.getInstance() ) ;
-			_listeners.setOptions( Array.NUMERIC ) ;
+			_list = new SortedArrayList() ;
+			_list.setComparator( EventListenerComparator.getInstance() ) ;
+			_list.setOptions( Array.NUMERIC ) ;
 		}
 		
 	    /**
@@ -61,8 +61,8 @@ package vegas.events.dom
 			var container:EventListenerContainer = new EventListenerContainer(listener) ;
 			container.enableAutoRemove(autoRemove) ;
 			container.setPriority(priority) ;
-			_listeners.insert(container) ;
-			return _listeners.size() ;
+			_list.insert(container) ;
+			return _list.size() ;
 		}
 
 	    /**
@@ -71,16 +71,16 @@ package vegas.events.dom
 	     */
 		public function iterator():Iterator
 		{
-			return _listeners.iterator() ;
+			return _list.iterator() ;
 		}
 	
 	    /**
 	     * Propagates an event in the event flow of all {@code EventListener} in this collection.
 	     */
-		public function propagate( e:Event ):Event 
+		public function propagate( e:DomEvent ):Event 
 		{
 			var remove:Array = new Array() ;
-			var l:uint = _listeners.size() ;
+			var l:uint = _list.size() ;
 			for (var i:Number = 0 ; i<l ; i++) 
 			{
 				
@@ -89,7 +89,7 @@ package vegas.events.dom
 				    break ;
 				}
 				
-				var container:EventListenerContainer = _listeners.get(i) ;
+				var container:EventListenerContainer = _list.get(i) ;
 			
 				// handle the event to Eventlistener !!
 				container.getListener().handleEvent(e) ;
@@ -99,7 +99,10 @@ package vegas.events.dom
 					remove.push(container.getListener()) ;
 				}
 			
-				if (e.isCancelled()) break ;
+				if (e.isCancelled()) 
+				{
+					break ;
+				}
 			
 			}
 			// remove all autoRemove listeners
@@ -123,13 +126,13 @@ package vegas.events.dom
 			
 			if (listener is EventListener) 
 			{
-				var it:Iterator = _listeners.iterator() ;
+				var it:Iterator = _list.iterator() ;
 				while(it.hasNext()) 
 				{
 					var container:EventListenerContainer = it.next() ;
 					if (container.getListener() == listener) 
 					{
-						_listeners.remove(container) ;
+						_list.remove(container) ;
 						return container ;
 					}
 				}
@@ -137,12 +140,12 @@ package vegas.events.dom
 			else if ( listener is uint ) 
 			{
 			
-				return _listeners.removeAt( listener ) ;
+				return _list.removeAt( listener ) ;
 			
 			} 
 			else if ( listener is String))  // constructorName
 			{
-				var it:Iterator = _listeners.iterator() ;
+				var it:Iterator = _list.iterator() ;
 				var container:EventListenerContainer ;
 				var constructorName:String ;
 				while(it.hasNext()) 
@@ -151,7 +154,7 @@ package vegas.events.dom
 					constructorName = ClassUtil.getName(container) ;
 					if (constructorName == listener) 
 					{
-						_listeners.remove(container) ;
+						_list.remove(container) ;
 						return container ;
 					}
 				}
@@ -159,20 +162,20 @@ package vegas.events.dom
 			}
 			return null ;
 		}
-import vegas.data.list.SortedArrayList;
-/**
+		
+		/**
 	     * Returns the number of {@code EventListener} in this collection.
 	     * @return the number of {@code EventListener} in this collection.
 	     */
 		public function size():uint 
 		{
-			return _listeners.size() ;
+			return _list.size() ;
 		}
 	
 		private var _autoRemove:Boolean = false ;
 
-	    private var _listeners:SortedArrayList  ;
+	    private var _list:SortedArrayList  ;
 
-	}
+	
 	
 }

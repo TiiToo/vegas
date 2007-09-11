@@ -21,113 +21,63 @@
   
 */
 
-/** UnicodeChar
-
-	AUTHOR
-	
-		Name : UnicodeChar
-		Package : vegas.string
-		Version : 1.0.0.0
-		Date :  2006-07-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	DESCRIPTION
-	
-		ECMA 262 Unicode IFormat-Control Characters
-		>> http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf
-
-	SPECIAL CHARACTERS
-	
-		- BACK_SLASH : Back Slash
-		- BACK_SPACE : Back Space
-		- DOUBLE_QUOTE : Double Quote
-		- SIMPLE_QUOTE : Simple Quote
-		
-	WHITESPACE
-	
-		- TAB : Tab
-		- VT : Vertical Tab
-		- FF : Form Feed
-		- SP : Space
-		- NBSP : No-break space
-
-		- WHITE_SPACE_CHARS : array with all whitespace characters
-		
-		NB : USP no implement (Any other Unicode "space separator")
-	
-	LINE TERMINATORS
-
-		- LF : Line Feed
-		- CR : Carriage Return
-		- LS : Line Separator
-		- PS : Paragraph Separator
-
-		- LINE_TERMINATOR_CHARS : array with all line terminators characters
-		
-	METHOD SUMMARY
-	
-		- isWhiteSpace( char:String ):Boolean
-		
-		- isLineTerminators( char:String ):Boolean
-		
-		- toChar( unicode:String ):Char
-		
-		- toUnicode(n:Number):String	
-	
-	EXAMPLE
-	
-		import vegas.string.UnicodeChar ;
-		import vegas.core.types.Char ;
-		import flash.utils.trace ;
-		
-		trace (UnicodeChar.WHITE_SPACE_CHARS.length) ;
-		
-		var str:String = UnicodeChar.TAB + "coucou" ;
-		trace (str) ;
-		
-		var s:Char = new Char('\t') ;
-		var b:Boolean = UnicodeChar.isWhiteSpace(s) ;
-		trace ("isWhiteSpace : " + b) ;
-		
-		var unicode:String = "0040" ;
-		var char:Char = UnicodeChar.toChar(unicode) ;
-		trace(">> " + char) ;
-	
-**/
-
 package vegas.string
 {
     
-    import vegas.core.types.Char ;
-
+	import flash.utils.Proxy;
+	import flash.utils.flash_proxy;
+    
+    import vegas.core.types.Char;
+    import vegas.util.StringUtil;
 
     /**
      * ECMA 262 Unicode IFormat-Control Characters tools.
      * <p><b>Example :</b></p>
      * {@code
-     * import vegas.string.UnicodeChar ;
-     * import vegas.core.types.Char ;
-     *   
-     * trace (UnicodeChar.WHITE_SPACE_CHARS.length) ;
-     *   
-     * var str:String = UnicodeChar.TAB + "coucou" ;
-     * trace (str) ;
-     *  
-     * var s:Char = new Char('\t') ;
-     * var b:Boolean = UnicodeChar.isWhiteSpace(s) ;
-     * trace ("isWhiteSpace : " + b) ;
-     *  
-     * var unicode:String = "0040" ;
-     * var char:Char = UnicodeChar.toChar(unicode) ;
-     * trace(">> " + char) ;
+     * UnicodeChar = vegas.string.UnicodeChar ;
+     * 
+     * trace("-----") ;
+     * 
+     * trace("Number of white space characters : " + UnicodeChar.WHITE_SPACE_CHARS.length) ;
+     * 
+     * trace("-----") ;
+     * 
+     * trace( "|" + UnicodeChar.TAB + "hello world" ) ;
+     * 
+     * trace("-----") ;
+     * 
+     * trace ("isWhiteSpace UnicodeChar.TAB : " + UnicodeChar.isWhiteSpace( UnicodeChar.TAB ) ) ;
+     * 
+     * trace("-----") ;
+     * 
+     * trace("UnicodeChar.toChar('0040') : " + UnicodeChar.toChar("0040")) ;
+     * 
+     * trace("UnicodeChar.toUnicode('220')  : " + UnicodeChar.toUnicode(220)) ;
+     * trace("UnicodeChar.toChar(UnicodeChar.toUnicode('220')) : " + UnicodeChar.toChar(UnicodeChar.toUnicode(220))) ;
+     * 
+     * trace("-----") ;
+     * 
+     * u = new UnicodeChar() ;
+     * trace( u.u5c0f() + u.u98fc() + u.u5f3e() + u.u0040() ) ; // 小飼弾@
      * }
      * @author eKameleon
      * @see <a href='http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf'>ECMAScript 262 specifications</a>
      */
-    public class UnicodeChar
+    dynamic public class UnicodeChar extends Proxy
     {
+        
+       	/**
+    	 * Creates a new UnicodeChar instance.
+	     * <p><b>Example :</b></p>
+	     * {@code
+	     * var u:UnicodeChar = new UnicodeChar() ;
+	     * trace( u.u0040() ) ; // @
+	     * }
+	     */
+	    public function UnicodeChar()
+	    {
+    		//	
+    	}
     
 	    /**
     	 * Back Slash utf8 representation (special char).
@@ -204,6 +154,23 @@ package vegas.string
     	 */
 	    static public const LINE_TERMINATOR_CHARS:Array = [ LF, CR, LS, PS ] ;
 
+        /**
+         * Overrides the behavior of an object property that can be called as a function. 
+         * When a method of the object is invoked, this method is called. 
+         * While some objects can be called as functions, some object properties can also be called as functions. 
+         */
+        flash_proxy override function callProperty( methodName:*  , ...rest:Array ):* 
+        {
+            if ( String(methodName) != null )
+            {
+                return String.fromCharCode( String(methodName).replace( /^u/ , "0x" ) ) ;
+            }
+            else
+            {
+                return "" ;
+            } 
+        }
+
     	/**
     	 * Returns {@code true} of the specified character is a whitespace.
     	 * @return {@code true} of the specified character is a whitespace.
@@ -228,9 +195,9 @@ package vegas.string
     	 * Converts a unicode representation and returns this char's string.
     	 * @return The char of the unicode representation.
     	 */
-	    static public function toChar( unicode:String ):Char 
+	    static public function toChar( unicode:String ):String
 	    {
-            return new Char(String.fromCharCode(parseInt( unicode, 16))) ;
+            return String.fromCharCode(parseInt( unicode, 16)) ;
         }
 
 	    /**
