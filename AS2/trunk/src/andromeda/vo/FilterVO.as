@@ -61,6 +61,7 @@ class andromeda.vo.FilterVO extends SimpleValueObject
 	
 	/**
 	 * Creates a new FilterVO instance. 
+	 * @param filter (optional) The default filter value of this value object.
 	 */	
 	public function FilterVO( filter:Number ) 
 	{
