@@ -195,9 +195,18 @@ package vegas.string
     	 * Converts a unicode representation and returns this char's string.
     	 * @return The char of the unicode representation.
     	 */
-	    static public function toChar( unicode:String ):String
+	    static public function toChar( unicode:String ):Char
 	    {
-            return String.fromCharCode(parseInt( unicode, 16)) ;
+            return new Char( toCharString( unicode ) ) ;
+        }
+        
+    	/**
+    	 * Converts a unicode representation and returns this char's string.
+    	 * @return The char of the unicode representation.
+    	 */
+	    static public function toCharString( unicode:String ):String
+	    {
+            return String.fromCharCode( parseInt( unicode , 16) ) ;
         }
 
 	    /**

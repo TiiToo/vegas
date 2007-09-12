@@ -70,7 +70,8 @@ class vegas.core.types.Int extends Number implements IFormattable, IHashable, IS
 	}	
 
 	/**
-	 * Returns a string representation of the object.
+	 * Returns a String representation of the object.
+	 * @return a String representation of the object.
 	 */
 	public function toString():String 
 	{

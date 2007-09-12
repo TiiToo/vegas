@@ -158,6 +158,7 @@ class vegas.logging.targets.SOSTarget extends LineFormattedTarget
 
 	/**
 	 * Returns the string socket representation to send a fold message in the SOSConsole.
+	 * @return the string socket representation to send a fold message in the SOSConsole.
 	 */
 	public function getFoldMessage( title:String, message:String, level:Number ):String
 	{
@@ -178,8 +179,18 @@ class vegas.logging.targets.SOSTarget extends LineFormattedTarget
 		sendMessage( SOSType.IDENTIFY ) ;
 	}
 
+
+	 * Returns {@code true} if the socket is connected with the console.
+	 * @return {@code true} if the socket is connected with the console.
+	 */
+	public function getIsConnected():Boolean 
+	{
+		return _isConnected ;
+	}
+
 	/**
 	 * Returns the string socket representation to send a simple message in the SOSConsole.
+	 * @return the string socket representation to send a simple message in the SOSConsole.
 	 */
 	public function getMessage( msg:String , level:Number ):String
 	{
@@ -187,14 +198,6 @@ class vegas.logging.targets.SOSTarget extends LineFormattedTarget
 		return  "!SOS<showMessage key='" + levelName + "'>" + msg + "</showMessage>\n"  ;	
 	}
 
-	/**
-	 * Returns 'true' if the socket is connected with the console.
-	 */
-	public function getIsConnected():Boolean 
-	{
-		return _isConnected ;
-	}
-	
 	/**
      * Descendants of this class should override this method to direct the specified message to the desired output.
      * @param message String containing preprocessed log message which may include time, date, category, etc. 

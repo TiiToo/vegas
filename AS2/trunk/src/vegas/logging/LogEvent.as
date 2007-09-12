@@ -68,7 +68,8 @@ dynamic class vegas.logging.LogEvent extends DynamicEvent
 	
 	/**
 	 * Returns a string value representing the level specified.
-	 */
+	 * @return a string value representing the level specified.
+	 */	
 	static public function getLevelString( value:Number ):String 
 	{
 		

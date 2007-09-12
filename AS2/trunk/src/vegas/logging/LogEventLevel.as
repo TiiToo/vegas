@@ -59,7 +59,8 @@ class vegas.logging.LogEventLevel
 	static public var WARN:Number = 6 ;
 	
 	/**
-	 * Returns true if the number level passed in argument is valid.
+	 * Returns {@code true} if the number level passed in argument is valid.
+	 * @return {@code true} if the number level passed in argument is valid.
 	 */
 	static public function isValidLevel(level:Number):Boolean 
 	{

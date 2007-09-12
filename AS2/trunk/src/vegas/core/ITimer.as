@@ -37,11 +37,13 @@ interface vegas.core.ITimer extends EventTarget
 
 	/**
 	 * Returns the delay of the interval.
+	 * @return the delay of the interval.
 	 */
 	function getDelay():Number ;
 
 	/**
 	 * Returns the max number of intervals of time.
+	 * @return the max number of intervals of time.
 	 */
 	function getRepeatCount():Number ;
 

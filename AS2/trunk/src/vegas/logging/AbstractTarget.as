@@ -37,7 +37,9 @@ import vegas.string.WildExp;
 import vegas.util.ArrayUtil;
 
 /**
- * This class provides the basic functionality required by the logging framework for a target implementation. It handles the validation of filter expressions and provides a default level property. No implementation of the logEvent() method is provided.
+ * This class provides the basic functionality required by the logging framework for a target implementation. 
+ * It handles the validation of filter expressions and provides a default level property. 
+ * No implementation of the logEvent() method is provided.
  * @author eKameleon
  */
 class vegas.logging.AbstractTarget extends CoreObject implements EventListener, ITarget 
@@ -264,7 +266,8 @@ class vegas.logging.AbstractTarget extends CoreObject implements EventListener, 
 	}
 	
 	/**
-	 * Returns 'true' is the passed argument is a valid category.
+	 * Returns {@code true} is the passed argument is a valid category.
+	 * @return {@code true} is the passed argument is a valid category.
 	 */
 	private function _isValidCategory(category:String):Boolean 
 	{

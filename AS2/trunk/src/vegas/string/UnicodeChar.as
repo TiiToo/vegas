@@ -163,7 +163,7 @@ dynamic class vegas.string.UnicodeChar
 	 */
 	static public function isWhiteSpace( char:String ):Boolean 
 	{
-		var c:Char = new Char(char) ;
+		var c:String = (char || "").substring(0, 1) ;
 		var ar:Array = WHITE_SPACE_CHARS ;
 		var l:Number = ar.length ;
 		while (--l > -1) 
@@ -182,7 +182,7 @@ dynamic class vegas.string.UnicodeChar
 	 */
 	static public function isLineTerminators( char:String ):Boolean 
 	{
-		var c:Char = new Char(char) ;
+		var c:String = (char || "").substring(0, 1) ;
 		var ar:Array = LINE_TERMINATOR_CHARS ;
 		var l:Number = ar.length ;
 		while (--l > -1) 
@@ -196,12 +196,21 @@ dynamic class vegas.string.UnicodeChar
 	}
 
 	/**
-	 * Converts a unicode representation and returns this char's string.
+	 * Converts a unicode representation in a Char representation and returns this char's string.
 	 * @return The char of the unicode representation.
 	 */
 	static public function toChar( unicode:String ):Char 
 	{
-		return new Char(String.fromCharCode(parseInt( unicode, 16))) ;
+		return new Char( toCharString(unicode) ) ;
+	}
+
+	/**
+	 * Converts a unicode representation in a String representation and returns the new String.
+	 * @return The char of the unicode representation.
+	 */
+	static public function toCharString( unicode:String ):String 
+	{
+		return String.fromCharCode( parseInt( unicode, 16) )  ;
 	}
 
 	/**
@@ -226,7 +235,7 @@ dynamic class vegas.string.UnicodeChar
 	{
   		return function() 
   		{ 
-  			return UnicodeChar.toChar( "" + StringUtil.replace( name, 'u' , "" ) ) ; 
+  			return UnicodeChar.toCharString( "" + StringUtil.replace( name, 'u' , "" ) ) ; 
   		} ;
 	};
 }

@@ -29,6 +29,14 @@ import vegas.util.ConstructorUtil;
 
 /**
  * An object of type Char contains a single field whose type is String.
+ * <p><b>Example :</b></p>
+ * {@code
+ * var c = new vegas.core.types.Char("Test") ;
+ * trace("char : " + c) ;
+ * trace("char code : " + c.getCode()) ;
+ * trace("char size : " + c.length) ;
+ * trace("char toSource : " + c.toSource()) ;
+ * }
  * @author eKameleon
  */
 class vegas.core.types.Char extends String implements IFormattable, IHashable, ISerializable 
@@ -49,6 +57,7 @@ class vegas.core.types.Char extends String implements IFormattable, IHashable, I
 	
 	/**
 	 * Returns the integer character code for the character.
+	 * @return the integer character code for the character.
 	 */
 	public function getCode():Number 
 	{
@@ -57,6 +66,7 @@ class vegas.core.types.Char extends String implements IFormattable, IHashable, I
 
 	/**
 	 * Returns a hash code value for the object.
+	 * @return a hash code value for the object.
 	 */
 	public function hashCode():Number 
 	{
@@ -83,6 +93,7 @@ class vegas.core.types.Char extends String implements IFormattable, IHashable, I
 
 	/**
 	 * Returns the real value of the object.
+	 * @return the real value of the object.
 	 */
 	public function valueOf() 
 	{
