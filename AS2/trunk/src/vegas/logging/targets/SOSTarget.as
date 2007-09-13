@@ -179,7 +179,7 @@ class vegas.logging.targets.SOSTarget extends LineFormattedTarget
 		sendMessage( SOSType.IDENTIFY ) ;
 	}
 
-
+	/**
 	 * Returns {@code true} if the socket is connected with the console.
 	 * @return {@code true} if the socket is connected with the console.
 	 */
