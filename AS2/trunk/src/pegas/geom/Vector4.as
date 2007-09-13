@@ -38,7 +38,7 @@ class pegas.geom.Vector4 extends Vector3
 	 * @param x the x coordinate.
 	 * @param y the y coordinate.
 	 * @param z the z coordinate.
-	 * @param z the w coordinate.
+	 * @param w the w coordinate.
 	 */ 	
 	public function Vector4( x:Number, y:Number, z:Number , w:Number ) 
 	{
