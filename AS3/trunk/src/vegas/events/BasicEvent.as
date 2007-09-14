@@ -49,18 +49,17 @@ package vegas.events
 		 * @param cancelable indicates if the event is a cancelable event.
 		 * @param time this optional parameter is used in the eden deserialization to copy the timestamp value of this event.
 	 	 */
-		public function BasicEvent(type : String, target:Object = null , context:* = null , bubbles:Boolean = false , cancelable:Boolean = false, time:Number = 0 )
+		public function BasicEvent( type:String  , target:Object = null , context:* = null , bubbles:Boolean = false , cancelable:Boolean = false, time:Number = 0 )
 		{
 			
-			super((getType() != null) ? getType() : type, bubbles, cancelable);
+			super( type , bubbles, cancelable );
 			
 			_context = (getContext() != null) ? getContext() : context ;
 			_target  = (getTarget() != null)  ? getTarget()  : target ;			
 			_time    = ( time > 0) ? time : ( (new Date()).valueOf() ) ;
-			_type    = (getType() != null) ? getType() : type ;
+			_type    = type ;
 			 
 		}
-		
 
 		/**
 		 * Returns the optional context of this event.
@@ -78,7 +77,7 @@ package vegas.events
 		{
 			setContext(o) ;	
 		}
-		
+
 		/**
 		 * Returns the event target.
 		 * @return the event target.
@@ -128,7 +127,7 @@ package vegas.events
 		 */
 		public override function clone():Event 
 		{
-			return new BasicEvent(getType(), getTarget(), getContext()) ;
+			return new BasicEvent( type, target, context ) ;
 		}
 
 		/**
@@ -201,7 +200,7 @@ package vegas.events
 		}
 
 		private var _context:* = null ;
-	
+	    
 		private var _target:Object = null ;
 	
 		private var _time:Number ;

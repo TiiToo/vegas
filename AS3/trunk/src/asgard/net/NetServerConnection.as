@@ -23,6 +23,7 @@
 
 package asgard.net
 {
+  
     import flash.events.Event;
     import flash.events.IOErrorEvent;
     import flash.events.NetStatusEvent;
@@ -30,26 +31,20 @@ package asgard.net
     import flash.events.TimerEvent;
     import flash.net.NetConnection;
     import flash.net.ObjectEncoding;
+    import flash.net.Responder;
     import flash.utils.Timer;
     
     import asgard.events.NetServerEvent;
     
-    import vegas.core.HashCode;
     import vegas.core.ICloneable;
-    import vegas.core.IHashable;
     import vegas.core.IRunnable;
-    import vegas.core.ISerializable;
-    import vegas.events.EventDispatcher;
-    import vegas.events.IEventDispatcher;
-    import vegas.logging.ILogable;
-    import vegas.logging.ILogger;
-    import vegas.util.ClassUtil;
+    import vegas.events.AbstractCoreEventDispatcher;
     
     /**
  	 * This class extends the NetConnection class and defined an implementation based on VEGAS to used Flash Remoting or Flash MediaServer (with AMF protocol).
 	 * @author eKameleon
 	 */	
-	public class NetServerConnection extends NetConnection implements ICloneable, IEventDispatcher, IHashable, ILogable, IRunnable, ISerializable
+	public class NetServerConnection extends AbstractCoreEventDispatcher implements ICloneable, IRunnable
 	{
 		
 		/**
@@ -60,29 +55,171 @@ package asgard.net
 		public function NetServerConnection( bGlobal:Boolean = false , sChannel:String = null )
 		{
 			
-			setGlobal( bGlobal , sChannel ) ;	
+			super( bGlobal , sChannel ) ;	
 			
-			_timer = new Timer(DEFAULT_DELAY, 1) ;
+			_nc = new NetConnection() ;
+			_nc.client = this ;
+			_nc.objectEncoding = ObjectEncoding.AMF0 ; // DEFAULT AMF0
+			_nc.addEventListener( IOErrorEvent.IO_ERROR             , _onIOError) ;
+			_nc.addEventListener( NetStatusEvent.NET_STATUS         , _onStatus) ;
+			_nc.addEventListener( SecurityErrorEvent.SECURITY_ERROR , _onSecurityError);
 			
-			objectEncoding = ObjectEncoding.AMF0 ; // DEFAULT AMF0
+			_timer = new Timer( DEFAULT_DELAY, 1 ) ;
+			_timer.addEventListener(TimerEvent.TIMER_COMPLETE , _onTimeOut) ;
 			
 			initEvent() ;
-			
-			addEventListener( IOErrorEvent.IO_ERROR             , onIOError) ;
-			addEventListener( NetStatusEvent.NET_STATUS         , _onStatus) ;
-			addEventListener( SecurityErrorEvent.SECURITY_ERROR , onSecurityError);
+
 			
 		}
-		
-		private static var _initHashCode:Boolean = HashCode.initialize(NetServerConnection.prototype) ;
-		
+
 		/**
 	     * The default internal timeout delay value in milliseconds.
 	     */
 		public static const DEFAULT_DELAY:uint = 8000 ; // 8 secondes
-		
-		public var noEvent:Boolean = false ;
-		
+       
+        /**
+         * The default object encoding (AMF version) for NetConnection objects created in the SWF file. 
+         * When an object is written to or read from binary data, the defaultObjectEncoding property indicates which Action Message Format version should be used: the ActionScript 3.0 format or the ActionScript 1.0 and ActionScript 2.0 format. 
+         */
+        public function get client():Object
+        {
+            return _nc.client ;
+        }
+
+        /**
+         * The default object encoding (AMF version) for NetConnection objects created in the SWF file. 
+         * When an object is written to or read from binary data, the defaultObjectEncoding property indicates which Action Message Format version should be used: the ActionScript 3.0 format or the ActionScript 1.0 and ActionScript 2.0 format. 
+         */
+        public function set client( client:Object ):void
+        {
+           _nc.client = client ;
+        }
+       
+        /**
+         * [read-only] Indicates whether Flash Player has connected to a server through a persistent RTMP connection (true) or not (false). 
+         * When connected through HTTP, this property is always false. 
+         * It is always true for AMF connections to application servers. 
+         */
+        public function get connected():Boolean
+        {
+            return _nc.connected ;
+        }
+
+        /**
+         * [read-only] Indicates whether Flash Player has connected to a server through a persistent RTMP connection (true) or not (false). 
+         * When connected through HTTP, this property is always false. 
+         * It is always true for AMF connections to application servers. 
+         */
+        public function get connectedProxyType():String
+        {
+            return _nc.connectedProxyType ;
+        }
+
+        /**
+         * The default object encoding (AMF version) for NetConnection objects created in the SWF file. 
+         * When an object is written to or read from binary data, the defaultObjectEncoding property indicates which Action Message Format version should be used: the ActionScript 3.0 format or the ActionScript 1.0 and ActionScript 2.0 format. 
+         */
+        public static function get defaultObjectEncoding():uint
+        {
+            return NetConnection.defaultObjectEncoding ;
+        }
+
+        /**
+         * The default object encoding (AMF version) for NetConnection objects created in the SWF file. 
+         * When an object is written to or read from binary data, the defaultObjectEncoding property indicates which Action Message Format version should be used: the ActionScript 3.0 format or the ActionScript 1.0 and ActionScript 2.0 format. 
+         */
+        public static function set defaultObjectEncoding( encoding:uint ):void
+        {
+           NetConnection.defaultObjectEncoding = encoding ;
+        }
+
+        /**
+         * (read write) The ObjectEncoding class allows classes that serialize objects (such as FileStream, NetStream, NetConnection, SharedObject, and ByteArray) to work with prior versions of ActionScript.
+         */
+		public function get objectEncoding():uint
+	    {
+	        return _nc.objectEncoding ;
+	    }
+
+        /**
+         * (read write) The ObjectEncoding class allows classes that serialize objects (such as FileStream, NetStream, NetConnection, SharedObject, and ByteArray) to work with prior versions of ActionScript.
+         */
+        public function set objectEncoding( encoding:uint ):void
+        {
+            _nc.objectEncoding = encoding ;
+        }	
+        
+        /**
+         * (read write) Determines whether native SSL is used for RTMPS instead of HTTPS, and whether the CONNECT method of tunneling is used to connect through a proxy server. 
+         * Acceptable values are "none", "HTTP", "CONNECT", and "best". This property is used in Flex applications and Flash Media Server 2 applications. 
+         */
+		public function get proxyType():String
+	    {
+	        return _nc.proxyType ;
+	    }
+
+        /**
+         * (read write) Determines whether native SSL is used for RTMPS instead of HTTPS, and whether the CONNECT method of tunneling is used to connect through a proxy server. 
+         * Acceptable values are "none", "HTTP", "CONNECT", and "best". This property is used in Flex applications and Flash Media Server 2 applications. 
+         */
+        public function set proxyType( type:String ):void
+        {
+            _nc.proxyType = type ;
+        }
+
+        /**
+         * [read-only] Indicates whether a secure connection was made using native Transport Layer Security (TLS) rather than HTTPS. 
+         * This property is valid only when a NetConnection object is connected. 
+         */
+        public function get usingTLS():Boolean
+        {
+            return _nc.usingTLS ;
+        }
+        
+        /**
+         * The URI of the application server that was passed to NetConnection.connect(), if connect was used to connect to a server. 
+         * If NetConnection.connect() hasn't yet been called or if no URI was passed, this property is undefined.
+         * In The VEGAS implementation the uri property is a read-write property and we can use this property in to launch the connect process with the run method.
+         * @see IRunnable
+         */
+		public function get uri():String
+	    {
+	        return _uri || _nc.uri ;
+	    }
+
+        /**
+         * Sets the default URI that the NetConnection.connect() method passed. 
+         */
+        public function set uri( uri:String ):void
+        {
+            _uri = uri ;
+        }
+        
+        /**
+    	 * Adds a context header to the AMF packet structure. This header is sent with every future AMF packet.
+	     * @param operation A string; identifies the header and the ActionScript object data associated with it.
+	     * @param mustUnderstand A Boolean value; true indicates that the server must understand and process this header before it handles any of the following headers or messages.
+	     * @param param Any ActionScript object.
+	     */
+        public function addHeader( operation:String , mustUnderstand:Boolean = false , param:Object = null ):void
+	    {
+    		_nc.addHeader( operation , mustUnderstand , param ) ;
+    	}
+    	
+        /**
+    	 * Invokes a command or method on the server running Flash Media Server, or on an application server, to which the application instance is connected. You must create a server-side function to pass to this method.
+    	 * @param command A method specified in the form [objectPath/]method.
+    	 * @param responder An optional object that is used to handle return values from the server. 
+    	 * @param ... arguments Optional arguments that can be of any ActionScript type, including a reference to another ActionScript object. 
+    	 * These arguments are passed to the method specified in the command parameter when the method is executed on the remote application server.
+    	 * @return For RTMP connections, returns a Boolean value of true if a call to methodName is sent to the client ; otherwise, false. 
+    	 * For application server connections, it always returns true.
+	     */
+        public function call( command:String, responder:Responder , ...rest:Array  ):Boolean 
+        {
+            return _nc.call.apply( _nc, [ command, responder ].concat( rest) ) ;
+	    }
+
 		/**
 		 * Returns the shallow copy of this object.
 	 	 * @return the shallow copy of this object.
@@ -93,12 +230,12 @@ package asgard.net
 		}
 		
 		/**
-		 * Close the connection.
+		 * Closes the connection that was opened locally or with the server and dispatches the netStatus event with a code property of NetConnection.Connect.Closed. 
 		 * @param noEvent if this argument is {@code true} the event propagation is disabled.
 		 */		
-		public override function close():void 
+		public function close( noEvent:Boolean = false ):void 
 		{
-			super.close() ;
+			_nc.close() ;
 			_timer.stop() ;
 			if (!noEvent) 
 			{
@@ -109,10 +246,10 @@ package asgard.net
 		/**
 		 * Connect the client with this method.
 		 */
-		public override function connect(command:String, ... arguments):void
+		public function connect( command:String, ... arguments):void
 		{
 			notifyStarted() ;
-			super.connect.apply(this, [command].concat(arguments)) ;
+			_nc.connect.apply( _nc, [command].concat(arguments)) ;
 		}
 
     	/**
@@ -191,24 +328,6 @@ package asgard.net
 		    return _instance ;
 	    }
 		
-    	/**
-	     * Returns the value of the isGlobal flag of this model.
-	     * @return {@code true} if the model use a global EventDispatcher to dispatch this events.
-	     */
-	    public function getIsGlobal():Boolean 
-	    {
-    		return _isGlobal ;
-    	}
-    	
-    	/**
-    	 * Returns the internal {@code ILogger} reference of this {@code ILogable} object.
-    	 * @return the internal {@code ILogger} reference of this {@code ILogable} object.
-    	 */
-    	public function getLogger():ILogger
-    	{
-		    return _logger ; 	
-	    }
-	
 	    /**
 	     * Returns the TimeoutPolicy value of this object.
 	     * @return the TimeoutPolicy value of this object.
@@ -217,15 +336,6 @@ package asgard.net
 		public function getTimeoutPolicy():TimeoutPolicy 
 		{
 			return _policy ;	
-		}
-	
-	    /**
-	     * Returns a hash code value for the object.
-	     * @return a hash code value for the object.
-	     */
-		public function hashCode():uint
-		{
-			return null ;
 		}
 		
     	/**
@@ -240,16 +350,6 @@ package asgard.net
 			_eStatus = new NetServerEvent( NetServerEvent.NET_STATUS ) ;
 			_eTimeOut = new NetServerEvent( NetServerEvent.TIMEOUT ) ;
 	    }
-	    
-	    /**
-	     * Creates and returns the internal {@code EventDispatcher} reference (this method is invoqued in the constructor).
-	     * You can overrides this method if you wan use a global {@code EventDispatcher} singleton.
-	     * @return the internal {@code EventDispatcher} reference.
-	     */
-	    public function initEventDispatcher():EventDispatcher 
-	    {
-    		return new EventDispatcher( this ) ;
-    	}
 
     	/**
     	 * Invoqued when the connection is closed.
@@ -294,22 +394,14 @@ package asgard.net
 			dispatchEvent(_eTimeOut) ;	
 		}
 
-       /**
-        * Registers an {@code EventListener} object with an EventDispatcher object so that the listener receives notification of an event.
-        */
-       public function registerEventListener(type:String, listener:*, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void 
-       {
-           // TODO finish this implementation.           
-       }
-
 	    /**
 	     * Runs the process of this NetServerConnection.
 	     */
 		public function run( ...arguments:Array ):void 
 		{
-			connect(uri) ;	
+			connect( _nc.uri ) ;	
 		}
-		
+	
 		/**
 		 * Set timeout interval duration.
 		 */
@@ -319,14 +411,6 @@ package asgard.net
 			if (useSeconds) t = Math.round(t * 1000) ;
 			_timer.delay = t ;
 		}
-
-    	/**
-	     * Sets the internal {@code EventDispatcher} reference.
-	     */
-	    public function setEventDispatcher( e:EventDispatcher ):void 
-	    {
-    		_dispatcher = e || initEventDispatcher() ;
-    	}
 
 	    /**
 	     * Sets the event name use in the connection is closed.
@@ -368,17 +452,6 @@ package asgard.net
     		_eTimeOut.type = type ;
     	}
 
-    	/**
-    	 * Sets if the model use a global {@code EventDispatcher} to dispatch this events, if the {@code flag} value is {@code false} the model use a local EventDispatcher.
-    	 * @param flag the flag to use a global event flow or a local event flow.
-	     * @param channel the name of the global event flow if the {@code flag} argument is {@code true}.  
-	     */
-    	public function setGlobal( flag:Boolean , channel:String ):void 
-    	{
-		    _isGlobal = flag ;
-    		setEventDispatcher( flag ? EventDispatcher.getInstance( channel ) : null ) ;
-        }
-
 		/**
 		 * Use limit timeout interval.
 		 * @see TimeoutPolicy
@@ -397,68 +470,38 @@ package asgard.net
 		}
 		
     	/**
-    	 * Sets the internal {@code ILogger} reference of this {@code ILogable} object.
-    	 */
-	    public function setLogger( log:ILogger ):void 
-    	{
-		    _logger = log ;
-	    }
-		
-    	/**
 	     * Use this method to dispatch in FMS application an event.
 	     */
 	    public function sharedEvent( event:* = null , context:* = null ):void 
 	    {
     		if (event is Event) 
 		    {
-    			this.call( (event as Event).type, null, event ) ;
+    			_nc.call( (event as Event).type, null, event ) ;
 		    }
 		    else if ( event is String ) 
 		    {
-    			this.call( event, null, context ) ;
+    			_nc.call( event, null, context ) ;
 		    }
 	    }
-	
-    	/**
-    	 * Returns the string Eden representation of this object.
-    	 * @return the string Eden representation of this object.
-    	 */
-		public function toSource(...arguments:Array):String
-		{
-			return "new asgard.net.NetServerConnection()" ;
-		}
-	
-	    /**
-	     * Returns the string representation of this object.
-	     * @return the string representation of this object.
-	     */
-		public override function toString():String
-		{
-			return "[" + ClassUtil.getName(this) + "]" ;
-		}
 		
-	    /**
-         * Removes an {@code EventListener} from the EventDispatcher object.
-         */
-       public function unregisterEventListener(type:String, listener:*, useCapture:Boolean = false):void 
-       {
-           // TODO finish this implementation
-       }
-		
-		protected function onIOError(e:IOErrorEvent):void
+		/**
+		 * Invoqued when a IOErrorEvent is notified.
+		 */
+		protected function _onIOError(e:IOErrorEvent):void
 		{
 			_timer.stop() ;
 			notifyFinished() ;
 		}
-		
-		protected function onSecurityError(e:SecurityErrorEvent):void
+
+		/**
+		 * Invoqued when a SecurityErrorEvent is notified.
+		 */
+		protected function _onSecurityError(e:SecurityErrorEvent):void
 		{
 			_timer.stop() ;
 			notifyFinished() ;
 		}
-		
-		private var _dispatcher:EventDispatcher ;
-		
+
 		private var _eClose:NetServerEvent ;
 
 		private var _eFinish:NetServerEvent ;
@@ -470,23 +513,23 @@ package asgard.net
 		private var _eTimeOut:NetServerEvent ;
 
 	    private static var _instance:NetServerConnection;
-	    
-	    private var _isGlobal:Boolean ;
-	    
-	    private var _logger:ILogger ;
+
+        private var _nc:NetConnection ;
 
 		private var _policy:TimeoutPolicy ;
 
 		private var _timer:Timer ;
 		
+		private var _uri:String ;
+		
 		private function _onStatus( e:NetStatusEvent ):void
 		{
 			
 			_timer.stop() ;
+
+			dispatchEvent( e ) ;
 			
 			var code:NetServerStatus = NetServerStatus.format( e.info.code ) ;
-			
-			// trace("> " + this + "._onStatus(" + code + ")") ;
 			
 			switch (code) 
 			{

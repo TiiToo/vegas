@@ -21,23 +21,25 @@
   
 */
 
+//TODO finish unit tests and test the timeout policy. 
+
 package asgard.net.remoting
 {
-	import asgard.events.RemotingEvent;
-	import asgard.net.TimeoutPolicy;
-	
-	import flash.events.TimerEvent;
-	import flash.net.Responder;
-	import flash.utils.Timer;
-	
-	import pegas.process.Action;
-	
-	import vegas.core.ICloneable;
-	import vegas.errors.Warning;
-	import vegas.util.ClassUtil;
-	import flash.net.ObjectEncoding;
-
-	/**
+    import flash.events.TimerEvent;
+    import flash.net.ObjectEncoding;
+    import flash.net.Responder;
+    import flash.utils.Timer;
+    
+    import asgard.events.RemotingEvent;
+    import asgard.net.TimeoutPolicy;
+    
+    import pegas.process.Action;
+    
+    import vegas.core.ICloneable;
+    import vegas.errors.Warning;
+    import vegas.util.ClassUtil;
+    
+    /**
 	 * This class provides a service object to communicate with a remoting gateway server.
 	 * <p><b>Example : RemotingService and classmapping</b></p>
 	 * <p>Value object : test.User :</p>
@@ -92,6 +94,7 @@ package asgard.net.remoting
 	 * 
 	 *         public function TestRemotingService()
 	 *         {
+	 *              
 	 *              User.register() ; // register the User class for class mapping
 	 *              
 	 *              var service:RemotingService = new RemotingService() ;
@@ -151,6 +154,50 @@ package asgard.net.remoting
 	 * 
 	 *     }
 	 * }
+	 * }
+	 * <p>The PHP AMFPHP service to test the RemotingService class :</p>
+	 * {@code
+	 * <?php
+	 * require("test/User.php") ;
+	 * 
+	 * class Test 
+	 * {
+	 * 
+	 *     // constructor
+	 * 
+	 *     function Test ()
+	 *     {
+	 * 
+	 *          $this->methodTable = array
+	 *          (
+	 *               "getUser" => array
+	 *               (
+	 *                   "description" => "Returns a user instance (value object with class mapping).",
+	 *                   "access"      => "remote",
+	 *                   "returns"     => "test.User",
+	 *                   "roles"       => "admin"
+	 *               )
+	 *          ) ;
+	 *    }
+	 *
+	 *    function getUser( $name, $age, $url )
+	 *    {
+	 *        return new User( $name, $age, $url ) ;
+	 *    }
+	 *    
+	 *    function _authenticate( $user, $pass ) 
+	 *    {
+	 *        if ($user == "vegas" && $pass == "vegas")
+	 *        {
+	 *             return "admin" ;
+	 *        }
+	 *        else
+	 *        {
+	 *             return false ;
+	 *        }
+	 *    }
+	 * }
+	 * ?>
 	 * }
 	 * @author eKameleon
  	 */
@@ -477,10 +524,12 @@ package asgard.net.remoting
 			{
 				throw new Warning(this + ", You can't run the RemotingConnection.") ;
 			}
+			
 			if (_authentification != null)
 			{
 				_rc.setCredentials(_authentification) ;
 			}
+			
 			if (getRunning() && multipleSimultaneousAllowed == false)  
 			{
 				notifyProgress() ;
@@ -501,7 +550,7 @@ package asgard.net.remoting
     	 * @param authentification The RemotingAuthentification instance to presented to the server.
     	 * @see RemotingAuthentification
 	     */
-		public function setCredentials( authentification:RemotingAuthentification=null ):void  
+		public function setCredentials( authentification:RemotingAuthentification = null ):void  
 		{			
 			_authentification = authentification ;
 		}

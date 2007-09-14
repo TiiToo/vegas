@@ -85,7 +85,7 @@ package vegas.events
         /**
          * Create and return a globalEventBroadcaster instance.
          */
-        static public function getInstance(name:String=null):vegas.events.EventDispatcher
+        static public function getInstance( name:String=null ):vegas.events.EventDispatcher
         {
             
             if (name == null) 

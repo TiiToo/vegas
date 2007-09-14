@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -23,13 +23,11 @@
 
 package vegas.events
 {
-	import flash.events.Event;
-	
-	import vegas.core.CoreObject;
-	import vegas.data.iterator.Iterator;
-	import vegas.data.map.ArrayMap;
-	import vegas.data.map.HashMap;
-	
+    import vegas.core.CoreObject;
+    import vegas.data.iterator.Iterator;
+    import vegas.data.map.ArrayMap;
+    import vegas.data.map.HashMap;
+    
 	/**
 	 * The Front Controller pattern defines a single EventDispatcher that is responsible for processing application requests.
   	 * <p>A front controller centralizes functions such as view selection, security, and templating, and applies them consistently across all pages or views. Consequently, when the behavior of these functions need to change, only a small part of the application needs to be changed: the controller and its helper classes.</p>
@@ -83,11 +81,11 @@ package vegas.events
     	{
     		if (e is String)
     		{
-    			_dispatcher.dispatchEvent(new Event(e)) ;	
+    			_dispatcher.dispatchEvent( new BasicEvent(e) ) ;	
     		}
     		else
     		{
-    			_dispatcher.dispatchEvent(e) ;		
+    			_dispatcher.dispatchEvent( e ) ;		
     		}
   	        
     	}
@@ -114,9 +112,9 @@ package vegas.events
 		 * @param channel The channel of the FrontController (default the EventDispatcher.DEFAULT_SINGLETON_NAME value).
 	 	 * @return a global {@code FrontController} singleton.
 		 */
-		static public function getInstance(channel:String):FrontController 
+		static public function getInstance( channel:String = null ):FrontController 
 		{
-			if (!channel) 
+			if ( channel == null ) 
 			{
 				channel = EventDispatcher.DEFAULT_SINGLETON_NAME ;
 			}
@@ -143,10 +141,10 @@ package vegas.events
     	 * @param eventName:String
     	 * @param listener:EventListener or listener:Function
     	 */
-    	public function insert(eventName:String, listener:*):void 
+    	public function insert(eventName:String, listener:* ):void 
     	{
     		_map.put.apply( this, arguments ) ;
-    		_dispatcher.registerEventListener(eventName, listener) ;
+    		_dispatcher.registerEventListener( eventName, listener ) ;
     	}
     	
     	/**

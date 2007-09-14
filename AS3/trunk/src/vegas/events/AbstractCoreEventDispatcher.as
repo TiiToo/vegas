@@ -44,7 +44,6 @@ package vegas.events
         public function AbstractCoreEventDispatcher( bGlobal:Boolean = false , sChannel:String = null ) 
         {
     		setGlobal( bGlobal , sChannel ) ;	
-    		var o:Object = {} ;
         }
        
 		/**
@@ -151,16 +150,6 @@ package vegas.events
 			setEventDispatcher( _isGlobal ? EventDispatcher.getInstance( channel ) : null ) ;
 		}
 
-		/**
-		 * Checks whether an event listener is registered with this EventDispatcher object or any of its ancestors for the specified event type.
-		 * This method returns {@code true} if an event listener is triggered during any phase of the event flow when an event of the specified type is dispatched to this EventDispatcher object or any of its descendants.
-		 * @return A value of {@code true} if a listener of the specified type will be triggered; {@code false} otherwise.
-		 */
-        public function willTrigger(type:String):Boolean
-        {
-            return _dispatcher.willTrigger(type) ;
-        }
-        
         /**
          * Returns the eden String representation of this object.
          * @return the eden String representation of this object.
@@ -174,7 +163,17 @@ package vegas.events
         {
             _dispatcher.unregisterEventListener(type, listener, useCapture) ;
         }
-	
+
+		/**
+		 * Checks whether an event listener is registered with this EventDispatcher object or any of its ancestors for the specified event type.
+		 * This method returns {@code true} if an event listener is triggered during any phase of the event flow when an event of the specified type is dispatched to this EventDispatcher object or any of its descendants.
+		 * @return A value of {@code true} if a listener of the specified type will be triggered; {@code false} otherwise.
+		 */
+        public function willTrigger(type:String):Boolean
+        {
+            return _dispatcher.willTrigger(type) ;
+        }
+
     	private var _dispatcher:EventDispatcher ;  
     
     	/**

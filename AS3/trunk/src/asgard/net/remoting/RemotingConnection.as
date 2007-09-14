@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -23,10 +23,9 @@
 
 package asgard.net.remoting
 {
-	
-	import asgard.net.NetServerConnection;
-
-	/**
+    import asgard.net.NetServerConnection;
+    
+    /**
 	 * The NetServerConnection object used in the RemotingService class to connect the client with the server.
 	 * @author eKameleon
  	 * @version 1.0.0.0
@@ -84,8 +83,9 @@ package asgard.net.remoting
 
 		/**
 		 * Sets the credentials authentification value of this connection.
+		 * @param authentification The RemotingAuthentification object to defines the credentials user id and password of the service session.
 		 */
-		public function setCredentials( authentification:RemotingAuthentification=null ):void  
+		public function setCredentials( authentification:RemotingAuthentification = null ):void  
 		{
 			addHeader( RemotingConnection.CREDENTIALS , false, authentification.toObject());
 		}

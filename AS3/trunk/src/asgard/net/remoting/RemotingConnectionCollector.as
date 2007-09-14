@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -23,11 +23,11 @@
 
 package asgard.net.remoting
 {
-	import asgard.net.remoting.RemotingConnection;
-	
-	import vegas.data.map.HashMap;
-	import vegas.errors.Warning;
-	
+    import asgard.net.remoting.RemotingConnection;
+    
+    import vegas.data.map.HashMap;
+    import vegas.errors.Warning;
+    
 	/**
 	 * This collector use a Map to register all RemotingConnection in the application.
  	 * @author eKameleon

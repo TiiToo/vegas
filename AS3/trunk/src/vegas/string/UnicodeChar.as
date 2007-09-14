@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -23,13 +23,11 @@
 
 package vegas.string
 {
-    
-	import flash.utils.Proxy;
-	import flash.utils.flash_proxy;
+    import flash.utils.Proxy;
+    import flash.utils.flash_proxy;
     
     import vegas.core.types.Char;
-    import vegas.util.StringUtil;
-
+    
     /**
      * ECMA 262 Unicode IFormat-Control Characters tools.
      * <p><b>Example :</b></p>

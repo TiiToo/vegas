@@ -48,7 +48,7 @@ package vegas.events
 		 * @param method the method to be executed.
 		 * @param ...arguments the optional argument to pass in the method.
 		 */
-        public function Delegate(scope:*, method:Function, ...arguments:Array)
+        public function Delegate( scope:* , method:Function , ...arguments:Array)
         {
 		    _s = scope ;
     		_m = method ;

@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -23,14 +23,13 @@
 
 package asgard.net.remoting
 {
-	import asgard.net.remoting.RemotingService;
-	
-	import vegas.core.CoreObject;
-	import vegas.core.IFormat;
-	import vegas.data.iterator.Iterable;
-	import vegas.data.iterator.Iterator;
-	import vegas.util.TypeUtil;
-	
+    import vegas.core.CoreObject;
+    import vegas.core.IFormat;
+    import vegas.data.iterator.Iterable;
+    import vegas.data.iterator.Iterator;
+    import vegas.util.ClassUtil;
+    import vegas.util.TypeUtil;
+    
 	/**
 	 * The instances of this class can converts an object to a custom string representation.
      * @author eKameleon
@@ -53,10 +52,10 @@ package asgard.net.remoting
 		{
 			var rs:RemotingService = RemotingService(o);
 			var r:* = rs.getResult() ;
-			var txt:String = "[" ;
-			if (rs.getServiceName()) txt += "\r\tserviceName : " + rs.getServiceName() + " , " ;
-			if (rs.getMethodName()) txt += "\r\tmethodName : " + rs.getMethodName() + " ," ;
-			if (rs.getServiceName()) txt += "\r\tresult : " ;
+			var txt:String = "[" + ClassUtil.getName(rs) ;
+			if (rs.getServiceName()) txt += " serviceName:" + rs.getServiceName() ;
+			if (rs.getMethodName()) txt  += " methodName:" + rs.getMethodName() ;
+			if (rs.getServiceName()) txt += " result:" ;
 			if (r != undefined) 
 			{
 				if (r is Iterable) 
@@ -85,18 +84,13 @@ package asgard.net.remoting
 				} 
 				else 
 				{
-					txt += r  + "\r";
+					txt += r  ;
 				}
 				txt += "]" ;
 			}
 			else 
 			{
-				txt += "empty";
-				if (rs.getServiceName() || rs.getMethodName()) 
-				{
-					txt += "\r" ;
-				}
-				txt += "]" ;
+				txt += "empty]";
 			}
 			return txt ;
 		}

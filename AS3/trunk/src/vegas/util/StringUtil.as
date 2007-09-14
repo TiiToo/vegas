@@ -239,7 +239,7 @@ package vegas.util
  		 * thanks Zwetan and Core2 Library and system package.
  		 * TODO : in the next version use the system package !
  		 */
- 		static public function format( pattern:String=null , ...args:Array ):String 
+ 		static public function format( pattern:String = null , ...args:Array ):String 
  		{
 			
 			

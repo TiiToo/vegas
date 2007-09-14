@@ -101,7 +101,7 @@ class asgard.net.NetServerGateway extends CoreObject
 	 * @param eventName:String
 	 * @param listener:EventListener
 	 */
-	public function insert( eventName:String , listener:EventListener ) 
+	public function insert( eventName:String , listener:EventListener ):Void 
 	{
 		_controller.insert(eventName, listener) ;
 	}
