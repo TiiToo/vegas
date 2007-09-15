@@ -32,13 +32,22 @@ class vegas.events.StringEvent extends DynamicEvent
 	
 	/**
 	 * Creates a new StringEvent instance.
+	 * @param type the string type of the instance. 
+	 * @param str The string value of this event.
+	 * @param target the target of the event.
+	 * @param context the optional context object of the event.
+	 * @param bubbles indicates if the event is a bubbling event.
+	 * @param eventPhase the current EventPhase of the event.
+	 * @param time this parameter is used in the Eden deserialization.
+	 * @param stop this parameter is used in the Eden deserialization.
 	 */
 	public function StringEvent(type:String, str:String, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
 	{
-		
 		super(type, target, context, bubbles, eventPhase, time, stop);
-		_str = str ;
-		
+		if ( str != null )
+		{
+			_str = str ;
+		}
 	}
 
 	/**

@@ -43,10 +43,11 @@ class vegas.events.ArrayEvent extends DynamicEvent
 	 */
 	public function ArrayEvent(type:String, ar:Array, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
 	{
-		
 		super(type, target, context, bubbles, eventPhase, time, stop);
-		_ar = ar ;
-		
+		if ( ar != null )
+		{
+			_ar = ar ;
+		}
 	}
 
 	/**
@@ -77,6 +78,6 @@ class vegas.events.ArrayEvent extends DynamicEvent
 	/**
 	 * The internal array instance.
 	 */
-	private var _ar:Array ;
+	private var _ar:Array = null ;
 
 }

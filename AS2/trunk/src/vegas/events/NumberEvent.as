@@ -32,13 +32,22 @@ class vegas.events.NumberEvent extends DynamicEvent
 	
 	/**
 	 * Creates a new NumberEvent instance.
+	 * @param type the string type of the instance. 
+	 * @param n The number value of this event.
+	 * @param target the target of the event.
+	 * @param context the optional context object of the event.
+	 * @param bubbles indicates if the event is a bubbling event.
+	 * @param eventPhase the current EventPhase of the event.
+	 * @param time this parameter is used in the Eden deserialization.
+	 * @param stop this parameter is used in the Eden deserialization.
 	 */
 	public function NumberEvent(type:String, n:Number, target, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
 	{
-		
 		super(type, target, context, bubbles, eventPhase, time, stop);
-		_n = n ;
-		
+		if ( !isNaN(n) )
+		{
+			_n = n ;
+		}
 	}
 
 	/**

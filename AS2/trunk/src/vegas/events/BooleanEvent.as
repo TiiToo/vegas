@@ -46,7 +46,7 @@ class vegas.events.BooleanEvent extends DynamicEvent
 		super(type, target, context, bubbles, eventPhase, time, stop) ;
 		if (b === null || b === undefined )
 		{
-			this._b = false ;
+			//
 		}
 		else
 		{
