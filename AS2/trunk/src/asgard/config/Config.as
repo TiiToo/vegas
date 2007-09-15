@@ -30,7 +30,10 @@ import vegas.core.CoreObject;
 dynamic class asgard.config.Config extends CoreObject 
 {
 	
-	private function Config() 
+	/**
+	 * Creates a new Config instance.
+	 */
+	function Config() 
 	{
 		super();
 	}

@@ -38,6 +38,7 @@ package vegas.string.eden
 		 */
 		public function GenericParser( source:String, callback:* )
         {
+        	
         	if( callback == null )
             {
             	callback = Eden ;
@@ -59,14 +60,14 @@ package vegas.string.eden
             	return callback.isAuthorized( value );
             } ;
 			
-	        this.addAuthorized = function():*
+	        this.addAuthorized = function( ...arguments:Array ):void
             {
     	        callback.addAuthorized.apply( callback, arguments );
             } ;
 			
-	        this.removeAuthorized = function():*
+	        this.removeAuthorized = function( ...arguments:Array ):void
             {
-    	        callback.removeAuthorized.apply( callback, arguments );
+    	       callback.removeAuthorized.apply( callback, arguments );
             } ;
 			
         	this.source = source;

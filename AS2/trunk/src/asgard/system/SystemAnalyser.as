@@ -47,7 +47,8 @@ class asgard.system.SystemAnalyser extends EventDispatcher implements IRunnable,
 	/**
 	 * The array representation of all properties to be check by the SystemAnalyser.
 	 */
-	public var properties:Array = [ 
+	public var properties:Array = 
+	[ 
 		"language", 
 		"os", 
 		"manufacturer", 
@@ -71,10 +72,13 @@ class asgard.system.SystemAnalyser extends EventDispatcher implements IRunnable,
 	 * Returns the singleton reference of the SystemAnalyser class.
 	 * @return the singleton reference of the SystemAnalyser class.
 	 */
-	static public function getInstance(Void):SystemAnalyser {
-		if (__INSTANCE__ == undefined) __INSTANCE__ = new SystemAnalyser() ;
-		return __INSTANCE__ ;
-		
+	static public function getInstance(Void):SystemAnalyser 
+	{
+		if (_instance == undefined) 
+		{
+			_instance = new SystemAnalyser() ;
+		}
+		return _instance ;
 	}
 
 	/**
@@ -115,7 +119,7 @@ class asgard.system.SystemAnalyser extends EventDispatcher implements IRunnable,
 	/**
 	 * The internal singleton of this class.
 	 */
-	static private var __INSTANCE__:SystemAnalyser ;
+	static private var _instance:SystemAnalyser ;
 
 	
 }

@@ -24,9 +24,8 @@
 import asgard.config.IConfigurable;
 
 import vegas.data.iterator.Iterator;
-import vegas.data.list.ArrayList;
-
-// TODO Use a Set and not an ArrayList ??
+import vegas.data.Set;
+import vegas.data.set.HashSet;
 
 /**
  * The ConfigCollector class.
@@ -40,40 +39,40 @@ class asgard.config.ConfigCollector
 	 * Returns {@code true} if the collector contains the specified {@code IConfigurable} object.
 	 * @return {@code true} if the collector contains the specified {@code IConfigurable} object.
 	 */	
-	static public function contains( conf:IConfigurable ) :Boolean 
+	public static function contains( conf:IConfigurable ) :Boolean 
 	{
-		return _list.contains( conf ) ;	
+		return _set.contains( conf ) ;	
 	}
 	
 	/**
 	 * Inserts an IConfigurable object in the collector.
 	 */
-	static public function insert( conf:IConfigurable ) :Boolean 
+	public static function insert( conf:IConfigurable ) :Boolean 
 	{
-		return _list.insert( conf ) ;
+		return _set.insert( conf ) ;
 	}
 	
 	/**
 	 * Returns the {@code Iterator} of this collector.
 	 * @return the {@code Iterator} of this collector.
 	 */
-	static public function iterator() :Iterator
+	public static function iterator() :Iterator
 	{
-		return _list.iterator() ;	
+		return _set.iterator() ;	
 	}
 	
 	/**
 	 * Removes the specified {@code IConfigurable} object in the collector.
 	 */
-	static public function remove( conf:IConfigurable ) :Void 
+	public static function remove( conf:IConfigurable ) :Void 
 	{
-		_list.remove( conf ) ;
+		_set.remove( conf ) ;
 	}
 	
 	/**
 	 * Run the {@code ConfigCollector} command to invoqued the {@code setup()} method of all {@code IConfigurable} object registered in the collector.
 	 */
-	static public function run():Void
+	public static function run():Void
 	{
 		if (size() > 0)
 		{
@@ -89,14 +88,14 @@ class asgard.config.ConfigCollector
 	 * Returns the number of elements in the collector.
 	 * @return the number of elements in the collector.
 	 */
-	static public function size():Number
+	public static function size():Number
 	{
-		return _list.size() ;
+		return _set.size() ;
 	}
 	
 	/**
 	 * The internal ArrayList of this collector.
 	 */
-	static private var _list:ArrayList = new ArrayList() ;
+	private static var _set:Set = new HashSet() ;
 	
 }

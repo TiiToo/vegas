@@ -25,42 +25,59 @@ package asgard.net
 {
 	
 	import vegas.core.CoreObject;
-	import vegas.util.Serializer;
-	
+
+    /**
+     * Defines the policy of the timeout states in the application.
+     * @author eKameleon
+     */
 	public class TimeoutPolicy extends CoreObject
 	{
 		
-		// ----o Constructor
-		
+    	/**
+    	 * Creates a new TimeoutPolicy instance.
+	     * @param the value of this policy object.
+	     */ 
 		public function TimeoutPolicy( value:uint )
 		{
 			_value = value ;
 		}
 
-		// ----o Public Properties
-	
-		static public const INFINITY:TimeoutPolicy = new TimeoutPolicy(0) ;
-			
-		static public const LIMIT:TimeoutPolicy = new TimeoutPolicy(1) ;
+    	/**
+	     * This constant defines the 'infinity' timeout policy value(0).
+	     */
+		public static const INFINITY:TimeoutPolicy = new TimeoutPolicy(0) ;
 
-		// -----o Public Methods
-		
-		override public function toSource(...arguments):String
+	    /**
+    	 * This constant defines the 'limit' timeout policy value(1).
+    	 */
+		public static const LIMIT:TimeoutPolicy = new TimeoutPolicy(1) ;
+
+	    /**
+    	 * Returns the eden string representation of this object.
+    	 * @return the eden string representation of this object.
+    	 */		
+		public override function toSource(...arguments):String
 		{
-			return "new asgard.net.TimeOutPolicy(" + Serializer.toSource(_value) + ")" ;
+			return "new asgard.net.TimeOutPolicy( " + _value + ")" ;
 		}
-		
-		override public function toString():String
+
+    	/**
+    	 * Returns the string representation of this object.
+    	 * @return the string representation of this object.
+    	 */	
+		public override function toString():String
 		{
 			return String(_value) ;	
 		}
-		
+
+    	/**
+    	 * Returns the primitive value of this object.
+    	 * @return the primitive value of this object.
+    	 */
 		public function valueOf():*
 		{
 			return _value ;
 		}
-		
-		// ----o Private Properties
 		
 		private var _value:uint ;
 		

@@ -32,31 +32,27 @@ package asgard.config
     
     import vegas.util.ClassUtil ;
 
+    /**
+     * This skeletal class provides an easy implementation of the IConfigLoader interface. 
+     * @author eKameleon
+     */
     public class AbstractConfigLoader extends ActionLoader implements IConfigLoader
     {
         
-        // ----o Constructor
-        
         /**
-         * @author eKameleon
+         * Creates a new AbstractConfigLoader instance.
          */
         public function AbstractConfigLoader( name:String="" )
         {
-
             super() ;
-            
             parsing = true ;
-            
             _name = name ;
-            
             _config = Config.getInstance( name ) ;
-            
         }
         
-    	// ----o Public Properties
-
         /**
-         * Return the config object.
+         * Returns the config object.
+         * @return the config object.
          */
         public function get config():Config 
     	{
@@ -64,15 +60,14 @@ package asgard.config
     	}
     	
         /**
-         * Define the defaut file name ('config').
+         * Defines the defaut file name ('config').
          */
     	public var default_file_name:String = "config" ;
         
         /**
-         * Define the defaut file suffix ('.eden').
+         * Defines the defaut file suffix ('.eden').
          */
     	public var default_file_suffix:String = ".eden" ;
-        
         
         /**
          * The name of the config file with datas.
@@ -82,6 +77,9 @@ package asgard.config
 		    return (_fileName == null) ? default_file_name : _fileName ;	
     	}
 
+        /**
+         * The name of the config file with datas.
+         */
     	public function set fileName( value:String ):void 
     	{
     		_fileName = value ;	
@@ -102,7 +100,10 @@ package asgard.config
     	{
 		    return _path ;
         }
- 
+        
+        /**
+         * The path of the config file with datas.
+         */
         public function set path( value:String ):void
         {
 		    _path = value ;
@@ -116,15 +117,17 @@ package asgard.config
 	    	return (_suffix == null) ? default_file_suffix : _suffix ;
     	}
  
+        /**
+         * The suffix of the config file with datas.
+         */
 	    public function set suffix( value:String ):void
 	    {
 		    _suffix = value ;
     	}
- 
-        // ----o Public Methods
     
         /**
-         * Returns a clone.
+         * Returns a shallow copy of this object.
+         * @return a shallow copy of this object.
          */
         override public function clone():*
         {
@@ -166,23 +169,26 @@ package asgard.config
         /**
          * Parse your datas when loading is complete.
          */
-        override public function parse():void
+        public override function parse():void
         {
             var o:* = data ;
 		    var c:* = config ;
-		    for (var prop:String in o) 
+		    for ( var prop:String in o ) 
 		    {
     			c[ prop ] = o[prop] ;
 	    	}
         }
         
-        // ----o Private Properties
-        
         private var _config:Config = null ;
+
         private var _fileName:String = null ;
+
         private var _name:String ;
+
         private var _path:String = null ;
+
         private var _suffix:String = null ;
 
     }
+
 }

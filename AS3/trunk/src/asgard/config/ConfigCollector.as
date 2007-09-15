@@ -27,42 +27,58 @@ package asgard.config
 	import asgard.config.IConfigurable;
 	
 	import vegas.data.iterator.Iterator;
-	import vegas.data.list.ArrayList;
+	import vegas.data.sets.HashSet;
 	
     /**
+     * The ConfigCollector class is a static collection to register all IConfigurable objects.
      * @author eKameleon
      * @version 1.0.0.0
      */
     public class ConfigCollector
     {
         
-        // ----o Public Methods
-        
-	    static public function contains( conf:IConfigurable ):Boolean 
+	    /**
+	     * Returns {@code true} if the collector contains the specified {@code IConfigurable} object.
+	     * @return {@code true} if the collector contains the specified {@code IConfigurable} object.
+	     */	
+	    public static function contains( conf:IConfigurable ):Boolean 
     	{
-	    	return _list.contains( conf ) ;	
+	    	return _set.contains( conf ) ;	
     	}
-	
-	    static public function insert( conf:IConfigurable ):Boolean 
+
+    	/**
+    	 * Inserts an IConfigurable object in the collector.
+    	 */
+	    public static function insert( conf:IConfigurable ):Boolean 
     	{
-    		return _list.insert( conf ) ;
+    		return _set.insert( conf ) ;
     	}
-    	
-    	static public function iterator() :Iterator
+   
+ 	   /**
+	    * Returns the {@code Iterator} of this collector.
+	    * @return the {@code Iterator} of this collector.
+	    */
+    	public static function iterator() :Iterator
     	{
-    		return _list.iterator() ;	
+    		return _set.iterator() ;	
     	}
-    	
-    	static public function remove( conf:IConfigurable ):void 
+
+    	/**
+    	 * Removes the specified {@code IConfigurable} object in the collector.
+    	 */
+    	public static function remove( conf:IConfigurable ):*
     	{
-    		_list.remove( conf ) ;
+    		return _set.remove( conf ) ;
     	}
-    	
-    	static public function run():void
+
+    	/**
+    	 * Run the {@code ConfigCollector} command to invoqued the {@code setup()} method of all {@code IConfigurable} object registered in the collector.
+	     */
+    	public static function run():void
     	{
     		if (size() > 0)
     		{
-    		    var ar:Array = _list.toArray() ;
+    		    var ar:Array = _set.toArray() ;
     		    var l:uint = ar.length ;
     		    while(--l > -1)
     		    {
@@ -70,13 +86,20 @@ package asgard.config
     			}
     		}	
     	}
-    	
-    	static public function size():Number
+
+    	/**
+    	 * Returns the number of elements in the collector.
+	     * @return the number of elements in the collector.
+    	 */
+    	public static function size():Number
     	{
-    		return _list.size() ;
+    		return _set.size() ;
     	}
-    	    
-   	    static private var _list:ArrayList = new ArrayList() ;
+
+    	/**
+    	 * The internal Set of this collector.
+    	 */
+   	    private static var _set:HashSet = new HashSet() ;
         
     }
 }

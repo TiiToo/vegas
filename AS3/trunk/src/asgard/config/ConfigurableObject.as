@@ -24,28 +24,42 @@
 package asgard.config
 {
    
-	import vegas.core.CoreObject;
 	import vegas.errors.Warning;
-	
-	public class ConfigurableObject extends CoreObject implements IConfigurable
+	import vegas.events.AbstractCoreEventDispatcher;
+
+    /**
+     * This core class extend the CoreObject class and implement the IConfigurable interface.
+     * A IConfigurable object handle a notification of the ConfigCollector class with the method setup(), you must override this method in your concrete class.
+     * The IConfigurable objects are registered in the ConfigCollector to launch the setup of all IConfigurable object one time with the {@code ConfigCollector.run()} method when the Config is loaded for example. 
+     * @author eKameleon
+     */
+	public class ConfigurableObject extends AbstractCoreEventDispatcher implements IConfigurable
     {
-        
-        public function ConfigurableObject()
+       
+    	/**
+    	 * Creates a new ConfigurableObject instance.
+    	 * @param bGlobal the flag to use a global event flow or a local event flow.
+    	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+    	 */
+        public function ConfigurableObject( bGlobal:Boolean = false , sChannel:String = null )
         {
-            super();
+            super( bGlobal , sChannel ) ;	
             isConfigurable = true ;
         }
-        
-       	public function setup():void
-        {
-            throw new Warning(this + ".setup(), you must override this method !") ;
-        }
-    	
+
+    	/**
+	     * (read-write) Returns {@code true} if the object is configurable and receive the notification of the ConfigCollector in the setup() method.
+	     * @return {@code true} if the object is configurable and receive the notification of the ConfigCollector.
+    	 */
     	public function get isConfigurable():Boolean
     	{
     		return _isConfigurable ;
     	}
-    	
+
+    	/**
+    	 * (read-write) Sets if the object is configurable and receive the notification of the ConfigCollector in the setup() method.
+    	 * @param b the flag boolean value to define if the object is configurable.
+	     */
     	public function set isConfigurable(b:Boolean):void
     	{
     		_isConfigurable = (b == true) ;
@@ -58,7 +72,18 @@ package asgard.config
     			ConfigCollector.remove(this) ;
     		}
     	}
-    	 
+ 
+     	/**
+    	 * Invoqued when this object when the ConfigCollector is run.
+    	 */
+       	public function setup():void
+        {
+            throw new Warning(this + ".setup(), you must override this method !") ;
+        }
+ 
+ 	    /**
+         * Determinates if the object is configurable.
+    	 */
     	private var _isConfigurable:Boolean ;
         
     }

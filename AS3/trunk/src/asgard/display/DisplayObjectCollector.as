@@ -31,14 +31,18 @@ package asgard.display
 
 	import vegas.data.map.HashMap;
 	import vegas.errors.Warning;
-	
+
+    /**
+     * This collector use a Map to register all Displays in the application.
+     * @author eKameleon
+     */
 	public class DisplayObjectCollector
 	{
 	
 		/**
 		 * Clear the DisplayObjectCollector.
 		 */
-		static public function clear():void 
+		public static function clear():void 
 		{
 			_map.clear() ;	
 		}
@@ -47,22 +51,22 @@ package asgard.display
 		 * Returns 'true' if the DisplayObjectCollector contains the display's name.
 		 * @return 'true' if the DisplayObjectCollector contains the display's name.
 		 */	
-		static public function contains( sName:String ):Boolean 
+		public static function contains( id:String ):Boolean 
 		{
-			return _map.containsKey( sName ) ;	
+			return _map.containsKey( id ) ;	
 		}
 
 		/**
 		 * Returns the DisplayObject register in the collector with the name passed in argument.
 		 * @return the DisplayObject register in the collector with the name passed in argument.
 		 */	
-		static public function get(sName:String):DisplayObject 
+		public static function get(id:String):DisplayObject 
 		{
 			try 
 			{
-				if (!contains(sName) ) 
+				if (!contains(id) ) 
 				{
-					throw new Warning("[DisplayObjectCollector].get('" + sName + "'). Can't find DisplayObject instance." ) ;
+					throw new Warning("[DisplayObjectCollector].get('" + id + "'). Can't find DisplayObject instance." ) ;
 				} ;
 			}
 			catch (e:Warning) 
@@ -70,33 +74,35 @@ package asgard.display
 				e.toString() ;
 			}
 		
-			return _map.get(sName) as DisplayObject ;	
+			return _map.get(id) as DisplayObject ;	
 		}
 	
 		/**
 		 * Insert a DisplayObject with an unique name into the DisplayObjectCollector.
+		 * @param id the Id of the display to register
+		 * @param dObject The DisplayObject to insert in the collector.
 		 */
-		static public function insert(sName:String, dObject:DisplayObject):Boolean 
+		public static function insert(id:String, dObject:DisplayObject):Boolean 
 		{
 			try 
 			{
-				if ( contains(sName) ) 
+				if ( contains(id) ) 
 				{
-					throw new Warning("[DisplayObjectCollector].insert(). A DisplayObject instance is already registered with '" + sName + "' name." ) ;
+					throw new Warning("[DisplayObjectCollector].insert(). A DisplayObject instance is already registered with '" + id + "' name." ) ;
 				} ;
 			}
 			catch (e:Warning) 
 			{
 				e.toString() ;
 			}
-			return ( _map.put(sName, dObject) as Boolean )   ;	
+			return ( _map.put(id, dObject) as Boolean )   ;	
 		}
 	
 		/**
 		 * Returns 'true' if the DisplayObjectCollector is 'empty'.
 		 * @return 'true' if the DisplayObjectCollector is 'empty'.
 		 */
-		static public function isEmpty():Boolean 
+		public static function isEmpty():Boolean 
 		{
 			return _map.isEmpty() ;	
 		}
@@ -104,16 +110,16 @@ package asgard.display
 		/**
 		 * Remove a DisplayObject into the DisplayObjectCollector.
 		 */
-		static public function remove(sName:String):void 	
+		public static function remove(id:String):void 	
 		{
-			_map.remove(sName) ;
+			_map.remove(id) ;
 		}
 
 		/**
 		 * Returns the size of the DisplayObjectCollector.
 		 * @return the size of the DisplayObjectCollector.
 		 */
-		static public function size():uint 	
+		public static function size():uint 	
 		{
 			return _map.size() ;
 		}
@@ -121,7 +127,7 @@ package asgard.display
 		/**
 		 * Internal hashmap to collect all DisplayObject in the UI.
 		 */
-		static private var _map:HashMap = new HashMap() ;
+		private static var _map:HashMap = new HashMap() ;
 		
 	}
 }

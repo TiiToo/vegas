@@ -78,10 +78,10 @@ class asgard.config.ConfigurableObject extends AbstractCoreEventDispatcher imple
 	/**
 	 * Invoqued when this object when the ConfigCollector is run.
 	 */
-	 public function setup():Void
-	 {
-	 	throw new Warning( this + ".setup(), you must override this method !" ) ;
-	 }
+	public function setup():Void
+	{
+		throw new Warning( this + ".setup(), you must override this method !" ) ;
+	}
 	
 	/**
 	 * Determinates if the object is configurable.

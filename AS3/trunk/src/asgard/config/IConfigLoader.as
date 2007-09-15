@@ -26,11 +26,15 @@ package asgard.config
 
     import asgard.net.IActionLoader ;
     
+    /**
+     * This interface provides a config loader object.
+     */ 
     public interface IConfigLoader extends IActionLoader
     {
     
         /**
-         * (Read-only) Return the config object.
+         * (Read-only) Returns the config object.
+         * @return the config object.
          */
         function get config():Config ;
     

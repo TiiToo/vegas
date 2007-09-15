@@ -32,6 +32,14 @@ class asgard.system.SystemEvent extends DynamicEvent
 
 	/**
 	 * Creates a new SystemEvent instance.
+	 * @param target the target of the event.
+	 * @param property The property name.
+	 * @param value The property value.
+	 * @param context the optional context object of the event.
+	 * @param bubbles indicates if the event is a bubbling event.
+	 * @param eventPhase the current EventPhase of the event.
+	 * @param time this parameter is used in the Eden deserialization.
+	 * @param stop this parameter is used in the Eden deserialization.
 	 */
 	public function SystemEvent(target, property, value, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number)
 	{
@@ -51,7 +59,7 @@ class asgard.system.SystemEvent extends DynamicEvent
 	 */
 	public function clone() 
 	{
-		return new SystemEvent(_target, _context.property, _context.value) ;
+		return new SystemEvent( getTarget() , getProperty(), getValue(), getContext() ) ;
 	}
 	
 	/**

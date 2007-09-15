@@ -22,12 +22,13 @@
 */
 
 /**
- * The IConfigurable interface.
+ * The IConfigurable interface defines configurable objects. 
+ * This objects can be update with the Config of the application when the {@code setup} method of the object is invoqued.
  * @author eKameleon
  */
 interface asgard.config.IConfigurable 
 {
-		
-	public function setup():Void ;
-	
+        
+    public function setup():Void ;
+    
 }

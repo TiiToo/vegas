@@ -46,9 +46,9 @@ class vegas.util.Attribute extends CoreObject
 	 */
 	public function Attribute(dontEnum:Boolean, dontDelete:Boolean, readOnly:Boolean) 
 	{
-		this.dontEnum = dontEnum == true ;
+		this.dontEnum   = dontEnum == true ;
         this.dontDelete = dontDelete == true ;
-		this.readOnly = readOnly == true ;
+		this.readOnly   = readOnly == true ;
 	}
 
 	/**

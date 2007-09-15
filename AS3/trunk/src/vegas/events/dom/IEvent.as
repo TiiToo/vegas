@@ -14,7 +14,10 @@
 		 * Indicates if the event propagation is stopped.
 		 */
 		function get stop():uint ;
-
+		
+		/**
+		 * Indicates if the event propagation is stopped.
+		 */
 		function set stop( value:uint ):void ;
 
 	    /**

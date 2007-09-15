@@ -21,9 +21,6 @@
   
 */
 
-// TODO : ajouter proxy ??
-// TODO : voir pour le protect Config.
-
 package asgard.config
 {
 	import vegas.core.CoreObject;
@@ -32,8 +29,9 @@ package asgard.config
 	import vegas.util.ClassUtil;
 	
 	/**
-    * @author eKameleon
-    */
+	 * The dynamic Config singleton. This object is a global reference to register all external properties.
+     * @author eKameleon
+     */
     dynamic public class Config extends CoreObject implements IFormattable
     {
         
@@ -45,20 +43,21 @@ package asgard.config
 	   /**
         * The map who contains all configs.
         */
-	    static protected var instances:HashMap = new HashMap() ;
+	    protected static var instances:HashMap = new HashMap() ;
 
         /**
          * clear all configs in the global map.
          */
-       	static public function clear():void 
+       	public static function clear():void 
        	{
 	    	instances.clear() ;
 	    }
 
         /**
          * Returns 'true' if the Config map contains the key "name".
+         * @return 'true' if the Config map contains the key "name".
          */
-	    static public function contains( name:String ):Boolean
+	    public static function contains( name:String ):Boolean
 	    {
 	        
 	        return instances.containsKey(name) ;
@@ -66,9 +65,10 @@ package asgard.config
 	    }
 	    
         /**
-         * Returns a singleton.
+         * Returns a singleton reference of this class.
+         * @return a singleton reference of this class.
          */
-	   	static public function getInstance( name:String="" ):Config
+	   	public static function getInstance( name:String="" ):Config
 	   	{
     		
     		if (name == null) 
@@ -88,9 +88,8 @@ package asgard.config
         /**
          * Remove a Singleton.
          */
-	   	static public function removeInstance( name:String ):Boolean 
+	   	public static function removeInstance( name:String ):Boolean 
 	   	{
-	
 	    	if ( !instances.containsKey(name) ) 
 	    	{
 		    	return instances.remove(name) != null ;
@@ -101,12 +100,7 @@ package asgard.config
     		}
 	
 	    }
-	    
-	    override public function toString():String
-	    {
-	        return "[" + ClassUtil.getName(this) + "]" ;
-	    }
-	
+
     }
     
 }

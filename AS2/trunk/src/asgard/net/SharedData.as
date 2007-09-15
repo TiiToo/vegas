@@ -26,6 +26,8 @@ import asgard.events.SharedDataEventType;
 import asgard.net.NetServerConnection;
 import asgard.net.SharedDataStatus;
 
+import pegas.process.ILockable;
+
 import vegas.events.AbstractCoreEventDispatcher;
 import vegas.events.Delegate;
 
@@ -34,11 +36,15 @@ import vegas.events.Delegate;
  * @author eKameleon
  * @version 1.0.0.0
  */
-class asgard.net.SharedData extends AbstractCoreEventDispatcher 
+class asgard.net.SharedData extends AbstractCoreEventDispatcher implements ILockable
 {
 	
 	/**
 	 * Creates a new SharedData instance.
+	 * @param sName the name of the SharedData reference.
+	 * @param nc The NetServerConnection reference of this SharedData object.
+	 * @param persistant indicates if the internal SharedObject of this SharedData is persistant.
+	 * @param autoConnect Indicates if the SharedData is auto connect.
 	 */
 	function SharedData( sName:String, nc:NetServerConnection, persistant:Boolean, autoConnect:Boolean) 
 	{
@@ -46,35 +52,40 @@ class asgard.net.SharedData extends AbstractCoreEventDispatcher
 		_isConnected = false ;
 		_isFirst = true ;
 	
-		_eChange = new SharedDataEvent(SharedDataEventType.CHANGE, this) ;
-		_eClear = new SharedDataEvent(SharedDataEventType.CLEAR, this) ;
-		_eClose = new SharedDataEvent(SharedDataEventType.CLOSE, this) ;
-		_eFire = new SharedDataEvent( SharedDataEventType.FIRE , this ) ;
-		_eDelete = new SharedDataEvent(SharedDataEventType.DELETE, this) ;
-		_eReject = new SharedDataEvent(SharedDataEventType.REJECT, this) ;
-		_eSuccess = new SharedDataEvent(SharedDataEventType.SUCCESS, this) ;
-		_eSync = new SharedDataEvent(SharedDataEventType.SYNCHRONISED, this) ;
+		initEvent() ;
 		
 		initialize(sName, nc, persistant, autoConnect) ;
 		
 	}
 
-
+	/**
+	 * [read-only] The collection of attributes assigned to the data property of the object; 
+	 * these attributes can be shared and stored.
+	 */
 	public function get data() 
 	{
 		return getData() ; 
 	}
 	
+	/**
+	 * [read-only] Indicates if the SharedData is connected.
+	 */
 	public function get isConnected():Boolean 
 	{
 		return getIsConnected() ;	
 	}
-
+	
+	/**
+	 * For local shared objects, purges all of the data and deletes the shared object from the disk.
+	 */
 	public function clear():Void 
 	{
 		_so.clear() ;
 	}
-
+	
+	/**
+	 * Closes the connection between a remote shared object and the server.
+	 */
  	public function close():Void 
  	{
 		if (_isConnected) 
@@ -84,39 +95,83 @@ class asgard.net.SharedData extends AbstractCoreEventDispatcher
 			dispatchEvent(_eClose) ;
 		}
 	}
-	
-	public function connect(nc:NetServerConnection):Boolean 
+
+	/**
+	 * Connects to a remote shared object on the server through the specified connection.
+	 * @param nc A NetServerConnection object (such as one used to communicate with Flash Media Server) that is using the Real-Time Messaging Protocol (RTMP). 
+	 */
+	public function connect( nc:NetServerConnection ):Boolean 
 	{
 		close() ;
 		_isConnected = _so.connect(nc) ;
 		return _isConnected ;
 	}
-
+	
+	/**
+	 * Dispatches a context object to all the reference of this SharedData in all remote application.
+	 */
 	public function fireEvent( eContext ):Void 
 	{
   		_so.send(SharedDataEventType.FIRE, eContext );
   	}
-
+	
+	/**
+	 * Immediately writes a locally persistent shared object to a local file.
+	 */
 	public function flush():Void 
 	{
 		_so.flush() ;
 	}	
-	
+
+	/**
+	 * Returns the collection of attributes assigned to the data property of the object; 
+	 * these attributes can be shared and stored.
+	 */
 	public function getData() 
 	{
 		return _so.data ;	
 	}
-	
+
+	/**
+	 * Returns {@code true} if the SharedData is connected.
+	 * @return {@code true} if the SharedData is connected.
+	 */
 	public function getIsConnected():Boolean 
 	{
 		return _isConnected ;	
 	}
-
+	
+	/**
+	 * Returns the value of the specified property.
+	 * @return  the value of the specified property.
+	 */
 	public function getProperty(sName:String) 
 	{
   		return _so.data[sName];
   	}
-
+  	
+  	/**
+  	 * Initialize all internal events of this SharedData instance.
+  	 */
+  	public function initEvent():Void
+  	{
+  		_eChange  = new SharedDataEvent( SharedDataEventType.CHANGE       , this ) ;
+		_eClear   = new SharedDataEvent( SharedDataEventType.CLEAR        , this ) ;
+		_eClose   = new SharedDataEvent( SharedDataEventType.CLOSE        , this ) ;
+		_eFire    = new SharedDataEvent( SharedDataEventType.FIRE         , this ) ;
+		_eDelete  = new SharedDataEvent( SharedDataEventType.DELETE       , this ) ;
+		_eReject  = new SharedDataEvent( SharedDataEventType.REJECT       , this ) ;
+		_eSuccess = new SharedDataEvent( SharedDataEventType.SUCCESS      , this ) ;
+		_eSync    = new SharedDataEvent( SharedDataEventType.SYNCHRONISED , this ) ;
+  	}
+  		
+	/**
+	 * Initialize the SharedData instance.
+	 * @param sName the name of the SharedData reference.
+	 * @param nc The NetServerConnection reference of this SharedData object.
+	 * @param persistant indicates if the internal SharedObject of this SharedData is persistant.
+	 * @param autoConnect Indicates if the SharedData is auto connect.
+	 */
 	public function initialize(sName:String, nc:NetServerConnection, persistant:Boolean, autoConnect:Boolean):Void 
 	{
 		if (_so ) 
@@ -132,11 +187,27 @@ class asgard.net.SharedData extends AbstractCoreEventDispatcher
 		}
 	}
 
-	public function lock():Void 
+	/**
+	 * Returns {@code true} if the object is locked.
+	 * @return {@code true} if the object is locked.
+	 */
+	public function isLocked():Boolean 
 	{
-		_so.setFps(0);
+		return _isLocked ;
 	}
 
+	/**
+	 * Locks the object.
+	 */
+	public function lock():Void 
+	{
+		_isLocked = true ;
+		_so.setFps(0);
+	}
+	
+	/**
+	 * Resets all the properties of the SharedData.
+	 */
 	public function reset():Void 
 	{
 		var o:Object = getData() ;
@@ -146,27 +217,38 @@ class asgard.net.SharedData extends AbstractCoreEventDispatcher
 		}
 	}	
 	
+	/**
+	 * Specifies the number of times per second that a client's changes to a shared object are sent to the server.
+	 */
 	public function setFps(n:Number):Boolean 
 	{
   		return _so.setFps(n);
   	}
   	
+  	/**
+  	 * Updates the value of a property (defined with the data property) in a shared object and indicates to the server that the value of the property has changed.
+  	 */
   	public function setProperty(sName:String, value ):Void 
   	{
   		_so.data[sName] = value ;
 		_so.flush() ;
   	}
-
+	
+	/**
+	 * Returns the current size of the shared object, in bytes.
+	 * @return the current size of the shared object, in bytes.
+	 */
 	public function size():Number 
 	{
 		return _so.getSize() ;	
 	}
 
 	/**
-	 * Unlock Method like server side SSAS !! Test this method !!
+	 * Unlock Method like server side SSAS
 	 */
- 	public function unlock():Void 
+ 	public function unLock():Void 
  	{
+ 		_isLocked = false ;
 		_so.setFps(0) ;
 		_so.setFps(-1) ;
 	}
@@ -182,6 +264,7 @@ class asgard.net.SharedData extends AbstractCoreEventDispatcher
 
 	private var _isConnected:Boolean ;
 	private var _isFirst:Boolean ;
+	private var _isLocked:Boolean ;
 	
 	private var _so:SharedObject ;
 		

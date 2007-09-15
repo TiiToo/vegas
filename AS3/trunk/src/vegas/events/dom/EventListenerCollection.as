@@ -42,11 +42,11 @@ package vegas.events.dom
 	    /**
 	     * Creates a new EventListenerCollection instance.
 	     */
-		public function EventListenerCollection()
+		public function EventListenerCollection( )
 		{
 			_list = new SortedArrayList() ;
-			_list.setComparator( EventListenerComparator.getInstance() ) ;
-			_list.setOptions( Array.NUMERIC ) ;
+			_list.comparator = EventListenerComparator.getInstance() ;
+			_list.options = Array.NUMERIC ;
 		}
 		
 	    /**
@@ -123,13 +123,14 @@ package vegas.events.dom
 	     */
 		public function removeListener( listener:* ):EventListenerContainer 
 		{
-			
-			if (listener is EventListener) 
+			var it:Iterator ;
+			var container : EventListenerContainer ;
+            if ( listener is EventListener ) 
 			{
-				var it:Iterator = _list.iterator() ;
+				it = _list.iterator() ;
 				while(it.hasNext()) 
 				{
-					var container:EventListenerContainer = it.next() ;
+					container = it.next() ;
 					if (container.getListener() == listener) 
 					{
 						_list.remove(container) ;
@@ -143,10 +144,9 @@ package vegas.events.dom
 				return _list.removeAt( listener ) ;
 			
 			} 
-			else if ( listener is String))  // constructorName
+			else if ( listener is String)  // constructorName
 			{
-				var it:Iterator = _list.iterator() ;
-				var container:EventListenerContainer ;
+				it = _list.iterator() ;
 				var constructorName:String ;
 				while(it.hasNext()) 
 				{
@@ -162,7 +162,7 @@ package vegas.events.dom
 			}
 			return null ;
 		}
-		
+
 		/**
 	     * Returns the number of {@code EventListener} in this collection.
 	     * @return the number of {@code EventListener} in this collection.

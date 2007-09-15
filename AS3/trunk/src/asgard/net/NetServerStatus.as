@@ -45,37 +45,37 @@ package asgard.net
 		/**
 	 	 * Packet encoded in an unidentified format.
 	 	 */	
-		static public const BAD_VERSION:NetServerStatus = new NetServerStatus("badversion") ;
+		public static const BAD_VERSION:NetServerStatus = new NetServerStatus("badversion") ;
 		
 		/**
 	 	 * The connection was closed successfully.
 	 	 */
-		static public const CLOSED:NetServerStatus = new NetServerStatus("closed") ;
+		public static const CLOSED:NetServerStatus = new NetServerStatus("closed") ;
 
 		/**
 		 * The connection attempt failed or the NetConnection.call method was not able to invoke the server-side method or command.
 		 */
-		static public const FAILED:NetServerStatus = new NetServerStatus("failed") ;
+		public static const FAILED:NetServerStatus = new NetServerStatus("failed") ;
 
 		/**
 		 * The application name specified during connect is invalid.
 		 */
-		static public const INVALID:NetServerStatus = new NetServerStatus("invalidapp") ;
+		public static const INVALID:NetServerStatus = new NetServerStatus("invalidapp") ;
 		
 		/**
 	 	 * The connection attempt did not have permission to access the application.
 	 	 */
-		static public const REJECTED:NetServerStatus = new NetServerStatus("rejected") ;
+		public static const REJECTED:NetServerStatus = new NetServerStatus("rejected") ;
 		
 		/**
 	 	 *  The specified application is shutting down.
 	 	 */
-		static public const SHUTDOWN:NetServerStatus = new NetServerStatus("appshutdown") ;
+		public static const SHUTDOWN:NetServerStatus = new NetServerStatus("appshutdown") ;
 	
 		/**
 	 	 * The connection attempt succeeded.
 	 	 */
-		static public const SUCCESS:NetServerStatus = new NetServerStatus("success") ;
+		public static const SUCCESS:NetServerStatus = new NetServerStatus("success") ;
 
 		/**
 	 	 * Compares the specified object with this object for equality.
@@ -89,7 +89,7 @@ package asgard.net
 		/**
 		 * Convert onStatus code value in NetConnection.onStatus in a ConnectionStatus valid string.
 		 */
-		static public function format(code:String):NetServerStatus 
+		public static function format(code:String):NetServerStatus 
 		{
 			code = code.split(".").pop().toLowerCase() ;
 			var status:Array = [BAD_VERSION, CLOSED, FAILED, INVALID, REJECTED, SHUTDOWN, SUCCESS] ;
@@ -126,7 +126,7 @@ package asgard.net
 		 * Validate if the specified object is a valid status value.
 		 * @return {@code true} if the specified object is a valid status value.
 		 */
-		static public function validate( o:* ):Boolean 
+		public static function validate( o:* ):Boolean 
 		{
 			var status:Array = [BAD_VERSION, CLOSED, FAILED, INVALID, REJECTED, SHUTDOWN, SUCCESS] ;
 			return status.indexOf(o) > -1 ;	
