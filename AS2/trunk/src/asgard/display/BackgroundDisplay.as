@@ -23,10 +23,12 @@
 
 import asgard.display.ConfigurableDisplayObject;
 
+import pegas.draw.FillType;
 import pegas.draw.IPen;
 import pegas.draw.RectanglePen;
 import pegas.events.UIEvent;
 import pegas.events.UIEventType;
+import pegas.geom.TransformMatrix;
 
 import vegas.util.MathsUtil;
 
@@ -51,13 +53,29 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 
 		_bgDraw  = initBackgroundPen() ;
 		_eResize = new UIEvent( UIEventType.RESIZE , this) ;
+		_matrix = new TransformMatrix() ;		
 		
 	}
+	
+	/**
+	 * The array of alphas value to draw the background.
+	 */	
+	public var alphas:Array = [ 100, 100 ] ;
 	
 	/**
 	 * The background reference of this display.
 	 */
 	public var background:MovieClip ;
+
+	/**
+	 * The array of colors value to draw the background.
+	 */
+	public var colors:Array = [ 0 , 0 ] ;
+	
+	/**
+	 * The rotation value to draw the linearGradientFill when draw the background.
+	 */
+	public var gradientRotation:Number = 90  ;
 
 	/**
 	 * (read-only) Returns the virtual height value of this component.
@@ -115,6 +133,11 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	public var maxHeight:Number ;
 
 	/**
+	 * The array of ratios value to draw the background.
+	 */
+	public var ratios:Array = [ 0 , 100 ] ;
+	
+	/**
 	 * The alpha value of the screen.
 	 */
 	public var themeAlpha:Number = 100 ;
@@ -140,6 +163,24 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	public var themeColor:Number = 0x000000 ;
 
 	/**
+	 * Returns {@code true} if the background use a gradient.
+	 * @return {@code true} if the background use a gradient.
+	 */
+	public function get useGradient():Boolean
+	{
+		return _useGradient ;
+	}
+
+	/**
+	 * Sets the background use a gradient flag.
+	 */
+	public function set useGradient( b:Boolean ) :Void
+	{
+		_useGradient = b ;
+		update() ;
+	}
+
+	/**
 	 * (read-only) Returns the virtual width value of this component.
 	 * @return the virtual width value of this component.
 	 */
@@ -163,8 +204,19 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	 {
 	 	var $w:Number = isNaN(w) ? getW() : w ;
 	 	var $h:Number = isNaN(h) ? getH() : h ;
-	 	_bgDraw.clear() ;
-	 	_bgDraw.lineStyle( themeBorderThickness, themeBorderColor, themeBorderAlpha ) ;
+
+		_bgDraw.clear() ;
+	 	
+	 	if( _useGradient )
+		{
+       		_matrix.createGradientBox( $w, $h );
+        	_matrix.rotateD( gradientRotation ) ;
+			_bgDraw.beginGradientFill( FillType.LINEAR, colors, alphas, ratios, _matrix ) ;
+		}
+		else
+		{
+	 		_bgDraw.lineStyle( themeBorderThickness, themeBorderColor, themeBorderAlpha ) ;
+		}
 		_bgDraw.beginFill( themeColor, themeAlpha ) ;
 		_bgDraw.draw( $w, $h ) ;
 		_bgDraw.endFill() ;
@@ -299,6 +351,10 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	private var _h:Number ;
 
 	private var _isFull:Boolean = false ;
+
+	private var _matrix:TransformMatrix ;
+
+	private var _useGradient:Boolean = false ;
 	
 	private var _w:Number ;
 
