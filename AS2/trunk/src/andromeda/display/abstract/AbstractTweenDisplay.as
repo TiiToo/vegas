@@ -32,6 +32,8 @@ class andromeda.display.abstract.AbstractTweenDisplay extends BackgroundDisplay
 	
 	/**
 	 * Creates a new AbstractTweenDisplay.
+	 * @param sName the name of the display.
+	 * @param target the DisplayObject instance control this target.
 	 */
 	public function AbstractTweenDisplay(sName : String, target:MovieClip) 
 	{

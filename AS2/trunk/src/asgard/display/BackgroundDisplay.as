@@ -53,7 +53,6 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 
 		_bgDraw  = initBackgroundPen() ;
 		_eResize = new UIEvent( UIEventType.RESIZE , this) ;
-		_matrix = new TransformMatrix() ;		
 		
 	}
 	
@@ -202,24 +201,28 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	  */
 	 public function draw( w:Number , h:Number ):Void
 	 {
+
 	 	var $w:Number = isNaN(w) ? getW() : w ;
 	 	var $h:Number = isNaN(h) ? getH() : h ;
-
+		
 		_bgDraw.clear() ;
+	 	_bgDraw.lineStyle( themeBorderThickness, themeBorderColor, themeBorderAlpha ) ;
 	 	
 	 	if( _useGradient )
 		{
-       		_matrix.createGradientBox( $w, $h );
-        	_matrix.rotateD( gradientRotation ) ;
-			_bgDraw.beginGradientFill( FillType.LINEAR, colors, alphas, ratios, _matrix ) ;
+			var matrix:TransformMatrix = new TransformMatrix() ;
+       		matrix.createGradientBox( $w, $h );
+        	matrix.rotateD( gradientRotation ) ;
+			_bgDraw.beginGradientFill( FillType.LINEAR, colors, alphas, ratios, matrix ) ;
 		}
 		else
 		{
-	 		_bgDraw.lineStyle( themeBorderThickness, themeBorderColor, themeBorderAlpha ) ;
+			_bgDraw.beginFill( themeColor, themeAlpha ) ;
 		}
-		_bgDraw.beginFill( themeColor, themeAlpha ) ;
+		
 		_bgDraw.draw( $w, $h ) ;
 		_bgDraw.endFill() ;
+
 	 }
 
 	/**
@@ -351,8 +354,6 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	private var _h:Number ;
 
 	private var _isFull:Boolean = false ;
-
-	private var _matrix:TransformMatrix ;
 
 	private var _useGradient:Boolean = false ;
 	
