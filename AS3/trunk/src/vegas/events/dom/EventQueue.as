@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -23,12 +23,11 @@
 
 package vegas.events.dom
 {
-
-	import vegas.core.CoreObject;
-	import vegas.data.Queue;
-	import vegas.data.iterator.Iterator;
-	import vegas.data.queue.LinearQueue;
-
+    import vegas.core.CoreObject;
+    import vegas.data.Queue;
+    import vegas.data.iterator.Iterator;
+    import vegas.data.queue.LinearQueue;
+    
     /**
      * Internal class used in {@code vegas.events.dom.EventDispatcher} class to bufferize the events if no EventListener are registered with the event type of the event.
      */
@@ -46,7 +45,7 @@ package vegas.events.dom
 	    /**
 	     * Enqueue an event in the buffer if no EventListener are registered in the EventListener.
 	     */
-    	public function enqueue( e:IEvent ):void 
+    	public function enqueue( e:DomEvent ):void 
 	    {
 	        e.queueEvent() ;
 	        _events.enqueue(e);
@@ -66,7 +65,7 @@ package vegas.events.dom
 				var it:Iterator = _events.iterator() ;
 				while (it.hasNext()) 
 				{
-					var e:IEvent = it.next() ;
+					var e:DomEvent = it.next() ;
 					if (e.getType() == eventType) 
 					{
 						q.enqueue(e) ;

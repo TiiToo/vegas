@@ -25,31 +25,26 @@ package vegas.events.dom
 {
     import flash.events.Event;
     
+    import vegas.core.ICopyable;
+    import vegas.core.IFormattable;
+    import vegas.core.IHashable;
+    import vegas.core.ISerializable;
     import vegas.events.BasicEvent;
     import vegas.util.ClassUtil;
     import vegas.util.Serializer;
     
-    public class DomEvent extends BasicEvent implements IEvent
+    public class DomEvent extends BasicEvent implements ICopyable, IFormattable, IHashable, ISerializable
 	{
 		
-		public function DomEvent(type:String, target:Object = null , context:* =null, bubbles:Boolean=false, time:Number = 0 )
+		public function DomEvent(type:String, target:Object = null , context:* =null, bubbles:Boolean=false, time:Number = 0 , ...rest:Array )
 		{
 			
 			super( type, target, context, bubbles, cancelable, time ) ;
-			
-			_type = type || null ;
-			_target = target ;
-			_context = context ;
+
 			_bubbles = bubbles;
 			
-			if (rest != null) 
-			{
-			
-				_eventPhase = isNaN(rest[0]) ? EventPhase.AT_TARGET : rest[0] ;
-				_time = isNaN(rest[1]) ? (new Date()).valueOf() : rest[1]  ;
-				_stop = isNaN(rest[2]) ? EventPhase.NONE : rest[2] ;
-				
-			}
+			_eventPhase = isNaN(rest[0]) ? EventPhase.AT_TARGET : rest[0] ;
+			_stop       = isNaN(rest[2]) ? EventPhase.NONE : rest[2] ;
 			
 		}
 		
@@ -62,7 +57,11 @@ package vegas.events.dom
 		{
 			_stop = value ;
 		}
-
+		
+		/**
+		 * Returns a shallow copy of this event.
+		 * @return a shallow copy of this event.
+		 */
 		public override function clone():Event
 		{
 			return new DomEvent(getType(), getTarget(), getContext()) ;
@@ -73,44 +72,28 @@ package vegas.events.dom
 			_cancelled = true ;
 		}
 		
+		/**
+		 * Returns a deep copy of this object.
+		 * @return a deep copy of this object.
+		 */
 		public function copy():*
 		{
-			return new DomEvent(getType(), getTarget(), getContext(), getBubbles(), getEventPhase(), getTimeStamp(), stop) ;
+			return new DomEvent(getType(), getTarget(), getContext(), bubbles, getTimeStamp(), eventPhase, stop) ;
 		}
 		
-		public function getBubbles():Boolean
+		public override function get bubbles():Boolean
 		{
 			return _bubbles ;
 		}
 
-		public function getContext():*
-		{
-			return _context ;
-		}
-			
-		public function getCurrentTarget():*
+		public override function get currentTarget():*
 		{
 			return _currentTarget ;
 		}
 			
-		public function getEventPhase():uint
+		public override function get eventPhase():uint
 		{
 			return _eventPhase ;
-		}
-
-		public function getTarget():*
-		{
-			return _target ;
-		}
-
-		public function getTimeStamp():uint
-		{
-			return _time ;
-		}
-
-		public function getType():String
-		{
-			return _type ;
 		}
 
         public function hashCode() : uint
@@ -161,34 +144,19 @@ package vegas.events.dom
 			_eventPhase = phase ;
 		}
 
-		public function setTarget( target:* = null ):void
-		{
-			_target = target
-		}
-
-		public function setType(type:String):void
-		{
-			_type = type ;
-		}
-
-		public function stopPropagation():void
+		public override function stopPropagation():void
 		{
 			_stop = EventPhase.STOP ;
 		}
 
-		public function stopImmediatePropagation():void
+		public override function stopImmediatePropagation():void
 		{
 			_stop = EventPhase.STOP_IMMEDIATE ;
 		}
 
-		override public function toSource(...arguments:Array):String 
-		{
-			return Serializer.getSourceOf(this, _getParams()) ;
-		}
-
 		override public function toString():String 
 		{
-			var phase:uint = getEventPhase() ;
+			var phase:uint = eventPhase ;
 			var	name:String = ClassUtil.getName(this);
 			var txt:String = "[" + name ;
 			if (getType()) txt += " " + getType() ;
@@ -207,7 +175,7 @@ package vegas.events.dom
 					txt += ", (inactive)" ;
 					break;
 			}
-			if (getBubbles() && phase != EventPhase.BUBBLING_PHASE) 
+			if (bubbles && phase != EventPhase.BUBBLING_PHASE) 
 			{
 				txt += ", bubbles" ;
 			}
@@ -220,34 +188,13 @@ package vegas.events.dom
 		}
 
 		private var _bubbles:Boolean ;
-		private var _context:* = null ;
 		private var _currentTarget:* ;
 		private var _cancelled:Boolean = false ;
 		private var _eventPhase:uint ;
 		private var _inQueue:Boolean = false ;
 		private var _stop:uint ;
-		private var _target:* = null ;
-		private var _time:uint ;
-		private var _type:String ;
 
-	
-		protected function _getParams():Array 
-		{
-			return [
-				getType() ,
-				getTarget() ,
-				getContext() ,
-				getBubbles() ,
-				getEventPhase() ,
-				getTimeStamp() ,
-				stop
-			] ;
-		}
-	
-		protected function _setTimeStamp( nTime:Number=NaN ):void 
-		{
-			_time = ( isNaN(nTime) || nTime < 0 ) ? (new Date()).valueOf() : nTime ;	
-        }        
+       
         
 
     }

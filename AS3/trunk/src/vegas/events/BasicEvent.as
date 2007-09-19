@@ -55,7 +55,7 @@ package vegas.events
 			super( type , bubbles, cancelable );
 			
 			_context = (getContext() != null) ? getContext() : context ;
-			_target  = (getTarget() != null)  ? getTarget()  : target ;			
+			_target  = (getTarget() != null)  ? getTarget()  : target ;	
 			_time    = ( time > 0) ? time : ( (new Date()).valueOf() ) ;
 			_type    = type ;
 			 

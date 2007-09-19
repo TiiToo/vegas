@@ -176,6 +176,6 @@ package vegas.events.dom
 
 	    private var _list:SortedArrayList  ;
 
-	
+	}	
 	
 }

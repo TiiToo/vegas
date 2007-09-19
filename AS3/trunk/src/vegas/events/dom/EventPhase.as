@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -46,8 +46,8 @@ package vegas.events.dom
 		static public const CAPTURING_PHASE:uint = 1 ;
 	
     	/**
-    	 * The default phase(0)
-    	 */
+		 * The default phase(0)
+		 */
 		static public const NONE:uint = 0 ;
 
     	/**

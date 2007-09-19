@@ -119,7 +119,7 @@ class vegas.util.comparators.StringComparator extends CoreObject implements ICom
 				var c:Number ;
 				while ( i < Math.min(o1.length,o2.length) )
 				{
-					c = StringUtil.compareChars( o1.charAt(i), o2.charAt(i));
+					c = StringUtil.compareChars( o1.charAt(i), o2.charAt(i) );
 					if ( c != 0 ) 
 					{
 						return c;

@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -23,8 +23,8 @@
 
 package vegas.events.dom
 {
-	import vegas.events.EventListener;
-	
+    import vegas.events.EventListener;
+    
 	/**
      * The EventTarget interface inspired by the <a href='http://www.w3.org/TR/2000/REC-DOM-Level-2-Events-20001113/'>Document Object Model (DOM) Level 2 Events Specification</a>.
      * @author eKameleon
@@ -50,7 +50,7 @@ package vegas.events.dom
     	 * @param contect the context of the event.
     	 * @return the reference of the event dispatched in the event flow.
     	 */
-		function dispatchEvent(event:*, isQueue:Boolean, target:*, context:*):IEvent ;
+		function dispatchEvent(event:*, isQueue:Boolean, target:*, context:*):DomEvent ;
 
     	/** 
     	 * Removes a listener from the {@code EventDispatcher} object.
