@@ -163,6 +163,15 @@ class pegas.geom.Vertex extends Vector3
 	}
 
 	/**
+	 * Returns the Object representation of this object.
+	 * @return the Object representation of this object.
+	 */
+	public function toObject():Object 
+	{
+		return { x:x , y:y , z:z , tx:tx , ty:ty , tz:tz } ;
+	}
+
+	/**
 	 * Returns a Eden reprensation of the object.
 	 * @return a string representing the source code of the object.
 	 */

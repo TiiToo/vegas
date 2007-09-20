@@ -43,7 +43,7 @@ class vegas.util.visitor.AbstractVisitable extends CoreObject implements IVisita
 	}
 
 	/**
-	 * Accept a IVisitor object. 
+	 * Accept an IVisitor object. 
 	 * You can overrides this method in complexe Visitor pattern implementation.
 	 */
 	function accept( visitor:IVisitor ) 

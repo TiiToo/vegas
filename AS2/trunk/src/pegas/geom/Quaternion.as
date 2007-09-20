@@ -86,6 +86,16 @@ class pegas.geom.Quaternion extends Vector3
 	}
 
 	/**
+	 * Returns the Object representation of this object.
+	 * @return the Object representation of this object.
+	 */
+	public function toObject():Object 
+	{
+		return { x:x , y:y , z:z , w:w } ;
+	}
+
+
+	/**
 	 * Returns a Eden reprensation of the object.
 	 * @return a string representing the source code of the object.
 	 */

@@ -104,6 +104,15 @@ class pegas.geom.Plane extends CoreObject implements ICloneable, ICopyable, IEqu
 			return false ;	
 		} 	
 	}
+	
+	/**
+	 * Returns the Object representation of this object.
+	 * @return the Object representation of this object.
+	 */
+	public function toObject():Object 
+	{
+		return { a:a, b:b, c:c, d:d } ;
+	}
 
 	/**
 	 * Returns a Eden reprensation of the object.

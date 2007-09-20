@@ -52,6 +52,7 @@ class andromeda.model.set.SetModel extends AbstractModelObject
 	
 	/**
 	 * Inserts a value object in the model.
+	 * @param vo The value object to insert in the model.
 	 */
 	public function addVO( vo:IValueObject ):Boolean
 	{
@@ -60,7 +61,7 @@ class andromeda.model.set.SetModel extends AbstractModelObject
 			throw new IllegalArgumentError( this + " addVO method failed, the IValueObject passed in argument not must be 'null' or 'undefined'.") ;	
 		}
 		validate(vo) ;
-		if ( _set.insert( vo.getID() , vo ) )
+		if ( _set.insert( vo ) )
 		{
 			_eAdd.setVO( vo ) ;
 			dispatchEvent( _eAdd ) ;
@@ -91,15 +92,6 @@ class andromeda.model.set.SetModel extends AbstractModelObject
 	}
 
 	/**
-	 * Returns the internal {@code Set} of this model.
-	 * @return the internal {@code Set} of this model.
-	 */
-	public function getSet():Set
-	{
-		return _set ;	
-	}
-
-	/**
 	 * Returns the event name use in the {@code addVO} method.
 	 * @return the event name use in the {@code addVO} method.
 	 */
@@ -117,6 +109,15 @@ class andromeda.model.set.SetModel extends AbstractModelObject
 		return _eRemove.getType() ;
 	}
 
+	/**
+	 * Returns the internal {@code Set} of this model.
+	 * @return the internal {@code Set} of this model.
+	 */
+	public function getSet():Set
+	{
+		return _set ;	
+	}
+	
 	/**
 	 * Returns the IValueObject defined by the index passed in argument.
 	 * @return the IValueObject defined by the index passed in argument.
@@ -165,6 +166,7 @@ class andromeda.model.set.SetModel extends AbstractModelObject
 
 	/**
 	 * Removes a value object in the model.
+	 * @param vo The value object to remove.
 	 */
 	public function removeVO( vo:IValueObject ):Void
 	{
@@ -199,6 +201,15 @@ class andromeda.model.set.SetModel extends AbstractModelObject
 	public function setEventTypeREMOVE( type:String ):Void
 	{
 		_eRemove.setType( type ) ;
+	}
+
+	/**
+	 * Sets the internal Set of this model. 
+	 * By default the initializeSet() method is used if the passed-in argument is null.
+	 */
+	public function setSet( s:Set ):Void
+	{
+		_set = s || initializeSet() ;	
 	}
 
 	/**

@@ -34,21 +34,27 @@ class pegas.geom.UVCoordinate extends CoreObject
 	
 	/**
 	 * Creates a new UVCoordinate instance.
+	 * @param u	The horizontal coordinate value. The default value is zero.
+	 * @param v	The vertical coordinate value. The default value is zero.
 	 */
 	public function UVCoordinate( u:Number, v:Number ) 
 	{
-		super();
-		this.u = u ;
-		this.v = v ;
+		this.u = isNaN(u) ? 0 : u ;
+		this.v = isNaN(v) ? 0 : v ;
 	}
 
 	/**
-	 * Defined the u coordinate.
+	 * Defines the UVCoordinate object with the u and v properties set to zero.
+	 */
+	static public var ZERO:UVCoordinate = new UVCoordinate(0,0) ;
+
+	/**
+	 * Defined the u horizontal coordinate value.
 	 */
 	public var u:Number ;
 	
 	/**
-	 * Defined the v coordinate.
+	 * Defined the v vertical coordinate value.
 	 */
 	public var v:Number ;
 
@@ -84,6 +90,15 @@ class pegas.geom.UVCoordinate extends CoreObject
 		{
 			return false ;	
 		} 	
+	}
+
+	/**
+	 * Returns the Object representation of this object.
+	 * @return the Object representation of this object.
+	 */
+	public function toObject():Object 
+	{
+		return { u:u , v:v } ;
 	}
 
 	/**

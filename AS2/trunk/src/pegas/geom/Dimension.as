@@ -142,7 +142,16 @@ class pegas.geom.Dimension extends CoreObject implements IEquality, ICloneable, 
 		width  = w ;
 		height = h ;
 	}
-	
+
+	/**
+	 * Returns the Object representation of this object.
+	 * @return the Object representation of this object.
+	 */
+	public function toObject():Object 
+	{
+		return { width:width , height:height } ;
+	}
+
 	/**
 	 * Returns a Eden reprensation of the object.
 	 * @return a string representing the source code of the object.

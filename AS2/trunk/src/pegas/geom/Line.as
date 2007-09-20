@@ -41,6 +41,9 @@ class pegas.geom.Line extends CoreObject implements ICloneable, IEquality
 	
 	/**
 	 * Creates a new Line
+	 * @param a the a component of the Line.
+	 * @param b the b component of the Line.
+	 * @param c the c component of the Line.
 	 */
 	public function Line( a:Number, b:Number, c:Number) 
 	{
@@ -226,6 +229,15 @@ class pegas.geom.Line extends CoreObject implements ICloneable, IEquality
 			l.b = p.y - (l.a * x);
 		}
 		return l ;
+	}
+
+	/**
+	 * Returns the Object representation of this object.
+	 * @return the Object representation of this object.
+	 */
+	public function toObject():Object 
+	{
+		return { a:a , b:b , c:c } ;
 	}
 
 	/**

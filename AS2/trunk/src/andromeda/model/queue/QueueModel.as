@@ -174,6 +174,15 @@ class andromeda.model.queue.QueueModel extends AbstractModelObject
 	}
 
 	/**
+	 * Sets the internal Queue of this model. 
+	 * By default the initializeQueue() method is used if the passed-in argument is null.
+	 */
+	public function setQueue( q:Queue ):Void
+	{
+		_queue = q || initializeQueue() ;	
+	}
+
+	/**
 	 * Returns the number of IValueObject in this model.
 	 * @return the number of IValueObject in this model.
 	 */

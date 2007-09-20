@@ -179,6 +179,15 @@ class andromeda.model.collections.CollectionModel extends AbstractModelObject
 	}
 	
 	/**
+	 * Sets the internal Collection of this model. 
+	 * By default the initializeCollection() method is used if the passed-in argument is null.
+	 */
+	public function setCollection( c:Collection ):Void
+	{
+		_co = c || initializeCollection() ;	
+	}
+	
+	/**
 	 * Sets the event name use in the {@code addVO} method.
 	 */
 	public function setEventTypeADD( type:String ):Void

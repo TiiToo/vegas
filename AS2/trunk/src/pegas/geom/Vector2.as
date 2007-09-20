@@ -92,6 +92,15 @@ class pegas.geom.Vector2 extends CoreObject implements ICloneable, ICopyable, IE
 	}
 
 	/**
+	 * Returns the Object representation of this object.
+	 * @return the Object representation of this object.
+	 */
+	public function toObject():Object 
+	{
+		return { x:x , y:y } ;
+	}
+
+	/**
 	 * Returns a Eden reprensation of the object.
 	 * @return a string representing the source code of the object.
 	 */

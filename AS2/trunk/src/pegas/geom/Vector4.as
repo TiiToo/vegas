@@ -84,6 +84,15 @@ class pegas.geom.Vector4 extends Vector3
 			return false ;	
 		} 	
 	}
+	
+	/**
+	 * Returns the Object representation of this object.
+	 * @return the Object representation of this object.
+	 */
+	public function toObject():Object 
+	{
+		return { x:x , y:y , y:y , w:w } ;
+	}
 
 	/**
 	 * Returns a Eden reprensation of the object.

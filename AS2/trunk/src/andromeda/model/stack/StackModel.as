@@ -177,6 +177,15 @@ class andromeda.model.stack.StackModel extends AbstractModelObject
 	}
 
 	/**
+	 * Sets the internal Stack of this model. 
+	 * By default the initializeStack() method is used if the passed-in argument is null.
+	 */
+	public function setStack( s:Stack ):Void
+	{
+		_stack = s || initializeStack() ;	
+	}
+
+	/**
 	 * Returns the number of IValueObject in this model.
 	 * @return the number of IValueObject in this model.
 	 */
