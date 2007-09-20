@@ -23,6 +23,8 @@
 
 import asgard.display.Direction;
 
+import flash.geom.Rectangle;
+
 import lunas.core.IDirectionable;
 import lunas.display.container.SimpleContainerDisplay;
 import lunas.model.ContainerModel;
@@ -88,22 +90,34 @@ class lunas.display.container.ListContainerDisplay extends SimpleContainerDispla
 	{
 		setChildCount( n ) ;
 	}
-
+	
+	/**
+	 * (read-write) Indicates if the mask is active or not over this container.
+	 */
 	public function get maskIsActive():Boolean 
 	{
 		return getMaskIsActive() ;
 	}
-	
+
+	/**
+	 * @private
+	 */
 	public function set maskIsActive( b:Boolean ):Void 
 	{
 		setMaskIsActive( b ) ;
 	}
 
+	/**
+	 * (read-write) Indicates the space value between to elements in the container.
+	 */
 	public function get space():Number 
 	{
 		return getSpace() ;
 	}
 	
+	/**
+	 * @private
+	 */
 	public function set space(n:Number):Void 
 	{
 		setSpace( n ) ;
@@ -113,6 +127,23 @@ class lunas.display.container.ListContainerDisplay extends SimpleContainerDispla
 	 * The thickness value to defines a padding border in the container.
 	 */
 	public var thickness:Number = 1 ;
+	
+	/**
+	 * (read-write) Indicates if this container use a scrollRect reference to mask the content.
+	 */
+	public function get useScrollRect():Boolean
+	{
+		return _useScrollRect ;
+	}
+
+	/**
+	 * @private
+	 */
+	public function set useScrollRect( b :Boolean ):Void
+	{
+		_useScrollRect = b ;
+		update() ;
+	}
 	
 	/**
 	 * Refreshs and changes the child position of all childs in the container.
@@ -378,18 +409,29 @@ class lunas.display.container.ListContainerDisplay extends SimpleContainerDispla
 	{
 		
 		_maskPen.clear() ;
-		_maskPen.beginFill( 0 , 0 ) ;
-		_maskPen.draw( _bound.w , _bound.h ) ;
-		_maskPen.endFill() ;
-		
+
 		if ( _bMaskIsActive && _bLockMask == false ) 
 		{
-			container.setMask(_mcMask) ;
+			if ( _useScrollRect )
+			{
+				view.scrollRect = new Rectangle(0, 0, _bound.w , _bound.h ) ;	
+			}
+			else
+			{
+				_maskPen.beginFill( 0 , 0 ) ;
+				_maskPen.draw( _bound.w , _bound.h ) ;
+				_maskPen.endFill() ;
+				container.setMask(_mcMask) ;	
+			}
 		}
 		else 
 		{
+			view.scrollRect = null ;
 			container.setMask(null) ;
 		}
+		
+		
+		
 	}
 
 	// private
@@ -409,5 +451,7 @@ class lunas.display.container.ListContainerDisplay extends SimpleContainerDispla
 	private var _nSpace:Number = 0 ;
 
 	private var _mcMask:MovieClip ;
+
+	private var _useScrollRect:Boolean = false ;
 
 }

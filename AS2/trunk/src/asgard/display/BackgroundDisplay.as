@@ -221,6 +221,7 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 		}
 		
 		_bgDraw.draw( $w, $h ) ;
+		
 		_bgDraw.endFill() ;
 
 	 }
@@ -358,5 +359,6 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	private var _useGradient:Boolean = false ;
 	
 	private var _w:Number ;
+	
 
 }

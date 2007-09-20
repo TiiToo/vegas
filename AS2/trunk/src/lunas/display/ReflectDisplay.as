@@ -85,12 +85,18 @@ class lunas.display.ReflectDisplay extends ConfigurableDisplayObject implements 
 	 * The alpha value of this display.
 	 */
 	public var alpha:Number = 90 ;
-	
-	/**
-	 * The ratio value of this display.
-	 */
-	public var ratio:Number = 50 ;
-	
+
+	public function get distance():Number 
+	{
+		return _distance ;	
+	}
+
+	public function set distance( n:Number ):Void 
+	{
+		_distance = n ;	
+		update() ;
+	}
+
 	/**
 	 * (read-write) Returns a string that specifies the linkage identifier of a symbol in the library to be used as an icon for a button instance.
 	 * To create a custom icon, create a movie clip or graphic symbol. 
@@ -116,6 +122,11 @@ class lunas.display.ReflectDisplay extends ConfigurableDisplayObject implements 
 	{
 		setIcon(sIcon) ;	
 	}
+
+	/**
+	 * The ratio value of this display.
+	 */
+	public var ratio:Number = 50 ;
 	
 	/**
 	 * Attach and returns a new Icon in the component.

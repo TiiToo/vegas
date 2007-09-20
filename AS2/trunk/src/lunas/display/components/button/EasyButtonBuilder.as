@@ -21,48 +21,6 @@
   
 */
 
-/** EasyButtonBuilder
-
-	AUTHOR
-		
-		Name : EasyButtonBuilder
-		Package : lunas.display.components.button
-		Version : 1.0.0.0
-		Date :  2006-02-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	CONSTRUCTOR
-	
-		private
-
-	PROPERTY SUMMARY
-	
-		- target:MovieClip
-
-	METHOD SUMMARY
-	
-		- clear():Void
-		
-		- run():Void
-		
-		- toString():String
-		
-		- update():Void
-
-	INHERIT
-	
-		Object
-			|
-			CoreObject
-				|
-				AbstractBuilder
-					|
-					EasyButtonBuilder
-
-**/
-
 import lunas.display.components.AbstractBuilder;
 import lunas.display.components.button.EasyButtonStyle;
 
@@ -71,10 +29,9 @@ import pegas.events.ButtonEventType;
 
 import vegas.events.Delegate;
 
-class lunas.display.components.button.EasyButtonBuilder extends AbstractBuilder {
+class lunas.display.components.button.EasyButtonBuilder extends AbstractBuilder 
+{
 	
-	// ----o Constructor
-
 	private function EasyButtonBuilder( mc:MovieClip ) {
 		super(mc) ;
 		target.addEventListener(ButtonEventType.DISABLED, new Delegate(this, disabled)) ;

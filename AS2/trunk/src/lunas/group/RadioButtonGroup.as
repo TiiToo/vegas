@@ -63,7 +63,7 @@ class lunas.group.RadioButtonGroup extends AbstractGroup
 	{
 		
 		var button:IButton = IButton(item) ;
-		
+
 		if ( button != null && (button.getToggle() == false) ) 
 		{
 			return ;
@@ -71,9 +71,13 @@ class lunas.group.RadioButtonGroup extends AbstractGroup
 
 		var name:String = IGroupable( item ).getGroupName() ;
 		
-		if (groups.containsKey(name))
+		if ( groups.containsKey( name ) )
 		{
-			IButton(groups.get(name)).setSelected (false, true)  ;
+			var bt:IButton = IButton(groups.get(name)) ;
+			if ( bt != button )
+			{
+				bt.setSelected (false, true)  ;
+			}
 		}
 		
 		groups.put( name, button ) ;

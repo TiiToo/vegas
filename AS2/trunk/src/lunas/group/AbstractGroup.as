@@ -72,7 +72,7 @@ class lunas.group.AbstractGroup extends CoreObject implements EventListener
 	 */
 	public function handleEvent( e:Event ) 
 	{
-		var target:IGroupable = IGroupable(e.getTarget()) ;
+		var target:IGroupable = IGroupable( e.getTarget() ) ;
 		if ( target != null )
 		{
 			select( target ) ;

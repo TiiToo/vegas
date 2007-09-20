@@ -112,9 +112,9 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 	/**
 	 * Sets a Boolean value indicating whether the button is selected (true) or not (false). The default value is false.
 	 */
-	public function set selected(b:Boolean):Void 
+	public function set selected( b:Boolean ):Void 
 	{
-		setSelected(b);	
+		setSelected( b );	
 	}	
 	
 	/**
@@ -176,15 +176,13 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 	 */
 	public function groupPolicyChanged():Void 
 	{
-
-		if ( hasEventListener(ButtonEvent.DOWN) )
-		{
-			removeEventListener(ButtonEvent.DOWN, RadioButtonGroup.getInstance()) ;	
-		}
-		
 		if ( group == true ) 
 		{
 			addEventListener(ButtonEvent.DOWN, RadioButtonGroup.getInstance() ) ;
+		}
+		else
+		{
+			removeEventListener	(ButtonEvent.DOWN, RadioButtonGroup.getInstance() ) ;
 		}
 		
 	}
@@ -238,11 +236,14 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 	 */
 	public function setSelected (b:Boolean, noEvent:Boolean):Void 
 	{
-		_selected =  (_toggle)  ? b : null ;
-		_fireButtonEvent (_selected ? ButtonEvent.DOWN : ButtonEvent.UP ) ;
+		
+		_selected =  (_toggle) ? b : null ;
+
+		_fireButtonEvent ( _selected ? ButtonEvent.DOWN : ButtonEvent.UP ) ;
+		
 		if (!noEvent) 
 		{
-			_fireButtonEvent (_selected ? ButtonEvent.SELECT : ButtonEvent.UNSELECT) ;
+			_fireButtonEvent ( _selected ? ButtonEvent.SELECT : ButtonEvent.UNSELECT ) ;
 		}
 	}
 	
@@ -307,9 +308,9 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 	
 	private var _scope:MovieClip ;	
 	
-	private var _toggle:Boolean = false ;
+	private var _toggle:Boolean ;
 
-	private var _selected:Boolean = false ;
+	private var _selected:Boolean ;
 	
 	private function _fireButtonEvent( eventType:String ):Void 
 	{
@@ -320,14 +321,13 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 
 	private function _onPress():Void 
 	{
-		
-		if (_toggle) 
+		if ( _toggle == true ) 
 		{
-			setSelected (!_selected);
+			setSelected( !getSelected() )  ;
 		}
 		else 
 		{
-			_fireButtonEvent(ButtonEvent.DOWN) ;
+			_fireButtonEvent( ButtonEvent.DOWN ) ;
 		}
 		
 		_fireButtonEvent( (_doubleClickEnabled && DoubleClick.ISDOUBLE) ? ButtonEvent.DOUBLE_CLICK : ButtonEvent.CLICK  ) ;
