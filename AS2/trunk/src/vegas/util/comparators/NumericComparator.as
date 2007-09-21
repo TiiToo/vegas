@@ -86,7 +86,6 @@ class vegas.util.comparators.NumericComparator extends CoreObject implements ICo
 	 */
 	public function compare(o1, o2):Number 
 	{
-		
 		if ( o1 == null || o2 == null) 
 		{
 			if (o1 == o2) 
@@ -151,6 +150,7 @@ class vegas.util.comparators.NumericComparator extends CoreObject implements ICo
 		        }
 		        
 		        // deal with zeros at start of each number
+        		
         		var zero1:Number = _countZeroes( sub1 ) ;
         		var zero2:Number = _countZeroes( sub2 ) ;
 

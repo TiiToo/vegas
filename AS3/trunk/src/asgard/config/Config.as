@@ -23,11 +23,11 @@
 
 package asgard.config
 {
-	import vegas.core.CoreObject;
-	import vegas.core.IFormattable;
-	import vegas.data.map.HashMap;
-	import vegas.util.ClassUtil;
-	
+    
+    import vegas.core.CoreObject;
+    import vegas.core.IFormattable;
+    import vegas.data.map.HashMap;
+    
 	/**
 	 * The dynamic Config singleton. This object is a global reference to register all external properties.
      * @author eKameleon

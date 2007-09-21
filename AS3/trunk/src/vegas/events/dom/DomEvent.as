@@ -31,7 +31,6 @@ package vegas.events.dom
     import vegas.core.ISerializable;
     import vegas.events.BasicEvent;
     import vegas.util.ClassUtil;
-    import vegas.util.Serializer;
     
     public class DomEvent extends BasicEvent implements ICopyable, IFormattable, IHashable, ISerializable
 	{
@@ -103,10 +102,10 @@ package vegas.events.dom
 
 		public function initEvent(type:String, bubbles:Boolean, cancelable:Boolean):void
 		{
-			_type = type ;
-			_bubbles = bubbles ;
-			_cancelled = cancelable ;
-			_time = (new Date()).valueOf() ;
+			type       = type ;
+			bubbles    = bubbles ;
+			cancelable = cancelable ;
+			timeStamp  = (new Date()).valueOf() ;
 		}
 
 		public function isCancelled():Boolean
@@ -129,11 +128,6 @@ package vegas.events.dom
 			_bubbles = b ;
 		}
 
-		public function setContext( context:* = null ):void
-		{
-			_context = context ;
-		}
-
 		public function setCurrentTarget( target:* =null ):void
 		{
 			_currentTarget = target ;
@@ -153,8 +147,13 @@ package vegas.events.dom
 		{
 			_stop = EventPhase.STOP_IMMEDIATE ;
 		}
-
-		override public function toString():String 
+		
+		public function toSource( ...arguments:Array ):String 
+		{
+			return "new DomEvent()" ; // TODO finish
+		}
+		
+		public override function toString():String 
 		{
 			var phase:uint = eventPhase ;
 			var	name:String = ClassUtil.getName(this);

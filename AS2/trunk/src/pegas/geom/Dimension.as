@@ -51,8 +51,8 @@ class pegas.geom.Dimension extends CoreObject implements IEquality, ICloneable, 
 			var arg2 = arguments[1] ;
 			if ( l == 1 && arg1 instanceof Dimension )
 			{
-				width  = arg1.width  ;
-				height = arg1.height ;
+				width  = isNaN(arg1.width)  ? 0 : arg1.width  ;
+				height = isNaN(arg1.height) ? 0 : arg1.height  ;
 			}
 			else if ( l == 2 )
 			{

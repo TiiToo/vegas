@@ -28,6 +28,7 @@ import pegas.draw.IPen;
 import pegas.draw.RectanglePen;
 import pegas.events.UIEvent;
 import pegas.events.UIEventType;
+import pegas.geom.Dimension;
 import pegas.geom.TransformMatrix;
 
 import vegas.util.MathsUtil;
@@ -46,14 +47,10 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	 */
 	public function BackgroundDisplay(sName : String, target) 
 	{
-		
 		super(sName, target);
-	
 		background = view.createEmptyMovieClip( "background", 0 ) ;
-
+		initEvent() ;
 		_bgDraw  = initBackgroundPen() ;
-		_eResize = new UIEvent( UIEventType.RESIZE , this) ;
-		
 	}
 	
 	/**
@@ -65,7 +62,18 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	 * The background reference of this display.
 	 */
 	public var background:MovieClip ;
-
+	
+	/**
+	 * (read-only) Returns the real bounds Dimension value of this background.
+	 * This Dimension object contains the real width and height value of the background 
+	 * (important if the user use the {@code isFull} property for example).
+	 * @return the real bounds Dimension value of this background.
+	 */
+	public function get bounds():Dimension
+	{
+		return _real ;	
+	}
+	
 	/**
 	 * The array of colors value to draw the background.
 	 */
@@ -198,8 +206,9 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 
 	 /**
 	  * Draw the display.
+	  * @return the Dimension object who defines the width and the height use in the method to draw the background.
 	  */
-	 public function draw( w:Number , h:Number ):Void
+	 public function draw( w:Number , h:Number ):Dimension
 	 {
 
 	 	var $w:Number = isNaN(w) ? getW() : w ;
@@ -221,8 +230,11 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 		}
 		
 		_bgDraw.draw( $w, $h ) ;
-		
 		_bgDraw.endFill() ;
+		
+		_real = new Dimension( $w, $h ) ;
+
+		return _real ;
 
 	 }
 
@@ -233,6 +245,15 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	public function getBackgroundPen():IPen
 	{
 		return _bgDraw ;	
+	}
+	
+	/**
+	 * Returns the event name use when the background is resized.
+	 * @return the event name use when the background is resized.
+	 */
+	public function getEventTypeRESIZE():String
+	{
+		return _eResize.getType() ;	
 	}
 
 	/**
@@ -272,7 +293,15 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	{
 		return new RectanglePen(background) ;	
 	}
-	
+
+	/**
+	 * Init the events of this display.
+	 */
+	public function initEvent():Void
+	{
+		_eResize = new UIEvent( UIEventType.RESIZE , this) ;
+	}
+
 	/**
 	 * Notify an event when you resize the component.
 	 */
@@ -280,7 +309,15 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	{
 		dispatchEvent(_eResize) ;
 	}
-
+	
+	/**
+	 * Sets the event name use when the background is resized.
+	 */
+	public function setEventTypeRESIZE( type:String ):Void
+	{
+		_eResize.setType( type ) ;	
+	}
+	
 	/**
 	 * Sets if the background use full size (Stage.width and Stage.height).
 	 * @param b A boolean flag to indicates if the display use full size or not.
@@ -349,12 +386,14 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	 * The internal pen to draw the background of the display.
 	 */
 	private var _bgDraw:IPen ;
-
+	
 	private var _eResize:UIEvent ;
 
 	private var _h:Number ;
 
 	private var _isFull:Boolean = false ;
+
+	private var _real:Dimension ;
 
 	private var _useGradient:Boolean = false ;
 	
