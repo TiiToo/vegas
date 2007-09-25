@@ -219,6 +219,15 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 	{
 		data = value ;	
 	}
+	
+	/**
+	 * Sets the enabled state of the display.
+	 */
+	public function setEnabled(b:Boolean):Void 
+	{
+		var scope:MovieClip = (_scope == null) ? view : _scope ;
+		scope.enabled = (b == true) ; 
+	}
 
 	/**
 	 * Sets the text label for a button instance.
