@@ -33,7 +33,7 @@ class vegas.util.ConstructorUtil
 	 * @param c the function constructor.
 	 * @return a new instance of the specified constructor function.
 	 */
-	static public function createBasicInstance(c:Function) 
+	public static function createBasicInstance(c:Function) 
 	{
 		var i = {} ;
 		i.__proto__ = c.prototype ;
@@ -48,7 +48,7 @@ class vegas.util.ConstructorUtil
 	 * @param args the array of all arguments to pass in the constructor of the new instance.
 	 * @return a new instance of the specified constructor function.
 	 */
-	static public function createInstance(c:Function, args:Array) 
+	public static function createInstance(c:Function, args:Array) 
 	{
 		if (!c)
 		{
@@ -99,7 +99,7 @@ class vegas.util.ConstructorUtil
 	 * @param oInit an object to initialize the specified visual reference.
 	 * @return the new reference transformed with the specified constructor. 
 	 */
-    static public function createVisualInstance(c:Function, oVisual, oInit) 
+    public static function createVisualInstance(c:Function, oVisual, oInit) 
     {
     	oVisual.__proto__ = c.prototype ;
 		if (oInit) 
@@ -118,7 +118,7 @@ class vegas.util.ConstructorUtil
 	 * @param instance the reference of the object to apply reflexion.
 	 * @param scope the scope of the name to search more easily this name. 
 	 */
-	static public function getName(instance, scope):String 
+	public static function getName(instance, scope):String 
 	{
 		var path:String = getPath(instance, scope) ;
 		if (path == null)
@@ -134,7 +134,7 @@ class vegas.util.ConstructorUtil
 	 * @param instance the reference of the object to apply reflexion.
 	 * @param scope the scope of the name to search more easily this package. 
 	 */
-	static public function getPackage(instance, scope):String 
+	public static function getPackage(instance, scope):String 
 	{
 		var path:String = getPath(instance, scope) ;
 		if (path == null) 
@@ -151,7 +151,7 @@ class vegas.util.ConstructorUtil
 	 * @param instance the reference of the object to apply reflexion.
 	 * @param scope the scope of the name to search more easily this path. 
 	 */
-	static public function getPath(instance, scope):String 
+	public static function getPath(instance, scope):String 
 	{
 		if (instance.__path__) 
 		{
@@ -199,7 +199,7 @@ class vegas.util.ConstructorUtil
 	 * @param i the interface reference.
 	 * @return {@code true} if the constructor function is an implementation of the specified interface.
 	 */
-	static public function isImplementationOf(c:Function, i:Function):Boolean 
+	public static function isImplementationOf(c:Function, i:Function):Boolean 
 	{
 		if (ConstructorUtil.isSubConstructorOf(c, i)) 
 		{
@@ -214,7 +214,7 @@ class vegas.util.ConstructorUtil
 	 * @param sc the specified sub constructor reference.
 	 * @return {@code true} if the constructor function is the sub constructor of the specified function constructor.
 	 */
-	static public function isSubConstructorOf( c:Function, sc:Function):Boolean 
+	public static function isSubConstructorOf( c:Function, sc:Function):Boolean 
 	{
 		var p = c.prototype ;
 		while(p) 
