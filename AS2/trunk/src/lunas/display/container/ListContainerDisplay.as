@@ -58,6 +58,26 @@ class lunas.display.container.ListContainerDisplay extends SimpleContainerDispla
 	}
 	
 	/**
+	 * The height property name use in the container to layout all items.
+	 */
+	public var propH:String = "_height" ;
+
+	/**
+	 * The x property name use in the container to layout all items.
+	 */
+	public var propX:String = "_x" ;
+	
+	/**
+	 * The y property name use in the container to layout all items.
+	 */
+	public var propY:String = "_y" ;
+
+	/**
+	 * The width property name use in the container to layout all items.
+	 */
+	public var propW:String = "_width" ;
+	
+	/**
 	 * Returns the direction value of this object.
 	 * @return the direction value of this object.
 	 */
@@ -150,18 +170,40 @@ class lunas.display.container.ListContainerDisplay extends SimpleContainerDispla
 	 */
 	public function changeChildsPosition():Void 
 	{
-		var oC ;
+
+		var child, prev ;
 		var model:ContainerModel = getModel() ;
-		var prop:String = getCoordinateProperty() ;
-		var l:Number =getModel().size() ;
+		
+		var pro:String = getCoordinateProperty() ;
+		var inv:String = (pro == propY) ? propX : propY ;
+		
+		var s:String = getSizeProperty() ;
+		var a:Array  = model.toArray() ;
+		var l:Number = a.length ;
+		
 		for (var i:Number = 0 ; i<l ; i++) 
 		{
-			oC = model.getChildAt(i) ;
-			oC._x = oC._y = 0 ;
-			oC[prop] = getChildPositionAt(i) ;
+			child      = a[i] ;
+			prev       = a[i-1] ;
+			child[pro] = (i == 0) ? 0 : ( prev[pro] + prev[s] + getSpace() ) ;
+			child[inv] = 0 ;
 		}
 	}
-	
+
+	/**
+	 * Creates the mask reference of this display.
+	 * @param sName the name reference of the mask target of this container.
+	 * @param nDepth the depth value of the mask target of this container.
+	 */
+	/*protected*/ function createMask( sName:String, nDepth:Number ):Void 
+	{
+		if (_mcMask == null) 
+		{
+			_mcMask = view.createEmptyMovieClip( "_mcMask", 1000 ) ;
+			_maskPen = new RectanglePen( _mcMask ) ;
+		}
+	}
+
 	/**
 	 * Draw the component display.
 	 */
@@ -208,7 +250,7 @@ class lunas.display.container.ListContainerDisplay extends SimpleContainerDispla
 	 */
 	public function getCoordinateProperty():String 
 	{
-		return (_nDirection == Direction.VERTICAL) ? "_y" : "_x" ;
+		return (_nDirection == Direction.VERTICAL) ? propY : propX ;
 	}
 
 	/**
@@ -247,7 +289,7 @@ class lunas.display.container.ListContainerDisplay extends SimpleContainerDispla
 	 */
 	public function getSizeProperty():String 
 	{
-		return (_nDirection == Direction.VERTICAL) ? "_height" : "_width" ;
+		return (_nDirection == Direction.VERTICAL) ? propH : propW ;
 	}
 	
 	/**
@@ -256,7 +298,7 @@ class lunas.display.container.ListContainerDisplay extends SimpleContainerDispla
 	 */
 	public function getSpace():Number 
 	{ 
-		return _nSpace ;
+		return isNaN(_nSpace) ? 0 : _nSpace ;
 	}
 	
 	/**
@@ -268,6 +310,48 @@ class lunas.display.container.ListContainerDisplay extends SimpleContainerDispla
 	}
 	
 	/**
+	 * Refresh the mask view of the display.
+	 */
+	/*protected*/ function refreshMask():Void 
+	{
+		
+		_maskPen.clear() ;
+
+		if ( _bMaskIsActive && _bLockMask == false ) 
+		{
+			if ( _useScrollRect )
+			{
+				view.scrollRect = new Rectangle(0, 0, _bound.w , _bound.h ) ;	
+			}
+			else
+			{
+				_maskPen.beginFill( 0xFF0000 , 60 ) ;
+				_maskPen.draw( _bound.w , _bound.h ) ;
+				_maskPen.endFill() ;
+				container.setMask(_mcMask) ;	
+			}
+		}
+		else 
+		{
+			view.scrollRect = null ;
+			container.setMask(null) ;
+		}
+		
+	}
+
+	/**
+	 * Removes the mask reference of this display.
+	 */
+	/*protected*/ function removeMask():Void 
+	{
+		if (_mcMask != undefined) 
+		{
+			_mcMask.removeMovieClip () ;
+			_maskPen = null ;
+		}
+	}
+
+	/**
 	 * Invoqued when the container size change.
 	 */
 	public function resize():Void 
@@ -278,8 +362,8 @@ class lunas.display.container.ListContainerDisplay extends SimpleContainerDispla
 			var n:Number = getChildCount() ;
 			var n1:Number = 0 ;
 			var n2:Number = 0 ;
-			var p:String = isHorizontal ? "_width" : "_height" ;
-			var f:String = isHorizontal ? "_height" : "_width" ;
+			var p:String = isHorizontal ? propW : propH ;
+			var f:String = isHorizontal ? propH : propW ;
 			for (var i:Number = 0 ; i<n ; i++) 
 			{
 				var c = getModel().getChildAt(i) ;
@@ -373,85 +457,50 @@ class lunas.display.container.ListContainerDisplay extends SimpleContainerDispla
 			getModel().getChildAt(l).enabled = enabled ;
 		}
 	}
-	
-	// protected
-		
-	/**
-	 * Creates the mask reference of this display.
-	 * @param sName the name reference of the mask target of this container.
-	 * @param nDepth the depth value of the mask target of this container.
-	 */
-	/*protected*/ function createMask( sName:String, nDepth:Number ):Void 
-	{
-		if (_mcMask == null) 
-		{
-			_mcMask = view.createEmptyMovieClip( "_mcMask", 1000 ) ;
-			_maskPen = new RectanglePen( _mcMask ) ;
-		}
-	}
-	
-	/**
-	 * Removes the mask reference of this display.
-	 */
-	/*protected*/ function removeMask():Void 
-	{
-		if (_mcMask != undefined) 
-		{
-			_mcMask.removeMovieClip () ;
-			_maskPen = null ;
-		}
-	}
 
 	/**
-	 * Refresh the mask view of the display.
+	 * @private
 	 */
-	/*protected*/ function refreshMask():Void 
-	{
-		
-		_maskPen.clear() ;
-
-		if ( _bMaskIsActive && _bLockMask == false ) 
-		{
-			if ( _useScrollRect )
-			{
-				view.scrollRect = new Rectangle(0, 0, _bound.w , _bound.h ) ;	
-			}
-			else
-			{
-				_maskPen.beginFill( 0 , 0 ) ;
-				_maskPen.draw( _bound.w , _bound.h ) ;
-				_maskPen.endFill() ;
-				container.setMask(_mcMask) ;	
-			}
-		}
-		else 
-		{
-			view.scrollRect = null ;
-			container.setMask(null) ;
-		}
-		
-		
-		
-	}
-
-	// private
-
 	private var _bMaskIsActive:Boolean ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _bLockMask:Boolean = false ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _bound:Object ;
 
+	/**
+	 * @private
+	 */
 	private var _maskPen:RectanglePen ;
 
+	/**
+	 * @private
+	 */
 	private var _nDirection:Number ; 
 
+	/**
+	 * @private
+	 */
 	private var _nChildCount:Number = null ;
-
+	
+	/**
+	 * @private
+	 */
 	private var _nSpace:Number = 0 ;
 
+	/**
+	 * @private
+	 */
 	private var _mcMask:MovieClip ;
 
+	/**
+	 * @private
+	 */
 	private var _useScrollRect:Boolean = false ;
 
 }

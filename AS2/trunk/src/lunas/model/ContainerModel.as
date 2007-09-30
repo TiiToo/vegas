@@ -90,7 +90,7 @@ class lunas.model.ContainerModel extends AbstractModel implements Iterable
 		}
 		
 		_model.splice( index, 0, oChild ) ;
-		
+
 		dispatchEvent( _eAdd ) ;
 
 		return oChild ;

@@ -21,16 +21,17 @@
  
 */
 
+import asgard.display.DisplayObject;
+
 import lunas.core.IContainer;
 import lunas.display.abstract.AbstractComponentDisplay;
 import lunas.model.ContainerModel;
 
 import vegas.core.HashCode;
+import vegas.core.IHashable;
 import vegas.data.iterator.Iterable;
 import vegas.data.iterator.Iterator;
 import vegas.util.factory.DisplayFactory;
-
-// TODO add documentation for the noUpdate argument in addChild and addChildAt methods !
 
 /**
  * The Skeletal implementation of the IContainer interface.
@@ -72,31 +73,67 @@ class lunas.display.abstract.AbstractContainerDisplay extends AbstractComponentD
 
 	/**
 	 * Adds a visual child in the display.
+	 * @param o The object use to defines the new child to creates (this object can be a String, a Visual class (MovieClip, TextField) or a null value to creates an empty movieclip.
+	 * @param oInit The optional object use to initialize the new child.
+	 * @param noRender The boolean flag who disabled the auto update of this container.
+	 * @param callFunction The method invoqued after the child is created. 
+	 * @param args An optional array of arguments to passed-in the mapFunction.
+	 * @param scope The optional scope of the mapFunction.
+	 * @param ...arguments All tne next arguments represents the passed-in arguments in the mapFunction.
+	 * @return The new child inserted in the container of the returned value of the mapFunction if this value is not null. 
 	 */
 	public function addChild( o , oInit ) 
 	{
-		return addChildAt( o, size(), oInit , arguments[2] ) ;
+		return addChildAt.apply( this, [o, size(), oInit].concat(  arguments.slice(2) ) ) ;
 	}
 	
 	/**
 	 * Adds childs in the container at the specified index.
+	 * @param o The object use to defines the new child to creates (this object can be a String, a Visual class (MovieClip, TextField) or a null value to creates an empty movieclip.
+	 * @param index The numeric position to create the child in the container model.
+	 * @param oInit The optional object use to initialize the new child.
+	 * @param noRender The boolean flag who disabled the auto update of this container.
+	 * @param mapFunction The optional method invoqued after the child is created to maped this new child. This method receive in argument the new child and must return the final mapped child to be register in the container.
+	 * @param scope The optional scope of the mapFunction.
+	 * @param ...arguments All tne next arguments represents the passed-in arguments in the mapFunction.
+	 * @return The new child inserted in the container of the returned value of the mapFunction if this value is not null. 
 	 */
 	public function addChildAt(o, index:Number, oInit ) 
 	{
-		var c:MovieClip = DisplayFactory.createChild( o , "child" + HashCode.nextName(), size(), container, oInit) ;
-		HashCode.identify(c) ;
-		_model.addChildAt(c, index) ;
+		
+		var name:String = "child_" + _countChild++ ;
+		var depth:Number = container.getNextHighestDepth() ;
+		
+		var child = DisplayFactory.createChild( o , name , depth , container, oInit ) ;
+
+		if ( ! child instanceof IHashable )
+		{
+			HashCode.identify(child) ;
+		}
+		
+		// map the new child with an external method
+		if( arguments[4] instanceof Function )
+		{
+			child = arguments[4].apply( arguments[5] , [child].concat( arguments.slice(6) ) ) ;
+		}
+		
+		_model.addChildAt( child , index ) ;
+		
 		if (arguments[3] == null)
 		{
 			update() ;
 		}
+		
 		refreshDepths() ;
-		notifyAdded(c, index) ;
-		return c ;
+		
+		notifyAdded(child, index) ;
+		
+		return child ;
+		
 	}
 	
 	/**
-	 * Clear the container.
+	 * Clear all items in the container.
 	 */
 	public function clear():Void 
 	{
@@ -206,7 +243,7 @@ class lunas.display.abstract.AbstractContainerDisplay extends AbstractComponentD
 	 */	
 	public function removeChildAt(index:Number):Void 
 	{
-		if (getChildAt(index)) 
+		if ( getChildAt(index) ) 
 		{
 			removeChildsAt(index, 1) ;
 		}
@@ -235,7 +272,12 @@ class lunas.display.abstract.AbstractContainerDisplay extends AbstractComponentD
 		while(--l > -1) 
 		{
 			var child = items[l] ;
-			if (child instanceof MovieClip) 
+			if ( child instanceof DisplayObject)
+			{
+				child.view.removeMovieClip() ;
+				child.release() ;
+			}
+			else if (child instanceof MovieClip) 
 			{
 				child.removeMovieClip() ;
 			}
@@ -308,4 +350,5 @@ class lunas.display.abstract.AbstractContainerDisplay extends AbstractComponentD
 	 */	
 	private var _model:ContainerModel ;
 	
+	private static var _countChild:Number = 0 ;
 }

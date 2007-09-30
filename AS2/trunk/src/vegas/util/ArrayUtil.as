@@ -332,10 +332,13 @@ class vegas.util.ArrayUtil
         
 		var arr:Array = [] ;
 		var i:Number ;
-
-		if( thisObject == null ) thisObject = _global;
+		if( thisObject == null ) 
+		{
+			thisObject = null ;
+		}
 		var l:Number = ar.length ;
-        for(i=0 ; i<l ; i++ ) {
+        for( i=0 ; i<l ; i++ ) 
+        {
             arr[i] = callback.call( thisObject, ar[i], i, ar ) ;
         }
         
