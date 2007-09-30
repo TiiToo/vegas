@@ -178,6 +178,15 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 	}
 
 	/**
+	 * Notify the update event with the specified UserVO in argument.
+	 */
+	public function notifyUpdate( vo:IValueObject ):Void
+	{
+		_eUpdate.setVO( vo ) ;
+		dispatchEvent( _eUpdate  ) ;
+	}
+
+	/**
 	 * Removes a value object in the model.
 	 */
 	public function removeVO( vo:IValueObject ):Void
@@ -230,7 +239,7 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 	{
 		_map = m || initializeMap() ;	
 	}
-
+	
 	/**
 	 * Update a value object in the model.
 	 * @throw Warning if the value object passed-in argument don't exist.
@@ -240,8 +249,7 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 		if ( _map.containsKey( vo.getID() ) )
 		{
 			_map.put( vo.getID() , vo ) ;
-			_eUpdate.setVO( vo ) ;
-			dispatchEvent( _eUpdate  ) ;
+			notifyUpdate(vo) ;
 		}
 		else
 		{
