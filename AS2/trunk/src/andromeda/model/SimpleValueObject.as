@@ -15,10 +15,17 @@ class andromeda.model.SimpleValueObject extends CoreObject implements IEquality,
 	
 	/**
 	 * Creates a new SimpleValueObject instance.
+	 * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored
 	 */
-	public function SimpleValueObject() 
+	public function SimpleValueObject( init:Object ) 
 	{
-		super();
+		if ( init != null )
+		{
+			for (var prop:String in init )
+			{
+				this[prop] = init[prop] ;	
+			} 	
+		}
 	}
 
 	/**

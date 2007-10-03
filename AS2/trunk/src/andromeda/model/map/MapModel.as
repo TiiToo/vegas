@@ -71,7 +71,7 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 		}
 		else
 		{
-			throw new Warning( this + " addVO method failed, the IValueObject passed in argument already register in the model, you must remove this 'id' key before add a noew value object.") ;	
+			throw new Warning( this + " addVO method failed, the IValueObject passed in argument already register in the model, you must remove this 'id' key before add a new value object.") ;	
 		}
 	}
 	

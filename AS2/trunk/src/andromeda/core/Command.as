@@ -120,7 +120,16 @@ dynamic class andromeda.core.Command extends CoreObject implements IRunnable
 	 * The value of this command.
 	 */
 	public var value ;
-	
+
+	/**
+	 * Register the class to AMF communication.
+	 * @param id The optional default id to register this class in the 'Object.registerClass' method. If this argument is 'null' the default id is 'Command'. 
+	 */
+	public static function register( id:String ):Boolean
+	{
+		return Object.registerClass( id || "Command" , Command ) ;
+	}
+
 	/**
 	 * Run the process of this command.
 	 */

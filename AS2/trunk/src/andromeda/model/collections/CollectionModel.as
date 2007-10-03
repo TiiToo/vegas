@@ -174,7 +174,7 @@ class andromeda.model.collections.CollectionModel extends AbstractModelObject
 		}
 		else
 		{
-			throw Warning( this + " removeVO method failed, the id passed in argument allready register in the model, you must remove this 'id' key before add a noew value object.") ;	
+			throw Warning( this + " removeVO method failed, the id passed in argument allready register in the model, you must remove this 'id' key before add a new value object.") ;	
 		}
 	}
 	
