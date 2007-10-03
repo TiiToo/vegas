@@ -48,10 +48,20 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	public function BackgroundDisplay(sName : String, target) 
 	{
 		super(sName, target);
-		background = view.createEmptyMovieClip( "background", 0 ) ;
+		background = view.createEmptyMovieClip( DEFAULT_BACKGROUND_NAME , DEFAULT_BACKGROUND_DEPTH ) ;
 		initEvent() ;
 		_bgDraw  = initBackgroundPen() ;
 	}
+	
+	/**
+	 * The depth of the canvas MovieClip reference.
+	 */
+	public static var DEFAULT_BACKGROUND_DEPTH:Number = 0 ;
+
+	/**
+	 * The name of the canvas MovieClip reference.
+	 */
+	public static var DEFAULT_BACKGROUND_NAME:String = "background" ;
 	
 	/**
 	 * The array of alphas value to draw the background.
@@ -337,7 +347,6 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 		notifyResized() ;
 		update() ;
 	}
-
 
 	/**
 	 * Sets the virtual width and height values of the component.

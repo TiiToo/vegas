@@ -80,6 +80,7 @@ class andromeda.process.application.RunDebug extends AbstractInitProcess
 		var locale:Locale       = target.getLocale() ;
 
 		getLogger().debug( this + " localization : " + current ) ;
+		
 		for (var each:String in locale) 
 		{
 			getLogger().info( space + "+ " + each + " : " + locale[each]) ;

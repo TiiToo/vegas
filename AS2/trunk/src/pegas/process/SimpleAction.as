@@ -41,8 +41,8 @@ class pegas.process.SimpleAction extends AbstractCoreEventDispatcher implements 
 	function SimpleAction( bGlobal:Boolean, sChannel:String ) 
 	{
 		super(bGlobal, sChannel) ;		
-		_eFinish = new ActionEvent(ActionEvent.FINISH, this) ;
-		_eStart = new ActionEvent(ActionEvent.START, this) ;
+		_eFinish = new ActionEvent( ActionEvent.FINISH , this ) ;
+		_eStart  = new ActionEvent( ActionEvent.START  , this ) ;
 	}
 
 	/**
