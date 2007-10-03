@@ -83,23 +83,6 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	}
 
 	/**
-	 * Returns a Boolean value that indicates whether a movie clip is enabled. The default value of enabled is true. 
-	 * @return a Boolean value that indicates whether a movie clip is enabled. The default value of enabled is true.
-	 */
-	public function get enabled():Boolean 
-	{
-		return getEnabled() ;
-	}
-
-	/**
-	 * Sets a Boolean value that indicates whether a movie clip is enabled. The default value of enabled is true. 
-	 */
-	public function set enabled( b:Boolean ):Void 
-	{
-		setEnabled(b) ;
-	}
-
-	/**
 	 * Returns {@code true} if this component is grouped.
 	 * @return {@code true} if this component is grouped.
 	 */

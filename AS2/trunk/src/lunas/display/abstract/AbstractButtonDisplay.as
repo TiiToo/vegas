@@ -143,7 +143,16 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 	{
 		return data ;	
 	}
-	
+
+	/**
+	 * Returns the enabled state of the display.
+	 * @return the enabled state of the display.
+	 */
+	public function getEnabled(b:Boolean):Boolean 
+	{
+		return (_scope == null) ? view.enabled : _scope.enabled ;
+	}
+
 	/**
 	 * Returns the text label for a button instance.
 	 * @return the text label for a button instance.
