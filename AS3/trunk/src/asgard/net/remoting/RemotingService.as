@@ -337,7 +337,7 @@ package asgard.net.remoting
          */
 		public override function clone():*
 		{
-			return new RemotingService( getGatewayUrl() , getServiceName() ) ; // TODO : see the responder !
+			return new RemotingService( getGatewayUrl() , getServiceName() ) ;
 		}
 		
 		/**
@@ -691,8 +691,6 @@ package asgard.net.remoting
 		private var _isProxy:Boolean = false ;
 		
 		private var _methodName:String ; 
-        
-        private var _objectEncoding:uint ;
         
 		private var _policy:TimeoutPolicy ;
 

@@ -44,7 +44,7 @@ package vegas.util
 		 */
 		public function AbstractFormatter( pattern:String )
 		{
-			_pattern = pattern
+			_pattern = pattern ;
 		}
 
 		/**
@@ -70,8 +70,8 @@ package vegas.util
 		 */	
 		public function clone():*
 		{
-			var clazz:* = getDefinitionByName( ClassUtil.getPath(this) ) ;
-			return new clazz( pattern)  ;
+			var clazz:Class = getDefinitionByName( ClassUtil.getPath(this) ) as Class;
+			return new clazz( pattern )  ;
 		}
 
 		/**
@@ -81,7 +81,7 @@ package vegas.util
 		 */
 		public function copy():*
 		{
-			var clazz:* = getDefinitionByName(ClassUtil.getPath(this)) ;
+			var clazz:Class = getDefinitionByName(ClassUtil.getPath(this)) as Class ;
 			return new clazz( pattern.valueOf() ) ;
 		}
 

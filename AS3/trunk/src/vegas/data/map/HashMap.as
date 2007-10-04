@@ -22,18 +22,17 @@
 */
 
 package vegas.data.map
-{
-
-    import flash.utils.Proxy;
-    import flash.utils.getDefinitionByName;
+{    
+    import flash.utils.Proxy;    
+    import flash.utils.getDefinitionByName;    
     
-    import vegas.core.HashCode;
-    import vegas.data.Map;
-    import vegas.data.iterator.ArrayIterator;
-    import vegas.data.iterator.Iterator;
-    import vegas.data.iterator.MapIterator;
-    import vegas.data.map.MapFormat;
-    import vegas.util.Copier;
+    import vegas.core.HashCode;    
+    import vegas.data.Map;    
+    import vegas.data.iterator.ArrayIterator;    
+    import vegas.data.iterator.Iterator;    
+    import vegas.data.iterator.MapIterator;    
+    import vegas.data.map.MapFormat;    
+    import vegas.util.Copier;    
     import vegas.util.Serializer;
     
     /**
@@ -125,8 +124,8 @@ package vegas.data.map
          */  
         public function clear():void
         {
-            var clazz:* = flash.utils.getDefinitionByName("flash.utils.Dictionary");
-            _keys = new clazz(true) ;
+            var clazz:Class = flash.utils.getDefinitionByName("flash.utils.Dictionary") as Class ;
+            _keys   = new clazz(true) ;
             _values = new clazz(true) ;
             _size = 0 ;
         }
@@ -278,7 +277,6 @@ package vegas.data.map
         public function remove(o:*):*
         {
             var key:* = o ;
-            var r:* = null ;
             var value:* ;
             if ( containsKey( key ) ) 
             {

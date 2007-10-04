@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -70,7 +70,7 @@ package vegas.logging
 		/**
 		 * Designates events that could be harmful to the application operation (6).
 		 */	
-    	static public const WARN:LogEventLevel = new LogEventLevel("WARN", 6) ; ;
+    	static public const WARN:LogEventLevel = new LogEventLevel("WARN", 6) ;
 
 		/**
 		 * Returns true if the number level passed in argument is valid.

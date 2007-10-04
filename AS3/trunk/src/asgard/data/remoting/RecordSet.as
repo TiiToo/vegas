@@ -22,18 +22,18 @@
 */
 
 package asgard.data.remoting
-{
-	import asgard.data.iterator.RecordSetIterator;
-	import asgard.events.RecordSetEvent;
-	import asgard.net.NetServerConnection;
-	import asgard.net.remoting.RemotingService;
-	
-	import vegas.data.iterator.Iterable;
-	import vegas.data.iterator.Iterator;
-	import vegas.errors.Warning;
-	import vegas.util.mvc.AbstractModel;
-	
-	public class RecordSet extends AbstractModel implements Iterable
+{    
+    import asgard.data.iterator.RecordSetIterator;    
+    import asgard.events.RecordSetEvent;    
+    import asgard.net.NetServerConnection;    
+    import asgard.net.remoting.RemotingService;    
+    
+    import vegas.data.iterator.Iterable;    
+    import vegas.data.iterator.Iterator;    
+    import vegas.errors.Warning;    
+    import vegas.util.mvc.AbstractModel;
+    
+    public class RecordSet extends AbstractModel implements Iterable
 	{
 		
 		// ----o Constructor
@@ -83,8 +83,6 @@ package asgard.data.remoting
 		{
 
 			var l:uint = size() ;
-			var b:Boolean = true ;
-			
 			if (index >= 0 && index < l ) 
 			{
 				
@@ -484,9 +482,7 @@ package asgard.data.remoting
 
 		public function set serverinfo( oInfo:Object ):void
 		{
-		
-			serverInfo( oInfo ) ;
-		
+			_serverInfo = oInfo ;
 		}
 
 		// ----o Private Properties
@@ -504,18 +500,18 @@ package asgard.data.remoting
 	
 		// -- server-associated RecordSet only
 		
-		private var mDeliveryMode:String;	
+		// private var mDeliveryMode:String;	
 		private var mRecordsAvailable:uint ;
 		private var mRecordSetID:* = null ;
-		private var mRecordSetService:RemotingService ;
+		// private var mRecordSetService:RemotingService ;
 		private var mTotalCount:Number ;
 	
 		// -- only if deliverymode = "page"
 		
-		private var mPageSize:Number;
-		private var mNumPrefetchPages:Number;
-		private var mAllNotified:Boolean;
-		private var mOutstandingRecordCount:Number;
+		// private var mPageSize:Number;
+		// private var mNumPrefetchPages:Number;
+		// private var mAllNotified:Boolean;
+		// private var mOutstandingRecordCount:Number;
 	
 		private var _nc:NetServerConnection ;
 		

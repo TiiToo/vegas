@@ -114,7 +114,7 @@ package pegas.process
 		/**
 		 * Run the process of this command.
 		 */
-        public function run(arguments : Array) : void
+        public function run( ...arguments:Array ) : void
         {
         	if ( FrontController.getInstance( channel ).contains( name ) )
 			{

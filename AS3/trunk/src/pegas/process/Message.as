@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is PEGAS Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -60,7 +60,8 @@ package pegas.process
 		{
 			super(duration, seconds, bGlobal, sChannel) ;
 			this.message = message ;
-			this.face    = face    ;	
+			this.face    = face    ;
+			this.to      = to      ;	
 		}
         
     	/**
@@ -103,21 +104,26 @@ package pegas.process
     	 */
 	    public override function toString():String 
 	    {
-    		var txt:String = "[Message duration:" + duration + (useSeconds ? "s" : "ms")
-    		if (message != null && message.length > 0)
-    		{
+    		var txt:String = "[Message duration:" + duration + (useSeconds ? "s" : "ms") ;
+    		
+    		if ( message != null && message.length > 0 ) 
+			{
     		    txt += " message:" + message ;
     		}
+    		
     		if (face != null && face.length > 0)
     		{
     		    txt += " face:" + face ;
     		}
+    		
     		if (this.to != null)
     		{
     		    txt += " to:" + this.to ;
     		} 
+    		
     		txt += "]" ;
     		return txt ;
+    		
     	}	
 
 	}

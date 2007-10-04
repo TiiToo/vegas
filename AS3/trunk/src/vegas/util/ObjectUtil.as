@@ -110,17 +110,17 @@ package vegas.util
             	case "number":
 	            case "string":
     	        case "boolean":
-        	    	{
-	            	    return true;
-            		}
+        	    {
+	           		return true;
+            	}
 	            case "object":
-            		{
-    	            	return (value is Date) || (value is Array) ;
-    		        }
+            	{
+    	        	return (value is Date) || (value is Array) ;
+    		    }
                 default :
-					{
-	    	            return false 
-					}            	
+				{
+	    	        return false ; 
+				}            	
         	}
 
 		}

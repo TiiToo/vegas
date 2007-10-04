@@ -361,7 +361,7 @@ package vegas.data.map
 				clone = getValues() ;
 				while ( --max > -1 )
 				{
-					var old:* = setValueAt( max , clone[ result[max] ] ) ;
+					setValueAt( max , clone[ result[max] ] ) ;
 				}
 			}
 			else

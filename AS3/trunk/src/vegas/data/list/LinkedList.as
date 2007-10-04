@@ -194,18 +194,18 @@ package vegas.data.list
 	public class LinkedList extends CoreObject implements List, Queue
 	{
 		
+		/**
+		 * Creates a new LinkedList instance.
+		 * @param c The optional Collection used to fill and initialize this LinkedList instance.
+		 */
 		public function LinkedList( c:Collection = null )
 		{
 		   _header = new LinkedListEntry( null, null, null ) ;
 		   _header.next = _header.previous = _header ;
-		   if ( c == null )
+		   if ( c != null && c.size() > 0 )
 		   {
-		        //
-		   }
-		   else ( c.size() > 0 )
-		   {
-		        insertAll(c) ;
-	        }
+				insertAll( c ) ;
+	       }
 		}
 		
     	/**
@@ -897,7 +897,6 @@ package vegas.data.list
     	 */
 	    public function retainAll(c : Collection):Boolean 
 	    {
-	    	var b:Boolean = true ;
     		var it:Iterator = iterator() ;
 	    	while(it.hasNext())
 		    {

@@ -127,8 +127,6 @@ package vegas.string.eden
         {
             var i:uint;
 			
-			var s:String = num as String ;
-			
             if( ( num.indexOf( "." ) > -1) || (num.indexOf( "e" ) > -1) || (num.indexOf( "E" ) > -1) )
             {
                 return false ;
@@ -1161,7 +1159,6 @@ package vegas.string.eden
 	    {
 		    
 			var num:String  = "";
-		    var oct:String  = "";
 		    var hex:String  = "";
 		    var sign:String = "";
     		
@@ -1267,7 +1264,6 @@ package vegas.string.eden
 			
 			var basescope:* ;
 			var scope:* ;
-			var obj:* ;
 			var value:* ;
 			
 			basescope  = scope = this.scope;
@@ -1358,7 +1354,6 @@ package vegas.string.eden
 			
 			var check:* ;
 			var sign:* ;
-			var target:* ;
 			var valueTest:* ;
 			var formatter:* ;
 			
@@ -1560,4 +1555,4 @@ package vegas.string.eden
 	
 }
 
-include "../../../vegas/core/global.as" ;
+#include "../../vegas/core/global.as"

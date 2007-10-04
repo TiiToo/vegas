@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -50,7 +50,7 @@ package vegas.data.list
 		 * Compares the specified object with this object for equality.
 		 * @return {@code true} if the the specified object is equal with this object.
 		 */
-		public function equals(o:*):Boolean 
+		public function equals( o:* ):Boolean 
 		{
 			return false ;
 		}

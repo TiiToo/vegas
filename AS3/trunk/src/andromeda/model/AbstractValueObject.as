@@ -56,7 +56,7 @@ package andromeda.model
 		 * (read-write) Sets the id of this IValueObject.
 		 * @return the id of this IValueObject.
 		 */
-		public function set id(value:*):void
+		public function set id( id:* ):void
 		{
 			_id = id ;
 		}

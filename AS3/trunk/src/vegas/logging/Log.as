@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -70,13 +70,8 @@ package vegas.logging
             
             if(target != null)
             {
-                
                 var filters:Array = target.filters ;
-
-                var logger:ILogger ;
-
                 var it:Iterator = _loggers.iterator() ;
-                
                 while ( it.hasNext() )
                 {
                   	
@@ -244,8 +239,6 @@ package vegas.logging
             if(target)
             {
                 var filters:Array = target.filters;
-                var logger:ILogger;
-            
                 var it:Iterator = _loggers.iterator() ;
                 while (it.hasNext())
                 {
@@ -314,7 +307,6 @@ package vegas.logging
         {
             
             var filter:String;
-            var result:Boolean = false;
             var index:int = -1;
             var len:uint = filters.length ;
             

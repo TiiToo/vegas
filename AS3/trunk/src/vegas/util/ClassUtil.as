@@ -132,8 +132,6 @@ package vegas.util
 		{
 			return _formatPath(flash.utils.getQualifiedSuperclassName(instance)) ;
 		}
-	
-		private static var _counter:uint = 0;
 
 		static private function _formatName( path:String ):String 
 		{

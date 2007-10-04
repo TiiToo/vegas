@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -135,9 +135,9 @@ package andromeda.model
 		 * Returns true if the IValidator object validate the value.
 		 * @return {@code true} is this specific value is valid.
 		 */
-		public function supports(value:*):Boolean 
+		public function supports( value:* ):Boolean 
 		{
-			return true ;
+			return value == value ;
 		}
 	
 		/**

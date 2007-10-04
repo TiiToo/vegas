@@ -22,14 +22,14 @@
 */
 
 package vegas.events.dom
-{
-    import flash.events.Event;
+{    
+    import flash.events.Event;    
     
-    import vegas.core.CoreObject;
-    import vegas.data.iterator.Iterable;
-    import vegas.data.iterator.Iterator;
-    import vegas.data.list.SortedArrayList;
-    import vegas.events.EventListener;
+    import vegas.core.CoreObject;    
+    import vegas.data.iterator.Iterable;    
+    import vegas.data.iterator.Iterator;    
+    import vegas.data.list.SortedArrayList;    
+    import vegas.events.EventListener;    
     import vegas.util.ClassUtil;
     
 	/**
@@ -171,8 +171,6 @@ package vegas.events.dom
 		{
 			return _list.size() ;
 		}
-	
-		private var _autoRemove:Boolean = false ;
 
 	    private var _list:SortedArrayList  ;
 

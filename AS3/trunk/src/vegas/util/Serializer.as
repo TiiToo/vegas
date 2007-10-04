@@ -134,8 +134,6 @@ package vegas.util
 	    {
 		    
 		    var o:* = arguments[0] ;
-		    var indent:* = arguments[1] ;
-		    var indentor:* = arguments[2] ;
 		    
 		    if (o === undefined)
 		    {

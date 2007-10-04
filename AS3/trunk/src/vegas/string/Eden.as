@@ -236,4 +236,4 @@ package vegas.string
 	
 }
 
-include "../../vegas/core/global.as" ;
+#include "../../vegas/core/global.as"

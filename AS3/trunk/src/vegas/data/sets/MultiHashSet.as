@@ -1,4 +1,4 @@
-package vegas.data.sets
+﻿package vegas.data.sets
 {
 	import vegas.data.Collection;
 	import vegas.data.Map;
@@ -222,7 +222,7 @@ package vegas.data.sets
 			{
 				__map.put(key , createCollection()) ;
 			}
-			var b:Boolean = __map.get(key).insert(value) ;
+			__map.get(key).insert(value) ;
 			return _internalSet.insert(value) ;
 		}
 

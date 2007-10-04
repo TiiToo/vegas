@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -41,17 +41,16 @@ package asgard.events
 		 * Creates a new RecordSetEvent instance.
 		 */
 		public function RecordSetEvent
-		(
-			eventName:String , rs:RecordSet = null
-			, data:* = null, fieldName:String = null
-			, firstItem:uint=0, index:uint=0, lastItem:uint=0
-			, removedIDs:Array = null , removedItems:Array = null
-			, bubbles:Boolean=false, cancelable:Boolean=false
+		( 
+			eventName:String , rs:RecordSet = null, data:* = null, fieldName:String = null , firstItem:uint=0, index:uint=0, lastItem:uint=0
+			, removedIDs:Array = null , removedItems:Array = null, bubbles:Boolean=false, cancelable:Boolean=false
 		)
 		{
-			super(eventName, data, fieldName
-				, firstItem, index, lastItem, removedIDs, removedItems
-				, bubbles, cancelable);
+			super(eventName, data, fieldName, firstItem, index, lastItem, removedIDs, removedItems, bubbles, cancelable);
+			if ( rs != null )
+			{
+				setRecordSet(rs) ;
+			}
 		}
 		
 		static public const ADD_ITEMS:String = "addItems" ; 

@@ -168,7 +168,7 @@ package vegas.data.array
 	     * However, you cannot enumerate the properties of the Proxy class themselves. 
 	     * This function supports implementing for...in and for each..in loops on the object to retrieve the desired names. 
 	     */
-	    flash_proxy override function nextName(index:int):String 
+	    flash_proxy override function nextName( index:int ):String 
         {
             return _index.toString() ;
         }

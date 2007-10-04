@@ -329,13 +329,6 @@ package vegas.logging.targets
     		sendMessage(msg) ;
     	}
 
-
-
-		/**
-		 * The internal color value.
-		 */	
-    	private var _color:Number ;
-
 		/**
 		 * The internal value to indicated if the target is connected.
 		 */

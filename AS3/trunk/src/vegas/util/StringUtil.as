@@ -22,12 +22,11 @@
 */
 
 package vegas.util
-{
-    
-    import vegas.errors.ClassCastError;
+{    
+    import vegas.errors.ClassCastError;    
     import vegas.string.UnicodeChar;
- 
-	/**
+    
+    /**
 	 * The {@code StringUtil} utility class is an extended String class with methods for working with string.
 	 * @author eKameleon
 	 */
@@ -365,31 +364,32 @@ package vegas.util
                 
                 if( isAligned )
 				{
-                    if( (spaceAlign > 0) && (value.length < spaceAlign) )
+                    
+                    if( spaceAlign > 0 && value.length < spaceAlign  )
 					{
-                        value = StringUtil.padLeft( value, spaceAlign, padding );
+                        value = StringUtil.padLeft( value, spaceAlign, padding ) ;
 					}
-                    else( -value.length < spaceAlign )
+                    else if ( -value.length < spaceAlign )
 					{
-                        value = StringUtil.padRight( value, -spaceAlign, padding );
+                    	value = StringUtil.padRight( value, -spaceAlign, padding );
 					}
 				}
                 
-                return value.toString();
-			}
+                return value.toString() ;
+			} ;
             
-            var expression:String = "";
-            var formated:String   = "";
-            var ch:String         = "";
-            var pos:int           = 0;
-            var len:int           = pattern.length;
+            var expression:String = "" ;
+            var formated:String   = "" ;
+            var ch:String         = "" ;
+            var pos:int           = 0  ;
+            var len:int           = pattern.length ;
             
             var next:Function = function():String
 			{
 				ch = pattern.charAt( pos );
 				pos++;
 				return ch;
-			}
+			} ;
             
             while( pos < len )
 			{
