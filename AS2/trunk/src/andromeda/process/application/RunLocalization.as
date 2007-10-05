@@ -34,9 +34,6 @@ class andromeda.process.application.RunLocalization extends AbstractActionLoader
 		var localizer:Localization = Localization.getInstance() ;
 		localizer.addEventListener( Localization.CHANGE, new Delegate(this, notifyFinished), false, 1000 ) ;
 
-		buRRRn.eden.Application._trace = Delegate.create(this , _trace ) ;
-		buRRRn.eden.config.security = false ;
-		
 		localizer.setLoader( new EdenLocalizationLoader() ) ;
 
 		loader = EdenLocalizationLoader(localizer.getLoader()) ;
@@ -73,7 +70,10 @@ class andromeda.process.application.RunLocalization extends AbstractActionLoader
 		var currentLang = config.default_lang || Lang.FR ;
 		
 		getLogger().debug( this + " run process with the current Lang : " + currentLang ) ;
-
+        
+        buRRRn.eden.Application._trace = Delegate.create(this , _trace ) ;
+        buRRRn.eden.config.security = false ;
+        
 		loader.prefix = config.localePrefix || prefixName ;
 		loader.path   = config.localePath   || pathName   ;
 		

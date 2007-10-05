@@ -16,7 +16,7 @@ class andromeda.process.application.RunConfig extends AbstractActionLoader
 	/**
 	 * Creates a new RunConfig instance.
 	 */
-	public function RunConfig( fileName:String , pathName:String, suffixName:String ) 
+	public function RunConfig( fileName:String , pathName:String, suffixName:String , security:Boolean ) 
 	{
 		if (fileName != null)
 		{
@@ -41,7 +41,12 @@ class andromeda.process.application.RunConfig extends AbstractActionLoader
 	 * The name of the path of the config file.
 	 */
 	public var pathName:String = "config/";
-
+    
+    /**
+     * Indicates if use security to load the external config.
+     */
+    public var security:Boolean = true ;
+    
 	/**
 	 * The name of the suffix of the config file.
 	 */
@@ -57,7 +62,8 @@ class andromeda.process.application.RunConfig extends AbstractActionLoader
 			
 		getLogger().debug( this + " run.") ;
 
-		buRRRn.eden.config.security = false ;
+        buRRRn.eden.Application._trace = Delegate.create(this , _trace ) ;
+        buRRRn.eden.config.security = security ;
 		
 		var loader:ConfigEdenLoader = new ConfigEdenLoader() ;
 		if (fileName)
@@ -80,4 +86,13 @@ class andromeda.process.application.RunConfig extends AbstractActionLoader
 		
 	}
 
+    /**
+     * Invoqued by the Eden tracer.
+     */
+    private function _trace( message:String ):Void
+    {
+        getLogger().warn( this + " : " + message ) ;
+    }
+    
 }
+	

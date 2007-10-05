@@ -218,7 +218,7 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	  * Draw the display.
 	  * @return the Dimension object who defines the width and the height use in the method to draw the background.
 	  */
-	 public function draw( w:Number , h:Number ):Dimension
+	 public function draw( w:Number , h:Number , offsetX:Number , offsetY:Number ):Dimension
 	 {
 
 	 	var $w:Number = isNaN(w) ? getW() : w ;
@@ -239,7 +239,10 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 			_bgDraw.beginFill( themeColor, themeAlpha ) ;
 		}
 		
-		_bgDraw.draw( $w, $h ) ;
+		offsetX = isNaN(offsetX) ? 0 : offsetX ;
+		offsetY = isNaN(offsetY) ? 0 : offsetY ;
+		
+		RectanglePen(_bgDraw).draw( $w, $h , offsetX , offsetY ) ;
 		_bgDraw.endFill() ;
 		
 		_real = new Dimension( $w, $h ) ;
