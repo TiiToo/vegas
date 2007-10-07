@@ -17,9 +17,17 @@ class andromeda.process.application.RunLocalization extends AbstractActionLoader
 	
 	/**
 	 * Creates a new RunLocalization instance.
+	 * @param prefixName The prefix name of the localization external file (default "locale/").
+	 * @param pathName The path name of the localization external file (default "localize_").
+	 * @param security The boolean flag to indicates if the eden deserialize is secure or not.
+ 	 * @param loaderPolicy optional boolean flag to indicates if the loader use the loading view or not (defaut this value is true).
+ 	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */
-	public function RunLocalization( prefixName:String , pathName:String ) 
+	public function RunLocalization( prefixName:String , pathName:String , security:Boolean , loaderPolicy:Boolean , bGlobal:Boolean, sChannel:String ) 
 	{
+		
+		super( bGlobal , sChannel , loaderPolicy ) ;
 		
 		if (pathName != null)
 		{
@@ -29,6 +37,11 @@ class andromeda.process.application.RunLocalization extends AbstractActionLoader
 		if (prefixName != null)
 		{
 			this.prefixName = prefixName ;
+		}
+		
+		if ( security != null )
+		{
+			this.security = security ;	
 		}
 		
 		var localizer:Localization = Localization.getInstance() ;
@@ -56,7 +69,12 @@ class andromeda.process.application.RunLocalization extends AbstractActionLoader
 	 * The reference of the EdenLicalizationLoader.
 	 */
 	public var loader:EdenLocalizationLoader ;
-	
+
+    /**
+     * Indicates if use security to load the external config.
+     */
+    public var security:Boolean = true ;
+
 	/**
 	 * Run the process.
 	 */
@@ -72,7 +90,7 @@ class andromeda.process.application.RunLocalization extends AbstractActionLoader
 		getLogger().debug( this + " run process with the current Lang : " + currentLang ) ;
         
         buRRRn.eden.Application._trace = Delegate.create(this , _trace ) ;
-        buRRRn.eden.config.security = false ;
+        buRRRn.eden.config.security = security ;
         
 		loader.prefix = config.localePrefix || prefixName ;
 		loader.path   = config.localePath   || pathName   ;

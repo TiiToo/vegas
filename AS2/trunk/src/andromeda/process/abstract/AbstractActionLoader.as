@@ -43,12 +43,22 @@ class andromeda.process.abstract.AbstractActionLoader extends SimpleAction
 	 * Creates a new AbstractActionLoader instance.
 	 * @param bGlobal the flag to use a global event flow or a local event flow.
 	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+	 * @param loaderPolicy optional boolean flag to indicates if the loader use the loading view or not (defaut this value is true).
 	 */	
-	function AbstractActionLoader( bGlobal:Boolean, sChannel:String ) 
+	function AbstractActionLoader( bGlobal:Boolean, sChannel:String , loaderPolicy:Boolean ) 
 	{
-		super(bGlobal, sChannel);		
+		super(bGlobal, sChannel);
+		if ( loaderPolicy != null )
+		{
+			this.loaderPolicy = loaderPolicy ; 	
+		}
 	}
-
+	
+	/**
+	 * The loader policy (visible or not)
+	 */
+	public var loaderPolicy:Boolean = true ;
+	
 	/**
 	 * Returns the config object of the application. 
 	 * You can overrides this method.
@@ -65,7 +75,10 @@ class andromeda.process.abstract.AbstractActionLoader extends SimpleAction
 	public function notifyFinished():Void
 	{
 		_setRunning(false) ;
-		ApplicationCommand.hideLoader() ;
+		if( loaderPolicy == true )
+		{
+			ApplicationCommand.hideLoader() ;
+		}
 		super.notifyFinished() ;	
 	}
 	
@@ -83,10 +96,10 @@ class andromeda.process.abstract.AbstractActionLoader extends SimpleAction
 	 */
 	public function registerLoader( loader:ILoader )
 	{
-		EventTarget(loader).addEventListener( LoaderEvent.COMPLETE , new Delegate(this, _onLoadComplete) ) ;
- 		EventTarget(loader).addEventListener( LoaderEvent.IO_ERROR , new Delegate(this, _onLoadError) ) ;
+		EventTarget(loader).addEventListener( LoaderEvent.COMPLETE , new Delegate(this, _onLoadComplete ) ) ;
+ 		EventTarget(loader).addEventListener( LoaderEvent.IO_ERROR , new Delegate(this, _onLoadError    ) ) ;
  		EventTarget(loader).addEventListener( LoaderEvent.PROGRESS , new Delegate(this, _onLoadProgress ) ) ;
- 		EventTarget(loader).addEventListener( LoaderEvent.TIMEOUT  , new Delegate(this, _onLoadTimeout ) ) ;
+ 		EventTarget(loader).addEventListener( LoaderEvent.TIMEOUT  , new Delegate(this, _onLoadTimeout  ) ) ;
  		return loader ;
 	}
 
@@ -99,12 +112,16 @@ class andromeda.process.abstract.AbstractActionLoader extends SimpleAction
 	private function _onLoadComplete(ev:LoaderEvent):Void
 	{
 	    getLogger().debug( this + " load complete." ) ;
+	    ApplicationCommand.changeLoader( this + " " + "100%", 100 ) ;
 	}	
 	
 	private function _onLoadProgress (ev:LoaderEvent):Void
 	{
 	    getLogger().info(  this + " load progress : " + ev.getPercent() + "%") ;
-	   	ApplicationCommand.changeLoader( this + " " + ev.getPercent() + "%", ev.getPercent() ) ;
+	    if( loaderPolicy == true )
+		{
+	   		ApplicationCommand.changeLoader( this + " " + ev.getPercent() + "%", ev.getPercent() ) ;
+		}
 	}
 	
 	private function _onLoadTimeout (ev:LoaderEvent):Void

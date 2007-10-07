@@ -15,9 +15,19 @@ class andromeda.process.application.RunConfig extends AbstractActionLoader
 	
 	/**
 	 * Creates a new RunConfig instance.
+	 * @param fileName The name of the config file (default "config").
+	 * @param pathName The path of the config file (default "config/").
+	 * @param suffixName The suffix of the config file (default ".eden").
+	 * @param security The boolean flag to indicates if the eden deserialize is secure or not.
+ 	 * @param loaderPolicy optional boolean flag to indicates if the loader use the loading view or not (defaut this value is true).
+ 	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */
-	public function RunConfig( fileName:String , pathName:String, suffixName:String , security:Boolean ) 
+	public function RunConfig( fileName:String , pathName:String, suffixName:String , security:Boolean , loaderPolicy:Boolean , bGlobal:Boolean, sChannel:String ) 
 	{
+		
+		super( bGlobal , sChannel , loaderPolicy ) ;
+		
 		if (fileName != null)
 		{
 			this.fileName   = fileName ;
@@ -29,7 +39,11 @@ class andromeda.process.application.RunConfig extends AbstractActionLoader
 		if (suffixName != null)
 		{
 			this.suffixName = suffixName ;
-		}		
+		}
+		if ( security != null )
+		{
+			this.security = security ;	
+		}
 	}
 
 	/**

@@ -23,7 +23,7 @@
 
 import andromeda.display.abstract.ILoaderDisplay;
 
-import asgard.display.ConfigurableDisplayObject;
+import asgard.display.BackgroundDisplay;
 
 import pegas.maths.Range;
 
@@ -31,7 +31,7 @@ import pegas.maths.Range;
  * The abstract class of all loader displays in the application.
  * @author eKameleon
  */
-class andromeda.display.abstract.AbstractLoaderDisplay extends ConfigurableDisplayObject implements ILoaderDisplay 
+class andromeda.display.abstract.AbstractLoaderDisplay extends BackgroundDisplay implements ILoaderDisplay 
 {
 	
 	/**
@@ -78,6 +78,16 @@ class andromeda.display.abstract.AbstractLoaderDisplay extends ConfigurableDispl
 	{
 		setPercent(n) ;
 	}
+
+	/**
+	 * The alpha value of the display.
+	 */
+	public var themeAlpha:Number = null ;
+
+	/**
+	 * The color value of the display.
+	 */
+	public var themeColor:Number = null ;
 
 	/**
 	 * Returns the label value.
@@ -137,14 +147,6 @@ class andromeda.display.abstract.AbstractLoaderDisplay extends ConfigurableDispl
 		update() ;
 	}
 
-	/**
-	 * Update the display.
-	 */	
-	public function update():Void
-	{
-		// overrides this method.
-	}
-	
 	/**
 	 * Show the display.
 	 */
