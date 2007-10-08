@@ -112,7 +112,10 @@ class andromeda.process.abstract.AbstractActionLoader extends SimpleAction
 	private function _onLoadComplete(ev:LoaderEvent):Void
 	{
 	    getLogger().debug( this + " load complete." ) ;
-	    ApplicationCommand.changeLoader( this + " " + "100%", 100 ) ;
+        if( loaderPolicy == true )
+        {
+	       ApplicationCommand.changeLoader( this + " " + "100%", 100 ) ;
+        }
 	}	
 	
 	private function _onLoadProgress (ev:LoaderEvent):Void
