@@ -21,6 +21,8 @@
   
 */
 
+import pegas.process.ILockable;
+
 import vegas.core.CoreObject;
 import vegas.data.Set;
 import vegas.events.Event;
@@ -36,7 +38,7 @@ import vegas.events.IEventDispatcher;
  * <p>You can overrides the internal {@code EventDispatcher} instance with the {@code initEventDispatcher} method. Used a global singleton reference in this method to register all events in a {@code FrontController} for example.</p>
  * @author eKameleon
  */
-class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEventDispatcher
+class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEventDispatcher, ILockable
 {
 
 	/**
@@ -178,6 +180,23 @@ class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEv
 		return new EventDispatcher( this ) ;
 	}
 
+    /**
+     * Returns {@code true} if the object is locked.
+     * @return {@code true} if the object is locked.
+     */
+    public function isLocked():Boolean 
+    {
+        return ___isLock___ ;
+    }
+
+    /**
+     * Locks the object.
+     */
+    public function lock():Void 
+    {
+        ___isLock___ = true ;
+    }
+
 	/** 
 	 * Removes a listener from the EventDispatcher object.
 	 * If there is no matching listener registered with the {@code EventDispatcher} object, then calling this method has no effect.
@@ -226,6 +245,14 @@ class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEv
 		_oED.parent = parent ;
 	}
 
+    /**
+     * Unlocks the display.
+     */
+    public function unLock():Void 
+    {
+        ___isLock___ = false ;
+    }
+
 	/**
 	 * The protected internal EventDispatcher reference.
 	 */
@@ -235,5 +262,10 @@ class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEv
 	 * The internal flag to indicate if the event flow is global.
 	 */
 	private var _isGlobal:Boolean ;
-	
+
+    /**
+     * The internal flag to indicates if the display is locked or not.
+     */ 
+    private var ___isLock___:Boolean = false ;
+
 }

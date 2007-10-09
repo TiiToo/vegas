@@ -66,8 +66,7 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 		if ( !_map.containsKey( vo.getID() ) )
 		{
 			_map.put( vo.getID() , vo ) ;
-			_eAdd.setVO( vo ) ;
-			dispatchEvent( _eAdd ) ;
+			notifyAdd(vo) ;
 		}
 		else
 		{
@@ -177,11 +176,41 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 		return _map.iterator() ;	
 	}
 
-	/**
-	 * Notify the update event with the specified UserVO in argument.
-	 */
+    /**
+     * Notify a {@code ModelObjectEvent} when a {@code IValueObject} is inserted in the model.
+     */ 
+    public function notifyAdd( vo:IValueObject ):Void
+    {
+        if ( isLocked() )
+        {
+            return ;
+        }
+        _eAdd.setVO( vo ) ;
+        dispatchEvent( _eAdd  ) ;
+    }
+
+    /**
+     * Notify a {@code ModelObjectEvent} when a {@code IValueObject} is removed in the model.
+     */ 
+    public function notifyRemove( vo:IValueObject ):Void
+    {
+        if ( isLocked() )
+        {
+            return ;
+        }
+        _eRemove.setVO( vo ) ;
+        dispatchEvent( _eRemove  ) ;
+    }
+
+    /**
+     * Notify a {@code ModelObjectEvent} when a {@code IValueObject} is updated in the model.
+     */ 
 	public function notifyUpdate( vo:IValueObject ):Void
 	{
+        if ( isLocked() )
+        {
+            return ;
+        }
 		_eUpdate.setVO( vo ) ;
 		dispatchEvent( _eUpdate  ) ;
 	}
@@ -199,8 +228,7 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 		if ( _map.containsKey( vo.getID() ) )
 		{
 			_map.remove( vo.getID() ) ;
-			_eRemove.setVO( vo ) ;
-			dispatchEvent( _eRemove ) ;
+			notifyRemove( vo ) ;
 		}
 		else
 		{

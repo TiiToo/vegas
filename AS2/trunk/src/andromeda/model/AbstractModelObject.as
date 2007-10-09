@@ -59,7 +59,7 @@ class andromeda.model.AbstractModelObject extends AbstractModel implements IMode
 	public function clear():Void
 	{
 		_vo = null ;
-		dispatchEvent( _eClear ) ;
+		notifyClear() ;
 	}
 
 	/**
@@ -110,6 +110,31 @@ class andromeda.model.AbstractModelObject extends AbstractModel implements IMode
 	}
 
 	/**
+	 * Notify a {@code ModelObjectEvent} when a {@code IValueObject} change in the model.
+	 */	
+	public function notifyChange( vo:IValueObject ):Void
+	{
+		if ( isLocked() )
+		{
+			return ;
+		}
+	    _eChange.setVO(vo) ;
+        dispatchEvent( _eChange ) ;	
+	}
+
+    /**
+     * Notify a {@code ModelObjectEvent} when the model is cleared.
+     */ 
+    public function notifyClear():Void
+    {
+        if ( isLocked() )
+        {
+            return ;
+        }
+        dispatchEvent( _eClear ) ; 
+    }
+
+	/**
 	 * Sets the current IValueObject selected in this model.
 	 */
 	public function setCurrentVO( vo:IValueObject ):Void
@@ -120,8 +145,7 @@ class andromeda.model.AbstractModelObject extends AbstractModel implements IMode
 		}
 		validate(vo) ;
 		_vo = vo ;
-		_eChange.setVO(vo) ;
-		dispatchEvent( _eChange ) ;
+		notifyChange(vo) ;
 	}
 	
 	/**

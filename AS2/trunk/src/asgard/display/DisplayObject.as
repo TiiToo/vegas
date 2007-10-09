@@ -26,8 +26,6 @@ import asgard.display.DisplayLoaderCollector;
 import asgard.display.DisplayObjectCollector;
 import asgard.net.ILoader;
 
-import pegas.process.ILockable;
-
 import vegas.errors.IllegalArgumentError;
 import vegas.errors.Warning;
 import vegas.events.AbstractCoreEventDispatcher;
@@ -101,7 +99,7 @@ import vegas.util.factory.DisplayFactory;
  * }
  * @author eKameleon
  */
-class asgard.display.DisplayObject extends AbstractCoreEventDispatcher implements ILockable
+class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 {
 
 	/**
@@ -457,15 +455,6 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher implement
 			view._visible = false ;	
 		}
 	}
-	
-	/**
-	 * Returns {@code true} if the display is locked.
-	 * @return {@code true} if the display is locked.
-	 */
-	public function isLocked():Boolean 
-	{
-		return ___isLock___ ;
-	}
 
 	/**
 	 * Returns {@code true} if the display is visible.
@@ -481,14 +470,6 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher implement
 		{
 			return view._visible ;	
 		}
-	}
-
-	/**
-	 * Locks the object.
-	 */
-	public function lock():Void 
-	{
-		___isLock___ = true ;
 	}
 
 	/**
@@ -602,19 +583,6 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher implement
 			view._visible = true ;	
 		}
 	}
-	
-	/**
-	 * Unlocks the display.
-	 */
-	public function unLock():Void 
-	{
-		___isLock___ = false ;
-	}
-
-	/**
-	 * The internal flag to indicates if the display is locked or not.
-	 */	
-	private var ___isLock___:Boolean = false ;
 	
 	/**
 	 * The internal loader of the display.

@@ -26,8 +26,6 @@ import asgard.events.SharedDataEventType;
 import asgard.net.NetServerConnection;
 import asgard.net.SharedDataStatus;
 
-import pegas.process.ILockable;
-
 import vegas.events.AbstractCoreEventDispatcher;
 import vegas.events.Delegate;
 
@@ -36,7 +34,7 @@ import vegas.events.Delegate;
  * @author eKameleon
  * @version 1.0.0.0
  */
-class asgard.net.SharedData extends AbstractCoreEventDispatcher implements ILockable
+class asgard.net.SharedData extends AbstractCoreEventDispatcher
 {
 	
 	/**
@@ -188,20 +186,11 @@ class asgard.net.SharedData extends AbstractCoreEventDispatcher implements ILock
 	}
 
 	/**
-	 * Returns {@code true} if the object is locked.
-	 * @return {@code true} if the object is locked.
-	 */
-	public function isLocked():Boolean 
-	{
-		return _isLocked ;
-	}
-
-	/**
 	 * Locks the object.
 	 */
 	public function lock():Void 
 	{
-		_isLocked = true ;
+		super.lock() ;
 		_so.setFps(0);
 	}
 	
@@ -248,7 +237,7 @@ class asgard.net.SharedData extends AbstractCoreEventDispatcher implements ILock
 	 */
  	public function unLock():Void 
  	{
- 		_isLocked = false ;
+ 		super.unLock() ;
 		_so.setFps(0) ;
 		_so.setFps(-1) ;
 	}
@@ -264,7 +253,6 @@ class asgard.net.SharedData extends AbstractCoreEventDispatcher implements ILock
 
 	private var _isConnected:Boolean ;
 	private var _isFirst:Boolean ;
-	private var _isLocked:Boolean ;
 	
 	private var _so:SharedObject ;
 		
