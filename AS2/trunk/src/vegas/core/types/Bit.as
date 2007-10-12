@@ -66,77 +66,77 @@ class vegas.core.types.Bit extends Number implements IFormattable, IHashable, IS
 	/**
 	 * Default floating points used.
 	 */
-	static public var DEFAULT_FLOATING_POINTS:Number = 2 ;
+	public static var DEFAULT_FLOATING_POINTS:Number = 2 ;
 
 	/**
 	 * Size of a byte.
 	 */
-	static public var BYTE:Number = 8 ; // BYTE
+	public static var BYTE:Number = 8 ; // BYTE
 
 	/**
 	 * Size of a kilo.
 	 */
-	static public var KBIT:Number = 1024 ;
+	public static var KBIT:Number = 1024 ;
 
 	/**
 	 * Size of a kilobyte.
 	 */
-	static public var KBYTE:Number = KBIT * BYTE ;
+	public static var KBYTE:Number = KBIT * BYTE ;
 
 	/**
 	 * Size of a megabit.
 	 */
-	static public var MBIT:Number = KBIT * KBIT ;
+	public static var MBIT:Number = KBIT * KBIT ;
 
 	/**
 	 * Size of a megabyte
 	 */
-	static public var MBYTE:Number = KBYTE * KBIT ;
+	public static var MBYTE:Number = KBYTE * KBIT ;
 	
 	/**
 	 * Size of a gigabit.
 	 */
-	static public var GBIT:Number = MBIT * KBIT ;
+	public static var GBIT:Number = MBIT * KBIT ;
 	
 	/**
 	 * Size of a gigabyte.
 	 */
-	static public var GBYTE:Number = MBYTE * KBIT ;
+	public static var GBYTE:Number = MBYTE * KBIT ;
 	
 	/**
 	 * Size of a terabit.
 	 */
-	static public var TBIT:Number = GBIT * KBIT ;
+	public static var TBIT:Number = GBIT * KBIT ;
 
 	/**
 	 * Size of a terabyte.
 	 */	
-	static public var TBYTE:Number = GBYTE * KBIT ;
+	public static var TBYTE:Number = GBYTE * KBIT ;
 	
 	/**
 	 * Shortname of bit.
 	 */
-	static public var SB:String = "b" ;
+	public static var SB:String = "b" ;
 
 	/**
 	 * Shortname of kilobit.
 	 */
-	static public var SKB:String = "Kb" ;
+	public static var SKB:String = "Kb" ;
 	
 	/**
 	 * Shortname of megabit.
 	 */
-	static public var SMB:String = "Mb" ;
+	public static var SMB:String = "Mb" ;
 
 	/**
 	 * Shortname of gigabit.
 	 */
-	static public var SGB:String = "Gb" ;
+	public static var SGB:String = "Gb" ;
 
 	/**
 	 * Shortname of terabit.
 	 */
-	static public var STB:String = "Tb" ;
+	public static var STB:String = "Tb" ;
 
 	/**
 	 * Returns the value in bit.
@@ -303,7 +303,7 @@ class vegas.core.types.Bit extends Number implements IFormattable, IHashable, IS
 	 */
 	private var _comma:Number ;
 	
-	static private var _initHashCode:Boolean = HashCode.initialize(Bit.prototype) ;	
+	private static var _initHashCode:Boolean = HashCode.initialize(Bit.prototype) ;	
 	
 
 }

@@ -62,7 +62,7 @@ class vegas.string.Glob
 	/**
 	 * Matchs the string expression with the specified pattern.
 	 */
-	static public function stringMatch(str:String, pattern:String, caseSensitive:Boolean ) 
+	public static function stringMatch(str:String, pattern:String, caseSensitive:Boolean ) 
 	{
 		
 		if (! str instanceof String) str = new String(str) ;

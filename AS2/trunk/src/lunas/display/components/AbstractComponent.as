@@ -767,7 +767,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 
 	private var _listenerStyleChange:EventListener ;
 	
-	static private var _initHashCode:Boolean = HashCode.initialize(AbstractComponent.prototype) ;
+	private static var _initHashCode:Boolean = HashCode.initialize(AbstractComponent.prototype) ;
 
 	private function _redraw(ev:TimerEvent):Void 
 	{

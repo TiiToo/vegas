@@ -35,7 +35,7 @@ class pegas.util.QuaternionUtil
 	/**
 	 * Change the specified Quaterion in this conjugate.
 	 */
-	static public function conjugate( q:Quaternion ):Void
+	public static function conjugate( q:Quaternion ):Void
 	{
 		q.x = -q.x ;
 		q.y = -q.y ;
@@ -46,7 +46,7 @@ class pegas.util.QuaternionUtil
 	 * Returns a new Quaternion conjugate of the specified Quaternion.
 	 * @return a new Quaternion conjugate of the specified Quaternion.
 	 */
-	static public function getConjugate( q:Quaternion ):Quaternion
+	public static function getConjugate( q:Quaternion ):Quaternion
 	{
 		return new Quaternion( -q.x, -q.y, -q.z, q.w );
 	}
@@ -55,7 +55,7 @@ class pegas.util.QuaternionUtil
 	 * Returns the magnitude of the Quaternion, measured in the Euclidean norm.
 	 * @return the magnitude of the Quaternion, measured in the Euclidean norm.
 	 */
-	static public function getMagnitude( q:Quaternion ):Number
+	public static function getMagnitude( q:Quaternion ):Number
 	{
 		var w:Number = q.w ;
 		var x:Number = q.x ;
@@ -68,7 +68,7 @@ class pegas.util.QuaternionUtil
 	 * Returns the multiplication of two Quaternions.
 	 * @return the multiplication of two Quaternions.
 	 */
-	static public function getMultiply( q1:Quaternion , q2:Quaternion ):Quaternion
+	public static function getMultiply( q1:Quaternion , q2:Quaternion ):Quaternion
 	{
 		var x1:Number = q1.x ; var y1:Number = q1.y ;
 		var z1:Number = q1.z ; var w1:Number = q1.w ;
@@ -89,7 +89,7 @@ class pegas.util.QuaternionUtil
 	 * Returns the multiplication of one Quaternions with a Vector3.
 	 * @return the multiplication of one Quaternions with a Vector3.
 	 */
-	static public function getMultiplyVector3( q:Quaternion , v:Vector3 ):Quaternion
+	public static function getMultiplyVector3( q:Quaternion , v:Vector3 ):Quaternion
 	{
 		var x1:Number = q.x ; var y1:Number = q.y ;
 		var z1:Number = q.z ; var w1:Number = q.w ;
@@ -110,7 +110,7 @@ class pegas.util.QuaternionUtil
 	 * Normalizes the Quaternion instance.
 	 * @param q the Quaternion to normalize.
 	 */
-	static public function normalize( q:Quaternion ):Void
+	public static function normalize( q:Quaternion ):Void
 	{
 		var magnitude:Number = QuaternionUtil.getMagnitude() ;
         q.w /= magnitude ;
@@ -123,7 +123,7 @@ class pegas.util.QuaternionUtil
 	 * @param theta a real number representing angle input.
 	 * @param axis the {@code Vector3} direction instance.
 	 */
-	static public function rotationAxis( q:Quaternion, theta:Number, axis:Vector3 ):Void
+	public static function rotationAxis( q:Quaternion, theta:Number, axis:Vector3 ):Void
 	{
 		q.w = Math.cos( theta / 2.0 ) ;
 		q.x = axis.x ;

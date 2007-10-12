@@ -98,7 +98,7 @@ class asgard.display.Bitmap extends DisplayObject
 	 * The depth of the internal container of this display.
 	 * Overrides this protected constant if you want change this level in your extended display of this Bitmap display.
 	 */
-	/*protected*/ static private var CONTAINER_DEPTH:Number = 100 ;
+	/*protected*/ private static var CONTAINER_DEPTH:Number = 100 ;
 
 	/**
 	 * Returns the BitmapData object being referenced.

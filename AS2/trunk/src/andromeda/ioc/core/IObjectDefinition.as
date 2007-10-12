@@ -35,61 +35,61 @@ interface andromeda.ioc.core.IObjectDefinition
 	 * Returns the constructor arguments values of this object in a Array list.
 	 * @return the constructor arguments values of this object in a Array list.
 	 */	
-	public function getConstructorArguments():Array ;
+	function getConstructorArguments():Array ;
 
 	/**
 	 * Returns the name of the method invoqued when the object is destroyed.
 	 * @return the name of the method invoqued when the object is destroyed.
 	 */	
-	public function getDestroyMethodName():String ; 
+	function getDestroyMethodName():String ; 
 
 	/**
 	 * Returns the name of the method call when the object is instanciate.
 	 * @return the name of the method call when the object is instanciate.
 	 */	
-	public function getInitMethodName():String ; 
+	function getInitMethodName():String ; 
 
 	/**
 	 * Returns the Map of all properties of this Definition.
 	 * @return the Map of all properties of this Definition.
 	 */	
-	public function getProperties():Map ; 
+	function getProperties():Map ; 
 
 	/**
 	 * Returns the type of the object (the class name).
 	 * @return the type of the object (the class name).
 	 */	
-	public function getType():String  ;
+	function getType():String  ;
 
 	/**
 	 * Returns {@code true} if the object in a Sigleton else the object is a prototype.
 	 * @return {@code true} if the object in a Sigleton else the object is a prototype.
 	 */		
-	public function isSingleton():Boolean ; 
+	function isSingleton():Boolean ; 
 
 	/**
 	 * Sets the constructor arguments values of this object.
 	 */	
-	public function setConstructorArguments( value:Array ):Void ;
+	function setConstructorArguments( value:Array ):Void ;
 
 	/**
 	 * Sets the name of the method invoqued when the object is destroyed.
 	 */	
-	public function setDestroyMethodName( value:String ):Void ; 
+	function setDestroyMethodName( value:String ):Void ; 
 
 	/**
 	 * Init the name of the method.
 	 */		
-	public function setInitMethodName( value:String ):Void ;
+	function setInitMethodName( value:String ):Void ;
 
 	/**
 	 * Sets the Map of all properties of this Definition.
 	 */	
-	public function setProperties( value:Map ):Void ; 
+	function setProperties( value:Map ):Void ; 
 
 	/**
 	 * Sets the type of the object (the class name).
 	 */	
-	public function setType( value:String ):Void ; 
+	function setType( value:String ):Void ; 
 
 }

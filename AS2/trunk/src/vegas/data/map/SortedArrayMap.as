@@ -41,7 +41,7 @@ class vegas.data.map.SortedArrayMap extends ArrayMap implements IComparer
 	/**
 	 * Defines the constant value of the sortPolicy property if the ArrayMap is sorted by "key".
 	 */
-	static public var KEY:String = "key" ;
+	public static var KEY:String = "key" ;
 
 	/**
 	 * Specifies the default numeric sorting value for the Array class sorting methods.
@@ -89,7 +89,7 @@ class vegas.data.map.SortedArrayMap extends ArrayMap implements IComparer
 	/**
 	 * Defines the constant value of the sortPolicy property if the ArrayMap is sorted by "value".
 	 */
-	static public var VALUE:String = "value" ;
+	public static var VALUE:String = "value" ;
 	
 	/**
 	 * (read-write) Returns the IComparator instance.

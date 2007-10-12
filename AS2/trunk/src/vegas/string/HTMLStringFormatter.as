@@ -36,7 +36,7 @@ class vegas.string.HTMLStringFormatter
 	 * @param name the name of the anchor.
 	 * @return the string formatted with the method.
 	 */
-	static public function anchor( str:String , name:String ):String
+	public static function anchor( str:String , name:String ):String
 	{
 		return '<a name="' + name + "'>" + str + "</a>" ; 
 	}	
@@ -46,7 +46,7 @@ class vegas.string.HTMLStringFormatter
 	 * @param str the string to be formatted.
 	 * @return the string formatted with the method.
 	 */
-	static public function big( str:String ):String
+	public static function big( str:String ):String
 	{
 		return 	"<big>" + str + "</big>" ;
 	}
@@ -56,7 +56,7 @@ class vegas.string.HTMLStringFormatter
 	 * @param str the string to be formatted.
 	 * @return the string formatted with the method.
 	 */
-	static public function blink( str:String ):String
+	public static function blink( str:String ):String
 	{
 		return 	"<blink>" + str + "</blink>" ;
 	}
@@ -70,7 +70,7 @@ class vegas.string.HTMLStringFormatter
 	 * @param str the string to be formatted.
 	 * @return the string formatted with the method.
 	 */
-	static public function bold( str:String ):String
+	public static function bold( str:String ):String
 	{
 		return 	"<b>" + str + "</b>" ;
 	}
@@ -80,7 +80,7 @@ class vegas.string.HTMLStringFormatter
 	 * @param str the string to be formatted.
 	 * @return the string formatted with the method.
 	 */
-	static public function fixed( str:String ):String
+	public static function fixed( str:String ):String
 	{
 		return 	"<tt>" + str + "</tt>" ;
 	}
@@ -91,7 +91,7 @@ class vegas.string.HTMLStringFormatter
 	 * @param color the string hexadecimal RGB triplet with the format rrggbb.
 	 * @return the string formatted with the method.
 	 */
-	static public function fontColor( str:String , color:String ):String
+	public static function fontColor( str:String , color:String ):String
 	{
 		return 	"<font color='" + color + "'>" + str + "</font>" ;
 	}
@@ -102,7 +102,7 @@ class vegas.string.HTMLStringFormatter
 	 * @param size an Integer representing the size of the font.
 	 * @return the string formatted with the method.
 	 */
-	static public function fontSize( str:String , size:Number ):String
+	public static function fontSize( str:String , size:Number ):String
 	{
 		return 	"<font size='" + size + "'>" + str + "</font>" ;
 	}
@@ -117,7 +117,7 @@ class vegas.string.HTMLStringFormatter
 	 * @param str the string to be formatted.
 	 * @return the string formatted with the method.
 	 */
-	static public function italics( str:String ):String
+	public static function italics( str:String ):String
 	{
 		return 	"<i>" + str + "</i>" ;
 	}
@@ -134,7 +134,7 @@ class vegas.string.HTMLStringFormatter
 	 * @param target (optional) this value defined to the anchor tag forces the load of that link into the targeted window.
 	 * @return the string formatted with the method.
 	 */
-	static public function link( str:String , url:String , target:String ):String
+	public static function link( str:String , url:String , target:String ):String
 	{
 		var s:String = '<a href=\"' + url + '\"' ;
 		if (target != null)
@@ -160,7 +160,7 @@ class vegas.string.HTMLStringFormatter
 	 * @param style (optional) the style class name of the tag.
 	 * @return the string formatted with the method.
 	 */
-	static public function paragraph( str:String, style:String ):String
+	public static function paragraph( str:String, style:String ):String
 	{
 		var s:String = '<p' ;
 		if (style.length > 0)
@@ -177,7 +177,7 @@ class vegas.string.HTMLStringFormatter
 	 * @param str the string to be formatted.
 	 * @return the string formatted with the method.
 	 */
-	static public function small( str:String ):String
+	public static function small( str:String ):String
 	{
 		return "<small>" + str + "</small>" ;
 	}
@@ -197,7 +197,7 @@ class vegas.string.HTMLStringFormatter
 	 * @param style (optional) the style class name of the tag.
 	 * @return the string formatted with the method.
 	 */
-	static public function span( str:String, style:String ):String
+	public static function span( str:String, style:String ):String
 	{
 		var s:String = '<span' ;
 		if (style.length > 0)
@@ -214,7 +214,7 @@ class vegas.string.HTMLStringFormatter
 	 * @param str the string to be formatted.
 	 * @return the string formatted with the method.
 	 */
-	static public function strike( str:String ):String
+	public static function strike( str:String ):String
 	{
 		return 	"<strike>" + str + "</strike>" ;
 	}
@@ -224,7 +224,7 @@ class vegas.string.HTMLStringFormatter
 	 * @param str the string to be formatted.
 	 * @return the string formatted with the method.
 	 */
-	static public function sub( str:String ):String
+	public static function sub( str:String ):String
 	{
 		return 	"<sub>" + str + "</sub>" ;
 	}
@@ -234,7 +234,7 @@ class vegas.string.HTMLStringFormatter
 	 * @param str the string to be formatted.
 	 * @return the string formatted with the method.
 	 */
-	static public function sup( str:String ):String
+	public static function sup( str:String ):String
 	{
 		return 	"<sup>" + str + "</sup>" ;
 	}
@@ -249,7 +249,7 @@ class vegas.string.HTMLStringFormatter
 	 * @param str the string to be formatted.
 	 * @return the string formatted with the method.
 	 */
-	static public function underline( str:String ):String
+	public static function underline( str:String ):String
 	{
 		return 	"<u>" + str + "</u>" ;
 	}

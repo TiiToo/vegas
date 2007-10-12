@@ -491,7 +491,7 @@ class asgard.display.FlashPaperLoader extends DisplayLoader
 	/**
 	 * Fix the selection management.
 	 */
-	static private function _fixSelectionManagement(mc:MovieClip):Void 
+	private static function _fixSelectionManagement(mc:MovieClip):Void 
 	{
 		var main:MovieClip = mc.gMainView.m_mainMC ;
 		

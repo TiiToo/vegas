@@ -35,7 +35,7 @@ class asgard.display.DisplayLoaderCollector
 	/**
 	 * Returns {@code true} if the collector contains the specified DisplayLoader defined by this name.
 	 */
-	static public function contains( sName:String ):Boolean 
+	public static function contains( sName:String ):Boolean 
 	{
 		return _map.containsKey( sName ) ;	
 	}
@@ -43,7 +43,7 @@ class asgard.display.DisplayLoaderCollector
 	/**
 	 * Returns the DisplayLoader in the collector specified by the string name in parameter.
 	 */	
-	static public function get(sName:String):DisplayLoader 
+	public static function get(sName:String):DisplayLoader 
 	{
 		return DisplayLoader(_map.get(sName)) ;	
 	}
@@ -51,7 +51,7 @@ class asgard.display.DisplayLoaderCollector
 	/**
 	 * Inserts a DisplayLoader in the collector.
 	 */
-	static public function insert(sName:String, dObject:DisplayLoader):Boolean 
+	public static function insert(sName:String, dObject:DisplayLoader):Boolean 
 	{
 		return (_map.put(sName, dObject) != null) ;
 	}
@@ -59,11 +59,11 @@ class asgard.display.DisplayLoaderCollector
 	/**
 	 * Removes a DisplayLoader in the collector.
 	 */
-	static public function remove(sName:String):Void 
+	public static function remove(sName:String):Void 
 	{
 		_map.remove(sName) ;
 	}
 	
-	static private var _map:HashMap = new HashMap() ;
+	private static var _map:HashMap = new HashMap() ;
 	
 }

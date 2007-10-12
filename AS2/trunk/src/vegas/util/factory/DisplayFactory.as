@@ -42,7 +42,7 @@ class vegas.util.factory.DisplayFactory
 		 nDepth:Number, mcTarget:MovieClip, init 
 	) 
 	{
-		var oChild = mcTarget.attachMovie(sID, sName, nDepth) ;
+		var oChild = mcTarget.attachMovie(sID, sName, nDepth, null) ;
 		return ConstructorUtil.createVisualInstance( fConstructor, oChild, init) ;
 	}
 	

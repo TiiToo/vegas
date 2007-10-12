@@ -86,7 +86,7 @@ class pegas.util.Matrix4Util
 	 * }
 	 * @return {@code true} if the Matrix4 is the identity.
 	 */
-	static public function isIdentity( m:Matrix4 ):Boolean
+	public static function isIdentity( m:Matrix4 ):Boolean
 	{
 		var a:Array = m.toArray() ;
 		for( var i:Number = 0 ; i < 4 ; i++ )
@@ -117,7 +117,7 @@ class pegas.util.Matrix4Util
 	 * @param m1 the first Matrix4 reference to fill.
 	 * @param m2 the second Matrix4 reference.
 	 */
-	static public function setByMatrix( m1:Matrix4, m2:Matrix4 ):Matrix4
+	public static function setByMatrix( m1:Matrix4, m2:Matrix4 ):Matrix4
 	{
 		m1.n11 = m2.n11 ; m1.n12 = m2.n12 ; m1.n13 = m2.n13 ; m1.n14 = m2.n14 ;
 		m1.n21 = m2.n21 ; m1.n22 = m2.n22 ; m1.n23 = m2.n23 ; m1.n24 = m2.n24 ;
@@ -131,7 +131,7 @@ class pegas.util.Matrix4Util
 	 * @param m the Matrix4 reference to fill.
 	 * @param q the Quaternion reference.
 	 */
-	static public function setByQuaternion( m:Matrix4, q:Quaternion ):Matrix4
+	public static function setByQuaternion( m:Matrix4, q:Quaternion ):Matrix4
 	{
 		m.n11 = 1 - 2 * ( q.y * q.y ) - 2 * ( q.z * q.z ) ; 
 		m.n12 = 2 * ( q.x * q.y ) - 2 * ( q.w * q.z ) ;

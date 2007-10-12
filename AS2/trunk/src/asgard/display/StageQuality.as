@@ -32,23 +32,23 @@ class asgard.display.StageQuality
 	/**
 	 * Specifies Very high rendering quality: graphics are anti-aliased using a 4 x 4 pixel grid and bitmaps are always smoothed.
  	 */
-	static public var BEST:String = "best" ;
+	public static var BEST:String = "best" ;
 	
 	/**
 	 * Specifies high rendering quality: graphics are anti-aliased using a 4 x 4 pixel grid, and bitmaps are smoothed if the movie is static.
 	 */
-	static public var HIGH:String = "high" ;
+	public static var HIGH:String = "high" ;
 	
 	/**
 	 * Specifies low rendering quality: graphics are not anti-aliased, and bitmaps are not smoothed.
 	 */
-	static public var LOW:String = "low" ;
+	public static var LOW:String = "low" ;
 	
 	/**
 	 * Specifies medium rendering quality: graphics are anti-aliased using a 2 x 2 pixel grid, but bitmaps are not smoothed.
 	 */
-	static public var MEDIUM:String = "medium" ;
+	public static var MEDIUM:String = "medium" ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(StageQuality, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(StageQuality, null , 7, 7) ;
 
 }

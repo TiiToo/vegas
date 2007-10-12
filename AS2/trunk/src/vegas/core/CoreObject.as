@@ -103,6 +103,6 @@ class vegas.core.CoreObject implements IFormattable, IHashable, ILogable, ISeria
 	 */
 	private var _logger:ILogger ;
 
-	static private var _initHashCode:Boolean = HashCode.initialize(CoreObject.prototype) ;
+	private static var _initHashCode:Boolean = HashCode.initialize(CoreObject.prototype) ;
 	
 }

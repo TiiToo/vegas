@@ -155,6 +155,19 @@ class andromeda.model.array.PageableArrayModel extends AbstractModelObject imple
 		return new PageByPageIterator(_voCount, _a) ;	
 	}
 
+    /**
+     * Notify a {@code ModelObjectEvent} when a {@code IValueObject} is inserted in the model.
+     */ 
+    public function notifyUpdate( ar:Array ):Array
+    {
+        if ( isLocked() == false )
+        {
+        	_eUpdate.setArray( ar ) ;
+			dispatchEvent( _eUpdate  ) ;    
+        }
+        return ar ;
+    }
+
 	/**
 	 * Show in the previous page in the list or previous screen.
 	 */
@@ -162,9 +175,7 @@ class andromeda.model.array.PageableArrayModel extends AbstractModelObject imple
 	{
 		if ( hasPrevious() )
 		{
-			_eUpdate.setArray( _itPage.previous() ) ;
-			dispatchEvent( _eUpdate  ) ;
-			return _eUpdate.getArray() ;	
+			return notifyUpdate( _itPage.previous() ) ;
 		}
 	}
 
@@ -175,9 +186,7 @@ class andromeda.model.array.PageableArrayModel extends AbstractModelObject imple
 	{
 		if ( hasNext() )
 		{
-			_eUpdate.setArray( _itPage.next() ) ;
-			dispatchEvent( _eUpdate  ) ;
-			return _eUpdate.getArray() ;	
+			return notifyUpdate( _itPage.next() ) ;
 		}
 	}
 

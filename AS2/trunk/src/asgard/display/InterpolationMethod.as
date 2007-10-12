@@ -32,15 +32,15 @@ class asgard.display.InterpolationMethod
 	 * Specifies that the linear RGB interpolation method should be used. 
 	 * This means that Flash Player uses an RGB color space based on a linear RGB color model.
  	 */
-	static public var LINEAR_RGB:String = "linearRGB" ;
+	public static var LINEAR_RGB:String = "linearRGB" ;
 	
 	/**
 	 * Specifies that the RGB interpolation method should be used. 
 	 * This means that Flash Player uses the exponential sRGB (standard RGB) space when rendering the gradient. 
 	 * The sRGB space is a W3C-endorsed standard that defines a non-linear conversion between red, green, and blue component values and the actual intensity of the visible component color.
 	 */
-	static public var RGB:String = "rgb" ;
+	public static var RGB:String = "rgb" ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(InterpolationMethod, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(InterpolationMethod, null , 7, 7) ;
 
 }

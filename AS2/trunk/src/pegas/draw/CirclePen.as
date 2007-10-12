@@ -39,7 +39,7 @@ class pegas.draw.CirclePen extends EasyPen
 		super(target, isNew);
 	}
 	
-	static public var THETA:Number = Math.PI/4 ;
+	public static var THETA:Number = Math.PI/4 ;
 	
 	public var radius:Number ;
 	public var x:Number ;

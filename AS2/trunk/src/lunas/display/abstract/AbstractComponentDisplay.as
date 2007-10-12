@@ -270,7 +270,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	 * Returns the default name of the component display passed-in argument.
 	 * @return the default name of the component display passed-in argument.
 	 */
-	static public function getDefaultName( display:DisplayObject ):String
+	public static function getDefaultName( display:DisplayObject ):String
 	{
 		return ConstructorUtil.getName(display) + (_counterName ++) ;
 	}
@@ -678,7 +678,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	/**
 	 * The internal static counter name to create default component names.
 	 */
-	static private var _counterName:Number = 0 ; 
+	private static var _counterName:Number = 0 ; 
 	
 	
 }

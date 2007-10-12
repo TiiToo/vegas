@@ -36,7 +36,7 @@ class vegas.util.serialize.ArraySerializer
 	 * Returns a Eden representation of the object.
 	 * @return a string representing the source code of the object.
 	 */	
-	static public function toSource(ar:Array, indent:Number, indentor:String):String 
+	public static function toSource(ar:Array, indent:Number, indentor:String):String 
 	{
 		var i:Number;
 		var source:Array = [] ;

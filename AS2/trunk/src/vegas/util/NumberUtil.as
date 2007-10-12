@@ -34,7 +34,7 @@ class vegas.util.NumberUtil
 	 * Returns a shallow copy by reference of this Number.
 	 * @return a shallow copy by reference of this Number.
 	 */
-	static public function clone(n:Number):Number 
+	public static function clone(n:Number):Number 
 	{
 		return n ;
 	}
@@ -43,7 +43,7 @@ class vegas.util.NumberUtil
 	 * Returns a deep copy by value of this Number.
 	 * @return a deep copy by value of this Number.
 	 */
-	static public function copy(n:Number):Number 
+	public static function copy(n:Number):Number 
 	{
 		return Number(n.valueOf()) ;
 	}
@@ -51,7 +51,7 @@ class vegas.util.NumberUtil
 	/**
 	 * compare if two Numbers are equal by value
 	 */
-	static public function equals( n1:Number, n2:Number ):Boolean 
+	public static function equals( n1:Number, n2:Number ):Boolean 
 	{
 		if (! n2 ) return false ;
 		if(n1.valueOf() == n2.valueOf()) 
@@ -65,7 +65,7 @@ class vegas.util.NumberUtil
 	 * Converts to an equivalent Boolean value.
 	 * @return an equivalent Boolean value of the passed-in number.
 	 */
-	static public function toBoolean(n:Number):Boolean 
+	public static function toBoolean(n:Number):Boolean 
 	{
 		if (isNaN(n) || n.valueOf() == 0) 
 		{
@@ -92,7 +92,7 @@ class vegas.util.NumberUtil
 	 * @param fractionDigits An integer specifying the number of digits after the decimal point. Defaults to as many digits as necessary to specify the number.
 	 * @return the exponential string reprsentation of the number passsed in argument.
 	 */
-	static public function toExponential( n:Number, fractionDigits:Number):String 
+	public static function toExponential( n:Number, fractionDigits:Number):String 
 	{
 		var str:String ;
         var x:Number = n ;
@@ -147,7 +147,7 @@ class vegas.util.NumberUtil
 	 * @param fractionDigits the number of digits to appear after the decimal point; this may be a value between 0 and 20, inclusive, and implementations may optionally support a larger range of values. If this argument is omitted, it is treated as 0.
 	 * @return A string representation of number that does not use exponential notation and has exactly {@code fractionDigits} digits after the decimal place. The number is rounded if necessary, and the fractional part is padded with zeros if necessary so that it has the specified length. If number is greater than 1e+21, this method simply calls Number.toString() and returns a string in exponential notation.
 	 */
-	static public function toFixed( n:Number, fractionDigits:Number):String 
+	public static function toFixed( n:Number, fractionDigits:Number):String 
 	{
         var x:Number = n ;
         
@@ -179,7 +179,7 @@ class vegas.util.NumberUtil
 	 * Converts to an equivalent Number value.
 	 * @return an equivalent Number value of the passed-in Number.
 	 */
-	static public function toNumber(n:Number):Number 
+	public static function toNumber(n:Number):Number 
 	{
 		return n.valueOf() ;	
 	}
@@ -188,7 +188,7 @@ class vegas.util.NumberUtil
 	 * Converts to an equivalent Object value.
 	 * @return an equivalent Object value of the passed-in number.
 	 */
-	static public function toObject(n:Number):Number 
+	public static function toObject(n:Number):Number 
 	{
 		return new Number( n.valueOf() ) ;	
 	}
@@ -211,7 +211,7 @@ class vegas.util.NumberUtil
 	 * @param precision An integer specifying the number of digits after the decimal point.
 	 * @return A string representing a Number object in fixed-point or exponential notation rounded to precision significant digits.
 	 */
-	static public function toPrecision(n:Number, precision:Number):String 
+	public static function toPrecision(n:Number, precision:Number):String 
 	{
 		var x:Number = n ;
 		var str:String = x.toString() ;

@@ -381,7 +381,7 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable
 	/**
 	 * Register the RecordSet instance.
 	 */
-	static public function register():Boolean 
+	public static function register():Boolean 
 	{
 		return Object.registerClass( "RecordSet", RecordSet ) ;
 	}
@@ -533,7 +533,7 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable
 
 	private var _nc ;
 
-	static private var _initRegister:Boolean = register() ;	
+	private static var _initRegister:Boolean = register() ;	
 
 	/**
 	

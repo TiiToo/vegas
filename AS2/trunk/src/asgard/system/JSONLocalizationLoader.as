@@ -46,9 +46,9 @@ class asgard.system.JSONLocalizationLoader extends JSONLoader implements ILocali
 		super() ;
 	}
 
-	static public var DEFAULT_PREFIX:String = "localize_" ;
+	public static var DEFAULT_PREFIX:String = "localize_" ;
 
-	static public var DEFAULT_SUFFIX:String = ".json" ;
+	public static var DEFAULT_SUFFIX:String = ".json" ;
 
 
 	public function get path():String 

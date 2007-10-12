@@ -236,7 +236,7 @@ dynamic class pegas.geom.Point extends Vector2
 	 * @param p2 the second Point.
 	 * @return the distance between p1 and p2 the 2 Points reference passed in argument.
 	 */
-	static public function distance(p1:Point, p2:Point):Number 
+	public static function distance(p1:Point, p2:Point):Number 
 	{
 		return (p1.subtractNew(p2)).getLength() ;
 	}
@@ -334,7 +334,7 @@ dynamic class pegas.geom.Point extends Vector2
 	 * }
 	 * @return the middle Point between 2 Points.
 	 */
-	static public function getMiddle(p1:Point, p2:Point):Point 
+	public static function getMiddle(p1:Point, p2:Point):Point 
 	{
 		return new Point( (p1.x + p2.x) / 2 , (p1.y + p2.y) / 2) ;
 	}
@@ -397,7 +397,7 @@ dynamic class pegas.geom.Point extends Vector2
 	 * @param f the The level of interpolation between the two points. Indicates where the new point will be, along the line between {@code p1} and {@code p2}. If f=1, pt1 is returned; if f=0, pt2 is returned.
 	 * @return The new interpolated point.
 	 */
-	static public function interpolate(p1:Point, p2:Point, f:Number):Point 
+	public static function interpolate(p1:Point, p2:Point, f:Number):Point 
 	{
 		return new Point( p2.x + f * (p1.x - p2.x) , p2.y + f * (p1.y - p2.y) ) ;
 	}
@@ -548,7 +548,7 @@ dynamic class pegas.geom.Point extends Vector2
 	 * @param angle The angle, in radians, of the polar pair.
 	 * @return The new Cartesian point.
 	 */
-	static public function polar(len:Number, angle:Number):Point 
+	public static function polar(len:Number, angle:Number):Point 
 	{
 		return new Point( len * Math.cos(angle), len * Math.sin(angle) ) ;
 	}
@@ -732,8 +732,8 @@ dynamic class pegas.geom.Point extends Vector2
 
 	// ----o Static Private -  MTASC HACK - Macromedia FP8 Compatibility
 	
-	static private var __init:Boolean ;
-	static private function initialize():Boolean 
+	private static var __init:Boolean ;
+	private static function initialize():Boolean 
 	{
 		if (__init) return false ;
 		else {
@@ -743,6 +743,6 @@ dynamic class pegas.geom.Point extends Vector2
 		}
 	}
 	
-	static private var __hack__:Boolean = Point.initialize() ;
+	private static var __hack__:Boolean = Point.initialize() ;
 	
 }

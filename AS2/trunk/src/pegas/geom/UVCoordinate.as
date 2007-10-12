@@ -46,7 +46,7 @@ class pegas.geom.UVCoordinate extends CoreObject
 	/**
 	 * Defines the UVCoordinate object with the u and v properties set to zero.
 	 */
-	static public var ZERO:UVCoordinate = new UVCoordinate(0,0) ;
+	public static var ZERO:UVCoordinate = new UVCoordinate(0,0) ;
 
 	/**
 	 * Defined the u horizontal coordinate value.

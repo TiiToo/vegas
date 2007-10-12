@@ -42,17 +42,17 @@ class asgard.events.SoundEvent extends BasicEvent
 	/**
 	 * The type of the event when the sound is complete.
 	 */
-	static public var COMPLETE:String = "onSoundComplete" ;
+	public static var COMPLETE:String = "onSoundComplete" ;
 
 	/**
 	 * The type of the event when a sound id3 is notify.
 	 */
-	static public var ID3:String = "onSoundID3" ; 
+	public static var ID3:String = "onSoundID3" ; 
 	
 	/**
 	 * The type of the event when a sound is loading.
 	 */
-	static public var LOAD:String = "onSoundLoad" ; 
+	public static var LOAD:String = "onSoundLoad" ; 
 	
 	/**
 	 * The success boolean value if the SoundEvent type is 'LOAD'.

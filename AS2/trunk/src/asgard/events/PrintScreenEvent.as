@@ -24,22 +24,22 @@ class asgard.events.PrintScreenEvent extends ActionEvent
 	/**
 	 * The name of the event when the capture is cleared.
 	 */	
-	static public var CLEAR:String = "onCleared" ;
+	public static var CLEAR:String = "onCleared" ;
 	
 	/**
 	 * The name of the event when the capture process is finished.
 	 */
-	static public var FINISH:String = "onFinished" ;
+	public static var FINISH:String = "onFinished" ;
 	
 	/**
 	 * The name of the event when the capture process is in progress.
 	 */
-	static public var PROGRESS:String = "onProgress" ;
+	public static var PROGRESS:String = "onProgress" ;
 	
 	/**
 	 * The name of the event when the capture process is started.
 	 */
-	static public var START:String = "onStarted" ;
+	public static var START:String = "onStarted" ;
 
 	/**
 	 * Returns the shallow copy of this object.

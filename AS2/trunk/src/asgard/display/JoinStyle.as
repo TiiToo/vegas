@@ -33,18 +33,18 @@ class asgard.display.JoinStyle
 	/**
 	 * Specifies beveled joints in the joints parameter of the {@code lineStyle()} method.
  	 */
-	static public var BEVEL:String = "bevel" ;
+	public static var BEVEL:String = "bevel" ;
 	
 	/**
 	 * Specifies mitered joints in the joints parameter of the {@code lineStyle()} method.
 	 */
-	static public var MITER:String = "miter" ;
+	public static var MITER:String = "miter" ;
 	
 	/**
 	 *  Specifies round joints in the joints parameter of the {@code lineStyle()} method.
 	 */
-	static public var ROUND:String = "round" ;
+	public static var ROUND:String = "round" ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(JoinStyle, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(JoinStyle, null , 7, 7) ;
 
 }

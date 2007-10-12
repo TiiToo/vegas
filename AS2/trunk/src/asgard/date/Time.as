@@ -46,22 +46,22 @@ class asgard.date.Time extends CoreObject
 	/** 
 	 * Factor from ms to second. 
 	 */
-	static public var SECOND:Number = 1000;
+	public static var SECOND:Number = 1000;
 	
 	/** 
 	 * Factor from ms to minute.
 	 */
-	static public var MINUTE:Number = SECOND*60;
+	public static var MINUTE:Number = SECOND*60;
 	
 	/** 
 	 * Factor from ms to hour.
 	 */
-	static public var HOUR:Number = MINUTE * 60 ;
+	public static var HOUR:Number = MINUTE * 60 ;
 	
 	/** 
 	 * Factor from ms to day.
 	 */
-	static public var DAY:Number = HOUR * 24 ;
+	public static var DAY:Number = HOUR * 24 ;
 
 	/** 
 	 * Amount of days.

@@ -51,12 +51,12 @@ class asgard.net.remoting.RemotingConnection extends NetServerConnection
 	/**
 	 * The string value of the amf server debug attribut.
 	 */
-	static public var AMF_SERVER_DEBUG:String = "amf_server_debug" ;
+	public static var AMF_SERVER_DEBUG:String = "amf_server_debug" ;
 	
 	/**
 	 * The string representation of the Credentials namespace.
 	 */
-	static public var CREDENTIALS:String = "Credentials" ;
+	public static var CREDENTIALS:String = "Credentials" ;
 	
 	/**
 	 * Returns the shallow copy of this object.
@@ -71,7 +71,7 @@ class asgard.net.remoting.RemotingConnection extends NetServerConnection
 	 * Returns the RemotingConnection reference defines with the specified url representation.
 	 * @return the RemotingConnection reference defines with the specified url representation.
 	 */
-	static public function getConnection( sUrl:String ):RemotingConnection 
+	public static function getConnection( sUrl:String ):RemotingConnection 
 	{
 		if ( ! RemotingConnectionCollector.contains(sUrl) ) 
 		{

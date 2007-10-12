@@ -178,57 +178,57 @@ class andromeda.ioc.factory.EdenObjectFactory extends ObjectFactory implements I
 	/**
 	 * Defines the label of the arguments in a method or a constructor object.
 	 */
-	static public var ARGUMENTS:String = "arguments" ;  
+	public static var ARGUMENTS:String = "arguments" ;  
 
 	/**
 	 * Defines the label of the assembly name property of the object.
 	 */
-	static public var ASSEMBLY_NAME:String = "assemblyName" ;
+	public static var ASSEMBLY_NAME:String = "assemblyName" ;
 
 	/**
 	 * Defines the label of the name in a property object.
 	 */
-	static public var NAME:String = "name" ;  
+	public static var NAME:String = "name" ;  
 
 	/**
 	 * The name of the external object property to register the destroy method name.
 	 */
-	static public var OBJECT_DESTROY_METHOD_NAME:String = "destroy" ;  
+	public static var OBJECT_DESTROY_METHOD_NAME:String = "destroy" ;  
 
 	/**
 	 * The name of the external object property to define the id of the object.
 	 */
-	static public var OBJECT_ID:String = "id" ;  
+	public static var OBJECT_ID:String = "id" ;  
 
 	/**
 	 * The name of the external object property to register the init method name.
 	 */
-	static public var OBJECT_INIT_METHOD_NAME:String = "init" ;  
+	public static var OBJECT_INIT_METHOD_NAME:String = "init" ;  
 	
 	/**
 	 * The name of the external object property to register the properties.
 	 */
-	static public var OBJECT_PROPERTIES:String = "properties" ;  
+	public static var OBJECT_PROPERTIES:String = "properties" ;  
 
 	/**
 	 * The name of the external object property to define the singleton flag of the object.
 	 */
-	static public var OBJECT_SINGLETON:String = "singleton" ;  
+	public static var OBJECT_SINGLETON:String = "singleton" ;  
 
 	/**
 	 * Defines the label of the type of the object.
 	 */
-	static public var TYPE:String = "type" ;  
+	public static var TYPE:String = "type" ;  
 
 	/**
 	 * Defines the label of the reference in a property object.
 	 */
-	static public var REFERENCE:String = "ref" ;  
+	public static var REFERENCE:String = "ref" ;  
 
 	/**
 	 * Defines the label of the value in a property object.
 	 */
-	static public var VALUE:String = "value" ;  
+	public static var VALUE:String = "value" ;  
 
 	/**
 	 * Create the objects and fill the IObjectDefinitionContainer.

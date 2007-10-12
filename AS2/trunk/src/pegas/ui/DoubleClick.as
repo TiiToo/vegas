@@ -62,7 +62,7 @@ class pegas.ui.DoubleClick
 	 * Returns the delay between 2 clicks.
 	 * @return the delay between 2 clicks.
 	 */
-	static public function get delay():Number
+	public static function get delay():Number
 	{
 		return _delay ;
 	}
@@ -70,7 +70,7 @@ class pegas.ui.DoubleClick
    	/**
    	 * Sets the delay between 2 clicks.
    	 */
-	static public function set delay(n:Number):Void 
+	public static function set delay(n:Number):Void 
 	{
 		_delay = n > 0 ? n : 0 ;
 	}
@@ -79,7 +79,7 @@ class pegas.ui.DoubleClick
 	 * Returns {@code true} if the last click with the mouse is a double click.
 	 * @return {@code true} if the last click with the mouse is a double click.
 	 */
-	static public function get ISDOUBLE():Boolean 
+	public static function get ISDOUBLE():Boolean 
 	{
 		if (!_dispatcher) initialize() ;
 		return __ISDOUBLE__ ;
@@ -89,7 +89,7 @@ class pegas.ui.DoubleClick
 	 * Registers an object to receive event notification messages.
 	 * @return {@code true} of the listener is register.
 	 */
-	static public function addListener(listener):Boolean 
+	public static function addListener(listener):Boolean 
 	{
 		if ( _dispatcher == null ) 
 		{
@@ -102,7 +102,7 @@ class pegas.ui.DoubleClick
 	 * Initialize the double click dispatcher.
 	 * @return {@code true} if the initialize process is success.
 	 */
-	static public function initialize():Boolean 
+	public static function initialize():Boolean 
 	{
 		if (_dispatcher == null)
 		{
@@ -121,7 +121,7 @@ class pegas.ui.DoubleClick
 	 * Release the double click dispatcher.
 	 * @return {@code true} if the release process is success.
 	 */
-	static public function release():Boolean
+	public static function release():Boolean
 	{
 		if ( _dispatcher != null )
 		{
@@ -140,7 +140,7 @@ class pegas.ui.DoubleClick
 	 * Removes an object from the list of objects that receive event notification messages.
 	 * @return {@code true} of the listener is removed.
 	 */
-	static public function removeListener(listener):Boolean 
+	public static function removeListener(listener):Boolean 
 	{
 		return _dispatcher.removeListener(listener) ;
 	}
@@ -148,7 +148,7 @@ class pegas.ui.DoubleClick
 	/**
 	 * Removes all objects from the list of objects that receive event notification messages.
 	 */
-	static public function removeAllListeners():Void 
+	public static function removeAllListeners():Void 
 	{
 		_dispatcher.removeAllListeners() ;
 	}
@@ -157,21 +157,21 @@ class pegas.ui.DoubleClick
 	 * Returns the string representation of this object.
 	 * @return the string representation of this object.
 	 */
-	static public function toString():String 
+	public static function toString():String 
 	{
 		return "[DoubleClick]" ;
 	}
 
-	static private var _delay:Number = 250 ;
-	static private var _itv:Number ;
-	static private var _cpt:Number ;
-	static private var _dispatcher:FastDispatcher ;
-	static private var __ISDOUBLE__:Boolean = false ;
+	private static var _delay:Number = 250 ;
+	private static var _itv:Number ;
+	private static var _cpt:Number ;
+	private static var _dispatcher:FastDispatcher ;
+	private static var __ISDOUBLE__:Boolean = false ;
 	
 	/**
 	 * Invoqued when the mouse is down.
 	 */
-	static private function onMouseDown():Void
+	private static function onMouseDown():Void
 	{
 		_cpt ++ ;
 		__ISDOUBLE__ = _cpt == 2 ;
@@ -185,7 +185,7 @@ class pegas.ui.DoubleClick
 	/**
 	 * Reset the effect.
 	 */	
-	static private function reset():Void
+	private static function reset():Void
 	{
 		clearInterval(_itv);
 		__ISDOUBLE__ = false ;

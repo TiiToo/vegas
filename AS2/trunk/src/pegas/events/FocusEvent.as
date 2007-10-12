@@ -45,24 +45,24 @@ class pegas.events.FocusEvent extends DynamicEvent
 	/**
 	 * [static] Dispatched after a display object gains focus.
 	 */
-	static public var FOCUS_IN:String = "focusIn" ;
+	public static var FOCUS_IN:String = "focusIn" ;
 	
 	/**
 	 * [static] Dispatched after a display object loses focus.
 	 */
-	static public var FOCUS_OUT:String = "focusOut" ;
+	public static var FOCUS_OUT:String = "focusOut" ;
 
 	/**
 	 * [static] Dispatched when the user attempts to change focus using keyboard navigation.
 	 */
-	static public var KEY_FOCUS_CHANGE:String = "keyFocusChange" ;
+	public static var KEY_FOCUS_CHANGE:String = "keyFocusChange" ;
 	
 	/**
 	 * [static] Dispatched when the user attempts to change focus by using a pointer device.
 	 */
-	static public var MOUSE_FOCUS_CHANGE:String = "MouseFocusChange" ;
+	public static var MOUSE_FOCUS_CHANGE:String = "MouseFocusChange" ;
 
-	static private var __ASPF__ = _global.ASSetPropFlags(FocusEvent, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(FocusEvent, null , 7, 7) ;
 
 	/**
 	 * The key code value of the key pressed to trigger a keyFocusChange event.

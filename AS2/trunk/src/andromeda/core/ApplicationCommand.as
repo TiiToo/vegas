@@ -36,7 +36,7 @@ class andromeda.core.ApplicationCommand
 	/**
 	 * Change the loader's values (message and percent).
 	 */
-	static public function changeLoader( message , percent:Number ):Void
+	public static function changeLoader( message , percent:Number ):Void
 	{
 		
 		percent = (percent > 0 ) ? percent : 0 ;
@@ -59,7 +59,7 @@ class andromeda.core.ApplicationCommand
 	/**
 	 * Hide the loader display of the application.
 	 */
-	static public function hideLoader():Void
+	public static function hideLoader():Void
 	{
 		if ( ! _lockLoader )
 		{
@@ -75,7 +75,7 @@ class andromeda.core.ApplicationCommand
 	 * Returns (@code true} if the loader is locked.
 	 * @return (@code true} if the loader is locked.
 	 */
-	static public function isLockLoader():Boolean
+	public static function isLockLoader():Boolean
 	{
 		return _lockLoader ;	
 	}
@@ -83,7 +83,7 @@ class andromeda.core.ApplicationCommand
 	/**
 	 * Locks the loader. The loader is alway visible.
 	 */
-	static public function lockLoader():Void
+	public static function lockLoader():Void
 	{
 		_lockLoader = true ;
 		showLoader() ;	
@@ -92,7 +92,7 @@ class andromeda.core.ApplicationCommand
 	/**
 	 * Protect the application with the protect screen.
 	 */
-	static public function protectScreen():Void
+	public static function protectScreen():Void
 	{
 		DisplayObjectCollector.get(ApplicationList.PROTECT_SCREEN).show() ;
 	}
@@ -100,7 +100,7 @@ class andromeda.core.ApplicationCommand
 	/**
 	 * Show the loader display of the application.
 	 */
-	static public function showLoader():Void
+	public static function showLoader():Void
 	{
 		protectScreen() ;
 		if ( DisplayObjectCollector.contains( ApplicationList.APPLICATION_LOADER ) ) 
@@ -113,7 +113,7 @@ class andromeda.core.ApplicationCommand
 	 * Unlocks the loader. The loader is visible or invisible when the user use the hideLoader or showLoader methods.
 	 * @param b (optional) the boolean flag value to indicates if the loader must be visible or not after the unlock process of the loader.
 	 */
-	static public function unlockLoader( b:Boolean ):Void
+	public static function unlockLoader( b:Boolean ):Void
 	{
 		_lockLoader = false ;
 		if ( b != null )
@@ -132,7 +132,7 @@ class andromeda.core.ApplicationCommand
 	/**
 	 * Unprotect the application with the protect screen.
 	 */
-	static public function unprotectScreen():Void
+	public static function unprotectScreen():Void
 	{
 		DisplayObjectCollector.get(ApplicationList.PROTECT_SCREEN).hide() ;
 	}
@@ -140,6 +140,6 @@ class andromeda.core.ApplicationCommand
 	/**
 	 * This internal value lock the loader. The loader is always visible.
 	 */
-	static private var _lockLoader:Boolean ;
+	private static var _lockLoader:Boolean ;
 
 }

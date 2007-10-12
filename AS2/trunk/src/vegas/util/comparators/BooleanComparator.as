@@ -94,7 +94,7 @@ class vegas.util.comparators.BooleanComparator extends CoreObject implements ICo
 	 * Clients are encouraged to use the value returned from this method instead of constructing a new instance to reduce allocation and garbage collection overhead when multiple BooleanComparators may be used in the same application.
 	 * @return a BooleanComparator instance that sorts false values before true values.
 	 */
-	static public function getFalseFirstComparator():BooleanComparator
+	public static function getFalseFirstComparator():BooleanComparator
 	{
 		if (_falseFirstInstance == null)
 		{
@@ -108,7 +108,7 @@ class vegas.util.comparators.BooleanComparator extends CoreObject implements ICo
 	 * Clients are encouraged to use the value returned from this method instead of constructing a new instance to reduce allocation and garbage collection overhead when multiple BooleanComparators may be used in the same application.
 	 * @return a BooleanComparator instance that sorts true values before false values.
 	 */
-	static public function getTrueFirstComparator():BooleanComparator
+	public static function getTrueFirstComparator():BooleanComparator
 	{
 		if (_trueFirstInstance == null)
 		{
@@ -130,11 +130,11 @@ class vegas.util.comparators.BooleanComparator extends CoreObject implements ICo
 	/**
 	 * The internal singleton reference who define a BooleanComparator that sorts false values before true values.
 	 */
-	static private var _falseFirstInstance:BooleanComparator ; 
+	private static var _falseFirstInstance:BooleanComparator ; 
 	
 	/**
 	 * The internal singleton reference who define a BooleanComparator that sorts true values before false values.
 	 */
-	static private var _trueFirstInstance:BooleanComparator ; 
+	private static var _trueFirstInstance:BooleanComparator ; 
 
 }

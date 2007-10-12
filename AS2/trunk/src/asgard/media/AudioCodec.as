@@ -35,27 +35,27 @@ class asgard.media.AudioCodec
 	/**
 	 * The ADPCM audio codec value.
 	 */
-	static public var ADPCM:Number = 1 ;
+	public static var ADPCM:Number = 1 ;
 
 	/**
 	 * The MP3 audio codec value.
 	 */
-	static public var MP3:Number = 2 ;
+	public static var MP3:Number = 2 ;
 
 	/**
 	 * The first NellyMoser audio codec value.
 	 */
-	static public var NELLY_MOSER_1:Number = 5 ;
+	public static var NELLY_MOSER_1:Number = 5 ;
 
 	/**
 	 * The second NellyMoser audio codec value.
 	 */
-	static public var NELLY_MOSER_2:Number = 6 ;
+	public static var NELLY_MOSER_2:Number = 6 ;
 
 	/**
 	 * The Uncompressed audio codec value.
 	 */
-	static public var UNCOMPRESSED:Number = 0 ;
+	public static var UNCOMPRESSED:Number = 0 ;
 	
 	/**
 	 * Returns {@code true} if the specified id in argument is a valid audio codec.

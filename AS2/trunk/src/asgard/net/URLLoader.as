@@ -54,7 +54,7 @@ class asgard.net.URLLoader extends AbstractLoader
 	/**
 	 * The default content type of this {@code ILoader} object.
 	 */
-	static public var DEFAULT_CONTENT_TYPE:String = "application/x-www-form-urlencoded" ;
+	public static var DEFAULT_CONTENT_TYPE:String = "application/x-www-form-urlencoded" ;
 	
 	/**
 	 * (read-write) Returns the data format of this loader.

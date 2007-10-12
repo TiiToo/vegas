@@ -56,7 +56,7 @@ class pegas.colors.BasicColor extends Color implements IFormattable, IHashable
 		_mc = mc ;
 	}
 
-	static private var _initHashCode:Boolean = HashCode.initialize(BasicColor.prototype) ;
+	private static var _initHashCode:Boolean = HashCode.initialize(BasicColor.prototype) ;
 
 	/**
 	 * Return the BasicColor target MovieClip.

@@ -31,20 +31,20 @@ class pegas.draw.ArcType
 	/**
 	 * The chord type.
 	 */
-	static public var CHORD:String = "CHORD" ;
+	public static var CHORD:String = "CHORD" ;
 	
 	/**
 	 * The pie type.
 	 */
-	static public var PIE:String = "PIE" ;
+	public static var PIE:String = "PIE" ;
 
-	static private var __ASPF__ = _global.ASSetPropFlags(ArcType, null, 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(ArcType, null, 7, 7) ;
 
 	/**
 	 * Returns {@code true} if the specified type in argument is a valide ArcType.
 	 * @return {@code true} if the specified type in argument is a valide ArcType.
 	 */
-	static public function validate(type:String):Boolean 
+	public static function validate(type:String):Boolean 
 	{
 		return (type == ArcType.CHORD || type == ArcType.PIE) ;
 	}

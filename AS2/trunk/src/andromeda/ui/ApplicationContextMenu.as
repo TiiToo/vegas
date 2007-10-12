@@ -163,7 +163,7 @@ class andromeda.ui.ApplicationContextMenu extends ConfigurableObject
 	 * Returns the singleton reference of this class.
 	 * @return the singleton reference of this class.
 	 */
-	static public function getInstance():ApplicationContextMenu 
+	public static function getInstance():ApplicationContextMenu 
 	{
 		if (!_instance) 
 		{

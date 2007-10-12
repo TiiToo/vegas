@@ -81,7 +81,7 @@ class andromeda.ioc.core.ObjectDefinitionContainer extends CoreObject implements
 {
 	
 	/**
-	 * Creates a new DefinitionContainer instance.
+	 * Creates a new ObjectDefinitionContainer instance.
 	 */
 	public function ObjectDefinitionContainer() 
 	{

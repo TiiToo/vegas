@@ -35,7 +35,7 @@ class andromeda.ioc.core.ObjectDefinition extends CoreObject implements IObjectD
 {
 
 	/**
-	 * Creates a new Definition instance.
+	 * Creates a new ObjectDefinition instance.
 	 * @param type the type of the {@code ObjectDefinition} object.
 	 * @param singleton the boolean flag to indicate if the object is a sigleton or not.
 	 */	

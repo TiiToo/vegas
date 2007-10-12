@@ -59,12 +59,12 @@ class lunas.display.abstract.AbstractContainerDisplay extends AbstractComponentD
 	/**
 	 * The default container depth.
 	 */
-	static public var DEFAULT_CONTAINER_DEPTH:Number = 100 ;
+	public static var DEFAULT_CONTAINER_DEPTH:Number = 100 ;
 	
 	/**
 	 * The default container name.
 	 */
-	static public var DEFAULT_CONTAINER_NAME:String  = "container" ;
+	public static var DEFAULT_CONTAINER_NAME:String  = "container" ;
 	
 	/**
 	 * The container reference of this display.

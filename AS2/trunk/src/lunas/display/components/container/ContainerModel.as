@@ -52,13 +52,13 @@ class lunas.display.components.container.ContainerModel extends AbstractModel im
 		
 	}
 	
-	static public var ADD_ITEMS:String = ModelChangedEventType.ADD_ITEMS ; 
+	public static var ADD_ITEMS:String = ModelChangedEventType.ADD_ITEMS ; 
 
-	static public var CLEAR_ITEMS:String = ModelChangedEventType.CLEAR_ITEMS ; 
+	public static var CLEAR_ITEMS:String = ModelChangedEventType.CLEAR_ITEMS ; 
 
-	static public var REMOVE_ITEMS:String = ModelChangedEventType.REMOVE_ITEMS ; 
+	public static var REMOVE_ITEMS:String = ModelChangedEventType.REMOVE_ITEMS ; 
 
-	static public var UPDATE_ITEMS:String = ModelChangedEventType.UPDATE_ITEMS ;
+	public static var UPDATE_ITEMS:String = ModelChangedEventType.UPDATE_ITEMS ;
 
 	public function addChild( oChild ) 
 	{

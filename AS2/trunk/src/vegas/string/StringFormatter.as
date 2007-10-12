@@ -94,14 +94,14 @@ class vegas.string.StringFormatter extends AbstractFormatter
 		var ch:String = "" ;
 		var pos:Number = 0 ;
 		
-		var next = function() 
+		var next:Function = function():String
 		{
 			ch = format.charAt( pos );
 			pos++ ;
 			return ch ;
 		};
 		
-		var getIndexValue = function( index:Number ):String 
+		var getIndexValue:Function = function( index:Number ):String 
 		{
 			var cur = args[index] ;
 			if( cur ) 

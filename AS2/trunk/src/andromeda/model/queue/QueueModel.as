@@ -52,12 +52,12 @@ class andromeda.model.queue.QueueModel extends AbstractModelObject
 	/**
 	 * Default event type when the dequeue method is invoqued.
 	 */
-	static public var DEQUEUE_VO:String = "onDequeueVO" ;
+	public static var DEQUEUE_VO:String = "onDequeueVO" ;
 	
 	/**
 	 * Default event type when the enqueue method is invoqued.
 	 */
-	static public var ENQUEUE_VO:String = "onEnqueueVO" ;
+	public static var ENQUEUE_VO:String = "onEnqueueVO" ;
 
 	/**
 	 * Removes all value objects in the model.
@@ -73,9 +73,7 @@ class andromeda.model.queue.QueueModel extends AbstractModelObject
 	 */
 	public function dequeue():Void
 	{
-		var vo:IValueObject = _queue.poll() ;
-		_eDequeue.setVO( vo ) ;
-		dispatchEvent( _eDequeue ) ;
+		notifyDequeue( _queue.poll() ) ;
 	}
 
 	/**
@@ -89,8 +87,7 @@ class andromeda.model.queue.QueueModel extends AbstractModelObject
 		}
 		validate(vo) ;
 		_queue.enqueue( vo ) ;
-		_eEnqueue.setVO( vo ) ;
-		dispatchEvent( _eEnqueue ) ;
+		notifyEnqueue( vo ) ;
 	}
 
 	/**
@@ -156,6 +153,32 @@ class andromeda.model.queue.QueueModel extends AbstractModelObject
 	{
 		return _queue.iterator() ;	
 	}
+
+    /**
+     * Notify a {@code ModelObjectEvent} when a {@code IValueObject} is dequeue in the model.
+     */ 
+    public function notifyDequeue( vo:IValueObject ):Void
+    {
+        if ( isLocked() )
+        {
+            return ;
+        }
+		_eDequeue.setVO( vo ) ;
+		dispatchEvent( _eDequeue ) ;
+    }
+    
+    /**
+     * Notify a {@code ModelObjectEvent} when a {@code IValueObject} is enqueue in the model.
+     */ 
+    public function notifyEnqueue( vo:IValueObject ):Void
+    {
+        if ( isLocked() )
+        {
+            return ;
+        }
+		_eEnqueue.setVO( vo ) ;
+		dispatchEvent( _eEnqueue ) ;
+    }
 
 	/**
 	 * Sets the event name use in the {@code enqueue} method.

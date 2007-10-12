@@ -69,20 +69,20 @@ class pegas.maths.Range extends CoreObject implements ICloneable, IEquality
 	/**
 	 * Range between 0 and 100.
 	 */
-	static public var PERCENT_RANGE:Range = new Range(0, 100) ;
+	public static var PERCENT_RANGE:Range = new Range(0, 100) ;
 	
 	/**
 	 * Range between -255 and 255.
 	 */
-	static public var COLOR_RANGE:Range = new Range(-255, 255) ;
+	public static var COLOR_RANGE:Range = new Range(-255, 255) ;
 
 	/**
 	 * Range reference between 0 and 1.
 	 */
-    static public var UNITY_RANGE:Range = new Range(0, 1) ;
+    public static var UNITY_RANGE:Range = new Range(0, 1) ;
 
 
-	static private var __ASPF__ = _global.ASSetPropFlags(Range, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(Range, null , 7, 7) ;
 	
 	/**
 	 * The max value of the range.
@@ -119,7 +119,7 @@ class pegas.maths.Range extends CoreObject implements ICloneable, IEquality
 	 * @param range1 the first range, {@code null} permitted.
 	 * @param range2 the second range, {@code null} permitted.
 	 */
-	static public function combine( range1:Range, range2:Range ):Range
+	public static function combine( range1:Range, range2:Range ):Range
 	{
 		if (range1 == null)
 		{
@@ -174,7 +174,7 @@ class pegas.maths.Range extends CoreObject implements ICloneable, IEquality
 	 * @return The expanded range.
 	 * @throws IllegalArgumentError if the range argument is {@code null}
 	 */
-	static public function expand(range:Range, lowerMargin:Number, upperMargin:Number):Range
+	public static function expand(range:Range, lowerMargin:Number, upperMargin:Number):Range
 	{
 		if (range == null)
 		{

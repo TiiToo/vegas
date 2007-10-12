@@ -54,7 +54,7 @@ class asgard.events.LocalizationLoaderEvent extends LoaderEvent
 		
 	}
 	
-	static public var CHANGE:String = "change" ;
+	public static var CHANGE:String = "change" ;
 
 	/**
 	 * Creates and returns a shallow copy of this instance.

@@ -39,7 +39,7 @@ class vegas.util.factory.EventFactory
 	 * @param target (optional) The scope of the target of the new Event.
 	 * @param context (optional) The context of the new Event.
 	 */
-	static public function create(o, target:EventTarget, context:Object):Event 
+	public static function create(o, target:EventTarget, context:Object):Event 
 	{
 		
 		var e:Event = null ;

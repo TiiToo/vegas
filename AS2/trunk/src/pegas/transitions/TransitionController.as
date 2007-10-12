@@ -141,7 +141,7 @@ class pegas.transitions.TransitionController extends AbstractCoreEventDispatcher
 	/**
 	 * The singleton reference of this class.
 	 */
-	static private var _instance:TransitionController ;
+	private static var _instance:TransitionController ;
 
 	/**
 	 * Internal HashMap instance.

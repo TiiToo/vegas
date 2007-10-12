@@ -59,27 +59,27 @@ class lunas.display.ReflectDisplay extends ConfigurableDisplayObject implements 
 	/**
 	 * The default icon depth of this display. 
 	 */
-	static public var DEFAULT_ICON_DEPTH:Number = 100 ;
+	public static var DEFAULT_ICON_DEPTH:Number = 100 ;
 
 	/**
 	 * The default mask depth of this display. 
 	 */
-	static public var DEFAULT_MASK_DEPTH:Number = 9999 ;
+	public static var DEFAULT_MASK_DEPTH:Number = 9999 ;
 
 	/**
 	 * The default reflect depth of this display. 
 	 */
-	static public var DEFAULT_REFLECT_NAME:String = "mcReflect" ;
+	public static var DEFAULT_REFLECT_NAME:String = "mcReflect" ;
 
 	/**
 	 * The default reflect depth of this display. 
 	 */
-	static public var DEFAULT_REFLECT_DEPTH:Number = 9000 ;
+	public static var DEFAULT_REFLECT_DEPTH:Number = 9000 ;
 
 	/**
 	 * The default mask depth of this display. 
 	 */
-	static public var DEFAULT_MASK_NAME:String = "mcMask" ;
+	public static var DEFAULT_MASK_NAME:String = "mcMask" ;
 	
 	/**
 	 * The alpha value of this display.

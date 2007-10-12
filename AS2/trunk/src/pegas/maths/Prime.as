@@ -32,7 +32,7 @@ class pegas.maths.Prime
 	 * Defines an array of all primes between 'from' and 'n' inclusive, positive but restricted integer value, ignores decimals.
 	 * @return a array representation of all primes between {@code from} and {@code n} inclusive}
 	 */
-	static public function findPrimeFrom(n:Number,from:Number):Array 
+	public static function findPrimeFrom(n:Number,from:Number):Array 
 	{
 		n |= 0 ;
         from |= 0 ;
@@ -72,7 +72,7 @@ class pegas.maths.Prime
 	/**
 	 * Defines an array of all primes between 2 and 'n' inclusive.
 	 */
-	static public function generatePrimes(limit:Number):Array 
+	public static function generatePrimes(limit:Number):Array 
 	{
 		var b:Boolean ;
 		var a:Array = new Array() ;
@@ -85,7 +85,7 @@ class pegas.maths.Prime
 	 * Boolean for 'isPrime' integer condition, ignores decimals.
 	 * Successive division.
 	 */
-	static public function isPrime(n:Number):Boolean 
+	public static function isPrime(n:Number):Boolean 
 	{ 
 		if (n<3) return ( n == 2 ) ; 
 		else if ((n%2) == 0) return false ;
@@ -101,7 +101,7 @@ class pegas.maths.Prime
 	 * Defines prime factors of 'n', positive but restricted integer value, ignores decimals.
 	 * @return a string representation of the multiplication of primes of 'n'.
 	 */
-	static public function primeFactor(n:Number):String 
+	public static function primeFactor(n:Number):String 
 	{
         var bFlag:Boolean;
         n |= 0;
@@ -148,7 +148,7 @@ class pegas.maths.Prime
 	/**
 	 * Defines total of relative primes of 'n'.
 	 */
-	static public function totient(n:Number):Number 
+	public static function totient(n:Number):Number 
 	{
         var k:Number = 1;
         var j:Number;

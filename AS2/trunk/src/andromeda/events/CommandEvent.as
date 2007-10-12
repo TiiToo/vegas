@@ -43,7 +43,7 @@ class andromeda.events.CommandEvent extends AbstractController
 	/**
 	 * The name of the event invoqued to run a command.
 	 */
-	static public var RUN_COMMAND:String = "onRunCommand" ;
+	public static var RUN_COMMAND:String = "onRunCommand" ;
 	
 	/**
 	 * Returns the Command reference.

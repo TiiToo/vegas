@@ -53,7 +53,7 @@ class vegas.util.comparators.ComparableComparator extends CoreObject implements 
 	 * Developers are encouraged to use the comparator returned from this method instead of constructing a new instance to reduce allocation and GC overhead when multiple comparable comparators may be used in the same application.
 	 * @return the singleton instance of a ComparableComparator.
 	 */
-	static public function getInstance():ComparableComparator
+	public static function getInstance():ComparableComparator
 	{
 		if (_instance == null)
 		{
@@ -65,6 +65,6 @@ class vegas.util.comparators.ComparableComparator extends CoreObject implements 
 	/**
 	 * The internal static singleton of this class.
 	 */
-	static private var _instance:ComparableComparator ;
+	private static var _instance:ComparableComparator ;
 
 }

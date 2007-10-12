@@ -33,21 +33,21 @@ class asgard.net.StreamPublishType
 	 * Flash Player publishes and records live data, appending the recorded data to an FLV file with a name that matches the value passed to the name parameter, stored on the server in a subdirectory within the directory that contains the server application. 
 	 * If no file with a matching name the name parameter is found, it is created.
 	 */
-	static public var APPEND:String = "append" ;
+	public static var APPEND:String = "append" ;
 	
 	/**
 	 * The default type value of the Stream publish method. 
 	 * Flash Player publishes live data without recording it. 
 	 * If a file with a name that matches the value passed to the name parameter exists, it is deleted.
 	 */
-	static public var LIVE:String = "live" ;
+	public static var LIVE:String = "live" ;
 	
 	/**
 	 * If you pass "record", Flash Player publishes and records live data, saving the recorded data to a new FLV file with a name matching the value passed to the name parameter of the publish method of the Stream reference. 
 	 * The file is stored on the server in a subdirectory within the directory that contains the server application. 
 	 * If the file already exists, it is overwritten.
 	 */
-	static public var RECORD:String = "record" ;
+	public static var RECORD:String = "record" ;
 	
 	
 }

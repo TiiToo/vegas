@@ -34,7 +34,7 @@ class vegas.util.ErrorUtil
 	 * Returns a shallow copy by reference of this specified error.
 	 * @return a shallow copy by reference of this specified error.
 	 */
-	static public function clone(e:Error):Error 
+	public static function clone(e:Error):Error 
 	{
 		return new Error(e.message) ;
 	}
@@ -43,7 +43,7 @@ class vegas.util.ErrorUtil
 	 * Returns a deep copy by value of this specified error.
 	 * @return a deep copy by value of this specified error.
 	 */
-	static public function copy(e:Error):Error 
+	public static function copy(e:Error):Error 
 	{
 		return new Error( (e.message).valueOf() ) ;
 	}
@@ -52,7 +52,7 @@ class vegas.util.ErrorUtil
 	 * Compare if two Errors are equal by reference.
 	 * @return {@code true} if the two Errors are equal by reference.
  	 */
-	static public function equals( e1:Error, e2:Error ):Boolean 
+	public static function equals( e1:Error, e2:Error ):Boolean 
 	{
     	if(e1 == null || !TypeUtil.typesMatch(e1, Error))
         {
@@ -69,7 +69,7 @@ class vegas.util.ErrorUtil
 	 * Returns a string representing the source code of the object.
 	 * @return a string representing the source code of the object.
  	 */
-	static public function toSource( e:Error ):String 
+	public static function toSource( e:Error ):String 
 	{
 		return 'new Error("' + e.message + '")'  ;
 	}

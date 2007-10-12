@@ -91,8 +91,8 @@ class lunas.display.components.bar.EasyScrollbar extends AbstractScrollbar
 
 	// ----o Constant
 	
-	static public var BAR_RENDERER:Function = RectangleComponent ;
-	static public var THUMB_RENDERER:Function = RectangleComponent ;
+	public static var BAR_RENDERER:Function = RectangleComponent ;
+	public static var THUMB_RENDERER:Function = RectangleComponent ;
 
 	// ----o Public Properties
 

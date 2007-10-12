@@ -40,38 +40,38 @@ class vegas.logging.Log
 	/**
 	 * const The default categoty of the {@code ILogger} instances returns with the {@code getLogger} method.
 	 */
-	static public var DEFAULT_CATEGORY:String = "" ;
+	public static var DEFAULT_CATEGORY:String = "" ;
 	
 	/**
 	 * const The string representation of all the illegal characters.
 	 */
-	static public var ILLEGALCHARACTERS:String = "[]~$^&/\\(){}<>+=`!#%?,:;'\"@" ;
+	public static var ILLEGALCHARACTERS:String = "[]~$^&/\\(){}<>+=`!#%?,:;'\"@" ;
 
 	/**
 	 * The static field used when throws an Error when a character is invalid.
 	 */     
-	static public var INVALID_CHARS:String = "Categories can not contain any of the following characters : []~$^&/\\(){}<>+=`!#%?,:;'\"@" ;
+	public static var INVALID_CHARS:String = "Categories can not contain any of the following characters : []~$^&/\\(){}<>+=`!#%?,:;'\"@" ;
       
 	/**
 	 * The static field used when throws an Error when the length of one character is invalid.
 	 */     
-    static public var INVALID_LENGTH:String = "Categories must be at least one character in length." ;
+    public static var INVALID_LENGTH:String = "Categories must be at least one character in length." ;
 
     /**
 	 * The static field used when throws an Error when the specified target is invalid.
 	 */     
-    static public var INVALID_TARGET:String = "Log, Invalid target specified." ;
+    public static var INVALID_TARGET:String = "Log, Invalid target specified." ;
 
 	/**
 	 * The static field used when throws a Warning when the specified target is invalid.
 	 */
-	static public var REMOVE_TARGET_FAILED:String = "The target is invalid, isn't register for the moment, you can't remove it" ;
+	public static var REMOVE_TARGET_FAILED:String = "The target is invalid, isn't register for the moment, you can't remove it" ;
 
 	/**
 	 * Allows the specified target to begin receiving notification of log events.
 	 * @param target specific target that should capture log events.
 	 */
-	static public function addTarget( target:ITarget ):Void 
+	public static function addTarget( target:ITarget ):Void 
 	{
 		if (target != null)
 		{
@@ -86,7 +86,7 @@ class vegas.logging.Log
 	/**
 	 * This method removes all of the current loggers from the cache.
 	 */
-	static public function flush():Void 
+	public static function flush():Void 
 	{
 		_categories.clear() ;
 	}
@@ -98,7 +98,7 @@ class vegas.logging.Log
 	 * @return An instance of a logger object for the specified name. If the name doesn't exist, a new instance with the specified name is returned.
 	 * @throws InvalidCategoryError if the category specified is malformed.
 	 */
-	static public function getLogger(category:String, isQueue:Boolean):ILogger 
+	public static function getLogger(category:String, isQueue:Boolean):ILogger 
 	{
 		
 		checkCategory( category ) ;
@@ -118,7 +118,7 @@ class vegas.logging.Log
 	 * @param value The String to check for illegal characters. The following characters are not valid: []~$^&\/(){}<>+=`!#%?,:;'"@
 	 * @return {@code true} if there are any illegal characters found, false otherwise.
 	 */
-	static public function hasIllegalCharacters(value:String):Boolean 
+	public static function hasIllegalCharacters(value:String):Boolean 
 	{
 		return StringUtil.indexOfAny( value, ILLEGALCHARACTERS.split("") ) != -1 ;
 	}
@@ -127,7 +127,7 @@ class vegas.logging.Log
 	 * Stops the specified target from receiving notification of log events.
 	 * @param specific target that should capture log events.
 	 */
-	static public function removeTarget(target:ITarget):Void 
+	public static function removeTarget(target:ITarget):Void 
 	{
 		if( target != null )
 		{
@@ -143,7 +143,7 @@ class vegas.logging.Log
 	 * Returns the string representation of this instance.
 	 * @return the string representation of this instance
 	 */
-	static public function toString():String 
+	public static function toString():String 
 	{
 		return "[Log]" ;
 	}
@@ -151,22 +151,22 @@ class vegas.logging.Log
 	/**
 	 * The internal categories HashMap.
 	 */
-	static private var _categories:HashMap = new HashMap() ;
+	private static var _categories:HashMap = new HashMap() ;
 
 	/**
 	 * The internal logger.
 	 */
-	static private var _logger:LogLogger = new LogLogger() ;
+	private static var _logger:LogLogger = new LogLogger() ;
 
 	/**
 	 * Sentinal value for the target log level to indicate no logging.
 	 */
-	static private var NONE:Number = Number.MAX_VALUE;
+	private static var NONE:Number = Number.MAX_VALUE;
         
 	/**
 	 * The most verbose supported log level among registered targets.
 	 */
-    static private var _targetLevel:Number = Number.MAX_VALUE ;
+    private static var _targetLevel:Number = Number.MAX_VALUE ;
 
     /**
 	 * This method will ensure that a valid category string has been specified.
@@ -174,7 +174,7 @@ class vegas.logging.Log
 	 * Categories can not contain any blanks or any of the following characters: []`*~,!#$%^&amp;()]{}+=\|'";?&gt;&lt;./&#64; 
 	 * or be less than 1 character in length.
 	 */
-    static private function checkCategory(category:String):Void
+    private static function checkCategory(category:String):Void
 	{
             
 		if(category == null || category.length == 0)

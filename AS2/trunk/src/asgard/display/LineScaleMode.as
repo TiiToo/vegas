@@ -31,23 +31,23 @@ class asgard.display.LineScaleMode
 	/**
 	 * With this setting used as the scaleMode parameter of the lineStyle() method, the thickness of the line scales only vertically.
  	 */
-	static public var HORIZONTAL:String = "horizontal" ;
+	public static var HORIZONTAL:String = "horizontal" ;
 	
 	/**
 	 * With this setting used as the scaleMode parameter of the lineStyle() method, the thickness of the line never scales.
 	 */
-	static public var NONE:String = "none" ;
+	public static var NONE:String = "none" ;
 	
 	/**
 	 * With this setting used as the scaleMode parameter of the lineStyle() method, the thickness of the line always scales when the object is scaled (the default).
 	 */
-	static public var NORMAL:String = "normal" ;
+	public static var NORMAL:String = "normal" ;
 	
 	/**
 	 * With this setting used as the scaleMode parameter of the lineStyle() method, the thickness of the line scales only horizontally.
 	 */
-	static public var VERTICAL:String = "vertical" ;
+	public static var VERTICAL:String = "vertical" ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(LineScaleMode, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(LineScaleMode, null , 7, 7) ;
 
 }

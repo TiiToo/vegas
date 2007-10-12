@@ -36,7 +36,7 @@ class pegas.util.Vector3Util
 	 * @param v2 the second Vector3.
 	 * @return the addition result of two Vector3.
 	 */
-	static public function addition( v1:Vector3, v2:Vector3 ):Vector3
+	public static function addition( v1:Vector3, v2:Vector3 ):Vector3
 	{
 		 v1.x += v2.x ;
 		 v1.y += v2.y ;
@@ -50,7 +50,7 @@ class pegas.util.Vector3Util
 	 * @param v2 a Vector3 to concat.
 	 * @return the addition result of two Vector3.
 	 */
-	static public function getAddition( v1:Vector3, v2:Vector3 ):Vector3
+	public static function getAddition( v1:Vector3, v2:Vector3 ):Vector3
 	{
 		return new Vector3( (v1.x + v2.x) , (v1.y + v2.y) , (v1.z + v2.z) ) ;	
 	}
@@ -62,7 +62,7 @@ class pegas.util.Vector3Util
 	* @param v2	Vector3 The second Vector3.
 	* @return the angle in radian between the two vectors.
 	*/
-	static public function getAngle ( v1:Vector3, v2:Vector3 ):Number
+	public static function getAngle ( v1:Vector3, v2:Vector3 ):Number
 	{
 		var ncos:Number = ( Vector3Util.getDot( v1, v2 ) ) / ( getNorm(v1) * getNorm(v2) );
 		var sin2:Number = 1 - (ncos * ncos) ;
@@ -82,7 +82,7 @@ class pegas.util.Vector3Util
 	 * @param v2 a {@code Vector3}.
 	 * @return the {@code Vector3} resulting of the cross product.
 	 */
-	static public function getCross( v1:Vector3, v2:Vector3 ):Vector3
+	public static function getCross( v1:Vector3, v2:Vector3 ):Vector3
 	{
 		return new Vector3
 		( 	
@@ -98,7 +98,7 @@ class pegas.util.Vector3Util
 	 * @param v2 a {@code Vector3}.
 	 * @return the dot product of the 2 Vector3.
 	 */
-	static public function getDot( v1:Vector3, v2:Vector3 ):Number
+	public static function getDot( v1:Vector3, v2:Vector3 ):Number
 	{
 		return (v1.x * v2.x) + (v1.y * v2.y) + (v1.z * v2.z) ;	
 	}
@@ -108,7 +108,7 @@ class pegas.util.Vector3Util
 	 * @param v the vector.
 	 * @return the length of the vector.
 	 */
-	static public function getLength( v:Vector3 ):Number
+	public static function getLength( v:Vector3 ):Number
 	{
 		return Math.sqrt( (v.x * v.x) + (v.y * v.y) + (v.z * v.z) ) ;
 	}
@@ -128,7 +128,7 @@ class pegas.util.Vector3Util
 	 * @param v a Vector3 reference.
 	 * @return the norm of the specified {@code Vector3}.
 	 */
-	static public function getNorm( v:Vector3 ):Number
+	public static function getNorm( v:Vector3 ):Number
 	{
 		return Math.sqrt( (v.x * v.x) + (v.y * v.y) + (v.z * v.z) );
 	}
@@ -139,7 +139,7 @@ class pegas.util.Vector3Util
 	 * @param value the value of the pow..
 	 * @return A new Vector3 powered by the method.
 	 */
-	static public function getPow( v:Vector3, value:Number ):Vector3
+	public static function getPow( v:Vector3, value:Number ):Vector3
 	{
 		return new Vector3( Math.pow( v.x, value ) , Math.pow( v.y, value ) ,  Math.pow( v.z, value ) ) ;
 	}
@@ -150,7 +150,7 @@ class pegas.util.Vector3Util
 	 * @param value a real number to scale the current Vector3.
 	 * @return A new Vector3 scaled by the value passed in second argument in this method.
 	 */
-	static public function getScale( v:Vector3, value:Number ):Vector3
+	public static function getScale( v:Vector3, value:Number ):Vector3
 	{
 		return new Vector3 ( v.x * value , v.y * value , v.z * value ) ;
 	}
@@ -160,7 +160,7 @@ class pegas.util.Vector3Util
 	 * @param v the vector.
 	 * @return the squared length of this vector.
 	 */
-	static public function getSquaredLength( v:Vector3 ):Number
+	public static function getSquaredLength( v:Vector3 ):Number
 	{
 		return (v.x * v.x) + (v.y * v.y) + (v.z * v.z) ;
 	}
@@ -171,7 +171,7 @@ class pegas.util.Vector3Util
 	 * @param v2 a Vector3 to substract.
 	 * @return the substraction result of two Vector3.
 	 */
-	static public function getSubstraction( v1:Vector3 , v2:Vector3 ):Vector3
+	public static function getSubstraction( v1:Vector3 , v2:Vector3 ):Vector3
 	{
 		return new Vector3( (v1.x - v2.x) , (v1.y - v2.y) , (v1.z - v2.z) ) ;
 	}
@@ -181,7 +181,7 @@ class pegas.util.Vector3Util
 	 * @param v a Vector3 reference.
 	 * @return {@code true} of the normalize method is success else false for mistake.
 	 */	
-	static public function normalize( v:Vector3 ):Boolean
+	public static function normalize( v:Vector3 ):Boolean
 	{
 		var norm:Number = getNorm( v );
 		if( norm == 0 || norm == 1) 
@@ -200,7 +200,7 @@ class pegas.util.Vector3Util
 	 * @param v2 the second {@code Vector3}.
 	 * @return the first {@code Vector3} transformed.
 	 */
-	static public function setByVector3( v1:Vector3, v2:Vector3):Vector3
+	public static function setByVector3( v1:Vector3, v2:Vector3):Vector3
 	{
 		v1.x = v2.x ;
 		v1.y = v2.y ;
@@ -213,7 +213,7 @@ class pegas.util.Vector3Util
 	 * @param vector the Vector3 reference to transform.
 	 * @param value a real number to scale the current Vector3.
 	 */
-	static public function scale( v:Vector3, value:Number ):Void
+	public static function scale( v:Vector3, value:Number ):Void
 	{
 		v.x *= value ;
 		v.y *= value ;
@@ -226,7 +226,7 @@ class pegas.util.Vector3Util
 	 * @param v2 the second Vector3.
 	 * @return the substraction result of two Vector3.
 	 */
-	static public function substraction( v1:Vector3 , v2:Vector3 ):Vector3
+	public static function substraction( v1:Vector3 , v2:Vector3 ):Vector3
 	{
 		 v1.x -= v2.x ;
 		 v1.y -= v2.y ;

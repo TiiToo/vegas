@@ -78,12 +78,12 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction
 	/**
 	 * The default delay value before notify the timeout event.
 	 */
-	static public var DEFAULT_DELAY:Number = 8000 ; // 8 secondes
+	public static var DEFAULT_DELAY:Number = 8000 ; // 8 secondes
 	
 	/**
 	 * The string representation value of the level error of the service.
 	 */
-	static public var LEVEL_ERROR:String = "error" ;
+	public static var LEVEL_ERROR:String = "error" ;
 	
 	/**
 	 * Returns a string containing a dot delimited path from the root of the Flash Remoting Server to the service name. 

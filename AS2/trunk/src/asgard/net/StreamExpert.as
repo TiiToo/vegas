@@ -65,47 +65,47 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	/**
 	 * The default delay of the internal timer of this object.
 	 */
-	static public var DEFAULT_DELAY:Number = 150  ;
+	public static var DEFAULT_DELAY:Number = 150  ;
 
 	/**
 	 * The time pattern to format the time in the getTimeString() method.
 	 */
-	static public var DEFAULT_TIME_PATTERN:String = "{0}:{1}:{2}" ;
+	public static var DEFAULT_TIME_PATTERN:String = "{0}:{1}:{2}" ;
 
 	/**
 	 * The name of the event when the stream is finished.
 	 */
-	static public var STREAM_PLAY_FINISH:String = "onStreamPlayFinish" ;
+	public static var STREAM_PLAY_FINISH:String = "onStreamPlayFinish" ;
 
 	/**
 	 * The name of the event when the stream is looped.
 	 */
-	static public var STREAM_PLAY_LOOP:String = "onStreamPlayLooped" ;
+	public static var STREAM_PLAY_LOOP:String = "onStreamPlayLooped" ;
 
 	/**
 	 * The name of the event when the stream is paused.
 	 */
-	static public var STREAM_PLAY_PAUSE:String = "onStreamPlayPause" ;
+	public static var STREAM_PLAY_PAUSE:String = "onStreamPlayPause" ;
 	
 	/**
 	 * The name of the event when the stream is in progress.
 	 */
-	static public var STREAM_PLAY_PROGRESS:String = "onStreamPlayProgress" ;
+	public static var STREAM_PLAY_PROGRESS:String = "onStreamPlayProgress" ;
 
 	/**
 	 * The name of the event when the stream is resumed.
 	 */
-	static public var STREAM_PLAY_RESUME:String = "onStreamPlayResume" ;
+	public static var STREAM_PLAY_RESUME:String = "onStreamPlayResume" ;
 
 	/**
 	 * The name of the event when the stream is started.
 	 */
-	static public var STREAM_PLAY_START:String = "onStreamPlayStart" ;
+	public static var STREAM_PLAY_START:String = "onStreamPlayStart" ;
 	
 	/**
 	 * The name of the event when the stream is stopped.
 	 */
-	static public var STREAM_PLAY_STOP:String = "onStreamPlayStop" ;
+	public static var STREAM_PLAY_STOP:String = "onStreamPlayStop" ;
 
 	/**
 	 * (read-only) Returns {@code true] if the play activity of the Stream in in progress.
@@ -190,7 +190,7 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	 * @param streamID the stream id of the StreamExpert singleton.
 	 * @return {@code true} if the StreamExpert factory contains the specified {@code StreamExpert} ID.
 	 */
-	static public function contains( streamID:String ):Boolean
+	public static function contains( streamID:String ):Boolean
 	{
 		return _map.containsKey( streamID ) ;
 	}
@@ -263,7 +263,7 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	 * @param streamID the stream id of the StreamExpert singleton.
 	 * @return a StreamExpert singleton or null .
 	 */
-	static public function getInstance( streamID:String ):StreamExpert
+	public static function getInstance( streamID:String ):StreamExpert
 	{
 		if ( _map == null)
 		{
@@ -477,7 +477,7 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	 * @param streamID the stream id of the StreamExpert singleton.
 	 * @return the removed StreamExpert singleton or null .
 	 */
-	static public function release( streamID:String ):StreamExpert
+	public static function release( streamID:String ):StreamExpert
 	{
 		if ( StreamCollector.contains( streamID ) )
 		{
@@ -681,7 +681,7 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	
 	private var _isPlaying:Boolean = false ;
 	
-	static private var _map:HashMap  ;
+	private static var _map:HashMap  ;
 	
 	private var _streamID:String ;
 	

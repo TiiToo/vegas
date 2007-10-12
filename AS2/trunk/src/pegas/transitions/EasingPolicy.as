@@ -31,11 +31,11 @@ class pegas.transitions.EasingPolicy extends Boolean
 	/**
 	 * The OFF value of the easing policy.
 	 */	
-	static public var OFF:Boolean = false ;
+	public static var OFF:Boolean = false ;
 
 	/**
 	 * The ON value of the easing policy.
 	 */	
-	static public var ON:Boolean = true ;
+	public static var ON:Boolean = true ;
 
 }

@@ -54,7 +54,7 @@ class lunas.display.components.container.ScrollContainer extends ListContainer
 	/**
 	 * The name of the event dispatched when the scroll change.
 	 */
-	static public var SCROLL:String = UIEventType.SCROLL ;
+	public static var SCROLL:String = UIEventType.SCROLL ;
 
 	/**
 	 * Returns the bottom scroll value.

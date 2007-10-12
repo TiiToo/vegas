@@ -118,7 +118,7 @@ class lunas.display.group.RadioButtonGroup extends CoreObject implements IRadioB
 		return groups[groupName] ;
 	}
 
-	static public function getInstance():RadioButtonGroup 
+	public static function getInstance():RadioButtonGroup 
 	{
 		if (_instance == undefined)  _instance = new RadioButtonGroup () ;
 		return _instance ;
@@ -219,6 +219,6 @@ class lunas.display.group.RadioButtonGroup extends CoreObject implements IRadioB
 		}
 	}
 	
-	static private var _instance : RadioButtonGroup ;	
+	private static var _instance : RadioButtonGroup ;	
 
 }

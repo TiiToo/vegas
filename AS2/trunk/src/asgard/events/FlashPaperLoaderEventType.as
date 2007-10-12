@@ -30,32 +30,32 @@ import asgard.events.LoaderEvent;
 class asgard.events.FlashPaperLoaderEventType 
 {
 
-	static public var COMPLETE:String = LoaderEvent.COMPLETE ;
+	public static var COMPLETE:String = LoaderEvent.COMPLETE ;
 	
-	static public var ENABLE_SCROLL:String = "onEnableScrolling" ;
+	public static var ENABLE_SCROLL:String = "onEnableScrolling" ;
 	
-	static public var FINISH:String = LoaderEvent.FINISH ;
+	public static var FINISH:String = LoaderEvent.FINISH ;
 	
-	static public var INIT:String = LoaderEvent.INIT ;
+	public static var INIT:String = LoaderEvent.INIT ;
 	
-	static public var IO_ERROR:String = "onLoadError" ;
+	public static var IO_ERROR:String = "onLoadError" ;
 	
-	static public var PROGRESS:String = LoaderEvent.PROGRESS ;
+	public static var PROGRESS:String = LoaderEvent.PROGRESS ;
 		
-	static public var RELEASE:String = LoaderEvent.RELEASE ;
+	public static var RELEASE:String = LoaderEvent.RELEASE ;
 
-	static public var PAGE_CHANGE:String = "onPageChanged" ;
+	public static var PAGE_CHANGE:String = "onPageChanged" ;
 
-	static public var START:String = LoaderEvent.START ;
+	public static var START:String = LoaderEvent.START ;
 	
-	static public var STOP:String = LoaderEvent.STOP ;
+	public static var STOP:String = LoaderEvent.STOP ;
 	
-	static public var TIMEOUT:String = LoaderEvent.TIMEOUT ;
+	public static var TIMEOUT:String = LoaderEvent.TIMEOUT ;
 
-	static public var TOOL_CHANGE:String = "onToolChanged" ;
+	public static var TOOL_CHANGE:String = "onToolChanged" ;
 
-	static public var ZOOM_CHANGE:String = "onZoomChanged" ;
+	public static var ZOOM_CHANGE:String = "onZoomChanged" ;
 
-	static public var VISIBLE_AREA_CHANGE:String = "onVisibleAreaChanged" ;
+	public static var VISIBLE_AREA_CHANGE:String = "onVisibleAreaChanged" ;
 	
 }

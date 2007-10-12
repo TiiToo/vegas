@@ -70,42 +70,42 @@ class vegas.events.ModelChangedEvent extends BasicEvent
 	/**
 	 * The type of a ModelChangedEvent when an item is added in this model.
 	 */
-	static public var ADD_ITEMS:String = "addItems" ; 
+	public static var ADD_ITEMS:String = "addItems" ; 
 
 	/**
 	 * The type of a ModelChangedEvent when clear all items in the model.
 	 */
-	static public var CLEAR_ITEMS:String = "clear" ;
+	public static var CLEAR_ITEMS:String = "clear" ;
 
 	/**
 	 * The type of a ModelChangedEvent when the model is changed.
 	 */
-	static public var MODEL_CHANGED:String = "modelChanged" ;
+	public static var MODEL_CHANGED:String = "modelChanged" ;
 
 	/**
 	 * The type of a ModelChangedEvent when an item is removed in this model.
 	 */
-	static public var REMOVE_ITEMS:String = "removeItems" ;
+	public static var REMOVE_ITEMS:String = "removeItems" ;
 
 	/**
 	 * The type of a ModelChangedEvent when the model is sorted.
 	 */
-	static public var SORT_ITEMS:String = "sortItems" ;
+	public static var SORT_ITEMS:String = "sortItems" ;
 
 	/**
 	 * The type of a ModelChangedEvent when all is update in the model.
 	 */
-	static public var UPDATE_ALL:String = "updateAll" ;
+	public static var UPDATE_ALL:String = "updateAll" ;
 
 	/**
 	 * The type of a ModelChangedEvent when a field in the model is updated.
 	 */
-	static public var UPDATE_FIELD:String = "updateField" ;
+	public static var UPDATE_FIELD:String = "updateField" ;
 
 	/**
 	 * The type of a ModelChangedEvent when an item in the model changed.
 	 */
-	static public var UPDATE_ITEMS:String = "updateItems" ;
+	public static var UPDATE_ITEMS:String = "updateItems" ;
 
 	/**
 	 * The data of this event.

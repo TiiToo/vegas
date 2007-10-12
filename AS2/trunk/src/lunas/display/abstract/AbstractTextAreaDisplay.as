@@ -50,17 +50,17 @@ class lunas.display.abstract.AbstractTextAreaDisplay extends AbstractLabelDispla
 	/**
 	 * Determinates the value of the ScrollPolicy 'auto' mode.
 	 */
-	static public var AUTO:Number = ScrollPolicy.AUTO ;
+	public static var AUTO:Number = ScrollPolicy.AUTO ;
 	
 	/**
 	 * Determinates the value of the ScrollPolicy 'off' mode.
 	 */
-	static public var OFF:Number = ScrollPolicy.OFF ;
+	public static var OFF:Number = ScrollPolicy.OFF ;
 	
 	/**
 	 * Determinates the value of the ScrollPolicy 'on' mode.
 	 */
-	static public var ON:Number = ScrollPolicy.ON ;
+	public static var ON:Number = ScrollPolicy.ON ;
 
 	/**
 	 * Indicates whether the component is editable {@code true} or not {@code false}. 

@@ -53,7 +53,7 @@ class vegas.core.types.Char extends String implements IFormattable, IHashable, I
 	/**
 	 * Init the hashcode representation of the class.
 	 */
-	static private var _initHashCode:Boolean = HashCode.initialize(Char.prototype) ;
+	private static var _initHashCode:Boolean = HashCode.initialize(Char.prototype) ;
 	
 	/**
 	 * Returns the integer character code for the character.

@@ -35,18 +35,18 @@ class asgard.display.StageLocalizer
 	/**
 	 * The default value of the Stage.width when the FlashPlayer is open.
 	 */
-	static public var WIDTH = Stage.width ;
+	static public var WIDTH:Number = Stage.width ;
 
 	/**
 	 * The default value of the Stage.height when the FlashPlayer is open.
 	 */
-	static public var HEIGHT = Stage.height ;
+	static public var HEIGHT:Number = Stage.height ;
 
 	/**
 	 * Localize the position of a specified point on the Stage with the current Stage.align property.
 	 * @return the string representation of the StageAlign defined for the point passed in argument.
 	 */
-	static public function localizePoint(p):String 
+	static public function localizePoint( p ):String 
 	{
 		var middle:Point = getMiddle() ;
 		var x1:Number = p.x ;
@@ -182,7 +182,7 @@ class asgard.display.StageLocalizer
 	 * Returns a vertical mirror StageAlign string representation of the string passed in argument. 
 	 * @return a vertical StageAlign string representation of the string passed in argument.
 	 */
-	static public function getVerticalMirror(point):String 
+	static public function getVerticalMirror( point ):String 
 	{
 		var align:String = localizePoint(point) ;
 		switch (align.toUpperCase () ) 

@@ -122,17 +122,17 @@ class andromeda.media.SoundLibrary extends SoundModel
 	/**
 	 * The default gain of all sounds the first time in the library.
 	 */
-	static public var DEFAULT_GAIN:Number = 90 ;
+	public static var DEFAULT_GAIN:Number = 90 ;
 
 	/**
 	 * The range of all gains in the sound library.
 	 */
-	static public var RANGE_GAIN:Range = new Range(0, 127) ;
+	public static var RANGE_GAIN:Range = new Range(0, 127) ;
 
 	/**
 	 * The range of all pans in the sound library.
 	 */
-	static public var RANGE_PAN:Range = new Range(-100, 100) ;
+	public static var RANGE_PAN:Range = new Range(-100, 100) ;
 
 	/**
 	 * (read-write) Determinates the value of the pan of all sounds in the library.

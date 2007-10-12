@@ -33,7 +33,7 @@ class vegas.util.serialize.DateSerializer
 	 * Returns a Eden representation of the object.
 	 * @return a string representing the source code of the object.
 	 */	
-	static public function toSource(date:Array):String 
+	public static function toSource(date:Array):String 
 	{
 		return "new Date(" + date.valueOf() + ")" ;
     }

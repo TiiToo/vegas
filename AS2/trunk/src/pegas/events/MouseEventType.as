@@ -24,24 +24,24 @@
 class pegas.events.MouseEventType 
 {
 
-	static public var CLICK:String = "click" ;
+	public static var CLICK:String = "click" ;
 	
-	static public var DOUBLE_CLICK:String = "doubleClick" ;
+	public static var DOUBLE_CLICK:String = "doubleClick" ;
 	
-	static public var MOUSE_DOWN:String = "mouseDown" ;
+	public static var MOUSE_DOWN:String = "mouseDown" ;
 	
-	static public var MOUSE_MOVE:String = "mouseMove" ;
+	public static var MOUSE_MOVE:String = "mouseMove" ;
 	
-	static public var MOUSE_OUT:String = "mouseOut" ;
+	public static var MOUSE_OUT:String = "mouseOut" ;
 	
-	static public var MOUSE_OVER:String = "mouseOver" ;
+	public static var MOUSE_OVER:String = "mouseOver" ;
 	
-	static public var MOUSE_UP:String = "mouseUp" ;
+	public static var MOUSE_UP:String = "mouseUp" ;
 	
-	static public var MOUSE_WHEEL:String = "mouseWheel" ;
+	public static var MOUSE_WHEEL:String = "mouseWheel" ;
 	
-	static public var ROLLOUT:String = "rollOut" ;
+	public static var ROLLOUT:String = "rollOut" ;
 	
-	static public var ROLLOVER:String = "rollOver" ;
+	public static var ROLLOVER:String = "rollOver" ;
 
 }

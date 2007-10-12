@@ -85,12 +85,12 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	/**
 	 * The default buffer time value.
 	 */
-	static public var BUFFER_TIME_DEFAULT:Number = 4 ;
+	public static var BUFFER_TIME_DEFAULT:Number = 4 ;
 
 	/**
 	 * The default sound' volume of the video.
 	 */
-	static public var VOLUME_DEFAULT:Number = 60 ;
+	public static var VOLUME_DEFAULT:Number = 60 ;
 
 	/**
 	 * (read-only) Returns the current time of the loader.

@@ -60,12 +60,12 @@ class lunas.display.container.AutoScrollContainerDisplay extends ScrollContainer
 	/**
 	 * The default event name dispatched when the container is rollout.
 	 */
-	static public var ROLLOUT:String = MouseEventType.ROLLOUT ;
+	public static var ROLLOUT:String = MouseEventType.ROLLOUT ;
 
 	/**
 	 * The default event name dispatched when the container is rollover.
 	 */
-	static public var ROLLOVER:String = MouseEventType.ROLLOVER ;
+	public static var ROLLOVER:String = MouseEventType.ROLLOVER ;
 
 	/**
 	 * Returns {@code true} if the auto scroll is active.

@@ -121,7 +121,7 @@ class vegas.data.queue.CircularQueue extends CoreObject implements BoundedQueue,
 	/**
 	 * The default numbers of elements in the queue.
 	 */
-	static public var MAX_CAPACITY:Number = Number.MAX_VALUE ;
+	public static var MAX_CAPACITY:Number = Number.MAX_VALUE ;
 
 	/**
 	 * Clear all elements in the queue.

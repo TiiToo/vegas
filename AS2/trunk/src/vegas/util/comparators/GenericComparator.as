@@ -143,7 +143,7 @@ class vegas.util.comparators.GenericComparator extends CoreObject implements ICo
 	 * Developers are encouraged to use the comparator returned from this method instead of constructing a new instance to reduce allocation and GC overhead when multiple comparable comparators may be used in the same application.
  	 * @return the singleton instance of a GenericComparator.
 	 */
-	static public function getInstance():GenericComparator
+	public static function getInstance():GenericComparator
 	{
 		if (_instance == null)
 		{
@@ -155,6 +155,6 @@ class vegas.util.comparators.GenericComparator extends CoreObject implements ICo
 	/**
   	 * The internal static singleton of this class.
  	 */
-	static private var _instance:GenericComparator ;
+	private static var _instance:GenericComparator ;
 
 }

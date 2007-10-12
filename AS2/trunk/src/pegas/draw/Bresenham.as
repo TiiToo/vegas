@@ -161,7 +161,7 @@ class pegas.draw.Bresenham
 	 * Returns an array representation of all points to draw a line between to point defines by the coordinates x and y in the passed-in arguments.
 	 * @return an array representation of all points to draw a line between to point defines by the coordinates x and y in the passed-in arguments.
 	 */
-	static public function getLine(p1, p2):Array 
+	public static function getLine(p1, p2):Array 
 	{
 		
 		var dx,dy,x,y,s1,s2,e,temp,swap:Number ;

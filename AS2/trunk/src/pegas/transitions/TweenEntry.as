@@ -107,7 +107,7 @@ class pegas.transitions.TweenEntry extends CoreObject implements ICloneable
 		return f( t, begin, getChange() , d ) ;
 	}
 	
-	static public function noEasing(t:Number, b:Number, c:Number, d:Number):Number 
+	public static function noEasing(t:Number, b:Number, c:Number, d:Number):Number 
 	{
 		return c*t/d + b;
 	}

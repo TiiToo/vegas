@@ -31,13 +31,13 @@ class vegas.events.ValidatorEventType
 	/**
 	 * The name of the event invoqued when the IValidator is invalid.
 	 */
-	static public var INVALID:String = "invalid" ;
+	public static var INVALID:String = "invalid" ;
 
 	/**
 	 * The name of the event invoqued when the IValidator is valid.
 	 */
-	static public var VALID:String = "valid" ;
+	public static var VALID:String = "valid" ;
 
-	static private var __ASPF__ = _global.ASSetPropFlags(ValidatorEventType, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(ValidatorEventType, null , 7, 7) ;
 	
 }

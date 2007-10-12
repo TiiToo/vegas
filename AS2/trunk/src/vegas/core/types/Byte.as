@@ -53,27 +53,27 @@ class vegas.core.types.Byte extends Bit
 	/**
 	 * Shortname of byte.
 	 */
-	static public var SHORT_BYTE:String = "B" ;
+	public static var SHORT_BYTE:String = "B" ;
 
 	/**
 	 * Shortname of kilo-byte.
 	 */
-	static public var SHORT_KILO_BYTE:String = "KB";
+	public static var SHORT_KILO_BYTE:String = "KB";
 
 	/**
 	 * Shortname of mega-byte.
 	 */
-	static public var SHORT_MEGA_BYTE:String = "MB";
+	public static var SHORT_MEGA_BYTE:String = "MB";
 
 	/**
 	 * Shortname of giga-byte.
 	 */
-	static public var SHORT_GIGA_BYTE:String = "GB";
+	public static var SHORT_GIGA_BYTE:String = "GB";
 
 	/**
 	 * Shortname of tera-byte.
 	 */
-	static public var SHORT_TERA_BYTE:String = "TB";	
+	public static var SHORT_TERA_BYTE:String = "TB";	
 
 	/**
 	 * Returns a Eden reprensation of the object.

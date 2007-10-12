@@ -79,7 +79,7 @@ class buRRRn.ASTUce.Assertion extends CoreObject
  	/**
 	 * Asserts that a condition is false. If it isn't it throws/trace an <AssertionFailedError> with the given message.
 	 */
-	static public function assertFalse( condition:Boolean , message:String ):Void
+	public static function assertFalse( condition:Boolean , message:String ):Void
 	{
 		assertTrue( !condition, message );
 	}
@@ -152,7 +152,7 @@ class buRRRn.ASTUce.Assertion extends CoreObject
 	/**
 	 * Asserts that a condition is true. If it isn't it throws/trace an <AssertionFailedError> with the given message.
 	 */
-	static public function assertTrue( condition:Boolean , message:String ):Void
+	public static function assertTrue( condition:Boolean , message:String ):Void
 	{
 		if ( !condition )
 		{
@@ -172,7 +172,7 @@ class buRRRn.ASTUce.Assertion extends CoreObject
 	/**
 	 * Fails a test with the given message.
 	 */
-	static public function fail( message:String ):Void
+	public static function fail( message:String ):Void
 	{
 		throw new AssertionFailedError( message );
 	}
@@ -180,7 +180,7 @@ class buRRRn.ASTUce.Assertion extends CoreObject
 	/**
 	 * Format the message.
 	 */
-	static public function format( expected, actual, message )
+	public static function format( expected, actual, message )
 	{
 		var formatted:String = "" ;
 		if ( (message != null) && (message != "") )
@@ -193,7 +193,7 @@ class buRRRn.ASTUce.Assertion extends CoreObject
 	/**
 	 * Fails a test when 2 objects are not equals.
 	 */
-	static private function  _failNotEquals( expected, actual, message:String )
+	private static function  _failNotEquals( expected, actual, message:String )
     {
     	
     	if( Config.showObjectSource && (expected != null) && (actual != null) )

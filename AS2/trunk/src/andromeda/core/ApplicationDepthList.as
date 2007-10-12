@@ -31,16 +31,16 @@ class andromeda.core.ApplicationDepthList
 	/**
 	 * The default depth of the loader display.
 	 */
-	static public var LOADER_DEPTH:Number = 9999 ;
+	public static var LOADER_DEPTH:Number = 9999 ;
 
 	/**
 	 * The default depth of the protect display.
 	 */
-	static public var PROTECT_DEPTH:Number = 10000 ;
+	public static var PROTECT_DEPTH:Number = 10000 ;
 		
 	/**
 	 * The default depth of the sound display.
 	 */
-	static public var SOUND_DEPTH:Number = 11000 ;
+	public static var SOUND_DEPTH:Number = 11000 ;
 	
 }

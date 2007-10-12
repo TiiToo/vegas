@@ -88,7 +88,7 @@ class vegas.util.ResolverProxy extends CoreObject
 	/**
 	 * Initialize a proxy on a specific target.
 	 */
-	static public function initialize( target )  
+	public static function initialize( target )  
 	{
 		var attributes:Array = [ "linkProxy", "getProxy", "_proxy", "proxy", "__resolve", "setProxy" ] ;
 		var mix:Mixin = new Mixin(ResolverProxy, target, attributes) ;

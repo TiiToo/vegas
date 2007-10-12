@@ -35,9 +35,9 @@ class vegas.events.type.MovieClipDispatcher extends MovieClip implements IDispat
 		//
 	}
 
-	static private var _initHashCode:Boolean = HashCode.initialize(MovieClipDispatcher.prototype) ;
+	private static var _initHashCode:Boolean = HashCode.initialize(MovieClipDispatcher.prototype) ;
 	
-	static private var _initDispatcher = EDispatcher.initialize(MovieClipDispatcher.prototype) ; 
+	private static var _initDispatcher = EDispatcher.initialize(MovieClipDispatcher.prototype) ; 
 		
 	public function addEventListener(eventName:String, obj, func):Void 
 	{

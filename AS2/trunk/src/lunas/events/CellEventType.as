@@ -26,40 +26,40 @@ import pegas.events.ButtonEventType;
 class lunas.events.CellEventType 
 {
 
-	static public var CLICK:String = ButtonEventType.CLICK ;
+	public static var CLICK:String = ButtonEventType.CLICK ;
 	
-	static public var DISABLED:String = ButtonEventType.DISABLED ;
+	public static var DISABLED:String = ButtonEventType.DISABLED ;
 	
-	static public var DOUBLE_CLICK:String = ButtonEventType.DOUBLE_CLICK ;
+	public static var DOUBLE_CLICK:String = ButtonEventType.DOUBLE_CLICK ;
 	
-	static public var DOWN:String = ButtonEventType.DOWN ;
+	public static var DOWN:String = ButtonEventType.DOWN ;
 
-	static public var DRAG:String = ButtonEventType.DRAG ;
+	public static var DRAG:String = ButtonEventType.DRAG ;
 	
-	static public var ICON_CHANGE:String = ButtonEventType.ICON_CHANGE ;
+	public static var ICON_CHANGE:String = ButtonEventType.ICON_CHANGE ;
 	
-	static public var LABEL_CHANGE:String = ButtonEventType.LABEL_CHANGE ;
+	public static var LABEL_CHANGE:String = ButtonEventType.LABEL_CHANGE ;
 	
-	static public var MOUSE_UP:String = ButtonEventType.MOUSE_UP ;
+	public static var MOUSE_UP:String = ButtonEventType.MOUSE_UP ;
 	
-	static public var MOUSE_DOWN:String = ButtonEventType.MOUSE_DOWN ;
+	public static var MOUSE_DOWN:String = ButtonEventType.MOUSE_DOWN ;
 	
-	static public var OUT:String = ButtonEventType.OUT ;
+	public static var OUT:String = ButtonEventType.OUT ;
 	
-	static public var OUT_SELECTED:String = ButtonEventType.OUT_SELECTED ;
+	public static var OUT_SELECTED:String = ButtonEventType.OUT_SELECTED ;
 	
-	static public var OVER:String = ButtonEventType.OVER ;
+	public static var OVER:String = ButtonEventType.OVER ;
 	
-	static public var OVER_SELECTED:String = ButtonEventType.OVER_SELECTED ;
+	public static var OVER_SELECTED:String = ButtonEventType.OVER_SELECTED ;
 	
-	static public var ROLLOUT:String = ButtonEventType.ROLLOUT ;
+	public static var ROLLOUT:String = ButtonEventType.ROLLOUT ;
 	
-	static public var ROLLOVER:String = ButtonEventType.ROLLOVER ;
+	public static var ROLLOVER:String = ButtonEventType.ROLLOVER ;
 		
-	static public var SELECT:String = ButtonEventType.SELECT ;
+	public static var SELECT:String = ButtonEventType.SELECT ;
 	
-	static public var UNSELECT:String = ButtonEventType.UNSELECT ;
+	public static var UNSELECT:String = ButtonEventType.UNSELECT ;
 	
-	static public var UP:String = "up" ;
+	public static var UP:String = "up" ;
 
 }

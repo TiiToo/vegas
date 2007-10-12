@@ -80,7 +80,7 @@ class vegas.events.Delegate extends CoreObject implements ICloneable, EventListe
 	 * @param method the method to be called.
 	 * @return a Function that delegates its call to a custom scope, method and arguments.
 	 */
-	static public function create(scope, method:Function):Function 
+	public static function create(scope, method:Function):Function 
 	{
 		var f:Function = function() 
 		{	

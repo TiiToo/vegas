@@ -41,12 +41,12 @@ class vegas.events.ValidatorEvent extends DynamicEvent
 	/**
 	 * The name of the event invoqued when the IValidator is invalid.
 	 */
-	static public var INVALID:String = "invalid" ;
+	public static var INVALID:String = "invalid" ;
 
 	/**
 	 * The name of the event invoqued when the IValidator is valid.
 	 */
-	static public var VALID:String = "valid" ;
+	public static var VALID:String = "valid" ;
 
 	/**
 	 * Returns the shallow copy of this event.

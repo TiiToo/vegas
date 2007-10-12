@@ -38,7 +38,7 @@ class vegas.core.HashCode
 	 * <li> 0 if o1 and o2 are equal.</li>
 	 * </p>
 	 */
-	static public function compare( o1, o2 ):Number
+	public static function compare( o1, o2 ):Number
 	{
 		var a:Number = HashCode.identify(o1) ;
 		var b:Number = HashCode.identify(o2) ;
@@ -64,7 +64,7 @@ class vegas.core.HashCode
 	 * @param   o2 the second value to compare.
 	 * @return {@code true} of the two object are equals.  
 	 */
-	static public function equals(o1, o2):Boolean 
+	public static function equals(o1, o2):Boolean 
 	{
 		return HashCode.identify(o1) == HashCode.identify(o2) ;
 	}
@@ -73,7 +73,7 @@ class vegas.core.HashCode
 	 * Indenfity the hashcode value of an object.
 	 * @return the hashcode value of an object.
 	 */
-	static public function identify(o):Number 
+	public static function identify(o):Number 
 	{
 		return o["hashCode"]() ; 
 	}
@@ -82,7 +82,7 @@ class vegas.core.HashCode
 	 * Returns the next hashcode value.
 	 * @return the next hashcode value.
 	 */
-	static public function next():Number 
+	public static function next():Number 
 	{
 		return HashCode._nHash++ ;
 	}
@@ -91,7 +91,7 @@ class vegas.core.HashCode
 	 * Returns the string representation of the next hashcode value.
 	 * @return the string representation of the next hashcode value.
 	 */
-	static public function nextName():String 
+	public static function nextName():String 
 	{
 		return String( HashCode._nHash + 1 ) ;
 	}
@@ -101,7 +101,7 @@ class vegas.core.HashCode
 	 * Initialize the hashcode value of an object.
 	 * @return {@code true} if the method is called.
 	 */
-	static public function initialize(o):Boolean 
+	public static function initialize(o):Boolean 
 	{
 		o["hashCode"] = function () 
 		{
@@ -119,11 +119,11 @@ class vegas.core.HashCode
 	/**
 	 * The internal hashcode counter.
 	 */
-	static private var _nHash:Number = 0 ;
+	private static var _nHash:Number = 0 ;
 	
 	/**
 	 * Launch the initialize of the Object.prototype object.
 	 */
-	static private var _init:Boolean = HashCode.initialize( Object.prototype ) ;
+	private static var _init:Boolean = HashCode.initialize( Object.prototype ) ;
 	
 }

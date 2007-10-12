@@ -70,92 +70,92 @@ class asgard.date.DateFormatter extends AbstractFormatter
 	/**
 	 * The default date format pattern {@code "dd.mm.yyyy HH:nn:ss"}.
 	 */
-	static public  var DEFAULT_DATE_FORMAT:String = "dd.mm.yyyy HH:nn:ss" ;
+	public static  var DEFAULT_DATE_FORMAT:String = "dd.mm.yyyy HH:nn:ss" ;
 	
 	/**
 	 * Placeholder for day in month as number in date format.
 	 */
-	static public var DAY_AS_NUMBER:String = "d";
+	public static var DAY_AS_NUMBER:String = "d";
 	
 	/**
 	 * Placeholder for day in week as text in date format.
 	 */
-	static public var DAY_AS_TEXT:String = "D";
+	public static var DAY_AS_TEXT:String = "D";
 	
 	/**
 	 * Placeholder for hour in am/pm (1 - 12) in date format.
 	 */
-	static public var HOUR_IN_AM_PM:String = "h";
+	public static var HOUR_IN_AM_PM:String = "h";
 	
 	/**
 	 * Placeholder for hour in day (0 - 23) in date format.
 	 */
-	static public var HOUR_IN_DAY:String = "H";
+	public static var HOUR_IN_DAY:String = "H";
 
 	/**
 	 * Placeholder for minute in hour in date format.
 	 */
-	static public var MINUTE:String = "n";
+	public static var MINUTE:String = "n";
 
 	/**
 	 * Placeholder for millisecond in date format.
 	 */
-	static public var MILLISECOND:String = "S";
+	public static var MILLISECOND:String = "S";
 
 	/**
 	 * Placeholder for month in year as number in date format.
 	 */
-	static public var MONTH_AS_NUMBER:String = "m";
+	public static var MONTH_AS_NUMBER:String = "m";
 	
 	/**
 	 * Placeholder for month in year as text in date format.
 	 */
-	static public var MONTH_AS_TEXT:String = "M";
+	public static var MONTH_AS_TEXT:String = "M";
 	
 	/**
 	 * Quotation beginning and ending token. 
 	 */
-	static public var QUOTE:String = "'";
+	public static var QUOTE:String = "'";
 
 	/**
 	 * The internal range use to defined the days as text in the DateFormatter.
 	 */
-	static public var RANGE_DAY_AS_TEXT:Range = new Range(0, 6) ;
+	public static var RANGE_DAY_AS_TEXT:Range = new Range(0, 6) ;
 
 	/**
 	 * The internal range use to defined the hours in the DateFormatter.
 	 */
-	static public var RANGE_HOUR:Range = new Range(0, 23) ;
+	public static var RANGE_HOUR:Range = new Range(0, 23) ;
 
 	/**
 	 * The internal range use to defined the minutes in the DateFormatter.
 	 */
-	static public var RANGE_MINUTE:Range = new Range(0, 59) ;
+	public static var RANGE_MINUTE:Range = new Range(0, 59) ;
 
 	/**
 	 * The internal range use to defined the milliseconds in the DateFormatter.
 	 */
-	static public var RANGE_MILLISECOND:Range = new Range(0, 999) ;
+	public static var RANGE_MILLISECOND:Range = new Range(0, 999) ;
 
 	/**
 	 * The internal range use to defined the months in the DateFormatter.
 	 */
-	static public var RANGE_MONTH:Range = new Range(0, 11) ;
+	public static var RANGE_MONTH:Range = new Range(0, 11) ;
 
 	/**
 	 * The internal range use to defined the seconds in the DateFormatter.
 	 */
-	static public var RANGE_SECOND:Range = new Range(0, 59) ;
+	public static var RANGE_SECOND:Range = new Range(0, 59) ;
 
 	/**
 	 * Placeholder for second in minute in date format.
 	 */
-	static public var SECOND:String = "s";
+	public static var SECOND:String = "s";
 
 	/**
 	 * Placeholder for year in date format.
 	 */
-	static public var YEAR:String = "y";
+	public static var YEAR:String = "y";
 	
 	/**
 	 * Format a date based on the current style set for the Date Formatter.

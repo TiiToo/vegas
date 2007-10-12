@@ -31,12 +31,12 @@ import buRRRn.ASTUce.MiniRunner;
 class buRRRn.ASTUce.Application 
 {
 
-	static public var separator:String = "----------------------------------------------------------------";
+	public static var separator:String = "----------------------------------------------------------------";
 
 	/**
 	 * Returns information about the ASTUce framework.
 	 */
-	static public function getInfo():String
+	public static function getInfo():String
 	{
 		var str:String = "" ;
 		var CRLF:String = "\n" ;
@@ -63,7 +63,7 @@ class buRRRn.ASTUce.Application
 	/**
 	 * Execute the main process of the ASTUce framework.
 	 */
-	static public function main():Void
+	public static function main():Void
 	{
 		
 		trace( separator );
@@ -106,26 +106,26 @@ class buRRRn.ASTUce.Application
     /**
      * The language extension.
      */
-    static private var _ext:String = "AS2";
+    private static var _ext:String = "AS2";
 
 	/**
 	 * The code name of the framework.
  	 */
-	static public var _name:String = "ASTUce";
+	public static var _name:String = "ASTUce";
 		
 	/***
 	 * The full name of the framework.
 	 */
-	static public var _fullName:String = "ActionScript Test Unit compact edition";
+	public static var _fullName:String = "ActionScript Test Unit compact edition";
 
     /**
      * The target platform of the framework.
      */
-    static private var _platform:String = "Flash ActionScript v2.0";
+    private static var _platform:String = "Flash ActionScript v2.0";
     	
 	/**
 	 * The version as string of the framework.
 	 */
-	static public var _version:String = "1.0.0.0 (VEGAS version)";
+	public static var _version:String = "1.0.0.0 (VEGAS version)";
 	
 }

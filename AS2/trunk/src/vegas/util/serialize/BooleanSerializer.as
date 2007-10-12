@@ -35,7 +35,7 @@ class vegas.util.serialize.BooleanSerializer
 	 * Returns a Eden representation of the object.
 	 * @return a string representing the source code of the object.
 	 */	
-	static public function toSource( b:Boolean ):String 
+	public static function toSource( b:Boolean ):String 
 	{
 		return BooleanUtil.equals(b, true) ? "true" : "false" ;
     }

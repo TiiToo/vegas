@@ -49,17 +49,17 @@ class asgard.display.StageDisplayState extends AbstractCoreEventDispatcher
 	/**
 	 * Specifies the state to enter full screen mode.
 	 */
-	static public var FULLSCREEN:String = "fullScreen" ;
+	public static var FULLSCREEN:String = "fullScreen" ;
 	
 	/**
 	 * The name of the Stage method to change the display state mode. Only in AS2 with intrinsic class not configured.
 	 */
-	static public var METHOD_NAME:String = "displayState" ;
+	public static var METHOD_NAME:String = "displayState" ;
 	
 	/**
 	 * Specifies the state to leave full screen mode.
 	 */
-	static public var NORMAL:String = "normal" ;
+	public static var NORMAL:String = "normal" ;
 
 	/**
 	 * Indicates whether this player is in a container that offers a StageDisplayState interface.
@@ -100,7 +100,7 @@ class asgard.display.StageDisplayState extends AbstractCoreEventDispatcher
 	 * Returns the internal singleton reference of this class.
 	 * @return the internal singleton reference of this class.
 	 */
-	static public function getInstance():StageDisplayState
+	public static function getInstance():StageDisplayState
 	{
 		if (_instance == null)
 		{
@@ -156,7 +156,7 @@ class asgard.display.StageDisplayState extends AbstractCoreEventDispatcher
 	/**
 	 * The internal singleton of this class.
 	 */
-	static private var _instance:StageDisplayState ;
+	private static var _instance:StageDisplayState ;
 	
 	/**
 	 * Invoqued when the stage state change.

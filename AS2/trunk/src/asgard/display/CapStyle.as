@@ -33,18 +33,18 @@ class asgard.display.CapStyle
 	/**
 	 * Used to specify no caps in the caps parameter of the lineStyle() method.
  	 */
-	static public var NONE:String = "none" ;
+	public static var NONE:String = "none" ;
 	
 	/**
 	 * Used to specify round caps in the caps parameter of the lineStyle() method.
 	 */
-	static public var ROUND:String = "round" ;
+	public static var ROUND:String = "round" ;
 	
 	/**
 	 * Used to specify square caps in the caps parameter of the lineStyle() method.
 	 */
-	static public var SQUARE:String = "square" ;
+	public static var SQUARE:String = "square" ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(CapStyle, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(CapStyle, null , 7, 7) ;
 
 }

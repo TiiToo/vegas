@@ -62,7 +62,7 @@ class asgard.display.TimelineIterator extends CoreObject implements OrderedItera
 	/**
 	 * The default step value in all the PageByPageIterators.
 	 */
-	static public var DEFAULT_STEP:Number = 1 ;
+	public static var DEFAULT_STEP:Number = 1 ;
 
 	/**
 	 * (read-only) The current frame of the iterator.

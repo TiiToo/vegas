@@ -42,7 +42,7 @@ class pegas.draw.EllipsePen extends EasyPen
 	/**
 	 * This constant defines the theta value used in internal in all method of this pen.
 	 */
-	static public var THETA:Number = Math.PI/4;
+	public static var THETA:Number = Math.PI/4;
 	
 	/**
 	 * Defines the height of this shape.

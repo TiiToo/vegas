@@ -53,7 +53,7 @@ class asgard.media.SoundLoader extends AbstractMediaLoader
 	}
 
 	
-	static public var VOLUME_DEFAULT:Number = 60 ;
+	public static var VOLUME_DEFAULT:Number = 60 ;
 
 
 	/*override*/ public function getDuration():Number 

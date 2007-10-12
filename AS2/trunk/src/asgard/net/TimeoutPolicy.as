@@ -44,12 +44,12 @@ class asgard.net.TimeoutPolicy extends CoreObject
 	/**
 	 * This constant defines the 'infinity' timeout policy value(0).
 	 */
-	static public var INFINITY:TimeoutPolicy = new TimeoutPolicy(0) ;
+	public static var INFINITY:TimeoutPolicy = new TimeoutPolicy(0) ;
 
 	/**
 	 * This constant defines the 'limit' timeout policy value(1).
 	 */
-	static public var LIMIT:TimeoutPolicy = new TimeoutPolicy(1) ;
+	public static var LIMIT:TimeoutPolicy = new TimeoutPolicy(1) ;
 	
 	/**
 	 * Returns the eden string representation of this object.

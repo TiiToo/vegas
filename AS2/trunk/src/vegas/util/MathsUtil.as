@@ -46,7 +46,7 @@ class vegas.util.MathsUtil
 	 * @param floatCount the count of number after the point.
 	 * @return the ceil value of a number by a count of floating points.
 	 */
-	static public function ceil(n:Number, floatCount:Number):Number 
+	public static function ceil(n:Number, floatCount:Number):Number 
 	{
 		if (isNaN(n)) 
 		{
@@ -85,7 +85,7 @@ class vegas.util.MathsUtil
 	 * @param max the max value of the range.
 	 * @return a bound numeric value between 2 numbers.
 	 */
-	static public function clamp(value:Number, min:Number, max:Number):Number 
+	public static function clamp(value:Number, min:Number, max:Number):Number 
 	{
 		if (isNaN(value)) 
 		{
@@ -119,7 +119,7 @@ class vegas.util.MathsUtil
 	 * @param floatCount the count of number after the point.
 	 * @return the floor value of a number by a count of floating points.
 	 */
-	static public function floor(n:Number, floatCount:Number):Number 
+	public static function floor(n:Number, floatCount:Number):Number 
 	{
 		if (isNaN(n)) 
 		{
@@ -146,7 +146,7 @@ class vegas.util.MathsUtil
 	 * @param nMax the max value.
 	 * @return a percentage value or null.
 	 */
-	static public function getPercent(nValue:Number, nMax:Number):Number 
+	public static function getPercent(nValue:Number, nMax:Number):Number 
 	{
 		var nP:Number = (nValue / nMax) * 100 ;
 		return (isNaN(nP) || !isFinite(nP)) ? null : nP ;
@@ -168,7 +168,7 @@ class vegas.util.MathsUtil
 	 * @param floatCount the count of number after the point.
 	 * @return the round of a number by a count of floating points.
 	 */
-	static public function round(n:Number, floatCount:Number):Number 
+	public static function round(n:Number, floatCount:Number):Number 
 	{
 		if (isNaN(n)) 
 		{
@@ -201,7 +201,7 @@ class vegas.util.MathsUtil
 	 * @param n the number to defined this sign.
 	 * @return 1 if the value is positive or -1.
 	 */
-	static public function sign( n:Number ):Number 
+	public static function sign( n:Number ):Number 
 	{
 		if (isNaN(n)) 
 		{

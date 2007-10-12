@@ -31,16 +31,16 @@ class andromeda.core.ApplicationList
 	/**
 	 * The name of the application loader display.
 	 */
-	static public var APPLICATION_LOADER:String = "application_loader" ;
+	public static var APPLICATION_LOADER:String = "application_loader" ;
 
 	/**
 	 * The name of the protect screen display.
 	 */
-	static public var PROTECT_SCREEN:String = "protect_screen" ;
+	public static var PROTECT_SCREEN:String = "protect_screen" ;
 
 	/**
 	 * The name of the sound display.
 	 */
-	static public var SOUND:String = "sound" ;
+	public static var SOUND:String = "sound" ;
 
 }

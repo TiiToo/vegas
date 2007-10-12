@@ -36,7 +36,7 @@ class pegas.util.Vector2Util
 	 * @param v2 the second Vector2.
 	 * @return the addition result of two Vector2.
 	 */
-	static public function addition( v1:Vector2, v2:Vector2 ):Vector2
+	public static function addition( v1:Vector2, v2:Vector2 ):Vector2
 	{
 		 v1.x += v2.x ;
 		 v1.y += v2.y ;
@@ -49,7 +49,7 @@ class pegas.util.Vector2Util
 	 * @param v2 a Vector2 to concat.
 	 * @return the addition result of two Vector2.
 	 */
-	static public function getAddition( v1:Vector2, v2:Vector2 ):Vector2
+	public static function getAddition( v1:Vector2, v2:Vector2 ):Vector2
 	{
 		return new Vector2( (v1.x + v2.x) , (v1.y + v2.y) ) ;	
 	}
@@ -60,7 +60,7 @@ class pegas.util.Vector2Util
 	 * @param v2 the second vector.
 	 * @return the distance between the 2 vectors in argument.
  	 */
-	static public function getDistance( v1:Vector2, v2:Vector2 ):Number
+	public static function getDistance( v1:Vector2, v2:Vector2 ):Number
 	{
 		return Math.sqrt( Vector2Util.getSquaredDistance( v1, v2 ) ) ;
 	}
@@ -70,7 +70,7 @@ class pegas.util.Vector2Util
 	 * @param v the vector.
 	 * @return the length of the vector.
 	 */
-	static public function getLength( v:Vector2 ):Number
+	public static function getLength( v:Vector2 ):Number
 	{
 		return Math.sqrt( (v.x * v.x) + (v.y * v.y) ) ;
 	}
@@ -81,7 +81,7 @@ class pegas.util.Vector2Util
 	 * @param value the value of the pow..
 	 * @return A new Vector2 powered by the method.
 	 */
-	static public function getPow( v:Vector2, value:Number ):Vector2
+	public static function getPow( v:Vector2, value:Number ):Vector2
 	{
 		return new Vector2( Math.pow( v.x, value ) , Math.pow( v.y, value ) ) ;
 	}
@@ -92,7 +92,7 @@ class pegas.util.Vector2Util
 	 * @param value a real number to scale the current Vector2.
 	 * @return A new Vector2 scaled by the value passed in second argument in this method.
 	 */
-	static public function getScale( v:Vector2, value:Number ):Vector2
+	public static function getScale( v:Vector2, value:Number ):Vector2
 	{
 		return new Vector2 ( v.x * value , v.y * value ) ;
 	}
@@ -103,7 +103,7 @@ class pegas.util.Vector2Util
 	 * @param v2 the second vector.
 	 * @return the squared distance between 2 vectors.
 	 */
-	static public function getSquaredDistance( v1:Vector2, v2:Vector2 ):Number
+	public static function getSquaredDistance( v1:Vector2, v2:Vector2 ):Number
 	{
 		var dx:Number= v2.x - v1.x ;
 		var dy:Number= v2.y - v1.y ; 
@@ -115,7 +115,7 @@ class pegas.util.Vector2Util
 	 * @param v the vector.
 	 * @return the squared length of this vector.
 	 */
-	static public function getSquaredLength( v:Vector2 ):Number
+	public static function getSquaredLength( v:Vector2 ):Number
 	{
 		return (v.x * v.x) + (v.y * v.y) ;
 	}
@@ -126,7 +126,7 @@ class pegas.util.Vector2Util
 	 * @param v2 a Vector2 to substract.
 	 * @return the substraction result of two Vector2.
 	 */
-	static public function getSubstraction( v1:Vector2 , v2:Vector2 ):Vector2
+	public static function getSubstraction( v1:Vector2 , v2:Vector2 ):Vector2
 	{
 		return new Vector2( (v1.x - v2.x) , (v1.y - v2.y) ) ;
 	}
@@ -136,7 +136,7 @@ class pegas.util.Vector2Util
 	 * @param v the Vector2 to normalize.
 	 * @return a normalized Vector2, with length 1.
 	 */
-	static public function getNormalize( v:Vector2 ):Vector2
+	public static function getNormalize( v:Vector2 ):Vector2
 	{
 		var len:Number = 1 / Vector2Util.getLength(v) ;
 		return Vector2Util.getScale( v , len ) ;
@@ -148,7 +148,7 @@ class pegas.util.Vector2Util
 	 * @param v2 the second {@code Vector2}.
 	 * @return the first {@code Vector2} transformed.
 	 */
-	static public function setByVector2( v1:Vector2, v2:Vector2):Vector2
+	public static function setByVector2( v1:Vector2, v2:Vector2):Vector2
 	{
 		v1.x = v2.x ;
 		v1.y = v2.y ;
@@ -161,7 +161,7 @@ class pegas.util.Vector2Util
 	 * @param v2 the second Vector2.
 	 * @return the substraction result of two Vector2.
 	 */
-	static public function substraction( v1:Vector2 , v2:Vector2 ):Vector2
+	public static function substraction( v1:Vector2 , v2:Vector2 ):Vector2
 	{
 		 v1.x -= v2.x ;
 		 v1.y -= v2.y ;

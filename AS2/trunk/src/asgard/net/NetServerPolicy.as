@@ -39,11 +39,11 @@ class asgard.net.NetServerPolicy extends Number
 	/**
 	 * Determinates if the NetServerConnection use an INFINITY policy.
 	 */
-	static public var INFINITY:NetServerPolicy = new NetServerPolicy(0) ;
+	public static var INFINITY:NetServerPolicy = new NetServerPolicy(0) ;
 	
 	/**
 	 * Determinates if the NetServerConnection use a LIMIT policy.
 	 */
-	static public var LIMIT:NetServerPolicy = new NetServerPolicy(1) ;
+	public static var LIMIT:NetServerPolicy = new NetServerPolicy(1) ;
 
 }

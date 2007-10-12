@@ -61,43 +61,43 @@ class asgard.media.MicrophoneExpert extends AbstractCoreEventDispatcher
 	/**
 	 * The name of the event when the Microphone activity change.
 	 */
-	static public var MICROPHONE_ACTIVITY_CHANGE:String = "onMicrophoneActivityChange" ;
+	public static var MICROPHONE_ACTIVITY_CHANGE:String = "onMicrophoneActivityChange" ;
 
 	/**
 	 * The name of the event when the Microphone is muted.
 	 */
-	static public var MICROPHONE_IS_MUTED:String = "onMicrophoneIsMuted" ;
+	public static var MICROPHONE_IS_MUTED:String = "onMicrophoneIsMuted" ;
 
 	/**
 	 * The name of the event when the Microphone is unmuted.
 	 */
-	static public var MICROPHONE_IS_UNMUTED:String = "onMicrophoneIsUnMuted" ;
+	public static var MICROPHONE_IS_UNMUTED:String = "onMicrophoneIsUnMuted" ;
 
 	/**
 	 * The default microphone echo suppression value.
 	 */
-	static public var DEFAULT_MICRO_ECHO_SUPPRESSION:Boolean = false ;
+	public static var DEFAULT_MICRO_ECHO_SUPPRESSION:Boolean = false ;
 
 	/**
 	 * The default microphone rate value.
 	 */
-	static public var DEFAULT_MICRO_RATE:Number = 11 ;
+	public static var DEFAULT_MICRO_RATE:Number = 11 ;
 	
 	/**
 	 * The default microphone silence level value.
 	 */
-	static public var DEFAULT_MICRO_SILENCE_LEVEL:Number = 10 ;
+	public static var DEFAULT_MICRO_SILENCE_LEVEL:Number = 10 ;
 
 	/**
 	 * The default microphone silence timeout value.
 	 */
-	static public var DEFAULT_MICRO_SILENCE_TIMEOUT:Number = 1000 ;
+	public static var DEFAULT_MICRO_SILENCE_TIMEOUT:Number = 1000 ;
 
 	/**
 	 * Returns {@code true} if the MicrophoneExpert contains the specified camera id.
 	 * @return {@code true} if the CameraExpert contains the specified camera id.
 	 */
-	static public function contains( microID:String  ):Boolean
+	public static function contains( microID:String  ):Boolean
 	{
 		return _map.containsKey( microID ) ;	
 	}
@@ -154,7 +154,7 @@ class asgard.media.MicrophoneExpert extends AbstractCoreEventDispatcher
 	 * This argument is used only the first time when the specifiec MicrophoneExpert is created. To get the default Microphone (which is recommended for most applications), omit this parameter.
 	 * @return a MicrophoneExpert singleton or null .
 	 */
-	static public function getInstance( microID:String , microIndex:Number ):MicrophoneExpert
+	public static function getInstance( microID:String , microIndex:Number ):MicrophoneExpert
 	{
 		if ( _map == null)
 		{
@@ -182,7 +182,7 @@ class asgard.media.MicrophoneExpert extends AbstractCoreEventDispatcher
 	 * @param microID the microphone id of the MicrophoneExpert singleton.
 	 * @return the removed MicrophoneExpert singleton or null .
 	 */
-	static public function release( microID:String ):MicrophoneExpert
+	public static function release( microID:String ):MicrophoneExpert
 	{
 		return _map.remove( microID ) ;
 	}
@@ -297,7 +297,7 @@ class asgard.media.MicrophoneExpert extends AbstractCoreEventDispatcher
 	
 	private var _eUnMuted:Event ;
 
-	static private var _map:HashMap  ;
+	private static var _map:HashMap  ;
 
 	/**
 	 * Invoked when the Microphone starts or stops detecting sound.

@@ -31,12 +31,12 @@ class buRRRn.ASTUce.Config
     /**
      * Boolean configuring the getInfo method behaviour, true for more verbose and false for less verbose.
      */
-    static public var verbose:Boolean = true;
+    public static var verbose:Boolean = true;
 
     /**
      * Boolean option to display all the constructors being tested.
      */
-    static public var showConstructorList:Boolean = true;
+    public static var showConstructorList:Boolean = true;
     
     /**
      * Boolean option to display the source of objects being compared.
@@ -49,14 +49,14 @@ class buRRRn.ASTUce.Config
      * ## AssertionFailedError : expected:<[object Object]> but was:<[object Object]> ##
      * }
      */
-    static public var showObjectSource:Boolean = true;
+    public static var showObjectSource:Boolean = true;
     
     /**
      * Boolean option to invert the order of the arguments: expected, actual in buRRRn.ASTUce.Assertion.
      * <p>true  - the argument order is: actual, expected. (inverted)</p>
      * <p>false - the argument order is: expected, actual. (default)</p>
      */
-    static public var invertExpectedActual:Boolean = false;
+    public static var invertExpectedActual:Boolean = false;
     
     /**
      * Boolean configuring the behaviour of ASTUce regarding private methods.
@@ -67,7 +67,7 @@ class buRRRn.ASTUce.Config
      * <p>ASTUce will not test methods starting with an underscore except if you force testPrivateMethods = true, 
      * then methods as _testSomething will be tested by the framework.</p>
      */
-    static public var testPrivateMethods:Boolean = false;
+    public static var testPrivateMethods:Boolean = false;
     
     /**
      * Boolean option allowing to iterate or not trough inherited tests.
@@ -75,13 +75,13 @@ class buRRRn.ASTUce.Config
      * <p>false does NOT iterate inherited tests</p>
      * <p>Note : If you set this option to false the following test SuiteTest( testInheritedTests ) will fail.</p>
      */
-    static public var testInheritedTests:Boolean = true;
+    public static var testInheritedTests:Boolean = true;
     
     /**
      * Boolean option allowing the ASTUce framework to test itself.
      * <p>true  - add to tests *buRRRn.Tests.AllTests.suite()*.</p>
      * <p>false - add nothing</p>
 	 */
-	static public var testMyself:Boolean = false;
+	public static var testMyself:Boolean = false;
 
 }

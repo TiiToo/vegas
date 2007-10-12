@@ -49,9 +49,9 @@ class lunas.display.components.container.AutoScrollContainer extends ScrollConta
 		updateMouseEvent() ;
 	}
 	
-	static public var ROLLOUT:String = MouseEventType.ROLLOUT ;
+	public static var ROLLOUT:String = MouseEventType.ROLLOUT ;
 
-	static public var ROLLOVER:String = MouseEventType.ROLLOVER ;
+	public static var ROLLOVER:String = MouseEventType.ROLLOVER ;
 
 	/**
 	 * Returns {@code true} if the auto scroll is active.

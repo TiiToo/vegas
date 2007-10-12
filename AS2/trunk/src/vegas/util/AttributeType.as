@@ -33,44 +33,44 @@ class vegas.util.AttributeType
 	/**
 	 * The NONE value(0).
 	 */	
-	static public var NONE:Number = 0 ;
+	public static var NONE:Number = 0 ;
 	
 	/**
 	 * The DONT_ENUM value(1).
 	 */	
-	static public var DONT_ENUM:Number = 1 ;
+	public static var DONT_ENUM:Number = 1 ;
 	
 	/**
 	 * The DONT_DELETE value(2).
 	 */
-	static public var DONT_DELETE:Number = 2 ;
+	public static var DONT_DELETE:Number = 2 ;
 
 	/**
 	 * The READ_ONLY value(4).
 	 */
-	static public var READ_ONLY:Number = 4 ;
+	public static var READ_ONLY:Number = 4 ;
 
 	/**
 	 * The OVERRIDE_ONLY value(3).
 	 */
-	static public var OVERRIDE_ONLY:Number = DONT_ENUM | DONT_DELETE ;
+	public static var OVERRIDE_ONLY:Number = DONT_ENUM | DONT_DELETE ;
 
 	/**
 	 * The DELETE_ONLY value(5).
 	 */
-	static public var DELETE_ONLY:Number = DONT_ENUM | READ_ONLY ;
+	public static var DELETE_ONLY:Number = DONT_ENUM | READ_ONLY ;
 
 	/**
 	 * The ENUM_ONLY value(6).
 	 */
-	static public var ENUM_ONLY:Number = READ_ONLY | DONT_DELETE ;
+	public static var ENUM_ONLY:Number = READ_ONLY | DONT_DELETE ;
 
 	/**
 	 * The LOCKED value(7).
 	 */
-	static public var LOCKED:Number = DONT_DELETE | DONT_ENUM | READ_ONLY ;
+	public static var LOCKED:Number = DONT_DELETE | DONT_ENUM | READ_ONLY ;
 
 
-	static private var __ASPF__ = _global.ASSetPropFlags(AttributeType, null, 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(AttributeType, null, 7, 7) ;
 	
 }

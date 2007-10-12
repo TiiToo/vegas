@@ -142,7 +142,7 @@ class lunas.display.components.list.AbstractList extends AbstractComponent imple
 	
 	// ----o Constant
 	
-	static public var DEFAULT_LABEL_FIELD:String = "label" ;
+	public static var DEFAULT_LABEL_FIELD:String = "label" ;
 	
 	// ----o Public Methods
 	

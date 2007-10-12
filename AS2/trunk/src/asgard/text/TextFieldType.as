@@ -31,13 +31,13 @@ class asgard.text.TextFieldType
 	/**
 	 * Used to specify a dynamic TextField.
 	 */
-	static public var DYNAMIC:String = "dynamic" ;
+	public static var DYNAMIC:String = "dynamic" ;
 	
 	/**
 	 * Used to specify an input TextField.
 	 */
-	static public var INPUT:String = "input" ;
+	public static var INPUT:String = "input" ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(TextFieldType, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(TextFieldType, null , 7, 7) ;
 
 }

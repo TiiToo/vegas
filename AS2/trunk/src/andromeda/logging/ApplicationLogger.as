@@ -38,12 +38,12 @@ class andromeda.logging.ApplicationLogger
 	/**
 	 * The application global logger id.
 	 */
-	static public var APPLICATION_CHANNEL:String = "application" ;
+	public static var APPLICATION_CHANNEL:String = "application" ;
 
 	/**
 	 * The vegas errors logger id.
 	 */
-	static public var VEGAS_ERRORS_CHANNEL:String = "vegas.errors.*" ;
+	public static var VEGAS_ERRORS_CHANNEL:String = "vegas.errors.*" ;
 
 	/**
 	 * Logs the specified data using the LogEventLevel.DEBUG level.
@@ -98,7 +98,7 @@ class andromeda.logging.ApplicationLogger
 	 * Returns the ILogger of the application.
 	 * @return the ILogger of the application.
 	 */
-	static public function getLogger():ILogger
+	public static function getLogger():ILogger
 	{
 		if( _logger == null )
 		{
@@ -110,7 +110,7 @@ class andromeda.logging.ApplicationLogger
 	/**
 	 * Initialize the global Logger singleton.
 	 */
-	static public function initialize():Void
+	public static function initialize():Void
 	{
 		
 		// initialize the ITargets of the application.
@@ -150,7 +150,7 @@ class andromeda.logging.ApplicationLogger
 	 * @see ResolverProxy
 	 * @see __resolve  
 	 */
-	static public function initProxy():Void
+	public static function initProxy():Void
 	{
 		ResolverProxy.initialize( ApplicationLogger ) ;
 		ApplicationLogger["setProxy"]( getLogger() ) ;	
@@ -159,6 +159,6 @@ class andromeda.logging.ApplicationLogger
 	/**
 	 * The internal global logger of the application.
 	 */
-	static private var _logger:ILogger ;
+	private static var _logger:ILogger ;
 
 }

@@ -141,7 +141,7 @@ class vegas.events.FastDispatcher extends CoreObject implements Iterable
 	 * @param target the object decorates by the FastDispatcher.
 	 * @see Mixin
 	 */
-	static public function initialize ( target ):Void 
+	public static function initialize ( target ):Void 
 	{
 		var properties:Array = 
 		[
@@ -195,7 +195,7 @@ class vegas.events.FastDispatcher extends CoreObject implements Iterable
 	}
 
 
-	static private var _initBroadcaster = AsBroadcaster.initialize(FastDispatcher.prototype) ;
+	private static var _initBroadcaster = AsBroadcaster.initialize(FastDispatcher.prototype) ;
 
 	/**
 	 * The internal _listeners array injected by the AsBroadcaster class.

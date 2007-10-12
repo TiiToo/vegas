@@ -36,7 +36,7 @@ class vegas.util.ArrayUtil
      * Creates a shallow copy of the Array.
      * @return a shallow copy of the Array.
      */
-	static public function clone(ar:Array):Array 
+	public static function clone(ar:Array):Array 
 	{
 		return ar.slice() ;
 	}
@@ -46,7 +46,7 @@ class vegas.util.ArrayUtil
      * @param ar the Array to check.
      * @param value the value to find in the array.
      */
-	static public function contains( ar:Array , value:Object):Boolean 
+	public static function contains( ar:Array , value:Object):Boolean 
 	{
 		return (indexOf(ar, value) > -1) ;
 	}
@@ -56,7 +56,7 @@ class vegas.util.ArrayUtil
      * @param ar the Array to copy.
      * @return a deep copy of the specified Array passed in argument.
    	 */
-	static public function copy(ar:Array):Array 
+	public static function copy(ar:Array):Array 
 	{
 		var a:Array = [] ;
 		var i:Number ;
@@ -103,7 +103,7 @@ class vegas.util.ArrayUtil
 	 * @param o Object to use as this when executing callback.
 	 * @return {@code true} if every element in this array satisfies the provided testing function.
 	 */
-	static public function every(ar:Array, callback:Function, o:Object ):Boolean 
+	public static function every(ar:Array, callback:Function, o:Object ):Boolean 
 	{
 		if(!o) o = _global ;
 		var len:Number = ar.length ;
@@ -145,7 +145,7 @@ class vegas.util.ArrayUtil
 	 * @param thisObject Object to use as this when executing callback.
 	 * @return a new array of all the values for which callback returns a true value.
 	 */
-	static public function filter( ar:Array, callback:Function, thisObject ):Array
+	public static function filter( ar:Array, callback:Function, thisObject ):Array
 	{
 		var arr:Array = [];
         if( thisObject == null ) 
@@ -201,7 +201,7 @@ class vegas.util.ArrayUtil
 	 * @param callback Executes a provided function once per array element.
 	 * @param o Object to use as this when executing callback.
 	 */
-	static public function forEach(ar:Array, callback:Function, o):Void 
+	public static function forEach(ar:Array, callback:Function, o):Void 
 	{
         var len:Number = ar.length ; 
 		var i:Number ;
@@ -216,7 +216,7 @@ class vegas.util.ArrayUtil
 	 * Returns an new array from arguments in a function.
 	 * @return an new array from arguments in a function.
 	 */
-	static public function fromArguments( ar:Array, args:Array ):Array 
+	public static function fromArguments( ar:Array, args:Array ):Array 
 	{
 		return ar.concat(args) ;	
     }
@@ -229,7 +229,7 @@ class vegas.util.ArrayUtil
 	 * @param count	allows to limit the number of elements to search in the array.
 	 * @return the index of the first occurrence of a value in a one-dimensional Array or in a portion of the Array.
 	 */
-	static public function indexOf( ar:Array, value:Object, startIndex:Number, count:Number):Number 
+	public static function indexOf( ar:Array, value:Object, startIndex:Number, count:Number):Number 
 	{
 		var l:Number = ar.length ;
 		if(isNaN(startIndex) ) startIndex = 0 ;
@@ -263,7 +263,7 @@ class vegas.util.ArrayUtil
 	 * Creates and Initializes an Array.
 	 * @return a new Array fill by the specified value.
 	 */
-	static public function initialize(index:Number, value:Object):Array 
+	public static function initialize(index:Number, value:Object):Array 
 	{
 		if( isNaN(index) ) 
 		{
@@ -292,7 +292,7 @@ class vegas.util.ArrayUtil
 	 * }
 	 * @return the last (greatest) index of an element within the array equal to the specified value, or -1 if none is found.
 	 */
-	static public function lastIndexOf( ar:Array, o ) :Number 
+	public static function lastIndexOf( ar:Array, o ) :Number 
 	{
 		var l:Number = ar.length;
 		while ( --l > -1 ) if (ar[l] == o) return l ; 
@@ -327,7 +327,7 @@ class vegas.util.ArrayUtil
 	 * @param callback Function produce an element of the new Array from an element of the current one.
 	 * @param thisObject Object to use as this when executing callback.
 	 */
-	static public function map( ar:Array, callback:Function, thisObject ):Array 
+	public static function map( ar:Array, callback:Function, thisObject ):Array 
 	{
         
 		var arr:Array = [] ;
@@ -361,7 +361,7 @@ class vegas.util.ArrayUtil
 	 * @param flag a boolean {@code true} to return a new spliced array of false to return the removed element.
 	 * @return The newly spliced array or the removed element in function of the flag parameter.
 	 */
-	static public function pierce(ar:Array, index:Number, flag:Boolean ) 
+	public static function pierce(ar:Array, index:Number, flag:Boolean ) 
 	{
  		var item = ar[index] ;
  		ar.splice(index, 1) ;
@@ -392,7 +392,7 @@ class vegas.util.ArrayUtil
 	 * @param callback Function to test for each element.
 	 * @param thisObject Object to use as this when executing callback.
 	 */
-	static public function some( ar:Array, callback:Function, thisObject):Boolean 
+	public static function some( ar:Array, callback:Function, thisObject):Boolean 
 	{
         
         var len:Number = ar.length ;
@@ -425,7 +425,7 @@ class vegas.util.ArrayUtil
 	 * @return the shuffled array.
 	 * @see ArrayUtil {@code pierce()} method.
 	 */
-	static public function shuffle( ar:Array) 
+	public static function shuffle( ar:Array) 
 	{
  		var tmp:Array = [] ;
  		var len = ar.length;
@@ -446,7 +446,7 @@ class vegas.util.ArrayUtil
 	 * Returns a string representing the specified array and its elements.
 	 * @return a string representing the specified array and its elements.
 	 */
-	static public function toString(ar:Array, strJoin:String ):String 
+	public static function toString(ar:Array, strJoin:String ):String 
 	{
 		return ar.join( strJoin || "," ) ;
 	}

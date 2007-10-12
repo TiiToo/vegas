@@ -46,9 +46,9 @@ class asgard.system.EdenLocalizationLoader extends EdenLoader implements ILocali
 		super() ;
 	}
 
-	static public var DEFAULT_PREFIX:String = "localize_" ;
+	public static var DEFAULT_PREFIX:String = "localize_" ;
 
-	static public var DEFAULT_SUFFIX:String = ".eden" ;
+	public static var DEFAULT_SUFFIX:String = ".eden" ;
 
 	public function get path():String 
 	{

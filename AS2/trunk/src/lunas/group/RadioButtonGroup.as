@@ -47,7 +47,7 @@ class lunas.group.RadioButtonGroup extends AbstractGroup
 	 * Returns a singleton reference of the RadioButtonGroup class.
 	 * @return a singleton reference of the RadioButtonGroup class.
 	 */
-	static public function getInstance():RadioButtonGroup 
+	public static function getInstance():RadioButtonGroup 
 	{
 		if (_instance == undefined)  
 		{
@@ -112,6 +112,6 @@ class lunas.group.RadioButtonGroup extends AbstractGroup
 		}
 	}
 	
-	static private var _instance : RadioButtonGroup ;	
+	private static var _instance : RadioButtonGroup ;	
 
 }

@@ -58,117 +58,117 @@ dynamic class pegas.events.ButtonEvent extends MouseEvent
 	/**
 	 * Defines the value of the type property of a click event object.
 	 */
-	static public var CLICK:String = "click" ;
+	public static var CLICK:String = "click" ;
 	
 	/**
 	 * Defines the value of the type property of a disabled button.
 	 */
-	static public var DISABLED:String = "disabled" ;
+	public static var DISABLED:String = "disabled" ;
 	
 	/**
 	 * Defines the value of the type property of a doubleClick event object.
 	 */
-	static public var DOUBLE_CLICK:String = "doubleClick" ;
+	public static var DOUBLE_CLICK:String = "doubleClick" ;
 	
 	/**
 	 * Defines the value of the type property of a down event object.
 	 */
-	static public var DOWN:String = "down" ;
+	public static var DOWN:String = "down" ;
 
 	/**
 	 * Defines the value of the type property of a drag event object.
 	 */
-	static public var DRAG:String = "drag" ;
+	public static var DRAG:String = "drag" ;
 	
 	/**
 	 * Defines the value of the type property of an icon change event object.
 	 */
-	static public var ICON_CHANGE:String = "onIconChanged" ;
+	public static var ICON_CHANGE:String = "onIconChanged" ;
 	
 	/**
 	 * Defines the value of the type property of a label change event object.
 	 */
-	static public var LABEL_CHANGE:String = "onLabelChanged" ;
+	public static var LABEL_CHANGE:String = "onLabelChanged" ;
 	
 	/**
 	 * Defines the value of the type property of a mouseDown event object.
 	 */
-	static public var MOUSE_DOWN:String = "mouseDown" ;
+	public static var MOUSE_DOWN:String = "mouseDown" ;
 	
 	/**
 	 * Defines the value of the type property of a mouseMove event object.
 	 */
-	static public var MOUSE_MOVE:String = "mouseMove" ;
+	public static var MOUSE_MOVE:String = "mouseMove" ;
 	
 	/**
 	 * Defines the value of the type property of a mouseOut event object.
 	 */
-	static public var MOUSE_OUT:String = "mouseOut" ;
+	public static var MOUSE_OUT:String = "mouseOut" ;
 	
 	/**
 	 * Defines the value of the type property of a mouseOver event object.
 	 */
-	static public var MOUSE_OVER:String = "mouseOver" ;
+	public static var MOUSE_OVER:String = "mouseOver" ;
 	
 	/**
 	 * Defines the value of the type property of a mouseUp event object.
 	 */
-	static public var MOUSE_UP:String = "mouseUp" ;
+	public static var MOUSE_UP:String = "mouseUp" ;
 	
 	/**
 	 * Defines the value of the type property of an out event object.
 	 */
-	static public var OUT:String = "out" ;
+	public static var OUT:String = "out" ;
 	
 	/**
 	 * Defines the value of the type property of an out selected event object.
 	 */
-	static public var OUT_SELECTED:String = "outSelected" ;
+	public static var OUT_SELECTED:String = "outSelected" ;
 	
 	/**
 	 * Defines the value of the type property of an over event object.
 	 */
-	static public var OVER:String = "over" ;
+	public static var OVER:String = "over" ;
 	
 	/**
 	 * Defines the value of the type property of a over selected event object.
 	 */
-	static public var OVER_SELECTED:String = "overSelected" ;
+	public static var OVER_SELECTED:String = "overSelected" ;
 
 	/**
 	 * Defines the value of the type property of a rollOut event object.
 	 */	
-	static public var ROLLOUT:String = "rollOut";
+	public static var ROLLOUT:String = "rollOut";
 
 	/**
 	 * Defines the value of the type property of a rollOver event object.
 	 */
-	static public var ROLLOVER:String = "rollOver" ;
+	public static var ROLLOVER:String = "rollOver" ;
 
 	/**
 	 * Defines the value of the type property of a select event object.
 	 */
-	static public var SELECT:String = "select" ;
+	public static var SELECT:String = "select" ;
 	
 	/**
 	 * Defines the value of the type property of a start drag event object.
 	 */
-	static public var START_DRAG:String = "startDrag" ;
+	public static var START_DRAG:String = "startDrag" ;
 
 	/**
 	 * Defines the value of the type property of a stop drag event object.
 	 */
-	static public var STOP_DRAG:String = "stopDrag" ;
+	public static var STOP_DRAG:String = "stopDrag" ;
 	
 	/**
 	 * Defines the value of the type property of an unselect event object.
 	 */
-	static public var UNSELECT:String = "unselect" ;
+	public static var UNSELECT:String = "unselect" ;
 	
 	/**
 	 * Defines the value of the type property of an 'up' event object.
 	 */
-	static public var UP:String = "up" ;
+	public static var UP:String = "up" ;
 
 	/**
 	 * Returns a shallow copy of this objet.

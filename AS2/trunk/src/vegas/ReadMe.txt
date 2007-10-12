@@ -1,5 +1,5 @@
  
-   VEGAS AS2 - version 1 Release Candidate 2
+   VEGAS AS2 - version 1 Release Candidate 3
  
    LICENCE 
 
@@ -21,7 +21,7 @@
    ABOUT
 
     * Author : ALCARAZ Marc (aka eKameleon)
-    * Version : 1 RC2
+    * Version : 1 RC3
     * Link : http://www.ekameleon.net/blog
     * Mail : vegas@ekameleon.net 
 

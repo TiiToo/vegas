@@ -58,17 +58,17 @@ class vegas.logging.AbstractTarget extends CoreObject implements EventListener, 
 	/**
 	 * The static field used when throws an Error when a character is invalid.
 	 */        
-	static public var CHARS_INVALID:String = "The following characters are not valid : []~$^&/\\(){}<>+=`!#%?,:;'\"@" ;
+	public static var CHARS_INVALID:String = "The following characters are not valid : []~$^&/\\(){}<>+=`!#%?,:;'\"@" ;
 
 	/**
 	 * The static field used when throws an Error when filter failed.
 	 */        
-	static public var ERROR_FILTER:String = "Error for filter \''{0}'" ;
+	public static var ERROR_FILTER:String = "Error for filter \''{0}'" ;
         
 	/**
 	 * The static field used when throws an Error when the character placement failed.
 	 */        
-	static public var CHAR_PLACEMENT:String = "'*' must be the right most character." ;
+	public static var CHAR_PLACEMENT:String = "'*' must be the right most character." ;
 
 	/**
 	 * In addition to the level setting, filters are used to provide a pseudo hierarchical mapping for processing only those events for a given category.

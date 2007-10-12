@@ -72,7 +72,7 @@ class vegas.util.Attribute extends CoreObject
 	 * @param property the property in the object to check.
 	 * @return the attribut instance and configuration of an object.
 	 */
-    static public function getAttribute(obj:Object, property:String):Attribute 
+    public static function getAttribute(obj:Object, property:String):Attribute 
     {
         var dontEnum:Boolean = Attribute.isDontEnum(obj, property);
         var readOnly:Boolean = Attribute.isReadOnly(obj, property);
@@ -86,7 +86,7 @@ class vegas.util.Attribute extends CoreObject
 	 * Returns {@code true} if the property in the specified object can't be deleted.
 	 * @return {@code true} if the property in the specified object can't be deleted.
 	 */
-    static public function isDontDelete(obj, property:String):Boolean 
+    public static function isDontDelete(obj, property:String):Boolean 
     {
         var save = obj[property] ;
 		delete obj[property] ;
@@ -102,7 +102,7 @@ class vegas.util.Attribute extends CoreObject
 	 * Returns {@code true} if the property in the specified object isn't enumerable.
 	 * @return {@code true} if the property in the specified object isn't enumerable.
 	 */
-    static public function isDontEnum(obj, property:String):Boolean 
+    public static function isDontEnum(obj, property:String):Boolean 
     {
         return !obj.isPropertyEnumerable(property) ;
 	}
@@ -111,7 +111,7 @@ class vegas.util.Attribute extends CoreObject
 	 * Returns {@code true} if the property in the specified object can be read only.
 	 * @return {@code true} if the property in the specified object can be read only.
 	 */
-    static public function isReadOnly(obj, property:String):Boolean 
+    public static function isReadOnly(obj, property:String):Boolean 
     {
         var dummy:String = "__\uFFFC\uFFFD\uFFFC\uFFFD__"; // we use ORC char to prevent string colision
         var save = obj[property] ;
@@ -132,7 +132,7 @@ class vegas.util.Attribute extends CoreObject
 	 * @param override to defined the override value. This value is the last parameter of the {@code ASSetPropFlags} global function.
 	 * @see ASSetPropFlags
 	 */
-	static public function setAttribute(obj:Object, property, attrib, override):Void 
+	public static function setAttribute(obj:Object, property, attrib, override):Void 
 	{
         if( attrib == null ) attrib = AttributeType.NONE ;
 		if( override == null ) 

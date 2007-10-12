@@ -42,7 +42,7 @@ class asgard.media.ApplicationSoundLibrary extends SoundLibrary
 	 * Returns the singleton reference of the ApplicationSoundLibrary class.
 	 * @return the singleton reference of the ApplicationSoundLibrary class.
 	 */
-	static public function getInstance():ApplicationSoundLibrary
+	public static function getInstance():ApplicationSoundLibrary
 	{
 		if (_instance == null)
 		{
@@ -54,6 +54,6 @@ class asgard.media.ApplicationSoundLibrary extends SoundLibrary
 	/**
 	 * The internal singleton of this class.
 	 */
-	static private var _instance:ApplicationSoundLibrary ;
+	private static var _instance:ApplicationSoundLibrary ;
 
 }

@@ -142,7 +142,7 @@ class asgard.config.ConfigLoader extends JSONLoader
      * Protect the Config object passed in argument.
      * @param oConfig the config object to protect.
      */
-    static public function protectConfig( oConfig ):Void 
+    public static function protectConfig( oConfig ):Void 
     {
         var logger:ILogger = Log.getLogger("asgard.config") ;
         oConfig.__resolve = function( p:String ) : String 

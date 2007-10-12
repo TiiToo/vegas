@@ -61,8 +61,7 @@ class andromeda.model.collections.CollectionModel extends AbstractModelObject
 		}
 		validate(vo) ;
 		_co.insert( vo.getID() , vo ) ;
-		_eAdd.setVO( vo ) ;
-		dispatchEvent( _eAdd ) ;
+		notifyAdd( vo ) ;
 	}
 	
 	/**
@@ -156,6 +155,32 @@ class andromeda.model.collections.CollectionModel extends AbstractModelObject
 		return _co.iterator() ;	
 	}
 
+    /**
+     * Notify a {@code ModelObjectEvent} when a {@code IValueObject} is inserted in the model.
+     */ 
+    public function notifyAdd( vo:IValueObject ):Void
+    {
+        if ( isLocked() )
+        {
+            return ;
+        }
+        _eAdd.setVO( vo ) ;
+        dispatchEvent( _eAdd  ) ;
+    }
+
+    /**
+     * Notify a {@code ModelObjectEvent} when a {@code IValueObject} is removed in the model.
+     */ 
+    public function notifyRemove( vo:IValueObject ):Void
+    {
+        if ( isLocked() )
+        {
+            return ;
+        }
+        _eRemove.setVO( vo ) ;
+        dispatchEvent( _eRemove  ) ;
+    }
+
 	/**
 	 * Removes a value object in the model.
 	 */
@@ -169,12 +194,11 @@ class andromeda.model.collections.CollectionModel extends AbstractModelObject
 		if ( _co.contains( vo ) )
 		{
 			_co.remove( vo ) ;
-			_eRemove.setVO( vo ) ;
-			dispatchEvent( _eRemove ) ;
+			notifyRemove( vo ) ;
 		}
 		else
 		{
-			throw Warning( this + " removeVO method failed, the id passed in argument allready register in the model, you must remove this 'id' key before add a new value object.") ;	
+			throw new Warning( this + " removeVO method failed, the id passed in argument allready register in the model, you must remove this 'id' key before add a new value object.") ;	
 		}
 	}
 	

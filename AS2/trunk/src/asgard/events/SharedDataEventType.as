@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -21,53 +21,21 @@
   
 */
 
-/** SharedDataEventType
-
-	AUTHOR
-
-		Name : SharedDataEventType
-		Package : asgard.events
-		Version : 1.0.0.0
-		Date :  2005-05-04
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	CONSTANT SUMMARY
-
-		- CHANGE:SharedDataEventType
-		
-			Invoque un événement pour informer "les utilisateurs" d'un changement au niveau du SharedData.
-		
-		- CLEAR:SharedDataEventType
-		
-		- CLOSE:SharedDataEventType
-		
-		- DELETE:SharedDataEventType
-		
-		- REJECT:SharedDataEventType
-		
-		- SUCCESS:SharedDataEventType
-		
-			Invoqué pour informer "l'utilisateur qu'il vient de changer une propriété du SharedData" que tout c'est bien passé. 
-		
-		- SYNCHRONISED:SharedDataEventType
-
-**/
-
 /**
+ * The static enumeration of all event types of the SharedDatas objects.
  * @author eKameleon
  * @version 1.0.0.0
- **/	
-class asgard.events.SharedDataEventType extends String {
+ */	
+class asgard.events.SharedDataEventType extends String 
+{
 
-	// ----o Constructor
-	
-	public function SharedDataEventType(s:String) {
+	/**
+	 * Creates a new SharedDataEventType instance.
+	 */
+	public function SharedDataEventType(s:String) 
+	{
 		super(s) ;
 	}
-
-	// ----o Static Properties
 
 	static public var CHANGE:SharedDataEventType = new SharedDataEventType("onChanged") ;
 

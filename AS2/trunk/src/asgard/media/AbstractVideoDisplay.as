@@ -51,7 +51,7 @@ class asgard.media.AbstractVideoDisplay extends ConfigurableDisplayObject
 		
 		_oVideo._width  = view._width ;
 		_oVideo._height = view._height ;
-		_oVideo.toString = function()
+		_oVideo.toString = function():String
 		{
 			return "[Video]" ;	
 		} ;

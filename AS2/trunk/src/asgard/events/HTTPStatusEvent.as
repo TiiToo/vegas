@@ -28,7 +28,7 @@ class asgard.events.HTTPStatusEvent extends DynamicEvent
 	/**
 	 * Defines the value of the type property of a httpStatus event object.
 	 */
-	static public var HTTP_STATUS:String = "httpStatus" ;
+	public static var HTTP_STATUS:String = "httpStatus" ;
 	
 	/**
 	 * (read only) The HTTP status code returned by the server. 

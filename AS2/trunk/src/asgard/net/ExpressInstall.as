@@ -26,7 +26,7 @@ class asgard.net.ExpressInstall
 	 * Returns the singleton instance of the ExpressInstall class.
 	 * @return the singleton instance of the ExpressInstall class.
 	 */
-	static public function getInstance():ExpressInstall 
+	public static function getInstance():ExpressInstall 
 	{
 		if (_instance == null) _instance = new ExpressInstall() ;
 		return _instance ;
@@ -36,7 +36,7 @@ class asgard.net.ExpressInstall
 	 * Initialize the Express Install. 
 	 * if the flashvars 'MMplayerType' is not set, the var was not passed in from the SWFObject embed, so the upgrade is not needed.
 	 */
-	static public function init():Boolean 
+	public static function init():Boolean 
 	{
 		if ( _root.MMplayerType == undefined ) 
 		{
@@ -60,7 +60,7 @@ class asgard.net.ExpressInstall
 	/**
 	 * The allow domain of the Express install plugin.
 	 */
-	static public var ALLOW_DOMAIN:String = "fpdownload.macromedia.com" ;
+	public static var ALLOW_DOMAIN:String = "fpdownload.macromedia.com" ;
 
 	/**
 	 * The end user chose "NO" when prompted to install the new player. 
@@ -68,14 +68,14 @@ class asgard.net.ExpressInstall
 	 * the developer to provide an alternate experience in this case 
 	 * feel free to change this to whatever you want, js errors are sufficient for this example.
 	 */ 
-	static public var DOWNLOAD_CANCEL:String = "Download.Cancelled" ;
+	public static var DOWNLOAD_CANCEL:String = "Download.Cancelled" ;
 
 	/**
 	 * Installation is complete. 
 	 * In most cases the browser window that this SWF is hosted in will be closed 
 	 * by the installer or manually by the end user 
 	 */ 
-	static public var DOWNLOAD_COMPLETE:String = "Download.Complete" ;
+	public static var DOWNLOAD_COMPLETE:String = "Download.Complete" ;
 	
 	/**
 	 * The end user failed to download the installer due to a network failure 
@@ -83,7 +83,7 @@ class asgard.net.ExpressInstall
 	 * the developer to provide an alternate experience in this case 
 	 * feel free to change this to whatever you want, js errors are sufficient for this example.
 	 */
-	static public var DOWNLOAD_FAILED:String = "Download.Failed" ;
+	public static var DOWNLOAD_FAILED:String = "Download.Failed" ;
 	
 	/**
 	 * Invoqued when the status of the express install change.
@@ -112,7 +112,7 @@ class asgard.net.ExpressInstall
 
 	private var _hold:MovieClip ;
 	
-	static private var _instance:ExpressInstall ;
+	private static var _instance:ExpressInstall ;
 	
 	private var _updater:MovieClip ;
 

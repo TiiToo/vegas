@@ -31,19 +31,19 @@ class asgard.display.PixelSnapping
 	/**
 	 * [static] A constant value used in the pixelSnapping property of a Bitmap object to specify that the bitmap image is always snapped to the nearest pixel, independent of any transformation.
 	 */
-	static public var ALWAYS:String = "always" ;
+	public static var ALWAYS:String = "always" ;
 	
 	/**
 	 * [static] A constant value used in the pixelSnapping property of a Bitmap object to specify that the bitmap image is snapped to the nearest pixel if it is drawn with no rotation or skew and it is drawn at a scale factor of 99.9% to 100.1%.
 	 */
-	static public var AUTO:String = "auto" ;
+	public static var AUTO:String = "auto" ;
 		
 	/**
 	 * [static] A constant value used in the pixelSnapping property of a Bitmap object to specify that no pixel snapping occurs.
 	 */
-	static public var NEVER:String = "never" ;
+	public static var NEVER:String = "never" ;
 	
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(PixelSnapping, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(PixelSnapping, null , 7, 7) ;
 	
 }

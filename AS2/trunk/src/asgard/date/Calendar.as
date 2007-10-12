@@ -91,52 +91,52 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	/**
   	 * Constant field representing Day
 	 */
-	static public var DAY:String = "D" ;
+	public static var DAY:String = "D" ;
 
 	/**
 	 * The default offset use in the getFullMonthCalendar() method.
 	 */
-	static public var DEFAULT_FULL_MONTH_OFFSET:Number = 0 ;
+	public static var DEFAULT_FULL_MONTH_OFFSET:Number = 0 ;
 
 	/**
 	 * Constant field representing hours.
 	 */
-	static public var HOUR:String = "h" ;
+	public static var HOUR:String = "h" ;
 
 	/**
 	 * Constant field representing milliseconds.
 	 */
-	static public var MILLISECOND:String = "ms" ;
+	public static var MILLISECOND:String = "ms" ;
 
 	/**
 	 * Constant field representing minutes.
 	 */
-	static public var MINUTE:String = "mn" ;
+	public static var MINUTE:String = "mn" ;
 
 	/**
 	 * Constant field representing Month
 	 */	
-	static public var MONTH:String = "M" ;
+	public static var MONTH:String = "M" ;
 
 	/**
 	 * Constant field representing seconds.
 	 */
-	static public var SECOND:String = "s" ;
+	public static var SECOND:String = "s" ;
 	
 	/**
 	 * Constant field representing Week
 	 */
-	static public var WEEK:String = "W" ;
+	public static var WEEK:String = "W" ;
 	
 	/**
 	 * Constant field representing Year
 	 */
-	static public var YEAR:String = "Y" ;
+	public static var YEAR:String = "Y" ;
 
 	/**
 	 * Constant field representing one day, in milliseconds
 	 */
-	static public var ONE_DAY_MS:Number = 1000*60*60*24 ;
+	public static var ONE_DAY_MS:Number = 1000*60*60*24 ;
 
 	/**
  	 * Adds the specified amount of time to the this instance.
@@ -160,7 +160,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	 * @param amount The number of units (measured in the field constant) to add to the date.
 	 * @return the new {@code Calendar} object.
 	 */
-	static public function add( date:Date, field:String, amount:Number ):Calendar 
+	public static function add( date:Date, field:String, amount:Number ):Calendar 
 	{
 		var c:Calendar = new Calendar( (date == null) ? (new Date()).valueOf() : date.valueOf() );
 		switch (field) 
@@ -288,7 +288,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	 * @param offset the day offset value between 0 and 6 to fill the calendar. The default value is 0 (Sunday). 
 	 * @return the array representation of all days in the current month.
 	 */
-	static public function getCurrentFullMonthCalendar( offset:Number ):Array 
+	public static function getCurrentFullMonthCalendar( offset:Number ):Array 
 	{
 		return getFullMonthCalendar( null, offset ) ;
 	}
@@ -298,7 +298,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	 * @param d The specified {@code Date} object.
 	 * @return the numbers of days in a specified month.
 	 */
-	static public function getDaysInMonth( d:Date ):Number 
+	public static function getDaysInMonth( d:Date ):Number 
 	{
 		var y:Number = d.getFullYear() ;
 		var m:Number = d.getMonth() ;
@@ -317,7 +317,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	 * @param calendarYear The calendar year to use for determining the offset
 	 * @return The number of days since January 1 of the given year
 	 */
-	static public function getDayOffset( date:Date, calendarYear:Number ):Number 
+	public static function getDayOffset( date:Date, calendarYear:Number ):Number 
 	{
 		if (date == null)
 		{
@@ -332,7 +332,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	 * @param d The specified {@code Date} object of this method. 
 	 * @return the first day in the specified month.
 	 */
-	static public function getFirstDay( d:Date, nameFlag:Boolean) 
+	public static function getFirstDay( d:Date, nameFlag:Boolean) 
 	{
 		if (d == null)
 		{
@@ -354,7 +354,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	 * @param offset the day offset value between 0 and 6 to fill the calendar. The default value is 0 (Sunday). 
 	 * @return an array representation of a full month.
 	 */
-	static public function getFullMonthCalendar( d:Date , offset:Number ):Array 
+	public static function getFullMonthCalendar( d:Date , offset:Number ):Array 
 	{
 		
 		if (d == null)
@@ -393,7 +393,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	 * @param calendarYear	The calendar year for which to retrieve January 1
 	 * @return January 1 of the calendar year specified.
 	 */
-	static public function getJan1(calendarYear:Number):Date 
+	public static function getJan1(calendarYear:Number):Date 
 	{
 		return new Date(calendarYear, 0, 1) ; 
 	}
@@ -402,7 +402,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	 * Returns the {@code Date} of the next month of the specified {@code Date} object.
 	 * @return the {@code Data} of the next month of the specified {@code Date} object.
 	 */
-	static public function getNextMonth( date:Date ):Calendar
+	public static function getNextMonth( date:Date ):Calendar
 	{
 		var today:Date = date || new Date() ;
 		var thisMonth:Number = today.getMonth() ;
@@ -422,7 +422,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	 * Returns the {@code Date} of the previous month of the specified {@code Date} object.
 	 * @return the {@code Date} of the previous month of the specified {@code Date} object.
 	 */
-	static public function getPreviousMonth( date:Date ):Calendar
+	public static function getPreviousMonth( date:Date ):Calendar
 	{
 		var today:Date = date || new Date() ;
 		var thisMonth:Number = today.getMonth();
@@ -449,7 +449,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	 * @param weekStartsOn (optional) The integer (0-6) representing which day a week begins on. Default is 0 (for Sunday).
 	 * @return The week number of the given date.
 	 */
-	static public function getWeekNumber(date:Date, calendarYear:Number, weekStartsOn:Number):Number 
+	public static function getWeekNumber(date:Date, calendarYear:Number, weekStartsOn:Number):Number 
 	{
 		if (isNaN(weekStartsOn)) weekStartsOn = 0 ;
 		if (isNaN(calendarYear)) calendarYear = date.getFullYear();
@@ -487,7 +487,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	 * Returns {@code true} if the current or specified {@code Date} if the last day in the current or specified month.
 	 * @return {@code true} if the current or specified {@code Date} if the last day in the current or specified month.
 	 */
-	static public function isEndOfMonth( date:Date ):Boolean
+	public static function isEndOfMonth( date:Date ):Boolean
 	{
 		var today:Date = (date == undefined) ? new Date() : date ;
 		var y:Number = today.getYear() ;
@@ -508,7 +508,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	/**
 	 * Registers this object to be use with AMF protocol. Use this method with Flash remoting class mapping for example.
 	 */
-	static public function register( registerName:String ):Void
+	public static function register( registerName:String ):Void
 	{
 		Object.registerClass( registerName || "Calendar", Calendar) ;
 	}
@@ -520,7 +520,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	 * @param amount The number of units (measured in the field constant) to subtract from the date.
 	 * @return the new {@code Calendar} object.
 	 */
-	static public function subtract(date:Date, field:String, amount:Number):Date 
+	public static function subtract(date:Date, field:String, amount:Number):Date 
 	{
 		return Calendar.add(date, field, (amount*-1));
 	}
@@ -543,7 +543,7 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	 * }
 	 * @return the Calendar reference of the "tomorrow" {@code Calendar} object of the specified {@code Date} in argument.
 	 */
-	static public function tomorrow( d:Date ):Calendar
+	public static function tomorrow( d:Date ):Calendar
 	{
 		return new Calendar( (d || new Date()).valueOf() + ONE_DAY_MS ) ;
 	}
@@ -566,11 +566,11 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	 * }
 	 * @return the Calendar reference of the "yesterday" {@code Calendar} object of the specified {@code Date} in argument.
 	 */
-	static public function yesterday ( d:Date ):Calendar
+	public static function yesterday ( d:Date ):Calendar
 	{
 		d = d || new Date() ;
 		return new Calendar( (d || new Date()).valueOf() - ONE_DAY_MS ) ;
 	}
 
-	static private var _initHashCode:Boolean = HashCode.initialize(Calendar.prototype) ;
+	private static var _initHashCode:Boolean = HashCode.initialize(Calendar.prototype) ;
 }

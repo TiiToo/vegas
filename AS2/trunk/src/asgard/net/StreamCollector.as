@@ -37,7 +37,7 @@ class asgard.net.StreamCollector
 	/**
 	 * Removes all {@code Stream} references in the collector.
 	 */
-	static public function clear():Void 
+	public static function clear():Void 
 	{
 		_map.clear() ;	
 	}
@@ -47,7 +47,7 @@ class asgard.net.StreamCollector
 	 * @param id the id of the {@code Stream} register in the collector.
 	 * @return {@code true} if the collector contains the {@code Stream} register with the id passed in argument.
 	 */
-	static public function contains( id ):Boolean 
+	public static function contains( id ):Boolean 
 	{
 		return _map.containsKey( id ) ;	
 	}
@@ -57,7 +57,7 @@ class asgard.net.StreamCollector
 	 * @param stream the Stream to search in the collector.
 	 * @return {@code true} if the collector contains the {@code Stream} passed in argument.
 	 */
-	static public function containsStream( stream:Stream ):Boolean
+	public static function containsStream( stream:Stream ):Boolean
 	{
 		return _map.containsValue( stream ) ;	
 	}
@@ -67,7 +67,7 @@ class asgard.net.StreamCollector
 	 * @return the {@code Stream} reference with the name passed in argument.
 	 * @throws Warning if the the specified id isn't register in the collector.
 	 */
-	static public function get( id ):Stream 
+	public static function get( id ):Stream 
 	{
 
 		if (!contains( id ) ) 
@@ -84,7 +84,7 @@ class asgard.net.StreamCollector
 	 * @return {@code true} if the specified {@code Stream} is inserted in the collector.
 	 * @throws Warning if the specified id is already registered in the collector.
 	 */
-	static public function insert( id , stream:Stream):Boolean 
+	public static function insert( id , stream:Stream):Boolean 
 	{
 		if ( contains(id) ) 
 		{
@@ -97,7 +97,7 @@ class asgard.net.StreamCollector
 	 * Returns {@code true} if the collector is empty.
 	 * @return {@code true} if the collector is empty.
 	 */
-	static public function isEmpty():Boolean 
+	public static function isEmpty():Boolean 
 	{
 		return _map.isEmpty() ;	
 	}
@@ -106,7 +106,7 @@ class asgard.net.StreamCollector
 	 * Removes the {@code Stream} in the collector specified by the argument {@code id}. 
 	 * @param id the id of the {@code Stream} to unregister in the collector.
 	 */
-	static public function remove( id ):Void 
+	public static function remove( id ):Void 
 	{
 		if (StreamExpert.contains( id ) )
 		{
@@ -119,7 +119,7 @@ class asgard.net.StreamCollector
 	 * Returns the number of elements in the collector.
 	 * @return the number of elements in the collector.
 	 */
-	static public function size():Number 
+	public static function size():Number 
 	{
 		return _map.size() ;	
 	}
@@ -127,6 +127,6 @@ class asgard.net.StreamCollector
 	/**
 	 * Internal HashMap of all {@code Stream} in the application.
 	 */	
-	static private var _map:HashMap = new HashMap() ;
+	private static var _map:HashMap = new HashMap() ;
 	
 }

@@ -31,129 +31,129 @@ class vegas.events.EventType
 	/**
 	 * The activate event occurs when Flash Player has gained OS focus and is becoming active.
 	 */
-	static public var ACTIVATE:String = "activate" ;
+	public static var ACTIVATE:String = "activate" ;
 
 	/**
 	 * The added event occurs when a DisplayObject has been added to the display list.
 	 */
-	static public var ADDED:String = "added" ;
+	public static var ADDED:String = "added" ;
 	
 	/**
 	 * A constant to notify a global {@code EventListener} in the {@code EventDispatcher.addEventListener} method.
 	 */
-	static public var ALL:String = "ALL" ;
+	public static var ALL:String = "ALL" ;
 	
 	/**
 	 * The cancel event occurs when a file upload or download is cancelled.
 	 */
-	static public var CANCEL:String = "cancel" ;
+	public static var CANCEL:String = "cancel" ;
 	
 	/**
 	 * The change event occurs after a control's value has been modified.
 	 */
-	static public var CHANGE:String = "change" ;
+	public static var CHANGE:String = "change" ;
 	
 	/**
 	 * A Socket or XMLSocket object generates the close event after a network connection is closed.
 	 */
-	static public var CLOSE:String = "close" ;
+	public static var CLOSE:String = "close" ;
 	
 	/**
 	 * Flash Player dispatches the complete event when data has loaded successfully.
 	 */
-	static public var COMPLETE:String = "complete" ;
+	public static var COMPLETE:String = "complete" ;
 	
 	/**
 	 * The Flash Player dispatches the connect event when a network connection has been established.
 	 */
-	static public var CONNECT:String = "connect" ;
+	public static var CONNECT:String = "connect" ;
 	
 	/**
 	 * The Stage object generates the deactivate event when the Flash Player is losing operating system focus and is becoming inactive.
 	 */
-	static public var DEACTIVATE:String = "deactivate" ;
+	public static var DEACTIVATE:String = "deactivate" ;
 	
 	/**
 	 * The enabled change event invoqued when a display or a component is enabled or diabled.
 	 */
-	static public var ENABLED_CHANGE:String = "enabled_change" ;
+	public static var ENABLED_CHANGE:String = "enabled_change" ;
 	
 	/**
 	 * Flash Player generates the enterFrame event when the play head is entering a new frame.
 	 */
-	static public var ENTER_FRAME:String = "enterframe" ;
+	public static var ENTER_FRAME:String = "enterframe" ;
 	
 	/**
 	 * Defines the value of the type property of an id3 event object.
 	 */
-	static public var ID3:String = "id3" ;
+	public static var ID3:String = "id3" ;
 	
 	/**
 	 * Defines the value of the type property of an init event object.
 	 */
-	static public var INIT:String = "init" ;
+	public static var INIT:String = "init" ;
 	
 	/**
 	 * Defines the value of the type property of a mouseLeave event object.
 	 */
-	static public var MOUSE_LEAVE:String = "mouseleave" ;
+	public static var MOUSE_LEAVE:String = "mouseleave" ;
 	
 	/**
 	 * Defines the value of the type property of an open event object.
 	 */
-	static public var OPEN:String = "open" ;
+	public static var OPEN:String = "open" ;
 	
 	/**
 	 * Defines the value of the type property of a removed event object.
 	 */
-	static public var REMOVED:String = "removed" ;
+	public static var REMOVED:String = "removed" ;
 	
 	/**
 	 * Defines the value of the type property of a render event object.
 	 */
-	static public var RENDER:String = "render" ;
+	public static var RENDER:String = "render" ;
 	
 	/**
 	 * Defines the value of the type property of a resize event object.
 	 */
-	static public var RESIZE:String = "resize" ;
+	public static var RESIZE:String = "resize" ;
 	
 	/**
 	 * Defines the value of the type property of a scroll event object.
 	 */
-	static public var SCROLL:String = "scroll" ;
+	public static var SCROLL:String = "scroll" ;
 	
 	/**
 	 * Defines the value of the type property of a select event object.
 	 */
-	static public var SELECT:String = "select" ;
+	public static var SELECT:String = "select" ;
 	
 	/**
 	 * Defines the value of the type property of a soundComplete event object.
 	 */
-	static public var SOUND_COMPLETE:String = "soundcomplete" ;
+	public static var SOUND_COMPLETE:String = "soundcomplete" ;
 	
 	/**
 	 * Defines the value of the type property of a tabChildrenChange event object.
 	 */
-	static public var TAB_CHILDREN_CHANGE:String = "tab_children_change" ;
+	public static var TAB_CHILDREN_CHANGE:String = "tab_children_change" ;
 	
 	/**
 	 * Defines the value of the type property of a tabEnabledChange event object.
 	 */
-	static public var TAB_ENABLED_CHANGE:String = "tab_enabled_change" ;
+	public static var TAB_ENABLED_CHANGE:String = "tab_enabled_change" ;
 	
 	/**
 	 * Defines the value of the type property of a tabIndexChange event object.
 	 */
-	static public var TAB_INDEX_CHANGE:String = "tab_index_change" ;
+	public static var TAB_INDEX_CHANGE:String = "tab_index_change" ;
 	
 	/**
 	 * Defines the value of the type property of an unload event object.
 	 */
-	static public var UNLOAD:String = "unload" ;
+	public static var UNLOAD:String = "unload" ;
 
-	static private var __ASPF__ = _global.ASSetPropFlags(EventType, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(EventType, null , 7, 7) ;
 	
 }
 

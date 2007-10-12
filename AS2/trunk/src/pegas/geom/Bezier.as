@@ -40,7 +40,7 @@ class pegas.geom.Bezier
 	 * Calculates an array representation of Point elements to create a quadratic Bezier curve looped or not in n-points.
 	 * @return an array representation of Point elements to create a quadratic Bezier curve looped or not in n-points.
 	 */
-	static public function createBezier(step:Number,points:Array,precision:Number,loop:Boolean):Array 
+	public static function createBezier(step:Number,points:Array,precision:Number,loop:Boolean):Array 
 	{
 		
 		precision= isNaN(precision) ? 0 : precision ;
@@ -114,7 +114,7 @@ class pegas.geom.Bezier
 	 * Returns the baryCenter of a collection of points.
 	 * @return the baryCenter of a collection of points.
 	 */
-	static public function getBaryCenter(pts:Array):Point 
+	public static function getBaryCenter(pts:Array):Point 
 	{
 		var nbp:Number = pts.length ;
 		var x:Number=0;
@@ -127,7 +127,7 @@ class pegas.geom.Bezier
 		return new Point(x/pts.length,y/pts.length) ;
 	}
 
-	static public function split(p0:Point, p1:Point, p2:Point, p3:Point):Object
+	public static function split(p0:Point, p1:Point, p2:Point, p3:Point):Object
 	{
 		var p0_1:Point = Line.getMiddle(p0, p1) ;
 		var p1_2:Point = Line.getMiddle(p1, p2);
@@ -142,7 +142,7 @@ class pegas.geom.Bezier
 		return o ; 
 	}
 	
-	static public function getCubicDerivative(c0:Number, c1:Number, c2:Number, c3:Number, t:Number):Number 
+	public static function getCubicDerivative(c0:Number, c1:Number, c2:Number, c3:Number, t:Number):Number 
 	{
 		var g:Number = 3 * (c1 - c0) ;
 		var b:Number = (3 * (c2 - c1)) - g ;
@@ -150,7 +150,7 @@ class pegas.geom.Bezier
 		return ( 3*a*t*t + 2*b*t + g ) ;
 	}
 
-	static public function getCubicPt(c0:Number, c1:Number, c2:Number, c3:Number, t:Number):Number 
+	public static function getCubicPt(c0:Number, c1:Number, c2:Number, c3:Number, t:Number):Number 
 	{
 		var ts:Number = t*t ;
 		var g:Number = 3 * (c1 - c0);
@@ -159,7 +159,7 @@ class pegas.geom.Bezier
 		return ( a*ts*t + b*ts + g*t + c0 ) ;
 	}
 
-	static public function getCubicTgt(p0:Point, p1:Point, p2:Point, p3:Point, t:Number):Object 
+	public static function getCubicTgt(p0:Point, p1:Point, p2:Point, p3:Point, t:Number):Object 
 	{
 		var p = {};
 		p.x = getCubicPt(p0.x, p1.x, p2.x, p3.x, t);

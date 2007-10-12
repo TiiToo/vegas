@@ -104,7 +104,7 @@ class pegas.geom.Line extends CoreObject implements ICloneable, IEquality
 	 * }
 	 * @return the distance between two points.
 	 */
-	static public function distance( p1:Point, p2:Point ):Number 
+	public static function distance( p1:Point, p2:Point ):Number 
 	{
 		return Point.distance(p1, p2) ;
 	}
@@ -123,7 +123,7 @@ class pegas.geom.Line extends CoreObject implements ICloneable, IEquality
 	 * The function takes two points as parameter, p0 and p1 containing two properties x and y.
 	 * @return a line equation as two properties (a,b) such that (y = a*x + b) for any x or a unique c property such that (x = c) for all y.
 	 */
-	static public function getLine( p1:Point, p2:Point ):Line 
+	public static function getLine( p1:Point, p2:Point ):Line 
 	{
 		var x0:Number = p1.x;
 		var y0:Number = p1.y;
@@ -149,7 +149,7 @@ class pegas.geom.Line extends CoreObject implements ICloneable, IEquality
 	 * a single parameter c such that (x = c) for all y.
 	 * @return a point (x,y) that is the intersection of two lines.
 	 */
-	static public function getLineCross(l1:Line, l2:Line):Point 
+	public static function getLineCross(l1:Line, l2:Line):Point 
 	{
 		if ( l1 == null || l2 == null ) 
 		{
@@ -195,7 +195,7 @@ class pegas.geom.Line extends CoreObject implements ICloneable, IEquality
 	 * Returns the middle of a segment define by two points.
 	 * @return the middle of a segment define by two points.
 	 */
-	static public function getMiddle(p1:Point, p2:Point):Point 
+	public static function getMiddle(p1:Point, p2:Point):Point 
 	{
 		return Point.getMiddle(p1,p2) ;
 	}
@@ -204,7 +204,7 @@ class pegas.geom.Line extends CoreObject implements ICloneable, IEquality
 	 * Returns a point on a segment [p1, p2] which distance from p1 is ratio of the length [p1, p2].
 	 * @return a point on a segment [p1, p2] which distance from p1 is ratio of the length [p1, p2].
 	 */
-	static public function getPointOnSegment(p1:Point, p2:Point, ratio:Number):Point 
+	public static function getPointOnSegment(p1:Point, p2:Point, ratio:Number):Point 
 	{
 		return new Point ( p1.x + ((p2.x - p1.x) * ratio) , p1.y + ((p2.y - p1.y) * ratio) ) ;
 	}
@@ -214,7 +214,7 @@ class pegas.geom.Line extends CoreObject implements ICloneable, IEquality
 	 * The function takes two parameters, a point p(x,y) through which the line passes and a direction vector v(x,y).
 	 * @return a line equation as two properties (a,b) such that (y = a*x + b) for any x.
 	 */
-	static public function getVectorLine(p:Point, v:Point):Line 
+	public static function getVectorLine(p:Point, v:Point):Line 
 	{
 		var l:Line = new Line() ;
 		var x:Number = p.x;

@@ -33,7 +33,7 @@ class vegas.util.serialize.ErrorSerializer
 	 * Returns a Eden representation of the object.
 	 * @return a string representing the source code of the object.
 	 */	
-	static public function toSource( e:Error ):String 
+	public static function toSource( e:Error ):String 
 	{
 		return 'new Error(\"' + e.message + '")' ;
     }

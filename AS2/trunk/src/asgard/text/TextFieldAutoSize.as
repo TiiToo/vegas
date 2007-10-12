@@ -31,23 +31,23 @@ class asgard.text.TextFieldAutoSize
 	/**
 	 * Specifies that the text is to be treated as center-justified text.
 	 */
-	static public var CENTER:String = "center" ;
+	public static var CENTER:String = "center" ;
 	
 	/**
 	 * Specifies that the text is to be treated as left-justified text, meaning that the left side of the text field remains fixed and any resizing of a single line is on the right side.
 	 */
-	static public var LEFT:String = "left" ;
+	public static var LEFT:String = "left" ;
 	
 	/**
 	 * Specifies that no resizing is to occur.
 	 */
-	static public var NONE:String = "none" ;
+	public static var NONE:String = "none" ;
 	
 	/**
 	 * Specifies that the text is to be treated as right-justified text, meaning that the right side of the text field remains fixed and any resizing of a single line is on the left side.
 	 */
-	static public var RIGHT:String = "right" ;
+	public static var RIGHT:String = "right" ;
 
-	static private var __ASPF__ = _global.ASSetPropFlags(TextFieldAutoSize, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(TextFieldAutoSize, null , 7, 7) ;
 
 }

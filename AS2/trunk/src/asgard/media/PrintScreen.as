@@ -82,7 +82,7 @@ class asgard.media.PrintScreen extends AbstractAction implements Action
 	/**
 	 * The default delay to notify the PrintScreen.PROGRESS event.
 	 */	
-	static public var DEFAULT_PROGRESS_DELAY:Number = 5 ;
+	public static var DEFAULT_PROGRESS_DELAY:Number = 5 ;
 
 	/**
 	 * Returns the height of the capture.

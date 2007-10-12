@@ -28,10 +28,10 @@
 class pegas.draw.FillType 
 {
 
-	static public var LINEAR:String = "linear" ;
+	public static var LINEAR:String = "linear" ;
 	
-	static public var RADIAL:String = "radial" ;
+	public static var RADIAL:String = "radial" ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(FillType, null, 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(FillType, null, 7, 7) ;
 	
 }

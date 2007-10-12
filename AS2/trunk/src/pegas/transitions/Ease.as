@@ -33,22 +33,22 @@ class pegas.transitions.Ease
 	/**
 	 * The name of the easeIn static method in a Ease class.
 	 */
-	static public var EASE_IN:String = "easeIn" ; 
+	public static var EASE_IN:String = "easeIn" ; 
 
 	/**
 	 * The name of the easeOut static method in a Ease class.
 	 */
-	static public var EASE_IN_OUT:String = "easeInOut" ;
+	public static var EASE_IN_OUT:String = "easeInOut" ;
 
 	/**
 	 * The name of the easeInOut static method in a Ease class.
 	 */
-	static public var EASE_OUT:String = "easeOut" ;
+	public static var EASE_OUT:String = "easeOut" ;
 		
 	/**
 	 * The ease-in method use in a Tween effect.
 	 */	
-	static public function easeIn (t:Number, b:Number, c:Number, d:Number):Number 
+	public static function easeIn (t:Number, b:Number, c:Number, d:Number):Number 
 	{
 		return null ;
 	}
@@ -56,7 +56,7 @@ class pegas.transitions.Ease
 	/**
 	 * The ease-out method use in a Tween effect.
 	 */	
-	static public function easeOut (t:Number, b:Number, c:Number, d:Number):Number 
+	public static function easeOut (t:Number, b:Number, c:Number, d:Number):Number 
 	{
 		return null ;
 	}
@@ -64,7 +64,7 @@ class pegas.transitions.Ease
 	/**
 	 * The ease-in-out method use in a Tween effect.
 	 */	
-	static public function easeInOut (t:Number, b:Number, c:Number, d:Number):Number 
+	public static function easeInOut (t:Number, b:Number, c:Number, d:Number):Number 
 	{
 		return null ;
 	}
@@ -74,7 +74,7 @@ class pegas.transitions.Ease
 	 * The constructor in argument must be a subconstructor of the Ease class.
 	 * @return {@code true} if the passed-in method is a valid easing class.
 	 */
-	static public function validate( c:Function ):Boolean 
+	public static function validate( c:Function ):Boolean 
 	{
 		 return ConstructorUtil.isSubConstructorOf(c, Ease) ;
 	}

@@ -31,23 +31,23 @@ class asgard.system.ApplicationType
 	/**
 	 * The type of a file application.
 	 */
-	static public var FILE:String = "file" ;
+	public static var FILE:String = "file" ;
 	
 	/**
 	 * The type of a FTP application.
 	 */
-	static public var FTP:String = "ftp" ;
+	public static var FTP:String = "ftp" ;
 	
 	/**
 	 * Tge type of a HTTP application.
 	 */
-	static public var HTTP:String = "http" ;
+	public static var HTTP:String = "http" ;
 	
 	/**
 	 * The type of a HTTPS application.
 	 */
-	static public var HTTPS:String = "https" ;
+	public static var HTTPS:String = "https" ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(ApplicationType, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(ApplicationType, null , 7, 7) ;
 	
 }

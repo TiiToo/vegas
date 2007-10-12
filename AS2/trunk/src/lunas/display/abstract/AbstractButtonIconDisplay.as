@@ -48,7 +48,7 @@ class lunas.display.abstract.AbstractButtonIconDisplay extends AbstractButtonDis
 	/**
 	 * The default icon depth of this display. 
 	 */
-	static public var DEFAULT_ICON_DEPTH:Number = 100 ;
+	public static var DEFAULT_ICON_DEPTH:Number = 100 ;
 	
 	/**
 	 * (read-write) Returns a string that specifies the linkage identifier of a symbol in the library to be used as an icon for a button instance.

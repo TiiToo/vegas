@@ -38,41 +38,41 @@ class lunas.events.CellEvent extends ButtonEvent
 		_cell = target ;
 	}
 
-	static public var CLICK:String = ButtonEvent.CLICK ;
+	public static var CLICK:String = ButtonEvent.CLICK ;
 	
-	static public var DISABLED:String = ButtonEvent.DISABLED ;
+	public static var DISABLED:String = ButtonEvent.DISABLED ;
 	
-	static public var DOUBLE_CLICK:String = ButtonEvent.DOUBLE_CLICK ;
+	public static var DOUBLE_CLICK:String = ButtonEvent.DOUBLE_CLICK ;
 	
-	static public var DOWN:String = ButtonEvent.DOWN ;
+	public static var DOWN:String = ButtonEvent.DOWN ;
 
-	static public var DRAG:String = ButtonEvent.DRAG ;
+	public static var DRAG:String = ButtonEvent.DRAG ;
 	
-	static public var ICON_CHANGE:String = ButtonEvent.ICON_CHANGE ;
+	public static var ICON_CHANGE:String = ButtonEvent.ICON_CHANGE ;
 	
-	static public var LABEL_CHANGE:String = ButtonEvent.LABEL_CHANGE ;
+	public static var LABEL_CHANGE:String = ButtonEvent.LABEL_CHANGE ;
 	
-	static public var MOUSE_UP:String = ButtonEvent.MOUSE_UP ;
+	public static var MOUSE_UP:String = ButtonEvent.MOUSE_UP ;
 	
-	static public var MOUSE_DOWN:String = ButtonEvent.MOUSE_DOWN ;
+	public static var MOUSE_DOWN:String = ButtonEvent.MOUSE_DOWN ;
 	
-	static public var OUT:String = ButtonEvent.OUT ;
+	public static var OUT:String = ButtonEvent.OUT ;
 	
-	static public var OUT_SELECTED:String = ButtonEvent.OUT_SELECTED ;
+	public static var OUT_SELECTED:String = ButtonEvent.OUT_SELECTED ;
 	
-	static public var OVER:String = ButtonEvent.OVER ;
+	public static var OVER:String = ButtonEvent.OVER ;
 	
-	static public var OVER_SELECTED:String = ButtonEvent.OVER_SELECTED ;
+	public static var OVER_SELECTED:String = ButtonEvent.OVER_SELECTED ;
 	
-	static public var ROLLOUT:String = ButtonEvent.ROLLOUT ;
+	public static var ROLLOUT:String = ButtonEvent.ROLLOUT ;
 	
-	static public var ROLLOVER:String = ButtonEvent.ROLLOVER ;
+	public static var ROLLOVER:String = ButtonEvent.ROLLOVER ;
 		
-	static public var SELECT:String = ButtonEvent.SELECT ;
+	public static var SELECT:String = ButtonEvent.SELECT ;
 	
-	static public var UNSELECT:String = ButtonEvent.UNSELECT ;
+	public static var UNSELECT:String = ButtonEvent.UNSELECT ;
 	
-	static public var UP:String = "up" ;
+	public static var UP:String = "up" ;
 
 	/**
 	 * Returns a shallow copy of the object.

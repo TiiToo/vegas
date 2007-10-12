@@ -29,18 +29,18 @@ import pegas.events.ActionEventType;
 class asgard.events.RemotingEventType 
 {
 
-	static public var ERROR:String = "onError" ;	
+	public static var ERROR:String = "onError" ;	
 	
-	static public var FAULT:String = "onFault" ;
+	public static var FAULT:String = "onFault" ;
 	
-	static public var FINISHED:String = ActionEventType.FINISH ;
+	public static var FINISHED:String = ActionEventType.FINISH ;
 	
-	static public var PROGRESS:String = ActionEventType.PROGRESS ;
+	public static var PROGRESS:String = ActionEventType.PROGRESS ;
 	
-	static public var RESULT:String = "onResult" ;
+	public static var RESULT:String = "onResult" ;
 	
-	static public var STARTED:String = ActionEventType.START ;
+	public static var STARTED:String = ActionEventType.START ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(RemotingEventType, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(RemotingEventType, null , 7, 7) ;
 	
 }

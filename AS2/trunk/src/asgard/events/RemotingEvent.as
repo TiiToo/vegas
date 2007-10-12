@@ -44,21 +44,21 @@ class asgard.events.RemotingEvent extends DynamicEvent
 		if (sMethodName) setMethodName(sMethodName) ; 
 	}
 
-	static public var ERROR:String = "onError" ;	
+	public static var ERROR:String = "onError" ;	
 	
-	static public var FAULT:String = "onFault" ;
+	public static var FAULT:String = "onFault" ;
 	
-	static public var FINISH:String = "onFinished" ;
+	public static var FINISH:String = "onFinished" ;
 	
-	static public var PROGRESS:String = "onProgress" ;
+	public static var PROGRESS:String = "onProgress" ;
 	
-	static public var RESULT:String = "onResult" ;
+	public static var RESULT:String = "onResult" ;
 	
-	static public var START:String = "onStarted" ;
+	public static var START:String = "onStarted" ;
 	
-	static public var TIMEOUT:String = "onTimeOut" ;
+	public static var TIMEOUT:String = "onTimeOut" ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(RemotingEvent, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(RemotingEvent, null , 7, 7) ;
 
 	public var code:String ;
 

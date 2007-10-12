@@ -45,12 +45,12 @@ class pegas.process.Message extends Pause
 	/**
 	 * Determinates a value to send the message in the local application.
 	 */
-	static public var ME:Number = 0 ;
+	public static var ME:Number = 0 ;
 
 	/**
 	 * Determinates a value to send the message to all users.
 	 */
-	static public var ALL:Number = 1 ;
+	public static var ALL:Number = 1 ;
 	
 	/**
 	 * The message value.

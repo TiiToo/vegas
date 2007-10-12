@@ -121,7 +121,7 @@ class asgard.display.DisplayLoader extends AbstractLoader
 	 * Returns the absolute url of the root swf object.
 	 * @return the absolute url of the root swf object.
 	 */
-	static public function getLoaderUrl():String 
+	public static function getLoaderUrl():String 
 	{
 		return _root._url ;
 	}
@@ -266,7 +266,7 @@ class asgard.display.DisplayLoader extends AbstractLoader
 	/**
 	 * The internal uniqueID to creates a new container.
 	 */
-	static private var _uniqueID:Number = 0 ;
+	private static var _uniqueID:Number = 0 ;
 
 
 }

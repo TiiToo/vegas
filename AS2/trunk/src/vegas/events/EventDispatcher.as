@@ -76,7 +76,7 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 	/**
 	 * Determinates the default singleton name.
 	 */
-	static public var DEFAULT_SINGLETON_NAME:String = "__default__" ;
+	public static var DEFAULT_SINGLETON_NAME:String = "__default__" ;
 
 	/**
 	 * [read-write] Indicates the instance name of the EventDispatcher.
@@ -193,7 +193,7 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 	/**
 	 * Flush all global EventDispatcher singleton.
 	 */
-	static public function flush():Void 
+	public static function flush():Void 
 	{
 		EventDispatcher.instances.clear() ;
 	}
@@ -224,7 +224,7 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 	 * Returns a global {@code EventDispatcher} singleton. Uses this method to create [@code FrontController} patterns for example.
 	 * @return a global {@code EventDispatcher} singleton.
 	 */
-	static public function getInstance(name:String):EventDispatcher 
+	public static function getInstance(name:String):EventDispatcher 
 	{
 		if (!name) 
 		{
@@ -276,7 +276,7 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 	/**
 	 * Release the specified EventDispatcher singleton in your application.
 	 */
-	static public function release(name:String):EventDispatcher 
+	public static function release(name:String):EventDispatcher 
 	{
 		if (!name) 
 		{
@@ -344,7 +344,7 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 	/**
 	 * Removes a global EventDispatcher singleton.
 	 */
-	static public function removeInstance(name:String):Boolean 
+	public static function removeInstance(name:String):Boolean 
 	{
 		if (!EventDispatcher.instances.containsKey(name)) 
 		{
@@ -359,7 +359,7 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 	/**
 	 * The static internal hashmap to register all global instances in your applications.
 	 */	
-	static private var instances:HashMap = new HashMap() ;
+	private static var instances:HashMap = new HashMap() ;
 	
 	/**
 	 * The internal EventListenerCollection to register all global listeners.

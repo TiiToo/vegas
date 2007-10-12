@@ -39,7 +39,7 @@ class lunas.display.components.list.EasyListStyle extends AbstractStyle
 		super(init) ;
 	}
 
-	static public var LABEL_STYLE_NAME:String = "EasyButtonLabel" ;
+	public static var LABEL_STYLE_NAME:String = "EasyButtonLabel" ;
 
 	var themeColor:Number = 0xFFFFFF ;
 	var themeDisabled:Number = 0xFFFFFF  ;

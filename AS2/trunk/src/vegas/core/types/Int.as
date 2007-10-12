@@ -94,7 +94,7 @@ class vegas.core.types.Int extends Number implements IFormattable, IHashable, IS
 	/**
 	 * Init the hashcode representation of the class.
 	 */
-	static private var _initHashCode:Boolean = HashCode.initialize(Int.prototype) ;
+	private static var _initHashCode:Boolean = HashCode.initialize(Int.prototype) ;
 
 	/**
 	 * Returns a array of all values used by the toSource method. 

@@ -33,13 +33,13 @@ class asgard.system.Framework
 	/**
 	 * This Object contains all the copyrights and properties of the application or the framework. 
 	 */
-	static public var COPYRIGHT = {} ;
+	public static var COPYRIGHT = {} ;
 	
 	/**
 	 * Returns the author of this project.
 	 * @return the author of this project.
 	 */
-	static public function getAuthor():String 
+	public static function getAuthor():String 
 	{
 		return COPYRIGHT.author ;
 	}
@@ -48,7 +48,7 @@ class asgard.system.Framework
 	 * Returns the licence of this application or framework.
 	 * @return the licence of this application or framework.
 	 */
-	static public function getLicence():String 
+	public static function getLicence():String 
 	{
 		return COPYRIGHT.licence ;
 	}
@@ -57,7 +57,7 @@ class asgard.system.Framework
 	 * Returns the link of the project.
 	 * @return the link of the project.
 	 */
-	static public function getLink():String 
+	public static function getLink():String 
 	{
 		return COPYRIGHT.link ;
 	}
@@ -66,7 +66,7 @@ class asgard.system.Framework
 	 * Returns the mail of this project.
 	 * @return the mail of this project.
 	 */
-	static public function getMail():String 
+	public static function getMail():String 
 	{
 		return COPYRIGHT.mail ;
 	}
@@ -75,7 +75,7 @@ class asgard.system.Framework
 	 * Returns the name of the author (if it's different).
 	 * @return the name of the author (if it's different).
 	 */
-	static public function getName():String 
+	public static function getName():String 
 	{
 		return COPYRIGHT.name ;
 	}
@@ -84,7 +84,7 @@ class asgard.system.Framework
 	 * Returns the version of this project.
 	 * @return the version of this project.
 	 */
-	static public function getVersion():Version 
+	public static function getVersion():Version 
 	{
 		return COPYRIGHT.version ;
 	}
@@ -92,7 +92,7 @@ class asgard.system.Framework
 	/**
 	 * Sets the author of this project.
 	 */
-	static public function setAuthor(s:String):Void 
+	public static function setAuthor(s:String):Void 
 	{
 		COPYRIGHT.author = s ;
 	}
@@ -100,7 +100,7 @@ class asgard.system.Framework
 	/**
 	 * Sets the licence of this application or framework.
 	 */
-	static public function setLicence(s:String):Void 
+	public static function setLicence(s:String):Void 
 	{
 		COPYRIGHT.licence = s ;
 	}
@@ -108,7 +108,7 @@ class asgard.system.Framework
 	/**
 	 * Sets the link of the project.
 	 */
-	static public function setLink(s:String):Void 
+	public static function setLink(s:String):Void 
 	{
 		COPYRIGHT.link = s ;
 	}
@@ -116,7 +116,7 @@ class asgard.system.Framework
 	/**
 	 * Sets the mail of this project.
 	 */
-	static public function setMail (s:String):Void 
+	public static function setMail (s:String):Void 
 	{
 		COPYRIGHT.mail = s ;
 	}
@@ -124,7 +124,7 @@ class asgard.system.Framework
 	/**
 	 * Sets the name of the author (if it's different).
 	 */
-	static public function setName(s:String):Void 
+	public static function setName(s:String):Void 
 	{
 		COPYRIGHT.name = s ;
 	}
@@ -132,7 +132,7 @@ class asgard.system.Framework
 	/**
 	 * Sets the version of this project.
 	 */
-	static public function setVersion(v:Version):Void 
+	public static function setVersion(v:Version):Void 
 	{
 		COPYRIGHT.version = v ;
 	}
@@ -141,7 +141,7 @@ class asgard.system.Framework
 	 * Returns the string representation of this singleton.
 	 * @return the string representation of this singleton.
 	 */
-	static public function toString():String 
+	public static function toString():String 
 	{
 		var txt:String = "<" ;
 		for (var prop in COPYRIGHT) 

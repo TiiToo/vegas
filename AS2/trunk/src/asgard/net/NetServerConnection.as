@@ -580,7 +580,7 @@ class asgard.net.NetServerConnection extends NetConnection implements Action, IE
 	private var _timer:Timer ;
 	private var _timeOut:EventListener ;
 
-	static private var _initHashCode:Boolean = HashCode.initialize(NetServerConnection.prototype) ;
+	private static var _initHashCode:Boolean = HashCode.initialize(NetServerConnection.prototype) ;
 
 	/**
 	 * Invoqued when the onStatus event is invoqued.

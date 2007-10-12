@@ -31,19 +31,19 @@ class asgard.display.SpreadMethod
 	/**
 	 * Specifies that the gradient use the pad spread method.
  	 */
-	static public var PAD:String = "pad" ;
+	public static var PAD:String = "pad" ;
 	
 	/**
 	 * Specifies that the gradient use the reflect spread method.
 	 */
-	static public var REFLECT:String = "reflect" ;
+	public static var REFLECT:String = "reflect" ;
 	
 	/**
 	 * Specifies that the gradient use the repeat spread method.
 	 */
-	static public var REPEAT:String = "repeat" ;
+	public static var REPEAT:String = "repeat" ;
 	
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(SpreadMethod, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(SpreadMethod, null , 7, 7) ;
 
 }

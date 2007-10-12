@@ -97,7 +97,7 @@ class vegas.util.comparators.NumberComparator extends CoreObject implements ICom
 	 * Developers are encouraged to use the comparator returned from this method instead of constructing a new instance to reduce allocation and GC overhead when multiple comparable comparators may be used in the same application.
  	 * @return the singleton instance of a NumberComparator.
 	 */
-	static public function getInstance():NumberComparator
+	public static function getInstance():NumberComparator
 	{
 		if (_instance == null)
 		{
@@ -109,6 +109,6 @@ class vegas.util.comparators.NumberComparator extends CoreObject implements ICom
 	/**
   	 * The internal static singleton of this class.
  	 */
-	static private var _instance:NumberComparator ;
+	private static var _instance:NumberComparator ;
 
 }

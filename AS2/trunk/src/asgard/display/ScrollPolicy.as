@@ -31,24 +31,24 @@ class asgard.display.ScrollPolicy {
 	/**
 	 * Show the scrollbar if the children exceed the owner's dimension.
 	 */
-	static public var AUTO:Number = 2 ;
+	public static var AUTO:Number = 2 ;
 
 	/**
 	 * Never show the scrollbar.
 	 */
-	static public var OFF:Number = 0 ;
+	public static var OFF:Number = 0 ;
 
 	/**
 	 * Always show the scrollbar.
 	 */
-	static public var ON:Number = 1 ;
+	public static var ON:Number = 1 ;
 
-	static private var __ASPF__ = _global.ASSetPropFlags(ScrollPolicy, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(ScrollPolicy, null , 7, 7) ;
 
 	/**
 	 * Returns {@code true} if the value passed in arguments is a valid ScrollPolicy constant.
 	 */
-	static public function validate(o):Boolean 
+	public static function validate(o):Boolean 
 	{
 		return (o == ScrollPolicy.AUTO || o == ScrollPolicy.OFF || o == ScrollPolicy.ON) ;
 	}

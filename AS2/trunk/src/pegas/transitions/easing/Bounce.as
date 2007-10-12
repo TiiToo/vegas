@@ -13,7 +13,7 @@ import pegas.transitions.Ease;
 class pegas.transitions.easing.Bounce extends Ease 
 {
 
-	/*override*/ static public function easeOut (t:Number, b:Number, c:Number, d:Number):Number 
+	/*override*/ public static function easeOut (t:Number, b:Number, c:Number, d:Number):Number 
 	{
 		if ((t/=d) < (1/2.75)) {
 			return c*(7.5625*t*t) + b;
@@ -26,12 +26,12 @@ class pegas.transitions.easing.Bounce extends Ease
 		}
 	}
 	
-	/*override*/ static public function easeIn (t:Number, b:Number, c:Number, d:Number):Number 
+	/*override*/ public static function easeIn (t:Number, b:Number, c:Number, d:Number):Number 
 	{
 		return c - Bounce.easeOut (d-t, 0, c, d) + b;
 	}
 	
-	/*override*/ static public function easeInOut (t:Number, b:Number, c:Number, d:Number):Number 
+	/*override*/ public static function easeInOut (t:Number, b:Number, c:Number, d:Number):Number 
 	{
 		if (t < d/2) return Bounce.easeIn (t*2, 0, c, d) * .5 + b ;
 		else return Bounce.easeOut (t*2-d, 0, c, d) * .5 + c*.5 + b ;

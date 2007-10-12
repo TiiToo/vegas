@@ -45,12 +45,12 @@ class vegas.util.serialize.Serializer
 	/**
 	 * Global reserved words in an array.
 	 */
-	static public var GLOBAL_RESERVED:Array = ["_global"] ;
+	public static var GLOBAL_RESERVED:Array = ["_global"] ;
 	
 	/**
 	 * Returns {@code true} if the current word if a global word reserved.
 	 */
-	static public function isGlobalReserved( name:String ):Boolean 
+	public static function isGlobalReserved( name:String ):Boolean 
 	{
 		var l:Number = GLOBAL_RESERVED.length ;
         while(--l > -1) 
@@ -66,7 +66,7 @@ class vegas.util.serialize.Serializer
 	/**
 	 * This method used Core2 implementation to return the Eden Source of the global object. In AS2 this method is dangerous !
 	 */
-	static public function globalToSource( indent:Number, indentor:String ):String  
+	public static function globalToSource( indent:Number, indentor:String ):String  
 	{
     	
     	var target, member, source;
@@ -126,7 +126,7 @@ class vegas.util.serialize.Serializer
 	/**
 	 * Returns the source of the specified object passed in argument.
 	 */
-	static public function getSourceOf(o, params:Array):String 
+	public static function getSourceOf(o, params:Array):String 
 	{
 		var path:String = ConstructorUtil.getPath(o) ;
 		var source:String = "new " + path + "(" ;
@@ -150,7 +150,7 @@ class vegas.util.serialize.Serializer
 	 * @param indentor the string value used to do the indentation.
 	 * @return a string representing the source code of the object.
 	 */
-	static public function toSource( o, indent:Number, indentor:String):String 
+	public static function toSource( o, indent:Number, indentor:String):String 
 	{
 		if (o === undefined) return "undefined" ;
 		if (o === null) return "null" ;

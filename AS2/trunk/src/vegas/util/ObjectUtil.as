@@ -35,7 +35,7 @@ class vegas.util.ObjectUtil
 	 * Returns the shallow copy of the object.
 	 * @return the shallow copy of the object.
 	 */
-	static public function clone(o) 
+	public static function clone(o) 
 	{
 		return o ;	
 	}
@@ -44,7 +44,7 @@ class vegas.util.ObjectUtil
 	 * Returns the deep copy of the object.
 	 * @return the deep copy of the object.
 	 */
-	static public function copy(o) 
+	public static function copy(o) 
 	{
 		var obj:Object = {} ;
 		var prop:String ;
@@ -74,7 +74,7 @@ class vegas.util.ObjectUtil
 	 * Returns a Boolean value indicating whether an object has a property with the specified name (*ECMA-262*). 
 	 * @return {@code true} whether the property is in the prototype chain or not.
 	 */
-	static public function hasProperty(o, prop:String):Boolean 
+	public static function hasProperty(o, prop:String):Boolean 
 	{
 		return ( o[prop] != undefined );
 	}
@@ -82,7 +82,7 @@ class vegas.util.ObjectUtil
 	/**
 	 * Returns {@code true} if the passed object is empty of enumerable property.
 	 */
-	static public function isEmpty(o):Boolean 
+	public static function isEmpty(o):Boolean 
 	{
 		for (var each:String in o) 
 		{
@@ -94,7 +94,7 @@ class vegas.util.ObjectUtil
 	/**
 	 * Creates a shallow copy of the current Object.
 	 */
-	static public function memberwiseClone( o ) 
+	public static function memberwiseClone( o ) 
 	{
     	var obj = {} ;
     	for( var prop:String in o ) 
@@ -107,7 +107,7 @@ class vegas.util.ObjectUtil
 	/**
 	 * Determines whether the specified Object instance is the same instance as the current object.
 	 */
-	static public function referenceEquals( o1, o2):Boolean
+	public static function referenceEquals( o1, o2):Boolean
 	{
 		if( ( o1.valueOf() === null) && (o2 === null) )
 		{
@@ -135,7 +135,7 @@ class vegas.util.ObjectUtil
 	/**
 	 * Converts an object to an equivalent Boolean value.
 	 */
-	static public function toBoolean(o):Boolean 
+	public static function toBoolean(o):Boolean 
 	{
 		return (new Boolean( o.valueOf() )).valueOf() ;
 	}
@@ -143,7 +143,7 @@ class vegas.util.ObjectUtil
 	/**
 	 * Converts an object to an equivalent Number value.
 	 */
-	static public function toNumber(o):Number 
+	public static function toNumber(o):Number 
 	{
 		return (new Number( o.valueOf() )).valueOf() ;
 	}
@@ -151,7 +151,7 @@ class vegas.util.ObjectUtil
 	/**
 	 * Converts an object to an equivalent Object value.
 	 */
-	static public function toObject(o):Object 
+	public static function toObject(o):Object 
 	{
 		return new Object( o.valueOf() ) ;
 	}

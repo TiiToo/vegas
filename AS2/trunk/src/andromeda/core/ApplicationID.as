@@ -32,12 +32,12 @@ class andromeda.core.ApplicationID
 	 * The context menu manager id of the application.
 	 * @see andromeda.ui.ApplicationContextMenu
 	 */
-	static public var CONTEXT_MENU:String = "context_menu" ;
+	public static var CONTEXT_MENU:String = "context_menu" ;
 	
 	/**
 	 * The application allowdomain security id.
 	 * @see andromeda.system.ApplicationPolicy
 	 */
-	static public var SECURITY:String = "security" ;	
+	public static var SECURITY:String = "security" ;	
 	
 }

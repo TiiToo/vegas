@@ -35,12 +35,12 @@ class pegas.maths.Factor
 	/**
 	 * The max number of recursions.
 	 */
-	static public var maxRecursion:Number = 254 ;
+	public static var maxRecursion:Number = 254 ;
 
 	/**
 	 * Recursive method that defines the factorial of a positive integer.
 	 */
-	static public function factorial(n:Number):Number 
+	public static function factorial(n:Number):Number 
 	{
 		if (n > maxRecursion) 
 		{
@@ -59,7 +59,7 @@ class pegas.maths.Factor
 	/**
 	 * Uses the Gamma function to approximate factorial - very fast.
 	 */
-	static public function factorialApprox(n:Number):Number 
+	public static function factorialApprox(n:Number):Number 
 	{
         return Math.round(Factor.gammaApprox(n+1)) ;
     }
@@ -67,7 +67,7 @@ class pegas.maths.Factor
 	/**
 	 * Calculates total fibonacci levels in 'n'.
 	 */
-	static public function fibonacci(n:Number):Number 
+	public static function fibonacci(n:Number):Number 
 	{
         return Math.round((Math.pow((1+Math.sqrt(5))/2,n)-Math.pow((1-Math.sqrt(5))/2,n))/Math.sqrt(5));
     }
@@ -75,7 +75,7 @@ class pegas.maths.Factor
 	/**
 	 * Extends the domain of the factorial function by calculating the factorial of decimal numbers.
 	 */
-	static public function gammaApprox(n:Number):Number 
+	public static function gammaApprox(n:Number):Number 
 	{
         var x:Number = n-1 ;
         return Math.sqrt( (2*x+1/3) * Math.PI ) * Math.pow(x,x) * Math.exp(-x) ;
@@ -84,7 +84,7 @@ class pegas.maths.Factor
 	/**
 	 * Defines the inverse of a number.
 	 */
-    static public function inverse(n:Number):Number 
+    public static function inverse(n:Number):Number 
     {
         return 1/n ;
     }
@@ -92,7 +92,7 @@ class pegas.maths.Factor
 	/**
 	 * Defines the logarithm with base 'a' of 'n'.
 	 */
-    static public function ln(n:Number):Number 
+    public static function ln(n:Number):Number 
     {
         return Math.log(n) ;
     }
@@ -103,7 +103,7 @@ class pegas.maths.Factor
 	 * @param n :Number a real number.
 	 * @return returns the logarithm with base 'a' of 'n'.
 	 */
-    static public function logA(a:Number, n:Number):Number 
+    public static function logA(a:Number, n:Number):Number 
     {
         return Math.log(n) / Math.log(a) ;
     }
@@ -111,7 +111,7 @@ class pegas.maths.Factor
 	/**
 	 * Defines the nth root of a number.
 	 */
-    static public function nRoot(a:Number,n:Number):Number 
+    public static function nRoot(a:Number,n:Number):Number 
     {
         return Factor.pow(a, 1/n) ;
     }
@@ -119,7 +119,7 @@ class pegas.maths.Factor
 	/**
 	 * Solves the negative value input bug.
 	 */
-	static public function pow(a:Number,n:Number):Number 
+	public static function pow(a:Number,n:Number):Number 
 	{
         return a==0 ? 0 : (a>0 ? Math.pow(a,n) : Math.pow(a*-1,n)*-1) ;
     }
@@ -127,7 +127,7 @@ class pegas.maths.Factor
 	/**
 	 * Calculates the product of factors of 'n'.
 	 */
-	static public function productFactors(n:Number):Number 
+	public static function productFactors(n:Number):Number 
 	{
         var k:Number = 1 ;
         for (var i:Number=3; i<=n; i+=2) 
@@ -147,7 +147,7 @@ class pegas.maths.Factor
 	/**
 	 * Defines the square of a number.
 	 */
-    static public function square(n:Number):Number 
+    public static function square(n:Number):Number 
     {
         return n*n ;
     }
@@ -155,7 +155,7 @@ class pegas.maths.Factor
 	/**
 	 * Defines the sum of all the numbers between 1 and 'n' raised to the 'x' power.
 	 */
-	static public function summation(n:Number, x:Number):Number 
+	public static function summation(n:Number, x:Number):Number 
 	{
         var sum:Number = 0 ;
 		for (var i:Number = 1; i<=n; i++) 

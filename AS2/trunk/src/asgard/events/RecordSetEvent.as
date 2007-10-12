@@ -162,17 +162,17 @@ class asgard.events.RecordSetEvent extends ModelChangedEvent {
 
 	// ----o Constants
 
-	static public var ADD_ITEMS:String = "addItems" ; 
-	static public var CLEAR_ITEMS:String = "clear" ;
-	static public var MODEL_CHANGED:String = "modelChanged" ;
-	static public var REMOVE_ITEMS:String = "removeItems" ;
-	static public var SORT_ITEMS:String = "sortItems" ;
-	static public var UPDATE_ALL:String = "updateAll" ;
-	static public var UPDATE_FIELD:String = "updateField" ;
-	static public var UPDATE_ITEMS:String = "updateItems" ;
-	static public var UPDATE_ROWS:String = "updateRows" ;
+	public static var ADD_ITEMS:String = "addItems" ; 
+	public static var CLEAR_ITEMS:String = "clear" ;
+	public static var MODEL_CHANGED:String = "modelChanged" ;
+	public static var REMOVE_ITEMS:String = "removeItems" ;
+	public static var SORT_ITEMS:String = "sortItems" ;
+	public static var UPDATE_ALL:String = "updateAll" ;
+	public static var UPDATE_FIELD:String = "updateField" ;
+	public static var UPDATE_ITEMS:String = "updateItems" ;
+	public static var UPDATE_ROWS:String = "updateRows" ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(RecordSetEvent, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(RecordSetEvent, null , 7, 7) ;
 	
 	// ----o Public Methods
 

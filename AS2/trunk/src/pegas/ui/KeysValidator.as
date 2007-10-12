@@ -87,14 +87,14 @@ class pegas.ui.KeysValidator extends AbstractCoreEventDispatcher implements IVal
 	/**
 	 * Indicates the code policy when the validator use the Key.getCode() method.
 	 */
-	static public var CODE:Number = 0 ;
+	public static var CODE:Number = 0 ;
 
 	/**
 	 * Indicates the code policy when the validator use the Key.ASCII() method.
 	 */
-	static public var ASCII:Number = 1 ;
+	public static var ASCII:Number = 1 ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(KeysValidator, null, 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(KeysValidator, null, 7, 7) ;
 	
 	/**
 	 * Switch the validate process of this validator to use the {@code Key.getCode()} or the {@code Key.getASCII()} method.

@@ -51,7 +51,7 @@ class vegas.util.Copier
 	 * }
 	 * @return a deep copy of the specified object passed in argument.
 	 */	
-	static public function copy( o ) 
+	public static function copy( o ) 
 	{
 		if (o === undefined) 
 		{

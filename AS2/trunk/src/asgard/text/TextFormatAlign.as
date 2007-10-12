@@ -32,23 +32,23 @@ class asgard.text.TextFormatAlign
 	/**
 	 * Centers the text in the text field ("center").
 	 */
-	static public var CENTER:String = "center" ;
+	public static var CENTER:String = "center" ;
 	
 	/**
 	 * Justifies text within the text field [only >= FP8] ("justify").
 	 */
-	static public var JUSTIFY:String = "justify" ;
+	public static var JUSTIFY:String = "justify" ;
 	
 	/**
 	 * Aligns text to the left within the text field ("left").
 	 */
-	static public var LEFT:String = "left" ;
+	public static var LEFT:String = "left" ;
 	
 	/**
 	 * Aligns text to the right within the text field ("right").
 	 */
-	static public var RIGHT:String = "right" ;
+	public static var RIGHT:String = "right" ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(TextFormatAlign, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(TextFormatAlign, null , 7, 7) ;
 
 }

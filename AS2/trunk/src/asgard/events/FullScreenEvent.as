@@ -49,7 +49,7 @@ class asgard.events.FullScreenEvent extends BooleanEvent
 	/**
 	 * The FullScreenEvent.FULL_SCREEN constant defines the value of the type property of a fullScreen event object.
 	 */
-	static public var FULLSCREEN:String = "fullscreen" ;
+	public static var FULLSCREEN:String = "fullscreen" ;
 
 	/**
 	 * (read_only) Indicates whether the Stage object is in full-screen mode (true) or not (false).

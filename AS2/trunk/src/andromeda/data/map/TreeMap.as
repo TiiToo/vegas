@@ -130,19 +130,19 @@ class andromeda.data.map.TreeMap extends CoreObject implements SortedMap, IClone
 	/**
 	 * Color status of a node (black node).
 	 */
-	static public var BLACK:Number = 1 ;
+	public static var BLACK:Number = 1 ;
 	
 	/**
 	 * Color status of a node (red node).
 	 */
-	static public var RED:Number = -1 ;
+	public static var RED:Number = -1 ;
 	
 	/**
 	 * Sentinal node, used to avoid null checks for corner cases and make the delete rebalance code simpler. 
 	 * The rebalance code must never assign the parent, left, or right of nil, but may safely reassign the color to be black. 
 	 * This object must never be used as a key in a TreeMap, or it will break bounds checking of a SubMap.
 	 */
-	static public var NIL:TreeMapNode = null ;
+	public static var NIL:TreeMapNode = null ;
 	
 	/**
 	 * (read-only) The root node of this TreeMap.

@@ -53,7 +53,7 @@ class vegas.errors.AbstractError extends Error implements IFormattable, IHashabl
 	/**
 	 * Launch HashCode 'initialize' method.
 	 */	
-	static private var _initHashCode:Boolean = HashCode.initialize(AbstractError.prototype) ;
+	private static var _initHashCode:Boolean = HashCode.initialize(AbstractError.prototype) ;
 
 	/**
 	 * The internal ErrorElement reference.

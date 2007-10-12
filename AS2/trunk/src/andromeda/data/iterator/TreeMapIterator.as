@@ -62,17 +62,17 @@ class andromeda.data.iterator.TreeMapIterator extends CoreObject implements Iter
 	/**
 	 * The iterator types for an ENTRIES value.
 	 */
-	static public var ENTRIES:Number = 2 ;
+	public static var ENTRIES:Number = 2 ;
 
 	/**
 	 * The iterator types for an KEYS value.
 	 */
-	static public var KEYS:Number = 0 ;
+	public static var KEYS:Number = 0 ;
 
 	/**
 	 * The iterator types for an VALUES value.
 	 */
-	static public var VALUES:Number = 1 ;
+	public static var VALUES:Number = 1 ;
 
     /**
      * Returns {@code true} if the Iterator has more elements.

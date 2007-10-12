@@ -38,7 +38,7 @@ dynamic class asgard.config.Config extends CoreObject
 		super();
 	}
 
-	static public function getInstance():Config 
+	public static function getInstance():Config 
 	{
 		
 		if( !__instance) __instance = new Config() ;
@@ -46,7 +46,7 @@ dynamic class asgard.config.Config extends CoreObject
 		
 	}
 
-	static private var __instance:Config ;
+	private static var __instance:Config ;
 
 	private var prototype ;
 	

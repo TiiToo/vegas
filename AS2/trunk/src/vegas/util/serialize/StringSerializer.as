@@ -35,7 +35,7 @@ class vegas.util.serialize.StringSerializer
 	 * Returns a Eden representation of the object.
 	 * @return a string representing the source code of the object.
 	 */	
-	static public function toSource(s:String):String 
+	public static function toSource(s:String):String 
 	{
 		s = new String(s) ;
 		var ch:String ;

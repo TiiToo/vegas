@@ -43,32 +43,32 @@ class asgard.net.SharedDataStatus extends String
 	/**
 	 * The "change" SharedDataStatus.
 	 */
-	static public var CHANGE:SharedDataStatus  = new SharedDataStatus("change") ;
+	public static var CHANGE:SharedDataStatus  = new SharedDataStatus("change") ;
 
 	/**
 	 * The "clear" SharedDataStatus.
 	 */
-	static public var CLEAR:SharedDataStatus   = new SharedDataStatus("clear") ;
+	public static var CLEAR:SharedDataStatus   = new SharedDataStatus("clear") ;
 
 	/**
 	 * The "delete" SharedDataStatus.
 	 */
-	static public var DELETE:SharedDataStatus  = new SharedDataStatus("delete") ;
+	public static var DELETE:SharedDataStatus  = new SharedDataStatus("delete") ;
 
 	/**
 	 * The "reject" SharedDataStatus.
 	 */
-	static public var REJECT:SharedDataStatus  = new SharedDataStatus("reject") ;
+	public static var REJECT:SharedDataStatus  = new SharedDataStatus("reject") ;
 
 	/**
 	 * The "success" SharedDataStatus.
 	 */
-	static public var SUCCESS:SharedDataStatus = new SharedDataStatus("success") ;
+	public static var SUCCESS:SharedDataStatus = new SharedDataStatus("success") ;
 
 	/**
 	 * Convert onSync code value in SharedData.onSync.
 	 */
-	static public function format(code:String):SharedDataStatus 
+	public static function format(code:String):SharedDataStatus 
 	{
 		var status:Array = [CHANGE, CLEAR, DELETE, REJECT, SUCCESS] ;
 		var l:Number = status.length ;
@@ -82,7 +82,7 @@ class asgard.net.SharedDataStatus extends String
 	 * Returns {@code true} if the specified value is a valid SharedDataStatus object.
 	 * @return {@code true} if the specified value is a valid SharedDataStatus object.
 	 */
-	static public function validate( o ):Boolean 
+	public static function validate( o ):Boolean 
 	{
 		var status:Array = [CHANGE, CLEAR, DELETE, REJECT, SUCCESS] ;
 		return ArrayUtil.contains(status, o) ;	

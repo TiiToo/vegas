@@ -153,24 +153,24 @@ class vegas.string.WildExp extends CoreObject
 	/**
 	 * const the NONE value (0).
 	 */	
-	static public var NONE:Number = 0 ;
+	public static var NONE:Number = 0 ;
 
 	/**
 	 * const the IGNORECASE value (1).
 	 */	
-	static public var IGNORECASE:Number = 1 ;
+	public static var IGNORECASE:Number = 1 ;
 
 	/**
 	 * const the MULTILINE value (2).
 	 */	
-	static public var MULTILINE:Number = 2 ;
+	public static var MULTILINE:Number = 2 ;
 	
 	/**
 	 * const the MULTIWORD value (4).
 	 */	
-	static public var MULTIWORD:Number = 4 ;
+	public static var MULTIWORD:Number = 4 ;
 
-	static private var __ASPF__ = _global.ASSetPropFlags(WildExp, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(WildExp, null , 7, 7) ;
 
 	/**
 	 * The array of all wildcards.

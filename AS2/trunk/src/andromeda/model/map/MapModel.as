@@ -232,7 +232,7 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 		}
 		else
 		{
-			throw Warning( this + " removeVO method failed, the id passed in argument allready register in the model, you must remove this 'id' key before add a noew value object.") ;	
+			throw new Warning( this + " removeVO method failed, the id passed in argument allready register in the model, you must remove this 'id' key before add a noew value object.") ;	
 		}
 	}
 	
@@ -270,7 +270,7 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 	
 	/**
 	 * Update a value object in the model.
-	 * @throw Warning if the value object passed-in argument don't exist.
+	 * @throws Warning if the value object passed-in argument don't exist.
 	 */
 	public function updateVO( vo:IValueObject ):Void
 	{
@@ -281,7 +281,7 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 		}
 		else
 		{
-			throw Warning( this + " updateVO method failed, the value object passed in argument don't exist in the model.") ;
+			throw new Warning( this + " updateVO method failed, the value object passed in argument don't exist in the model.") ;
 		}
 	}
 

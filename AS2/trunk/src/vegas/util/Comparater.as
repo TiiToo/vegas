@@ -50,7 +50,7 @@ class vegas.util.Comparater
 		}
 		if (o1 instanceof IEquality) 
 		{
-			return o1.equals(o2) ;
+			return IEquality(o1).equals(o2) ;
 		}
 		else if (TypeUtil.typesMatch(o1, Array)) 
 		{
@@ -112,7 +112,7 @@ class vegas.util.Comparater
         	return true ;
         }
     
-    	if( ar1.length != ar2.length )
+    	if( Array(ar1).length != Array(ar2).length )
         {
         	return false ;
         }

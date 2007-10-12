@@ -49,54 +49,54 @@ class asgard.display.StageAlign
 	/**
 	 * Specifies that the Stage is aligned at the bottom.
 	 */
-	static public var BOTTOM:String = "B" ;
+	public static var BOTTOM:String = "B" ;
 	
 	/**
 	 * Specifies that the Stage is aligned in the bottom-left corner.
 	 */
-	static public var BOTTOM_LEFT:String = "BL" ;
+	public static var BOTTOM_LEFT:String = "BL" ;
 	
 	/**
 	 * Specifies that the Stage is aligned in the bottom-right corner.
 	 */
-	static public var BOTTOM_RIGHT:String = "BR" ;
+	public static var BOTTOM_RIGHT:String = "BR" ;
 	
 	/**
 	 * Specifies that the Stage is aligned in the center.
 	 */
-	static public var CENTER:String = "" ;
+	public static var CENTER:String = "" ;
 	
 	/**
 	 * Specifies that the Stage is aligned on the left.
 	 */
-	static public var LEFT:String = "L" ;
+	public static var LEFT:String = "L" ;
 	
 	/**
 	 * Specifies that the Stage is aligned to the right.
 	 */
-	static public var RIGHT:String = "R" ;
+	public static var RIGHT:String = "R" ;
 	
 	/**
 	 * Specifies that the Stage is aligned at the top.
 	 */
-	static public var TOP:String = "T" ;
+	public static var TOP:String = "T" ;
 	
 	/**
 	 * Specifies that the Stage is aligned in the top-left corner.
 	 */
-	static public var TOP_LEFT:String = "TL" ;
+	public static var TOP_LEFT:String = "TL" ;
 	
 	/**
 	 * Specifies that the Stage is aligned in the top-right corner.
 	 */
-	static public var TOP_RIGHT:String = "TR" ;
+	public static var TOP_RIGHT:String = "TR" ;
 
-	static private var __ASPF__ = _global.ASSetPropFlags(StageAlign, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(StageAlign, null , 7, 7) ;
 
 	/**
 	 * Returns the string representation of a StageAlign and a default align if this alignement don't exist in this enumeration. 
 	 */	
-	static public function getAlign(align:String, default_align:String):String 
+	public static function getAlign(align:String, default_align:String):String 
 	{
 		var r:String = StringUtil.reverse(align.toUpperCase()) ;
 		var aligns =  

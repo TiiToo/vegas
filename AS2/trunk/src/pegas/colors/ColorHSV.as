@@ -65,7 +65,7 @@ class pegas.colors.ColorHSV
 	 * @param v a Number represent the Brightness ( Value ) ( range from 0 - 100 ).
 	 * @return an Object with r,g,b properties.
 	 */
-	static public function hsv2rgb ( oColor, s:Number, v:Number) :Object 
+	public static function hsv2rgb ( oColor, s:Number, v:Number) :Object 
 	{
 		var tmp:Array = ["r:"+oColor.r,"g:"+oColor.g,"b:"+oColor.b].sort(_fsort) ;
 		var order:Array = [ tmp[0].split(':')[0] , tmp[1].split(':')[0] , tmp[2].split(':')[0] ];
@@ -104,7 +104,7 @@ class pegas.colors.ColorHSV
 	 * @param b a Number represent red value ( range from 0 - 255 ).
 	 * @return an Object with h ( Hue ), s ( Saturation ), v ( Value / Brightness ) properties. h is an Object with r,g,b properties.
 	 */
-	static public function rgb2hsv ( r:Number, g:Number ,b:Number):Object 
+	public static function rgb2hsv ( r:Number, g:Number ,b:Number):Object 
 	{
 		var temp:Array = ["r:" + r,"g:" + g,"b:"+b].sort(_fsort);
 		var order:Array =[ temp[0].split(':')[0] , temp[1].split(':')[0] , temp[2].split(':')[0] ];
@@ -119,7 +119,7 @@ class pegas.colors.ColorHSV
 		return( { h:o , s:s<<0 ,v:v<<0} ) ;
 	}
 	
-	static private function _fsort ( a:String , b:String ) :Number 
+	private static function _fsort ( a:String , b:String ) :Number 
 	{
 		var val1:Number = Number(a.split(':')[1]);
 		var val2:Number = Number(b.split(':')[1]);

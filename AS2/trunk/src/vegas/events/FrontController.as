@@ -85,7 +85,7 @@ class vegas.events.FrontController extends CoreObject
 	/**
 	 * Flush all global FrontController singletons.
 	 */
-	static public function flush():Void 
+	public static function flush():Void 
 	{
 		FrontController.instances.clear() ;
 	}
@@ -104,7 +104,7 @@ class vegas.events.FrontController extends CoreObject
 	 * @param channel The channel of the FrontController (default the EventDispatcher.DEFAULT_SINGLETON_NAME value).
 	 * @return a global {@code FrontController} singleton.
 	 */
-	static public function getInstance(channel:String):FrontController 
+	public static function getInstance(channel:String):FrontController 
 	{
 		if (!channel) 
 		{
@@ -154,7 +154,7 @@ class vegas.events.FrontController extends CoreObject
 	/**
 	 * Removes a global FrontController singleton.
 	 */
-	static public function removeInstance( channel:String ):Boolean 
+	public static function removeInstance( channel:String ):Boolean 
 	{
 		if (!FrontController.instances.containsKey(channel)) 
 		{
@@ -197,6 +197,6 @@ class vegas.events.FrontController extends CoreObject
 	/**
 	 * The static internal hashmap to register all global instances in your applications.
 	 */	
-	static private var instances:HashMap = new HashMap() ;
+	private static var instances:HashMap = new HashMap() ;
 
 }

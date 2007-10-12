@@ -21,62 +21,6 @@
   
 */
 
-/* ---------- Version
-		
-
-	CONSTRUCTOR
-	
-		new Version( major:Number, minor:Number, build:Number, revision:Number ) ;
-
-   	PROPERY SUMMARY
-	
-		- build:Number [RW]
-		
-		- major:Number [R/W]
-		
-		- minor:Number [R/W]
-		
-		- revision:Number [R/W]
-
-	METHOD SUMMARY
-
-		- compareTo(o):Number
-		
-		- equals(o):Boolean
-		
-		- fromString(str:String):Version
-		
-		- getBuild():Number
-		
-		- getMajor():Number
-		
-		- getMinor():Number
-		
-		- getRevision():Number 
-	
-		- setBuild(value:Number):Void
-		
-		- setMajor(value::Number):Void
-		
-		- setMinor(value::Number):Void
-	
-		- setRevision(value::Number):Void
-		
-		- toSource(indent:Number, indentor:String):String
-		
-		- toString():String
-		
-		- valueOf()
-
-	IMPLEMENTS
-
-		IComparable
-   
-	NOTE
-
-
-----------  */
-
 import vegas.core.CoreObject;
 import vegas.core.IComparable;
 import vegas.core.IEquality;

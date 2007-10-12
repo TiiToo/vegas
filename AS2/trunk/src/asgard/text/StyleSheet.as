@@ -77,6 +77,6 @@ class asgard.text.StyleSheet extends TextField.StyleSheet implements IFormattabl
 	}
 
 
-	static private var _initHashCode:Boolean = HashCode.initialize( asgard.text.StyleSheet.prototype) ;
+	private static var _initHashCode:Boolean = HashCode.initialize( asgard.text.StyleSheet.prototype) ;
 
 }

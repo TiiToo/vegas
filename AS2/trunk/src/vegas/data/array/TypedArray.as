@@ -234,7 +234,7 @@ import vegas.util.TypeUtil;
 		}
 	}
 	
-	static private var _initHashCode:Boolean = HashCode.initialize(TypedArray.prototype) ;
+	private static var _initHashCode:Boolean = HashCode.initialize(TypedArray.prototype) ;
 	
 	private var _type:Function ;
 

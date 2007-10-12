@@ -1,4 +1,4 @@
-
+﻿
 /*
 
   The contents of this file are subject to the Mozilla Public License Version
@@ -36,27 +36,27 @@ class asgard.media.VideoCodec
 	/**
 	 * The first value of the On2 VP6 video codec.
 	 */
-	static public var ON2_VP6_1:Number = 4 ; 
+	public static var ON2_VP6_1:Number = 4 ; 
 
 	/**
 	 * The second value of the On2 VP6 video codec.
 	 */
-	static public var ON2_VP6_2:Number = 5 ; 
+	public static var ON2_VP6_2:Number = 5 ; 
 
 	/**
 	 * The 'Screen Video' video id value.
 	 */
-	static public var SCREEN_VIDEO:Number = 3 ;
+	public static var SCREEN_VIDEO:Number = 3 ;
 
 	/**
 	 * The 'Screen Video' V2 video id value.
 	 */
-	static public var SCREEN_VIDEO_V2:Number = 6 ;
+	public static var SCREEN_VIDEO_V2:Number = 6 ;
 	
 	/**
 	 * The 'Sorenson H.263' video id value.
 	 */
-	static public var SORENSON:Number = 2 ;
+	public static var SORENSON:Number = 2 ;
 	
 	/**
 	 * Returns {@code true} if the specified id in argument is a valid video codec.

@@ -30,53 +30,53 @@ class asgard.display.FlashPaperUIElement
 	/**
 	 * The Find display.
 	 */
-	static public var FIND:String = "Find" ;
+	public static var FIND:String = "Find" ;
 	
 	/**
 	 * The Overflow menu on the toolbar is hidden or shown.
 	 */
-	static public var OVERFLOW:String = "OverFlow" ;
+	public static var OVERFLOW:String = "OverFlow" ;
 	
 	/**
 	 * The Current Page and Number of Pages fields in the toolbar are hidden or shown.
 	 */
-	static public var PAGE:String = "Page" ;
+	public static var PAGE:String = "Page" ;
 	
 	/**
 	 * The Open Document in New Browser Window toolbar button is hidden or shown.
 	 */
-	static public var POP:String = "Pop" ;
+	public static var POP:String = "Pop" ;
 	
 	/**
 	 * The Previous Page and Next Page toolbar buttons are hidden or shown.
 	 */
-	static public var PREV_NEXT:String = "PrevNext" ;
+	public static var PREV_NEXT:String = "PrevNext" ;
 	
 	/**
 	 * The Print toolbar button is hidden or shown.
 	 */
-	static public var PRINT:String = "Print" ;
+	public static var PRINT:String = "Print" ;
 	
 	/**
 	 * The sidebar (displaying the document outline) is hidden or shown.
 	 */
-	static public var SIDEBAR:String = "Sidebar" ;
+	public static var SIDEBAR:String = "Sidebar" ;
 	
 	/**
 	 * All tool selection buttons on the toolbar are hidden or shown.
 	 */
-	static public var TOOL:String = "Tool" ;
+	public static var TOOL:String = "Tool" ;
 	
 	/**
 	 * All zoom-related controls on the toolbar are hidden or shown.
 	 */
-	static public var ZOOM:String = "Zoom" ;
+	public static var ZOOM:String = "Zoom" ;
 	
 	/**
 	 * This value doesn't affect the user interface; it is used to enable or disable various keys used to zoom in or out of the document (for example, +, -, p, w).
 	 */
-	static public var ZOOM_KEYS:String = "ZoomKeys" ;
+	public static var ZOOM_KEYS:String = "ZoomKeys" ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(FlashPaperUIElement, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(FlashPaperUIElement, null , 7, 7) ;
 
 }

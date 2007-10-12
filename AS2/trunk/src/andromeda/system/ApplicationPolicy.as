@@ -45,7 +45,7 @@ class andromeda.system.ApplicationPolicy extends ConfigurableObject
 	 * Returns the singleton reference of the ApplicationPolicy.
 	 * @return the singleton reference of the ApplicationPolicy.
 	 */
-	static public function getInstance():ApplicationPolicy 
+	public static function getInstance():ApplicationPolicy 
 	{
 		if (!_instance) 
 		{
@@ -75,6 +75,6 @@ class andromeda.system.ApplicationPolicy extends ConfigurableObject
 	/**
 	 * The internal singleton reference of the ApplicationPolicy.
 	 */
-	static private var _instance:ApplicationPolicy ;
+	private static var _instance:ApplicationPolicy ;
 	
 }

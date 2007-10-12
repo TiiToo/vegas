@@ -35,7 +35,7 @@ class vegas.util.factory.PropertyFactory
 	 * Creates a new virtual property (read_write or read only).
 	 * @see Object.addProperty method.
 	 */	
-	static public function create(o, propName:String, isPrototype:Boolean, isReadOnly:Boolean):Boolean 
+	public static function create(o, propName:String, isPrototype:Boolean, isReadOnly:Boolean):Boolean 
 	{
 		if (isPrototype) 
 		{

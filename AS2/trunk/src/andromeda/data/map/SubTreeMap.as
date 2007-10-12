@@ -77,7 +77,7 @@ class andromeda.data.map.SubTreeMap extends HashMap implements SortedMap
 	 * The rebalance code must never assign the parent, left, or right of nil, but may safely reassign the color to be black. 
 	 * This object must never be used as a key in a TreeMap, or it will break bounds checking of a SubMap.
 	 */
-	static public var NIL:TreeMapNode = null ;
+	public static var NIL:TreeMapNode = null ;
 
     /**
      * The cache for {@link #entrySet()}.

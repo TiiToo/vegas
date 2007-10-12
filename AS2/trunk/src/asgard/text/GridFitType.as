@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -36,7 +36,7 @@ class asgard.text.GridFitType
 	 * This is often a good setting for animation or for large font sizes.
 	 * Use the syntax GridFitType.NONE.</p>
 	 */	
-	static public var NONE:String = "none" ;
+	public static var NONE:String = "none" ;
 	
 	/**
 	 * Fits strong horizontal and vertical lines to the pixel grid.
@@ -44,7 +44,7 @@ class asgard.text.GridFitType
 	 * <p>This setting only works for left-justified text fields and acts like the GridFitType.SUBPIXEL constant in static text. This setting generally provides the best readability for left-aligned text. 
 	 * Use the syntax GridFitType.PIXEL.</p>
 	 */
-	static public var PIXEL:String = "pixel" ;
+	public static var PIXEL:String = "pixel" ;
 	
 	/**
 	 * Fits strong horizontal and vertical lines to the sub-pixel grid on LCD monitors.
@@ -52,8 +52,8 @@ class asgard.text.GridFitType
 	 * <p>This is often a good setting for right-aligned or center-aligned dynamic text, and it is sometimes a useful tradeoff for animation vs. text quality. This constant is used in setting the gridFitType property of the TextField class. 
 	 * Use the syntax GridFitType.SUBPIXEL.</p> 
 	 */
-	static public var SUBPIXEL:String = "subpixel" ;
+	public static var SUBPIXEL:String = "subpixel" ;
 
-	static private var __ASPF__ = _global.ASSetPropFlags(GridFitType, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(GridFitType, null , 7, 7) ;
 
 }

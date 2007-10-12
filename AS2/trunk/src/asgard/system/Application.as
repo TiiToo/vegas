@@ -35,7 +35,7 @@ class asgard.system.Application
 	 * Returns the full path of the application.
 	 * @return the full path of the application.
 	 */
-	static public function getFullPath():String 
+	public static function getFullPath():String 
 	{
 		return _level0._url ;
 	}
@@ -44,7 +44,7 @@ class asgard.system.Application
 	 * Returns the string representation of the protocol of this application.
 	 * @return the string representation of the protocol of this application.
 	 */
-	static public function getProtocol():String 
+	public static function getProtocol():String 
 	{
 		return Application.getFullPath().split("://")[0] ;
 	}
@@ -53,7 +53,7 @@ class asgard.system.Application
 	 * Return {@code true} if the application is in the Flash IDE.
 	 * @return {@code true} if the application is in the Flash IDE.
 	 */
-	static public function isFlashIDE():Boolean 
+	public static function isFlashIDE():Boolean 
 	{
 		return( _level0.$appPath != null );
 	}
@@ -62,7 +62,7 @@ class asgard.system.Application
 	 * Returns {@code true} if the application is a web application with the protocol HTTP ou HTTPS.
 	 * @return {@code true} if the application is a web application with the protocol HTTP ou HTTPS.
 	 */
-	static public function isWeb():Boolean 
+	public static function isWeb():Boolean 
 	{
 		var protocol:String = Application.getProtocol();
 		return( (protocol == ApplicationType.HTTP) || (protocol == ApplicationType.HTTPS) ) ;
@@ -72,7 +72,7 @@ class asgard.system.Application
 	 * Returns {@code true} if the application is a online web application.
 	 * @return {@code true} if the application is a online web application.
 	 */
-	static public function isOnline():Boolean 
+	public static function isOnline():Boolean 
 	{
 		var protocol:String = Application.getProtocol() ;
 		return ( (protocol == ApplicationType.FTP) || Application.isWeb() );
@@ -82,7 +82,7 @@ class asgard.system.Application
 	 * Returns {@code true} if the application is a local application.
 	 * @return {@code true} if the application is a local application.
 	 */
-	static public function isLocal():Boolean 
+	public static function isLocal():Boolean 
 	{
 		var protocol:String = Application.getProtocol();
 		return( protocol == ApplicationType.FILE );
@@ -92,7 +92,7 @@ class asgard.system.Application
 	 * Returns {@code true} if the application is a local web application.
 	 * @return {@code true} if the application is a local web application.
 	 */
-	static public function isLocalWeb():Boolean 
+	public static function isLocalWeb():Boolean 
 	{
 		var activeX = System.capabilities.hasAccessibility ;
 		return( Application.isLocal() && (activeX == true) ) ;
@@ -102,7 +102,7 @@ class asgard.system.Application
 	 * Returns {@code true} if the application is a projector.
 	 * @return {@code true} if the application is a projector.
 	 */
-	static public function isProjector():Boolean 
+	public static function isProjector():Boolean 
 	{
 		return
 		( 
@@ -116,7 +116,7 @@ class asgard.system.Application
 	 * Returns the path of the IDE if the application is in the IDE of Flash.
 	 * @return the path of the IDE if the application is in the IDE of Flash.
 	 */
-	static public function getIDEPath():String 
+	public static function getIDEPath():String 
 	{
 		return (Application.isFlashIDE()) ? _level0.$appPath : "" ;
 	}

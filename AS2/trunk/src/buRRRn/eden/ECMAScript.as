@@ -127,7 +127,7 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
     /**
      * Evaluate the specified source value with the ECMAScript parser.
      */
-    static public function evaluate( source:String, scope, callback )
+    public static function evaluate( source:String, scope, callback )
 	{
         var parser = new buRRRn.eden.ECMAScript( source, scope, callback );
         return parser.eval() ;

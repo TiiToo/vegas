@@ -51,7 +51,7 @@ class asgard.system.SystemEvent extends DynamicEvent
 	/**
 	 * The name of the event dispatched by the run method of the SystemAnalyser singleton.
 	 */
-	static public var VIEW_SYSTEM_EVENT:String = "viewSystem" ;
+	public static var VIEW_SYSTEM_EVENT:String = "viewSystem" ;
 	
 	/**
 	 * Returns a shallow copy of this event.

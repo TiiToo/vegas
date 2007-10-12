@@ -35,9 +35,9 @@ class vegas.events.type.XMLDispatcher extends XML implements IDispatcher, IForma
 		super(str) ;
 	}
 
-	static private var _initHashCode:Boolean = HashCode.initialize(XMLDispatcher.prototype) ;
+	private static var _initHashCode:Boolean = HashCode.initialize(XMLDispatcher.prototype) ;
 	
-	static private var __initDispatcher = EDispatcher.initialize (XMLDispatcher.prototype) ;
+	private static var __initDispatcher = EDispatcher.initialize (XMLDispatcher.prototype) ;
 
 	public function addEventListener(eventName:String, obj, func):Void {}
 	

@@ -56,7 +56,7 @@ class asgard.events.StyleSheetEvent extends BasicEvent
 	/**
 	 * The event type name of this event when a StyleSheet change. 
 	 */
-	static public var CHANGE:String = EventType.CHANGE ;
+	public static var CHANGE:String = EventType.CHANGE ;
 
 	/**
 	 * Returns a shallow copy of the event.

@@ -30,72 +30,72 @@ class pegas.events.UIEventType
 	/**
 	 * The added event occurs when a DisplayObject has been added to the display list.
 	 */
-	static public var ADDED:String = "added" ;
+	public static var ADDED:String = "added" ;
 	
-	static public var CANCEL:String = "cancel" ;
+	public static var CANCEL:String = "cancel" ;
 	
-	static public var CHANGE:String = "change" ;
+	public static var CHANGE:String = "change" ;
 	
-	static public var CLOSE:String = "close" ;
+	public static var CLOSE:String = "close" ;
 	
-	static public var COMPLETE:String = "complete" ;
+	public static var COMPLETE:String = "complete" ;
 	
-	static public var CONNECT:String = "connect" ;
+	public static var CONNECT:String = "connect" ;
 	
-	static public var CREATE:String = "create" ;
+	public static var CREATE:String = "create" ;
 	
-	static public var DESTROY:String = "destroy" ;
+	public static var DESTROY:String = "destroy" ;
 	
-	static public var ENABLED_CHANGE:String = "enabled_change" ;
+	public static var ENABLED_CHANGE:String = "enabled_change" ;
 	
-	static public var ENTER_FRAME:String = "enterframe" ;
+	public static var ENTER_FRAME:String = "enterframe" ;
 
-	static public var ICON_CHANGE:String = "onIconChanged" ;
+	public static var ICON_CHANGE:String = "onIconChanged" ;
 	
 	/**
 	 * A Loader object generates the INIT event when the properties and methods of a loaded SWF file are accessible.
 	 */
-	static public var INIT:String = "init" ;
+	public static var INIT:String = "init" ;
 
-	static public var LABEL_CHANGE:String = "onLabelChanged" ;
+	public static var LABEL_CHANGE:String = "onLabelChanged" ;
 	
-	static public var OPEN:String = "open" ;	
+	public static var OPEN:String = "open" ;	
 
 	/**
 	 * Flash Player dispatches the removed event when a DisplayObject is about to be removed from the display list.
 	 */
-	static public var REMOVED:String = "removed" ;
+	public static var REMOVED:String = "removed" ;
 	
 	/**
 	 * Flash Player dispatches the render event when the display list is about to be updated and rendered.
 	 */
-	static public var RENDER:String = "render" ;
+	public static var RENDER:String = "render" ;
 	
 	/**
 	 * Flash Player dispatches the resize event when Stage.scaleMode is set to "noScale" and the SWF file has been resized.
 	 */
-	static public var RESIZE:String = "resize" ;
+	public static var RESIZE:String = "resize" ;
 	
 	/**
 	 * A TextField object generates the scroll event after the user scrolls.
 	 */
-	static public var SCROLL:String = "scroll" ;
+	public static var SCROLL:String = "scroll" ;
 	
 	/**
 	 * A FileReference object generates the select event when an item has been selected.
 	 */
-	static public var SELECT:String = "select" ;
+	public static var SELECT:String = "select" ;
 
-	static public var STYLE_CHANGE:String = "styleChange" ;
+	public static var STYLE_CHANGE:String = "styleChange" ;
 	
 	/**
 	 * A Loader object generates the unload event whenever a loaded SWF file is removed using the Loader.unload() method.
 	 */
-	static public var UNLOAD:String = "unload" ;
+	public static var UNLOAD:String = "unload" ;
 
-	static public var UNSELECT:String = "unselect" ;
+	public static var UNSELECT:String = "unselect" ;
 
-	static private var __ASPF__ = _global.ASSetPropFlags(UIEventType, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(UIEventType, null , 7, 7) ;
 	
 }
 

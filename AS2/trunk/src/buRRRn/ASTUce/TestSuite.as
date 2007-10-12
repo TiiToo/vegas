@@ -426,7 +426,7 @@ class buRRRn.ASTUce.TestSuite implements ITest
     /**
      * Returns a test which will fail and log a warning message.
      */
-    static private function _warning( message:String ):ITest
+    private static function _warning( message:String ):ITest
 	{
 		var TC:TestCase = new TestCase( "warning" );
 		TC.runTest = function()

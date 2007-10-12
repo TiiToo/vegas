@@ -33,7 +33,7 @@ class pegas.draw.CanvasTransform {
 	 * Creates a free form effect over a {@code Canvas} object}.
 	 * @return the method to be used to creates a free form effect over a {@code Canvas} object}.
 	 */
-	static public function createFreeform 
+	public static function createFreeform 
 	(
 		xMin:Number, yMin:Number, xMax:Number, yMax:Number,
 		x0:Number, y0:Number, x1:Number, y1:Number, x2:Number, y2:Number, x3:Number, y3:Number ):Function  
@@ -57,7 +57,7 @@ class pegas.draw.CanvasTransform {
 	 * Creates a pinch effect over a {@code Canvas} object}.
 	 * @return the method to be used to creates a pinch effect over a {@code Canvas} object}.
 	 */
-	static public function createPinch(xMin:Number, yMin:Number, xMax:Number, yMax:Number, xAmount:Number, yAmount:Number):Function 
+	public static function createPinch(xMin:Number, yMin:Number, xMax:Number, yMax:Number, xAmount:Number, yAmount:Number):Function 
 	{
 		var w:Number = xMax - xMin ;
 		var h:Number = yMax - yMin ;
@@ -92,7 +92,7 @@ class pegas.draw.CanvasTransform {
 	 * Creates a waves effect over a {@code Canvas} object}.
 	 * @return the method to be used to creates a waves effect over a {@code Canvas} object}.
 	 */
-	static public function createWaves
+	public static function createWaves
 	( 
 		xMin:Number, yMin:Number, xMax:Number, yMax:Number,
 		xAmount:Number, yAmount:Number, xCount:Number, yCount:Number, xOffset:Number, yOffset:Number):Function 
@@ -116,7 +116,7 @@ class pegas.draw.CanvasTransform {
 	 * Creates a Whirl effect over a {@code Canvas} object}.
 	 * @return the method to be used to creates a Whirl effect over a {@code Canvas} object}.
 	 */
-	static public function createWhirl(centreX:Number, centreY:Number, radius:Number, amount:Number):Function 
+	public static function createWhirl(centreX:Number, centreY:Number, radius:Number, amount:Number):Function 
 	{
 		var radius2:Number = radius * radius ;
 		var rotate:Number = amount*Math.PI/180 ;
@@ -137,7 +137,7 @@ class pegas.draw.CanvasTransform {
 	 * Returns the string representation of this singleton.
 	 * @return the string representation of this singleton.
 	 */
-	static public function toString():String 
+	public static function toString():String 
 	{
 		return "[CanvasTransform]" ;
 	}

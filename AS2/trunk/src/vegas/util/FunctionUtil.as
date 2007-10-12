@@ -33,7 +33,7 @@ class vegas.util.FunctionUtil
 	 * <p><b>Attention :</b> we can not copy by reference a function , if you want to do that use apply or call method to make a kind of delegate.</p>
 	 * @return a copy by value of this function.
 	 */
-	static public function clone(f:Function):Function 
+	public static function clone(f:Function):Function 
 	{
 		return f ;
 	}
@@ -42,7 +42,7 @@ class vegas.util.FunctionUtil
 	 * Returns a copy by value of this object.
 	 * @return a copy by value of this object.
 	 */
-	static public function copy(f:Function):Function 
+	public static function copy(f:Function):Function 
 	{
 		return Function(f.valueOf()) ;
 	}
@@ -51,7 +51,7 @@ class vegas.util.FunctionUtil
 	 * Compare if two Functions are equal by reference.
 	 * @return {@code true} if the two Functions are equal by reference.
  	 */
-	static public function equals( f1:Function, f2:Function ):Boolean 
+	public static function equals( f1:Function, f2:Function ):Boolean 
 	{
 		if (! f2 )
 		{

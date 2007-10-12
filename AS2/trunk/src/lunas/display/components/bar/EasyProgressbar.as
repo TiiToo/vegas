@@ -44,9 +44,9 @@ class lunas.display.components.bar.EasyProgressbar extends AbstractProgressbar
 		setSize(150, 6) ;
 	}
 
-	static public var BACKGROUND_RENDERER:Function = RectangleComponent ;
+	public static var BACKGROUND_RENDERER:Function = RectangleComponent ;
 
-	static public var BAR_RENDERER:Function = RectangleComponent ;
+	public static var BAR_RENDERER:Function = RectangleComponent ;
 	
 	/**
 	 * The background reference of this bar

@@ -35,9 +35,9 @@ class vegas.events.type.SoundDispatcher extends Sound implements IDispatcher, IF
 		super(mc) ;
 	}
 
-	static private var _initHashCode:Boolean = HashCode.initialize(SoundDispatcher.prototype) ;
+	private static var _initHashCode:Boolean = HashCode.initialize(SoundDispatcher.prototype) ;
 	
-	static private var __initDispatcher = EDispatcher.initialize (SoundDispatcher.prototype) ;
+	private static var __initDispatcher = EDispatcher.initialize (SoundDispatcher.prototype) ;
 
 	public function addEventListener(eventName:String, obj, func):Void {}
 

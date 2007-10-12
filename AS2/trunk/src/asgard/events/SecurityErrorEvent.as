@@ -54,7 +54,7 @@ class asgard.events.SecurityErrorEvent extends ErrorEvent
 	/**
 	 * The SecurityErrorEvent.SECURITY_ERROR constant defines the value of the type property of a securityError event object.
 	 */
-	static public var SECURITY_ERROR : String = "securityError" ; 
+	public static var SECURITY_ERROR : String = "securityError" ; 
 
 	/**
 	 * Returns the shallow copy of this event.

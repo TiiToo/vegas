@@ -45,37 +45,37 @@ class asgard.net.NetServerStatus extends String implements IEquality, ISerializa
 	/**
 	 * Packet encoded in an unidentified format.
 	 */
-	static public var BAD_VERSION:NetServerStatus = new NetServerStatus("badversion") ;
+	public static var BAD_VERSION:NetServerStatus = new NetServerStatus("badversion") ;
 	
 	/**
 	 * The connection was closed successfully.
 	 */
-	static public var CLOSED:NetServerStatus = new NetServerStatus("closed") ;
+	public static var CLOSED:NetServerStatus = new NetServerStatus("closed") ;
 
 	/**
 	 * The connection attempt failed or the NetConnection.call method was not able to invoke the server-side method or command.
 	 */
-	static public var FAILED:NetServerStatus = new NetServerStatus("failed") ;
+	public static var FAILED:NetServerStatus = new NetServerStatus("failed") ;
 
 	/**
 	 * The application name specified during connect is invalid.
 	 */
-	static public var INVALID:NetServerStatus = new NetServerStatus("invalidapp") ;
+	public static var INVALID:NetServerStatus = new NetServerStatus("invalidapp") ;
 	
 	/**
 	 * The connection attempt did not have permission to access the application.
 	 */
-	static public var REJECTED:NetServerStatus = new NetServerStatus("rejected") ;
+	public static var REJECTED:NetServerStatus = new NetServerStatus("rejected") ;
 	
 	/**
 	 *  The specified application is shutting down.
 	 */
-	static public var SHUTDOWN:NetServerStatus = new NetServerStatus("appshutdown") ;
+	public static var SHUTDOWN:NetServerStatus = new NetServerStatus("appshutdown") ;
 	
 	/**
 	 * The connection attempt succeeded.
 	 */
-	static public var SUCCESS:NetServerStatus = new NetServerStatus("success") ;
+	public static var SUCCESS:NetServerStatus = new NetServerStatus("success") ;
 
 	/**
 	 * Compares the specified object with this object for equality.
@@ -89,7 +89,7 @@ class asgard.net.NetServerStatus extends String implements IEquality, ISerializa
 	/**
 	 * Convert onStatus code value in NetConnection.onStatus in a ConnectionStatus valid string.
 	 */
-	static public function format(code:String):NetServerStatus 
+	public static function format(code:String):NetServerStatus 
 	{
 		code = code.split(".").pop().toLowerCase() ;
 		var status:Array = [BAD_VERSION, CLOSED, FAILED, INVALID, REJECTED, SHUTDOWN, SUCCESS] ;
@@ -116,7 +116,7 @@ class asgard.net.NetServerStatus extends String implements IEquality, ISerializa
 	 * Validate if the specified object is a valid status value.
 	 * @return {@code true} if the specified object is a valid status value.
 	 */
-	static public function validate( o ):Boolean 
+	public static function validate( o ):Boolean 
 	{
 		var status:Array = [BAD_VERSION, CLOSED, FAILED, INVALID, REJECTED, SHUTDOWN, SUCCESS] ;
 		return ArrayUtil.contains(status, o) ;	

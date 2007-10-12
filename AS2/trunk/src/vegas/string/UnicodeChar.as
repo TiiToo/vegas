@@ -82,86 +82,86 @@ dynamic class vegas.string.UnicodeChar
 	/**
 	 * Back Slash utf8 representation (special char).
 	 */
-	static public var BACK_SLASH:String = "\u005C" ;	
+	public static var BACK_SLASH:String = "\u005C" ;	
 
 	/**
 	 * Back Space utf8 representation (special char).
 	 */
-	static public var BACK_SPACE:String = "\u0008" ;
+	public static var BACK_SPACE:String = "\u0008" ;
 	
 	/**
 	 * Simple Quote utf8 representation (special char).
 	 */
-	static public var SIMPLE_QUOTE:String = "\u0027" ;
+	public static var SIMPLE_QUOTE:String = "\u0027" ;
 	
 	/**
 	 * Double Quote utf8 representation (special char).
 	 */
-	static public var DOUBLE_QUOTE:String = "\u0022" ;
+	public static var DOUBLE_QUOTE:String = "\u0022" ;
 	
 	/**
 	 * Tab utf8 representation (whitespace).
 	 */
-	static public var TAB:String = "\u0009" ;
+	public static var TAB:String = "\u0009" ;
 
 	/**
 	 * Vertical Tab utf8 representation (whitespace).
 	 */
-	static public var VT:String = "\u000B" ;
+	public static var VT:String = "\u000B" ;
 	
 	/**
 	 * Form Feed utf8 representation (whitespace).
 	 */
-	static public var FF:String = "\u000C" ;
+	public static var FF:String = "\u000C" ;
 	
 	/**
 	 * Space utf8 representation (whitespace).
 	 */
-	static public var SP:String = "\u0020" ;
+	public static var SP:String = "\u0020" ;
 
 	/**
 	 * No-break space utf8 representation (whitespace).
 	 */
-	static public var NBSP:String = "\u00A0" ;
+	public static var NBSP:String = "\u00A0" ;
 
 	/**
 	 * Array with all whitespace characters. NB : USP no implement (Any other Unicode "space separator")
 	 */
-	static public var WHITE_SPACE_CHARS:Array = [ TAB, VT, FF, SP, NBSP ] ;
+	public static var WHITE_SPACE_CHARS:Array = [ TAB, VT, FF, SP, NBSP ] ;
 	
 	/**
 	 * Line Feed utf8 representation (line terminators).
 	 */
-	static public var LF:String = "\u000A" ;
+	public static var LF:String = "\u000A" ;
 
 	/**
 	 * Carriage Return utf8 representation (line terminators).
 	 */
-	static public var CR:String = "\u000D" ;
+	public static var CR:String = "\u000D" ;
 
 	/**
 	 * Line Separator utf8 representation (line terminators).
 	 */
-	static public var LS:String = "\u2028" ;
+	public static var LS:String = "\u2028" ;
 
 	/**
 	 * Paragraph Separator utf8 representation (line terminators).
 	 */
-	static public var PS:String = "\u2029" ;	
+	public static var PS:String = "\u2029" ;	
 
 	/**
 	 * Array with all line terminators characters
 	 */
-	static public var LINE_TERMINATOR_CHARS:Array = [ LF, CR, LS, PS ] ;
+	public static var LINE_TERMINATOR_CHARS:Array = [ LF, CR, LS, PS ] ;
 	
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(UnicodeChar, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(UnicodeChar, null , 7, 7) ;
 	
 	/**
 	 * Returns {@code true} of the specified character is a whitespace.
 	 * @return {@code true} of the specified character is a whitespace.
 	 */
-	static public function isWhiteSpace( char:String ):Boolean 
+	public static function isWhiteSpace( char:String ):Boolean 
 	{
 		var c:String = (char || "").substring(0, 1) ;
 		var ar:Array = WHITE_SPACE_CHARS ;
@@ -180,7 +180,7 @@ dynamic class vegas.string.UnicodeChar
 	 * Returns {@code true} of the specified character is a line terminator.
 	 * @return {@code true} of the specified character is a line terminator.
 	 */
-	static public function isLineTerminators( char:String ):Boolean 
+	public static function isLineTerminators( char:String ):Boolean 
 	{
 		var c:String = (char || "").substring(0, 1) ;
 		var ar:Array = LINE_TERMINATOR_CHARS ;
@@ -199,7 +199,7 @@ dynamic class vegas.string.UnicodeChar
 	 * Converts a unicode representation in a Char representation and returns this char's string.
 	 * @return The char of the unicode representation.
 	 */
-	static public function toChar( unicode:String ):Char 
+	public static function toChar( unicode:String ):Char 
 	{
 		return new Char( toCharString(unicode) ) ;
 	}
@@ -208,7 +208,7 @@ dynamic class vegas.string.UnicodeChar
 	 * Converts a unicode representation in a String representation and returns the new String.
 	 * @return The char of the unicode representation.
 	 */
-	static public function toCharString( unicode:String ):String 
+	public static function toCharString( unicode:String ):String 
 	{
 		return String.fromCharCode( parseInt( unicode, 16) )  ;
 	}
@@ -217,7 +217,7 @@ dynamic class vegas.string.UnicodeChar
 	 * Converts an unicode number value and returns this string representation.
 	 * @return The string representation of a unicode number.
 	 */
-    static public function toUnicode(n:Number):String 
+    public static function toUnicode(n:Number):String 
     {
 		var hex:String = n.toString(16) ;
 		while( hex.length < 4 )

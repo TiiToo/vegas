@@ -33,7 +33,7 @@ class asgard.net.HTMLEntities
 	/**
 	 * Determinates all entities.
 	 */
-	static public var entities:Array = 
+	public static var entities:Array = 
 	[ 
 		"&euro;", "&quot;", "&amp;", "&lt;", "&gt;", "&iexcl;", "&cent;", "&pound;", "&curren;", "&yen;",
 		"&brvbar;", "&sect;", "&uml;", "&copy;", "&ordf;", "&not;", "&shy;", "&reg;", "&macr;", "&deg;",
@@ -50,7 +50,7 @@ class asgard.net.HTMLEntities
 	/**
 	 * Determinates all special chars.
 	 */
-	static public var specialchars:Array = 
+	public static var specialchars:Array = 
 	[ 
 		"€", "\"", "&", "<", ">", "¡", "¢", "£", "¤", "¥",
 		"¦", "§", "¨", "©", "ª", "¬", "­", "®", "¯", "°",

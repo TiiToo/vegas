@@ -36,7 +36,7 @@ class andromeda.model.ModelCollector
 	/**
 	 * Removes all IModel references in the collector.
 	 */
-	static public function clear():Void 
+	public static function clear():Void 
 	{
 		_map.clear() ;	
 	}
@@ -46,7 +46,7 @@ class andromeda.model.ModelCollector
 	 * @param id the id of the model register in the model.
 	 * @return {@code true} if the collector contains the IModel register with the id passed in argument.
 	 */
-	static public function contains( id ):Boolean 
+	public static function contains( id ):Boolean 
 	{
 		return _map.containsKey( id ) ;	
 	}
@@ -56,7 +56,7 @@ class andromeda.model.ModelCollector
 	 * @param model the IModel to search in the model.
 	 * @return {@code true} if the collector contains the IModel passed in argument.
 	 */
-	static public function containsModel( model:IModel ):Boolean
+	public static function containsModel( model:IModel ):Boolean
 	{
 		return _map.containsValue( model ) ;	
 	}
@@ -66,7 +66,7 @@ class andromeda.model.ModelCollector
 	 * @return the IModel reference with the name passed in argument.
 	 * @throws Warning if the the specified name isn't register in the collector.
 	 */
-	static public function get( id ):IModel 
+	public static function get( id ):IModel 
 	{
 
 		if (!contains( id ) ) 
@@ -83,7 +83,7 @@ class andromeda.model.ModelCollector
 	 * @return {@code true} if the  specified model is inserted in the model.
 	 * @throws Warning if the specified name is already registered in the collector.
 	 */
-	static public function insert( id , model:IModel ):Boolean 
+	public static function insert( id , model:IModel ):Boolean 
 	{
 		if ( contains(id) ) 
 		{
@@ -96,7 +96,7 @@ class andromeda.model.ModelCollector
 	 * Returns {@code true} if the collector is empty.
 	 * @return {@code true} if the collector is empty.
 	 */
-	static public function isEmpty():Boolean 
+	public static function isEmpty():Boolean 
 	{
 		return _map.isEmpty() ;	
 	}
@@ -105,7 +105,7 @@ class andromeda.model.ModelCollector
 	 * Removes the IModel in the collector specified by the argument {@code id}. 
 	 * @param id the id of the model to unregister in the collector.
 	 */
-	static public function remove( id ):Void 
+	public static function remove( id ):Void 
 	{
 		_map.remove( id ) ;
 	}
@@ -114,7 +114,7 @@ class andromeda.model.ModelCollector
 	 * Returns the number of elements in the collector.
 	 * @return the number of elements in the collector.
 	 */
-	static public function size():Number 
+	public static function size():Number 
 	{
 		return _map.size() ;	
 	}
@@ -122,6 +122,6 @@ class andromeda.model.ModelCollector
 	/**
 	 * Internal HashMap of all IModel in the application.
 	 */	
-	static private var _map:HashMap = new HashMap() ;
+	private static var _map:HashMap = new HashMap() ;
 	
 }

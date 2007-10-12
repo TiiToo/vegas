@@ -37,17 +37,17 @@ class asgard.net.GoogleAnalytics
 	/** 
 	 * Default logical directory structure for outbound links.
 	 */
-	static public var OUTGOING_TRACK:String = "outgoing";
+	public static var OUTGOING_TRACK:String = "outgoing";
 	
 	/** 
 	 * Default logical directory structure for downloads links.
 	 */
-	static public var DOWNLOAD_TRACK:String = "downloads";
+	public static var DOWNLOAD_TRACK:String = "downloads";
 	
 	/**
 	 * The name of the application.
 	 */
-	static public var NAME:String = "" ;
+	public static var NAME:String = "" ;
 
 	/**
 	 * Track the passed-in {@code link}.
@@ -132,6 +132,6 @@ class asgard.net.GoogleAnalytics
 		}
 	}
 
-	static private var EMPTY_CHARS:String = "\n\t\r " + chr(13) + chr(10);
+	private static var EMPTY_CHARS:String = "\n\t\r " + chr(13) + chr(10);
 
 }

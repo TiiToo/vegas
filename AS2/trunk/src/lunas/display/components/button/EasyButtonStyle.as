@@ -98,7 +98,7 @@ class lunas.display.components.button.EasyButtonStyle extends AbstractStyle {
 
 	// ----o Constant
 	
-	static public var LABEL_STYLE_NAME:String = "EasyButtonLabel" ;
+	public static var LABEL_STYLE_NAME:String = "EasyButtonLabel" ;
 
 	// ----o Public Properties
 	

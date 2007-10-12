@@ -76,42 +76,42 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	/**
 	 * The name of the event when the localization is changed.
 	 */
-	static public var CHANGE:String = "change"  ;
+	public static var CHANGE:String = "change"  ;
 	
 	/**
 	 * The name of the event invoqued when the localization is completed.
 	 */
-	static public var COMPLETE:String = "onLoadComplete" ;
+	public static var COMPLETE:String = "onLoadComplete" ;
 	
 	/**
 	 * The name of the event invoqued when the localization is finished.
 	 */
-	static public var FINISH:String = "onLoadFinished" ;
+	public static var FINISH:String = "onLoadFinished" ;
 	
 	/**
 	 * The name of the event invoqued when the localization failed with an i/o error.
 	 */
-	static public var IO_ERROR:String = "onLoadError" ;
+	public static var IO_ERROR:String = "onLoadError" ;
 	
 	/**
 	 * The name of the event invoqued when the localization is in progress.
 	 */
-	static public var PROGRESS:String = "onLoadProgress" ;
+	public static var PROGRESS:String = "onLoadProgress" ;
 	
 	/**
 	 * The name of the event invoqued when the localization is started.
 	 */
-	static public var START:String = "onLoadStarted" ;
+	public static var START:String = "onLoadStarted" ;
 
 	/**
 	 * The name of the event invoqued when the localization is out of time.
 	 */
-	static public var TIMEOUT:String = "onTimeOut" ;
+	public static var TIMEOUT:String = "onTimeOut" ;
 
 	/**
 	 * The default singleton name of the Localization singletons.
 	 */
-	static public var DEFAULT_NAME:String = "" ;
+	public static var DEFAULT_NAME:String = "" ;
 	
 	/**
 	 * (read-write) Returns the current {@code Lang} object selected in the current localization.
@@ -177,7 +177,7 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	 * Returns a {@code Localization} singleton reference with the specified name passed-in argument.
 	 * @return a {@code Localization} singleton reference with the specified name passed-in argument.
 	 */
-	static public function getInstance( sName:String ):Localization 
+	public static function getInstance( sName:String ):Localization 
 	{
 		sName = sName || Localization.DEFAULT_NAME  ;
 		if (!__mInstances.containsKey(sName)) 
@@ -196,7 +196,7 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	 * Releases the specified {@code Localization} singleton with the specified name in argument.
 	 * @return the reference of the removed Localization object.
 	 */
-	static public function release(sName:String):Localization 
+	public static function release(sName:String):Localization 
 	{
 		if (!sName) sName = Localization.DEFAULT_NAME ;
 		return Localization.__mInstances.remove(sName) ;
@@ -407,7 +407,7 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 
 	private var _loader:ILocalizationLoader = null ;
 
-	static private var __mInstances:HashMap = new HashMap () ;
+	private static var __mInstances:HashMap = new HashMap () ;
 
 	private var _progress:EventListener ;
 

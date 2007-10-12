@@ -35,9 +35,9 @@ class vegas.events.type.TextFieldDispatcher extends TextField implements IDispat
 		//
 	}
 
-	static private var _initHashCode:Boolean = HashCode.initialize(TextFieldDispatcher.prototype) ;
+	private static var _initHashCode:Boolean = HashCode.initialize(TextFieldDispatcher.prototype) ;
 	
-	static private var __initDispatcher = EDispatcher.initialize (TextFieldDispatcher.prototype) ;
+	private static var __initDispatcher = EDispatcher.initialize (TextFieldDispatcher.prototype) ;
 
 	public function addEventListener(eventName:String, obj, func):Void {}
 

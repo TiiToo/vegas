@@ -53,7 +53,7 @@ class asgard.events.ErrorEvent extends TextEvent
 	/**
 	 * Defines the value of the type property of an error event object.
 	 */
-	static public var ERROR:String = "error" ; 
+	public static var ERROR:String = "error" ; 
 
 	/**
 	 * Contains the reference number associated with the specific error. 

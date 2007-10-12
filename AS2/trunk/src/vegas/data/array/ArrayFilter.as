@@ -186,7 +186,7 @@ class vegas.data.array.ArrayFilter extends AbstractCoreEventDispatcher
 	 * Returns {@code true} if the filter number value contains the option number value.
 	 * @return {@code true} if the filter number value contains the option number value.
 	 */
-	static public function contains( nFilter:Number, nOption:Number ) : Boolean
+	public static function contains( nFilter:Number, nOption:Number ) : Boolean
 	{
 		return Boolean(nOption & nFilter) ;
 	}
@@ -204,7 +204,7 @@ class vegas.data.array.ArrayFilter extends AbstractCoreEventDispatcher
 	 * Returns the singleton reference of this class.
 	 * @return the singleton reference of this class.
 	 */
-	static public function getInstance():ArrayFilter
+	public static function getInstance():ArrayFilter
 	{
 		if (_instance == null)
 		{
@@ -389,7 +389,7 @@ class vegas.data.array.ArrayFilter extends AbstractCoreEventDispatcher
 	/**
 	 * The internal singleton reference.
 	 */
-	static private var _instance:ArrayFilter ;
+	private static var _instance:ArrayFilter ;
 	
 	/**
 	 * The internal change event reference.

@@ -144,15 +144,15 @@ class lunas.display.components.bubble.BubbleComponent extends AbstractComponent 
 
 	// ----o Enumeration
 	
-	static public var BOTTOM:Number = Align.BOTTOM ;
-	static public var BOTTOM_LEFT:Number = Align.BOTTOM | Align.LEFT ;
-	static public var BOTTOM_RIGHT:Number = Align.BOTTOM | Align.RIGHT;
-	static public var CENTER:Number = Align.CENTER;
-	static public var LEFT:Number = Align.LEFT ;
-	static public var RIGHT:Number = Align.RIGHT ;
-	static public var TOP:Number = Align.TOP ;
-	static public var TOP_LEFT:Number = Align.TOP | Align.LEFT ;
-	static public var TOP_RIGHT:Number = Align.TOP | Align.RIGHT;
+	public static var BOTTOM:Number = Align.BOTTOM ;
+	public static var BOTTOM_LEFT:Number = Align.BOTTOM | Align.LEFT ;
+	public static var BOTTOM_RIGHT:Number = Align.BOTTOM | Align.RIGHT;
+	public static var CENTER:Number = Align.CENTER;
+	public static var LEFT:Number = Align.LEFT ;
+	public static var RIGHT:Number = Align.RIGHT ;
+	public static var TOP:Number = Align.TOP ;
+	public static var TOP_LEFT:Number = Align.TOP | Align.LEFT ;
+	public static var TOP_RIGHT:Number = Align.TOP | Align.RIGHT;
 
 	// ----o Public  Properties
 

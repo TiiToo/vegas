@@ -39,7 +39,7 @@ class pegas.colors.ColorRGB
 	 * Returns the string representation of the passed color with ECMAScript formatting (0xrrggbb).
 	 * @return the string representation of the passed color with ECMAScript formatting (0xrrggbb).
 	 */
-	static public function getRGBStr(c:Color):String 
+	public static function getRGBStr(c:Color):String 
 	{
 		var str:String = c.getRGB().toString(16);
 		var toFill:Number = 6 - str.length;
@@ -55,7 +55,7 @@ class pegas.colors.ColorRGB
 	 * This object contains the properties r, g and b for the red, the green and the blue component of the color.
 	 * @return the object representation of the color number passed in argument.
 	 */
-	static public function hex2rgb(hex:Number):Object 
+	public static function hex2rgb(hex:Number):Object 
 	{
 		var r,g,b,gb:Number ;
 		r = hex>>16 ;
@@ -68,7 +68,7 @@ class pegas.colors.ColorRGB
 	/**
 	 * Converts the red, green, blue arguments in a HTML number color (base 10).
 	 */
-	static public function rgb2hex(r:Number, g:Number, b:Number):Number  
+	public static function rgb2hex(r:Number, g:Number, b:Number):Number  
 	{
 		return ((r << 16) | (g << 8) | b);
 	}
@@ -76,7 +76,7 @@ class pegas.colors.ColorRGB
 	/**
 	 * Sets the color of the passed Color instance with the specified string expression of the color.
 	 */
-	static public function setRGBStr(c:Color, str:String):Void 
+	public static function setRGBStr(c:Color, str:String):Void 
 	{
 		c.setRGB (parseInt (str.substr (-6, 6), 16));
 	}

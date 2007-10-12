@@ -63,8 +63,7 @@ class andromeda.model.set.SetModel extends AbstractModelObject
 		validate(vo) ;
 		if ( _set.insert( vo ) )
 		{
-			_eAdd.setVO( vo ) ;
-			dispatchEvent( _eAdd ) ;
+			notifyAdd( vo ) ;
 			return true ;
 		}
 		else
@@ -164,6 +163,32 @@ class andromeda.model.set.SetModel extends AbstractModelObject
 		return _set.iterator() ;	
 	}
 
+    /**
+     * Notify a {@code ModelObjectEvent} when a {@code IValueObject} is inserted in the model.
+     */ 
+    public function notifyAdd( vo:IValueObject ):Void
+    {
+        if ( isLocked() )
+        {
+            return ;
+        }
+        _eAdd.setVO( vo ) ;
+        dispatchEvent( _eAdd  ) ;
+    }
+
+    /**
+     * Notify a {@code ModelObjectEvent} when a {@code IValueObject} is removed in the model.
+     */ 
+    public function notifyRemove( vo:IValueObject ):Void
+    {
+        if ( isLocked() )
+        {
+            return ;
+        }
+        _eRemove.setVO( vo ) ;
+        dispatchEvent( _eRemove  ) ;
+    }
+
 	/**
 	 * Removes a value object in the model.
 	 * @param vo The value object to remove.
@@ -178,12 +203,11 @@ class andromeda.model.set.SetModel extends AbstractModelObject
 		if ( _set.contains( vo ) )
 		{
 			_set.remove( vo ) ;
-			_eRemove.setVO( vo ) ;
-			dispatchEvent( _eRemove ) ;
+			notifyRemove( vo ) ;
 		}
 		else
 		{
-			throw Warning( this + " removeVO method failed, the id passed in argument allready register in the model, you must remove this 'id' key before add a new value object.") ;	
+			throw new Warning( this + " removeVO method failed, the id passed in argument allready register in the model, you must remove this 'id' key before add a new value object.") ;	
 		}
 	}
 	

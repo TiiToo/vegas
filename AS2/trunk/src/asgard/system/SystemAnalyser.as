@@ -72,7 +72,7 @@ class asgard.system.SystemAnalyser extends EventDispatcher implements IRunnable,
 	 * Returns the singleton reference of the SystemAnalyser class.
 	 * @return the singleton reference of the SystemAnalyser class.
 	 */
-	static public function getInstance(Void):SystemAnalyser 
+	public static function getInstance(Void):SystemAnalyser 
 	{
 		if (_instance == undefined) 
 		{
@@ -119,7 +119,7 @@ class asgard.system.SystemAnalyser extends EventDispatcher implements IRunnable,
 	/**
 	 * The internal singleton of this class.
 	 */
-	static private var _instance:SystemAnalyser ;
+	private static var _instance:SystemAnalyser ;
 
 	
 }

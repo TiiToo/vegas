@@ -13,7 +13,7 @@ import pegas.transitions.Ease;
 class pegas.transitions.easing.Elastic extends Ease 
 {
 
-	/*override*/ static public function easeIn (t:Number, b:Number, c:Number, d:Number, a:Number, p:Number):Number 
+	/*override*/ public static function easeIn (t:Number, b:Number, c:Number, d:Number, a:Number, p:Number):Number 
 	{
 		var s:Number ;
 		if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
@@ -22,7 +22,7 @@ class pegas.transitions.easing.Elastic extends Ease
 		return -(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
 	}
 	
-	/*override*/ static public function easeOut (t:Number, b:Number, c:Number, d:Number, a:Number, p:Number):Number 
+	/*override*/ public static function easeOut (t:Number, b:Number, c:Number, d:Number, a:Number, p:Number):Number 
 	{
 		var s:Number ;
 		if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
@@ -31,7 +31,7 @@ class pegas.transitions.easing.Elastic extends Ease
 		return (a*Math.pow(2,-10*t) * Math.sin( (t*d-s)*(2*Math.PI)/p ) + c + b);
 	}
 	
-	/*override*/ static public function easeInOut (t:Number, b:Number, c:Number, d:Number, a:Number, p:Number):Number 
+	/*override*/ public static function easeInOut (t:Number, b:Number, c:Number, d:Number, a:Number, p:Number):Number 
 	{
 		var s:Number ;
 		if (t==0) return b;  if ((t/=d/2)==2) return b+c;  if (!p) p=d*(.3*1.5);

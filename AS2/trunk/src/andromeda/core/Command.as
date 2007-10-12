@@ -104,7 +104,7 @@ dynamic class andromeda.core.Command extends CoreObject implements IRunnable
 	/**
 	 * The internal string message used in the constructor if the constructor notify an IllegalArgumentError.
 	 */
-	static public var CONSTRUCTOR_ERROR:String = ", you can't create this instance without 'name' definition." ;
+	public static var CONSTRUCTOR_ERROR:String = ", you can't create this instance without 'name' definition." ;
 	
 	/**
 	 * The channel of this command.

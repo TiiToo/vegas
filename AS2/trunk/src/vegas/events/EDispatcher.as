@@ -41,7 +41,7 @@ class vegas.events.EDispatcher
 	 * Injected in this object the methods addEventListener, dispatchEvent, eventListenerExists, removeAllEventListeners, removeEventListener and dispatchEvent.
 	 * @see Mixin  
 	 */
-	static public function initialize ( target ):Void 
+	public static function initialize ( target ):Void 
 	{
 		var attributes:Array = 
 		[
@@ -52,7 +52,7 @@ class vegas.events.EDispatcher
 		mix.run() ;
 	}
 	
-	static public function dispatch( target, a:Array , ev ):Void 
+	public static function dispatch( target, a:Array , ev ):Void 
 	{
 		for (var each:String in a) 
 		{
@@ -86,7 +86,7 @@ class vegas.events.EDispatcher
 		}	
 	}
 	
-	static public function indexOf( a:Array, o , f):Number 
+	public static function indexOf( a:Array, o , f):Number 
 	{
 		var l:Number = a.length ;
 		while (--l > -1) 
@@ -101,7 +101,7 @@ class vegas.events.EDispatcher
 	 * Returns the string representation of this singleton.
 	 * @return the string representation of this singleton.
 	 */
-	static public function toString() : String 
+	public static function toString() : String 
 	{
 		return "[EDispatcher]";
 	}

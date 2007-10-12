@@ -54,7 +54,7 @@ class lunas.display.abstract.AbstractProgressbarDisplay extends AbstractComponen
 	/**
 	 * The name of the event dispatched when the component change.
 	 */
-	static public var CHANGE:String = UIEvent.CHANGE ;
+	public static var CHANGE:String = UIEvent.CHANGE ;
 	
 	/**
 	 * This flag indicates of the position is auto reset. 

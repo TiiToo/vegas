@@ -42,7 +42,7 @@ class vegas.string.Luhn
 	 * Returns {@code true} if the expression in argument is a valid Luhn value.
 	 * @return {@code true} if the expression in argument is a valid Luhn value.
 	 */
-	static public function isValid(str:String):Boolean 
+	public static function isValid(str:String):Boolean 
 	{	
 		str = new String(str) ;
 		var	n:Number ;

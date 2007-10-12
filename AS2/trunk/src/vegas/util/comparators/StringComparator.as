@@ -143,7 +143,7 @@ class vegas.util.comparators.StringComparator extends CoreObject implements ICom
 	 * Clients are encouraged to use the value returned from this method instead of constructing a new instance to reduce allocation and garbage collection overhead when multiple StringComparators may be used in the same application.
 	 * @return the {@code StringComparator} singleton with the a {@code false} ignoreCase property.
 	 */
-	static public function getStringComparator():StringComparator
+	public static function getStringComparator():StringComparator
 	{
 		if ( _comparator == null )
 		{
@@ -158,7 +158,7 @@ class vegas.util.comparators.StringComparator extends CoreObject implements ICom
 	 * Clients are encouraged to use the value returned from this method instead of constructing a new instance to reduce allocation and garbage collection overhead when multiple StringComparators may be used in the same application.
 	 * @return the {@code StringComparator} singleton with the a {@code true} ignoreCase property.
 	 */
-	static public function getIgnoreCaseStringComparator():StringComparator
+	public static function getIgnoreCaseStringComparator():StringComparator
 	{
 		if ( _ignoreCaseComparator == null )
 		{
@@ -179,11 +179,11 @@ class vegas.util.comparators.StringComparator extends CoreObject implements ICom
 	/**
 	 * The internal Case StringComparator.
 	 */
-	static private var _comparator:StringComparator ;
+	private static var _comparator:StringComparator ;
 
 	/**
 	 * The internal ignoreCase StringComparator.
 	 */
-	static private var _ignoreCaseComparator:StringComparator ;
+	private static var _ignoreCaseComparator:StringComparator ;
 
 }

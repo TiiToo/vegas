@@ -31,35 +31,35 @@ class vegas.events.EventPhase
 	/**
 	 * The target phase, which is the second phase of the event flow (2).
 	 */
-	static public var AT_TARGET:Number = 2 ;
+	public static var AT_TARGET:Number = 2 ;
 	
 	/**
 	 * The bubbling phase, which is the third phase of the event flow (3).
 	 */
-	static public var BUBBLING_PHASE:Number = 3 ;
+	public static var BUBBLING_PHASE:Number = 3 ;
 	
 	/**
 	 * The capturing phase, which is the first phase of the event flow (1).
 	 */
-	static public var CAPTURING_PHASE:Number = 1 ;
+	public static var CAPTURING_PHASE:Number = 1 ;
 	
 	/**
 	 * The default phase(0)
 	 */
-	static public var NONE:Number = 0 ;
+	public static var NONE:Number = 0 ;
 	
 	/**
 	 * Stop the phase in progress (8). Use only by the Event and EventDispatcher class.
 	 */
-	static public var STOP:Number = 8 ;
+	public static var STOP:Number = 8 ;
 	
 	/**
 	 * Stop the phase immediately (10). Use only by the Event and EventDispatcher class.
 	 */
-	static public var STOP_IMMEDIATE:Number = 10 ;
+	public static var STOP_IMMEDIATE:Number = 10 ;
 	
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(EventPhase, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(EventPhase, null , 7, 7) ;
 	
 }
 

@@ -58,7 +58,7 @@ class andromeda.data.tree.BinaryTree extends CoreObject implements ICloneable, I
 	/**
 	 * The default IComparator used in the BinaryTree instances if the IComparator defined in the setComparator method is null.
 	 */
-	static public var DEFAULT_COMPARATOR:IComparator = new NumberComparator() ;
+	public static var DEFAULT_COMPARATOR:IComparator = new NumberComparator() ;
 
 	/**
 	 * The root Node of this BinaryTree.

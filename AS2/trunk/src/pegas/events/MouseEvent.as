@@ -66,52 +66,52 @@ class pegas.events.MouseEvent extends DynamicEvent
 	/**
 	 * Defines the value of the type property of a click event object.
 	 */
-	static public var CLICK:String = "click" ;
+	public static var CLICK:String = "click" ;
 	
 	/**
 	 * Defines the value of the type property of a doubleClick event object.
 	 */
-	static public var DOUBLE_CLICK:String = "doubleClick" ;
+	public static var DOUBLE_CLICK:String = "doubleClick" ;
 	
 	/**
 	 * Defines the value of the type property of a mouseDown event object.
 	 */
-	static public var MOUSE_DOWN:String = "mouseDown" ;
+	public static var MOUSE_DOWN:String = "mouseDown" ;
 	
 	/**
 	 * Defines the value of the type property of a mouseMove event object.
 	 */
-	static public var MOUSE_MOVE:String = "mouseMove" ;
+	public static var MOUSE_MOVE:String = "mouseMove" ;
 	
 	/**
 	 * Defines the value of the type property of a mouseOut event object.
 	 */
-	static public var MOUSE_OUT:String = "mouseOut" ;
+	public static var MOUSE_OUT:String = "mouseOut" ;
 	
 	/**
 	 * Defines the value of the type property of a mouseOver event object.
 	 */
-	static public var MOUSE_OVER:String = "mouseOver" ;
+	public static var MOUSE_OVER:String = "mouseOver" ;
 	
 	/**
 	 * Defines the value of the type property of a mouseUp event object.
 	 */
-	static public var MOUSE_UP:String = "mouseUp" ;
+	public static var MOUSE_UP:String = "mouseUp" ;
 	
 	/**
 	 * Defines the value of the type property of a mouseWheel event object.
 	 */
-	static public var MOUSE_WHEEL:String = "mouseWheel" ;
+	public static var MOUSE_WHEEL:String = "mouseWheel" ;
 	
 	/**
 	 * Defines the value of the type property of a rollOut event object.
 	 */
-	static public var ROLLOUT:String = "rollOut" ;
+	public static var ROLLOUT:String = "rollOut" ;
 	
 	/**
 	 * Defines the value of the type property of a rollOver event object.
 	 */
-	static public var ROLLOVER:String = "rollOver" ;
+	public static var ROLLOVER:String = "rollOver" ;
 
 	/**
 	 * Reserved for future use (not currently functional).

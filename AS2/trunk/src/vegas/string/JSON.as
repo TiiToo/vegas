@@ -110,7 +110,7 @@ class vegas.string.JSON
 	/**
 	 * Deserialize the string source representation and return the result object.
 	 */
-	static public function deserialize(source:String)
+	public static function deserialize(source:String)
 	{
 
 		source = new String(source) ; // speed
@@ -542,13 +542,13 @@ class vegas.string.JSON
 
     }
 	
-	static public var BACK_SLASH:String = "\\" ;	
+	public static var BACK_SLASH:String = "\\" ;	
 
 	/**
 	 * Serialize the object and return this string representation.
 	 * @return the string serialize representation of an object.
 	 */
-	static public function serialize(o):String 
+	public static function serialize(o):String 
 	{
 		
         var c:String ;

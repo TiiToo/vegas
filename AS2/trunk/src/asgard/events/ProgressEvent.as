@@ -54,12 +54,12 @@ class asgard.events.ProgressEvent extends BasicEvent
 	/**
 	 * Defines the value of the type property of a progress event object.
 	 */
-	static public var PROGRESS:String = "progress" ; 
+	public static var PROGRESS:String = "progress" ; 
 
 	/**
 	 * Defines the value of the type property of a socketData event object.
 	 */
-	static public var SOCKET_DATA:String = "socketData" ; 
+	public static var SOCKET_DATA:String = "socketData" ; 
 
 	/**
 	 * The number of items or bytes loaded when the listener processes the event.

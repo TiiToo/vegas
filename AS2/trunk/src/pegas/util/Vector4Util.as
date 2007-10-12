@@ -36,7 +36,7 @@ class pegas.util.Vector4Util
 	 * @param v2 the second Vector4.
 	 * @return the addition result of two Vector4.
 	 */
-	static public function addition( v1:Vector4, v2:Vector4 ):Vector4
+	public static function addition( v1:Vector4, v2:Vector4 ):Vector4
 	{
 		 v1.x += v2.x ;
 		 v1.y += v2.y ;
@@ -50,7 +50,7 @@ class pegas.util.Vector4Util
 	 * The returned Vector4 is orthogonal to the other two Vector4 and when ignoring the fourth 
 	 * component the resulting Vector3 is also orthogonal.
 	 */
-	static public function cross(v1:Vector4, v2:Vector4):Vector4
+	public static function cross(v1:Vector4, v2:Vector4):Vector4
 	{
 		v1.x = (v2.y * v1.z) - (v2.z * v1.y) ;
 		v1.y = (v2.z * v1.x) - (v2.x * v1.z) ;
@@ -65,7 +65,7 @@ class pegas.util.Vector4Util
 	 * @param v2 a Vector4 to concat.
 	 * @return the addition result of two Vector4.
 	 */
-	static public function getAddition( v1:Vector4, v2:Vector4 ):Vector4
+	public static function getAddition( v1:Vector4, v2:Vector4 ):Vector4
 	{
 		return new Vector4( (v1.x + v2.x) , (v1.y + v2.y) , (v1.z + v2.z) , (v1.w + v2.w)) ;	
 	}
@@ -77,7 +77,7 @@ class pegas.util.Vector4Util
 	* @param v2	Vector4 The second Vector4.
 	* @return the angle in radian between the two vectors.
 	*/
-	static public function getAngle ( v1:Vector4, v2:Vector4 ):Number
+	public static function getAngle ( v1:Vector4, v2:Vector4 ):Number
 	{
 		var ncos:Number = ( Vector4Util.getDot( v1, v2 ) ) / ( getNorm(v1) * getNorm(v2) );
 		var sin2:Number = 1 - (ncos * ncos) ;
@@ -97,7 +97,7 @@ class pegas.util.Vector4Util
 	 * @param v2 a {@code Vector4}.
 	 * @return the {@code Vector4} resulting of the cross product.
 	 */
-	static public function getCross( v1:Vector4, v2:Vector4 ):Vector4
+	public static function getCross( v1:Vector4, v2:Vector4 ):Vector4
 	{
 		return new Vector4
 		( 	
@@ -114,7 +114,7 @@ class pegas.util.Vector4Util
 	 * @param v2 a {@code Vector4}.
 	 * @return the dot product of the 2 Vector4.
 	 */
-	static public function getDot( v1:Vector4, v2:Vector4 ):Number
+	public static function getDot( v1:Vector4, v2:Vector4 ):Number
 	{
 		return (v1.x * v2.x) + (v1.y * v2.y) + (v1.z * v2.z) + (v1.w * v2.w) ;	
 	}
@@ -124,7 +124,7 @@ class pegas.util.Vector4Util
 	 * @param v the vector.
 	 * @return the length of the vector.
 	 */
-	static public function getLength( v:Vector4 ):Number
+	public static function getLength( v:Vector4 ):Number
 	{
 		return Math.sqrt( (v.x * v.x) + (v.y * v.y) + (v.z * v.z) + (v.w * v.w) ) ;
 	}
@@ -144,7 +144,7 @@ class pegas.util.Vector4Util
 	 * @param v a Vector4 reference.
 	 * @return the norm of the specified {@code Vector4}.
 	 */
-	static public function getNorm( v:Vector4 ):Number
+	public static function getNorm( v:Vector4 ):Number
 	{
 		return Math.sqrt( (v.x * v.x) + (v.y * v.y) + (v.z * v.z) + (v.w * v.w) );
 	}
@@ -155,7 +155,7 @@ class pegas.util.Vector4Util
 	 * @param value the value of the pow..
 	 * @return A new Vector4 powered by the method.
 	 */
-	static public function getPow( v:Vector4, value:Number ):Vector4
+	public static function getPow( v:Vector4, value:Number ):Vector4
 	{
 		return new Vector4( Math.pow( v.x, value ) , Math.pow( v.y, value ) ,  Math.pow( v.z, value ) , Math.pow( v.w, value ) ) ;
 	}
@@ -166,7 +166,7 @@ class pegas.util.Vector4Util
 	 * @param value a real number to scale the current Vector4.
 	 * @return A new Vector4 scaled by the value passed in second argument in this method.
 	 */
-	static public function getScale( v:Vector4, value:Number ):Vector4
+	public static function getScale( v:Vector4, value:Number ):Vector4
 	{
 		return new Vector4 ( v.x * value , v.y * value , v.z * value , v.w * value ) ;
 	}
@@ -176,7 +176,7 @@ class pegas.util.Vector4Util
 	 * @param v the vector.
 	 * @return the squared length of this vector.
 	 */
-	static public function getSquaredLength( v:Vector4 ):Number
+	public static function getSquaredLength( v:Vector4 ):Number
 	{
 		return (v.x * v.x) + (v.y * v.y) + (v.z * v.z) + + (v.w * v.w) ;
 	}
@@ -187,7 +187,7 @@ class pegas.util.Vector4Util
 	 * @param v2 a Vector4 to substract.
 	 * @return the substraction result of two Vector4.
 	 */
-	static public function getSubstraction( v1:Vector4 , v2:Vector4 ):Vector4
+	public static function getSubstraction( v1:Vector4 , v2:Vector4 ):Vector4
 	{
 		return new Vector4( (v1.x - v2.x) , (v1.y - v2.y) , (v1.z - v2.z) , (v1.w - v2.w) ) ;
 	}
@@ -197,7 +197,7 @@ class pegas.util.Vector4Util
 	 * @param v a Vector4 reference.
 	 * @return {@code true} of the normalize method is success else false for mistake.
 	 */	
-	static public function normalize( v:Vector4 ):Boolean
+	public static function normalize( v:Vector4 ):Boolean
 	{
 		var norm:Number = getNorm( v );
 		if( norm == 0 || norm == 1) 
@@ -217,7 +217,7 @@ class pegas.util.Vector4Util
 	 * @param v2 the second {@code Vector4}.
 	 * @return the first {@code Vector4} transformed.
 	 */
-	static public function setByVector4( v1:Vector4, v2:Vector4):Vector4
+	public static function setByVector4( v1:Vector4, v2:Vector4):Vector4
 	{
 		v1.x = v2.x ;
 		v1.y = v2.y ;
@@ -231,7 +231,7 @@ class pegas.util.Vector4Util
 	 * @param vector the Vector4 reference to transform.
 	 * @param value a real number to scale the current Vector4.
 	 */
-	static public function scale( v:Vector4, value:Number ):Void
+	public static function scale( v:Vector4, value:Number ):Void
 	{
 		v.x *= value ;
 		v.y *= value ;
@@ -245,7 +245,7 @@ class pegas.util.Vector4Util
 	 * @param v2 the second Vector3.
 	 * @return the substraction result of two Vector3.
 	 */
-	static public function substraction( v1:Vector4 , v2:Vector4 ):Vector4
+	public static function substraction( v1:Vector4 , v2:Vector4 ):Vector4
 	{
 		 v1.x -= v2.x ;
 		 v1.y -= v2.y ;

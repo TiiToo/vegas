@@ -121,13 +121,13 @@ class lunas.display.PanelDisplay extends DisplayObject {
 	
 	// ----o Constants
 	
-	static public var PANEL:String = "__PANEL__" ;
+	public static var PANEL:String = "__PANEL__" ;
 	
-	static public var PANEL_DEPTH:Number = 9775 ;
+	public static var PANEL_DEPTH:Number = 9775 ;
 	
-	static public var PANEL_RENDERER:Function = PanelContainer ;
+	public static var PANEL_RENDERER:Function = PanelContainer ;
 	
-	static public var PANEL_ROOT:MovieClip = _root ;
+	public static var PANEL_ROOT:MovieClip = _root ;
 
 	// ----o Public Methods
 
@@ -142,7 +142,7 @@ class lunas.display.PanelDisplay extends DisplayObject {
 	/**
 	 * @return singleton instance of PanelDisplay
 	 */
-	static public function getInstance():PanelDisplay {
+	public static function getInstance():PanelDisplay {
 		if (_instance == null) _instance = new PanelDisplay();
 		return _instance;
 	}
@@ -182,7 +182,7 @@ class lunas.display.PanelDisplay extends DisplayObject {
 	// ----o Private Properties
 
 	private var _currentItem:MovieClip ;
-	static private var _instance:PanelDisplay ;
+	private static var _instance:PanelDisplay ;
 	
 	// ----o Private Methods
 

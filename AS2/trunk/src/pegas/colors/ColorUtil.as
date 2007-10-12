@@ -38,7 +38,7 @@ class pegas.colors.ColorUtil
 	/**
 	 * Inverts the color of the specified Color reference in argument.
 	 */
-	static public function invert(c:Color):Void 
+	public static function invert(c:Color):Void 
 	{
 		var t:Object = c.getTransform();
 		c.setTransform ( 
@@ -52,7 +52,7 @@ class pegas.colors.ColorUtil
 	/**
 	 * Resets the color of the specified Color reference in argument, the MovieClip display the original view since Color transformation.
 	 */
-	static public function reset(c:Color):Void 
+	public static function reset(c:Color):Void 
 	{ 
 		c.setTransform ({ra:100, ga:100, ba:100, rb:0, gb:0, bb:0}) ;
 	}	

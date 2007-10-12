@@ -36,7 +36,7 @@ class vegas.events.type.ArrayDispatcher extends Array implements IDispatcher, IF
 		EDispatcher.initialize(this) ; 
 	}
 
-	static private var _initHashCode:Boolean = HashCode.initialize(ArrayDispatcher.prototype) ;
+	private static var _initHashCode:Boolean = HashCode.initialize(ArrayDispatcher.prototype) ;
 	
 	public function addEventListener(eventName:String, obj, func):Void 
 	{

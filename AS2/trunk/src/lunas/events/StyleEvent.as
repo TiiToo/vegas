@@ -53,12 +53,12 @@ class lunas.events.StyleEvent extends BasicEvent
 	/**
 	 * The type event name of the StyleEvent when the style is changed in the component.
 	 */
-	static public var STYLE_CHANGED:String = "onStyleChanged" ;
+	public static var STYLE_CHANGED:String = "onStyleChanged" ;
 
 	/**
 	 * The type event name of the StyleEvent when the styleSheet in the IStyle is changed.
 	 */
-	static public var STYLE_SHEET_CHANGED:String = "onStyleSheetChanged" ;
+	public static var STYLE_SHEET_CHANGED:String = "onStyleSheetChanged" ;
 	
 	/**
 	 * Returns a shallow copy of the object.

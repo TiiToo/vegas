@@ -31,20 +31,20 @@ class asgard.net.URLRequestMethod
 	/**
 	 * Specifies that the URLRequest object is a GET.
 	 */
-	static public var GET:String = "GET" ;
+	public static var GET:String = "GET" ;
 	
 	/**
 	 * Specifies that the URLRequest object is a POST.
 	 */
-	static public var POST:String = "POST" ;
+	public static var POST:String = "POST" ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(URLRequestMethod, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(URLRequestMethod, null , 7, 7) ;
 	
 	/**
 	 * Returns {@code true} if the String value passed-in argument is a valid method.
 	 * @return {@code true} if the String value passed-in argument is a valid method.
 	 */
-	static public function validate(sMethod:String):Boolean 
+	public static function validate(sMethod:String):Boolean 
 	{
 		return (sMethod == URLRequestMethod.GET) || (sMethod == URLRequestMethod.POST) ;
 	}

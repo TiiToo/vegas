@@ -32,7 +32,7 @@ class vegas.util.DateUtil
 	 * Returns a shallow copy of the date object passed in argument.
 	 * @return a shallow copy of the date object passed in argument.
 	 */
-	static public function clone(d:Date):Date 
+	public static function clone(d:Date):Date 
 	{
 		return d ;
 	}
@@ -41,7 +41,7 @@ class vegas.util.DateUtil
 	 * Returns a deep copy of the date object passed in argument.
 	 * @return a deep copy of the date object passed in argument.
 	 */
-	static public function copy(d:Date):Date 
+	public static function copy(d:Date):Date 
 	{
 		return new Date(d.valueOf()) ;
 	}
@@ -50,7 +50,7 @@ class vegas.util.DateUtil
 	 * Compares the twno specified Date objects for equality.
 	 * @return {@code true} if the the two specified Date object are equals.
 	 */
-	static public function equals( d1:Date, d2:Date ):Boolean 
+	public static function equals( d1:Date, d2:Date ):Boolean 
 	{
 		if (!d2) return false ;
 		return d1.getTime() == d2.getTime() ;

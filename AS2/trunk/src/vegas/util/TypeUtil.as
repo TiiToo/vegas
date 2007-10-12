@@ -33,70 +33,70 @@ class vegas.util.TypeUtil
 	/**
 	 * The type of the 'boolean' objects.
 	 */
-	static public var BOOLEAN:String = "boolean" ;
+	public static var BOOLEAN:String = "boolean" ;
 
 	/**
 	 * The type of the 'color' objects.
 	 */
-	static public var COLOR:String = "color" ;
+	public static var COLOR:String = "color" ;
 	
 	/**
 	 * The type of the 'date' objects.
 	 */
-	static public var DATE:String = "date" ;
+	public static var DATE:String = "date" ;
 	
 	/**
 	 * The type of the 'error' objects.
 	 */
-	static public var ERROR:String = "error" ;
+	public static var ERROR:String = "error" ;
 	
 	/**
 	 * The type of the 'function' objects.
 	 */
-	static public var FUNCTION:String = "function" ;
+	public static var FUNCTION:String = "function" ;
 	
 	/**
 	 * The type of the 'movieclip' objects.
 	 */
-	static public var MOVIECLIP:String = "movieclip" ;
+	public static var MOVIECLIP:String = "movieclip" ;
 
 	/**
 	 * The type of the 'null' objects.
 	 */
-	static public var NULL:String = "null" ;
+	public static var NULL:String = "null" ;
 
 	/**
 	 * The type of the 'number' objects.
 	 */
-	static public var NUMBER:String = "number" ;
+	public static var NUMBER:String = "number" ;
 	
 	/**
 	 * The type of the 'object' objects.
 	 */
-	static public var OBJECT:String = "object" ;
+	public static var OBJECT:String = "object" ;
 
 	/**
 	 * The type of the 'string' objects.
 	 */
-	static public var STRING:String = "string" ;
+	public static var STRING:String = "string" ;
 
 	/**
 	 * The type of the 'undefined' objects.
 	 */
-	static public var UNDEFINED:String = "undefined" ;
+	public static var UNDEFINED:String = "undefined" ;
 	
 	/**
 	 * The type of the 'xml' objects.
 	 */	
-	static public var XML:String = "xml" ;
+	public static var XML:String = "xml" ;
 
-	static private var __ASPF__ = _global.ASSetPropFlags(TypeUtil, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(TypeUtil, null , 7, 7) ;
 
 	/**
 	 * Compares the types of two objects.
 	 * @return {@code true} if the two objects are the same primitive type.
 	 */
-	static public function compare(o1, o2):Boolean 
+	public static function compare(o1, o2):Boolean 
 	{
 		return typeof(o1) == typeof(o2) ;
 	}
@@ -105,7 +105,7 @@ class vegas.util.TypeUtil
 	 * Checks if the passed-in object is an explicit instance of the passed-in class.
 	 * @return {@code true} if the passed-in object is an explicit instance of the passed-in class.
 	 */
-	static public function isExplicitInstanceOf(o, c:Function):Boolean 
+	public static function isExplicitInstanceOf(o, c:Function):Boolean 
 	{
 		if (TypeUtil.isPrimitive(o)) 
 		{
@@ -142,7 +142,7 @@ class vegas.util.TypeUtil
 	 * }
 	 * @return {@code true} if the passed-in object is a generic object.
 	 */
-	static public function isGenericObject(o):Boolean
+	public static function isGenericObject(o):Boolean
 	{
 		return o.__proto__ == Object.prototype ;
 	}
@@ -151,7 +151,7 @@ class vegas.util.TypeUtil
 	 * Checks if the passed-in object is an instance of the passed-in type.
 	 * @return {@code true} if the passed-in object is an instance of the passed-in type.
 	 */
-	static public function isInstanceOf(o, type:Function):Boolean 
+	public static function isInstanceOf(o, type:Function):Boolean 
 	{
 		if (type === Object) 
 		{
@@ -164,7 +164,7 @@ class vegas.util.TypeUtil
 	 * Checks if the passed-in object is a primitive type.
 	 * @return {@code true} if the passed-in object is a primitive type.
 	 */
-	static public function isPrimitive(o):Boolean 
+	public static function isPrimitive(o):Boolean 
 	{
 		var tof:String = typeof(o) ;
 		return (tof == TypeUtil.STRING || tof == TypeUtil.NUMBER || tof == TypeUtil.BOOLEAN) ;
@@ -175,7 +175,7 @@ class vegas.util.TypeUtil
 	 * Checks if the result of an execution of the typeof method on the passed-in object matches the passed-in type.
 	 * @return {@code true} if the result of an execution of the typeof method on the passed-in object matches the passed-in type.
 	 */
-	static public function isTypeOf(o, type:String):Boolean 
+	public static function isTypeOf(o, type:String):Boolean 
 	{
 		return typeof(o) == type ;
 	}
@@ -194,7 +194,7 @@ class vegas.util.TypeUtil
 	 * </p>
 	 * @see ConstructorUtil
 	 */
-	static public function typesMatch(o, type:Function):Boolean 
+	public static function typesMatch(o, type:Function):Boolean 
 	{
 		if (type === Object) 
 		{
@@ -232,7 +232,7 @@ class vegas.util.TypeUtil
 	 * @return the string representation of the type function passed in argument.
 	 * @see ConstructorUtil.
 	 */
-	static public function toString( type:Function ):String 
+	public static function toString( type:Function ):String 
 	{
 		if (type === undefined) 
 		{

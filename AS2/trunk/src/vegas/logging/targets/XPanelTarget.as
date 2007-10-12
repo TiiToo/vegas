@@ -69,57 +69,57 @@ class vegas.logging.targets.XPanelTarget extends LineFormattedTarget
 	/**
 	 * The id of the LocalConnection.
 	 */
-    static public var CONNECTION_ID:String = "_xpanel1" ;
+    public static var CONNECTION_ID:String = "_xpanel1" ;
        
     /**
      * The dispatch message label.
      */
-    static public var DISPATCH_MESSAGE:String = "dispatchMessage" ;
+    public static var DISPATCH_MESSAGE:String = "dispatchMessage" ;
 
     /**
      * The 'all' level value of the XPanel console.
      */ 
-	static public var LEVEL_ALL:Number = 0x00 ;
+	public static var LEVEL_ALL:Number = 0x00 ;
 		
 	/**
 	 * The 'debug' level value of the XPanel console.
 	 */ 
-	static public var LEVEL_DEBUG:Number = 0x0001 ;
+	public static var LEVEL_DEBUG:Number = 0x0001 ;
 
 	/**
 	 * The 'error' level value of the XPanel console.
 	 */ 
-	static public var LEVEL_ERROR:Number = 0x0008 ;
+	public static var LEVEL_ERROR:Number = 0x0008 ;
 
 	/**
 	 * The 'fatal' level value of the XPanel console.
 	 */ 
-	static public var LEVEL_FATAL:Number = 0x0010 ;
+	public static var LEVEL_FATAL:Number = 0x0010 ;
 
 	/**
      * The 'information' level value of the XPanel console.
      */ 
-	static public var LEVEL_INFORMATION:Number = 0x0002 ;
+	public static var LEVEL_INFORMATION:Number = 0x0002 ;
 
     /**
      * The 'none' level value of the XPanel console.
      */ 
-	static public var LEVEL_NONE:Number = 0xFF ;
+	public static var LEVEL_NONE:Number = 0xFF ;
 
     /**
      * The 'start' level value of the XPanel console.
      */ 
-	static public var LEVEL_START:Number = 0x0100 ;
+	public static var LEVEL_START:Number = 0x0100 ;
 	
     /**
      * The 'warning' level value of the XPanel console.
      */ 
-	static public var LEVEL_WARNING:Number = 0x0004 ;
+	public static var LEVEL_WARNING:Number = 0x0004 ;
 
 	/**
 	 * The started value.
 	 */
-	static public var START:String = "Started" ;
+	public static var START:String = "Started" ;
 
 
 	/**
@@ -177,6 +177,6 @@ class vegas.logging.targets.XPanelTarget extends LineFormattedTarget
 	/**
 	 * Internal LocalConnection reference.
 	 */
-	static private var _lc:LocalConnection ;
+	private static var _lc:LocalConnection ;
 	
 }

@@ -52,7 +52,7 @@ class asgard.events.CuePointEvent extends BasicEvent
 	/**
 	 * The name of the event when a new cue point info is notifyed.
 	 */
-	static public var INFO:String = "onCuePointInfo" ;
+	public static var INFO:String = "onCuePointInfo" ;
 
 	/**
 	 * Returns the CuePoint of this event.

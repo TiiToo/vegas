@@ -52,12 +52,12 @@ class andromeda.model.stack.StackModel extends AbstractModelObject
 	/**
 	 * Default event type when the pop method is invoqued.
 	 */
-	static public var POP_VO:String = "onPopVO" ;
+	public static var POP_VO:String = "onPopVO" ;
 	
 	/**
 	 * Default event type when the push method is invoqued.
 	 */
-	static public var PUSH_VO:String = "onPushVO" ;
+	public static var PUSH_VO:String = "onPushVO" ;
 
 	/**
 	 * Removes all value objects in the model.
@@ -131,7 +131,33 @@ class andromeda.model.stack.StackModel extends AbstractModelObject
 	{
 		return _stack.iterator() ;	
 	}
-	
+
+    /**
+     * Notify a {@code ModelObjectEvent} when a {@code IValueObject} is poped in the model.
+     */ 
+    public function notifyPop( vo:IValueObject ):Void
+    {
+        if ( isLocked() )
+        {
+            return ;
+        }
+		_ePop.setVO( vo ) ;
+		dispatchEvent( _ePop ) ;
+    }
+
+    /**
+     * Notify a {@code ModelObjectEvent} when a {@code IValueObject} is pushed in the model.
+     */ 
+    public function notifyPush( vo:IValueObject ):Void
+    {
+        if ( isLocked() )
+        {
+            return ;
+        }
+		_ePush.setVO( vo ) ;
+		dispatchEvent( _ePush ) ;
+    }
+
 	/**
 	 * Removes and returns the lastly pushed value object in the model.
 	 * @return the lastly pushed value object in the model.
@@ -156,8 +182,7 @@ class andromeda.model.stack.StackModel extends AbstractModelObject
 		}
 		validate(vo) ;
 		_stack.push( vo ) ;
-		_ePush.setVO( vo ) ;
-		dispatchEvent( _ePush ) ;
+		notifyPush( vo ) ;
 	}
 
 	/**

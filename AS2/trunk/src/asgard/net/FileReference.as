@@ -428,7 +428,7 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	
 	private var _eSelect:Event ;
 
-	static private var _initHashCode:Boolean = HashCode.initialize( FileReference.prototype ) ;
+	private static var _initHashCode:Boolean = HashCode.initialize( FileReference.prototype ) ;
 
 	/**
 	 * The internal flag to indicate if the event flow is global.

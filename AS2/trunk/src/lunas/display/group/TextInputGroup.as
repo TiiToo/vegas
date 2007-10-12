@@ -48,7 +48,7 @@ class lunas.display.group.TextInputGroup extends CoreObject implements Iterable
 		_inputMap.clear() ;
 	}
 
-	static public function getInstance():TextInputGroup 
+	public static function getInstance():TextInputGroup 
 	{
 		if (_instance == undefined) _instance = new TextInputGroup () ;
 		return _instance ;
@@ -111,7 +111,7 @@ class lunas.display.group.TextInputGroup extends CoreObject implements Iterable
 		insert(name , o) ;
 	}
 
-	static private var _instance:TextInputGroup ;
+	private static var _instance:TextInputGroup ;
 	
 	private var _map:MultiHashMap ;
 	

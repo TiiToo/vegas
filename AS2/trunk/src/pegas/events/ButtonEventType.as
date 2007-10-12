@@ -26,46 +26,46 @@ import pegas.events.MouseEventType;
 class pegas.events.ButtonEventType 
 {
 
-	static public var CLICK:String = MouseEventType.CLICK ;
+	public static var CLICK:String = MouseEventType.CLICK ;
 	
-	static public var DISABLED:String = "disabled" ;
+	public static var DISABLED:String = "disabled" ;
 	
-	static public var DOUBLE_CLICK:String = MouseEventType.DOUBLE_CLICK ;
+	public static var DOUBLE_CLICK:String = MouseEventType.DOUBLE_CLICK ;
 	
-	static public var DOWN:String = "down" ;
+	public static var DOWN:String = "down" ;
 
-	static public var DRAG:String = "drag" ;
+	public static var DRAG:String = "drag" ;
 	
-	static public var ICON_CHANGE:String = "onIconChanged" ;
+	public static var ICON_CHANGE:String = "onIconChanged" ;
 	
-	static public var LABEL_CHANGE:String = "onLabelChanged" ;
+	public static var LABEL_CHANGE:String = "onLabelChanged" ;
 	
-	static public var MOUSE_UP:String = MouseEventType.MOUSE_UP ;
+	public static var MOUSE_UP:String = MouseEventType.MOUSE_UP ;
 	
-	static public var MOUSE_DOWN:String = MouseEventType.MOUSE_DOWN ;
+	public static var MOUSE_DOWN:String = MouseEventType.MOUSE_DOWN ;
 	
-	static public var OUT:String = "out" ;
+	public static var OUT:String = "out" ;
 	
-	static public var OUT_SELECTED:String = "outSelected" ;
+	public static var OUT_SELECTED:String = "outSelected" ;
 	
-	static public var OVER:String = "over" ;
+	public static var OVER:String = "over" ;
 	
-	static public var OVER_SELECTED:String = "overSelected" ;
+	public static var OVER_SELECTED:String = "overSelected" ;
 	
-	static public var ROLLOUT:String = MouseEventType.ROLLOUT ;
+	public static var ROLLOUT:String = MouseEventType.ROLLOUT ;
 	
-	static public var ROLLOVER:String = MouseEventType.ROLLOVER ;
+	public static var ROLLOVER:String = MouseEventType.ROLLOVER ;
 		
-	static public var SELECT:String = "select" ;
+	public static var SELECT:String = "select" ;
 	
-	static public var START_DRAG:String = "startDrag" ;
+	public static var START_DRAG:String = "startDrag" ;
 	
-	static public var STOP_DRAG:String = "stopDrag" ;
+	public static var STOP_DRAG:String = "stopDrag" ;
 	
-	static public var UNSELECT:String = "unselect" ;
+	public static var UNSELECT:String = "unselect" ;
 	
-	static public var UP:String = "up" ;
+	public static var UP:String = "up" ;
 
-	static private var __ASPF__ = _global.ASSetPropFlags(ButtonEventType, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(ButtonEventType, null , 7, 7) ;
 
 }

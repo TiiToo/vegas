@@ -53,37 +53,37 @@ class pegas.colors.ColorHTML extends Number implements IConvertible, IEquality, 
 		this.value = n ;
 	}
 	
-	static public var AQUA:ColorHTML    = new ColorHTML(0x00FFFF , "Aqua") ;
+	public static var AQUA:ColorHTML    = new ColorHTML(0x00FFFF , "Aqua") ;
 	
-	static public var BLACK:ColorHTML   = new ColorHTML(0x000000 , "Black") ;
+	public static var BLACK:ColorHTML   = new ColorHTML(0x000000 , "Black") ;
 
-	static public var BLUE:ColorHTML    = new ColorHTML(0x0000FF , "Blue") ;
+	public static var BLUE:ColorHTML    = new ColorHTML(0x0000FF , "Blue") ;
 
-	static public var FUCHSIA:ColorHTML = new ColorHTML(0xFF00FF , "Fuchsia") ;
+	public static var FUCHSIA:ColorHTML = new ColorHTML(0xFF00FF , "Fuchsia") ;
 
-	static public var GRAY:ColorHTML    = new ColorHTML(0x808080 , "Gray") ;
+	public static var GRAY:ColorHTML    = new ColorHTML(0x808080 , "Gray") ;
 	
-	static public var GREEN:ColorHTML   = new ColorHTML(0x008000 , "Green") ;
+	public static var GREEN:ColorHTML   = new ColorHTML(0x008000 , "Green") ;
 	
-	static public var LIME:ColorHTML    = new ColorHTML(0x00FF00 , "Lime") ;
+	public static var LIME:ColorHTML    = new ColorHTML(0x00FF00 , "Lime") ;
 	
-	static public var OLIVE:ColorHTML   = new ColorHTML(0x808000 , "Olive") ;
+	public static var OLIVE:ColorHTML   = new ColorHTML(0x808000 , "Olive") ;
 	
-	static public var MAROON:ColorHTML  = new ColorHTML(0x800000 , "Maroon") ; 	
+	public static var MAROON:ColorHTML  = new ColorHTML(0x800000 , "Maroon") ; 	
 	
-	static public var NAVY:ColorHTML    = new ColorHTML(0x000080 , "Navy") ;
+	public static var NAVY:ColorHTML    = new ColorHTML(0x000080 , "Navy") ;
 	
-	static public var PURPLE:ColorHTML  = new ColorHTML(0x800080 , "Purple") ;
+	public static var PURPLE:ColorHTML  = new ColorHTML(0x800080 , "Purple") ;
 	
-	static public var RED:ColorHTML     = new ColorHTML(0xFF0000 , "Red") ;
+	public static var RED:ColorHTML     = new ColorHTML(0xFF0000 , "Red") ;
 	
-	static public var SILVER:ColorHTML  = new ColorHTML(0xC0C0C0 , "Silver") ;
+	public static var SILVER:ColorHTML  = new ColorHTML(0xC0C0C0 , "Silver") ;
 
-	static public var TEAL:ColorHTML    = new ColorHTML(0x008080 , "Teal") ;
+	public static var TEAL:ColorHTML    = new ColorHTML(0x008080 , "Teal") ;
 
-	static public var WHITE:ColorHTML   = new ColorHTML(0xFFFFFF , "White") ;
+	public static var WHITE:ColorHTML   = new ColorHTML(0xFFFFFF , "White") ;
 	
-	static public var YELLOW:ColorHTML  = new ColorHTML(0xFFFF00 , "Yellow") ;
+	public static var YELLOW:ColorHTML  = new ColorHTML(0xFFFF00 , "Yellow") ;
 
 	/**
 	 * The string representation of the color name.
@@ -107,7 +107,7 @@ class pegas.colors.ColorHTML extends Number implements IConvertible, IEquality, 
 	/**
 	 * Converts the string passed in argument (the html color) in a number representation.
 	 */
-	static public function htmlToNumber( sHTML:String ):Number 
+	public static function htmlToNumber( sHTML:String ):Number 
 	{
 		var s = new StringUtil(sHTML) ;
 		if (s.firstChar() == "#" && s.length > 1 && s.length <= 7) 
@@ -121,7 +121,7 @@ class pegas.colors.ColorHTML extends Number implements IConvertible, IEquality, 
 	/**
 	 * Converts the number passed in argument (the html color in hex with ECMAScript notation 0xrrggbb) in a HTML string representation.
 	 */
-	static public function hexToHtml( hex:Number):String
+	public static function hexToHtml( hex:Number):String
 	{
 		return "#" + (hex.toString(16)).toUpperCase() ; 
 	}

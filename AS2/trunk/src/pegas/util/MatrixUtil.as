@@ -34,7 +34,7 @@ class pegas.util.MatrixUtil
 	 * Returns {@code true} if the Matrix is the identity.
 	 * @return {@code true} if the Matrix is the identity.
 	 */
-	static public function isIdentity( m:Matrix ):Boolean
+	public static function isIdentity( m:Matrix ):Boolean
 	{
 		var r:Number = m.r ;
 		var c:Number = m.c ;

@@ -31,23 +31,23 @@ class asgard.display.StageScaleMode
 	/**
 	 * Specifies that the entire Adobe® Flash® application be visible in the specified area without trying to preserve the original aspect ratio.
 	 */
-	static public var EXACT_FIT:String = "exactFit" ;
+	public static var EXACT_FIT:String = "exactFit" ;
 	
 	/**
 	 * Specifies that the entire Flash application fill the specified area, without distortion but possibly with some cropping, while maintaining the original aspect ratio of the application.
 	 */
-	static public var NO_BORDER:String = "noBorder" ;
+	public static var NO_BORDER:String = "noBorder" ;
 	
 	/**
 	 * Specifies that the size of the Flash application be fixed, so that it remains unchanged even as the size of the player window changes.
 	 */
-	static public var NO_SCALE:String = "noScale" ;
+	public static var NO_SCALE:String = "noScale" ;
 	
 	/**
 	 * Specifies that the entire Flash application be visible in the specified area without distortion while maintaining the original aspect ratio of the application.
 	 */
-	static public var SHOW_ALL:String = "showAll" ;
+	public static var SHOW_ALL:String = "showAll" ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(StageScaleMode, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(StageScaleMode, null , 7, 7) ;
 
 }

@@ -31,38 +31,38 @@ class vegas.logging.LogEventLevel
 	/**
 	 * Intended to force a target to process all messages (0).
 	 */
-	static public var ALL:Number = 0 ;
+	public static var ALL:Number = 0 ;
 
 	/**
 	 * Designates informational level messages that are fine grained and most helpful when debugging an application (2).
 	 */
-	static public var DEBUG:Number = 2 ;
+	public static var DEBUG:Number = 2 ;
 
 	/**
 	 * Designates error events that might still allow the application to continue running (8).
 	 */	
-	static public var ERROR:Number = 8 ;
+	public static var ERROR:Number = 8 ;
 	
 	/**
 	 * Designates events that are very harmful and will eventually lead to application failure (1000).
 	 */
-	static public var FATAL:Number = 1000 ;
+	public static var FATAL:Number = 1000 ;
 
 	/**
 	 * Designates informational messages that highlight the progress of the application at coarse-grained level (4).
 	 */
-	static public var INFO:Number =  4 ;	
+	public static var INFO:Number =  4 ;	
 
 	/**
 	 * Designates events that could be harmful to the application operation (6).
 	 */	
-	static public var WARN:Number = 6 ;
+	public static var WARN:Number = 6 ;
 	
 	/**
 	 * Returns {@code true} if the number level passed in argument is valid.
 	 * @return {@code true} if the number level passed in argument is valid.
 	 */
-	static public function isValidLevel(level:Number):Boolean 
+	public static function isValidLevel(level:Number):Boolean 
 	{
 		var levels:Array = [ALL, DEBUG, ERROR, FATAL, INFO, WARN] ;
 		var l:Number = levels.length ;

@@ -51,7 +51,7 @@ class asgard.events.IOErrorEvent extends ErrorEvent
 	/**
 	 * Defines the value of the type property of an ioError event object.
 	 */
-	static public var IO_ERROR : String = "ioError" ; 
+	public static var IO_ERROR : String = "ioError" ; 
 
 	/**
 	 * Returns the shallow copy of this event.

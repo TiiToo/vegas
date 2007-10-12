@@ -24,12 +24,12 @@
 class lunas.events.PanelEventType 
 {
 
-	static public var CREATE:String = "onCreate" ;
+	public static var CREATE:String = "onCreate" ;
 	
-	static public var DESTROY:String = "onDestroy" ;
+	public static var DESTROY:String = "onDestroy" ;
 
-	static public var HIDE:String = "onHide" ;
+	public static var HIDE:String = "onHide" ;
 	
-	static public var SHOW:String = "onShow" ;
+	public static var SHOW:String = "onShow" ;
 	
 }

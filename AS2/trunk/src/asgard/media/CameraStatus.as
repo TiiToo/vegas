@@ -31,11 +31,11 @@ class asgard.media.CameraStatus
 	/**
 	 * The status name when the Camera is muted.
 	 */
-	static public var MUTED:String = "Camera.Muted" ;
+	public static var MUTED:String = "Camera.Muted" ;
 	
 	/**
 	 * The status name when the Camera is unmuted.
 	 */
-	static public var UNMUTED:String = "Camera.Unmuted" ;
+	public static var UNMUTED:String = "Camera.Unmuted" ;
 	
 }

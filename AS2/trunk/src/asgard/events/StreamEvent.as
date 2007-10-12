@@ -46,6 +46,10 @@ class asgard.events.StreamEvent extends BasicEvent
 	public function StreamEvent(type:String, stream:Stream, target, context, bubbles : Boolean, eventPhase : Number, time : Number, stop : Number) 
 	{
 		super(type, target, context, bubbles, eventPhase, time, stop);
+		if ( stream != null )
+		{
+			setStream(stream) ;	
+		}
 	}
 	
 	/**

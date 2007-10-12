@@ -55,72 +55,72 @@ class asgard.events.FlashPaperLoaderEvent extends DisplayLoaderEvent
 	/**
 	 * The name of the event when the loader is complete.
 	 */
-	static public var COMPLETE:String = "onLoadComplete" ;
+	public static var COMPLETE:String = "onLoadComplete" ;
 	
 	/**
 	 * The name of the event when the value of the enable scroll change.
 	 */
-	static public var ENABLE_SCROLL:String = "onEnableScrolling" ;
+	public static var ENABLE_SCROLL:String = "onEnableScrolling" ;
 	
 	/**
 	 * The name of the event when the loader is finished.
 	 */
-	static public var FINISH:String = "onLoadFinished" ;
+	public static var FINISH:String = "onLoadFinished" ;
 	
 	/**
 	 * The name of the event when the loader is initialized.
 	 */
-	static public var INIT:String = "onLoadInit" ;
+	public static var INIT:String = "onLoadInit" ;
 	
 	/**
 	 * The name of the event when the loader notify an IO error.
 	 */
-	static public var IO_ERROR:String = "onLoadError" ;
+	public static var IO_ERROR:String = "onLoadError" ;
 	
 	/**
 	 * The name of the event when the loader is in progress.
 	 */
-	static public var PROGRESS:String = "onLoadProgress" ;
+	public static var PROGRESS:String = "onLoadProgress" ;
 	
 	/**
 	 * The name of the event when the loader is release.
 	 */
-	static public var RELEASE:String = "onRelease" ;
+	public static var RELEASE:String = "onRelease" ;
 
 	/**
 	 * The name of the event when the value of the current page change.
 	 */
-	static public var PAGE_CHANGE:String = "onPageChanged" ;
+	public static var PAGE_CHANGE:String = "onPageChanged" ;
 
 	/**
 	 * The name of the event when the loader is started.
 	 */
-	static public var START:String = "onLoadStarted" ;
+	public static var START:String = "onLoadStarted" ;
 	
 	/**
 	 * The name of the event when the loader is stopped.
 	 */
-	static public var STOP:String = "onLoadStopped" ;
+	public static var STOP:String = "onLoadStopped" ;
 	
 	/**
 	 * The name of the event when the loader is out of time.
 	 */
-	static public var TIMEOUT:String = "onTimeOut" ;
+	public static var TIMEOUT:String = "onTimeOut" ;
 
 	/**
 	 * The name of the event when the value of the current tool change.
 	 */
-	static public var TOOL_CHANGE:String = "onToolChanged" ;
+	public static var TOOL_CHANGE:String = "onToolChanged" ;
 
 	/**
 	 * The name of the event when the value of the current zoom change.
 	 */
-	static public var ZOOM_CHANGE:String = "onZoomChanged" ;
+	public static var ZOOM_CHANGE:String = "onZoomChanged" ;
 
 	/**
 	 * The name of the event when the visible area change.
 	 */
-	static public var VISIBLE_AREA_CHANGE:String = "onVisibleAreaChanged" ;
+	public static var VISIBLE_AREA_CHANGE:String = "onVisibleAreaChanged" ;
 
 	/**
 	 * The current zoom of the loader.

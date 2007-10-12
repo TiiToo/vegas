@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -42,8 +42,9 @@ class asgard.net.JSONLoader extends ParserLoader
 
 	/**
 	 * Returns the deserializer function of this loader.
+	 * @return the deserializer function of this loader.
 	 */
-	/*override*/ public function getDeserializer():Function 
+	public /*override*/ function getDeserializer():Function 
 	{
 		return JSON.deserialize ;	
 	}

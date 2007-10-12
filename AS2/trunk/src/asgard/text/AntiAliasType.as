@@ -31,13 +31,13 @@ class asgard.text.AntiAliasType
 	/**
 	 * [static] Sets anti-aliasing to advanced anti-aliasing ("advanced").
 	 */
-	static public var ADVANCED:String = "advanced" ;
+	public static var ADVANCED:String = "advanced" ;
 	
 	/**
 	 * [static] Sets anti-aliasing to the anti-aliasing that is used in Flash Player 7 and earlier ("normal").
 	 */
-	static public var NORMAL:String = "normal" ;
+	public static var NORMAL:String = "normal" ;
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(AntiAliasType, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(AntiAliasType, null , 7, 7) ;
 
 }

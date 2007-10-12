@@ -67,7 +67,7 @@ class asgard.display.StageResizer extends EventDispatcher implements EventListen
 	/**
 	 * (read-write) Returns the default delay value ( 300 ms by default )
 	 */
-	static public function get DEFAULT_DELAY():Number 
+	public static function get DEFAULT_DELAY():Number 
 	{
 		return __defaultDelay ;
 	}
@@ -75,7 +75,7 @@ class asgard.display.StageResizer extends EventDispatcher implements EventListen
 	/**
 	 * (read-write) Sets the default delay value.
 	 */
-	static public function set DEFAULT_DELAY(delay:Number):Void {
+	public static function set DEFAULT_DELAY(delay:Number):Void {
 		__defaultDelay = (isNaN(delay) || delay < 0) ? 0 : delay ;
 	}
 
@@ -119,7 +119,7 @@ class asgard.display.StageResizer extends EventDispatcher implements EventListen
 		_timer.setDelay(time) ;
 	}
 	
-	static private var __defaultDelay = 300 ;
+	private static var __defaultDelay = 300 ;
 
 	private var _timer:Timer ;
 	

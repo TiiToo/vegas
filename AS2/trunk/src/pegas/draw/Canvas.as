@@ -178,7 +178,7 @@ class pegas.draw.Canvas extends AbstractPen
 	 * @param target the movieclip reference.
 	 * @param draw the {@code Canvas} reference used to draw in the {@code target} reference.
 	 */
-	static public function process( target:MovieClip , draw:Canvas ):Void 
+	public static function process( target:MovieClip , draw:Canvas ):Void 
 	{
 		var t:MovieClip = target ;
 		var d:Array = draw.getData() ;

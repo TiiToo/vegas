@@ -27,26 +27,26 @@
 class pegas.events.ActionEventType 
 {
 
-	static public var CHANGE:String = "onChanged" ;
+	public static var CHANGE:String = "onChanged" ;
 	
-	static public var CLEAR:String = "onCleared" ;
+	public static var CLEAR:String = "onCleared" ;
 	
-	static public var FINISH:String = "onFinished" ;
+	public static var FINISH:String = "onFinished" ;
 	
-	static public var INFO:String = "onInfo" ;
+	public static var INFO:String = "onInfo" ;
 	
-	static public var LOOP:String = "onLooped" ;
+	public static var LOOP:String = "onLooped" ;
 	
-	static public var PROGRESS:String = "onProgress" ;
+	public static var PROGRESS:String = "onProgress" ;
 	
-	static public var RESUME:String = "onResumed" ;
+	public static var RESUME:String = "onResumed" ;
 	
-	static public var START:String = "onStarted" ;
+	public static var START:String = "onStarted" ;
 	
-	static public var STOP:String = "onStopped" ;	
+	public static var STOP:String = "onStopped" ;	
 
-	static public var TIMEOUT:String = "onTimeOut" ;
+	public static var TIMEOUT:String = "onTimeOut" ;
 
-	static private var __ASPF__ = _global.ASSetPropFlags(ActionEventType, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(ActionEventType, null , 7, 7) ;
 	
 }

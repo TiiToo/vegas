@@ -30,21 +30,21 @@ class asgard.display.Direction
 	/**
 	 * Specifies the horizontal value to change the orientation of a Display or a component.
 	 */
-	static public var HORIZONTAL:Number = 0 ;
+	public static var HORIZONTAL:Number = 0 ;
 
 	/**
 	 * Specifies the horizontal value to change the orientation of a Display or a component.
 	 */
-	static public var VERTICAL:Number = 1 ;
+	public static var VERTICAL:Number = 1 ;
 
-	static private var __ASPF__ = _global.ASSetPropFlags(Direction, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(Direction, null , 7, 7) ;
 
 	/**
 	 * Returns the number representation of the specified string passed in argument.
 	 * If the string passed in argument is different of 'vertical' the method return the Direction.HORIZONTAL value.
 	 * @return the number representation of the specified string passed in argument.
 	 */
-	static public function toNumber(str:String):Number 
+	public static function toNumber(str:String):Number 
 	{
 		switch (str.toLowerCase()) 
 		{
@@ -69,7 +69,7 @@ class asgard.display.Direction
 	 * </ul>
 	 * @return the string representation of the number value passed in argument.
 	 */
-	static public function toString(n:Number):String 
+	public static function toString(n:Number):String 
 	{
 		if (n == Direction.HORIZONTAL)
 		{

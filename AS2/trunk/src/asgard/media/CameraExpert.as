@@ -61,63 +61,63 @@ class asgard.media.CameraExpert extends AbstractCoreEventDispatcher
 	/**
 	 * The name of the event when the Camera activity change.
 	 */
-	static public var CAMERA_ACTIVITY_CHANGE:String = "onCameraActivityChange" ;
+	public static var CAMERA_ACTIVITY_CHANGE:String = "onCameraActivityChange" ;
 
 	/**
 	 * The name of the event when the Camera is muted.
 	 */
-	static public var CAMERA_IS_MUTED:String = "onCameraIsMuted" ;
+	public static var CAMERA_IS_MUTED:String = "onCameraIsMuted" ;
 
 	/**
 	 * The name of the event when the Camera is unmuted.
 	 */
-	static public var CAMERA_IS_UNMUTED:String = "onCameraIsUnMuted" ;
+	public static var CAMERA_IS_UNMUTED:String = "onCameraIsUnMuted" ;
 
 	/**
 	 * The default camera mode favor area value.
 	 */
-	static public var DEFAULT_CAMERA_MODE_FAVOR_AREA:Boolean = true ;
+	public static var DEFAULT_CAMERA_MODE_FAVOR_AREA:Boolean = true ;
 	
 	/**
 	 * The default camera mode fps value.
 	 */
-	static public var DEFAULT_CAMERA_MODE_FPS:Number = 24 ;
+	public static var DEFAULT_CAMERA_MODE_FPS:Number = 24 ;
 	
 	/**
 	 * The default camera mode height value.
 	 */
-	static public var DEFAULT_CAMERA_MODE_HEIGHT:Number = 100 ;
+	public static var DEFAULT_CAMERA_MODE_HEIGHT:Number = 100 ;
 	
 	/**
 	 * The default camera mode width value.
 	 */
-	static public var DEFAULT_CAMERA_MODE_WIDTH:Number = 140 ;
+	public static var DEFAULT_CAMERA_MODE_WIDTH:Number = 140 ;
 	
 	/**
 	 * The default camera motion level.
 	 */
-	static public var DEFAULT_CAMERA_MOTION_LEVEL:Number = 50 ;
+	public static var DEFAULT_CAMERA_MOTION_LEVEL:Number = 50 ;
 	
 	/**
 	 * The default camera motion timeout.
 	 */
-	static public var DEFAULT_CAMERA_MOTION_TIMEOUT:Number = 2000 ;
+	public static var DEFAULT_CAMERA_MOTION_TIMEOUT:Number = 2000 ;
 	
 	/**
 	 * The default camera quality bandwidth.
 	 */
-	static public var DEFAULT_CAMERA_QUALITY_BANDWIDTH:Number = 6144 ;
+	public static var DEFAULT_CAMERA_QUALITY_BANDWIDTH:Number = 6144 ;
 	
 	/**
 	 * The default camera quality level.
 	 */
-	static public var DEFAULT_CAMERA_QUALITY_LEVEL:Number = 0 ;
+	public static var DEFAULT_CAMERA_QUALITY_LEVEL:Number = 0 ;
 	
 	/**
 	 * Returns {@code true} if the CameraExpert contains the specified camera id.
 	 * @return {@code true} if the CameraExpert contains the specified camera id.
 	 */
-	static public function contains( cameraID:String  ):Boolean
+	public static function contains( cameraID:String  ):Boolean
 	{
 		return _map.containsKey( cameraID ) ;	
 	}
@@ -174,7 +174,7 @@ class asgard.media.CameraExpert extends AbstractCoreEventDispatcher
 	 * This argument is used only the first time when the specifiec CameraExpert is created. To get the default camera (which is recommended for most applications), omit this parameter.
 	 * @return a CameraExpert singleton or null .
 	 */
-	static public function getInstance( cameraID:String , cameraIndex:Number ):CameraExpert
+	public static function getInstance( cameraID:String , cameraIndex:Number ):CameraExpert
 	{
 		if ( _map == null)
 		{
@@ -203,7 +203,7 @@ class asgard.media.CameraExpert extends AbstractCoreEventDispatcher
 	 * @param cameraID the camera id of the CameraExpert singleton.
 	 * @return the removed CameraExpert singleton or null .
 	 */
-	static public function release( cameraID:String ):CameraExpert
+	public static function release( cameraID:String ):CameraExpert
 	{
 		return _map.remove( cameraID ) ;
 	}
@@ -361,7 +361,7 @@ class asgard.media.CameraExpert extends AbstractCoreEventDispatcher
 	
 	private var _eUnMuted:Event ;
 
-	static private var _map:HashMap  ;
+	private static var _map:HashMap  ;
 
 	/**
 	 * Invoked when the camera starts or stops detecting sound.

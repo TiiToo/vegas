@@ -37,7 +37,7 @@ class asgard.net.remoting.RemotingConnectionCollector
 	/**
 	 * Removes all RemotingConnection reference in the collector.
 	 */
-	static public function clear():Void 
+	public static function clear():Void 
 	{
 		_map.clear() ;	
 	}
@@ -46,7 +46,7 @@ class asgard.net.remoting.RemotingConnectionCollector
 	 * Returns {@code true} if the collector contains the RemotingConnection register with the name passed in argument.
 	 * @return {@code true} if the collector contains the RemotingConnection register with the name passed in argument.
 	 */
-	static public function contains( sName:String ):Boolean 
+	public static function contains( sName:String ):Boolean 
 	{
 		return _map.containsKey( sName ) ;	
 	}
@@ -55,7 +55,7 @@ class asgard.net.remoting.RemotingConnectionCollector
 	 * Returns the RemotingConnection reference with the name passed in argument.
 	 * @return the RemotingConnection reference with the name passed in argument.
 	 */
-	static public function get(sName:String):RemotingConnection 
+	public static function get(sName:String):RemotingConnection 
 	{
 		try 
 		{
@@ -77,7 +77,7 @@ class asgard.net.remoting.RemotingConnectionCollector
 	 * @param sName the name of the RemotingConnection object to register it.
 	 * @param rc the RemotingConnection reference. 
 	 */
-	static public function insert(sName:String, rc:RemotingConnection):Boolean 
+	public static function insert(sName:String, rc:RemotingConnection):Boolean 
 	{
 		try 
 		{
@@ -98,7 +98,7 @@ class asgard.net.remoting.RemotingConnectionCollector
 	 * Returns {@code true} if the collector is empty.
 	 * @return {@code true} if the collector is empty.
 	 */
-	static public function isEmpty():Boolean 
+	public static function isEmpty():Boolean 
 	{
 		return _map.isEmpty() ;	
 	}
@@ -106,7 +106,7 @@ class asgard.net.remoting.RemotingConnectionCollector
 	/**
 	 * Removes the RemotingConnection in the collector specified by the argument {@code sName}.
 	 */
-	static public function remove(sName:String):Void 
+	public static function remove(sName:String):Void 
 	{
 		_map.remove(sName) ;
 	}
@@ -115,11 +115,11 @@ class asgard.net.remoting.RemotingConnectionCollector
 	 * Returns the number of elements in the collector.
 	 * @return the number of elements in the collector.
 	 */
-	static public function size():Number 
+	public static function size():Number 
 	{
 		return _map.size() ;	
 	}
 	
-	static private var _map:HashMap = new HashMap() ;
+	private static var _map:HashMap = new HashMap() ;
 	
 }

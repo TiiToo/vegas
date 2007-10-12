@@ -597,7 +597,7 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	/**
 	 * Defined the root DisplayObject.
 	 */
-	static private var __ROOT__:DisplayObject = new DisplayObject( "root" , _root ) ;
+	private static var __ROOT__:DisplayObject = new DisplayObject( "root" , _root ) ;
 	
 	/**
 	 * The internal name's property of the display.

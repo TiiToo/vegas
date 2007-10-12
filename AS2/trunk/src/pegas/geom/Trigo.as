@@ -38,7 +38,7 @@ class pegas.geom.Trigo
 	 * @param ratio a value between -1 and 1 inclusive.
 	 * @return the inverse cosine of a slope ratio and returns its angle in degrees.
 	 */
-	static public function acosD (ratio:Number) : Number 
+	public static function acosD (ratio:Number) : Number 
 	{
 		return Math.acos(ratio) * (180 / Math.PI) ;
 	}
@@ -51,7 +51,7 @@ class pegas.geom.Trigo
 	 * @param y2 the y coordinate of the second point.
 	 * @return the angle in degrees between 2 points with this coordinates passed in argument.
 	 */
-	static public function angleOfLine (x1:Number, y1:Number, x2:Number, y2:Number):Number 
+	public static function angleOfLine (x1:Number, y1:Number, x2:Number, y2:Number):Number 
 	{
 		return Trigo.atan2D (y2 - y1, x2 - x1) ;
 	}
@@ -61,7 +61,7 @@ class pegas.geom.Trigo
 	 * @param ratio a value between -1 and 1 inclusive.
 	 * @return the arcsine of the passeds angle in degrees.
 	 */
-	static public function asinD (ratio:Number) : Number 
+	public static function asinD (ratio:Number) : Number 
 	{
 		return Math.asin(ratio) * (180 / Math.PI) ;
 	}
@@ -71,7 +71,7 @@ class pegas.geom.Trigo
 	 * @param n a real number
 	 * @return the arctangent of the passed angle, a number between -Math.PI/2 and Math.PI/2 inclusive.
 	 */
-	static public function atanD( angle:Number ):Number 
+	public static function atanD( angle:Number ):Number 
 	{
 		return Math.atan( angle ) * (180 / Math.PI);
 	}
@@ -82,7 +82,7 @@ class pegas.geom.Trigo
 	 * @param x a value representing x-axis of angle vector.
 	 * @return the arctangent2 of the passed angle.
 	 */
-	static public function atan2D( y:Number , x:Number ):Number 
+	public static function atan2D( y:Number , x:Number ):Number 
 	{
 		return Math.atan2(y, x) * (180 / Math.PI) ;
 	}
@@ -92,7 +92,7 @@ class pegas.geom.Trigo
 	 * Converts a vector in cartesian in a polar vector.
 	 * @return a vector in cartesian in a polar vector.
 	 */
-	static public function cartesianToPolar (p:Object) : Object 
+	public static function cartesianToPolar (p:Object) : Object 
 	{
 		return ( { r : Math.sqrt (p.x * p.x + p.y * p.y) , t : Trigo.atan2D (p.y , p.x) } ) ;
 	}	
@@ -102,7 +102,7 @@ class pegas.geom.Trigo
 	 * @param angle a value representing angle in degrees.
 	 * @return the cosine of the passed angle, a number between -1 and 1 inclusive.
 	 */
-	static public function cosD(angle:Number):Number 
+	public static function cosD(angle:Number):Number 
 	{
 		return Math.cos( angle * (Math.PI / 180) ) ;
 	}
@@ -112,7 +112,7 @@ class pegas.geom.Trigo
 	 * @return an angle in degrees in radians.
 	 */
 
-	static public function degreesToRadians (angle:Number) : Number 
+	public static function degreesToRadians (angle:Number) : Number 
 	{
 		return angle * (Math.PI / 180) ;
 	}
@@ -125,7 +125,7 @@ class pegas.geom.Trigo
 	 * @param y2 the y coordinate of the second point.
 	 * @return the length between 2 points.
 	 */
-	static public function distance (x1:Number, y1:Number, x2:Number, y2:Number):Number 
+	public static function distance (x1:Number, y1:Number, x2:Number, y2:Number):Number 
 	{
 		var dx = x2 - x1 ;
 		var dy = y2 - y1 ;
@@ -138,7 +138,7 @@ class pegas.geom.Trigo
 	 * @param p2 the second point to determinate the distance.
 	 * @return the length between 2 points.
 	 */
-	static public function distanceP(p1, p2 ) : Number 
+	public static function distanceP(p1, p2 ) : Number 
 	{
 		return distance(p1.x, p1.y, p2.x, p2.y) ;
 	}
@@ -148,7 +148,7 @@ class pegas.geom.Trigo
 	 * @param angle the passed angle value in degrees.
 	 * @return an angle in degrees between 0 and 360 degrees. 
 	 */
-	static public function fixAngle (angle:Number):Number 
+	public static function fixAngle (angle:Number):Number 
 	{
 		if (isNaN(angle)) 
 		{
@@ -162,7 +162,7 @@ class pegas.geom.Trigo
 	 * Converts an angle in radians in degrees.
 	 * @return an angle in radians in degrees.
 	 */
-	static public function radiansToDegrees (angle:Number) : Number 
+	public static function radiansToDegrees (angle:Number) : Number 
 	{
 		return angle * (180 / Math.PI) ;
 	}
@@ -171,7 +171,7 @@ class pegas.geom.Trigo
 	 * Converts a vector in polar in a cartesian vector.
 	 * @return a vector in polar in a cartesian vector.
 	 */
-	static public function polarToCartesian (p:Object) : Object 
+	public static function polarToCartesian (p:Object) : Object 
 	{
 		return ( { x : p.r * Trigo.cosD (p.t) , y : p.r * Trigo.sinD (p.t) } ) ;
 	}
@@ -181,7 +181,7 @@ class pegas.geom.Trigo
 	 * @param angle a value representing angle in degrees.
 	 * @return the sine of the passed angle, a number between -1 and 1 inclusive.
 	 */
-	static public function sinD(angle:Number):Number 
+	public static function sinD(angle:Number):Number 
 	{
 		return Math.sin( angle * (Math.PI / 180) ) ;
 	}
@@ -191,7 +191,7 @@ class pegas.geom.Trigo
 	 * @param angle a value representing angle in degrees.
 	 * @return the tangent of the passed angle.
 	 */
-	static public function tanD(angle:Number):Number 
+	public static function tanD(angle:Number):Number 
 	{
 		return Math.tan( angle * (Math.PI / 180) ) ;
 	}

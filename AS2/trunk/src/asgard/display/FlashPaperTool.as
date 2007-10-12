@@ -31,16 +31,16 @@ class asgard.display.FlashPaperTool
 	/**
 	 * Unselect the current tool selected in the FlashPaper document.
 	 */
-	static public var NONE:String = "" ;
+	public static var NONE:String = "" ;
 	
 	/**
 	 * The 'pan' tool in the FlashPaper document.
 	 */
-	static public var PAN:String = "pan" ;
+	public static var PAN:String = "pan" ;
 	
 	/**
 	 * The 'select' tool in the FlashPaper document.
 	 */
-	static public var SELECT:String = "select" ;
+	public static var SELECT:String = "select" ;
 	
 }

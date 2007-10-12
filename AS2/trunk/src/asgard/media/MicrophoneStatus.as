@@ -31,11 +31,11 @@ class asgard.media.MicrophoneStatus
 	/**
 	 * The status name when the Microphone is muted.
 	 */
-	static public var MUTED:String = "Microphone.Muted" ;
+	public static var MUTED:String = "Microphone.Muted" ;
 	
 	/**
 	 * The status name when the Microphone is unmuted.
 	 */
-	static public var UNMUTED:String = "Microphone.Unmuted" ;
+	public static var UNMUTED:String = "Microphone.Unmuted" ;
 	
 }

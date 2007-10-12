@@ -217,7 +217,7 @@ class vegas.util.comparators.NumericComparator extends CoreObject implements ICo
 	 * Clients are encouraged to use the value returned from this method instead of constructing a new instance to reduce allocation and garbage collection overhead when multiple StringComparators may be used in the same application.
 	 * @return the {@code NumericComparator} singleton with the a {@code false} ignoreCase property.
 	 */
-	static public function getInstance():NumericComparator
+	public static function getInstance():NumericComparator
 	{
 		if ( _comparator == null )
 		{
@@ -232,7 +232,7 @@ class vegas.util.comparators.NumericComparator extends CoreObject implements ICo
 	 * Clients are encouraged to use the value returned from this method instead of constructing a new instance to reduce allocation and garbage collection overhead when multiple StringComparators may be used in the same application.
 	 * @return the {@code NumericComparator} singleton with the a {@code true} ignoreCase property.
 	 */
-	static public function getIgnoreCaseInstance():NumericComparator
+	public static function getIgnoreCaseInstance():NumericComparator
 	{
 		if ( _ignoreCaseComparator == null )
 		{
@@ -253,12 +253,12 @@ class vegas.util.comparators.NumericComparator extends CoreObject implements ICo
 	/**
 	 * The internal Case NumericComparator.
 	 */
-	static private var _comparator:NumericComparator ;
+	private static var _comparator:NumericComparator ;
 
 	/**
 	 * The internal ignoreCase NumericComparator.
 	 */
-	static private var _ignoreCaseComparator:NumericComparator ;
+	private static var _ignoreCaseComparator:NumericComparator ;
 	
 	/**
 	 * Counts and returns the number of '0' in the passed-in string.

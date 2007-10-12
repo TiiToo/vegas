@@ -40,31 +40,31 @@ class asgard.events.NetServerEventType extends String
 	/**
 	 * The name of the NetServerEvent when the connection is accepted.
 	 */
-	static public var ACCEPTED:NetServerEventType = new NetServerEventType("onAccepted") ;
+	public static var ACCEPTED:NetServerEventType = new NetServerEventType("onAccepted") ;
 
 	/**
 	 * The name of the NetServerEvent when the connection is closed.
 	 */
-	static public var CLOSE:NetServerEventType = new NetServerEventType("onClosed") ;
+	public static var CLOSE:NetServerEventType = new NetServerEventType("onClosed") ;
 	
 	/**
 	 * The name of the NetServerEvent when the connection is finished.
 	 */
-	static public var FINISH:NetServerEventType = new NetServerEventType("onFinished") ;
+	public static var FINISH:NetServerEventType = new NetServerEventType("onFinished") ;
 	
 	/**
 	 * The name of the NetServerEvent when the connection is started.
 	 */
-	static public var START:NetServerEventType = new NetServerEventType("onStarted") ;
+	public static var START:NetServerEventType = new NetServerEventType("onStarted") ;
 
 	/**
 	 * The name of the NetServerEvent when the connection status is changed.
 	 */
-	static public var NET_STATUS:NetServerEventType = new NetServerEventType("onStatus") ;
+	public static var NET_STATUS:NetServerEventType = new NetServerEventType("onStatus") ;
 
 	/**
 	 * The name of the NetServerEvent when the connection is out of time.
 	 */
-	static public var TIMEOUT:NetServerEventType = new NetServerEventType("onTimeOut") ;
+	public static var TIMEOUT:NetServerEventType = new NetServerEventType("onTimeOut") ;
 	
 }

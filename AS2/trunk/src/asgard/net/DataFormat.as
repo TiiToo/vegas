@@ -31,23 +31,23 @@ class asgard.net.DataFormat
 	/**
 	 * Specifies that downloaded data is received as raw binary data.
 	 */
-	static public var BINARY:String = "binary" ;
+	public static var BINARY:String = "binary" ;
 	
 	/**
 	 * Specifies that downloaded data is received as text.
 	 */
-	static public var TEXT:String = "text" ;
+	public static var TEXT:String = "text" ;
 	
 	/**
 	 * Specifies that downloaded data is received as URL-encoded variables.
 	 */
-	static public var VARIABLES:String = "variables" ;
+	public static var VARIABLES:String = "variables" ;
 	
 	/**
 	 * Returns {@code true} if the passed argument is valid.
 	 * @return {@code true} if the passed argument is valid.
 	 */
-	static public function validate(sFormat:String):Boolean 
+	public static function validate(sFormat:String):Boolean 
 	{
 		return (sFormat == DataFormat.BINARY) || (sFormat == DataFormat.TEXT) || (sFormat == DataFormat.VARIABLES) ;
 	}

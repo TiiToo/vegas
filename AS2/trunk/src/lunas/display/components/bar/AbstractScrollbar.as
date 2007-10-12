@@ -54,17 +54,17 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 	/**
 	 * The name of the event when the user drag the scrollbar.
 	 */
-	static public var DRAG:String = ButtonEventType.DRAG ;
+	public static var DRAG:String = ButtonEventType.DRAG ;
 
 	/**
 	 * The name of the event when the user start to drag the scrollbar.
 	 */
-	static public var START_DRAG:String = ButtonEventType.START_DRAG ;
+	public static var START_DRAG:String = ButtonEventType.START_DRAG ;
 
 	/**
 	 * The name of the event when the user stop to drag the scrollbar.
 	 */
-	static public var STOP_DRAG:String = ButtonEventType.STOP_DRAG ;
+	public static var STOP_DRAG:String = ButtonEventType.STOP_DRAG ;
 
 	/**
 	 * Indicates the duration of the easing effect if is active.
@@ -79,7 +79,7 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 	/**
 	 * A static object use to defines the inverse property name of the bar.
 	 */
-	static public var invertPosField:Object = { _x : "_y" , _y : "_x" } ;
+	public static var invertPosField:Object = { _x : "_y" , _y : "_x" } ;
 
 	/**
 	 * (read-only) Returns {@code true} if the bar is dragging.

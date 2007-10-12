@@ -43,22 +43,22 @@ class vegas.events.TimerEvent extends DynamicEvent
 	/**
 	 * The name of the event when the ITimer instance restart.
 	 */
-	static public var RESTART:String = "restart" ;
+	public static var RESTART:String = "restart" ;
 
 	/**
 	 * The name of the event when the ITimer instance start.
 	 */
-	static public var START:String = "start" ;
+	public static var START:String = "start" ;
 
 	/**
 	 * The name of the event when the ITimer instance stop.
 	 */
-	static public var STOP:String = "stop" ;
+	public static var STOP:String = "stop" ;
 	
 	/**
 	 * The name of the event when the ITimer instance complete this timer.
 	 */
-	static public var TIMER:String = "timer" ;
+	public static var TIMER:String = "timer" ;
 
 	/**
 	 * Returns the shallow copy of this event.

@@ -187,7 +187,7 @@ class asgard.config.ConfigEdenLoader extends EdenLoader
 	 * Protects a config object with a __resolve method and a Warning exception. 
 	 * This protection is important to test if the external properties exist in the external config.
 	 */
-	static public function protectConfig( oConfig ):Void 
+	public static function protectConfig( oConfig ):Void 
 	{
 		oConfig.__resolve = function( p:String ):String 
 		{

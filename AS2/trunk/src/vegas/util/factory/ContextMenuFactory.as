@@ -36,7 +36,7 @@ class vegas.util.factory.ContextMenuFactory
 	 * Creates a {@code ContextMenuItem} who launch an exteral url when the user select this item in a ContextMenu.
 	 * @return a {@code ContextMenuItem} reference.
 	 */
-	static public function createItemURL(label:String, url:String, target:String, separator:Boolean):ContextMenuItem 
+	public static function createItemURL(label:String, url:String, target:String, separator:Boolean):ContextMenuItem 
 	{
 		var f:Function = Delegate.create(ContextMenuFactory, _getURL, url, target) ;
 		var c:ContextMenuItem = new ContextMenuItem(label, f) ;
@@ -48,7 +48,7 @@ class vegas.util.factory.ContextMenuFactory
 	 * Creates a {@code ContextMenuItem} who use a proxy method when the user select this item in a ContextMenu.
 	 * @return a {@code ContextMenuItem} reference.
 	 */
-	static public function createItemProxy( label:String, scope , method:Function, separator:Boolean , args:Array):ContextMenuItem 
+	public static function createItemProxy( label:String, scope , method:Function, separator:Boolean , args:Array):ContextMenuItem 
 	{
 		var c:ContextMenuItem = new ContextMenuItem(label, Delegate.create.apply(null, [scope, method].concat(args)) ) ;
 		c.separatorBefore = separator ;
@@ -58,7 +58,7 @@ class vegas.util.factory.ContextMenuFactory
 	/**
 	 * Internal proxy method to launch {@code getURL} method.
 	 */
-	static private function _getURL(target, item, url:String, where:String) 
+	private static function _getURL(target, item, url:String, where:String) 
 	{
 		getURL(url, where || "_blank") ;	
 	}

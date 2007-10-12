@@ -31,18 +31,18 @@ class vegas.events.type.StaticDispatcher
 		//
 	}
 
-	static private var __initDispatcher = EDispatcher.initialize (StaticDispatcher) ;
+	private static var __initDispatcher = EDispatcher.initialize (StaticDispatcher) ;
 
-	static public function addEventListener(eventName:String, obj, func):Void {}
+	public static function addEventListener(eventName:String, obj, func):Void {}
 
-	static public function dispatchEvent(ev):Void {}
+	public static function dispatchEvent(ev):Void {}
 
-	static public function eventListenerExists(eventName:String, obj , func):Boolean { return undefined; }
+	public static function eventListenerExists(eventName:String, obj , func):Boolean { return undefined; }
 
-	static public function removeAllEventListeners(eventName:String):Void {}
+	public static function removeAllEventListeners(eventName:String):Void {}
 
-	static public function removeEventListener(eventName:String, obj, func):Void {}
+	public static function removeEventListener(eventName:String, obj, func):Void {}
 
-	static public function updateEvent(eventName:String, oInit):Void {}
+	public static function updateEvent(eventName:String, oInit):Void {}
 	
 }

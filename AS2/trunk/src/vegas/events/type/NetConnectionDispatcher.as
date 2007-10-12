@@ -32,9 +32,9 @@ class vegas.events.type.NetConnectionDispatcher extends NetConnection implements
 
 	private function NetConnectionDispatcher() {}
 
-	static private var _initHashCode:Boolean = HashCode.initialize(NetConnectionDispatcher.prototype) ;
+	private static var _initHashCode:Boolean = HashCode.initialize(NetConnectionDispatcher.prototype) ;
 	
-	static private var __initDispatcher = EDispatcher.initialize (NetConnectionDispatcher.prototype) ;
+	private static var __initDispatcher = EDispatcher.initialize (NetConnectionDispatcher.prototype) ;
 
 	public function addEventListener(eventName:String, obj, func):Void {}
 	

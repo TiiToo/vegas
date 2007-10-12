@@ -35,7 +35,7 @@ class vegas.util.serialize.XMLSerializer
 	 * Returns a Eden representation of the object.
 	 * @return a string representing the source code of the object.
 	 */	
-	static public function toSource(x:XML):String 
+	public static function toSource(x:XML):String 
 	{
 		return "new XML(" + Serializer.toSource(x.toString()) + ")" ;
 	}

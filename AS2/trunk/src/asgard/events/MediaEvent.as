@@ -43,32 +43,32 @@ class asgard.events.MediaEvent extends LoaderEvent
 	/**
 	 * The name of the MediaEvent when the media is cleared.
 	 */
-	static public var MEDIA_CLEAR:String = "onMediaClear" ;
+	public static var MEDIA_CLEAR:String = "onMediaClear" ;
 
 	/**
 	 * The name of the MediaEvent when the media is finished.
 	 */
-	static public var MEDIA_FINISH:String = "onMediaFinished" ;
+	public static var MEDIA_FINISH:String = "onMediaFinished" ;
 
 	/**
 	 * The name of the MediaEvent when the media progress.
 	 */
-	static public var MEDIA_PROGRESS:String = "onMediaProgress" ;
+	public static var MEDIA_PROGRESS:String = "onMediaProgress" ;
 	
 	/**
 	 * The name of the MediaEvent when the media is resumed.
 	 */
-	static public var MEDIA_RESUME:String = "onMediaResumed" ;
+	public static var MEDIA_RESUME:String = "onMediaResumed" ;
 
 	/**
 	 * The name of the MediaEvent when the media is started.
 	 */
-	static public var MEDIA_START:String = "onMediaStarted" ;
+	public static var MEDIA_START:String = "onMediaStarted" ;
 	
 	/**
 	 * The name of the MediaEvent when the media is stopped.
 	 */
-	static public var MEDIA_STOP:String = "onMediaStopped" ;
+	public static var MEDIA_STOP:String = "onMediaStopped" ;
 
 	/**
 	 * Returns a shallow copy of this object.

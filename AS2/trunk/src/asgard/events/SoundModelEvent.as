@@ -48,42 +48,42 @@ class asgard.events.SoundModelEvent extends ModelChangedEvent
 	/**
 	 * The name of the SoundModelEvent when a new Sound is added in a SoundModel instance.
 	 */
-	static public var ADD_SOUND:String = "onAddSound" ;
+	public static var ADD_SOUND:String = "onAddSound" ;
 
 	/**
 	 * The name of the SoundModelEvent when all the sounds in the SoundModel are removed.
 	 */
-	static public var CLEAR_SOUND:String = "onClearSound" ;
+	public static var CLEAR_SOUND:String = "onClearSound" ;
 
 	/**
 	 * The type of the event when the sound is complete.
 	 */
-	static public var COMPLETE_SOUND:String = "onCompleteSound" ;
+	public static var COMPLETE_SOUND:String = "onCompleteSound" ;
 
 	/**
 	 * The type of the event when all sounds are enabled in the model.
 	 */
-	static public var ENABLE_SOUNDS:String = "onEnabledSounds" ;
+	public static var ENABLE_SOUNDS:String = "onEnabledSounds" ;
 
 	/**
 	 * The type of the event when all sounds are disabled in the model.
 	 */
-	static public var DISABLE_SOUNDS:String = "onDisabledSounds" ;
+	public static var DISABLE_SOUNDS:String = "onDisabledSounds" ;
 	
 	/**
 	 * The type of the event when a sound id3 is notify.
 	 */
-	static public var ID3_SOUND:String = "onID3Sound" ; 
+	public static var ID3_SOUND:String = "onID3Sound" ; 
 	
 	/**
 	 * The type of the event when a sound is loading.
 	 */
-	static public var LOAD_SOUND:String = "onLoadSound" ; 
+	public static var LOAD_SOUND:String = "onLoadSound" ; 
 
 	/**
 	 * The name of the SoundModelEvent when a Sound is removed in a SoundModel instance.
 	 */
-	static public var REMOVE_SOUND:String = "onRemoveSound" ; 
+	public static var REMOVE_SOUND:String = "onRemoveSound" ; 
 
 	/**
 	 * The success boolean value if the SoundModelEvent type is 'LOAD_SOUND'.

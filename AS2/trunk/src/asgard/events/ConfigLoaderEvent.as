@@ -95,9 +95,9 @@ class asgard.events.ConfigLoaderEvent extends LoaderEvent {
 	
 	// ----o Constant
 	
-	static public var CHANGE:String = UIEventType.CHANGE ;
+	public static var CHANGE:String = UIEventType.CHANGE ;
 
-	static private var __ASPF__ = _global.ASSetPropFlags(ConfigLoaderEvent, ["CHANGE"] , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(ConfigLoaderEvent, ["CHANGE"] , 7, 7) ;
 	
 	// ----o Public Methods
 	
