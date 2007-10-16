@@ -27,10 +27,10 @@ import lunas.events.StyleEvent;
 
 import pegas.events.UIEvent;
 import pegas.events.UIEventType;
-import pegas.process.ILockable;
 
 import vegas.core.HashCode;
 import vegas.core.IHashable;
+import vegas.core.ILockable;
 import vegas.data.Set;
 import vegas.events.Delegate;
 import vegas.events.Event;

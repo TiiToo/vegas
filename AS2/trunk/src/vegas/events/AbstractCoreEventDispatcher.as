@@ -21,9 +21,8 @@
   
 */
 
-import pegas.process.ILockable;
-
 import vegas.core.CoreObject;
+import vegas.core.ILockable;
 import vegas.data.Set;
 import vegas.events.Event;
 import vegas.events.EventDispatcher;

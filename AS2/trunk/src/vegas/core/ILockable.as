@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is PEGAS Framework.
+  The Original Code is Vegas Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -25,7 +25,7 @@
  * This interface is implemented by all objects lockable.
  * @author eKameleon
  */
-interface pegas.process.ILockable 
+interface vegas.core.ILockable 
 {
 
 	/**
