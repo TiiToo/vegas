@@ -53,7 +53,7 @@ class buRRRn.ASTUce.Application
 		if( Config.verbose )
         {
         	str += CRLF;
-        	str += "Copyright (c) 2004-2007 Zwetan Kjukov, All right reserved." + CRLF ;
+        	str += "Copyright (c) 2004-2008 Zwetan Kjukov, All right reserved." + CRLF ;
         	str += "Made in the EU.";
         }
     

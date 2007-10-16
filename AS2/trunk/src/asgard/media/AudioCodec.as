@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2007
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -61,10 +61,10 @@ class asgard.media.AudioCodec
 	 * Returns {@code true} if the specified id in argument is a valid audio codec.
 	 * @return {@code true} if the specified id in argument is a valid audio codec.
 	 */
-	public function validate( id:Number ):Boolean
+	public static function validate( id:Number ):Boolean
 	{
 		var ar:Array = [ ADPCM, MP3, UNCOMPRESSED, NELLY_MOSER_1 , NELLY_MOSER_2] ;
-		return 	ArrayUtil.contains(ar, id) ;
+		return ArrayUtil.contains(ar, id) ;
 	}
 
 }

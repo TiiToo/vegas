@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2007
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -38,14 +38,17 @@ class pegas.draw.FillMatrix extends CoreObject
 	public function FillMatrix() 
 	{
 		var first = arguments[0] ;
-		if(!first || TypeUtil.typesMatch(first, String) ) {
+		if(!first || TypeUtil.typesMatch(first, String) ) 
+		{
    			matrixType = first || "box" ;
    			x = isNaN(arguments[1]) ? 0 : arguments[1] ;
 			y = isNaN(arguments[2]) ? 0 : arguments[2] ;
 			w = isNaN(arguments[3]) ? 100 : arguments[3] ;
 			h = isNaN(arguments[4]) ? 100 : arguments[4] ;
 			r = isNaN(arguments[5]) ? 0 : arguments[5] ;
-		} else {
+		} 
+		else
+		{
 			a = arguments[0] ;
 			b = arguments[1] ;
 			c = arguments[2] ;

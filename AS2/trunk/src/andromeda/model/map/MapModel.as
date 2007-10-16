@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2007
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -101,6 +101,34 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 		return _map.containsKey( id ) ;
 	}
 
+	/**
+	 * Returns {@code true} if the model contains the specified attribute value.
+	 * @return {@code true} if the model contains the specified id key in argument
+	 */
+	public function containsByProperty( propName:String , value ):Boolean
+	{
+		if ( propName == null )
+		{
+			return false ;
+		}
+		var datas:Array = _map.getValues() ;
+		var size:Number = datas.length ;
+		if (size > 0)
+		{
+			while ( --size > -1 )
+			{
+				if ( datas[size][propName] == value )
+				{
+					return true ;
+				}
+			}
+			return false ;
+		}
+		else
+		{
+			return false ;
+		}
+	}
 
 	/**
 	 * Returns the event name use in the {@code addVO} method.
@@ -165,6 +193,15 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 	public function initializeMap():Map
 	{
 		return new HashMap() ;	
+	}
+
+	/**
+	 * Returns {@code true} if the model is empty.
+	 * @return {@code true} if the model is empty.
+	 */
+	public function isEmpty():Boolean 
+	{
+		return _map.isEmpty() ;	
 	}
 
 	/**
@@ -267,7 +304,16 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 	{
 		_map = m || initializeMap() ;	
 	}
-	
+
+	/**
+	 * Returns the number of IValueObject in this model.
+	 * @return the number of IValueObject in this model.
+	 */
+	public function size():Number
+	{
+		return _map.size() ;
+	}
+
 	/**
 	 * Update a value object in the model.
 	 * @throws Warning if the value object passed-in argument don't exist.
@@ -283,15 +329,6 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 		{
 			throw new Warning( this + " updateVO method failed, the value object passed in argument don't exist in the model.") ;
 		}
-	}
-
-	/**
-	 * Returns the number of IValueObject in this model.
-	 * @return the number of IValueObject in this model.
-	 */
-	public function size():Number
-	{
-		return _map.size() ;
 	}
 
 	/**

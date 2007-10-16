@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2007
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -28,8 +28,14 @@
 class pegas.draw.FillType 
 {
 
+	/**
+	 * The linear fill type.
+	 */
 	public static var LINEAR:String = "linear" ;
-	
+
+	/**
+	 * The radial fill type.
+	 */
 	public static var RADIAL:String = "radial" ;
 	
 	private static var __ASPF__ = _global.ASSetPropFlags(FillType, null, 7, 7) ;
