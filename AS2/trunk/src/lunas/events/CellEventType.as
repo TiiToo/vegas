@@ -23,6 +23,9 @@
 	
 import pegas.events.ButtonEventType;
 
+/**
+ * The static enumeration list of all cell event's name.
+ */
 class lunas.events.CellEventType 
 {
 

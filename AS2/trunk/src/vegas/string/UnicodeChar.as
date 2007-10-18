@@ -154,9 +154,6 @@ dynamic class vegas.string.UnicodeChar
 	 */
 	public static var LINE_TERMINATOR_CHARS:Array = [ LF, CR, LS, PS ] ;
 	
-	
-	private static var __ASPF__ = _global.ASSetPropFlags(UnicodeChar, null , 7, 7) ;
-	
 	/**
 	 * Returns {@code true} of the specified character is a whitespace.
 	 * @return {@code true} of the specified character is a whitespace.
@@ -168,7 +165,7 @@ dynamic class vegas.string.UnicodeChar
 		var l:Number = ar.length ;
 		while (--l > -1) 
 		{
-			if (ar[l] == char) 
+			if (ar[l] == c) 
 			{
 				return true ;
 			}
@@ -187,7 +184,7 @@ dynamic class vegas.string.UnicodeChar
 		var l:Number = ar.length ;
 		while (--l > -1) 
 		{
-			if (ar[l] == char) 
+			if (ar[l] == c) 
 			{
 				return true ;
 			}

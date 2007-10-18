@@ -1,5 +1,4 @@
-﻿import lunas.core.IData;
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -21,6 +20,8 @@
   Contributor(s) :
   
 */
+
+import lunas.core.IData;
 
 /**
  * This interface defines all methods to implement in a button display components.

@@ -70,8 +70,6 @@ class vegas.string.StringFormatter extends AbstractFormatter
 	 */	
 	static public var SPC:String = " " ; // SPACE
 	
-	static private var __ASPF__ = _global.ASSetPropFlags(StringFormatter, null, 7, 7) ;
-	
 	/**
 	 * Format the pattern with all the arguments passed in this method.
 	 * @return the new string representation of the pattern. 

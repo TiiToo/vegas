@@ -21,70 +21,43 @@
   
 */
 
-/** 	PanelEvent
-
-	AUTHOR
-
-		Name : PanelEvent
-		Package : lunas.events
-		Version : 1.0.0.0
-		Date :  2006-02-08
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-		
-	CONSTRUCTOR
-	
-		new PanelEvent(e:EventType, key:Number, item:Object, target) ;
-
-	PROPERTY SUMMARY
-	
-		- item:Object
-		
-		- key:Number
-
-	METHOD SUMMARY
-	
-		- getTarget():Object
-		
-		- getType():String
-		
-		- setTarget(target:Object):Void
-		
-		- setType(type:String):Void
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → BasicEvent → PanelEvent
-		
-	IMPLEMENTS
-	
-		Event
-
-**/
-
 import vegas.events.BasicEvent;
 
-class lunas.events.PanelEvent extends BasicEvent {
-
-	// ----o Constructor
-	
-	public function PanelEvent(type:String, k, i, target) {
+/**
+ * This event is invoqued by a panel.
+ * @author eKameleon
+ */
+class lunas.events.PanelEvent extends BasicEvent 
+{
+    
+    /**
+     * Creates a new PanelEvent instance.
+     */
+	public function PanelEvent(type:String, k, i, target) 
+	{
 		super(type, target) ;
 		key = k ;
 		item = i ;
 	}
 
-	// ----o Public Properties
+	public static var CREATE:String  = "onCreate" ;
 	
+	public static var DESTROY:String = "onDestroy" ;
+
+	public static var HIDE:String    = "onHide" ;
+	
+	public static var SHOW:String    = "onShow" ;
+
 	public var item ;
+
 	public var key:Number ;
 	
-	// ----o Public Methods
-	
-	public function clone() {
+	/**
+	 * Returns a shallow copy of this object.
+	 * @return a shallow copy of this object.
+	 */
+	public function clone() 
+	{
 		return new PanelEvent(getType(), key, item, getTarget()) ;
 	}
 	

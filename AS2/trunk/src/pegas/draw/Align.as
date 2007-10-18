@@ -19,9 +19,7 @@
   
   Contributor(s) :
   
-*/
-
-import vegas.util.ArrayUtil;
+ */import vegas.util.ArrayUtil;
 
 /**
  * The Align enumeration class provides constant values to align displays or components.

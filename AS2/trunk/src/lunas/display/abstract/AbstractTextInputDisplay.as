@@ -190,7 +190,6 @@ class lunas.display.abstract.AbstractTextInputDisplay extends AbstractTextAreaDi
 	 */
 	public function notifyFocusIn( oldFocus ):Void 
 	{
-		trace(this + " focus in.") ;
 		_eFocusIn.relatedObject = oldFocus ;
 		dispatchEvent(_eFocusIn) ;
 	}
@@ -200,7 +199,6 @@ class lunas.display.abstract.AbstractTextInputDisplay extends AbstractTextAreaDi
 	 */
 	public function notifyFocusOut( newFocus ):Void 
 	{
-		trace(this + " focus out.") ;
 		_eFocusIn.relatedObject = newFocus ;
 		dispatchEvent(_eFocusOut) ;
 	}

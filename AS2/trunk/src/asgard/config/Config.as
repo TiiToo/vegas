@@ -37,7 +37,11 @@ dynamic class asgard.config.Config extends CoreObject
 	{
 		super();
 	}
-
+	
+	/**
+	 * Returns the singleton reference of this class.
+	 * @return the singleton reference of this class.
+	 */
 	public static function getInstance():Config 
 	{
 		

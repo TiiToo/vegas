@@ -21,6 +21,9 @@
   
 */
 
+/**
+ * The enumeration type list of all event's name of the PanelEvent objects.
+ */
 class lunas.events.PanelEventType 
 {
 

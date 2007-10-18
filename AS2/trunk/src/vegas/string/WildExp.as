@@ -170,8 +170,6 @@ class vegas.string.WildExp extends CoreObject
 	 */	
 	public static var MULTIWORD:Number = 4 ;
 
-	private static var __ASPF__ = _global.ASSetPropFlags(WildExp, null , 7, 7) ;
-
 	/**
 	 * The array of all wildcards.
 	 */		
@@ -212,12 +210,17 @@ class vegas.string.WildExp extends CoreObject
 	 */
 	public function test(str:String) 
 	{
-		var segment, result:Array ;
+		var segment:Array ;
+		var result:Array ;
 		var i, j, k, l:Number ;
 		var ORC:String  = "\uFFFC";
 		var CRLF:String = "\r\n";
-		if( _caseSensitive ) str = str.toLowerCase();
-        if(_multiline) {
+		if( _caseSensitive ) 
+		{
+			str = str.toLowerCase();
+		}
+        if(_multiline) 
+        {
 			var lineTerminatorChars:Array = UnicodeChar.LINE_TERMINATOR_CHARS ;
 			if( str.indexOf( CRLF ) > -1 ) 
 			{
