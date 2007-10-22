@@ -323,13 +323,10 @@ class lunas.display.container.ListContainerDisplay extends SimpleContainerDispla
 			{
 				view.scrollRect = new Rectangle(0, 0, _bound.w , _bound.h ) ;	
 			}
-			else
-			{
-				_maskPen.beginFill( 0xFF0000 , 60 ) ;
-				_maskPen.draw( _bound.w , _bound.h ) ;
-				_maskPen.endFill() ;
-				container.setMask(_mcMask) ;	
-			}
+			_maskPen.beginFill( 0xFF0000 , 60 ) ;
+			_maskPen.draw( _bound.w , _bound.h ) ;
+			_maskPen.endFill() ;
+			container.setMask(_mcMask) ;	
 		}
 		else 
 		{

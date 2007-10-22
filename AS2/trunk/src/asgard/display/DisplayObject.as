@@ -384,7 +384,7 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	 */
 	public function getEnabled():Boolean 
 	{ 
-		return view.enabled ;
+		return _enabled ;
 	} 
 	
 	/**
@@ -534,7 +534,8 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	 */
 	public function setEnabled(b:Boolean):Void 
 	{
-		view.enabled = (b == true) ; 
+		_enabled = (b == true) ;
+		view.enabled = _enabled ; 
 	}
 
 	/**
@@ -583,6 +584,11 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 			view._visible = true ;	
 		}
 	}
+	
+	/**
+	 * The internal enabled value.
+	 */
+	private var _enabled:Boolean = true ;
 	
 	/**
 	 * The internal loader of the display.

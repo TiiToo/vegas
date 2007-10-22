@@ -136,6 +136,25 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 	}	
 
 	/**
+	 * Returns the enabled state of the display.
+	 * @return the enabled state of the display.
+	 */
+	public function get useHandCursor():Boolean 
+	{
+		return _useHandCursor ;
+	}
+	
+	/**
+	 * @private
+	 */
+	public function set useHandCursor( b:Boolean ):Void 
+	{
+		_useHandCursor = b ;
+		var scope:MovieClip = (_scope == null) ? view : _scope ;
+		scope.useHandCursor = _useHandCursor ; 
+	}
+
+	/**
 	 * Returns the data value object to render or edit.
 	 * @return the data value object to render or edit.
 	 */
@@ -148,7 +167,7 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 	 * Returns the enabled state of the display.
 	 * @return the enabled state of the display.
 	 */
-	public function getEnabled(b:Boolean):Boolean 
+	public function getEnabled():Boolean 
 	{
 		return (_scope == null) ? view.enabled : _scope.enabled ;
 	}
@@ -213,6 +232,8 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 		_scope = (scope == null) ? view : scope ;
 		if(scope != null)
 		{
+			_scope.useHandCursor    = useHandCursor ;
+			_scope.enabled          = getEnabled()  ;
 			_scope.onRollOut        = Delegate.create(this, _onRollOut) ; 
 			_scope.onRollOver       = Delegate.create(this, _onRollOver) ;
 			_scope.onPress          = Delegate.create(this, _onPress) ;
@@ -234,6 +255,7 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 	 */
 	public function setEnabled(b:Boolean):Void 
 	{
+		super.setEnabled(b) ;
 		var scope:MovieClip = (_scope == null) ? view : _scope ;
 		scope.enabled = (b == true) ; 
 	}
@@ -282,6 +304,8 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 	{
 		if (_scope != null) 
 		{
+			_scope.useHandCursor = true ;
+			_scope.enabled       = true ;
 			delete _scope.onRollOut ; 
 			delete _scope.onRollOver       ;
 			delete _scope.onPress          ;
@@ -329,6 +353,8 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 	private var _toggle:Boolean ;
 
 	private var _selected:Boolean ;
+	
+	private var _useHandCursor:Boolean = true ;
 	
 	private function _fireButtonEvent( eventType:String ):Void 
 	{
