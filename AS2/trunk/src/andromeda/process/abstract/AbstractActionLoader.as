@@ -29,7 +29,10 @@ import asgard.net.ILoader;
 
 import pegas.process.SimpleAction;
 
+import vegas.data.Set;
+import vegas.data.set.HashSet;
 import vegas.events.Delegate;
+import vegas.events.EventListener;
 import vegas.events.EventTarget;
 
 /**
@@ -48,6 +51,11 @@ class andromeda.process.abstract.AbstractActionLoader extends SimpleAction
 	function AbstractActionLoader( bGlobal:Boolean, sChannel:String , loaderPolicy:Boolean ) 
 	{
 		super(bGlobal, sChannel);
+		_registerSet      = new HashSet() ;
+		_listenerComplete = new Delegate(this, _onLoadComplete ) ;
+		_listenerError    = new Delegate(this, _onLoadError) ;
+		_listenerProgress = new Delegate(this, _onLoadProgress) ;
+		_listenerTimeout  = new Delegate(this, _onLoadTimeout  ) ;
 		if ( loaderPolicy != null )
 		{
 			this.loaderPolicy = loaderPolicy ; 	
@@ -96,13 +104,39 @@ class andromeda.process.abstract.AbstractActionLoader extends SimpleAction
 	 */
 	public function registerLoader( loader:ILoader )
 	{
-		EventTarget(loader).addEventListener( LoaderEvent.COMPLETE , new Delegate(this, _onLoadComplete ) ) ;
- 		EventTarget(loader).addEventListener( LoaderEvent.IO_ERROR , new Delegate(this, _onLoadError    ) ) ;
- 		EventTarget(loader).addEventListener( LoaderEvent.PROGRESS , new Delegate(this, _onLoadProgress ) ) ;
- 		EventTarget(loader).addEventListener( LoaderEvent.TIMEOUT  , new Delegate(this, _onLoadTimeout  ) ) ;
+		if ( _registerSet.contains( loader ) == false )
+		{
+			EventTarget(loader).addEventListener( LoaderEvent.COMPLETE , _listenerComplete ) ;
+ 			EventTarget(loader).addEventListener( LoaderEvent.IO_ERROR , _listenerError    ) ;
+ 			EventTarget(loader).addEventListener( LoaderEvent.PROGRESS , _listenerProgress ) ;
+ 			EventTarget(loader).addEventListener( LoaderEvent.TIMEOUT  , _listenerTimeout  ) ;
+ 			_registerSet.insert( loader ) ;
+		}
  		return loader ;
 	}
 
+	/**
+	 * Register the process loader object.
+	 */
+	public function unregisterLoader( loader:ILoader )
+	{
+		if ( _registerSet.contains( loader ) )
+		{
+			EventTarget(loader).removeEventListener( LoaderEvent.COMPLETE , _listenerComplete ) ;
+ 			EventTarget(loader).removeEventListener( LoaderEvent.IO_ERROR , _listenerError    ) ;
+ 			EventTarget(loader).removeEventListener( LoaderEvent.PROGRESS , _listenerProgress ) ;
+ 			EventTarget(loader).removeEventListener( LoaderEvent.TIMEOUT  , _listenerTimeout  ) ;
+ 			_registerSet.remove( loader ) ;
+		}
+ 		return loader ;
+	}
+
+	private var _listenerComplete:EventListener ;
+	private var _listenerError:EventListener ;
+	private var _listenerProgress:EventListener ;
+	private var _listenerTimeout:EventListener ;
+	private var _registerSet:Set ;
+	
 	private function _onLoadError(ev:LoaderEvent):Void
 	{
 	    getLogger().error(  this + " " + ev.getType() + " : " + ev.error ) ;

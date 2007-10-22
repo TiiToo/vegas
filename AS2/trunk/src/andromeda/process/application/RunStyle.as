@@ -29,6 +29,7 @@ import asgard.net.StyleSheetLoader;
 import asgard.net.URLRequest;
 
 import vegas.events.Delegate;
+import vegas.events.EventListener;
 
 /**
  * Launch the loading of the external stylesheet of this application.
@@ -78,6 +79,16 @@ class andromeda.process.application.RunStyle extends AbstractActionLoader
 	}
 
 	/**
+	 * Register the process loader object.
+	 */
+	public /*override*/ function registerLoader( loader:StyleSheetLoader )
+	{
+		super.registerLoader( loader ) ;
+		loader.addEventListener( LoaderEvent.INIT, _listenerInit , null, null, true ) ;
+ 		return loader ;
+	}
+
+	/**
 	 * Run the process.
 	 */
 	public function run() 
@@ -91,18 +102,10 @@ class andromeda.process.application.RunStyle extends AbstractActionLoader
 		
 		if (uri)
 		{
-			
-			var request:URLRequest = new URLRequest( uri ) ;
-			
-			var loader:StyleSheetLoader = new StyleSheetLoader() ;
-			loader.setStyleSheet( model.getStyleSheet() ) ;
-			
-			loader.addEventListener(LoaderEvent.INIT, new Delegate(this, initialize)) ;
-			
+			_listenerInit = new Delegate(this, initialize) ;
+			var loader:StyleSheetLoader = model.loader ;
 			registerLoader( loader ) ;
-		
-			loader.load( request ) ;
-			
+			loader.load( new URLRequest( uri ) ) ;
 		}
 		else
 		{
@@ -112,6 +115,16 @@ class andromeda.process.application.RunStyle extends AbstractActionLoader
 		
 	}
 
+	/**
+	 * Register the process loader object.
+	 */
+	public /*override*/ function unregisterLoader( loader:StyleSheetLoader )
+	{
+		super.registerLoader( loader ) ;
+		loader.removeEventListener( LoaderEvent.INIT, _listenerInit ) ;
+ 		return loader ;
+	}
 
+	private var _listenerInit:EventListener ;
 	
 }

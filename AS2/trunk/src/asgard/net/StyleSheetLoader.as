@@ -37,10 +37,10 @@ class asgard.net.StyleSheetLoader extends URLLoader
 	/**
 	 * Creates a new StyleSheetLoader instance.
 	 */	
-	function StyleSheetLoader() 
+	function StyleSheetLoader( styleSheet:StyleSheet ) 
 	{
 		super();
-		_styleSheet = initStyleSheet() ;
+		setStyleSheet( styleSheet ) ;
 	}
 
 	/**
@@ -74,9 +74,9 @@ class asgard.net.StyleSheetLoader extends URLLoader
 	/**
 	 * Sets the styleSheet reference of this ILoader.
 	 */
-	public function setStyleSheet( css:StyleSheet ):Void
+	public function setStyleSheet( styleSheet:StyleSheet ):Void
 	{
-		_styleSheet = css ;
+		_styleSheet = styleSheet || initStyleSheet() ;
 	}
 
 	/**

@@ -23,8 +23,12 @@
 
 import andromeda.model.AbstractModel;
 
+import asgard.events.LoaderEvent;
 import asgard.events.StyleSheetEvent;
+import asgard.net.StyleSheetLoader;
 import asgard.text.StyleSheet;
+
+import vegas.events.Delegate;
 
 /**
  * This model manage the style of the fields in the application with an external CSS.
@@ -42,8 +46,17 @@ class andromeda.text.StyleModel extends AbstractModel
 	function StyleModel(  id , bGlobal:Boolean , sChannel:String  ) 
 	{
 		super( id, bGlobal, sChannel ) ;
-		_styleSheet = initStyleSheet() ;
+		setStyleSheet( null )  ;
 		_eChange = new StyleSheetEvent( StyleSheetEvent.CHANGE ) ;
+	}
+	
+	/**
+	 * Returns the loader reference of this model.
+	 * @return the loader reference of this model.
+	 */
+	public function get loader():StyleSheetLoader
+	{
+		return _loader ;	
 	}
 	
 	/**
@@ -79,8 +92,11 @@ class andromeda.text.StyleModel extends AbstractModel
 	 */
 	public function notifyChange():Void
 	{
-		_eChange.setStyleSheet( _styleSheet ) ;
-		dispatchEvent( _eChange  ) ;
+		if ( isLocked() == false )
+		{
+			_eChange.setStyleSheet( _styleSheet ) ;
+			dispatchEvent( _eChange  ) ;
+		}
 	}
 	
 	/**
@@ -97,7 +113,14 @@ class andromeda.text.StyleModel extends AbstractModel
 	 */
 	public function setStyleSheet( css:StyleSheet ):Void
 	{
-		_styleSheet = css ;
+		if ( _styleSheet != null )
+		{
+			delete _loader ;
+			delete _styleSheet.onLoad ; 	
+		}
+		_styleSheet = css || initStyleSheet() ;
+		_loader = new StyleSheetLoader( _styleSheet ) ;
+		_loader.addEventListener( LoaderEvent.INIT , new Delegate( this , notifyChange ) ) ;
 		notifyChange() ;
 	}
 
@@ -105,6 +128,11 @@ class andromeda.text.StyleModel extends AbstractModel
 	 * The internal Event use when the model change.
 	 */
 	private var _eChange:StyleSheetEvent ;
+
+	/**
+	 * The loader of this model.
+	 */
+	private var _loader:StyleSheetLoader ;
 
 	/**
 	 * The internal StyleSheet reference.
