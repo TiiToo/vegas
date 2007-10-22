@@ -63,11 +63,13 @@ interface vegas.events.Event extends ICloneable
 		
 	/**
 	 * Returns the target of this event.
+	 * @return the target of this event.
 	 */
 	function getTarget() ;
 	
 	/**
 	 * Returns the timestamp value of this event.
+	 * @return the timestamp value of this event.
 	 */
 	function getTimeStamp():Number ;
 	

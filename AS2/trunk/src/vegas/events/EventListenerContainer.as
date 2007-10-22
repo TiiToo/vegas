@@ -37,7 +37,8 @@ class vegas.events.EventListenerContainer extends CoreObject
 	 * Creates a new EventListenerContainer instance.
 	 * @param listener an {@code EventListener}
 	 */	
-	public function EventListenerContainer( listener:EventListener ) {
+	public function EventListenerContainer( listener:EventListener ) 
+	{
 		_listener = listener ;
 	}
 
