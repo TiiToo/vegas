@@ -19,9 +19,8 @@
   
   Contributor(s) :
   
-*/
-
-import lunas.display.components.container.ContainerModel;
+ */
+ 
 import lunas.display.components.container.PanelContainerController;
 
 import vegas.events.ModelChangedEvent;
@@ -48,7 +47,7 @@ class lunas.display.components.container.PanelContainerView extends AbstractView
 	{
 		
 		var eventName:String = ev.getType() ;
-		var m:ContainerModel = ev.getTarget() ; // no use for the moment
+		//var m:ContainerModel = ev.getTarget() ; // no use for the moment
 		var c:PanelContainerController = PanelContainerController(getController()) ;
 		
 		switch (eventName) 

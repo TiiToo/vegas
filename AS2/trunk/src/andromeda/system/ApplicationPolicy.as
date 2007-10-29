@@ -62,7 +62,6 @@ class andromeda.system.ApplicationPolicy extends ConfigurableObject
 		var security:Array = Config.getInstance()[ApplicationID.SECURITY] ;
 		if (security.length > 0) 
 		{
-			var domain:String ;
 			var l:Number = security.length ;
 			while(--l > -1) 
 			{

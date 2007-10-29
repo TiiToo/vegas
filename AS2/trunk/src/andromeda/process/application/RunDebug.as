@@ -63,11 +63,13 @@ class andromeda.process.application.RunDebug extends AbstractInitProcess
 		}
 		
 		getLogger().debug( this + " config") ;
+		var each:String ;
+		var prop:String ;
 		var space:String = "   " ;
-		for (var each:String in conf) 
+		for ( each in conf) 
 		{
 			getLogger().info( space + "+ " + each + " : " + conf[each]) ;
-			for (var prop:String in conf[each]) 
+			for ( prop in conf[each]) 
 			{
 				getLogger.info( space + space + "+ " + prop + " : " + conf[each][prop]) ;
 			}
@@ -81,10 +83,10 @@ class andromeda.process.application.RunDebug extends AbstractInitProcess
 
 		getLogger().debug( this + " localization : " + current ) ;
 		
-		for (var each:String in locale) 
+		for (each in locale) 
 		{
 			getLogger().info( space + "+ " + each + " : " + locale[each]) ;
-			for (var prop:String in locale[each]) 
+			for ( prop in locale[each] ) 
 			{
 				getLogger().info( space + space + "+ " + prop + " : " + locale[each][prop]) ;
 			}

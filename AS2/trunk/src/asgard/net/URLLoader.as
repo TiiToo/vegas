@@ -148,8 +148,6 @@ class asgard.net.URLLoader extends AbstractLoader
 
 		_oData = null ;
 		
-		var datas:Object = {} ;
-		
 		if (request) 
 		{
 		
@@ -187,7 +185,7 @@ class asgard.net.URLLoader extends AbstractLoader
 		}
 		
 		var receive:LoadVars = new LoadVars() ;
-		receive.onHTTPStatus = Delegate.create(this, _onHTTPStatus, receive) ;
+		receive["onHTTPStatus"] = Delegate.create(this, _onHTTPStatus, receive) ;
 		receive.onData = Delegate.create(this, _onData) ;
 
 		setContent( receive ) ;

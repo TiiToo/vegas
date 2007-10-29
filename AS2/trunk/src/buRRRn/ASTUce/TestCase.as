@@ -1,4 +1,4 @@
-/*
+﻿/*
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
   the License. You may obtain a copy of the License at 
@@ -155,7 +155,7 @@ class buRRRn.ASTUce.TestCase extends Assertion implements ITest
             
 			runMethod = this[_name];
 		}
-        catch( e )
+        catch( error1:Error )
 		{
 			fail( (new StringFormatter( Strings.methodNotFound )).format(_name) ) ;
 		}
@@ -169,9 +169,9 @@ class buRRRn.ASTUce.TestCase extends Assertion implements ITest
 		{
 			runMethod.call( this ) ;
 		}
-		catch( e:Error )
+		catch( error2:Error )
 		{
-			throw e ;
+			throw error2 ;
 		}
 	}
 

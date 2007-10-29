@@ -328,7 +328,7 @@ class vegas.string.JSON
         
 		_key = function()
 		{
-	    	var s = ch;
+	    	var s:String = ch;
 	    	var outer:Boolean = false;
 		
 			var semiColon:Number   = source.indexOf(':', at);
@@ -337,7 +337,7 @@ class vegas.string.JSON
 
 			if( (quoteIndex <= semiColon && quoteIndex > -1) || (squoteIndex <= semiColon && squoteIndex > -1))
 			{
-				var s = _string();
+				s = _string();
 				_white() ;
 				if(ch == ':')
 				{

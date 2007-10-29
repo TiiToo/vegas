@@ -36,7 +36,7 @@ class andromeda.display.ApplicationLoaderDisplay extends AbstractLoaderDisplay
 	 * Abstract constructor, this constructor must be override.
 	 * @param target:MovieClip the DisplayObject instance control this target.
 	 */
-	public function ApplicationLoaderDisplay( target ) 
+	public function ApplicationLoaderDisplay( target:MovieClip ) 
 	{
 		super( ApplicationList.APPLICATION_LOADER, target  , ApplicationDepthList.LOADER_DEPTH ) ;
 	}

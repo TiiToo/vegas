@@ -392,9 +392,10 @@ class vegas.data.list.LinkedList extends CoreObject implements ICloneable, ICopy
 	public function indexOf( o ):Number
 	{
 		var index:Number = 0 ;
+		var e:LinkedListEntry ;
         if ( o == null ) 
         {
-            for ( var e:LinkedListEntry = _header.next ; e != _header ; e = e.next) 
+            for ( e = _header.next ; e != _header ; e = e.next) 
             {
                 if ( e.element == null )
                 {
@@ -405,7 +406,7 @@ class vegas.data.list.LinkedList extends CoreObject implements ICloneable, ICopy
         } 
         else 
         {
-            for ( var e:LinkedListEntry = _header.next ; e != _header ; e = e.next ) 
+            for ( e = _header.next ; e != _header ; e = e.next ) 
             {
             	if (o instanceof IEquality)
             	{
@@ -545,9 +546,10 @@ class vegas.data.list.LinkedList extends CoreObject implements ICloneable, ICopy
     public function lastIndexOf( o ):Number 
     {
         var index:Number = _size ;
+        var e:LinkedListEntry ;
         if ( o == null ) 
         {
-            for (var e:LinkedListEntry = _header.previous ; e != _header ; e = e.previous) 
+            for ( e = _header.previous ; e != _header ; e = e.previous) 
             {
                 index--;
                 if ( e.element == null )
@@ -558,7 +560,7 @@ class vegas.data.list.LinkedList extends CoreObject implements ICloneable, ICopy
         } 
         else 
         {
-            for ( var e:LinkedListEntry = _header.previous ; e != _header ; e = e.previous ) 
+            for ( e = _header.previous ; e != _header ; e = e.previous ) 
             {
                 index-- ;
                 if (o instanceof IEquality)
@@ -624,10 +626,10 @@ class vegas.data.list.LinkedList extends CoreObject implements ICloneable, ICopy
      */
     public function remove( o ):Boolean 
     {
-    	
+    	var e:LinkedListEntry ;
         if ( o == null ) 
         {
-            for ( var e:LinkedListEntry = _header.next ; e != _header ; e = e.next ) 
+            for ( e = _header.next ; e != _header ; e = e.next ) 
             {
                 if ( e.element == null ) 
                 {
@@ -639,7 +641,7 @@ class vegas.data.list.LinkedList extends CoreObject implements ICloneable, ICopy
         else 
         {
         	
-            for ( var e:LinkedListEntry = _header.next ; e != _header ; e = e.next ) 
+            for ( e = _header.next ; e != _header ; e = e.next ) 
             {
             	if ( o instanceof IEquality )
             	{
@@ -832,7 +834,6 @@ class vegas.data.list.LinkedList extends CoreObject implements ICloneable, ICopy
 	 */
 	public function retainAll(c : Collection):Boolean 
 	{
-		var b:Boolean = true ;
 		var it:Iterator = iterator() ;
 		while(it.hasNext())
 		{
@@ -1014,17 +1015,18 @@ class vegas.data.list.LinkedList extends CoreObject implements ICloneable, ICopy
 			throw new IndexOutOfBoundsError("LinkedList private '_entry' method failed, index:" + index + ", size:" + _size + "." ) ;
 		}
 		var e:LinkedListEntry = _header ;
+		var i:Number ;
 		if ( index < (_size >> 1))
 		{
 			
-			for (var i:Number = 0 ; i<= index ; i++)
+			for ( i = 0 ; i<= index ; i++)
 			{
 				e = e.next ;
 			}
 		}
 		else
 		{
-			for (var i:Number = _size ; i > index ; i--)
+			for (i = _size ; i > index ; i--)
 			{
 				e = e.previous ;	
 			}

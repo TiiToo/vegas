@@ -74,7 +74,6 @@ class pegas.maths.Prime
 	 */
 	public static function generatePrimes(limit:Number):Array 
 	{
-		var b:Boolean ;
 		var a:Array = new Array() ;
 		var i:Number = 1 ;
 		while (++i<=limit) if (isPrime(i)) a.push(i) ;

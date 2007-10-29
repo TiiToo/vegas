@@ -19,12 +19,11 @@
   
   Contributor(s) :
   
-*/
-
+ */
+ 
 import lunas.display.abstract.AbstractButtonDisplay;
 
 import pegas.events.ButtonEvent;
-import pegas.events.ButtonEventType;
 
 import vegas.events.Delegate;
 import vegas.events.EventListener;

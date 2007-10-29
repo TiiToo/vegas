@@ -258,12 +258,12 @@ class asgard.net.SharedData extends AbstractCoreEventDispatcher
 		
 	private function _onSync( list ):Void 
 	{
-		
+		var name:String ;
 		if (_isFirst) 
 		{
 			_isFirst = false ;
 			dispatchEvent(_eSync) ;
-			for (var name:String in _so.data ) 
+			for ( name in _so.data ) 
 			{
 				_eChange.setProperty(name, _so.data[name]) ;
 				dispatchEvent( _eChange ) ;
@@ -276,7 +276,7 @@ class asgard.net.SharedData extends AbstractCoreEventDispatcher
 			
 			var item:Object = list[prop] ;
 			var code:SharedDataStatus = SharedDataStatus.format( item.code )  ;
-			var name:String = item.name ;
+			name = item.name ;
 			var value = _so.data[name] ;
 
 			//**** DEBUG

@@ -75,11 +75,11 @@ class vegas.data.list.ArrayList extends AbstractList
 	{
 		
 		var arg = arguments[0] ;
-		
+		var it:Iterator ;
 		if (arg instanceof Array) 
 		{
 			
-			var it:Iterator = new ArrayIterator(arg) ;
+			it = new ArrayIterator(arg) ;
 			while (it.hasNext()) 
 			{
 				insert(it.next()) ;
@@ -89,7 +89,7 @@ class vegas.data.list.ArrayList extends AbstractList
 		else if (arg instanceof Collection) 
 		{
 			
-			var it:Iterator = arg.iterator() ;
+			it = arg.iterator() ;
 			while (it.hasNext()) 
 			{
 				insert(it.next()) ;

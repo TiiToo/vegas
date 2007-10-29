@@ -144,8 +144,10 @@ class pegas.draw.BezierPen extends AbstractPen
 	
 	public function sliceCubicBezierSegment(p0:Point, p1:Point, p2:Point, p3:Point, u1, u2, tu1, tu2, recurs:Number):Number 
 	{
-		if (recurs > 10) {
-			var p = tu2.p;
+		var p ;
+		if (recurs > 10) 
+		{
+			p = tu2.p;
 			lineTo(p.x, p.y);
 			return 1 ;
 		}
@@ -160,8 +162,10 @@ class pegas.draw.BezierPen extends AbstractPen
 			result += sliceCubicBezierSegment(p0, p1, p2, p3, u1, uMid, tu1, tuMid, recurs+1) ;
 			result += sliceCubicBezierSegment(p0, p1, p2, p3, uMid, u2, tuMid, tu2, recurs+1) ;
 			return result ;
-		} else {
-			var p = tu2.p ;
+		} 
+		else 
+		{
+			p = tu2.p ;
 			curveTo(ctrlpt.x, ctrlpt.y, p.x, p.y) ;
 			return 1 ;
 		}

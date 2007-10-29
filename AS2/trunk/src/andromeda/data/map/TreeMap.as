@@ -932,7 +932,6 @@ class andromeda.data.map.TreeMap extends CoreObject implements SortedMap, IClone
 		_size = count ;
 		
 		var row:TreeMapNode = _rootEntry ;
-		var rowSize:Number ;
 		
 		var left:TreeMapNode ;
 		var last:TreeMapNode ;
@@ -941,7 +940,7 @@ class andromeda.data.map.TreeMap extends CoreObject implements SortedMap, IClone
 		var right:TreeMapNode ;
 		
 		// Fill each row that is completely full of nodes.
-		for (var rowSize = 2 ; (rowSize + rowSize) <= count ; rowSize <<=1 )
+		for (var rowSize:Number = 2 ; (rowSize + rowSize) <= count ; rowSize <<=1 )
 		{
 			parent = row ;
 			last   = null ;

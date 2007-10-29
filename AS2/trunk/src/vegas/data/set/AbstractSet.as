@@ -98,9 +98,10 @@ class vegas.data.set.AbstractSet extends AbstractCollection implements Set
 	public function removeAll(c:Collection):Boolean 
 	{
 		var b:Boolean = false ;
+		var it:Iterator ;
 		if (size() > c.size()) 
 		{
-			var it:Iterator = c.iterator() ;
+			it = c.iterator() ;
 			while (it.hasNext()) 
 			{
 				b = remove(it.next()) ;
@@ -108,7 +109,7 @@ class vegas.data.set.AbstractSet extends AbstractCollection implements Set
 		} 
 		else 
 		{
-			var it:Iterator = iterator() ;
+			it = iterator() ;
 			while (it.hasNext()) 
 			{
 				if (c.contains(it.next())) 

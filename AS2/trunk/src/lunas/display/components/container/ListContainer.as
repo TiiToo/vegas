@@ -259,7 +259,7 @@ class lunas.display.components.container.ListContainer extends SimpleContainer
 	
 	public function viewEnabled():Void 
 	{
-		var l = _oModel.size() ;
+		var l:Number = _oModel.size() ;
 		while (--l > -1) 
 		{
 			_oModel.getChildAt(l).enabled = enabled ;

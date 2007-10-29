@@ -19,9 +19,7 @@
   
   Contributor(s) :
   
-*/
-
-import asgard.events.LoaderEvent;
+ */import asgard.events.LoaderEvent;
 import asgard.net.AbstractLoader;
 import asgard.net.ILoader;
 import asgard.net.LoaderListener;
@@ -97,13 +95,13 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener
 				throw new Warning("You passed ILoader object without any name property in " + this + ".enqueue()." ) ;
 			}
 		}
-		catch(e:Warning) 
+		catch( error1:vegas.errors.Warning ) 
 		{
-			e.toString() ;
+			error1.toString() ;
 		}
-		catch(e:Error)
+		catch( error2:Error)
 		{
-			e.toString() ;	
+			error2.toString() ;	
 		}
 
 		try 
@@ -117,9 +115,9 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener
 				throw new Warning("You passed ILoader object without any url property in " + this + ".enqueue().") ;
 			}
 		} 
-		catch(e:Warning) 
+		catch(error3:vegas.errors.Warning) 
 		{
-			e.toString() ;					
+			error3.toString() ;					
 		}
 		
 		if (loader.getName() == null) 

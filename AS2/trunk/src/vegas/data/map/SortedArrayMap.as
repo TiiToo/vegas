@@ -226,12 +226,12 @@ class vegas.data.map.SortedArrayMap extends ArrayMap implements IComparer
 		}
 
 		var result:Array ;
-		
+		var clone:Array ;
 		if ( sortBy == KEY )
 		{
 			result = _keys.sort( compare , _options | Array.RETURNINDEXEDARRAY ) ;
 			_keys.sort( compare , _options ) ;
-			var clone:Array = getValues() ;
+			clone = getValues() ;
 			while ( --max > -1 )
 			{
 				_values[max] = clone[ result[max] ] ;
@@ -241,7 +241,7 @@ class vegas.data.map.SortedArrayMap extends ArrayMap implements IComparer
 		{
 			result = _values.sort( compare , _options | Array.RETURNINDEXEDARRAY ) ;
 			_values.sort( compare , _options ) ;
-			var clone:Array = getKeys() ;
+			clone = getKeys() ;
 			while ( --max > -1 )
 			{
 				_keys[max] = clone[ result[max] ] ;
@@ -333,12 +333,12 @@ class vegas.data.map.SortedArrayMap extends ArrayMap implements IComparer
 		}
 		
 		var result:Array ;
-		
+		var clone:Array ;
 		if ( sortBy == KEY )
 		{
 			result = _keys.sortOn( fieldName , _options | Array.RETURNINDEXEDARRAY ) ;
 			_keys.sortOn( fieldName , _options ) ;
-			var clone:Array = getValues() ;
+			clone = getValues() ;
 			while ( --max > -1 )
 			{
 				_values[max] = clone[ result[max] ] ;
@@ -348,7 +348,7 @@ class vegas.data.map.SortedArrayMap extends ArrayMap implements IComparer
 		{
 			result = _values.sortOn( fieldName , _options | Array.RETURNINDEXEDARRAY ) ;
 			_values.sortOn( fieldName  , _options ) ;
-			var clone:Array = getKeys() ;
+			clone = getKeys() ;
 			while ( --max > -1 )
 			{
 				_keys[max] = clone[ result[max] ] ;

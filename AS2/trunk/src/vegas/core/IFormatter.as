@@ -21,8 +21,6 @@
   
 */
 
-import vegas.core.IComparator;
-
 /**
  * Interface implemented by classes that can format an specific string expression.
  * @author eKameleon

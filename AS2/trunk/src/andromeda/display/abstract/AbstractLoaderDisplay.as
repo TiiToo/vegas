@@ -19,9 +19,7 @@
   
   Contributor(s) :
   
-*/
-
-import andromeda.display.abstract.ILoaderDisplay;
+ */import andromeda.display.abstract.ILoaderDisplay;
 
 import asgard.display.BackgroundDisplay;
 
@@ -40,7 +38,7 @@ class andromeda.display.abstract.AbstractLoaderDisplay extends BackgroundDisplay
 	 * @param target the DisplayObject instance control this target.
 	 * @param depth the depth of the view reference of this display.
 	 */
-	public function AbstractLoaderDisplay( sName:String , target , depth:Number ) 
+	public function AbstractLoaderDisplay( sName:String , target:MovieClip , depth:Number ) 
 	{
 		super( sName , target.createEmptyMovieClip( sName, depth )  ) ;
 	}

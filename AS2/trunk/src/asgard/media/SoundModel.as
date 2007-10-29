@@ -80,7 +80,7 @@ class asgard.media.SoundModel extends AbstractModel
 				removeSound(id) ;
 			}
 			
-			var r = _map.put(id, sound) ;
+			_map.put(id, sound) ;
 			
 			// Reflexion of the sound object.
 			sound.toString = function():String
