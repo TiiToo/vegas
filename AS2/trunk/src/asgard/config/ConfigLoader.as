@@ -150,7 +150,7 @@ class asgard.config.ConfigLoader extends JSONLoader
             logger.warn("Config object : '" + p + "' property is undefined" ) ;
             return "" ;
         } ;
-        _global.ASSetPropFlags(oConfig, "__resolve", 7, 1) ;
+        _global["ASSetPropFlags"](oConfig, "__resolve", 7, 1) ;
     }
 
     public function setFileName(sFileName:String):Void 

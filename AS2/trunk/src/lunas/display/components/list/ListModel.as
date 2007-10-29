@@ -51,7 +51,7 @@ class lunas.display.components.list.ListModel extends AbstractModel implements I
 	public static var REMOVE_ITEMS:String = ModelChangedEventType.REMOVE_ITEMS ; 
 	public static var UPDATE_ITEMS:String = ModelChangedEventType.UPDATE_ITEMS ;
 
-	private static var __ASPF__ = _global.ASSetPropFlags(ListModel, null , 7, 7) ;
+	private static var __ASPF__ = _global["ASSetPropFlags"](ListModel, null , 7, 7) ;
 
 	public function addItem( oItem ) 
 	{

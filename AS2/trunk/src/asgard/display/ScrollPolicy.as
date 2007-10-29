@@ -43,7 +43,7 @@ class asgard.display.ScrollPolicy {
 	 */
 	public static var ON:Number = 1 ;
 
-	private static var __ASPF__ = _global.ASSetPropFlags(ScrollPolicy, null , 7, 7) ;
+	private static var __ASPF__ = _global["ASSetPropFlags"](ScrollPolicy, null , 7, 7) ;
 
 	/**
 	 * Returns {@code true} if the value passed in arguments is a valid ScrollPolicy constant.

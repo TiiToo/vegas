@@ -48,6 +48,6 @@ class asgard.system.ApplicationType
 	 */
 	public static var HTTPS:String = "https" ;
 	
-	private static var __ASPF__ = _global.ASSetPropFlags(ApplicationType, null , 7, 7) ;
+	private static var __ASPF__ = _global["ASSetPropFlags"](ApplicationType, null , 7, 7) ;
 	
 }

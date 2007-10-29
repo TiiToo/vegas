@@ -38,6 +38,6 @@ class pegas.draw.FillType
 	 */
 	public static var RADIAL:String = "radial" ;
 	
-	private static var __ASPF__ = _global.ASSetPropFlags(FillType, null, 7, 7) ;
+	private static var __ASPF__ = _global["ASSetPropFlags"](FillType, null, 7, 7) ;
 	
 }

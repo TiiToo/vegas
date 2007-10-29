@@ -58,7 +58,7 @@ class lunas.display.components.list.EasyList extends AbstractList
 	public static var SCROLL_ON_CLICK:Number = 2 ;
 	public static var FULL:Number = AUTO | SCROLL_ON_CLICK ;
 	
-	private static var __ASPF__ = _global.ASSetPropFlags(EasyList, null, 7, 7) ;
+	private static var __ASPF__ = _global["ASSetPropFlags"](EasyList, null, 7, 7) ;
 	
 	public var cellRenderer:Function = EasyCell ;
 

@@ -95,7 +95,7 @@ class pegas.events.UIEventType
 
 	public static var UNSELECT:String = "unselect" ;
 
-	private static var __ASPF__ = _global.ASSetPropFlags(UIEventType, null , 7, 7) ;
+	private static var __ASPF__ = _global["ASSetPropFlags"](UIEventType, null , 7, 7) ;
 	
 }
 

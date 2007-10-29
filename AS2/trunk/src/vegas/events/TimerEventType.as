@@ -51,6 +51,6 @@ class vegas.events.TimerEventType
 	 */
 	public static var TIMER:String = "timer" ;
 	
-	private static var __ASPF__ = _global.ASSetPropFlags(TimerEventType, null , 7, 7) ;
+	private static var __ASPF__ = _global["ASSetPropFlags"](TimerEventType, null , 7, 7) ;
 	
 }

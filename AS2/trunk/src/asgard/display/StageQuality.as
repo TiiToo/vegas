@@ -49,6 +49,6 @@ class asgard.display.StageQuality
 	 */
 	public static var MEDIUM:String = "medium" ;
 	
-	private static var __ASPF__ = _global.ASSetPropFlags(StageQuality, null , 7, 7) ;
+	private static var __ASPF__ = _global["ASSetPropFlags"](StageQuality, null , 7, 7) ;
 
 }

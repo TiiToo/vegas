@@ -73,6 +73,6 @@ class asgard.events.LoaderEventType
 	 */
 	public static var RELEASE:String = "onRelease" ;
 
-	private static var __ASPF__ = _global.ASSetPropFlags(LoaderEventType, null , 7, 7) ;
+	private static var __ASPF__ = _global["ASSetPropFlags"](LoaderEventType, null , 7, 7) ;
 	
 }

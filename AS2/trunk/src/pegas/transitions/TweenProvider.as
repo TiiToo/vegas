@@ -68,7 +68,6 @@ class pegas.transitions.TweenProvider extends AbstractModel implements Iterable
 	 */
 	public function clone() 
 	{
-		var ar:Array = [] ;
 		return new TweenProvider(toArray()) ;
 	}
 	

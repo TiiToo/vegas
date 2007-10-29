@@ -82,7 +82,7 @@ class pegas.maths.Range extends CoreObject implements ICloneable, IEquality
     public static var UNITY_RANGE:Range = new Range(0, 1) ;
 
 
-	private static var __ASPF__ = _global.ASSetPropFlags(Range, null , 7, 7) ;
+	private static var __ASPF__ = _global["ASSetPropFlags"](Range, null , 7, 7) ;
 	
 	/**
 	 * The max value of the range.

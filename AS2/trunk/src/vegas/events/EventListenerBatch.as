@@ -88,7 +88,7 @@ class vegas.events.EventListenerBatch extends TypedCollection implements EventLi
 	/**
 	 * Handles the event.
 	 */
-	public function handleEvent(e:Event) 
+	public function handleEvent( e:Event ) 
 	{
 		var ar:Array = toArray() ;
 		var i:Number = -1 ;

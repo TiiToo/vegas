@@ -196,7 +196,7 @@ class vegas.data.set.MultiHashSet extends MultiHashMap implements Set
 		{
 			_map.put(key , createCollection()) ;
 		}
-		var b:Boolean = _map.get(key).insert(value) ;
+		_map.get(key).insert(value) ;
 		return _internalSet.insert(value) ;
 	}
 
@@ -236,7 +236,7 @@ class vegas.data.set.MultiHashSet extends MultiHashMap implements Set
 			key = arguments[0] ;
 			value = arguments[1] ;
 			var c:Collection = _map.get(key) ;
-			var b:Boolean = c.remove(value) ;
+			c.remove(value) ;
 			return _internalSet.remove(value) ;
 		}
 		else 

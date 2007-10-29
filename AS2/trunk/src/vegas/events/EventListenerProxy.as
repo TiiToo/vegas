@@ -37,7 +37,7 @@ class vegas.events.EventListenerProxy extends Delegate
 	 * @param scope the scope of the method.
 	 * @param method a {@code EventListener} or a string who represents the name of the scope method used to handle the events.
 	 */
-	public function EventListenerProxy(scope , method) 
+	public function EventListenerProxy( scope , method ) 
 	{
 		this.__proto__.__constructor__.apply(this, [].concat(arguments)) ;
 	}
@@ -46,7 +46,8 @@ class vegas.events.EventListenerProxy extends Delegate
 	 * Returns a shallow copy of the object.
 	 * @return a shallow copy of the object.
 	 */  
-	/*override*/ public function clone() {
+	/*override*/ public function clone() 
+	{
 		return new EventListenerProxy(getScope(), getMethod()) ;
 	}
   

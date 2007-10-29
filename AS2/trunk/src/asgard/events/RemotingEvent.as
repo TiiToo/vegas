@@ -58,7 +58,7 @@ class asgard.events.RemotingEvent extends DynamicEvent
 	
 	public static var TIMEOUT:String = "onTimeOut" ;
 	
-	private static var __ASPF__ = _global.ASSetPropFlags(RemotingEvent, null , 7, 7) ;
+	private static var __ASPF__ = _global["ASSetPropFlags"](RemotingEvent, null , 7, 7) ;
 
 	public var code:String ;
 

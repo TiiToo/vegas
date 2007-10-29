@@ -153,7 +153,7 @@ class vegas.events.EventType
 	 */
 	public static var UNLOAD:String = "unload" ;
 
-	private static var __ASPF__ = _global.ASSetPropFlags(EventType, null , 7, 7) ;
+	private static var __ASPF__ = _global["ASSetPropFlags"](EventType, null , 7, 7) ;
 	
 }
 

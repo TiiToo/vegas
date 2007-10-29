@@ -128,7 +128,7 @@ class andromeda.ioc.factory.ObjectFactory extends ObjectDefinitionContainer impl
 				item = argList[i] ;
 				if (item.ref != null)
 				{
-					stack.push( getObject( item.ref) ) ;	
+					stack.push( getObject( item.ref ) ) ;	
 				}
 				else if (item.value != null)
 				{

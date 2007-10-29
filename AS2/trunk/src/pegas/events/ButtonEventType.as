@@ -66,6 +66,6 @@ class pegas.events.ButtonEventType
 	
 	public static var UP:String = "up" ;
 
-	private static var __ASPF__ = _global.ASSetPropFlags(ButtonEventType, null , 7, 7) ;
+	private static var __ASPF__ = _global["ASSetPropFlags"](ButtonEventType, null , 7, 7) ;
 
 }

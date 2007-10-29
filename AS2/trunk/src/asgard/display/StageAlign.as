@@ -91,7 +91,7 @@ class asgard.display.StageAlign
 	 */
 	public static var TOP_RIGHT:String = "TR" ;
 
-	private static var __ASPF__ = _global.ASSetPropFlags(StageAlign, null , 7, 7) ;
+	private static var __ASPF__ = _global["ASSetPropFlags"](StageAlign, null , 7, 7) ;
 
 	/**
 	 * Returns the string representation of a StageAlign and a default align if this alignement don't exist in this enumeration. 

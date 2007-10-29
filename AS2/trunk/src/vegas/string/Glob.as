@@ -75,11 +75,12 @@ class vegas.string.Glob
         }
     
     	var c:String = str.charAt(0);
-		var c1:String = str.charAt(1);
+		//var c1:String = str.charAt(1);
 		var pat:String = pattern.charAt(0);
 		var pat1:String = pattern.charAt(1);
     
-		switch (pat) {
+		switch (pat) 
+		{
 			
 			case "?"  :
 				if( c != "" ) return stringMatch( str.substr(1), pattern.substr(1), caseSensitive ) ;

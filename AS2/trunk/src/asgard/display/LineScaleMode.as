@@ -48,6 +48,6 @@ class asgard.display.LineScaleMode
 	 */
 	public static var VERTICAL:String = "vertical" ;
 	
-	private static var __ASPF__ = _global.ASSetPropFlags(LineScaleMode, null , 7, 7) ;
+	private static var __ASPF__ = _global["ASSetPropFlags"](LineScaleMode, null , 7, 7) ;
 
 }

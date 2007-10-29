@@ -138,7 +138,7 @@ class andromeda.logging.ApplicationLogger
 
 		// This hack change the getLogger method in all CoreObject objects. (All object in VEGAS extends the CoreObject class)		
 		
-		vegas.core.CoreObject.prototype.getLogger = getLogger ;
+		vegas.core.CoreObject.prototype["getLogger"] = getLogger ;
 		
 		ApplicationLogger.debug( "[ApplicationLogger] initialize." ) ;
 		

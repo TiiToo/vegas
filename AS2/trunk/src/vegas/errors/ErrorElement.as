@@ -55,13 +55,13 @@ class vegas.errors.ErrorElement extends CoreObject implements IEquality
 		{
 			return false ;
 		}
-		var b1:Boolean = o.getConstructorName() == getConstructorName()  ;
-		var b2:Boolean = o.getConstructorPath() == getConstructorPath() ;
-		var b3:Boolean = Comparater.compare(o.getArguments(), getArguments()) ;
-		var b4:Boolean = o.getFileName() == getFileName() ;
-		var b5:Boolean = o.getLineNumber() == getLineNumber() ;
-		var b6:Boolean = o.getMethodName() == getMethodName() ;
-		var b7:Boolean = o.getThrower() == getThrower() ;
+		var b1:Boolean = ErrorElement(o).getConstructorName() == getConstructorName()  ;
+		var b2:Boolean = ErrorElement(o).getConstructorPath() == getConstructorPath() ;
+		var b3:Boolean = Comparater.compare(ErrorElement(o).getArguments(), getArguments()) ;
+		var b4:Boolean = ErrorElement(o).getFileName() == getFileName() ;
+		var b5:Boolean = ErrorElement(o).getLineNumber() == getLineNumber() ;
+		var b6:Boolean = ErrorElement(o).getMethodName() == getMethodName() ;
+		var b7:Boolean = ErrorElement(o).getThrower() == getThrower() ;
 		return b1 && b2 && b3 && b4 && b5 && b6 && b7 ;
 	}
 	

@@ -39,6 +39,6 @@ class asgard.display.GradientType
 	 */
 	public static var RADIAL:String = "radial" ;
 	
-	private static var __ASPF__ = _global.ASSetPropFlags(GradientType, null , 7, 7) ;
+	private static var __ASPF__ = _global["ASSetPropFlags"](GradientType, null , 7, 7) ;
 
 }

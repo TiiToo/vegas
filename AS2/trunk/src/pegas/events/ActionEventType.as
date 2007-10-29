@@ -47,6 +47,6 @@ class pegas.events.ActionEventType
 
 	public static var TIMEOUT:String = "onTimeOut" ;
 
-	private static var __ASPF__ = _global.ASSetPropFlags(ActionEventType, null , 7, 7) ;
+	private static var __ASPF__ = _global["ASSetPropFlags"](ActionEventType, null , 7, 7) ;
 	
 }

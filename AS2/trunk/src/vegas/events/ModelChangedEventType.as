@@ -69,6 +69,6 @@ class vegas.events.ModelChangedEventType
 	public static var UPDATE_ITEMS:String = "updateItems" ;
 	
 	
-	private static var __ASPF__ = _global.ASSetPropFlags(ModelChangedEventType, null , 7, 7) ;
+	private static var __ASPF__ = _global["ASSetPropFlags"](ModelChangedEventType, null , 7, 7) ;
 	
 }

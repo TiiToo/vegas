@@ -45,6 +45,6 @@ class asgard.display.CapStyle
 	 */
 	public static var SQUARE:String = "square" ;
 	
-	private static var __ASPF__ = _global.ASSetPropFlags(CapStyle, null , 7, 7) ;
+	private static var __ASPF__ = _global["ASSetPropFlags"](CapStyle, null , 7, 7) ;
 
 }

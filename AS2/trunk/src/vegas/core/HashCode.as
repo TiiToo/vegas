@@ -108,11 +108,11 @@ class vegas.core.HashCode
 			if (isNaN(this.__hashcode__)) 
 			{
 				this.__hashcode__ = HashCode.next() ;
-				_global.ASSetPropFlags(this, ["__hashcode__"], 7, 7) ;
+				_global["ASSetPropFlags"](this, ["__hashcode__"], 7, 7) ;
 			}
 			return this.__hashcode__ ;
 		} ;
-		_global.ASSetPropFlags(o, ["__hashcode__", "hashCode"], 7, 7) ;
+		_global["ASSetPropFlags"](o, ["__hashcode__", "hashCode"], 7, 7) ;
 		return true ;
 	}
 	

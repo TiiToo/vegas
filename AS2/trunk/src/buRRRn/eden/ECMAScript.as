@@ -1,31 +1,30 @@
-﻿
-/*
-  The contents of this file are subject to the Mozilla Public License Version
-  1.1 (the "License"); you may not use this file except in compliance with
-  the License. You may obtain a copy of the License at 
-  http://www.mozilla.org/MPL/ 
+﻿/*
+The contents of this file are subject to the Mozilla Public License Version
+1.1 (the "License"); you may not use this file except in compliance with
+the License. You may obtain a copy of the License at 
+http://www.mozilla.org/MPL/ 
   
-  Software distributed under the License is distributed on an "AS IS" basis,
-  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
-  for the specific language governing rights and limitations under the License. 
+Software distributed under the License is distributed on an "AS IS" basis,
+WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+for the specific language governing rights and limitations under the License. 
   
-  The Original Code is eden: ECMAScript data exchange notation AS2. 
+The Original Code is eden: ECMAScript data exchange notation AS2. 
   
-  The Initial Developer of the Original Code is
-  Zwetan Kjukov <zwetan@gmail.com>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2006
-  the Initial Developer. All Rights Reserved.
+The Initial Developer of the Original Code is
+Zwetan Kjukov <zwetan@gmail.com>.
+Portions created by the Initial Developer are Copyright (C) 2004-2006
+the Initial Developer. All Rights Reserved.
   
-  Contributor(s):
+Contributor(s):
 
-   		- ALCARAZ Marc (aka eKameleon) <vegas@ekameleon.net>   		 
-   		Eden for VEGAS, use this version only with Vegas AS2 Framework Please.
+- ALCARAZ Marc (aka eKameleon) <vegas@ekameleon.net>   		 
+Eden for VEGAS, use this version only with Vegas AS2 Framework Please.
   
-*/
-
-import buRRRn.eden.config;
+ */import buRRRn.eden.config;
 import buRRRn.eden.strings;
 
+import vegas.core.ICopyable;
+import vegas.string.StringFormatter;
 import vegas.util.ConstructorUtil;
 import vegas.util.StringUtil;
 
@@ -34,631 +33,688 @@ import vegas.util.StringUtil;
  */
 class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
 {
-    
+
 	/**
 	 * Creates a new ECMAScript instance.
 	 */
-    function ECMAScript( source:String, scope, callback )
+	function ECMAScript( source : String, scope, callback )
 	{
         
-        super( source, callback ) ;
+		super(source, callback) ;
         
-        if( scope == null )
-        {
-            scope = _global; //default assignment scope
-        }
-        
-        var scopepath;
-        
-        if( scope != _global )
+		if( scope == null )
 		{
-            scopepath = ConstructorUtil.getPath( scope );
+			scope = _global; //default assignment scope
 		}
         
-        if( config.autoAddScopePath && (scopepath != undefined) && (scopepath != "_global") )
+		var scopepath;
+        
+		if( scope != _global )
 		{
-			addAuthorized( scopepath + ".*" );
+			scopepath = ConstructorUtil.getPath(scope);
 		}
         
-        this._ORC          = "\uFFFC" ; // Object Replacement Character
-        this.inAssignement = false ;
-        this.inConstructor = false ;
-        this.inFunction    = false ;
-        this.scope         = scope ;
-        this.scopepath     = scopepath ;
+		if( config.autoAddScopePath && (scopepath != undefined) && (scopepath != "_global") )
+		{
+			addAuthorized(scopepath + ".*");
+		}
+        
+		this._ORC = "\uFFFC" ; 
+		// Object Replacement Character
+		this.inAssignement = false ;
+		this.inConstructor = false ;
+		this.inFunction = false ;
+		this.scope = scope ;
+		this.scopepath = scopepath ;
 	}
-   
-   	/**
-   	 * Specified if the source is in assignement.
-   	 */
-    public var inAssignement:Boolean;
 
-    /**
-     * Specified if the source is in a constructor.
-     */
-	public var inConstructor:Boolean;
-    
-    /**
-     * Specified if the source is in Function.
-     */
-    public var inFunction:Boolean;
-    
-    /**
-     * The source of the parser.
-     */
-    public var source:String;
-    
-    /**
-     * The scope used in the parser.
-     */
-    public var scope;
-    
-    /**
-     * The path of the scope.
-     */
-    public var scopepath ; 
-  
-    /**
-     * Evaluates the source of this parser.
-     */
-    public function eval()
+	/**
+	 * Specified if the source is in assignement.
+	 */
+	public var inAssignement : Boolean;
+
+	/**
+	 * Specified if the source is in a constructor.
+	 */
+	public var inConstructor : Boolean;
+
+	/**
+	 * Specified if the source is in Function.
+	 */
+	public var inFunction : Boolean;
+
+	/**
+	 * The source of the parser.
+	 */
+	public var source : String;
+
+	/**
+	 * The scope used in the parser.
+	 */
+	public var scope;
+
+	/**
+	 * The path of the scope.
+	 */
+	public var scopepath ; 
+
+	/**
+	 * Evaluates the source of this parser.
+	 */
+	public function eval()
 	{
-        var value, tmp;
-        value = _ORC;
-        while( hasMoreChar() )
+		var value, tmp;
+		value = _ORC;
+		while( hasMoreChar() )
 		{
-            next();
-            scanSeparators();
-            tmp = scanValue();
-            if( tmp != _ORC )
+			next();
+			scanSeparators();
+			tmp = scanValue();
+			if( tmp != _ORC )
 			{
-                value = tmp ;
+				value = tmp ;
 			}
-            /* note: poor man semicolon auto-insertion */
-            if( ch == " ")
+			/* note: poor man semicolon auto-insertion */
+			if( ch == " ")
 			{
-                ch = ";";
+				ch = ";";
 			}
 		}
         
-        return onParsed( value );
+		return onParsed(value);
 	}
-    
-    /**
-     * Evaluate the specified source value with the ECMAScript parser.
-     */
-    public static function evaluate( source:String, scope, callback )
+
+	/**
+	 * Evaluate the specified source value with the ECMAScript parser.
+	 */
+	public static function evaluate( source : String, scope, callback )
 	{
-        var parser = new buRRRn.eden.ECMAScript( source, scope, callback );
-        return parser.eval() ;
+		return ( new buRRRn.eden.ECMAScript(source, scope, callback) ).eval() ;
 	}
-    
-    /**
-     * Returns {@code true} if the specified value is an octal number.
-     */
-    public function isOctalNumber( num ):Boolean
+
+	/**
+	 * Returns {@code true} if the specified value is an octal number.
+	 */
+	public function isOctalNumber( num:String ) : Boolean
 	{
         
-        if( ( num.indexOf( "." ) > -1) || (num.indexOf( "e" ) > -1) || (num.indexOf( "E" ) > -1) )
+		if( ( num.indexOf(".") > -1) || (num.indexOf("e") > -1) || (num.indexOf("E") > -1) )
 		{
-            return false;
+			return false;
 		}
         
-        num = num.split("") ;
+		var aNum:Array = num.split("") ;
         
-        var l:Number = num.length ;
-        for( var i:Number = 0 ; i<l ; i++ )
+		var l : Number = aNum.length ;
+		while(--l > -1)
 		{
-            if( !isOctalDigit( num[i] ) )
+			if( !isOctalDigit(aNum[l]) )
 			{
-                return false;
+				return false;
 			}
 		}
 		
 		return true;
 	}
-    
-    /* Method: isDigitNumber
-    */
-    function isDigitNumber( num:String ):Boolean
-        {
-        var i, numarr;
-        numarr = num.split( "" );
+
+	/* Method: isDigitNumber
+	 */
+	function isDigitNumber( num : String ) : Boolean
+	{
+		var numarr:Array = num.split(""); 
+        var size:Number = numarr.length ;
+		for( var i:Number = 0 ; i < size ; i++ )
+		{
+			if( !this.isDigit(numarr[i]) )
+			{
+				return false;
+			}
+		}
         
-        for( i=0; i<numarr.length; i++ )
-            {
-            if( !this.isDigit( numarr[i] ) )
-                {
-                return false;
-                }
-            }
-        
-        return true;
-        }
-    
-    /* Method: isIdentifierStart
+		return true;
+	}
+
+	/* Method: isIdentifierStart
        
-       note:
-       identifiers
-       see: ECMA-262 spec 7.6 (PDF p26/188)
-    */
-    function isIdentifierStart( /*char*/ c:String ):Boolean
-            {
-            if( isAlpha( c ) || (c == "_") || (c == "$" ) )
-                {
-                return true;
-                }
+	note:
+	identifiers
+	see: ECMA-262 spec 7.6 (PDF p26/188)
+	 */
+	function isIdentifierStart( /*char*/ c : String ) : Boolean
+	{
+		if( isAlpha(c) || (c == "_") || (c == "$" ) )
+		{
+			return true;
+		}
             
-            if( c.charCodeAt( 0 ) < 128 )
-                {
-                return false;
-                }
+		if( c.charCodeAt(0) < 128 )
+		{
+			return false;
+		}
             
-            return false;
-            }
-    
-    /* Method: isIdentifierPart
-    */
-    function isIdentifierPart( /*char*/ c:String ):Boolean
-        {
-        if( isIdentifierStart( c ) )
-            {
-            return true;
-            }
+		return false;
+	}
+
+	/* Method: isIdentifierPart
+	 */
+	function isIdentifierPart( /*char*/ c : String ) : Boolean
+	{
+		if( isIdentifierStart(c) )
+		{
+			return true;
+		}
         
-        if( isDigit( c ) )
-            {
-            return true;
-            }
+		if( isDigit(c) )
+		{
+			return true;
+		}
         
-        if( c.charCodeAt( 0 ) < 128 )
-            {
-            return false;
-            }
+		if( c.charCodeAt(0) < 128 )
+		{
+			return false;
+		}
         
-        return false;
-        }
-    
-    /* Method: isLineTerminator
+		return false;
+	}
+
+	/* Method: isLineTerminator
        
-       note:
-       line terminators
-       "\n" - \u000A - LF
-       "\R" - \u000D - CR
-       ???  - \u2028 - LS
-       ???  - \u2029 - PS
-       see: ECMA-262 spec 7.3 (PDF p24/188)
-    */
-    function isLineTerminator( /*char*/ c:String ):Boolean
-        {
-        switch( c )
-            {
-            case "\u000A": case "\u000D": case "\u2028": case "\u2029":
-            return true;
+	note:
+	line terminators
+	"\n" - \u000A - LF
+	"\R" - \u000D - CR
+	???  - \u2028 - LS
+	???  - \u2029 - PS
+	see: ECMA-262 spec 7.3 (PDF p24/188)
+	 */
+	function isLineTerminator( /*char*/ c : String ) : Boolean
+	{
+		switch( c )
+		{
+			case "\u000A": 
+			case "\u000D": 
+			case "\u2028": 
+			case "\u2029":
+				return true;
             
-            default:
-            return false;
-            }
-        }
-    
-    /* Method: isReservedKeyword
+			default:
+				return false;
+		}
+	}
+
+	/* Method: isReservedKeyword
        
-       note:
-       Reserved Keywords
-       see: ECMA-262 spec 7.5.2 p13 (PDF p25/188)
-    */
-    function isReservedKeyword( identifier:String ):Boolean
-        {
-        if( !config.strictMode )
-            {
-            identifier = identifier.toLowerCase();
-            }
-        
-        switch( identifier )
-            {
-            case "break":
-            case "case": case "catch": case "continue":
-            case "default": case "delete": case "do":
-            case "else":
-            case "finally": case "for": case "function":
-            case "if": case "in": case "instanceof":
-            case "new":
-            case "return":
-            case "switch":
-            case "this": case "throw": case "try": case "typeof":
-            case "var": case "void":
-            case "while": case "with":
+	note:
+	Reserved Keywords
+	see: ECMA-262 spec 7.5.2 p13 (PDF p25/188)
+	 */
+	function isReservedKeyword( identifier : String ) : Boolean
+	{
+		if( !config.strictMode )
+		{
+			identifier = identifier.toLowerCase();
+		}
+        var formatter:StringFormatter = new vegas.string.StringFormatter() ;
+		switch( identifier )
+		{
+			case "break":
+			case "case": 
+			case "catch": 
+			case "continue":
+			case "default": 
+			case "delete": 
+			case "do":
+			case "else":
+			case "finally": 
+			case "for": 
+			case "function":
+			case "if": 
+			case "in": 
+			case "instanceof":
+			case "new":
+			case "return":
+			case "switch":
+			case "this": 
+			case "throw": 
+			case "try": 
+			case "typeof":
+			case "var": 
+			case "void":
+			case "while": 
+			case "with":
+			{
             
-            	var formatter = new vegas.string.StringFormatter( strings.reservedKeyword ) ;
-            	log( formatter.format( identifier ) ) ;
-	            return true;
-            
-            default:
-            return false;
-            }
-        }
-    
-    /* Method: isFutureReservedKeyword
+				formatter.pattern = strings.reservedKeyword ;
+				log(formatter.format(identifier)) ;
+				return true;
+			}
+			default:
+			{
+				return false;
+			}
+		}
+	}
+
+	/* Method: isFutureReservedKeyword
        
-       note:
-       Future Reserved Keywords
-       see: ECMA-262 spec 7.5.3
-    */
-    function isFutureReservedKeyword( identifier:String ):Boolean
-        {
-        if( !config.strictMode )
+	note:
+	Future Reserved Keywords
+	see: ECMA-262 spec 7.5.3
+	 */
+	function isFutureReservedKeyword( identifier : String ) : Boolean
+	{
+		if( !config.strictMode )
+		{
+			identifier = identifier.toLowerCase();
+		}
+        var formatter:StringFormatter = new vegas.string.StringFormatter() ;
+		switch( identifier )
+		{
+			case "abstract":
+			case "boolean": 
+			case "byte":
+			case "char": 
+			case "class": 
+			case "const":
+			case "debugger": 
+			case "double":
+			case "enum": 
+			case "export": 
+			case "extends":
+			case "final": 
+			case "float":
+			case "goto":
+			case "implements": 
+			case "import": 
+			case "int": 
+			case "interface":
+			case "long":
+			case "native":
+			case "package": 
+			case "private": 
+			case "protected": 
+			case "public":
+			case "short": 
+			case "static": 
+			case "super": 
+			case "synchronized":
+			case "throws": 
+			case "transient":
+			case "volatile":
             {
-            identifier = identifier.toLowerCase();
+				formatter.pattern = strings.futurReservedKeyword ;
+				log(formatter.format(identifier)) ;
+				return true ;
             }
-        
-        switch( identifier )
-            {
-            case "abstract":
-            case "boolean": case "byte":
-            case "char": case "class": case "const":
-            case "debugger": case "double":
-            case "enum": case "export": case "extends":
-            case "final": case "float":
-            case "goto":
-            case "implements": case "import": case "int": case "interface":
-            case "long":
-            case "native":
-            case "package": case "private": case "protected": case "public":
-            case "short": case "static": case "super": case "synchronized":
-            case "throws": case "transient":
-            case "volatile":
-            
-            	var formatter = new vegas.string.StringFormatter( strings.futurReservedKeyword ) ;
-            	log( formatter.format( identifier ) ) ;
-	            return true;
-            
-            default:
-            return false;
-            }
-        }
-    
-    /* Method: isValidpath
-    */
-    function isValidPath( path:String ):Boolean
-        {
-        var i, paths, subpath;
-        
-        if( path.indexOf( "." ) > -1 )
-            {
-            paths = path.split( "." );
-            }
+			default:
+			{
+				return false ;
+			}
+		}
+	}
+
+	/* Method: isValidpath
+	 */
+	function isValidPath( path : String ) : Boolean
+	{
+		var i:Number ;
+		var subpath  ;
+        var paths:Array ;
+		var formatter:StringFormatter = new vegas.string.StringFormatter() ;
+		
+		if( path.indexOf(".") > -1 )
+		{
+			paths = path.split(".");
+		}
         else
-            {
-            paths = [ path ];
-            }
+		{
+			paths = [path];
+		}
         
-        for( i=0; i<paths.length; i++ )
-            {
-            subpath = paths[i];
+		for( i = 0;i < paths.length; i++ )
+		{
+			subpath = paths[i];
             
-            if( isReservedKeyword( subpath ) ||
-                isFutureReservedKeyword( subpath ) )
-                {
-            	var formatter = new vegas.string.StringFormatter( strings.notValidPath ) ;
-            	log( formatter.format( path ) ) ;
-                return false;
-                }
-            }
+			if( isReservedKeyword(subpath) || isFutureReservedKeyword(subpath) )
+			{
+				formatter.pattern = strings.notValidPath ;
+				log(formatter.format(path)) ;
+				return false;
+			}
+		}
         
-        if( config.autoAddScopePath &&
-            (scopepath != undefined) && (scope != _global) )
-            {
-            path = scopepath + "." + path;
-            }
+		if( config.autoAddScopePath && (scopepath != undefined) && (scope != _global) )
+		{
+			path = scopepath + "." + path;
+		}
         
-        if( config.security && !isAuthorized( path ) )
-            {
-            var formatter = new vegas.string.StringFormatter( strings.notAuthorizedPath ) ;
-            log( formatter.format( path ) ) ;
-            return config.undefineable;
-            }
-//         else
-//             {
-//             trace( path + " is authorized (isValidPath)" );
-//             }
+		if( config.security && !isAuthorized(path) )
+		{
+			formatter.pattern = strings.notAuthorizedPath ;
+			log(formatter.format(path)) ;
+			return config.undefineable;
+		}
+		//         else
+		//             {
+		//             trace( path + " is authorized (isValidPath)" );
+		//             }
+		return true;
+	}
+
+	/* Method: doesExistInGlobal
+	 */
+	function doesExistInGlobal( path : String ) : Boolean
+	{
+		var paths:Array ;
+		var i, subpath, scope;    
+		
+		scope = _global;
         
-        return true;
-        }
-    
-    /* Method: doesExistInGlobal
-    */
-    function doesExistInGlobal( path:String ):Boolean
-        {
-        var i, paths, subpath, scope;    
-        scope = _global;
-        
-        if( path.indexOf( "." ) > -1 )
-            {
-            paths = path.split( "." );
-            }
+		if( path.indexOf(".") > -1 )
+		{
+			paths = path.split(".");
+		}
         else
-            {
-            paths = [ path ];
-            }
+		{
+			paths = [path];
+		}
         
-        for( i=0; i<paths.length; i++ )
-            {
-            subpath = paths[i];
+        var size:Number = paths.length ;
+		for( i = 0;i < size ; i++ )
+		{
+			subpath = paths[i];
             
-            if( isDigitNumber( subpath ) )
-                {
-                subpath = parseInt( subpath );
-                }
+			if( isDigitNumber(subpath) )
+			{
+				subpath = parseInt(subpath);
+			}
             
-            if( scope[ subpath ] == undefined )
-                {
-                return false;
-                }
+			if( scope[ subpath ] == undefined )
+			{
+				return false;
+			}
             
-            scope = scope[ subpath ];
-            }
+			scope = scope[ subpath ];
+		}
         
-        return true;
-        }
-    
-    /* Method: createPath
-    */
-    function createPath( path:String )
-        {
-        var i, scope, paths;
-        scope = this.scope;
+		return true;
+	}
+
+	/* Method: createPath
+	 */
+	function createPath( path : String )
+	{
+		var paths:Array ;
+		var i:Number    ;
+		var scope       ;
+		
+		scope = this.scope;
         
-        if( path.indexOf( "." ) > -1 )
-            {
-            paths = path.split( "." );
-            }
+		if( path.indexOf(".") > -1 )
+		{
+			paths = path.split(".");
+		}
         else
-            {
-            paths = [ path ];
-            }
+		{
+			paths = [path];
+		}
         
-        for( i=0; i<paths.length; i++ )
-            {
-            path = paths[i];
+        var size:Number = paths.length ;
+		for( i = 0;i < size ; i++ )
+		{
+			path = paths[i];
             
-            if( scope[path] == undefined )
-                {
-                scope[path] = {};
-                }
+			if( scope[path] == undefined )
+			{
+				scope[path] = {};
+			}
             
-            scope = scope[path];
-            }
-        }
-    
-    /* Method: scanComments
-    */
-    function scanComments()
-        {
-        next();
+			scope = scope[path];
+		}
+	}
+
+	/* Method: scanComments
+	 */
+	function scanComments()
+	{
+		next();
         
-        switch( ch )
-            {
-            case "/":
-            while( !isLineTerminator( ch ) )
-                {
-                next();
-                }
-            break;
+		switch( ch )
+		{
+			case "/":
+				while( !isLineTerminator(ch) )
+				{
+					next();
+				}
+				break;
             
-            case "*":
-            var ch_ = next();
+			case "*":
+				var ch_ = next();
             
-            while( (ch_ != "*") && (ch != "/") )
-                {
-                ch_ = ch;
-                next();
+				while( (ch_ != "*") && (ch != "/") )
+				{
+					ch_ = ch;
+					next();
                 
-                if( ch == "" )
-                    {
-                    log( strings.unterminatedComment );
-                    break;
-                    }
-                }
+					if( ch == "" )
+					{
+						log(strings.unterminatedComment);
+						break;
+					}
+				}
     
-            next();
-            delete ch_;
-            break;
+				next();
+				delete ch_;
+				break;
             
-            case "":
-            default:
-            log( strings.errorComment );
-            }
-        }
-    
-    /* Method: scanWhiteSpace
+			case "":
+			default:
+				log(strings.errorComment);
+		}
+	}
+
+	/* Method: scanWhiteSpace
        
-       note:
-       White Space
-       "\t" - \u0009 - TAB
-       "\v" - \u000B - VT
-       "\f" - \u000C - FF
-       " "  - \u0020 - SP
-       ???  - \u00A0 - NBSP
-       see: ECMA-262 spec 7.2 (PDF p23/188)
-    */
-    function scanWhiteSpace()
-        {
-        var scan = true;
+	note:
+	White Space
+	"\t" - \u0009 - TAB
+	"\v" - \u000B - VT
+	"\f" - \u000C - FF
+	" "  - \u0020 - SP
+	???  - \u00A0 - NBSP
+	see: ECMA-262 spec 7.2 (PDF p23/188)
+	 */
+	function scanWhiteSpace()
+	{
+		var scan = true;
         
-        while( scan )
-            {
-            switch( ch )
-                {
-                case "\u0009": case "\u000B": case "\u000C": case "\u0020": case "\u00A0":
-                next();
-                break;
+		while( scan )
+		{
+			switch( ch )
+			{
+				case "\u0009": 
+				case "\u000B": 
+				case "\u000C": 
+				case "\u0020": 
+				case "\u00A0":
+					next();
+					break;
                 
-                case "/":
-                scanComments();
-                break;
+				case "/":
+					scanComments();
+					break;
                 
-                default:
-                scan = false;
-                }
-            }
-        }
-    
-    /* Method: scanSeparators
-    */
-    function scanSeparators()
-        {
-        var scan = true;
+				default:
+					scan = false;
+			}
+		}
+	}
+
+	/* Method: scanSeparators
+	 */
+	function scanSeparators()
+	{
+		var scan = true;
         
-        while( scan )
-            {
-            switch( ch )
-                {
+		while( scan )
+		{
+			switch( ch )
+			{
                 /* note:
-                   White Space
-                   "\t" - \u0009 - TAB
-                   "\v" - \u000B - VT
-                   "\f" - \u000C - FF
-                   " "  - \u0020 - SP
-                   ???  - \u00A0 - NBSP
-                   see: ECMA-262 spec 7.2 (PDF p23/188)
-                */
-                case "\u0009": case "\u000B": case "\u000C": case "\u0020": case "\u00A0":
-                next();
-                break;
+				White Space
+				"\t" - \u0009 - TAB
+				"\v" - \u000B - VT
+				"\f" - \u000C - FF
+				" "  - \u0020 - SP
+				???  - \u00A0 - NBSP
+				see: ECMA-262 spec 7.2 (PDF p23/188)
+				 */
+				case "\u0009": 
+				case "\u000B": 
+				case "\u000C": 
+				case "\u0020": 
+				case "\u00A0":
+					next();
+					break;
                 
                 /* note:
-                   line terminators
-                   "\n" - \u000A - LF
-                   "\R" - \u000D - CR
-                   ???  - \u2028 - LS
-                   ???  - \u2029 - PS
-                   see: ECMA-262 spec 7.3 (PDF p24/188)
-                */
-                case "\u000A": case "\u000D": case "\u2028": case "\u2029":
-                next();
-                break;
+				line terminators
+				"\n" - \u000A - LF
+				"\R" - \u000D - CR
+				???  - \u2028 - LS
+				???  - \u2029 - PS
+				see: ECMA-262 spec 7.3 (PDF p24/188)
+				 */
+				case "\u000A": 
+				case "\u000D": 
+				case "\u2028": 
+				case "\u2029":
+					next();
+					break;
                 
-                case "/":
-                scanComments();
-                break;
+				case "/":
+					scanComments();
+					break;
                 
-                default:
-                scan = false;
-                }
-            }
-        }
-    
-    /* Method: scanIdentifier
-    */
-    function scanIdentifier():String
-        {
-        var id = "";
+				default:
+					scan = false;
+			}
+		}
+	}
+
+	/* Method: scanIdentifier
+	 */
+	function scanIdentifier() : String
+	{
+		var id = "";
         
-        if( isIdentifierStart( ch ) )
-            {
-            id += ch;
-            next();
+		if( isIdentifierStart(ch) )
+		{
+			id += ch;
+			next();
             
-            while( isIdentifierPart( ch ) )
-                {
-                id += ch;
-                next();
-                }
-            }
+			while( isIdentifierPart(ch) )
+			{
+				id += ch;
+				next();
+			}
+		}
         else
-            {
-            log( strings.errorIdentifier );
-            }
+		{
+			log(strings.errorIdentifier);
+		}
         
-        return id;
-        }
-    
-    /* Method: scanPath
-    */
-    function scanPath():String
-        {
-        var path, subpath;
-        path = "";
+		return id;
+	}
+
+	/* Method: scanPath
+	 */
+	function scanPath() : String
+	{
+		
+		var path:String = "" ;
+		
+		var subpath;
         
-        if( isIdentifierStart( ch ) )
-            {
-            path += ch;
-            next();
+		if( isIdentifierStart(ch) )
+		{
+			path += ch;
+			next();
             
-            while( isIdentifierPart( ch ) ||
-                   (ch == ".") ||
-                   (ch == "[") )
-                {
+			while( isIdentifierPart(ch) || (ch == ".") || (ch == "[") )
+			{
                 
-                if( ch == "[" )
-                    {
-                    next();
-                    scanWhiteSpace();
+				if( ch == "[" )
+				{
+					next();
+					scanWhiteSpace();
                     
-                    if( isDigit( ch ) )
-                        {
-                        subpath = String( scanNumber() );
-                        scanWhiteSpace();
-                        path += "." + subpath;
-                        }
+					if( isDigit(ch) )
+					{
+						subpath = String(scanNumber());
+						scanWhiteSpace();
+						path += "." + subpath;
+					}
                     else if( (this.ch == "\"") || (this.ch == "\'") )
-                        {
-                        subpath = scanString( ch );
-                        scanWhiteSpace();
-                        path += "." + subpath;
-                        }
+					{
+						subpath = scanString(ch);
+						scanWhiteSpace();
+						path += "." + subpath;
+					}
                     
-                    if( ch == "]" )
-                        {
-                        next();
-                        continue;
-                        }
-                    }
+					if( ch == "]" )
+					{
+						next();
+						continue;
+					}
+				}
                 
                 
-                path += ch;
-                next();
-                
-                }
-            }
+				path += ch;
+				next();
+			}
+		}
         
-        if( path.startsWith( "_global." ) )
-            {
-            path = path.substr( "_global.".length );
-            }
+		if( StringUtil.startsWith( path , "_global." ) )
+		{
+			path = path.substr("_global.".length);
+		}
         
-        if( !inConstructor && ch == "(" )
-            {
-            inFunction = true;
-            return scanFunction( path );
-            }
+		if( !inConstructor && ch == "(" )
+		{
+			inFunction = true;
+			return scanFunction(path);
+		}
         
-        return path;
-        }
-    
-    /* Method: scanFunction
-    */
-    function scanFunction( fcnPath:String )
+		return path;
+	}
+
+	/* Method: scanFunction
+	 */
+	function scanFunction( fcnPath : String )
+	{
+		var fcnName:String ;
+		var fcnObj:Function ;
+		var fcnObjScope;
+        var formatter:StringFormatter = new vegas.string.StringFormatter() ;
+        
+		if( fcnPath.indexOf( "." ) > -1 )
         {
-        var args, fcnName, fcnObj, fcnObjScope;
-        
-        if( fcnPath.indexOf( "." ) > -1 )
-            {
-            fcnName = fcnPath.split( "." ).pop();
-            }
+            fcnName = String( fcnPath.split( "." ).pop() );
+        }
         else
-            {
+        {
             fcnName = fcnPath;
-            }
+        }
         
-        scanWhiteSpace();
+		scanWhiteSpace();
+
+		var args:Array = [] ;
         
-        args = [];
+		next();
+		scanSeparators();
         
-        next();
-        scanSeparators();
-        
-        while( ch != "" )
+		while( ch != "" )
             {
             if( ch == ")" )
                 {
@@ -676,20 +732,20 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
                 }
             }
         
-        if( !config.allowFunctionCall )
+		if( !config.allowFunctionCall )
             {
-            var formatter = new vegas.string.StringFormatter( strings.notFunctionCallAllowed ) ;
+            formatter.pattern = strings.notFunctionCallAllowed ;
             log( formatter.format( fcnPath, args ) ) ;
             return config.undefineable;
             }
         
-        if( !isReservedKeyword( fcnPath ) && !isFutureReservedKeyword( fcnPath ) )
+		if( !isReservedKeyword( fcnPath ) && !isFutureReservedKeyword( fcnPath ) )
 		{
             fcnObj = eval( "_global." + fcnPath );
             
             if( fcnPath.indexOf( "." ) > -1 )
 			{
-                fcnObjScope = eval( "_global." + StringUtil.replace( fcnPath, "."+fcnName, "" ) );
+                fcnObjScope = eval( "_global." + StringUtil.replace( fcnPath, "." + fcnName , "" ) );
             }
             else
             {
@@ -698,25 +754,24 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
 		}
         else
 		{
-            var formatter = new vegas.string.StringFormatter( strings.notValidFunction) ;
+            formatter.pattern = strings.notValidFunction ;
             log( formatter.format( fcnPath ) ) ;
             return config.undefineable;
 		}
         
-        if( config.security && !isAuthorized( fcnPath ) )
+		if( config.security && !isAuthorized( fcnPath ) )
 		{
-            var formatter = new vegas.string.StringFormatter( strings.notAuthorizedFunction ) ;
+            formatter.pattern = strings.notAuthorizedFunction ;
             log( formatter.format( fcnPath ) ) ;
             return config.undefineable;
 		}
-//      else
-//      {
-//          trace( fcnPath + " is authorized (scanFunction)" );
-//      }
-        
-        if( fcnObj == undefined )
+		//      else
+		//      {
+		//          trace( fcnPath + " is authorized (scanFunction)" );
+		//      }
+		if( fcnObj == undefined )
         {
-            var formatter = new vegas.string.StringFormatter( strings.doesNotExist ) ;
+            formatter.pattern = strings.doesNotExist ;
             log( formatter.format( fcnPath ) ) ;
             return config.undefineable;
         }
@@ -759,13 +814,16 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
     function scanConstructor()
 	{
         
-        var ctor, args, ctorObj;
+        var ctor    ; 
+        var ctorObj ;
+        
+        var formatter:StringFormatter = new vegas.string.StringFormatter() ;
         
         scanWhiteSpace();
         
         inConstructor = true;
         ctor = scanPath();
-        args = [];
+        var args:Array = [];
         inConstructor = false;
         
         if( ch == "(" )
@@ -799,14 +857,14 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
         }
         else
         {
-            var formatter = new vegas.string.StringFormatter(strings.notValidConstructor) ;
+            formatter.pattern = strings.notValidConstructor ;
             log( formatter.format( ctor ) ) ;
             return config.undefineable;
         }
         
         if( config.security && !this.isAuthorized( ctor ) )
         {
-            var formatter = new vegas.string.StringFormatter(strings.notAuthorizedConstructor) ;
+            formatter.pattern = strings.notAuthorizedConstructor ;
             log( formatter.format( ctor ) ) ;
             return config.undefineable;
         }
@@ -817,7 +875,7 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
         
         if( ctorObj == undefined )
         {
-            var formatter = new vegas.string.StringFormatter(strings.doesNotExist) ;
+            formatter.pattern = strings.doesNotExist ;
             log( formatter.format( ctor ) ) ;
             return config.undefineable;
         }
@@ -957,42 +1015,42 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
     /* Method: scanArray
     */
     function scanArray():Array
-        {
-        var arr = [];
+    {
+        var arr:Array = [];
         
         if( ch == "[" )
-            {
+        {
             next();
             scanSeparators();
             
             if( ch == "]" )
-                {
+            {
                 next();
                 return arr;
-                }
-            
+            }
+           
             while( ch != "" )
-                {
+            {
                 arr.push( scanValue() );
                 scanSeparators();
                 
                 if( ch == "]" )
-                    {
+                {
                     next();
                     return arr;
-                    }
+                }
                 else if( ch != "," )
-                    {
+                {
                     break;
-                    }
+                }
                 
                 next();
                 scanSeparators();
-                }
             }
-        
-        log( strings.errorArray );
         }
+        
+       	log( strings.errorArray );
+    }
     
     /* Method: scanObject
     */
@@ -1061,7 +1119,7 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
     {
     	var value, isSignedExp ;
     	var num:String  = "" ;
-    	var oct:String  = "" ; 
+    	//var oct:String  = "" ; 
     	var hex:String  = "" ;
     	var sign:String = "" ;
 
@@ -1158,7 +1216,8 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
      */
     public function scanAssignement( path:String )
 	{
-        var basescope, scope, obj, value;
+        var basescope, scope, value;
+        // var obj ;
         basescope = scope = this.scope ;
         if( path.indexOf( "." ) > -1 )
 		{
@@ -1207,8 +1266,7 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
 		{
 			return path;
 		}
-    	    
-		var paths = path.split( "." );
+		var paths:Array = path.split( "." );
 		var l:Number = paths.length ;
 		for( var i:Number = 0 ; i < l ; i++ )
 		{
@@ -1230,8 +1288,9 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
      */
 	public function scanExternalReference( path:String )
 	{
-        var check, sign, target, valueTest;
-        
+        var check, sign, valueTest;
+        var formatter:StringFormatter = new vegas.string.StringFormatter() ;
+        // var target ;
 		check = false;
 		sign  = "";
 		
@@ -1259,7 +1318,7 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
 			
 			if( config.security && !isAuthorized( path ) )
 			{
-				var formatter = new vegas.string.StringFormatter(strings.notAuthorizedExternalReference) ;
+				formatter.pattern = strings.notAuthorizedExternalReference ;
 				log( formatter.format( path ) ) ;
 				return config.undefineable;
 			}
@@ -1273,11 +1332,11 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
             valueTest = eval( "_global." + path );
             
             if( valueTest != undefined )
+            {
+                if( config.copyObjectByValue && ( (typeof( valueTest ) == "object") || ( valueTest instanceof ICopyable ) ) )
                 {
-                if( config.copyObjectByValue && (typeof( valueTest ) == "object") )
-                    {
-                    valueTest = valueTest.copy();
-                    }
+                    valueTest = valueTest["copy"]();
+                }
                 
                 if( sign == "-" )
 				{
@@ -1287,7 +1346,7 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
             	return valueTest;
         	}
 		}
-		var formatter = new vegas.string.StringFormatter(strings.extRefDoesNotExist) ;
+		formatter.pattern = strings.extRefDoesNotExist ;
 		log( formatter.format( path ) ) ;
 		return config.undefineable;
 	}
@@ -1451,5 +1510,4 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
     }
 
 	private var _ORC:String ;
-	
 }

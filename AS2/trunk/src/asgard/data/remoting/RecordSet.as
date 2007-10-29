@@ -163,8 +163,6 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable
 	public function addItemAt(index:Number, oItem) 
 	{
 		var l:Number = size() ;
-		var b:Boolean = true ;
-		
 		if (index >= 0 && index < l ) {
 			
 			_items.splice(index, 0, oItem) ;
@@ -177,7 +175,7 @@ class asgard.data.remoting.RecordSet extends AbstractModel implements Iterable
 			 	return null ;	
 			 }
 		}
-		oItem.__ID__ = _id ++ ;
+		oItem["__ID__"] = _id++ ;
 		_eAdd.index = index ;
 		notifyChanged( _eAdd ) ;
 		return oItem ;

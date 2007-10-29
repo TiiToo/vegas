@@ -459,19 +459,16 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 		var jan1:Date = Calendar.getJan1(calendarYear);
 		var jan1DayOfWeek:Number = jan1.getDay() ;
 		
-		var month:Number = date.getMonth();
-		var day:Number = date.getDate();
-		var year:Number = date.getFullYear();
-		
 		var dayOffset:Number = Calendar.getDayOffset(date, calendarYear); // Days since Jan 1, Calendar Year
+		
+		weekNum = 1 ;
 			
 		if (dayOffset < 0 && dayOffset >= (-1 * jan1DayOfWeek)) 
 		{
-			weekNum = 1;
+			//			
 		}
 		else
 		{
-			weekNum = 1;
 			var testDate:Date = Calendar.getJan1(calendarYear);
 			while (testDate.getTime() < date.getTime() && testDate.getFullYear() == calendarYear) 
 			{
@@ -490,8 +487,6 @@ class asgard.date.Calendar extends Date implements ICloneable, ICopyable, IEqual
 	public static function isEndOfMonth( date:Date ):Boolean
 	{
 		var today:Date = (date == undefined) ? new Date() : date ;
-		var y:Number = today.getYear() ;
-		var m:Number = today.getMonth() ;
 		var lastDate:Number = getDaysInMonth( today ) ; 
 		return today.getDate().valueOf() == lastDate.valueOf() ;
 	}

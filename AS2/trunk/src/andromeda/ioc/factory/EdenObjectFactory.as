@@ -19,9 +19,7 @@
   
   Contributor(s) :
   
-*/
-
-import andromeda.ioc.core.ObjectDefinition;
+ */import andromeda.ioc.core.ObjectDefinition;
 import andromeda.ioc.factory.ObjectFactory;
 
 import vegas.core.IFactory;
@@ -282,7 +280,7 @@ class andromeda.ioc.factory.EdenObjectFactory extends ObjectFactory implements I
 		{
 			
 			var args:Array          =  o[ ARGUMENTS ] ;
-			var assemblyName:String =  o[ ASSEMBLY_NAME ] ;
+			// TODO var assemblyName:String =  o[ ASSEMBLY_NAME ] ;
 			var destroy:String      =  o[ OBJECT_DESTROY_METHOD_NAME ] ;
 			var id:String           =  o[ OBJECT_ID ] ;
 			var init:String         =  o[ OBJECT_INIT_METHOD_NAME ] ;

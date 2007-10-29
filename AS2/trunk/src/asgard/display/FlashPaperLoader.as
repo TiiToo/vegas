@@ -1,6 +1,6 @@
 ﻿/*
 
-  The contents of this file are subject to the Mozilla Public License Version
+The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
   the License. You may obtain a copy of the License at 
   
@@ -19,14 +19,14 @@
   
   Contributor(s) :
   
-*/
-
-// TODO il faut fixer le bug du focus !
-
+ */
+ 
 import asgard.display.DisplayLoader;
 import asgard.events.FlashPaperLoaderEvent;
 
 import pegas.geom.Point;
+
+// TODO il faut fixer le bug du focus !import asgard.display.DisplayLoader;import asgard.events.FlashPaperLoaderEvent;import pegas.geom.Point;
 
 /**
  * This loader is used to load FlashPaper documents in a swf application.
@@ -243,7 +243,7 @@ class asgard.display.FlashPaperLoader extends DisplayLoader
 
 		var c:MovieClip = getContent() ;
 		
-		var b:Boolean = c.isFlashPaperDocument() ;
+		//var b:Boolean = c.isFlashPaperDocument() ;
 		
 		_fixSelectionManagement(c) ;
 		

@@ -87,7 +87,7 @@ class vegas.util.Mixin extends CoreObject implements IRunnable
 			var prop:String = _ar[l] ;
 			_target[prop] = instance[prop] ; 
 		}
-		_global.ASSetPropFlags(_target, _ar, 1, 1) ;
+		_global["ASSetPropFlags"](_target, _ar, 1, 1) ;
 	}
 
 	/**

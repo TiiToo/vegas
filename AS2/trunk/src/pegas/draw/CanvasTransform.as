@@ -40,11 +40,12 @@ class pegas.draw.CanvasTransform {
 	{
 		var w:Number = xMax - xMin ;
 		var h:Number = yMax - yMin;
-		var w2_0:Number = x1 - x0 ;
-		var w2_1:Number = x2 - x3 ;
-		var h2_0:Number = y1 - y0 ;
-		var h2_1:Number = y2 - y3 ;
-		return function(x:Number, y:Number):Object{
+		//var w2_0:Number = x1 - x0 ;
+		//var w2_1:Number = x2 - x3 ;
+		//var h2_0:Number = y1 - y0 ;
+		//var h2_1:Number = y2 - y3 ;
+		return function(x:Number, y:Number):Object
+		{
 			var gx:Number = ( x - xMin ) / w ;
 			var gy:Number = ( y - yMin ) / h ;
 			var bx:Number = x0 + gy * (x3-x0) ;

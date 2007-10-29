@@ -59,7 +59,7 @@ class vegas.events.EventPhase
 	public static var STOP_IMMEDIATE:Number = 10 ;
 	
 	
-	private static var __ASPF__ = _global.ASSetPropFlags(EventPhase, null , 7, 7) ;
+	private static var __ASPF__ = _global["ASSetPropFlags"](EventPhase, null , 7, 7) ;
 	
 }
 

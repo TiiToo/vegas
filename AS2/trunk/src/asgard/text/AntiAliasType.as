@@ -38,6 +38,6 @@ class asgard.text.AntiAliasType
 	 */
 	public static var NORMAL:String = "normal" ;
 	
-	private static var __ASPF__ = _global.ASSetPropFlags(AntiAliasType, null , 7, 7) ;
+	private static var __ASPF__ = _global["ASSetPropFlags"](AntiAliasType, null , 7, 7) ;
 
 }

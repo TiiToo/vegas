@@ -113,34 +113,31 @@ class vegas.events.EventListenerCollection extends CoreObject implements Iterabl
 	 */
 	public function removeListener( listener ):EventListenerContainer 
 	{
+		var it:Iterator ;
+		var container:EventListenerContainer ;
 		if (listener instanceof EventListener) 
 		{
-			
-			var it:Iterator = _listeners.iterator() ;
+			it = _listeners.iterator() ;
 			while(it.hasNext()) 
 			{
-				var container:EventListenerContainer = it.next() ;
+				container = it.next() ;
 				if (container.getListener() == listener) 
 				{
 					_listeners.remove(container) ;
 					return container ;
 				}
 			}
-			
 		}
 		else if (TypeUtil.typesMatch(listener, Number)) 
 		{
-			
 			return _listeners.removeAt(listener) ;
-			
 		}
 		else if (TypeUtil.typesMatch(listener, String)) // constructorName 
 		{ 
-		 
-			var it:Iterator = _listeners.iterator() ;
+			it = _listeners.iterator() ;
 			while(it.hasNext()) 
 			{
-				var container:EventListenerContainer = it.next() ;
+				container = it.next() ;
 				var constructorName:String = ConstructorUtil.getName(container) ;
 				if (constructorName == listener) 
 				{
@@ -148,7 +145,6 @@ class vegas.events.EventListenerCollection extends CoreObject implements Iterabl
 					return container ;
 				}
 			}
-			
 		}
 		return null ;
 	}

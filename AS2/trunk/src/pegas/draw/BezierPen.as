@@ -65,7 +65,8 @@ class pegas.draw.BezierPen extends AbstractPen
 		curT.p = p0;
 		curT.l = Line.getLine(p0, p1) ;
 		if (moveto) moveTo(p0.x, p0.y);
-		for (var i:Number=1 ; i<=nSegment; i++) {
+		for (var i:Number=1 ; i<=nSegment; i++) 
+		{
 			nextT = Bezier.getCubicTgt(p0, p1, p2, p3, i*tStep) ;
 			total += sliceCubicBezierSegment(p0, p1, p2, p3, (i-1)*tStep, i*tStep, curT, nextT, 0) ;
 			curT = nextT ; 

@@ -41,6 +41,6 @@ class asgard.events.RemotingEventType
 	
 	public static var STARTED:String = ActionEventType.START ;
 	
-	private static var __ASPF__ = _global.ASSetPropFlags(RemotingEventType, null , 7, 7) ;
+	private static var __ASPF__ = _global["ASSetPropFlags"](RemotingEventType, null , 7, 7) ;
 	
 }

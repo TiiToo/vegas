@@ -78,6 +78,7 @@ class pegas.ui.KeysValidator extends AbstractCoreEventDispatcher implements IVal
 	 */
 	public function KeysValidator( keys:Array ,bGlobal:Boolean , sChannel:String ) 
 	{
+		super( bGlobal , sChannel ) ;
 		_cp  = KeysValidator.CODE ;
 		_set = new HashSet( keys ) ;
 		_reset() ;
@@ -94,7 +95,7 @@ class pegas.ui.KeysValidator extends AbstractCoreEventDispatcher implements IVal
 	 */
 	public static var ASCII:Number = 1 ;
 	
-	private static var __ASPF__ = _global.ASSetPropFlags(KeysValidator, null, 7, 7) ;
+	private static var __ASPF__ = _global["ASSetPropFlags"](KeysValidator, null, 7, 7) ;
 	
 	/**
 	 * Switch the validate process of this validator to use the {@code Key.getCode()} or the {@code Key.getASCII()} method.

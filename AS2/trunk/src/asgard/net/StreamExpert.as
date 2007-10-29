@@ -152,6 +152,8 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 			getLogger().warn( this + " attachVideo failed with an unknow Stream id : " + getStreamID() ) ;	
 		}
 	}
+	
+	private var _a:Array ;
 
 	/**
 	 * Returns {@code true} if the stream is loop when the stream is finished.
@@ -716,7 +718,6 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 			ProgressEvent(_ePlayProgress).percent = progress ;
 			dispatchEvent( _ePlayProgress ) ;
 		}
-
 	}
 	
 }

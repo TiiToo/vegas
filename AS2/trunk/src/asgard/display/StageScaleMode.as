@@ -48,6 +48,6 @@ class asgard.display.StageScaleMode
 	 */
 	public static var SHOW_ALL:String = "showAll" ;
 	
-	private static var __ASPF__ = _global.ASSetPropFlags(StageScaleMode, null , 7, 7) ;
+	private static var __ASPF__ = _global["ASSetPropFlags"](StageScaleMode, null , 7, 7) ;
 
 }
