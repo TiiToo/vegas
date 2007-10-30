@@ -102,7 +102,7 @@ class andromeda.model.array.PageableArrayModel extends AbstractModelObject imple
 	 */
 	public function getEventTypeUPDATE():String
 	{
-		return _eUpdate.getType() ;
+		return _sUpdateType || ModelObjectEvent.UPDATE_VO ;
 	}
 
 	/**
@@ -171,12 +171,12 @@ class andromeda.model.array.PageableArrayModel extends AbstractModelObject imple
         {
         	if ( getCountVO() > 1 )
         	{
-        		_eUpdate = new ArrayEvent( ModelObjectEvent.UPDATE_VO ) ;
+        		_eUpdate = new ArrayEvent( getEventTypeUPDATE() ) ;
         		ArrayEvent(_eUpdate).setArray( value ) ;
         	}
         	else
         	{
-        		_eUpdate = new ModelObjectEvent( ModelObjectEvent.UPDATE_VO , this , value ) ;
+        		_eUpdate = new ModelObjectEvent( getEventTypeUPDATE() , this , value ) ;
         	}
 			dispatchEvent( _eUpdate  ) ;    
         }
@@ -255,7 +255,7 @@ class andromeda.model.array.PageableArrayModel extends AbstractModelObject imple
 	 */
 	public function setEventTypeUPDATE( type:String ):Void
 	{
-		_eUpdate.setType( type ) ;
+		_sUpdateType = type ;
 	}
 
 	/**
@@ -290,6 +290,11 @@ class andromeda.model.array.PageableArrayModel extends AbstractModelObject imple
 	 * The current PageByPageIterator instance.
 	 */
 	private var _itPage:PageByPageIterator ;
+	
+	/**
+	 * The type of the update event.
+	 */
+	private var _sUpdateType:String ;
 	
 	/**
 	 * The numbers of items in the model.
