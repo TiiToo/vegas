@@ -121,7 +121,7 @@ class andromeda.model.collections.CollectionModel extends AbstractModelObject
 	/**
 	 * This method is invoqued in the constructor of the class to initialize all events.
 	 */
-	/*override*/ public function initEvent():Void
+	public /*override*/ function initEvent():Void
 	{
 		super.initEvent() ;
 		_eAdd    = createNewModelObjectEvent( ModelObjectEvent.ADD_VO ) ;

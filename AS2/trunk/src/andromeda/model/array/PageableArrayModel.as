@@ -29,8 +29,7 @@ import vegas.core.IRunnable;
 import vegas.data.iterator.Iterator;
 import vegas.data.iterator.PageByPageIterator;
 import vegas.events.ArrayEvent;
-
-// TODO change the ArrayEvent with a BasicEvent when the pageCount value is 1.
+import vegas.events.Event;
 
 /**
  * Defines an array model with a 'page by page' iterator.
@@ -54,9 +53,10 @@ class andromeda.model.array.PageableArrayModel extends AbstractModelObject imple
 	/**
 	 * Inserts all IValueObject in the array passed in argument.
 	 * @param datas The array of all value objects to insert in the model.
-	 * @param noClear (optional) If this argument is is {@code true} the clear method isn't called. 
+	 * @param noClear (optional) If this argument is {@code true} the clear method isn't called when this process begin.
+	 * @param noRefresh (optional) If this argument is {@code true} the refresh method isn't called when this process is finish.
 	 */
-	public function addAllVO( datas:Array , noClear:Boolean):Void
+	public function addAllVO( datas:Array , noClear:Boolean , noRefresh:Boolean ):Void
 	{
 		if ( !noClear )
 		{
@@ -70,6 +70,10 @@ class andromeda.model.array.PageableArrayModel extends AbstractModelObject imple
 			{
 				_a.push( vo ) ;
 			}	
+		}
+		if ( noRefresh == true )
+		{
+			return ;	
 		}
 		refresh() ;
 	}
@@ -134,50 +138,50 @@ class andromeda.model.array.PageableArrayModel extends AbstractModelObject imple
 	 */
 	public function hasPrevious():Boolean
 	{
-		return 	_itPage.hasPrevious() ;
+		return _itPage.hasPrevious() ;
 	}
 	
-	/**
-	 * This method is invoqued in the constructor of the class to initialize all events.
-	 */
-	/*override*/ public function initEvent():Void
-	{
-		super.initEvent() ;
-		_eUpdate = new ArrayEvent( ModelObjectEvent.UPDATE_VO ) ;
-	}
-
 	/**
 	 * Returns a PageByPageIterator of this model.
 	 * @return a PageByPageIterator of this model.
 	 */
 	public function iterator():Iterator
 	{
-		return new PageByPageIterator(_voCount, _a) ;	
+		return new PageByPageIterator( _voCount , _a ) ;	
+	}
+	
+	/**
+	 * Seek the iterator in the last page of this object.
+	 */
+	public function lastPage():Void
+	{
+		if ( _itPage != null )
+		{
+			_itPage.lastPage() ;
+		}
 	}
 
     /**
-     * Notify a {@code ModelObjectEvent} when a {@code IValueObject} is inserted in the model.
+     * Notify an {@code Event} when a {@code IValueObject} is inserted in the model. 
+     * If the model countVO value is > 1 notify an ArrayEvent else if the coutVO value is 1 notify a ModelObjectEvent. 
      */ 
-    public function notifyUpdate( ar:Array ):Array
+    public function notifyUpdate( value )
     {
         if ( isLocked() == false )
         {
-        	_eUpdate.setArray( ar ) ;
+        	if ( getCountVO() > 1 )
+        	{
+        		_eUpdate = new ArrayEvent( ModelObjectEvent.UPDATE_VO ) ;
+        		ArrayEvent(_eUpdate).setArray( value ) ;
+        	}
+        	else
+        	{
+        		_eUpdate = new ModelObjectEvent( ModelObjectEvent.UPDATE_VO , this , value ) ;
+        	}
 			dispatchEvent( _eUpdate  ) ;    
         }
-        return ar ;
+        return value ;
     }
-
-	/**
-	 * Show in the previous page in the list or previous screen.
-	 */
-	public function previous()
-	{
-		if ( hasPrevious() )
-		{
-			return notifyUpdate( _itPage.previous() ) ;
-		}
-	}
 
 	/**
 	 * Show the next page of the model.
@@ -187,6 +191,17 @@ class andromeda.model.array.PageableArrayModel extends AbstractModelObject imple
 		if ( hasNext() )
 		{
 			return notifyUpdate( _itPage.next() ) ;
+		}
+	}
+
+	/**
+	 * Show in the previous page in the list or previous screen.
+	 */
+	public function previous()
+	{
+		if ( hasPrevious() )
+		{
+			return notifyUpdate( _itPage.previous() ) ;
 		}
 	}
 
@@ -205,6 +220,17 @@ class andromeda.model.array.PageableArrayModel extends AbstractModelObject imple
 		}
 		run() ;
 	}
+	
+	/**
+	 * Resets the key pointer of the iterator.
+	 */
+	public function reset():Void 
+	{
+		if ( _itPage != null )
+		{
+			_itPage.reset() ;
+		}
+	}
 
 	/**
 	 * Run the model when is initialize.
@@ -215,11 +241,12 @@ class andromeda.model.array.PageableArrayModel extends AbstractModelObject imple
 	}
 
 	/**
-	 * Set the count of the IValueObject in a page of this model.
+	 * Set the count of the IValueObject in a page of this model. 
+	 * This value must be >=1.
 	 */
 	public function setCountVO( n:Number ):Void
 	{
-		_voCount = n > 0 ? n : 0 ;
+		_voCount = n > 1 ? n : 1 ;
 		refresh() ;
 	}
 
@@ -257,7 +284,7 @@ class andromeda.model.array.PageableArrayModel extends AbstractModelObject imple
 	/**
 	 * The internal ArrayEvent when the update event type is use.
 	 */
-	private var _eUpdate:ArrayEvent ;
+	private var _eUpdate:Event ;
 
 	/**
 	 * The current PageByPageIterator instance.
@@ -265,10 +292,9 @@ class andromeda.model.array.PageableArrayModel extends AbstractModelObject imple
 	private var _itPage:PageByPageIterator ;
 	
 	/**
-	 * The numbers of items in the list (16 default icons in the list).
+	 * The numbers of items in the model.
 	 */
 	private var _voCount:Number = 1 ;
-	
 
 
 }
