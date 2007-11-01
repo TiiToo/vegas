@@ -42,7 +42,7 @@ import vegas.util.TypeUtil;
  *     var size:Number = ar.length ;
  *     for (var i:Number = 0 ; i<size ; i++)
  *     {
- *         result[i] = ar[i].pseudo ;
+ *         result[i] = ar[i].label ;
  *     }
  *     trace( result.join('|') ) ;
  * }
@@ -117,7 +117,7 @@ class vegas.util.comparators.GenericComparator extends CoreObject implements ICo
 	 * <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
 	 * <li> 0 if o1 and o2 are equal.</li>
 	 * </p>
-	 * @throws ClassCastError if compare(a, b) and 'a' and 'b' must be an Object objects.
+	 * @throws NullPointerError
 	 */
 	public function compare(o1, o2):Number 
 	{
