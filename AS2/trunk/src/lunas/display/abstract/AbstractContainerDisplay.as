@@ -137,6 +137,7 @@ class lunas.display.abstract.AbstractContainerDisplay extends AbstractComponentD
 	 */
 	public function clear():Void 
 	{
+		removeChilds( toArray() ) ;
 		_model.clear() ;
 		update() ;
 	}

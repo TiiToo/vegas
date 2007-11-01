@@ -44,10 +44,12 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	 * Creates a new BackgroundDisplay instance.
 	 * @param sName the name of the display.
 	 * @param target the DisplayObject instance control this target.
+	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */
-	public function BackgroundDisplay(sName : String, target) 
+	public function BackgroundDisplay( sName:String , target , bGlobal:Boolean , sChannel:String ) 
 	{
-		super(sName, target);
+		super( sName, target, bGlobal, sChannel );
 		background = view.createEmptyMovieClip( DEFAULT_BACKGROUND_NAME , DEFAULT_BACKGROUND_DEPTH ) ;
 		initEvent() ;
 		_bgDraw  = initBackgroundPen() ;

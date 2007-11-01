@@ -37,10 +37,12 @@ class asgard.display.ConfigurableDisplayObject extends DisplayObject implements 
 	 * Creates a new ConfigurableDisplayObject instance.
 	 * @param sName the name of the display.
 	 * @param target the DisplayObject instance control this target.
+	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */
-	public function ConfigurableDisplayObject(sName:String, target) 
+	public function ConfigurableDisplayObject( sName:String, target , bGlobal:Boolean , sChannel:String ) 
 	{
-		super(sName, target);
+		super( sName, target, bGlobal, sChannel );
 		isConfigurable = true ;
 	}
 

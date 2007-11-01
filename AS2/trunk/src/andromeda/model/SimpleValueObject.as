@@ -37,7 +37,7 @@ class andromeda.model.SimpleValueObject extends CoreObject implements IEquality,
 	
 	/**
 	 * Creates a new SimpleValueObject instance.
-	 * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored
+	 * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
 	 */
 	public function SimpleValueObject( init:Object ) 
 	{
@@ -94,7 +94,13 @@ class andromeda.model.SimpleValueObject extends CoreObject implements IEquality,
 	 */
 	public function toString():String
 	{
-		return "[" + ConstructorUtil.getName(this) + " " + id + "]" ;
+		var str:String = "[" + ConstructorUtil.getName(this) ;
+		if ( this.id != null )
+		{
+			str += " " + this.id ;	
+		} 
+		str += "]" ;
+		return str ;
 	}
 
 }

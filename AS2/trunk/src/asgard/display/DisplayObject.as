@@ -106,11 +106,13 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	 * Creates a new DisplayObject instance.
 	 * @param sName the name of the display.
 	 * @param target the DisplayObject instance control this target.
+	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */
-    public function DisplayObject( sName:String , target ) 
+    public function DisplayObject( sName:String , target , bGlobal:Boolean , sChannel:String ) 
     {
         
-        super() ;
+        super( bGlobal, sChannel  ) ;
 		
 		if (target) 
 		{
