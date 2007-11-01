@@ -36,7 +36,7 @@ package vegas.util
 	 	 * Returns a shallow copy by reference of this specified error.
 	 	 * @return a shallow copy by reference of this specified error.
 	 	 */
-		static public function clone(e:Error):Error 
+		public static function clone(e:Error):Error 
 		{
 			return new Error(e.message) ;
 		}
@@ -45,7 +45,7 @@ package vegas.util
 	 	 * Returns a deep copy by value of this specified error.
 	 	 * @return a deep copy by value of this specified error.
 	 	 */
-		static public function copy(e:Error):Error 
+		public static function copy(e:Error):Error 
 		{
 			return new Error( (e.message).valueOf() ) ;
 		}        
@@ -54,7 +54,7 @@ package vegas.util
 		 * Compares if two Errors are equal by reference.
 		 * @return {@code true} if the two Errors are equal by reference.
 	 	 */
-		static public function equals( e1:Error = null , e2:Error = null ):Boolean 
+		public static function equals( e1:Error = null , e2:Error = null ):Boolean 
 		{
     		if(e1 == null)
         	{
@@ -71,7 +71,7 @@ package vegas.util
 	 	 * Returns a string representing the source code of the object.
 	 	 * @return a string representing the source code of the object.
  	 	 */
-	    static public function toSource( e:Error ):String 
+	    public static function toSource( e:Error ):String 
 	    {
 		    return 'new Error(\"' + e.message + '")' ;
         }

@@ -317,7 +317,7 @@ package asgard.data.remoting
 		
 		}
 
-		static public function register():void
+		public static function register():void
 		{
 		
 			RemotingService.registerClassAlias(RecordSet, "RecordSet") ;	

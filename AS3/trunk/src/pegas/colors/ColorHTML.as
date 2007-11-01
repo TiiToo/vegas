@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is PEGAS Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -55,37 +55,37 @@ package pegas.colors
 			this.value = value ;
 		}
 
-		static public const AQUA:ColorHTML    = new ColorHTML(0x00FFFF , "Aqua") ;
+		public static const AQUA:ColorHTML    = new ColorHTML(0x00FFFF , "Aqua") ;
 		
-		static public const BLACK:ColorHTML   = new ColorHTML(0x000000 , "Black") ;
+		public static const BLACK:ColorHTML   = new ColorHTML(0x000000 , "Black") ;
 	
-		static public const BLUE:ColorHTML    = new ColorHTML(0x0000FF , "Blue") ;
+		public static const BLUE:ColorHTML    = new ColorHTML(0x0000FF , "Blue") ;
 	
-		static public const FUCHSIA:ColorHTML = new ColorHTML(0xFF00FF , "Fuchsia") ;
+		public static const FUCHSIA:ColorHTML = new ColorHTML(0xFF00FF , "Fuchsia") ;
 	
-		static public const GRAY:ColorHTML    = new ColorHTML(0x808080 , "Gray") ;
+		public static const GRAY:ColorHTML    = new ColorHTML(0x808080 , "Gray") ;
 			
-		static public const GREEN:ColorHTML   = new ColorHTML(0x008000 , "Green") ;
+		public static const GREEN:ColorHTML   = new ColorHTML(0x008000 , "Green") ;
 		
-		static public const LIME:ColorHTML    = new ColorHTML(0x00FF00 , "Lime") ;
+		public static const LIME:ColorHTML    = new ColorHTML(0x00FF00 , "Lime") ;
 		
-		static public const OLIVE:ColorHTML   = new ColorHTML(0x808000 , "Olive") ;
+		public static const OLIVE:ColorHTML   = new ColorHTML(0x808000 , "Olive") ;
 		
-		static public const MAROON:ColorHTML  = new ColorHTML(0x800000 , "Maroon") ; 	
+		public static const MAROON:ColorHTML  = new ColorHTML(0x800000 , "Maroon") ; 	
 		
-		static public const NAVY:ColorHTML    = new ColorHTML(0x000080 , "Navy") ;
+		public static const NAVY:ColorHTML    = new ColorHTML(0x000080 , "Navy") ;
 		
-		static public const PURPLE:ColorHTML  = new ColorHTML(0x800080 , "Purple") ;
+		public static const PURPLE:ColorHTML  = new ColorHTML(0x800080 , "Purple") ;
 		
-		static public const RED:ColorHTML     = new ColorHTML(0xFF0000 , "Red") ;
+		public static const RED:ColorHTML     = new ColorHTML(0xFF0000 , "Red") ;
 		
-		static public const SILVER:ColorHTML  = new ColorHTML(0xC0C0C0 , "Silver") ;
+		public static const SILVER:ColorHTML  = new ColorHTML(0xC0C0C0 , "Silver") ;
 	
-		static public const TEAL:ColorHTML    = new ColorHTML(0x008080 , "Teal") ;
+		public static const TEAL:ColorHTML    = new ColorHTML(0x008080 , "Teal") ;
 	
-		static public const WHITE:ColorHTML   = new ColorHTML(0xFFFFFF , "White") ;
+		public static const WHITE:ColorHTML   = new ColorHTML(0xFFFFFF , "White") ;
 		
-		static public const YELLOW:ColorHTML  = new ColorHTML(0xFFFF00 , "Yellow") ;
+		public static const YELLOW:ColorHTML  = new ColorHTML(0xFFFF00 , "Yellow") ;
 
 
     	/**
@@ -103,7 +103,7 @@ package pegas.colors
 			return ( o.valueOf() == valueOf() && toString() == o.toString()) ;	
 		}
 	
-		static public function htmlToNumber( sHTML:String ):Number 
+		public static function htmlToNumber( sHTML:String ):Number 
 		{
 			if (StringUtil.firstChar(sHTML) == "#" && s.length > 1 && s.length <= 7) 
 			{
@@ -113,7 +113,7 @@ package pegas.colors
 			return undefined ;
 		}
 	
-		static public function hexToHtml( hex:Number):String
+		public static function hexToHtml( hex:Number):String
 		{
 			return "#" + (hex.toString(16)).toUpperCase() ; 
 		}

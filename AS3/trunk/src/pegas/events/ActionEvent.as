@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is PEGAS Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -56,52 +56,52 @@ package pegas.events
         /**
          * The name of the event when the process is changed.
          */
-		static public const CHANGE:String = "onChanged" ;
+		public static const CHANGE:String = "onChanged" ;
 
         /**
          * The name of the event when the process is cleared.
          */
-		static public const CLEAR:String = "onCleared" ;
+		public static const CLEAR:String = "onCleared" ;
         
         /**
          * The name of the event when the process is finished.
          */
-		static public const FINISH:String = "onFinished" ;
+		public static const FINISH:String = "onFinished" ;
 
         /**
          * The name of the event when the process info is changed.
          */
-		static public const INFO:String = "onInfo" ;
+		public static const INFO:String = "onInfo" ;
 
         /**
          * The name of the event when the process is looped.
          */
-		static public const LOOP:String = "onLooped" ;
+		public static const LOOP:String = "onLooped" ;
 
         /**
          * The name of the event when the process is in progress.
          */
-		static public const PROGRESS:String = "onProgress" ;
+		public static const PROGRESS:String = "onProgress" ;
 
         /**
          * The name of the event when the process is resumed.
          */
-		static public const RESUME:String = "onResumed" ;
+		public static const RESUME:String = "onResumed" ;
 
         /**
          * The name of the event when the process is started.
          */		
-		static public const START:String = "onStarted" ;
+		public static const START:String = "onStarted" ;
 
         /**
          * The name of the event when the process is stopped.
          */		
-		static public const STOP:String = "onStopped" ;	
+		public static const STOP:String = "onStopped" ;	
 
         /**
          * The name of the event when the process is cleared.
          */		
-		static public const TIMEOUT:String = "onTimeOut" ;
+		public static const TIMEOUT:String = "onTimeOut" ;
 	    
 	    /**
     	 * (read-only) Returns the info object of this event.

@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -25,15 +25,17 @@ package vegas.events
 {
     import flash.events.Event;
     
+    import pegas.process.ILockable;
+    
     import vegas.core.CoreObject;
     import vegas.util.ClassUtil;
-    
-	/**
+
+    /**
  	 * This abstract class is used to create concrete {@code IEventDispatcher} implementations. This class used an internal {@code EventDispatcher} object by composition.
  	 * <p>You can overrides the internal {@code EventDispatcher} instance with the {@code initEventDispatcher} or the {@code setEventDispatcher} methods. Used a global singleton reference in this method to register all events in a {@code FrontController} for example.</p>
 	 * @author eKameleon
  	 */
-	public class AbstractCoreEventDispatcher extends CoreObject implements IEventDispatcher
+	public class AbstractCoreEventDispatcher extends CoreObject implements IEventDispatcher, ILockable
     {
 
 		/**
@@ -115,6 +117,31 @@ package vegas.events
 		    return new EventDispatcher( this ) ;
 	    }
 
+   		/**
+	     * Returns {@code true} if the object is locked.
+	     * @return {@code true} if the object is locked.
+	     */
+    	public function isLocked():Boolean 
+    	{
+	        return ___isLock___ ;
+    	}
+
+	    /**
+	     * Locks the object.
+	     */
+    	public function lock():void 
+    	{
+	        ___isLock___ = true ;
+	    }
+
+		/**
+		 * Allows the registration of event listeners on the event target (Function or EventListener).
+		 * @param type A string representing the event type to listen for. If eventName value is "ALL" addEventListener use addGlobalListener
+		 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the {@code EventListener} interface.
+	 	 * @param useCapture Determinates if the event flow use capture or not.
+		 * @param priority Determines the priority level of the event listener.
+		 * @param useWeakReference Indicates if the listener is a weak reference.
+		 */
         public function registerEventListener(type:String, listener:*, useCapture:Boolean=false, priority:int=0, useWeakReference:Boolean=false):void
         {
             _dispatcher.registerEventListener(type, listener, useCapture, priority, useWeakReference) ;
@@ -159,6 +186,20 @@ package vegas.events
             return "new " + ClassUtil.getPath(this) + "()" ;
         }
 
+	    /**
+	     * Unlocks the display.
+	     */
+    	public function unLock():void 
+    	{
+	        ___isLock___ = false ;
+	    }
+
+		/** 
+		 * Removes a listener (Function or EventListener object) from the EventDispatcher object.
+		 * If there is no matching listener registered with the {@code EventDispatcher} object, then calling this method has no effect.
+		 * @param type Specifies the type of event.
+		 * @param the listener object.
+		 */
         public function unregisterEventListener(type:String, listener:*, useCapture:Boolean=false):void
         {
             _dispatcher.unregisterEventListener(type, listener, useCapture) ;
@@ -174,12 +215,20 @@ package vegas.events
             return _dispatcher.willTrigger(type) ;
         }
 
+		/**
+		 * The internal EventDispatcher reference.
+		 */
     	private var _dispatcher:EventDispatcher ;  
     
     	/**
 	 	 * The internal flag to indicate if the event flow is global.
 		 */
 		private var _isGlobal:Boolean ;
+    	
+    	/**
+     	 * The internal flag to indicates if the display is locked or not.
+     	 */ 
+    	private var ___isLock___:Boolean = false ;
     	
     }
 }

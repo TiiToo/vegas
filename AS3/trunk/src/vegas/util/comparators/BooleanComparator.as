@@ -131,7 +131,7 @@ package vegas.util.comparators
 	 	 * } 
 		 * @return a {@code BooleanComparator} instance that sorts false values before true values.
 		 */
-		static public function getFalseFirstComparator():BooleanComparator
+		public static function getFalseFirstComparator():BooleanComparator
 		{
 			if (_falseFirstInstance == null)
 			{
@@ -152,7 +152,7 @@ package vegas.util.comparators
 	 	 * }
 	 	 * @return a {@code BooleanComparator} instance that sorts true values before false values.
 	 	 */
-		static public function getTrueFirstComparator():BooleanComparator
+		public static function getTrueFirstComparator():BooleanComparator
 		{
 			if (_trueFirstInstance == null)
 			{

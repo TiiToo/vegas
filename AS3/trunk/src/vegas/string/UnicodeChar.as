@@ -80,77 +80,77 @@ package vegas.string
 	    /**
     	 * Back Slash utf8 representation (special char).
     	 */
-       	static public const BACK_SLASH:String = "\u005C" ;	
+       	public static const BACK_SLASH:String = "\u005C" ;	
 
 	    /**
     	 * Back Space utf8 representation (special char).
     	 */
-	    static public const BACK_SPACE:String = "\u0008" ;
+	    public static const BACK_SPACE:String = "\u0008" ;
 
 	    /**
     	 * Simple Quote utf8 representation (special char).
     	 */
-        static public const SIMPLE_QUOTE:String = "\u0027" ;
+        public static const SIMPLE_QUOTE:String = "\u0027" ;
 
 	    /**
     	 * Double Quote utf8 representation (special char).
     	 */
-        static public const DOUBLE_QUOTE:String = "\u0022" ;
+        public static const DOUBLE_QUOTE:String = "\u0022" ;
 	
     	/**
     	 * Tab utf8 representation (whitespace).
     	 */
-        static public const TAB:String = "\u0009" ;
+        public static const TAB:String = "\u0009" ;
 
 	    /**
     	 * Vertical Tab utf8 representation (whitespace).
     	 */
-        static public const VT:String = "\u000B" ;
+        public static const VT:String = "\u000B" ;
         
     	/**
     	 * Form Feed utf8 representation (whitespace).
     	 */
-        static public const FF:String = "\u000C" ;
+        public static const FF:String = "\u000C" ;
    
    	   /**
 	    * Space utf8 representation (whitespace).
 	    */
-        static public const SP:String = "\u0020" ;
+        public static const SP:String = "\u0020" ;
 
     	/**
     	 * No-break space utf8 representation (whitespace).
     	 */
-        static public const NBSP:String = "\u00A0" ;
+        public static const NBSP:String = "\u00A0" ;
 
     	/**
     	 * Array with all whitespace characters. NB : USP no implement (Any other Unicode "space separator")
     	 */
-        static public const WHITE_SPACE_CHARS:Array = [ TAB, VT, FF, SP, NBSP ] ;
+        public static const WHITE_SPACE_CHARS:Array = [ TAB, VT, FF, SP, NBSP ] ;
         
        	/**
 	     * Line Feed utf8 representation (line terminators).
 	     */
-        static public const LF:String = "\u000A" ;
+        public static const LF:String = "\u000A" ;
         
     	/**
     	 * Carriage Return utf8 representation (line terminators).
     	 */
-        static public const CR:String = "\u000D" ;
+        public static const CR:String = "\u000D" ;
 
     	/**
     	 * Line Separator utf8 representation (line terminators).
 	     */        
-        static public const LS:String = "\u2028" ;	
+        public static const LS:String = "\u2028" ;	
 
     	/**
     	 * Paragraph Separator utf8 representation (line terminators).
 	     */   
-        static public const PS:String = "\u2029" ;	
+        public static const PS:String = "\u2029" ;	
 
     	/**
     	 * Array with all line terminators characters
     	 */
-	    static public const LINE_TERMINATOR_CHARS:Array = [ LF, CR, LS, PS ] ;
+	    public static const LINE_TERMINATOR_CHARS:Array = [ LF, CR, LS, PS ] ;
 
         /**
          * Overrides the behavior of an object property that can be called as a function. 
@@ -173,7 +173,7 @@ package vegas.string
     	 * Returns {@code true} of the specified character is a whitespace.
     	 * @return {@code true} of the specified character is a whitespace.
     	 */
-	    static public function isWhiteSpace( char:String ):Boolean 
+	    public static function isWhiteSpace( char:String ):Boolean 
 	    {
             var c:Char = new Char(char) ;
 		    return (WHITE_SPACE_CHARS.indexOf(c) != -1) ;
@@ -183,7 +183,7 @@ package vegas.string
     	 * Returns {@code true} of the specified character is a line terminator.
     	 * @return {@code true} of the specified character is a line terminator.
     	 */
-        static public function isLineTerminators( char:String ):Boolean 
+        public static function isLineTerminators( char:String ):Boolean 
         {
 		    var c:Char = new Char(char) ;
         	return (LINE_TERMINATOR_CHARS.indexOf(c) != -1) ;
@@ -193,7 +193,7 @@ package vegas.string
     	 * Converts a unicode representation and returns this char's string.
     	 * @return The char of the unicode representation.
     	 */
-	    static public function toChar( unicode:String ):Char
+	    public static function toChar( unicode:String ):Char
 	    {
             return new Char( toCharString( unicode ) ) ;
         }
@@ -202,7 +202,7 @@ package vegas.string
     	 * Converts a unicode representation and returns this char's string.
     	 * @return The char of the unicode representation.
     	 */
-	    static public function toCharString( unicode:String ):String
+	    public static function toCharString( unicode:String ):String
 	    {
             return String.fromCharCode( parseInt( unicode , 16) ) ;
         }
@@ -211,7 +211,7 @@ package vegas.string
     	 * Converts an unicode number value and returns this string representation.
 	     * @return The string representation of a unicode number.
     	 */
-        static public function toUnicode(n:Number):String 
+        public static function toUnicode(n:Number):String 
         {
     	    var hex:String = n.toString(16) ;
         	while( hex.length < 4 ) hex = "0" + hex ;

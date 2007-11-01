@@ -61,7 +61,7 @@ package vegas.data.map
 		/**
 		 * Defines the constant value of the sortPolicy property if the ArrayMap is sorted by "key".
 		 */
-		static public const KEY:String = "key" ;
+		public static const KEY:String = "key" ;
 		
 		/**
 		 * Specifies the default numeric sorting value for the Array class sorting methods.
@@ -109,7 +109,7 @@ package vegas.data.map
 		/**
 		 * Defines the constant value of the sortPolicy property if the ArrayMap is sorted by "value".
 		 */
-		static public const VALUE:String = "value" ;
+		public static const VALUE:String = "value" ;
         
   		/**
 		 * (read-write) Returns the IComparator instance.

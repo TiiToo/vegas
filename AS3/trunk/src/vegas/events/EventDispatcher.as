@@ -59,7 +59,7 @@ package vegas.events
          /**
           * Determinates the default singleton name.
          */
-        static public const DEFAULT_SINGLETON_NAME:String = "__default__" ;
+        public static const DEFAULT_SINGLETON_NAME:String = "__default__" ;
         
         /**
          * Returns the target reference.
@@ -77,7 +77,7 @@ package vegas.events
         /**
          * Clear all globals EventBroadcaster instances.
          */
-        static public function flush():void 
+        public static function flush():void 
         {
             instances.clear() ;
         }
@@ -85,7 +85,7 @@ package vegas.events
         /**
          * Create and return a globalEventBroadcaster instance.
          */
-        static public function getInstance( name:String=null ):vegas.events.EventDispatcher
+        public static function getInstance( name:String=null ):vegas.events.EventDispatcher
         {
             
             if (name == null) 
@@ -153,7 +153,7 @@ package vegas.events
         /**
          * Removes a global EventDispatcher instance.
          */
-        static public function removeInstance(name:String=null):Boolean 
+        public static function removeInstance(name:String=null):Boolean 
          {
              if (name == null) name = vegas.events.EventDispatcher.DEFAULT_SINGLETON_NAME ;
               if (!instances.containsKey(name)) 

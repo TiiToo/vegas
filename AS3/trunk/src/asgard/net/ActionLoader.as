@@ -81,7 +81,7 @@ package asgard.net
 		/**
 		 * The default value of the delay before the ActionEvent.TIMEOUT event.
 		 */
-		static public const DEFAULT_DELAY:uint = 8000 ; // 8 secondes
+		public static const DEFAULT_DELAY:uint = 8000 ; // 8 secondes
         
         /**
          * (read-only) Indicates the number of bytes that have been loaded thus far during the load operation.

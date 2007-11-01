@@ -53,23 +53,23 @@ package asgard.events
 			}
 		}
 		
-		static public const ADD_ITEMS:String = "addItems" ; 
+		public static const ADD_ITEMS:String = "addItems" ; 
 
-		static public const CLEAR_ITEMS:String = "clear" ;
+		public static const CLEAR_ITEMS:String = "clear" ;
 
-		static public const MODEL_CHANGED:String = "modelChanged" ;
+		public static const MODEL_CHANGED:String = "modelChanged" ;
 
-		static public const REMOVE_ITEMS:String = "removeItems" ;
+		public static const REMOVE_ITEMS:String = "removeItems" ;
 
-		static public const SORT_ITEMS:String = "sortItems" ;
+		public static const SORT_ITEMS:String = "sortItems" ;
 
-		static public const UPDATE_ALL:String = "updateAll" ;
+		public static const UPDATE_ALL:String = "updateAll" ;
 
-		static public const UPDATE_FIELD:String = "updateField" ;
+		public static const UPDATE_FIELD:String = "updateField" ;
 
-		static public const UPDATE_ITEMS:String = "updateItems" ;
+		public static const UPDATE_ITEMS:String = "updateItems" ;
 
-		static public const UPDATE_ROWS:String = "updateRows" ;
+		public static const UPDATE_ROWS:String = "updateRows" ;
 
         /**
          * Returns a shallow copy of this instance.

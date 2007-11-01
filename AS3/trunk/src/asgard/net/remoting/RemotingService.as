@@ -65,7 +65,7 @@ package asgard.net.remoting
 	 *         public var name:String ;
 	 *         public var url:String ;
 	 * 
-	 *         static public function register():void
+	 *         public static function register():void
 	 *         {
 	 *             registerClassAlias("test.User", User) ;
 	 *         }
@@ -229,12 +229,12 @@ package asgard.net.remoting
 	    /**
     	 * The default delay value before notify the timeout event.
     	 */
-		static public const DEFAULT_DELAY:uint = 8000 ; // 8 secondes
+		public static const DEFAULT_DELAY:uint = 8000 ; // 8 secondes
 
     	/**
     	 * The string representation value of the level error of the service.
     	 */
-		static public const LEVEL_ERROR:String = "error" ;
+		public static const LEVEL_ERROR:String = "error" ;
 
     	/**
 	     * Returns a string containing a dot delimited path from the root of the Flash Remoting Server to the service name. 
@@ -501,7 +501,7 @@ package asgard.net.remoting
 		/**
 		 * Preserves the class (type) of an object when the object is encoded in Action Message Format (AMF).
 		 */
-		static public function registerClassAlias( classObject:Class, aliasName:String=null  ):void
+		public static function registerClassAlias( classObject:Class, aliasName:String=null  ):void
 		{
 			if (aliasName == null)
 			{

@@ -23,26 +23,30 @@
 
 package andromeda.model
 {
-    
     import vegas.core.CoreObject;
     import vegas.core.IEquality;
     import vegas.core.Identifiable;
-    
+    import vegas.util.ClassUtil;
+
     /**
-	 * This class provides a skeletal implementation of the {@code IValueObject} interface, to minimize the effort required to implement this interface.
-	 * @author eKameleon
+	 * Creates a new SimpleValueObject instance.
+	 * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
 	 */
-	public class AbstractValueObject extends CoreObject implements IEquality, IValueObject
+	public class SimpleValueObject extends CoreObject implements IEquality, IValueObject
 	{
 		
 		/**
-		 * Creates a new AbstractValueObject.
+		 * Creates a new SimpleValueObject.
+		 * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
 		 */
-		public function AbstractValueObject()
+		public function SimpleValueObject( init:Object=null )
 		{
-			if ( _id == null )
+			if ( init != null )
 			{
-				_id = hashCode() ;
+				for (var prop:String in init )
+				{
+					this[prop] = init[prop] ;	
+				} 	
 			}
 		}
 		
@@ -79,6 +83,21 @@ package andromeda.model
 				return false ;
 			}
 		}
+			
+		/**
+	 	 * Returns the {@code String} representation of this object.
+	 	 * @return the {@code String} representation of this object.
+	 	 */
+		public function toString():String
+		{
+			var str:String = "[" + ClassUtil.getName(this) ;
+			if ( this.id != null )
+			{
+				str += " " + this.id ;	
+			} 
+			str += "]" ;
+			return str ;
+		}	
 		
 		/**
 		 * The internal id of this IValueObject

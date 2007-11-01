@@ -45,37 +45,37 @@ package vegas.logging
 		/**
 		 * Intended to force a target to process all messages (0).
 		 */
-    	static public const ALL:LogEventLevel = new LogEventLevel("ALL", 0) ;
+    	public static const ALL:LogEventLevel = new LogEventLevel("ALL", 0) ;
 
 		/**
 		 * Designates informational level messages that are fine grained and most helpful when debugging an application (2).
 		 */
-    	static public const DEBUG:LogEventLevel = new LogEventLevel("DEBUG", 2) ;
+    	public static const DEBUG:LogEventLevel = new LogEventLevel("DEBUG", 2) ;
 
 		/**
 		 * Designates error events that might still allow the application to continue running (8).
 		 */	
-    	static public const ERROR:LogEventLevel = new LogEventLevel("ERROR", 8) ;
+    	public static const ERROR:LogEventLevel = new LogEventLevel("ERROR", 8) ;
 
 		/**
 		 * Designates events that are very harmful and will eventually lead to application failure (1000).
 		 */
-    	static public const FATAL:LogEventLevel = new LogEventLevel("FATAL", 1000) ;
+    	public static const FATAL:LogEventLevel = new LogEventLevel("FATAL", 1000) ;
 
 		/**
 		 * Designates informational messages that highlight the progress of the application at coarse-grained level (4).
 		 */
-    	static public const INFO:LogEventLevel = new LogEventLevel("INFO", 4) ;	
+    	public static const INFO:LogEventLevel = new LogEventLevel("INFO", 4) ;	
 
 		/**
 		 * Designates events that could be harmful to the application operation (6).
 		 */	
-    	static public const WARN:LogEventLevel = new LogEventLevel("WARN", 6) ;
+    	public static const WARN:LogEventLevel = new LogEventLevel("WARN", 6) ;
 
 		/**
 		 * Returns true if the number level passed in argument is valid.
 		 */
-        static public function isValidLevel( level:LogEventLevel ):Boolean 
+        public static function isValidLevel( level:LogEventLevel ):Boolean 
         {
             var levels:Array = [ ALL, DEBUG, ERROR, FATAL, INFO, WARN ] ;
             var l:uint = levels.length ;

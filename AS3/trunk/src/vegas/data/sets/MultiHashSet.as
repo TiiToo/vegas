@@ -170,7 +170,7 @@
 		 * This method is unsupported, use getSet method.
 		 * @throws UnsupportedOperation the MultiHashSet does not support the get() method, use getSet()
 		 */
-		public override function get(key:*):*
+		public override function get( key:* ):*
 		{
 			throw new UnsupportedOperation("This MultiHashSet does not support the get() method, use getSet().") ;
 			return null ;
@@ -202,7 +202,7 @@
 		 * @return nothing (null)
 		 * @throw UnsupportedOperation the MultiHashSet instance does not support the insert() method.
 		 */		
-		public function insert(o:*):Boolean
+		public function insert( o:* ):Boolean
 		{
 			throw new UnsupportedOperation("This MultiHashSet does not support the insert() method.") ;
 			return null ;

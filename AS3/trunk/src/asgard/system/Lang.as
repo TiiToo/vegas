@@ -68,7 +68,7 @@ package asgard.system
 		/**
 		 * The map 
 		 */
-		static public var LANGS:HashMap = new HashMap () ;
+		public static var LANGS:HashMap = new HashMap () ;
 
 		/**
 		 * The label of the current Lang instance.
@@ -83,22 +83,22 @@ package asgard.system
 		/**
 		 * Returns a Lang instance with the specified 'id' value.
 		 */
-		static public function get( id:String ):Lang
+		public static function get( id:String ):Lang
 		{
 			return LANGS.get(id) ;			
 		}
 
-		static public function put( lang:Lang ):*
+		public static function put( lang:Lang ):*
 		{
 			return LANGS.put( lang.valueOf() , lang ) ;
 		}
 
-		static public function remove( lang:Lang ):*
+		public static function remove( lang:Lang ):*
 		{
 			return LANGS.remove( lang.valueOf() ) ;
 		}
 
-		static public function size():uint
+		public static function size():uint
 		{
 			return LANGS.size() ;
 		}
@@ -120,7 +120,7 @@ package asgard.system
 		/**
 		 * Returns true if the passed value is a valid Lang reference. 
 		 */
-		static public function validate( lang:* ):Boolean 
+		public static function validate( lang:* ):Boolean 
 		{
 		
 			var sLang:String = (lang as String).toString() ;
@@ -143,47 +143,47 @@ package asgard.system
 			return value ;
 		}
 
-		static public const CS:Lang    = new Lang("cs", "Tchèque") ;
+		public static const CS:Lang    = new Lang("cs", "Tchèque") ;
 
-		static public const DA:Lang    = new Lang("da", "Danois") ;
+		public static const DA:Lang    = new Lang("da", "Danois") ;
 
-		static public const NL:Lang    = new Lang("nl", "Hollandais") ;
+		public static const NL:Lang    = new Lang("nl", "Hollandais") ;
 
-		static public const EN:Lang    = new Lang("en", "Anglais") ;
+		public static const EN:Lang    = new Lang("en", "Anglais") ;
 
-		static public const FI:Lang    = new Lang("fi", "Finlandais") ;
+		public static const FI:Lang    = new Lang("fi", "Finlandais") ;
 
-		static public const FR:Lang    = new Lang("fr", "Français") ;
+		public static const FR:Lang    = new Lang("fr", "Français") ;
 
-		static public const DE:Lang    = new Lang("de", "Allemand") ;
+		public static const DE:Lang    = new Lang("de", "Allemand") ;
 
-		static public const HU:Lang    = new Lang("hu", "Hongrois") ;
+		public static const HU:Lang    = new Lang("hu", "Hongrois") ;
 
-		static public const IT:Lang    = new Lang("it", "Italien") ;
+		public static const IT:Lang    = new Lang("it", "Italien") ;
 
-		static public const JA:Lang    = new Lang("ja", "Japonais") ;
+		public static const JA:Lang    = new Lang("ja", "Japonais") ;
 
-		static public const KO:Lang    = new Lang("ko", "Coréen") ;
+		public static const KO:Lang    = new Lang("ko", "Coréen") ;
 
-		static public const NO:Lang    = new Lang("no", "Norvégien") ;
+		public static const NO:Lang    = new Lang("no", "Norvégien") ;
 
-		static public const XU:Lang    = new Lang("xu", "Autre/Inconnu") ;
+		public static const XU:Lang    = new Lang("xu", "Autre/Inconnu") ;
 
-		static public const PL:Lang    = new Lang("pl", "Polonais") ;
+		public static const PL:Lang    = new Lang("pl", "Polonais") ;
 
-		static public const PT:Lang    = new Lang("pt", "Portugais") ;
+		public static const PT:Lang    = new Lang("pt", "Portugais") ;
 
-		static public const RU:Lang    = new Lang("ru", "Russe") ;
+		public static const RU:Lang    = new Lang("ru", "Russe") ;
 
-		static public const ZH_CN:Lang = new Lang("zh-CN", "Chinois simplifié") ;
+		public static const ZH_CN:Lang = new Lang("zh-CN", "Chinois simplifié") ;
 
-		static public const ES:Lang    = new Lang("es", "Espagnol") ;
+		public static const ES:Lang    = new Lang("es", "Espagnol") ;
 
-		static public const SV:Lang    = new Lang("sv", "Suédois") ;
+		public static const SV:Lang    = new Lang("sv", "Suédois") ;
 
-		static public const ZH_TW:Lang = new Lang("zh-TW", "Chinois Traditionnel") ;
+		public static const ZH_TW:Lang = new Lang("zh-TW", "Chinois Traditionnel") ;
 
-		static public const TR:Lang    = new Lang("tr", "Turc") ;
+		public static const TR:Lang    = new Lang("tr", "Turc") ;
 
 	}
 

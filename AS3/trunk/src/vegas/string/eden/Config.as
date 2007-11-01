@@ -36,7 +36,7 @@ package vegas.string.eden
 		 * tabs, carriages returns, lines feeds etc.
 		 * to optimize (more or less) packets of datas when they are transfered.
 		 */
-		static public var compress:Boolean = true;
+		public static var compress:Boolean = true;
 		
 		/**
 		 * Parameter allowing to copy objects by value
@@ -51,14 +51,14 @@ package vegas.string.eden
 		 * but if copyObjectByValue = true
 		 * bar will be an exact copy of foo object
 		 */
-		static public var copyObjectByValue:Boolean = false;
+		public static var copyObjectByValue:Boolean = false;
 		
     	/**
     	 * Allows to define the case-sensitivy of the parsers.
     	 * If true, variable names that differ only in case are
     	 * considered different.
     	 */
-    	static public var strictMode:Boolean = true;
+    	public static var strictMode:Boolean = true;
      
 		/**
 		 * Value assigned to a variable
@@ -68,13 +68,13 @@ package vegas.string.eden
 		 *   override it with a more suitable one
 		 *   for exemple on C# you could set it to null.
 		 */
-	    static public var undefineable:* = undefined ;
+	    public static var undefineable:* = undefined ;
 		
     	/**
     	 * Parameter allowing to trace messages
     	 * in the console if the environment permit it.
 		 */
-	    static public var verbose:Boolean = true ;
+	    public static var verbose:Boolean = true ;
 		
     	/**
     	 * Parameter setting on (true) or off (false) the security.
@@ -82,7 +82,7 @@ package vegas.string.eden
     	 * be scanned at interpretation time against the
     	 * authorized list (see: buRRRn.eden.config.authorized).
     	 */
-	    static public var security:Boolean = true ;
+	    public static var security:Boolean = true ;
 		
 	    /**
 	     * List of authorized keywords, objects path and constructors
@@ -103,7 +103,7 @@ package vegas.string.eden
 	     * attention:
 	     * 	special values as NaN, true, false, null, undefined are always authorized
 	     */
-	    static public var authorized:Array = 
+	    public static var authorized:Array = 
 	    [ 
 			"Array", "Boolean", "Date", "Error", "Math.*", "Number.*", "Object", "String.*", "Infinity" 
 		] ;
@@ -121,18 +121,18 @@ package vegas.string.eden
 	     * but with allowFunctionCall = false
 	     * toto will equal undefined
     	 */
-	    static public var allowFunctionCall:Boolean = false ;
+	    public static var allowFunctionCall:Boolean = false ;
 		
 		/**
 		 * autoAddScopePath
 		 */
-		static public var autoAddScopePath:Boolean = false ;
+		public static var autoAddScopePath:Boolean = false ;
 		
 		/**
 		 * When set to false array index are evaluated without bracket eval( test.0 ) for Flash ActionScript.
 		 * When set to true array index are evaluated with bracket eval( test[0] ) for JavaScript, JScript, JSDB etc.
 	     */
-	    static public var arrayIndexAsBracket:Boolean = false ;
+	    public static var arrayIndexAsBracket:Boolean = false ;
 		
 	}
 	

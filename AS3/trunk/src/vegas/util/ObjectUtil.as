@@ -38,7 +38,7 @@ package vegas.util
 	     * Returns the shallow copy of the object.
     	 * @return the shallow copy of the object.
     	 */
-        static public function clone(o:Object):Object 
+        public static function clone(o:Object):Object 
         {
 		    return o ;	
         }
@@ -47,7 +47,7 @@ package vegas.util
     	 * Returns the deep copy of the object.
     	 * @return the deep copy of the object.
 	     */ 
-	    static public function copy(o:*):*
+	    public static function copy(o:*):*
         {
 			var obj:Object = {} ;
 			var prop:String ;
@@ -76,7 +76,7 @@ package vegas.util
         /**
          * Copy the primitive object passed-in argument.
          */
-        static public function copyPrimitive(o:Object):Object
+        public static function copyPrimitive(o:Object):Object
         {
             var buffer:ByteArray = new ByteArray();
             buffer.writeObject(o);
@@ -88,7 +88,7 @@ package vegas.util
     	 * Returns {@code true} if the passed object is empty of enumerable property.
     	 * @return {@code true} if the passed object is empty of enumerable property.
     	 */
-        static public function isEmpty(o:Object):Boolean 
+        public static function isEmpty(o:Object):Boolean 
         {
             for (var each:String in o) 
         	{
@@ -101,7 +101,7 @@ package vegas.util
          * Returns {@code true} if the specified object is a simple object.
          * @return {@code true} if the specified object is a simple object.
          */ 
-		static public function isSimple(value:Object):Boolean 
+		public static function isSimple(value:Object):Boolean 
 		{
 			
 			var tof:String = typeof(value);
@@ -128,7 +128,7 @@ package vegas.util
     	/**
 	     * Creates a shallow copy of the current Object.
     	 */
-	    static public function memberwiseClone( o:* ):Object 
+	    public static function memberwiseClone( o:* ):Object 
     	{
     	    var obj:Object = {} ;
             for( var prop:String in o ) 
@@ -141,7 +141,7 @@ package vegas.util
 	    /**
     	 * Converts an object to an equivalent Boolean value.
     	 */
-        static public function toBoolean(o:*):Boolean 
+        public static function toBoolean(o:*):Boolean 
         {
         	return (new Boolean( o.valueOf() )).valueOf() ;
         }
@@ -149,7 +149,7 @@ package vegas.util
     	/**
     	 * Converts an object to an equivalent Number value.
     	 */
-    	static public function toNumber(o:*):Number 
+    	public static function toNumber(o:*):Number 
 	    {
             return (new Number( o.valueOf() )).valueOf() ;
     	}
@@ -157,7 +157,7 @@ package vegas.util
     	/**
 	     * Converts an object to an equivalent Object value.
     	 */
-   	    static public function toObject(o:*):Object 
+   	    public static function toObject(o:*):Object 
         {
       		return o.valueOf() as Object ;
     	}
@@ -166,7 +166,7 @@ package vegas.util
         * Returns the string representation of the source of the specified object.
         * @return the string representation of the source of the specified object.
         */	
- 	   static public function toSource( ...arguments ):String 
+ 	   public static function toSource( ...arguments ):String 
  	   {
  	        var o:Object = arguments[0] ;
  	        var indent:Number = arguments[1] ;

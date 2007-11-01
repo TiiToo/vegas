@@ -83,7 +83,7 @@ package vegas.events
 		 * @param method the method to be called.
 		 * @return a Function that delegates its call to a custom scope, method and arguments.
 		 */
- 	   static public function create(scope:*, method:Function, ...arguments:Array):Function 
+ 	   public static function create(scope:*, method:Function, ...arguments:Array):Function 
  	   {
 			var f:Function = function( ...args:Array ):* 
 			{	

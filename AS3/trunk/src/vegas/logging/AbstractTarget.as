@@ -47,17 +47,17 @@ package vegas.logging
 		/**
 		 * The static field used when throws an Error when a character is invalid.
 		 */        
-        static public var charsInvalid:String = "The following characters are not valid\: []~$^&\/(){}<>+\=_-`!@#%?,\:;'\\" ;
+        public static var charsInvalid:String = "The following characters are not valid\: []~$^&\/(){}<>+\=_-`!@#%?,\:;'\\" ;
 
 		/**
 		 * The static field used when throws an Error when filter failed.
 		 */        
-        static public var errorFilter:String = "Error for filter \''{0}'" ;
+        public static var errorFilter:String = "Error for filter \''{0}'" ;
         
 		/**
 		 * The static field used when throws an Error when the character placement failed.
 		 */        
-        static public var charPlacement:String = "'*' must be the right most character." ;
+        public static var charPlacement:String = "'*' must be the right most character." ;
 
 		/**
 		 * (read-write) Returns the filters array representation of this target.

@@ -39,7 +39,7 @@ package vegas.data.map
 		 * @param key the key in the map to used to return the number value.
 		 * @return the value of the specified key in the map with a Number representation.
 		 */
-		static public function getNumber(map:Map, key:*):Number 
+		public static function getNumber(map:Map, key:*):Number 
 		{
         	if (map != null) 
         	{

@@ -33,32 +33,32 @@ package vegas.events.dom
 	    /**
 	     * The target phase, which is the second phase of the event flow (2).
 	     */
-		static public const AT_TARGET:uint = 2 ;
+		public static const AT_TARGET:uint = 2 ;
 	    
 	    /**
 	     * The bubbling phase, which is the third phase of the event flow (3).
 	     */
-		static public const BUBBLING_PHASE:uint = 3 ;
+		public static const BUBBLING_PHASE:uint = 3 ;
 	    
 	   	/**
 	     * The capturing phase, which is the first phase of the event flow (1).
 	     */
-		static public const CAPTURING_PHASE:uint = 1 ;
+		public static const CAPTURING_PHASE:uint = 1 ;
 	
     	/**
 		 * The default phase(0)
 		 */
-		static public const NONE:uint = 0 ;
+		public static const NONE:uint = 0 ;
 
     	/**
 	     * Stop the phase in progress (8). Use only by the vegas.events.dom.IEvent and vegas.events.dom.EventDispatcher class.
 	     */
-		static public const STOP:uint = 8 ;
+		public static const STOP:uint = 8 ;
 
 	    /**
 	     * Stop the phase immediately (10). Use only by the vegas.events.dom.IEvent and vegas.events.dom.EventDispatcher class.
 	     */
-		static public const STOP_IMMEDIATE:uint = 10 ;
+		public static const STOP_IMMEDIATE:uint = 10 ;
 		
 	}
 }

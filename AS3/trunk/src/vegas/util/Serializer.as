@@ -39,12 +39,12 @@ package vegas.util
 	    /**
     	 * Global reserved words in an array.
     	 */
-	    static public var GLOBAL_RESERVED:Array = ["_global"] ;
+	    public static var GLOBAL_RESERVED:Array = ["_global"] ;
 	
     	/**
     	 * Returns {@code true} if the current word if a global word reserved.
     	 */
-    	static public function isGlobalReserved( name:String ):Boolean 
+    	public static function isGlobalReserved( name:String ):Boolean 
 	    {
 		    var l:Number = GLOBAL_RESERVED.length ;
             while(--l > -1) 
@@ -54,7 +54,7 @@ package vegas.util
             return false;
 		}
  
-        static public function globalToSource( indent:Number, indentor:String ):String  
+        public static function globalToSource( indent:Number, indentor:String ):String  
 	    {
     	
     	    //var target, member;
@@ -113,7 +113,7 @@ package vegas.util
 	    	return decal + "{" + decal + source.join( "," + decal ) + decal + "}" ;
 	    }
 	    
-		static public function getSourceOf(o:*, params:Array):String 
+		public static function getSourceOf(o:*, params:Array):String 
 		{
 		    var path:String = ClassUtil.getPath(o) ;
     		var source:String = "new " + path + "(" ;
@@ -130,7 +130,7 @@ package vegas.util
     		return source ;
 	    }
 
-	    static public function toSource( ...arguments ):String 
+	    public static function toSource( ...arguments ):String 
 	    {
 		    
 		    var o:* = arguments[0] ;

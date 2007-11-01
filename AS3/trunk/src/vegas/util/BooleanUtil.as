@@ -34,7 +34,7 @@ package vegas.util
         /**
          * Returns a copy by reference of this boolean.
          */
-        static public function clone(b:Boolean):Boolean 
+        public static function clone(b:Boolean):Boolean 
         {
 		    return b ;
     	}
@@ -42,7 +42,7 @@ package vegas.util
         /**
          * Returns a copy by value of this object.
          */
-    	static public function copy(b:Boolean):Boolean 
+    	public static function copy(b:Boolean):Boolean 
     	{
 	    	return b.valueOf() ;
     	}
@@ -50,7 +50,7 @@ package vegas.util
         /**
          * compare if two Booleans are equal by value.
          */
-	    static public function equals( b1:Boolean, b2:Boolean ):Boolean 
+	    public static function equals( b1:Boolean, b2:Boolean ):Boolean 
 	    {
     		if ( !b2 ) 
     		{
@@ -62,7 +62,7 @@ package vegas.util
 	    /**
 	     * Converts to an equivalent Boolean value.
 	     */
-    	static public function toBoolean(b:Boolean):Boolean 
+    	public static function toBoolean(b:Boolean):Boolean 
     	{
     		return b.valueOf() ;
     	}
@@ -70,7 +70,7 @@ package vegas.util
 	    /**
  	     * Converts to an equivalent Number value.
  	     */
-    	static public function toNumber(b:Boolean):Number 
+    	public static function toNumber(b:Boolean):Number 
     	{
     		return  b.valueOf() == true ? 1 : 0 ;
         }
@@ -78,7 +78,7 @@ package vegas.util
 	    /**
 	     * Converts to an equivalent Object value.
 	     */
-    	static public function toObject(b:Boolean):Object 
+    	public static function toObject(b:Boolean):Object 
     	{
     		return new Boolean( b.valueOf() ) ;
         }
@@ -86,7 +86,7 @@ package vegas.util
         /**
          * Returns a string representing the source code of the boolean.
          */
-        static public function toSource( ...arguments ):String 
+        public static function toSource( ...arguments ):String 
         {
 		    return BooleanUtil.equals(arguments[0], true) ? "true" : "false" ;
         }

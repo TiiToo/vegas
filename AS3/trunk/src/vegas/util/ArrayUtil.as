@@ -37,7 +37,7 @@ package vegas.util
          * Creates the shallow copy of the Array.
          * @return the shallow copy of the Array.
          */
-    	static public function clone(ar:Array):Array 
+    	public static function clone(ar:Array):Array 
     	{
     		return ar.slice() ;
     	}
@@ -45,7 +45,7 @@ package vegas.util
         /**
          * Returns whether the Array contains a particular item.
          */
-    	static public function contains( ar:Array , value:Object):Boolean 
+    	public static function contains( ar:Array , value:Object):Boolean 
     	{
     		return ar.indexOf(value) > -1 ;
     	}
@@ -54,7 +54,7 @@ package vegas.util
     	 * Creates the deep copy of the Array.
     	 * @return the deep copy of the Array.
     	 */
-    	static public function copy(ar:Array):Array 
+    	public static function copy(ar:Array):Array 
     	{
     		var a:Array = [] ;
     		var l:uint = ar.length ;
@@ -80,7 +80,7 @@ package vegas.util
 		 * Returns an new array from arguments in a function.
 		 * @return an new array from arguments in a function.
 		 */
-    	static public function fromArguments( ar:Array, args:Array ):Array 
+    	public static function fromArguments( ar:Array, args:Array ):Array 
     	{
     		return ar.concat(args) ;	
         }
@@ -93,7 +93,7 @@ package vegas.util
 		 * @param count	allows to limit the number of elements to search in the array.
 		 * @return the index of the first occurrence of a value in a one-dimensional Array or in a portion of the Array.
 		 */
-    	static public function indexOf( ar:Array, value:Object, startIndex:Number, count:Number):Number 
+    	public static function indexOf( ar:Array, value:Object, startIndex:Number, count:Number):Number 
     	{
     		var l:Number = ar.length ;
     		if(isNaN(startIndex) ) startIndex = 0 ;
@@ -120,7 +120,7 @@ package vegas.util
     	/**
     	 * Create and Initialize an Array.
     	 */
-    	static public function initialize(index:Number, value:* = null):Array 
+    	public static function initialize(index:Number, value:* = null):Array 
     	{
     		if( isNaN(index) ) index = 0 ;
             var ar:Array = [] ;
@@ -153,7 +153,7 @@ package vegas.util
     	 * // myScope index:2 test the value '4' in the Array : 2,3,4
     	 * }
     	 */
-    	static public function some( ar:Array , callback:Function , thisObject:* = null ):Boolean 
+    	public static function some( ar:Array , callback:Function , thisObject:* = null ):Boolean 
     	{
             var len:Number = ar.length ;
             var i:Number = 0 ;
@@ -167,7 +167,7 @@ package vegas.util
         /**
          * Returns a string representing the source code of the array.
          */
-	    static public function toSource(ar:Array, indent:Number = NaN , indentor:String = null ):String 
+	    public static function toSource(ar:Array, indent:Number = NaN , indentor:String = null ):String 
 	    {
     		var i:Number;
     		var source:Array = [] ;

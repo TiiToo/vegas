@@ -53,11 +53,11 @@ package asgard.events
 			setFault( fault) ;
 		}
 	
-		static public const ERROR:String = "onError" ;	
+		public static const ERROR:String = "onError" ;	
 
-		static public const FAULT:String = "onFault" ;
+		public static const FAULT:String = "onFault" ;
 		
-		static public const RESULT:String = "onResult" ;
+		public static const RESULT:String = "onResult" ;
 		
 		public var code:String ;
 

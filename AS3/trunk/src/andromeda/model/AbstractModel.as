@@ -23,9 +23,9 @@
 
 package andromeda.model
 {
-	import vegas.events.AbstractCoreEventDispatcher;
-	
-	/**
+    import vegas.events.AbstractCoreEventDispatcher;
+
+    /**
 	 * This class provides a skeletal implementation of the {@code IModel} interface, to minimize the effort required to implement this interface.
 	 * @author eKameleon
 	 */
@@ -35,9 +35,13 @@ package andromeda.model
 		/**
 		 * Creates a new AbstractModel instance.
 		 * @param id the id of the model.
+         * @param id the id of this model.
+		 * @param bGlobal the flag to use a global event flow or a local event flow.
+		 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 		 */	
-		public function AbstractModel( id:* = null )
+		public function AbstractModel( id:* = null , bGlobal:Boolean = false , sChannel:String = null )
 		{
+			super( bGlobal , sChannel ) ;
 			_setID( (id == null) ? this.hashCode() : id ) ;
 		}
 
@@ -58,7 +62,16 @@ package andromeda.model
 		{
 			_setID( value || hashCode() ) ;
 		}
-		
+
+		/**
+	 	 * Run the first process with this model.
+	 	 * Overrides this method if you want implement a command process.
+		 */
+		public function run( ...arguments:Array ):void 
+		{
+			
+		}
+
 		/**
 		 * The internal id property of this IModelObject. By default the id equals the hashCode() value.
 		 */

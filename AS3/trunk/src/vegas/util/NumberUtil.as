@@ -34,7 +34,7 @@ package vegas.util
     	/**
     	 * Returns a copy by reference of this Number.
     	 */
-    	static public function clone(n:Number=NaN):Number 
+    	public static function clone(n:Number=NaN):Number 
     	{
     		return n ;
     	}
@@ -42,7 +42,7 @@ package vegas.util
 	    /**
     	 * Returns a copy by value of this Number.
     	 */
-    	static public function copy(n:Number=NaN):Number 
+    	public static function copy(n:Number=NaN):Number 
     	{
     		return Number(n.valueOf()) ;
     	}
@@ -50,7 +50,7 @@ package vegas.util
     	/**
     	 * compare if two Numbers are equal by value
     	 */
-    	static public function equals( n1:Number=NaN, n2:Number=NaN ):Boolean 
+    	public static function equals( n1:Number=NaN, n2:Number=NaN ):Boolean 
     	{
        		if ( n1.toString() == n2.toString() )
     		{
@@ -66,7 +66,7 @@ package vegas.util
     	/**
     	 * Converts to an equivalent Boolean value.
     	 */
-    	static public function toBoolean(n:Number=NaN):Boolean 
+    	public static function toBoolean(n:Number=NaN):Boolean 
     	{
     		if (isNaN(n) || n.valueOf() == 0) return false ;
     		return true ;
@@ -76,7 +76,7 @@ package vegas.util
          * Returns a string representation of the specified number.
          * @return a string representation of the specified number.
          */
-    	static public function toSource( n:Number ):String 
+    	public static function toSource( n:Number ):String 
     	{
 		    return n.toString() ;
         }

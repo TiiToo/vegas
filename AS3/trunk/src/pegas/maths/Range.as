@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is PEGAS Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -72,17 +72,17 @@ package pegas.maths
 		/**
 		 * Range reference between 0 and 100.
 		 */
-    	static public const PERCENT_RANGE:Range = new Range(0, 100) ;
+    	public static const PERCENT_RANGE:Range = new Range(0, 100) ;
 	
 		/**
 		 * Range reference between -255 and 255.
 		 */
-	    static public const COLOR_RANGE:Range = new Range(-255, 255) ;
+	    public static const COLOR_RANGE:Range = new Range(-255, 255) ;
 
 		/**
 		 * Range reference between 0 and 1.
 		 */
-	    static public const UNITY_RANGE:Range = new Range(0, 1) ;
+	    public static const UNITY_RANGE:Range = new Range(0, 1) ;
 
 		/**
 		 * The max value of the range.
@@ -119,7 +119,7 @@ package pegas.maths
 		 * @param range1 the first range, {@code null} permitted.
 		 * @param range2 the second range, {@code null} permitted.
 		 */
-		static public function combine( range1:Range, range2:Range ):Range
+		public static function combine( range1:Range, range2:Range ):Range
 		{
 			if (range1 == null)
 			{
@@ -181,7 +181,7 @@ package pegas.maths
 	 	 * @return The expanded range.
 		 * @throws IllegalArgumentError if the range argument is {@code null}
 	  	 */
-		static public function expand(range:Range, lowerMargin:Number, upperMargin:Number):Range
+		public static function expand(range:Range, lowerMargin:Number, upperMargin:Number):Range
 		{
 			if (range == null)
 			{

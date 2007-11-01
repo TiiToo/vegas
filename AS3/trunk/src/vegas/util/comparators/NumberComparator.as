@@ -119,7 +119,7 @@ package vegas.util.comparators
 		 * Developers are encouraged to use the comparator returned from this method instead of constructing a new instance to reduce allocation and GC overhead when multiple comparable comparators may be used in the same application.
 	 	 * @return the singleton instance of a NumberComparator.
 		 */
-		static public function getInstance():NumberComparator
+		public static function getInstance():NumberComparator
 		{
 			if (_instance == null)
 			{

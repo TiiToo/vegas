@@ -40,12 +40,12 @@ package vegas.string
 		/**
 		 * logs property.
 		 */
-		static public var logs:Array = [];
+		public static var logs:Array = [];
 		
     	/**
 		 * Allows to display messages in the console.
 		 */
-	    static public function _trace( message:String ):void
+	    public static function _trace( message:String ):void
     	{
 			trace( message );
         }
@@ -53,7 +53,7 @@ package vegas.string
 	    /**
 		 * Add a message to the logs queue.
 	      */
-  		static public function log( message:String ):void
+  		public static function log( message:String ):void
         {
         	logs.push( message );
 			
@@ -66,7 +66,7 @@ package vegas.string
 	    /** 
 	     * Display all the logs in the console.
 	     */
-	    static public function showLogs():void
+	    public static function showLogs():void
     	{
     		var l:uint = logs.length ;
         	for( var i:uint=0; i<l ; i++ )
@@ -79,7 +79,7 @@ package vegas.string
 		 * StaticEvent: onParsed
 		 * To override.
 		 */
-	    static public function onParsed( value:* ):*
+	    public static function onParsed( value:* ):*
         {
     	    return value;
         }
@@ -88,7 +88,7 @@ package vegas.string
 		 * Dynamically interpret a source string.
 		 * That's it, a small and fast ECMAScript parser.
 		 */
-		static public function deserialize( source:String="hello", scope:* = null, callback:* = null ):*
+		public static function deserialize( source:String="hello", scope:* = null, callback:* = null ):*
         {
 	        return ECMAScript.evaluate( source, scope, callback ) ;
         }
@@ -96,7 +96,7 @@ package vegas.string
     	/**
 		 * Takes an object reference and serialize it as an ECMAScript string.
 		 */
-		static public function serialize( ...arguments:Array ):String
+		public static function serialize( ...arguments:Array ):String
 		{
 			
             var indent:* ;
@@ -134,7 +134,7 @@ package vegas.string
     	/**
 		 * addAuthorized
 		 */
-	    static public function addAuthorized( ...arguments:Array ):void
+	    public static function addAuthorized( ...arguments:Array ):void
         {
 			
     	    var l:uint = arguments.length ;
@@ -151,7 +151,7 @@ package vegas.string
     	/**
 		 * removeAuthorized
 		 */
-	    static public function removeAuthorized( ...arguments:Array ):void
+	    public static function removeAuthorized( ...arguments:Array ):void
         {
     	    var paths:* ;
     	    var i:uint ;
@@ -173,7 +173,7 @@ package vegas.string
         /**
 		 * isAuthorized
 		 */
-	    static public function isAuthorized( path:String ):Boolean
+	    public static function isAuthorized( path:String ):Boolean
         {
 			
 			

@@ -39,7 +39,7 @@ package asgard.net.remoting
 		/**
 		 * Removes all RemotingConnection reference in the collector.
 	 	 */
-		static public function clear():void
+		public static function clear():void
 		{
 			_map.clear() ;	
 		}
@@ -48,7 +48,7 @@ package asgard.net.remoting
 	 	 * Returns {@code true} if the collector contains the RemotingConnection register with the name passed in argument.
 	 	 * @return {@code true} if the collector contains the RemotingConnection register with the name passed in argument.
 	 	 */
-		static public function contains( sName:String ):Boolean 
+		public static function contains( sName:String ):Boolean 
 		{
 			return _map.containsKey( sName ) ;	
 		}
@@ -57,7 +57,7 @@ package asgard.net.remoting
 		 * Returns the RemotingConnection reference with the name passed in argument.
 		 * @return the RemotingConnection reference with the name passed in argument.
 		 */
-		static public function get(sName:String):RemotingConnection 
+		public static function get(sName:String):RemotingConnection 
 		{
 			try 
 			{
@@ -79,7 +79,7 @@ package asgard.net.remoting
 		 * @param sName the name of the RemotingConnection object to register it.
 		 * @param rc the RemotingConnection reference. 
 		 */
-		static public function insert(sName:String, rc:RemotingConnection):Boolean 
+		public static function insert(sName:String, rc:RemotingConnection):Boolean 
 		{
 			try 
 			{
@@ -100,7 +100,7 @@ package asgard.net.remoting
 	 	 * Returns {@code true} if the collector is empty.
 		 * @return {@code true} if the collector is empty.
 		 */
-		static public function isEmpty():Boolean 
+		public static function isEmpty():Boolean 
 		{
 			return _map.isEmpty() ;	
 		}
@@ -108,7 +108,7 @@ package asgard.net.remoting
 		/**
 		 * Removes the RemotingConnection in the collector specified by the argument {@code sName}.
 	 	 */
-		static public function remove(sName:String):void
+		public static function remove(sName:String):void
 		{
 			_map.remove(sName) ;
 		}
@@ -117,7 +117,7 @@ package asgard.net.remoting
 		 * Returns the number of elements in the collector.
 		 * @return the number of elements in the collector.
 		 */
-		static public function size():uint
+		public static function size():uint
 		{
 			return _map.size() ;
 		}

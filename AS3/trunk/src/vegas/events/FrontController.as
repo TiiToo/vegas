@@ -93,7 +93,7 @@ package vegas.events
 		/**
 		 * Flush all global FrontController singletons.
 	 	*/
-		static public function flush():void 
+		public static function flush():void 
 		{
 			FrontController.instances.clear() ;
 		}
@@ -112,7 +112,7 @@ package vegas.events
 		 * @param channel The channel of the FrontController (default the EventDispatcher.DEFAULT_SINGLETON_NAME value).
 	 	 * @return a global {@code FrontController} singleton.
 		 */
-		static public function getInstance( channel:String = null ):FrontController 
+		public static function getInstance( channel:String = null ):FrontController 
 		{
 			if ( channel == null ) 
 			{
@@ -164,7 +164,7 @@ package vegas.events
     	/**
 		 * Removes a global FrontController singleton.
 		 */
-		static public function removeInstance( channel:String ):Boolean 
+		public static function removeInstance( channel:String ):Boolean 
 		{
 			if (!FrontController.instances.containsKey(channel)) 
 			{

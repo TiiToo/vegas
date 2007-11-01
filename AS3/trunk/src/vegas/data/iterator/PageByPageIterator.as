@@ -102,7 +102,7 @@ package vegas.data.iterator
 	    /**
 	     * The default step value in all the PageByPageIterators.
 	     */
-	    static public var DEFAULT_STEP:Number = 1 ;
+	    public static var DEFAULT_STEP:Number = 1 ;
  
     	/**
     	 * Returns the current page value.

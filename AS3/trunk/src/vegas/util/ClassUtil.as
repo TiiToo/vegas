@@ -43,7 +43,7 @@ package vegas.util
     	 * @param initProperties An object with all properties to to pass over the new instance.
     	 * @return a new instance of the specified Class in argument.
     	 */
-		static public function createNewInstance(c:Class = null , initProperties:Object = null ) :* 
+		public static function createNewInstance(c:Class = null , initProperties:Object = null ) :* 
 		{
 			if ( c == null )
 			{
@@ -65,7 +65,7 @@ package vegas.util
 	     * Returns the name string representation of the specified instance passed in arguments.
     	 * @param instance the reference of the object to apply reflexion.
     	 */
-		static public function getName(instance:*):String 
+		public static function getName(instance:*):String 
 		{
 			return _formatName(getPath(instance)) ;
 		}
@@ -74,7 +74,7 @@ package vegas.util
 		 * Returns the unique name of the specified instance in argument.
 		 * @return the unique name of the specified instance in argument.
 		 */
-		static public function getUniqueName(instance:*):String
+		public static function getUniqueName(instance:*):String
 		{
 			var name:String = getName(instance) ;
 			
@@ -104,7 +104,7 @@ package vegas.util
     	 * Returns the package string representation of the specified instance passed in arguments.
     	 * @param instance the reference of the object to apply reflexion.
     	 */
-		static public function getPackage(instance:*):String 
+		public static function getPackage(instance:*):String 
 		{
 			return _formatPackage(getPath(instance)) ;
 		}	
@@ -113,22 +113,22 @@ package vegas.util
     	 * Returns the full path string representation of the specified instance passed in arguments (package + name).
     	 * @param instance the reference of the object to apply reflexion.
     	 */
-		static public function getPath(instance:*):String 
+		public static function getPath(instance:*):String 
 		{
             return _formatPath(flash.utils.getQualifiedClassName(instance)) ;
 		}
 
-		static public function getSuperName(instance:*):String 
+		public static function getSuperName(instance:*):String 
 		{
 			return _formatName(getSuperPath(instance)) ;
 		}
 
-		static public function getSuperPackage(instance:*):String 
+		public static function getSuperPackage(instance:*):String 
 		{
 			return _formatPackage(getSuperPath(instance)) ;
 		}
 		
-		static public function getSuperPath(instance:*):String 
+		public static function getSuperPath(instance:*):String 
 		{
 			return _formatPath(flash.utils.getQualifiedSuperclassName(instance)) ;
 		}

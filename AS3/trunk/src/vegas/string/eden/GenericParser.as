@@ -144,7 +144,7 @@ package vegas.string.eden
 		 * @static evaluate( source:String, callback:* ):*
 		 * To override.
 		 */
-	    static public function evaluate( source:String, callback:* ):*
+	    public static function evaluate( source:String, callback:* ):*
         {
     	    var parser:GenericParser = new GenericParser( source, callback );
 	        return parser.eval();

@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -111,7 +111,7 @@ package vegas.util.comparators
 		 * Clients are encouraged to use the value returned from this method instead of constructing a new instance to reduce allocation and garbage collection overhead when multiple StringComparators may be used in the same application.
 	 	 * @return the {@code StringComparator} singleton with the a {@code false} ignoreCase property.
 	 	*/
-		static public function getStringComparator():IComparator
+		public static function getStringComparator():IComparator
 		{
 			if ( _comparator == null )
 			{
@@ -125,7 +125,7 @@ package vegas.util.comparators
 	 	 * Clients are encouraged to use the value returned from this method instead of constructing a new instance to reduce allocation and garbage collection overhead when multiple StringComparators may be used in the same application.
 		 * @return the {@code StringComparator} singleton with the a {@code true} ignoreCase property.
 	  	 */
-		static public function getIgnoreCaseStringComparator():IComparator
+		public static function getIgnoreCaseStringComparator():IComparator
 		{
 			if ( _ignoreCaseComparator == null )
 			{

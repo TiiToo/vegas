@@ -95,7 +95,7 @@ package vegas.events.dom
 		 * Developers are encouraged to use the comparator returned from this method instead of constructing a new instance to reduce allocation and GC overhead when multiple comparable comparators may be used in the same application.
 	 	 * @return the singleton instance of this class.
 		 */
-		static public function getInstance():EventListenerComparator
+		public static function getInstance():EventListenerComparator
 		{
 			if (_instance == null)
 			{

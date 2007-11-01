@@ -35,7 +35,7 @@ package vegas.util
 	     * Returns a shallow copy of the date object passed in argument.
     	 * @return a shallow copy of the date object passed in argument.
     	 */
-        static public function clone(d:Date):Date 
+        public static function clone(d:Date):Date 
         {
 		    return new Date(d.valueOf()) ;
     	}
@@ -44,7 +44,7 @@ package vegas.util
 	     * Returns a deep copy of the date object passed in argument.
     	 * @return a deep copy of the date object passed in argument.
     	 */
-	    static public function copy(d:Date):Date 
+	    public static function copy(d:Date):Date 
 	    {
     		return new Date(d.valueOf()) ;
     	}
@@ -53,7 +53,7 @@ package vegas.util
     	 * Compares the twno specified Date objects for equality.
 	     * @return {@code true} if the the two specified Date object are equals.
     	 */
-	    static public function equals( d1:Date, d2:Date ):Boolean 
+	    public static function equals( d1:Date, d2:Date ):Boolean 
 	    {
 		    if (!d2) 
 		    {
@@ -66,7 +66,7 @@ package vegas.util
          * Returns a string representation the source code of the Date.
          * @return a string representation the source code of the Date.
          */
-        static public function toSource(date:Date):String 
+        public static function toSource(date:Date):String 
         {
 		    return "new Date(" + date.valueOf() + ")" ;
         }

@@ -37,17 +37,17 @@ package vegas.util
   		 * Represents the empty string.
   		 * This property should be read-only.
 		 */
-        static public const EMPTY:String = "" ;
+        public static const EMPTY:String = "" ;
         
         /**
          * Reprensents the space string value.
          */ 
-        static public const SPC:String = " " ; // SPACE
+        public static const SPC:String = " " ; // SPACE
 
 		/**
 	 	 * Contains a list of all white space chars.
 	 	 */
-		static public var WHITE_SPACE_CHARS:Array = 
+		public static var WHITE_SPACE_CHARS:Array = 
 		[ 
 			"\u0009", "\u000A", "\u000B", "\u000C", "\u000D",
 			"\u0020", "\u00A0", "\u2000", "\u2001", "\u2002",
@@ -60,7 +60,7 @@ package vegas.util
 	 	* Returns 0 if the passed string is lower case else 1.
 	 	* @return 0 if the passed string is lower case else 1.
 	 	*/
-		static public function caseValue( str:String ):Number
+		public static function caseValue( str:String ):Number
 		{
 			return ( str.toLowerCase() == str ) ? 0 : 1 ;
 		}
@@ -69,7 +69,7 @@ package vegas.util
          * Returns a shallow copy of the specified string.
          * @return a shallow copy of the specified string.
          */
-        static public function clone( s:String ):String 
+        public static function clone( s:String ):String 
         {
 		    return s ;	
     	}
@@ -77,7 +77,7 @@ package vegas.util
         /**
          * Compares the two specified String objects.
          */
-      	static public function compare( strA:String=null , strB:String=null, ignoreCase:Boolean=false ):Number 
+      	public static function compare( strA:String=null , strB:String=null, ignoreCase:Boolean=false ):Number 
       	{
 		    
 		    if( (strA == null) || (strB == null) ) 
@@ -149,7 +149,7 @@ package vegas.util
 		 * <li> 0 if charA and charB are equal.</li>
 		 * </p>
 		 */
-		static public function compareChars( charA:String, charB:String ):Number
+		public static function compareChars( charA:String, charB:String ):Number
 		{
 			var a:String = charA.charAt(0) ;
 			var b:String = charB.charAt(0) ;
@@ -175,7 +175,7 @@ package vegas.util
         /**
          * Returns a copy by value of this object.
          */
-        static public function copy(str:String):String 
+        public static function copy(str:String):String 
         {
 		    return str.valueOf() ;
 	    }
@@ -183,7 +183,7 @@ package vegas.util
         /**
          * Determines whether the end of this instance matches the specified String.
          */
-        static public function endsWith( str:String=null, value:String=null ):Boolean 
+        public static function endsWith( str:String=null, value:String=null ):Boolean 
         {
 		    if (value == null) 
 		    {
@@ -199,7 +199,7 @@ package vegas.util
         /**
          * Determines whether the start of this instance matches the specified String.
          */
-    	static public function firstChar( str:String ):String 
+    	public static function firstChar( str:String ):String 
     	{
     		return str.charAt(0) ;
     	}
@@ -238,7 +238,7 @@ package vegas.util
  		 * thanks Zwetan and Core2 Library and system package.
  		 * TODO : in the next version use the system package !
  		 */
- 		static public function format( pattern:String = null , ...args:Array ):String 
+ 		public static function format( pattern:String = null , ...args:Array ):String 
  		{
 			
 			
@@ -430,7 +430,7 @@ package vegas.util
 		 * }
 	 	 * @return the index of the first occurrence in this instance of any character in a specified array of Unicode characters.
 	 	 */
-     	static public function indexOfAny(str:String, ar:Array):int
+     	public static function indexOfAny(str:String, ar:Array):int
      	{
     		var index:int ;
     		var l:uint = ar.length ;
@@ -455,7 +455,7 @@ package vegas.util
 		 * }
 		 * @return the string modified by the method.
 		 */
-    	static public function insert( str:String, startIndex:uint=0, value:String=null):String 
+    	public static function insert( str:String, startIndex:uint=0, value:String=null):String 
     	{
     		if( value == null ) return str ;
     		if( str == "" ) return value ;
@@ -477,7 +477,7 @@ package vegas.util
 		 * @param str the string object.
 		 * @return {@code true} if this string is empty.
 	 	 */
-	    static public function isEmpty(str:String):Boolean 
+	    public static function isEmpty(str:String):Boolean 
 	    {
 		    return str.length == 0 ;
     	}
@@ -492,7 +492,7 @@ package vegas.util
 		 * @param str the string object.
 		 * @return the last char of the string.
 	 	 */
- 	    static public function lastChar(str:String):String 
+ 	    public static function lastChar(str:String):String 
  	    {
     		return str.charAt(length - 1) ;
 	    }
@@ -505,7 +505,7 @@ package vegas.util
 		 * }
 	 	 * @return the index position of the last occurrence in this instance of one or more characters specified in a Unicode array.
 	 	 */
-    	static public function lastIndexOfAny(str:String, ar:Array):int 
+    	public static function lastIndexOfAny(str:String, ar:Array):int 
     	{
     		var index:int = -1 ;
     		var l:uint = ar.length ;
@@ -530,7 +530,7 @@ package vegas.util
 		 * }
 		 * @return The right-aligns the characters in this instance, padding on the left with a specified Unicode character for a specified total length.
 		 */
-	    static public function padLeft(str:String, i:int, char:String):String 
+	    public static function padLeft(str:String, i:int, char:String):String 
 	    {
 		    char = char || " " ;
     		var s:String = new String(str) ;
@@ -556,7 +556,7 @@ package vegas.util
 		 * }
 		 * @return The left-aligns the characters in this string, padding on the right with a specified Unicode character, for a specified total length.
 	 	 */
-	    static public function padRight(str:String, i:int , char:String):String 
+	    public static function padRight(str:String, i:int , char:String):String 
 	    {
 		    char = char || " " ;
             var s:String = new String(str) ;
@@ -577,7 +577,7 @@ package vegas.util
 		 * @param the string to transform.
 		 * @return the new string transform with this method.
 		 */
-		static public function replace(str:String, search:String, replace:String):String 
+		public static function replace(str:String, search:String, replace:String):String 
  	   	{
 		    return str.split(search).join(replace) ;
 	    }
@@ -590,7 +590,7 @@ package vegas.util
 		 * }
 	 	 * @return the reverse string of the specified string passed-in argument.
 		 */
-		static public function reverse(str:String):String 
+		public static function reverse(str:String):String 
 	    {  
 		    var ar:Array = str.split("") ;
     		ar.reverse() ;
@@ -616,7 +616,7 @@ package vegas.util
 	 	 * @param deleteCount Indicating the number of old character elements to remove.
 		 * @param value The elements to add to the string. If you don't specify any elements, splice simply removes elements from the string.
 	 	 */	
-	    static public function splice(str:String, startIndex:uint, deleteCount:uint=0, value:* = null ):String 
+	    public static function splice(str:String, startIndex:uint, deleteCount:uint=0, value:* = null ):String 
 	    {
 			var a:Array = StringUtil.toArray(str) ;
 			a.splice(startIndex, deleteCount, value) ;
@@ -635,7 +635,7 @@ package vegas.util
 		 * }
 		 * @return {@code true} if the specified string is a prefix of the current instance.
 		 */
-    	static public function startsWith( str:String, value:String=null ):Boolean
+    	public static function startsWith( str:String, value:String=null ):Boolean
     	{
     	    
         	if( value == null )
@@ -666,7 +666,7 @@ package vegas.util
 		 * }
 		 * @return an array representation of this instance.
 	 	 */
-	    static public function toArray(str:String):Array 
+	    public static function toArray(str:String):Array 
 	    {
 		    return str.split("") ;
 	    }
@@ -681,7 +681,7 @@ package vegas.util
 		 * }
 	 	 * @return a string representing the source code of the object.
 		 */
-	    static public function toSource( ...arguments ):String 
+	    public static function toSource( ...arguments ):String 
 	    {
 		    var s:String = arguments[0] ;
     		var ch:String ;
@@ -715,7 +715,7 @@ package vegas.util
 		 * Removes all occurrences of a set of specified characters (or strings)
 		 * from the beginning and end of this instance.
 		 */
-		static public function trim( str:String,  trimChars:Array ):String
+		public static function trim( str:String,  trimChars:Array ):String
     	{
 	    	if( (trimChars == null) || (trimChars.length == 0) )
         	{
@@ -727,7 +727,7 @@ package vegas.util
 		/**
 		 * Removes all occurrences of a set of characters specified in an array from the end of this instance.
 	 	 */
-		static public function trimEnd( str:String , trimChars:Array ):String
+		public static function trimEnd( str:String , trimChars:Array ):String
     	{
 	    	if( (trimChars == null) || (trimChars.length == 0) )
         	{
@@ -740,7 +740,7 @@ package vegas.util
 		 * Removes all occurrences of a set of characters specified 
 		 * in an array from the beginning of this instance.
 		 */
-		static public function trimStart( str:String, trimChars:Array ):String
+		public static function trimStart( str:String, trimChars:Array ):String
     	{
 	    	if( (trimChars == null) || (trimChars.length == 0) )
         	{
@@ -758,7 +758,7 @@ package vegas.util
 		 * }
 		 * @return the value of this string with the first character in uppercase.
 	 	 */
-	 	static public function ucFirst(str:String):String 
+	 	public static function ucFirst(str:String):String 
 	    {
 		    return str.charAt(0).toUpperCase() + str.substring(1) ;
 	    }
@@ -772,7 +772,7 @@ package vegas.util
 		 * }
 		 * @return the string value with the first character in uppercase of each word in a string.
 		 */	
-	    static public function ucWords(str:String):String 
+	    public static function ucWords(str:String):String 
 	    {
 		    var ar:Array = str.split(" ") ;
 		    var l:uint = ar.length ;

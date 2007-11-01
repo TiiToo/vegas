@@ -39,33 +39,33 @@ package vegas.logging
 		/**
 		 * const The default categoty of the {@code ILogger} instances returns with the {@code getLogger} method.
 		 */
-	    static public var DEFAULT_CATEGORY:String = "" ;
+	    public static var DEFAULT_CATEGORY:String = "" ;
 
 		/**
 		 * const The string representation of all the illegal characters.
 		 */
-    	static public var ILLEGALCHARACTERS:String = "[]~$^&/\\(){}<>+=`!#%?,:;'\"@" ;
+    	public static var ILLEGALCHARACTERS:String = "[]~$^&/\\(){}<>+=`!#%?,:;'\"@" ;
 
 		/**
 		 * The static field used when throws an Error when a character is invalid.
 		 */     
-        static public var INVALID_CHARS:String = "Categories can not contain any of the following characters : []~$^&/\\(){}<>+=`!#%?,:;'\"@" ;
+        public static var INVALID_CHARS:String = "Categories can not contain any of the following characters : []~$^&/\\(){}<>+=`!#%?,:;'\"@" ;
         
         /**
 		 * The static field used when throws an Error when the length of one character is invalid.
 		 */     
-        static public var INVALID_LENGTH:String = "Categories must be at least one character in length." ;
+        public static var INVALID_LENGTH:String = "Categories must be at least one character in length." ;
 
         /**
 		 * The static field used when throws an Error when the specified target is invalid.
 		 */     
-    	static public var INVALID_TARGET:String = "Log, Invalid target specified." ;
+    	public static var INVALID_TARGET:String = "Log, Invalid target specified." ;
     	
         /**
          *  Allows the specified target to begin receiving notification of log events.
          *  @param The specific target that should capture log events.
          */
-    	static public function addTarget(target:ITarget):void
+    	public static function addTarget(target:ITarget):void
         {
             
             if(target != null)
@@ -110,7 +110,7 @@ package vegas.logging
          *  of loggers rather than any previous instances with the same category.
          *  This method is intended for use in debugging only.
          */
-        static public function flush():void
+        public static function flush():void
         {
             _loggers.clear() ;
             _targets = [];
@@ -133,7 +133,7 @@ package vegas.logging
          *  If the name doesn't exist, a new instance with the specified
          *  name is returned.
          */
-        static public function getLogger( category:String ):ILogger
+        public static function getLogger( category:String ):ILogger
         {
             
             checkCategory(category) ;
@@ -177,7 +177,7 @@ package vegas.logging
          *  @return   <code>true</code> if there are any illegal characters found,
          *            <code>false</code> otherwise
          */
-        static public function hasIllegalCharacters( value:String ):Boolean
+        public static function hasIllegalCharacters( value:String ):Boolean
         {
             var chars:Array = ILLEGALCHARACTERS.split("") ;
             var result:Boolean = StringUtil.indexOfAny( value , chars ) != -1 ;
@@ -188,7 +188,7 @@ package vegas.logging
 	    	 * Indicates whether a debug level log event will be processed by a log target.
 		 * @return true if a debug level log event will be logged; otherwise false.
 	    	 */
-    	static public function isDebug():Boolean
+    	public static function isDebug():Boolean
     	{
     	    return _targetLevel <= LogEventLevel.DEBUG.valueOf() ;
     	}
@@ -197,7 +197,7 @@ package vegas.logging
 		 * Indicates whether an error level log event will be processed by a log target.
 		 * @return true if an error level log event will be logged; otherwise false.
 		 */
-    	static public function isError():Boolean
+    	public static function isError():Boolean
     	{
     	    return _targetLevel <= LogEventLevel.ERROR.valueOf() ;
     	}
@@ -206,7 +206,7 @@ package vegas.logging
 		 *  Indicates whether a fatal level log event will be processed by a log target.
 		 *  @return true if a fatal level log event will be logged; otherwise false.
 		 */
-    	static public function isFatal():Boolean
+    	public static function isFatal():Boolean
     	{
     	    return _targetLevel <= LogEventLevel.FATAL.valueOf() ;
     	}
@@ -215,7 +215,7 @@ package vegas.logging
 		 * Indicates whether an info level log event will be processed by a log target.
 		 * @return true if an info level log event will be logged; otherwise false.
 		 */	
-    	static public function isInfo():Boolean
+    	public static function isInfo():Boolean
     	{
     	    return _targetLevel <= LogEventLevel.INFO.valueOf() ;
     	}
@@ -224,7 +224,7 @@ package vegas.logging
 		 * Indicates whether a warn level log event will be processed by a log target.
 		 * @return true if a warn level log event will be logged; otherwise false.
 		 */
-    	static public function isWarn():Boolean
+    	public static function isWarn():Boolean
     	{
     	    return _targetLevel <= LogEventLevel.WARN.valueOf() ;
     	}
@@ -234,7 +234,7 @@ package vegas.logging
 		 *
 		 *  @param The specific target that should capture log events.
 		 */
-        static public function removeTarget(target:ITarget):void
+        public static function removeTarget(target:ITarget):void
         {
             if(target)
             {

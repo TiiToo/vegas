@@ -35,7 +35,7 @@ package vegas.util
     	 * Returns a copy by value of this function.
     	 * Attention : we can not copy by reference a function , if you want to do that use apply or call method to make a kind of delegate.
     	 */
-    	static public function clone(f:Function):Function 
+    	public static function clone(f:Function):Function 
     	{
     		return f ;
     	}
@@ -43,7 +43,7 @@ package vegas.util
     	/**
     	 * Returns a copy by value of this object.
     	 */
-    	static public function copy(f:Function):Function 
+    	public static function copy(f:Function):Function 
     	{
     		return f ;
     	}
@@ -51,7 +51,7 @@ package vegas.util
     	/**
     	 * Compares if two Functions are equal by reference.
      	 */
-    	static public function equals( f1:Function, f2:Function ):Boolean 
+    	public static function equals( f1:Function, f2:Function ):Boolean 
     	{
     		if ( f2 == null  ) 
     		{
@@ -64,7 +64,7 @@ package vegas.util
          * Should returns a string representing the source code of the function, 
          * but instead the choice has been made to only return the string “(function)”.
          */
-    	static public function toSource( f:Function ):String 
+    	public static function toSource( f:Function ):String 
     	{
 	    	return '(function)' ;
         }

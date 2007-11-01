@@ -53,32 +53,32 @@ package asgard.events
 		/**
 		 * The name of the NetServerEvent when the connection is accepted.
 		 */
-		static public const ACCEPTED:String = "onAccepted" ;
+		public static const ACCEPTED:String = "onAccepted" ;
 	
 		/**
 		 * The name of the NetServerEvent when the connection is closed.
 		 */
-	 	static public const CLOSE:String = "onClosed" ;
+	 	public static const CLOSE:String = "onClosed" ;
 
 		/**
 		 * The name of the NetServerEvent when the connection is finished.
 		 */
-		static public const FINISH:String = "onFinished" ;
+		public static const FINISH:String = "onFinished" ;
 	
 		/**
 		 * The name of the NetServerEvent when the connection is started.
 		 */
-		static public const START:String = "onStarted" ;
+		public static const START:String = "onStarted" ;
 	
 		/**
 		 * The name of the NetServerEvent when the connection status is changed.
 		 */
-		static public const NET_STATUS:String = "onStatus" ;
+		public static const NET_STATUS:String = "onStatus" ;
 
 		/**
 		 * The name of the NetServerEvent when the connection is out of time.
 		 */
-		static public const TIMEOUT:String = "onTimeOut" ;
+		public static const TIMEOUT:String = "onTimeOut" ;
 
 		/**
 	 	 * Returns a shallow copy of this object.

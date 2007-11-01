@@ -36,11 +36,11 @@ package net.ekameleon.util
 			
 		}
 		
-		static public const MAX_PERCENT:Number = 0.1 ;
-		static public const MIN_PERCENT:Number = 0.97 ;
+		public static const MAX_PERCENT:Number = 0.1 ;
+		public static const MIN_PERCENT:Number = 0.97 ;
 		
-		static public const CSG:Number = 7.5 ;
-		static public const CRDS:Number = 0.5 ;
+		public static const CSG:Number = 7.5 ;
+		public static const CRDS:Number = 0.5 ;
 		
 		public var value:uint ;
 		

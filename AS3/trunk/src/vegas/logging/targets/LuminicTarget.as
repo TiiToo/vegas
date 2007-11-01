@@ -65,12 +65,12 @@ package vegas.logging.targets
 		/**
 		 * The id of the local connection.
 		 */
-        static public const CONNECTION_ID:String = "_luminicbox_log_console" ;
+        public static const CONNECTION_ID:String = "_luminicbox_log_console" ;
         
         /**
          * The name of the dispatch message.
          */
-        static public const DISPATCH_MESSAGE:String = "log" ;
+        public static const DISPATCH_MESSAGE:String = "log" ;
 
 		/**
 		 * Indicated if the console use collapse property or not.

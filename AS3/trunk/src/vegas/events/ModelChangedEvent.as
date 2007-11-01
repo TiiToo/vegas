@@ -59,42 +59,42 @@ package vegas.events
     	/**
     	 * The type of a ModelChangedEvent when an item is added in this model.
     	 */
-		static public const ADD_ITEMS:String = "addItems" ; 
+		public static const ADD_ITEMS:String = "addItems" ; 
 
     	/**
     	 * The type of a ModelChangedEvent when clear all items in the model.
 	     */
-		static public const CLEAR_ITEMS:String = "clear" ;
+		public static const CLEAR_ITEMS:String = "clear" ;
 
     	/**
 	     * The type of a ModelChangedEvent when the model is changed.
 	     */
-		static public const MODEL_CHANGED:String = "modelChanged" ;
+		public static const MODEL_CHANGED:String = "modelChanged" ;
 
 	    /**
     	 * The type of a ModelChangedEvent when an item is removed in this model.
     	 */
-		static public const REMOVE_ITEMS:String = "removeItems" ;
+		public static const REMOVE_ITEMS:String = "removeItems" ;
 
     	/**
     	 * The type of a ModelChangedEvent when the model is sorted.
     	 */
-		static public const SORT_ITEMS:String = "sortItems" ;
+		public static const SORT_ITEMS:String = "sortItems" ;
 
     	/**
     	 * The type of a ModelChangedEvent when all is update in the model.
 	     */
-		static public const UPDATE_ALL:String = "updateAll" ;
+		public static const UPDATE_ALL:String = "updateAll" ;
 
     	/**
     	 * The type of a ModelChangedEvent when a field in the model is updated.
     	 */
-		static public const UPDATE_FIELD:String = "updateField" ;
+		public static const UPDATE_FIELD:String = "updateField" ;
 
     	/**
 	     * The type of a ModelChangedEvent when an item in the model changed.
 	     */
-	    static public const UPDATE_ITEMS:String = "updateItems" ;
+	    public static const UPDATE_ITEMS:String = "updateItems" ;
 
 	    /**
     	 * The data of this event.

@@ -37,7 +37,7 @@ package andromeda.model
 		/**
 		 * Removes all IModel references in the collector.
 		 */
-		static public function clear():void 
+		public static function clear():void 
 		{
 			_map.clear() ;	
 		}
@@ -47,7 +47,7 @@ package andromeda.model
 		 * @param id the id of the model register in the model.
 		 * @return {@code true} if the collector contains the IModel register with the id passed in argument.
 		 */
-		static public function contains( id:* ):Boolean 
+		public static function contains( id:* ):Boolean 
 		{
 			return _map.containsKey( id ) ;	
 		}
@@ -57,7 +57,7 @@ package andromeda.model
 		 * @param model the IModel to search in the model.
 		 * @return {@code true} if the collector contains the IModel passed in argument.
 		 */
-		static public function containsModel( model:IModel ):Boolean
+		public static function containsModel( model:IModel ):Boolean
 		{
 			return _map.containsValue( model ) ;	
 		}
@@ -67,7 +67,7 @@ package andromeda.model
 		 * @return the IModel reference with the name passed in argument.
 		 * @throws Warning if the the specified name isn't register in the collector.
 		 */
-		static public function get( id:* ):IModel 
+		public static function get( id:* ):IModel 
 		{
 	
 			if (!contains( id ) ) 
@@ -84,7 +84,7 @@ package andromeda.model
 		 * @return {@code true} if the  specified model is inserted in the model.
 		 * @throws Warning if the specified name is already registered in the collector.
 		 */
-		static public function insert( id:* , model:IModel):Boolean 
+		public static function insert( id:* , model:IModel):Boolean 
 		{
 			if ( contains(id) ) 
 			{
@@ -97,7 +97,7 @@ package andromeda.model
 		 * Returns {@code true} if the collector is empty.
 		 * @return {@code true} if the collector is empty.
 		 */
-		static public function isEmpty():Boolean 
+		public static function isEmpty():Boolean 
 		{
 			return _map.isEmpty() ;	
 		}
@@ -106,7 +106,7 @@ package andromeda.model
 		 * Removes the IModel in the collector specified by the argument {@code id}. 
 		 * @param id the id of the model to unregister in the collector.
 		 */
-		static public function remove( id:* ):void 
+		public static function remove( id:* ):void 
 		{
 			_map.remove( id ) ;
 		}
@@ -115,7 +115,7 @@ package andromeda.model
 		 * Returns the number of elements in the collector.
 		 * @return the number of elements in the collector.
 		 */
-		static public function size():int 
+		public static function size():int 
 		{
 			return _map.size() ;	
 		}

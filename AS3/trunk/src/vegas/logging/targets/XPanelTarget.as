@@ -58,57 +58,57 @@ package vegas.logging.targets
 		/**
 		 * The id of the LocalConnection.
 		 */
-        static public const CONNECTION_ID:String = "_xpanel1" ;
+        public static const CONNECTION_ID:String = "_xpanel1" ;
         
         /**
          * The dispatch message label.
          */
-        static public const DISPATCH_MESSAGE:String = "dispatchMessage" ;
+        public static const DISPATCH_MESSAGE:String = "dispatchMessage" ;
 
         /**
          * The 'all' level value of the XPanel console.
          */ 
-		static public const LEVEL_ALL:uint = 0x00 ;
+		public static const LEVEL_ALL:uint = 0x00 ;
 		
         /**
          * The 'debug' level value of the XPanel console.
          */ 
-        static public const LEVEL_DEBUG:uint = 0x0001 ;
+        public static const LEVEL_DEBUG:uint = 0x0001 ;
 
         /**
          * The 'error' level value of the XPanel console.
          */ 
-		static public const LEVEL_ERROR:uint = 0x0008 ;
+		public static const LEVEL_ERROR:uint = 0x0008 ;
 
         /**
          * The 'fatal' level value of the XPanel console.
          */ 
-		static public const LEVEL_FATAL:uint = 0x0010 ;
+		public static const LEVEL_FATAL:uint = 0x0010 ;
 
         /**
          * The 'information' level value of the XPanel console.
          */ 
-		static public const LEVEL_INFORMATION:uint = 0x0002 ;
+		public static const LEVEL_INFORMATION:uint = 0x0002 ;
 
         /**
          * The 'none' level value of the XPanel console.
          */ 
-		static public const LEVEL_NONE:Number = 0xFF ;
+		public static const LEVEL_NONE:Number = 0xFF ;
 
         /**
          * The 'start' level value of the XPanel console.
          */ 
-		static public const LEVEL_START:uint = 0x0100 ;
+		public static const LEVEL_START:uint = 0x0100 ;
 	
         /**
          * The 'warning' level value of the XPanel console.
          */ 
-		static public const LEVEL_WARNING:uint = 0x0004 ;
+		public static const LEVEL_WARNING:uint = 0x0004 ;
 
 		/**
 		 * The started value.
 		 */
-		static public const START:String = "Started" ;
+		public static const START:String = "Started" ;
 
         /**
 	     * The name of the connection

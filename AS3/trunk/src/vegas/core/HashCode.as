@@ -39,7 +39,7 @@ package vegas.core
 		 * @param   o2 the second value to compare.
 		 * @return {@code true} of the two object are equals.  
 		 */
-		static public function equals(o1:*, o2:*):Boolean 
+		public static function equals(o1:*, o2:*):Boolean 
 		{
 			return HashCode.identify(o1) == HashCode.identify(o2) ;
 		}
@@ -47,7 +47,7 @@ package vegas.core
 		/**
 		 * Indenfity the hashcode value of an object.
 		 */
-		static public function identify(o:*):uint 
+		public static function identify(o:*):uint 
 		{
 			return o.hashCode() ;
 		}
@@ -56,7 +56,7 @@ package vegas.core
 		 * Returns the next hashcode value.
 		 * @return the next hashcode value.
 		 */
-		static public function next():uint 
+		public static function next():uint 
 		{
 			return HashCode._nHash++ ;
 		}
@@ -65,7 +65,7 @@ package vegas.core
 		 * Returns the string representation of the next hashcode value.
 		 * @return the string representation of the next hashcode value.
 		 */
-		static public function nextName():String {
+		public static function nextName():String {
 			return String( HashCode._nHash + 1 ) ;
 		}
 		
@@ -73,7 +73,7 @@ package vegas.core
 		 * Initialize the hashcode value of an object.
 		 * @return {@code true}
 		 */
-		static public function initialize( o:* ):Boolean 
+		public static function initialize( o:* ):Boolean 
 		{
 		
 			if (o.hasOwnProperty("hashCode")) 

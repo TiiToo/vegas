@@ -114,7 +114,7 @@ package vegas.string.eden
    		/**
    		 * static evaluate( source:String, scope:*, callback:* ):*
    		 */
-	    static public function evaluate( source:String, scope:*, callback:* ):*
+	    public static function evaluate( source:String, scope:*, callback:* ):*
         {
     	    var parser:ECMAScript = new ECMAScript( source, scope, callback );
 	        return parser.eval() ;
