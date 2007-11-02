@@ -126,7 +126,7 @@ package vegas.util.comparators
 		/**
 	  	 * The internal static singleton of this class.
 	 	 */
-		static private var _instance:DateComparator ;
+		private static var _instance:DateComparator ;
 		
 	}
 }

@@ -395,7 +395,7 @@ package vegas.data.array
         /**
          * The internal singleton reference.
          */
-        static private var _instance:ArrayFilter ;
+        private static var _instance:ArrayFilter ;
     
         /**
          * The filter value of this object.

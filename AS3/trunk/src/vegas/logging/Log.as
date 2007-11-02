@@ -278,22 +278,22 @@ package vegas.logging
         /**
           *  An associative Array of existing loggers keyed by category
           */
-    	static private var _loggers:HashMap = new HashMap() ;
+    	private static var _loggers:HashMap = new HashMap() ;
 
         /**
           *  Sentinal value for the target log level to indicate no logging.
           */
-    	static private var NONE:int = int.MAX_VALUE;
+    	private static var NONE:int = int.MAX_VALUE;
         
         /**
           *  The most verbose supported log level among registered targets.
           */
-    	static private var _targetLevel:int = NONE ;
+    	private static var _targetLevel:int = NONE ;
     	
         /**
           *  Array of targets that should be searched any time a new logger is created.
           */
-        static private var _targets:Array = [];
+        private static var _targets:Array = [];
         
         /**
          *  This method checks that the specified category matches any of the filter
@@ -303,7 +303,7 @@ package vegas.logging
          *  @param filters A list of Strings to check category against.
          *  @return <code>true</code> if the specified category matches any of the filter expressions found in the filters list, <code>false</code> otherwise.
          */
-        static private function categoryMatchInFilterList(category:String, filters:Array):Boolean
+        private static function categoryMatchInFilterList(category:String, filters:Array):Boolean
         {
             
             var filter:String;
@@ -337,7 +337,7 @@ package vegas.logging
           *  Categories can not contain any blanks or any of the following characters: []`*~,!#$%^&amp;()]{}+=\|'";?&gt;&lt;./&#64; 
           *  or be less than 1 character in length.
           */
-        static private function checkCategory(category:String):void
+        private static function checkCategory(category:String):void
         {
             
             if(category == null || category.length == 0)
@@ -356,7 +356,7 @@ package vegas.logging
           *  This method resets the Log's target level to the most verbose log level
           *  for the currently registered targets.
           */
-        static private function resetTargetLevel():void
+        private static function resetTargetLevel():void
         {
             var minLevel:int = NONE;
             var len:uint = _targets.length ;

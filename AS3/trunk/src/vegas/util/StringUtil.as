@@ -786,7 +786,7 @@ package vegas.util
  		/**
 		 * Helper method used by trim, trimStart and trimEnd methods.
 		 */
-		static private function _trimHelper( str:String, trimChars:Array, trimStart:Boolean = false, trimEnd:Boolean = false ):String
+		private static function _trimHelper( str:String, trimChars:Array, trimStart:Boolean = false, trimEnd:Boolean = false ):String
     	{
 	    	
             var iLeft:int;

@@ -215,7 +215,7 @@ package vegas.events
         /**
          * The static internal hashmap to register all global instances in your applications.
          */    
-        static private var instances:ArrayMap = new ArrayMap() ;
+        private static var instances:ArrayMap = new ArrayMap() ;
 
         /**
          * The internal ILogger reference of this object.

@@ -133,13 +133,13 @@ package vegas.util
 			return _formatPath(flash.utils.getQualifiedSuperclassName(instance)) ;
 		}
 
-		static private function _formatName( path:String ):String 
+		private static function _formatName( path:String ):String 
 		{
 			var a:Array = path.split(".") ;
             return (a.length > 1) ? a.pop() : path ;
 		}
 
-		static private function _formatPackage( path:String ):String 
+		private static function _formatPackage( path:String ):String 
 		{
 			var a:Array = path.split(".") ;
 			if (a.length > 1) 
@@ -153,7 +153,7 @@ package vegas.util
 			}
 		}
 		
-		static private function _formatPath( path:String ):String 
+		private static function _formatPath( path:String ):String 
 		{
 			return (path.split("::")).join(".") ;
 		}

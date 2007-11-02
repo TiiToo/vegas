@@ -131,7 +131,7 @@ package vegas.util.comparators
 		/**
 	  	 * The internal static singleton of this class.
 	 	 */
-		static private var _instance:NumberComparator ;
+		private static var _instance:NumberComparator ;
 		
 	}
 }

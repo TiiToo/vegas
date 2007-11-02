@@ -111,7 +111,7 @@ package vegas.util.comparators
 		/**
 	  	 * The internal static singleton of this class.
 	 	 */
-		static private var _instance:ReverseComparator ;
+		private static var _instance:ReverseComparator ;
 
 	}
 }

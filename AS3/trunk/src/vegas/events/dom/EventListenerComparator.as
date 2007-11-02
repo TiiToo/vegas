@@ -107,7 +107,7 @@ package vegas.events.dom
 		/**
 	  	 * The internal static singleton of this class.
 	 	 */
-		static private var _instance:EventListenerComparator ;
+		private static var _instance:EventListenerComparator ;
 		
 	}
 }

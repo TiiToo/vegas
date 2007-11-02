@@ -123,7 +123,7 @@ package andromeda.model
 		/**
 		 * Internal HashMap of all IModel in the application.
 		 */	
-		static private var _map:HashMap = new HashMap() ;
+		private static var _map:HashMap = new HashMap() ;
 
 	}
 

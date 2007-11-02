@@ -155,9 +155,8 @@ package vegas.util
     	 */
     	public static function some( ar:Array , callback:Function , thisObject:* = null ):Boolean 
     	{
-            var len:Number = ar.length ;
-            var i:Number = 0 ;
-            for( i=0; i<len; i++ ) 
+            var len:uint = ar.length ;
+            for( var i:uint=0; i<len; i++ ) 
             {    
                 if( callback.call( thisObject, ar[i], i, ar ) ) return true ;
             }

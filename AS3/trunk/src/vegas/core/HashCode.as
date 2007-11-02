@@ -100,7 +100,7 @@ package vegas.core
 		/**
 		 * The internal hashcode counter.
 		 */
-		static private var _nHash:uint = 0 ;
+		private static var _nHash:uint = 0 ;
 
 		/**
 		 * Launch the initialize of the Object.prototype object.

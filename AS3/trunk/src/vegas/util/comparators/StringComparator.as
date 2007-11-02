@@ -146,12 +146,12 @@ package vegas.util.comparators
 		/**
 	  	 * The internal Case StringComparator.
 	 	 */
-		static private var _comparator:StringComparator ;
+		private static var _comparator:StringComparator ;
 
 		/**
 	 	 * The internal ignoreCase StringComparator.
 		 */
-		static private var _ignoreCaseComparator:StringComparator ;
+		private static var _ignoreCaseComparator:StringComparator ;
 		
 	}
 

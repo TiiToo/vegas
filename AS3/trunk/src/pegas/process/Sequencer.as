@@ -103,7 +103,7 @@ package pegas.process
 			    _cur.removeEventListener( ActionEvent.FINISH, run) ;
 			    if (callback != null)
 			    {
-    				callback.call( this, _cur ) ;
+    				callback.call( this , _cur ) ;
 			    }
 			    setRunning(false) ;
 		    }

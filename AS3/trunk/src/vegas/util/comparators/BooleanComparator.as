@@ -164,12 +164,12 @@ package vegas.util.comparators
 		/**
 		 * The internal singleton reference who define a BooleanComparator that sorts false values before true values.
 		 */
-		static private var _falseFirstInstance:BooleanComparator ; 
+		private static var _falseFirstInstance:BooleanComparator ; 
 	
 		/**
 		 * The internal singleton reference who define a BooleanComparator that sorts true values before false values.
 	 	 */
-		static private var _trueFirstInstance:BooleanComparator ; 
+		private static var _trueFirstInstance:BooleanComparator ; 
 	
 	}
 

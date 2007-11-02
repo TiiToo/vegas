@@ -25,9 +25,8 @@ package vegas.events
 {
     import flash.events.Event;
     
-    import pegas.process.ILockable;
-    
     import vegas.core.CoreObject;
+    import vegas.core.ILockable;
     import vegas.util.ClassUtil;
 
     /**

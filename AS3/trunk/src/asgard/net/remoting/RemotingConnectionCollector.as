@@ -122,7 +122,7 @@ package asgard.net.remoting
 			return _map.size() ;
 		}
 		
-		static private var _map:HashMap = new HashMap() ;	
+		private static var _map:HashMap = new HashMap() ;	
 		
 	}
 

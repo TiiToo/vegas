@@ -171,7 +171,7 @@ package vegas.data.sets
 		
 		private var _map:ArrayMap ;
 		
-		static private const PRESENT:Object = new Object() ;
+		private static const PRESENT:Object = new Object() ;
 		
 	}
 }

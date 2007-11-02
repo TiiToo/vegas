@@ -202,7 +202,7 @@ package vegas.events
  		/**
 	 	 * The static internal hashmap to register all global instances in your applications.
 	 	 */	
-		static private var instances:HashMap = new HashMap() ;
+		private static var instances:HashMap = new HashMap() ;
 
 		/**
 		 * Internal HashMap reference.
