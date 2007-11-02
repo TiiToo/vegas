@@ -55,12 +55,12 @@ class asgard.events.StreamEvent extends BasicEvent
 	/**
 	 * The name of the event when the audio activity of the stream change.
 	 */
-	static public var AUDIO_ACTIVITY_UPDATE:String = "onAudioActivityUpdate" ;
+	public static var AUDIO_ACTIVITY_UPDATE:String = "onAudioActivityUpdate" ;
 	
 	/**
 	 * The name of the event when the status of the object change.
 	 */
-	static public var NET_STATUS:String = "onStatus" ;
+	public static var NET_STATUS:String = "onStatus" ;
 
 	/**
 	 * Returns the NetServerInfo reference of this event.

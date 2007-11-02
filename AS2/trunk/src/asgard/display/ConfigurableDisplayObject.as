@@ -19,8 +19,10 @@
   
   Contributor(s) :
   
-*/
-
+ */
+ 
+ 
+ 
 import asgard.config.Config;
 import asgard.config.ConfigCollector;
 import asgard.config.IConfigurable;
@@ -86,8 +88,8 @@ class asgard.display.ConfigurableDisplayObject extends DisplayObject implements 
 			{
 				this[prop] = config[prop] ; 
 			}
-			update() ;	
 		}
+		update() ;	
 	}	 
 	
 	/**
@@ -100,5 +102,4 @@ class asgard.display.ConfigurableDisplayObject extends DisplayObject implements 
 	}
 	
 	private var _isConfigurable:Boolean ;
-
 }

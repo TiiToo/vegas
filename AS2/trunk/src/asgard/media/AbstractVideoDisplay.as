@@ -73,12 +73,12 @@ class asgard.media.AbstractVideoDisplay extends ConfigurableDisplayObject
 	/**
 	 * The default value of the volume in the display.
 	 */
-	static public var VOLUME_DEFAULT:Number = 80 ;
+	public static var VOLUME_DEFAULT:Number = 80 ;
 
 	/**
 	 * const Defined the event name of the event 
 	 */
-	static public var SOUND_VOLUME_CHANGE:String = "onVolumeChange" ;
+	public static var SOUND_VOLUME_CHANGE:String = "onVolumeChange" ;
 
 	/**
 	 * Returns the sound's volume value of the UI.

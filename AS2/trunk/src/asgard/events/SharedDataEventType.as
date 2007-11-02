@@ -37,22 +37,22 @@ class asgard.events.SharedDataEventType extends String
 		super(s) ;
 	}
 
-	static public var CHANGE:SharedDataEventType = new SharedDataEventType("onChanged") ;
+	public static var CHANGE:SharedDataEventType = new SharedDataEventType("onChanged") ;
 
-	static public var CLEAR:SharedDataEventType = new SharedDataEventType("onClear") ;
+	public static var CLEAR:SharedDataEventType = new SharedDataEventType("onClear") ;
 	
-	static public var CLOSE:SharedDataEventType = new SharedDataEventType("onClosed") ;
+	public static var CLOSE:SharedDataEventType = new SharedDataEventType("onClosed") ;
 	
-	static public var DELETE:SharedDataEventType = new SharedDataEventType("onDeleted") ;
+	public static var DELETE:SharedDataEventType = new SharedDataEventType("onDeleted") ;
 
-	static public var FIRE:SharedDataEventType = new SharedDataEventType("onFired") ;
+	public static var FIRE:SharedDataEventType = new SharedDataEventType("onFired") ;
 	
-	static public var REJECT:SharedDataEventType = new SharedDataEventType("onRejected") ;
+	public static var REJECT:SharedDataEventType = new SharedDataEventType("onRejected") ;
 	
-	static public var SUCCESS:SharedDataEventType = new SharedDataEventType("onSuccess") ;
+	public static var SUCCESS:SharedDataEventType = new SharedDataEventType("onSuccess") ;
 
-	static public var SYNCHRONISED:SharedDataEventType = new SharedDataEventType("onSynchronised") ;
+	public static var SYNCHRONISED:SharedDataEventType = new SharedDataEventType("onSynchronised") ;
 	
-	static private var __ASPF__ = _global["ASSetPropFlags"](SharedDataEventType, null , 7, 7) ;
+	private static var __ASPF__ = _global["ASSetPropFlags"](SharedDataEventType, null , 7, 7) ;
 	
 }

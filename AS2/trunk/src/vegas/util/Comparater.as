@@ -38,7 +38,7 @@ class vegas.util.Comparater
 	 * @param o2 the second object to compare.
 	 * @return {@code true} if the 2 objects are equals.
 	 */	
-	static public function compare( o1, o2 ) 
+	public static function compare( o1, o2 ) 
 	{
 		if (o1 === undefined && o2 === undefined) 
 		{
@@ -94,7 +94,7 @@ class vegas.util.Comparater
 	 * Compares if two Arrays are equal by value. 
 	 * @return {@code true} if the 2 objects are equals.
 	 */
-	static public function arrayCompare( ar1, ar2 ):Boolean
+	public static function arrayCompare( ar1, ar2 ):Boolean
     {
 	    
 	    if(ar1 == null || !TypeUtil.typesMatch(ar1, Array))
@@ -142,7 +142,7 @@ class vegas.util.Comparater
 	 * Compares if two Booleans are equal by value. 
 	 * @return {@code true} if the 2 objects are equals.
 	 */
-	static public function booleanCompare( b1 , b2 ):Boolean
+	public static function booleanCompare( b1 , b2 ):Boolean
     {
     	if(b1 == null || !TypeUtil.typesMatch(b1, Boolean))
         {
@@ -159,7 +159,7 @@ class vegas.util.Comparater
 	 * Compares if two Dates are equal by value.
 	 * @return {@code true} if the 2 objects are equals.
 	 */
-	static public function dateCompare( d1 , d2 ):Boolean
+	public static function dateCompare( d1 , d2 ):Boolean
 	{
     	if(d1 == null || !TypeUtil.typesMatch(d1, Date))
         {
@@ -176,7 +176,7 @@ class vegas.util.Comparater
 	 * Compares if two Errors are equal by value.
 	 * @return {@code true} if the 2 objects are equals.
 	 */
-	static public function errorCompare( e1 , e2 ):Boolean
+	public static function errorCompare( e1 , e2 ):Boolean
 	{
     	if(e1 == null || !TypeUtil.typesMatch(e1, Error))
         {
@@ -193,7 +193,7 @@ class vegas.util.Comparater
 	 * Compares if two Functions are equal by value.
 	 * @return {@code true} if the 2 objects are equals.
 	 */
-	static public function functionCompare( f1 , f2:Function ):Boolean
+	public static function functionCompare( f1 , f2:Function ):Boolean
 	{
     	if(f1 == null || !TypeUtil.typesMatch(f1, Function))
         {
@@ -210,7 +210,7 @@ class vegas.util.Comparater
 	 * Compares if two Numbers are equal by value.
 	 * @return {@code true} if the 2 objects are equals.
 	 */
-	static public function numberCompare( n1 , n2 ):Boolean
+	public static function numberCompare( n1 , n2 ):Boolean
 	{
     	
     	if(n1 == null || !TypeUtil.typesMatch(n1, Number))
@@ -245,7 +245,7 @@ class vegas.util.Comparater
 	 * Compares if two Objects are equal by value.
 	 * @return {@code true} if the 2 objects are equals.
 	 */
-	static public function objectCompare( o1 , o2 ):Boolean
+	public static function objectCompare( o1 , o2 ):Boolean
 	{
 		if ( TypeUtil.typesMatch(o2, Function ) )
 		{
@@ -286,7 +286,7 @@ class vegas.util.Comparater
 	 * Compares if two Strings are equal by value.
 	 * @return {@code true} if the 2 objects are equals.
 	 */
-	static public function stringCompare( s1 , s2 ):Boolean
+	public static function stringCompare( s1 , s2 ):Boolean
     {
     	if( (s1 == null) || !TypeUtil.typesMatch( s2 , String ) )
         {

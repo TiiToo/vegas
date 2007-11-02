@@ -36,7 +36,7 @@ class vegas.util.factory.DisplayFactory
 	 * Attachs a MovieClip in a target and register a custom constructor who inherit MovieClip in this instance.
 	 * @see ConstructorUtil.createVisualInstance
 	 */
-	static public function attachChild
+	public static function attachChild
 	( 
 		fConstructor:Function, sID:String, sName:String,
 		 nDepth:Number, mcTarget:MovieClip, init 
@@ -50,7 +50,7 @@ class vegas.util.factory.DisplayFactory
 	 * Creates a new child object (MovieClip, TextField) with a custom constructor or an id link.
 	 * @see ConstructorUtil
 	 */
-	static public function createChild ( oChild , p_name:String , p_depth:Number, p_target, p_init) 
+	public static function createChild ( oChild , p_name:String , p_depth:Number, p_target, p_init) 
 	{
 		
 		var child ;
@@ -90,7 +90,7 @@ class vegas.util.factory.DisplayFactory
 	 * @param display The display reference (MovieClip, TextField, Video).
 	 * @return the depth of the display instance (MovieClip, TextField, Video).
 	 */
-	static public function getDepth( display ):Number
+	public static function getDepth( display ):Number
 	{
 		return MovieClip.prototype.getDepth.call( display ) ;
 	}
@@ -104,7 +104,7 @@ class vegas.util.factory.DisplayFactory
 	 * <li>A String that specifies the display instance whose depth is swapped with the movie clip for which the method is being applied. Both displays must have the same parent movie clip.</li>
 	 * </bl>
 	 */
-	static public function swapDepths( display, target ):Void
+	public static function swapDepths( display, target ):Void
 	{
 		MovieClip.prototype.swapDepths.call( display, target ) ;
 	}

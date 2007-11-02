@@ -35,18 +35,18 @@ class asgard.display.StageLocalizer
 	/**
 	 * The default value of the Stage.width when the FlashPlayer is open.
 	 */
-	static public var WIDTH:Number = Stage.width ;
+	public static var WIDTH:Number = Stage.width ;
 
 	/**
 	 * The default value of the Stage.height when the FlashPlayer is open.
 	 */
-	static public var HEIGHT:Number = Stage.height ;
+	public static var HEIGHT:Number = Stage.height ;
 
 	/**
 	 * Localize the position of a specified point on the Stage with the current Stage.align property.
 	 * @return the string representation of the StageAlign defined for the point passed in argument.
 	 */
-	static public function localizePoint( p ):String 
+	public static function localizePoint( p ):String 
 	{
 		var middle:Point = getMiddle() ;
 		var x1:Number = p.x ;
@@ -95,7 +95,7 @@ class asgard.display.StageLocalizer
 	 * Returns the Point representation of the middle of the Stage. This property is defined with the current Stage.align value.
 	 * @return the Point representation of the middle of the Stage. This property is defined with the current Stage.align value.
 	 */
-	static public function getMiddle():Point 
+	public static function getMiddle():Point 
 	{
 		var middle:Point = new Point(0, 0) ;
 		switch (Stage.align) 
@@ -162,7 +162,7 @@ class asgard.display.StageLocalizer
 	 * Returns the mirror StageAlign string representation of the string passed in argument. 
 	 * @return the mirror StageAlign string representation of the string passed in argument.
 	 */
-	static public function getMirror(align:String):String 
+	public static function getMirror(align:String):String 
 	{
 		switch (align.toUpperCase()) 
 		{
@@ -182,7 +182,7 @@ class asgard.display.StageLocalizer
 	 * Returns a vertical mirror StageAlign string representation of the string passed in argument. 
 	 * @return a vertical StageAlign string representation of the string passed in argument.
 	 */
-	static public function getVerticalMirror( point ):String 
+	public static function getVerticalMirror( point ):String 
 	{
 		var align:String = localizePoint(point) ;
 		switch (align.toUpperCase () ) 

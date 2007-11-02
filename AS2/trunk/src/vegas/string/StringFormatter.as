@@ -68,7 +68,7 @@ class vegas.string.StringFormatter extends AbstractFormatter
 	/**
 	 * const The space expression.
 	 */	
-	static public var SPC:String = " " ; // SPACE
+	public static var SPC:String = " " ; // SPACE
 	
 	/**
 	 * Format the pattern with all the arguments passed in this method.
@@ -203,7 +203,7 @@ class vegas.string.StringFormatter extends AbstractFormatter
 	 * Returns a singleton reference of the StringFormatter class.
 	 * @return a singleton reference of the StringFormatter class.
 	 */
-	static public function getInstance():StringFormatter
+	public static function getInstance():StringFormatter
 	{
 		if (_instance == null)
 		{
@@ -215,6 +215,6 @@ class vegas.string.StringFormatter extends AbstractFormatter
 	/**
 	 * The internal singleton reference of this class.
 	 */
-	static private var _instance:StringFormatter ;
+	private static var _instance:StringFormatter ;
 	
 }

@@ -70,12 +70,12 @@ class vegas.logging.targets.LuminicTarget extends LineFormattedTarget
 	/**
 	 * The id of the local connection.
 	 */
-    static public var CONNECTION_ID:String = "_luminicbox_log_console" ;
+    public static var CONNECTION_ID:String = "_luminicbox_log_console" ;
        
     /**
      * The name of the dispatch message.
      */
-    static public var DISPATCH_MESSAGE:String = "log" ;
+    public static var DISPATCH_MESSAGE:String = "log" ;
 
 	/**
 	 * Indicated if the console use collapse property or not.

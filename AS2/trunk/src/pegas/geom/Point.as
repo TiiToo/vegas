@@ -730,7 +730,7 @@ dynamic class pegas.geom.Point extends Vector2
 		}
 	}
 
-	// ----o Static Private -  MTASC HACK - Macromedia FP8 Compatibility
+	// ----o private static -  MTASC HACK - Macromedia FP8 Compatibility
 	
 	private static var __init:Boolean ;
 	private static function initialize():Boolean 
