@@ -275,7 +275,7 @@ class buRRRn.ASTUce.TestSuite implements ITest
            Should work with any ECMA-262 hosts.
         */
 
-        var tmp  = eval( path );
+        var tmp:Function  = eval( path );
         test = new tmp( name );
         
         /*!## TODO:
@@ -394,7 +394,6 @@ class buRRRn.ASTUce.TestSuite implements ITest
  
     private function _addTestMethod( method:String, theConstructor ):Void
 	{
-		var test;
 		if( !_isTestMethod( method ) )
 		{
 			return ;

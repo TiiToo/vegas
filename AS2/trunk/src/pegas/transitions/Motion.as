@@ -19,8 +19,8 @@
   
   Contributor(s) :
   
-*/
-
+ */
+ 
 import pegas.process.AbstractAction;
 
 import vegas.core.ITimer;
@@ -85,21 +85,9 @@ class pegas.transitions.Motion extends AbstractAction
 	public var prevTime:Number ;
 
 	/**
-	 * Returns the target reference of the object contrains by the Motion effect.
-	 * @return the target reference of the object contrains by the Motion effect.
+	 * Indicates the target reference of the object contrains by the Motion effect.
 	 */
-	public function get target() 
-	{
-		return getTarget() ;	
-	}
-	
-	/**
-	 * Sets the target reference of the object contrains by the Motion effect.
-	 */
-	public function set target( oT ) 
-	{
-		setTarget( oT ) ;	
-	}
+	public var target ;
 
 	/**
 	 * Defined if the Motion used seconds or not.
@@ -148,7 +136,7 @@ class pegas.transitions.Motion extends AbstractAction
 	 */
 	public function getTarget() 
 	{
-		return _target ;
+		return target ;
 	}
 
 	/**
@@ -165,8 +153,7 @@ class pegas.transitions.Motion extends AbstractAction
 	 */
 	public function nextFrame():Void 
 	{ 
-		var t:Number = (useSeconds) ? ((getTimer() - _startTime) / 1000) : (_time + 1) ;
-		setTime(t) ;
+		setTime( (useSeconds) ? ( (getTimer() - _startTime) / 1000 ) : (_time + 1) ) ;
 	}
 	
 	/**
@@ -174,7 +161,10 @@ class pegas.transitions.Motion extends AbstractAction
 	 */
 	public function prevFrame():Void 
 	{
-		if (!useSeconds) setTime (_time - 1)  ;
+		if (!useSeconds) 
+		{
+			setTime (_time - 1)  ;
+		}
 	}
 	
 	/**
@@ -198,9 +188,9 @@ class pegas.transitions.Motion extends AbstractAction
 	/**
 	 * Rewinds a tweened animation to the beginning of the tweened animation.
 	 */
-	public function rewind(t:Number):Void 
+	public function rewind( t:Number ):Void 
 	{
-		_time = t || 0 ;
+		_time = t > 0 ? t : 0 ;
 		_fixTime() ;
 		update() ;
 	}
@@ -239,7 +229,7 @@ class pegas.transitions.Motion extends AbstractAction
 	 */
 	public function setTarget(o):Void 
 	{
-		_target = o ;
+		target = o ;
 	}
 	
 	/**
@@ -248,23 +238,33 @@ class pegas.transitions.Motion extends AbstractAction
 	public function setTime(t:Number):Void 
 	{
 		prevTime = _time ;
-		if (t > _duration) {
-			if (looping) {
+		if (t > _duration) 
+		{
+			t = _duration ;
+			if (looping) 
+			{
 				rewind (t - _duration);
 				this.update();
 				notifyLooped() ;
-			} else {
-				if (useSeconds) {
+			}
+			else 
+			{
+				if (useSeconds) 
+				{
 					_time = _duration ;
 					update() ;
 				}
 				this.stop() ;
 				notifyFinished() ;
 			}
-		} else if (t<0) {
+		} 
+		else if (t<0) 
+		{
 			rewind() ;
 			update() ;
-		} else {
+		}
+		else 
+		{
 			_time = t ;
 			update() ;
 		}
@@ -343,13 +343,18 @@ class pegas.transitions.Motion extends AbstractAction
 	private var _oNext:EventListener ;
 	private var _startTime:Number ;
 	private var _stopping:Boolean ;
-	private var _target ;
 	private var _time:Number ;
 	private var _timer:ITimer ;
 	
+	/**
+	 * @private
+	 */
 	private function _fixTime():Void 
 	{
-		if ( useSeconds) _startTime = getTimer() - _time * 1000 ;
+		if ( useSeconds)
+		{
+			_startTime = getTimer() - _time * 1000 ;
+		}
 	}
 	
 }

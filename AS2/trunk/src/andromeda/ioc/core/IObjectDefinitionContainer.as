@@ -1,5 +1,4 @@
-﻿import andromeda.ioc.core.IObjectDefinition;
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -21,6 +20,8 @@
   Contributor(s) :
   
 */
+
+import andromeda.ioc.core.IObjectDefinition;
 
 /**
  * This interface creates the dependencies with the definitions.

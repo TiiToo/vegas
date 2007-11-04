@@ -368,8 +368,8 @@ class lunas.display.container.ListContainerDisplay extends SimpleContainerDispla
 				n2 = Math.max(c[f], n2) ;
 			}
 			n1 -= _nSpace || 0 ;
-			var s1:Number = (_nDirection == 1) ? _nSpace : 0 ;
-			var s2:Number = (_nDirection == 1) ? 0 : _nSpace ;
+			//var s1:Number = (_nDirection == 1) ? _nSpace : 0 ;
+			//var s2:Number = (_nDirection == 1) ? 0 : _nSpace ;
 			_bound = 
 			{
 				w : (isHorizontal ? n1 : n2) + thickness , 
@@ -379,7 +379,8 @@ class lunas.display.container.ListContainerDisplay extends SimpleContainerDispla
 		}
 		else if (_bMaskIsActive) 
 		{
-			_bound = {
+			_bound = 
+			{
 				w : _w  ,
 				h : _h 
 			};

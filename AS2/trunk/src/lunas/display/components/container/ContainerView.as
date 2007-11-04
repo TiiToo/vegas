@@ -19,46 +19,9 @@
   
   Contributor(s) :
   
-*/
-
-/** ContainerView
-
-	AUTHOR
-
-		Name : ContainerView
-		Package : lunas.display.components.container
-		Version : 1.0.0.0
-		Date :  2006-02-06
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-	
-		- getController():IController
-		
-		- getViewContainer():MovieClip
-		
-		- registerWithModel( oModel:IModel ):Void
-		
-		- setController(oController:IController):Void
-		
-		- setModel(oModel:IModel):Void
-		
-		- setViewContainer(mcContainer:MovieClip):Void
-
-	IMPLEMENTS 
-	
-		IView
-
-	INHERIT 
-	
-		AbstractView → ContainerView
-
-**/
-
+ */
+ 
 import lunas.display.components.container.ContainerController;
-import lunas.display.components.container.ContainerModel;
 
 import vegas.events.ModelChangedEvent;
 import vegas.events.ModelChangedEventType;
@@ -69,41 +32,49 @@ import vegas.util.mvc.IModel;
 class lunas.display.components.container.ContainerView extends AbstractView 
 {
 
-	// ----o Constructor
-
+	/**
+	 * Creates a new ContainerView instance.
+	 */
 	public function ContainerView(oModel:IModel, oController:IController, mcContainer:MovieClip) 
 	{ 
 		super(oModel, oController, mcContainer) ;
 	}
 
-	// ----o Public Methods
-
+	/**
+	 * Handles the event.
+	 */
 	public function handleEvent(ev:ModelChangedEvent):Void 
 	{
 		var eventName:String = ev.getType() ;
-		var target:ContainerModel = ev.getTarget() ;
+		//var target:ContainerModel = ev.getTarget() ;
 		var c:ContainerController = ContainerController(getController()) ;
 		switch (eventName) 
 		{
 		
 			case ModelChangedEventType.ADD_ITEMS :
+			{
 				//
 				break ;
-		
+			}
 			case ModelChangedEventType.CLEAR_ITEMS :
+			{
 				c.removeItems(ev.removedItems) ;
 				break ;
-		
+			}
 			case ModelChangedEventType.REMOVE_ITEMS :
+			{
 				c.removeItems(ev.removedItems) ;
 				break ;
-		
-			case ModelChangedEventType.UPDATE_ITEMS : 
+			}
+			case ModelChangedEventType.UPDATE_ITEMS :
+			{ 
 				//
 				break ;
-		
+			}
 			default :
+			{
 				//
+			}
 		}
 		getViewContainer().update() ;
 	}

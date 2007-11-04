@@ -21,10 +21,6 @@
   
 */
 
-// TODO continueTo()
-// TODO yoyo()
-// TODO Optimiser les tweens car pour le moment c'est TROP LENT !!!
-
 import pegas.transitions.Motion;
 import pegas.transitions.TweenEntry;
 import pegas.transitions.TweenProvider;
@@ -35,9 +31,9 @@ import pegas.transitions.TweenProvider;
  * <p>Easing refers to gradual acceleration or deceleration during an animation, which helps your animations appear more realistic.</p>
  * <p><b>Example :</b></p>
  * {@code
- * import asgard.process.ActionEvent ;
- * import asgard.transitions.Tween ;
- * import asgard.transitions.easing.* ;
+ * import pegas.process.ActionEvent ;
+ * import pegas.transitions.Tween ;
+ * import pegas.transitions.easing.* ;
  * 
  * import vegas.events.Delegate ;
  * import vegas.events.EventListener ;
@@ -50,7 +46,7 @@ import pegas.transitions.TweenProvider;
  * var debug:EventListener = new Delegate(this, onDebug) ;
  * 
  * var tw:Tween = new Tween (mc, "_x", Elastic.easeOut, mc._x, 400, 2, true, true) ;
- * tw.addEventListener("ALL", debug) ;
+ * tw.addGlobalEventListener( debug ) ;
  * }
  * @author eKameleon
  */
@@ -68,7 +64,7 @@ class pegas.transitions.Tween extends Motion
 	function Tween( args ) 
 	{
 		var obj = arguments[0] ;
-		if (obj) 
+		if (obj != null) 
 		{
 			setTarget(obj) ;
 		}
@@ -83,13 +79,13 @@ class pegas.transitions.Tween extends Motion
 		} 
 		else if (l > 2) 
 		{
-			var p:String = arguments[1] ; // property
+			var p:String   = arguments[1] ; // property
 			var e:Function = arguments[2] ; // easing
-			var b:Number = arguments[3] ; // begin
-			var f:Number = arguments[4] ; // finish
-			var d:Number = arguments[5] ; // duration
-			var u:Boolean = arguments[6] ; // useSeconds
-			var a:Boolean = arguments[7] ; // auto start
+			var b:Number   = arguments[3] ; // begin
+			var f:Number   = arguments[4] ; // finish
+			var d:Number   = arguments[5] ; // duration
+			var u:Boolean  = arguments[6] ; // useSeconds
+			var a:Boolean  = arguments[7] ; // auto start
 			setDuration(d) ;
 			useSeconds = u ;
 			setTweenProvider( [new TweenEntry(p, e, b, f)] ) ;
@@ -128,13 +124,16 @@ class pegas.transitions.Tween extends Motion
 	 * Returns a shallow copy of this Tween object.
 	 * @return a shallow copy of this Tween object.
 	 */
-	/*override*/ public function clone() 
+	public /*override*/ function clone() 
 	{
 		var t:Tween = new Tween() ;
-		t.setTarget(getTarget()) ;
-		t.duration = getDuration() ;
+		t.target     = target ;
+		t.duration   = getDuration() ;
 		t.useSeconds = useSeconds ;
-		if (size() > 0) t.setTweenProvider(getTweenProvider().clone()) ;
+		if (size() > 0) 
+		{
+			t.setTweenProvider(getTweenProvider().clone()) ;
+		}
 		return t ;
 	}
 
@@ -153,7 +152,10 @@ class pegas.transitions.Tween extends Motion
 	 */
 	public function insert( entry:TweenEntry ):Void 
 	{
-		if (!_model) setTweenProvider() ;
+		if (!_model)
+		{
+			setTweenProvider() ;
+		}
 		_model.insert( entry ) ;
 	}
 
@@ -222,10 +224,10 @@ class pegas.transitions.Tween extends Motion
 	 */
 	/*override*/ public function update():Void 
 	{
-		var o = _target ;
+		var o        = target ;
 		var t:Number = _time ;
 		var d:Number = _duration ;
-		var a:Array = _model.toArray() ;
+		var a:Array  = _model.toArray() ;
 		var l:Number = a.length ;
 		while(--l > -1) 
 		{

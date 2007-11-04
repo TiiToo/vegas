@@ -1,23 +1,23 @@
 ﻿/*
 
-  The contents of this file are subject to the Mozilla Public License Version
-  1.1 (the "License"); you may not use this file except in compliance with
-  the License. You may obtain a copy of the License at 
+The contents of this file are subject to the Mozilla Public License Version
+1.1 (the "License"); you may not use this file except in compliance with
+the License. You may obtain a copy of the License at 
   
-           http://www.mozilla.org/MPL/ 
+http://www.mozilla.org/MPL/ 
   
-  Software distributed under the License is distributed on an "AS IS" basis,
-  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
-  for the specific language governing rights and limitations under the License. 
+Software distributed under the License is distributed on an "AS IS" basis,
+WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+The Original Code is Vegas Framework.
   
-  The Initial Developer of the Original Code is
-  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2008
-  the Initial Developer. All Rights Reserved.
+The Initial Developer of the Original Code is
+ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+Portions created by the Initial Developer are Copyright (C) 2004-2008
+the Initial Developer. All Rights Reserved.
   
-  Contributor(s) :
+Contributor(s) :
   
 */
 
@@ -50,22 +50,22 @@ class vegas.util.ObjectUtil
 		var prop:String ;
 		for (prop in o) 
 		{
-			if( ! o.hasOwnProperty( prop ) ) 
+			if( !o.hasOwnProperty( prop ) ) 
 			{
-			  	continue ;
-		  	}
+				continue ;
+			}
 		  	else if ( o[prop] == undefined ) 
-		  	{
-		  		obj[prop] = undefined ;
-		  	}
+			{
+				obj[prop] = undefined ;
+			}
 		  	else if ( o[prop] == null ) 
-		  	{
-		  		obj[prop] = null ;
+			{
+				obj[prop] = null ;
 			}
 			else 
 			{
-		  		obj[prop] = Copier.copy( o[prop] ) ; 
-		  	}
+				obj[prop] = Copier.copy( o[prop] ) ; 
+			}
 		}
 		return obj ;
 	}
@@ -81,6 +81,7 @@ class vegas.util.ObjectUtil
 
 	/**
 	 * Returns {@code true} if the passed object is empty of enumerable property.
+	 * @return {@code true} if the passed object is empty of enumerable property.
 	 */
 	public static function isEmpty(o):Boolean 
 	{
@@ -96,37 +97,37 @@ class vegas.util.ObjectUtil
 	 */
 	public static function memberwiseClone( o ) 
 	{
-    	var obj = {} ;
-    	for( var prop:String in o ) 
-    	{
-        	obj[prop] = o[prop];
-        }
+		var obj = {} ;
+		for( var prop:String in o ) 
+		{
+			obj[prop] = o[prop];
+		}
 		return obj;
-    }
+	}
 
 	/**
 	 * Determines whether the specified Object instance is the same instance as the current object.
 	 */
-	public static function referenceEquals( o1, o2):Boolean
+	public static function referenceEquals( o1, o2 ):Boolean
 	{
-		if( ( o1.valueOf() === null) && (o2 === null) )
+		if( ( o1.valueOf( ) === null) && (o2 === null) )
 		{
 			return true;
 		}
 
-    	if( o1 === o2 )
-        {
-        	return true ;
-        }
+		if( o1 === o2 )
+		{
+			return true ;
+		}
     
-    	if( ( o1 == null) || TypeUtil.typesMatch(o2, Object) )
-        {
-        	return false ;
-        }
+		if( ( o1 == null) || TypeUtil.typesMatch( o2, Object ) )
+		{
+			return false ;
+		}
     
 		if( o1 !== o2 )
 		{
-        	return false;
+			return false;
 		}
 
 		return true;	
@@ -137,7 +138,7 @@ class vegas.util.ObjectUtil
 	 */
 	public static function toBoolean(o):Boolean 
 	{
-		return (new Boolean( o.valueOf() )).valueOf() ;
+		return (new Boolean( o.valueOf( ) )).valueOf( ) ;
 	}
 
 	/**
@@ -145,7 +146,7 @@ class vegas.util.ObjectUtil
 	 */
 	public static function toNumber(o):Number 
 	{
-		return (new Number( o.valueOf() )).valueOf() ;
+		return (new Number( o.valueOf( ) )).valueOf( ) ;
 	}
 
 	/**
@@ -153,7 +154,6 @@ class vegas.util.ObjectUtil
 	 */
 	public static function toObject(o):Object 
 	{
-		return new Object( o.valueOf() ) ;
+		return new Object( o.valueOf( ) ) ;
 	}
-
 }

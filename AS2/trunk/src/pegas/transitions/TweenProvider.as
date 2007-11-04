@@ -1,25 +1,25 @@
 ﻿/*
 
-  The contents of this file are subject to the Mozilla Public License Version
-  1.1 (the "License"); you may not use this file except in compliance with
-  the License. You may obtain a copy of the License at 
+The contents of this file are subject to the Mozilla Public License Version
+1.1 (the "License"); you may not use this file except in compliance with
+the License. You may obtain a copy of the License at 
   
-           http://www.mozilla.org/MPL/ 
+http://www.mozilla.org/MPL/ 
   
-  Software distributed under the License is distributed on an "AS IS" basis,
-  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
-  for the specific language governing rights and limitations under the License. 
+Software distributed under the License is distributed on an "AS IS" basis,
+WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+for the specific language governing rights and limitations under the License. 
   
-  The Original Code is PEGAS Framework.
+The Original Code is PEGAS Framework.
   
-  The Initial Developer of the Original Code is
-  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2008
-  the Initial Developer. All Rights Reserved.
+The Initial Developer of the Original Code is
+ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+Portions created by the Initial Developer are Copyright (C) 2004-2008
+the Initial Developer. All Rights Reserved.
   
-  Contributor(s) :
+Contributor(s) :
   
-*/
+ */
 
 import pegas.transitions.TweenEntry;
 
@@ -39,61 +39,75 @@ import vegas.util.TypeUtil;
  */
 class pegas.transitions.TweenProvider extends AbstractModel implements Iterable 
 {
-	
+
 	
 	/**
 	 * Creates a new TweenProvider instance.
 	 * @param tweens an array of TweenEntry objects. 
 	 */
-	public function TweenProvider( tweens:Array ) {
-		_map = new HashMap() ;
+	public function TweenProvider( tweens:Array ) 
+	{
+		_map = new HashMap( ) ;
 		var len:Number = tweens.length ;
 		if (len > 0) 
 		{
-			for (var i:Number = 0 ; i<len ; i++) 
+			for (var i:Number = 0 ; i < len ; i++) 
 			{
-				var t:TweenEntry = tweens[i].clone()  ;
+				var t:TweenEntry = tweens[i].clone( )  ;
 				if (t instanceof TweenEntry) 
 				{
-					insert(t) ;
+					insert( t ) ;
 				}
 			}
 		}
 	}
-	
+
 	/**
 	 * Returns a shallow copy of this object.
-	 * {@code  var clone:TweenProvier = tp.clone() ;}
+	 * {@code  var clone:TweenProvider = tp.clone() ;}
 	 * @return a shallow copy of this object.
 	 */
 	public function clone() 
 	{
-		return new TweenProvider(toArray()) ;
+		return new TweenProvider( toArray( ) ) ;
 	}
-	
+
+	/**
+	 * Clear the model.
+	 */
 	public function clear():Void 
 	{
-		_map.clear() ;
-		notifyChanged( new ModelChangedEvent(ModelChangedEventType.CLEAR_ITEMS, this) ) ;
+		_map.clear( ) ;
+		notifyChanged( new ModelChangedEvent( ModelChangedEventType.CLEAR_ITEMS, this ) ) ;
 	}
-	
+
+	/**
+	 * Returns the specified TweenEntry reference.
+	 * @return the specified TweenEntry reference.
+	 */
 	public function get(prop:String):TweenEntry 
 	{
-		return _map.get(prop) ;
+		return _map.get( prop ) ;
 	}
-	
+
+	/**
+	 * Returns the Array representation of all property' names in this model.
+	 */
 	public function getProperties():Array 
 	{
-		return _map.getKeys() ;
+		return _map.getKeys( ) ;
 	}
-	
+
+	/**
+	 * Inserts a new TweenEntry in the model.
+	 */
 	public function insert( entry:TweenEntry ):Boolean 
 	{
 		var p:String = entry.prop ;
 		if (p) 
 		{
-			var t:TweenEntry = _map.put(p, entry) ;
-			notifyChanged( new ModelChangedEvent(ModelChangedEventType.ADD_ITEMS, this) ) ;
+			_map.put( p, entry ) ;
+			notifyChanged( new ModelChangedEvent( ModelChangedEventType.ADD_ITEMS, this ) ) ;
 			return true ;
 		}
 		else 
@@ -101,24 +115,40 @@ class pegas.transitions.TweenProvider extends AbstractModel implements Iterable
 			return false ;
 		}
 	}
-	
+
+	/**
+	 * Returns an iterator of this model.
+	 * @return an iterator of this model.
+	 */
 	public function iterator():Iterator 
 	{
-		return _map.iterator() ;
+		return _map.iterator( ) ;
 	}
-	
+
+	/**
+	 * Removes an entry in the model.
+	 */
 	public function remove( entry:Object ):Boolean 
 	{
 		var p:String ;
-		if (TypeUtil.typesMatch(entry, String)) p = String(entry) ;
-		else if (TypeUtil.typesMatch(entry, TweenEntry)) p = entry.prop ;
-		else throw new IllegalArgumentError ; 
+		if (TypeUtil.typesMatch( entry, String )) 
+		{
+			p = String( entry ) ;
+		}
+		else if (TypeUtil.typesMatch( entry, TweenEntry )) 
+		{
+			p = entry.prop ;
+		}
+		else 
+		{
+			throw new IllegalArgumentError(this + " remove method failed with an unknow argument value : " + entry ) ;
+		} 
 		if (p) 
 		{
-			var t:TweenEntry = _map.remove(p) ;
+			var t:TweenEntry = _map.remove( p ) ;
 			if (t != null) 
 			{
-				notifyChanged( new ModelChangedEvent(ModelChangedEventType.REMOVE_ITEMS, this) ) ;
+				notifyChanged( new ModelChangedEvent( ModelChangedEventType.REMOVE_ITEMS, this ) ) ;
 				return true ;
 			}
 		} 
@@ -127,27 +157,41 @@ class pegas.transitions.TweenProvider extends AbstractModel implements Iterable
 			return false ;
 		}
 	}
-	
+
+	/**
+	 * Returns the number of elements in the model.
+	 * @return the number of elements in the model.
+	 */
 	public function size():Number 
 	{
-		return _map.size() ;
+		return _map.size( ) ;
 	}
-	
+
+	/**
+	 * Returns the Array representation of all TweenEntry objects in this model.
+	 * @return the Array representation of all TweenEntry objects in this model.
+	 */
 	public function toArray():Array 
 	{
-		return _map.getValues() ;
+		return _map.getValues( ) ;
 	}
 	
+	/**
+	 * Returns the Map representation of all TweenEntry objects in this model.
+	 */
 	public function toMap():Map 
 	{
-		return _map.clone() ;		
+		return _map.clone( ) ;		
 	}
 
+	/**
+	 * Returns the String representation of this object.
+	 * @return the String representation of this object.
+	 */
 	public function toString():String 
 	{
-		return _map.toString() ;
+		return _map.toString( ) ;
 	}
-	
-	private var _map:HashMap ;
 
+	private var _map:HashMap ;
 }

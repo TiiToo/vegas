@@ -69,7 +69,7 @@ class vegas.util.serialize.Serializer
 	public static function globalToSource( indent:Number, indentor:String ):String  
 	{
     	
-    	var target, member, source;
+    	var member, source ;
     	source = [];
     
     	if( indent != null ) indent++;

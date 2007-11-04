@@ -25,7 +25,7 @@ import vegas.core.CoreObject;
 import vegas.core.ICloneable;
 
 /**
- * A basic TweenEntry used in the Tween class to fill this model.
+ * A basic TweenEntry used in the Tween and TweenLite class.
  * @author eKameleon
  */
 class pegas.transitions.TweenEntry extends CoreObject implements ICloneable
@@ -33,6 +33,10 @@ class pegas.transitions.TweenEntry extends CoreObject implements ICloneable
 	
 	/**
 	 * Creates a new TweenEntry instance.
+	 * @param p the property string value.
+	 * @param e the easing function of the tween entry.
+	 * @param b the begin value.
+	 * @param f the finish value.
 	 */	
 	public function TweenEntry(p:String, e:Function, b:Number, f:Number) 
 	{
@@ -43,23 +47,28 @@ class pegas.transitions.TweenEntry extends CoreObject implements ICloneable
 	}
 
 	/**
-	 * Defined the begin value.
+	 * Defines the begin value of the value.
 	 */
 	public var begin:Number ;
 
+	/**
+	 * (read-write) Defines the easing method reference of this entry.
+	 */
 	public function get easing():Function 
 	{
 		return getEasing() ;
 	}
 	
+	/**
+	 * @private
+	 */
 	public function set easing( f:Function ):Void 
 	{
 		setEasing(f) ;
 	}
 
 	/**
-	 * (read-write) Returns the finish value.
-	 * @return the finish value.
+	 * (read-write) Defines the finish value of the entry.
 	 */
 	public function get finish():Number 
 	{
@@ -67,25 +76,37 @@ class pegas.transitions.TweenEntry extends CoreObject implements ICloneable
 	}
 	
 	/**
-	 * (read-write) Sets the finish value.
+	 * @private
 	 */
 	public function set finish(n:Number):Void 
 	{
 		setFinish(n) ;
 	}
 
-	public var isCached:Boolean ;
-
+	/**
+	 * The previous position of the entry.
+	 */
 	public var prevPos:Number ;
 
+	/**
+	 * The property of the tween entry.
+	 */
 	public var prop:String ;
 
+	/**
+	 * Returns a shallow copy of this entry.
+	 * @return a shallow copy of this entry.
+	 */
 	public function clone() 
 	{
 		var t:TweenEntry = new TweenEntry (prop, getEasing(), begin, finish);
 		return t ;
 	}
 
+	/**
+	 * Returns the change value of this tween entry.
+	 * @return the change value of this tween entry.
+	 */
 	public function getChange():Number 
 	{
 		return _change ;	
@@ -101,28 +122,45 @@ class pegas.transitions.TweenEntry extends CoreObject implements ICloneable
 		return _finish ;
 	}
 	
+	/**
+	 * Returns the current position of this entry with the specified time value and with the specified duration.
+	 * @param t The time position of the motion.
+	 * @param d The duration value of the motion.
+	 * @return the current position of this entry with the specified time value and with the specified duration.
+	 */
 	public function getPosition(t:Number , d:Number):Number 
 	{
-		var f:Function = _easing ;
-		return f( t, begin, getChange() , d ) ;
+		return _easing( t, begin, _change , d ) ;
 	}
 	
+	/**
+	 * The default static easing used by this tween entry if the easing property is empty.
+	 */
 	public static function noEasing(t:Number, b:Number, c:Number, d:Number):Number 
 	{
 		return c*t/d + b;
 	}
-	
+
+	/**
+	 * Sets the easing function of this entry. Use by default the static TweenEntry.noEasing method. 
+	 */	
 	public function setEasing( e:Function ):Void 
 	{
 		_easing	= e || TweenEntry.noEasing ;
 	}
 	
+	/**
+	 * Sets the finish value of this entry.
+	 */
 	public function setFinish(n:Number):Void 
 	{
 		_finish = n ;
 		_setChange(n) ;
 	}
 	
+	/**
+	 * Sets the position of the tween entry with the specified value.
+	 */
 	public function setPosition(value:Number):Number 
 	{
 		prevPos = _pos ;
@@ -130,6 +168,10 @@ class pegas.transitions.TweenEntry extends CoreObject implements ICloneable
 		return value ;
 	}
 	
+	/**
+	 * Returns the String representation of the object.
+	 * @return the String representation of the object.
+	 */
 	public function toString():String 
 	{
 		return "[TweenEntry" + (prop ? (":" + prop) : "") + "]" ;
@@ -140,6 +182,9 @@ class pegas.transitions.TweenEntry extends CoreObject implements ICloneable
 	private var _finish:Number ;
 	private var _pos ;
 	
+	/**
+	 * Sets the new change value of this entry.
+	 */
 	private function _setChange(n:Number):Void 
 	{
 		var c:Number = n - begin ;

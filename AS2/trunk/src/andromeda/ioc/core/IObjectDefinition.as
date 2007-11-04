@@ -1,7 +1,4 @@
-﻿
-import vegas.data.Map;
-
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -23,6 +20,8 @@ import vegas.data.Map;
   Contributor(s) :
   
 */
+
+import vegas.data.Map;
 
 /**
  * Describes an object instance, which has property values, constructor argument values, and further information supplied by concrete implementations.
