@@ -19,9 +19,10 @@
   
   Contributor(s) :
   
-*/
-
-import pegas.geom.Point;
+ */
+ 
+import pegas.geom.Vector2;
+import pegas.util.Vector2Util;
 
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
@@ -40,7 +41,7 @@ class pegas.geom.Line extends CoreObject implements ICloneable, IEquality
 {
 	
 	/**
-	 * Creates a new Line
+	 * Creates a new Line object.
 	 * @param a the a component of the Line.
 	 * @param b the b component of the Line.
 	 * @param c the c component of the Line.
@@ -96,17 +97,17 @@ class pegas.geom.Line extends CoreObject implements ICloneable, IEquality
 	}
 
 	/**
-	 * Returns the distance between two points.
+	 * Returns the distance between two vectors.
 	 * {@code
-	 * var p1:Point = new Point(10,20) ;
-	 * var p2:Point = new Point(40,60) ;
+	 * var v1:Vector2 = new Vector2(10,20) ;
+	 * var v2:Vector2 = new Vector2(40,60) ;
 	 * trace(Line.distance(p1,p2) ) ; // 50
 	 * }
-	 * @return the distance between two points.
+	 * @return the distance between two vectors.
 	 */
-	public static function distance( p1:Point, p2:Point ):Number 
+	public static function distance( p1:Vector2, p2:Vector2 ):Number 
 	{
-		return Point.distance(p1, p2) ;
+		return Vector2Util.getDistance(p1, p2) ;
 	}
 
 	/**
@@ -119,11 +120,12 @@ class pegas.geom.Line extends CoreObject implements ICloneable, IEquality
 	}
 
 	/**
-	 * Returns a 
+	 * Returns a Line reference defines with the two vectors in argument. 
+	 * This line is a line equation as two properties (a,b) such that (y = a*x + b) for any x or a unique c property such that (x = c) for all y.
 	 * The function takes two points as parameter, p0 and p1 containing two properties x and y.
 	 * @return a line equation as two properties (a,b) such that (y = a*x + b) for any x or a unique c property such that (x = c) for all y.
 	 */
-	public static function getLine( p1:Point, p2:Point ):Line 
+	public static function getLine( p1:Vector2, p2:Vector2 ):Line 
 	{
 		var x0:Number = p1.x;
 		var y0:Number = p1.y;
@@ -132,8 +134,14 @@ class pegas.geom.Line extends CoreObject implements ICloneable, IEquality
 		var l:Line = new Line() ;
 		if (x0 == x1) 
 		{
-			if (y0 == y1) l = null ;
-			else l.c = x0 ; // Otherwise, the line is a vertical line
+			if (y0 == y1)
+			{
+				l = null ;
+			}
+			else 
+			{
+				l.c = x0 ; // Otherwise, the line is a vertical line
+			}
 		}
 		else 
 		{
@@ -147,9 +155,9 @@ class pegas.geom.Line extends CoreObject implements ICloneable, IEquality
 	 * Returns a point (x,y) that is the intersection of two lines.
 	 * A line is defined either by a and b parameters such that (y = a*x + b) for any x or 
 	 * a single parameter c such that (x = c) for all y.
-	 * @return a point (x,y) that is the intersection of two lines.
+	 * @return a vector (x,y) that is the intersection of two lines.
 	 */
-	public static function getLineCross(l1:Line, l2:Line):Point 
+	public static function getLineCross(l1:Line, l2:Line):Vector2
 	{
 		if ( l1 == null || l2 == null ) 
 		{
@@ -169,7 +177,7 @@ class pegas.geom.Line extends CoreObject implements ICloneable, IEquality
 				return null ;
 			} 
 			u = (b1 - b0) / (a0 - a1);		
-			return new Point (u , a0 * u + b0 ) ;
+			return new Vector2 (u , a0 * u + b0 ) ;
 		} 
 		else 
 		{
@@ -181,12 +189,12 @@ class pegas.geom.Line extends CoreObject implements ICloneable, IEquality
 				}
 				else 
 				{
-					return new Point (c0, (a1*c0)+b1) ;
+					return new Vector2 (c0, (a1*c0)+b1) ;
 				}
 			} 
 			else if (c1) 
 			{
-				return new Point(c1, (a0*c1) + b0) ;
+				return new Vector2(c1, (a0*c1) + b0) ;
 			}
 		}
 	}
@@ -195,18 +203,18 @@ class pegas.geom.Line extends CoreObject implements ICloneable, IEquality
 	 * Returns the middle of a segment define by two points.
 	 * @return the middle of a segment define by two points.
 	 */
-	public static function getMiddle(p1:Point, p2:Point):Point 
+	public static function getMiddle(v1:Vector2, v2:Vector2):Vector2 
 	{
-		return Point.getMiddle(p1,p2) ;
+		return Vector2Util.getMiddle(v1,v2) ;
 	}
 	
 	/**
 	 * Returns a point on a segment [p1, p2] which distance from p1 is ratio of the length [p1, p2].
 	 * @return a point on a segment [p1, p2] which distance from p1 is ratio of the length [p1, p2].
 	 */
-	public static function getPointOnSegment(p1:Point, p2:Point, ratio:Number):Point 
+	public static function getPointOnSegment(p1:Vector2, p2:Vector2, ratio:Number):Vector2 
 	{
-		return new Point ( p1.x + ((p2.x - p1.x) * ratio) , p1.y + ((p2.y - p1.y) * ratio) ) ;
+		return new Vector2( p1.x + ((p2.x - p1.x) * ratio) , p1.y + ((p2.y - p1.y) * ratio) ) ;
 	}
 	
 	/**
@@ -214,7 +222,7 @@ class pegas.geom.Line extends CoreObject implements ICloneable, IEquality
 	 * The function takes two parameters, a point p(x,y) through which the line passes and a direction vector v(x,y).
 	 * @return a line equation as two properties (a,b) such that (y = a*x + b) for any x.
 	 */
-	public static function getVectorLine(p:Point, v:Point):Line 
+	public static function getVectorLine(p:Vector2, v:Vector2):Line 
 	{
 		var l:Line = new Line() ;
 		var x:Number = p.x;
@@ -246,10 +254,12 @@ class pegas.geom.Line extends CoreObject implements ICloneable, IEquality
 	 */
 	public function toSource(indent:Number, indentor:String):String 
 	{
-		var sourceA:String = Serializer.toSource(a) ;
-		var sourceB:String = Serializer.toSource(b) ;
-		var sourceC:String = Serializer.toSource(c) ;
-		return Serializer.getSourceOf(this, [sourceA, sourceB, sourceC]) ;
+		var params:Array = [ Serializer.toSource(a) , Serializer.toSource(b) ] ;
+		if ( !isNaN(c) ) 
+		{
+			params.push( Serializer.toSource(c) ) ;
+		}
+		return Serializer.getSourceOf(this, params ) ;
 	}
 
 	/**
@@ -258,7 +268,13 @@ class pegas.geom.Line extends CoreObject implements ICloneable, IEquality
 	 */ 
 	public function toString():String 
 	{
-		return "[Line a:" + (isNaN(a) ? 0 : a) + ", b:" + (isNaN(b) ? 0 : b) + ", c:" + (isNaN(c) ? 0 : c) + ")" ;
+		var s:String = "[Line a:" + (isNaN(a) ? 0 : a) + ", b:" + (isNaN(b) ? 0 : b) ;
+		if (!isNaN(c))
+		{
+			s += ", c:" + (isNaN(c) ? 0 : c) ;
+		}
+		s +=  "]" ;
+		return s ;
 	}
 
 }

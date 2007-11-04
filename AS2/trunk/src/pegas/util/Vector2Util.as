@@ -19,8 +19,8 @@
   
   Contributor(s) :
   
-*/
-
+ */
+ 
 import pegas.geom.Vector2;
 
 /**
@@ -73,6 +73,33 @@ class pegas.util.Vector2Util
 	public static function getLength( v:Vector2 ):Number
 	{
 		return Math.sqrt( (v.x * v.x) + (v.y * v.y) ) ;
+	}
+
+	/**
+	 * Returns the middle Vector2 between 2 Points.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * var p1:Vector2 = new Vector2(10,10) ;
+	 * var p2:Vector2 = new Vector2(20,20) ;
+	 * var middle:Vector2 = Vector2Util.getMiddle(p1,p2) ;
+	 * trace(middle) ;
+	 * }
+	 * @return the middle Point between 2 Points.
+	 */
+	public static function getMiddle(p1:Vector2, p2:Vector2):Vector2 
+	{
+		return new Vector2( (p1.x + p2.x) / 2 , (p1.y + p2.y) / 2) ;
+	}
+	
+	/**
+	 * Normalizes the Vector2 instance passed in argument..
+	 * @param v the Vector2 to normalize.
+	 * @return a normalized Vector2, with length 1.
+	 */
+	public static function getNormalize( v:Vector2 ):Vector2
+	{
+		var len:Number = 1 / Vector2Util.getLength(v) ;
+		return Vector2Util.getScale( v , len ) ;
 	}
 
 	/**
@@ -131,16 +158,7 @@ class pegas.util.Vector2Util
 		return new Vector2( (v1.x - v2.x) , (v1.y - v2.y) ) ;
 	}
 
-	/**
-	 * Normalizes the Vector2 instance passed in argument..
-	 * @param v the Vector2 to normalize.
-	 * @return a normalized Vector2, with length 1.
-	 */
-	public static function getNormalize( v:Vector2 ):Vector2
-	{
-		var len:Number = 1 / Vector2Util.getLength(v) ;
-		return Vector2Util.getScale( v , len ) ;
-	}
+
 
 	/**
 	 * Sets the specified {@code Vector2} object with the second {@code Vector2} object passed in argument.

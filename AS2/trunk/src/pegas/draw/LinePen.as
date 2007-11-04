@@ -19,11 +19,10 @@
   
   Contributor(s) :
   
-*/
-
-import pegas.draw.AbstractPen;
+ */import pegas.draw.AbstractPen;
 import pegas.geom.Line;
 import pegas.geom.Point;
+import pegas.geom.Vector2;
 
 /**
  * This pen is the basic tool to draw a line in a MovieClip reference.
@@ -41,28 +40,43 @@ class pegas.draw.LinePen extends AbstractPen
 		_pEnd = new Point(0,0) ;
 		_pStart = new Point(0,0) ;
 	}
-
+	
+	/**
+	 * The alpha value of this pen.
+	 */
 	public function get alpha():Number 
 	{
 		return getAlpha() ;	
 	}
-	
+
+	/**
+	 * @private
+	 */
 	public function set alpha(n:Number):Void 
 	{
 		setAlpha(n) ;	
 	}
 	
+	/**
+	 * The color value of this pen.
+	 */
 	public function get color():Number 
 	{
 		return getColor() ;	
 	}
 	
+	/**
+	 * @private
+	 */
 	public function set color(n:Number):Void 
 	{
 		setColor(n) ;	
 	}
 
-	public function get end():Point 
+	/**
+	 * The end 
+	 */
+	public function get end():Vector2D 
 	{
 		return getEnd() ;	
 	}
@@ -132,17 +146,17 @@ class pegas.draw.LinePen extends AbstractPen
 		return lc ;
 	}
 	
-	public function getEnd():Point 
+	public function getEnd():Vector2 
 	{
 		return _pEnd ;	
 	}
 	
 	public function getLine():Line 
 	{
-		return Line.getLine(_pStart, _pEnd) ;	
+		return Line.getLine( _pStart, _pEnd ) ;	
 	}
 
-	public function getStart():Point 
+	public function getStart():Vector2 
 	{
 		return _pStart ;	
 	}
@@ -174,27 +188,48 @@ class pegas.draw.LinePen extends AbstractPen
 		if (!noDraw) draw() ;	
 	}
 
-	public function setEnd(p:Point, noDraw:Boolean):Void 
+	/**
+	 * Sets the end vector value of this pen.
+	 * @param v The Vector2 object who defines the end vector of the line.
+	 * @param noDraw (optional) Indicates if the pen redraw the shape.
+	 */
+	public function setEnd(p:Vector2, noDraw:Boolean):Void 
 	{
 		_pEnd = p ;
 		if (!noDraw) draw() ;	
 	}
 	
-	public function setLine(p_start:Point, p_end:Point, p_thickness:Number, p_color:Number, p_alpha:Number):Void 
+	/**
+	 * Sets the line pen properties.
+	 * @param vStart The start vector position of the line.
+	 * @param vEnd The end vector position of the line.
+	 * @param thickness The thickness value of the line pen.
+	 * @param color The color value of the line pen.
+	 * @param alpha The alpha value of the line pen.
+	 */
+	public function setLine( vStart:Vector2, vEnd:Vector2, thickness:Number, color:Number, alpha:Number):Void 
 	{
-		if (p_end != null) setEnd(p_end, true) ;
-		if (p_start != null) setStart(p_start, true) ;
-		if (p_color != null) setColor(p_color, true) ;
-		if (p_alpha != null) setAlpha(p_alpha, true) ;
-		if (p_thickness != null) setThickness(p_thickness, true) ;
+		if (vEnd != null)   setEnd( vEnd, true) ;
+		if (vStart != null) setStart( vStart, true) ;
+		if (color != null) setColor( color, true) ;
+		if (alpha != null) setAlpha( alpha, true) ;
+		if (thickness != null) setThickness( thickness, true) ;
 	}
-
-	public function setStart(p:Point, noDraw:Boolean):Void 
+	
+	/**
+	 * Sets the start vector value of this pen.
+	 * @param v The Vector2 object who defines the start vector of the line.
+	 * @param noDraw (optional) Indicates if the pen redraw the shape.
+	 */
+	public function setStart(v:Vector2, noDraw:Boolean):Void 
 	{
-		_pStart = p ;
+		_pStart = v ;
 		if (!noDraw) draw() ;	
 	}
-
+	
+	/**
+	 * Sets the thickness value of the line pen.
+	 */
 	public function setThickness(n:Number, noDraw:Boolean):Void 
 	{ 
 		t = isNaN(n) ? default_t : n ; 
@@ -203,7 +238,7 @@ class pegas.draw.LinePen extends AbstractPen
 
 	private var _autoClear:Boolean ;
 	private var _line:Line ;
-	private var _pEnd:Point ;
-	private var _pStart:Point ;	
+	private var _pEnd:Vector2 ;
+	private var _pStart:Vector2 ;	
 
 }

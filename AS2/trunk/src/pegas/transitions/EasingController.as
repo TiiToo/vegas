@@ -43,7 +43,7 @@ import vegas.data.map.HashMap;
  * 
  * var easing:Function = controller.getEasing( "elastic_ease_out" ) ;
  * 
- * var tw:Tween = new Tween( mc, "_x" , easing, mc._x, 500, 24 ) ; // mc a movieclip on the _root.
+ * var tw:Tween = new Tween( mc, "_x" , easing, mc._x, 500, 24 , false, true) ; // mc a movieclip on the _root.
  * }
  * @author eKameleon
  */
