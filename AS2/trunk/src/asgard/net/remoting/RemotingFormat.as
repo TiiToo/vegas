@@ -52,9 +52,18 @@ class asgard.net.remoting.RemotingFormat extends CoreObject implements IFormat
 		var rs:RemotingService = RemotingService(o);
 		var r = rs.getResult() ;
 		var txt:String = "[" ;
-		if (rs.getServiceName()) txt += "\r\tserviceName : " + rs.getServiceName() + " , " ;
-		if (rs.getMethodName()) txt += "\r\tmethodName : " + rs.getMethodName() + " ," ;
-		if (rs.getServiceName()) txt += "\r\tresult : " ;
+		if (rs.getServiceName())
+		{
+			txt += "\r\tserviceName : " + rs.getServiceName() + " , " ;
+		}
+		if (rs.getMethodName())
+		{
+			txt += "\r\tmethodName : " + rs.getMethodName() + " ," ;
+		}
+		if (rs.getServiceName())
+		{
+			txt += "\r\tresult : " ;
+		}
 		if (r != undefined)
 		{
 			if (r instanceof Iterable) 
@@ -90,7 +99,10 @@ class asgard.net.remoting.RemotingFormat extends CoreObject implements IFormat
 		else 
 		{
 			txt += "empty";
-			if (rs.getServiceName() || rs.getMethodName()) txt += "\r" ;
+			if (rs.getServiceName() || rs.getMethodName() ) 
+			{
+				txt += "\r" ;
+			}
 			txt += "]" ;
 		}
 		return txt ;

@@ -32,6 +32,11 @@ class vegas.string.HTMLStringFormatter
 
 	/**
 	 * Creates an HTML anchor that is used as a hypertext target.
+	 * {@code
+	 * import vegas.string.HTMLStringFormatter ;
+	 * var s:String = HTMLStringFormatter.anchor("contents_anchor", "ekameleon link") ;
+	 * trace("anchor : " + s) ; // anchor : <a name="contents_anchor">ekameleon link</a>
+	 * }
 	 * @param str the string to be formatted.
 	 * @param name the name of the anchor.
 	 * @return the string formatted with the method.
@@ -43,6 +48,11 @@ class vegas.string.HTMLStringFormatter
 
 	/**
 	 * Use the big method to format and display a string in a document.
+	 * {@code
+	 * import vegas.string.HTMLStringFormatter ;
+	 * var s:String = HTMLStringFormatter.big("hello world") ;
+	 * trace("big : " + s) ; // big : <big>hello world</big>
+	 * }
 	 * @param str the string to be formatted.
 	 * @return the string formatted with the method.
 	 */
@@ -53,6 +63,11 @@ class vegas.string.HTMLStringFormatter
 
 	/**
 	 * Use the blink method to format and display a string in a document.
+	 * {@code
+	 * import vegas.string.HTMLStringFormatter ;
+	 * var s:String = HTMLStringFormatter.big("hello world") ;
+	 * trace("big : " + s) ; // big : <big>hello world</big>
+	 * }
 	 * @param str the string to be formatted.
 	 * @return the string formatted with the method.
 	 */
@@ -64,6 +79,7 @@ class vegas.string.HTMLStringFormatter
 	/**
 	 * Use the bold method to format and display a string in a document.
 	 * {@code
+	 * import vegas.string.HTMLStringFormatter ;
 	 * var s:String = HTMLStringFormatter.bold("hello world") ;
 	 * trace("bold : " + s) ; // bold : <b>hello world</b>
 	 * }
@@ -77,6 +93,11 @@ class vegas.string.HTMLStringFormatter
 
 	/**
 	 * Use the fixed method to format and display a string in a document.
+	 * {@code
+	 * import vegas.string.HTMLStringFormatter ;
+	 * var s:String = HTMLStringFormatter.fixed("hello world") ;
+	 * trace("fixed : " + s) ; // fixed : <tt>hello world</tt>
+	 * }
 	 * @param str the string to be formatted.
 	 * @return the string formatted with the method.
 	 */
@@ -87,6 +108,11 @@ class vegas.string.HTMLStringFormatter
 
 	/**
 	 * Use the fontColor method to format and display a string in a document.
+	 * {@code
+	 * import vegas.string.HTMLStringFormatter ;
+	 * var s:String = HTMLStringFormatter.fontColor("hello world" , "#FF0000" ) ;
+	 * trace("fontColor : " + s) ; // fontColor : <font color="#FF0000">hello world</font>
+	 * }
 	 * @param str the string to be formatted.
 	 * @param color the string hexadecimal RGB triplet with the format rrggbb.
 	 * @return the string formatted with the method.
@@ -97,7 +123,12 @@ class vegas.string.HTMLStringFormatter
 	}
 	
 	/**
-	 * Use the fontColor method to format and display a string in a document.
+	 * Use the fontSize method to format and display a string in a document.
+	 * {@code
+	 * import vegas.string.HTMLStringFormatter ;
+	 * var s:String = HTMLStringFormatter.fontSize("hello world" , "#FF0000" ) ;
+	 * trace("fontSize : " + s) ; // fontSize : <font color="#FF0000">hello world</font>
+	 * }
 	 * @param str the string to be formatted.
 	 * @param size an Integer representing the size of the font.
 	 * @return the string formatted with the method.
@@ -174,6 +205,11 @@ class vegas.string.HTMLStringFormatter
 
 	/**
 	 * Use the small method to format and display a string in a document.
+	 * {@code
+	 * import vegas.string.HTMLStringFormatter ;
+	 * var s:String = HTMLStringFormatter.small("hello world") ;
+	 * trace("small : " + s) ; // small : <small>hello world</small>
+	 * }
 	 * @param str the string to be formatted.
 	 * @return the string formatted with the method.
 	 */
@@ -211,6 +247,11 @@ class vegas.string.HTMLStringFormatter
 
 	/**
 	 * Use the strike method to format and display a string in a document.
+	 * {@code
+	 * import vegas.string.HTMLStringFormatter ;
+	 * var s:String = HTMLStringFormatter.strike("hello world") ;
+	 * trace("strike : " + s) ; // strike : <strike>hello world</strike>
+	 * }
 	 * @param str the string to be formatted.
 	 * @return the string formatted with the method.
 	 */
@@ -221,6 +262,11 @@ class vegas.string.HTMLStringFormatter
 	
 	/**
 	 * Use the sub method to format and display a string in a document.
+	 * {@code
+	 * import vegas.string.HTMLStringFormatter ;
+	 * var s:String = HTMLStringFormatter.sub("hello world") ;
+	 * trace("sub : " + s) ; // sub : <sub>hello world</sub>
+	 * }
 	 * @param str the string to be formatted.
 	 * @return the string formatted with the method.
 	 */
@@ -231,6 +277,11 @@ class vegas.string.HTMLStringFormatter
 	
 	/**
 	 * Use the sup method to format and display a string in a document.
+	 * {@code
+	 * import vegas.string.HTMLStringFormatter ;
+	 * var s:String = HTMLStringFormatter.sup("hello world") ;
+	 * trace("sup : " + s) ; // sup : <sup>hello world</sup>
+	 * }
 	 * @param str the string to be formatted.
 	 * @return the string formatted with the method.
 	 */

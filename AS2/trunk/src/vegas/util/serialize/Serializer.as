@@ -138,7 +138,10 @@ class vegas.util.serialize.Serializer
 			{
 				source += params[i] ;
 				i++ ;
-				if (i<l) source += "," ;
+				if (i<l) 
+				{
+					source += "," ;
+				}
 			}
 		}
 		source += ")" ;

@@ -150,7 +150,7 @@ class pegas.process.Pause extends AbstractAction
 	 */
 	public function toString():String 
 	{
-		return "[Pause : " + getDuration() + (useSeconds ? "s" : "ms") + "]" ;
+		return "[" + ConstructorUtil.getName(this) + " " + getDuration() + (useSeconds ? "s" : "ms") + "]" ;
 	}
 
 	private var _duration:Number ;

@@ -68,7 +68,7 @@ class asgard.net.HTMLEntities
 	 * Decodes the specified string.
 	 * @return the decode string.
 	 */
-	static function decode( text:String, removeCRLF:Boolean ):String 
+	public static function decode( text:String, removeCRLF:Boolean ):String 
 	{
 		var i:Number ;
 		var ch:String ;
@@ -79,18 +79,14 @@ class asgard.net.HTMLEntities
 		{
 			ch = specialchars[ i ];
 			entity = entities[ i ];
-			
-			// trace(ch + " : " + i) ;
-			
 			if( text.indexOf( entity ) > -1 )
 			{
 				text = StringUtil.replace( text, entity, ch );
 			}
 		}
-		
 		if( removeCRLF )
 		{
-			text = StringUtil.replace( text, "\r\n", "" );
+			text = (text.split("\r\n")).join("") ;
 		}
 		return text;
 	}
@@ -99,22 +95,16 @@ class asgard.net.HTMLEntities
 	 * Encodes the specified text passed in argument.
 	 * @return a string encode text.
 	 */
-	static function encode( text:String ):String
+	public static function encode( text:String ):String
 	{
 		var i:Number ;
-		
 		var ch:String ;
-		
 		var entity:String ;
-		
 		var len:Number = entities.length ;
-		
 		for( i=0; i<len; i++ )
 		{
-			
-			ch = specialchars[i];
+			ch     = specialchars[i];
 			entity = entities[i];
-			
 			if( text.indexOf( ch ) > -1 )
 			{
 				text = StringUtil.replace( text, ch, entity );

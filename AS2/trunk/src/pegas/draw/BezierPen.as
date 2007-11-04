@@ -19,12 +19,12 @@ the Initial Developer. All Rights Reserved.
   
 Contributor(s) :
   
- */
-
+*/
+ 
 import pegas.draw.AbstractPen;
 import pegas.geom.Bezier;
 import pegas.geom.Line;
-import pegas.geom.Point;
+import pegas.geom.Vector2;
 
 /**
  * This pen draw a bezier line curve in a MovieClip reference.
@@ -53,26 +53,28 @@ class pegas.draw.BezierPen extends AbstractPen
 	/**
 	 * Draw the bezier shape.
 	 */
-	public function draw(p1:Point, p2:Point, p3:Point, p4:Point, tolerance:Number):Void 
+	public function draw(p1:Vector2, p2:Vector2, p3:Vector2, p4:Vector2, tolerance:Number):Void 
 	{
 		drawPoints( p1, p2, p3, p4, tolerance ) ;
 	}
 
-	public function drawCubicBezier(p0:Point, p1:Point, p2:Point, p3:Point, nSegment:Number, moveto:Boolean):Number 
+	public function drawCubicBezier(p0:Vector2, p1:Vector2, p2:Vector2, p3:Vector2, nSegment:Number, moveto:Boolean):Number 
 	{
 		//var curP ; // holds the current Point
 		//var nextP:Point ; // holds the next Point
 		//var ctrlP:Point ; // holds the current control Point
-		var curT ; 
 		// holds the current Tangent object
 		var nextT ; 
 		// holds the next Tangent object
 		var total:Number = 0; 
 		// holds the number of slices used
-		if (nSegment < 2) nSegment = 4 ;
+		if (nSegment < 2) 
+		{
+			nSegment = 4 ;
+		}
 		var tStep:Number = 1 / nSegment ;
-		curT = new Object( );
-		curT.p = p0;
+		var curT:Object  = {} ;
+		curT.p = p0 ;
 		curT.l = Line.getLine( p0, p1 ) ;
 		if (moveto) moveTo( p0.x, p0.y );
 		for (var i:Number = 1 ; i <= nSegment ; i++) 
@@ -86,35 +88,35 @@ class pegas.draw.BezierPen extends AbstractPen
 
 	public function drawCubicBezier2(p0, p1, p2, p3):Void 
 	{
-		var pA:Point = Line.getPointOnSegment( p0, p1, 3 / 4 );
-		var pB:Point = Line.getPointOnSegment( p3, p2, 3 / 4 );
+		var pA:Vector2 = Line.getPointOnSegment( p0, p1, 3 / 4 );
+		var pB:Vector2 = Line.getPointOnSegment( p3, p2, 3 / 4 );
 		var dx:Number = (p3.x - p0.x) / 16 ;
 		var dy:Number = (p3.y - p0.y) / 16 ;
-		var pc_1:Point = Line.getPointOnSegment( p0, p1, 3 / 8 );
-		var pc_2:Point = Line.getPointOnSegment( pA, pB, 3 / 8 );
+		var pc_1:Vector2 = Line.getPointOnSegment( p0, p1, 3 / 8 );
+		var pc_2:Vector2 = Line.getPointOnSegment( pA, pB, 3 / 8 );
 		pc_2.x -= dx;
 		pc_2.y -= dy;
 		var pc_3 = Line.getPointOnSegment( pB, pA, 3 / 8 );
 		pc_3.x += dx;
 		pc_3.y += dy;
-		var pc_4:Point = Line.getPointOnSegment( p3, p2, 3 / 8 );
-		var pa_1:Point = Line.getMiddle( pc_1, pc_2 );
-		var pa_2:Point = Line.getMiddle( pA, pB );
-		var pa_3:Point = Line.getMiddle( pc_3, pc_4 );
+		var pc_4:Vector2 = Line.getPointOnSegment( p3, p2, 3 / 8 );
+		var pa_1:Vector2 = Line.getMiddle( pc_1, pc_2 );
+		var pa_2:Vector2 = Line.getMiddle( pA, pB );
+		var pa_3:Vector2 = Line.getMiddle( pc_3, pc_4 );
 		curveTo( pc_1.x, pc_1.y, pa_1.x, pa_1.y );
 		curveTo( pc_2.x, pc_2.y, pa_2.x, pa_2.y );
 		curveTo( pc_3.x, pc_3.y, pa_3.x, pa_3.y );
 		curveTo( pc_4.x, pc_4.y, p3.x, p3.y );
 	}
 
-	public function drawCubicBezierSpline(p0:Point, p1:Point, p2:Point, p3:Point):Void 
+	public function drawCubicBezierSpline(p0:Vector2, p1:Vector2, p2:Vector2, p3:Vector2):Void 
 	{
-		var mid = Line.getMiddle( p1, p2 ) ;
+		var mid:Vector2 = Line.getMiddle( p1, p2 ) ;
 		curveTo( p1.x, p1.y, mid.x, mid.y );
 		curveTo( p2.x, p2.y, p3.x, p3.y );
 	}
 
-	public function drawPoints( /* p1:Point, p2:Point, p3:Point, p4:Point, tolerance:Number */ ):Void 
+	public function drawPoints( /* p1:Vector2, p2:Vector2, p3:Vector2, p4:Vector2, tolerance:Number */ ):Void 
 	{
 		if (arguments.length == 1 && arguments[0] instanceof Array) 
 		{
@@ -127,10 +129,10 @@ class pegas.draw.BezierPen extends AbstractPen
 		} 
 		else 
 		{
-			var p1:Point = arguments[0] ;
-			var p2:Point = arguments[1] ;
-			var p3:Point = arguments[2] ;
-			var p4:Point = arguments[3] ;
+			var p1:Vector2 = arguments[0] ;
+			var p2:Vector2 = arguments[1] ;
+			var p3:Vector2 = arguments[2] ;
+			var p4:Vector2 = arguments[3] ;
 			var tolerance:Number = arguments[4] ;
 			if (tolerance == undefined) tolerance = 5 ;
 			moveTo( p1.x, p1.y );
@@ -138,7 +140,7 @@ class pegas.draw.BezierPen extends AbstractPen
 		}
 	}
 
-	public function simulate(p1:Point, p2:Point, p3:Point, p4:Point):Void 
+	public function simulate(p1:Vector2, p2:Vector2, p3:Vector2, p4:Vector2):Void 
 	{
 		var a,b,c,d,e,f,g,h,i,j:Number ;
 		a = (p1.x + p2.x) / 2 ;
@@ -156,7 +158,7 @@ class pegas.draw.BezierPen extends AbstractPen
 		curveTo( e, f, p4.x, p4.y ) ;
 	}
 
-	public function sliceCubicBezierSegment(p0:Point, p1:Point, p2:Point, p3:Point, u1, u2, tu1, tu2, recurs:Number):Number 
+	public function sliceCubicBezierSegment(p0:Vector2, p1:Vector2, p2:Vector2, p3:Vector2, u1, u2, tu1, tu2, recurs:Number):Number 
 	{
 		var p ;
 		if (recurs > 10) 
@@ -165,7 +167,7 @@ class pegas.draw.BezierPen extends AbstractPen
 			lineTo( p.x, p.y );
 			return 1 ;
 		}
-		var ctrlpt:Point = Line.getLineCross( tu1.l, tu2.l ) ;
+		var ctrlpt:Vector2 = Line.getLineCross( tu1.l, tu2.l ) ;
 		var d:Number = 0 ;
 		if ( (ctrlpt == null) || (Line.distance( tu1.p, ctrlpt ) > (d = Line.distance( tu1.p, tu2.p ))) || (Line.distance( tu2.p, ctrlpt ) > d) ) 
 		{
@@ -184,11 +186,11 @@ class pegas.draw.BezierPen extends AbstractPen
 		}
 	}
 
-	private function _create(a:Point, b:Point, c:Point, d:Point, k:Number):Void 
+	private function _create(a:Vector2, b:Vector2, c:Vector2, d:Vector2, k:Number):Void 
 	{
 		var l1:Line = Line.getLine( a, b ) ;
 		var l2:Line = Line.getLine( c, d ) ;
-		var s:Point = Line.getLineCross( l1, l2 ) ;
+		var s:Vector2 = Line.getLineCross( l1, l2 ) ;
 		var dx:Number = (a.x + d.x + s.x * 4 - (b.x + c.x) * 3) * .125 ;
 		var dy:Number = (a.y + d.y + s.y * 4 - (b.y + c.y) * 3) * .125 ;
 		if (dx * dx + dy * dy > k) 
@@ -198,7 +200,8 @@ class pegas.draw.BezierPen extends AbstractPen
 			var b1 = halves.b1 ;
 			_create( a, b0.b, b0.c, b0.d, k ) ;
 			_create( b1.a, b1.b, b1.c, d, k ) ;
-		} else 
+		} 
+		else 
 		{
 			curveTo( s.x, s.y, d.x, d.y ) ;
 		}

@@ -33,7 +33,7 @@
  * 
  * var pat1:String = "<*>";
  * var pat2:String = "<html>*</html>";
- * var pat3:String = "function *()*{*}";
+ * var pat3:String = "function*()*{*}";
  * 
  * 	var t:Number = getTimer();
  *
@@ -65,8 +65,14 @@ class vegas.string.Glob
 	public static function stringMatch(str:String, pattern:String, caseSensitive:Boolean ) 
 	{
 		
-		if (! str instanceof String) str = new String(str) ;
-		if (! pattern instanceof String) pattern = new String(pattern) ;
+		if ( ! str instanceof String ) 
+		{
+			str = new String(str) ;
+		}
+		if (! pattern instanceof String)
+		{
+			pattern = new String(pattern) ;
+		}
 		
 		if( !caseSensitive ) 
 		{
@@ -74,25 +80,41 @@ class vegas.string.Glob
 			pattern = pattern.toLowerCase();
         }
     
-    	var c:String = str.charAt(0);
-		//var c1:String = str.charAt(1);
-		var pat:String = pattern.charAt(0);
-		var pat1:String = pattern.charAt(1);
+    	var c:String    = str.charAt(0)     ;
+		var pat:String  = pattern.charAt(0) ;
+		var pat1:String = pattern.charAt(1) ;
     
 		switch (pat) 
 		{
 			
 			case "?"  :
-				if( c != "" ) return stringMatch( str.substr(1), pattern.substr(1), caseSensitive ) ;
-				else return false ;
-				
+			{
+				if( c != "" ) 
+				{
+					return stringMatch( str.substr(1), pattern.substr(1), caseSensitive ) ;
+				}
+				else 
+				{
+					return false ;
+				}
+			}	
 			case "*" :
-				if ( pat1 == "" ) return true ;
-				if ( pattern.substr(1).indexOf( "*" ) > -1 ) {
-					while( str != "" ) {
-					if( pat1 == "*" ) break ;
+			{
+				if ( pat1 == "" ) 
+				{
+					return true ;
+				}
+				if ( pattern.substr(1).indexOf( "*" ) > -1 ) 
+				{
+					while( str != "" ) 
+					{
+						if( pat1 == "*" ) 
+						{
+							break ;
+						}
 						str = str.substr(1);
-						if( pat1 == "?" ) {
+						if( pat1 == "?" ) 
+						{
 							pattern = pattern.substr(1);
 							break;
 						}
@@ -100,24 +122,50 @@ class vegas.string.Glob
 						if ( str.charAt(0) == pat1 ) break;
 					}
 					return stringMatch( str, pattern.substr(1), caseSensitive ) ;
-				} else {
+				} 
+				else 
+				{
 					var found:Number = str.lastIndexOf( pat1 );
-					if( found != -1 ) return stringMatch( str.substr(found), pattern.substr(1), caseSensitive );
-					else if( pat1 == "?" ) {
-						if( pattern.charAt(2) == "" ) return str.length >= 1;
-						else return stringMatch( str.substr(1), pattern.substr(1), caseSensitive );
+					if( found != -1 ) 
+					{
+						return stringMatch( str.substr(found), pattern.substr(1), caseSensitive );
 					}
-					return false;
+					else if( pat1 == "?" ) 
+					{
+						if( pattern.charAt(2) == "" ) 
+						{
+							return str.length >= 1 ;
+						}
+						else 
+						{
+							return stringMatch( str.substr(1), pattern.substr(1), caseSensitive );
+						}
+					}
+					else
+					{
+						return false ;
+					}
 				}
-				
+			}
 			case "" :
+			{
 				return ( c == "" ) ;
+			}
     	}
 		
 		
-		if( c != pat ) return false;
-        if( c != "" ) return stringMatch( str.substr(1), pattern.substr(1), caseSensitive );
-        else return false ;
+		if( c != pat ) 
+		{
+			return false ;
+		}
+        if( c != "" ) 
+        {
+        	return stringMatch( str.substr(1), pattern.substr(1), caseSensitive );
+        }
+        else 
+        {
+        	return false ;
+        }
     
     }
 

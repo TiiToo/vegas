@@ -55,9 +55,9 @@ class asgard.net.TimeoutPolicy extends CoreObject
 	 * Returns the eden string representation of this object.
 	 * @return the eden string representation of this object.
 	 */		
-	/*override*/ public function toSource():String
+	public /*override*/ function toSource():String
 	{
-		return "new asgard.net.TimeoutPolicy(" + Serializer.toSource(_value) + ")" ;
+		return Serializer.getSourceOf( this , [ Serializer.toSource(_value) ] ) ;
 	}
 
 	/**

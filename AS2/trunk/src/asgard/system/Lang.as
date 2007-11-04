@@ -192,7 +192,8 @@ class asgard.system.Lang extends String
 	public static function validate( lang:String ):Boolean 
 	{
 		
-		var langs:Array = [
+		var langs:Array = 
+		[
 			CS, DA, NL, EN, FI, FR,
 			DE, HU, IT, JA, KO, NO,
 			XU, PL, PT, RU, ZH_CN,

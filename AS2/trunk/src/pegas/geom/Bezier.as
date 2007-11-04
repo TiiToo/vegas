@@ -63,7 +63,8 @@ class pegas.geom.Bezier
 		var c1,c2, c3, nx, ny, u1:Number ;
 		var npoint:Point ;
 		
-		while (i<nbp){
+		while (i<nbp)
+		{
 
 			_p0 = points[i] ;
 			_p1 = (loop)? points[(i+1)%nbp]:(points[(i+1)])? points[(i+1)]:_p0 ;
@@ -71,7 +72,8 @@ class pegas.geom.Bezier
 
 			t = 0 ;
 
-			while (t<=1){
+			while (t<=1)
+			{
 
 				var p0:Point = new Point((_p0.x+_p1.x)/2,(_p0.y+_p1.y)/2);
 				var p1:Point = new Point(_p1.x,_p1.y);
@@ -89,7 +91,6 @@ class pegas.geom.Bezier
 			
 				if (lastpoint!=null) 
 				{
-					
 					if ( Point.distance(lastpoint,npoint) > precision )
 					{
 						lastpoint=npoint;
@@ -127,15 +128,16 @@ class pegas.geom.Bezier
 		return new Point(x/pts.length,y/pts.length) ;
 	}
 
-	public static function split(p0:Point, p1:Point, p2:Point, p3:Point):Object
+	public static function split(p0:Vector2, p1:Vector2, p2:Vector2, p3:Vector2):Object
 	{
-		var p0_1:Point = Line.getMiddle(p0, p1) ;
-		var p1_2:Point = Line.getMiddle(p1, p2);
-		var p2_3:Point = Line.getMiddle(p2, p3);
-		var p0_2:Point = Line.getMiddle(p0_1, p1_2);
-		var p1_3:Point = Line.getMiddle(p1_2, p2_3);
-		var p0_3:Point = Line.getMiddle(p0_2, p1_3);
-		var o:Object = {
+		var p0_1:Vector2 = Line.getMiddle(p0, p1) ;
+		var p1_2:Vector2 = Line.getMiddle(p1, p2);
+		var p2_3:Vector2 = Line.getMiddle(p2, p3);
+		var p0_2:Vector2 = Line.getMiddle(p0_1, p1_2);
+		var p1_3:Vector2 = Line.getMiddle(p1_2, p2_3);
+		var p0_3:Vector2 = Line.getMiddle(p0_2, p1_3);
+		var o:Object = 
+		{
 			b0 : { a:p0  , b:p0_1 , c:p0_2 , d:p0_3 } ,
 			b1 : { a:p0_3 , b:p1_3 , c:p2_3 , d:p3 }  
 		} ;
@@ -159,7 +161,7 @@ class pegas.geom.Bezier
 		return ( a*ts*t + b*ts + g*t + c0 ) ;
 	}
 
-	public static function getCubicTgt(p0:Point, p1:Point, p2:Point, p3:Point, t:Number):Object 
+	public static function getCubicTgt(p0:Vector2, p1:Vector2, p2:Vector2, p3:Vector2, t:Number):Object 
 	{
 		var p = {};
 		p.x = getCubicPt(p0.x, p1.x, p2.x, p3.x, t);

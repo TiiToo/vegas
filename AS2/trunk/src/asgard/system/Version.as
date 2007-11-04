@@ -19,13 +19,12 @@
   
   Contributor(s) :
   
- */
- 
-import vegas.core.CoreObject;
+ */import vegas.core.CoreObject;
 import vegas.core.IComparable;
 import vegas.core.IEquality;
 import vegas.core.ISerializable;
 import vegas.util.MathsUtil;
+import vegas.util.serialize.Serializer;
 
 /**
  * Represents a version number for a constructor, an environnement, a platform or other.
@@ -60,9 +59,9 @@ class asgard.system.Version extends CoreObject implements IComparable, IEquality
 	 */
 	public function Version( major:Number, minor:Number, build:Number, revision:Number ) 
 	{
-		this.major = _checkValue( major, 0xF ) ; // max : 15
-		this.minor = _checkValue( minor, 0xF ) ; // max : 15
-		this.build = _checkValue( build, 0xFFF ) ; // max : 4095
+		this.major    = _checkValue( major, 0xF ) ; // max : 15
+		this.minor    = _checkValue( minor, 0xF ) ; // max : 15
+		this.build    = _checkValue( build, 0xFFF ) ; // max : 4095
 		this.revision = _checkValue( revision, 0xFF ) ;  // max : 255
 		_value = major << 24 | minor << 20 | build << 8 | revision ;
 	}
@@ -254,7 +253,7 @@ class asgard.system.Version extends CoreObject implements IComparable, IEquality
 	 */
 	public function toSource(indent:Number, indentor:String):String 
 	{
-		return "new asgard.system.Version(" + major + "," + minor + "," + build + "," + revision + ")" ;
+		return Serializer.getSourceOf( this , [ major , minor , build , revision ] ) ;
 	}
 
 	/**
