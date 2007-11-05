@@ -166,8 +166,11 @@ class asgard.events.RemotingEvent extends DynamicEvent
 	
 	public function setResult( oResult , sMethodName:String ):Void 
 	{
-		_result = oResult || null ;
-		if (sMethodName) setMethodName( sMethodName ) ;
+		_result = oResult ;
+		if (sMethodName) 
+		{
+			setMethodName( sMethodName ) ;
+		}
 	}		
 	
 	private var _fault ;

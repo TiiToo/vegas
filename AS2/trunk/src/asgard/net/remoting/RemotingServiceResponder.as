@@ -19,9 +19,7 @@
   
   Contributor(s) :
   
-*/
-
-import asgard.events.RemotingEvent;
+ */import asgard.events.RemotingEvent;
 
 import vegas.core.CoreObject;
 import vegas.events.Delegate;

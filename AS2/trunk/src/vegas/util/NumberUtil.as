@@ -205,7 +205,7 @@ class vegas.util.NumberUtil
         {
             prefix = "0x" ;    
         }
-        var temp = n.toString(16) ;
+        var temp:String = n.toString( 16 ) ;
         if(n < 16) 
         {
             temp = "0" + temp ;
