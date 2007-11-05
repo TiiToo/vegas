@@ -19,9 +19,7 @@
   
   Contributor(s) :
   
- */
- 
-import pegas.draw.AbstractPen;
+ */import pegas.draw.AbstractPen;
 import pegas.geom.Line;
 import pegas.geom.Point;
 import pegas.geom.Vector2;
@@ -78,7 +76,7 @@ class pegas.draw.LinePen extends AbstractPen
 	/**
 	 * The end 
 	 */
-	public function get end():Vector2D 
+	public function get end():Vector2
 	{
 		return getEnd() ;	
 	}

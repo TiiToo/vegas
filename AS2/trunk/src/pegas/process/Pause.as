@@ -19,14 +19,13 @@
   
   Contributor(s) :
   
-*/
-
-import pegas.process.AbstractAction;
+ */import pegas.process.AbstractAction;
 
 import vegas.events.Delegate;
 import vegas.events.TimerEvent;
-import vegas.util.serialize.Serializer;
+import vegas.util.ConstructorUtil;
 import vegas.util.Timer;
+import vegas.util.serialize.Serializer;
 
 /**
  * This {@code Action} object create a pause in the process.

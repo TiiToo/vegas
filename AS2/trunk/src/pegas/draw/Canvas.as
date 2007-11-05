@@ -87,7 +87,7 @@ class pegas.draw.Canvas extends AbstractPen
 	 * Returns a shallow copy of this object.
 	 * @return a shallow copy of this object.
 	 */
-	/*override*/ public function clone() 
+	public /*override*/ function clone() 
 	{
 		return new Canvas(getTarget(), getData()) ;
 	}

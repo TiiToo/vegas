@@ -19,10 +19,9 @@
   
   Contributor(s) :
   
-*/
-
-import pegas.geom.Line;
+ */import pegas.geom.Line;
 import pegas.geom.Point;
+import pegas.geom.Vector2;
 
 /**
  * Static tool class to creates and manipulates Bezier curves.
@@ -163,13 +162,13 @@ class pegas.geom.Bezier
 
 	public static function getCubicTgt(p0:Vector2, p1:Vector2, p2:Vector2, p3:Vector2, t:Number):Object 
 	{
-		var p = {};
+		var p:Vector2 = new Vector2() ;
 		p.x = getCubicPt(p0.x, p1.x, p2.x, p3.x, t);
 		p.y = getCubicPt(p0.y, p1.y, p2.y, p3.y, t);
-		var v = {};
+		var v:Vector2 = new Vector2() ;
 		v.x = getCubicDerivative(p0.x, p1.x, p2.x, p3.x, t);
 		v.y = getCubicDerivative(p0.y, p1.y, p2.y, p3.y, t);
-		var l = Line.getVectorLine(p, v);
+		var l:Line = Line.getVectorLine(p, v);
 		return { p : p , l : l } ;
 	}
 
