@@ -45,13 +45,13 @@ class asgard.media.AbstractVideoDisplay extends BackgroundDisplay
 	{
 		
 		super(sName, target);
-		
+
 		_oVideo = video ? video : view.video ;
 		
 		DisplayFactory.swapDepths( _oVideo, DEFAULT_VIDEO_DEPTH ) ;
 		
-		_oVideo._width  = view._width ;
-		_oVideo._height = view._height ;
+		setSize( view._width , view._height ) ;
+		
 		_oVideo.toString = function():String
 		{
 			return "[Video]" ;	
@@ -85,6 +85,16 @@ class asgard.media.AbstractVideoDisplay extends BackgroundDisplay
 	 * const Defined the event name of the event 
 	 */
 	public static var SOUND_VOLUME_CHANGE:String = "onVolumeChange" ;
+
+	/**
+	 * The alpha value of the screen.
+	 */
+	public var themeAlpha:Number = null ;
+	
+	/**
+	 * The color value of the screen.
+	 */
+	public var themeColor:Number = null ;
 
 	/**
 	 * The view reference of this display.
@@ -182,9 +192,13 @@ class asgard.media.AbstractVideoDisplay extends BackgroundDisplay
 	 */
 	public function setSize( w:Number, h:Number ) : Void 
 	{
-		view._width = w ;
-		view._height = h ;
-		super.setSize(w, h) ;
+		
+		_oVideo._width  = w;
+		_oVideo._height = h ;
+		_oVideo.width  = w;
+		_oVideo.height = h ;
+		
+		super.setSize( w, h ) ;
 	}
 
 	/**
