@@ -19,20 +19,19 @@
   
   Contributor(s) :
   
-*/
-
-import asgard.display.ConfigurableDisplayObject;
+ */import asgard.display.BackgroundDisplay;
 
 import pegas.maths.Range;
 
 import vegas.errors.IllegalArgumentError;
 import vegas.events.NumberEvent;
+import vegas.util.factory.DisplayFactory;
 
 /**
  * This display control a Video object and this attached Sound object.
  * @author eKameleon
  */
-class asgard.media.AbstractVideoDisplay extends ConfigurableDisplayObject
+class asgard.media.AbstractVideoDisplay extends BackgroundDisplay
 {
 	
 	/**
@@ -49,6 +48,8 @@ class asgard.media.AbstractVideoDisplay extends ConfigurableDisplayObject
 		
 		_oVideo = video ? video : view.video ;
 		
+		DisplayFactory.swapDepths( _oVideo, DEFAULT_VIDEO_DEPTH ) ;
+		
 		_oVideo._width  = view._width ;
 		_oVideo._height = view._height ;
 		_oVideo.toString = function():String
@@ -57,7 +58,7 @@ class asgard.media.AbstractVideoDisplay extends ConfigurableDisplayObject
 		} ;
 		
 		_oSound = new Sound( view ) ;
-		_oSound.setVolume( VOLUME_DEFAULT ) ;
+		_oSound.setVolume( DEFAULT_VOLUME ) ;
 		_oSound.toString = function()
 		{
 			return "[Sound]" ;	
@@ -71,15 +72,25 @@ class asgard.media.AbstractVideoDisplay extends ConfigurableDisplayObject
 	}
 
 	/**
+	 * The depth of the video reference.
+	 */
+	public static var DEFAULT_VIDEO_DEPTH:Number = 1 ;
+
+	/**
 	 * The default value of the volume in the display.
 	 */
-	public static var VOLUME_DEFAULT:Number = 80 ;
+	public static var DEFAULT_VOLUME:Number = 80 ;
 
 	/**
 	 * const Defined the event name of the event 
 	 */
 	public static var SOUND_VOLUME_CHANGE:String = "onVolumeChange" ;
 
+	/**
+	 * The view reference of this display.
+	 */
+	public var view:MovieClip ;
+	
 	/**
 	 * Returns the sound's volume value of the UI.
 	 * @return the sound's volume value of the UI.
@@ -158,13 +169,31 @@ class asgard.media.AbstractVideoDisplay extends ConfigurableDisplayObject
 	}
 
 	/**
+	 * Sets the virtual height value of the component.
+	 */
+	public function setH( n:Number ) : Void 
+	{
+		view._height = n ;
+		super.setH(n) ;
+	}
+
+	/**
 	 * Sets the virtual width and height values of the component.
 	 */
 	public function setSize( w:Number, h:Number ) : Void 
 	{
 		view._width = w ;
 		view._height = h ;
-		update() ;
+		super.setSize(w, h) ;
+	}
+
+	/**
+	 * Sets the virtual width value of the component.
+	 */
+	public function setW( n:Number ):Void 
+	{
+		view._width = n ;
+		super.setW(n) ;
 	}
 
 	/**
