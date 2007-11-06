@@ -19,10 +19,11 @@
   
   Contributor(s) :
   
-*/
-
+ */
+ 
 import vegas.core.CoreObject;
 import vegas.events.Event;
+import vegas.events.EventDispatcher;
 import vegas.events.EventPhase;
 import vegas.util.ConstructorUtil;
 import vegas.util.serialize.Serializer;
