@@ -89,6 +89,15 @@ class vegas.events.BasicEvent extends CoreObject implements Event
 	}
 
 	/**
+	 * Dispatch the event with the global event flow.
+	 * @see EventDispatcher.getInstance() static method.
+	 */
+	public function dispatch( channel:String ):Void
+	{
+		EventDispatcher.getInstance(channel).dispatchEvent( this ) ;
+	}
+
+	/**
 	 * Returns {@code true} if the event is bubbling.
 	 * @return {@code true} if the event is bubbling.
 	 */
