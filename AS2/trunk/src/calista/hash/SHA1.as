@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is CAlistA Framework.
+  The Original Code is CalistA Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -29,7 +29,7 @@
  * This implementation is a ActionScript version of the SHA-1 Cryptographic Hash Algorithm find in the web site : http://www.movable-type.co.uk/
  * <p><b>Example :</b></p>
  * {@code
- * import calista.SHA1 ;
+ * import calista.hash.SHA1 ;
  * 
  * var hash:String = SHA1.encrypt("hello world") ;
  * var equal:Boolean = hash == '2aae6c35c94fcfb415dbe95f408b9ce91ee846ed' ;
@@ -42,14 +42,14 @@
  * See http://www.movable-type.co.uk/scripts/TEAblock.html
  * @author eKameleon
  */
-class calista.SHA1 
+class calista.hash.SHA1 
 {
-	
+
 	/**
 	 * Encrypt the specified text with the SHA1 algorithm.
  	 * <p><b>Example :</b></p>
  	 * {@code
- 	 * import calista.SHA1 ;
+ 	 * import calista.hash.SHA1 ;
  	 * 
  	 * var hash:String = SHA1.encrypt("hello world") ;
  	 * var equal:Boolean = hash == '2aae6c35c94fcfb415dbe95f408b9ce91ee846ed' ;

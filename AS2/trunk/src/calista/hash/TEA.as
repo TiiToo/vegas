@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is CAlistA Framework.
+  The Original Code is CalistA Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -26,7 +26,7 @@
  * Wheeler & Needham’s Tiny Encryption Algorithm is a simple but powerful encryption algorithm (based on a ‘Feistel cipher’).
  * <p><b>Example :</b></p>
  * {@code
- * import calista.TEA ;
+ * import calista.hash.TEA ;
  * 
  * var source:String = "hello world is secret" ;
  * var password:String = "calista" ;
@@ -43,13 +43,13 @@
  * See http://www.movable-type.co.uk/scripts/TEAblock.html
  * @author eKameleon
  */
-class calista.TEA 
+class calista.hash.TEA 
 {
-	
+
 	/**
 	 * Uses corrected Block TEA to encrypt a string value using key.
  	 * {@code
- 	 * import calista.TEA ;
+ 	 * import calista.hash.TEA ;
  	 * 
  	 * var source:String = "hello world is secret" ;
  	 * var password:String = "calista" ;
@@ -98,7 +98,7 @@ class calista.TEA
  	 * Use Corrected Block TEA to decrypt ciphertext using password.
 	 * <p><b>Example :</b></p>
  	 * {@code
- 	 * import calista.TEA ;
+ 	 * import calista.hash.TEA ;
  	 * 
  	 * var source:String = "hello world is secret" ;
  	 * var password:String = "calista" ;
