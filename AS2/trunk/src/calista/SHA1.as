@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is KalistA Framework.
+  The Original Code is CAlistA Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -36,11 +36,14 @@
  * 
  * trace("'hello world' SHA1 result : " + hash + " : " + equal ) ;
  * }
+ * <p>Original Javascript implementation :</p>
+ * Chris Veness, Movable Type Ltd: www.movable-type.co.uk
+ * Algorithm: David Wheeler & Roger Needham, Cambridge University Computer Lab
+ * See http://www.movable-type.co.uk/scripts/TEAblock.html
  * @author eKameleon
  */
 class calista.SHA1 
 {
-	
 	
 	/**
 	 * Encrypt the specified text with the SHA1 algorithm.
@@ -54,7 +57,7 @@ class calista.SHA1
  	 * trace("'hello world' SHA1 result : " + hash + " : " + equal ) ;
  	 * }
 	 */
-	static public function encrypt( message:String ):String
+	public static function encrypt( message:String ):String
 	{
 	
 		var i:Number ;
@@ -70,6 +73,7 @@ class calista.SHA1
 		var length:Number = message.length ;
 		
     	// convert string message into 512-bit/16-integer blocks arrays of ints.
+    	
     	var l:Number = Math.ceil(length/4) + 2;  // long enough to contain message plus 2-word length
     	var N:Number = Math.ceil(l/16);              // in N 16-int blocks
     	var M:Array  = new Array(N) ;
@@ -92,42 +96,59 @@ class calista.SHA1
 
     	// set initial hash value
     	
-    	var H0 = 0x67452301;
-    	var H1 = 0xefcdab89;
-    	var H2 = 0x98badcfe;
-    	var H3 = 0x10325476;
-    	var H4 = 0xc3d2e1f0;
+    	var H0:Number = 0x67452301;
+    	var H1:Number = 0xefcdab89;
+    	var H2:Number = 0x98badcfe;
+    	var H3:Number = 0x10325476;
+    	var H4:Number = 0xc3d2e1f0;
 
-	    // HASH COMPUTATION
+	    // hash computation
 
-    	var W = new Array(80) ; 
+    	var W:Array = new Array(80) ; 
     	
-    	var a, b, c, d, e ;
+    	var a:Number ;
+    	var b:Number ;
+    	var c:Number ;
+    	var d:Number ;
+    	var e:Number ;
     	
-    	for (i=0; i<N; i++) 
+    	for ( i=0 ; i<N ; i++ ) 
     	{
 			
-
         	// 1 - prepare message schedule 'W'
 
-        	for (t=0;  t<16; t++) W[t] = M[i][t];
-        	for (t=16; t<80; t++) W[t] = ROTL(W[t-3] ^ W[t-8] ^ W[t-14] ^ W[t-16], 1);
+        	for (t=0;  t<16; t++) 
+        	{
+        		W[t] = M[i][t];
+        	}
+        	
+        	for (t=16; t<80; t++) 
+        	{
+        		W[t] = ROTL(W[t-3] ^ W[t-8] ^ W[t-14] ^ W[t-16], 1);
+        	}
 
         	// 2 - initialise five working variables a, b, c, d, e with previous hash value
 
-        	a = H0; b = H1; c = H2; d = H3; e = H4;
+        	a = H0 ; 
+        	b = H1 ; 
+        	c = H2 ; 
+        	d = H3 ; 
+        	e = H4 ;
 
         	// 3 - main loop
-
-        	for (t=0; t<80; t++) 
+			
+			var s:Number ;
+			var T:Number ;
+        	
+        	for ( t=0 ; t<80 ; t++ ) 
         	{
-            	var s = Math.floor(t/20); // seq for blocks of 'f' functions and 'K' constants
-            	var T = (ROTL(a,5) + f(s,b,c,d) + e + K[s] + W[t]) & 0xffffffff;
-            	e = d;
-            	d = c;
-            	c = ROTL(b, 30);
-            	b = a;
-            	a = T;
+            	s = Math.floor(t/20); // seq for blocks of 'f' functions and 'K' constants
+            	T = (ROTL(a,5) + f(s,b,c,d) + e + K[s] + W[t]) & 0xffffffff;
+            	e = d ;
+            	d = c ;
+            	c = ROTL(b, 30) ;
+            	b = a ;
+            	a = T ;
         	}
 
         	// 4 - compute the new intermediate hash value
@@ -148,7 +169,7 @@ class calista.SHA1
 	 * Returns a specific value if s is 0, 1, 2 or 3.
 	 * @return a specific value if s is 0, 1, 2 or 3.
 	 */
- 	static private function f(s:Number, x:Number, y:Number, z:Number):Number 
+ 	private static function f(s:Number, x:Number, y:Number, z:Number):Number 
 	{
     	switch (s) 
     	{
@@ -162,7 +183,7 @@ class calista.SHA1
 	/**
 	 * Rotate left (circular left shift) value x by n positions.
 	 */
- 	static private function ROTL( x:Number , n:Number ):Number
+ 	private static function ROTL( x:Number , n:Number ):Number
 	{
 	    return ( x<<n ) | ( x >>> (32-n) );
 	}
@@ -171,9 +192,9 @@ class calista.SHA1
 	 * Returns the tailored hex-string string representation of the passed-in number value.
 	 * @return the tailored hex-string string representation of the passed-in number value.
 	 */
- 	static private function toHexStr( n:Number ):String
+ 	private static function toHexStr( n:Number ):String
 	{
-	    var s:String ="" ;
+	    var s:String = "" ;
 	    var v:Number ;
     	for ( var i=7 ; i>=0 ; i-- ) 
     	{ 
