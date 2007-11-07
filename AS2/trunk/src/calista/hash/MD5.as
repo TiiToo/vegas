@@ -25,7 +25,12 @@
  * Encrypt a string with the MD5 algorithm.
  * <p><b>Example :</b></p>
  * {@code
+ * import calista.hash.MD5 ;
  *
+ * var hash:String = MD5.encrypt("calista") ;
+ * var equal:Boolean = hash == '93fc1e28bc17af6420552b746af10f4f' ;
+ *
+ * trace("'calista' MD5 result : " + hash + " : " + equal ) ;
  * }
  * <p>Original Javascript implementation :</p>
  * RSA Data Security, Inc. MD5 Message Digest Algorithm, as defined in RFC 1321.
@@ -41,6 +46,12 @@ class calista.hash.MD5
 	 * Encrypt the specified text with the MD5 algorithm.
  	 * <p><b>Example :</b></p>
  	 * {
+ 	 * import calista.hash.MD5 ;
+ 	 * 
+ 	 * var hash:String = MD5.encrypt("calista") ;
+ 	 * var equal:Boolean = hash == '93fc1e28bc17af6420552b746af10f4f' ;
+ 	 * 
+ 	 * trace("'calista' MD5 result : " + hash + " : " + equal ) ;
  	 * }
 	 */
 	public static function encrypt( str:String ):String
@@ -199,6 +210,7 @@ class calista.hash.MD5
 	 */
 	private static function str2binl(str:String):Array 
 	{
+		str = new String(str) ;
 		var bin:Array = new Array();
 		var mask:Number = (1 << 8)-1;
 		var size:Number = str.length * 8 ;
