@@ -381,6 +381,14 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	}
 
 	/**
+	 * Notify an event when the enabled property is changed.
+	 */
+	public function notifyEnabled():Void
+	{
+		dispatchEvent( _eEnabledChanged ) ;	
+	}
+
+	/**
 	 * Notify an event when a child is removed in the component.
 	 */
 	public function notifyRemoved():Void 
@@ -445,7 +453,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 			return ;
 		}
 		viewEnabled() ;
-		dispatchEvent(_eEnabledChanged) ;
+		notifyEnabled() ;
 	}
 
 	/**

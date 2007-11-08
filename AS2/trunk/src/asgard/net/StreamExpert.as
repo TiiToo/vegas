@@ -19,9 +19,7 @@
   
   Contributor(s) :
   
-*/
-
-import asgard.date.Time;
+ */import asgard.date.Time;
 import asgard.events.ProgressEvent;
 import asgard.net.Stream;
 import asgard.net.StreamCollector;
@@ -108,6 +106,23 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	public static var STREAM_PLAY_STOP:String = "onStreamPlayStop" ;
 
 	/**
+	 * Returns {@code true} if the stream is loop when the stream is finished.
+	 * @return {@code true} if the stream is loop when the stream is finished.
+	 */
+	public function get isLoop():Boolean
+	{
+		return _isLoop ; 	
+	}
+
+	/**
+	 * Sets if the stream is loop when the stream is finished.
+	 */
+	public function set isLoop(b:Boolean):Void
+	{
+		_isLoop = b ; 	
+	}
+
+	/**
 	 * (read-only) Returns {@code true] if the play activity of the Stream in in progress.
 	 */
 	public function get isPlaying():Boolean 
@@ -152,25 +167,6 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 			getLogger().warn( this + " attachVideo failed with an unknow Stream id : " + getStreamID() ) ;	
 		}
 	}
-	
-	private var _a:Array ;
-
-	/**
-	 * Returns {@code true} if the stream is loop when the stream is finished.
-	 * @return {@code true} if the stream is loop when the stream is finished.
-	 */
-	public function get isLoop():Boolean
-	{
-		return _isLoop ; 	
-	}
-
-	/**
-	 * Sets if the stream is loop when the stream is finished.
-	 */
-	public function set isLoop(b:Boolean):Void
-	{
-		_isLoop = b ; 	
-	}
 
 	/**
 	 * Close the Stream.
@@ -179,6 +175,16 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	{
 		if ( StreamCollector.contains( getStreamID() ) )
 		{
+			if ( isPlaying )
+			{
+				_global.clearTimeout(_timeout) ;
+				setPlaying(false) ;
+				getStream().pause( false ) ;
+			}
+			else
+			{
+				_global.clearTimeout(_timeout) ;	
+			}
 			getStream().close() ;
 		}
 		else

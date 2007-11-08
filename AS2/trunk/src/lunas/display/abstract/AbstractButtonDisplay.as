@@ -255,9 +255,9 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 	 */
 	public function setEnabled(b:Boolean):Void 
 	{
-		super.setEnabled(b) ;
 		var scope:MovieClip = (_scope == null) ? view : _scope ;
 		scope.enabled = (b == true) ; 
+		super.setEnabled(b) ;
 	}
 
 	/**
