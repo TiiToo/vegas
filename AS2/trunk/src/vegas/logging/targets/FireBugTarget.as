@@ -45,7 +45,7 @@ class vegas.logging.targets.FireBugTarget extends LineFormattedTarget
      * @param message String containing preprocessed log message which may include time, date, category, etc. based on property settings, such as <code>includeDate</code>, <code>includeCategory</code>, etc.
      * @param level the LogEventLevel of the message.
 	 */
-	/*override*/ public function internalLog( message , level:Number ):Void
+	public /*override*/ function internalLog( message , level:Number ):Void
 	{
 		
 		var methodName:String ;

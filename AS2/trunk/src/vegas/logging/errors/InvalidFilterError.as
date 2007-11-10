@@ -34,9 +34,9 @@ class vegas.logging.errors.InvalidFilterError extends FatalError
 	/**
 	 * Creates a new {@code InvalidFilterError} instance.
 	 */
-	public function InvalidFilterError(msg:String, errorElement:ErrorElement) 
+	public function InvalidFilterError(message:String, errorElement:ErrorElement) 
 	{
-		super(msg, errorElement) ;
+		super(message, errorElement) ;
 	}
 
 }

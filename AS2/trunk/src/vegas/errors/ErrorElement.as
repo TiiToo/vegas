@@ -38,12 +38,12 @@ class vegas.errors.ErrorElement extends CoreObject implements IEquality
 	 */
 	public function ErrorElement(thrower, methodName:String, args:Array, fileName:String, lineNumber:Number, isNative:Boolean) 
 	{
-		_args = args || null ;
-		_fileName = fileName || null ;
+		_args       = args || null ;
+		_fileName   = fileName || null ;
 		_lineNumber = lineNumber || null ;
-		_isNative = isNative || null ;
+		_isNative   = isNative || null ;
 		_methodName = methodName || null ;
-		_thrower = thrower || null ;
+		_thrower    = thrower || null ;
 	}
 	
 	/**

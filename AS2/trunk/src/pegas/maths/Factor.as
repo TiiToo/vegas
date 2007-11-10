@@ -19,7 +19,9 @@
   
   Contributor(s) :
   
- */import pegas.maths.Prime;
+ */
+ 
+import pegas.maths.Prime;
 
 import vegas.errors.IllegalArgumentError;
 import vegas.errors.ValueOutOfBoundsError;

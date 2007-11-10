@@ -33,9 +33,9 @@ class vegas.logging.errors.InvalidCategoryError extends AbstractError
 	/**
 	 * Creates a new {@code InvalidCategoryError} instance.
 	 */
-	public function InvalidCategoryError( msg:String ) 
+	public function InvalidCategoryError( message:String ) 
 	{
-		super(msg) ;
+		super(message) ;
 	}
   
 }

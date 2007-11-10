@@ -21,7 +21,6 @@
   
 */
 
-
 import andromeda.media.SoundModel;
 
 import vegas.core.Identifiable;

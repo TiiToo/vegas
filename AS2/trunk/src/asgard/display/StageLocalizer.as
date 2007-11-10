@@ -166,15 +166,15 @@ class asgard.display.StageLocalizer
 	{
 		switch (align.toUpperCase()) 
 		{
-			case StageAlign.TOP : return StageAlign.BOTTOM ;
-			case StageAlign.BOTTOM : return StageAlign.TOP ;
-			case StageAlign.TOP_RIGHT : return StageAlign.BOTTOM_LEFT ;
-			case StageAlign.TOP_LEFT : return StageAlign.BOTTOM_RIGHT ;
+			case StageAlign.TOP          : return StageAlign.BOTTOM ;
+			case StageAlign.BOTTOM       : return StageAlign.TOP ;
+			case StageAlign.TOP_RIGHT    : return StageAlign.BOTTOM_LEFT ;
+			case StageAlign.TOP_LEFT     : return StageAlign.BOTTOM_RIGHT ;
 			case StageAlign.BOTTOM_RIGHT : return StageAlign.TOP_LEFT ;
-			case StageAlign.BOTTOM_LEFT : return StageAlign.TOP_RIGHT ;
-			case StageAlign.LEFT : return StageAlign.RIGHT ;
-			case StageAlign.RIGHT : return StageAlign.LEFT ;
-			default : return StageAlign.CENTER ;
+			case StageAlign.BOTTOM_LEFT  : return StageAlign.TOP_RIGHT ;
+			case StageAlign.LEFT         : return StageAlign.RIGHT ;
+			case StageAlign.RIGHT        : return StageAlign.LEFT ;
+			default                      : return StageAlign.CENTER ;
 		}
 	}
 
@@ -187,13 +187,13 @@ class asgard.display.StageLocalizer
 		var align:String = localizePoint(point) ;
 		switch (align.toUpperCase () ) 
 		{
-			case StageAlign.TOP_RIGHT : return StageAlign.BOTTOM_RIGHT ;
-			case StageAlign.TOP_LEFT : return StageAlign.BOTTOM_LEFT ;
+			case StageAlign.TOP_RIGHT    : return StageAlign.BOTTOM_RIGHT ;
+			case StageAlign.TOP_LEFT     : return StageAlign.BOTTOM_LEFT ;
 			case StageAlign.BOTTOM_RIGHT : return StageAlign.TOP_RIGHT ;
-			case StageAlign.BOTTOM_LEFT : return StageAlign.TOP_LEFT ;
-			case StageAlign.LEFT : return StageAlign.RIGHT ;
-			case StageAlign.RIGHT : return StageAlign.LEFT ;
-			default : return StageAlign.CENTER ;
+			case StageAlign.BOTTOM_LEFT  : return StageAlign.TOP_LEFT ;
+			case StageAlign.LEFT         : return StageAlign.RIGHT ;
+			case StageAlign.RIGHT        : return StageAlign.LEFT ;
+			default                      : return StageAlign.CENTER ;
 		}
 	}
 

@@ -64,7 +64,8 @@ class vegas.events.FastDispatcher extends CoreObject implements Iterable
 	 * Creates a new FastDispatcher instance.
 	 * @param ar an Array of listeners object.
 	 */
-	public function FastDispatcher( ar:Array ) {
+	public function FastDispatcher( ar:Array ) 
+	{
 		_listeners = (ar.length > 0) ? [].concat(ar) : [] ;
 	}
 

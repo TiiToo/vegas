@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -78,7 +78,7 @@ class asgard.config.ConfigurableModel extends AbstractModel implements IConfigur
 	 */
 	 public function setup():Void
 	 {
-	 	throw new Warning("> " + this + ".setup(), you must override this method !") ;
+	 	throw new Warning(this + " setup() method can't be invoqued, you must override this method !") ;
 	 }
 	
 	/**

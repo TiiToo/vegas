@@ -19,7 +19,9 @@
   
   Contributor(s) :
   
- */import andromeda.core.Command;
+ */
+ 
+import andromeda.core.Command;
 
 import vegas.events.BasicEvent;
 
