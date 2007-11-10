@@ -38,8 +38,6 @@ class pegas.draw.ArcType
 	 */
 	public static var PIE:String = "PIE" ;
 
-	private static var __ASPF__ = _global["ASSetPropFlags"](ArcType, null, 7, 7) ;
-
 	/**
 	 * Returns {@code true} if the specified type in argument is a valide ArcType.
 	 * @return {@code true} if the specified type in argument is a valide ArcType.

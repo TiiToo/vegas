@@ -60,23 +60,21 @@ class pegas.draw.BezierPen extends AbstractPen
 
 	public function drawCubicBezier(p0:Vector2, p1:Vector2, p2:Vector2, p3:Vector2, nSegment:Number, moveto:Boolean):Number 
 	{
-		//var curP ; // holds the current Point
-		//var nextP:Point ; // holds the next Point
-		//var ctrlP:Point ; // holds the current control Point
-		// holds the current Tangent object
-		var nextT ; 
-		// holds the next Tangent object
-		var total:Number = 0; 
-		// holds the number of slices used
 		if (nSegment < 2) 
 		{
 			nSegment = 4 ;
 		}
+		var nextT ; 
+		var total:Number = 0 ; 
 		var tStep:Number = 1 / nSegment ;
-		var curT:Object  = {} ;
-		curT.p = p0 ;
-		curT.l = Line.getLine( p0, p1 ) ;
-		if (moveto) moveTo( p0.x, p0.y );
+		var curT:Object  = {
+			p : p0 ,
+			l : Line.getLine( p0, p1 ) 
+		} ;
+		if (moveto) 
+		{
+			moveTo( p0.x, p0.y );
+		}
 		for (var i:Number = 1 ; i <= nSegment ; i++) 
 		{
 			nextT = Bezier.getCubicTgt( p0, p1, p2, p3, i * tStep ) ;
@@ -140,6 +138,9 @@ class pegas.draw.BezierPen extends AbstractPen
 		}
 	}
 
+	/**
+	 * Simulate the bezier pen result with a speed algorithm.
+	 */
 	public function simulate(p1:Vector2, p2:Vector2, p3:Vector2, p4:Vector2):Void 
 	{
 		var a,b,c,d,e,f,g,h,i,j:Number ;
@@ -157,7 +158,10 @@ class pegas.draw.BezierPen extends AbstractPen
 		curveTo( c, d, i, j ) ;
 		curveTo( e, f, p4.x, p4.y ) ;
 	}
-
+	
+	/**
+	 * Slice a cubic bezier segment and return the value.
+	 */
 	public function sliceCubicBezierSegment(p0:Vector2, p1:Vector2, p2:Vector2, p3:Vector2, u1, u2, tu1, tu2, recurs:Number):Number 
 	{
 		var p ;
@@ -186,6 +190,9 @@ class pegas.draw.BezierPen extends AbstractPen
 		}
 	}
 
+	/**
+	 * @private
+	 */
 	private function _create(a:Vector2, b:Vector2, c:Vector2, d:Vector2, k:Number):Void 
 	{
 		var l1:Line = Line.getLine( a, b ) ;

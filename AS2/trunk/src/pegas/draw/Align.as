@@ -19,7 +19,9 @@
   
   Contributor(s) :
   
- */import vegas.util.ArrayUtil;
+ */
+ 
+import vegas.util.ArrayUtil;
 
 /**
  * The Align enumeration class provides constant values to align displays or components.
@@ -208,13 +210,12 @@ class pegas.draw.Align
 	 */
 	public static function validate(n:Number):Boolean 
 	{
-		var a:Array = [ 
-			Align.CENTER, Align.LEFT , Align.RIGHT, 
-			Align.TOP, Align.BOTTOM, 
-			Align.TOP_LEFT, Align.TOP_RIGHT,
-			Align.BOTTOM_LEFT, Align.BOTTOM_RIGHT
+		var a:Array = 
+		[ 
+			Align.CENTER   , Align.LEFT       , Align.RIGHT        , Align.TOP, Align.BOTTOM , 
+			Align.TOP_LEFT , Align.TOP_RIGHT  , Align.BOTTOM_LEFT  , Align.BOTTOM_RIGHT
 		] ;
-		return  ArrayUtil.contains(a, n) ;
+		return ArrayUtil.contains(a, n) ;
 	}
 	
 }

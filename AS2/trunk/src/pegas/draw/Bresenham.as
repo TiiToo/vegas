@@ -172,25 +172,36 @@ class pegas.draw.Bresenham
 		s2 = MathsUtil.sign ( p2.y - p1.y ) ;
 		x = p1.x ;
 		y = p1.y ;
-		if (dy>dx) {
+		if (dy>dx) 
+		{
 			temp = dx ;
 			dx = dy ;
 			dy = temp ;
 			swap = 1 ;
-		} else  {
+		} 
+		else  
+		{
 			swap = 0 ;
 		}
 		e = 2 * dy - dx ;
 		var ar:Array = [] ;
-		for ( var i:Number = 0 ; i<dx ;i++) {
+		for ( var i:Number = 0 ; i<dx ;i++) 
+		{
 			ar.push ( {x:x ,y:y} ) ;
-			while (e>=0) {
+			while (e>=0) 
+			{
 				if (swap==1) x+= s1 ;
 				else y+=s2 ;
 				e-=2*dx;
 			}
-			if (swap==1) y+=s2 ;
-			else x += s1 ;
+			if (swap==1) 
+			{
+				y+=s2 ;
+			}
+			else 
+			{
+				x += s1 ;
+			}
 			e+=2*dy ;
 		}
 		return ar ;

@@ -40,12 +40,18 @@ class pegas.draw.EasyPen extends AbstractPen
 	{
 		initialize(target, isNew) ;
 	}
-
+	
+	/**
+	 * (read-write) Determinates the align value of the pen.
+	 */
 	public function get align():Number 
 	{
 		return getAlign() ;	
 	}
 	
+	/**
+	 * @private
+	 */
 	public function set align(nAlign:Number):Void 
 	{
 		setAlign(nAlign) ;	
@@ -56,11 +62,20 @@ class pegas.draw.EasyPen extends AbstractPen
 	 */
 	public var isEndFill:Boolean = true ;
 
+	/**
+	 * Returns the align number value of this shape.
+	 * @return the align number value of this shape.
+	 * @see Align
+	 */
 	public function getAlign():Number 
 	{
 		return _align ;
 	}
-
+	
+	/**
+	 * Sets the align number value of this shape.
+	 * @see Align
+	 */
 	public function setAlign ( nAlign:Number , noDraw:Boolean):Void 
 	{
 		_align = (Align.validate(nAlign)) ? nAlign : Align.TOP_LEFT ;

@@ -98,15 +98,14 @@ class pegas.draw.SVGCanvas extends Canvas
 		var lastP:Object;
 		var lastC:Object;
 		var cmd:String;
-		
+
 		do 
 		{
-		
 			cmd = arSVG[j++];
 			switch (cmd) 
 			{
-			
 				case "M" :
+				{
 					// moveTo point
 					firstP = lastP = {x:Number(arSVG[j]), y:Number(arSVG[j+1])};
 					data.push(['F', [fill.color, fill.alpha]]);
@@ -118,15 +117,19 @@ class pegas.draw.SVGCanvas extends Canvas
 						do 
 						{
 							// if multiple points listed, add the rest as lineTo points
-							lastP = {x:Number(arSVG[j]), y:Number(arSVG[j+1])};
+							lastP = 
+							{
+								x:Number(arSVG[j]) , 
+								y:Number(arSVG[j+1])
+							};
 							data.push(['L', [lastP.x, lastP.y]]);
-							firstP = lastP;
+							firstP = lastP ;
 							j += 2;
 						} 
 						while (j < arSVG.length && !isNaN(Number(arSVG[j]))) ;
 					}
 					break ;
-				
+				}
 				case "l" :
 				{
 					do 
@@ -139,97 +142,123 @@ class pegas.draw.SVGCanvas extends Canvas
 					while (j < arSVG.length && !isNaN(Number(arSVG[j])));
 					break ;
 				}
-			case "L" :
-				do {
-					lastP = {x:Number(arSVG[j]), y:Number(arSVG[j+1])};
-					data.push(['L', [lastP.x, lastP.y]]);					
-					firstP = lastP;
-					j += 2;
-				} while (j < arSVG.length && !isNaN(Number(arSVG[j])));
-				break;
-				
-			case "h" :
-				do {
-					lastP = {x:lastP.x+Number(arSVG[j]), y:lastP.y};
-					data.push(['L', [lastP.x, lastP.y]]);
-					firstP = lastP;
-					j += 1;
-				} while (j < arSVG.length && !isNaN(Number(arSVG[j])));
-				break;
-				
-			case "H" :
-				do {
-					lastP = {x:Number(arSVG[j]), y:lastP.y};
-					data.push(['L', [lastP.x, lastP.y]]);
-					firstP = lastP;
-					j += 1;
-				} while (j < arSVG.length && !isNaN(Number(arSVG[j])));
-				break;
-				
-			case "v" :
-				do {
-					lastP = {x:lastP.x, y:lastP.y+Number(arSVG[j])};
-					data.push(['L', [lastP.x, lastP.y]]);
-					firstP = lastP;
-					j += 1;
-				} while (j < arSVG.length && !isNaN(Number(arSVG[j])));
-				break;
-				
-			case "V" :
-				do {
-					lastP = {x:lastP.x, y:Number(arSVG[j])};
-					data.push(['L', [lastP.x, lastP.y]]);
-					firstP = lastP;
-					j += 1;
-				} while (j < arSVG.length && !isNaN(Number(arSVG[j])));
-				break;
-	
-			case "q" :
-				do {
-					// control is relative to lastP, not lastC
-					lastC = {x:lastP.x+Number(arSVG[j]), y:lastP.y+Number(arSVG[j+1])};
-					lastP = {x:lastP.x+Number(arSVG[j+2]), y:lastP.y+Number(arSVG[j+3])};
-					data.push(['C', [lastC.x, lastC.y, lastP.x, lastP.y]]);
-					firstP = lastP;
-					j += 4;
-				} while (j < arSVG.length && !isNaN(Number(arSVG[j])));
-				break;
-				
-			case "Q" :
-				do {
-					lastC = {x:Number(arSVG[j]), y:Number(arSVG[j+1])};					
-					lastP = {x:Number(arSVG[j+2]), y:Number(arSVG[j+3])};
-					data.push(['C', [lastC.x, lastC.y, lastP.x, lastP.y]]);
-					firstP = lastP;
-					j += 4;
-				} while (j < arSVG.length && !isNaN(Number(arSVG[j])));
-				break;
-				
-			case "c" :
-				do {
-				// don't save if c1.x=c1.y=c2.x=c2.y=0 
-					if (!Number(arSVG[j]) && !Number(arSVG[j+1]) && !Number(arSVG[j+2]) && !Number(arSVG[j+3])) {
-					} else {
-						qc = [];
-						getQuadBez_RP(
-							{x:lastP.x, y:lastP.y},   
-							{x:lastP.x+Number(arSVG[j]), y:lastP.y+Number(arSVG[j+1])},
-							{x:lastP.x+Number(arSVG[j+2]), y:lastP.y+Number(arSVG[j+3])},
-							{x:lastP.x+Number(arSVG[j+4]), y:lastP.y+Number(arSVG[j+5])},
-						    1, qc
-						   );
-						for ( ii =0 ; ii < qc.length ; ii++ ) 
-						{
-							data.push(['C', [qc[ii].cx, qc[ii].cy, qc[ii].p2x, qc[ii].p2y]]);
-						}
-						lastC = {x:lastP.x+Number(arSVG[j+2]), y:lastP.y+Number(arSVG[j+3])} ;
-						lastP = {x:lastP.x+Number(arSVG[j+4]), y:lastP.y+Number(arSVG[j+5])} ;
+				case "L" :
+				{
+					do 
+					{
+						lastP = {x:Number(arSVG[j]), y:Number(arSVG[j+1])};
+						data.push(['L', [lastP.x, lastP.y]]);					
 						firstP = lastP;
-					}
-					j += 6;
-				} while (j < arSVG.length && !isNaN(Number(arSVG[j])));
-				break;
-	
+						j += 2;
+					} 
+					while (j < arSVG.length && !isNaN(Number(arSVG[j])));
+					break;
+				}	
+				case "h" :
+				{
+					do 
+					{
+						lastP = {x:lastP.x+Number(arSVG[j]), y:lastP.y};
+						data.push(['L', [lastP.x, lastP.y]]);
+						firstP = lastP;
+						j += 1;
+					} 
+					while (j < arSVG.length && !isNaN(Number(arSVG[j])));
+					break;
+				}
+				case "H" :
+				{
+					do 
+					{
+						lastP = {x:Number(arSVG[j]), y:lastP.y};
+						data.push(['L', [lastP.x, lastP.y]]);
+						firstP = lastP;
+						j += 1;
+					} 
+					while (j < arSVG.length && !isNaN(Number(arSVG[j])));
+					break;
+				}
+				case "v" :
+				{
+					do 
+					{
+						lastP = {x:lastP.x, y:lastP.y+Number(arSVG[j])};
+						data.push(['L', [lastP.x, lastP.y]]);
+						firstP = lastP;
+						j += 1;
+					} 
+					while (j < arSVG.length && !isNaN(Number(arSVG[j])));
+					break;
+				}
+				case "V" :
+				{
+					do 
+					{
+						lastP = {x:lastP.x, y:Number(arSVG[j])};
+						data.push(['L', [lastP.x, lastP.y]]);
+						firstP = lastP;
+						j += 1;
+					} 
+					while (j < arSVG.length && !isNaN(Number(arSVG[j])));
+					break;
+				}	
+				case "q" :
+				{
+					do // control is relative to lastP, not lastC 
+					{
+						lastC = {x:lastP.x+Number(arSVG[j]), y:lastP.y+Number(arSVG[j+1])};
+						lastP = {x:lastP.x+Number(arSVG[j+2]), y:lastP.y+Number(arSVG[j+3])};
+						data.push(['C', [lastC.x, lastC.y, lastP.x, lastP.y]]);
+						firstP = lastP;
+						j += 4;
+					} 
+					while (j < arSVG.length && !isNaN(Number(arSVG[j])));
+					break;
+				}
+				case "Q" :
+				{
+					do 
+					{
+						lastC = {x:Number(arSVG[j]), y:Number(arSVG[j+1])};					
+						lastP = {x:Number(arSVG[j+2]), y:Number(arSVG[j+3])};
+						data.push(['C', [lastC.x, lastC.y, lastP.x, lastP.y]]);
+						firstP = lastP;
+						j += 4;
+					} 
+					while (j < arSVG.length && !isNaN(Number(arSVG[j])));
+					break;
+				}
+				case "c" :
+				{
+					do // don't save if c1.x=c1.y=c2.x=c2.y=0 
+					{
+						if (!Number(arSVG[j]) && !Number(arSVG[j+1]) && !Number(arSVG[j+2]) && !Number(arSVG[j+3])) 
+						{
+						
+						} 
+						else 
+						{
+							qc = [];
+							getQuadBez_RP(
+								{x:lastP.x, y:lastP.y},   
+								{x:lastP.x+Number(arSVG[j]), y:lastP.y+Number(arSVG[j+1])},
+								{x:lastP.x+Number(arSVG[j+2]), y:lastP.y+Number(arSVG[j+3])},
+								{x:lastP.x+Number(arSVG[j+4]), y:lastP.y+Number(arSVG[j+5])},
+						    	1, qc
+						   	);
+							for ( ii =0 ; ii < qc.length ; ii++ ) 
+							{
+								data.push(['C', [qc[ii].cx, qc[ii].cy, qc[ii].p2x, qc[ii].p2y]]);
+							}
+							lastC = {x:lastP.x+Number(arSVG[j+2]), y:lastP.y+Number(arSVG[j+3])} ;
+							lastP = {x:lastP.x+Number(arSVG[j+4]), y:lastP.y+Number(arSVG[j+5])} ;
+							firstP = lastP;
+						}
+						j += 6;
+					} 
+					while (j < arSVG.length && !isNaN(Number(arSVG[j])));
+					break;
+				}
 			case "C" :
 			{
 				do 
