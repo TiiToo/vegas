@@ -41,6 +41,6 @@ class asgard.display.InterpolationMethod
 	 */
 	public static var RGB:String = "rgb" ;
 	
-	private static var __ASPF__ = _global["ASSetPropFlags"](InterpolationMethod, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(InterpolationMethod, null , 7, 7) ;
 
 }

@@ -71,8 +71,14 @@ class pegas.events.UIEvent extends DynamicEvent
 	 */
 	public static var INIT:String = "init" ;
 
+	/**
+	 * A display or a component generates this type of event when this label is changed.
+	 */
 	public static var LABEL_CHANGE:String = "onLabelChanged" ;
 	
+	/**
+	 * The event name of the event when an open process is launched.
+	 */
 	public static var OPEN:String = "open" ;	
 
 	/**
@@ -99,7 +105,10 @@ class pegas.events.UIEvent extends DynamicEvent
 	 * A FileReference object generates the select event when an item has been selected.
 	 */
 	public static var SELECT:String = "select" ;
-
+	
+	/**
+	 * A display or a component generates this type of event when this style is changed.
+	 */
 	public static var STYLE_CHANGE:String = "styleChange" ;
 	
 	/**
@@ -107,12 +116,25 @@ class pegas.events.UIEvent extends DynamicEvent
 	 */
 	public static var UNLOAD:String = "unload" ;
 
+	/**
+	 * A display or a component generates this type of event when is unselected.
+	 */
 	public static var UNSELECT:String = "unselect" ;
-
+	
+	/**
+	 * The child reference of this event.
+	 */
 	public var child ;
 
+	/**
+	 * The index value of this event.
+	 */
 	public var index:Number ;
 
+	/**
+	 * Returns a shallow copy of this event.
+	 * @return a shallow copy of this event.
+	 */
 	public function clone() 
 	{
 		return new UIEvent( getType(), getTarget() ) ;

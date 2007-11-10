@@ -147,7 +147,7 @@ class vegas.util.Attribute extends CoreObject
         {
         	override = override.valueOf();
         }
-        _global["ASSetPropFlags"]( obj, property, attrib, override );
+        _global.ASSetPropFlags( obj, property, attrib, override );
     }
     
     /**

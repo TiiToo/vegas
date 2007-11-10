@@ -37,7 +37,7 @@ class asgard.display.Direction
 	 */
 	public static var VERTICAL:Number = 1 ;
 
-	private static var __ASPF__ = _global["ASSetPropFlags"](Direction, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(Direction, null , 7, 7) ;
 
 	/**
 	 * Returns the number representation of the specified string passed in argument.

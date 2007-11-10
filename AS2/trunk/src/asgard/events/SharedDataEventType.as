@@ -53,6 +53,6 @@ class asgard.events.SharedDataEventType extends String
 
 	public static var SYNCHRONISED:SharedDataEventType = new SharedDataEventType("onSynchronised") ;
 	
-	private static var __ASPF__ = _global["ASSetPropFlags"](SharedDataEventType, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(SharedDataEventType, null , 7, 7) ;
 	
 }

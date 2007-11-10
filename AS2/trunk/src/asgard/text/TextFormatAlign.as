@@ -49,6 +49,6 @@ class asgard.text.TextFormatAlign
 	 */
 	public static var RIGHT:String = "right" ;
 	
-	private static var __ASPF__ = _global["ASSetPropFlags"](TextFormatAlign, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(TextFormatAlign, null , 7, 7) ;
 
 }

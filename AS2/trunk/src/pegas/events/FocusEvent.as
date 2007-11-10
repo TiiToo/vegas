@@ -62,7 +62,7 @@ class pegas.events.FocusEvent extends DynamicEvent
 	 */
 	public static var MOUSE_FOCUS_CHANGE:String = "MouseFocusChange" ;
 
-	private static var __ASPF__ = _global["ASSetPropFlags"](FocusEvent, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(FocusEvent, null , 7, 7) ;
 
 	/**
 	 * The key code value of the key pressed to trigger a keyFocusChange event.

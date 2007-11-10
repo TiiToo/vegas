@@ -42,34 +42,60 @@ class pegas.events.ActionEvent extends DynamicEvent
 	 * @param time this parameter is used in the Eden deserialization.
 	 * @param stop this parameter is used in the Eden deserialization.
 	 */
-	public function ActionEvent
-	(
-		type:String, target:Object, info, context,
-			bubbles:Boolean, eventPhase:Number, time:Number, stop:Number
-	)
+	public function ActionEvent( type:String, target:Object, info, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number )
 	{
 		super(type, target, context, bubbles, eventPhase, time, stop) ;
 		_oInfo = info  ;
 	}
-
+	
+	/**
+	 * The event type when the event notify a change.
+	 */
 	public static var CHANGE:String = "onChanged" ;
-	
+
+	/**
+	 * The event type when the event notify a cleanup process.
+	 */
 	public static var CLEAR:String = "onCleared" ;
-	
+
+	/**
+	 * The event type when the event notify the end of the process.
+	 */
 	public static var FINISH:String = "onFinished" ;
-	
+
+	/**
+	 * The event type when the event notify an info process.
+	 */
 	public static var INFO:String = "onInfo" ;
-	
+
+	/**
+	 * The event type when the process is looped.
+	 */
 	public static var LOOP:String = "onLooped" ;
-	
+
+	/**
+	 * The event type when the event notify a process in progress.
+	 */
 	public static var PROGRESS:String = "onProgress" ;
-	
+
+	/**
+	 * The event type when the process is resumed.
+	 */
 	public static var RESUME:String = "onResumed" ;
 	
+	/**
+	 * The event type when the process is started.
+	 */
 	public static var START:String = "onStarted" ;
 	
+	/**
+	 * The event type when the process is stopped.
+	 */
 	public static var STOP:String = "onStopped" ;	
 
+	/**
+	 * The event type when the process is out of time.
+	 */
 	public static var TIMEOUT:String = "onTimeOut" ;
 
 	/**
@@ -97,10 +123,16 @@ class pegas.events.ActionEvent extends DynamicEvent
 	{
 		_oInfo = oInfo ;	
 	}
-
+	
+	/**
+	 * @private
+	 */
 	private var _oInfo ;
 
-	/*protected*/ private function _getParams():Array 
+	/**
+	 * @private
+	 */
+	private /*protected*/ function _getParams():Array 
 	{
 		var ar:Array = super._getParams() ;
 		ar.splice(2, null, Serializer.toSource(_oInfo)) ;

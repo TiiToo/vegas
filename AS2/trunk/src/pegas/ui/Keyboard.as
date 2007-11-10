@@ -262,7 +262,7 @@ class pegas.ui.Keyboard
 	 */
 	public static var UP:Number = Key.UP ;
 
-	private static var __ASPF__ = _global["ASSetPropFlags"](Keyboard, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(Keyboard, null , 7, 7) ;
 
 	/**
 	 * Returns the char code number representation of the specified character passed-in argument.

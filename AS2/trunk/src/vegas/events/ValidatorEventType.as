@@ -38,6 +38,6 @@ class vegas.events.ValidatorEventType
 	 */
 	public static var VALID:String = "valid" ;
 
-	private static var __ASPF__ = _global["ASSetPropFlags"](ValidatorEventType, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(ValidatorEventType, null , 7, 7) ;
 	
 }

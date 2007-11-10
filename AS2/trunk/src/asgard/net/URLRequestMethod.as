@@ -38,7 +38,7 @@ class asgard.net.URLRequestMethod
 	 */
 	public static var POST:String = "POST" ;
 	
-	private static var __ASPF__ = _global["ASSetPropFlags"](URLRequestMethod, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(URLRequestMethod, null , 7, 7) ;
 	
 	/**
 	 * Returns {@code true} if the String value passed-in argument is a valid method.

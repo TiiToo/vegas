@@ -77,6 +77,6 @@ class asgard.display.FlashPaperUIElement
 	 */
 	public static var ZOOM_KEYS:String = "ZoomKeys" ;
 	
-	private static var __ASPF__ = _global["ASSetPropFlags"](FlashPaperUIElement, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(FlashPaperUIElement, null , 7, 7) ;
 
 }

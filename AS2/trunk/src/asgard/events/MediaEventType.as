@@ -58,6 +58,6 @@ class asgard.events.MediaEventType
 	 */
 	public static var MEDIA_STOP:String = "onMediaStopped" ;
 	
-	private static var __ASPF__ = _global["ASSetPropFlags"](MediaEventType, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(MediaEventType, null , 7, 7) ;
 	
 }

@@ -44,6 +44,6 @@ class asgard.display.SpreadMethod
 	public static var REPEAT:String = "repeat" ;
 	
 	
-	private static var __ASPF__ = _global["ASSetPropFlags"](SpreadMethod, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(SpreadMethod, null , 7, 7) ;
 
 }

@@ -71,6 +71,6 @@ class vegas.util.AttributeType
 	public static var LOCKED:Number = DONT_DELETE | DONT_ENUM | READ_ONLY ;
 
 
-	private static var __ASPF__ = _global["ASSetPropFlags"](AttributeType, null, 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(AttributeType, null, 7, 7) ;
 	
 }

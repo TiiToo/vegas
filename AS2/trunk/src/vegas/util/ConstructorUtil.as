@@ -186,7 +186,7 @@ class vegas.util.ConstructorUtil
 			
 			instance["__path__"] = find( "", scope || _global ) || null ;
 			
-			_global["ASSetPropFlags"](instance, ["__path__"], 7, 7) ;
+			_global.ASSetPropFlags(instance, ["__path__"], 7, 7) ;
 			
 			return instance["__path__"] || null ;
 			

@@ -30,6 +30,6 @@ class pegas.draw.MatrixType
 
 	public static var BOX:String = "box" ;
 	
-	private static var __ASPF__ = _global["ASSetPropFlags"](MatrixType, null, 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(MatrixType, null, 7, 7) ;
 	
 }

@@ -38,6 +38,6 @@ class asgard.text.TextFieldType
 	 */
 	public static var INPUT:String = "input" ;
 	
-	private static var __ASPF__ = _global["ASSetPropFlags"](TextFieldType, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(TextFieldType, null , 7, 7) ;
 
 }

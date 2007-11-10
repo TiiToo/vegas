@@ -95,7 +95,7 @@ class pegas.ui.KeysValidator extends AbstractCoreEventDispatcher implements IVal
 	 */
 	public static var ASCII:Number = 1 ;
 	
-	private static var __ASPF__ = _global["ASSetPropFlags"](KeysValidator, null, 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(KeysValidator, null, 7, 7) ;
 	
 	/**
 	 * Switch the validate process of this validator to use the {@code Key.getCode()} or the {@code Key.getASCII()} method.
