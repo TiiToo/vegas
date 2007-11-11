@@ -1,0 +1,289 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><script src="../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../index-files";
+//--></script><link href="../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../overview-summary.html" title="Overview" rel="top"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><pre><span class="lineno" id="1">     1  </span><span class="comment">/*
+<span class="lineno" id="2">     2  </span>
+<span class="lineno" id="3">     3  </span>  The contents of this file are subject to the Mozilla Public License Version
+<span class="lineno" id="4">     4  </span>  1.1 (the "License"); you may not use this file except in compliance with
+<span class="lineno" id="5">     5  </span>  the License. You may obtain a copy of the License at 
+<span class="lineno" id="6">     6  </span>  
+<span class="lineno" id="7">     7  </span>           http://www.mozilla.org/MPL/ 
+<span class="lineno" id="8">     8  </span>  
+<span class="lineno" id="9">     9  </span>  Software distributed under the License is distributed on an "AS IS" basis,
+<span class="lineno" id="10">    10  </span>  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+<span class="lineno" id="11">    11  </span>  for the specific language governing rights and limitations under the License. 
+<span class="lineno" id="12">    12  </span>  
+<span class="lineno" id="13">    13  </span>  The Original Code is Vegas Framework.
+<span class="lineno" id="14">    14  </span>  
+<span class="lineno" id="15">    15  </span>  The Initial Developer of the Original Code is
+<span class="lineno" id="16">    16  </span>  ALCARAZ Marc (aka eKameleon)  &lt;vegas@ekameleon.net&gt;.
+<span class="lineno" id="17">    17  </span>  Portions created by the Initial Developer are Copyright (C) 2004-2008
+<span class="lineno" id="18">    18  </span>  the Initial Developer. All Rights Reserved.
+<span class="lineno" id="19">    19  </span>  
+<span class="lineno" id="20">    20  </span>  Contributor(s) :
+<span class="lineno" id="21">    21  </span>  
+<span class="lineno" id="22">    22  </span> */</span>
+<span class="lineno" id="23">    23  </span> 
+<span class="lineno" id="24">    24  </span><span class="key">import</span> vegas.core.CoreObject;
+<span class="lineno" id="25">    25  </span><span class="key">import</span> vegas.core.IComparable;
+<span class="lineno" id="26">    26  </span><span class="key">import</span> vegas.core.IEquality;
+<span class="lineno" id="27">    27  </span><span class="key">import</span> vegas.core.ISerializable;
+<span class="lineno" id="28">    28  </span><span class="key">import</span> vegas.util.MathsUtil;
+<span class="lineno" id="29">    29  </span><span class="key">import</span> vegas.util.serialize.Serializer;
+<span class="lineno" id="30">    30  </span>
+<span class="lineno" id="31">    31  </span><span class="comment doc">/**
+<span class="lineno" id="32">    32  </span> * Represents a version number for a constructor, an environnement, a platform or other.
+<span class="lineno" id="33">    33  </span> * &lt;p&gt;Informations :&lt;/p&gt;
+<span class="lineno" id="34">    34  </span> * {@code
+<span class="lineno" id="35">    35  </span> * 		1 5 432 10
+<span class="lineno" id="36">    36  </span> * 		0x  F F FFF FF
+<span class="lineno" id="37">    37  </span> * 		| |  |   |
+<span class="lineno" id="38">    38  </span> * 		| |  |   \revision (max 255)
+<span class="lineno" id="39">    39  </span> * 		| |  \build (max 4095)
+<span class="lineno" id="40">    40  </span> * 		| \minor (max 15)
+<span class="lineno" id="41">    41  </span> * 		\major (max 15)
+<span class="lineno" id="42">    42  </span> * 		
+<span class="lineno" id="43">    43  </span> * 		max version number is v15.15.4095.255
+<span class="lineno" id="44">    44  </span> * }
+<span class="lineno" id="45">    45  </span> * &lt;p&gt;&lt;b&gt;Note : &lt;/b&gt;value ranges are
+<span class="lineno" id="46">    46  </span> * &lt;ul&gt;
+<span class="lineno" id="47">    47  </span> * &lt;li&gt;0xF    - 0 -&gt;    15&lt;/li&gt;
+<span class="lineno" id="48">    48  </span> * &lt;li&gt;0xFF   - 0 -&gt;   255&lt;/li&gt;
+<span class="lineno" id="49">    49  </span> * &lt;li&gt;0xFFF  - 0 -&gt;  4095&lt;/li&gt;
+<span class="lineno" id="50">    50  </span> * &lt;/ul&gt;
+<span class="lineno" id="51">    51  </span> * Max total value = 0xFFFFFFF
+<span class="lineno" id="52">    52  </span> * &lt;/p&gt;
+<span class="lineno" id="53">    53  </span> * Thanks : Zwetan : http://www.zwetan.com/ in the post "[FMX] coding session 05" (FCNG.buRRRn.com)
+<span class="lineno" id="54">    54  </span> * @author eKameleon
+<span class="lineno" id="55">    55  </span> */</span>
+<span class="lineno" id="56">    56  </span><span class="key">class</span> asgard.system.Version <span class="key">extends</span> CoreObject <span class="key">implements</span> IComparable, IEquality, ISerializable 
+<span class="lineno" id="57">    57  </span>{
+<span class="lineno" id="58">    58  </span>	
+<span class="lineno" id="59">    59  </span>	<span class="comment doc">/**
+<span class="lineno" id="60">    60  </span>	 * Creates a new Version instance with the specified major, minor, build, and revision numbers.
+<span class="lineno" id="61">    61  </span>	 */</span>
+<span class="lineno" id="62">    62  </span>	<span class="key">public</span> <span class="key">function</span> Version( major:Number, minor:Number, build:Number, revision:Number ) 
+<span class="lineno" id="63">    63  </span>	{
+<span class="lineno" id="64">    64  </span>		<span class="key">this</span>.major    = _checkValue( major, 0xF ) ; <span class="comment">// max : 15</span>
+<span class="lineno" id="65">    65  </span>		<span class="key">this</span>.minor    = _checkValue( minor, 0xF ) ; <span class="comment">// max : 15</span>
+<span class="lineno" id="66">    66  </span>		<span class="key">this</span>.build    = _checkValue( build, 0xFFF ) ; <span class="comment">// max : 4095</span>
+<span class="lineno" id="67">    67  </span>		<span class="key">this</span>.revision = _checkValue( revision, 0xFF ) ;  <span class="comment">// max : 255</span>
+<span class="lineno" id="68">    68  </span>		_value = major &lt;&lt; <span class="num_const">24</span> | minor &lt;&lt; <span class="num_const">20</span> | build &lt;&lt; <span class="num_const">8</span> | revision ;
+<span class="lineno" id="69">    69  </span>	}
+<span class="lineno" id="70">    70  </span>
+<span class="lineno" id="71">    71  </span>	<span class="comment doc">/**
+<span class="lineno" id="72">    72  </span>	 * Returns the value of the build component of the version number for the current Version object.
+<span class="lineno" id="73">    73  </span>	 * @return the value of the build component of the version number for the current Version object.
+<span class="lineno" id="74">    74  </span>	 */</span>
+<span class="lineno" id="75">    75  </span>	<span class="key">public</span> <span class="key">function</span> get build():Number 
+<span class="lineno" id="76">    76  </span>	{
+<span class="lineno" id="77">    77  </span>		<span class="key">return</span> getBuild() ;
+<span class="lineno" id="78">    78  </span>	}
+<span class="lineno" id="79">    79  </span>	
+<span class="lineno" id="80">    80  </span>	<span class="comment doc">/**
+<span class="lineno" id="81">    81  </span>	 * Sets the value of the build component of the version number for the current Version object.
+<span class="lineno" id="82">    82  </span>	 */</span>
+<span class="lineno" id="83">    83  </span>	<span class="key">public</span> <span class="key">function</span> set build( n:Number ):Void
+<span class="lineno" id="84">    84  </span>	{
+<span class="lineno" id="85">    85  </span>		setBuild(n) ;	
+<span class="lineno" id="86">    86  </span>	}
+<span class="lineno" id="87">    87  </span>
+<span class="lineno" id="88">    88  </span>	<span class="comment doc">/**
+<span class="lineno" id="89">    89  </span>	 * Returns the value of the major component of the version number for the current Version object.
+<span class="lineno" id="90">    90  </span>	 * @return the value of the major component of the version number for the current Version object.
+<span class="lineno" id="91">    91  </span>	 */</span>
+<span class="lineno" id="92">    92  </span>	<span class="key">public</span> <span class="key">function</span> get major():Number
+<span class="lineno" id="93">    93  </span>	{
+<span class="lineno" id="94">    94  </span>		<span class="key">return</span> getMajor() ;	
+<span class="lineno" id="95">    95  </span>	}
+<span class="lineno" id="96">    96  </span>	
+<span class="lineno" id="97">    97  </span>	<span class="comment doc">/**
+<span class="lineno" id="98">    98  </span>	 * Sets the value of the major component of the version number for the current Version object.
+<span class="lineno" id="99">    99  </span>	 */</span>
+<span class="lineno" id="100">   100  </span>	<span class="key">public</span> <span class="key">function</span> set major( n:Number ):Void
+<span class="lineno" id="101">   101  </span>	{
+<span class="lineno" id="102">   102  </span>		setMajor(n) ;
+<span class="lineno" id="103">   103  </span>	}
+<span class="lineno" id="104">   104  </span>	
+<span class="lineno" id="105">   105  </span>	<span class="comment doc">/**
+<span class="lineno" id="106">   106  </span>	 * Returns the value of the minor component of the version number for the current Version object.
+<span class="lineno" id="107">   107  </span>	 * @return the value of the minor component of the version number for the current Version object.
+<span class="lineno" id="108">   108  </span>	 */</span>
+<span class="lineno" id="109">   109  </span>	<span class="key">public</span> <span class="key">function</span> get minor():Number
+<span class="lineno" id="110">   110  </span>	{
+<span class="lineno" id="111">   111  </span>		<span class="key">return</span> getMinor() ;
+<span class="lineno" id="112">   112  </span>	}
+<span class="lineno" id="113">   113  </span>	
+<span class="lineno" id="114">   114  </span>	<span class="comment doc">/**
+<span class="lineno" id="115">   115  </span>	 * Sets the value of the minor component of the version number for the current Version object.
+<span class="lineno" id="116">   116  </span>	 */</span>
+<span class="lineno" id="117">   117  </span>	<span class="key">public</span> <span class="key">function</span> set minor( n:Number ):Void
+<span class="lineno" id="118">   118  </span>	{
+<span class="lineno" id="119">   119  </span>		setMinor( n ) ;	
+<span class="lineno" id="120">   120  </span>	}
+<span class="lineno" id="121">   121  </span>	
+<span class="lineno" id="122">   122  </span>	<span class="comment doc">/**
+<span class="lineno" id="123">   123  </span>	 * Returns the value of the revision component of the version number for the current Version object.
+<span class="lineno" id="124">   124  </span>	 * @return the value of the revision component of the version number for the current Version object.
+<span class="lineno" id="125">   125  </span>	 */</span>
+<span class="lineno" id="126">   126  </span>	<span class="key">public</span> <span class="key">function</span> get revision():Number
+<span class="lineno" id="127">   127  </span>	{
+<span class="lineno" id="128">   128  </span>		<span class="key">return</span> getRevision() ;
+<span class="lineno" id="129">   129  </span>	}
+<span class="lineno" id="130">   130  </span>	
+<span class="lineno" id="131">   131  </span>	<span class="comment doc">/**
+<span class="lineno" id="132">   132  </span>	 * Sets the value of the revision component of the version number for the current Version object.
+<span class="lineno" id="133">   133  </span>	 */</span>
+<span class="lineno" id="134">   134  </span>	<span class="key">public</span> <span class="key">function</span> set revision( n:Number ):Void
+<span class="lineno" id="135">   135  </span>	{
+<span class="lineno" id="136">   136  </span>		setRevision( n ) ;	
+<span class="lineno" id="137">   137  </span>	}
+<span class="lineno" id="138">   138  </span>
+<span class="lineno" id="139">   139  </span>	
+<span class="lineno" id="140">   140  </span>	<span class="comment doc">/**
+<span class="lineno" id="141">   141  </span>	 * Compares the current Version object to a specified object or Version and returns an indication of their relative values.
+<span class="lineno" id="142">   142  </span>	 * @return the compare value 1, -1 or 0
+<span class="lineno" id="143">   143  </span>	 */</span>
+<span class="lineno" id="144">   144  </span>	<span class="key">public</span> <span class="key">function</span> compareTo(o):Number 
+<span class="lineno" id="145">   145  </span>	{
+<span class="lineno" id="146">   146  </span>		<span class="key">if</span>( o == <span class="key">null</span> ) <span class="key">return</span> <span class="num_const">1</span> ;
+<span class="lineno" id="147">   147  </span>        <span class="key">if</span>( equals( o )  ) <span class="key">return</span> <span class="num_const">0</span> ;
+<span class="lineno" id="148">   148  </span>        <span class="key">else</span> <span class="key">if</span> ( valueOf() &gt; o.valueOf() ) <span class="key">return</span> <span class="num_const">1</span> ; 
+<span class="lineno" id="149">   149  </span>		<span class="key">return</span> -<span class="num_const">1</span>;
+<span class="lineno" id="150">   150  </span>    }
+<span class="lineno" id="151">   151  </span>
+<span class="lineno" id="152">   152  </span>	<span class="comment doc">/**
+<span class="lineno" id="153">   153  </span>	 * Returns a value indicating whether two Version object represent the same value.
+<span class="lineno" id="154">   154  </span>	 * @return a value indicating whether two Version object represent the same value.
+<span class="lineno" id="155">   155  </span>	 */</span>
+<span class="lineno" id="156">   156  </span>	<span class="key">public</span> <span class="key">function</span> equals(o):Boolean 
+<span class="lineno" id="157">   157  </span>	{
+<span class="lineno" id="158">   158  </span>		<span class="key">if</span>( o == <span class="key">null</span> ) <span class="key">return</span> <span class="key">false</span> ;
+<span class="lineno" id="159">   159  </span>        <span class="key">if</span>( !(o <span class="key">instanceof</span> Version) ) <span class="key">return</span> <span class="key">false</span>;
+<span class="lineno" id="160">   160  </span>		<span class="key">return</span>( valueOf() == o.valueOf() );
+<span class="lineno" id="161">   161  </span>    }
+<span class="lineno" id="162">   162  </span>
+<span class="lineno" id="163">   163  </span>	<span class="comment doc">/**
+<span class="lineno" id="164">   164  </span>	 * Creates and returns a new Version with the specified string passed-in argument.
+<span class="lineno" id="165">   165  </span>	 * @return a new Version with the specified string passed-in argument.
+<span class="lineno" id="166">   166  </span>	 */</span>
+<span class="lineno" id="167">   167  </span>	<span class="key">public</span> <span class="key">function</span> fromString(str:String):Version 
+<span class="lineno" id="168">   168  </span>	{
+<span class="lineno" id="169">   169  </span>		<span class="key">var</span> args:Array = str.split(<span class="str_const">"."</span>) ;
+<span class="lineno" id="170">   170  </span>		<span class="key">var</span> ver:Version  = <span class="key">new</span> Version
+<span class="lineno" id="171">   171  </span>		( 
+<span class="lineno" id="172">   172  </span>			parseInt( args[<span class="num_const">0</span>] ) ,
+<span class="lineno" id="173">   173  </span>            parseInt( args[<span class="num_const">1</span>] ) ,
+<span class="lineno" id="174">   174  </span>            parseInt( args[<span class="num_const">2</span>] ) ,
+<span class="lineno" id="175">   175  </span>            parseInt( args[<span class="num_const">3</span>] ) 
+<span class="lineno" id="176">   176  </span>		) ;
+<span class="lineno" id="177">   177  </span>		<span class="key">return</span> ver ;
+<span class="lineno" id="178">   178  </span>    }
+<span class="lineno" id="179">   179  </span>
+<span class="lineno" id="180">   180  </span>	<span class="comment doc">/**
+<span class="lineno" id="181">   181  </span>	 * Returns the value of the build component of the version number for the current Version object.
+<span class="lineno" id="182">   182  </span>	 * @return the value of the build component of the version number for the current Version object.
+<span class="lineno" id="183">   183  </span>	 */</span>
+<span class="lineno" id="184">   184  </span>	<span class="key">public</span> <span class="key">function</span> getBuild():Number 
+<span class="lineno" id="185">   185  </span>	{
+<span class="lineno" id="186">   186  </span>		<span class="key">return</span>( (_value &amp; 0x00FFF00) &gt;&gt; <span class="num_const">8</span> ) ;
+<span class="lineno" id="187">   187  </span>    }
+<span class="lineno" id="188">   188  </span>
+<span class="lineno" id="189">   189  </span>	<span class="comment doc">/**
+<span class="lineno" id="190">   190  </span>	 * Returns the value of the major component of the version number for the current Version object.
+<span class="lineno" id="191">   191  </span>	 * @return the value of the major component of the version number for the current Version object.
+<span class="lineno" id="192">   192  </span>	 */</span>
+<span class="lineno" id="193">   193  </span>	<span class="key">public</span> <span class="key">function</span> getMajor():Number 
+<span class="lineno" id="194">   194  </span>	{
+<span class="lineno" id="195">   195  </span>		<span class="key">return</span>( (_value &amp; 0xF000000) &gt;&gt; <span class="num_const">24</span> );
+<span class="lineno" id="196">   196  </span>    }
+<span class="lineno" id="197">   197  </span>
+<span class="lineno" id="198">   198  </span>	<span class="comment doc">/**
+<span class="lineno" id="199">   199  </span>	 * Returns the value of the minor component of the version number for the current Version object.
+<span class="lineno" id="200">   200  </span>	 * @return the value of the minor component of the version number for the current Version object.
+<span class="lineno" id="201">   201  </span>	 */</span>
+<span class="lineno" id="202">   202  </span>	<span class="key">public</span> <span class="key">function</span> getMinor():Number 
+<span class="lineno" id="203">   203  </span>	{
+<span class="lineno" id="204">   204  </span>		<span class="key">return</span>( (_value &amp; 0x0F00000) &gt;&gt; <span class="num_const">20</span> ) ;
+<span class="lineno" id="205">   205  </span>    }
+<span class="lineno" id="206">   206  </span>    
+<span class="lineno" id="207">   207  </span>	<span class="comment doc">/**
+<span class="lineno" id="208">   208  </span>	 * Returns the value of the revision component of the version number for the current Version object.
+<span class="lineno" id="209">   209  </span>	 * @return the value of the revision component of the version number for the current Version object.
+<span class="lineno" id="210">   210  </span>	 */</span>
+<span class="lineno" id="211">   211  </span>	<span class="key">public</span> <span class="key">function</span> getRevision():Number 
+<span class="lineno" id="212">   212  </span>	{
+<span class="lineno" id="213">   213  </span>		<span class="key">return</span>( _value &amp; 0x00000FF ) ;
+<span class="lineno" id="214">   214  </span>    }
+<span class="lineno" id="215">   215  </span>
+<span class="lineno" id="216">   216  </span>	<span class="comment doc">/**
+<span class="lineno" id="217">   217  </span>	 * Sets the value of the build component of the version number for the current Version object.
+<span class="lineno" id="218">   218  </span>	 */</span>
+<span class="lineno" id="219">   219  </span>	<span class="key">public</span> <span class="key">function</span> setBuild( value:Number ):Void 
+<span class="lineno" id="220">   220  </span>	{
+<span class="lineno" id="221">   221  </span>		<span class="key">var</span> n:Number = _checkValue( value, 0xFFF );
+<span class="lineno" id="222">   222  </span>		_value = ( (_value &amp; 0xFF000FF) | (n &lt;&lt; <span class="num_const">8</span>) );
+<span class="lineno" id="223">   223  </span>    }
+<span class="lineno" id="224">   224  </span>
+<span class="lineno" id="225">   225  </span>	<span class="comment doc">/**
+<span class="lineno" id="226">   226  </span>	 * Sets the value of the major component of the version number for the current Version object.
+<span class="lineno" id="227">   227  </span>	 */</span>
+<span class="lineno" id="228">   228  </span>	<span class="key">public</span> <span class="key">function</span> setMajor( value:Number ):Void 
+<span class="lineno" id="229">   229  </span>	{
+<span class="lineno" id="230">   230  </span>		<span class="key">var</span> n:Number = _checkValue( value, 0xF );
+<span class="lineno" id="231">   231  </span>		_value = ( (_value &amp; 0x0FFFFFF) | (n &lt;&lt; <span class="num_const">24</span>) ) ;
+<span class="lineno" id="232">   232  </span>    }
+<span class="lineno" id="233">   233  </span>
+<span class="lineno" id="234">   234  </span>	<span class="comment doc">/**
+<span class="lineno" id="235">   235  </span>	 * Sets the value of the minor component of the version number for the current Version object.
+<span class="lineno" id="236">   236  </span>	 */</span>
+<span class="lineno" id="237">   237  </span>	<span class="key">public</span> <span class="key">function</span> setMinor( value:Number ):Void 
+<span class="lineno" id="238">   238  </span>	{
+<span class="lineno" id="239">   239  </span>		<span class="key">var</span> n:Number = _checkValue( value, 0xF );
+<span class="lineno" id="240">   240  </span>		_value = ( (_value &amp; 0xF0FFFFF) | (n &lt;&lt; <span class="num_const">20</span>) );
+<span class="lineno" id="241">   241  </span>    }
+<span class="lineno" id="242">   242  </span>
+<span class="lineno" id="243">   243  </span>	<span class="comment doc">/**
+<span class="lineno" id="244">   244  </span>	 * Sets the value of the revision component of the version number for the current Version object.
+<span class="lineno" id="245">   245  </span>	 */</span>
+<span class="lineno" id="246">   246  </span>	<span class="key">public</span> <span class="key">function</span> setRevision( value:Number ) 
+<span class="lineno" id="247">   247  </span>	{
+<span class="lineno" id="248">   248  </span>		<span class="key">var</span> n:Number = _checkValue( value, 0xFF );
+<span class="lineno" id="249">   249  </span>		_value = ( (_value &amp; 0xFFFFF00) | n );
+<span class="lineno" id="250">   250  </span>    }
+<span class="lineno" id="251">   251  </span>
+<span class="lineno" id="252">   252  </span>	<span class="comment doc">/**
+<span class="lineno" id="253">   253  </span>	 * Returns the Eden {@code String} representation of the object.
+<span class="lineno" id="254">   254  </span>	 * @return the Eden {@code String} representation of the object.
+<span class="lineno" id="255">   255  </span>	 */</span>
+<span class="lineno" id="256">   256  </span>	<span class="key">public</span> <span class="key">function</span> toSource(indent:Number, indentor:String):String 
+<span class="lineno" id="257">   257  </span>	{
+<span class="lineno" id="258">   258  </span>		<span class="key">return</span> Serializer.getSourceOf( <span class="key">this</span> , [ major , minor , build , revision ] ) ;
+<span class="lineno" id="259">   259  </span>	}
+<span class="lineno" id="260">   260  </span>
+<span class="lineno" id="261">   261  </span>	<span class="comment doc">/**
+<span class="lineno" id="262">   262  </span>	 * Returns the {@code String} representation of the object.
+<span class="lineno" id="263">   263  </span>	 * @return the {@code String} representation of the object.
+<span class="lineno" id="264">   264  </span>	 */</span>
+<span class="lineno" id="265">   265  </span>	<span class="key">public</span> <span class="key">function</span> toString():String 
+<span class="lineno" id="266">   266  </span>	{
+<span class="lineno" id="267">   267  </span>		<span class="key">return</span> [major, minor, build, revision].join(<span class="str_const">"."</span>) ;
+<span class="lineno" id="268">   268  </span>    }
+<span class="lineno" id="269">   269  </span>
+<span class="lineno" id="270">   270  </span>	<span class="comment doc">/**
+<span class="lineno" id="271">   271  </span>	 * Returns the primivite value of this object.
+<span class="lineno" id="272">   272  </span>	 * @return the primivite value of this object.
+<span class="lineno" id="273">   273  </span>	 */</span>
+<span class="lineno" id="274">   274  </span>	<span class="key">public</span> <span class="key">function</span> valueOf():Number 
+<span class="lineno" id="275">   275  </span>	{
+<span class="lineno" id="276">   276  </span>		<span class="key">return</span> _value ;
+<span class="lineno" id="277">   277  </span>    }
+<span class="lineno" id="278">   278  </span>	
+<span class="lineno" id="279">   279  </span>	<span class="key">private</span> <span class="key">var</span> _value:Number ;
+<span class="lineno" id="280">   280  </span>	
+<span class="lineno" id="281">   281  </span>	<span class="key">private</span> <span class="key">function</span> _checkValue( value:Number, max:Number) 
+<span class="lineno" id="282">   282  </span>	{
+<span class="lineno" id="283">   283  </span>		<span class="key">return</span> MathsUtil.clamp(value, <span class="num_const">0</span>, max) ;
+<span class="lineno" id="284">   284  </span>	}
+<span class="lineno" id="285">   285  </span>
+<span class="lineno" id="286">   286  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package asgard.system" class="button">Package</a></li><li><a href="Version.html" title="Detail of asgard.system.Version API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

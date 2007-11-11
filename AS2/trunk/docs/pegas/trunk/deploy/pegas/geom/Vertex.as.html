@@ -1,0 +1,196 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><script src="../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../index-files";
+//--></script><link href="../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../overview-summary.html" title="Overview" rel="top"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><pre><span class="lineno" id="1">     1  </span><span class="comment">/*
+<span class="lineno" id="2">     2  </span>
+<span class="lineno" id="3">     3  </span>  The contents of this file are subject to the Mozilla Public License Version
+<span class="lineno" id="4">     4  </span>  1.1 (the "License"); you may not use this file except in compliance with
+<span class="lineno" id="5">     5  </span>  the License. You may obtain a copy of the License at 
+<span class="lineno" id="6">     6  </span>  
+<span class="lineno" id="7">     7  </span>           http://www.mozilla.org/MPL/ 
+<span class="lineno" id="8">     8  </span>  
+<span class="lineno" id="9">     9  </span>  Software distributed under the License is distributed on an "AS IS" basis,
+<span class="lineno" id="10">    10  </span>  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+<span class="lineno" id="11">    11  </span>  for the specific language governing rights and limitations under the License. 
+<span class="lineno" id="12">    12  </span>  
+<span class="lineno" id="13">    13  </span>  The Original Code is PEGAS Framework.
+<span class="lineno" id="14">    14  </span>  
+<span class="lineno" id="15">    15  </span>  The Initial Developer of the Original Code is
+<span class="lineno" id="16">    16  </span>  ALCARAZ Marc (aka eKameleon)  &lt;vegas@ekameleon.net&gt;.
+<span class="lineno" id="17">    17  </span>  Portions created by the Initial Developer are Copyright (C) 2004-2008
+<span class="lineno" id="18">    18  </span>  the Initial Developer. All Rights Reserved.
+<span class="lineno" id="19">    19  </span>  
+<span class="lineno" id="20">    20  </span>  Contributor(s) :
+<span class="lineno" id="21">    21  </span>  
+<span class="lineno" id="22">    22  </span>*/</span>
+<span class="lineno" id="23">    23  </span>
+<span class="lineno" id="24">    24  </span><span class="key">import</span> pegas.geom.Vector3;
+<span class="lineno" id="25">    25  </span>
+<span class="lineno" id="26">    26  </span><span class="key">import</span> vegas.util.ConstructorUtil;
+<span class="lineno" id="27">    27  </span><span class="key">import</span> vegas.util.serialize.Serializer;
+<span class="lineno" id="28">    28  </span>
+<span class="lineno" id="29">    29  </span><span class="comment doc">/**
+<span class="lineno" id="30">    30  </span> * A Vertex is a point which can be represented in differents coordinates (local, world, screen).
+<span class="lineno" id="31">    31  </span> * @author eKameleon
+<span class="lineno" id="32">    32  </span> */</span>
+<span class="lineno" id="33">    33  </span><span class="key">class</span> pegas.geom.Vertex <span class="key">extends</span> Vector3 
+<span class="lineno" id="34">    34  </span>{
+<span class="lineno" id="35">    35  </span>	
+<span class="lineno" id="36">    36  </span>	<span class="comment doc">/**
+<span class="lineno" id="37">    37  </span>	 * Creates a new {@code Vertex} instance.
+<span class="lineno" id="38">    38  </span>	 * @param x the x coordinate.
+<span class="lineno" id="39">    39  </span>	 * @param y the y coordinate.
+<span class="lineno" id="40">    40  </span>	 * @param z the z coordinate.
+<span class="lineno" id="41">    41  </span>	 * @param tx (optional) the transformed x position number. If this argument is 'null' or 'undefined' the default value is x.
+<span class="lineno" id="42">    42  </span>	 * @param ty (optional) the transformed y position number. If this argument is 'null' or 'undefined' the default value is y.
+<span class="lineno" id="43">    43  </span>	 * @param tz (optional) the transformed z position number. If this argument is 'null' or 'undefined' the default value is z. 
+<span class="lineno" id="44">    44  </span>	 */</span>
+<span class="lineno" id="45">    45  </span>	<span class="key">public</span> <span class="key">function</span> Vertex( x:Number, y:Number, z:Number , tx:Number, ty:Number, tz:Number ) 
+<span class="lineno" id="46">    46  </span>	{
+<span class="lineno" id="47">    47  </span>
+<span class="lineno" id="48">    48  </span>		<span class="key">super</span>(x, y, z);
+<span class="lineno" id="49">    49  </span>		
+<span class="lineno" id="50">    50  </span>		<span class="key">this</span>.tx = isNaN(tx) ? x : tx; 
+<span class="lineno" id="51">    51  </span>		<span class="key">this</span>.ty = isNaN(ty) ? y : ty; 
+<span class="lineno" id="52">    52  </span>		<span class="key">this</span>.tz = isNaN(tz) ? z : tz; 
+<span class="lineno" id="53">    53  </span>
+<span class="lineno" id="54">    54  </span>		<span class="key">this</span>.wx = tx ; 
+<span class="lineno" id="55">    55  </span>		<span class="key">this</span>.wy = ty ; 
+<span class="lineno" id="56">    56  </span>		<span class="key">this</span>.wz = tz ;
+<span class="lineno" id="57">    57  </span>
+<span class="lineno" id="58">    58  </span>		<span class="key">this</span>.sy = <span class="num_const">0</span> ; 
+<span class="lineno" id="59">    59  </span>		<span class="key">this</span>.sx = <span class="num_const">0</span> ;
+<span class="lineno" id="60">    60  </span>	}
+<span class="lineno" id="61">    61  </span>
+<span class="lineno" id="62">    62  </span>	<span class="comment doc">/**
+<span class="lineno" id="63">    63  </span>	 * Returns a shallow copy of this instance.
+<span class="lineno" id="64">    64  </span>	 * @return a shallow copy of this instance.
+<span class="lineno" id="65">    65  </span>	 */</span>
+<span class="lineno" id="66">    66  </span>	<span class="key">public</span> <span class="key">function</span> clone()
+<span class="lineno" id="67">    67  </span>	{
+<span class="lineno" id="68">    68  </span>		<span class="key">return</span> <span class="key">new</span> Vertex(x, y, z, tx, ty, tz) ;
+<span class="lineno" id="69">    69  </span>	}
+<span class="lineno" id="70">    70  </span>
+<span class="lineno" id="71">    71  </span>	<span class="comment doc">/**
+<span class="lineno" id="72">    72  </span>	 * Returns a deep copy of this instance.
+<span class="lineno" id="73">    73  </span>	 * @return a deep copy of this instance.
+<span class="lineno" id="74">    74  </span>	 */</span>
+<span class="lineno" id="75">    75  </span>	<span class="key">public</span> <span class="key">function</span> copy()
+<span class="lineno" id="76">    76  </span>	{
+<span class="lineno" id="77">    77  </span>		<span class="key">var</span> v:Vertex = <span class="key">new</span> Vertex(x, y, z, tx, ty, tz) ;
+<span class="lineno" id="78">    78  </span>		v.wx = wx ;
+<span class="lineno" id="79">    79  </span>		v.wy = wy ;
+<span class="lineno" id="80">    80  </span>		v.wz = wz ;
+<span class="lineno" id="81">    81  </span>		v.sx = sx ;
+<span class="lineno" id="82">    82  </span>		v.sy = sy ;	
+<span class="lineno" id="83">    83  </span>		<span class="key">return</span> v ;
+<span class="lineno" id="84">    84  </span>	}
+<span class="lineno" id="85">    85  </span>
+<span class="lineno" id="86">    86  </span>	<span class="comment doc">/**
+<span class="lineno" id="87">    87  </span>	 * Compares the specified object with this object for equality.
+<span class="lineno" id="88">    88  </span>	 * @return {@code true} if the the specified object is equal with this object.
+<span class="lineno" id="89">    89  </span>	 */</span>
+<span class="lineno" id="90">    90  </span>	<span class="key">public</span> <span class="key">function</span> equals( o ):Boolean
+<span class="lineno" id="91">    91  </span>	{
+<span class="lineno" id="92">    92  </span>		<span class="key">if</span> ( o <span class="key">instanceof</span> Vertex)
+<span class="lineno" id="93">    93  </span>		{
+<span class="lineno" id="94">    94  </span>			<span class="key">var</span> b1:Boolean = (o.x == x) &amp;&amp; (o.y == y) &amp;&amp; (o.z == z) ;
+<span class="lineno" id="95">    95  </span>			<span class="key">var</span> b2:Boolean = (o.tx == tx) &amp;&amp; (o.ty == ty) &amp;&amp; (o.tz == tz) ;
+<span class="lineno" id="96">    96  </span>			<span class="key">var</span> b3:Boolean = (o.wx == wx) &amp;&amp; (o.wy == wy) &amp;&amp; (o.wz == wz) ;
+<span class="lineno" id="97">    97  </span>			<span class="key">var</span> b4:Boolean = (o.sx == sx) &amp;&amp; (o.sy == sy) ;
+<span class="lineno" id="98">    98  </span>			<span class="key">return</span> b1 &amp;&amp; b2 &amp;&amp; b3 &amp;&amp; b4 ;
+<span class="lineno" id="99">    99  </span>		}
+<span class="lineno" id="100">   100  </span>		<span class="key">else</span>
+<span class="lineno" id="101">   101  </span>		{
+<span class="lineno" id="102">   102  </span>			<span class="key">return</span> <span class="key">false</span> ;	
+<span class="lineno" id="103">   103  </span>		} 
+<span class="lineno" id="104">   104  </span>	}
+<span class="lineno" id="105">   105  </span>
+<span class="lineno" id="106">   106  </span>
+<span class="lineno" id="107">   107  </span>	<span class="comment doc">/**
+<span class="lineno" id="108">   108  </span>	 * Defined the x coordinates in the screen World.
+<span class="lineno" id="109">   109  </span>	 */</span>
+<span class="lineno" id="110">   110  </span>	<span class="key">public</span> <span class="key">var</span> sx:Number;
+<span class="lineno" id="111">   111  </span>	
+<span class="lineno" id="112">   112  </span>	<span class="comment doc">/**
+<span class="lineno" id="113">   113  </span>	 * Defined the y coordinates in the screen World.
+<span class="lineno" id="114">   114  </span>	 */</span>
+<span class="lineno" id="115">   115  </span>	<span class="key">public</span> <span class="key">var</span> sy:Number;
+<span class="lineno" id="116">   116  </span>
+<span class="lineno" id="117">   117  </span>	<span class="comment doc">/**
+<span class="lineno" id="118">   118  </span>	 * Defined the x coordinates in the local coordinates.
+<span class="lineno" id="119">   119  </span>	 */</span>
+<span class="lineno" id="120">   120  </span>	<span class="key">public</span> <span class="key">var</span> tx:Number;
+<span class="lineno" id="121">   121  </span>
+<span class="lineno" id="122">   122  </span>	<span class="comment doc">/**
+<span class="lineno" id="123">   123  </span>	 * Defined the y coordinates in the local coordinates.
+<span class="lineno" id="124">   124  </span>	 */</span>
+<span class="lineno" id="125">   125  </span>	<span class="key">public</span> <span class="key">var</span> ty:Number;
+<span class="lineno" id="126">   126  </span>	
+<span class="lineno" id="127">   127  </span>	<span class="comment doc">/**
+<span class="lineno" id="128">   128  </span>	 * Defined the z coordinates in the local coordinates.
+<span class="lineno" id="129">   129  </span>	 */</span>
+<span class="lineno" id="130">   130  </span>	<span class="key">public</span> <span class="key">var</span> tz:Number;
+<span class="lineno" id="131">   131  </span>
+<span class="lineno" id="132">   132  </span>	<span class="comment doc">/**
+<span class="lineno" id="133">   133  </span>	 * Defined the x coordinates in the World coordinates.
+<span class="lineno" id="134">   134  </span>	 */</span>
+<span class="lineno" id="135">   135  </span>	<span class="key">public</span> <span class="key">var</span> wx:Number;
+<span class="lineno" id="136">   136  </span>	
+<span class="lineno" id="137">   137  </span>	<span class="comment doc">/**
+<span class="lineno" id="138">   138  </span>	 * Defined the y coordinates in the World coordinates.
+<span class="lineno" id="139">   139  </span>	 */</span>
+<span class="lineno" id="140">   140  </span>	<span class="key">public</span> <span class="key">var</span> wy:Number;
+<span class="lineno" id="141">   141  </span>	
+<span class="lineno" id="142">   142  </span>	<span class="comment doc">/**
+<span class="lineno" id="143">   143  </span>	 * Defined the z coordinates in the World coordinates.
+<span class="lineno" id="144">   144  </span>	 */</span>
+<span class="lineno" id="145">   145  </span>	 <span class="key">public</span> <span class="key">var</span> wz:Number;	
+<span class="lineno" id="146">   146  </span>
+<span class="lineno" id="147">   147  </span>	<span class="comment doc">/**
+<span class="lineno" id="148">   148  </span>	 * Returns the {@code Vector3} representation of the transformed coordinate system of this Vertex.
+<span class="lineno" id="149">   149  </span>	 * @return the {@code Vector3} representation of the transformed coordinate system of this Vertex.
+<span class="lineno" id="150">   150  </span>	 */</span>
+<span class="lineno" id="151">   151  </span>	<span class="key">public</span> <span class="key">function</span> getTransformVector3():Vector3
+<span class="lineno" id="152">   152  </span>	{
+<span class="lineno" id="153">   153  </span>		<span class="key">return</span> <span class="key">new</span> Vector3( tx, ty, tz ) ;	
+<span class="lineno" id="154">   154  </span>	}
+<span class="lineno" id="155">   155  </span>
+<span class="lineno" id="156">   156  </span>	<span class="comment doc">/**
+<span class="lineno" id="157">   157  </span>	 * Returns the {@code Vector3} representation of this Vertex in the world coordinate.
+<span class="lineno" id="158">   158  </span>	 * @return the {@code Vector3} representation of this Vertex in the world coordinate.
+<span class="lineno" id="159">   159  </span>	 */</span>
+<span class="lineno" id="160">   160  </span>	<span class="key">public</span> <span class="key">function</span> getWorldVector3():Vector3
+<span class="lineno" id="161">   161  </span>	{
+<span class="lineno" id="162">   162  </span>		<span class="key">return</span> <span class="key">new</span> Vector3( wx, wy, wz );
+<span class="lineno" id="163">   163  </span>	}
+<span class="lineno" id="164">   164  </span>
+<span class="lineno" id="165">   165  </span>	<span class="comment doc">/**
+<span class="lineno" id="166">   166  </span>	 * Returns the Object representation of this object.
+<span class="lineno" id="167">   167  </span>	 * @return the Object representation of this object.
+<span class="lineno" id="168">   168  </span>	 */</span>
+<span class="lineno" id="169">   169  </span>	<span class="key">public</span> <span class="key">function</span> toObject():Object 
+<span class="lineno" id="170">   170  </span>	{
+<span class="lineno" id="171">   171  </span>		<span class="key">return</span> { x:x , y:y , z:z , tx:tx , ty:ty , tz:tz } ;
+<span class="lineno" id="172">   172  </span>	}
+<span class="lineno" id="173">   173  </span>
+<span class="lineno" id="174">   174  </span>	<span class="comment doc">/**
+<span class="lineno" id="175">   175  </span>	 * Returns a Eden reprensation of the object.
+<span class="lineno" id="176">   176  </span>	 * @return a string representing the source code of the object.
+<span class="lineno" id="177">   177  </span>	 */</span>
+<span class="lineno" id="178">   178  </span>	<span class="key">public</span> <span class="key">function</span> toSource():String 
+<span class="lineno" id="179">   179  </span>	{
+<span class="lineno" id="180">   180  </span>		<span class="key">return</span> Serializer.getSourceOf(<span class="key">this</span>, [x, y, z, tx, ty, tz]) ;
+<span class="lineno" id="181">   181  </span>	}
+<span class="lineno" id="182">   182  </span>
+<span class="lineno" id="183">   183  </span>	<span class="comment doc">/**
+<span class="lineno" id="184">   184  </span>	 * Returns the string representation of the object.
+<span class="lineno" id="185">   185  </span>	 * @return the string representation of the object.
+<span class="lineno" id="186">   186  </span>	 */</span> 	
+<span class="lineno" id="187">   187  </span>	<span class="key">public</span> <span class="key">function</span> toString():String
+<span class="lineno" id="188">   188  </span>	{
+<span class="lineno" id="189">   189  </span>		<span class="key">return</span> <span class="str_const">"["</span> + ConstructorUtil.getName(<span class="key">this</span>) + <span class="str_const">":{x:"</span> + x + <span class="str_const">",y:"</span> + y + <span class="str_const">",z:"</span> + z + <span class="str_const">",tx:"</span> + tx + <span class="str_const">",ty:"</span> + ty + <span class="str_const">",tz:"</span> + tz + <span class="str_const">"}]"</span> ;
+<span class="lineno" id="190">   190  </span>	}
+<span class="lineno" id="191">   191  </span>
+<span class="lineno" id="192">   192  </span>
+<span class="lineno" id="193">   193  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package pegas.geom" class="button">Package</a></li><li><a href="Vertex.html" title="Detail of pegas.geom.Vertex API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

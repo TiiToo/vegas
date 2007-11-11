@@ -16,7 +16,7 @@ set macromedia=..\dependencies
 
 rem ############# Build the documentation
 
-set classpaths=vegas.* pegas.* asgard.* andromeda.* buRRRn.*
+set classpaths=vegas.* calista.* pegas.* asgard.* andromeda.* buRRRn.*
 
 set config=--classpath "%src%" --output-dir "%output%" --sources
 

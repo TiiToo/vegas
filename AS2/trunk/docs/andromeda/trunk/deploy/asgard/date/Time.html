@@ -1,0 +1,93 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>asgard.date.Time</title><script src="../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../index-files";
+//--></script><link href="../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../overview-summary.html" title="Overview" rel="top"/><link href="package-summary.html" title="Package asgard.date" rel="up"/><link href="../../asgard/display/BackgroundDisplay.html" title="Class asgard.display.BackgroundDisplay" rel="prev"/><link href="../../asgard/date/LocalDate.html" title="Class asgard.date.LocalDate" rel="next"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><h1>Class asgard.date.Time</h1><div class="type_hierachy"><ul><li><a href="../../vegas/core/CoreObject.html" class="class_name" title="Class vegas.core.CoreObject">vegas.core.CoreObject</a><ul><li><strong>asgard.date.Time</strong></li></ul></li></ul></div><div class="type_description"><h2>Description</h2><p>
+ The <code> Time</code> object is a holder for a time difference.
+ <p><code> Time</code> splits a time difference (distance between two dates) into 
+ days, hours, minutes, seconds and milliseconds to offers methods to access the time difference value.
+ </p></div><div class="type_indexes"><div class="field_index"><h2>Field Index</h2><a href="#DAY" title="static public DAY:Number">DAY</a>, <a href="#days" title="public days:Number">days</a>, <a href="#doEval" title="public doEval:Boolean">doEval</a>, <a href="#HOUR" title="static public HOUR:Number">HOUR</a>, <a href="#hours" title="public hours:Number">hours</a>, <a href="#milliSeconds" title="public milliSeconds:Number">milliSeconds</a>, <a href="#MINUTE" title="static public MINUTE:Number">MINUTE</a>, <a href="#minutes" title="public minutes:Number">minutes</a>, <a href="#ms" title="public ms:Number">ms</a>, <a href="#SECOND" title="static public SECOND:Number">SECOND</a>, <a href="#seconds" title="public seconds:Number">seconds</a></div><div class="method_index"><h2>Method Index</h2><div><code>new <a href="#Time" title="public function Time(timeDifference:Number, format:String)">Time()</a></code></div><a href="#evaluate" title="public function evaluate():Void">evaluate()</a>, <a href="#getDays" title="public function getDays(round:Number):Number">getDays()</a>, <a href="#getHours" title="public function getHours(round:Number):Number">getHours()</a>, <a href="#getMilliSeconds" title="public function getMilliSeconds(round:Number):Number">getMilliSeconds()</a>, <a href="#getMinutes" title="public function getMinutes(round:Number):Number">getMinutes()</a>, <a href="#getSeconds" title="public function getSeconds(round:Number):Number">getSeconds()</a>, <a href="#inDays" title="public function inDays():Number">inDays()</a>, <a href="#inHours" title="public function inHours():Number">inHours()</a>, <a href="#inMilliSeconds" title="public function inMilliSeconds():Number">inMilliSeconds()</a>, <a href="#inMinutes" title="public function inMinutes():Number">inMinutes()</a>, <a href="#inSeconds" title="public function inSeconds():Number">inSeconds()</a>, <a href="#minus" title="public function minus(timeDifference:Time):Time">minus()</a>, <a href="#plus" title="public function plus(timeDifference:Time):Time">plus()</a>, <a href="#setValue" title="public function setValue(timeDifference:Number, format:String):Time">setValue()</a>, <a href="#valueOf" title="public function valueOf():Number">valueOf()</a><h4>Inherited from <a href="../../vegas/core/CoreObject.html" class="class_name" title="Class vegas.core.CoreObject">CoreObject</a></h4><div class="extra_info"><a href="../../vegas/core/CoreObject.html#getLogger" title="public function getLogger():ILogger">getLogger()</a>, <a href="../../vegas/core/CoreObject.html#hashCode" title="public function hashCode():Number">hashCode()</a>, <a href="../../vegas/core/CoreObject.html#setLogger" title="public function setLogger(log:ILogger):Void">setLogger()</a>, <a href="../../vegas/core/CoreObject.html#toSource" title="public function toSource(indent:Number, indentor:String):String">toSource()</a>, <a href="../../vegas/core/CoreObject.html#toString" title="public function toString():String">toString()</a></div></div></div><div class="type_details"><div class="constructor_detail_list"><h2>Constructor Detail</h2><div class="method_details"><a name="Time"></a><h3>Time</h3><code class="method_synopsis">public function <strong class="method_name">Time</strong>(timeDifference:<span class="unresolved_type_name">Number</span>, format:<span class="unresolved_type_name">String</span>)</code><div class="method_info"><p>
+ Creates a new <code> Time</code> instance.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>timeDifference</code></td><td>The time size of the time difference for the passed-in <code> format</code>.
+ </td></tr><tr><td><code>format</code></td><td>(optional) "d"/"h"/"m"/"s"/"ms" for the unit of the amout, default case is "ms".
+     </td></tr></table></div></div></div><div class="field_detail_list"><h2>Field Detail</h2><a name="SECOND"></a><h3>SECOND</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">SECOND</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info"> 
+ Factor from ms to second. 
+	 </div></div><a name="MINUTE"></a><h3>MINUTE</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">MINUTE</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info"> 
+ Factor from ms to minute.
+	 </div></div><a name="HOUR"></a><h3>HOUR</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">HOUR</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info"> 
+ Factor from ms to hour.
+	 </div></div><a name="DAY"></a><h3>DAY</h3><div class="field_details"><code class="field_synopsis">static public <strong class="field_name">DAY</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info"> 
+ Factor from ms to day.
+	 </div></div><a name="days"></a><h3>days</h3><div class="field_details"><code class="field_synopsis">public <strong class="field_name">days</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info"> 
+ Amount of days.
+	 </div></div><a name="ms"></a><h3>ms</h3><div class="field_details"><code class="field_synopsis">public <strong class="field_name">ms</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info">
+ Time difference in ms.
+	 </div></div><a name="hours"></a><h3>hours</h3><div class="field_details"><code class="field_synopsis">public <strong class="field_name">hours</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info">  
+ Amount of hours.
+	 </div></div><a name="minutes"></a><h3>minutes</h3><div class="field_details"><code class="field_synopsis">public <strong class="field_name">minutes</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info">
+  Amount of minutes.
+	 </div></div><a name="seconds"></a><h3>seconds</h3><div class="field_details"><code class="field_synopsis">public <strong class="field_name">seconds</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info">
+  Amount of seconds.
+	 </div></div><a name="milliSeconds"></a><h3>milliSeconds</h3><div class="field_details"><code class="field_synopsis">public <strong class="field_name">milliSeconds</strong>:<span class="unresolved_type_name">Number</span></code><div class="field_info"> 
+ Amount of milliseconds.
+	 </div></div><a name="doEval"></a><h3>doEval</h3><div class="field_details"><code class="field_synopsis">public <strong class="field_name">doEval</strong>:<span class="unresolved_type_name">Boolean</span></code><div class="field_info"> 
+ Flag if the instance need to be evaluated by <a href="#evaluate">evaluate</a>.
+	 </div></div></div><div class="method_detail_list"><h2>Method Detail</h2><div class="method_details alt_row"><a name="evaluate"></a><h3>evaluate</h3><code class="method_synopsis">public function <strong class="method_name">evaluate</strong>():<span class="void_name">Void</span></code><div class="method_info"><p>
+ Splits the time distance from ms (source value) into the different units.
+	 </p></div></div><div class="method_details"><a name="getDays"></a><h3>getDays</h3><code class="method_synopsis">public function <strong class="method_name">getDays</strong>(round:<span class="unresolved_type_name">Number</span>):<span class="unresolved_type_name">Number</span></code><div class="method_info"><p>
+ Returns the amount of days are contained within the time.
+ <p>It will not round the result if you pass-in nothing.</p>
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>round</code></td><td>(optional) the number of decimal spaces
+ </td></tr></table><h4>Return</h4><p class="extra_info"> The time difference in days.
+	 </p></div></div><div class="method_details alt_row"><a name="getHours"></a><h3>getHours</h3><code class="method_synopsis">public function <strong class="method_name">getHours</strong>(round:<span class="unresolved_type_name">Number</span>):<span class="unresolved_type_name">Number</span></code><div class="method_info"><p>
+ Returns the amount of hours are contained within the time.
+ <p>It will not round the result if you pass-in nothing.</p>
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>round</code></td><td>(optional) the number of decimal spaces
+ </td></tr></table><h4>Return</h4><p class="extra_info"> The time difference in hours.
+	 </p></div></div><div class="method_details"><a name="getMilliSeconds"></a><h3>getMilliSeconds</h3><code class="method_synopsis">public function <strong class="method_name">getMilliSeconds</strong>(round:<span class="unresolved_type_name">Number</span>):<span class="unresolved_type_name">Number</span></code><div class="method_info"><p>
+ Returns the amount of milliseconds are contained within the time.
+ <p>It will not round the result if you pass-in nothing.</p>
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>round</code></td><td>(optional) the number of decimal spaces.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> The time difference in milliseconds.
+	 </p></div></div><div class="method_details alt_row"><a name="getMinutes"></a><h3>getMinutes</h3><code class="method_synopsis">public function <strong class="method_name">getMinutes</strong>(round:<span class="unresolved_type_name">Number</span>):<span class="unresolved_type_name">Number</span></code><div class="method_info"><p>
+ Returns the amount of minutes are contained within the time.
+ <p>It will not round the result if you pass-in nothing.</p>
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>round</code></td><td>(optional) the number of decimal spaces
+ </td></tr></table><h4>Return</h4><p class="extra_info"> The time difference in minutes.
+	 </p></div></div><div class="method_details"><a name="getSeconds"></a><h3>getSeconds</h3><code class="method_synopsis">public function <strong class="method_name">getSeconds</strong>(round:<span class="unresolved_type_name">Number</span>):<span class="unresolved_type_name">Number</span></code><div class="method_info"><p>
+ Returns the amount of seconds are contained within the time.
+ <p>It will not round the result if you pass-in nothing.</p>
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>round</code></td><td>(optional) the number of decimal spaces
+ </td></tr></table><h4>Return</h4><p class="extra_info"> The time difference in seconds
+	 </p></div></div><div class="method_details alt_row"><a name="inDays"></a><h3>inDays</h3><code class="method_synopsis">public function <strong class="method_name">inDays</strong>():<span class="unresolved_type_name">Number</span></code><div class="method_info"><p>
+ Returns the time distance in days.
+ </p><h4>Return</h4><p class="extra_info"> The time difference in days.
+	 </p></div></div><div class="method_details"><a name="inHours"></a><h3>inHours</h3><code class="method_synopsis">public function <strong class="method_name">inHours</strong>():<span class="unresolved_type_name">Number</span></code><div class="method_info"><p>
+ Returns the time distance in hours.
+ </p><h4>Return</h4><p class="extra_info"> The time difference in hours.
+	 </p></div></div><div class="method_details alt_row"><a name="inMilliSeconds"></a><h3>inMilliSeconds</h3><code class="method_synopsis">public function <strong class="method_name">inMilliSeconds</strong>():<span class="unresolved_type_name">Number</span></code><div class="method_info"><p>
+ Returns the time difference in milliseconds.
+ </p><h4>Return</h4><p class="extra_info"> the time difference in milliseconds.
+	 </p></div></div><div class="method_details"><a name="inMinutes"></a><h3>inMinutes</h3><code class="method_synopsis">public function <strong class="method_name">inMinutes</strong>():<span class="unresolved_type_name">Number</span></code><div class="method_info"><p>
+ Returns the time distance in minutes.
+ </p><h4>Return</h4><p class="extra_info"> The time difference in minutes.
+	 </p></div></div><div class="method_details alt_row"><a name="inSeconds"></a><h3>inSeconds</h3><code class="method_synopsis">public function <strong class="method_name">inSeconds</strong>():<span class="unresolved_type_name">Number</span></code><div class="method_info"><p>
+ Returns The time difference in seconds.
+ </p><h4>Return</h4><p class="extra_info"> The time difference in seconds.
+	 </p></div></div><div class="method_details"><a name="minus"></a><h3>minus</h3><code class="method_synopsis">public function <strong class="method_name">minus</strong>(timeDifference:<a href="../../asgard/date/Time.html" class="class_name" title="Class asgard.date.Time">Time</a>):<a href="../../asgard/date/Time.html" class="class_name" title="Class asgard.date.Time">Time</a></code><div class="method_info"><p>
+ Removes the passed-in <code> timeDifference</code> from the current time.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>timeDifference</code></td><td>time difference to be removed from the current time
+ </td></tr></table><h4>Return</h4><p class="extra_info"> A new instance with the resulting amount of time
+	 </p></div></div><div class="method_details alt_row"><a name="plus"></a><h3>plus</h3><code class="method_synopsis">public function <strong class="method_name">plus</strong>(timeDifference:<a href="../../asgard/date/Time.html" class="class_name" title="Class asgard.date.Time">Time</a>):<a href="../../asgard/date/Time.html" class="class_name" title="Class asgard.date.Time">Time</a></code><div class="method_info"><p>
+ Adds the passed-in <code> timedistance</code> to the current time.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>timeDifference</code></td><td>time difference to be added to the current time.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> A new instance with the resulting amount of time.
+	 </p></div></div><div class="method_details"><a name="setValue"></a><h3>setValue</h3><code class="method_synopsis">public function <strong class="method_name">setValue</strong>(timeDifference:<span class="unresolved_type_name">Number</span>, format:<span class="unresolved_type_name">String</span>):<a href="../../asgard/date/Time.html" class="class_name" title="Class asgard.date.Time">Time</a></code><div class="method_info"><p> 
+ Sets the time of the instance.
+ 
+ <p>Uses "ms" if no format or a wrong format was passed-in.</p>
+ <p>Uses <code> Number.MAX_VALUE</code> if <code> Infinity</code> was passed-in.</p>
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>format</code></td><td>(optional) "d"/"h"/"m"/"s"/"ms" for the unit of the amout. Default value is ms.
+	 </td></tr></table></div></div><div class="method_details alt_row"><a name="valueOf"></a><h3>valueOf</h3><code class="method_synopsis">public function <strong class="method_name">valueOf</strong>():<span class="unresolved_type_name">Number</span></code><div class="method_info"><p>
+ Returns the value of the time distance (in ms).
+ </p><h4>Return</h4><p class="extra_info"> The value of this object in ms.
+	 </p></div></div></div></div><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package asgard.date" class="button">Package</a></li><li><span class="button nav_current">Class</span></li><li><a href="Time.as.html" title="Source code of asgard.date.Time" class="button">Source</a></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

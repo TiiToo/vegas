@@ -1,0 +1,69 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>andromeda.ioc.core.ObjectDefinitionContainer</title><script src="../../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../../index-files";
+//--></script><link href="../../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../../overview-summary.html" title="Overview" rel="top"/><link href="package-summary.html" title="Package andromeda.ioc.core" rel="up"/><link href="../../../andromeda/ioc/factory/EdenObjectFactory.html" title="Class andromeda.ioc.factory.EdenObjectFactory" rel="prev"/><link href="../../../andromeda/ioc/core/ObjectDefinition.html" title="Class andromeda.ioc.core.ObjectDefinition" rel="next"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><h1>Class andromeda.ioc.core.ObjectDefinitionContainer</h1><div class="type_hierachy"><ul><li><a href="../../../vegas/core/CoreObject.html" class="class_name" title="Class vegas.core.CoreObject">vegas.core.CoreObject</a><ul><li><strong>andromeda.ioc.core.ObjectDefinitionContainer</strong></li></ul></li></ul></div><div class="interfaces"><h2>Implemented Interfaces</h2><code><a href="../../../andromeda/ioc/core/IObjectDefinitionContainer.html" class="interface_name" title="Interface andromeda.ioc.core.IObjectDefinitionContainer">IObjectDefinitionContainer</a></code> </div><div class="type_description"><h2>Description</h2><p>
+ Creates a container to register all the Object define by the corresponding IObjectDefinition objects.
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">import</span> test.User ;
+ 
+ <span class="key">import</span> andromeda.ioc.core.ObjectDefinition ;
+ <span class="key">import</span> andromeda.ioc.factory.ObjectFactory ;
+ 
+ <span class="key">import</span> vegas.data.map.HashMap ;
+ 
+ <span class="key">var</span> factory:ObjectFactory = <span class="key">new</span> ObjectFactory();
+ 
+ <span class="key">var</span> properties:HashMap = <span class="key">new</span> HashMap() ;
+ properties.put(<span class="str_const">"pseudo"</span> , <span class="str_const">"ekameleon"</span> ) ;
+ properties.put(<span class="str_const">"url"</span>  , <span class="str_const">"http://www.ekameleon.net/blog"</span> );
+ 
+ <span class="key">var</span> definition:ObjectDefinition = <span class="key">new</span> ObjectDefinition( <span class="str_const">"test.User"</span> ) ;
+ definition.setProperties( properties ) ;
+ definition.setInitMethodName( <span class="str_const">"initialize"</span> ) ;
+ 
+ factory.addObjectDefinition(<span class="str_const">"user"</span>, definition );
+ 
+ <span class="key">var</span> user:User = factory.getObject(<span class="str_const">"user"</span>) ;
+ 
+ trace( <span class="str_const">"User : "</span> + user ) ;
+ trace( <span class="str_const">"User pseudo : "</span> + user.pseudo ) ; <span class="comment">// ekameleon</span>
+ trace( <span class="str_const">"User url    : "</span> + user.url    ) ; <span class="comment">// http://www.ekameleon.net/blog</span>
+ </pre>
+ With the <b>test.User</b> class :
+ <pre>
+ <span class="key">import</span> vegas.core.CoreObject ;
+ 
+ <span class="key">class</span> test.User <span class="key">extends</span> CoreObject
+ {
+ 
+     <span class="key">public</span> <span class="key">function</span> User() {}
+     
+     <span class="key">public</span> <span class="key">var</span> pseudo:String ;
+     <span class="key">public</span> <span class="key">var</span> url:String ;
+     
+     <span class="key">public</span> <span class="key">function</span> initialize():Void
+     {
+         trace( <span class="key">this</span> + <span class="str_const">" initialize."</span>) ;
+     }
+
+ }
+ </pre>
+ </p></div><div class="type_indexes"><div class="method_index"><h2>Method Index</h2><div><code>new <a href="#ObjectDefinitionContainer" title="public function ObjectDefinitionContainer()">ObjectDefinitionContainer()</a></code></div><a href="#addObjectDefinition" title="public function addObjectDefinition(name:String, definition:IObjectDefinition):Void">addObjectDefinition()</a>, <a href="#containsObjectDefinition" title="public function containsObjectDefinition(name:String):Boolean">containsObjectDefinition()</a>, <a href="#getObjectDefinition" title="public function getObjectDefinition(name:String):IObjectDefinition">getObjectDefinition()</a>, <a href="#sizeObjectDefinition" title="public function sizeObjectDefinition():Number">sizeObjectDefinition()</a><h4>Inherited from <a href="../../../vegas/core/CoreObject.html" class="class_name" title="Class vegas.core.CoreObject">CoreObject</a></h4><div class="extra_info"><a href="../../../vegas/core/CoreObject.html#getLogger" title="public function getLogger():ILogger">getLogger()</a>, <a href="../../../vegas/core/CoreObject.html#hashCode" title="public function hashCode():Number">hashCode()</a>, <a href="../../../vegas/core/CoreObject.html#setLogger" title="public function setLogger(log:ILogger):Void">setLogger()</a>, <a href="../../../vegas/core/CoreObject.html#toSource" title="public function toSource(indent:Number, indentor:String):String">toSource()</a>, <a href="../../../vegas/core/CoreObject.html#toString" title="public function toString():String">toString()</a></div></div></div><div class="type_details"><div class="constructor_detail_list"><h2>Constructor Detail</h2><div class="method_details"><a name="ObjectDefinitionContainer"></a><h3>ObjectDefinitionContainer</h3><code class="method_synopsis">public function <strong class="method_name">ObjectDefinitionContainer</strong>()</code><div class="method_info"><p>
+ Creates a new ObjectDefinitionContainer instance.
+	 </p></div></div></div><div class="method_detail_list"><h2>Method Detail</h2><div class="method_details alt_row"><a name="addObjectDefinition"></a><h3>addObjectDefinition</h3><code class="method_synopsis">public function <strong class="method_name">addObjectDefinition</strong>(name:<span class="unresolved_type_name">String</span>, definition:<a href="../../../andromeda/ioc/core/IObjectDefinition.html" class="interface_name" title="Interface andromeda.ioc.core.IObjectDefinition">IObjectDefinition</a>):<span class="void_name">Void</span></code><div class="method_info"><p>
+ Registers an object in the container.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>name</code></td><td>the name of the object.
+ </td></tr><tr><td><code>definition</code></td><td>the definition of the object.
+	 </td></tr></table><h4>Specified By</h4><p class="extra_info"><a href="../../../andromeda/ioc/core/IObjectDefinitionContainer.html#addObjectDefinition" title="function addObjectDefinition(name:String, definition:IObjectDefinition):Void">addObjectDefinition()</a> in <a href="../../../andromeda/ioc/core/IObjectDefinitionContainer.html" class="interface_name" title="Interface andromeda.ioc.core.IObjectDefinitionContainer">andromeda.ioc.core.IObjectDefinitionContainer</a></p></div></div><div class="method_details"><a name="containsObjectDefinition"></a><h3>containsObjectDefinition</h3><code class="method_synopsis">public function <strong class="method_name">containsObjectDefinition</strong>(name:<span class="unresolved_type_name">String</span>):<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
+ Returns <code> <span class="key">true</span></code> if the object define with the specified name in register in the container.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>name</code></td><td>the id name of the ObjectDefinition to search. 
+ </td></tr></table><h4>Return</h4><p class="extra_info"> <code> <span class="key">true</span></code> if the object define with the specified name in register in the container.
+	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../andromeda/ioc/core/IObjectDefinitionContainer.html#containsObjectDefinition" title="function containsObjectDefinition(name:String):Boolean">containsObjectDefinition()</a> in <a href="../../../andromeda/ioc/core/IObjectDefinitionContainer.html" class="interface_name" title="Interface andromeda.ioc.core.IObjectDefinitionContainer">andromeda.ioc.core.IObjectDefinitionContainer</a></p></div></div><div class="method_details alt_row"><a name="getObjectDefinition"></a><h3>getObjectDefinition</h3><code class="method_synopsis">public function <strong class="method_name">getObjectDefinition</strong>(name:<span class="unresolved_type_name">String</span>):<a href="../../../andromeda/ioc/core/IObjectDefinition.html" class="interface_name" title="Interface andromeda.ioc.core.IObjectDefinition">IObjectDefinition</a></code><div class="method_info"><p>
+ Returns the numbers objects registered in the container.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>name</code></td><td>the id name of the ObjectDefinition to return. 
+ </td></tr></table><h4>Return</h4><p class="extra_info"> the IObjectDefinition registered in the container.
+	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../andromeda/ioc/core/IObjectDefinitionContainer.html#getObjectDefinition" title="function getObjectDefinition(name:String):IObjectDefinition">getObjectDefinition()</a> in <a href="../../../andromeda/ioc/core/IObjectDefinitionContainer.html" class="interface_name" title="Interface andromeda.ioc.core.IObjectDefinitionContainer">andromeda.ioc.core.IObjectDefinitionContainer</a></p></div></div><div class="method_details"><a name="sizeObjectDefinition"></a><h3>sizeObjectDefinition</h3><code class="method_synopsis">public function <strong class="method_name">sizeObjectDefinition</strong>():<span class="unresolved_type_name">Number</span></code><div class="method_info"><p>
+ Returns the numbers objects registered in the container.
+ </p><h4>Return</h4><p class="extra_info"> the numbers objects registered in the container.
+	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../andromeda/ioc/core/IObjectDefinitionContainer.html#sizeObjectDefinition" title="function sizeObjectDefinition():Number">sizeObjectDefinition()</a> in <a href="../../../andromeda/ioc/core/IObjectDefinitionContainer.html" class="interface_name" title="Interface andromeda.ioc.core.IObjectDefinitionContainer">andromeda.ioc.core.IObjectDefinitionContainer</a></p></div></div></div></div><ul class="main_nav" id="main_nav"><li><a href="../../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package andromeda.ioc.core" class="button">Package</a></li><li><span class="button nav_current">Class</span></li><li><a href="ObjectDefinitionContainer.as.html" title="Source code of andromeda.ioc.core.ObjectDefinitionContainer" class="button">Source</a></li><li><a href="../../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

@@ -1,0 +1,119 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><script src="../../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../../index-files";
+//--></script><link href="../../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../../overview-summary.html" title="Overview" rel="top"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><pre><span class="lineno" id="1">     1  </span><span class="comment">/*
+<span class="lineno" id="2">     2  </span>
+<span class="lineno" id="3">     3  </span>  The contents of this file are subject to the Mozilla Public License Version
+<span class="lineno" id="4">     4  </span>  1.1 (the "License"); you may not use this file except in compliance with
+<span class="lineno" id="5">     5  </span>  the License. You may obtain a copy of the License at 
+<span class="lineno" id="6">     6  </span>  
+<span class="lineno" id="7">     7  </span>           http://www.mozilla.org/MPL/ 
+<span class="lineno" id="8">     8  </span>  
+<span class="lineno" id="9">     9  </span>  Software distributed under the License is distributed on an "AS IS" basis,
+<span class="lineno" id="10">    10  </span>  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+<span class="lineno" id="11">    11  </span>  for the specific language governing rights and limitations under the License. 
+<span class="lineno" id="12">    12  </span>  
+<span class="lineno" id="13">    13  </span>  The Original Code is Vegas Framework.
+<span class="lineno" id="14">    14  </span>  
+<span class="lineno" id="15">    15  </span>  The Initial Developer of the Original Code is
+<span class="lineno" id="16">    16  </span>  ALCARAZ Marc (aka eKameleon)  &lt;vegas@ekameleon.net&gt;.
+<span class="lineno" id="17">    17  </span>  Portions created by the Initial Developer are Copyright (C) 2004-2008
+<span class="lineno" id="18">    18  </span>  the Initial Developer. All Rights Reserved.
+<span class="lineno" id="19">    19  </span>  
+<span class="lineno" id="20">    20  </span>  Contributor(s) :
+<span class="lineno" id="21">    21  </span>  
+<span class="lineno" id="22">    22  </span>*/</span>
+<span class="lineno" id="23">    23  </span>
+<span class="lineno" id="24">    24  </span><span class="key">import</span> vegas.data.bag.AbstractBag;
+<span class="lineno" id="25">    25  </span><span class="key">import</span> vegas.data.Collection;
+<span class="lineno" id="26">    26  </span><span class="key">import</span> vegas.data.map.HashMap;
+<span class="lineno" id="27">    27  </span><span class="key">import</span> vegas.util.serialize.Serializer;
+<span class="lineno" id="28">    28  </span>
+<span class="lineno" id="29">    29  </span><span class="comment doc">/**
+<span class="lineno" id="30">    30  </span> * Implements Bag, using a HashMap to provide the data storage. This is the standard implementation of a bag.
+<span class="lineno" id="31">    31  </span> * &lt;p&gt;&lt;b&gt;Example : &lt;/b&gt;
+<span class="lineno" id="32">    32  </span> * {@code
+<span class="lineno" id="33">    33  </span> *	import vegas.data.Bag ;
+<span class="lineno" id="34">    34  </span> *	import vegas.data.bag.HashBag ;
+<span class="lineno" id="35">    35  </span> *	import vegas.data.Collection ;
+<span class="lineno" id="36">    36  </span> *	import vegas.data.collections.SimpleCollection ;
+<span class="lineno" id="37">    37  </span> *	import vegas.data.Set ;
+<span class="lineno" id="38">    38  </span> *	
+<span class="lineno" id="39">    39  </span> *	var c1:Collection = new SimpleCollection( ["item1", "item1", "item3"] ) ;
+<span class="lineno" id="40">    40  </span> *	var c2:Collection = new SimpleCollection( ["item1", "item2", "item3", "item4", "item5"] ) ;
+<span class="lineno" id="41">    41  </span> *	
+<span class="lineno" id="42">    42  </span> *	trace ("c1 collection : " + c1) ;
+<span class="lineno" id="43">    43  </span> *	trace ("c2 collection : " + c2) ;
+<span class="lineno" id="44">    44  </span> *	
+<span class="lineno" id="45">    45  </span> *	trace ("---- create a new HashBag") ;
+<span class="lineno" id="46">    46  </span> *	var bag:Bag = new HashBag ;
+<span class="lineno" id="47">    47  </span> *		
+<span class="lineno" id="48">    48  </span> *	trace ("---- insert") ;
+<span class="lineno" id="49">    49  </span> *	trace (" + bag insertAll c1 : " + bag.insertAll(c1)) ;
+<span class="lineno" id="50">    50  </span> *	trace (" + bag insertAll c2 : " + bag.insertAll(c2)) ;
+<span class="lineno" id="51">    51  </span> *	trace (" &gt; bag : " + bag) ;
+<span class="lineno" id="52">    52  </span> *	trace (" &gt; bag.toSource : " + bag.toSource()) ;
+<span class="lineno" id="53">    53  </span> *	
+<span class="lineno" id="54">    54  </span> *	trace ("---- contains") ;
+<span class="lineno" id="55">    55  </span> *	trace (" &gt; bag containsAll c2 : " + bag.containsAll(c2)) ;
+<span class="lineno" id="56">    56  </span> *	
+<span class="lineno" id="57">    57  </span> *	trace ("---- insert") ;
+<span class="lineno" id="58">    58  </span> *	trace (" + bag insert item2 : " + bag.insert("item2")) ;
+<span class="lineno" id="59">    59  </span> *	trace (" &gt; bag : " + bag) ;
+<span class="lineno" id="60">    60  </span> *	trace (" + bag insertCopies 2xitem2 : " + bag.insertCopies("item2", 2)) ;
+<span class="lineno" id="61">    61  </span> *	trace (" &gt; bag : " + bag) ;
+<span class="lineno" id="62">    62  </span> *	
+<span class="lineno" id="63">    63  </span> *	trace ("---- remove") ;
+<span class="lineno" id="64">    64  </span> *	trace (" &gt; bag removeCopies 1 x item2 : " + bag.removeCopies("item2", 1)) ;
+<span class="lineno" id="65">    65  </span> *	
+<span class="lineno" id="66">    66  </span> *	trace ("---- size") ;
+<span class="lineno" id="67">    67  </span> *	trace (" - bag getCount item2 : " + bag.getCount("item2")) ;
+<span class="lineno" id="68">    68  </span> *	trace (" &gt; bag size : " + bag.size()) ;
+<span class="lineno" id="69">    69  </span> *	
+<span class="lineno" id="70">    70  </span> *	trace ("---- retain") ;
+<span class="lineno" id="71">    71  </span> *	trace (" &gt; bag : " + bag) ;
+<span class="lineno" id="72">    72  </span> *	trace (" &gt; bag retainAll c1 : " + bag.retainAll(c1)) ;
+<span class="lineno" id="73">    73  </span> *	trace (" &gt; bag : " + bag) ;
+<span class="lineno" id="74">    74  </span> *		
+<span class="lineno" id="75">    75  </span> *	trace ("----") ;
+<span class="lineno" id="76">    76  </span> *	var s:Set = bag.uniqueSet() ;
+<span class="lineno" id="77">    77  </span> *	trace("bag uniqueSet : " + s) ;
+<span class="lineno" id="78">    78  </span> *}
+<span class="lineno" id="79">    79  </span> *&lt;/p&gt;
+<span class="lineno" id="80">    80  </span> *@author eKameleon
+<span class="lineno" id="81">    81  </span> */</span>
+<span class="lineno" id="82">    82  </span><span class="key">class</span> vegas.data.bag.HashBag <span class="key">extends</span> AbstractBag 
+<span class="lineno" id="83">    83  </span>{
+<span class="lineno" id="84">    84  </span>	
+<span class="lineno" id="85">    85  </span>	<span class="comment doc">/**
+<span class="lineno" id="86">    86  </span>	 * Creates a new HashBag instance.
+<span class="lineno" id="87">    87  </span>	 * @param c a {@code Collection} to constructs a bag containing all the members of the given collection.
+<span class="lineno" id="88">    88  </span>	 */</span>
+<span class="lineno" id="89">    89  </span>	<span class="key">public</span> <span class="key">function</span> HashBag( c:Collection ) 
+<span class="lineno" id="90">    90  </span>	{
+<span class="lineno" id="91">    91  </span>		<span class="key">super</span>(<span class="key">new</span> HashMap()) ;
+<span class="lineno" id="92">    92  </span>		<span class="key">if</span> (c) 
+<span class="lineno" id="93">    93  </span>		{
+<span class="lineno" id="94">    94  </span>			insertAll(c) ;
+<span class="lineno" id="95">    95  </span>		}
+<span class="lineno" id="96">    96  </span>	}
+<span class="lineno" id="97">    97  </span>	
+<span class="lineno" id="98">    98  </span>	<span class="comment doc">/**
+<span class="lineno" id="99">    99  </span>	 * Returns the shallow copy of this bag.
+<span class="lineno" id="100">   100  </span>	 * @return the shallow copy of this bag.
+<span class="lineno" id="101">   101  </span>	 */</span>
+<span class="lineno" id="102">   102  </span>	<span class="key">public</span> <span class="key">function</span> clone() 
+<span class="lineno" id="103">   103  </span>	{
+<span class="lineno" id="104">   104  </span>		<span class="key">return</span> <span class="key">new</span> HashBag(_map.clone()) ;
+<span class="lineno" id="105">   105  </span>	}
+<span class="lineno" id="106">   106  </span>
+<span class="lineno" id="107">   107  </span>	<span class="comment doc">/**
+<span class="lineno" id="108">   108  </span>	 * Returns the Eden representation of the object.
+<span class="lineno" id="109">   109  </span>	 * @return a string representing the source code of the object.
+<span class="lineno" id="110">   110  </span>	 */</span>
+<span class="lineno" id="111">   111  </span>	<span class="comment">/*override*/</span> <span class="key">public</span> <span class="key">function</span> toSource(indent:Number, indentor:String):String 
+<span class="lineno" id="112">   112  </span>	{
+<span class="lineno" id="113">   113  </span>		<span class="key">return</span> Serializer.getSourceOf(<span class="key">this</span>, [Serializer.toSource(_extractList())]) ;
+<span class="lineno" id="114">   114  </span>	}
+<span class="lineno" id="115">   115  </span>	
+<span class="lineno" id="116">   116  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.data.bag" class="button">Package</a></li><li><a href="HashBag.html" title="Detail of vegas.data.bag.HashBag API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

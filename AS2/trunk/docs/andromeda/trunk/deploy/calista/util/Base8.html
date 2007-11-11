@@ -1,0 +1,30 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>calista.util.Base8</title><script src="../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../index-files";
+//--></script><link href="../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../overview-summary.html" title="Overview" rel="top"/><link href="package-summary.html" title="Package calista.util" rel="up"/><link href="../../calista/util/LZW.html" title="Class calista.util.LZW" rel="prev"/><link href="../../calista/util/Base64.html" title="Class calista.util.Base64" rel="next"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><h1>Class calista.util.Base8</h1><div class="type_hierachy"><ul><li><strong>calista.util.Base8</strong></li></ul></div><div class="type_description"><h2>Description</h2><p>
+ The Base8 algorithm encoding tool class.
+ </p></div><div class="type_indexes"><div class="method_index"><h2>Method Index</h2><a href="#decode" title="static public function decode(str:String):String">decode()</a>, <a href="#encode" title="static public function encode(str:String):String">encode()</a></div></div><div class="type_details"><div class="method_detail_list"><h2>Method Detail</h2><div class="method_details alt_row"><a name="encode"></a><h3>encode</h3><code class="method_synopsis">static public function <strong class="method_name">encode</strong>(str:<span class="unresolved_type_name">String</span>):<span class="unresolved_type_name">String</span></code><div class="method_info"><p>
+ Encodes a base8 string.
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">import</span> calista.util.Base8 ;
+ <span class="key">var</span> source:String = <span class="str_const">"hello world with a base 8 algorithm"</span> ;
+ 
+ <span class="key">var</span> encode:String = Base8.encode( source ) ;
+ trace(<span class="str_const">"encode : "</span> + encode) ;
+ </pre>
+	 </p></div></div><div class="method_details"><a name="decode"></a><h3>decode</h3><code class="method_synopsis">static public function <strong class="method_name">decode</strong>(str:<span class="unresolved_type_name">String</span>):<span class="unresolved_type_name">String</span></code><div class="method_info"><p>
+ Decodes a base8 string.
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">import</span> calista.util.Base8 ;
+ 
+ <span class="key">var</span> source:String = <span class="str_const">"hello world with a base 8 algorithm"</span> ;
+ 
+ <span class="key">var</span> encode:String = Base8.encode( source ) ;
+ trace(<span class="str_const">"encode : "</span> + encode) ;
+ 
+ <span class="key">var</span> decode:String = Base8.decode( encode ) ;
+ trace(<span class="str_const">"decode : "</span> + decode) ;
+ </pre>
+	 </p></div></div></div></div><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package calista.util" class="button">Package</a></li><li><span class="button nav_current">Class</span></li><li><a href="Base8.as.html" title="Source code of calista.util.Base8" class="button">Source</a></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

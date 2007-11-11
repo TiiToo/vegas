@@ -19,7 +19,6 @@ vegas.data.iterator
 vegas.data
 vegas.util.comparators
 pegas.colors
-vegas.events.type
 vegas.logging.targets
 vegas.string.errors
 pegas.maths

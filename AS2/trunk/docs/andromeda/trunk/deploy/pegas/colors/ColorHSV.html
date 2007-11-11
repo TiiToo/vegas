@@ -1,0 +1,65 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>pegas.colors.ColorHSV</title><script src="../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../index-files";
+//--></script><link href="../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../overview-summary.html" title="Overview" rel="top"/><link href="package-summary.html" title="Package pegas.colors" rel="up"/><link href="../../pegas/colors/ColorHTML.html" title="Class pegas.colors.ColorHTML" rel="prev"/><link href="../../calista/util/LZW.html" title="Class calista.util.LZW" rel="next"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><h1>Class pegas.colors.ColorHSV</h1><div class="type_hierachy"><ul><li><strong>pegas.colors.ColorHSV</strong></li></ul></div><div class="type_description"><h2>Description</h2><p>
+ <code>ColorHSV</code> provide static color conversion methods, in Hue Saturation Value color space.
+ <span class="unresolved_type_name">http://en.wikipedia.org/wiki/HSV_color_space</span>
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">import</span> asgard.colors.ColorHSV;
+ <span class="key">var</span> o:Object = ColorHSV.rgb2hsv(<span class="num_const">255</span>, <span class="num_const">0</span>, <span class="num_const">0</span>);
+ <span class="key">for</span> (<span class="key">var</span> prop:String <span class="key">in</span> o) 
+ {
+     trace( prop + <span class="str_const">" : "</span> + o[prop] ) ;
+ }
+ <span class="key">var</span> oRGB : Object = {r:<span class="num_const">250</span>,g:<span class="num_const">0</span>,b:<span class="num_const">0</span>};
+ <span class="key">var</span> o2 : Object = ColorHSV.hsv2rgb (oRGB, <span class="num_const">50</span>, <span class="num_const">100</span>);
+ trace (<span class="str_const">"--"</span>)
+ <span class="key">for</span> (<span class="key">var</span> prop:String:String <span class="key">in</span> o2) 
+ {
+ 	   trace( prop + <span class="str_const">" : "</span> + o2[prop] ) ;
+ }
+ </pre>
+ </pre>
+ </p></div><div class="type_indexes"><div class="method_index"><h2>Method Index</h2><a href="#hsv2rgb" title="static public function hsv2rgb(oColor, s:Number, v:Number):Object">hsv2rgb()</a>, <a href="#rgb2hsv" title="static public function rgb2hsv(r:Number, g:Number, b:Number):Object">rgb2hsv()</a></div></div><div class="type_details"><div class="method_detail_list"><h2>Method Detail</h2><div class="method_details alt_row"><a name="hsv2rgb"></a><h3>hsv2rgb</h3><code class="method_synopsis">static public function <strong class="method_name">hsv2rgb</strong>(oColor, s:<span class="unresolved_type_name">Number</span>, v:<span class="unresolved_type_name">Number</span>):<span class="unresolved_type_name">Object</span></code><div class="method_info"><p>
+ Converts a HSV color in a RGB color.
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">import</span> pegas.colors.ColorHSV;
+ <span class="key">var</span> oRGB : Object = {r:<span class="num_const">250</span>,g:<span class="num_const">0</span>,b:<span class="num_const">0</span>};
+ <span class="key">var</span> o2 : Object = ColorHSV.hsv2rgb (oRGB, <span class="num_const">50</span>, <span class="num_const">100</span>); <span class="comment">// desaturate 50%</span>
+ <span class="key">for</span> (<span class="key">var</span> prop:String <span class="key">in</span> o2) 
+ {
+     trace( prop + <span class="str_const">" : "</span> + o2[prop] );
+ }
+ </pre>
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>oColor</code></td><td>an Object with r,g,b properties ( range from 0 - 255 ), this is the Hue.
+ </td></tr><tr><td><code>s</code></td><td>a Number represent the Saturation value ( range from 0 - 100 ).
+ </td></tr><tr><td><code>v</code></td><td>a Number represent the Brightness ( Value ) ( range from 0 - 100 ).
+ </td></tr></table><h4>Return</h4><p class="extra_info"> an Object with r,g,b properties.
+	 </p></div></div><div class="method_details"><a name="rgb2hsv"></a><h3>rgb2hsv</h3><code class="method_synopsis">static public function <strong class="method_name">rgb2hsv</strong>(r:<span class="unresolved_type_name">Number</span>, g:<span class="unresolved_type_name">Number</span>, b:<span class="unresolved_type_name">Number</span>):<span class="unresolved_type_name">Object</span></code><div class="method_info"><p>
+ Converts a RGB color in a HSV color.
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">import</span> pegas.colors.ColorHSV;
+ <span class="key">var</span> o:Object = ColorHSV.rgb2hsv(<span class="num_const">255</span>, <span class="num_const">0</span>, <span class="num_const">0</span>);
+ <span class="key">for</span> (<span class="key">var</span> i <span class="key">in</span> o) {
+ 	<span class="key">if</span> (<span class="key">typeof</span> (o[i]) == <span class="str_const">"object"</span>) 
+ 	{
+ 		trace(i+<span class="str_const">" : "</span>);
+ 		<span class="key">for</span> (<span class="key">var</span> j <span class="key">in</span> o[i]) 
+ 		{
+ 			trace(<span class="str_const">"\t"</span>+j+<span class="str_const">" : "</span>+o[i][j]);
+ 		}
+ 	}
+ 	<span class="key">else</span> 
+ 	{
+ 		trace(i+<span class="str_const">" : "</span>+o[i]);
+ 	}
+ }
+ </pre>
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>r</code></td><td>a Number represent red value ( range from 0 - 255 ).
+ </td></tr><tr><td><code>g</code></td><td>a Number represent red value ( range from 0 - 255 ).
+ </td></tr><tr><td><code>b</code></td><td>a Number represent red value ( range from 0 - 255 ).
+ </td></tr></table><h4>Return</h4><p class="extra_info"> an Object with h ( Hue ), s ( Saturation ), v ( Value / Brightness ) properties. h is an Object with r,g,b properties.
+	 </p></div></div></div></div><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package pegas.colors" class="button">Package</a></li><li><span class="button nav_current">Class</span></li><li><a href="ColorHSV.as.html" title="Source code of pegas.colors.ColorHSV" class="button">Source</a></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

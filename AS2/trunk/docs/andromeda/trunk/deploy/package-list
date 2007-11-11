@@ -8,7 +8,6 @@ andromeda.model.queue
 vegas.logging
 vegas.data.stack
 pegas.maths
-vegas.events.type
 vegas.data.list
 andromeda.ui
 vegas.data.collections
@@ -48,8 +47,8 @@ andromeda.process.application
 vegas.logging.errors
 asgard.text
 andromeda.data.tree
-vegas.data.queue
 andromeda.media
+vegas.data.queue
 vegas.util.mvc
 vegas.util
 vegas.data
@@ -57,9 +56,10 @@ vegas.data.array
 pegas.draw
 andromeda.display.abstract
 andromeda.display
-vegas.errors
 andromeda.logging
+vegas.errors
 vegas.util.factory
+calista.hash
 andromeda.controller.transitions
 asgard.media
 vegas.data.bag
@@ -72,7 +72,9 @@ andromeda.controller
 vegas.data.map
 andromeda.model.set
 andromeda.core
+calista.util
 vegas.core.types
 asgard.data.remoting
 vegas.string
+andromeda.vo
 vegas.data.iterator

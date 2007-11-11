@@ -1,0 +1,242 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><script src="../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../index-files";
+//--></script><link href="../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../overview-summary.html" title="Overview" rel="top"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><pre><span class="lineno" id="1">     1  </span><span class="comment">/*
+<span class="lineno" id="2">     2  </span>
+<span class="lineno" id="3">     3  </span>  The contents of this file are subject to the Mozilla Public License Version
+<span class="lineno" id="4">     4  </span>  1.1 (the "License"); you may not use this file except in compliance with
+<span class="lineno" id="5">     5  </span>  the License. You may obtain a copy of the License at 
+<span class="lineno" id="6">     6  </span>  
+<span class="lineno" id="7">     7  </span>           http://www.mozilla.org/MPL/ 
+<span class="lineno" id="8">     8  </span>  
+<span class="lineno" id="9">     9  </span>  Software distributed under the License is distributed on an "AS IS" basis,
+<span class="lineno" id="10">    10  </span>  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+<span class="lineno" id="11">    11  </span>  for the specific language governing rights and limitations under the License. 
+<span class="lineno" id="12">    12  </span>  
+<span class="lineno" id="13">    13  </span>  The Original Code is CalistA Framework.
+<span class="lineno" id="14">    14  </span>  
+<span class="lineno" id="15">    15  </span>  The Initial Developer of the Original Code is
+<span class="lineno" id="16">    16  </span>  ALCARAZ Marc (aka eKameleon)  &lt;vegas@ekameleon.net&gt;.
+<span class="lineno" id="17">    17  </span>  Portions created by the Initial Developer are Copyright (C) 2004-2008
+<span class="lineno" id="18">    18  </span>  the Initial Developer. All Rights Reserved.
+<span class="lineno" id="19">    19  </span>  
+<span class="lineno" id="20">    20  </span>  Contributor(s) :
+<span class="lineno" id="21">    21  </span>  
+<span class="lineno" id="22">    22  </span>*/</span>
+<span class="lineno" id="23">    23  </span>
+<span class="lineno" id="24">    24  </span><span class="comment doc">/**
+<span class="lineno" id="25">    25  </span> * Encrypt a string with the MD5 algorithm.
+<span class="lineno" id="26">    26  </span> * &lt;p&gt;&lt;b&gt;Example :&lt;/b&gt;&lt;/p&gt;
+<span class="lineno" id="27">    27  </span> * {@code
+<span class="lineno" id="28">    28  </span> * import calista.hash.MD5 ;
+<span class="lineno" id="29">    29  </span> *
+<span class="lineno" id="30">    30  </span> * var hash:String = MD5.encrypt("calista") ;
+<span class="lineno" id="31">    31  </span> * var equal:Boolean = hash == '93fc1e28bc17af6420552b746af10f4f' ;
+<span class="lineno" id="32">    32  </span> *
+<span class="lineno" id="33">    33  </span> * trace("'calista' MD5 result : " + hash + " : " + equal ) ;
+<span class="lineno" id="34">    34  </span> * }
+<span class="lineno" id="35">    35  </span> * &lt;p&gt;Original Javascript implementation :&lt;/p&gt;
+<span class="lineno" id="36">    36  </span> * RSA Data Security, Inc. MD5 Message Digest Algorithm, as defined in RFC 1321.
+<span class="lineno" id="37">    37  </span> * Version 2.1 Copyright Paul Johnston 1999 - 2002
+<span class="lineno" id="38">    38  </span> * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
+<span class="lineno" id="39">    39  </span> * See http://pajhome.org.uk/crypt/md5 for more info.
+<span class="lineno" id="40">    40  </span> * @author eKameleon
+<span class="lineno" id="41">    41  </span> */</span>
+<span class="lineno" id="42">    42  </span><span class="key">class</span> calista.hash.MD5 
+<span class="lineno" id="43">    43  </span>{
+<span class="lineno" id="44">    44  </span>
+<span class="lineno" id="45">    45  </span>	<span class="comment doc">/**
+<span class="lineno" id="46">    46  </span>	 * Encrypt the specified text with the MD5 algorithm.
+<span class="lineno" id="47">    47  </span> 	 * &lt;p&gt;&lt;b&gt;Example :&lt;/b&gt;&lt;/p&gt;
+<span class="lineno" id="48">    48  </span> 	 * {
+<span class="lineno" id="49">    49  </span> 	 * import calista.hash.MD5 ;
+<span class="lineno" id="50">    50  </span> 	 * 
+<span class="lineno" id="51">    51  </span> 	 * var hash:String = MD5.encrypt("calista") ;
+<span class="lineno" id="52">    52  </span> 	 * var equal:Boolean = hash == '93fc1e28bc17af6420552b746af10f4f' ;
+<span class="lineno" id="53">    53  </span> 	 * 
+<span class="lineno" id="54">    54  </span> 	 * trace("'calista' MD5 result : " + hash + " : " + equal ) ;
+<span class="lineno" id="55">    55  </span> 	 * }
+<span class="lineno" id="56">    56  </span>	 */</span>
+<span class="lineno" id="57">    57  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">function</span> encrypt( str:String ):String
+<span class="lineno" id="58">    58  </span>	{
+<span class="lineno" id="59">    59  </span>		<span class="key">return</span> binl2hex( hash( str2binl(str) , str.length*<span class="num_const">8</span> ) ) ;
+<span class="lineno" id="60">    60  </span>	}
+<span class="lineno" id="61">    61  </span>
+<span class="lineno" id="62">    62  </span>	<span class="comment doc">/**
+<span class="lineno" id="63">    63  </span>	 * @private
+<span class="lineno" id="64">    64  </span>	 */</span>
+<span class="lineno" id="65">    65  </span>	<span class="key">private</span> <span class="key">static</span> <span class="key">function</span> bit_rol(num:Number, cnt:Number):Number 
+<span class="lineno" id="66">    66  </span>	{
+<span class="lineno" id="67">    67  </span>		<span class="key">return</span> (num &lt;&lt; cnt) | (num &gt;&gt;&gt; (<span class="num_const">32</span>-cnt));
+<span class="lineno" id="68">    68  </span>	}
+<span class="lineno" id="69">    69  </span>
+<span class="lineno" id="70">    70  </span>	<span class="comment doc">/**
+<span class="lineno" id="71">    71  </span>	 * @private
+<span class="lineno" id="72">    72  </span>	 */</span>
+<span class="lineno" id="73">    73  </span>	<span class="key">private</span> <span class="key">static</span> <span class="key">function</span> cmn(q:Number, a:Number, b:Number, x:Number, s:Number, t:Number):Number 
+<span class="lineno" id="74">    74  </span>	{
+<span class="lineno" id="75">    75  </span>		<span class="key">return</span> safe_add(bit_rol(safe_add(safe_add(a, q), safe_add(x, t)), s), b);
+<span class="lineno" id="76">    76  </span>	}
+<span class="lineno" id="77">    77  </span>
+<span class="lineno" id="78">    78  </span>	<span class="comment doc">/**
+<span class="lineno" id="79">    79  </span>	 * @private
+<span class="lineno" id="80">    80  </span>	 */</span>	
+<span class="lineno" id="81">    81  </span>	<span class="key">private</span> <span class="key">static</span> <span class="key">function</span> hash(x:Array, len:Number):Array 
+<span class="lineno" id="82">    82  </span>	{
+<span class="lineno" id="83">    83  </span>		x[len &gt;&gt; <span class="num_const">5</span>] |= 0x80 &lt;&lt; ((len)%<span class="num_const">32</span>) ;
+<span class="lineno" id="84">    84  </span>		x[(((len+<span class="num_const">64</span>) &gt;&gt;&gt; <span class="num_const">9</span>) &lt;&lt; <span class="num_const">4</span>)+<span class="num_const">14</span>] = len ;
+<span class="lineno" id="85">    85  </span>		<span class="key">var</span> a:Number = <span class="num_const">1732584193</span>  ;
+<span class="lineno" id="86">    86  </span>		<span class="key">var</span> b:Number = -<span class="num_const">271733879</span>  ;
+<span class="lineno" id="87">    87  </span>		<span class="key">var</span> c:Number = -<span class="num_const">1732584194</span> ;
+<span class="lineno" id="88">    88  </span>		<span class="key">var</span> d:Number = <span class="num_const">271733878</span>   ;
+<span class="lineno" id="89">    89  </span>		<span class="key">for</span> (<span class="key">var</span> i:Number = <span class="num_const">0</span>; i&lt;x.length; i += <span class="num_const">16</span>) 
+<span class="lineno" id="90">    90  </span>		{
+<span class="lineno" id="91">    91  </span>			<span class="key">var</span> olda:Number = a ;
+<span class="lineno" id="92">    92  </span>			<span class="key">var</span> oldb:Number = b ;
+<span class="lineno" id="93">    93  </span>			<span class="key">var</span> oldc:Number = c ;
+<span class="lineno" id="94">    94  </span>			<span class="key">var</span> oldd:Number = d ;
+<span class="lineno" id="95">    95  </span>			
+<span class="lineno" id="96">    96  </span>			a = ff(a, b, c, d, x[i+<span class="num_const">0</span>], <span class="num_const">7</span>, -<span class="num_const">680876936</span>);
+<span class="lineno" id="97">    97  </span>			d = ff(d, a, b, c, x[i+<span class="num_const">1</span>], <span class="num_const">12</span>, -<span class="num_const">389564586</span>);
+<span class="lineno" id="98">    98  </span>			c = ff(c, d, a, b, x[i+<span class="num_const">2</span>], <span class="num_const">17</span>, <span class="num_const">606105819</span>);
+<span class="lineno" id="99">    99  </span>			b = ff(b, c, d, a, x[i+<span class="num_const">3</span>], <span class="num_const">22</span>, -<span class="num_const">1044525330</span>);
+<span class="lineno" id="100">   100  </span>			a = ff(a, b, c, d, x[i+<span class="num_const">4</span>], <span class="num_const">7</span>, -<span class="num_const">176418897</span>);
+<span class="lineno" id="101">   101  </span>			d = ff(d, a, b, c, x[i+<span class="num_const">5</span>], <span class="num_const">12</span>, <span class="num_const">1200080426</span>);
+<span class="lineno" id="102">   102  </span>			c = ff(c, d, a, b, x[i+<span class="num_const">6</span>], <span class="num_const">17</span>, -<span class="num_const">1473231341</span>);
+<span class="lineno" id="103">   103  </span>			b = ff(b, c, d, a, x[i+<span class="num_const">7</span>], <span class="num_const">22</span>, -<span class="num_const">45705983</span>);
+<span class="lineno" id="104">   104  </span>			a = ff(a, b, c, d, x[i+<span class="num_const">8</span>], <span class="num_const">7</span>, <span class="num_const">1770035416</span>);
+<span class="lineno" id="105">   105  </span>			d = ff(d, a, b, c, x[i+<span class="num_const">9</span>], <span class="num_const">12</span>, -<span class="num_const">1958414417</span>);
+<span class="lineno" id="106">   106  </span>			c = ff(c, d, a, b, x[i+<span class="num_const">10</span>], <span class="num_const">17</span>, -<span class="num_const">42063</span>);
+<span class="lineno" id="107">   107  </span>			b = ff(b, c, d, a, x[i+<span class="num_const">11</span>], <span class="num_const">22</span>, -<span class="num_const">1990404162</span>);
+<span class="lineno" id="108">   108  </span>			a = ff(a, b, c, d, x[i+<span class="num_const">12</span>], <span class="num_const">7</span>, <span class="num_const">1804603682</span>);
+<span class="lineno" id="109">   109  </span>			d = ff(d, a, b, c, x[i+<span class="num_const">13</span>], <span class="num_const">12</span>, -<span class="num_const">40341101</span>);
+<span class="lineno" id="110">   110  </span>			c = ff(c, d, a, b, x[i+<span class="num_const">14</span>], <span class="num_const">17</span>, -<span class="num_const">1502002290</span>);
+<span class="lineno" id="111">   111  </span>			b = ff(b, c, d, a, x[i+<span class="num_const">15</span>], <span class="num_const">22</span>, <span class="num_const">1236535329</span>);
+<span class="lineno" id="112">   112  </span>			a = gg(a, b, c, d, x[i+<span class="num_const">1</span>], <span class="num_const">5</span>, -<span class="num_const">165796510</span>);
+<span class="lineno" id="113">   113  </span>			d = gg(d, a, b, c, x[i+<span class="num_const">6</span>], <span class="num_const">9</span>, -<span class="num_const">1069501632</span>);
+<span class="lineno" id="114">   114  </span>			c = gg(c, d, a, b, x[i+<span class="num_const">11</span>], <span class="num_const">14</span>, <span class="num_const">643717713</span>);
+<span class="lineno" id="115">   115  </span>			b = gg(b, c, d, a, x[i+<span class="num_const">0</span>], <span class="num_const">20</span>, -<span class="num_const">373897302</span>);
+<span class="lineno" id="116">   116  </span>			a = gg(a, b, c, d, x[i+<span class="num_const">5</span>], <span class="num_const">5</span>, -<span class="num_const">701558691</span>);
+<span class="lineno" id="117">   117  </span>			d = gg(d, a, b, c, x[i+<span class="num_const">10</span>], <span class="num_const">9</span>, <span class="num_const">38016083</span>);
+<span class="lineno" id="118">   118  </span>			c = gg(c, d, a, b, x[i+<span class="num_const">15</span>], <span class="num_const">14</span>, -<span class="num_const">660478335</span>);
+<span class="lineno" id="119">   119  </span>			b = gg(b, c, d, a, x[i+<span class="num_const">4</span>], <span class="num_const">20</span>, -<span class="num_const">405537848</span>);
+<span class="lineno" id="120">   120  </span>			a = gg(a, b, c, d, x[i+<span class="num_const">9</span>], <span class="num_const">5</span>, <span class="num_const">568446438</span>);
+<span class="lineno" id="121">   121  </span>			d = gg(d, a, b, c, x[i+<span class="num_const">14</span>], <span class="num_const">9</span>, -<span class="num_const">1019803690</span>);
+<span class="lineno" id="122">   122  </span>			c = gg(c, d, a, b, x[i+<span class="num_const">3</span>], <span class="num_const">14</span>, -<span class="num_const">187363961</span>);
+<span class="lineno" id="123">   123  </span>			b = gg(b, c, d, a, x[i+<span class="num_const">8</span>], <span class="num_const">20</span>, <span class="num_const">1163531501</span>);
+<span class="lineno" id="124">   124  </span>			a = gg(a, b, c, d, x[i+<span class="num_const">13</span>], <span class="num_const">5</span>, -<span class="num_const">1444681467</span>);
+<span class="lineno" id="125">   125  </span>			d = gg(d, a, b, c, x[i+<span class="num_const">2</span>], <span class="num_const">9</span>, -<span class="num_const">51403784</span>);
+<span class="lineno" id="126">   126  </span>			c = gg(c, d, a, b, x[i+<span class="num_const">7</span>], <span class="num_const">14</span>, <span class="num_const">1735328473</span>);
+<span class="lineno" id="127">   127  </span>			b = gg(b, c, d, a, x[i+<span class="num_const">12</span>], <span class="num_const">20</span>, -<span class="num_const">1926607734</span>);
+<span class="lineno" id="128">   128  </span>			a = hh(a, b, c, d, x[i+<span class="num_const">5</span>], <span class="num_const">4</span>, -<span class="num_const">378558</span>);
+<span class="lineno" id="129">   129  </span>			d = hh(d, a, b, c, x[i+<span class="num_const">8</span>], <span class="num_const">11</span>, -<span class="num_const">2022574463</span>);
+<span class="lineno" id="130">   130  </span>			c = hh(c, d, a, b, x[i+<span class="num_const">11</span>], <span class="num_const">16</span>, <span class="num_const">1839030562</span>);
+<span class="lineno" id="131">   131  </span>			b = hh(b, c, d, a, x[i+<span class="num_const">14</span>], <span class="num_const">23</span>, -<span class="num_const">35309556</span>);
+<span class="lineno" id="132">   132  </span>			a = hh(a, b, c, d, x[i+<span class="num_const">1</span>], <span class="num_const">4</span>, -<span class="num_const">1530992060</span>);
+<span class="lineno" id="133">   133  </span>			d = hh(d, a, b, c, x[i+<span class="num_const">4</span>], <span class="num_const">11</span>, <span class="num_const">1272893353</span>);
+<span class="lineno" id="134">   134  </span>			c = hh(c, d, a, b, x[i+<span class="num_const">7</span>], <span class="num_const">16</span>, -<span class="num_const">155497632</span>);
+<span class="lineno" id="135">   135  </span>			b = hh(b, c, d, a, x[i+<span class="num_const">10</span>], <span class="num_const">23</span>, -<span class="num_const">1094730640</span>);
+<span class="lineno" id="136">   136  </span>			a = hh(a, b, c, d, x[i+<span class="num_const">13</span>], <span class="num_const">4</span>, <span class="num_const">681279174</span>);
+<span class="lineno" id="137">   137  </span>			d = hh(d, a, b, c, x[i+<span class="num_const">0</span>], <span class="num_const">11</span>, -<span class="num_const">358537222</span>);
+<span class="lineno" id="138">   138  </span>			c = hh(c, d, a, b, x[i+<span class="num_const">3</span>], <span class="num_const">16</span>, -<span class="num_const">722521979</span>);
+<span class="lineno" id="139">   139  </span>			b = hh(b, c, d, a, x[i+<span class="num_const">6</span>], <span class="num_const">23</span>, <span class="num_const">76029189</span>);
+<span class="lineno" id="140">   140  </span>			a = hh(a, b, c, d, x[i+<span class="num_const">9</span>], <span class="num_const">4</span>, -<span class="num_const">640364487</span>);
+<span class="lineno" id="141">   141  </span>			d = hh(d, a, b, c, x[i+<span class="num_const">12</span>], <span class="num_const">11</span>, -<span class="num_const">421815835</span>);
+<span class="lineno" id="142">   142  </span>			c = hh(c, d, a, b, x[i+<span class="num_const">15</span>], <span class="num_const">16</span>, <span class="num_const">530742520</span>);
+<span class="lineno" id="143">   143  </span>			b = hh(b, c, d, a, x[i+<span class="num_const">2</span>], <span class="num_const">23</span>, -<span class="num_const">995338651</span>);
+<span class="lineno" id="144">   144  </span>			a = ii(a, b, c, d, x[i+<span class="num_const">0</span>], <span class="num_const">6</span>, -<span class="num_const">198630844</span>);
+<span class="lineno" id="145">   145  </span>			d = ii(d, a, b, c, x[i+<span class="num_const">7</span>], <span class="num_const">10</span>, <span class="num_const">1126891415</span>);
+<span class="lineno" id="146">   146  </span>			c = ii(c, d, a, b, x[i+<span class="num_const">14</span>], <span class="num_const">15</span>, -<span class="num_const">1416354905</span>);
+<span class="lineno" id="147">   147  </span>			b = ii(b, c, d, a, x[i+<span class="num_const">5</span>], <span class="num_const">21</span>, -<span class="num_const">57434055</span>);
+<span class="lineno" id="148">   148  </span>			a = ii(a, b, c, d, x[i+<span class="num_const">12</span>], <span class="num_const">6</span>, <span class="num_const">1700485571</span>);
+<span class="lineno" id="149">   149  </span>			d = ii(d, a, b, c, x[i+<span class="num_const">3</span>], <span class="num_const">10</span>, -<span class="num_const">1894986606</span>);
+<span class="lineno" id="150">   150  </span>			c = ii(c, d, a, b, x[i+<span class="num_const">10</span>], <span class="num_const">15</span>, -<span class="num_const">1051523</span>);
+<span class="lineno" id="151">   151  </span>			b = ii(b, c, d, a, x[i+<span class="num_const">1</span>], <span class="num_const">21</span>, -<span class="num_const">2054922799</span>);
+<span class="lineno" id="152">   152  </span>			a = ii(a, b, c, d, x[i+<span class="num_const">8</span>], <span class="num_const">6</span>, <span class="num_const">1873313359</span>);
+<span class="lineno" id="153">   153  </span>			d = ii(d, a, b, c, x[i+<span class="num_const">15</span>], <span class="num_const">10</span>, -<span class="num_const">30611744</span>);
+<span class="lineno" id="154">   154  </span>			c = ii(c, d, a, b, x[i+<span class="num_const">6</span>], <span class="num_const">15</span>, -<span class="num_const">1560198380</span>);
+<span class="lineno" id="155">   155  </span>			b = ii(b, c, d, a, x[i+<span class="num_const">13</span>], <span class="num_const">21</span>, <span class="num_const">1309151649</span>);
+<span class="lineno" id="156">   156  </span>			a = ii(a, b, c, d, x[i+<span class="num_const">4</span>], <span class="num_const">6</span>, -<span class="num_const">145523070</span>);
+<span class="lineno" id="157">   157  </span>			d = ii(d, a, b, c, x[i+<span class="num_const">11</span>], <span class="num_const">10</span>, -<span class="num_const">1120210379</span>);
+<span class="lineno" id="158">   158  </span>			c = ii(c, d, a, b, x[i+<span class="num_const">2</span>], <span class="num_const">15</span>, <span class="num_const">718787259</span>);
+<span class="lineno" id="159">   159  </span>			b = ii(b, c, d, a, x[i+<span class="num_const">9</span>], <span class="num_const">21</span>, -<span class="num_const">343485551</span>);
+<span class="lineno" id="160">   160  </span>			a = safe_add(a, olda); b = safe_add(b, oldb);
+<span class="lineno" id="161">   161  </span>			c = safe_add(c, oldc); d = safe_add(d, oldd);
+<span class="lineno" id="162">   162  </span>		}
+<span class="lineno" id="163">   163  </span>		<span class="key">return</span> [ a, b, c, d ] ;
+<span class="lineno" id="164">   164  </span>	}
+<span class="lineno" id="165">   165  </span>	
+<span class="lineno" id="166">   166  </span>	<span class="comment doc">/**
+<span class="lineno" id="167">   167  </span>	 * @private
+<span class="lineno" id="168">   168  </span>	 */</span>
+<span class="lineno" id="169">   169  </span>	<span class="key">private</span> <span class="key">static</span> <span class="key">function</span> ff(a:Number, b:Number, c:Number, d:Number, x:Number, s:Number, t:Number):Number 
+<span class="lineno" id="170">   170  </span>	{
+<span class="lineno" id="171">   171  </span>		<span class="key">return</span> cmn((b &amp; c) | ((~b) &amp; d), a, b, x, s, t);
+<span class="lineno" id="172">   172  </span>	}
+<span class="lineno" id="173">   173  </span>
+<span class="lineno" id="174">   174  </span>	<span class="comment doc">/**
+<span class="lineno" id="175">   175  </span>	 * @private
+<span class="lineno" id="176">   176  </span>	 */</span>
+<span class="lineno" id="177">   177  </span>	<span class="key">private</span> <span class="key">static</span> <span class="key">function</span> gg(a:Number, b:Number, c:Number, d:Number, x:Number, s:Number, t:Number):Number 
+<span class="lineno" id="178">   178  </span>	{
+<span class="lineno" id="179">   179  </span>		<span class="key">return</span> cmn((b &amp; d) | (c &amp; (~d)), a, b, x, s, t);
+<span class="lineno" id="180">   180  </span>	}
+<span class="lineno" id="181">   181  </span>	
+<span class="lineno" id="182">   182  </span>	<span class="comment doc">/**
+<span class="lineno" id="183">   183  </span>	 * @private
+<span class="lineno" id="184">   184  </span>	 */</span>
+<span class="lineno" id="185">   185  </span>	<span class="key">private</span> <span class="key">static</span> <span class="key">function</span> hh(a:Number, b:Number, c:Number, d:Number, x:Number, s:Number, t:Number):Number 
+<span class="lineno" id="186">   186  </span>	{
+<span class="lineno" id="187">   187  </span>		<span class="key">return</span> cmn(b ^ c ^ d, a, b, x, s, t);
+<span class="lineno" id="188">   188  </span>	}
+<span class="lineno" id="189">   189  </span>
+<span class="lineno" id="190">   190  </span>	<span class="comment doc">/**
+<span class="lineno" id="191">   191  </span>	 * @private
+<span class="lineno" id="192">   192  </span>	 */</span>
+<span class="lineno" id="193">   193  </span>	<span class="key">private</span> <span class="key">static</span> <span class="key">function</span> ii(a:Number, b:Number, c:Number, d:Number, x:Number, s:Number, t:Number):Number 
+<span class="lineno" id="194">   194  </span>	{
+<span class="lineno" id="195">   195  </span>		<span class="key">return</span> cmn(c ^ (b | (~d)), a, b, x, s, t);
+<span class="lineno" id="196">   196  </span>	}
+<span class="lineno" id="197">   197  </span>	
+<span class="lineno" id="198">   198  </span>	<span class="comment doc">/**
+<span class="lineno" id="199">   199  </span>	 * @private
+<span class="lineno" id="200">   200  </span>	 */</span>
+<span class="lineno" id="201">   201  </span>	<span class="key">private</span> <span class="key">static</span> <span class="key">function</span> safe_add(x:Number, y:Number):Number 
+<span class="lineno" id="202">   202  </span>	{
+<span class="lineno" id="203">   203  </span>		<span class="key">var</span> lsw:Number = (x &amp; 0xFFFF)+(y &amp; 0xFFFF);
+<span class="lineno" id="204">   204  </span>		<span class="key">var</span> msw:Number = (x &gt;&gt; <span class="num_const">16</span>)+(y &gt;&gt; <span class="num_const">16</span>)+(lsw &gt;&gt; <span class="num_const">16</span>);
+<span class="lineno" id="205">   205  </span>		<span class="key">return</span> (msw &lt;&lt; <span class="num_const">16</span>) | (lsw &amp; 0xFFFF);
+<span class="lineno" id="206">   206  </span>	}
+<span class="lineno" id="207">   207  </span>	
+<span class="lineno" id="208">   208  </span>	<span class="comment doc">/**
+<span class="lineno" id="209">   209  </span>	 * @private
+<span class="lineno" id="210">   210  </span>	 */</span>
+<span class="lineno" id="211">   211  </span>	<span class="key">private</span> <span class="key">static</span> <span class="key">function</span> str2binl(str:String):Array 
+<span class="lineno" id="212">   212  </span>	{
+<span class="lineno" id="213">   213  </span>		str = <span class="key">new</span> String(str) ;
+<span class="lineno" id="214">   214  </span>		<span class="key">var</span> bin:Array = <span class="key">new</span> Array();
+<span class="lineno" id="215">   215  </span>		<span class="key">var</span> mask:Number = (<span class="num_const">1</span> &lt;&lt; <span class="num_const">8</span>)-<span class="num_const">1</span>;
+<span class="lineno" id="216">   216  </span>		<span class="key">var</span> size:Number = str.length * <span class="num_const">8</span> ;
+<span class="lineno" id="217">   217  </span>		<span class="key">for</span> (<span class="key">var</span> i:Number = <span class="num_const">0</span> ; i&lt;size ; i += <span class="num_const">8</span> ) 
+<span class="lineno" id="218">   218  </span>		{
+<span class="lineno" id="219">   219  </span>			bin[i &gt;&gt; <span class="num_const">5</span>] |= (str.charCodeAt(i/<span class="num_const">8</span>) &amp; mask) &lt;&lt; (i%<span class="num_const">32</span>);
+<span class="lineno" id="220">   220  </span>		}
+<span class="lineno" id="221">   221  </span>		<span class="key">return</span> bin;
+<span class="lineno" id="222">   222  </span>	}
+<span class="lineno" id="223">   223  </span>	
+<span class="lineno" id="224">   224  </span>	<span class="comment doc">/**
+<span class="lineno" id="225">   225  </span>	 * @private
+<span class="lineno" id="226">   226  </span>	 */</span>
+<span class="lineno" id="227">   227  </span>	<span class="key">private</span> <span class="key">static</span> <span class="key">function</span> binl2hex(binarray:Array):String 
+<span class="lineno" id="228">   228  </span>	{
+<span class="lineno" id="229">   229  </span>		<span class="key">var</span> str:String = <span class="str_const">""</span> ;
+<span class="lineno" id="230">   230  </span>		<span class="key">var</span> tab:String = <span class="key">new</span> String(<span class="str_const">"0123456789abcdef"</span>);
+<span class="lineno" id="231">   231  </span>		<span class="key">var</span> size:Number = binarray.length * <span class="num_const">4</span> ;
+<span class="lineno" id="232">   232  </span>		<span class="key">for</span> (<span class="key">var</span> i:Number = <span class="num_const">0</span>; i&lt;size; i++) 
+<span class="lineno" id="233">   233  </span>		{
+<span class="lineno" id="234">   234  </span>			str += tab.charAt((binarray[i &gt;&gt; <span class="num_const">2</span>] &gt;&gt; ((i%<span class="num_const">4</span>)*<span class="num_const">8</span>+<span class="num_const">4</span>)) &amp; 0xF) + tab.charAt((binarray[i &gt;&gt; <span class="num_const">2</span>] &gt;&gt; ((i%<span class="num_const">4</span>)*<span class="num_const">8</span>)) &amp; 0xF);
+<span class="lineno" id="235">   235  </span>		}
+<span class="lineno" id="236">   236  </span>		<span class="key">return</span> str;
+<span class="lineno" id="237">   237  </span>	}	
+<span class="lineno" id="238">   238  </span>}
+<span class="lineno" id="239">   239  </span></pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package calista.hash" class="button">Package</a></li><li><a href="MD5.html" title="Detail of calista.hash.MD5 API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

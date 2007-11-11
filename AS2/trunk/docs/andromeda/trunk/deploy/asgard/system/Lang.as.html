@@ -1,0 +1,214 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><script src="../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../index-files";
+//--></script><link href="../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../overview-summary.html" title="Overview" rel="top"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><pre><span class="lineno" id="1">     1  </span><span class="comment">/*
+<span class="lineno" id="2">     2  </span>
+<span class="lineno" id="3">     3  </span>  The contents of this file are subject to the Mozilla Public License Version
+<span class="lineno" id="4">     4  </span>  1.1 (the "License"); you may not use this file except in compliance with
+<span class="lineno" id="5">     5  </span>  the License. You may obtain a copy of the License at 
+<span class="lineno" id="6">     6  </span>  
+<span class="lineno" id="7">     7  </span>           http://www.mozilla.org/MPL/ 
+<span class="lineno" id="8">     8  </span>  
+<span class="lineno" id="9">     9  </span>  Software distributed under the License is distributed on an "AS IS" basis,
+<span class="lineno" id="10">    10  </span>  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+<span class="lineno" id="11">    11  </span>  for the specific language governing rights and limitations under the License. 
+<span class="lineno" id="12">    12  </span>  
+<span class="lineno" id="13">    13  </span>  The Original Code is Vegas Framework.
+<span class="lineno" id="14">    14  </span>  
+<span class="lineno" id="15">    15  </span>  The Initial Developer of the Original Code is
+<span class="lineno" id="16">    16  </span>  ALCARAZ Marc (aka eKameleon)  &lt;vegas@ekameleon.net&gt;.
+<span class="lineno" id="17">    17  </span>  Portions created by the Initial Developer are Copyright (C) 2004-2008
+<span class="lineno" id="18">    18  </span>  the Initial Developer. All Rights Reserved.
+<span class="lineno" id="19">    19  </span>  
+<span class="lineno" id="20">    20  </span>  Contributor(s) :
+<span class="lineno" id="21">    21  </span>  
+<span class="lineno" id="22">    22  </span>*/</span>
+<span class="lineno" id="23">    23  </span>
+<span class="lineno" id="24">    24  </span><span class="key">import</span> vegas.data.map.HashMap;
+<span class="lineno" id="25">    25  </span><span class="key">import</span> vegas.util.ArrayUtil;
+<span class="lineno" id="26">    26  </span>
+<span class="lineno" id="27">    27  </span><span class="comment">// TODO change the full string of the Lang reference + localization.</span>
+<span class="lineno" id="28">    28  </span>
+<span class="lineno" id="29">    29  </span><span class="comment doc">/**
+<span class="lineno" id="30">    30  </span> * The Lang class register all international lang of the application. Use this class in the Localization model of ASGard.
+<span class="lineno" id="31">    31  </span> * @author eKameleon
+<span class="lineno" id="32">    32  </span> */</span>
+<span class="lineno" id="33">    33  </span><span class="key">class</span> asgard.system.Lang <span class="key">extends</span> String 
+<span class="lineno" id="34">    34  </span>{
+<span class="lineno" id="35">    35  </span>
+<span class="lineno" id="36">    36  </span>	<span class="comment doc">/**
+<span class="lineno" id="37">    37  </span>	 * Creates a new Lang instance.
+<span class="lineno" id="38">    38  </span>	 */</span>
+<span class="lineno" id="39">    39  </span>	<span class="key">public</span> <span class="key">function</span> Lang(s) 
+<span class="lineno" id="40">    40  </span>	{
+<span class="lineno" id="41">    41  </span>		<span class="key">super</span>(s) ;
+<span class="lineno" id="42">    42  </span>	}
+<span class="lineno" id="43">    43  </span>	
+<span class="lineno" id="44">    44  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> CS:Lang    = <span class="key">new</span> Lang(<span class="str_const">"cs"</span>) ;
+<span class="lineno" id="45">    45  </span>
+<span class="lineno" id="46">    46  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> DA:Lang    = <span class="key">new</span> Lang(<span class="str_const">"da"</span>) ;
+<span class="lineno" id="47">    47  </span>
+<span class="lineno" id="48">    48  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> NL:Lang    = <span class="key">new</span> Lang(<span class="str_const">"nl"</span>) ;
+<span class="lineno" id="49">    49  </span>
+<span class="lineno" id="50">    50  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> EN:Lang    = <span class="key">new</span> Lang(<span class="str_const">"en"</span>) ;
+<span class="lineno" id="51">    51  </span>
+<span class="lineno" id="52">    52  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> FI:Lang    = <span class="key">new</span> Lang(<span class="str_const">"fi"</span>) ;
+<span class="lineno" id="53">    53  </span>
+<span class="lineno" id="54">    54  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> FR:Lang    = <span class="key">new</span> Lang(<span class="str_const">"fr"</span>) ;
+<span class="lineno" id="55">    55  </span>
+<span class="lineno" id="56">    56  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> DE:Lang    = <span class="key">new</span> Lang(<span class="str_const">"de"</span>) ;
+<span class="lineno" id="57">    57  </span>
+<span class="lineno" id="58">    58  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> HU:Lang    = <span class="key">new</span> Lang(<span class="str_const">"hu"</span>) ;
+<span class="lineno" id="59">    59  </span>
+<span class="lineno" id="60">    60  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> IT:Lang    = <span class="key">new</span> Lang(<span class="str_const">"it"</span>) ;
+<span class="lineno" id="61">    61  </span>
+<span class="lineno" id="62">    62  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> JA:Lang    = <span class="key">new</span> Lang(<span class="str_const">"ja"</span>) ;
+<span class="lineno" id="63">    63  </span>
+<span class="lineno" id="64">    64  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> KO:Lang    = <span class="key">new</span> Lang(<span class="str_const">"ko"</span>) ;
+<span class="lineno" id="65">    65  </span>
+<span class="lineno" id="66">    66  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> NO:Lang    = <span class="key">new</span> Lang(<span class="str_const">"no"</span>) ;
+<span class="lineno" id="67">    67  </span>
+<span class="lineno" id="68">    68  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> XU:Lang    = <span class="key">new</span> Lang(<span class="str_const">"xu"</span>) ;
+<span class="lineno" id="69">    69  </span>
+<span class="lineno" id="70">    70  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> PL:Lang    = <span class="key">new</span> Lang(<span class="str_const">"pl"</span>) ;
+<span class="lineno" id="71">    71  </span>
+<span class="lineno" id="72">    72  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> PT:Lang    = <span class="key">new</span> Lang(<span class="str_const">"pt"</span>) ;
+<span class="lineno" id="73">    73  </span>
+<span class="lineno" id="74">    74  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> RU:Lang    = <span class="key">new</span> Lang(<span class="str_const">"ru"</span>) ;
+<span class="lineno" id="75">    75  </span>
+<span class="lineno" id="76">    76  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> ZH_CN:Lang = <span class="key">new</span> Lang(<span class="str_const">"zh-CN"</span>) ;
+<span class="lineno" id="77">    77  </span>
+<span class="lineno" id="78">    78  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> ES:Lang    = <span class="key">new</span> Lang(<span class="str_const">"es"</span>) ;
+<span class="lineno" id="79">    79  </span>
+<span class="lineno" id="80">    80  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> SV:Lang    = <span class="key">new</span> Lang(<span class="str_const">"sv"</span>) ;
+<span class="lineno" id="81">    81  </span>
+<span class="lineno" id="82">    82  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> ZH_TW:Lang = <span class="key">new</span> Lang(<span class="str_const">"zh-TW"</span>) ;
+<span class="lineno" id="83">    83  </span>
+<span class="lineno" id="84">    84  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> TR:Lang    = <span class="key">new</span> Lang(<span class="str_const">"tr"</span>) ;
+<span class="lineno" id="85">    85  </span>
+<span class="lineno" id="86">    86  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> CS_FULL:String = <span class="str_const">"Tchèque"</span> ;
+<span class="lineno" id="87">    87  </span>
+<span class="lineno" id="88">    88  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> DA_FULL:String = <span class="str_const">"Danois"</span> ;
+<span class="lineno" id="89">    89  </span>
+<span class="lineno" id="90">    90  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> NL_FULL:String = <span class="str_const">"Hollandais"</span> ;
+<span class="lineno" id="91">    91  </span>
+<span class="lineno" id="92">    92  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> EN_FULL:String = <span class="str_const">"Anglais"</span> ;
+<span class="lineno" id="93">    93  </span>
+<span class="lineno" id="94">    94  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> FI_FULL:String = <span class="str_const">"Finlandais"</span> ;
+<span class="lineno" id="95">    95  </span>
+<span class="lineno" id="96">    96  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> FR_FULL:String = <span class="str_const">"Français"</span> ;
+<span class="lineno" id="97">    97  </span>
+<span class="lineno" id="98">    98  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> DE_FULL:String = <span class="str_const">"Allemand"</span> ;
+<span class="lineno" id="99">    99  </span>
+<span class="lineno" id="100">   100  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> HU_FULL:String = <span class="str_const">"Hongrois"</span> ;
+<span class="lineno" id="101">   101  </span>
+<span class="lineno" id="102">   102  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> IT_FULL:String = <span class="str_const">"Italien"</span> ;
+<span class="lineno" id="103">   103  </span>
+<span class="lineno" id="104">   104  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> JA_FULL:String = <span class="str_const">"Japonais"</span> ;
+<span class="lineno" id="105">   105  </span>
+<span class="lineno" id="106">   106  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> KO_FULL:String = <span class="str_const">"Coréen"</span> ;
+<span class="lineno" id="107">   107  </span>
+<span class="lineno" id="108">   108  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> NO_FULL:String = <span class="str_const">"Norvégien"</span> ;
+<span class="lineno" id="109">   109  </span>
+<span class="lineno" id="110">   110  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> XU_FULL:String = <span class="str_const">"Autre/Inconnu"</span> ;
+<span class="lineno" id="111">   111  </span>
+<span class="lineno" id="112">   112  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> PL_FULL:String = <span class="str_const">"Polonais"</span> ;
+<span class="lineno" id="113">   113  </span>
+<span class="lineno" id="114">   114  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> PT_FULL:String = <span class="str_const">"Portugais"</span> ;
+<span class="lineno" id="115">   115  </span>
+<span class="lineno" id="116">   116  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> RU_FULL:String = <span class="str_const">"Russe"</span> ;
+<span class="lineno" id="117">   117  </span>
+<span class="lineno" id="118">   118  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> ZH_CN_FULL:String = <span class="str_const">"Chinois simplifié"</span> ;
+<span class="lineno" id="119">   119  </span>
+<span class="lineno" id="120">   120  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> ES_FULL:String = <span class="str_const">"Espagnol"</span> ;
+<span class="lineno" id="121">   121  </span>
+<span class="lineno" id="122">   122  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> SV_FULL:String = <span class="str_const">"Suédois"</span> ;
+<span class="lineno" id="123">   123  </span>
+<span class="lineno" id="124">   124  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> ZH_TW_FULL:String = <span class="str_const">"Chinois Traditionnel"</span> ;
+<span class="lineno" id="125">   125  </span>
+<span class="lineno" id="126">   126  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> TR_FULL:String = <span class="str_const">"Turc"</span> ;
+<span class="lineno" id="127">   127  </span>
+<span class="lineno" id="128">   128  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> LANGS:HashMap = <span class="key">new</span> HashMap () ;
+<span class="lineno" id="129">   129  </span>	
+<span class="lineno" id="130">   130  </span>	<span class="comment doc">/**
+<span class="lineno" id="131">   131  </span>	 * Returns the name of the Lang define with the specified id in argument.
+<span class="lineno" id="132">   132  </span>	 * @return the name of the Lang define with the specified id in argument.
+<span class="lineno" id="133">   133  </span>	 */</span>
+<span class="lineno" id="134">   134  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">function</span> get(id:String):String 
+<span class="lineno" id="135">   135  </span>	{
+<span class="lineno" id="136">   136  </span>		<span class="key">if</span> (LANGS.size() == <span class="num_const">0</span>) 
+<span class="lineno" id="137">   137  </span>		{
+<span class="lineno" id="138">   138  </span>			Lang.initialize() ;
+<span class="lineno" id="139">   139  </span>		}
+<span class="lineno" id="140">   140  </span>		<span class="key">return</span> LANGS.get(id) ;			
+<span class="lineno" id="141">   141  </span>	}
+<span class="lineno" id="142">   142  </span>
+<span class="lineno" id="143">   143  </span>	<span class="comment doc">/**
+<span class="lineno" id="144">   144  </span>	 * Initialize the model of this class.
+<span class="lineno" id="145">   145  </span>	 */</span>
+<span class="lineno" id="146">   146  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">function</span> initialize():Void 
+<span class="lineno" id="147">   147  </span>	{
+<span class="lineno" id="148">   148  </span>		LANGS.clear() ;
+<span class="lineno" id="149">   149  </span>		LANGS.put(CS, CS_FULL) ;
+<span class="lineno" id="150">   150  </span>		LANGS.put(DA, DA_FULL) ;
+<span class="lineno" id="151">   151  </span>		LANGS.put(NL, NL_FULL) ;
+<span class="lineno" id="152">   152  </span>		LANGS.put(EN, EN_FULL) ;
+<span class="lineno" id="153">   153  </span>		LANGS.put(FI, FI_FULL);
+<span class="lineno" id="154">   154  </span>		LANGS.put(FR, FR_FULL);
+<span class="lineno" id="155">   155  </span>		LANGS.put(DE, DE_FULL) ;
+<span class="lineno" id="156">   156  </span>		LANGS.put(HU, HU_FULL) ;
+<span class="lineno" id="157">   157  </span>		LANGS.put(IT, IT_FULL) ;
+<span class="lineno" id="158">   158  </span>		LANGS.put(JA, JA_FULL) ;
+<span class="lineno" id="159">   159  </span>		LANGS.put(KO, KO_FULL) ;
+<span class="lineno" id="160">   160  </span>		LANGS.put(NO, NO_FULL) ;
+<span class="lineno" id="161">   161  </span>		LANGS.put(XU, XU_FULL) ;
+<span class="lineno" id="162">   162  </span>		LANGS.put(PL, PL_FULL) ;
+<span class="lineno" id="163">   163  </span>		LANGS.put(PT, PT_FULL) ;
+<span class="lineno" id="164">   164  </span>		LANGS.put(RU, RU_FULL) ;
+<span class="lineno" id="165">   165  </span>		LANGS.put(ZH_CN, ZH_CN_FULL) ;
+<span class="lineno" id="166">   166  </span>		LANGS.put(ES, ES_FULL) ;
+<span class="lineno" id="167">   167  </span>		LANGS.put(SV, SV_FULL) ;
+<span class="lineno" id="168">   168  </span>		LANGS.put(ZH_TW, ZH_TW_FULL) ;
+<span class="lineno" id="169">   169  </span>		LANGS.put(TR, TR_FULL) ;
+<span class="lineno" id="170">   170  </span>	}
+<span class="lineno" id="171">   171  </span>
+<span class="lineno" id="172">   172  </span>	<span class="comment doc">/**
+<span class="lineno" id="173">   173  </span>	 * Inserts a new Lang in the Lang model.
+<span class="lineno" id="174">   174  </span>	 */</span>
+<span class="lineno" id="175">   175  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">function</span> put( lang:Lang , label:String ) 
+<span class="lineno" id="176">   176  </span>	{
+<span class="lineno" id="177">   177  </span>		<span class="key">return</span> LANGS.put(lang, label) ;
+<span class="lineno" id="178">   178  </span>	}
+<span class="lineno" id="179">   179  </span>
+<span class="lineno" id="180">   180  </span>	<span class="comment doc">/**
+<span class="lineno" id="181">   181  </span>	 * Removes a new Lang in the Lang model.
+<span class="lineno" id="182">   182  </span>	 */</span>
+<span class="lineno" id="183">   183  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">function</span> remove( lang:Lang ) 
+<span class="lineno" id="184">   184  </span>	{
+<span class="lineno" id="185">   185  </span>		<span class="key">return</span> LANGS.remove(lang) ;
+<span class="lineno" id="186">   186  </span>	}
+<span class="lineno" id="187">   187  </span>
+<span class="lineno" id="188">   188  </span>	<span class="comment doc">/**
+<span class="lineno" id="189">   189  </span>	 * Validate the specified lang in argument.
+<span class="lineno" id="190">   190  </span>	 * @return {@code true} if the lang passed in argument is registered in the model.
+<span class="lineno" id="191">   191  </span>	 */</span>
+<span class="lineno" id="192">   192  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">function</span> validate( lang:String ):Boolean 
+<span class="lineno" id="193">   193  </span>	{
+<span class="lineno" id="194">   194  </span>		
+<span class="lineno" id="195">   195  </span>		<span class="key">var</span> langs:Array = 
+<span class="lineno" id="196">   196  </span>		[
+<span class="lineno" id="197">   197  </span>			CS, DA, NL, EN, FI, FR,
+<span class="lineno" id="198">   198  </span>			DE, HU, IT, JA, KO, NO,
+<span class="lineno" id="199">   199  </span>			XU, PL, PT, RU, ZH_CN,
+<span class="lineno" id="200">   200  </span>			ES, SV, ZH_TW, TR
+<span class="lineno" id="201">   201  </span>		] ;
+<span class="lineno" id="202">   202  </span>		
+<span class="lineno" id="203">   203  </span>		<span class="key">return</span> ArrayUtil.contains(langs, lang) ;
+<span class="lineno" id="204">   204  </span>	}
+<span class="lineno" id="205">   205  </span>
+<span class="lineno" id="206">   206  </span>	<span class="key">private</span> <span class="key">static</span> <span class="key">var</span> __INITLANGS__ = Lang.initialize() ;
+<span class="lineno" id="207">   207  </span>	
+<span class="lineno" id="208">   208  </span>}
+<span class="lineno" id="209">   209  </span>
+<span class="lineno" id="210">   210  </span>
+<span class="lineno" id="211">   211  </span></pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package asgard.system" class="button">Package</a></li><li><a href="Lang.html" title="Detail of asgard.system.Lang API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

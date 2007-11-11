@@ -1,0 +1,184 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><script src="../../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../../index-files";
+//--></script><link href="../../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../../overview-summary.html" title="Overview" rel="top"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><pre><span class="lineno" id="1">     1  </span><span class="comment">/*
+<span class="lineno" id="2">     2  </span>
+<span class="lineno" id="3">     3  </span>  The contents of this file are subject to the Mozilla Public License Version
+<span class="lineno" id="4">     4  </span>  1.1 (the "License"); you may not use this file except in compliance with
+<span class="lineno" id="5">     5  </span>  the License. You may obtain a copy of the License at 
+<span class="lineno" id="6">     6  </span>  
+<span class="lineno" id="7">     7  </span>           http://www.mozilla.org/MPL/ 
+<span class="lineno" id="8">     8  </span>  
+<span class="lineno" id="9">     9  </span>  Software distributed under the License is distributed on an "AS IS" basis,
+<span class="lineno" id="10">    10  </span>  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+<span class="lineno" id="11">    11  </span>  for the specific language governing rights and limitations under the License. 
+<span class="lineno" id="12">    12  </span>  
+<span class="lineno" id="13">    13  </span>  The Original Code is Andromeda Framework based on VEGAS.
+<span class="lineno" id="14">    14  </span>  
+<span class="lineno" id="15">    15  </span>  The Initial Developer of the Original Code is
+<span class="lineno" id="16">    16  </span>  ALCARAZ Marc (aka eKameleon)  &lt;vegas@ekameleon.net&gt;.
+<span class="lineno" id="17">    17  </span>  Portions created by the Initial Developer are Copyright (C) 2004-2008
+<span class="lineno" id="18">    18  </span>  the Initial Developer. All Rights Reserved.
+<span class="lineno" id="19">    19  </span>  
+<span class="lineno" id="20">    20  </span>  Contributor(s) :
+<span class="lineno" id="21">    21  </span>  
+<span class="lineno" id="22">    22  </span>*/</span>
+<span class="lineno" id="23">    23  </span>
+<span class="lineno" id="24">    24  </span><span class="key">import</span> andromeda.ioc.core.IObjectDefinition;
+<span class="lineno" id="25">    25  </span>
+<span class="lineno" id="26">    26  </span><span class="key">import</span> vegas.core.CoreObject;
+<span class="lineno" id="27">    27  </span><span class="key">import</span> vegas.data.Map;
+<span class="lineno" id="28">    28  </span><span class="key">import</span> vegas.errors.IllegalArgumentError;
+<span class="lineno" id="29">    29  </span>
+<span class="lineno" id="30">    30  </span><span class="comment doc">/**
+<span class="lineno" id="31">    31  </span> * The concrete implementation of the IObjectDefinition interface.
+<span class="lineno" id="32">    32  </span> * @author eKameleon
+<span class="lineno" id="33">    33  </span> */</span>
+<span class="lineno" id="34">    34  </span><span class="key">class</span> andromeda.ioc.core.ObjectDefinition <span class="key">extends</span> CoreObject <span class="key">implements</span> IObjectDefinition 
+<span class="lineno" id="35">    35  </span>{
+<span class="lineno" id="36">    36  </span>
+<span class="lineno" id="37">    37  </span>	<span class="comment doc">/**
+<span class="lineno" id="38">    38  </span>	 * Creates a new ObjectDefinition instance.
+<span class="lineno" id="39">    39  </span>	 * @param type the type of the {@code ObjectDefinition} object.
+<span class="lineno" id="40">    40  </span>	 * @param singleton the boolean flag to indicate if the object is a sigleton or not.
+<span class="lineno" id="41">    41  </span>	 */</span>	
+<span class="lineno" id="42">    42  </span>	<span class="key">public</span> <span class="key">function</span> ObjectDefinition( type:String , singleton:Boolean ) 
+<span class="lineno" id="43">    43  </span>	{
+<span class="lineno" id="44">    44  </span>		<span class="key">if</span> (type == <span class="key">null</span> || type.length == <span class="num_const">0</span>)
+<span class="lineno" id="45">    45  </span>		{
+<span class="lineno" id="46">    46  </span>			<span class="key">throw</span> <span class="key">new</span> IllegalArgumentError( <span class="key">this</span> + <span class="str_const">" constructor failed, the string 'type' passed in argument not must be empty or 'null' or 'undefined'."</span>) ;	
+<span class="lineno" id="47">    47  </span>		}
+<span class="lineno" id="48">    48  </span>		_type = type ;
+<span class="lineno" id="49">    49  </span>		_singleton = singleton ;
+<span class="lineno" id="50">    50  </span>	}
+<span class="lineno" id="51">    51  </span>
+<span class="lineno" id="52">    52  </span>	<span class="comment doc">/**
+<span class="lineno" id="53">    53  </span>	 * Returns the constructor arguments values of this object in a Array list.
+<span class="lineno" id="54">    54  </span>	 * @return the constructor arguments values of this object in a Array list.
+<span class="lineno" id="55">    55  </span>	 */</span>	
+<span class="lineno" id="56">    56  </span>	<span class="key">public</span> <span class="key">function</span> getConstructorArguments():Array 
+<span class="lineno" id="57">    57  </span>	{
+<span class="lineno" id="58">    58  </span>		<span class="key">return</span> _constructorArguments ;
+<span class="lineno" id="59">    59  </span>	}
+<span class="lineno" id="60">    60  </span>
+<span class="lineno" id="61">    61  </span>	<span class="comment doc">/**
+<span class="lineno" id="62">    62  </span>	 * Returns the name of the method invoqued when the object is destroyed.
+<span class="lineno" id="63">    63  </span>	 * @return the name of the method invoqued when the object is destroyed.
+<span class="lineno" id="64">    64  </span>	 */</span>	
+<span class="lineno" id="65">    65  </span>	<span class="key">public</span> <span class="key">function</span> getDestroyMethodName():String 
+<span class="lineno" id="66">    66  </span>	{
+<span class="lineno" id="67">    67  </span>		<span class="key">return</span> _destroyMethodName;
+<span class="lineno" id="68">    68  </span>	}
+<span class="lineno" id="69">    69  </span>
+<span class="lineno" id="70">    70  </span>	<span class="comment doc">/**
+<span class="lineno" id="71">    71  </span>	 * Returns the name of the method call when the object is instanciate.
+<span class="lineno" id="72">    72  </span>	 * @return the name of the method call when the object is instanciate.
+<span class="lineno" id="73">    73  </span>	 */</span>	
+<span class="lineno" id="74">    74  </span>	<span class="key">public</span> <span class="key">function</span> getInitMethodName():String 
+<span class="lineno" id="75">    75  </span>	{
+<span class="lineno" id="76">    76  </span>		<span class="key">return</span> _initMethodName;
+<span class="lineno" id="77">    77  </span>	}
+<span class="lineno" id="78">    78  </span>
+<span class="lineno" id="79">    79  </span>	<span class="comment doc">/**
+<span class="lineno" id="80">    80  </span>	 * Returns the Map of all properties of this Definition.
+<span class="lineno" id="81">    81  </span>	 * @return the Map of all properties of this Definition.
+<span class="lineno" id="82">    82  </span>	 */</span>	
+<span class="lineno" id="83">    83  </span>	<span class="key">public</span> <span class="key">function</span> getProperties():Map 
+<span class="lineno" id="84">    84  </span>	{
+<span class="lineno" id="85">    85  </span>		<span class="key">return</span> _properties ;
+<span class="lineno" id="86">    86  </span>	}
+<span class="lineno" id="87">    87  </span>
+<span class="lineno" id="88">    88  </span>	<span class="comment doc">/**
+<span class="lineno" id="89">    89  </span>	 * Returns the type of the object (the class name).
+<span class="lineno" id="90">    90  </span>	 * @return the type of the object (the class name).
+<span class="lineno" id="91">    91  </span>	 */</span>	
+<span class="lineno" id="92">    92  </span>	<span class="key">public</span> <span class="key">function</span> getType():String 
+<span class="lineno" id="93">    93  </span>	{
+<span class="lineno" id="94">    94  </span>		<span class="key">return</span> _type ;
+<span class="lineno" id="95">    95  </span>	}
+<span class="lineno" id="96">    96  </span>
+<span class="lineno" id="97">    97  </span>	<span class="comment doc">/**
+<span class="lineno" id="98">    98  </span>	 * Returns {@code true} if the object in a Sigleton else the object is a prototype.
+<span class="lineno" id="99">    99  </span>	 * @return {@code true} if the object in a Sigleton else the object is a prototype.
+<span class="lineno" id="100">   100  </span>	 */</span>		
+<span class="lineno" id="101">   101  </span>	<span class="key">public</span> <span class="key">function</span> isSingleton():Boolean 
+<span class="lineno" id="102">   102  </span>	{
+<span class="lineno" id="103">   103  </span>		<span class="key">return</span> _singleton;
+<span class="lineno" id="104">   104  </span>	}
+<span class="lineno" id="105">   105  </span>
+<span class="lineno" id="106">   106  </span>	<span class="comment doc">/**
+<span class="lineno" id="107">   107  </span>	 * Sets the constructor arguments values of this object.
+<span class="lineno" id="108">   108  </span>	 * @param value the array representation of all arguments in the constructor of the object instance.
+<span class="lineno" id="109">   109  </span>	 */</span>	
+<span class="lineno" id="110">   110  </span>	<span class="key">public</span> <span class="key">function</span> setConstructorArguments( value:Array ):Void 
+<span class="lineno" id="111">   111  </span>	{
+<span class="lineno" id="112">   112  </span>		_constructorArguments = value ;
+<span class="lineno" id="113">   113  </span>	}
+<span class="lineno" id="114">   114  </span>
+<span class="lineno" id="115">   115  </span>	<span class="comment doc">/**
+<span class="lineno" id="116">   116  </span>	 * Sets the name of the method invoqued when the object is destroyed.
+<span class="lineno" id="117">   117  </span>	 * @param value the name of the destroy method of the object.
+<span class="lineno" id="118">   118  </span>	 */</span>	
+<span class="lineno" id="119">   119  </span>	<span class="key">public</span> <span class="key">function</span> setDestroyMethodName( value:String ):Void 
+<span class="lineno" id="120">   120  </span>	{
+<span class="lineno" id="121">   121  </span>		_destroyMethodName = value;
+<span class="lineno" id="122">   122  </span>	}
+<span class="lineno" id="123">   123  </span>
+<span class="lineno" id="124">   124  </span>	<span class="comment doc">/**
+<span class="lineno" id="125">   125  </span>	 * Init the name of the method.
+<span class="lineno" id="126">   126  </span>	 * @param value the string 'init method' name.
+<span class="lineno" id="127">   127  </span>	 */</span>		
+<span class="lineno" id="128">   128  </span>	<span class="key">public</span> <span class="key">function</span> setInitMethodName( value:String ):Void 
+<span class="lineno" id="129">   129  </span>	{
+<span class="lineno" id="130">   130  </span>		_initMethodName = value;
+<span class="lineno" id="131">   131  </span>	}
+<span class="lineno" id="132">   132  </span>
+<span class="lineno" id="133">   133  </span>	<span class="comment doc">/**
+<span class="lineno" id="134">   134  </span>	 * Sets the map of all properties of this Definition.
+<span class="lineno" id="135">   135  </span>	 * @param value the Map of all properties of the object.
+<span class="lineno" id="136">   136  </span>	 */</span>	
+<span class="lineno" id="137">   137  </span>	<span class="key">public</span> <span class="key">function</span> setProperties( value:Map ):Void 
+<span class="lineno" id="138">   138  </span>	{
+<span class="lineno" id="139">   139  </span>		_properties = value ;
+<span class="lineno" id="140">   140  </span>	}
+<span class="lineno" id="141">   141  </span>
+<span class="lineno" id="142">   142  </span>	<span class="comment doc">/**
+<span class="lineno" id="143">   143  </span>	 * Sets the type of the object (the class name).
+<span class="lineno" id="144">   144  </span>	 * @param value the string representation of the type object.
+<span class="lineno" id="145">   145  </span>	 */</span>	
+<span class="lineno" id="146">   146  </span>	<span class="key">public</span> <span class="key">function</span> setType( value:String ):Void 
+<span class="lineno" id="147">   147  </span>	{
+<span class="lineno" id="148">   148  </span>		_type = value ;
+<span class="lineno" id="149">   149  </span>	}
+<span class="lineno" id="150">   150  </span>
+<span class="lineno" id="151">   151  </span>	<span class="comment doc">/**
+<span class="lineno" id="152">   152  </span>	 * The internal Map of all arguments use in the constructor of the object.
+<span class="lineno" id="153">   153  </span>	 */</span>
+<span class="lineno" id="154">   154  </span>	<span class="key">private</span> <span class="key">var</span> _constructorArguments:Array ;
+<span class="lineno" id="155">   155  </span>	
+<span class="lineno" id="156">   156  </span>	<span class="comment doc">/**
+<span class="lineno" id="157">   157  </span>	 * The name of the destroy method of the object.
+<span class="lineno" id="158">   158  </span>	 */</span>
+<span class="lineno" id="159">   159  </span>	<span class="key">private</span> <span class="key">var</span> _destroyMethodName:String;
+<span class="lineno" id="160">   160  </span>
+<span class="lineno" id="161">   161  </span>	<span class="comment doc">/**
+<span class="lineno" id="162">   162  </span>	 * The name of the init method of the object.
+<span class="lineno" id="163">   163  </span>	 */</span>
+<span class="lineno" id="164">   164  </span>	<span class="key">private</span> <span class="key">var</span> _initMethodName:String;
+<span class="lineno" id="165">   165  </span>
+<span class="lineno" id="166">   166  </span>	<span class="comment doc">/**
+<span class="lineno" id="167">   167  </span>	 * The internal Map of all properties of the object.
+<span class="lineno" id="168">   168  </span>	 */</span>
+<span class="lineno" id="169">   169  </span>	<span class="key">private</span> <span class="key">var</span> _properties:Map ;
+<span class="lineno" id="170">   170  </span>	
+<span class="lineno" id="171">   171  </span>	<span class="comment doc">/**
+<span class="lineno" id="172">   172  </span>	 * The internal Map of all singletons.
+<span class="lineno" id="173">   173  </span>	 */</span>
+<span class="lineno" id="174">   174  </span>	<span class="key">private</span> <span class="key">var</span> _singleton:Boolean ;
+<span class="lineno" id="175">   175  </span>	
+<span class="lineno" id="176">   176  </span>	<span class="comment doc">/**
+<span class="lineno" id="177">   177  </span>	 * The type of the IDefinition object.
+<span class="lineno" id="178">   178  </span>	 */</span>
+<span class="lineno" id="179">   179  </span>	<span class="key">private</span> <span class="key">var</span> _type : String;
+<span class="lineno" id="180">   180  </span>
+<span class="lineno" id="181">   181  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package andromeda.ioc.core" class="button">Package</a></li><li><a href="ObjectDefinition.html" title="Detail of andromeda.ioc.core.ObjectDefinition API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

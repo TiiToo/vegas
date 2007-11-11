@@ -1,0 +1,410 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>vegas.data.list.LinkedList</title><script src="../../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../../index-files";
+//--></script><link href="../../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../../overview-summary.html" title="Overview" rel="top"/><link href="package-summary.html" title="Package vegas.data.list" rel="up"/><link href="../../../vegas/data/list/LinkedListEntry.html" title="Class vegas.data.list.LinkedListEntry" rel="prev"/><link href="../../../vegas/data/list/ArrayList.html" title="Class vegas.data.list.ArrayList" rel="next"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><h1>Class vegas.data.list.LinkedList</h1><div class="type_hierachy"><ul><li><a href="../../../vegas/core/CoreObject.html" class="class_name" title="Class vegas.core.CoreObject">vegas.core.CoreObject</a><ul><li><strong>vegas.data.list.LinkedList</strong></li></ul></li></ul></div><div class="interfaces"><h2>Implemented Interfaces</h2><code><a href="../../../vegas/core/ICloneable.html" class="interface_name" title="Interface vegas.core.ICloneable">ICloneable</a></code> <code><a href="../../../vegas/core/ICopyable.html" class="interface_name" title="Interface vegas.core.ICopyable">ICopyable</a></code> <code><a href="../../../vegas/core/IEquality.html" class="interface_name" title="Interface vegas.core.IEquality">IEquality</a></code> <code><a href="../../../vegas/data/List.html" class="interface_name" title="Interface vegas.data.List">List</a></code> <code><a href="../../../vegas/data/Queue.html" class="interface_name" title="Interface vegas.data.Queue">Queue</a></code> </div><div class="type_description"><h2>Description</h2><p>
+ Linked list implementation of the List and Queue interface. 
+ <p>Implements all optional list operations, and permits all elements (including null).</p>
+ <p>In addition to implementing the List interface, the <code> LinkedList</code> class provides uniformly named methods to get, remove and insert an element at the beginning and end of the list.</p>
+ <p>These operations allow linked lists to be used as a stack, queue, etc.</p>
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">import</span> vegas.data.Collection ;
+ <span class="key">import</span> vegas.data.collections.SimpleCollection ;
+ <span class="key">import</span> vegas.data.iterator.Iterator ;
+ <span class="key">import</span> vegas.data.iterator.ListIterator ;
+ <span class="key">import</span> vegas.data.list.LinkedList ;
+ 
+ <span class="key">var</span> c1:Collection = <span class="key">new</span> SimpleCollection() ;
+ c1.insert(<span class="str_const">"item0"</span>) ;
+ c1.insert(<span class="str_const">"item1"</span>) ;
+ c1.insert(<span class="str_const">"item2"</span>) ;
+ c1.insert(<span class="str_const">"item3"</span>) ;
+ c1.insert(<span class="str_const">"item4"</span>) ;
+ c1.insert(<span class="str_const">"item5"</span>) ;
+ c1.insert(<span class="str_const">"item6"</span>) ;
+ c1.insert(<span class="str_const">"item7"</span>) ;
+ c1.insert(<span class="str_const">"item8"</span>) ;
+ c1.insert(<span class="str_const">"item9"</span>) ;
+ 
+ trace(<span class="str_const">"c1 : "</span> + c1) ;
+ 
+ <span class="key">var</span> c2:Collection = <span class="key">new</span> SimpleCollection() ;
+ c2.insert(<span class="str_const">"item7"</span>) ;
+ c2.insert(<span class="str_const">"item8"</span>) ;
+ 
+ trace(<span class="str_const">"c2 : "</span> + c1) ;
+ 
+ <span class="key">var</span> list:LinkedList = <span class="key">new</span> LinkedList(c1) ;
+ 
+ trace (<span class="str_const">"list toSource : "</span> + list.toSource()) ;
+ 
+ trace (<span class="str_const">"-----"</span>) ;
+ 
+ trace (<span class="str_const">"create list : "</span> + list) ;
+ 
+ trace(<span class="str_const">"list.contains('item1') : "</span> + list.contains(<span class="str_const">"item1"</span>) ) ;
+ 
+ list.insertAt(<span class="num_const">2</span>,<span class="str_const">"test"</span>)
+ trace(<span class="str_const">"list.insertAt(2,'test')"</span> + list ) ;
+ 
+ list.removeAt(<span class="num_const">2</span>) ;
+ trace (<span class="str_const">"list.removeAt(2) : "</span> + list) ;
+ 
+ list.remove(<span class="str_const">"item4"</span>) ;
+ trace (<span class="str_const">"list.remove('item4') : "</span> + list) ;
+ 
+ list.removeFirst() ;
+ trace (<span class="str_const">"list.removeFirst() : "</span> + list) ;
+ 
+ list.removeLast() ;
+ trace (<span class="str_const">"list.removeLast() : "</span> + list) ;
+ 
+ list.removesAt(<span class="num_const">1</span>, <span class="num_const">4</span>) ;
+ trace (<span class="str_const">"list.removesAt(1, 4) : "</span> + list) ;
+ 
+ list.removeRange(<span class="num_const">1</span>, <span class="num_const">3</span>) ;
+ trace (<span class="str_const">"list.removeRange(1, 3) : "</span> + list) ;
+ 
+ trace (<span class="str_const">"-----"</span>) ;
+ 
+ list.insertAllAt(<span class="num_const">0</span>, c2) ;
+ trace (<span class="str_const">"list.insertAllAt(0, c2) : "</span> + list) ;
+ 
+ trace (<span class="str_const">"--- ListIterator"</span>) ;
+ 
+ <span class="key">var</span> it:ListIterator = list.listIterator() ;
+ <span class="key">var</span> i = <span class="num_const">0</span> ;
+ <span class="key">while</span> (it.hasNext())
+ {
+     it.next() ;
+     it.set(<span class="str_const">"element"</span> + i++) ;
+ }
+ trace (<span class="str_const">"&gt;&gt; "</span> + list) ;
+ 
+ trace (<span class="str_const">"---"</span>) ;
+ 
+ <span class="key">var</span> it:ListIterator = list.listIterator(list.size()) ;
+ <span class="key">while</span>(it.hasPrevious())
+ {
+     trace (it.previous()) ;
+ }
+ 
+ <span class="comment">//*</span>
+ trace (<span class="str_const">"-----"</span>) ;
+ 
+ list.insertFirst(<span class="str_const">"begin"</span>) ;
+ trace (<span class="str_const">"list.insertFirst('begin') : "</span> + list) ;
+  
+ list.insertLast(<span class="str_const">"end"</span>) ;
+ trace (<span class="str_const">"list.insertLast('end') : "</span> + list) ;
+ 
+ trace (<span class="str_const">"list.getFirst() : "</span> + list.getFirst()) ;
+ trace (<span class="str_const">"list.getLast() : "</span> + list.getLast()) ;
+ 
+ list.removeFirst() ;
+ trace (<span class="str_const">"list.removeFirst() : "</span> + list) ;
+ 
+ list.removeLast() ;
+ trace (<span class="str_const">"list.removeLast() : "</span> + list) ;
+ 
+ trace (<span class="str_const">"---- clear"</span>) ;
+ list.clear() ;
+ 
+ trace(<span class="str_const">"list.size() : "</span> + list.size()) ;
+ trace(<span class="str_const">"list.isEmpty : "</span> + list.isEmpty() ) ;
+ </pre>
+ </p></div><div class="type_indexes"><div class="method_index"><h2>Method Index</h2><div><code>new <a href="#LinkedList" title="function LinkedList(c:Collection)">LinkedList()</a></code></div><a href="#_insertBefore" title="public function _insertBefore(o, e:LinkedListEntry):LinkedListEntry">_insertBefore()</a>, <a href="#_removeEntry" title="public function _removeEntry(e:LinkedListEntry)">_removeEntry()</a>, <a href="#clear" title="public function clear():Void">clear()</a>, <a href="#clone" title="public function clone()">clone()</a>, <a href="#contains" title="public function contains(o):Boolean">contains()</a>, <a href="#containsAll" title="public function containsAll(c:Collection):Boolean">containsAll()</a>, <a href="#copy" title="public function copy()">copy()</a>, <a href="#dequeue" title="public function dequeue():Boolean">dequeue()</a>, <a href="#element" title="public function element()">element()</a>, <a href="#enqueue" title="public function enqueue(o):Boolean">enqueue()</a>, <a href="#equals" title="public function equals(o):Boolean">equals()</a>, <a href="#get" title="public function get(id:Number)">get()</a>, <a href="#getFirst" title="public function getFirst()">getFirst()</a>, <a href="#getHeader" title="public function getHeader():LinkedListEntry">getHeader()</a>, <a href="#getLast" title="public function getLast()">getLast()</a>, <a href="#getModCount" title="public function getModCount():Number">getModCount()</a>, <a href="#indexOf" title="public function indexOf(o):Number">indexOf()</a>, <a href="#insert" title="public function insert(o):Boolean">insert()</a>, <a href="#insertAll" title="public function insertAll(c:Collection):Boolean">insertAll()</a>, <a href="#insertAllAt" title="public function insertAllAt(index:Number, c:Collection):Boolean">insertAllAt()</a>, <a href="#insertAt" title="public function insertAt(id:Number, o):Void">insertAt()</a>, <a href="#insertFirst" title="public function insertFirst(o):Void">insertFirst()</a>, <a href="#insertLast" title="public function insertLast(o):Void">insertLast()</a>, <a href="#isEmpty" title="public function isEmpty():Boolean">isEmpty()</a>, <a href="#iterator" title="public function iterator():Iterator">iterator()</a>, <a href="#lastIndexOf" title="public function lastIndexOf(o):Number">lastIndexOf()</a>, <a href="#listIterator" title="public function listIterator():ListIterator">listIterator()</a>, <a href="#peek" title="public function peek()">peek()</a>, <a href="#poll" title="public function poll()">poll()</a>, <a href="#remove" title="public function remove(o):Boolean">remove()</a>, <a href="#removeAll" title="public function removeAll(c:Collection):Boolean">removeAll()</a>, <a href="#removeAt" title="public function removeAt(id:Number)">removeAt()</a>, <a href="#removeFirst" title="public function removeFirst()">removeFirst()</a>, <a href="#removeLast" title="public function removeLast()">removeLast()</a>, <a href="#removeRange" title="public function removeRange(from:Number, to:Number):Void">removeRange()</a>, <a href="#removesAt" title="public function removesAt(id:Number, len:Number)">removesAt()</a>, <a href="#retainAll" title="public function retainAll(c:Collection):Boolean">retainAll()</a>, <a href="#setAt" title="public function setAt(id:Number, o)">setAt()</a>, <a href="#size" title="public function size():Number">size()</a>, <a href="#subList" title="public function subList(fromIndex:Number, toIndex:Number):List">subList()</a>, <a href="#toArray" title="public function toArray():Array">toArray()</a>, <a href="#toSource" title="public function toSource(indent:Number, indentor:String):String">toSource()</a>, <a href="#toString" title="public function toString():String">toString()</a><h4>Inherited from <a href="../../../vegas/core/CoreObject.html" class="class_name" title="Class vegas.core.CoreObject">CoreObject</a></h4><div class="extra_info"><a href="../../../vegas/core/CoreObject.html#getLogger" title="public function getLogger():ILogger">getLogger()</a>, <a href="../../../vegas/core/CoreObject.html#hashCode" title="public function hashCode():Number">hashCode()</a>, <a href="../../../vegas/core/CoreObject.html#setLogger" title="public function setLogger(log:ILogger):Void">setLogger()</a></div></div></div><div class="type_details"><div class="constructor_detail_list"><h2>Constructor Detail</h2><div class="method_details"><a name="LinkedList"></a><h3>LinkedList</h3><code class="method_synopsis">function <strong class="method_name">LinkedList</strong>(c:<a href="../../../vegas/data/Collection.html" class="interface_name" title="Interface vegas.data.Collection">Collection</a>)</code><div class="method_info"><p>
+ Creates a new LinkedList instance.
+	 </p></div></div></div><div class="method_detail_list"><h2>Method Detail</h2><div class="method_details alt_row"><a name="clear"></a><h3>clear</h3><code class="method_synopsis">public function <strong class="method_name">clear</strong>():<span class="void_name">Void</span></code><div class="method_info"><p>
+ Removes all of the elements from this queue (optional operation).
+	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/Queue.html#clear" title="function clear():Void">clear()</a> in <a href="../../../vegas/data/Queue.html" class="interface_name" title="Interface vegas.data.Queue">vegas.data.Queue</a></p></div></div><div class="method_details"><a name="clone"></a><h3>clone</h3><code class="method_synopsis">public function <strong class="method_name">clone</strong>()</code><div class="method_info"><p>
+ Returns the shallow copy of this LinkedList.
+ </p><h4>Return</h4><p class="extra_info"> the shallow copy of this LinkedList.
+	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/core/ICloneable.html#clone" title="function clone()">clone()</a> in <a href="../../../vegas/core/ICloneable.html" class="interface_name" title="Interface vegas.core.ICloneable">vegas.core.ICloneable</a></p></div></div><div class="method_details alt_row"><a name="contains"></a><h3>contains</h3><code class="method_synopsis">public function <strong class="method_name">contains</strong>(o):<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
+ Returns <code> <span class="key">true</span></code> if this list contains the specified element.
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">var</span> list:LinkedList = <span class="key">new</span> LinkedList() ;
+ list.insert(<span class="str_const">"item1"</span>) ;
+ trace(list.contains( <span class="str_const">"item1"</span> ) ; <span class="comment">// output : true</span>
+ </pre>
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>o</code></td><td>element whose presence in this list is to be tested.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> <code> <span class="key">true</span></code> if this list contains the specified element.
+     </p></div></div><div class="method_details"><a name="containsAll"></a><h3>containsAll</h3><code class="method_synopsis">public function <strong class="method_name">containsAll</strong>(c:<a href="../../../vegas/data/Collection.html" class="interface_name" title="Interface vegas.data.Collection">Collection</a>):<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
+ Returns <code> <span class="key">true</span></code> if this collection contains the specified element.
+ </p><h4>Return</h4><p class="extra_info"> <code> <span class="key">true</span></code> if this collection contains the specified element.
+	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/List.html#containsAll" title="function containsAll(c:Collection):Boolean">containsAll()</a> in <a href="../../../vegas/data/List.html" class="interface_name" title="Interface vegas.data.List">vegas.data.List</a></p></div></div><div class="method_details alt_row"><a name="copy"></a><h3>copy</h3><code class="method_synopsis">public function <strong class="method_name">copy</strong>()</code><div class="method_info"><p>
+ Returns the deep copy of this LinkedList.
+ </p><h4>Return</h4><p class="extra_info"> the deep copy of this LinkedList.
+	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/core/ICopyable.html#copy" title="function copy()">copy()</a> in <a href="../../../vegas/core/ICopyable.html" class="interface_name" title="Interface vegas.core.ICopyable">vegas.core.ICopyable</a></p></div></div><div class="method_details"><a name="dequeue"></a><h3>dequeue</h3><code class="method_synopsis">public function <strong class="method_name">dequeue</strong>():<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
+ Retrieves and removes the head of this queue.
+ </p><h4>Return</h4><p class="extra_info"> <code> <span class="key">true</span></code> if the head of the queue is remove.
+	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/Queue.html#dequeue" title="function dequeue():Boolean">dequeue()</a> in <a href="../../../vegas/data/Queue.html" class="interface_name" title="Interface vegas.data.Queue">vegas.data.Queue</a></p></div></div><div class="method_details alt_row"><a name="element"></a><h3>element</h3><code class="method_synopsis">public function <strong class="method_name">element</strong>()</code><div class="method_info"><p>
+ Retrieves, but does not remove, the head (first element) of this list.
+ </p><h4>Return</h4><p class="extra_info"> the head of this queue.
+ </p><h4>Throws</h4><table class="exceptions extra_info" summary=""><tr><td><span class="unresolved_type_name">NoSuchElementException</span></td><td>if this queue is empty.
+     </td></tr></table><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/Queue.html#element" title="function element()">element()</a> in <a href="../../../vegas/data/Queue.html" class="interface_name" title="Interface vegas.data.Queue">vegas.data.Queue</a></p></div></div><div class="method_details"><a name="enqueue"></a><h3>enqueue</h3><code class="method_synopsis">public function <strong class="method_name">enqueue</strong>(o):<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
+ Adds the specified element as the tail (last element) of this list.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>o</code></td><td>the element to add.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> <code> <span class="key">true</span></code> if the element in inserted in the list.
+     </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/Queue.html#enqueue" title="function enqueue(o):Boolean">enqueue()</a> in <a href="../../../vegas/data/Queue.html" class="interface_name" title="Interface vegas.data.Queue">vegas.data.Queue</a></p></div></div><div class="method_details alt_row"><a name="equals"></a><h3>equals</h3><code class="method_synopsis">public function <strong class="method_name">equals</strong>(o):<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
+ Indicates whether some other object is "equal to" this one.
+	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/core/IEquality.html#equals" title="function equals(o):Boolean">equals()</a> in <a href="../../../vegas/core/IEquality.html" class="interface_name" title="Interface vegas.core.IEquality">vegas.core.IEquality</a></p></div></div><div class="method_details"><a name="get"></a><h3>get</h3><code class="method_synopsis">public function <strong class="method_name">get</strong>(id:<span class="unresolved_type_name">Number</span>)</code><div class="method_info"><p>
+ Returns the element at the specified position in this list.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""></table><h4>Return</h4><p class="extra_info"> the element at the specified position in this list.  
+ </p><h4>Throws</h4><table class="exceptions extra_info" summary=""><tr><td><span class="unresolved_type_name">IndexOutOfBoundsException</span></td><td>if the specified index is out of range.
+     </td></tr></table></div></div><div class="method_details alt_row"><a name="getFirst"></a><h3>getFirst</h3><code class="method_synopsis">public function <strong class="method_name">getFirst</strong>()</code><div class="method_info"><p>
+ Returns the first element in this list.
+ </p><h4>Return</h4><p class="extra_info"> the first element in this list.
+ </p><h4>Throws</h4><table class="exceptions extra_info" summary=""><tr><td><span class="unresolved_type_name">NoSuchElementException</span></td><td>if this list is empty.
+     </td></tr></table></div></div><div class="method_details"><a name="getHeader"></a><h3>getHeader</h3><code class="method_synopsis">public function <strong class="method_name">getHeader</strong>():<a href="../../../vegas/data/list/LinkedListEntry.html" class="class_name" title="Class vegas.data.list.LinkedListEntry">LinkedListEntry</a></code><div class="method_info"><p>
+ Returns the header entry of this list.
+ </p><h4>Return</h4><p class="extra_info"> the header entry of this list.
+	 </p></div></div><div class="method_details alt_row"><a name="getLast"></a><h3>getLast</h3><code class="method_synopsis">public function <strong class="method_name">getLast</strong>()</code><div class="method_info"><p>
+ Returns the last element in the list.
+ </p><h4>Return</h4><p class="extra_info"> the last element in the list.
+ </p><h4>Throws</h4><table class="exceptions extra_info" summary=""><tr><td><span class="unresolved_type_name">NoSuchElementException</span></td><td>if this list is empty.
+	 </td></tr></table></div></div><div class="method_details"><a name="getModCount"></a><h3>getModCount</h3><code class="method_synopsis">public function <strong class="method_name">getModCount</strong>():<span class="unresolved_type_name">Number</span></code><div class="method_info"><p>
+ This method is used by the <code> LinkedListIterator</code> class only.
+	 </p></div></div><div class="method_details alt_row"><a name="indexOf"></a><h3>indexOf</h3><code class="method_synopsis">public function <strong class="method_name">indexOf</strong>(o):<span class="unresolved_type_name">Number</span></code><div class="method_info"><p>
+ Returns the index in this list of the first occurrence of the specified element, or -1 if the List does not contain this element.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>o</code></td><td>element to search for.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> the index in this list of the first occurrence of the specified element, or -1 if the list does not contain this element.
+     </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/List.html#indexOf" title="function indexOf(o):Number">indexOf()</a> in <a href="../../../vegas/data/List.html" class="interface_name" title="Interface vegas.data.List">vegas.data.List</a></p></div></div><div class="method_details"><a name="insert"></a><h3>insert</h3><code class="method_synopsis">public function <strong class="method_name">insert</strong>(o):<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
+ Appends the specified element to the end of this list.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>o</code></td><td>element to be appended to this list.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> <code> <span class="key">true</span></code> (as per the general contract of <code> Collection.insert</code>).
+     </p></div></div><div class="method_details alt_row"><a name="insertAll"></a><h3>insertAll</h3><code class="method_synopsis">public function <strong class="method_name">insertAll</strong>(c:<a href="../../../vegas/data/Collection.html" class="interface_name" title="Interface vegas.data.Collection">Collection</a>):<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
+ Appends all of the elements in the specified collection to the end of this list, in the order that they are returned by the specified collection's iterator.
+ The behavior of this operation is undefined if the specified collection is modified while the operation is in progress.  
+ (This implies that the behavior of this call is undefined if the specified Collection is this list, and this list is nonempty.)
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>c</code></td><td>the elements to be inserted into this list.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> <code> <span class="key">true</span></code> if this list changed as a result of the call.
+ </p><h4>Throws</h4><table class="exceptions extra_info" summary=""><tr><td><span class="unresolved_type_name">NullPointerException</span></td><td>if the specified collection is null.
+     </td></tr></table><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/List.html#insertAll" title="function insertAll(c:Collection):Boolean">insertAll()</a> in <a href="../../../vegas/data/List.html" class="interface_name" title="Interface vegas.data.List">vegas.data.List</a></p></div></div><div class="method_details"><a name="insertAllAt"></a><h3>insertAllAt</h3><code class="method_synopsis">public function <strong class="method_name">insertAllAt</strong>(index:<span class="unresolved_type_name">Number</span>, c:<a href="../../../vegas/data/Collection.html" class="interface_name" title="Interface vegas.data.Collection">Collection</a>):<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
+ Inserts all of the elements in the specified collection into this list at the specified position (optional operation).
+	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/List.html#insertAllAt" title="function insertAllAt(id:Number, c:Collection):Boolean">insertAllAt()</a> in <a href="../../../vegas/data/List.html" class="interface_name" title="Interface vegas.data.List">vegas.data.List</a></p></div></div><div class="method_details alt_row"><a name="insertAt"></a><h3>insertAt</h3><code class="method_synopsis">public function <strong class="method_name">insertAt</strong>(id:<span class="unresolved_type_name">Number</span>, o):<span class="void_name">Void</span></code><div class="method_info"><p>
+ Inserts the specified element at the specified position in this list (optional operation).
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>id</code></td><td>index at which the specified element is to be inserted.
+ </td></tr><tr><td><code>o</code></td><td>element to be inserted.
+	 </td></tr></table><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/List.html#insertAt" title="function insertAt(id:Number, o):Void">insertAt()</a> in <a href="../../../vegas/data/List.html" class="interface_name" title="Interface vegas.data.List">vegas.data.List</a></p></div></div><div class="method_details"><a name="insertFirst"></a><h3>insertFirst</h3><code class="method_synopsis">public function <strong class="method_name">insertFirst</strong>(o):<span class="void_name">Void</span></code><div class="method_info"><p>
+ Inserts the given element at the beginning of this list.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>o</code></td><td>the element to be inserted at the beginning of this list.
+     </td></tr></table></div></div><div class="method_details alt_row"><a name="insertLast"></a><h3>insertLast</h3><code class="method_synopsis">public function <strong class="method_name">insertLast</strong>(o):<span class="void_name">Void</span></code><div class="method_info"><p>
+ Appends the given element to the end of this list.  
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>o</code></td><td>the element to be inserted at the end of this list.
+     </td></tr></table></div></div><div class="method_details"><a name="isEmpty"></a><h3>isEmpty</h3><code class="method_synopsis">public function <strong class="method_name">isEmpty</strong>():<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
+ Returns <code> <span class="key">true</span></code> if this queue contains no elements.
+ </p><h4>Return</h4><p class="extra_info"> <code> <span class="key">true</span></code> if this queue is empty else <code> <span class="key">false</span></code>.
+	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/Queue.html#isEmpty" title="function isEmpty():Boolean">isEmpty()</a> in <a href="../../../vegas/data/Queue.html" class="interface_name" title="Interface vegas.data.Queue">vegas.data.Queue</a></p></div></div><div class="method_details alt_row"><a name="iterator"></a><h3>iterator</h3><code class="method_synopsis">public function <strong class="method_name">iterator</strong>():<a href="../../../vegas/data/iterator/Iterator.html" class="interface_name" title="Interface vegas.data.iterator.Iterator">Iterator</a></code><div class="method_info"><p>
+ Returns the iterator of this object.
+ </p><h4>Return</h4><p class="extra_info"> the iterator of this object.
+	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/Queue.html#iterator" title="function iterator():Iterator">iterator()</a> in <a href="../../../vegas/data/Queue.html" class="interface_name" title="Interface vegas.data.Queue">vegas.data.Queue</a></p></div></div><div class="method_details"><a name="lastIndexOf"></a><h3>lastIndexOf</h3><code class="method_synopsis">public function <strong class="method_name">lastIndexOf</strong>(o):<span class="unresolved_type_name">Number</span></code><div class="method_info"><p>
+ Returns the index in this list of the last occurrence of the specified element, or -1 if the list does not contain this element.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>o</code></td><td>element to search for.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> the index in this list of the last occurrence of the specified element, or -1 if the list does not contain this element.
+     </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/List.html#lastIndexOf" title="function lastIndexOf(o):Number">lastIndexOf()</a> in <a href="../../../vegas/data/List.html" class="interface_name" title="Interface vegas.data.List">vegas.data.List</a></p></div></div><div class="method_details alt_row"><a name="listIterator"></a><h3>listIterator</h3><code class="method_synopsis">public function <strong class="method_name">listIterator</strong>():<a href="../../../vegas/data/iterator/ListIterator.html" class="interface_name" title="Interface vegas.data.iterator.ListIterator">ListIterator</a></code><div class="method_info"><p>
+ Returns a list iterator of the elements in this list (in proper sequence).
+ </p><h4>Return</h4><p class="extra_info"> a list iterator of the elements in this list (in proper sequence).
+	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/List.html#listIterator" title="function listIterator():ListIterator">listIterator()</a> in <a href="../../../vegas/data/List.html" class="interface_name" title="Interface vegas.data.List">vegas.data.List</a></p></div></div><div class="method_details"><a name="peek"></a><h3>peek</h3><code class="method_synopsis">public function <strong class="method_name">peek</strong>()</code><div class="method_info"><p>
+ Retrieves, but does not remove, the head (first element) of this list.
+ </p><h4>Return</h4><p class="extra_info"> the head of this queue, or <code> <span class="key">null</span></code> if this queue is empty.
+     </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/Queue.html#peek" title="function peek()">peek()</a> in <a href="../../../vegas/data/Queue.html" class="interface_name" title="Interface vegas.data.Queue">vegas.data.Queue</a></p></div></div><div class="method_details alt_row"><a name="poll"></a><h3>poll</h3><code class="method_synopsis">public function <strong class="method_name">poll</strong>()</code><div class="method_info"><p>
+ Retrieves and removes the head (first element) of this list.
+ </p><h4>Return</h4><p class="extra_info"> the head of this queue, or <code> <span class="key">null</span></code> if this queue is empty.
+     </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/Queue.html#poll" title="function poll()">poll()</a> in <a href="../../../vegas/data/Queue.html" class="interface_name" title="Interface vegas.data.Queue">vegas.data.Queue</a></p></div></div><div class="method_details"><a name="remove"></a><h3>remove</h3><code class="method_synopsis">public function <strong class="method_name">remove</strong>(o):<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
+ Removes the first occurrence of the specified element in this list.  
+ If the list does not contain the element, it is unchanged.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>o</code></td><td>element to be removed from this list, if present.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> <tt>true</tt> if the list contained the specified element.
+     </p></div></div><div class="method_details alt_row"><a name="removeAll"></a><h3>removeAll</h3><code class="method_synopsis">public function <strong class="method_name">removeAll</strong>(c:<a href="../../../vegas/data/Collection.html" class="interface_name" title="Interface vegas.data.Collection">Collection</a>):<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
+ Removes all elements defined in the specified Collection in the list.
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">import</span> vegas.data.collections.SimpleCollection ;
+ <span class="key">import</span> vegas.data.list.LinkedList ;
+ <span class="key">var</span> list:LinkedList = <span class="key">new</span> LinkedList() ;
+ list.insert(<span class="str_const">"item1"</span>) ;
+ list.insert(<span class="str_const">"item2"</span>) ;
+ trace(list.removeAll(<span class="key">new</span> SimpleCollection([<span class="str_const">"item1"</span>])) ; <span class="comment">// true</span>
+ trace(list) ; <span class="comment">// {item2}</span>
+ </pre>
+ </p><h4>Return</h4><p class="extra_info"> <code> <span class="key">true</span></code> if all elements are find and remove in the list.
+	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/List.html#removeAll" title="function removeAll(c:Collection):Boolean">removeAll()</a> in <a href="../../../vegas/data/List.html" class="interface_name" title="Interface vegas.data.List">vegas.data.List</a></p></div></div><div class="method_details"><a name="removeAt"></a><h3>removeAt</h3><code class="method_synopsis">public function <strong class="method_name">removeAt</strong>(id:<span class="unresolved_type_name">Number</span>)</code><div class="method_info"><p>
+ Removes an element at the specified position in this list. 
+ This implementation first gets a list iterator pointing to the indexed element (with <code> listIterator(index)</code>). 
+Then, it removes the element with <b>ListIterator</b> remove method.
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">import</span> vegas.data.list.LinkedList ;
+ <span class="key">var</span> list:LinkedList = <span class="key">new</span> LinkedList() ;
+ list.insert(<span class="str_const">"item1"</span>) ;
+ list.insert(<span class="str_const">"item2"</span>) ;
+ trace(list.removeAt(<span class="num_const">1</span>)) ; <span class="comment">// item2</span>
+ trace(list) ; <span class="comment">// {item1}</span>
+ </pre>
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>id</code></td><td>index of the element to be removed from the List.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> the value removed in the list.
+     </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/List.html#removeAt" title="function removeAt(id:Number)">removeAt()</a> in <a href="../../../vegas/data/List.html" class="interface_name" title="Interface vegas.data.List">vegas.data.List</a></p></div></div><div class="method_details alt_row"><a name="removesAt"></a><h3>removesAt</h3><code class="method_synopsis">public function <strong class="method_name">removesAt</strong>(id:<span class="unresolved_type_name">Number</span>, len:<span class="unresolved_type_name">Number</span>)</code><div class="method_info"><p>
+ Removes the specified count of elements at the specified position in this list.
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">import</span> vegas.data.list.LinkedList ;
+ <span class="key">var</span> list:LinkedList = <span class="key">new</span> LinkedList() ;
+ list.insert(<span class="str_const">"item1"</span>) ;
+ list.insert(<span class="str_const">"item2"</span>) ;
+ list.insert(<span class="str_const">"item3"</span>) ;
+ list.insert(<span class="str_const">"item4"</span>) ;
+ list.insert(<span class="str_const">"item5"</span>) ;
+ <span class="key">var</span> result = list.removesAt(<span class="num_const">2</span>, <span class="num_const">2</span>) ; <span class="comment">// {item1,item2,item5}</span>
+ trace(result + <span class="str_const">" : "</span> + list) ; <span class="comment">// item1 : {item2,item3,item4}</span>
+ </pre>
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>id</code></td><td>index of the first element to be removed from the List.
+     </td></tr></table><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/List.html#removesAt" title="function removesAt(id:Number, len:Number)">removesAt()</a> in <a href="../../../vegas/data/List.html" class="interface_name" title="Interface vegas.data.List">vegas.data.List</a></p></div></div><div class="method_details"><a name="removeFirst"></a><h3>removeFirst</h3><code class="method_synopsis">public function <strong class="method_name">removeFirst</strong>()</code><div class="method_info"><p>
+ Removes and returns the first element from this list.
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">import</span> vegas.data.list.LinkedList ;
+ <span class="key">var</span> list:LinkedList = <span class="key">new</span> LinkedList() ;
+ list.insert(<span class="str_const">"item1"</span>) ;
+ list.insert(<span class="str_const">"item2"</span>) ;
+ list.insert(<span class="str_const">"item3"</span>) ;
+ list.insert(<span class="str_const">"item4"</span>) ;
+ <span class="key">var</span> result = list.removeFirst() ;
+ trace(result + <span class="str_const">" : "</span> + list) ; <span class="comment">// item1 : {item2,item3,item4}</span>
+ </pre>
+ </p><h4>Return</h4><p class="extra_info"> the first element from this list.
+ </p><h4>Throws</h4><table class="exceptions extra_info" summary=""><tr><td><span class="unresolved_type_name">NoSuchElementException</span></td><td>if this list is empty.
+     </td></tr></table></div></div><div class="method_details alt_row"><a name="removeLast"></a><h3>removeLast</h3><code class="method_synopsis">public function <strong class="method_name">removeLast</strong>()</code><div class="method_info"><p>
+ Removes and returns the last element from this list.
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">import</span> vegas.data.list.LinkedList ;
+ <span class="key">var</span> list:LinkedList = <span class="key">new</span> LinkedList() ;
+ list.insert(<span class="str_const">"item1"</span>) ;
+ list.insert(<span class="str_const">"item2"</span>) ;
+ list.insert(<span class="str_const">"item3"</span>) ;
+ list.insert(<span class="str_const">"item4"</span>) ;
+ <span class="key">var</span> result = list.removeLast() ;
+ trace(result + <span class="str_const">" : "</span> + list) ; <span class="comment">// item4 : {item1,item2,item3}</span>
+ </pre>
+ </p><h4>Return</h4><p class="extra_info"> the last element from this list.
+ </p><h4>Throws</h4><table class="exceptions extra_info" summary=""><tr><td><span class="unresolved_type_name">NoSuchElementException</span></td><td>if this list is empty.
+     </td></tr></table></div></div><div class="method_details"><a name="removeRange"></a><h3>removeRange</h3><code class="method_synopsis">public function <strong class="method_name">removeRange</strong>(from:<span class="unresolved_type_name">Number</span>, to:<span class="unresolved_type_name">Number</span>):<span class="void_name">Void</span></code><div class="method_info"><p>
+ Removes from this list all the elements that are contained between the specific <code> from</code> and the specific <code> to</code> position in this list (optional operation).
+ <p><b>Example :</b></p>
+ <pre>
+ 	<span class="key">var</span> list:LinkedList = <span class="key">new</span> LinkedList() ;
+ 	list.insert(<span class="str_const">"item1"</span>) ;
+ 	list.insert(<span class="str_const">"item2"</span>) ;
+ 	list.insert(<span class="str_const">"item3"</span>) ;
+ 	list.insert(<span class="str_const">"item4"</span>) ;
+ 	list.insert(<span class="str_const">"item5"</span>) ;
+ 	list.removeRange(<span class="num_const">2</span>, <span class="num_const">4</span>) ; 
+ 	trace(list) ; <span class="comment">// {item1,item2,item5}</span>
+ 	</pre>
+	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/List.html#removeRange" title="function removeRange(from:Number, to:Number):Void">removeRange()</a> in <a href="../../../vegas/data/List.html" class="interface_name" title="Interface vegas.data.List">vegas.data.List</a></p></div></div><div class="method_details alt_row"><a name="retainAll"></a><h3>retainAll</h3><code class="method_synopsis">public function <strong class="method_name">retainAll</strong>(c:<a href="../../../vegas/data/Collection.html" class="interface_name" title="Interface vegas.data.Collection">Collection</a>):<span class="unresolved_type_name">Boolean</span></code><div class="method_info"><p>
+ Retains only the elements in this list that are contained in the specified collection (optional operation).
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">import</span> vegas.data.collections.SimpleCollection ;
+ <span class="key">import</span> vegas.data.list.LinkedList ;
+ 
+ <span class="key">var</span> list:LinkedList = <span class="key">new</span> LinkedList() ;
+ list.insert(<span class="str_const">"item1"</span>) ;
+ list.insert(<span class="str_const">"item2"</span>) ;
+ list.insert(<span class="str_const">"item3"</span>) ;
+ list.insert(<span class="str_const">"item4"</span>) ;
+ list.insert(<span class="str_const">"item5"</span>) ;
+ <span class="key">var</span> c:SimpleCollection = <span class="key">new</span> SimpleCollection( [<span class="str_const">"item2"</span>, <span class="str_const">"item4"</span>] ) ;
+ <span class="key">var</span> b:Boolean = list.retainAll( c ) ;
+ trace(<span class="str_const">"list : "</span> + list + <span class="str_const">", is retain ? : "</span> + b) ;
+ </pre>
+ </p><h4>Return</h4><p class="extra_info"> <code> <span class="key">true</span></code> if the retainAll operation is success.
+	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/List.html#retainAll" title="function retainAll(c:Collection):Boolean">retainAll()</a> in <a href="../../../vegas/data/List.html" class="interface_name" title="Interface vegas.data.List">vegas.data.List</a></p></div></div><div class="method_details"><a name="setAt"></a><h3>setAt</h3><code class="method_synopsis">public function <strong class="method_name">setAt</strong>(id:<span class="unresolved_type_name">Number</span>, o)</code><div class="method_info"><p>
+ Replaces the element at the specified position in this list with the specified element.
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">import</span> vegas.data.list.LinkedList ;
+ <span class="key">var</span> list:LinkedList = <span class="key">new</span> LinkedList() ;
+ list.insert(<span class="str_const">"item1"</span>) ;
+ list.insert(<span class="str_const">"item2"</span>) ;
+ <span class="key">var</span> old = list.setAt( <span class="num_const">1</span>, <span class="str_const">"ITEM2"</span> ) ;
+ trace(<span class="str_const">"list : "</span> + list + <span class="str_const">", old : "</span> + old) ; <span class="comment">// list : {item1,ITEM2}, old : item2</span>
+ </pre>
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>id</code></td><td>index of element to replace.
+ </td></tr><tr><td><code>o</code></td><td>element to be stored at the specified position.
+ </td></tr></table><h4>Return</h4><p class="extra_info"> the element previously at the specified position.
+     </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/List.html#setAt" title="function setAt(id:Number, o)">setAt()</a> in <a href="../../../vegas/data/List.html" class="interface_name" title="Interface vegas.data.List">vegas.data.List</a></p></div></div><div class="method_details alt_row"><a name="size"></a><h3>size</h3><code class="method_synopsis">public function <strong class="method_name">size</strong>():<span class="unresolved_type_name">Number</span></code><div class="method_info"><p>
+ Returns the number of elements in this list.
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">import</span> vegas.data.list.LinkedList ;
+ <span class="key">var</span> list:LinkedList = <span class="key">new</span> LinkedList() ;
+ list.insert(<span class="str_const">"item1"</span>) ;
+ list.insert(<span class="str_const">"item2"</span>) ;
+ trace(list.size()) ; <span class="comment">// 2</span>
+ </pre>
+ </p><h4>Return</h4><p class="extra_info"> the number of elements in this list.
+	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/Queue.html#size" title="function size():Number">size()</a> in <a href="../../../vegas/data/Queue.html" class="interface_name" title="Interface vegas.data.Queue">vegas.data.Queue</a></p></div></div><div class="method_details"><a name="subList"></a><h3>subList</h3><code class="method_synopsis">public function <strong class="method_name">subList</strong>(fromIndex:<span class="unresolved_type_name">Number</span>, toIndex:<span class="unresolved_type_name">Number</span>):<a href="../../../vegas/data/List.html" class="interface_name" title="Interface vegas.data.List">List</a></code><div class="method_info"><p>
+ Returns a subList of the LinkedList. The subList is an ArrayList instance.
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">import</span> vegas.data.list.LinkedList ;
+ 
+ <span class="key">var</span> list:LinkedList = <span class="key">new</span> LinkedList() ;
+ list.insert(<span class="str_const">"item1"</span>) ;
+ list.insert(<span class="str_const">"item2"</span>) ;
+ list.insert(<span class="str_const">"item3"</span>) ;
+ list.insert(<span class="str_const">"item4"</span>) ;
+ list.insert(<span class="str_const">"item5"</span>) ;
+ 
+ trace( list.subList(<span class="num_const">2</span>, <span class="num_const">10</span>) ) ; <span class="comment">// {item3,item4,item5}</span>
+ trace( list.subList(<span class="num_const">2</span>, -<span class="num_const">1</span>) ) ; <span class="comment">// {}</span>
+ trace( list.subList(<span class="num_const">2</span>, <span class="num_const">3</span>) ) ; <span class="comment">// {item3}</span>
+ trace( list.subList() ) ; <span class="comment">// {item1,item2,item3,item4,item5}</span>
+ </pre>
+ </p><h4>Return</h4><p class="extra_info"> a subList of the LinkedList. The subList is an ArrayList instance.
+ </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/List.html#subList" title="function subList(fromIndex:Number, toIndex:Number):List">subList()</a> in <a href="../../../vegas/data/List.html" class="interface_name" title="Interface vegas.data.List">vegas.data.List</a></p><h4>See Also</h4><ul class="extra_info"><li><a href="../../../vegas/data/list/ArrayList.html" class="class_name" title="Class vegas.data.list.ArrayList">ArrayList</a></li></ul></div></div><div class="method_details alt_row"><a name="toArray"></a><h3>toArray</h3><code class="method_synopsis">public function <strong class="method_name">toArray</strong>():<span class="unresolved_type_name">Array</span></code><div class="method_info"><p>
+ Returns an array containing all of the elements in this list in the correct order.
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">import</span> vegas.data.list.LinkedList ;
+ <span class="key">var</span> list:LinkedList = <span class="key">new</span> LinkedList() ;
+ list.insert(<span class="str_const">"item1"</span>) ;
+ list.insert(<span class="str_const">"item2"</span>) ;
+ list.insert(<span class="str_const">"item3"</span>) ;
+ list.insert(<span class="str_const">"item4"</span>) ;
+ trace( list.toArray() ) ; <span class="comment">// item1,item2,item3,item4</span>
+ </pre>
+ </p><h4>Return</h4><p class="extra_info"> an array containing all of the elements in this list in the correct order.
+     </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/Queue.html#toArray" title="function toArray():Array">toArray()</a> in <a href="../../../vegas/data/Queue.html" class="interface_name" title="Interface vegas.data.Queue">vegas.data.Queue</a></p></div></div><div class="method_details"><a name="toSource"></a><h3>toSource</h3><code class="method_synopsis">public function <strong class="method_name">toSource</strong>(indent:<span class="unresolved_type_name">Number</span>, indentor:<span class="unresolved_type_name">String</span>):<span class="unresolved_type_name">String</span></code><div class="method_info"><p>
+ Returns a Eden representation of the object.
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">var</span> list:LinkedList = list.clone() ;
+ list.insert(<span class="str_const">"item1"</span>) ;
+ list.insert(<span class="str_const">"item2"</span>) ;
+ <span class="key">var</span> source:String = list.toSource() ; 
+ trace(source) ; <span class="comment">// new vegas.data.list.LinkedList(new vegas.data.collections.SimpleCollection(["item1","item2"]))</span>
+ </pre>
+ </p><h4>Return</h4><p class="extra_info"> a string representing the source code of the object.
+	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/core/ISerializable.html#toSource" title="function toSource(indent:Number, indentor:String):String">toSource()</a> in <a href="../../../vegas/core/ISerializable.html" class="interface_name" title="Interface vegas.core.ISerializable">vegas.core.ISerializable</a></p><h4>Overrides</h4><p class="extra_info"><a href="../../../vegas/core/CoreObject.html#toSource" title="public function toSource(indent:Number, indentor:String):String">toSource()</a> in <a href="../../../vegas/core/CoreObject.html" class="class_name" title="Class vegas.core.CoreObject">vegas.core.CoreObject</a></p></div></div><div class="method_details alt_row"><a name="toString"></a><h3>toString</h3><code class="method_synopsis">public function <strong class="method_name">toString</strong>():<span class="unresolved_type_name">String</span></code><div class="method_info"><p>
+ Returns the string representation of this instance.
+ <p><b>Example :</b></p>
+ <pre>
+ <span class="key">var</span> list:LinkedList = list.clone() ;
+ list.insert(<span class="str_const">"item1"</span>) ;
+ list.insert(<span class="str_const">"item2"</span>) ;
+ <span class="key">var</span> source:String = list.toString() ; 
+ trace(source) ; <span class="comment">// {item1,item2}</span>
+ </pre>
+ </p><h4>Return</h4><p class="extra_info"> the string representation of this instance
+	 </p><h4>Specified By</h4><p class="extra_info"><a href="../../../vegas/data/Queue.html#toString" title="function toString():String">toString()</a> in <a href="../../../vegas/data/Queue.html" class="interface_name" title="Interface vegas.data.Queue">vegas.data.Queue</a></p><h4>Overrides</h4><p class="extra_info"><a href="../../../vegas/core/CoreObject.html#toString" title="public function toString():String">toString()</a> in <a href="../../../vegas/core/CoreObject.html" class="class_name" title="Class vegas.core.CoreObject">vegas.core.CoreObject</a></p></div></div><div class="method_details"><a name="_insertBefore"></a><h3>_insertBefore</h3><code class="method_synopsis">public function <strong class="method_name">_insertBefore</strong>(o, e:<a href="../../../vegas/data/list/LinkedListEntry.html" class="class_name" title="Class vegas.data.list.LinkedListEntry">LinkedListEntry</a>):<a href="../../../vegas/data/list/LinkedListEntry.html" class="class_name" title="Class vegas.data.list.LinkedListEntry">LinkedListEntry</a></code><div class="method_info"><p>
+ Inserts the given element in the list before the given entry.
+ This method is "protected" only the LinkedList and the LinkedListIterator must use this method.
+ </p><h4>Parameters</h4><table class="arguments extra_info" summary=""><tr><td><code>o</code></td><td>the element to be inserted at the beginning of this list.
+ </td></tr><tr><td><code>e</code></td><td>the entry instance to defined where inserted the element.
+	 </td></tr></table></div></div><div class="method_details alt_row"><a name="_removeEntry"></a><h3>_removeEntry</h3><code class="method_synopsis">public function <strong class="method_name">_removeEntry</strong>(e:<a href="../../../vegas/data/list/LinkedListEntry.html" class="class_name" title="Class vegas.data.list.LinkedListEntry">LinkedListEntry</a>)</code><div class="method_info"><p>
+ Removes an Entry in the list.
+     </p></div></div></div></div><ul class="main_nav" id="main_nav"><li><a href="../../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package vegas.data.list" class="button">Package</a></li><li><span class="button nav_current">Class</span></li><li><a href="LinkedList.as.html" title="Source code of vegas.data.list.LinkedList" class="button">Source</a></li><li><a href="../../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

@@ -1,0 +1,89 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>buRRRn.eden.config</title><script src="../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../index-files";
+//--></script><link href="../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../overview-summary.html" title="Overview" rel="top"/><link href="package-summary.html" title="Package buRRRn.eden" rel="up"/><link href="../../buRRRn/eden/ECMAScript.html" title="Class buRRRn.eden.ECMAScript" rel="prev"/><link href="../../buRRRn/eden/Application.html" title="Class buRRRn.eden.Application" rel="next"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><h1>Class buRRRn.eden.config</h1><div class="type_hierachy"><ul><li><strong>buRRRn.eden.config</strong></li></ul></div><div class="type_description"><h2>Description</h2><p>
+	NameSpace: config
+   	Configure the eden library.
+</p></div><div class="type_indexes"><div class="field_index"><h2>Field Index</h2><a href="#allowFunctionCall" title="static allowFunctionCall:Boolean">allowFunctionCall</a>, <a href="#arrayIndexAsBracket" title="static arrayIndexAsBracket:Boolean">arrayIndexAsBracket</a>, <a href="#authorized" title="static authorized:Array">authorized</a>, <a href="#autoAddScopePath" title="static autoAddScopePath:Boolean">autoAddScopePath</a>, <a href="#compress" title="static compress:Boolean">compress</a>, <a href="#copyObjectByValue" title="static copyObjectByValue:Boolean">copyObjectByValue</a>, <a href="#security" title="static security:Boolean">security</a>, <a href="#strictMode" title="static strictMode:Boolean">strictMode</a>, <a href="#undefineable" title="static undefineable">undefineable</a>, <a href="#verbose" title="static verbose:Boolean">verbose</a></div></div><div class="type_details"><div class="field_detail_list"><h2>Field Detail</h2><a name="compress"></a><h3>compress</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">compress</strong>:<span class="unresolved_type_name">Boolean</span></code><div class="field_info">
+       StaticProperty: compress
+       Parameter to remove (true) or add (false) all unecessary spaces,
+       tabs, carriages returns, lines feeds etc.
+       to optimize (more or less) packets of datas when they are transfered.
+       
+       note:
+       use "compress = false" when you want
+       to have a better view or debug packets of datas.
+    </div></div><a name="copyObjectByValue"></a><h3>copyObjectByValue</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">copyObjectByValue</strong>:<span class="unresolved_type_name">Boolean</span></code><div class="field_info">
+       StaticProperty: copyObjectByValue
+       Parameter allowing to copy objects by value
+       if true or by reference if false.
+       
+       exemple:
+       foo = {a:1, b:2, c:3};
+       bar = foo;
+       
+       in this case with copyObjectByValue = false
+       bar will be a reference to the foo object
+       but if copyObjectByValue = true
+       bar will be an exact copy of foo object
+    </div></div><a name="strictMode"></a><h3>strictMode</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">strictMode</strong>:<span class="unresolved_type_name">Boolean</span></code><div class="field_info">
+       StaticProperty: strictMode
+       Allows to define the case-sensitivy of the parsers.
+       If true, variable names that differ only in case are
+       considered different.
+    </div></div><a name="undefineable"></a><h3>undefineable</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">undefineable</strong></code><div class="field_info">
+       StaticProperty: undefineable
+       Value assigned to a variable
+       when this one is not found or not authorized.
+       
+       note:
+       Depending on your environment you can
+       override it with a more suitable one
+       for exemple on C# you could set it
+       to null.
+    </div></div><a name="verbose"></a><h3>verbose</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">verbose</strong>:<span class="unresolved_type_name">Boolean</span></code><div class="field_info">
+       StaticProperty: verbose
+       Parameter allowing to trace messages
+       in the console if the environment permit it.
+    </div></div><a name="security"></a><h3>security</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">security</strong>:<span class="unresolved_type_name">Boolean</span></code><div class="field_info">
+       StaticProperty: security
+       Parameter setting on (true) or off (false) the security.
+       If true, all object path, function or constructor will
+       be scanned at interpretation time against the
+       authorized list (see: buRRRn.eden.config.authorized).
+    </div></div><a name="authorized"></a><h3>authorized</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">authorized</strong>:<span class="unresolved_type_name">Array</span></code><div class="field_info">
+    	StaticProperty: authorized
+       	List of authorized keywords, objects path and constructors
+       	that the parser is allowed to interpret.
+	       
+       	note:
+       	you can add full path
+       	ex: "blah.foobar"
+       	and/or starting path
+       	ex: "toto.titi.*"
+	       
+       	the difference is
+       	with a full path you can only
+       	create/use/define/assign value to this exact path
+       	and
+       	with a starting path you can
+       	create/use/define/assign value to this path and its child paths
+	       
+       	attention:
+       	special values as
+       	NaN, true, false, null, undefined
+       	are always authorized
+    	</div></div><a name="allowFunctionCall"></a><h3>allowFunctionCall</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">allowFunctionCall</strong>:<span class="unresolved_type_name">Boolean</span></code><div class="field_info">
+ StaticProperty: allowFunctionCall
+ Allows to execute function call is set to true,
+ set to false it blocks any functrion call and return undefined.
+  
+ exemple:
+ "titi = \"hello world\";
+ toto = titi.toUpperCase();"
+  
+ with allowFunctionCall= true
+ toto will equal "HELLO WORLD"
+ but with allowFunctionCall = false
+  toto will equal undefined
+     </div></div><a name="autoAddScopePath"></a><h3>autoAddScopePath</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">autoAddScopePath</strong>:<span class="unresolved_type_name">Boolean</span></code></div><a name="arrayIndexAsBracket"></a><h3>arrayIndexAsBracket</h3><div class="field_details"><code class="field_synopsis">static <strong class="field_name">arrayIndexAsBracket</strong>:<span class="unresolved_type_name">Boolean</span></code></div></div></div><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package buRRRn.eden" class="button">Package</a></li><li><span class="button nav_current">Class</span></li><li><a href="config.as.html" title="Source code of buRRRn.eden.config" class="button">Source</a></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
