@@ -21,96 +21,6 @@
   
 */
 
-/**	SharedDataEvent
-
-	AUTHOR
-
-		Name : SharedDataEvent
-		Package : asgard.events
-		Version : 1.0.0.0
-		Date :  2005-05-04
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-	
-	PROPERTY SUMMARY
-
-		- bubbles:Boolean [R/W]
-		
-		- context [R/W]
-		
-		- currentTarget [R/W]
-		
-		- eventPhase:Number [R/W]
-		
-		- id:String
-		
-		- target [R/W]
-		
-		- type:String [R/W]
-		
-		- value
-
-	METHOD SUMMARY
-	
-		- cancel():Void
-		
-		- clone():BasicEvent
-		
-		- getBubbles():Boolean
-		
-		- getContext()
-		
-		- getCurrentTarget()
-		
-		- getEventPhase():Number
-		
-		- getTarget()
-		
-		- getTimeStamp():Number
-		
-		- getType():String
-		
-		- isCancelled():Boolean
-		
-		- isQueued():Boolean
-		
-		- queueEvent():Void
-		
-		- setBubbles(b:Boolean):Void
-		
-		- setContext(context):Void
-		
-		- setCurrentTarget(target):Void
-		
-		- setEventPhase(n:Number):Void
-		
-		- setProperty(p_id:String, p_value):Void
-		
-		- setTarget(target):Void
-		
-		- setType(type:String):Void
-		
-		- stopImmediatePropagation()
-		
-		- toSource(indent : Number, indentor : String):String
-		
-		- toString():String
-
-	INHERIT
-	
-		CoreObject → BasicEvent → DynamicEvent
-
-	IMPLEMENTS 
-		
-		Event, ICloneable, IFormattable, IHashable, ISerializable
-
-	SEE ALSO
-		
-		SharedDataEventType
-
-**/
-
 import asgard.events.SharedDataEventType;
 import asgard.net.SharedData;
 
@@ -118,48 +28,55 @@ import vegas.events.DynamicEvent;
 import vegas.util.serialize.Serializer;
 
 /**
+ * A SharedDateEvent dispatch events in the SharedData instance.
  * @author eKameleon
  * @version 1.0.0.0
- **/	
-class asgard.events.SharedDataEvent extends DynamicEvent {
+ */	
+class asgard.events.SharedDataEvent extends DynamicEvent 
+{
 
-	// ----o Constructor
-	
-	public function SharedDataEvent ( 
-		type:SharedDataEventType, sharedData:SharedData , p_id:String, p_value
-		, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number 
-	)
-		{
-		
+	/**
+	 * Creates a new SharedDataEvent instance.
+	 */	
+	public function SharedDataEvent ( type:SharedDataEventType, sharedData:SharedData , p_id:String, p_value , context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number )
+	{
 		super(type, sharedData, context, bubbles, eventPhase, time, stop) ;
  		this.setProperty(p_id, p_value) ;
- 		
-		}
+	}
 	
-	// ----o Public Properties
-	
+	/**
+	 * The id of the event.
+	 */
 	public var id:String ;
+
+	/**
+	 * The value of the event.
+	 */
 	public var value ;
-	
-	// ----o Public Methods
 
+	/**
+	 * Returns a shallow copy of the object.
+	 * @return a shallow copy of the object.
+	 */	
 	public function clone() 
-		{
-			
+	{
 		return new SharedDataEvent(SharedDataEventType(getType()), getTarget()) ;
-		
-		}
-
+	}
+	
+	/**
+	 * Sets the entry (id/value) of the property stored in a SharedDate object.
+	 */
 	public function setProperty(p_id:String, p_value):Void 
-		{
+	{
 			
 		id = p_id || null ;
 		value = p_value || null ;
 		
 		}
 
-	// ----o Protected Methods
-
+	/**
+	 * @private
+	 */
 	/*protected*/ private function _getParams():Array 
 		{
 		

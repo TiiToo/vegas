@@ -29,7 +29,6 @@ import vegas.data.Map;
 import vegas.data.map.HashMap;
 import vegas.errors.IllegalArgumentError;
 import vegas.events.ModelChangedEvent;
-import vegas.events.ModelChangedEventType;
 import vegas.util.mvc.AbstractModel;
 import vegas.util.TypeUtil;
 
@@ -78,7 +77,7 @@ class pegas.transitions.TweenProvider extends AbstractModel implements Iterable
 	public function clear():Void 
 	{
 		_map.clear( ) ;
-		notifyChanged( new ModelChangedEvent( ModelChangedEventType.CLEAR_ITEMS, this ) ) ;
+		notifyChanged( new ModelChangedEvent( ModelChangedEvent.CLEAR_ITEMS, this ) ) ;
 	}
 
 	/**
@@ -107,7 +106,7 @@ class pegas.transitions.TweenProvider extends AbstractModel implements Iterable
 		if (p) 
 		{
 			_map.put( p, entry ) ;
-			notifyChanged( new ModelChangedEvent( ModelChangedEventType.ADD_ITEMS, this ) ) ;
+			notifyChanged( new ModelChangedEvent( ModelChangedEvent.ADD_ITEMS, this ) ) ;
 			return true ;
 		}
 		else 
@@ -148,7 +147,7 @@ class pegas.transitions.TweenProvider extends AbstractModel implements Iterable
 			var t:TweenEntry = _map.remove( p ) ;
 			if (t != null) 
 			{
-				notifyChanged( new ModelChangedEvent( ModelChangedEventType.REMOVE_ITEMS, this ) ) ;
+				notifyChanged( new ModelChangedEvent( ModelChangedEvent.REMOVE_ITEMS, this ) ) ;
 				return true ;
 			}
 		} 

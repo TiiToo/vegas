@@ -24,7 +24,6 @@ Contributor(s) :
 import lunas.display.components.list.AbstractListController;
 
 import vegas.events.ModelChangedEvent;
-import vegas.events.ModelChangedEventType;
 import vegas.util.mvc.AbstractView;
 import vegas.util.mvc.IController;
 import vegas.util.mvc.IModel;
@@ -56,33 +55,33 @@ class lunas.display.components.list.ListView extends AbstractView
 		switch (eventName) 
 		{
 		
-			case ModelChangedEventType.ADD_ITEMS : 
+			case ModelChangedEvent.ADD_ITEMS : 
 			{
 				// ici ajouter une ou des cellules dans le container
 				AbstractListController( getController( ) ).viewCreateAt( ev.index ) ;
 				break ;
 			}
-			case ModelChangedEventType.CLEAR_ITEMS :
+			case ModelChangedEvent.CLEAR_ITEMS :
 			{
 				AbstractListController( getController( ) ).viewClear( ) ;
 				break ;
 			}
-			case ModelChangedEventType.REMOVE_ITEMS :
+			case ModelChangedEvent.REMOVE_ITEMS :
 			{
 				var first:Number = ev.firstItem ;
 				var last:Number = ev.lastItem ;
 				AbstractListController( getController( ) ).viewRemove( first, last + 1 ) ;
 				break ;
 			}	
-			case ModelChangedEventType.UPDATE_ALL : 
+			case ModelChangedEvent.UPDATE_ALL : 
 			{	
 				break ; 
 			}				
-			case ModelChangedEventType.UPDATE_ITEMS : 
+			case ModelChangedEvent.UPDATE_ITEMS : 
 			{
 				break ;
 			}
-			case ModelChangedEventType.UPDATE_FIELD : 
+			case ModelChangedEvent.UPDATE_FIELD : 
 			{
 				break ;
 			}

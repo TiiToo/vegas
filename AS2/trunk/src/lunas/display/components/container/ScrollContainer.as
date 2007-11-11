@@ -27,7 +27,6 @@ import lunas.display.components.container.ListContainer;
 
 import pegas.events.ActionEvent;
 import pegas.events.UIEvent;
-import pegas.events.UIEventType;
 import pegas.transitions.easing.Back;
 import pegas.transitions.Tween;
 import pegas.transitions.TweenEntry;
@@ -54,7 +53,7 @@ class lunas.display.components.container.ScrollContainer extends ListContainer
 	/**
 	 * The name of the event dispatched when the scroll change.
 	 */
-	public static var SCROLL:String = UIEventType.SCROLL ;
+	public static var SCROLL:String = "scroll" ;
 
 	/**
 	 * Returns the bottom scroll value.
@@ -185,7 +184,7 @@ class lunas.display.components.container.ScrollContainer extends ListContainer
 
 	public function updateScroll():Void 
 	{
-		dispatchEvent(new UIEvent( UIEventType.SCROLL, this)) ;
+		dispatchEvent(new UIEvent( UIEvent.SCROLL, this)) ;
 	}
 	
 	private var _scroll:Number = 0 ;

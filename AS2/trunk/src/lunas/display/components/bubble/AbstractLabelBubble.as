@@ -21,52 +21,29 @@
   
 */
 
-/** AbstractLabelBubble
-
-	AUTHOR
-	
-		Name : AbstractLabelBubble
-		Package : lunas.display.components.bubble
-		Version : 1.0.0.0
-		Date :  2006-04-20
-		Author : eKameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	INHERIT
-	
-		MovieClip → AbstractComponent → BubbleComponent → AbstractLabelBubble
-
-	IMPLEMENTS
-	
-		ILabel
-
-**/
-
 import lunas.display.components.bubble.BubbleComponent;
 import lunas.display.components.ILabel;
 
 import pegas.events.UIEvent;
-import pegas.events.UIEventType;
 
 /**
+ * The AbstractLabelBubble class.
  * @author eKameleon
  */
 class lunas.display.components.bubble.AbstractLabelBubble extends BubbleComponent implements ILabel {
 	
-	// ----o Constructor
-	
-	public function AbstractLabelBubble() {
+	/**
+	 * Creates a new AbstractLabelBubble instance.
+	 */
+	public function AbstractLabelBubble() 
+	{
 		super() ;
 	}
-
-	// ----o Public Properties
 	
 	public var field:TextField ;
 
-	// ----o Public Methods
-
-	public function getAutoSize():Boolean {
+	public function getAutoSize():Boolean 
+	{
 		return _autoSize ;
 	}
 
@@ -96,10 +73,11 @@ class lunas.display.components.bubble.AbstractLabelBubble extends BubbleComponen
 		update() ;
 	}
 
-	public function setLabel(str:String):Void {
+	public function setLabel(str:String):Void 
+	{
 		_label = str.toString() ; 
 		viewLabelChanged() ;
-		dispatchEvent(new UIEvent( UIEventType.LABEL_CHANGE ) ) ;
+		dispatchEvent(new UIEvent( UIEvent.LABEL_CHANGE ) ) ;
 	}
 
 	function setMultiline(b : Boolean) : Void {

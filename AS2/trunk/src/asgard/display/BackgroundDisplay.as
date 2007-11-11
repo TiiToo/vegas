@@ -19,7 +19,18 @@
   
   Contributor(s) :
   
-*/
+ */
+
+
+
+
+
+
+
+
+
+
+
 
 import asgard.display.ConfigurableDisplayObject;
 
@@ -27,7 +38,6 @@ import pegas.draw.FillType;
 import pegas.draw.IPen;
 import pegas.draw.RectanglePen;
 import pegas.events.UIEvent;
-import pegas.events.UIEventType;
 import pegas.geom.Dimension;
 import pegas.geom.TransformMatrix;
 
@@ -314,7 +324,7 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	 */
 	public function initEvent():Void
 	{
-		_eResize = new UIEvent( UIEventType.RESIZE , this) ;
+		_eResize = new UIEvent( UIEvent.RESIZE , this) ;
 	}
 
 	/**

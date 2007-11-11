@@ -46,70 +46,120 @@ class asgard.system.EdenLocalizationLoader extends EdenLoader implements ILocali
 		super() ;
 	}
 
+	/**
+	 * The default prefix name of the localized files ("localize_").
+	 */
 	public static var DEFAULT_PREFIX:String = "localize_" ;
 
+	/**
+	 * The default suffix name of the localized files(".eden").
+	 */
 	public static var DEFAULT_SUFFIX:String = ".eden" ;
 
+	/**
+	 * Determinates the path of the localization files.
+	 */
 	public function get path():String 
 	{
 		return getPath() ;	
 	}
 	
+	/**
+	 * @private
+	 */
 	public function set path(s:String):Void 
 	{
 		setPath(s) ;	
 	}
 
+	/**
+	 * Determinates the prefix value of the localization files.
+	 */
 	public function get prefix():String 
 	{
 		return getPrefix() ;	
 	}
 	
+	/**
+	 * @private
+	 */
 	public function set prefix(s:String):Void 
 	{
 		setPrefix(s) ;	
 	}
 
+	/**
+	 * Determinates the suffix value of the localization files.
+	 */
 	public function get suffix():String 
 	{
 		return getSuffix() ;	
 	}
 	
+	/**
+	 * @private
+	 */
 	public function set suffix(s:String):Void 
 	{
 		setSuffix(s) ;	
 	}
 
+	/**
+	 * Returns the default Lang reference of the loader.
+	 * @return the default Lang reference of the loader.
+	 */
 	public function getDefault():Lang 
 	{
 		return Lang(_default) || null ;
 	}
 
+	/**
+	 * Returns the Locale object defines by the current passed-in Lang object.
+	 * @return the Locale object defines by the current passed-in Lang object.
+	 */
 	public function getLocalization(lang:Lang):Locale 
 	{
 		return Localization.getInstance().get(lang) ;
 	}
 
+	/**
+	 * Returns the path of the localization files.
+	 * @return the path of the localization files.
+	 */
 	public function getPath():String 
 	{
 		return _path || "" ;
 	}
-	
+
+	/**
+	 * Returns the prefix value of the localization files.
+	 * @return the prefix value of the localization files.
+	 */
 	public function getPrefix():String 
 	{
 		return (_prefix == null) ? DEFAULT_PREFIX : _prefix ;
 	}
 
+	/**
+	 * Returns the suffix value of the localization files.
+	 * @return the suffix value of the localization files.
+	 */
 	public function getSuffix():String 
 	{
 		return (_suffix == null) ? DEFAULT_SUFFIX : _suffix ;
 	}
-
+	
+	/**
+	 * Initialize the internal event of this loader.
+	 */
 	public function initEvent():Void 
 	{
 		_e = new LocalizationLoaderEvent( null, this );
 	}
 	
+	/**
+	 * Load the localize file data with the specified Lang argument.
+	 */
 	public function load( lang:Lang ):Void 
 	{
 		
@@ -125,29 +175,57 @@ class asgard.system.EdenLocalizationLoader extends EdenLoader implements ILocali
 		}
 	}
 
+	/**
+	 * Sets the default lang reference of this loader.
+	 */
 	public function setDefault( lang:String ):Void 
 	{
 		_default = (Lang.validate(lang)) ? lang : null ;
 	}
 
+	/**
+	 * Sets the path of the localization files.
+	 */
 	public function setPath( sPath:String ):Void 
 	{
 		_path = sPath || "" ;
 	}
 
+	/**
+	 * Sets the prefix value of the localization files.
+	 */
 	public function setPrefix( sPrefix:String ):Void 
 	{
 		_prefix = sPrefix || null ;
 	}
 
+	/**
+	 * Sets the suffix value of the localization files.
+	 */
 	public function setSuffix( sSuffix:String ):Void 
 	{
 		_suffix = sSuffix || null ;
 	}
 
+	/**
+	 * @private
+	 */
 	private var _default:String = null ;
+
+	/**
+	 * @private
+	 */
 	private var _path:String = null ;
+
+	/**
+	 * @private
+	 */
 	private var _prefix:String = null ;
+
+	/**
+	 * @private
+	 */
 	private var _suffix:String = null ;
+
 
 }

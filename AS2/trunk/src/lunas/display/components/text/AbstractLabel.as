@@ -25,7 +25,6 @@ import lunas.display.components.AbstractComponent;
 import lunas.display.components.ILabel;
 
 import pegas.events.UIEvent;
-import pegas.events.UIEventType;
 
 /**
  * This abstract class is the skeletal implementation of the {@code ILabel} interface.
@@ -156,7 +155,7 @@ class lunas.display.components.text.AbstractLabel extends AbstractComponent impl
 			viewLabelChanged() ;
 			update() ;
 		}
-		dispatchEvent(new UIEvent( UIEventType.LABEL_CHANGE ) ) ;
+		dispatchEvent(new UIEvent( UIEvent.LABEL_CHANGE ) ) ;
 	}
 	
 	public function setMultiline(b:Boolean):Void 

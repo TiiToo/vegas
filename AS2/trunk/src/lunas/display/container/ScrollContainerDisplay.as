@@ -19,7 +19,7 @@
   
   Contributor(s) :
   
-*/
+ */
 
 import asgard.display.Direction;
 
@@ -27,17 +27,16 @@ import lunas.display.container.ListContainerDisplay;
 
 import pegas.events.ActionEvent;
 import pegas.events.UIEvent;
-import pegas.events.UIEventType;
-import pegas.transitions.easing.Back;
 import pegas.transitions.Tween;
 import pegas.transitions.TweenEntry;
+import pegas.transitions.easing.Back;
 
 import vegas.events.Delegate;
 import vegas.events.EventListener;
 import vegas.util.MathsUtil;
 
 /**
- * This container can be scrolled.
+ * This container is a list and can be scrolled.
  * @author eKameleon
  */
 class lunas.display.container.ScrollContainerDisplay extends ListContainerDisplay 
@@ -60,7 +59,7 @@ class lunas.display.container.ScrollContainerDisplay extends ListContainerDispla
 	/**
 	 * The name of the event dispatched when the scroll change.
 	 */
-	public static var SCROLL:String = UIEventType.SCROLL ;
+	public static var SCROLL:String = UIEvent.SCROLL ;
 
 	/**
 	 * Returns the bottom scroll value.
@@ -124,12 +123,19 @@ class lunas.display.container.ScrollContainerDisplay extends ListContainerDispla
 		return c ;
 	}
 
+	/**
+	 * Reset the scroll effect and refresh the view.
+	 */
 	public function clearScroll():Void 
 	{ 
 		speedScroll(1) ; 
 		updateScroll() ;
 	}
-
+	
+	/**
+	 * Returns the bottom scroll value.
+	 * @return the bottom scroll value.
+	 */
 	public function getBottomScroll():Number 
 	{ 
 		return (getMaxscroll() > 1) ? (getScroll() + (_nChildCount -1)) : _nChildCount ;
@@ -214,10 +220,13 @@ class lunas.display.container.ScrollContainerDisplay extends ListContainerDispla
 		_clearTween() ;
 		if (fixScroll) speedScroll(1) ;
 	}
-
+	
+	/**
+	 * Update the scroll event.
+	 */
 	public function updateScroll():Void 
 	{
-		dispatchEvent( new UIEvent( UIEventType.SCROLL, this) ) ;
+		dispatchEvent( new UIEvent( UIEvent.SCROLL, this) ) ;
 	}
 	
 	private var _scroll:Number = 0 ;

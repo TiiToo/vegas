@@ -26,7 +26,6 @@ import asgard.display.Direction;
 import lunas.display.components.container.ScrollContainer;
 
 import pegas.events.MouseEvent;
-import pegas.events.MouseEventType;
 
 import vegas.events.Delegate;
 import vegas.events.TimerEvent;
@@ -49,9 +48,15 @@ class lunas.display.components.container.AutoScrollContainer extends ScrollConta
 		updateMouseEvent() ;
 	}
 	
-	public static var ROLLOUT:String = MouseEventType.ROLLOUT ;
+	/**
+	 * The name of the event invoked when the component is rollout.
+	 */
+	public static var ROLLOUT:String = MouseEvent.ROLLOUT ;
 
-	public static var ROLLOVER:String = MouseEventType.ROLLOVER ;
+	/**
+	 * The name of the event invoked when the component is rollover.
+	 */
+	public static var ROLLOVER:String = MouseEvent.ROLLOVER ;
 
 	/**
 	 * Returns {@code true} if the auto scroll is active.

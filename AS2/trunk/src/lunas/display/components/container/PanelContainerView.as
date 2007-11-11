@@ -24,7 +24,6 @@
 import lunas.display.components.container.PanelContainerController;
 
 import vegas.events.ModelChangedEvent;
-import vegas.events.ModelChangedEventType;
 import vegas.util.mvc.AbstractView;
 import vegas.util.mvc.IController;
 import vegas.util.mvc.IModel;
@@ -53,24 +52,24 @@ class lunas.display.components.container.PanelContainerView extends AbstractView
 		switch (eventName) 
 		{
 		
-			case ModelChangedEventType.ADD_ITEMS :
+			case ModelChangedEvent.ADD_ITEMS :
 			{
 
 				var index:Number = ev.index ;
 				if (!isNaN(index)) c.hideAt(index) ;
 				break ;
 			}	
-			case ModelChangedEventType.CLEAR_ITEMS :
+			case ModelChangedEvent.CLEAR_ITEMS :
 			{
 				c.removeItems(ev.removedItems) ;
 				break ;
 			}			
-			case ModelChangedEventType.REMOVE_ITEMS :
+			case ModelChangedEvent.REMOVE_ITEMS :
 			{
 				c.removeItems(ev.removedItems) ;
 				break ;
 			}	
-			case ModelChangedEventType.UPDATE_ITEMS : 
+			case ModelChangedEvent.UPDATE_ITEMS : 
 			{
 				break ;
 			}			

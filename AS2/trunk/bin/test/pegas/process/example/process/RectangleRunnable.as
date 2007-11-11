@@ -1,41 +1,21 @@
-﻿/* ---------- RectangleRunnable
-
-	AUTHOR
-
-		Name : RectangleRunnable
-		Package : example.process
-		Version : 1.0.0.0
-		Date :  2005-11-26
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : contact@ekameleon.net
-	
-----------  */	
-
+﻿
 import asgard.display.* ;
 
 import pegas.transitions.Tween ;
 import pegas.transitions.TweenEntry ;
 import pegas.transitions.easing.* ;
 
-
 import vegas.core.IRunnable ;
 import vegas.events.* ;
 
+class example.process.RectangleRunnable extends MovieClip implements IRunnable
+{
 
-class example.process.RectangleRunnable extends MovieClip implements IRunnable {
-
-	// ----o Author Properties
-
-	public static var className:String = "RectangleRunnable" ;
-	public static var classPackage:String = "example.process";
-	public static var version:String = "1.0.0.0";
-	public static var author:String = "ekameleon";
-	public static var link:String = "http://www.ekameleon.net" ;
-
-	// ----o Constructor
-	
-	public function RectangleRunnable() {
+	/**
+	 * Creates a new RectangleRunnable instance.
+	 */
+	public function RectangleRunnable() 
+	{
 		
 		Stage.align = StageAlign.TOP_LEFT ;
 		Stage.scaleMode = "noScale" ;
@@ -51,9 +31,10 @@ class example.process.RectangleRunnable extends MovieClip implements IRunnable {
 		draw() ;		
 	}
 	
-	// ----o Public Methods
+	public var onResize:Function ;
 
-	public function draw():Void {
+	public function draw():Void 
+	{
 		var w:Number = 20 ;
 		var h:Number = 20 ;
 		var color:Number = Math.round(Math.random() * 0xFFFFFF) ;
@@ -68,8 +49,10 @@ class example.process.RectangleRunnable extends MovieClip implements IRunnable {
 		endFill() ;
 	}
 	
-	public function run():Void {
-		_tw.tweenProvider = [
+	public function run():Void 
+	{
+		_tw.tweenProvider = 
+		[
 			new TweenEntry("_x", Bounce.easeOut, _x, Math.random()*Stage.width ) ,
 			new TweenEntry("_y", Back.easeOut, _y, Math.random()*Stage.height) ,
 			new TweenEntry("_rotation", Back.easeOut, _rotation, Math.random() * 360)
@@ -77,9 +60,6 @@ class example.process.RectangleRunnable extends MovieClip implements IRunnable {
 		_tw.run() ;
 	}
 
-	public var onResize:Function ;
-
-	// ----o Private Properties
 	
 	private var _tw:Tween ;
 	

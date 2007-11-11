@@ -346,18 +346,18 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	 */
 	public function setLoader( loader:ILocalizationLoader ):Void
 	{
+	
+		var l:AbstractCoreEventDispatcher = AbstractCoreEventDispatcher(_loader) ;
 		
-		if (_loader != null)
+		if (l != null)
 		{
-			AbstractCoreEventDispatcher(_loader).setParent( null ) ; // use bubbling
-		
-			AbstractCoreEventDispatcher(_loader).removeEventListener(LoaderEventType.COMPLETE, _complete) ;
-			AbstractCoreEventDispatcher(_loader).removeEventListener(LoaderEventType.INIT, _init) ;
-			AbstractCoreEventDispatcher(_loader).removeEventListener(LoaderEventType.PROGRESS, _progress) ;
-			AbstractCoreEventDispatcher(_loader).removeEventListener(LoaderEventType.START, _start) ;
-			AbstractCoreEventDispatcher(_loader).removeEventListener(LoaderEventType.IO_ERROR, _error) ;
-			AbstractCoreEventDispatcher(_loader).removeEventListener(LoaderEventType.TIMEOUT, _timeOut) ;
-			
+			l.setParent( null ) ; // use bubbling
+			l.removeEventListener(LoaderEventType.COMPLETE, _complete) ;
+			l.removeEventListener(LoaderEventType.INIT, _init) ;
+			l.removeEventListener(LoaderEventType.PROGRESS, _progress) ;
+			l.removeEventListener(LoaderEventType.START, _start) ;
+			l.removeEventListener(LoaderEventType.IO_ERROR, _error) ;
+			l.removeEventListener(LoaderEventType.TIMEOUT, _timeOut) ;
 		}
 		
 		if (loader == null)
@@ -367,17 +367,17 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 		
 		_loader = loader ;
 		
-		if (_loader != null)
-		{
+		l = AbstractCoreEventDispatcher(_loader) ;
 		
-			AbstractCoreEventDispatcher(_loader).setParent( getEventDispatcher() ) ; // use bubbling
-			
-			AbstractCoreEventDispatcher(_loader).addEventListener(LoaderEventType.COMPLETE, _complete) ;
-			AbstractCoreEventDispatcher(_loader).addEventListener(LoaderEventType.INIT, _init) ;
-			AbstractCoreEventDispatcher(_loader).addEventListener(LoaderEventType.PROGRESS, _progress) ;
-			AbstractCoreEventDispatcher(_loader).addEventListener(LoaderEventType.START, _start) ;
-			AbstractCoreEventDispatcher(_loader).addEventListener(LoaderEventType.IO_ERROR, _error) ;
-			AbstractCoreEventDispatcher(_loader).addEventListener(LoaderEventType.TIMEOUT, _timeOut) ;
+		if (l != null)
+		{
+			l.setParent( getEventDispatcher() ) ; // use bubbling
+			l.addEventListener(LoaderEventType.COMPLETE, _complete) ;
+			l.addEventListener(LoaderEventType.INIT, _init) ;
+			l.addEventListener(LoaderEventType.PROGRESS, _progress) ;
+			l.addEventListener(LoaderEventType.START, _start) ;
+			l.addEventListener(LoaderEventType.IO_ERROR, _error) ;
+			l.addEventListener(LoaderEventType.TIMEOUT, _timeOut) ;
 		}
 	}
 

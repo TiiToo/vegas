@@ -1,32 +1,31 @@
 ﻿/*
 
-  The contents of this file are subject to the Mozilla Public License Version
-  1.1 (the "License"); you may not use this file except in compliance with
-  the License. You may obtain a copy of the License at 
+The contents of this file are subject to the Mozilla Public License Version
+1.1 (the "License"); you may not use this file except in compliance with
+the License. You may obtain a copy of the License at 
   
-           http://www.mozilla.org/MPL/ 
+http://www.mozilla.org/MPL/ 
   
-  Software distributed under the License is distributed on an "AS IS" basis,
-  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
-  for the specific language governing rights and limitations under the License. 
+Software distributed under the License is distributed on an "AS IS" basis,
+WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+for the specific language governing rights and limitations under the License. 
   
-  The Original Code is LunAS Library.
+The Original Code is LunAS Library.
   
-  The Initial Developer of the Original Code is
-  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2006
-  the Initial Developer. All Rights Reserved.
+The Initial Developer of the Original Code is
+ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+Portions created by the Initial Developer are Copyright (C) 2004-2006
+the Initial Developer. All Rights Reserved.
   
-  Contributor(s) :
+Contributor(s) :
   
-*/
+ */
 
 import lunas.core.IStyle;
 import lunas.display.components.IBuilder;
 import lunas.events.StyleEvent;
 
 import pegas.events.UIEvent;
-import pegas.events.UIEventType;
 
 import vegas.core.HashCode;
 import vegas.core.IHashable;
@@ -56,35 +55,34 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	private function AbstractComponent() 
 	{ 
 		
-		_dispatcher = initEventDispatcher() ;
+		_dispatcher = initEventDispatcher( ) ;
 		
 		_focusrect = false ;
 		
-		_eAdded           = new UIEvent( UIEventType.ADDED, this) ;
-		_eChange          = new UIEvent( UIEventType.CHANGE, this) ;
-		_eDestroy         = new UIEvent( UIEventType.DESTROY, this) ;
-		_eEnabledChanged  = new UIEvent( UIEventType.ENABLED_CHANGE , this) ;
-		_eInit            = new UIEvent( UIEventType.INIT , this) ;
-		_eRemoved         = new UIEvent( UIEventType.REMOVED, this) ;
-		_eRender          = new UIEvent( UIEventType.RENDER, this) ;
-		_eResize          = new UIEvent( UIEventType.RESIZE , this) ;
-		_eStyleChange     = new UIEvent( UIEventType.STYLE_CHANGE, this) ;
+		_eAdded = new UIEvent( UIEvent.ADDED, this ) ;
+		_eChange = new UIEvent( UIEvent.CHANGE, this ) ;
+		_eDestroy = new UIEvent( UIEvent.DESTROY, this ) ;
+		_eEnabledChanged = new UIEvent( UIEvent.ENABLED_CHANGE, this ) ;
+		_eInit = new UIEvent( UIEvent.INIT, this ) ;
+		_eRemoved = new UIEvent( UIEvent.REMOVED, this ) ;
+		_eRender = new UIEvent( UIEvent.RENDER, this ) ;
+		_eResize = new UIEvent( UIEvent.RESIZE, this ) ;
+		_eStyleChange = new UIEvent( UIEvent.STYLE_CHANGE, this ) ;
 		
-		_listenerStyleChange = new Delegate(this, viewStyleChanged) ;
+		_listenerStyleChange = new Delegate( this, viewStyleChanged ) ;
 		
-		___timer___ = new FrameTimer(24, 1) ;
-		___timer___.addEventListener(TimerEvent.TIMER, new Delegate(this, _redraw)) ;
+		___timer___ = new FrameTimer( 24, 1 ) ;
+		___timer___.addEventListener( TimerEvent.TIMER, new Delegate( this, _redraw ) ) ;
 		
-		initialize() ;
+		initialize( ) ;
 		
-		var bF:Function = getBuilderRenderer() ; 
-		if (bF != null) setBuilder( (new bF(this)) ) ;
+		var bF:Function = getBuilderRenderer( ) ; 
+		if (bF != null) setBuilder( (new bF( this )) ) ;
 		
-		var sF:Function = getStyleRenderer() ;
-		if (sF != null) setStyle( (new sF()) ) ;
+		var sF:Function = getStyleRenderer( ) ;
+		if (sF != null) setStyle( (new sF( )) ) ;
 		
-		_dispatcher.dispatchEvent(_eInit) ;
-		
+		_dispatcher.dispatchEvent( _eInit ) ;
 	}
 
 	/**
@@ -93,7 +91,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function get enabled():Boolean 
 	{
-		return getEnabled() ;
+		return getEnabled( ) ;
 	}
 
 	/**
@@ -101,7 +99,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function set enabled( b:Boolean ):Void 
 	{
-		setEnabled(b) ;
+		setEnabled( b ) ;
 	}
 
 	/**
@@ -110,7 +108,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function get group():Boolean 
 	{
-		return getGroup() ;
+		return getGroup( ) ;
 	}
 
 	/**
@@ -118,7 +116,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function set group( b:Boolean ):Void 
 	{
-		setGroup(b) ;
+		setGroup( b ) ;
 	}
 
 	/**
@@ -127,7 +125,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function get groupName():String 
 	{
-		return getGroupName() ;
+		return getGroupName( ) ;
 	}
 
 	/**
@@ -145,7 +143,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function get h():Number 
 	{
-		return getH() ;	
+		return getH( ) ;	
 	}
 
 	/**
@@ -170,7 +168,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 * This property defined the maximum width of this component.
 	 */
 	public var maxWidth:Number ;
-	
+
 	/**
 	 * This property defined the maximum height of this component.
 	 */
@@ -182,9 +180,9 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function get style():IStyle 
 	{
-		return getStyle() ;
+		return getStyle( ) ;
 	}
-	
+
 	/**
 	 * Sets the style of this component.
 	 */
@@ -196,7 +194,9 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	/**
 	 * Specifies whether the movie clip is included in automatic tab ordering.
 	 */
-	public var tabEnabled:Boolean = false ; // not supposed to receive focus
+	public var tabEnabled:Boolean = false ; 
+	
+	// not supposed to receive focus
 	
 	/**
 	 * (read-only) Returns the virtual width value of this component.
@@ -204,9 +204,9 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function get w():Number 
 	{ 
-		return getW() ;	
+		return getW( ) ;	
 	}
-	
+
 	/**
 	 * (read-only) Sets the virtual width value of this component.
 	 */
@@ -225,7 +225,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function addEventListener( eventName:String, listener:EventListener, useCapture:Boolean, priority:Number, autoRemove:Boolean):Void 
 	{
-		_dispatcher.addEventListener.apply(_dispatcher, arguments);
+		_dispatcher.addEventListener.apply( _dispatcher, arguments );
 	}
 
 	/**
@@ -236,19 +236,19 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function addGlobalEventListener(listener:EventListener, priority:Number, autoRemove:Boolean):Void 
 	{
-		_dispatcher.addGlobalEventListener(listener, priority, autoRemove) ;
+		_dispatcher.addGlobalEventListener( listener, priority, autoRemove ) ;
 	}
-	
+
 	/**
 	 * Creates a child MovieClip, TextField or custom visual instance.
 	 * @see DisplayFactory
 	 */
 	public function createChild( oChild , name:String, depth:Number, oInit) 
 	{
-		var c:MovieClip = DisplayFactory.createChild( oChild, name, depth, this, oInit) ;
-		var ev:UIEvent = new UIEvent( UIEventType.CREATE, this) ;
+		var c:MovieClip = DisplayFactory.createChild( oChild, name, depth, this, oInit ) ;
+		var ev:UIEvent = new UIEvent( UIEvent.CREATE, this ) ;
 		ev.child = c ;
-		dispatchEvent(ev) ;
+		dispatchEvent( ev ) ;
 		return c ;
 	}
 
@@ -262,16 +262,16 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function dispatchEvent(event, isQueue:Boolean, target, context):Event 
 	{
-		return _dispatcher.dispatchEvent(event, isQueue, target, context) ;
+		return _dispatcher.dispatchEvent( event, isQueue, target, context ) ;
 	}
-	
+
 	/**
 	 * Launch an event with a delayed interval.
 	 */
 	public function doLater():Void 
 	{
 		if (___isLock___) return ;
-		___timer___.start() ;
+		___timer___.start( ) ;
 	}
 
 	/**
@@ -281,7 +281,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	{
 		// Draw the component.
 	}
-	
+
 	/**
 	 * Returns the IBuilder reference of this instance.
 	 */
@@ -297,7 +297,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	{
 		return null ; // override
 	}
-	
+
 	/**
 	 * Returns the internal EventDispatcher reference of this instance.
 	 */
@@ -311,7 +311,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function getEventListeners(eventName:String):EventListenerCollection 
 	{
-		return _dispatcher.getEventListeners(eventName) ;
+		return _dispatcher.getEventListeners( eventName ) ;
 	}
 
 	/**
@@ -319,7 +319,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function getGlobalEventListeners():EventListenerCollection 
 	{
-		return getGlobalEventListeners() ;
+		return getGlobalEventListeners( ) ;
 	}
 
 	/**
@@ -328,9 +328,9 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	function getRegisteredEventNames():Set 
 	{
-		return _dispatcher.getRegisteredEventNames() ;
+		return _dispatcher.getRegisteredEventNames( ) ;
 	}
-	
+
 	/**
 	 * Returns the internal EventDispatcher of this EventTarget.
 	 * @return the internal EventDispatcher of this EventTarget.
@@ -340,7 +340,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	{
 		return _dispatcher ;
 	}
-	
+
 	/**
 	 * Returns a Boolean value that indicates whether a movie clip is enabled. The default value of enabled is true. 
 	 * @return a Boolean value that indicates whether a movie clip is enabled. The default value of enabled is true.
@@ -349,7 +349,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	{ 
 		return _enabled ;
 	} 
-	
+
 	/**
 	 * Returns {@code true} if this component is grouped.
 	 * @return {@code true} if this component is grouped.
@@ -358,7 +358,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	{ 
 		return _group ;
 	}
-	
+
 	/**
 	 * Returns the name of the group of this component.
 	 * @return the name of the group of this component.
@@ -367,14 +367,14 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	{ 
 		return _groupName ;
 	}
-	
+
 	/**
 	 * (read-only) Returns the virtual height value of this component.
 	 * @return the virtual height value of this component.
 	 */
 	public function getH():Number 
 	{ 
-		return isNaN(_h) ? 0 : _h ;
+		return isNaN( _h ) ? 0 : _h ;
 	}
 
 	/**
@@ -392,7 +392,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	{
 		return null ; // override
 	}
-	
+
 	/**
 	 * Returns the style property from the style declaration or object.
 	 */
@@ -407,9 +407,9 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function getW():Number 
 	{ 
-		return isNaN(_w) ? 0 : _w ;
+		return isNaN( _w ) ? 0 : _w ;
 	}
-	
+
 	/**
 	 * Invoqued when the group property or the groupName property changed.
 	 * Overrides this method in concrete class.
@@ -434,7 +434,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */ 
 	public function hasEventListener(eventName:String):Boolean 
 	{
-		return _dispatcher.hasEventListener(eventName) ;
+		return _dispatcher.hasEventListener( eventName ) ;
 	}
 
 	/**
@@ -444,9 +444,9 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function initEventDispatcher():EventDispatcher 
 	{
-		return new EventDispatcher(this) ;
+		return new EventDispatcher( this ) ;
 	}
-	
+
 	/**
 	 * Returns {@code true} if the components is locked.
 	 * @return {@code true} if the components is locked.
@@ -455,7 +455,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	{
 		return ___isLock___ ;
 	}
-	
+
 	/**
 	 * Lock the component.
 	 */
@@ -479,7 +479,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	{
 		_eAdded.child = child ;
 		_eAdded.index = index ;
-		dispatchEvent(_eAdded ) ;
+		dispatchEvent( _eAdded ) ;
 	}
 
 	/**
@@ -487,7 +487,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function notifyChanged():Void 
 	{
-		dispatchEvent(_eChange) ;
+		dispatchEvent( _eChange ) ;
 	}
 
 	/**
@@ -495,7 +495,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function notifyRemoved():Void 
 	{
-		dispatchEvent(_eRemoved) ;
+		dispatchEvent( _eRemoved ) ;
 	}
 
 	/**
@@ -503,18 +503,18 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function notifyResized():Void 
 	{
-		viewResize() ;
-		dispatchEvent(_eResize) ;
+		viewResize( ) ;
+		dispatchEvent( _eResize ) ;
 	}
 
 	/**
 	 * Refresh the component with an object of initialization.
 	 * This method launch the update() method.
 	 */
-	public function refresh (oInit):Void 
+	public function refresh(oInit):Void 
 	{
 		for (var each:String in oInit) this[each] = oInit[each] ;
-		update() ;
+		update( ) ;
 	}
 
 	/** 
@@ -525,7 +525,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function removeEventListener(eventName:String, listener, useCapture:Boolean):EventListener 
 	{
-		return _dispatcher.removeEventListener(eventName, listener, useCapture) ;
+		return _dispatcher.removeEventListener( eventName, listener, useCapture ) ;
 	}
 
 	/** 
@@ -535,9 +535,9 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	 */
 	public function removeGlobalEventListener( listener ):EventListener 
 	{
-		return _dispatcher.removeGlobalEventListener(listener) ;
+		return _dispatcher.removeGlobalEventListener( listener ) ;
 	}
-	
+
 	/**
 	 * Sets the IBuilder instance use to create the view of the component.
 	 * @return {@code true} if the new IBuilder is not null.
@@ -546,15 +546,15 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	{
 		if (_builder) 
 		{
-			_builder.clear() ;
+			_builder.clear( ) ;
 		}
 		if (b == null) 
 		{
 			return false ;
 		}
 		_builder = b ;
-		_builder.setTarget(this) ;
-		_builder.run() ;
+		_builder.setTarget( this ) ;
+		_builder.run( ) ;
 		return true ;
 	}
 
@@ -565,8 +565,8 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	{
 		_enabled = (bool == true) ;
 		if (___isLock___) return ;
-		viewEnabled() ;
-		dispatchEvent(_eEnabledChanged) ;
+		viewEnabled( ) ;
+		dispatchEvent( _eEnabledChanged ) ;
 	}
 
 	/**
@@ -575,9 +575,9 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	public function setGroup(b:Boolean):Void 
 	{
 		_group = b ;
-		groupPolicyChanged() ;
+		groupPolicyChanged( ) ;
 	}
-	
+
 	/**
 	 * Sets the name of the group of this component.
 	 * @param sName the name of the group or null to unregister the component.
@@ -586,17 +586,17 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	{
 		_group = (sName != undefined) ;
 		_groupName = sName ;	
-		groupPolicyChanged() ;
+		groupPolicyChanged( ) ;
 	}
 
 	/**
 	 * Sets the virtual height value of the component.
 	 */
-	public function setH( n:Number ) : Void 
+	public function setH( n:Number ):Void 
 	{
-		_h = MathsUtil.clamp(n, minHeight, maxHeight) ;
-		notifyResized() ;
-		update() ;
+		_h = MathsUtil.clamp( n, minHeight, maxHeight ) ;
+		notifyResized( ) ;
+		update( ) ;
 	}
 
 	/**
@@ -610,42 +610,42 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	/**
 	 * Sets the virtuals width and height of the component.
 	 */
-	public function setSize(p_w:Number, p_h:Number) : Void 
+	public function setSize(p_w:Number, p_h:Number):Void 
 	{
-		_w = MathsUtil.clamp(p_w, minWidth, maxWidth) ; 
-		_h = MathsUtil.clamp(p_h, minHeight, maxHeight) ; 
-		notifyResized() ;
-		update() ;
+		_w = MathsUtil.clamp( p_w, minWidth, maxWidth ) ; 
+		_h = MathsUtil.clamp( p_h, minHeight, maxHeight ) ; 
+		notifyResized( ) ;
+		update( ) ;
 	}
-	
+
 	/**
 	 * Sets the style property on the style declaration or object.
 	 */
 	public function setStyle(s:IStyle):Void 
 	{
-		_unregisterStyle() ;
+		_unregisterStyle( ) ;
 		if (s == undefined) 
 		{
 			return ;
 		}
 		_style = s ; 
-		_registerStyle() ;
+		_registerStyle( ) ;
 		if (___isLock___) 
 		{
 			return ;
 		}
-		dispatchEvent(_eStyleChange) ;
-		update() ;
+		dispatchEvent( _eStyleChange ) ;
+		update( ) ;
 	}
-	
+
 	/**
 	 * Sets the virtual width value of the component.
 	 */
-	public function setW( n:Number ) : Void 
+	public function setW( n:Number ):Void 
 	{
-		_w = MathsUtil.clamp(n, minWidth, maxWidth) ; 
-		notifyResized() ;
-		update() ;
+		_w = MathsUtil.clamp( n, minWidth, maxWidth ) ; 
+		notifyResized( ) ;
+		update( ) ;
 	}
 
 	/**
@@ -665,15 +665,15 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 		{
 			return ;
 		}
-		draw() ;
+		draw( ) ;
 		if (_builder) 
 		{
-			_builder.update() ;
+			_builder.update( ) ;
 		}
-		viewChanged() ;
-		dispatchEvent(_eRender) ;
+		viewChanged( ) ;
+		dispatchEvent( _eRender ) ;
 	}
-	
+
 	/**
 	 * Invoqued after the draw method and when the IBuilder is updated.
 	 */
@@ -681,7 +681,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	{
 		// overrides
 	}
-	
+
 	/**
 	 * Invoqued when the component is destroyed with a removeMovieClip.
 	 * Overrides this method.
@@ -690,7 +690,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	{
 		// overrides
 	}	
-	
+
 	/**
 	 * Invoqued when the enabled property of the component change.
 	 * Overrides this method.
@@ -699,7 +699,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	{
 		// overrides
 	}
-	
+
 	/**
 	 * Invoqued when the component is resized.
 	 * Overrides this method.
@@ -708,7 +708,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	{
 		// overrides
 	}
-	
+
 	/**
 	 * Invoqued when the component IStyle changed.
 	 * Overrides this method.
@@ -717,7 +717,7 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	{
 		// overrides
 	}
-	
+
 	/**
 	 * Invoqued when the StyleSheet in the IStyle is changed.
 	 * Overrides this method.
@@ -728,78 +728,76 @@ class lunas.display.components.AbstractComponent extends MovieClip implements IE
 	}
 
 	private var _builder:IBuilder ;
-	
+
 	private var _enabled:Boolean = MovieClip.prototype.enabled ;
-	
+
 	private var _groupName:String ;
-	
+
 	private var _group:Boolean ;
-	
+
 	private var _h:Number ;
-	
+
 	private var ___isLock___:Boolean ;
-	
+
 	private var ___timer___:FrameTimer ;
-	
+
 	private var _dispatcher:EventDispatcher ;
-	
+
 	private var _style:IStyle ;
-	
+
 	private var _w:Number ;
 
 	private var _eAdded:UIEvent ;	
-	
+
 	private var _eChange:UIEvent ;
-	
+
 	private var _eDestroy:UIEvent ;
-	
+
 	private var _eEnabledChanged:UIEvent ;
-	
+
 	private var _eInit:UIEvent ;
-	
+
 	private var _eRemoved:UIEvent ;
-	
+
 	private var _eRender:UIEvent ;
-	
+
 	private var _eResize:UIEvent ;
-	
+
 	private var _eStyleChange:UIEvent ;
 
 	private var _listenerStyleChange:EventListener ;
-	
-	private static var _initHashCode:Boolean = HashCode.initialize(AbstractComponent.prototype) ;
+
+	private static var _initHashCode:Boolean = HashCode.initialize( AbstractComponent.prototype ) ;
 
 	private function _redraw(ev:TimerEvent):Void 
 	{
-		___timer___.stop() ;
-		update() ;
+		___timer___.stop( ) ;
+		update( ) ;
 	}
-	
+
 	private function _registerStyle():Void
 	{
 		if (_style != null)
 		{
-			_style.addEventListener(StyleEvent.STYLE_CHANGED, _listenerStyleChange) ;
-			_style.addEventListener(StyleEvent.STYLE_SHEET_CHANGED, _listenerStyleChange) ;
+			_style.addEventListener( StyleEvent.STYLE_CHANGED, _listenerStyleChange ) ;
+			_style.addEventListener( StyleEvent.STYLE_SHEET_CHANGED, _listenerStyleChange ) ;
 		}
 	}
-	
+
 	private function onUnload():Void 
 	{
 		if (___isLock___) return ;
-		viewDestroyed() ;
-		dispatchEvent(_eDestroy) ;
+		viewDestroyed( ) ;
+		dispatchEvent( _eDestroy ) ;
 	}
 
 	private function _unregisterStyle():Void
 	{
 		if ( _style != null ) 
 		{
-			_style.removeEventListener(StyleEvent.STYLE_CHANGED, _listenerStyleChange) ;
-			_style.removeEventListener(StyleEvent.STYLE_SHEET_CHANGED, _listenerStyleChange ) ;
+			_style.removeEventListener( StyleEvent.STYLE_CHANGED, _listenerStyleChange ) ;
+			_style.removeEventListener( StyleEvent.STYLE_SHEET_CHANGED, _listenerStyleChange ) ;
 			_style = null ;
 		}
-
 	}
-	
 }

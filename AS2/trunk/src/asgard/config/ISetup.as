@@ -33,19 +33,44 @@ import vegas.core.IRunnable;
  */
 interface asgard.config.ISetup extends IRunnable 
 {
-	
-	function getConfig():Config ;
 
+	/**
+	 * Returns the reference of the Config singleton.
+	 * @return the reference of the Config singleton.
+	 */
+	function getConfig():Config ;
+	
+	/**
+	 * Returns the reference of the ConfigLoader use by this object to load the configuration of the application.
+	 * @return the reference of the ConfigLoader use by this object to load the configuration of the application
+	 */
 	function getConfigLoader():ConfigLoader ;
 	
+	/**
+	 * Returns {@code true} if the object is running.
+	 * @return {@code true} if the object is running.
+	 */
 	function getRunning():Boolean ;
 
+
+	/**
+	 * Notify an UIEvent with the event type {@code UIEventType.CHANGE}.
+	 */
 	function notifyChange():Void ;
 
+	/**
+	 * Calls this method to release the object.
+	 */
 	function release():Void ;
-	
+
+	/**
+	 * Sets the loader of this object.
+	 */
 	function setLoader(sFileName:String, sPath:String, sSuffix:String):Void ;
 
+	/**
+	 * Update the object.
+	 */
 	function update():Void ;
 
 }

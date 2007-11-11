@@ -144,7 +144,10 @@ class asgard.events.RemotingEvent extends DynamicEvent
 	{
 		return _result ;	
 	}
-
+	
+	/**
+	 * Sets the fault object of the remoting process.
+	 */
 	public function setFault( oFault , methodName:String):Void 
 	{
 		_fault = oFault || null ;	
@@ -159,11 +162,17 @@ class asgard.events.RemotingEvent extends DynamicEvent
 		if (methodName) setMethodName( methodName ) ;
 	}
 	
+	/**
+	 * Sets the name of the remoting service's method.
+	 */
 	public function setMethodName( methodName:String ):Void 
 	{
 		_sMethodName = methodName || null  ;	
 	}
 	
+	/**
+	 * Sets the result of the remoting process.
+	 */
 	public function setResult( oResult , sMethodName:String ):Void 
 	{
 		_result = oResult ;
@@ -182,8 +191,12 @@ class asgard.events.RemotingEvent extends DynamicEvent
 	private var _sLevel:String ;
 	private var _sLine:String ;
 	private var _sMethodName:String ;
-
-	/*protected*/ private function _getParams():Array {
+	
+	/**
+	 * @private
+	 */
+	/*protected*/ private function _getParams():Array 
+	{
 		var ar:Array = super._getParams() ;
 		ar.splice(2, null, Serializer.toSource(_result)) ;
 		ar.splice(3, null, Serializer.toSource(_fault)) ;

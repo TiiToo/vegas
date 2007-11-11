@@ -25,7 +25,6 @@ import vegas.data.iterator.ArrayIterator;
 import vegas.data.iterator.Iterable;
 import vegas.data.iterator.Iterator;
 import vegas.events.ModelChangedEvent;
-import vegas.events.ModelChangedEventType;
 import vegas.util.ArrayUtil;
 import vegas.util.mvc.AbstractModel;
 
@@ -45,20 +44,20 @@ class lunas.display.components.container.ContainerModel extends AbstractModel im
 		
 		_model = (childs.length > 0) ? [].concat(childs) : [] ;
 		
-		_eAdd = new ModelChangedEvent(ModelChangedEventType.ADD_ITEMS, this) ;
-		_eClear = new ModelChangedEvent(ModelChangedEventType.CLEAR_ITEMS, this);
-		_eRemove = new ModelChangedEvent(ModelChangedEventType.REMOVE_ITEMS, this) ;
-		_eUpdate = new ModelChangedEvent(ModelChangedEventType.UPDATE_ITEMS, this) ;
+		_eAdd = new ModelChangedEvent(ModelChangedEvent.ADD_ITEMS, this) ;
+		_eClear = new ModelChangedEvent(ModelChangedEvent.CLEAR_ITEMS, this);
+		_eRemove = new ModelChangedEvent(ModelChangedEvent.REMOVE_ITEMS, this) ;
+		_eUpdate = new ModelChangedEvent(ModelChangedEvent.UPDATE_ITEMS, this) ;
 		
 	}
 	
-	public static var ADD_ITEMS:String = ModelChangedEventType.ADD_ITEMS ; 
+	public static var ADD_ITEMS:String = ModelChangedEvent.ADD_ITEMS ; 
 
-	public static var CLEAR_ITEMS:String = ModelChangedEventType.CLEAR_ITEMS ; 
+	public static var CLEAR_ITEMS:String = ModelChangedEvent.CLEAR_ITEMS ; 
 
-	public static var REMOVE_ITEMS:String = ModelChangedEventType.REMOVE_ITEMS ; 
+	public static var REMOVE_ITEMS:String = ModelChangedEvent.REMOVE_ITEMS ; 
 
-	public static var UPDATE_ITEMS:String = ModelChangedEventType.UPDATE_ITEMS ;
+	public static var UPDATE_ITEMS:String = ModelChangedEvent.UPDATE_ITEMS ;
 
 	public function addChild( oChild ) 
 	{

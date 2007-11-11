@@ -21,8 +21,6 @@
   
 */
 
-// TODO add logs and errors.
-
 import asgard.events.RemotingEvent;
 import asgard.net.remoting.RemotingAuthentification;
 import asgard.net.remoting.RemotingConnection;

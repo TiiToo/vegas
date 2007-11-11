@@ -28,7 +28,6 @@ import asgard.events.LoaderEvent;
 import asgard.net.LoaderListener;
 
 import pegas.events.UIEvent;
-import pegas.events.UIEventType;
 
 import vegas.events.Delegate;
 import vegas.events.EventDispatcher;
@@ -49,7 +48,7 @@ class asgard.config.AbstractSetup extends EventDispatcher implements ISetup, Loa
 	private function AbstractSetup( sFileName:String, sPath:String, sSuffix:String ) 
 	{
 
-		_eChange = new UIEvent( UIEventType.CHANGE ) ;
+		_eChange = new UIEvent( UIEvent.CHANGE ) ;
 	
 		_loader = new ConfigLoader() ;
 		_loader.addEventListener(LoaderEvent.COMPLETE, new Delegate(this, onLoadComplete)) ;

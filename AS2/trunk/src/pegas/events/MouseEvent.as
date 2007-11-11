@@ -133,7 +133,7 @@ class pegas.events.MouseEvent extends DynamicEvent
 	 * A positive delta value indicates an upward scroll.
 	 * A negative value indicates a downward scroll.
 	 * Typical values are 1 to 3, but faster scrolling may produce larger values.
-	 * This parameter is used only for the MouseEventType.mouseWheel event.
+	 * This parameter is used only for the MouseEvent.mouseWheel event.
 	 */
 	public var delta:Number = 0 ;
 

@@ -19,111 +19,19 @@
   
   Contributor(s) :
   
-*/
+ */
 
-/** EasyButton
 
-	AUTHOR
 
-		Name : EasyButton
-		Package : lunas.display.components.button
-		Version : 1.0.0.0
-		Date :  2006-02-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
 
-	PROPERTY SUMMARY
-
-		- index:Number
-		
-		- data:Object
-		
-		- label:String [R/W]
-		
-		- selected:Boolean [R/W]
-		
-		- toggle:Boolean [R/W]
-			
-
-	METHOD SUMMARY
-		
-		- getLabel():String
-		
-		- getSelected():Boolean
-		
-		- getToggle():Boolean
-
-		- setLabel(str:String):Void
-		
-		- setSelected(b:Boolean, noEvent:Boolean):Void
-		
-		- setToggle(b:Boolean):Void
-		
-		- viewLabelChanged():Void
-			override this method !
-
-	EVENT SUMMARY
-	
-		ButtonEvent
-		
-		- CLICK:MouseEventType
-		
-		- UP:ButtonEventType
-		
-		- DISABLED:ButtonEventType
-		
-		- DOUBLE_CLICK:MouseEventType
-		
-		- DOWN:ButtonEventType
-		
-		- ICON_CHANGE:ButtonEventType
-		
-		- LABEL_CHANGE:ButtonEventType
-		
-		- MOUSE_UP:MouseEventType
-		
-		- MOUSE_DOWN:MouseEventType
-		
-		- OUT:ButtonEventType
-		
-		- OUT_SELECTED:ButtonEventType
-		
-		- OVER:ButtonEventType
-		
-		- OVER_SELECTED:ButtonEventType
-		
-		- ROLLOUT:MouseEventType
-		
-		- ROLLOVER:MouseEventType
-		
-		- SELECT:ButtonEventType
-		
-		- UNSELECT:ButtonEventType
-		
-		- UP:ButtonEventType
-
-	IMPLEMENTS 
-	
-		IButton, EventTarget
-
-	INHERIT 
-	
-		MovieClip → AbstractComponent → AbstractButton → AbstractIconButton → EasyButton
-
-	SEE ALSO
-	
-		IBuilder, IButton, IStyle
-	
-	NB : il est possible de définir la largeur et la hauteur par défaut du bouton en passant directement
-	par les propriétés privées _h et _w définies dans les Private Properties de la classe.
-	
-**/
 
 import lunas.display.components.button.AbstractButton;
 import lunas.display.components.button.EasyButtonBuilder;
 import lunas.display.components.button.EasyButtonStyle;
 
+/**
+ * The EasyButton component class.
+ */
 class lunas.display.components.button.EasyButton extends AbstractButton 
 {
 

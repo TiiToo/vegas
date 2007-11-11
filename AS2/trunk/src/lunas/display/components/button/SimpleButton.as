@@ -24,7 +24,6 @@
 import lunas.display.components.button.AbstractButton;
 
 import pegas.events.ButtonEvent;
-import pegas.events.ButtonEventType;
 
 import vegas.events.Delegate;
 import vegas.events.EventListener;
@@ -104,7 +103,7 @@ class lunas.display.components.button.SimpleButton extends AbstractButton
 	 */
 	public function up( e:ButtonEvent ):Void 
 	{
-		getView().gotoAndStop(ButtonEventType.UP) ;
+		getView().gotoAndStop(ButtonEvent.UP) ;
 	}
 
 	private var _listenerDisabled:EventListener ;

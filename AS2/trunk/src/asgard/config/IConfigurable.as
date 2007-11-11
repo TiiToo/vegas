@@ -28,7 +28,10 @@
  */
 interface asgard.config.IConfigurable 
 {
-        
+
+	/**
+	 * Invoqued to setup the object.
+	 */ 
     public function setup():Void ;
     
 }

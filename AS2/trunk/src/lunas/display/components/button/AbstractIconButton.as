@@ -19,13 +19,12 @@
   
   Contributor(s) :
   
-*/
+ */
 
 import lunas.display.components.button.AbstractButton;
 
 import pegas.colors.ColorUtil;
 import pegas.events.ButtonEvent;
-import pegas.events.ButtonEventType;
 
 /**
  * @author eKameleon
@@ -95,7 +94,7 @@ class lunas.display.components.button.AbstractIconButton extends AbstractButton
 	{
 		_sIcon = str ; 
 		viewIconChanged() ;
-		dispatchEvent(new ButtonEvent( ButtonEventType.ICON_CHANGE )) ;
+		dispatchEvent(new ButtonEvent( ButtonEvent.ICON_CHANGE )) ;
 	}
 
 	/**	

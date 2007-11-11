@@ -19,14 +19,14 @@
   
   Contributor(s) :
   
-*/
+ */
 
 import asgard.display.Direction;
 
 import lunas.display.components.AbstractComponent;
 import lunas.display.components.IProgressbar;
 
-import pegas.events.UIEventType;
+import pegas.events.UIEvent;
 import pegas.maths.Range;
 
 /**
@@ -48,7 +48,7 @@ class lunas.display.components.bar.AbstractProgressbar extends AbstractComponent
 	/**
 	 * The name of the event dispatched when the component change.
 	 */
-	public static var CHANGE:String = UIEventType.CHANGE ;
+	public static var CHANGE:String = UIEvent.CHANGE ;
 	
 	/**
 	 * This flag indicates of the position is auto reset. 

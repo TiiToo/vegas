@@ -37,20 +37,44 @@ class asgard.events.SharedDataEventType extends String
 		super(s) ;
 	}
 
+	/**
+	 * The SharedData event type when is changed.
+	 */
 	public static var CHANGE:SharedDataEventType = new SharedDataEventType("onChanged") ;
 
+	/**
+	 * The SharedData event type when is cleared.
+	 */
 	public static var CLEAR:SharedDataEventType = new SharedDataEventType("onClear") ;
 	
+	/**
+	 * The SharedData event type when is closed.
+	 */
 	public static var CLOSE:SharedDataEventType = new SharedDataEventType("onClosed") ;
-	
+
+	/**
+	 * The SharedData event type when is deleted.
+	 */
 	public static var DELETE:SharedDataEventType = new SharedDataEventType("onDeleted") ;
 
+	/**
+	 * The SharedData event type when is fired.
+	 */
 	public static var FIRE:SharedDataEventType = new SharedDataEventType("onFired") ;
 	
+	/**
+	 * The SharedData event type when is rejected.
+	 */
 	public static var REJECT:SharedDataEventType = new SharedDataEventType("onRejected") ;
-	
+
+	/**
+	 * The SharedData event type when is succes.
+	 */
 	public static var SUCCESS:SharedDataEventType = new SharedDataEventType("onSuccess") ;
 
+	/**
+	 * The SharedData event type when is synchronised.
+	 */
 	public static var SYNCHRONISED:SharedDataEventType = new SharedDataEventType("onSynchronised") ;
 	
 	private static var __ASPF__ = _global.ASSetPropFlags(SharedDataEventType, null , 7, 7) ;

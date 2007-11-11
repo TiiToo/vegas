@@ -19,14 +19,23 @@
   
   Contributor(s) :
   
-*/
+ */
+
+
+
+
+
+
+
+
+
+
 
 import asgard.display.Direction;
 
 import lunas.display.container.ScrollContainerDisplay;
 
 import pegas.events.MouseEvent;
-import pegas.events.MouseEventType;
 
 import vegas.events.Delegate;
 import vegas.events.TimerEvent;
@@ -60,12 +69,12 @@ class lunas.display.container.AutoScrollContainerDisplay extends ScrollContainer
 	/**
 	 * The default event name dispatched when the container is rollout.
 	 */
-	public static var ROLLOUT:String = MouseEventType.ROLLOUT ;
+	public static var ROLLOUT:String = MouseEvent.ROLLOUT ;
 
 	/**
 	 * The default event name dispatched when the container is rollover.
 	 */
-	public static var ROLLOVER:String = MouseEventType.ROLLOVER ;
+	public static var ROLLOVER:String = MouseEvent.ROLLOVER ;
 
 	/**
 	 * Returns {@code true} if the auto scroll is active.

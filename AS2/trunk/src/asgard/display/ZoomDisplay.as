@@ -1,30 +1,29 @@
 ﻿/*
 
-  The contents of this file are subject to the Mozilla Public License Version
-  1.1 (the "License"); you may not use this file except in compliance with
-  the License. You may obtain a copy of the License at 
+The contents of this file are subject to the Mozilla Public License Version
+1.1 (the "License"); you may not use this file except in compliance with
+the License. You may obtain a copy of the License at 
   
-           http://www.mozilla.org/MPL/ 
+http://www.mozilla.org/MPL/ 
   
-  Software distributed under the License is distributed on an "AS IS" basis,
-  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
-  for the specific language governing rights and limitations under the License. 
+Software distributed under the License is distributed on an "AS IS" basis,
+WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+The Original Code is Vegas Framework.
   
-  The Initial Developer of the Original Code is
-  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2008
-  the Initial Developer. All Rights Reserved.
+The Initial Developer of the Original Code is
+ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+Portions created by the Initial Developer are Copyright (C) 2004-2008
+the Initial Developer. All Rights Reserved.
   
-  Contributor(s) :
+Contributor(s) :
   
 */
 
 import asgard.display.DisplayObject;
 
 import pegas.events.UIEvent;
-import pegas.events.UIEventType;
 import pegas.geom.Point;
 import pegas.geom.Rectangle;
 import pegas.maths.Range;
@@ -38,20 +37,20 @@ import vegas.events.Delegate;
  */
 class asgard.display.ZoomDisplay extends DisplayObject 
 {
-	
+
 	/**
 	 * Creates a new ZoomDisplay instance.
 	 */
-	public function ZoomDisplay(sName : String, target:MovieClip ) 
+	public function ZoomDisplay(sName:String, target:MovieClip ) 
 	{
 		
-		super(sName, target);
+		super( sName, target );
 		
-		_rScale = new Range(1, 150) ;
-		_recMask = new Rectangle(0, 0, 0, 0) ;
-		_offset = new Point() ;
+		_rScale = new Range( 1, 150 ) ;
+		_recMask = new Rectangle( 0, 0, 0, 0 ) ;
+		_offset = new Point( ) ;
 		
-		onMouseMove = Delegate.create(this , _refreshOffset) ;
+		onMouseMove = Delegate.create( this, _refreshOffset ) ;
 		
 		if (view.container != null && view.container instanceof MovieClip)
 		{
@@ -59,11 +58,10 @@ class asgard.display.ZoomDisplay extends DisplayObject
 		}
 		else
 		{
-			_container = createContainer() ;
+			_container = createContainer( ) ;
 		}
 		
-		initialize() ;
-		
+		initialize( ) ;
 	}
 
 	/**
@@ -82,7 +80,7 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	{
 		return 0 ;
 	}
-	
+
 	/**
 	 * (read-only) The default offset y when the container is initialize.
 	 * Overrides this method if you want change and return this value.
@@ -106,7 +104,7 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	public function set h( value:Number ):Void 
 	{
 		_h = value ;
-		update() ;	
+		update( ) ;	
 	}
 
 	/**
@@ -114,16 +112,16 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	 */
 	public function get maxScale():Number 
 	{ 
-		return getMaxScale() ; 
+		return getMaxScale( ) ; 
 	}
 
-
+	
 	/**
 	 * (read-only) Returns the min scale value.
 	 */
 	public function get minScale():Number 
 	{ 
-		return getMinScale() ; 
+		return getMinScale( ) ; 
 	}
 
 	/**
@@ -131,7 +129,7 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	 */
 	public function get offsetX():Number
 	{
-		return getOffsetX() ;
+		return getOffsetX( ) ;
 	}
 
 	/**
@@ -147,7 +145,7 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	 */
 	public function get offsetY():Number
 	{
-		return getOffsetY() ;
+		return getOffsetY( ) ;
 	}
 
 	/**
@@ -163,7 +161,7 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	 */
 	public function get scale():Number 
 	{
-		return getScale() ;	
+		return getScale( ) ;	
 	}
 
 	/**
@@ -171,7 +169,7 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	 */
 	public function set scale( value:Number ):Void 
 	{
-		setScale(value) ;	
+		setScale( value ) ;	
 	}
 
 	/**
@@ -188,7 +186,7 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	public function set w( value:Number ):Void 
 	{
 		_w = value ;
-		update() ;	
+		update( ) ;	
 	}
 
 	/**
@@ -197,7 +195,7 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	 */
 	public function createContainer():MovieClip
 	{
-		return view.createEmptyMovieClip("container", 1) ;
+		return view.createEmptyMovieClip( "container", 1 ) ;
 	}
 
 	/**
@@ -206,7 +204,7 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	 */
 	public function getCenter():Point
 	{
-		return _recMask.getCenter() ;	
+		return _recMask.getCenter( ) ;	
 	}
 
 	/**
@@ -232,7 +230,7 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	{ 
 		return _rScale.min ; 
 	}
-	
+
 	/**
 	 * Returns the offset x value of this display.
 	 */
@@ -240,7 +238,7 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	{
 		return _offset.x ;
 	}
-	
+
 	/**
 	 * Returns the offset y value of this display.
 	 */
@@ -248,7 +246,7 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	{
 		return _offset.y ;
 	}	
-	
+
 	/**
 	 * Returns the current scale value.
 	 */
@@ -259,7 +257,7 @@ class asgard.display.ZoomDisplay extends DisplayObject
 
 	public function getVisibleArea():Rectangle
 	{
-		return _recMask.clone() ;	
+		return _recMask.clone( ) ;	
 	}
 
 	/**
@@ -279,12 +277,11 @@ class asgard.display.ZoomDisplay extends DisplayObject
 		_container._x = defaultOffsetX ;
 		_container._y = defaultOffsetY ; 
 		
-		_refreshOffset() ;
+		_refreshOffset( ) ;
 		
-		update() ;
-		
+		update( ) ;
 	}
-	
+
 	/**
 	 * Returns {@code true} if the display is draggable.
 	 * @see registerDrag and unregisterDrag methods.
@@ -299,14 +296,14 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	 */
 	public function registerDrag():Void
 	{
-		if( ! _isDraggable  )
+		if( !_isDraggable  )
 		{
 			_isDraggable = true ;
-			view.onPress = Delegate.create(this, _startDrag) ;
-			view.onRelease = view.onReleaseOutside = Delegate.create(this, _stopDrag) ;
+			view.onPress = Delegate.create( this, _startDrag ) ;
+			view.onRelease = view.onReleaseOutside = Delegate.create( this, _stopDrag ) ;
 		}
 	}
-	
+
 	/**
 	 * Scale in the container.
 	 */
@@ -320,11 +317,11 @@ class asgard.display.ZoomDisplay extends DisplayObject
 
 		if (p == null) 
 		{
-			p = getCenter() ;	
+			p = getCenter( ) ;	
 		}
 
-		var p1:Point = new Point( p.x - _offset.x , p.y - _offset.y ) ;
-		var p2:Point = new Point( p1.x * _scaleStep , p1.y * _scaleStep ) ;
+		var p1:Point = new Point( p.x - _offset.x, p.y - _offset.y ) ;
+		var p2:Point = new Point( p1.x * _scaleStep, p1.y * _scaleStep ) ;
 		
 		_offset.x -= p2.x - p1.x ;
 		_offset.y -= p2.y - p1.y ;
@@ -335,12 +332,11 @@ class asgard.display.ZoomDisplay extends DisplayObject
 		_container._xscale = _scaleReference * ( _scale *= _scaleStep ) ;
 		_container._yscale = _container._xscale ;
 		
-		_boundPosition() ;
+		_boundPosition( ) ;
 		
-		dispatchEvent ( new UIEvent(UIEventType.CHANGE, this) ) ; // TODO : ScaleEvent
-		
+		dispatchEvent( new UIEvent( UIEvent.CHANGE, this ) ) ; // TODO : ScaleEvent
 	}
-	
+
 	/**
 	 * Scale out the container.
 	 */
@@ -354,11 +350,11 @@ class asgard.display.ZoomDisplay extends DisplayObject
 
 		if (p == null) 
 		{
-			p = getCenter() ;	
+			p = getCenter( ) ;	
 		}
 
-		var p1:Point = new Point( p.x - _offset.x , p.y - _offset.y  ) ;
-		var p2:Point = new Point( p1.x / _scaleStep , p1.y / _scaleStep ) ;
+		var p1:Point = new Point( p.x - _offset.x, p.y - _offset.y ) ;
+		var p2:Point = new Point( p1.x / _scaleStep, p1.y / _scaleStep ) ;
 		
 		_offset.x -= p2.x - p1.x  ;
 		_offset.y -= p2.y - p1.y ;
@@ -369,20 +365,19 @@ class asgard.display.ZoomDisplay extends DisplayObject
 		_container._xscale = _scaleReference * ( _scale /= _scaleStep ) ;
 		_container._yscale = _container._xscale ;
 		
-		_boundPosition() ;
+		_boundPosition( ) ;
 		
-		dispatchEvent ( new UIEvent(UIEventType.CHANGE, this) ) ; // TODO : ScaleEvent
-	
+		dispatchEvent( new UIEvent( UIEvent.CHANGE, this ) ) ; // TODO : ScaleEvent
 	}
 
-
+	
 	/**
 	 * Set the max scale value.
 	 */
 	public function setMaxScale(n:Number):Void 
 	{ 
-		_rScale.max = isNaN(n) ? 100 : n ;
-		setScale(_scale) ;
+		_rScale.max = isNaN( n ) ? 100 : n ;
+		setScale( _scale ) ;
 	}
 
 	/**
@@ -390,8 +385,8 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	 */
 	public function setMinScale(n:Number):Void 
 	{ 
-		_rScale.min = isNaN(n) ? 100 : n ;
-		setScale(_scale) ;
+		_rScale.min = isNaN( n ) ? 100 : n ;
+		setScale( _scale ) ;
 	}
 
 	/**
@@ -400,7 +395,7 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	public function setOffsetX( value:Number ):Void
 	{
 		_container._x = value ;
-		_boundPosition() ;
+		_boundPosition( ) ;
 		_offset.x = _container._x ;
 	}
 
@@ -410,7 +405,7 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	public function setOffsetY( value:Number ):Void
 	{
 		_container._y = value ;
-		_boundPosition() ;
+		_boundPosition( ) ;
 		_offset.y = _container._y ;
 	}
 
@@ -420,17 +415,17 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	public function setScale( value:Number, p:Point ):Void 
 	{
 
-		value = _rScale.clamp(value) ;
+		value = _rScale.clamp( value ) ;
 	
 		if (p == null) 
 		{
-			p = getCenter() ;	
+			p = getCenter( ) ;	
 		}
 	
 		var coef:Number = value / _scale ;
 		
-		var p1:Point = new Point( p.x - _offset.x , p.y - _offset.y ) ;
-		var p2:Point = new Point( p1.x * coef , p1.y * coef ) ;
+		var p1:Point = new Point( p.x - _offset.x, p.y - _offset.y ) ;
+		var p2:Point = new Point( p1.x * coef, p1.y * coef ) ;
 		
 		_offset.x -= p2.x - p1.x;
 		_offset.y -= p2.y - p1.y;
@@ -439,10 +434,9 @@ class asgard.display.ZoomDisplay extends DisplayObject
 		_container._xscale = _scaleReference * ( _scale *= coef ); 
 		_container._yscale = _container._xscale ;
 		
-		_boundPosition() ;
+		_boundPosition( ) ;
 		
-		dispatchEvent ( new UIEvent(UIEventType.CHANGE, this) ) ; // TODO : ScaleEvent
-		
+		dispatchEvent( new UIEvent( UIEvent.CHANGE, this ) ) ; // TODO : ScaleEvent
 	}
 
 	/**
@@ -454,29 +448,28 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	{
 		_w = w ;
 		_h = h ;
-		update() ;	
+		update( ) ;	
 	}
 
 	/**
 	 * Start to drag the view.
- 	 */
+	 */
 	public function startDrag( /*arguments*/ ):Void
 	{
-		_container.startDrag.apply(container, [].concat(arguments));
+		_container.startDrag.apply( container, [].concat( arguments ) );
 		
-		Mouse.addListener ( this ) ;
+		Mouse.addListener( this ) ;
 	}
 
 	/**
- 	 * Stop the drag.
- 	 */
+	 * Stop the drag.
+	 */
 	public function stopDrag():Void
 	{
 		
-		_container.stopDrag ();
+		_container.stopDrag( );
 		
-		Mouse.removeListener (this) ;
-		
+		Mouse.removeListener( this ) ;
 	}
 
 	/**
@@ -492,13 +485,13 @@ class asgard.display.ZoomDisplay extends DisplayObject
 			delete view.onReleaseOutside ;
 		}
 	}
-	
+
 	/**
 	 * Update the display.
 	 */
 	public function update():Void
 	{
-		if ( isNaN(_container._width) || _container._width == 0)
+		if ( isNaN( _container._width ) || _container._width == 0)
 		{
 			_recMask.width = _w ;
 		}
@@ -511,7 +504,7 @@ class asgard.display.ZoomDisplay extends DisplayObject
 			_recMask.width = _container._width ;	
 		}
 
-		if ( isNaN(_container._height) || _container._height == 0)
+		if ( isNaN( _container._height ) || _container._height == 0)
 		{
 			_recMask.height = _h ;
 		}
@@ -523,12 +516,11 @@ class asgard.display.ZoomDisplay extends DisplayObject
 		{
 			_recMask.height = _container._height ;	
 		}
-		view.scrollRect = _recMask.toFlash() ;
+		view.scrollRect = _recMask.toFlash( ) ;
 		
-		_boundPosition() ;
-		
+		_boundPosition( ) ;
 	}
-		
+
 	/**
 	 * The container movieclip.
 	 */
@@ -563,12 +555,12 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	 * The current range of the scale.
 	 */
 	private var _rScale:Range ;
-	 
+
 	/**
 	 * The current scale value.
 	 */
 	private var _scale:Number = 1 ;
-	
+
 	/**
 	 * The scale reference.
 	 */
@@ -606,18 +598,17 @@ class asgard.display.ZoomDisplay extends DisplayObject
 		{
 			_container._y = _recMask.y ;
 		}
-
 	}
-	
+
 	/**
 	 * Refresh the _offset when the container is drag.
 	 */
-	 private function _refreshOffset():Void
-	 {
-	 	_offset.x = _container._x ;
+	private function _refreshOffset():Void
+	{
+		_offset.x = _container._x ;
 		_offset.y = _container._y ;
-	 }
-	
+	}
+
 	/**
 	 * Activate the drag handler if the use press the container.
 	 * This method is avite only if the display is "isRegisterDrag".
@@ -626,9 +617,9 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	 */ 
 	private function _startDrag():Void
 	{
-		var $w:Number = - (_container._width - _recMask.width) ;
-		var $h:Number = - (_container._height - _recMask.height) ;
-		this.startDrag(false, 0, 0, $w, $h) ; 
+		var $w:Number = -(_container._width - _recMask.width) ;
+		var $h:Number = -(_container._height - _recMask.height) ;
+		this.startDrag( false, 0, 0, $w, $h ) ; 
 	}
 
 	/**
@@ -636,7 +627,6 @@ class asgard.display.ZoomDisplay extends DisplayObject
 	 */ 
 	private function _stopDrag():Void
 	{
-		this.stopDrag() ;	
+		this.stopDrag( ) ;	
 	}
-	
 }

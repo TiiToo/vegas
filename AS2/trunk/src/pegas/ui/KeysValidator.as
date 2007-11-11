@@ -19,13 +19,14 @@
   
   Contributor(s) :
   
-*/
+ */
+
+import pegas.events.ValidatorEvent;
 
 import vegas.core.IValidator;
 import vegas.data.iterator.Iterator;
 import vegas.data.set.HashSet;
 import vegas.events.AbstractCoreEventDispatcher;
-import vegas.events.ValidatorEvent;
 
 /**
  * Set a collection of keys to validate an action.

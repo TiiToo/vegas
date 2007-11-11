@@ -19,12 +19,10 @@
   
   Contributor(s) :
   
-*/
+ */
 
 import asgard.events.LoaderEvent;
 import asgard.net.ParserLoader;
-
-import pegas.events.UIEventType;
 
 /**
  * This event is used in the ConfigLoader class.
@@ -42,7 +40,10 @@ import pegas.events.UIEventType;
 		super(type, loader, p_code, p_error, context, bubbles, eventPhase, time, stop);
 	}
 	
-	public static var CHANGE:String = UIEventType.CHANGE ;
+	/**
+	 * The type name of this event when notify a change.
+	 */
+	public static var CHANGE:String = "change" ;
 	
 	/**
 	 * Returns a shallow copy of this object.

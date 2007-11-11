@@ -19,14 +19,13 @@
   
   Contributor(s) :
   
-*/
+ */
 
 import lunas.display.components.AbstractComponent;
 import lunas.display.components.IButton;
 import lunas.display.group.RadioButtonGroup;
 
 import pegas.events.ButtonEvent;
-import pegas.events.ButtonEventType;
 
 import vegas.events.EventListener;
 
@@ -144,12 +143,12 @@ class lunas.display.components.button.AbstractButton extends AbstractComponent i
 		if (group) 
 		{
 			_rg.addButton( this ) ;
-			addEventListener(ButtonEventType.DOWN, _rg) ;
+			addEventListener(ButtonEvent.DOWN, _rg) ;
 		}
 		else 
 		{
 			_rg.removeButton( this ) ;
-			removeEventListener(ButtonEventType.DOWN, _rg) ;
+			removeEventListener(ButtonEvent.DOWN, _rg) ;
 		}
 	}
 	
@@ -168,7 +167,7 @@ class lunas.display.components.button.AbstractButton extends AbstractComponent i
 	{
 		_label = str ; 
 		viewLabelChanged() ;
-		_fireButtonEvent(ButtonEventType.LABEL_CHANGE) ;
+		_fireButtonEvent(ButtonEvent.LABEL_CHANGE) ;
 	}
 
 	/**
@@ -178,10 +177,10 @@ class lunas.display.components.button.AbstractButton extends AbstractComponent i
 	public function setSelected (b:Boolean, noEvent:Boolean):Void 
 	{
 		_selected =  (_toggle)  ? b : null ;
-		_fireButtonEvent (_selected ? ButtonEventType.DOWN : ButtonEventType.UP ) ;
+		_fireButtonEvent (_selected ? ButtonEvent.DOWN : ButtonEvent.UP ) ;
 		if (!noEvent) 
 		{
-			_fireButtonEvent (_selected ? ButtonEventType.SELECT : ButtonEventType.UNSELECT) ;
+			_fireButtonEvent (_selected ? ButtonEvent.SELECT : ButtonEvent.UNSELECT) ;
 		}
 	}
 	
@@ -203,11 +202,11 @@ class lunas.display.components.button.AbstractButton extends AbstractComponent i
 		var type:String ;
 		if (enabled) 
 		{
-			type = (toggle && selected) ? ButtonEventType.DOWN : ButtonEventType.UP ;
+			type = (toggle && selected) ? ButtonEvent.DOWN : ButtonEvent.UP ;
 		}
 		else 
 		{
-			type = ButtonEventType.DISABLED ;
+			type = ButtonEvent.DISABLED ;
 		}
 		_fireButtonEvent( type ) ;
 	}
@@ -247,19 +246,19 @@ class lunas.display.components.button.AbstractButton extends AbstractComponent i
 		}
 		else 
 		{
-			_fireButtonEvent(ButtonEventType.DOWN) ;
+			_fireButtonEvent(ButtonEvent.DOWN) ;
 		}
-		_fireButtonEvent(ButtonEventType.CLICK) ;
-		_fireButtonEvent(ButtonEventType.MOUSE_DOWN) ;
+		_fireButtonEvent(ButtonEvent.CLICK) ;
+		_fireButtonEvent(ButtonEvent.MOUSE_DOWN) ;
 	}
 
 	private function onRelease():Void 
 	{ 
 		if ( !_toggle ) 
 		{
-			_fireButtonEvent(ButtonEventType.UP) ;
+			_fireButtonEvent(ButtonEvent.UP) ;
 		}
-		_fireButtonEvent(ButtonEventType.MOUSE_UP) ;
+		_fireButtonEvent(ButtonEvent.MOUSE_UP) ;
 	}
 	
 	private var onReleaseOutside:Function = AbstractButton.prototype.onRelease ;
@@ -268,27 +267,27 @@ class lunas.display.components.button.AbstractButton extends AbstractComponent i
 	{
 		if ( !_toggle || !_selected ) 
 		{
-			_fireButtonEvent(ButtonEventType.UP) ;
-			_fireButtonEvent(ButtonEventType.OUT) ;
+			_fireButtonEvent(ButtonEvent.UP) ;
+			_fireButtonEvent(ButtonEvent.OUT) ;
 		}
 		else if (_selected)
 		{
-			_fireButtonEvent(ButtonEventType.OUT_SELECTED) ;
+			_fireButtonEvent(ButtonEvent.OUT_SELECTED) ;
 		}
-		_fireButtonEvent(ButtonEventType.ROLLOUT) ;
+		_fireButtonEvent(ButtonEvent.ROLLOUT) ;
 	}
 
 	private function onRollOver():Void 
 	{
 		if ( !_toggle || !_selected ) 
 		{
-			_fireButtonEvent(ButtonEventType.OVER) ;
+			_fireButtonEvent(ButtonEvent.OVER) ;
 		}
 		else if (_selected) 
 		{
-			_fireButtonEvent(ButtonEventType.OVER_SELECTED) ;
+			_fireButtonEvent(ButtonEvent.OVER_SELECTED) ;
 		}
-		_fireButtonEvent(ButtonEventType.ROLLOVER) ;
+		_fireButtonEvent(ButtonEvent.ROLLOVER) ;
 	}	
 	
 }

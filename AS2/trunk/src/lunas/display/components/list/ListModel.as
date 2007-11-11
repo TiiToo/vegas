@@ -27,7 +27,6 @@ import vegas.data.iterator.ArrayIterator;
 import vegas.data.iterator.Iterable;
 import vegas.data.iterator.Iterator;
 import vegas.events.ModelChangedEvent;
-import vegas.events.ModelChangedEventType;
 import vegas.util.ArrayUtil;
 import vegas.util.mvc.AbstractModel;
 
@@ -46,10 +45,10 @@ class lunas.display.components.list.ListModel extends AbstractModel implements I
 		_model = [] ;
 	}
 
-	public static var ADD_ITEMS:String = ModelChangedEventType.ADD_ITEMS ; 
-	public static var CLEAR_ITEMS:String = ModelChangedEventType.CLEAR_ITEMS ; 
-	public static var REMOVE_ITEMS:String = ModelChangedEventType.REMOVE_ITEMS ; 
-	public static var UPDATE_ITEMS:String = ModelChangedEventType.UPDATE_ITEMS ;
+	public static var ADD_ITEMS:String = ModelChangedEvent.ADD_ITEMS ; 
+	public static var CLEAR_ITEMS:String = ModelChangedEvent.CLEAR_ITEMS ; 
+	public static var REMOVE_ITEMS:String = ModelChangedEvent.REMOVE_ITEMS ; 
+	public static var UPDATE_ITEMS:String = ModelChangedEvent.UPDATE_ITEMS ;
 
 	private static var __ASPF__ = _global.ASSetPropFlags(ListModel, null , 7, 7) ;
 
@@ -81,7 +80,7 @@ class lunas.display.components.list.ListModel extends AbstractModel implements I
 			_model.splice(index, 0, oItem) ;
 		}
 		
-		var ev:ModelChangedEvent = new ModelChangedEvent(ModelChangedEventType.ADD_ITEMS, this) ;
+		var ev:ModelChangedEvent = new ModelChangedEvent(ModelChangedEvent.ADD_ITEMS, this) ;
 		ev.index = index ;
 		notifyChanged( ev ) ;
 		return oItem ;
@@ -90,7 +89,7 @@ class lunas.display.components.list.ListModel extends AbstractModel implements I
 	
 	public function clear():Void 
 	{
-		var e:ModelChangedEvent = new ModelChangedEvent(ModelChangedEventType.CLEAR_ITEMS, this);
+		var e:ModelChangedEvent = new ModelChangedEvent(ModelChangedEvent.CLEAR_ITEMS, this);
 		e.removedItems = _model.splice(0) ;
 		notifyChanged(e) ;
 	}
@@ -103,7 +102,7 @@ class lunas.display.components.list.ListModel extends AbstractModel implements I
 	public function editField(index:Number, fieldName:String, newData):Void 
 	{
 		_model.getItemAt(index)[fieldName] = newData ;
-		var ev:ModelChangedEvent = new ModelChangedEvent(ModelChangedEventType.UPDATE_FIELD, this) ;
+		var ev:ModelChangedEvent = new ModelChangedEvent(ModelChangedEvent.UPDATE_FIELD, this) ;
 		ev.index = index ;
 		ev.fieldName = fieldName ;
 		ev.data = newData ;
@@ -172,7 +171,7 @@ class lunas.display.components.list.ListModel extends AbstractModel implements I
 	public function removeItemsAt(index:Number, len:Number):Array 
 	{
 		var oldItems = _model.splice(index, len) ;
-		var ev:ModelChangedEvent = new ModelChangedEvent(ModelChangedEventType.REMOVE_ITEMS, this) ;
+		var ev:ModelChangedEvent = new ModelChangedEvent(ModelChangedEvent.REMOVE_ITEMS, this) ;
 		ev.firstItem = index ;
 		ev.lastItem = index + len - 1 ;
 		ev.removedItems = [].concat(oldItems) ;
@@ -198,7 +197,7 @@ class lunas.display.components.list.ListModel extends AbstractModel implements I
 			var tmp = oItem ;
 			_model.splice(id, 1) ;
 			_model.splice(index, 0, tmp) ;
-			notifyChanged(new ModelChangedEvent(ModelChangedEventType.UPDATE_ITEMS, this)) ;
+			notifyChanged(new ModelChangedEvent(ModelChangedEvent.UPDATE_ITEMS, this)) ;
 		}
 	}
 	
@@ -216,7 +215,7 @@ class lunas.display.components.list.ListModel extends AbstractModel implements I
 	public function sortItems(compareFunc:Function, options:Number):Void 
 	{
 		_model.sort(compareFunc, options) ;
-		notifyChanged(new ModelChangedEvent(ModelChangedEventType.SORT_ITEMS, this)) ;
+		notifyChanged(new ModelChangedEvent(ModelChangedEvent.SORT_ITEMS, this)) ;
 	}
 
 	/**
@@ -226,7 +225,7 @@ class lunas.display.components.list.ListModel extends AbstractModel implements I
 	public function sortItemsBy( fieldNames , options ):Void 
 	{
 		_model.sortOn( fieldNames, options ) ;
-		notifyChanged(new ModelChangedEvent(ModelChangedEventType.SORT_ITEMS, this)) ;
+		notifyChanged(new ModelChangedEvent(ModelChangedEvent.SORT_ITEMS, this)) ;
 	}
 	
 	/**

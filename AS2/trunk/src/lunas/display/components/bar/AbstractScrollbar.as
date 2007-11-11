@@ -27,7 +27,6 @@ import lunas.display.components.bar.AbstractProgressbar;
 import lunas.display.components.IScrollbar;
 
 import pegas.events.ButtonEvent;
-import pegas.events.ButtonEventType;
 import pegas.transitions.easing.Expo;
 import pegas.transitions.Tween;
 
@@ -45,26 +44,26 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 	 */
 	private function AbstractScrollbar() 
 	{
-		_eDrag      = new ButtonEvent(ButtonEventType.DRAG, this) ;
-		_eStartDrag = new ButtonEvent(ButtonEventType.START_DRAG, this) ;
-		_eStopDrag  = new ButtonEvent(ButtonEventType.STOP_DRAG, this) ;
+		_eDrag      = new ButtonEvent(ButtonEvent.DRAG, this) ;
+		_eStartDrag = new ButtonEvent(ButtonEvent.START_DRAG, this) ;
+		_eStopDrag  = new ButtonEvent(ButtonEvent.STOP_DRAG, this) ;
 		_nDirection = Direction.VERTICAL ;
 	}
 
 	/**
 	 * The name of the event when the user drag the scrollbar.
 	 */
-	public static var DRAG:String = ButtonEventType.DRAG ;
+	public static var DRAG:String = ButtonEvent.DRAG ;
 
 	/**
 	 * The name of the event when the user start to drag the scrollbar.
 	 */
-	public static var START_DRAG:String = ButtonEventType.START_DRAG ;
+	public static var START_DRAG:String = ButtonEvent.START_DRAG ;
 
 	/**
 	 * The name of the event when the user stop to drag the scrollbar.
 	 */
-	public static var STOP_DRAG:String = ButtonEventType.STOP_DRAG ;
+	public static var STOP_DRAG:String = ButtonEvent.STOP_DRAG ;
 
 	/**
 	 * Indicates the duration of the easing effect if is active.

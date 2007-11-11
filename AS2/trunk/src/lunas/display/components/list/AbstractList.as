@@ -27,7 +27,6 @@ import lunas.display.components.list.ListModel;
 import lunas.display.group.RadioButtonGroup;
 
 import pegas.events.UIEvent;
-import pegas.events.UIEventType;
 
 import vegas.data.iterator.Iterable;
 import vegas.data.iterator.Iterator;
@@ -247,7 +246,7 @@ class lunas.display.components.list.AbstractList extends AbstractComponent imple
 	public function initialize():Void 
 	{
 		_groupName = ConstructorUtil.getName(this) + "_group"  + hashCode() ;
-		_eScroll = new UIEvent( UIEventType.SCROLL, this) ;
+		_eScroll = new UIEvent( UIEvent.SCROLL, this) ;
 		_oModel = new ListModel() ;
 	}
 

@@ -19,7 +19,9 @@
   
   Contributor(s) :
   
- */import vegas.core.CoreObject;
+ */
+ 
+import vegas.core.CoreObject;
 import vegas.core.IComparable;
 import vegas.core.IEquality;
 import vegas.core.ISerializable;

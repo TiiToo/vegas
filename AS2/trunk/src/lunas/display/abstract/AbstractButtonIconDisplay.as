@@ -26,7 +26,6 @@ import lunas.display.abstract.AbstractButtonDisplay;
 
 import pegas.colors.ColorUtil;
 import pegas.events.ButtonEvent;
-import pegas.events.ButtonEventType;
 
 /**
  * This abstract class determinates the skeletal implementation to implement an icon button displays.
@@ -164,7 +163,7 @@ class lunas.display.abstract.AbstractButtonIconDisplay extends AbstractButtonDis
 	{
 		_sIcon = str ; 
 		viewIconChanged() ;
-		dispatchEvent(new ButtonEvent( ButtonEventType.ICON_CHANGE )) ;
+		dispatchEvent(new ButtonEvent( ButtonEvent.ICON_CHANGE )) ;
 	}
 
 	/**	

@@ -19,12 +19,14 @@
   
   Contributor(s) :
   
- */import lunas.display.components.AbstractBuilder;
+ */
+
+import lunas.display.components.AbstractBuilder;
 import lunas.display.components.button.EasyButton;
 import lunas.display.components.button.EasyButtonStyle;
 
 import pegas.draw.RectanglePen;
-import pegas.events.ButtonEventType;
+import pegas.events.ButtonEvent;
 
 import vegas.events.Delegate;
 import vegas.events.EventTarget;
@@ -38,10 +40,10 @@ class lunas.display.components.button.EasyButtonBuilder extends AbstractBuilder
 	private function EasyButtonBuilder( mc:MovieClip ) 
 	{
 		super(mc) ;
-		EventTarget(target).addEventListener(ButtonEventType.DISABLED, new Delegate(this, disabled)) ;
-		EventTarget(target).addEventListener(ButtonEventType.DOWN, new Delegate(this, down)) ;
-		EventTarget(target).addEventListener(ButtonEventType.OVER, new Delegate(this, over)) ;
-		EventTarget(target).addEventListener(ButtonEventType.UP, new Delegate(this, up)) ;
+		EventTarget(target).addEventListener(ButtonEvent.DISABLED, new Delegate(this, disabled)) ;
+		EventTarget(target).addEventListener(ButtonEvent.DOWN, new Delegate(this, down)) ;
+		EventTarget(target).addEventListener(ButtonEvent.OVER, new Delegate(this, over)) ;
+		EventTarget(target).addEventListener(ButtonEvent.UP, new Delegate(this, up)) ;
 	}
 
 	public var background:MovieClip ;

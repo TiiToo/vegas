@@ -19,14 +19,13 @@
   
   Contributor(s) :
   
-*/
+ */
 
 import asgard.display.ScrollPolicy;
 
 import lunas.display.components.text.AbstractLabel;
 
 import pegas.events.UIEvent;
-import pegas.events.UIEventType;
 
 import vegas.events.Delegate;
 
@@ -173,7 +172,7 @@ class lunas.display.components.text.AbstractTextArea extends AbstractLabel
 
 	public function notifyScroll():Void 
 	{
-		dispatchEvent( new UIEvent (UIEventType.SCROLL) ) ;
+		dispatchEvent( new UIEvent ( UIEvent.SCROLL , this ) ) ;
 	}
 
 	public function setEditable(b:Boolean):Void

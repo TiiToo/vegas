@@ -24,7 +24,6 @@
 import lunas.display.abstract.AbstractButtonDisplay;
 
 import pegas.events.ButtonEvent;
-import pegas.events.ButtonEventType;
 
 import vegas.events.Delegate;
 import vegas.events.EventListener;
@@ -73,7 +72,7 @@ class lunas.display.button.SimpleButtonDisplay extends AbstractButtonDisplay
 	 */
 	public function disabled( e:ButtonEvent ): Void 
 	{
-		getView().gotoAndStop(ButtonEventType.DISABLED) ;
+		getView().gotoAndStop(ButtonEvent.DISABLED) ;
 	}	
 	
 	/**
@@ -81,7 +80,7 @@ class lunas.display.button.SimpleButtonDisplay extends AbstractButtonDisplay
 	 */
 	public function down( e:ButtonEvent ): Void 
 	{
-		getView().gotoAndStop(ButtonEventType.DOWN) ;
+		getView().gotoAndStop(ButtonEvent.DOWN) ;
 	}
 
 	/**
@@ -98,7 +97,7 @@ class lunas.display.button.SimpleButtonDisplay extends AbstractButtonDisplay
 	 */
 	public function over( e:ButtonEvent ):Void 
 	{
-		getView().gotoAndStop(ButtonEventType.OVER) ;
+		getView().gotoAndStop(ButtonEvent.OVER) ;
 	}
 
 	/**
@@ -106,7 +105,7 @@ class lunas.display.button.SimpleButtonDisplay extends AbstractButtonDisplay
 	 */
 	public function up( e:ButtonEvent ):Void 
 	{
-		getView().gotoAndStop(ButtonEventType.UP) ;
+		getView().gotoAndStop(ButtonEvent.UP) ;
 	}
 
 	private var _listenerDisabled:EventListener ;
