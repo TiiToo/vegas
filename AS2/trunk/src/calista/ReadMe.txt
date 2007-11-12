@@ -9,14 +9,13 @@
 
    PROJECT PAGES
 
+	- http://code.google.com/p/calista/
 	- http://code.google.com/p/vegas/
-	- http://osflash.org/asgard
-	- http://vegas.riaforge.org/
 
    DOCUMENTATION & CO
 
-    - http://code.google.com/p/vegas/ (tutorials and install)
-    - http://code.google.com/p/vegas/issues/list (issues)
+    - http://code.google.com/p/calista/ (tutorials and install)
+    - http://code.google.com/p/calista/issues/list (issues)
     - http://www.ekameleon.net/blog/ (french blog)
     - http://vegas.ekameleon.net/docs (AS2 reference)
 
