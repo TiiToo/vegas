@@ -19,14 +19,13 @@
   
   Contributor(s) :
   
-*/
+ */
 
 import lunas.display.components.list.AbstractListController;
 import lunas.display.components.list.EasyList;
 import lunas.display.components.list.ListModel;
 import lunas.display.group.RadioButtonGroup;
 import lunas.events.CellEvent;
-import lunas.events.CellEventType;
 
 import vegas.events.Delegate;
 import vegas.events.Event;
@@ -52,9 +51,9 @@ class lunas.display.components.list.EasyListController extends AbstractListContr
 		var view_mc:MovieClip = getView().getViewContainer() ;
 		var container:MovieClip = view_mc.getContainer() ;
 		var mI = container.addChildAt( view_mc.cellRenderer , index) ; // ici utiliser interface ICell
-		mI.addEventListener(CellEventType.DOWN, new Delegate(this, viewSelect)) ;
-		mI.addEventListener(CellEventType.ROLLOVER, new Delegate(this, viewRollOver)) ;
-		mI.addEventListener(CellEventType.ROLLOUT, new Delegate(this, viewRollOut)) ;
+		mI.addEventListener(CellEvent.DOWN, new Delegate(this, viewSelect)) ;
+		mI.addEventListener(CellEvent.ROLLOVER, new Delegate(this, viewRollOver)) ;
+		mI.addEventListener(CellEvent.ROLLOUT, new Delegate(this, viewRollOut)) ;
 		mI.index = index ;
 		mI.setCellIndex(index) ;
 		mI.setW(view_mc.getRowWidth()) ;
