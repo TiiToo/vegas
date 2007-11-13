@@ -35,7 +35,12 @@ import vegas.logging.targets.LineFormattedTarget;
  * import vegas.logging.LogEventLevel ;
  * import vegas.logging.targets.TextFieldTarget ;
  * 
- * var fied:TextField = createTextField("field", 1000, 10, 10, 300, 300 ) ;
+ * var field:TextField = createTextField("field", 1000, 10, 10, 650, 400 ) ;
+ * field.setNewTextFormat( new TextFormat("Courier New", 11) ) ;
+ * field.background = true ;
+ * field.backgroundColor = 0xFFFFFF ;
+ * field.border = true ;
+ * field.borderColor = 0x999999 ;
  * 
  * // setup writer 
  * var fieldTarget:TextFieldTarget = new TextFieldTarget() ;
@@ -87,8 +92,9 @@ class vegas.logging.targets.TextFieldTarget extends LineFormattedTarget
 	 */
 	public /*override*/ function internalLog( message , level:Number ):Void
 	{
-		message = message + "\r" ;
-		field.text = message ;
+		var txt:String = field.text || "" ;
+		txt += message + "\r" ;
+		field.text   = txt ;
 		field.scroll = field.maxscroll ;
 	}
 	
