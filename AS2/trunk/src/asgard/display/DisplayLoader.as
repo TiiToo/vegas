@@ -203,7 +203,6 @@ class asgard.display.DisplayLoader extends AbstractLoader
 			else 
 			{
 				_isCollected = false ;
-				// TODO créer une erreur.
 				notifyError( this + " can't be collected to [DisplayCollector] with '" + _sName + "' name. This name already exists." ) ;
 			}
 		}

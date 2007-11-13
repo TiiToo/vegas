@@ -21,86 +21,35 @@
   
 */
 
-/** RectangleComponent
-
-	AUTHOR
-		
-		Name : RectangleComponent
-		Package : lunas.display.components.shape
-		Version : 1.0.0.0
-		Date :  2006-01-06
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-	
-		- fa:Number
-		
-			fill alpha
-		
-		- fc:Number
-		
-			fill color
-		
-		- la:Number
-		
-			line alpha
-		
-		- lc:Number
-		
-			line color
-		
-		- t:Number 
-			
-			thickness
-	
-	METHOD SUMMARY
-
-		- draw():Void
-		
-		- getAlign():String
-		
-		- getMinMax():Object
-		
-		- initDraw():Void
-		
-		- setAlign(str:String):Void
-
-	INHERIT
-	
-		Object 
-			|
-			AbstractComponent
-				|
-				RectangleComponent
-
-	TODO : AlignType class !!!
-
-**/
-
 import lunas.display.components.AbstractComponent;
 
-class lunas.display.components.shape.RectangleComponent extends AbstractComponent {
+class lunas.display.components.shape.RectangleComponent extends AbstractComponent 
+{
 
-	// ----o Constructor
-
-	public function RectangleComponent () {
+	/**
+	 * Creates a new RectangleComponent instance.
+	 */
+	public function RectangleComponent () 
+	{
 		super() ; 
 		update() ;
 	}
 
-	// ----o Public  Properties
-
 	public var t : Number = 1 ;
+
 	public var lc : Number = 0x000000 ;
+
 	public var la : Number = 100 ;
+
 	public var fc : Number = null ;
+
 	public var fa : Number = null ;
 
-	// ----o Public Methods
-
-	public function draw():Void {
+	/**
+	 * Draw the component.
+	 */
+	public function draw():Void 
+	{
 		initDraw() ;
 		moveTo (__min__.x, __min__.y) ;
 		lineTo (__max__.x, __min__.y);
@@ -109,9 +58,14 @@ class lunas.display.components.shape.RectangleComponent extends AbstractComponen
 		lineTo (__min__.x, __min__.y) ;	
 	}
 
-	public function getMinMax():Object {
+	/**
+	 * Returns the min/max object.
+	 */
+	public function getMinMax():Object 
+	{
 		var w1 , w2 , h1, h2 :Number ;
-		switch (_align) {
+		switch (_align) 
+		{
 			case "b" : // Bottom
 				w1 = (_w / 2) * -1 ; 
 				h1 = _h * -1 ; 
@@ -184,8 +138,6 @@ class lunas.display.components.shape.RectangleComponent extends AbstractComponen
 		_align = str.toLowerCase() ;
 		update() ;
 	}
-
-	// ----o Virtual Properties
 
 	public function get align():String {
 		return getAlign() ;

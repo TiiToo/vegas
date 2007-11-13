@@ -1,4 +1,4 @@
-/*
+﻿/*
 
 The contents of this file are subject to the Mozilla Public License Version
 1.1 (the "License"); you may not use this file except in compliance with
@@ -585,13 +585,16 @@ class pegas.draw.SVGCanvas extends Canvas
 		var dx = (p1.x + p2.x + s.x * 4 - (c1.x + c2.x) * 3) * .125;
 		var dy = (p1.y + p2.y + s.y * 4 - (c1.y + c2.y) * 3) * .125;
 		// split curve if the quadratic isn't close enough
-		if (dx*dx + dy*dy > k) {
+		if (dx*dx + dy*dy > k) 
+		{
 			var halves = bezierSplit (p1.x, p1.y, c1.x, c1.y, c2.x, c2.y, p2.x, p2.y);
 			var b0 = halves.b0; var b1 = halves.b1;
 			// recursive call to subdivide curve
 			getQuadBez_RP (p1,     b0.c1, b0.c2, b0.p2, k, qcurves);
 			getQuadBez_RP (b1.p1,  b1.c1, b1.c2, p2,    k, qcurves);
-		} else {
+		}
+		else 
+		{
 			// end recursion by saving points
 			qcurves.push({p1x:p1.x, p1y:p1.y, cx:s.x, cy:s.y, p2x:p2.x, p2y:p2.y});
 		}

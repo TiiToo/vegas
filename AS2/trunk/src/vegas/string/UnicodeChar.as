@@ -226,7 +226,7 @@ dynamic class vegas.string.UnicodeChar
 	
 	/**
 	 * Resolve the methods used over this instance.
-	 * If this instance receive an unknow method with the format "uXXXX" this method returns the unicode Char.  
+	 * If this instance receive an unknow method with the format "uxxxx" this method returns the unicode Char.  
 	 */
 	private function __resolve( name:String ) 
 	{
