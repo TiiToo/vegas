@@ -25,6 +25,7 @@ import asgard.events.LoaderEvent;
 import asgard.net.URLLoader;
 
 /**
+ * This event is invoqued in the URLLoader instances.
  * @author eKameleon
  * @version 1.0.0.0
  */
@@ -34,29 +35,24 @@ class asgard.events.URLLoaderEvent extends LoaderEvent
 	/**
 	 * Creates a new URLLoaderEvent instance.
 	 */
-	public function URLLoaderEvent(
-	
-		type:String	, loader:URLLoader
-		, nCode:Number
-		, sError:String
-		, context
-		, bubbles:Boolean
-		, eventPhase:Number
-		, time:Number
-		, stop:Number 
-	) 
-	
-		{
-		
+	public function URLLoaderEvent( type:String	, loader:URLLoader , nCode:Number , sError:String , context, bubbles:Boolean, eventPhase:Number , time:Number , stop:Number ) 
+	{
 		super(type, loader, nCode, sError, context, bubbles, eventPhase, time, stop) ; 
-		
-		}
+	}
 	
+	/**
+	 * Returns a shallow copy of the object.
+	 * @return a shallow copy of the object.
+	 */	
 	public function clone() 
 	{
 		return new URLLoaderEvent( getType(), URLLoader( getTarget() ) ) ;
 	}
 	
+	/**
+	 * Returns the DataFormat value of this event.
+	 * @return the DataFormat value of this event.
+	 */
 	public function getDataFormat():String 
 	{
 		return URLLoader(getTarget()).getDataFormat() ;

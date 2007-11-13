@@ -64,6 +64,9 @@ class asgard.events.TextEvent extends DynamicEvent
 		return new TextEvent(getType(), text, getTarget(), getContext()) ;
 	}
 
+	/**
+	 * @private
+	 */
 	/*protected*/ private function _getParams():Array 
 	{
 		var ar:Array = super._getParams() ;

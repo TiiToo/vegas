@@ -283,13 +283,29 @@ class lunas.model.ContainerModel extends AbstractModel implements Iterable
 		return [].concat(_model) ;
 	}
 	
+	/**
+	 * @private
+	 */
 	private var _eAdd:ModelChangedEvent ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _eClear:ModelChangedEvent ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _eRemove:ModelChangedEvent ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _eUpdate:ModelChangedEvent ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _model:Array ;
+
 }

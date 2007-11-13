@@ -32,16 +32,16 @@ class asgard.media.CuePoint extends CoreObject
 
 	/**
 	 * Creates a new CuePoint instance.
-	 * @param o An Object with the properties 'name', 'parameters', 'time' and 'type' used to define this CuePoint object.
+	 * @param init An Object with the properties 'name', 'parameters', 'time' and 'type' used to define this CuePoint object.
 	 */	
-	public function CuePoint( o ) 
+	public function CuePoint( init ) 
 	{
-		if (o != null)
+		if (init != null)
 		{
-			this.name = o.name ;
-			this.time = o.time ;
-			this.type = o.type ;
-			this.parameters = o.parameters ;
+			this.name       = init.name ;
+			this.time       = init.time ;
+			this.type       = init.type ;
+			this.parameters = init.parameters ;
 		}
 	}
 	
