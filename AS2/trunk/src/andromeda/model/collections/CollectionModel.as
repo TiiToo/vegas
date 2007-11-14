@@ -23,7 +23,7 @@
 
 import andromeda.events.ModelObjectEvent;
 import andromeda.model.AbstractModelObject;
-import andromeda.model.IValueObject;
+import andromeda.vo.IValueObject;
 
 import vegas.data.Collection;
 import vegas.data.collections.SimpleCollection;

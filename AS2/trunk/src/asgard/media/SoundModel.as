@@ -21,16 +21,12 @@
   
 */
 
+import andromeda.model.AbstractModel;
+
 import asgard.events.SoundModelEvent;
 
 import vegas.data.map.HashMap;
 import vegas.errors.ArgumentsError;
-import vegas.errors.UnsupportedOperation;
-import vegas.events.Event;
-import vegas.util.ConstructorUtil;
-import vegas.util.mvc.AbstractModel;
-
-// FIXME refactoring this class with andromeda model implementation !!!!
 
 /**
  * Sound model to manage sounds.
@@ -42,13 +38,13 @@ class asgard.media.SoundModel extends AbstractModel
 	
 	/**
 	 * Creates a new SoundModel instance.
+	 * @param id the id of the model.
+	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */
-	function SoundModel() 
+	function SoundModel( id , bGlobal:Boolean , sChannel:String ) 
 	{
-		super();
-		
-		throw new UnsupportedOperation( ConstructorUtil.getPath(this) + " is depreciated. You must use the andromeda.media.SoundModel class.") ;
-		
+		super( id, bGlobal , sChannel ) ;
 		initEvent() ;
 		_bIsOn = true ;
 		_map = new HashMap() ;
@@ -81,7 +77,6 @@ class asgard.media.SoundModel extends AbstractModel
 			}
 			
 			_map.put(id, sound) ;
-			
 			// Reflexion of the sound object.
 			sound.toString = function():String
 			{
@@ -152,49 +147,48 @@ class asgard.media.SoundModel extends AbstractModel
 	}
 
 	/**
-	 * Protected method, returns the SoundModelEventType when add a sound in the model.
-	 * You can overrides this method to customize the event model.
+	 * Returns the event name invoqued in the notifyAddSound method.
+	 * @return the event name invoqued in the notifyAddSound method.
 	 */
 	public function getAddSoundModelEventType():String 
 	{
-		return SoundModelEvent.ADD_SOUND ;
-		
+		return _eAdd.getType() ;
 	}
 
 	/**
-	 * Protected method, returns the SoundModelEventType when clear all sounds in the model.
-	 * You can overrides this method to customize the event model.
+	 * Returns the event name invoqued in the notifyClearSound method.
+	 * @return the event name invoqued in the notifyClearSound method.
 	 */
 	public function getClearSoundModelEventType():String 
 	{
-		return SoundModelEvent.CLEAR_SOUND ;
+		return _eClear.getType() ;
 	}
 
 	/**
-	 * Protected method, returns the SoundModelEventType when enable all sounds in the model.
-	 * You can overrides this method to customize the event model.
-	 */
-	public function getEnableSoundModelEventType():String 
-	{
-		return SoundModelEvent.ENABLE_SOUNDS ;
-	}
-
-	/**
-	 * Protected method, returns the SoundModelEventType when disable all sounds in the model.
-	 * You can overrides this method to customize the event model.
+	 * Returns the event name invoqued in the notifyDisableSound method.
+	 * @return the event name invoqued in the notifyDisableSound method.
 	 */
 	public function getDisableSoundModelEventType():String 
 	{
-		return SoundModelEvent.DISABLE_SOUNDS ;
+		return _eDisabled.getType() ;
 	}
 
 	/**
-	 * Protected method, returns the SoundModelEventType when remove a sound in the model.
-	 * You can overrides this method to customize the event model.
+	 * Returns the event name invoqued in the notifyEnableSound method.
+	 * @return the event name invoqued in the notifyEnableSound method.
+	 */
+	public function getEnableSoundModelEventType():String 
+	{
+		return _eEnabled.getType() ;
+	}
+	
+	/**
+	 * Returns the event name invoqued in the notifyRemoveSound method.
+	 * @return the event name invoqued in the notifyRemoveSound method.
 	 */
 	public function getRemoveSoundModelEventType():String 
 	{
-		return SoundModelEvent.REMOVE_SOUND ;
+		return _eRemove.getType() ;
 	}
 
 	/**
@@ -219,11 +213,15 @@ class asgard.media.SoundModel extends AbstractModel
 	}
 
 	/**
-	 * Init the internal event reference.
+	 * Init the internal events of this model.
 	 */
 	public function initEvent():Void 
 	{
-		_e = new SoundModelEvent() ;
+		_eAdd      = new SoundModelEvent( SoundModelEvent.ADD_SOUND , this ) ;
+		_eClear    = new SoundModelEvent( SoundModelEvent.CLEAR_SOUND , this ) ;
+		_eDisabled = new SoundModelEvent( SoundModelEvent.DISABLE_SOUNDS , this ) ;
+		_eEnabled  = new SoundModelEvent( SoundModelEvent.ENABLE_SOUNDS , this ) ;
+		_eRemove   = new SoundModelEvent( SoundModelEvent.REMOVE_SOUND , this ) ;
 	}
 	
 	/**
@@ -246,15 +244,14 @@ class asgard.media.SoundModel extends AbstractModel
 
 	/**
 	 * Notify a SoundModelEvent when a new sound is added in the model.
+	 * @param id The link id of the sound.
+	 * @param sound The Sound reference.
 	 */
 	public function notifyAddSound( id:String, sound:Sound ):Void
 	{
-		var event:SoundModelEvent = SoundModelEvent(_e) ;
-		event.setID(id) ;
-		event.setModel(this) ;
-		event.setSound( sound ) ;
-		event.setType( getAddSoundModelEventType() ) ;
-		notifyChanged(event) ;	
+		_eAdd.setID(id) ;
+		_eAdd.setSound( sound ) ;
+		dispatchEvent(_eAdd) ;	
 	}
 
 	/**
@@ -262,12 +259,7 @@ class asgard.media.SoundModel extends AbstractModel
 	 */
 	public function notifyClearSound():Void
 	{
-		var event:SoundModelEvent = SoundModelEvent(_e) ;
-		event.setID(null) ;
-		event.setModel(this) ;
-		event.setSound(null) ;
-		event.setType( getClearSoundModelEventType() ) ;
-		notifyChanged(event) ;	
+		dispatchEvent( _eClear ) ;	
 	}
 	
 	/**
@@ -275,12 +267,7 @@ class asgard.media.SoundModel extends AbstractModel
 	 */
 	public function notifyEnableSound():Void
 	{
-		var event:SoundModelEvent = SoundModelEvent(_e) ;
-		event.setID(null) ;
-		event.setModel(this) ;
-		event.setSound(null) ;
-		event.setType( getEnableSoundModelEventType() ) ;
-		notifyChanged(event) ;	
+		dispatchEvent( _eEnabled ) ;	
 	}
 	
 	/**
@@ -288,33 +275,19 @@ class asgard.media.SoundModel extends AbstractModel
 	 */
 	public function notifyDisableSound():Void
 	{
-		var event:SoundModelEvent = SoundModelEvent(_e) ;
-		event.setID(null) ;
-		event.setModel(this) ;
-		event.setSound(null) ;
-		event.setType( getDisableSoundModelEventType() ) ;
-		notifyChanged(event) ;	
+		dispatchEvent( _eDisabled ) ;	
 	}
 
 	/**
 	 * Notify a SoundModelEvent when a new sound is removed in the model.
+	 * @param id The link id of the sound.
+	 * @param sound The Sound reference.
 	 */
 	public function notifyRemoveSound( id:String, sound:Sound ):Void
 	{
-		var event:SoundModelEvent = SoundModelEvent(_e) ;
-		event.setID(id) ;
-		event.setModel(this) ;
-		event.setSound( sound ) ;
-		event.setType( getRemoveSoundModelEventType() ) ;
-		notifyChanged(event) ;	
-	}
-
-	/**
-	 * Notify a SoundModelEvent to the views.
-	 */
-	public function notifyChanged(ev:SoundModelEvent):Void 
-	{
-		dispatchEvent(ev) ;
+		_eRemove.setID(id) ;
+		_eRemove.setSound( sound ) ;
+		dispatchEvent( _eRemove ) ;	
 	}
 
 	/**
@@ -349,6 +322,46 @@ class asgard.media.SoundModel extends AbstractModel
 		{
 			return null ;
 		}
+	}
+	
+	/**
+	 * Sets the event name invoqued in the notifyAddSound method.
+	 */
+	public function setAddSoundModelEventType( type:String ):Void 
+	{
+		_eAdd.setType( type ) ;
+	}
+
+	/**
+	 * Sets the event name invoqued in the notifyClearSound method.
+	 */
+	public function setClearSoundModelEventType( type:String ):Void 
+	{
+		_eClear.setType( type ) ;
+	}
+
+	/**
+	 * Sets the event name invoqued in the notifyDisableSound method.
+	 */
+	public function setDisableSoundModelEventType( type:String ):Void 
+	{
+		_eDisabled.setType( type ) ;
+	}
+
+	/**
+	 * Sets the event name invoqued in the notifyEnableSound method.
+	 */
+	public function setEnableSoundModelEventType( type:String ):Void 
+	{
+		_eEnabled.setType( type ) ;
+	}
+	
+	/**
+	 * Sets the event name invoqued in the notifyRemoveSound method.
+	 */
+	public function setRemoveSoundModelEventType( type:String ):Void 
+	{
+		_eRemove.setType( type ) ;
 	}
 	
 	/**
@@ -388,16 +401,20 @@ class asgard.media.SoundModel extends AbstractModel
 	 */
 	private var _bIsOn:Boolean ;
 
-	/**
-	 * Internal event.
-	 */
-	private var _e:Event ;
+	private var _eAdd:SoundModelEvent ;
+	
+	private var _eClear:SoundModelEvent ;
+	
+	private var _eDisabled:SoundModelEvent ;
+	
+	private var _eEnabled:SoundModelEvent ;
+	
+	private var _eRemove:SoundModelEvent ;
 
 	/**
 	 * Internal hashmap.
 	 */
 	private var _map:HashMap ;
-
 
 
 }

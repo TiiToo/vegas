@@ -22,7 +22,7 @@
 */
 
 import andromeda.model.IModelObject;
-import andromeda.model.IValueObject;
+import andromeda.vo.IValueObject;
 
 import vegas.events.BasicEvent;
 

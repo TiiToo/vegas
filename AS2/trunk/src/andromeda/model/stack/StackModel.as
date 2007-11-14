@@ -19,14 +19,14 @@
   
   Contributor(s) :
   
-*/
+ */
 
 import andromeda.events.ModelObjectEvent;
 import andromeda.model.AbstractModelObject;
-import andromeda.model.IValueObject;
+import andromeda.vo.IValueObject;
 
-import vegas.data.iterator.Iterator;
 import vegas.data.Stack;
+import vegas.data.iterator.Iterator;
 import vegas.data.stack.SimpleStack;
 import vegas.errors.IllegalArgumentError;
 

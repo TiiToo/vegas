@@ -23,10 +23,10 @@
 
 import andromeda.events.ModelObjectEvent;
 import andromeda.model.AbstractModelObject;
-import andromeda.model.IValueObject;
+import andromeda.vo.IValueObject;
 
-import vegas.data.iterator.Iterator;
 import vegas.data.Queue;
+import vegas.data.iterator.Iterator;
 import vegas.data.queue.LinearQueue;
 import vegas.errors.IllegalArgumentError;
 

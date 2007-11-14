@@ -24,7 +24,7 @@
 import andromeda.events.ModelObjectEvent;
 import andromeda.model.AbstractModel;
 import andromeda.model.IModelObject;
-import andromeda.model.IValueObject;
+import andromeda.vo.IValueObject;
 
 import vegas.core.IValidator;
 import vegas.errors.TypeMismatchError;

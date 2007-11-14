@@ -21,7 +21,7 @@
   
 */
 
-import andromeda.model.SimpleValueObject;
+import andromeda.vo.SimpleValueObject;
 
 import vegas.util.ConstructorUtil;
 

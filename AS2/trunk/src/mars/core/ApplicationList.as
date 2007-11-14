@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Andromeda Framework based on VEGAS.
+  The Original Code is MarS Framework based on VEGAS.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -19,18 +19,28 @@
   
   Contributor(s) :
   
- */
-
-
-
-import andromeda.model.IModel;
+*/
 
 /**
- * This interface define a model who register and manipulate IValueObject objects.
+ * The list of all global displays of the application.
  * @author eKameleon
  */
-interface andromeda.model.IModelObject extends IModel
+class mars.core.ApplicationList 
 {
-	
-	
+
+	/**
+	 * The name of the application loader display.
+	 */
+	public static var APPLICATION_LOADER:String = "application_loader" ;
+
+	/**
+	 * The name of the protect screen display.
+	 */
+	public static var PROTECT_SCREEN:String = "protect_screen" ;
+
+	/**
+	 * The name of the sound display.
+	 */
+	public static var SOUND:String = "sound" ;
+
 }

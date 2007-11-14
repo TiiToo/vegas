@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -19,18 +19,17 @@
   
   Contributor(s) :
   
- */
+*/
 
-
-
-import andromeda.model.IModel;
+import vegas.core.Identifiable;
 
 /**
- * This interface define a model who register and manipulate IValueObject objects.
+ * This interface define a value object, the value object are use for example in the models.
  * @author eKameleon
  */
-interface andromeda.model.IModelObject extends IModel
+interface andromeda.vo.IValueObject extends Identifiable
 {
 	
+	//	
 	
 }

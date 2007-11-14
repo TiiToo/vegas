@@ -23,22 +23,33 @@
 
 import asgard.media.SoundModel;
 
-import vegas.events.ModelChangedEvent;
+import vegas.core.Identifiable;
+import vegas.events.BasicEvent;
 
 /**
  * The SoundModelEvent class.
  * @author eKameleon
- * @version 1.0.0.0
  */
-class asgard.events.SoundModelEvent extends ModelChangedEvent
+class asgard.events.SoundModelEvent extends BasicEvent implements Identifiable
 {
 
 	/**
 	 * Creates a new SoundModelEvent instance.
+	 * @param type the string type of the instance. 
+	 * @param model The SoundModel reference of this event.
+	 * @param id The sound id of this event.
+	 * @param sound The {@code Sound} reference of this event.
+	 * @param url th 
+	 * @param context the optional context object of the event.
+	 * @param bubbles indicates if the event is a bubbling event.
+	 * @param eventPhase the current EventPhase of the event.
+	 * @param time this parameter is used in the Eden deserialization.
+	 * @param stop this parameter is used in the Eden deserialization.
+	 * 
 	 */	
-	public function SoundModelEvent(type:String, model:SoundModel, id:String, sound:Sound, url:String) 
+	public function SoundModelEvent(type:String, model:SoundModel, id:String, sound:Sound, url:String, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
 	{
-		super(type);
+		super(type, model ,context, bubbles, eventPhase, time, stop );
 		_id    = id ;
 		_model = model ;
 		_sound = sound ;
@@ -91,10 +102,10 @@ class asgard.events.SoundModelEvent extends ModelChangedEvent
 	public var success:Boolean = null ;
 
 	/**
-	 * Returns the id of the sound reference.
-	 * @return the id of the sound reference.
+	 * Returns the id of the sound reference in the model.
+	 * @return the id of the sound reference in the model.
 	 */
-	public function getID():String
+	public function getID()
 	{
 		return _id ;	
 	}
@@ -129,9 +140,9 @@ class asgard.events.SoundModelEvent extends ModelChangedEvent
 	/**
 	 * Sets the id of the sound reference.
 	 */
-	public function setID( sID:String ):Void
+	public function setID( id ):Void
 	{
-		_id = sID ;	
+		_id = id ;	
 	}
 
 	/**

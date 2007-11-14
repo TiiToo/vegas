@@ -23,7 +23,7 @@
 
 import andromeda.events.ModelObjectEvent;
 import andromeda.model.AbstractModelObject;
-import andromeda.model.IValueObject;
+import andromeda.vo.IValueObject;
 
 import vegas.core.IRunnable;
 import vegas.data.iterator.Iterator;

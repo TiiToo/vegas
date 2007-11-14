@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Andromeda Framework based on VEGAS.
+  The Original Code is MarS Framework based on VEGAS.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -19,18 +19,25 @@
   
   Contributor(s) :
   
- */
-
-
-
-import andromeda.model.IModel;
+*/
 
 /**
- * This interface define a model who register and manipulate IValueObject objects.
+ * The ids of the application. This ids are used in the config, the localization etc.
  * @author eKameleon
  */
-interface andromeda.model.IModelObject extends IModel
+class mars.core.ApplicationID 
 {
+
+	/**
+	 * The context menu manager id of the application.
+	 * @see andromeda.ui.ApplicationContextMenu
+	 */
+	public static var CONTEXT_MENU:String = "context_menu" ;
 	
+	/**
+	 * The application allowdomain security id.
+	 * @see andromeda.system.ApplicationPolicy
+	 */
+	public static var SECURITY:String = "security" ;	
 	
 }
