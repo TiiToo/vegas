@@ -1,5 +1,5 @@
  
-   PEGAS AS2 version 1 Release Candidate 4 - VEGAS EXTENSION
+   VEGAS AS2 - version 1 Release Candidate 3
  
    LICENCE 
 
@@ -21,11 +21,12 @@
    ABOUT
 
     * Author : ALCARAZ Marc (aka eKameleon)
-    * Version : 1 Release Candidate 4
+    * Version : 1 RC3
     * Link : http://www.ekameleon.net/blog
     * Mail : vegas@ekameleon.net 
-
 
    THANKS
 
     * Zwetan : ECMAScript Concepts and hosting | http://zwetan.com/
+    * Stephan Schmid : Event model framework inspiration | http://schst.net/
+    * PowerFlasher - FDT OpenSource Licence : http://powerflasher.com/ 

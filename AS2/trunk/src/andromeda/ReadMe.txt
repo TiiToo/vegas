@@ -1,5 +1,5 @@
  
-   Andromeda AS2 - version 0.9 (VEGAS extension)
+   Andromeda AS2 - version 1 Release Candidate 4 (VEGAS extension)
  
    LICENCE 
 
@@ -22,7 +22,7 @@
    ABOUT
 
     * Author : ALCARAZ Marc (aka eKameleon)
-    * Version : 0.9
+    * Version : 1 Release Candidate 4
     * Link : http://www.ekameleon.net/blog
     * Mail : vegas@ekameleon.net 
 
