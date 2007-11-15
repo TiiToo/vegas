@@ -21,40 +21,6 @@
   
 */
 
-/** PanelContainer
-	
-	AUTHOR
-	
-		Name : PanelContainer
-		Package : lunas.display.components.container
-		Version : 1.0.0.0
-		Date : 2006-02-07
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	METHOD SUMMARY
-
-		- hide([noEvent:Boolean]):Boolean
-		
-		- show(oKey, [x:Number, [y:Number, noEvent:Boolean]]]):Boolean
-
-	EVENT SUMMARY
-	
-		PanelEvent
-	
-	EVENT TYPE SUMMARY
-			
-		- PanelEventType.HIDE
-		
-		- PanelEventType.SHOW
-	
-	INHERIT
-	
-		AbstractComponent → AbstractContainer → PanelContainer
-	
-**/
-
 import lunas.display.components.container.AbstractContainer;
 import lunas.display.components.container.PanelContainerController;
 import lunas.display.components.container.PanelContainerView;
@@ -63,20 +29,28 @@ import lunas.events.PanelEventType;
 
 import vegas.util.TypeUtil;
 
-class lunas.display.components.container.PanelContainer extends AbstractContainer {
+/**
+ * The panel container class.
+ */
+class lunas.display.components.container.PanelContainer extends AbstractContainer 
+{
 
-	// ----o Private Constructor
-
-	public function PanelContainer () {
-		_oView = new PanelContainerView(_oModel, null, this) ;
+	/**
+	 * Creates a new PanelContainer class.
+	 */
+	public function PanelContainer() 
+	{
+		_oView       = new PanelContainerView(_oModel, null, this) ;
 		_oController = new PanelContainerController() ;
 		_oController.setModel(_oModel) ;
 		_oController.setView(_oView) ;
 	}
 	
-	// ----o Public Methods
-
-	public function show( oKey, x:Number, y:Number, noEvent:Boolean):Boolean {
+	/**
+	 * Show a panel.
+	 */
+	public function show( oKey, x:Number, y:Number, noEvent:Boolean):Boolean 
+	{
 		hide(true) ;
 		if ( TypeUtil.typesMatch(oKey, Number) ) {
 			_oldItem = getChildByKey(oKey) ;
@@ -112,8 +86,6 @@ class lunas.display.components.container.PanelContainer extends AbstractContaine
 		_oldItem = null ;
 		_oldKey = null ;
 	}
-
-	// ----o Private Properties
 	
 	private var _oldItem:MovieClip = null ;
 	private var _oldKey:Number = null ;	

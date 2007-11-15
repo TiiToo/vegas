@@ -19,11 +19,12 @@
   
   Contributor(s) :
   
-*/
+ */
+
+import andromeda.util.visitor.IVisitable;
+import andromeda.util.visitor.IVisitor;
 
 import vegas.core.CoreObject;
-import vegas.util.visitor.IVisitable;
-import vegas.util.visitor.IVisitor;
 
 /**
  * The abstract representation of the IVisitable interface.
@@ -31,7 +32,7 @@ import vegas.util.visitor.IVisitor;
  * This Abstract class is a basical implementation of the Visitor pattern, you can inspirate your custom Visitor design pattern implementation with it easy representation.  
  * @author eKameleon
  */
-class vegas.util.visitor.AbstractVisitable extends CoreObject implements IVisitable 
+class andromeda.util.visitor.AbstractVisitable extends CoreObject implements IVisitable 
 {
 	
 	/**

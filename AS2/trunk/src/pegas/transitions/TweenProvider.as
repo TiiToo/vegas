@@ -19,17 +19,18 @@ the Initial Developer. All Rights Reserved.
   
 Contributor(s) :
   
- */
+*/
+
+import andromeda.util.mvc.AbstractModel;
 
 import pegas.transitions.TweenEntry;
 
+import vegas.data.Map;
 import vegas.data.iterator.Iterable;
 import vegas.data.iterator.Iterator;
-import vegas.data.Map;
 import vegas.data.map.HashMap;
 import vegas.errors.IllegalArgumentError;
 import vegas.events.ModelChangedEvent;
-import vegas.util.mvc.AbstractModel;
 import vegas.util.TypeUtil;
 
 /**

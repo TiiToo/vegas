@@ -19,14 +19,15 @@ the Initial Developer. All Rights Reserved.
   
 Contributor(s) :
   
- */
- 
+*/
+
+import andromeda.util.mvc.AbstractView;
+import andromeda.util.mvc.IController;
+import andromeda.util.mvc.IModel;
+
 import lunas.display.components.list.AbstractListController;
 
 import vegas.events.ModelChangedEvent;
-import vegas.util.mvc.AbstractView;
-import vegas.util.mvc.IController;
-import vegas.util.mvc.IModel;
 
 /**
  * The view of the List component.

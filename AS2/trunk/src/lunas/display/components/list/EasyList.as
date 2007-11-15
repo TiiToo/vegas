@@ -39,6 +39,9 @@ import lunas.display.components.shape.RectangleComponent;
 
 import vegas.events.Event;
 
+/**
+ * The EasyList class.
+ */
 class lunas.display.components.list.EasyList extends AbstractList 
 {
 

@@ -19,19 +19,20 @@
   
   Contributor(s) :
   
-*/
+ */
+
+import andromeda.util.observer.IObserver;
 
 import vegas.core.CoreObject;
 import vegas.data.iterator.Iterator;
 import vegas.data.list.ArrayList;
 import vegas.errors.NullPointerError;
-import vegas.util.observer.IObserver;
 
 /**
  * This class represents an observable object, or "data" in the model-view paradigm. It can be subclassed to represent an object that the application wants to have observed.
  * @author eKameleon
  */
-class vegas.util.observer.Observable extends CoreObject
+class andromeda.util.observer.Observable extends CoreObject
 {
 
 	/**

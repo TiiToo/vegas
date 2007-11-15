@@ -21,20 +21,26 @@
   
 */
 
-import vegas.util.mvc.AbstractController;
+import andromeda.util.mvc.AbstractController;
 
+/**
+ * The controller of the Container component.
+ * @author ekameleon
+ */
 class lunas.display.components.container.ContainerController extends AbstractController 
 {
 
-	// ----o Constructor
-
+	/**
+	 * Creates a new ContainerController instance.
+	 */
 	public function ContainerController() 
 	{ 
 		//
 	}
 
-	// ----o Public Methods
-
+	/**
+	 * Removes all items specified in argument.
+	 */
 	public function removeItems(items:Array):Void 
 	{
 		var l:Number = items.length ;

@@ -19,14 +19,15 @@
   
   Contributor(s) :
   
- */
+*/
  
+import andromeda.util.mvc.AbstractView;
+import andromeda.util.mvc.IController;
+import andromeda.util.mvc.IModel;
+
 import lunas.display.components.container.ContainerController;
 
 import vegas.events.ModelChangedEvent;
-import vegas.util.mvc.AbstractView;
-import vegas.util.mvc.IController;
-import vegas.util.mvc.IModel;
 
 class lunas.display.components.container.ContainerView extends AbstractView 
 {

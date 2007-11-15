@@ -19,13 +19,14 @@
   
   Contributor(s) :
   
-*/
+ */
+
+import andromeda.util.mvc.AbstractModel;
 
 import asgard.config.ConfigCollector;
 import asgard.config.IConfigurable;
 
 import vegas.errors.Warning;
-import vegas.util.mvc.AbstractModel;
 
 /**
  * This core class extend the AbstractModel class and implement the IConfigurable interface.

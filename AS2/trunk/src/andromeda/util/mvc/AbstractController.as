@@ -19,18 +19,19 @@
   
   Contributor(s) :
   
-*/
+ */
+
+import andromeda.util.mvc.IController;
+import andromeda.util.mvc.IModel;
+import andromeda.util.mvc.IView;
 
 import vegas.core.CoreObject;
-import vegas.util.mvc.IController;
-import vegas.util.mvc.IModel;
-import vegas.util.mvc.IView;
 
 /**
  * Abstract class to creates IController implementations.
  * @author eKameleon
  */
-class vegas.util.mvc.AbstractController extends CoreObject implements IController 
+class andromeda.util.mvc.AbstractController extends CoreObject implements IController 
 {
 
 	/**

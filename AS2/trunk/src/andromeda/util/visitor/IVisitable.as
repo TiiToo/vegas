@@ -21,19 +21,18 @@
   
 */
 
-import vegas.util.visitor.IVisitable;
+import andromeda.util.visitor.IVisitor;
 
 /**
  * The basic IVisitor interface. 
- * To implements the Visitor pattern you can creates a concrete Visitor class who implements this interface.
  * @author eKameleon
  */
-interface vegas.util.visitor.IVisitor 
+interface andromeda.util.visitor.IVisitable 
 {
 
 	/**
-	 * Visit the IVisitable object.
+	 * Accept a IVisitor object 
 	 */
-	function visit( o:IVisitable ):Void ;
-
+	function accept( visitor:IVisitor ) ;
+	
 }

@@ -19,7 +19,10 @@
   
   Contributor(s) :
   
-*/
+ */
+
+import andromeda.util.mvc.IController;
+import andromeda.util.mvc.IView;
 
 import lunas.display.components.AbstractComponent;
 import lunas.display.components.list.AbstractListController;
@@ -31,10 +34,9 @@ import pegas.events.UIEvent;
 import vegas.data.iterator.Iterable;
 import vegas.data.iterator.Iterator;
 import vegas.util.ConstructorUtil;
-import vegas.util.mvc.IController;
-import vegas.util.mvc.IView;
 
 /**
+ * The AbstractList class.
  * @author eKameleon
  */
 class lunas.display.components.list.AbstractList extends AbstractComponent implements Iterable 

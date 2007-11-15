@@ -21,11 +21,12 @@
   
 */
 
+import andromeda.util.mvc.AbstractController;
+
 import lunas.display.components.ICell;
 import lunas.events.CellEvent;
 
 import vegas.events.Event;
-import vegas.util.mvc.AbstractController;
 
 /**
  * @author eKameleon

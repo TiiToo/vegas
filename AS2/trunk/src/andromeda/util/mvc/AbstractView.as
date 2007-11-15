@@ -19,21 +19,21 @@
   
   Contributor(s) :
   
-*/
+ */
 
+import andromeda.util.mvc.AbstractModel;
+import andromeda.util.mvc.IController;
+import andromeda.util.mvc.IModel;
+import andromeda.util.mvc.IView;
 
 import vegas.core.CoreObject;
 import vegas.events.Event;
-import vegas.util.mvc.AbstractModel;
-import vegas.util.mvc.IController;
-import vegas.util.mvc.IModel;
-import vegas.util.mvc.IView;
 
 /**
  * Abstract class to creates IView implementations.
  * @author eKameleon
  */
-class vegas.util.mvc.AbstractView extends CoreObject implements IView 
+class andromeda.util.mvc.AbstractView extends CoreObject implements IView 
 {
 
 	/**

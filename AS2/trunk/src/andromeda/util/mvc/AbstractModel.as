@@ -19,18 +19,19 @@
   
   Contributor(s) :
   
-*/
+ */
+
+import andromeda.util.mvc.IModel;
+import andromeda.util.mvc.IView;
 
 import vegas.events.AbstractCoreEventDispatcher;
 import vegas.events.ModelChangedEvent;
-import vegas.util.mvc.IModel;
-import vegas.util.mvc.IView;
 
 /**
  * Abstract class to creates IModel implementations.
  * @author eKameleon
  */
-class vegas.util.mvc.AbstractModel extends AbstractCoreEventDispatcher implements IModel 
+class andromeda.util.mvc.AbstractModel extends AbstractCoreEventDispatcher implements IModel 
 {
 
 	/**

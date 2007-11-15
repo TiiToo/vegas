@@ -21,16 +21,17 @@
  
 */
 
+import andromeda.util.mvc.IController;
+import andromeda.util.mvc.IView;
+
 import lunas.display.components.AbstractComponent;
-import lunas.display.components.container.ContainerModel;
 import lunas.display.components.IContainer;
+import lunas.display.components.container.ContainerModel;
 
 import vegas.core.HashCode;
 import vegas.data.iterator.Iterable;
 import vegas.data.iterator.Iterator;
 import vegas.util.factory.DisplayFactory;
-import vegas.util.mvc.IController;
-import vegas.util.mvc.IView;
 
 /**
  * The Skeletal implementation of the IContainer interface.

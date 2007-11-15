@@ -19,17 +19,18 @@
   
   Contributor(s) :
   
-*/
+ */
+
+import andromeda.util.mvc.IController;
+import andromeda.util.mvc.IModel;
 
 import vegas.events.EventListener;
-import vegas.util.mvc.IController;
-import vegas.util.mvc.IModel;
 
 /**
  * Defines the representation of a view in a specific type of the MVC implementation.
  * @author eKameleon
  */
-interface vegas.util.mvc.IView extends EventListener 
+interface andromeda.util.mvc.IView extends EventListener 
 {
 
 	/**

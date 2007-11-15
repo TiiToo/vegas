@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -19,32 +19,22 @@
   
   Contributor(s) :
   
-*/
+ */
 
-import vegas.core.ICloneable;
-import vegas.events.ModelChangedEvent;
-import vegas.util.mvc.IView;
+import andromeda.util.observer.Observable;
 
 /**
- * Defines the representation of a model in a specific type of the MVC implementation.
+ * A class can implement the Observer interface when it wants to be informed of changes in observable objects.
  * @author eKameleon
  */
-interface vegas.util.mvc.IModel extends ICloneable 
+interface andromeda.util.observer.IObserver 
 {
 
 	/**
-	 * Adds a view in the model.
+	 * This method is called whenever the observed object is changed.
+	 * @param o the observable object.
+	 * @param arg an argument passed to the notifyObservers method.
 	 */
-	function addView(view:IView):Void ;
-
-	/**
-	 * Notify a ModelChangedEvent to the views.
-	 */
-	function notifyChanged(ev:ModelChangedEvent):Void ;
-
-	/**
-	 * Removes a view in the model.
-	 */
-	function removeView(view:IView):Void ;
+	function update(o:Observable, arg) ;
 
 }

@@ -21,23 +21,25 @@
   
 */
 
-import vegas.util.mvc.IModel;
-import vegas.util.mvc.IView;
+import andromeda.util.mvc.IModel;
+import andromeda.util.mvc.IView;
 
 /**
  * Defines the representation of a controller in a specific type of the MVC implementation.
  * @author eKameleon
  */
-interface vegas.util.mvc.IController 
+interface andromeda.util.mvc.IController 
 {
 
 	/**
 	 * Returns the model of this controller.
+	 * @return the model of this controller.
 	 */
 	function getModel():IModel ;
 
 	/**
 	 * Returns the view of this controller.
+	 * @return the view of this controller.
 	 */
 	function getView():IView ;
 

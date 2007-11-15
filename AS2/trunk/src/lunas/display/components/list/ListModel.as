@@ -21,6 +21,8 @@
   
 */
 
+import andromeda.util.mvc.AbstractModel;
+
 import pegas.maths.Range;
 
 import vegas.data.iterator.ArrayIterator;
@@ -28,7 +30,6 @@ import vegas.data.iterator.Iterable;
 import vegas.data.iterator.Iterator;
 import vegas.events.ModelChangedEvent;
 import vegas.util.ArrayUtil;
-import vegas.util.mvc.AbstractModel;
 
 /**
  * @author eKameleon

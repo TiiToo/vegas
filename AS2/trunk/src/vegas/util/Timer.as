@@ -68,7 +68,7 @@ class vegas.util.Timer extends AbstractTimer
 	/**
 	 * Clear the timer interval.
 	 */
-	/*override*/ public function clear():Void 
+	public /*override*/ function clear():Void 
 	{
 		clearInterval(_itv) ;
 		_itv = null ;
@@ -78,7 +78,7 @@ class vegas.util.Timer extends AbstractTimer
 	 * Returns a shallow copy of this object.
 	 * @return a shallow copy of this object.
 	 */
-	/*override*/ public function clone() 
+	public /*override*/ function clone() 
 	{
 		return new Timer( getDelay(), getRepeatCount() ) ;
 	}
@@ -87,7 +87,7 @@ class vegas.util.Timer extends AbstractTimer
 	 * Returns a deep copy of this object.
 	 * @return a deep copy of this object.
 	 */
-	/*override*/ public function copy() 
+	public /*override*/ function copy() 
 	{
 		return new Timer( getDelay(), getRepeatCount() ) ;
 	}
@@ -106,7 +106,7 @@ class vegas.util.Timer extends AbstractTimer
 	 * Run the timer.
 	 * @see IRunnable
 	 */
-	/*override*/ public function run():Void 
+	public /*override*/ function run():Void 
 	{
 		_itv = setInterval(this, "_next", _delay) ;
 	}
