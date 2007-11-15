@@ -195,7 +195,7 @@ class vegas.logging.targets.SOSTarget extends LineFormattedTarget
 	public function getMessage( msg:String , level:Number ):String
 	{
 		var levelName:String = LogEvent.getLevelString(level) ;
-		return  "!SOS<showMessage key='" + levelName + "'>" + msg + "</showMessage>\n"  ;	
+		return "!SOS<showMessage key='" + levelName + "'>" + "<![CDATA[" + msg + "]]>" + "</showMessage>\n"  ;	
 	}
 
 	/**
