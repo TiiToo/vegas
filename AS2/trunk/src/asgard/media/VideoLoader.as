@@ -42,6 +42,8 @@ import vegas.util.ConstructorUtil;
 import vegas.util.FrameTimer;
 import vegas.util.Timer;
 
+// TODO test this class : example the finish status with flv in local, server etc...
+
 /**
  * This loader load an external FLV video in the application.
  * @author eKameleon
@@ -573,7 +575,10 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		}
 
 	}
-	
+
+	/**
+	 * Invoqued when the NetServerEvent status is changed.
+	 */
 	private function _onNetServerStatus( e:NetServerEvent ):Void
 	{
 		
@@ -630,12 +635,15 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 			case NetStreamStatus.PLAY_START.equals(code) :
 			{
 				_isFull = false ;
-				// getLogger().info( this + " stream starts playing.");
 				break;
 			}		
 			case NetStreamStatus.PLAY_STOP.equals(code) :
 			{
 				_isFull = true ;
+				if (_isFull)
+				{
+					_checkStop() ;
+				}
 				break;
 			}
 			
@@ -673,7 +681,9 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 			}
 			else 
 			{
-				this.stop() ;	
+				this.stop() ;
+				play(0) ;
+				pause() ;	
 			}
 		}
 	}
