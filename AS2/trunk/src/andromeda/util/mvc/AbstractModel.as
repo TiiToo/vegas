@@ -19,13 +19,13 @@
   
   Contributor(s) :
   
- */
+*/
 
+import andromeda.events.ModelChangedEvent;
 import andromeda.util.mvc.IModel;
 import andromeda.util.mvc.IView;
 
 import vegas.events.AbstractCoreEventDispatcher;
-import vegas.events.ModelChangedEvent;
 
 /**
  * Abstract class to creates IModel implementations.

@@ -21,12 +21,12 @@
   
 */
 
+import andromeda.events.ModelChangedEvent;
 import andromeda.model.AbstractModel;
 
 import vegas.data.iterator.ArrayIterator;
 import vegas.data.iterator.Iterable;
 import vegas.data.iterator.Iterator;
-import vegas.events.ModelChangedEvent;
 import vegas.util.ArrayUtil;
 
 /**

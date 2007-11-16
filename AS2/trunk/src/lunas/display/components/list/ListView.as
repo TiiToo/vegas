@@ -21,13 +21,12 @@ Contributor(s) :
   
 */
 
+import andromeda.events.ModelChangedEvent;
 import andromeda.util.mvc.AbstractView;
 import andromeda.util.mvc.IController;
 import andromeda.util.mvc.IModel;
 
 import lunas.display.components.list.AbstractListController;
-
-import vegas.events.ModelChangedEvent;
 
 /**
  * The view of the List component.

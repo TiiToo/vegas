@@ -20,14 +20,13 @@
   Contributor(s) :
   
 */
- 
+
+import andromeda.events.ModelChangedEvent;
 import andromeda.util.mvc.AbstractView;
 import andromeda.util.mvc.IController;
 import andromeda.util.mvc.IModel;
 
 import lunas.display.components.container.ContainerController;
-
-import vegas.events.ModelChangedEvent;
 
 class lunas.display.components.container.ContainerView extends AbstractView 
 {

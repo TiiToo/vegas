@@ -222,7 +222,7 @@ class pegas.transitions.Tween extends Motion
 	/**
 	 * Update the current Tween in the time.
 	 */
-	/*override*/ public function update():Void 
+	public /*override*/ function update():Void 
 	{
 		var o        = target ;
 		var t:Number = _time ;

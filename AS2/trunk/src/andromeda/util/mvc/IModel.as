@@ -19,12 +19,12 @@
   
   Contributor(s) :
   
- */
+*/
 
+import andromeda.events.ModelChangedEvent;
 import andromeda.util.mvc.IView;
 
 import vegas.core.ICloneable;
-import vegas.events.ModelChangedEvent;
 
 /**
  * Defines the representation of a model in a specific type of the MVC implementation.
