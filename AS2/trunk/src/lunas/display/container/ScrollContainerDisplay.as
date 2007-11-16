@@ -19,7 +19,7 @@
   
   Contributor(s) :
   
- */
+*/
 
 import asgard.display.Direction;
 
@@ -116,6 +116,12 @@ class lunas.display.container.ScrollContainerDisplay extends ListContainerDispla
 	 */
 	public var scrollDuration:Number = 12  ;
 
+	/**
+	 * Insert a child object at the specified index position.
+	 * @param o child object
+	 * @param index The position to insert the child
+	 * @param oInit (optional) the init object use to initialize the new child.
+	 */
 	public function addChildAt(o, index:Number, oInit) 
 	{
 		var c:MovieClip = super.addChildAt(o, index, oInit) ;
@@ -141,13 +147,21 @@ class lunas.display.container.ScrollContainerDisplay extends ListContainerDispla
 		return (getMaxscroll() > 1) ? (getScroll() + (_nChildCount -1)) : _nChildCount ;
 	}
 	
+	/**
+	 * Returns the current container position.
+	 * @return the current container position.
+	 */
 	public function getContainerPos():Number 
 	{
 		var index:Number = getScroll() - 1 ;
 		var prop:String = _getPosProperty() ;
 		return - getModel().getChildAt(index)[prop] ;
 	}
-
+	
+	/**
+	 * Returns the maxscroll value of the display container.
+	 * @return the maxscroll value of the display container.
+	 */
 	public function getMaxscroll():Number 
 	{
 		var m:Number = (getModel().size() - _nChildCount) ;
@@ -169,19 +183,37 @@ class lunas.display.container.ScrollContainerDisplay extends ListContainerDispla
 		super.initContainer() ;
 		
 		_changeListener = new Delegate(this, _refreshChilds ) ;
-		
+		_finishListener = new Delegate(this, notifyFinish ) ;
+
 		_tw = new Tween( container ) ;
 		_tw.addEventListener( ActionEvent.CHANGE , _changeListener ) ;
+		_tw.addEventListener( ActionEvent.FINISH , _finishListener  ) ;
 		
 		_entry = new TweenEntry() ;
 
 	}
-
-	public function viewDestroyed():Void 
+	
+	/**
+	 * Invoqued when the scroll is finished.
+	 */
+	public function notifyFinish() : Void 
 	{
-		_clearTween() ;
+		dispatchEvent( new ActionEvent( ActionEvent.FINISH , this ) ) ;
 	}
-
+	
+	/**
+	 * Invoqued when the scroll is started.
+	 */
+	public function notifyStart() : Void 
+	{
+		dispatchEvent( new ActionEvent( ActionEvent.START , this ) ) ;
+	}
+	
+	/**
+	 * Sets the scroll value of the container.
+	 * @param n the scroll value.
+	 * @param noEvent This optional flag disabled the scroll event notify in this method if it's {@code true}.
+	 */
 	public function setScroll(n:Number, noEvent:Boolean):Void  
 	{
 		if (n == _scroll) return ;
@@ -199,7 +231,10 @@ class lunas.display.container.ScrollContainerDisplay extends ListContainerDispla
 			_scroll = 1 ;
 		}
 	}
-
+	
+	/**
+	 * Scroll the container without scroll and without notify an event.
+	 */
 	public function speedScroll(n:Number):Void 
 	{
 		_clearTween() ;
@@ -207,18 +242,35 @@ class lunas.display.container.ScrollContainerDisplay extends ListContainerDispla
 		container[_getPosProperty()] = getContainerPos() ;
 	}
 
+	/**
+	 * Invoqued when the view of the display is changed.
+	 */
 	public function viewChanged():Void 
 	{
 		super.viewChanged() ; 
 		_clearTween() ;
 		if (fixScroll) speedScroll(1) ;
 	}
-	
+
+	/**
+	 * Invoqued when the view of the display is destroyed.
+	 */
+	public function viewDestroyed():Void 
+	{
+		_clearTween() ;
+	}
+
+	/**
+	 * Invoqued when the enabled property of the display is changed.
+	 */
 	public function viewEnabled():Void 
 	{
 		super.viewEnabled() ; 
 		_clearTween() ;
-		if (fixScroll) speedScroll(1) ;
+		if (fixScroll) 
+		{
+			speedScroll(1) ;
+		}
 	}
 	
 	/**
@@ -228,15 +280,35 @@ class lunas.display.container.ScrollContainerDisplay extends ListContainerDispla
 	{
 		dispatchEvent( new UIEvent( UIEvent.SCROLL, this) ) ;
 	}
-	
-	private var _scroll:Number = 0 ;
 
-	private var _changeListener:EventListener ;
-
-	private var _tw:Tween ;
-
+	/**
+	 * @private
+	 */
 	private var _entry:TweenEntry ;
 
+	/**
+	 * @private
+	 */
+	private var _scroll:Number = 0 ;
+
+	/**
+	 * @private
+	 */
+	private var _changeListener:EventListener ;
+
+	/**
+	 * @private
+	 */
+	private var _finishListener:EventListener ;
+	
+	/**
+	 * @private
+	 */
+	private var _tw:Tween ;
+
+	/**
+	 * @private
+	 */
 	private function _changeScroll():Void 
 	{
 		if (_tw.running)
@@ -246,11 +318,14 @@ class lunas.display.container.ScrollContainerDisplay extends ListContainerDispla
 
 		var prop:String = _getPosProperty() ;
 		var pos:Number  = getContainerPos () ;
-
-		if (noScrollEasing) 
+		
+		notifyStart() ;
+		
+		if ( noScrollEasing ) 
 		{
 			container[prop] = pos ;
 			_refreshChilds() ;
+			notifyFinish() ;
 		} 
 		else 
 		{
@@ -269,6 +344,9 @@ class lunas.display.container.ScrollContainerDisplay extends ListContainerDispla
 		}
 	}
 	
+	/**
+	 * @private
+	 */
 	private function _clearTween() :Void 
 	{
 		_tw.stop() ; 
@@ -276,6 +354,7 @@ class lunas.display.container.ScrollContainerDisplay extends ListContainerDispla
 
 	/**
 	 * Returns the position property with the current direction property.
+	 * @private
 	 * @return the position property with the current direction property.
 	 */
 	private function _getPosProperty():String 
@@ -290,5 +369,7 @@ class lunas.display.container.ScrollContainerDisplay extends ListContainerDispla
 	{
 		// overrides this method.
 	}
+
+
 
 }

@@ -19,11 +19,11 @@
   
   Contributor(s) :
   
-*/
+ */
 
 import pegas.transitions.Motion;
 import pegas.transitions.TweenEntry;
-import pegas.transitions.TweenProvider;
+import pegas.transitions.TweenModel;
 
 /**
  * The Tween class lets you use ActionScript to move, resize, and fade movie clips easily on the Stage by specifying a property of the target movie clip to be tween animated over a number of frames or seconds.
@@ -33,14 +33,14 @@ import pegas.transitions.TweenProvider;
  * {@code
  * import pegas.process.ActionEvent ;
  * import pegas.transitions.Tween ;
- * import pegas.transitions.easing.* ;
+ * import pegas.transitions.easing.Elastic ;
  * 
  * import vegas.events.Delegate ;
  * import vegas.events.EventListener ;
  * 
  * var onDebug:Function = function(ev:ActionEvent):Void
  * {
- *     trace (":: debug -> " + ev.type + " : " + ev.target ) ;
+ *     trace ("debug : " + ev.getType() + " : " + ev.getTarget() ) ;
  * }
  * 
  * var debug:EventListener = new Delegate(this, onDebug) ;
@@ -75,7 +75,7 @@ class pegas.transitions.Tween extends Motion
 		var l:Number = arguments.length ;
 		if (l == 2 && arguments[1] instanceof Array) 
 		{
-			setTweenProvider(arguments[1]) ;
+			setTweenModel(arguments[1]) ;
 		} 
 		else if (l > 2) 
 		{
@@ -88,26 +88,25 @@ class pegas.transitions.Tween extends Motion
 			var a:Boolean  = arguments[7] ; // auto start
 			setDuration(d) ;
 			useSeconds = u ;
-			setTweenProvider( [new TweenEntry(p, e, b, f)] ) ;
+			setTweenModel( [new TweenEntry(p, e, b, f)] ) ;
 			if (a) run() ;
 		}
 	}
 
 	/**
-	 * (read-write) Returns the model of this Tween object.
-	 * @return the model of this Tween object.
+	 * (read-write) Determinates the model of this Tween.
 	 */
-	public function get tweenProvider():TweenProvider 
+	public function get model():TweenModel 
 	{
-		return getTweenProvider() ;
+		return getTweenModel() ;
 	}
 
 	/**
-	 * (read-write) Sets the model of this Tween object.
+	 * @private
 	 */
-	public function set tweenProvider( o ):Void 
+	public function set model( o ):Void 
 	{
-		setTweenProvider(o) ;
+		setTweenModel(o) ;
 	}
 
 	/**
@@ -115,8 +114,14 @@ class pegas.transitions.Tween extends Motion
 	 */
 	public function clear():Void 
 	{
-		if (running) this.stop() ;
-		if (_model) _model.clear() ;
+		if ( running ) 
+		{
+			this.stop() ;
+		}
+		if ( _model )
+		{
+			_model.clear() ;
+		}
 		notifyCleared() ;
 	}
 
@@ -132,16 +137,16 @@ class pegas.transitions.Tween extends Motion
 		t.useSeconds = useSeconds ;
 		if (size() > 0) 
 		{
-			t.setTweenProvider(getTweenProvider().clone()) ;
+			t.model = model.clone() ;
 		}
 		return t ;
 	}
 
 	/**
-	 * Returns the TweenProvider model reference of this Tween object.
-	 * @return the TweenProvider model reference of this Tween object.
+	 * Returns the TweenModel reference of this Tween object.
+	 * @return the TweenModel model reference of this Tween object.
 	 */
-	public function getTweenProvider():TweenProvider 
+	public function getTweenModel():TweenModel
 	{
 		return _model ;
 	}
@@ -152,9 +157,9 @@ class pegas.transitions.Tween extends Motion
 	 */
 	public function insert( entry:TweenEntry ):Void 
 	{
-		if (!_model)
+		if ( _model == null )
 		{
-			setTweenProvider() ;
+			setTweenModel() ;
 		}
 		_model.insert( entry ) ;
 	}
@@ -195,24 +200,25 @@ class pegas.transitions.Tween extends Motion
 	/**
 	 * Sets the model of this Tween object.
 	 */
-	public function setTweenProvider(o):Void 
+	public function setTweenModel( o ):Void 
 	{
-		if (o instanceof TweenProvider) 
+		if ( o instanceof TweenModel ) 
 		{
 			_model = o ;
 		}
-		else if (o instanceof Array) 
+		else if ( o instanceof Array ) 
 		{
-			_model = new TweenProvider(o) ;
+			_model = new TweenModel( null , o ) ;
 		}
 		else 
 		{
-			_model = new TweenProvider() ;
+			_model = new TweenModel() ;
 		}
 	}
 	
 	/**
-	 * The numbers of elements(properties) in the model of this Tween.
+	 * Returns the numbers of elements(properties) in the model of this Tween.
+	 * @return the numbers of elements(properties) in the model of this Tween.
 	 */
 	public function size():Number 
 	{
@@ -238,6 +244,6 @@ class pegas.transitions.Tween extends Motion
 		notifyChanged() ;
 	}
 	
-	private var _model:TweenProvider ;
+	private var _model:TweenModel ;
 
 }
