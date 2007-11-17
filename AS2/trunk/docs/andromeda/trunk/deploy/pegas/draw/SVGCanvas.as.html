@@ -588,18 +588,21 @@ document.quicknavBasePath="../../index-files";
 <span class="lineno" id="585">   585  </span>		<span class="key">var</span> dx = (p1.x + p2.x + s.x * <span class="num_const">4</span> - (c1.x + c2.x) * <span class="num_const">3</span>) * .<span class="num_const">125</span>;
 <span class="lineno" id="586">   586  </span>		<span class="key">var</span> dy = (p1.y + p2.y + s.y * <span class="num_const">4</span> - (c1.y + c2.y) * <span class="num_const">3</span>) * .<span class="num_const">125</span>;
 <span class="lineno" id="587">   587  </span>		<span class="comment">// split curve if the quadratic isn't close enough</span>
-<span class="lineno" id="588">   588  </span>		<span class="key">if</span> (dx*dx + dy*dy &gt; k) {
-<span class="lineno" id="589">   589  </span>			<span class="key">var</span> halves = bezierSplit (p1.x, p1.y, c1.x, c1.y, c2.x, c2.y, p2.x, p2.y);
-<span class="lineno" id="590">   590  </span>			<span class="key">var</span> b0 = halves.b0; <span class="key">var</span> b1 = halves.b1;
-<span class="lineno" id="591">   591  </span>			<span class="comment">// recursive call to subdivide curve</span>
-<span class="lineno" id="592">   592  </span>			getQuadBez_RP (p1,     b0.c1, b0.c2, b0.p2, k, qcurves);
-<span class="lineno" id="593">   593  </span>			getQuadBez_RP (b1.p1,  b1.c1, b1.c2, p2,    k, qcurves);
-<span class="lineno" id="594">   594  </span>		} <span class="key">else</span> {
-<span class="lineno" id="595">   595  </span>			<span class="comment">// end recursion by saving points</span>
-<span class="lineno" id="596">   596  </span>			qcurves.push({p1x:p1.x, p1y:p1.y, cx:s.x, cy:s.y, p2x:p2.x, p2y:p2.y});
-<span class="lineno" id="597">   597  </span>		}
-<span class="lineno" id="598">   598  </span>	}	
-<span class="lineno" id="599">   599  </span>
-<span class="lineno" id="600">   600  </span>	
-<span class="lineno" id="601">   601  </span>}
-<span class="lineno" id="602">   602  </span></pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package pegas.draw" class="button">Package</a></li><li><a href="SVGCanvas.html" title="Detail of pegas.draw.SVGCanvas API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>
+<span class="lineno" id="588">   588  </span>		<span class="key">if</span> (dx*dx + dy*dy &gt; k) 
+<span class="lineno" id="589">   589  </span>		{
+<span class="lineno" id="590">   590  </span>			<span class="key">var</span> halves = bezierSplit (p1.x, p1.y, c1.x, c1.y, c2.x, c2.y, p2.x, p2.y);
+<span class="lineno" id="591">   591  </span>			<span class="key">var</span> b0 = halves.b0; <span class="key">var</span> b1 = halves.b1;
+<span class="lineno" id="592">   592  </span>			<span class="comment">// recursive call to subdivide curve</span>
+<span class="lineno" id="593">   593  </span>			getQuadBez_RP (p1,     b0.c1, b0.c2, b0.p2, k, qcurves);
+<span class="lineno" id="594">   594  </span>			getQuadBez_RP (b1.p1,  b1.c1, b1.c2, p2,    k, qcurves);
+<span class="lineno" id="595">   595  </span>		}
+<span class="lineno" id="596">   596  </span>		<span class="key">else</span> 
+<span class="lineno" id="597">   597  </span>		{
+<span class="lineno" id="598">   598  </span>			<span class="comment">// end recursion by saving points</span>
+<span class="lineno" id="599">   599  </span>			qcurves.push({p1x:p1.x, p1y:p1.y, cx:s.x, cy:s.y, p2x:p2.x, p2y:p2.y});
+<span class="lineno" id="600">   600  </span>		}
+<span class="lineno" id="601">   601  </span>	}	
+<span class="lineno" id="602">   602  </span>
+<span class="lineno" id="603">   603  </span>	
+<span class="lineno" id="604">   604  </span>}
+<span class="lineno" id="605">   605  </span></pre><ul class="main_nav" id="main_nav"><li><a href="../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package pegas.draw" class="button">Package</a></li><li><a href="SVGCanvas.html" title="Detail of pegas.draw.SVGCanvas API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

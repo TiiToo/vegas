@@ -71,7 +71,7 @@ document.quicknavBasePath="../../index-files";
 <span class="lineno" id="68">    68  </span>	<span class="comment doc">/**
 <span class="lineno" id="69">    69  </span>	 * Clear the timer interval.
 <span class="lineno" id="70">    70  </span>	 */</span>
-<span class="lineno" id="71">    71  </span>	<span class="comment">/*override*/</span> <span class="key">public</span> <span class="key">function</span> clear():Void 
+<span class="lineno" id="71">    71  </span>	<span class="key">public</span> <span class="comment">/*override*/</span> <span class="key">function</span> clear():Void 
 <span class="lineno" id="72">    72  </span>	{
 <span class="lineno" id="73">    73  </span>		clearInterval(_itv) ;
 <span class="lineno" id="74">    74  </span>		_itv = <span class="key">null</span> ;
@@ -81,7 +81,7 @@ document.quicknavBasePath="../../index-files";
 <span class="lineno" id="78">    78  </span>	 * Returns a shallow copy of this object.
 <span class="lineno" id="79">    79  </span>	 * @return a shallow copy of this object.
 <span class="lineno" id="80">    80  </span>	 */</span>
-<span class="lineno" id="81">    81  </span>	<span class="comment">/*override*/</span> <span class="key">public</span> <span class="key">function</span> clone() 
+<span class="lineno" id="81">    81  </span>	<span class="key">public</span> <span class="comment">/*override*/</span> <span class="key">function</span> clone() 
 <span class="lineno" id="82">    82  </span>	{
 <span class="lineno" id="83">    83  </span>		<span class="key">return</span> <span class="key">new</span> Timer( getDelay(), getRepeatCount() ) ;
 <span class="lineno" id="84">    84  </span>	}
@@ -90,7 +90,7 @@ document.quicknavBasePath="../../index-files";
 <span class="lineno" id="87">    87  </span>	 * Returns a deep copy of this object.
 <span class="lineno" id="88">    88  </span>	 * @return a deep copy of this object.
 <span class="lineno" id="89">    89  </span>	 */</span>
-<span class="lineno" id="90">    90  </span>	<span class="comment">/*override*/</span> <span class="key">public</span> <span class="key">function</span> copy() 
+<span class="lineno" id="90">    90  </span>	<span class="key">public</span> <span class="comment">/*override*/</span> <span class="key">function</span> copy() 
 <span class="lineno" id="91">    91  </span>	{
 <span class="lineno" id="92">    92  </span>		<span class="key">return</span> <span class="key">new</span> Timer( getDelay(), getRepeatCount() ) ;
 <span class="lineno" id="93">    93  </span>	}
@@ -109,7 +109,7 @@ document.quicknavBasePath="../../index-files";
 <span class="lineno" id="106">   106  </span>	 * Run the timer.
 <span class="lineno" id="107">   107  </span>	 * @see IRunnable
 <span class="lineno" id="108">   108  </span>	 */</span>
-<span class="lineno" id="109">   109  </span>	<span class="comment">/*override*/</span> <span class="key">public</span> <span class="key">function</span> run():Void 
+<span class="lineno" id="109">   109  </span>	<span class="key">public</span> <span class="comment">/*override*/</span> <span class="key">function</span> run():Void 
 <span class="lineno" id="110">   110  </span>	{
 <span class="lineno" id="111">   111  </span>		_itv = setInterval(<span class="key">this</span>, <span class="str_const">"_next"</span>, _delay) ;
 <span class="lineno" id="112">   112  </span>	}

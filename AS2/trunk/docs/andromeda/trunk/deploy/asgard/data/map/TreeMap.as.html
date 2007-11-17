@@ -1,0 +1,1226 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><script src="../../../quicknav.js" type="text/javascript"></script><script><!--
+document.quicknavBasePath="../../../index-files";
+//--></script><link href="../../../style.css" title="JavaDoc" rel="stylesheet" type="text/css"/><link href="../../../unnatural.css" title="Unnatural" rel="alternate stylesheet" type="text/css"/><link href="../../../overview-summary.html" title="Overview" rel="top"/><meta name="generator" content="http://www.badgers-in-foil.co.uk/projects/as2api/"/></head><body><pre><span class="lineno" id="1">     1  </span><span class="comment">/*
+<span class="lineno" id="2">     2  </span>
+<span class="lineno" id="3">     3  </span>  The contents of this file are subject to the Mozilla Public License Version
+<span class="lineno" id="4">     4  </span>  1.1 (the "License"); you may not use this file except in compliance with
+<span class="lineno" id="5">     5  </span>  the License. You may obtain a copy of the License at 
+<span class="lineno" id="6">     6  </span>  
+<span class="lineno" id="7">     7  </span>           http://www.mozilla.org/MPL/ 
+<span class="lineno" id="8">     8  </span>  
+<span class="lineno" id="9">     9  </span>  Software distributed under the License is distributed on an "AS IS" basis,
+<span class="lineno" id="10">    10  </span>  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+<span class="lineno" id="11">    11  </span>  for the specific language governing rights and limitations under the License. 
+<span class="lineno" id="12">    12  </span>  
+<span class="lineno" id="13">    13  </span>  The Original Code is Vegas Framework.
+<span class="lineno" id="14">    14  </span>  
+<span class="lineno" id="15">    15  </span>  The Initial Developer of the Original Code is
+<span class="lineno" id="16">    16  </span>  ALCARAZ Marc (aka eKameleon)  &lt;vegas@ekameleon.net&gt;.
+<span class="lineno" id="17">    17  </span>  Portions created by the Initial Developer are Copyright (C) 2004-2008
+<span class="lineno" id="18">    18  </span>  the Initial Developer. All Rights Reserved.
+<span class="lineno" id="19">    19  </span>  
+<span class="lineno" id="20">    20  </span>  Contributor(s) :
+<span class="lineno" id="21">    21  </span>  
+<span class="lineno" id="22">    22  </span> */</span>
+<span class="lineno" id="23">    23  </span>	
+<span class="lineno" id="24">    24  </span><span class="key">import</span> asgard.data.map.SubTreeMap;
+<span class="lineno" id="25">    25  </span><span class="key">import</span> asgard.data.map.TreeMapNode;
+<span class="lineno" id="26">    26  </span><span class="key">import</span> asgard.data.map.TreeMapSet;
+<span class="lineno" id="27">    27  </span>
+<span class="lineno" id="28">    28  </span><span class="key">import</span> vegas.core.CoreObject;
+<span class="lineno" id="29">    29  </span><span class="key">import</span> vegas.core.HashCode;
+<span class="lineno" id="30">    30  </span><span class="key">import</span> vegas.core.ICloneable;
+<span class="lineno" id="31">    31  </span><span class="key">import</span> vegas.core.IComparable;
+<span class="lineno" id="32">    32  </span><span class="key">import</span> vegas.core.IComparator;
+<span class="lineno" id="33">    33  </span><span class="key">import</span> vegas.data.Map;
+<span class="lineno" id="34">    34  </span><span class="key">import</span> vegas.data.Set;
+<span class="lineno" id="35">    35  </span><span class="key">import</span> vegas.data.SortedMap;
+<span class="lineno" id="36">    36  </span><span class="key">import</span> vegas.data.iterator.Iterable;
+<span class="lineno" id="37">    37  </span><span class="key">import</span> vegas.data.iterator.Iterator;
+<span class="lineno" id="38">    38  </span><span class="key">import</span> vegas.errors.NoSuchElementError;
+<span class="lineno" id="39">    39  </span><span class="key">import</span> vegas.errors.NullPointerError;
+<span class="lineno" id="40">    40  </span><span class="key">import</span> vegas.util.Comparater;
+<span class="lineno" id="41">    41  </span>
+<span class="lineno" id="42">    42  </span><span class="comment doc">/**
+<span class="lineno" id="43">    43  </span> * This class provides a red-black tree implementation of the SortedMap interface. 
+<span class="lineno" id="44">    44  </span> * Elements in the Map will be sorted by either a user-provided IComparator object, or by the natural ordering of the keys.
+<span class="lineno" id="45">    45  </span> * &lt;p&gt;&lt;b&gt;Example :&lt;/b&gt;&lt;/p&gt;
+<span class="lineno" id="46">    46  </span> * {@code
+<span class="lineno" id="47">    47  </span> * import andromeda.data.iterator.TreeMapIterator ;
+<span class="lineno" id="48">    48  </span> * import andromeda.data.map.TreeMap ;
+<span class="lineno" id="49">    49  </span> * 
+<span class="lineno" id="50">    50  </span> * import vegas.util.comparators.StringComparator ;
+<span class="lineno" id="51">    51  </span> * 
+<span class="lineno" id="52">    52  </span> * var tree:TreeMap = new TreeMap( StringComparator.getStringComparator() ) ;
+<span class="lineno" id="53">    53  </span> * 
+<span class="lineno" id="54">    54  </span> * trace ( "put key1/value1 : " + tree.put("key1", "value1") ) ;
+<span class="lineno" id="55">    55  </span> * trace ( "put key2/value2 : " +  tree.put("key2", "value2") ) ;
+<span class="lineno" id="56">    56  </span> * //tree.put("key3", "value3") ;
+<span class="lineno" id="57">    57  </span> * 
+<span class="lineno" id="58">    58  </span> * trace( "size : " + tree.size() ) ;
+<span class="lineno" id="59">    59  </span> * trace( "tree : " + tree) ;
+<span class="lineno" id="60">    60  </span> * tree.put("Adobe", "Mountain View, CA");
+<span class="lineno" id="61">    61  </span> * tree.put("IBM", "White Plains, NY");
+<span class="lineno" id="62">    62  </span> * tree.put("Learning Tree", "Los Angeles, CA");
+<span class="lineno" id="63">    63  </span> * tree.put("Microsoft", "Redmond, WA");
+<span class="lineno" id="64">    64  </span> * tree.put("Netscape", "Mountain View, CA");
+<span class="lineno" id="65">    65  </span> * tree.put("O'Reilly", "Sebastopol, CA");
+<span class="lineno" id="66">    66  </span> * tree.put("Sun", "Mountain View, CA");
+<span class="lineno" id="67">    67  </span> * //var low = sortedMap.firstKey() ;
+<span class="lineno" id="68">    68  </span> * 
+<span class="lineno" id="69">    69  </span> * //var high = sortedMap.lastKey() ;
+<span class="lineno" id="70">    70  </span> * //trace("low : " + low);
+<span class="lineno" id="71">    71  </span> * //trace("high : " + high);
+<span class="lineno" id="72">    72  </span> * var it = tree.keySet().iterator();
+<span class="lineno" id="73">    73  </span> * for (int i = 0; i &lt;= 6; i++) 
+<span class="lineno" id="74">    74  </span> * {
+<span class="lineno" id="75">    75  </span> *     if (i == 3)
+<span class="lineno" id="76">    76  </span> *     {
+<span class="lineno" id="77">    77  </span> *         low = it.next();
+<span class="lineno" id="78">    78  </span> *     }
+<span class="lineno" id="79">    79  </span> *     if (i == 6)
+<span class="lineno" id="80">    80  </span> *     {
+<span class="lineno" id="81">    81  </span> *         high = it.next();
+<span class="lineno" id="82">    82  </span> *     }
+<span class="lineno" id="83">    83  </span> *     else
+<span class="lineno" id="84">    84  </span> *     {
+<span class="lineno" id="85">    85  </span> *         it.next();
+<span class="lineno" id="86">    86  </span> *     }
+<span class="lineno" id="87">    87  </span> * }
+<span class="lineno" id="88">    88  </span> * trace(low);
+<span class="lineno" id="89">    89  </span> * trace(high);
+<span class="lineno" id="90">    90  </span> * trace(tree.subMap(low, high));
+<span class="lineno" id="91">    91  </span> * trace(tree.headMap(high));
+<span class="lineno" id="92">    92  </span> * trace(tree.tailMap(low));
+<span class="lineno" id="93">    93  </span> * }
+<span class="lineno" id="94">    94  </span> * @author eKameleon
+<span class="lineno" id="95">    95  </span> */</span>
+<span class="lineno" id="96">    96  </span><span class="key">class</span> asgard.data.map.TreeMap <span class="key">extends</span> CoreObject <span class="key">implements</span> SortedMap, ICloneable, Iterable 
+<span class="lineno" id="97">    97  </span>{
+<span class="lineno" id="98">    98  </span>
+<span class="lineno" id="99">    99  </span>	<span class="comment doc">/**
+<span class="lineno" id="100">   100  </span>	 * Creates a new TreeMap instance.
+<span class="lineno" id="101">   101  </span>	 * @param comp the IComparator used in this map to ordering the keys.
+<span class="lineno" id="102">   102  </span>	 * @param map a map to fill the TreeMap.
+<span class="lineno" id="103">   103  </span>	 */</span>
+<span class="lineno" id="104">   104  </span>	<span class="key">public</span> <span class="key">function</span> TreeMap ( comp:IComparator , map ) 
+<span class="lineno" id="105">   105  </span>	{
+<span class="lineno" id="106">   106  </span>		
+<span class="lineno" id="107">   107  </span>		<span class="key">if</span> (NIL == <span class="key">null</span>)
+<span class="lineno" id="108">   108  </span>		{
+<span class="lineno" id="109">   109  </span>			NIL = <span class="key">new</span> TreeMapNode(<span class="key">null</span>, <span class="key">null</span>, BLACK) ;
+<span class="lineno" id="110">   110  </span>			NIL.parent = NIL ;
+<span class="lineno" id="111">   111  </span>			NIL.left   = NIL ;
+<span class="lineno" id="112">   112  </span>			NIL.right  = NIL ;
+<span class="lineno" id="113">   113  </span>		}
+<span class="lineno" id="114">   114  </span>		
+<span class="lineno" id="115">   115  </span>		_fabricateTree(<span class="num_const">0</span>);
+<span class="lineno" id="116">   116  </span>		
+<span class="lineno" id="117">   117  </span>		_comparator = comp ;
+<span class="lineno" id="118">   118  </span>		
+<span class="lineno" id="119">   119  </span>		<span class="key">if</span> (map <span class="key">instanceof</span> SortedMap) 
+<span class="lineno" id="120">   120  </span>		{
+<span class="lineno" id="121">   121  </span>			_comparator = map.comparator ;
+<span class="lineno" id="122">   122  </span>			<span class="comment">// TODO finish this instruction</span>
+<span class="lineno" id="123">   123  </span>		} 
+<span class="lineno" id="124">   124  </span>		<span class="key">else</span> <span class="key">if</span> (map <span class="key">instanceof</span> Map) 
+<span class="lineno" id="125">   125  </span>		{
+<span class="lineno" id="126">   126  </span>			putAll(map) ;
+<span class="lineno" id="127">   127  </span>		}
+<span class="lineno" id="128">   128  </span>	}
+<span class="lineno" id="129">   129  </span>	
+<span class="lineno" id="130">   130  </span>	<span class="comment doc">/**
+<span class="lineno" id="131">   131  </span>	 * Color status of a node (black node).
+<span class="lineno" id="132">   132  </span>	 */</span>
+<span class="lineno" id="133">   133  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> BLACK:Number = <span class="num_const">1</span> ;
+<span class="lineno" id="134">   134  </span>	
+<span class="lineno" id="135">   135  </span>	<span class="comment doc">/**
+<span class="lineno" id="136">   136  </span>	 * Color status of a node (red node).
+<span class="lineno" id="137">   137  </span>	 */</span>
+<span class="lineno" id="138">   138  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> RED:Number = -<span class="num_const">1</span> ;
+<span class="lineno" id="139">   139  </span>	
+<span class="lineno" id="140">   140  </span>	<span class="comment doc">/**
+<span class="lineno" id="141">   141  </span>	 * Sentinal node, used to avoid null checks for corner cases and make the delete rebalance code simpler. 
+<span class="lineno" id="142">   142  </span>	 * The rebalance code must never assign the parent, left, or right of nil, but may safely reassign the color to be black. 
+<span class="lineno" id="143">   143  </span>	 * This object must never be used as a key in a TreeMap, or it will break bounds checking of a SubMap.
+<span class="lineno" id="144">   144  </span>	 */</span>
+<span class="lineno" id="145">   145  </span>	<span class="key">public</span> <span class="key">static</span> <span class="key">var</span> NIL:TreeMapNode = <span class="key">null</span> ;
+<span class="lineno" id="146">   146  </span>	
+<span class="lineno" id="147">   147  </span>	<span class="comment doc">/**
+<span class="lineno" id="148">   148  </span>	 * (read-only) The root node of this TreeMap.
+<span class="lineno" id="149">   149  </span>	 */</span>
+<span class="lineno" id="150">   150  </span>	<span class="key">public</span> <span class="key">function</span> get root():TreeMapNode
+<span class="lineno" id="151">   151  </span>	{
+<span class="lineno" id="152">   152  </span>		<span class="key">return</span> _rootEntry ;	
+<span class="lineno" id="153">   153  </span>	}
+<span class="lineno" id="154">   154  </span>	
+<span class="lineno" id="155">   155  </span>	<span class="comment doc">/**
+<span class="lineno" id="156">   156  </span>	 * Removes all elements in the map.
+<span class="lineno" id="157">   157  </span>	 */</span>
+<span class="lineno" id="158">   158  </span>	<span class="key">public</span> <span class="key">function</span> clear():Void 
+<span class="lineno" id="159">   159  </span>	{
+<span class="lineno" id="160">   160  </span>		<span class="key">if</span> (_size &gt; <span class="num_const">0</span>)
+<span class="lineno" id="161">   161  </span>		{
+<span class="lineno" id="162">   162  </span>			_modCount++ ;
+<span class="lineno" id="163">   163  </span>        	_rootEntry = NIL ;
+<span class="lineno" id="164">   164  </span>			_size = <span class="num_const">0</span> ;
+<span class="lineno" id="165">   165  </span>		}
+<span class="lineno" id="166">   166  </span>	}
+<span class="lineno" id="167">   167  </span>	
+<span class="lineno" id="168">   168  </span>	<span class="comment doc">/**
+<span class="lineno" id="169">   169  </span>	 * Returns a shallow copy of this object.
+<span class="lineno" id="170">   170  </span>	 * @return a shallow copy of this object.
+<span class="lineno" id="171">   171  </span>	 */</span>
+<span class="lineno" id="172">   172  </span>	<span class="key">public</span> <span class="key">function</span> clone() 
+<span class="lineno" id="173">   173  </span>	{
+<span class="lineno" id="174">   174  </span>	
+<span class="lineno" id="175">   175  </span>	}
+<span class="lineno" id="176">   176  </span>	
+<span class="lineno" id="177">   177  </span>	<span class="comment doc">/**
+<span class="lineno" id="178">   178  </span>	 * Returns the comparator associated with this sorted map, or null if it uses its keys' natural ordering.
+<span class="lineno" id="179">   179  </span>	 * @return the comparator associated with this sorted map, or null if it uses its keys' natural ordering.
+<span class="lineno" id="180">   180  </span>	 */</span>
+<span class="lineno" id="181">   181  </span>	<span class="key">public</span> <span class="key">function</span> comparator():IComparator 
+<span class="lineno" id="182">   182  </span>	{
+<span class="lineno" id="183">   183  </span>		<span class="key">return</span> _comparator ;
+<span class="lineno" id="184">   184  </span>	}
+<span class="lineno" id="185">   185  </span>	
+<span class="lineno" id="186">   186  </span>	<span class="comment doc">/**
+<span class="lineno" id="187">   187  </span>	 * Compares two elements by the set comparator, or by natural ordering.
+<span class="lineno" id="188">   188  </span>	 * @param o1 the first object.
+<span class="lineno" id="189">   189  </span>	 * @param o2 the second object.
+<span class="lineno" id="190">   190  </span>	 * @return &lt;p&gt;
+<span class="lineno" id="191">   191  </span>	 * &lt;li&gt;-1 if o1 is "lower" than (less than, before, etc.) o2 ;&lt;/li&gt;
+<span class="lineno" id="192">   192  </span>	 * &lt;li&gt; 1 if o1 is "higher" than (greater than, after, etc.) o2 ;&lt;/li&gt;
+<span class="lineno" id="193">   193  </span>	 * &lt;li&gt; 0 if o1 and o2 are equal.&lt;/li&gt;
+<span class="lineno" id="194">   194  </span>	 * &lt;/p&gt;
+<span class="lineno" id="195">   195  </span>	 * @throws NullPointerError if o1 and o2 is null with natural ordering.
+<span class="lineno" id="196">   196  </span>	 */</span>
+<span class="lineno" id="197">   197  </span>	<span class="key">public</span> <span class="key">function</span> compare( o1, o2 ):Number
+<span class="lineno" id="198">   198  </span>	{
+<span class="lineno" id="199">   199  </span>		<span class="key">if</span> ( o1 == <span class="key">null</span> || o2 == <span class="key">null</span> )
+<span class="lineno" id="200">   200  </span>		{
+<span class="lineno" id="201">   201  </span>			<span class="key">throw</span> <span class="key">new</span> NullPointerError(<span class="key">this</span> + <span class="str_const">" "</span>) ;	
+<span class="lineno" id="202">   202  </span>		}
+<span class="lineno" id="203">   203  </span>		<span class="key">if</span> ( _comparator == <span class="key">null</span> )
+<span class="lineno" id="204">   204  </span>		{
+<span class="lineno" id="205">   205  </span>			<span class="key">if</span> ( o1 <span class="key">instanceof</span> IComparable )
+<span class="lineno" id="206">   206  </span>			{
+<span class="lineno" id="207">   207  </span>				<span class="key">return</span> IComparable(o1).compareTo(o2) ;
+<span class="lineno" id="208">   208  </span>			}
+<span class="lineno" id="209">   209  </span>			<span class="key">else</span>
+<span class="lineno" id="210">   210  </span>			{
+<span class="lineno" id="211">   211  </span>				<span class="key">return</span> HashCode.compare( o1, o2 ) ;
+<span class="lineno" id="212">   212  </span>			} 
+<span class="lineno" id="213">   213  </span>		}
+<span class="lineno" id="214">   214  </span>		<span class="key">else</span>
+<span class="lineno" id="215">   215  </span>		{
+<span class="lineno" id="216">   216  </span>			<span class="key">return</span> _comparator.compare(o1, o2) ;	
+<span class="lineno" id="217">   217  </span>		}
+<span class="lineno" id="218">   218  </span>	}
+<span class="lineno" id="219">   219  </span>
+<span class="lineno" id="220">   220  </span>	<span class="comment doc">/**
+<span class="lineno" id="221">   221  </span>	 * Returns {@code true} if this map contains a mapping for the specified key.
+<span class="lineno" id="222">   222  </span>	 * @param key the key to look for.
+<span class="lineno" id="223">   223  </span>	 * @return {@code true} if this map contains a mapping for the specified key.
+<span class="lineno" id="224">   224  </span>	 */</span>
+<span class="lineno" id="225">   225  </span>	<span class="key">public</span> <span class="key">function</span> containsKey( key ):Boolean 
+<span class="lineno" id="226">   226  </span>	{
+<span class="lineno" id="227">   227  </span>		<span class="key">return</span> getNode(key) != NIL ;
+<span class="lineno" id="228">   228  </span>	}
+<span class="lineno" id="229">   229  </span>
+<span class="lineno" id="230">   230  </span>	<span class="comment doc">/**
+<span class="lineno" id="231">   231  </span>	 * Returns {@code true} if this map maps one or more keys to the specified value.
+<span class="lineno" id="232">   232  </span>	 * @param value the value to look for.
+<span class="lineno" id="233">   233  </span>	 * @return {@code true} if this map maps one or more keys to the specified value.
+<span class="lineno" id="234">   234  </span>	 */</span>
+<span class="lineno" id="235">   235  </span>	<span class="key">public</span> <span class="key">function</span> containsValue( value ):Boolean 
+<span class="lineno" id="236">   236  </span>	{
+<span class="lineno" id="237">   237  </span>		<span class="key">var</span> node:TreeMapNode = firstNode() ;
+<span class="lineno" id="238">   238  </span>		<span class="key">while</span> (node != NIL)
+<span class="lineno" id="239">   239  </span>		{
+<span class="lineno" id="240">   240  </span>			<span class="key">if</span> ( Comparater.compare(value, node.value )) 
+<span class="lineno" id="241">   241  </span>			{
+<span class="lineno" id="242">   242  </span>				<span class="key">return</span> <span class="key">true</span> ;
+<span class="lineno" id="243">   243  </span>			}	
+<span class="lineno" id="244">   244  </span>			node = successor(node) ;
+<span class="lineno" id="245">   245  </span>		}		
+<span class="lineno" id="246">   246  </span>		<span class="key">return</span> <span class="key">false</span> ;
+<span class="lineno" id="247">   247  </span>	}
+<span class="lineno" id="248">   248  </span>
+<span class="lineno" id="249">   249  </span>	<span class="comment doc">/**
+<span class="lineno" id="250">   250  </span>	 * Returns a "set view" of this TreeMap's entries. 
+<span class="lineno" id="251">   251  </span>	 * The set is backed by the TreeMap, so changes in one show up in the other.  
+<span class="lineno" id="252">   252  </span>	 * The set supports element removal, but not element addition.
+<span class="lineno" id="253">   253  </span>	 * @return a set view of the entries of this TreeMap.
+<span class="lineno" id="254">   254  </span>	 */</span>
+<span class="lineno" id="255">   255  </span>	<span class="key">public</span> <span class="key">function</span> entrySet():Set
+<span class="lineno" id="256">   256  </span>	{
+<span class="lineno" id="257">   257  </span>		<span class="key">if</span> (_entries == <span class="key">null</span>)
+<span class="lineno" id="258">   258  </span>		{
+<span class="lineno" id="259">   259  </span>			_entries = <span class="key">new</span> TreeMapSet( <span class="key">this</span> ) ;
+<span class="lineno" id="260">   260  </span>		}
+<span class="lineno" id="261">   261  </span>		<span class="key">return</span> _entries ;
+<span class="lineno" id="262">   262  </span>	}
+<span class="lineno" id="263">   263  </span>
+<span class="lineno" id="264">   264  </span>	<span class="comment doc">/**
+<span class="lineno" id="265">   265  </span>	 * Returns the first (lowest) key currently in this sorted map.
+<span class="lineno" id="266">   266  </span>	 * @return the first (lowest) key currently in this sorted map.
+<span class="lineno" id="267">   267  </span>	 */</span>
+<span class="lineno" id="268">   268  </span>	<span class="key">public</span> <span class="key">function</span> firstKey() 
+<span class="lineno" id="269">   269  </span>	{
+<span class="lineno" id="270">   270  </span>		<span class="key">if</span> (_rootEntry == NIL)
+<span class="lineno" id="271">   271  </span>		{
+<span class="lineno" id="272">   272  </span>      		<span class="key">throw</span> <span class="key">new</span> NoSuchElementError(<span class="key">this</span> + <span class="str_const">" firstKey failed, no element in this TreeMap."</span>);
+<span class="lineno" id="273">   273  </span>		}
+<span class="lineno" id="274">   274  </span>    	<span class="key">return</span> firstNode().key ;
+<span class="lineno" id="275">   275  </span>	}
+<span class="lineno" id="276">   276  </span>	
+<span class="lineno" id="277">   277  </span>	<span class="comment doc">/**
+<span class="lineno" id="278">   278  </span>	 * Returns the first sorted node in the map, or {@code null} if empty.
+<span class="lineno" id="279">   279  </span>	 * @return the first sorted node in the map, or {@code null} if empty.
+<span class="lineno" id="280">   280  </span>	 */</span>
+<span class="lineno" id="281">   281  </span>	<span class="key">public</span> <span class="key">function</span> firstNode():TreeMapNode
+<span class="lineno" id="282">   282  </span>	{
+<span class="lineno" id="283">   283  </span>		<span class="key">var</span> node:TreeMapNode = _rootEntry ;
+<span class="lineno" id="284">   284  </span>		<span class="key">while</span> (node.left != NIL)
+<span class="lineno" id="285">   285  </span>		{
+<span class="lineno" id="286">   286  </span>			node = node.left ;	
+<span class="lineno" id="287">   287  </span>		}	
+<span class="lineno" id="288">   288  </span>		<span class="key">return</span> node ;
+<span class="lineno" id="289">   289  </span>	}
+<span class="lineno" id="290">   290  </span>	
+<span class="lineno" id="291">   291  </span>	<span class="comment doc">/**
+<span class="lineno" id="292">   292  </span>	 * Return the value in this TreeMap associated with the supplied key, or {@code } if the key maps to nothing.
+<span class="lineno" id="293">   293  </span>	 * @param key the key for which to fetch an associated value.
+<span class="lineno" id="294">   294  </span>	 * @return what the key maps to, if present.
+<span class="lineno" id="295">   295  </span>	 */</span>
+<span class="lineno" id="296">   296  </span>	<span class="key">public</span> <span class="key">function</span> get(key) 
+<span class="lineno" id="297">   297  </span>	{
+<span class="lineno" id="298">   298  </span>		<span class="key">return</span> getNode(key).value ;
+<span class="lineno" id="299">   299  </span>	}
+<span class="lineno" id="300">   300  </span>	
+<span class="lineno" id="301">   301  </span>	<span class="comment doc">/**
+<span class="lineno" id="302">   302  </span>	 * Returns the array representation of all keys in this TreeMap.
+<span class="lineno" id="303">   303  </span>	 * @return the array representation of all keys in this TreeMap.
+<span class="lineno" id="304">   304  </span>	 */</span>
+<span class="lineno" id="305">   305  </span>	<span class="key">public</span> <span class="key">function</span> getKeys():Array 
+<span class="lineno" id="306">   306  </span>	{
+<span class="lineno" id="307">   307  </span>		<span class="key">return</span> <span class="key">null</span> ;
+<span class="lineno" id="308">   308  </span>	}
+<span class="lineno" id="309">   309  </span>
+<span class="lineno" id="310">   310  </span>	<span class="comment doc">/**
+<span class="lineno" id="311">   311  </span>	 * Returns the modCount value of this TreeMap instance.
+<span class="lineno" id="312">   312  </span>	 * @return the modCount value of this TreeMap instance.
+<span class="lineno" id="313">   313  </span>	 */</span>
+<span class="lineno" id="314">   314  </span>	<span class="key">public</span> <span class="key">function</span> getModCount():Number
+<span class="lineno" id="315">   315  </span>	{
+<span class="lineno" id="316">   316  </span>		<span class="key">return</span> _modCount ;	
+<span class="lineno" id="317">   317  </span>	}
+<span class="lineno" id="318">   318  </span>
+<span class="lineno" id="319">   319  </span>	<span class="comment doc">/**
+<span class="lineno" id="320">   320  </span>	 * Returns the TreeMapNode associated with key, or the NIL node if no such node exists in the tree.
+<span class="lineno" id="321">   321  </span>	 * @param key the key to search for.
+<span class="lineno" id="322">   322  </span>	 * @return the node where the key is found, or NIL.
+<span class="lineno" id="323">   323  </span>	 */</span>
+<span class="lineno" id="324">   324  </span>	<span class="key">public</span> <span class="key">function</span> getNode( key )
+<span class="lineno" id="325">   325  </span>	{
+<span class="lineno" id="326">   326  </span>		<span class="key">var</span> current:TreeMapNode = _rootEntry ;
+<span class="lineno" id="327">   327  </span>		<span class="key">while</span> ( current != NIL )
+<span class="lineno" id="328">   328  </span>		{
+<span class="lineno" id="329">   329  </span>			<span class="key">var</span> comparison = compare(key, current.key ) ;
+<span class="lineno" id="330">   330  </span>			<span class="key">if</span> (comparison &gt; <span class="num_const">0</span>)
+<span class="lineno" id="331">   331  </span>			{
+<span class="lineno" id="332">   332  </span>				current = current.right ;
+<span class="lineno" id="333">   333  </span>			}
+<span class="lineno" id="334">   334  </span>			<span class="key">else</span> <span class="key">if</span> (comparison &lt; <span class="num_const">0</span> )
+<span class="lineno" id="335">   335  </span>			{
+<span class="lineno" id="336">   336  </span>				current = current.left ;
+<span class="lineno" id="337">   337  </span>			}
+<span class="lineno" id="338">   338  </span>			<span class="key">else</span>
+<span class="lineno" id="339">   339  </span>			{
+<span class="lineno" id="340">   340  </span>				<span class="key">return</span> current ;	
+<span class="lineno" id="341">   341  </span>			}	
+<span class="lineno" id="342">   342  </span>		}
+<span class="lineno" id="343">   343  </span>		<span class="key">return</span> current ;
+<span class="lineno" id="344">   344  </span>	}
+<span class="lineno" id="345">   345  </span>	
+<span class="lineno" id="346">   346  </span>	<span class="key">public</span> <span class="key">function</span> getValues():Array
+<span class="lineno" id="347">   347  </span>	{
+<span class="lineno" id="348">   348  </span>		<span class="key">return</span> <span class="key">null</span> ;
+<span class="lineno" id="349">   349  </span>	}
+<span class="lineno" id="350">   350  </span>
+<span class="lineno" id="351">   351  </span>	<span class="comment doc">/**
+<span class="lineno" id="352">   352  </span>	 * Returns a view of this Map including all entries with keys less than {@code toKey}.
+<span class="lineno" id="353">   353  </span>	 * The returned map is backed by the original, so changes in one appear in the other.
+<span class="lineno" id="354">   354  </span>	 * @param toKey the exclusive cutoff point.
+<span class="lineno" id="355">   355  </span>	 * @return a view of the map less than the cutoff.
+<span class="lineno" id="356">   356  </span>	 */</span>
+<span class="lineno" id="357">   357  </span>	<span class="key">public</span> <span class="key">function</span> heapMap(toKey):SortedMap 
+<span class="lineno" id="358">   358  </span>	{
+<span class="lineno" id="359">   359  </span>		<span class="key">return</span> <span class="key">new</span> SubTreeMap( NIL, toKey);
+<span class="lineno" id="360">   360  </span>	}
+<span class="lineno" id="361">   361  </span>	
+<span class="lineno" id="362">   362  </span>	<span class="comment doc">/**
+<span class="lineno" id="363">   363  </span>	 * Find the "highest" node which is &amp;lt; key. If key is nil, return last node.
+<span class="lineno" id="364">   364  </span>	 * @param key the upper bound, exclusive.
+<span class="lineno" id="365">   365  </span>	 * @return the previous node.
+<span class="lineno" id="366">   366  </span>	 */</span>
+<span class="lineno" id="367">   367  </span>	<span class="key">public</span> <span class="key">function</span> highestLessThan( key ):TreeMapNode
+<span class="lineno" id="368">   368  </span>	{
+<span class="lineno" id="369">   369  </span>		<span class="key">if</span> (key  == NIL)
+<span class="lineno" id="370">   370  </span>		{
+<span class="lineno" id="371">   371  </span>			<span class="key">return</span> lastNode() ;	
+<span class="lineno" id="372">   372  </span>		}
+<span class="lineno" id="373">   373  </span>		
+<span class="lineno" id="374">   374  </span>		<span class="key">var</span> last:TreeMapNode = NIL ;
+<span class="lineno" id="375">   375  </span>		<span class="key">var</span> current:TreeMapNode = _rootEntry ;
+<span class="lineno" id="376">   376  </span>		<span class="key">var</span> comparison:Number = <span class="num_const">0</span> ;
+<span class="lineno" id="377">   377  </span>		
+<span class="lineno" id="378">   378  </span>		<span class="key">while</span>(current != NIL)
+<span class="lineno" id="379">   379  </span>		{
+<span class="lineno" id="380">   380  </span>			last = current ;
+<span class="lineno" id="381">   381  </span>			comparison = compare(key, current.key) ;
+<span class="lineno" id="382">   382  </span>			<span class="key">if</span> (comparison &gt; <span class="num_const">0</span>)
+<span class="lineno" id="383">   383  </span>			{
+<span class="lineno" id="384">   384  </span>				current = current.right ;	
+<span class="lineno" id="385">   385  </span>			}	
+<span class="lineno" id="386">   386  </span>			<span class="key">else</span> <span class="key">if</span> (comparison &lt; <span class="num_const">0</span>)
+<span class="lineno" id="387">   387  </span>			{
+<span class="lineno" id="388">   388  </span>				current = current.left ;	
+<span class="lineno" id="389">   389  </span>			}
+<span class="lineno" id="390">   390  </span>			<span class="key">else</span>
+<span class="lineno" id="391">   391  </span>			{
+<span class="lineno" id="392">   392  </span>				<span class="key">return</span> predecessor( last ) ;	
+<span class="lineno" id="393">   393  </span>			}
+<span class="lineno" id="394">   394  </span>		}
+<span class="lineno" id="395">   395  </span>		<span class="key">return</span> comparison &lt;= <span class="num_const">0</span> ? predecessor(last) : last ;
+<span class="lineno" id="396">   396  </span>		
+<span class="lineno" id="397">   397  </span>	}
+<span class="lineno" id="398">   398  </span>	
+<span class="lineno" id="399">   399  </span>	<span class="comment doc">/**
+<span class="lineno" id="400">   400  </span>	 * Returns {@code true} if this TreeMap is empty.
+<span class="lineno" id="401">   401  </span>	 * @return {@code true} if this TreeMap is empty.
+<span class="lineno" id="402">   402  </span>	 */</span>
+<span class="lineno" id="403">   403  </span>	<span class="key">public</span> <span class="key">function</span> isEmpty():Boolean 
+<span class="lineno" id="404">   404  </span>	{
+<span class="lineno" id="405">   405  </span>		<span class="key">return</span> _size == <span class="num_const">0</span> ;
+<span class="lineno" id="406">   406  </span>	}
+<span class="lineno" id="407">   407  </span>	
+<span class="lineno" id="408">   408  </span>	<span class="key">public</span> <span class="key">function</span> iterator():Iterator 
+<span class="lineno" id="409">   409  </span>	{
+<span class="lineno" id="410">   410  </span>		<span class="key">return</span> <span class="key">null</span> ;
+<span class="lineno" id="411">   411  </span>	}
+<span class="lineno" id="412">   412  </span>
+<span class="lineno" id="413">   413  </span>	<span class="key">public</span> <span class="key">function</span> keyIterator():Iterator 
+<span class="lineno" id="414">   414  </span>	{
+<span class="lineno" id="415">   415  </span>			<span class="key">return</span> <span class="key">null</span> ;
+<span class="lineno" id="416">   416  </span>	}
+<span class="lineno" id="417">   417  </span>
+<span class="lineno" id="418">   418  </span>	<span class="comment doc">/**
+<span class="lineno" id="419">   419  </span>	 * Returns the last (highest) key in the map.
+<span class="lineno" id="420">   420  </span>	 * @return the last (highest) key in the map.
+<span class="lineno" id="421">   421  </span>	 * @throws NoSuchElementError if the TreeMap is empty.
+<span class="lineno" id="422">   422  </span>	 */</span>
+<span class="lineno" id="423">   423  </span>	<span class="key">public</span> <span class="key">function</span> lastKey() 
+<span class="lineno" id="424">   424  </span>	{
+<span class="lineno" id="425">   425  </span>		<span class="key">if</span> (_rootEntry == NIL)
+<span class="lineno" id="426">   426  </span>		{
+<span class="lineno" id="427">   427  </span>			<span class="key">throw</span> <span class="key">new</span> NoSuchElementError(<span class="key">this</span> + <span class="str_const">" lastKey method failed if the TreeMap is empty."</span>) ;
+<span class="lineno" id="428">   428  </span>		}
+<span class="lineno" id="429">   429  </span>		<span class="key">return</span> lastNode().key ;
+<span class="lineno" id="430">   430  </span>	}
+<span class="lineno" id="431">   431  </span>	
+<span class="lineno" id="432">   432  </span>	<span class="comment doc">/**
+<span class="lineno" id="433">   433  </span>	 * Returns the last sorted node in the map, or nil if empty.
+<span class="lineno" id="434">   434  </span>	 * @return the last sorted node in the map, or nil if empty.
+<span class="lineno" id="435">   435  </span>	 */</span>
+<span class="lineno" id="436">   436  </span>	<span class="key">public</span> <span class="key">function</span> lastNode():TreeMapNode
+<span class="lineno" id="437">   437  </span>	{
+<span class="lineno" id="438">   438  </span>		<span class="key">var</span> node:TreeMapNode = _rootEntry ;
+<span class="lineno" id="439">   439  </span>		<span class="key">while</span>( node.right != NIL)
+<span class="lineno" id="440">   440  </span>		{
+<span class="lineno" id="441">   441  </span>			node = node.right ;	
+<span class="lineno" id="442">   442  </span>		}
+<span class="lineno" id="443">   443  </span>		<span class="key">return</span> node ;
+<span class="lineno" id="444">   444  </span>	}
+<span class="lineno" id="445">   445  </span>	
+<span class="lineno" id="446">   446  </span>	<span class="comment doc">/**
+<span class="lineno" id="447">   447  </span>	 * Find the "lowest" node which is &amp;gt;= key. If key is nil, return either NIL or the first node, depending on the parameter {@code first}.
+<span class="lineno" id="448">   448  </span>	 * @param key the lower bound, inclusive.
+<span class="lineno" id="449">   449  </span>	 * @param first {@code true} to return the first element instead of NIL for NIL key.
+<span class="lineno" id="450">   450  </span>	 * @return the next node.
+<span class="lineno" id="451">   451  </span>	 */</span>
+<span class="lineno" id="452">   452  </span>	<span class="key">public</span> <span class="key">function</span> lowestGreaterThan( key, first:Boolean ):TreeMapNode
+<span class="lineno" id="453">   453  </span>	{
+<span class="lineno" id="454">   454  </span>		<span class="key">if</span> (key == NIL)
+<span class="lineno" id="455">   455  </span>		{
+<span class="lineno" id="456">   456  </span>			<span class="key">return</span> first ? firstNode() : NIL ;	
+<span class="lineno" id="457">   457  </span>		}
+<span class="lineno" id="458">   458  </span>		
+<span class="lineno" id="459">   459  </span>		<span class="key">var</span> last:TreeMapNode = NIL ;
+<span class="lineno" id="460">   460  </span>		<span class="key">var</span> current:TreeMapNode = _rootEntry ;
+<span class="lineno" id="461">   461  </span>		<span class="key">var</span> comparison:Number = <span class="num_const">0</span> ;
+<span class="lineno" id="462">   462  </span>
+<span class="lineno" id="463">   463  </span>    	<span class="key">while</span> (current != NIL)
+<span class="lineno" id="464">   464  </span>      	{
+<span class="lineno" id="465">   465  </span>	        last = current;
+<span class="lineno" id="466">   466  </span>    	    comparison = compare(key, current.key) ;
+<span class="lineno" id="467">   467  </span>        	<span class="key">if</span> (comparison &gt; <span class="num_const">0</span>)
+<span class="lineno" id="468">   468  </span>        	{
+<span class="lineno" id="469">   469  </span>          		current = current.right ;
+<span class="lineno" id="470">   470  </span>        	}
+<span class="lineno" id="471">   471  </span>        	<span class="key">else</span> <span class="key">if</span> (comparison &lt; <span class="num_const">0</span>)
+<span class="lineno" id="472">   472  </span>        	{
+<span class="lineno" id="473">   473  </span>          		current = current.left ;
+<span class="lineno" id="474">   474  </span>        	}
+<span class="lineno" id="475">   475  </span>        	<span class="key">else</span>
+<span class="lineno" id="476">   476  </span>        	{
+<span class="lineno" id="477">   477  </span>          		<span class="key">return</span> current ;
+<span class="lineno" id="478">   478  </span>        	}
+<span class="lineno" id="479">   479  </span>      	}
+<span class="lineno" id="480">   480  </span>    	
+<span class="lineno" id="481">   481  </span>    	<span class="key">return</span> comparison &gt; <span class="num_const">0</span> ? successor(last) : last;
+<span class="lineno" id="482">   482  </span>    
+<span class="lineno" id="483">   483  </span>	}
+<span class="lineno" id="484">   484  </span>
+<span class="lineno" id="485">   485  </span>  	<span class="comment doc">/**
+<span class="lineno" id="486">   486  </span>  	 * Returns the node preceding the given one, or nil if there isn't one.
+<span class="lineno" id="487">   487  </span>  	 * @param node the current node, not NIL.
+<span class="lineno" id="488">   488  </span>  	 * @return the prior node in sorted order.
+<span class="lineno" id="489">   489  </span>  	 */</span>
+<span class="lineno" id="490">   490  </span>	<span class="key">public</span> <span class="key">function</span> predecessor( node:TreeMapNode ):TreeMapNode
+<span class="lineno" id="491">   491  </span>	{
+<span class="lineno" id="492">   492  </span>		<span class="key">if</span> ( node.left != NIL )
+<span class="lineno" id="493">   493  </span>		{
+<span class="lineno" id="494">   494  </span>			node = node.left ;
+<span class="lineno" id="495">   495  </span>			<span class="key">while</span>( node.right != NIL )
+<span class="lineno" id="496">   496  </span>			{
+<span class="lineno" id="497">   497  </span>				node = node.right ;	
+<span class="lineno" id="498">   498  </span>			}	
+<span class="lineno" id="499">   499  </span>			<span class="key">return</span> node ;
+<span class="lineno" id="500">   500  </span>		}
+<span class="lineno" id="501">   501  </span>		
+<span class="lineno" id="502">   502  </span>		<span class="key">var</span> parent:TreeMapNode = node.parent ;
+<span class="lineno" id="503">   503  </span>		
+<span class="lineno" id="504">   504  </span>		<span class="comment">// Exploit fact that NIL.left == NIL and node is non-nil.</span>
+<span class="lineno" id="505">   505  </span>		<span class="key">while</span>( node == parent.left )
+<span class="lineno" id="506">   506  </span>		{
+<span class="lineno" id="507">   507  </span>			node = parent ;
+<span class="lineno" id="508">   508  </span>			parent = node.parent ;	
+<span class="lineno" id="509">   509  </span>		}
+<span class="lineno" id="510">   510  </span>		<span class="key">return</span> parent ;
+<span class="lineno" id="511">   511  </span>	}
+<span class="lineno" id="512">   512  </span>	
+<span class="lineno" id="513">   513  </span>	<span class="comment doc">/**
+<span class="lineno" id="514">   514  </span>	 * Puts the supplied value into the Map, mapped by the supplied key.
+<span class="lineno" id="515">   515  </span>	 * @param key the key used to locate the value.
+<span class="lineno" id="516">   516  </span>	 * @param value the value to be stored in the {@code Map}.
+<span class="lineno" id="517">   517  </span>	 * @return the prior mapping of the key, or {@code null} if there was none.
+<span class="lineno" id="518">   518  </span>	 */</span>
+<span class="lineno" id="519">   519  </span>	<span class="key">public</span> <span class="key">function</span> put(key, value) 
+<span class="lineno" id="520">   520  </span>	{
+<span class="lineno" id="521">   521  </span>		
+<span class="lineno" id="522">   522  </span>		<span class="key">var</span> comparison:Number   = <span class="num_const">0</span> ;
+<span class="lineno" id="523">   523  </span>		<span class="key">var</span> current:TreeMapNode = _rootEntry ;
+<span class="lineno" id="524">   524  </span>		<span class="key">var</span> parent:TreeMapNode  = NIL ;
+<span class="lineno" id="525">   525  </span>
+<span class="lineno" id="526">   526  </span>		<span class="key">while</span> (current != NIL)
+<span class="lineno" id="527">   527  </span>		{
+<span class="lineno" id="528">   528  </span>			parent = current ;
+<span class="lineno" id="529">   529  </span>			comparison = compare(key, current.key) ;
+<span class="lineno" id="530">   530  </span>			<span class="key">if</span> (comparison &gt; <span class="num_const">0</span>)
+<span class="lineno" id="531">   531  </span>			{
+<span class="lineno" id="532">   532  </span>				current = current.right ;
+<span class="lineno" id="533">   533  </span>			}
+<span class="lineno" id="534">   534  </span>			<span class="key">else</span> <span class="key">if</span> (comparison &lt;<span class="num_const">0</span>)
+<span class="lineno" id="535">   535  </span>			{
+<span class="lineno" id="536">   536  </span>				current = current.left ;
+<span class="lineno" id="537">   537  </span>			}
+<span class="lineno" id="538">   538  </span>			<span class="key">else</span>
+<span class="lineno" id="539">   539  </span>			{
+<span class="lineno" id="540">   540  </span>				current.setValue(value) ;
+<span class="lineno" id="541">   541  </span>				<span class="key">return</span> current.getValue() ; 
+<span class="lineno" id="542">   542  </span>			}
+<span class="lineno" id="543">   543  </span>		}
+<span class="lineno" id="544">   544  </span>		
+<span class="lineno" id="545">   545  </span>		<span class="comment">// creates new node</span>
+<span class="lineno" id="546">   546  </span>		<span class="key">var</span> n:TreeMapNode = <span class="key">new</span> TreeMapNode(key, value, RED) ;
+<span class="lineno" id="547">   547  </span>		n.parent = parent ;
+<span class="lineno" id="548">   548  </span>		
+<span class="lineno" id="549">   549  </span>		<span class="comment">// insert node in the tree</span>
+<span class="lineno" id="550">   550  </span>		_modCount ++ ;
+<span class="lineno" id="551">   551  </span>		_size ++ ;
+<span class="lineno" id="552">   552  </span>		<span class="key">if</span> (parent == NIL)
+<span class="lineno" id="553">   553  </span>		{
+<span class="lineno" id="554">   554  </span>			_rootEntry = n ;
+<span class="lineno" id="555">   555  </span>			<span class="key">return</span> <span class="key">null</span> ;	
+<span class="lineno" id="556">   556  </span>		}
+<span class="lineno" id="557">   557  </span>		<span class="key">if</span> (comparison &gt; <span class="num_const">0</span>)
+<span class="lineno" id="558">   558  </span>		{
+<span class="lineno" id="559">   559  </span>			parent.right = n ;	
+<span class="lineno" id="560">   560  </span>		}
+<span class="lineno" id="561">   561  </span>		<span class="key">else</span>
+<span class="lineno" id="562">   562  </span>		{
+<span class="lineno" id="563">   563  </span>			parent.left = n ;
+<span class="lineno" id="564">   564  </span>		}
+<span class="lineno" id="565">   565  </span>		
+<span class="lineno" id="566">   566  </span>		_insertFixup( n ) ;
+<span class="lineno" id="567">   567  </span>		<span class="key">return</span> <span class="key">null</span> ;
+<span class="lineno" id="568">   568  </span>		
+<span class="lineno" id="569">   569  </span>	}
+<span class="lineno" id="570">   570  </span>	
+<span class="lineno" id="571">   571  </span>	<span class="comment doc">/**
+<span class="lineno" id="572">   572  </span>	 * Copies all elements of the given map into this TreeMap.
+<span class="lineno" id="573">   573  </span>	 * If this map already has a mapping for a key, the new mapping replaces the current one.
+<span class="lineno" id="574">   574  </span>	 * @param m the map to be added.
+<span class="lineno" id="575">   575  </span>	 */</span>
+<span class="lineno" id="576">   576  </span>	<span class="key">public</span> <span class="key">function</span> putAll(m:Map):Void 
+<span class="lineno" id="577">   577  </span>	{
+<span class="lineno" id="578">   578  </span>		<span class="comment">// </span>
+<span class="lineno" id="579">   579  </span>	}
+<span class="lineno" id="580">   580  </span>	
+<span class="lineno" id="581">   581  </span>	<span class="comment doc">/**
+<span class="lineno" id="582">   582  </span>	 * Construct a tree from sorted keys in linear time, with values of "".
+<span class="lineno" id="583">   583  </span>	 * @param keys the iterator over the sorted keys.
+<span class="lineno" id="584">   584  </span>	 * @param count the number of nodes to insert.
+<span class="lineno" id="585">   585  </span>	 */</span>
+<span class="lineno" id="586">   586  </span>	<span class="key">public</span> <span class="key">function</span> putKeysLinear( keys:Iterator, count:Number)
+<span class="lineno" id="587">   587  </span>	{
+<span class="lineno" id="588">   588  </span>    	_fabricateTree(count);
+<span class="lineno" id="589">   589  </span>    	<span class="key">var</span> node:TreeMapNode = firstNode() ;
+<span class="lineno" id="590">   590  </span>		<span class="key">while</span> (--count &gt;= <span class="num_const">0</span>)
+<span class="lineno" id="591">   591  </span>      	{
+<span class="lineno" id="592">   592  </span>        	node.key = keys.next();
+<span class="lineno" id="593">   593  </span>        	node.value = <span class="str_const">""</span>;
+<span class="lineno" id="594">   594  </span>        	node = successor(node);
+<span class="lineno" id="595">   595  </span>      	}
+<span class="lineno" id="596">   596  </span>  	}
+<span class="lineno" id="597">   597  </span>
+<span class="lineno" id="598">   598  </span>	<span class="comment doc">/**
+<span class="lineno" id="599">   599  </span>	 * Removes from the TreeMap and returns the value which is mapped by the supplied key. 
+<span class="lineno" id="600">   600  </span>	 * If the key maps to nothing, then the TreeMap remains unchanged, and {@code null} is returned.
+<span class="lineno" id="601">   601  </span>	 * @param key the key used to locate the value to remove.
+<span class="lineno" id="602">   602  </span>	 * @return whatever the key mapped to, if present.
+<span class="lineno" id="603">   603  </span>	 */</span>
+<span class="lineno" id="604">   604  </span>	<span class="key">public</span> <span class="key">function</span> remove(key) 
+<span class="lineno" id="605">   605  </span>	{
+<span class="lineno" id="606">   606  </span>		<span class="key">var</span> n:TreeMapNode = getNode(key) ;
+<span class="lineno" id="607">   607  </span>		<span class="key">if</span> (n == NIL)
+<span class="lineno" id="608">   608  </span>		{
+<span class="lineno" id="609">   609  </span>			<span class="key">return</span> <span class="key">null</span> ;	
+<span class="lineno" id="610">   610  </span>		}
+<span class="lineno" id="611">   611  </span>		<span class="key">var</span> result = n.getValue() ;
+<span class="lineno" id="612">   612  </span>		removeNode( n ) ;
+<span class="lineno" id="613">   613  </span>		<span class="key">return</span> result ;
+<span class="lineno" id="614">   614  </span>	}
+<span class="lineno" id="615">   615  </span>	
+<span class="lineno" id="616">   616  </span>	<span class="comment doc">/**
+<span class="lineno" id="617">   617  </span>	 * Removes node from tree. This will increment modCount and decrement size.
+<span class="lineno" id="618">   618  </span>	 * The TreeMapNode must exist in the tree.
+<span class="lineno" id="619">   619  </span>	 * @param node the node to remove.
+<span class="lineno" id="620">   620  </span>	 */</span>
+<span class="lineno" id="621">   621  </span>	<span class="key">public</span> <span class="key">function</span> removeNode( node:TreeMapNode ):Void
+<span class="lineno" id="622">   622  </span>	{
+<span class="lineno" id="623">   623  </span>		<span class="key">var</span> child:TreeMapNode ;
+<span class="lineno" id="624">   624  </span>		<span class="key">var</span> splice:TreeMapNode ;
+<span class="lineno" id="625">   625  </span>		
+<span class="lineno" id="626">   626  </span>		_modCount ++ ;
+<span class="lineno" id="627">   627  </span>		_size -- ;
+<span class="lineno" id="628">   628  </span>		
+<span class="lineno" id="629">   629  </span>		<span class="comment">// Find splice, the node at the position to actually remove from the tree.</span>
+<span class="lineno" id="630">   630  </span>		<span class="key">if</span> (node.left == NIL)
+<span class="lineno" id="631">   631  </span>		{
+<span class="lineno" id="632">   632  </span>			<span class="comment">// Node to be deleted has 0 or 1 children.</span>
+<span class="lineno" id="633">   633  </span>			splice = node ;
+<span class="lineno" id="634">   634  </span>			child = node.right ;	
+<span class="lineno" id="635">   635  </span>		}
+<span class="lineno" id="636">   636  </span>		<span class="key">else</span> <span class="key">if</span> (node.right == NIL)
+<span class="lineno" id="637">   637  </span>		{
+<span class="lineno" id="638">   638  </span>			<span class="comment">// Node to be deleted has 1 child.</span>
+<span class="lineno" id="639">   639  </span>			splice = node ;
+<span class="lineno" id="640">   640  </span>			child = node.left ;	
+<span class="lineno" id="641">   641  </span>		}
+<span class="lineno" id="642">   642  </span>		<span class="key">else</span>
+<span class="lineno" id="643">   643  </span>		{
+<span class="lineno" id="644">   644  </span>			<span class="comment">// Node has 2 children. Splice is node's predecessor, and we swap its contents into node.</span>
+<span class="lineno" id="645">   645  </span>			splice = node.left ;
+<span class="lineno" id="646">   646  </span>			<span class="key">while</span>( splice.right != NIL)
+<span class="lineno" id="647">   647  </span>			{
+<span class="lineno" id="648">   648  </span>				splice = splice.right ;	
+<span class="lineno" id="649">   649  </span>			}
+<span class="lineno" id="650">   650  </span>			child = splice.left ;
+<span class="lineno" id="651">   651  </span>			node.key = splice.key ;
+<span class="lineno" id="652">   652  </span>			node.value = splice.value ;
+<span class="lineno" id="653">   653  </span>		}
+<span class="lineno" id="654">   654  </span>		
+<span class="lineno" id="655">   655  </span>		<span class="comment">// Unlink splice from the tree.</span>
+<span class="lineno" id="656">   656  </span>		<span class="key">var</span> parent:TreeMapNode = splice.parent ;
+<span class="lineno" id="657">   657  </span>		<span class="key">if</span> (child != NIL)
+<span class="lineno" id="658">   658  </span>		{
+<span class="lineno" id="659">   659  </span>			child.parent = parent ;	
+<span class="lineno" id="660">   660  </span>		}
+<span class="lineno" id="661">   661  </span>		<span class="key">if</span> (parent == NIL)
+<span class="lineno" id="662">   662  </span>		{
+<span class="lineno" id="663">   663  </span>			<span class="comment">// Special case for 0 or 1 node remaining.</span>
+<span class="lineno" id="664">   664  </span>			_rootEntry = child ;
+<span class="lineno" id="665">   665  </span>			<span class="key">return</span> ;	
+<span class="lineno" id="666">   666  </span>		}
+<span class="lineno" id="667">   667  </span>		<span class="key">if</span> (splice == parent.left)
+<span class="lineno" id="668">   668  </span>		{
+<span class="lineno" id="669">   669  </span>			parent.left = child ;
+<span class="lineno" id="670">   670  </span>		}
+<span class="lineno" id="671">   671  </span>		<span class="key">else</span>
+<span class="lineno" id="672">   672  </span>		{
+<span class="lineno" id="673">   673  </span>			parent.right = child ;	
+<span class="lineno" id="674">   674  </span>		}
+<span class="lineno" id="675">   675  </span>		<span class="key">if</span>(splice.color == BLACK)
+<span class="lineno" id="676">   676  </span>		{
+<span class="lineno" id="677">   677  </span>			_deleteFixup(child, parent) ;	
+<span class="lineno" id="678">   678  </span>		}
+<span class="lineno" id="679">   679  </span>	}
+<span class="lineno" id="680">   680  </span>	
+<span class="lineno" id="681">   681  </span>	<span class="comment doc">/**
+<span class="lineno" id="682">   682  </span>	 * Returns the node following the given one, or nil if there isn't one.
+<span class="lineno" id="683">   683  </span>	 * @param node the current node, not NIL.
+<span class="lineno" id="684">   684  </span>	 * @return the next node in sorted order.
+<span class="lineno" id="685">   685  </span>	 */</span>
+<span class="lineno" id="686">   686  </span>	<span class="key">public</span> <span class="key">function</span> successor( node:TreeMapNode ):TreeMapNode
+<span class="lineno" id="687">   687  </span>	{
+<span class="lineno" id="688">   688  </span>		<span class="key">if</span> (node.right != NIL)
+<span class="lineno" id="689">   689  </span>		{
+<span class="lineno" id="690">   690  </span>			node = node.right ;
+<span class="lineno" id="691">   691  </span>			<span class="key">while</span>( node.left != NIL)
+<span class="lineno" id="692">   692  </span>			{
+<span class="lineno" id="693">   693  </span>				node = node.left ;	
+<span class="lineno" id="694">   694  </span>			}
+<span class="lineno" id="695">   695  </span>			<span class="key">return</span> node ;
+<span class="lineno" id="696">   696  </span>		}
+<span class="lineno" id="697">   697  </span>		
+<span class="lineno" id="698">   698  </span>		<span class="key">var</span> parent:TreeMapNode = node.parent ;
+<span class="lineno" id="699">   699  </span>		<span class="comment">// Exploit fact that NIL.right == NIL and node is non-nil.</span>
+<span class="lineno" id="700">   700  </span>		<span class="key">while</span> (node == parent.right)
+<span class="lineno" id="701">   701  </span>		{
+<span class="lineno" id="702">   702  </span>			node = parent ;
+<span class="lineno" id="703">   703  </span>			parent = parent.parent ;	
+<span class="lineno" id="704">   704  </span>		}
+<span class="lineno" id="705">   705  </span>		<span class="key">return</span> parent ;
+<span class="lineno" id="706">   706  </span>	}
+<span class="lineno" id="707">   707  </span>	
+<span class="lineno" id="708">   708  </span>	<span class="comment doc">/**
+<span class="lineno" id="709">   709  </span>	 * Returns the number of key-value mappings currently in this Map.
+<span class="lineno" id="710">   710  </span>	 * @return the number of key-value mappings currently in this Map.
+<span class="lineno" id="711">   711  </span>	 */</span>
+<span class="lineno" id="712">   712  </span>	<span class="key">public</span> <span class="key">function</span> size():Number 
+<span class="lineno" id="713">   713  </span>	{
+<span class="lineno" id="714">   714  </span>		<span class="key">return</span> _size ;
+<span class="lineno" id="715">   715  </span>	}
+<span class="lineno" id="716">   716  </span>
+<span class="lineno" id="717">   717  </span>	<span class="comment doc">/**
+<span class="lineno" id="718">   718  </span>	 * Returns a view of this Map including all entries with keys greater or equal to {@code fromKey} 
+<span class="lineno" id="719">   719  </span>	 * and less than {@code toKeys} ( a half-open interval ).
+<span class="lineno" id="720">   720  </span>	 * The returned map is backed by the original, so changes in one appear in the other.
+<span class="lineno" id="721">   721  </span>	 * @param fromKey fromKey the (inclusive) low cutoff point.
+<span class="lineno" id="722">   722  </span>	 * @param toKey toKey the (exclusive) high cutoff point.
+<span class="lineno" id="723">   723  </span>	 * @return a view of the map between the cutoffs.
+<span class="lineno" id="724">   724  </span>	 */</span>
+<span class="lineno" id="725">   725  </span>	<span class="key">public</span> <span class="key">function</span> subMap(fromKey, toKey):SortedMap 
+<span class="lineno" id="726">   726  </span>	{
+<span class="lineno" id="727">   727  </span>		<span class="key">return</span> <span class="key">new</span> SubTreeMap( fromKey, toKey ) ;
+<span class="lineno" id="728">   728  </span>	}
+<span class="lineno" id="729">   729  </span>	
+<span class="lineno" id="730">   730  </span>	<span class="comment doc">/**
+<span class="lineno" id="731">   731  </span>	 * Returns a view of this Map including all entries with keys greater or equal to {@code fromKey}.
+<span class="lineno" id="732">   732  </span>	 * The returned map is backed by the original, so changes in one appear in the other.
+<span class="lineno" id="733">   733  </span>	 * @param fromKey the (inclusive) low cutoff point.
+<span class="lineno" id="734">   734  </span>	 * @return a view of the map above the cutoff.
+<span class="lineno" id="735">   735  </span>	 */</span>
+<span class="lineno" id="736">   736  </span>	<span class="key">public</span> <span class="key">function</span> tailMap( fromKey ):SortedMap 
+<span class="lineno" id="737">   737  </span>	{
+<span class="lineno" id="738">   738  </span>		<span class="key">return</span> <span class="key">new</span> SubTreeMap( fromKey, NIL );
+<span class="lineno" id="739">   739  </span>	}
+<span class="lineno" id="740">   740  </span>
+<span class="lineno" id="741">   741  </span>	<span class="comment doc">/**
+<span class="lineno" id="742">   742  </span>	 * Returns the string representation of this object.
+<span class="lineno" id="743">   743  </span>	 * @return the string representation of this object.
+<span class="lineno" id="744">   744  </span>	 */</span>
+<span class="lineno" id="745">   745  </span>	<span class="key">public</span> <span class="key">function</span> toString():String
+<span class="lineno" id="746">   746  </span>	{
+<span class="lineno" id="747">   747  </span>		<span class="key">var</span> it:Iterator = entrySet().iterator() ;
+<span class="lineno" id="748">   748  </span>
+<span class="lineno" id="749">   749  </span>		<span class="key">var</span> pos:Number ;
+<span class="lineno" id="750">   750  </span>		<span class="key">var</span> r:String = <span class="str_const">"{"</span> ;
+<span class="lineno" id="751">   751  </span>		
+<span class="lineno" id="752">   752  </span>		<span class="key">for</span> (pos = size() ; pos &gt; <span class="num_const">0</span> ; pos--)
+<span class="lineno" id="753">   753  </span>		{
+<span class="lineno" id="754">   754  </span>			<span class="key">var</span> n:TreeMapNode = it.next() ;
+<span class="lineno" id="755">   755  </span>			r += n.key ;
+<span class="lineno" id="756">   756  </span>			r += <span class="str_const">"="</span> ;
+<span class="lineno" id="757">   757  </span>			r += n.value ;
+<span class="lineno" id="758">   758  </span>			<span class="key">if</span> (pos &gt; <span class="num_const">1</span>)
+<span class="lineno" id="759">   759  </span>			{
+<span class="lineno" id="760">   760  </span>				r += <span class="str_const">", "</span> ;	
+<span class="lineno" id="761">   761  </span>			}
+<span class="lineno" id="762">   762  </span>		}
+<span class="lineno" id="763">   763  </span>		r += <span class="str_const">"}"</span> ;
+<span class="lineno" id="764">   764  </span>		<span class="key">return</span> r ;
+<span class="lineno" id="765">   765  </span>	} 
+<span class="lineno" id="766">   766  </span>
+<span class="lineno" id="767">   767  </span>    <span class="comment doc">/**
+<span class="lineno" id="768">   768  </span>     * The Comparator used to maintain order in this TreeMap, or null if this TreeMap uses its elements natural ordering.
+<span class="lineno" id="769">   769  </span>     */</span>
+<span class="lineno" id="770">   770  </span>	<span class="key">private</span> <span class="key">var</span> _comparator:IComparator = <span class="key">null</span> ;
+<span class="lineno" id="771">   771  </span>
+<span class="lineno" id="772">   772  </span>	<span class="comment doc">/**
+<span class="lineno" id="773">   773  </span>	 * The cache for {@link entrySet}.
+<span class="lineno" id="774">   774  </span>	 */</span>
+<span class="lineno" id="775">   775  </span>	<span class="key">private</span> <span class="key">var</span> _entries:TreeMapSet ;
+<span class="lineno" id="776">   776  </span>
+<span class="lineno" id="777">   777  </span>	<span class="comment doc">/**
+<span class="lineno" id="778">   778  </span>     * The number of structural modifications to the tree.
+<span class="lineno" id="779">   779  </span>     */</span>
+<span class="lineno" id="780">   780  </span>	<span class="key">private</span> <span class="key">var</span> _modCount:Number = <span class="num_const">0</span> ;
+<span class="lineno" id="781">   781  </span>
+<span class="lineno" id="782">   782  </span>	<span class="comment doc">/**
+<span class="lineno" id="783">   783  </span>	 * The root of the tree.
+<span class="lineno" id="784">   784  </span>	 */</span>
+<span class="lineno" id="785">   785  </span>	<span class="key">private</span> <span class="key">var</span> _rootEntry:TreeMapNode = <span class="key">null</span> ;
+<span class="lineno" id="786">   786  </span>
+<span class="lineno" id="787">   787  </span>	<span class="comment doc">/**
+<span class="lineno" id="788">   788  </span>     * The number of entries in the tree
+<span class="lineno" id="789">   789  </span>     */</span>
+<span class="lineno" id="790">   790  </span>	<span class="key">private</span> <span class="key">var</span> _size:Number = <span class="num_const">0</span> ;
+<span class="lineno" id="791">   791  </span>
+<span class="lineno" id="792">   792  </span>	<span class="comment doc">/**
+<span class="lineno" id="793">   793  </span>	 * Decrement the size of the TreeMap.
+<span class="lineno" id="794">   794  </span>	 */</span>
+<span class="lineno" id="795">   795  </span>	<span class="key">private</span> <span class="key">function</span> _decrementSize():Void 
+<span class="lineno" id="796">   796  </span>	{
+<span class="lineno" id="797">   797  </span>		_modCount ++ ;
+<span class="lineno" id="798">   798  </span>		_size -- ;
+<span class="lineno" id="799">   799  </span>	}
+<span class="lineno" id="800">   800  </span>	
+<span class="lineno" id="801">   801  </span>	<span class="comment doc">/**
+<span class="lineno" id="802">   802  </span>	 * Maintain red-black balance after deleting a node.
+<span class="lineno" id="803">   803  </span>	 * @param node the child of the node just deleted, possibly NIL.
+<span class="lineno" id="804">   804  </span>	 * @param parent parent the parent of the node just deleted, never NIL.
+<span class="lineno" id="805">   805  </span>	 */</span>
+<span class="lineno" id="806">   806  </span>	<span class="key">private</span> <span class="key">function</span> _deleteFixup( node:TreeMapNode , parent:TreeMapNode ):Void
+<span class="lineno" id="807">   807  </span>	{
+<span class="lineno" id="808">   808  </span>		<span class="comment">// TODO if (parent == nil) throw new InternalError();</span>
+<span class="lineno" id="809">   809  </span>
+<span class="lineno" id="810">   810  </span>	    <span class="comment">// If a black node has been removed, we need to rebalance to avoid violating the "same number of black nodes on any path" rule.</span>
+<span class="lineno" id="811">   811  </span>	    <span class="comment">// If node is red, we can simply recolor it black and all is well.</span>
+<span class="lineno" id="812">   812  </span>	    
+<span class="lineno" id="813">   813  </span>	    <span class="key">var</span> sibling:TreeMapNode ;
+<span class="lineno" id="814">   814  </span>	    
+<span class="lineno" id="815">   815  </span>	    <span class="key">while</span>( node != _rootEntry &amp;&amp; node.color == BLACK )
+<span class="lineno" id="816">   816  </span>	    {
+<span class="lineno" id="817">   817  </span>	    	
+<span class="lineno" id="818">   818  </span>	    	<span class="key">if</span> (node == parent.left)
+<span class="lineno" id="819">   819  </span>	    	{
+<span class="lineno" id="820">   820  </span>	    		<span class="comment">// Rebalance left side.</span>
+<span class="lineno" id="821">   821  </span>	    		sibling = parent.right ;
+<span class="lineno" id="822">   822  </span>	    		
+<span class="lineno" id="823">   823  </span>	    		<span class="comment">// TODO if (sibling == NIL) throw new InternalError() ;</span>
+<span class="lineno" id="824">   824  </span>	    		
+<span class="lineno" id="825">   825  </span>	    		<span class="key">if</span> (sibling.color == RED)
+<span class="lineno" id="826">   826  </span>	    		{
+<span class="lineno" id="827">   827  </span>	    			<span class="comment">// Case 1 : Sibling is red.</span>
+<span class="lineno" id="828">   828  </span>	    			<span class="comment">// Recolor sibling and parent, and rotate parent left. 	</span>
+<span class="lineno" id="829">   829  </span>	    			sibling.color = BLACK ;
+<span class="lineno" id="830">   830  </span>	    			parent.color = RED ;
+<span class="lineno" id="831">   831  </span>	    			_rotateLeft(parent) ;
+<span class="lineno" id="832">   832  </span>	    			sibling = parent.right ;
+<span class="lineno" id="833">   833  </span>	    		}
+<span class="lineno" id="834">   834  </span>	    		
+<span class="lineno" id="835">   835  </span>	    		<span class="key">if</span> ( sibling.left.color == BLACK &amp;&amp; sibling.right.color == BLACK )
+<span class="lineno" id="836">   836  </span>	    		{
+<span class="lineno" id="837">   837  </span>	    			<span class="comment">// Case 2 : Sibling has no red children.</span>
+<span class="lineno" id="838">   838  </span>	    			<span class="comment">// Recolor sibling and move top parent.</span>
+<span class="lineno" id="839">   839  </span>	    			sibling.color = RED ;
+<span class="lineno" id="840">   840  </span>	    			node = parent ;
+<span class="lineno" id="841">   841  </span>	    			parent = parent.parent ;
+<span class="lineno" id="842">   842  </span>	    		}
+<span class="lineno" id="843">   843  </span>	    		<span class="key">else</span>
+<span class="lineno" id="844">   844  </span>	    		{
+<span class="lineno" id="845">   845  </span>	    			<span class="key">if</span> (sibling.right.color == BLACK)
+<span class="lineno" id="846">   846  </span>	    			{
+<span class="lineno" id="847">   847  </span>	    				<span class="comment">// Case 3: Sibling has red left child.</span>
+<span class="lineno" id="848">   848  </span>	    				<span class="comment">// Recolor sibling and left child, rotate sibling right.</span>
+<span class="lineno" id="849">   849  </span>	    				sibling.left.color = BLACK ;
+<span class="lineno" id="850">   850  </span>	    				sibling.color = RED ;
+<span class="lineno" id="851">   851  </span>	    				_rotateRight(sibling) ;
+<span class="lineno" id="852">   852  </span>	    				sibling = parent.right ;
+<span class="lineno" id="853">   853  </span>	    			}
+<span class="lineno" id="854">   854  </span>	    			<span class="comment">// Case 4: Sibling has red right child. </span>
+<span class="lineno" id="855">   855  </span>	    			<span class="comment">// Recolor sibling, right child, and parent, and rotate parent left.</span>
+<span class="lineno" id="856">   856  </span>	    			sibling.color = parent.color ;
+<span class="lineno" id="857">   857  </span>	    			parent.color = BLACK ;
+<span class="lineno" id="858">   858  </span>	    			sibling.right.color = BLACK ;
+<span class="lineno" id="859">   859  </span>	    			_rotateLeft( parent ) ;
+<span class="lineno" id="860">   860  </span>	    			node = _rootEntry ;
+<span class="lineno" id="861">   861  </span>	    		}
+<span class="lineno" id="862">   862  </span>	    		
+<span class="lineno" id="863">   863  </span>	    	}
+<span class="lineno" id="864">   864  </span>	    	<span class="key">else</span>
+<span class="lineno" id="865">   865  </span>	    	{
+<span class="lineno" id="866">   866  </span>	    		
+<span class="lineno" id="867">   867  </span>	    		<span class="comment">// Symmetric "mirror" of left-side case.</span>
+<span class="lineno" id="868">   868  </span>	    		sibling = parent.left ;
+<span class="lineno" id="869">   869  </span>	    		
+<span class="lineno" id="870">   870  </span>	    		<span class="comment">// TODO if (sibling == NIL) throw new InternalError() ;</span>
+<span class="lineno" id="871">   871  </span>	    		
+<span class="lineno" id="872">   872  </span>	    		<span class="key">if</span> (sibling.color == RED)
+<span class="lineno" id="873">   873  </span>	    		{
+<span class="lineno" id="874">   874  </span>	    			<span class="comment">// Case 1 : Sibling is red.</span>
+<span class="lineno" id="875">   875  </span>	    			<span class="comment">// Recolor sibling and parent, and rotate parent right.	</span>
+<span class="lineno" id="876">   876  </span>	    			sibling.color = BLACK ;
+<span class="lineno" id="877">   877  </span>	    			parent.color = RED ;
+<span class="lineno" id="878">   878  </span>	    			_rotateRight(parent) ;
+<span class="lineno" id="879">   879  </span>	    			sibling = parent.left ;
+<span class="lineno" id="880">   880  </span>	    		}
+<span class="lineno" id="881">   881  </span>	    		
+<span class="lineno" id="882">   882  </span>	    		<span class="key">if</span> ( sibling.right.color == BLACK &amp;&amp; sibling.left.color == BLACK)
+<span class="lineno" id="883">   883  </span>	    		{
+<span class="lineno" id="884">   884  </span>	    			<span class="comment">// Case 2: Sibling has no red children.</span>
+<span class="lineno" id="885">   885  </span>	    			<span class="comment">// Recolor sibling, and move to parent.</span>
+<span class="lineno" id="886">   886  </span>	    			sibling.color = RED ;
+<span class="lineno" id="887">   887  </span>	    			node = parent ;
+<span class="lineno" id="888">   888  </span>	    			parent = parent.parent ;
+<span class="lineno" id="889">   889  </span>	    		}
+<span class="lineno" id="890">   890  </span>	    		<span class="key">else</span>
+<span class="lineno" id="891">   891  </span>	    		{
+<span class="lineno" id="892">   892  </span>	    			<span class="key">if</span> (sibling.left.color == BLACK)
+<span class="lineno" id="893">   893  </span>	    			{
+<span class="lineno" id="894">   894  </span>	    				<span class="comment">// Case 3: Sibling has red right child.</span>
+<span class="lineno" id="895">   895  </span>	    				<span class="comment">// Recolor sibling and right child, rotate sibling left.</span>
+<span class="lineno" id="896">   896  </span>                    	sibling.right.color = BLACK;
+<span class="lineno" id="897">   897  </span>                    	sibling.color = RED;
+<span class="lineno" id="898">   898  </span>                    	_rotateLeft(sibling);
+<span class="lineno" id="899">   899  </span>                    	sibling = parent.left;
+<span class="lineno" id="900">   900  </span>	    			}
+<span class="lineno" id="901">   901  </span>	                <span class="comment">// Case 4: Sibling has red left child. Recolor sibling,</span>
+<span class="lineno" id="902">   902  </span>	                <span class="comment">// left child, and parent, and rotate parent right.</span>
+<span class="lineno" id="903">   903  </span>	                sibling.color = parent.color;
+<span class="lineno" id="904">   904  </span>                	parent.color = BLACK;
+<span class="lineno" id="905">   905  </span>                	sibling.left.color = BLACK;
+<span class="lineno" id="906">   906  </span>                	_rotateRight(parent);
+<span class="lineno" id="907">   907  </span>                	node = root ; 
+<span class="lineno" id="908">   908  </span>	    		}
+<span class="lineno" id="909">   909  </span>	    		
+<span class="lineno" id="910">   910  </span>	    	}
+<span class="lineno" id="911">   911  </span>	    }
+<span class="lineno" id="912">   912  </span>	    node.color = BLACK ;
+<span class="lineno" id="913">   913  </span>	}
+<span class="lineno" id="914">   914  </span>	
+<span class="lineno" id="915">   915  </span>	<span class="comment doc">/**
+<span class="lineno" id="916">   916  </span>	 * Construct a perfectly balanced tree consisting of n "blank" nodes. 
+<span class="lineno" id="917">   917  </span>	 * This permits a tree to be generated from pre-sorted input in linear time.
+<span class="lineno" id="918">   918  </span>	 * @param count the number of blank nodes, non-negative.
+<span class="lineno" id="919">   919  </span>	 */</span>
+<span class="lineno" id="920">   920  </span>	<span class="key">private</span> <span class="key">function</span> _fabricateTree ( count:Number ):Void
+<span class="lineno" id="921">   921  </span>	{
+<span class="lineno" id="922">   922  </span>		
+<span class="lineno" id="923">   923  </span>		<span class="key">if</span> (count == <span class="num_const">0</span>)
+<span class="lineno" id="924">   924  </span>		{
+<span class="lineno" id="925">   925  </span>			_rootEntry = NIL ;
+<span class="lineno" id="926">   926  </span>			_size = <span class="num_const">0</span> ;	
+<span class="lineno" id="927">   927  </span>			<span class="key">return</span> ;
+<span class="lineno" id="928">   928  </span>		}
+<span class="lineno" id="929">   929  </span>		
+<span class="lineno" id="930">   930  </span>		<span class="comment">// Make the root node.</span>
+<span class="lineno" id="931">   931  </span>		_rootEntry = <span class="key">new</span> TreeMapNode(<span class="key">null</span>, <span class="key">null</span>, BLACK) ;
+<span class="lineno" id="932">   932  </span>		_size = count ;
+<span class="lineno" id="933">   933  </span>		
+<span class="lineno" id="934">   934  </span>		<span class="key">var</span> row:TreeMapNode = _rootEntry ;
+<span class="lineno" id="935">   935  </span>		
+<span class="lineno" id="936">   936  </span>		<span class="key">var</span> left:TreeMapNode ;
+<span class="lineno" id="937">   937  </span>		<span class="key">var</span> last:TreeMapNode ;
+<span class="lineno" id="938">   938  </span>		<span class="key">var</span> next:TreeMapNode ;
+<span class="lineno" id="939">   939  </span>		<span class="key">var</span> parent:TreeMapNode ;
+<span class="lineno" id="940">   940  </span>		<span class="key">var</span> right:TreeMapNode ;
+<span class="lineno" id="941">   941  </span>		
+<span class="lineno" id="942">   942  </span>		<span class="comment">// Fill each row that is completely full of nodes.</span>
+<span class="lineno" id="943">   943  </span>		<span class="key">for</span> (<span class="key">var</span> rowSize:Number = <span class="num_const">2</span> ; (rowSize + rowSize) &lt;= count ; rowSize &lt;&lt;=<span class="num_const">1</span> )
+<span class="lineno" id="944">   944  </span>		{
+<span class="lineno" id="945">   945  </span>			parent = row ;
+<span class="lineno" id="946">   946  </span>			last   = <span class="key">null</span> ;
+<span class="lineno" id="947">   947  </span>			<span class="key">for</span> ( <span class="key">var</span> i:Number = <span class="num_const">0</span> ; i &lt; rowSize ; i += <span class="num_const">2</span> )
+<span class="lineno" id="948">   948  </span>			{
+<span class="lineno" id="949">   949  </span>				left  = <span class="key">new</span> TreeMapNode(<span class="key">null</span>, <span class="key">null</span>, BLACK) ;
+<span class="lineno" id="950">   950  </span>				right = <span class="key">new</span> TreeMapNode(<span class="key">null</span>, <span class="key">null</span>, BLACK) ;
+<span class="lineno" id="951">   951  </span>				
+<span class="lineno" id="952">   952  </span>				left.parent = parent ;
+<span class="lineno" id="953">   953  </span>				left.right  = right ;
+<span class="lineno" id="954">   954  </span>				
+<span class="lineno" id="955">   955  </span>				right.parent = parent ;
+<span class="lineno" id="956">   956  </span>				parent.left  = left ;
+<span class="lineno" id="957">   957  </span>				
+<span class="lineno" id="958">   958  </span>				next = parent.right ; 
+<span class="lineno" id="959">   959  </span>				parent.right = right ;
+<span class="lineno" id="960">   960  </span>				
+<span class="lineno" id="961">   961  </span>				parent = next ;
+<span class="lineno" id="962">   962  </span>				
+<span class="lineno" id="963">   963  </span>				<span class="key">if</span> (last != <span class="key">null</span>)
+<span class="lineno" id="964">   964  </span>				{
+<span class="lineno" id="965">   965  </span>					last.right = left ;	
+<span class="lineno" id="966">   966  </span>				}
+<span class="lineno" id="967">   967  </span>				
+<span class="lineno" id="968">   968  </span>				last = right ;
+<span class="lineno" id="969">   969  </span>			}
+<span class="lineno" id="970">   970  </span>			row = row.left ;
+<span class="lineno" id="971">   971  </span>		}
+<span class="lineno" id="972">   972  </span>		
+<span class="lineno" id="973">   973  </span>		<span class="comment">// Now do the partial final row in red.</span>
+<span class="lineno" id="974">   974  </span>		<span class="key">var</span> overflow:Number = count - rowSize ;
+<span class="lineno" id="975">   975  </span>		parent = row ;
+<span class="lineno" id="976">   976  </span>		<span class="key">var</span> j:Number ;
+<span class="lineno" id="977">   977  </span>		<span class="key">for</span> ( j = <span class="num_const">0</span> ; j &lt; overflow ; j += <span class="num_const">2</span> )
+<span class="lineno" id="978">   978  </span>		{
+<span class="lineno" id="979">   979  </span>			
+<span class="lineno" id="980">   980  </span>			left  = <span class="key">new</span> TreeMapNode(<span class="key">null</span>, <span class="key">null</span>, RED) ;
+<span class="lineno" id="981">   981  </span>			right = <span class="key">new</span> TreeMapNode(<span class="key">null</span>, <span class="key">null</span>, RED) ;
+<span class="lineno" id="982">   982  </span>			
+<span class="lineno" id="983">   983  </span>			left.parent = parent ;
+<span class="lineno" id="984">   984  </span>			right.parent = parent ;
+<span class="lineno" id="985">   985  </span>			
+<span class="lineno" id="986">   986  </span>			parent.left = left ;
+<span class="lineno" id="987">   987  </span>			next = parent.right ;
+<span class="lineno" id="988">   988  </span>			
+<span class="lineno" id="989">   989  </span>			parent.right = right ;
+<span class="lineno" id="990">   990  </span>			parent = next ;
+<span class="lineno" id="991">   991  </span>			
+<span class="lineno" id="992">   992  </span>		}
+<span class="lineno" id="993">   993  </span>		
+<span class="lineno" id="994">   994  </span>		<span class="comment">// Add a lone left node if necessary.</span>
+<span class="lineno" id="995">   995  </span>   	 	<span class="key">if</span> ( (j - overflow) == <span class="num_const">0</span> )
+<span class="lineno" id="996">   996  </span>      	{
+<span class="lineno" id="997">   997  </span>        	
+<span class="lineno" id="998">   998  </span>        	left = <span class="key">new</span> TreeMapNode(<span class="key">null</span>, <span class="key">null</span>, RED) ;
+<span class="lineno" id="999">   999  </span>        	left.parent = parent ;
+<span class="lineno" id="1000">  1000  </span>        	parent.left = left ;
+<span class="lineno" id="1001">  1001  </span>        	parent = parent.right ;
+<span class="lineno" id="1002">  1002  </span>        	left.parent.right = NIL ;
+<span class="lineno" id="1003">  1003  </span>		}
+<span class="lineno" id="1004">  1004  </span>		
+<span class="lineno" id="1005">  1005  </span>		<span class="comment">// Unlink the remaining nodes of the previous row.</span>
+<span class="lineno" id="1006">  1006  </span>    	<span class="key">while</span> (parent != NIL)
+<span class="lineno" id="1007">  1007  </span>      	{
+<span class="lineno" id="1008">  1008  </span>        	next = parent.right ;
+<span class="lineno" id="1009">  1009  </span>        	parent.right = NIL ;
+<span class="lineno" id="1010">  1010  </span>        	parent = next;
+<span class="lineno" id="1011">  1011  </span>      	}
+<span class="lineno" id="1012">  1012  </span>		
+<span class="lineno" id="1013">  1013  </span>	}
+<span class="lineno" id="1014">  1014  </span>	
+<span class="lineno" id="1015">  1015  </span>	<span class="comment doc">/**
+<span class="lineno" id="1016">  1016  </span>	 * Increment the size of the TreeMap.
+<span class="lineno" id="1017">  1017  </span>	 */</span>
+<span class="lineno" id="1018">  1018  </span>	<span class="key">private</span> <span class="key">function</span> _incrementSize():Void 
+<span class="lineno" id="1019">  1019  </span>	{
+<span class="lineno" id="1020">  1020  </span>		_modCount ++ ;
+<span class="lineno" id="1021">  1021  </span>		_size ++ ;
+<span class="lineno" id="1022">  1022  </span>	}
+<span class="lineno" id="1023">  1023  </span>	
+<span class="lineno" id="1024">  1024  </span>	<span class="comment doc">/**
+<span class="lineno" id="1025">  1025  </span>	 * Maintains the red-black balance after inserting a new node.
+<span class="lineno" id="1026">  1026  </span>	 * @param n the newly inserted node.
+<span class="lineno" id="1027">  1027  </span>	 */</span>
+<span class="lineno" id="1028">  1028  </span>	<span class="key">private</span> <span class="key">function</span> _insertFixup( n:TreeMapNode ):Void
+<span class="lineno" id="1029">  1029  </span>	{
+<span class="lineno" id="1030">  1030  </span>		<span class="comment">// Only need to rebalance when parent is a RED node, and while at least</span>
+<span class="lineno" id="1031">  1031  </span>		<span class="comment">// 2 levels deep into the tree (ie: node has a grandparent). Remember</span>
+<span class="lineno" id="1032">  1032  </span>		<span class="comment">// that NIL.color == BLACK.</span>
+<span class="lineno" id="1033">  1033  </span>		<span class="key">while</span>( n.parent.color == RED &amp;&amp; n.parent.parent != NIL )
+<span class="lineno" id="1034">  1034  </span>		{
+<span class="lineno" id="1035">  1035  </span>			<span class="key">if</span> ( n.parent == n.parent.parent.left )
+<span class="lineno" id="1036">  1036  </span>			{
+<span class="lineno" id="1037">  1037  </span>				<span class="key">var</span> uncle:TreeMapNode = n.parent.parent.right ;
+<span class="lineno" id="1038">  1038  </span>				<span class="key">if</span> (uncle.color == RED)
+<span class="lineno" id="1039">  1039  </span>				{
+<span class="lineno" id="1040">  1040  </span>					<span class="comment">// Case 1. Uncle is RED: Change colors of parent, uncle, and grandparent, and move n to grandparent.</span>
+<span class="lineno" id="1041">  1041  </span>	                n.parent.color     = BLACK ;
+<span class="lineno" id="1042">  1042  </span>	                uncle.color        = BLACK ;
+<span class="lineno" id="1043">  1043  </span>	                uncle.parent.color = RED ;
+<span class="lineno" id="1044">  1044  </span>	                n = uncle.parent ;
+<span class="lineno" id="1045">  1045  </span>				}
+<span class="lineno" id="1046">  1046  </span>				<span class="key">else</span>
+<span class="lineno" id="1047">  1047  </span>				{
+<span class="lineno" id="1048">  1048  </span>					<span class="key">if</span> ( n == n.parent.right )
+<span class="lineno" id="1049">  1049  </span>					{
+<span class="lineno" id="1050">  1050  </span>						 <span class="comment">// Case 2. Uncle is BLACK and x is right child. </span>
+<span class="lineno" id="1051">  1051  </span>						 <span class="comment">// Move n to parent, and rotate n left.</span>
+<span class="lineno" id="1052">  1052  </span>						 n = n.parent;
+<span class="lineno" id="1053">  1053  </span>                    	_rotateLeft(n);
+<span class="lineno" id="1054">  1054  </span>					}
+<span class="lineno" id="1055">  1055  </span>					<span class="comment">// Case 3. Uncle is BLACK and x is left child.</span>
+<span class="lineno" id="1056">  1056  </span>					<span class="comment">// Recolor parent, grandparent, and rotate grandparent right.</span>
+<span class="lineno" id="1057">  1057  </span>					n.parent.color        = BLACK ;
+<span class="lineno" id="1058">  1058  </span>					n.parent.parent.color = RED ;
+<span class="lineno" id="1059">  1059  </span>					_rotateRight ( n.parent.parent ) ;
+<span class="lineno" id="1060">  1060  </span>					
+<span class="lineno" id="1061">  1061  </span>				}
+<span class="lineno" id="1062">  1062  </span>			}
+<span class="lineno" id="1063">  1063  </span>			<span class="key">else</span>
+<span class="lineno" id="1064">  1064  </span>			{
+<span class="lineno" id="1065">  1065  </span>				<span class="comment">// FIXME finish this method !!</span>
+<span class="lineno" id="1066">  1066  </span>			}	
+<span class="lineno" id="1067">  1067  </span>		}
+<span class="lineno" id="1068">  1068  </span>	}
+<span class="lineno" id="1069">  1069  </span>	
+<span class="lineno" id="1070">  1070  </span>	<span class="comment doc">/**
+<span class="lineno" id="1071">  1071  </span>	 * Returns the last sorted node in the map, or nil if empty.
+<span class="lineno" id="1072">  1072  </span>	 * @return the last sorted node in the map, or nil if empty.
+<span class="lineno" id="1073">  1073  </span>	 */</span>
+<span class="lineno" id="1074">  1074  </span>	<span class="key">private</span> <span class="key">function</span> _lastNode():TreeMapNode
+<span class="lineno" id="1075">  1075  </span>	{
+<span class="lineno" id="1076">  1076  </span>		<span class="key">var</span> node:TreeMapNode = _rootEntry ;
+<span class="lineno" id="1077">  1077  </span>		<span class="key">while</span>( node.right != NIL )
+<span class="lineno" id="1078">  1078  </span>		{
+<span class="lineno" id="1079">  1079  </span>			node = node.right ;	
+<span class="lineno" id="1080">  1080  </span>		}
+<span class="lineno" id="1081">  1081  </span>		<span class="key">return</span> node ;
+<span class="lineno" id="1082">  1082  </span>	}
+<span class="lineno" id="1083">  1083  </span>	
+<span class="lineno" id="1084">  1084  </span>	<span class="comment doc">/**
+<span class="lineno" id="1085">  1085  </span>	 * Returns the key of the specified Entry passed in argument.
+<span class="lineno" id="1086">  1086  </span>	 * @return the key of the specified Entry passed in argument.
+<span class="lineno" id="1087">  1087  </span>	 * @throws NoSuchElementError if the entry passed in argument not must be 'null' or 'undefined'.
+<span class="lineno" id="1088">  1088  </span>	 */</span>
+<span class="lineno" id="1089">  1089  </span>	<span class="key">private</span> <span class="key">function</span> _key( e:TreeMapNode ) 
+<span class="lineno" id="1090">  1090  </span>	{
+<span class="lineno" id="1091">  1091  </span>        <span class="key">if</span> (e==<span class="key">null</span>) 
+<span class="lineno" id="1092">  1092  </span>        {
+<span class="lineno" id="1093">  1093  </span>        	<span class="key">throw</span> <span class="key">new</span> NoSuchElementError( <span class="key">this</span> + <span class="str_const">" the entry passed in argument not must be 'null' or 'undefined'."</span>) ;
+<span class="lineno" id="1094">  1094  </span>        }
+<span class="lineno" id="1095">  1095  </span>        <span class="key">return</span> e.key ;
+<span class="lineno" id="1096">  1096  </span>    }
+<span class="lineno" id="1097">  1097  </span>	
+<span class="lineno" id="1098">  1098  </span>	<span class="comment doc">/**
+<span class="lineno" id="1099">  1099  </span>	 * Returns the node preceding the given one, or nil if there isn't one.
+<span class="lineno" id="1100">  1100  </span>	 * @param n the current node, not NIL.
+<span class="lineno" id="1101">  1101  </span>	 * @return the prior node in sorted order.
+<span class="lineno" id="1102">  1102  </span>	 */</span>
+<span class="lineno" id="1103">  1103  </span>	<span class="key">private</span> <span class="key">function</span> _predecessor( node:TreeMapNode ):TreeMapNode
+<span class="lineno" id="1104">  1104  </span>	{
+<span class="lineno" id="1105">  1105  </span>		<span class="key">if</span> (node.left != NIL)
+<span class="lineno" id="1106">  1106  </span>		{
+<span class="lineno" id="1107">  1107  </span>			node = node.left ;
+<span class="lineno" id="1108">  1108  </span>			<span class="key">while</span> ( node.right != NIL )
+<span class="lineno" id="1109">  1109  </span>			{
+<span class="lineno" id="1110">  1110  </span>				node = node.right ;	
+<span class="lineno" id="1111">  1111  </span>			}
+<span class="lineno" id="1112">  1112  </span>			<span class="key">return</span> node ;
+<span class="lineno" id="1113">  1113  </span>		}
+<span class="lineno" id="1114">  1114  </span>		
+<span class="lineno" id="1115">  1115  </span>		<span class="key">var</span> parent:TreeMapNode = node.parent ;
+<span class="lineno" id="1116">  1116  </span>		
+<span class="lineno" id="1117">  1117  </span>		<span class="comment">// Exploit fact that nil.left == nil and node is non-nil.</span>
+<span class="lineno" id="1118">  1118  </span>		<span class="key">while</span> (node == parent.left)
+<span class="lineno" id="1119">  1119  </span>		{
+<span class="lineno" id="1120">  1120  </span>			node = parent ;
+<span class="lineno" id="1121">  1121  </span>			parent = node.parent ;	
+<span class="lineno" id="1122">  1122  </span>		}
+<span class="lineno" id="1123">  1123  </span>		<span class="key">return</span> parent ;
+<span class="lineno" id="1124">  1124  </span>		
+<span class="lineno" id="1125">  1125  </span>	}
+<span class="lineno" id="1126">  1126  </span>	
+<span class="lineno" id="1127">  1127  </span>	<span class="comment doc">/**
+<span class="lineno" id="1128">  1128  </span>	 * Rotate node n to the left.
+<span class="lineno" id="1129">  1129  </span>	 * @param node the node to rotate.
+<span class="lineno" id="1130">  1130  </span>	 */</span>
+<span class="lineno" id="1131">  1131  </span>	<span class="key">private</span> <span class="key">function</span> _rotateLeft( node:TreeMapNode ):Void
+<span class="lineno" id="1132">  1132  </span>	{
+<span class="lineno" id="1133">  1133  </span>		
+<span class="lineno" id="1134">  1134  </span>		<span class="key">var</span> child:TreeMapNode = node.right ;
+<span class="lineno" id="1135">  1135  </span>		
+<span class="lineno" id="1136">  1136  </span>		<span class="comment">// Establish node.right link.</span>
+<span class="lineno" id="1137">  1137  </span>		node.right = child.left ;
+<span class="lineno" id="1138">  1138  </span>		<span class="key">if</span> (child.left != NIL)
+<span class="lineno" id="1139">  1139  </span>		{
+<span class="lineno" id="1140">  1140  </span>			child.left.parent = node ;	
+<span class="lineno" id="1141">  1141  </span>		}
+<span class="lineno" id="1142">  1142  </span>		
+<span class="lineno" id="1143">  1143  </span>		<span class="comment">// Establish child-&gt;parent link.</span>
+<span class="lineno" id="1144">  1144  </span>		child.parent = node.parent ;
+<span class="lineno" id="1145">  1145  </span>		<span class="key">if</span> (node.parent != NIL)
+<span class="lineno" id="1146">  1146  </span>		{
+<span class="lineno" id="1147">  1147  </span>			<span class="key">if</span> ( node == node.parent.left )
+<span class="lineno" id="1148">  1148  </span>			{
+<span class="lineno" id="1149">  1149  </span>				node.parent.left = child ;	
+<span class="lineno" id="1150">  1150  </span>			}
+<span class="lineno" id="1151">  1151  </span>			<span class="key">else</span>
+<span class="lineno" id="1152">  1152  </span>			{
+<span class="lineno" id="1153">  1153  </span>				node.parent.right = child ;	
+<span class="lineno" id="1154">  1154  </span>			}
+<span class="lineno" id="1155">  1155  </span>		}
+<span class="lineno" id="1156">  1156  </span>		<span class="key">else</span>
+<span class="lineno" id="1157">  1157  </span>		{
+<span class="lineno" id="1158">  1158  </span>			_rootEntry = child ;	
+<span class="lineno" id="1159">  1159  </span>		}
+<span class="lineno" id="1160">  1160  </span>		
+<span class="lineno" id="1161">  1161  </span>		<span class="comment">// Link n and child.</span>
+<span class="lineno" id="1162">  1162  </span>		child.left  = node ;
+<span class="lineno" id="1163">  1163  </span>		node.parent = child ;
+<span class="lineno" id="1164">  1164  </span>		
+<span class="lineno" id="1165">  1165  </span>	}
+<span class="lineno" id="1166">  1166  </span>	
+<span class="lineno" id="1167">  1167  </span>	<span class="comment doc">/**
+<span class="lineno" id="1168">  1168  </span>	 * Rotate node n to the right.
+<span class="lineno" id="1169">  1169  </span>	 * @param node the node to rotate.
+<span class="lineno" id="1170">  1170  </span>	 */</span>
+<span class="lineno" id="1171">  1171  </span>	<span class="key">private</span> <span class="key">function</span> _rotateRight( node:TreeMapNode ):Void
+<span class="lineno" id="1172">  1172  </span>	{
+<span class="lineno" id="1173">  1173  </span>		<span class="key">var</span> child:TreeMapNode = node.left ;
+<span class="lineno" id="1174">  1174  </span>		
+<span class="lineno" id="1175">  1175  </span>		<span class="comment">// Establish node left link.</span>
+<span class="lineno" id="1176">  1176  </span>		node.left = child.right ;
+<span class="lineno" id="1177">  1177  </span>		<span class="key">if</span> (child.right != NIL)
+<span class="lineno" id="1178">  1178  </span>		{
+<span class="lineno" id="1179">  1179  </span>			child.right.parent = node ;
+<span class="lineno" id="1180">  1180  </span>		}
+<span class="lineno" id="1181">  1181  </span>		
+<span class="lineno" id="1182">  1182  </span>		<span class="comment">// Establish child-&gt;parent link</span>
+<span class="lineno" id="1183">  1183  </span>		child.parent = node.parent ;
+<span class="lineno" id="1184">  1184  </span>		<span class="key">if</span> (node.parent != NIL)
+<span class="lineno" id="1185">  1185  </span>		{
+<span class="lineno" id="1186">  1186  </span>			<span class="key">if</span> ( node == node.parent.right )
+<span class="lineno" id="1187">  1187  </span>			{
+<span class="lineno" id="1188">  1188  </span>				node.parent.right = child ;	
+<span class="lineno" id="1189">  1189  </span>			}
+<span class="lineno" id="1190">  1190  </span>			<span class="key">else</span>
+<span class="lineno" id="1191">  1191  </span>			{
+<span class="lineno" id="1192">  1192  </span>				node.parent.left = child ;	
+<span class="lineno" id="1193">  1193  </span>			}
+<span class="lineno" id="1194">  1194  </span>		}
+<span class="lineno" id="1195">  1195  </span>		<span class="key">else</span>
+<span class="lineno" id="1196">  1196  </span>		{
+<span class="lineno" id="1197">  1197  </span>			_rootEntry = child ;	
+<span class="lineno" id="1198">  1198  </span>		}
+<span class="lineno" id="1199">  1199  </span>		
+<span class="lineno" id="1200">  1200  </span>		<span class="comment">// Link n and child.</span>
+<span class="lineno" id="1201">  1201  </span>		child.right  = node ;
+<span class="lineno" id="1202">  1202  </span>		node.parent = child ;
+<span class="lineno" id="1203">  1203  </span>		
+<span class="lineno" id="1204">  1204  </span>	}
+<span class="lineno" id="1205">  1205  </span>	
+<span class="lineno" id="1206">  1206  </span>	<span class="key">private</span> <span class="key">function</span> _valueSearchNull( n:TreeMapNode ):Boolean 
+<span class="lineno" id="1207">  1207  </span>	{
+<span class="lineno" id="1208">  1208  </span>        <span class="key">if</span> (n.getValue() == <span class="key">null</span>) 
+<span class="lineno" id="1209">  1209  </span>        {
+<span class="lineno" id="1210">  1210  </span>        	<span class="key">return</span> <span class="key">true</span> ;
+<span class="lineno" id="1211">  1211  </span>        }
+<span class="lineno" id="1212">  1212  </span>        <span class="key">return</span> (n.left  != <span class="key">null</span> &amp;&amp; _valueSearchNull(n.left)) ||
+<span class="lineno" id="1213">  1213  </span>               	(n.right != <span class="key">null</span> &amp;&amp; _valueSearchNull(n.right)) ;
+<span class="lineno" id="1214">  1214  </span>    }
+<span class="lineno" id="1215">  1215  </span>
+<span class="lineno" id="1216">  1216  </span>    <span class="key">private</span> <span class="key">function</span> _valueSearchNonNull( n:TreeMapNode, value):Boolean 
+<span class="lineno" id="1217">  1217  </span>    {
+<span class="lineno" id="1218">  1218  </span>        <span class="key">if</span> (value == n.getValue()) <span class="key">return</span> <span class="key">true</span> ;
+<span class="lineno" id="1219">  1219  </span>        <span class="key">return</span> (n.left  != <span class="key">null</span> &amp;&amp; _valueSearchNonNull(n.left, value)) || 
+<span class="lineno" id="1220">  1220  </span>        		(n.right != <span class="key">null</span> &amp;&amp; _valueSearchNonNull(n.right, value));
+<span class="lineno" id="1221">  1221  </span>    }
+<span class="lineno" id="1222">  1222  </span>
+<span class="lineno" id="1223">  1223  </span>}</pre><ul class="main_nav" id="main_nav"><li><a href="../../../overview-summary.html" title="Overview of API" class="button">Overview</a></li><li><a href="package-summary.html" title="Overview of package asgard.data.map" class="button">Package</a></li><li><a href="TreeMap.html" title="Detail of asgard.data.map.TreeMap API" class="button">Class</a></li><li><span class="button nav_current">Source</span></li><li><a href="../../../index-files/index.html" title="Alpabetical index of types and members" class="button">Index</a></li></ul><div class="footer"><a href="http://www.badgers-in-foil.co.uk/projects/as2api/" title="ActionScript 2 API Documentation Generator">as2api</a></div></body></html>

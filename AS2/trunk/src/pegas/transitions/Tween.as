@@ -21,6 +21,10 @@
   
  */
 
+
+
+
+
 import pegas.transitions.Motion;
 import pegas.transitions.TweenEntry;
 import pegas.transitions.TweenModel;
@@ -58,12 +62,14 @@ class pegas.transitions.Tween extends Motion
 	 * <p><b>Usage :</b></p>
 	 * {@code
 	 * var tw:Tween = new Tween( obj, prop:String, e:Function, b:Number, f:Number, d:Number , u:Boolean, auto:Boolean) ;
-	 * var tw:Tween = new Tween( obj, ar:Array ) ;
+	 * var tw:Tween = new Tween( obj, entries , d:Number , u:Boolean, auto:Boolean ) ;
 	 * }
 	 */
 	function Tween( args ) 
 	{
+		
 		var obj = arguments[0] ;
+		
 		if (obj != null) 
 		{
 			setTarget(obj) ;
@@ -72,25 +78,33 @@ class pegas.transitions.Tween extends Motion
 		{
 			return ;
 		}
+		
+		var a:Boolean = false ;
+		
 		var l:Number = arguments.length ;
-		if (l == 2 && arguments[1] instanceof Array) 
+		if ( l > 1 )
 		{
-			setTweenModel(arguments[1]) ;
-		} 
-		else if (l > 2) 
-		{
-			var p:String   = arguments[1] ; // property
-			var e:Function = arguments[2] ; // easing
-			var b:Number   = arguments[3] ; // begin
-			var f:Number   = arguments[4] ; // finish
-			var d:Number   = arguments[5] ; // duration
-			var u:Boolean  = arguments[6] ; // useSeconds
-			var a:Boolean  = arguments[7] ; // auto start
-			setDuration(d) ;
-			useSeconds = u ;
-			setTweenModel( [new TweenEntry(p, e, b, f)] ) ;
-			if (a) run() ;
+			if ( arguments[1] instanceof Array ) 
+			{
+				model      = arguments[1] ;
+				duration   = arguments[2] > 0 ? arguments[2] : null ;
+				useSeconds = arguments[3] == true ;
+				a          = arguments[4] == true ;
+			}
+			else
+			{
+				model      = [ new TweenEntry( arguments[1] , arguments[2], arguments[3], arguments[4]) ]  ;
+				duration   = ( arguments[5] > 0 ) ? arguments[5] : null ;
+				useSeconds = arguments[6] == true ;
+				a          = arguments[7] == true ; // auto start
+			}
 		}
+		
+		if ( a == true ) 
+		{
+			run() ;
+		}
+		
 	}
 
 	/**
@@ -195,6 +209,29 @@ class pegas.transitions.Tween extends Motion
 	{
 		if (running) stop() ;
 		return _model.remove(prop) ;
+	}
+
+	/**
+	 * Set the TweenEntry property of this TweenLite object.
+	 * @param prop the property name of the object to change.
+	 * @param easing the easing function of the tween entry.
+	 * @param begin the begin value.
+	 * @param finish the finish value. 
+	 */
+	public function setTweenEntry( prop:String, easing:Function , begin:Number , finish:Number ):Void
+	{
+		if ( _model.contains( prop ) )
+		{
+			var entry:TweenEntry = _model.get(prop) ;
+			entry.prop   = prop   ;
+			entry.easing = easing ; 	
+			entry.begin  = begin  ;
+			entry.finish = finish ;
+		}
+		else
+		{
+			insertProperty.apply(this, arguments) ;	
+		}
 	}
 
 	/**

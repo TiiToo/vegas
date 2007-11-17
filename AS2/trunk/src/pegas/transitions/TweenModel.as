@@ -85,7 +85,16 @@ class pegas.transitions.TweenModel extends AbstractModel implements Iterable
 		_map.clear( ) ;
 		dispatchEvent( _eClear ) ;
 	}
-
+	
+	/**
+	 * Returns {@code true} if the specified property exist in this model.
+	 * @return {@code true} if the specified property exist in this model.
+	 */
+	public function contains( prop:String ):Boolean 
+	{
+		return _map.containsKey( prop ) ;
+	}
+	
 	/**
 	 * Returns the specified TweenEntry reference.
 	 * @return the specified TweenEntry reference.

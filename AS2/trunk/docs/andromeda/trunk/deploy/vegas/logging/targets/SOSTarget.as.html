@@ -198,7 +198,7 @@ document.quicknavBasePath="../../../index-files";
 <span class="lineno" id="195">   195  </span>	<span class="key">public</span> <span class="key">function</span> getMessage( msg:String , level:Number ):String
 <span class="lineno" id="196">   196  </span>	{
 <span class="lineno" id="197">   197  </span>		<span class="key">var</span> levelName:String = LogEvent.getLevelString(level) ;
-<span class="lineno" id="198">   198  </span>		<span class="key">return</span>  <span class="str_const">"!SOS&lt;showMessage key='"</span> + levelName + <span class="str_const">"'&gt;"</span> + msg + <span class="str_const">"&lt;/showMessage&gt;\n"</span>  ;	
+<span class="lineno" id="198">   198  </span>		<span class="key">return</span> <span class="str_const">"!SOS&lt;showMessage key='"</span> + levelName + <span class="str_const">"'&gt;"</span> + <span class="str_const">"&lt;![CDATA["</span> + msg + <span class="str_const">"]]&gt;"</span> + <span class="str_const">"&lt;/showMessage&gt;\n"</span>  ;	
 <span class="lineno" id="199">   199  </span>	}
 <span class="lineno" id="200">   200  </span>
 <span class="lineno" id="201">   201  </span>	<span class="comment doc">/**
