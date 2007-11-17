@@ -1074,8 +1074,7 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
                 {
                 member = scanIdentifier();
                 scanWhiteSpace();
-                //scanSeparators(); // FIXME : test scanSeparator to use return after a {
-                
+
                 if( ch != ":" )
                     {
                     break;
@@ -1466,8 +1465,7 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
     public function scanValue()
 	{
         
-        // FIXME : use a clear white space before launch the deserialize ??
-        scanSeparators(); // FIXME : i have change the scanWhite with a scanSeperators
+        scanSeparators();
         
         switch( ch )
         {

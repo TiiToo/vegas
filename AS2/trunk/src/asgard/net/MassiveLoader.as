@@ -34,8 +34,6 @@ import vegas.events.EventTarget;
 import vegas.events.TimerEvent;
 import vegas.util.Timer;
 
-// TODO : vérifier le cablage du système événementiel.
-
 /**
  * Enqueue ILoader in a buffer and run all ILoader one by one.
  * @author eKameleon

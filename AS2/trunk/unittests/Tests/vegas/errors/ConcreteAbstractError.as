@@ -1,4 +1,4 @@
-import vegas.errors.AbstractError;
+﻿import vegas.errors.AbstractError;
 import vegas.errors.ErrorElement;
 
 /**

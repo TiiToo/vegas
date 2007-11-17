@@ -21,8 +21,6 @@
   
 */
 
-// FIXME bug with SimpleCollection inherit, for the moment i use AbstractCollection inherit !  
-
 import vegas.data.Collection;
 import vegas.data.collections.AbstractCollection;
 import vegas.data.iterator.Iterator;

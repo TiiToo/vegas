@@ -21,9 +21,6 @@
   
 */
 
-// TODO : PrimitiveTypeMap
-// TODO : PriorityMap
-
 import vegas.core.ISerializable;
 import vegas.data.iterator.Iterator;
 

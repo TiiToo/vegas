@@ -31,8 +31,6 @@ import asgard.net.URLVariables;
 
 import vegas.events.Delegate;
 
-// FIXME : IMPORTANT ici tout vérifier et Tests !!!!
-
 /**
  * The URLLoader class.
  * @author eKameleon
@@ -209,7 +207,6 @@ class asgard.net.URLLoader extends AbstractLoader
   		getContent().onData = null ;
   		getContent().onLoad = null ;
   		super.release() ;
-  			
   	}
   
   	/**
@@ -248,8 +245,6 @@ class asgard.net.URLLoader extends AbstractLoader
 	private var _sMethod:String = "POST" ;
 
 	private var _oData = null ;
-	
-	// FIXME : REFACTORING COMPLET DE CETTE CLASSE !!! 
 	
 	private function _onData( source:String )
 	{
