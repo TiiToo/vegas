@@ -128,16 +128,25 @@ class pegas.colors.TransformColor extends BasicColor
 		setTransform ({ ra:-100, ga:-100, ba:-100, rb:o.r, gb:o.g, bb:o.b } );
 	}
 	
+	/**
+	 * @private
+	 */
 	private function _div(n:Number):Number 
 	{
 		return 100/((n + 1)/256);
 	}
 
+	/**
+	 * @private
+	 */
 	private function _dodge(n:Number):Number 
 	{
 		return 100 / ((258 - n) / 256);
 	}
 	
+	/**
+	 * @private
+	 */
 	private function _scr(n:Number):Number 
 	{
 		return 100 * (255 - n) / 255;

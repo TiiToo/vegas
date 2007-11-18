@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -172,7 +172,7 @@ package vegas.logging
 			{
 				filters = [] ;
 			}
-			if ( filters.contains( nameSpace ) ) 
+			if ( filters.indexOf( nameSpace ) > -1 ) 
 			{
 				return false ;
 			}

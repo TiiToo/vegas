@@ -138,6 +138,9 @@ package pegas.events
 			_oInfo = oInfo ;	
 		}
 		
+		/**
+		 * @private
+		 */
 		private var _oInfo:* ;
 		
 	}

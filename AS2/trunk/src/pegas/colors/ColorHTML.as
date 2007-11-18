@@ -19,13 +19,12 @@
   
   Contributor(s) :
   
-*/
+ */
 
 import vegas.core.IConvertible;
 import vegas.core.IEquality;
 import vegas.core.IFormattable;
 import vegas.util.ObjectUtil;
-import vegas.util.StringUtil;
 
 /**
  * Enumeration static class to defined Basic HTML data types : <a href="http://www.w3.org/TR/html4/types.html">W3C HTML 4 Specifications</a> (chap 6.5)
@@ -53,36 +52,84 @@ class pegas.colors.ColorHTML extends Number implements IConvertible, IEquality, 
 		this.value = n ;
 	}
 	
+	/**
+	 * The html 'aqua' color static reference.
+	 */
 	public static var AQUA:ColorHTML    = new ColorHTML(0x00FFFF , "Aqua") ;
 	
+	/**
+	 * The html 'black' color static reference.
+	 */
 	public static var BLACK:ColorHTML   = new ColorHTML(0x000000 , "Black") ;
 
+	/**
+	 * The html 'blue' color static reference.
+	 */
 	public static var BLUE:ColorHTML    = new ColorHTML(0x0000FF , "Blue") ;
 
+	/**
+	 * The html 'fuchsia' color static reference.
+	 */
 	public static var FUCHSIA:ColorHTML = new ColorHTML(0xFF00FF , "Fuchsia") ;
 
+	/**
+	 * The html 'gray' color static reference.
+	 */
 	public static var GRAY:ColorHTML    = new ColorHTML(0x808080 , "Gray") ;
-	
+
+	/**
+	 * The html 'green' color static reference.
+	 */
 	public static var GREEN:ColorHTML   = new ColorHTML(0x008000 , "Green") ;
-	
+
+	/**
+	 * The html 'lime' color static reference.
+	 */
 	public static var LIME:ColorHTML    = new ColorHTML(0x00FF00 , "Lime") ;
 	
+	/**
+	 * The html 'olive' color static reference.
+	 */
 	public static var OLIVE:ColorHTML   = new ColorHTML(0x808000 , "Olive") ;
-	
+
+	/**
+	 * The html 'maroon' color static reference.
+	 */
 	public static var MAROON:ColorHTML  = new ColorHTML(0x800000 , "Maroon") ; 	
-	
+
+	/**
+	 * The html 'navy' color static reference.
+	 */
 	public static var NAVY:ColorHTML    = new ColorHTML(0x000080 , "Navy") ;
-	
+
+	/**
+	 * The html 'purple' color static reference.
+	 */
 	public static var PURPLE:ColorHTML  = new ColorHTML(0x800080 , "Purple") ;
-	
+
+	/**
+	 * The html 'red' color static reference.
+	 */
 	public static var RED:ColorHTML     = new ColorHTML(0xFF0000 , "Red") ;
-	
+
+	/**
+	 * The html 'silver' color static reference.
+	 */
 	public static var SILVER:ColorHTML  = new ColorHTML(0xC0C0C0 , "Silver") ;
 
+	/**
+	 * The html 'teal' color static reference.
+	 */
 	public static var TEAL:ColorHTML    = new ColorHTML(0x008080 , "Teal") ;
 
+	/**
+	 * The html 'white' color static reference.
+	 */
 	public static var WHITE:ColorHTML   = new ColorHTML(0xFFFFFF , "White") ;
-	
+
+	/**
+	 * The html 'yellow' color static reference.
+	 */
 	public static var YELLOW:ColorHTML  = new ColorHTML(0xFFFF00 , "Yellow") ;
 
 	/**
@@ -109,13 +156,11 @@ class pegas.colors.ColorHTML extends Number implements IConvertible, IEquality, 
 	 */
 	public static function htmlToNumber( sHTML:String ):Number 
 	{
-		var s = new StringUtil(sHTML) ;
-		if (s.firstChar() == "#" && s.length > 1 && s.length <= 7) 
+		if ( sHTML.charAt(0) == "#" && sHTML.length > 1 && sHTML.length <= 7) 
 		{
-			s = s.splice(1) ;
-			return parseInt("0x" + s) ;
+			return parseInt( "0x" + sHTML.substr(1) ) ;
 		}
-		return null ;
+		return 0 ;
 	}
 
 	/**
@@ -160,7 +205,8 @@ class pegas.colors.ColorHTML extends Number implements IConvertible, IEquality, 
 	}
 	
 	/**
-	 * Return the value in number of this ColorHTML instance.
+	 * Returns the value in number of this ColorHTML instance.
+	 * @return the value in number of this ColorHTML instance.
 	 */
 	public function valueOf():Number
 	{

@@ -83,12 +83,12 @@ package vegas.core
 			
 			o["hashCode"] = function ():uint 
 			{
-				if (this.__hashcode__ == null) 
+				if (this["hashCode"] == null) 
 				{
-					this.__hashcode__ = HashCode.next() ;
+					this["hashCode"] = HashCode.next() ;
 					this.setPropertyIsEnumerable("__hashcode__", false) ;
 				}
-				return this.__hashcode__ ;
+				return this["hashCode"] ;
 			} ;
 			
 			o.setPropertyIsEnumerable("hashCode", false) ;

@@ -795,7 +795,7 @@ package vegas.util
     		
 	    	if( trimStart )
         	{
-	        	for( iLeft=0; (iLeft<s.length) && (trimChars.contains( s.charAt( iLeft ) )); iLeft++ )
+	        	for( iLeft=0 ; (iLeft<s.length) && ( trimChars.indexOf( s.charAt( iLeft ) ) > -1 ) ; iLeft++ )
         		{
 					    	    
     	    	}
@@ -804,7 +804,7 @@ package vegas.util
     
     		if( trimEnd )
         	{
-        		for( iRight=s.length-1; (iRight>=0) && (trimChars.contains( s.charAt( iRight ) )); iRight-- )
+        		for( iRight=s.length-1; (iRight>=0) && ( trimChars.indexOf( s.charAt( iRight ) ) > -1  ) ; iRight-- )
             	{            
 				            
             	}

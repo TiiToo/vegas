@@ -23,12 +23,12 @@
 
 package pegas.colors
 {
-    import vegas.core.CoreObject;
-    import vegas.core.IConvertible;
-    import vegas.core.IEquality;
-    import vegas.util.ObjectUtil;
-    import vegas.util.StringUtil;
-    
+	
+	import vegas.core.CoreObject;
+	import vegas.core.IConvertible;
+	import vegas.core.IEquality;
+	import vegas.util.ObjectUtil;    
+
 	/**
  	 * Enumeration static class to defined Basic HTML data types : <a href="http://www.w3.org/TR/html4/types.html">W3C HTML 4 Specifications</a> (chap 6.5)
 	 * <p><b>Example :</b></p>
@@ -55,38 +55,85 @@ package pegas.colors
 			this.value = value ;
 		}
 
+		/**
+		 * The html 'aqua' color static reference.
+		 */
 		public static const AQUA:ColorHTML    = new ColorHTML(0x00FFFF , "Aqua") ;
-		
-		public static const BLACK:ColorHTML   = new ColorHTML(0x000000 , "Black") ;
-	
-		public static const BLUE:ColorHTML    = new ColorHTML(0x0000FF , "Blue") ;
-	
-		public static const FUCHSIA:ColorHTML = new ColorHTML(0xFF00FF , "Fuchsia") ;
-	
-		public static const GRAY:ColorHTML    = new ColorHTML(0x808080 , "Gray") ;
-			
-		public static const GREEN:ColorHTML   = new ColorHTML(0x008000 , "Green") ;
-		
-		public static const LIME:ColorHTML    = new ColorHTML(0x00FF00 , "Lime") ;
-		
-		public static const OLIVE:ColorHTML   = new ColorHTML(0x808000 , "Olive") ;
-		
-		public static const MAROON:ColorHTML  = new ColorHTML(0x800000 , "Maroon") ; 	
-		
-		public static const NAVY:ColorHTML    = new ColorHTML(0x000080 , "Navy") ;
-		
-		public static const PURPLE:ColorHTML  = new ColorHTML(0x800080 , "Purple") ;
-		
-		public static const RED:ColorHTML     = new ColorHTML(0xFF0000 , "Red") ;
-		
-		public static const SILVER:ColorHTML  = new ColorHTML(0xC0C0C0 , "Silver") ;
-	
-		public static const TEAL:ColorHTML    = new ColorHTML(0x008080 , "Teal") ;
-	
-		public static const WHITE:ColorHTML   = new ColorHTML(0xFFFFFF , "White") ;
-		
-		public static const YELLOW:ColorHTML  = new ColorHTML(0xFFFF00 , "Yellow") ;
 
+		/**
+		 * The html 'black' color static reference.
+		 */
+		public static const BLACK:ColorHTML   = new ColorHTML(0x000000 , "Black") ;
+
+		/**
+		 * The html 'blue' color static reference.
+		 */
+		public static const BLUE:ColorHTML    = new ColorHTML(0x0000FF , "Blue") ;
+
+		/**
+		 * The html 'fuchsia' color static reference.
+		 */
+		public static const FUCHSIA:ColorHTML = new ColorHTML(0xFF00FF , "Fuchsia") ;
+
+		/**
+		 * The html 'gray' color static reference.
+		 */
+		public static const GRAY:ColorHTML    = new ColorHTML(0x808080 , "Gray") ;
+
+		/**
+		 * The html 'green' color static reference.
+		 */
+		public static const GREEN:ColorHTML   = new ColorHTML(0x008000 , "Green") ;
+
+		/**
+		 * The html 'lime' color static reference.
+		 */
+		public static const LIME:ColorHTML    = new ColorHTML(0x00FF00 , "Lime") ;
+	
+		/**
+		 * The html 'olive' color static reference.
+		 */
+		public static const OLIVE:ColorHTML   = new ColorHTML(0x808000 , "Olive") ;
+
+		/**
+		 * The html 'maroon' color static reference.
+		 */
+		public static const MAROON:ColorHTML  = new ColorHTML(0x800000 , "Maroon") ; 	
+
+		/**
+		 * The html 'navy' color static reference.
+		 */
+		public static const NAVY:ColorHTML    = new ColorHTML(0x000080 , "Navy") ;
+
+		/**
+		 * The html 'purple' color static reference.
+		 */
+		public static const PURPLE:ColorHTML  = new ColorHTML(0x800080 , "Purple") ;
+
+		/**
+		 * The html 'red' color static reference.
+		 */
+		public static const RED:ColorHTML     = new ColorHTML(0xFF0000 , "Red") ;
+
+		/**
+		 * The html 'silver' color static reference.
+		 */
+		public static const SILVER:ColorHTML  = new ColorHTML(0xC0C0C0 , "Silver") ;
+
+		/**
+		 * The html 'teal' color static reference.
+		 */
+		public static const TEAL:ColorHTML    = new ColorHTML(0x008080 , "Teal") ;
+
+		/**
+		 * The html 'white' color static reference.
+		 */
+		public static const WHITE:ColorHTML   = new ColorHTML(0xFFFFFF , "White") ;
+
+		/**
+		 * The html 'yellow' color static reference.
+		 */
+		public static const YELLOW:ColorHTML  = new ColorHTML(0xFFFF00 , "Yellow") ;
 
     	/**
 		 * The name of the color.
@@ -98,49 +145,75 @@ package pegas.colors
 		 */
 		public var value:Number ;
 
+		/**
+		 * Compares the specified object with this object for equality.
+		 * @return {@code true} if the the specified object is equal with this object.
+	 	 */
 		public function equals( o:* ):Boolean 
 		{
 			return ( o.valueOf() == valueOf() && toString() == o.toString()) ;	
 		}
-	
+
+		/**
+		 * Converts the string passed in argument (the html color) in a number representation.
+		 */
 		public static function htmlToNumber( sHTML:String ):Number 
 		{
-			if (StringUtil.firstChar(sHTML) == "#" && s.length > 1 && s.length <= 7) 
+			if ( sHTML.charAt(0) == "#" && sHTML.length > 1 && sHTML.length <= 7) 
 			{
-				var s:String = StringUtil.splice(sHTML, 1) ;
-				return parseInt("0x" + s) ;
+				return parseInt( "0x" + sHTML.substr(1) ) ;
 			}
-			return undefined ;
+			return 0 ;
 		}
 	
+		/**
+	 	 * Converts the number passed in argument (the html color in hex with ECMAScript notation 0xrrggbb) in a HTML string representation.
+	 	 */
 		public static function hexToHtml( hex:Number):String
 		{
 			return "#" + (hex.toString(16)).toUpperCase() ; 
 		}
-	
+
+		/**
+		 * Converts an object to an equivalent Boolean value.
+		 */
 		public function toBoolean():Boolean 
 		{
 			return ObjectUtil.toBoolean(this) ;	
 		}
-		
+
+		/**
+		 * Converts an object to an equivalent Number value.
+		 */
 		public function toNumber():Number 
 		{
 			return ObjectUtil.toNumber(this) ;	
 		}
 	
+		/**
+		 * Converts an object to an equivalent Object value.
+		 */
 		public function toObject():Object 
 		{
 			return ObjectUtil.toObject(this) ;	
 		}
-		
-		override public function toString():String 
+	
+		/**
+		 * Returns the string representation of this instance.
+		 * @return the string representation of this instance
+ 	 	 */
+		public override function toString():String 
 		{
-			return name ;
+			return this.name ;
 		}
-		
+
+		/**
+		 * Returns the value in number of this ColorHTML instance.
+		 * @return the value in number of this ColorHTML instance.
+		 */
 		public function valueOf():Number
 		{
-			return value ;	
+			return this.value ;	
 		}
 	
 	}

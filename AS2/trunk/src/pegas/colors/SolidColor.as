@@ -331,7 +331,7 @@ class pegas.colors.SolidColor extends BasicColor
 	 * Specifies a green color value for a Color object.
 	 * @param amount The green value.
 	 */
-	public function setGreen(amount:Number) 
+	public function setGreen(amount:Number):Void 
 	{
 		var t:Object = getTransform();
 		setRGB (ColorRGB.rgb2hex(t.rb, amount, t.bb)) ;

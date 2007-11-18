@@ -75,7 +75,7 @@ class pegas.colors.ColorSVG extends ColorHTML
 	
 	public static var BLACK:ColorSVG = new ColorSVG(0x000000 , "Black") ;
 
-	public static var BLANCH_DALMOND = new ColorSVG(0xFFEBCD, "BlancheDalmond") ;
+	public static var BLANCHE_DALMOND:ColorSVG = new ColorSVG(0xFFEBCD, "BlancheDalmond") ;
 
 	public static var BLUE:ColorSVG = new ColorSVG(0x0000FF , "Blue") ;
 

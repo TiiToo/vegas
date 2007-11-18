@@ -18,8 +18,6 @@
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
-  
-		- Nicolas Coevoet <http://niko.informatif.org/> (Documentation)
     
 */
 
@@ -119,6 +117,9 @@ class pegas.colors.ColorHSV
 		return( { h:o , s:s<<0 ,v:v<<0} ) ;
 	}
 	
+	/**
+	 * @private
+	 */
 	private static function _fsort ( a:String , b:String ) :Number 
 	{
 		var val1:Number = Number(a.split(':')[1]);

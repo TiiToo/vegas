@@ -141,12 +141,12 @@ package vegas.logging
             if(hasEventListener(LogEvent.LOG))
 		    {
 			
-			    if (context as String)
+			    if (context is String)
     			{
 	    		    var len:uint = rest.length ;
 		    	    for(var i:uint = 0; i<len ; i++)
     			    {
-				       context = context.replace(new RegExp("\\{"+i+"\\}", "g"), rest[i]);
+				       context = (context as String).replace(new RegExp("\\{"+i+"\\}", "g"), rest[i]);
 	    		    }
 		    	}
 
