@@ -21,8 +21,8 @@
   
 */
 
-package pegas.process 
-{    import vegas.core.CoreObject;
+package vegas.events 
+{	import vegas.core.CoreObject;
     import vegas.core.IRunnable;
     import vegas.errors.IllegalArgumentError;
     import vegas.events.BasicEvent;

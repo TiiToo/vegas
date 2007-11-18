@@ -23,10 +23,11 @@
 
 package pegas.process
 {
-    import pegas.events.ActionEvent;
-    import vegas.events.AbstractCoreEventDispatcher;
-    
-    /**
+	import pegas.events.ActionEvent;
+	
+	import vegas.events.AbstractCoreEventDispatcher;	
+
+	/**
      * A simple representation of the {@code IAction} interface.
      * @author eKameleon
      */
@@ -41,7 +42,7 @@ package pegas.process
     	function SimpleAction( bGlobal:Boolean = false , sChannel:String = null ) 
     	{
 		    super(bGlobal, sChannel);		
-            initEvent() ;
+            initEventType() ;
 	    }
 
 	    /**
@@ -68,7 +69,7 @@ package pegas.process
 		 */
 		public function getEventTypeFINISH():String
 		{
-			return _eFinish.type ;
+			return _sTypeFinish ;
 		}
 		
 		/**
@@ -77,7 +78,7 @@ package pegas.process
 		 */
 		public function getEventTypeSTART():String
 		{
-			return _eStart.type ;
+			return _sTypeStart ;
 		}
 		
 		/**
@@ -92,10 +93,10 @@ package pegas.process
         /**
          * Initialize the internal events of this process.
          */
-        public function initEvent():void
+        public function initEventType():void
         {
-            _eFinish = new ActionEvent(ActionEvent.FINISH , this) ;
-		    _eStart  = new ActionEvent(ActionEvent.START  , this) ;
+            _sTypeFinish = ActionEvent.FINISH ;
+			_sTypeStart  = ActionEvent.START  ;
         }
         
 	    /**
@@ -103,7 +104,7 @@ package pegas.process
 	     */
 		public function notifyFinished():void 
 		{
-			dispatchEvent(_eFinish) ;
+			dispatchEvent( new ActionEvent( _sTypeFinish , this ) ) ;
 		}
 
     	/**
@@ -111,7 +112,7 @@ package pegas.process
 	     */
 		public function notifyStarted():void
 		{
-			dispatchEvent(_eStart) ;
+			dispatchEvent( new ActionEvent( _sTypeStart , this ) ) ;
 		}
 		
     	/**
@@ -135,19 +136,20 @@ package pegas.process
 		 */
 		public function setEventTypeFINISH( type:String ):void
 		{
-			_eFinish.type = type || ActionEvent.FINISH ;
+			_sTypeFinish = type || ActionEvent.FINISH ;
 		}
+		
 		/**
 		 * Sets the event name use in the notifyStarted method.
 		 */
 		public function setEventTypeSTART( type:String ):void
 		{
-			_eStart.type = type || ActionEvent.START ;
+			_sTypeStart = type || ActionEvent.START ;
 		}
 
-	    private var _eFinish:ActionEvent ;
+	    private var _sTypeFinish:String ;
 
-	    private var _eStart:ActionEvent ;
+	    private var _sTypeStart:String ;
 
 	    private var _isRunning:Boolean ;
 

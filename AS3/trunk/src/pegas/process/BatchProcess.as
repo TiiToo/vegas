@@ -23,12 +23,11 @@
 
 package pegas.process
 {
-    
-    import pegas.events.ActionEvent;
-    
-    import vegas.data.iterator.Iterator;
-    
-    /**
+	import pegas.events.ActionEvent;
+	
+	import vegas.data.iterator.Iterator;	
+
+	/**
      * This {@code IAction} object register {@code IAction} objects in a batch process.
      * @author eKameleon
      */
@@ -124,16 +123,16 @@ package pegas.process
 		 */
 		public function getEventTypePROGRESS():String
 		{
-			return _eProgress.type ;
+			return _sTypeProgress ;
 		}
 		
 	    /**
          * Initialize the internal events of this process.
          */
-	    public override function initEvent():void
+	    public override function initEventType():void
 	    {
-	        super.initEvent() ;
-	        _eProgress = new ActionEvent( ActionEvent.PROGRESS, this ) ; 
+	        super.initEventType() ;
+	        _sTypeProgress = ActionEvent.PROGRESS ; 
 	    }
         	    
         /**
@@ -149,8 +148,7 @@ package pegas.process
 	     */
 	    public function notifyProgress( action:IAction ):void 
 	    {
-    		_eProgress.context = action ;
-		    dispatchEvent(_eProgress) ;
+		    dispatchEvent( new ActionEvent( _sTypeProgress, this , action ) ) ;
 	    }
 
 	    /**
@@ -181,7 +179,7 @@ package pegas.process
 		 */
 		public function setEventTypePROGRESS( type:String ):void
 		{
-			_eProgress.type = type || ActionEvent.PROGRESS ;
+			_sTypeProgress = type || ActionEvent.PROGRESS ;
 		}
         
         /**
@@ -212,9 +210,9 @@ package pegas.process
         private var _cpt:Number ;
 
         /**
-         * Invoqued during the progress of the process.
+         * The event type of the event invoqued during the progress of the process.
          */
-	    private var _eProgress:ActionEvent ;
+	    private var _sTypeProgress:String ;
         
 	    /**
     	 * Invoqued when a tween finish this movement.

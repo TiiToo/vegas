@@ -25,21 +25,21 @@
 
 package asgard.net.remoting
 {
-    import flash.events.TimerEvent;
-    import flash.net.ObjectEncoding;
-    import flash.net.Responder;
-    import flash.utils.Timer;
-    
-    import asgard.events.RemotingEvent;
-    import asgard.net.TimeoutPolicy;
-    
-    import pegas.process.Action;
-    
-    import vegas.core.ICloneable;
-    import vegas.errors.Warning;
-    import vegas.util.ClassUtil;
-    
-    /**
+	import flash.events.TimerEvent;
+	import flash.net.ObjectEncoding;
+	import flash.net.Responder;
+	import flash.utils.Timer;
+	
+	import asgard.events.RemotingEvent;
+	import asgard.net.TimeoutPolicy;
+	
+	import pegas.process.Action;
+	
+	import vegas.core.ICloneable;
+	import vegas.errors.Warning;
+	import vegas.util.ClassUtil;    
+
+	/**
 	 * This class provides a service object to communicate with a remoting gateway server.
 	 * <p><b>Example : RemotingService and classmapping</b></p>
 	 * <p>Value object : test.User :</p>
@@ -364,7 +364,7 @@ package asgard.net.remoting
 		 */
 		public function getEventTypeERROR():String
 		{
-			return _eError.type ;
+			return _sTypeError ;
 		}
 
         /**
@@ -373,7 +373,7 @@ package asgard.net.remoting
 		 */
 		public function getEventTypeFAULT():String
 		{
-			return _eFault.type ;
+			return _sTypeFault ;
 		}
         
         /**
@@ -382,7 +382,7 @@ package asgard.net.remoting
 		 */
 		public function getEventTypeRESULT():String
 		{
-			return _eResult.type ;
+			return _sTypeResult ;
 		}
 
     	/**
@@ -461,12 +461,12 @@ package asgard.net.remoting
         /**
          * Initialize the internal events of this process.
          */
-        public override function initEvent():void
+        public override function initEventType():void
         {
-            super.initEvent() ;
-			_eError    = new RemotingEvent( RemotingEvent.ERROR  , this ) ;
-			_eFault    = new RemotingEvent( RemotingEvent.FAULT  , this ) ;
-			_eResult   = new RemotingEvent( RemotingEvent.RESULT , this ) ;
+            super.initEventType() ;
+			_sTypeError  = RemotingEvent.ERROR  ;
+			_sTypeFault  = RemotingEvent.FAULT  ;
+			_sTypeResult = RemotingEvent.RESULT ;
         }
         
         /**
@@ -475,8 +475,9 @@ package asgard.net.remoting
 		protected function notifyError( code:String = null ):void 
 		{
 			setRunning(false) ;
-			_eError.code = (code == null) ? RemotingEvent.ERROR : code ;
-			dispatchEvent( _eError ) ;
+			var e:RemotingEvent = new RemotingEvent( _sTypeError , this ) ;
+			e.code = (code == null) ? RemotingEvent.ERROR : code ;
+			dispatchEvent( e ) ;
 			notifyFinished() ;
 		}	
 
@@ -485,8 +486,9 @@ package asgard.net.remoting
     	 */
 		protected function notifyFault( fault:Object = null ):void
 		{
-			_eFault.setFault(fault, _methodName) ;
-			dispatchEvent( _eFault ) ;
+			var e:RemotingEvent = new RemotingEvent( _sTypeFault , this ) ;
+			e.setFault(fault, _methodName) ;
+			dispatchEvent( e ) ;
 		}
 		
 		/**
@@ -494,8 +496,9 @@ package asgard.net.remoting
     	 */
 		protected function notifyResult():void
 		{
-			_eResult.setResult(_result , _methodName) ;
-			dispatchEvent( _eResult ) ;
+			var e:RemotingEvent = new RemotingEvent( _sTypeResult , this ) ;
+			e.setResult(_result , _methodName) ;
+			dispatchEvent( e ) ;
 		}
 
 		/**
@@ -571,7 +574,7 @@ package asgard.net.remoting
 		 */
 		public function setEventTypeERROR( type:String ):void
 		{
-			_eError.type = type ;
+			_sTypeError = type || RemotingEvent.ERROR ;
 		}
 
         /**
@@ -579,7 +582,7 @@ package asgard.net.remoting
 		 */
 		public function setEventTypeFAULT( type:String ):void
 		{
-			_eFault.type = type ;
+			_sTypeFault = type || RemotingEvent.FAULT ;
 		}
         
         /**
@@ -587,7 +590,7 @@ package asgard.net.remoting
 		 */
 		public function setEventTypeRESULT( type:String ):void
 		{
-			_eResult.type = type ;
+			_sTypeResult = type || RemotingEvent.RESULT ;
 		}
 		
 		/**
@@ -673,37 +676,84 @@ package asgard.net.remoting
 			return (new RemotingFormat()).formatToString(this) ;	
 		}
 
-
+		/**
+		 * @private
+		 */
 		private var _args:Array ;
 		
+		/**
+		 * @private
+		 */
 		private var _authentification:RemotingAuthentification ;
 		
-		private var _eError:RemotingEvent ;
-        
-        private var _eFault:RemotingEvent ;
-        
-        private var _eResult:RemotingEvent ;
-		
+		/**
+		 * @private
+		 */
 		private var _gatewayUrl:String = null  ;
 
+		/**
+		 * @private
+		 */
 		private var _internalResponder:Responder = new Responder(_onResult, _onStatus) ;
 		
+		/**
+		 * @private
+		 */
 		private var _isProxy:Boolean = false ;
 		
+		/**
+		 * @private
+		 */
 		private var _methodName:String ; 
-        
+
+		/**
+		 * @private
+		 */        
 		private var _policy:TimeoutPolicy ;
 
+		/**
+		 * @private
+		 */
 		private var _rc:RemotingConnection = null ;
 
+		/**
+		 * @private
+		 */
 		private var _responder:Responder = null ;
 		
+		/**
+		 * @private
+		 */
 		private var _result:* = null ;
 		
+		/**
+		 * @private
+		 */
 		private var _serviceName:String = null ;
 		
+		/**
+		 * @private
+		 */
+		private var _sTypeError:String ;
+        
+		/**
+		 * @private
+		 */
+        private var _sTypeFault:String ;
+
+		/**
+		 * @private
+		 */
+        private var _sTypeResult:String ;
+
+		/**
+		 * @private
+		 */
 		private var _timer:Timer ;
 		
+		/**
+		 * @private
+		 */
 		private function _onResult( data:* ):void
 		{
 			_timer.stop() ; // stop timeout interval
@@ -713,6 +763,9 @@ package asgard.net.remoting
 			notifyFinished() ;
 		}
 
+		/**
+		 * @private
+		 */
 		private function _onStatus( fault:Object ):void 
 		{
 			_timer.stop() ; // stop timeout interval
@@ -721,6 +774,9 @@ package asgard.net.remoting
 			notifyFinished() ;
 		}
 
+		/**
+		 * @private
+		 */
 		private function _onTimeOut(e:TimerEvent):void 
 		{
 			_timer.stop() ;

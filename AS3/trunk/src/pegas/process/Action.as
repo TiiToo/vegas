@@ -23,9 +23,10 @@
 
 package pegas.process
 {
-    import pegas.events.ActionEvent;
-    
-    /**
+	
+	import pegas.events.ActionEvent;    
+
+	/**
      * This class simplify a full implementation of the {@code Action} interface.
      * @author eKameleon
      */
@@ -62,7 +63,7 @@ package pegas.process
 		 */
 		public function getEventTypeCHANGE():String
 		{
-			return _eChange.type ;
+			return _sTypeChange ;
 		}
         
 		/**
@@ -71,7 +72,7 @@ package pegas.process
 		 */
 		public function getEventTypeCLEAR():String
 		{
-			return _eClear.type ;
+			return _sTypeClear ;
 		}
         
 		/**
@@ -80,7 +81,7 @@ package pegas.process
 		 */
 		public function getEventTypeINFO():String
 		{
-			return _eInfo.type ;
+			return _sTypeInfo ;
 		}
         
         /**
@@ -89,7 +90,7 @@ package pegas.process
 		 */
 		public function getEventTypeLOOP():String
 		{
-			return _eLoop.type ;
+			return _sTypeLoop ;
 		}
         
         /**
@@ -98,7 +99,7 @@ package pegas.process
 		 */
 		public function getEventTypePROGRESS():String
 		{
-			return _eProgress.type ;
+			return _sTypeProgress ;
 		}
 		
 		/**
@@ -107,7 +108,7 @@ package pegas.process
 		 */
 		public function getEventTypeRESUME():String
 		{
-			return _eResume.type ;
+			return _sTypeResume ;
 		}
 		
 		/**
@@ -116,7 +117,7 @@ package pegas.process
 		 */
 		public function getEventTypeSTOP():String
 		{
-			return _eStop.type ;
+			return _sTypeStop ;
 		}
 		
 		/**
@@ -125,23 +126,23 @@ package pegas.process
 		 */
 		public function getEventTypeTIMEOUT():String
 		{
-			return _eTimeout.type ;
+			return _sTypeTimeout ;
 		}
 		
         /**
-         * Initialize the internal events of this process.
+         * Initialize the internal event's types of this process.
          */
-        public override function initEvent():void
+        public override function initEventType():void
         {
-            super.initEvent() ;
-			_eChange   = new ActionEvent( ActionEvent.CHANGE   , this ) ;
-			_eClear    = new ActionEvent( ActionEvent.CLEAR    , this ) ;
-			_eInfo     = new ActionEvent( ActionEvent.INFO     , this ) ;
-			_eLoop     = new ActionEvent( ActionEvent.LOOP     , this ) ;
-			_eProgress = new ActionEvent( ActionEvent.PROGRESS , this ) ;
-			_eResume   = new ActionEvent( ActionEvent.RESUME   , this ) ;
-			_eStop     = new ActionEvent( ActionEvent.STOP     , this ) ;
-			_eTimeout  = new ActionEvent( ActionEvent.TIMEOUT  , this ) ;
+            super.initEventType() ;
+			_sTypeChange   = ActionEvent.CHANGE   ;
+			_sTypeClear    = ActionEvent.CLEAR    ;
+			_sTypeInfo     = ActionEvent.INFO     ;
+			_sTypeLoop     = ActionEvent.LOOP     ;
+			_sTypeProgress = ActionEvent.PROGRESS ;
+			_sTypeResume   = ActionEvent.RESUME   ;
+			_sTypeStop     = ActionEvent.STOP     ;
+			_sTypeTimeout  = ActionEvent.TIMEOUT  ;
         }
 
 	    /**
@@ -149,7 +150,7 @@ package pegas.process
 	     */
 		protected function notifyChanged():void 
 		{
-			dispatchEvent(_eChange) ;
+			dispatchEvent( new ActionEvent( _sTypeChange, this ) ) ;
 		}
 
 	    /**
@@ -157,7 +158,7 @@ package pegas.process
 	     */
 		protected function notifyCleared():void 
 		{
-			dispatchEvent(_eClear) ;
+			dispatchEvent( new ActionEvent( _sTypeClear, this ) ) ;
 		}	
 
 	    /**
@@ -165,8 +166,7 @@ package pegas.process
 	     */
 		protected function notifyInfo( info:* ):void
 		{
-		    _eInfo.setInfo( info ) ;
-			dispatchEvent(_eInfo) ;
+			dispatchEvent( new ActionEvent( _sTypeInfo, this , info ) ) ;
 		}
 
 	    /**
@@ -174,7 +174,7 @@ package pegas.process
 	     */
 		protected function notifyLooped():void 
 		{
-			dispatchEvent(_eLoop) ;
+			dispatchEvent( new ActionEvent( _sTypeLoop, this ) ) ;
 		}
 
 	    /**
@@ -182,7 +182,7 @@ package pegas.process
 	     */
 		protected function notifyProgress():void
 		{
-			dispatchEvent(_eProgress) ;
+			dispatchEvent( new ActionEvent( _sTypeProgress, this ) ) ;
 		}
 
 	    /**
@@ -190,7 +190,7 @@ package pegas.process
 	     */
 		protected function notifyResumed():void
 		{
-			dispatchEvent(_eResume) ;
+			dispatchEvent( new ActionEvent( _sTypeResume, this ) ) ;
 		}
 
 	    /**
@@ -198,7 +198,7 @@ package pegas.process
 	     */
 		protected function notifyStopped():void
 		{
-			dispatchEvent(_eStop) ;
+			dispatchEvent( new ActionEvent( _sTypeStop, this ) ) ;
 		}
 
 	    /**
@@ -206,7 +206,7 @@ package pegas.process
 	     */
 		protected function notifyTimeOut():void
 		{
-			dispatchEvent(_eTimeout) ;
+			dispatchEvent( new ActionEvent( _sTypeTimeout, this ) ) ;
 		}
 		
 		/**
@@ -214,7 +214,7 @@ package pegas.process
 		 */
 		public function setEventTypeCHANGE( type:String ):void
 		{
-			_eChange.type = type || ActionEvent.CHANGE ;
+			_sTypeChange = type || ActionEvent.CHANGE ;
 		}
         
 		/**
@@ -222,7 +222,7 @@ package pegas.process
 		 */
 		public function setEventTypeCLEAR( type:String ):void
 		{
-			_eClear.type = type || ActionEvent.CLEAR ;
+			_sTypeClear = type || ActionEvent.CLEAR ;
 		}
         
 		/**
@@ -230,7 +230,7 @@ package pegas.process
 		 */
 		public function setEventTypeINFO( type:String ):void
 		{
-			_eInfo.type = type || ActionEvent.INFO ;
+			_sTypeInfo = type || ActionEvent.INFO ;
 		}
         
         /**
@@ -238,7 +238,7 @@ package pegas.process
 		 */
 		public function setEventTypeLOOP( type:String ):void
 		{
-			_eLoop.type = type || ActionEvent.LOOP ;
+			_sTypeLoop = type || ActionEvent.LOOP ;
 		}
         
         /**
@@ -246,7 +246,7 @@ package pegas.process
 		 */
 		public function setEventTypePROGRESS( type:String ):void
 		{
-			_eProgress.type = type || ActionEvent.PROGRESS ;
+			_sTypeProgress = type || ActionEvent.PROGRESS ;
 		}
 		
 		/**
@@ -254,7 +254,7 @@ package pegas.process
 		 */
 		public function setEventTypeRESUME( type:String ):void
 		{
-			_eResume.type = type || ActionEvent.RESUME ;
+			_sTypeResume = type || ActionEvent.RESUME ;
 		}
 		
 		/**
@@ -262,7 +262,7 @@ package pegas.process
 		 */
 		public function setEventTypeSTOP( type:String ):void
 		{
-			_eStop.type = type || ActionEvent.STOP ;
+			_sTypeStop = type || ActionEvent.STOP ;
 		}
 		
 		/**
@@ -270,24 +270,24 @@ package pegas.process
 		 */
 		public function setEventTypeTIMEOUT( type:String ):void
 		{
-			_eTimeout.type = type || ActionEvent.TIMEOUT ;
+			_sTypeTimeout = type || ActionEvent.TIMEOUT ;
 		}
 
-    	private var _eChange:ActionEvent ;
+    	private var _sTypeChange:String ;
 
-    	private var _eClear:ActionEvent ;
+    	private var _sTypeClear:String ;
 
-    	private var _eInfo:ActionEvent ;
+    	private var _sTypeInfo:String ;
 
-    	private var _eLoop:ActionEvent ;
+    	private var _sTypeLoop:String ;
 
-    	private var _eProgress:ActionEvent ;
+    	private var _sTypeProgress:String ;
 
-    	private var _eResume:ActionEvent ;
+    	private var _sTypeResume:String ;
 
-    	private var _eStop:ActionEvent ;
+    	private var _sTypeStop:String ;
 
-    	private var _eTimeout:ActionEvent ;
+    	private var _sTypeTimeout:String ;
 
 	}
 
