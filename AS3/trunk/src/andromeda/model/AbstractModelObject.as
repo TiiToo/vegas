@@ -23,11 +23,12 @@ Contributor(s) :
 
 package andromeda.model
 {
-    import andromeda.events.ModelObjectEvent;
+	import andromeda.events.ModelObjectEvent;
+	import andromeda.vo.IValueObject;
+	
+	import vegas.errors.TypeMismatchError;	
 
-    import vegas.errors.TypeMismatchError;
-
-    /**
+	/**
      * This class provides a skeletal implementation of the {@code IModelObject} interface, to minimize the effort required to implement this interface.
      * @author eKameleon
      */
@@ -43,7 +44,7 @@ package andromeda.model
         public function AbstractModelObject( id:* = null , bGlobal:Boolean = false , sChannel:String = null )
         {
             super( id , bGlobal , sChannel );
-            initEvent( );
+            initEventType();
         }
 
         /**
@@ -65,9 +66,9 @@ package andromeda.model
          * @param type the type of the event.
          * @return a new empty ModelObjectEvent with the type specified in argument.
          */
-        public function createNewModelObjectEvent( type:String ):ModelObjectEvent 
+        public function createNewModelObjectEvent( type:String , vo:IValueObject=null ):ModelObjectEvent 
         {
-            return new ModelObjectEvent( type || null , this ) ;
+            return new ModelObjectEvent( type || null , this , vo ) ;
         }
 
         /**
@@ -85,7 +86,7 @@ package andromeda.model
          */
         public function getEventTypeCHANGE():String
         {
-            return _eChange.type ;
+            return _sChangeType ;
         }
 
         /**
@@ -94,17 +95,17 @@ package andromeda.model
          */
         public function getEventTypeCLEAR():String
         {
-            return _eClear.type ;
+            return _sClearType ;
         }
 
         /**
          * This method is invoqued in the constructor of the class to initialize all events.
          * Overrides this method.
          */
-        public function initEvent():void
+        public function initEventType():void
         {
-            _eChange = createNewModelObjectEvent( ModelObjectEvent.CHANGE_CURRENT_VO );
-            _eClear = createNewModelObjectEvent( ModelObjectEvent.CLEAR_VO );
+            _sChangeType = ModelObjectEvent.CHANGE_CURRENT_VO ;
+			_sClearType  = ModelObjectEvent.CLEAR_VO ;
         }
 
         /**
@@ -116,9 +117,8 @@ package andromeda.model
             {
                 return ;
             }
-            _eChange.setVO( vo );
-            dispatchEvent( _eChange );	
-        }
+            dispatchEvent( createNewModelObjectEvent( _sChangeType , vo ) );	
+		}
 
         /**
          * Notify a {@code ModelObjectEvent} when the model is cleared.
@@ -129,7 +129,7 @@ package andromeda.model
             {
                 return ;
             }
-            dispatchEvent( _eClear ); 
+            dispatchEvent( createNewModelObjectEvent( _sClearType ) ) ; 
         }
 
         /**
@@ -152,7 +152,7 @@ package andromeda.model
          */
         public function setEventTypeCHANGE( type:String ):void
         {
-            _eChange.type = type;
+           _sChangeType = type;
         }
 
         /**
@@ -161,7 +161,7 @@ package andromeda.model
          */
         public function setEventTypeCLEAR( type:String ):void
         {
-            _eClear.type = type;
+			_sClearType = type;
         }
 
         /**
@@ -185,15 +185,15 @@ package andromeda.model
             }
         }
 
-        /**
-         * The internal ModelObjectEvent use in the clearVO method.
-         */
-        private var _eClear:ModelObjectEvent ;
+		/**
+		 * The internal ModelObjectEvent type use in the clear method.
+		 */
+		private var _sChangeType:String ;
 
-        /**
-         * The internal ModelObjectEvent use in the setVO method.
-         */
-        private var _eChange:ModelObjectEvent ;
+		/**
+		 * The internal ModelObjectEvent type use in the clear method.
+		 */
+		private var _sClearType:String ;
 
         /**
          * The current value object selectd in this model.

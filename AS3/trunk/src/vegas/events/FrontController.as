@@ -23,11 +23,11 @@
 
 package vegas.events
 {
-    import vegas.core.CoreObject;
-    import vegas.data.iterator.Iterator;
-    import vegas.data.map.ArrayMap;
-    import vegas.data.map.HashMap;
-    
+	import vegas.core.CoreObject;
+	import vegas.data.iterator.Iterator;
+	import vegas.data.map.ArrayMap;
+	import vegas.data.map.HashMap;	
+
 	/**
 	 * The Front Controller pattern defines a single EventDispatcher that is responsible for processing application requests.
   	 * <p>A front controller centralizes functions such as view selection, security, and templating, and applies them consistently across all pages or views. Consequently, when the behavior of these functions need to change, only a small part of the application needs to be changed: the controller and its helper classes.</p>
@@ -45,7 +45,7 @@ package vegas.events
         public function FrontController( channel:String=null, target:EventDispatcher=null )
         {
 		    _map = new ArrayMap() ;
-    		_dispatcher = target || EventDispatcher.getInstance(channel) ; 
+    		_dispatcher = target || EventDispatcher.getInstance( channel ) ; 
         }
 
 		/**
@@ -114,15 +114,15 @@ package vegas.events
 		 */
 		public static function getInstance( channel:String = null ):FrontController 
 		{
-			if ( channel == null ) 
+			if (!channel) 
 			{
 				channel = EventDispatcher.DEFAULT_SINGLETON_NAME ;
 			}
 			if (!FrontController.instances.containsKey( channel )) 
 			{
-				FrontController.instances.put( channel , new FrontController(channel) ) ;
+				FrontController.instances.put( channel , new FrontController( channel ) ) ;
 			}
-			return FrontController(FrontController.instances.get(channel));
+			return FrontController.instances.get(channel) as FrontController ;
 		}
 
     	/**

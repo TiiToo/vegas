@@ -95,7 +95,9 @@ package vegas.events
             
             if (! instances.containsKey(name)) 
             {
-                instances.put(name, new vegas.events.EventDispatcher()) ;
+            	var dispatcher:vegas.events.EventDispatcher = new vegas.events.EventDispatcher( null ) ;
+            	dispatcher.setName(name) ;
+                instances.put(name, dispatcher ) ;
             }
 
             return vegas.events.EventDispatcher(instances.get(name)) ;
@@ -174,6 +176,14 @@ package vegas.events
             _logger = log ;
         }
         
+		/**
+		 * Internal method to sets the name of the instance.
+	 	 */
+		public function setName( name:String ):void 
+		{
+			_sName = name ;
+		}
+        
         /**
          * Returns a string representing the source code of the EventDispatcher object.
          */
@@ -226,6 +236,8 @@ package vegas.events
          * The internal name's property of the instance.
          */
         private var _sName:String = null ;
+
+
 
     }
     

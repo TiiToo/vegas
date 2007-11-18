@@ -23,13 +23,13 @@
 
 package vegas.events
 {
-    import flash.events.Event;
-    
-    import vegas.core.CoreObject;
-    import vegas.core.ILockable;
-    import vegas.util.ClassUtil;
+	import flash.events.Event;
+	
+	import vegas.core.CoreObject;
+	import vegas.core.ILockable;
+	import vegas.util.ClassUtil;    
 
-    /**
+	/**
  	 * This abstract class is used to create concrete {@code IEventDispatcher} implementations. This class used an internal {@code EventDispatcher} object by composition.
  	 * <p>You can overrides the internal {@code EventDispatcher} instance with the {@code initEventDispatcher} or the {@code setEventDispatcher} methods. Used a global singleton reference in this method to register all events in a {@code FrontController} for example.</p>
 	 * @author eKameleon
@@ -170,7 +170,7 @@ package vegas.events
 		 * @param flag the flag to use a global event flow or a local event flow.
 		 * @param channel the name of the global event flow if the {@code flag} argument is {@code true}.  
 		 */
-		public function setGlobal( flag:Boolean , channel:String ):void 
+		public function setGlobal( flag:Boolean=false , channel:String=null ):void 
 		{
 			_isGlobal = (flag == true) ;
 			setEventDispatcher( _isGlobal ? EventDispatcher.getInstance( channel ) : null ) ;

@@ -23,13 +23,12 @@
 
 package andromeda.events
 {
-
-	import andromeda.model.IModelObject;
-	import andromeda.model.IValueObject;
-	
 	import flash.events.Event;
 	
-	import vegas.events.BasicEvent;
+	import andromeda.model.IModelObject;
+	import andromeda.vo.IValueObject;
+	
+	import vegas.events.BasicEvent;	
 
 	/**
 	 * The ModelObjectEvent is the basic event use in a IModelObject to notify changed.
@@ -88,7 +87,7 @@ package andromeda.events
     	 */
 		public override function clone():Event 
 		{
-			return new ModelObjectEvent( type, getModel() , getVO(), target, context ) ;
+			return new ModelObjectEvent( getType(), getModel() , getVO(), getTarget(), getContext() ) ;
 		}
 		
 		/**
@@ -97,7 +96,7 @@ package andromeda.events
 		 */
 		public function getModel():IModelObject
 		{
-			return IModelObject( _model ) ;	
+			return _model as IModelObject ;	
 		}
 		
 		/**

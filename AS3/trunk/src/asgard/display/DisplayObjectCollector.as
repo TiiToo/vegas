@@ -21,9 +21,6 @@
   
 */
 
-/**
- * @author eKameleon.
- */
 package asgard.display
 {
 	

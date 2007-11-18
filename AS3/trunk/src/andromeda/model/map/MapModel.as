@@ -23,18 +23,18 @@
 
 package andromeda.model.map 
 {
-    import andromeda.events.ModelObjectEvent;
-    import andromeda.model.AbstractModelObject;
-    import andromeda.model.IValueObject;
-    
-    import vegas.data.Map;
-    import vegas.data.iterator.Iterable;
-    import vegas.data.iterator.Iterator;
-    import vegas.data.map.HashMap;
-    import vegas.errors.IllegalArgumentError;
-    import vegas.errors.Warning;
+	import andromeda.events.ModelObjectEvent;
+	import andromeda.model.AbstractModelObject;
+	import andromeda.vo.IValueObject;
+	
+	import vegas.data.Map;
+	import vegas.data.iterator.Iterable;
+	import vegas.data.iterator.Iterator;
+	import vegas.data.map.HashMap;
+	import vegas.errors.IllegalArgumentError;
+	import vegas.errors.Warning;	
 
-    /**
+	/**
 	 * This model use an internal Map to register value objects with a specific key.
 	 * @author eKameleon
 	 */
@@ -138,7 +138,7 @@ package andromeda.model.map
 		 */
         public function getEventTypeADD():String
         {
-            return _eAdd.type ;
+            return _sAddType ;
         }
 
 		/**
@@ -147,8 +147,8 @@ package andromeda.model.map
 		 */
         public function getEventTypeREMOVE():String
         {
-            return _eRemove.type ;
-        }
+			return _sRemoveType ;
+		}
         
 		/**
 		 * Returns the event name use in the {@code updateVO} method.
@@ -156,9 +156,9 @@ package andromeda.model.map
 	     */
 		public function getEventTypeUPDATE():String
 		{
-			return _eUpdate.type ;
+			return _sUpdateType ;
 		}
-        
+
 		/**
 		 * Returns the internal map of this model.
 		 * @return the internal map of this model.
@@ -176,18 +176,19 @@ package andromeda.model.map
 		{
 			return _map.get( id ) ;
 		}
+		
+        /**
+         * This method is invoqued in the constructor of the class to initialize all events.
+         * Overrides this method.
+         */
+        public override function initEventType():void
+        {
+        	super.initEventType() ;
+			_sAddType    = ModelObjectEvent.ADD_VO ;
+			_sRemoveType = ModelObjectEvent.REMOVE_VO ;
+			_sUpdateType = ModelObjectEvent.UPDATE_VO ;
+		}
 
-		/**
-		 * This method is invoqued in the constructor of the class to initialize all events.
-		 */
-		public override function initEvent():void
-		{
-			super.initEvent() ;
-			_eAdd    = createNewModelObjectEvent( ModelObjectEvent.ADD_VO ) ;
-			_eRemove = createNewModelObjectEvent( ModelObjectEvent.REMOVE_VO ) ; 
-			_eUpdate = createNewModelObjectEvent( ModelObjectEvent.UPDATE_VO ) ;
-		}	
-        
 		/**
 		 * Initialize the internal Map instance in the constructor of the class.
 		 * You can overrides this method if you want change the default HashMap use in this model.
@@ -224,8 +225,7 @@ package andromeda.model.map
         	{
 	            return ;
         	}
-        	_eAdd.setVO( vo ) ;
-        	dispatchEvent( _eAdd  ) ;
+        	dispatchEvent( createNewModelObjectEvent( _sAddType , vo ) ) ;
     	}
 
     	/**
@@ -237,8 +237,7 @@ package andromeda.model.map
         	{
 	            return ;
         	}
-        	_eRemove.setVO( vo ) ;
-        	dispatchEvent( _eRemove  ) ;
+        	dispatchEvent( createNewModelObjectEvent( _sRemoveType , vo ) ) ;
     	}
 		
     	/**
@@ -250,8 +249,7 @@ package andromeda.model.map
         	{
 	            return ;
         	}
-			_eUpdate.setVO( vo ) ;
-			dispatchEvent( _eUpdate  ) ;
+			dispatchEvent( createNewModelObjectEvent( _sUpdateType , vo ) ) ;
 		}
 
 		/**
@@ -280,7 +278,7 @@ package andromeda.model.map
 	 	 */
 		public function setEventTypeADD( type:String ):void
 		{
-			_eAdd.type = type ;
+			_sAddType = type ;
 		}
 	
 		/**
@@ -288,7 +286,7 @@ package andromeda.model.map
 	 	 */
 		public function setEventTypeREMOVE( type:String ):void
 		{
-			_eRemove.type = type ;
+			_sRemoveType = type ;
 		}
 
 		/**
@@ -296,7 +294,7 @@ package andromeda.model.map
 		 */
 		public function setEventTypeUPDATE( type:String ):void
 		{
-			_eUpdate.type = type ;
+			_sUpdateType = type ;
 		}
 
 		/**
@@ -332,26 +330,27 @@ package andromeda.model.map
 				throw new Warning( this + " updateVO method failed, the value object passed in argument don't exist in the model.") ;
 			}
 		}
-
-		/**
-		 * The internal ModelObjectEvent use in the addVO method.
-		 */
-		private var _eAdd:ModelObjectEvent ;
-		
-		/**
-	 	 * The internal ModelObjectEvent use in the removeVO method.
-	 	 */
-		private var _eRemove:ModelObjectEvent ;
-		
-		/**
-	 	 * The internal ModelObjectEvent when the update event type is use.
-	 	 */
-		private var _eUpdate:ModelObjectEvent ;
 		
 		/**
 	 	 * The internal map of this model.
 	 	 */
 		private var _map:Map ;
+		
+		/**
+		 * The internal ModelObjectEvent type use in the addVO method.
+		 */
+		private var _sAddType:String ;
+				
+		/**
+	 	 * The internal ModelObjectEvent type use in the removeVO method.
+	 	 */
+		private var _sRemoveType:String ;
+		
+		/**
+	 	 * The internal ModelObjectEvent type when the update event type is use.
+	 	 */
+		private var _sUpdateType:String ;
+
         
     }
 
