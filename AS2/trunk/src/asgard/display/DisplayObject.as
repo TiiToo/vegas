@@ -305,6 +305,22 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	}
 
 	/**
+	 * (read-write) Indicates the x position of the mouse in the display referencial.
+	 */
+	public function get xmouse():Number 
+	{
+		return view._xmouse ;	
+	}
+
+	/**
+	 * @private
+	 */
+	public function set xmouse(n:Number):Void 
+	{
+		view._xmouse = n ;	
+	}
+
+	/**
 	 * (read-write) Returns the xscale value of the display's view.
 	 * @return the xscale value of the display's view.
 	 */
@@ -336,6 +352,22 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	public function set y(n:Number):Void 
 	{
 		setY(n) ;	
+	}
+
+	/**
+	 * (read-write) Indicates the y position of the mouse in the display referencial.
+	 */
+	public function get ymouse():Number 
+	{
+		return view._ymouse ;	
+	}
+
+	/**
+	 * (read-write) Sets the y position of the mouse in the display referencial.
+	 */
+	public function set ymouse(n:Number):Void 
+	{
+		view._ymouse = n ;	
 	}
 
 	/**

@@ -83,12 +83,24 @@ class lunas.display.abstract.AbstractScrollbarDisplay extends AbstractProgressba
 	/**
 	 * A static object use to defines the inverse position property name of the bar.
 	 */
-	public static var invertPosField:Object = { _x : "_y" , _y : "_x" } ;
+	public function get invertPosField():Object
+	{
+		var o:Object = {} ;
+		o[propX] = o[propY] ;
+		o[propY] = o[propX] ;
+		return o ;
+	}
 
 	/**
 	 * A static object use to defines the inverse size properties name of the bar.
 	 */
-	public static var invertSizeField:Object = { _width : "_height" , _height : "_width" } ;
+	public function get invertSizeField():Object 
+	{
+		var o:Object  = {} ;
+		o[propWidth]  = o[propHeight] ;
+		o[propHeight] = o[propWidth] ;
+		return o ;
+	}
 
 	/**
 	 * (read-only) Returns {@code true} if the bar is dragging.
@@ -98,6 +110,36 @@ class lunas.display.abstract.AbstractScrollbarDisplay extends AbstractProgressba
 	{
 		return getIsDragging() ;	
 	}
+	
+	/**
+	 * The height property name
+	 */
+	public var propHeight:String = "_height" ;
+
+	/**
+	 * The width property name
+	 */
+	public var propWidth:String  = "_width" ;
+
+	/**
+	 * The x property name
+	 */
+	public var propX:String = "_x" ;
+
+	/**
+	 * The xmouse property name
+	 */
+	public var propXmouse:String = "_xmouse" ;
+
+	/**
+	 * The y property name
+	 */
+	public var propY:String = "_y" ;
+	
+	/**
+	 * The ymouse property name
+	 */
+	public var propYmouse:String = "_ymouse" ;
 
 	/**
 	 * Determinates if the bar use easing effects or not.
@@ -110,16 +152,21 @@ class lunas.display.abstract.AbstractScrollbarDisplay extends AbstractProgressba
 	public function dragging():Void 
 	{
 
-		var sizeField:String = getSizeField() ;
+		var sizeField:String  = getSizeField() ;
 		var mouseField:String = getMouseField() ;
 
-		var b:MovieClip = getBar() ;
-		var t:MovieClip = getThumb() ;
+		var b:MovieClip = this.getBar() ;
+		var t:MovieClip = this.getThumb() ;
 		
 		var size:Number =  b[sizeField] - t[sizeField] ;
-		var pos:Number = view[mouseField] - _mouseOffset ;
+		
+		trace(this + " dragging : " + sizeField + ' :: ' +  b + " -> " + b[sizeField] + " : " + t + " -> " + t[sizeField] ) ;
 
-		pos = MathsUtil.getPercent( MathsUtil.clamp(pos, 0, size), size ) ;
+		var pos:Number  = view[mouseField] - _mouseOffset ;
+
+		trace(this + " dragging : " + size + " : " + pos ) ;
+		pos = isNaN(pos) ? 0 : pos ;
+		pos = MathsUtil.getPercent( MathsUtil.clamp( pos , 0 , size ), size ) ;
 		setPosition( pos , null, ( arguments[0] == true ? true : null ) ) ;
 
 		notifyDrag(pos) ;
@@ -150,16 +197,16 @@ class lunas.display.abstract.AbstractScrollbarDisplay extends AbstractProgressba
 	 */
 	public function getSizeField():String 
 	{
-		return (getDirection() == Direction.VERTICAL) ? "_height" : "_width" ;
+		return (getDirection() == Direction.VERTICAL) ? propHeight : propWidth ;
 	}
-
+	
 	/**
 	 * Returns the string representation of the current mouse field property of this component with the current direction value.
 	 * @return the string representation of the current mouse field property of this component with the current direction value.
 	 */
 	public function getMouseField():String 
 	{
-		return (getDirection() == Direction.VERTICAL) ? "_ymouse" : "_xmouse" ;
+		return (getDirection() == Direction.VERTICAL) ? propYmouse : propXmouse ;
 	}
 	
 	/**
@@ -202,7 +249,7 @@ class lunas.display.abstract.AbstractScrollbarDisplay extends AbstractProgressba
 	public function startDragging():Void 
 	{
 		notifyStartDrag() ;
-		var mouseField:String = (_nDirection == Direction.VERTICAL) ? "_ymouse" : "_xmouse" ;
+		var mouseField:String = (_nDirection == Direction.VERTICAL) ? propYmouse : propXmouse ;
 		_mouseOffset = (getThumb())[ mouseField ] ;
 		dragging() ;
 		_isDragging = true ;
@@ -230,9 +277,9 @@ class lunas.display.abstract.AbstractScrollbarDisplay extends AbstractProgressba
 			_tw.stop() ;
 		}
 
-		var posField:String = (_nDirection == Direction.VERTICAL) ? "_y" : "_x" ;
+		var posField:String = (_nDirection == Direction.VERTICAL) ? propY : propX ;
 		
-		var sizeField:String = (_nDirection == Direction.VERTICAL) ? "_height" : "_width" ;
+		var sizeField:String = (_nDirection == Direction.VERTICAL) ? propHeight : propWidth ;
 		
 		var b:MovieClip = getBar() ;
 		var t:MovieClip = getThumb() ;
