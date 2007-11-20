@@ -19,13 +19,16 @@
   
   Contributor(s) :
   
-*/
+ */
+
+import flash.geom.Matrix;
 
 import pegas.draw.IPen;
 
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
 import vegas.core.IRunnable;
+import vegas.errors.RuntimeError;
 import vegas.util.ConstructorUtil;
 
 /**
@@ -67,6 +70,11 @@ class pegas.draw.AbstractPen extends CoreObject implements ICloneable, IPen, IRu
 	 * Defines the line thickness of the shape.
 	 */
 	public var t:Number ;
+
+	/**
+	 * Defines a shortcut reference to used the {@code beginBitmapFill} method.
+	 */
+	public var BF:Function = MovieClip.prototype.beginBitmapFill ;
 
 	/**
 	 * Defines a shortcut reference to used the {@code curveTo} method.
@@ -132,6 +140,26 @@ class pegas.draw.AbstractPen extends CoreObject implements ICloneable, IPen, IRu
 	 * Defines the default thickness value.
 	 */
 	public var default_t:Number = null ; // thickness
+
+	/**
+	 * Fills a drawing area with a bitmap image. The bitmap can be repeated or tiled to fill the area.
+	 * @param bmp A transparent or opaque bitmap image.
+	 * @param matrix A matrix object (of the flash.geom.Matrix class), which you can use to define transformations on the bitmap.
+	 * @param repeat If true, the bitmap image repeats in a tiled pattern. If false, the bitmap image does not repeat, and the edges of the bitmap are used for any fill area that extends beyond the bitmap. 
+	 * @param smoothing If false, upscaled bitmap images are rendered using a nearest-neighbor algorithm and look pixelated. If true, upscaled bitmap images are rendered using a bilinear algorithm. Rendering using the nearest neighbor-algorithm is usually much faster. The default value for this parameter is false.
+	 * @throws RuntimeError if MovieClip.prototype.beginBitmapFill method is undefined in the current player.
+	 */
+	public function beginBitmapFill( bmp , matrix:Matrix, repeat:Boolean, smoothing:Boolean):Void 
+	{
+		if ( BF != null )
+		{
+			BF.apply(_target, arguments) ;
+		}
+		else
+		{
+			throw new RuntimeError(this + " beginBitmapFill failed, this method is undefined in this application.") ;
+		}
+	}
 
 	/**
 	 * Indicates the beginning of a new drawing path. If an open path exists (that is, if the current drawing position does not equal the previous position that is specified in a MovieClip.moveTo() method) and a fill is associated with it, that path is closed with a line and then filled. 
