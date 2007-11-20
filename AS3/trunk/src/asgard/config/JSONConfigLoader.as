@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -82,7 +82,7 @@ package asgard.config
          * Returns the original loader in the constructor. 
          * @return the original loader in the constructor.
          */ 
-        override public function getLoader():URLLoader
+        public override function getLoader():URLLoader
         {
             return (new JSONLoader() as URLLoader) ;
         }

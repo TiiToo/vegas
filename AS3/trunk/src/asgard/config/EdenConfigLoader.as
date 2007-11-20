@@ -1,5 +1,4 @@
 ﻿/*
-
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
   the License. You may obtain a copy of the License at 
@@ -31,21 +30,29 @@ package asgard.config
 	import vegas.string.eden.Config;
 	
 	/**
+ 	 * The EdenConfigLoader class based on the Eden notation.
      * @author eKameleon
      */
     public class EdenConfigLoader extends AbstractConfigLoader
     {
         
-        // ----o Constructor
-        
+		/**
+		 * Creates a new EdenConfigLoader instance.
+		 */
         public function EdenConfigLoader( name:String="" )
         {
-
-            super(name ) ;
-            default_file_name = "config" ;
-            default_file_suffix = ".eden" ;
-            
+            super( name ) ;
         }
+    
+        /**
+         * Defines the defaut file name ('config').
+         */
+    	public var default_file_name:String = "config" ;
+        
+        /**
+         * Defines the defaut file suffix ('.eden').
+         */
+    	public var default_file_suffix:String = ".eden" ;
     
         public function getEdenProperty( prop:String ):*
         {
@@ -53,9 +60,9 @@ package asgard.config
         }
     
         /**
-         * Return the original loader in the constructor. Override this method.
+         * Returns the original loader in the constructor. Override this method.
          */ 
-        override public function getLoader():URLLoader
+        public override function getLoader():URLLoader
         {
             return (new EdenLoader() as URLLoader) ;
         }
@@ -67,9 +74,7 @@ package asgard.config
         
         public function setSecurity( b:Boolean=true ):void
         {
-            
             vegas.string.eden.Config.security = b ;
-
         }
   
     }

@@ -67,7 +67,7 @@ package asgard.config
         /**
          * Defines the defaut file suffix ('.eden').
          */
-    	public var default_file_suffix:String = ".eden" ;
+    	public var default_file_suffix:String = ".txt" ;
         
         /**
          * The name of the config file with datas.
@@ -129,17 +129,17 @@ package asgard.config
          * Returns a shallow copy of this object.
          * @return a shallow copy of this object.
          */
-        override public function clone():*
+        public override function clone():*
         {
             var cName:String = ClassUtil.getPath(this) ;
             var clazz:Class = ( getDefinitionByName( cName ) as Class ) ;
             var cloader:IConfigLoader = (new clazz(_name) as IConfigLoader) ;
             if (cloader != null)
             {
-                cloader.data = data ;
+                cloader.data     = data ;
                 cloader.fileName = fileName ;
-                cloader.path = path ;
-                cloader.suffix = suffix ;
+                cloader.path     = path ;
+                cloader.suffix   = suffix ;
             }
             return cloader ;
             
@@ -149,7 +149,7 @@ package asgard.config
          * Sends and loads data from the specified URL.
          * @param request:URLRequest broke the internal request with your custom URLRequest
          */
-        override public function load( request:URLRequest=null ):void
+        public override function load( request:URLRequest=null ):void
         {
 
             notifyStarted() ;

@@ -23,24 +23,23 @@
 
 package asgard.net
 {
-  
-    import flash.events.Event;
-    import flash.events.IOErrorEvent;
-    import flash.events.NetStatusEvent;
-    import flash.events.SecurityErrorEvent;
-    import flash.events.TimerEvent;
-    import flash.net.NetConnection;
-    import flash.net.ObjectEncoding;
-    import flash.net.Responder;
-    import flash.utils.Timer;
-    
-    import asgard.events.NetServerEvent;
-    
-    import vegas.core.ICloneable;
-    import vegas.core.IRunnable;
-    import vegas.events.AbstractCoreEventDispatcher;
-    
-    /**
+	import flash.events.Event;
+	import flash.events.IOErrorEvent;
+	import flash.events.NetStatusEvent;
+	import flash.events.SecurityErrorEvent;
+	import flash.events.TimerEvent;
+	import flash.net.NetConnection;
+	import flash.net.ObjectEncoding;
+	import flash.net.Responder;
+	import flash.utils.Timer;
+	
+	import asgard.events.NetServerEvent;
+	
+	import vegas.core.ICloneable;
+	import vegas.core.IRunnable;
+	import vegas.events.AbstractCoreEventDispatcher;	
+
+	/**
  	 * This class extends the NetConnection class and defined an implementation based on VEGAS to used Flash Remoting or Flash MediaServer (with AMF protocol).
 	 * @author eKameleon
 	 */	
@@ -67,8 +66,7 @@ package asgard.net
 			_timer = new Timer( DEFAULT_DELAY, 1 ) ;
 			_timer.addEventListener(TimerEvent.TIMER_COMPLETE , _onTimeOut) ;
 			
-			initEvent() ;
-
+			initEventType() ;
 			
 		}
 
@@ -268,8 +266,8 @@ package asgard.net
     	 */
 	    public function getEventTypeCLOSE():String
 	    {
-    		return _eClose.type ;
-    	}
+			return _sTypeClose ;
+		}
     
     	/**
 	     * Returns the event name use in the connection is finished.
@@ -277,8 +275,8 @@ package asgard.net
 	     */
 	    public function getEventTypeFINISH():String
 	    {
-    		return _eFinish.type ;
-    	}
+			return _sTypeFinish ;
+		}
         	
     	/**
     	 * Returns the event name use in the connection is started.
@@ -286,8 +284,8 @@ package asgard.net
 	     */
     	public function getEventTypeSTART():String
     	{
-		    return _eStart.type ;
-	    }
+			return _sTypeStart ;
+		}
     	
     	/**
 	     * Returns the event name use in the connection status changed.
@@ -295,8 +293,8 @@ package asgard.net
 	     */
 	    public function getEventTypeSTATUS():String
 	    {
-            return _eStatus.type ;
-	    }
+			return _sTypeStatus ;
+		}
     
         /**
 	     * Returns the event name use in the connection is out of time.
@@ -304,8 +302,8 @@ package asgard.net
     	 */
 	    public function getEventTypeTIMEOUT():String
 	    {
-    		return _eTimeOut.type ;
-    	}
+			return _sTypeTimeOut ;
+		}
 
 		/**
 		 * Returns timeout interval duration.
@@ -342,13 +340,13 @@ package asgard.net
     	 * This method is invoqued in the constructor of the class to initialize all events.
     	 * Overrides this method.
     	 */
-    	public function initEvent():void
+    	public function initEventType():void
     	{
-    	    _eClose = new NetServerEvent( NetServerEvent.CLOSE ) ;
-			_eFinish = new NetServerEvent( NetServerEvent.FINISH ) ;
-			_eStart = new NetServerEvent( NetServerEvent.START ) ;
-			_eStatus = new NetServerEvent( NetServerEvent.NET_STATUS ) ;
-			_eTimeOut = new NetServerEvent( NetServerEvent.TIMEOUT ) ;
+			_sTypeClose   = NetServerEvent.CLOSE  ;
+			_sTypeFinish  = NetServerEvent.FINISH ;
+			_sTypeStart   = NetServerEvent.START  ;
+			_sTypeStatus  = NetServerEvent.NET_STATUS ;
+			_sTypeTimeOut = NetServerEvent.TIMEOUT ;			   
 	    }
 
     	/**
@@ -356,7 +354,7 @@ package asgard.net
     	 */
 		protected function notifyClose():void 
 		{
-			dispatchEvent( _eClose ) ;	
+			dispatchEvent( new NetServerEvent( _sTypeClose , this ) ) ;	
 		}
 
     	/**
@@ -364,7 +362,7 @@ package asgard.net
     	 */
 		protected function notifyFinished():void 
 		{
-			dispatchEvent(_eFinish) ;
+			dispatchEvent( new NetServerEvent( _sTypeFinish , this ) ) ;
 		}
 
     	/**
@@ -373,7 +371,7 @@ package asgard.net
 		protected function notifyStarted():void 
 		{
 			_timer.start() ;
-			dispatchEvent( _eStart ) ;
+			dispatchEvent( new NetServerEvent( _sTypeStart , this ) ) ;
 		}
 		
     	/**
@@ -381,9 +379,10 @@ package asgard.net
     	 */
 		protected function notifyStatus( status:NetServerStatus , info:* = null ):void 
 		{
-			_eStatus.setInfo(info) ;
-			_eStatus.setStatus(status) ;
-			dispatchEvent( _eStatus ) ;	
+			var e:NetServerEvent = new NetServerEvent( _sTypeStatus, this ) ;
+			e.setInfo(info) ;
+			e.setStatus(status) ;
+			dispatchEvent( e ) ;	
 		}
 	
     	/**
@@ -391,7 +390,7 @@ package asgard.net
 	     */
 	    protected function notifyTimeOut():void
 		{
-			dispatchEvent(_eTimeOut) ;	
+			dispatchEvent( new NetServerEvent( _sTypeTimeOut, this ) ) ;
 		}
 
 	    /**
@@ -417,7 +416,7 @@ package asgard.net
 	     */
 	    public function setEventTypeCLOSE( type:String ):void
 	    {
-    		_eClose.type = type ;
+    		_sTypeClose = type ;
     	}
 
     	/**
@@ -425,7 +424,7 @@ package asgard.net
 	     */
 	    public function setEventTypeFINISH( type:String ):void
 	    {
-    		_eFinish.type = type ;
+    		_sTypeFinish = type ;
     	}
 	
     	/**
@@ -433,7 +432,7 @@ package asgard.net
 	     */
     	public function setEventTypeSTART( type:String ):void
 	    {
-    		_eStart.type = type ;
+    		_sTypeStart = type ;
     	}
 	    
 	    /**
@@ -441,7 +440,7 @@ package asgard.net
 	     */
 	    public function setEventTypeSTATUS( type:String ):void
 	    {
-    		_eStatus.type = type ;
+			_sTypeStatus = type ;
     	}
         
 	    /**
@@ -449,7 +448,7 @@ package asgard.net
 	     */
 	    public function setEventTypeTIMEOUT( type:String ):void
 	    {
-    		_eTimeOut.type = type ;
+			_sTypeTimeOut = type ;
     	}
 
 		/**
@@ -502,21 +501,21 @@ package asgard.net
 			notifyFinished() ;
 		}
 
-		private var _eClose:NetServerEvent ;
-
-		private var _eFinish:NetServerEvent ;
-
-		private var _eStart:NetServerEvent ;
-
-		private var _eStatus:NetServerEvent ;
-
-		private var _eTimeOut:NetServerEvent ;
-
 	    private static var _instance:NetServerConnection;
 
         private var _nc:NetConnection ;
 
 		private var _policy:TimeoutPolicy ;
+
+		private var _sTypeClose:String ;
+
+		private var _sTypeFinish:String ;
+
+		private var _sTypeStart:String ;
+
+		private var _sTypeStatus:String ;
+
+		private var _sTypeTimeOut:String ;
 
 		private var _timer:Timer ;
 		

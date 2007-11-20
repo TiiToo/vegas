@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -42,18 +42,30 @@ package asgard.config
          * (Read-write) The name of the config file with datas.
          */
         function get fileName():String ;
+        
+        /**
+         * @private
+         */
     	function set fileName( value:String ):void ;
         
         /**
          * (Read-write) The path of the config file with datas.
          */
     	function get path():String ;
+        
+        /**
+         * @private
+         */
         function set path( value:String ):void ;
 
         /**
          * (Read-write) The suffix of the config file with datas.
          */
     	function get suffix():String ;
+    	
+        /**
+         * @private
+         */    	
 	    function set suffix( value:String ):void ;
         
     }

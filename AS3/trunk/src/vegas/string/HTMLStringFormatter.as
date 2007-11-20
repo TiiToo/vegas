@@ -1,4 +1,4 @@
-package vegas.string
+﻿package vegas.string
 {
     
     /**
