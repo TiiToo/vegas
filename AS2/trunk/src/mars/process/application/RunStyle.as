@@ -42,9 +42,13 @@ class mars.process.application.RunStyle extends AbstractActionLoader
 	 * Creates a new RunStyle instance.
 	 * @param model the StyleModel to use in this process.
 	 * @param url the url of the external css to load.
+	 * @param loaderPolicy optional boolean flag to indicates if the loader use the loading view or not (defaut this value is true).
+  	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */
-	public function RunStyle( model:StyleModel , url:String ) 
+	public function RunStyle( model:StyleModel , url:String , loaderPolicy:Boolean, bGlobal:Boolean, sChannel:String) 
 	{
+		super( bGlobal , sChannel , loaderPolicy ) ;
 		this.model = model ;
 		this.url   = url ;
 	}

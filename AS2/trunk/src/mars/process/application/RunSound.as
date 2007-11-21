@@ -48,9 +48,13 @@ class mars.process.application.RunSound extends AbstractActionLoader
 	 * Creates a new RunSound instance.
 	 * @param model the SoundLibrary model of this process.
 	 * @param applicationID the name of the application display.
+	 * @param loaderPolicy optional boolean flag to indicates if the loader use the loading view or not (defaut this value is true).
+  	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */	
-	public function RunSound( model:SoundLibrary, applicationID:String ) 
+	public function RunSound( model:SoundLibrary, applicationID:String , loaderPolicy:Boolean, bGlobal:Boolean, sChannel:String ) 
 	{
+		super( bGlobal , sChannel , loaderPolicy ) ;
 		this.applicationID = applicationID ;
 		this.model = model ;
 	}
@@ -116,9 +120,9 @@ class mars.process.application.RunSound extends AbstractActionLoader
 		}		
 
  		var config:Config = getConfig() ;
- 		var path:String = config.libraryPath || "" ;
- 		var sounds:Array = config.sound.sounds ;
- 		var url:String = config.sound.url || "" ;
+ 		var path:String   = config.libraryPath || "" ;
+ 		var sounds:Array  = config.sound.sounds ;
+ 		var url:String    = config.sound.url || "" ;
  		
  		getLogger().info(this + " sound url : " + url ) ;
  		getLogger().info(this + " sounds : " + sounds ) ;

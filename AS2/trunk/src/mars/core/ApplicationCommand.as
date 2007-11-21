@@ -32,13 +32,21 @@ import mars.display.abstract.ILoaderDisplay;
  */
 class mars.core.ApplicationCommand
 {
+	
+	/**
+	 * Indicates if the loader is enabled or not.
+	 */
+	public static var enableLoader:Boolean = true ;
 
 	/**
 	 * Change the loader's values (message and percent).
 	 */
 	public static function changeLoader( message , percent:Number ):Void
 	{
-		
+		if ( enableLoader == false )
+		{
+			return ;	
+		}
 		percent = (percent > 0 ) ? percent : 0 ;
 
 		if ( DisplayObjectCollector.contains( ApplicationList.APPLICATION_LOADER ) ) 
@@ -61,6 +69,10 @@ class mars.core.ApplicationCommand
 	 */
 	public static function hideLoader():Void
 	{
+		if ( enableLoader == false )
+		{
+			return ;	
+		}
 		if ( ! _lockLoader )
 		{
 			unprotectScreen() ;
@@ -102,6 +114,10 @@ class mars.core.ApplicationCommand
 	 */
 	public static function showLoader():Void
 	{
+		if ( enableLoader == false )
+		{
+			return ;	
+		}
 		protectScreen() ;
 		if ( DisplayObjectCollector.contains( ApplicationList.APPLICATION_LOADER ) ) 
 		{
