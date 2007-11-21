@@ -67,6 +67,9 @@ class asgard.display.ScrollContainerPolicy extends Number
 	 */
 	public static var FULL:ScrollContainerPolicy = new ScrollContainerPolicy(AUTO | SCROLL_ON_CLICK, "full") ;
 
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(ScrollContainerPolicy, null , 7, 7) ;
 
 	/**

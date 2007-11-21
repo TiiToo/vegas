@@ -262,6 +262,9 @@ class pegas.ui.Keyboard
 	 */
 	public static var UP:Number = Key.UP ;
 
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(Keyboard, null , 7, 7) ;
 
 	/**

@@ -37,7 +37,10 @@ class asgard.net.URLRequestMethod
 	 * Specifies that the URLRequest object is a POST.
 	 */
 	public static var POST:String = "POST" ;
-	
+
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(URLRequestMethod, null , 7, 7) ;
 	
 	/**

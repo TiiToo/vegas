@@ -72,7 +72,10 @@ class asgard.events.LoaderEventType
 	 * The name of the event when the loader is release.
 	 */
 	public static var RELEASE:String = "onRelease" ;
-
+	
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(LoaderEventType, null , 7, 7) ;
 	
 }

@@ -1,4 +1,4 @@
-﻿/*
+/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -22,26 +22,30 @@
 */
 
 /**
- * The GradientType class provides values for the type parameter 
- * in the beginGradientFill() and lineGradientFill() of the MovieClip draw apis.
+ * The BitmapFilterType class contains values to set the type of a BitmapFilter.
  * @author eKameleon
  */
-class asgard.display.GradientType 
+class asgard.filters.BitmapFilterType 
 {
-
-	/**
-	 * Value used to specify a linear gradient fill.
- 	 */
-	public static var LINEAR:String = "linear" ;
 	
 	/**
-	 * Value used to specify a radial gradient fill.
+	 * Defines the setting that applies a filter to the entire area of an object.
 	 */
-	public static var RADIAL:String = "radial" ;
+	public static var FULL:String = "full" ;
 
+	/**
+	 * Defines the setting that applies a filter to the inner area of an object.
+	 */
+	public static var INNER:String = "inner" ;
+	
+	/**
+	 * Defines the setting that applies a filter to the outer area of an object.
+	 */
+	public static var OUTER:String = "outer" ;
+	
 	/**
 	 * @private
 	 */
-	private static var __ASPF__ = _global.ASSetPropFlags(GradientType, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags(BitmapFilterType, null , 7, 7) ;
 
 }

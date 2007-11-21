@@ -19,7 +19,11 @@
   
   Contributor(s) :
   
-*/
+ */
+
+
+
+import flash.geom.Matrix;
 
 import pegas.draw.IShape;
 
@@ -29,6 +33,17 @@ import pegas.draw.IShape;
  */
 interface pegas.draw.IPen extends IShape 
 {
+
+
+	/**
+	 * Fills a drawing area with a bitmap image. The bitmap can be repeated or tiled to fill the area.
+	 * @param bmp A transparent or opaque bitmap image.
+	 * @param matrix A matrix object (of the flash.geom.Matrix class), which you can use to define transformations on the bitmap.
+	 * @param repeat If true, the bitmap image repeats in a tiled pattern. If false, the bitmap image does not repeat, and the edges of the bitmap are used for any fill area that extends beyond the bitmap. 
+	 * @param smoothing If false, upscaled bitmap images are rendered using a nearest-neighbor algorithm and look pixelated. If true, upscaled bitmap images are rendered using a bilinear algorithm. Rendering using the nearest neighbor-algorithm is usually much faster. The default value for this parameter is false.
+	 * @throws RuntimeError if MovieClip.prototype.beginBitmapFill method is undefined in the current player.
+	 */
+	public function beginBitmapFill( bmp , matrix:Matrix, repeat:Boolean, smoothing:Boolean):Void ;
 
 	/**
 	 * Indicates the beginning of a new drawing path. If an open path exists (that is, if the current drawing position does not equal the previous position that is specified in a MovieClip.moveTo() method) and a fill is associated with it, that path is closed with a line and then filled. 
@@ -65,7 +80,7 @@ interface pegas.draw.IPen extends IShape
 	 * <p>The properties indicate the following: matrixType is the string "box", x is the horizontal position relative to the registration point of the parent clip for the upper-left corner of the gradient, y is the vertical position relative to the registration point of the parent clip for the upper-left corner of the gradient, w is the width of the gradient, h is the height of the gradient, and r is the rotation in radians of the gradient.</p>
 	 * <p><b>Note :</b> For Flash Player 8 and later, Macromedia recommends that you define the matrix parameter in the form of a flash.geom.Matrix object (as described in the first item in this list).</p>
 	 */
-	function beginGradientFill(type:String, colors:Array, alphas:Array, ratios:Array, matrix):Void ;
+	function beginGradientFill(type:String, colors:Array, alphas:Array, ratios:Array, matrix, spreadMethod:String, interpolationMethod:String, focalPointRatio:Number):Void  ;
 
 	/**
 	 * Removes all the graphics created during runtime by using the movie clip draw methods, including line styles specified with MovieClip.lineStyle(). Shapes and lines that are manually drawn during authoring time (with the Flash drawing tools) are unaffected.
@@ -96,6 +111,21 @@ interface pegas.draw.IPen extends IShape
 	 * Initializes the current pen.
 	 */
 	function initialize( target:MovieClip , bNew:Boolean):Void ;
+
+	/**
+	 * Specifies a line style that Flash uses for subsequent calls to the lineTo() and curveTo() methods until you call the lineStyle() method or the lineGradientStyle() method with different parameters. 
+	 * You can call the lineGradientStyle() method in the middle of drawing a path to specify different styles for different line segments within a path. 
+	 * @param fillType Valid values are "linear" or "radial".
+	 * @param colors An array of RGB hexadecimal color values that you use in the gradient (for example, red is 0xFF0000, blue is 0x0000FF, and so on). You can specify up to 15 colors. For each color, ensure that you specify a corresponding value in the alphas and ratios parameters.
+	 * @param alphas An array of alpha values for the corresponding colors in the colors array; valid values are 0 to 100. If the value is less than 0, Flash uses 0. If the value is greater than 100, Flash uses 100.
+	 * @param ratios An array of color distribution ratios; valid values are from 0 to 255. This value defines the percentage of the width where the color is sampled at 100%. Specify a value for each value in the colors parameter.
+	 * @param matrix A transformation matrix. 
+	 * @param spreadMethod (optional) Valid values are "pad", "reflect," or "repeat," which controls the mode of the gradient fill.
+	 * @param interpolationMethod (optional) Valid values are "RGB" or "linearRGB".
+	 * @param focalPointRatio (optional) A Number that controls the location of the focal point of the gradient. The value 0 means the focal point is in the center. The value 1 means the focal point is at one border of the gradient circle. The value -1 means that the focal point is at the other border of the gradient circle. Values less than -1 or greater than 1 are rounded to -1 or 1. 
+	 * @throws RuntimeError if MovieClip.prototype.lineGradientStyle method is undefined in the current player.
+	 */
+	function lineGradientStyle( fillType:String, colors:Array, alphas:Array, ratios:Array, matrix:Object, spreadMethod:String, interpolationMethod:String, focalPointRatio:Number ):Void ;
 
 	/**
 	 * Specifies a line style that Flash uses for subsequent calls to the lineTo() and curveTo() methods until you call the lineStyle() method with different parameters. 

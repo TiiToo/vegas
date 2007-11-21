@@ -37,7 +37,10 @@ class pegas.draw.FillType
 	 * The radial fill type.
 	 */
 	public static var RADIAL:String = "radial" ;
-	
+
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(FillType, null, 7, 7) ;
 	
 }

@@ -102,6 +102,11 @@ class pegas.draw.AbstractPen extends CoreObject implements ICloneable, IPen, IRu
 	public var GF:Function = MovieClip.prototype.beginGradientFill ;
 
 	/**
+	 * Defines a shortcut reference to used the {@code lineGradientStyle} method.
+	 */
+	public var GS:Function = MovieClip.prototype.lineGradientStyle ;
+
+	/**
 	 * Defines a shortcut reference to used the {@code lineTo} method.
 	 */
 	public var L:Function = MovieClip.prototype.lineTo ;
@@ -200,10 +205,21 @@ class pegas.draw.AbstractPen extends CoreObject implements ICloneable, IPen, IRu
 	 * <p>An object with the following properties: matrixType, x, y, w, h, r.</p>
 	 * <p>The properties indicate the following: matrixType is the string "box", x is the horizontal position relative to the registration point of the parent clip for the upper-left corner of the gradient, y is the vertical position relative to the registration point of the parent clip for the upper-left corner of the gradient, w is the width of the gradient, h is the height of the gradient, and r is the rotation in radians of the gradient.</p>
 	 * <p><b>Note :</b> For Flash Player 8 and later, Macromedia recommends that you define the matrix parameter in the form of a flash.geom.Matrix object (as described in the first item in this list).</p>
+	 * @param spreadMethod (optional) Added in Flash Player 8. Either "pad", "reflect," or "repeat," which controls the mode of the gradient fill. The default value is "pad". 
+	 * @param interpolationMethod (optional) Added in Flash Player 8. Either "RGB" or "linearRGB". With "linearRGB", the colors are distributed linearly in the gradient. The default value is "RGB". 
+	 * @param focalPointRatio Added in Flash Player 8. A number that controls the location of the focal point of the gradient. The value 0 means the focal point is in the center. The value 1 means the focal point is at one border of the gradient circle. The value -1 means the focal point is at the other border of the gradient circle. A value less than -1 or greater than 1 is rounded to -1 or 1.
+	 * @throws RuntimeError if MovieClip.prototype.beginGradientFill method is undefined in the current player. 
 	 */
-	public function beginGradientFill(type:String, colors:Array, alphas:Array, ratios:Array, matrix):Void 
+	public function beginGradientFill(type:String, colors:Array, alphas:Array, ratios:Array, matrix, spreadMethod:String, interpolationMethod:String, focalPointRatio:Number):Void 
 	{
-		GF.apply(_target, arguments) ;
+		if ( GF != null )
+		{
+			GF.apply(_target, arguments) ;
+		}
+		else
+		{
+			throw new RuntimeError(this + " beginGradientFill failed, this method is undefined in this application.") ;
+		}
 	}
 
 	/**
@@ -271,6 +287,31 @@ class pegas.draw.AbstractPen extends CoreObject implements ICloneable, IPen, IRu
 			target = target.createEmptyMovieClip("__child__" + depth, depth) ;
 		}
 		_target = target ;
+	}
+	
+	/**
+	 * Specifies a line style that Flash uses for subsequent calls to the lineTo() and curveTo() methods until you call the lineStyle() method or the lineGradientStyle() method with different parameters. 
+	 * You can call the lineGradientStyle() method in the middle of drawing a path to specify different styles for different line segments within a path. 
+	 * @param fillType Valid values are "linear" or "radial".
+	 * @param colors An array of RGB hexadecimal color values that you use in the gradient (for example, red is 0xFF0000, blue is 0x0000FF, and so on). You can specify up to 15 colors. For each color, ensure that you specify a corresponding value in the alphas and ratios parameters.
+	 * @param alphas An array of alpha values for the corresponding colors in the colors array; valid values are 0 to 100. If the value is less than 0, Flash uses 0. If the value is greater than 100, Flash uses 100.
+	 * @param ratios An array of color distribution ratios; valid values are from 0 to 255. This value defines the percentage of the width where the color is sampled at 100%. Specify a value for each value in the colors parameter.
+	 * @param matrix A transformation matrix. 
+	 * @param spreadMethod (optional) Valid values are "pad", "reflect," or "repeat," which controls the mode of the gradient fill.
+	 * @param interpolationMethod (optional) Valid values are "RGB" or "linearRGB".
+	 * @param focalPointRatio (optional) A Number that controls the location of the focal point of the gradient. The value 0 means the focal point is in the center. The value 1 means the focal point is at one border of the gradient circle. The value -1 means that the focal point is at the other border of the gradient circle. Values less than -1 or greater than 1 are rounded to -1 or 1. 
+	 * @throws RuntimeError if MovieClip.prototype.lineGradientStyle method is undefined in the current player.
+	 */
+	public function lineGradientStyle( fillType:String, colors:Array, alphas:Array, ratios:Array, matrix:Object, spreadMethod:String, interpolationMethod:String, focalPointRatio:Number ):Void 
+	{
+		if ( GS != null )
+		{
+			GS.apply(_target, arguments) ;
+		}
+		else
+		{
+			throw new RuntimeError(this + " lineGradientStyle failed, this method is undefined in this application.") ;
+		}
 	}
 
 	/**

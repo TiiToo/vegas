@@ -54,6 +54,9 @@ class asgard.text.GridFitType
 	 */
 	public static var SUBPIXEL:String = "subpixel" ;
 
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(GridFitType, null , 7, 7) ;
 
 }

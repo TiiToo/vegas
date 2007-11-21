@@ -100,6 +100,9 @@ class pegas.draw.Align
 	 */
 	public static var RIGHT_TOP = TOP_RIGHT | REVERSE ;
 
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(Align, null , 7, 7) ;
 
 	/**

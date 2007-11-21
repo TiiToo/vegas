@@ -37,6 +37,9 @@ class asgard.display.Direction
 	 */
 	public static var VERTICAL:Number = 1 ;
 
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(Direction, null , 7, 7) ;
 
 	/**

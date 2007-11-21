@@ -57,7 +57,10 @@ class asgard.events.MediaEventType
 	 * The name of the MediaEvent when the media is stopped.
 	 */
 	public static var MEDIA_STOP:String = "onMediaStopped" ;
-	
+
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(MediaEventType, null , 7, 7) ;
 	
 }

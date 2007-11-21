@@ -56,7 +56,10 @@ class asgard.events.RecordSetEvent extends ModelChangedEvent
 	public static var UPDATE_ITEMS:String = "updateItems" ;
 	
 	public static var UPDATE_ROWS:String = "updateRows" ;
-	
+
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(RecordSetEvent, null , 7, 7) ;
 	
 	/**

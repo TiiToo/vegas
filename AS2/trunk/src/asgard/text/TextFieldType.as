@@ -37,7 +37,10 @@ class asgard.text.TextFieldType
 	 * Used to specify an input TextField.
 	 */
 	public static var INPUT:String = "input" ;
-	
+
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(TextFieldType, null , 7, 7) ;
 
 }

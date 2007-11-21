@@ -45,6 +45,9 @@ class asgard.display.JoinStyle
 	 */
 	public static var ROUND:String = "round" ;
 	
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(JoinStyle, null , 7, 7) ;
 
 }

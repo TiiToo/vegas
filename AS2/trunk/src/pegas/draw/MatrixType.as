@@ -27,9 +27,15 @@
  */
 class pegas.draw.MatrixType 
 {
-
-	public static var BOX:String = "box" ;
 	
+	/**
+	 * Determinates the box type in the beginGradientFill method.
+	 */
+	public static var BOX:String = "box" ;
+
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(MatrixType, null, 7, 7) ;
 	
 }

@@ -95,7 +95,10 @@ class pegas.ui.KeysValidator extends AbstractCoreEventDispatcher implements IVal
 	 * Indicates the code policy when the validator use the Key.ASCII() method.
 	 */
 	public static var ASCII:Number = 1 ;
-	
+
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(KeysValidator, null, 7, 7) ;
 	
 	/**

@@ -57,10 +57,16 @@ class lunas.display.components.list.EasyList extends AbstractList
 	public static var BACKGROUND_RENDERER:Function = RectangleComponent ;
 	
 	public static var NONE:Number = 0 ;
-	public static var AUTO:Number = 1 ;
-	public static var SCROLL_ON_CLICK:Number = 2 ;
-	public static var FULL:Number = AUTO | SCROLL_ON_CLICK ;
 	
+	public static var AUTO:Number = 1 ;
+	
+	public static var SCROLL_ON_CLICK:Number = 2 ;
+	
+	public static var FULL:Number = AUTO | SCROLL_ON_CLICK ;
+
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(EasyList, null, 7, 7) ;
 	
 	public var cellRenderer:Function = EasyCell ;

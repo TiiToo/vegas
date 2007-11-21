@@ -1,6 +1,8 @@
-﻿/*
+import asgard.filters.BitmapFilterType;
 
-  The contents of this file are subject to the Mozilla Public License Version
+/*
+
+The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
   the License. You may obtain a copy of the License at 
   
@@ -22,26 +24,30 @@
 */
 
 /**
- * The GradientType class provides values for the type parameter 
- * in the beginGradientFill() and lineGradientFill() of the MovieClip draw apis.
+ * The BitmapFilterQuality class contains values to set the rendering quality of a BitmapFilter object.
  * @author eKameleon
  */
-class asgard.display.GradientType 
+class asgard.filters.BitmapFilterQuality 
 {
-
-	/**
-	 * Value used to specify a linear gradient fill.
- 	 */
-	public static var LINEAR:String = "linear" ;
 	
 	/**
-	 * Value used to specify a radial gradient fill.
+	 * Defines the high quality filter setting.
 	 */
-	public static var RADIAL:String = "radial" ;
+	public static var HIGH:String = "high" ;
 
+	/**
+	 * Defines the low quality filter setting.
+	 */
+	public static var LOW:String = "low" ;
+	
+	/**
+	 * Defines the medium quality filter setting.
+	 */
+	public static var MEDIUM:String = "outer" ;
+	
 	/**
 	 * @private
 	 */
-	private static var __ASPF__ = _global.ASSetPropFlags(GradientType, null , 7, 7) ;
+	private static var __ASPF__ = _global.ASSetPropFlags( BitmapFilterQuality, null , 7, 7 ) ;
 
 }

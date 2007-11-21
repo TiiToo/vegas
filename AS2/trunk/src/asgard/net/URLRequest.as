@@ -48,7 +48,10 @@ class asgard.net.URLRequest extends CoreObject implements ICloneable
 	 * The default content type value.
 	 */
 	public static var DEFAULT_CONTENT_TYPE:String = "application/x-www-form-urlencoded" ;
-	
+
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(URLRequest, null , 7, 7) ;
 
 	/**

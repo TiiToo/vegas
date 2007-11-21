@@ -47,7 +47,10 @@ class asgard.display.LineScaleMode
 	 * With this setting used as the scaleMode parameter of the lineStyle() method, the thickness of the line scales only horizontally.
 	 */
 	public static var VERTICAL:String = "vertical" ;
-	
+
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(LineScaleMode, null , 7, 7) ;
 
 }

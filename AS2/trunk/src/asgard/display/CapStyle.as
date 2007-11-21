@@ -44,7 +44,10 @@ class asgard.display.CapStyle
 	 * Used to specify square caps in the caps parameter of the lineStyle() method.
 	 */
 	public static var SQUARE:String = "square" ;
-	
+
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(CapStyle, null , 7, 7) ;
 
 }

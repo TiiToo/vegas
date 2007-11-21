@@ -43,6 +43,9 @@ class asgard.display.ScrollPolicy {
 	 */
 	public static var ON:Number = 1 ;
 
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(ScrollPolicy, null , 7, 7) ;
 
 	/**

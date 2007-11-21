@@ -47,7 +47,10 @@ class asgard.system.ApplicationType
 	 * The type of a HTTPS application.
 	 */
 	public static var HTTPS:String = "https" ;
-	
+
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(ApplicationType, null , 7, 7) ;
 	
 }

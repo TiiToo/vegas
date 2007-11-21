@@ -37,7 +37,10 @@ class asgard.text.AntiAliasType
 	 * [static] Sets anti-aliasing to the anti-aliasing that is used in Flash Player 7 and earlier ("normal").
 	 */
 	public static var NORMAL:String = "normal" ;
-	
+
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(AntiAliasType, null , 7, 7) ;
 
 }

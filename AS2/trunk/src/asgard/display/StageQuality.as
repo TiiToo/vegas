@@ -48,7 +48,10 @@ class asgard.display.StageQuality
 	 * Specifies medium rendering quality: graphics are anti-aliased using a 2 x 2 pixel grid, but bitmaps are not smoothed.
 	 */
 	public static var MEDIUM:String = "medium" ;
-	
+
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(StageQuality, null , 7, 7) ;
 
 }

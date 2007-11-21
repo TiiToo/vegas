@@ -48,6 +48,9 @@ class asgard.text.TextFieldAutoSize
 	 */
 	public static var RIGHT:String = "right" ;
 
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(TextFieldAutoSize, null , 7, 7) ;
 
 }

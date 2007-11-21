@@ -91,6 +91,9 @@ class asgard.display.StageAlign
 	 */
 	public static var TOP_RIGHT:String = "TR" ;
 
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(StageAlign, null , 7, 7) ;
 
 	/**

@@ -43,7 +43,9 @@ class asgard.display.PixelSnapping
 	 */
 	public static var NEVER:String = "never" ;
 	
-	
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(PixelSnapping, null , 7, 7) ;
 	
 }

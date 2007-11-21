@@ -90,6 +90,9 @@ class vegas.util.TypeUtil
 	 */	
 	public static var XML:String = "xml" ;
 
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(TypeUtil, null , 7, 7) ;
 
 	/**

@@ -43,47 +43,93 @@ class asgard.events.RemotingEvent extends DynamicEvent
 		setFault(oFault) ;
 		if (sMethodName) setMethodName(sMethodName) ; 
 	}
-
+	
+	/**
+	 * The RemotingEvent type when notify an error message.
+	 */
 	public static var ERROR:String = "onError" ;	
-	
+
+	/**
+	 * The RemotingEvent type when notify an fault message.
+	 */
 	public static var FAULT:String = "onFault" ;
-	
+
+	/**
+	 * The RemotingEvent type when notify the end of the process.
+	 */
 	public static var FINISH:String = "onFinished" ;
-	
+
+	/**
+	 * The RemotingEvent type when notify the process is in progress.
+	 */
 	public static var PROGRESS:String = "onProgress" ;
-	
+
+	/**
+	 * The RemotingEvent type when notify the result of the process.
+	 */
 	public static var RESULT:String = "onResult" ;
 	
+	/**
+	 * The RemotingEvent type when notify the start of the process.
+	 */
 	public static var START:String = "onStarted" ;
-	
+
+	/**
+	 * The RemotingEvent type when the process is out of time.
+	 */
 	public static var TIMEOUT:String = "onTimeOut" ;
-	
+
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(RemotingEvent, null , 7, 7) ;
 
+	/**
+	 * The optional error code of the process.
+	 */
 	public var code:String ;
 
+	/**
+	 * The optional fault object of the process.
+	 */
 	public function get fault() 
 	{
 		return getFault() ;	
 	}
 	
+	/**
+	 * @private
+	 */
 	public function set fault(oFault):Void 
 	{
 		setFault(oFault) ;	
 	}
 
+	/**
+	 * The optional error level of the process.
+	 */
 	public var level:String ;
 
+	/**
+	 * The optional result object of the process.
+	 */
 	public function get result() 
 	{
 		return getResult() ;	
 	}
 	
+	/**
+	 * @private
+	 */
 	public function set result(oResult):Void 
 	{
 		setResult(oResult) ;	
 	}
 	
+	/**
+	 * Returns a shallow copy of the object.
+	 * @return a shallow copy of the object.
+	 */
 	public function clone() 
 	{
 		var e:RemotingEvent = new RemotingEvent(getType(), getTarget()) ;
@@ -95,51 +141,91 @@ class asgard.events.RemotingEvent extends DynamicEvent
 		return e ;
 	}
 
+	/**
+	 * Returns the optional error code of the process.
+	 * @return the optional error code of the process.
+	 */
 	public function getCode():String 
 	{
 		return _sCode ;
 	}
 
+	/**
+	 * Returns the optional description value of the process.
+	 * @return the optional description value of the process.
+	 */
 	public function getDescription():String 
 	{
 		return _sDescription ;
 	}
 
+	/**
+	 * Returns the optional detail value of the process.
+	 * @return the optional detail value of the process.
+	 */
 	public function getDetail():String 
 	{
 		return _sDetail ;
 	}
 
+	/**
+	 * Returns the optional exception stack value of the process.
+	 * @return the optional exception stack value of the process.
+	 */
 	public function getExceptionStack():String 
 	{
 		return _sExceptionStack ;
 	}
-	
+
+	/**
+	 * Returns the optional fault value of the process.
+	 * @return the optional fault value of the process.
+	 */
 	public function getFault() 
 	{
 		return _fault ;
 	}
 
+	/**
+	 * Returns the optional level value of the process.
+	 * @return the optional level value of the process.
+	 */
 	public function getLevel():String 
 	{
 		return _sLevel ;
 	}
-	
+
+	/**
+	 * Returns the optional line value of the process.
+	 * @return the optional line value of the process.
+	 */
 	public function getLine():String 
 	{
 		return _sLine ;
 	}
-	
+
+	/**
+	 * Returns the optional method name value of the process.
+	 * @return the optional method name value of the process.
+	 */
 	public function getMethodName():String 
 	{
 		return _sMethodName ;
 	}
 
+	/**
+	 * Returns the optional result value of the process.
+	 * @return the optional result value of the process.
+	 */
 	public function getResult() 
 	{
 		return _result ;	
 	}
-	
+
+	/**
+	 * Returns the optional result value of the process.
+	 * @return the optional result value of the process.
+	 */
 	public function getResults() 
 	{
 		return _result ;	
@@ -182,15 +268,50 @@ class asgard.events.RemotingEvent extends DynamicEvent
 		}
 	}		
 	
+	/**
+	 * @private
+	 */
 	private var _fault ;
+	
+	/**
+	 * @private
+	 */
 	private var _result ;	
+	
+	/**
+	 * @private
+	 */	
 	private var _sCode:String ;
+	
+	/**
+	 * @private
+	 */
 	private var _sDescription:String ;
+		
+	/**
+	 * @private
+	 */
 	private var _sDetail : String ;
+	
+	/**
+	 * @private
+	 */
 	private var _sExceptionStack:String ;
+	
+	/**
+	 * @private
+	 */
 	private var _sLevel:String ;
-	private var _sLine:String ;
-	private var _sMethodName:String ;
+
+	/**
+	 * @private
+	 */
+	 private var _sLine:String ;
+	
+	/**
+	 * @private
+	 */
+	 private var _sMethodName:String ;
 	
 	/**
 	 * @private

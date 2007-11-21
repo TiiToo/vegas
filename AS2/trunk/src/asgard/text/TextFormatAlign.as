@@ -48,7 +48,10 @@ class asgard.text.TextFormatAlign
 	 * Aligns text to the right within the text field ("right").
 	 */
 	public static var RIGHT:String = "right" ;
-	
+
+	/**
+	 * @private
+	 */
 	private static var __ASPF__ = _global.ASSetPropFlags(TextFormatAlign, null , 7, 7) ;
 
 }
