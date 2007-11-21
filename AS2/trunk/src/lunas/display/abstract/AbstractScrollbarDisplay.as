@@ -159,12 +159,9 @@ class lunas.display.abstract.AbstractScrollbarDisplay extends AbstractProgressba
 		var t:MovieClip = this.getThumb() ;
 		
 		var size:Number =  b[sizeField] - t[sizeField] ;
-		
-		trace(this + " dragging : " + sizeField + ' :: ' +  b + " -> " + b[sizeField] + " : " + t + " -> " + t[sizeField] ) ;
 
 		var pos:Number  = view[mouseField] - _mouseOffset ;
 
-		trace(this + " dragging : " + size + " : " + pos ) ;
 		pos = isNaN(pos) ? 0 : pos ;
 		pos = MathsUtil.getPercent( MathsUtil.clamp( pos , 0 , size ), size ) ;
 		setPosition( pos , null, ( arguments[0] == true ? true : null ) ) ;
@@ -249,8 +246,7 @@ class lunas.display.abstract.AbstractScrollbarDisplay extends AbstractProgressba
 	public function startDragging():Void 
 	{
 		notifyStartDrag() ;
-		var mouseField:String = (_nDirection == Direction.VERTICAL) ? propYmouse : propXmouse ;
-		_mouseOffset = (getThumb())[ mouseField ] ;
+		_mouseOffset = (getThumb())[ (_nDirection == Direction.VERTICAL) ? propYmouse : propXmouse] ;
 		dragging() ;
 		_isDragging = true ;
 		view.onMouseMove = Delegate.create(this, dragging) ;
@@ -271,7 +267,7 @@ class lunas.display.abstract.AbstractScrollbarDisplay extends AbstractProgressba
 	 */
 	public function viewPositionChanged( flag:Boolean ):Void 
 	{
-
+		
 		if (_tw.getRunning()) 
 		{
 			_tw.stop() ;
@@ -283,9 +279,8 @@ class lunas.display.abstract.AbstractScrollbarDisplay extends AbstractProgressba
 		
 		var b:MovieClip = getBar() ;
 		var t:MovieClip = getThumb() ;
-
 		var size:Number =  b[sizeField] - t[sizeField] ;
-		var pos:Number = (getPosition() / 100) *  size  ;
+		var pos:Number  = ( (getPosition() / 100) *  size ) ;
 		
 		if ( !isDragging ) 
 		{

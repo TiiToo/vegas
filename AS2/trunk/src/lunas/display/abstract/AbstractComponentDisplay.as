@@ -47,8 +47,8 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 
 	/**
 	 * Creates a new AbstractComponentDisplay instance.
-	 * @param sName:String the name of the display.
-	 * @param target:MovieClip the DisplayObject instance control this target.
+	 * @param sName the name of the display.
+	 * @param target the DisplayObject instance control this target.
 	 */
 	private function AbstractComponentDisplay( sName:String, target:MovieClip ) 
 	{ 
@@ -393,7 +393,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	 */
 	public function notifyRemoved():Void 
 	{
-		dispatchEvent(_eRemoved) ;
+		dispatchEvent( _eRemoved ) ;
 	}
 
 	/**
@@ -402,7 +402,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	public function notifyResized():Void 
 	{
 		viewResize() ;
-		dispatchEvent(_eResize) ;
+		dispatchEvent( _eResize ) ;
 	}
 
 	/**
@@ -514,7 +514,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 		{
 			return ;
 		}
-		dispatchEvent(_eStyleChange) ;
+		dispatchEvent( _eStyleChange ) ;
 		update() ;
 	}
 	
@@ -543,7 +543,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 			_builder.update() ;
 		}
 		viewChanged() ;
-		dispatchEvent(_eRender) ;
+		dispatchEvent( _eRender ) ;
 	}
 	
 	/**

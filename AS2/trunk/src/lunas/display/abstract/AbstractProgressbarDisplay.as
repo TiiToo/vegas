@@ -38,8 +38,8 @@ class lunas.display.abstract.AbstractProgressbarDisplay extends AbstractComponen
 
 	/**
 	 * Creates a new AbstractProgressbar instance. 
-	 * @param sName:String the name of the display.
-	 * @param target:MovieClip the DisplayObject instance control this target.
+	 * @param sName the name of the display.
+	 * @param target the DisplayObject instance control this target.
 	 */
 	private function AbstractProgressbarDisplay(sName:String, target:MovieClip ) 
 	{ 
@@ -62,8 +62,7 @@ class lunas.display.abstract.AbstractProgressbarDisplay extends AbstractComponen
 	public var autoResetPosition:Boolean = false ;
 
 	/**
-	 * Returns the direction value of this component.
-	 * @return the direction value of this component.
+	 * (read-write) Determinates the direction value of this component.
 	 * @see Direction
 	 */
 	public function get direction():Number 
@@ -72,18 +71,24 @@ class lunas.display.abstract.AbstractProgressbarDisplay extends AbstractComponen
 	}
 
 	/**
-	 * Sets the direction value of this component.
+	 * @private
 	 */
 	public function set direction(n:Number):Void 
 	{
 		setDirection(n) ;	
 	}
-
+	
+	/**
+	 * (read-write) Determinates the position value of this component. A value between 0 and 100 (percentage).
+	 */
 	public function get position():Number 
 	{
 		return getPosition() ;
 	}
 	
+	/**
+	 * @private
+	 */	
 	public function set position(n:Number):Void 
 	{
 		setPosition(n) ;	
