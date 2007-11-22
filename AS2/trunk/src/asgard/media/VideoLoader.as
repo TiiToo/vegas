@@ -289,7 +289,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		else 
 		{
 			
-			setResumed(false) ;
+			setResumed( false ) ;
 			_oNS.pause( false ) ;
 			_startLoadProgress() ;
 			startProgress() ;
@@ -303,9 +303,14 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	public function play(n:Number, noEvent:Boolean):Void 
 	{
 		
-		if (!isLoaded()) 
+		if ( isLoaded() == false) 
 		{
 			_load();
+		}
+		
+		if ( isResumed() ) 
+		{
+			setResumed( false ) ;
 		}
 		
 		if (!isNaN(n)) 
@@ -317,7 +322,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 			_oNS.seek(0) ;	
 		}
 		
-		_oNS.pause(false) ;
+		_oNS.pause( false ) ;
 		
 		startProgress() ;
 		
@@ -446,9 +451,12 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	{
 		if (sURL) 
 		{
+			
 			super.setUrl( sURL ) ;
+			
 			setLoaded(false) ;
-			if (isPlaying()) 
+			
+			if ( isPlaying() ) 
 			{
 				this.play(0);
 			}
@@ -456,6 +464,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 			{
 				_load() ;
 			}
+			
 		}
 		else 
 		{
@@ -471,11 +480,10 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 		if (isResumed() || isPlaying()) 
 		{
 			_oNS.close() ;
-			_oVideo.clear() ;
 			setLoaded(false) ;
 			if ( isResumed() ) 
 			{
-				setResumed(false) ;
+				setResumed( false ) ;
 			}
 			stopProgress() ;
 			notifyEvent(MediaEvent.MEDIA_PROGRESS) ;
@@ -495,7 +503,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 			throw new UnsupportedOperation( this + " can't play without any valid url property, loading fails.");
 		}
 		
-		setLoaded(true) ;
+		setLoaded( true ) ;
 		
 		_oMetaData = null ;
 
@@ -560,10 +568,10 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	private function _onMetaData (info:Object):Void 
 	{
 
-		for (var props in info) 
-		{
-			getLogger().info( this + " onMetaData, " + props + " : " + info[props]) ;
-		}
+		//for (var props in info) 
+		//{
+		//	getLogger().info( this + " onMetaData, " + props + " : " + info[props]) ;
+		//}
 		
 		_oMetaData = new FLVMetaData(info) ;
 		
@@ -681,9 +689,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 			}
 			else 
 			{
-				this.stop() ;
-				play(0) ;
-				pause() ;	
+				//
 			}
 		}
 	}
@@ -700,7 +706,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	/**
 	 * Start the load progress timer.
 	 */
-	/*override*/ private function _startLoadProgress():Void
+	private /*override*/ function _startLoadProgress():Void
 	{
 		if ( isProgressive() )
 		{

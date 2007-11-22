@@ -500,7 +500,7 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 			_nLastBytesLoaded = nLastBytesLoaded ;
 			_nTime = nTime ;
 		}
-		else if ( (nTime - _nTime)  > _nTimeOut) 
+		else if ( (nTime - _nTime)  > _nTimeOut ) 
 		{
 			notifyEvent( getEventTypeTIMEOUT() );
 			release() ;
