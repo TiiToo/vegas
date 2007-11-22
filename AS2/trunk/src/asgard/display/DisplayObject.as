@@ -240,6 +240,39 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	{
 		view._rotation = n ;
 	}
+	
+	/**
+	 * (read-write) If the tabEnabled property is undefined or has a value of  true , then the object is included in automatic tab ordering, and the object is included in custom tab ordering if the  tabIndex  property is also set to a value. 
+	 * If tabEnabled is false, then the object is not included in automatic tab ordering.
+	 */
+	public function get tabEnabled():Boolean
+	{
+		return getTabEnabled() ;	
+	}
+	
+	/**
+	 * @private
+	 */
+	public function set tabEnabled(b:Boolean):Void
+	{
+		setTabEnabled(b) ;	
+	}
+	
+	/**
+	 * (read-write) Lets you customize the tab ordering of objects in a movie. You can set the tabIndex property on a button, movie clip, or text field instance; it is  undefined  by default.
+	 */
+	public function get tabIndex():Number
+	{
+		return getTabIndex() ;	
+	}
+	
+	/**
+	 * @private
+	 */
+	public function set tabIndex( n:Number ):Void
+	{
+		setTabIndex(n) ;	
+	}
 
 	/**
 	 * The view of the display.
@@ -449,6 +482,25 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	}
 
 	/**
+	 * Returns the tabEnabled value of thid display.
+	 * If the tabEnabled property is undefined or has a value of  true , then the object is included in automatic tab ordering, and the object is included in custom tab ordering if the  tabIndex  property is also set to a value. 
+	 * If tabEnabled is false, then the object is not included in automatic tab ordering.
+	 */
+	public function getTabEnabled():Boolean
+	{
+		return view.tabEnabled ;	
+	}
+	
+	/**
+	 * Returns the tabIndex value of the display.
+	 * Lets you customize the tab ordering of objects in a movie. You can set the tabIndex property on a button, movie clip, or text field instance; it is  undefined  by default.
+	 */
+	public function getTabIndex():Number
+	{
+		return view.tabIndex ;	
+	}
+
+	/**
 	 * Returns the {@code width} of the display's view.
 	 * @return the {@code width} of the display's view.
 	 */
@@ -578,6 +630,22 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	public function setHeight( n:Number ) : Void 
 	{
 		view._height = n ; 
+	}
+
+	/**
+	 * Sets the tabEnabled value of thid display.
+	 */
+	public function setTabEnabled(b:Boolean):Void
+	{
+		view.tabEnabled = b ;
+	}
+
+	/**
+	 * Sets the tabIndex value of the display.
+	 */
+	public function setTabIndex( n:Number ):Void
+	{
+		view.tabIndex = n ;
 	}
 
 	/**

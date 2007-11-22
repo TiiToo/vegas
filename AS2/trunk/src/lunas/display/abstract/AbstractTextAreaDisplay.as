@@ -268,6 +268,25 @@ class lunas.display.abstract.AbstractTextAreaDisplay extends AbstractLabelDispla
 	}
 
 	/**
+	 * Returns the tabEnabled value of thid display.
+	 * If the tabEnabled property is undefined or has a value of  true , then the object is included in automatic tab ordering, and the object is included in custom tab ordering if the  tabIndex  property is also set to a value. 
+	 * If tabEnabled is false, then the object is not included in automatic tab ordering.
+	 */
+	public function getTabEnabled():Boolean
+	{
+		return field != null ? field.tabEnabled : view.tabEnabled ;	
+	}
+	
+	/**
+	 * Returns the tabIndex value of the display.
+	 * Lets you customize the tab ordering of objects in a movie. You can set the tabIndex property on a button, movie clip, or text field instance; it is  undefined  by default.
+	 */
+	public function getTabIndex():Number
+	{
+		return field != null ? field.tabIndex : view.tabIndex ;	
+	}
+
+	/**
 	 * Defines the vertical scroll position of text in a text area. 
 	 * This property is useful for directing users to a specific paragraph in a long passage, or creating scrolling text areas.
 	 * The default value is 0.
@@ -358,6 +377,38 @@ class lunas.display.abstract.AbstractTextAreaDisplay extends AbstractLabelDispla
 		_hscrollPolicy = ScrollPolicy.validate(n) ? n : ScrollPolicy.OFF ;
 		update() ;
 	}	
+
+	/**
+	 * Sets the tabEnabled value of thid display.
+	 */
+	public /*override*/ function setTabEnabled(b:Boolean):Void
+	{
+		if ( field != null )
+		{
+			field.tabEnabled = b ;
+			view.tabEnabled  = undefined ;
+		}
+		else
+		{
+			view.tabEnabled = b ;	
+		}
+	}
+
+	/**
+	 * Sets the tabIndex value of the display.
+	 */
+	public /*override*/ function setTabIndex( n:Number ):Void
+	{
+		if ( field != null )
+		{
+			field.tabIndex = n ;
+			view.tabIndex  = undefined ;
+		}
+		else
+		{
+			view.tabIndex = n ;	
+		}
+	}
 
 	/**
 	 * Defines the vertical scroll position of text in a text area. 

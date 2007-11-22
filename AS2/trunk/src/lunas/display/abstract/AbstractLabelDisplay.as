@@ -30,7 +30,7 @@ import pegas.events.UIEvent;
  * This abstract class is the skeletal implementation of the {@code ILabel} interface.
  * @author eKameleon
  */
-class lunas.display.abstract.AbstractLabelDisplay extends AbstractComponentDisplay	implements ILabel 
+class lunas.display.abstract.AbstractLabelDisplay extends AbstractComponentDisplay implements ILabel 
 {
 
 	/**
