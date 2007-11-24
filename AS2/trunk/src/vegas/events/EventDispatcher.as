@@ -36,9 +36,6 @@ import vegas.events.IEventDispatcher;
 import vegas.util.factory.EventFactory;
 import vegas.util.TypeUtil;
 
-// TODO implement capturing with addGlobalEventDispatcher ?
-// TODO test bubbling/capturing
-
 /**
  * Stores the listeners object an notifies them with the DOM Events level 2/3 of the W3C.
  * The EventDispatcher class implements the IEventDispatcher interface. 

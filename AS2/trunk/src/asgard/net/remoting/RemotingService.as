@@ -179,7 +179,7 @@ dynamic class asgard.net.remoting.RemotingService extends AbstractAction
 	 */
 	public function clone() 
 	{
-		return new RemotingService( getGatewayUrl() , getServiceName() ) ; // TODO voir pour le responder !
+		return new RemotingService( getGatewayUrl() , getServiceName() ) ;
 	}
 
 	/**

@@ -26,7 +26,7 @@ import asgard.events.FlashPaperLoaderEvent;
 
 import pegas.geom.Point;
 
-// TODO il faut fixer le bug du focus !import asgard.display.DisplayLoader;import asgard.events.FlashPaperLoaderEvent;import pegas.geom.Point;
+// TODO il faut fixer le bug du focus ! Utiliser un switch avec un BitmapData (capture du flashpaper)
 
 /**
  * This loader is used to load FlashPaper documents in a swf application.

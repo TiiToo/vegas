@@ -277,7 +277,11 @@ class asgard.date.DateFormatter extends AbstractFormatter
 		var string:String = day.toString();
 		return (getZeros(cpt - string.length) + string);
 	}
-	
+
+	/**
+	 * Formats the specified day value in a string representation.
+	 * @return the specified day value in a string representation.
+	 */
 	public function formatDayAsText(day:Number, cpt:Number):String 
 	{
 		if (RANGE_DAY_AS_TEXT.isOutOfRange(day)) 
@@ -431,6 +435,19 @@ class asgard.date.DateFormatter extends AbstractFormatter
 	}
 
 	/**
+	 * Returns the singleton reference of the DateFormatter class.
+	 * @returns the singleton reference of the DateFormatter class.
+	 */
+	public static function getInstance():DateFormatter 
+	{
+		if ( _instance == null )
+		{
+			_instance = new DateFormatter();
+		}
+		return _instance;
+	}
+
+	/**
 	 * Returns a string representation fill by 0 values or an empty string if the cpt value is NaN or <1.
 	 * @return a string representation fill by 0 values or an empty string if the cpt value is NaN or <1.
 	 */
@@ -453,7 +470,13 @@ class asgard.date.DateFormatter extends AbstractFormatter
 		}
 		return r ;
 	}
-	
+
+
+    /**
+     * The internal singleton reference ot the DateFormatter class.
+     */
+	private static var _instance:DateFormatter ;
+
 	private function _count(char:String, a:Array):Number 
 	{
 		if (!a) return 0 ;
