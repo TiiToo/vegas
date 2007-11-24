@@ -19,18 +19,17 @@
   
   Contributor(s) :
   
-*/
-
+ */
 import vegas.core.IFormattable;
 import vegas.data.Collection;
+import vegas.data.Map;
+import vegas.data.MultiMap;
 import vegas.data.collections.SimpleCollection;
 import vegas.data.iterator.ArrayIterator;
 import vegas.data.iterator.Iterable;
 import vegas.data.iterator.Iterator;
-import vegas.data.Map;
 import vegas.data.map.HashMap;
 import vegas.data.map.MultiMapFormat;
-import vegas.data.MultiMap;
 import vegas.util.serialize.Serializer;
 
 /**
@@ -203,12 +202,15 @@ class vegas.data.map.MultiHashMap extends HashMap implements Iterable, MultiMap,
 			while (it.hasNext()) 
 			{
 				var cur = it.next() ;
-				if (cur.contains(value)) return true;
+				if (cur.contains(value)) 
+				{
+					return true;
+				}
 			}
 		} 
 		else if (len == 2) 
 		{
-			return ( get(arguments[0] ).contains(arguments[1]) == true);
+			return ( (get( arguments[0] )).contains( arguments[1] ))  == true ;
 		}
 		return false ;
 	}

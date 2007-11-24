@@ -154,14 +154,14 @@ class vegas.data.set.MultiHashSet extends MultiHashMap implements Set
 	}
 
 	/**
-	 * This method is unsupported, use getSet method.
-	 * @param a number
-	 * @throws UnsupportedOperation the MultiHashSet does not support the get() method, use getSet()
+	 * Returns the Set defined in the map with the specified key. 
+	 * This method isn't the same in the superclass MultiHashMap. You can use the getSet() method more fast.
+	 * @param id a key in the MutiHashSet. 
+	 * @return the Set defined in the map with the specified key.
 	 */
 	public function get( id:Number ) 
 	{
-		throw new UnsupportedOperation("This MultiHashSet does not support the get() method, use getSet().") ;
-		return null ;
+		return getSet( id ) ;
 	}
 
 	/**

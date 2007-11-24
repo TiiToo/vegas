@@ -8,7 +8,7 @@
 	import vegas.data.sets.HashSet;
 	import vegas.errors.UnsupportedOperation;
 	import vegas.util.Copier;
-	
+
 	/**
 	 * The MultiHashSet is a MutliHashMap that contains no duplicate elements in a specified key.
 	 * <p><b>Example :</b></p>
@@ -167,13 +167,14 @@
 		}
 
 		/**
-		 * This method is unsupported, use getSet method.
-		 * @throws UnsupportedOperation the MultiHashSet does not support the get() method, use getSet()
-		 */
+		 * Returns the Set defined in the map with the specified key. 
+		 * This method isn't the same in the superclass MultiHashMap. You can use the getSet() method more fast.
+	 	 * @param id a key in the MutiHashSet. 
+	 	 * @return the Set defined in the map with the specified key.
+	 	 */
 		public override function get( key:* ):*
 		{
-			throw new UnsupportedOperation("This MultiHashSet does not support the get() method, use getSet().") ;
-			return null ;
+			return getSet( key ) ;
 		}
 
 		/**
@@ -229,7 +230,8 @@
 		/**
 		 * Adds a collection of values to the collection associated with the specified key.
 		 */
-		public override function putCollection(key:*, c:Collection):void {
+		public override function putCollection(key:*, c:Collection):void 
+		{
 			if (!containsKey(key)) 
 			{
 				__map.put(key , createCollection()) ;
