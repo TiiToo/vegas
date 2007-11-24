@@ -50,28 +50,28 @@ class mars.logging.ApplicationLogger
 	 * @param message:String The information to log. This string can contain special marker characters of the form {x}, where x is a zero based index that will be replaced with the additional parameters found at that index if specified.
  	 * @param ... rest Additional parameters that can be subsituted in the str parameter at each "{x}" location, where x is an integer (zero based) index value into the Array of values specified.
 	 */
-	static var debug:Function ; 
+	public static var debug:Function ; 
 	
 	/**
 	 * Logs the specified data using the LogEventLevel.ERROR level.
 	 * @param message:String The information to log. This string can contain special marker characters of the form {x}, where x is a zero based index that will be replaced with the additional parameters found at that index if specified.
  	 * @param ... rest Additional parameters that can be subsituted in the str parameter at each "{x}" location, where x is an integer (zero based) index value into the Array of values specified.
 	 */
-	static var error:Function ; 
+	public static var error:Function ; 
 	
 	/**
 	 * Logs the specified data using the LogEventLevel.FATAL level.
 	 * @param message:String The information to log. This string can contain special marker characters of the form {x}, where x is a zero based index that will be replaced with the additional parameters found at that index if specified.
  	 * @param ... rest Additional parameters that can be subsituted in the str parameter at each "{x}" location, where x is an integer (zero based) index value into the Array of values specified.	 
  	 */
-	static var fatal:Function ; 
+	public static var fatal:Function ; 
 	
 	/**
 	 * Logs the specified data using the LogEvent.INFO level.
  	 * @param message:String The information to log. This string can contain special marker characters of the form {x}, where x is a zero based index that will be replaced with the additional parameters found at that index if specified.
  	 * @param ... rest Additional parameters that can be subsituted in the str parameter at each "{x}" location, where x is an integer (zero based) index value into the Array of values specified.
 	 */
-	static var info:Function ;
+	public static var info:Function ;
 
 	/**
 	 * Logs the specified data at the given level.
@@ -85,14 +85,14 @@ class mars.logging.ApplicationLogger
 	 * @param message:String The information to log. This string can contain special marker characters of the form {x}, where x is a zero based index that will be replaced with the additional parameters found at that index if specified.
  	 * @param ... rest Additional parameters that can be subsituted in the str parameter at each "{x}" location, where x is an integer (zero based) index value into the Array of values specified.
  	 */
-	static var log:Function ; 
+	public static var log:Function ; 
 	
 	/**
 	 * Logs the specified data using the LogEventLevel.WARN level.
  	 * @param message:String The information to log. This string can contain special marker characters of the form {x}, where x is a zero based index that will be replaced with the additional parameters found at that index if specified.
  	 * @param ... rest Additional parameters that can be subsituted in the str parameter at each "{x}" location, where x is an integer (zero based) index value into the Array of values specified.
 	 */
-	static var warn:Function ; 
+	public static var warn:Function ; 
 
 	/**
 	 * Returns the ILogger of the application.
