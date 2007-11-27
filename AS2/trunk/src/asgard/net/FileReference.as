@@ -19,8 +19,9 @@
   
   Contributor(s) :
   
-*/
+ */
 
+import asgard.events.DataEvent;
 import asgard.events.HTTPStatusEvent;
 import asgard.events.IOErrorEvent;
 import asgard.events.ProgressEvent;
@@ -196,6 +197,16 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	{
 		return _eSelect.getType() ;
 	}
+	
+	/**
+	 * Returns the event name use when the upload is complete and return datas.
+	 * @return the event name use when the upload is complete and return datas.
+	 * @since Flash Player 9.0.28.0.
+	 */
+	public function getEventTypeUPLOAD_COMPLETE_DATA():String
+	{
+		return _eUploadCompleteData.getType() ;
+	}
 
 	/**
 	 * Returns the {@code EventListenerCollection} of this EventDispatcher.
@@ -256,17 +267,16 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	 */
 	public function initEvents():Void
 	{
-		_eCancel    = new BasicEvent ( EventType.CANCEL , this ) ;
-		_eComplete  = new BasicEvent ( EventType.COMPLETE , this ) ;
-		_eHTTPError = new HTTPStatusEvent( HTTPStatusEvent.HTTP_STATUS , null, this ) ;
-		_eIOError   = new IOErrorEvent ( IOErrorEvent.IO_ERROR , null , null , this ) ;
-		_eOpen      = new BasicEvent( EventType.OPEN , this ) ;
-		_eProgress  = new ProgressEvent( ProgressEvent.PROGRESS, null, null, this ) ;
-		_eSecurity  = new SecurityErrorEvent( SecurityErrorEvent.SECURITY_ERROR, null, null , this) ;
-		_eSelect    = new BasicEvent( EventType.SELECT , this ) ;
+		_eCancel             = new BasicEvent ( EventType.CANCEL , this ) ;
+		_eComplete           = new BasicEvent ( EventType.COMPLETE , this ) ;
+		_eHTTPError          = new HTTPStatusEvent( HTTPStatusEvent.HTTP_STATUS , null, this ) ;
+		_eIOError            = new IOErrorEvent ( IOErrorEvent.IO_ERROR , null , null , this ) ;
+		_eOpen               = new BasicEvent( EventType.OPEN , this ) ;
+		_eProgress           = new ProgressEvent( ProgressEvent.PROGRESS, null, null, this ) ;
+		_eSecurity           = new SecurityErrorEvent( SecurityErrorEvent.SECURITY_ERROR, null, null , this) ;
+		_eSelect             = new BasicEvent( EventType.SELECT , this ) ;
+		_eUploadCompleteData = new DataEvent( DataEvent.UPLOAD_COMPLETE_DATA , null, null, this ) ;
 	}
-
-
 
 	/**
 	 * Creates and returns the internal {@code EventDispatcher} reference (this method is invoqued in the constructor).
@@ -356,8 +366,7 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	}
 
 	/**
-	 * Returns the event name use when a SecurityErrorEvent is invoqued.
-	 * @return the event name use when a SecurityErrorEvent is invoqued.
+	 * Sets the event name use when a SecurityErrorEvent is invoqued.
 	 */
 	public function setEventTypeSecurityError( type:String ):Void
 	{
@@ -365,12 +374,20 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	}
 
 	/**
-	 * Returns the event name use when the file is selected.
-	 * @return the event name use when the file is selected.
+	 * Sets the event name use when the file is selected.
 	 */
 	public function setEventTypeSelect( type:String ):Void
 	{
 		_eSelect.setType( type ) ;
+	}
+
+	/**
+	 * Sets the event name use when the upload is complete and return datas.
+	 * @since Flash Player 9.0.28.0.
+	 */
+	public function setEventTypeUPLOAD_COMPLETE_DATA( type:String ):Void
+	{
+		_eUploadCompleteData.setType( type ) ;
 	}
 
 	/**
@@ -411,23 +428,55 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	 * The internal EventDispatcher reference of this object.
 	 */
 	private var _dispatcher:EventDispatcher ;
-
-	private var _eCancel:Event ;
 	
+	/**
+	 * @private
+	 */
+	private var _eCancel:Event ;
+
+	/**
+	 * @private
+	 */
 	private var _eComplete:Event ;
 	
+	/**
+	 * @private
+	 */
 	private var _eHTTPError:Event ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _eIOError:Event ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _eOpen:Event ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _eProgress:Event ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _eSecurity:Event ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _eSelect:Event ;
 
+	/**
+	 * @private
+	 */
+	private var _eUploadCompleteData:DataEvent ;
+
+	/**
+	 * @private
+	 */
 	private static var _initHashCode:Boolean = HashCode.initialize( FileReference.prototype ) ;
 
 	/**
@@ -505,5 +554,14 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	{
 		dispatchEvent( _eSelect ) ;
 	}
+
+	/**
+	 * Dispatched when data is sent and the server has responded.
+	 */
+	/*protected*/ private function onUploadCompleteData( file:FileReference, data ):Void
+   	{
+       _eUploadCompleteData.data = data ;
+       dispatchEvent( _eUploadCompleteData ) ;
+   	}
 
 }
