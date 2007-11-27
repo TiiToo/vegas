@@ -233,21 +233,26 @@ class andromeda.model.array.PageableArrayModel extends AbstractModelObject imple
 	}
 
 	/**
-	 * Run the model when is initialize.
+	 * Run the model when is initialize. This method don't work if the model is locked.
+	 * @see ILockable
 	 */
 	public function run():Void
 	{
+		if ( isLocked() ) return ;
 		next() ;
 	}
 
 	/**
 	 * Set the count of the IValueObject in a page of this model. 
-	 * This value must be >=1.
+	 * @param n The count value of items in this model. This value must be >=1.
+	 * @param noRender Indicates if the method call the run method if this argumement is {@code false} (default is {@code false}).
 	 */
-	public function setCountVO( n:Number ):Void
+	public function setCountVO( n:Number , noRender:Boolean ):Void
 	{
 		_voCount = n > 1 ? n : 1 ;
+		if ( noRender == true ) lock() ;
 		refresh() ;
+		if ( noRender == true ) unLock() ;
 	}
 
 	/**
