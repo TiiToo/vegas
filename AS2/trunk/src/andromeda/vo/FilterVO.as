@@ -31,6 +31,8 @@ import vegas.util.serialize.Serializer;
  * <p><b>Example :</b></p>
  * {@code
  * 
+ * import andromeda.vo.FilterVO ;
+ * 
  * var VIDEO:Number = 1 ;
  * var MP3:Number = 2 ; 
  * 
@@ -42,8 +44,8 @@ import vegas.util.serialize.Serializer;
  * 
  * trace( "filter : " +  filter ) ;
  * 
- * trace( "filter.toggleFilter( MP3, true ) : " + filter.toggleFilter( ProductFilter.TRAINING, true ) ) ;
- * trace( "filter.toggleFilter( MP3, true ) : " + filter.toggleFilter( ProductFilter.TRAINING, true ) ) ;
+ * trace( "filter.toggleFilter( MP3, true ) : " + filter.toggleFilter( MP3 , true ) ) ;
+ * trace( "filter.toggleFilter( MP3, true ) : " + filter.toggleFilter( MP3 , true ) ) ;
  * 
  * trace("filter : " +  filter ) ;
  * 
@@ -52,7 +54,7 @@ import vegas.util.serialize.Serializer;
  * trace( "filter : " +  filter ) ;
  * 
  * trace( "filter.contains( VIDEO ) : " + filter.contains( VIDEO ) ) ;
- * trace( "filter.contains( MP3 ) : " + filter.contains( MP3 ) ) ;
+ * trace( "filter.contains( MP3 )   : " + filter.contains( MP3 ) ) ;
  * }
  * @author eKameleon
  */
@@ -146,7 +148,7 @@ class andromeda.vo.FilterVO extends SimpleValueObject
 	 * Returns the eden source representation of this object.
 	 * @return the eden source representation of this object.
 	 */
-	public function toSource():Object
+	public function toSource():String
 	{
 		return Serializer.getSourceOf( this, [ Serializer.toSource( filter ) ]  ) ;
 	}
@@ -155,7 +157,7 @@ class andromeda.vo.FilterVO extends SimpleValueObject
 	 * Returns the String representation of this object.
 	 * @return the String representation of this object.
 	 */
-	public function toString():Object
+	public function toString():String
 	{
 		return "[" + ConstructorUtil.getName(this) + ":" + filter + "]" ;
 	}

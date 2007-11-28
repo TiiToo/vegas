@@ -41,6 +41,12 @@ class andromeda.vo.NetServerInfoVO extends SimpleValueObject
         super( init );
     }
 
+	/**
+	 * This object exist if the server return an application error object. 
+	 * This property exist with FMS when the SSAS {@code application.rejectConnection()} method is invoqued. 
+	 */
+	public var application ;
+
     /**
      * The code of the error.
      */
@@ -102,6 +108,10 @@ class andromeda.vo.NetServerInfoVO extends SimpleValueObject
         {
             str += " line:" + line;
         }
+		if (application != null)
+		{
+			str += " application:" + application  ;	
+		}
         str += "]" ;
         return str ;
     }

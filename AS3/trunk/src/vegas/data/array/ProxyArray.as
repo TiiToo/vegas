@@ -206,8 +206,8 @@ package vegas.data.array
         }
         
 		/**
-		 * Returns a eden String reprensation of the object.
-		 * @return a string representing the source code of the object.
+		 * Returns a eden String representation of the object.
+		 * @return a string representation the source code of the object.
 		 */
         public function toSource(...arguments):String
         {

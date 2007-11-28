@@ -181,17 +181,27 @@ package vegas.data.list
 		}
 	
 	    /**
-	     * Returns a eden reprensation of the object.
-	     * @return a string representing the source code of the object.
+	     * Returns a eden representation of the object.
+	     * @return a string representation the source code of the object.
 	     */
 		public override function toSource(...arguments:Array):String 
 		{
 			return Serializer.getSourceOf(this, [toArray(), comparator, options] ) ;
 		}
 		
+		/**
+		 * @private
+		 */
 		private var _comparator:IComparator ;
+		
+		/**
+		 * @private
+		 */
 		private var _options:* ;
 
+		/**
+		 * @private
+		 */
 		private function _sort():void 
 		{
 			sort( _comparator.compare , _options) ;

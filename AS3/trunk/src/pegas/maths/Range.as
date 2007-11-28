@@ -230,7 +230,7 @@ package pegas.maths
 		}
    
 		/**
-		 * Returns the Eden reprensation of the object.
+		 * Returns the Eden representation of the object.
 		 * @return the string representing the source code of the object.
 	 	 */
 	    override public function toSource(...arguments:Array):String 

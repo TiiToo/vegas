@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -101,7 +101,7 @@ package vegas.errors
 		/**
 		 * Sets the internal {@code ILogger} reference of this {@code ILogable} object.
 		 */
-		public function setLogger( log:ILogger ):void 
+		public function setLogger( log:ILogger=null ):void 
 		{
 			_logger = log ;
 		}

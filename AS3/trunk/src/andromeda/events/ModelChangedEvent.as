@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -21,12 +21,13 @@
   
 */
 
-package vegas.events
+package andromeda.events
 {
-	
 	import flash.events.Event;
 
-    /**
+	import vegas.events.BasicEvent;    
+	
+	/**
      * This event is used with some models.
      * @author eKameleon
      */

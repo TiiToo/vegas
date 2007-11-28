@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -312,8 +312,8 @@ package vegas.data.queue
 		}
 
 	    /**
-	     * Returns a eden reprensation of the object.
-	     * @return a string representing the source code of the object.
+	     * Returns a eden representation of the object.
+	     * @return a string representation the source code of the object.
 	     */
 		public override function toSource(...arguments:Array):String
 		{
@@ -328,12 +328,36 @@ package vegas.data.queue
 		{
 			return (new QueueFormat()).formatToString(this) ;
 		}
-
+		
+		/**
+		 * @private
+		 */
 		private var _queue:Array ;
-	    private var _rear:uint ; // The array index for the next object to be stored in the queue.
-		private var _front:uint ; // The array index for the next object to be removed from the queue.
-		private var _count:uint ; // The number of objects currently stored in the queue
-	    private var _qSize:uint ; // The number of objects in the array : queue size + 1
+		
+		/**
+		 * The array index for the next object to be stored in the queue.
+		 * @private
+		 */
+	    private var _rear:uint ;
+
+		
+		/**
+		 * The array index for the next object to be removed from the queue.
+		 * @private
+		 */
+		private var _front:uint ; 
+		
+		/**
+		 * The number of objects currently stored in the queue.
+		 * @private
+		 */
+		private var _count:uint ; 
+
+		/**
+		 * The number of objects in the array : queue size + 1
+		 * @private
+		 */
+	    private var _qSize:uint ;
 
 	}
 	

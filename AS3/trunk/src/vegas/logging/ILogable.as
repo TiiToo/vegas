@@ -41,7 +41,7 @@ package vegas.logging
 		/**
 		 * Sets the internal {@code ILogger} reference of this {@code ILogable} object.
 		 */
-		function setLogger( log:ILogger ):void ;
+		function setLogger( log:ILogger=null ):void ;
 		
 	}
 }

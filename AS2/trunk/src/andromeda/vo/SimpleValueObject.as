@@ -79,7 +79,7 @@ class andromeda.vo.SimpleValueObject extends CoreObject implements IEquality, IV
 	{
 		return this.id ;
 	}
-	
+
 	/**
 	 * Sets the id of the value object.
 	 */

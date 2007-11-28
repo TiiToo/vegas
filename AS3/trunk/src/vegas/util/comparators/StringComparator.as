@@ -135,8 +135,8 @@ package vegas.util.comparators
 		}
 
 		/**
-		 * Returns a Eden reprensation of the object.
-		 * @return a string representing the source code of the object.
+		 * Returns a Eden representation of the object.
+		 * @return a string representation the source code of the object.
 		 */
 		override public function toSource(...arguments:Array):String 
 		{

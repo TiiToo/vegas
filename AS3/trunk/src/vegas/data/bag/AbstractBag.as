@@ -328,8 +328,8 @@ package vegas.data.bag
 		}
 
 		/**
-	 	 * Returns the Eden reprensation of the object.
-	 	 * @return a string representing the source code of the object.
+	 	 * Returns the Eden representation of the object.
+	 	 * @return a string representation the source code of the object.
 	 	 */
 		override public function toSource(...arguments:Array):String 
 		{

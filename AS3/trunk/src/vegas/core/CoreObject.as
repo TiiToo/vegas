@@ -23,10 +23,10 @@
 
 package vegas.core
 {
-	
 	import vegas.logging.ILogable;
 	import vegas.logging.ILogger;
-	import vegas.util.ClassUtil;
+	import vegas.logging.Log;
+	import vegas.util.ClassUtil;	
 
 	/**
 	 * CoreObject offers a default implementation of the IFormattable, IHashable and ISerializable interfaces.
@@ -51,10 +51,24 @@ package vegas.core
 		 */
 		function CoreObject() 
 		{
-		    //
+		    setLogger() ;
 		}
 		
-		HashCode.initialize(CoreObject.prototype) ;
+		public function test():void
+		{
+			trace("cool") ;	
+		}
+		
+		prototype.test = function():void
+		{
+			trace("test") ;
+		} ;
+		
+		/**
+		 * Initialize the hashcode value of this object.
+		 * @private 
+		 */
+		HashCode.initialize( CoreObject.prototype ) ;
 
 		/**
 		 * Returns the internal {@code ILogger} reference of this {@code ILogable} object.
@@ -76,14 +90,14 @@ package vegas.core
 		/**
 		 * Sets the internal {@code ILogger} reference of this {@code ILogable} object.
 		 */
-		public function setLogger( log:ILogger ):void 
+		public function setLogger( log:ILogger=null ):void 
 		{
-			_logger = log ;
+			_logger = log || Log.getLogger( ClassUtil.getPath(this) ) ;
 		}
 
 		/**
-		 * Returns a Eden reprensation of the object.
-		 * @return a string representing the source code of the object.
+		 * Returns a Eden representation of the object.
+		 * @return a string representation the source code of the object.
 		 */
 		public function toSource(...arguments:Array):String 
 		{

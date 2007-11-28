@@ -23,8 +23,10 @@
 
 package andromeda.util.mvc
 {
-	import vegas.events.AbstractCoreEventDispatcher;
-	import vegas.events.ModelChangedEvent;	
+	
+	import andromeda.events.ModelChangedEvent;
+	
+	import vegas.events.AbstractCoreEventDispatcher;	
 
 	/**
      * Abstract class to creates IModel implementations.

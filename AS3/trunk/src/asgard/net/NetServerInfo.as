@@ -85,7 +85,11 @@ package asgard.net
 			return { description:description, code:code, level:level , application:application } ;
 		}
 
-		override public function toSource(...arguments):String 
+        /**
+         * Returns a Eden reprensation of the object.
+         * @return a string representing the source code of the object.
+         */
+		public override function toSource(...arguments):String 
 		{
 			return "new asgard.net.NetServerInfo(" + Serializer.toSource(toObject()) + ")" ;
 		}

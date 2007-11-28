@@ -23,13 +23,12 @@
 
 package asgard.events
 {
-	
-	import asgard.data.remoting.RecordSet;
-	
 	import flash.events.Event;
 	
-	import vegas.events.ModelChangedEvent;
+	import andromeda.events.ModelChangedEvent;
 	
+	import asgard.data.remoting.RecordSet;	
+
 	/**
 	 * The RecordSetEvent class.
 	 * @author eKameleon

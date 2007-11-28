@@ -171,7 +171,7 @@ package vegas.events
         /**
          * Sets the internal {@code ILogger} reference of this {@code ILogable} object.
          */
-        public function setLogger( log:ILogger ):void 
+        public function setLogger( log:ILogger=null ):void 
         {
             _logger = log ;
         }

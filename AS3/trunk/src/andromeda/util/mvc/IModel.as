@@ -23,8 +23,9 @@
 
 package andromeda.util.mvc
 {
-	import vegas.core.ICloneable;
-	import vegas.events.ModelChangedEvent;	
+	import andromeda.events.ModelChangedEvent;
+	
+	import vegas.core.ICloneable;	
 
 	/**
 	 * Defines the representation of a model in a specific type of the MVC implementation.
