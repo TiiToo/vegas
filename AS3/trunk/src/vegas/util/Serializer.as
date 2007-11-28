@@ -21,8 +21,6 @@
   
 */
 
-// TODO implements serializers like AS2
-
 /**
  * Allows an object to control its own serialization with an EDEN representation.
  * Thanks : Zwetan Core2 framework inspired by Mozilla SpiderMonkey.
@@ -39,10 +37,11 @@ package vegas.util
 	    /**
     	 * Global reserved words in an array.
     	 */
-	    public static var GLOBAL_RESERVED:Array = ["_global"] ;
+	    public static var GLOBAL_RESERVED:Array = ["global"] ;
 	
     	/**
     	 * Returns {@code true} if the current word if a global word reserved.
+    	 * @return {@code true} if the current word if a global word reserved.
     	 */
     	public static function isGlobalReserved( name:String ):Boolean 
 	    {
@@ -53,74 +52,21 @@ package vegas.util
         	}
             return false;
 		}
- 
-        public static function globalToSource( indent:Number, indentor:String ):String  
-	    {
-    	
-    	    //var target, member;
-        	var source:Array = [];
-    
-    	    if( !isNaN(indent) ) indent++;
-    
-	        for( var member:String in global ) 
-	        {
-        	
-        	    if( isGlobalReserved( member ) )
-                {
-                    continue ;
-                }
-        
-			    if( member == "__path__" )
-            	{
-            	    continue;
-            	}
-        
-        	    if( global.hasOwnProperty( member ) ) 
-        	    {
-				      
-            	    if( global[member] === undefined )
-	                {
-                	    source.push( member + ":" + "undefined" );
-    	                continue;
-                	}
-	            
-                	if( global[member] === null )
-	                {
-                    	source.push( member + ":" + "null" );
-	                    continue;
-                	}
-	            
-            	    source.push( member + ":" + global[member].toSource( indent, indentor ) );
-            	}
-	        }
-    	
-	   	 	if( isNaN(indent) )
-        	{
-	        	return( "{" + source.join( "," ) + "}" );
-        	}
-		
-	    	if( indentor == null )
-	        {
-        		indentor = "    ";
-	        }
-		    
-	    	if( isNaN(indent) )
-	        {
-        		indent = 0;
-        	}
-		    
-	    	var decal:String = "\n" + (ArrayUtil.initialize( indent, indentor )).join( "" );
-	    	return decal + "{" + decal + source.join( "," + decal ) + decal + "}" ;
-	    }
-	    
+ 		
+ 	    /**
+	     * Returns the string source representation of the specified object and serialize the array of arguments to pass in the constructor of the class.
+	     * @return the string source representation of the specified object and serialize the array of arguments to pass in the constructor of the class.
+	     */
 		public static function getSourceOf(o:*, params:Array):String 
 		{
 		    var path:String = ClassUtil.getPath(o) ;
     		var source:String = "new " + path + "(" ;
     		var l:uint = params.length ;
-    		if (l > 0) {
+    		if (l > 0) 
+    		{
     			var i:uint = 0 ;
-    			while (i < l) {
+    			while (i < l) 
+    			{
     				source += Serializer.toSource(params[i]) ;
     				i++ ;
     				if (i<l) source += "," ;
@@ -129,7 +75,11 @@ package vegas.util
     		source += ")" ;
     		return source ;
 	    }
-
+	
+		/**
+		 * Returns the eden string representation of the specified object.
+		 * @return the eden string representation of the specified object.
+		 */
 	    public static function toSource( ...arguments ):String 
 	    {
 		    
@@ -179,4 +129,5 @@ package vegas.util
   
     }
 }
+
 

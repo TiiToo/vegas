@@ -120,7 +120,7 @@ package vegas.util
     	/**
     	 * Create and Initialize an Array.
     	 */
-    	public static function initialize(index:Number, value:* = null):Array 
+    	public static function initialize(index:uint, value:* = null):Array 
     	{
     		if( isNaN(index) ) index = 0 ;
             var ar:Array = [] ;
