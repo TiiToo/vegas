@@ -25,7 +25,7 @@
  * This class defined if a display or a component can use easing or not.
  * @author eKameleon
  */
-class pegas.transitions.EasingPolicy extends Boolean 
+class pegas.transitions.EasingPolicy 
 {
 	
 	/**

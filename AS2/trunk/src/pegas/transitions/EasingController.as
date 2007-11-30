@@ -138,4 +138,5 @@ class pegas.transitions.EasingController extends CoreObject
 	 * Internal HashMap instance.
 	 */
 	private var _map:Map ;
+	
 }

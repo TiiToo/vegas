@@ -19,7 +19,7 @@
   
   Contributor(s) :
   
- */
+*/
  
 import pegas.transitions.Motion;
 import pegas.transitions.TweenEntry;

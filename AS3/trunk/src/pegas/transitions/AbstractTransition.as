@@ -21,9 +21,6 @@
   
 */
 
-// TODO finish and test this abstract class
-// TODO implement the TransitionController class
-
 package pegas.transitions 
 {
 	

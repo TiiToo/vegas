@@ -46,7 +46,6 @@ class pegas.transitions.TweenModel extends AbstractModel implements Iterable
 	 * @param tweens The array to initialize the model with some TweenEntry objects. All no TweenEntry objects are ignored.
 	 * @param bGlobal the flag to use a global event flow or a local event flow.
 	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
-	 * @param tweens an array of TweenEntry objects. 
 	 */
 	public function TweenModel( id , tweens:Array, bGlobal:Boolean , sChannel:String ) 
 	{
@@ -68,6 +67,15 @@ class pegas.transitions.TweenModel extends AbstractModel implements Iterable
 	}
 
 	/**
+	 * Clear the model.
+	 */
+	public function clear():Void 
+	{
+		_map.clear( ) ;
+		dispatchEvent( _eClear ) ;
+	}
+	
+	/**
 	 * Returns a shallow copy of this object. This method keep all Tween entries and the id of the original object.
 	 * {@code  var clone:TweenModel = tp.clone() ;}
 	 * @return a shallow copy of this object.
@@ -75,15 +83,6 @@ class pegas.transitions.TweenModel extends AbstractModel implements Iterable
 	public function clone() 
 	{
 		return new TweenModel( null , toArray( ) ) ;
-	}
-
-	/**
-	 * Clear the model.
-	 */
-	public function clear():Void 
-	{
-		_map.clear( ) ;
-		dispatchEvent( _eClear ) ;
 	}
 	
 	/**
@@ -138,7 +137,7 @@ class pegas.transitions.TweenModel extends AbstractModel implements Iterable
 	 */
 	public function getProperties():Array 
 	{
-		return _map.getKeys( ) ;
+		return _map.getKeys() ;
 	}
 	
 	/**

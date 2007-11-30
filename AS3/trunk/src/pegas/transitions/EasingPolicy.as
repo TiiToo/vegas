@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is PEGAS Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -21,22 +21,26 @@
   
 */
 
-package vegas.core
+package pegas.transitions 
 {
 
 	/**
-	 * Supports cloning, which creates a new instance of a class with the same value as an existing instance.
-	 * @author eKameleon
-	 * @version 1.0.0.0
-	 */
-	public interface ICloneable 
+	 * This enumeration class is a helper to define if a display or a component can use motions or not.
+ 	 * @author eKameleon
+ 	 */
+	public class EasingPolicy 
 	{
 
 		/**
-		 * Creates and returns a shallow copy of the object.
-		 * @return A new object that is a shallow copy of this instance.
-		 */	
-		function clone():* ;
+ 		 * The OFF value of the easing policy.
+ 		 */	
+		public static const OFF:Boolean = false ;
 		
+		/**
+ 		 * The ON value of the easing policy.
+ 		 */	
+		public static const ON:Boolean = true ;
+			
 	}
+	
 }

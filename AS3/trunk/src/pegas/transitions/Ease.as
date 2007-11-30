@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is PEGAS Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -21,22 +21,31 @@
   
 */
 
-package vegas.core
+package pegas.transitions 
 {
 
 	/**
-	 * Supports cloning, which creates a new instance of a class with the same value as an existing instance.
+	 * The enumeration list of all easing method types.
 	 * @author eKameleon
-	 * @version 1.0.0.0
 	 */
-	public interface ICloneable 
+	public class Ease 
 	{
+		
+		/**
+	 	 * The name of the easeIn static method in a Ease class.
+		 */
+		public static const EASE_IN:String = "easeIn" ; 
 
 		/**
-		 * Creates and returns a shallow copy of the object.
-		 * @return A new object that is a shallow copy of this instance.
-		 */	
-		function clone():* ;
+	 	 * The name of the easeOut static method in a Ease class.
+	 	 */
+		public static const EASE_IN_OUT:String = "easeInOut" ;
+
+		/**
+	 	 * The name of the easeInOut static method in a Ease class.
+	 	 */
+		public static const EASE_OUT:String = "easeOut" ;
 		
 	}
+	
 }

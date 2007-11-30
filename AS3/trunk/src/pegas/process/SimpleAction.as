@@ -146,11 +146,20 @@ package pegas.process
 		{
 			_sTypeStart = type || ActionEvent.START ;
 		}
-
+	
+		/**
+		 * @private
+		 */
 	    private var _sTypeFinish:String ;
 
+		/**
+		 * @private
+		 */
 	    private var _sTypeStart:String ;
 
+		/**
+		 * @private
+		 */
 	    private var _isRunning:Boolean ;
 
 	}
