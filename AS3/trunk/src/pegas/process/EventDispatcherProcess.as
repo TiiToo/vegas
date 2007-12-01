@@ -21,8 +21,6 @@
   
 */
 
-// TODO test
-
 package pegas.process 
 {
 	import flash.events.Event;
@@ -70,17 +68,17 @@ package pegas.process
 		public var event:Event ;
 		
 	    /**
-	     * Returns a shallow copy of this object.
-	     * @return a shallow copy of this object.
-	     */
+	      * Returns a shallow copy of this object.
+	      * @return a shallow copy of this object.
+	      */
 		public override function clone():*
 		{
 			return new EventDispatcherProcess( event , channel ) ;
 		}
 
     	/**
-	     * Run the process.
-	     */
+	      * Run the process.
+	      */
 		public override function run( ...arguments:Array ):void 
 		{
 			notifyStarted() ;
