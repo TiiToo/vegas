@@ -23,9 +23,9 @@
 
 package andromeda.model
 {
-    import vegas.events.AbstractCoreEventDispatcher;
+	import vegas.events.AbstractCoreEventDispatcher;    
 
-    /**
+	/**
 	 * This class provides a skeletal implementation of the {@code IModel} interface, to minimize the effort required to implement this interface.
 	 * @author eKameleon
 	 */
@@ -42,7 +42,7 @@ package andromeda.model
 		public function AbstractModel( id:* = null , bGlobal:Boolean = false , sChannel:String = null )
 		{
 			super( bGlobal , sChannel ) ;
-			_setID( (id == null) ? this.hashCode() : id ) ;
+			_setID( id ) ;
 		}
 
 		/**
@@ -91,7 +91,10 @@ package andromeda.model
 			
 			this._id = id ;
 			
-			ModelCollector.insert ( this._id, this ) ;
+			if ( this._id != null )
+			{
+				ModelCollector.insert ( this._id, this ) ;
+			}
 			
 		}
 		

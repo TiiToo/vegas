@@ -29,7 +29,10 @@ package pegas.transitions.easing
 		 */
 		public static function easeIn ( t:Number, b:Number, c:Number, d:Number, s:Number=0 ):Number 
 		{
-			if (s == undefined) s = 1.70158;
+			if ( !s ) 
+			{
+				s = 1.70158;
+			}
 			return c * (t/=d) * t * ( (s+1) * t -  s) + b ;
 		}
 		
@@ -46,7 +49,7 @@ package pegas.transitions.easing
 		 */
 		public static function easeInOut (t:Number, b:Number, c:Number, d:Number, s:Number=0 ):Number 
 		{
-			if (s == undefined) 
+			if ( !s ) 
 			{
 				s = 1.70158;
 			} 
@@ -69,7 +72,10 @@ package pegas.transitions.easing
 		 */
 		public static function easeOut (t:Number, b:Number, c:Number, d:Number, s:Number=0 ):Number 
 		{
-			if (s == undefined) s = 1.70158;
+			if ( !s ) 
+			{
+				s = 1.70158;
+			}
 			return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
 		}
 		

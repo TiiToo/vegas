@@ -15,7 +15,7 @@ package pegas.transitions.easing
 	public class Elastic 
 	{
 
-		public static function easeIn (t:Number, b:Number, c:Number, d:Number, a:Number, p:Number):Number 
+		public static function easeIn (t:Number, b:Number, c:Number, d:Number, a:Number=NaN, p:Number=NaN):Number 
 		{
 			var s:Number ;
 			if (t==0)
@@ -42,7 +42,7 @@ package pegas.transitions.easing
 			return -(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
 		}
 	
-		public static function easeInOut (t:Number, b:Number, c:Number, d:Number, a:Number, p:Number):Number 
+		public static function easeInOut (t:Number, b:Number, c:Number, d:Number, a:Number=NaN, p:Number=NaN):Number 
 		{
 			var s:Number ;
 			if (t==0) 
@@ -73,7 +73,7 @@ package pegas.transitions.easing
 			return a*Math.pow(2,-10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )*.5 + c + b ;
 		}
 
-		public static function easeOut (t:Number, b:Number, c:Number, d:Number, a:Number, p:Number):Number 
+		public static function easeOut (t:Number, b:Number, c:Number, d:Number, a:Number=NaN, p:Number=NaN):Number 
 		{
 			var s:Number ;
 			if (t==0) 

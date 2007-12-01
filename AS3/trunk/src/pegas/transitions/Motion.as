@@ -143,7 +143,7 @@ package pegas.transitions
 	 	 */
 		public function resume():Boolean 
 		{
-			if (_stopping && _time != duration) 
+			if ( _stopping == true && _time != duration) 
 			{
 				_fixTime() ;
 				startInterval() ;
@@ -261,7 +261,7 @@ package pegas.transitions
 		public function stop():void 
 		{
 			stopInterval() ;
-			_stopping = false ;
+			_stopping = true ;
 			notifyStopped() ;
 		}
 		

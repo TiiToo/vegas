@@ -212,6 +212,7 @@ package pegas.transitions
 			{
 				return false ;
 			}
+			return false ;
 		}
 
 		/**
@@ -269,7 +270,7 @@ package pegas.transitions
 		 * Returns the String representation of this object.
 	 	 * @return the String representation of this object.
 		 */
-		public function toString():String 
+		public override function toString():String 
 		{
 			var s:String = "[TweenModel" ; 
 			if ( _map.size() > 0 )

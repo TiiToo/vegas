@@ -88,7 +88,7 @@ package pegas.transitions
 		 * @param  id the {@code id} of the easing method mapped in the EasingController.
 		 * @return the easing method mapped in the EasingController.  
 		 */
-		public function getEasing( id:String , defaultEasing:Function ):Function
+		public function getEasing( id:String , defaultEasing:Function=null ):Function
 		{
 			return contains(id) ? _map.get( id ) : (defaultEasing || null) ;
 		}

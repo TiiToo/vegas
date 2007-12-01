@@ -52,13 +52,14 @@ package pegas.transitions
 			var l:uint = arguments.length ;
 			if ( l > 1 )
 			{
-				if ( arguments[1] instanceof Array ) 
+				if ( arguments[1] is Array ) 
 				{
 					model      = arguments[1] ;
 					duration   = arguments[2] > 0 ? arguments[2] : null ;
 					useSeconds = arguments[3] == true ;
 					a          = arguments[4] == true ;
-					setGlobal( arguments[5] || null , arguments[6] || null ) ;				}
+					setGlobal( arguments[5] || null , arguments[6] || null ) ;				
+				}
 				else
 				{
 					insert( new TweenEntry( arguments[1] , arguments[2], arguments[3], arguments[4]) )  ;
@@ -86,7 +87,7 @@ package pegas.transitions
 		/**
 		 * @private
 		 */
-		public function set model( o:* = null ):void 
+		public function set model( o:* ):void 
 		{
 			setTweenModel(o) ;
 		}
@@ -206,7 +207,7 @@ package pegas.transitions
 		/**
 		 * Sets the model of this Tween object.
 		 */
-		public function setTweenModel( o:*=null ):void 
+		public function setTweenModel( o:* = null ):void 
 		{
 			if ( o is TweenModel ) 
 			{

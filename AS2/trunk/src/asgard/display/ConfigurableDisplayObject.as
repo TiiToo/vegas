@@ -19,9 +19,7 @@
   
   Contributor(s) :
   
- */
- 
- 
+*/
  
 import asgard.config.Config;
 import asgard.config.ConfigCollector;
