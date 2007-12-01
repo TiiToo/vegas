@@ -19,11 +19,7 @@
   
   Contributor(s) :
   
- */
-
-
-
-
+*/
 
 import pegas.transitions.Motion;
 import pegas.transitions.TweenEntry;
@@ -93,7 +89,7 @@ class pegas.transitions.Tween extends Motion
 			}
 			else
 			{
-				model      = [ new TweenEntry( arguments[1] , arguments[2], arguments[3], arguments[4]) ]  ;
+				insert( new TweenEntry( arguments[1] , arguments[2], arguments[3], arguments[4]) )  ;
 				duration   = ( arguments[5] > 0 ) ? arguments[5] : null ;
 				useSeconds = arguments[6] == true ;
 				a          = arguments[7] == true ; // auto start

@@ -32,22 +32,6 @@ package pegas.transitions.easing
 			if (s == undefined) s = 1.70158;
 			return c * (t/=d) * t * ( (s+1) * t -  s) + b ;
 		}
-	
-		/**
-		 * The <code>easeOut()</code> method starts the motion by moving towards the target, overshooting it slightly, 
-		 * and then reversing direction back toward the target.
-		 * @param t Specifies the current time, between 0 and duration inclusive.
-		 * @param b Specifies the initial value of the animation property.
-		 * @param c Specifies the total change in the animation property.
-		 * @param d Specifies the duration of the motion.
-		 * @param s Specifies the amount of overshoot, where the higher the value, the greater the overshoot.
-		 * @return The value of the interpolated property at the specified time.
-		 */
-		public static function easeOut (t:Number, b:Number, c:Number, d:Number, s:Number=0 ):Number 
-		{
-			if (s == undefined) s = 1.70158;
-			return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
-		}
 		
 		/**
 		 * The <code>easeInOut()</code> method combines the motion of the <code>easeIn()</code> and <code>easeOut()</code> methods 
@@ -71,6 +55,22 @@ package pegas.transitions.easing
 				return c/2*(t*t*(((s*=(1.525))+1)*t - s)) + b;
 			}
 			return c/2*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2) + b;
+		}
+		
+		/**
+		 * The <code>easeOut()</code> method starts the motion by moving towards the target, overshooting it slightly, 
+		 * and then reversing direction back toward the target.
+		 * @param t Specifies the current time, between 0 and duration inclusive.
+		 * @param b Specifies the initial value of the animation property.
+		 * @param c Specifies the total change in the animation property.
+		 * @param d Specifies the duration of the motion.
+		 * @param s Specifies the amount of overshoot, where the higher the value, the greater the overshoot.
+		 * @return The value of the interpolated property at the specified time.
+		 */
+		public static function easeOut (t:Number, b:Number, c:Number, d:Number, s:Number=0 ):Number 
+		{
+			if (s == undefined) s = 1.70158;
+			return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
 		}
 		
 	}

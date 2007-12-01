@@ -176,8 +176,8 @@ class pegas.transitions.Motion extends AbstractAction
 		{
 			_fixTime() ;
 			startInterval() ;
-			return true ;
 			notifyResumed() ;
+			return true ;
 		}
 		else 
 		{

@@ -41,7 +41,7 @@ package pegas.transitions
 		 * @param b the begin value.
 		 * @param f the finish value.
 	 	 */	
-		public function TweenEntry( p:String=null , e:Function=null , b:Number=0 , f:Number=0 )
+		public function TweenEntry( p:String=null , e:Function=null , b:Number=NaN , f:Number=NaN )
 		{
 			begin  = b ;
 			easing = e ;

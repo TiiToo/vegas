@@ -123,6 +123,7 @@ package pegas.transitions
 		 */
 		public function nextFrame( e:TimerEvent ):void 
 		{ 
+			e.updateAfterEvent() ;
 			setTime( (useSeconds) ? ( (getTimer() - _startTime) / 1000 ) : (_time + 1) ) ;
 		}
 
@@ -146,8 +147,8 @@ package pegas.transitions
 			{
 				_fixTime() ;
 				startInterval() ;
-				return true ;
 				notifyResumed() ;
+				return true ;
 			}
 			else 
 			{

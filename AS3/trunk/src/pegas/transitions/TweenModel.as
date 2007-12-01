@@ -160,7 +160,7 @@ package pegas.transitions
 		public function insert( entry:TweenEntry ):Boolean 
 		{
 			var p:String = entry.prop ;
-			if ( p ) 
+			if ( p != null ) 
 			{
 				_map.put( p, entry ) ;
 				dispatchEvent( new TweenEntryEvent( getEventTypeADD() , this, entry ) ) ;
