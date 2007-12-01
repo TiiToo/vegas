@@ -41,9 +41,9 @@ package pegas.process
     	 * @param bGlobal the flag to use a global event flow or a local event flow.
     	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
     	 */
-    	function ActionProxy( scope:*, method:Function , args:Array=null , bGlobal:Boolean = false , sChannel:String = null ) ;
+    	function ActionProxy( scope:*, method:Function , args:Array=null , bGlobal:Boolean = false , sChannel:String = null )
     	{
-		    super();
+		    super( bGlobal, sChannel );
 		    this.args   = args ;
 		    this.method = method ;
 		    this.scope  = scope ;

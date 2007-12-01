@@ -23,11 +23,12 @@
 
 package pegas.process
 {
-    
-    import flash.events.TimerEvent;
-    import flash.utils.Timer;
-    
-    /**
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
+	
+	import vegas.util.Serializer;	
+
+	/**
      * This {@code IAction} object create a pause in the process.
      * <p><b>Example :</b></p>
      * {@code
@@ -53,7 +54,7 @@ package pegas.process
     	 * @param bGlobal the flag to use a global event flow or a local event flow.
     	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 		 */
-		public function Pause( duration:Number = 0 , seconds:Boolean = false , bGlobal:Boolean = false , sChannel:String = null )
+		public function Pause( duration:uint = 0 , seconds:Boolean = false , bGlobal:Boolean = false , sChannel:String = null )
 		{
 			super(bGlobal, sChannel) ;
 			_setDuration( duration ) ;
@@ -76,7 +77,7 @@ package pegas.process
     	 * (read-write) Returns the duration of the process.
     	 * @return the duration of the process.
     	 */
-    	public function get duration():Number
+    	public function get duration():uint
     	{
 		    return ( isNaN(_duration) && !isFinite(_duration) ) ? 1 : _duration ;
 	    }
@@ -84,7 +85,7 @@ package pegas.process
 	    /**
     	 * (read-write) Sets the duration of the process.
 	     */
-	    public function set duration( n:Number ):void 
+	    public function set duration( n:uint ):void 
 	    {
     		_duration = (isNaN(n) && n < 0 && !isFinite(n) ) ? 0 : n ;
     		_timer.delay = delay ;	
@@ -152,6 +153,15 @@ package pegas.process
 		    }
 	    }
 	    
+		/**
+		 * Returns a Eden representation of the object.
+		 * @return a string representation the source code of the object.
+		 */
+		public override function toSource(...arguments:Array):String 
+		{
+			return Serializer.getSourceOf( this , [ delay , useSeconds ] ) ;
+		}
+	    
 	   	/**
     	 * Returns the string representation of this instance.
     	 * @return the string representation of this instance.
@@ -161,7 +171,7 @@ package pegas.process
     		return "[Pause duration:" + duration + (useSeconds ? "s" : "ms") + "]" ;
     	}
 
-	    private var _duration:Number = 0;
+	    private var _duration:uint = 0;
 	    
 	    private var _timer:Timer ;
 
@@ -199,7 +209,7 @@ package pegas.process
 	    {
     		_useSeconds = b ;
     	}
-
 	}
-
 }
+
+import vegas.util.Serializer;

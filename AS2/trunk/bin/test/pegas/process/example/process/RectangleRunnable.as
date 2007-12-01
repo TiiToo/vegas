@@ -51,7 +51,7 @@ class example.process.RectangleRunnable extends MovieClip implements IRunnable
 	
 	public function run():Void 
 	{
-		_tw.tweenProvider = 
+		_tw.model = 
 		[
 			new TweenEntry("_x", Bounce.easeOut, _x, Math.random()*Stage.width ) ,
 			new TweenEntry("_y", Back.easeOut, _y, Math.random()*Stage.height) ,

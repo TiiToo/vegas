@@ -161,8 +161,11 @@ package pegas.process
 			}
 			else 
 			{
-			    _cur.removeEventListener( ActionEvent.FINISH, run ) ;
-			    _cur = null ;
+				if ( _cur != null )
+				{
+					_cur.removeEventListener( ActionEvent.FINISH, run ) ;
+			    	_cur = null ;
+				}
 				if ( running == true ) 
 				{
 					setRunning(false) ;

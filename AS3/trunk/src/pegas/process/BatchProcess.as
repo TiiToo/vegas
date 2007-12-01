@@ -29,6 +29,50 @@ package pegas.process
 
 	/**
      * This {@code IAction} object register {@code IAction} objects in a batch process.
+     * <p><b>Example :</b></p>
+     * {@code
+     * import pegas.events.ActionEvent ;
+     * import pegas.process.BatchProcess ;
+     * import pegas.process.Pause ;
+     * 
+     * var finish:Function = function( e:ActionEvent ):void
+     * {
+     *     trace ( e.type ) ;
+     * }
+     * 
+     * var progress:Function = function( e:ActionEvent ):void
+     * {
+     *     trace ( e.type + " : " + e.context ) ;
+     * }
+     * 
+     * var start:Function = function( e:ActionEvent ):void
+     * {
+     *     trace ( e.type ) ;
+     * }
+     * 
+     * var batch:BatchProcess = new BatchProcess() ;
+     * batch.addEventListener( ActionEvent.START    , start    ) ;
+     * batch.addEventListener( ActionEvent.FINISH   , finish   ) ;
+     * batch.addEventListener( ActionEvent.PROGRESS , progress ) ;
+     * 
+     * batch.addAction( new Pause( 2  , true ) ) ;
+     * batch.addAction( new Pause( 10 , true ) ) ;
+     * batch.addAction( new Pause( 1  , true ) ) ;
+     * batch.addAction( new Pause( 5  , true ) ) ;
+     * batch.addAction( new Pause( 7  , true ) ) ;
+     * batch.addAction( new Pause( 2  , true ) ) ;
+     * 
+     * batch.run() ;
+     * 
+     * // onStarted
+     * // onProgress : [Pause duration:1s]
+     * // onProgress : [Pause duration:2s]
+     * // onProgress : [Pause duration:2s]
+     * // onProgress : [Pause duration:5s]
+     * // onProgress : [Pause duration:7s]
+     * // onProgress : [Pause duration:10s]
+     * // onFinished
+     * }
      * @author eKameleon
      */
     public class BatchProcess extends SimpleAction
@@ -148,7 +192,7 @@ package pegas.process
 	     */
 	    public function notifyProgress( action:IAction ):void 
 	    {
-		    dispatchEvent( new ActionEvent( _sTypeProgress, this , action ) ) ;
+		    dispatchEvent( new ActionEvent( _sTypeProgress, this , null, action ) ) ;
 	    }
 
 	    /**
