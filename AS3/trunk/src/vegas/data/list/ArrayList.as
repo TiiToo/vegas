@@ -112,7 +112,7 @@ package vegas.data.list
 		 * Creates and returns a shallow copy of the object.
 	 	 * @return A new object that is a shallow copy of this instance.
 		 */		
-		override public function clone():* 
+		public override function clone():* 
 		{
 			return new ArrayList(toArray()) ;
 		}
@@ -121,7 +121,7 @@ package vegas.data.list
 		 * Returns the deep copy of the object.
 		 * @return the deep copy of the object.
 		 */
-		override public function copy():*
+		public override function copy():*
 		{
 			return new ArrayList( Copier.copy(toArray())) ;
 		}

@@ -399,7 +399,7 @@ package vegas.data.map
 		 * Returns a Eden representation of the object.
 		 * @return a string representing the source code of the object.
 		 */
-		override public function toSource(...arguments:Array):String 
+		public override function toSource(...arguments:Array):String 
 		{
 			return Serializer.getSourceOf(this, [__map]) ;
 		}
@@ -408,7 +408,7 @@ package vegas.data.map
 		 * Returns the string representation of this instance.
 		 * @return the string representation of this instance
 		 */
-		override public function toString():String 
+		public override function toString():String 
 		{
 			return (new MultiMapFormat()).formatToString(this) ;
 		}

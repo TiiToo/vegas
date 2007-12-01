@@ -62,7 +62,7 @@ package vegas.logging
 		 * Returns the shallow copy of the event.
 		 * @return the shallow copy of the LogEvent event.
 		 */
-        override public function clone():Event
+        public override function clone():Event
         {
             return new LogEvent(message, level);
         }

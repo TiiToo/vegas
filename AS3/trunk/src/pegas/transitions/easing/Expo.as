@@ -11,7 +11,11 @@
 package pegas.transitions.easing 
 {
 
-
+	/**
+	 * The Expo class defines three easing functions to implement motion with ActionScript animations.
+	 * I based my exponential functions on the number 2 raised to a multiple of 10 : p(t) = 2^10(t-1)
+	 * @author eKameleon
+	 */
 	public class Expo
 	{
 

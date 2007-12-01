@@ -88,7 +88,7 @@ package vegas.data.iterator
          * Returns the eden String representation of this object.
          * @return the eden String representation of this object.
          */
-        override public function toSource(...arguments:Array):String 
+        public override function toSource(...arguments:Array):String 
         {
             var sourceA:String = Serializer.toSource(_a) ;
             var sourceB:String = Serializer.toSource(fieldName) ;

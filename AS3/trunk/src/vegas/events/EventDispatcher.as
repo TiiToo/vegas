@@ -23,17 +23,17 @@
 
 package vegas.events
 {
+	import flash.events.EventDispatcher;
+	
+	import vegas.core.HashCode;
+	import vegas.data.map.ArrayMap;
+	import vegas.logging.ILogable;
+	import vegas.logging.ILogger;
+	import vegas.logging.Log;
+	import vegas.util.ClassUtil;
+	import vegas.util.Serializer;    
 
-    import flash.events.EventDispatcher;
-    
-    import vegas.core.HashCode;
-    import vegas.data.map.ArrayMap;
-    import vegas.logging.ILogable;
-    import vegas.logging.ILogger;
-    import vegas.util.ClassUtil;
-    import vegas.util.Serializer;
-   
-   /**
+	/**
     * Stores the listeners object an notifies them with the DOM Events level 2/3 of the W3C.
     * The EventDispatcher class implements the IEventDispatcher interface. 
     * This object allows any object to be an {@code EventTarget}.
@@ -52,6 +52,7 @@ package vegas.events
         public function EventDispatcher( target:IEventDispatcher = null )
         {
             super( target );
+            setLogger() ;
             HashCode.initialize(this) ;
             this.target = (target == null) ? this : target ;
         }
@@ -173,7 +174,7 @@ package vegas.events
          */
         public function setLogger( log:ILogger=null ):void 
         {
-            _logger = log ;
+            _logger = ( log == null ) ? Log.getLogger( ClassUtil.getPath(this) ) : log ;
         }
         
 		/**
@@ -196,7 +197,7 @@ package vegas.events
          * Returns a string representing the specified EventDispatcher object (ECMA-262).
          * @return a string representing the specified EventDispatcher object (ECMA-262).
          */
-        override public function toString():String 
+        public override function toString():String 
         {
             return "[" + ClassUtil.getName(this) + "]" ;
         }
@@ -236,8 +237,6 @@ package vegas.events
          * The internal name's property of the instance.
          */
         private var _sName:String = null ;
-
-
 
     }
     

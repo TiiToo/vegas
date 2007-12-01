@@ -78,7 +78,7 @@ package asgard.net
 		 * @return the method used to deserialize this loader.
 		 * @see JSON
 		 */
-		override public function getDeserializer():Function
+		public override function getDeserializer():Function
 		{
 			return JSON.deserialize ;	
 		}

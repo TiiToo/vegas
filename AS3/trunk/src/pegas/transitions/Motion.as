@@ -123,8 +123,7 @@ package pegas.transitions
 		 */
 		public function nextFrame( e:TimerEvent ):void 
 		{ 
-			e.updateAfterEvent() ;
-			setTime( (useSeconds) ? ( (getTimer() - _startTime) / 1000 ) : (_time + 1) ) ;
+			setTime( (useSeconds) ? ( ( getTimer() - _startTime ) / 1000 ) : ( _time + 1 ) ) ;
 		}
 
 		/**
@@ -145,7 +144,7 @@ package pegas.transitions
 		{
 			if ( _stopping == true && _time != duration) 
 			{
-				_fixTime() ;
+				fixTime() ;
 				startInterval() ;
 				notifyResumed() ;
 				return true ;
@@ -162,7 +161,7 @@ package pegas.transitions
 		public function rewind( t:Number=0 ):void 
 		{
 			_time = t > 0 ? t : 0 ;
-			_fixTime() ;
+			fixTime() ;
 			update() ;
 		}
 			
@@ -188,7 +187,7 @@ package pegas.transitions
 				if (looping) 
 				{
 					rewind (t - _duration);
-					this.update();
+					update();
 					notifyLooped() ;
 				}
 				else 
@@ -271,7 +270,7 @@ package pegas.transitions
 		public function stopInterval():void 
 		{
 			_timer.stop() ;
-			setRunning(false) ;
+			setRunning( false ) ;
 		}
 	
 		/**
@@ -283,16 +282,17 @@ package pegas.transitions
 		}
 	
 		protected var _duration:Number ;
+		protected var _time:Number ;
+		
 		private   var _fps:Number ;
 		private   var _startTime:Number ;
 		private   var _stopping:Boolean ;
-		protected var _time:Number ;
 		private   var _timer:ITimer ;
 	
 		/**
-		 * @private
+		 * @protected
 		 */
-		private function _fixTime():void 
+		protected function fixTime():void 
 		{
 			if ( useSeconds)
 			{

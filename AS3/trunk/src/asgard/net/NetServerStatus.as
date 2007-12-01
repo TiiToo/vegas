@@ -108,7 +108,7 @@ package asgard.net
 		 * Returns the Eden String representation of this object.
 		 * @return the Eden String representation of this object.
 		 */
-		override public function toSource(...arguments:Array):String 
+		public override function toSource(...arguments:Array):String 
 		{
 			return "new asgard.net.NetServerStatus(\"" + toString() + "\")" ;
 		}
@@ -117,7 +117,7 @@ package asgard.net
 		 * Returns the String representation of the object.
 		 * @return the String representation of the object.
 		 */
-		override public function toString():String
+		public override function toString():String
 		{
 			return _value ;
 		}

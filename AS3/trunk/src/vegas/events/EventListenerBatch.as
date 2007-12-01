@@ -77,7 +77,7 @@ package vegas.events
 	 	 * Returns a shallow copy of this instance.
 	 	 * @return a shallow copy of this instance.
 	 	 */	
-		override public function clone():* 
+		public override function clone():* 
 		{
 			var b:EventListenerBatch = new EventListenerBatch() ;
 			var it:Iterator = iterator() ;
@@ -92,7 +92,7 @@ package vegas.events
 	 	 * Returns a deep copy of this instance.
 	 	 * @return a deep copy of this instance.
 	 	 */	
-		override public function copy():* 
+		public override function copy():* 
 		{
 			var b:EventListenerBatch = new EventListenerBatch() ;
 			var it:Iterator = iterator() ;

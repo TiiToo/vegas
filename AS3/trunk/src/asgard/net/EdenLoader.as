@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -79,7 +79,7 @@ package asgard.net
 		 * @return the method used to deserialize this loader.
 		 * @see Eden
 		 */
-		override public function getDeserializer():Function
+		public override function getDeserializer():Function
 		{
 			return Eden.deserialize ;	
 		}

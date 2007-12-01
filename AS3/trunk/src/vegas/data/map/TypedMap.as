@@ -190,7 +190,7 @@ package vegas.data.map
 		/**
 	 	 * Sets the type of the ITypeable object.
 		 */
-		override public function setType(type:*):void 
+		public override function setType(type:*):void 
 		{
 			super.setType(type) ;
 			_map.clear() ;
@@ -209,7 +209,7 @@ package vegas.data.map
 		 * Returns a Eden representation of the object.
 		 * @return a string representing the source code of the object.
 	 	 */
-		override public function toSource(...arguments:Array):String
+		public override function toSource(...arguments:Array):String
 		{
 			return 'new ' + ClassUtil.getPath(this) + '(' + ClassUtil.getName(getType()) + ',' + _map.toSource() + ')' ;
 		}
@@ -218,7 +218,7 @@ package vegas.data.map
 		 * Returns the string representation of this instance.
 		 * @return the string representation of this instance
 		 */
-		override public function toString():String
+		public override function toString():String
 		{
 			return _map.toString() ;
 		}

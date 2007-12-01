@@ -90,7 +90,7 @@ package vegas.data.array
 		/**
 		 * Creates and returns a shallow copy of the object.
 		 */	
-        override public function clone():*
+        public override function clone():*
         {
             return new TypedArray(_type, _ar.slice()) ;
         }
@@ -98,7 +98,7 @@ package vegas.data.array
 		/**
 		 * Creates and returns a deep copy of the object.
 		 */	
-        override public function copy():*
+        public override function copy():*
         {
             return new TypedArray(_type, _ar.slice()) ;
         }

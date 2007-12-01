@@ -12,6 +12,12 @@ package pegas.transitions.easing
 {
 
 
+	/**
+	 * The Circ class defines three easing functions to implement motion with ActionScript animations.
+	 * Circular easing is based on the equation for half of a circle, which uses a square root (shown next).
+	 * p(t) = 1 - Math.sqrt( 1 - t² )
+	 * @author eKameleon
+	 */
 	public class Circ
 	{
 

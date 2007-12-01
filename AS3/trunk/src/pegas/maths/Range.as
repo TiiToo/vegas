@@ -233,7 +233,7 @@ package pegas.maths
 		 * Returns the Eden representation of the object.
 		 * @return the string representing the source code of the object.
 	 	 */
-	    override public function toSource(...arguments:Array):String 
+	    public override function toSource(...arguments:Array):String 
 	    {
 		    return "new pegas.maths.Range(" + min + "," + max + ")";
     	}
@@ -242,7 +242,7 @@ package pegas.maths
 		 * Returns the string representation of this instance.
 		 * @return the string representation of this instance.
 		 */
-		override public function toString():String 
+		public override function toString():String 
 	    {
 		    return "[Range<" + min + "," + max + ">]";
     	}

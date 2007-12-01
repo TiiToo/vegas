@@ -98,7 +98,7 @@ package asgard.net
 		 * Returns the String representation of this object.
 		 * @return the String representation of this object.
 		 */
-		override public function toString():String
+		public override function toString():String
 		{
 			var s:String = "[NetServerInfo" ;
 			if (code != null)

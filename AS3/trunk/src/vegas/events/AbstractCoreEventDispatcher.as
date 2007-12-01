@@ -180,7 +180,7 @@ package vegas.events
          * Returns the eden String representation of this object.
          * @return the eden String representation of this object.
          */
-        override public function toSource( ...arguments:Array ):String
+        public override function toSource( ...arguments:Array ):String
         {
             return "new " + ClassUtil.getPath(this) + "()" ;
         }

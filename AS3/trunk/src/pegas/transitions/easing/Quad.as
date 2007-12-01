@@ -11,7 +11,12 @@
 package pegas.transitions.easing 
 {
 
-
+	/**
+	 * The Quad class defines three easing functions to implement motion with ActionScript animations.
+	 * The word quadratic refers to the fact that the equation for this motion is based on a squared variable, in this case, 
+	 * t² : p(t) = t² 
+	 * @author eKameleon
+	 */
 	public class Quad
 	{
 

@@ -76,7 +76,7 @@ package vegas.data.sets
 		/**
 		 * Removes all of the elements from this Set (optional operation).
 		 */
-		override public function clear():void
+		public override function clear():void
 		{
 			_map.clear() ;
 		}
@@ -85,7 +85,7 @@ package vegas.data.sets
 		 * Returns a shallow copy of this Set (optional operation).
 		 * @return a shallow copy of this Set (optional operation).
 		 */
-		override public function clone():*
+		public override function clone():*
 		{
 			return new HashSet(toArray()) ;
 		}
@@ -94,7 +94,7 @@ package vegas.data.sets
 		 * Returns {@code true} if this Set contains the specified element.
 	 	 * @return {@code true} if this Set contains the specified element.
 		 */	
-		override public function contains(o:*):Boolean 
+		public override function contains(o:*):Boolean 
 		{
 			return _map.containsKey(o) ;
 	    }
@@ -103,7 +103,7 @@ package vegas.data.sets
 		 * Returns a deep copy of this Set (optional operation).
 		 * @return a deep copy of this Set (optional operation).
 		 */
-		override public function copy():*
+		public override function copy():*
 		{
 			return new HashSet( Copier.copy(toArray())) ;
 		}
@@ -111,7 +111,7 @@ package vegas.data.sets
 		/**
 		 * Adds the specified element to this set if it is not already present.
 		 */
-		override public function insert(o:*):Boolean 
+		public override function insert(o:*):Boolean 
 		{
 			return _map.put(o, PRESENT) == null ;
     	}
@@ -120,7 +120,7 @@ package vegas.data.sets
 		 * Returns true if this set contains no elements.
 		 * @return true if this set contains no elements.
 		 */
-		override public function isEmpty():Boolean 
+		public override function isEmpty():Boolean 
 		{
 			return _map.isEmpty() ;
 		}
@@ -129,7 +129,7 @@ package vegas.data.sets
 		 * Returns an iterator over the elements in this Set.
 		 * @return an iterator over the elements in this Set.
 		 */
-		override public function iterator():Iterator 
+		public override function iterator():Iterator 
 		{
 			return _map.keyIterator() ;
 		}
@@ -137,7 +137,7 @@ package vegas.data.sets
 		/**
 		 * Removes the specified element from this set if it is present.
 		 */
-    	override public function remove(o:*):* 
+    	public override function remove(o:*):* 
     	{
 			return _map.remove(o) == PRESENT ;
     	}
@@ -146,7 +146,7 @@ package vegas.data.sets
 	 	 * Returns the number of elements in this set (its cardinality).
 		 * @return the number of elements in this set (its cardinality).
 		 */
-		override public function size():uint 
+		public override function size():uint 
 		{
 			return _map.size() ;
 		}
@@ -155,7 +155,7 @@ package vegas.data.sets
 		 * Returns the array representation of all the elements of this Set.
 		 * @return the array representation of all the elements of this Set.
 		 */
-		override public function toArray():Array 
+		public override function toArray():Array 
 		{
 			return _map.getKeys() ;
 		}
@@ -164,7 +164,7 @@ package vegas.data.sets
 		 * Returns the eden String representation of this object.
 		 * @return the eden String representation the source code of the object.
 		 */
-		override public function toSource(...arguments:Array):String 
+		public override function toSource(...arguments:Array):String 
 		{
 			return Serializer.getSourceOf(this, [toArray()]) ;
 		}

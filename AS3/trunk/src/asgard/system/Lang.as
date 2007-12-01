@@ -103,7 +103,7 @@ package asgard.system
 			return LANGS.size() ;
 		}
 
-		override public function toSource(...arguments:Array):String
+		public override function toSource(...arguments:Array):String
 		{
 			return 'new Lang(' + Serializer.toSource(value) + ',' + Serializer.toSource(label) + ')' ;
 		}
@@ -112,7 +112,7 @@ package asgard.system
 		 * Returns the string representation of this instance.
 		 * @return the string representation of this instance.
 		 */
-		override public function toString():String
+		public override function toString():String
 		{
 			return value ;
 		}

@@ -11,7 +11,10 @@
 package pegas.transitions.easing 
 {
 
-
+	/**
+	 * The Strong class defines three easing functions to implement motion with ActionScript animations. 
+	 * @author eKameleon
+	 */
 	public class Strong
 	{
 

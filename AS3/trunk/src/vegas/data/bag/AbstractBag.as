@@ -331,7 +331,7 @@ package vegas.data.bag
 	 	 * Returns the Eden representation of the object.
 	 	 * @return a string representation the source code of the object.
 	 	 */
-		override public function toSource(...arguments:Array):String 
+		public override function toSource(...arguments:Array):String 
 		{
 			return Serializer.getSourceOf(this, [_map]) ;
 		}
@@ -340,7 +340,7 @@ package vegas.data.bag
 		 * Returns the string representation of this instance.
 		 * @return the string representation of this instance.
 		 */
-		override public function toString():String 
+		public override function toString():String 
 		{
 			return (new BagFormat()).formatToString(this) ;
 		}

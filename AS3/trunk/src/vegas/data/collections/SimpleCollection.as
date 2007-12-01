@@ -47,7 +47,7 @@ package vegas.data.collections
 		 * Returns a shallow copy of this collection (optional operation).
 		 * @return a shallow copy of this collection.
 		 */
-		override public function clone():*
+		public override function clone():*
 		{
 			return new SimpleCollection(toArray()) ;
 		}
@@ -72,7 +72,7 @@ package vegas.data.collections
 		 * Returns a deep copy of this collection (optional operation).
 		 * @return a deep copy of this collection.
 		 */
-		override public function copy():*
+		public override function copy():*
 		{
 			return new SimpleCollection( Copier.copy(toArray()) ) ;
 		}

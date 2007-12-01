@@ -53,7 +53,7 @@ package vegas.core.types
 		 * Returns a Eden representation of the object.
 		 * @return a string representing the source code of the object.
 		 */
-        override public function toSource(...arguments):String 
+        public override function toSource(...arguments):String 
         {
             return 'new vegas.core.types.Char("' + _ch + '")' ;    
         }
@@ -62,7 +62,7 @@ package vegas.core.types
 		 * Returns the string representation of this instance.
 		 * @return the string representation of this instance
 		 */
-        override public function toString():String
+        public override function toString():String
         {
             return _ch ;
         }  

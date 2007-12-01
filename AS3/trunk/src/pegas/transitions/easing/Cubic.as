@@ -11,7 +11,11 @@
 package pegas.transitions.easing 
 {
 
-
+	/**
+	 * The Cubic class defines three easing functions to implement motion with ActionScript animations. 
+	 * A cubic equation is based on the power of three : p(t) = t * t * t
+	 * @author eKameleon
+	 */
 	public class Cubic
 	{
 

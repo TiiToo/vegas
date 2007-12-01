@@ -43,15 +43,16 @@ package pegas.geom
         {
 			width  = 0 ;
 			height = 0 ;
-            if (arguments.length > 0)
+			var size:Number = arguments.length ;
+            if ( size > 0 )
     		{
-    			if ( ( arguments.length == 1 ) && ( arguments[0] is Dimension ) )
+    			if ( ( size == 1 ) && ( arguments[0] is Dimension ) )
     			{
     			    var d:Dimension = arguments[0] as Dimension ;
     				width  = d.width  ;
     				height = d.height ;
     			}
-    			else if ( ( arguments.length == 2 ) && (arguments[0] is Number) && (arguments[1] is Number) )
+    			else if ( ( size == 2 ) && (arguments[0] is Number) && (arguments[1] is Number) )
     			{
     				width  = arguments[0] ;
     				height = arguments[1] ;
@@ -141,10 +142,19 @@ package pegas.geom
     	}
     	
     	/**
+		 * Returns the Object representation of this object.
+	 	 * @return the Object representation of this object.
+		 */
+		public function toObject():Object 
+		{
+			return { width:width , height:height } ;
+		}
+    	
+    	/**
     	 * Returns a Eden representation of the object.
     	 * @return a string representing the source code of the object.
     	 */
-    	override public function toSource( ...arguments:Array ):String 
+    	public override function toSource( ...arguments:Array ):String 
     	{
     		return Serializer.getSourceOf(this, [width, height]) ;
     	}
@@ -153,7 +163,7 @@ package pegas.geom
     	 * Returns the string representation of this instance.
     	 * @return the string representation of this instance.
     	 */
-    	override public function toString():String 
+    	public override function toString():String 
     	{
     		return "[" + ClassUtil.getName(this) + " width:" + width + ",height:" + height + "]" ;
     	}

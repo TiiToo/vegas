@@ -141,7 +141,7 @@ package andromeda.events
 		 * Returns a shallow copy of this object.
 		 * @return a shallow copy of this object.
 		 */
-		override public function clone():Event
+		public override function clone():Event
 		{
 			return new ModelChangedEvent( eventName, data, fieldName , firstItem, index, lastItem, removedIDs, removedItems , bubbles, cancelable ) ;
 		}

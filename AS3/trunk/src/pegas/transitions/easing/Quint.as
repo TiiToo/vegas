@@ -11,7 +11,11 @@
 package pegas.transitions.easing 
 {
 
-
+	/**
+	 * The Quint class defines three easing functions to implement motion with ActionScript animations.
+	 * Quintic easing continues the upward trend, raises time to the fifth power : p(t) = t * t * t * t * t
+	 * @author eKameleon
+	 */
 	public class Quint
 	{
 

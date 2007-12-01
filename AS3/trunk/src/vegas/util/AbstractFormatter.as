@@ -98,7 +98,7 @@ package vegas.util
 		 * Returns a Eden representation of the object.
 		 * @return a string representing the source code of the object.
 		 */
-		override public function toSource(...arguments:Array):String
+		public override function toSource(...arguments:Array):String
 		{
 			return "new " + ClassUtil.getPath(this) + "(" + Serializer.toSource(pattern) + ")" ;
 		}

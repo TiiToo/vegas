@@ -46,7 +46,7 @@ package vegas.errors
 	 	 * Returns the internal LogEventLevel used in the constructor of this instance.
 	 	 * @return the internal LogEventLevel used in the constructor of this instance.
 	 	 */
-		override public function getLevel():LogEventLevel
+		public override function getLevel():LogEventLevel
 		{
 			return LogEventLevel.FATAL ;	
 		}

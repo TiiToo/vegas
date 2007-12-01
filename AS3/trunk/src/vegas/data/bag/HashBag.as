@@ -101,7 +101,7 @@ package vegas.data.bag
 		 * Returns the shallow copy of this bag.
 	 	 * @return the shallow copy of this bag.
 	 	 */
-		override public function clone():*
+		public override function clone():*
 		{
 			return new HashBag(_getMap().clone()) ;
 		}
@@ -110,7 +110,7 @@ package vegas.data.bag
 		 * Returns the deep copy of this bag.
 	 	 * @return the deep copy of this bag.
 	 	 */
-		override public function copy():*
+		public override function copy():*
 		{
 			return new HashBag( Copier.copy(_getMap()) ) ;
 		}
@@ -119,7 +119,7 @@ package vegas.data.bag
 		 * Returns the Eden representation of the object.
 	 	 * @return a string representing the source code of the object.
 	 	 */
-		override public function toSource(...arguments:Array):String 
+		public override function toSource(...arguments:Array):String 
 		{
 			return Serializer.getSourceOf(this, [_extractList()] ) ;
 		}

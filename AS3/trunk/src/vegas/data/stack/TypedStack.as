@@ -161,7 +161,7 @@ package vegas.data.stack
 	    /**
     	 * Sets the type of the ITypeable object.
     	 */
-		override public function setType(type:*):void
+		public override function setType(type:*):void
 		{
 			super.setType(type) ;
 			_stack.clear() ;
@@ -189,7 +189,7 @@ package vegas.data.stack
     	 * Returns a eden representation of the object.
     	 * @return a string representation the source code of the object.
     	 */		
-		override public function toSource(...arguments:Array):String 
+		public override function toSource(...arguments:Array):String 
 		{
 			return 'new ' + ClassUtil.getPath(this) + '(' + ClassUtil.getName(getType()) + ',' + _stack.toSource() + ')' ;
 		}
@@ -198,7 +198,7 @@ package vegas.data.stack
     	 * Returns the string representation of this instance.
     	 * @return the string representation of this instance.
     	 */
-		override public function toString():String
+		public override function toString():String
 		{
 			return _stack.toString() ;
 		}

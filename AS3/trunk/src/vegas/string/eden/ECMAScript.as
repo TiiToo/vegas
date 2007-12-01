@@ -79,7 +79,7 @@ package vegas.string.eden
     	/**
 		 * eval( ...arguments:Array ):*
 		 */
-	    override public function eval( ...arguments:Array ):*
+	    public override function eval( ...arguments:Array ):*
         {
 	        
 	        var value:* ;

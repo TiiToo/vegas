@@ -130,7 +130,7 @@ package vegas.logging.targets
     	 * @param message String containing preprocessed log message which may include time, date, category, etc. 
     	 *        based on property settings, such as <code>includeDate</code>, <code>includeCategory</code>, etc.
 	     */
-	    override public function internalLog( message:* , level:LogEventLevel):void
+	    public override function internalLog( message:* , level:LogEventLevel):void
 	    {
 	        
 	        var targetLevel:int ;

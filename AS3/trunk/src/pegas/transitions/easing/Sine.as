@@ -11,7 +11,13 @@
 package pegas.transitions.easing 
 {
 
-
+	/**
+	 * The Sine class defines three easing functions to implement motion with ActionScript animations.
+	 * A sinusoidal equation is based on a sine or cosine function. 
+	 * Either one produces a sine wave—a periodic oscillation of a specific shape. 
+	 * This is the equation on which I based the easing curve : p(t) = sin( t * Math.PI / 2 ) 
+	 * @author eKameleon
+	 */
 	public class Sine
 	{
 

@@ -1039,7 +1039,7 @@ package vegas.data.list
     	 * }
     	 * @return a string representing the source code of the object.
 	     */
-    	override public function toSource( ...arguments:Array ):String 
+    	public override function toSource( ...arguments:Array ):String 
     	{
 		    return Serializer.getSourceOf(this, [Serializer.toSource(new SimpleCollection(toArray()))]) ;
 	    }
@@ -1048,7 +1048,7 @@ package vegas.data.list
          * Returns the String representation of this object
          * @return the String representation of this object
          */
-        override public function toString():String
+        public override function toString():String
         {
             return (new CollectionFormat()).formatToString(this) ;
         }

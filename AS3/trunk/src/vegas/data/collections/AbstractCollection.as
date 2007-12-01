@@ -194,7 +194,7 @@ package vegas.data.collections
 		 * Returns the eden representation of the object.
 		 * @return a string representing the source code of the object.
 		 */
-		override public function toSource(...arguments:Array):String
+		public override function toSource(...arguments:Array):String
 		{
 			return Serializer.getSourceOf(this, [toArray()]) ;
 		}
@@ -203,7 +203,7 @@ package vegas.data.collections
 		 * Returns the string representation of this instance.
 		 * @return the string representation of this instance.
 		 */
-		override public function toString():String
+		public override function toString():String
 		{
 			return (new CollectionFormat()).formatToString(this) ;
 		}

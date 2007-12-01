@@ -11,7 +11,11 @@
 package pegas.transitions.easing 
 {
 
-
+	/**
+	 * The Quart class defines three easing functions to implement motion with ActionScript animations. 
+	 * A quartic equation is based on the power of four : p(t) = t * t * t * t
+	 * @author eKameleon
+	 */
 	public class Quart
 	{
 

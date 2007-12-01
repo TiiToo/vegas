@@ -74,7 +74,7 @@ package asgard.events
          * Returns a shallow copy of this instance.
          * @return a shallow copy of this instance.
          */
-		override public function clone():Event
+		public override function clone():Event
 		{
 			return new RecordSetEvent(eventName, getRecordSet(), data, fieldName
 				, firstItem, index, lastItem, removedIDs, removedItems

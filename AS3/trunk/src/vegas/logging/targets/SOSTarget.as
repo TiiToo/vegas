@@ -264,7 +264,7 @@ package vegas.logging.targets
     		sendMessage("!SOS<identify/>") ;
 	    }
         
-        override public function internalLog( message:* , level:LogEventLevel ):void
+        public override function internalLog( message:* , level:LogEventLevel ):void
 	    {
         	sendLevelMessage( level, message ) ;
 	    }

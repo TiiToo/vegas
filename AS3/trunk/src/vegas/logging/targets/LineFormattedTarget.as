@@ -92,7 +92,7 @@ package vegas.logging.targets
          *  format for transmission, storage, or display.
          *  This method will be called only if the event's level is in range of the target's level.
          */		
-		override public function logEvent(event:LogEvent):void
+		public override function logEvent(event:LogEvent):void
         {
            
             var message:* = event.message ;

@@ -92,7 +92,7 @@ package vegas.logging
 		/**
 		 * Returns the Eden string representation of the object.
 		 */	
-		override public function toSource( ...arguments:Array ):String 
+		public override function toSource( ...arguments:Array ):String 
 	    { 
 		    return 'new vegas.logging.LogEventLevel("' + this._name + '",' + this._value + ')' ;
     	}
@@ -100,7 +100,7 @@ package vegas.logging
 		/**
 		 * Returns the string representation of the object.
 		 */	
-	    override public function toString():String 
+	    public override function toString():String 
 	    { 
 		    return _name ; 
     	}

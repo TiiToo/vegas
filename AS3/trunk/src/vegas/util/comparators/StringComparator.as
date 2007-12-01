@@ -138,7 +138,7 @@ package vegas.util.comparators
 		 * Returns a Eden representation of the object.
 		 * @return a string representation the source code of the object.
 		 */
-		override public function toSource(...arguments:Array):String 
+		public override function toSource(...arguments:Array):String 
 		{
 			return "new vegas.util.comparators.StringComparator(" + ( (ignoreCase == true) ? "true" : "false") + ")" ;
 		}
