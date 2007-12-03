@@ -163,7 +163,7 @@ class lunas.display.abstract.AbstractButtonIconDisplay extends AbstractButtonDis
 	{
 		_sIcon = str ; 
 		viewIconChanged() ;
-		dispatchEvent(new ButtonEvent( ButtonEvent.ICON_CHANGE )) ;
+		dispatchEvent( new ButtonEvent( ButtonEvent.ICON_CHANGE , this ) ) ;
 	}
 
 	/**	

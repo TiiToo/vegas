@@ -30,7 +30,7 @@ import vegas.core.CoreObject;
  * This class provides a skeletal implementation of the {@code IBuilder} interface, to minimize the effort required to implement this interface.
  * @author eKameleon
  */
-class lunas.core.AbstractBuilder extends CoreObject implements IBuilder 
+class lunas.core.AbstractBuilder extends CoreObject implements IBuilder
 {
 	
 	/**

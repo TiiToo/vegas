@@ -19,14 +19,13 @@
   
   Contributor(s) :
   
-*/
+ */
+import flash.display.BitmapData;
+import flash.geom.Matrix;
 
 import asgard.display.ConfigurableDisplayObject;
 import asgard.display.GradientType;
 import asgard.display.SpreadMethod;
-
-import flash.display.BitmapData;
-import flash.geom.Matrix;
 
 import lunas.core.Iconifiable;
 
@@ -86,11 +85,17 @@ class lunas.display.ReflectDisplay extends ConfigurableDisplayObject implements 
 	 */
 	public var alpha:Number = 90 ;
 
+	/**
+	 * Determinates the distance value of the reflect effect.
+	 */
 	public function get distance():Number 
 	{
 		return _distance ;	
 	}
-
+	
+	/**
+	 * @private
+	 */
 	public function set distance( n:Number ):Void 
 	{
 		_distance = n ;	
@@ -166,6 +171,15 @@ class lunas.display.ReflectDisplay extends ConfigurableDisplayObject implements 
 			return null ;
 		}
 	}
+	
+	/**
+	 * Sets the bounds of the reflect effect.
+	 */
+	public function getBounds():Dimension
+	{
+		return _dimension ;
+	}
+	
 	
 	/**
 	 * (read-write) Returns a string that specifies the linkage identifier of a symbol in the library to be used as an icon for a button instance.
@@ -268,8 +282,8 @@ class lunas.display.ReflectDisplay extends ConfigurableDisplayObject implements 
 	 */
 	public function setBounds(w:Number,h:Number):Void
 	{
-		_dimension.width = w ;
-		_dimension.height = h;
+		_dimension.width  = w ;
+		_dimension.height = h ;
 		draw( _mcIcon );
 	}
 	
