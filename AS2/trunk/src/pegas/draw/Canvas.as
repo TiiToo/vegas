@@ -120,13 +120,6 @@ class pegas.draw.Canvas extends AbstractPen
 		return _data ;
 	}
 
-	public function removeTransform():Void 
-	{
-		this.C = MovieClip.prototype.curveTo ;
-		this.L = MovieClip.prototype.lineTo ;
-		this.M = MovieClip.prototype.moveTo ;
-	}
-
 	/**
 	 * Draws the shape with the canvas pen.
 	 */
@@ -193,6 +186,13 @@ class pegas.draw.Canvas extends AbstractPen
 				draw[c[0]].apply(t, c[1]) ;
 			}
 		}
+	}
+	
+	public function removeTransform():Void 
+	{
+		this.C = MovieClip.prototype.curveTo ;
+		this.L = MovieClip.prototype.lineTo ;
+		this.M = MovieClip.prototype.moveTo ;
 	}
 
 	 /**

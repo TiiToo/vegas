@@ -20,31 +20,26 @@
   Contributor(s) :
   
 */
-
 package pegas.draw 
 {
-	import flash.display.Graphics;
-	
-	import pegas.draw.IShape;	
 
 	/**
-	 * This interface defined the IPen implementation to creates shaped in Shape, Sprite and MovieClip objects.
+ 	 * This static class register all types used to draw an Arc with the ArcPen tool.
 	 * @author eKameleon
 	 */
-	public interface IPen extends IShape 
+	public class ArcType
 	{
 
 		/**
-		 * Determinates the align value of the pen.
+		 * The chord type.
 		 */
-		function get align():uint ;
-		function set align( align:uint ):void ; 
-
-		/**
-		 * Specifies the Graphics object belonging to this Shape object, where vector drawing commands can occur.
-		 */
-		function get graphics():Graphics ;
-		function set graphics( graphic:Graphics ):void ;
+		public static const CHORD:String = "CHORD" ;
 		
+		/**
+		 * The pie type.
+		 */
+		public static const PIE:String = "PIE" ;
+
 	}
+	
 }

@@ -45,6 +45,23 @@ package pegas.draw
 			this.graphics = graphic ;
 		}
 
+
+		/**
+		 * (read-write) Determinates the align value of the pen.
+		 */
+		public function get align():uint
+		{
+			return _align ;
+		}
+		
+		/**
+	 	 * @private
+	 	 */
+		public function set align( align:uint ):void 
+		{
+			_align = Align.validate( align ) ? align : Align.TOP_LEFT ;
+		}
+	
 		/**
 		 * Specifies the Graphics object belonging to this Shape object, where vector drawing commands can occur.
 		 */
@@ -64,7 +81,12 @@ package pegas.draw
 			}
 			_graphics = graphic ;
 		}
-		
+
+		/**
+		 * Indicates if the endFill() method is invoqued at the end of the draw method.
+		 */
+		public var isEndFill:Boolean = true ;
+
 	    /**
          * Overrides the behavior of an object property that can be called as a function. 
          * When a method of the object is invoked, this method is called. 
@@ -181,6 +203,11 @@ package pegas.draw
 		{
 			return "[" + ClassUtil.getName(this) + "]" ;
 		}
+
+		/**
+		 * @private
+		 */
+		private var _align:uint	= Align.TOP_LEFT ;
 
 		/**
 		 * @private

@@ -211,5 +211,3 @@ package pegas.process
     	}
 	}
 }
-
-import vegas.util.Serializer;

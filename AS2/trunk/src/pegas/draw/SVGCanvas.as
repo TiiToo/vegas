@@ -19,7 +19,9 @@ the Initial Developer. All Rights Reserved.
   
 Contributor(s) :
   
- */import pegas.colors.ColorSVG;
+*/
+ 
+import pegas.colors.ColorSVG;
 import pegas.draw.Canvas;
 
 import vegas.util.StringUtil;
