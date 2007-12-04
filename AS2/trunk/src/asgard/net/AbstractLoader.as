@@ -299,6 +299,10 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 	public function onLoadInit() : Void 
 	{
 		_stopInitTimer() ;
+		if (_tLoadProgress.running) 
+		{
+			_stopLoadProgress() ;
+		}
 		_setRunning(false) ;
 		notifyEvent( getEventTypeINIT() );
 	}
