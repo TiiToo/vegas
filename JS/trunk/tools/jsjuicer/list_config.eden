@@ -1,0 +1,406 @@
+{
+
+	name      : "Loisirs 2000" ,
+	namespace : "http://www.ccmedia.fr/" ,
+	version   : "1.0.0.0" ,
+	contact   : "mailto:info@lr2000.com" ,
+	copyright : "ccmedia" ,
+	
+	// Debug
+	
+	verbose   : true ,
+
+	// User Interface
+
+	default_lang : "fr" ,
+	layoutWidth  : 240  ,
+	layoutHeight : 780  ,
+	style        : "style/l2K.css" ,
+	
+	///// Services and server
+	
+	fmsUrl       : "rtmp://{0}/loisir2K" ,
+	httphost     : "www.lr2000.com" ,
+	fmsGuestKey  : "key_guest"  ,
+	rtmphost     : "localhost" ,
+	fmsKey       : "key_list"  ,
+	
+	aspUrl       : "http://{0}/asp/{1}.asp" ,
+	
+	///// call link of the users in the list
+	
+	callExternalInterface : true                         , // indicates if use ExternalInterface or getURL command
+	callMethodName        : "getPage"                    , // command name if the ExternalInterface is used.
+	callURL               : "javascript:getPage('{0}');" , // url of the javascript command if the getURL method is used.
+	callTarget            : "_blank"                     , // target of the url if the getURL method is used.
+
+	///// call link if the list user is a guest
+	
+	callGuestExternalInterface : true                           , // indicates if use ExternalInterface or getURL command
+	callGuestMethodName        : "getPageReLogin"               , // command name if the ExternalInterface is used.
+	callGuestURL               : "javascript:getPageReLogin();" , // url of the javascript command if the getURL method is used.
+	callGuestTarget            : "_blank"                       , // target of the url if the getURL method is used.
+	
+	/////
+	
+	popupExternalInterface         : true ,
+	popupMethodName                : "contactDialogue" ,
+	popupUrl                       : "javascript:contactDialogue({0},'{1}',{2},'{3}');" ,
+	popupTarget                    : "_blank" ,
+
+	popupMinitelExternalInterface : true ,
+	popupMinitelMethodName        : "contactDialogueMinitel" ,
+	popupMinitelUrl               : "javascript:contactDialogueMinitel('{0}',{1});" ,
+	popupMinitelTarget            : "_blank" ,
+
+
+	// services 
+	
+	is_connected_expert :
+	{
+		delay   : 2 ,
+		enabled : false
+	}
+	,
+	list_expert :
+	{
+		enabled : false
+	}
+	,
+	phone_expert :
+	{
+		delay   : 15   , // indicates the delay in minutes between 2 refresh.
+		enabled : true
+	}
+	,
+	profil_expert :
+	{
+		delay   : 1 , // indicates the delay in minutes between 2 refresh.
+		enabled : true 	
+	}
+	,
+	
+	///// you can remove the tests in the server of production
+	
+	test : false ,
+	
+	testIsConnected : "?isTest=true" , // use this boolean in the GetIsConnected controller
+	testGetProfil   : "" , // use this boolean to send informations in the 'get' variables of the service. 
+	testConnect     : "" , // the default test connect suffix to launch the getList service.
+	
+	init_test :
+	[
+		{ label:"ADMIN 198"  , url:"?id=198" , separator:true } ,
+		{ label:"ADMIN 199" , url:"?id=199"  , separator:false } ,
+		{ label:"USER 200"  , url:"?id=200"  , separator:true  } ,
+		{ label:"USER 201"  , url:"?id=201"  , separator:false } ,
+		{ label:"USER 202"  , url:"?id=202"  , separator:false } ,
+		{ label:"USER 203"  , url:"?id=203"  , separator:false } ,
+		{ label:"USER 204"  , url:"?id=204"  , separator:false }
+	] ,
+
+	////
+	
+	localePath   : "locale/"  ,
+	libraryPath  : "library/" ,
+
+	sound :  
+	{
+		url    : "sound/sound.swf" ,
+		sounds : [  "sound_01" , "sound_02" , "message" ]
+	}
+	,
+	soundMessage : "message" 
+	,
+	context_menu : 
+	[
+		{ 
+			label  : "CCMedia" , 
+			url    : "http://www.ccmedia.fr/" , 
+			target : "_blank" 
+		}
+	] 
+	,
+	security     :  [ "http://localhost/" ]
+	,
+	sort :
+	{
+		current : { fieldName:"pseudo" , isDescending:false }
+		, 
+		fields  : 
+		[
+			{ fieldName:"pseudo" , filter:17 } ,  // ArrayFilter.NUMERIC | ArrayFilter.CASEINSENSITIVE
+			{ fieldName:"zip"    , filter:16 }    // ArrayFilter.NUMERIC 
+		]
+	}
+	,
+	
+	// Help
+	
+	help_model :
+	{
+		delay      : 20000  , // indicates the delay in minutes between 2 refresh.
+		enabled    : true  , // active or not the timer of the model.
+		useMinutes : false   // indicates if the model timer use milliseconds or minutes to relaunch the next value.
+	}
+	
+	,
+	
+	// Displays
+
+	application_loader : 
+	{
+		barStyle         : new ccmedia.loisir2K.application.components.bar.ProgressbarStyle({
+			backgroundAlpha        : 100      ,
+	        backgroundBorderAlpha  : 0        ,
+	        backgroundBorderColor  : 0xC19691 ,
+	        backgroundColor        : 0xC19691 ,
+	        backgroundThickness    : 2        ,
+	        barAlpha               : 100      ,
+	        barBorderAlpha         : null     ,
+	        barBorderColor         : null     ,
+	        barColor               : 0xC1A787 ,
+	        barThickness           : null     ,
+	        border                 : 1        ,
+	        shadow                 : new flash.filters.DropShadowFilter(3,45,0x000000,80,12,12,1,3,false,false,false)
+		}) ,
+		corner               : new pegas.draw.Corner(true,false,true,false) ,
+		fieldFormat          : new TextFormat("verdana",11,0xFFFFFF,false) ,
+		shadow               : new flash.filters.DropShadowFilter(2,45,0x000000,0.8,6,6,1,3,true,false,false) ,
+		themeAlpha           : 30       ,
+		themeBorderAlpha     : 80       ,
+		themeBorderColor     : 0x000000 ,
+		themeBorderThickness : 2        ,
+		themeColor           : 0x4F3720 ,
+		themeRound           : 6        
+	}
+	,
+	list :
+	{
+		barStyle : new ccmedia.loisir2K.application.components.bar.ScrollbarStyle({
+
+			// arrowButtonBevel : new flash.filters.BevelFilter(0,45,0xFFFFFF,100,0x000000,100,3,3,1,3,"inner") ,
+			arrowButtonStyle : new ccmedia.loisir2K.application.components.buttons.SimpleLightButtonStyle({
+				easingOverBegin          : 155  ,
+				easingOverDuration       : 1 ,
+				easingOverFinish         : 0 ,
+				easingOverID             : "back_ease_out" ,
+				easingOverProperty       : "brightness" ,
+				easingOverUseSeconds     : true ,
+				easingSelectedBegin      : 155 ,
+				easingSelectedDuration   : 1 ,
+				easingSelectedFinish     : 0 ,
+				easingSelectedID         : "elastic_ease_out" ,
+				easingSelectedProperty   : "brightness" ,
+				easingSelectedUseSeconds : true ,
+				useEasingOver            : true  ,
+				useEasingSelected        : true  
+			}) ,
+			barAlpha         : 100  ,
+			barBitmap        : "scrollbar_bmp" ,
+			barBorderAlpha   : 0 ,
+			barBorderColor   : 0x8B3830 ,
+			barColor         : 0x8B3830 ,
+			barDropShadow    : new flash.filters.DropShadowFilter(1,45,0x000000,40,4,8,1,3,true) ,
+			barThickness     : 2 ,
+			padding          : 2 ,
+			shadow           : new flash.filters.DropShadowFilter(1,45,0x000000,40,4,8,1,3) ,
+			thumbAlpha       : 100 ,
+			// thumbBevel       : new flash.filters.BevelFilter(0.5,45,0xFFFFFF,60,0x000000,60,3,3,1,3,"inner") ,
+			thumbBorderAlpha : null ,
+			thumbBorderColor : null ,
+			thumbColor       : 0x310f06 ,
+			thumbDropShadow  : null ,
+			thumbSize        : 25 ,
+			thumbThickness   : null 
+		
+		}) ,
+		callIcon             : "call_icon"     ,
+		callPhotoIcon        : "call_photo_icon" ,
+		cameraIcon           : "camera_icon"   ,
+		cellAlpha            : 80 ,
+		cellAdminAlpha       : 80 ,
+		cellAdminColor       : 0x501405 ,
+		cellAdminMyAlpha     : 80 ,
+		cellAdminMyColor     : 0x87480A ,
+		cellColors           : [ 0x412319 , 0x320D05 ] ,
+		cellMyAlpha          : 80 ,
+		cellMyColor          : 0x655723 ,
+		cellMyRollOverColor  : 0x594415 ,
+		cellRollOverColors   : [ 0x3C2B2B , 0x3C2B2B ] ,
+		cellSelectedColor    : 0x000000 ,
+		connectorX           : 6 ,
+		connectorY           : 178 ,
+		floodPolicy          : true , // enable/disable the flooding timer.
+		floodDelay           : 8000 , // flooding delay between two doubleclick
+		h                    : 660 ,
+		listCount            : 19 , // numbers of childs visible in the list
+		listDirection        : 1 , // 1=horizontal & 0=vertical ?
+		listSpace            : 1 ,
+		listX                : 0 ,
+		listY                : 200 ,
+		rowWidth             : 200 ,
+		scrollEasingID       : "expo_ease_out" ,
+		scrollEasingDuration : 32 , // in frame s-1
+		space                : 2 ,
+		styles               : 
+		{
+
+			defaultStyleName          : "cell_button_over_label" ,
+			defaultSelectedStyleName  : "cell_button_selected_label" ,
+			defaultUpStyleName        : "cell_button_label" 
+
+		} ,
+		themeAlpha         : 0 ,
+		themeColor         : 0 ,
+		themeRound         : 9 ,
+		w                  : 200 
+	}
+	,
+	list_application :
+	{
+		connectorX           : 6 ,
+		connectorY           : 180 ,
+		h                    : 660 ,
+		styles               : 
+		{
+			defaultStyleName          : "cell_button_over_label" ,
+			defaultSelectedStyleName  : "cell_button_selected_label" ,
+			defaultUpStyleName        : "cell_button_label" 
+		} ,
+		themeAlpha         : 100 ,
+		themeColor         : 0x310F06 ,
+		themeRound         : 9    ,
+		w                  : 200  ,
+		x                  : 20 ,
+		y                  : 20 
+	}
+	,
+	list_footer :
+	{
+		easingDuration     : 1.5                ,
+		easingID           : "back_ease_out" , // "elastic_ease_out", "back_ease_out", "bounce_ease_out", "expo_ease_out"
+		easingProperty     : "_y"     , // "_x" or "_y" 
+		easingUseSeconds   : true     ,
+		fieldArea          : new flash.geom.Rectangle(0, 10, 200, 60) , 
+		fieldBorder        : null     ,
+		fieldBorderColor   : null     ,
+		fieldEmbedFonts    : null     ,
+		fieldHtml          : true     ,
+		fieldMultiline     : true     ,
+		fieldSelectable    : false    ,
+		fieldWordWrap      : true     ,
+		h                  : 75       ,
+		scrollRect         : new flash.geom.Rectangle(0, 0, 200, 66) , 
+		themeAlpha         : 10       ,
+		themeColor         : 0x000000 ,
+		themeRound         : 9        ,
+		useEasing          : true     ,		
+		w                  : 200      
+	}
+	,
+	list_header_menu :
+	{
+		contactButtonX         : 8  ,
+		contactButtonY         : 2  ,
+		h                      : 40 ,
+		helpButtonX            : 8  ,
+		helpButtonY            : 16 ,
+		helpExternalInterface  : true ,
+		helpMethodName         : "getPage" ,
+		helpValue              : "help_new.asp" ,
+		helpUrl                : "javascript:getPage('help_new.asp');" ,
+		helpTarget             : "_blank" ,
+		soundClick             : null ,
+		soundOver              : null ,
+		styleButton            : new ccmedia.loisir2K.application.components.buttons.SimpleLightButtonStyle({
+
+			antiAliasType            : null ,
+			autoSize                 : "left" ,
+			gridFitType              : null ,
+			easingOverBegin          : 155  ,
+			easingOverDuration       : 1 ,
+			easingOverFinish         : 0 ,
+			easingOverID             : "back_ease_out" ,
+			easingOverProperty       : "brightness" ,
+			easingOverUseSeconds     : true ,
+			easingSelectedBegin      : 155 ,
+			easingSelectedDuration   : 1 ,
+			easingSelectedFinish     : 0 ,
+			easingSelectedID         : "elastic_ease_out" ,
+			easingSelectedProperty   : "brightness" ,
+			easingSelectedUseSeconds : true ,
+			embedFonts               : false ,
+			html                     : true ,
+			labelStyleName           : "simple_light_button_label" ,
+			labelDisabledStyleName   : "simple_light_button_disabled_label"  ,
+			labelOverStyleName       : "simple_light_button_over_label"      ,
+			labelSelectedStyleName   : "simple_light_button_selected_label"  ,
+			selectable               : false ,
+			useEasingOver            : true  ,
+			useEasingSelected        : true  
+		
+		}) ,
+		themeAlpha         : 100 ,
+		themeColor         : 0x310F06 ,
+		themeRound         : 9 ,
+		w                  : 200  
+	}
+	,
+	list_header_sort :
+	{
+		pseudoWidth : 70  , // The width of the pseudo button.
+		x           : 30  , // The x position of the header in the list display.
+		y           : 175 , // The y position of the header in the list display.
+		zipWidth    : 60   // The width of the zip button.
+	}
+	,
+	list_info :
+	{
+		fieldArea        : new flash.geom.Rectangle( 8 , 7.5 , 204 , 120 ) ,
+		fieldBorder      : null  ,
+		fieldBorderColor : null  ,
+		fieldEmbedFonts  : false ,
+		fieldHtml        : true  ,
+		fieldMultiline   : true  ,
+		fieldSelectable  : false ,
+		fieldStyleName   : "list_info_label" ,
+		fieldWordWrap    : true  ,
+		h                : 135   ,
+		scale9Grid       : new flash.geom.Rectangle( 8 , 7.5 , 180 , 120 ) ,
+		themeAlpha       : 100      ,
+		themeColor       : 0x000000 ,
+		w                : 220   ,   
+		y                : 35    
+	}
+	,
+	list_phone :
+	{
+		defaultLabel    : "" ,
+		fieldEmbedFonts : false  ,
+		fieldHtml       : true   ,
+		fieldMultiline  : true   ,
+		fieldSelectable : false  ,
+		fieldWordWrap   : true   ,
+		h               : 75       ,
+		padding         : 0        ,
+		themeAlpha      : 100      ,
+		themeColor      : 0x310F06 ,
+		themeRound      : 9        ,
+		w               : 200
+	}
+	,
+	panel_screen :
+	{
+		themeAlpha     : 75  ,
+		themeColor     : 0x542C2C
+	}
+	,
+	protect_screen : 
+	{ 
+		themeAlpha : 0 , 
+		themeColor : 0 
+	}
+
+
+}
