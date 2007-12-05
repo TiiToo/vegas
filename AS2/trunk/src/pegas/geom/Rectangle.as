@@ -615,7 +615,7 @@ class pegas.geom.Rectangle extends CoreObject implements ICloneable, IComparator
 	 */
 	public function toSource( indent:Number, indentor:String):String 
 	{
-		return "new Rectangle(" + x + "," + y + "," + width + "," + height + ")" ;
+		return "new pegas.geom.Rectangle(" + x + "," + y + "," + width + "," + height + ")" ;
 	}
 
 	/**

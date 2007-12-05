@@ -106,7 +106,7 @@ package pegas.geom
     	 */
     	public function equals( o:* ):Boolean
     	{
-    		if (  o is Dimension )
+    		if ( o is Dimension )
     		{
     			return (o as Dimension).width == width && (o as Dimension).height ;
     		}
