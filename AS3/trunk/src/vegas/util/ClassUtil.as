@@ -23,13 +23,11 @@
 
 package vegas.util
 {
+	import flash.utils.getQualifiedClassName;
+	import flash.utils.getQualifiedSuperclassName;
 	
-	import flash.utils.getQualifiedClassName ;
-	import flash.utils.getQualifiedSuperclassName ;
-	
-	import vegas.core.HashCode ;
-	import vegas.core.IHashable;
-	
+	import vegas.core.IHashable;	
+
 	/**
      * The {@code ClassUtil} utility class is an all-static class with methods for working with function the Class in AS3.
      * @author eKameleon

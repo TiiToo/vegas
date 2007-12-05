@@ -27,8 +27,8 @@ package pegas.geom
 	
 	import vegas.core.CoreObject;
 	import vegas.util.ClassUtil;
-	import vegas.util.Serializer;
-	
+	import vegas.util.Serializer;	
+
 	/**
      * The Dimension class encapsulates the width and height of a componentin a single object.
      * @author eKameleon
@@ -106,7 +106,14 @@ package pegas.geom
     	 */
     	public function equals( o:* ):Boolean
     	{
-    		return o is Dimension && (o as Dimension).width == width && (o as Dimension).height ; 
+    		if (  o is Dimension )
+    		{
+    			return (o as Dimension).width == width && (o as Dimension).height ;
+    		}
+    		else
+    		{
+    			return false ;
+    		}	 
     	}
     	
     	/**

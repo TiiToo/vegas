@@ -19,9 +19,11 @@
   
   Contributor(s) :
   
- */import pegas.geom.Line;
-import pegas.geom.Point;
+*/
+ 
+import pegas.geom.Line;
 import pegas.geom.Vector2;
+import pegas.util.Vector2Util;
 
 /**
  * Static tool class to creates and manipulates Bezier curves.
@@ -52,15 +54,15 @@ class pegas.geom.Bezier
 		var pts:Array = [];
 		var nbp:Number = points.length ;
 		var i:Number=0 ;
-		var lastpoint:Point = null ;
+		var lastpoint:Vector2 = null ;
 		
-		var _p0:Point ;
-		var _p1:Point ;
-		var _p2:Point ;
+		var _p0:Vector2 ;
+		var _p1:Vector2 ;
+		var _p2:Vector2 ;
 		var t:Number ;
 		
 		var c1,c2, c3, nx, ny, u1:Number ;
-		var npoint:Point ;
+		var npoint:Vector2 ;
 		
 		while (i<nbp)
 		{
@@ -74,9 +76,9 @@ class pegas.geom.Bezier
 			while (t<=1)
 			{
 
-				var p0:Point = new Point((_p0.x+_p1.x)/2,(_p0.y+_p1.y)/2);
-				var p1:Point = new Point(_p1.x,_p1.y);
-				var p2:Point = new Point((_p2.x+_p1.x)/2,(_p2.y+_p1.y)/2);
+				var p0:Vector2 = new Vector2((_p0.x+_p1.x)/2,(_p0.y+_p1.y)/2);
+				var p1:Vector2 = new Vector2(_p1.x,_p1.y);
+				var p2:Vector2 = new Vector2((_p2.x+_p1.x)/2,(_p2.y+_p1.y)/2);
 				
 				u1 = 1 - t ;
 				c1 = u1 * u1 ;
@@ -86,11 +88,11 @@ class pegas.geom.Bezier
 				nx = c1 * p0.x + c2 * p1.x + c3 * p2.x ;
 				ny = c1 * p0.y + c2 * p1.y + c3 * p2.y ;
 				
-				npoint =new Point(nx,ny);
+				npoint =new Vector2(nx,ny);
 			
 				if (lastpoint!=null) 
 				{
-					if ( Point.distance(lastpoint,npoint) > precision )
+					if ( Vector2Util.getDistance(lastpoint,npoint) > precision )
 					{
 						lastpoint=npoint;
 						pts.push(npoint);
@@ -114,7 +116,7 @@ class pegas.geom.Bezier
 	 * Returns the baryCenter of a collection of points.
 	 * @return the baryCenter of a collection of points.
 	 */
-	public static function getBaryCenter(pts:Array):Point 
+	public static function getBaryCenter(pts:Array):Vector2 
 	{
 		var nbp:Number = pts.length ;
 		var x:Number=0;
@@ -124,7 +126,7 @@ class pegas.geom.Bezier
 			x += pts[nbp].x ;
 			y += pts[nbp].y ;
 		}
-		return new Point(x/pts.length,y/pts.length) ;
+		return new Vector2(x/pts.length,y/pts.length) ;
 	}
 
 	public static function split(p0:Vector2, p1:Vector2, p2:Vector2, p3:Vector2):Object

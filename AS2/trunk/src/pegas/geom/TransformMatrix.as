@@ -256,7 +256,7 @@ class pegas.geom.TransformMatrix extends CoreObject implements ICloneable, IEqua
 	 */
 	public function toSource( indent:Number, indentor:String):String 
 	{
-		return "new TransformMatrix(" + a + "," + b + "," + c + "," + d + "," + tx + "," + ty + ")" ;
+		return "new pegas.geom.TransformMatrix(" + a + "," + b + "," + c + "," + d + "," + tx + "," + ty + ")" ;
 	}
 
 	/**

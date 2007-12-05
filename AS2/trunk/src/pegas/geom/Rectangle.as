@@ -29,8 +29,6 @@ import vegas.core.IComparator;
 import vegas.core.ICopyable;
 import vegas.core.IEquality;
 
-// TODO creates unit tests.
-
 /**
  * The Rectangle class is used to create and modify Rectangle objects. 
  * <p>A Rectangle object is an area defined by its position, as indicated by its top-left corner point (x, y), and by its width and its height.</p>

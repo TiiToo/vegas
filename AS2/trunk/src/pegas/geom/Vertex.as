@@ -60,6 +60,46 @@ class pegas.geom.Vertex extends Vector3
 	}
 
 	/**
+	 * Defined the x coordinates in the screen World.
+	 */
+	public var sx:Number;
+	
+	/**
+	 * Defined the y coordinates in the screen World.
+	 */
+	public var sy:Number;
+
+	/**
+	 * Defined the x coordinates in the local coordinates.
+	 */
+	public var tx:Number;
+
+	/**
+	 * Defined the y coordinates in the local coordinates.
+	 */
+	public var ty:Number;
+	
+	/**
+	 * Defined the z coordinates in the local coordinates.
+	 */
+	public var tz:Number;
+
+	/**
+	 * Defined the x coordinates in the World coordinates.
+	 */
+	public var wx:Number;
+	
+	/**
+	 * Defined the y coordinates in the World coordinates.
+	 */
+	public var wy:Number;
+	
+	/**
+	 * Defined the z coordinates in the World coordinates.
+	 */
+	 public var wz:Number;	
+
+	/**
 	 * Returns a shallow copy of this instance.
 	 * @return a shallow copy of this instance.
 	 */
@@ -104,45 +144,7 @@ class pegas.geom.Vertex extends Vector3
 	}
 
 
-	/**
-	 * Defined the x coordinates in the screen World.
-	 */
-	public var sx:Number;
-	
-	/**
-	 * Defined the y coordinates in the screen World.
-	 */
-	public var sy:Number;
 
-	/**
-	 * Defined the x coordinates in the local coordinates.
-	 */
-	public var tx:Number;
-
-	/**
-	 * Defined the y coordinates in the local coordinates.
-	 */
-	public var ty:Number;
-	
-	/**
-	 * Defined the z coordinates in the local coordinates.
-	 */
-	public var tz:Number;
-
-	/**
-	 * Defined the x coordinates in the World coordinates.
-	 */
-	public var wx:Number;
-	
-	/**
-	 * Defined the y coordinates in the World coordinates.
-	 */
-	public var wy:Number;
-	
-	/**
-	 * Defined the z coordinates in the World coordinates.
-	 */
-	 public var wz:Number;	
 
 	/**
 	 * Returns the {@code Vector3} representation of the transformed coordinate system of this Vertex.

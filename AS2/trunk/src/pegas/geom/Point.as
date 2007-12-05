@@ -125,16 +125,6 @@ dynamic class pegas.geom.Point extends Vector2
 	}
 
 	/**
-	 * The horizontal coordinate of the point.
-	 */
-	public var x:Number ;
-
-	/**
-	 * The vertical coordinate of the point.
-	 */
-	public var y:Number ;
-
-	/**
 	 * Transform the coordinates of this point to used absolute value for the x and y properties.
 	 * <p><b>Example :</b></p>
 	 * {@code

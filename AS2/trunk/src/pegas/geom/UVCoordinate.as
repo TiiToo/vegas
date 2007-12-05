@@ -22,6 +22,9 @@
 */
 
 import vegas.core.CoreObject;
+import vegas.core.ICloneable;
+import vegas.core.ICopyable;
+import vegas.core.IEquality;
 import vegas.util.ConstructorUtil;
 import vegas.util.serialize.Serializer;
 
@@ -29,7 +32,7 @@ import vegas.util.serialize.Serializer;
  * Coordinate system for bitmaps. It represents the position of a vertex in the Bitmap.
  * @author eKameleon
  */
-class pegas.geom.UVCoordinate extends CoreObject 
+class pegas.geom.UVCoordinate extends CoreObject implements ICloneable, ICopyable, IEquality 
 {
 	
 	/**
@@ -114,7 +117,7 @@ class pegas.geom.UVCoordinate extends CoreObject
 	 * Returns the string representation of the object.
 	 * @return the string representation of the object.
 	 */ 	
-	public function toString(Void):String
+	public function toString():String
 	{
 		return "[" + ConstructorUtil.getName(this) + ":{" + u + "," + v + "}]" ;
 	}

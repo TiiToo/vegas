@@ -112,7 +112,7 @@ class pegas.util.QuaternionUtil
 	 */
 	public static function normalize( q:Quaternion ):Void
 	{
-		var magnitude:Number = QuaternionUtil.getMagnitude() ;
+		var magnitude:Number = QuaternionUtil.getMagnitude(q) ;
         q.w /= magnitude ;
         Vector3Util.scale ( q , (1.0 / magnitude) );
 	}

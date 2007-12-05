@@ -56,7 +56,7 @@ package vegas.core
 			{
 				if ( (o as Object).hasOwnProperty( "hashCode" ) )
 				{
-					o["hashCode"]() ;
+					return o["hashCode"]() ;
 				}
 				else
 				{
