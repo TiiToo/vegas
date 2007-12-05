@@ -23,17 +23,16 @@
 
 package vegas.errors
 {
-    
-    import vegas.core.HashCode;
-    import vegas.core.IFormattable;
-    import vegas.core.IHashable;
-    import vegas.logging.ILogable;
-    import vegas.logging.ILogger;
-    import vegas.logging.Log;
-    import vegas.logging.LogEventLevel ;
-    import vegas.util.ClassUtil;
-    
-    /**
+	import vegas.core.HashCode;
+	import vegas.core.IFormattable;
+	import vegas.core.IHashable;
+	import vegas.logging.ILogable;
+	import vegas.logging.ILogger;
+	import vegas.logging.Log;
+	import vegas.logging.LogEventLevel;
+	import vegas.util.ClassUtil;    
+
+	/**
 	 * This class provides a Abstract implementation to creates Error classes with an internal logging model. 
 	 * @author eKameleon
  	 */
@@ -50,9 +49,6 @@ package vegas.errors
             _logger = Log.getLogger( ClassUtil.getPath(this) ) ;
             
         }
-        
-       	// Init HashCode
-	   	HashCode.initialize(AbstractError.prototype) ;
 		
 		/**
 		 * Returns the category value of the internal ILogger of this object.
@@ -80,10 +76,18 @@ package vegas.errors
 	    {
 		    return _logger ;
     	}
-	    
+    	
+		/**
+		 * Returns a hashcode value for the object.
+		 * @return a hashcode value for the object.
+		 */
 	    public function hashCode():uint 
 	    {
-		    return null ;
+			if ( isNaN( __hashcode__ ) ) 
+			{
+				__hashcode__ = HashCode.next() ;
+			}
+			return __hashcode__ ;
     	}
     	
    		/**
@@ -116,6 +120,14 @@ package vegas.errors
 		    return name + " " + message ;
     	}
 
+		/**
+		 * @private
+		 */
+		private var __hashcode__:Number = NaN ;
+		
+		/**
+		 * @private
+		 */
     	private var _logger:ILogger ;
 
     }

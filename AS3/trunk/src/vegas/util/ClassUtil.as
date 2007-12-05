@@ -88,11 +88,11 @@ package vegas.util
 			
 			if (instance is IHashable)
 			{
-				//			 
+				count += (instance as IHashable).hashCode() ;		 
 			}	
 			else
 			{
-				HashCode.initialize(instance) ;
+				count += instance["hashCode"]() ;
 			}
 			
 			count += instance["hashCode"]() ;

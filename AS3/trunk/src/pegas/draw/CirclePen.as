@@ -140,19 +140,19 @@ package pegas.draw
 		{
 			if ( arguments[0] != null && arguments[0] is Number )
 			{
-				x = isNaN(arguments[0]) ? 0 : arguments[0] ;
+				x = isNaN(arguments[0]) ? 0 : arguments[0] ; // x
 			}
 			if ( arguments[1] != null && arguments[1] is Number )
 			{
-				y = isNaN(arguments[1]) ? 0 : arguments[1] ;
+				y = isNaN(arguments[1]) ? 0 : arguments[1] ; // y
 			}
 			if ( arguments[2] != null && arguments[2] is Number )
 			{
-				radius = isNaN(arguments[2]) ? 0 : arguments[2] ;
+				radius = isNaN(arguments[2]) ? 0 : arguments[2] ; // radius
 			}
 			if ( arguments.length == 4 && arguments[3] is uint )
 			{
-				align = arguments[3] as uint ;
+				align = arguments[3] as uint ; // align
 			}
 		}
 	

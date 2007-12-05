@@ -115,11 +115,6 @@ package vegas.data.map
         }
         
         /**
-         * Init HashCode.
-         */
-        HashCode.initialize(HashMap.prototype) ;
-        
-        /**
          * Removes all mappings from this map.
          */  
         public function clear():void
@@ -203,14 +198,18 @@ package vegas.data.map
             return ar ;
         }
 
-        /**
-         * Returns the hashcode value of this object.
-         * @return the hashcode value of this object.
-         */
-        public function hashCode():uint
-        {
-            return null ;
-        }
+		/**
+		 * Returns a hashcode value for the object.
+		 * @return a hashcode value for the object.
+		 */
+		public function hashCode():uint 
+		{
+			if ( isNaN( __hashcode__ ) ) 
+			{
+				__hashcode__ = HashCode.next() ;
+			}
+			return __hashcode__ ;
+		}
 
         /**
          * Returns true if this map contains no key-value mappings.
@@ -327,15 +326,21 @@ package vegas.data.map
             return new MapFormat().formatToString( this ) ;
         }
 
-        /**
-         * The size of this map.
-         */
-        private var _size:uint ;
-
+		/**
+		 * @private
+		 * The hashcode value of this object.
+		 */
+		private var __hashcode__:Number = NaN ;
+		
         /**
          * The keys collection.
          */
         private var _keys:* ;
+
+        /**
+         * The size of this map.
+         */
+        private var _size:uint ;
         
         /**
          * The values collection.

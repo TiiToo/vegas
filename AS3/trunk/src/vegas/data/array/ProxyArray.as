@@ -23,11 +23,9 @@
 
 package vegas.data.array
 {
-    
 	import flash.utils.Proxy;
 	import flash.utils.flash_proxy;
 	
-	import vegas.core.HashCode;
 	import vegas.core.ICloneable;
 	import vegas.core.ICopyable;
 	import vegas.core.IFormattable;
@@ -38,9 +36,9 @@ package vegas.data.array
 	import vegas.data.iterator.Iterator;
 	import vegas.util.ClassUtil;
 	import vegas.util.Copier;
-	import vegas.util.Serializer;
-	
-    /**
+	import vegas.util.Serializer;    
+
+	/**
      * The ProxyArray class.
      * <p><b>Example :</b></p>
      * {@code
@@ -93,11 +91,6 @@ package vegas.data.array
             _ar = (datas == null) ? [] : [].concat(datas)  ;
         }
 		
-    	/**
-    	 * Init HashCode method.
-		 */
-		HashCode.initialize(ProxyArray.prototype) ;
-		
         /**
          * Overrides the behavior of an object property that can be called as a function. 
          * When a method of the object is invoked, this method is called. 
@@ -142,7 +135,6 @@ package vegas.data.array
          */
         flash_proxy override function getProperty( name:* ):* 
         {
-            //trace( "getProperty " + name + " value : " + _ar[name] ) ; 
             return _ar[name];
         }
 		
@@ -151,7 +143,11 @@ package vegas.data.array
 		 */
         public function hashCode():uint
         {
-            return null ;
+			if ( isNaN( __hashcode__ ) ) 
+			{
+				__hashcode__ = HashCode.next() ;
+			}
+			return __hashcode__ ;
 		}
 
 		/**
@@ -235,6 +231,11 @@ package vegas.data.array
 		 * Internal array used in the proxy pattern.
 		 */        
         protected var _ar:Array ;
-        
+
+		/**
+		 * @private
+		 */
+		private var __hashcode__:Number = NaN ;
+
     }
 }

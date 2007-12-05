@@ -31,7 +31,7 @@ package vegas.events
 	import vegas.logging.ILogger;
 	import vegas.logging.Log;
 	import vegas.util.ClassUtil;
-	import vegas.util.Serializer;    
+	import vegas.util.Serializer;	
 
 	/**
     * Stores the listeners object an notifies them with the DOM Events level 2/3 of the W3C.
@@ -53,7 +53,6 @@ package vegas.events
         {
             super( target );
             setLogger() ;
-            HashCode.initialize(this) ;
             this.target = (target == null) ? this : target ;
         }
  
@@ -123,14 +122,19 @@ package vegas.events
             return _sName || null ;
         }
  
-        /**
-         * Returns the hashCode of the EventDispatcher object.
-         * @return the hashCode of the EventDispatcher object.
-         */
-        public function hashCode():uint 
-        {
-            return null ;
-        }
+		
+		/**
+		 * Returns a hashcode value for the object.
+		 * @return a hashcode value for the object.
+		 */
+		public function hashCode():uint 
+		{
+			if ( isNaN( __hashcode__ ) ) 
+			{
+				__hashcode__ = HashCode.next() ;
+			}
+			return __hashcode__ ;
+		}
         
         /**
          * Registers an {@code EventListener} object with an EventDispatcher object so that the listener receives notification of an event.
@@ -227,6 +231,11 @@ package vegas.events
          * The static internal hashmap to register all global instances in your applications.
          */    
         private static var instances:ArrayMap = new ArrayMap() ;
+
+		/**
+		 * @private
+		 */
+		private var __hashcode__:Number = NaN ;
 
         /**
          * The internal ILogger reference of this object.

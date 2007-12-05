@@ -20,7 +20,6 @@
   Contributor(s) :
   
 */
-
 package vegas.core
 {
 
@@ -47,9 +46,23 @@ package vegas.core
 		/**
 		 * Indenfity the hashcode value of an object.
 		 */
-		public static function identify(o:*):uint 
+		public static function identify( o:* ):uint 
 		{
-			return o.hashCode() ;
+			if ( o is IHashable )
+			{
+				return (o as IHashable).hashCode() ;
+			}
+			else
+			{
+				if ( (o as Object).hasOwnProperty( "hashCode" ) )
+				{
+					o["hashCode"]() ;
+				}
+				else
+				{
+					return 0 ;
+				}
+			}
 		}
 
 		/**
@@ -65,47 +78,15 @@ package vegas.core
 		 * Returns the string representation of the next hashcode value.
 		 * @return the string representation of the next hashcode value.
 		 */
-		public static function nextName():String {
-			return String( HashCode._nHash + 1 ) ;
-		}
-		
-		/**
-		 * Initialize the hashcode value of an object.
-		 * @return {@code true}
-		 */
-		public static function initialize( o:* ):Boolean 
+		public static function nextName():String 
 		{
-		
-			if (o.hasOwnProperty("hashCode")) 
-			{
-				return false ;
-			}
-			
-			o["hashCode"] = function ():uint 
-			{
-				if (this["hashCode"] == null) 
-				{
-					this["hashCode"] = HashCode.next() ;
-					this.setPropertyIsEnumerable("__hashcode__", false) ;
-				}
-				return this["hashCode"] ;
-			} ;
-			
-			o.setPropertyIsEnumerable("hashCode", false) ;
-
-			return true ;
-			
+			return String( HashCode._nHash + 1 ) ;
 		}
 
 		/**
 		 * The internal hashcode counter.
 		 */
 		private static var _nHash:uint = 0 ;
-
-		/**
-		 * Launch the initialize of the Object.prototype object.
-		 */
-		HashCode.initialize( Object.prototype ) ;
 			
 	}
 }

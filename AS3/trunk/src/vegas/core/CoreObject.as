@@ -53,22 +53,6 @@ package vegas.core
 		{
 		    setLogger() ;
 		}
-		
-		public function test():void
-		{
-			trace("cool") ;	
-		}
-		
-		prototype.test = function():void
-		{
-			trace("test") ;
-		} ;
-		
-		/**
-		 * Initialize the hashcode value of this object.
-		 * @private 
-		 */
-		HashCode.initialize( CoreObject.prototype ) ;
 
 		/**
 		 * Returns the internal {@code ILogger} reference of this {@code ILogable} object.
@@ -81,10 +65,15 @@ package vegas.core
 		
 		/**
 		 * Returns a hashcode value for the object.
+		 * @return a hashcode value for the object.
 		 */
 		public function hashCode():uint 
 		{
-			return null ;
+			if ( isNaN( __hashcode__ ) ) 
+			{
+				__hashcode__ = HashCode.next() ;
+			}
+			return __hashcode__ ;
 		}
 	
 		/**
@@ -112,7 +101,12 @@ package vegas.core
 		{
 			return "[" + ClassUtil.getName(this) + "]" ;
 		}
-
+		
+		/**
+		 * @private
+		 */
+		private var __hashcode__:Number = NaN ;
+		
 		/**
 		 * The internal ILogger reference of this object.
 		 */

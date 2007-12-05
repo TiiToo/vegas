@@ -23,9 +23,7 @@
 
 package pegas.draw 
 {
-	import vegas.core.CoreObject;
-	import vegas.util.ClassUtil;
-	import vegas.util.Serializer;	
+	import vegas.core.CoreObject;		
 
 	/**
 	 * Determinates the corner parameters in a CornerRectanglePen (Bevel, Rounded...)
@@ -84,7 +82,16 @@ package pegas.draw
 		 */
 		public override function toSource(...arguments:Array):String 
 		{
-			return Serializer.getSourceOf(this, [tl, tr, br, bl] )  ;
+			var source:String = "new pegas.draw.Corner(" ;
+			source += tl == true ? "true" : "false" ;
+			source += "," ;
+			source += tr == true ? "true" : "false" ;
+			source += "," ;
+			source += br == true ? "true" : "false" ;
+			source += "," ;
+			source += bl == true ? "true" : "false" ;
+			source += ")" ;
+			return source ;
 		}
 	
 		/**
@@ -93,7 +100,7 @@ package pegas.draw
 		 */
 		public override function toString():String 
 		{
-			return "[" + ClassUtil.getName(this) + " tl:" + tl + ", tr:" + tr + ", br:" + br  + ", bl:" + bl + "]" ;
+			return "[Corner tl:" + tl + ", tr:" + tr + ", br:" + br  + ", bl:" + bl + "]" ;
 		}
 		
 	}

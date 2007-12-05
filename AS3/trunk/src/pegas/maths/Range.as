@@ -68,7 +68,12 @@ package pegas.maths
     		this.min = min ;
     		this.max = max ;
         }
-
+		
+		/**
+		 * Range reference between 0 and 360.
+		 */
+    	public static const DEGREE_RANGE:Range = new Range(0, 360) ;
+		
 		/**
 		 * Range reference between 0 and 100.
 		 */

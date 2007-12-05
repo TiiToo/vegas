@@ -33,12 +33,12 @@ package pegas.draw
 		/**
 		 * The chord type.
 		 */
-		public static const CHORD:String = "CHORD" ;
+		public static const CHORD:String = "chord" ;
 		
 		/**
 		 * The pie type.
 		 */
-		public static const PIE:String = "PIE" ;
+		public static const PIE:String = "pie" ;
 
 	}
 	
