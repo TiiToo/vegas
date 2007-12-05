@@ -23,9 +23,6 @@
 package pegas.geom 
 {
 	import vegas.core.CoreObject;
-	import vegas.core.ICloneable;
-	import vegas.core.ICopyable;
-	import vegas.core.IEquality;
 	import vegas.util.ClassUtil;
 	import vegas.util.Serializer;	
 
@@ -33,7 +30,7 @@ package pegas.geom
 	 * Coordinate system for bitmaps. It represents the position of a vertex in the Bitmap.
 	 * @author eKameleon
  	 */
-	public class UVCoordinate extends CoreObject implements ICloneable, ICopyable, IEquality
+	public class UVCoordinate extends CoreObject implements IGeometry
 	{
 
 		/**

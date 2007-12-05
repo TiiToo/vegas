@@ -86,7 +86,6 @@ package pegas.draw
 			{
 				setPen.apply( this, arguments ) ;
 			}
-			trace( "x:" + x + " y:" + y + " width:" + width + " height:" + height ) ;
 			
 			var $a:uint = align ;
 			var $x:Number = x ;
@@ -154,23 +153,23 @@ package pegas.draw
 		{
 			if ( arguments[0] != null && arguments[0] is Number )
 			{
-				this.x = isNaN(arguments[0]) ? 0 : arguments[0] ;
+				this.x = isNaN(arguments[0]) ? 0 : arguments[0] ; // x
 			}
 			if ( arguments[1] != null && arguments[1] is Number )
 			{
-				this.y = isNaN(arguments[1]) ? 0 : arguments[1] ;
+				this.y = isNaN(arguments[1]) ? 0 : arguments[1] ; // y
 			}
 			if ( arguments[2] != null && arguments[2] is Number )
 			{
-				this.width = isNaN(arguments[2]) ? 0 : arguments[2] ;
+				this.width = isNaN(arguments[2]) ? 0 : arguments[2] ; // width
 			}
 			if ( arguments[3] != null && arguments[3] is Number )
 			{
-				this.height = isNaN(arguments[3]) ? 0 : arguments[3] ;
+				this.height = isNaN(arguments[3]) ? 0 : arguments[3] ; // height
 			}
 			if ( arguments.length == 5 && arguments[4] is uint )
 			{
-				this.align = arguments[4] as uint ;
+				this.align = arguments[4] as uint ; // align
 			}
 		}
 	

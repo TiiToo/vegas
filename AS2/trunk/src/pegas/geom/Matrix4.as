@@ -312,10 +312,10 @@ class pegas.geom.Matrix4 extends CoreObject implements ICloneable, ICopyable, IE
 	 */
 	public function setEntry( x:Number , y:Number , value ):Void
 	{
-		x = MathsUtil.clamp(0, 3) ;
-		y = MathsUtil.clamp(0, 3) ;
+		x = MathsUtil.clamp(x, 0, 3) ;
+		y = MathsUtil.clamp(y, 0, 3) ;
 		var m:Array = toArray() ;
-		m[x][y] = value ;
+		m[x][y]     = value ;
 	}
 
 	/**

@@ -196,7 +196,8 @@ class pegas.draw.ArcPen extends EasyPen
 		_nX = x ; 
 		_nY = y ;
 		var nR:Number = (isNaN(yRadius)) ? radius : yRadius ;
-		switch (_align) {
+		switch (_align) 
+		{
 			case Align.TOP : // Top
 				_nY += nR ;
 				break ;

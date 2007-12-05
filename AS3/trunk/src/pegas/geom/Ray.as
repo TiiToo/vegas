@@ -25,9 +25,6 @@ package pegas.geom
 	import pegas.util.Vector3Util;
 	
 	import vegas.core.CoreObject;
-	import vegas.core.ICloneable;
-	import vegas.core.ICopyable;
-	import vegas.core.IEquality;
 	import vegas.util.ClassUtil;
 	import vegas.util.Serializer;	
 
@@ -37,7 +34,7 @@ package pegas.geom
 	 * In geometry, a ray starts at one point, then goes on forever in one direction : (A) -- (B) -- ((C)) -->
 	 * @author eKameleon
 	 */
-	public class Ray extends CoreObject implements ICloneable, ICopyable, IEquality
+	public class Ray extends CoreObject implements IGeometry
 	{
 
 		/**

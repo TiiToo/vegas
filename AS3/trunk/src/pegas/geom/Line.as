@@ -24,9 +24,6 @@
 package pegas.geom 
 {
 	import vegas.core.CoreObject;
-	import vegas.core.ICloneable;
-	import vegas.core.ICopyable;
-	import vegas.core.IEquality;
 	import vegas.util.Serializer;	
 
 	/**
@@ -37,7 +34,7 @@ package pegas.geom
 	 * trace(l) ; // {a:10,b:20,c:5}
 	 * }
 	 */
-	public class Line extends CoreObject implements ICloneable, ICopyable, IEquality 
+	public class Line extends CoreObject implements IGeometry 
 	{
 
 		/**

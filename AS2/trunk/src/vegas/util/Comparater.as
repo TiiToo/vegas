@@ -193,7 +193,7 @@ class vegas.util.Comparater
 	 * Compares if two Functions are equal by value.
 	 * @return {@code true} if the 2 objects are equals.
 	 */
-	public static function functionCompare( f1 , f2:Function ):Boolean
+	public static function functionCompare( f1 , f2 ):Boolean
 	{
     	if(f1 == null || !TypeUtil.typesMatch(f1, Function))
         {
@@ -288,7 +288,7 @@ class vegas.util.Comparater
 	 */
 	public static function stringCompare( s1 , s2 ):Boolean
     {
-    	if( (s1 == null) || !TypeUtil.typesMatch( s2 , String ) )
+    	if( (s1 == null) || !TypeUtil.typesMatch( s1 , String ) )
         {
         	return false ;
         }

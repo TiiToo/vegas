@@ -39,6 +39,7 @@ package pegas.draw
 		
 		/**
 		 * Creates a new Pen instance.
+		 * @param graphic The Graphics reference to control with this helper.
 		 */
 		public function Pen( graphic:Graphics )
 		{

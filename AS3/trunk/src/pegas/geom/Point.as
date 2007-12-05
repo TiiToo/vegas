@@ -23,6 +23,7 @@
 package pegas.geom 
 {
 	import pegas.geom.Vector2;
+	import pegas.util.Trigo;
 	
 	import vegas.errors.IllegalArgumentError;	
 

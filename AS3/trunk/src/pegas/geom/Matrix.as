@@ -20,7 +20,6 @@
   Contributor(s) :
   
 */
-
 package pegas.geom 
 {
 	import vegas.core.CoreObject;
@@ -28,47 +27,48 @@ package pegas.geom
 	import vegas.util.Serializer;	
 
 	/**
-	 * Plane representation is a two-dimensional doubly ruled surface in a 3D space. 
-	 * Used maily to represent the frustrum planes of the camera.
+	 * Defines a Matrix with n rows and n columns.
 	 * @author eKameleon
 	 */
-	public class Plane extends CoreObject implements IGeometry
+	public class Matrix extends CoreObject implements IGeometry
 	{
 
 		/**
-		 * Creates a new {@code Plane} instance.
-		 * @param a the first plane coordinate.
-		 * @param b the second plane coordinate.
-		 * @param c the third plane coordinate.
-		 * @param d the forth plane coordinate.
-	 	 */ 
-		public function Plane( a:Number=0 , b:Number=0 , c:Number=0 , d:Number=0 )
+		 * Creates a new Matrix instance.
+		 * @param r the number of rows in the matrix.
+		 * @param c the number of columns in the matrix.
+		 * @param ar the optional Matrix instance to fill the current Matrix.
+		 */
+		public function Matrix( r:Number, c:Number , ar:Array=null )
 		{
-			this.a = isNaN(a) ? 0 : a ;
-			this.b = isNaN(a) ? 0 : b ;
-			this.c = isNaN(a) ? 0 : c ;
-			this.d = isNaN(a) ? 0 : d ;
+			super();
+			
+			this.m = new Array(r);
+					
+			for (var i:Number = 0 ; i<r ; i++)
+			{
+				m[i] = new Array(c) ;	
+			}
+					
+			this.r = r ;
+			this.c = c ;
+			
 		}
-		
+
 		/**
-		 * Defined the first plane coordinate.
-		 */
-		public var a:Number ;
-		
-		/**
-		 * Defined the second plane coordinate.
-		 */
-		public var b:Number ;
-		
-		/**
-		 * Defined the third plane coordinate.
+		 * Defined the number of columns in the Matrix.
 		 */
 		public var c:Number ;
+			
+		/**
+		 * The matrix array
+		 */
+		public var m:Array ;
 		
 		/**
-		 * Defined the forth plane coordinate.
+		 * Defined the number of rows in the Matrix.
 		 */
-		public var d:Number ;
+		public var r:Number ;
 
 		/**
 		 * Returns a shallow copy of this instance.
@@ -76,7 +76,9 @@ package pegas.geom
 		 */
 		public function clone():*
 		{
-			return new Plane(a, b, c, d) ;	
+			var matrix:Matrix = new Matrix(r, c) ;
+			// fill the matrix !!
+			return matrix ;	
 		}
 
 		/**
@@ -85,41 +87,35 @@ package pegas.geom
 		 */
 		public function copy():*
 		{
-			return new Plane(a, b, c, d) ;	
+			var matrix:Matrix = new Matrix(r, c) ;
+			// fill the matrix !!
+			return matrix ;	
 		}
-
+		
 		/**
 		 * Compares the specified object with this object for equality.
 		 * @return {@code true} if the the specified object is equal with this object.
 		 */
-		public function equals(o:*):Boolean
+		public function equals( o:* ):Boolean 
 		{
-			if ( o is Plane)
+			if ( o instanceof Matrix )
 			{
-				return (o.a == a) && (o.b == b) && (o.c == c) && (o.d == d) ;
-			}	
+				// test if all elements are equals in the 2 matrix
+				return (o.r == r) && (o.c == c) ;
+			}
 			else
 			{
 				return false ;	
 			} 	
 		}
-		
+				
 		/**
-		 * Returns the Object representation of this object.
-		 * @return the Object representation of this object.
+		 * Returns a Eden reprensation of the object.
+		 * @return a string representing the source code of the object.
 		 */
-		public function toObject():Object 
-		{
-			return { a:a, b:b, c:c, d:d } ;
-		}
-		
-		/**
-	 	 * Returns a Eden reprensation of the object.
-	 	 * @return a string representing the source code of the object.
-	 	 */
 		public override function toSource( ...arguments:Array ):String 
 		{
-			return Serializer.getSourceOf(this, [a, b, c, d]) ;
+			return Serializer.getSourceOf( this, [ r, c, m ] ) ;
 		}
 
 		/**
@@ -128,10 +124,10 @@ package pegas.geom
 		 */ 	
 		public override function toString():String
 		{
-			return "[" + ClassUtil.getName(this) + ":{" + a + "," + b + "," + c + "," + d + "}]" ;
+			return "[" + ClassUtil.getName(this) + ":{" + r + "," + c + "}]" ;
 		}
-	
+		
 	}
-
+	
 }
 

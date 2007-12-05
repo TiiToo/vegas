@@ -35,6 +35,7 @@ package pegas.draw
 		
 		/**
 		 * The Pen class use composition to control a Graphics reference and draw custom vector graphic shapes.
+		 * @param graphic The Graphics reference to control.
 		 * @param x (optional)The x location of the center of the circle relative to the registration point of the parent display object (in pixels).
 		 * @param y (optional)The y location of the center of the circle relative to the registration point of the parent display object (in pixels).
 		 * @param radius (optional) The radius of the circle (in pixels). 

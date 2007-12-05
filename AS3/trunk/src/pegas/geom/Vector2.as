@@ -26,9 +26,6 @@ package pegas.geom
 	import flash.geom.Point;
 	
 	import vegas.core.CoreObject;
-	import vegas.core.ICloneable;
-	import vegas.core.ICopyable;
-	import vegas.core.IEquality;
 	import vegas.util.ClassUtil;
 	import vegas.util.Serializer;	
 
@@ -36,7 +33,7 @@ package pegas.geom
 	 * Represents a vector in a 2D world with the coordinates x, y.
 	 * @author eKameleon
 	 */
-	public class Vector2 extends CoreObject implements ICloneable, ICopyable, IEquality	
+	public class Vector2 extends CoreObject implements IGeometry
 	{
 
 		/**

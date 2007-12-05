@@ -20,7 +20,7 @@
   Contributor(s) :
   
 */
-package pegas.geom 
+package pegas.util 
 {
 
 	/**

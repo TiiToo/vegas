@@ -20,7 +20,6 @@
   Contributor(s) :
   
 */
-
 package pegas.geom
 {
 	import flash.geom.Rectangle;
@@ -33,10 +32,10 @@ package pegas.geom
      * The Dimension class encapsulates the width and height of a componentin a single object.
      * @author eKameleon
      */
-    public class Dimension extends CoreObject
-    {
+    public class Dimension extends CoreObject implements IGeometry		
+	{
 
-    	/**
+		/**
     	 * Creates a new Dimension instance.
     	 */
         public function Dimension( ...arguments:Array )
