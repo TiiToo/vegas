@@ -20,49 +20,48 @@
   Contributor(s) :
   
 */
-
 package pegas.draw 
 {
 	import flash.display.Graphics;
 	
-	import pegas.draw.IShape;	
+	import vegas.core.CoreObject;	
 
 	/**
-	 * This interface defined the IPen implementation to creates shaped in Shape, Sprite and MovieClip objects.
+	 * Defines the fill style of the vector shapes. See the flash.display.graphics.beginFill method.
 	 * @author eKameleon
 	 */
-	public interface IPen extends IShape 
+	final public class FillStyle extends CoreObject implements IFillStyle
 	{
-
-		/**
-		 * Determinates the align value of the pen.
-		 */
-		function get align():uint ;
-		function set align( align:uint ):void ; 
 		
 		/**
-		 * Determinates the fill style object of the pen.
+		 * Creates a new FillStyle instance.
+		 * @param color The color value of the fill style.
+		 * @param alpha The alpha value of the fill style.
 		 */
-		function get fillStyle():IFillStyle ;
-		function set fillStyle( style:IFillStyle ):void ;
+		public function FillStyle( color:uint, alpha:Number = 1.0 )
+		{
+			this.alpha = alpha ;
+			this.color = color ;
+		}
 		
 		/**
-		 * Specifies the Graphics object belonging to this Shape object, where vector drawing commands can occur.
+		 * The alpha value of the fill style.
 		 */
-		function get graphics():Graphics ;
-		function set graphics( graphic:Graphics ):void ;
-
+		public var alpha:Number;
+	
 		/**
-		 * Determinates the line style object of the pen.
+		 * The color value of the fill style.
 		 */
-		function get lineStyle():ILineStyle ;
-		function set lineStyle( style:ILineStyle ):void ;
-		
-		/**
-		 * This method contains the basic drawing shape algorithm.
-		 */
-		function drawShape():void ;
-		
+		public var color:uint;
+        
+        /**
+         * Initialize and launch the beginFill method of the specified Graphics reference.
+         */
+        public function init( graphic:Graphics ):void
+		{
+        	graphic.beginFill( color, alpha );
+		}
 		
 	}
+
 }

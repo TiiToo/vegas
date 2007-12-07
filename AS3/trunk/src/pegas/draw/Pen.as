@@ -72,6 +72,26 @@ package pegas.draw
 		}
 		
 		/**
+		 * Determinates the line style object of the pen.
+		 */
+		public function get fillStyle():IFillStyle
+		{
+			return _fillStyle ;
+		}
+		
+		/**
+		 * @private
+		 */		
+		public function set fillStyle( style:IFillStyle ):void
+		{
+			_fillStyle = style || null ;
+			if ( _fillStyle != null )
+			{
+				_fillStyle.init( _graphics ) ;
+			}
+		}
+		
+		/**
 		 * @private
 		 */
 		public function set graphics(graphic:Graphics):void
@@ -84,9 +104,34 @@ package pegas.draw
 		}
 
 		/**
+		 * Determinates the line style object of the pen.
+		 */
+		public function get lineStyle():ILineStyle
+		{
+			return _lineStyle ;
+		}
+		
+		/**
+		 * @private
+		 */		
+		public function set lineStyle( style:ILineStyle ):void
+		{
+			_lineStyle = style || null ;
+			if ( _lineStyle != null )
+			{
+				_lineStyle.init( _graphics ) ;
+			}
+		}
+		
+		/**
+		 * Indicates if the clear() method is invoqued at the end of the draw method.
+		 */
+		public var useClear:Boolean = true ;
+
+		/**
 		 * Indicates if the endFill() method is invoqued at the end of the draw method.
 		 */
-		public var isEndFill:Boolean = true ;
+		public var useEndFill:Boolean = true ;
 
 	    /**
          * Overrides the behavior of an object property that can be called as a function. 
@@ -191,9 +236,33 @@ package pegas.draw
 		/**
 	 	 * Draws the vector graphic shape.
 	 	 */
-		public function draw(...arguments:Array):void
+		public function draw( ...arguments:Array ):void
 		{
-			// override this method.
+			if ( useClear ) 
+			{
+				_graphics.clear() ;	
+			}
+			if ( _lineStyle != null )
+			{
+				_lineStyle.init( _graphics ) ;
+			}
+			if ( _fillStyle != null )
+			{
+				_fillStyle.init( _graphics ) ;
+			}
+			drawShape() ;
+			if ( useEndFill )
+			{
+				_graphics.endFill() ;	
+			}
+		}
+		
+		/**
+		 * This method contains the basic drawing shape algorithm.
+		 */
+		public function drawShape():void
+		{
+			/// override this method 	
 		}
 		
 		/**
@@ -213,7 +282,17 @@ package pegas.draw
 		/**
 		 * @private
 		 */
+		private var _fillStyle:IFillStyle ;
+
+		/**
+		 * @private
+		 */
 		private var _graphics:Graphics ;
+	
+		/**
+		 * @private
+		 */
+		private var _lineStyle:ILineStyle ;
 	
 	}
 

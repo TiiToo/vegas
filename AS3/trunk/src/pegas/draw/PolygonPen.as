@@ -30,7 +30,7 @@ package pegas.draw
 	 * This pen is the tool to draw a regular polygon vector shape.
 	 * @author eKameleon
 	 */
-	dynamic public class PolyPen extends Pen 
+	dynamic public class PolygonPen extends Pen 
 	{
 		
 		/**
@@ -42,7 +42,7 @@ package pegas.draw
 		 * @param align (optional) The Align value to align the shape.
 		 * @author eKameleon
 		 */
-		public function PolyPen( graphic:Graphics , ...arguments:Array )
+		public function PolygonPen( graphic:Graphics , ...arguments:Array )
 		{
 			super( graphic ) ;
 			if ( arguments.length > 1 ) 
@@ -102,14 +102,18 @@ package pegas.draw
 			{
 				setPen.apply( this, arguments ) ;
 			}
-		
-			// convert sides to positive value
+			super.draw() ;
+		}
+
+		/**
+		 * This method contains the basic drawing shape algorithm.
+		 */
+		public override function drawShape():void
+		{
 			var count:uint = Math.abs(sides);
-			// check that count is sufficient to build polygon
 			if ( count>2 ) 
 			{
-				
-				var $a:uint = align ;
+				var $a:uint  = align ;
 				var $x:Number = x ;
 				var $y:Number = y ;
 				var $r:Number = radius ;
@@ -174,10 +178,6 @@ package pegas.draw
 				}
 			}
 
-			if ( isEndFill )
-			{
-				graphics.endFill() ;
-			}	
 		}
 
 		/**

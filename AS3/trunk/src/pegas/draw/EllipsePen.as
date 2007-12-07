@@ -86,13 +86,19 @@ package pegas.draw
 			{
 				setPen.apply( this, arguments ) ;
 			}
-			
+			super.draw() ;
+		}
+		
+		/**
+		 * This method contains the basic drawing shape algorithm.
+		 */
+		public override function drawShape():void
+		{
 			var $a:uint = align ;
 			var $x:Number = x ;
 			var $y:Number = y ;
 			var $w:Number = width ;
 			var $h:Number = height ;
-
 			if ( $a == Align.CENTER ) 
 			{
 				$x -= $w / 2 ;
@@ -129,16 +135,7 @@ package pegas.draw
 			{
 				$x -= $w ;
 			}
-			else // TOP_LEFT
-			{
-				
-			}
-			
 			graphics.drawEllipse( $x , $y , $w , $h ) ;
-			if ( isEndFill )
-			{
-				graphics.endFill() ;
-			}	
 		}
 
 		/**

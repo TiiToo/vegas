@@ -121,7 +121,14 @@ package pegas.draw
 			{
 				setArc.apply(this, arguments) ;
 			}
+			super.draw() ;
+		}
 			
+		/**
+		 * This method contains the basic drawing shape algorithm.
+		 */
+		public override function drawShape():void
+		{
 			var nR:Number = isNaN( yRadius ) ? radius : yRadius ;
 
 			var $x:Number = isNaN(x) ? 0 : x ; 
@@ -173,10 +180,6 @@ package pegas.draw
 					$y -= nR ;
 					break ;
 				}
-				default :
-				{
-					// Align.CENTER
-				}
 			}
 						
 			graphics.moveTo( $x, $y ) ;
@@ -216,7 +219,7 @@ package pegas.draw
 					graphics.curveTo(cx, cy, bx, by) ;
 				}
 				
-				if(type == ArcType.PIE) 
+				if( type == ArcType.PIE ) 
 				{
 					if (_angle < 360 && _angle > -360) 
 					{
@@ -249,18 +252,15 @@ package pegas.draw
 		 */
 		public function setArc( radius:Number = 100 , angle:Number = 0 , startAngle:Number = 360 , x:Number = 0 , y:Number = 0 , yRadius:Number = NaN , align:uint = 10  , type:String = "pie"  ):void 
 		{
-			
-			this.radius     = radius ;
-			this.angle      = angle ;
+			this.radius = radius ;
+			this.angle = angle ;
 			this.startAngle = startAngle ;
 			this.x = x ;
 			this.y = y ;
 			this.yRadius = yRadius ;
 			this.align = align ;
 			this.type = type ? ArcType.CHORD : ArcType.PIE ;
-			
 		}
-
 		
 		/**
 		 * @private

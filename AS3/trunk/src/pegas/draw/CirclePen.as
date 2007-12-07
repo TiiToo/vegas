@@ -79,6 +79,14 @@ package pegas.draw
 			{
 				setPen.apply( this, arguments ) ;
 			}
+			super.draw() ;
+		}
+			
+		/**
+		 * This method contains the basic drawing shape algorithm.
+		 */
+		public override function drawShape():void
+		{
 			var $a:uint = align ;
 			var $x:Number = x ;
 			var $y:Number = y ;
@@ -124,10 +132,6 @@ package pegas.draw
 				$y += $r ;
 			}			
 			graphics.drawCircle( $x, $y, radius ) ;
-			if ( isEndFill )
-			{
-				graphics.endFill() ;
-			}	
 		}
 
 		/**
