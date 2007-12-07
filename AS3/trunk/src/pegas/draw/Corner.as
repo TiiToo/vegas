@@ -34,6 +34,10 @@ package pegas.draw
 
 		/**
 		 * Creates a new Corner instance.
+		 * @param tl The bottom left flag value.
+		 * @param tr The bottom right flag value.
+		 * @param br The bottom right flag value.
+		 * @param bl The bottom left flag value.
 		 */
 		public function Corner( tl:Boolean=true , tr:Boolean=true , br:Boolean=true , bl:Boolean=true )
 		{

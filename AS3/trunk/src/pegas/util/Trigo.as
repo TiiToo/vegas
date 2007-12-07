@@ -114,7 +114,7 @@ package pegas.util
 		 */
 		public static function degreesToRadians (angle:Number) : Number 
 		{
-			return angle * (Math.PI / 180) ;
+			return angle * ( Math.PI / 180 ) ;
 		}
 		
 		/**
@@ -150,7 +150,7 @@ package pegas.util
 	 	 */
 		public static function fixAngle (angle:Number):Number 
 		{
-			if (isNaN(angle)) 
+			if ( isNaN(angle) ) 
 			{	
 				angle = 0 ;
 			}

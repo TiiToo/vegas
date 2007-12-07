@@ -45,6 +45,11 @@ package pegas.draw
 		}
 		
 		/**
+		 * The empty FillStyle singleton.
+		 */
+		public static var EMPTY:FillStyle = new FillStyle( undefined ) ;
+		
+		/**
 		 * The alpha value of the fill style.
 		 */
 		public var alpha:Number;

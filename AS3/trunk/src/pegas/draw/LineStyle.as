@@ -60,6 +60,11 @@ package pegas.draw
 		}
 		
 		/**
+		 * The empty LineStyle singleton.
+		 */
+		public static var EMPTY:LineStyle = new LineStyle( undefined ) ;
+		
+		/**
 		 * A number that indicates the alpha value of the color of the line; valid values are 0 to 1. 
 		 * If a value is not indicated, the default is 1 (solid). If the value is less than 0, the default is 0. If the value is greater than 1, the default is 1. 
 		 */
