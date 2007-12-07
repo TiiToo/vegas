@@ -102,7 +102,6 @@ package pegas.draw
 			}
 			_graphics = graphic ;
 		}
-
 		/**
 		 * Determinates the line style object of the pen.
 		 */
