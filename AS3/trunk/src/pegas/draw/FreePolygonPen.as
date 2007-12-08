@@ -28,7 +28,7 @@ package pegas.draw
 	import pegas.draw.Pen;
 	import pegas.geom.Vector2;
 	
-	import vegas.errors.UnsupportedOperation;		
+	import vegas.errors.UnsupportedOperation;	
 
 	/**
 	 * This pen is the tool to draw a free polygon vector shape. This class don't use the 'align' property.
@@ -46,13 +46,9 @@ package pegas.draw
 		public function FreePolygonPen( graphic:Graphics , ...arguments:Array )
 		{
 			super( graphic ) ;
-			if ( arguments.length == 1 && arguments[0] is Array ) 
+			if ( arguments.length > 0 )
 			{
-				this.points = arguments[0] ;
-			}
-			else if ( arguments.length > 0 )
-			{
-				this.points = arguments ;
+				setPen( arguments ) ;
 			}
 		}
 
@@ -102,13 +98,9 @@ package pegas.draw
 		 */
 		public override function draw( ...arguments:Array ):void
 		{
-			if ( arguments.length == 1 && arguments[0] is Array ) 
+			if ( arguments.length > 0 )
 			{
-				points = arguments[0] ;
-			}
-			else if ( arguments.length > 0 )
-			{
-				points = arguments ;
+				setPen.apply( this,  arguments ) ;
 			}
 			super.draw() ;
 		}
@@ -131,6 +123,26 @@ package pegas.draw
                 	graphics.lineTo( _points[i].x, _points[i].y );
                 }
             	graphics.lineTo( _points[0].x, _points[0].y );
+			}
+		}
+	
+		/**
+		 * Sets the arc options to defined all values to draw the arc shape in the movieclip reference of this pen.
+		 * @param x (optional) The x position of the pen.
+		 * @param y (optional) The y position of the pen.
+		 * @param width (optional) The width of the pen.
+		 * @param height (optional) The height of the pen.
+ 		 * @param align (optional) The align value of the pen.
+		 */
+		public function setPen( ...args:Array  ):void 
+		{
+			if ( args.length == 1 && args[0] is Array ) 
+			{
+				this.points = args[0] ;
+			}
+			else if ( args.length > 0 )
+			{
+				this.points = args ;
 			}
 		}
 		

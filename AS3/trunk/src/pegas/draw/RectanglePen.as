@@ -29,13 +29,35 @@ package pegas.draw
 
 	/**
 	 * This pen draw a rectangle shape with a Graphics object.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import pegas.draw.Align ;
+	 * import pegas.draw.RectanglePen ;
+	 * import pegas.draw.FillStyle ;
+	 * import pegas.draw.LineStyle ;
+	 * 
+	 * stage.scaleMode = StageScaleMode.NO_SCALE ;
+	 * stage.align = "" ;
+	 * 
+	 * var shape:Shape = new Shape() ;
+	 * shape.x = 740 / 2 ;
+	 * shape.y = 420 / 2 ;
+	 * 
+	 * var pen:RectanglePen = new RectanglePen( shape.graphics , 0, 0, 50, 50,  Align.CENTER ) ;
+	 * pen.useClear   = true ;
+	 * 
+	 * pen.useEndFill = true ;
+	 * pen.fillStyle  = new FillStyle( 0xFF0000 , 0.5 ) ;
+	 * pen.lineStyle  = new LineStyle( 2, 0xFFFFFF , 1 ) ;
+	 * pen.draw() ;
+ 	 * }
 	 * @author eKameleon
 	 */
 	public class RectanglePen extends Pen 
 	{
 
 		/**
-		 * Creates a new ArcPen instance.
+		 * Creates a new RectanglePen instance.
 		 * @param graphic The Graphics reference to control with this helper.
 		 * @param x (optional) The x position of the pen. (default 0)
 		 * @param y (optional) The y position of the pen. (default 0)
@@ -100,49 +122,8 @@ package pegas.draw
 		 */
 		public override function drawShape():void
 		{
-			var $x:Number = x ;
-			var $y:Number = y ;
-			if( align == Align.BOTTOM ) 
-			{
-				$x -= width / 2 ;
-				$y -= height ;
-			}
-			else if ( align == Align.BOTTOM_LEFT )
-			{
-				$y -= height ;
-			}
-			else if ( align == Align.BOTTOM_RIGHT )
-			{
-				$x -= width ;
-				$y -= height ;
-			}
-			else if ( align == Align.CENTER )
-			{
-				$x -= width / 2 ;
-				$y -= height / 2 ;
-			}
-			else if ( align == Align.LEFT )
-			{
-				$y -= height / 2 ;
-			}
-			else if ( align == Align.RIGHT )
-			{
-				$x -= width ;
-				$y -= height / 2 ;
-			}
-			else if ( align == Align.TOP )
-			{
-				$x -= width / 2 ;
-			}
-			else if ( align == Align.TOP_RIGHT )
-			{
-				$x -= width ;
-			}
-			else // Align.TOP_LEFT
-			{
-				
-			}
-			graphics.drawRect( $x , $y , width , height ) ;
+			_refreshAlign() ;
+			graphics.drawRect( _x , _y , width , height ) ;
 		}
 	
 		/**
@@ -174,6 +155,65 @@ package pegas.draw
 			if ( args[4] != null )
 			{
 				this.align = args[4] ;
+			}
+		}
+		
+		/**
+		 * The offset x position of the rectangle with the align transformation.
+		 */
+		protected var _x:Number ;
+
+		/**
+		 * The offset y position of the rectangle with the align transformation.
+		 */
+		protected var _y:Number ;
+		
+		/**
+		 * Invoqued to refresh the offset x and y position defines by the align property.
+		 */
+		protected function _refreshAlign():void
+		{
+			_x = x ;
+			_y = y ;
+			if( align == Align.BOTTOM ) 
+			{
+				_x -= width / 2 ;
+				_y -= height ;
+			}
+			else if ( align == Align.BOTTOM_LEFT )
+			{
+				_y -= height ;
+			}
+			else if ( align == Align.BOTTOM_RIGHT )
+			{
+				_x -= width ;
+				_y -= height ;
+			}
+			else if ( align == Align.CENTER )
+			{
+				_x -= width / 2 ;
+				_y -= height / 2 ;
+			}
+			else if ( align == Align.LEFT )
+			{
+				_y -= height / 2 ;
+			}
+			else if ( align == Align.RIGHT )
+			{
+				_x -= width ;
+				_y -= height / 2 ;
+			}
+			else if ( align == Align.TOP )
+			{
+				_x -= width / 2 ;
+			}
+			else if ( align == Align.TOP_RIGHT )
+			{
+				_x -= width ;
+			}
+			else // Align.TOP_LEFT
+			{
+				
 			}
 		}
 		

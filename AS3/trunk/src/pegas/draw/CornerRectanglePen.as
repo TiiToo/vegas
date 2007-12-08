@@ -34,7 +34,7 @@ package pegas.draw
 	{
 
 		/**
-		 * Creates a new ArcPen instance.
+		 * Creates a new CornerRectanglePen instance.
 		 * @param graphic The Graphics reference to control with this helper.
 		 * @param x (optional) The x position of the pen. (default 0)
 		 * @param y (optional) The y position of the pen. (default 0)
