@@ -43,24 +43,22 @@ package pegas.util
 		 * Calculates an array representation of Point elements to create a quadratic Bezier curve looped or not in n-points.
 		 * @return an array representation of Point elements to create a quadratic Bezier curve looped or not in n-points.
 		 */
-		public static function createBezier(step:Number,points:Array,precision:Number,loop:Boolean):Array 
+		public static function createBezier(step:Number ,points:Array ,precision:Number=0, loop:Boolean=true):Array 
 		{
 			
 			precision= isNaN(precision) ? 0 : precision ;
 			
-			if (loop == undefined) 
-			{
-				loop = true ;
-			}
-							
 			var pts:Array = [];
 			var nbp:Number = points.length ;
-			var i:Number=0 ;
-			var lastpoint:Vector2 = null ;
 			
-			var _p0:Vector2 ;
-			var _p1:Vector2 ;
-			var _p2:Vector2 ;
+			var i:Number=0 ;
+			
+			var lastpoint:Vector2 ;
+			
+			var _p0:* ;
+			var _p1:* ;
+			var _p2:* ;
+			
 			var t:Number ;
 			
 			var c1:Number ;
@@ -70,12 +68,12 @@ package pegas.util
 			var ny:Number ;
 			var u1:Number ;
 			var npoint:Vector2 ;
-			
+
 			while (i<nbp)
 			{
 				_p0 = points[i] ;
-				_p1 = (loop)? points[(i+1)%nbp]:(points[(i+1)])? points[(i+1)]:_p0 ;
-				_p2 = (loop)? points[(i+2)%nbp]:(points[(i+2)])? points[(i+2)]:_p1 ;
+				_p1 = loop ? points[(i+1)%nbp] : (points[(i+1)]) ? points[(i+1)] : _p0 ;
+				_p2 = loop ? points[(i+2)%nbp] : (points[(i+2)]) ? points[(i+2)] : _p1 ;
 				t = 0 ;
 				while (t<=1)
 				{
@@ -83,7 +81,7 @@ package pegas.util
 					var p0:Vector2 = new Vector2((_p0.x+_p1.x)/2,(_p0.y+_p1.y)/2);
 					var p1:Vector2 = new Vector2(_p1.x,_p1.y);
 					var p2:Vector2 = new Vector2((_p2.x+_p1.x)/2,(_p2.y+_p1.y)/2);
-								
+						
 					u1 = 1 - t ;
 					c1 = u1 * u1 ;
 					c2 = 2 * t * u1 ;

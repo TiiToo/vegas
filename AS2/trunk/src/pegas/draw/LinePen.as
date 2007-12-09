@@ -19,7 +19,9 @@
   
   Contributor(s) :
   
- */import pegas.draw.AbstractPen;
+ */
+ 
+import pegas.draw.AbstractPen;
 import pegas.geom.Line;
 import pegas.geom.Point;
 import pegas.geom.Vector2;
@@ -81,7 +83,7 @@ class pegas.draw.LinePen extends AbstractPen
 		return getEnd() ;	
 	}
 	
-	public function set end(p:Point):Void 
+	public function set end(p:Vector2):Void 
 	{
 		setEnd(p) ;	
 	}
@@ -156,7 +158,7 @@ class pegas.draw.LinePen extends AbstractPen
 	/**
 	 * Draw the pen.
 	 */
-	public function draw(p_start:Point, p_end:Point, p_thickness:Number, p_color:Number, p_alpha:Number):Void 
+	public function draw(p_start:Vector2, p_end:Vector2, p_thickness:Number, p_color:Number, p_alpha:Number):Void 
 	{
 		if (arguments.length > 0) 
 		{

@@ -23,6 +23,8 @@
 
 package pegas.events 
 {
+	import flash.events.Event;
+	
 	import pegas.events.ActionEvent;
 	import pegas.transitions.ITransition;	
 
@@ -83,7 +85,19 @@ package pegas.events
 		{
 			_tID = id ;
 		}
-	
+
+	    /**
+    	 * Returns the shallow copy of this object.
+    	 * @return the shallow copy of this object.
+    	 */
+		public override function clone():Event 
+		{
+			var e:TransitionEvent = new TransitionEvent( type, target, info, context ) ;
+			e.transition          = transition ;
+			e.transitionID        = transitionID ;
+			return e ;
+		}
+
 		/**
 		 * The internal ITransition reference of this event.
 		 */
