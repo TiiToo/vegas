@@ -212,6 +212,10 @@ package pegas.transitions
 		 */
 		public function setTweenEntry( prop:String, easing:Function , begin:Number , finish:Number ):void
 		{
+			if ( _model == null )
+			{
+				setTweenModel() ;
+			}
 			if ( _model.contains( prop ) )
 			{
 				var entry:TweenEntry = _model.get(prop) ;
@@ -259,6 +263,10 @@ package pegas.transitions
 		 */
 		public override function update():void 
 		{
+			if ( _model == null )
+			{
+				return ;
+			}
 			var a:Array  = _model.toArray() ;
 			var l:Number = a.length ;
 			while(--l > -1) 

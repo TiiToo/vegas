@@ -26,8 +26,8 @@
  * @author eKameleon
  * Thanks : Peter Hall <www.peterjoel.com> ASVDrawing Class v1.0
  */
-class pegas.draw.CanvasTransform {
-
+class pegas.draw.CanvasTransform 
+{
 	
 	/**
 	 * Creates a free form effect over a {@code Canvas} object}.
@@ -40,10 +40,6 @@ class pegas.draw.CanvasTransform {
 	{
 		var w:Number = xMax - xMin ;
 		var h:Number = yMax - yMin;
-		//var w2_0:Number = x1 - x0 ;
-		//var w2_1:Number = x2 - x3 ;
-		//var h2_0:Number = y1 - y0 ;
-		//var h2_1:Number = y2 - y3 ;
 		return function(x:Number, y:Number):Object
 		{
 			var gx:Number = ( x - xMin ) / w ;

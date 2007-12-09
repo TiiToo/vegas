@@ -101,7 +101,7 @@ package pegas.draw
 		public var y:Number ;
 		
 		/**
-		 * Draws the shape in the movieclip reference of this pen.
+		 * Draws the shape.
 		 * @param x (optional) The x position of the pen.
 		 * @param y (optional) The y position of the pen.
 		 * @param width (optional) The width of the pen.
@@ -127,7 +127,7 @@ package pegas.draw
 		}
 	
 		/**
-		 * Sets the arc options to defined all values to draw the arc shape in the movieclip reference of this pen.
+		 * Sets the shape options to defined all values to draw the shape.
 		 * @param x (optional) The x position of the pen.
 		 * @param y (optional) The y position of the pen.
 		 * @param width (optional) The width of the pen.

@@ -181,7 +181,7 @@ package pegas.draw
 		}
 
 		/**
-		 * Sets the pen properties.
+		 * Sets the shape options to defined all values to draw the shape.
 		 * @param x (optional) The x location of the center of the circle relative to the registration point of the parent display object (in pixels).
 		 * @param y (optional) The y location of the center of the circle relative to the registration point of the parent display object (in pixels).
 		 * @param sides (optional) The number of sides (Math.abs(sides) must be > 2)

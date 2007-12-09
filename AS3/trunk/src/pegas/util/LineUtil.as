@@ -109,6 +109,10 @@ package pegas.util
 				{
 					return new Vector2(c1, (a0*c1) + b0) ;
 				}
+				else
+				{
+					return null ;
+				}
 			}
 		}
 		

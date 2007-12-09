@@ -267,14 +267,26 @@ package pegas.geom
 		{
 			return new pegas.geom.Rectangle( x, y, width, height ) ;
 		}
-		
+
 		/**
 		 * Determines whether the specified point is contained within the rectangular region defined by this Rectangle object.
+		 * @param x The x coordinate to check.
+		 * @param y The y coordinate to check.
+		 * @return {@code true} if the specified point is contained within the rectangular region defined by this Rectangle object.
+		 */
+		public function containsCoordinate( x:Number , y:Number ):Boolean 
+		{
+			return ( ( x >= this.x ) && x < ( this.x + width ) && ( y >= this.y ) && ( y < this.y + height ) );
+		}
+
+		/**
+		 * Determines whether the specified point is contained within the rectangular region defined by this Rectangle object.
+		 * @param vector The Vector2 to check.
 		 * @return {@code true} if the specified point is contained within the rectangular region defined by this Rectangle object.
 		 */
 		public function containsVector( vector:Vector2 ):Boolean 
 		{
-			return (vector.x >= x && vector.x < x + width && vector.y >= y && vector.y < y + height);
+			return containsCoordinate( vector.x , vector.y ) ;
 		}
 	
 		/**
