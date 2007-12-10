@@ -68,7 +68,7 @@ class FilterVO
     /**
 	 * Creates a new FilterVO instance.
 	 */
-	function FilterVO ( filter /*Number*/ = 0 ) 
+	function FilterVO ( $filter /*Number*/ = 0 ) 
 	{
 		if (isset($filter))
 		{
