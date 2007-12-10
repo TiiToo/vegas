@@ -23,46 +23,46 @@
 
 package pegas.draw 
 {
-	import flash.display.Graphics;
-	
-	import pegas.draw.IShape;	
+    import flash.display.Graphics;
+    
+    import pegas.draw.IShape;    
 
-	/**
-	 * This interface defined the IPen implementation to creates shaped in Shape, Sprite and MovieClip objects.
-	 * @author eKameleon
-	 */
-	public interface IPen extends IShape 
-	{
+    /**
+     * This interface defined the IPen implementation to creates shaped in Shape, Sprite and MovieClip objects.
+     * @author eKameleon
+     */
+    public interface IPen extends IShape 
+    {
 
-		/**
-		 * Determinates the align value of the pen.
-		 */
-		function get align():uint ;
-		function set align( align:uint ):void ; 
-		
-		/**
-		 * Determinates the fill style object of the pen.
-		 */
-		function get fillStyle():IFillStyle ;
-		function set fillStyle( style:IFillStyle ):void ;
-		
-		/**
-		 * Specifies the Graphics object belonging to this Shape object, where vector drawing commands can occur.
-		 */
-		function get graphics():Graphics ;
-		function set graphics( graphic:Graphics ):void ;
+        /**
+         * Determinates the align value of the pen.
+         */
+        function get align():uint ;
+        function set align( align:uint ):void ; 
+        
+        /**
+         * Determinates the fill style object of the pen.
+         */
+        function get fillStyle():IFillStyle ;
+        function set fillStyle( style:IFillStyle ):void ;
+        
+        /**
+         * Specifies the Graphics object belonging to this Shape object, where vector drawing commands can occur.
+         */
+        function get graphics():Graphics ;
+        function set graphics( graphic:Graphics ):void ;
 
-		/**
-		 * Determinates the line style object of the pen.
-		 */
-		function get lineStyle():ILineStyle ;
-		function set lineStyle( style:ILineStyle ):void ;
-		
-		/**
-		 * This method contains the basic drawing shape algorithm.
-		 */
-		function drawShape():void ;
-		
-		
-	}
+        /**
+         * Determinates the line style object of the pen.
+         */
+        function get lineStyle():ILineStyle ;
+        function set lineStyle( style:ILineStyle ):void ;
+        
+        /**
+         * This method contains the basic drawing shape algorithm.
+         */
+        function drawShape():void ;
+        
+        
+    }
 }

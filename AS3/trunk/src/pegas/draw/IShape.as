@@ -24,19 +24,19 @@
 package pegas.draw 
 {
 
-	/**
-	 * This interface implement the draw() method in all the tools used in PEGAS to draw vector graphic shapes in the Shape, Sprite and MovieClip objects.
-	 * @author eKameleon
-	 */
-	public interface IShape 
-	{
-	
-		/**
-	 	 * Draws the vector graphic shape.
-	 	 */
-		function draw( ...arguments:Array ):void ;
-		
-	}
-	
-	
+    /**
+     * This interface implement the draw() method in all the tools used in PEGAS to draw vector graphic shapes in the Shape, Sprite and MovieClip objects.
+     * @author eKameleon
+     */
+    public interface IShape 
+    {
+    
+        /**
+         * Draws the vector graphic shape.
+         */
+        function draw( ...arguments:Array ):void ;
+        
+    }
+    
+    
 }

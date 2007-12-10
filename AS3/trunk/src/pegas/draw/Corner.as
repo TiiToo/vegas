@@ -23,90 +23,90 @@
 
 package pegas.draw 
 {
-	import vegas.core.CoreObject;		
+    import vegas.core.CoreObject;        
 
-	/**
-	 * Determinates the corner parameters in a CornerRectanglePen (Bevel, Rounded...)
-	 * @author eKameleon
-	 */
-	public class Corner extends CoreObject 
-	{
+    /**
+     * Determinates the corner parameters in a CornerRectanglePen (Bevel, Rounded...)
+     * @author eKameleon
+     */
+    public class Corner extends CoreObject 
+    {
 
-		/**
-		 * Creates a new Corner instance.
-		 * @param tl The bottom left flag value.
-		 * @param tr The bottom right flag value.
-		 * @param br The bottom right flag value.
-		 * @param bl The bottom left flag value.
-		 */
-		public function Corner( tl:Boolean=true , tr:Boolean=true , br:Boolean=true , bl:Boolean=true )
-		{
-			super();
-			if ( !tl ) 
-			{
-				this.tl = tl ;
-			}
-			if ( !br ) 
-			{
-				this.br = br ;
-			}
-			if ( !tr ) 
-			{
-				this.tr = tr ;
-			}
-			if ( !bl ) 
-			{
-				this.bl = bl ;
-			}
-		}
-		
-		/**
-		 * The bottom left flag value.
-		 */
-		public var bl:Boolean = true ; 
-		
-		/**
-		 * The bottom right flag value.
-		 */
-		public var br:Boolean = true ; 
-		
-		/**
-		 * The top left flag value.
-		 */
-		public var tl:Boolean = true ; 
-		
-		/**
-		 * The top right flag value.
-		 */
-		public var tr:Boolean = true ; 
-		
-		/**
-		 * Returns a Eden representation of the object.
-		 * @return a string representation the source code of the object.
-		 */
-		public override function toSource(...arguments:Array):String 
-		{
-			var source:String = "new pegas.draw.Corner(" ;
-			source += tl == true ? "true" : "false" ;
-			source += "," ;
-			source += tr == true ? "true" : "false" ;
-			source += "," ;
-			source += br == true ? "true" : "false" ;
-			source += "," ;
-			source += bl == true ? "true" : "false" ;
-			source += ")" ;
-			return source ;
-		}
-	
-		/**
-		 * Returns the string representation of this object.
-		 * @return the string representation of this object.
-		 */
-		public override function toString():String 
-		{
-			return "[Corner tl:" + tl + ", tr:" + tr + ", br:" + br  + ", bl:" + bl + "]" ;
-		}
-		
-	}
+        /**
+         * Creates a new Corner instance.
+         * @param tl The bottom left flag value.
+         * @param tr The bottom right flag value.
+         * @param br The bottom right flag value.
+         * @param bl The bottom left flag value.
+         */
+        public function Corner( tl:Boolean=true , tr:Boolean=true , br:Boolean=true , bl:Boolean=true )
+        {
+            super();
+            if ( !tl ) 
+            {
+                this.tl = tl ;
+            }
+            if ( !br ) 
+            {
+                this.br = br ;
+            }
+            if ( !tr ) 
+            {
+                this.tr = tr ;
+            }
+            if ( !bl ) 
+            {
+                this.bl = bl ;
+            }
+        }
+        
+        /**
+         * The bottom left flag value.
+         */
+        public var bl:Boolean = true ; 
+        
+        /**
+         * The bottom right flag value.
+         */
+        public var br:Boolean = true ; 
+        
+        /**
+         * The top left flag value.
+         */
+        public var tl:Boolean = true ; 
+        
+        /**
+         * The top right flag value.
+         */
+        public var tr:Boolean = true ; 
+        
+        /**
+         * Returns a Eden representation of the object.
+         * @return a string representation the source code of the object.
+         */
+        public override function toSource(...arguments:Array):String 
+        {
+            var source:String = "new pegas.draw.Corner(" ;
+            source += tl == true ? "true" : "false" ;
+            source += "," ;
+            source += tr == true ? "true" : "false" ;
+            source += "," ;
+            source += br == true ? "true" : "false" ;
+            source += "," ;
+            source += bl == true ? "true" : "false" ;
+            source += ")" ;
+            return source ;
+        }
+    
+        /**
+         * Returns the string representation of this object.
+         * @return the string representation of this object.
+         */
+        public override function toString():String 
+        {
+            return "[Corner tl:" + tl + ", tr:" + tr + ", br:" + br  + ", bl:" + bl + "]" ;
+        }
+        
+    }
 
 }

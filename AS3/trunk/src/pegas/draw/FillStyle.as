@@ -22,51 +22,51 @@
 */
 package pegas.draw 
 {
-	import flash.display.Graphics;
-	
-	import vegas.core.CoreObject;	
+    import flash.display.Graphics;
+    
+    import vegas.core.CoreObject;    
 
-	/**
-	 * Defines the fill style of the vector shapes. See the flash.display.graphics.beginFill method.
-	 * @author eKameleon
-	 */
-	final public class FillStyle extends CoreObject implements IFillStyle
-	{
-		
-		/**
-		 * Creates a new FillStyle instance.
-		 * @param color The color value of the fill style.
-		 * @param alpha The alpha value of the fill style.
-		 */
-		public function FillStyle( color:uint, alpha:Number = 1.0 )
-		{
-			this.alpha = alpha ;
-			this.color = color ;
-		}
-		
-		/**
-		 * The empty FillStyle singleton.
-		 */
-		public static var EMPTY:FillStyle = new FillStyle( undefined ) ;
-		
-		/**
-		 * The alpha value of the fill style.
-		 */
-		public var alpha:Number;
-	
-		/**
-		 * The color value of the fill style.
-		 */
-		public var color:uint;
+    /**
+     * Defines the fill style of the vector shapes. See the flash.display.graphics.beginFill method.
+     * @author eKameleon
+     */
+    final public class FillStyle extends CoreObject implements IFillStyle
+    {
+        
+        /**
+         * Creates a new FillStyle instance.
+         * @param color The color value of the fill style.
+         * @param alpha The alpha value of the fill style.
+         */
+        public function FillStyle( color:uint, alpha:Number = 1.0 )
+        {
+            this.alpha = alpha ;
+            this.color = color ;
+        }
+        
+        /**
+         * The empty FillStyle singleton.
+         */
+        public static var EMPTY:FillStyle = new FillStyle( undefined ) ;
+        
+        /**
+         * The alpha value of the fill style.
+         */
+        public var alpha:Number;
+    
+        /**
+         * The color value of the fill style.
+         */
+        public var color:uint;
         
         /**
          * Initialize and launch the beginFill method of the specified Graphics reference.
          */
         public function init( graphic:Graphics ):void
-		{
-        	graphic.beginFill( color, alpha );
-		}
-		
-	}
+        {
+            graphic.beginFill( color, alpha );
+        }
+        
+    }
 
 }

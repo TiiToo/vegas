@@ -22,51 +22,51 @@
 */
 package pegas.draw 
 {
-	import flash.display.Graphics;
-	
-	import pegas.draw.RectanglePen;	
+    import flash.display.Graphics;
+    
+    import pegas.draw.RectanglePen;    
 
-	/**
-	 * This pen draw a corner rectangle shape with a Graphics object.
-	 * @author eKameleon
-	 */
-	public class CornerRectanglePen extends RectanglePen 
-	{
+    /**
+     * This pen draw a corner rectangle shape with a Graphics object.
+     * @author eKameleon
+     */
+    public class CornerRectanglePen extends RectanglePen 
+    {
 
-		/**
-		 * Creates a new CornerRectanglePen instance.
-		 * @param graphic The Graphics reference to control with this helper.
-		 * @param x (optional) The x position of the pen. (default 0)
-		 * @param y (optional) The y position of the pen. (default 0)
-		 * @param width (optional) The width of the pen. (default 0)
-		 * @param height (optional) The height of the pen. (default 0)
- 		 * @param align (optional) The align value of the pen. (default Align.TOP_LEFT)
-	 	 */
-		public function CornerRectanglePen(graphic:Graphics, x:Number = 0, y:Number = 0, width:Number = 0, height:Number = 0, align:uint = 10)
-		{
-			super( graphic, x, y, width, height, align );
-		}
-		
-		/**
-		 * (read-write) Determinates the Corner value of this pen.
-		 */
-		public function get corner():Corner 
-		{
-			return _corner ;
-		}
-	
-		/**
-	 	 * @private
-	 	 */
-		public function set corner( c:Corner ):void 
-		{
-			_corner = c || new Corner() ;
-		}
-		
-		/**
-		 * @private
-		 */
-		private var _corner:Corner = new Corner() ;
-		
-	}
+        /**
+         * Creates a new CornerRectanglePen instance.
+         * @param graphic The Graphics reference to control with this helper.
+         * @param x (optional) The x position of the pen. (default 0)
+         * @param y (optional) The y position of the pen. (default 0)
+         * @param width (optional) The width of the pen. (default 0)
+         * @param height (optional) The height of the pen. (default 0)
+          * @param align (optional) The align value of the pen. (default Align.TOP_LEFT)
+          */
+        public function CornerRectanglePen(graphic:Graphics, x:Number = 0, y:Number = 0, width:Number = 0, height:Number = 0, align:uint = 10)
+        {
+            super( graphic, x, y, width, height, align );
+        }
+        
+        /**
+         * (read-write) Determinates the Corner value of this pen.
+         */
+        public function get corner():Corner 
+        {
+            return _corner ;
+        }
+    
+        /**
+          * @private
+          */
+        public function set corner( c:Corner ):void 
+        {
+            _corner = c || new Corner() ;
+        }
+        
+        /**
+         * @private
+         */
+        private var _corner:Corner = new Corner() ;
+        
+    }
 }

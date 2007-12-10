@@ -23,28 +23,28 @@
 package pegas.draw 
 {
 
-	/**
- 	 * This static class register all types used to draw an Arc with the ArcPen tool.
-	 * @author eKameleon
-	 */
-	public class ArcType
-	{
+    /**
+      * This static class register all types used to draw an Arc with the ArcPen tool.
+     * @author eKameleon
+     */
+    public class ArcType
+    {
 
-		/**
-		 * The 'chord' type.
-		 */
-		public static const CHORD:String = "chord" ;
-		
-		/**
-		 * The 'none' type.
-		 */
-		public static const NONE:String = "none" ;		
-		
-		/**
-		 * The 'pie' type.
-		 */
-		public static const PIE:String = "pie" ;
+        /**
+         * The 'chord' type.
+         */
+        public static const CHORD:String = "chord" ;
+        
+        /**
+         * The 'none' type.
+         */
+        public static const NONE:String = "none" ;        
+        
+        /**
+         * The 'pie' type.
+         */
+        public static const PIE:String = "pie" ;
 
-	}
-	
+    }
+    
 }

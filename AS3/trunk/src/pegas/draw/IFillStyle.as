@@ -22,20 +22,20 @@
 */
 package pegas.draw 
 {
-	import flash.display.Graphics;	
-	
-	/**
-	 * This interface provides basic implementation to create fill setting helper in the IPen objects.
-	 * @author eKameleon
-	 */
-	public interface IFillStyle 
-	{
-		
+    import flash.display.Graphics;    
+    
+    /**
+     * This interface provides basic implementation to create fill setting helper in the IPen objects.
+     * @author eKameleon
+     */
+    public interface IFillStyle 
+    {
+        
         /**
          * Initialize the fill settings of the specified Graphics reference.
          */
-	    function init( graphic:Graphics ):void ;
-		
-	}
-	
+        function init( graphic:Graphics ):void ;
+        
+    }
+    
 }

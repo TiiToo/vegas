@@ -22,20 +22,20 @@
 */
 package pegas.draw 
 {
-	import flash.display.Graphics;	
-	
-	/**
-	 * This interface provides basic implementation to create line setting helper in the IPen objects.
-	 * @author eKameleon
-	 */
-	public interface ILineStyle 
-	{
-		
+    import flash.display.Graphics;    
+    
+    /**
+     * This interface provides basic implementation to create line setting helper in the IPen objects.
+     * @author eKameleon
+     */
+    public interface ILineStyle 
+    {
+        
         /**
          * Initialize the line settings of the specified Graphics reference.
          */
-	    function init( graphic:Graphics ):void ;
-		
-	}
-	
+        function init( graphic:Graphics ):void ;
+        
+    }
+    
 }
