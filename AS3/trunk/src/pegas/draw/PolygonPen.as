@@ -34,7 +34,7 @@ package pegas.draw
 	{
 		
 		/**
-		 * The Pen class use composition to control a Graphics reference and draw custom vector graphic shapes.
+		 * Creates a new PolygonPen. The Pen class use composition to control a Graphics reference and draw custom vector graphic shapes.
 		 * @param graphic The Graphics reference to control with this helper.
 		 * @param x (optional)The x location of the center of the circle relative to the registration point of the parent display object (in pixels).
 		 * @param y (optional)The y location of the center of the circle relative to the registration point of the parent display object (in pixels).
@@ -57,7 +57,7 @@ package pegas.draw
 		public var angle:Number = 0 ;
 		
 		/**
-		 * The radius value of the circle pen.
+		 * The radius value of the pen.
 	 	 */
 		public var radius:Number ;
 
@@ -158,19 +158,15 @@ package pegas.draw
 					$y += $r ;
 				}	
 					
-				// init vars
-				var step:Number  ;
-				var start:Number ;
-				var i:uint       ;
 				var dx:Number    ;
 				var dy:Number    ;
-				
-				step  = ( Math.PI * 2 )/ sides ; // calculate span of sides
-				start = ( angle / 180 ) * Math.PI ; // calculate starting angle in radians
+
+				var step:Number  = ( Math.PI * 2 )/ sides ; // calculate span of sides
+				var start:Number = ( angle / 180 ) * Math.PI ; // calculate starting angle in radians
 				
 				graphics.moveTo( $x + ( Math.cos( start ) * $r ), $y - ( Math.sin(start) * $r ) ) ;
 				
-				for ( i=1 ; i<=count ; i++ ) 
+				for ( var i:uint=1 ; i<=count ; i++ ) 
 				{
 					dx = $x + Math.cos( start + ( step*i ) )* $r ;
 					dy = $y - Math.sin( start + ( step*i ) )* $r ;
