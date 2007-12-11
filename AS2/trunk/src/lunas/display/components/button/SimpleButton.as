@@ -56,10 +56,10 @@ class lunas.display.components.button.SimpleButton extends AbstractButton
 		_listenerOver = new Delegate(this, over) ;
 		_listenerUp = new Delegate(this, up) ;
 		
-		addEventListener (ButtonEvent.DISABLED, _listenerDisabled) ;
-		addEventListener (ButtonEvent.DOWN, _listenerDown) ;
-		addEventListener (ButtonEvent.OVER, _listenerOver) ;
-		addEventListener (ButtonEvent.UP, _listenerUp) ;
+		addEventListener (ButtonEvent.DISABLED , _listenerDisabled ) ;
+		addEventListener (ButtonEvent.DOWN     , _listenerDown     ) ;
+		addEventListener (ButtonEvent.OVER     , _listenerOver     ) ;
+		addEventListener (ButtonEvent.UP       , _listenerUp       ) ;
 	
 		getView().stop() ;
 			
