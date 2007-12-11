@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -32,7 +32,6 @@ package asgard.config
     /**
      * The ConfigCollector class is a static collection to register all IConfigurable objects.
      * @author eKameleon
-     * @version 1.0.0.0
      */
     public class ConfigCollector
     {

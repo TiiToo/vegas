@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -31,6 +31,7 @@ package asgard.net
 	import flash.net.URLVariables;
 
 	/**
+	 * This loader use a parse external data and deserialize it. 
 	 * @author eKameleon
 	 */
 	public class ParserLoader extends URLLoader

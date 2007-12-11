@@ -35,6 +35,9 @@ package asgard.config
     dynamic public class Config extends CoreObject implements IFormattable
     {
         
+        /**
+         * Creates a new Config instance.
+         */
         public function Config()
         {
             super();
@@ -59,9 +62,7 @@ package asgard.config
          */
 	    public static function contains( name:String ):Boolean
 	    {
-	        
 	        return instances.containsKey(name) ;
-	        
 	    }
 	    
         /**

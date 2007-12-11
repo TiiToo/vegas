@@ -82,27 +82,42 @@ package asgard.system
 		
 		/**
 		 * Returns a Lang instance with the specified 'id' value.
+		 * @return a Lang instance with the specified 'id' value.
 		 */
 		public static function get( id:String ):Lang
 		{
 			return LANGS.get(id) ;			
 		}
-
+		
+		/**
+		 * Insert a new key/value entry with a passed-in Lang argument.
+		 */
 		public static function put( lang:Lang ):*
 		{
 			return LANGS.put( lang.valueOf() , lang ) ;
 		}
-
+		
+		/**
+		 * Removes the specified Lang reference in the static LANGS HashMap.
+		 */
 		public static function remove( lang:Lang ):*
 		{
 			return LANGS.remove( lang.valueOf() ) ;
 		}
-
+		
+		/**
+		 * Returns the number of Lang reference register in the static LANGE HashMap.
+		 * @return the number of Lang reference register in the static LANGE HashMap.
+		 */
 		public static function size():uint
 		{
 			return LANGS.size() ;
 		}
 
+		/**
+		 * Returns the eden string representation of the object.
+		 * @return the eden string representation of the object.
+		 */
 		public override function toSource(...arguments:Array):String
 		{
 			return 'new Lang(' + Serializer.toSource(value) + ',' + Serializer.toSource(label) + ')' ;
@@ -118,7 +133,8 @@ package asgard.system
 		}
 		
 		/**
-		 * Returns true if the passed value is a valid Lang reference. 
+		 * Returns true if the passed value is a valid Lang reference.
+		 * @return true if the passed value is a valid Lang reference.
 		 */
 		public static function validate( lang:* ):Boolean 
 		{
