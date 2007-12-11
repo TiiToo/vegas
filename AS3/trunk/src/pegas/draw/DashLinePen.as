@@ -28,9 +28,10 @@ package pegas.draw
     import pegas.geom.Vector2;    
 
     /**
+     * This pen is the basic tool to draw a dash line.
      * @author eKameleon
      */
-    public class DashLinePen extends LinePen 
+    dynamic public class DashLinePen extends LinePen 
     {
         
         /**

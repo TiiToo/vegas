@@ -57,7 +57,7 @@ package pegas.draw
      * }
      * @author eKameleon
      */
-    public class Canvas extends Pen 
+    dynamic public class Canvas extends Pen 
     {
     
         /**

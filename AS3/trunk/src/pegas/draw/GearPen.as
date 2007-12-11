@@ -113,7 +113,7 @@ package pegas.draw
      * }
      * @author eKameleon
      */
-    public class GearPen extends Pen 
+    dynamic public class GearPen extends Pen 
     {
 
         /**

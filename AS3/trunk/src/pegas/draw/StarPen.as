@@ -111,7 +111,7 @@ package pegas.draw
      * }
      * @author eKameleon
      */
-    public class StarPen extends Pen 
+    dynamic public class StarPen extends Pen 
     {
 
         /**

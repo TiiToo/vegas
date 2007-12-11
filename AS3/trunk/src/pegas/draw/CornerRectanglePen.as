@@ -22,15 +22,15 @@
 */
 package pegas.draw 
 {
-    import flash.display.Graphics;
-    
-    import pegas.draw.RectanglePen;    
+	import flash.display.Graphics;
+	
+	import pegas.draw.RectanglePen;    
 
-    /**
+	/**
      * This pen draw a corner rectangle shape with a Graphics object.
      * @author eKameleon
      */
-    public class CornerRectanglePen extends RectanglePen 
+    dynamic public class CornerRectanglePen extends RectanglePen 
     {
 
         /**

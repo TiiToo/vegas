@@ -37,7 +37,7 @@ package pegas.draw
      * This pen draw a bezier line curve in a MovieClip reference.
      * @author eKameleon
      */
-    public class BezierPen extends Pen 
+    dynamic public class BezierPen extends Pen 
     {
 
         /**

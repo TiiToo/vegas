@@ -30,7 +30,7 @@ package pegas.draw
      * Draws a bevel rectangle.
      * @author eKameleon
      */
-    public class BevelRectanglePen extends CornerRectanglePen 
+    dynamic public class BevelRectanglePen extends CornerRectanglePen 
     {
 
         /**

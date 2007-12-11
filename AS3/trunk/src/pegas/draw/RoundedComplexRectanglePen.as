@@ -30,7 +30,7 @@ package pegas.draw
      * Draws a complex rounded rectangle. You can set the corner radius of the rectangle with the top left, top right, bottom left and bottom right corner.
      * @author eKameleon
      */
-    public class RoundedComplexRectanglePen extends RectanglePen 
+    dynamic public class RoundedComplexRectanglePen extends RectanglePen 
     {
 
         /**
