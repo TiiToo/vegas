@@ -19,8 +19,7 @@
   
   Contributor(s) :
   
-*/
-
+ */
 import asgard.display.DisplayObject;
 
 import vegas.data.map.HashMap;
@@ -98,8 +97,7 @@ class asgard.display.DisplayObjectCollector
 		{
 			e.toString() ;
 		}
-		return Boolean(_map.put(sName, dObject))   ;	
-		
+		return  _map.put(sName, dObject) == null   ;
 	}
 	
 	/**
