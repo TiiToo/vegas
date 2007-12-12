@@ -20,7 +20,6 @@
   Contributor(s) :
   
 */
-
 package asgard.display
 {
 	
@@ -45,23 +44,23 @@ package asgard.display
 		}
 	
 		/**
-		 * Returns 'true' if the DisplayObjectCollector contains the display's name.
-		 * @return 'true' if the DisplayObjectCollector contains the display's name.
+		 * Returns 'true' if the DisplayObjectCollector contains the display's id.
+		 * @return 'true' if the DisplayObjectCollector contains the display's id.
 		 */	
-		public static function contains( id:String ):Boolean 
+		public static function contains( id:* ):Boolean 
 		{
 			return _map.containsKey( id ) ;	
 		}
 
 		/**
-		 * Returns the DisplayObject register in the collector with the name passed in argument.
-		 * @return the DisplayObject register in the collector with the name passed in argument.
+		 * Returns the DisplayObject register in the collector with the id passed-in argument.
+		 * @return the DisplayObject register in the collector with the id passed-in argument.
 		 */	
-		public static function get(id:String):DisplayObject 
+		public static function get( id:* ):DisplayObject 
 		{
 			try 
 			{
-				if (!contains(id) ) 
+				if ( !contains( id ) ) 
 				{
 					throw new Warning("[DisplayObjectCollector].get('" + id + "'). Can't find DisplayObject instance." ) ;
 				} ;
@@ -71,28 +70,28 @@ package asgard.display
 				e.toString() ;
 			}
 		
-			return _map.get(id) as DisplayObject ;	
+			return _map.get( id ) as DisplayObject ;	
 		}
 	
 		/**
-		 * Insert a DisplayObject with an unique name into the DisplayObjectCollector.
+		 * Insert a DisplayObject with an unique id into the DisplayObjectCollector.
 		 * @param id the Id of the display to register
 		 * @param dObject The DisplayObject to insert in the collector.
 		 */
-		public static function insert(id:String, dObject:DisplayObject):Boolean 
+		public static function insert( id:*, dObject:DisplayObject ):Boolean 
 		{
 			try 
 			{
 				if ( contains(id) ) 
 				{
-					throw new Warning("[DisplayObjectCollector].insert(). A DisplayObject instance is already registered with '" + id + "' name." ) ;
+					throw new Warning("[DisplayObjectCollector] insert method failed. A DisplayObject instance is already registered with '" + id + "' name." ) ;
 				} ;
 			}
 			catch (e:Warning) 
 			{
 				e.toString() ;
 			}
-			return ( _map.put(id, dObject) as Boolean )   ;	
+			return _map.put(id, dObject) == null  ;	
 		}
 	
 		/**
@@ -105,9 +104,9 @@ package asgard.display
 		}
 	
 		/**
-		 * Remove a DisplayObject into the DisplayObjectCollector.
+		 * Removes the specified DisplayObject into the DisplayObjectCollector.
 		 */
-		public static function remove(id:String):void 	
+		public static function remove( id:* ):void 	
 		{
 			_map.remove(id) ;
 		}

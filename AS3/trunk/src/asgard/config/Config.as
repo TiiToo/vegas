@@ -20,19 +20,15 @@
   Contributor(s) :
   
 */
-
 package asgard.config
 {
-    
-    import vegas.core.CoreObject;
-    import vegas.core.IFormattable;
-    import vegas.data.map.HashMap;
-    
+	import vegas.core.CoreObject;			
+
 	/**
-	 * The dynamic Config singleton. This object is a global reference to register all external properties.
+	 * The dynamic Config singleton. This object is a global reference to register all external config properties.
      * @author eKameleon
      */
-    dynamic public class Config extends CoreObject implements IFormattable
+    dynamic public class Config extends CoreObject
     {
         
         /**
@@ -42,66 +38,25 @@ package asgard.config
         {
             super();
         }
-
-	   /**
-        * The map who contains all configs.
-        */
-	    protected static var instances:HashMap = new HashMap() ;
-
-        /**
-         * clear all configs in the global map.
-         */
-       	public static function clear():void 
-       	{
-	    	instances.clear() ;
-	    }
-
-        /**
-         * Returns 'true' if the Config map contains the key "name".
-         * @return 'true' if the Config map contains the key "name".
-         */
-	    public static function contains( name:String ):Boolean
-	    {
-	        return instances.containsKey(name) ;
-	    }
-	    
-        /**
-         * Returns a singleton reference of this class.
-         * @return a singleton reference of this class.
-         */
-	   	public static function getInstance( name:String="" ):Config
-	   	{
-    		
-    		if (name == null) 
-    		{
-    		    return null ;
-    		}
-    		
-	    	if ( ! instances.containsKey(name)) 
-	    	{
-		    	instances.put( name, new Config() ) ;
-    		}
-    		
-    		return (instances.get(name) as Config ) ;
-    		
-    	}
-
-        /**
-         * Remove a Singleton.
-         */
-	   	public static function removeInstance( name:String ):Boolean 
-	   	{
-	    	if ( !instances.containsKey(name) ) 
-	    	{
-		    	return instances.remove(name) != null ;
-		    }
-		    else 
-		    {
-			    return false ;
-    		}
-	
-	    }
-
+		
+		/**
+		 * Returns the singleton reference of this class.
+		 * @return the singleton reference of this class.
+		 */
+		public static function getInstance():Config
+		{
+			if ( _instance == null )
+			{
+				_instance = new Config ;
+			}
+			return _instance ;	
+		}
+		
+		/**
+		 * @private
+		 */
+		private static var _instance:Config ;
+		
     }
     
 }

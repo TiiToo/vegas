@@ -23,16 +23,15 @@
 
 package asgard.config
 {
+	import flash.net.URLRequest;
+	import flash.utils.getDefinitionByName;
+	
+	import asgard.config.IConfigLoader;
+	import asgard.net.ActionLoader;
+	
+	import vegas.util.ClassUtil;    
 
-    import asgard.config.IConfigLoader ;
-    import asgard.net.ActionLoader ;
-
-    import flash.net.URLRequest;
-    import flash.utils.getDefinitionByName;
-    
-    import vegas.util.ClassUtil ;
-
-    /**
+	/**
      * This skeletal class provides an easy implementation of the IConfigLoader interface. 
      * @author eKameleon
      */
@@ -42,12 +41,12 @@ package asgard.config
         /**
          * Creates a new AbstractConfigLoader instance.
          */
-        public function AbstractConfigLoader( name:String="" )
+        public function AbstractConfigLoader()
         {
             super() ;
             parsing = true ;
             _name = name ;
-            _config = Config.getInstance( name ) ;
+            _config = Config.getInstance() ;
         }
         
         /**

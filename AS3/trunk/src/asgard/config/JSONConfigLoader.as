@@ -69,10 +69,10 @@ package asgard.config
         /**
          * Creates a new JSONConfigLoader instance.
          */
-        public function JSONConfigLoader( name:String="" )
+        public function JSONConfigLoader()
         {
 
-            super(name ) ;
+            super() ;
             default_file_name = "config" ;
             default_file_suffix = ".json" ;
             

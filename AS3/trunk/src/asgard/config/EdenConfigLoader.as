@@ -39,9 +39,9 @@ package asgard.config
 		/**
 		 * Creates a new EdenConfigLoader instance.
 		 */
-        public function EdenConfigLoader( name:String="" )
+        public function EdenConfigLoader()
         {
-            super( name ) ;
+            super() ;
         }
     
         /**

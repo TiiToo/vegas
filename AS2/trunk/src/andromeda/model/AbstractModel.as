@@ -19,13 +19,7 @@
   
   Contributor(s) :
   
- */
-
-
-
-
-
-
+*/
 
 import andromeda.model.IModel;
 import andromeda.model.ModelCollector;
