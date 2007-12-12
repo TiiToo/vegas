@@ -69,7 +69,7 @@ class asgard.display.TimelineIterator extends CoreObject implements OrderedItera
 	 */
 	public function get currentFrame():Number
 	{
-		return _target._currentframe ;	
+		return _target._currentFrame ;	
 	}
 
 	/**
