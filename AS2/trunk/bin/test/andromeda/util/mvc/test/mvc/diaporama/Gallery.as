@@ -1,4 +1,4 @@
-
+﻿
 import asgard.display.DisplayObject;
 import asgard.display.StageAlign;
 import asgard.display.StageScaleMode;
