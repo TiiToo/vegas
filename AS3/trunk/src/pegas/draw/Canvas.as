@@ -23,13 +23,13 @@
 
 package pegas.draw 
 {
-    import flash.display.Graphics;
-    
-    import pegas.draw.Pen;
-    
-    import vegas.errors.NullPointerError;    
+	import flash.display.Graphics;
+	
+	import pegas.draw.Pen;
+	
+	import vegas.errors.NullPointerError;	
 
-    /**
+	/**
      * The Canvas pen is used to draw a complex shape with differents points in a data model.
      * <p><b>Example :</b></p>
      * {@code
@@ -62,9 +62,9 @@ package pegas.draw
     
         /**
          * Creates a new Canvas instance.
-         * @param graphic The Graphics reference to control with this helper.
+         * @param graphic The Graphics reference to control with this helper. You can passed-in a Shape or Sprite/MovieClip reference in argument.
          */
-        public function Canvas(graphic:Graphics , data:Array = null )
+        public function Canvas( graphic:* , data:Array = null )
         {
             super( graphic );
             this.data = data ;

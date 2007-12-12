@@ -22,12 +22,10 @@
 */
 package pegas.draw 
 {
-    import flash.display.Graphics;
-    
-    import pegas.draw.Pen;
-    import pegas.geom.Rectangle;    
+	import pegas.draw.Pen;
+	import pegas.geom.Rectangle;    
 
-    /**
+	/**
      * This pen draw a rectangle shape with a Graphics object.
      * <p><b>Example :</b></p>
      * {@code
@@ -58,14 +56,14 @@ package pegas.draw
 
         /**
          * Creates a new RectanglePen instance.
-         * @param graphic The Graphics reference to control with this helper.
+         * @param graphic The Graphics reference to control with this helper. You can passed-in a Shape or Sprite/MovieClip reference in argument.
          * @param x (optional) The x position of the pen. (default 0)
          * @param y (optional) The y position of the pen. (default 0)
          * @param width (optional) The width of the pen. (default 0)
          * @param height (optional) The height of the pen. (default 0)
           * @param align (optional) The align value of the pen. (default Align.TOP_LEFT)
           */
-        public function RectanglePen( graphic:Graphics , x:Number = 0 , y:Number = 0 , width:Number = 0 , height:Number = 0 , align:uint = 10 )
+        public function RectanglePen( graphic:* , x:Number = 0 , y:Number = 0 , width:Number = 0 , height:Number = 0 , align:uint = 10 )
         {
             super( graphic );
             setPen( x, y, width, height , align ) ;

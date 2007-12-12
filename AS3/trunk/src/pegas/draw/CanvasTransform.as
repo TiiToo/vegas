@@ -53,11 +53,10 @@ package pegas.draw
                 var gy:Number = ( y - $y ) / $h ;
                 var bx:Number = x0 + gy * (x3-x0) ;
                 var by:Number = y0 + gy * (y3-y0) ;
-                return 
-                {
-                    x : bx + gx * ( ( x1 + gy * ( x2 - x1 ) ) - bx ) , 
-                    y : by + gx * ( ( y1 + gy * ( y2 - y1 ) ) - by )
-                };
+                var o:Object = {} ;
+                o.x = ( bx + gx * ( ( x1 + gy * ( x2 - x1 ) ) - bx ) ) ; 
+                o.y = ( by + gx * ( ( y1 + gy * ( y2 - y1 ) ) - by ) ) ;
+                return o ;
             } ;
         }
         
@@ -166,11 +165,10 @@ package pegas.draw
                 var th:Number = Math.cos(Math.PI/2 + Math.PI*Math.sqrt(r2)/radius)*rotate ;
                 var cosTh:Number = Math.cos(th);
                 var sinTh:Number = Math.sin(th);
-                return 
-                { 
-                    x : x2 * cosTh + y2 * sinTh + centerX , 
-                    y : y2 * cosTh - x2 * sinTh +centerY
-                } ;
+                var o:Object = {} ;
+                o.x = ( x2 * cosTh + y2 * sinTh + centerX ) ; 
+                o.y = ( y2 * cosTh - x2 * sinTh +centerY ) ;
+                return o ;
             } ;
         }
             

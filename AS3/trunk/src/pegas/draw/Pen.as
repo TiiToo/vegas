@@ -22,15 +22,17 @@
 */
 package pegas.draw 
 {
-    import flash.display.Graphics;
-    import flash.utils.Proxy;
-    import flash.utils.flash_proxy;
-    
-    import pegas.draw.IPen;
-    
-    import vegas.util.ClassUtil;    
+	import flash.display.Graphics;
+	import flash.display.Shape;
+	import flash.display.Sprite;
+	import flash.utils.Proxy;
+	import flash.utils.flash_proxy;
+	
+	import pegas.draw.IPen;
+	
+	import vegas.util.ClassUtil;    
 
-    /**
+	/**
      * The Pen class use composition to control a Graphics reference and draw custom vector graphic shapes.
      * @author eKameleon
      */
@@ -39,13 +41,23 @@ package pegas.draw
         
         /**
          * Creates a new Pen instance.
-         * @param graphic The Graphics reference to control with this helper.
+         * @param graphic The Graphics reference to control with this helper. You can passed-in a Shape or Sprite/MovieClip reference in argument.
          */
-        public function Pen( graphic:Graphics )
+        public function Pen( graphic:* )
         {
-            this.graphics = graphic ;
+        	if ( graphic is Graphics )
+        	{
+            	this.graphics = graphic ;
+        	}
+        	else if ( graphic is Shape )
+        	{
+        		this.graphics = ( graphic as Shape ).graphics ;
+        	}
+        	else if ( graphic is Sprite )
+        	{
+        		this.graphics = ( graphic as Sprite ).graphics ;
+        	}
         }
-
 
         /**
          * (read-write) Determinates the align value of the pen.

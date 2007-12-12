@@ -22,11 +22,9 @@
 */
 package pegas.draw 
 {
-    import flash.display.Graphics;
-    
-    import pegas.draw.Pen;    
+	import pegas.draw.Pen;    
 
-    /**
+	/**
      * This pen drawing gears.
      * <p><b>Example :</b></p>
      * {@code
@@ -118,7 +116,7 @@ package pegas.draw
 
         /**
          * Creates a new StarPen instance.
-         * @param graphic The Graphics reference to control with this helper.
+         * @param graphic The Graphics reference to control with this helper. You can passed-in a Shape or Sprite/MovieClip reference in argument.
          * @param x (optional) The x location of the center of the circle relative to the registration point of the parent display object (in pixels).
          * @param y (optional) The y location of the center of the circle relative to the registration point of the parent display object (in pixels).
          * @param sides (optional) The number of teeth on gear. (must be > 2)
@@ -129,7 +127,7 @@ package pegas.draw
          * @param holeRadius (optional) size of hole. Default = innerRadius/3.
          * @param align (optional) The Align value to align the shape.
          */
-        public function GearPen( graphic:Graphics , x:Number=0, y:Number=0 , points:uint=5 , innerRadius:Number = 30 , outerRadius:Number = 40 , angle:Number = 0, holeSides:Number = 3 , holeRadius:Number=NaN, align:uint = 10  )
+        public function GearPen( graphic:* , x:Number=0, y:Number=0 , points:uint=5 , innerRadius:Number = 30 , outerRadius:Number = 40 , angle:Number = 0, holeSides:Number = 3 , holeRadius:Number=NaN, align:uint = 10  )
         {
             super( graphic ) ;
             setPen( x, y, points, innerRadius, outerRadius, angle, align ) ;

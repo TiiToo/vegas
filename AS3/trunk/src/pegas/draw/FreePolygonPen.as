@@ -39,11 +39,11 @@ package pegas.draw
         
         /**
          * The Pen class use composition to control a Graphics reference and draw custom free polygon vector graphic shapes.
-         * @param graphic The Graphics reference to control with this helper.
+         * @param graphic The Graphics reference to control with this helper. You can passed-in a Shape or Sprite/MovieClip reference in argument.
          * @param ...arguments An array of flash.geom.Point or pegas.geom.Vector2 objects or an argument serie of point objects. 
          * @author eKameleon
          */
-        public function FreePolygonPen( graphic:Graphics , ...arguments:Array )
+        public function FreePolygonPen( graphic:* , ...arguments:Array )
         {
             super( graphic ) ;
             if ( arguments.length > 0 )

@@ -22,7 +22,6 @@
 */
 package pegas.draw 
 {
-    import flash.display.Graphics;
     import flash.geom.Point;
     
     import pegas.draw.Pen;
@@ -63,11 +62,11 @@ package pegas.draw
 
         /**
          * Creates a new LinePen instance.
-         * @param graphic The Graphics reference to control with this helper.
+         * @param graphic The Graphics reference to control with this helper. You can passed-in a Shape or Sprite/MovieClip reference in argument.
          * @param start The default start Vector object.
          * @param end The default end Vector object.
          */
-        public function LinePen( graphic:Graphics , start:Vector2 = null , end:Vector2 = null )
+        public function LinePen( graphic:* , start:Vector2 = null , end:Vector2 = null )
         {
             super( graphic );
             setPen( start , end ) ;

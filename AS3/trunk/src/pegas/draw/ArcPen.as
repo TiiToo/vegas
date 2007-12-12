@@ -39,17 +39,17 @@ package pegas.draw
 
         /**
          * Creates a new ArcPen instance.
-         * @param graphic The Graphics reference to control with this helper.
+         * @param graphic The Graphics reference to control with this helper. You can passed-in a Shape or Sprite/MovieClip reference in argument.
          * @param angle (optional) The angle of the arc pen. (default 360)
          * @param radius (optional) The radius value of the arc. (default 100)
          * @param x (optional) The x position of the center of the arc. (default 0)
          * @param y (optional) The y position of the center of the arc. (default 0)
          * @param startAngle (optional) The start angle of the pen. (default 0)
-          * @param yRadius (optional) The y radius value of the pen. (default NaN)
-          * @param type (optional) The ArcType of the pen. (default ArcType.PIE)
-          * @param align (optional) The align value of the pen. (default Align.TOP_LEFT)
-          */
-        public function ArcPen( graphic:Graphics , angle:Number = 360, radius:Number = 100 , x:Number = 0 , y:Number = 0 , startAngle:Number = 0, yRadius:Number = NaN , type:String = "pie", align:uint = 10  )
+         * @param yRadius (optional) The y radius value of the pen. (default NaN)
+         * @param type (optional) The ArcType of the pen. (default ArcType.PIE)
+         * @param align (optional) The align value of the pen. (default Align.TOP_LEFT)
+         */
+        public function ArcPen( graphic:* , angle:Number = 360, radius:Number = 100 , x:Number = 0 , y:Number = 0 , startAngle:Number = 0, yRadius:Number = NaN , type:String = "pie", align:uint = 10  )
         {
             super( graphic ) ;
             this.setPen( angle, radius, x, y, startAngle, yRadius, type, align ) ;

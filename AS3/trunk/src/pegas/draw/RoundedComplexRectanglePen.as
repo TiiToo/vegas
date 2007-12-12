@@ -22,11 +22,9 @@
 */
 package pegas.draw 
 {
-    import flash.display.Graphics;
-    
-    import pegas.draw.RectanglePen;    
+	import pegas.draw.RectanglePen;        
 
-    /**
+	/**
      * Draws a complex rounded rectangle. You can set the corner radius of the rectangle with the top left, top right, bottom left and bottom right corner.
      * @author eKameleon
      */
@@ -35,7 +33,7 @@ package pegas.draw
 
         /**
          * Creates a new RoundedComplexRectanglePen instance.
-         * @param graphic The Graphics reference to control with this helper.
+         * @param graphic The Graphics reference to control with this helper. You can passed-in a Shape or Sprite/MovieClip reference in argument.
          * @param x (optional) The x position of the pen. (default 0)
          * @param y (optional) The y position of the pen. (default 0)
          * @param width (optional) The width of the pen. (default 0)
@@ -44,9 +42,9 @@ package pegas.draw
          * @param topRightRadius (optional) The radius of the upper-right corner, in pixels. (default 0)
          * @param bottomLeftRadius (optional) The radius of the bottom-left corner, in pixels. (default 0)
          * @param bottomRightRadius (optional) The radius of the bottom-right corner, in pixels. (default 0)
-          * @param align (optional) The align value of the pen. (default Align.TOP_LEFT)
+         * @param align (optional) The align value of the pen. (default Align.TOP_LEFT)
          */
-        public function RoundedComplexRectanglePen(graphic:Graphics, x:Number = 0, y:Number = 0, width:Number = 0, height:Number = 0, topLeftRadius:Number=0 , topRightRadius:Number=0 , bottomLeftRadius:Number=0 , bottomRightRadius:Number=0, align:uint = 10)
+        public function RoundedComplexRectanglePen(graphic:*, x:Number = 0, y:Number = 0, width:Number = 0, height:Number = 0, topLeftRadius:Number=0 , topRightRadius:Number=0 , bottomLeftRadius:Number=0 , bottomRightRadius:Number=0, align:uint = 10)
         {
             super( graphic );
             setPen(  x , y , width , height , topLeftRadius , topRightRadius, bottomLeftRadius, bottomRightRadius, align ) ; 

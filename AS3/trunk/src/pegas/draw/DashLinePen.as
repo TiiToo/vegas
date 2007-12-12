@@ -22,12 +22,10 @@
 */
 package pegas.draw 
 {
-    import flash.display.Graphics;
-    
-    import pegas.draw.LinePen;
-    import pegas.geom.Vector2;    
+	import pegas.draw.LinePen;
+	import pegas.geom.Vector2;    
 
-    /**
+	/**
      * This pen is the basic tool to draw a dash line.
      * @author eKameleon
      */
@@ -36,9 +34,13 @@ package pegas.draw
         
         /**
          * Creates a new DashLinePen instance.
-         * @param graphic The Graphics reference to control with this helper.
+         * @param graphic The Graphics reference to control with this helper. You can passed-in a Shape or Sprite/MovieClip reference in argument.
+         * @param start The vector object to defines the start position of the drawing.
+         * @param end The vector object to defines the end position of the drawing.
+         * @param length The length of the dashs.
+         * @param spacing The spacing between two dashs.
          */
-        public function DashLinePen(graphic:Graphics, start:Vector2 = null, end:Vector2 = null , length:Number = 2 , spacing:Number = 2 )
+        public function DashLinePen(graphic:*, start:Vector2 = null, end:Vector2 = null , length:Number = 2 , spacing:Number = 2 )
         {
             super( graphic );
             setPen( start, end, length, spacing ) ;

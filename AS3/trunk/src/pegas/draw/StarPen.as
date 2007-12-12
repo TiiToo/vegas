@@ -22,7 +22,6 @@
 */
 package pegas.draw 
 {
-    import flash.display.Graphics;
     
     import pegas.draw.Pen;
     import pegas.util.Trigo;    
@@ -116,7 +115,7 @@ package pegas.draw
 
         /**
          * Creates a new StarPen instance.
-         * @param graphic The Graphics reference to control with this helper.
+         * @param graphic The Graphics reference to control with this helper. You can passed-in a Shape or Sprite/MovieClip reference in argument.
          * @param x (optional) The x location of the center of the circle relative to the registration point of the parent display object (in pixels).
          * @param y (optional) The y location of the center of the circle relative to the registration point of the parent display object (in pixels).
          * @param points (optional) The number of points (Math.abs(sides) must be > 2)
@@ -125,7 +124,7 @@ package pegas.draw
          * @param angle (optional) The starting angle in degrees. (defaults to 0) 
          * @param align (optional) The Align value to align the shape.
          */
-        public function StarPen( graphic:Graphics , x:Number=0, y:Number=0 , points:uint=5 , innerRadius:Number = 20 , outerRadius:Number = 40 , angle:Number = 20 , align:uint = 10  )
+        public function StarPen( graphic:* , x:Number=0, y:Number=0 , points:uint=5 , innerRadius:Number = 20 , outerRadius:Number = 40 , angle:Number = 20 , align:uint = 10  )
         {
             super( graphic ) ;
             setPen( x, y, points, innerRadius, outerRadius, angle, align ) ;

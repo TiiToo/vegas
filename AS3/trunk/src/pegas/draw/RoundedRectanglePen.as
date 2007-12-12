@@ -22,7 +22,6 @@
 */
 package pegas.draw 
 {
-    import flash.display.Graphics;
     
     import pegas.draw.RectanglePen;    
 
@@ -60,16 +59,16 @@ package pegas.draw
 
         /**
          * Creates a new RoundedRectanglePen instance.
-         * @param graphic The Graphics reference to control with this helper.
+         * @param graphic The Graphics reference to control with this helper. You can passed-in a Shape or Sprite/MovieClip reference in argument.
          * @param x (optional) The x position of the pen. (default 0)
          * @param y (optional) The y position of the pen. (default 0)
          * @param width (optional) The width of the pen. (default 0)
          * @param height (optional) The height of the pen. (default 0)
          * @param ellipseWidth (optional) The width of the ellipse used to draw the rounded corners (in pixels). (default 0)
          * @param ellipseHeight (optional) Optional; if no value is specified, the default value matches that provided for the ellipseWidth parameter. 
-          * @param align (optional) The align value of the pen. (default Align.TOP_LEFT)
+         * @param align (optional) The align value of the pen. (default Align.TOP_LEFT)
          */
-        public function RoundedRectanglePen(graphic:Graphics, x:Number = 0, y:Number = 0, width:Number = 0, height:Number = 0, ellipseWidth:Number=0 , ellipseHeight:Number=NaN , align:uint = 10)
+        public function RoundedRectanglePen(graphic:*, x:Number = 0, y:Number = 0, width:Number = 0, height:Number = 0, ellipseWidth:Number=0 , ellipseHeight:Number=NaN , align:uint = 10)
         {
             super( graphic );
             setPen(  x, y, width, height, ellipseWidth, ellipseHeight, align ) ; 

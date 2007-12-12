@@ -22,11 +22,9 @@
 */
 package pegas.draw 
 {
-    import flash.display.Graphics;
-    
-    import pegas.draw.CornerRectanglePen;    
+	import pegas.draw.CornerRectanglePen;	
 
-    /**
+	/**
      * Draws a bevel rectangle.
      * @author eKameleon
      */
@@ -35,16 +33,16 @@ package pegas.draw
 
         /**
          * Creates a new RoundedRectanglePen instance.
-         * @param graphic The Graphics reference to control with this helper.
+         * @param graphic The Graphics reference to control with this helper. You can passed-in a Shape or Sprite/MovieClip reference in argument.
          * @param x (optional) The x position of the pen.
          * @param y (optional) The y position of the pen.
          * @param width (optional) The width of the pen.
          * @param height (optional) The height of the pen.
          * @param hBevel (optional) The hBevel value who defined the horizontal bevel level of all corners in this BevelRectangle pen.
          * @param vBevel (optional) The vBevel value who defined the vertical bevel level of all corners in this BevelRectangle pen.
-          * @param align (optional) The align value of the pen.
+         * @param align (optional) The align value of the pen.
          */
-        public function BevelRectanglePen(graphic:Graphics, x:Number = 0, y:Number = 0, width:Number = 0, height:Number = 0, hBevel:Number=0, vBevel:Number = 0 , align:uint = 10)
+        public function BevelRectanglePen(graphic:*, x:Number = 0, y:Number = 0, width:Number = 0, height:Number = 0, hBevel:Number=0, vBevel:Number = 0 , align:uint = 10)
         {
             super( graphic );
             setPen( x, y, width, height, hBevel, vBevel , align ) ;
@@ -88,8 +86,6 @@ package pegas.draw
         public override function drawShape():void
         {
             _refreshAlign() ;
-            
-            trace(hBevel + " : " + vBevel ) ;
             
             var hb:Number = hBevel ;
             var vb:Number = isNaN(vBevel) ? hBevel : vBevel ;
