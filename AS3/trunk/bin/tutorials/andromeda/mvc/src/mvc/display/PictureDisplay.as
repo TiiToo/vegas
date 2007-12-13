@@ -1,15 +1,15 @@
 ﻿
 package mvc.display
 {
-	import flash.display.Loader;
-	import flash.display.Sprite;
-	
-	import andromeda.util.visitor.IVisitable;
-	import andromeda.util.visitor.IVisitor;
-	
-	import asgard.display.DisplayObjectCollector;	
+    import flash.display.Loader;
+    import flash.display.Sprite;
+    
+    import andromeda.util.visitor.IVisitable;
+    import andromeda.util.visitor.IVisitor;
+    
+    import asgard.display.DisplayObjectCollector;    
 
-	/**
+    /**
      * The PictureDisplay class.
      */
     public class PictureDisplay extends Sprite implements IVisitable

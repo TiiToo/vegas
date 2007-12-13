@@ -1,28 +1,28 @@
 ﻿
 package mvc.visitors
 {
-	import andromeda.util.visitor.IVisitable;
-	import andromeda.util.visitor.IVisitor;
-	
-	import mvc.display.PictureDisplay;
-	
-	import vegas.core.CoreObject;
-	import vegas.errors.IllegalArgumentError;	
+    import andromeda.util.visitor.IVisitable;
+    import andromeda.util.visitor.IVisitor;
+    
+    import mvc.display.PictureDisplay;
+    
+    import vegas.core.CoreObject;
+    import vegas.errors.IllegalArgumentError;    
 
-	public class HideVisitor extends CoreObject implements IVisitor
+    public class HideVisitor extends CoreObject implements IVisitor
     {
-    	
-    	/**
-    	 * Creates a new HideVisitor instance.
-    	 */
+        
+        /**
+         * Creates a new HideVisitor instance.
+         */
         public function HideVisitor()
         {
             super();
         }
         
-    	/**
-	     * Hide a Picture object. Visit the IVisitable object. 
-    	 */
+        /**
+         * Hide a Picture object. Visit the IVisitable object. 
+         */
         public function visit(o:IVisitable):void
         {
             var picture:PictureDisplay = (o as PictureDisplay) ;

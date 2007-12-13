@@ -1,15 +1,15 @@
 ﻿
 package mvc.visitors
 {
-	import andromeda.util.visitor.IVisitable;
-	import andromeda.util.visitor.IVisitor;
-	
-	import mvc.display.PictureDisplay;
-	
-	import vegas.core.CoreObject;
-	import vegas.errors.IllegalArgumentError;	
+    import andromeda.util.visitor.IVisitable;
+    import andromeda.util.visitor.IVisitor;
+    
+    import mvc.display.PictureDisplay;
+    
+    import vegas.core.CoreObject;
+    import vegas.errors.IllegalArgumentError;    
 
-	public class ShowVisitor extends CoreObject implements IVisitor
+    public class ShowVisitor extends CoreObject implements IVisitor
     {
         
         /**
@@ -20,9 +20,9 @@ package mvc.visitors
             super();
         }
         
-		/**
-		 * Visit the IVisitable object.
-		 */
+        /**
+         * Visit the IVisitable object.
+         */
         public function visit(o:IVisitable):void
         {
             var picture:PictureDisplay = (o as PictureDisplay) ;

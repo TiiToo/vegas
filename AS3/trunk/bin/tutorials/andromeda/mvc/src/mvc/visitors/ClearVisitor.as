@@ -1,37 +1,37 @@
 ﻿
 package mvc.visitors
 {
-	import flash.display.Loader;
-	
-	import andromeda.util.visitor.IVisitable;
-	import andromeda.util.visitor.IVisitor;
-	
-	import asgard.display.DisplayObjectCollector;
-	
-	import mvc.display.PictureDisplay;
-	import mvc.display.UIList;
-	
-	import vegas.core.CoreObject;
-	import vegas.errors.IllegalArgumentError;	
+    import flash.display.Loader;
+    
+    import andromeda.util.visitor.IVisitable;
+    import andromeda.util.visitor.IVisitor;
+    
+    import asgard.display.DisplayObjectCollector;
+    
+    import mvc.display.PictureDisplay;
+    import mvc.display.UIList;
+    
+    import vegas.core.CoreObject;
+    import vegas.errors.IllegalArgumentError;    
 
-	/**
+    /**
      * This class clear the view of a Picture instance.
      * @author eKameleon
      */
     public class ClearVisitor extends CoreObject implements IVisitor
     {
 
-    	/**
-    	 * Creates a new ClearVisitor instance.
-    	 */
+        /**
+         * Creates a new ClearVisitor instance.
+         */
         public function ClearVisitor()
         {
             super();
         }
 
-    	/**
-	     * Clear a PictureDisplay object. Visit the IVisitable object. 
-    	 */
+        /**
+         * Clear a PictureDisplay object. Visit the IVisitable object. 
+         */
         public function visit( o:IVisitable ):void
         {
             var picture:PictureDisplay = (o as PictureDisplay) ;
