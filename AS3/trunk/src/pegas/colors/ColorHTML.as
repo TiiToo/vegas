@@ -48,11 +48,17 @@ package pegas.colors
 		/**
 		 * Creates a new ColorHTML instance.
 		 */
-		public function ColorHTML( value:Number , name:String )
+		public function ColorHTML( value:Number=NaN , name:String=null )
 		{
 			super();
-			this.name = name ;
-			this.value = value ;
+			if ( name != null )
+			{
+				this.name = name ;
+			}
+			if ( !isNaN(n) ) 
+			{
+				this.value = n ;
+			}
 		}
 
 		/**

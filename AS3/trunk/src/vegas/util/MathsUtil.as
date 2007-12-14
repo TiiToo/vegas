@@ -20,7 +20,6 @@
   Contributor(s) :
   
 */
-
 package vegas.util
 {
     

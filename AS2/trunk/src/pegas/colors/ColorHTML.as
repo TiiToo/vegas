@@ -20,7 +20,6 @@
   Contributor(s) :
   
  */
-
 import vegas.core.IConvertible;
 import vegas.core.IEquality;
 import vegas.core.IFormattable;
@@ -48,8 +47,14 @@ class pegas.colors.ColorHTML extends Number implements IConvertible, IEquality, 
 	function ColorHTML( n:Number , name:String) 
 	{
 		super(n) ;
-		this.name = name ;
-		this.value = n ;
+		if ( name != null )
+		{
+			this.name = name ;
+		}
+		if ( !isNaN(n) ) 
+		{
+			this.value = n ;
+		}
 	}
 	
 	/**
