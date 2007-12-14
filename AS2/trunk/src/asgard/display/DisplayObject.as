@@ -19,8 +19,7 @@
   
   Contributor(s) :
   
-*/
-
+ */
 import asgard.display.DisplayLoader;
 import asgard.display.DisplayLoaderCollector;
 import asgard.display.DisplayObjectCollector;
@@ -446,6 +445,15 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	}
 	
 	/**
+	 * Returns the depth of the view of the display instance (MovieClip, TextField, Video).
+	 * @return the depth of the view of the display instance (MovieClip, TextField, Video).
+	 */
+	public function getDepth():Number
+	{
+		return DisplayFactory.getDepth(view) ;	
+	}
+	
+	/**
 	 * Returns {@code true} if the display's view is enabled.
 	 * @return {@code true} if the display's view is enabled.
 	 */
@@ -613,6 +621,23 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 	public function resolveVisual( clazz:Function , name:String , depth )
 	{
 		return ConstructorUtil.createVisualInstance( clazz , resolve( name , depth ) ) ;
+	}
+	
+	/**
+	 * Swaps the stacking, or depth level (z-order), of the specified display with display that is specified by the target parameter, or with the display that currently occupies the depth level that is specified in the target parameter.
+	 * @param target This parameter can take one of two forms:
+	 * <bl>
+	 * <li>A Number that specifies the depth level where the display is to be placed.</li>
+	 * <li>A String that specifies the display instance whose depth is swapped with the movie clip for which the method is being applied. Both displays must have the same parent movie clip.</li>
+	 * </bl>
+	 */
+	public function swapDepths( target ):Void
+	{
+		if ( target instanceof DisplayObject )
+		{
+			target = DisplayObject(target).view ;
+		}
+		DisplayFactory.swapDepths( view, target ) ;	
 	}
 	
 	/**
