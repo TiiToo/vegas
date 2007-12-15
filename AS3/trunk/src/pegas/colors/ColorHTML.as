@@ -47,6 +47,8 @@ package pegas.colors
 		
 		/**
 		 * Creates a new ColorHTML instance.
+		 * @param value the decimal color number value.
+		 * @param name the name of the color.
 		 */
 		public function ColorHTML( value:Number=NaN , name:String=null )
 		{
@@ -55,9 +57,9 @@ package pegas.colors
 			{
 				this.name = name ;
 			}
-			if ( !isNaN(n) ) 
+			if ( !isNaN(value) ) 
 			{
-				this.value = n ;
+				this.value = value ;
 			}
 		}
 

@@ -183,7 +183,9 @@ package vegas.data.array
         private var _index:int ;
         
         /**
-         * Allows enumeration of the proxied object's properties by index number to retrieve property values. However, you cannot enumerate the properties of the Proxy class themselves. This function supports implementing for...in and for each..in loops on the object to retrieve the desired values. 
+         * Allows enumeration of the proxied object's properties by index number to retrieve property values. 
+         * However, you cannot enumerate the properties of the Proxy class themselves. 
+         * This function supports implementing for...in and for each..in loops on the object to retrieve the desired values. 
          */
         flash_proxy override function nextValue(index:int):* 
         {

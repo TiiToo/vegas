@@ -268,6 +268,10 @@ class asgard.date.DateFormatter extends AbstractFormatter
 		return r ;
 	}
 
+	/**
+	 * Formats the specified number day value in a string representation.
+	 * @return the specified numberday value in a string representation.
+	 */
 	public function formatDayAsNumber(day:Number, cpt:Number):String 
 	{
 		if (isNaN(cpt)) 
@@ -344,7 +348,10 @@ class asgard.date.DateFormatter extends AbstractFormatter
 		var s:String = hour.toString();
 		return (getZeros(cpt - s.length) + s) ;
 	}
-
+	
+	/**
+	 * Formats a millisecond value number in string expression.
+	 */
 	public function formatMillisecond(millisecond:Number, cpt:Number):String 
 	{
 		if (RANGE_MILLISECOND.isOutOfRange(millisecond)) 
@@ -359,6 +366,9 @@ class asgard.date.DateFormatter extends AbstractFormatter
 		return (getZeros(cpt - s.length) + s) ;
 	}
 
+	/**
+	 * Formats a minute value number in string expression.
+	 */
 	public function formatMinute(minute:Number, cpt:Number):String 
 	{
 		if (RANGE_MINUTE.isOutOfRange(minute)) 
@@ -369,7 +379,10 @@ class asgard.date.DateFormatter extends AbstractFormatter
 		var s:String = minute.toString();
 		return (getZeros(cpt - s.length) + s);
 	}
-	
+
+	/**
+	 * Formats a month value number in string expression.
+	 */
 	public function formatMonthAsNumber(month:Number, cpt:Number):String 
 	{
 		if (RANGE_MONTH.isOutOfRange(month)) 
@@ -380,7 +393,10 @@ class asgard.date.DateFormatter extends AbstractFormatter
 		var string:String = (month + 1).toString();
 		return (getZeros(cpt - string.length) + string) ;
 	}
-	
+
+	/**
+	 * Formats a month text value in string expression.
+	 */
 	public function formatMonthAsText(month:Number, cpt:Number):String 
 	{
 		if (RANGE_MONTH.isOutOfRange(month)) 
@@ -476,7 +492,10 @@ class asgard.date.DateFormatter extends AbstractFormatter
      * The internal singleton reference ot the DateFormatter class.
      */
 	private static var _instance:DateFormatter ;
-
+	
+	/**
+	 * @private
+	 */
 	private function _count(char:String, a:Array):Number 
 	{
 		if (!a) return 0 ;

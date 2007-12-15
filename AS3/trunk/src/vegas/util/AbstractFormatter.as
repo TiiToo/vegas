@@ -34,7 +34,6 @@ package vegas.util
     /**
 	 * Abstract class to creates classes who implemented IFormatter interface.
 	 * @author eKameleon
-	 * @version 1.0.0.0
 	 */
 	public class AbstractFormatter extends CoreObject implements ICloneable, ICopyable, IFormatter
 	{
@@ -42,7 +41,7 @@ package vegas.util
 		/**
 		 * Abstract constructor to creates a new class who extends AbstractFormatter.
 		 */
-		public function AbstractFormatter( pattern:String )
+		public function AbstractFormatter( pattern:String=null )
 		{
 			_pattern = pattern ;
 		}
@@ -59,7 +58,7 @@ package vegas.util
 		/**
 		 * Sets the internal pattern of this formatter.
 		 */
-		public function set pattern(pattern:String):void 
+		public function set pattern( expression:String ):void 
 		{
 			this._pattern = pattern ;
 		}
@@ -89,7 +88,7 @@ package vegas.util
 		 * This method format an expression with the pattern of this formatter.
 		 * Overrides this method.
 		 */	
-		public function format(...arguments:Array):String 
+		public function format( ...arguments:Array ):String 
 		{
 			return null ; // override this method
 		}

@@ -50,7 +50,7 @@ class asgard.media.FLVMetaData extends CoreObject
 	public var audiocodecid:Number ;
 	
 	/**
-	 * The audio data rate (Defaults to 0).
+	 * A number that indicates the rate at which audio was encoded, in kilobytes per second. (Defaults to 0).
 	 */
 	public var audiodatarate:Number ;
 	
@@ -76,6 +76,17 @@ class asgard.media.FLVMetaData extends CoreObject
 	 * The date of creation of the video.
 	 */
 	public var creationdate:String ;
+
+	/**
+	 * An array of objects, one for each cue point embedded in the FLV file. Value is undefined if the FLV file does not contain any cue points. Each object has the following properties :
+	 * <ul>
+	 * <li>type</li>
+	 * <li>name</li>
+	 * <li>time</li>
+	 * <li>parameters</li>
+	 * </ul> 
+	 */
+	public var cuePoints:Array ;
 
 	/**
 	 * The data size of the video.

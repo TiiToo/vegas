@@ -243,7 +243,7 @@ package asgard.display
             {
                 
                 var matrix:Matrix = new Matrix() ;
-                   matrix.createGradientBox( $w, $h );
+                 matrix.createGradientBox( $w, $h );
                 matrix.rotate(Trigo.degreesToRadians(gradientRotation)) ;
                 
                 (fillStyle as FillGradientStyle).matrix = matrix ;
@@ -251,10 +251,10 @@ package asgard.display
             }
             else
             {
-                    
+				//                    
             }        
             
-             _pen.draw(offsetX, offsetY, $w, $h ) ;
+            _pen.draw(offsetX, offsetY, $w, $h ) ;
                     
             _real = new Dimension( $w, $h ) ;
 

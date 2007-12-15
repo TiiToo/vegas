@@ -401,14 +401,29 @@ class asgard.media.SoundModel extends AbstractModel
 	 */
 	private var _bIsOn:Boolean ;
 
+	/**
+	 * @private
+	 */
 	private var _eAdd:SoundModelEvent ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _eClear:SoundModelEvent ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _eDisabled:SoundModelEvent ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _eEnabled:SoundModelEvent ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _eRemove:SoundModelEvent ;
 
 	/**
