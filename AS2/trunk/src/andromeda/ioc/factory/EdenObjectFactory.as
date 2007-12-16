@@ -269,7 +269,10 @@ class andromeda.ioc.factory.EdenObjectFactory extends ObjectFactory implements I
 			}
 		}
 	}
-
+	
+	/**
+	 * @private
+	 */
 	private var _assemblies:HashMap ;
 
 	/**

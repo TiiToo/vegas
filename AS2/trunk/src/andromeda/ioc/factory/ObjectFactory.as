@@ -32,7 +32,7 @@ import vegas.errors.NullPointerError;
 import vegas.util.ConstructorUtil;
 
 /**
- * The factory of all objects define with a IObjectDefinition reference.
+ * The factory of all objects who implements the IObjectDefinition interface.
  * @author eKameleon
  */
 class andromeda.ioc.factory.ObjectFactory extends ObjectDefinitionContainer implements IObjectFactory

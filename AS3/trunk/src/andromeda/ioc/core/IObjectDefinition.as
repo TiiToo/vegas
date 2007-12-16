@@ -70,27 +70,27 @@ package andromeda.ioc.core
 		/**
 		 * Sets the constructor arguments values of this object.
 		 */	
-		function setConstructorArguments( value:Array ):void ;
+		function setConstructorArguments( value:Array = null ):void ;
 			
 		/**
 		 * Sets the name of the method invoqued when the object is destroyed.
 		 */	
-		function setDestroyMethodName( value:String ):void ; 
+		function setDestroyMethodName( value:String = null ):void ; 
 		
 		/**
 		 * Init the name of the method.
 	 	 */		
-		function setInitMethodName( value:String ):void ;
+		function setInitMethodName( value:String = null ):void ;
 		
 		/**
 		 * Sets the Map of all properties of this Definition.
 		 */	
-		function setProperties( value:Map ):void ; 
+		function setProperties( value:Map = null ):void ; 
 		
 		/**
 	 	 * Sets the type of the object (the class name).
 	 	 */	
-		function setType( value:String ):void ; 
+		function setType( value:String = null ):void ; 
 		
 	}
 

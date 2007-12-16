@@ -235,5 +235,3 @@ package vegas.string
 	}
 	
 }
-
-#include "../../vegas/core/global.as"

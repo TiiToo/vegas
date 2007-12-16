@@ -52,17 +52,16 @@ package andromeda.ioc.core
 	 * 
  	 * var user:User = factory.getObject("user") ;
 	 * 
- 	 * trace( "User : " + user ) ;
-	 * trace( "User pseudo : " + user.pseudo ) ; // ekameleon
-	 * trace( "User url    : " + user.url    ) ; // http://www.ekameleon.net/blog
+	 * trace( "# User pseudo : " + user.pseudo ) ; // ekameleon
+	 * trace( "# User url    : " + user.url    ) ; // http://www.ekameleon.net/blog
 	 * }
 	 * With the <b>test.User</b> class :
  	 * {@code
- 	 * package
+ 	 * package test
  	 * {
  	 *     import vegas.core.CoreObject ;
  	 * 
- 	 *     class test.User extends CoreObject
+ 	 *     public class User extends CoreObject
  	 *     {
  	 *         
  	 *         public function User() {}
@@ -70,9 +69,9 @@ package andromeda.ioc.core
  	 *         public var pseudo:String ;
  	 *         public var url:String ;
  	 *         
- 	 *         public function initialize():Void
+ 	 *         public function initialize():void
  	 *         {
- 	 *             trace( this + " initialize.") ;
+ 	 *             trace( "# " + this + " initialize.") ;
  	 *         }
  	 *         
  	 *     }

@@ -106,7 +106,7 @@ package andromeda.ioc.core
 		 * Sets the constructor arguments values of this object.
 		 * @param value the array representation of all arguments in the constructor of the object instance.
 		 */	
-		public function setConstructorArguments( value:Array ):void 
+		public function setConstructorArguments( value:Array = null ):void 
 		{
 			_constructorArguments = value ;
 		}
@@ -115,7 +115,7 @@ package andromeda.ioc.core
 		 * Sets the name of the method invoqued when the object is destroyed.
 		 * @param value the name of the destroy method of the object.
 		 */	
-		public function setDestroyMethodName( value:String ):void 
+		public function setDestroyMethodName( value:String = null ):void 
 		{
 			_destroyMethodName = value;
 		}
@@ -124,7 +124,7 @@ package andromeda.ioc.core
 		 * Init the name of the method.
 	 	 * @param value the string 'init method' name.
 	     */		
-		public function setInitMethodName( value:String ):void 
+		public function setInitMethodName( value:String = null ):void 
 		{
 			_initMethodName = value;
 		}
@@ -133,7 +133,7 @@ package andromeda.ioc.core
 		 * Sets the map of all properties of this Definition.
 		 * @param value the Map of all properties of the object.
 		 */	
-		public function setProperties( value:Map ):void 
+		public function setProperties( value:Map = null ):void 
 		{
 			_properties = value ;
 		}
@@ -142,7 +142,7 @@ package andromeda.ioc.core
 		 * Sets the type of the object (the class name).
 		 * @param value the string representation of the type object.
 		 */	
-		public function setType( value:String ):void 
+		public function setType( value:String = null ):void 
 		{
 			_type = value ;
 		}

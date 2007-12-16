@@ -1554,5 +1554,3 @@ package vegas.string.eden
 	}
 	
 }
-
-#include "../../vegas/core/global.as"

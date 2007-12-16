@@ -1,0 +1,47 @@
+{
+
+	objects : 
+	[
+		{   
+			id            : "address"  ,
+			type          : "test.Address" ,
+			properties    : 
+			[ 
+				{ name : "city"   , value : "Marseille" } ,
+				{ name : "street" , value : "xx xxx xxxxxxxxxxx" } ,
+				{ name : "zip"    , value : 13004 } 
+			]
+		}
+		,
+		{   
+			id         : "job_dev"  ,
+			type       : "test.Job" ,
+			properties : [ 	{ name:"name" , value:"AS Developper" } ]
+		}
+		,
+		{   
+			id            : "user" , 
+			type          : "test.User" , 
+			arguments     : 
+			[ 
+				{ value :"eKameleon" } , 
+				{ value :"ALCARAZ"   } , 
+				{ ref   :"address"   } 
+			] ,
+			
+			singleton     : true ,
+			assemblyName  : "" , // not implemented yet
+			destroy       : "destroy" ,  // not fully implemented yet
+			init          : "initialize" ,
+			properties : 
+			[
+				{ name:"age"       , value : 30          } ,
+				{ name:"firstName" , value : "Marc"      } , 
+				{ name:"job"       , ref   : "job_dev"      } , 
+				{ name:"setMail"   , arguments  :  [ { value :"vegas@ekameleon.net" } ] } , // method
+				{ name:"url"       , value : "http://www.ekameleon.net/blog" }
+			]
+		}
+	]
+
+}
