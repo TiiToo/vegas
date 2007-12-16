@@ -1,82 +1,119 @@
 ﻿/*
 
-  The contents of this file are subject to the Mozilla Public License Version
-  1.1 (the "License"); you may not use this file except in compliance with
-  the License. You may obtain a copy of the License at 
+The contents of this file are subject to the Mozilla Public License Version
+1.1 (the "License"); you may not use this file except in compliance with
+the License. You may obtain a copy of the License at 
   
-           http://www.mozilla.org/MPL/ 
+http://www.mozilla.org/MPL/ 
   
-  Software distributed under the License is distributed on an "AS IS" basis,
-  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
-  for the specific language governing rights and limitations under the License. 
+Software distributed under the License is distributed on an "AS IS" basis,
+WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+The Original Code is Vegas Framework.
   
-  The Initial Developer of the Original Code is
-  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2008
-  the Initial Developer. All Rights Reserved.
+The Initial Developer of the Original Code is
+ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+Portions created by the Initial Developer are Copyright (C) 2004-2008
+the Initial Developer. All Rights Reserved.
   
-  Contributor(s) :
+Contributor(s) :
   
-*/
+ */
 
 package vegas.util
 {
+	import flash.system.ApplicationDomain;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getQualifiedSuperclassName;
-	
+
 	import vegas.core.IHashable;	
 
 	/**
-     * The {@code ClassUtil} utility class is an all-static class with methods for working with function the Class in AS3.
-     * @author eKameleon
-     */
+	 * The {@code ClassUtil} utility class is an all-static class with methods for working with function the Class in AS3.
+	 * @author eKameleon
+	 */
 	public class ClassUtil
 	{
-		
+
 		/**
-    	 * Creates an instance with the passed-in Class.
-    	 * @param c the class to instanciate.
-    	 * @param initProperties An object with all properties to to pass over the new instance.
-    	 * @return a new instance of the specified Class in argument.
-    	 */
-		public static function createNewInstance(c:Class = null , initProperties:Object = null ) :* 
+		 * Creates an instance with the passed-in Class.
+		 * @param c the class to instanciate.
+		 * @param initProperties An object with all properties to to pass over the new instance.
+		 * @return a new instance of the specified Class in argument.
+		 */
+		public static function createNewInstance(c:Class = null , initProperties:Object = null ):* 
 		{
 			if ( c == null )
 			{
-			    return null ;
+				return null ;
 			}
-			var instance:Object = new c() ;
+			var instance:Object = new c( ) ;
 			if (initProperties != null) 
 			{
 				for (var prop:String in initProperties)
 				{
-        			instance[prop] = initProperties[prop];
+					instance[prop] = initProperties[prop];
 				}
 			}
 			return instance ;
-			
 		}
-	
+
 		/**
-	     * Returns the name string representation of the specified instance passed in arguments.
-    	 * @param instance the reference of the object to apply reflexion.
-    	 */
+		 * Returns {@code true} if the class exists with the specified string name in argument.
+		 * @return {@code true} if the class exists with the specified string name in argument.
+		 */
+		public static function hasClassByName( name:String ):Boolean
+		{
+			var c:Class ;
+			try
+			{
+				c = getClassByName( name );
+			}
+            catch( e:Error )
+			{
+				return false;
+			}
+			return true;
+		}
+
+		/**
+		 * Returns the class reference from a string class name.
+		 * The string name notation can be either "flash.system::Capabilities" or "flash.system.Capabilities" 
+		 * but you have ot provide the full qualified path of the class "Capabilities" alone will not work.
+		 */
+		public static function getClassByName( name:String ):Class
+		{
+			return ApplicationDomain.currentDomain.getDefinition( name ) as Class;
+		}
+
+		/**
+		 * Returns the instance of a public definition in the current Domain.
+		 * The definition can be a class, namespace, function or object.
+		 */
+		public static function getDefinitionByName( name:String ):Object
+		{
+			return ApplicationDomain.currentDomain.getDefinition( name );
+		}
+
+		/**
+		 * Returns the name string representation of the specified instance passed in arguments.
+		 * @param instance the reference of the object to apply reflexion.
+		 */
 		public static function getName(instance:*):String 
 		{
-			return _formatName(getPath(instance)) ;
+			return _formatName( getPath( instance ) ) ;
 		}
-		
+
 		/**
 		 * Returns the unique name of the specified instance in argument.
 		 * @return the unique name of the specified instance in argument.
 		 */
 		public static function getUniqueName(instance:*):String
 		{
-			var name:String = getName(instance) ;
+			var name:String = getName( instance ) ;
 			
-			var charCode:int = name.charCodeAt(name.length - 1);
+			var charCode:int = name.charCodeAt( name.length - 1 );
 			if (charCode >= 48 && charCode <= 57)
 			{
 				name += "_" ;
@@ -86,76 +123,74 @@ package vegas.util
 			
 			if (instance is IHashable)
 			{
-				count += (instance as IHashable).hashCode() ;		 
+				count += (instance as IHashable).hashCode( ) ;		 
 			}	
 			else
 			{
-				count += instance["hashCode"]() ;
+				count += instance["hashCode"]( ) ;
 			}
 			
-			count += instance["hashCode"]() ;
+			count += instance["hashCode"]( ) ;
 			
 			return name + count ;
 		}
 
-    	/**
-    	 * Returns the package string representation of the specified instance passed in arguments.
-    	 * @param instance the reference of the object to apply reflexion.
-    	 */
+		/**
+		 * Returns the package string representation of the specified instance passed in arguments.
+		 * @param instance the reference of the object to apply reflexion.
+		 */
 		public static function getPackage(instance:*):String 
 		{
-			return _formatPackage(getPath(instance)) ;
+			return _formatPackage( getPath( instance ) ) ;
 		}	
 
-    	/**
-    	 * Returns the full path string representation of the specified instance passed in arguments (package + name).
-    	 * @param instance the reference of the object to apply reflexion.
-    	 */
+		/**
+		 * Returns the full path string representation of the specified instance passed in arguments (package + name).
+		 * @param instance the reference of the object to apply reflexion.
+		 */
 		public static function getPath(instance:*):String 
 		{
-            return _formatPath(flash.utils.getQualifiedClassName(instance)) ;
+			return _formatPath( flash.utils.getQualifiedClassName( instance ) ) ;
 		}
 
 		public static function getSuperName(instance:*):String 
 		{
-			return _formatName(getSuperPath(instance)) ;
+			return _formatName( getSuperPath( instance ) ) ;
 		}
 
 		public static function getSuperPackage(instance:*):String 
 		{
-			return _formatPackage(getSuperPath(instance)) ;
+			return _formatPackage( getSuperPath( instance ) ) ;
 		}
-		
+
 		public static function getSuperPath(instance:*):String 
 		{
-			return _formatPath(flash.utils.getQualifiedSuperclassName(instance)) ;
+			return _formatPath( flash.utils.getQualifiedSuperclassName( instance ) ) ;
 		}
 
 		private static function _formatName( path:String ):String 
 		{
-			var a:Array = path.split(".") ;
-            return (a.length > 1) ? a.pop() : path ;
+			var a:Array = path.split( "." ) ;
+			return (a.length > 1) ? a.pop( ) : path ;
 		}
 
 		private static function _formatPackage( path:String ):String 
 		{
-			var a:Array = path.split(".") ;
+			var a:Array = path.split( "." ) ;
 			if (a.length > 1) 
 			{
-				a.pop() ;
-	            return a.join(".") ;
+				a.pop( ) ;
+				return a.join( "." ) ;
 			}
 			else 
 			{
 				return null ;
 			}
 		}
-		
+
 		private static function _formatPath( path:String ):String 
 		{
-			return (path.split("::")).join(".") ;
+			return (path.split( "::" )).join( "." ) ;
 		}
-		
 	}
-
 }
