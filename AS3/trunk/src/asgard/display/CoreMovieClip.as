@@ -30,13 +30,16 @@ package asgard.display
 	
 	import vegas.core.ILockable;
 	import vegas.core.Identifiable;
+	import vegas.logging.ILogable;
+	import vegas.logging.ILogger;
+	import vegas.logging.Log;
 	import vegas.util.ClassUtil;	
 
 	/**
-	 * The CoreMovieClip class extends the flash.display.MovieClip class and implements the Identifiable interface.
+	 * The CoreMovieClip class extends the flash.display.MovieClip class and implements the IConfigurable, Identifiable, ILockable and ILogable interfaces.
 	 * @author eKameleon
 	 */
-	public class CoreMovieClip extends MovieClip implements IConfigurable, Identifiable, ILockable 
+	public class CoreMovieClip extends MovieClip implements IConfigurable, Identifiable, ILockable, ILogable 
 	{
 
 		/**
@@ -56,6 +59,7 @@ package asgard.display
 				this.name = name ;
 			}
 			this.isConfigurable = isConfigurable ;
+			setLogger() ;
 		}
 		
 		/**
@@ -99,6 +103,15 @@ package asgard.display
 				ConfigCollector.remove(this) ;
 			}
 		}
+		
+		/**
+		 * Returns the internal {@code ILogger} reference of this {@code ILogable} object.
+		 * @return the internal {@code ILogger} reference of this {@code ILogable} object.
+		 */
+		public function getLogger():ILogger
+		{
+			return _logger ; 	
+		}
 
     	/**
 	     * Returns {@code true} if the object is locked.
@@ -116,6 +129,14 @@ package asgard.display
 	    {
         	___isLock___ = true ;
     	}
+		
+		/**
+		 * Sets the internal {@code ILogger} reference of this {@code ILogable} object.
+		 */
+		public function setLogger( log:ILogger=null ):void 
+		{
+			_logger = log || Log.getLogger( ClassUtil.getPath(this) ) ;
+		}
 		
 		/**
          * Setup the IConfigurable object.
@@ -181,6 +202,11 @@ package asgard.display
 	     * @private
 	     */ 
 	    private var ___isLock___:Boolean = false ;
+		
+		/**
+		 * The internal ILogger reference of this object.
+		 */
+		private var _logger:ILogger ;
 		
 		/**
 		 * Sets the id of the object and register it in the DisplayObjectCollector if it's possible.

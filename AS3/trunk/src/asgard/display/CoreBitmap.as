@@ -31,13 +31,16 @@ package asgard.display
 	
 	import vegas.core.ILockable;
 	import vegas.core.Identifiable;
-	import vegas.util.ClassUtil;	
+	import vegas.logging.ILogable;
+	import vegas.logging.ILogger;
+	import vegas.logging.Log;
+	import vegas.util.ClassUtil;
 
 	/**
-	 * The CoreBitmap class extends the flash.display.Bitmap class and implements the Identifiable interface.
+	 * The CoreBitmap class extends the flash.display.Bitmap class and implements the IConfigurable, Identifiable, ILockable and ILogable interfaces.
 	 * @author eKameleon
 	 */
-	public class CoreBitmap extends Bitmap implements IConfigurable, Identifiable, ILockable
+	public class CoreBitmap extends Bitmap implements IConfigurable, Identifiable, ILockable, ILogable
 	{
 
 		/**
@@ -51,8 +54,12 @@ package asgard.display
 		public function CoreBitmap( id:*=null , bitmapData:BitmapData = null, pixelSnapping:String = "auto", smoothing:Boolean = false, isConfigurable:Boolean=false )
 		{
 			super( bitmapData , pixelSnapping , smoothing ) ;
-			this.id = id ;
+			if ( id != null )
+			{
+				this.id = id ;
+			}
 			this.isConfigurable = isConfigurable ;
+			setLogger() ;
 		}
 		
 		/**
@@ -97,6 +104,15 @@ package asgard.display
 			}
 		}
 
+		/**
+		 * Returns the internal {@code ILogger} reference of this {@code ILogable} object.
+		 * @return the internal {@code ILogger} reference of this {@code ILogable} object.
+		 */
+		public function getLogger():ILogger
+		{
+			return _logger ; 	
+		}
+
     	/**
 	     * Returns {@code true} if the object is locked.
 	     * @return {@code true} if the object is locked.
@@ -113,6 +129,14 @@ package asgard.display
 	    {
         	___isLock___ = true ;
     	}
+		
+		/**
+		 * Sets the internal {@code ILogger} reference of this {@code ILogable} object.
+		 */
+		public function setLogger( log:ILogger=null ):void 
+		{
+			_logger = log || Log.getLogger( ClassUtil.getPath(this) ) ;
+		}
 		
 		/**
          * Setup the IConfigurable object.
@@ -178,6 +202,11 @@ package asgard.display
 	     * @private
 	     */ 
 	    private var ___isLock___:Boolean = false ;
+
+		/**
+		 * The internal ILogger reference of this object.
+		 */
+		private var _logger:ILogger ;
 
 		/**
 		 * Sets the id of the object and register it in the DisplayObjectCollector if it's possible.

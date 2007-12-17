@@ -31,13 +31,16 @@ package asgard.media
 	
 	import vegas.core.ILockable;
 	import vegas.core.Identifiable;
+	import vegas.logging.ILogable;
+	import vegas.logging.ILogger;
+	import vegas.logging.Log;
 	import vegas.util.ClassUtil;	
 
 	/**
-	 * The CoreVideo class extends the flash.media.Video class and implements the IConfigurable, the Identifiable and the ILockable interfaces.
+	 * The CoreVideo class extends the flash.media.Video class and implements the IConfigurable, Identifiable, ILockable and ILogable interfaces.
 	 * @author eKameleon
 	 */
-	public class CoreVideo extends Video implements IConfigurable, Identifiable, ILockable
+	public class CoreVideo extends Video implements IConfigurable, Identifiable, ILockable, ILogable
 	{
 
 		/**
@@ -54,8 +57,12 @@ package asgard.media
 		public function CoreVideo( id:*=null , width:int = 320, height:int = 240, isConfigurable:Boolean=false )
 		{
 			super( width , height ) ;
-			this.id = id ;
+			if ( id != null )
+			{
+				this.id = id ;
+			}
 			this.isConfigurable = isConfigurable ;
+			setLogger() ;
 		}
 		
 		/**
@@ -83,7 +90,16 @@ package asgard.media
 		{
 			return _isConfigurable ;
 		}
-				
+		
+		/**
+		 * Returns the internal {@code ILogger} reference of this {@code ILogable} object.
+		 * @return the internal {@code ILogger} reference of this {@code ILogable} object.
+		 */
+		public function getLogger():ILogger
+		{
+			return _logger ; 	
+		}
+		
 		/**
 		 * @private
 		 */
@@ -116,6 +132,14 @@ package asgard.media
 	    {
         	___isLock___ = true ;
     	}
+		
+		/**
+		 * Sets the internal {@code ILogger} reference of this {@code ILogable} object.
+		 */
+		public function setLogger( log:ILogger=null ):void 
+		{
+			_logger = log || Log.getLogger( ClassUtil.getPath(this) ) ;
+		}
 		
 		/**
          * Setup the IConfigurable object.
@@ -181,6 +205,11 @@ package asgard.media
 	     * @private
 	     */ 
 	    private var ___isLock___:Boolean = false ;
+
+		/**
+		 * The internal ILogger reference of this object.
+		 */
+		private var _logger:ILogger ;
 
 		/**
 		 * Sets the id of the object and register it in the DisplayObjectCollector if it's possible.
