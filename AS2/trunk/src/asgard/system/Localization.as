@@ -60,14 +60,14 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 		
 		_map = new HashMap() ;
 		
-		_eChange = new LocalizationEvent ( Localization.CHANGE ) ;
+		_eChange  = new LocalizationEvent ( Localization.CHANGE ) ;
 		
 		_complete = new Delegate(this, onLoadComplete) ;
-		_error = new Delegate(this, onLoadError) ;
-		_init = new Delegate(this, onLoadInit) ;
+		_error    = new Delegate(this, onLoadError) ;
+		_init     = new Delegate(this, onLoadInit) ;
 		_progress = new Delegate(this, onLoadProgress) ;
-		_start = new Delegate(this, onLoadStart) ;
-		_timeOut = new Delegate(this, onLoadTimeOut) ;
+		_start    = new Delegate(this, onLoadStart) ;
+		_timeOut  = new Delegate(this, onLoadTimeOut) ;
 		
 		setLoader( new EdenLocalizationLoader() ) ;
 		

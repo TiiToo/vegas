@@ -23,12 +23,11 @@
 
 package asgard.net
 {
-	
 	import flash.net.URLRequest;
 	
-	import vegas.string.JSON;
+	import vegas.string.JSON;		
 
-    /**
+	/**
      * <p><b>Example :</b></p>
      * <code>
      * import flash.events.Event ;
