@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -19,8 +19,7 @@
   
   Contributor(s) :
   
-*/
-
+ */
 import asgard.system.Localization;
 
 import vegas.events.BasicEvent;
@@ -42,12 +41,22 @@ class asgard.events.LocalizationEvent extends BasicEvent
 	}
 	
 	/**
+	 * Apply the current localization over the specified object.
+	 * @param o The object to fill with the current localization in the application.
+	 * @param sID (optional) if this key is specified the method return the value of the specified key in the current locale object.  
+	 */
+	public function apply( o:Object , sID:String ):Void
+	{
+		Localization( getTarget() ).apply(o , sID ) ;
+	} 
+	
+	/**
 	 * Returns a shallow copy of this object.
 	 * @return a shallow copy of this object.
 	 */
 	public function clone() 
 	{
-		return new LocalizationEvent( getType (), Localization.getInstance() ) ;
+		return new LocalizationEvent( getType (), Localization( getTarget() ) ) ;
 	}
 	
 	/**
@@ -56,7 +65,7 @@ class asgard.events.LocalizationEvent extends BasicEvent
 	 */
 	public function getCurrent() 
 	{
-		return Localization.getInstance().getCurrent() ;
+		return Localization( getTarget() ).getCurrent() ;
 	}
 
 	/**
@@ -65,7 +74,7 @@ class asgard.events.LocalizationEvent extends BasicEvent
 	 */
 	public function getLocale(sID:String)
 	{
-		return Localization.getInstance().getLocale(sID) ;
+		return Localization( getTarget() ).getLocale(sID) ;
 	}
 
 }

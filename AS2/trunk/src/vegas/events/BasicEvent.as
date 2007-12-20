@@ -138,7 +138,8 @@ class vegas.events.BasicEvent extends CoreObject implements Event
 	 * Returns the event target.
 	 * @return the event target.
 	 */
-	public function getTarget() {
+	public function getTarget() 
+	{
 		return _target ;
 	}
 	

@@ -19,8 +19,7 @@
   
   Contributor(s) :
   
-*/
-
+ */
 import asgard.events.LoaderEvent;
 import asgard.events.LoaderEventType;
 import asgard.events.LocalizationEvent;
@@ -163,6 +162,20 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	{
 		return _map.get(lang) ;
 	}
+	
+	/**
+	 * Apply the current localization over the specified object.
+	 * @param o The object to fill with the current localization in the application.
+	 * @param sID (optional) if this key is specified the method return the value of the specified key in the current locale object.  
+	 */
+	public function apply( o:Object , sID:String ):Void
+	{
+		var init = getLocale( sID ) ;
+		for (var prop:String in init)
+		{
+			o[prop] = init[prop] ;	
+		}
+	} 
 	
 	/**
 	 * Returns the current {@code Lang} reference of this instance.
