@@ -25,10 +25,8 @@ package asgard.config
 	import flash.net.URLLoader;
 	
 	import asgard.config.AbstractConfigLoader;
-	import asgard.net.EdenLoader;
-	
-	import vegas.string.eden.Config;
-	
+	import asgard.net.EdenLoader;	
+
 	/**
  	 * The EdenConfigLoader class based on the Eden notation.
      * @author eKameleon
@@ -54,11 +52,6 @@ package asgard.config
          */
     	public var default_file_suffix:String = ".eden" ;
     
-        public function getEdenProperty( prop:String ):*
-        {
-            return vegas.string.eden.Config[prop] ;
-        }
-    
         /**
          * Returns the original loader in the constructor. Override this method.
          */ 
@@ -67,16 +60,6 @@ package asgard.config
             return (new EdenLoader() as URLLoader) ;
         }
 
-        public function setEdenProperty( prop:String , value:* ):void
-        {
-            vegas.string.eden.Config[prop] = value ;
-        }
-        
-        public function setSecurity( b:Boolean=true ):void
-        {
-            vegas.string.eden.Config.security = b ;
-        }
-  
     }
     
 }

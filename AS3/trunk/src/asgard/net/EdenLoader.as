@@ -23,12 +23,11 @@
 
 package asgard.net
 {
-	
 	import flash.net.URLRequest;
 	
-	import vegas.string.Eden;
+	import buRRRn.eden;	
 
-    /**
+	/**
      * <p><b>Example :</b></p>
      * <code>
      * import flash.events.Event ;
@@ -37,7 +36,7 @@ package asgard.net
      * import asgard.net.EdenLoader ;
      * 
      * var loader:EdenLoader = new EdenLoader() ;
-     * var request:URLRequest = new URLRequest("json/config.json");
+     * var request:URLRequest = new URLRequest("config/config.eden");
      * 
      * function onComplete(e:Event):void
      * {
@@ -81,7 +80,7 @@ package asgard.net
 		 */
 		public override function getDeserializer():Function
 		{
-			return Eden.deserialize ;	
+			return eden.deserialize ;	
 		}
 		
 	}

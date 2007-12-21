@@ -178,14 +178,29 @@ package asgard.config
 	    	}
         }
         
+        /**
+         * @private
+         */
         private var _config:Config = null ;
 
+        /**
+         * @private
+         */
         private var _fileName:String = null ;
 
+        /**
+         * @private
+         */
         private var _name:String ;
 
+        /**
+         * @private
+         */
         private var _path:String = null ;
 
+        /**
+         * @private
+         */
         private var _suffix:String = null ;
 
     }
