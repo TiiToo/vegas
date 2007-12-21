@@ -64,7 +64,7 @@ package asgard.net
 		protected function complete(e:Event):void
 		{
 			
-			var deserialize:Function ;
+			var deserialize:Function = getDeserializer() ;
 			
 			switch (dataFormat) 
 			{
@@ -73,9 +73,7 @@ package asgard.net
 				{
 					if ( getDeserializer() != null && isDeserialize )
 					{
-						deserialize = getDeserializer() ;
 						data = deserialize(data) ;
-						
 					}
 					
 					break ;
@@ -86,7 +84,6 @@ package asgard.net
 					data = new URLVariables(data) ;
 					if ( getDeserializer() != null && isDeserialize )
 					{
-						deserialize = getDeserializer() ;
 						for (var prop:String in data)
 						{
 							data[prop] = deserialize(data[prop]) ;

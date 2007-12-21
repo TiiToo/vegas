@@ -23,11 +23,11 @@
 
 package vegas.logging
 {
-
-    import vegas.data.iterator.Iterator;
-    import vegas.data.map.HashMap;
-    import vegas.logging.errors.InvalidCategoryError;
-    import vegas.util.StringUtil ;
+	import system.Strings;
+	
+	import vegas.data.iterator.Iterator;
+	import vegas.data.map.HashMap;
+	import vegas.logging.errors.InvalidCategoryError;    
 
 	/**
 	 * Provides psuedo-hierarchical logging capabilities with multiple format and output options.
@@ -180,7 +180,7 @@ package vegas.logging
         public static function hasIllegalCharacters( value:String ):Boolean
         {
             var chars:Array = ILLEGALCHARACTERS.split("") ;
-            var result:Boolean = StringUtil.indexOfAny( value , chars ) != -1 ;
+            var result:Boolean = Strings.indexOfAny( value , chars ) != -1 ;
             return result ;
         }
         	

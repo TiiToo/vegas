@@ -50,9 +50,8 @@ package asgard.net
      * 
      * function onProgress(e:ProgressEvent):void
      * {
-     *     trace("> onProgress : " + e) ;
      *     var percent:Number = Math.round( e.bytesLoaded * 100 / e.bytesTotal ) ;
-     *     trace("  > progress : " + percent + " %");
+     *     trace( e + "  > progress : " + percent + " %" ) ;
      * }
      * 
      * loader.addEventListener(ProgressEvent.PROGRESS, onProgress);

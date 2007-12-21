@@ -49,24 +49,40 @@ package system
 		{
 			return _id;
 		}
-
+		
+		/**
+		 * The version of this Host object.
+		 */
 		public function get version():Version
 		{
 			return _version;
 		}
-
+		
+		/*
+		 * Indicates if the host of the application is a debugger.
+		 */
 		public function isDebug():Boolean
 		{
 			return Capabilities.isDebugger;
 		}
-
+		
+		/**
+		 * Returns the string representation of the object.
+		 * @return the string representation of the object.
+		 */
 		public function toString():String
 		{
 			return id.toString( ) + " " + version.toString( 4 );
 		}
-		
-		private var _id:HostID;
 
+		/**
+		 * @private
+		 */
+		private var _id:HostID;
+		
+		/**
+		 * @private
+		 */
 		private var _version:Version;
 		
 	}

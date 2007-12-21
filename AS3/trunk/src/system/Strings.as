@@ -73,27 +73,13 @@ package system
 			"\u3000" /*Ideographic space*/ 
 		];
 
-		/* Method: compare
-		Compares the two specified String objects.
-           
-		Parameters:
-		o1     - first string to compare
-		o2     - with second string
-		strict - optionnal useCase boolean, default to false.
-		allows to take into account the string case for comparison.
-             
-		note:
-		we don't do a string diff, we just compare the length of the strings
-		and if the length are equals only then we compare by value.
-           
-		attention:
-		if you have used core2 before
-		where you were used to a compare(o1, o2, ignoreCase = false) signature
-		note that the default parameter have changed
-		(code)
-		(ignoreCase = false) != (strict = false)
-		(end)
-		 */
+        /**
+         * Compares the two specified String objects.
+         * @param o1 first string to compare with the second string.
+         * @param o2 second string to compare with the first string.
+         * @param strict (optionnal) useCase boolean, default to false.
+         * allows to take into account the string case for comparison. 
+         */		 
 		public static function compare( o1:*, o2:*, strict:Boolean = false ):int
 		{
             
@@ -147,118 +133,91 @@ package system
 			}
 		}
 
-		/* Method: endsWith
-		Determines whether the end of this instance matches the specified String.
-		 */
+        /**
+         * Determines whether the end of this instance matches the specified String.
+         */
 		public static function endsWith( str:String, value:String ):Boolean
 		{
 			if( (value == null) || (str.length < value.length) )
 			{
 				return false;
 			}
-            
 			return compare( str.substr( str.length - value.length ), value ) == 0;
 		}
 
-		/* Method: format
-		Format a string using indexed or named parameters.
-           
-		method call:
-		format( format:String, ...args )
-		format( format:String, [arg0:*,arg1:*,arg2:*, ...] )
-		format( format:String, [arg0:*,arg1:*,arg2:*, ...], ...args )
-		format( format:String, {name0:value0,name1:value1,name2:value2, ...} )
-		format( format:String, {name0:value0,name1:value1,name2:value2, ...}, ...args )
-           
-		formats item:
-		(code)
-		{token[,alignment][:paddingChar]}
-		(end)
-           
-		If you want to use the "{" and "}" chars use "{{" and "}}"
-		"some {{formatitem}} to be escaped" -> "some {formatitem} to be escaped"
-		"some {{format {0} item}} to be escaped", "my" -> "some {format my titem} to be escaped"
-           
-		parameters:
-		token       - A numeric [0-9] or named [a-zA-Z] index to indicate
-		which element to format.
-                         
-		example:
-		(code)
-		Strings.format( "the {method} is not {state}", {method:"toString",state:"available"} );
-		Strings.format( "the {0} is not {1}", ["toString","available"] );
-		Strings.format( "the {0} is not {1}", "toString", "available" );
-		(end)
-                         
-		note:
-		You can not have more than 10 indexes (0 to 9).
-		If the token is null the "null" string is returned.
-		If the token is undefined the "undefined" string is returned.
-           
-		alignment   - This optionnal integer allow you to align and pad your token.
-		The alignement is right-justified if positive
-		and left-justified if negative.
-                         
-		example:
-		(code)
-		Strings.format( "hello {0,10}", "world" );  //"hello      world"
-		Strings.format( "hello {0,-10}", "world" ); //"hello world     "
-		(end)
-                         
-		This integer also indicate the minimum width of the padding,
-		if the length of your token is less than the padding
-		then the token will be padded with spaces. 
-                         
-           
-		paddingChar - The padding char by default is the space char.
-                         
-		example:
-		(code)
-		Strings.format( "hello {0,10:_}", "world" );  //"hello _____world"
-		Strings.format( "hello {0,-10:.}", "world" ); //"hello world....."
-		(end)
-                         
-		You can define any other padding char.
-           
-		more example:
-		(code)
-		//indexed from the arguments
-		Strings.format( "hello {1} {0} world", "big", "the" ); //"hello the big world"
-            
-		//named from an object
-		Strings.format( "hello I'm {name}", {name:"HAL"} ); //"hello I'm HAL"
-            
-		//passing reference and padding
-		var what = "answer"
-		Strings.format( "your {0} is within {answer,20:.}", {answer:"my answer"}, what ); //"your answer is within ...........my answer"
-            
-		//indexed from an array
-		var names:Array = ["A","B","C","D"];
-		var scores:Array = [16,32,128,1024];
-		for( var i:int=0; i<names.length; i++ )
-		{
-		trace( Strings.format( "{0} scored {1,5}", [names[i], scores[i]] ) );
-		}
-		//"A scored    16"
-		//"B scored    32"
-		//"C scored   128"
-		//"D scored  1024"
-            
-		//resolve toString
-		var x:Object = {};
-		x.toString = function() { return "john doe"; };
-		trace( Strings.format( "Who is {0} ?", x ) ); //"Who is john doe ?"
-            
-		//you can off course reuse the index
-		var fruits:Array = ["apple", "banana", "pineapple"];
-		trace( Strings.format( "I like all fruits {0},{1},{2}, etc. but still I prefer above all {0}", fruits ) ); //"I like all fruits apple,banana,pineapple, etc. but still I prefer above all apple"
-            
-		//indexed from an array + the arguments
-		var fruits:Array = ["apple", "banana", "pineapple"];
-		trace( Strings.format( "fruits: {0}, {1}, {2}, {3}, {4}, {5}", fruits, "grape", "tomato" ) ); //"fruits: apple, banana, pineapple, grape, tomato, undefined"
-		(end)
-           
-		 */
+ 		/** 
+ 		 * Format a string using indexed or named parameters.
+ 		 * <p>Method call :</p>
+ 		 * <li>StringUtil.format(pattern:String, ...arguments:Array):String</li>
+ 		 * <li>StringUtil.format(pattern:String, [arg0:*,arg1:*,arg2:*, ...] ):String</li>
+ 		 * <li>StringUtil.format(pattern:String, [arg0:*,arg1:*,arg2:*, ...], ...args:Array ):String</li>
+ 		 * <li>StringUtil.format(pattern:String, {name0:value0,name1:value1,name2:value2, ...} ):String</li>
+ 		 * <li>StringUtil.format(pattern:String, {name0:value0,name1:value1,name2:value2, ...} , ...args:Array ) :String</li>
+ 		 * </p>
+ 		 * <p>Replaces the pattern item in a specified String with the text equivalent of the value of a specified Object instance.</p>
+ 		 * <p>Formats item : {token[,alignment][:paddingChar]}</p>
+ 		 * <p>If you want to use the "{" and "}" chars use "{{" and "}}"
+ 		 * <li>"some {{formatitem}} to be escaped" -> "some {formatitem} to be escaped"</li>
+ 		 * <li>"some {{format {0} item}} to be escaped", "my" -> "some {format my titem} to be escaped"</li>
+         * </p>
+ 		 * </p>
+ 		 * <p><b>Example :</b></p>
+ 		 * {@code
+ 		 * import system.Strings ;
+ 		 * 
+ 		 * var result:String ;
+		 * 
+		 * // indexed from the arguments
+		 * 
+		 * result = Strings.format( "hello {1} {0} world", "big", "the" ); 
+		 * trace("> " + result) ; //"hello the big world"
+		 *
+		 * result = Strings.format("Brad's dog has {0,6:#} fleas.", 41) ;
+		 * trace("> " + result) ;
+		 *
+		 * result = Strings.format("Brad's dog has {0,-6} fleas.", 12) ;
+		 * trace("> " + result) ;
+		 *
+		 * result = Strings.format("{3} {2} {1} {0}", "a", "b", "c", "d") ;
+		 * trace("> " + result) ;
+		 * 
+		 * // named from an object
+		 * 
+		 * result = Strings.format( "hello I'm {name}", {name:"HAL"} );
+		 * trace("> " + result) ; //"hello I'm HAL"
+		 * 
+		 * // indexed from an array
+		 * 
+		 * var names:Array = ["A","B","C","D"];
+		 * var scores:Array = [16,32,128,1024];
+		 * for( var i:int=0; i<names.length; i++ )
+		 * {
+		 *     trace( Strings.format( "{0} scored {1,5}", [names[i], scores[i]] ) );
+		 * }
+		 * // "A scored    16"
+		 * // "B scored    32"
+		 * // "C scored   128"
+		 * // "D scored  1024"
+		 * 
+		 * // resolve toString
+		 * var x:Object = {};
+		 * x.toString = function() { return "john doe"; } ;
+		 * trace( Strings.format( "Who is {0} ?", x ) ) ; //"Who is john doe ?"
+		 * 
+		 * // you can off course reuse the index
+		 * var fruits:Array = ["apple", "banana", "pineapple"] ;
+		 * trace( Strings.format( "I like all fruits {0},{1},{2}, etc. but still I prefer above all {0}", fruits ) ); // "I like all fruits apple,banana,pineapple, etc. but still I prefer above all apple"
+		 * 
+		 * // indexed from an array + the arguments
+		 * var fruits:Array = ["apple", "banana", "pineapple"];
+		 * trace( Strings.format( "fruits: {0}, {1}, {2}, {3}, {4}, {5}", fruits, "grape", "tomato" ) ); //"fruits: apple, banana, pineapple, grape, tomato, undefined"
+		 * 
+		 * // passing reference and padding
+		 * var what = "answer" ;
+		 * result = Strings.format( "your {0} is within {answer,20:.}", {answer:"my answer"}, what ) ; 
+		 * trace("> " + result ) // "your answer is within ...........my answer"
+ 		 * }
+ 		 */
 		public static function format( format:String, ...args ):String
 		{
 			if( (args == null) || (args.length == 0) || (format == "") )
@@ -332,13 +291,12 @@ package system
 			// {titi,5:_} {titi,-5:_}
 			var parseExpression:Function = function( expression:String ):String
 			{
-				use namespace AS3; 
-				//to avoid 3594 warning
+				use namespace AS3 ; //to avoid 3594 warning
 				var value:String = "";
 				var spaceAlign:int = 0;
 				var isAligned:Boolean = false;
-				var padding:String = paddingChar; 
-				//default
+				var padding:String = paddingChar;  //default
+				
 				if( indexOfAny( expression, [ ",", ":" ] ) > -1 )
 				{
 					var vPos:int = expression.indexOf( "," );
@@ -460,8 +418,18 @@ package system
 			return formated;
 		}
 
-		/* Method: indexOfAny
-		 */
+	 	/**
+		 * Reports the index of the first occurrence in this instance of any character in a specified array of Unicode characters.
+		 * <p><b>Example :</b></p>
+		 * {@code
+		 * import system.Strings ;
+		 * 
+		 * Strings.indexOfAny("hello world", [2, "hello", 5]) ; // 0
+		 * Strings.indexOfAny("Five = 5", [2, "hello", 5]) ; // 7
+	 	 * Strings.indexOfAny("actionscript is good", [2, "hello", 5]) ; // -1
+		 * }
+	 	 * @return the index of the first occurrence in this instance of any character in a specified array of Unicode characters.
+	 	 */
 		public static function indexOfAny( str:String, anyOf:Array, startIndex:int = 0, count:int = -1 ):int
 		{
 			var i:int;
@@ -506,46 +474,107 @@ package system
            
 		if index is zero, we directly insert it to the begining of the string.
 		 */
-		public function insert( str:String, startIndex:int, value:String ):String
+		 
+		/**
+		 * Inserts a specified instance of String at a specified index position in this instance.
+		 * <p><b>Example :</b></p>
+		 * {@code
+		 * import system.Strings ;
+		 * 
+		 * var result:String ;
+		 * 
+		 * result = Strings.insert("hello", 0, "a" ) ;  // ahello
+		 * trace(result) ;
+		 * 
+		 * result = Strings.insert("hello", -1, "a" ) ; // ahello
+		 * trace(result) ;
+		 * 
+		 * result = Strings.insert("hello", 10, "a" ) ; // helloa
+		 * trace(result) ;
+		 * 
+		 * result = Strings.insert("hello", 1, "a" ) ;  // haello
+		 * trace(result) ;
+		 * }
+		 * @return the string modified by the method.
+		 */		 
+		public function insert( str:String, startIndex:int=0, value:String=null ):String
 		{
-			var strA:String = "";
-			var strB:String = "";
-            
+			
+			if( value == null ) 
+			{
+				return str ;
+			}
+			
+			if( str == "" ) 
+			{
+				return value ;
+			}
+			
 			if( startIndex == 0 )
 			{
 				return value + str;
 			}
-            else if( startIndex == str.length )
+            else if( isNaN(startIndex) || (startIndex == str.length) )
 			{
 				return str + value;
 			}
             
-			strA = str.substr( 0, startIndex );
-			strB = str.substr( startIndex );
+			var strA:String = str.substr( 0, startIndex );
+			var strB:String = str.substr( startIndex );
             
 			return strA + value + strB;
 		}
 
-		/* Method: padLeft
-		Right-aligns the characters in this instance,
-		padding with paddingChar (or spaces if not precised)
-		on the left for a specified total length.
+		/**
+		 * Right-aligns the characters in this instance, padding on the left with a specified Unicode character for a specified total length.
+		 * {@code
+		 * import system.Strings ;
+		 * 
+		 * var result:String = Strings.padLeft("hello", 8) ;
+		 * trace(result) ; //  "   hello"
+		 * 
+		 * var result:String = Strings.padLeft("hello", 8, ".") ;
+		 * trace(result) ; //  "...hello" 
+		 * }
+		 * @return The right-aligns the characters in this instance, padding on the left with a specified Unicode character for a specified total length.
 		 */
 		public static function padLeft( str:String, totalWidth:int, paddingChar:String = " " ):String
 		{
 			return _padHelper( str, totalWidth, paddingChar, false );
 		}
 
+
 		/**
-		 * Left-aligns the characters in this string, padding with paddingChar (or spaces if not precised) on the right for a specified total length. 
-		 */
+		 * Left-aligns the characters in this string, padding on the right with a specified Unicode character, for a specified total length.
+	 	 * <p><b>Example :</b></p>
+		 * {@code
+		 * import system.Strings ;
+		 * 
+		 * var result:String = Strings.padRight("hello", 8) ;
+		 * trace(result) ; //  "hello   "
+		 * 
+		 * var result:String = Strings.padRight(hello", 8, ".") ;
+		 * trace(result) ; //  "hello..." 
+		 * }
+		 * @return The left-aligns the characters in this string, padding on the right with a specified Unicode character, for a specified total length.
+	 	 */
+
 		public static function padRight( str:String, totalWidth:int, paddingChar:String = " " ):String
 		{
 			return _padHelper( str, totalWidth, paddingChar, true );
 		}
 
 		/**
-		 * Determines whether a specified string is a prefix of the current instance.
+		 * Determines whether a specified string is a prefix of the current instance. 
+		 * <p><b>Example : </b></p>
+		 * {@code
+		 * import system.Strings ;
+		 * 
+		 * trace( Strings.startsWith("hello world", "h") ) ; // true
+	  	 * trace( Strings.startsWith("hello world", "hello") ) ; // true
+		 * trace( Strings.startsWith("hello world", "a") ) ; // false
+		 * }
+		 * @return {@code true} if the specified string is a prefix of the current instance.
 		 */
 		public static function startsWith( str:String, value:String ):Boolean
 		{

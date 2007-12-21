@@ -24,8 +24,9 @@
 */
 package buRRRn.eden
 {
-	import vegas.util.ClassUtil;
-	import vegas.util.StringUtil;	
+	import system.Strings;
+	
+	import vegas.util.ClassUtil;	
 
 	/**
 	 * The ECMAScript parser static class.
@@ -284,7 +285,7 @@ package buRRRn.eden
 				case "while": 
 				case "with":
 					{
-					log( StringUtil.format( strings.reservedKeyword, identifier ) );
+					log( Strings.format( strings.reservedKeyword, identifier ) );
 					return true;
 				}
 				default:
@@ -342,7 +343,7 @@ package buRRRn.eden
 				case "transient":
 				case "volatile":
 				{
-					log( StringUtil.format( strings.futurReservedKeyword, identifier ) );
+					log( Strings.format( strings.futurReservedKeyword, identifier ) );
 					return true;
 				}
 				default:
@@ -362,7 +363,7 @@ package buRRRn.eden
                 
 				if( isReservedKeyword( subpath ) || isFutureReservedKeyword( subpath ) )
 				{
-					log( StringUtil.format( strings.notValidPath, path ) );
+					log( Strings.format( strings.notValidPath, path ) );
 					return false;
 				}
 			}
@@ -1139,7 +1140,7 @@ package buRRRn.eden
 			 */
 			if( !isClass && (ref == null) && (fcnObj == undefined) )
 			{
-				log( StringUtil.format( strings.doesNotExist, fcnPath ) );
+				log( Strings.format( strings.doesNotExist, fcnPath ) );
 				return config.undefineable;
 			}
             else
@@ -1227,7 +1228,7 @@ package buRRRn.eden
 				{
 					if( !config.allowFunctionCall )
 					{
-						log( StringUtil.format( strings.notFunctionCallAllowed, fcnPath, args ) );
+						log( Strings.format( strings.notFunctionCallAllowed, fcnPath, args ) );
 						return config.undefineable;
 					}
 					return result;

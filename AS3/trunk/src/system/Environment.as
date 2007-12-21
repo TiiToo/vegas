@@ -109,11 +109,11 @@ package system
 				{
 					return HostID.Flash ;
 				}
-				case "Desktop":
+				case "Desktop" :
 				{
 					return HostID.Air ;
 				}
-				default:
+				default :
 				{
 					return HostID.Unknown ;
 				}

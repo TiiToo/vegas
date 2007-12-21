@@ -23,10 +23,11 @@
 
 package vegas.logging
 {
-	import vegas.events.AbstractCoreEventDispatcher;
-	import vegas.logging.errors.InvalidFilterError;
-	import vegas.util.StringUtil;
+	import system.Strings;
 	
+	import vegas.events.AbstractCoreEventDispatcher;
+	import vegas.logging.errors.InvalidFilterError;	
+
 	/**
 	 * This class provides the basic functionality required by the logging framework for a target implementation. It handles the validation of filter expressions and provides a default level property. No implementation of the logEvent() method is provided.
 	 * @author eKameleon
@@ -84,13 +85,13 @@ package vegas.logging
                     // check for invalid characters
                     if ( Log.hasIllegalCharacters(filter) )
                     {
-                         throw new InvalidFilterError( StringUtil.format(errorFilter, filter ) + charsInvalid );
+                         throw new InvalidFilterError( Strings.format(errorFilter, filter ) + charsInvalid );
                     }
 
                     index = filter.indexOf("*") ;
                     if ((index >= 0) && (index != (filter.length -1)))
                     {                        
-                        throw new InvalidFilterError(StringUtil.format( errorFilter, filter) + charPlacement);
+                        throw new InvalidFilterError(Strings.format( errorFilter, filter) + charPlacement);
                     }
                 }
             }

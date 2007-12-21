@@ -30,7 +30,7 @@ package system
 	import flash.utils.getQualifiedSuperclassName;	
 
 	/**
-	 * Provide basic reflection mecanisms on the language.
+	 * Provides a basic reflection mecanisms on the language.
 	 */
 	public class Reflection
 	{

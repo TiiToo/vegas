@@ -23,10 +23,11 @@
 
 package vegas.string
 {
-	import vegas.util.AbstractFormatter;
-	import vegas.util.StringUtil;
+	import system.Strings;
+	
+	import vegas.util.AbstractFormatter;	
 
-    /**
+	/**
      * Replaces the pattern item in a specified String with the text equivalent of the value of a specified Object instance.
      * <p><b>Usage :</b>
      * {@code
@@ -73,7 +74,7 @@ package vegas.string
 	     */
 		public override function format(...arguments:Array):String 
 		{
-			return StringUtil.format.apply(null, [pattern].concat(arguments)) ; 
+			return Strings.format.apply(null, [pattern].concat(arguments)) ; 
 		}
 		
 	}
