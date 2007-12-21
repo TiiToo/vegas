@@ -140,6 +140,11 @@ class mars.process.application.RunSound extends AbstractActionLoader
 				registerLoader( loader ) ;
  				loader.load(request) ;
  	 		}
+ 	 		else
+ 	 		{
+ 	 			getLogger().warn(this + " the sound url is empty.") ;
+ 	 			notifyFinished() ;			
+ 	 		}
  		}
  		else
  		{

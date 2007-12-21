@@ -29,6 +29,11 @@ class mars.core.ApplicationDepthList
 {
 
 	/**
+	 * The default depth of the font display.
+	 */
+	public static var FONTS_DEPTH:Number = 11100 ;
+
+	/**
 	 * The default depth of the loader display.
 	 */
 	public static var LOADER_DEPTH:Number = 9999 ;

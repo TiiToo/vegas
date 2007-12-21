@@ -34,6 +34,11 @@ class mars.core.ApplicationList
 	public static var APPLICATION_LOADER:String = "application_loader" ;
 
 	/**
+	 * The name of the font display.
+	 */
+	public static var FONTS:String = "fonts" ;
+	
+	/**
 	 * The name of the protect screen display.
 	 */
 	public static var PROTECT_SCREEN:String = "protect_screen" ;
