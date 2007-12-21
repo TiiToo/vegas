@@ -23,16 +23,17 @@
 
 package vegas.events.dom
 {
-    import flash.events.Event;
-    
-    import vegas.core.ICopyable;
-    import vegas.core.IFormattable;
-    import vegas.core.IHashable;
-    import vegas.core.ISerializable;
-    import vegas.events.BasicEvent;
-    import vegas.util.ClassUtil;
-    
-    public class DomEvent extends BasicEvent implements ICopyable, IFormattable, IHashable, ISerializable
+	import flash.events.Event;
+	
+	import system.ISerializable;
+	
+	import vegas.core.ICopyable;
+	import vegas.core.IFormattable;
+	import vegas.core.IHashable;
+	import vegas.events.BasicEvent;
+	import vegas.util.ClassUtil;    
+
+	public class DomEvent extends BasicEvent implements ICopyable, IFormattable, IHashable, ISerializable
 	{
 		
 		public function DomEvent(type:String, target:Object = null , context:* =null, bubbles:Boolean=false, time:Number = 0 , ...rest:Array )
@@ -148,7 +149,7 @@ package vegas.events.dom
 			_stop = EventPhase.STOP_IMMEDIATE ;
 		}
 		
-		public function toSource( ...arguments:Array ):String 
+		public function toSource( indent:int = 0 ):String  
 		{
 			return "new DomEvent()" ; // TODO finish
 		}

@@ -23,14 +23,13 @@
 
 package vegas.data.map
 {
-    
-    import vegas.core.CoreObject;
-    import vegas.data.Map;
-    import vegas.data.iterator.ArrayIterator;
-    import vegas.data.iterator.Iterator;
-    import vegas.data.iterator.MapIterator;
-    import vegas.util.Copier;
-    import vegas.util.Serializer;
+	import vegas.core.CoreObject;
+	import vegas.data.Map;
+	import vegas.data.iterator.ArrayIterator;
+	import vegas.data.iterator.Iterator;
+	import vegas.data.iterator.MapIterator;
+	import vegas.util.Copier;
+	import vegas.util.Serializer;    
 
 	/**
 	 * ArrayMap is an Map implementation based on two arrays to defines the collections of the keys and the values.
@@ -277,7 +276,7 @@ package vegas.data.map
 		 * Returns a eden representation of the object.
 		 * @return a string representing the source code of the object.
 	 	 */
-        public override function toSource(...arguments):String
+        public override function toSource( indent:int = 0 ):String 
         {
     		return Serializer.getSourceOf(this, [_keys, _values]) ;
         }

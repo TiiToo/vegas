@@ -232,7 +232,7 @@ package pegas.process
     	 * Returns the source of the specified object passed in argument.
 	     * @return the source of the specified object passed in argument.
     	 */
-		public override function toSource(...arguments:Array):String 
+		public override function toSource( indent:int = 0 ):String  
 		{
 			return Serializer.getSourceOf(this, [toArray()]) ;
 		}

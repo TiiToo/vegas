@@ -38,8 +38,8 @@ package vegas.data.bag
 	import vegas.data.sets.HashSet;
 	import vegas.errors.IllegalArgumentError;
 	import vegas.errors.UnsupportedOperation;
-	import vegas.util.Serializer;
-	
+	import vegas.util.Serializer;	
+
 	/**
 	 * This class provides a skeletal implementation of the {@code Bag} interface, to minimize the effort required to implement this interface.
 	 * <p>To implement a bag, the programmer needs only to extend this class and provide implementations for the cursor, insert and size methods. For supporting the removal of elements, the cursor returned by the cursor method must additionally implement its remove method.</p>
@@ -331,7 +331,7 @@ package vegas.data.bag
 	 	 * Returns the Eden representation of the object.
 	 	 * @return a string representation the source code of the object.
 	 	 */
-		public override function toSource(...arguments:Array):String 
+		public override function toSource( indent:int = 0 ):String  
 		{
 			return Serializer.getSourceOf(this, [_map]) ;
 		}

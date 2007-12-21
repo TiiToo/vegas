@@ -28,7 +28,7 @@ package andromeda.vo
 	import andromeda.vo.SimpleValueObject;
 	
 	import vegas.util.ClassUtil;
-	import vegas.util.Serializer;    
+	import vegas.util.Serializer;	
 
 	/**
      * This class provides a binary filter value object.
@@ -160,7 +160,7 @@ package andromeda.vo
          * Returns a Eden reprensation of the object.
          * @return a string representing the source code of the object.
          */
-        public  override function toSource(...arguments:Array):String 
+        public override function toSource( indent:int = 0 ):String 
         {
             return Serializer.getSourceOf( this, [ Serializer.toSource( filter ) ]  ) ;
         }

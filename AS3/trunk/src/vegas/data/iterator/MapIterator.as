@@ -23,13 +23,12 @@
 
 package vegas.data.iterator
 {
- 
-    import vegas.core.CoreObject;
-    import vegas.data.Map ;
-    import vegas.errors.UnsupportedOperation ;
-    import vegas.util.Serializer ;
+	import vegas.core.CoreObject;
+	import vegas.data.Map;
+	import vegas.errors.UnsupportedOperation;
+	import vegas.util.Serializer; 
 
-    /**
+	/**
      * Converts a {@code Map} to an iterator.
      * @author eKameleon
      */
@@ -104,7 +103,7 @@ package vegas.data.iterator
          * Returns the eden String representation of this object.
          * @return the eden String representation of this object.
          */
-        public override function toSource(...arguments:Array):String 
+        public override function toSource( indent:int = 0 ):String 
         {
             return "new vegas.data.iterator.MapIterator(" + Serializer.toSource(_m) + ")" ;
         }

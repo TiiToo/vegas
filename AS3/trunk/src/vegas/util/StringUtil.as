@@ -22,11 +22,11 @@
 */
 
 package vegas.util
-{    
-    import vegas.errors.ClassCastError;    
-    import vegas.string.UnicodeChar;
-    
-    /**
+{
+	import vegas.errors.ClassCastError;
+	import vegas.string.UnicodeChar;    
+
+	/**
 	 * The {@code StringUtil} utility class is an extended String class with methods for working with string.
 	 * @author eKameleon
 	 */
@@ -637,24 +637,19 @@ package vegas.util
 		 */
     	public static function startsWith( str:String, value:String=null ):Boolean
     	{
-    	    
         	if( value == null )
 	        {
             	return false;
         	}
-	    
 	        if( str.length < value.length )
         	{
         	    return false;
         	}
-	    
 	        if( str.charAt( 0 ) != value.charAt( 0 ) )
         	{
         	    return false;
         	}
-	    
 	        return( compare( str.substr( 0, value.length), value) == 0);
-	        
 	    }
 
 		/**
@@ -695,7 +690,10 @@ package vegas.util
     		{
     			ch = s.charAt(pos) ;
     			code = s.charCodeAt(pos) ;
-    			if( code > 0xFF ) str += "\\u" + toUnicode( code ) ;
+    			if( code > 0xFF ) 
+    			{
+    				str += "\\u" + toUnicode( code ) ;
+    			}
     			else if (ch == UnicodeChar.BACK_SPACE)  str += "\\b" ; // backspace
     			else if (ch == UnicodeChar.TAB) str += "\\t" ; // horizontal tab
     			else if (ch == UnicodeChar.LF) str += "\\n" ; // line feed

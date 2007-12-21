@@ -22,15 +22,16 @@
 */
 package pegas.geom 
 {
-	import vegas.core.ICloneable;
-	import vegas.core.ICopyable;
-	import vegas.core.IEquality;
+	import system.IEquatable;
 	
+	import vegas.core.ICloneable;
+	import vegas.core.ICopyable;	
+
 	/**
 	 * This interface provides the methods in all the geometric objects of PEGAS.
 	 * @author eKameleon
 	 */
-	public interface IGeometry extends ICloneable, ICopyable, IEquality 
+	public interface IGeometry extends ICloneable, ICopyable, IEquatable 
 	{
 		
 		

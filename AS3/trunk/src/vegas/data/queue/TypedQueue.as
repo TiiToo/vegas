@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -186,7 +186,7 @@ package vegas.data.queue
     	 * Returns the eden representation of the object.
     	 * @return the string representing the source code of the object.
     	 */
-        public override function toSource(...arguments:Array):String
+        public override function toSource( indent:int = 0 ):String 
         {
             return 'new ' + ClassUtil.getPath(this) + '(' + ClassUtil.getName(getType()) + ',' + _queue.toSource() + ')' ;
         }

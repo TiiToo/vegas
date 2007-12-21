@@ -118,7 +118,7 @@ package asgard.system
 		 * Returns the eden string representation of the object.
 		 * @return the eden string representation of the object.
 		 */
-		public override function toSource(...arguments:Array):String
+		public override function toSource( indent:int = 0 ):String 
 		{
 			return 'new Lang(' + Serializer.toSource(value) + ',' + Serializer.toSource(label) + ')' ;
 		}

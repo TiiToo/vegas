@@ -25,10 +25,11 @@ package vegas.events
 {
 	import flash.events.IEventDispatcher;
 	
-	import vegas.core.IFormattable;
-	import vegas.core.IHashable;
-	import vegas.core.ISerializable;
+	import system.ISerializable;
 	
+	import vegas.core.IFormattable;
+	import vegas.core.IHashable;	
+
 	/**
 	 * This interface defines the methods of the vegas.events.EventDispatcher class.
 	 * @author eKameleon

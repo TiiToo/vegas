@@ -23,10 +23,12 @@
 
 package vegas.core
 {
+	import system.ISerializable;
+	import system.Reflection;
+	
 	import vegas.logging.ILogable;
 	import vegas.logging.ILogger;
-	import vegas.logging.Log;
-	import vegas.util.ClassUtil;	
+	import vegas.logging.Log;	
 
 	/**
 	 * CoreObject offers a default implementation of the IFormattable, IHashable and ISerializable interfaces.
@@ -81,16 +83,16 @@ package vegas.core
 		 */
 		public function setLogger( log:ILogger=null ):void 
 		{
-			_logger = log || Log.getLogger( ClassUtil.getPath(this) ) ;
+			_logger = log || Log.getLogger( Reflection.getClassPath(this) ) ;
 		}
 
 		/**
 		 * Returns a Eden representation of the object.
 		 * @return a string representation the source code of the object.
 		 */
-		public function toSource(...arguments:Array):String 
+		public function toSource( indent:int = 0 ):String 
 		{
-			return "new " + ClassUtil.getPath(this) + "()" ;
+			return "new " + Reflection.getClassPath(this) + "()" ;
 		}
 
 		/**
@@ -99,7 +101,7 @@ package vegas.core
 		 */
 		public function toString():String 
 		{
-			return "[" + ClassUtil.getName(this) + "]" ;
+			return "[" + Reflection.getClassName(this) + "]" ;
 		}
 		
 		/**

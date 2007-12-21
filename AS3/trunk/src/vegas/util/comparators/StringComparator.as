@@ -23,14 +23,12 @@
 
 package vegas.util.comparators
 {
-
 	import vegas.core.CoreObject;
 	import vegas.core.ICloneable;
 	import vegas.core.IComparator;
 	import vegas.core.ICopyable;
-	import vegas.util.StringUtil;
+	import vegas.util.StringUtil;	
 
-	
 	/**
 	 * This comparator compare String objects.
 	 * <p><b>Example :</b></p>
@@ -138,7 +136,7 @@ package vegas.util.comparators
 		 * Returns a Eden representation of the object.
 		 * @return a string representation the source code of the object.
 		 */
-		public override function toSource(...arguments:Array):String 
+		public override function toSource( indent:int = 0 ):String 
 		{
 			return "new vegas.util.comparators.StringComparator(" + ( (ignoreCase == true) ? "true" : "false") + ")" ;
 		}

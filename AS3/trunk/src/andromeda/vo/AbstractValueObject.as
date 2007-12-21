@@ -23,15 +23,16 @@
 
 package andromeda.vo
 {
+	import system.IEquatable;
+	
 	import vegas.core.CoreObject;
-    import vegas.core.IEquality;
-    import vegas.core.Identifiable;
-    
-    /**
+	import vegas.core.Identifiable;	
+
+	/**
 	 * This class provides a skeletal implementation of the {@code IValueObject} interface, to minimize the effort required to implement this interface.
 	 * @author eKameleon
 	 */
-	public class AbstractValueObject extends CoreObject implements IEquality, IValueObject
+	public class AbstractValueObject extends CoreObject implements IEquatable, IValueObject
 	{
 		
 		/**

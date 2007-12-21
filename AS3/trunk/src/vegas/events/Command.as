@@ -23,13 +23,13 @@
 
 package vegas.events 
 {	import vegas.core.CoreObject;
-    import vegas.core.IRunnable;
-    import vegas.errors.IllegalArgumentError;
-    import vegas.events.BasicEvent;
-    import vegas.events.EventDispatcher;
-    import vegas.events.FrontController;
-    import vegas.util.Serializer;
-    
+	import vegas.core.IRunnable;
+	import vegas.errors.IllegalArgumentError;
+	import vegas.events.BasicEvent;
+	import vegas.events.EventDispatcher;
+	import vegas.events.FrontController;
+	import vegas.util.Serializer;	
+
 	/**
 	 * A command is a easy entry with name and value property to launch a global command in the Commands static tool class.
 	 * @author eKameleon
@@ -139,7 +139,7 @@ package vegas.events
 	 	 * Returns the string EDEN representation of this object.
 		 * @return the string EDEN representation of this object.
 		 */
-		public override function toSource():String
+		public override function toSource( indent:int = 0 ):String 
 		{
 			var params:Array = [ Serializer.toSource(name) , Serializer.toSource(value) , Serializer.toSource(channel) ] ;
 			return Serializer.getSourceOf( this , params ) ;

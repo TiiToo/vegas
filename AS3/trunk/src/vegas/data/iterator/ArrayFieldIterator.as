@@ -23,10 +23,9 @@
 
 package vegas.data.iterator
 {
-   
-    import vegas.util.Serializer;
+	import vegas.util.Serializer;   
 
-    /**
+	/**
      * Converts an array to an iterator but this iterator return the value of a specific field if the array is an array of objects.
      * <p><b>Example :</b></p>
      * {@code
@@ -88,7 +87,7 @@ package vegas.data.iterator
          * Returns the eden String representation of this object.
          * @return the eden String representation of this object.
          */
-        public override function toSource(...arguments:Array):String 
+        public override function toSource( indent:int = 0 ):String 
         {
             var sourceA:String = Serializer.toSource(_a) ;
             var sourceB:String = Serializer.toSource(fieldName) ;

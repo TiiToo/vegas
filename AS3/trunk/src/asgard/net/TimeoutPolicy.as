@@ -56,7 +56,7 @@ package asgard.net
     	 * Returns the eden string representation of this object.
     	 * @return the eden string representation of this object.
     	 */		
-		public override function toSource(...arguments):String
+		public override function toSource( indent:int = 0 ):String 
 		{
 			return "new asgard.net.TimeOutPolicy( " + _value + ")" ;
 		}

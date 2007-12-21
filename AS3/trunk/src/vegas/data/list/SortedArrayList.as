@@ -23,14 +23,13 @@
 
 package vegas.data.list
 {
-    
 	import vegas.core.IComparator;
 	import vegas.core.IComparer;
 	import vegas.data.Collection;
 	import vegas.util.Copier;
-	import vegas.util.Serializer;
+	import vegas.util.Serializer;    
 
-    /**
+	/**
      * A SortedArrayList stores is elements in order with a IComparator object.
      * @author eKameleon
      */
@@ -184,7 +183,7 @@ package vegas.data.list
 	     * Returns a eden representation of the object.
 	     * @return a string representation the source code of the object.
 	     */
-		public override function toSource(...arguments:Array):String 
+		public override function toSource( indent:int = 0 ):String  
 		{
 			return Serializer.getSourceOf(this, [toArray(), comparator, options] ) ;
 		}

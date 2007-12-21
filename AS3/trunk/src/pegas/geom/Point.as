@@ -25,7 +25,8 @@ package pegas.geom
 	import pegas.geom.Vector2;
 	import pegas.util.Trigo;
 	
-	import vegas.errors.IllegalArgumentError;	
+	import vegas.errors.IllegalArgumentError;
+	import vegas.util.Serializer;	
 
 	/**
 	 * The Point class represents a location in a two-dimensional coordinate system, where x represents the horizontal axis and y represents the vertical axis.
@@ -680,6 +681,16 @@ package pegas.geom
 			p.x = tx ;
 			p.y = ty ;
 		}
+	
+		/**
+		 * Returns a Eden reprensation of the object.
+		 * @return a string representing the source code of the object.
+		 */
+		public override function toSource( indent:int = 0 ):String 
+		{
+			return Serializer.getSourceOf(this, [x,y] ) ;
+		}
+		
 	
 	}
 

@@ -23,11 +23,11 @@
 
 package pegas.colors
 {
+	import system.IEquatable;
 	
 	import vegas.core.CoreObject;
 	import vegas.core.IConvertible;
-	import vegas.core.IEquality;
-	import vegas.util.ObjectUtil;    
+	import vegas.util.ObjectUtil;	
 
 	/**
  	 * Enumeration static class to defined Basic HTML data types : <a href="http://www.w3.org/TR/html4/types.html">W3C HTML 4 Specifications</a> (chap 6.5)
@@ -42,7 +42,7 @@ package pegas.colors
 	 * trace(c.toString() + " : " + c.valueOf()) ;
  	 * }
  	 */
-	public class ColorHTML extends CoreObject implements IConvertible, IEquality
+	public class ColorHTML extends CoreObject implements IConvertible, IEquatable
 	{
 		
 		/**

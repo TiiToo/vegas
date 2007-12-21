@@ -23,15 +23,15 @@
 
 package vegas.util
 {
-    import flash.utils.getDefinitionByName;
-    
-    import vegas.core.CoreObject;
-    import vegas.core.ICloneable;
-    import vegas.core.ICopyable;
-    import vegas.core.IFormatter;
-    import vegas.util.Serializer;
-    
-    /**
+	import flash.utils.getDefinitionByName;
+	
+	import vegas.core.CoreObject;
+	import vegas.core.ICloneable;
+	import vegas.core.ICopyable;
+	import vegas.core.IFormatter;
+	import vegas.util.Serializer;    
+
+	/**
 	 * Abstract class to creates classes who implemented IFormatter interface.
 	 * @author eKameleon
 	 */
@@ -97,7 +97,7 @@ package vegas.util
 		 * Returns a Eden representation of the object.
 		 * @return a string representing the source code of the object.
 		 */
-		public override function toSource(...arguments:Array):String
+		public override function toSource( indent:int = 0 ):String 
 		{
 			return "new " + ClassUtil.getPath(this) + "(" + Serializer.toSource(pattern) + ")" ;
 		}

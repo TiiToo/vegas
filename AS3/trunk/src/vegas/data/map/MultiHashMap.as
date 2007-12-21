@@ -32,8 +32,8 @@ package vegas.data.map
 	import vegas.data.iterator.Iterable;
 	import vegas.data.iterator.Iterator;
 	import vegas.util.Copier;
-	import vegas.util.Serializer;
-	
+	import vegas.util.Serializer;	
+
 	/**
  	 * The default implementation of the {@code MultiMap} interface.
  	 * <p><b>Example :</b></p>
@@ -399,7 +399,7 @@ package vegas.data.map
 		 * Returns a Eden representation of the object.
 		 * @return a string representing the source code of the object.
 		 */
-		public override function toSource(...arguments:Array):String 
+		public override function toSource( indent:int = 0 ):String 
 		{
 			return Serializer.getSourceOf(this, [__map]) ;
 		}

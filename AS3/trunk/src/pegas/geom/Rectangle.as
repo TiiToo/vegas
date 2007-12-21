@@ -476,7 +476,7 @@ package pegas.geom
 		 * Returns a eden reprensation of the object.
 		 * @return a string representing the source code of the object.
 	 	 */
-		public override function toSource( ...arguments:Array ):String 
+		public override function toSource( indent:int = 0 ):String 
 		{
 			return "new pegas.geom.Rectangle(" + x + "," + y + "," + width + "," + height + ")" ;
 		}

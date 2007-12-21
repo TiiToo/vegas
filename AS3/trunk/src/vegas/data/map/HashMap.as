@@ -22,20 +22,21 @@
 */
 
 package vegas.data.map
-{    
-    import flash.utils.Proxy;    
-    import flash.utils.getDefinitionByName;    
-    
-    import vegas.core.HashCode;    
-    import vegas.data.Map;    
-    import vegas.data.iterator.ArrayIterator;    
-    import vegas.data.iterator.Iterator;    
-    import vegas.data.iterator.MapIterator;    
-    import vegas.data.map.MapFormat;    
-    import vegas.util.Copier;    
-    import vegas.util.Serializer;
-    
-    /**
+{
+	import flash.utils.Dictionary;
+	import flash.utils.Proxy;
+	import flash.utils.flash_proxy;
+	
+	import vegas.core.HashCode;
+	import vegas.data.Map;
+	import vegas.data.iterator.ArrayIterator;
+	import vegas.data.iterator.Iterator;
+	import vegas.data.iterator.MapIterator;
+	import vegas.data.map.MapFormat;
+	import vegas.util.Copier;
+	import vegas.util.Serializer;	
+
+	/**
      * This class is not the same AS2 vegas.data.map.HashMap, see ArrayMap to compare AS2 and AS3 class.
      * <p><b>Example :</b></p>
      * <p>
@@ -114,14 +115,23 @@ package vegas.data.map
             
         }
         
+       /**
+         * Overrides the behavior of an object property that can be called as a function. 
+         * When a method of the object is invoked, this method is called. 
+         * While some objects can be called as functions, some object properties can also be called as functions. 
+         */
+        flash_proxy override function callProperty( methodName:*  , ...rest:Array ):* 
+        {
+            return undefined ;
+        }
+        
         /**
          * Removes all mappings from this map.
          */  
         public function clear():void
         {
-            var clazz:Class = flash.utils.getDefinitionByName("flash.utils.Dictionary") as Class ;
-            _keys   = new clazz(true) ;
-            _values = new clazz(true) ;
+			_keys   = new Dictionary(true) ;
+            _values = new Dictionary(true) ;
             _size = 0 ;
         }
         
@@ -179,10 +189,20 @@ package vegas.data.map
         public function getKeys():Array
         {
             var ar:Array = [] ;
-            for (var key:* in _keys) {
+            for (var key:* in _keys) 
+            {
                 ar.push(key) ;
             }
             return ar ;
+        }
+        
+		/**
+         * If the property can't be found, the method returns undefined. 
+         * For more information on this behavior, see the ECMA-262 Language Specification, 3rd Edition. 
+         */
+        flash_proxy override function getProperty( name:* ):* 
+        {
+            return get(name) ;
         }
 
         /**
@@ -192,7 +212,8 @@ package vegas.data.map
         public function getValues():Array
         {
             var ar:Array = [] ;
-            for each (var value:* in _keys) {
+            for each (var value:* in _keys) 
+            {
                 ar.push(value) ;
             }
             return ar ;
@@ -300,6 +321,16 @@ package vegas.data.map
         }
 
         /**
+         * If the property can't be found, this method creates a property with the specified name and value.
+         * @param name The name of the property to modify.
+         * @param value The value to set the property to.
+         */
+        flash_proxy override function setProperty( name:* , value:* ):void 
+        {
+            put(name, value) ;
+        }
+
+        /**
          * Returns the number of key-value mappings in this map.
          * @return the number of key-value mappings in this map.
          */
@@ -312,7 +343,7 @@ package vegas.data.map
          * Returns the eden String representation of this map.
          * @return the eden String representation of this map.
          */        
-        public function toSource(...arguments:Array):String
+        public function toSource( indent:int = 0 ):String 
         {
             return Serializer.getSourceOf(this, [getKeys(), getValues()]) ;
         }

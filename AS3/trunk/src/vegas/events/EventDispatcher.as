@@ -192,7 +192,7 @@ package vegas.events
         /**
          * Returns a string representing the source code of the EventDispatcher object.
          */
-        public function toSource(...arguments:Array):String 
+        public function toSource( indent:int = 0 ):String  
         {
             return "new vegas.events.EventDispatcher(" + Serializer.toSource(target) + ")" ;
         }

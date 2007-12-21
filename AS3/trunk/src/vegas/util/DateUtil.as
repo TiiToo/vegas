@@ -66,7 +66,7 @@ package vegas.util
          * Returns a string representation the source code of the Date.
          * @return a string representation the source code of the Date.
          */
-        public static function toSource(date:Date):String 
+        public static function toSource( date:Date ):String 
         {
 		    return "new Date(" + date.valueOf() + ")" ;
         }

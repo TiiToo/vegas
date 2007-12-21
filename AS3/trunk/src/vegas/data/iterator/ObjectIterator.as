@@ -23,12 +23,11 @@
 
 package vegas.data.iterator
 {
-	
 	import vegas.core.CoreObject;
 	import vegas.util.MathsUtil;
-	import vegas.util.Serializer ;
-	
-    /**
+	import vegas.util.Serializer;	
+
+	/**
      * Converts an object to an iterator of all enumerable properties of the Object.
      * <p><b>Example :</b></p>
      * {@code
@@ -168,7 +167,7 @@ package vegas.data.iterator
          * Returns the eden String representation of this object.
          * @return the eden String representation of this object.
          */
-        public override function toSource(...arguments:Array):String 
+        public override function toSource( indent:int = 0 ):String 
         {
             return Serializer.getSourceOf(this, [_o] ) ;
         }

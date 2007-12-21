@@ -23,20 +23,21 @@
 
 package vegas.data.list
 {
-    import vegas.core.CoreObject;
-    import vegas.core.IEquality;
-    import vegas.data.Collection;
-    import vegas.data.List;
-    import vegas.data.Queue;
-    import vegas.data.collections.CollectionFormat;
-    import vegas.data.collections.SimpleCollection;
-    import vegas.data.iterator.Iterator;
-    import vegas.data.iterator.ListIterator;
-    import vegas.errors.IndexOutOfBoundsError;
-    import vegas.errors.NoSuchElementError;
-    import vegas.util.Copier;
-    import vegas.util.Serializer;
-    
+	import system.IEquatable;
+	
+	import vegas.core.CoreObject;
+	import vegas.data.Collection;
+	import vegas.data.List;
+	import vegas.data.Queue;
+	import vegas.data.collections.CollectionFormat;
+	import vegas.data.collections.SimpleCollection;
+	import vegas.data.iterator.Iterator;
+	import vegas.data.iterator.ListIterator;
+	import vegas.errors.IndexOutOfBoundsError;
+	import vegas.errors.NoSuchElementError;
+	import vegas.util.Copier;
+	import vegas.util.Serializer;	
+
 	/**
      * Linked list implementation of the List and Queue interface. 
      * <p>Implements all optional list operations, and permits all elements (including null).</p>
@@ -446,9 +447,9 @@ package vegas.data.list
             {
                 for ( e = _header.next ; e != _header ; e = e.next ) 
                 {
-            	    if (o is IEquality)
-            	    {
-                        if ( (o as IEquality).equals(e.element))
+            	    if (o is IEquatable)
+					{
+                        if ( (o as IEquatable).equals(e.element))
                 	    {
                     	    return index;
                 	    }
@@ -614,9 +615,9 @@ package vegas.data.list
                 for ( e = _header.previous ; e != _header ; e = e.previous ) 
                 {
                     index-- ;
-                    if (o is IEquality)
+                    if (o is IEquatable)
                     {
-                	    if ( (o as IEquality).equals(e.element) )
+                	    if ( (o as IEquatable).equals(e.element) )
                 	    {
                             return index;
                 	    }
@@ -692,9 +693,9 @@ package vegas.data.list
             {
                 for ( e = _header.next ; e != _header ; e = e.next ) 
                 {
-            	    if ( o is IEquality )
+            	    if ( o is IEquatable )
             	    {
-                		if ( (o as IEquality).equals( e.element ) ) 
+                		if ( (o as IEquatable).equals( e.element ) ) 
                 	    {
 	                        _removeEntry(e);
                     	    return true;
@@ -1039,7 +1040,7 @@ package vegas.data.list
     	 * }
     	 * @return a string representing the source code of the object.
 	     */
-    	public override function toSource( ...arguments:Array ):String 
+    	public override function toSource( indent:int = 0 ):String  
     	{
 		    return Serializer.getSourceOf(this, [Serializer.toSource(new SimpleCollection(toArray()))]) ;
 	    }
@@ -1131,9 +1132,9 @@ package vegas.data.list
     	 * The internal size of the list.
     	 */
 	    private var _size:uint = 0 ;
-		
 	}
 }
+
 import vegas.core.CoreObject;
 import vegas.data.iterator.ListIterator;
 import vegas.data.list.LinkedList;

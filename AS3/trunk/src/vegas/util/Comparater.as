@@ -22,7 +22,7 @@
 */
 package vegas.util 
 {
-	import vegas.core.IEquality;	
+	import system.IEquatable;		
 
 	/**
 	 * The {@code Comparater} utility class is an all-static class with a method to returns {@true} if two object are equals.
@@ -47,9 +47,9 @@ package vegas.util
 			{
 				return true ;
 			}
-			if (o1 instanceof IEquality) 
+			if (o1 instanceof IEquatable) 
 			{
-				return IEquality(o1).equals(o2) ;
+				return IEquatable(o1).equals(o2) ;
 			}
 			else if ( o1 is Array ) 
 			{

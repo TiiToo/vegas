@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -27,8 +27,8 @@ package vegas.data.collections
 	import vegas.data.Collection;
 	import vegas.data.iterator.ArrayIterator;
 	import vegas.data.iterator.Iterator;
-	import vegas.util.Serializer;
-	
+	import vegas.util.Serializer;	
+
 	/**
 	 * This class provides a skeletal implementation of the {@code Collection} interface, to minimize the effort required to implement this interface.
  	 * @author eKameleon
@@ -194,7 +194,7 @@ package vegas.data.collections
 		 * Returns the eden representation of the object.
 		 * @return a string representing the source code of the object.
 		 */
-		public override function toSource(...arguments:Array):String
+		public override function toSource( indent:int = 0 ):String 
 		{
 			return Serializer.getSourceOf(this, [toArray()]) ;
 		}

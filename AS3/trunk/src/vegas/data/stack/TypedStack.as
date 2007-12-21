@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -23,14 +23,13 @@
 
 package vegas.data.stack
 {
-
-	import vegas.data.iterator.Iterator ;	
 	import vegas.data.Stack;
+	import vegas.data.iterator.Iterator;
 	import vegas.errors.IllegalArgumentError;
 	import vegas.util.AbstractTypeable;
-	import vegas.util.ClassUtil ;
+	import vegas.util.ClassUtil;		
 
-    /**
+	/**
      * TypedQueue is a wrapper for Stack instances that ensures that only values of a specific type can be added to the wrapped stack.
      * <p><b>Example :</b></p>
      * {@code
@@ -189,7 +188,7 @@ package vegas.data.stack
     	 * Returns a eden representation of the object.
     	 * @return a string representation the source code of the object.
     	 */		
-		public override function toSource(...arguments:Array):String 
+		public override function toSource( indent:int = 0 ):String 
 		{
 			return 'new ' + ClassUtil.getPath(this) + '(' + ClassUtil.getName(getType()) + ',' + _stack.toSource() + ')' ;
 		}

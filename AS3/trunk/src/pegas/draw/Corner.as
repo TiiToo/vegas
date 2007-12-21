@@ -23,7 +23,7 @@
 
 package pegas.draw 
 {
-    import vegas.core.CoreObject;        
+	import vegas.core.CoreObject;            
 
     /**
      * Determinates the corner parameters in a CornerRectanglePen (Bevel, Rounded...)
@@ -84,7 +84,7 @@ package pegas.draw
          * Returns a Eden representation of the object.
          * @return a string representation the source code of the object.
          */
-        public override function toSource(...arguments:Array):String 
+        public override function toSource( indent:int = 0 ):String  
         {
             var source:String = "new pegas.draw.Corner(" ;
             source += tl == true ? "true" : "false" ;

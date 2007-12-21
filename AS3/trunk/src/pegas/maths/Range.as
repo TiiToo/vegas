@@ -23,15 +23,16 @@
 
 package pegas.maths
 {
-    import vegas.core.CoreObject;
-    import vegas.core.ICloneable;
-    import vegas.core.ICopyable;
-    import vegas.core.IEquality;
-    import vegas.errors.ArgumentOutOfBoundsError;
-    import vegas.errors.IllegalArgumentError;
-    import vegas.util.MathsUtil;
-    
-    /**
+	import system.IEquatable;
+	
+	import vegas.core.CoreObject;
+	import vegas.core.ICloneable;
+	import vegas.core.ICopyable;
+	import vegas.errors.ArgumentOutOfBoundsError;
+	import vegas.errors.IllegalArgumentError;
+	import vegas.util.MathsUtil;	
+
+	/**
      * Represents an immutable range of values.
      * <p><b>Example :</b></p>
      * {@code
@@ -52,7 +53,7 @@ package pegas.maths
      * }
      * @author eKameleon
      */
-    public class Range extends CoreObject implements ICloneable, ICopyable, IEquality
+    public class Range extends CoreObject implements ICloneable, ICopyable, IEquatable
     {
         
 		/**
@@ -238,7 +239,7 @@ package pegas.maths
 		 * Returns the Eden representation of the object.
 		 * @return the string representing the source code of the object.
 	 	 */
-	    public override function toSource(...arguments:Array):String 
+	    public override function toSource( indent:int = 0 ):String  
 	    {
 		    return "new pegas.maths.Range(" + min + "," + max + ")";
     	}

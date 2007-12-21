@@ -23,14 +23,14 @@
 
 package vegas.data
 {
-
-    import vegas.core.ICloneable;
-    import vegas.core.ICopyable;
-    import vegas.core.IFormattable;
-    import vegas.core.IHashable;
-    import vegas.core.ISerializable;
-    import vegas.data.iterator.Iterable;
-    import vegas.data.iterator.Iterator;
+	import system.ISerializable;
+	
+	import vegas.core.ICloneable;
+	import vegas.core.ICopyable;
+	import vegas.core.IFormattable;
+	import vegas.core.IHashable;
+	import vegas.data.iterator.Iterable;
+	import vegas.data.iterator.Iterator;    
 
 	/**
 	 * An object that maps keys to values. A map cannot contain duplicate keys. Each key can map to at most one value.

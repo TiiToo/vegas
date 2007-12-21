@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -23,18 +23,18 @@
 
 package vegas.data.sets
 {
+	import system.IEquatable;
+	
+	import vegas.data.Collection;
+	import vegas.data.Set;
+	import vegas.data.collections.SimpleCollection;		
 
-	import vegas.core.IEquality ;
-	import vegas.data.Collection ;
-	import vegas.data.collections.SimpleCollection;
-	import vegas.data.Set ;
-
-    /**
+	/**
      * This class provides a skeletal implementation of the Set interface to minimize the effort required to implement this interface.
      * A collection that contains no duplicate elements.
      * @author eKameleon
      */
-	internal class AbstractSet extends SimpleCollection implements IEquality, Set
+	internal class AbstractSet extends SimpleCollection implements IEquatable, Set
 	{
 		
 		/**

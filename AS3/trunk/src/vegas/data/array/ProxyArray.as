@@ -26,17 +26,19 @@ package vegas.data.array
 	import flash.utils.Proxy;
 	import flash.utils.flash_proxy;
 	
+	import system.ISerializable;
+	
+	import vegas.core.HashCode;
 	import vegas.core.ICloneable;
 	import vegas.core.ICopyable;
 	import vegas.core.IFormattable;
 	import vegas.core.IHashable;
-	import vegas.core.ISerializable;
 	import vegas.data.iterator.ArrayIterator;
 	import vegas.data.iterator.Iterable;
 	import vegas.data.iterator.Iterator;
 	import vegas.util.ClassUtil;
 	import vegas.util.Copier;
-	import vegas.util.Serializer;    
+	import vegas.util.Serializer;	
 
 	/**
      * The ProxyArray class.
@@ -207,7 +209,7 @@ package vegas.data.array
 		 * Returns a eden String representation of the object.
 		 * @return a string representation the source code of the object.
 		 */
-        public function toSource(...arguments):String
+        public function toSource( indent:int = 0 ):String 
         {
             return "new " + ClassUtil.getPath(this) + "(" + getSourceParams() + ")" ;
         }

@@ -28,8 +28,8 @@ package vegas.data.sets
 	import vegas.data.iterator.Iterator;
 	import vegas.data.map.ArrayMap;
 	import vegas.util.Copier;
-	import vegas.util.Serializer;
-	
+	import vegas.util.Serializer;	
+
 	/**
 	 * Hash Set based implementation of the Set interface. 
 	 * @author eKameleon
@@ -164,7 +164,7 @@ package vegas.data.sets
 		 * Returns the eden String representation of this object.
 		 * @return the eden String representation the source code of the object.
 		 */
-		public override function toSource(...arguments:Array):String 
+		public override function toSource( indent:int = 0 ):String  
 		{
 			return Serializer.getSourceOf(this, [toArray()]) ;
 		}

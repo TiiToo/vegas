@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -23,14 +23,13 @@
 
 package vegas.data
 {
-    
-    import vegas.core.ICloneable;
-    import vegas.core.ICopyable;
-    import vegas.core.IFormattable;
-    import vegas.core.IHashable;
-    import vegas.core.ISerializable;
-
-    import vegas.data.iterator.Iterable;
+	import system.ISerializable;
+	
+	import vegas.core.ICloneable;
+	import vegas.core.ICopyable;
+	import vegas.core.IFormattable;
+	import vegas.core.IHashable;
+	import vegas.data.iterator.Iterable;    
 
 	/**
 	 * A collection designed for holding elements prior to processing. Besides basic Collection operations, queues provide additional insertion, extraction, and inspection operations.

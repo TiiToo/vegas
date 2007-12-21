@@ -122,7 +122,7 @@ package pegas.geom
 		 * Returns a Eden reprensation of the object.
 		 * @return a string representing the source code of the object.
 		 */
-		public override function toSource( ...arguments:Array ):String 
+		public override function toSource( indent:int = 0 ):String 
 		{
 			var params:Array = [ Serializer.toSource(a) , Serializer.toSource(b) ] ;
 			if ( !isNaN(c) ) 

@@ -23,9 +23,8 @@
 
 package asgard.net
 {
-    
-    import vegas.core.CoreObject;
-    
+	import vegas.core.CoreObject;    
+
 	/**
 	 * Defines the NetServer status.
 	 * @author eKameleon
@@ -108,7 +107,7 @@ package asgard.net
 		 * Returns the Eden String representation of this object.
 		 * @return the Eden String representation of this object.
 		 */
-		public override function toSource(...arguments:Array):String 
+		public override function toSource( indent:int = 0 ):String 
 		{
 			return "new asgard.net.NetServerStatus(\"" + toString() + "\")" ;
 		}

@@ -27,7 +27,7 @@ package vegas.events
 	
 	import vegas.core.CoreObject;
 	import vegas.core.ILockable;
-	import vegas.util.ClassUtil;    
+	import vegas.util.ClassUtil;	
 
 	/**
  	 * This abstract class is used to create concrete {@code IEventDispatcher} implementations. This class used an internal {@code EventDispatcher} object by composition.
@@ -180,7 +180,7 @@ package vegas.events
          * Returns the eden String representation of this object.
          * @return the eden String representation of this object.
          */
-        public override function toSource( ...arguments:Array ):String
+        public override function toSource( indent:int = 0 ):String 
         {
             return "new " + ClassUtil.getPath(this) + "()" ;
         }

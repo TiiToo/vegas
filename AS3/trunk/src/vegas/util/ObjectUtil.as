@@ -22,11 +22,13 @@
 */
 package vegas.util
 {
-    
-    import flash.utils.ByteArray;
-    import vegas.util.Copier ;
-    
-    /**
+	import flash.utils.ByteArray;
+	
+	import system.Arrays;
+	
+	import vegas.util.Copier;	
+
+	/**
      * The {@code ObjectUtil} utility class is an all-static class with methods for working with object.
      * @author eKameleon
      */
@@ -89,10 +91,12 @@ package vegas.util
     	 */
         public static function isEmpty(o:Object):Boolean 
         {
-            for (var each:String in o) 
+        	var each:String ;
+            for (each in o) 
         	{
         	    return false ;	
             }
+            each = undefined ;
         	return true ;
         }
         
@@ -167,8 +171,8 @@ package vegas.util
         */	
  	   public static function toSource( ...arguments ):String 
  	   {
- 	        var o:Object = arguments[0] ;
- 	        var indent:Number = arguments[1] ;
+ 	        var o:Object        = arguments[0] ;
+ 	        var indent:Number   = arguments[1] ;
  	        var indentor:String = arguments[2] ;
 		    var each:String ;
     		var source:Array = [] ;
@@ -177,15 +181,33 @@ package vegas.util
     		{
     			if ( o.hasOwnProperty(each) ) 
     			{
-    				if (o[each] === undefined) source.push( each + ":" + "undefined") ;
-    				else if (o[each] === null) source.push( each + ":" + "null") ;
-    				else source.push( each + ":" + Serializer.toSource(o[each], indent, indentor) ) ;
+    				if (o[each] === undefined) 
+    				{
+    					source.push( each + ":" + "undefined") ;
+    				}
+    				else if (o[each] === null) 
+    				{
+    					source.push( each + ":" + "null") ;
+    				}
+    				else 
+    				{
+    					source.push( each + ":" + Serializer.toSource(o[each], indent, indentor) ) ;
+    				}
     			}
     		}
-    		if (isNaN(indent)) return "{" + source.join(",") + "}" ;
-    		if (indentor == null) indentor = "    " ;
-    		if(isNaN(indent)) indent = 0;
-    		var decal:String = "\n" + ArrayUtil.initialize( indent, indentor ).join( "" ) ;
+    		if (isNaN(indent)) 
+    		{
+    			return "{" + source.join(",") + "}" ;
+    		}
+    		if (indentor == null) 
+    		{
+    			indentor = "    " ;
+    		}
+    		if(isNaN(indent)) 
+    		{
+    			indent = 0;
+    		}
+    		var decal:String = "\n" + Arrays.initialize( indent, indentor ).join( "" ) ;
     		return decal + "{" + decal + source.join( "," + decal ) + decal + "}" ;
         }
         

@@ -315,7 +315,7 @@ package vegas.data.queue
 	     * Returns a eden representation of the object.
 	     * @return a string representation the source code of the object.
 	     */
-		public override function toSource(...arguments:Array):String
+		public override function toSource( indent:int = 0 ):String 
 		{
 			return Serializer.getSourceOf(this, [_qSize - 1, toArray()]) ;
 		}

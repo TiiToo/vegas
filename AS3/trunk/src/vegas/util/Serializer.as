@@ -28,10 +28,9 @@
  */
 package vegas.util
 {
-    
-    import vegas.core.ISerializable;
-    
-    public class Serializer
+	import system.ISerializable;	    
+
+	public class Serializer
     {
         
 	    /**
@@ -69,7 +68,10 @@ package vegas.util
     			{
     				source += Serializer.toSource(params[i]) ;
     				i++ ;
-    				if (i<l) source += "," ;
+    				if (i<l) 
+    				{
+    					source += "," ;
+    				}
     			}
     		}
     		source += ")" ;

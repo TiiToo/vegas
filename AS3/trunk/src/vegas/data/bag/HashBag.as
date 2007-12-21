@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -26,8 +26,8 @@ package vegas.data.bag
 	import vegas.data.Collection;
 	import vegas.data.map.HashMap;
 	import vegas.util.Copier;
-	import vegas.util.Serializer;
-	
+	import vegas.util.Serializer;	
+
 	/**
 	 * Implements Bag, using a HashMap to provide the data storage. This is the standard implementation of a bag.
 	 * <p><b>Example : </b>
@@ -119,7 +119,7 @@ package vegas.data.bag
 		 * Returns the Eden representation of the object.
 	 	 * @return a string representing the source code of the object.
 	 	 */
-		public override function toSource(...arguments:Array):String 
+		public override function toSource( indent:int = 0 ):String 
 		{
 			return Serializer.getSourceOf(this, [_extractList()] ) ;
 		}

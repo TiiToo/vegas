@@ -23,10 +23,9 @@
 
 package vegas.util
 {
-    
-    import vegas.errors.ArgumentOutOfBoundsError;
-    
-    /**
+	import system.Arrays;    
+
+	/**
 	 * Array static tool class.
 	 * @author eKameleon
 	 */
@@ -85,52 +84,6 @@ package vegas.util
     		return ar.concat(args) ;	
         }
 
-	   	/**
-		 * Returns the index of the first occurrence of a value in a one-dimensional Array or in a portion of the Array.
-		 * @param ar the array reference.
-		 * @param value the value to search in the array.
-		 * @param startIndex optionnal, allows to specify the starting index of the search.
-		 * @param count	allows to limit the number of elements to search in the array.
-		 * @return the index of the first occurrence of a value in a one-dimensional Array or in a portion of the Array.
-		 */
-    	public static function indexOf( ar:Array, value:Object, startIndex:Number, count:Number):Number 
-    	{
-    		var l:Number = ar.length ;
-    		if(isNaN(startIndex) ) startIndex = 0 ;
-            if(isNaN(count)) count = ar.length  - startIndex ;
-    		if (startIndex < 0 || startIndex > l)
-            {
-    		    throw new ArgumentOutOfBoundsError("ArrayUtil.indexOf : 'startIndex' must be between 0 and 1.");
-    		}
-    		if (count < 0 || count > (l - startIndex)) 
-    		{
-    		    throw new ArgumentOutOfBoundsError("ArrayUtil.indexOf : 'count' must be between 'startIndex' and the array size -1.") ;
-    		}
-    		for (var i:Number = 0 ; startIndex < l ; startIndex++ , i++) 
-    		{
-    			if (ar[startIndex] == value) 
-    			{
-    			    return startIndex ;
-    			} 
-    			if (i == count) break ;
-            }
-        	return -1 ;
-        }
-    
-    	/**
-    	 * Create and Initialize an Array.
-    	 */
-    	public static function initialize(index:uint, value:* = null):Array 
-    	{
-    		if( isNaN(index) ) index = 0 ;
-            var ar:Array = [] ;
-    		for( var i:Number = 0 ; i<index ; i++ )
-            {
-    		    ar[i] = value ;
-    		}
-    		return ar ;
-        }
-
 	    /**
     	 * Tests whether some element in the array passes the test implemented by the provided function.
     	 * <p><b>Example :</b></p>
@@ -187,7 +140,7 @@ package vegas.util
     		{
     		    indent = 0 ;
     		}
-            var decal:String = "\n" + ArrayUtil.initialize( indent, indentor ).join( "" );
+            var decal:String = "\n" + Arrays.initialize( indent, indentor ).join( "" );
     		return decal + "[" + decal + source.join( "," + decal ) + decal + "]" ;
         }
 

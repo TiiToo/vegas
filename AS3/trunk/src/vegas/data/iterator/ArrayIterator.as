@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -23,13 +23,12 @@
 
 package vegas.data.iterator
 {
-    
-    import vegas.core.CoreObject;
-    import vegas.util.ClassUtil;
-    import vegas.util.MathsUtil;
-    import vegas.util.Serializer;
+	import vegas.core.CoreObject;
+	import vegas.util.ClassUtil;
+	import vegas.util.MathsUtil;
+	import vegas.util.Serializer;    
 
-    /**
+	/**
      * Converts an {@code Array} to an iterator.
      * <p><b>Example :</b></p>
      * {@code
@@ -133,7 +132,7 @@ package vegas.data.iterator
          * Returns the eden String representation of this object.
          * @return the eden String representation of this object.
          */
-        public override function toSource(...arguments:Array):String 
+        public override function toSource( indent:int = 0 ):String 
         {
             return "new " + ClassUtil.getPath(this) + "(" + Serializer.toSource(_a) + ")" ;
         }

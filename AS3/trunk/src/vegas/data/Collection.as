@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -23,12 +23,12 @@
 
 package vegas.data
 {
-   
-    import vegas.core.ISerializable;
-    import vegas.core.ICloneable;
-    import vegas.core.ICopyable;
-    import vegas.core.IFormattable ;
-    import vegas.data.iterator.Iterable;
+	import system.ISerializable;
+	
+	import vegas.core.ICloneable;
+	import vegas.core.ICopyable;
+	import vegas.core.IFormattable;
+	import vegas.data.iterator.Iterable;   
 
 	/**
 	 * The root interface in the collection hierarchy. A collection represents a group of objects, known as its elements. Some collections allow duplicate elements and others do not. Some are ordered and others unordered. 

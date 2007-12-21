@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -84,11 +84,12 @@ package vegas.util
         }
         
         /**
-         * Returns a string representing the source code of the boolean.
+         * Returns a string representation of the source code of the boolean.
+         * @return a string representation of the source code of the boolean.
          */
-        public static function toSource( ...arguments ):String 
+        public static function toSource( b:Boolean ):String 
         {
-		    return BooleanUtil.equals(arguments[0], true) ? "true" : "false" ;
+		    return BooleanUtil.equals( b , true ) ? "true" : "false" ;
         }
         
     }

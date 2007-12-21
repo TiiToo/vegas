@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -23,12 +23,11 @@
 
 package vegas.data.iterator
 {
+	import vegas.core.CoreObject;
+	import vegas.errors.UnsupportedOperation;
+	import vegas.util.Serializer;    
 
-    import vegas.core.CoreObject;
-    import vegas.errors.UnsupportedOperation;
-    import vegas.util.Serializer;
-  
-    /**
+	/**
      * Protect an iterator. This class protect the remove, reset and seek method.
      * <p><b>Example :</b></p>
      * {@code
@@ -113,7 +112,7 @@ package vegas.data.iterator
          * Returns the eden String representation of this object.
          * @return the eden String representation of this object.
          */
-        public override function toSource(...arguments:Array):String 
+        public override function toSource( indent:int = 0 ):String 
         {
             return Serializer.getSourceOf(this, [_i]) ;
         }

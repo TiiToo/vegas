@@ -23,8 +23,7 @@
 
 package vegas.logging
 {
-    
-    import vegas.core.CoreObject ;
+	import vegas.core.CoreObject;    
 
 	/**
 	 * Static class containing constants for use in the level  property.
@@ -92,7 +91,7 @@ package vegas.logging
 		/**
 		 * Returns the Eden string representation of the object.
 		 */	
-		public override function toSource( ...arguments:Array ):String 
+		public override function toSource( indent:int = 0 ):String  
 	    { 
 		    return 'new vegas.logging.LogEventLevel("' + this._name + '",' + this._value + ')' ;
     	}

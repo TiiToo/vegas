@@ -23,9 +23,8 @@
 
 package asgard.net
 {
-
 	import vegas.core.CoreObject;
-	import vegas.util.Serializer ;
+	import vegas.util.Serializer;	
 
 	/**
 	 * Defines the information object in a onStatus callback method.
@@ -89,7 +88,7 @@ package asgard.net
          * Returns a Eden reprensation of the object.
          * @return a string representing the source code of the object.
          */
-		public override function toSource(...arguments):String 
+		public override function toSource( indent:int = 0 ):String 
 		{
 			return "new asgard.net.NetServerInfo(" + Serializer.toSource(toObject()) + ")" ;
 		}

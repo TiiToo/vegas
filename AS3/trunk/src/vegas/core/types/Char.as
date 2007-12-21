@@ -23,9 +23,8 @@
 
 package vegas.core.types
 {
-	
-	import vegas.core.CoreObject;
-	
+	import vegas.core.CoreObject;	
+
 	/**
 	 * An object of type Char contains a single field whose type is String.
 	 * @author eKameleon
@@ -53,7 +52,7 @@ package vegas.core.types
 		 * Returns a Eden representation of the object.
 		 * @return a string representing the source code of the object.
 		 */
-        public override function toSource(...arguments):String 
+        public override function toSource( indent:int = 0 ):String  
         {
             return 'new vegas.core.types.Char("' + _ch + '")' ;    
         }

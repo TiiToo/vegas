@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -23,14 +23,13 @@
 
 package vegas.data.iterator
 {
-	
 	import vegas.core.CoreObject;
 	import vegas.data.bag.AbstractBag;
 	import vegas.errors.ConcurrentModificationError;
 	import vegas.errors.UnsupportedOperation;
-	import vegas.util.Serializer;
+	import vegas.util.Serializer;	
 
-    /**
+	/**
      * Converts an Bag to an iterator.
      * @author eKameleon
      */
@@ -119,7 +118,7 @@ package vegas.data.iterator
          * Returns the eden String representation of this object.
          * @return the eden String representation of this object.
          */
-        public override function toSource(...arguments:Array):String 
+        public override function toSource( indent:int = 0 ):String  
         {
             return Serializer.getSourceOf(this, [_parent, _support] ) ;
         }
