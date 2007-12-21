@@ -28,6 +28,8 @@ package andromeda.ioc.factory
 	import andromeda.ioc.core.ObjectDefinitionContainer;
 	import andromeda.ioc.factory.IObjectFactory;
 	
+	import system.Reflection;
+	
 	import vegas.data.Map;
 	import vegas.data.iterator.Iterator;
 	import vegas.data.map.HashMap;
@@ -241,9 +243,11 @@ package andromeda.ioc.factory
 		 */
 		protected function _invokeDestroyMethod( o:* , definition:IObjectDefinition ):void
 		{
-			if( definition.getDestroyMethodName() ) 
+			var name:String     = definition.getDestroyMethodName();
+			var method:Function = Reflection.getMethodByName( o , name ) ;
+			if( method != null ) 
 			{
-				o[ definition.getDestroyMethodName() ]() ;
+				method.call(o) ;
 			}
 		}
 	
@@ -252,9 +256,11 @@ package andromeda.ioc.factory
 		 */
 		protected function _invokeInitMethod( o:* , definition:IObjectDefinition=null ):void
 		{
-			if( definition.getInitMethodName() ) 
+			var name:String     = definition.getInitMethodName();
+			var method:Function = Reflection.getMethodByName( o , name ) ;
+			if( method != null ) 
 			{
-				o[ definition.getInitMethodName() ]() ;
+				method.call(o) ;
 			}
 		}
 

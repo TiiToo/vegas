@@ -137,7 +137,7 @@ package system
 			var methods:Array = getClassMethods( o );
 			if( methods.indexOf( name ) > -1 )
 			{
-				return o[name];
+				return o[name] as Function;
 			}
 			return null;
 		}
