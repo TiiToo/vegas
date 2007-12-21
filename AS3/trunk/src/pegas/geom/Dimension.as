@@ -59,6 +59,12 @@ package pegas.geom
     		}
         }
 
+
+		/**
+		 * Defines the Dimension object with the width and height properties set to zero.
+		 */
+		public static var ZERO:Dimension = new Dimension() ;
+
     	/**
     	 * Determinates the height value of this instance.
     	 */

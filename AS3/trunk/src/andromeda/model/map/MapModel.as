@@ -20,7 +20,6 @@
   Contributor(s) :
   
 */
-
 package andromeda.model.map 
 {
 	import andromeda.events.ModelObjectEvent;

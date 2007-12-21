@@ -38,7 +38,7 @@ package pegas.geom
 		 * @param u	The horizontal coordinate value. The default value is zero.
 		 * @param v	The vertical coordinate value. The default value is zero.
 		 */
-		public function UVCoordinate( u:Number=NaN , v:Number=NaN  )
+		public function UVCoordinate( u:Number=0 , v:Number=0  )
 		{
 			this.u = isNaN(u) ? 0 : u ;
 			this.v = isNaN(v) ? 0 : v ;

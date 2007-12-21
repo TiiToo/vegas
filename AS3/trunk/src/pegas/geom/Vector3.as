@@ -48,6 +48,11 @@ package pegas.geom
 		}
 		
 		/**
+		 * Defines the Vector3 object with the x, y and z properties set to zero.
+		 */
+		public static var ZERO:Vector3 = new Vector3(0,0,0) ;
+		
+		/**
 		 * Defined the z coordinate.
 		 */
 		public var z:Number;

@@ -1,0 +1,6 @@
+
+build.name     = "edenRR";
+build.fullName = "eden Ridge Racer";
+build.version  = "0.5";
+build.ext      = "PHP";
+build.platform = "PHP v4.3.1";

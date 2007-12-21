@@ -49,6 +49,11 @@ package pegas.geom
 		}
 		
 		/**
+		 * Defines the Vector4 object with the x, y, z and w properties set to zero.
+		 */
+		public static var ZERO:Vector4 = new Vector4(0,0,0,0) ;
+		
+		/**
 		 * Defined the w coordinate.
 		 */
 		public var w:Number;

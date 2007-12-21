@@ -49,6 +49,11 @@ package pegas.geom
 		}
 		
 		/**
+		 * Defines the Vector2 object with the x and y properties set to zero.
+		 */
+		public static var ZERO:Vector2 = new Vector2(0,0) ;
+				
+		/**
 		 * Defined the x coordinate.
 		 */
 		public var x:Number ;

@@ -60,6 +60,11 @@ package pegas.geom
 		}
 		
 		/**
+		 * Defines the Vertex object with the x, y, z properties set to zero.
+		 */
+		public static var ZERO:Vertex = new Vertex(0,0,0) ;
+		
+		/**
 		 * Defined the x coordinates in the screen World.
 		 */
 		public var sx:Number;

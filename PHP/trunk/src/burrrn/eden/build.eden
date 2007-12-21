@@ -1,0 +1,6 @@
+
+build.name     = "eden";
+build.fullName = "ECMAScript data exchange notation";
+build.version  = "0.9";
+build.ext      = "PHP";
+build.platform = "PHP v4.3.1";

@@ -20,7 +20,6 @@
   Contributor(s) :
   
 */
-
 package asgard.managers 
 {
 	import flash.display.DisplayObject;
