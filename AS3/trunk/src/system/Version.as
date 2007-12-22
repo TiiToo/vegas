@@ -18,7 +18,7 @@
   
   Contributor(s):
   
-  	- Alcaraz Marc (aka eKameleon) <vegas@ekameleon.net> (2006)
+  	- Alcaraz Marc (aka eKameleon) <vegas@ekameleon.net> (2007-2008)
 	  Use this version only with Vegas AS3 Framework Please.
 
 */

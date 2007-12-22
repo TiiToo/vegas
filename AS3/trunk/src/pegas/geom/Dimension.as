@@ -24,8 +24,9 @@ package pegas.geom
 {
 	import flash.geom.Rectangle;
 	
+	import system.Reflection;
+	
 	import vegas.core.CoreObject;
-	import vegas.util.ClassUtil;
 	import vegas.util.Serializer;	
 
 	/**
@@ -177,7 +178,7 @@ package pegas.geom
     	 */
     	public override function toString():String 
     	{
-    		return "[" + ClassUtil.getName(this) + " width:" + width + ",height:" + height + "]" ;
+    		return "[" + Reflection.getClassName(this) + " width:" + width + ",height:" + height + "]" ;
     	}
     
     }

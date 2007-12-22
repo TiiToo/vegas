@@ -26,24 +26,25 @@
 
 package asgard.net
 {
-    import flash.events.Event;
-    import flash.events.HTTPStatusEvent;
-    import flash.events.IOErrorEvent;
-    import flash.events.ProgressEvent;
-    import flash.events.SecurityErrorEvent;
-    import flash.events.TimerEvent;
-    import flash.net.URLLoader;
-    import flash.net.URLRequest;
-    import flash.utils.Timer;
-    import flash.utils.getDefinitionByName;
-    
-    import pegas.events.ActionEvent;
-    
-    import vegas.events.AbstractCoreEventDispatcher;
-    import vegas.logging.ILogger;
-    import vegas.logging.Log;
-    import vegas.util.ClassUtil;
-    
+	import flash.events.Event;
+	import flash.events.HTTPStatusEvent;
+	import flash.events.IOErrorEvent;
+	import flash.events.ProgressEvent;
+	import flash.events.SecurityErrorEvent;
+	import flash.events.TimerEvent;
+	import flash.net.URLLoader;
+	import flash.net.URLRequest;
+	import flash.utils.Timer;
+	import flash.utils.getDefinitionByName;
+	
+	import pegas.events.ActionEvent;
+	
+	import system.Reflection;
+	
+	import vegas.events.AbstractCoreEventDispatcher;
+	import vegas.logging.ILogger;
+	import vegas.logging.Log;	
+
 	/**
 	 * The ActionLoader class.
      * @author eKameleon
@@ -70,7 +71,7 @@ package asgard.net
             
             _request = new URLRequest() ;
             
-            _logger = Log.getLogger( ClassUtil.getPackage(this) ) ;
+            _logger = Log.getLogger( Reflection.getClassPackage(this) ) ;
             
             _timer = new Timer(DEFAULT_DELAY, 1) ;
 
@@ -158,7 +159,7 @@ package asgard.net
          */
         public function clone():*
         {
-            var cName:String = ClassUtil.getPath(this) ;
+            var cName:String = Reflection.getClassPath(this) ;
             var clazz:Class = ( getDefinitionByName( cName ) as Class ) ;
             var cloader:* = new clazz() ;
             return cloader ;
@@ -370,6 +371,9 @@ package asgard.net
 
   		private var _timer:Timer = null ;
   		
+  		/**
+  		 * @private
+  		 */
   		private function _onTimeOut(e:TimerEvent):void
   		{
   		    close() ; // test the close method here...

@@ -53,7 +53,7 @@ package vegas.core
 		 */
 		function CoreObject() 
 		{
-		    setLogger() ;
+		    _logger = Log.getLogger( Reflection.getClassPath(this) ) ;
 		}
 
 		/**
@@ -83,7 +83,7 @@ package vegas.core
 		 */
 		public function setLogger( log:ILogger=null ):void 
 		{
-			_logger = log || Log.getLogger( Reflection.getClassPath(this) ) ;
+			_logger = (log == null ) ? Log.getLogger( Reflection.getClassPath(this) ) : log ;
 		}
 
 		/**

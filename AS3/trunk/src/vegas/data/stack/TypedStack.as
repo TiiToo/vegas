@@ -27,7 +27,7 @@ package vegas.data.stack
 	import vegas.data.iterator.Iterator;
 	import vegas.errors.IllegalArgumentError;
 	import vegas.util.AbstractTypeable;
-	import vegas.util.ClassUtil;		
+	import vegas.util.Serializer;	
 
 	/**
      * TypedQueue is a wrapper for Stack instances that ensures that only values of a specific type can be added to the wrapped stack.
@@ -190,7 +190,7 @@ package vegas.data.stack
     	 */		
 		public override function toSource( indent:int = 0 ):String 
 		{
-			return 'new ' + ClassUtil.getPath(this) + '(' + ClassUtil.getName(getType()) + ',' + _stack.toSource() + ')' ;
+			return Serializer.getSourceOf(this, [ getType() , _stack ] ) ;
 		}
 
     	/**
@@ -203,6 +203,6 @@ package vegas.data.stack
 		}
 
 		private var _stack:Stack ;
-		
 	}
 }
+

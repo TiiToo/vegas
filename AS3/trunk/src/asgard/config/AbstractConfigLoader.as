@@ -29,7 +29,7 @@ package asgard.config
 	import asgard.config.IConfigLoader;
 	import asgard.net.ActionLoader;
 	
-	import vegas.util.ClassUtil;    
+	import system.Reflection;	
 
 	/**
      * This skeletal class provides an easy implementation of the IConfigLoader interface. 
@@ -130,7 +130,7 @@ package asgard.config
          */
         public override function clone():*
         {
-            var cName:String = ClassUtil.getPath(this) ;
+            var cName:String = Reflection.getClassPath(this) ;
             var clazz:Class = ( getDefinitionByName( cName ) as Class ) ;
             var cloader:IConfigLoader = (new clazz(_name) as IConfigLoader) ;
             if (cloader != null)

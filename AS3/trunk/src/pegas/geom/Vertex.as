@@ -23,8 +23,9 @@
 
 package pegas.geom 
 {
-	import vegas.util.ClassUtil;
-	import vegas.util.Serializer;		
+	import system.Reflection;
+	
+	import vegas.util.Serializer;	
 
 	/**
 	 * A Vertex is a point which can be represented in differents coordinates (local, world, screen).
@@ -187,7 +188,7 @@ package pegas.geom
 		 */ 	
 		public override function toString():String
 		{
-			return "[" + ClassUtil.getName(this) + " {x:" + x + ",y:" + y + ",z:" + z + ",tx:" + tx + ",ty:" + ty + ",tz:" + tz + "}]" ;
+			return "[" + Reflection.getClassName(this) + " {x:" + x + ",y:" + y + ",z:" + z + ",tx:" + tx + ",ty:" + ty + ",tz:" + tz + "}]" ;
 		}
 
 	}

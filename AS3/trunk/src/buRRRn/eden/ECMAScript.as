@@ -18,15 +18,14 @@
   
   Contributor(s):
   
-  	- Alcaraz Marc (aka eKameleon) <vegas@ekameleon.net> (2006)
+  	- Alcaraz Marc (aka eKameleon) <vegas@ekameleon.net> (2007-2008)
 	  Use this version only with Vegas AS3 Framework Please.
 
 */
 package buRRRn.eden
 {
-	import system.Strings;
-	
-	import vegas.util.ClassUtil;	
+	import system.Reflection;
+	import system.Strings;	
 
 	/**
 	 * The ECMAScript parser static class.
@@ -451,13 +450,12 @@ package buRRRn.eden
 						foundScope = true;
 						scope = _globalPool[ scopepath ];
 					}
-                    else if( ClassUtil.hasClassByName( scopepath ) )
+                    else if( Reflection.hasClassByName( scopepath ) )
 					{
 						foundScope = true;
-						scope = ClassUtil.getDefinitionByName( scopepath );
+						scope = Reflection.getDefinitionByName( scopepath );
 						//trace( "GLOBAL POOL: " + scopepath );
-
-												_globalPool[ scopepath ] = scope;
+						_globalPool[ scopepath ] = scope;
 					}
 				}
                 else
@@ -1402,10 +1400,10 @@ package buRRRn.eden
 						scopepath += "." + paths[i];
 					}
                     
-					if( ClassUtil.hasClassByName( scopepath ) )
+					if( Reflection.hasClassByName( scopepath ) )
 					{
 						foundScope = true;
-						scope = ClassUtil.getDefinitionByName( scopepath );
+						scope = Reflection.getDefinitionByName( scopepath );
 					}
 				}
                 else
@@ -1652,7 +1650,6 @@ package buRRRn.eden
 		private static var _globalPool:Array = [];
 
 		private var _localPool:Array = [];
-
 		
 		/**
 		 * @private

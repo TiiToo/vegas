@@ -23,14 +23,15 @@
 
 package vegas.util
 {
-    
-    import vegas.core.CoreObject;
-    import vegas.core.ITypeable;
-    import vegas.core.IValidator;
-    import vegas.errors.IllegalArgumentError;
-    import vegas.errors.TypeMismatchError;
-    
-    /**
+	import system.Reflection;
+	
+	import vegas.core.CoreObject;
+	import vegas.core.ITypeable;
+	import vegas.core.IValidator;
+	import vegas.errors.IllegalArgumentError;
+	import vegas.errors.TypeMismatchError;	
+
+	/**
      * This abstract class is used to create concrete {@code ITypeable} implementations.
      * @author eKameleon
      * @see ITypeable
@@ -86,10 +87,9 @@ package vegas.util
 	     */
         public function validate(value:*):void
         {
-		    var name:String = ClassUtil.getName(this) ;
     		if (!supports(value)) 
         	{
-    		    throw new TypeMismatchError( name + ".validate('value' : " + value + ") is mismatch.") ;
+    		    throw new TypeMismatchError( Reflection.getClassName(this) + ".validate('value' : " + value + ") is mismatch.") ;
     		}
         }
         

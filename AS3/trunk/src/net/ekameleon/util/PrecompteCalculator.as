@@ -20,15 +20,18 @@
   Contributor(s) :
   
 */
-
 package net.ekameleon.util
 {
 	
+	/**
+	 * This class is a helper to calculate the AGESSA "precompte".
+	 */
 	public class PrecompteCalculator
     {
 		
-		// ----o Constructor
-		
+		/**
+		 * Creates a new PrecompteCalculator instance.
+		 */
 		public function PrecompteCalculator( value:Number=0 )
 		{
 		

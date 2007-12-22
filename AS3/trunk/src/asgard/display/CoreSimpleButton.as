@@ -22,8 +22,6 @@
 */
 package asgard.display 
 {
-	import vegas.logging.ILogable;
-
 	import flash.display.DisplayObject;
 	import flash.display.SimpleButton;
 	
@@ -31,11 +29,13 @@ package asgard.display
 	import asgard.config.ConfigCollector;
 	import asgard.config.IConfigurable;
 	
+	import system.Reflection;
+	
 	import vegas.core.ILockable;
 	import vegas.core.Identifiable;
+	import vegas.logging.ILogable;
 	import vegas.logging.ILogger;
-	import vegas.logging.Log;
-	import vegas.util.ClassUtil;	
+	import vegas.logging.Log;	
 
 	/**
 	 * The CoreSimpleButton class extends the flash.display.SimpleButton class and implements the IConfigurable, Identifiable, ILockable and ILogable interfaces.
@@ -162,7 +162,7 @@ package asgard.display
 		 */
 		public function setLogger( log:ILogger=null ):void 
 		{
-			_logger = log || Log.getLogger( ClassUtil.getPath(this) ) ;
+			_logger = ( log == null ) ? Log.getLogger( Reflection.getClassPath(this) ) : log ;
 		}
 		
 		/**
@@ -180,14 +180,14 @@ package asgard.display
 			}
 			update() ;	
         }
-
+        
 		/**
 	 	 * Returns the {@code String} representation of this object.
 	 	 * @return the {@code String} representation of this object.
 	 	 */
 		public override function toString():String
 		{
-			var str:String = "[" + ClassUtil.getName(this) ;
+			var str:String = "[" + Reflection.getClassName(this) ;
 			if ( this.id != null )
 			{
 				str += " " + this.id ;	

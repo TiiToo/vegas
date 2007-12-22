@@ -24,10 +24,10 @@
 package andromeda.vo
 {
 	import system.IEquatable;
+	import system.Reflection;
 	
 	import vegas.core.CoreObject;
-	import vegas.core.Identifiable;
-	import vegas.util.ClassUtil;	
+	import vegas.core.Identifiable;	
 
 	/**
 	 * Creates a new SimpleValueObject instance.
@@ -91,7 +91,7 @@ package andromeda.vo
 	 	 */
 		public override function toString():String
 		{
-			var str:String = "[" + ClassUtil.getName(this) ;
+			var str:String = "[" + Reflection.getClassName(this) ;
 			if ( this.id != null )
 			{
 				str += " " + this.id ;	

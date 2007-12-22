@@ -23,8 +23,9 @@
 
 package vegas.util
 {
-	import vegas.errors.ClassCastError;
-	import vegas.string.UnicodeChar;	
+	import buRRRn.eden.Serializer;
+	
+	import vegas.errors.ClassCastError;	
 
 	/**
 	 * The {@code StringUtil} utility class is an extended String class with methods for working with string.
@@ -198,22 +199,18 @@ package vegas.util
 		 * <p><b>Example :</b></p>
 	 	 * {@code
 		 * import vegas.util.StringUtil ;
-		 * trace( StringUtil.firstChar("hello world") ; // d
+		 * trace( StringUtil.lastChar("hello world") ; // d
 		 * }
 		 * @param str the string object.
 		 * @return the last char of the string.
 	 	 */
  	    public static function lastChar(str:String):String 
  	    {
-    		return str.charAt(length - 1) ;
+    		return str.charAt(str.length - 1) ;
 	    }
 
 		/**
 		 * Reports the index position of the last occurrence in this instance of one or more characters specified in a Unicode array.
-	 	 * <p><b>Example :</b></p>
-	 	 * {@code
-		 * vegas.util.StringUtil.lastChar("hello world") ; // the last char is 'd'.
-		 * }
 	 	 * @return the index position of the last occurrence in this instance of one or more characters specified in a Unicode array.
 	 	 */
     	public static function lastIndexOfAny(str:String, ar:Array):int 
@@ -263,13 +260,15 @@ package vegas.util
 		 * {@code
 		 * import vegas.util.StringUtil ;
 		 * 
-		 * var result:String = StringUtil.splice("hello world", 0, 1, "H") ;
+		 * var result:String ;
+		 * 
+		 * result = StringUtil.splice("hello world", 0, 1, "H") ;
 		 * trace(result) ; // Hello world
 		 * 
-		 * var result:String = StringUtil.splice("hello world", 6, 0, "life") ;
+		 * result = StringUtil.splice("hello world", 6, 0, "life") ;
 		 * trace(result) ; // hello lifeworld
 		 * 
-		 * var result:String = StringUtil.splice("hello world", 6, 5, "life") ;
+		 * result = StringUtil.splice("hello world", 6, 5, "life") ;
 		 * trace(result) ; // hello life
 		 * }
 		 * @param startIndex Index at which to start changing the string.
@@ -292,13 +291,13 @@ package vegas.util
 		 * }
 		 * @return an array representation of this instance.
 	 	 */
-	    public static function toArray(str:String):Array 
+	    public static function toArray(str:String, separator:String="" ):Array 
 	    {
-		    return str.split("") ;
+		    return str.split(separator) ;
 	    }
 
 		/**
-		 * Returns a Eden representation of the object.
+		 * Returns the eden representation of the object.
 		 * <p><b>Example :</b></p>
 		 * {@code
 		 * import vegas.util.StringUtil ;
@@ -307,37 +306,9 @@ package vegas.util
 		 * }
 	 	 * @return a string representing the source code of the object.
 		 */
-	    public static function toSource( ...arguments ):String 
+	    public static function toSource( str:String ):String 
 	    {
-		    var s:String = arguments[0] ;
-    		var ch:String ;
-    		var code:Number ;
-    		var quote:String = "\"" ;
-    		var str:String = "" ;
-    		var pos:Number = 0 ;
-    		var toUnicode:Function = UnicodeChar.toUnicode ;
-    		var l:uint = s.length ;
-    		while( pos < l ) 
-    		{
-    			ch = s.charAt(pos) ;
-    			code = s.charCodeAt(pos) ;
-    			if( code > 0xFF ) 
-    			{
-    				str += "\\u" + toUnicode( code ) ;
-    			}
-    			else if (ch == UnicodeChar.BACK_SPACE)  str += "\\b" ; // backspace
-    			else if (ch == UnicodeChar.TAB) str += "\\t" ; // horizontal tab
-    			else if (ch == UnicodeChar.LF) str += "\\n" ; // line feed
-    			else if (ch == UnicodeChar.VT) str += "\\v" ; // vertical tab
-    			else if (ch == UnicodeChar.FF) str += "\\f" ; // form feed
-    			else if (ch == UnicodeChar.CR) str += "\\r"; // carriage return
-    			else if (ch == UnicodeChar.DOUBLE_QUOTE) str += "\\\"" ; // double quote
-           	    else if (ch == UnicodeChar.SIMPLE_QUOTE) str += "\\\'" ; // single quote
-    			else if (ch == UnicodeChar.BACK_SLASH) str += "\\\\" ; // backslash
-    			else str += ch ;
-    			pos++ ;
-	    	}
-		    return quote + str + quote ;
+		    return buRRRn.eden.Serializer.emitString(str) ;
 	    }
 	    
 		/**

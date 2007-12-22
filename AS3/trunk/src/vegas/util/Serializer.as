@@ -22,43 +22,28 @@
 */
 
 /**
- * Allows an object to control its own serialization with an EDEN representation.
+ * Allows an object to control its own serialization with the eden representation.
  * Thanks : Zwetan Core2 framework inspired by Mozilla SpiderMonkey.
  * @author eKameleon
  */
 package vegas.util
 {
-	import system.ISerializable;	    
-
+	import system.ISerializable;
+	import system.Reflection;		
+	
+	/**
+	 * The eden serializer of the VEGAS implementation.
+	 */
 	public class Serializer
     {
         
-	    /**
-    	 * Global reserved words in an array.
-    	 */
-	    public static var GLOBAL_RESERVED:Array = ["global"] ;
-	
-    	/**
-    	 * Returns {@code true} if the current word if a global word reserved.
-    	 * @return {@code true} if the current word if a global word reserved.
-    	 */
-    	public static function isGlobalReserved( name:String ):Boolean 
-	    {
-		    var l:Number = GLOBAL_RESERVED.length ;
-            while(--l > -1) 
-        	{
-                if( GLOBAL_RESERVED[l] == name ) return true ;
-        	}
-            return false;
-		}
- 		
  	    /**
 	     * Returns the string source representation of the specified object and serialize the array of arguments to pass in the constructor of the class.
 	     * @return the string source representation of the specified object and serialize the array of arguments to pass in the constructor of the class.
 	     */
 		public static function getSourceOf(o:*, params:Array):String 
 		{
-		    var path:String = ClassUtil.getPath(o) ;
+		    var path:String = Reflection.getClassPath(o) ;
     		var source:String = "new " + path + "(" ;
     		var l:uint = params.length ;
     		if (l > 0) 
@@ -66,7 +51,7 @@ package vegas.util
     			var i:uint = 0 ;
     			while (i < l) 
     			{
-    				source += Serializer.toSource(params[i]) ;
+    				source += Serializer.toSource( params[i] ) ;
     				i++ ;
     				if (i<l) 
     				{
@@ -111,21 +96,38 @@ package vegas.util
     		{
     		    return DateUtil.toSource(o) ;
     		}
-    		else if (o is Error) return ErrorUtil.toSource.apply(o, arguments.slice()) ;
-    		
-    		else if (o is Function) return FunctionUtil.toSource.apply(o, arguments.slice()) ;
-
-    		else if (o as uint) return ("new uint(" + o + ")") ;
-
-    		else if (o as int) return ("new int(" + o + ")") ;
-    		
-    		else if (o is Number) return NumberUtil.toSource.apply(o, arguments.slice()) ;
-    		
-    		else if (o is String) return StringUtil.toSource.apply(o, arguments.slice()) ;
-    		
-    		else if (o is Object) return ObjectUtil.toSource.apply(o, arguments.slice()) ;
-	    	
-	    	else return "undefined" ;
+    		else if (o is Error) 
+    		{
+    			return ErrorUtil.toSource.apply(o, arguments.slice()) ;
+    		}
+    		else if (o is Function) 
+    		{
+    			return FunctionUtil.toSource.apply(o, arguments.slice()) ;
+    		}
+    		else if (o as uint) 
+    		{
+    			return ("new uint(" + o + ")") ;
+    		}
+    		else if (o as int) 
+    		{
+    			return ("new int(" + o + ")") ;
+    		}
+    		else if (o is Number) 
+    		{
+    			return NumberUtil.toSource.apply(o, arguments.slice()) ;
+    		}
+    		else if (o is String) 
+    		{
+    			return StringUtil.toSource.apply(o, arguments.slice()) ;
+    		}
+    		else if (o is Object) 
+    		{
+    			return ObjectUtil.toSource.apply(o, arguments.slice()) ;
+    		}
+	    	else 
+	    	{
+	    		return "undefined" ;
+	    	}
 	    	
 	    }    
   

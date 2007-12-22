@@ -23,10 +23,10 @@
 
 package vegas.events 
 {
-    import flash.events.Event;
-    
-    import vegas.util.ClassUtil;
-    
+	import flash.events.Event;
+	
+	import system.Reflection;	    
+
 	/**
 	 * {@code BasicEvent} is the basical event structure to work with {@link vegas.events.EventDispatcher}.
 	 * <p><b>Example</b></p>
@@ -196,15 +196,27 @@ package vegas.events
 	 	 */
 		public override function toString():String 
 		{
-			return formatToString( ClassUtil.getName(this), "type", "target", "context", "bubbles", "cancelable", "eventPhase" ); 
+			return formatToString( Reflection.getClassName(this), "type", "target", "context", "bubbles", "cancelable", "eventPhase" ); 
 		}
-
+		
+		/**
+		 * @private
+		 */
 		private var _context:* = null ;
-	    
+
+		/**
+		 * @private
+		 */
 		private var _target:Object = null ;
-	
+
+		/**
+		 * @private
+		 */
 		private var _time:Number ;
 
+		/**
+		 * @private
+		 */
 		private var _type:String ;
 		
 		/**

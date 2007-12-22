@@ -20,14 +20,13 @@
   Contributor(s) :
   
 */
-
 package vegas.data.map
 {
 	import vegas.data.Map;
 	import vegas.data.iterator.Iterator;
 	import vegas.errors.IllegalArgumentError;
 	import vegas.util.AbstractTypeable;
-	import vegas.util.ClassUtil;
+	import vegas.util.Serializer;	
 
 	/**
 	 * TypedMap is a wrapper for Map instances that ensures that only values of a specific type can be added to the wrapped Map.
@@ -211,7 +210,7 @@ package vegas.data.map
 	 	 */
 		public override function toSource( indent:int = 0 ):String 
 		{
-			return 'new ' + ClassUtil.getPath(this) + '(' + ClassUtil.getName(getType()) + ',' + _map.toSource() + ')' ;
+			return Serializer.getSourceOf( this, [ getType() , _map.toSource() ] ) ;
 		}
 
 		/**
@@ -224,6 +223,6 @@ package vegas.data.map
 		}
 
 		private var _map:Map ;
-	
 	}
 }
+

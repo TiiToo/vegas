@@ -20,17 +20,14 @@
   Contributor(s) :
   
 */
-
-// TODO implements all equals methods in ADT
-
 package vegas.data.list
 {
 	import vegas.data.Collection;
 	import vegas.data.List;
 	import vegas.data.collections.SimpleCollection;
 	import vegas.data.iterator.ListIterator;
-	import vegas.errors.IndexOutOfBoundsError;
-	
+	import vegas.errors.IndexOutOfBoundsError;	
+
 	/**
  	 * This class provides a skeletal implementation of the List interface to minimize the effort required to implement this interface.
 	 * @author eKameleon

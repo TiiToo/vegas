@@ -27,7 +27,7 @@ package vegas.data.collections
 	import vegas.data.iterator.Iterator;
 	import vegas.errors.IllegalArgumentError;
 	import vegas.util.AbstractTypeable;
-	import vegas.util.ClassUtil;	
+	import vegas.util.Serializer;	
 
 	/**
 	 * TypedCollection is a wrapper for Collection instances that ensures that only values of a specific type can be added to the wrapped collection.
@@ -95,6 +95,7 @@ package vegas.data.collections
 
 		/**
 		 * Returns the element from this collection at the passed index.
+		 * @return the element from this collection at the passed index.
 		 */
     	public function get(key:*):*
     	{
@@ -155,6 +156,7 @@ package vegas.data.collections
 		
 		/**
 		 * Returns the number of elements in this collection.
+		 * @return the number of elements in this collection.
 		 */
 		public function size():uint
 		{
@@ -176,7 +178,7 @@ package vegas.data.collections
 	 	 */
 		public override function toSource( indent:int = 0 ):String 
 		{
-			return 'new ' + ClassUtil.getPath(this) + '(' + ClassUtil.getName(getType()) + ',' + _co.toSource() + ')' ;
+			return Serializer.getSourceOf( this, [ getType() ,  _co ] ) ;
 		}
 		
 		/**
@@ -192,7 +194,6 @@ package vegas.data.collections
 	 	 * The internal collection of this wrapped Collection.
 		 */
 		protected var _co:Collection ;
-		
 	}
-	
 }
+

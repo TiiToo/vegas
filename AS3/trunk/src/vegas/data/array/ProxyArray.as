@@ -27,6 +27,7 @@ package vegas.data.array
 	import flash.utils.flash_proxy;
 	
 	import system.ISerializable;
+	import system.Reflection;
 	
 	import vegas.core.HashCode;
 	import vegas.core.ICloneable;
@@ -36,9 +37,7 @@ package vegas.data.array
 	import vegas.data.iterator.ArrayIterator;
 	import vegas.data.iterator.Iterable;
 	import vegas.data.iterator.Iterator;
-	import vegas.util.ClassUtil;
-	import vegas.util.Copier;
-	import vegas.util.Serializer;	
+	import vegas.util.Copier;	
 
 	/**
      * The ProxyArray class.
@@ -211,7 +210,7 @@ package vegas.data.array
 		 */
         public function toSource( indent:int = 0 ):String 
         {
-            return "new " + ClassUtil.getPath(this) + "(" + getSourceParams() + ")" ;
+            return "new " + Reflection.getClassPath(this) + "(" + getSourceParams() + ")" ;
         }
 
 		/**
@@ -226,9 +225,9 @@ package vegas.data.array
         /**
          * This method is used in toSource method.
          */  
-        protected function getSourceParams():String
+        protected function getSourceParams():Array
         {
-            return Serializer.toSource(_ar) ;
+            return [ _ar ] ;
         }
 		
 		/**

@@ -25,8 +25,9 @@ package pegas.geom
 {
 	import flash.geom.Point;
 	
+	import system.Reflection;
+	
 	import vegas.core.CoreObject;
-	import vegas.util.ClassUtil;
 	import vegas.util.Serializer;	
 
 	/**
@@ -130,7 +131,7 @@ package pegas.geom
 		 */ 	
 		public override function toString():String
 		{
-			return "[" + ClassUtil.getName(this) + " {" + x + "," + y + "}]" ;
+			return "[" + Reflection.getClassName(this) + " {" + x + "," + y + "}]" ;
 		}
 		
 	}

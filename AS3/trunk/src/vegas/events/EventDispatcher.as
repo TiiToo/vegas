@@ -25,12 +25,13 @@ package vegas.events
 {
 	import flash.events.EventDispatcher;
 	
+	import system.Reflection;
+	
 	import vegas.core.HashCode;
 	import vegas.data.map.ArrayMap;
 	import vegas.logging.ILogable;
 	import vegas.logging.ILogger;
 	import vegas.logging.Log;
-	import vegas.util.ClassUtil;
 	import vegas.util.Serializer;	
 
 	/**
@@ -178,7 +179,7 @@ package vegas.events
          */
         public function setLogger( log:ILogger=null ):void 
         {
-            _logger = ( log == null ) ? Log.getLogger( ClassUtil.getPath(this) ) : log ;
+            _logger = ( log == null ) ? Log.getLogger( Reflection.getClassPath(this) ) : log ;
         }
         
 		/**
@@ -203,7 +204,7 @@ package vegas.events
          */
         public override function toString():String 
         {
-            return "[" + ClassUtil.getName(this) + "]" ;
+            return "[" + Reflection.getClassName(this) + "]" ;
         }
 
         /**

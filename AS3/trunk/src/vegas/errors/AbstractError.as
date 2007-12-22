@@ -23,14 +23,15 @@
 
 package vegas.errors
 {
+	import system.Reflection;
+	
 	import vegas.core.HashCode;
 	import vegas.core.IFormattable;
 	import vegas.core.IHashable;
 	import vegas.logging.ILogable;
 	import vegas.logging.ILogger;
 	import vegas.logging.Log;
-	import vegas.logging.LogEventLevel;
-	import vegas.util.ClassUtil;    
+	import vegas.logging.LogEventLevel;	
 
 	/**
 	 * This class provides a Abstract implementation to creates Error classes with an internal logging model. 
@@ -45,8 +46,8 @@ package vegas.errors
         public function AbstractError(message:String="", id:int=0)
         {
             super(message, id);
-            name    = ClassUtil.getName(this) ;
-            _logger = Log.getLogger( ClassUtil.getPath(this) ) ;
+            name    = Reflection.getClassName(this) ;
+            _logger = Log.getLogger( Reflection.getClassPath(this) ) ;
             
         }
 		
@@ -107,7 +108,7 @@ package vegas.errors
 		 */
 		public function setLogger( log:ILogger=null ):void 
 		{
-			_logger = log ;
+			_logger = log || Log.getLogger( Reflection.getClassPath(this) ) ;
 		}
 
 		/**

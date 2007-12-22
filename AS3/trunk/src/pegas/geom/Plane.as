@@ -23,8 +23,9 @@
 
 package pegas.geom 
 {
+	import system.Reflection;
+	
 	import vegas.core.CoreObject;
-	import vegas.util.ClassUtil;
 	import vegas.util.Serializer;	
 
 	/**
@@ -128,7 +129,7 @@ package pegas.geom
 		 */ 	
 		public override function toString():String
 		{
-			return "[" + ClassUtil.getName(this) + ":{" + a + "," + b + "," + c + "," + d + "}]" ;
+			return "[" + Reflection.getClassName(this) + ":{" + a + "," + b + "," + c + "," + d + "}]" ;
 		}
 	
 	}

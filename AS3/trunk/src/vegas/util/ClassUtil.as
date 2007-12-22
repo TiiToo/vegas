@@ -23,10 +23,9 @@ Contributor(s) :
 
 package vegas.util
 {
-	import flash.system.ApplicationDomain;
-	import flash.utils.getQualifiedClassName;
-	import flash.utils.getQualifiedSuperclassName;
-
+	import system.Reflection;
+	
+	import vegas.core.HashCode;
 	import vegas.core.IHashable;	
 
 	/**
@@ -60,137 +59,29 @@ package vegas.util
 		}
 
 		/**
-		 * Returns {@code true} if the class exists with the specified string name in argument.
-		 * @return {@code true} if the class exists with the specified string name in argument.
-		 */
-		public static function hasClassByName( name:String ):Boolean
-		{
-			var c:Class ;
-			try
-			{
-				c = getClassByName( name );
-			}
-            catch( e:Error )
-			{
-				return false;
-			}
-			return true;
-		}
-
-		/**
-		 * Returns the class reference from a string class name.
-		 * The string name notation can be either "flash.system::Capabilities" or "flash.system.Capabilities" 
-		 * but you have ot provide the full qualified path of the class "Capabilities" alone will not work.
-		 */
-		public static function getClassByName( name:String ):Class
-		{
-			return ApplicationDomain.currentDomain.getDefinition( name ) as Class;
-		}
-
-		/**
-		 * Returns the instance of a public definition in the current Domain.
-		 * The definition can be a class, namespace, function or object.
-		 */
-		public static function getDefinitionByName( name:String ):Object
-		{
-			return ApplicationDomain.currentDomain.getDefinition( name );
-		}
-
-		/**
-		 * Returns the name string representation of the specified instance passed in arguments.
-		 * @param instance the reference of the object to apply reflexion.
-		 */
-		public static function getName(instance:*):String 
-		{
-			return _formatName( getPath( instance ) ) ;
-		}
-
-		/**
 		 * Returns the unique name of the specified instance in argument.
 		 * @return the unique name of the specified instance in argument.
 		 */
 		public static function getUniqueName(instance:*):String
 		{
-			var name:String = getName( instance ) ;
-			
+			var name:String = Reflection.getClassName( instance ) ;
 			var charCode:int = name.charCodeAt( name.length - 1 );
 			if (charCode >= 48 && charCode <= 57)
 			{
 				name += "_" ;
 			}
-			
-			var count:uint = 0 ;
-			
-			if (instance is IHashable)
+			var count:uint ;
+			if ( instance is IHashable )
 			{
-				count += (instance as IHashable).hashCode( ) ;		 
+				count = (instance as IHashable).hashCode() ;		 
 			}	
 			else
 			{
-				count += instance["hashCode"]( ) ;
+				count = HashCode.next() ;
 			}
-			
-			count += instance["hashCode"]( ) ;
 			
 			return name + count ;
 		}
 
-		/**
-		 * Returns the package string representation of the specified instance passed in arguments.
-		 * @param instance the reference of the object to apply reflexion.
-		 */
-		public static function getPackage(instance:*):String 
-		{
-			return _formatPackage( getPath( instance ) ) ;
-		}	
-
-		/**
-		 * Returns the full path string representation of the specified instance passed in arguments (package + name).
-		 * @param instance the reference of the object to apply reflexion.
-		 */
-		public static function getPath(instance:*):String 
-		{
-			return _formatPath( flash.utils.getQualifiedClassName( instance ) ) ;
-		}
-
-		public static function getSuperName(instance:*):String 
-		{
-			return _formatName( getSuperPath( instance ) ) ;
-		}
-
-		public static function getSuperPackage(instance:*):String 
-		{
-			return _formatPackage( getSuperPath( instance ) ) ;
-		}
-
-		public static function getSuperPath(instance:*):String 
-		{
-			return _formatPath( flash.utils.getQualifiedSuperclassName( instance ) ) ;
-		}
-
-		private static function _formatName( path:String ):String 
-		{
-			var a:Array = path.split( "." ) ;
-			return (a.length > 1) ? a.pop( ) : path ;
-		}
-
-		private static function _formatPackage( path:String ):String 
-		{
-			var a:Array = path.split( "." ) ;
-			if (a.length > 1) 
-			{
-				a.pop( ) ;
-				return a.join( "." ) ;
-			}
-			else 
-			{
-				return null ;
-			}
-		}
-
-		private static function _formatPath( path:String ):String 
-		{
-			return (path.split( "::" )).join( "." ) ;
-		}
 	}
 }

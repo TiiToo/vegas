@@ -26,8 +26,9 @@ package pegas.geom
 	import pegas.geom.IGeometry;
 	import pegas.util.Matrix4Util;
 	
+	import system.Reflection;
+	
 	import vegas.core.CoreObject;
-	import vegas.util.ClassUtil;
 	import vegas.util.Comparater;
 	import vegas.util.MathsUtil;
 	import vegas.util.Serializer;	
@@ -375,7 +376,7 @@ package pegas.geom
 		 */ 	
 		public override function toString():String
 		{
-			var s:String = "[" + ClassUtil.getName(this) + ":" ;
+			var s:String = "[" + Reflection.getClassName(this) + ":" ;
 			s += "[" + n11 + "," + n12 + "," + n13 + "," + n14 + "]" ;
 			s += "," ;
 			s += "[" + n21 + "," + n22 + "," + n23 + "," + n24 + "]" ;

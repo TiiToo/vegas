@@ -26,7 +26,8 @@ package andromeda.vo
 	
 	import andromeda.vo.SimpleValueObject;
 	
-	import vegas.util.ClassUtil;
+	import system.Reflection;
+	
 	import vegas.util.Serializer;	
 
 	/**
@@ -170,7 +171,7 @@ package andromeda.vo
          */
         public override function toString():String
         {
-            return "[" + ClassUtil.getName(this) + ":" + filter + "]" ;
+            return "[" + Reflection.getClassName(this) + ":" + filter + "]" ;
         }
         
     }

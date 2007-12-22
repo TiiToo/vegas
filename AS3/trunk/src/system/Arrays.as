@@ -18,7 +18,7 @@
   
   Contributor(s):
   
-  	- Alcaraz Marc (aka eKameleon) <vegas@ekameleon.net> (2006)
+  	- Alcaraz Marc (aka eKameleon) <vegas@ekameleon.net> (2007-2008)
 	  Use this version only with Vegas AS3 Framework Please.
 
 */
@@ -28,18 +28,8 @@ package system
     /**
 	 * Array static tool class.
 	 */
-	public dynamic class Arrays extends Array
+	public dynamic class Arrays
 	{
-		
-		/**
-		 * Creates a new Arrays instance.
-		 * @param numElements The number of elements in the specified Array.
-		 */
-		public function Arrays( numElements:int = 0 )
-		{
-			super( numElements );
-		}
-
 		/**
 		 * Initializes a new Array with an arbitrary number of elements (index), 
 		 * with every element containing the passed parameter value or by default the null value.
@@ -61,8 +51,6 @@ package system
             
 			return arr;
 		}
-        
-        _dontEnumPrototype( prototype );
 
 	}
 

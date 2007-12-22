@@ -23,13 +23,14 @@
 
 package asgard.net.remoting
 {
-    import vegas.core.CoreObject;
-    import vegas.core.IFormat;
-    import vegas.data.iterator.Iterable;
-    import vegas.data.iterator.Iterator;
-    import vegas.util.ClassUtil;
-    import vegas.util.TypeUtil;
-    
+	import system.Reflection;
+	
+	import vegas.core.CoreObject;
+	import vegas.core.IFormat;
+	import vegas.data.iterator.Iterable;
+	import vegas.data.iterator.Iterator;
+	import vegas.util.TypeUtil;    
+
 	/**
 	 * The instances of this class can converts an object to a custom string representation.
      * @author eKameleon
@@ -52,7 +53,7 @@ package asgard.net.remoting
 		{
 			var rs:RemotingService = RemotingService(o);
 			var r:* = rs.getResult() ;
-			var txt:String = "[" + ClassUtil.getName(rs) ;
+			var txt:String = "[" + Reflection.getClassName(rs) ;
 			if (rs.getServiceName()) txt += " serviceName:" + rs.getServiceName() ;
 			if (rs.getMethodName()) txt  += " methodName:" + rs.getMethodName() ;
 			if (rs.getServiceName()) txt += " result:" ;

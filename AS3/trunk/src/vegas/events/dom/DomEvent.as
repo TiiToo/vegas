@@ -20,18 +20,17 @@
   Contributor(s) :
   
 */
-
 package vegas.events.dom
 {
 	import flash.events.Event;
 	
 	import system.ISerializable;
+	import system.Reflection;
 	
 	import vegas.core.ICopyable;
 	import vegas.core.IFormattable;
 	import vegas.core.IHashable;
-	import vegas.events.BasicEvent;
-	import vegas.util.ClassUtil;    
+	import vegas.events.BasicEvent;		
 
 	public class DomEvent extends BasicEvent implements ICopyable, IFormattable, IHashable, ISerializable
 	{
@@ -157,7 +156,7 @@ package vegas.events.dom
 		public override function toString():String 
 		{
 			var phase:uint = eventPhase ;
-			var	name:String = ClassUtil.getName(this);
+			var	name:String = Reflection.getClassName(this);
 			var txt:String = "[" + name ;
 			if (getType()) txt += " " + getType() ;
 			switch (phase) 

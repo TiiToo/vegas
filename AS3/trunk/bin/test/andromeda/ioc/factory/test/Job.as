@@ -1,8 +1,9 @@
 ﻿
 package test
 {
-	import vegas.core.CoreObject;
-	import vegas.util.ClassUtil;		
+	import system.Reflection;
+	
+	import vegas.core.CoreObject;	
 
 	/**
 	 * The Job class.
@@ -29,7 +30,7 @@ package test
 		 */
 		public override function toString():String
 		{
-			return "[" + ClassUtil.getName(this) + " " + name + "]" ;
+			return "[" + Reflection.getClassName(this) + " " + name + "]" ;
 		}
 		
 	}

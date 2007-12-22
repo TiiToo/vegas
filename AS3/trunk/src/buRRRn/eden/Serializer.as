@@ -18,7 +18,7 @@
   
   Contributor(s):
   
-  	- Alcaraz Marc (aka eKameleon) <vegas@ekameleon.net> (2006)
+  	- Alcaraz Marc (aka eKameleon) <vegas@ekameleon.net> (2007-2008)
 	  Use this version only with Vegas AS3 Framework Please.
 
 */
@@ -34,6 +34,108 @@ package buRRRn.eden
 	 */
 	public class Serializer
 	{
+		
+		/**
+		 * Returns the serializer string representation of the specified array argument.
+		 * @return the serializer string representation of the specified array argument.
+		 */
+		public static function emitArray( value:Array ):String
+		{
+			var source:Array = [];
+			var size:uint = value.length ;            
+			for( var i:uint = 0; i < size ; i++ )
+			{
+				if( value[i] === undefined )
+				{
+					source.push( "undefined" );
+					continue;
+				}
+				if( value[i] === null )
+				{
+					source.push( "null" );
+					continue;
+				}
+				eden.prettyIndent++ ;
+				source.push( eden.serialize( value[i] ) ) ;
+				eden.prettyIndent-- ;
+			}
+            
+			if( !eden.prettyPrinting )
+			{
+				return( "[" + source.join( "," ) + "]" );
+			}
+            
+			var decal:String = Environment.newLine + Arrays.initialize( eden.prettyIndent, eden.indentor ).join( "" );
+			return decal + "[" + decal + source.join( "," + decal ) + decal + "]";
+		}
+
+		/**
+		 * Returns the serializer string representation of the specified date argument.
+		 * @return the serializer string representation of the specified date argument.
+		 */
+		public static function emitDate( value:Date ):String
+		{
+			var data:Array;
+            
+			var y:Number  = value.getFullYear( );
+			var m:Number  = value.getMonth( );
+			var d:Number  = value.getDate( );
+			var h:Number  = value.getHours( );
+			var mn:Number = value.getMinutes( );
+			var s:Number  = value.getSeconds( );
+			var ms:Number = value.getMilliseconds( );
+            
+			data = [ y, m, d, h, mn, s, ms ];
+			data.reverse( );
+            
+			while( data[0] == 0 )
+			{
+				data.splice( 0, 1 );
+			}
+            
+			data.reverse( );
+            
+			return "new Date(" + data.join( "," ) + ")";
+		}
+
+		/**
+		 * Returns the serializer string representation of the specified object argument.
+		 * @return the serializer string representation of the specified string argument.
+		 */
+		public static function emitObject( value:Object ):String
+		{
+			var source:Array = [];
+            
+			for( var member:String in value )
+			{
+				if( value.hasOwnProperty( member ) )
+				{
+					if( value[member] === undefined )
+					{
+						source.push( member + ":" + "undefined" );
+						continue;
+					}
+                    
+					if( value[member] === null )
+					{
+						source.push( member + ":" + "null" );
+						continue;
+					}
+                    
+					eden.prettyIndent++;
+					source.push( member + ":" + eden.serialize( value[member] ) );
+					eden.prettyIndent--;
+				}
+			}
+            
+			if( !eden.prettyPrinting )
+			{
+				return( "{" + source.join( "," ) + "}" );
+			}
+            
+			var decal:String = Environment.newLine + Arrays.initialize( eden.prettyIndent, eden.indentor ).join( "" );
+			return decal + "{" + decal + source.join( "," + decal ) + decal + "}";
+		}
 
 		/**
 		 * Returns the serializer string representation of the specified string argument.
@@ -71,165 +173,63 @@ package buRRRn.eden
                 
 				switch( ch )
 				{
-					case "\u0008": 
-						//backspace
-
-												str += "\\b";
+					case "\u0008" : // backspace
+					{
+						str += "\\b";
 						break;
-                    
-					case "\u0009": 
-						//horizontal tab
-
-												str += "\\t";
+					}
+					case "\u0009": // horizontal tab 
+					{
+						str += "\\t";
 						break;
-                    
-					case "\u000A": 
-						//line feed
-
-												str += "\\n";
+					}
+					case "\u000A" : // line feed
+					{	
+						str += "\\n";
 						break;
-                    
-					case "\u000B": 
-						//vertical tab
-
-												str += "\\v";
-						/* TODO: check the VT bug */
+					}
+					case "\u000B" : //vertical tab 
+					{
+						str += "\\v"; /* TODO: check the VT bug */
 						//str += "\\u000B";
-
-												break;
-                    
-					case "\u000C": 
-						//form feed
-
-												str += "\\f";
 						break;
-                    
-					case "\u000D": 
-						//carriage return
-
-												str += "\\r";
+					}
+					case "\u000C" : // form feed
+					{
+						str += "\\f";
 						break;
-                    
-					case "\u0022": 
-						//double quote
-
-												str += "\\\"";
+					}
+					case "\u000D" : // carriage return 
+					{
+						str += "\\r";
 						break;
-                    
-					case "\u0027": 
-						//single quote
-
-												str += "\\\'";
+					}
+					case "\u0022" : // double quote
+					{		
+						str += "\\\"";
 						break;
-                    
-					case "\u005c": 
-						//backslash
-
-												str += "\\\\";
+					}
+					case "\u0027" : // single quote 
+					{
+						str += "\\\'";
 						break;
-                    
-					default:
-						str += ch;
+					}
+					case "\u005c" : // backslash 
+					{
+						str += "\\\\";
+						break;
+					}
+					default :
+					{
+						str += ch ;
+					}
 				}
-                
 				pos++;
 			}
-            
 			return quote + str + quote;
 		}
 
-		public static function emitObject( value:Object ):String
-		{
-			var source:Array = [];
-            
-			for( var member:String in value )
-			{
-				if( value.hasOwnProperty( member ) )
-				{
-					if( value[member] === undefined )
-					{
-						source.push( member + ":" + "undefined" );
-						continue;
-					}
-                    
-					if( value[member] === null )
-					{
-						source.push( member + ":" + "null" );
-						continue;
-					}
-                    
-					eden.prettyIndent++;
-					source.push( member + ":" + eden.serialize( value[member] ) );
-					eden.prettyIndent--;
-				}
-			}
-            
-			if( !eden.prettyPrinting )
-			{
-				return( "{" + source.join( "," ) + "}" );
-			}
-            
-			var decal:String = Environment.newLine + Arrays.initialize( eden.prettyIndent, eden.indentor ).join( "" );
-			return decal + "{" + decal + source.join( "," + decal ) + decal + "}";
-		}
-
-		public static function emitArray( value:Array ):String
-		{
-			var source:Array = [];
-            
-			for( var i:int = 0; i < value.length ; i++ )
-			{
-                
-				if( value[i] === undefined )
-				{
-					source.push( "undefined" );
-					continue;
-				}
-                
-				if( value[i] === null )
-				{
-					source.push( "null" );
-					continue;
-				}
-                
-				eden.prettyIndent++;
-				source.push( eden.serialize( value[i] ) );
-				eden.prettyIndent--;
-			}
-            
-			if( !eden.prettyPrinting )
-			{
-				return( "[" + source.join( "," ) + "]" );
-			}
-            
-			var decal:String = Environment.newLine + Arrays.initialize( eden.prettyIndent, eden.indentor ).join( "" );
-			return decal + "[" + decal + source.join( "," + decal ) + decal + "]";
-		}
-
-		public static function emitDate( value:Date ):String
-		{
-			var data:Array;
-            
-			var y:Number  = value.getFullYear( );
-			var m:Number  = value.getMonth( );
-			var d:Number  = value.getDate( );
-			var h:Number  = value.getHours( );
-			var mn:Number = value.getMinutes( );
-			var s:Number  = value.getSeconds( );
-			var ms:Number = value.getMilliseconds( );
-            
-			data = [ y, m, d, h, mn, s, ms ];
-			data.reverse( );
-            
-			while( data[0] == 0 )
-			{
-				data.splice( 0, 1 );
-			}
-            
-			data.reverse( );
-            
-			return "new Date(" + data.join( "," ) + ")";
-		}
 	}
+	
 }
 

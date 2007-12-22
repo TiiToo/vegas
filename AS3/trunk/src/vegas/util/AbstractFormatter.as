@@ -25,11 +25,13 @@ package vegas.util
 {
 	import flash.utils.getDefinitionByName;
 	
+	import system.Reflection;
+	
 	import vegas.core.CoreObject;
 	import vegas.core.ICloneable;
 	import vegas.core.ICopyable;
 	import vegas.core.IFormatter;
-	import vegas.util.Serializer;    
+	import vegas.util.Serializer;	
 
 	/**
 	 * Abstract class to creates classes who implemented IFormatter interface.
@@ -69,7 +71,7 @@ package vegas.util
 		 */	
 		public function clone():*
 		{
-			var clazz:Class = getDefinitionByName( ClassUtil.getPath(this) ) as Class;
+			var clazz:Class = getDefinitionByName( Reflection.getClassPath(this) ) as Class;
 			return new clazz( pattern )  ;
 		}
 
@@ -80,7 +82,7 @@ package vegas.util
 		 */
 		public function copy():*
 		{
-			var clazz:Class = getDefinitionByName(ClassUtil.getPath(this)) as Class ;
+			var clazz:Class = getDefinitionByName(Reflection.getClassPath(this)) as Class ;
 			return new clazz( pattern.valueOf() ) ;
 		}
 
@@ -99,7 +101,7 @@ package vegas.util
 		 */
 		public override function toSource( indent:int = 0 ):String 
 		{
-			return "new " + ClassUtil.getPath(this) + "(" + Serializer.toSource(pattern) + ")" ;
+			return Serializer.getSourceOf(this, [ pattern ] ) ;
 		}
 		
 		/**

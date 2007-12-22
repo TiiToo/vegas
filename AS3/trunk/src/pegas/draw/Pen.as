@@ -30,7 +30,7 @@ package pegas.draw
 	
 	import pegas.draw.IPen;
 	
-	import vegas.util.ClassUtil;    
+	import system.Reflection;	
 
 	/**
      * The Pen class use composition to control a Graphics reference and draw custom vector graphic shapes.
@@ -282,7 +282,7 @@ package pegas.draw
          */
         public function toString():String 
         {
-            return "[" + ClassUtil.getName(this) + "]" ;
+            return "[" + Reflection.getClassName(this) + "]" ;
         }
 
         /**

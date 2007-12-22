@@ -20,13 +20,13 @@
   Contributor(s) :
   
 */
-
 package vegas.data.iterator
 {
+	import system.Reflection;
+	
 	import vegas.core.CoreObject;
-	import vegas.util.ClassUtil;
 	import vegas.util.MathsUtil;
-	import vegas.util.Serializer;    
+	import vegas.util.Serializer;		
 
 	/**
      * Converts an {@code Array} to an iterator.
@@ -134,12 +134,18 @@ package vegas.data.iterator
          */
         public override function toSource( indent:int = 0 ):String 
         {
-            return "new " + ClassUtil.getPath(this) + "(" + Serializer.toSource(_a) + ")" ;
+            return "new " + Reflection.getClassPath(this) + "(" + Serializer.toSource(_a) + ")" ;
         }
 
-	    protected var _a:Array ; // current array
+		/**
+		 * current array
+		 */
+	    protected var _a:Array ; 
 
-    	protected var _k:Number ; // current key
+		/**
+		 *  current key
+		 */
+    	protected var _k:Number ;
 
     }
 }

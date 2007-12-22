@@ -22,16 +22,17 @@
 */
 
 package vegas.events.dom
-{    
-    import flash.events.Event;    
-    
-    import vegas.core.CoreObject;    
-    import vegas.data.iterator.Iterable;    
-    import vegas.data.iterator.Iterator;    
-    import vegas.data.list.SortedArrayList;    
-    import vegas.events.EventListener;    
-    import vegas.util.ClassUtil;
-    
+{
+	import flash.events.Event;
+	
+	import system.Reflection;
+	
+	import vegas.core.CoreObject;
+	import vegas.data.iterator.Iterable;
+	import vegas.data.iterator.Iterator;
+	import vegas.data.list.SortedArrayList;
+	import vegas.events.EventListener;    
+
 	/**
      * Internal class used in the EventDispatcher to collect {@code EventListener} for a specific event type.  
      * @author eKameleon
@@ -151,7 +152,7 @@ package vegas.events.dom
 				while(it.hasNext()) 
 				{
 					container = it.next() ;
-					constructorName = ClassUtil.getName(container) ;
+					constructorName = Reflection.getClassName(container) ;
 					if (constructorName == listener) 
 					{
 						_list.remove(container) ;

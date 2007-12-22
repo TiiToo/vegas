@@ -27,7 +27,8 @@ package andromeda.vo
 	
 	import andromeda.vo.SimpleValueObject;
 	
-	import vegas.util.ClassUtil;
+	import system.Reflection;
+	
 	import vegas.util.Serializer;	
 
 	/**
@@ -114,7 +115,7 @@ package andromeda.vo
          */
         public override function toString():String
         {
-	        var str:String = "[" + ClassUtil.getName(this) ;
+	        var str:String = "[" + Reflection.getClassName(this) ;
 	        if (code != null && code.length > 0)
 	        {
 	            str += " code:" + code ;

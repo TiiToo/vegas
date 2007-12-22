@@ -20,9 +20,6 @@
   Contributor(s) :
   
 */
-
-//TODO finish unit tests and test the timeout policy. 
-
 package asgard.net.remoting
 {
 	import flash.events.TimerEvent;
@@ -35,9 +32,10 @@ package asgard.net.remoting
 	
 	import pegas.process.Action;
 	
+	import system.Reflection;
+	
 	import vegas.core.ICloneable;
-	import vegas.errors.Warning;
-	import vegas.util.ClassUtil;    
+	import vegas.errors.Warning;	
 
 	/**
 	 * This class provides a service object to communicate with a remoting gateway server.
@@ -508,7 +506,7 @@ package asgard.net.remoting
 		{
 			if (aliasName == null)
 			{
-				aliasName = ClassUtil.getPath( classObject ) ;
+				aliasName = Reflection.getClassName( classObject ) ;
 			}
 			flash.net.registerClassAlias(aliasName, classObject) ;	
 		}
