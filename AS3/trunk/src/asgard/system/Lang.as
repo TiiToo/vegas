@@ -20,15 +20,17 @@
   Contributor(s) :
   
 */
-
 package asgard.system
 {
-	
 	import vegas.core.CoreObject;
-	import vegas.data.map.HashMap ;
-	import vegas.util.Serializer ;
-	
+	import vegas.data.map.HashMap;
+	import vegas.util.Serializer;	
+
 	/**
+	 * This static enumeration class defines the language code of the system on which the player is running. 
+	 * The language is specified as a lowercase two-letter language code from ISO 639-1. 
+	 * For Chinese, an additional uppercase two-letter country code from ISO 3166 distinguishes between Simplified and Traditional Chinese. 
+	 * The languages codes are based on the English names of the language: for example, 'hu' specifies Hungarian.
      * <p><b>Example :</b></p>
      * <code>
 	 * import asgard.system.Lang ;
@@ -41,9 +43,9 @@ package asgard.system
 	 * 
 	 * trace("---- validate") ;
 	 * 
-	 * trace("> Lang.validate 'fr' : " + Lang.validate("fr")) ;
+	 * trace("> Lang.validate 'fr' : "   + Lang.validate("fr")) ;
 	 * trace("> Lang.validate 'japo' : " + Lang.validate("japo")) ;
-	 * trace("> Lang.validate 'fr' : " + Lang.validate(Lang.FR)) ;
+	 * trace("> Lang.validate 'fr' : "   + Lang.validate(Lang.FR)) ;
 	 * 
 	 * trace("---- Lang.Langs map") ;
 	 * 
@@ -51,6 +53,7 @@ package asgard.system
 	 * trace("> Lang.size() : " + Lang.size()) ;
 	 * </code>
 	 * @author eKameleon
+	 * @see Capabilities.language
 	 */
 	public final class Lang extends CoreObject
 	{
@@ -64,6 +67,48 @@ package asgard.system
 			this.value = idLang ;
 			put(this) ;
 		}
+		
+		public static const CS:Lang    = new Lang("cs", "Czech") ;
+
+		public static const ES:Lang    = new Lang("es", "Spanish") ;
+
+		public static const DA:Lang    = new Lang("da", "Danish") ;
+
+		public static const DE:Lang    = new Lang("de", "German") ;
+
+		public static const EN:Lang    = new Lang("en", "English") ;
+
+		public static const FI:Lang    = new Lang("fi", "Finnish") ;
+		
+		public static const FR:Lang    = new Lang("fr", "French") ;
+
+		public static const HU:Lang    = new Lang("hu", "Hungarian") ;
+
+		public static const IT:Lang    = new Lang("it", "Italian") ;
+		
+		public static const JA:Lang    = new Lang("ja", "Japanese") ;
+
+		public static const KO:Lang    = new Lang("ko", "Korean") ;
+
+		public static const NL:Lang    = new Lang("nl", "Dutch") ;
+
+		public static const NO:Lang    = new Lang("no", "Norwegian") ;
+		
+		public static const XU:Lang    = new Lang("xu", "Other/unknown") ;
+		
+		public static const PL:Lang    = new Lang("pl", "Polish") ;
+		
+		public static const PT:Lang    = new Lang("pt", "Portuguese") ;
+		
+		public static const RU:Lang    = new Lang("ru", "Russian") ;
+	
+		public static const SV:Lang    = new Lang("sv", "Swedish") ;
+	
+		public static const TR:Lang    = new Lang("tr", "Turkish") ;
+		
+		public static const ZH_CN:Lang = new Lang("zh-CN", "Simplified Chinese") ;
+		
+		public static const ZH_TW:Lang = new Lang("zh-TW", "Traditional Chinese") ;
 		
 		/**
 		 * The map 
@@ -159,48 +204,8 @@ package asgard.system
 			return value ;
 		}
 
-		public static const CS:Lang    = new Lang("cs", "Tchèque") ;
 
-		public static const DA:Lang    = new Lang("da", "Danois") ;
-
-		public static const NL:Lang    = new Lang("nl", "Hollandais") ;
-
-		public static const EN:Lang    = new Lang("en", "Anglais") ;
-
-		public static const FI:Lang    = new Lang("fi", "Finlandais") ;
-
-		public static const FR:Lang    = new Lang("fr", "Français") ;
-
-		public static const DE:Lang    = new Lang("de", "Allemand") ;
-
-		public static const HU:Lang    = new Lang("hu", "Hongrois") ;
-
-		public static const IT:Lang    = new Lang("it", "Italien") ;
-
-		public static const JA:Lang    = new Lang("ja", "Japonais") ;
-
-		public static const KO:Lang    = new Lang("ko", "Coréen") ;
-
-		public static const NO:Lang    = new Lang("no", "Norvégien") ;
-
-		public static const XU:Lang    = new Lang("xu", "Autre/Inconnu") ;
-
-		public static const PL:Lang    = new Lang("pl", "Polonais") ;
-
-		public static const PT:Lang    = new Lang("pt", "Portugais") ;
-
-		public static const RU:Lang    = new Lang("ru", "Russe") ;
-
-		public static const ZH_CN:Lang = new Lang("zh-CN", "Chinois simplifié") ;
-
-		public static const ES:Lang    = new Lang("es", "Espagnol") ;
-
-		public static const SV:Lang    = new Lang("sv", "Suédois") ;
-
-		public static const ZH_TW:Lang = new Lang("zh-TW", "Chinois Traditionnel") ;
-
-		public static const TR:Lang    = new Lang("tr", "Turc") ;
-
+	
 	}
 
 }
