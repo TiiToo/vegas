@@ -24,7 +24,7 @@ package asgard.system
 {
 	import vegas.core.CoreObject;
 	import vegas.data.map.HashMap;
-	import vegas.util.Serializer;	
+	import vegas.util.Serializer;		
 
 	/**
 	 * This static enumeration class defines the language code of the system on which the player is running. 
@@ -60,58 +60,18 @@ package asgard.system
 		
 		/**
 		 * Creates a new Lang instance.
+		 * @param id The lang language specified as a lowercase two-letter language code from ISO 639-1. For Chinese, an additional uppercase two-letter country code from ISO 3166 distinguishes between Simplified and Traditional Chinese.
+		 * @param label The English names of the language.
 		 */
-		public function Lang( idLang:String , label:String )
+		public function Lang( id:String , label:String )
 		{
 			this.label = label ;
-			this.value = idLang ;
+			this.value = id ;
 			put(this) ;
 		}
-		
-		public static const CS:Lang    = new Lang("cs", "Czech") ;
 
-		public static const ES:Lang    = new Lang("es", "Spanish") ;
-
-		public static const DA:Lang    = new Lang("da", "Danish") ;
-
-		public static const DE:Lang    = new Lang("de", "German") ;
-
-		public static const EN:Lang    = new Lang("en", "English") ;
-
-		public static const FI:Lang    = new Lang("fi", "Finnish") ;
-		
-		public static const FR:Lang    = new Lang("fr", "French") ;
-
-		public static const HU:Lang    = new Lang("hu", "Hungarian") ;
-
-		public static const IT:Lang    = new Lang("it", "Italian") ;
-		
-		public static const JA:Lang    = new Lang("ja", "Japanese") ;
-
-		public static const KO:Lang    = new Lang("ko", "Korean") ;
-
-		public static const NL:Lang    = new Lang("nl", "Dutch") ;
-
-		public static const NO:Lang    = new Lang("no", "Norwegian") ;
-		
-		public static const XU:Lang    = new Lang("xu", "Other/unknown") ;
-		
-		public static const PL:Lang    = new Lang("pl", "Polish") ;
-		
-		public static const PT:Lang    = new Lang("pt", "Portuguese") ;
-		
-		public static const RU:Lang    = new Lang("ru", "Russian") ;
-	
-		public static const SV:Lang    = new Lang("sv", "Swedish") ;
-	
-		public static const TR:Lang    = new Lang("tr", "Turkish") ;
-		
-		public static const ZH_CN:Lang = new Lang("zh-CN", "Simplified Chinese") ;
-		
-		public static const ZH_TW:Lang = new Lang("zh-TW", "Traditional Chinese") ;
-		
 		/**
-		 * The map 
+		 * The map of all existing Lang reference in the application.
 		 */
 		public static var LANGS:HashMap = new HashMap () ;
 
@@ -165,7 +125,7 @@ package asgard.system
 		 */
 		public override function toSource( indent:int = 0 ):String 
 		{
-			return 'new Lang(' + Serializer.toSource(value) + ',' + Serializer.toSource(label) + ')' ;
+			return Serializer.getSourceOf(this, [value, label] ) ;
 		}
 
 		/**
@@ -183,16 +143,20 @@ package asgard.system
 		 */
 		public static function validate( lang:* ):Boolean 
 		{
-		
-			var sLang:String = (lang as String).toString() ;
-		
-			var langs:Array = LANGS.getKeys() ;
-			for each ( var current:String in langs )
+			var s:String ;
+			if ( lang is Lang )
 			{
-				if (current == sLang) return true ;
+				s = (lang as Lang).toString() ;
 			}
-			return false ;
-			
+			else if ( lang is String )
+			{
+				s = lang ;
+			}
+			else
+			{
+				return false ;
+			}
+			return LANGS.getKeys().indexOf( s ) > -1 ;
 		}
 		
 		/**
@@ -203,8 +167,111 @@ package asgard.system
 		{
 			return value ;
 		}
+	
+		/**
+		 * Indicates the 'Czech' language reference.
+		 */
+		public static const CS:Lang = new Lang("cs", "Czech") ;
 
+		/**
+		 * Indicates the 'Spanish' language reference.
+		 */
+		public static const ES:Lang = new Lang("es", "Spanish") ;
 
+		/**
+		 * Indicates the 'Dasnish' language reference.
+		 */
+		public static const DA:Lang = new Lang("da", "Danish") ;
+
+		/**
+		 * Indicates the 'German' language reference.
+		 */
+		public static const DE:Lang = new Lang("de", "German") ;
+
+		/**
+		 * Indicates the 'English' language reference.
+		 */
+		public static const EN:Lang = new Lang("en", "English") ;
+
+		/**
+		 * Indicates the 'Finnish' language reference.
+		 */
+		public static const FI:Lang = new Lang("fi", "Finnish") ;
+
+		/**
+		 * Indicates the 'French' language reference.
+		 */
+		public static const FR:Lang = new Lang("fr", "French") ;
+
+		/**
+		 * Indicates the 'Hungarian' language reference.
+		 */
+		public static const HU:Lang = new Lang("hu", "Hungarian") ;
+
+		/**
+		 * Indicates the 'Italian' language reference.
+		 */
+		public static const IT:Lang = new Lang("it", "Italian") ;
+
+		/**
+		 * Indicates the 'Japanese' language reference.
+		 */
+		public static const JA:Lang = new Lang("ja", "Japanese") ;
+
+		/**
+		 * Indicates the 'Korean' language reference.
+		 */
+		public static const KO:Lang = new Lang("ko", "Korean") ;
+
+		/**
+		 * Indicates the 'Dutch' language reference.
+		 */
+		public static const NL:Lang = new Lang("nl", "Dutch") ;
+
+		/**
+		 * Indicates the 'Norwegian' language reference.
+		 */
+		public static const NO:Lang = new Lang("no", "Norwegian") ;
+
+		/**
+		 * Indicates the 'Other/unknown' language reference.
+		 */
+		public static const XU:Lang = new Lang("xu", "Other/unknown") ;
+
+		/**
+		 * Indicates the 'Italian' language reference.
+		 */
+		public static const PL:Lang = new Lang("pl", "Polish") ;
+		
+		/**
+		 * Indicates the 'Portuguese' language reference.
+		 */
+		public static const PT:Lang = new Lang("pt", "Portuguese") ;
+
+		/**
+		 * Indicates the 'Russian' language reference.
+		 */
+		public static const RU:Lang = new Lang("ru", "Russian") ;
+
+		/**
+		 * Indicates the 'Swedish' language reference.
+		 */
+		public static const SV:Lang = new Lang("sv", "Swedish") ;
+
+		/**
+		 * Indicates the 'Turkish' language reference.
+		 */
+		public static const TR:Lang = new Lang("tr", "Turkish") ;
+
+		/**
+		 * Indicates the 'Simplified Chinese' language reference.
+		 */
+		public static const ZH_CN:Lang = new Lang("zh-CN", "Simplified Chinese") ;
+
+		/**
+		 * Indicates the 'Traditional Chinese' language reference.
+		 */
+		public static const ZH_TW:Lang = new Lang("zh-TW", "Traditional Chinese") ;
 	
 	}
 
