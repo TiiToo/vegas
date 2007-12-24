@@ -19,13 +19,14 @@
   
   Contributor(s) :
   
-*/
-
+ */
 import vegas.logging.ILogger;
 import vegas.logging.Log;
 import vegas.logging.LogEventLevel;
+import vegas.logging.targets.AirLoggerTarget;
 import vegas.logging.targets.LuminicTarget;
 import vegas.logging.targets.SOSTarget;
+import vegas.logging.targets.TraceTarget;
 import vegas.util.ResolverProxy;
 
 /**
@@ -39,6 +40,26 @@ class mars.logging.ApplicationLogger
 	 * The application global logger id.
 	 */
 	public static var APPLICATION_CHANNEL:String = "application" ;
+
+	/**
+	 * Indicates if the AirLogger console is used.
+	 */
+	public static var USE_AIR_LOGGER:Boolean = false ;
+
+	/**
+	 * Indicates if the FlashInspector console is used.
+	 */
+	public static var USE_LUMINIC:Boolean = true ;
+
+	/**
+	 * Indicates if the SOS console is used.
+	 */
+	public static var USE_SOS:Boolean = true ;
+
+	/**
+	 * Indicates if the trace target is used.
+	 */
+	public static var USE_TRACE:Boolean = false ;
 
 	/**
 	 * The vegas errors logger id.
@@ -116,21 +137,49 @@ class mars.logging.ApplicationLogger
 		// initialize the ITargets of the application.
 		
 		var filters:Array = [ APPLICATION_CHANNEL , VEGAS_ERRORS_CHANNEL ] ;
-		
-		var sosTarget:SOSTarget = new SOSTarget() ;
-		sosTarget.filters = filters ;
-		sosTarget.includeLines = true ;
-		sosTarget.level = LogEventLevel.ALL ;
-		
-		Log.addTarget(sosTarget) ;
 
-		var luminicTarget:LuminicTarget = new LuminicTarget() ;
-		luminicTarget.filters = filters ;
-		luminicTarget.isCollapse = false ;
-		luminicTarget.includeTime = true ;
-		luminicTarget.level = LogEventLevel.ALL ;
+		if ( USE_AIR_LOGGER )
+		{
+			var airTarget:AirLoggerTarget = new AirLoggerTarget( APPLICATION_CHANNEL ) ;
+			airTarget.filters             = filters ;
+			airTarget.includeLines        = true ;
+			airTarget.level               = LogEventLevel.ALL ;
+				
+			Log.addTarget(airTarget) ;
+		}
 		
-		Log.addTarget(luminicTarget) ;
+		if (USE_SOS)
+		{
+			var sosTarget:SOSTarget = new SOSTarget() ;
+			sosTarget.filters       = filters ;
+			sosTarget.includeLines  = true ;
+			sosTarget.level         = LogEventLevel.ALL ;
+				
+			Log.addTarget(sosTarget) ;
+		}
+
+		if ( USE_LUMINIC )
+		{
+			var luminicTarget:LuminicTarget = new LuminicTarget() ;
+			luminicTarget.filters = filters ;
+			luminicTarget.isCollapse = false ;
+			luminicTarget.includeTime = true ;
+			luminicTarget.level = LogEventLevel.ALL ;
+			
+			Log.addTarget(luminicTarget) ;
+		}
+		
+		if ( USE_TRACE )
+		{
+			var traceTarget:TraceTarget = new TraceTarget() ;
+			traceTarget.filters = filters ;
+			traceTarget.includeTime = true ;
+			traceTarget.level = LogEventLevel.ALL ;
+			
+			Log.addTarget(traceTarget) ;
+			
+		}
+
 
 		// Initialize the proxy between the static class and the internal getLogger() reference.
 		

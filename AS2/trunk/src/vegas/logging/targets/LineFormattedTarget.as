@@ -21,8 +21,7 @@
   
   Andy Herrman (aherrman@gmail.com) - Added the option to display milliseconds in the Time format.
    
-*/
-
+ */
 import vegas.logging.AbstractTarget;
 import vegas.logging.LogEvent;
 import vegas.logging.LogLogger;
@@ -138,7 +137,7 @@ class vegas.logging.targets.LineFormattedTarget extends AbstractTarget
 	 */
     private function formatMessage(message, level:String, category:String, date:Date):String 
     {
-	    	
+	    
 	    var msg:String = "" ;
        		
        	var d:Date = date || new Date ;
