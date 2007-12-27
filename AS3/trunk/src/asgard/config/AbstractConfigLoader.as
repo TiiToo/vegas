@@ -150,9 +150,7 @@ package asgard.config
          */
         public override function load( request:URLRequest=null ):void
         {
-
             notifyStarted() ;
-
             if (request == null)
             {
                 _request.url = path + fileName + suffix ;
@@ -162,7 +160,6 @@ package asgard.config
             {
                 _loader.load(request) ;
             }
-            
         }
 
         /**
@@ -181,27 +178,27 @@ package asgard.config
         /**
          * @private
          */
-        private var _config:Config = null ;
+        protected var _config:Config = null ;
 
         /**
          * @private
          */
-        private var _fileName:String = null ;
+        protected var _fileName:String = null ;
 
         /**
          * @private
          */
-        private var _name:String ;
+        protected var _name:String ;
 
         /**
          * @private
          */
-        private var _path:String = null ;
+        protected var _path:String = null ;
 
         /**
          * @private
          */
-        private var _suffix:String = null ;
+        protected var _suffix:String = null ;
 
     }
 

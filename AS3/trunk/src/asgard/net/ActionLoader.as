@@ -21,7 +21,6 @@
   
 */
 
-// TODO : finir de cabler les propriétés et méthodes de URLLoader.
 // TODO : créer asgard.net.MassiveLoader
 
 package asgard.net
@@ -356,19 +355,40 @@ package asgard.net
         {
             _isRunning = b ;
         }
-
+		
+		/**
+		 * @private
+		 */
         protected var _loader:URLLoader = null ;
 
+		/**
+		 * @private
+		 */
         protected var _logger:ILogger ;
 
+		/**
+		 * @private
+		 */
         protected var _request:URLRequest = null ;
 
+		/**
+		 * @private
+		 */
   		private var _isRunning:Boolean = false ;
 
+		/**
+		 * @private
+		 */
   		private var _isParsing:Boolean = false ;
 
+		/**
+		 * @private
+		 */
   		private var _policy:TimeoutPolicy = null ;
 
+		/**
+		 * @private
+		 */
   		private var _timer:Timer = null ;
   		
   		/**

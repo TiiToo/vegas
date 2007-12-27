@@ -22,36 +22,54 @@
 
 package asgard.config
 {
-	import flash.net.URLLoader;
-	
-	import asgard.config.AbstractConfigLoader;
-	import asgard.net.EdenLoader;	
+    import flash.net.URLLoader;
+    
+    import asgard.config.AbstractConfigLoader;
+    import asgard.net.EdenLoader;    
 
-	/**
- 	 * The EdenConfigLoader class based on the Eden notation.
+    /**
+     * The EdenConfigLoader class based on the eden notation.
+     * <p><b>Example :</b></p>
+     * {@code
+     * import asgard.config.Config ;
+     * import asgard.config.EdenConfigLoader;
+     * import asgard.config.IConfigLoader;
+     * import flash.events.Event ;
+     * 
+     * var complete:Function = function ( e:Event ):void
+     * {
+     *     var data:* = Config.getInstance() ;
+     *     for (var prop:String in data)
+     *     {
+     *         trace("# " + prop + " : " + data[prop]) ;
+     *         if (data[prop] as Object)
+     *         {
+     *             for (var key:String in data[prop])
+     *             {
+     *                 trace("  - " + key + " : " + data[prop][key]) ;
+     *             }
+     *         }
+     *     }
+     * }
+     * 
+     * var loader:IConfigLoader = new EdenConfigLoader() ;
+     * loader.addEventListener(Event.COMPLETE, complete) ;
+     * loader.path = "config/" ;
+     * loader.load() ;
+     * }
      * @author eKameleon
      */
     public class EdenConfigLoader extends AbstractConfigLoader
     {
         
-		/**
-		 * Creates a new EdenConfigLoader instance.
-		 */
+        /**
+         * Creates a new EdenConfigLoader instance.
+         */
         public function EdenConfigLoader()
         {
-            super() ;
+            default_file_suffix = ".eden" ;
         }
-    
-        /**
-         * Defines the defaut file name ('config').
-         */
-    	public var default_file_name:String = "config" ;
         
-        /**
-         * Defines the defaut file suffix ('.eden').
-         */
-    	public var default_file_suffix:String = ".eden" ;
-    
         /**
          * Returns the original loader in the constructor. Override this method.
          */ 

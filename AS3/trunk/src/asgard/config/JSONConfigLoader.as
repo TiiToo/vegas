@@ -52,7 +52,7 @@ package asgard.config
      *    }
      * }
      *        
-     * var loader:IConfigLoader = new EdenConfigLoader() ;
+     * var loader:IConfigLoader = new JSONConfigLoader() ;
      * loader.addEventListener(Event.COMPLETE, complete) ;
      * loader.path = "config/" ;
      * loader.load() ;
