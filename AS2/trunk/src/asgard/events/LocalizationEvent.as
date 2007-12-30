@@ -41,16 +41,6 @@ class asgard.events.LocalizationEvent extends BasicEvent
 	}
 	
 	/**
-	 * Apply the current localization over the specified object.
-	 * @param o The object to fill with the current localization in the application.
-	 * @param sID (optional) if this key is specified the method return the value of the specified key in the current locale object.  
-	 */
-	public function apply( o:Object , sID:String ):Void
-	{
-		Localization( getTarget() ).apply(o , sID ) ;
-	} 
-	
-	/**
 	 * Returns a shallow copy of this object.
 	 * @return a shallow copy of this object.
 	 */
@@ -75,6 +65,16 @@ class asgard.events.LocalizationEvent extends BasicEvent
 	public function getLocale(sID:String)
 	{
 		return Localization( getTarget() ).getLocale(sID) ;
+	}
+
+	/**
+	 * Apply the current localization over the specified object.
+	 * @param o The object to fill with the current localization in the application.
+	 * @param sID (optional) if this key is specified the method return the value of the specified key in the current locale object.  
+	 */
+	public function init( o:Object , sID:String ):Void
+	{
+		Localization( getTarget() ).init(o , sID ) ;
 	}
 
 }

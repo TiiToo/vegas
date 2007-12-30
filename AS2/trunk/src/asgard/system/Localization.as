@@ -29,6 +29,8 @@ import asgard.system.ILocalizationLoader;
 import asgard.system.Lang;
 import asgard.system.Locale;
 
+import mars.logging.ApplicationLogger;
+
 import vegas.data.map.HashMap;
 import vegas.events.AbstractCoreEventDispatcher;
 import vegas.events.Delegate;
@@ -163,19 +165,7 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 		return _map.get(lang) ;
 	}
 	
-	/**
-	 * Apply the current localization over the specified object.
-	 * @param o The object to fill with the current localization in the application.
-	 * @param sID (optional) if this key is specified the method return the value of the specified key in the current locale object.  
-	 */
-	public function apply( o:Object , sID:String ):Void
-	{
-		var init = getLocale( sID ) ;
-		for (var prop:String in init)
-		{
-			o[prop] = init[prop] ;	
-		}
-	} 
+
 	
 	/**
 	 * Returns the current {@code Lang} reference of this instance.
@@ -204,6 +194,21 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	{
 		return _sName ;	
 	}
+	
+	/**
+	 * Apply the current localization over the specified object.
+	 * @param o The object to fill with the current localization in the application.
+	 * @param sID (optional) if this key is specified the method return the value of the specified key in the current locale object.  
+	 */
+	public function init( o:Object , sID:String ):Void
+	{
+		var init = getLocale( sID ) ;
+		ApplicationLogger.warn(this + " : " + o + " : " + sID) ;
+		for (var prop:String in init)
+		{
+			o[prop] = init[prop] ;	
+		}
+	} 
 
 	/**
 	 * Releases the specified {@code Localization} singleton with the specified name in argument.

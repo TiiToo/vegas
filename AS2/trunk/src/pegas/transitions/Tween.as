@@ -182,7 +182,7 @@ class pegas.transitions.Tween extends Motion
 	 * @param finish the finish value.
 	 * @return a TweenEntry defined by the specified arguments.
 	 */
-	public function insertProperty( prop , easing:Function, begin:Number, finish:Number):TweenEntry 
+	public function insertProperty( prop:String , easing:Function, begin:Number, finish:Number):TweenEntry 
 	{
 		var e:TweenEntry = new TweenEntry(prop, easing, begin, finish) ;
 		insert(e) ;
