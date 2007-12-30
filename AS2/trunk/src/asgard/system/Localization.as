@@ -29,8 +29,6 @@ import asgard.system.ILocalizationLoader;
 import asgard.system.Lang;
 import asgard.system.Locale;
 
-import mars.logging.ApplicationLogger;
-
 import vegas.data.map.HashMap;
 import vegas.events.AbstractCoreEventDispatcher;
 import vegas.events.Delegate;
@@ -203,7 +201,6 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	public function init( o:Object , sID:String ):Void
 	{
 		var init = getLocale( sID ) ;
-		ApplicationLogger.warn(this + " : " + o + " : " + sID) ;
 		for (var prop:String in init)
 		{
 			o[prop] = init[prop] ;	
