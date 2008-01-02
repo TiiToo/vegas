@@ -59,7 +59,7 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 		
 		_map = new HashMap() ;
 		
-		_eChange  = new LocalizationEvent ( Localization.CHANGE ) ;
+		_eChange  = new LocalizationEvent ( Localization.CHANGE , this ) ;
 		
 		_complete = new Delegate(this, onLoadComplete) ;
 		_error    = new Delegate(this, onLoadError) ;
@@ -196,14 +196,19 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	/**
 	 * Apply the current localization over the specified object.
 	 * @param o The object to fill with the current localization in the application.
-	 * @param sID (optional) if this key is specified the method return the value of the specified key in the current locale object.  
+	 * @param sID (optional) if this key is specified the method return the value of the specified key in the current locale object.
+	 * @param callback (optional) The optional method to launch after the initialization over the specified object. 
 	 */
-	public function init( o:Object , sID:String ):Void
+	public function init( o:Object , sID:String , callback:Function ):Void
 	{
 		var init = getLocale( sID ) ;
 		for (var prop:String in init)
 		{
 			o[prop] = init[prop] ;	
+		}
+		if ( callback != null )
+		{
+			callback.call(o) ;	
 		}
 	} 
 

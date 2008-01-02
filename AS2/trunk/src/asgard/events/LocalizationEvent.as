@@ -35,7 +35,7 @@ class asgard.events.LocalizationEvent extends BasicEvent
 	/**
 	 * Creates a new LocalizationEvent instance.
 	 */
-	public function LocalizationEvent(type : String, localization:Localization, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
+	public function LocalizationEvent( type:String, localization:Localization, context, bubbles:Boolean, eventPhase:Number, time:Number, stop:Number) 
 	{
 		super(type, localization, context, bubbles, eventPhase, time, stop) ;
 	}
@@ -46,7 +46,7 @@ class asgard.events.LocalizationEvent extends BasicEvent
 	 */
 	public function clone() 
 	{
-		return new LocalizationEvent( getType (), Localization( getTarget() ) ) ;
+		return new LocalizationEvent( getType (), getTarget() ) ;
 	}
 	
 	/**
@@ -70,11 +70,12 @@ class asgard.events.LocalizationEvent extends BasicEvent
 	/**
 	 * Apply the current localization over the specified object.
 	 * @param o The object to fill with the current localization in the application.
-	 * @param sID (optional) if this key is specified the method return the value of the specified key in the current locale object.  
+	 * @param sID (optional) if this key is specified the method return the value of the specified key in the current locale object. 
+	 * @param callback (optional) The optional method to launch after the initialization over the specified object. 
 	 */
-	public function init( o:Object , sID:String ):Void
+	public function init( o:Object , sID:String , callback:Function ):Void
 	{
-		Localization( getTarget() ).init(o , sID ) ;
+		Localization( getTarget() ).init( o , sID , callback ) ;
 	}
 
 }
