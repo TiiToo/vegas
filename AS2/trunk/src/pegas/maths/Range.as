@@ -19,8 +19,7 @@
   
   Contributor(s) :
   
-*/
-
+ */
 import vegas.core.CoreObject;
 import vegas.core.ICloneable;
 import vegas.core.IEquality;
@@ -195,6 +194,26 @@ class pegas.maths.Range extends CoreObject implements ICloneable, IEquality
 	public function getCentralValue():Number
 	{
 		return (min + max) / 2 ;
+	}
+	
+	/**
+	 * Returns a random floating-point number between two numbers.
+	 * @param r The Range object to limit the result of the function.
+	 * @return a random floating-point number between two numbers.
+	 */
+	public static function getRandomFloat( r:Range ):Number
+	{
+		return Math.random() * ( r.max - r.min ) + r.min ;	
+	}
+	
+	/**
+	 * Returns a random integer number between two numbers.
+	 * @param r The Range object to limit the result of the function.
+	 * @return a random integer number between two numbers.
+	 */
+	public static function getRandomInteger( r:Range ):Number
+	{
+		return Math.floor( getRandomFloat(r) ) ;
 	}
 	
 	/**

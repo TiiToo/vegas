@@ -34,13 +34,55 @@ class pegas.geom.Trigo
 {
 	
 	/**
+	 * This constant change degrees to radians : <b>Math.PI/180</b>.
+	 * <p><b>Example</b></p>
+	 * {@code
+	 * trace (Trigo.DEG2RAD * 180) ;
+	 * }
+	 */
+	public static var DEG2RAD:Number = 0.0174532925199433;
+	
+	/**
+	 * This constant change radians to degrees : <b>180/Math.PI</b>.
+	 * <p><b>Example</b></p>
+	 * {@code
+	 * trace (Trigo.RAD2DEG * Math.PI) ;
+	 * }
+	 */
+	public static var RAD2DEG:Number = 57.2957795130823;
+	
+	/**
+	 * This constant is the golden mean (phi) : <b>( 1 + Math.sqrt(5) ) / 2</b>.
+	 * <p><b>Example</b></p>
+	 * {@code
+	 * trace (Trigo.PHI) ;
+	 * }
+	 */
+	public static var PHI:Number = 1.61803398874989;
+	
+	/**
+	 * This constant is the Euler-Mascheroni constant (lambda or C) :
+	 * <p>
+	 * {@code
+     * ( n )
+     * lim( sigma 1/k - ln(n) )
+     * n->oo	( k=1 )
+	 * }
+	 * <p><b>Example</b></p>
+	 * {@code
+	 * trace (Trigo.LAMBDA) ;
+	 * }
+	 */
+	public static var LAMBDA:Number = 0.57721566490143;
+	
+	/**
 	 * Returns the inverse cosine of a slope ratio and returns its angle in degrees.
 	 * @param ratio a value between -1 and 1 inclusive.
 	 * @return the inverse cosine of a slope ratio and returns its angle in degrees.
 	 */
 	public static function acosD (ratio:Number) : Number 
 	{
-		return Math.acos(ratio) * (180 / Math.PI) ;
+		return Math.acos(ratio) * RAD2DEG ;
 	}
 
 	/**
@@ -61,9 +103,9 @@ class pegas.geom.Trigo
 	 * @param ratio a value between -1 and 1 inclusive.
 	 * @return the arcsine of the passeds angle in degrees.
 	 */
-	public static function asinD (ratio:Number) : Number 
+	public static function asinD(ratio:Number) : Number 
 	{
-		return Math.asin(ratio) * (180 / Math.PI) ;
+		return Math.asin(ratio) * RAD2DEG ;
 	}
 
 	/**
@@ -73,7 +115,7 @@ class pegas.geom.Trigo
 	 */
 	public static function atanD( angle:Number ):Number 
 	{
-		return Math.atan( angle ) * (180 / Math.PI);
+		return Math.atan( angle ) * RAD2DEG;
 	}
 
 	/**
@@ -84,7 +126,7 @@ class pegas.geom.Trigo
 	 */
 	public static function atan2D( y:Number , x:Number ):Number 
 	{
-		return Math.atan2(y, x) * (180 / Math.PI) ;
+		return Math.atan2(y, x) * RAD2DEG ;
 	}
 	
 
@@ -104,7 +146,7 @@ class pegas.geom.Trigo
 	 */
 	public static function cosD(angle:Number):Number 
 	{
-		return Math.cos( angle * (Math.PI / 180) ) ;
+		return Math.cos( angle * DEG2RAD ) ;
 	}
 
 	/**
@@ -114,7 +156,7 @@ class pegas.geom.Trigo
 
 	public static function degreesToRadians (angle:Number) : Number 
 	{
-		return angle * (Math.PI / 180) ;
+		return angle * DEG2RAD ;
 	}
 
 	/**
@@ -138,7 +180,7 @@ class pegas.geom.Trigo
 	 * @param p2 the second point to determinate the distance.
 	 * @return the length between 2 points.
 	 */
-	public static function distanceP(p1, p2 ) : Number 
+	public static function distanceP( p1 , p2 ) : Number 
 	{
 		return distance(p1.x, p1.y, p2.x, p2.y) ;
 	}
@@ -164,7 +206,7 @@ class pegas.geom.Trigo
 	 */
 	public static function radiansToDegrees (angle:Number) : Number 
 	{
-		return angle * (180 / Math.PI) ;
+		return angle * RAD2DEG ;
 	}
 	
 	/**
@@ -183,7 +225,7 @@ class pegas.geom.Trigo
 	 */
 	public static function sinD(angle:Number):Number 
 	{
-		return Math.sin( angle * (Math.PI / 180) ) ;
+		return Math.sin( angle * DEG2RAD ) ;
 	}
 
 	/**
@@ -193,7 +235,7 @@ class pegas.geom.Trigo
 	 */
 	public static function tanD(angle:Number):Number 
 	{
-		return Math.tan( angle * (Math.PI / 180) ) ;
+		return Math.tan( angle * DEG2RAD ) ;
 	}
 
 }

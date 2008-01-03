@@ -19,8 +19,8 @@
   
   Contributor(s) :
   
-*/
-
+ */
+import pegas.geom.Trigo;
 import pegas.geom.Vector3;
 
 /**
@@ -134,6 +134,24 @@ class pegas.util.Vector3Util
 	}
 
 	/**
+	 * Calculates and returns the perspective ratio needed to scale an object correctly.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * var v:Vector3 = new Vector3(50,20,40);
+	 * var p:Number  = Vector3Util.getPerspective(v);
+	 * trace(p) ;
+	 * }
+	 * @param v the Vector3 reference.
+	 * @param distance The viewing distance of the projection.
+	 * @return the perspective ratio needed to scale an object correctly.
+	 */
+	public static function getPerspective( v:Vector3 , distance:Number ):Number 
+	{
+		distance = isNaN(distance) ? 300 : distance ;
+		return distance / (v.z + distance) ;
+	}
+	
+	/**
 	 * Computes the power of the specified Vector3.
 	 * @param v the Vector3 reference.
 	 * @param value the value of the pow..
@@ -175,6 +193,20 @@ class pegas.util.Vector3Util
 	{
 		return new Vector3( (v1.x - v2.x) , (v1.y - v2.y) , (v1.z - v2.z) ) ;
 	}
+	
+	/**
+	 * Computes the negation of two Vector3 and returns the first vector.
+	 * @param v1 the first Vector3.
+	 * @param v2 the second Vector3.
+	 * @return the negation result of two Vector3.
+	 */
+	public static function negate( v1:Vector3, v2:Vector3 ):Vector3
+	{
+		 v1.x -= v2.x ;
+		 v1.y -= v2.y ;
+		 v1.z -= v2.z ;
+		 return v1 ;	
+	}
 
 	/**
 	 * Normalize the specified {@code Vector3} in parameter.
@@ -192,6 +224,248 @@ class pegas.util.Vector3Util
 		v.y /= norm ;
 		v.z /= norm ;
 		return true ;
+	}
+
+	/**
+	 * Performs a perspective projection on a 3d point. It converts (x, y, z) coordinates to a 2d location (x, y) on the screen.
+	 * @param v the Vector3 reference.
+	 * @param perspective The perspective ratio. If no value is specified, it is calculated automatically by calling the getPerspective() method.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * var v:Vector3 = new Vector3(50,20,40) ;
+	 * Vector3Util.project(v);
+	 * trace(v) ;
+	 * }
+	 */
+	public static function project( v:Vector3, perspective:Number ):Void 
+	{
+		perspective = isNaN(perspective) ? getPerspective(v) : perspective ;
+		v.x *= perspective ;
+		v.y *= perspective ;
+		v.z  = 0 ;
+	}
+
+	/**
+	 * Performs a perspective projection on a 3d point. It converts (x, y, z) coordinates to a 2d location (x, y) on the screen.
+	 * @param v the Vector3 reference.
+	 * @param perspective The perspective ratio. If no value is specified, it is calculated automatically by calling the getPerspective() method.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * var v:Vector3 = new Vector3(50,20,40) ;
+	 * Vector3Util.project(v);
+	 * trace(v) ;
+	 * }
+	 */
+	public static function projectNew( v:Vector3, perspective:Number ):Vector3
+	{
+		var p:Number = isNaN(perspective) ? getPerspective(v) : perspective ;
+		return new Vector3 ( p * v.x , p * v.y , 0) ;
+	}
+
+	/**
+	 * Rotates the current vector object around the x-axis by a certain amount of degrees.
+	 * @param v The Vector3 reference.
+	 * @param angle	The amount of degrees that the current vector object will be rotated by.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * var v:Vector3 = new Vector3(1,4,7) ;
+	 * Vector3Util.rotateX(v, 180);
+	 * trace( v ) ;
+	 * }
+	 */
+	public static function rotateX( v:Vector3 , angle:Number ):Void 
+	{
+		rotateXTrig(v, Trigo.cosD( angle ), Trigo.sinD( angle ));
+	}
+	
+	/**
+	 * Rotates the current vector object around the x-axis by the cosine and sine of an angle.
+	 * @param v The Vector3 reference.
+	 * @param ca The cosine of the angle to rotate the current vector object by.
+	 * @param sa The sine of the angle to rotate the current vector object by.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * var v:Vector3       = new Vector3(1,4,7);
+	 * var cosAngle:Number = Trigo.cosD(180);
+	 * var sinAngle:Number = Trigo.sinD(180);
+	 * Vector3.rotateXTrig(v, cosAngle, sinAngle);
+	 * trace (v);
+	 * }
+	 */
+	public static function rotateXTrig ( v:Vector3, ca:Number, sa:Number ):Void 
+	{
+		v.y = v.y * ca - v.z * sa ;
+		v.z = v.y * sa + v.z * ca ;
+	}
+	
+	/**
+	 * Rotates the current vector object around the y-axis by a certain amount of degrees.
+	 * @param v The Vector3 reference.
+	 * @param angle	The amount of degrees that the current vector object will be rotated by.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * var v:Vector3 = new Vector3(1,4,7);
+	 * Vector3Util.rotateY(v,180);
+	 * trace(v);
+	 * }
+	 */
+	public static function rotateY ( v:Vector3, angle:Number ):Void 
+	{
+		rotateYTrig( v, Trigo.cosD(angle), Trigo.sinD(angle)) ;
+	}
+	
+	/**
+	 * Rotates the current vector object around the y-axis by the cosine and sine of an angle.
+	 * @param v The Vector3 reference.
+	 * @param ca The cosine of the angle to rotate the current vector object by.
+	 * @param sa The sine of the angle to rotate the current vector object by.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * var v:Vector3       = new Vector3(3,-8,5);
+	 * var cosAngle:Number = Trigo.cosD(90);
+	 * var sinAngle:Number = Trigo.sinD(90);
+	 * Vector3Util.rotateYTrig(v, cosAngle, sinAngle) ;
+	 * trace(v) ;
+	 * }
+	 */
+	public static function rotateYTrig ( v:Vector3 , ca:Number, sa:Number ):Void 
+	{
+		v.x = v.x * ca  + v.z * sa;
+		v.z = v.x * -sa + v.z * ca ;
+	}
+	
+	/**
+	 * Rotates the current vector object around the z-axis by a certain amount of degrees.
+	 * @param v The Vector3 reference.
+	 * @param angle	The amount of degrees that the current vector object will be rotated by.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * var v:Vector3 = new Vector3(1,4,7) ;
+	 * Vector3Util.rotateZ(v,180) ;
+	 * trace(v);
+	 * }
+	 */
+	public static function rotateZ( v:Vector3 , angle:Number ):Void 
+	{
+		rotateZTrig(v, Trigo.cosD(angle), Trigo.sinD(angle));
+	}
+	
+	/**
+	 * Rotates the current vector object around the z-axis by the cosine and sine of an angle.
+	 * @param v The Vector3 reference.
+	 * @param ca The cosine of the angle to rotate the current vector object by.
+	 * @param sa The sine of the angle to rotate the current vector object by.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * var v:Vector3 = new Vector3(6,1,4);
+	 * var cosAngle:Number = Trigo.cosD(45);
+	 * var sinAngle:Number = Trigo.sinD(45);
+	 * Vector3Util.rotateZTrig(v, cosAngle, sinAngle);
+	 * trace(v);
+	 * }
+	 */
+	public static function rotateZTrig ( v:Vector3 , ca:Number, sa:Number):Void 
+	{
+		v.x = v.x * ca - v.y * sa ;
+		v.y = v.x * sa + v.y * ca ;
+	}
+	
+	/**
+	 * Rotates the current vector object around the x and y axes by a certain amount of degrees.
+	 * @param v The Vector3 reference.
+	 * @param a The amount of degrees that the current vector object will be rotated around the x-axis by.
+	 * @param b The amount of degrees that the current vector object will be rotated around the y-axis by.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * var v:Vector3 = new Vector3(8,0,0) ;
+	 * Vector3Util.rotateXY(v,45,45) ;
+	 * trace(v) ;
+	 * }
+	 */
+	public static function rotateXY (  v:Vector3, a:Number, b:Number):Void 
+	{
+		rotateXYTrig( v, Trigo.cosD(a), Trigo.sinD(a), Trigo.cosD(b), Trigo.sinD(b));
+	}
+	
+	/**
+	 * Rotates the current vector object around the x and y axes by the cosine and sine of an angle.
+	 * @param v The Vector3 reference.
+	 * @param ca The cosine of the angle to rotate the current vector object around the x-axis by.
+	 * @param sa The sine of the angle to rotate the current vector object around the x-axis by.
+	 * @param cb The cosine of the angle to rotate the current vector object around the y-axis by.
+	 * @param sb The sine of the angle to rotate the current vector object around the y-axis by.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * var v:Vector3 = new Vector3(6,1,4) ;
+	 * var cosAngleA:Number = Trigo.cosD(45) ;
+	 * var sinAngleA:Number = Trigo.sinD(45) ;
+	 * var cosAngleB:Number = Trigo.cosD(90) ;
+	 * var sinAngleB:Number = Trigo.sinD(90) ;
+	 * Vector3Util.rotateXYTrig(v, cosAngleA, sinAngleA, cosAngleB, sinAngleB) ;
+	 * trace(v) ;
+	 * }
+	 */
+	public static function rotateXYTrig( v:Vector3, ca:Number, sa:Number, cb:Number, sb:Number):Void 
+	{
+		// x-axis rotation
+		var rz:Number = v.y * sa + v.z * ca;
+		v.y = v.y * ca - v.z * sa ;
+		// y-axis rotation
+		v.z = v.x * -sb + rz * cb ;
+		v.x = v.x * cb + rz * sb  ;
+	}
+	
+	/**
+	 * Rotates the current vector object around the x, y and z axes by a certain amount of degrees.
+	 * @param v The Vector3 reference.
+	 * @param a The amount of degrees that the current vector object will be rotated around the x-axis by.
+	 * @param b	The amount of degrees that the current vector object will be rotated around the y-axis by.
+	 * @param c	The amount of degrees that the current vector object will be rotated around the z-axis by.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * var v:Vector3 = new Vector3(8,0,0);
+	 * Vector3Util.rotateXYZ(v,45,45,45);
+	 * trace (v);
+	 * }
+	 */
+	public static function rotateXYZ ( v:Vector3, a:Number, b:Number, c:Number):Void 
+	{
+		rotateXYZTrig( v, Trigo.cosD(a), Trigo.sinD(a), Trigo.cosD(b), Trigo.sinD(b), Trigo.cosD(c), Trigo.sinD(c));
+	}
+	
+	/**
+	 * Rotates the current vector object around the x, y and z axes by the cosine and sine of an angle.
+	 * @param v The Vector3 reference.
+	 * @param ca The cosine of the angle to rotate the current vector object around the x-axis by.
+	 * @param sa The sine of the angle to rotate the current vector object around the x-axis by.
+	 * @param cb The cosine of the angle to rotate the current vector object around the y-axis by.
+	 * @param sb The sine of the angle to rotate the current vector object around the y-axis by.
+	 * @param cc The cosine of the angle to rotate the current vector object around the z-axis by.
+	 * @param sc The sine of the angle to rotate the current vector object around the z-axis by.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * var v:Vector3 = new Vector3(6,1,4) ;
+	 * var cosAngleA:Number = Trigo.cosD(45) ;
+	 * var sinAngleA:Number = Trigo.sinD(45) ;
+	 * var cosAngleB:Number = Trigo.cosD(90) ;
+	 * var sinAngleB:Number = Trigo.sinD(90) ;
+	 * var cosAngleC:Number = Trigo.cosD(135) ;
+	 * var sinAngleC:Number = Trigo.sinD(135) ;
+	 * Vector3Util.rotateXYZTrig(v, cosAngleA, sinAngleA, cosAngleB, sinAngleB, cosAngleC, sinAngleC) ;
+ 	 * trace(v) ;
+	 * }
+	 */
+	public static function rotateXYZTrig ( v:Vector3, ca:Number, sa:Number, cb:Number, sb:Number, cc:Number, sc:Number):Void 
+	{
+		// x-axis rotation
+		var ry:Number = v.y * ca - v.z * sa ;
+		var rz:Number = v.y * sa + v.z * ca ;
+		// y-axis rotation
+		var rx:Number = v.x * cb + rz * sb ;
+		v.z = v.x * -sb + rz * cb ;
+		// z-axis rotation
+		v.x = rx * cc - ry * sc ;
+		v.y = rx * sc + ry * cc ;
 	}
 
 	/**
