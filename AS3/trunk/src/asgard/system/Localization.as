@@ -21,6 +21,9 @@
 */
 package asgard.system 
 {
+	
+// FIXME in progress don't use for the moment
+	
 	import asgard.events.LocalizationEvent;
 	
 	import vegas.core.Identifiable;
@@ -77,7 +80,7 @@ package asgard.system
 				}
 				else 
 				{
-					ILocalizationLoader(_loader).load(_current) ;
+					// TODO ILocalizationLoader(_loader).load(_current) ;
 				}
 		}
 		}	

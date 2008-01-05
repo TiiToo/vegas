@@ -35,22 +35,6 @@ package system
 	public class Reflection
 	{
 
-		/**
-		 * Returns a boolean telling if the class exists from a string name.
-		 * @return a boolean telling if the class exists from a string name.
-		 */
-		public static function hasClassByName( name:String ):Boolean
-		{
-			try
-			{
-				var c:Class = getClassByName( name );
-			}
-            catch( e:Error )
-			{
-				return false;
-			}
-			return true;
-		}
 
 		/**
 		 * Returns the class reference from a string class name.
@@ -168,6 +152,47 @@ package system
 		public static function getSuperClassPath(o:*):String 
 		{
 			return _formatPath( getQualifiedSuperclassName( o ) ) ;
+		}
+
+		/**
+		 * Returns a boolean telling if the class exists from a string name.
+		 * @return a boolean telling if the class exists from a string name.
+		 */
+		public static function hasClassByName( name:String ):Boolean
+		{
+			try
+			{
+				var c:Class = getClassByName( name );
+			}
+            catch( e:Error )
+			{
+				return false;
+			}
+			return true;
+		}
+	
+		/**
+		 * Indicates if the specified object is dynamic (true).
+		 */
+		public static function isDynamic( o:* ):Boolean 
+		{
+			return describeType( o ).@isDynamic == "true" ;
+		}
+
+		/**
+		 * Indicates if the specified object is final (true).
+		 */
+		public static function isFinal( o:* ):Boolean 
+		{
+			return describeType( o ).@isFinal == "true" ;
+		}
+
+		/**
+		 * Indicates if the specified object is static (true).
+		 */
+		public static function isStatic( o:* ):Boolean 
+		{
+			return describeType( o ).@isStatic == "true" ;
 		}
 		
 		/**
