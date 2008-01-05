@@ -40,13 +40,15 @@ package system
 		 * var test2:Array = Arrays.initialize( 3, true ); //define [true,true,true]
 		 * var test3:Array = Arrays.initialize( 3, "" ); //define ["","",""]
 		 * }
+		 * @return a new Array with an arbitrary number of elements (index), 
+		 * with every element containing the passed parameter value or by default the null value.
 		 */
 		public static function initialize( elements:int = 0, value:* = null ):Array
 		{
 			var arr:Array = [];
 			for( var i:int = 0; i < elements ; i++ )
 			{
-				arr.push( value );
+				arr[i] = value ;
 			}
             
 			return arr;

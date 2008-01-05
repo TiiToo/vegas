@@ -37,9 +37,9 @@ package buRRRn.eden
 		 */
 		public function GenericParser( source:String )
 		{
-			_source = source;
-			pos = 0;
-			ch = "";
+			_source = source ;
+			pos = 0 ;
+			ch = "" ;
 		}
 
 		/**
@@ -52,13 +52,13 @@ package buRRRn.eden
 		 */
 		public var ch:String ;
 
-
-
+		/**
+		 * Indicates the String source representation of the parser (read-only).
+		 */
 		public function get source():String
 		{
 			return _source;
 		}
-		
 
 		/**
 		 * Indicates if the parser use the verbose mode.
@@ -66,7 +66,7 @@ package buRRRn.eden
 		public static var verbose:Boolean = false;
 
 		/**
-		 * Debug the parser if the verbose mode is {@code true}.
+		 * Debugs the parser if the verbose mode is {@code true}.
 		 */
 		public function debug( str:String ):void
 		{
@@ -85,14 +85,18 @@ package buRRRn.eden
 			return source.charAt( pos );
 		}
 
-		/* Method: getChar
+		/**
+		 * Returns the current char in the parse process.
+		 * @return the current char in the parse process.
 		 */
 		public function getChar():String
 		{
 			return source.charAt( pos );
 		}
 
-		/* Method: next
+		/**
+		 * Returns the next character in the source of this parser.
+		 * @return the next character in the source of this parser.
 		 */
 		public function next():String
 		{
@@ -102,23 +106,24 @@ package buRRRn.eden
 			return ch;
 		}
 
-		/* Method: hasMoreChar
+		/**
+		 * Indicates if the source parser has more char.
 		 */
 		public function hasMoreChar():Boolean
 		{
 			return pos <= (source.length - 1);
 		}
 
-		/* Method: eval
-		To override.
+		/**
+		 * This method must be overriding.
 		 */
 		public function eval():*
 		{
 			return undefined;
 		}
 
-		/* Method: evaluate
-		To override.
+		/**
+		 * Evaluates the passed-in source and returns the 
 		 */
 		public static function evaluate( source:String ):*
 		{
@@ -126,41 +131,50 @@ package buRRRn.eden
 			return parser.eval( );
 		}
 
-		/* Method: isAlpha
+		/**
+		 * Indicates if the specified character is an alpha (A-Z or a-z) character.
 		 */
 		public static function isAlpha( c:String ):Boolean
 		{
 			return (("A" <= c) && (c <= "Z")) || (("a" <= c) && (c <= "z"));
 		}
 
-		/* Method: isASCII
+		/**
+		 * Indicates if the specified character is an ASCII character.
 		 */
 		public static function isASCII( c:String ):Boolean
 		{
 			return c.charCodeAt( 0 ) <= 255;
 		}
 
-		/* Method: isDigit
+		/**
+		 * Indicates if the specified character is a digit.
 		 */
 		public static function isDigit( c:String ):Boolean
 		{
 			return ("0" <= c) && (c <= "9");
 		}
 
-		/* Method: isHexDigit
+		/**
+		 * Indicates if the specified character is a hexadecimal digit.
 		 */
 		public static function isHexDigit( c:String ):Boolean
 		{
 			return isDigit( c ) || (("A" <= c) && (c <= "F")) || (("a" <= c) && (c <= "f"));
 		}
 
-		/* Method: isUnicode
+		/**
+		 * Indicates if the specified character is a unicode character.
 		 */
+
 		public static function isUnicode( c:String ):Boolean
 		{
 			return c.charCodeAt( 0 ) > 255;
 		}
 		
+		/**
+		 * @private
+		 */
 		private var _source:String;
 		
 	}

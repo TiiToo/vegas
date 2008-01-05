@@ -66,20 +66,17 @@ package buRRRn.eden
 			eden.prettyPrinting = value;
 		}
 
-		/* Property: copyObjectByValue
-		Parameter allowing to copy objects by value
-		if true or by reference if false.
-           
-		exemple:
-		(code)
-		foo = {a:1, b:2, c:3};
-		bar = foo;
-		(end)
-           
-		in this case with copyObjectByValue = false
-		bar will be a reference to the foo object
-		but if copyObjectByValue = true
-		bar will be an exact copy of foo object
+		/**
+		 * Parameter allowing to copy objects by value if true or by reference if false.
+		 * <p><b>Example :</b></p>
+		 * {@code
+		 * foo = {a:1, b:2, c:3};
+		 * bar = foo;
+		 * }
+		 * In this case with copyObjectByValue = false
+		 * bar will be a reference to the foo object
+		 * but if copyObjectByValue = true
+		 * bar will be an exact copy of foo object 
 		 */
 		public function get copyObjectByValue():Boolean
 		{
