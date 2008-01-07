@@ -163,8 +163,6 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 		return _map.get(lang) ;
 	}
 	
-
-	
 	/**
 	 * Returns the current {@code Lang} reference of this instance.
 	 * @return the current {@code Lang} reference of this instance.

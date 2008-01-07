@@ -45,7 +45,6 @@ package asgard.config
         {
             super() ;
             parsing = true ;
-            _name = name ;
             _config = Config.getInstance() ;
         }
         

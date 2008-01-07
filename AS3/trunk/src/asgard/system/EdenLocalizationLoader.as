@@ -19,10 +19,7 @@
   Contributor(s) :
   
 */
-
-// FIXME in progress don't use for the moment
-
-package asgard.events
+package asgard.system
 {
 	import flash.net.URLLoader;
 	
@@ -30,21 +27,24 @@ package asgard.events
 
 	/**
      * The EdenLocalizationLoader class based on the eden notation.
+     * @param localization The Localization singleton reference of this loader.
      * @author eKameleon
      */
-    public class EdenLocalizationLoader extends EdenLoader
-	{
+    public class EdenLocalizationLoader extends AbstractLocalizationLoader
+    {
         
         /**
-         * Creates a new EdenLocalizationLoader instance.
+         * Creates a new EdenConfigLoader instance.
          */
-        public function EdenLocalizationLoader()
+        public function EdenLocalizationLoader( localization:Localization=null )
         {
+        	super( localization ) ;
             default_file_suffix = ".eden" ;
         }
         
         /**
          * Returns the original loader in the constructor. Override this method.
+         * @return the original loader in the constructor. Override this method.
          */ 
         public override function getLoader():URLLoader
         {

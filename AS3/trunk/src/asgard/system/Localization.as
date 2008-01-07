@@ -22,9 +22,11 @@
 package asgard.system 
 {
 	
-// FIXME in progress don't use for the moment
+	// TODO test it
 	
 	import asgard.events.LocalizationEvent;
+	
+	import system.Reflection;
 	
 	import vegas.core.Identifiable;
 	import vegas.data.map.HashMap;
@@ -48,15 +50,21 @@ package asgard.system
 		 */
 		public function Localization( id:*, bGlobal:Boolean = false, sChannel:String = null )
 		{
-			_map = new HashMap() ;
-			_id = id ;
-			super(bGlobal, sChannel);
+			super(bGlobal, sChannel) ;
+			_id     = id ;
+			_map    = new HashMap() ;
+			_loader = new EdenLocalizationLoader(this) ;
 		}
 		
 		/**
 		 * The name of the event when the localization is changed.
 		 */
 		public static var CHANGE:String = LocalizationEvent.CHANGE  ;
+
+		/**
+		 * The default singleton name of the Localization singletons.
+		 */
+		public static var DEFAULT_ID:String = "" ;
 
 		/**
 		 * (read-write) Indicates the current {@code Lang} object selected in the current localization.
@@ -80,9 +88,9 @@ package asgard.system
 				}
 				else 
 				{
-					// TODO ILocalizationLoader(_loader).load(_current) ;
+					loader.loadLang( current ) ;
 				}
-		}
+			}
 		}	
 
 		/**
@@ -103,6 +111,32 @@ package asgard.system
 		}
 		
 		/**
+		 * Returns the internal ILocalizationLoader reference of the Localization singleton.
+		 * @return the internal ILocalizationLoader reference of the Localization singleton.
+		 */
+		public function get loader():ILocalizationLoader
+		{
+			return _loader ;	
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set loader( loader:ILocalizationLoader ):void
+		{
+			_loader = loader || new EdenLocalizationLoader() ;
+			_loader.localization = this ;	
+		}
+		
+		/**
+		 * Removes all singletons in the internal map of this object..
+		 */
+		public function clear():void 
+		{
+			_map.clear() ;
+		}
+		
+		/**
 		 * Returns {@code true} if this Localization contains the specified Lang.
 	 	 * @return {@code true} if this Localization contains the specified Lang.
 		 */
@@ -117,7 +151,75 @@ package asgard.system
 		 */
 		public function get( lang:* ):Locale 
 		{
-			return _map.get(lang) ;
+			return _map.get(lang) as Locale ;
+		}
+		
+        /**
+         * Returns the event name use in the notifyChange method.
+         * @return the event name use in the notifyChange method.
+         */
+        public function getEventTypeCHANGE():String
+        {
+            return _sTypeCHANGE ;
+        }
+		
+		/**
+		 * Returns a {@code Localization} singleton reference with the specified name passed-in argument.
+		 * @return a {@code Localization} singleton reference with the specified name passed-in argument.
+		 */
+		public static function getInstance( id:String ):Localization 
+		{
+			id = id || Localization.DEFAULT_ID  ;
+			if (!__mInstances.containsKey(id)) 
+			{
+				__mInstances.put(id, new Localization(id)) ;
+			}
+			return __mInstances.get(id) as Localization  ;
+		}	
+		
+		/**
+	 	 * Returns the locale object with all this properties.
+	 	 * @param sID (optional) if this key is specified the method return the value of the specified key in the current locale object.  
+	 	 * @return the locale object with all this properties.
+	 	 */
+		public function getLocale( id:String ):* 
+		{
+			if ( id != null ) 
+			{
+				return this.get(_current)[id] || null ;
+			}
+			else 
+			{
+				return this.get(_current) || null ;
+			}
+		}
+		
+		/**
+		 * Apply the current localization over the specified object.
+		 * @param o The object to fill with the current localization in the application.
+		 * @param sID (optional) if this key is specified the method return the value of the specified key in the current locale object.
+		 * @param callback (optional) The optional method to launch after the initialization over the specified object. 
+		 */
+		public function init( o:Object , sID:String , callback:Function ):void
+		{
+			var init:* = getLocale( sID ) ;
+			for (var prop:String in init)
+			{
+				o[prop] = init[prop] ;	
+			}
+			if ( callback != null )
+			{
+				callback.call(o) ;	
+			}
+		} 
+		
+		/**
+		 * Returns {@code true} if the Localization model is empty.
+		 * @return {@code true} if the Localization model is empty.
+		 */
+		public function isEmpty():Boolean 
+		{
+			return _map.isEmpty() ;
 		}
 
 		/**
@@ -127,6 +229,77 @@ package asgard.system
 		{
 			dispatchEvent( new LocalizationEvent( _sTypeCHANGE , this ) ) ;
 		}
+		
+		/**
+		 * Puts the specified Locale object with the passed-in Lang reference.
+		 */
+		public function put( lang:Lang, oL:Locale ):* 
+		{
+			return _map.put(lang, oL) ;
+		}
+
+		/**
+		 * Releases the specified {@code Localization} singleton with the specified name in argument.
+		 * @return the reference of the removed Localization object.
+		 */
+		public static function release( id:String ):Localization 
+		{
+			if (id == null) 
+			{
+				id = Localization.DEFAULT_ID ;
+			}
+			return Localization.__mInstances.remove(id) ;
+		}
+
+		/**
+		 * Removes the specified Lang in the Localization model.
+		 * @param lang a valid Lang object. This argument is valid if the {@link Lang.validate} method return {@code true}.
+		 * @return The removed Locale object or null.
+		 */
+		public function remove(lang:Lang):* 
+		{
+			if ( Lang.validate(lang) ) 
+			{
+				return _map.remove(lang) ;
+			}
+			else
+			{
+				return null ;	
+			}
+		}
+		
+        /**
+         * Returns the event type use in the notifyChange ethod.
+         * @return the event type use in the notifyChange method.
+         */
+        public function setEventTypeCHANGE( type:String ):void
+        {
+           _sTypeCHANGE = type || CHANGE ;
+		}
+		
+		/**
+		 * Returns the number of Lang elements in the Localization singleton.
+		 * @return the number of Lang elements in the Localization singleton.
+		 */
+		public function size():uint 
+		{
+			return _map.size() ;
+		}
+		
+		/**
+	 	 * Returns the {@code String} representation of this object.
+	 	 * @return the {@code String} representation of this object.
+	 	 */
+		public override function toString():String
+		{
+			var str:String = "[" + Reflection.getClassName(this) ;
+			if ( this.id != null )
+			{
+				str += " " + this.id ;	
+			} 
+			str += "]" ;
+			return str ;
+		}	
 
 		/**
 		 * @private
@@ -134,14 +307,24 @@ package asgard.system
 		private var _current:Lang = null ;
 		
 		/**
-		 * @privatz
+		 * @private
 		 */
 		private var _id:* ;
 		
 		/**
 		 * @private
 		 */
+		private var _loader:ILocalizationLoader ;		
+
+		/**
+		 * @private
+		 */
 		private var _map:HashMap = null ;
+		
+		/**
+		 * @private
+		 */
+		private static var __mInstances:HashMap = new HashMap() ;
 		
 		/**
 		 * @private

@@ -20,9 +20,6 @@
   Contributor(s) :
   
 */
-
-// FIXME in progress don't use for the moment
-
 package asgard.events
 {
 	import flash.events.Event;
@@ -48,7 +45,7 @@ package asgard.events
 		/**
 	 	 * Creates a new LocalizationEvent instance.
 		 */
-		public function LocalizationEvent( type:String , target:Object = null , context:* = null , bubbles:Boolean = false , cancelable:Boolean = false, time:Number = 0 )
+		public function LocalizationEvent( type:String , target:Localization = null , context:* = null , bubbles:Boolean = false , cancelable:Boolean = false, time:Number = 0 )
 		{
 			super( type, target, context, bubbles, cancelable, time );
 		}
@@ -61,7 +58,7 @@ package asgard.events
 		/**
 		 * The default singleton name of the Localization singletons.
 		 */
-		public static var DEFAULT_NAME:String = "" ;
+		public static var DEFAULT_ID:String = "" ;
 		
 		/**
 	 	 * Returns a shallow copy of this object.
@@ -69,7 +66,7 @@ package asgard.events
 		 */
 		public override function clone():Event
 		{
-			return new LocalizationEvent( type , target, context ) ;
+			return new LocalizationEvent( type , target as Localization, context ) ;
     	}
 	
 		/**
@@ -90,6 +87,17 @@ package asgard.events
 		{
 			var localization:Localization = target as Localization ;
 			return ( localization != null ) ? ( target as Localization ).getLocale( sID ) : null ;
+		}
+	
+		/**
+		 * Apply the current localization over the specified object.
+		 * @param o The object to fill with the current localization in the application.
+		 * @param sID (optional) if this key is specified the method return the value of the specified key in the current locale object. 
+		 * @param callback (optional) The optional method to launch after the initialization over the specified object. 
+		 */
+		public function init( o:Object , sID:String , callback:Function ):void
+		{
+			(target as Localization).init( o , sID , callback ) ;
 		}
 	
 	}

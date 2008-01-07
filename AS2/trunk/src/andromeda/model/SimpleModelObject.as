@@ -27,7 +27,7 @@ import andromeda.model.AbstractModelObject;
  * This class provides a simple representation of the IModelObject interface.
  * @author eKameleon
  */
-class andromeda.SimpleModelObject extends AbstractModelObject 
+class andromeda.model.SimpleModelObject extends AbstractModelObject 
 {
 
 	/**
