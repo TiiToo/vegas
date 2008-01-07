@@ -19,8 +19,7 @@
   
   Contributor(s) :
   
-*/
-
+ */
 import andromeda.events.ModelObjectEvent;
 import andromeda.model.AbstractModelObject;
 import andromeda.vo.IValueObject;

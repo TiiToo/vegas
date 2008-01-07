@@ -42,7 +42,7 @@ class andromeda.model.AbstractModelObject extends AbstractModel implements IMode
 	 * @param bGlobal the flag to use a global event flow or a local event flow.
 	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */	
-	function AbstractModelObject( id , bGlobal:Boolean , sChannel:String ) 
+	private function AbstractModelObject( id , bGlobal:Boolean , sChannel:String ) 
 	{
 		super( id , bGlobal, sChannel ) ;
 		initEvent() ;
