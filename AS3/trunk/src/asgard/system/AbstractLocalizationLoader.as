@@ -148,23 +148,6 @@ package asgard.system
         }
     
         /**
-         * Sends and loads data from the specified URL.
-         * @param request broke the internal request with your custom URLRequest.
-         */
-        public override function load( request:URLRequest ):void
-        {
-            notifyStarted() ;
-            if (request == null)
-            {
-                _loader.load( request ) ;    
-            }
-            else
-            {
-                _loader.load(request) ;
-            }
-        }
-
-        /**
          * Sends and loads data from the specified passed-in lang value (the passed-in argument must be a Lang reference or a valid string).
          * @param lang The localization Lang value.
          */
@@ -189,7 +172,7 @@ package asgard.system
 		    {
     			locale[ prop ] = o[prop] ;
 	    	}
-	    	_localization.put( current, locale ) ;
+	    	_localization.put( current.value , locale ) ;
 	    	_localization.notifyChange() ;
         }
         

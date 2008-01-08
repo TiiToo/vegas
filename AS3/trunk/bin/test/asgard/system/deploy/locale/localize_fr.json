@@ -1,8 +1,10 @@
 ﻿{
-	
+
 	lang      : "fr" ,
 	namespace : "http://www.ekameleon.net/2008/asgard" ,
 	version   : "1.0.0.0" ,
+
+	type      : "json" ,
 
 	door : 
 	{
@@ -21,6 +23,5 @@
 		progress_loading : "Chargement en cours" ,
 		start_loading    : "Début du chargement"
 	}
-	
 	
 }

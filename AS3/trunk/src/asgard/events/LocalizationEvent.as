@@ -53,7 +53,7 @@ package asgard.events
 		/**
 		 * The name of the event when the localization is changed.
 		 */
-		public static var CHANGE:String = "change"  ;
+		public static var CHANGE:String = Event.CHANGE  ;
 		
 		/**
 		 * The default singleton name of the Localization singletons.

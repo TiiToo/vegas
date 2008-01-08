@@ -1,23 +1,25 @@
 ﻿{
 
-	"lang"      : "fr" ,
-	"namespace" : "asgard" ,
-	"version"   : "0.0.0.0" ,
+	lang      : "fr" ,
+	namespace : "http://www.ekameleon.net/2008/asgard" ,
+	version   : "1.0.0.0" ,
 
-	"door" : {
+	door : 
+	{
 	
-		"connectStarted"    : "DEBUT CONNEXION" ,
-		"connectFinished"   : "FIN CONNEXION" ,		
-		"connectInProgress" : "CONNEXION EN COURS" ,		
-		"connectOutOfTime"  : "DELAIS DE CONNEXION DEPASSE"
+		connectStarted    : "DEBUT CONNEXION" ,
+		connectFinished   : "FIN CONNEXION" ,		
+		connectInProgress : "CONNEXION EN COURS" ,		
+		connectOutOfTime  : "DELAIS DE CONNEXION DEPASSE"
 	
-	} ,
-
-	"info" : {
+	}
+	,
+	info : 
+	{
 	
-		"finish_loading"   : "Fin du chargement" ,
-		"progress_loading" : "Chargement en cours" ,
-		"start_loading"    : "Début du chargement"
+		finish_loading   : "Fin du chargement" ,
+		progress_loading : "Chargement en cours" ,
+		start_loading    : "Début du chargement"
 	}
 	
 }

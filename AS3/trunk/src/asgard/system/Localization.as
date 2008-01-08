@@ -21,9 +21,6 @@
 */
 package asgard.system 
 {
-	
-	// TODO test it
-	
 	import asgard.events.LocalizationEvent;
 	
 	import system.Reflection;
@@ -124,7 +121,7 @@ package asgard.system
 		 */
 		public function set loader( loader:ILocalizationLoader ):void
 		{
-			_loader = loader || new EdenLocalizationLoader() ;
+			_loader = loader || new EdenLocalizationLoader() ; // default eden parser
 			_loader.localization = this ;	
 		}
 		
@@ -140,9 +137,16 @@ package asgard.system
 		 * Returns {@code true} if this Localization contains the specified Lang.
 	 	 * @return {@code true} if this Localization contains the specified Lang.
 		 */
-		public function contains( lang:Lang ):Boolean 
+		public function contains( lang:* ):Boolean 
 		{	 
-			return _map.containsKey( lang.value ) ;
+			if ( Lang.validate( lang ) )
+			{
+				return _map.containsKey( _getID( lang ) ) ;
+			}
+			else
+			{
+				return false ;	
+			}
 		}
 	
 		/**
@@ -151,7 +155,14 @@ package asgard.system
 		 */
 		public function get( lang:* ):Locale 
 		{
-			return _map.get(lang) as Locale ;
+			if ( Lang.validate( lang ) )
+			{
+				return _map.get( _getID( lang ) ) as Locale ;
+			}
+			else
+			{
+				return null ;
+			}
 		}
 		
         /**
@@ -167,7 +178,7 @@ package asgard.system
 		 * Returns a {@code Localization} singleton reference with the specified name passed-in argument.
 		 * @return a {@code Localization} singleton reference with the specified name passed-in argument.
 		 */
-		public static function getInstance( id:String ):Localization 
+		public static function getInstance( id:String=null ):Localization 
 		{
 			id = id || Localization.DEFAULT_ID  ;
 			if (!__mInstances.containsKey(id)) 
@@ -186,11 +197,11 @@ package asgard.system
 		{
 			if ( id != null ) 
 			{
-				return this.get(_current)[id] || null ;
+				return this.get( _current )[ id ] || null ;
 			}
 			else 
 			{
-				return this.get(_current) || null ;
+				return this.get( _current ) || null ;
 			}
 		}
 		
@@ -233,9 +244,16 @@ package asgard.system
 		/**
 		 * Puts the specified Locale object with the passed-in Lang reference.
 		 */
-		public function put( lang:Lang, oL:Locale ):* 
+		public function put( lang:* , oL:Locale ):* 
 		{
-			return _map.put(lang, oL) ;
+			if ( Lang.validate( lang ) )
+			{
+				return _map.put( _getID( lang ) , oL ) ;
+			}
+			else
+			{
+				return null ;	
+			}
 		}
 
 		/**
@@ -256,11 +274,11 @@ package asgard.system
 		 * @param lang a valid Lang object. This argument is valid if the {@link Lang.validate} method return {@code true}.
 		 * @return The removed Locale object or null.
 		 */
-		public function remove(lang:Lang):* 
+		public function remove( lang:* ):* 
 		{
 			if ( Lang.validate(lang) ) 
 			{
-				return _map.remove(lang) ;
+				return _map.remove( _getID( lang ) ) ;
 			}
 			else
 			{
@@ -331,5 +349,26 @@ package asgard.system
 		 */
 		private var _sTypeCHANGE:String = LocalizationEvent.CHANGE ;
 		
+		/**
+		 * Returns the id of the specified argument.
+		 * @return the id of the specified argument.
+		 */
+		private function _getID( lang:* ):String
+		{
+			var id:String ;
+			if ( lang is Lang )
+			{
+				id = lang.value ;
+			}
+			else if ( lang is String )
+			{
+				id = lang as String ;	
+			}
+			else
+			{
+				id = null ;	
+			}
+			return id ;
+		}
 	}
 }

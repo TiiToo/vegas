@@ -220,8 +220,7 @@ package asgard.net
 		{
 		    setRunning(false) ;
             _timer.stop() ;
-			var eFinish:ActionEvent = new ActionEvent(ActionEvent.FINISH) ;
-			dispatchEvent(eFinish) ;
+			dispatchEvent( new ActionEvent(ActionEvent.FINISH, this) ) ;
 		}
 
         /**
@@ -231,8 +230,7 @@ package asgard.net
 		{
    			setRunning(true) ;
             _timer.start() ;
-			var eStart:ActionEvent = new ActionEvent(ActionEvent.START) ;
-			dispatchEvent( eStart ) ;
+			dispatchEvent( new ActionEvent(ActionEvent.START, this) ) ;
 		}
 
         /**
@@ -319,8 +317,7 @@ package asgard.net
          */
 		protected function notifyTimeOut():void
 		{
-			var eTimeOut:ActionEvent = new ActionEvent(ActionEvent.TIMEOUT) ;
-			dispatchEvent(eTimeOut) ;
+			dispatchEvent( new ActionEvent( ActionEvent.TIMEOUT, this ) ) ;
 		}
 
         /**

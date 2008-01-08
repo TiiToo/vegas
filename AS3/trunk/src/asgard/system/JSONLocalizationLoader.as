@@ -23,24 +23,24 @@ package asgard.system
 {
 	import flash.net.URLLoader;
 	
-	import asgard.net.EdenLoader;	
+	import asgard.net.JSONLoader;	
 
 	/**
-     * The EdenLocalizationLoader class based on the eden notation.
+     * The JSONLocalizationLoader class based on the JSON notation.
      * @param localization The Localization singleton reference of this loader.
      * @author eKameleon
      */
-    public class EdenLocalizationLoader extends AbstractLocalizationLoader
+    public class JSONLocalizationLoader extends AbstractLocalizationLoader
     {
         
         /**
-         * Creates a new EdenLocalizationLoader instance.
+         * Creates a new JSONLocalizationLoader instance.
          * @param localization The owner Localization reference of this loader.
          */
-        public function EdenLocalizationLoader( localization:Localization=null )
+        public function JSONLocalizationLoader( localization:Localization=null )
         {
         	super( localization ) ;
-            default_file_suffix = ".eden" ;
+            default_file_suffix = ".json" ;
         }
         
         /**
@@ -49,7 +49,7 @@ package asgard.system
          */ 
         public override function getLoader():URLLoader
         {
-            return (new EdenLoader() as URLLoader) ;
+            return (new JSONLoader() as URLLoader) ;
         }
 
     }
