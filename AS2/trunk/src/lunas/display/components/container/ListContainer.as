@@ -175,7 +175,7 @@ class lunas.display.components.container.ListContainer extends SimpleContainer
 	}
 	
 	/**
-	 * Invoqued when the container size change.
+	 * Invoked when the container size change.
 	 */
 	public function resize():Void 
 	{

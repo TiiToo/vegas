@@ -25,7 +25,7 @@ import vegas.errors.AbstractError;
 import vegas.errors.ErrorElement;
 
 /**
- * Thrown when an error is invoqued at runtime.
+ * Thrown when an error is invoked at runtime.
  * @author eKameleon
  */
 class vegas.errors.RuntimeError extends AbstractError 

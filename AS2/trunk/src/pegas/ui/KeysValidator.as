@@ -256,7 +256,7 @@ class pegas.ui.KeysValidator extends AbstractCoreEventDispatcher implements IVal
 	}
 	
 	/**
-	 * Invoqued when the key is down.
+	 * Invoked when the key is down.
 	 */
 	private function onKeyDown():Void 
 	{
@@ -277,7 +277,7 @@ class pegas.ui.KeysValidator extends AbstractCoreEventDispatcher implements IVal
 	}
 	
 	/**
-	 * Invoqued when the keys are up.
+	 * Invoked when the keys are up.
 	 */
 	private function onKeyUp():Void 
 	{

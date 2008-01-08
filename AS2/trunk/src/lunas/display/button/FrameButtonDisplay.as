@@ -66,7 +66,7 @@ class lunas.display.button.FrameButtonDisplay extends AbstractButtonDisplay
 	}
 	
 	/**
-	 * Invoqued when the view of the button is refresh.
+	 * Invoked when the view of the button is refresh.
 	 */
 	public function refresh( e:ButtonEvent ): Void 
 	{

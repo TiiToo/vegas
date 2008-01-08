@@ -39,12 +39,12 @@ class pegas.events.ValidatorEvent extends DynamicEvent
 	}
 
 	/**
-	 * The name of the event invoqued when the IValidator is invalid.
+	 * The name of the event invoked when the IValidator is invalid.
 	 */
 	public static var INVALID:String = "invalid" ;
 
 	/**
-	 * The name of the event invoqued when the IValidator is valid.
+	 * The name of the event invoked when the IValidator is valid.
 	 */
 	public static var VALID:String = "valid" ;
 

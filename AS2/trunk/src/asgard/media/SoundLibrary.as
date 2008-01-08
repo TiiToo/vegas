@@ -227,8 +227,8 @@ class asgard.media.SoundLibrary extends SoundModel
 	}
 	
 	/**
-	 * Returns the event name invoqued in the notifyComplete method.
-	 * @return the event name invoqued in the notifyComplete method.
+	 * Returns the event name invoked in the notifyComplete method.
+	 * @return the event name invoked in the notifyComplete method.
 	 */
 	public function getCompleteSoundModelEventType():String 
 	{
@@ -236,8 +236,8 @@ class asgard.media.SoundLibrary extends SoundModel
 	}
 	
 	/**
-	 * Returns the event name invoqued in the notifyID3 method.
-	 * @return the event name invoqued in the notifyID3 method.
+	 * Returns the event name invoked in the notifyID3 method.
+	 * @return the event name invoked in the notifyID3 method.
 	 */
 	public function getID3SoundModelEventType():String 
 	{
@@ -245,8 +245,8 @@ class asgard.media.SoundLibrary extends SoundModel
 	}
 	
 	/**
-	 * Returns the event name invoqued in the notifyLoad method.
-	 * @return the event name invoqued in the notifyLoad method.
+	 * Returns the event name invoked in the notifyLoad method.
+	 * @return the event name invoked in the notifyLoad method.
 	 */
 	public function getLoadSoundModelEventType():String 
 	{
@@ -429,7 +429,7 @@ class asgard.media.SoundLibrary extends SoundModel
 	}
 
 	/**
-	 * Sets the event name invoqued in the notifyComplete method.
+	 * Sets the event name invoked in the notifyComplete method.
 	 */
 	public function setCompleteSoundModelEventType( type:String ):Void
 	{
@@ -437,7 +437,7 @@ class asgard.media.SoundLibrary extends SoundModel
 	}
 	
 	/**
-	 * Sets the event name invoqued in the notifyID3 method.
+	 * Sets the event name invoked in the notifyID3 method.
 	 */
 	public function setID3SoundModelEventType( type:String ):Void 
 	{
@@ -445,7 +445,7 @@ class asgard.media.SoundLibrary extends SoundModel
 	}
 	
 	/**
-	 * Sets the event name invoqued in the notifyLoad method.
+	 * Sets the event name invoked in the notifyLoad method.
 	 */
 	public function setLoadSoundModelEventType( type:String ):Void 
 	{
@@ -504,17 +504,17 @@ class asgard.media.SoundLibrary extends SoundModel
 	private var _container:MovieClip ;
 	
 	/**
-	 * The internal SoundModelEvent invoqued when a sound is complete.
+	 * The internal SoundModelEvent invoked when a sound is complete.
 	 */
 	private var _eComplete:SoundModelEvent ;
 	
 	/**
-	 * The internal SoundModelEvent invoqued when the ID3 tags of a sound changed.
+	 * The internal SoundModelEvent invoked when the ID3 tags of a sound changed.
 	 */
 	private var _eID3:SoundModelEvent ;
 	
 	/**
-	 * The internal SoundModelEvent invoqued when a sound is loaded.
+	 * The internal SoundModelEvent invoked when a sound is loaded.
 	 */
 	private var _eLoad:SoundModelEvent ;
 

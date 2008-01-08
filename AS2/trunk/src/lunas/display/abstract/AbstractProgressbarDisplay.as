@@ -145,7 +145,7 @@ class lunas.display.abstract.AbstractProgressbarDisplay extends AbstractComponen
 	}
 	
 	/**
-	 * Invoqued when the view of the display is changed.
+	 * Invoked when the view of the display is changed.
 	 */
 	public function viewChanged():Void 
 	{
@@ -162,7 +162,7 @@ class lunas.display.abstract.AbstractProgressbarDisplay extends AbstractComponen
 	}
 
 	/**
-	 * Invoqued when the position of the bar is changed.
+	 * Invoked when the position of the bar is changed.
 	 * @param flag (optional) An optional boolean.
 	 */
 	public function viewPositionChanged(flag:Boolean):Void 

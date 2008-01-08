@@ -354,7 +354,7 @@ class vegas.logging.targets.AirLoggerTarget extends LineFormattedTarget
 	}
 	
 	/**
-	 * Invoqued when the status of the LocalConnection is changed.
+	 * Invoked when the status of the LocalConnection is changed.
 	 */
 	private function _onStatus( event ) : Void 
 	{

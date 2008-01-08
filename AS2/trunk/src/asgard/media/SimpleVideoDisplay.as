@@ -41,5 +41,4 @@ class asgard.media.SimpleVideoDisplay extends AbstractVideoDisplay
 	{
 		super(sName, target, video);
 	}
-
 }

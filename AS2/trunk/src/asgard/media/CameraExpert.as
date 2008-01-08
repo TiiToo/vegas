@@ -188,7 +188,7 @@ class asgard.media.CameraExpert extends AbstractCoreEventDispatcher
 	}
 
 	/**
-	 * This method is invoqued in the constructor of the class to initialize all events.
+	 * This method is invoked in the constructor of the class to initialize all events.
 	 * Overrides this method.
 	 */
 	public function initEvent():Void
@@ -373,7 +373,7 @@ class asgard.media.CameraExpert extends AbstractCoreEventDispatcher
 	}
 
 	/**
-	 * Invoqued when the camera status change.
+	 * Invoked when the camera status change.
 	 */
 	private function _onCameraStatus( oInfo:Object ):Void
 	{

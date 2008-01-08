@@ -86,7 +86,7 @@ class asgard.net.ExpressInstall
 	public static var DOWNLOAD_FAILED:String = "Download.Failed" ;
 	
 	/**
-	 * Invoqued when the status of the express install change.
+	 * Invoked when the status of the express install change.
 	 */
    	public function installStatus( statusValue ):Void 
    	{

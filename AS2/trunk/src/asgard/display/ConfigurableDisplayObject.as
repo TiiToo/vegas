@@ -72,7 +72,7 @@ class asgard.display.ConfigurableDisplayObject extends DisplayObject implements 
 	}
 
 	/**
-	 * Invoqued by the ConfigCollector when the ConfigCollector is running.*
+	 * Invoked by the ConfigCollector when the ConfigCollector is running.*
 	 * By default this method launch a search in the Config object with the name of the display and initialize the display.
 	 * If you want use your custom setup method override this method.
 	 */

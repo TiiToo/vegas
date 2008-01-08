@@ -78,7 +78,7 @@ class asgard.text.StyleModel extends AbstractModel
 	}
 	
 	/**
-	 * Creates and returns the internal defaut {@code StyleSheet} reference (this method is invoqued in the constructor).
+	 * Creates and returns the internal defaut {@code StyleSheet} reference (this method is invoked in the constructor).
 	 * You can overrides this method if you wan use a global {@code StyleSheet} singleton.
 	 * @return the default internal {@code StyleSheet} reference.
 	 */
@@ -88,7 +88,7 @@ class asgard.text.StyleModel extends AbstractModel
 	}
 
 	/**
-	 * Invoqued if the internal StyleSheet object  change.
+	 * Invoked if the internal StyleSheet object  change.
 	 */
 	public function notifyChange():Void
 	{

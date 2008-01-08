@@ -78,32 +78,32 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	public static var CHANGE:String = "change"  ;
 	
 	/**
-	 * The name of the event invoqued when the localization is completed.
+	 * The name of the event invoked when the localization is completed.
 	 */
 	public static var COMPLETE:String = "onLoadComplete" ;
 	
 	/**
-	 * The name of the event invoqued when the localization is finished.
+	 * The name of the event invoked when the localization is finished.
 	 */
 	public static var FINISH:String = "onLoadFinished" ;
 	
 	/**
-	 * The name of the event invoqued when the localization failed with an i/o error.
+	 * The name of the event invoked when the localization failed with an i/o error.
 	 */
 	public static var IO_ERROR:String = "onLoadError" ;
 	
 	/**
-	 * The name of the event invoqued when the localization is in progress.
+	 * The name of the event invoked when the localization is in progress.
 	 */
 	public static var PROGRESS:String = "onLoadProgress" ;
 	
 	/**
-	 * The name of the event invoqued when the localization is started.
+	 * The name of the event invoked when the localization is started.
 	 */
 	public static var START:String = "onLoadStarted" ;
 
 	/**
-	 * The name of the event invoqued when the localization is out of time.
+	 * The name of the event invoked when the localization is out of time.
 	 */
 	public static var TIMEOUT:String = "onTimeOut" ;
 
@@ -264,7 +264,7 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	}
 	
 	/**
-	 * Invoqued if the Localization loader notify an error.
+	 * Invoked if the Localization loader notify an error.
 	 * Overrides this method.
 	 */
 	public function onLoadError(e:LoaderEvent):Void 
@@ -273,7 +273,7 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	}
 
 	/**
-	 * Invoqued if the Localization loader notify is complete.
+	 * Invoked if the Localization loader notify is complete.
 	 * Overrides this method.
 	 */
 	public function onLoadComplete(e:LoaderEvent):Void 
@@ -282,7 +282,7 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	}
 
 	/**
-	 * Invoqued if the Localization loader notify is init.
+	 * Invoked if the Localization loader notify is init.
 	 */
 	public function onLoadInit( e:LoaderEvent ) : Void 
 	{
@@ -297,7 +297,7 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	}
 
 	/**
-	 * Invoqued when the localization loading is in progress. Overrides this method.
+	 * Invoked when the localization loading is in progress. Overrides this method.
 	 */
 	public function onLoadProgress( e:LoaderEvent ):Void 
 	{
@@ -305,7 +305,7 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	}
 
 	/**
-	 * Invoqued when the localization loading is started. Overrides this method.
+	 * Invoked when the localization loading is started. Overrides this method.
 	 */
 	public function onLoadStart( e:LoaderEvent ):Void 
 	{
@@ -313,7 +313,7 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	}
 	
 	/**
-	 * Invoqued when the localization loading is out of time. Overrides this method.
+	 * Invoked when the localization loading is out of time. Overrides this method.
 	 */
 	public function onLoadTimeOut( e:LoaderEvent ):Void 
 	{
@@ -410,29 +410,65 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 		 txt += "]" ;
 		 return txt ;	
 	}
-
-	private var _map:HashMap = null ;
 	
-	private var _complete:EventListener ;
+	/**
+	 * @private
+	 */
+	private var _map:HashMap = null ;
 
+	/**
+	 * @private
+	 */
+	private var _complete:EventListener ;
+	
+	/**
+	 * @private
+	 */
 	private var _current:Lang = null ;
 
+	/**
+	 * @private
+	 */
 	private var _eChange:LocalizationEvent = null ;
 
+	/**
+	 * @private
+	 */
 	private var _error:EventListener ;
 
+	/**
+	 * @private
+	 */
 	private var _init:EventListener ;
 
+	/**
+	 * @private
+	 */
 	private var _loader:ILocalizationLoader = null ;
 
+	/**
+	 * @private
+	 */
 	private static var __mInstances:HashMap = new HashMap () ;
 
+	/**
+	 * @private
+	 */
 	private var _progress:EventListener ;
 
+	/**
+	 * @private
+	 */
 	private var _sName:String = null ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _start:EventListener ;
 
+	/**
+	 * @private
+	 */
 	private var _timeOut:EventListener ;
 
 

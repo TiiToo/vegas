@@ -169,7 +169,7 @@ class pegas.ui.DoubleClick
 	private static var __ISDOUBLE__:Boolean = false ;
 	
 	/**
-	 * Invoqued when the mouse is down.
+	 * Invoked when the mouse is down.
 	 */
 	private static function onMouseDown():Void
 	{

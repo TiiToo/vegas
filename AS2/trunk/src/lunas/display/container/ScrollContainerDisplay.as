@@ -194,7 +194,7 @@ class lunas.display.container.ScrollContainerDisplay extends ListContainerDispla
 	}
 	
 	/**
-	 * Invoqued when the scroll is finished.
+	 * Invoked when the scroll is finished.
 	 */
 	public function notifyFinish() : Void 
 	{
@@ -202,7 +202,7 @@ class lunas.display.container.ScrollContainerDisplay extends ListContainerDispla
 	}
 	
 	/**
-	 * Invoqued when the scroll is started.
+	 * Invoked when the scroll is started.
 	 */
 	public function notifyStart() : Void 
 	{
@@ -243,7 +243,7 @@ class lunas.display.container.ScrollContainerDisplay extends ListContainerDispla
 	}
 
 	/**
-	 * Invoqued when the view of the display is changed.
+	 * Invoked when the view of the display is changed.
 	 */
 	public function viewChanged():Void 
 	{
@@ -253,7 +253,7 @@ class lunas.display.container.ScrollContainerDisplay extends ListContainerDispla
 	}
 
 	/**
-	 * Invoqued when the view of the display is destroyed.
+	 * Invoked when the view of the display is destroyed.
 	 */
 	public function viewDestroyed():Void 
 	{
@@ -261,7 +261,7 @@ class lunas.display.container.ScrollContainerDisplay extends ListContainerDispla
 	}
 
 	/**
-	 * Invoqued when the enabled property of the display is changed.
+	 * Invoked when the enabled property of the display is changed.
 	 */
 	public function viewEnabled():Void 
 	{
@@ -363,7 +363,7 @@ class lunas.display.container.ScrollContainerDisplay extends ListContainerDispla
 	}
 	
 	/**
-	 * Invoqued to refreshChilds during the scroll of this container.
+	 * Invoked to refreshChilds during the scroll of this container.
 	 */
 	/*protected*/ private function _refreshChilds() : Void 
 	{

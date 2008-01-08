@@ -122,7 +122,7 @@ class mars.process.application.RunLocalization extends AbstractActionLoader
 	}
 	
 	/**
-	 * Invoqued by the Eden tracer.
+	 * Invoked by the Eden tracer.
 	 */
 	private function _trace( message:String ):Void
 	{

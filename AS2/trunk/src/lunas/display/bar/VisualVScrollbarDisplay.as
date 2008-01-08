@@ -71,7 +71,7 @@ class lunas.display.bar.VisualVScrollbarDisplay extends AbstractScrollbarDisplay
 	}
 
 	/**
-	 * Invoqued when the enabled property is changed.
+	 * Invoked when the enabled property is changed.
 	 */
 	public function viewEnabled():Void  
 	{

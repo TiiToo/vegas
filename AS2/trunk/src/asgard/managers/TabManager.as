@@ -327,7 +327,7 @@ class asgard.managers.TabManager extends AbstractModel
 	private var _set:MultiHashSet ;
 
 	/**
-	 * Invoqued when the focus of the stage is changed.
+	 * Invoked when the focus of the stage is changed.
 	 */
 	private function onSetFocus( oldFocus, newFocus ):Void
 	{

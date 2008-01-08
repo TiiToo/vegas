@@ -188,7 +188,7 @@ class lunas.display.abstract.AbstractButtonIconDisplay extends AbstractButtonDis
 	}
 
 	/**
-	 * Invoqued when the icon property is changed.
+	 * Invoked when the icon property is changed.
 	 */
 	public function viewIconChanged():Void 
 	{

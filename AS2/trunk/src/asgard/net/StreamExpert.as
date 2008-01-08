@@ -349,7 +349,7 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	}
 
 	/**
-	 * This method is invoqued in the constructor of the class to initialize all events.
+	 * This method is invoked in the constructor of the class to initialize all events.
 	 * Overrides this method.
 	 */
 	public function initEvent():Void
@@ -698,7 +698,7 @@ class asgard.net.StreamExpert extends AbstractCoreEventDispatcher
 	private var _tProgress:Timer ;
 	
 	/**
-	 * Invoqued when the stream is in progress.
+	 * Invoked when the stream is in progress.
 	 */
 	private function _onProgress( e:TimerEvent ):Void
 	{

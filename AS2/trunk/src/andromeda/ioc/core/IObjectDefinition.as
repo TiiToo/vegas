@@ -37,8 +37,8 @@ interface andromeda.ioc.core.IObjectDefinition
 	function getConstructorArguments():Array ;
 
 	/**
-	 * Returns the name of the method invoqued when the object is destroyed.
-	 * @return the name of the method invoqued when the object is destroyed.
+	 * Returns the name of the method invoked when the object is destroyed.
+	 * @return the name of the method invoked when the object is destroyed.
 	 */	
 	function getDestroyMethodName():String ; 
 
@@ -72,7 +72,7 @@ interface andromeda.ioc.core.IObjectDefinition
 	function setConstructorArguments( value:Array ):Void ;
 
 	/**
-	 * Sets the name of the method invoqued when the object is destroyed.
+	 * Sets the name of the method invoked when the object is destroyed.
 	 */	
 	function setDestroyMethodName( value:String ):Void ; 
 

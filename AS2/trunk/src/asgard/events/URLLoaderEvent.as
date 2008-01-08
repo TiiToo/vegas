@@ -25,7 +25,7 @@ import asgard.events.LoaderEvent;
 import asgard.net.URLLoader;
 
 /**
- * This event is invoqued in the URLLoader instances.
+ * This event is invoked in the URLLoader instances.
  * @author eKameleon
  * @version 1.0.0.0
  */

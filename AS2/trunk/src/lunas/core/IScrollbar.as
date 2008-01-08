@@ -31,7 +31,7 @@ interface lunas.core.IScrollbar extends IProgressbar
 {
 
 	/**
-	 * Invoqued when the scroll bar is dragging.
+	 * Invoked when the scroll bar is dragging.
 	 */	
 	function dragging():Void ;
 	

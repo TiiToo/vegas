@@ -186,7 +186,7 @@ class asgard.display.DisplayLoader extends AbstractLoader
 	}
 
 	/**
-	 * Invoqued when the loading is finish and the loader is init.
+	 * Invoked when the loading is finish and the loader is init.
 	 */
 	/*override*/ public function onLoadInit():Void 
 	{

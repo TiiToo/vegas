@@ -171,8 +171,8 @@ class asgard.net.Stream extends NetStream implements Identifiable, IEventDispatc
 	}
 	
 	/**
-	 * Returns the event name when the stream notifyCuePoint method is invoqued.
-	 * @return the event name when the stream notifyCuePoint method is invoqued.
+	 * Returns the event name when the stream notifyCuePoint method is invoked.
+	 * @return the event name when the stream notifyCuePoint method is invoked.
 	 */
 	public function getEventTypeCUE_POINT():String
 	{
@@ -180,8 +180,8 @@ class asgard.net.Stream extends NetStream implements Identifiable, IEventDispatc
 	}
 
 	/**
-	 * Returns the event name when the stream notifyStatus method is invoqued.
-	 * @return the event name when the stream notifyStatus method is invoqued.
+	 * Returns the event name when the stream notifyStatus method is invoked.
+	 * @return the event name when the stream notifyStatus method is invoked.
 	 */
 	public function getEventTypeNET_STATUS():String
 	{
@@ -279,7 +279,7 @@ class asgard.net.Stream extends NetStream implements Identifiable, IEventDispatc
 	}
 	
 	/**
-	 * This method is invoqued in the constructor of the class to initialize all events.
+	 * This method is invoked in the constructor of the class to initialize all events.
 	 */
 	public function initEvent():Void
 	{
@@ -289,7 +289,7 @@ class asgard.net.Stream extends NetStream implements Identifiable, IEventDispatc
 	}
 	
 	/**
-	 * Creates and returns the internal {@code EventDispatcher} reference (this method is invoqued in the constructor).
+	 * Creates and returns the internal {@code EventDispatcher} reference (this method is invoked in the constructor).
 	 * You can overrides this method if you wan use a global {@code EventDispatcher} singleton.
 	 * @return the internal {@code EventDispatcher} reference.
 	 */
@@ -369,7 +369,7 @@ class asgard.net.Stream extends NetStream implements Identifiable, IEventDispatc
 	}
 
 	/**
-	 * Sets the event name when the stream notifyCuePoint method is invoqued.
+	 * Sets the event name when the stream notifyCuePoint method is invoked.
 	 */
 	public function setEventTypeCUE_POINT( type:String ):Void
 	{
@@ -377,7 +377,7 @@ class asgard.net.Stream extends NetStream implements Identifiable, IEventDispatc
 	}
 
 	/**
-	 * Sets the event name when the stream notifyStatus method is invoqued.
+	 * Sets the event name when the stream notifyStatus method is invoked.
 	 */
 	public function setEventTypeNET_STATUS( type:String ):Void
 	{
@@ -482,7 +482,7 @@ class asgard.net.Stream extends NetStream implements Identifiable, IEventDispatc
 	}
 
 	/**
-	 * Invoqued when the onMetaData changed.
+	 * Invoked when the onMetaData changed.
 	 */
 	private function onMetaData( info:Object ):Void 
 	{
@@ -508,7 +508,7 @@ class asgard.net.Stream extends NetStream implements Identifiable, IEventDispatc
 	}
 
 	/**
-	 * Invoqued when the stream status change.
+	 * Invoked when the stream status change.
 	 */
 	private function _onStreamStatus( oInfo:Object ):Void
 	{

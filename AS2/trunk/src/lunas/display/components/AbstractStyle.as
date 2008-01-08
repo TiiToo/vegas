@@ -83,7 +83,7 @@ class lunas.display.components.AbstractStyle extends AbstractCoreEventDispatcher
 	}
 	
 	/**
-	 * Invoqued in the constructor of the {@code IStyle} instance.
+	 * Invoked in the constructor of the {@code IStyle} instance.
 	 * You must overrerides this method to customize your object.
 	 */
 	public function initialize():Void 
@@ -184,7 +184,7 @@ class lunas.display.components.AbstractStyle extends AbstractCoreEventDispatcher
 	}
 
 	/**
-	 * Invoqued when a style property of this {@code IStyle} change.
+	 * Invoked when a style property of this {@code IStyle} change.
 	 */
 	public function styleChanged():Void 
 	{
@@ -192,7 +192,7 @@ class lunas.display.components.AbstractStyle extends AbstractCoreEventDispatcher
 	}
 	
 	/**
-	 * Invoqued when the styleSheet value of this {@code IStyle} change.
+	 * Invoked when the styleSheet value of this {@code IStyle} change.
 	 */
 	public function styleSheetChanged():Void 
 	{

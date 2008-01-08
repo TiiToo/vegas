@@ -135,7 +135,7 @@ class lunas.display.components.button.AbstractButton extends AbstractComponent i
 	}
 	
 	/**
-	 * Invoqued when the groupPolicy of the component change.
+	 * Invoked when the groupPolicy of the component change.
 	 */
 	public function groupPolicyChanged():Void 
 	{
@@ -195,7 +195,7 @@ class lunas.display.components.button.AbstractButton extends AbstractComponent i
 	}
 
 	/**
-	 * Invoqued when the enabled property of the component change.
+	 * Invoked when the enabled property of the component change.
 	 */
 	/*final*/ public function viewEnabled():Void 
 	{
@@ -212,7 +212,7 @@ class lunas.display.components.button.AbstractButton extends AbstractComponent i
 	}
 
 	/**
-	 * Invoqued when the label property of the component change.
+	 * Invoked when the label property of the component change.
 	 */
 	public function viewLabelChanged():Void 
 	{

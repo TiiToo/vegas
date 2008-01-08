@@ -149,7 +149,7 @@ class asgard.display.StageDisplayState extends AbstractCoreEventDispatcher
 	private var _available:Boolean ;
 	
 	/**
-	 * The event invoqued when the stage display state change.
+	 * The event invoked when the stage display state change.
 	 */
 	private var _eFullscreen:FullScreenEvent ;
 	
@@ -159,7 +159,7 @@ class asgard.display.StageDisplayState extends AbstractCoreEventDispatcher
 	private static var _instance:StageDisplayState ;
 	
 	/**
-	 * Invoqued when the stage state change.
+	 * Invoked when the stage state change.
 	 */
 	public function onFullScreen( b:Boolean ):Void
 	{

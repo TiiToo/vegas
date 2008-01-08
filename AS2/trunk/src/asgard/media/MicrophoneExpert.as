@@ -168,7 +168,7 @@ class asgard.media.MicrophoneExpert extends AbstractCoreEventDispatcher
 	}
 
 	/**
-	 * This method is invoqued in the constructor of the class to initialize all events.
+	 * This method is invoked in the constructor of the class to initialize all events.
 	 */
 	public function initEvent():Void
 	{
@@ -309,7 +309,7 @@ class asgard.media.MicrophoneExpert extends AbstractCoreEventDispatcher
 	}
 
 	/**
-	 * Invoqued when the Microphone status change.
+	 * Invoked when the Microphone status change.
 	 */
 	private function _onMicroStatus( oInfo:Object ):Void
 	{

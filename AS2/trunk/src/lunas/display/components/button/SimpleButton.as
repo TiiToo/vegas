@@ -66,7 +66,7 @@ class lunas.display.components.button.SimpleButton extends AbstractButton
 	}
 
 	/**
-	 * Invoqued when the button is disabled.
+	 * Invoked when the button is disabled.
 	 */
 	public function disabled( e:ButtonEvent ): Void 
 	{
@@ -74,7 +74,7 @@ class lunas.display.components.button.SimpleButton extends AbstractButton
 	}	
 	
 	/**
-	 * Invoqued when the button is down.
+	 * Invoked when the button is down.
 	 */
 	public function down( e:ButtonEvent ): Void 
 	{
@@ -91,7 +91,7 @@ class lunas.display.components.button.SimpleButton extends AbstractButton
 	}
 
 	/**
-	 * Invoqued when the button is over.
+	 * Invoked when the button is over.
 	 */
 	public function over( e:ButtonEvent ):Void 
 	{
@@ -99,7 +99,7 @@ class lunas.display.components.button.SimpleButton extends AbstractButton
 	}
 
 	/**
-	 * Invoqued when the button is up.
+	 * Invoked when the button is up.
 	 */
 	public function up( e:ButtonEvent ):Void 
 	{

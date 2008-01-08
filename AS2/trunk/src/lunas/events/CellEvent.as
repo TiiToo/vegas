@@ -27,7 +27,7 @@ import lunas.display.components.ICell;
 import pegas.events.ButtonEvent;
 
 /**
- * This event is invoqued by the cells.
+ * This event is invoked by the cells.
  */
 class lunas.events.CellEvent extends ButtonEvent 
 {

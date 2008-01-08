@@ -50,12 +50,12 @@ class andromeda.model.queue.QueueModel extends AbstractModelObject
 	}
 
 	/**
-	 * Default event type when the dequeue method is invoqued.
+	 * Default event type when the dequeue method is invoked.
 	 */
 	public static var DEQUEUE_VO:String = "onDequeueVO" ;
 	
 	/**
-	 * Default event type when the enqueue method is invoqued.
+	 * Default event type when the enqueue method is invoked.
 	 */
 	public static var ENQUEUE_VO:String = "onEnqueueVO" ;
 
@@ -118,7 +118,7 @@ class andromeda.model.queue.QueueModel extends AbstractModelObject
 	}
 
 	/**
-	 * This method is invoqued in the constructor of the class to initialize all events.
+	 * This method is invoked in the constructor of the class to initialize all events.
 	 */
 	/*override*/ public function initEvent():Void
 	{

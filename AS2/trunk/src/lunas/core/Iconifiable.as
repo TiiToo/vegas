@@ -62,7 +62,7 @@ interface lunas.core.Iconifiable
 	function setIconTarget( target:MovieClip ):Void ;
 
 	/**
-	 * Invoqued when the icon property is changed.
+	 * Invoked when the icon property is changed.
 	 */
 	function viewIconChanged():Void ;
 

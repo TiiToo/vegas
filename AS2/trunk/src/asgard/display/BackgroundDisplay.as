@@ -298,7 +298,7 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	
 	/**
 	 * Init the pen to draw the background of this display.
-	 * This method is invoqued in the constructor of the class.
+	 * This method is invoked in the constructor of the class.
 	 * You can override this method to change the shape of the background.
 	 * @return the IPen reference to draw the background of the display.
 	 */
@@ -386,7 +386,7 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	}
 	
 	/**
-	 * This method is invoqued after the draw() method in the update() method.
+	 * This method is invoked after the draw() method in the update() method.
 	 * Overrides this method.
 	 */
 	public function viewChanged():Void

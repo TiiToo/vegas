@@ -145,8 +145,8 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	}
 
 	/**
-	 * Returns the event name use when a HTTPStatusEvent is invoqued.
-	 * @return the event name use when a HTTPStatusEvent is invoqued.
+	 * Returns the event name use when a HTTPStatusEvent is invoked.
+	 * @return the event name use when a HTTPStatusEvent is invoked.
 	 */
 	public function getEventTypeHTTPError():String
 	{
@@ -154,8 +154,8 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	}
 
 	/**
-	 * Returns the event name use when a IOErrorEvent is invoqued.
-	 * @return the event name use when a IOErrorEvent is invoqued.
+	 * Returns the event name use when a IOErrorEvent is invoked.
+	 * @return the event name use when a IOErrorEvent is invoked.
 	 */
 	public function getEventTypeIOError():String
 	{
@@ -181,8 +181,8 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	}
 
 	/**
-	 * Returns the event name use when a SecurityErrorEvent is invoqued.
-	 * @return the event name use when a SecurityErrorEvent is invoqued.
+	 * Returns the event name use when a SecurityErrorEvent is invoked.
+	 * @return the event name use when a SecurityErrorEvent is invoked.
 	 */
 	public function getEventTypeSecurityError():String
 	{
@@ -279,7 +279,7 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	}
 
 	/**
-	 * Creates and returns the internal {@code EventDispatcher} reference (this method is invoqued in the constructor).
+	 * Creates and returns the internal {@code EventDispatcher} reference (this method is invoked in the constructor).
 	 * You can overrides this method if you wan use a global {@code EventDispatcher} singleton.
 	 * @return the internal {@code EventDispatcher} reference.
 	 */
@@ -334,7 +334,7 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	}
 
 	/**
-	 * Sets the event name use when a HTTPStatusEvent is invoqued.
+	 * Sets the event name use when a HTTPStatusEvent is invoked.
 	 */
 	public function setEventTypeHTTPError( type:String ):Void
 	{
@@ -342,7 +342,7 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	}
 
 	/**
-	 * Sets the event name use when a IOErrorEvent is invoqued.
+	 * Sets the event name use when a IOErrorEvent is invoked.
 	 */
 	public function setEventTypeIOError( type:String ):Void
 	{
@@ -366,7 +366,7 @@ class asgard.net.FileReference extends flash.net.FileReference implements IEvent
 	}
 
 	/**
-	 * Sets the event name use when a SecurityErrorEvent is invoqued.
+	 * Sets the event name use when a SecurityErrorEvent is invoked.
 	 */
 	public function setEventTypeSecurityError( type:String ):Void
 	{

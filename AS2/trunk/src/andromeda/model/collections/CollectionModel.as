@@ -119,7 +119,7 @@ class andromeda.model.collections.CollectionModel extends AbstractModelObject
 	}
 
 	/**
-	 * This method is invoqued in the constructor of the class to initialize all events.
+	 * This method is invoked in the constructor of the class to initialize all events.
 	 */
 	public /*override*/ function initEvent():Void
 	{

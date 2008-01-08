@@ -108,7 +108,7 @@ class vegas.util.FrameTimer extends AbstractTimer
 	private var _next:Number = 0 ;
 
 	/**
-	 * This method is invoqued frame by frame.
+	 * This method is invoked frame by frame.
 	 */
 	private function onEnterFrame():Void 
 	{

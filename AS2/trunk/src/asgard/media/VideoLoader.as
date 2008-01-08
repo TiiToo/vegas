@@ -555,7 +555,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	private var _timerHeadTime:Timer ;
 	
 	/**
-	 * Invoqued when the onCuePoint callback method is fired over the internal NetStream of this loader.
+	 * Invoked when the onCuePoint callback method is fired over the internal NetStream of this loader.
 	 */
 	private function _onCuePoint ( info:Object ) : Void
 	{
@@ -563,7 +563,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	}
 	
 	/**
-	 * Invoqued when the onMetaData changed.
+	 * Invoked when the onMetaData changed.
 	 */
 	private function _onMetaData (info:Object):Void 
 	{
@@ -585,7 +585,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	}
 
 	/**
-	 * Invoqued when the NetServerEvent status is changed.
+	 * Invoked when the NetServerEvent status is changed.
 	 */
 	private function _onNetServerStatus( e:NetServerEvent ):Void
 	{
@@ -619,7 +619,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	private var _isFull:Boolean = false ;
 	
 	/**
-	 * Invoqued when the status of the stream change.
+	 * Invoked when the status of the stream change.
 	 */
 	private function _onNetStreamStatus( info:Object ):Void 
 	{
@@ -695,7 +695,7 @@ class asgard.media.VideoLoader extends AbstractMediaLoader
 	}
 
 	/**
-	 * Invoqued when the frame update.
+	 * Invoked when the frame update.
 	 */
 	private function _onFrameUpdate():Void 
 	{

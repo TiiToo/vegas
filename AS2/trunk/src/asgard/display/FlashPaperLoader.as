@@ -525,7 +525,7 @@ class asgard.display.FlashPaperLoader extends DisplayLoader
 	}	
 	
 	/**
-	 * Invoqued when the page changed.
+	 * Invoked when the page changed.
 	 */
 	private function onPageChanged(newPageNumber:Number):Void 
 	{
@@ -534,7 +534,7 @@ class asgard.display.FlashPaperLoader extends DisplayLoader
 	}
 	
 	/**
-	 * Invoqued when a tool changed.
+	 * Invoked when a tool changed.
 	 */
 	private function onToolChanged(newTool:String):Void 
 	{
@@ -542,7 +542,7 @@ class asgard.display.FlashPaperLoader extends DisplayLoader
 	}
 
 	/**
-	 * Invoqued when the enable scrolling value changed.
+	 * Invoked when the enable scrolling value changed.
 	 */
 	private function onEnableScrolling(b:Boolean):Void 
 	{
@@ -551,7 +551,7 @@ class asgard.display.FlashPaperLoader extends DisplayLoader
 	}
 
 	/**
-	 * Invoqued when the zoom value changed.
+	 * Invoked when the zoom value changed.
 	 */
 	private function onZoomChanged(percent:Number):Void 
 	{
@@ -560,7 +560,7 @@ class asgard.display.FlashPaperLoader extends DisplayLoader
 	}
 
 	/**
-	 * Invoqued when the visible area changed.
+	 * Invoked when the visible area changed.
 	 */
 	private function onVisibleAreaChanged():Void 
 	{

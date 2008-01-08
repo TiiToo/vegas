@@ -100,7 +100,7 @@ class andromeda.model.AbstractModelObject extends AbstractModel implements IMode
 	}
 
 	/**
-	 * This method is invoqued in the constructor of the class to initialize all events.
+	 * This method is invoked in the constructor of the class to initialize all events.
 	 * Overrides this method.
 	 */
 	public function initEvent():Void

@@ -24,7 +24,7 @@
 import vegas.events.BasicEvent;
 
 /**
- * This event is invoqued by a panel.
+ * This event is invoked by a panel.
  * @author eKameleon
  */
 class lunas.events.PanelEvent extends BasicEvent 

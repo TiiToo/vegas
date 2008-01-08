@@ -43,7 +43,7 @@ class andromeda.vo.NetServerInfoVO extends SimpleValueObject
 
 	/**
 	 * This object exist if the server return an application error object. 
-	 * This property exist with FMS when the SSAS {@code application.rejectConnection()} method is invoqued. 
+	 * This property exist with FMS when the SSAS {@code application.rejectConnection()} method is invoked. 
 	 */
 	public var application ;
 

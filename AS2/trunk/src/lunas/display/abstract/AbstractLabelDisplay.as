@@ -236,7 +236,7 @@ class lunas.display.abstract.AbstractLabelDisplay extends AbstractComponentDispl
 	}
 	
 	/**
-	 * Invoqued when the label value of this component is changed.
+	 * Invoked when the label value of this component is changed.
 	 */
 	public function viewLabelChanged():Void 
 	{

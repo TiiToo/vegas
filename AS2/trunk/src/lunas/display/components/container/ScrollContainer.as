@@ -256,7 +256,7 @@ class lunas.display.components.container.ScrollContainer extends ListContainer
 	}
 	
 	/**
-	 * Invoqued to refreshChilds during the scroll of this container.
+	 * Invoked to refreshChilds during the scroll of this container.
 	 */
 	/*protected*/ private function _refreshChilds() : Void 
 	{

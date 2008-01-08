@@ -123,7 +123,7 @@ class mars.process.application.RunConfig extends AbstractActionLoader
 	}
 
     /**
-     * Invoqued by the Eden tracer.
+     * Invoked by the Eden tracer.
      */
     private function _trace( message:String ):Void
     {

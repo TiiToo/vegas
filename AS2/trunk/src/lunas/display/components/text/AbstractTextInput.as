@@ -172,7 +172,7 @@ class lunas.display.components.text.AbstractTextInput extends AbstractTextArea
 	}
 	
 	/**
-	 * This method is invoqued when the group or the groupName property are changed.
+	 * This method is invoked when the group or the groupName property are changed.
 	 * The user can group all TextInput in a form and enable or disable all component if their are in the same group.
 	 */
 	/*override*/ public function groupPolicyChanged():Void 

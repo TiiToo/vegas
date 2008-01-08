@@ -134,7 +134,7 @@ class lunas.display.components.bar.AbstractProgressbar extends AbstractComponent
 	}
 	
 	/**
-	 * Invoqued when the view of the bar changed.
+	 * Invoked when the view of the bar changed.
 	 */
 	public function viewChanged():Void 
 	{

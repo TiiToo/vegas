@@ -26,7 +26,7 @@ import andromeda.events.ModelChangedEvent;
 import asgard.data.remoting.RecordSet;
 
 /**
- * The event invoqued in the RecordSet class.
+ * The event invoked in the RecordSet class.
  */
 class asgard.events.RecordSetEvent extends ModelChangedEvent 
 {

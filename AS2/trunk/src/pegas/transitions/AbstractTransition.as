@@ -128,12 +128,12 @@ class pegas.transitions.AbstractTransition extends AbstractCoreEventDispatcher i
 	}
 	
 	/**
-	 * Invoqued when the transition finish this process.
+	 * Invoked when the transition finish this process.
 	 */
 	private var _eFinish:TransitionEvent ;
 	
 	/**
-	 * Invoqued when the transition start this process.
+	 * Invoked when the transition start this process.
 	 */
 	private var _eStart:TransitionEvent ;
 

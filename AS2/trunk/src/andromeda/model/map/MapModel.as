@@ -176,7 +176,7 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 	}
 
 	/**
-	 * This method is invoqued in the constructor of the class to initialize all events.
+	 * This method is invoked in the constructor of the class to initialize all events.
 	 */
 	/*override*/ public function initEvent():Void
 	{

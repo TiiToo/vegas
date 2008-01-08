@@ -50,12 +50,12 @@ class andromeda.model.stack.StackModel extends AbstractModelObject
 	}
 
 	/**
-	 * Default event type when the pop method is invoqued.
+	 * Default event type when the pop method is invoked.
 	 */
 	public static var POP_VO:String = "onPopVO" ;
 	
 	/**
-	 * Default event type when the push method is invoqued.
+	 * Default event type when the push method is invoked.
 	 */
 	public static var PUSH_VO:String = "onPushVO" ;
 
@@ -96,7 +96,7 @@ class andromeda.model.stack.StackModel extends AbstractModelObject
 	}
 
 	/**
-	 * This method is invoqued in the constructor of the class to initialize all events.
+	 * This method is invoked in the constructor of the class to initialize all events.
 	 */
 	/*override*/ public function initEvent():Void
 	{

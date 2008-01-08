@@ -88,7 +88,7 @@ class pegas.process.BatchProcess extends SimpleAction
 	}
 
 	/**
-	 * Invoqued before the notifyFinished method is invoqued.
+	 * Invoked before the notifyFinished method is invoked.
 	 * Overrides this method.
 	 */
 	public function finish():Void
@@ -146,7 +146,7 @@ class pegas.process.BatchProcess extends SimpleAction
 	}
 
 	/**
-	 * Invoqued before the notifyStarted method is invoqued.
+	 * Invoked before the notifyStarted method is invoked.
 	 * Overrides this method.
 	 */
 	public function start():Void
@@ -165,18 +165,18 @@ class pegas.process.BatchProcess extends SimpleAction
 	private var _cpt:Number ;
 
 	/**
-	 * Invoqued during the progress of the process.
+	 * Invoked during the progress of the process.
 	 */
 	private var _eProgress:ActionEvent ;
 
 	/**
-	 * The EventListener invoqued when the process is finished. 
+	 * The EventListener invoked when the process is finished. 
 	 */
 	private var _finishListener:EventListener ;
 
 	/**
-	 * Invoqued when a tween finish this movement.
-	 * If all tweens are finished the notifyFinished method is invoqued.
+	 * Invoked when a tween finish this movement.
+	 * If all tweens are finished the notifyFinished method is invoked.
 	 */
 	private function _onFinished( e:ActionEvent ):Void
 	{

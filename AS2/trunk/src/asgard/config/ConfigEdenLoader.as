@@ -175,7 +175,7 @@ class asgard.config.ConfigEdenLoader extends EdenLoader
 	}
 	
 	/**
-	 * Invoqued when the loader is initialize.
+	 * invoked when the loader is initialize.
 	 * Overrides this method.
 	 */
   	/*override*/ public function onLoadInit(e:LoaderEvent):Void 

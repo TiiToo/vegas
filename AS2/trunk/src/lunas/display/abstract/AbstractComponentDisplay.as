@@ -328,7 +328,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	}
 	
 	/**
-	 * Invoqued when the group property or the groupName property changed.
+	 * Invoked when the group property or the groupName property changed.
 	 * Overrides this method in concrete class.
 	 */
 	public function groupPolicyChanged():Void 
@@ -529,7 +529,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	}
 
 	/**
-	 * Updates the component. This method is invoqued when the component must be refreh.
+	 * Updates the component. This method is invoked when the component must be refreh.
 	 */
 	public function update():Void 
 	{
@@ -547,7 +547,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	}
 	
 	/**
-	 * Invoqued after the draw method and when the IBuilder is updated.
+	 * Invoked after the draw method and when the IBuilder is updated.
 	 */
 	public function viewChanged():Void 
 	{
@@ -555,7 +555,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	}
 	
 	/**
-	 * Invoqued when the component is destroyed with a removeMovieClip.
+	 * Invoked when the component is destroyed with a removeMovieClip.
 	 * Overrides this method.
 	 */
 	public function viewDestroyed():Void 
@@ -564,7 +564,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	}	
 	
 	/**
-	 * Invoqued when the enabled property of the component change.
+	 * Invoked when the enabled property of the component change.
 	 * Overrides this method.
 	 */
 	public function viewEnabled():Void 
@@ -573,7 +573,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	}
 	
 	/**
-	 * Invoqued when the component is resized.
+	 * Invoked when the component is resized.
 	 * Overrides this method.
 	 */
 	public function viewResize():Void 
@@ -582,7 +582,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	}
 	
 	/**
-	 * Invoqued when the component IStyle changed.
+	 * Invoked when the component IStyle changed.
 	 * Overrides this method.
 	 */
 	public function viewStyleChanged():Void 
@@ -591,7 +591,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	}
 	
 	/**
-	 * Invoqued when the StyleSheet in the IStyle is changed.
+	 * Invoked when the StyleSheet in the IStyle is changed.
 	 * Overrides this method.
 	 */
 	public function viewStyleSheetChanged():Void 
@@ -657,7 +657,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	}
 
 	/**
-	 * Invoqued when the internal view of this display is unload.
+	 * Invoked when the internal view of this display is unload.
 	 */
 	private function _onUnload():Void 
 	{

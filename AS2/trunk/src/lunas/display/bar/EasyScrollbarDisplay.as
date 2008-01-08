@@ -118,7 +118,7 @@ class lunas.display.bar.EasyScrollbarDisplay extends AbstractScrollbarDisplay
 	}
 
 	/**
-	 * Invoqued when the enabled property of this display is changed.
+	 * Invoked when the enabled property of this display is changed.
 	 */
 	public function viewEnabled():Void  
 	{

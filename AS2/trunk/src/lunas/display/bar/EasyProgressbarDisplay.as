@@ -98,7 +98,7 @@ class lunas.display.bar.EasyProgressbarDisplay extends AbstractProgressbarDispla
 	}
 
 	/**
-	 * Invoqued when the component is changed.
+	 * Invoked when the component is changed.
 	 */
 	public function viewChanged():Void 
 	{
@@ -113,7 +113,7 @@ class lunas.display.bar.EasyProgressbarDisplay extends AbstractProgressbarDispla
 	}
 	
 	/**
-	 * Invoqued when the position of the bar is changed.
+	 * Invoked when the position of the bar is changed.
 	 */
 	public function viewPositionChanged():Void 
 	{

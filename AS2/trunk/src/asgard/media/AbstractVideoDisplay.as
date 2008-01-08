@@ -41,7 +41,7 @@ class asgard.media.AbstractVideoDisplay extends BackgroundDisplay
 	 * @param target the target of this display.
 	 * @param (optional) the {@code Video} object of this display. 
 	 */	
-	public function AbstractVideoDisplay( sName:String, target:MovieClip, video:Video) 
+	public function AbstractVideoDisplay( sName:String, target:MovieClip, video:Video ) 
 	{
 		
 		super(sName, target);

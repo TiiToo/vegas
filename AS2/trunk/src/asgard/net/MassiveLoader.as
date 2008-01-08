@@ -180,7 +180,7 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener
 	}
 
 	/**
-	 * Invoqued when a loader is complete.
+	 * Invoked when a loader is complete.
 	 */
 	public function onLoadComplete(e:LoaderEvent):Void 
 	{
@@ -188,7 +188,7 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener
 	}
 
 	/**
-	 * Invoqued when the loading failed.
+	 * Invoked when the loading failed.
 	 */
 	public function onLoadError(e:LoaderEvent):Void 
 	{
@@ -203,7 +203,7 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener
 	}
 
 	/**
-	 * Invoqued when the loading is complete and the content initialize.
+	 * Invoked when the loading is complete and the content initialize.
 	 */
 	public function onLoadInit( e:LoaderEvent ):Void 
 	{
@@ -218,7 +218,7 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener
 	}
 
 	/**
-	 * Invoqued during the load progress.
+	 * Invoked during the load progress.
 	 */
 	public function onLoadProgress(e : LoaderEvent) : Void 
 	{
@@ -226,7 +226,7 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener
 	}
 
 	/**
-	 * Invoqued when the loading start.
+	 * Invoked when the loading start.
 	 */
 	public function onLoadStart(e : LoaderEvent) : Void 
 	{
@@ -234,7 +234,7 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener
 	}
 
 	/**
-	 * Invoqued if the loading is out of time.
+	 * Invoked if the loading is out of time.
 	 */
 	public function onLoadTimeOut(e : LoaderEvent) : Void 
 	{
@@ -321,7 +321,7 @@ class asgard.net.MassiveLoader extends AbstractLoader implements LoaderListener
 	}
 
 	/**
-	 * Invoqued when the massiveloader is complete.
+	 * Invoked when the massiveloader is complete.
 	 */
 	private function _onLoadComplete():Void 
 	{

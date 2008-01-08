@@ -231,7 +231,7 @@ class lunas.display.container.AutoScrollContainerDisplay extends ScrollContainer
 	}
 	
 	/**
-	 * Invoqued if the view of the container is changed.
+	 * Invoked if the view of the container is changed.
 	 */
 	/*override*/ public function viewChanged():Void 
 	{
@@ -240,7 +240,7 @@ class lunas.display.container.AutoScrollContainerDisplay extends ScrollContainer
 	}
 	
 	/**
-	 * Invoqued if the container MovieClip reference is release.
+	 * Invoked if the container MovieClip reference is release.
 	 */
 	/*override*/ public function viewDestroyed():Void 
 	{
@@ -249,7 +249,7 @@ class lunas.display.container.AutoScrollContainerDisplay extends ScrollContainer
 	}
 	
 	/**
-	 * Invoqued when the view enabled value change.
+	 * Invoked when the view enabled value change.
 	 */
 	/*override*/ public function viewEnabled():Void 
 	{

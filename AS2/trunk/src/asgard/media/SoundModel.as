@@ -147,8 +147,8 @@ class asgard.media.SoundModel extends AbstractModel
 	}
 
 	/**
-	 * Returns the event name invoqued in the notifyAddSound method.
-	 * @return the event name invoqued in the notifyAddSound method.
+	 * Returns the event name invoked in the notifyAddSound method.
+	 * @return the event name invoked in the notifyAddSound method.
 	 */
 	public function getAddSoundModelEventType():String 
 	{
@@ -156,8 +156,8 @@ class asgard.media.SoundModel extends AbstractModel
 	}
 
 	/**
-	 * Returns the event name invoqued in the notifyClearSound method.
-	 * @return the event name invoqued in the notifyClearSound method.
+	 * Returns the event name invoked in the notifyClearSound method.
+	 * @return the event name invoked in the notifyClearSound method.
 	 */
 	public function getClearSoundModelEventType():String 
 	{
@@ -165,8 +165,8 @@ class asgard.media.SoundModel extends AbstractModel
 	}
 
 	/**
-	 * Returns the event name invoqued in the notifyDisableSound method.
-	 * @return the event name invoqued in the notifyDisableSound method.
+	 * Returns the event name invoked in the notifyDisableSound method.
+	 * @return the event name invoked in the notifyDisableSound method.
 	 */
 	public function getDisableSoundModelEventType():String 
 	{
@@ -174,8 +174,8 @@ class asgard.media.SoundModel extends AbstractModel
 	}
 
 	/**
-	 * Returns the event name invoqued in the notifyEnableSound method.
-	 * @return the event name invoqued in the notifyEnableSound method.
+	 * Returns the event name invoked in the notifyEnableSound method.
+	 * @return the event name invoked in the notifyEnableSound method.
 	 */
 	public function getEnableSoundModelEventType():String 
 	{
@@ -183,8 +183,8 @@ class asgard.media.SoundModel extends AbstractModel
 	}
 	
 	/**
-	 * Returns the event name invoqued in the notifyRemoveSound method.
-	 * @return the event name invoqued in the notifyRemoveSound method.
+	 * Returns the event name invoked in the notifyRemoveSound method.
+	 * @return the event name invoked in the notifyRemoveSound method.
 	 */
 	public function getRemoveSoundModelEventType():String 
 	{
@@ -325,7 +325,7 @@ class asgard.media.SoundModel extends AbstractModel
 	}
 	
 	/**
-	 * Sets the event name invoqued in the notifyAddSound method.
+	 * Sets the event name invoked in the notifyAddSound method.
 	 */
 	public function setAddSoundModelEventType( type:String ):Void 
 	{
@@ -333,7 +333,7 @@ class asgard.media.SoundModel extends AbstractModel
 	}
 
 	/**
-	 * Sets the event name invoqued in the notifyClearSound method.
+	 * Sets the event name invoked in the notifyClearSound method.
 	 */
 	public function setClearSoundModelEventType( type:String ):Void 
 	{
@@ -341,7 +341,7 @@ class asgard.media.SoundModel extends AbstractModel
 	}
 
 	/**
-	 * Sets the event name invoqued in the notifyDisableSound method.
+	 * Sets the event name invoked in the notifyDisableSound method.
 	 */
 	public function setDisableSoundModelEventType( type:String ):Void 
 	{
@@ -349,7 +349,7 @@ class asgard.media.SoundModel extends AbstractModel
 	}
 
 	/**
-	 * Sets the event name invoqued in the notifyEnableSound method.
+	 * Sets the event name invoked in the notifyEnableSound method.
 	 */
 	public function setEnableSoundModelEventType( type:String ):Void 
 	{
@@ -357,7 +357,7 @@ class asgard.media.SoundModel extends AbstractModel
 	}
 	
 	/**
-	 * Sets the event name invoqued in the notifyRemoveSound method.
+	 * Sets the event name invoked in the notifyRemoveSound method.
 	 */
 	public function setRemoveSoundModelEventType( type:String ):Void 
 	{

@@ -24,7 +24,7 @@
 import pegas.events.MouseEvent;
 
 /**
- * The event invoqued in the button or thumbs of the applications.
+ * The event invoked in the button or thumbs of the applications.
  * @author eKameleon
  */
 dynamic class pegas.events.ButtonEvent extends MouseEvent 

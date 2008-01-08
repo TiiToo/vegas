@@ -74,7 +74,7 @@ class vegas.events.EventType
 	public static var DEACTIVATE:String = "deactivate" ;
 	
 	/**
-	 * The enabled change event invoqued when a display or a component is enabled or diabled.
+	 * The enabled change event invoked when a display or a component is enabled or diabled.
 	 */
 	public static var ENABLED_CHANGE:String = "enabled_change" ;
 	

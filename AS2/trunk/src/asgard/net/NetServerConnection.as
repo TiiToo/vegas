@@ -338,7 +338,7 @@ class asgard.net.NetServerConnection extends NetConnection implements Action, IE
 	}
 	
 	/**
-	 * This method is invoqued in the constructor of the class to initialize all events.
+	 * This method is invoked in the constructor of the class to initialize all events.
 	 * Overrides this method.
 	 */
 	public function initEvent():Void
@@ -351,7 +351,7 @@ class asgard.net.NetServerConnection extends NetConnection implements Action, IE
 	}
 	
 	/**
-	 * Creates and returns the internal {@code EventDispatcher} reference (this method is invoqued in the constructor).
+	 * Creates and returns the internal {@code EventDispatcher} reference (this method is invoked in the constructor).
 	 * You can overrides this method if you wan use a global {@code EventDispatcher} singleton.
 	 * @return the internal {@code EventDispatcher} reference.
 	 */
@@ -361,7 +361,7 @@ class asgard.net.NetServerConnection extends NetConnection implements Action, IE
 	}
 	
 	/**
-	 * Invoqued when the connection is closed.
+	 * Invoked when the connection is closed.
 	 */
 	public function notifyClose():Void 
 	{
@@ -369,7 +369,7 @@ class asgard.net.NetServerConnection extends NetConnection implements Action, IE
 	}
 
 	/**
-	 * Invoqued when the connection is finished.
+	 * Invoked when the connection is finished.
 	 */
 	public function notifyFinished():Void 
 	{
@@ -377,7 +377,7 @@ class asgard.net.NetServerConnection extends NetConnection implements Action, IE
 	}
 
 	/**
-	 * Invoqued when the connection is started.
+	 * Invoked when the connection is started.
 	 */
 	public function notifyStarted():Void 
 	{
@@ -385,7 +385,7 @@ class asgard.net.NetServerConnection extends NetConnection implements Action, IE
 	}
 	
 	/**
-	 * Invoqued when the status of the connection is changed.
+	 * Invoked when the status of the connection is changed.
 	 */
 	public function notifyStatus( status:NetServerStatus , info ):Void 
 	{
@@ -395,7 +395,7 @@ class asgard.net.NetServerConnection extends NetConnection implements Action, IE
 	}
 
 	/**
-	 * Invoqued when the connection is timeout.
+	 * Invoked when the connection is timeout.
 	 */
 	public function notifyTimeOut():Void 
 	{
@@ -583,7 +583,7 @@ class asgard.net.NetServerConnection extends NetConnection implements Action, IE
 	private static var _initHashCode:Boolean = HashCode.initialize(NetServerConnection.prototype) ;
 
 	/**
-	 * Invoqued when the onStatus event is invoqued.
+	 * Invoked when the onStatus event is invoked.
 	 * @see NetServerStatus
 	 */	
 	private function onStatus( oInfo ):Void 
@@ -645,7 +645,7 @@ class asgard.net.NetServerConnection extends NetConnection implements Action, IE
 	}
 
 	/**
-	 * Invoqued when the connection is out of time.
+	 * Invoked when the connection is out of time.
 	 */
 	private function _onTimeOut(e:TimerEvent):Void 
 	{

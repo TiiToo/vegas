@@ -329,7 +329,7 @@ class lunas.display.ReflectDisplay extends ConfigurableDisplayObject implements 
 	}
 	
 	/**
-	 * Invoqued when the icon property is changed.
+	 * Invoked when the icon property is changed.
 	 */
 	public function viewIconChanged():Void 
 	{	

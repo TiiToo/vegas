@@ -28,7 +28,7 @@ import asgard.config.ConfigLoader;
 import vegas.core.IRunnable;
 
 /**
- * This interface defines a tool to invoqued the configuration of your application.
+ * This interface defines a tool to invoked the configuration of your application.
  * @author eKameleon
  */
 interface asgard.config.ISetup extends IRunnable 

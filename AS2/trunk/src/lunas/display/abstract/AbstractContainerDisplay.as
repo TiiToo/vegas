@@ -76,7 +76,7 @@ class lunas.display.abstract.AbstractContainerDisplay extends AbstractComponentD
 	 * @param o The object use to defines the new child to creates (this object can be a String, a Visual class (MovieClip, TextField) or a null value to creates an empty movieclip.
 	 * @param oInit The optional object use to initialize the new child.
 	 * @param noRender The boolean flag who disabled the auto update of this container.
-	 * @param callFunction The method invoqued after the child is created. 
+	 * @param callFunction The method invoked after the child is created. 
 	 * @param args An optional array of arguments to passed-in the mapFunction.
 	 * @param scope The optional scope of the mapFunction.
 	 * @param ...arguments All tne next arguments represents the passed-in arguments in the mapFunction.
@@ -93,7 +93,7 @@ class lunas.display.abstract.AbstractContainerDisplay extends AbstractComponentD
 	 * @param index The numeric position to create the child in the container model.
 	 * @param oInit The optional object use to initialize the new child.
 	 * @param noRender The boolean flag who disabled the auto update of this container.
-	 * @param mapFunction The optional method invoqued after the child is created to maped this new child. This method receive in argument the new child and must return the final mapped child to be register in the container.
+	 * @param mapFunction The optional method invoked after the child is created to maped this new child. This method receive in argument the new child and must return the final mapped child to be register in the container.
 	 * @param scope The optional scope of the mapFunction.
 	 * @param ...arguments All tne next arguments represents the passed-in arguments in the mapFunction.
 	 * @return The new child inserted in the container of the returned value of the mapFunction if this value is not null. 

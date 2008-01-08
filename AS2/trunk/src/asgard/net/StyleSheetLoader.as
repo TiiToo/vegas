@@ -62,7 +62,7 @@ class asgard.net.StyleSheetLoader extends URLLoader
 	}
 
 	/**
-	 * Creates and returns the internal defaut {@code StyleSheet} reference (this method is invoqued in the constructor).
+	 * Creates and returns the internal defaut {@code StyleSheet} reference (this method is invoked in the constructor).
 	 * You can overrides this method if you wan use a global {@code StyleSheet} singleton.
 	 * @return the default internal {@code StyleSheet} reference.
 	 */

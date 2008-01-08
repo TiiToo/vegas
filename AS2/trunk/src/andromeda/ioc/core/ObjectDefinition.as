@@ -59,8 +59,8 @@ class andromeda.ioc.core.ObjectDefinition extends CoreObject implements IObjectD
 	}
 
 	/**
-	 * Returns the name of the method invoqued when the object is destroyed.
-	 * @return the name of the method invoqued when the object is destroyed.
+	 * Returns the name of the method invoked when the object is destroyed.
+	 * @return the name of the method invoked when the object is destroyed.
 	 */	
 	public function getDestroyMethodName():String 
 	{
@@ -113,7 +113,7 @@ class andromeda.ioc.core.ObjectDefinition extends CoreObject implements IObjectD
 	}
 
 	/**
-	 * Sets the name of the method invoqued when the object is destroyed.
+	 * Sets the name of the method invoked when the object is destroyed.
 	 * @param value the name of the destroy method of the object.
 	 */	
 	public function setDestroyMethodName( value:String ):Void 

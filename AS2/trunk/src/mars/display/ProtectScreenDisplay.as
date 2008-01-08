@@ -67,7 +67,7 @@ class mars.display.ProtectScreenDisplay extends BackgroundDisplay
 	 }
 
 	/**
-	 * Invoqued when the Stage size change.
+	 * Invoked when the Stage size change.
 	 */
 	public function onResize():Void
 	{

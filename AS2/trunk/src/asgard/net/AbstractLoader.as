@@ -294,7 +294,7 @@ class asgard.net.AbstractLoader extends AbstractCoreEventDispatcher implements I
 	}
 
 	/**
-	 * Invoqued when the loading is finish and the loader is init.
+	 * Invoked when the loading is finish and the loader is init.
 	 */	
 	public function onLoadInit() : Void 
 	{

@@ -168,7 +168,7 @@ class vegas.events.AbstractCoreEventDispatcher extends CoreObject implements IEv
 	}
 
 	/**
-	 * Creates and returns the internal {@code EventDispatcher} reference (this method is invoqued in the constructor).
+	 * Creates and returns the internal {@code EventDispatcher} reference (this method is invoked in the constructor).
 	 * You can overrides this method if you wan use a global {@code EventDispatcher} singleton.
 	 * @return the internal {@code EventDispatcher} reference.
 	 */

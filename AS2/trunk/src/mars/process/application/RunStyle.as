@@ -64,7 +64,7 @@ class mars.process.application.RunStyle extends AbstractActionLoader
 	public var url:String ;
 
 	/**
-	 * Invoqued when the style is loaded.
+	 * Invoked when the style is loaded.
 	 */ 
  	public function initialize(e:LoaderEvent):Void 
  	{

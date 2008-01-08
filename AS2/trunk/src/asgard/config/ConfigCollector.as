@@ -70,7 +70,7 @@ class asgard.config.ConfigCollector
 	}
 	
 	/**
-	 * Run the {@code ConfigCollector} command to invoqued the {@code setup()} method of all {@code IConfigurable} object registered in the collector.
+	 * Run the {@code ConfigCollector} command to invoked the {@code setup()} method of all {@code IConfigurable} object registered in the collector.
 	 */
 	public static function run():Void
 	{

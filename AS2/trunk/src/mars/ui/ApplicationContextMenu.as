@@ -126,7 +126,7 @@ class mars.ui.ApplicationContextMenu extends ConfigurableObject
 	}
 
 	/**
-	 * Invoqued when the ContextMenu is opened.
+	 * Invoked when the ContextMenu is opened.
 	 */
 	public function changeContextMenu( target , menu ):Void
 	{

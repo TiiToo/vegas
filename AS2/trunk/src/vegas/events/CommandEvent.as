@@ -49,7 +49,7 @@ class vegas.events.CommandEvent extends BasicEvent
 	}
 	
 	/**
-	 * The name of the event invoqued to run a command.
+	 * The name of the event invoked to run a command.
 	 */
 	public static var RUN_COMMAND:String = "onRunCommand" ;
 	

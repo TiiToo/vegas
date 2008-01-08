@@ -349,7 +349,7 @@ class lunas.display.container.ListContainerDisplay extends SimpleContainerDispla
 	}
 
 	/**
-	 * Invoqued when the container size change.
+	 * Invoked when the container size change.
 	 */
 	public function resize():Void 
 	{
@@ -445,7 +445,7 @@ class lunas.display.container.ListContainerDisplay extends SimpleContainerDispla
 	}
 	
 	/**
-	 * Invoqued if the enabled property of this container is changed.
+	 * Invoked if the enabled property of this container is changed.
 	 */
 	public function viewEnabled():Void 
 	{

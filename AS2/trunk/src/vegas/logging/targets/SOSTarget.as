@@ -301,7 +301,7 @@ class vegas.logging.targets.SOSTarget extends LineFormattedTarget
 	private var _xs:XMLSocket ;
 	
 	/**
-	 * Invoqued if the xml socket try to connect the console.
+	 * Invoked if the xml socket try to connect the console.
 	 */
 	private function _connect(success:Boolean):Void 
 	{

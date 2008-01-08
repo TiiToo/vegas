@@ -96,9 +96,19 @@ class vegas.util.factory.DisplayFactory
 	}
 	
 	/**
+	 * Makes the movie clip in the second parameter a mask that reveals the first parameter 'display'.
+	 * @param display An MovieClip, TextField or Video display object.
+	 * @param target The instance name of a movie clip to be a mask. This can be a String or a MovieClip.
+	 */
+	public static function setMask( display, target ):Void
+	{
+		MovieClip.prototype.setMask.call( display, target ) ;
+	}
+	
+	/**
 	 * Swaps the stacking, or depth level (z-order), of the specified display with display that is specified by the target parameter, or with the display that currently occupies the depth level that is specified in the target parameter.
 	 * @param display An MovieClip, TextField or Video display object.
-	 * @param target This parameter can take one of two forms:
+	 * @param target This parameter can take one of two forms :
 	 * <bl>
 	 * <li>A Number that specifies the depth level where the display is to be placed.</li>
 	 * <li>A String that specifies the display instance whose depth is swapped with the movie clip for which the method is being applied. Both displays must have the same parent movie clip.</li>

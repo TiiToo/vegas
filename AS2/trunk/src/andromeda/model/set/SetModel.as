@@ -127,7 +127,7 @@ class andromeda.model.set.SetModel extends AbstractModelObject
 	}
 
 	/**
-	 * This method is invoqued in the constructor of the class to initialize all events.
+	 * This method is invoked in the constructor of the class to initialize all events.
 	 */
 	/*override*/ public function initEvent():Void
 	{

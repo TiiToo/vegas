@@ -58,7 +58,7 @@ class pegas.draw.EasyPen extends AbstractPen
 	}
 
 	/**
-	 * Indicates if the endFill() method is invoqued at the end of the draw method.
+	 * Indicates if the endFill() method is invoked at the end of the draw method.
 	 */
 	public var isEndFill:Boolean = true ;
 

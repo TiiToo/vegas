@@ -74,12 +74,12 @@ class asgard.config.ConfigurableModel extends AbstractModel implements IConfigur
 	}
 
 	/**
-	 * Invoqued when this object when the ConfigCollector is run.
+	 * Invoked when this object when the ConfigCollector is run.
 	 * Overrides this method.
 	 */
 	 public function setup():Void
 	 {
-	 	throw new Warning(this + " setup() method can't be invoqued, you must override this method !") ;
+	 	throw new Warning(this + " setup() method can't be invoked, you must override this method !") ;
 	 }
 	
 	/**

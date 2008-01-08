@@ -90,12 +90,12 @@ class asgard.events.LoaderEvent extends BasicEvent
 	public static var TIMEOUT:String = "onTimeOut" ;
 
 	/**
-	 * The code if an error is invoqued.
+	 * The code if an error is invoked.
 	 */
 	public var code:Number = null ;
 	
 	/**
-	 * The error string representation if an error is invoqued.
+	 * The error string representation if an error is invoked.
 	 */
 	public var error:String = null ;
 	

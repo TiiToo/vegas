@@ -281,7 +281,7 @@ class asgard.net.URLLoader extends AbstractLoader
 	}
 	
 	/**
-	 * Invoqued when the source is loading or not.
+	 * Invoked when the source is loading or not.
 	 */
 	private function _onLoad(success:Boolean):Void 
 	{

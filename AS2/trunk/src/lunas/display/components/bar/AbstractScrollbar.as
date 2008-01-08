@@ -95,7 +95,7 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 	public var noEasing:Boolean = true ;
 	
 	/**
-	 * Invoqued when the bar is dragging.
+	 * Invoked when the bar is dragging.
 	 */
 	public function dragging():Void 
 	{
@@ -181,7 +181,7 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 	}
 
 	/**
-	 * Invoqued when the user start to drag the bar.
+	 * Invoked when the user start to drag the bar.
 	 */
 	public function startDragging():Void 
 	{
@@ -194,7 +194,7 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 	}
 
 	/**
-	 * Invoqued when the user stop to drag the bar.
+	 * Invoked when the user stop to drag the bar.
 	 */
 	public function stopDragging():Void 
 	{
@@ -204,7 +204,7 @@ class lunas.display.components.bar.AbstractScrollbar extends AbstractProgressbar
 	}
 	
 	/**
-	 * Invoqued when the position value of the bar is changed.
+	 * Invoked when the position value of the bar is changed.
 	 */
 	public function viewPositionChanged( flag:Boolean ):Void 
 	{
