@@ -52,8 +52,7 @@ package andromeda.vo
 		}
 		
 		/**
-		 * (read-write) Returns the id of this IValueObject.
-		 * @return the id of this IValueObject.
+		 * (read-write) Indicates the id of this IValueObject.
 		 */
 		public function get id():*
 		{
@@ -61,8 +60,7 @@ package andromeda.vo
 		}
 	
 		/**
-		 * (read-write) Sets the id of this IValueObject.
-		 * @return the id of this IValueObject.
+		 * @private
 		 */
 		public function set id( id:* ):void
 		{

@@ -23,6 +23,7 @@
 
 /**
  * An enumeration of constant values for setting the direction of a Display or a component.
+ * @author eKameleon
  */
 class asgard.display.Direction 
 {

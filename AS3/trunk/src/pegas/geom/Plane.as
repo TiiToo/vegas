@@ -20,7 +20,6 @@
   Contributor(s) :
   
 */
-
 package pegas.geom 
 {
 	import system.Reflection;
