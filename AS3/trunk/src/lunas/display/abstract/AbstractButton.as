@@ -1,0 +1,341 @@
+﻿/*
+
+  The contents of this file are subject to the Mozilla Public License Version
+  1.1 (the "License"); you may not use this file except in compliance with
+  the License. You may obtain a copy of the License at 
+  
+           http://www.mozilla.org/MPL/ 
+  
+  Software distributed under the License is distributed on an "AS IS" basis,
+  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+  for the specific language governing rights and limitations under the License. 
+  
+  The Original Code is LunAS Library.
+  
+  The Initial Developer of the Original Code is
+  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
+  the Initial Developer. All Rights Reserved.
+  
+  Contributor(s) :
+  
+*/
+package lunas.display.abstract 
+{
+	import flash.display.DisplayObject;
+	import flash.display.Sprite;
+	import flash.events.MouseEvent;
+	
+	import lunas.core.IButton;
+	import lunas.core.IData;
+	import lunas.display.abstract.AbstractComponent;
+	import lunas.events.ButtonEvent;
+	import lunas.events.ComponentEvent;	
+
+	/**
+	 * This class provides a skeletal implementation of the {@code IButton} interface, to minimize the effort required to implement this interface.
+	 * @author eKameleon
+	 */
+	public class AbstractButton extends AbstractComponent implements IButton, IData 
+	{
+
+		/**
+		 * Creates a new AbstractButtonDisplay instance.
+		 * @param id Indicates the id of the object.
+		 * @param isConfigurable This flag indicates if the IConfigurable object is register in the ConfigCollector.
+		 * @param name Indicates the instance name of the object.
+	 	 */	
+		public function AbstractButton(id:* = null, isConfigurable:Boolean = false, name:String = null)
+		{
+			super( id, isConfigurable, name ) ;
+			registerView() ;
+			buttonMode    = true ;
+			mouseEnabled  = true ;
+			useHandCursor = true ;
+		}
+		
+		/**
+		 * Specifies whether this object receives mouse messages.
+		 */
+		public override function set buttonMode( b:Boolean ):void 
+		{
+			_buttonMode = b ;
+			if ( _scope != this )
+			{
+				_scope.buttonMode = enabled && _buttonMode ;
+			}
+			super.buttonMode = enabled && _buttonMode ;
+		}
+		
+		/**
+		 * Indicates the data value object of the component.
+		 */
+		public function get data():*
+		{
+			return _data ;	
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set data( value:* ):void
+		{
+			_data = value ;
+		}
+		
+		/**
+		 * A number value to indicated the index of this IButton.
+		 */
+		public var index:Number ;
+
+		/**
+	 	 * Returns the text label for a button instance.
+	 	 * @return the text label for a button instance.
+	 	 */
+		public function get label():String
+		{
+			return _label ;
+		}
+		
+		/**
+	 	 * @private
+	 	 */
+		public function set label(str:String):void
+		{
+			_label = str ; 
+			viewLabelChanged() ;
+			dispatchEvent( new ButtonEvent( ComponentEvent.LABEL_CHANGE ) ) ;
+		}
+
+		/**
+		 * Specifies whether this object receives mouse messages.
+		 */
+		public override function set mouseEnabled( b:Boolean ):void 
+		{
+			if ( _scope != this )
+			{
+				_scope.mouseEnabled = b ;
+			}
+			super.mouseEnabled = b ;
+		}
+
+		/**
+		 * A flag that indicates whether this control is selected.
+		 */
+		public function get selected():Boolean
+		{
+			return _selected ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set selected(b:Boolean):void
+		{
+			setSelected( b ) ;
+		}
+
+		/**
+		 * Indicates a boolean value indicating whether the button behaves as a toggle switch (true) or not (false). 
+		 */
+		public function get toggle():Boolean
+		{
+			return _toggle ;
+		}
+
+		/**
+		 * @private
+		 */
+		public function set toggle(b:Boolean):void
+		{
+			_toggle = b ;	
+			setSelected ( false, true ) ;
+		}
+		
+		/**
+		 * A Boolean value that, when set to true, indicates whether Flash Player displays the hand cursor when the mouse rolls over a button.
+		 */
+		public override function set useHandCursor( b:Boolean ):void 
+		{
+			if ( _scope != this )
+			{
+				_scope.useHandCursor = b ;
+			}
+			super.useHandCursor = b ;
+		}
+		
+		/**
+		 * Register the view in argument.
+		 */
+		public function registerView( scope:Sprite = null ):void
+		{
+			unregisterView() ;
+			_scope = scope == null ? this : ( ( _scope.parent == this ) ? scope : this ) ;
+			if( _scope != null )
+			{
+				_scope.buttonMode    = buttonMode ;
+				_scope.mouseEnabled  = mouseEnabled ;
+				_scope.useHandCursor = useHandCursor ;
+				_scope.addEventListener( MouseEvent.ROLL_OUT  , _onRollOut  ) ; 
+				_scope.addEventListener( MouseEvent.ROLL_OVER , _onRollOver ) ;
+				_scope.addEventListener( MouseEvent.CLICK     , _onPress    ) ;
+				_scope.addEventListener( MouseEvent.MOUSE_UP  , _onRelease  ) ;
+			}
+		}
+
+		
+		/**
+		 * Sets a boolean value indicating whether the button is selected (true) or not (false). 
+		 * The default value is false.
+		 */
+		public function setSelected ( b:Boolean, noEvent:Boolean=false ):void 
+		{
+			_selected =  (_toggle) ? b : null ;
+			dispatchEvent ( new ButtonEvent( _selected ? ButtonEvent.DOWN : ButtonEvent.UP , this ) ) ;
+			if ( noEvent == false ) 
+			{
+				dispatchEvent( new ButtonEvent( _selected ? ButtonEvent.SELECT : ButtonEvent.UNSELECT ) ) ;
+			}
+		}
+		
+		/**
+		 * Unregister the view of this button.
+		 */
+		public function unregisterView():void
+		{
+			if (_scope != null) 
+			{
+				_scope.useHandCursor = false ;
+				_scope.mouseEnabled  = false ;
+				_scope.removeEventListener( MouseEvent.ROLL_OUT  , _onRollOut  ) ; 
+				_scope.removeEventListener( MouseEvent.ROLL_OVER , _onRollOver ) ;
+				_scope.removeEventListener( MouseEvent.CLICK     , _onPress    ) ;
+				_scope.removeEventListener( MouseEvent.MOUSE_UP  , _onRelease  ) ;
+				_scope = null ;
+			}
+		}		
+		
+		/**
+		 * Invoked when the enabled property of the component change.
+		 */
+		final public override function viewEnabled():void 
+		{
+			var type:String ;
+			buttonMode = buttonMode ; // fix button mode of the component with the new enabled property value.
+			if ( enabled ) 
+			{
+				type = (toggle && selected) ? ButtonEvent.DOWN : ButtonEvent.UP ;
+			}
+			else 
+			{
+				type = ButtonEvent.DISABLED ;
+			}
+			dispatchEvent( new ButtonEvent( type, this ) ) ;
+		}
+		
+		/**
+		 * Invoked when the label property of the component change.
+		 */
+		public function viewLabelChanged():void 
+		{
+			// overrides
+		}
+		
+		/**
+		 * @private
+		 */
+		private var _buttonMode:Boolean ;
+		
+		/**
+		 * @private
+		 */
+		private var _data:* ;
+		
+		/**
+		 * @private
+		 */
+		private var _label:String ;
+		
+		/**
+		 * @private
+		 */
+		private var _scope:Sprite ;	
+
+		/**
+		 * @private
+		 */
+		private var _toggle:Boolean ;
+
+		/**
+		 * @private
+		 */
+		private var _selected:Boolean ;
+
+		/**
+		 * @private
+		 */
+		private function _fireButtonEvent( type:String ):void 
+		{
+			dispatchEvent( new ButtonEvent( type, this , true ) ) ;
+		}	
+		
+		/**
+		 * @private
+		 */
+		private function _onPress( e:MouseEvent ):void 
+		{
+			if ( _toggle == true ) 
+			{
+				selected = !selected ;
+			}
+			else 
+			{
+				dispatchEvent( new ButtonEvent( ButtonEvent.DOWN , this ) ) ;
+			}
+		}
+		
+		/**
+		 * @private
+		 */
+		private function _onRelease( e:MouseEvent ):void 
+		{ 
+			if ( !_toggle ) 
+			{
+				_fireButtonEvent( ButtonEvent.UP ) ;
+			}
+		}
+
+		/**
+		 * @private
+		 */
+		private function _onRollOut( e:MouseEvent ):void 
+		{
+			if ( !_toggle || !_selected ) 
+			{
+				_fireButtonEvent( ButtonEvent.UP ) ;
+				_fireButtonEvent( ButtonEvent.OUT ) ;
+			}
+			else if (_selected)
+			{
+				_fireButtonEvent( ButtonEvent.OUT_SELECTED ) ;
+			}
+		}
+
+		/**
+		 * @private
+		 */
+		private function _onRollOver( e:MouseEvent ):void 
+		{
+			if ( !_toggle || !_selected ) 
+			{
+				_fireButtonEvent( ButtonEvent.OVER ) ;
+			}
+			else if (_selected) 
+			{ 
+				_fireButtonEvent( ButtonEvent.OVER_SELECTED ) ;
+			}
+		}	
+	
+	}
+
+}

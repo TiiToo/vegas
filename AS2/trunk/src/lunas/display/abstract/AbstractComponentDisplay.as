@@ -242,7 +242,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	}
 
 	/**
-	 * Draw the view of the component.
+	 * Draws the view of the component.
 	 */
 	public function draw():Void 
 	{
@@ -251,6 +251,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	
 	/**
 	 * Returns the IBuilder reference of this instance.
+	 * @return the IBuilder reference of this instance.
 	 */
 	public function getBuilder():IBuilder 
 	{
@@ -529,7 +530,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	}
 
 	/**
-	 * Updates the component. This method is invoked when the component must be refreh.
+	 * Updates the component. This method is invoked when the component must be refresh.
 	 */
 	public function update():Void 
 	{

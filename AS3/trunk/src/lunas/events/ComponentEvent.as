@@ -20,23 +20,21 @@
   Contributor(s) :
   
 */
-package pegas.events 
+package lunas.events 
 {
 	import flash.events.Event;
-	
-	import lunas.core.IStyle;
 	
 	import vegas.events.BasicEvent;	
 
 	/**
-	 * The {@code StyleEvent} to dispatch an event with an {@code IStyle} object.
+	 * The event invoked in the button or thumbs.
 	 * @author eKameleon
 	 */
-	public class StyleEvent extends BasicEvent 
+	public class ComponentEvent extends BasicEvent 
 	{
-		
+
 		/**
-		 * Creates a new StyleEvent instance.
+		 * Creates a new ComponentEvent instance.
 		 * @param type the string type of the instance. 
 		 * @param target the target of the event.
 		 * @param context the optional context object of the event.
@@ -44,37 +42,55 @@ package pegas.events
 		 * @param cancelable indicates if the event is a cancelable event.
 		 * @param time this optional parameter is used in the eden deserialization to copy the timestamp value of this event.
 		 */
-		public function StyleEvent(type:String, target:* = null, context:* = null, bubbles:Boolean = false, cancelable:Boolean = false, time:Number = 0)
+		public function ComponentEvent(type:String, target:Object = null, context:* = null, bubbles:Boolean = false, cancelable:Boolean = false, time:Number = 0)
 		{
 			super( type, target, context, bubbles, cancelable, time );
 		}
-		
+
 		/**
-		 * The type event name of the StyleEvent when the style is changed in the component.
+		 * Defines the value of the type property of a 'change' event object.
 		 */
-		public static const STYLE_CHANGE:String = "styleChange" ;
-		
+		public static var CHANGE:String = Event.CHANGE ;
+
 		/**
-		 * The type event name of the StyleEvent when the styleSheet in the IStyle is changed.
-	 	 */
-		public static const STYLE_SHEET_CHANGE:String = "styleSheetChange" ;
-		
-		/**
-		 * Returns the IStyle reference of this event.
-		 * @return the IStyle reference of this event.
+		 * Defines the value of the type property of an 'enabled' component.
 		 */
-		public function get style():IStyle 
-		{
-			return target as IStyle ;
-		}
-		
+		public static var ENABLED:String = "enabled" ;
+
 		/**
-		 * Sets the IStyle reference of this event.
+		 * Defines the value of the type property of an 'enter' component.
 		 */
-		public function set style( style:IStyle ):void 
-		{
-			target = style ;
-		}
+		public static var ENTER:String = "enter" ;
+
+		/**
+		 * Defines the value of the type property of an 'hide' component.
+		 */
+		public static var HIDE:String = "hide" ;
+
+		/**
+		 * Defines the value of the type property of an icon change event object.
+		 */
+		public static var ICON_CHANGE:String = "iconChange" ;
+
+		/**
+		 * Defines the value of the type property of a label change event object.
+		 */
+		public static var LABEL_CHANGE:String = "labelChange" ;
+
+		/**
+		 * Defines the value of the type property of an 'move' component.
+		 */
+		public static var MOVE:String = "move" ;
+
+		/**
+		 * Defines the value of the type property of an 'resize' component.
+		 */
+		public static var RESIZE:String = "resize" ;
+
+		/**
+		 * Defines the value of the type property of an 'show' component.
+		 */
+		public static var SHOW:String = "show" ;
 
 		/**
 		 * Returns the shallow copy of this event.
@@ -82,9 +98,9 @@ package pegas.events
 		 */
 		public override function clone():Event 
 		{
-			return new StyleEvent( type, style, context ) ;
+			return new ComponentEvent( type, target, context ) ;
 		}
 		
 	}
-	
+
 }

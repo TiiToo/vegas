@@ -300,7 +300,7 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 	/**
 	 * Unregister the view of this button.
 	 */
-	public function unregisterView( scope:MovieClip ):Void
+	public function unregisterView():Void
 	{
 		if (_scope != null) 
 		{

@@ -22,6 +22,7 @@
 */
 package lunas.core 
 {
+	import flash.events.IEventDispatcher;
 	import flash.text.StyleSheet;
 	
 	import andromeda.vo.IValueObject;	
@@ -30,7 +31,7 @@ package lunas.core
 	 * The IStyle interface defines style object used in the components of your applications.
 	 * @author eKameleon
 	 */
-	public interface IStyle extends IValueObject
+	public interface IStyle extends IEventDispatcher, IValueObject
 	{
 		
 		/**
@@ -61,5 +62,5 @@ package lunas.core
 		function update():void ;
 		
 	}
-	
 }
+
