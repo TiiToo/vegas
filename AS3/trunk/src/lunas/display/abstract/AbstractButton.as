@@ -26,6 +26,8 @@ package lunas.display.abstract
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	
+	// FIXME problem with useHandCursor
+	
 	import lunas.core.IButton;
 	import lunas.core.IData;
 	import lunas.display.abstract.AbstractComponent;
@@ -40,7 +42,7 @@ package lunas.display.abstract
 	{
 
 		/**
-		 * Creates a new AbstractButtonDisplay instance.
+		 * Creates a new AbstractButton instance.
 		 * @param id Indicates the id of the object.
 		 * @param isConfigurable This flag indicates if the IConfigurable object is register in the ConfigCollector.
 		 * @param name Indicates the instance name of the object.
@@ -59,7 +61,7 @@ package lunas.display.abstract
 		 */
 		public override function set buttonMode( b:Boolean ):void 
 		{
-			_buttonMode = b ;
+			_buttonMode = enabled && _buttonMode ;
 			if ( _scope != this )
 			{
 				_scope.buttonMode = enabled && _buttonMode ;
@@ -155,13 +157,24 @@ package lunas.display.abstract
 		/**
 		 * A Boolean value that, when set to true, indicates whether Flash Player displays the hand cursor when the mouse rolls over a button.
 		 */
+		public override function get useHandCursor():Boolean
+		{
+			return ( _scope == this ) ? super.useHandCursor : _scope.useHandCursor ;
+		}
+		
+		/**
+		 * @private
+		 */
 		public override function set useHandCursor( b:Boolean ):void 
 		{
-			if ( _scope != this )
+			if ( _scope == this )
+			{
+				super.useHandCursor = b ;
+			}
+			else
 			{
 				_scope.useHandCursor = b ;
 			}
-			super.useHandCursor = b ;
 		}
 		
 		/**
@@ -176,10 +189,10 @@ package lunas.display.abstract
 				_scope.buttonMode    = buttonMode ;
 				_scope.mouseEnabled  = mouseEnabled ;
 				_scope.useHandCursor = useHandCursor ;
-				_scope.addEventListener( MouseEvent.ROLL_OUT  , _onRollOut  ) ; 
-				_scope.addEventListener( MouseEvent.ROLL_OVER , _onRollOver ) ;
-				_scope.addEventListener( MouseEvent.CLICK     , _onPress    ) ;
-				_scope.addEventListener( MouseEvent.MOUSE_UP  , _onRelease  ) ;
+				_scope.addEventListener( MouseEvent.ROLL_OUT    , _onRollOut  ) ; 
+				_scope.addEventListener( MouseEvent.ROLL_OVER   , _onRollOver ) ;
+				_scope.addEventListener( MouseEvent.MOUSE_DOWN  , _onMouseDown    ) ;
+				_scope.addEventListener( MouseEvent.MOUSE_UP    , _onMouseUp  ) ;
 			}
 		}
 
@@ -207,10 +220,10 @@ package lunas.display.abstract
 			{
 				_scope.useHandCursor = false ;
 				_scope.mouseEnabled  = false ;
-				_scope.removeEventListener( MouseEvent.ROLL_OUT  , _onRollOut  ) ; 
-				_scope.removeEventListener( MouseEvent.ROLL_OVER , _onRollOver ) ;
-				_scope.removeEventListener( MouseEvent.CLICK     , _onPress    ) ;
-				_scope.removeEventListener( MouseEvent.MOUSE_UP  , _onRelease  ) ;
+				_scope.removeEventListener( MouseEvent.ROLL_OUT   , _onRollOut  ) ; 
+				_scope.removeEventListener( MouseEvent.ROLL_OVER  , _onRollOver ) ;
+				_scope.removeEventListener( MouseEvent.MOUSE_DOWN , _onMouseDown    ) ;
+				_scope.removeEventListener( MouseEvent.MOUSE_UP   , _onMouseUp  ) ;
 				_scope = null ;
 			}
 		}		
@@ -282,7 +295,7 @@ package lunas.display.abstract
 		/**
 		 * @private
 		 */
-		private function _onPress( e:MouseEvent ):void 
+		private function _onMouseDown( e:MouseEvent ):void 
 		{
 			if ( _toggle == true ) 
 			{
@@ -297,7 +310,7 @@ package lunas.display.abstract
 		/**
 		 * @private
 		 */
-		private function _onRelease( e:MouseEvent ):void 
+		private function _onMouseUp( e:MouseEvent ):void 
 		{ 
 			if ( !_toggle ) 
 			{
