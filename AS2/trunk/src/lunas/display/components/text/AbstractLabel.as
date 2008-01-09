@@ -19,8 +19,7 @@
   
   Contributor(s) :
   
-*/
-
+ */
 import lunas.display.components.AbstractComponent;
 import lunas.display.components.ILabel;
 
@@ -42,8 +41,7 @@ class lunas.display.components.text.AbstractLabel extends AbstractComponent impl
 	}
 
 	/**
-	 * Returns the automatic sizing and alignment of labels value.
-	 * @return the automatic sizing and alignment of labels value.
+	 * Indicates the automatic sizing and alignment of labels value.
 	 * @see TextFieldAutoSize
 	 */
 	public function get autoSize():Boolean
@@ -52,7 +50,7 @@ class lunas.display.components.text.AbstractLabel extends AbstractComponent impl
 	}
 
 	/**
-	 * Sets the automatic sizing and alignment of labels value.
+	 * @private
 	 */
 	public function set autoSize( b:Boolean ) 
 	{
@@ -60,8 +58,7 @@ class lunas.display.components.text.AbstractLabel extends AbstractComponent impl
 	}
 
 	/**
-	 * Returns a flag that indicates whether the label contains an HTML representation.
-	 * @return a flag that indicates whether the label contains an HTML representation.
+	 * (read-write) Indicates a flag that indicates whether the label contains an HTML representation.
 	 */
 	public function get html():Boolean 
 	{
@@ -69,80 +66,127 @@ class lunas.display.components.text.AbstractLabel extends AbstractComponent impl
 	}
 
 	/**
-	 * Sets the html flag that indicates whether the label contains an HTML representation.
+	 * @private
 	 */
 	public function set html(b:Boolean) 
 	{
 		setHTML(b) ;	
 	}
 
+	/**
+	 * (read-write) Indicates the label value of the component.
+	 */
 	public function get label():String 
 	{
 		return getLabel() ;	
 	}
 
+	/**
+	 * @private
+	 */
 	public function set label(s:String) 
 	{
 		setLabel(s) ;	
 	}
-		
+
+	/**
+	 * Indicates the multiline value of the component.
+	 */
 	public function get multiline():Boolean 
 	{ 
 		return getMultiline() ; 
 	}
-	
+
+	/**
+	 * @private
+	 */	
 	public function set multiline(b:Boolean) 
 	{ 
 		setMultiline(b); 
 	}
 	
+	/**
+	 * Indicates the text value of the component.
+	 */
 	public function get text():String 
 	{
 		return getText() ;	
 	}
-
+	
+	/**
+	 * @private
+	 */
 	public function set text(s:String) 
 	{
 		setText(s) ;	
 	}
 
+	/**
+	 * Returns the autoSize value of the component.
+	 * @return the autoSize value of the component.
+	 */
 	public function getAutoSize():Boolean
 	{
 		return _autoSize ;
 	}
-
+	
+	/**
+	 * Returns the html value of the component.
+	 * @return the html value of the component.
+	 */	
 	public function getHTML():Boolean 
 	{
 		return _html ;
 	}
-	
+
+	/**
+	 * Returns the label value of the component.
+	 * @return the label value of the component.
+	 */
 	public function getLabel():String 
 	{
 		return _label || "" ;
 	}
 
+	/**
+	 * Returns the multiline value of the component.
+	 * @return the multiline value of the component.
+	 */
 	public function getMultiline():Boolean 
 	{ 
 		return _multiline ; 
 	}
 	
+	/**
+	 * Returns the text value of the component.
+	 * @return the text value of the component.
+	 */
 	public function getText():String 
 	{
 		return getLabel() ;
 	}
 
+	/**
+	 * Sets the autoSize value of the label component.
+	 */
 	public function setAutoSize( b:Boolean ):Void 
 	{
 		_autoSize = b ;
 		update() ;
 	}
 
+	/**
+	 * Sets the html value of the label component.
+	 */
 	public function setHTML(b:Boolean):Void 
 	{
 		_html = b ;
 		update() ;
 	}
 
+	/**
+	 * Sets the label value of the label component.
+	 */
 	public function setLabel(str:String):Void 
 	{
 		_label = str.toString() ; 
@@ -158,28 +202,49 @@ class lunas.display.components.text.AbstractLabel extends AbstractComponent impl
 		dispatchEvent(new UIEvent( UIEvent.LABEL_CHANGE ) ) ;
 	}
 	
+	/**
+	 * Sets the multiline value of the label component.
+	 */
 	public function setMultiline(b:Boolean):Void 
 	{ 
 		_multiline = b ;
 		update() ;
 	}
 	
+	/**
+	 * Sets the text value of the label component.
+	 */
 	public function setText(str:String):Void 
 	{
 		setLabel(str) ;
 	}
-
+	
+	/**
+	 * Invoked when the label is changed.
+	 */
 	public function viewLabelChanged():Void 
 	{
 		// override this method when label property change
 	}
-
+	
+	/**
+	 * @private
+	 */
 	private var _autoSize:Boolean ;
 
+	/**
+	 * @private
+	 */
 	private var _html:Boolean ;
 
+	/**
+	 * @private
+	 */
 	private var _label:String ;
 
+	/**
+	 * @private
+	 */
 	private var _multiline:Boolean ;
 	
 
