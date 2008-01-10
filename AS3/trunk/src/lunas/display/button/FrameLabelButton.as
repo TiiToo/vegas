@@ -59,7 +59,7 @@ package lunas.display.button
 			_set = new HashSet() ;
 			if ( states != null )
 			{
-				this.states == states ;
+				this.states = states ;
 			}
 			// default
 			registerType( ButtonEvent.DISABLED ) ;
@@ -81,25 +81,14 @@ package lunas.display.button
 		 */
 		public function set states( states:MovieClip ):void
 		{
-			var ar:Array  = _set.toArray() ;
-			var size:uint ;
-			if ( _states != null && _set.size() > 0 )
+			if ( _states != null )
 			{
-				size = ar.length ;
-				while(--size > -1)
-				{
-					removeEventListener(ar[size], refreshState )	;
-				}
+				removeChild(_states) ;
 			}
 			_states = states ;
-			_states.gotoAndStop(1); // fix the MovieClip and stop this frame in the first frame.
-			if ( _states != null && _set.size() > 0 )
+			if ( _states != null )
 			{
-				size = ar.length ;
-				while(--size > -1)
-				{
-					addEventListener( ar[size], refreshState , false, 0, true )	;
-				}
+				_states.gotoAndStop(1); // fix the MovieClip and stop this frame in the first frame.
 				addChild(_states) ;
 			}
 		}
@@ -110,7 +99,7 @@ package lunas.display.button
 		public function registerType( type:String ):void
 		{
 			var b:Boolean = _set.insert( type ) ;
-			if ( b && states != null)
+			if ( b )
 			{
 				addEventListener( type , refreshState ) ;
 			}
@@ -121,13 +110,10 @@ package lunas.display.button
 		 */
 		public function unregisterType( type:String ):void
 		{
-			if ( type in ButtonEvent && _set.contains( type ) )
+			if ( _set.contains( type ) )
 			{
 				_set.remove( type ) ;
-				if ( states != null )
-				{
-					removeEventListener( type , refreshState ) ;
-				}
+				removeEventListener( type , refreshState ) ;
 			}
 		}		
 
@@ -147,6 +133,7 @@ package lunas.display.button
 		protected function refreshState( e:Event ):void 
 		{
 			var type:String = e.type ;
+			trace(this + " refreshState : " + type ) ;
 			if (states != null )
 			{
 				var noExistFrameLabel:Function = function( element:*, index:int, ar:Array ):Boolean

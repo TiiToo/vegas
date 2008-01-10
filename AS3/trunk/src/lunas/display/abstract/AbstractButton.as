@@ -26,8 +26,6 @@ package lunas.display.abstract
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	
-	// FIXME problem with useHandCursor
-	
 	import lunas.core.IButton;
 	import lunas.core.IData;
 	import lunas.display.abstract.AbstractComponent;
@@ -61,12 +59,17 @@ package lunas.display.abstract
 		 */
 		public override function set buttonMode( b:Boolean ):void 
 		{
-			_buttonMode = enabled && _buttonMode ;
-			if ( _scope != this )
+			_buttonMode = enabled ;
+			if ( _scope != null && _scope != this )
 			{
-				_scope.buttonMode = enabled && _buttonMode ;
+				
+				super.buttonMode = false ;
+				_scope.buttonMode = _buttonMode ;
 			}
-			super.buttonMode = enabled && _buttonMode ;
+			else
+			{
+				super.buttonMode =_buttonMode ;
+			}
 		}
 		
 		/**
@@ -112,15 +115,27 @@ package lunas.display.abstract
 		/**
 		 * Specifies whether this object receives mouse messages.
 		 */
+		public override function get mouseEnabled():Boolean
+		{
+			return ( _scope == this ) ? super.mouseEnabled : _scope.mouseEnabled ;
+		}
+		
+		/**
+		 * @private
+		 */
 		public override function set mouseEnabled( b:Boolean ):void 
 		{
-			if ( _scope != this )
+			_mouseEnabled = b ;
+			if ( _scope == this )
 			{
-				_scope.mouseEnabled = b ;
+				super.mouseEnabled = _mouseEnabled && enabled ;
 			}
-			super.mouseEnabled = b ;
+			else
+			{
+				_scope.mouseEnabled = _mouseEnabled && enabled ;
+			}
 		}
-
+		
 		/**
 		 * A flag that indicates whether this control is selected.
 		 */
@@ -159,7 +174,7 @@ package lunas.display.abstract
 		 */
 		public override function get useHandCursor():Boolean
 		{
-			return ( _scope == this ) ? super.useHandCursor : _scope.useHandCursor ;
+			return _useHandCursor ;
 		}
 		
 		/**
@@ -167,13 +182,14 @@ package lunas.display.abstract
 		 */
 		public override function set useHandCursor( b:Boolean ):void 
 		{
-			if ( _scope == this )
+			if ( _scope != null && _scope != this )
 			{
-				super.useHandCursor = b ;
+				_scope.useHandCursor = false ;
+				super.useHandCursor  = b ;
 			}
 			else
 			{
-				_scope.useHandCursor = b ;
+				super.useHandCursor = b ;
 			}
 		}
 		
@@ -189,10 +205,10 @@ package lunas.display.abstract
 				_scope.buttonMode    = buttonMode ;
 				_scope.mouseEnabled  = mouseEnabled ;
 				_scope.useHandCursor = useHandCursor ;
-				_scope.addEventListener( MouseEvent.ROLL_OUT    , _onRollOut  ) ; 
-				_scope.addEventListener( MouseEvent.ROLL_OVER   , _onRollOver ) ;
-				_scope.addEventListener( MouseEvent.MOUSE_DOWN  , _onMouseDown    ) ;
-				_scope.addEventListener( MouseEvent.MOUSE_UP    , _onMouseUp  ) ;
+				if ( enabled )
+				{
+					_registerScope() ;
+				}
 			}
 		}
 
@@ -218,24 +234,22 @@ package lunas.display.abstract
 		{
 			if (_scope != null) 
 			{
+				_scope.buttonMode    = false ;
 				_scope.useHandCursor = false ;
 				_scope.mouseEnabled  = false ;
-				_scope.removeEventListener( MouseEvent.ROLL_OUT   , _onRollOut  ) ; 
-				_scope.removeEventListener( MouseEvent.ROLL_OVER  , _onRollOver ) ;
-				_scope.removeEventListener( MouseEvent.MOUSE_DOWN , _onMouseDown    ) ;
-				_scope.removeEventListener( MouseEvent.MOUSE_UP   , _onMouseUp  ) ;
+				_unregisterScope() ;
 				_scope = null ;
 			}
-		}		
-		
+		}
+
 		/**
 		 * Invoked when the enabled property of the component change.
 		 */
 		final public override function viewEnabled():void 
 		{
 			var type:String ;
-			buttonMode = buttonMode ; // fix button mode of the component with the new enabled property value.
-			if ( enabled ) 
+			_scope.mouseEnabled = enabled ;
+			if ( enabled == true ) 
 			{
 				type = (toggle && selected) ? ButtonEvent.DOWN : ButtonEvent.UP ;
 			}
@@ -272,6 +286,11 @@ package lunas.display.abstract
 		/**
 		 * @private
 		 */
+		private var _mouseEnabled:Boolean ;
+		
+		/**
+		 * @private
+		 */
 		private var _scope:Sprite ;	
 
 		/**
@@ -287,6 +306,11 @@ package lunas.display.abstract
 		/**
 		 * @private
 		 */
+		private var _useHandCursor:Boolean ;
+
+		/**
+		 * @private
+		 */
 		private function _fireButtonEvent( type:String ):void 
 		{
 			dispatchEvent( new ButtonEvent( type, this , true ) ) ;
@@ -297,6 +321,10 @@ package lunas.display.abstract
 		 */
 		private function _onMouseDown( e:MouseEvent ):void 
 		{
+			if ( !enabled )
+			{
+				return ;
+			}
 			if ( _toggle == true ) 
 			{
 				selected = !selected ;
@@ -312,7 +340,7 @@ package lunas.display.abstract
 		 */
 		private function _onMouseUp( e:MouseEvent ):void 
 		{ 
-			if ( !_toggle ) 
+			if ( !_toggle && enabled ) 
 			{
 				_fireButtonEvent( ButtonEvent.UP ) ;
 			}
@@ -323,6 +351,10 @@ package lunas.display.abstract
 		 */
 		private function _onRollOut( e:MouseEvent ):void 
 		{
+			if ( !enabled )
+			{
+				return ;
+			}
 			if ( !_toggle || !_selected ) 
 			{
 				_fireButtonEvent( ButtonEvent.UP ) ;
@@ -339,6 +371,10 @@ package lunas.display.abstract
 		 */
 		private function _onRollOver( e:MouseEvent ):void 
 		{
+			if ( !enabled )
+			{
+				return ;
+			}
 			if ( !_toggle || !_selected ) 
 			{
 				_fireButtonEvent( ButtonEvent.OVER ) ;
@@ -346,6 +382,34 @@ package lunas.display.abstract
 			else if (_selected) 
 			{ 
 				_fireButtonEvent( ButtonEvent.OVER_SELECTED ) ;
+			}
+		}	
+
+		/**
+		 * @private
+		 */
+		private function _registerScope():void
+		{
+			if (_scope != null) 
+			{
+				_scope.addEventListener( MouseEvent.ROLL_OUT    , _onRollOut  ) ; 
+				_scope.addEventListener( MouseEvent.ROLL_OVER   , _onRollOver ) ;
+				_scope.addEventListener( MouseEvent.MOUSE_DOWN  , _onMouseDown    ) ;
+				_scope.addEventListener( MouseEvent.MOUSE_UP    , _onMouseUp  ) ;
+			}
+		}	
+		
+		/**
+		 * @private
+		 */
+		private function _unregisterScope():void
+		{
+			if (_scope != null) 
+			{
+				_scope.removeEventListener( MouseEvent.ROLL_OUT   , _onRollOut  ) ; 
+				_scope.removeEventListener( MouseEvent.ROLL_OVER  , _onRollOver ) ;
+				_scope.removeEventListener( MouseEvent.MOUSE_DOWN , _onMouseDown    ) ;
+				_scope.removeEventListener( MouseEvent.MOUSE_UP   , _onMouseUp  ) ;
 			}
 		}	
 	
