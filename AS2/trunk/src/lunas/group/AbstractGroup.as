@@ -30,14 +30,14 @@ import vegas.events.Event;
 import vegas.events.EventListener;
 
 /**
- * This singleton class defined all groups for the different RadioButton in the application.
+ * This abstract class defined a skeletal implementation to create component's groups.
  * @author eKameleon
  */
 class lunas.group.AbstractGroup extends CoreObject implements EventListener
 {
 	
 	/**
-	 * Creates the AbstractGroup instance.
+	 * Creates a new AbstractGroup instance.
 	 */
 	public function AbstractGroup () 
 	{

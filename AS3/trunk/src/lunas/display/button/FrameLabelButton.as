@@ -210,6 +210,10 @@ package lunas.display.button
 				{
 					states.gotoAndStop( e.type ) ;
 				}
+				else
+				{
+					states.gotoAndStop(1) ;
+				}
 			}
 			else
 			{

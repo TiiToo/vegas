@@ -30,7 +30,8 @@ package lunas.display.abstract
 	import lunas.core.IData;
 	import lunas.display.abstract.AbstractComponent;
 	import lunas.events.ButtonEvent;
-	import lunas.events.ComponentEvent;	
+	import lunas.events.ComponentEvent;
+	import lunas.groups.RadioButtonGroup;	
 
 	/**
 	 * This class provides a skeletal implementation of the {@code IButton} interface, to minimize the effort required to implement this interface.
@@ -194,6 +195,22 @@ package lunas.display.abstract
 		}
 		
 		/**
+		 * Invoked when the group property or the groupName property changed.
+		 * Overrides this method in concrete class.
+		 */
+		public override function groupPolicyChanged():void 
+		{
+			if ( group == true ) 
+			{
+				addEventListener(ButtonEvent.DOWN , RadioButtonGroup.getInstance().handleEvent ) ;
+			}
+			else
+			{
+				removeEventListener( ButtonEvent.DOWN , RadioButtonGroup.getInstance().handleEvent ) ;
+			}
+		}		
+		
+		/**
 		 * Register the view in argument.
 		 */
 		public function registerView( scope:Sprite = null ):void
@@ -217,14 +234,14 @@ package lunas.display.abstract
 		 * Sets a boolean value indicating whether the button is selected (true) or not (false). 
 		 * The default value is false.
 		 */
-		public function setSelected ( b:Boolean, noEvent:Boolean=false ):void 
+		public function setSelected ( b:Boolean, flag:Boolean=false ):void 
 		{
 			_selected =  (_toggle) ? b : null ;
 			if ( enabled )
 			{
 				dispatchEvent ( new ButtonEvent( _selected ? ButtonEvent.DOWN : ButtonEvent.UP , this ) ) ;
 			}
-			if ( noEvent == false ) 
+			if ( flag == false ) 
 			{
 				dispatchEvent( new ButtonEvent( _selected ? ButtonEvent.SELECT : ButtonEvent.UNSELECT ) ) ;
 			}

@@ -36,6 +36,14 @@ package lunas.core
 		function get toggle():Boolean ;
 		function set toggle( b:Boolean ):void ;
 		
+		/**
+		 * Sets a boolean value indicating whether the button is selected (true) or not (false). 
+		 * The default value is false.
+		 * @param b The selected flag value.
+		 * @param flag optional flag to control the method.
+		 */
+		function setSelected ( b:Boolean, flag:Boolean=false ):void 
+		
 	}
 	
 }
