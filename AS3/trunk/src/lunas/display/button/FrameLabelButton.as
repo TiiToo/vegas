@@ -200,7 +200,7 @@ package lunas.display.button
 		protected function refreshState( e:Event ):void 
 		{
 			var type:String = e.type ;
-			if (states != null )
+			if ( states != null )
 			{
 				var noExistFrameLabel:Function = function( element:*, index:int, ar:Array ):Boolean
 				{
@@ -217,7 +217,7 @@ package lunas.display.button
 			}
 			else
 			{
-				states.gotoAndStop(1) ;
+				//
 			}
 		}
 		

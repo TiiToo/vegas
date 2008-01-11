@@ -22,10 +22,6 @@
 */
 package lunas.display.abstract 
 {
-	
-	// TODO show / hide
-	// TODO use resize
-	
 	import flash.events.Event;
 	import flash.events.TimerEvent;
 	
@@ -70,6 +66,11 @@ package lunas.display.abstract
 			___timer___.addEventListener(TimerEvent.TIMER, _redraw ) ;
 			
 		}
+		
+		/**
+		 * Indicates if the events use bubbling when are dispatched.
+		 */
+		public var bubbles:Boolean = true ;
 		
 		/**
 		 * Indicates the IBuilder reference of this instance.
@@ -218,7 +219,7 @@ package lunas.display.abstract
 			{
 				return ;
 			}
-			dispatchEvent( new StyleEvent(StyleEvent.STYLE_CHANGE , this ) ) ;
+			dispatchEvent( new StyleEvent(StyleEvent.STYLE_CHANGE , this, bubbles  ) ) ;
 			update() ;
 		}
 		
@@ -260,11 +261,10 @@ package lunas.display.abstract
 			// overrides
 		}
 
-
 		/**
 		 * Returns the constructor function of the {@code IBuilder} of this instance.
 		 * @return the constructor function of the {@code IBuilder} of this instance.
-	 	*/
+	 	 */
 		public function getBuilderRenderer():Class 
 		{
 			return null ; // overrides
@@ -280,6 +280,24 @@ package lunas.display.abstract
 		}
 		
 		/**
+		 * Hides the component.
+		 */
+		public function hide():void 
+		{
+			visible = false ;
+			_fireComponentEvent( ComponentEvent.HIDE  ) ;
+		}
+		
+		/**
+		 * Returns {@code true} if the component is visible.
+		 * @return {@code true} if the component is visible.
+	 	*/
+		public function isVisible():Boolean 
+		{
+			return visible ;
+		}
+		
+		/**
 		 * Initialize the component.
 		 * You can override this method.
 		 */
@@ -289,11 +307,29 @@ package lunas.display.abstract
 		}
 		
 		/**
+		 * Moves the component.
+		 * @param x The x position of the component.
+		 * @param y The y position of the component.
+		 */
+		public function move( x:Number=NaN , y:Number=NaN ):void
+		{
+			if ( !isNaN(x) )
+			{
+				this.x = x ;
+			}
+			if ( !isNaN(y) )
+			{
+				this.y = y ;
+			}
+			_fireComponentEvent( ComponentEvent.MOVE ) ;
+		}
+		
+		/**
 		 * Notify a change in this component.
 		 */
 		public function notifyChanged():void 
 		{
-			dispatchEvent( new ComponentEvent( ComponentEvent.CHANGE , this ) ) ;
+			_fireComponentEvent( ComponentEvent.CHANGE ) ;
 		}		
 				
 		/**
@@ -302,7 +338,7 @@ package lunas.display.abstract
 		 */
 		public function notifyEnabled():void
 		{
-			dispatchEvent( new ComponentEvent( ComponentEvent.ENABLED ) ) ;	
+			_fireComponentEvent( ComponentEvent.ENABLED ) ;	
 		}
 		
 		/**
@@ -311,7 +347,7 @@ package lunas.display.abstract
 		public function notifyResized():void 
 		{
 			viewResize() ;
-			dispatchEvent( new ComponentEvent( ComponentEvent.RESIZE , this )  ) ;
+			_fireComponentEvent( ComponentEvent.RESIZE ) ;
 		}
 		
 		/**
@@ -339,6 +375,15 @@ package lunas.display.abstract
 		}
 		
 		/**
+		 * Shows the component.
+		 */
+		public function show():void 
+		{
+			visible = true ;
+			_fireComponentEvent( ComponentEvent.SHOW  ) ;
+		}
+		
+		/**
 		 * Updates the component. This method is invoked when the component must be refresh.
 		 */
 		public override function update():void 
@@ -353,7 +398,7 @@ package lunas.display.abstract
 				_builder.update() ;
 			}
 			viewChanged() ;
-			dispatchEvent( new Event( Event.RENDER ) ) ;
+			_fireComponentEvent( Event.RENDER ) ;
 		}
 		
 		/**
@@ -440,6 +485,14 @@ package lunas.display.abstract
 		 * @private
 		 */
 		private var _w:Number ;		
+		
+		/**
+		 * @private
+		 */
+		private function _fireComponentEvent( type:String ):void
+		{
+			dispatchEvent( new ComponentEvent( type , this , bubbles )  ) ;
+		}
 		
 		/**
 		 * Redraws the component.

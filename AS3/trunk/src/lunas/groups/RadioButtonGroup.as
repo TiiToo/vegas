@@ -46,7 +46,7 @@ package lunas.groups
 		 */
 		public static function getInstance():RadioButtonGroup 
 		{
-			if (_instance == undefined)  
+			if ( _instance == null )  
 			{
 				_instance = new RadioButtonGroup () ;
 			}
@@ -114,7 +114,7 @@ package lunas.groups
 			}
 		}
 	
-		private static var _instance : RadioButtonGroup ;	
+		private static var _instance:RadioButtonGroup ;	
 	
 	}
 }

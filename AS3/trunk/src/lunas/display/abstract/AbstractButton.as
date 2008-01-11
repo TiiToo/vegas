@@ -202,7 +202,7 @@ package lunas.display.abstract
 		{
 			if ( group == true ) 
 			{
-				addEventListener(ButtonEvent.DOWN , RadioButtonGroup.getInstance().handleEvent ) ;
+				addEventListener( ButtonEvent.DOWN , RadioButtonGroup.getInstance().handleEvent ) ;
 			}
 			else
 			{
