@@ -220,7 +220,10 @@ package lunas.display.abstract
 		public function setSelected ( b:Boolean, noEvent:Boolean=false ):void 
 		{
 			_selected =  (_toggle) ? b : null ;
-			dispatchEvent ( new ButtonEvent( _selected ? ButtonEvent.DOWN : ButtonEvent.UP , this ) ) ;
+			if ( enabled )
+			{
+				dispatchEvent ( new ButtonEvent( _selected ? ButtonEvent.DOWN : ButtonEvent.UP , this ) ) ;
+			}
 			if ( noEvent == false ) 
 			{
 				dispatchEvent( new ButtonEvent( _selected ? ButtonEvent.SELECT : ButtonEvent.UNSELECT ) ) ;

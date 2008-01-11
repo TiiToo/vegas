@@ -32,7 +32,7 @@ package lunas.display.button
 	import vegas.data.sets.HashSet;	
 
 	/**
-	 * The FrameLabelButton class is use over a clip with the 4 default frame's labels with the name :
+	 * The FrameLabelButton class is use over a "state" MovieClip with the 4 default frame's labels with the name :
  	 * <ul>
  	 * <li>"disabled" : the frame when the button is disabled.</li>
 	 * <li>"down"     : the frame when the button is down.</li>
@@ -41,6 +41,72 @@ package lunas.display.button
 	 * </ul>
 	 * <p>The {@code stop()} method is call in the first frame of the component when the constructor is launched.</p>
 	 * This class looks like SimpleButton class but you can use the {@code registerType()} and the {@code unregisterType()} method to add or remove a ButtonEvent type (DISABLED, OVER, DOWN...) corresponding with a frame label in the MovieClip view of the button.
+	 * <p>
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import lunas.display.button.FrameLabelButton ;
+	 * import lunas.events.ButtonEvent ;
+	 * 
+	 * var bt:FrameLabelButton = new FrameLabelButton() ;
+	 * bt.x = 50 ;
+	 * bt.y = 50 ;
+	 * 
+	 * // only if toggle is true and selected is true
+	 * 
+	 * bt.registerType( ButtonEvent.OVER_SELECTED ) ;
+	 * bt.registerType( ButtonEvent.OUT_SELECTED ) ;
+	 * 
+	 * addChild(bt) ;
+	 * 
+	 * try
+	 * {
+	 *     // The QuestionButton is the class of a MovieClip in the library of the swf who extends MovieClip
+	 *     bt.states = new QuestionButton() ;
+	 * }
+	 * catch(e:Error )
+	 * {
+	 *     trace(e) ;
+	 * }
+	 * 
+	 * // test the toggle
+	 * 
+	 * var keyDown:Function = function( e:KeyboardEvent ):void
+	 * {
+	 *     var code:uint = e.keyCode ;
+	 *     switch( code )
+	 *     {
+	 *         case Keyboard.SPACE :
+	 *         {
+	 *              bt.enabled = !bt.enabled ;
+	 *              break ;
+	 *         }
+	 *         default :
+	 *         {
+	 *              bt.toggle = !bt.toggle ;
+	 *         }
+	 *     }
+	 * }
+	 * 
+	 * stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
+	 * 
+	 * // debug
+	 * 
+	 * var debug:Function = function( e:Event ):void
+	 * {
+	 *     trace( "toggle:" + bt.toggle + " selected:" + bt.selected + " type:" + e.type + " enabled:" + bt.enabled ) ;
+	 * }
+	 * 
+	 * bt.addEventListener( ButtonEvent.CLICK         , debug ) ;
+	 * bt.addEventListener( ButtonEvent.DISABLED      , debug ) ;
+	 * bt.addEventListener( ButtonEvent.DOWN          , debug ) ;
+	 * bt.addEventListener( ButtonEvent.OUT           , debug ) ;
+	 * bt.addEventListener( ButtonEvent.OUT_SELECTED  , debug ) ;
+	 * bt.addEventListener( ButtonEvent.OVER          , debug ) ;
+	 * bt.addEventListener( ButtonEvent.OVER_SELECTED , debug ) ;
+	 * bt.addEventListener( ButtonEvent.SELECT        , debug ) ;
+	 * bt.addEventListener( ButtonEvent.UNSELECT      , debug ) ;
+	 * bt.addEventListener( ButtonEvent.UP            , debug ) ;
+	 * }
 	 * @author eKameleon
 	 */
 	public class FrameLabelButton extends AbstractButton 
@@ -88,6 +154,7 @@ package lunas.display.button
 			_states = states ;
 			if ( _states != null )
 			{
+				_states.mouseEnabled = false ;
 				_states.gotoAndStop(1); // fix the MovieClip and stop this frame in the first frame.
 				addChild(_states) ;
 			}
@@ -133,7 +200,6 @@ package lunas.display.button
 		protected function refreshState( e:Event ):void 
 		{
 			var type:String = e.type ;
-			trace(this + " refreshState : " + type ) ;
 			if (states != null )
 			{
 				var noExistFrameLabel:Function = function( element:*, index:int, ar:Array ):Boolean
