@@ -24,8 +24,6 @@ package lunas.core
 {
 	import flash.text.StyleSheet;
 	
-	import lunas.display.StyleCollector;
-	
 	import pegas.events.StyleEvent;
 	
 	import system.Reflection;

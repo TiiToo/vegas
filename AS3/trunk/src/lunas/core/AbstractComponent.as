@@ -20,10 +20,8 @@
   Contributor(s) :
   
 */
-package lunas.display.abstract 
+package lunas.core 
 {
-	import lunas.display.StyleCollector;	
-	
 	import flash.events.Event;
 	import flash.events.TimerEvent;
 	
@@ -91,7 +89,6 @@ package lunas.display.abstract
 					style = new cs( path ) as IStyle ; // creates the default singleton IStyle reference of this component
 				}
 			}
-		
 			
 		}
 		
@@ -237,7 +234,12 @@ package lunas.display.abstract
 		public function set style( s:IStyle ):void 
 		{
 			_unregisterStyle() ;
-			if (s == null ) 
+			var path:String = Reflection.getClassPath(this) ;
+			if ( s == null && StyleCollector.contains( path ) )
+			{
+				s = StyleCollector.get( path ) ; // default IStyle of the component
+			}
+			else if ( s == null ) 
 			{
 				return ;
 			}

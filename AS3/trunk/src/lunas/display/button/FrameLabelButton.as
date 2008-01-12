@@ -26,7 +26,7 @@ package lunas.display.button
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	
-	import lunas.display.abstract.AbstractButton;
+	import lunas.core.AbstractButton;
 	import lunas.events.ButtonEvent;
 	
 	import vegas.data.map.HashMap;	

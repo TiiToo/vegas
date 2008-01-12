@@ -40,6 +40,10 @@ package lunas.display.button
 
 		/**
 		 * Creates a new LightFrameLabelButton instance.
+		 * @param states the MovieClip reference with the state frames of this button.
+		 * @param id Indicates the id of the object.
+		 * @param isConfigurable This flag indicates if the IConfigurable object is register in the ConfigCollector.
+		 * @param name Indicates the instance name of the object.
 		 */
 		public function LightFrameLabelButton(states:MovieClip = null, id:* = null, isConfigurable:Boolean = false, name:String = null)
 		{
@@ -74,13 +78,11 @@ package lunas.display.button
 			{
 				_tw.stop() ;	
 			}
-					trace(s) ;			
 			var s:LightFrameLabelButtonStyle = style as LightFrameLabelButtonStyle ;
 			if ( s != null )
 			{
 				if ( s.useEasingSelected )
 				{
-					trace("down") ;
 					_tw.duration   = s.easingSelectedDuration ;
 					_tw.useSeconds = s.easingSelectedUseSeconds ;
 					_tw.insertProperty( s.easingSelectedProperty, s.easingSelected, s.easingSelectedBegin, s.easingSelectedFinish ) ;

@@ -20,7 +20,7 @@
   Contributor(s) :
   
 */
-package lunas.display
+package lunas.core
 {
 	import lunas.core.IStyle;
 	

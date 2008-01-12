@@ -20,7 +20,7 @@
   Contributor(s) :
   
 */
-package lunas.display.abstract 
+package lunas.core 
 {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
@@ -28,7 +28,6 @@ package lunas.display.abstract
 	
 	import lunas.core.IButton;
 	import lunas.core.IData;
-	import lunas.display.abstract.AbstractComponent;
 	import lunas.events.ButtonEvent;
 	import lunas.events.ComponentEvent;
 	import lunas.groups.RadioButtonGroup;	
