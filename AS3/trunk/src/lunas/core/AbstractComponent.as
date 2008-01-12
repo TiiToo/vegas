@@ -526,9 +526,9 @@ package lunas.core
 		private var _w:Number ;		
 		
 		/**
-		 * @private
+		 * Dispatchs a ComponentEvent with the specified type.
 		 */
-		private function _fireComponentEvent( type:String ):void
+		protected function _fireComponentEvent( type:String ):void
 		{
 			dispatchEvent( new ComponentEvent( type , this , bubbles )  ) ;
 		}

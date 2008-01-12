@@ -224,7 +224,7 @@ package lunas.core
 		public function registerView( scope:Sprite = null ):void
 		{
 			unregisterView() ;
-			_scope = ( scope == null ) ? this : ( ( _scope.parent == this ) ? scope : this ) ;
+			_scope = ( scope == null ) ? this : ( ( scope.parent == this ) ? scope : this ) ;
 			if( _scope != null )
 			{
 			
@@ -237,8 +237,7 @@ package lunas.core
 				}
 			}
 		}
-
-		
+			
 		/**
 		 * Sets a boolean value indicating whether the button is selected (true) or not (false). 
 		 * The default value is false.
@@ -338,9 +337,9 @@ package lunas.core
 		private var _useHandCursor:Boolean ;
 
 		/**
-		 * @private
+		 * Dispatchs a ButtonEvent with the specified type.
 		 */
-		private function _fireButtonEvent( type:String ):void 
+		protected function _fireButtonEvent( type:String ):void 
 		{
 			dispatchEvent( new ButtonEvent( type, this , true ) ) ;
 		}	

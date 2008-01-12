@@ -42,6 +42,17 @@ class lunas.display.components.container.ListContainer extends SimpleContainer
 		_createMask() ;
 		update() ;
 	}
+	
+	public function get childCount():Number 
+	{
+		return getChildCount() ;
+	}
+	
+	public function set childCount(n:Number):Void 
+	{
+		setChildCount( n ) ;
+	}
+
 
 	public function get direction():Number 
 	{
@@ -53,15 +64,6 @@ class lunas.display.components.container.ListContainer extends SimpleContainer
 		setDirection( n ) ;
 	}
 	
-	public function get childCount():Number 
-	{
-		return getChildCount() ;
-	}
-	
-	public function set childCount(n:Number):Void 
-	{
-		setChildCount( n ) ;
-	}
 
 	public function get maskIsActive():Boolean 
 	{

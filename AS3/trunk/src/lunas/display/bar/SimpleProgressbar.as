@@ -36,6 +36,79 @@ package lunas.display.bar
 
 	/**
 	 * The SimpleProgressbar component.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import flash.display.StageScaleMode ;
+	 * 
+	 * import pegas.draw.FillStyle ;
+	 * import pegas.draw.LineStyle ;
+	 * 
+	 * import lunas.core.Direction ;
+	 * import lunas.core.EdgeMetrics ;
+	 * import lunas.display.bar.SimpleProgressbar ;
+	 * import lunas.events.ComponentEvent ;
+	 * 
+	 * stage.scaleMode = StageScaleMode.NO_SCALE ;
+	 * 
+	 * var change:Function = function( e:ComponentEvent ):void
+	 * {
+	 *     trace( e.type + " : " + bar.position ) ;
+	 * }
+	 * 
+	 * var bar:SimpleProgressbar = new SimpleProgressbar() ;
+	 * bar.addEventListener( ComponentEvent.CHANGE , change ) ;
+	 * bar.x = 50 ;
+	 * bar.y = 50 ;
+	 * bar.position = 50 ;
+	 * 
+	 * addChild(bar) ;
+	 * 
+	 * var keyDown:Function = function( e:KeyboardEvent ):void
+	 * {
+	 *     var code:uint = e.keyCode ;
+	 *     switch( code )
+	 *     {
+	 *         case Keyboard.LEFT :
+	 *         {
+	 *             bar.position -= 10 ;
+	 *             break ;
+	 *         }
+	 *         case Keyboard.RIGHT :
+	 *         {
+	 *             bar.position += 10 ;
+	 *             break ;
+	 *         }
+	 *         case Keyboard.SPACE :
+	 *         {
+	 *             bar.lock() ;
+	 *             bar.backgroundFillStyle = new FillStyle( 0xB5C7CA , 1 ) ;
+	 *             bar.backgroundLineStyle = new LineStyle( 2 , 0xFFFFFF , 1 ) ;
+	 *             bar.barFillStyle        = new FillStyle( 0x921085 , 1 ) ;
+	 *             bar.barLineStyle        = new LineStyle( 1 , 0x6A9195, 1 ) ;
+	 *             bar.border              = new EdgeMetrics(2, 2, 2, 2) ;
+	 *             bar.unlock() ;
+	 *             bar.setSize( 200, 8 ) ;
+	 *             break ;
+	 *         }
+	 *         default :
+	 *         {
+	 *             bar.direction = ( bar.direction == Direction.VERTICAL ) ? Direction.HORIZONTAL : Direction.VERTICAL ;
+	 *             if ( bar.direction == Direction.VERTICAL )
+	 *             {
+	 *                 bar.setSize( 8, 200 ) ;
+	 *             }
+	 *             else
+	 *             {
+	 *                 bar.setSize( 200, 8 ) ;
+	 *             }
+	 *         }
+	 *     }
+	 * }
+	 * 
+	 * stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
+	 * 
+	 * trace("Press Keyboard.LEFT or Keyboard.RIGHT or Keyboard.SPACE or other keyboard touch to test this example.") ;
+	 * }
 	 * @author eKameleon
 	 */
 	public class SimpleProgressbar extends AbstractProgressbar 

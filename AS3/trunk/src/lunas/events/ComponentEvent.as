@@ -53,6 +53,11 @@ package lunas.events
 		public static var CHANGE:String = Event.CHANGE ;
 
 		/**
+		 * Defines the value of the type property of a 'clear' event object.
+		 */
+		public static var CLEAR:String = "clear" ;
+
+		/**
 		 * Defines the value of the type property of an 'enabled' component.
 		 */
 		public static var ENABLED:String = "enabled" ;
