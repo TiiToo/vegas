@@ -152,7 +152,16 @@ package lunas.display.abstract
 		{
 			setSelected( b ) ;
 		}
-
+		
+		/**
+		 * Returns the scope reference of this IButton.
+		 * @return the scope reference of this IButton.
+		 */
+		public function scope():Sprite
+		{
+			return _scope || this ;	
+		}
+		
 		/**
 		 * Indicates a boolean value indicating whether the button behaves as a toggle switch (true) or not (false). 
 		 */
@@ -216,9 +225,10 @@ package lunas.display.abstract
 		public function registerView( scope:Sprite = null ):void
 		{
 			unregisterView() ;
-			_scope = scope == null ? this : ( ( _scope.parent == this ) ? scope : this ) ;
+			_scope = ( scope == null ) ? this : ( ( _scope.parent == this ) ? scope : this ) ;
 			if( _scope != null )
 			{
+			
 				_scope.buttonMode    = buttonMode ;
 				_scope.mouseEnabled  = mouseEnabled ;
 				_scope.useHandCursor = useHandCursor ;
@@ -309,9 +319,9 @@ package lunas.display.abstract
 		private var _mouseEnabled:Boolean ;
 		
 		/**
-		 * @private
+		 * The scope of the active display of this button component.
 		 */
-		private var _scope:Sprite ;	
+		protected var _scope:Sprite ;	
 
 		/**
 		 * @private

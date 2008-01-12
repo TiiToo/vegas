@@ -127,7 +127,7 @@ package lunas.core
 				return ;
 			} 
 				
-			if (  args[0] is String && arguments.length == 2 ) 
+			if (  args[0] is String && args.length == 2 ) 
 			{
 				if ( args[0] in this ) 
 				{
@@ -135,9 +135,9 @@ package lunas.core
 					dispatchEvent( new StyleEvent( StyleEvent.STYLE_CHANGE , this ) ) ;
 				}
 			}
-			else if ( arguments[0] is Object ) 
+			else if ( args[0] is Object ) 
 			{
-				var prop:* = arguments[0] ;
+				var prop:* = args[0] ;
 				for (var i:String in prop) 
 				{
 					this[i] = prop[i] ;

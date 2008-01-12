@@ -29,7 +29,7 @@ package lunas.display.button
 	import lunas.display.abstract.AbstractButton;
 	import lunas.events.ButtonEvent;
 	
-	import vegas.data.sets.HashSet;	
+	import vegas.data.map.HashMap;	
 
 	/**
 	 * The FrameLabelButton class is use over a "state" MovieClip with the 4 default frame's labels with the name :
@@ -122,7 +122,7 @@ package lunas.display.button
 		public function FrameLabelButton( states:MovieClip=null , id:* = null, isConfigurable:Boolean = false, name:String = null )
 		{
 			super( id, isConfigurable, name );
-			_set = new HashSet() ;
+			_map = new HashMap() ;
 			if ( states != null )
 			{
 				this.states = states ;
@@ -161,12 +161,23 @@ package lunas.display.button
 		}
 
 		/**
-		 * Registers the ButtonEvent type passed in argument.
+		 * Returns {@code true} if the specified type is register in the object.
+		 * @return {@code true} if the specified type is register in the object.
 		 */
-		public function registerType( type:String ):void
+		public function containsType( type:String ):Boolean
 		{
-			var b:Boolean = _set.insert( type ) ;
-			if ( b )
+			return _map.containsKey(type) ;	
+		}
+
+		/**
+		 * Registers the ButtonEvent type passed in argument.
+		 * @param type The type of the frame event to register (choose your event in the ButtonEvent static enumeration).
+		 * @param callback The optional method of the button to launch 
+		 */
+		public function registerType( type:String , callback:Function=null ):void
+		{
+			var noExist:Boolean = _map.put( type , callback == null ? PRESENT : callback ) == null ;
+			if ( noExist )
 			{
 				addEventListener( type , refreshState ) ;
 			}
@@ -177,10 +188,10 @@ package lunas.display.button
 		 */
 		public function unregisterType( type:String ):void
 		{
-			if ( _set.contains( type ) )
+			if ( _map.containsKey( type ) )
 			{
-				_set.remove( type ) ;
 				removeEventListener( type , refreshState ) ;
+				_map.remove( type ) ;
 			}
 		}		
 
@@ -192,7 +203,7 @@ package lunas.display.button
 		/**
 		 * @private
 		 */
-		private var _set:HashSet ;
+		private var _map:HashMap ;
 
 		/**
 		 * Invoked when the view of the button is refresh.
@@ -208,11 +219,16 @@ package lunas.display.button
 				} ;
 				if ( !states.currentLabels.every( noExistFrameLabel , this ) )
 				{
-					states.gotoAndStop( e.type ) ;
+					states.gotoAndStop( type ) ;
 				}
 				else
 				{
 					states.gotoAndStop(1) ;
+				}
+				var callback:* = _map.get( type ) ;
+				if ( callback is Function && callback != PRESENT )
+				{
+					( callback as Function).call( this , e ) ;
 				}
 			}
 			else
@@ -220,6 +236,11 @@ package lunas.display.button
 				//
 			}
 		}
+		
+		/**
+		 * @private
+		 */
+		private static const PRESENT:Object = new Object() ;
 		
 	}
 

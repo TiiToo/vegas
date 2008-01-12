@@ -304,7 +304,8 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	}
 
 	/**
-	 * Returns the constructor of the IStyle of this instance. 
+	 * Returns the constructor of the IStyle of this instance.
+	 * @return the constructor of the IStyle of this instance.
 	 */
 	public function getStyleRenderer():Function 
 	{
@@ -313,6 +314,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	
 	/**
 	 * Returns the style property from the style declaration or object.
+	 * @return the style property from the style declaration or object.
 	 */
 	public function getStyle():IStyle 
 	{ 

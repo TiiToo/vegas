@@ -22,6 +22,8 @@
 */
 package lunas.display.abstract 
 {
+	import lunas.display.StyleCollector;	
+	
 	import flash.events.Event;
 	import flash.events.TimerEvent;
 	
@@ -37,6 +39,9 @@ package lunas.display.abstract
 	import pegas.events.StyleEvent;
 	import pegas.transitions.FrameTimer;
 	
+	import system.Reflection;
+	
+	import vegas.util.ClassUtil;
 	import vegas.util.MathsUtil;	
 
 	/**
@@ -64,6 +69,29 @@ package lunas.display.abstract
 			
 			___timer___ = new FrameTimer(24, 1) ;
 			___timer___.addEventListener(TimerEvent.TIMER, _redraw ) ;
+			
+			initialize() ;
+			
+			var cb:Class = getBuilderRenderer() ; 
+			if ( ClassUtil.implementsInterface( cb , IBuilder ) )  
+			{
+				builder = ( new cb(this) as IBuilder ) ;
+			}
+					
+			var cs:Class = getStyleRenderer() ;
+			if ( ClassUtil.implementsInterface( cs , IStyle ) ) 
+			{
+				var path:String = Reflection.getClassPath(this) ;
+				if ( StyleCollector.contains( path ) )
+				{
+					style = StyleCollector.get( path ) ;
+				}
+				else
+				{
+					style = new cs( path ) as IStyle ; // creates the default singleton IStyle reference of this component
+				}
+			}
+		
 			
 		}
 		
@@ -262,10 +290,19 @@ package lunas.display.abstract
 		}
 
 		/**
-		 * Returns the constructor function of the {@code IBuilder} of this instance.
-		 * @return the constructor function of the {@code IBuilder} of this instance.
+		 * Returns the IBuilder Class of this instance.
+		 * @return the IBuilder Class of this instance.
 	 	 */
 		public function getBuilderRenderer():Class 
+		{
+			return null ; // overrides
+		}
+		
+		/**
+		 * Returns the IStyle Class of this instance.
+		 * @return the IStyle Class of this instance.
+	 	 */
+		public function getStyleRenderer():Class 
 		{
 			return null ; // overrides
 		}
