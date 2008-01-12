@@ -21,112 +21,63 @@
   
 */
 
-/** EasyButtonStyle
-
-	AUTHOR
-	
-		Name : EasyButtonStyle
-		Package : lunas.display.components.button
-		Version : 1.0.0.0
-		Date :  2006-02-04
-		Author : ekameleon
-		URL : http://www.ekameleon.net
-		Mail : vegas@ekameleon.net
-
-	PROPERTY SUMMARY
-	
-		- styleSheet:TextField.StyleSheet [R/W]
-			
-			Feuille de style des textes contenus dans le widget ou composant.
-
-	METHOD SUMMARY
-	
-		- addEventListener(e:EventType, oL, f:Function):Void
-		
-		- getStyle (prop:String) 
-			renvoie la valeur d'une propriété de style si elle existe.
-		
-		- getStyleSheet () 
-			Renvoi la feuille de style du composant
-		
-		- removeEventListener(e:EventType, oL):Void
-		
-		- setStyle (props:Object) ou ( prop:String , value ) 
-			
-			Définir une ou plusieurs propriétés du style
-		
-		- setStyleSheet (ss)
-			
-			Permet de définir une feuille de style pour le composant
-		
-		- update():Void
-
-	
-	PROTECTED METHOD SUMMARY
-	
-		- initialize() 
-			
-			Méthode interne invoquée à la création de l'instance de style, peut être surchargée en cas de besoin pour initialiser les propriétés par défaut
-			de la feuille de style.
-
-		- styleChanged()
-			
-			Méthode interne pouvant être surchargée si nécessaire dans certaines feuilles de style.
-
-		- styleSheetChanged()
-			
-			Méthore interne pouvant être surchargée si nécessaire dans certaines feuilles de style.
-	
-	EVENT SUMMARY
-	
-		- StyleEvent
-		
-			- StyleEventType.STYLE_CHANGED
-			- StyleEventType.STYLE_SHEET_CHANGED
-			
-**/
-
 import lunas.display.components.AbstractStyle;
 
-class lunas.display.components.button.EasyButtonStyle extends AbstractStyle {
+/**
+ * The IStyle class of the EasyButton component.
+ */
+class lunas.display.components.button.EasyButtonStyle extends AbstractStyle 
+{
 
-	// ----o Constructor 
-	
-	public function EasyButtonStyle( init:Object ) {
+	/**
+	 * Creates a new EasyButtonStyle instance.
+	 */
+	public function EasyButtonStyle( init:Object ) 
+	{
 		super(init) ;
 	}
 
-	// ----o Constant
-	
 	public static var LABEL_STYLE_NAME:String = "EasyButtonLabel" ;
 
-	// ----o Public Properties
+	var color:Number = 0x000000 ;
+
+	var embedFonts:Boolean = false ;
+
+	var paddingLeft:Number = 4 ;
+
+	var paddingRight:Number = 4 ;
+
+	var selectable:Boolean = false ;	
+
+	var textDisabledColor:Number = 0x000000 ;
+
+	var textRollOverColor:Number = 0xFFFFFF ;
 	
-	var thickness:Number = null ;
+	var textSelectedColor:Number = 0xFFFFFF ;
+	
 	var themeBorderColor:Number = null ;
+
 	var themeBorderAlpha:Number = null ;
 	
 	var themeAlpha:Number = 100 ;	
-	var themeColor:Number = 0xFFFFFF ;
-	var themeRollOverColor:Number = 0x1D8D2B ;
-	var themeSelectedColor:Number = 0x000000 ;
-	var themeDisabledColor:Number = 0xCCCCCC ;
-	
-	var color:Number = 0x000000 ;
-	var textRollOverColor:Number = 0xFFFFFF ;
-	var textSelectedColor:Number = 0xFFFFFF ;
-	var textDisabledColor:Number = 0x000000 ;
-	
-	var selectable:Boolean = false ;	
-	var embedFonts:Boolean = false ;
 
-	var paddingRight:Number = 4 ;
-	var paddingLeft:Number = 4 ;
-	
-	// ----o Public Methods
-	
-	public function initialize():Void {
-		var oS:Object = {
+	var themeColor:Number = 0xFFFFFF ;
+
+	var themeRollOverColor:Number = 0x1D8D2B ;
+
+	var themeSelectedColor:Number = 0x000000 ;
+
+	var themeDisabledColor:Number = 0xCCCCCC ;
+
+	var thickness:Number = null ;
+
+	/**
+	 * Initialize the IStyle.
+	 */
+	public function initialize():Void 
+	{
+		var oS:Object = 
+		{
 			fontFamily:'verdana' , 
 			fontSize:"11px" ,
 			fontWeight:"bold" ,

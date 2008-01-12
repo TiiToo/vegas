@@ -189,7 +189,7 @@ package vegas.events
 	    /**
 	     * Unlocks the display.
 	     */
-    	public function unLock():void 
+    	public function unlock():void 
     	{
 	        ___isLock___ = false ;
 	    }

@@ -196,6 +196,17 @@ package pegas.maths
             var upper:Number = size * upperMargin ;
             return new Range( range.min - lower , range.max + upper ) ;
         }
+    	
+    	/**
+    	 * Filters the passed-in Number value, if the value is NaN the return value is the default value in second argument.
+    	 * @param value The Number value to filter, if this value is NaN the value is changed.
+    	 * @param defaultValue The default value to apply over the specified value if this value is NaN (default 0).
+    	 * @return The filter Number value.
+    	 */    
+		public static function filterNaNValue( value:Number, defaultValue:Number=0 ):Number
+		{
+			return isNaN( value ) ? defaultValue : value ;	
+		}        
         
         /**
          * Returns the central value for the range.

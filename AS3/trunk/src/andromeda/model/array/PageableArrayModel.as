@@ -249,9 +249,15 @@ package andromeda.model.array
 		public function setCountVO( n:uint , noRender:Boolean=false ):void
 		{
 			_voCount = n > 1 ? n : 1 ;
-			if ( noRender == true ) lock() ;
+			if ( noRender == true ) 
+			{
+				lock() ;
+			}
 			refresh() ;
-			if ( noRender == true ) unLock() ;
+			if ( noRender == true ) 
+			{
+				unlock() ;
+			}
 		}
 
 		/**

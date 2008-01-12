@@ -45,7 +45,7 @@ package vegas.core
     	/**
     	 * Unlocks the object.
 	     */
-	    function unLock():void ; 
+	    function unlock():void ; 
 		
 	}
 	

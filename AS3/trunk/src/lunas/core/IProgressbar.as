@@ -42,7 +42,7 @@ package lunas.core
 	 	 * @param noEvent (optional) this flag disabled the events of this method if this argument is {@code true}
 	 	 * @param flag (optional) An optional boolean flag use in the method.
 	 	 */
-		function setPosition( value:Number, noEvent:Boolean, flag:Boolean ):void ;
+		function setPosition( value:Number, noEvent:Boolean=false , flag:Boolean=false ):void ;
 		
 	}
 

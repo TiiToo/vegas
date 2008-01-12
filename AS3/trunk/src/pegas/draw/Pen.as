@@ -84,7 +84,7 @@ package pegas.draw
         }
         
         /**
-         * Determinates the line style object of the pen.
+         * Determinates the fill style object of the pen.
          */
         public function get fillStyle():IFillStyle
         {
@@ -114,6 +114,7 @@ package pegas.draw
             }
             _graphics = graphic ;
         }
+        
         /**
          * Determinates the line style object of the pen.
          */
