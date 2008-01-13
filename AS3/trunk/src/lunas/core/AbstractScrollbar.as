@@ -22,7 +22,7 @@
 */
 package lunas.core 
 {
-	import flash.display.Sprite;
+    import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
@@ -33,7 +33,7 @@ package lunas.core
 	 * This class provides a skeletal implementation of all the {@code IScrollbar} display components, to minimize the effort required to implement this interface.
 	 * @author eKameleon
 	 */
-	public class AbstractScrollbar extends AbstractProgressbar
+	public class AbstractScrollbar extends AbstractProgressbar implements IScrollbar
 	{
 		
 		/**
@@ -208,7 +208,7 @@ package lunas.core
 			}
 			if(newPosition != oldPosition)
 			{
-				notifyDrag( position ) ;
+				notifyDrag() ;
 			}
 			setPosition( newPosition ) ;
 		}
@@ -216,7 +216,7 @@ package lunas.core
 		/**
 		 * Dispatchs an event when the user drag the bar.
 		 */
-		public function notifyDrag( position:Number ):void 
+		public function notifyDrag():void 
 		{
 			_fireButtonEvent( ButtonEvent.DRAG ) ;
 		}

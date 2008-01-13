@@ -37,6 +37,97 @@ package lunas.display.bar
 
 	/**
 	 * The SimpleScrollbar component.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import flash.display.StageScaleMode ;
+	 * 
+	 * import pegas.draw.FillStyle ;
+	 * import pegas.draw.LineStyle ;
+	 * 
+	 * import lunas.core.Direction ;
+	 * import lunas.core.EdgeMetrics ;
+	 * import lunas.display.bar.SimpleScrollbar ;
+	 * import lunas.events.ButtonEvent ;
+	 * import lunas.events.ComponentEvent ;
+	 * 
+	 * stage.scaleMode = StageScaleMode.NO_SCALE ;
+	 * 
+	 * var change:Function = function( e:ComponentEvent ):void
+	 * {
+	 *     trace( e.type + " : " + bar.position ) ;
+	 * }
+	 * 
+	 * var bar:SimpleScrollbar = new SimpleScrollbar() ;
+	 * 
+	 * addChild(bar) ;
+	 * 
+	 * // behaviours of the scrollbar
+	 * 
+	 * bar.addEventListener( ComponentEvent.CHANGE , change ) ;
+	 * bar.thumbSize = 30 ;
+	 * bar.position  = 50 ;
+	 * bar.x = 50 ;
+	 * bar.y = 50 ;
+	 * 
+	 * // initialize style of the scrollbar
+	 * 
+	 * bar.barFillStyle    = new FillStyle( 0x921085 , 1 ) ;
+	 * bar.barLineStyle    = new LineStyle( 1 , 0x6A9195, 1 ) ;
+	 * bar.thumbFillStyle  = new FillStyle( 0xB5C7CA , 1 ) ;
+	 * bar.thumbLineStyle  = new LineStyle( 2 , 0xFFFFFF , 1 ) ;
+	 * 
+	 * var shadow:DropShadowFilter = new DropShadowFilter( 1, 45, 0x000000, 0.6, 6, 6, 1, 6) ;
+	 * bar.filters = [ shadow  ] ;
+	 * bar.thumb.filters = [ shadow ] ;
+	 * 
+	 * var keyDown:Function = function( e:KeyboardEvent ):void
+	 * {
+	 *     var code:uint = e.keyCode ;
+	 *     switch( code )
+	 *     {
+	 *         case Keyboard.LEFT :
+	 *         {
+	 *             bar.position -= 10 ;
+	 *             break ;
+	 *         }
+	 *         case Keyboard.RIGHT :
+	 *         {
+	 *             bar.position += 10 ;
+	 *             break ;
+	 *         }
+	 *         case Keyboard.UP :
+	 *         {
+	 *             bar.position = bar.minimum ;
+	 *             break ;
+	 *         }
+	 *         case Keyboard.DOWN :
+	 *         {
+	 *             bar.position = bar.maximum ;
+	 *             break ;
+	 *          }
+	 *          case Keyboard.SPACE :
+	 *          {
+	 *              bar.direction = ( bar.direction == Direction.VERTICAL ) ? Direction.HORIZONTAL : Direction.VERTICAL ;
+	 *              if ( bar.direction == Direction.VERTICAL )
+	 *              {
+	 *                  bar.setSize( 8, 200 ) ;
+	 *              }
+	 *              else
+	 *              {
+	 *                  bar.setSize( 200, 8 ) ;
+	 *              }
+	 *          }
+	 *          default :
+	 *          {
+	 *              bar.minimum = 20 ; // change the minimum value of the bar
+	 *              bar.maximum = 80 ; // change the maximum value of the bar
+	 *              bar.invert = !bar.invert ; // invert the positive direction of the bar scroll.
+	 *          }
+	 *     }
+	 * }
+	 * 
+	 * stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
+	 * }
 	 * @author eKameleon
 	 */
 	public class SimpleScrollbar extends AbstractScrollbar 

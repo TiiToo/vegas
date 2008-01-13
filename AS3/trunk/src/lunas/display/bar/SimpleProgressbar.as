@@ -20,9 +20,6 @@
   Contributor(s) :
   
 */
-
-// TODO finish alignment of the bar with the align property.
-
 package lunas.display.bar 
 {
 	import flash.display.Shape;
@@ -30,7 +27,9 @@ package lunas.display.bar
 	import lunas.core.AbstractProgressbar;
 	import lunas.core.Direction;
 	import lunas.core.EdgeMetrics;
+	import lunas.core.IBorder;
 	
+	import pegas.draw.Align;
 	import pegas.draw.FillStyle;
 	import pegas.draw.IFillStyle;
 	import pegas.draw.ILineStyle;
@@ -38,140 +37,146 @@ package lunas.display.bar
 	import pegas.draw.RectanglePen;	
 
 	/**
-	 * The SimpleProgressbar component.
-	 * <p><b>Example :</b></p>
-	 * {@code
-	 * import flash.display.StageScaleMode ;
-	 * 
-	 * import pegas.draw.FillStyle ;
-	 * import pegas.draw.LineStyle ;
-	 * 
-	 * import lunas.core.Direction ;
-	 * import lunas.core.EdgeMetrics ;
-	 * import lunas.display.bar.SimpleProgressbar ;
-	 * import lunas.events.ComponentEvent ;
-	 * 
-	 * stage.scaleMode = StageScaleMode.NO_SCALE ;
-	 * 
-	 * var change:Function = function( e:ComponentEvent ):void
-	 * {
-	 *     trace( e.type + " : " + bar.position ) ;
-	 * }
-	 * 
-	 * var bar:SimpleProgressbar = new SimpleProgressbar() ;
-	 * bar.addEventListener( ComponentEvent.CHANGE , change ) ;
-	 * bar.x = 50 ;
-	 * bar.y = 50 ;
-	 * bar.position = 50 ;
-	 * 
-	 * addChild(bar) ;
-	 * 
-	 * var keyDown:Function = function( e:KeyboardEvent ):void
-	 * {
-	 *     var code:uint = e.keyCode ;
-	 *     switch( code )
-	 *     {
-	 *         case Keyboard.LEFT :
-	 *         {
-	 *             bar.position -= 10 ;
-	 *             break ;
-	 *         }
-	 *         case Keyboard.RIGHT :
-	 *         {
-	 *             bar.position += 10 ;
-	 *             break ;
-	 *         }
-	 *         case Keyboard.SPACE :
-	 *         {
-	 *             bar.lock() ;
-	 *             bar.backgroundFillStyle = new FillStyle( 0xB5C7CA , 1 ) ;
-	 *             bar.backgroundLineStyle = new LineStyle( 2 , 0xFFFFFF , 1 ) ;
-	 *             bar.barFillStyle        = new FillStyle( 0x921085 , 1 ) ;
-	 *             bar.barLineStyle        = new LineStyle( 1 , 0x6A9195, 1 ) ;
-	 *             bar.border              = new EdgeMetrics(2, 2, 2, 2) ;
-	 *             bar.unlock() ;
-	 *             bar.setSize( 200, 8 ) ;
-	 *             break ;
-	 *         }
-	 *         default :
-	 *         {
-	 *             bar.direction = ( bar.direction == Direction.VERTICAL ) ? Direction.HORIZONTAL : Direction.VERTICAL ;
-	 *             if ( bar.direction == Direction.VERTICAL )
-	 *             {
-	 *                 bar.setSize( 8, 200 ) ;
-	 *             }
-	 *             else
-	 *             {
-	 *                 bar.setSize( 200, 8 ) ;
-	 *             }
-	 *         }
-	 *     }
-	 * }
-	 * 
-	 * stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
-	 * 
-	 * trace("Press Keyboard.LEFT or Keyboard.RIGHT or Keyboard.SPACE or other keyboard touch to test this example.") ;
-	 * }
-	 * @author eKameleon
-	 */
-	public class SimpleProgressbar extends AbstractProgressbar 
-	{
+     * The SimpleProgressbar component.
+     * <p><b>Example :</b></p>
+     * {@code
+     * import flash.display.StageScaleMode ;
+     * 
+     * import pegas.draw.Align ;
+     * import pegas.draw.FillStyle ;
+     * import pegas.draw.LineStyle ;
+     * 
+     * import lunas.core.Direction ;
+     * import lunas.core.EdgeMetrics ;
+     * import lunas.display.bar.SimpleProgressbar ;
+     * import lunas.events.ComponentEvent ;
+     * 
+     * stage.scaleMode = StageScaleMode.NO_SCALE ;
+     * 
+     * var change:Function = function( e:ComponentEvent ):void
+     * {
+     *     trace( e.type + " : " + bar.position ) ;
+     * }
+     * 
+     * var bar:SimpleProgressbar = new SimpleProgressbar() ;
+     * bar.addEventListener( ComponentEvent.CHANGE , change ) ;
+     * bar.x = 50 ;
+     * bar.y = 50 ;
+     * bar.position = 50 ;
+     * 
+     * addChild(bar) ;
+     * 
+     * var keyDown:Function = function( e:KeyboardEvent ):void
+     * {
+     *     var code:uint = e.keyCode ;
+     *     switch( code )
+     *     {
+     *         case Keyboard.LEFT :
+     *         {
+     *             bar.position -= 10 ;
+     *             break ;
+     *         }
+     *         case Keyboard.RIGHT :
+     *         {
+     *             bar.position += 10 ;
+     *             break ;
+     *         }
+     *         case Keyboard.SPACE :
+     *         {
+     *             bar.lock() ;
+     *             bar.align               = Align.CENTER ; // Align.LEFT or Align.RIGHT or Align.CENTER
+     *             bar.direction           = Direction.HORIZONTAL ;
+     *             bar.backgroundFillStyle = new FillStyle( 0xB5C7CA , 1 ) ;
+     *             bar.backgroundLineStyle = new LineStyle( 2 , 0xFFFFFF , 1 ) ;
+     *             bar.barFillStyle        = new FillStyle( 0x921085 , 1 ) ;
+     *             bar.barLineStyle        = new LineStyle( 1 , 0x6A9195, 1 ) ;
+     *             bar.border              = new EdgeMetrics(2, 2, 2, 2) ;
+     *             bar.unlock() ;
+     *             bar.setSize( 200, 8 ) ;
+     *             break ;
+     *         }
+     *         default :
+     *         {
+     *             bar.direction = ( bar.direction == Direction.VERTICAL ) ? Direction.HORIZONTAL : Direction.VERTICAL ;
+     *             if ( bar.direction == Direction.VERTICAL )
+     *             {
+     *                 bar.setSize( 8, 200 ) ;
+     *             }
+     *             else
+     *             {
+     *                 bar.setSize( 200, 8 ) ;
+     *             }
+     *         }
+     *     }
+     * }
+     * 
+     * stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
+     * 
+     * trace("Press Keyboard.LEFT or Keyboard.RIGHT or Keyboard.SPACE or other keyboard touch to test this example.") ;
+     * }
+     * @author eKameleon
+     */
+    public class SimpleProgressbar extends AbstractProgressbar implements IBorder 
+    {
 
-		/**
-		 * Creates a new SimpleProgressbar instance.
-		 * @param id Indicates the id of the object.
-		 * @param isConfigurable This flag indicates if the IConfigurable object is register in the ConfigCollector.
-		 * @param name Indicates the instance name of the object.
-		 */
-		public function SimpleProgressbar(id:* = null, isConfigurable:Boolean = false, name:String = null)
-		{
-			
-			super( id, isConfigurable, name );
-			
-			background = new Shape() ;
-			bar        = new Shape() ;
-			
-			_backgroundPen = new RectanglePen( background ) ;
-			_barPen        = new RectanglePen( bar ) ;
-			
-			addChild( background ) ;
-			addChild( bar ) ;
-			
-			lock() ;
-			
-			backgroundFillStyle = new FillStyle( 0xFFFFFF, 1 ) ;
-			backgroundLineStyle = new LineStyle( 1, 0xA2A2A2 , 1) ;
-			
-			barFillStyle = new FillStyle( 0xFF0000, 1 ) ;
-			barLineStyle = null ;
-			
-			unlock() ;
-			
-			setSize(150, 6) ;
-			
-		}
-		
-		/**
-		 * The background reference of this component.
-		 */
-		public var background:Shape ;
-	
         /**
-         * (read-write) Indicates the align value of the bar.
+         * Creates a new SimpleProgressbar instance.
+         * @param id Indicates the id of the object.
+         * @param isConfigurable This flag indicates if the IConfigurable object is register in the ConfigCollector.
+         * @param name Indicates the instance name of the object.
+         */
+        public function SimpleProgressbar(id:* = null, isConfigurable:Boolean = false, name:String = null)
+        {
+            
+            super( id, isConfigurable, name );
+            
+            background = new Shape() ;
+            bar        = new Shape() ;
+            
+            _backgroundPen = new RectanglePen( background ) ;
+            _barPen        = new RectanglePen( bar ) ;
+            
+            addChild( background ) ;
+            addChild( bar ) ;
+            
+            lock() ;
+            
+            backgroundFillStyle = new FillStyle( 0xFFFFFF, 1 ) ;
+            backgroundLineStyle = new LineStyle( 1, 0xA2A2A2 , 1) ;
+            
+            barFillStyle = new FillStyle( 0xFF0000, 1 ) ;
+            barLineStyle = null ;
+            
+            unlock() ;
+            
+            setSize(150, 6) ;
+            
+        }
+        
+        /**
+         * The background reference of this component.
+         */
+        public var background:Shape ;
+    
+        /**
+         * (read-write) Indicates the align value of the bar. 
+         * This property can take the 3 values Align.LEFT, Align.CENTER, Align.RIGHT.
+         * The default value of the align property is Align.LEFT ;
          * @see Align
          */
-		public function get align():uint
-		{
-			return _barPen.align ;	
-		}
-	
+        public function get align():uint
+        {
+            return _align ;    
+        }
+    
         /**
          * @private
          */
-		public function set align( align:uint ):void
-		{
-			_barPen.align = align ;	
-		}
+        public function set align( align:uint ):void
+        {
+            _align = (align == Align.LEFT || align == Align.RIGHT || align == Align.CENTER) ? align : Align.LEFT ;
+            update() ;    
+        }
 
         /**
          * Determinates the fill style object of the background.
@@ -206,12 +211,12 @@ package lunas.display.bar
             _backgroundPen.lineStyle = style ;
             update() ;
         }
-	
-		/**
-		 * The thumb reference of this bar.
-		 */
-		public var bar:Shape ;
-		
+    
+        /**
+         * The thumb reference of this bar.
+         */
+        public var bar:Shape ;
+        
         /**
          * Determinates the fill style object of the bar.
          */
@@ -245,75 +250,101 @@ package lunas.display.bar
             _barPen.lineStyle = style ;
             update() ;
         }
-		
-		/**
-		 * Indicates the thickness, in pixels, of the four edge regions around a visual component.
-		 */
-		public function get border():EdgeMetrics
-		{
-			return _border ;
-		}
-		
-		/**
-		 * @private
-		 */
-		public function set border( em:EdgeMetrics ):void
-		{
-			_border = em ||  EdgeMetrics.EMPTY ;
-			update() ;
-		}
-		
-		/**
-		 * Draw the view of the component.
-		 */
-		public override function draw( ...arguments:Array ):void
-		{
-			_backgroundPen.draw( 0, 0, w, h ) ;
-		}		
-		
-		/**
-		 * Resize the bar.
-		 */
-		public function resize():void 
-		{
-			var nW:Number = EdgeMetrics.filterNaNValue( border.left ) + EdgeMetrics.filterNaNValue( border.right ) ;
-			var nH:Number = EdgeMetrics.filterNaNValue( border.top  ) + EdgeMetrics.filterNaNValue( border.bottom ) ;
-			
-			var margin:Number = (direction == Direction.VERTICAL) ? nH : nW ;
-			var max:Number    = (direction == Direction.VERTICAL) ? h : w ;
-			var size:Number   =  Math.floor( position * (max - margin) / 100 ) ;
-					
-			var $w:Number = (direction == Direction.VERTICAL) ? ( w - nW ) : size  ;
-			var $h:Number = (direction == Direction.VERTICAL) ? size : ( h - nH ) ;
-			
-			_barPen.draw( EdgeMetrics.filterNaNValue( border.left ), EdgeMetrics.filterNaNValue( border.top ), $w, $h) ;
-		
-		}
-		
-		/**
-	 	 * Invoked when the position of the bar is changed.
-	 	 * @param flag (optional) An optional boolean. By default this flag is passed-in the setPosition method.
-	 	 */
-		public override function viewPositionChanged( flag:Boolean = false ):void 
-		{
-			resize() ;
-		}
-	
-		/**
-		 * @private
-		 */
-		private var _backgroundPen:RectanglePen ;
-		
-		/**
-		 * @private
-		 */
-		private var _barPen:RectanglePen ;
+        
+        /**
+         * Indicates the thickness, in pixels, of the four edge regions around a visual component.
+         */
+        public function get border():EdgeMetrics
+        {
+            return _border ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set border( em:EdgeMetrics ):void
+        {
+            _border = em ||  EdgeMetrics.EMPTY ;
+            update() ;
+        }
+        
+        /**
+         * Draws the view of the component.
+         */
+        public override function draw( ...arguments:Array ):void
+        {
+            _backgroundPen.draw( 0, 0, w, h ) ;
+        }        
+        
+        /**
+         * Resize the bar.
+         */
+        public function resize():void 
+        {
+            
+            var nW:Number = EdgeMetrics.filterNaNValue( border.left ) + EdgeMetrics.filterNaNValue( border.right ) ;
+            var nH:Number = EdgeMetrics.filterNaNValue( border.top  ) + EdgeMetrics.filterNaNValue( border.bottom ) ;
+            
+            var margin:Number = (direction == Direction.VERTICAL) ? nH : nW ;
+            var max:Number    = (direction == Direction.VERTICAL) ? h : w ;
+            
+            var size:Number   =  Math.floor( position * (max - margin) / 100 ) ;
+                    
+            var $w:Number = (direction == Direction.VERTICAL) ? ( w - nW ) : size  ;
+            var $h:Number = (direction == Direction.VERTICAL) ? size : ( h - nH ) ;
+            
+            if ( _align == Align.RIGHT )
+            {
+                bar.x         = (direction == Direction.VERTICAL) ? EdgeMetrics.filterNaNValue( border.left ) : w - EdgeMetrics.filterNaNValue( border.right ) ;
+                bar.y         = (direction == Direction.VERTICAL) ? h - EdgeMetrics.filterNaNValue( border.bottom ) : EdgeMetrics.filterNaNValue( border.top ) ;
+                _barPen.align = (direction == Direction.VERTICAL) ? Align.BOTTOM_LEFT : Align.TOP_RIGHT ;
+            }
+            else if ( _align == Align.CENTER )
+            {
+                bar.x         = w / 2 ;
+                bar.y         = h / 2 ;
+                _barPen.align = Align.CENTER ;
+            }
+            else // Align.LEFT (default)
+            {
+                bar.x = EdgeMetrics.filterNaNValue( border.left ) ;
+                bar.y = EdgeMetrics.filterNaNValue( border.top ) ;
+                _barPen.align = Align.TOP_LEFT ;
+            }
+            
+            _barPen.draw( 0, 0, $w, $h) ;
+        
+        }
+        
+        /**
+         * Invoked when the position of the bar is changed.
+         * @param flag (optional) An optional boolean. By default this flag is passed-in the setPosition method.
+         */
+        public override function viewPositionChanged( flag:Boolean = false ):void 
+        {
+            resize() ;
+        }
+    
+        /**
+         * @private
+         */
+        private var _align:uint = Align.LEFT ;
+        
+        /**
+         * @private
+         */
+        private var _backgroundPen:RectanglePen ;
+        
+        /**
+         * @private
+         */
+        private var _barPen:RectanglePen ;
 
-		/**
-		 * @private
-		 */
-		private var _border:EdgeMetrics = EdgeMetrics.EMPTY ;
+        /**
+         * @private
+         */
+        private var _border:EdgeMetrics = EdgeMetrics.EMPTY ;
 
-	}
+    }
 
 }
