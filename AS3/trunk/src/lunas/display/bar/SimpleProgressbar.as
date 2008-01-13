@@ -20,6 +20,9 @@
   Contributor(s) :
   
 */
+
+// TODO finish alignment of the bar with the align property.
+
 package lunas.display.bar 
 {
 	import flash.display.Shape;
@@ -154,6 +157,23 @@ package lunas.display.bar
 		public var background:Shape ;
 	
         /**
+         * (read-write) Indicates the align value of the bar.
+         * @see Align
+         */
+		public function get align():uint
+		{
+			return _barPen.align ;	
+		}
+	
+        /**
+         * @private
+         */
+		public function set align( align:uint ):void
+		{
+			_barPen.align = align ;	
+		}
+
+        /**
          * Determinates the fill style object of the background.
          */
         public function get backgroundFillStyle():IFillStyle
@@ -210,7 +230,7 @@ package lunas.display.bar
         }
         
         /**
-         * Determinates the line style object of the pen.
+         * Determinates the line style object of the bar.
          */
         public function get barLineStyle():ILineStyle
         {
@@ -244,6 +264,14 @@ package lunas.display.bar
 		}
 		
 		/**
+		 * Draw the view of the component.
+		 */
+		public override function draw( ...arguments:Array ):void
+		{
+			_backgroundPen.draw( 0, 0, w, h ) ;
+		}		
+		
+		/**
 		 * Resize the bar.
 		 */
 		public function resize():void 
@@ -257,7 +285,7 @@ package lunas.display.bar
 					
 			var $w:Number = (direction == Direction.VERTICAL) ? ( w - nW ) : size  ;
 			var $h:Number = (direction == Direction.VERTICAL) ? size : ( h - nH ) ;
-				
+			
 			_barPen.draw( EdgeMetrics.filterNaNValue( border.left ), EdgeMetrics.filterNaNValue( border.top ), $w, $h) ;
 		
 		}
@@ -266,9 +294,8 @@ package lunas.display.bar
 	 	 * Invoked when the position of the bar is changed.
 	 	 * @param flag (optional) An optional boolean. By default this flag is passed-in the setPosition method.
 	 	 */
-		public override function viewPositionChanged(flag:Boolean):void 
+		public override function viewPositionChanged( flag:Boolean = false ):void 
 		{
-			_backgroundPen.draw( 0, 0, w, h ) ;
 			resize() ;
 		}
 	

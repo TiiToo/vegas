@@ -97,7 +97,7 @@ package lunas.core
 		{
 			var old:Number = _position ;
 			_position      = _rPercent.clamp( Range.filterNaNValue(value) ) ;
-			viewPositionChanged(flag) ;
+			viewPositionChanged( flag ) ;
 			if (old != _position && noEvent != true ) 
 			{
 				notifyChanged() ;
@@ -116,7 +116,7 @@ package lunas.core
 	 	 * Invoked when the position of the bar is changed.
 	 	 * @param flag (optional) An optional boolean. By default this flag is passed-in the setPosition method.
 	 	 */
-		public function viewPositionChanged(flag:Boolean):void 
+		public function viewPositionChanged( flag:Boolean = false ):void 
 		{
 			// overrides.
 		}
@@ -127,9 +127,9 @@ package lunas.core
 		private var _direction:String ;
 
 		/**
-		 * @private
+		 * The position value of the bar.
 		 */
-		private var _position:Number = 0 ;
+		protected var _position:Number = 0 ;
 		
 		/**
 		 * @private
