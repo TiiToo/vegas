@@ -44,14 +44,40 @@ dynamic class asgard.config.Config extends CoreObject
 	 */
 	public static function getInstance():Config 
 	{
-		
-		if( !__instance) __instance = new Config() ;
-		return __instance ;
-		
+		if( _instance == null )
+		{
+			_instance = new Config() ;
+		}
+		return _instance ;
 	}
+	
+	/**
+	 * Apply the current Config object over the specified object.
+	 * @param o The object to fill with the current Config object.
+	 * @param sID (optional) if this key is specified the method return the value of the specified key in the current Config object.
+	 * @param callback (optional) The optional method to launch after the initialization over the specified object. 
+	 */
+	public function init( o:Object , sID:String , callback:Function ):Void
+	{
+		var init = sID == null ? this : this[ sID ] ;
+		for (var prop:String in init)
+		{
+			o[prop] = init[prop] ;	
+		}
+		if ( callback != null )
+		{
+			callback.call(o) ;	
+		}
+	} 
+	
+	/**
+	 * @private
+	 */
+	private static var _instance:Config ;
 
-	private static var __instance:Config ;
-
+	/**
+	 * @private
+	 */
 	private var prototype ;
 	
 }
