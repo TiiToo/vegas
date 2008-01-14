@@ -26,7 +26,8 @@ package vegas.events
 	import vegas.core.CoreObject;
 	import vegas.data.iterator.Iterator;
 	import vegas.data.map.ArrayMap;
-	import vegas.data.map.HashMap;	
+	import vegas.data.map.HashMap;
+	import vegas.errors.IllegalArgumentError;	
 
 	/**
 	 * The Front Controller pattern defines a single EventDispatcher that is responsible for processing application requests.
@@ -140,12 +141,52 @@ package vegas.events
     	 * Add a new entry into the FrontController.
     	 * @param eventName:String
     	 * @param listener:EventListener or listener:Function
+		 * @throws IllegalArgumentError If the 'eventName' value in argument is {@code null} or {@code undefined}.
+		 * @throws IllegalArgumentError If the 'listener' object in argument is {@code null} or {@code undefined}.
     	 */
     	public function insert(eventName:String, listener:* ):void 
     	{
+			if ( eventName == null )
+			{
+				throw new IllegalArgumentError( this + " insert method failed, the 'eventName' value in argument not must be 'null' or 'undefined'.") ;	
+			}
+			if ( listener == null )
+			{
+				throw new IllegalArgumentError( this + " insert method failed, the 'listener' object in argument not must be 'null' or 'undefined'.") ;	
+			}
     		_map.put.apply( this, arguments ) ;
     		_dispatcher.registerEventListener( eventName, listener ) ;
     	}
+    	
+		/**
+		 * Adds a new EventListener into an EventListenerBatch in the FrontController.
+		 * If this {@code listener} argument is 'null' or 'undefined' and if the {@code eventName} argument isn't register with an EventListenerBatch in the FrontController, 
+		 * an empty EventListenerBatch is created and register in the FrontController with the specified 'eventName'.
+		 * @param eventName The name of the event type.
+		 * @param listener (optional) The {@code EventListener} mapped in the FrontController with the specified event type (This listener is added in an EventListenerBatch). 
+		 * @throws IllegalArgumentError If the 'eventName' value in argument not must be 'null' or 'undefined'.
+		 */
+		public function insertBatch( eventName:String, listener:EventListener ):void
+		{
+			if ( eventName == null )
+			{
+				throw new IllegalArgumentError( this + " insertBatch method failed, the 'eventName' value in argument not must be 'null' or 'undefined'.") ;	
+			}
+			if ( _map.containsKey(eventName) )
+			{
+				if ( _map.get( eventName ) is EventListenerBatch && listener != null )
+				{
+					( _map.get( eventName ) as EventListenerBatch ).insert( listener ) ;
+					return ;				
+				}
+			}
+			var batch:EventListenerBatch = new EventListenerBatch() ;
+			if ( listener != null )
+			{
+				batch.insert( listener ) ;
+			}
+			insert( eventName , batch ) ;
+		}
     	
     	/**
     	 * Remove an entry into the FrontController.
