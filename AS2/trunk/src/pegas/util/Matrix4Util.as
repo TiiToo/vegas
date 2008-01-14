@@ -45,7 +45,7 @@ class pegas.util.Matrix4Util
 	 * }
 	 * @return a new identity Matrix4 object.
 	 */
-	public function getIdentity():Matrix4
+	public static function getIdentity():Matrix4
 	{
 		return new Matrix4() ;
 	}
@@ -64,7 +64,7 @@ class pegas.util.Matrix4Util
 	 * }
 	 * @return a new zero Matrix4 object.
 	 */
-	public function getZero():Matrix4
+	public static function getZero():Matrix4
 	{
 		return new Matrix4(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0) ;
 	}
@@ -133,17 +133,28 @@ class pegas.util.Matrix4Util
 	 */
 	public static function setByQuaternion( m:Matrix4, q:Quaternion ):Matrix4
 	{
-		m.n11 = 1 - 2 * ( q.y * q.y ) - 2 * ( q.z * q.z ) ; 
-		m.n12 = 2 * ( q.x * q.y ) - 2 * ( q.w * q.z ) ;
-		m.n13 = 2 * ( q.x * q.z ) + 2 * ( q.w * q.y ) ; 
 		
-		m.n21 = 2 * ( q.x * q.y ) + 2 * ( q.w * q.z ) ;
-		m.n22 = 1 - 2 * ( q.x * q.x ) - 2 * ( q.z * q.z ) ; 
-		m.n23 = 2 * ( q.y * q.z ) - 2 * ( q.w * q.x ) ; 
+        var xx:Number = q.x * q.x ;
+        var xy:Number = q.x * q.y ;
+        var xz:Number = q.x * q.z ;
+        var xw:Number = q.x * q.w ;
+        var yy:Number = q.y * q.y ;
+        var yz:Number = q.y * q.z ;
+        var yw:Number = q.y * q.w ;
+        var zz:Number = q.z * q.z ;
+        var zw:Number = q.z * q.w ;
 		
-		m.n31 = 2 * ( q.x * q.z ) - 2 * ( q.w * q.y ) ; 
-		m.n32 = 2 * ( q.y * q.z ) + 2 * ( q.w * q.x ) ; 
-		m.n33 = 1 - 2 * (q.x * q.x ) - 2 * ( q.y * q.y ) ;
+		m.n11 = 1 - 2 * ( yy + zz ) ; 
+		m.n12 = 2 * ( xy - zw ) ;
+		m.n13 = 2 * ( xz + yw ) ; 
+		
+		m.n21 = 2 * ( xy + zw ) ;
+		m.n22 = 1 - 2 * ( xx + zz ) ; 
+		m.n23 = 2 * ( yz - xw ) ; 
+		
+		m.n31 = 2 * ( xz - yw ) ; 
+		m.n32 = 2 * ( yz + xw ) ; 
+		m.n33 = 1 - 2 * ( xx + yy ) ;
 		
 		m.n41 = m.n42 = m.n43 = 0 ;
 		m.n14 = m.n24 = m.n34 = 0 ;

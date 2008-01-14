@@ -22,9 +22,10 @@
 */
 package pegas.util 
 {
+	import pegas.geom.Matrix4;
 	import pegas.geom.Quaternion;
 	import pegas.geom.Vector3;	
-	
+
 	/**
 	 * Static tool class to manipulate and transform {@code Quaternion} references.
 	 * @author eKameleon
@@ -131,6 +132,17 @@ package pegas.util
 			q.z = axis.z ;
 			Vector3Util.scale( q , Math.sin(theta / 2.0) ) ;
 		}
+					
+		/**
+	     * Transform a Quaternion to a Matrix4 object. 
+	     * Calculates the rotation matrix of the quaternion.
+	     * @param q The Quaternion to transform.
+	     * @return The rotation matrix of the specified Quaternion.
+	     */
+    	public function rotationMatrix( q:Quaternion ):Matrix4 
+    	{
+	        return Matrix4Util.setByQuaternion( Matrix4Util.getIdentity() , q ) ;
+	    }
 					
 	}
 
