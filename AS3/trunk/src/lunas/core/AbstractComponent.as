@@ -46,7 +46,7 @@ package lunas.core
 	 * This class provides a skeletal implementation of all the components in Lunas, to minimize the effort required to implement this interface.
 	 * @author eKameleon
 	 */
-	public class AbstractComponent extends CoreSprite implements IGroupable, IShape
+	public class AbstractComponent extends CoreSprite implements IBorder, IGroupable, IShape
 	{
 
 		/**
@@ -91,6 +91,23 @@ package lunas.core
 			}
 			
 		}
+		
+        /**
+         * Indicates the thickness, in pixels, of the four edge regions around a visual component.
+         */
+        public function get border():EdgeMetrics
+        {
+            return _border ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set border( em:EdgeMetrics ):void
+        {
+            _border = em ||  EdgeMetrics.EMPTY ;
+            update() ;
+        }
 		
 		/**
 		 * Indicates if the events use bubbling when are dispatched.
@@ -484,6 +501,11 @@ package lunas.core
 		{
 			// overrides
 		}
+
+        /**
+         * @private
+         */
+        private var _border:EdgeMetrics = EdgeMetrics.EMPTY ;		
 		
 		/**
 		 * @private
@@ -506,9 +528,9 @@ package lunas.core
 		private var _groupName:String ;
 
 		/**
-		 * @private
+		 * The virtual height value of the component.
 		 */
-		private var _h:Number ;
+		protected var _h:Number ;
 
 		/**
 		 * @private
@@ -521,9 +543,9 @@ package lunas.core
 		private var ___timer___:FrameTimer ;		
 	
 		/**
-		 * @private
+		 * The virtual width value of the component.
 		 */
-		private var _w:Number ;		
+		protected var _w:Number ;		
 		
 		/**
 		 * Dispatchs a ComponentEvent with the specified type.

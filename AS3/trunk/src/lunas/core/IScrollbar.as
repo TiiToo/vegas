@@ -31,7 +31,7 @@ package lunas.core
 	 * This interface defines all methods to create scrollbar components.
 	 * @author eKameleon
 	 */
-	public interface IScrollbar extends IProgressbar, IBorder
+	public interface IScrollbar extends IProgressbar
 	{
 		
 		/**

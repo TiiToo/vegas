@@ -27,7 +27,6 @@ package lunas.display.bar
 	import lunas.core.AbstractProgressbar;
 	import lunas.core.Direction;
 	import lunas.core.EdgeMetrics;
-	import lunas.core.IBorder;
 	
 	import pegas.draw.Align;
 	import pegas.draw.FillStyle;
@@ -116,7 +115,7 @@ package lunas.display.bar
      * }
      * @author eKameleon
      */
-    public class SimpleProgressbar extends AbstractProgressbar implements IBorder 
+    public class SimpleProgressbar extends AbstractProgressbar
     {
 
         /**
@@ -252,23 +251,6 @@ package lunas.display.bar
         }
         
         /**
-         * Indicates the thickness, in pixels, of the four edge regions around a visual component.
-         */
-        public function get border():EdgeMetrics
-        {
-            return _border ;
-        }
-        
-        /**
-         * @private
-         */
-        public function set border( em:EdgeMetrics ):void
-        {
-            _border = em ||  EdgeMetrics.EMPTY ;
-            update() ;
-        }
-        
-        /**
          * Draws the view of the component.
          */
         public override function draw( ...arguments:Array ):void
@@ -339,11 +321,6 @@ package lunas.display.bar
          * @private
          */
         private var _barPen:RectanglePen ;
-
-        /**
-         * @private
-         */
-        private var _border:EdgeMetrics = EdgeMetrics.EMPTY ;
 
     }
 

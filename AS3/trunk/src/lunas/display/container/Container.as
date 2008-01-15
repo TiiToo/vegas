@@ -49,6 +49,15 @@ package lunas.display.container
 		}
 		
 		/**
+		 * Returns the real scope of this container. See the registerView method to change the scope of the component.
+		 * @return the real scope of this container.
+		 */		
+		public function get view():DisplayObjectContainer
+		{
+			return _scope ;
+		}
+
+		/**
 		 * Adds a child DisplayObject instance to this DisplayObjectContainer instance. 
 		 * The child is added to the front (top) of all other children in this DisplayObjectContainer instance. 
 		 * (To add a child to a specific index position, use the addChildAt() method.)
@@ -196,6 +205,10 @@ package lunas.display.container
 		{
 			unregisterView() ;
 			_scope = ( scope == null ) ? this : ( ( scope.parent == this ) ? scope : this ) ;
+			if ( _scope != this )
+			{
+				addChild( _scope ) ;	
+			}
 			update() ;
 		}
 		

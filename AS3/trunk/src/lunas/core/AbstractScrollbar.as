@@ -64,23 +64,6 @@ package lunas.core
 		}
 
 		/**
-		 * Indicates the thickness, in pixels, of the four edge regions around a visual component.
-		 */
-		public function get border():EdgeMetrics
-		{
-			return _border ;
-		}
-		
-		/**
-		 * @private
-		 */
-		public function set border( em:EdgeMetrics ):void
-		{
-			_border = em ||  EdgeMetrics.EMPTY ;
-			update() ;
-		}
-		
-		/**
 		 * Indicates if the layout direction of the thumb is invert.
 		 */
 		public function get invert():Boolean
@@ -323,11 +306,6 @@ package lunas.core
 		 * @private
 		 */
 		private var _bar:Sprite ;
-
-		/**
-		 * @private
-		 */
-		private var _border:EdgeMetrics = EdgeMetrics.EMPTY ;
 
 		/**
 		 * @private

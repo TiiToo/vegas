@@ -58,24 +58,21 @@ class lunas.display.container.ListContainerDisplay extends SimpleContainerDispla
 	}
 	
 	/**
-	 * The height property name use in the container to layout all items.
+	 * Returns the number of childs in this container.
+	 * @return the number of childs in this container.
 	 */
-	public var propH:String = "_height" ;
-
-	/**
-	 * The x property name use in the container to layout all items.
-	 */
-	public var propX:String = "_x" ;
+	public function get childCount():Number 
+	{
+		return getChildCount() ;
+	}
 	
 	/**
-	 * The y property name use in the container to layout all items.
+	 * Sets the number of childs in this container.
 	 */
-	public var propY:String = "_y" ;
-
-	/**
-	 * The width property name use in the container to layout all items.
-	 */
-	public var propW:String = "_width" ;
+	public function set childCount(n:Number):Void 
+	{
+		setChildCount( n ) ;
+	}
 	
 	/**
 	 * Returns the direction value of this object.
@@ -95,22 +92,25 @@ class lunas.display.container.ListContainerDisplay extends SimpleContainerDispla
 	}
 	
 	/**
-	 * Returns the number of childs in this container.
-	 * @return the number of childs in this container.
+	 * The height property name use in the container to layout all items.
 	 */
-	public function get childCount():Number 
-	{
-		return getChildCount() ;
-	}
+	public var propH:String = "_height" ;
+
+	/**
+	 * The x property name use in the container to layout all items.
+	 */
+	public var propX:String = "_x" ;
 	
 	/**
-	 * Sets the number of childs in this container.
+	 * The y property name use in the container to layout all items.
 	 */
-	public function set childCount(n:Number):Void 
-	{
-		setChildCount( n ) ;
-	}
-	
+	public var propY:String = "_y" ;
+
+	/**
+	 * The width property name use in the container to layout all items.
+	 */
+	public var propW:String = "_width" ;
+
 	/**
 	 * (read-write) Indicates if the mask is active or not over this container.
 	 */
