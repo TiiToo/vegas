@@ -93,6 +93,11 @@ package lunas.events
 		public static var RESIZE:String = "resize" ;
 
 		/**
+		 * Defines the value of the type property of an 'scroll' component.
+		 */
+		public static var SCROLL:String = Event.SCROLL ;
+
+		/**
 		 * Defines the value of the type property of an 'show' component.
 		 */
 		public static var SHOW:String = "show" ;

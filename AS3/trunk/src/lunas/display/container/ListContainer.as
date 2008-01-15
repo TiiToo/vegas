@@ -27,6 +27,10 @@ package lunas.display.container
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
+	import asgard.display.Background;
+	import asgard.display.CoreShape;
+	import asgard.display.CoreSprite;
+	
 	import lunas.core.AbstractComponent;
 	import lunas.core.Direction;
 	import lunas.core.IDirectionable;	
@@ -49,10 +53,22 @@ package lunas.display.container
 
 			super( id, isConfigurable, name );
 
-			_bound      = new Rectangle() ;
-			_mask       = new Shape() ;		
-			_mask.name  = "mask" ;
+			_bound      = new Rectangle() ;			
+			_background = new Background(null, false, false, "background" ) ;			
+			_container  = new CoreSprite(null, false, "container") ;
+			_mask       = new CoreShape(null, false, "mask") ;		
+			
+			lock() ;
 
+			addChild( _background ) ;
+			addChild( _container ) ;
+			addChild( _mask ) ;
+			
+			unlock() ;
+
+			registerView( _container ) ;
+			
+			update() ;
 		}
 
 		/**
@@ -206,25 +222,17 @@ package lunas.display.container
 			for (var i:Number = 0 ; i<l ; i++) 
 			{
 				child      = getChildAt(i) ;
-				if ( child != _mask )
-				{
-					prev       = i > 0 ? getChildAt(i-1) : null ;
-					child[pro] = (i == 0) ? 0 : ( prev[pro] + prev[s] + spa ) ;
-					child[inv] = 0 ;
-				}
+				prev       = i > 0 ? getChildAt(i-1) : null ;
+				child[pro] = (i == 0) ? 0 : ( prev[pro] + prev[s] + spa ) ;
+				child[inv] = 0 ;
 			}
 		}
 		
 		/**
-		 * Draw the view of the component.
+		 * Draws the view of the component.
 		 */
 		public override function draw( ...arguments:Array ):void 
 		{
-
-			if ( contains( _mask ) )
-			{
-				removeChild( _mask ) ;
-			}
 			if ( numChildren > 0 ) 
 			{
 				changeChildsPosition() ;
@@ -285,26 +293,17 @@ package lunas.display.container
 			if ( maskIsActive && _lockMask == false ) 
 			{
 
-				lock() ;
-				addChild( _mask ) ;
-				unlock() ;
+				mask = _mask ;
 				
-				_mask.graphics.beginFill( 0xFF0000 , 0 ) ;
-				
+				_mask.graphics.beginFill( 0xFF0000 , 1 ) ;
 				_mask.graphics.drawRect( _bound.x , _bound.y, _bound.width , _bound.height ) ;
 				_mask.graphics.endFill() ;
 				
-				_mask.x = 0 ;
-				_mask.y = 0 ;
-					
 				if ( useScrollRect )
 				{
 					scrollRect = _bound ;	
 				}
-				else
-				{
-					mask = _mask ;
-				}
+
 			}
 
 
@@ -318,9 +317,6 @@ package lunas.display.container
 			if ( childCount > 0) 
 			{
             	
-            	//var nW:Number = EdgeMetrics.filterNaNValue( border.left ) + EdgeMetrics.filterNaNValue( border.right ) ;
-            	//var nH:Number = EdgeMetrics.filterNaNValue( border.top  ) + EdgeMetrics.filterNaNValue( border.bottom ) ;
-				
 				var isHorizontal:Boolean = direction == Direction.HORIZONTAL ;
 				var n:Number = childCount ;
 				
@@ -384,6 +380,11 @@ package lunas.display.container
 		}
 		
 		/**
+		 * This Background reference defines a background display.
+		 */
+		protected var _background:Background ;
+		
+		/**
 		 * @private
 		 */
 		private var _bound:Rectangle ;
@@ -392,6 +393,11 @@ package lunas.display.container
 		 * @private
 		 */
 		private var _childCount:int = -1 ;
+		
+		/**
+		 * This CoreSprite reference defines a container display.
+		 */
+		protected var _container:CoreSprite ;
 		
 		/**
 		 * @private
@@ -404,9 +410,9 @@ package lunas.display.container
 		private var _lockMask:Boolean = false ;
 
 		/**
-		 * @private
+		 * This CoreShape reference defines a mask display.
 		 */
-		private var _mask:Shape ;
+		protected var _mask:CoreShape ;
 
 		/**
 		 * @private

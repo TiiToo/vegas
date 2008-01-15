@@ -311,10 +311,7 @@ class lunas.display.container.ScrollContainerDisplay extends ListContainerDispla
 	 */
 	private function _changeScroll():Void 
 	{
-		if (_tw.running)
-		{
-			_tw.stop() ;
-		}
+		_clearTween() ;
 
 		var prop:String = _getPosProperty() ;
 		var pos:Number  = getContainerPos () ;
@@ -349,7 +346,10 @@ class lunas.display.container.ScrollContainerDisplay extends ListContainerDispla
 	 */
 	private function _clearTween() :Void 
 	{
-		_tw.stop() ; 
+		if (_tw.running)
+		{
+			_tw.stop() ;
+		}
 	}
 
 	/**
