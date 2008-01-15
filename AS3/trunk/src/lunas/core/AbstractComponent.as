@@ -530,7 +530,7 @@ package lunas.core
 		/**
 		 * The virtual height value of the component.
 		 */
-		protected var _h:Number ;
+		protected var _h:Number = 0 ;
 
 		/**
 		 * @private
@@ -545,7 +545,7 @@ package lunas.core
 		/**
 		 * The virtual width value of the component.
 		 */
-		protected var _w:Number ;		
+		protected var _w:Number = 0 ;		
 		
 		/**
 		 * Dispatchs a ComponentEvent with the specified type.

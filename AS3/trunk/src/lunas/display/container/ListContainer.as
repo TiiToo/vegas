@@ -24,15 +24,12 @@ package lunas.display.container
 {
 	import flash.display.DisplayObject;
 	import flash.display.Shape;
-	import flash.display.Sprite;
+	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
 	import lunas.core.AbstractComponent;
 	import lunas.core.Direction;
-	import lunas.core.EdgeMetrics;
-	import lunas.core.IDirectionable;
-	
-	import pegas.geom.Dimension;	
+	import lunas.core.IDirectionable;	
 
 	/**
 	 * The ListContainer class is a list container component. 
@@ -51,14 +48,10 @@ package lunas.display.container
 		{
 
 			super( id, isConfigurable, name );
-			
-			_mask       = new Shape() ;			
-			_bound      = new Dimension() ;
-			
-			registerView( new Sprite() ) ;
-			
-			
-			addChild( view ) ;
+
+			_bound      = new Rectangle() ;
+			_mask       = new Shape() ;		
+			_mask.name  = "mask" ;
 
 		}
 
@@ -98,6 +91,7 @@ package lunas.display.container
 		public function set direction(value:String):void
 		{
 			_direction = (value == Direction.HORIZONTAL) ? Direction.HORIZONTAL : Direction.VERTICAL ;
+			update() ;
 		}
 		
 		/**
@@ -146,6 +140,14 @@ package lunas.display.container
 			return _mask ;
 		}
 		
+		/**
+		 * Returns the internal Rectangle object of this display.
+		 * @return the internal Rectangle object of this display.
+		 */	
+		public function get rectangle():Rectangle 
+		{ 
+			return _bound ;
+		}
 		
 		/**
 	 	 * Indicates the space value (in pixel) between 2 childs in the list.
@@ -204,9 +206,12 @@ package lunas.display.container
 			for (var i:Number = 0 ; i<l ; i++) 
 			{
 				child      = getChildAt(i) ;
-				prev       = getChildAt(i-1) ;
-				child[pro] = (i == 0) ? 0 : ( prev[pro] + prev[s] + spa ) ;
-				child[inv] = 0 ;
+				if ( child != _mask )
+				{
+					prev       = i > 0 ? getChildAt(i-1) : null ;
+					child[pro] = (i == 0) ? 0 : ( prev[pro] + prev[s] + spa ) ;
+					child[inv] = 0 ;
+				}
 			}
 		}
 		
@@ -215,21 +220,17 @@ package lunas.display.container
 		 */
 		public override function draw( ...arguments:Array ):void 
 		{
+
+			if ( contains( _mask ) )
+			{
+				removeChild( _mask ) ;
+			}
 			if ( numChildren > 0 ) 
 			{
 				changeChildsPosition() ;
 			}
 			resize() ;
 			refreshMask() ;
-		}
-		
-		/**
-		 * Returns the internal Dimension object of this display.
-		 * @return the internal Dimension object of this display.
-		 */	
-		public function getDimension():Dimension 
-		{ 
-			return _bound ;
 		}
 		
 		/**
@@ -275,30 +276,37 @@ package lunas.display.container
 	 	*/
 		protected function refreshMask():void 
 		{
+
+			scrollRect = null ;
+			mask       = null ;
 			
 			_mask.graphics.clear() ;
-			view.scrollRect = null ;
-			view.mask       = null ;
+
 			if ( maskIsActive && _lockMask == false ) 
 			{
+
+				lock() ;
+				addChild( _mask ) ;
+				unlock() ;
 				
-				_mask.graphics.beginFill( 0xFF0000 , 60 ) ;
-				_mask.graphics.drawRect( 0, 0, _bound.width , _bound.height ) ;
+				_mask.graphics.beginFill( 0xFF0000 , 0 ) ;
+				
+				_mask.graphics.drawRect( _bound.x , _bound.y, _bound.width , _bound.height ) ;
 				_mask.graphics.endFill() ;
-									
+				
+				_mask.x = 0 ;
+				_mask.y = 0 ;
+					
 				if ( useScrollRect )
 				{
-					view.scrollRect = new Rectangle(0, 0, _bound.width , _bound.height ) ;	
+					scrollRect = _bound ;	
 				}
 				else
 				{
-
-					if ( view != this )
-					{
-						view.mask = _mask ;
-					}
+					mask = _mask ;
 				}
-			}	
+			}
+
 
 		}
 		
@@ -307,34 +315,55 @@ package lunas.display.container
 		 */
 		public function resize():void 
 		{
-			
 			if ( childCount > 0) 
 			{
-            	var nW:Number = EdgeMetrics.filterNaNValue( border.left ) + EdgeMetrics.filterNaNValue( border.right ) ;
-            	var nH:Number = EdgeMetrics.filterNaNValue( border.top  ) + EdgeMetrics.filterNaNValue( border.bottom ) ;
+            	
+            	//var nW:Number = EdgeMetrics.filterNaNValue( border.left ) + EdgeMetrics.filterNaNValue( border.right ) ;
+            	//var nH:Number = EdgeMetrics.filterNaNValue( border.top  ) + EdgeMetrics.filterNaNValue( border.bottom ) ;
+				
 				var isHorizontal:Boolean = direction == Direction.HORIZONTAL ;
 				var n:Number = childCount ;
-				var n1:Number = 0 ;
-				var n2:Number = 0 ;
+				
+				_bound.width  = 0 ;
+				_bound.height = 0 ;
+				
+				var b:Rectangle ;
 				var d:DisplayObject ;
-				var p:String = isHorizontal ? propWidth  : propHeight ;
-				var f:String = isHorizontal ? propHeight : propWidth  ;
-				var s:Number = space ;
+				var offset:Point = new Point(0,0) ;
+				var n1:Number  = 0 ;
+				var n2:Number  = 0 ;
+				var p:String   = isHorizontal ? propWidth  : propHeight ;
+				var f:String   = isHorizontal ? propHeight : propWidth  ;
+				var s:Number   = space ;
 				for (var i:uint = 0 ; i<n ; i++) 
 				{
 					d = getChildAt(i) ;
-					n1 += s + d[p] ;
-					n2 = Math.max(d[f], n2) ;
+					if ( d != _mask ) 
+					{
+						
+						b = d.getBounds(this) ;
+						
+						offset.y = Math.min( offset.y , b.y ) ;
+						offset.x = Math.min( offset.x , b.x ) ;
+						
+						n1 += s + b[p] ;
+						n2 = Math.max(b[f], n2) ;
+
+					}
+
 				}
-				n1 -= s || 0 ;
-				_bound.width  = (isHorizontal ? n1 : n2) + nW ; 
-				_bound.height = (isHorizontal ? n2 : n1) + nH ; 
-				break ;
+				n1 -= s ;
+					
+				_bound.x      = offset.x ;
+				_bound.y      = offset.y ;
+				_bound.width  = (isHorizontal ? n1 : n2) ; 
+				_bound.height = (isHorizontal ? n2 : n1) ;
+
 			}
 			else if ( maskIsActive ) 
 			{
-				_bound.width  = _w ;
-				_bound.height = _h ; 
+				_bound.width  = w ;
+				_bound.height = h ; 
 			}
 			else 
 			{
@@ -357,7 +386,7 @@ package lunas.display.container
 		/**
 		 * @private
 		 */
-		private var _bound:Dimension ;
+		private var _bound:Rectangle ;
 				
 		/**
 		 * @private
@@ -382,7 +411,7 @@ package lunas.display.container
 		/**
 		 * @private
 		 */
-		private var _maskIsActive:Boolean = false;
+		private var _maskIsActive:Boolean = false ;
 		
 		/**
 		 * @private
@@ -395,5 +424,5 @@ package lunas.display.container
 		private var _useScrollRect:Boolean = false ;
 		
 	}	
-
 }
+

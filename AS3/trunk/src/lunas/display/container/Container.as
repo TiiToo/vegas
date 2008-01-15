@@ -24,7 +24,6 @@ package lunas.display.container
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
-	import flash.geom.Point;
 	
 	import lunas.core.AbstractComponent;
 	import lunas.events.ComponentEvent;	
@@ -45,18 +44,8 @@ package lunas.display.container
 		public function Container(id:* = null, isConfigurable:Boolean = false, name:String = null)
 		{
 			super( id, isConfigurable, name ) ;
-			registerView() ;
 		}
 		
-		/**
-		 * Returns the real scope of this container. See the registerView method to change the scope of the component.
-		 * @return the real scope of this container.
-		 */		
-		public function get view():DisplayObjectContainer
-		{
-			return _scope ;
-		}
-
 		/**
 		 * Adds a child DisplayObject instance to this DisplayObjectContainer instance. 
 		 * The child is added to the front (top) of all other children in this DisplayObjectContainer instance. 
@@ -67,9 +56,9 @@ package lunas.display.container
 		 * @throws ArgumentError Throws if the child is the same as the parent. Also throws if the caller is a child (or grandchild etc.) of the child being added.
 		 * @return The DisplayObject instance that you pass in the child parameter.  
 		 */
-		public override function addChild( child:DisplayObject):DisplayObject
+		public override function addChild( child:DisplayObject ):DisplayObject
 		{
-			var d:DisplayObject = ( _scope == this ) ? super.addChild(child) : _scope.addChild(child) ;
+			var d:DisplayObject = super.addChild( child ) ;
 			update() ;
 			return d ;
 		}
@@ -85,19 +74,9 @@ package lunas.display.container
 		 */
 		public override function addChildAt( child:DisplayObject , index:int ):DisplayObject
 		{
-			var d:DisplayObject = ( _scope == this ) ? super.addChildAt(child, index) :_scope.addChildAt(child,index) ;
+			var d:DisplayObject = super.addChildAt(child, index) ;
 			update() ;
 			return d ;
-		}
-		
-		/**
-		 * Indicates whether the security restrictions would cause any display objects to be omitted from the list returned by calling the DisplayObjectContainer.getObjectsUnderPoint() method with the specified point point. By default, content from one domain cannot access objects from another domain unless they are permitted to do so with a call to the Security.allowDomain() method.
-		 * @param point The point under which to look.
-		 * @return true if the point contains child display objects with security restrictions. 
-		 */
-		public override function areInaccessibleObjectsUnderPoint( point:Point ):Boolean
-		{
-			return ( _scope == this ) ? super.areInaccessibleObjectsUnderPoint(point) : _scope.areInaccessibleObjectsUnderPoint(point) ;
 		}
 		
 		/**
@@ -113,19 +92,7 @@ package lunas.display.container
 			update() ;
 			_fireComponentEvent( ComponentEvent.CLEAR ) ;
 		}
-		
-		/**
-		 * Determines whether the specified display object is a child of the DisplayObjectContainer instance or the instance itself. 
-		 * The search includes the entire display list including this DisplayObjectContainer instance. 
-		 * Grandchildren, great-grandchildren, and so on each return true.
-		 * @param child The child object to test.
-		 * @return true if the child object is a child of the DisplayObjectContainer or the container itself; otherwise false. 
-		 */
-		public override function contains( child:DisplayObject ):Boolean
-		{
-			return ( _scope == this ) ? super.contains(child) : _scope.contains(child) ;
-		}
-		
+
 		/**
 		 * Returns {@code true} if a child exist in the display list at the specified index value.
 		 * @return {@code true} if a child exist in the display list at the specified index value.
@@ -133,60 +100,6 @@ package lunas.display.container
 		public function containsAt( index:int ):Boolean 
 		{
 			return getChildAt(index) != null ;
-		}
-		
-		/**
-		 * Returns the child display object instance that exists at the specified index.
-		 * @param index The index position of the child object.  
-		 * @return The child display object at the specified index position.
-		 * @throws RangeError Throws if the index does not exist in the child list.
-		 * @throws SecurityError This child display object belongs to a sandbox to which you do not have access. You can avoid this situation by having the child movie call Security.allowDomain().
-		 * @see getChildByName() 
-		 */
-		public override function getChildAt(index : int) : DisplayObject
-		{
-			if ( _scope == this )
-			{
-				return super.getChildAt( index ) ;
-			}
-			else
-			{
-				return _scope.getChildAt( index ) ;	
-			} 
-		}
-
-		/**
-		 * Returns the child display object that exists with the specified name. 
-		 * If more that one child display object has the specified name, the method returns the first object in the child list.
-		 * @param name The name of the child to return. 
-		 * @throws SecurityError This child display object belongs to a sandbox to which you do not have access. You can avoid this situation by having the child movie call the Security.allowDomain() method. 
-		 * @return The child display object with the specified name. 
-		 */
-		public override function getChildByName(name : String) : DisplayObject
-		{
-			return ( _scope == this ) ? super.getChildByName( name ) : _scope.getChildByName( name ) ;
-		}
-
-		/**
-		 * Returns the index position of a child DisplayObject instance.
-		 * @param child The DisplayObject instance to identify.
-		 * @return The index position of the child display object to identify.
-		 */
-		public override function getChildIndex( child:DisplayObject ):int
-		{
-			return ( _scope == this ) ? super.getChildIndex(child) : _scope.getChildIndex(child) ;
-		}
-		
-		/**
-		 * Returns an array of objects that lie under the specified point and are children (or grandchildren, and so on) of this DisplayObjectContainer instance. 
-		 * Any child objects that are inaccessible for security reasons are omitted from the returned array. 
-		 * To determine whether this security restriction affects the returned array, call the areInaccessibleObjectsUnderPoint() method.
-		 * @param The point under which to look.
-		 * @return An array of objects that lie under the specified point and are children (or grandchildren, and so on) of this DisplayObjectContainer instance. 
-		 */
-		public override function getObjectsUnderPoint( point:Point ):Array
-		{
-			return ( _scope == this ) ? super.getObjectsUnderPoint(point) : _scope.getObjectsUnderPoint(point) ;
 		}
 
 		/**
@@ -199,20 +112,6 @@ package lunas.display.container
 		}
 		
 		/**
-		 * Registers the view of this component. The scope view can be the current DisplayObjectContainer or a child inside it.
-		 */
-		public function registerView( scope:DisplayObjectContainer = null ):void
-		{
-			unregisterView() ;
-			_scope = ( scope == null ) ? this : ( ( scope.parent == this ) ? scope : this ) ;
-			if ( _scope != this )
-			{
-				addChild( _scope ) ;	
-			}
-			update() ;
-		}
-		
-		/**
 		 * Removes the specified child DisplayObject instance from the child list of the DisplayObjectContainer instance. 
 		 * The parent property of the removed child is set to null , and the object is garbage collected if no other references to the child exist. 
 		 * The index positions of any display objects above the child in the DisplayObjectContainer are decreased by 1.
@@ -222,7 +121,7 @@ package lunas.display.container
 		 */
 		public override function removeChild( child:DisplayObject ):DisplayObject
 		{
-			var d:DisplayObject = ( _scope == this ) ? super.removeChild(child) : _scope.removeChild(child) ;
+			var d:DisplayObject = super.removeChild(child) ;
 			update() ;
 			return d ;
 		}
@@ -237,9 +136,9 @@ package lunas.display.container
 		 * You can avoid this situation by having the child movie call the Security.allowDomain() method. 		 
 		 * @return The DisplayObject instance that was removed.
 		 */
-		public override function removeChildAt(index : int) : DisplayObject
+		public override function removeChildAt( index:int):DisplayObject
 		{
-			var d:DisplayObject = ( _scope == this ) ? super.removeChildAt( index ) : _scope.removeChildAt( index ) ;
+			var d:DisplayObject = super.removeChildAt( index ) ;
 			update() ;
 			return d ;
 		}
@@ -253,7 +152,7 @@ package lunas.display.container
 			var removes:Array = [] ;
 			for (var i:int = index ; i< ( index + size ) ; i++ )
 			{
-				var child:DisplayObject = _scope.removeChildAt(i) ;
+				var child:DisplayObject = super.removeChildAt(i) ;
 				if ( child != null )
 				{
 					removes.push( child ) ;	
@@ -274,7 +173,7 @@ package lunas.display.container
 			{
 				if ( containsAt( from ) )
 				{
-					removes.push( removeChildAt( from ) ) ;
+					removes.push( super.removeChildAt( from ) ) ;
 				}
 				else
 				{
@@ -290,70 +189,12 @@ package lunas.display.container
 		}
 		
 		/**
-		 * Changes the position of an existing child in the display object container. 
-		 * This affects the layering of child objects.
-		 * @param child The child DisplayObject instance for which you want to change the index number. 
-		 * @param index The resulting index number for the child display object. 
-		 * @throws RangeError Throws if the index does not exist in the child list. 
-		 * @throws ArgumentError Throws if the child parameter is not a child of this object.  
-		 */
-		public override function setChildIndex(child : DisplayObject, index : int) : void
-		{
-			if ( _scope == this )
-			{
-				super.setChildIndex(child, index) ;
-			}
-			else
-			{
-				_scope.setChildIndex(child, index) ;	
-			}
-		}		
-		
-		/**
 		 * Returns the number of children of this object.
 		 * @return the number of children of this object.
 		 */
 		public function size():uint
 		{
 			return numChildren ;	
-		}
-		
-		/**
-		 * Swaps the z-order (front-to-back order) of the two specified child objects. 
-		 * All other child objects in the display object container remain in the same index positions.
-		 * @param child1 The first child object. 
-		 * @param child2 The second child object. 
-		 * @throws ArgumentError Throws if either child parameter is not a child of this object.  
-		 */
-		public override function swapChildren( child1:DisplayObject, child2:DisplayObject):void
-		{
-			if ( _scope == this )
-			{
-				super.swapChildren(child1, child2) ;
-			}
-			else
-			{
-				_scope.swapChildren(child1, child2) ;	
-			}
-		}
-		
-		/**
-		 * Swaps the z-order (front-to-back order) of the child objects at the two specified index positions in the child list. 
-		 * All other child objects in the display object container remain in the same index positions.
-		 * @param index1 The index position of the first child object.
-		 * @param index2 The index position of the second child object.
-		 * @throws RangeError — If either index does not exist in the child list.  
-  		 */
-		public override function swapChildrenAt( index1:int , index2:int ):void
-		{
-			if ( _scope == this )
-			{
-				super.swapChildrenAt(index1, index2) ;
-			}
-			else
-			{
-				_scope.swapChildrenAt(index1, index2) ;	
-			}
 		}
 		
 		/**
@@ -370,26 +211,6 @@ package lunas.display.container
 			}
 			return ar ;
 		}
-		
-		/**
-		 * Unregisters the view of this component.
-		 */
-		public function unregisterView():void
-		{
-			if (_scope != null) 
-			{
-				if ( numChildren > 0 )
-				{
-					clear() ;
-				}
-			}
-			_scope = this ;
-		}
-
-		/**
-		 * The scope of the active display of this container component.
-		 */
-		protected var _scope:DisplayObjectContainer ;	
 		
 	}
 }
