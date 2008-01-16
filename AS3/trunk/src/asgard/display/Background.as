@@ -22,24 +22,24 @@
  */
 package asgard.display 
 {
-    import flash.events.Event;
-    import flash.geom.Matrix;
-    
-    import asgard.display.CoreSprite;
-    
-    import pegas.draw.FillGradientStyle;
-    import pegas.draw.IFillStyle;
-    import pegas.draw.ILineStyle;
-    import pegas.draw.IPen;
-    import pegas.draw.Pen;
-    import pegas.draw.RoundedComplexRectanglePen;
-    import pegas.geom.Dimension;
-    import pegas.util.Trigo;
-    
-    import vegas.events.BasicEvent;
-    import vegas.util.MathsUtil;    
+	import flash.events.Event;
+	import flash.geom.Matrix;
+	
+	import asgard.display.CoreSprite;
+	
+	import pegas.draw.FillGradientStyle;
+	import pegas.draw.IFillStyle;
+	import pegas.draw.ILineStyle;
+	import pegas.draw.IPen;
+	import pegas.draw.Pen;
+	import pegas.draw.RoundedComplexRectanglePen;
+	import pegas.geom.Dimension;
+	import pegas.util.Trigo;
+	
+	import vegas.events.BasicEvent;
+	import vegas.util.MathsUtil;	
 
-    /**
+	/**
      * This display is used to create a background in your application or in an other display of the application.
      * <p><b>Example :</b></p>
      * {@code
@@ -121,6 +121,7 @@ package asgard.display
             {
                 _pen.fillStyle = _fillStyle ;
             }
+            update() ;
         }
 
         /**
@@ -181,6 +182,7 @@ package asgard.display
             {
                 _pen.lineStyle = style ;
             }
+            update() ;
         }
 
         /**
@@ -243,7 +245,7 @@ package asgard.display
             {
                 
                 var matrix:Matrix = new Matrix() ;
-                 matrix.createGradientBox( $w, $h );
+                matrix.createGradientBox( $w, $h );
                 matrix.rotate(Trigo.degreesToRadians(gradientRotation)) ;
                 
                 (fillStyle as FillGradientStyle).matrix = matrix ;

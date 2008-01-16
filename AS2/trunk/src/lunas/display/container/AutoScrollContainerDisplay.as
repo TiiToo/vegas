@@ -294,7 +294,6 @@ class lunas.display.container.AutoScrollContainerDisplay extends ScrollContainer
 			setScroll(nS+1) ;
 		}
 		
-		
 	}
 	
 }

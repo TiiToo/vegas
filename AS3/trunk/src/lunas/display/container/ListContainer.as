@@ -27,13 +27,16 @@ package lunas.display.container
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
-	import asgard.display.Background;
 	import asgard.display.CoreShape;
 	import asgard.display.CoreSprite;
 	
 	import lunas.core.AbstractComponent;
 	import lunas.core.Direction;
-	import lunas.core.IDirectionable;	
+	import lunas.core.IDirectionable;
+	
+	import pegas.draw.FillStyle;
+	import pegas.draw.IPen;
+	import pegas.draw.RectanglePen;	
 
 	/**
 	 * The ListContainer class is a list container component. 
@@ -53,22 +56,65 @@ package lunas.display.container
 
 			super( id, isConfigurable, name );
 
-			_bound      = new Rectangle() ;			
-			_background = new Background(null, false, false, "background" ) ;			
-			_container  = new CoreSprite(null, false, "container") ;
-			_mask       = new CoreShape(null, false, "mask") ;		
+			_background              = new CoreSprite( null , false , "background" ) ;			
+			_container               = new CoreSprite( null , false , "container" ) ;
+			_mask                    = new CoreShape ( null , false , "mask" ) ;		
+			_area                    = new CoreSprite( null , false , "area" ) ;
 			
+			_areaPen                 = new RectanglePen( _area ) ;
+			_backgroundPen           = new RectanglePen( _background ) ;
+			_maskPen                 = new RectanglePen( _mask ) ;
+			
+			_areaPen.fillStyle       = new FillStyle( 0 , 0 ) ;
+			_backgroundPen.fillStyle = new FillStyle( 0 , 0 ) ;
+			_maskPen.fillStyle       = new FillStyle( 0 , 0 ) ;
+			
+			_bound                   = new Rectangle() ;
+				
 			lock() ;
 
 			addChild( _background ) ;
 			addChild( _container ) ;
 			addChild( _mask ) ;
-			
+			addChild( _area ) ;
+
 			unlock() ;
 
 			registerView( _container ) ;
 			
 			update() ;
+		}
+		
+		/**
+		 * (read-only) Returns the area reference of this component.
+		 */
+		public function get area():CoreSprite 
+		{
+			return _area ;
+		}
+		
+		/**
+		 * (read-only) Returns the area IPen reference of this component.
+		 */
+		public function get areaPen():IPen 
+		{
+			return _areaPen ;
+		}
+		
+		/**
+		 * (read-only) Returns the background reference of this component.
+		 */
+		public function get background():CoreSprite 
+		{
+			return _background ;
+		}
+
+		/**
+		 * (read-only) Returns the background IPen reference of this component.
+		 */
+		public function get backgroundPen():IPen 
+		{
+			return _backgroundPen ;
 		}
 
 		/**
@@ -111,6 +157,31 @@ package lunas.display.container
 		}
 		
 		/**
+		 * (read-write) Indicates if the mask is active or not over this container.
+		 */
+		public function get maskIsActive():Boolean 
+		{	
+			return _maskIsActive ;
+		}
+		
+		/**
+	 	 * @private
+	 	 */
+		public function set maskIsActive( b:Boolean ):void 
+		{
+			_maskIsActive = b ;
+			update() ;
+		}
+			
+		/**
+		 * (read-only) Determinates the mask reference of this container.
+		 */
+		public function get maskView():Shape 
+		{	
+			return _mask ;
+		}
+		
+		/**
 		 * The height property name use in the container to layout all items.
 		 */
 		public var propHeight:String = "height" ;
@@ -130,32 +201,7 @@ package lunas.display.container
 	 	 */
 		public var propWidth:String = "width" ;
 
-		/**
-		 * (read-write) Indicates if the mask is active or not over this container.
-		 */
-		public function get maskIsActive():Boolean 
-		{	
-			return _maskIsActive ;
-		}
-		
-		/**
-	 	 * @private
-	 	 */
-		public function set maskIsActive( b:Boolean ):void 
-		{
-			_maskIsActive = b ;
-			update() ;
-		}
-		
-			
-		/**
-		 * (read-only) Determinates the mask reference of this container.
-		 */
-		public function get maskView():Shape 
-		{	
-			return _mask ;
-		}
-		
+
 		/**
 		 * Returns the internal Rectangle object of this display.
 		 * @return the internal Rectangle object of this display.
@@ -238,6 +284,7 @@ package lunas.display.container
 				changeChildsPosition() ;
 			}
 			resize() ;
+			refreshBackground() ;
 			refreshMask() ;
 		}
 		
@@ -282,31 +329,34 @@ package lunas.display.container
 		/**
 		 * Refresh the mask view of the display.
 	 	*/
+		protected function refreshBackground():void 
+		{
+			_background.x = _bound.x ;
+			_background.y = _bound.y ;
+			_backgroundPen.draw( 0, 0, _bound.width , _bound.height ) ;
+			
+			_area.x = _bound.x ;
+			_area.y = _bound.y ;
+			_areaPen.draw( 0, 0, _bound.width , _bound.height ) ;
+		}
+		
+		/**
+		 * Refresh the mask view of the display.
+	 	 */
 		protected function refreshMask():void 
 		{
-
 			scrollRect = null ;
 			mask       = null ;
-			
 			_mask.graphics.clear() ;
-
 			if ( maskIsActive && _lockMask == false ) 
 			{
-
+				_maskPen.draw( _bound.x , _bound.y, _bound.width , _bound.height ) ;
 				mask = _mask ;
-				
-				_mask.graphics.beginFill( 0xFF0000 , 1 ) ;
-				_mask.graphics.drawRect( _bound.x , _bound.y, _bound.width , _bound.height ) ;
-				_mask.graphics.endFill() ;
-				
 				if ( useScrollRect )
 				{
 					scrollRect = _bound ;	
 				}
-
 			}
-
-
 		}
 		
 		/**
@@ -380,10 +430,35 @@ package lunas.display.container
 		}
 		
 		/**
+		 * This area sprite defines a hide background display back of the display.
+		 */
+		protected var _area:CoreSprite ;
+		
+		/**
+		 * The pen of the area IPen object.
+		 */
+		protected var _areaPen:RectanglePen ;
+		
+		/**
 		 * This Background reference defines a background display.
 		 */
-		protected var _background:Background ;
+		protected var _background:CoreSprite ;
 		
+		/**
+		 * The pen of the background IPen object.
+		 */
+		protected var _backgroundPen:RectanglePen ;		
+
+		/**
+		 * This CoreShape reference defines a mask display.
+		 */
+		protected var _mask:CoreShape ;
+
+		/**
+		 * The pen of the mask IPen object.
+		 */
+		protected var _maskPen:RectanglePen ;		
+
 		/**
 		 * @private
 		 */
@@ -408,11 +483,6 @@ package lunas.display.container
 		 * @private
 		 */
 		private var _lockMask:Boolean = false ;
-
-		/**
-		 * This CoreShape reference defines a mask display.
-		 */
-		protected var _mask:CoreShape ;
 
 		/**
 		 * @private

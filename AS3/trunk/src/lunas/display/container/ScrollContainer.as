@@ -23,11 +23,9 @@
 package lunas.display.container 
 {
 	import flash.events.Event;
-	import flash.geom.Rectangle;
-	
-	import asgard.display.Background;
 	
 	import lunas.display.container.ListContainer;
+	import lunas.events.ComponentEvent;
 	
 	import pegas.events.ActionEvent;
 	import pegas.transitions.Motion;
@@ -64,15 +62,7 @@ package lunas.display.container
 			_tw.target = _container ;
 			
 		}
-		
-		/**
-		 * (read-only) Returns the background reference of this component.
-		 */
-		public function get background():Background 
-		{
-			return background ;
-		}
-		
+
 		/**
 		 * Returns the bottom scroll value.
 		 * @return the bottom scroll value.
@@ -142,17 +132,18 @@ package lunas.display.container
 		 * Indicates the scroll duration.
 		 */
 		public var scrollDuration:Number = 12  ;
-
+		
+		/**
+		 * Indicates if the container use cacheAsBitmap flag when the scroll is in progress.
+		 */
+		public var useCacheAsBitmap:Boolean = false ;
+		
 		/**
 		 * Draws the view of the component.
 		 */
 		public override function draw( ...arguments:Array ):void 
 		{
 			super.draw() ;
-			var r:Rectangle = rectangle ;
-			_background.x = r.x ;
-			_background.y = r.y ;
-			_background.setSize( r.width , r.height ) ;
 			_clearTween() ;
 			if (fixScroll) 
 			{
@@ -184,7 +175,7 @@ package lunas.display.container
 		 */
 		public function notifyScroll():void 
 		{
-			_fireComponentEvent( Event.SCROLL ) ;
+			_fireComponentEvent( ComponentEvent.SCROLL ) ;
 		}
 
 		/**
@@ -202,8 +193,11 @@ package lunas.display.container
 		 */
 		public function setScroll(n:Number, noEvent:Boolean=false ):void  
 		{
-			if (n == _scroll) return ;
-			if ( maxscroll > 0) 
+			if ( n == _scroll ) 
+			{
+				return ;
+			}
+			if ( maxscroll > 0 ) 
 			{
 				_scroll = n ;
 				_changeScroll() ;
@@ -238,7 +232,7 @@ package lunas.display.container
 		{
 			// overrides this method.
 		}
-			
+		
 		/**
 	 	 * @private
 	 	 */
@@ -292,6 +286,8 @@ package lunas.display.container
 				_entry.easing = scrollEasing || Back.easeOut ;
 				_entry.begin  = _container[prop] ;
 				_entry.finish = pos ;
+					
+				cacheAsBitmap = useCacheAsBitmap ;
 							
 				_tw.insert( _entry ) ;
 				_tw.duration = isNaN( scrollDuration ) ? 24 : scrollDuration ;
@@ -319,6 +315,7 @@ package lunas.display.container
 		 */
 		private function _finish( e:Event ):void
 		{
+			cacheAsBitmap = false ;
 			notifyFinish() ;	
 		}
 		
