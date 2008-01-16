@@ -450,6 +450,11 @@ package lunas.display.container
 		protected var _backgroundPen:RectanglePen ;		
 
 		/**
+		 * The Rectangle internal bound object of the container.
+		 */
+		protected var _bound:Rectangle ;
+
+		/**
 		 * This CoreShape reference defines a mask display.
 		 */
 		protected var _mask:CoreShape ;
@@ -458,11 +463,6 @@ package lunas.display.container
 		 * The pen of the mask IPen object.
 		 */
 		protected var _maskPen:RectanglePen ;		
-
-		/**
-		 * @private
-		 */
-		private var _bound:Rectangle ;
 				
 		/**
 		 * @private
