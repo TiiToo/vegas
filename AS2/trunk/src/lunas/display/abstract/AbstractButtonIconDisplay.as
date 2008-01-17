@@ -36,8 +36,8 @@ class lunas.display.abstract.AbstractButtonIconDisplay extends AbstractButtonDis
 
 	/**
 	 * Creates a AbstractButtonIconDisplay instance.
-	 * @param sName:String the name of the display.
-	 * @param target:MovieClip the DisplayObject instance control this target.
+	 * @param sName The name of the display.
+	 * @param targe The DisplayObject instance control this target.
 	 */
 	private function AbstractButtonIconDisplay ( sName:String, target:MovieClip ) 
 	{

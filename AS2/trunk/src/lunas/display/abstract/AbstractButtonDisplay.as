@@ -40,8 +40,8 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 
 	/**
 	 * Creates a new AbstractButtonDisplay instance.
-	 * @param sName:String the name of the display.
-	 * @param target:MovieClip the DisplayObject instance control this target.
+	 * @param sName the name of the display.
+	 * @param target the DisplayObject instance control this target.
 	 */	
 	private function AbstractButtonDisplay( sName:String, target:MovieClip ) 
 	{
@@ -52,7 +52,7 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 		registerView( view ) ;
 		
 	}
-
+	
 	/**
 	 * A data property used to keep an object in memory.
 	 */

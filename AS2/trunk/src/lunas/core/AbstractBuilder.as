@@ -35,7 +35,7 @@ class lunas.core.AbstractBuilder extends CoreObject implements IBuilder
 	
 	/**
 	 * Creates a new AbstractBuilder instance.
-	 * @param mc the target of the component reference to build.
+	 * @param target the target of the component reference to build.
 	 */
 	private function AbstractBuilder( target ) 
 	{
