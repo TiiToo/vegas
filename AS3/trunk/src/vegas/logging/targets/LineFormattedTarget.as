@@ -23,12 +23,11 @@
 
 package vegas.logging.targets
 {
+	import vegas.logging.AbstractTarget;
+	import vegas.logging.LogEvent;
+	import vegas.logging.LogEventLevel;    
 
-    import vegas.logging.AbstractTarget;
-    import vegas.logging.LogEvent;
-    import vegas.logging.LogEventLevel;
-    
-    /**
+	/**
 	 * All logger target implementations that have a formatted line style output should extend this class. It provides default behavior for including date, time, category, and level within the output.
 	 * @author eKameleon
 	 */
@@ -64,7 +63,12 @@ package vegas.logging.targets
          * Indicates if the line for the event should added to the trace.
          */
     	public var includeLines:Boolean = false ; 
-    	
+
+	  	/**
+		 * Indicates if the milliseconds should be added to the trace. Only relevant when includeTime is {@code true}.
+	     */
+  		public var includeMilliseconds:Boolean = false ;
+
     	/**
          * Indicates if the time should be added to the trace.
          */
@@ -182,6 +186,10 @@ package vegas.logging.targets
     		time += getDigit(d.getHours()) ;
     		time += ":" + getDigit(d.getMinutes()) ;
     		time += ":" + getDigit(d.getSeconds()) ;
+			if( includeMilliseconds ) 
+			{
+	      		time += ":" + getDigit(d.getMilliseconds()) ;
+	    	}
     		return time ;
     	}
 
@@ -194,6 +202,9 @@ package vegas.logging.targets
     		return ((n < 10) ? "0" : "") + n ;
     	}
         
+        /**
+         * @private
+         */
 	    private var __lineNumber:Number = 1 ;
         
     }

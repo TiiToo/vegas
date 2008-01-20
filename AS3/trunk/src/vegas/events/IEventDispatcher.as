@@ -48,4 +48,5 @@ package vegas.events
        function unregisterEventListener(type:String, listener:*, useCapture:Boolean = false):void ;
         
     }
+    
 }

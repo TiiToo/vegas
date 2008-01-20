@@ -193,7 +193,7 @@ package asgard.system
 	 	 * @param sID (optional) if this key is specified the method return the value of the specified key in the current locale object.  
 	 	 * @return the locale object with all this properties.
 	 	 */
-		public function getLocale( id:String ):* 
+		public function getLocale( id:String=null ):* 
 		{
 			if ( id != null ) 
 			{
@@ -211,7 +211,7 @@ package asgard.system
 		 * @param sID (optional) if this key is specified the method return the value of the specified key in the current locale object.
 		 * @param callback (optional) The optional method to launch after the initialization over the specified object. 
 		 */
-		public function init( o:Object , sID:String , callback:Function ):void
+		public function init( o:Object , sID:String=null , callback:Function=null ):void
 		{
 			var init:* = getLocale( sID ) ;
 			for (var prop:String in init)

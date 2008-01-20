@@ -23,9 +23,7 @@
 
 package asgard.display
 {
-	
 	import flash.display.DisplayObject;
-	import flash.display.MovieClip;
 	import flash.display.Stage;	
 
 	/**
@@ -33,17 +31,21 @@ package asgard.display
 	 * This source code is inspired of the original TopLevel class of Senocular : http://www.senocular.com/flash/actionscript.php?file=ActionScript_3.0/TopLevel.as
 	 * @author eKameleon
 	 */
-	public class ApplicationDisplay extends MovieClip 
+	public class ApplicationDisplay extends CoreMovieClip 
 	{
 
 		/**
 		 * Creates a new ApplicationDisplay instance.
 		 */
-		public function ApplicationDisplay()
+		public function ApplicationDisplay( id:*=null, isConfigurable:Boolean=false, name:String=null )
 		{
+			
+			super( id , isConfigurable , name ) ;
+			
 			ApplicationDisplay.stage  = this.stage ;
 			ApplicationDisplay.root   = this       ;
 			ApplicationDisplay.global = _global ;
+			
 		}
 
 		/**

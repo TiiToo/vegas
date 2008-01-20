@@ -23,16 +23,16 @@
 
 package vegas.logging.targets
 {
-    
-    import flash.events.Event;
-    import flash.events.IOErrorEvent;
-    import flash.events.SecurityErrorEvent;
-    import flash.net.XMLSocket;
-    
-    import vegas.data.iterator.Iterator;
-    import vegas.data.queue.LinearQueue;
-    import vegas.logging.LogEventLevel;
-    
+	import flash.events.Event;
+	import flash.events.IOErrorEvent;
+	import flash.events.SecurityErrorEvent;
+	import flash.net.XMLSocket;
+	
+	import vegas.data.iterator.Iterator;
+	import vegas.data.queue.LinearQueue;
+	import vegas.logging.LogEvent;
+	import vegas.logging.LogEventLevel;	
+
 	/**
 	 * Provides a logger target that uses the SOS console to output log messages. 
 	 * Thanks PowerFlasher and the <a href='http://sos.powerflasher.de/english/english.html'>SOS Console</a>
@@ -45,7 +45,7 @@ package vegas.logging.targets
 	 * 
 	 * // setup target
 	 * var target:SOSTarget = new SOSTarget(0xD8F394) ;
-	 * target.filters = ["monApplication", "vegas.errors.*"] ; // use a empty array to receive all logs.
+	 * target.filters = ["myApplication", "vegas.errors.*"] ; // use a empty array to receive all logs.
 	 * target.includeLines = true ;
 	 * target.includeCategory = true ;
 	 * target.includeDate = true ;
@@ -61,7 +61,7 @@ package vegas.logging.targets
 	 * Log.addTarget(target); 
 	 * 
 	 * // create a log writer
-	 * var logger:ILogger = Log.getLogger("monApplication") ;
+	 * var logger:ILogger = Log.getLogger("myApplication") ;
 	 * 
 	 * logger.log(LogEventLevel.DEBUG, "here is some myDebug info : {0} and {1}", 2.25 , true) ;
 	 * logger.debug("DEBUG !!") ;
@@ -84,7 +84,7 @@ package vegas.logging.targets
         public function SOSTarget( name:String=null, color:Number=NaN , isIdenfify:Boolean=true  )
         {
             super();
-            
+
 		    _queue = new LinearQueue() ;
 		
        		// --- Init Application
@@ -96,11 +96,9 @@ package vegas.logging.targets
 		
     		setAppColor(isNaN(color) ? SOSTarget.DEFAULT_COLOR : color) ;
     		
-    		if (isIdenfify)
+    		if ( isIdenfify )
     		{
-    		    
     		    identify() ;
-    		    
     		}
     		
     		// --- Init XMLSocket object
@@ -114,12 +112,12 @@ package vegas.logging.targets
 
     		// ----o Init Colors
     		
-    		setLevelColor(LogEventLevel.ALL) ;
-    		setLevelColor(LogEventLevel.DEBUG) ;
-    		setLevelColor(LogEventLevel.ERROR) ;
-    		setLevelColor(LogEventLevel.FATAL) ;
-    		setLevelColor(LogEventLevel.INFO) ;
-	    	setLevelColor(LogEventLevel.WARN) ;
+    		setLevelColor( LogEventLevel.ALL   ) ;
+    		setLevelColor( LogEventLevel.DEBUG ) ;
+    		setLevelColor( LogEventLevel.ERROR ) ;
+    		setLevelColor( LogEventLevel.FATAL ) ;
+    		setLevelColor( LogEventLevel.INFO  ) ;
+	    	setLevelColor( LogEventLevel.WARN  ) ;
 		
 		    levelPolicy = ENABLE ;
 		
@@ -255,6 +253,21 @@ package vegas.logging.targets
     			}
     		}
     	}
+    	
+   		/**
+		 * Returns the string socket representation to send a fold message in the SOSConsole.
+		 * @return the string socket representation to send a fold message in the SOSConsole.
+		 */
+		public function getFoldMessage( title:String, message:String, level:LogEventLevel ):String
+		{
+			var msg:String = "";
+			var levelName:String = LogEvent.getLevelString( level ) ;
+			msg += '!SOS<showFoldMessage key="' + levelName + '">';
+			msg += '<title>' + title + '</title>';
+			msg += '<message><![CDATA[' + message + ']]></message>' ;
+			msg += '</showFoldMessage>' ;
+			return msg ;	
+		} 
 
 		/**
 		 * Shows some Information about the Connection. This time it is : HostName, HostAddress and Color.
@@ -263,25 +276,40 @@ package vegas.logging.targets
 	    {
     		sendMessage("!SOS<identify/>") ;
 	    }
-        
+
+		/**
+	     * Descendants of this class should override this method to direct the specified message to the desired output.
+	     * @param message String containing preprocessed log message which may include time, date, category, etc. based on property settings, such as <code>includeDate</code>, <code>includeCategory</code>, etc.
+	     * @param level the LogEventLevel of the message.
+	 	 */
         public override function internalLog( message:* , level:LogEventLevel ):void
 	    {
         	sendLevelMessage( level, message ) ;
 	    }
+
+
+		/**
+		 * Send a fold message with a specific level.
+		 */
+		public function sendFoldLevelMessage(level:LogEventLevel, title:String, message:String):void
+		{
+			if (levelPolicy == ENABLE) 
+			{
+				message = getFoldMessage( title, message, level) ;
+			}
+			sendMessage( message ) ;
+		}
 
 		/**
 		 * Send a message with a specific level.
 		 */
 	    public function sendLevelMessage(level:LogEventLevel, message:String ):void 
 	    {
-	        
     		if (levelPolicy == SOSTarget.ENABLE) 
 	    	{
 		    	message = "!SOS<showMessage key='" + level.toString() + "'>" + message.toString() + "</showMessage>\n" ;
 		    } 
-    		
     		sendMessage(message) ;
-    		
 	    }
 
 		/**
@@ -321,10 +349,13 @@ package vegas.logging.targets
 		 */
     	public function setLevelColor( level:LogEventLevel, color:Number=NaN ):void 
     	{
-		    if (!LogEventLevel.isValidLevel(level)) return ;
+		    if (!LogEventLevel.isValidLevel(level))
+		    {
+		    	return ;
+		    }
     		var msg:String = "!SOS<setKey>" ;
     		msg += "<name>" + level.toString() + "</name>" ;
-    		msg += "<color>"+ ( isNaN(color) ? SOSTarget[level.toString()+"_COLOR"] : color ) + "</color>" ;
+    		msg += "<color>"+ ( isNaN(color) ? SOSTarget[ level.toString() + "_COLOR" ] : color ) + "</color>" ;
     		msg += "</setKey>\n" ;
     		sendMessage(msg) ;
     	}

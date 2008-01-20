@@ -1,11 +1,11 @@
 ﻿
 package mvc.vo
 {
-    import andromeda.vo.SimpleValueObject;
-    
-    import vegas.util.ClassUtil;    
+	import andromeda.vo.SimpleValueObject;
+	
+	import system.Reflection;    
 
-    /**
+	/**
      * The value object a of picture element in the GalleryModel.
      * @author eKameleon
      */
@@ -37,7 +37,7 @@ package mvc.vo
           */
         public override function toString():String
         {
-            var str:String = "[" + ClassUtil.getName(this) ;
+            var str:String = "[" + Reflection.getClassName(this) ;
             if ( this.id != null )
             {
                 str += " id:" + this.id ;    

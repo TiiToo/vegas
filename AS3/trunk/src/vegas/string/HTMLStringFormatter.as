@@ -114,7 +114,7 @@
          * @param target (optional) this value defined to the anchor tag forces the load of that link into the targeted window.
          * @return the string formatted with the method.
          */
-        public static function link( str:String , url:String , target:String ):String
+        public static function link( str:String , url:String="" , target:String=null ):String
         {
             var s:String = '<a href=\"' + url + '\"' ;
             if (target != null)
@@ -140,10 +140,10 @@
          * @param style (optional) the style class name of the tag.
          * @return the string formatted with the method.
          */
-        public static function paragraph( str:String, style:String ):String
+        public static function paragraph( str:String, style:String=null ):String
         {
             var s:String = '<p' ;
-            if (style.length > 0)
+            if ( style != null )
             {
                 s += ' class=\"' + style + '\"' ;
             } ;
@@ -177,10 +177,10 @@
          * @param style (optional) the style class name of the tag.
          * @return the string formatted with the method.
          */
-        public static function span( str:String, style:String ):String
+        public static function span( str:String, style:String=null ):String
         {
             var s:String = '<span' ;
-            if (style.length > 0)
+            if ( style != null )
             {
                 s += ' class=\"' + style + '\"' ;
             } ;

@@ -95,7 +95,7 @@ package asgard.events
 		 * @param sID (optional) if this key is specified the method return the value of the specified key in the current locale object. 
 		 * @param callback (optional) The optional method to launch after the initialization over the specified object. 
 		 */
-		public function init( o:Object , sID:String , callback:Function ):void
+		public function init( o:Object , sID:String=null , callback:Function=null ):void
 		{
 			(target as Localization).init( o , sID , callback ) ;
 		}

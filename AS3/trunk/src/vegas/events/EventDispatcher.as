@@ -20,19 +20,9 @@
   Contributor(s) :
   
 */
-
 package vegas.events
 {
-	import flash.events.EventDispatcher;
-	
-	import system.Reflection;
-	
-	import vegas.core.HashCode;
-	import vegas.data.map.ArrayMap;
-	import vegas.logging.ILogable;
-	import vegas.logging.ILogger;
-	import vegas.logging.Log;
-	import vegas.util.Serializer;	
+	import vegas.data.map.ArrayMap;		
 
 	/**
     * Stores the listeners object an notifies them with the DOM Events level 2/3 of the W3C.
@@ -44,7 +34,7 @@ package vegas.events
     * </p>
      * @author eKameleon
     */
-    public class EventDispatcher extends flash.events.EventDispatcher implements IEventDispatcher, ILogable
+    public class EventDispatcher extends AbstractEventDispatcher implements IEventDispatcher
     {
         
         /**
@@ -53,19 +43,12 @@ package vegas.events
         public function EventDispatcher( target:IEventDispatcher = null )
         {
             super( target );
-            setLogger() ;
-            this.target = (target == null) ? this : target ;
         }
  
          /**
           * Determinates the default singleton name.
          */
         public static const DEFAULT_SINGLETON_NAME:String = "__default__" ;
-        
-        /**
-         * Returns the target reference.
-         */
-        public var target:IEventDispatcher ;
         
         /**
          * Registers an {@code EventListener} object with an EventDispatcher object so that the listener receives notification of an event.
@@ -106,56 +89,12 @@ package vegas.events
         }
  
         /**
-         * Returns the internal {@code ILogger} reference of this {@code ILogable} object.
-         * @return the internal {@code ILogger} reference of this {@code ILogable} object.
-         */
-        public function getLogger():ILogger
-        {
-            return _logger ;     
-        }
- 
-        /**
          * Returns the name of the display.
          * @return the name of the display.
          */
         public function getName():String
         {
             return _sName || null ;
-        }
- 
-		
-		/**
-		 * Returns a hashcode value for the object.
-		 * @return a hashcode value for the object.
-		 */
-		public function hashCode():uint 
-		{
-			if ( isNaN( __hashcode__ ) ) 
-			{
-				__hashcode__ = HashCode.next() ;
-			}
-			return __hashcode__ ;
-		}
-        
-        /**
-         * Registers an {@code EventListener} object with an EventDispatcher object so that the listener receives notification of an event.
-         */
-        public function registerEventListener( type:String, listener:*, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false ):void
-        {    
-
-            var func:Function ;
-            
-            if ( listener is Function )
-            {
-                func = listener ;
-            }
-            else if ( listener is EventListener ) 
-            {
-                func = EventListener(listener).handleEvent ;
-            }
-
-            super.addEventListener(type, func, useCapture, priority, useWeakReference) ;
-            
         }
  
         /**
@@ -174,14 +113,6 @@ package vegas.events
             }
         }
         
-        /**
-         * Sets the internal {@code ILogger} reference of this {@code ILogable} object.
-         */
-        public function setLogger( log:ILogger=null ):void 
-        {
-            _logger = ( log == null ) ? Log.getLogger( Reflection.getClassPath(this) ) : log ;
-        }
-        
 		/**
 		 * Internal method to sets the name of the instance.
 	 	 */
@@ -191,57 +122,9 @@ package vegas.events
 		}
         
         /**
-         * Returns a string representing the source code of the EventDispatcher object.
-         */
-        public function toSource( indent:int = 0 ):String  
-        {
-            return "new vegas.events.EventDispatcher(" + Serializer.toSource(target) + ")" ;
-        }
-
-        /**
-         * Returns a string representing the specified EventDispatcher object (ECMA-262).
-         * @return a string representing the specified EventDispatcher object (ECMA-262).
-         */
-        public override function toString():String 
-        {
-            return "[" + Reflection.getClassName(this) + "]" ;
-        }
-
-        /**
-         * Removes an {@code EventListener} from the EventDispatcher object.
-         */
-        public function unregisterEventListener(type:String, listener:*, useCapture:Boolean = false):void 
-        {
-            
-            var func:Function ;
-            
-            if ( listener is Function )
-            {
-                func = listener ;
-            }
-            else if ( listener is EventListener ) 
-            {
-                func = EventListener(listener).handleEvent ;
-            }
-            
-            super.removeEventListener(type, func, useCapture) ;
-            
-        }
-        
-        /**
          * The static internal hashmap to register all global instances in your applications.
          */    
         private static var instances:ArrayMap = new ArrayMap() ;
-
-		/**
-		 * @private
-		 */
-		private var __hashcode__:Number = NaN ;
-
-        /**
-         * The internal ILogger reference of this object.
-         */
-        private var _logger:ILogger ;
 
         /**
          * The internal name's property of the instance.

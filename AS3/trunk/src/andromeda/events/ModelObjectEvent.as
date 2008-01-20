@@ -20,7 +20,6 @@
   Contributor(s) :
   
 */
-
 package andromeda.events
 {
 	import flash.events.Event;
@@ -87,7 +86,7 @@ package andromeda.events
     	 */
 		public override function clone():Event 
 		{
-			return new ModelObjectEvent( getType(), getModel() , getVO(), getTarget(), getContext() ) ;
+			return new ModelObjectEvent( type, getModel() , getVO(), target, context ) ;
 		}
 		
 		/**
