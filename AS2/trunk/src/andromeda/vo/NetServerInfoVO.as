@@ -84,6 +84,15 @@ class andromeda.vo.NetServerInfoVO extends SimpleValueObject
     {
         return Object.registerClass( id || "NetServerInfoVO" , NetServerInfoVO ) ;
     }
+
+	/**
+	 * Returns the {@code Object} representation of this instance.
+	 * @return the {@code Object} representation of this instance.
+	 */
+	public function toObject():Object 
+	{
+		return { description:description, code:code, level:level , application:application } ;
+	}
     
     /**
      * Returns the {@code String} representation of this object.

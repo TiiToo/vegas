@@ -44,7 +44,7 @@ package vegas.logging.targets
 	 * import vegas.errors.* ;
 	 * 
 	 * // setup target
-	 * var target:SOSTarget = new SOSTarget(0xD8F394) ;
+	 * var target:SOSTarget = new SOSTarget("myApplication", 0xD8F394) ;
 	 * target.filters = ["myApplication", "vegas.errors.*"] ; // use a empty array to receive all logs.
 	 * target.includeLines = true ;
 	 * target.includeCategory = true ;

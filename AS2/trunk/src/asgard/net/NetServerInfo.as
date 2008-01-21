@@ -19,17 +19,16 @@
   
   Contributor(s) :
   
-*/
+ */
+import andromeda.vo.NetServerInfoVO;
 
-import vegas.core.CoreObject;
 import vegas.util.serialize.Serializer;
 
 /**
  * Defines the information object in a onStatus callback method.
  * @author eKameleon
- * @version 1.0.0.0
  */	
-class asgard.net.NetServerInfo extends CoreObject 
+class asgard.net.NetServerInfo extends NetServerInfoVO 
 {
 	
 	/**
@@ -38,43 +37,7 @@ class asgard.net.NetServerInfo extends CoreObject
 	 */
 	public function NetServerInfo( oInfo ) 
 	{
-		if ( oInfo != null )
-		{
-			description = oInfo.description || null ;
-			code        = oInfo.code || null ;
-			level       = oInfo.level || null ;
-			application = oInfo.application || null ;
-		} 
-	}
-
-	/**
-	 * This object exist if the server return an application error object. 
-	 * This property exist with FMS when the SSAS {@code application.rejectConnection()} method is invoked. 
-	 */
-	public var application ;
-
-	/**
-	 * The code of this information object.
-	 */
-	public var code:String ;
-	
-	/**
-	 * The description of this information object.
-	 */
-	public var description:String ;
-	
-	/**
-	 * The level of this information object.
-	 */
-	public var level:String ;
-
-	/**
-	 * Returns the {@code Object} representation of this instance.
-	 * @return the {@code Object} representation of this instance.
-	 */
-	public function toObject():Object 
-	{
-		return { description:description, code:code, level:level , application:application } ;
+		super( oInfo ) ;
 	}
 
 	/**
@@ -83,34 +46,8 @@ class asgard.net.NetServerInfo extends CoreObject
 	 */	
 	public function toSource(indent : Number, indentor : String):String 
 	{
-		return "new asgard.net.NetServerInfo(" + Serializer.toSource(toObject()) + ")" ;
+		return Serializer.getSourceOf(this, [Serializer.toSource(toObject())] ) ; 
 	}
-	
-	/**
-	 * Returns the String representation of this object.
-	 * @return the String representation of this object.
-	 */
-	public function toString():String
-	{
-		var s:String = "[NetServerInfo" ;
-		if (code != null)
-		{
-			s += " code:" + code ;	
-		}
-		if (level != null)
-		{
-			s += " level:" + level ;	
-		}
-		if (description != null)
-		{
-			s += " description:" + description ;	
-		}
-		if (application != null)
-		{
-			s += " application:" + application  ;	
-		}
-		s += "]" ;
-		return s ;
-	}
+
 
 }
