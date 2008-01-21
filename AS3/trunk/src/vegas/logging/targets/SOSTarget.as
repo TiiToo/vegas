@@ -227,7 +227,10 @@ package vegas.logging.targets
 		 */
     	public function connect():void
     	{
-		    if (_isConnected) close() ;
+		    if (_isConnected) 
+		    {
+		    	close() ;
+		    }
     		_xs.connect( HOST, PORT ) ;
 	    }
 
@@ -381,6 +384,7 @@ package vegas.logging.targets
     	private function _onClose( e:Event ):void
     	{
     	    // trace("> " + this + ", close socket connection : " + e ) ;
+    	    _isConnected = false ;
     	}
 
     	/**
@@ -389,6 +393,7 @@ package vegas.logging.targets
     	private function _onConnect( e:Event ):void 
     	{
     	    // trace("> " + this + ", connect socket connection : " + e ) ;
+    	    _isConnected = true ;
    			flush() ;
     	}
 
@@ -398,6 +403,7 @@ package vegas.logging.targets
     	private function _onIOError ( e:IOErrorEvent ):void 
     	{
             // trace("> " + this + ", io error socket connection : " + e);
+    	    _isConnected = false ;
         }
 
     	/**
@@ -406,6 +412,7 @@ package vegas.logging.targets
         private function _onSecurityError ( e:SecurityErrorEvent ):void 
         {
            // trace("> " + this + ", security error socket connection : " + e);
+    	    _isConnected = false ;
         }
 
     }

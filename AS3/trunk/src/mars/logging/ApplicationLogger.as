@@ -20,9 +20,6 @@
   Contributor(s) :
   
 */
-
-// TODO alpha version in progress.. don't use it for the moment please :)
-
 package mars.logging 
 {
 	import vegas.logging.Log;
