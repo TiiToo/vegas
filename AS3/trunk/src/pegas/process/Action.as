@@ -272,21 +272,45 @@ package pegas.process
 		{
 			_sTypeTimeout = type || ActionEvent.TIMEOUT ;
 		}
-
+		
+		/**
+		 * @private
+		 */
     	private var _sTypeChange:String ;
 
+		/**
+		 * @private
+		 */
     	private var _sTypeClear:String ;
 
+		/**
+		 * @private
+		 */
     	private var _sTypeInfo:String ;
 
+		/**
+		 * @private
+		 */
     	private var _sTypeLoop:String ;
 
+		/**
+		 * @private
+		 */
     	private var _sTypeProgress:String ;
 
+		/**
+		 * @private
+		 */
     	private var _sTypeResume:String ;
 
+		/**
+		 * @private
+		 */
     	private var _sTypeStop:String ;
 
+		/**
+		 * @private
+		 */
     	private var _sTypeTimeout:String ;
 
 	}

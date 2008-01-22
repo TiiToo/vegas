@@ -23,11 +23,12 @@
 
 package pegas.process
 {
-    import vegas.core.ICloneable;
-    import vegas.core.IRunnable;
-    import vegas.events.IEventDispatcher;
-    
-    /**
+	import flash.events.IEventDispatcher;
+	
+	import vegas.core.ICloneable;
+	import vegas.core.IRunnable;	
+
+	/**
      * This interface represents a process object.
      * @author eKameleon
      */

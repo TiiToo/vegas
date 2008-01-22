@@ -29,8 +29,8 @@
 package vegas.util
 {
 	import system.ISerializable;
-	import system.Reflection;		
-	
+	import system.Reflection;	
+
 	/**
 	 * The eden serializer of the VEGAS implementation.
 	 */
@@ -41,21 +41,28 @@ package vegas.util
 	     * Returns the string source representation of the specified object and serialize the array of arguments to pass in the constructor of the class.
 	     * @return the string source representation of the specified object and serialize the array of arguments to pass in the constructor of the class.
 	     */
-		public static function getSourceOf(o:*, params:Array):String 
+		public static function getSourceOf(o:*=null, params:Array=null):String 
 		{
+			if ( o == null )
+			{
+				return "null" ;
+			}
 		    var path:String = Reflection.getClassPath(o) ;
     		var source:String = "new " + path + "(" ;
-    		var l:uint = params.length ;
-    		if (l > 0) 
+    		if ( params != null )
     		{
-    			var i:uint = 0 ;
-    			while (i < l) 
-    			{
-    				source += Serializer.toSource( params[i] ) ;
-    				i++ ;
-    				if (i<l) 
+    			var l:uint = params.length ;
+    			if (l > 0) 
+	    		{
+    				var i:uint = 0 ;
+    				while (i < l) 
     				{
-    					source += "," ;
+	    				source += Serializer.toSource( params[i] ) ;
+    					i++ ;
+    					if (i<l) 
+    					{
+	    					source += "," ;
+    					}
     				}
     			}
     		}

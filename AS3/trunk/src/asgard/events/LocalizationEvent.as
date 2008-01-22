@@ -31,12 +31,6 @@ package asgard.events
 
 	/**
 	 * The LocalizationEvent is used in the Localization singleton to notify a change.
-	 * @param type the string type of the instance. 
-	 * @param target the target of the event.
-	 * @param context the optional context object of the event.
-	 * @param bubbles indicates if the event is a bubbling event.
-	 * @param cancelable indicates if the event is a cancelable event.
-	 * @param time this optional parameter is used in the eden deserialization to copy the timestamp value of this event.
 	 * @author eKameleon
 	 */
 	public class LocalizationEvent extends BasicEvent
@@ -44,6 +38,12 @@ package asgard.events
 		
 		/**
 	 	 * Creates a new LocalizationEvent instance.
+		 * @param type the string type of the instance. 
+		 * @param target the target of the event.
+		 * @param context the optional context object of the event.
+		 * @param bubbles indicates if the event is a bubbling event.
+		 * @param cancelable indicates if the event is a cancelable event.
+		 * @param time this optional parameter is used in the eden deserialization to copy the timestamp value of this event.
 		 */
 		public function LocalizationEvent( type:String , target:Localization = null , context:* = null , bubbles:Boolean = false , cancelable:Boolean = false, time:Number = 0 )
 		{
