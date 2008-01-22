@@ -22,7 +22,7 @@
 */
 package vegas.events
 {
-	import vegas.data.map.ArrayMap;		
+	import vegas.data.map.ArrayMap;					
 
 	/**
     * Stores the listeners object an notifies them with the DOM Events level 2/3 of the W3C.
@@ -96,7 +96,15 @@ package vegas.events
         {
             return _sName || null ;
         }
- 
+
+        /**
+         * Registers an {@code EventListener} object with an EventDispatcher object so that the listener receives notification of an event.
+         */
+        VEGAS function removeEventListener( type:String, listener:*, useCapture:Boolean = false ):void
+        {    
+            unregisterEventListener( type, listener, useCapture ) ;
+        }
+
         /**
          * Removes a global EventDispatcher instance.
          */

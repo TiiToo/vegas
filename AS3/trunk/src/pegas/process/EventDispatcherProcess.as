@@ -39,6 +39,10 @@ package pegas.process
 
 		/**
 		 * Creates a new EventDispatcherProcess instance.
+		 * @param event The event to dispatch.
+		 * @param channel The event channel flow to dispatch the event.
+    	 * @param bGlobal the flag to use a global event flow or a local event flow.
+    	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 		 */
 		public function EventDispatcherProcess( event:*, channel:String=null , bGlobal:Boolean = false, sChannel:String = null)
 		{

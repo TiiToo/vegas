@@ -26,6 +26,8 @@ import vegas.logging.targets.LineFormattedTarget;
 import vegas.util.ConstructorUtil;
 
 /**
+ * Provides a logger target that uses the AirLogger console to output log messages. 
+ * See the AirLogger page project : <a href="http://code.google.com/p/airlogger/">http://code.google.com/p/airlogger/</a>
  * @author eKameleon
  */
 class vegas.logging.targets.AirLoggerTarget extends LineFormattedTarget 

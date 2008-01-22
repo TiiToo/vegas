@@ -152,7 +152,7 @@ class vegas.events.EventDispatcher extends CoreObject implements IEventDispatche
 	 * @param event The Event object that is dispatched into the event flow.
 	 * @param isQueue if the EventDispatcher isn't register to the event type the event is bufferized.
 	 * @param target the target of the event.
-	 * @param contect the context of the event.
+	 * @param context the context of the event.
 	 * @return the reference of the event dispatched in the event flow.
 	 */
 	public function dispatchEvent( event , isQueue:Boolean, target, context):Event 

@@ -22,6 +22,7 @@
 */
 package vegas.events
 {
+	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	
 	import system.Reflection;
@@ -53,7 +54,39 @@ package vegas.events
          * Indicates the optional target reference of the instance.
          */
         public var target:IEventDispatcher ;		
-		
+ 		
+ 		/**
+ 		 * Dispatches an event into the event flow.
+		 * @param event The Event object that is dispatched into the event flow (a String or an Event object).
+		 * @param target the target of the event.
+		 * @param context the context of the event.
+ 		 */
+ 		public function fireEvent( event:* , target:*=null, context:*=null , bubbles:Boolean=false ):Boolean
+ 		{
+ 			if ( event is String )
+ 			{
+				return super.dispatchEvent( new BasicEvent( event as String, target, context ) ); 				
+ 			}
+ 			else if ( event is Event )
+ 			{
+ 				if ( event is BasicEvent )
+ 				{
+ 					if ( target != null )
+ 					{
+ 						event.target = target ;
+ 					}
+ 					if ( context != null )
+ 					{
+ 						event.context = context ;	
+ 					}
+ 				}
+ 				return super.dispatchEvent( event ) ;
+ 			}
+ 			else
+ 			{
+ 				return false ;	
+ 			}
+ 		}
  
         /**
          * Returns the internal {@code ILogger} reference of this {@code ILogable} object.
@@ -63,7 +96,6 @@ package vegas.events
         {
             return _logger ;     
         }
-        
  		
 		/**
 		 * Returns a hashcode value for the object.
@@ -83,9 +115,7 @@ package vegas.events
          */
         public function registerEventListener( type:String, listener:*, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false ):void
         {    
-
             var func:Function ;
-            
             if ( listener is Function )
             {
                 func = listener ;
@@ -94,9 +124,7 @@ package vegas.events
             {
                 func = EventListener(listener).handleEvent ;
             }
-
             super.addEventListener(type, func, useCapture, priority, useWeakReference) ;
-            
         }
 
         /**
@@ -106,7 +134,6 @@ package vegas.events
         {
             _logger = ( log == null ) ? Log.getLogger( Reflection.getClassPath(this) ) : log ;
         }
-        
         
         /**
          * Returns a string representing the source code of the EventDispatcher object.
@@ -135,20 +162,16 @@ package vegas.events
          */
         public function unregisterEventListener(type:String, listener:*, useCapture:Boolean = false):void 
         {
-            
             var func:Function ;
-            
             if ( listener is Function )
             {
                 func = listener ;
             }
             else if ( listener is EventListener ) 
             {
-                func = EventListener(listener).handleEvent ;
+                func = (listener as EventListener).handleEvent ;
             }
-            
             super.removeEventListener(type, func, useCapture) ;
-            
         }        
 
 		/**
