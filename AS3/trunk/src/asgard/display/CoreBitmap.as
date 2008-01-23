@@ -27,21 +27,18 @@ package asgard.display
 	
 	import asgard.config.Config;
 	import asgard.config.ConfigCollector;
-	import asgard.config.IConfigurable;
 	
 	import system.Reflection;
 	
-	import vegas.core.ILockable;
-	import vegas.core.Identifiable;
-	import vegas.logging.ILogable;
+	import vegas.core.HashCode;
 	import vegas.logging.ILogger;
 	import vegas.logging.Log;	
 
 	/**
-	 * The CoreBitmap class extends the flash.display.Bitmap class and implements the IConfigurable, Identifiable, ILockable and ILogable interfaces.
+	 * The CoreBitmap class extends the flash.display.Bitmap class and implements the IDisplayObject interface.
 	 * @author eKameleon
 	 */
-	public class CoreBitmap extends Bitmap implements IConfigurable, Identifiable, ILockable, ILogable
+	public class CoreBitmap extends Bitmap implements IDisplayObject
 	{
 
 		/**
@@ -113,6 +110,20 @@ package asgard.display
 		{
 			return _logger ; 	
 		}
+
+		/**
+		 * Returns a hashcode value for the object.
+		 * @return a hashcode value for the object.
+		 */
+		public function hashCode():uint 
+		{
+			if ( isNaN( __hashcode__ ) ) 
+			{
+				__hashcode__ = HashCode.next() ;
+			}
+			return __hashcode__ ;
+		}
+		
 
     	/**
 	     * Returns {@code true} if the object is locked.
@@ -186,6 +197,11 @@ package asgard.display
 		{
 			// overrides this method.
 		}
+		
+		/**
+		 * @private
+		 */
+		private var __hashcode__:Number = NaN ;
 
 		/**
 		 * The internal id of this object.

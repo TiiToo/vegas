@@ -26,22 +26,20 @@ package asgard.media
 	
 	import asgard.config.Config;
 	import asgard.config.ConfigCollector;
-	import asgard.config.IConfigurable;
 	import asgard.display.DisplayObjectCollector;
+	import asgard.display.IDisplayObject;
 	
 	import system.Reflection;
 	
-	import vegas.core.ILockable;
-	import vegas.core.Identifiable;
-	import vegas.logging.ILogable;
+	import vegas.core.HashCode;
 	import vegas.logging.ILogger;
 	import vegas.logging.Log;	
 
 	/**
-	 * The CoreVideo class extends the flash.media.Video class and implements the IConfigurable, Identifiable, ILockable and ILogable interfaces.
+	 * The CoreVideo class extends the flash.media.Video class and implements the IDisplayObject interface.
 	 * @author eKameleon
 	 */
-	public class CoreVideo extends Video implements IConfigurable, Identifiable, ILockable, ILogable
+	public class CoreVideo extends Video implements IDisplayObject
 	{
 
 		/**
@@ -117,6 +115,19 @@ package asgard.media
 			}
 		}
 
+		/**
+		 * Returns a hashcode value for the object.
+		 * @return a hashcode value for the object.
+		 */
+		public function hashCode():uint 
+		{
+			if ( isNaN( __hashcode__ ) ) 
+			{
+				__hashcode__ = HashCode.next() ;
+			}
+			return __hashcode__ ;
+		}
+
     	/**
 	     * Returns {@code true} if the object is locked.
 	     * @return {@code true} if the object is locked.
@@ -189,6 +200,11 @@ package asgard.media
 		{
 			// overrides this method.
 		}
+
+		/**
+		 * @private
+		 */
+		private var __hashcode__:Number = NaN ;
 
 		/**
 		 * The internal id of this object.

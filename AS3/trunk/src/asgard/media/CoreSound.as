@@ -23,7 +23,6 @@
 package asgard.media 
 {
 	
-	// TODO implements the SoundModel
 	// TODO implement the Action.PROGRESS event with FrameTimer or Timer interval.
 	
 	import flash.events.Event;
@@ -36,7 +35,6 @@ package asgard.media
 	
 	import asgard.config.Config;
 	import asgard.config.ConfigCollector;
-	import asgard.config.IConfigurable;
 	import asgard.events.SoundEvent;
 	
 	import pegas.events.ActionEvent;
@@ -47,9 +45,6 @@ package asgard.media
 	import system.Reflection;
 	
 	import vegas.core.HashCode;
-	import vegas.core.ILockable;
-	import vegas.core.Identifiable;
-	import vegas.logging.ILogable;
 	import vegas.logging.ILogger;
 	import vegas.logging.Log;
 	import vegas.util.Serializer;	
@@ -58,7 +53,7 @@ package asgard.media
 	 * The CoreSound class extends the flash.media.Sound class and implements the IConfigurable, Identifiable, ILockable and ILogable interfaces.
 	 * @author eKameleon
 	 */
-	public class CoreSound extends Sound implements IAction, IConfigurable, Identifiable, ILockable, ILogable, IStoppable
+	public class CoreSound extends Sound implements IAction, ISound, IStoppable
 	{
 
 		/**
@@ -262,7 +257,6 @@ package asgard.media
 			}
 			return __hashcode__ ;
 		}
-		
 
 		/**
 		 * Returns the internal {@code ILogger} reference of this {@code ILogable} object.
@@ -606,15 +600,15 @@ package asgard.media
 		 */
 		private function _setID( id:* ):void 
 		{
-			//if ( SoundCollector.contains( this._id ) )
-			//{
-			//	SoundCollector.remove( this._id ) ;
-			//}
+			if ( SoundCollector.contains( this._id ) )
+			{
+				SoundCollector.remove( this._id ) ;
+			}
 			this._id = id ;
-			//if ( this._id != null )
-			//{
-			//    SoundCollector.insert ( this._id, this ) ;
-			//}
+			if ( this._id != null )
+			{
+			    SoundCollector.insert ( this._id, this ) ;
+			}
 		}
 	}
 }

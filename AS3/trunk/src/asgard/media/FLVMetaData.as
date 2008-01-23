@@ -37,7 +37,7 @@ package asgard.media
 		 * Creates a new FLVMetaData object.
 	 	 * @param o An object with all MetaData properties to fill this instance.
 		 */
-		public function FLVMetaData(init:Object = null)
+		public function FLVMetaData( init:Object = null )
 		{
 			super( init );
 		}

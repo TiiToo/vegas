@@ -26,21 +26,18 @@ package asgard.display
 	
 	import asgard.config.Config;
 	import asgard.config.ConfigCollector;
-	import asgard.config.IConfigurable;
 	
 	import system.Reflection;
 	
-	import vegas.core.ILockable;
-	import vegas.core.Identifiable;
-	import vegas.logging.ILogable;
+	import vegas.core.HashCode;
 	import vegas.logging.ILogger;
 	import vegas.logging.Log;	
 
 	/**
-	 * The CoreLoader class extends the flash.display.Loader class and implements the IConfigurable, Identifiable, ILockable and ILogable interfaces.
+	 * The CoreLoader class extends the flash.display.Loader class and implements the IDisplayObject interface.
 	 * @author eKameleon
 	 */
-	public class CoreLoader extends Loader implements IConfigurable, Identifiable, ILockable, ILogable 
+	public class CoreLoader extends Loader implements IDisplayObject 
 	{
 
 		/**
@@ -112,6 +109,19 @@ package asgard.display
 		public function getLogger():ILogger
 		{
 			return _logger ; 	
+		}
+		
+		/**
+		 * Returns a hashcode value for the object.
+		 * @return a hashcode value for the object.
+		 */
+		public function hashCode():uint 
+		{
+			if ( isNaN( __hashcode__ ) ) 
+			{
+				__hashcode__ = HashCode.next() ;
+			}
+			return __hashcode__ ;
 		}
 
     	/**
@@ -186,7 +196,12 @@ package asgard.display
 		{
 			// overrides this method.
 		}
-		
+
+		/**
+		 * @private
+		 */
+		private var __hashcode__:Number = NaN ;
+
 		/**
 		 * The internal id of this object.
 		 * @private

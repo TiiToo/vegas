@@ -20,27 +20,26 @@
   Contributor(s) :
   
 */
-package asgard.display 
+package asgard.text 
 {
 	import flash.text.TextField;
 	
 	import asgard.config.Config;
 	import asgard.config.ConfigCollector;
-	import asgard.config.IConfigurable;
+	import asgard.display.DisplayObjectCollector;
+	import asgard.display.IDisplayObject;
 	
 	import system.Reflection;
 	
-	import vegas.core.ILockable;
-	import vegas.core.Identifiable;
-	import vegas.logging.ILogable;
+	import vegas.core.HashCode;
 	import vegas.logging.ILogger;
 	import vegas.logging.Log;	
 
 	/**
-	 * The CoreTextField class extends the flash.display.TextField class and implements the IConfigurable, Identifiable, ILockable and ILogable interfaces.
+	 * The CoreTextField class extends the flash.display.TextField class and implements the IDisplayObject interface.
 	 * @author eKameleon
 	 */
-	public class CoreTextField extends TextField implements IConfigurable, Identifiable, ILockable, ILogable
+	public class CoreTextField extends TextField implements IDisplayObject
 	{
 
 		/**
@@ -119,6 +118,19 @@ package asgard.display
 			return _logger ; 	
 		}
 
+		/**
+		 * Returns a hashcode value for the object.
+		 * @return a hashcode value for the object.
+		 */
+		public function hashCode():uint 
+		{
+			if ( isNaN( __hashcode__ ) ) 
+			{
+				__hashcode__ = HashCode.next() ;
+			}
+			return __hashcode__ ;
+		}
+
     	/**
 	     * Returns {@code true} if the object is locked.
 	     * @return {@code true} if the object is locked.
@@ -191,7 +203,12 @@ package asgard.display
 		{
 			// overrides this method.
 		}
-		
+	
+		/**
+		 * @private
+		 */
+		private var __hashcode__:Number = NaN ;
+	
 		/**
 		 * The internal id of this object.
 		 * @private
