@@ -21,13 +21,13 @@
   
 */
 
-package pegas.events
+package andromeda.events
 {
+	import flash.events.Event;
 	
-	import flash.events.Event ;
-	import vegas.events.BasicEvent ;
+	import vegas.events.BasicEvent;	
 
-    /**
+	/**
      * The ActionEvent is notify by all the objects who implements the Action interface.
      * @author eKameleon
      */

@@ -33,14 +33,15 @@ package asgard.media
 	import flash.media.SoundTransform;
 	import flash.net.URLRequest;
 	
+	import andromeda.events.ActionEvent;
+	import andromeda.process.IAction;
+	import andromeda.process.IStoppable;
+	
 	import asgard.config.Config;
 	import asgard.config.ConfigCollector;
 	import asgard.events.SoundEvent;
 	
-	import pegas.events.ActionEvent;
 	import pegas.maths.Range;
-	import pegas.process.IAction;
-	import pegas.process.IStoppable;
 	
 	import system.Reflection;
 	

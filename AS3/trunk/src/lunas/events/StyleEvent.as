@@ -20,7 +20,7 @@
   Contributor(s) :
   
 */
-package pegas.events 
+package lunas.events 
 {
 	import flash.events.Event;
 	

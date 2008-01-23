@@ -44,9 +44,12 @@ package andromeda.ioc.factory
 
 		/**
 		 * Creates a new ObjectFactory instance.
+		 * @param bGlobal the flag to use a global event flow or a local event flow.
+		 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 		 */
-		public function ObjectFactory()
+		public function ObjectFactory( bGlobal:Boolean = false , sChannel:String = null )
 		{
+			super( bGlobal, sChannel ) ;
 			singletons = new HashMap() ;
 		}
 		

@@ -22,13 +22,12 @@
 */
 package asgard.net
 {
+	import flash.net.URLLoader;
+	import flash.net.URLRequest;
+	
+	import andromeda.process.IAction;    
 
-    import flash.net.URLLoader;
-    import flash.net.URLRequest;
-    
-    import pegas.process.IAction;
-
-    public interface IActionLoader extends IAction
+	public interface IActionLoader extends IAction
     {
 
         /**

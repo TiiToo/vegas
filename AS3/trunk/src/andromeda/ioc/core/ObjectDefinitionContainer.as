@@ -23,8 +23,8 @@
 package andromeda.ioc.core 
 {
 	import andromeda.ioc.core.IObjectDefinitionContainer;
+	import andromeda.process.Action;
 	
-	import vegas.core.CoreObject;
 	import vegas.data.map.HashMap;	
 
 	/**
@@ -78,14 +78,17 @@ package andromeda.ioc.core
  	 * }
      * @author eKameleon
      */
-	public class ObjectDefinitionContainer extends CoreObject implements IObjectDefinitionContainer 
+	public class ObjectDefinitionContainer extends Action implements IObjectDefinitionContainer 
 	{
 
 		/**
 		 * Creates a new ObjectDefinitionContainer instance.
+		 * @param bGlobal the flag to use a global event flow or a local event flow.
+		 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 		 */
-		public function ObjectDefinitionContainer()
+		public function ObjectDefinitionContainer( bGlobal:Boolean = false , sChannel:String = null )
 		{
+			super( bGlobal, sChannel ) ;
 			_map = new HashMap() ;
 		}
 		

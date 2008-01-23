@@ -27,10 +27,10 @@ package asgard.net.remoting
 	import flash.net.Responder;
 	import flash.utils.Timer;
 	
+	import andromeda.process.Action;
+	
 	import asgard.events.RemotingEvent;
 	import asgard.net.TimeoutPolicy;
-	
-	import pegas.process.Action;
 	
 	import system.Reflection;
 	

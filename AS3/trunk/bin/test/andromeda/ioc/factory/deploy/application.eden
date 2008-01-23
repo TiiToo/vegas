@@ -30,7 +30,6 @@
 			] ,
 			
 			singleton     : true ,
-			assemblyName  : "" , // not implemented yet
 			destroy       : "destroy" ,  // not fully implemented yet
 			init          : "initialize" ,
 			properties : 
@@ -41,6 +40,17 @@
 				{ name:"setMail"   , arguments  :  [ { value :"vegas@ekameleon.net" } ] } , // method
 				{ name:"url"       , value : "http://www.ekameleon.net/blog" }
 			]
+		}
+		,
+		{
+			id            : "square" , 
+			type          : "Square" , 
+			assemblyName  : "dll/dll.swf" ,
+			properties    : 
+			[
+				{ name:"x" , value : 100  } ,
+				{ name:"y" , value : 25   }
+			]	
 		}
 	]
 

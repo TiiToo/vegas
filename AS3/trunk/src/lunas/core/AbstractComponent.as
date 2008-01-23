@@ -32,9 +32,9 @@ package lunas.core
 	import lunas.core.IGroupable;
 	import lunas.core.IStyle;
 	import lunas.events.ComponentEvent;
+	import lunas.events.StyleEvent;
 	
 	import pegas.draw.IShape;
-	import pegas.events.StyleEvent;
 	import pegas.transitions.FrameTimer;
 	
 	import system.Reflection;

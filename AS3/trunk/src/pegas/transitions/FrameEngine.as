@@ -26,7 +26,7 @@ package pegas.transitions
 	import flash.display.Shape;
 	import flash.events.Event;
 	
-	import pegas.process.SimpleAction;
+	import andromeda.process.SimpleAction;
 	
 	import vegas.events.BasicEvent;	
 

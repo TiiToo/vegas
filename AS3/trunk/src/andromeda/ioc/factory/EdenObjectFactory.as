@@ -22,13 +22,25 @@
 */
 package andromeda.ioc.factory 
 {
+	import flash.display.Loader;
+	import flash.events.Event;
+	import flash.events.IOErrorEvent;
+	import flash.events.ProgressEvent;
+	import flash.net.URLRequest;
+	import flash.system.ApplicationDomain;
+	import flash.system.LoaderContext;
+	
 	import andromeda.ioc.core.ObjectDefinition;
 	import andromeda.ioc.factory.ObjectFactory;
 	
 	import vegas.core.IFactory;
-	import vegas.data.map.HashMap;	
+	import vegas.data.map.HashMap;
+	import vegas.data.queue.LinearQueue;
+	import vegas.data.sets.HashSet;
+	import vegas.errors.NullPointerError;	
 
 	/**
+	 * This factory builder use a deserialize eden object to creates all Objects with the IObjectDefinitionContainer.
 	 * @author eKameleon
 	 */
 	public class EdenObjectFactory extends ObjectFactory implements IFactory 
@@ -36,10 +48,13 @@ package andromeda.ioc.factory
 		
 		/**
 		 * Creates a new EdenObjectFactory instance.
+		 * @param bGlobal the flag to use a global event flow or a local event flow.
+		 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 		 */
-		public function EdenObjectFactory()
+		public function EdenObjectFactory( bGlobal:Boolean = false , sChannel:String = null )
 		{
-			super( );
+			super( bGlobal, sChannel ) ;
+			_assemblies = new HashSet() ;
 		}
 		
 		/**
@@ -96,7 +111,12 @@ package andromeda.ioc.factory
 		 * Defines the label of the value in a property object.
 		 */
 		public static const VALUE:String = "value" ;  
-			
+		
+		/**
+		 * This array contains objects to fill this factory with the run or create method.
+		 */
+		public var objects:Array ;
+		
 		/**
 		 * Create the objects and fill the IObjectDefinitionContainer.
 		 * <p><b>Parameters</b></p>
@@ -104,14 +124,7 @@ package andromeda.ioc.factory
 		 */
 		public function create( ...arguments:Array ):void
 		{
-			var arg:Array = arguments[0] ;
-			if ( arg is Array && arg.length > 0)
-			{
-				while ( arg.length > 0)
-				{
-					_createNewObjectDefinition( arg.shift() ) ;
-				}
-			}
+			run.apply( this, arguments ) ;
 		}
 		
 		/**
@@ -127,15 +140,62 @@ package andromeda.ioc.factory
 			return _instance ;
 		}
 
+    	/**
+	     * Run the process.
+	     */
+		public override function run( ...arguments:Array ):void 
+		{
+			
+			if ( running )
+			{
+				return ;
+			}
+			
+			notifyStarted() ;
+			
+			setRunning( true ) ;
+			
+			if ( arguments[0] is Array )
+			{
+				objects = arguments[0] ;
+			}
+			
+			if ( objects == null )
+			{
+				throw new NullPointerError(this + " run failed if the 'objects' Array property is null or undefined.") ;
+			}	
+			
+			if ( objects.length > 0)
+			{
+				while ( objects.length > 0)
+				{
+					_createNewObjectDefinition( objects.shift() ) ;
+				}
+			}
+			
+			_flushAssemblies( true ) ;
+			
+		}
+
 		/**
 		 * @private
 		 */
-		// TODO private var _assemblies:HashMap ;
+		private var _assemblies:HashSet ;
+		
+		/**
+		 * @private
+		 */
+		private var _buffer:LinearQueue ;
 		
 		/**
 		 * @private
 		 */
 		private static var _instance:EdenObjectFactory ;
+
+		/**
+		 * @private
+		 */
+		private var _loader:Loader ;
 				
 		/**
 		 * Returns and creates a new IObjectDefinition instance.
@@ -146,8 +206,7 @@ package andromeda.ioc.factory
 			if ( o != null )
 			{
 			
-				// TODO var assemblyName:String =  o[ ASSEMBLY_NAME ] ;
-				
+				var assemblyName:String =  o[ ASSEMBLY_NAME ] ;
 				var args:Array          =  o[ ARGUMENTS ] ;
 				var destroy:String      =  o[ OBJECT_DESTROY_METHOD_NAME ] ;
 				var id:String           =  o[ OBJECT_ID ] ;
@@ -161,10 +220,16 @@ package andromeda.ioc.factory
 				definition.setDestroyMethodName( destroy ) ;
 				definition.setInitMethodName( init ) ;
 				definition.setProperties( _createNewProperties( properties ) ) ;
-
+				
 				addObjectDefinition( id , definition ) ;
-			
+				
+				if ( assemblyName && !_assemblies.contains( assemblyName ) )
+				{
+					_assemblies.insert( assemblyName ) ;	
+				}
+				
 			}
+
 		}
 
 		/**
@@ -215,6 +280,67 @@ package andromeda.ioc.factory
 				return null ;	
 			}	
 		}
+		
+		/**
+		 * @private
+		 */
+		private function _flushAssemblies( flag:Boolean=false ):void
+		{
+			if ( flag )
+			{
+				_buffer = new LinearQueue( _assemblies.toArray() ) ;
+				_assemblies.clear() ;
+			}
+
+			if ( _buffer.size() > 0 )
+			{
+				
+				if ( _loader == null )
+				{
+					_loader = new Loader() ;
+					_loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR,ioErrorHandler);
+					_loader.contentLoaderInfo.addEventListener(ProgressEvent.PROGRESS,progress);
+					_loader.contentLoaderInfo.addEventListener(Event.COMPLETE,completeHandler);
+				}
+				
+				var assemblyName:String   = _buffer.poll() ;
+				if ( assemblyName.length > 0 )
+				{
+					_loader.load( new URLRequest( assemblyName ) , new LoaderContext( false , ApplicationDomain.currentDomain ) ) ;
+				}
+				
+			}
+			else
+			{
+				setRunning( false ) ;
+				notifyFinished() ;	
+			}
+		}
+		
+		/**
+		 * @private 
+		 */
+		private function progress(e:ProgressEvent):void 
+		{
+			dispatchEvent( e );
+		}
+		
+		/**
+		 * @private
+		 */	
+		private function completeHandler(e:Event):void {
+			
+			_flushAssemblies();
+		}
+
+		/**
+		 * @private 
+		 */		
+		private function ioErrorHandler(e:IOErrorEvent):void 
+		{
+			dispatchEvent( e ) ;
+			_flushAssemblies() ; 	
+		}		
 		
 	}
 }

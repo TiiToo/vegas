@@ -25,7 +25,8 @@ package pegas.events
 {
 	import flash.events.Event;
 	
-	import pegas.events.ActionEvent;
+	import andromeda.events.ActionEvent;
+	
 	import pegas.transitions.ITransition;	
 
 	/**

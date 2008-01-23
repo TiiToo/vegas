@@ -5,7 +5,7 @@ package pegas.transitions
 	import flash.events.TimerEvent;
 	import flash.utils.getTimer;
 	
-	import pegas.process.SimpleAction;	
+	import andromeda.process.SimpleAction;	
 
 	/**
 	 * Constructs a {@code new FrameTimer} object with the specified delay and repeat state. 

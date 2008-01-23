@@ -23,8 +23,8 @@
 
 package pegas.transitions 
 {
+	import andromeda.process.Action;
 	
-	import pegas.process.Action;
 	import pegas.transitions.ITransition;
 	
 	import vegas.core.Identifiable;	

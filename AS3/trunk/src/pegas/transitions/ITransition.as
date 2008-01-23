@@ -23,9 +23,9 @@
 
 package pegas.transitions 
 {
-	import pegas.process.IAction;
+	import andromeda.process.IAction;
 	
-	import vegas.core.Identifiable;		
+	import vegas.core.Identifiable;	
 
 	/**
 	 * The ITransition interface define all process in the application who creates transition effects.

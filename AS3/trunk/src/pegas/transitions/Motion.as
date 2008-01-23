@@ -27,7 +27,7 @@ package pegas.transitions
 	import flash.events.TimerEvent;
 	import flash.utils.getTimer;
 	
-	import pegas.process.Action;	
+	import andromeda.process.Action;	
 
 	/**
 	 * The Motion class.

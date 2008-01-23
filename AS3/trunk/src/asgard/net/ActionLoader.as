@@ -36,7 +36,7 @@ package asgard.net
 	import flash.utils.Timer;
 	import flash.utils.getDefinitionByName;
 	
-	import pegas.events.ActionEvent;
+	import andromeda.events.ActionEvent;
 	
 	import system.Reflection;
 	
