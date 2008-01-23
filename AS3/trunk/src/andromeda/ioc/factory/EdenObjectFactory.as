@@ -196,7 +196,15 @@ package andromeda.ioc.factory
 		 * @private
 		 */
 		private var _loader:Loader ;
-				
+
+		/**
+		 * @private
+		 */	
+		private function completeHandler(e:Event):void {
+			
+			_flushAssemblies();
+		}
+
 		/**
 		 * Returns and creates a new IObjectDefinition instance.
 		 * @return and creates a new IObjectDefinition instance.
@@ -316,22 +324,6 @@ package andromeda.ioc.factory
 				notifyFinished() ;	
 			}
 		}
-		
-		/**
-		 * @private 
-		 */
-		private function progress(e:ProgressEvent):void 
-		{
-			dispatchEvent( e );
-		}
-		
-		/**
-		 * @private
-		 */	
-		private function completeHandler(e:Event):void {
-			
-			_flushAssemblies();
-		}
 
 		/**
 		 * @private 
@@ -341,6 +333,15 @@ package andromeda.ioc.factory
 			dispatchEvent( e ) ;
 			_flushAssemblies() ; 	
 		}		
-		
+
+		/**
+		 * @private 
+		 */
+		private function progress(e:ProgressEvent):void 
+		{
+			dispatchEvent( e );
+		}
+
 	}
+
 }

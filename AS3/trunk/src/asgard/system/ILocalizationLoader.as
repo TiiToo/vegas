@@ -22,10 +22,10 @@
 */
 package asgard.system
 {
-	import asgard.net.IActionLoader;
-	import asgard.system.Localization;	
+    import asgard.net.IActionLoader;
+    import asgard.system.Localization;    
 
-	/**
+    /**
      * This interface provides a config loader object.
      */ 
     public interface ILocalizationLoader extends IActionLoader
@@ -40,26 +40,26 @@ package asgard.system
         /**
          * (Read-write) The path of the localization file.
          */
-    	function get path():String ;
+        function get path():String ;
         function set path( value:String ):void ;
 
-		/**
-	 	 * Determinates the prefix value of the localization files.
-	 	 */
-		function get prefix():String ; 
-		function set prefix(s:String):void ; 
+        /**
+          * Determinates the prefix value of the localization files.
+          */
+        function get prefix():String ; 
+        function set prefix(s:String):void ; 
 
         /**
          * (Read-write) The suffix of the localization file.
          */
-    	function get suffix():String ;
-	    function set suffix( value:String ):void ;
+        function get suffix():String ;
+        function set suffix( value:String ):void ;
         
         /**
          * Sends and loads data from the specified passed-in lang value (the passed-in argument must be a Lang reference or a valid string).
          * @param lang The localization Lang value.
          */
-		function loadLang( lang:* ):void
+        function loadLang( lang:* ):void
     }
     
 }

@@ -21,11 +21,11 @@
 */
 package asgard.system
 {
-	import flash.net.URLLoader;
-	
-	import asgard.net.JSONLoader;	
+    import flash.net.URLLoader;
+    
+    import asgard.net.JSONLoader;    
 
-	/**
+    /**
      * The JSONLocalizationLoader class based on the JSON notation.
      * @param localization The Localization singleton reference of this loader.
      * @author eKameleon
@@ -39,7 +39,7 @@ package asgard.system
          */
         public function JSONLocalizationLoader( localization:Localization=null )
         {
-        	super( localization ) ;
+            super( localization ) ;
             default_file_suffix = ".json" ;
         }
         

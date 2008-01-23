@@ -22,257 +22,257 @@
 */
 package asgard.system
 {
-	import vegas.core.CoreObject;
-	import vegas.data.map.HashMap;
-	import vegas.util.Serializer;		
+    import vegas.core.CoreObject;
+    import vegas.data.map.HashMap;
+    import vegas.util.Serializer;        
 
-	/**
-	 * This static enumeration class defines the language code of the system on which the player is running. 
-	 * The language is specified as a lowercase two-letter language code from ISO 639-1. 
-	 * For Chinese, an additional uppercase two-letter country code from ISO 3166 distinguishes between Simplified and Traditional Chinese. 
-	 * The languages codes are based on the English names of the language: for example, 'hu' specifies Hungarian.
+    /**
+     * This static enumeration class defines the language code of the system on which the player is running. 
+     * The language is specified as a lowercase two-letter language code from ISO 639-1. 
+     * For Chinese, an additional uppercase two-letter country code from ISO 3166 distinguishes between Simplified and Traditional Chinese. 
+     * The languages codes are based on the English names of the language: for example, 'hu' specifies Hungarian.
      * <p><b>Example :</b></p>
      * <code>
-	 * import asgard.system.Lang ;
-	 * 
-	 * trace("---- Lang.FR") ;
-	 * 
-	 * trace("> Lang.FR : " + Lang.FR) ;
-	 * trace("> Lang.FR label : " + Lang.FR.label) ;
-	 * trace("> Lang.FR toSource() : " + Lang.FR.toSource()) ;
-	 * 
-	 * trace("---- validate") ;
-	 * 
-	 * trace("> Lang.validate 'fr' : "   + Lang.validate("fr")) ;
-	 * trace("> Lang.validate 'japo' : " + Lang.validate("japo")) ;
-	 * trace("> Lang.validate 'fr' : "   + Lang.validate(Lang.FR)) ;
-	 * 
-	 * trace("---- Lang.Langs map") ;
-	 * 
-	 * trace("> Lang.Langs : " + Lang.LANGS) ;
-	 * trace("> Lang.size() : " + Lang.size()) ;
-	 * </code>
-	 * @author eKameleon
-	 * @see Capabilities.language
-	 */
-	public final class Lang extends CoreObject
-	{
-		
-		/**
-		 * Creates a new Lang instance.
-		 * @param id The lang language specified as a lowercase two-letter language code from ISO 639-1. For Chinese, an additional uppercase two-letter country code from ISO 3166 distinguishes between Simplified and Traditional Chinese.
-		 * @param label The English names of the language.
-		 */
-		public function Lang( id:String , label:String )
-		{
-			this.label = label ;
-			this.value = id ;
-			put(this) ;
-		}
+     * import asgard.system.Lang ;
+     * 
+     * trace("---- Lang.FR") ;
+     * 
+     * trace("> Lang.FR : " + Lang.FR) ;
+     * trace("> Lang.FR label : " + Lang.FR.label) ;
+     * trace("> Lang.FR toSource() : " + Lang.FR.toSource()) ;
+     * 
+     * trace("---- validate") ;
+     * 
+     * trace("> Lang.validate 'fr' : "   + Lang.validate("fr")) ;
+     * trace("> Lang.validate 'japo' : " + Lang.validate("japo")) ;
+     * trace("> Lang.validate 'fr' : "   + Lang.validate(Lang.FR)) ;
+     * 
+     * trace("---- Lang.Langs map") ;
+     * 
+     * trace("> Lang.Langs : " + Lang.LANGS) ;
+     * trace("> Lang.size() : " + Lang.size()) ;
+     * </code>
+     * @author eKameleon
+     * @see Capabilities.language
+     */
+    public final class Lang extends CoreObject
+    {
+        
+        /**
+         * Creates a new Lang instance.
+         * @param id The lang language specified as a lowercase two-letter language code from ISO 639-1. For Chinese, an additional uppercase two-letter country code from ISO 3166 distinguishes between Simplified and Traditional Chinese.
+         * @param label The English names of the language.
+         */
+        public function Lang( id:String , label:String )
+        {
+            this.label = label ;
+            this.value = id ;
+            put(this) ;
+        }
 
-		/**
-		 * The map of all existing Lang reference in the application.
-		 */
-		public static var LANGS:HashMap = new HashMap () ;
+        /**
+         * The map of all existing Lang reference in the application.
+         */
+        public static var LANGS:HashMap = new HashMap () ;
 
-		/**
-		 * The label of the current Lang instance.
-		 */		
-		public var label:String = null ;
+        /**
+         * The label of the current Lang instance.
+         */        
+        public var label:String = null ;
 
-		/**
-		 * The value of the current Lang instance.
-		 */		
-		public var value:String = null ;
-		
-		/**
-		 * Returns a Lang instance with the specified 'id' value.
-		 * @return a Lang instance with the specified 'id' value.
-		 */
-		public static function get( id:String ):Lang
-		{
-			return LANGS.get(id) ;			
-		}
-		
-		/**
-		 * Insert a new key/value entry with a passed-in Lang argument.
-		 */
-		public static function put( lang:Lang ):*
-		{
-			return LANGS.put( lang.valueOf() , lang ) ;
-		}
-		
-		/**
-		 * Removes the specified Lang reference in the static LANGS HashMap.
-		 */
-		public static function remove( lang:Lang ):*
-		{
-			return LANGS.remove( lang.valueOf() ) ;
-		}
-		
-		/**
-		 * Returns the number of Lang reference register in the static LANGE HashMap.
-		 * @return the number of Lang reference register in the static LANGE HashMap.
-		 */
-		public static function size():uint
-		{
-			return LANGS.size() ;
-		}
+        /**
+         * The value of the current Lang instance.
+         */        
+        public var value:String = null ;
+        
+        /**
+         * Returns a Lang instance with the specified 'id' value.
+         * @return a Lang instance with the specified 'id' value.
+         */
+        public static function get( id:String ):Lang
+        {
+            return LANGS.get(id) ;            
+        }
+        
+        /**
+         * Insert a new key/value entry with a passed-in Lang argument.
+         */
+        public static function put( lang:Lang ):*
+        {
+            return LANGS.put( lang.valueOf() , lang ) ;
+        }
+        
+        /**
+         * Removes the specified Lang reference in the static LANGS HashMap.
+         */
+        public static function remove( lang:Lang ):*
+        {
+            return LANGS.remove( lang.valueOf() ) ;
+        }
+        
+        /**
+         * Returns the number of Lang reference register in the static LANGE HashMap.
+         * @return the number of Lang reference register in the static LANGE HashMap.
+         */
+        public static function size():uint
+        {
+            return LANGS.size() ;
+        }
 
-		/**
-		 * Returns the eden string representation of the object.
-		 * @return the eden string representation of the object.
-		 */
-		public override function toSource( indent:int = 0 ):String 
-		{
-			return Serializer.getSourceOf(this, [value, label] ) ;
-		}
+        /**
+         * Returns the eden string representation of the object.
+         * @return the eden string representation of the object.
+         */
+        public override function toSource( indent:int = 0 ):String 
+        {
+            return Serializer.getSourceOf(this, [value, label] ) ;
+        }
 
-		/**
-		 * Returns the string representation of this instance.
-		 * @return the string representation of this instance.
-		 */
-		public override function toString():String
-		{
-			return value ;
-		}
-		
-		/**
-		 * Returns true if the passed value is a valid Lang reference.
-		 * @return true if the passed value is a valid Lang reference.
-		 */
-		public static function validate( lang:* ):Boolean 
-		{
-			var s:String ;
-			if ( lang is Lang )
-			{
-				s = (lang as Lang).toString() ;
-			}
-			else if ( lang is String )
-			{
-				s = lang ;
-			}
-			else
-			{
-				return false ;
-			}
-			return LANGS.getKeys().indexOf( s ) > -1 ;
-		}
-		
-		/**
-		 * Returns the value of this instance.
-		 * @return the value of this instance.
-		 */
-		public function valueOf():String
-		{
-			return value ;
-		}
-	
-		/**
-		 * Indicates the 'Czech' language reference.
-		 */
-		public static const CS:Lang = new Lang("cs", "Czech") ;
+        /**
+         * Returns the string representation of this instance.
+         * @return the string representation of this instance.
+         */
+        public override function toString():String
+        {
+            return value ;
+        }
+        
+        /**
+         * Returns true if the passed value is a valid Lang reference.
+         * @return true if the passed value is a valid Lang reference.
+         */
+        public static function validate( lang:* ):Boolean 
+        {
+            var s:String ;
+            if ( lang is Lang )
+            {
+                s = (lang as Lang).toString() ;
+            }
+            else if ( lang is String )
+            {
+                s = lang ;
+            }
+            else
+            {
+                return false ;
+            }
+            return LANGS.getKeys().indexOf( s ) > -1 ;
+        }
+        
+        /**
+         * Returns the value of this instance.
+         * @return the value of this instance.
+         */
+        public function valueOf():String
+        {
+            return value ;
+        }
+    
+        /**
+         * Indicates the 'Czech' language reference.
+         */
+        public static const CS:Lang = new Lang("cs", "Czech") ;
 
-		/**
-		 * Indicates the 'Spanish' language reference.
-		 */
-		public static const ES:Lang = new Lang("es", "Spanish") ;
+        /**
+         * Indicates the 'Spanish' language reference.
+         */
+        public static const ES:Lang = new Lang("es", "Spanish") ;
 
-		/**
-		 * Indicates the 'Dasnish' language reference.
-		 */
-		public static const DA:Lang = new Lang("da", "Danish") ;
+        /**
+         * Indicates the 'Dasnish' language reference.
+         */
+        public static const DA:Lang = new Lang("da", "Danish") ;
 
-		/**
-		 * Indicates the 'German' language reference.
-		 */
-		public static const DE:Lang = new Lang("de", "German") ;
+        /**
+         * Indicates the 'German' language reference.
+         */
+        public static const DE:Lang = new Lang("de", "German") ;
 
-		/**
-		 * Indicates the 'English' language reference.
-		 */
-		public static const EN:Lang = new Lang("en", "English") ;
+        /**
+         * Indicates the 'English' language reference.
+         */
+        public static const EN:Lang = new Lang("en", "English") ;
 
-		/**
-		 * Indicates the 'Finnish' language reference.
-		 */
-		public static const FI:Lang = new Lang("fi", "Finnish") ;
+        /**
+         * Indicates the 'Finnish' language reference.
+         */
+        public static const FI:Lang = new Lang("fi", "Finnish") ;
 
-		/**
-		 * Indicates the 'French' language reference.
-		 */
-		public static const FR:Lang = new Lang("fr", "French") ;
+        /**
+         * Indicates the 'French' language reference.
+         */
+        public static const FR:Lang = new Lang("fr", "French") ;
 
-		/**
-		 * Indicates the 'Hungarian' language reference.
-		 */
-		public static const HU:Lang = new Lang("hu", "Hungarian") ;
+        /**
+         * Indicates the 'Hungarian' language reference.
+         */
+        public static const HU:Lang = new Lang("hu", "Hungarian") ;
 
-		/**
-		 * Indicates the 'Italian' language reference.
-		 */
-		public static const IT:Lang = new Lang("it", "Italian") ;
+        /**
+         * Indicates the 'Italian' language reference.
+         */
+        public static const IT:Lang = new Lang("it", "Italian") ;
 
-		/**
-		 * Indicates the 'Japanese' language reference.
-		 */
-		public static const JA:Lang = new Lang("ja", "Japanese") ;
+        /**
+         * Indicates the 'Japanese' language reference.
+         */
+        public static const JA:Lang = new Lang("ja", "Japanese") ;
 
-		/**
-		 * Indicates the 'Korean' language reference.
-		 */
-		public static const KO:Lang = new Lang("ko", "Korean") ;
+        /**
+         * Indicates the 'Korean' language reference.
+         */
+        public static const KO:Lang = new Lang("ko", "Korean") ;
 
-		/**
-		 * Indicates the 'Dutch' language reference.
-		 */
-		public static const NL:Lang = new Lang("nl", "Dutch") ;
+        /**
+         * Indicates the 'Dutch' language reference.
+         */
+        public static const NL:Lang = new Lang("nl", "Dutch") ;
 
-		/**
-		 * Indicates the 'Norwegian' language reference.
-		 */
-		public static const NO:Lang = new Lang("no", "Norwegian") ;
+        /**
+         * Indicates the 'Norwegian' language reference.
+         */
+        public static const NO:Lang = new Lang("no", "Norwegian") ;
 
-		/**
-		 * Indicates the 'Other/unknown' language reference.
-		 */
-		public static const XU:Lang = new Lang("xu", "Other/unknown") ;
+        /**
+         * Indicates the 'Other/unknown' language reference.
+         */
+        public static const XU:Lang = new Lang("xu", "Other/unknown") ;
 
-		/**
-		 * Indicates the 'Italian' language reference.
-		 */
-		public static const PL:Lang = new Lang("pl", "Polish") ;
-		
-		/**
-		 * Indicates the 'Portuguese' language reference.
-		 */
-		public static const PT:Lang = new Lang("pt", "Portuguese") ;
+        /**
+         * Indicates the 'Italian' language reference.
+         */
+        public static const PL:Lang = new Lang("pl", "Polish") ;
+        
+        /**
+         * Indicates the 'Portuguese' language reference.
+         */
+        public static const PT:Lang = new Lang("pt", "Portuguese") ;
 
-		/**
-		 * Indicates the 'Russian' language reference.
-		 */
-		public static const RU:Lang = new Lang("ru", "Russian") ;
+        /**
+         * Indicates the 'Russian' language reference.
+         */
+        public static const RU:Lang = new Lang("ru", "Russian") ;
 
-		/**
-		 * Indicates the 'Swedish' language reference.
-		 */
-		public static const SV:Lang = new Lang("sv", "Swedish") ;
+        /**
+         * Indicates the 'Swedish' language reference.
+         */
+        public static const SV:Lang = new Lang("sv", "Swedish") ;
 
-		/**
-		 * Indicates the 'Turkish' language reference.
-		 */
-		public static const TR:Lang = new Lang("tr", "Turkish") ;
+        /**
+         * Indicates the 'Turkish' language reference.
+         */
+        public static const TR:Lang = new Lang("tr", "Turkish") ;
 
-		/**
-		 * Indicates the 'Simplified Chinese' language reference.
-		 */
-		public static const ZH_CN:Lang = new Lang("zh-CN", "Simplified Chinese") ;
+        /**
+         * Indicates the 'Simplified Chinese' language reference.
+         */
+        public static const ZH_CN:Lang = new Lang("zh-CN", "Simplified Chinese") ;
 
-		/**
-		 * Indicates the 'Traditional Chinese' language reference.
-		 */
-		public static const ZH_TW:Lang = new Lang("zh-TW", "Traditional Chinese") ;
-	
-	}
+        /**
+         * Indicates the 'Traditional Chinese' language reference.
+         */
+        public static const ZH_TW:Lang = new Lang("zh-TW", "Traditional Chinese") ;
+    
+    }
 
 }

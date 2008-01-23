@@ -23,23 +23,23 @@
 
 package asgard.system 
 {
-	import vegas.core.CoreObject;	
+    import vegas.core.CoreObject;    
 
-	/**
-	 * The dynamic Locale reference to register all external locale properties.
-	 * @author eKameleon
-	 */
-	dynamic public class Locale extends CoreObject 
-	{
+    /**
+     * The dynamic Locale reference to register all external locale properties.
+     * @author eKameleon
+     */
+    dynamic public class Locale extends CoreObject 
+    {
 
-		/**
-		 * Creates a new Locale instance.
-		 */
-		public function Locale()
-		{
-			super( );
-		}
-	
-	}
+        /**
+         * Creates a new Locale instance.
+         */
+        public function Locale()
+        {
+            super( );
+        }
+    
+    }
 
 }

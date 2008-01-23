@@ -22,14 +22,14 @@
 */
 package asgard.system
 {
-	import flash.net.URLRequest;
-	import flash.utils.getDefinitionByName;
-	
-	import asgard.net.ActionLoader;
-	
-	import system.Reflection;	
+    import flash.net.URLRequest;
+    import flash.utils.getDefinitionByName;
+    
+    import asgard.net.ActionLoader;
+    
+    import system.Reflection;    
 
-	/**
+    /**
      * This skeletal class provides an easy implementation of the ILocalizationLoader interface. 
      * @author eKameleon
      */
@@ -52,39 +52,39 @@ package asgard.system
          * @return the localization reference of this loader.
          */
         public function get localization():Localization
-    	{
-    		return _localization ;	
-    	}
-    	
+        {
+            return _localization ;    
+        }
+        
         /**
          * @private
          */
         public function set localization( localization:Localization ):void
-    	{
-    		_localization = localization ;	
-    	}
-    	
+        {
+            _localization = localization ;    
+        }
+        
         /**
          * Defines the defaut path of the localization file.
          */
-    	public var default_file_path:String = "" ;
-    	
+        public var default_file_path:String = "" ;
+        
         /**
          * Defines the defaut prefix of the localization file.
          */
-    	public var default_file_prefix:String = "localize_" ;
+        public var default_file_prefix:String = "localize_" ;
         
         /**
          * Defines the defaut file suffix of the localization file.
          */
-    	public var default_file_suffix:String = ".txt" ;
+        public var default_file_suffix:String = ".txt" ;
 
         /**
          * The path of the localization file.
          */
-    	public function get path():String 
-    	{
-		    return _path || default_file_path || "" ;
+        public function get path():String 
+        {
+            return _path || default_file_path || "" ;
         }
         
         /**
@@ -92,15 +92,15 @@ package asgard.system
          */
         public function set path( value:String ):void
         {
-		    _path = value ;
-    	}
+            _path = value ;
+        }
 
         /**
          * The prefix of the localization file.
          */
-    	public function get prefix():String 
-    	{
-		    return _prefix || default_file_prefix || "" ;
+        public function get prefix():String 
+        {
+            return _prefix || default_file_prefix || "" ;
         }
         
         /**
@@ -108,24 +108,24 @@ package asgard.system
          */
         public function set prefix( value:String ):void
         {
-		    _prefix = value ;
-    	}
+            _prefix = value ;
+        }
 
         /**
          * The suffix of the config file with datas.
          */
-    	public function get suffix():String 
-    	{
-	    	return _suffix || default_file_suffix || "" ;
-    	}
+        public function get suffix():String 
+        {
+            return _suffix || default_file_suffix || "" ;
+        }
  
         /**
          * The suffix of the config file with datas.
          */
-	    public function set suffix( value:String ):void
-	    {
-		    _suffix = value ;
-    	}
+        public function set suffix( value:String ):void
+        {
+            _suffix = value ;
+        }
     
         /**
          * Returns a shallow copy of this object.
@@ -151,14 +151,14 @@ package asgard.system
          * Sends and loads data from the specified passed-in lang value (the passed-in argument must be a Lang reference or a valid string).
          * @param lang The localization Lang value.
          */
-		public function loadLang( lang:* ):void
-		{
-			if ( Lang.validate( lang ) )
-			{
-				var request:URLRequest = new URLRequest( path + prefix + lang + suffix ) ;
-				load(request) ;
-			}	
-		}
+        public function loadLang( lang:* ):void
+        {
+            if ( Lang.validate( lang ) )
+            {
+                var request:URLRequest = new URLRequest( path + prefix + lang + suffix ) ;
+                load(request) ;
+            }    
+        }
 
         /**
          * Parse your datas when loading is complete.
@@ -166,20 +166,20 @@ package asgard.system
         public override function parse():void
         {
             var o:*           = data ;
-		    var current:Lang  = _localization.current ;
-		    var locale:Locale = new Locale() ;
-		    for ( var prop:String in o ) 
-		    {
-    			locale[ prop ] = o[prop] ;
-	    	}
-	    	_localization.put( current.value , locale ) ;
-	    	_localization.notifyChange() ;
+            var current:Lang  = _localization.current ;
+            var locale:Locale = new Locale() ;
+            for ( var prop:String in o ) 
+            {
+                locale[ prop ] = o[prop] ;
+            }
+            _localization.put( current.value , locale ) ;
+            _localization.notifyChange() ;
         }
         
         /**
          * @private
          */
-		protected var _localization:Localization ;
+        protected var _localization:Localization ;
 
         /**
          * @private
@@ -195,7 +195,7 @@ package asgard.system
          * @private
          */
         protected var _suffix:String ;
-		
-	}
+        
+    }
 
 }

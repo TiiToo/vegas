@@ -21,11 +21,11 @@
 */
 package asgard.system
 {
-	import flash.net.URLLoader;
-	
-	import asgard.net.EdenLoader;	
+    import flash.net.URLLoader;
+    
+    import asgard.net.EdenLoader;    
 
-	/**
+    /**
      * The EdenLocalizationLoader class based on the eden notation.
      * @param localization The Localization singleton reference of this loader.
      * @author eKameleon
@@ -39,7 +39,7 @@ package asgard.system
          */
         public function EdenLocalizationLoader( localization:Localization=null )
         {
-        	super( localization ) ;
+            super( localization ) ;
             default_file_suffix = ".eden" ;
         }
         
