@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is Andromeda Framework based on VEGAS.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -20,11 +20,6 @@
   Contributor(s) :
   
 */
-
-/**
- * The basic IVisitable interface. 
- * @author eKameleon
- */
 package andromeda.util.visitor
 {
 

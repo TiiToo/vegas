@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is PEGAS Framework.
+  The Original Code is Andromeda Framework based on VEGAS.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -20,7 +20,6 @@
   Contributor(s) :
   
 */
-
 package andromeda.events
 {
 	import flash.events.Event;
@@ -77,6 +76,11 @@ package andromeda.events
          * The name of the event when the process is looped.
          */
 		public static const LOOP:String = "onLooped" ;
+
+        /**
+         * The name of the event when the process is in pause.
+         */
+		public static const PAUSE:String = "onPaused" ;
 
         /**
          * The name of the event when the process is in progress.

@@ -22,16 +22,15 @@
 */
 package asgard.media 
 {
-	
-	// TODO implement the Action.PROGRESS event with FrameTimer or Timer interval.
-	
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
+	import flash.events.TimerEvent;
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
 	import flash.media.SoundLoaderContext;
 	import flash.media.SoundTransform;
 	import flash.net.URLRequest;
+	import flash.utils.Timer;
 	
 	import andromeda.events.ActionEvent;
 	import andromeda.process.IAction;
@@ -66,6 +65,8 @@ package asgard.media
 		 */
 		public function CoreSound( id:*=null, stream:URLRequest = null, context:SoundLoaderContext = null , isConfigurable:Boolean=false )
 		{
+			_timer = new Timer( DEFAULT_DELAY ) ;
+			_timer.addEventListener( TimerEvent.TIMER , _onTimer ) ;
 			addEventListener( IOErrorEvent.IO_ERROR  , _onIOError );
 			super( stream, context );
 			if ( id != null )
@@ -77,6 +78,11 @@ package asgard.media
 			setLogger() ;
 		}
 
+		/**
+		 * The default delay value of the internal timer of the CoreSound objects in milliseconds.
+		 */
+		public static var DEFAULT_DELAY:uint = 150 ;
+		
 		/**
 		 * The SoundChannel object of this CoreSound object.
 		 */
@@ -152,6 +158,15 @@ package asgard.media
 				channel.soundTransform = _soundTransform ;
 			}
 			dispatchEvent( new SoundEvent( SoundEvent.SOUND_UPDATE, this , _soundTransform ) ) ; 
+		}
+		
+	    /**
+	     * (read-only) Returns {@code true} if the process is in pause.
+	     * @return {@code true} if the process is in pause.
+	     */
+		public function get pausing():Boolean 
+		{
+			return _isPausing ;
 		}		
 
 		/**
@@ -162,7 +177,7 @@ package asgard.media
 		{
 			if ( channel != null )
 			{
-				return channel.position ;
+				return _currentPosition ;
 			}	
 			else
 			{
@@ -326,6 +341,7 @@ package asgard.media
 		public function notifyFinished():void 
 		{
 			_isRunning = false ;
+			_timer.stop() ;
 			dispatchEvent( new ActionEvent( ActionEvent.FINISH, this ) ) ;
 		}
 		
@@ -335,6 +351,24 @@ package asgard.media
 		protected function notifyLooped():void 
 		{
 			dispatchEvent( new ActionEvent( ActionEvent.LOOP , this ) ) ;
+		}
+
+	    /**
+	     * Notify an ActionEvent when the process is stopped.
+	     */
+		protected function notifyPaused():void
+		{
+			_isRunning = false ;
+			_timer.stop() ;
+			dispatchEvent( new ActionEvent( ActionEvent.PAUSE, this ) ) ;
+		}
+
+	    /**
+	     * Notify an ActionEvent when the process of the sound is in progress.
+	     */
+		protected function notifyProgress():void
+		{
+			dispatchEvent( new ActionEvent( ActionEvent.PROGRESS , this ) ) ;
 		}
 
 	    /**
@@ -352,6 +386,7 @@ package asgard.media
 		public function notifyStarted():void
 		{
 			_isRunning = true ;
+			_timer.start() ;
 			dispatchEvent( new ActionEvent( ActionEvent.START, this ) ) ;
 		}
 
@@ -361,6 +396,7 @@ package asgard.media
 		protected function notifyStopped():void
 		{
 			_isRunning = false ;
+			_timer.stop() ;
 			dispatchEvent( new ActionEvent( ActionEvent.STOP, this ) ) ;
 		}
 
@@ -370,6 +406,26 @@ package asgard.media
 		public function run( ...arguments:Array ):void 
 		{
 		    play( isNaN(_currentPosition) ? _currentPosition : 0 ) ;
+		}
+		
+		/**
+		 * Pauses playback of the Sound.
+		 * @return {@code true} if the pause method can be use (the internal SoundChannel of this Sound object is not null and not is "pausing").
+		 */	
+		public function pause():Boolean
+		{
+			if ( channel != null && !_isPausing )
+			{
+				_isPausing       = true ;
+				_currentPosition = position ;
+				channel.stop() ;
+				notifyPaused() ;
+				return true ;	
+			}
+			else
+			{
+				return false ;
+			}
 		}
     	
     	/**
@@ -384,19 +440,22 @@ package asgard.media
 		public override function play( startTime:Number = 0 , loops:int = 0 , sndTransform:SoundTransform=null ):SoundChannel
 		{
 			notifyStarted() ;
-			_currentPosition = startTime ;
+			_isPausing = false ;
+			_currentPosition = startTime > 0 ? startTime : 0 ;
 			return _registerChannel( super.play( startTime, loops, sndTransform ) , sndTransform ) ;
 		}    	
 		
 		/**
-		 * Resumes the sound if the stop() method is invoked.
-		 * @return {@code true}
+		 * Resumes playback of the sound that is paused (if the {@code pausing} property is {@code true}).
+		 * @return {@code true} if the resume method is success.
 		 */
 		public function resume():Boolean
 		{
-			if( !isNaN(_currentPosition) )
+			if( !isNaN(_currentPosition) && _isPausing )
 			{
+				_isPausing = false ;
 				_registerChannel( super.play( _currentPosition ) ) ;
+				_timer.start() ;
 				notifyResumed() ;
 				return true ;	
 			}
@@ -438,7 +497,8 @@ package asgard.media
 		{
 			if ( channel != null )
 			{
-				_currentPosition = position ;
+				_isPausing       = false ;
+				_currentPosition = 0 ;
 				channel.stop() ;
 				notifyStopped() ;
 				return true ;	
@@ -446,6 +506,22 @@ package asgard.media
 			else
 			{
 				return false ;
+			}
+		}
+		
+		/**
+		 * Pauses or resumes playback of the sound.
+		 * You could use this method to let users pause or resume playback by pressing a single button. 
+		 */
+		public function togglePause():void
+		{
+			if ( pausing )
+			{
+				resume() ;	
+			}	
+			else
+			{
+				pause() ;
 			}
 		}
 		
@@ -532,7 +608,12 @@ package asgard.media
 		/**
 		 * @private
 		 */
-	    private var _isRunning:Boolean ;
+	    private var _isPausing:Boolean = false ;
+
+		/**
+		 * @private
+		 */
+	    private var _isRunning:Boolean = false ;
 	    
 		/**
 		 * The internal ILogger reference of this object.
@@ -547,6 +628,11 @@ package asgard.media
 		/**
 		 * @private
 		 */
+		private var _timer:Timer ;
+		
+		/**
+		 * @private
+		 */
 		private function _onIOError( e:IOErrorEvent ):void
 		{
 			notifyFinished() ;
@@ -557,8 +643,9 @@ package asgard.media
 		 */
 		private function _onSoundComplete( e:Event ):void
 		{
-			_currentPosition = NaN ;
+			_currentPosition = length ;
 			dispatchEvent( e ) ;
+			notifyProgress() ;
 			if ( looping )
 			{
 				_registerChannel( super.play( 0 ) ) ;
@@ -568,6 +655,15 @@ package asgard.media
 			{
 				notifyFinished() ;
 			}
+		}
+		
+		/**
+		 * @private
+		 */
+		private function _onTimer( e:TimerEvent ):void
+		{
+			_currentPosition = channel.position ;
+			notifyProgress() ;
 		}
 		
 		/**
@@ -611,6 +707,8 @@ package asgard.media
 			    SoundCollector.insert ( this._id, this ) ;
 			}
 		}
+		
+		
 	}
 }
 
