@@ -85,11 +85,15 @@ package andromeda.process
     	function BatchProcess( bGlobal:Boolean = false , sChannel:String = null ) 
     	{
 		    super(bGlobal, sChannel);
-		   
 		    _batch = new Batch() ;
 		    initialize() ;
 	    }
-
+		
+		/**
+		 * Indicates if the BatchProcess is cleared when all the process are finished.
+		 */
+		public var autoClear:Boolean = false ;
+		
     	/**
     	 * Inserts an IAction object in the batch process collection.
     	 */
@@ -185,7 +189,17 @@ package andromeda.process
 	    {
     		// overrides this method.
     	}
-	    
+    	
+		/**
+		 * Notify an ActionEvent when the process is finished.
+		 */
+		public override function notifyFinished():void 
+		{
+			setRunning(false) ;
+			finish() ;
+			super.notifyFinished() ;
+		}    	
+	   	
 	    /**
 	     * Notify an ActionEvent when the process is in progress.
 	     */
@@ -193,6 +207,16 @@ package andromeda.process
 	    {
 		    dispatchEvent( new ActionEvent( _sTypeProgress, this , null, action ) ) ;
 	    }
+
+		/**
+		 * Notify an ActionEvent when the process is started.
+		 */
+		public override function notifyStarted():void 
+		{
+			start() ;
+			setRunning(true) ;
+			super.notifyStarted() ;
+		}
 
 	    /**
 	     * Removes an {@code Action} object in the internal batch collection.
@@ -211,10 +235,16 @@ package andromeda.process
     	 */
         public override function run( ...arguments:Array ):void
         {
-		    start() ;
 		    notifyStarted() ;
-		    _cpt = 0 ;
-		    _batch.run() ;
+		    if ( size() > 0 )
+		    {
+		    	_cpt = 0 ;
+		    	_batch.run() ;
+		    }
+		    else
+		    {
+			    notifyFinished() ;		    	
+		    }
         }
         
         /**
@@ -267,7 +297,10 @@ package andromeda.process
 		    notifyProgress( e.target as IAction ) ;		
 		    if (_cpt == _batch.size())
 		    {
-    			finish() ;		
+		    	if ( autoClear )
+		    	{
+		    		clear() ;
+		    	}
 			    notifyFinished() ;
 		    }
 	    }

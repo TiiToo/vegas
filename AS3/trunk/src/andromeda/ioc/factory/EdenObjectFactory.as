@@ -36,8 +36,9 @@ package andromeda.ioc.factory
 	import vegas.core.IFactory;
 	import vegas.data.map.HashMap;
 	import vegas.data.queue.LinearQueue;
-	import vegas.data.sets.HashSet;
 	import vegas.errors.NullPointerError;	
+
+	// TODO implement scope property in the IObjectDefinition interface (singleton, prototype, ...)
 
 	/**
 	 * This factory builder use a deserialize eden object to creates all Objects with the IObjectDefinitionContainer.
@@ -54,7 +55,7 @@ package andromeda.ioc.factory
 		public function EdenObjectFactory( bGlobal:Boolean = false , sChannel:String = null )
 		{
 			super( bGlobal, sChannel ) ;
-			_assemblies = new HashSet() ;
+			_assemblies = new HashMap() ;
 		}
 		
 		/**
@@ -66,6 +67,11 @@ package andromeda.ioc.factory
 		 * Defines the label of the assembly name property of the object.
 		 */
 		public static const ASSEMBLY_NAME:String = "assemblyName" ;
+		
+		/**
+		 * Defines the label of the lazyInit name property of the object.
+		 */		
+		public static const LAZY_INIT:String = "lazyInit" ;
 		
 		/**
 		 * Defines the label of the name in a property object.
@@ -167,7 +173,7 @@ package andromeda.ioc.factory
 			
 			if ( objects.length > 0)
 			{
-				while ( objects.length > 0)
+				while ( objects.length > 0 )
 				{
 					_createNewObjectDefinition( objects.shift() ) ;
 				}
@@ -180,13 +186,18 @@ package andromeda.ioc.factory
 		/**
 		 * @private
 		 */
-		private var _assemblies:HashSet ;
+		private var _assemblies:HashMap ;
 		
 		/**
 		 * @private
 		 */
 		private var _buffer:LinearQueue ;
 		
+		/**
+		 * @private
+		 */
+		private var _current:AssemblyEntry ;
+
 		/**
 		 * @private
 		 */
@@ -200,8 +211,13 @@ package andromeda.ioc.factory
 		/**
 		 * @private
 		 */	
-		private function completeHandler(e:Event):void {
-			
+		private function completeHandler(e:Event):void 
+		{
+			if ( _current != null )
+			{
+				_initDefinition( _current.definition  ) ;
+				_current = null ;	
+			}	
 			_flushAssemblies();
 		}
 
@@ -219,21 +235,26 @@ package andromeda.ioc.factory
 				var destroy:String      =  o[ OBJECT_DESTROY_METHOD_NAME ] ;
 				var id:String           =  o[ OBJECT_ID ] ;
 				var init:String         =  o[ OBJECT_INIT_METHOD_NAME ] ;
+				var lazyInit:Boolean    =  o[ LAZY_INIT ] ;
 				var properties:Array    =  o[ OBJECT_PROPERTIES ] ;
 				var singleton:Boolean   =  o[ OBJECT_SINGLETON ] ;
 				var type:String         =  o[ TYPE ] ;
 
-				var definition:ObjectDefinition = new ObjectDefinition( type , singleton ) ;
+				var definition:ObjectDefinition = new ObjectDefinition( id, type , singleton , lazyInit ) ;
 				definition.setConstructorArguments( args ) ;
 				definition.setDestroyMethodName( destroy ) ;
 				definition.setInitMethodName( init ) ;
 				definition.setProperties( _createNewProperties( properties ) ) ;
 				
 				addObjectDefinition( id , definition ) ;
-				
-				if ( assemblyName && !_assemblies.contains( assemblyName ) )
+
+				if ( assemblyName && !_assemblies.containsKey( assemblyName ) )
 				{
-					_assemblies.insert( assemblyName ) ;	
+					_assemblies.put( assemblyName , new AssemblyEntry( assemblyName , definition ) ) ;	
+				}
+				else
+				{
+					_initDefinition( definition ) ;
 				}
 				
 			}
@@ -296,7 +317,7 @@ package andromeda.ioc.factory
 		{
 			if ( flag )
 			{
-				_buffer = new LinearQueue( _assemblies.toArray() ) ;
+				_buffer = new LinearQueue( _assemblies.getValues() ) ;
 				_assemblies.clear() ;
 			}
 
@@ -311,10 +332,17 @@ package andromeda.ioc.factory
 					_loader.contentLoaderInfo.addEventListener(Event.COMPLETE,completeHandler);
 				}
 				
-				var assemblyName:String   = _buffer.poll() ;
+				_current = _buffer.poll( ) as AssemblyEntry ;
+				
+				var assemblyName:String = _current.name ;
+				
 				if ( assemblyName.length > 0 )
 				{
 					_loader.load( new URLRequest( assemblyName ) , new LoaderContext( false , ApplicationDomain.currentDomain ) ) ;
+				}
+				else
+				{
+					ioErrorHandler() ;
 				}
 				
 			}
@@ -326,22 +354,76 @@ package andromeda.ioc.factory
 		}
 
 		/**
+		 * @private
+		 */
+		private function _initDefinition( definition:ObjectDefinition ):void
+		{
+			if ( definition.isSingleton() && ( definition.isLazyInit() == false ) )
+			{
+				if ( containsObject( definition.id ) )
+				{
+					getObject( definition.id ) ;
+				}
+			}
+		}
+
+		/**
 		 * @private 
 		 */		
-		private function ioErrorHandler(e:IOErrorEvent):void 
+		private function ioErrorHandler( e:IOErrorEvent=null ):void 
 		{
-			dispatchEvent( e ) ;
+			if ( e != null )
+			{
+				dispatchEvent( e ) ;
+			}
 			_flushAssemblies() ; 	
 		}		
 
 		/**
 		 * @private 
 		 */
-		private function progress(e:ProgressEvent):void 
+		private function progress( e:ProgressEvent=null ):void 
 		{
-			dispatchEvent( e );
+			if ( e != null )
+			{
+				dispatchEvent( e );
+			}
 		}
 
 	}
-
 }
+
+import andromeda.ioc.core.ObjectDefinition;
+
+import vegas.core.CoreObject;
+
+/**
+ * This entries contains an ObjectDefinition and this assemblyName value. 
+ * @author eKameleon
+ */
+class AssemblyEntry extends CoreObject
+{
+
+	/**
+	 * Creates a new AssemblyEntry instance.
+	 * @param name The name of the assembly file to load.
+	 * @param definition The object definition attached with the assembly file.
+	 */
+	public function AssemblyEntry( name:String , definition:ObjectDefinition )
+	{
+		this.name       = name ;
+		this.definition = definition ;
+	}
+	
+	/**
+	 * The ObjectDefinition of this entry.
+	 */
+	public var definition:ObjectDefinition ;
+	
+	/**
+	 * The name of this entry.
+	 */
+	public var name:String ;
+	
+}
+

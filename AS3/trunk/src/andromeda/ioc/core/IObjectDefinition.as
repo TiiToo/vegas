@@ -22,15 +22,16 @@
 */
 package andromeda.ioc.core 
 {
+	import vegas.core.Identifiable;
 	import vegas.data.Map;		
 
 	/**
 	 * Describes an object instance, which has property values, constructor argument values, and further information supplied by concrete implementations.
 	 * @author eKameleon
 	 */
-	public interface IObjectDefinition 
+	public interface IObjectDefinition extends Identifiable
 	{
-		
+
 		/**
 		 * Returns the constructor arguments values of this object in a Array list.
 		 * @return the constructor arguments values of this object in a Array list.
@@ -56,11 +57,17 @@ package andromeda.ioc.core
 		function getProperties():Map ; 
 		
 		/**
-		 * Returns the type of the object (the class name).
-		 * @return the type of the object (the class name).
+		 * Determinates the type of the object (the class name).
 		 */	
 		function getType():String  ;
-	
+
+		/**
+		 * Indicates if the object lazily initialized. Only applicable to a singleton object. 
+		 * If false, it will get instantiated on startup by object factories that perform eager initialization of singletons.
+		 * @return A boolean who indicates if the object lazily initialized. 
+		 */	
+		function isLazyInit():Boolean ; 
+
 		/**
 		 * Returns {@code true} if the object in a Sigleton else the object is a prototype.
 		 * @return {@code true} if the object in a Sigleton else the object is a prototype.

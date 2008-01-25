@@ -1,4 +1,4 @@
-﻿ /*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -20,35 +20,25 @@
   Contributor(s) :
   
 */
-package asgard.net
+package asgard.media 
 {
-	
+
 	/**
-	 * This static enumeration class defines all net server levels.
+	 * The enumeration static class of all Microphone status.
 	 * @author eKameleon
-	 */	
-	public final class NetServerLevel
+	 */
+	public class MicrophoneStatus 
 	{
+
+		/**
+		 * The status name when the Microphone is muted.
+		 */
+		public static const MUTED:String = "Microphone.Muted" ;
 		
 		/**
-		 * The 'error' level code.
-	 	 */
-		public static const ERROR:String = "error" ;
-				
-		/**
-		 * The 'info' level code.
+		 * The status name when the Microphone is unmuted.
 		 */
-		public static const INFO:String = "info" ;
-		
-		/**
-		 * The 'status' level code.
-		 */
-		public static const STATUS:String = "status" ;	
-		
-		/**
-		 * The 'warning' level code.
-		 */
-		public static const WARNING:String = "warning" ;	
+		public static const UNMUTED:String = "Microphone.Unmuted" ;
 
 	}
 

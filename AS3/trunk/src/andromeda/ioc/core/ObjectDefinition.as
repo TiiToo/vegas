@@ -35,19 +35,43 @@ package andromeda.ioc.core
 
 		/**
 		 * Creates a new ObjectDefinition instance.
+		 * @param id the id of the {@code ObjectDefinition} object.
 		 * @param type the type of the {@code ObjectDefinition} object.
 		 * @param singleton the boolean flag to indicate if the object is a sigleton or not.
+		 * @param lazyInit the boolean flag to indicate if the singleton object is lazy init or not.
 		 */	
-		public function ObjectDefinition( type:String , singleton:Boolean=false )
+		public function ObjectDefinition( id:* , type:String , singleton:Boolean=false , lazyInit:Boolean=false )
 		{
-			if (type == null || type.length == 0)
+			if ( id == null )
+			{
+				throw new IllegalArgumentError( this + " constructor failed, the 'id' value passed in argument not must be empty or 'null' or 'undefined'.") ;
+			}
+			if ( type == null || type.length == 0 )
 			{
 				throw new IllegalArgumentError( this + " constructor failed, the string 'type' passed in argument not must be empty or 'null' or 'undefined'.") ;	
 			}
-			_type = type ;
-			_singleton = singleton ;
+			_id        = id ;
+			_type      = type ;
+			_lazyInit  = lazyInit ;
+			_singleton = singleton  ;
 		}
-		
+
+		/**
+		 * (read-write) Indicates the id of this object.
+		 */
+		public function get id():*
+		{
+			return _id ;
+		}
+	
+		/**
+		 * @private
+		 */
+		public function set id( id:* ):void
+		{
+			_id = id ;
+		}
+
 		/**
 		 * Returns the constructor arguments values of this object in a Array list.
 		 * @return the constructor arguments values of this object in a Array list.
@@ -91,6 +115,16 @@ package andromeda.ioc.core
 		public function getType():String 
 		{
 			return _type ;
+		}
+		
+		/**
+		 * Indicates if the object lazily initialized. Only applicable to a singleton object. 
+		 * If false, it will get instantiated on startup by object factories that perform eager initialization of singletons.
+		 * @return A boolean who indicates if the object lazily initialized. 
+		 */	
+		public function isLazyInit():Boolean 
+		{
+			return _lazyInit;
 		}
 		
 		/**
@@ -158,10 +192,20 @@ package andromeda.ioc.core
 		private var _destroyMethodName:String;
 		
 		/**
+		 * The internal id of this object.
+		 */
+		private var _id:* ;		
+		
+		/**
 		 * The name of the init method of the object.
 		 */
 		private var _initMethodName:String;
-		
+
+		/**
+		 * The lazy init flag of the object.
+		 */
+		private var _lazyInit:Boolean ;
+
 		/**
 		 * The internal Map of all properties of the object.
 		 */

@@ -51,6 +51,11 @@ class pegas.process.BatchProcess extends SimpleAction
 		_finishListener = new Delegate(this, _onFinished) ;
 		initialize() ;
 	}
+	
+	/**
+	 * Indicates if the BatchProcess is cleared when all the process are finished.
+	 */
+	public var autoClear:Boolean = false ;	
 
    	/**
      * Inserts an IAction object in the batch process collection.
@@ -112,6 +117,16 @@ class pegas.process.BatchProcess extends SimpleAction
 	{
 		//	
 	}
+	
+	/**
+	 * Notify an ActionEvent when the process is finished.
+	 */
+	public function notifyFinished():Void 
+	{
+		_setRunning(false) ;
+		finish() ;
+		super.notifyFinished() ;
+	}
 
 	/**
 	 * Notify an ActionEvent when the process is in progress.
@@ -120,6 +135,16 @@ class pegas.process.BatchProcess extends SimpleAction
 	{
 		_eProgress.context = a ;
 		dispatchEvent(_eProgress) ;
+	}
+
+	/**
+	 * Notify an ActionEvent when the process is started.
+	 */
+	public function notifyStarted():Void 
+	{
+		start() ;
+		_setRunning(true) ;
+		super.notifyStarted() ;
 	}
 
 	/**
@@ -139,11 +164,26 @@ class pegas.process.BatchProcess extends SimpleAction
 	 */
 	public function run():Void 
 	{
-		start() ;
 		notifyStarted() ;
-		_cpt = 0 ;
-		_batch.run() ;
+		if ( size() > 0 )
+		{
+		 	_cpt = 0 ;
+		  	_batch.run() ;
+		}
+		else
+		{
+			notifyFinished() ;		    	
+		}
 	}
+
+   	/**
+     * Returns the number of IAction object in this batch process.
+     * @return the number of IAction object in this batch process.
+     */
+    public function size():Number
+    {
+        return _batch.size() ;
+    }
 
 	/**
 	 * Invoked before the notifyStarted method is invoked.
@@ -184,7 +224,10 @@ class pegas.process.BatchProcess extends SimpleAction
 		notifyProgress( e.getTarget() ) ;		
 		if (_cpt == _batch.size())
 		{
-			finish() ;		
+		    if ( autoClear )
+		    {
+		    	clear() ;
+		    }
 			notifyFinished() ;
 		}
 	}

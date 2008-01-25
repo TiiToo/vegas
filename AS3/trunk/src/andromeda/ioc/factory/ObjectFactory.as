@@ -94,15 +94,39 @@ package andromeda.ioc.factory
 			}
 			return instance || null ;
 		}
-		
+
+		/**
+		 * This method defined if the object is a lazy init singleton object (must be singleton).
+		 * @param name The name of the object to find.
+		 * @return {@code true} if the object is a lazy init singleton object (must be singleton).
+	 	 */	
+		public function isLazyInit( name:String ):Boolean 
+		{
+			if ( containsObjectDefinition( name ) )
+			{
+				return getObjectDefinition(name).isLazyInit() ;
+			}
+			else
+			{
+				return false ;	
+			}
+		}
+
 		/**
 		 * This method defined if the object is a singleton or a prototype.
-		 * @param name The name of the object to find in the singleton map.
+		 * @param name The name of the object to find.
 		 * @return {@code true} if the object is a singleton or else if the object is a prototype. 
 	 	 */	
-		public function isSingleton( name:String):Boolean 
+		public function isSingleton( name:String ):Boolean 
 		{
-			return singletons.containsKey( name ) ;
+			if ( containsObjectDefinition( name ) )
+			{
+				return getObjectDefinition(name).isSingleton() ;
+			}
+			else
+			{
+				return false ;	
+			}
 		}
 		
 		/**

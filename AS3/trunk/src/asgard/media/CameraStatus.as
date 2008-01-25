@@ -1,4 +1,4 @@
-﻿ /*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -20,36 +20,26 @@
   Contributor(s) :
   
 */
-package asgard.net
+package asgard.media 
 {
-	
+
 	/**
-	 * This static enumeration class defines all net server levels.
+	 * The enumeration static class of all Camera status.
 	 * @author eKameleon
-	 */	
-	public final class NetServerLevel
+	 */
+	public class CameraStatus 
 	{
 		
 		/**
-		 * The 'error' level code.
-	 	 */
-		public static const ERROR:String = "error" ;
-				
-		/**
-		 * The 'info' level code.
+		 * The status name when the Camera is muted.
 		 */
-		public static const INFO:String = "info" ;
+		public static const MUTED:String = "Camera.Muted" ;
+			
+		/**
+		 * The status name when the Camera is unmuted.
+		 */
+		public static const UNMUTED:String = "Camera.Unmuted" ;
 		
-		/**
-		 * The 'status' level code.
-		 */
-		public static const STATUS:String = "status" ;	
-		
-		/**
-		 * The 'warning' level code.
-		 */
-		public static const WARNING:String = "warning" ;	
-
 	}
 
 }

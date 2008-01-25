@@ -46,8 +46,7 @@ package asgard.media
 	
 	import vegas.core.HashCode;
 	import vegas.logging.ILogger;
-	import vegas.logging.Log;
-	import vegas.util.Serializer;	
+	import vegas.logging.Log;	
 
 	/**
 	 * The CoreSound class extends the flash.media.Sound class and implements the IConfigurable, Identifiable, ILockable and ILogable interfaces.
@@ -531,15 +530,8 @@ package asgard.media
 	 	 */
 		public function toSource(indent:int = 0):String
 		{
-			var params:Array = [ null ] ;
-			if ( url != null )
-			{
-				params.push( new URLRequest(url) ) ;
-			}
-			var source:String = Serializer.getSourceOf(this, params) ;
-			return source ;
+    		return "new " + Reflection.getClassPath(this) + "()" ;
 		}
-
         
 		/**
 	 	 * Returns the {@code String} representation of this object.
@@ -629,7 +621,7 @@ package asgard.media
 		 * @private
 		 */
 		private var _timer:Timer ;
-		
+
 		/**
 		 * @private
 		 */
