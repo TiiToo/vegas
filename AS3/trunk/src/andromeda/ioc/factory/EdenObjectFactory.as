@@ -36,6 +36,7 @@ package andromeda.ioc.factory
 	import vegas.core.IFactory;
 	import vegas.data.map.HashMap;
 	import vegas.data.queue.LinearQueue;
+	import vegas.data.sets.HashSet;
 	import vegas.errors.NullPointerError;	
 
 	// TODO implement scope property in the IObjectDefinition interface (singleton, prototype, ...)
@@ -55,7 +56,8 @@ package andromeda.ioc.factory
 		public function EdenObjectFactory( bGlobal:Boolean = false , sChannel:String = null )
 		{
 			super( bGlobal, sChannel ) ;
-			_assemblies = new HashMap() ;
+			_setDefinitions = new HashSet() ;
+			_assemblies     = new HashMap() ;
 		}
 		
 		/**
@@ -161,6 +163,8 @@ package andromeda.ioc.factory
 			
 			setRunning( true ) ;
 			
+			_setDefinitions.clear() ;
+			
 			if ( arguments[0] is Array )
 			{
 				objects = arguments[0] ;
@@ -207,7 +211,12 @@ package andromeda.ioc.factory
 		 * @private
 		 */
 		private var _loader:Loader ;
-
+		
+		/**
+		 * @private
+		 */
+		private var _setDefinitions:HashSet ;
+		
 		/**
 		 * @private
 		 */	
@@ -309,7 +318,24 @@ package andromeda.ioc.factory
 				return null ;	
 			}	
 		}
-		
+
+		/**
+		 * @private
+		 */
+		private function _flushInitSingletonDefinitions():void
+		{
+			if ( _setDefinitions.isEmpty() == false )
+			{
+				var ar:Array  = _setDefinitions.toArray() ;
+				var size:uint = ar.length ;
+				for ( var i:uint = 0 ; i<size ; i++ )
+				{
+					getObject( ar[i] as String ) ;
+				} 
+				_setDefinitions.clear() ;
+			}
+		}
+
 		/**
 		 * @private
 		 */
@@ -327,9 +353,9 @@ package andromeda.ioc.factory
 				if ( _loader == null )
 				{
 					_loader = new Loader() ;
-					_loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR,ioErrorHandler);
-					_loader.contentLoaderInfo.addEventListener(ProgressEvent.PROGRESS,progress);
-					_loader.contentLoaderInfo.addEventListener(Event.COMPLETE,completeHandler);
+					_loader.contentLoaderInfo.addEventListener( IOErrorEvent.IO_ERROR  , ioErrorHandler ) ;
+					_loader.contentLoaderInfo.addEventListener( ProgressEvent.PROGRESS , progress ) ;
+					_loader.contentLoaderInfo.addEventListener( Event.COMPLETE         , completeHandler ) ;
 				}
 				
 				_current = _buffer.poll( ) as AssemblyEntry ;
@@ -348,6 +374,7 @@ package andromeda.ioc.factory
 			}
 			else
 			{
+				_flushInitSingletonDefinitions() ;
 				setRunning( false ) ;
 				notifyFinished() ;	
 			}
@@ -362,7 +389,7 @@ package andromeda.ioc.factory
 			{
 				if ( containsObject( definition.id ) )
 				{
-					getObject( definition.id ) ;
+					_setDefinitions.insert( definition.id ) ;
 				}
 			}
 		}
