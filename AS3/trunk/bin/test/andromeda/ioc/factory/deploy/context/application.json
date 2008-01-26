@@ -1,0 +1,57 @@
+{
+
+	objects : 
+	[
+		{   
+			id            : "address"  ,
+			type          : "test.Address" ,
+			properties    : 
+			[ 
+				{ name : "city"   , value : "Marseille" } ,
+				{ name : "street" , value : "xx xxx xxxxxxxxxxx" } ,
+				{ name : "zip"    , value : 13004 } 
+			]
+		}
+		,
+		{   
+			id         : "job_dev"  ,
+			type       : "test.Job" ,
+			properties : [ 	{ name:"name" , value:"AS Developper" } ]
+		}
+		,
+		{   
+			id            : "user" , 
+			type          : "test.User" , 
+			arguments     : 
+			[ 
+				{ value :"eKameleon" } , 
+				{ value :"ALCARAZ"   } , 
+				{ ref   :"address"   } 
+			] ,
+			// lazyInit      : true , // only if this object is a singleton, the singleton isn't initialized during the factory initialize process.
+			singleton     : true ,
+			destroy       : "destroy" ,
+			init          : "initialize" ,
+			properties : 
+			[
+				{ name:"age"       , value : 30        } ,
+				{ name:"firstName" , value : "Marc"    } , 
+				{ name:"job"       , ref   : "job_dev" } , 
+				{ name:"setMail"   , arguments  :  [ { value :"vegas@ekameleon.net" } ] } , // method
+				{ name:"url"       , value : "http://www.ekameleon.net/blog" }
+			]
+		}
+		,
+		{
+			id            : "square" , 
+			type          : "Square" , 
+			assemblyName  : "dll/dll.swf" ,
+			properties    : 
+			[
+				{ name:"x" , value : 100  } ,
+				{ name:"y" , value : 25   }
+			]	
+		}
+	]
+
+}

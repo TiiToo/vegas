@@ -314,7 +314,7 @@ package andromeda.ioc.factory
 							value = getObject( value ) ;
         					properties.put( key , value ) ;
     					}
-    					o[key] = value ;
+   						o[key] = value ;
 					}
 				}
 			} 

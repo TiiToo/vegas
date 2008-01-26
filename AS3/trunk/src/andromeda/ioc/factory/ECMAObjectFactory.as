@@ -30,6 +30,7 @@ package andromeda.ioc.factory
 	import flash.system.ApplicationDomain;
 	import flash.system.LoaderContext;
 	
+	import andromeda.ioc.core.ObjectAttribute;
 	import andromeda.ioc.core.ObjectDefinition;
 	import andromeda.ioc.factory.ObjectFactory;
 	
@@ -45,7 +46,7 @@ package andromeda.ioc.factory
 	 * This factory builder use a deserialize eden object to creates all Objects with the IObjectDefinitionContainer.
 	 * @author eKameleon
 	 */
-	public class EdenObjectFactory extends ObjectFactory implements IFactory 
+	public class ECMAObjectFactory extends ObjectFactory implements IFactory 
 	{
 		
 		/**
@@ -53,72 +54,12 @@ package andromeda.ioc.factory
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
 		 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 		 */
-		public function EdenObjectFactory( bGlobal:Boolean = false , sChannel:String = null )
+		public function ECMAObjectFactory( bGlobal:Boolean = false , sChannel:String = null )
 		{
 			super( bGlobal, sChannel ) ;
 			_setDefinitions = new HashSet() ;
 			_assemblies     = new HashMap() ;
 		}
-		
-		/**
-		 * Defines the label of the arguments in a method or a constructor object.
-		 */
-		public static const ARGUMENTS:String = "arguments" ;  
-		
-		/**
-		 * Defines the label of the assembly name property of the object.
-		 */
-		public static const ASSEMBLY_NAME:String = "assemblyName" ;
-		
-		/**
-		 * Defines the label of the lazyInit name property of the object.
-		 */		
-		public static const LAZY_INIT:String = "lazyInit" ;
-		
-		/**
-		 * Defines the label of the name in a property object.
-	 	 */
-		public static const NAME:String = "name" ;  
-		
-		/**
-		 * The name of the external object property to register the destroy method name.
-		 */
-		public static const OBJECT_DESTROY_METHOD_NAME:String = "destroy" ;  
-		
-		/**
-		 * The name of the external object property to define the id of the object.
-		 */
-		public static const OBJECT_ID:String = "id" ;  
-		
-		/**
-		 * The name of the external object property to register the init method name.
-		 */
-		public static const OBJECT_INIT_METHOD_NAME:String = "init" ;  
-		
-		/**
-		 * The name of the external object property to register the properties.
-		 */
-		public static const OBJECT_PROPERTIES:String = "properties" ;  
-	
-		/**
-		 * The name of the external object property to define the singleton flag of the object.
-		 */
-		public static const OBJECT_SINGLETON:String = "singleton" ;  
-		
-		/**
-		 * Defines the label of the type of the object.
-		 */
-		public static const TYPE:String = "type" ;  
-		
-		/**
-		 * Defines the label of the reference in a property object.
-		 */
-		public static const REFERENCE:String = "ref" ;  
-		
-		/**
-		 * Defines the label of the value in a property object.
-		 */
-		public static const VALUE:String = "value" ;  
 		
 		/**
 		 * This array contains objects to fill this factory with the run or create method.
@@ -139,11 +80,11 @@ package andromeda.ioc.factory
 		 * Returns the singleton reference of this class.
 		 * @return the singleton reference of this class.
 		 */
-		public static function getInstance():EdenObjectFactory
+		public static function getInstance():ECMAObjectFactory
 		{
 			if ( _instance == null )
 			{
-				_instance = new EdenObjectFactory() ;
+				_instance = new ECMAObjectFactory() ;
 			}
 			return _instance ;
 		}
@@ -205,7 +146,7 @@ package andromeda.ioc.factory
 		/**
 		 * @private
 		 */
-		private static var _instance:EdenObjectFactory ;
+		private static var _instance:ECMAObjectFactory ;
 
 		/**
 		 * @private
@@ -239,15 +180,15 @@ package andromeda.ioc.factory
 			if ( o != null )
 			{
 			
-				var assemblyName:String =  o[ ASSEMBLY_NAME ] ;
-				var args:Array          =  o[ ARGUMENTS ] ;
-				var destroy:String      =  o[ OBJECT_DESTROY_METHOD_NAME ] ;
-				var id:String           =  o[ OBJECT_ID ] ;
-				var init:String         =  o[ OBJECT_INIT_METHOD_NAME ] ;
-				var lazyInit:Boolean    =  o[ LAZY_INIT ] ;
-				var properties:Array    =  o[ OBJECT_PROPERTIES ] ;
-				var singleton:Boolean   =  o[ OBJECT_SINGLETON ] ;
-				var type:String         =  o[ TYPE ] ;
+				var assemblyName:String =  o[ ObjectAttribute.ASSEMBLY_NAME ] ;
+				var args:Array          =  o[ ObjectAttribute.ARGUMENTS ] ;
+				var destroy:String      =  o[ ObjectAttribute.OBJECT_DESTROY_METHOD_NAME ] ;
+				var id:String           =  o[ ObjectAttribute.OBJECT_ID ] ;
+				var init:String         =  o[ ObjectAttribute.OBJECT_INIT_METHOD_NAME ] ;
+				var lazyInit:Boolean    =  o[ ObjectAttribute.LAZY_INIT ] ;
+				var properties:Array    =  o[ ObjectAttribute.OBJECT_PROPERTIES ] ;
+				var singleton:Boolean   =  o[ ObjectAttribute.OBJECT_SINGLETON ] ;
+				var type:String         =  o[ ObjectAttribute.TYPE ] ;
 
 				var definition:ObjectDefinition = new ObjectDefinition( id, type , singleton , lazyInit ) ;
 				definition.setConstructorArguments( args ) ;
@@ -293,10 +234,10 @@ package andromeda.ioc.factory
 				{
 					
 					prop  = a[i] ;
-					args  = prop[ ARGUMENTS ] ;
-					ref   = prop[ REFERENCE ]  ;
-					name  = prop[ NAME ] ;
-					value = prop[ VALUE ] ;
+					args  = prop[ ObjectAttribute.ARGUMENTS ] ;
+					ref   = prop[ ObjectAttribute.REFERENCE ]  ;
+					name  = prop[ ObjectAttribute.NAME ] ;
+					value = prop[ ObjectAttribute.VALUE ] ;
 					
 					if (args is Array && args.length > 0) 
 					{
