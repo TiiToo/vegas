@@ -156,7 +156,7 @@ package asgard.media
 			{
 				channel.soundTransform = _soundTransform ;
 			}
-			dispatchEvent( new SoundEvent( SoundEvent.SOUND_UPDATE, this , _soundTransform ) ) ; 
+			_fireSoundEvent( SoundEvent.SOUND_UPDATE ) ;
 		}
 		
 	    /**
@@ -248,7 +248,7 @@ package asgard.media
 			{
 				channel.soundTransform = _soundTransform ;
 			}
-			dispatchEvent( new SoundEvent( SoundEvent.SOUND_UPDATE, this , _soundTransform ) ) ; 
+			_fireSoundEvent( SoundEvent.SOUND_UPDATE ) ;
 		}
 		
 		/**
@@ -341,7 +341,7 @@ package asgard.media
 		{
 			_isRunning = false ;
 			_timer.stop() ;
-			dispatchEvent( new ActionEvent( ActionEvent.FINISH, this ) ) ;
+			_fireActionEvent( ActionEvent.FINISH ) ;
 		}
 		
 	    /**
@@ -349,7 +349,7 @@ package asgard.media
 	     */
 		protected function notifyLooped():void 
 		{
-			dispatchEvent( new ActionEvent( ActionEvent.LOOP , this ) ) ;
+			_fireActionEvent( ActionEvent.LOOP ) ;
 		}
 
 	    /**
@@ -359,7 +359,7 @@ package asgard.media
 		{
 			_isRunning = false ;
 			_timer.stop() ;
-			dispatchEvent( new ActionEvent( ActionEvent.PAUSE, this ) ) ;
+			_fireActionEvent( ActionEvent.PAUSE ) ;
 		}
 
 	    /**
@@ -367,7 +367,7 @@ package asgard.media
 	     */
 		protected function notifyProgress():void
 		{
-			dispatchEvent( new ActionEvent( ActionEvent.PROGRESS , this ) ) ;
+			_fireActionEvent( ActionEvent.PROGRESS ) ;
 		}
 
 	    /**
@@ -376,7 +376,7 @@ package asgard.media
 		protected function notifyResumed():void
 		{
 			_isRunning = true ;
-			dispatchEvent( new ActionEvent( ActionEvent.RESUME, this ) ) ;
+			_fireActionEvent( ActionEvent.RESUME ) ;
 		}
 
     	/**
@@ -386,7 +386,7 @@ package asgard.media
 		{
 			_isRunning = true ;
 			_timer.start() ;
-			dispatchEvent( new ActionEvent( ActionEvent.START, this ) ) ;
+			_fireActionEvent( ActionEvent.START ) ;
 		}
 
 	    /**
@@ -396,7 +396,7 @@ package asgard.media
 		{
 			_isRunning = false ;
 			_timer.stop() ;
-			dispatchEvent( new ActionEvent( ActionEvent.STOP, this ) ) ;
+			_fireActionEvent( ActionEvent.STOP ) ;
 		}
 
     	/**
@@ -622,6 +622,30 @@ package asgard.media
 		 */
 		private var _timer:Timer ;
 
+		/**
+		 * @private
+		 */
+		private function _fireActionEvent( type:String ):void
+		{
+			if ( isLocked() )
+			{
+				return ;	
+			}
+			dispatchEvent( new ActionEvent( type, this ) ) ;
+		}
+		
+		/**
+		 * @private
+		 */
+		private function _fireSoundEvent( type:String ):void
+		{
+			if ( isLocked() )
+			{
+				return ;	
+			}
+			dispatchEvent( new SoundEvent( type, this , _soundTransform ) ) ; 
+		}
+		
 		/**
 		 * @private
 		 */
