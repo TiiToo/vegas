@@ -21,6 +21,8 @@
   
 */
 
+// TODO refactoring, use now the asgard.process.ActionURLLoader class.
+
 package asgard.config
 {
 	import flash.net.URLRequest;
