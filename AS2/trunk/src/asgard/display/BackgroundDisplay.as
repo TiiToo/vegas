@@ -225,8 +225,12 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 	 	var $h:Number = isNaN(h) ? getH() : h ;
 		
 		_bgDraw.clear() ;
-	 	_bgDraw.lineStyle( themeBorderThickness, themeBorderColor, themeBorderAlpha ) ;
-	 	
+		
+		if ( !isNaN( themeBorderAlpha ) ) // hack fix MAC FlashPlayer bug
+		{
+	 		_bgDraw.lineStyle( themeBorderThickness, themeBorderColor, themeBorderAlpha ) ;
+		}
+		
 	 	if( _useGradient )
 		{
 			var matrix:TransformMatrix = new TransformMatrix() ;
@@ -236,7 +240,10 @@ class asgard.display.BackgroundDisplay extends ConfigurableDisplayObject
 		}
 		else
 		{
-			_bgDraw.beginFill( themeColor, themeAlpha ) ;
+			if ( !isNaN(themeAlpha ) ) // hack fix MAC FlashPlayer bug
+			{
+				_bgDraw.beginFill( ( isNaN(themeColor) ? 0x000000 : themeColor)  , themeAlpha ) ;
+			}
 		}
 		
 		offsetX = isNaN(offsetX) ? 0 : offsetX ;
