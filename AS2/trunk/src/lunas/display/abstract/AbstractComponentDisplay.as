@@ -19,8 +19,7 @@
   
   Contributor(s) :
   
-*/
-
+ */
 import asgard.display.ConfigurableDisplayObject;
 import asgard.display.DisplayObject;
 
@@ -479,6 +478,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 		_groupName = sName ;	
 		groupPolicyChanged() ;
 	}
+	
 
 	/**
 	 * Sets the virtual height value of the component.
@@ -504,15 +504,23 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	/**
 	 * Sets the style property on the style declaration or object.
 	 */
-	public function setStyle(s:IStyle):Void 
+	public function setStyle( args ):Void 
 	{
-		_unregisterStyle() ;
-		if (s == undefined) 
+		if ( arguments.length == 1 && arguments[0] instanceof IStyle )
 		{
-			return ;
+			var s:IStyle = arguments[0] ;
+			_unregisterStyle() ;
+			if (s == undefined) 
+			{
+				return ;
+			}
+			_style = s ; 
+			_registerStyle() ;
 		}
-		_style = s ; 
-		_registerStyle() ;
+		else
+		{
+			getStyle().setStyle.apply( getStyle(), arguments ) ;
+		}
 		if (___isLock___) 
 		{
 			return ;
@@ -601,41 +609,95 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	{
 		// overrides
 	}
-
+	
+	/**
+	 * @private
+	 */
 	private var _builder:IBuilder ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _groupName:String ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _group:Boolean ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _h:Number ;
-	
+
+	/**
+	 * @private
+	 */
 	private var ___timer___:FrameTimer ;
 	
+	/**
+	 * @private
+	 */
 	private var _style:IStyle ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _w:Number ;
 
+	/**
+	 * @private
+	 */
 	private var _eAdded:UIEvent ;	
-	
+
+	/**
+	 * @private
+	 */
 	private var _eChange:UIEvent ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _eCreate:UIEvent ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _eDestroy:UIEvent ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _eEnabledChanged:UIEvent ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _eInit:UIEvent ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _eRemoved:UIEvent ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _eRender:UIEvent ;
 	
+	/**
+	 * @private
+	 */
 	private var _eResize:UIEvent ;
 	
+	/**
+	 * @private
+	 */
 	private var _eStyleChange:UIEvent ;
 
+	/**
+	 * @private
+	 */
 	private var _listenerStyleChange:EventListener ;
 
 	/**
@@ -654,8 +716,8 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	{
 		if (_style != null)
 		{
-			_style.addEventListener(StyleEvent.STYLE_CHANGED, _listenerStyleChange) ;
-			_style.addEventListener(StyleEvent.STYLE_SHEET_CHANGED, _listenerStyleChange) ;
+			_style.addEventListener( StyleEvent.STYLE_CHANGED       , _listenerStyleChange ) ;
+			_style.addEventListener( StyleEvent.STYLE_SHEET_CHANGED , _listenerStyleChange ) ;
 		}
 	}
 
@@ -679,8 +741,8 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	{
 		if ( _style != null ) 
 		{
-			_style.removeEventListener(StyleEvent.STYLE_CHANGED, _listenerStyleChange) ;
-			_style.removeEventListener(StyleEvent.STYLE_SHEET_CHANGED, _listenerStyleChange ) ;
+			_style.removeEventListener( StyleEvent.STYLE_CHANGED        , _listenerStyleChange ) ;
+			_style.removeEventListener( StyleEvent.STYLE_SHEET_CHANGED  , _listenerStyleChange ) ;
 			_style = null ;
 		}
 
