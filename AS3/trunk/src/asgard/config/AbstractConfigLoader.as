@@ -20,16 +20,14 @@
   Contributor(s) :
   
 */
-
-// TODO refactoring, use now the asgard.process.ActionURLLoader class.
-
 package asgard.config
 {
+	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	import flash.utils.getDefinitionByName;
 	
 	import asgard.config.IConfigLoader;
-	import asgard.net.ActionLoader;
+	import asgard.process.ActionURLLoader;
 	
 	import system.Reflection;	
 
@@ -37,15 +35,18 @@ package asgard.config
      * This skeletal class provides an easy implementation of the IConfigLoader interface. 
      * @author eKameleon
      */
-    public class AbstractConfigLoader extends ActionLoader implements IConfigLoader
+    public class AbstractConfigLoader extends ActionURLLoader implements IConfigLoader
     {
         
         /**
          * Creates a new AbstractConfigLoader instance.
+       	 * @param loader The URLLoader object to load.
+	     * @param bGlobal the flag to use a global event flow or a local event flow.
+     	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
          */
-        public function AbstractConfigLoader()
+        public function AbstractConfigLoader( loader:URLLoader, bGlobal:Boolean = false, sChannel:String = null )
         {
-            super() ;
+            super( loader , bGlobal, sChannel ) ;
             parsing = true ;
             _config = Config.getInstance() ;
         }
@@ -86,14 +87,6 @@ package asgard.config
     	}
 
         /**
-         * The name of the config.
-         */
-    	public function get name():String 
-    	{
-		    return _name ;
-        }
-   
-        /**
          * The path of the config file with datas.
          */
     	public function get path():String 
@@ -108,6 +101,14 @@ package asgard.config
         {
 		    _path = value ;
     	}
+
+		/**
+		 * Indicates the URLRequest object who captures all of the information in a single HTTP request.
+		 */
+		public override function get request():URLRequest
+		{
+			return _request || new URLRequest( ( path || "" ) + ( fileName || "" ) + ( suffix || "" ) ) ;
+		}
 
         /**
          * The suffix of the config file with datas.
@@ -124,7 +125,7 @@ package asgard.config
 	    {
 		    _suffix = value ;
     	}
-    
+
         /**
          * Returns a shallow copy of this object.
          * @return a shallow copy of this object.
@@ -133,7 +134,7 @@ package asgard.config
         {
             var cName:String = Reflection.getClassPath(this) ;
             var clazz:Class = ( getDefinitionByName( cName ) as Class ) ;
-            var cloader:IConfigLoader = (new clazz(_name) as IConfigLoader) ;
+            var cloader:* = new clazz(_name) ;
             if (cloader != null)
             {
                 cloader.data     = data ;
@@ -142,25 +143,6 @@ package asgard.config
                 cloader.suffix   = suffix ;
             }
             return cloader ;
-            
-        }
-    
-        /**
-         * Sends and loads data from the specified URL.
-         * @param request:URLRequest broke the internal request with your custom URLRequest
-         */
-        public override function load( request:URLRequest=null ):void
-        {
-            notifyStarted() ;
-            if (request == null)
-            {
-                _request.url = path + fileName + suffix ;
-                _loader.load(_request) ;    
-            }
-            else
-            {
-                _loader.load(request) ;
-            }
         }
 
         /**
@@ -175,7 +157,7 @@ package asgard.config
     			c[ prop ] = o[prop] ;
 	    	}
         }
-        
+		
         /**
          * @private
          */

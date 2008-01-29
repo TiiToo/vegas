@@ -21,13 +21,10 @@
 */
 package asgard.system
 {
-    import flash.net.URLLoader;
-    
-    import asgard.net.EdenLoader;    
-
-    /**
-     * The EdenLocalizationLoader class based on the eden notation.
-     * @param localization The Localization singleton reference of this loader.
+	import asgard.net.EdenLoader;	
+	
+	/**
+	 * The EdenLocalizationLoader class based on the eden notation.
      * @author eKameleon
      */
     public class EdenLocalizationLoader extends AbstractLocalizationLoader
@@ -36,20 +33,13 @@ package asgard.system
         /**
          * Creates a new EdenLocalizationLoader instance.
          * @param localization The owner Localization reference of this loader.
-         */
+	     * @param bGlobal the flag to use a global event flow or a local event flow.
+     	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+     	 */
         public function EdenLocalizationLoader( localization:Localization=null )
         {
-            super( localization ) ;
+            super( localization , new EdenLoader() ) ;
             default_file_suffix = ".eden" ;
-        }
-        
-        /**
-         * Returns the original loader in the constructor. Override this method.
-         * @return the original loader in the constructor. Override this method.
-         */ 
-        public override function getLoader():URLLoader
-        {
-            return (new EdenLoader() as URLLoader) ;
         }
 
     }

@@ -22,38 +22,61 @@
 */
 package asgard.system
 {
-    import flash.net.URLRequest;
-    import flash.utils.getDefinitionByName;
-    
-    import asgard.net.ActionLoader;
-    
-    import system.Reflection;    
+	import flash.net.URLLoader;
+	import flash.net.URLRequest;
+	import flash.utils.getDefinitionByName;
+	
+	import asgard.process.ActionURLLoader;
+	
+	import system.Reflection;	
 
-    /**
+	/**
      * This skeletal class provides an easy implementation of the ILocalizationLoader interface. 
      * @author eKameleon
      */
-    public class AbstractLocalizationLoader extends ActionLoader implements ILocalizationLoader
+    public class AbstractLocalizationLoader extends ActionURLLoader implements ILocalizationLoader
     {
         
         /**
          * Creates a new AbstractConfigLoader instance.
          * @param localization The Localization singleton reference of this loader.
+       	 * @param loader The URLLoader object to load.
+	     * @param bGlobal the flag to use a global event flow or a local event flow.
+     	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
          */
-        public function AbstractLocalizationLoader( localization:Localization )
+        public function AbstractLocalizationLoader( localization:Localization , loader:URLLoader, bGlobal:Boolean = false, sChannel:String = null )
         {
-            super() ;
-            _localization = localization ;
-            parsing       = true ;
+            super( loader , bGlobal, sChannel ) ;
+            parsing = true ;
+            if ( localization == null )
+            {
+            	this.localization = localization ;
+            }
         }
+
+        /**
+         * Indicates the lang of the current Localization to load.
+         */
+        public function get lang():*
+        {
+            return _lang || default_lang ; 
+		}
         
+        /**
+         * @private
+         */
+        public function set lang( lang:* ):void
+        {
+           	_lang = ( Lang.validate( lang ) ) ? lang : null ;
+        }
+
         /**
          * Returns the localization reference of this loader.
          * @return the localization reference of this loader.
          */
         public function get localization():Localization
         {
-            return _localization ;    
+            return _localization || Localization.getInstance() ;    
         }
         
         /**
@@ -63,6 +86,11 @@ package asgard.system
         {
             _localization = localization ;    
         }
+        
+        /**
+         * Defines the defaut lang of the localization file.
+         */
+        public var default_lang:String = "en" ;        
         
         /**
          * Defines the defaut path of the localization file.
@@ -111,6 +139,14 @@ package asgard.system
             _prefix = value ;
         }
 
+		/**
+		 * Indicates the URLRequest object who captures all of the information in a single HTTP request.
+		 */
+		public override function get request():URLRequest
+		{
+			return _request || new URLRequest( ( path || "" ) + ( prefix || "" ) + ( lang || "" ) + ( suffix || "" ) ) ;
+		}
+
         /**
          * The suffix of the config file with datas.
          */
@@ -135,7 +171,7 @@ package asgard.system
         {
             var cName:String = Reflection.getClassPath(this) ;
             var clazz:Class = ( getDefinitionByName( cName ) as Class ) ;
-            var loader:ILocalizationLoader = (new clazz() as ILocalizationLoader) ;
+            var loader:* = new clazz() ;
             if (loader != null)
             {
                 loader.data     = data ;
@@ -144,7 +180,6 @@ package asgard.system
                 loader.suffix   = suffix ;
             }
             return loader ;
-            
         }
     
         /**
@@ -153,11 +188,11 @@ package asgard.system
          */
         public function loadLang( lang:* ):void
         {
-            if ( Lang.validate( lang ) )
-            {
-                var request:URLRequest = new URLRequest( path + prefix + lang + suffix ) ;
-                load(request) ;
-            }    
+			if ( lang != null )
+			{
+				this.lang = lang ;
+			}
+			run() ;
         }
 
         /**
@@ -166,15 +201,20 @@ package asgard.system
         public override function parse():void
         {
             var o:*           = data ;
-            var current:Lang  = _localization.current ;
+            var current:Lang  = localization.current ;
             var locale:Locale = new Locale() ;
             for ( var prop:String in o ) 
             {
                 locale[ prop ] = o[prop] ;
             }
-            _localization.put( current.value , locale ) ;
-            _localization.notifyChange() ;
+            localization.put( current.value , locale ) ;
+            localization.notifyChange() ;
         }
+
+		/**
+		 * @private
+		 */
+        private var _lang:* ;
         
         /**
          * @private

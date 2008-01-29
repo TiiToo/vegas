@@ -22,13 +22,10 @@
 */
 package asgard.config
 {
-    
-    import asgard.config.AbstractConfigLoader;
-    import asgard.net.JSONLoader;
-   
-    import flash.net.URLLoader;
+	import asgard.config.AbstractConfigLoader;
+	import asgard.net.JSONLoader;	    
 
-    /**
+	/**
      * <p><b>Example :</b></p>
      * <code>
      * import asgard.config.Config ;
@@ -64,23 +61,13 @@ package asgard.config
         
         /**
          * Creates a new JSONConfigLoader instance.
+         * @param bGlobal the flag to use a global event flow or a local event flow.
+         * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
          */
-        public function JSONConfigLoader()
+        public function JSONConfigLoader( bGlobal:Boolean = false, sChannel:String = null )
         {
-
-            super() ;
-            default_file_name = "config" ;
+            super( new JSONLoader() , bGlobal, sChannel) ;
             default_file_suffix = ".json" ;
-            
-        }
-        
-        /**
-         * Returns the original loader in the constructor. 
-         * @return the original loader in the constructor.
-         */ 
-        public override function getLoader():URLLoader
-        {
-            return (new JSONLoader() as URLLoader) ;
         }
 
     }

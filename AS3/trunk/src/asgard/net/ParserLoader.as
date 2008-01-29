@@ -23,12 +23,11 @@
 
 package asgard.net
 {
-	
 	import flash.events.Event;
 	import flash.net.URLLoader;
 	import flash.net.URLLoaderDataFormat;
 	import flash.net.URLRequest;
-	import flash.net.URLVariables;
+	import flash.net.URLVariables;	
 
 	/**
 	 * This loader use a parse external data and deserialize it. 
@@ -40,9 +39,9 @@ package asgard.net
         /**
          * Creates a new ParserLoader instance.
          */ 
-		public function ParserLoader(request:URLRequest=null)
+		public function ParserLoader( request:URLRequest=null )
 		{
-			super(request);
+			super( request );
 			addEventListener(Event.COMPLETE, complete) ;
 		}
 
@@ -61,6 +60,9 @@ package asgard.net
 			return null ;	
 		}
 		
+		/**
+		 * Invoked when the loader process is complete to parse the datas.
+		 */
 		protected function complete(e:Event):void
 		{
 			

@@ -22,21 +22,21 @@
 
 package asgard.config
 {
-    import flash.net.URLLoader;
-    
-    import asgard.config.AbstractConfigLoader;
-    import asgard.net.EdenLoader;    
+	import asgard.config.AbstractConfigLoader;
+	import asgard.net.EdenLoader;	
 
-    /**
+	/**
      * The EdenConfigLoader class based on the eden notation.
      * <p><b>Example :</b></p>
      * {@code
+     * import andromeda.events.ActionEvent ;
+     * 
      * import asgard.config.Config ;
      * import asgard.config.EdenConfigLoader;
-     * import asgard.config.IConfigLoader;
+     * 
      * import flash.events.Event ;
      * 
-     * var complete:Function = function ( e:Event ):void
+     * var debug:Function = function ( e:Event ):void
      * {
      *     var data:* = Config.getInstance() ;
      *     for (var prop:String in data)
@@ -53,7 +53,7 @@ package asgard.config
      * }
      * 
      * var loader:IConfigLoader = new EdenConfigLoader() ;
-     * loader.addEventListener(Event.COMPLETE, complete) ;
+     * loader.addEventListener( ActionEvent.FINISH , debug) ;
      * loader.path = "config/" ;
      * loader.load() ;
      * }
@@ -64,18 +64,13 @@ package asgard.config
         
         /**
          * Creates a new EdenConfigLoader instance.
+         * @param bGlobal the flag to use a global event flow or a local event flow.
+         * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
          */
-        public function EdenConfigLoader()
+        public function EdenConfigLoader( bGlobal:Boolean = false, sChannel:String = null )
         {
-            default_file_suffix = ".eden" ;
-        }
-        
-        /**
-         * Returns the original loader in the constructor. Override this method.
-         */ 
-        public override function getLoader():URLLoader
-        {
-            return (new EdenLoader() as URLLoader) ;
+        	super( new EdenLoader() , bGlobal, sChannel) ;
+        	default_file_suffix = ".eden" ;
         }
 
     }

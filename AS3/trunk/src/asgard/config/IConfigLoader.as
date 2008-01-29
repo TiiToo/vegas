@@ -24,12 +24,10 @@
 package asgard.config
 {
 
-    import asgard.net.IActionLoader ;
-    
-    /**
+	/**
      * This interface provides a config loader object.
      */ 
-    public interface IConfigLoader extends IActionLoader
+    public interface IConfigLoader
     {
     
         /**

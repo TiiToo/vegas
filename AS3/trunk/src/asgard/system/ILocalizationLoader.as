@@ -22,13 +22,12 @@
 */
 package asgard.system
 {
-    import asgard.net.IActionLoader;
-    import asgard.system.Localization;    
+	import asgard.system.Localization;    
 
-    /**
+	/**
      * This interface provides a config loader object.
      */ 
-    public interface ILocalizationLoader extends IActionLoader
+    public interface ILocalizationLoader
     {
     
         /**

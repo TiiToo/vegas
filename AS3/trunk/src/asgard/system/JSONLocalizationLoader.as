@@ -21,13 +21,10 @@
 */
 package asgard.system
 {
-    import flash.net.URLLoader;
-    
-    import asgard.net.JSONLoader;    
-
-    /**
-     * The JSONLocalizationLoader class based on the JSON notation.
-     * @param localization The Localization singleton reference of this loader.
+	import asgard.net.JSONLoader;	
+	
+	/**
+	 * The JSONLocalizationLoader class based on the JSON notation.
      * @author eKameleon
      */
     public class JSONLocalizationLoader extends AbstractLocalizationLoader
@@ -36,20 +33,13 @@ package asgard.system
         /**
          * Creates a new JSONLocalizationLoader instance.
          * @param localization The owner Localization reference of this loader.
+	     * @param bGlobal the flag to use a global event flow or a local event flow.
+     	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
          */
         public function JSONLocalizationLoader( localization:Localization=null )
         {
-            super( localization ) ;
+            super( localization , new JSONLoader() ) ;
             default_file_suffix = ".json" ;
-        }
-        
-        /**
-         * Returns the original loader in the constructor. Override this method.
-         * @return the original loader in the constructor. Override this method.
-         */ 
-        public override function getLoader():URLLoader
-        {
-            return (new JSONLoader() as URLLoader) ;
         }
 
     }

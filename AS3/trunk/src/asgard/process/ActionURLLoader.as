@@ -30,6 +30,41 @@ package asgard.process
 
 	/**
 	 * This action process launch the load of a URLLoader object.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import andromeda.events.ActionEvent ;
+	 * 
+	 * import asgard.net.EdenLoader ;
+	 * import asgard.process.ActionURLLoader ;
+	 * 
+	 * import flash.net.URLRequest ;
+	 * 
+	 * var url:String = "data/config.eden" ;
+	 * 
+	 * var loader:EdenLoader = new EdenLoader() ;
+	 * 
+	 * var start:Function = function( e:Event ):void
+	 * {
+	 *     trace(e) ;
+	 * }
+	 * 
+	 * var finish:Function = function( e:Event ):void
+	 * {
+	 *     trace(e) ;
+	 *     var target:ActionURLLoader = e.target as ActionURLLoader ;
+	 *     var data:*                 = target.data ;
+	 *     for (var prop:String in data)
+	 *     {
+	 *         trace("  > " + prop + " : " + data[prop]) ;
+	 *     }
+	 * }
+	 * 
+	 * var process:ActionURLLoader = new ActionURLLoader( loader ) ;
+	 * process.addEventListener(ActionEvent.START  , start ) ;
+	 * process.addEventListener(ActionEvent.FINISH , finish ) ;
+	 * process.request = new URLRequest( url ) ;
+	 * process.run() ;
+ 	 * }
 	 * @author eKameleon
 	 */
 	public class ActionURLLoader extends AbstractActionLoader 
@@ -41,7 +76,7 @@ package asgard.process
     	 * @param bGlobal the flag to use a global event flow or a local event flow.
     	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 		 */
-		public function ActionURLLoader( loader:URLLoader, bGlobal:Boolean = false, sChannel:String = null)
+		public function ActionURLLoader( loader:URLLoader, bGlobal:Boolean = false, sChannel:String = null )
 		{
 			super( bGlobal, sChannel );
 			if ( loader != null )

@@ -67,7 +67,7 @@ package asgard.net
         /**
          * Creates a new EdenLoader instance.
          */ 
-		public function EdenLoader(request:URLRequest=null)
+		public function EdenLoader( request:URLRequest=null )
 		{
 			super(request);
 		}

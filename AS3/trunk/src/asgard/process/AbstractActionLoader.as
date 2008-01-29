@@ -53,7 +53,7 @@ package asgard.process
 		public function AbstractActionLoader( bGlobal:Boolean = false, sChannel:String = null)
 		{
 			super( bGlobal, sChannel );
-            _timer = new Timer(DEFAULT_DELAY, 1) ;
+            _timer        = new Timer(DEFAULT_DELAY, 1) ;
 			timeoutPolicy =  TimeoutPolicy.LIMIT ;
 		}
 		
@@ -91,7 +91,7 @@ package asgard.process
 		 */
 		public function get loader():*
 		{
-			return null ;	
+			return _loader ;	
 		}
 		
 		/**
@@ -194,11 +194,11 @@ package asgard.process
 	     */
 		public override function run( ...arguments:Array ):void 
 		{
-		    if ( _loader == null )
+		    if ( loader == null )
 		    {
 		    	throw new RuntimeError( this + " failed the Loader reference of this process not must be 'null' or 'undefined'.") ;
 		    }
-		    else if ( _request == null )
+		    else if ( request == null )
 		    {
 				throw new RuntimeError( this + " failed the URLRequest reference of this process not must be 'null' or 'undefined'.") ;
 		    }
@@ -242,6 +242,7 @@ package asgard.process
 		 */
 		protected function complete( e:Event ):void
 		{
+			dispatchEvent(e) ;
 			notifyFinished() ;
 		}
 
@@ -299,9 +300,9 @@ package asgard.process
 		
 
 		/**
-		 * @private
+		 * The internal URLRequest of the loader.
 		 */
-		private var _request:URLRequest ;
+		protected var _request:URLRequest ;
 		
 		/**
 		 * @private 
