@@ -60,7 +60,10 @@ package asgard.display
 		public override function load( request:URLRequest, context:LoaderContext=null ):void
 		{
 			
-			_context = context;
+			if ( context != null )
+			{
+				this.context = context ;
+			}
 			
 			_urlLoader            = new URLLoader() ;
 			_urlLoader.dataFormat = URLLoaderDataFormat.BINARY ;
@@ -107,7 +110,7 @@ package asgard.display
 		 */
 		private function _binaryLoaded(e:Event):void
 		{
-			loadBytes( ByteArray(_urlLoader.data), _context ) ;
+			loadBytes( ByteArray(_urlLoader.data), context ) ;
 			_urlLoader = null ;
 		}
 		
@@ -139,11 +142,6 @@ package asgard.display
 				}
 			}
 		}
-
-		/**
-		 * @private
-		 */
-		private var _context:LoaderContext;
 
 		/**
 		 * @private
