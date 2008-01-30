@@ -23,6 +23,8 @@
 package asgard.display 
 {
 	import flash.display.Loader;
+	import flash.net.URLRequest;
+	import flash.system.LoaderContext;
 	
 	import asgard.config.Config;
 	import asgard.config.ConfigCollector;
@@ -58,6 +60,22 @@ package asgard.display
 			}
 			this.isConfigurable = isConfigurable ;
 			setLogger() ;
+		}
+		
+		/**
+		 * (read-write) The LoaderContext object of this loader.
+		 */
+		public function get context():LoaderContext
+		{
+			return _context ;	
+		}
+		
+		/**
+		 * (read-write) The LoaderContext object of this loader.
+		 */
+		public function set context( context:LoaderContext ):void
+		{
+			_context = context || null ;	
 		}
 		
 		/**
@@ -133,6 +151,18 @@ package asgard.display
         	return ___isLock___ ;
     	}
 		
+		/**
+		 * T
+		 */
+		public override function load( request:URLRequest , context:LoaderContext = null ):void
+		{
+			if ( context != null )
+			{
+				this.context = context ;	
+			}
+			super.load( request , this.context ) ;
+		}
+		
     	/**
 	     * Locks the object.
 	     */
@@ -197,6 +227,11 @@ package asgard.display
 			// overrides this method.
 		}
 
+		/**
+		 * @private
+		 */
+		private var _context:LoaderContext ;
+		
 		/**
 		 * @private
 		 */
