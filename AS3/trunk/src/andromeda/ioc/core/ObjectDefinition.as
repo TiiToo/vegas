@@ -98,7 +98,16 @@ package andromeda.ioc.core
 		{
 			return _initMethodName;
 		}
-		
+
+		/**
+		 * Returns the Array of all method definitions of this Definition.
+		 * @return the Array of all method definitions of this Definition.
+		 */	
+		public function getMethods():Array 
+		{
+			return _methods ;
+		}
+
 		/**
 		 * Returns the Map of all properties of this Definition.
 		 * @return the Map of all properties of this Definition.
@@ -162,7 +171,16 @@ package andromeda.ioc.core
 		{
 			_initMethodName = value;
 		}
-		
+
+		/**
+		 * Sets the Array of all method definition of this Definition.
+		 * @param ar the Array of all method definitions of the object.
+		 */	
+		public function setMethods( ar:Array = null ):void 
+		{
+			_methods = ar ;
+		}
+
 		/**
 		 * Sets the map of all properties of this Definition.
 		 * @param value the Map of all properties of the object.
@@ -205,7 +223,12 @@ package andromeda.ioc.core
 		 * The lazy init flag of the object.
 		 */
 		private var _lazyInit:Boolean ;
-
+		
+		/**
+		 * The internal Array of all method definitions of the object.
+		 */
+		private var _methods:Array ;
+		
 		/**
 		 * The internal Map of all properties of the object.
 		 */

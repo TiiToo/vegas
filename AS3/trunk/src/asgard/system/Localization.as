@@ -21,15 +21,15 @@
 */
 package asgard.system 
 {
-    import asgard.events.LocalizationEvent;
-    
-    import system.Reflection;
-    
-    import vegas.core.Identifiable;
-    import vegas.data.map.HashMap;
-    import vegas.events.AbstractCoreEventDispatcher;    
+	import asgard.events.LocalizationEvent;
+	
+	import system.Reflection;
+	
+	import vegas.core.Identifiable;
+	import vegas.data.map.HashMap;
+	import vegas.events.AbstractCoreEventDispatcher;    
 
-    /**
+	/**
      * The Localization class allows to manage via textual files with 'JSON' or 'eden' format to charge the textual contents 
      * of an application according to the parameters of languages chosen by the users.
      * <p>It is possible to define several singletons of the Localization class to manage several elements in the application, but for this it's necessary to use the static property getInstance(sName). 
@@ -45,7 +45,7 @@ package asgard.system
          * Creates a new Localization instance.
          * @param sName the name of the object.
          */
-        public function Localization( id:*, bGlobal:Boolean = false, sChannel:String = null )
+        public function Localization( id:* , bGlobal:Boolean = false, sChannel:String = null )
         {
             super(bGlobal, sChannel) ;
             _id     = id ;

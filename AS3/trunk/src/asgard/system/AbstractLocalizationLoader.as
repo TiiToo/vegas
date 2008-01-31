@@ -47,11 +47,11 @@ package asgard.system
         public function AbstractLocalizationLoader( localization:Localization , loader:URLLoader, bGlobal:Boolean = false, sChannel:String = null )
         {
             super( loader , bGlobal, sChannel ) ;
-            parsing = true ;
             if ( localization == null )
             {
             	this.localization = localization ;
             }
+            parsing = true ;
         }
 
         /**
@@ -200,12 +200,11 @@ package asgard.system
          */
         public override function parse():void
         {
-            var o:*           = data ;
-            var current:Lang  = localization.current ;
+            var current:Lang  = Lang.get( lang.toString() ) ;
             var locale:Locale = new Locale() ;
-            for ( var prop:String in o ) 
+            for ( var prop:String in data ) 
             {
-                locale[ prop ] = o[prop] ;
+                locale[ prop ] = data[prop] ;
             }
             localization.put( current.value , locale ) ;
             localization.notifyChange() ;

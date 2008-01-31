@@ -107,7 +107,7 @@ package vegas.core
 		/**
 		 * @private
 		 */
-		private var __hashcode__:Number = NaN ;
+		private var __hashcode__:Number ;
 		
 		/**
 		 * The internal ILogger reference of this object.

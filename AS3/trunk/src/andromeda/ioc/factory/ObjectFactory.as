@@ -25,6 +25,7 @@ package andromeda.ioc.factory
 	import flash.utils.getDefinitionByName;
 	
 	import andromeda.ioc.core.IObjectDefinition;
+	import andromeda.ioc.core.ObjectAttribute;
 	import andromeda.ioc.core.ObjectDefinitionContainer;
 	import andromeda.ioc.factory.IObjectFactory;
 	
@@ -161,11 +162,11 @@ package andromeda.ioc.factory
 				for (var i:Number = 0 ; i<len ; i++)
 				{
 					item = argList[i] ;
-					if (item.ref != null)
+					if ( item.ref != null )
 					{
 						stack.push( getObject( item.ref ) ) ;	
 					}
-					else if (item.value != null)
+					else if ( item.value != null )
 					{
 						stack.push( item.value ) ;	
 					}
@@ -261,6 +262,7 @@ package andromeda.ioc.factory
 			}
 			
 			_populateProperties( instance, definition.getProperties() );
+			_invokeMethods( instance , definition.getMethods() ) ;
 			_invokeInitMethod( instance, definition ) ;
 			return instance ;
 		}
@@ -290,6 +292,38 @@ package andromeda.ioc.factory
 				method.call(o) ;
 			}
 		}
+		
+		/**
+		 * Invoque the init method of the specified object, if the init method is define in the IDefinition object.
+		 */
+		protected function _invokeMethods( o:* , methods:Array ):void
+		{
+			if ( o == null || methods == null )
+			{
+				return ;
+			}
+			var size:uint = methods.length ;
+			if ( size > 0 )
+			{
+				for (var i:uint = 0 ; i<size ; i++) 
+				{
+					try
+					{
+						var item:Object = methods[i] ;
+						var name:String = item[ ObjectAttribute.NAME ] ;
+						var args:Array  = _createArguments( item[ ObjectAttribute.ARGUMENTS ] ) ;
+						if ( name in o )
+						{
+							o[ name ].apply( o , args ) ;	
+						}
+					}
+					catch( e:Error ) 
+					{
+						// do nothing	
+					}	
+				}
+			}
+		}
 
 		/**
 		 * Populates all properties in the Map passed in argument.
@@ -299,26 +333,48 @@ package andromeda.ioc.factory
 			if (properties != null && properties.size() > 0)
 			{
 				var it:Iterator = properties.iterator() ;
-				while(it.hasNext())
+				while( it.hasNext() )
 				{
 					var value:* = it.next() ;
 					var key:*   = it.key()  ;
-					if (value is Array) // method
+					if( containsObject( value ) ) 
 					{
-						o[key].apply(o, value) ;
-					}
-					else // property
+						value = getObject( value ) ;
+       					properties.put( key , value ) ;
+   					}
+					o[key] = value ;
+				}
+			} 
+		}
+
+		/**
+		 * Populates all properties in the Map passed in argument.
+		 */
+		protected function _populateMethods( o:* , methods:Array=null ):void 
+		{
+			if ( o == null || methods == null )
+			{
+				return ;
+			}
+			var size:uint = methods.length ;
+			if ( size > 0 )
+			{
+				for( var i:uint = 0 ; i<size ; i++ )
+				{
+					var item:Object = methods[i] ;
+					if ( item != null )
 					{
-						if( containsObject( value ) ) 
+						var name:String = item[ ObjectAttribute.NAME ] ;
+						var args:Array = _createArguments(item[ ObjectAttribute.ARGUMENTS ]) ;
+						if ( name != null && name in o )
 						{
-							value = getObject( value ) ;
-        					properties.put( key , value ) ;
-    					}
-   						o[key] = value ;
+							o[name].apply(o, args) ;
+						}
 					}
 				}
 			} 
 		}
+
 
 		/**
 		 * Returns the object register in cache in this container.

@@ -170,7 +170,7 @@ package andromeda.ioc.factory
 			}	
 			_flushAssemblies();
 		}
-
+		
 		/**
 		 * Returns and creates a new IObjectDefinition instance.
 		 * @return and creates a new IObjectDefinition instance.
@@ -186,6 +186,7 @@ package andromeda.ioc.factory
 				var id:String           =  o[ ObjectAttribute.OBJECT_ID ] ;
 				var init:String         =  o[ ObjectAttribute.OBJECT_INIT_METHOD_NAME ] ;
 				var lazyInit:Boolean    =  o[ ObjectAttribute.LAZY_INIT ] ;
+				var methods:Array       =  o[ ObjectAttribute.OBJECT_METHODS ] ;
 				var properties:Array    =  o[ ObjectAttribute.OBJECT_PROPERTIES ] ;
 				var singleton:Boolean   =  o[ ObjectAttribute.OBJECT_SINGLETON ] ;
 				var type:String         =  o[ ObjectAttribute.TYPE ] ;
@@ -194,6 +195,7 @@ package andromeda.ioc.factory
 				definition.setConstructorArguments( args ) ;
 				definition.setDestroyMethodName( destroy ) ;
 				definition.setInitMethodName( init ) ;
+				definition.setMethods( methods ) ;
 				definition.setProperties( _createNewProperties( properties ) ) ;
 				
 				addObjectDefinition( id , definition ) ;
@@ -224,12 +226,14 @@ package andromeda.ioc.factory
 			var len:uint = a.length ;
 			if ( len > 0 )
 			{
+				
 				var args:Array  ;
 				var prop:Object ;
 				var name:String ;
 				var properties:HashMap = new HashMap() ;
 				var ref:String  ;
 				var value:* ;
+				
 				for (var i:Number = 0 ; i<len ; i++)
 				{
 					
@@ -239,11 +243,7 @@ package andromeda.ioc.factory
 					name  = prop[ ObjectAttribute.NAME ] ;
 					value = prop[ ObjectAttribute.VALUE ] ;
 					
-					if (args is Array && args.length > 0) 
-					{
-						properties.put( name , _createArguments( args ) ) ; // methods
-					}
-					else if (ref != null) 
+					if (ref != null) 
 					{
 						properties.put( name , ref ) ; // ref property	
 					}

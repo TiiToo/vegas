@@ -37,8 +37,12 @@
 				{ name:"age"       , value : 30        } ,
 				{ name:"firstName" , value : "Marc"    } , 
 				{ name:"job"       , ref   : "job_dev" } , 
-				{ name:"setMail"   , arguments  :  [ { value :"vegas@ekameleon.net" } ] } , // method
 				{ name:"url"       , value : "http://www.ekameleon.net/blog" }
+			]
+			,
+			methods :
+			[
+				{ name:"setMail" , arguments  :  [ { value :"vegas@ekameleon.net" } ] }
 			]
 		}
 		,

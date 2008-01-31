@@ -64,7 +64,12 @@ package andromeda.ioc.core
 		 * The name of the external object property to register the init method name.
 		 */
 		public static const OBJECT_INIT_METHOD_NAME:String = "init" ;  
-		
+
+		/**
+		 * The name of the external object property to register the methods.
+		 */
+		public static const OBJECT_METHODS:String = "methods" ;  
+
 		/**
 		 * The name of the external object property to register the properties.
 		 */

@@ -65,7 +65,6 @@ package andromeda.model.array
 			for ( var i:uint = 0 ; i < len ; i++ )
 			{
 				var vo:IValueObject = datas[i] as IValueObject ;
-				trace(vo) ;
 				if ( supports( vo ) )
 				{
 					_a.push( vo ) ;

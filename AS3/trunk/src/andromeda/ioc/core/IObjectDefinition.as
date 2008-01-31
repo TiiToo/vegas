@@ -49,6 +49,12 @@ package andromeda.ioc.core
 		 * @return the name of the method call when the object is instanciate.
 		 */	
 		function getInitMethodName():String ; 
+
+		/**
+		 * Returns the Array of all method definitions of this Definition.
+		 * @return the Array of all method definitions of this Definition.
+		 */	
+		function getMethods():Array ; 
 		
 		/**
 		 * Returns the Map of all properties of this Definition.
@@ -88,7 +94,13 @@ package andromeda.ioc.core
 		 * Init the name of the method.
 	 	 */		
 		function setInitMethodName( value:String = null ):void ;
-		
+
+		/**
+		 * Sets the Array of all method definition of this Definition.
+		 * @param ar the Array of all method definitions of the object.
+		 */	
+		function setMethods( ar:Array = null ):void ; 
+
 		/**
 		 * Sets the Map of all properties of this Definition.
 		 */	

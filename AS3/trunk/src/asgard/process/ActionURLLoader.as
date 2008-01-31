@@ -176,7 +176,7 @@ package asgard.process
 		{
 		    if (_isParsing) 
 		    {
-		        parse() ;
+		        this.parse() ;
 		    }
             super.complete(e) ;
         }	
@@ -197,7 +197,7 @@ package asgard.process
 		/**
 		 * @private
 		 */
-  		private var _isParsing:Boolean = false ;
+  		private var _isParsing:Boolean ;
 		
 	}
 
