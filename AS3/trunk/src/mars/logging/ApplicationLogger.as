@@ -71,12 +71,12 @@ package mars.logging
 				applicationChannel = APPLICATION_CHANNEL ;
 			}
 			
-			var filters:Array = [ applicationChannel , VEGAS_ERRORS_CHANNEL ] ;
+			//var filters:Array = [ applicationChannel , VEGAS_ERRORS_CHANNEL ] ;
 			
 			if ( USE_LUMINIC )
 			{
 				var luminicTarget:LuminicTarget = new LuminicTarget() ;
-				luminicTarget.filters = filters ;
+				luminicTarget.filters = ["*"] ;
 				luminicTarget.isCollapse = false ;
 				luminicTarget.includeTime = true ;
 				luminicTarget.level = LogEventLevel.ALL ;
