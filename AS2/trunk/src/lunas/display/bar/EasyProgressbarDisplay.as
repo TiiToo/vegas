@@ -19,14 +19,14 @@
   
   Contributor(s) :
   
-*/
-
+ */
 import asgard.display.CapStyle;
 import asgard.display.Direction;
 import asgard.display.JoinStyle;
 import asgard.display.LineScaleMode;
 
 import lunas.display.abstract.AbstractProgressbarDisplay;
+import lunas.display.bar.EasyProgressbarStyle;
 
 import pegas.draw.RectanglePen;
 
@@ -68,15 +68,23 @@ class lunas.display.bar.EasyProgressbarDisplay extends AbstractProgressbarDispla
 	public var bar:MovieClip ;
 
 	/**
-	 * The border thickness of this bar.
+	 * Returns the constructor of the IStyle of this instance.
+	 * @return the constructor of the IStyle of this instance.
 	 */
-	public var border:Number = 0 ;
-
+	public function getStyleRenderer():Function
+	{
+		return EasyProgressbarStyle ;	
+	}
+	
 	/**
 	 * Resize the bar.
 	 */
 	public function resize():Void 
 	{
+
+		var s:EasyProgressbarStyle = EasyProgressbarStyle( getStyle() ) ;	
+	
+		var border:Number = s.border > 0 ? border : 0 ;
 		
 		bar._x = border ;
 		bar._y = border ;
@@ -90,9 +98,16 @@ class lunas.display.bar.EasyProgressbarDisplay extends AbstractProgressbarDispla
 		var __w:Number = (nD == Direction.VERTICAL) ? ( _w - nB ) : size  ;
 		var __h:Number = (nD == Direction.VERTICAL) ? size : (_h - nB) ;
 	
+
 		_barPen.clear() ;
-		_barPen.lineStyle( 1, 0xFFFFFF, 100, true, LineScaleMode.NONE, CapStyle.SQUARE , JoinStyle.MITER ) ;
-		_barPen.beginFill( 0xEEED55 , 100 ) ;
+		if ( s.barBorderAlpha != null )
+		{		
+			_barPen.lineStyle( s.barBorderThickness, s.barBorderColor, s.barBorderAlpha, true, LineScaleMode.NONE, CapStyle.SQUARE , JoinStyle.MITER ) ;
+		}
+		if ( s.barAlpha != null )
+		{			
+			_barPen.beginFill( s.barColor, s.barAlpha ) ;
+		}
 		_barPen.draw(__w, __h) ;
 		
 	}
@@ -103,9 +118,17 @@ class lunas.display.bar.EasyProgressbarDisplay extends AbstractProgressbarDispla
 	public function viewChanged():Void 
 	{
 		
+		var s:EasyProgressbarStyle = EasyProgressbarStyle( getStyle() ) ;
+		
 		_backgroundPen.clear() ;
-		_backgroundPen.lineStyle( 1 , 0xFFFFFF , 100,  true, LineScaleMode.NONE, CapStyle.SQUARE , JoinStyle.MITER) ;
-		_backgroundPen.beginFill( 0xD0330D , 100 ) ;
+		if ( s.themeBorderAlpha != null )
+		{
+			_backgroundPen.lineStyle( s.themeBorderThickness, s.themeBorderColor, s.themeBorderAlpha , true, LineScaleMode.NONE, CapStyle.SQUARE , JoinStyle.MITER) ;
+		}
+		if ( s.themeAlpha != null )
+		{		
+			_backgroundPen.beginFill( s.themeColor , s.themeAlpha ) ;
+		}
 		_backgroundPen.draw(_w, _h) ;
 
 		resize() ;
