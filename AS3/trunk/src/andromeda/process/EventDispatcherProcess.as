@@ -46,7 +46,7 @@ package andromeda.process
 			super( bGlobal, sChannel ) ;
 			if ( event is String )
 			{
-				this.event = new BasicEvent( event as String ) ;	
+				this.event = new BasicEvent( event as String ) ;
 			}
 			else if ( event is Event )
 			{

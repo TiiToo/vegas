@@ -21,13 +21,15 @@
 */
 package asgard.system 
 {
+	import flash.errors.IllegalOperationError;
+	
 	import asgard.events.LocalizationEvent;
 	
 	import system.Reflection;
 	
 	import vegas.core.Identifiable;
 	import vegas.data.map.HashMap;
-	import vegas.events.AbstractCoreEventDispatcher;    
+	import vegas.events.AbstractCoreEventDispatcher;	
 
 	/**
      * The Localization class allows to manage via textual files with 'JSON' or 'eden' format to charge the textual contents 
@@ -45,10 +47,10 @@ package asgard.system
          * Creates a new Localization instance.
          * @param sName the name of the object.
          */
-        public function Localization( id:* , bGlobal:Boolean = false, sChannel:String = null )
+        public function Localization( id:*=null , bGlobal:Boolean = false, sChannel:String = null )
         {
             super(bGlobal, sChannel) ;
-            _id     = id ;
+            _setID( id ) ;
             _map    = new HashMap() ;
             _loader = new EdenLocalizationLoader(this) ;
         }
@@ -61,7 +63,7 @@ package asgard.system
         /**
          * The default singleton name of the Localization singletons.
          */
-        public static var DEFAULT_ID:String = "" ;
+        public static var DEFAULT_ID:String = "default" ;
 
         /**
          * (read-write) Indicates the current {@code Lang} object selected in the current localization.
@@ -104,7 +106,7 @@ package asgard.system
          */
         public function set id( id:* ):void
         {
-            _id = id ;
+            _setID( id ) ;
         }
         
         /**
@@ -238,7 +240,10 @@ package asgard.system
          */
         public function notifyChange():void 
         {
-            dispatchEvent( new LocalizationEvent( _sTypeCHANGE , this ) ) ;
+        	if ( !isLocked() )
+        	{
+            	dispatchEvent( new LocalizationEvent( _sTypeCHANGE , this ) ) ;
+        	}
         }
         
         /**
@@ -370,5 +375,32 @@ package asgard.system
             }
             return id ;
         }
+        
+		/**
+		 * Internal method to register the Localization object in the static singleton HashMap of the class.
+		 * @see ModelCollector.
+		 */
+		private function _setID( id:* ):void 
+		{
+			
+			if ( id == null )
+			{
+				id = DEFAULT_ID ;
+			}
+			
+			if ( __mInstances.containsKey(id) )
+			{
+				throw new IllegalOperationError( this + " a Localization reference with the specified id '" + id + "' is already register." ) ;
+			}
+			
+            _id = id ;
+			
+			if ( this._id != null )
+			{
+				__mInstances.put(id, this) ;
+			}
+			
+		}        
+        
     }
 }

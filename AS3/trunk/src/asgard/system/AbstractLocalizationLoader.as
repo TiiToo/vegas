@@ -47,10 +47,7 @@ package asgard.system
         public function AbstractLocalizationLoader( localization:Localization , loader:URLLoader, bGlobal:Boolean = false, sChannel:String = null )
         {
             super( loader , bGlobal, sChannel ) ;
-            if ( localization == null )
-            {
-            	this.localization = localization ;
-            }
+           	this.localization = localization || Localization.getInstance() ;
             parsing = true ;
         }
 
@@ -207,7 +204,7 @@ package asgard.system
                 locale[ prop ] = data[prop] ;
             }
             localization.put( current.value , locale ) ;
-            localization.notifyChange() ;
+			localization.current = current ;
         }
 
 		/**
