@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is MarS Framework based on VEGAS.
+  The Original Code is Andromeda Framework based on VEGAS.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -20,47 +20,33 @@
   Contributor(s) :
   
 */
-package mars.process.abstract 
+package andromeda.process 
 {
-	import andromeda.process.SimpleAction;			
 
 	/**
-	 * This Action lauch an initialize process.
+	 * This Action launch the init method of ths process but notify an event before (ActionEvent.START) and after(ActionEvent.FINISH) the process.
 	 * @author ekameleon
 	 */
-	public class AbstractInitProcess extends SimpleAction
+	public class InitProcess extends ActionProxy
 	{
 
 	    /**
-    	 * Creates a new AbstractInitProcess instance.
+    	 * Creates a new InitProcess instance.
     	 * @param bGlobal the flag to use a global event flow or a local event flow.
     	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
     	 */
-		public function AbstractInitProcess( bGlobal:Boolean = false , sChannel:String = null ) 
+		public function InitProcess( bGlobal:Boolean = false , sChannel:String = null ) 
     	{
-		    super(bGlobal, sChannel);	
+		    super( this, init, null, bGlobal, sChannel);	
 		}
 		
 		/**
-		 * Launch the initialize process in this method.
-		 * Overrides this method.
+		 * Invoked when the process is run. Overrides this method.
 		 */
 		public function init():void
 		{
 			// override
 		}
-		
-		/**
-		 * Run the process.
-		 */
-		public override function run( ...arguments:Array ):void 
-		{
-			notifyStarted() ;
-			setRunning(true) ;		
-			init() ;
-			setRunning(false) ;
-			notifyFinished() ;	
-		}		
 		
 	}
 }

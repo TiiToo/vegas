@@ -26,15 +26,15 @@ package vegas.logging
     import flash.events.Event;
 
 	/**
-	 * Represents the log information for a single logging event. The loging system dispatches a single event each time a process requests information be logged. This event can be captured by any object for storage or formatting.
-	 * @author eKameleon 
-	 */
+     * Represents the log information for a single logging event. The loging system dispatches a single event each time a process requests information be logged. This event can be captured by any object for storage or formatting.
+     * @author eKameleon 
+     */
     public class LogEvent extends Event
     {
         
-		/**
-		 * Creates a new LogEvent.
-		 */
+        /**
+         * Creates a new LogEvent.
+         */
         public function LogEvent(context:* , level:LogEventLevel )
         {
             super(LogEvent.LOG, false, false);
@@ -58,18 +58,18 @@ package vegas.logging
          */
         public var message:* ;
 
-		/**
-		 * Returns the shallow copy of the event.
-		 * @return the shallow copy of the LogEvent event.
-		 */
+        /**
+         * Returns the shallow copy of the event.
+         * @return the shallow copy of the LogEvent event.
+         */
         public override function clone():Event
         {
             return new LogEvent(message, level);
         }
 
-		/**
-		 * Returns a string value representing the level specified.
-		 */
+        /**
+         * Returns a string value representing the level specified.
+         */
         public static function getLevelString( value:LogEventLevel ):String
         {
            if (LogEventLevel.isValidLevel(value))
@@ -80,9 +80,9 @@ package vegas.logging
            {
                 return "UNKNOWN" ;  
            }
-		}
+        }
 
-		
+        
     }
         
 }

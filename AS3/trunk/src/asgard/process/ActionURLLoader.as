@@ -26,7 +26,9 @@ package asgard.process
 	import flash.net.URLLoader;
 	import flash.net.URLLoaderDataFormat;
 	
-	import asgard.process.AbstractActionLoader;	
+	import asgard.process.AbstractActionLoader;
+	
+	import pegas.maths.Range;	
 
 	/**
 	 * This action process launch the load of a URLLoader object.
@@ -85,6 +87,16 @@ package asgard.process
 			}
 		}
 
+		/**
+		 * The range of the max depth value.
+		 */
+		public static var MAX_DEPTH_RANGE:Range = new Range(1, 100) ;
+
+		/**
+		 * The space string use to format the debugs.
+		 */
+		public static var SPACE:String = "   " ;
+
         /**
          * (read-only) Indicates the number of bytes that have been loaded thus far during the load operation.
          */
@@ -136,6 +148,27 @@ package asgard.process
     		_dataFormat = value ;	
     	}
 
+		/**
+		 * Indicated if the console use collapse property or not.
+		 */
+	    public var isCollapse:Boolean ;
+
+		/**
+		 * (read-only) Returns the max depth to collaspe the structure of an object in the console.
+		 */
+	    public function get maxDepth():uint
+	    {
+	        return _maxDepth ;
+	    }
+
+		/**
+		 * (read-only) Sets the max depth to collaspe the structure of an object in the console.
+		 */
+        public function set maxDepth( value:uint ):void
+        {
+    		_maxDepth = MAX_DEPTH_RANGE.clamp(value) ;
+    	}
+
         /**
          * (read-write) Activate or disactivate parsing (Use this with XML, EDEN, JSON...). 
          */
@@ -151,7 +184,12 @@ package asgard.process
     	{
     	    _isParsing = b ;	
     	}
-    	
+
+		/**
+		 * Indicates the flag of the verbose mode.
+		 */
+		public var verbose:Boolean = false ;
+
 		/**
 		 * Cancels a load() method operation that is currently in progress for the Loader instance.
 		 */
@@ -159,6 +197,15 @@ package asgard.process
 		{
 			(_loader as URLLoader).close() ;
 			notifyFinished() ;
+		}
+		
+		/**
+		 * Enumerates the specified object.
+		 */
+		public function enumerate( o:Object ):void
+		{
+			getLogger().info( this + " enumerate") ;			
+			_enumerate(o) ;
 		}
 
         /**
@@ -178,6 +225,10 @@ package asgard.process
 		    {
 		        this.parse() ;
 		    }
+			if ( verbose )
+			{
+				enumerate( data ) ;	
+			}
             super.complete(e) ;
         }	
         
@@ -198,7 +249,46 @@ package asgard.process
 		 * @private
 		 */
   		private var _isParsing:Boolean ;
+
+
+		/**
+		 * @private
+		 */
+		private var _maxDepth:uint ;
 		
+		/**
+		 * @private
+		 */
+		private function _enumerate( o:Object , depth:uint = 1 ):void
+		{
+			for ( var prop:String in o ) 
+			{
+				var value:* = o[prop] ;
+				getLogger().info( _getSpace( depth-1 ) + " + " + prop + " : " + value ) ;
+				if ( value is Object && (isCollapse == true) && (depth <= maxDepth) )
+				{
+					_enumerate( value , depth + 1 ) ;
+				}
+			}
+		}
+		
+		/**
+		 * @private
+		 */
+		private function _getSpace( depth:uint=0 ):String
+		{
+			var s:String = "" ;
+			if ( isNaN(depth) || depth == 0 )
+			{
+				return "" ;
+			}
+			while( --depth > -1 )
+			{
+				s += SPACE ;	
+			}
+			return s ;	
+		}
+
 	}
 
 }

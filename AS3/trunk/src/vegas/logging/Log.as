@@ -20,52 +20,51 @@
   Contributor(s) :
   
 */
-
 package vegas.logging
 {
-	import system.Strings;
-	
-	import vegas.data.iterator.Iterator;
-	import vegas.data.map.HashMap;
-	import vegas.logging.errors.InvalidCategoryError;    
+    import system.Strings;
+    
+    import vegas.data.iterator.Iterator;
+    import vegas.data.map.HashMap;
+    import vegas.logging.errors.InvalidCategoryError;    
 
-	/**
-	 * Provides psuedo-hierarchical logging capabilities with multiple format and output options.
-	 * @author eKameleon
-	 */
+    /**
+     * Provides psuedo-hierarchical logging capabilities with multiple format and output options.
+     * @author eKameleon
+     */
     public class Log
     {
 
-		/**
-		 * const The default categoty of the {@code ILogger} instances returns with the {@code getLogger} method.
-		 */
-	    public static var DEFAULT_CATEGORY:String = "" ;
+        /**
+         * const The default categoty of the {@code ILogger} instances returns with the {@code getLogger} method.
+         */
+        public static var DEFAULT_CATEGORY:String = "" ;
 
-		/**
-		 * const The string representation of all the illegal characters.
-		 */
-    	public static var ILLEGALCHARACTERS:String = "[]~$^&/\\(){}<>+=`!#%?,:;'\"@" ;
+        /**
+         * const The string representation of all the illegal characters.
+         */
+        public static var ILLEGALCHARACTERS:String = "[]~$^&/\\(){}<>+=`!#%?,:;'\"@" ;
 
-		/**
-		 * The static field used when throws an Error when a character is invalid.
-		 */     
+        /**
+         * The static field used when throws an Error when a character is invalid.
+         */     
         public static var INVALID_CHARS:String = "Categories can not contain any of the following characters : []~$^&/\\(){}<>+=`!#%?,:;'\"@" ;
         
         /**
-		 * The static field used when throws an Error when the length of one character is invalid.
-		 */     
+         * The static field used when throws an Error when the length of one character is invalid.
+         */     
         public static var INVALID_LENGTH:String = "Categories must be at least one character in length." ;
 
         /**
-		 * The static field used when throws an Error when the specified target is invalid.
-		 */     
-    	public static var INVALID_TARGET:String = "Log, Invalid target specified." ;
-    	
+         * The static field used when throws an Error when the specified target is invalid.
+         */     
+        public static var INVALID_TARGET:String = "Log, Invalid target specified." ;
+        
         /**
          *  Allows the specified target to begin receiving notification of log events.
          *  @param The specific target that should capture log events.
          */
-    	public static function addTarget(target:ITarget):void
+        public static function addTarget(target:ITarget):void
         {
             
             if(target != null)
@@ -74,7 +73,7 @@ package vegas.logging
                 var it:Iterator = _loggers.iterator() ;
                 while ( it.hasNext() )
                 {
-                  	
+                      
                     var log:ILogger = it.next() as ILogger ;
                     var cat:String = it.key() ;
                     
@@ -99,7 +98,7 @@ package vegas.logging
             }
             else
             {
-            	throw new ArgumentError( INVALID_TARGET );
+                throw new ArgumentError( INVALID_TARGET );
             }
 
         }
@@ -183,57 +182,57 @@ package vegas.logging
             var result:Boolean = Strings.indexOfAny( value , chars ) != -1 ;
             return result ;
         }
-        	
-    	/**
-	    	 * Indicates whether a debug level log event will be processed by a log target.
-		 * @return true if a debug level log event will be logged; otherwise false.
-	    	 */
-    	public static function isDebug():Boolean
-    	{
-    	    return _targetLevel <= LogEventLevel.DEBUG.valueOf() ;
-    	}
-        
-     	/**
-		 * Indicates whether an error level log event will be processed by a log target.
-		 * @return true if an error level log event will be logged; otherwise false.
-		 */
-    	public static function isError():Boolean
-    	{
-    	    return _targetLevel <= LogEventLevel.ERROR.valueOf() ;
-    	}
-        
-     	/**
-		 *  Indicates whether a fatal level log event will be processed by a log target.
-		 *  @return true if a fatal level log event will be logged; otherwise false.
-		 */
-    	public static function isFatal():Boolean
-    	{
-    	    return _targetLevel <= LogEventLevel.FATAL.valueOf() ;
-    	}
-        
-     	/**
-		 * Indicates whether an info level log event will be processed by a log target.
-		 * @return true if an info level log event will be logged; otherwise false.
-		 */	
-    	public static function isInfo():Boolean
-    	{
-    	    return _targetLevel <= LogEventLevel.INFO.valueOf() ;
-    	}
-        	
-    	/**
-		 * Indicates whether a warn level log event will be processed by a log target.
-		 * @return true if a warn level log event will be logged; otherwise false.
-		 */
-    	public static function isWarn():Boolean
-    	{
-    	    return _targetLevel <= LogEventLevel.WARN.valueOf() ;
-    	}
+            
+        /**
+             * Indicates whether a debug level log event will be processed by a log target.
+         * @return true if a debug level log event will be logged; otherwise false.
+             */
+        public static function isDebug():Boolean
+        {
+            return _targetLevel <= LogEventLevel.DEBUG.valueOf() ;
+        }
         
         /**
-		 *  Stops the specified target from receiving notification of log events.
-		 *
-		 *  @param The specific target that should capture log events.
-		 */
+         * Indicates whether an error level log event will be processed by a log target.
+         * @return true if an error level log event will be logged; otherwise false.
+         */
+        public static function isError():Boolean
+        {
+            return _targetLevel <= LogEventLevel.ERROR.valueOf() ;
+        }
+        
+        /**
+         *  Indicates whether a fatal level log event will be processed by a log target.
+         *  @return true if a fatal level log event will be logged; otherwise false.
+         */
+        public static function isFatal():Boolean
+        {
+            return _targetLevel <= LogEventLevel.FATAL.valueOf() ;
+        }
+        
+        /**
+         * Indicates whether an info level log event will be processed by a log target.
+         * @return true if an info level log event will be logged; otherwise false.
+         */    
+        public static function isInfo():Boolean
+        {
+            return _targetLevel <= LogEventLevel.INFO.valueOf() ;
+        }
+            
+        /**
+         * Indicates whether a warn level log event will be processed by a log target.
+         * @return true if a warn level log event will be logged; otherwise false.
+         */
+        public static function isWarn():Boolean
+        {
+            return _targetLevel <= LogEventLevel.WARN.valueOf() ;
+        }
+        
+        /**
+         *  Stops the specified target from receiving notification of log events.
+         *
+         *  @param The specific target that should capture log events.
+         */
         public static function removeTarget(target:ITarget):void
         {
             if(target)
@@ -276,23 +275,23 @@ package vegas.logging
         }
       
         /**
-          *  An associative Array of existing loggers keyed by category
-          */
-    	private static var _loggers:HashMap = new HashMap() ;
+         * An associative Array of existing loggers keyed by category
+         */
+        private static var _loggers:HashMap = new HashMap() ;
 
         /**
-          *  Sentinal value for the target log level to indicate no logging.
-          */
-    	private static var NONE:int = int.MAX_VALUE;
+         *  Sentinal value for the target log level to indicate no logging.
+         */
+        private static var NONE:int = int.MAX_VALUE;
         
         /**
-          *  The most verbose supported log level among registered targets.
-          */
-    	private static var _targetLevel:int = NONE ;
-    	
+         *  The most verbose supported log level among registered targets.
+         */
+        private static var _targetLevel:int = NONE ;
+        
         /**
-          *  Array of targets that should be searched any time a new logger is created.
-          */
+         *  Array of targets that should be searched any time a new logger is created.
+         */
         private static var _targets:Array = [];
         
         /**
@@ -332,11 +331,11 @@ package vegas.logging
         }
         
         /**
-          *  This method will ensure that a valid category string has been specified.
-          *  If the category is not valid an <code>InvalidCategoryError</code> will be thrown.
-          *  Categories can not contain any blanks or any of the following characters: []`*~,!#$%^&amp;()]{}+=\|'";?&gt;&lt;./&#64; 
-          *  or be less than 1 character in length.
-          */
+         *  This method will ensure that a valid category string has been specified.
+         *  If the category is not valid an <code>InvalidCategoryError</code> will be thrown.
+         *  Categories can not contain any blanks or any of the following characters: []`*~,!#$%^&amp;()]{}+=\|'";?&gt;&lt;./&#64; 
+         *  or be less than 1 character in length.
+         */
         private static function checkCategory(category:String):void
         {
             
@@ -353,9 +352,9 @@ package vegas.logging
         }
     
         /**
-          *  This method resets the Log's target level to the most verbose log level
-          *  for the currently registered targets.
-          */
+         *  This method resets the Log's target level to the most verbose log level
+         *  for the currently registered targets.
+         */
         private static function resetTargetLevel():void
         {
             var minLevel:int = NONE;

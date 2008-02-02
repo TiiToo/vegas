@@ -79,7 +79,12 @@ package andromeda.process
 		{
 			notifyStarted() ;
 			setRunning(true) ;
-			Delegate.create.apply(this, [scope, method].concat(args)) ();
+			var params:Array = [scope, method] ;
+			if ( args != null && args.length > 0 )
+			{
+				params = params.concat(args) ;
+			}
+			Delegate.create.apply(this, params)();
 			setRunning(false) ;
 			notifyFinished() ;
 		}
