@@ -23,50 +23,50 @@
 package asgard.media 
 {
 
-	/**
-	 * The Audio codec ID number enumeration class.
- 	 * <p>More informations in the <a href='http://www.buraks.com/flvmdi/'>flvmdi page</a> write by Burak.</p>
-	 * @author eKameleon
-	 * @see FLVMetaData
-	 */
-	public class AudioCodec 
-	{
-		
-		/**
-		 * The ADPCM audio codec value.
-		 */
-		public static const ADPCM:Number = 1 ;
-		
-		/**
-		 * The MP3 audio codec value.
-		 */
-		public static const MP3:Number = 2 ;
-		
-		/**
-		 * The first NellyMoser audio codec value.
-		 */
-		public static const NELLY_MOSER_1:Number = 5 ;
-		
-		/**
-		 * The second NellyMoser audio codec value.
-		 */
-		public static const NELLY_MOSER_2:Number = 6 ;
-		
-		/**
-		 * The Uncompressed audio codec value.
-		 */
-		public static const UNCOMPRESSED:Number = 0 ;
-		
-		/**
-		 * Returns {@code true} if the specified id in argument is a valid audio codec.
-		 * @return {@code true} if the specified id in argument is a valid audio codec.
-		 */
-		public static function validate( id:Number ):Boolean
-		{
-			var ar:Array = [ ADPCM, MP3, UNCOMPRESSED, NELLY_MOSER_1 , NELLY_MOSER_2] ;
-			return ar.indexOf( id ) > -1 ;
-		}
-			
-	}
-	
+    /**
+     * The Audio codec ID number enumeration class.
+     * <p>More informations in the <a href='http://www.buraks.com/flvmdi/'>flvmdi page</a> write by Burak.</p>
+     * @author eKameleon
+     * @see FLVMetaData
+     */
+    public class AudioCodec 
+    {
+        
+        /**
+         * The ADPCM audio codec value.
+         */
+        public static const ADPCM:Number = 1 ;
+        
+        /**
+         * The MP3 audio codec value.
+         */
+        public static const MP3:Number = 2 ;
+        
+        /**
+         * The first NellyMoser audio codec value.
+         */
+        public static const NELLY_MOSER_1:Number = 5 ;
+        
+        /**
+         * The second NellyMoser audio codec value.
+         */
+        public static const NELLY_MOSER_2:Number = 6 ;
+        
+        /**
+         * The Uncompressed audio codec value.
+         */
+        public static const UNCOMPRESSED:Number = 0 ;
+        
+        /**
+         * Returns {@code true} if the specified id in argument is a valid audio codec.
+         * @return {@code true} if the specified id in argument is a valid audio codec.
+         */
+        public static function validate( id:Number ):Boolean
+        {
+            var ar:Array = [ ADPCM, MP3, UNCOMPRESSED, NELLY_MOSER_1 , NELLY_MOSER_2] ;
+            return ar.indexOf( id ) > -1 ;
+        }
+            
+    }
+    
 }

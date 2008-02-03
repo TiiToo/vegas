@@ -22,20 +22,20 @@
 */
 package asgard.media 
 {
-	import asgard.config.IConfigurable;
-	
-	import vegas.core.IHashable;
-	import vegas.core.ILockable;
-	import vegas.core.Identifiable;
-	import vegas.logging.ILogable;	
-	
-	/**
-	 * This interface defines all interfaces who implements the core sound objects in ASGard.
-	 * @author eKameleon
-	 */
-	public interface ISound extends IConfigurable, Identifiable, IHashable, ILockable, ILogable
-	{
-		
-	}
-	
+    import asgard.config.IConfigurable;
+    
+    import vegas.core.IHashable;
+    import vegas.core.ILockable;
+    import vegas.core.Identifiable;
+    import vegas.logging.ILogable;    
+    
+    /**
+     * This interface defines all interfaces who implements the core sound objects in ASGard.
+     * @author eKameleon
+     */
+    public interface ISound extends IConfigurable, Identifiable, IHashable, ILockable, ILogable
+    {
+        
+    }
+    
 }

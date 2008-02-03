@@ -23,50 +23,50 @@
 package asgard.media 
 {
 
-	/**
- 	 * The Video codec ID number enumeration class.
-	 * <p>More informations in the <a href='http://www.buraks.com/flvmdi/'>flvmdi page</a> write by Burak.</p>
-	 * @author eKameleon
-	 * @see FLVMetaData
-	 */
-	public class VideoCodec 
-	{
-		
-		/**
-		 * The first value of the On2 VP6 video codec.
-		 */
-		public static const ON2_VP6_1:Number = 4 ; 
-	
-		/**
-	 	 * The second value of the On2 VP6 video codec.
-		 */
-		public static const ON2_VP6_2:Number = 5 ; 
-		
-		/**
-		 * The 'Screen Video' video id value.
-		 */
-		public static const SCREEN_VIDEO:Number = 3 ;
-		
-		/**
-		 * The 'Screen Video' V2 video id value.
-		 */
-		public static const SCREEN_VIDEO_V2:Number = 6 ;
-		
-		/**
-		 * The 'Sorenson H.263' video id value.
-		 */
-		public static const SORENSON:Number = 2 ;
-			
-		/**
-		 * Returns {@code true} if the specified id in argument is a valid video codec.
-		 * @return {@code true} if the specified id in argument is a valid video codec.
-		 */
-		public function validate( id:Number ):Boolean
-		{
-			var ar:Array = [ ON2_VP6_1, ON2_VP6_2, SCREEN_VIDEO, SCREEN_VIDEO_V2 , SORENSON] ;
-			return 	ar.indexOf( id ) > - 1 ;
-		}
-			
-	}
+    /**
+      * The Video codec ID number enumeration class.
+     * <p>More informations in the <a href='http://www.buraks.com/flvmdi/'>flvmdi page</a> write by Burak.</p>
+     * @author eKameleon
+     * @see FLVMetaData
+     */
+    public class VideoCodec 
+    {
+        
+        /**
+         * The first value of the On2 VP6 video codec.
+         */
+        public static const ON2_VP6_1:Number = 4 ; 
+    
+        /**
+         * The second value of the On2 VP6 video codec.
+         */
+        public static const ON2_VP6_2:Number = 5 ; 
+        
+        /**
+         * The 'Screen Video' video id value.
+         */
+        public static const SCREEN_VIDEO:Number = 3 ;
+        
+        /**
+         * The 'Screen Video' V2 video id value.
+         */
+        public static const SCREEN_VIDEO_V2:Number = 6 ;
+        
+        /**
+         * The 'Sorenson H.263' video id value.
+         */
+        public static const SORENSON:Number = 2 ;
+            
+        /**
+         * Returns {@code true} if the specified id in argument is a valid video codec.
+         * @return {@code true} if the specified id in argument is a valid video codec.
+         */
+        public function validate( id:Number ):Boolean
+        {
+            var ar:Array = [ ON2_VP6_1, ON2_VP6_2, SCREEN_VIDEO, SCREEN_VIDEO_V2 , SORENSON] ;
+            return     ar.indexOf( id ) > - 1 ;
+        }
+            
+    }
 
 }

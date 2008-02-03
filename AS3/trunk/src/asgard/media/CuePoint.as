@@ -22,72 +22,72 @@
 */
 package asgard.media 
 {
-	import andromeda.vo.SimpleValueObject;
-	
-	/**
-	 * The CuePoint information object.
-	 * @author eKameleon
-	 */
-	public class CuePoint extends SimpleValueObject 
-	{
+    import andromeda.vo.SimpleValueObject;
+    
+    /**
+     * The CuePoint information object.
+     * @author eKameleon
+     */
+    public class CuePoint extends SimpleValueObject 
+    {
 
-		/**
-		 * Creates a new CuePoint instance.
-		 * @param init An Object with the properties 'name', 'parameters', 'time' and 'type' used to define this CuePoint object.
-		 */	
-		public function CuePoint(init:Object = null)
-		{
-			super( init );
-		}
-		
-		/**
-		 * The name of the CuePoint.
-		 */
-		public var name:String ;
-			
-		/**
-		 * A associative array of name/value pair strings specified for this cue point. 
-		 * Any valid string can be used for the parameter name or value.
-		 */
-		public var parameters:Array ;
-		
-		/**
-		 * The time of the CuePoint.
-		 */
-		public var time:String ;
-			
-		/**
-		 * The type of the CuePoint.
-		 */
-		public var type:String ;
-		
-		/**
-		 * Returns the String representation of this object.
-		 * @return the String representation of this object.
-		 */
-		public function toString():String
-		{
-			var txt:String = "[CuePoint" ;
-			if (name != null)
-			{
-				txt += ",name:" + name ;
-			}
-			if (time != null)
-			{
-				txt += ",time:" + time ;
-			}
-			if (type != null)
-			{
-				txt += ",type:" + type ;
-			} 
-			if (parameters != null)
-			{
-				txt += ",parameters:" + parameters ;
-			} 
-			txt += "]" ;
-			return txt ; 	
-		}
-		
-	}
+        /**
+         * Creates a new CuePoint instance.
+         * @param init An Object with the properties 'name', 'parameters', 'time' and 'type' used to define this CuePoint object.
+         */    
+        public function CuePoint(init:Object = null)
+        {
+            super( init );
+        }
+        
+        /**
+         * The name of the CuePoint.
+         */
+        public var name:String ;
+            
+        /**
+         * A associative array of name/value pair strings specified for this cue point. 
+         * Any valid string can be used for the parameter name or value.
+         */
+        public var parameters:Array ;
+        
+        /**
+         * The time of the CuePoint.
+         */
+        public var time:String ;
+            
+        /**
+         * The type of the CuePoint.
+         */
+        public var type:String ;
+        
+        /**
+         * Returns the String representation of this object.
+         * @return the String representation of this object.
+         */
+        public function toString():String
+        {
+            var txt:String = "[CuePoint" ;
+            if (name != null)
+            {
+                txt += ",name:" + name ;
+            }
+            if (time != null)
+            {
+                txt += ",time:" + time ;
+            }
+            if (type != null)
+            {
+                txt += ",type:" + type ;
+            } 
+            if (parameters != null)
+            {
+                txt += ",parameters:" + parameters ;
+            } 
+            txt += "]" ;
+            return txt ;     
+        }
+        
+    }
 
 }

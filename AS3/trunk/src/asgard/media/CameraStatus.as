@@ -23,23 +23,23 @@
 package asgard.media 
 {
 
-	/**
-	 * The enumeration static class of all Camera status.
-	 * @author eKameleon
-	 */
-	public class CameraStatus 
-	{
-		
-		/**
-		 * The status name when the Camera is muted.
-		 */
-		public static const MUTED:String = "Camera.Muted" ;
-			
-		/**
-		 * The status name when the Camera is unmuted.
-		 */
-		public static const UNMUTED:String = "Camera.Unmuted" ;
-		
-	}
+    /**
+     * The enumeration static class of all Camera status.
+     * @author eKameleon
+     */
+    public class CameraStatus 
+    {
+        
+        /**
+         * The status name when the Camera is muted.
+         */
+        public static const MUTED:String = "Camera.Muted" ;
+            
+        /**
+         * The status name when the Camera is unmuted.
+         */
+        public static const UNMUTED:String = "Camera.Unmuted" ;
+        
+    }
 
 }

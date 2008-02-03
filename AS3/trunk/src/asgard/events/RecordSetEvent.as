@@ -20,85 +20,84 @@
   Contributor(s) :
   
 */
-
 package asgard.events
 {
-	import flash.events.Event;
-	
-	import andromeda.events.ModelChangedEvent;
-	
-	import asgard.data.remoting.RecordSet;	
+    import flash.events.Event;
+    
+    import andromeda.events.ModelChangedEvent;
+    
+    import asgard.data.remoting.RecordSet;    
 
-	/**
-	 * The RecordSetEvent class.
-	 * @author eKameleon
-	 */
-	public class RecordSetEvent extends ModelChangedEvent
-	{
-		
-		/**
-		 * Creates a new RecordSetEvent instance.
-		 */
-		public function RecordSetEvent
-		( 
-			eventName:String , rs:RecordSet = null, data:* = null, fieldName:String = null , firstItem:uint=0, index:uint=0, lastItem:uint=0
-			, removedIDs:Array = null , removedItems:Array = null, bubbles:Boolean=false, cancelable:Boolean=false
-		)
-		{
-			super(eventName, data, fieldName, firstItem, index, lastItem, removedIDs, removedItems, bubbles, cancelable);
-			if ( rs != null )
-			{
-				setRecordSet(rs) ;
-			}
-		}
-		
-		public static const ADD_ITEMS:String = "addItems" ; 
+    /**
+     * The RecordSetEvent class.
+     * @author eKameleon
+     */
+    public class RecordSetEvent extends ModelChangedEvent
+    {
+        
+        /**
+         * Creates a new RecordSetEvent instance.
+         */
+        public function RecordSetEvent
+        ( 
+            eventName:String , rs:RecordSet = null, data:* = null, fieldName:String = null , firstItem:uint=0, index:uint=0, lastItem:uint=0
+            , removedIDs:Array = null , removedItems:Array = null, bubbles:Boolean=false, cancelable:Boolean=false
+        )
+        {
+            super(eventName, data, fieldName, firstItem, index, lastItem, removedIDs, removedItems, bubbles, cancelable);
+            if ( rs != null )
+            {
+                setRecordSet(rs) ;
+            }
+        }
+        
+        public static const ADD_ITEMS:String = "addItems" ; 
 
-		public static const CLEAR_ITEMS:String = "clear" ;
+        public static const CLEAR_ITEMS:String = "clear" ;
 
-		public static const MODEL_CHANGED:String = "modelChanged" ;
+        public static const MODEL_CHANGED:String = "modelChanged" ;
 
-		public static const REMOVE_ITEMS:String = "removeItems" ;
+        public static const REMOVE_ITEMS:String = "removeItems" ;
 
-		public static const SORT_ITEMS:String = "sortItems" ;
+        public static const SORT_ITEMS:String = "sortItems" ;
 
-		public static const UPDATE_ALL:String = "updateAll" ;
+        public static const UPDATE_ALL:String = "updateAll" ;
 
-		public static const UPDATE_FIELD:String = "updateField" ;
+        public static const UPDATE_FIELD:String = "updateField" ;
 
-		public static const UPDATE_ITEMS:String = "updateItems" ;
+        public static const UPDATE_ITEMS:String = "updateItems" ;
 
-		public static const UPDATE_ROWS:String = "updateRows" ;
+        public static const UPDATE_ROWS:String = "updateRows" ;
 
         /**
          * Returns a shallow copy of this instance.
          * @return a shallow copy of this instance.
          */
-		public override function clone():Event
-		{
-			return new RecordSetEvent(eventName, getRecordSet(), data, fieldName
-				, firstItem, index, lastItem, removedIDs, removedItems
-				, bubbles, cancelable) ;
-		}
-		
-		/**
-		 * Returns the RecordSet reference of this event.
-		 * @return the RecordSet reference of this event.
-		 */
-		public function getRecordSet():RecordSet
-		{
-			return _rs ;
-		}
+        public override function clone():Event
+        {
+            return new RecordSetEvent(eventName, getRecordSet(), data, fieldName
+                , firstItem, index, lastItem, removedIDs, removedItems
+                , bubbles, cancelable) ;
+        }
+        
+        /**
+         * Returns the RecordSet reference of this event.
+         * @return the RecordSet reference of this event.
+         */
+        public function getRecordSet():RecordSet
+        {
+            return _rs ;
+        }
 
-		/**
-		 * Sets the RecordSet reference of this event.
-		 */
-		public function setRecordSet(rs:RecordSet):void
-		{
-			_rs = rs ;
-		}
+        /**
+         * Sets the RecordSet reference of this event.
+         */
+        public function setRecordSet(rs:RecordSet):void
+        {
+            _rs = rs ;
+        }
 
-		private var _rs:RecordSet ;
+        private var _rs:RecordSet ;
 
-	}
+    }
 }

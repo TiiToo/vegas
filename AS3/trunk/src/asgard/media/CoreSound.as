@@ -678,7 +678,7 @@ package asgard.media
 		 */
 		private function _onTimer( e:TimerEvent ):void
 		{
-			_currentPosition = channel.position ;
+			_currentPosition = channel != null ? channel.position : 0 ;
 			notifyProgress() ;
 		}
 		

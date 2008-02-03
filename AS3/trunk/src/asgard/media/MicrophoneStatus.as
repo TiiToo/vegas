@@ -23,23 +23,23 @@
 package asgard.media 
 {
 
-	/**
-	 * The enumeration static class of all Microphone status.
-	 * @author eKameleon
-	 */
-	public class MicrophoneStatus 
-	{
+    /**
+     * The enumeration static class of all Microphone status.
+     * @author eKameleon
+     */
+    public class MicrophoneStatus 
+    {
 
-		/**
-		 * The status name when the Microphone is muted.
-		 */
-		public static const MUTED:String = "Microphone.Muted" ;
-		
-		/**
-		 * The status name when the Microphone is unmuted.
-		 */
-		public static const UNMUTED:String = "Microphone.Unmuted" ;
+        /**
+         * The status name when the Microphone is muted.
+         */
+        public static const MUTED:String = "Microphone.Muted" ;
+        
+        /**
+         * The status name when the Microphone is unmuted.
+         */
+        public static const UNMUTED:String = "Microphone.Unmuted" ;
 
-	}
+    }
 
 }

@@ -22,84 +22,84 @@
 */
 package asgard.events
 {
-	import flash.events.Event;
-	
-	import asgard.system.Lang;
-	import asgard.system.Localization;
-	
-	import vegas.events.BasicEvent;	
+    import flash.events.Event;
+    
+    import asgard.system.Lang;
+    import asgard.system.Localization;
+    
+    import vegas.events.BasicEvent;    
 
-	/**
-	 * The LocalizationEvent is used in the Localization singleton to notify a change.
-	 * @author eKameleon
-	 */
-	public class LocalizationEvent extends BasicEvent
-	{
-		
-		/**
-	 	 * Creates a new LocalizationEvent instance.
-		 * @param type the string type of the instance. 
-		 * @param target the target of the event.
-		 * @param context the optional context object of the event.
-		 * @param bubbles indicates if the event is a bubbling event.
-		 * @param cancelable indicates if the event is a cancelable event.
-		 * @param time this optional parameter is used in the eden deserialization to copy the timestamp value of this event.
-		 */
-		public function LocalizationEvent( type:String , target:Localization = null , context:* = null , bubbles:Boolean = false , cancelable:Boolean = false, time:Number = 0 )
-		{
-			super( type, target, context, bubbles, cancelable, time );
-		}
-	
-		/**
-		 * The name of the event when the localization is changed.
-		 */
-		public static var CHANGE:String = Event.CHANGE  ;
-		
-		/**
-		 * The default singleton name of the Localization singletons.
-		 */
-		public static var DEFAULT_ID:String = "" ;
-		
-		/**
-	 	 * Returns a shallow copy of this object.
-		 * @return a shallow copy of this object.
-		 */
-		public override function clone():Event
-		{
-			return new LocalizationEvent( type , target as Localization, context ) ;
-    	}
-	
-		/**
-		 * Returns the current Lang of the Localization singleton.
-		 * @return the current Lang of the Localization singleton.
-		 */
-		public function getCurrent():Lang
-		{
-			var localization:Localization = target as Localization ;
-			return ( localization != null ) ? ( target as Localization ).current : null ;
-		}
+    /**
+     * The LocalizationEvent is used in the Localization singleton to notify a change.
+     * @author eKameleon
+     */
+    public class LocalizationEvent extends BasicEvent
+    {
+        
+        /**
+         * Creates a new LocalizationEvent instance.
+         * @param type the string type of the instance. 
+         * @param target the target of the event.
+         * @param context the optional context object of the event.
+         * @param bubbles indicates if the event is a bubbling event.
+         * @param cancelable indicates if the event is a cancelable event.
+         * @param time this optional parameter is used in the eden deserialization to copy the timestamp value of this event.
+         */
+        public function LocalizationEvent( type:String , target:Localization = null , context:* = null , bubbles:Boolean = false , cancelable:Boolean = false, time:Number = 0 )
+        {
+            super( type, target, context, bubbles, cancelable, time );
+        }
+    
+        /**
+         * The name of the event when the localization is changed.
+         */
+        public static var CHANGE:String = Event.CHANGE  ;
+        
+        /**
+         * The default singleton name of the Localization singletons.
+         */
+        public static var DEFAULT_ID:String = "" ;
+        
+        /**
+          * Returns a shallow copy of this object.
+         * @return a shallow copy of this object.
+         */
+        public override function clone():Event
+        {
+            return new LocalizationEvent( type , target as Localization, context ) ;
+        }
+    
+        /**
+         * Returns the current Lang of the Localization singleton.
+         * @return the current Lang of the Localization singleton.
+         */
+        public function getCurrent():Lang
+        {
+            var localization:Localization = target as Localization ;
+            return ( localization != null ) ? ( target as Localization ).current : null ;
+        }
 
-		/**
-		 * Returns the current {@code Local} reference or the internal value of the Local property passed in argument with the string in argument.
-		 * @return the current {@code Local} reference or the internal value of the Local property passed in argument with the string in argument.
-		 */
-		public function getLocale( sID:String=null ):*
-		{
-			var localization:Localization = target as Localization ;
-			return ( localization != null ) ? ( target as Localization ).getLocale( sID ) : null ;
-		}
-	
-		/**
-		 * Apply the current localization over the specified object.
-		 * @param o The object to fill with the current localization in the application.
-		 * @param sID (optional) if this key is specified the method return the value of the specified key in the current locale object. 
-		 * @param callback (optional) The optional method to launch after the initialization over the specified object. 
-		 */
-		public function init( o:Object , sID:String=null , callback:Function=null ):void
-		{
-			(target as Localization).init( o , sID , callback ) ;
-		}
-	
-	}
+        /**
+         * Returns the current {@code Local} reference or the internal value of the Local property passed in argument with the string in argument.
+         * @return the current {@code Local} reference or the internal value of the Local property passed in argument with the string in argument.
+         */
+        public function getLocale( sID:String=null ):*
+        {
+            var localization:Localization = target as Localization ;
+            return ( localization != null ) ? ( target as Localization ).getLocale( sID ) : null ;
+        }
+    
+        /**
+         * Apply the current localization over the specified object.
+         * @param o The object to fill with the current localization in the application.
+         * @param sID (optional) if this key is specified the method return the value of the specified key in the current locale object. 
+         * @param callback (optional) The optional method to launch after the initialization over the specified object. 
+         */
+        public function init( o:Object , sID:String=null , callback:Function=null ):void
+        {
+            (target as Localization).init( o , sID , callback ) ;
+        }
+    
+    }
 
 }
