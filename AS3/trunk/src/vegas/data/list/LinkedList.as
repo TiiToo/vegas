@@ -1042,7 +1042,7 @@ package vegas.data.list
 	     */
     	public override function toSource( indent:int = 0 ):String  
     	{
-		    return Serializer.getSourceOf(this, [Serializer.toSource(new SimpleCollection(toArray()))]) ;
+		    return Serializer.getSourceOf(this, [ new SimpleCollection(toArray()) ]) ;
 	    }
     
         /**

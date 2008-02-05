@@ -91,6 +91,10 @@ package vegas.util
     		{
     		    return o.toSource.apply(o, arguments.slice(1)) ;
     		}
+    		else if (o is Class)
+    		{
+    			return Reflection.getClassPath(o) ;	
+    		}
     		else if (o is Array) 
     		{
     		    return ArrayUtil.toSource.apply(o, arguments.slice()) ;

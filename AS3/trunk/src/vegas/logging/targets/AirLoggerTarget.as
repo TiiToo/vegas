@@ -22,10 +22,8 @@
 */
 package vegas.logging.targets 
 {
-	
-	// TODO finish this class and test it !!! For the moment this class is in progress don't use it in your production
-	
-	import flash.events.NetStatusEvent;
+	import flash.events.SecurityErrorEvent;
+	import flash.events.StatusEvent;
 	import flash.net.LocalConnection;
 	import flash.utils.clearInterval;
 	import flash.utils.setInterval;
@@ -51,16 +49,15 @@ package vegas.logging.targets
 		public function AirLoggerTarget( name:String="" , autoClear:Boolean=false, bGlobal:Boolean = false, sChannel:String = null)
 		{
 			super(bGlobal, sChannel);
+			
 			_lcOut = new LocalConnection();
-			_lcOut.addEventListener( NetStatusEvent.NET_STATUS , _onStatus );
-           
+			_lcOut.addEventListener( StatusEvent.STATUS                , _status        , false, 0, true );
+            _lcOut.addEventListener( SecurityErrorEvent.SECURITY_ERROR , _securityError , false, 0, true);
+        	
         	_lcIn = new LocalConnection() ;
+        	_lcIn.allowDomain("*") ;
         	_lcIn.client = this ;
-			_lcIn.allowDomain = function ( ...args:Array ):Boolean 
-			{ 
-				return true; 
-			};
-		
+			
 			_aLogStack   = [];
 			_bIdentified = false;
 			_bRequesting = false;
@@ -101,6 +98,11 @@ package vegas.logging.targets
 		public static const ERROR:Number = 40000 ;
 
 		/**
+		 * The 'focus' string representation.
+		 */
+		public static const FOCUS:String = "focus" ;
+	
+		/**
 		 * The id who indicates if the id is already used.
 		 */
 		public static const ID_ALREADY_USED:String = "idAlreadyUsed" ;
@@ -119,8 +121,13 @@ package vegas.logging.targets
 		/**
 		 * The local connection id.
 		 */
-		public static var LOCAL_CONNECTION_ID:String = "_AIRLOGGER_CONSOLE" ;
-	
+		public static const LOCAL_CONNECTION_ID:String = "_AIRLOGGER_CONSOLE" ;
+		
+		/**
+		 * The 'mainConnectionAlreadyUsed' string representation.
+		 */
+		public static const MAIN_CONNECTION_ALREADY_USED:String = "mainConnectionAlreadyUsed" ;
+		
 		/**
 		 * The 'in' connection suffix.
 		 */
@@ -163,10 +170,19 @@ package vegas.logging.targets
 		 */
 		public  function connect():void
 		{
-			while( !_lcIn.connect(_getInConnectionName( DEFAULT_ID_IN ) ) )
+			var b:Boolean = true ;
+			while( b )
 			{
-				_lcOut.send( _getOutConnectionName() , "mainConnectionAlreadyUsed", DEFAULT_ID_IN ) ;
-				DEFAULT_ID_IN += "_" ;
+				try
+				{
+					_lcIn.connect(_getInConnectionName( DEFAULT_ID_IN ) ) ;
+					b = false ;
+				}
+				catch( e:Error )
+				{
+					_lcOut.send( _getOutConnectionName() , MAIN_CONNECTION_ALREADY_USED , DEFAULT_ID_IN ) ;
+					DEFAULT_ID_IN += "_" ;
+				}
 			}
 		}
 	
@@ -175,7 +191,7 @@ package vegas.logging.targets
 		 */
 		public function focus():void
 		{
-			_send( getAirLoggerMessage("focus") ) ;
+			_send( getAirLoggerMessage( FOCUS ) ) ;
 		}
 			
 		/**
@@ -293,7 +309,7 @@ package vegas.logging.targets
 			_sName = s;
 			if( _bIdentified )
 			{
-				_lcOut.send( _getOutConnectionName( _sID ), "setTabName", _sName  );
+				_lcOut.send( _getOutConnectionName( _sID ), SET_TAB_NAME , _sName  );
 			}
 		}
 
@@ -356,11 +372,12 @@ package vegas.logging.targets
 		}
 		
 		/**
-		 * Invoked when the status of the LocalConnection is changed.
+		 * Invoked when the security of the LocalConnection is changed.
 		 */
-		private function _onStatus( event:NetStatusEvent ):void 
+		private function _securityError( event:SecurityErrorEvent ):void
 		{
-			//	
+			trace( this + " security error : " + event ) ;
+			dispatchEvent( event ) ;
 		}
 		
 		/**
@@ -384,6 +401,14 @@ package vegas.logging.targets
 				}
 			}
 		}		
-	
+		
+		/**
+		 * Invoked when the status of the LocalConnection is changed.
+		 */
+		private function _status( event:StatusEvent ):void 
+		{
+			dispatchEvent( event ) ;
+		}
+
 	}
 }

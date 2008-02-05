@@ -210,7 +210,7 @@ package vegas.data.map
 	 	 */
 		public override function toSource( indent:int = 0 ):String 
 		{
-			return Serializer.getSourceOf( this, [ getType() , _map.toSource() ] ) ;
+			return Serializer.getSourceOf( this, [ getType() , _map ] ) ;
 		}
 
 		/**

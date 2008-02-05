@@ -20,14 +20,13 @@
   Contributor(s) :
   
 */
-
 package vegas.data.array
 {
-    
-    import vegas.events.AbstractCoreEventDispatcher ;
-    import vegas.events.BasicEvent ;
-        
-    /**
+	import vegas.events.AbstractCoreEventDispatcher;
+	import vegas.events.BasicEvent;
+	import vegas.util.Serializer;	
+
+	/**
      * This filter contains all constants and methods to sort the Arrays in the application.
      * <p><b>Example : </b></p>
      * {@code
@@ -387,6 +386,15 @@ package vegas.data.array
             }    
         }
 
+		/**
+		 * Returns a eden String representation of the object.
+		 * @return a string representation the source code of the object.
+		 */
+        public override function toSource( indent:int = 0 ):String 
+        {
+            return Serializer.getSourceOf( this, [ _filter ] ) ;
+        }
+
         /**
          * The internal change event reference.
          */
@@ -401,6 +409,6 @@ package vegas.data.array
          * The filter value of this object.
          */
         private var _filter:uint ;
-
-    }
+	}
 }
+
