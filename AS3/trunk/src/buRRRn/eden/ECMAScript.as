@@ -25,7 +25,9 @@
 package buRRRn.eden
 {
 	import system.Reflection;
-	import system.Strings;	
+	import system.Strings;
+	
+	import vegas.util.ClassUtil;	
 
 	/**
 	 * The ECMAScript parser static class.
@@ -477,14 +479,12 @@ package buRRRn.eden
 					if( arrayIndex )
 					{
 						//trace( ">> GLOBAL POOL : " + scopepath+"."+paths[i-1]+"."+subpath );
-
-												_globalPool[ scopepath + "." + paths[i - 1] + "." + subpath ] = scope[ subpath ];
+						_globalPool[ scopepath + "." + paths[i - 1] + "." + subpath ] = scope[ subpath ];
 					}
                     else
 					{
 						//trace( ">> GLOBAL POOL : " + scopepath+"."+subpath );
-
-												_globalPool[ scopepath + "." + subpath ] = scope[ subpath ];
+						_globalPool[ scopepath + "." + subpath ] = scope[ subpath ];
 					}
 					scope = scope[ subpath ];
 				}
@@ -1158,6 +1158,9 @@ package buRRRn.eden
 						return config.undefineable ;
 					}
                     
+                    return ClassUtil.buildNewInstance(fcnObj, args) ; // VEGAS hack for the moment (35 arguments in this static build method)
+                    
+                    /*
 					switch( args.length )
 					{
 						case 9:
@@ -1201,7 +1204,7 @@ package buRRRn.eden
 						{
 							return new fcnObj( );
 						}
-					}
+					}*/
 				}
                 
 				//return fcnObj.apply( fcnObjScope, args );

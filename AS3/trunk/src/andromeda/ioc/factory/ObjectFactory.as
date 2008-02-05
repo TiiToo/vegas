@@ -34,7 +34,8 @@ package andromeda.ioc.factory
 	import vegas.data.Map;
 	import vegas.data.iterator.Iterator;
 	import vegas.data.map.HashMap;
-	import vegas.errors.NullPointerError;	
+	import vegas.errors.NullPointerError;
+	import vegas.util.ClassUtil;	
 
 	/**
 	 * The factory of all objects who implements the IObjectDefinition interface.
@@ -205,62 +206,9 @@ package andromeda.ioc.factory
 		 */
 		protected function _createObject( name:String , definition:IObjectDefinition ):*
 		{
-			var instance:* ;
-			var c:Class = getDefinitionByName(name) as Class ;
-			var args:Array = _createArguments( definition.getConstructorArguments() ) ;
-			if ( args != null )
-			{
-				var size:uint = args.length ;
-				if ( size == 10 )
-                {
-					instance = new c( args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8] , args[9] );
-                }
-                else if ( size == 9 )
-                {
-					instance = new c( args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8] );
-                }
-				else if ( size == 8 )
-				{
-					instance = new c( args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7] );
-				}
-				else if ( size == 7 )
-				{
-					instance = new c( args[0], args[1], args[2], args[3], args[4], args[5], args[6] );
-				}
-				else if ( size == 6 ) 
-				{					
-					instance = new c( args[0], args[1], args[2], args[3], args[4], args[5] );
-				}
-				else if ( size == 5 )
-				{
-					instance = new c( args[0], args[1], args[2], args[3], args[4] );
-				}				
-				else if ( size == 4 )
-				{
-					instance = new c( args[0], args[1], args[2], args[3] );
-				}
-				else if ( size == 3 )
-				{	
-					instance = new c( args[0], args[1], args[2] );
-				}
-				else if ( size == 2 )
-				{
-					instance = new c( args[0], args[1] );
-				}
-				else if ( size == 1 )
-				{
-					instance = new c( args[0] );
-				}
-				else
-				{
-					instance = new c();
-				}
-			}
-			else
-			{
-				instance = new c();
-			}
-			
+			var clazz:Class = getDefinitionByName(name) as Class ;
+			var args:Array  = _createArguments( definition.getConstructorArguments() ) ;
+			var instance:*  = ClassUtil.buildNewInstance(clazz, args) ;
 			_populateProperties( instance, definition.getProperties() );
 			_invokeMethods( instance , definition.getMethods() ) ;
 			_invokeInitMethod( instance, definition ) ;
@@ -320,7 +268,7 @@ package andromeda.ioc.factory
 					catch( e:Error ) 
 					{
 						// do nothing
-						getLogger().warn( this + " invokeMethods : " + e.toString() ) ;
+						getLogger().warn( this + " invokeMethods with the scope '" + o + "' : " + e.toString() ) ;
 						// trace(e) ; // debug mode
 					}	
 				}
@@ -387,6 +335,7 @@ package andromeda.ioc.factory
 		{
 			return singletons.get(name) || null ;
 		}
-	
+		
 	}
+
 }
