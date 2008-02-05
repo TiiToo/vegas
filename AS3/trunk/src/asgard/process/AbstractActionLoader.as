@@ -100,7 +100,7 @@ package asgard.process
 		public function set loader( loader:IEventDispatcher ):void
 		{
 			unregister(_loader) ;
-			_loader = loader ;	
+			_loader = loader ;
 			register(_loader) ;
 		}
 		

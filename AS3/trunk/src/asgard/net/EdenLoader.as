@@ -28,6 +28,7 @@ package asgard.net
 	import buRRRn.eden;	
 
 	/**
+	 * This loader load an external file with eden document inside and deserialize it when the loading is complete.
      * <p><b>Example :</b></p>
      * <code>
      * import flash.events.Event ;

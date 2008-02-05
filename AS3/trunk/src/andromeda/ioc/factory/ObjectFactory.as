@@ -76,7 +76,7 @@ package andromeda.ioc.factory
 		 */		
 		public function getObject( name:String ):*
 		{
-			var instance:* = _findInCache( name ) ;		
+			var instance:* = _findInCache( name ) ;	
 			if ( instance == null )
 			{
 				var definition:IObjectDefinition = getObjectDefinition( name ) ;
@@ -319,7 +319,9 @@ package andromeda.ioc.factory
 					}
 					catch( e:Error ) 
 					{
-						// do nothing	
+						// do nothing
+						getLogger().warn( this + " invokeMethods : " + e.toString() ) ;
+						// trace(e) ; // debug mode
 					}	
 				}
 			}

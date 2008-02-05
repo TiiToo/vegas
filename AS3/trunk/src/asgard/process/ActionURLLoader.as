@@ -78,7 +78,7 @@ package asgard.process
     	 * @param bGlobal the flag to use a global event flow or a local event flow.
     	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 		 */
-		public function ActionURLLoader( loader:URLLoader, bGlobal:Boolean = false, sChannel:String = null )
+		public function ActionURLLoader( loader:URLLoader=null , bGlobal:Boolean = false, sChannel:String = null )
 		{
 			super( bGlobal, sChannel );
 			if ( loader != null )
@@ -204,7 +204,7 @@ package asgard.process
 		 */
 		public function enumerate( o:Object ):void
 		{
-			getLogger().info( this + " enumerate") ;			
+			getLogger().info( this + " enumerate." ) ;			
 			_enumerate(o) ;
 		}
 

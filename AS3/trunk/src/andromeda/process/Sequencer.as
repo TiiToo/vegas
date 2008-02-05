@@ -156,7 +156,15 @@ package andromeda.process
 				    notifyProgress() ;
 				}
 				_cur = _queue.poll() ;
-				_cur.run() ;
+				try
+				{
+					_cur.run() ;
+				}
+				catch( e:Error )
+				{
+					getLogger().warn( this + " run failed : " + e.toString() ) ;
+					run() ;	
+				}
 			}
 			else 
 			{
