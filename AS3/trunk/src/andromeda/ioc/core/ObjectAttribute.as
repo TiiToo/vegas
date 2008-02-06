@@ -41,6 +41,11 @@ package andromeda.ioc.core
 		public static const ASSEMBLY_NAME:String = "assemblyName" ;
 		
 		/**
+		 * Defines the label of the imports attribute.
+		 */
+		public static const IMPORTS:String = "imports" ;		
+		
+		/**
 		 * Defines the label of the lazyInit name property of the object.
 		 */		
 		public static const LAZY_INIT:String = "lazyInit" ;
@@ -79,6 +84,11 @@ package andromeda.ioc.core
 		 * The name of the external object property to define the singleton flag of the object.
 		 */
 		public static const OBJECT_SINGLETON:String = "singleton" ;  
+		
+		/**
+		 * Defines the label of the ressource attribute in the imports objects.
+		 */
+		public static const RESSOURCE:String = "ressource" ;
 		
 		/**
 		 * Defines the label of the type of the object.

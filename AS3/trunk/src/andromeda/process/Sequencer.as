@@ -168,6 +168,7 @@ package andromeda.process
 			}
 			else 
 			{
+				notifyProgress() ;
 				if ( _cur != null )
 				{
 					_cur.removeEventListener( ActionEvent.FINISH, run ) ;
@@ -244,8 +245,14 @@ package andromeda.process
 			return Serializer.getSourceOf(this, [toArray()]) ;
 		}
 		
+		/**
+		 * @private
+		 */
 		private var _cur:IAction ;
-		
+
+		/**
+		 * @private
+		 */
 		private var _queue:TypedQueue  ;
 		
 	}

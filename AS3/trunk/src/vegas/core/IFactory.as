@@ -32,7 +32,7 @@ package vegas.core
 	{
 
 		/**
-		 * Create the objects and fill the IObjectDefinitionContainer.
+		 * Creates the objects.
 		 */
 		function create( ...arguments:Array ):void ;
 
