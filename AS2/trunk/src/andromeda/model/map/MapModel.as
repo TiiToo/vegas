@@ -167,6 +167,36 @@ class andromeda.model.map.MapModel extends AbstractModelObject implements Iterab
 	}
 
 	/**
+	 * Returns {@code true} the first IValueObject in the model who contains the specified attribute value.
+	 * @return {@code true} the first IValueObject in the model who contains the specified attribute value.
+	 */
+	public function getVOByProperty( propName:String , value ):IValueObject
+	{
+		if ( propName == null )
+		{
+			return null ;
+		}
+		var datas:Array = _map.getValues() ;
+		var size:Number = datas.length ;
+		if (size > 0)
+		{
+			while ( --size > -1 )
+			{
+				if ( datas[size][propName] == value )
+				{
+					
+					return datas[size] ;
+				}
+			}
+			return null ;
+		}
+		else
+		{
+			return null ;
+		}
+	}
+
+	/**
 	 * Returns the IValueObject defined by the id passed in argument.
 	 * @return the IValueObject defined by the id passed in argument.
 	 */
