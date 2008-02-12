@@ -48,11 +48,13 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 	 * Creates a new AbstractComponentDisplay instance.
 	 * @param sName the name of the display.
 	 * @param target the DisplayObject instance control this target.
+	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */
-	private function AbstractComponentDisplay( sName:String, target:MovieClip ) 
+	private function AbstractComponentDisplay( sName:String, target:MovieClip , bGlobal:Boolean , sChannel:String ) 
 	{ 
 		
-		super ( (sName != null) ? sName : getDefaultName(this) , target ) ;
+		super ( (sName != null) ? sName : getDefaultName(this) , target , bGlobal, sChannel ) ;
 		
 		view.onUnload = Delegate.create(this, _onUnload) ;
 		view._focusrect = false ;

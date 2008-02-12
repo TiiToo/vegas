@@ -20,46 +20,28 @@
   Contributor(s) :
   
 */
-
 import asgard.display.Direction;
 
 import lunas.core.IProgressbar;
-import lunas.display.abstract.AbstractComponentDisplay;
-
-import pegas.events.UIEvent;
-import pegas.maths.Range;
+import lunas.display.abstract.AbstractProgressDisplay;
 
 /**
  * This class provides a skeletal implementation of all the {@code IProgressbar} display components, to minimize the effort required to implement this interface.
  * @author eKameleon
  */
-class lunas.display.abstract.AbstractProgressbarDisplay extends AbstractComponentDisplay implements IProgressbar 
+class lunas.display.abstract.AbstractProgressbarDisplay extends AbstractProgressDisplay implements IProgressbar 
 {
 
 	/**
-	 * Creates a new AbstractProgressbar instance. 
+	 * Creates a new AbstractProgressbarDisplay instance. 
 	 * @param sName the name of the display.
 	 * @param target the DisplayObject instance control this target.
 	 */
 	private function AbstractProgressbarDisplay(sName:String, target:MovieClip ) 
 	{ 
-		
 		super ( sName, target ) ;
-		
-		_rPercent = Range.PERCENT_RANGE ;
 		_nDirection = Direction.HORIZONTAL ;
-		
 	}
-
-	/**
-	 * The name of the event dispatched when the component change.
-	 */
-	public static var CHANGE:String = UIEvent.CHANGE ;
-	
-	/**
-	 * This flag indicates of the position is auto reset. 
-	 */
-	public var autoResetPosition:Boolean = false ;
 
 	/**
 	 * (read-write) Determinates the direction value of this component.
@@ -79,22 +61,6 @@ class lunas.display.abstract.AbstractProgressbarDisplay extends AbstractComponen
 	}
 	
 	/**
-	 * (read-write) Determinates the position value of this component. A value between 0 and 100 (percentage).
-	 */
-	public function get position():Number 
-	{
-		return getPosition() ;
-	}
-	
-	/**
-	 * @private
-	 */	
-	public function set position(n:Number):Void 
-	{
-		setPosition(n) ;	
-	}
-
-	/**
 	 * Returns the direction value of this component.
 	 * @return the direction value of this component.
 	 * @see Direction
@@ -102,15 +68,6 @@ class lunas.display.abstract.AbstractProgressbarDisplay extends AbstractComponen
 	public function getDirection():Number 
 	{ 
 		return (_nDirection == Direction.HORIZONTAL) ? Direction.HORIZONTAL : Direction.VERTICAL ;
-	}
-
-	/**
-	 * Returns the position value of this component.
-	 * @return the position value of this component.
-	 */
-	public function getPosition():Number 
-	{
-		return isNaN(_position) ? 0 : _position ;
 	}
 
 	/**
@@ -123,57 +80,8 @@ class lunas.display.abstract.AbstractProgressbarDisplay extends AbstractComponen
 	}
 
 	/**
-	 * Sets the position value of this component.
+	 * @private
 	 */
-	public function setPosition(pos:Number, noEvent:Boolean, flag:Boolean):Void 
-	{
-
-		pos = _rPercent.clamp(pos) ;
-		
-		if (pos != _position) 
-		{
-			_position = pos ;
-			
-			viewPositionChanged(flag) ;
-			
-			if ( noEvent != true ) 
-			{
-				notifyChanged() ;
-			}
-			
-		}
-	}
-	
-	/**
-	 * Invoked when the view of the display is changed.
-	 */
-	public function viewChanged():Void 
-	{
-		
-		var memPos:Number = getPosition() ;
-		
-		setPosition(0, true, true) ;
-		
-		if ( autoResetPosition == false ) 
-		{
-			setPosition( memPos, true, true) ;
-		}
-		
-	}
-
-	/**
-	 * Invoked when the position of the bar is changed.
-	 * @param flag (optional) An optional boolean.
-	 */
-	public function viewPositionChanged(flag:Boolean):Void 
-	{
-		// overrides this method
-	}
-
 	private var _nDirection:Number ;
-
-	private var _position:Number = 0 ;
-
-	private var _rPercent:Range ;
 	
 }

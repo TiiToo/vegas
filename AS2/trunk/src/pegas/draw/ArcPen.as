@@ -148,7 +148,14 @@ class pegas.draw.ArcPen extends EasyPen
 		{
 			ax = _nX + Math.cos (_startAngle) * radius ;
 			ay = _nY + Math.sin (-_startAngle) * nR ;
-			if (_angle < 360 && _angle > -360 && type == ArcType.PIE) lineTo (ax, ay) ;
+			trace(angle) ;
+			if (_angle < 360 && _angle > -360 && type == ArcType.PIE) 
+			{
+				if ( Math.ceil(_angle) != 360 )
+				{
+					lineTo (ax, ay) ;
+				}
+			}
 			moveTo (ax, ay) ;
 			for (var i:Number = 0 ; i<segs ; i++) 
 			{
@@ -162,7 +169,13 @@ class pegas.draw.ArcPen extends EasyPen
 			}
 			if(type == ArcType.PIE) 
 			{
-				if (_angle < 360 && _angle > -360) lineTo(_nX, _nY);
+				if (_angle < 360 && _angle > -360) 
+				{
+					if ( Math.ceil(_angle) != 360 )
+					{
+						lineTo(_nX, _nY);
+					}
+				}
 			}
 			else 
 			{ 

@@ -127,7 +127,7 @@ class asgard.display.DisplayObject extends AbstractCoreEventDispatcher
 			}
 			else 
 			{
-				throw new IllegalArgumentError("invalid arguments for " + this + " constructor.");
+				throw new IllegalArgumentError("invalid arguments for " + this + " constructor : " + arguments);
 			}
 		}
 		

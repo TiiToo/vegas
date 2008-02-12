@@ -21,13 +21,11 @@
   
 */
 
-import lunas.core.IBar;
-
 /**
- * This interface defined the methods to implement a progress bar display component.
+ * This interface defined the methods to implement a progress display component.
  * @author eKameleon
  */
-interface lunas.core.IProgressbar extends IBar 
+interface lunas.core.IProgress
 {
 	
 	/**
