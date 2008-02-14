@@ -24,6 +24,7 @@ import lunas.display.container.SimpleContainerDisplay;
 import lunas.model.ContainerModel;
 
 import pegas.draw.Align;
+import pegas.geom.Trigo;
 
 /**
  * This container display all this child elements with a circle trigonometric algorithm. 
@@ -34,6 +35,73 @@ class lunas.display.container.CircleContainerDisplay extends SimpleContainerDisp
 
 	/**
 	 * Creates a new CircleContainerDisplay instance.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import lunas.display.container.CircleContainerDisplay ;
+	 * 
+	 * import pegas.draw.Align;
+	 * 
+	 * var container:CircleContainerDisplay = new CircleContainerDisplay(null, createEmptyMovieClip("container_mc",10)) ;
+	 * 
+	 * container.align      = Align.CENTER ;
+	 * container.childCount = 10 ;
+	 * container.radius     = 20 ;
+	 * container.x          = 360 ;
+	 * container.y          = 230 ;
+	 * 
+	 * var colors:Array =
+	 * [
+	 *     0x7A1D05 , 0xFF0000 , 0xF5532C , 0xECC671 , 0xF3E469 ,
+	 *     0xCFE478 , 0x72871B , 0x287968 , 0x1E5184 , 0x0E273F
+	 * ] ;
+	 * 
+	 * for (var i:Number = 0 ; i<colors.length ; i++ )
+	 * {
+	 *     var mc:MovieClip = container.addChild( "particle" ) ; // "particle" the link id of the symbol in the library
+	 *     var co:Color = new Color( mc ) ;
+	 *     co.setRGB( colors[i] ) ; // Math.random() * 0xFFFFFF ) ;
+	 * }
+	 * 
+	 * var onKeyDown:Function = function():Void
+	 * {
+	 *     var code:Number = Key.getCode() ;
+	 *     switch( code )
+	 *     {
+	 *         case Key.UP :
+	 *         {
+	 *             container.childCount ++ ;
+	 *             container.radius += 10 ;
+	 *             break ;
+	 *         }
+	 *         case Key.DOWN :
+	 *         {
+	 *             container.childCount -- ;
+	 *             container.radius -= 10 ;
+	 *             break ;
+	 *         }
+	 *         case Key.SPACE :
+	 *         {
+	 *             var mc:MovieClip = container.addChild( "particle" ) ;
+	 *             var co:Color = new Color( mc ) ;
+	 *             co.setRGB( Math.random() * 0xFFFFFF ) ;
+	 *             break ;
+	 *         }
+	 *         case Key.LEFT :
+	 *         {
+	 *             container.startAngle -= 10 ;
+	 *             // container.align = Align.LEFT ;
+	 *             break ;
+	 *         }
+	 *         case Key.RIGHT :
+	 *         {
+	 *             container.startAngle += 10 ;
+	 *             // container.align = Align.RIGHT ;
+	 *             break ;
+	 *         }
+	 *     }
+	 * }
+	 * Key.addListener( this ) ;
+	 * }
 	 * @param sName:String the name of the display.
 	 * @param target:MovieClip the DisplayObject instance control this target.
 	 * @param id (optional) the id of the model.
@@ -114,6 +182,23 @@ class lunas.display.container.CircleContainerDisplay extends SimpleContainerDisp
 	}
 
 	/**
+	 * Indicates the value of the start angle to display all childs in the container (in degrees).
+	 */
+	public function get startAngle():Number 
+	{
+		return Trigo.radiansToDegrees(_startAngle) ;
+	}	
+
+	/**
+	 * @private
+	 */
+	public function set startAngle(n:Number):Void 
+	{
+		_startAngle = Trigo.degreesToRadians( isNaN(n) ? 0 : n%360 ) ;
+		update() ;
+	}	
+
+	/**
 	 * Draw the component display.
 	 */
 	public function draw():Void 
@@ -181,12 +266,11 @@ class lunas.display.container.CircleContainerDisplay extends SimpleContainerDisp
 		var model:ContainerModel = getModel() ;
 		var a:Array  = model.toArray() ;
 		var l:Number = a.length ;
-		
 		for (var i:Number = 0 ; i<l ; i++) 
 		{
 			child        = a[i] ;
-			child[propX] = radius * Math.cos( 2 * Math.PI / childCount * i + THETA / 4 )  ;
-			child[propY] = radius * Math.sin( 2 * Math.PI / childCount * i + THETA / 4 )  ;
+			child[propX] = radius * Math.cos( _startAngle - (Math.PI / 2) + 2 * Math.PI / childCount * (i-1) )  ;
+			child[propY] = radius * Math.sin( _startAngle - (Math.PI / 2) + 2 * Math.PI / childCount * (i-1) )  ;
 		}
 	}
 	
@@ -216,4 +300,10 @@ class lunas.display.container.CircleContainerDisplay extends SimpleContainerDisp
 	 * @private
 	 */
 	private var _radius:Number ;
+	
+	/**
+	 * @private
+	 */
+	private var _startAngle:Number = 0 ;	
+	
 }
