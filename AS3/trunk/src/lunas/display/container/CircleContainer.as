@@ -40,6 +40,91 @@ package lunas.display.container
 
 		/**
 		 * Creates a new CircleContainerDisplay instance.
+		 * <p><b>Example :</b></p>
+		 * {@code
+		 * import flash.display.StageScaleMode ;
+		 * import flash.events.KeyboardEvent ;
+		 * import flash.ui.Keyboard ;
+		 * 
+		 * import lunas.display.container.CircleContainer ;
+		 * 
+		 * import pegas.colors.Color ;
+		 * import pegas.draw.Align;
+		 * 
+		 * var container:CircleContainer = new CircleContainer() ;
+		 * 
+		 * container.align      = Align.CENTER ;
+		 * container.childCount = 10  ;
+		 * container.radius     = 35  ;
+		 * container.x          = 360 ;
+		 * container.y          = 230 ;
+		 * 
+		 * var middle:Middle = new Middle() ; // inside the library
+		 * 
+		 * addChild( container ) ;
+		 * addChild( middle ) ;
+		 * 
+		 * var colors:Array =
+		 * [
+		 *     0x7A1D05 , 0xFF0000 , 0xF5532C , 0xECC671 , 0xF3E469 ,
+		 *     0xCFE478 , 0x72871B , 0x287968 , 0x1E5184 , 0x0E273F
+		 * ] ;
+		 * 
+		 * var n:uint = colors.length ;
+		 * 
+		 * for (var i:uint = 0 ; i<n ; i++ )
+		 * {
+		 *     var sprite:Sprite = new Particle() ;
+		 *     var co:Color = new Color( sprite ) ;
+		 *     co.setRGB( colors[i] ) ;
+		 *     container.addChild( sprite ) ;
+		 * }
+		 * 
+		 * var keyDown:Function = function( e:KeyboardEvent):void
+		 * {
+		 *     var code:Number = e.keyCode ;
+		 *     switch( code )
+		 *     {
+		 *         case Keyboard.UP :
+		 *         {
+		 *             container.childCount ++ ;
+		 *             container.radius += 10 ;
+		 *             break ;
+		 *         }
+		 *         case Keyboard.DOWN :
+		 *         {
+		 *             container.childCount -- ;
+		 *             container.radius -= 10 ;
+		 *             break ;
+		 *         }
+		 *         case Keyboard.SPACE :
+		 *         {
+		 *             var mc:Sprite = container.addChild( new Particle() ) ;
+		 *             var co:Color  = new Color( mc ) ;
+		 *             co.setRGB( Math.random() * 0xFFFFFF ) ;
+		 *             break ;
+		 *         }
+		 *         case Keyboard.LEFT:
+		 *         {
+		 *             container.startAngle -= 10 ;
+		 *             // container.align = Align.LEFT ;
+		 *             break ;
+		 *         }
+		 *         case Keyboard.RIGHT :
+		 *         {
+		 *             container.startAngle += 10 ;
+		 *             // container.align = Align.RIGHT ;
+		 *             break ;
+		 *         }
+		 *     }
+		 * }
+		 * 
+		 * stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
+		 * stage.scaleMode = StageScaleMode.NO_SCALE ;
+		 * }
+		 * @param id Indicates the id of the object.
+		 * @param isConfigurable This flag indicates if the IConfigurable object is register in the ConfigCollector.
+		 * @param name Indicates the instance name of the object.
 		 */
 		public function CircleContainer(id:* = null, isConfigurable:Boolean = false, name:String = null)
 		{
