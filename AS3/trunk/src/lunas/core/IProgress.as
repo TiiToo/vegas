@@ -24,13 +24,25 @@ package lunas.core
 {
 
 	/**
-	 * This interface defined the methods to implement a progress bar display component.
+	 * This interface defined the methods to implement a progress display component.
 	 * @author eKameleon
 	 */
-	public interface IProgressbar extends IBar, IProgress
+	public interface IProgress
 	{
 		
-		//
+		/**
+	 	 * Indicates the position of the progress component.
+	 	 */
+		function get position():Number ;
+		function set position( value:Number ):void ;
+	
+		/**
+		 * Sets the position value of the progress.
+		 * @param pos the position value of the progress component.
+	 	 * @param noEvent (optional) this flag disabled the events of this method if this argument is {@code true}
+	 	 * @param flag (optional) An optional boolean flag use in the method.
+	 	 */
+		function setPosition( value:Number, noEvent:Boolean=false , flag:Boolean=false ):void ;
 		
 	}
 
