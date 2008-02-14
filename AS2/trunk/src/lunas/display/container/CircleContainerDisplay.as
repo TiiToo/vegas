@@ -55,7 +55,8 @@ class lunas.display.container.CircleContainerDisplay extends SimpleContainerDisp
 	 *     0xCFE478 , 0x72871B , 0x287968 , 0x1E5184 , 0x0E273F
 	 * ] ;
 	 * 
-	 * for (var i:Number = 0 ; i<colors.length ; i++ )
+	 * var n:Number = colors.length ;
+	 * for (var i:Number = 0 ; i<n ; i++ )
 	 * {
 	 *     var mc:MovieClip = container.addChild( "particle" ) ; // "particle" the link id of the symbol in the library
 	 *     var co:Color = new Color( mc ) ;
@@ -121,7 +122,7 @@ class lunas.display.container.CircleContainerDisplay extends SimpleContainerDisp
 	public static var THETA:Number = Math.PI/4 ;	
 	
 	/**
-	 * (read-write) Determinates the align value of the pen.
+	 * (read-write) Determinates the align value of the container.
 	 */
 	public function get align():Number 
 	{
@@ -138,7 +139,7 @@ class lunas.display.container.CircleContainerDisplay extends SimpleContainerDisp
 	}	
 	
 	/**
-	 * Indicates the number of childs in this container (minimal value is 1).
+	 * Indicates the number of childs visible in this container (minimal value is 1).
 	 */
 	public function get childCount():Number 
 	{
@@ -269,8 +270,8 @@ class lunas.display.container.CircleContainerDisplay extends SimpleContainerDisp
 		for (var i:Number = 0 ; i<l ; i++) 
 		{
 			child        = a[i] ;
-			child[propX] = radius * Math.cos( _startAngle - (Math.PI / 2) + 2 * Math.PI / childCount * (i-1) )  ;
-			child[propY] = radius * Math.sin( _startAngle - (Math.PI / 2) + 2 * Math.PI / childCount * (i-1) )  ;
+			child[propX] = radius * Math.cos( _startAngle - Math.PI / 2 + i * 2 * Math.PI / childCount  )  ;
+			child[propY] = radius * Math.sin( _startAngle - Math.PI / 2 + i * 2 * Math.PI / childCount  )  ;
 		}
 	}
 	
