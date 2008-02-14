@@ -81,7 +81,10 @@ class pegas.draw.EasyPen extends AbstractPen
 		_align = (Align.validate(nAlign)) ? nAlign : Align.TOP_LEFT ;
 		if (!noDraw) draw() ;
 	}
-
+	
+	/**
+	 * @private
+	 */
 	private var _align:Number ;
 	
 }

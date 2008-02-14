@@ -351,5 +351,8 @@ class lunas.display.abstract.AbstractContainerDisplay extends AbstractComponentD
 	 */	
 	private var _model:ContainerModel ;
 	
+	/**
+	 * @private
+	 */
 	private static var _countChild:Number = 0 ;
 }

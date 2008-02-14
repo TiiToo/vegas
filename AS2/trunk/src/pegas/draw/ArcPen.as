@@ -182,7 +182,10 @@ class pegas.draw.ArcPen extends EasyPen
 				lineTo(ax, ay); // CHORD or other value
 			}
 		}
-		if (isEndFill) endFill() ;	
+		if (isEndFill) 
+		{
+			endFill() ;
+		}	
 	}
 
 	/**
@@ -271,15 +274,30 @@ class pegas.draw.ArcPen extends EasyPen
 	{
 		_startAngle = Trigo.degreesToRadians(n) ;
 	}
-
+	
+	/**
+	 * @private
+	 */
 	private var _angle:Number = 0 ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _angleMid:Number ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _nX:Number ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _nY:Number ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _startAngle:Number = 360 ;
 	
 }
