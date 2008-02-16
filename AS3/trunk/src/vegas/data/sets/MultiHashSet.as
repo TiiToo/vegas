@@ -103,7 +103,7 @@
 		/**
 		 * Checks whether the map contains the value specified .
 		 * @param o the object to search in this instance.
-		 * @return {@code true} if the MultiHashSet container the passed-in object.
+		 * @return <code>true</code> if the MultiHashSet container the passed-in object.
 		 */
 		public function contains(o:*):Boolean
 		{
@@ -128,7 +128,7 @@
 		 * Checks whether the map contains the value specified with the specified key.
 		 * @param key the specified key in the MultiHashSet to search the value.
 		 * @param value the object to search in this instance.
-		 * @return {@code true} if the MultiHashSet container the passed-in object.
+		 * @return <code>true</code> if the MultiHashSet container the passed-in object.
 	 	 */
 		public function containsByKey(key:*, value:*):Boolean
 		{
@@ -188,7 +188,7 @@
 		}
 
 		/**
-		 * This method always throws an {@code UnsupportedOperation} because this method is not supported by this Set.
+		 * This method always throws an <code>UnsupportedOperation</code> because this method is not supported by this Set.
 		 * @throw UnsupportedOperation the MultiHashSet instance does not support the indexOf() method.
 		 */		
 		public function indexOf(o:*, fromIndex:uint=0):int
@@ -198,7 +198,7 @@
 		}
 		
 		/**
-		 * This method always throws an {@code UnsupportedOperation} because this method is not supported by this Set.
+		 * This method always throws an <code>UnsupportedOperation</code> because this method is not supported by this Set.
 		 * @param o an object to insert in the MultiHashSet.
 		 * @return nothing (null)
 		 * @throw UnsupportedOperation the MultiHashSet instance does not support the insert() method.
@@ -211,7 +211,7 @@
 
 		/**
 		 * Adds the value to the Set associated with the specified key.
-		 * @return {@code true} if the value is inserted in the object.
+		 * @return <code>true</code> if the value is inserted in the object.
 		 */
 		public override function put(key:*, value:*):*
 		{

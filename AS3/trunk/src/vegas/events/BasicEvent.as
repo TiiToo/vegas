@@ -28,7 +28,7 @@ package vegas.events
 	import system.Reflection;	    
 
 	/**
-	 * {@code BasicEvent} is the basical event structure to work with {@link vegas.events.EventDispatcher}.
+	 * <code>BasicEvent</code> is the basical event structure to work with {@link vegas.events.EventDispatcher}.
 	 * <p><b>Example</b></p>
 	 * {@code var e:BasicEvent = new BasicEvent(type:String, target, context) ; } 
 	 * @author  eKameleon
@@ -38,7 +38,7 @@ package vegas.events
 	{
 
 		/**
-		 * Creates a new {@code BasicEvent} instance.
+		 * Creates a new <code>BasicEvent</code> instance.
 		 * {@code
 		 * var e:BasicEvent = new BasicEvent( type:String, [target:Object, [context:*, [bubbles:Boolean, [cancelable:Boolean, [time:Number]]]]]) ;
 	 	 * }

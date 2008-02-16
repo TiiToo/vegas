@@ -34,7 +34,7 @@ package andromeda.events
 	{
 		
 		/**
-		 * Creates a new {@code BasicEvent} instance.
+		 * Creates a new <code>BasicEvent</code> instance.
 		 * {@code
 		 * var e:BasicEvent = new BasicEvent( type:String, [target:Object, [context:*, [bubbles:Boolean, [cancelable:Boolean, [time:Number]]]]]) ;
 	 	 * }

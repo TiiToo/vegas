@@ -59,7 +59,7 @@ package vegas.util.comparators
 		/**
 		 * Creates a new NullComparator instance.
 		 * @param nonNullComparator the comparator to use when comparing two non-null objects.
-		 * @param nullsAreHigh a {@code true} value indicates that null should be compared as higher than a non-null object. A {@code false} value indicates that null should be compared as lower than a non-null object. 
+		 * @param nullsAreHigh a <code>true</code> value indicates that null should be compared as higher than a non-null object. A <code>false</code> value indicates that null should be compared as lower than a non-null object. 
 		 */
 		public function NullComparator( nonNullComparator:IComparator = null , nullsAreHigh:Boolean = false )
 		{

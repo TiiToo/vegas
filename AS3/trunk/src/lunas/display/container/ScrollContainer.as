@@ -190,7 +190,7 @@ package lunas.display.container
 		/**
 		 * Sets the scroll value of the container.
 		 * @param n the scroll value.
-		 * @param noEvent This optional flag disabled the scroll event notify in this method if it's {@code true}.
+		 * @param noEvent This optional flag disabled the scroll event notify in this method if it's <code>true</code>.
 		 */
 		public function setScroll(n:Number, noEvent:Boolean=false ):void  
 		{

@@ -30,7 +30,7 @@ package vegas.util
 	import vegas.util.ObjectUtil;
 	
     /**
- 	 * The {@code Copier} utility class is an all-static class with a method to returns a copy representation of an object.
+ 	 * The <code>Copier</code> utility class is an all-static class with a method to returns a copy representation of an object.
  	 * @author eKameleon
  	 * @see ICopyable
  	 */
@@ -38,7 +38,7 @@ package vegas.util
 	{
 
 		/**
-		 * Returns a deep copy of the specified object passed in argument. You can use a {@code ICopyable} instance or a native object.
+		 * Returns a deep copy of the specified object passed in argument. You can use a <code>ICopyable</code> instance or a native object.
 	 	 * <p><b>Example :</b></p>
 		 * {@code
 		 * import vegas.data.list.LinkedList ;

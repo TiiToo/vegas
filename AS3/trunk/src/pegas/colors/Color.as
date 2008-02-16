@@ -30,7 +30,7 @@ package pegas.colors
 	import vegas.core.CoreObject;	
 
 	/**
-	 * {@code BasicColor} extends the Color Object.
+	 * <code>BasicColor</code> extends the Color Object.
 	 * <p>
 	 * {@code 
 	 * import pegas.colors.BasicColor;

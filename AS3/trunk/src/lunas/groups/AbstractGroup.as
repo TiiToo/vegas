@@ -51,8 +51,8 @@ package lunas.groups
 		public var groups:Map ;
 		
 		/**
-		 * Returns {@code true} if the specified group name exist.
-		 * @return {@code true} if the specified group name exist.
+		 * Returns <code>true</code> if the specified group name exist.
+		 * @return <code>true</code> if the specified group name exist.
 		 */
 		public function contains( groupName:String ):Boolean
 		{
@@ -99,8 +99,8 @@ package lunas.groups
 		}
 			
 		/**
-	 	 * Returns the {@code Map} representation of the groups.
-	 	 * @return the {@code Map} representation of the groups.
+	 	 * Returns the <code>Map</code> representation of the groups.
+	 	 * @return the <code>Map</code> representation of the groups.
 	 	 */
 		public function toMap():Map
 		{

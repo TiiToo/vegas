@@ -75,17 +75,17 @@ package pegas.geom
 		}
 
 		/**
-		 * Determinates the p {@code Vector3} of the Ray object.
+		 * Determinates the p <code>Vector3</code> of the Ray object.
 		 */
 		public var p:Vector3 ;
 		
 		/**
-		 * Determinates the q {@code Vector3} of the Ray object.
+		 * Determinates the q <code>Vector3</code> of the Ray object.
 		 */
 		public var q:Vector3 ;	
 		
 		/**
-		 * Determinates the v {@code Vector3} of the Ray object.
+		 * Determinates the v <code>Vector3</code> of the Ray object.
 		 */	
 		public var v:Vector3 ;
 		
@@ -113,7 +113,7 @@ package pegas.geom
 
 		/**
 		 * Compares the specified object with this object for equality.
-		 * @return {@code true} if the the specified object is equal with this object.
+		 * @return <code>true</code> if the the specified object is equal with this object.
 		 */
 		public function equals( o:* ):Boolean 
 		{

@@ -27,7 +27,7 @@ package andromeda.process
 	import vegas.data.iterator.Iterator;	
 
 	/**
-     * This {@code IAction} object register {@code IAction} objects in a batch process.
+     * This <code>IAction</code> object register <code>IAction</code> objects in a batch process.
      * <p><b>Example :</b></p>
      * {@code
      * import pegas.events.ActionEvent ;
@@ -80,7 +80,7 @@ package andromeda.process
     	/**
     	 * Creates a new BatchProcess instance.
     	 * @param bGlobal the flag to use a global event flow or a local event flow.
-    	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+    	 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
     	 */
     	function BatchProcess( bGlobal:Boolean = false , sChannel:String = null ) 
     	{
@@ -219,7 +219,7 @@ package andromeda.process
 		}
 
 	    /**
-	     * Removes an {@code Action} object in the internal batch collection.
+	     * Removes an <code>Action</code> object in the internal batch collection.
 	     */
 	    public function removeAction( action:Action ):void
 	    {

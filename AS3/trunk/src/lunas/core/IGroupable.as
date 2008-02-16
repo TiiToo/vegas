@@ -32,7 +32,7 @@ package lunas.core
 		
 		/**
 		 * Indicates with a boolean if this object is grouped.
-		 * @return {@code true} if this object is grouped.
+		 * @return <code>true</code> if this object is grouped.
 		 */
 		function get group():Boolean ; 
 		function set group( b:Boolean ):void ; 

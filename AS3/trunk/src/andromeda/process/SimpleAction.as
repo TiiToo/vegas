@@ -27,7 +27,7 @@ package andromeda.process
 	import vegas.events.AbstractCoreEventDispatcher;	
 
 	/**
-     * A simple representation of the {@code IAction} interface.
+     * A simple representation of the <code>IAction</code> interface.
      * @author eKameleon
      */
 	public class SimpleAction extends AbstractCoreEventDispatcher implements IAction
@@ -36,7 +36,7 @@ package andromeda.process
 	    /**
     	 * Creates a new SimpleAction instance.
     	 * @param bGlobal the flag to use a global event flow or a local event flow.
-    	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+    	 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
     	 */
     	function SimpleAction( bGlobal:Boolean = false , sChannel:String = null ) 
     	{
@@ -45,8 +45,8 @@ package andromeda.process
 	    }
 
 	    /**
-	     * (read-only) Returns {@code true} if the process is in progress.
-	     * @return {@code true} if the process is in progress.
+	     * (read-only) Returns <code>true</code> if the process is in progress.
+	     * @return <code>true</code> if the process is in progress.
 	     */
 		public function get running():Boolean 
 		{
@@ -81,8 +81,8 @@ package andromeda.process
 		}
 		
 		/**
-	     * Returns {@code true} if the process is in progress.
-	     * @return {@code true} if the process is in progress.
+	     * Returns <code>true</code> if the process is in progress.
+	     * @return <code>true</code> if the process is in progress.
 	     */
 		public function getRunning():Boolean 
 		{

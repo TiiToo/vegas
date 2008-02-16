@@ -33,7 +33,7 @@ package andromeda.ioc.factory
 		/**
 	 	 * This method defined if the object is a singleton or a prototype.
 		 * @param The id name of the object.
-		 * @return {@code true} if the object is a singleton or else if the object is a prototype. 
+		 * @return <code>true</code> if the object is a singleton or else if the object is a prototype. 
 	 	 */		
 		function isSingleton(name:String):Boolean ;
 				
@@ -45,9 +45,9 @@ package andromeda.ioc.factory
 		function getObject( name:String ):* ;
 	
 		/**
-		 * Returns {@code true} if the referencial contains the specified object.
+		 * Returns <code>true</code> if the referencial contains the specified object.
 		 * @param The id name of the object to search.
-	 	 * @return {@code true} if the referencial contains the specified object.
+	 	 * @return <code>true</code> if the referencial contains the specified object.
 		 */		
 		function containsObject(name:String):Boolean;
 		

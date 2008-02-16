@@ -32,8 +32,8 @@ package mvc.vo
         public var url:String ;
     
         /**
-          * Returns the {@code String} representation of this object.
-          * @return the {@code String} representation of this object.
+          * Returns the <code>String</code> representation of this object.
+          * @return the <code>String</code> representation of this object.
           */
         public override function toString():String
         {

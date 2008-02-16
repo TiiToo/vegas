@@ -79,7 +79,7 @@ package asgard.process
 		 * Creates a new ActionSoundLoader instance.
 		 * @param sound The Sound object to load.
     	 * @param bGlobal the flag to use a global event flow or a local event flow.
-    	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+    	 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
 		 */
 		public function ActionSoundLoader( sound:CoreSound, bGlobal:Boolean = false, sChannel:String = null )
 		{

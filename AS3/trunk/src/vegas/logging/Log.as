@@ -36,7 +36,7 @@ package vegas.logging
     {
 
         /**
-         * const The default categoty of the {@code ILogger} instances returns with the {@code getLogger} method.
+         * const The default categoty of the <code>ILogger</code> instances returns with the <code>getLogger</code> method.
          */
         public static var DEFAULT_CATEGORY:String = "" ;
 

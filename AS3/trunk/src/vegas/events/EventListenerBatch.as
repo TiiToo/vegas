@@ -31,7 +31,7 @@ package vegas.events
 	import vegas.util.Copier;
 	
 	/**
- 	 * It handles several {@code EventListener} as one {@code EventListener}.
+ 	 * It handles several <code>EventListener</code> as one <code>EventListener</code>.
 	 * <p><b>Example : </b></p>
 	 * {@code
 	 * 	

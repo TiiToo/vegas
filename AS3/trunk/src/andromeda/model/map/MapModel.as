@@ -44,7 +44,7 @@ package andromeda.model.map
 		 * Creates a new MapModel instance.
 		 * @param id the id of this model.
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
-		 * @param sChannel (optional) the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+		 * @param sChannel (optional) the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
 		 */	
         public function MapModel(id:* = null, bGlobal:Boolean = false, sChannel:String = null)
         {
@@ -55,7 +55,7 @@ package andromeda.model.map
 		/**
 		 * Inserts a value object in the model.
 		 * @throws IllegalArgumentError if the argument of this method is 'null' or 'undefined'. 
-		 * @throws Warning if the {@code IValueObject} passed in argument is already register in the model.
+		 * @throws Warning if the <code>IValueObject</code> passed in argument is already register in the model.
 	 	 */
 		public function addVO( vo:IValueObject ):void
 		{
@@ -85,8 +85,8 @@ package andromeda.model.map
 		}
         
 		/**
-		 * Returns {@code true} if the model contains the specified IValueObject.
-		 * @return {@code true} if the model contains the specified IValueObject.
+		 * Returns <code>true</code> if the model contains the specified IValueObject.
+		 * @return <code>true</code> if the model contains the specified IValueObject.
 		 */
 		public function contains( vo:IValueObject ):Boolean
 		{
@@ -94,8 +94,8 @@ package andromeda.model.map
 		}
 	    
 		/**
-	 	 * Returns {@code true} if the model contains the specified id key in argument.
-	 	 * @return {@code true} if the model contains the specified id key in argument
+	 	 * Returns <code>true</code> if the model contains the specified id key in argument.
+	 	 * @return <code>true</code> if the model contains the specified id key in argument
 	 	 */
 		public function containsByID( id:* ):Boolean
 		{
@@ -103,8 +103,8 @@ package andromeda.model.map
 		}
         
 		/**
-		 * Returns {@code true} if the model contains the specified attribute value.
-		 * @return {@code true} if the model contains the specified id key in argument
+		 * Returns <code>true</code> if the model contains the specified attribute value.
+		 * @return <code>true</code> if the model contains the specified id key in argument
 		 */
 		public function containsByProperty( propName:String , value:* ):Boolean
 		{
@@ -132,8 +132,8 @@ package andromeda.model.map
 		}
         
 		/**
-		 * Returns the event name use in the {@code addVO} method.
-		 * @return the event name use in the {@code addVO} method.
+		 * Returns the event name use in the <code>addVO</code> method.
+		 * @return the event name use in the <code>addVO</code> method.
 		 */
         public function getEventTypeADD():String
         {
@@ -141,8 +141,8 @@ package andromeda.model.map
         }
 
 		/**
-		 * Returns the event name use in the {@code removeVO} method.
-		 * @return the event name use in the {@code removeVO} method.
+		 * Returns the event name use in the <code>removeVO</code> method.
+		 * @return the event name use in the <code>removeVO</code> method.
 		 */
         public function getEventTypeREMOVE():String
         {
@@ -150,8 +150,8 @@ package andromeda.model.map
 		}
         
 		/**
-		 * Returns the event name use in the {@code updateVO} method.
-		 * @return the event name use in the {@code updateVO} method.
+		 * Returns the event name use in the <code>updateVO</code> method.
+		 * @return the event name use in the <code>updateVO</code> method.
 	     */
 		public function getEventTypeUPDATE():String
 		{
@@ -198,8 +198,8 @@ package andromeda.model.map
 		}
         
 		/**
-		 * Returns {@code true} if the model is empty.
-		 * @return {@code true} if the model is empty.
+		 * Returns <code>true</code> if the model is empty.
+		 * @return <code>true</code> if the model is empty.
 		 */
 		public function isEmpty():Boolean 
 		{
@@ -216,7 +216,7 @@ package andromeda.model.map
         }
 
 	    /**
-	     * Notify a {@code ModelObjectEvent} when a {@code IValueObject} is inserted in the model.
+	     * Notify a <code>ModelObjectEvent</code> when a <code>IValueObject</code> is inserted in the model.
 	     */ 
 	    public function notifyAdd( vo:IValueObject ):void
 	    {
@@ -228,7 +228,7 @@ package andromeda.model.map
     	}
 
     	/**
-	     * Notify a {@code ModelObjectEvent} when a {@code IValueObject} is removed in the model.
+	     * Notify a <code>ModelObjectEvent</code> when a <code>IValueObject</code> is removed in the model.
 	     */ 
     	public function notifyRemove( vo:IValueObject ):void
     	{
@@ -240,7 +240,7 @@ package andromeda.model.map
     	}
 		
     	/**
-     	 * Notify a {@code ModelObjectEvent} when a {@code IValueObject} is updated in the model.
+     	 * Notify a <code>ModelObjectEvent</code> when a <code>IValueObject</code> is updated in the model.
      	 */ 
 		public function notifyUpdate( vo:IValueObject ):void
 		{
@@ -273,7 +273,7 @@ package andromeda.model.map
 		}
 	
 		/**
-	 	 * Sets the event name use in the {@code addVO} method.
+	 	 * Sets the event name use in the <code>addVO</code> method.
 	 	 */
 		public function setEventTypeADD( type:String ):void
 		{
@@ -281,7 +281,7 @@ package andromeda.model.map
 		}
 	
 		/**
-	 	 * Sets the event name use in the {@code removeVO} method.
+	 	 * Sets the event name use in the <code>removeVO</code> method.
 	 	 */
 		public function setEventTypeREMOVE( type:String ):void
 		{
@@ -289,7 +289,7 @@ package andromeda.model.map
 		}
 
 		/**
-		 * Sets the event name use in the {@code addVO} method.
+		 * Sets the event name use in the <code>addVO</code> method.
 		 */
 		public function setEventTypeUPDATE( type:String ):void
 		{

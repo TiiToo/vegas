@@ -208,7 +208,7 @@ package asgard.net.remoting
 		 * @param serviceName the name of the service in the server.
 	 	 * @param responder (optional) The RemotingServiceResponder use to receive data from the server.
 	 	 * @param bGlobal (optional) The flag to use a global event flow or a local event flow.
-	     * @param sChannel (optional) The name of the global event flow if the {@code bGlobal} argument is {@code true}.
+	     * @param sChannel (optional) The name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
 		 */
 		public function RemotingService( gatewayUrl:String=null , serviceName:String=null , responder:Responder=null , bGlobal:Boolean = false , sChannel:String = null )
 		{
@@ -559,7 +559,7 @@ package asgard.net.remoting
     	/**
     	 * Set timeout interval duration.
     	 * @param time the delay value of the timeout event notification.
-    	 * @param useSeconds Indicates if the time value is in seconds {@code true} or milliseconds {@code false}.
+    	 * @param useSeconds Indicates if the time value is in seconds <code>true</code> or milliseconds <code>false</code>.
     	 */
 		public function setDelay( time:uint , useSeconds:Boolean=false):void 
 		{
@@ -601,7 +601,7 @@ package asgard.net.remoting
 		
 		/**
     	 * Sets the proxy policy of this RemotingService. 
-    	 * If the passed-in argument is {@code true} the RemotingService instances uses proxy to resolve all methods.
+    	 * If the passed-in argument is <code>true</code> the RemotingService instances uses proxy to resolve all methods.
 	     */
 		public function setIsProxy(b:Boolean):void 
 		{
@@ -666,8 +666,8 @@ package asgard.net.remoting
 		}
 	
 	    /**
-	     * Returns the {@code String} representation of this object.
-	     * @return the {@code String} representation of this object.
+	     * Returns the <code>String</code> representation of this object.
+	     * @return the <code>String</code> representation of this object.
 	     */
 		public override function toString():String 
 		{

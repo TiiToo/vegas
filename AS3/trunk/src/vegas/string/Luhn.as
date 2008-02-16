@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -42,8 +42,8 @@ package vegas.string
 	{
 
 	    /**
-    	 * Returns {@code true} if the expression in argument is a valid Luhn value.
-    	 * @return {@code true} if the expression in argument is a valid Luhn value.
+    	 * Returns <code>true</code> if the expression in argument is a valid Luhn value.
+    	 * @return <code>true</code> if the expression in argument is a valid Luhn value.
     	 */
 		public static function isValid(str:String):Boolean 
 		{	

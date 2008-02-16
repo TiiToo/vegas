@@ -57,7 +57,7 @@ package pegas.transitions
 		/**
 		 * Creates a new Motion instance.
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
-		 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+		 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
 		 */
 		public function TweenLite( obj:*=null , prop:String=null , easing:Function=null , begin:Number=NaN  , finish:Number=NaN , duration:Number=0 , useSeconds:Boolean=false , auto:Boolean=false , bGlobal:Boolean = false, sChannel:String = null )
 		{

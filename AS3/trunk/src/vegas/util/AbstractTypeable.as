@@ -32,7 +32,7 @@ package vegas.util
 	import vegas.errors.TypeMismatchError;	
 
 	/**
-     * This abstract class is used to create concrete {@code ITypeable} implementations.
+     * This abstract class is used to create concrete <code>ITypeable</code> implementations.
      * @author eKameleon
      * @see ITypeable
      * @see IValidator
@@ -74,8 +74,8 @@ package vegas.util
         }
         
        	/**
-	     * Returns {@code true} if the IValidator object validate the value.
-    	 * @return {@code true} is this specific value is valid.
+	     * Returns <code>true</code> if the IValidator object validate the value.
+    	 * @return <code>true</code> is this specific value is valid.
 	     */
         public function supports(value:*):Boolean
         {

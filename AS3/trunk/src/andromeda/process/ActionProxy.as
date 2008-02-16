@@ -25,7 +25,7 @@ package andromeda.process
 	import vegas.events.Delegate;    
 
 	/**
-     * This {@code IAction} object run a proxy method.
+     * This <code>IAction</code> object run a proxy method.
      * @author eKameleon
      * @see vegas.events.Delegate
      */
@@ -38,7 +38,7 @@ package andromeda.process
     	 * @param method The method invoqued in this process.
     	 * @param args The Arguments injected in the method.
     	 * @param bGlobal the flag to use a global event flow or a local event flow.
-    	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+    	 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
     	 */
     	function ActionProxy( scope:*, method:Function , args:Array=null , bGlobal:Boolean = false , sChannel:String = null )
     	{

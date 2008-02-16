@@ -88,8 +88,8 @@ package asgard.display
 		}
 	
 		/**
-	 	 * Returns the {@code String} representation of this object.
-	 	 * @return the {@code String} representation of this object.
+	 	 * Returns the <code>String</code> representation of this object.
+	 	 * @return the <code>String</code> representation of this object.
 	 	 */
 		public function set id( id:* ):void
 		{
@@ -121,8 +121,8 @@ package asgard.display
 		}
 
 		/**
-		 * Returns the internal {@code ILogger} reference of this {@code ILogable} object.
-		 * @return the internal {@code ILogger} reference of this {@code ILogable} object.
+		 * Returns the internal <code>ILogger</code> reference of this <code>ILogable</code> object.
+		 * @return the internal <code>ILogger</code> reference of this <code>ILogable</code> object.
 		 */
 		public function getLogger():ILogger
 		{
@@ -143,8 +143,8 @@ package asgard.display
 		}
 
     	/**
-	     * Returns {@code true} if the object is locked.
-	     * @return {@code true} if the object is locked.
+	     * Returns <code>true</code> if the object is locked.
+	     * @return <code>true</code> if the object is locked.
 	     */
 	    public function isLocked():Boolean 
 	    {
@@ -172,7 +172,7 @@ package asgard.display
     	}
 		
 		/**
-		 * Sets the internal {@code ILogger} reference of this {@code ILogable} object.
+		 * Sets the internal <code>ILogger</code> reference of this <code>ILogable</code> object.
 		 */
 		public function setLogger( log:ILogger=null ):void 
 		{
@@ -196,8 +196,8 @@ package asgard.display
         }
         
 		/**
-	 	 * Returns the {@code String} representation of this object.
-	 	 * @return the {@code String} representation of this object.
+	 	 * Returns the <code>String</code> representation of this object.
+	 	 * @return the <code>String</code> representation of this object.
 	 	 */
 		public override function toString():String
 		{

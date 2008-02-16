@@ -70,8 +70,8 @@ package vegas.errors
 		}
 	    
 		/**
-		 * Returns the internal {@code ILogger} reference of this {@code ILogable} object.
-		 * @return the internal {@code ILogger} reference of this {@code ILogable} object.
+		 * Returns the internal <code>ILogger</code> reference of this <code>ILogable</code> object.
+		 * @return the internal <code>ILogger</code> reference of this <code>ILogable</code> object.
 		 */
 		public function getLogger():ILogger
 	    {
@@ -104,7 +104,7 @@ package vegas.errors
 		}
 
 		/**
-		 * Sets the internal {@code ILogger} reference of this {@code ILogable} object.
+		 * Sets the internal <code>ILogger</code> reference of this <code>ILogable</code> object.
 		 */
 		public function setLogger( log:ILogger=null ):void 
 		{

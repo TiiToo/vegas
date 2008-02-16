@@ -66,8 +66,8 @@ package vegas.util.comparators
 		 * <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
 	 	 * <li> 0 if o1 and o2 are equal.</li>
 	  	 * </p>
-		 * @throws NullPointerError when the {@code o1} object is {@code null} or {@code undefined}.
-		 * @throws ClassCastError it the {@code o1} object is not a {@code IComparable} object.
+		 * @throws NullPointerError when the <code>o1</code> object is <code>null</code> or <code>undefined</code>.
+		 * @throws ClassCastError it the <code>o1</code> object is not a <code>IComparable</code> object.
 		 */
 		public function compare(o1:*, o2:*):int
 		{

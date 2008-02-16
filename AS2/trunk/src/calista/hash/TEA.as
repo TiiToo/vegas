@@ -145,6 +145,7 @@ class calista.hash.TEA
 	
 	/**
 	 * Converts an array of chars to array of longs, each containing 4 chars.
+	 * @private
 	 */
 	private static function charsToLongs(chars:Array):Array 
 	{  
@@ -159,6 +160,7 @@ class calista.hash.TEA
 
 	/**
 	 * Converts the char passed-in value in string hexadecimal string representation.
+	 * @private
 	 */
 	private static function charsToHex(chars:Array):String 
 	{
@@ -175,6 +177,7 @@ class calista.hash.TEA
 	/**
 	 * Converts an array of chars in a string representation.
 	 * @return a string representation of the passed-in array of chars.
+	 * @private
 	 */
 	private static function charsToStr(chars:Array):String 
 	{
@@ -189,6 +192,7 @@ class calista.hash.TEA
 	
 	/**
 	 * Converts the hexadecimal string passed-in argument in array of chars.
+	 * @private
 	 */
 	private static function hexToChars(hex:String):Array 
 	{
@@ -202,6 +206,7 @@ class calista.hash.TEA
 
 	/**
 	 * Converts an array of longs back to an array of chars.
+	 * @private
 	 */
 	private static function longsToChars( longs:Array ):Array 
 	{
@@ -214,16 +219,17 @@ class calista.hash.TEA
 		return ar;
 	}
 
+	/**
+	 * @private
+	 */
 	private static function strToChars(str:String):Array 
 	{
 		var codes:Array = new Array();
-		for (var i:Number = 0; i<str.length; i++) {
+		for (var i:Number = 0; i<str.length; i++) 
+		{
 			codes.push(str.charCodeAt(i));
 		}
 		return codes;
 	}
-
-
-
 	
 }

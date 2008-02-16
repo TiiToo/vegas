@@ -36,7 +36,7 @@ package vegas.core
 		 * @usage   var isEquals:Boolean = HashCode.equals(o1, o2) ;
 		 * @param   o1 the first value to compare.
 		 * @param   o2 the second value to compare.
-		 * @return {@code true} of the two object are equals.  
+		 * @return <code>true</code> of the two object are equals.  
 		 */
 		public static function equals(o1:*, o2:*):Boolean 
 		{

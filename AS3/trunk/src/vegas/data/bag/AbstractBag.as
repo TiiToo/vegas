@@ -41,7 +41,7 @@ package vegas.data.bag
 	import vegas.util.Serializer;	
 
 	/**
-	 * This class provides a skeletal implementation of the {@code Bag} interface, to minimize the effort required to implement this interface.
+	 * This class provides a skeletal implementation of the <code>Bag</code> interface, to minimize the effort required to implement this interface.
 	 * <p>To implement a bag, the programmer needs only to extend this class and provide implementations for the cursor, insert and size methods. For supporting the removal of elements, the cursor returned by the cursor method must additionally implement its remove method.</p>
 	 * @author eKameleon
 	 */
@@ -80,8 +80,8 @@ package vegas.data.bag
 		}
 
 		/**
-		 * Returns {@code true} if this bag contains the object passed in argument.
-		 * @return {@code true} if this bag contains the object passed in argument.
+		 * Returns <code>true</code> if this bag contains the object passed in argument.
+		 * @return <code>true</code> if this bag contains the object passed in argument.
 		 */
 		public function contains(o:*):Boolean 
 		{
@@ -89,8 +89,8 @@ package vegas.data.bag
 		}
      
 		/**
-		 * Returns {@code true} if thie bag contains all object in the passed collection in argument.
-		 * @return {@code true} if thie bag contains all object in the passed collection in argument.
+		 * Returns <code>true</code> if thie bag contains all object in the passed collection in argument.
+		 * @return <code>true</code> if thie bag contains all object in the passed collection in argument.
 		 */
 	    public function containsAll(c:Collection):Boolean 
 	    {
@@ -98,14 +98,15 @@ package vegas.data.bag
 	    }
 
 		/**
-		 * Returns {@code true} if thie bag contains all object in the passed bag in argument.
-		 * @return {@code true} if thie bag contains all object in the passed bag in argument.
+		 * Returns <code>true</code> if thie bag contains all object in the passed bag in argument.
+		 * @return <code>true</code> if thie bag contains all object in the passed bag in argument.
 		 */     
 		public function containsAllInBag(b:Bag):Boolean 
 		{
 			var result:Boolean = true ;
 			var i:Iterator = b.uniqueSet().iterator() ;
-	        while (i.hasNext()) {
+	        while (i.hasNext()) 
+	        {
 				var current:* = i.next();
 	            var contains:Boolean = getCount(current) >= b.getCount(current) ;
 	            result = result && contains ;
@@ -133,7 +134,8 @@ package vegas.data.bag
 
 		/**
 		 * Returns the count of the specified object passed in argument.
-	 	*/
+		 * @return the count of the specified object passed in argument.
+	 	 */
 		public function getCount(o:*):uint
 		{
         	var result:uint = 0;
@@ -206,8 +208,8 @@ package vegas.data.bag
     	}
 
 		/**
-		 * Returns {@code true} if the bag is empty.
-		 * @return {@code true} if the bag is empty.
+		 * Returns <code>true</code> if the bag is empty.
+		 * @return <code>true</code> if the bag is empty.
 		 */
 		public function isEmpty():Boolean 
 		{
@@ -354,12 +356,18 @@ package vegas.data.bag
     		return new HashSet(_map.getKeys()) ;
     	}
 
+		/**
+		 * @private
+		 */
 		protected function _calcTotalSize():uint
 		{
     	    _total = _extractList().size() ;
 	        return _total ;
 	    }
 
+		/**
+		 * @private
+		 */
 		protected function _extractList():List 
 		{
         	var result:List = new ArrayList() ;
@@ -375,12 +383,18 @@ package vegas.data.bag
 	        }
 	        return result ;
 	    }
-	
+
+		/**
+		 * @private
+		 */
 		protected function _getMap():Map 
 		{
 			return _map ;
 		}
-	
+
+		/**
+		 * @private
+		 */	
 		protected function _setMap(m:Map):void
 		{
 			if (m == null || m.isEmpty() == false) 
@@ -390,8 +404,19 @@ package vegas.data.bag
 	        _map = m ;
 		}
 
+		/**
+		 * @private
+		 */
 		private var _map:Map = null ;	
+		
+		/**
+		 * @private
+		 */		
 		private var _mods:uint = 0 ;
+		
+		/**
+		 * @private
+		 */		
 		private var _total:uint = 0 ;
 
 	}

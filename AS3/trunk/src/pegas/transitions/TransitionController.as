@@ -43,7 +43,7 @@ package pegas.transitions
 		 * var controller:TransitionController = new TransitionController() ;
 		 * }
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
-		 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+		 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
 		 */
 		public function TransitionController(bGlobal:Boolean = false, sChannel:String = null)
 		{
@@ -52,9 +52,9 @@ package pegas.transitions
 		}
 		
 		/**
-		 * Returns {@code true} if the {@code id} passed in argument is registered in the TransitionController.
-		 * @param id the {@code id} of the ITransition object mapped in the TransitionController.
-		 * @return {@code true} if the {@code id} passed in argument is registered in the TransitionController.
+		 * Returns <code>true</code> if the <code>id</code> passed in argument is registered in the TransitionController.
+		 * @param id the <code>id</code> of the ITransition object mapped in the TransitionController.
+		 * @return <code>true</code> if the <code>id</code> passed in argument is registered in the TransitionController.
 		 */
 		public function contains( id:String ):Boolean 
 		{
@@ -62,9 +62,9 @@ package pegas.transitions
 		}
 			
 		/**
-		 * Returns {@code true} if the {@code Transition} passed in argument is registered in the TransitionController.
-		 * @param transition the {@code Transition} reference to search in the TransitionController.
-		 * @return {@code true} if the {@code Transition} passed in argument is registered in the TransitionController.
+		 * Returns <code>true</code> if the <code>Transition</code> passed in argument is registered in the TransitionController.
+		 * @param transition the <code>Transition</code> reference to search in the TransitionController.
+		 * @return <code>true</code> if the <code>Transition</code> passed in argument is registered in the TransitionController.
 	 	 */
 		public function containsTransition( transition:ITransition ):Boolean 
 		{
@@ -85,8 +85,8 @@ package pegas.transitions
 		}
 		
 		/**
-		 * Returns a ITransition reference register in the TransitionController with the specified {@code id} passed in argument.
-	 	 * @param  id the {@code id} of the ITransition object mapped in the TransitionController.
+		 * Returns a ITransition reference register in the TransitionController with the specified <code>id</code> passed in argument.
+	 	 * @param  id the <code>id</code> of the ITransition object mapped in the TransitionController.
 		 * @return the ITransition object mapped in the TransitionController.  
 		 */
 		public function getTransition( id:* ):ITransition 
@@ -142,7 +142,7 @@ package pegas.transitions
 		 * Run the specified Transition.
 		 * @param id the id of the Transition to be run.
 		 * @throws IllegalArgumentError if the {@param id} passed in argument isn't register in this TransitionCntroller
-		 * @throws IllegalArgumentError if the {@code id} passed in argument is 'null' or 'undefined'.
+		 * @throws IllegalArgumentError if the <code>id</code> passed in argument is 'null' or 'undefined'.
 		 */
 		public function run( id:String ):void
 		{

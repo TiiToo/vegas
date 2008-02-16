@@ -26,7 +26,7 @@ package asgard.date
 	/**
 	 * This class contains all tools to creates a calendar.
 	 * <p><b>Example :</b></p>
-	 * {@code
+	 * <code>
 	 * import asgard.date.Calendar ;
 	 * 
 	 * var c1:Calendar = new Calendar(2005, 2, 15) ;
@@ -55,7 +55,7 @@ package asgard.date
 	 * 
 	 * var fc:Array = Calendar.getFullMonthCalendar(2005, 11) ;
 	 * trace ("> full calendar 2005/12 : " + fc) ;
-	 * }
+	 * </code>
  	 * @author eKameleon
 	 */
 	public class Calendar
@@ -131,7 +131,7 @@ package asgard.date
 		 * @param date The Date object to perform addition on.
 		 * @param field The this field constant to be used for performing addition.
 		 * @param amount The number of units (measured in the field constant) to add to the date.
-		 * @return the new {@code Date} object.
+		 * @return the new <code>Date</code> object.
 		 */
 		public static function add( date:Date = null , field:String=null , amount:Number=0 ):Date 
 		{
@@ -217,7 +217,7 @@ package asgard.date
 		 * trace ("# d2 after d1  : " + Calendar.after  ( d2 , d1 ) ) ; // true
 		 * trace ("# d1 before d2 : " + Calendar.before ( d1 , d2 ) ) ; // true
  		 * }
-		 * @return {@code true} if the current Date object is after the time of specified Date object.
+		 * @return <code>true</code> if the current Date object is after the time of specified Date object.
 		 */
 		public static function after( currentDate:Date = null , date:Date = null ):Boolean 
 		{
@@ -227,8 +227,8 @@ package asgard.date
 		}
 		
 		/**
-		 * Returns {@code true} if the current time of this Calendar is before the time of Calendar when; false otherwise.
-		 * @return {@code true} if the current time of this Calendar is before the time of Calendar when; false otherwise. 
+		 * Returns <code>true</code> if the current time of this Calendar is before the time of Calendar when; false otherwise.
+		 * @return <code>true</code> if the current time of this Calendar is before the time of Calendar when; false otherwise. 
 		 */
 		public static function before( currentDate:Date = null , date:Date = null ):Boolean 
 		{
@@ -239,7 +239,7 @@ package asgard.date
 
 		/**
 		 * Format the current Calendar date.
-		 * @param pattern The {@code String} representation of the format pattern.
+		 * @param pattern The <code>String</code> representation of the format pattern.
 		 * @return the format string representation of the current Calendar date.
 		 */
 		public static function format( date:Date = null  , pattern:String="" ):String 
@@ -259,7 +259,7 @@ package asgard.date
 		
 		/**
 		 * Returns the numbers of days in a specified month.
-		 * @param date The specified {@code Date} object.
+		 * @param date The specified <code>Date</code> object.
 		 * @return the numbers of days in a specified month.
 		 */
 		public static function getDaysInMonth( date:Date = null ):Number 
@@ -291,8 +291,8 @@ package asgard.date
 		
 		/**
 		 * Returns the first day in the specified month.
-		 * @param date The specified {@code Date} object of this method. 
-		 * @param nameFlag The first day return value is a Number if the argument is {@code false} or the name of the day with a string representation if the flag is {@code true}.
+		 * @param date The specified <code>Date</code> object of this method. 
+		 * @param nameFlag The first day return value is a Number if the argument is <code>false</code> or the name of the day with a string representation if the flag is <code>true</code>.
 		 * @return the first day in the specified month.
 		 */
 		public static function getFirstDay( date:Date = null , nameFlag:Boolean=false ):* 
@@ -310,7 +310,7 @@ package asgard.date
 		 * var ar:Array = Calendar.getFullMonthCalendar( new Date(2007,03) , 1 ) ;
 		 * trace(ar) ;
 		 * }
-	 	 * @param date (optional) The specified {@code Date} to return the full month calendar. The default value is the current {@code Date} object.
+	 	 * @param date (optional) The specified <code>Date</code> to return the full month calendar. The default value is the current <code>Date</code> object.
 		 * @param offset the day offset value between 0 and 6 to fill the calendar. The default value is 0 (Sunday). 
 		 * @return an array representation of a full month.
 		 */
@@ -356,8 +356,8 @@ package asgard.date
 		}
 		
 		/**
-		 * Returns the {@code Date} of the next month of the specified {@code Date} object.
-		 * @return the {@code Data} of the next month of the specified {@code Date} object.
+		 * Returns the <code>Date</code> of the next month of the specified <code>Date</code> object.
+		 * @return the <code>Data</code> of the next month of the specified <code>Date</code> object.
 		 */
 		public static function getNextMonth( date:Date = null ):Date
 		{
@@ -376,8 +376,8 @@ package asgard.date
 		}
 		
 		/**
-		 * Returns the {@code Date} of the previous month of the specified {@code Date} object.
-		 * @return the {@code Date} of the previous month of the specified {@code Date} object.
+		 * Returns the <code>Date</code> of the previous month of the specified <code>Date</code> object.
+		 * @return the <code>Date</code> of the previous month of the specified <code>Date</code> object.
 		 */
 		public static function getPreviousMonth( date:Date = null  ):Date
 		{
@@ -449,8 +449,8 @@ package asgard.date
 
 
 		/**
-		 * Returns {@code true} if the current or specified {@code Date} if the last day in the current or specified month.
-		 * @return {@code true} if the current or specified {@code Date} if the last day in the current or specified month.
+		 * Returns <code>true</code> if the current or specified <code>Date</code> if the last day in the current or specified month.
+		 * @return <code>true</code> if the current or specified <code>Date</code> if the last day in the current or specified month.
 		 */
 		public static function isEndOfMonth( date:Date = null ):Boolean
 		{
@@ -464,7 +464,7 @@ package asgard.date
 	 	 * @param date The Date object to perform subtraction on
 		 * @param field	The this field constant to be used for performing subtraction.
 		 * @param amount The number of units (measured in the field constant) to subtract from the date.
-		 * @return the new {@code Calendar} object.
+		 * @return the new <code>Calendar</code> object.
 		 */
 		public static function subtract(date:Date, field:String, amount:Number):Date 
 		{
@@ -472,13 +472,13 @@ package asgard.date
 		}
 
 		/**
-		 * Returns the Date reference of the "tomorrow" {@code Date} object of the specified {@code Date} in argument.
+		 * Returns the Date reference of the "tomorrow" <code>Date</code> object of the specified <code>Date</code> in argument.
 		 * <p><b>Example :</b></p>
 		 * {@code
 		 * trace ( "toDay     : " + (new Calendar()).format("DDDD yyyy-mm-dd") ) ;
 		 * trace ( "tomorrow  : " + (Calendar.tomorrow()).format("DDDD yyyy-mm-dd") ) ;
 	 	 * }
-	 	 * @return the Date reference of the "tomorrow" {@code Date} object of the specified {@code Date} in argument.
+	 	 * @return the Date reference of the "tomorrow" <code>Date</code> object of the specified <code>Date</code> in argument.
 	 	 */
 		public static function tomorrow( date:Date = null ):Date
 		{
@@ -487,13 +487,13 @@ package asgard.date
 		}
 
 		/**
-		 * Returns the Calendar reference of the "yesterday" {@code Calendar} object of the specified {@code Date} in argument.
+		 * Returns the Calendar reference of the "yesterday" <code>Calendar</code> object of the specified <code>Date</code> in argument.
 		 * <p><b>Example :</b></p>
 		 * {@code
 		 * trace ( "yesterday : " + (Calendar.yesterday()).format("DDDD yyyy-mm-dd") ) ;
 		 * trace ( "toDay     : " + (new Calendar()).format("DDDD yyyy-mm-dd") ) ;
 		 * }
-		 * @return the Calendar reference of the "yesterday" {@code Calendar} object of the specified {@code Date} in argument.
+		 * @return the Calendar reference of the "yesterday" <code>Calendar</code> object of the specified <code>Date</code> in argument.
 	 	 */
 		public static function yesterday ( date:Date=null ):Date
 		{

@@ -29,7 +29,7 @@
  * This implementation is a ActionScript version of the SHA-1 Cryptographic Hash Algorithm find in the web site : http://www.movable-type.co.uk/
  * <p><b>Example :</b></p>
  * {@code
- * SHA1 = calista.hash.SHA1 ;
+ * import calista.hash.SHA1 ;
  * 
  * var hash:String = SHA1.encrypt("hello world") ;
  * var equal:Boolean = hash == '2aae6c35c94fcfb415dbe95f408b9ce91ee846ed' ;
@@ -49,7 +49,7 @@ class calista.hash.SHA1
 	 * Encrypt the specified text with the SHA1 algorithm.
  	 * <p><b>Example :</b></p>
  	 * {@code
- 	 * SHA1 = calista.hash.SHA1 ;
+ 	 * import calista.hash.SHA1 ;
  	 * 
  	 * var hash:String = SHA1.encrypt("hello world") ;
  	 * var equal:Boolean = hash == '2aae6c35c94fcfb415dbe95f408b9ce91ee846ed' ;
@@ -196,7 +196,7 @@ class calista.hash.SHA1
 	{
 	    var s:String = "" ;
 	    var v:Number ;
-    	for ( var i=7 ; i>=0 ; i-- ) 
+    	for ( var i:Number = 7 ; i >= 0 ; i-- ) 
     	{ 
     		v = ( n >>> (i*4) ) & 0xf ;
     		s += v.toString(16); 

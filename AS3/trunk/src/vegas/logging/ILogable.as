@@ -25,20 +25,20 @@ package vegas.logging
     
 
     /**
-     * Implementing this interface allows an object who contains an {@code ILogger} reference.
+     * Implementing this interface allows an object who contains an <code>ILogger</code> reference.
      * @author eKameleon
      */
     public interface ILogable 
     {
 
         /**
-         * Returns the internal {@code ILogger} reference of this {@code ILogable} object.
-         * @return the internal {@code ILogger} reference of this {@code ILogable} object.
+         * Returns the internal <code>ILogger</code> reference of this <code>ILogable</code> object.
+         * @return the internal <code>ILogger</code> reference of this <code>ILogable</code> object.
          */
         function getLogger():ILogger ;
         
         /**
-         * Sets the internal {@code ILogger} reference of this {@code ILogable} object.
+         * Sets the internal <code>ILogger</code> reference of this <code>ILogable</code> object.
          */
         function setLogger( log:ILogger=null ):void ;
         

@@ -28,7 +28,7 @@ package vegas.util
 	import vegas.errors.ClassCastError;	
 
 	/**
-	 * The {@code StringUtil} utility class is an extended String class with methods for working with string.
+	 * The <code>StringUtil</code> utility class is an extended String class with methods for working with string.
 	 * This class complete the system.Strings static class.
 	 * @author eKameleon
 	 */
@@ -179,7 +179,7 @@ package vegas.util
     	}
  	
 		/**
-		 * Returns {@code true} if this string is empty.
+		 * Returns <code>true</code> if this string is empty.
 		 * <p><b>Example :</b></p>
 		 * {@code
 		 * import vegas.util.StringUtil ;
@@ -187,7 +187,7 @@ package vegas.util
 		 * var b2:Boolean = StringUtil.isEmpty("hello world") ; // false
 		 * }
 		 * @param str the string object.
-		 * @return {@code true} if this string is empty.
+		 * @return <code>true</code> if this string is empty.
 	 	 */
 	    public static function isEmpty(str:String):Boolean 
 	    {

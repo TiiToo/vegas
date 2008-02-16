@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -27,7 +27,7 @@ package vegas.data.list
 	import vegas.core.CoreObject;
 	
 	/**
-     * Internal class in the {@code LinkedList} class to defined all entries in the list and the links betweens alls.
+     * Internal class in the <code>LinkedList</code> class to defined all entries in the list and the links betweens alls.
      * @author eKameleon
      */
     public class LinkedListEntry extends CoreObject

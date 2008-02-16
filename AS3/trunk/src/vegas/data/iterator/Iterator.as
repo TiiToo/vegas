@@ -32,8 +32,8 @@ package vegas.data.iterator
     {
 
 	    /**
-    	 * Returns {@code true} if the iteration has more elements.
-    	 * @return {@code true} if the iteration has more elements.
+    	 * Returns <code>true</code> if the iteration has more elements.
+    	 * @return <code>true</code> if the iteration has more elements.
     	 */	
         function hasNext():Boolean ;
 

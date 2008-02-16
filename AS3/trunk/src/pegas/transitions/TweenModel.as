@@ -46,7 +46,7 @@ package pegas.transitions
 		 * @param id the id of the model.
 		 * @param tweens The array to initialize the model with some TweenEntry objects. All no TweenEntry objects are ignored.
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
-	 	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+	 	 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
 	 	 */
 		public function TweenModel(id:* = null, tweens:Array=null, bGlobal:Boolean = false, sChannel:String = null)
 		{
@@ -91,8 +91,8 @@ package pegas.transitions
 		}
 		
 		/**
-		 * Returns {@code true} if the specified property exist in this model.
-		 * @return {@code true} if the specified property exist in this model.
+		 * Returns <code>true</code> if the specified property exist in this model.
+		 * @return <code>true</code> if the specified property exist in this model.
 		 */
 		public function contains( prop:String ):Boolean 
 		{
@@ -109,8 +109,8 @@ package pegas.transitions
 		}
 
 		/**
-	 	 * Returns the event name use in the {@code insert} method.
-		 * @return the event name use in the {@code insert} method.
+	 	 * Returns the event name use in the <code>insert</code> method.
+		 * @return the event name use in the <code>insert</code> method.
 		 */
 		public function getEventTypeADD():String
 		{
@@ -118,8 +118,8 @@ package pegas.transitions
 		}
 
 		/**
-	 	 * Returns the event name use in the {@code clear} method.
-	 	 * @return the event name use in the {@code clear} method.
+	 	 * Returns the event name use in the <code>clear</code> method.
+	 	 * @return the event name use in the <code>clear</code> method.
 	 	 */
 		public function getEventTypeCLEAR():String
 		{
@@ -127,8 +127,8 @@ package pegas.transitions
 		}
 		
 		/**
-		 * Returns the event name use in the {@code remove} method.
-		 * @return the event name use in the {@code remove} method.
+		 * Returns the event name use in the <code>remove</code> method.
+		 * @return the event name use in the <code>remove</code> method.
 	 	 */
 		public function getEventTypeREMOVE():String
 		{
@@ -216,7 +216,7 @@ package pegas.transitions
 		}
 
 		/**
-		 * Sets the event name use in the {@code insert} method.
+		 * Sets the event name use in the <code>insert</code> method.
 		 */
 		public function setEventTypeADD( type:String=null ):void
 		{
@@ -224,7 +224,7 @@ package pegas.transitions
 		}
 		
 		/**
-	 	 * Sets the event name use in the {@code clear} method.
+	 	 * Sets the event name use in the <code>clear</code> method.
 	 	 */
 		public function setEventTypeCLEAR( type:String=null ):void
 		{
@@ -232,7 +232,7 @@ package pegas.transitions
 		}
 
 		/**
-		 * Sets the event name use in the {@code remove} method.
+		 * Sets the event name use in the <code>remove</code> method.
 		 */
 		public function setEventTypeREMOVE( type:String=null ):void
 		{

@@ -36,7 +36,7 @@ package pegas.geom
 	{
 
 		/**
-		 * Creates a new {@code Plane} instance.
+		 * Creates a new <code>Plane</code> instance.
 		 * @param a the first plane coordinate.
 		 * @param b the second plane coordinate.
 		 * @param c the third plane coordinate.
@@ -90,7 +90,7 @@ package pegas.geom
 
 		/**
 		 * Compares the specified object with this object for equality.
-		 * @return {@code true} if the the specified object is equal with this object.
+		 * @return <code>true</code> if the the specified object is equal with this object.
 		 */
 		public function equals(o:*):Boolean
 		{

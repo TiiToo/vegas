@@ -27,7 +27,7 @@ package lunas.core
 	import vegas.events.AbstractCoreEventDispatcher;	
 
 	/**
-	 * This class provides a skeletal implementation of the {@code IBuilder} interface, to minimize the effort required to implement this interface.
+	 * This class provides a skeletal implementation of the <code>IBuilder</code> interface, to minimize the effort required to implement this interface.
 	 * @author eKameleon
 	 */
 	public class AbstractBuilder extends AbstractCoreEventDispatcher implements IBuilder

@@ -25,7 +25,7 @@ package pegas.util
 	import pegas.geom.Vector2;	
 	
 	/**
-	 * Static tool class to manipulate and transform {@code Vector2} references.
+	 * Static tool class to manipulate and transform <code>Vector2</code> references.
 	 * @author eKameleon
 	 */
 	public class Vector2Util 
@@ -160,10 +160,10 @@ package pegas.util
 		}
 	
 		/**
-	 	 * Sets the specified {@code Vector2} object with the second {@code Vector2} object passed in argument.
-		 * @param v1 the first {@code Vector2}.
-		 * @param v2 the second {@code Vector2}.
-		 * @return the first {@code Vector2} transformed.
+	 	 * Sets the specified <code>Vector2</code> object with the second <code>Vector2</code> object passed in argument.
+		 * @param v1 the first <code>Vector2</code>.
+		 * @param v2 the second <code>Vector2</code>.
+		 * @return the first <code>Vector2</code> transformed.
 		 */
 		public static function setByVector2( v1:Vector2, v2:Vector2):Vector2
 		{

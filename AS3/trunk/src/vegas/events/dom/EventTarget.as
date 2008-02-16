@@ -34,8 +34,8 @@ package vegas.events.dom
 		
 		/**
 	     * Allows the registration of event listeners on the event target.
-		 * @param eventName A string representing the event type to listen for. If eventName value is {@code ALL} this method use {@code addGlobalListener}
-    	 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the {@code EventListener} interface.
+		 * @param eventName A string representing the event type to listen for. If eventName value is <code>ALL</code> this method use <code>addGlobalListener</code>
+    	 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the <code>EventListener</code> interface.
 	     * @param useCapture Determinates if the event flow use capture or not.
     	 * @param priority Determines the priority level of the event listener.
 	     * @param autoRemove Apply a removeEventListener after the first trigger
@@ -53,7 +53,7 @@ package vegas.events.dom
 		function dispatchEvent(event:*, isQueue:Boolean, target:*, context:*):DomEvent ;
 
     	/** 
-    	 * Removes a listener from the {@code EventDispatcher} object.
+    	 * Removes a listener from the <code>EventDispatcher</code> object.
     	 * <p>If there is no matching listener registered with the EventDispatcher object, then calling this method has no effect.</p>
 	     * @param Specifies the type of event.
     	 * @param the class name(string) or a EventListener object.

@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -29,7 +29,7 @@ package vegas.events.dom
 	import vegas.errors.IllegalArgumentError ;
 
     /**
-     * This comparator is used in the {@code EventDispatcher} class to ordered all {@code EventLister} with a priority value.
+     * This comparator is used in the <code>EventDispatcher</code> class to ordered all <code>EventLister</code> with a priority value.
      * @author eKameleon
      */
 	internal public class EventListenerComparator extends CoreObject implements IComparator

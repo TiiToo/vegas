@@ -128,7 +128,7 @@ package asgard.events
 
         /**
          * Sets the NetServerInfo reference of this event.
-         * @param oInfo the info {@code Object} used to define the NetServerInfo reference.
+         * @param oInfo the info <code>Object</code> used to define the NetServerInfo reference.
          */
         public function setInfo( oInfo:* ):void 
         {

@@ -29,7 +29,7 @@ package vegas.data.iterator
 	import vegas.util.Serializer; 
 
 	/**
-     * Converts a {@code Map} to an iterator.
+     * Converts a <code>Map</code> to an iterator.
      * @author eKameleon
      */
     public class MapIterator extends CoreObject implements Iterator
@@ -47,8 +47,8 @@ package vegas.data.iterator
         }
         
     	/**
-    	 * Returns {@code true} if the iteration has more elements.
-    	 * @return {@code true} if the iteration has more elements.
+    	 * Returns <code>true</code> if the iteration has more elements.
+    	 * @return <code>true</code> if the iteration has more elements.
     	 */	
         public function hasNext():Boolean
         {

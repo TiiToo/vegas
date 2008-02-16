@@ -57,8 +57,8 @@ package vegas.core
 		}
 
 		/**
-		 * Returns the internal {@code ILogger} reference of this {@code ILogable} object.
-		 * @return the internal {@code ILogger} reference of this {@code ILogable} object.
+		 * Returns the internal <code>ILogger</code> reference of this <code>ILogable</code> object.
+		 * @return the internal <code>ILogger</code> reference of this <code>ILogable</code> object.
 		 */
 		public function getLogger():ILogger
 		{
@@ -79,7 +79,7 @@ package vegas.core
 		}
 	
 		/**
-		 * Sets the internal {@code ILogger} reference of this {@code ILogable} object.
+		 * Sets the internal <code>ILogger</code> reference of this <code>ILogable</code> object.
 		 */
 		public function setLogger( log:ILogger=null ):void 
 		{

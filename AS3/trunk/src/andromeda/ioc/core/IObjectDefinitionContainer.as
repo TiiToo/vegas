@@ -38,8 +38,8 @@ package andromeda.ioc.core
 		function addObjectDefinition( name:String , definition:IObjectDefinition ):void ;
 		
 		/**
-		 * Returns {@code true} if the object define with the specified name in register in the container.
-		 * @return {@code true} if the object define with the specified name in register in the container.
+		 * Returns <code>true</code> if the object define with the specified name in register in the container.
+		 * @return <code>true</code> if the object define with the specified name in register in the container.
 		 */
 		function containsObjectDefinition( name:String ):Boolean ;
 		

@@ -84,7 +84,7 @@ package andromeda.ioc.core
 		/**
 		 * Creates a new ObjectDefinitionContainer instance.
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
-		 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+		 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
 		 */
 		public function ObjectDefinitionContainer( bGlobal:Boolean = false , sChannel:String = null )
 		{
@@ -103,9 +103,9 @@ package andromeda.ioc.core
 		}
 		
 		/**
-		 * Returns {@code true} if the object define with the specified name in register in the container.
+		 * Returns <code>true</code> if the object define with the specified name in register in the container.
 		 * @param name the id name of the ObjectDefinition to search. 
-		 * @return {@code true} if the object define with the specified name in register in the container.
+		 * @return <code>true</code> if the object define with the specified name in register in the container.
 		 */
 		public function containsObjectDefinition( name:String ):Boolean 
 		{

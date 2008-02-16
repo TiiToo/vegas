@@ -31,8 +31,8 @@ package vegas.events
 	import vegas.core.ILockable;	
 
 	/**
- 	 * This abstract class is used to create concrete {@code IEventDispatcher} implementations. This class used an internal {@code EventDispatcher} object by composition.
- 	 * <p>You can overrides the internal {@code EventDispatcher} instance with the {@code initEventDispatcher} or the {@code setEventDispatcher} methods. Used a global singleton reference in this method to register all events in a {@code FrontController} for example.</p>
+ 	 * This abstract class is used to create concrete <code>IEventDispatcher</code> implementations. This class used an internal <code>EventDispatcher</code> object by composition.
+ 	 * <p>You can overrides the internal <code>EventDispatcher</code> instance with the <code>initEventDispatcher</code> or the <code>setEventDispatcher</code> methods. Used a global singleton reference in this method to register all events in a <code>FrontController</code> for example.</p>
 	 * @author eKameleon
  	 */
 	public class AbstractCoreEventDispatcher extends CoreObject implements IEventDispatcher, ILockable
@@ -41,7 +41,7 @@ package vegas.events
 		/**
 		 * Creates a new AbstractCoreEventDispatcher.
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
-		 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+		 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
 		 */
         public function AbstractCoreEventDispatcher( bGlobal:Boolean = false , sChannel:String = null ) 
         {
@@ -49,8 +49,8 @@ package vegas.events
         }
        
 		/**
-		 * (read-only) Returns the value of the isGlobal flag of this model. Use the {@code setGlobal} method to modify this value.
-		 * @return {@code true} if the instance use a global EventDispatcher to dispatch this events.
+		 * (read-only) Returns the value of the isGlobal flag of this model. Use the <code>setGlobal</code> method to modify this value.
+		 * @return <code>true</code> if the instance use a global EventDispatcher to dispatch this events.
 		 */
 		public function get isGlobal():Boolean 
 		{
@@ -60,7 +60,7 @@ package vegas.events
 		/**
 		 * Allows the registration of event listeners on the event target.
 		 * @param type A string representing the event type to listen for. If eventName value is "ALL" addEventListener use addGlobalListener
-		 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the {@code EventListener} interface.
+		 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the <code>EventListener</code> interface.
 	 	 * @param useCapture Determinates if the event flow use capture or not.
 		 * @param priority Determines the priority level of the event listener.
 		 * @param useWeakReference Indicates if the listener is a weak reference.
@@ -81,8 +81,8 @@ package vegas.events
         }
  
 	 	/**
-		 * Returns the internal {@code EventDispatcher} reference.
-		 * @return the internal {@code EventDispatcher} reference.
+		 * Returns the internal <code>EventDispatcher</code> reference.
+		 * @return the internal <code>EventDispatcher</code> reference.
 		 */
      	public function getEventDispatcher():EventDispatcher 
      	{
@@ -91,7 +91,7 @@ package vegas.events
   	
 		/**
 		 * Returns the value of the isGlobal flag of this model.
-		 * @return {@code true} if the instance use a global EventDispatcher to dispatch this events.
+		 * @return <code>true</code> if the instance use a global EventDispatcher to dispatch this events.
 	 	 */
 		public function getIsGlobal():Boolean 
 		{
@@ -108,9 +108,9 @@ package vegas.events
         }
 
 		/**
-		 * Creates and returns the internal {@code EventDispatcher} reference (this method is invoqued in the constructor).
-		 * You can overrides this method if you wan use a global {@code EventDispatcher} singleton.
-		 * @return the internal {@code EventDispatcher} reference.
+		 * Creates and returns the internal <code>EventDispatcher</code> reference (this method is invoqued in the constructor).
+		 * You can overrides this method if you wan use a global <code>EventDispatcher</code> singleton.
+		 * @return the internal <code>EventDispatcher</code> reference.
 	 	 */
        	public function initEventDispatcher():EventDispatcher 
        	{
@@ -118,8 +118,8 @@ package vegas.events
 	    }
 
    		/**
-	     * Returns {@code true} if the object is locked.
-	     * @return {@code true} if the object is locked.
+	     * Returns <code>true</code> if the object is locked.
+	     * @return <code>true</code> if the object is locked.
 	     */
     	public function isLocked():Boolean 
     	{
@@ -137,7 +137,7 @@ package vegas.events
 		/**
 		 * Allows the registration of event listeners on the event target (Function or EventListener).
 		 * @param type A string representing the event type to listen for. If eventName value is "ALL" addEventListener use addGlobalListener
-		 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the {@code EventListener} interface.
+		 * @param listener The object that receives a notification when an event of the specified type occurs. This must be an object implementing the <code>EventListener</code> interface.
 	 	 * @param useCapture Determinates if the event flow use capture or not.
 		 * @param priority Determines the priority level of the event listener.
 		 * @param useWeakReference Indicates if the listener is a weak reference.
@@ -149,7 +149,7 @@ package vegas.events
 
 		/** 
 		 * Removes a listener from the EventDispatcher object.
-		 * If there is no matching listener registered with the {@code EventDispatcher} object, then calling this method has no effect.
+		 * If there is no matching listener registered with the <code>EventDispatcher</code> object, then calling this method has no effect.
 		 * @param type Specifies the type of event.
 		 * @param the listener object.
 		 */
@@ -159,7 +159,7 @@ package vegas.events
         } 
 
 		/**
-		 * Sets the internal {@code EventDispatcher} reference.
+		 * Sets the internal <code>EventDispatcher</code> reference.
 		 */
 		public function setEventDispatcher( e:EventDispatcher ):void 
 		{
@@ -167,9 +167,9 @@ package vegas.events
 		}
 
 		/**
-		 * Sets if the instance use a global {@code EventDispatcher} to dispatch this events, if the {@code flag} value is {@code false} the instance use a local EventDispatcher.
+		 * Sets if the instance use a global <code>EventDispatcher</code> to dispatch this events, if the <code>flag</code> value is <code>false</code> the instance use a local EventDispatcher.
 		 * @param flag the flag to use a global event flow or a local event flow.
-		 * @param channel the name of the global event flow if the {@code flag} argument is {@code true}.  
+		 * @param channel the name of the global event flow if the <code>flag</code> argument is <code>true</code>.  
 		 */
 		public function setGlobal( flag:Boolean=false , channel:String=null ):void 
 		{
@@ -196,7 +196,7 @@ package vegas.events
 
 		/** 
 		 * Removes a listener (Function or EventListener object) from the EventDispatcher object.
-		 * If there is no matching listener registered with the {@code EventDispatcher} object, then calling this method has no effect.
+		 * If there is no matching listener registered with the <code>EventDispatcher</code> object, then calling this method has no effect.
 		 * @param type Specifies the type of event.
 		 * @param the listener object.
 		 */
@@ -207,8 +207,8 @@ package vegas.events
 
 		/**
 		 * Checks whether an event listener is registered with this EventDispatcher object or any of its ancestors for the specified event type.
-		 * This method returns {@code true} if an event listener is triggered during any phase of the event flow when an event of the specified type is dispatched to this EventDispatcher object or any of its descendants.
-		 * @return A value of {@code true} if a listener of the specified type will be triggered; {@code false} otherwise.
+		 * This method returns <code>true</code> if an event listener is triggered during any phase of the event flow when an event of the specified type is dispatched to this EventDispatcher object or any of its descendants.
+		 * @return A value of <code>true</code> if a listener of the specified type will be triggered; <code>false</code> otherwise.
 		 */
         public function willTrigger(type:String):Boolean
         {

@@ -43,8 +43,8 @@ package lunas.core
 		}
 	
 		/**
-		 * Returns {@code true} if the StyleCollector contains the specified id.
-		 * @return {@code true} if the StyleCollector contains the specified id.
+		 * Returns <code>true</code> if the StyleCollector contains the specified id.
+		 * @return <code>true</code> if the StyleCollector contains the specified id.
 		 */	
 		public static function contains( id:* ):Boolean 
 		{

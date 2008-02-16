@@ -170,8 +170,8 @@ package vegas.string
         }
 
     	/**
-    	 * Returns {@code true} of the specified character is a whitespace.
-    	 * @return {@code true} of the specified character is a whitespace.
+    	 * Returns <code>true</code> of the specified character is a whitespace.
+    	 * @return <code>true</code> of the specified character is a whitespace.
     	 */
 	    public static function isWhiteSpace( char:String ):Boolean 
 	    {
@@ -180,8 +180,8 @@ package vegas.string
         }
 
     	/**
-    	 * Returns {@code true} of the specified character is a line terminator.
-    	 * @return {@code true} of the specified character is a line terminator.
+    	 * Returns <code>true</code> of the specified character is a line terminator.
+    	 * @return <code>true</code> of the specified character is a line terminator.
     	 */
         public static function isLineTerminators( char:String ):Boolean 
         {

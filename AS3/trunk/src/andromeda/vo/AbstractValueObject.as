@@ -29,7 +29,7 @@ package andromeda.vo
 	import vegas.core.Identifiable;	
 
 	/**
-	 * This class provides a skeletal implementation of the {@code IValueObject} interface, to minimize the effort required to implement this interface.
+	 * This class provides a skeletal implementation of the <code>IValueObject</code> interface, to minimize the effort required to implement this interface.
 	 * @author eKameleon
 	 */
 	public class AbstractValueObject extends CoreObject implements IEquatable, IValueObject
@@ -65,8 +65,8 @@ package andromeda.vo
 		}
 		
 		/**
-		 * Compares the specified object with this object for equality. This method compares the ids of the objects with the {@code Identifiable.getID()} method.
-		 * @return {@code true} if the the specified object is equal with this object.
+		 * Compares the specified object with this object for equality. This method compares the ids of the objects with the <code>Identifiable.getID()</code> method.
+		 * @return <code>true</code> if the the specified object is equal with this object.
 		 */
 		public function equals( o:* ):Boolean
 		{

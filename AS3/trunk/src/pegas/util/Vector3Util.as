@@ -25,7 +25,7 @@ package pegas.util
     import pegas.geom.Vector3;            
 
     /**
-     * Static tool class to manipulate and transform {@code Vector3} references.
+     * Static tool class to manipulate and transform <code>Vector3</code> references.
      * @author eKameleon
      */
     public class Vector3Util 
@@ -79,9 +79,9 @@ package pegas.util
     
         /**
          * Computes the cross product of the two Vector3s.
-         * @param v1 a {@code Vector3}.
-         * @param v2 a {@code Vector3}.
-         * @return the {@code Vector3} resulting of the cross product.
+         * @param v1 a <code>Vector3</code>.
+         * @param v2 a <code>Vector3</code>.
+         * @return the <code>Vector3</code> resulting of the cross product.
          */
         public static function getCross( v1:Vector3, v2:Vector3 ):Vector3
         {
@@ -95,8 +95,8 @@ package pegas.util
     
         /**
          * Computes the dot product of the two Vector3s.
-         * @param v1 a {@code Vector3}.
-         * @param v2 a {@code Vector3}.
+         * @param v1 a <code>Vector3</code>.
+         * @param v2 a <code>Vector3</code>.
          * @return the dot product of the 2 Vector3.
          */
         public static function getDot( v1:Vector3, v2:Vector3 ):Number
@@ -115,9 +115,9 @@ package pegas.util
         }
         
         /**
-         * Computes the oposite Vector3 of the {@code Vector3}.
+         * Computes the oposite Vector3 of the <code>Vector3</code>.
          * @param v the Vector3 reference to negate.
-         * @return a new negate {@code Vector3} reference.
+         * @return a new negate <code>Vector3</code> reference.
          */
         public static function getNegate( v:Vector3 ):Vector3
         {
@@ -125,9 +125,9 @@ package pegas.util
         }    
         
         /**
-         * Computes the norm of the {@code Vector3}.
+         * Computes the norm of the <code>Vector3</code>.
          * @param v a Vector3 reference.
-         * @return the norm of the specified {@code Vector3}.
+         * @return the norm of the specified <code>Vector3</code>.
          */
         public static function getNorm( v:Vector3 ):Number
         {
@@ -210,9 +210,9 @@ package pegas.util
         }
     
         /**
-         * Normalize the specified {@code Vector3} in parameter.
+         * Normalize the specified <code>Vector3</code> in parameter.
          * @param v a Vector3 reference.
-         * @return {@code true} of the normalize method is success else false for mistake.
+         * @return <code>true</code> of the normalize method is success else false for mistake.
          */    
         public static function normalize( v:Vector3 ):Boolean
         {
@@ -471,10 +471,10 @@ package pegas.util
         }
         
         /**
-         * Sets the specified {@code Vector3} object with the second {@code Vector3} object passed in argument.
-         * @param v1 the first {@code Vector3}.
-         * @param v2 the second {@code Vector3}.
-         * @return the first {@code Vector3} transformed.
+         * Sets the specified <code>Vector3</code> object with the second <code>Vector3</code> object passed in argument.
+         * @param v1 the first <code>Vector3</code>.
+         * @param v2 the second <code>Vector3</code>.
+         * @return the first <code>Vector3</code> transformed.
          */
         public static function setByVector3( v1:Vector3, v2:Vector3):Vector3
         {

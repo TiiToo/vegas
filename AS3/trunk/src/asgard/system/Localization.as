@@ -66,7 +66,7 @@ package asgard.system
         public static var DEFAULT_ID:String = "default" ;
 
         /**
-         * (read-write) Indicates the current {@code Lang} object selected in the current localization.
+         * (read-write) Indicates the current <code>Lang</code> object selected in the current localization.
          */
         public function get current():Lang 
         {
@@ -136,8 +136,8 @@ package asgard.system
         }
         
         /**
-         * Returns {@code true} if this Localization contains the specified Lang.
-          * @return {@code true} if this Localization contains the specified Lang.
+         * Returns <code>true</code> if this Localization contains the specified Lang.
+          * @return <code>true</code> if this Localization contains the specified Lang.
          */
         public function contains( lang:* ):Boolean 
         {     
@@ -152,8 +152,8 @@ package asgard.system
         }
     
         /**
-         * Returns the current {@code Locale} object defines with the specified {@code Lang} object in argument.
-         * @return the current {@code Locale} object defines with the specified {@code Lang} object in argument.
+         * Returns the current <code>Locale</code> object defines with the specified <code>Lang</code> object in argument.
+         * @return the current <code>Locale</code> object defines with the specified <code>Lang</code> object in argument.
          */
         public function get( lang:* ):Locale 
         {
@@ -177,8 +177,8 @@ package asgard.system
         }
         
         /**
-         * Returns a {@code Localization} singleton reference with the specified name passed-in argument.
-         * @return a {@code Localization} singleton reference with the specified name passed-in argument.
+         * Returns a <code>Localization</code> singleton reference with the specified name passed-in argument.
+         * @return a <code>Localization</code> singleton reference with the specified name passed-in argument.
          */
         public static function getInstance( id:String=null ):Localization 
         {
@@ -227,8 +227,8 @@ package asgard.system
         } 
         
         /**
-         * Returns {@code true} if the Localization model is empty.
-         * @return {@code true} if the Localization model is empty.
+         * Returns <code>true</code> if the Localization model is empty.
+         * @return <code>true</code> if the Localization model is empty.
          */
         public function isEmpty():Boolean 
         {
@@ -262,7 +262,7 @@ package asgard.system
         }
 
         /**
-         * Releases the specified {@code Localization} singleton with the specified name in argument.
+         * Releases the specified <code>Localization</code> singleton with the specified name in argument.
          * @return the reference of the removed Localization object.
          */
         public static function release( id:String ):Localization 
@@ -276,7 +276,7 @@ package asgard.system
 
         /**
          * Removes the specified Lang in the Localization model.
-         * @param lang a valid Lang object. This argument is valid if the {@link Lang.validate} method return {@code true}.
+         * @param lang a valid Lang object. This argument is valid if the {@link Lang.validate} method return <code>true</code>.
          * @return The removed Locale object or null.
          */
         public function remove( lang:* ):* 
@@ -310,8 +310,8 @@ package asgard.system
         }
         
         /**
-          * Returns the {@code String} representation of this object.
-          * @return the {@code String} representation of this object.
+          * Returns the <code>String</code> representation of this object.
+          * @return the <code>String</code> representation of this object.
           */
         public override function toString():String
         {

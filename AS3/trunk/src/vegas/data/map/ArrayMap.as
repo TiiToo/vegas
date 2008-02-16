@@ -84,8 +84,8 @@ package vegas.data.map
         }
 
 		/**
-		 * Returns {@code true} if this map contains a mapping for the specified key.
-		 * @return {@code true} if this map contains a mapping for the specified key.
+		 * Returns <code>true</code> if this map contains a mapping for the specified key.
+		 * @return <code>true</code> if this map contains a mapping for the specified key.
 		 */
         public function containsKey(key:*):Boolean
         {
@@ -93,8 +93,8 @@ package vegas.data.map
         }
 
 		/**
-		 * Returns {@code true} if this map maps one or more keys to the specified value.
-		 * @return {@code true} if this map maps one or more keys to the specified value.
+		 * Returns <code>true</code> if this map maps one or more keys to the specified value.
+		 * @return <code>true</code> if this map maps one or more keys to the specified value.
 		 */
         public function containsValue(value:*):Boolean
         {
@@ -156,8 +156,8 @@ package vegas.data.map
 	    }
 
 		/**
-	 	 * Returns {@code true} if this map contains no key-value mappings.
-		 * @return {@code true} if this map contains no key-value mappings.
+	 	 * Returns <code>true</code> if this map contains no key-value mappings.
+		 * @return <code>true</code> if this map contains no key-value mappings.
 	 	 */
         public function isEmpty():Boolean
         {

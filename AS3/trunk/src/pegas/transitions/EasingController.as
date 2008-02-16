@@ -73,9 +73,9 @@ package pegas.transitions
 		}
 		
 		/**
-		 * Returns {@code true} if the {@code id} passed in argument is registered in the EasingController.
-		 * @param id the {@code id} of the easing method mapped in the EasingController.
-		 * @return {@code true} if the {@code id} passed in argument is registered in the EasingController.
+		 * Returns <code>true</code> if the <code>id</code> passed in argument is registered in the EasingController.
+		 * @param id the <code>id</code> of the easing method mapped in the EasingController.
+		 * @return <code>true</code> if the <code>id</code> passed in argument is registered in the EasingController.
 	 	 */
 		public function contains( id:String  ):Boolean 
 		{
@@ -83,9 +83,9 @@ package pegas.transitions
 		}
 		
 		/**
-		 * Returns a easing method register in the EasingController with the specified {@code id} passed in argument.
+		 * Returns a easing method register in the EasingController with the specified <code>id</code> passed in argument.
 		 * If the id isn't find in the controller, this method return a Regular.easeOut function.
-		 * @param  id the {@code id} of the easing method mapped in the EasingController.
+		 * @param  id the <code>id</code> of the easing method mapped in the EasingController.
 		 * @return the easing method mapped in the EasingController.  
 		 */
 		public function getEasing( id:String , defaultEasing:Function=null ):Function
@@ -108,7 +108,7 @@ package pegas.transitions
 			
 		/**
 	 	 * Adds a new entry into the EasingController.
-	 	 * @param id the {@code id} of the easing method mapped in the EasingController.
+	 	 * @param id the <code>id</code> of the easing method mapped in the EasingController.
 		 * @param easingMethod the function to register in the EasingController.
 	 	 */
 		public function insert( id:String, easingMethod:Function ):void 

@@ -164,7 +164,7 @@ package lunas.core
 		
 		/**
 		 * Indicates with a boolean if this object is grouped.
-		 * @return {@code true} if this object is grouped.
+		 * @return <code>true</code> if this object is grouped.
 		 */
 		public function get group():Boolean
 		{
@@ -345,8 +345,8 @@ package lunas.core
 		}
 		
 		/**
-		 * Returns {@code true} if the component is visible.
-		 * @return {@code true} if the component is visible.
+		 * Returns <code>true</code> if the component is visible.
+		 * @return <code>true</code> if the component is visible.
 	 	*/
 		public function isVisible():Boolean 
 		{

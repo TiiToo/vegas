@@ -74,8 +74,8 @@ package vegas.data.sets
 		}
 
     	/**
-    	 * Returns {@code true} if this Set contains the specified element.
-    	 * @return {@code true} if this Set contains the specified element.
+    	 * Returns <code>true</code> if this Set contains the specified element.
+    	 * @return <code>true</code> if this Set contains the specified element.
     	 */	
 		public function contains(o:*):Boolean 
 		{
@@ -123,8 +123,8 @@ package vegas.data.sets
 	    }
 
     	/**
-	     * Returns {@code true} if this set contains no elements.
-    	 * @return {@code true} if this set contains no elements.
+	     * Returns <code>true</code> if this set contains no elements.
+    	 * @return <code>true</code> if this set contains no elements.
 	     */
 		public function isEmpty():Boolean 
 		{

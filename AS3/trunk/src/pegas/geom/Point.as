@@ -227,7 +227,7 @@ package pegas.geom
 		}
 		
 		/**
-		 * Returns the distance between {@code p1} and {@code p2} the 2 Points reference passed in argument.
+		 * Returns the distance between <code>p1</code> and <code>p2</code> the 2 Points reference passed in argument.
 		 * <p><b>Example :</b></p>
 		 * {@code
 		 * var p1:Point = new Point(10,20) ;
@@ -269,7 +269,7 @@ package pegas.geom
 	 	 * trace(p1.equals(p2)) ; // true
 		 * trace(p1.equals(p3)) ; // false
 		 * }
-	 	 * @return {@code true} if the the specified object is equal with this object.
+	 	 * @return <code>true</code> if the the specified object is equal with this object.
 	 	 */
 		public override function equals( o:* ):Boolean 
 		{
@@ -368,9 +368,9 @@ package pegas.geom
 
 		/**
 		 * Determines a point between two specified points. 
-		 * The parameter f determines where the new interpolated point is located relative to the two end points specified by parameters {@code p1} and {@code p2}. 
-		 * The closer the value of the parameter f is to 1.0, the closer the interpolated point is to the first point (parameter {@code p1}). 
-		 * The closer the value of the parameter f is to 0, the closer the interpolated point is to the second point (parameter {@code p2}).
+		 * The parameter f determines where the new interpolated point is located relative to the two end points specified by parameters <code>p1</code> and <code>p2</code>. 
+		 * The closer the value of the parameter f is to 1.0, the closer the interpolated point is to the first point (parameter <code>p1</code>). 
+		 * The closer the value of the parameter f is to 0, the closer the interpolated point is to the second point (parameter <code>p2</code>).
 		 * <p><b>Example :</b></p>
 		 * {@code
 	 	 * var p1:Point = new Point(10,10) ;
@@ -388,7 +388,7 @@ package pegas.geom
 		 * }
 		 * @param p1 The first point.
 		 * @param p2 The second Point.
-		 * @param f the The level of interpolation between the two points. Indicates where the new point will be, along the line between {@code p1} and {@code p2}. If f=1, pt1 is returned; if f=0, pt2 is returned.
+		 * @param f the The level of interpolation between the two points. Indicates where the new point will be, along the line between <code>p1</code> and <code>p2</code>. If f=1, pt1 is returned; if f=0, pt2 is returned.
 		 * @return The new interpolated point.
 		 */
 		public static function interpolate(p1:Point, p2:Point, f:Number):Point 
@@ -397,7 +397,7 @@ package pegas.geom
 		}
 	
 		/**
-		 * Returns {@code true} if the Point is perpendicular with the passed-in Point.
+		 * Returns <code>true</code> if the Point is perpendicular with the passed-in Point.
 		 * <p><b>Example :</b></p>
 		 * {@code
 		 * var p1:Point = new Point(0,10) ;
@@ -407,7 +407,7 @@ package pegas.geom
 		 * trace(p1.isPerpTo(p3)) ; // true
 		 * } 
 		 * @param p the Point use to determinate if this Point object is perpendicular.
-		 * @return {@code true} if the Point is perpendicular with the passed-in Point.
+		 * @return <code>true</code> if the Point is perpendicular with the passed-in Point.
 		 */
 		public function isPerpTo(p:Point):Boolean 
 		{	
@@ -587,7 +587,7 @@ package pegas.geom
 	
 		/**
 		 * Sets the horizontal and vertical coordinates of this Point. 
- 	 	 * If the {@code x} and the {@code y} parameters are {@code NaN} or {@code null} the x value is 0 and y value is 0.
+ 	 	 * If the <code>x</code> and the <code>y</code> parameters are <code>NaN</code> or <code>null</code> the x value is 0 and y value is 0.
 	 	 */
 		public function reset(x:Number, y:Number):void 
 		{
@@ -610,7 +610,7 @@ package pegas.geom
 		}
 
 		/**
-		 * Rotates the Point with the specified {@code angle} in argument and creates a new Point.
+		 * Rotates the Point with the specified <code>angle</code> in argument and creates a new Point.
 		 * @param angle the Angle to rotate this Point.
 		 * @return The rotate new Point.
 		 */
@@ -622,7 +622,7 @@ package pegas.geom
 		}
 
 		/**
-		 * Scales the Point with the specified {@code n} value in argument.
+		 * Scales the Point with the specified <code>n</code> value in argument.
 		 * @param n the value to scale this Point.
 		 */
 		public function scale(n:Number):void 
@@ -632,7 +632,7 @@ package pegas.geom
 		}
 
 		/**
-		 * Rotates the Point with the specified {@code s} value in argument and creates a new Point.
+		 * Rotates the Point with the specified <code>s</code> value in argument and creates a new Point.
 		 * @param n the value to scale this Point.
 		 * @return The scale new Point.
 		 */

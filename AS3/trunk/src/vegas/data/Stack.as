@@ -44,8 +44,8 @@ package vegas.data
 		function clear():void ;
 	
 		/**
-		 * Returns {@code true} if this stack contains no elements.
-		 * @return {@code true} if this stack is empty else {@code false}.
+		 * Returns <code>true</code> if this stack contains no elements.
+		 * @return <code>true</code> if this stack is empty else <code>false</code>.
 		 */
 		function isEmpty():Boolean ;
 

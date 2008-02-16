@@ -34,7 +34,7 @@ package vegas.core
 		
 		/**
 		 * Returns true if the IValidator object validate the value.
-		 * @return {@code true} is this specific value is valid.
+		 * @return <code>true</code> is this specific value is valid.
 		 */
 		function supports(value:*):Boolean ;
 	

@@ -28,8 +28,8 @@ package andromeda.process
 	import vegas.data.iterator.Iterator;    
 
 	/**
-     * A batch is a collection of {@code Action} objects. All {@code Action} objects are processed as a single unit.
-     * This class use an internal typed {@code SimpleCollection} to register all {@code Action} objects.  
+     * A batch is a collection of <code>Action</code> objects. All <code>Action</code> objects are processed as a single unit.
+     * This class use an internal typed <code>SimpleCollection</code> to register all <code>Action</code> objects.  
      * @author eKameleon
     */
     public class Batch extends TypedCollection implements IRunnable

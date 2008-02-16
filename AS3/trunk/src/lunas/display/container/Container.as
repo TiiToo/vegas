@@ -127,8 +127,8 @@ package lunas.display.container
 		}
 		
 		/**
-		 * Returns {@code true} if a child exist in the display list at the specified index value.
-		 * @return {@code true} if a child exist in the display list at the specified index value.
+		 * Returns <code>true</code> if a child exist in the display list at the specified index value.
+		 * @return <code>true</code> if a child exist in the display list at the specified index value.
 		 */
 		public function containsAt( index:int ):Boolean 
 		{

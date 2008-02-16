@@ -26,8 +26,8 @@ package asgard.date
 	import vegas.util.MathsUtil;	
 
 	/**
-	 * The {@code Time} object is a holder for a time difference.
-	 * <p>{@code Time} splits a time difference (distance between two dates) into 
+	 * The <code>Time</code> object is a holder for a time difference.
+	 * <p><code>Time</code> splits a time difference (distance between two dates) into 
 	 * days, hours, minutes, seconds and milliseconds to offers methods to access the time difference value.
 	 * @author eKameleon
 	 */
@@ -35,8 +35,8 @@ package asgard.date
 	{
 
 		/**
-		 * Creates a new {@code Time} instance.
-	     * @param timeDifference The time size of the time difference for the passed-in {@code format}.
+		 * Creates a new <code>Time</code> instance.
+	     * @param timeDifference The time size of the time difference for the passed-in <code>format</code>.
 	     * @param format (optional) "d"/"h"/"m"/"s"/"ms" for the unit of the amout, default case is "ms".
 	     */
 		public function Time( timeDifference:Number, format:String=null )
@@ -270,7 +270,7 @@ package asgard.date
 		}
 	
 		/**
-	 	 * Removes the passed-in {@code timeDifference} from the current time.
+	 	 * Removes the passed-in <code>timeDifference</code> from the current time.
 	 	 * @param timeDifference time difference to be removed from the current time
 	 	 * @return A new instance with the resulting amount of time
 	 	 */
@@ -280,7 +280,7 @@ package asgard.date
 		}
 	
 		/**
-	 	 * Adds the passed-in {@code timedistance} to the current time.
+	 	 * Adds the passed-in <code>timedistance</code> to the current time.
 	 	 * @param timeDifference time difference to be added to the current time.
 	 	 * @return A new instance with the resulting amount of time.
 	 	 */
@@ -293,8 +293,8 @@ package asgard.date
 		 * Sets the time of the instance.
 		 * 
 		 * <p>Uses "ms" if no format or a wrong format was passed-in.</p>
-		 * <p>Uses {@code Number.MAX_VALUE} if {@code Infinity} was passed-in.</p>
-	     * @param time size of the time difference for the passed-in {@code format}
+		 * <p>Uses {@code Number.MAX_VALUE} if <code>Infinity</code> was passed-in.</p>
+	     * @param time size of the time difference for the passed-in <code>format</code>
 	     * @param format (optional) "d"/"h"/"m"/"s"/"ms" for the unit of the amout. Default value is ms.
 		 */
 		public function setValue( timeDifference:Number=Infinity , format:String=null ):Time 

@@ -25,7 +25,7 @@ package vegas.util
 {
     
     /**
-     * The {@code DateUtil} utility class is an all-static class with methods for working with dates.
+     * The <code>DateUtil</code> utility class is an all-static class with methods for working with dates.
      * @author eKameleon
      */
     public class DateUtil
@@ -51,7 +51,7 @@ package vegas.util
 
     	/**
     	 * Compares the twno specified Date objects for equality.
-	     * @return {@code true} if the the two specified Date object are equals.
+	     * @return <code>true</code> if the the two specified Date object are equals.
     	 */
 	    public static function equals( d1:Date, d2:Date ):Boolean 
 	    {

@@ -33,7 +33,7 @@ package lunas.core
 	import lunas.groups.RadioButtonGroup;	
 
 	/**
-	 * This class provides a skeletal implementation of the {@code IButton} interface, to minimize the effort required to implement this interface.
+	 * This class provides a skeletal implementation of the <code>IButton</code> interface, to minimize the effort required to implement this interface.
 	 * @author eKameleon
 	 */
 	public class AbstractButton extends AbstractComponent implements IButton, IData 

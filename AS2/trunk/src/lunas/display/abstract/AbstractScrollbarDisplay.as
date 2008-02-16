@@ -308,13 +308,39 @@ class lunas.display.abstract.AbstractScrollbarDisplay extends AbstractProgressba
 		}
 	}
 
-
+	/**
+	 * @private
+	 */
 	private var _eDrag:ButtonEvent ;
+	
+	/**
+	 * @private
+	 */	
 	private var _eStartDrag:ButtonEvent ;
+	
+	/**
+	 * @private
+	 */	
 	private var _eStopDrag:ButtonEvent ;
+	
+	/**
+	 * @private
+	 */	
 	private var _isDragging:Boolean ;
+	
+	/**
+	 * @private
+	 */	
 	private var _mouseOffset:Number = 0 ;
+	
+	/**
+	 * @private
+	 */	
 	private var _nDirection:Number ; 
+	
+	/**
+	 * @private
+	 */	
 	private var _tw:Tween ;
 	
 }

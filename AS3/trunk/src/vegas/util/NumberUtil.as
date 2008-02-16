@@ -25,7 +25,7 @@ package vegas.util
 {
    
     /**
-     * The {@code NumberUtil} utility class is an all-static class with methods for working with number.
+     * The <code>NumberUtil</code> utility class is an all-static class with methods for working with number.
      * @author eKameleon
      */
     public class NumberUtil
@@ -51,7 +51,7 @@ package vegas.util
 
     	/**
      	 * Compares if two Numbers are equal by value
-     	 * @return {@code true} if the two passed-in values are the sames.
+     	 * @return <code>true</code> if the two passed-in values are the sames.
      	 */
     	public static function equals( n1:Number=NaN, n2:Number=NaN ):Boolean 
     	{

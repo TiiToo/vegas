@@ -50,8 +50,8 @@ package vegas.data.iterator
 		}
 		
     	/**
-    	 * Returns {@code true} if the iteration has more elements.
-    	 * @return {@code true} if the iteration has more elements.
+    	 * Returns <code>true</code> if the iteration has more elements.
+    	 * @return <code>true</code> if the iteration has more elements.
     	 */	
 		public function hasNext():Boolean
 		{
@@ -98,7 +98,7 @@ package vegas.data.iterator
 		
     	/**
     	 * Unsupported method in all BagIterator.
-    	 * @throws UnsupportedOperation {@code reset} method in unsupported.
+    	 * @throws UnsupportedOperation <code>reset</code> method in unsupported.
     	 */
 		public function reset():void
 		{
@@ -107,7 +107,7 @@ package vegas.data.iterator
 
     	/**
     	 * Unsupported method in all BagIterator.
-    	 * @throws UnsupportedOperation {@code seek} method in unsupported.
+    	 * @throws UnsupportedOperation <code>seek</code> method in unsupported.
     	 */
 		public function seek(position:*):void
 		{

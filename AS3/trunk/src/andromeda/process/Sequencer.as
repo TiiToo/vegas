@@ -51,9 +51,9 @@ package andromeda.process
 		
     	/**
 	     * Creates a new Sequencer instance.
-    	 * @param ar An Array of {@code Action} objects.
+    	 * @param ar An Array of <code>Action</code> objects.
     	 * @param bGlobal the flag to use a global event flow or a local event flow.
-    	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+    	 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
     	 */
 		public function Sequencer( ar:Array = null , bGlobal:Boolean = false , sChannel:String = null )
 		{
@@ -77,7 +77,7 @@ package andromeda.process
 		
     	/**
     	 * Adds a process(Action) in the Sequencer.
-    	 * @return {@code true} if the method success.
+    	 * @return <code>true</code> if the method success.
     	 */
 		public function addAction(action:IAction, isClone:Boolean=false):Boolean 
 		{
@@ -92,7 +92,7 @@ package andromeda.process
 
     	/**
 	     * Removes all process in the Sequencer.
-    	 * @param noEvent A boolean flag to disabled the events dispatched by this method if is {@code true}.
+    	 * @param noEvent A boolean flag to disabled the events dispatched by this method if is <code>true</code>.
     	 * @param callback Function to map and check the current process in progress in the sequencer before reset it.
     	 */
 		public function clear( noEvent:Boolean = false , callback:Function = null ):void 
@@ -204,7 +204,7 @@ package andromeda.process
 		
     	/**
     	 * Stops the Sequencer. Stop only the last process if is running.
-    	 * @param noEvent A boolean flag to disabled the events dispatched by this method if is {@code true}.
+    	 * @param noEvent A boolean flag to disabled the events dispatched by this method if is <code>true</code>.
     	 * @param callback Function to map and check the current process in progress in the sequencer before reset it.
     	 */
 		public function stop( noEvent:Boolean = false , callback:Function = null ):void 

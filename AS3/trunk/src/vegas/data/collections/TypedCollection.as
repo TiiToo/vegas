@@ -38,7 +38,7 @@ package vegas.data.collections
 		
 		/**
 		 * Creates a new TypedCollection.
-		 * @throws IllegalArgumentError if the specified collection in argument is {@code null} or {@code undefined} 
+		 * @throws IllegalArgumentError if the specified collection in argument is <code>null</code> or <code>undefined</code> 
 	 	 */
 		public function TypedCollection(type:*, co:Collection=null)
 		{
@@ -85,8 +85,8 @@ package vegas.data.collections
 		}
 
 		/**
-		 * Returns {@code true} if this collection contains the specified element.
-		 * @return {@code true} if this collection contains the specified element.
+		 * Returns <code>true</code> if this collection contains the specified element.
+		 * @return <code>true</code> if this collection contains the specified element.
 	 	 */
 		public function contains(o:*):Boolean
 		{
@@ -120,8 +120,8 @@ package vegas.data.collections
 		}
 	
 		/**
-		 * Returns {@code true} if this collection contains no elements.
-		 * @return {@code true} if the collection is empty else {@code false}.
+		 * Returns <code>true</code> if this collection contains no elements.
+		 * @return <code>true</code> if the collection is empty else <code>false</code>.
 		 */
 		public function isEmpty():Boolean
 		{

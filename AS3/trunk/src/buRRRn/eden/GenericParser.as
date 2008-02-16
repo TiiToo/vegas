@@ -66,7 +66,7 @@ package buRRRn.eden
 		public static var verbose:Boolean = false;
 
 		/**
-		 * Debugs the parser if the verbose mode is {@code true}.
+		 * Debugs the parser if the verbose mode is <code>true</code>.
 		 */
 		public function debug( str:String ):void
 		{

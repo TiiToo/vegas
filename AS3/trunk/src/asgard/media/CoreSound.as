@@ -100,8 +100,8 @@ package asgard.media
 		}
 	
 		/**
-	 	 * Returns the {@code String} representation of this object.
-	 	 * @return the {@code String} representation of this object.
+	 	 * Returns the <code>String</code> representation of this object.
+	 	 * @return the <code>String</code> representation of this object.
 	 	 */
 		public function set id( id:* ):void
 		{
@@ -160,8 +160,8 @@ package asgard.media
 		}
 		
 	    /**
-	     * (read-only) Returns {@code true} if the process is in pause.
-	     * @return {@code true} if the process is in pause.
+	     * (read-only) Returns <code>true</code> if the process is in pause.
+	     * @return <code>true</code> if the process is in pause.
 	     */
 		public function get pausing():Boolean 
 		{
@@ -201,8 +201,8 @@ package asgard.media
 		}
 		
 	    /**
-	     * (read-only) Returns {@code true} if the process is in progress.
-	     * @return {@code true} if the process is in progress.
+	     * (read-only) Returns <code>true</code> if the process is in progress.
+	     * @return <code>true</code> if the process is in progress.
 	     */
 		public function get running():Boolean 
 		{
@@ -274,8 +274,8 @@ package asgard.media
 		}
 
 		/**
-		 * Returns the internal {@code ILogger} reference of this {@code ILogable} object.
-		 * @return the internal {@code ILogger} reference of this {@code ILogable} object.
+		 * Returns the internal <code>ILogger</code> reference of this <code>ILogable</code> object.
+		 * @return the internal <code>ILogger</code> reference of this <code>ILogable</code> object.
 		 */
 		public function getLogger():ILogger
 		{
@@ -299,8 +299,8 @@ package asgard.media
 		}
 
     	/**
-	     * Returns {@code true} if the object is locked.
-	     * @return {@code true} if the object is locked.
+	     * Returns <code>true</code> if the object is locked.
+	     * @return <code>true</code> if the object is locked.
 	     */
 	    public function isLocked():Boolean 
 	    {
@@ -409,7 +409,7 @@ package asgard.media
 		
 		/**
 		 * Pauses playback of the Sound.
-		 * @return {@code true} if the pause method can be use (the internal SoundChannel of this Sound object is not null and not is "pausing").
+		 * @return <code>true</code> if the pause method can be use (the internal SoundChannel of this Sound object is not null and not is "pausing").
 		 */	
 		public function pause():Boolean
 		{
@@ -445,8 +445,8 @@ package asgard.media
 		}    	
 		
 		/**
-		 * Resumes playback of the sound that is paused (if the {@code pausing} property is {@code true}).
-		 * @return {@code true} if the resume method is success.
+		 * Resumes playback of the sound that is paused (if the <code>pausing</code> property is <code>true</code>).
+		 * @return <code>true</code> if the resume method is success.
 		 */
 		public function resume():Boolean
 		{
@@ -465,7 +465,7 @@ package asgard.media
 		}
 		
 		/**
-		 * Sets the internal {@code ILogger} reference of this {@code ILogable} object.
+		 * Sets the internal <code>ILogger</code> reference of this <code>ILogable</code> object.
 		 */
 		public function setLogger( log:ILogger=null ):void 
 		{
@@ -490,7 +490,7 @@ package asgard.media
         
 		/**
 		 * Stops the sound playing in the channel.
-		 * @return {@code true} if the stop method can be use (the internal SoundChannel of this Sound object is not null).
+		 * @return <code>true</code> if the stop method can be use (the internal SoundChannel of this Sound object is not null).
 		 */	
 		public function stop():Boolean
 		{
@@ -525,8 +525,8 @@ package asgard.media
 		}
 		
 		/**
-	 	 * Returns the {@code String} source representation of this object.
-	 	 * @return the {@code String} source representation of this object.
+	 	 * Returns the <code>String</code> source representation of this object.
+	 	 * @return the <code>String</code> source representation of this object.
 	 	 */
 		public function toSource(indent:int = 0):String
 		{
@@ -534,8 +534,8 @@ package asgard.media
 		}
         
 		/**
-	 	 * Returns the {@code String} representation of this object.
-	 	 * @return the {@code String} representation of this object.
+	 	 * Returns the <code>String</code> representation of this object.
+	 	 * @return the <code>String</code> representation of this object.
 	 	 */
 		public override function toString():String
 		{

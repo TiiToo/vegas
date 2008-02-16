@@ -59,8 +59,8 @@ package vegas.data.stack
     	 * Creates a new TypedStack instance.
     	 * @param type the type class of this ITypeable object.
     	 * @param stack the Stack reference protected with this ITypeable object.
-    	 * @throws IllegalArgumentError if the {@code type} argument is {@code null} or {@code undefined}.
-    	 * @throws IllegalArgumentError if the {@code stack} argument is {@code null} or {@code undefined}.
+    	 * @throws IllegalArgumentError if the <code>type</code> argument is <code>null</code> or <code>undefined</code>.
+    	 * @throws IllegalArgumentError if the <code>stack</code> argument is <code>null</code> or <code>undefined</code>.
 	     */
 		public function TypedStack(type:*, stack:Stack)
 		{
@@ -107,8 +107,8 @@ package vegas.data.stack
 		}
 
     	/**
-    	 * Returns {@code true} if this Stack contains no elements.
-    	 * @return {@code true} if this Stack contains no elements.
+    	 * Returns <code>true</code> if this Stack contains no elements.
+    	 * @return <code>true</code> if this Stack contains no elements.
     	 */
 		public function isEmpty():Boolean
 		{

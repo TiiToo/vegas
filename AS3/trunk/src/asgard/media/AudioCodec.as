@@ -58,8 +58,8 @@ package asgard.media
         public static const UNCOMPRESSED:Number = 0 ;
         
         /**
-         * Returns {@code true} if the specified id in argument is a valid audio codec.
-         * @return {@code true} if the specified id in argument is a valid audio codec.
+         * Returns <code>true</code> if the specified id in argument is a valid audio codec.
+         * @return <code>true</code> if the specified id in argument is a valid audio codec.
          */
         public static function validate( id:Number ):Boolean
         {

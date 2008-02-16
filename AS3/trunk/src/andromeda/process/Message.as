@@ -24,7 +24,7 @@ package andromeda.process
 {
     
     /**
-     * This {@code IAction} object create a pause in the process.
+     * This <code>IAction</code> object create a pause in the process.
      * <p><b>Example :</b></p>
      * {@code
      * import pegas.events.ActionEvent ;
@@ -51,7 +51,7 @@ package andromeda.process
     	 * @param duration the duration of the pause.
     	 * @param seconds the flag to indicates if the duration is in second or not.
     	 * @param bGlobal the flag to use a global event flow or a local event flow.
-    	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+    	 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
 		 */
 		public function Message( message:String , face:String = null, duration:Number = 0 , seconds:Boolean = false , to:* = null , bGlobal:Boolean = false , sChannel:String = null )
 		{

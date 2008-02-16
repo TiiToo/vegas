@@ -86,7 +86,7 @@ package asgard.display
          * @param target The MovieClip reference of this iterator.
           * @param framePosition the default framePosition of the specified MovieClip target (default frame 1).
           * @param stepSize (optional) the step between two frames returns by the iterator (default 1).
-         * @throws IllegalArgumentError if the {@code target} argument of this constructor is empty.
+         * @throws IllegalArgumentError if the <code>target</code> argument of this constructor is empty.
          */
         public function TimelineIterator( target:MovieClip , framePosition:Number=NaN, stepSize:uint=1 )
         {
@@ -155,7 +155,7 @@ package asgard.display
 
         /**
          * Checks to see if there is a previous element that can be iterated to.
-         * @return {@code true} if the iterator has more elements.
+         * @return <code>true</code> if the iterator has more elements.
          */
         public function hasPrevious() : Boolean 
         {
@@ -163,8 +163,8 @@ package asgard.display
         }
         
         /**
-         * Returns {@code true} if the iteration has more elements.
-         * @return {@code true} if the iterator has more elements.
+         * Returns <code>true</code> if the iteration has more elements.
+         * @return <code>true</code> if the iterator has more elements.
          */
         public function hasNext() : Boolean 
         {

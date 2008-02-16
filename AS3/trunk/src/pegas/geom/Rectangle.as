@@ -48,8 +48,8 @@ package pegas.geom
 	 	 * trace( "output : " + rec.toString() ); // output : (x:5,y:10,width:50,height:100)
 	 	 * }
 	 	 * If not arguments are passed-in the constructor an empty rectangle is created.
-	 	 * @param x The {@code x} coordinate of the top-left corner of the rectangle.
-	 	 * @param y The {@code y} coordinate of the top-left corner of the rectangle.
+	 	 * @param x The <code>x</code> coordinate of the top-left corner of the rectangle.
+	 	 * @param y The <code>y</code> coordinate of the top-left corner of the rectangle.
 	 	 * @param w The width of the rectangle in pixels.
 	 	 * @param h The height of the rectangle in pixels.
 	 	 */
@@ -272,7 +272,7 @@ package pegas.geom
 		 * Determines whether the specified point is contained within the rectangular region defined by this Rectangle object.
 		 * @param x The x coordinate to check.
 		 * @param y The y coordinate to check.
-		 * @return {@code true} if the specified point is contained within the rectangular region defined by this Rectangle object.
+		 * @return <code>true</code> if the specified point is contained within the rectangular region defined by this Rectangle object.
 		 */
 		public function containsCoordinate( x:Number , y:Number ):Boolean 
 		{
@@ -282,7 +282,7 @@ package pegas.geom
 		/**
 		 * Determines whether the specified point is contained within the rectangular region defined by this Rectangle object.
 		 * @param vector The Vector2 to check.
-		 * @return {@code true} if the specified point is contained within the rectangular region defined by this Rectangle object.
+		 * @return <code>true</code> if the specified point is contained within the rectangular region defined by this Rectangle object.
 		 */
 		public function containsVector( vector:Vector2 ):Boolean 
 		{
@@ -291,7 +291,7 @@ package pegas.geom
 	
 		/**
 		 * Determines whether the Rectangle object specified by the rect parameter is contained within this Rectangle object.
-		 * @return {@code true} if the specified Rectangle is contained within this Rectangle object. 
+		 * @return <code>true</code> if the specified Rectangle is contained within this Rectangle object. 
 	 	 */
 		public function containsRectangle( rec:pegas.geom.Rectangle ):Boolean 
 		{
@@ -353,7 +353,7 @@ package pegas.geom
 
 		/**
 		 * Compares the specified object with this object for equality.
-		 * @return {@code true} if the the specified object is equal with this object.
+		 * @return <code>true</code> if the the specified object is equal with this object.
 		 */
 		public override function equals( o:* ):Boolean 
 		{
@@ -422,7 +422,7 @@ package pegas.geom
 
 		/**
 		 * Determines whether or not this Rectangle object is empty.
-		 * @return {@code true} if the width and the height of the rectangle are empty (0).
+		 * @return <code>true</code> if the width and the height of the rectangle are empty (0).
 		 */
 		public function isEmpty():Boolean 
 		{

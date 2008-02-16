@@ -28,7 +28,7 @@ package vegas.data.collections
 	import vegas.util.Copier;
 	
 	/**
- 	 * A simple representation of the {@code Collection} interface.
+ 	 * A simple representation of the <code>Collection</code> interface.
 	 * @author eKameleon
  	 */
 	public class SimpleCollection extends AbstractCollection
@@ -53,8 +53,8 @@ package vegas.data.collections
 		}
 
 		/**
-		 * Returns {@code true} if this collection contains all of the elements of the specified collection.
-		 * @return {@code true} if this collection contains all of the elements of the specified collection.
+		 * Returns <code>true</code> if this collection contains all of the elements of the specified collection.
+		 * @return <code>true</code> if this collection contains all of the elements of the specified collection.
 	 	 */
 		public function containsAll(c:Collection):Boolean 
 		{

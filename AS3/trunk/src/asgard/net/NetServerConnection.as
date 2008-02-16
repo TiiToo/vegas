@@ -49,7 +49,7 @@ package asgard.net
 		/**
 		 * Creates a new NetServerConnection instance.
 	 	 * @param bGlobal the flag to use a global event flow or a local event flow.
-		 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+		 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
 		 */
 		public function NetServerConnection( bGlobal:Boolean = false , sChannel:String = null )
 		{
@@ -229,7 +229,7 @@ package asgard.net
 		
 		/**
 		 * Closes the connection that was opened locally or with the server and dispatches the netStatus event with a code property of NetConnection.Connect.Closed. 
-		 * @param noEvent if this argument is {@code true} the event propagation is disabled.
+		 * @param noEvent if this argument is <code>true</code> the event propagation is disabled.
 		 */		
 		public function close( noEvent:Boolean = false ):void 
 		{

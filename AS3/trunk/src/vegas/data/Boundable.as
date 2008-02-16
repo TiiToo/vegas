@@ -32,7 +32,7 @@ package vegas.data
     {
         
 		/**
-		 * Returns {@code true} if the object is full.
+		 * Returns <code>true</code> if the object is full.
 		 */
     	function isFull():Boolean ;
 	

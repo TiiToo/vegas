@@ -43,7 +43,7 @@ package vegas.data
         function clear():void ;
 
 		/**
-		 * Returns {@code true} if this collection contains the specified element.
+		 * Returns <code>true</code> if this collection contains the specified element.
 		 */
     	function contains(o:*):Boolean ;
 	
@@ -66,8 +66,8 @@ package vegas.data
     	function insert(o:*):Boolean ;
 
 		/**
-		 * Returns {@code true} if this collection contains no elements.
-		 * @return {@code true} if this collection is empty else {@code false}.
+		 * Returns <code>true</code> if this collection contains no elements.
+		 * @return <code>true</code> if this collection is empty else <code>false</code>.
 		 */
     	function isEmpty():Boolean ;
 

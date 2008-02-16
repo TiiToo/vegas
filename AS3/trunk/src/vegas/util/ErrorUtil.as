@@ -26,7 +26,7 @@ package vegas.util
 {
 
 	/**
-	 * The {@code ErrorUtil} utility class is an all-static class with methods for working with Error.
+	 * The <code>ErrorUtil</code> utility class is an all-static class with methods for working with Error.
 	 * @author eKameleon
 	 */
     public class ErrorUtil
@@ -52,7 +52,7 @@ package vegas.util
 
 		/**
 		 * Compares if two Errors are equal by reference.
-		 * @return {@code true} if the two Errors are equal by reference.
+		 * @return <code>true</code> if the two Errors are equal by reference.
 	 	 */
 		public static function equals( e1:Error = null , e2:Error = null ):Boolean 
 		{

@@ -27,7 +27,7 @@ package pegas.util
 	import pegas.geom.Vector2;	
 	
 	/**
-	 * Static tool class to manipulate and transform {@code Plane} references.
+	 * Static tool class to manipulate and transform <code>Plane</code> references.
 	 * @author eKameleon
 	 */
 	public class PlaneUtil 

@@ -27,9 +27,9 @@ package vegas.events
 	/**
     * Stores the listeners object an notifies them with the DOM Events level 2/3 of the W3C.
     * The EventDispatcher class implements the IEventDispatcher interface. 
-    * This object allows any object to be an {@code EventTarget}.
+    * This object allows any object to be an <code>EventTarget</code>.
     * <p><b>Thanks</b>:</p>
-    * <p>{@code EventDispatcher} is an AS2 port of the <b>Java.schst.net EventDispatcher</b>. Inspired by the NotificationCenter of Apple's Cocoa-Framework.
+    * <p><code>EventDispatcher</code> is an AS2 port of the <b>Java.schst.net EventDispatcher</b>. Inspired by the NotificationCenter of Apple's Cocoa-Framework.
     * <li>EventDispatcher JAVA : Stephan Schmid - http://schst.net/</li><li>Cocoa-Framework : http://developer.apple.com/cocoa/</li><li>Notification center : http://developer.apple.com/documentation/Cocoa/Conceptual/Notifications/index.html</li>
     * </p>
      * @author eKameleon
@@ -51,7 +51,7 @@ package vegas.events
         public static const DEFAULT_SINGLETON_NAME:String = "__default__" ;
         
         /**
-         * Registers an {@code EventListener} object with an EventDispatcher object so that the listener receives notification of an event.
+         * Registers an <code>EventListener</code> object with an EventDispatcher object so that the listener receives notification of an event.
          */
         VEGAS function addEventListener(type:String, listener:*, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void
         {    
@@ -98,7 +98,7 @@ package vegas.events
         }
 
         /**
-         * Registers an {@code EventListener} object with an EventDispatcher object so that the listener receives notification of an event.
+         * Registers an <code>EventListener</code> object with an EventDispatcher object so that the listener receives notification of an event.
          */
         VEGAS function removeEventListener( type:String, listener:*, useCapture:Boolean = false ):void
         {    

@@ -33,7 +33,7 @@ package andromeda.process
 	    /**
     	 * Creates a new InitProcess instance.
     	 * @param bGlobal the flag to use a global event flow or a local event flow.
-    	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+    	 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
     	 */
 		public function InitProcess( bGlobal:Boolean = false , sChannel:String = null ) 
     	{

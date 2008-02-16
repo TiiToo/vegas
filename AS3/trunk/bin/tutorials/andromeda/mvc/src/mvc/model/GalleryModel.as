@@ -18,7 +18,7 @@ package mvc.model
          * Creates a new GalleryModel instance.
          * @param id the id of this model.
          * @param bGlobal the flag to use a global event flow or a local event flow.
-         * @param sChannel (optional) the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+         * @param sChannel (optional) the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
          */
         public function GalleryModel( id:* = null , bGlobal:Boolean = false , sChannel:String = null )
         {
@@ -91,9 +91,9 @@ package mvc.model
         }
 
         /**
-         * Returns {@code true} if the {@code IValidator} object validate the value. Overrides this method in your concrete IModelObject class.
+         * Returns <code>true</code> if the <code>IValidator</code> object validate the value. Overrides this method in your concrete IModelObject class.
          * @param value the object to test.
-         * @return {@code true} is this specific value is valid.
+         * @return <code>true</code> is this specific value is valid.
          */
         public override function supports( value:* ):Boolean 
         {

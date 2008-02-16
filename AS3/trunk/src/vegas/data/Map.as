@@ -45,14 +45,14 @@ package vegas.data
      	function clear():void ;
 
 		/**
-		 * Returns {@code true} if this map contains a mapping for the specified key.
-		 * @return {@code true} if this map contains a mapping for the specified key.
+		 * Returns <code>true</code> if this map contains a mapping for the specified key.
+		 * @return <code>true</code> if this map contains a mapping for the specified key.
 		 */
         function containsKey( key:* ):Boolean ;
 	
 		/**
-		 * Returns {@code true} if this map maps one or more keys to the specified value.
-		 * @return {@code true} if this map maps one or more keys to the specified value.
+		 * Returns <code>true</code> if this map maps one or more keys to the specified value.
+		 * @return <code>true</code> if this map maps one or more keys to the specified value.
 		 */
     	function containsValue( value:* ):Boolean ;
 
@@ -75,8 +75,8 @@ package vegas.data
     	function getValues():Array ;
 
 		/**
-		 * Returns {@code true} if this map contains no key-value mappings.
-		 * @return {@code true} if this map contains no key-value mappings.
+		 * Returns <code>true</code> if this map contains no key-value mappings.
+		 * @return <code>true</code> if this map contains no key-value mappings.
 		 */
 	    function isEmpty():Boolean ;
 	

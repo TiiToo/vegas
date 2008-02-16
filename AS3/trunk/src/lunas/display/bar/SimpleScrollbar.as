@@ -39,7 +39,7 @@ package lunas.display.bar
 	/**
 	 * The SimpleScrollbar component.
 	 * <p><b>Example :</b></p>
-	 * {@code
+	 * <code>
 	 * import flash.display.StageScaleMode ;
 	 * 
 	 * import pegas.draw.FillStyle ;
@@ -128,7 +128,7 @@ package lunas.display.bar
 	 * }
 	 * 
 	 * stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
-	 * }
+	 * </code>
 	 * @author eKameleon
 	 */
 	public class SimpleScrollbar extends AbstractScrollbar 
@@ -259,8 +259,8 @@ package lunas.display.bar
 			
 			_barPen.draw( 0, 0, r.width , r.height ) ;
 			
-			var hBorder:Number = EdgeMetrics.filterNaNValue( border.top ) + EdgeMetrics.filterNaNValue( border.bottom ) ;
-			var wBorder:Number = EdgeMetrics.filterNaNValue( border.left ) + EdgeMetrics.filterNaNValue( border.right ) ;
+			var hBorder:Number = EdgeMetrics.filterNaNValue( border.top )  + EdgeMetrics.filterNaNValue( border.bottom ) ;
+			var wBorder:Number = EdgeMetrics.filterNaNValue( border.left ) + EdgeMetrics.filterNaNValue( border.right )  ;
 
 			var s:Number = thumbSize ;
 

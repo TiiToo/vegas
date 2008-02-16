@@ -29,7 +29,7 @@ package lunas.events
 	import vegas.events.BasicEvent;	
 
 	/**
-	 * The {@code StyleEvent} to dispatch an event with an {@code IStyle} object.
+	 * The <code>StyleEvent</code> to dispatch an event with an <code>IStyle</code> object.
 	 * @author eKameleon
 	 */
 	public class StyleEvent extends BasicEvent 

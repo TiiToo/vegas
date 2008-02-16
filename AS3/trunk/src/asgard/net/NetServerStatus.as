@@ -78,7 +78,7 @@ package asgard.net
 
 		/**
 	 	 * Compares the specified object with this object for equality.
-	 	 * @return {@code true} if the the specified object is equal with this object.
+	 	 * @return <code>true</code> if the the specified object is equal with this object.
 	 	 */
 		public function equals( o:* ):Boolean
 		{
@@ -123,7 +123,7 @@ package asgard.net
 
 		/**
 		 * Validate if the specified object is a valid status value.
-		 * @return {@code true} if the specified object is a valid status value.
+		 * @return <code>true</code> if the specified object is a valid status value.
 		 */
 		public static function validate( o:* ):Boolean 
 		{

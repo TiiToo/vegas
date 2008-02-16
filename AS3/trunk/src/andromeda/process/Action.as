@@ -25,7 +25,7 @@ package andromeda.process
 	import andromeda.events.ActionEvent;		
 
 	/**
-     * This class simplify a full implementation of the {@code Action} interface.
+     * This class simplify a full implementation of the <code>Action</code> interface.
      * @author eKameleon
      */
 	public class Action extends SimpleAction
@@ -34,7 +34,7 @@ package andromeda.process
 		/**
 		 * Creates a new Action instance.
     	 * @param bGlobal the flag to use a global event flow or a local event flow.
-    	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+    	 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
 		 */
 		public function Action( bGlobal:Boolean = false , sChannel:String = null )
 		{

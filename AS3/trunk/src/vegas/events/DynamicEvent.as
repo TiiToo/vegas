@@ -27,7 +27,7 @@ package vegas.events
     import flash.events.Event ;
     
     /**
-     * The {@code DynamicEvent} to dispatch an event with dynamic properties.
+     * The <code>DynamicEvent</code> to dispatch an event with dynamic properties.
      * <p><b>Example :</b></p>
      * {@code
      * import vegas.events.DynamicEvent ;
@@ -41,7 +41,7 @@ package vegas.events
 	{
         
 		/**
-		 * Creates a new {@code DynamicEvent} instance.
+		 * Creates a new <code>DynamicEvent</code> instance.
 		 * @param type the string type of the instance. 
 		 * @param target the target of the event.
 		 * @param context the optional context object of the event.

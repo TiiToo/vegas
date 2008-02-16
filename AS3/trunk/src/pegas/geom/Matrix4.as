@@ -42,8 +42,8 @@ package pegas.geom
 			
 		/**
 		 * Creates a new Matrix4 instance.
-		 * <p>If 16 arguments are passed to the constructor, it will create a {@code Matrix4} with the values.</p> 
-		 * <p>In the other case, a identity {@code Matrix4} is created.</p>
+		 * <p>If 16 arguments are passed to the constructor, it will create a <code>Matrix4</code> with the values.</p> 
+		 * <p>In the other case, a identity <code>Matrix4</code> is created.</p>
 		 * <p><b>Example 1 - Matrix4 identity :</b></p>
 		 * {@code
 		 * import pegas.geom.Matrix4 ;
@@ -87,7 +87,7 @@ package pegas.geom
 		}
 		
 		/**
-		 * Defines a {@code Matrix4} cell.
+		 * Defines a <code>Matrix4</code> cell.
 		 * {@code 
 		 * 1 0 0 0
 		 * 0 0 0 0
@@ -98,7 +98,7 @@ package pegas.geom
 		public var n11:Number;
 			
 		/**
-		 * Defines a {@code Matrix4} cell.
+		 * Defines a <code>Matrix4</code> cell.
 		 * {@code 
 		 *  0 1 0 0
 		 *  0 0 0 0
@@ -109,7 +109,7 @@ package pegas.geom
 		public var n12:Number;
 		
 		/**
-		 * Defines a {@code Matrix4} cell.
+		 * Defines a <code>Matrix4</code> cell.
 		 * {@code
 		 * 0 0 1 0
 		 * 0 0 0 0
@@ -120,7 +120,7 @@ package pegas.geom
 		public var n13:Number;
 			
 		/**
-		 * Defines a {@code Matrix4} cell.
+		 * Defines a <code>Matrix4</code> cell.
 		 * {@code
 		 * 0 0 0 1
 		 * 0 0 0 0
@@ -131,7 +131,7 @@ package pegas.geom
 		public var n14:Number;
 			
 		/**
-		 * Defines a {@code Matrix4} cell.
+		 * Defines a <code>Matrix4</code> cell.
 		 * {@code 
 		 * 0 0 0 0
 		 * 1 0 0 0
@@ -142,7 +142,7 @@ package pegas.geom
 		public var n21:Number;
 			
 		/**
-		 * Defines a {@code Matrix4} cell.
+		 * Defines a <code>Matrix4</code> cell.
 		 * {@code 
 		 * 0 0 0 0
 		 * 0 1 0 0
@@ -153,7 +153,7 @@ package pegas.geom
 		public var n22:Number;
 			
 		/**
-		 * Defines a {@code Matrix4} cell.
+		 * Defines a <code>Matrix4</code> cell.
 		 * {@code 
 		 * 0 0 0 0
 		 * 0 0 1 0
@@ -164,7 +164,7 @@ package pegas.geom
 		public var n23:Number;
 		
 		/**
-		 * Defines a {@code Matrix4} cell.
+		 * Defines a <code>Matrix4</code> cell.
 		 * {@code 
 	 	 * 0 0 0 0
 	 	 * 0 0 0 1
@@ -175,7 +175,7 @@ package pegas.geom
 		public var n24:Number;
 		
 		/**
-		 * Defines a {@code Matrix4} cell.
+		 * Defines a <code>Matrix4</code> cell.
 		 * {@code 
 	 	 * 0 0 0 0
 		 * 0 0 0 0
@@ -186,7 +186,7 @@ package pegas.geom
 		public var n31:Number;
 			
 		/**
-		 * Defines a {@code Matrix4} cell.
+		 * Defines a <code>Matrix4</code> cell.
 		 * {@code 
 		 * 0 0 0 0
 		 * 0 0 0 0
@@ -197,7 +197,7 @@ package pegas.geom
 		public var n32:Number;
 			
 		/**
-		 * Defines a {@code Matrix4} cell.
+		 * Defines a <code>Matrix4</code> cell.
 	 	 * {@code 
 		 * 0 0 0 0
 	 	 * 0 0 0 0
@@ -208,7 +208,7 @@ package pegas.geom
 		public var n33:Number;
 			
 		/**
-		 * Defines a {@code Matrix4} cell.
+		 * Defines a <code>Matrix4</code> cell.
 		 * {@code 
 		 * 0 0 0 0
 		 * 0 0 0 0
@@ -219,7 +219,7 @@ package pegas.geom
 		public var n34:Number;
 			
 		/**
-		 * Defines a {@code Matrix4} cell.
+		 * Defines a <code>Matrix4</code> cell.
 		 * {@code 
 		 * 0 0 0 0
 		 * 0 0 0 0
@@ -230,7 +230,7 @@ package pegas.geom
 		public var n41:Number;
 			
 		/**
-		 * Defines a {@code Matrix4} cell.
+		 * Defines a <code>Matrix4</code> cell.
 		 * {@code 
 		 * 0 0 0 0
 	 	 * 0 0 0 0
@@ -241,7 +241,7 @@ package pegas.geom
 		public var n42:Number;
 		
 		/**
-		 * Defines a {@code Matrix4} cell.
+		 * Defines a <code>Matrix4</code> cell.
 		 * {@code 
 		 * 0 0 0 0
 		 * 0 0 0 0
@@ -252,7 +252,7 @@ package pegas.geom
 		public var n43:Number;
 			
 		/**
-		 * Defines a {@code Matrix4} cell.
+		 * Defines a <code>Matrix4</code> cell.
 		 * {@code 
 		 * 0 0 0 0
 	 	 * 0 0 0 0
@@ -282,7 +282,7 @@ package pegas.geom
 		
 		/**
 		 * Compares the specified object with this object for equality.
-		 * @return {@code true} if the the specified object is equal with this object.
+		 * @return <code>true</code> if the the specified object is equal with this object.
 		 */
 		public function equals(o:*):Boolean
 		{
@@ -308,7 +308,7 @@ package pegas.geom
 
 		/**
 		 * Sets matrix[x][y] with the specified value.
-		 * @throws IllegalArgumentError if the x or y value are {@code null} or {@code undefined}.
+		 * @throws IllegalArgumentError if the x or y value are <code>null</code> or <code>undefined</code>.
 		 */
 		public function setEntry( x:Number , y:Number , value:* ):void
 		{

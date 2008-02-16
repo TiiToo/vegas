@@ -38,12 +38,12 @@ package vegas.events
     {
         
        /**
-        * Registers an {@code EventListener} object with an EventDispatcher object so that the listener receives notification of an event.
+        * Registers an <code>EventListener</code> object with an EventDispatcher object so that the listener receives notification of an event.
         */
        function registerEventListener(type:String, listener:*, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void
        
         /**
-         * Removes an {@code EventListener} from the EventDispatcher object.
+         * Removes an <code>EventListener</code> from the EventDispatcher object.
          */
        function unregisterEventListener(type:String, listener:*, useCapture:Boolean = false):void ;
         

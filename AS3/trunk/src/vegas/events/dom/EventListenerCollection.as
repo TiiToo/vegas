@@ -34,7 +34,7 @@ package vegas.events.dom
 	import vegas.events.EventListener;    
 
 	/**
-     * Internal class used in the EventDispatcher to collect {@code EventListener} for a specific event type.  
+     * Internal class used in the EventDispatcher to collect <code>EventListener</code> for a specific event type.  
      * @author eKameleon
      */
 	internal class EventListenerCollection extends CoreObject implements Iterable
@@ -51,7 +51,7 @@ package vegas.events.dom
 		}
 		
 	    /**
-	     * Adds an {@code EventListener} in the collection 
+	     * Adds an <code>EventListener</code> in the collection 
 	     * @param listener the EventListener in the collection
 	     * @param autoRemove this EventListener is autoRemove when the event flow is finished.
 	     * @param priority the priority value of the EventListener.
@@ -76,7 +76,7 @@ package vegas.events.dom
 		}
 	
 	    /**
-	     * Propagates an event in the event flow of all {@code EventListener} in this collection.
+	     * Propagates an event in the event flow of all <code>EventListener</code> in this collection.
 	     */
 		public function propagate( e:DomEvent ):Event 
 		{
@@ -119,7 +119,7 @@ package vegas.events.dom
 		}
 
 	    /**
-	     * Removes an {@code EventListener} in the collection.
+	     * Removes an <code>EventListener</code> in the collection.
 	     * @return the EventListenerContainer of the listener removes in the collection.
 	     */
 		public function removeListener( listener:* ):EventListenerContainer 
@@ -165,8 +165,8 @@ package vegas.events.dom
 		}
 
 		/**
-	     * Returns the number of {@code EventListener} in this collection.
-	     * @return the number of {@code EventListener} in this collection.
+	     * Returns the number of <code>EventListener</code> in this collection.
+	     * @return the number of <code>EventListener</code> in this collection.
 	     */
 		public function size():uint 
 		{

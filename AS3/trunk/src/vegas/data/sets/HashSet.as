@@ -91,8 +91,8 @@ package vegas.data.sets
 		}
 	
 		/**
-		 * Returns {@code true} if this Set contains the specified element.
-	 	 * @return {@code true} if this Set contains the specified element.
+		 * Returns <code>true</code> if this Set contains the specified element.
+	 	 * @return <code>true</code> if this Set contains the specified element.
 		 */	
 		public override function contains(o:*):Boolean 
 		{

@@ -65,8 +65,8 @@ package pegas.transitions
 		}
 		
 		/**
-		 * Compares the specified object with this object for equality. This method compares the ids of the objects with the {@code Identifiable.getID()} method.
-		 * @return {@code true} if the the specified object is equal with this object.
+		 * Compares the specified object with this object for equality. This method compares the ids of the objects with the <code>Identifiable.getID()</code> method.
+		 * @return <code>true</code> if the the specified object is equal with this object.
 		 */
 		public function equals( o:* ):Boolean
 		{

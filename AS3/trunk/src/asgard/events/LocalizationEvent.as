@@ -80,8 +80,8 @@ package asgard.events
         }
 
         /**
-         * Returns the current {@code Local} reference or the internal value of the Local property passed in argument with the string in argument.
-         * @return the current {@code Local} reference or the internal value of the Local property passed in argument with the string in argument.
+         * Returns the current <code>Local</code> reference or the internal value of the Local property passed in argument with the string in argument.
+         * @return the current <code>Local</code> reference or the internal value of the Local property passed in argument with the string in argument.
          */
         public function getLocale( sID:String=null ):*
         {

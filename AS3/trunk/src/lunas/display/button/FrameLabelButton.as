@@ -39,11 +39,11 @@ package lunas.display.button
 	 * <li>"over"     : the frame when the button is over.</li>
 	 * <li>"up"       : the first frame when the button is up.</li>
 	 * </ul>
-	 * <p>The {@code stop()} method is call in the first frame of the component when the constructor is launched.</p>
-	 * This class looks like SimpleButton class but you can use the {@code registerType()} and the {@code unregisterType()} method to add or remove a ButtonEvent type (DISABLED, OVER, DOWN...) corresponding with a frame label in the MovieClip view of the button.
+	 * <p>The <code>stop()</code> method is call in the first frame of the component when the constructor is launched.</p>
+	 * This class looks like SimpleButton class but you can use the <code>registerType()</code> and the <code>unregisterType()</code> method to add or remove a ButtonEvent type (DISABLED, OVER, DOWN...) corresponding with a frame label in the MovieClip view of the button.
 	 * <p>
 	 * <p><b>Example :</b></p>
-	 * {@code
+	 * <code>
 	 * import lunas.display.button.FrameLabelButton ;
 	 * import lunas.events.ButtonEvent ;
 	 * 
@@ -106,7 +106,7 @@ package lunas.display.button
 	 * bt.addEventListener( ButtonEvent.SELECT        , debug ) ;
 	 * bt.addEventListener( ButtonEvent.UNSELECT      , debug ) ;
 	 * bt.addEventListener( ButtonEvent.UP            , debug ) ;
-	 * }
+	 * </code>
 	 * @author eKameleon
 	 */
 	public class FrameLabelButton extends AbstractButton 
@@ -161,8 +161,8 @@ package lunas.display.button
 		}
 
 		/**
-		 * Returns {@code true} if the specified type is register in the object.
-		 * @return {@code true} if the specified type is register in the object.
+		 * Returns <code>true</code> if the specified type is register in the object.
+		 * @return <code>true</code> if the specified type is register in the object.
 		 */
 		public function containsType( type:String ):Boolean
 		{

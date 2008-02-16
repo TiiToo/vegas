@@ -72,7 +72,6 @@ package vegas.logging.targets
 	 * logger.warn([3, 2, 4]) ;
 	 * throw new FatalError("a fatal error") ;
 	 * </code>
-	 * 
 	 * @author eKameleon
 	 */
     public class SOSTarget extends LineFormattedTarget

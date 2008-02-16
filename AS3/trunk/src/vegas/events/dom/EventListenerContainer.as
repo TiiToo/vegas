@@ -27,7 +27,7 @@ package vegas.events.dom
 	import vegas.events.EventListener;
 	
 	/**
-     * Internal class in the {@code EventDispatcher} class to register in an {@code EventCollection} an {@code EventListener}.
+     * Internal class in the <code>EventDispatcher</code> class to register in an <code>EventCollection</code> an <code>EventListener</code>.
      * @author eKameleon
      * @see EventListenerCollection
      * @see EventListenerComparator
@@ -37,7 +37,7 @@ package vegas.events.dom
 		
 		/**
 	     * Creates a new EventListenerContainer instance.
-	     * @param listener an {@code EventListener}
+	     * @param listener an <code>EventListener</code>
 	     */	
 		public function EventListenerContainer( listener:EventListener )
 		{
@@ -60,8 +60,8 @@ package vegas.events.dom
 	    }
 
 	    /**
-	     * Returns the priority of the {@code EventListener}. This priority is used in the {@code EventListenerComparator}.
-	     * @return the priority of the {@code EventListener}. This priority is used in the {@code EventListenerComparator}.
+	     * Returns the priority of the <code>EventListener</code>. This priority is used in the <code>EventListenerComparator</code>.
+	     * @return the priority of the <code>EventListener</code>. This priority is used in the <code>EventListenerComparator</code>.
 	     * @see EventListenerComparator
 	     */
 		public function getPriority():uint 
@@ -70,8 +70,8 @@ package vegas.events.dom
 		}
 
         /**
-         * Returns {@code true} if the {@code EventListener} is auto remove at the end of the event flow.
-         * @return {@code true} if the {@code EventListener} is auto remove at the end of the event flow.
+         * Returns <code>true</code> if the <code>EventListener</code> is auto remove at the end of the event flow.
+         * @return <code>true</code> if the <code>EventListener</code> is auto remove at the end of the event flow.
          */
 	    public function isAutoRemoveEnabled():Boolean 
 	    {
@@ -79,8 +79,8 @@ package vegas.events.dom
 	    }
 
 	    /**
-	     * Returns the {@code EventListener} reference.
-	     * @return the {@code EventListener} reference.
+	     * Returns the <code>EventListener</code> reference.
+	     * @return the <code>EventListener</code> reference.
 	     */
 	    public function getListener():EventListener 
 	    {
@@ -88,7 +88,7 @@ package vegas.events.dom
 	    }
     
         /**
-         * Sets the priority of the {@code EventListener}.
+         * Sets the priority of the <code>EventListener</code>.
          */
 		public function setPriority(n:uint=0):void
 		{

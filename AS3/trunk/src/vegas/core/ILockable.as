@@ -32,8 +32,8 @@ package vegas.core
 	{
 
     	/**
-    	 * Returns {@code true} if the object is locked.
-    	 * @return {@code true} if the object is locked.
+    	 * Returns <code>true</code> if the object is locked.
+    	 * @return <code>true</code> if the object is locked.
     	 */
     	function isLocked():Boolean ;
 	

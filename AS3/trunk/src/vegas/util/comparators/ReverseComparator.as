@@ -49,7 +49,7 @@ package vegas.util.comparators
 		
 		/**
 		 * Creates a new ReverseComparator instance.
-	 	 * @param comp the {@code IComparator} to be reverse.
+	 	 * @param comp the <code>IComparator</code> to be reverse.
 	 	 */
 	 	public function ReverseComparator( comp:IComparator=null )
 		{
@@ -57,7 +57,7 @@ package vegas.util.comparators
 		}
 
 		/**
-		 * The {@code IComparator} instance to reverse.
+		 * The <code>IComparator</code> instance to reverse.
 		 */	
 		public var comparator:IComparator ;
 

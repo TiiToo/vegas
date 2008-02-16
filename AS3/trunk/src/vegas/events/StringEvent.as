@@ -27,14 +27,14 @@ package vegas.events
     import flash.events.Event ;
     
     /**
-     * The {@code StringEvent} to dispatch an event with a String object.
+     * The <code>StringEvent</code> to dispatch an event with a String object.
      * @author eKameleon
      */
 	public class StringEvent extends BasicEvent 
 	{
         
 		/**
-		 * Creates a new {@code StringEvent} instance.
+		 * Creates a new <code>StringEvent</code> instance.
 		 * @param type the string type of the instance. 
 		 * @param s the String object of this event. 
 		 * @param target the target of the event.

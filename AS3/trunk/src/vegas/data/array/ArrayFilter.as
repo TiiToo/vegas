@@ -88,7 +88,7 @@ package vegas.data.array
           * Creates a new ArrayFilter instance.
           * @param value the default filter value of this instance. If this argument is null the filter value is ArrayFilter.NONE(0). 
           * @param bGlobal the flag to use a global event flow or a local event flow.
-          * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+          * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
           */
         public function ArrayFilter( value:uint=0, bGlobal:Boolean=false, sChannel:String=null)
         {
@@ -183,8 +183,8 @@ package vegas.data.array
         public var useEvent:Boolean = true ;
         
         /**
-         * Returns {@code true} if the filter number value contains the option number value.
-         * @return {@code true} if the filter number value contains the option number value.
+         * Returns <code>true</code> if the filter number value contains the option number value.
+         * @return <code>true</code> if the filter number value contains the option number value.
          */
         public static function contains( nFilter:uint, nOption:uint ) : Boolean
         {
@@ -223,8 +223,8 @@ package vegas.data.array
         }
     
         /**
-         * Returns {@code true} if the CASEINSENSITIVE option value exist in the current filter.
-         * @return {@code true} if the CASEINSENSITIVE option value exist in the current filter.
+         * Returns <code>true</code> if the CASEINSENSITIVE option value exist in the current filter.
+         * @return <code>true</code> if the CASEINSENSITIVE option value exist in the current filter.
         */
         public function isCaseInsensitive():Boolean
         {
@@ -232,8 +232,8 @@ package vegas.data.array
         }
             
         /**
-         * Returns {@code true} if the DESCENDING option value exist in the current filter.
-         * @return {@code true} if the DESCENDING option value exist in the current filter.
+         * Returns <code>true</code> if the DESCENDING option value exist in the current filter.
+         * @return <code>true</code> if the DESCENDING option value exist in the current filter.
          */
         public function isDescending():Boolean
         {
@@ -241,8 +241,8 @@ package vegas.data.array
         }
             
         /**
-         * Returns {@code true} if the filter is NONE.
-         * @return {@code true} if the filter is NONE.
+         * Returns <code>true</code> if the filter is NONE.
+         * @return <code>true</code> if the filter is NONE.
          */
         public function isNone():Boolean
         {
@@ -250,8 +250,8 @@ package vegas.data.array
         }
         
         /**
-         * Returns {@code true} if the NUMERIC option value exist in the current filter.
-         * @return {@code true} if the NUMERIC option value exist in the current filter.
+         * Returns <code>true</code> if the NUMERIC option value exist in the current filter.
+         * @return <code>true</code> if the NUMERIC option value exist in the current filter.
          */
         public function isNumeric():Boolean
         {
@@ -259,8 +259,8 @@ package vegas.data.array
         }
             
         /**
-         * Returns {@code true} if the RETURNINDEXEDARRAY option value exist in the current filter.
-         * @return {@code true} if the RETURNINDEXEDARRAY option value exist in the current filter.
+         * Returns <code>true</code> if the RETURNINDEXEDARRAY option value exist in the current filter.
+         * @return <code>true</code> if the RETURNINDEXEDARRAY option value exist in the current filter.
          */
         public function isReturnIndexedArray():Boolean
         {
@@ -268,8 +268,8 @@ package vegas.data.array
         }
         
         /**
-         * Returns {@code true} if the UNIQUESORT option value exist in the current filter.
-         * @return {@code true} if the UNIQUESORT option value exist in the current filter.
+         * Returns <code>true</code> if the UNIQUESORT option value exist in the current filter.
+         * @return <code>true</code> if the UNIQUESORT option value exist in the current filter.
          */
         public function isUniqueSort():Boolean
         {

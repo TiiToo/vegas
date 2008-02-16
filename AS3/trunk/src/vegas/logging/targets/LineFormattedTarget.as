@@ -37,7 +37,7 @@ package vegas.logging.targets
 		/**
 		 * Creates a new LineFormattedTarget instance.
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
-		 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
+		 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
 		 */
         public function LineFormattedTarget( bGlobal:Boolean = false , sChannel:String = null )
         {
@@ -65,7 +65,7 @@ package vegas.logging.targets
     	public var includeLines:Boolean = false ; 
 
 	  	/**
-		 * Indicates if the milliseconds should be added to the trace. Only relevant when includeTime is {@code true}.
+		 * Indicates if the milliseconds should be added to the trace. Only relevant when includeTime is <code>true</code>.
 	     */
   		public var includeMilliseconds:Boolean = false ;
 

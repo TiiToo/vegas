@@ -29,7 +29,7 @@ package vegas.util
 	import vegas.util.Copier;	
 
 	/**
-     * The {@code ObjectUtil} utility class is an all-static class with methods for working with object.
+     * The <code>ObjectUtil</code> utility class is an all-static class with methods for working with object.
      * @author eKameleon
      */
     public class ObjectUtil
@@ -86,8 +86,8 @@ package vegas.util
         }
 
     	/**
-    	 * Returns {@code true} if the passed object is empty of enumerable property.
-    	 * @return {@code true} if the passed object is empty of enumerable property.
+    	 * Returns <code>true</code> if the passed object is empty of enumerable property.
+    	 * @return <code>true</code> if the passed object is empty of enumerable property.
     	 */
         public static function isEmpty(o:Object):Boolean 
         {
@@ -101,8 +101,8 @@ package vegas.util
         }
         
         /**
-         * Returns {@code true} if the specified object is a simple object.
-         * @return {@code true} if the specified object is a simple object.
+         * Returns <code>true</code> if the specified object is a simple object.
+         * @return <code>true</code> if the specified object is a simple object.
          */ 
 		public static function isSimple(value:Object):Boolean 
 		{
