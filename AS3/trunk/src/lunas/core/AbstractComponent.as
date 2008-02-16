@@ -431,6 +431,21 @@ package lunas.core
 		}
 		
 		/**
+		 * Sets the style property on the style declaration or object.
+		 */
+		public function setStyle( ...args:Array ):void 
+		{
+			if ( args.length == 1 && args[0] is IStyle )
+			{
+				style = args[0] as IStyle ;
+			}
+			else
+			{
+				style.setStyle.apply( style , args ) ;
+			}
+		}		
+		
+		/**
 		 * Shows the component.
 		 */
 		public function show():void 

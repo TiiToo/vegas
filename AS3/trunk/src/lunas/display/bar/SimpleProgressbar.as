@@ -296,6 +296,8 @@ package lunas.display.bar
             }
             
             _barPen.draw( 0, 0, $w, $h) ;
+            
+            bar.visible = position > 0 ;
         
         }
         

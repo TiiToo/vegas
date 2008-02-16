@@ -24,6 +24,8 @@ package lunas.core
 {
 	import pegas.geom.IGeometry;
 	
+	import system.Reflection;
+	
 	import vegas.core.CoreObject;	
 
 	/**
@@ -129,6 +131,15 @@ package lunas.core
 		{
 			return { bottom:bottom , left:left , right:right , top:top } ;
 		}
+		
+		/**
+		 * Returns the string representation of the object.
+		 * @return the string representation of the object.
+		 */ 	
+		public override function toString():String
+		{
+			return "[" + Reflection.getClassName(this) + " left:" + left + " top:" + top + " right:" + right + " bottom:" + bottom + "]" ;
+		}		
 		
 	}
 }

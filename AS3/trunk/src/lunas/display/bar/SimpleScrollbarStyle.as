@@ -22,25 +22,41 @@
 */
 package lunas.display.bar 
 {
+	import lunas.core.AbstractStyle;
+	import lunas.core.EdgeMetrics;			
 
 	/**
-	 * The Scrollbar component.
+	 * The IStyle object of the SimpleScrollbar component.
 	 * @author eKameleon
 	 */
-	public class Scrollbar extends SimpleScrollbar 
+	public class SimpleScrollbarStyle extends AbstractStyle 
 	{
 
 		/**
-		 * Creates a new Scrollbar instance.
-		 * @param id Indicates the id of the object.
-		 * @param isConfigurable This flag indicates if the IConfigurable object is register in the ConfigCollector.
-		 * @param name Indicates the instance name of the object.
+		 * Creates a new SimpleScrollbarStyle instance.
+		 * @param id The id of the object.
+		 * @param init An object that contains properties with which to populate the newly IStyle object. If initObject is not an object, it is ignored. 
 		 */
-		public function Scrollbar(id:* = null, isConfigurable:Boolean = false, name:String = null)
+		public function SimpleScrollbarStyle( id:*=null , init:*=null )
 		{
-			super( id, isConfigurable, name );
+			super( id, init );
 		}
 		
-	
+		/**
+		 * The array of flash.filters objects of the bar.
+		 */
+		public var barFilters:Array ;
+		
+		/**
+		 * The padding between the arrow buttons and the bar.
+		 */
+		public var padding:EdgeMetrics = new EdgeMetrics(1,1,1,1) ;
+
+		/**
+		 * The array of flash.filters objects of the thumb.
+		 */
+		public var thumbFilters:Array ;
+		
+
 	}
 }

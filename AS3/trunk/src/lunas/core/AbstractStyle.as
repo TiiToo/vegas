@@ -118,13 +118,15 @@ package lunas.core
 			// overrides this method.
 		}
 		
+		/**
+		 * This method is invoked to change a style attribute in this IStyle object with a generic object or a key(String)/value pair of arguments.
+		 */
 		public function setStyle( ...args:Array ):void
 		{
-			if (args.length == 0 ) 
+			if ( args.length == 0 ) 
 			{
 				return ;
 			} 
-				
 			if (  args[0] is String && args.length == 2 ) 
 			{
 				if ( args[0] in this ) 

@@ -60,7 +60,7 @@ package lunas.core
 		 */
 		public function set bar( bar:Sprite ):void
 		{
-			_bar = bar ;	
+			_bar = bar ;
 		}
 
 		/**
@@ -87,6 +87,41 @@ package lunas.core
 		{
 			return _isDragging ;
 		}
+		
+		/**
+		 * Determines how much the scrollbar's value will change when one of the arrow buttons is clicked. 
+		 * If the scrollbar is being used to control something like a text area, this should probably be set to one, to cause the text to scroll one line. 
+		 * If it is scrolling a picture or movie clip, it should probably be set to a larger amount. 
+		 */
+		public function get lineScrollSize():Number
+		{
+			return _lineScrollSize ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set lineScrollSize( value:Number ):void
+		{
+			_lineScrollSize = value > 1 ? value : 1 ;	
+		}
+		
+		/**
+		 * Determines the amount the value will change if the user clicks above or below the thumb. 
+		 * If this amount is 0 the thumb will move with the lineScrollSize value.
+		 */
+		public function get pageSize():Number
+		{
+			return (_pageSize > 0) ? _pageSize : lineScrollSize ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set pageSize( value:Number ):void
+		{
+			_pageSize = value > 0 ? value : 0 ;	
+		}		
 
 		/**
 		 * (Read-write) The maximum value of this scrollbar.
@@ -256,31 +291,38 @@ package lunas.core
 		 */
 		public override function viewPositionChanged( flag:Boolean=false ):void 
 		{
-			_fixPosition() ;
-			if ( !isDragging )
+			try
 			{
-				var range:Number ;
-				var ts:Number = thumbSize ;
-				if(direction == Direction.HORIZONTAL)
+				_fixPosition() ;
+				if ( !isDragging )
 				{
-					range = bar.width - ts ;
-					thumb.x = (_position - _min) / (_max - _min) * range ;
-					thumb.y = 0 ;
-					if ( _invert )
+					var range:Number ;
+					var ts:Number = thumbSize ;
+					if(direction == Direction.HORIZONTAL)
 					{
-						thumb.x = range - thumb.x ;
+						range = bar.width - ts ;
+						thumb.x = (_position - _min) / (_max - _min) * range ;
+						thumb.y = 0 ;
+						if ( _invert )
+						{
+							thumb.x = range - thumb.x ;
+						}
+					}
+					else
+					{
+						range = bar.height - ts ;
+						thumb.x = 0 ;
+						thumb.y = (_position - _min) / (_max - _min) * range ;
+						if ( _invert )
+						{
+							thumb.y = range - thumb.y ;
+						}
 					}
 				}
-				else
-				{
-					range = bar.height - ts ;
-					thumb.x = 0 ;
-					thumb.y = (_position - _min) / (_max - _min) * range ;
-					if ( _invert )
-					{
-						thumb.y = range - thumb.y ;
-					}
-				}
+			}
+			catch( e:Error )
+			{
+				
 			}
 		}
 		
@@ -316,6 +358,16 @@ package lunas.core
 		 * @private
 		 */
 		private var _isDragging:Boolean ;
+		
+		/**
+		 * @private
+		 */
+		private var _lineScrollSize:Number = 1 ;
+		
+		/**
+		 * @private
+		 */
+		private var _pageSize:Number = 0 ;		
 		
 		/**
 		 * @private
