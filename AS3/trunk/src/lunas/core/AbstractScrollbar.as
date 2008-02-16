@@ -22,7 +22,7 @@
 */
 package lunas.core 
 {
-    import flash.display.Sprite;
+	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
@@ -174,7 +174,7 @@ package lunas.core
 			var newPosition:Number ;
 			if( direction == Direction.HORIZONTAL )
 			{
-				newPosition = thumb.x / (w - ts) * (_max - _min) + _min ;
+				newPosition = thumb.x / (bar.width - ts) * (_max - _min) + _min ;
 				if ( _invert )
 				{
 					newPosition = (_max + _min) - newPosition ;
@@ -182,18 +182,18 @@ package lunas.core
 			}
 			else
 			{
-				var range:Number = h - ts ;
+				var range:Number = bar.height - ts ;
 				newPosition = _min + ( range - thumb.y ) / range * (_max - _min) ;
 				if ( _invert == false )
 				{
 					newPosition = (_max + _min) - newPosition ;
 				}
 			}
+			setPosition( Math.round(newPosition) ) ;
 			if(newPosition != oldPosition)
 			{
 				notifyDrag() ;
-			}
-			setPosition( newPosition ) ;
+			}			
 		}
 		
 		/**
@@ -231,11 +231,11 @@ package lunas.core
 			stage.addEventListener( MouseEvent.MOUSE_MOVE , dragging     ) ;
 			if( direction == Direction.HORIZONTAL )
 			{
-				thumb.startDrag(false, new Rectangle(0 , 0 , w - thumbSize , 0 ) ) ;
+				thumb.startDrag(false, new Rectangle(0 , 0 , bar.width - thumbSize , 0 ) ) ;
 			}
 			else
 			{
-				thumb.startDrag(false, new Rectangle(0 , 0 , 0 , h - thumbSize ) ) ;
+				thumb.startDrag(false, new Rectangle(0 , 0 , 0 , bar.height - thumbSize ) ) ;
 			}
 		}
 
@@ -263,7 +263,7 @@ package lunas.core
 				var ts:Number = thumbSize ;
 				if(direction == Direction.HORIZONTAL)
 				{
-					range = w - ts ;
+					range = bar.width - ts ;
 					thumb.x = (_position - _min) / (_max - _min) * range ;
 					thumb.y = 0 ;
 					if ( _invert )
@@ -273,7 +273,7 @@ package lunas.core
 				}
 				else
 				{
-					range = h - ts ;
+					range = bar.height - ts ;
 					thumb.x = 0 ;
 					thumb.y = (_position - _min) / (_max - _min) * range ;
 					if ( _invert )

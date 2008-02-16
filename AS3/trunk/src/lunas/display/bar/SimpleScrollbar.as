@@ -24,6 +24,7 @@ package lunas.display.bar
 {
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
+	import flash.geom.Rectangle;
 	
 	import lunas.core.AbstractScrollbar;
 	import lunas.core.Direction;
@@ -134,7 +135,7 @@ package lunas.display.bar
 	{
 
 		/**
-		 * Creates a new AbstractProgressbar instance.
+		 * Creates a new SimpleScrollbar instance.
 		 * @param id Indicates the id of the object.
 		 * @param isConfigurable This flag indicates if the IConfigurable object is register in the ConfigCollector.
 		 * @param name Indicates the instance name of the object.
@@ -143,23 +144,30 @@ package lunas.display.bar
 		{
 			super( id, isConfigurable, name );
 			
-			bar   = new Sprite() ;
+			// views
 			
-			thumb = new Sprite() ;
+			container = new Sprite() ;
+			bar       = new Sprite() ;
+			thumb     = new Sprite() ;
+			
+			// behaviours
+			
 			thumb.addEventListener( MouseEvent.MOUSE_DOWN , startDragging ) ;
 			thumb.buttonMode = true;
 			thumb.useHandCursor = true;
-					
-			addChild(bar) ;
-			addChild(thumb) ;
+			
+			addChild(container) ;
+			
+			container.addChild(bar) ;
+			container.addChild(thumb) ;
 			
 			_barPen   = new RectanglePen( bar )   ;
 			_thumbPen = new RectanglePen( thumb ) ;
 			
 			lock() ;
 			
-			barFillStyle = new FillStyle( 0xFF0000, 1 ) ;
-			barLineStyle = null ;
+			barFillStyle = new FillStyle( 0xA2A2A2, 1 ) ;
+			barLineStyle = new LineStyle( 1, 0xA2A2A2 , 1) ;
 
 			thumbFillStyle = new FillStyle( 0xFFFFFF, 1 ) ;
 			thumbLineStyle = new LineStyle( 1, 0xA2A2A2 , 1) ;
@@ -244,7 +252,12 @@ package lunas.display.bar
 		public override function draw( ...arguments:Array ):void
 		{
 			
-			_barPen.draw( 0, 0, w, h ) ;
+			var r:Rectangle = ( arguments[0] is Rectangle ) ? arguments[0] as Rectangle : new Rectangle(0,0,w,h) ;
+			
+			bar.x = r.x ;
+			bar.y = r.y ;
+			
+			_barPen.draw( 0, 0, r.width , r.height ) ;
 			
 			var hBorder:Number = EdgeMetrics.filterNaNValue( border.top ) + EdgeMetrics.filterNaNValue( border.bottom ) ;
 			var wBorder:Number = EdgeMetrics.filterNaNValue( border.left ) + EdgeMetrics.filterNaNValue( border.right ) ;
@@ -256,14 +269,19 @@ package lunas.display.bar
 			
 			if ( direction == Direction.HORIZONTAL )
 			{
-				_thumbPen.draw( 0, 0, s, h - hBorder ) ;
+				_thumbPen.draw( 0, 0, s, r.height - hBorder ) ;
 			}
 			else
 			{
-				_thumbPen.draw( EdgeMetrics.filterNaNValue( border.top ), EdgeMetrics.filterNaNValue( border.left ), w - wBorder , s ) ;
+				_thumbPen.draw( EdgeMetrics.filterNaNValue( border.top ), EdgeMetrics.filterNaNValue( border.left ), r.width - wBorder , s ) ;
 			}
 			
 		}
+		
+		/**
+		 * The internal container display of the bar and the thumb.
+		 */
+		protected var container:Sprite ;
 		
 		/**
 		 * @private

@@ -22,6 +22,9 @@
 */
 package lunas.display.bar 
 {
+	
+	// TODO scroll with the button down event...
+	
 	import flash.geom.Rectangle;
 	
 	import lunas.core.Direction;
@@ -136,7 +139,7 @@ package lunas.display.bar
 		 */
 		public function set rightButton( button:FrameLabelButton ):void
 		{
-			if ( _leftButton != null )
+			if ( _rightButton != null )
 			{
 				if ( contains( _rightButton ) )
 				{
@@ -236,8 +239,11 @@ package lunas.display.bar
 				$w = w ;
 				$h = h - $y - ( (bottomButton != null) ? bottomButton.height : 0 ) - pb - pt ;			
 			}
-
-			super.draw( new Rectangle( $x, $y, $w, $h ) ) ;
+			
+			container.x = $x ;
+			container.y = $y ;
+			
+			super.draw( new Rectangle( 0, 0, $w, $h ) ) ;
 
 		}
 

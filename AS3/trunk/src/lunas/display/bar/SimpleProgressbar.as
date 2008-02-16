@@ -23,6 +23,7 @@
 package lunas.display.bar 
 {
 	import flash.display.Shape;
+	import flash.geom.Rectangle;
 	
 	import lunas.core.AbstractProgressbar;
 	import lunas.core.Direction;
@@ -264,16 +265,16 @@ package lunas.display.bar
         public function resize():void 
         {
             
-            var nW:Number = EdgeMetrics.filterNaNValue( border.left ) + EdgeMetrics.filterNaNValue( border.right ) ;
-            var nH:Number = EdgeMetrics.filterNaNValue( border.top  ) + EdgeMetrics.filterNaNValue( border.bottom ) ;
+            var mW:Number = EdgeMetrics.filterNaNValue( border.left ) + EdgeMetrics.filterNaNValue( border.right ) ;
+            var mH:Number = EdgeMetrics.filterNaNValue( border.top  ) + EdgeMetrics.filterNaNValue( border.bottom ) ;
             
-            var margin:Number = (direction == Direction.VERTICAL) ? nH : nW ;
+            var margin:Number = (direction == Direction.VERTICAL) ? mH : mW ;
             var max:Number    = (direction == Direction.VERTICAL) ? h : w ;
             
             var size:Number   =  Math.floor( position * (max - margin) / 100 ) ;
                     
-            var $w:Number = (direction == Direction.VERTICAL) ? ( w - nW ) : size  ;
-            var $h:Number = (direction == Direction.VERTICAL) ? size : ( h - nH ) ;
+            var $w:Number = (direction == Direction.VERTICAL) ? ( w - mW ) : size  ;
+            var $h:Number = (direction == Direction.VERTICAL) ? size : ( h - mH ) ;
             
             if ( _align == Align.RIGHT )
             {
@@ -315,13 +316,18 @@ package lunas.display.bar
         /**
          * @private
          */
-        private var _backgroundPen:RectanglePen ;
+        protected var _backgroundPen:RectanglePen ;
         
         /**
          * @private
          */
-        private var _barPen:RectanglePen ;
-
+        protected var _barPen:RectanglePen ;
+		
+		/**
+		 * The bar area Rectangle value object.
+		 */
+		protected var scrollArea:Rectangle ;
+		
     }
-
 }
+
