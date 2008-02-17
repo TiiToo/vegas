@@ -35,6 +35,23 @@ package asgard.display
 
 	/**
 	 * The CoreShape class extends the flash.display.Shape class and implements the IDisplayObject interface.
+	 * <p><b>Example :</b></p>
+	 * <code>
+	 * import asgard.display.CoreShape ;
+	 * import asgard.display.DisplayObjectCollector ;
+	 * 
+	 * var shape:CoreShape = new CoreShape( "my_shape" ) ;
+	 * shape.x = 25 ;
+	 * shape.y = 25 ;
+	 * 
+	 * shape.graphics.beginFill( 0xFF0000 , 100 ) ;
+	 * shape.graphics.drawRect( 0, 0, 200, 160 ) ;
+	 * 
+	 * addChild( shape ) ;
+	 * 
+	 * trace( "DisplayObject contains 'my_shape' : " + DisplayObjectCollector.contains( "my_shape" ) ) ;
+	 * trace( DisplayObjectCollector.get( "my_shape" ) ) ;
+	 * </code>
 	 * @author eKameleon
 	 */
 	public class CoreShape extends Shape implements IDisplayObject

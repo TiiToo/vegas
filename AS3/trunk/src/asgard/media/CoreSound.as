@@ -50,6 +50,50 @@ package asgard.media
 
 	/**
 	 * The CoreSound class extends the flash.media.Sound class and implements the IConfigurable, Identifiable, ILockable and ILogable interfaces.
+     * <p><b>Example :</b></p>
+	 * <code>
+	 * // See in the library of this fla file the BipSound Sound symbol and this linkage class id.
+	 * 
+	 * import andromeda.events.ActionEvent ;
+	 * 
+	 * import asgard.date.Time ;
+	 * import asgard.events.SoundEvent ;
+	 * import asgard.media.CoreSound   ;
+	 * 
+	 * import flash.media.SoundChannel ;
+	 * 
+	 * var debug:Function = function( e:ActionEvent ):void
+	 * {
+	 *     trace(e) ;
+	 * }
+	 * 
+	 * var soundComplete:Function = function( e:Event ):void
+	 * {
+	 *     var time:Time = new Time( (e.target as CoreSound).length ) ;
+	 *     trace( e.type + " duration " + time.getMilliseconds(2) + " ms" ) ;
+	 * }
+	 * 
+	 * var soundUpdate:Function = function( e:SoundEvent ):void
+	 * {
+	 *     trace( e.type + " volume:" + e.soundTransform.volume ) ;
+	 * }
+	 * 
+	 * var sound:CoreSound = new BipSound() ;
+	 * 
+	 * sound.addEventListener( Event.SOUND_COMPLETE    , soundComplete ) ;
+	 * sound.addEventListener( SoundEvent.SOUND_UPDATE , soundUpdate   ) ;
+	 * 
+	 * sound.addEventListener( ActionEvent.FINISH , debug ) ;
+	 * sound.addEventListener( ActionEvent.LOOP   , debug ) ;
+	 * sound.addEventListener( ActionEvent.STOP   , debug ) ;
+	 * sound.addEventListener( ActionEvent.START  , debug ) ;
+	 * 
+	 * sound.volume = 0.6 ;
+	 * 
+	 * // sound.looping = true ;
+	 * 
+	 * sound.play() ;
+	 * </code>
 	 * @author eKameleon
 	 */
 	public class CoreSound extends Sound implements IAction, ISound, IStoppable

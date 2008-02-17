@@ -37,6 +37,27 @@ package asgard.display
 
 	/**
 	 * The CoreLoader class extends the flash.display.Loader class and implements the IDisplayObject interface.
+	 * <p><b>Example :</b></p>
+	 * <code>
+	 * import asgard.display.CoreLoader ;
+	 * import asgard.display.DisplayObjectCollector ;
+	 * 
+	 * import flash.net.URLRequest ;
+	 * 
+	 * var loader:CoreLoader = new CoreLoader( "my_loader" ) ;
+	 * loader.x = 25 ;
+	 * loader.y = 25 ;
+	 * 
+	 * addChild( loader ) ;
+	 * 
+	 * var url:String = "library/picture.jpg" ;
+	 * var request:URLRequest = new URLRequest( url ) ;
+	 * 
+	 * loader.load( request ) ;
+	 * 
+	 * trace( "DisplayObject contains 'my_loader' : " + DisplayObjectCollector.contains( "my_loader" ) ) ;
+	 * trace( DisplayObjectCollector.get( "my_loader" ) ) ;
+	 * </code>
 	 * @author eKameleon
 	 */
 	public class CoreLoader extends Loader implements IDisplayObject 

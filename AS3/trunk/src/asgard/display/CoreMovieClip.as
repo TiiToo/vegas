@@ -35,6 +35,21 @@ package asgard.display
 
 	/**
 	 * The CoreMovieClip class extends the flash.display.MovieClip class and implements the IDisplayObject interface.
+	 * <p><b>Example :</b></p>
+	 * <code>
+	 * import asgard.display.CoreMovieClip ;
+	 * import asgard.display.DisplayObjectCollector ;
+	 * 
+	 * var mc:CoreMovieClip = new CoreMovieClip( "my_movieclip" ) ;
+	 * 
+	 * mc.graphics.beginFill( 0xFF0000 , 100 ) ;
+	 * mc.graphics.drawRect( 0, 0, 200, 160 ) ;
+	 * 
+	 * addChild( mc ) ;
+	 * 
+	 * trace( "DisplayObject contains 'my_movieclip' : " + DisplayObjectCollector.contains( "my_movieclip" ) ) ;
+	 * trace( DisplayObjectCollector.get( "my_movieclip" ) ) ;
+	 * </code>
 	 * @author eKameleon
 	 */
 	public class CoreMovieClip extends MovieClip implements IDisplayObject

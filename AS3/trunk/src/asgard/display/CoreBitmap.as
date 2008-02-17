@@ -36,6 +36,23 @@ package asgard.display
 
 	/**
 	 * The CoreBitmap class extends the flash.display.Bitmap class and implements the IDisplayObject interface.
+	 * <p><b>Example :</b></p>
+	 * <code>
+	 * import asgard.display.CoreBitmap ;
+	 * import asgard.display.DisplayObjectCollector ;
+	 * 
+	 * var bmp:CoreBitmap = new CoreBitmap( "my_bitmap" ) ;
+	 * bmp.smoothing = true ;
+	 * bmp.x = 25 ;
+	 * bmp.y = 25 ;
+	 * 
+	 * bmp.bitmapData = new Picture(240,240) ;
+	 * 
+	 * addChild( bmp ) ;
+	 * 
+	 * trace( "DisplayObject contains 'my_bitmap' : " + DisplayObjectCollector.contains( "my_bitmap" ) ) ;
+	 * trace( DisplayObjectCollector.get( "my_bitmap" ) ) ;
+	 * </code>
 	 * @author eKameleon
 	 */
 	public class CoreBitmap extends Bitmap implements IDisplayObject

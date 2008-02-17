@@ -35,6 +35,21 @@ package asgard.display
 
 	/**
 	 * The CoreSprite class extends the flash.display.Sprite class and implements the IDisplayObject interface.
+     * <p><b>Example :</b></p>
+     * <code>
+     * import asgard.display.CoreSprite ;
+     * import asgard.display.DisplayObjectCollector ;
+     * 
+     * var sprite:CoreSprite = new CoreSprite( "my_sprite" ) ;
+     * 
+     * sprite.graphics.beginFill( 0xFF0000 , 100 ) ;
+     * sprite.graphics.drawRect( 0, 0, 200, 160 ) ;
+     * 
+     * addChild( sprite ) ;
+     * 
+     * trace( "DisplayObject contains 'my_sprite' : " + DisplayObjectCollector.contains( "my_sprite" ) ) ;
+     * trace( DisplayObjectCollector.get( "my_sprite" ) ) ;
+     * </code>
 	 * @author eKameleon
 	 */
 	public class CoreSprite extends Sprite implements IDisplayObject

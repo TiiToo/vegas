@@ -42,7 +42,7 @@ package asgard.display
 	/**
      * This display is used to create a background in your application or in an other display of the application.
      * <p><b>Example :</b></p>
-     * {@code
+     * <code>
      * import asgard.display.Background ;
      * 
      * import flash.display.GradientType ;
@@ -83,7 +83,7 @@ package asgard.display
      * }
      * 
      * stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
-     * }
+     * </code>
      * @author eKameleon
      */
     public class Background extends CoreSprite 

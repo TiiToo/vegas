@@ -33,7 +33,7 @@ package asgard.display
     /**
      * This iterator control the timeline in a MovieClip target.
      * <p><b>Example :</b> With 'container a MovieClip in the stage of the application, this MovieClip contains 10 frames</p>
-     * {@code
+     * <code>
      * import asgard.display.TimelineIterator ;
      * 
      * var it:TimelineIterator = new TimelineIterator( container , 2 ) ;
@@ -75,7 +75,7 @@ package asgard.display
      * }
      * 
      * stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
-     * }
+     * </code>
      * @author eKameleon
      */
     public class TimelineIterator extends CoreObject implements OrderedIterator  
@@ -84,8 +84,8 @@ package asgard.display
         /**
          * Creates a new TimelineIterator instance.
          * @param target The MovieClip reference of this iterator.
-          * @param framePosition the default framePosition of the specified MovieClip target (default frame 1).
-          * @param stepSize (optional) the step between two frames returns by the iterator (default 1).
+         * @param framePosition the default framePosition of the specified MovieClip target (default frame 1).
+         * @param stepSize (optional) the step between two frames returns by the iterator (default 1).
          * @throws IllegalArgumentError if the <code>target</code> argument of this constructor is empty.
          */
         public function TimelineIterator( target:MovieClip , framePosition:Number=NaN, stepSize:uint=1 )
