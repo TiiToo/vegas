@@ -24,12 +24,7 @@ package lunas.display.button
 {
 	import flash.display.MovieClip;
 	
-	import lunas.display.button.FrameLabelButton;
-	import lunas.events.ButtonEvent;
-	
-	import pegas.colors.LightColor;
-	import pegas.transitions.Motion;
-	import pegas.transitions.Tween;	
+	import lunas.display.button.FrameLabelButton;	
 
 	/**
 	 * This LightFrameLabelButton is a button who use a LightColor motion to creates light effects when the button is over or click.
@@ -48,47 +43,15 @@ package lunas.display.button
 		public function LightFrameLabelButton(states:MovieClip = null, id:* = null, isConfigurable:Boolean = false, name:String = null)
 		{
 			super( states , id , isConfigurable, name ) ;
-
-			_light = new LightColor( this ) ;
-			_tw    = new Tween(_light) ;	
-
-			registerType( ButtonEvent.DISABLED , disabled ) ;
-			registerType( ButtonEvent.DOWN     , down ) ;
-			registerType( ButtonEvent.OVER     , over ) ;
 		}
-		
+
 		/**
-		 * Invoked when the button is down.
+		 * Returns the constructor function of the {@code IBuilder} of this instance.
+		 * @return the constructor function of the {@code IBuilder} of this instance.
 		 */
-		public function disabled( e:ButtonEvent ):void
+		public override function getBuilderRenderer():Class
 		{
-			if ( _tw.running )
-			{
-				_tw.stop() ;	
-			}
-			_light.reset() ;
-		}
-		
-		/**
-		 * Invoked when the button is down.
-		 */
-		public function down( e:ButtonEvent ):void
-		{
-			if ( _tw.running )
-			{
-				_tw.stop() ;	
-			}
-			var s:LightFrameLabelButtonStyle = style as LightFrameLabelButtonStyle ;
-			if ( s != null )
-			{
-				if ( s.useEasingSelected )
-				{
-					_tw.duration   = s.easingSelectedDuration ;
-					_tw.useSeconds = s.easingSelectedUseSeconds ;
-					_tw.insertProperty( s.easingSelectedProperty, s.easingSelected, s.easingSelectedBegin, s.easingSelectedFinish ) ;
-					_tw.run() ;
-				}
-			}
+			return LightFrameLabelButtonBuilder ;
 		}
 		
 		/**
@@ -99,38 +62,7 @@ package lunas.display.button
 		{
 			return LightFrameLabelButtonStyle ;
 		}
-
-		/**
-		 * Invoked when the button is over.
-		 */
-		public function over( e:ButtonEvent ):void
-		{
-			if ( _tw.running )
-			{
-				_tw.stop() ;	
-			}
-			var s:LightFrameLabelButtonStyle = style as LightFrameLabelButtonStyle ;
-			if ( s != null )
-			{
-				if ( s.useEasingOver )
-				{
-					_tw.duration   = s.easingOverDuration ;
-					_tw.useSeconds = s.easingOverUseSeconds ;
-					_tw.insertProperty( s.easingOverProperty, s.easingOver, s.easingOverBegin, s.easingOverFinish ) ;
-					_tw.run() ;
-				}
-			}
-		}
-		
-		/**
-		 * @private
-		 */
-		private var _light:LightColor ;
-
-		/**
-		 * @private
-		 */
-		private var _tw:Tween ;
 		
 	}
+
 }

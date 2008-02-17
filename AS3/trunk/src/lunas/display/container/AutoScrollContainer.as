@@ -34,6 +34,80 @@ package lunas.display.container
 
 	/**
 	 * This auto scrollable container use an auto scroll effect.
+	 * <p><b>Example :</b></p>
+	 * <code>
+	 * import flash.display.StageScaleMode ;
+	 * 
+	 * import lunas.core.Direction;
+	 * import lunas.display.container.AutoScrollContainer ;
+	 * import lunas.events.ComponentEvent ;
+	 * 
+	 * import pegas.colors.Color ;
+	 * 
+	 * stage.scaleMode = StageScaleMode.NO_SCALE ;
+	 * 
+	 * var onScroll:Function = function( e:ComponentEvent ):void
+	 * {
+	 *     trace( container.scroll + " / " + container.maxscroll ) ;
+	 * }
+	 * 
+	 * var container:AutoScrollContainer = new AutoScrollContainer() ;
+	 * container.addEventListener( ComponentEvent.SCROLL , onScroll ) ;
+	 * 
+	 * container.direction  = Direction.HORIZONTAL ;
+	 * container.x          = 25 ;
+	 * container.y          = 25 ;
+	 * container.space      = 10 ;
+	 * container.childCount = 5 ;
+	 * 
+	 * //container.useScrollRect = true ;
+	 * 
+	 * addChild( container ) ;
+	 * 
+	 * for (var i:uint = 0 ; i<10 ; i++ )
+	 * {
+	 *     var s:Square = new Square() ; // Square a embed linked Sprite in the library of the swf. 
+	 *     s.buttonMode = true ;
+	 *     var c:Color  = new Color(s) ;
+	 *     c.rgb = Math.random() * 0xFFFFFF ;
+	 *     container.addChild( s ) ;
+	 * }
+	 * 
+	 * var keyDown:Function = function( e:KeyboardEvent ):void
+	 * {
+	 *     var code:uint = e.keyCode ;
+	 *     switch( code )
+	 *     {
+	 *         case Keyboard.LEFT :
+	 *         {
+	 *             container.scroll -- ;
+	 *             break ;
+	 *         }
+	 *         case Keyboard.RIGHT :
+	 *         {
+	 *             container.scroll ++ ;
+	 *             break ;
+	 *         }
+	 *         case Keyboard.SPACE :
+	 *         {
+	 *             container.direction = container.direction == Direction.HORIZONTAL ? Direction.VERTICAL : Direction.HORIZONTAL ;
+	 *             break ;
+	 *         }
+	 *         case Keyboard.UP :
+	 *         {
+	 *             container.fixScroll = !container.fixScroll ;
+	 *             break ;
+	 *         }
+	 *         case Keyboard.DOWN :
+	 *         {
+	 *             container.autoScroll = !container.autoScroll ;
+	 *             break ;
+	 *         }
+	 *     }
+	 * }
+	 * 
+	 * stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
+	 * </code>
 	 * @author eKameleon
 	 */
 	public class AutoScrollContainer extends ScrollContainer 

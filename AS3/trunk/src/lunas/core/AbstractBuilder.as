@@ -36,10 +36,13 @@ package lunas.core
 		/**
 		 * Creates a new AbstractBuilder instance.
 		 * @param target the target of the component reference to build.
+		 * @param bGlobal the flag to use a global event flow or a local event flow.
+		 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
 		 */
 		public function AbstractBuilder( target:DisplayObject, bGlobal:Boolean = false, sChannel:String = null)
 		{
 			super( bGlobal, sChannel );
+			this.target = target ;
 			
 		}
 		

@@ -22,14 +22,9 @@
 */
 package lunas.display.button 
 {
-	import flash.display.FrameLabel;
 	import flash.display.MovieClip;
-	import flash.events.Event;
 	
-	import lunas.core.AbstractButton;
-	import lunas.events.ButtonEvent;
-	
-	import vegas.data.map.HashMap;	
+	import lunas.core.AbstractButton;	
 
 	/**
 	 * The FrameLabelButton class is use over a "state" MovieClip with the 4 default frame's labels with the name :
@@ -122,16 +117,10 @@ package lunas.display.button
 		public function FrameLabelButton( states:MovieClip=null , id:* = null, isConfigurable:Boolean = false, name:String = null )
 		{
 			super( id, isConfigurable, name );
-			_map = new HashMap() ;
 			if ( states != null )
 			{
 				this.states = states ;
 			}
-			// default
-			registerType( ButtonEvent.DISABLED ) ;
-			registerType( ButtonEvent.DOWN     ) ;
-			registerType( ButtonEvent.OVER     ) ;
-			registerType( ButtonEvent.UP       ) ;
 		}
 		
 		/**
@@ -166,7 +155,16 @@ package lunas.display.button
 		 */
 		public function containsType( type:String ):Boolean
 		{
-			return _map.containsKey(type) ;	
+			return (builder as FrameLabelButtonBuilder).containsType( type ) ;	
+		}
+
+		/**
+		 * Returns the constructor function of the {@code IBuilder} of this instance.
+		 * @return the constructor function of the {@code IBuilder} of this instance.
+		 */
+		public override function getBuilderRenderer():Class
+		{
+			return FrameLabelButtonBuilder ;
 		}
 
 		/**
@@ -176,11 +174,7 @@ package lunas.display.button
 		 */
 		public function registerType( type:String , callback:Function=null ):void
 		{
-			var noExist:Boolean = _map.put( type , callback == null ? PRESENT : callback ) == null ;
-			if ( noExist )
-			{
-				addEventListener( type , refreshState ) ;
-			}
+			(builder as FrameLabelButtonBuilder).registerType( type , callback ) ;
 		}
 		
 		/**
@@ -188,59 +182,13 @@ package lunas.display.button
 		 */
 		public function unregisterType( type:String ):void
 		{
-			if ( _map.containsKey( type ) )
-			{
-				removeEventListener( type , refreshState ) ;
-				_map.remove( type ) ;
-			}
+			(builder as FrameLabelButtonBuilder).unregisterType( type ) ;
 		}		
 
 		/**
 		 * @private
 		 */
 		private var _states:MovieClip ;
-		
-		/**
-		 * @private
-		 */
-		private var _map:HashMap ;
-
-		/**
-		 * Invoked when the view of the button is refresh.
-		 */
-		protected function refreshState( e:Event ):void 
-		{
-			var type:String = e.type ;
-			if ( states != null )
-			{
-				var noExistFrameLabel:Function = function( element:*, index:int, ar:Array ):Boolean
-				{
-				    return (element as FrameLabel).name != type ;
-				} ;
-				if ( !states.currentLabels.every( noExistFrameLabel , this ) )
-				{
-					states.gotoAndStop( type ) ;
-				}
-				else
-				{
-					states.gotoAndStop(1) ;
-				}
-				var callback:* = _map.get( type ) ;
-				if ( callback is Function && callback != PRESENT )
-				{
-					( callback as Function).call( this , e ) ;
-				}
-			}
-			else
-			{
-				//
-			}
-		}
-		
-		/**
-		 * @private
-		 */
-		private static const PRESENT:Object = new Object() ;
 		
 	}
 
