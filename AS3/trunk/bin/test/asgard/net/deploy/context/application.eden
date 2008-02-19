@@ -1,0 +1,29 @@
+{
+
+	imports :
+	[
+		{ ressource : "view.eden" }
+	]
+	,
+	objects : // run application
+	[
+		
+		{
+			id         : "square" ,
+			type       : "Square" ,
+			singleton  : true     ,
+			properties : 
+			[
+				{ name:"x" , value : 50  } ,
+				{ name:"y" , value : 50  }
+			]
+			,
+			methods :
+			[
+				{ name:"addChild" , arguments:[ { ref:"my_field" } ] }
+			]
+		}
+		
+	]
+
+}

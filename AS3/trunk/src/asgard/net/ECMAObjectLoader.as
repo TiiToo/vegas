@@ -39,7 +39,7 @@ package asgard.net
 	import vegas.data.sets.HashSet;
 	import vegas.events.AbstractCoreEventDispatcher;
 	import vegas.util.ClassUtil;	
-	
+
 	// TODO add the "root" id definition in the ECMAObjectFactory .. see the scope of the internal definition ?
 	// TODO add events and progress UI to notify the IOC external process in progress.
 	
@@ -154,6 +154,7 @@ package asgard.net
 		public function main( e:ActionEvent ):void
 		{
     		getLogger().debug( e ) ;
+    		fireEvent(e) ;
 		}
 		
 		/**
@@ -271,8 +272,6 @@ package asgard.net
 			getLogger().debug(e) ;
 			_imports.clear() ;
 		}
-
-		
 
 	}
 	
