@@ -31,11 +31,11 @@ package andromeda.ioc.factory
 	{
 		
 		/**
-	 	 * This method defined if the object is a singleton or a prototype.
-		 * @param The id name of the object.
-		 * @return <code>true</code> if the object is a singleton or else if the object is a prototype. 
-	 	 */		
-		function isSingleton(name:String):Boolean ;
+		 * Returns <code>true</code> if the referencial contains the specified object.
+		 * @param The id name of the object to search.
+	 	 * @return <code>true</code> if the referencial contains the specified object.
+		 */		
+		function containsObject(name:String):Boolean;
 				
 		/**
 		 * This method returns an object with the specified name in argument.
@@ -45,11 +45,18 @@ package andromeda.ioc.factory
 		function getObject( name:String ):* ;
 	
 		/**
-		 * Returns <code>true</code> if the referencial contains the specified object.
-		 * @param The id name of the object to search.
-	 	 * @return <code>true</code> if the referencial contains the specified object.
-		 */		
-		function containsObject(name:String):Boolean;
+		 * This method defined if the object is a lazy init singleton object (must be singleton).
+		 * @param name The name of the object to find.
+		 * @return <code>true</code> if the object is a lazy init singleton object (must be singleton).
+	 	 */	
+		function isLazyInit( name:String ):Boolean ; 		
+		
+		/**
+	 	 * This method defined if the object is a singleton or a prototype.
+		 * @param The id name of the object.
+		 * @return <code>true</code> if the object is a singleton or else if the object is a prototype. 
+	 	 */		
+		function isSingleton(name:String):Boolean ;	
 		
 	}
 }

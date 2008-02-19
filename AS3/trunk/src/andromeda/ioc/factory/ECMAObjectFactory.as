@@ -44,6 +44,239 @@ package andromeda.ioc.factory
 
 	/**
 	 * This factory builder use a deserialize eden object to creates all Objects with the IObjectDefinitionContainer.
+	 * <p><b>Example :</b></p>
+ 	 * <p><b>1 -</b> The eden application file : <b>"application.eden"</b></p>
+ 	 * <code>
+	 *   {
+	 *        objects : 
+	 *        [
+	 *            {   
+	 *                id            : "address"  ,
+	 *                type          : "test.Address" ,
+	 *                properties    : 
+	 *                [ 
+	 *                    { name : "city"   , value : "Marseille" } ,
+	 *                    { name : "street" , value : "xx xxx xxxxxxxxxxx" } ,
+	 *                    { name : "zip"    , value : 13004 } 
+	 *                ]
+	 *            }
+	 *            ,
+	 *            {   
+	 *                id         : "job_dev"  ,
+	 *                type       : "test.Job" ,
+	 *                properties : [ { name:"name" , value:"AS Developper" } ]
+	 *            }
+	 *            ,
+	 *            {   
+	 *                id            : "user" , 
+	 *                type          : "test.User" , 
+	 *                arguments     : 
+	 *                [ 
+	 *                    { value :"eKameleon" } , 
+	 *                    { value :"ALCARAZ"   } , 
+	 *                    { ref   :"address"   } 
+	 *                ] ,
+	 *                lazyInit      : true , // only if this object is a singleton, the singleton isn't initialized during the factory initialize process.
+	 *                singleton     : true ,
+	 *                destroy       : "destroy" ,  // only if this object is a singleton and the user destroy the reference in the factory.
+	 *                init          : "initialize" ,
+	 *                properties : 
+	 *                [
+	 *                    { name:"age"       , value : 30          } ,
+	 *                    { name:"firstName" , value : "Marc"      } , 
+	 *                    { name:"job"       , ref   : "job_dev"   } , 
+	 *                    { name:"url"       , value : "http://www.ekameleon.net/blog" }
+	 *                ]
+	 *                ,
+	 *                methods :
+	 *                [
+	 *                    { name:"setMail" , arguments  :  [ { value :"vegas@ekameleon.net" } ] }
+	 *                ]
+	 *             }
+	 *             ,
+	 *             {
+	 *                 id            : "square" ,
+	 *                 type          : "Square" ,
+	 *                 assemblyName  : "dll/dll.swf" , // external swf with a linked Sprite in the library
+	 *                 properties    :
+	 *                 [
+	 *                     { name:"x" , value : 100  } ,
+	 *                     { name:"y" , value : 25   }
+	 *                 ]
+	 *             }
+	 *         ]
+	 *    }
+	 * </code>
+	 * <p>2 - The ActionScript test code :</p>
+	 * <code>
+	 * import andromeda.ioc.core.ObjectDefinition ;
+	 * import andromeda.ioc.factory.ECMAObjectFactory ;
+	 * import andromeda.events.ActionEvent ;
+	 * 
+	 * import flash.display.StageAlign ;
+	 * import flash.display.StageScaleMode ;
+	 * import flash.events.Event;
+	 * import flash.events.IOErrorEvent;
+	 * import flash.events.ProgressEvent;
+	 * 
+	 * import buRRRn.eden ;
+	 * 
+	 * import test.User ;
+	 * 
+	 * stage.align     = StageAlign.TOP_LEFT ;
+	 * stage.scaleMode = StageScaleMode.NO_SCALE ;
+	 * 
+	 * var complete:Function = function ( event:Event ):void
+	 * {
+	 *     var loader:URLLoader = event.target as URLLoader ;
+	 *     var source:String    = loader.data ;
+	 *     var app:Object       = eden.deserialize(source) ;
+	 *     
+	 *     factory.create( app.objects ) ;
+	 * }
+	 * 
+	 * var debug:Function = function( e:Event ):void
+	 * {
+	 *     trace( e ) ;
+	 * }
+	 * 
+	 * var main:Function = function( e:ActionEvent ):void
+	 * {
+	 * 
+	 *     trace( e ) ;
+	 *     
+	 *     var user:User = factory.getObject( "user" ) ;
+	 *     
+	 *     trace( "User pseudo         : " + user.pseudo ) ; // ekameleon
+	 *     trace( "User firstName      : " + user.firstName ) ; // Marc
+	 *     trace( "User name           : " + user.name ) ; // ALCARAZ
+	 *     trace( "User age            : " + user.age ) ; // 30
+	 *     trace( "User mail           : " + user.mail ) ; // vegas@ekameleon.net
+	 *     trace( "User url            : " + user.url  ) ; // http://www.ekameleon.net/blog
+	 *     trace( "User job            : " + user.job ) ; // [Job AS Developper]
+	 *     trace( "User address        : " + user.address ) ; // [Address]
+	 *     trace( "User address city   : " + user.address.city ) ; // Marseille
+	 *     trace( "User address street : " + user.address.street ) ; // xx xxx xxxxxxxxxxx
+	 *     trace( "User address zip    : " + user.address.zip ) ; // 13004
+	 *     trace( "User isSingleton    : " + factory.isSingleton( "user" ) ) ;
+	 *     trace( "User isLazyInit     : " + factory.isLazyInit( "user" ) ) ;
+	 *     
+	 *     var sprite:Sprite = factory.getObject("square") as Sprite ; // use external dll in the "dll/dll.swf" file
+	 *     addChild(sprite) ;
+	 *     
+	 *     trace( "---" ) ;
+	 *     
+	 *     var def:ObjectDefinition ;
+	 *     
+	 *     def = factory.getObjectDefinition("user") ;
+	 *     trace( "# 'user' IObjectDefinition scope : " + def.getScope() ) ;
+	 *     
+	 *     def = factory.getObjectDefinition("address") ;
+	 *     trace( "# 'address' IObjectDefinition scope : " + def.getScope() ) ;
+	 * }
+	 *  
+	 * var factory:ECMAObjectFactory = ECMAObjectFactory.getInstance() ;
+	 *  
+	 * factory.addEventListener( IOErrorEvent.IO_ERROR   , debug ) ;
+	 * factory.addEventListener( ProgressEvent.PROGRESS  , debug ) ;
+	 * factory.addEventListener( Event.COMPLETE          , debug ) ;
+	 * factory.addEventListener( ActionEvent.START       , debug ) ;
+	 * factory.addEventListener( ActionEvent.FINISH      , main  ) ;
+	 *  
+	 * var request:URLRequest = new URLRequest( "context/application.eden" ) ;
+	 *  
+	 * var loader:URLLoader   = new URLLoader() ;
+	 * loader.addEventListener( Event.COMPLETE , complete ) ;
+	 *  
+	 * loader.load( request ) ;
+	 * </code>
+	 * <p><b>3 -</b> The <b>test.User</b> class.</p>
+	 * <code>
+	 * package test
+	 * {
+	 *     import system.Reflection;
+	 *     import vegas.core.CoreObject;
+	 *     
+	 *     public class User extends CoreObject
+	 *     {
+	 *         public function User( pseudo:String = null, name:String =null , address:Address = null )
+	 *         {
+	 *             this.pseudo  = pseudo ;
+	 *             this.name    = name ;
+	 *             this.address = address ;
+	 *         }
+	 *         
+	 *         public var address:Address ;
+	 *         public var age:Number ;
+	 *         public var firstName:String ;
+	 *         public var job:Job ;
+	 *         public var mail:String ;
+	 *         public var name:String ;
+	 *         public var pseudo:String ;
+	 *         public var url:String ;
+	 *         
+	 *         public function destroy():void
+	 *         {
+	 *             trace( this + " destroy.") ;
+	 *         }
+	 *         
+	 *         public function initialize():void
+	 * 		   {
+	 * 		        trace( this + " initialize.") ;
+	 * 		   }
+	 * 		   
+	 * 		   public function setMail( sMail:String ):void
+	 * 		   {
+	 * 		       mail = sMail ;
+	 * 		   }
+	 * 		   
+	 * 		   public override function toString():String
+	 * 		   {
+	 * 		        return "[" + Reflection.getClassName(this) + ( pseudo != null ? " " + pseudo : "" ) + "]" ;
+	 * 		   }
+	 * 	   }
+	 * }
+ 	 * </code>
+	 * <p><b>4 -</b> The <b>test.Address</b> class.</p>
+	 * <code>
+	 * package test
+	 * {
+	 *     import vegas.core.CoreObject ;
+	 *     
+	 *     public class Address extends CoreObject
+	 *     {
+	 *     
+	 *         public function Address() {}
+	 *         
+	 *         public var city:String ;
+	 *         public var street:String
+	 *         public var zip:Number ;
+	 *         
+	 *     }
+ 	 * }
+	 * </code>
+	 * <p><b>5 -</b> The <b>test.Job</b> class.</p>
+	 * <code>
+	 * package test
+	 * {
+	 *     import system.Reflection;
+	 *     import vegas.core.CoreObject ;
+	 *     
+	 *     public class test.Job extends CoreObject
+	 *     {
+	 *     
+	 *         public function Job() {}
+	 *         
+	 *         public var name:String ;
+	 *         
+	 *         public function toString():String
+	 *         {
+	 *             return "[" + Reflection.getClassName(this) + " " + name + "]" ;
+	 *         }
+	 *         
+	 *     }
+	 * }
+	 * </code>
 	 * @author eKameleon
 	 */
 	public class ECMAObjectFactory extends ObjectFactory implements IFactory 
