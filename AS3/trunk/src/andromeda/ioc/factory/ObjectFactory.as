@@ -27,6 +27,9 @@ package andromeda.ioc.factory
 	import andromeda.ioc.core.IObjectDefinition;
 	import andromeda.ioc.core.ObjectAttribute;
 	import andromeda.ioc.core.ObjectDefinitionContainer;
+	import andromeda.ioc.core.ObjectFactoryMethod;
+	import andromeda.ioc.core.ObjectMethod;
+	import andromeda.ioc.core.ObjectStaticFactoryMethod;
 	import andromeda.ioc.factory.IObjectFactory;
 	
 	import system.Reflection;
@@ -71,28 +74,44 @@ package andromeda.ioc.factory
 		}
 		
 		/**
+		 * The custom debug method of this factory.
+		 */
+		public function debug( o:* ):void
+		{
+			getLogger().warn ( o ) ;
+			// use trace in this method if you want debug in Flash or the Flash debugger.
+		}
+		
+		/**
 		 * This method returns an object with the specified name in argument.
 		 * @param name The name of the object.
 		 * @return the instance of the object with the name passed in argument.
 		 */		
 		public function getObject( name:String ):*
 		{
-			var instance:* = _findInCache( name ) ;	
-			if ( instance == null )
+			try
 			{
-				var definition:IObjectDefinition = getObjectDefinition( name ) ;
-				if ( definition == null )
+				var instance:* = _findInCache( name ) ;	
+				if ( instance == null )
 				{
-					throw new NullPointerError( this +  " get( " + name + " ) method failed, the object isn't register in the container.") ; 
+					var definition:IObjectDefinition = getObjectDefinition( name ) ;
+					if ( definition == null )
+					{
+						throw new NullPointerError( this +  " get( " + name + " ) method failed, the object isn't register in the container.") ; 
+					}
+					if ( definition.isSingleton())
+					{
+						instance = _createAndCacheSingletonInstance( name , definition ) ;
+					}
+					else
+					{
+						instance = _createObject( definition.getType() , definition ) ;
+					}
 				}
-				if ( definition.isSingleton())
-				{
-					instance = _createAndCacheSingletonInstance( name , definition ) ;
-				}
-				else
-				{
-					instance = _createObject( definition.getType() , definition ) ;
-				}
+			}
+			catch(e:Error)
+			{
+				debug( this + " createObject failed with the name '" + name + "' : " + e.toString() ) ;
 			}
 			return instance || null ;
 		}
@@ -206,12 +225,45 @@ package andromeda.ioc.factory
 		 */
 		protected function _createObject( name:String , definition:IObjectDefinition ):*
 		{
-			var clazz:Class = getDefinitionByName(name) as Class ;
-			var args:Array  = _createArguments( definition.getConstructorArguments() ) ;
-			var instance:*  = ClassUtil.buildNewInstance(clazz, args) ;
-			_populateProperties( instance, definition.getProperties() );
-			_invokeMethods( instance , definition.getMethods() ) ;
-			_invokeInitMethod( instance, definition ) ;
+			var instance:* = null ;
+			var clazz:Class ;
+			var factoryMethod:ObjectMethod = definition.getFactoryMethod() ;
+			if ( factoryMethod == null )
+			{
+				clazz    = getDefinitionByName(name) as Class ;
+				instance = ClassUtil.buildNewInstance(clazz, _createArguments( definition.getConstructorArguments()) ) ;
+			}
+			else
+			{	
+				var factory:String ;
+				var sName:String   ;
+				var ref:* ;
+				if ( factoryMethod is ObjectStaticFactoryMethod )
+				{
+					clazz = getDefinitionByName( (factoryMethod as ObjectStaticFactoryMethod).type as String ) as Class ;
+					sName = (factoryMethod as ObjectStaticFactoryMethod).name ;
+					if ( sName in clazz ) 
+					{
+						instance = clazz[sName].apply( null, _createArguments( (factoryMethod as ObjectMethod).arguments ) ) ;
+					}
+				}
+				else if ( factoryMethod is ObjectFactoryMethod )
+				{
+					factory = (factoryMethod as ObjectFactoryMethod).factory ;
+					sName   = (factoryMethod as ObjectFactoryMethod).name ;
+					ref = getObject(factory) ;
+					if ( ref != null && sName in ref ) 
+					{
+						instance = ref[sName].apply( null, _createArguments( (factoryMethod as ObjectMethod).arguments ) ) ;
+					} 						
+				}
+			}
+			if ( instance != null )
+			{
+				_populateProperties( instance, definition.getProperties() );
+				_invokeMethods( instance , definition.getMethods() ) ;
+				_invokeInitMethod( instance, definition ) ;
+			}
 			return instance ;
 		}
 
@@ -268,8 +320,8 @@ package andromeda.ioc.factory
 					catch( e:Error ) 
 					{
 						// do nothing
-						getLogger().warn( this + " invokeMethods with the scope '" + o + "' : " + e.toString() ) ;
-						// trace(e) ; // debug mode
+						debug( this + " invokeMethods failed with the scope '" + o + "' : " + e.toString() ) ;
+						//
 					}	
 				}
 			}

@@ -22,6 +22,8 @@
 */
 package andromeda.ioc.core 
 {
+	import vegas.errors.IllegalArgumentError;	
+	
 	import andromeda.ioc.core.IObjectDefinitionContainer;
 	import andromeda.process.Action;
 	
@@ -30,7 +32,7 @@ package andromeda.ioc.core
 	/**
 	 * Creates a container to register all the Object define by the corresponding IObjectDefinition objects.
 	 * <p><b>Example :</b></p>
-	 * {@code
+	 * <code>
 	 * import test.User ;
 	 * 
 	 * import andromeda.ioc.core.ObjectDefinition ;
@@ -54,9 +56,9 @@ package andromeda.ioc.core
 	 * 
 	 * trace( "# User pseudo : " + user.pseudo ) ; // ekameleon
 	 * trace( "# User url    : " + user.url    ) ; // http://www.ekameleon.net/blog
-	 * }
+	 * </code>
 	 * With the <b>test.User</b> class :
- 	 * {@code
+ 	 * <code>
  	 * package test
  	 * {
  	 *     import vegas.core.CoreObject ;
@@ -76,6 +78,7 @@ package andromeda.ioc.core
  	 *         
  	 *     }
  	 * }
+ 	 * </code>
      * @author eKameleon
      */
 	public class ObjectDefinitionContainer extends Action implements IObjectDefinitionContainer 
@@ -103,24 +106,57 @@ package andromeda.ioc.core
 		}
 		
 		/**
+		 * Removes all the object definitions register in the container.
+		 */
+		public function clearObjectDefinition():void
+		{
+			_map.clear() ;
+		}		
+		
+		/**
 		 * Returns <code>true</code> if the object define with the specified name in register in the container.
 		 * @param name the id name of the ObjectDefinition to search. 
 		 * @return <code>true</code> if the object define with the specified name in register in the container.
 		 */
 		public function containsObjectDefinition( name:String ):Boolean 
 		{
-			return _map.containsKey(name) ;
+			return _map.containsKey( name ) ;
 		}
 		
 		/**
 		 * Returns the numbers objects registered in the container.
 		 * @param name the id name of the ObjectDefinition to return. 
 		 * @return the IObjectDefinition registered in the container.
+		 * @throws IllegalArgumentError If the specified object definition don't exist in the container.
 		 */
 		public function getObjectDefinition( name:String ):IObjectDefinition 
 		{
-			return _map.get( name ) ;
+			if ( containsObjectDefinition( name ) )
+			{
+				return _map.get( name ) ;
+			}
+			else
+			{
+				throw new IllegalArgumentError( this + " getObjectDefinition failed, the specified object definition don't exist : " + name ) ;
+			}
 		}
+		
+		/**
+		 * Unregisters an object definition in the container.
+		 * @param name the name of the object definition.
+		 * @throws IllegalArgumentError If the specified object definition don't exist in the container.
+		 */
+		public function removeObjectDefinition( name:String ):void 
+		{
+			if ( containsObjectDefinition( name ) )
+			{
+				_map.remove( name ) ;
+			}
+			else
+			{
+				throw new IllegalArgumentError( this + " removeObjectDefinition failed, the specified object definition don't exist : " + name ) ;	
+			}
+		}		
 		
 		/**
 		 * Returns the numbers objects registered in the container.
@@ -130,7 +166,10 @@ package andromeda.ioc.core
 		{
 			return _map.size() ;
 		}
-			
+		
+		/**
+		 * @private
+		 */
 		private var _map:HashMap ;
 		
 	}

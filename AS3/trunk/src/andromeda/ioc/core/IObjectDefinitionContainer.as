@@ -38,6 +38,11 @@ package andromeda.ioc.core
 		function addObjectDefinition( name:String , definition:IObjectDefinition ):void ;
 		
 		/**
+		 * Removes all the object definitions register in the container.
+		 */
+		function clearObjectDefinition():void ;
+		
+		/**
 		 * Returns <code>true</code> if the object define with the specified name in register in the container.
 		 * @return <code>true</code> if the object define with the specified name in register in the container.
 		 */
@@ -48,6 +53,12 @@ package andromeda.ioc.core
 		 * @return the numbers objects registered in the container.
 	 	 */
 		function getObjectDefinition( name:String ):IObjectDefinition ;
+		
+		/**
+		 * Unregisters an object definition in the container.
+		 * @param name the name of the object definition.
+		 */
+		function removeObjectDefinition( name:String ):void 
 		
 		/**
 		 * Returns the numbers objects registered in the container.

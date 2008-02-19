@@ -32,6 +32,8 @@ package andromeda.ioc.factory
 	
 	import andromeda.ioc.core.ObjectAttribute;
 	import andromeda.ioc.core.ObjectDefinition;
+	import andromeda.ioc.core.ObjectFactoryMethod;
+	import andromeda.ioc.core.ObjectStaticFactoryMethod;
 	import andromeda.ioc.factory.ObjectFactory;
 	
 	import vegas.core.IFactory;
@@ -39,8 +41,6 @@ package andromeda.ioc.factory
 	import vegas.data.queue.LinearQueue;
 	import vegas.data.sets.HashSet;
 	import vegas.errors.NullPointerError;	
-
-	// TODO implement scope property in the IObjectDefinition interface (singleton, prototype, ...)
 
 	/**
 	 * This factory builder use a deserialize eden object to creates all Objects with the IObjectDefinitionContainer.
@@ -180,23 +180,29 @@ package andromeda.ioc.factory
 			if ( o != null )
 			{
 			
-				var assemblyName:String =  o[ ObjectAttribute.ASSEMBLY_NAME ] ;
-				var args:Array          =  o[ ObjectAttribute.ARGUMENTS ] ;
-				var destroy:String      =  o[ ObjectAttribute.OBJECT_DESTROY_METHOD_NAME ] ;
-				var id:String           =  o[ ObjectAttribute.OBJECT_ID ] ;
-				var init:String         =  o[ ObjectAttribute.OBJECT_INIT_METHOD_NAME ] ;
-				var lazyInit:Boolean    =  o[ ObjectAttribute.LAZY_INIT ] ;
-				var methods:Array       =  o[ ObjectAttribute.OBJECT_METHODS ] ;
-				var properties:Array    =  o[ ObjectAttribute.OBJECT_PROPERTIES ] ;
-				var singleton:Boolean   =  o[ ObjectAttribute.OBJECT_SINGLETON ] ;
-				var type:String         =  o[ ObjectAttribute.TYPE ] ;
-
+				var assemblyName:String        =  o[ ObjectAttribute.ASSEMBLY_NAME ] ;
+				var args:Array                 =  o[ ObjectAttribute.ARGUMENTS ] ;
+				var destroy:String             =  o[ ObjectAttribute.OBJECT_DESTROY_METHOD_NAME ] ;
+				var factoryMethod:Object       =  o[ ObjectAttribute.OBJECT_FACTORY_METHOD ] ;
+				var id:String                  =  o[ ObjectAttribute.OBJECT_ID ] ;
+				var init:String                =  o[ ObjectAttribute.OBJECT_INIT_METHOD_NAME ] ;
+				var lazyInit:Boolean           =  o[ ObjectAttribute.LAZY_INIT ] ;
+				var methods:Array              =  o[ ObjectAttribute.OBJECT_METHODS ] ;
+				var properties:Array           =  o[ ObjectAttribute.OBJECT_PROPERTIES ] ;
+				var scope:String               =  o[ ObjectAttribute.OBJECT_SCOPE ] ;
+				var singleton:Boolean          =  o[ ObjectAttribute.OBJECT_SINGLETON ] ;
+				var staticfactoryMethod:Object =  o[ ObjectAttribute.OBJECT_STATIC_FACTORY_METHOD ] ;				
+				var type:String                =  o[ ObjectAttribute.TYPE ] ;
+				
 				var definition:ObjectDefinition = new ObjectDefinition( id, type , singleton , lazyInit ) ;
 				definition.setConstructorArguments( args ) ;
 				definition.setDestroyMethodName( destroy ) ;
+				definition.setFactoryMethod( ObjectFactoryMethod.create( factoryMethod ) ) ;
 				definition.setInitMethodName( init ) ;
 				definition.setMethods( methods ) ;
 				definition.setProperties( _createNewProperties( properties ) ) ;
+				definition.setScope( scope ) ;
+				definition.setFactoryMethod( ObjectStaticFactoryMethod.create( staticfactoryMethod ) ) ;
 				
 				addObjectDefinition( id , definition ) ;
 

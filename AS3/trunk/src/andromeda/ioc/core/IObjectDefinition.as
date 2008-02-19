@@ -23,7 +23,7 @@
 package andromeda.ioc.core 
 {
 	import vegas.core.Identifiable;
-	import vegas.data.Map;		
+	import vegas.data.Map;	
 
 	/**
 	 * Describes an object instance, which has property values, constructor argument values, and further information supplied by concrete implementations.
@@ -45,23 +45,34 @@ package andromeda.ioc.core
 		function getDestroyMethodName():String ; 
 		
 		/**
+		 * Returns the factory ObjectMethod of this definition.
+		 * @return the factory ObjectMethod object of this definition.
+		 */
+		function getFactoryMethod():ObjectMethod ;		
+		
+		/**
 		 * Returns the name of the method call when the object is instanciate.
 		 * @return the name of the method call when the object is instanciate.
 		 */	
 		function getInitMethodName():String ; 
 
 		/**
-		 * Returns the Array of all method definitions of this Definition.
-		 * @return the Array of all method definitions of this Definition.
+		 * Returns the Array of all method definitions of this definition.
+		 * @return the Array of all method definitions of this definition.
 		 */	
 		function getMethods():Array ; 
-		
+
 		/**
 		 * Returns the Map of all properties of this Definition.
 		 * @return the Map of all properties of this Definition.
 	 	 */	
 		function getProperties():Map ; 
-		
+
+		/**
+		 * Determinates the scope of the object.
+		 */	
+		function getScope():String  ;
+
 		/**
 		 * Determinates the type of the object (the class name).
 		 */	
@@ -91,6 +102,11 @@ package andromeda.ioc.core
 		function setDestroyMethodName( value:String = null ):void ; 
 		
 		/**
+		 * Sets the factory ObjectMethod of this definition.
+		 */
+		function setFactoryMethod( value:ObjectMethod ):void ;	
+		
+		/**
 		 * Init the name of the method.
 	 	 */		
 		function setInitMethodName( value:String = null ):void ;
@@ -105,6 +121,11 @@ package andromeda.ioc.core
 		 * Sets the Map of all properties of this Definition.
 		 */	
 		function setProperties( value:Map = null ):void ; 
+		
+		/**
+		 * Sets the scope of the object.
+		 */	
+		function setScope( scope:String = null ):void ;		
 		
 		/**
 	 	 * Sets the type of the object (the class name).

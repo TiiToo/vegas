@@ -1,8 +1,9 @@
 ﻿
 package test
 {
-
-	import vegas.core.CoreObject ;
+	import system.Reflection;
+	
+	import vegas.core.CoreObject;	
 
 	/**
 	 * The User class to test the LightContainer.
@@ -84,6 +85,14 @@ package test
 			mail = sMail ;
 		}
 		
+		/**
+		 * Returns the string representation of the object.
+		 * @return the string representation of the object.
+		 */
+		public override function toString():String
+		{
+			return "[" + Reflection.getClassName(this) + ( pseudo != null ? " " + pseudo : "" ) + "]" ;	
+		}
 	}
 	
 }

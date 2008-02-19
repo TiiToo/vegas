@@ -54,6 +54,7 @@ package andromeda.ioc.core
 			_type      = type ;
 			_lazyInit  = lazyInit ;
 			_singleton = singleton  ;
+			_scope      = singleton ? ObjectScope.SINGLETON : ObjectScope.PROTOTYPE ;
 		}
 
 		/**
@@ -91,6 +92,15 @@ package andromeda.ioc.core
 		}
 		
 		/**
+		 * Returns the factory ObjectMethod of this definition.
+		 * @return the factory ObjectMethod object of this definition.
+		 */
+		public function getFactoryMethod():ObjectMethod	
+		{
+			return _factoryMethod ;
+		}		
+		
+		/**
 		 * Returns the name of the method call when the object is instanciate.
 		 * @return the name of the method call when the object is instanciate.
 		 */	
@@ -116,7 +126,16 @@ package andromeda.ioc.core
 		{
 			return _properties ;
 		}
-		
+
+		/**
+		 * Returns the scope of the object.
+		 * @return the scope of the object.
+		 */	
+		public function getScope():String 
+		{
+			return _scope ;
+		}	
+
 		/**
 		 * Returns the type of the object (the class name).
 	 	 * @return the type of the object (the class name).
@@ -142,7 +161,7 @@ package andromeda.ioc.core
 		 */		
 		public function isSingleton():Boolean 
 		{
-			return _singleton;
+			return _singleton ;
 		}
 		
 		/**
@@ -162,6 +181,17 @@ package andromeda.ioc.core
 		{
 			_destroyMethodName = value;
 		}
+		
+		/**
+		 * Sets the factory ObjectMethod of this definition.
+		 */
+		public function setFactoryMethod( value:ObjectMethod ):void	
+		{
+			if ( value != null && ( value is ObjectFactoryMethod || value is ObjectStaticFactoryMethod ) )
+			{
+				_factoryMethod = value ;
+			}
+		}			
 		
 		/**
 		 * Init the name of the method.
@@ -189,7 +219,19 @@ package andromeda.ioc.core
 		{
 			_properties = value ;
 		}
-		
+
+		/**
+		 * Sets the scope of the object.
+		 */	
+		public function setScope( scope:String = null ):void 
+		{
+			if ( scope != null && ObjectScope.validate( scope ) )
+			{
+				_scope     = scope  || ObjectScope.SINGLETON ;
+				_singleton = _scope == ObjectScope.SINGLETON ;
+			}
+		}
+
 		/**
 		 * Sets the type of the object (the class name).
 		 * @param value the string representation of the type object.
@@ -208,6 +250,11 @@ package andromeda.ioc.core
 		 * The name of the destroy method of the object.
 		 */
 		private var _destroyMethodName:String;
+		
+		/**
+		 * The factory method of this definition.
+		 */
+		private var _factoryMethod:ObjectMethod ;
 		
 		/**
 		 * The internal id of this object.
@@ -233,6 +280,11 @@ package andromeda.ioc.core
 		 * The internal Map of all properties of the object.
 		 */
 		private var _properties:Map ;
+		
+		/**
+		 * The scope of the object.
+		 */
+		private var _scope:String ;
 		
 		/**
 		 * The internal Map of all singletons.

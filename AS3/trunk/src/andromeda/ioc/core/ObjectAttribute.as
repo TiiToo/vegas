@@ -39,6 +39,11 @@ package andromeda.ioc.core
 		 * Defines the label of the assembly name property of the object.
 		 */
 		public static const ASSEMBLY_NAME:String = "assemblyName" ;
+
+		/**
+		 * Defines the label of the factory attribure.
+		 */
+		public static const FACTORY:String = "factory" ;  
 		
 		/**
 		 * Defines the label of the imports attribute.
@@ -61,6 +66,11 @@ package andromeda.ioc.core
 		public static const OBJECT_DESTROY_METHOD_NAME:String = "destroy" ;  
 		
 		/**
+		 * The name of the external object property to register the destroy method name.
+		 */
+		public static const OBJECT_FACTORY_METHOD:String = "factoryMethod" ;  
+		
+		/**
 		 * The name of the external object property to define the id of the object.
 		 */
 		public static const OBJECT_ID:String = "id" ;  
@@ -79,12 +89,22 @@ package andromeda.ioc.core
 		 * The name of the external object property to register the properties.
 		 */
 		public static const OBJECT_PROPERTIES:String = "properties" ;  
+
+		/**
+		 * The name of the external object property to define the scope flag of the object.
+		 */
+		public static const OBJECT_SCOPE:String = "scope" ;  
 	
 		/**
 		 * The name of the external object property to define the singleton flag of the object.
 		 */
 		public static const OBJECT_SINGLETON:String = "singleton" ;  
 		
+		/**
+		 * The name of the external object property to define the static factory flag of the object.
+		 */
+		public static const OBJECT_STATIC_FACTORY_METHOD:String = "staticFactoryMethod" ;  
+				
 		/**
 		 * Defines the label of the ressource attribute in the imports objects.
 		 */

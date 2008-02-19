@@ -14,8 +14,9 @@
 		}
 		,
 		{   
-			id         : "job_dev"  ,
-			type       : "test.Job" ,
+			id         : "job_dev"   ,
+			type       : "test.Job"  ,
+			scope      : "prototype" ,
 			properties : [ 	{ name:"name" , value:"AS Developper" } ]
 		}
 		,

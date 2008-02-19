@@ -88,7 +88,6 @@ package lunas.core
 			var noExist:Boolean = _map.put( type , callback == null ? PRESENT : callback ) == null ;
 			if ( noExist )
 			{
-				trace(target + " : " + _map + " : " + PRESENT ) ;
 				target.addEventListener( type , refreshState ) ;
 			}
 		}
