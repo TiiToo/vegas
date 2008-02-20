@@ -56,7 +56,27 @@ package andromeda.ioc.factory
 		{
 			super( bGlobal, sChannel ) ;
 			singletons = new HashMap() ;
+			if ( config == null )
+			{
+				config = new ObjectConfig() ; // the default empty ObjectConfig instance.
+			}
 		}
+		
+		/**
+		 * Determinates the configuration object of the object factory.
+		 */
+		public function get config():ObjectConfig
+		{
+			return _config ;	
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set config( o:ObjectConfig ):void
+		{
+			_config = o ;	
+		}		
 		
 		/**
 		 * The maps of all objects in the container.
@@ -163,6 +183,11 @@ package andromeda.ioc.factory
 				singletons.remove( name ) ;	
 			}
 		}
+		
+		/**
+		 * @private
+		 */
+		private var _config:ObjectConfig ;
 			
 		/**
 	 	 * Creates the arguments Array representation of the specified definition.
@@ -273,6 +298,10 @@ package andromeda.ioc.factory
 		protected function _invokeDestroyMethod( o:* , definition:IObjectDefinition ):void
 		{
 			var name:String     = definition.getDestroyMethodName();
+			if ( name == null && config != null )
+			{
+				name = config.defaultDestroyMethod ;
+			}			
 			var method:Function = Reflection.getMethodByName( o , name ) ;
 			if( method != null ) 
 			{
@@ -286,6 +315,10 @@ package andromeda.ioc.factory
 		protected function _invokeInitMethod( o:* , definition:IObjectDefinition=null ):void
 		{
 			var name:String     = definition.getInitMethodName();
+			if ( name == null && config != null )
+			{
+				name = config.defaultInitMethod ;
+			}
 			var method:Function = Reflection.getMethodByName( o , name ) ;
 			if( method != null ) 
 			{

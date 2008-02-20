@@ -41,12 +41,17 @@ package andromeda.ioc.core
 		public static const ASSEMBLY_NAME:String = "assemblyName" ;
 
 		/**
-		 * Defines the label of the factory attribure.
+		 * Defines the label of the 'configuration' top-level attribute.
+		 */
+		public static const CONFIGURATION:String = "configuration" ;  
+
+		/**
+		 * Defines the label of the 'factory' attribure.
 		 */
 		public static const FACTORY:String = "factory" ;  
 		
 		/**
-		 * Defines the label of the imports attribute.
+		 * Defines the label of the 'imports' top-level attribute.
 		 */
 		public static const IMPORTS:String = "imports" ;		
 		
@@ -104,12 +109,17 @@ package andromeda.ioc.core
 		 * The name of the external object property to define the static factory flag of the object.
 		 */
 		public static const OBJECT_STATIC_FACTORY_METHOD:String = "staticFactoryMethod" ;  
+			
+		/**
+		 * Defines the label of the 'objects' top-level attribute.
+		 */
+		public static const OBJECTS:String = "objects" ;  
 				
 		/**
 		 * Defines the label of the ressource attribute in the imports objects.
 		 */
 		public static const RESSOURCE:String = "ressource" ;
-		
+
 		/**
 		 * Defines the label of the type of the object.
 		 */

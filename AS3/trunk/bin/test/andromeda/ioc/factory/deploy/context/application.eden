@@ -1,5 +1,11 @@
 {
 
+	configuration :
+	{
+		defaultInitMethod    : "initialize"    ,
+		defaultDestroyMethod : "destroy" 
+	}
+	,
 	objects : 
 	[
 		{   
@@ -32,7 +38,7 @@
 			lazyInit      : true , // only if this object is a singleton, the singleton isn't initialized during the factory initialize process.
 			singleton     : true ,
 			destroy       : "destroy" ,
-			init          : "initialize" ,
+			init          : "initialize" , // see the global 'defaultInitMethod' attribute in the 'configuration' attribute.
 			properties    : 
 			[
 				{ name:"age"       , value : 30        } ,

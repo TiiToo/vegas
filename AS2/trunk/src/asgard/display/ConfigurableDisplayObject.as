@@ -78,15 +78,7 @@ class asgard.display.ConfigurableDisplayObject extends DisplayObject implements 
 	 */
 	public function setup():Void 
 	{
-		var config:Object = Config.getInstance()[getName()] ; 
-		if ( config != null ) 
-		{
-			for (var prop:String in config)
-			{
-				this[prop] = config[prop] ; 
-			}
-		}
-		update() ;	
+		Config.getInstance().init( this, getName() , update ) ; 
 	}	 
 	
 	/**

@@ -31,6 +31,12 @@ package andromeda.ioc.factory
 	{
 		
 		/**
+		 * Determinates the configuration object of the object factory.
+		 */
+		function get config():ObjectConfig ;
+		function set config( o:ObjectConfig ):void ;
+		
+		/**
 		 * Returns <code>true</code> if the referencial contains the specified object.
 		 * @param The id name of the object to search.
 	 	 * @return <code>true</code> if the referencial contains the specified object.

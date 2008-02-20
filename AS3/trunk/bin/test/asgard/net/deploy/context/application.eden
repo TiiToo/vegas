@@ -1,13 +1,29 @@
 {
 
+	configuration :
+	{
+		defaultInitMethod    : "initialize"    ,
+		defaultDestroyMethod : "destroy" 
+	}
+	,
 	imports :
 	[
 		{ ressource : "view.eden" }
 	]
 	,
-	objects : // run application
+	objects :
 	[
 		
+		{
+			id        : "user" ,
+			type      : "test.User" ,			
+			singleton : true ,
+			arguments : 
+			[
+				{ value : "ekameleon" }
+			]
+		}
+        ,
 		{
 			id         : "square" ,
 			type       : "Square" ,

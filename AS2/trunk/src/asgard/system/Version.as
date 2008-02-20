@@ -161,20 +161,56 @@ class asgard.system.Version extends CoreObject implements IComparable, IEquality
     }
 
 	/**
+     * Creates a Version object from a number.
+     * If the number is zero or negative, or is NaN or Infity returns an empty version object.
+     */
+	public static function fromNumber( value:Number):Version
+    {
+    	if ( isNaN(value) )
+    	{
+    		value = 0 ;
+    	}
+        var v:Version = new Version();
+            
+        if ( isNaN(value) || (value == 0) || (value < 0) || (value == Number.MAX_VALUE) || (value == Number.POSITIVE_INFINITY) || (value == Number.NEGATIVE_INFINITY)  )
+        {
+            return v;
+        }
+            
+        //this is like the inverse of valueOf
+        //(major << 28) | (minor << 24) | (build << 16) | revision
+        //but be carefull to NOT preserve the bit sign, so use >>> instead of >>
+        v.major    = (value >>> 28);
+        v.minor    = (value & 0x0f000000) >>> 24;
+        v.build    = (value & 0x00ff0000) >>> 16;
+        v.revision = (value & 0x0000ffff);
+           
+        return v ;
+    }
+
+	/**
 	 * Creates and returns a new Version with the specified string passed-in argument.
 	 * @return a new Version with the specified string passed-in argument.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import asgard.system.Version ;
+	 * 
+	 * var s:String = System.capabilities.version ; // version of the current FlashPlayer
+	 * 
+	 * var v:Version = Version.fromString(s.split(" ")[1] , ",")  ;
+	 * 
+	 * trace ("version toString : " + v.toString() ) ;
+	 * trace ("version valueOf  : " + v.valueOf()  ) ;
+	 * }
 	 */
-	public function fromString(str:String):Version 
+	public static function fromString(str:String, separator:String):Version 
 	{
-		var args:Array = str.split(".") ;
-		var ver:Version  = new Version
-		( 
-			parseInt( args[0] ) ,
-            parseInt( args[1] ) ,
-            parseInt( args[2] ) ,
-            parseInt( args[3] ) 
-		) ;
-		return ver ;
+		if ( separator == null )
+		{
+			separator = "." ;
+		}
+		var args:Array = str.split(separator) ;
+		return new Version( parseInt( args[0] ) , parseInt( args[1] ) , parseInt( args[2] ) , parseInt( args[3] ) ) ;
     }
 
 	/**
@@ -276,11 +312,24 @@ class asgard.system.Version extends CoreObject implements IComparable, IEquality
 		return _value ;
     }
 	
+	/**
+	 * @private
+	 */
 	private var _value:Number ;
 	
-	private function _checkValue( value:Number, max:Number) 
+	/**
+	 * @private
+	 */
+	private function _checkValue( value:Number, max:Number):Number
 	{
-		return MathsUtil.clamp(value, 0, max) ;
+		try
+		{
+			return MathsUtil.clamp(value, 0, max) ;
+		}
+		catch( e:Error )
+		{
+			return 0 ;	
+		}
 	}
 
 }

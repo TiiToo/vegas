@@ -30,6 +30,7 @@ package asgard.net
 	import andromeda.events.ActionEvent;
 	import andromeda.ioc.core.ObjectAttribute;
 	import andromeda.ioc.factory.ECMAObjectFactory;
+	import andromeda.ioc.factory.ObjectConfig;
 	import andromeda.process.Sequencer;
 	import andromeda.process.SimpleAction;
 	
@@ -87,7 +88,7 @@ package asgard.net
 		public var context:String ;
 		
 		/**
-		 * The ECMA object IOC factory reference.
+		 * The ECMAScript object IOC factory reference.
 		 */
 		public var factory:ECMAObjectFactory ;
 
@@ -111,7 +112,18 @@ package asgard.net
 		 * The default path of the external context file.
 		 */
 		public var path:String ;
-
+		
+		/**
+		 * Clear the loader.
+		 */
+		public function clear():void
+		{
+			_first  = true ;
+			objects = [] ;
+			_imports.clear() ;
+			_sequencer.clear() ;
+		}
+		
 		/**
 		 * Create the objects.
 		 */
@@ -132,9 +144,7 @@ package asgard.net
 	     */
 		public override function run( ...arguments:Array ):void 
 		{
-			objects = [] ;
-			_imports.clear() ;
-			_sequencer.clear() ;
+			clear() ;
 			_importContext( context ) ;
 			_sequencer.run() ;
 		}		
@@ -161,7 +171,12 @@ package asgard.net
 		 * The array representation of the object definitions to insert in the IOC factory container.
 		 */
 		protected var objects:Array ;		
-
+		
+		/**
+		 * @private
+		 */
+		private var _first:Boolean = true ;
+		
 		/**
 		 * @private
 		 */
@@ -182,7 +197,8 @@ package asgard.net
 		 */
 		private function _finishSequencer( e:ActionEvent ):void
 		{
-			getLogger().debug(e) ;			
+			getLogger().debug(e) ;	
+	
 			var a:Array   ;
 			var size:uint = _imports.size() ;
 			if ( size > 0 )
@@ -225,20 +241,32 @@ package asgard.net
 		{
 			
 			getLogger().debug(e) ;
-
+			
 			var loader:ActionURLLoader = _sequencer.getCurrent() as ActionURLLoader ;
 			
 			try
 			{
 			
 				var data:Object = loader.data  ;
-			
+				
+				// configuration 
+				
+				if ( _first )
+				{
+					_first = false ;	
+					var config:Object = data[ ObjectAttribute.CONFIGURATION	 ] ;
+					if ( config != null )
+					{
+						factory.config = new ObjectConfig( config ) ;	
+					}
+				}
+				
 				// objects : the current object definitions
 			
-				var o:Array = data.objects as Array ;
+				var o:Array = data[ ObjectAttribute.OBJECTS ] as Array ;
 				if ( o != null && o.length > 0 )
 				{
-					objects.unshift.apply(objects, loader.data.objects ) ;
+					objects.unshift.apply(objects, o ) ;
 				}
 							
 				// imports

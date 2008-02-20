@@ -56,7 +56,7 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 		
 		super ( (sName != null) ? sName : getDefaultName(this) , target , bGlobal, sChannel ) ;
 		
-		view.onUnload = Delegate.create(this, _onUnload) ;
+		view.onUnload   = Delegate.create(this, _onUnload) ;
 		view._focusrect = false ;
 		
 		initEvent() ;
@@ -480,7 +480,6 @@ class lunas.display.abstract.AbstractComponentDisplay extends ConfigurableDispla
 		_groupName = sName ;	
 		groupPolicyChanged() ;
 	}
-	
 
 	/**
 	 * Sets the virtual height value of the component.
