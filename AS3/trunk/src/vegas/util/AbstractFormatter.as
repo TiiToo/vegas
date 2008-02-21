@@ -62,7 +62,7 @@ package vegas.util
 		 */
 		public function set pattern( expression:String ):void 
 		{
-			this._pattern = pattern ;
+			this._pattern = expression ;
 		}
 
 		/**

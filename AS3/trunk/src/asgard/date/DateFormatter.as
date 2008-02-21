@@ -50,6 +50,18 @@ package asgard.date
 	 * var result:String = f.format(new Date(2005, 10, 22)) ;
 	 * trace("pattern : " + f.pattern) ;
  	 * trace("result  : " + result) ;
+	 * 
+	 * trace("----") ;
+	 * 
+	 * f.pattern = "hh 'h' nn 'mn' ss 's' tt" ;
+	 * trace( f.format( new Date(2008,1,21,10,15,0,0) ) ) ; // 02 h 15 mn 00 s am
+	 * 
+	 * f.pattern = "hh 'h' nn 'mn' ss 's' t" ;
+	 * trace( formatter.format( new Date(2008,1,21,10,15,0,0) ) ) ; // 02 h 15 mn 00 s a
+	 * 
+	 * f.pattern = "hh 'h' nn 'mn' ss 's' TT" ; // capitalize the pm expression.
+	 * trace( formatter.format( new Date(2008,1,21,14,15,0,0) ) ) ; // 02 h 15 mn 00 s PM
+	 * 
 	 * }
 	 * @author eKameleon
  	 */
@@ -67,6 +79,23 @@ package asgard.date
 		}
 		
 		/**
+	 	 * Placeholder for AM/PM designator who indicates if the hour is is before or after noon in date format.
+		 * The output is lower-case. Examples: t -> a or p  / tt -> am or pm.
+		 */
+		public static const AM_PM:String = "t";
+		
+		/**
+		 * Placeholder for AM/PM designator who indicates if the hour is is before or after noon in date format.
+		 * The output is capitalized. Examples: T -> T or P / TT -> AM or PM.
+		 */
+		public static const CAPITAL_AM_PM:String = "T" ;
+		
+		/**
+		 * The default AM/PM designator expression.
+		 */
+		public static var DEFAULT_AM_EXPRESSION:String = "am" ;			
+		
+		/**
 		 * The default date format pattern {@code "dd.mm.yyyy HH:nn:ss"}.
 		 */
 		public static const DEFAULT_DATE_FORMAT:String = "dd.mm.yyyy HH:nn:ss" ;
@@ -74,87 +103,92 @@ package asgard.date
 		/**
 		 * Placeholder for day in month as number in date format.
 		 */
-		public static var DAY_AS_NUMBER:String = "d";
+		public static const DAY_AS_NUMBER:String = "d" ;
 		
 		/**
 		 * Placeholder for day in week as text in date format.
 		 */
-		public static var DAY_AS_TEXT:String = "D";
+		public static const DAY_AS_TEXT:String = "D" ;
+		
+		/**
+		 * The default AM/PM designator expression.
+		 */
+		public static  var DEFAULT_PM_EXPRESSION:String = "pm" ;		
 		
 		/**
 		 * Placeholder for hour in am/pm (1 - 12) in date format.
 		 */
-		public static var HOUR_IN_AM_PM:String = "h";
+		public static const HOUR_IN_AM_PM:String = "h" ;
 		
 		/**
 		 * Placeholder for hour in day (0 - 23) in date format.
 		 */
-		public static var HOUR_IN_DAY:String = "H";
+		public static const HOUR_IN_DAY:String = "H";
 		
 		/**
 		 * Placeholder for minute in hour in date format.
 		 */
-		public static var MINUTE:String = "n";
+		public static const MINUTE:String = "n";
 		
 		/**
 		 * Placeholder for millisecond in date format.
 		 */
-		public static var MILLISECOND:String = "S";
+		public static const MILLISECOND:String = "S";
 		
 		/**
 		 * Placeholder for month in year as number in date format.
 		 */
-		public static var MONTH_AS_NUMBER:String = "m";
+		public static const MONTH_AS_NUMBER:String = "m";
 		
 		/**
 	 	 * Placeholder for month in year as text in date format.
 		 */
-		public static var MONTH_AS_TEXT:String = "M";
+		public static const MONTH_AS_TEXT:String = "M";
 		
 		/**
 		 * Quotation beginning and ending token. 
 		 */
-		public static var QUOTE:String = "'";
+		public static const QUOTE:String = "'";
 		
 		/**
 		 * The internal range use to defined the days as text in the DateFormatter.
 		 */
-		public static var RANGE_DAY_AS_TEXT:Range = new Range(0, 6) ;
+		public static const RANGE_DAY_AS_TEXT:Range = new Range(0, 6) ;
 		
 		/**
 		 * The internal range use to defined the hours in the DateFormatter.
 		 */
-		public static var RANGE_HOUR:Range = new Range(0, 23) ;
+		public static const RANGE_HOUR:Range = new Range(0, 23) ;
 		
 		/**
 		 * The internal range use to defined the minutes in the DateFormatter.
 		 */
-		public static var RANGE_MINUTE:Range = new Range(0, 59) ;
+		public static const RANGE_MINUTE:Range = new Range(0, 59) ;
 			
 		/**
 		 * The internal range use to defined the milliseconds in the DateFormatter.
 		 */
-		public static var RANGE_MILLISECOND:Range = new Range(0, 999) ;
+		public static const RANGE_MILLISECOND:Range = new Range(0, 999) ;
 		
 		/**
 		 * The internal range use to defined the months in the DateFormatter.
 		 */
-		public static var RANGE_MONTH:Range = new Range(0, 11) ;
+		public static const RANGE_MONTH:Range = new Range(0, 11) ;
 		
 		/**
 		 * The internal range use to defined the seconds in the DateFormatter.
 		 */
-		public static var RANGE_SECOND:Range = new Range(0, 59) ;
+		public static const RANGE_SECOND:Range = new Range(0, 59) ;
 		
 		/**
 		 * Placeholder for second in minute in date format.
 		 */
-		public static var SECOND:String = "s";
+		public static const SECOND:String = "s";
 		
 		/**
 		 * Placeholder for year in date format.
 		 */
-		public static var YEAR:String = "y";
+		public static const YEAR:String = "y";
 				
 		/**
 		 * This method format an expression with the pattern of this formatter.
@@ -162,13 +196,11 @@ package asgard.date
 		 */	
 		public override function format( ...arguments:Array ):String 
 		{
-			//trace(this + " format date :" + arguments ) ;
 			if (pattern == null) 
 			{
 				return "" ;
 			}
 			var date:Date = ( arguments[0] != null && arguments[0] is Date) ? (arguments[0] as Date) : new Date() ;
-			//trace( this + ' format ::: ' + date) ;
 			var p:String = pattern ;
 			var a:Array = p.split("") ;
 			var l:Number = a.length ;
@@ -258,7 +290,13 @@ package asgard.date
 					cpt = _count(ch, a.slice(i));
 					r += formatMillisecond(date.getMilliseconds(), cpt);
 					i += cpt - 1 ;
-				} 
+				}
+				else if ( ch == AM_PM || ch == CAPITAL_AM_PM )
+				{
+					cpt = _count(ch, a.slice(i));
+					r += formatDesignator(date.getHours(), cpt, ch == CAPITAL_AM_PM );
+					i += cpt - 1 ;
+				}
 				else 
 				{
 					r += ch;
@@ -301,6 +339,25 @@ package asgard.date
 			if (cpt < 4) return r.substr(0, 2);
 			return r ;
 		}
+		
+		/**
+		 * Formats the designator AM/PM in string expression.
+		 * @return the specified am/pm expression representation.
+		 */
+		public function formatDesignator(hour:Number, cpt:Number, capitalize:Boolean ):String 
+		{
+			if (RANGE_HOUR.isOutOfRange(hour))
+			{
+				throw new IllegalArgumentError(this + " formatDesignator method failed, the hour value is out of range.") ;
+			}
+			if (isNaN(cpt)) 
+			{
+				cpt = 0 ;
+			}
+			var s:String = ( hour > 12 ) ? DEFAULT_PM_EXPRESSION : DEFAULT_AM_EXPRESSION ;
+			s = s.slice(0, cpt) ; ;
+			return capitalize ? s.toUpperCase() : s.toLowerCase() ;
+		}		
 	
 		/**
 	 	 * Formats the specified hour value in a string representation with the am-pm notation.

@@ -19,8 +19,7 @@
   
   Contributor(s) :
   
-*/
-
+ */
 import asgard.date.LocalDate;
 
 import pegas.maths.Range;
@@ -34,6 +33,7 @@ import vegas.util.format.AbstractFormatter;
  * <p>All characters from 'A' to 'Z' and from 'a' to 'z' are reserved, although not all of these characters are interpreted right now.</p> 
  * <p>If you want to include plain text in the pattern put it into quotes (') to avoid interpretation.</p>
  * <p>If you want a quote in the formatted date-time, put two quotes directly after one another. For example: {@code "hh 'o''clock'"}.</p>
+ * <p>If you want use AM/PM designators you must use the 't' or 'T' character.</p>
  * <p><b>Example :</b>
  * {@code
  * import asgard.date.DateFormatter ;
@@ -51,6 +51,18 @@ import vegas.util.format.AbstractFormatter;
  * var result:String = f.format(new Date(2005, 10, 22)) ;
  * trace("pattern : " + f.pattern) ;
  * trace("result  : " + result) ;
+ * 
+ * trace("----") ;
+ * 
+ * f.pattern = "hh 'h' nn 'mn' ss 's' tt" ;
+ * trace( f.format( new Date(2008,1,21,10,15,0,0) ) ) ; // 02 h 15 mn 00 s am
+ * 
+ * f.pattern = "hh 'h' nn 'mn' ss 's' t" ;
+ * trace( formatter.format( new Date(2008,1,21,10,15,0,0) ) ) ; // 02 h 15 mn 00 s a
+ * 
+ * f.pattern = "hh 'h' nn 'mn' ss 's' TT" ; // capitalize the pm expression.
+ * trace( formatter.format( new Date(2008,1,21,14,15,0,0) ) ) ; // 02 h 15 mn 00 s PM
+ * 
  * }
  * @author eKameleon
  */
@@ -68,9 +80,31 @@ class asgard.date.DateFormatter extends AbstractFormatter
 	}
 
 	/**
+	 * Placeholder for AM/PM designator who indicates if the hour is is before or after noon in date format.
+	 * The output is lower-case. Examples: t -> a or p  / tt -> am or pm.
+	 */
+	public static var AM_PM:String = "t";
+
+	/**
+	 * Placeholder for AM/PM designator who indicates if the hour is is before or after noon in date format.
+	 * The output is capitalized. Examples: T -> T or P / TT -> AM or PM.
+	 */
+	public static var CAPITAL_AM_PM:String = "T" ;
+
+	/**
+	 * The default AM/PM designator expression.
+	 */
+	public static  var DEFAULT_AM_EXPRESSION:String = "am" ;	
+	
+	/**
 	 * The default date format pattern {@code "dd.mm.yyyy HH:nn:ss"}.
 	 */
 	public static  var DEFAULT_DATE_FORMAT:String = "dd.mm.yyyy HH:nn:ss" ;
+
+	/**
+	 * The default AM/PM designator expression.
+	 */
+	public static  var DEFAULT_PM_EXPRESSION:String = "pm" ;	
 	
 	/**
 	 * Placeholder for day in month as number in date format.
@@ -170,9 +204,9 @@ class asgard.date.DateFormatter extends AbstractFormatter
 			return "" ;
 		}
 		var date:Date = (o instanceof Date) ? o : new Date() ;
-		var p:String = getPattern() ;
-		var a:Array = p.split("") ;
-		var l:Number = a.length ;
+		var p:String  = getPattern() ;
+		var a:Array   = p.split("") ;
+		var l:Number  = a.length ;
 		var cpt:Number ;
 		var ch:String ; // current character
 		var i:Number = -1 ;
@@ -248,18 +282,24 @@ class asgard.date.DateFormatter extends AbstractFormatter
 				r += formatMinute(date.getMinutes(), cpt) ;
 				i += cpt - 1 ;
 			}
-			else if (ch == SECOND) 
+			else if ( ch == SECOND ) 
 			{
 				cpt = _count(ch, a.slice(i));
 				r += formatSecond( date.getSeconds(), cpt ) ;
 				i += cpt - 1 ;
 			}
-			else if (ch == MILLISECOND) 
+			else if ( ch == MILLISECOND ) 
 			{
 				cpt = _count(ch, a.slice(i));
 				r += formatMillisecond(date.getMilliseconds(), cpt);
 				i += cpt - 1 ;
-			} 
+			}
+			else if ( ch == AM_PM || ch == CAPITAL_AM_PM )
+			{
+				cpt = _count(ch, a.slice(i));
+				r += formatDesignator(date.getHours(), cpt, ch == CAPITAL_AM_PM );
+				i += cpt - 1 ;
+			}
 			else 
 			{
 				r += ch;
@@ -300,6 +340,25 @@ class asgard.date.DateFormatter extends AbstractFormatter
 		var r:String = days[day] ;
 		if (cpt < 4) return r.substr(0, 2);
 		return r ;
+	}
+
+	/**
+	 * Formats the designator AM/PM in string expression.
+     * @return the specified am/pm expression representation.
+	 */
+	public function formatDesignator(hour:Number, cpt:Number, capitalize:Boolean ):String 
+	{
+		if (RANGE_HOUR.isOutOfRange(hour))
+		{
+			throw new IllegalArgumentError(this + " formatDesignator method failed, the hour value is out of range.") ;
+		}
+		if (isNaN(cpt)) 
+		{
+			cpt = 0 ;
+		}
+		var s:String = ( hour > 12 ) ? DEFAULT_PM_EXPRESSION : DEFAULT_AM_EXPRESSION ;
+		s = s.slice(0, cpt) ; ;
+		return capitalize ? s.toUpperCase() : s.toLowerCase() ;
 	}
 
 	/**
