@@ -197,7 +197,7 @@ package vegas.data.map
 		/**
 		 * Sorts the elements in Map by key or value with the IComparator of this ArrayMap.
 		 * <p><b>Example :</b></p>
-		 * {@code
+		 * <code>
 		 * var map:SortedArrayMap = new SortedArrayMap() ;
 	 	 * 
 	 	 * map.put( "key1", "value4" ) ;
@@ -230,7 +230,7 @@ package vegas.data.map
 	 	 * map.sort() ;
 	 	 * 
 		 * trace(map) ; // {key2:value1,key3:value2,key4:value3,key1:value4}
-		 * } 
+		 * </code>
 	 	 * @see SortedArrayMap#sortBy
 	 	 */
 		public function sort():void  
@@ -272,7 +272,7 @@ package vegas.data.map
 		/**
 	 	 * Sorts the elements in the list according to one or more fields in the array.
 	 	 * <p><b>Example :</b></p>
-	 	 * {@code
+	 	 * <code>
 	 	 * import vegas.data.iterator.Iterator ;
 	 	 * import vegas.data.Map ;
 	 	 * import vegas.data.map.SortedArrayMap ;
@@ -331,7 +331,7 @@ package vegas.data.map
 	 	 * map.options = SortedArrayMap.NONE ;
 	 	 * map.sortOn("name") ;
 	 	 * debug( map ) ; // {1:name1,2:name2,4:name3,5:name4,3:name5}
-	 	 * }
+	 	 * </code>
 		 * @param fieldName A string that identifies a field to be used as the sort value.
 		 * @param opts (optional) The option number value to use to sort this map.
 		 * @see SortedArrayMap#sortBy 

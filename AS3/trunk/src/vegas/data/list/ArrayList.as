@@ -31,7 +31,7 @@ package vegas.data.list
 	 * Resizable-array implementation of the List interface.
 	 * Implements all optional list operations, and permits all elements, including null.
 	 * <p><b>Example :</b></p>
-	 * {@code
+	 * <code>
 	 * import vegas.data.list.ArrayList ;
 	 * import vegas.data.List ;
 	 * import vegas.data.iterator.ListIterator ;
@@ -63,7 +63,7 @@ package vegas.data.list
 	 *     it.set("changeItem" +  cpt--) ;
  	 * }
 	 * trace ("list : " + list) ;
-	 * }
+	 * </code>
 	 * @author eKameleon
  	 */
 	public class ArrayList extends AbstractList
@@ -71,12 +71,13 @@ package vegas.data.list
 		
 		/**
 		 * Creates a new ArrayList instance.
-		 * @use 
+		 * <p><b>Usage </b></p>
+		 * <code>
 		 * 	new ArrayList() ;
 		 * 	new ArrayList(ar:Array) ;
 		 * 	new ArrayList(co:Collection) ;
 		 *  new ArrayList( capacity:uint ) ;
-		 * 
+		 * </code>
 		 */
 		public function ArrayList( init:* = null )
 		{

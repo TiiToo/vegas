@@ -31,7 +31,7 @@ package vegas.data.iterator
 	/**
      * Converts an <code>Array</code> to an iterator.
      * <p><b>Example :</b></p>
-     * {@code
+     * <code>
      * import vegas.data.iterator.ArrayIterator ;
      * import vegas.data.iterator.Iterator ;
      * 
@@ -60,8 +60,7 @@ package vegas.data.iterator
      * }
      * 
      * trace ("---") ;
-     * 
-     * }
+     * </code>
      * @author eKameleon
      */
     public class ArrayIterator extends CoreObject implements Iterator

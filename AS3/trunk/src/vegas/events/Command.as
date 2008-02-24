@@ -39,11 +39,11 @@ package vegas.events
 		/**
 		 * Creates a new Command instance.
 	 	 * <p><b>Example :</b></p>
-		 * {@code
+		 * <code>
 		 * var c1:Command = new Command() ;
 		 * var c2:Command = new Command([name:String [, value:*[, channel:String]]]) ;
 		 * var c3:Command = new Command([initObject:Object]) ; 
-		 * }
+		 * </Code>
 		 * @throws IllegalArgumentError if the optional passed-in arguments failed the initialization of the new <code>Command</code> instance. 
 		 */ 
         public function Command( ...arguments:Array )

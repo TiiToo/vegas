@@ -33,6 +33,7 @@ package vegas.util
         
         /**
          * Returns a copy by reference of this boolean.
+         * @return a copy by reference of this boolean.
          */
         public static function clone(b:Boolean):Boolean 
         {
@@ -41,6 +42,7 @@ package vegas.util
 
         /**
          * Returns a copy by value of this object.
+         * @return a copy by value of this object.
          */
     	public static function copy(b:Boolean):Boolean 
     	{
@@ -48,7 +50,7 @@ package vegas.util
     	}
 
         /**
-         * compare if two Booleans are equal by value.
+         * Compares if two Booleans are equal by value.
          */
 	    public static function equals( b1:Boolean, b2:Boolean ):Boolean 
 	    {

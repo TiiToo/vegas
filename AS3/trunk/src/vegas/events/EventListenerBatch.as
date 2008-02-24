@@ -33,7 +33,7 @@ package vegas.events
 	/**
  	 * It handles several <code>EventListener</code> as one <code>EventListener</code>.
 	 * <p><b>Example : </b></p>
-	 * {@code
+	 * <code>
 	 * 	
 	 * import vegas.events.* ;
 	 * 
@@ -60,7 +60,7 @@ package vegas.events
 	 * 	
 	 * EventDispatcher.getInstance().registerEventListener(EVENT_TYPE, batch) ;
 	 * EventDispatcher.getInstance().dispatchEvent( e ) ;
-	 * }
+	 * </code>
 	 */
 	public class EventListenerBatch extends TypedCollection implements EventListener
 	{

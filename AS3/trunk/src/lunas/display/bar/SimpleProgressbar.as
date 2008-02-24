@@ -39,7 +39,7 @@ package lunas.display.bar
 	/**
      * The SimpleProgressbar component.
      * <p><b>Example :</b></p>
-     * {@code
+     * <code>
      * import flash.display.StageScaleMode ;
      * 
      * import pegas.draw.Align ;
@@ -113,7 +113,7 @@ package lunas.display.bar
      * stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
      * 
      * trace("Press Keyboard.LEFT or Keyboard.RIGHT or Keyboard.SPACE or other keyboard touch to test this example.") ;
-     * }
+     * </code>
      * @author eKameleon
      */
     public class SimpleProgressbar extends AbstractProgressbar

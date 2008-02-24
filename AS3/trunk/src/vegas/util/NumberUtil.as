@@ -78,7 +78,7 @@ package vegas.util
     	/**
 	     * Returns the hexadecimal string representation of the specified number value.
 	     * <p><b>Example :</b></p>
-	     * {@code
+	     * <code>
      	 * import vegas.util.NumberUtil ;
 	     *
 	     * for (var i:uint =0 ; i<256 ; i++)
@@ -92,8 +92,7 @@ package vegas.util
      	 * {
 	     *     trace( NumberUtil.toHex( i , "#" ) ) ; // with optional prefix argument
 	     * }
-	     * 
-     	 * }
+     	 * </code>
      	 * @param n the number to format.
      	 * @param prefix Optional string represention of the prefix of the return format string. If this argument is undefined the prefix is "0x".
      	 * @return the hexadecimal string representation of the specified number value.

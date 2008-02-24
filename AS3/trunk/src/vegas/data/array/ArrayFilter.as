@@ -29,7 +29,7 @@ package vegas.data.array
 	/**
      * This filter contains all constants and methods to sort the Arrays in the application.
      * <p><b>Example : </b></p>
-     * {@code
+     * <code>
      * import vegas.data.array.ArrayFilter ;
      * 
      * import vegas.events.BasicEvent ;
@@ -77,8 +77,7 @@ package vegas.data.array
      * 
      * af.setUniqueSort( false ) ;
      * debug() ;
-     * 
-     * }
+     * </code>
      * @author eKameleon
      */
     public class ArrayFilter extends AbstractCoreEventDispatcher

@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -34,13 +34,13 @@ package vegas.data.stack
      * The based implementation of the Stack interface.
      * The Stack interface represents a last-in-first-out (LIFO) stack of objects.
      * <p><b>Example :</b></p>
-     * {@code 
+     * <code>
      * var stack:Stack = new SimpleStack(["item1", "item2"]) ;
      * trace("push : " + stack.push("item3")) ;
      * trace("toSource : " + stack.toSource()) ;
      * trace("pop : " + stack.pop()) ;
      * trace("stack : " + stack) ;
-     * }
+     * </code>
      */		
 	public class SimpleStack extends AbstractCollection implements Stack
 	{

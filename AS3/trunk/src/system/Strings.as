@@ -162,7 +162,7 @@ package system
          * </p>
  		 * </p>
  		 * <p><b>Example :</b></p>
- 		 * {@code
+ 		 * <code>
  		 * import system.Strings ;
  		 * 
  		 * var result:String ;
@@ -216,7 +216,7 @@ package system
 		 * var what = "answer" ;
 		 * result = Strings.format( "your {0} is within {answer,20:.}", {answer:"my answer"}, what ) ; 
 		 * trace("> " + result ) // "your answer is within ...........my answer"
- 		 * }
+ 		 * </code>
  		 */
 		public static function format( format:String, ...args ):String
 		{
@@ -421,13 +421,13 @@ package system
 	 	/**
 		 * Reports the index of the first occurrence in this instance of any character in a specified array of Unicode characters.
 		 * <p><b>Example :</b></p>
-		 * {@code
+		 * <code>
 		 * import system.Strings ;
 		 * 
 		 * Strings.indexOfAny("hello world", [2, "hello", 5]) ; // 0
 		 * Strings.indexOfAny("Five = 5", [2, "hello", 5]) ; // 7
 	 	 * Strings.indexOfAny("actionscript is good", [2, "hello", 5]) ; // -1
-		 * }
+		 * </code>
 	 	 * @return the index of the first occurrence in this instance of any character in a specified array of Unicode characters.
 	 	 */
 		public static function indexOfAny( str:String, anyOf:Array, startIndex:int = 0, count:int = -1 ):int
@@ -465,20 +465,13 @@ package system
 			return -1;
 		}
 
-		/* Method: insert
-		Inserts a specified instance of String at
-		a specified index position in this instance.
-           
-		note:
-		if index is null, we directly append the value to the end of the string.
-           
-		if index is zero, we directly insert it to the begining of the string.
-		 */
-		 
 		/**
 		 * Inserts a specified instance of String at a specified index position in this instance.
+		 * note :
+		 * if index is null, we directly append the value to the end of the string.
+		 * if index is zero, we directly insert it to the begining of the string.
 		 * <p><b>Example :</b></p>
-		 * {@code
+		 * <code>
 		 * import system.Strings ;
 		 * 
 		 * var result:String ;
@@ -494,7 +487,7 @@ package system
 		 * 
 		 * result = Strings.insert("hello", 1, "a" ) ;  // haello
 		 * trace(result) ;
-		 * }
+		 * </code>
 		 * @return the string modified by the method.
 		 */		 
 		public function insert( str:String, startIndex:int=0, value:String=null ):String
@@ -527,7 +520,7 @@ package system
 
 		/**
 		 * Right-aligns the characters in this instance, padding on the left with a specified Unicode character for a specified total length.
-		 * {@code
+		 * <code>
 		 * import system.Strings ;
 		 * 
 		 * var result:String = Strings.padLeft("hello", 8) ;
@@ -535,7 +528,7 @@ package system
 		 * 
 		 * var result:String = Strings.padLeft("hello", 8, ".") ;
 		 * trace(result) ; //  "...hello" 
-		 * }
+		 * </code>
 		 * @return The right-aligns the characters in this instance, padding on the left with a specified Unicode character for a specified total length.
 		 */
 		public static function padLeft( str:String, totalWidth:int, paddingChar:String = " " ):String
@@ -547,7 +540,7 @@ package system
 		/**
 		 * Left-aligns the characters in this string, padding on the right with a specified Unicode character, for a specified total length.
 	 	 * <p><b>Example :</b></p>
-		 * {@code
+		 * <code>
 		 * import system.Strings ;
 		 * 
 		 * var result:String = Strings.padRight("hello", 8) ;
@@ -555,7 +548,7 @@ package system
 		 * 
 		 * var result:String = Strings.padRight(hello", 8, ".") ;
 		 * trace(result) ; //  "hello..." 
-		 * }
+		 * </code>
 		 * @return The left-aligns the characters in this string, padding on the right with a specified Unicode character, for a specified total length.
 	 	 */
 
@@ -567,13 +560,13 @@ package system
 		/**
 		 * Determines whether a specified string is a prefix of the current instance. 
 		 * <p><b>Example : </b></p>
-		 * {@code
+		 * <code>
 		 * import system.Strings ;
 		 * 
 		 * trace( Strings.startsWith("hello world", "h") ) ; // true
 	  	 * trace( Strings.startsWith("hello world", "hello") ) ; // true
 		 * trace( Strings.startsWith("hello world", "a") ) ; // false
-		 * }
+		 * </code>
 		 * @return <code>true</code> if the specified string is a prefix of the current instance.
 		 */
 		public static function startsWith( str:String, value:String ):Boolean

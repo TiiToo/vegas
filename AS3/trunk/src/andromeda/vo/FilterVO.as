@@ -33,8 +33,7 @@ package andromeda.vo
 	/**
      * This class provides a binary filter value object.
      * <p><b>Example :</b></p>
-     * {@code
-     * 
+     * <code>
      * import andromeda.vo.FilterVO ;
      * 
      * var VIDEO :uint = 1 ;
@@ -59,7 +58,7 @@ package andromeda.vo
       * 
      * trace( "filter.contains( VIDEO ) : " + filter.contains( VIDEO ) ) ;
      * trace( "filter.contains( MP3 )   : " + filter.contains( MP3 ) ) ;
-     * }
+     * </code>
      * @author eKameleon
      */
     public class FilterVO extends SimpleValueObject 

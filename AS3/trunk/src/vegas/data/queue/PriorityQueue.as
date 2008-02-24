@@ -37,8 +37,8 @@ package vegas.data.queue
         
         /**
          * Creates a new PriorityQueue instance.
-         * <p><b>Example :</b>
-         * {@code
+         * <p><b>Example :</b></p>
+         * <code>
          * import vegas.data.queue.PriorityQueue ;
          * import vegas.errors.ClassCastError ;
          * import vegas.util.comparators.NumberComparator ;
@@ -76,8 +76,7 @@ package vegas.data.queue
          * 
          * q.options = PriorityQueue.CASEINSENSITIVE ;
          * trace("queue " + q) ;
-         * }
-         * </p>
+         * </code>
          * @param comp An optional IComparator object used in the PriorityQueue to defined the sort model when enqueue or modify the queue.
          * @param ar An optional Array with values to fill the queue.
          * @see IComparator
@@ -117,21 +116,21 @@ package vegas.data.queue
         /**
          * Specifies numeric (instead of character-string) sorting for the Array class sorting methods. 
          * Including this constant in the <code>options</code>
-          * parameter causes the <code>sort()</code> and <code>sortOn()</code> methods 
-          * to sort numbers as numeric values, not as strings of numeric characters.  
+         * parameter causes the <code>sort()</code> and <code>sortOn()</code> methods 
+         * to sort numbers as numeric values, not as strings of numeric characters.  
          * Without the <code>NUMERIC</code> constant, sorting treats each array element as a 
-          * character string and produces the results in Unicode order. 
-          *
-          * <p>For example, given the array of values <code>[2005, 7, 35]</code>, if the <code>NUMERIC</code> 
-          * constant is <strong>not</strong> included in the <code>options</code> parameter, the 
-          * sorted array is <code>[2005, 35, 7]</code>, but if the <code>NUMERIC</code> constant <strong>is</strong> included, 
-          * the sorted array is <code>[7, 35, 2005]</code>. </p>
-           * 
-           * <p>This constant applies only to numbers in the array; it does 
-          * not apply to strings that contain numeric data such as <code>["23", "5"]</code>.</p>
-           * 
-           * <p>The value of this constant is 16.</p>
-          */
+         * character string and produces the results in Unicode order. 
+         *
+         * <p>For example, given the array of values <code>[2005, 7, 35]</code>, if the <code>NUMERIC</code> 
+         * constant is <strong>not</strong> included in the <code>options</code> parameter, the 
+         * sorted array is <code>[2005, 35, 7]</code>, but if the <code>NUMERIC</code> constant <strong>is</strong> included, 
+         * the sorted array is <code>[7, 35, 2005]</code>. </p>
+         * 
+         * <p>This constant applies only to numbers in the array; it does 
+         * not apply to strings that contain numeric data such as <code>["23", "5"]</code>.</p>
+         * 
+         * <p>The value of this constant is 16.</p>
+         */
         public static const NUMERIC:uint = 16;
         
         /**

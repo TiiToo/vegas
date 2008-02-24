@@ -32,9 +32,9 @@ package asgard.date
 	 * <p>Use the declared constants as placeholders for specific parts of the date-time.</p>
 	 * <p>All characters from 'A' to 'Z' and from 'a' to 'z' are reserved, although not all of these characters are interpreted right now.</p> 
 	 * <p>If you want to include plain text in the pattern put it into quotes (') to avoid interpretation.</p>
-	 * <p>If you want a quote in the formatted date-time, put two quotes directly after one another. For example: {@code "hh 'o''clock'"}.</p>
+	 * <p>If you want a quote in the formatted date-time, put two quotes directly after one another. For example: <code> "hh 'o''clock'"}.</p>
 	 * <p><b>Example :</b>
- 	 * {@code
+ 	 * <code>
 	 * import asgard.date.DateFormatter ;
 	 * 
 	 * var f:DateFormatter = new DateFormatter() ;
@@ -61,8 +61,7 @@ package asgard.date
 	 * 
 	 * f.pattern = "hh 'h' nn 'mn' ss 's' TT" ; // capitalize the pm expression.
 	 * trace( formatter.format( new Date(2008,1,21,14,15,0,0) ) ) ; // 02 h 15 mn 00 s PM
-	 * 
-	 * }
+	 * </code>
 	 * @author eKameleon
  	 */
 	public class DateFormatter extends AbstractFormatter 
@@ -96,7 +95,7 @@ package asgard.date
 		public static var DEFAULT_AM_EXPRESSION:String = "am" ;			
 		
 		/**
-		 * The default date format pattern {@code "dd.mm.yyyy HH:nn:ss"}.
+		 * The default date format pattern <code>"dd.mm.yyyy HH:nn:ss"</code>.
 		 */
 		public static const DEFAULT_DATE_FORMAT:String = "dd.mm.yyyy HH:nn:ss" ;
 		

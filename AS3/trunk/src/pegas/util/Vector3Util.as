@@ -137,11 +137,11 @@ package pegas.util
         /**
          * Calculates and returns the perspective ratio needed to scale an object correctly.
          * <p><b>Example :</b></p>
-         * {@code
+         * <code>
          * var v:Vector3 = new Vector3(50,20,40);
          * var p:Number  = Vector3Util.getPerspective(v);
          * trace(p) ;
-         * }
+         * </code>
          * @param v the Vector3 reference.
          * @param distance The viewing distance of the projection.
          * @return the perspective ratio needed to scale an object correctly.
@@ -232,11 +232,11 @@ package pegas.util
          * @param v the Vector3 reference.
          * @param perspective The perspective ratio. If no value is specified, it is calculated automatically by calling the getPerspective() method.
          * <p><b>Example :</b></p>
-         * {@code
+         * <code>
          * var v:Vector3 = new Vector3(50,20,40) ;
          * Vector3Util.project(v);
          * trace(v) ;
-         * }
+         * </code>
          */
         public static function project( v:Vector3, perspective:Number ):void 
         {
@@ -251,11 +251,11 @@ package pegas.util
          * @param v the Vector3 reference.
          * @param perspective The perspective ratio. If no value is specified, it is calculated automatically by calling the getPerspective() method.
          * <p><b>Example :</b></p>
-         * {@code
+         * <code>
          * var v:Vector3 = new Vector3(50,20,40) ;
          * Vector3Util.project(v);
          * trace(v) ;
-         * }
+         * </code>
          */
         public static function projectNew( v:Vector3, perspective:Number ):Vector3
         {
@@ -269,11 +269,11 @@ package pegas.util
          * @param v The Vector3 reference.
          * @param angle    The amount of degrees that the current vector object will be rotated by.
          * <p><b>Example :</b></p>
-         * {@code
+         * <code>
          * var v:Vector3 = new Vector3(1,4,7) ;
          * Vector3Util.rotateX(v, 180);
          * trace( v ) ;
-         * }
+         * </code>
          */
         public static function rotateX( v:Vector3 , angle:Number ):void 
         {
@@ -286,13 +286,13 @@ package pegas.util
          * @param ca The cosine of the angle to rotate the current vector object by.
          * @param sa The sine of the angle to rotate the current vector object by.
          * <p><b>Example :</b></p>
-         * {@code
+         * <code>
          * var v:Vector3       = new Vector3(1,4,7);
          * var cosAngle:Number = Trigo.cosD(180);
          * var sinAngle:Number = Trigo.sinD(180);
          * Vector3.rotateXTrig(v, cosAngle, sinAngle);
          * trace (v);
-         * }
+         * </code>
          */
         public static function rotateXTrig ( v:Vector3, ca:Number, sa:Number ):void 
         {
@@ -305,11 +305,11 @@ package pegas.util
          * @param v The Vector3 reference.
          * @param angle    The amount of degrees that the current vector object will be rotated by.
          * <p><b>Example :</b></p>
-         * {@code
+         * <code>
          * var v:Vector3 = new Vector3(1,4,7);
          * Vector3Util.rotateY(v,180);
          * trace(v);
-         * }
+         * </code>
          */
         public static function rotateY ( v:Vector3, angle:Number ):void 
         {
@@ -322,13 +322,13 @@ package pegas.util
          * @param ca The cosine of the angle to rotate the current vector object by.
          * @param sa The sine of the angle to rotate the current vector object by.
          * <p><b>Example :</b></p>
-         * {@code
+         * <code>
          * var v:Vector3       = new Vector3(3,-8,5);
          * var cosAngle:Number = Trigo.cosD(90);
          * var sinAngle:Number = Trigo.sinD(90);
          * Vector3Util.rotateYTrig(v, cosAngle, sinAngle) ;
          * trace(v) ;
-         * }
+         * </code>
          */
         public static function rotateYTrig ( v:Vector3 , ca:Number, sa:Number ):void 
         {
@@ -341,11 +341,11 @@ package pegas.util
          * @param v The Vector3 reference.
          * @param angle    The amount of degrees that the current vector object will be rotated by.
          * <p><b>Example :</b></p>
-         * {@code
+         * <code>
          * var v:Vector3 = new Vector3(1,4,7) ;
          * Vector3Util.rotateZ(v,180) ;
          * trace(v);
-         * }
+         * </code>
          */
         public static function rotateZ( v:Vector3 , angle:Number ):void 
         {
@@ -358,13 +358,13 @@ package pegas.util
          * @param ca The cosine of the angle to rotate the current vector object by.
          * @param sa The sine of the angle to rotate the current vector object by.
          * <p><b>Example :</b></p>
-         * {@code
+         * <code>
          * var v:Vector3 = new Vector3(6,1,4);
          * var cosAngle:Number = Trigo.cosD(45);
          * var sinAngle:Number = Trigo.sinD(45);
          * Vector3Util.rotateZTrig(v, cosAngle, sinAngle);
          * trace(v);
-         * }
+         * </code>
          */
         public static function rotateZTrig ( v:Vector3 , ca:Number, sa:Number):void 
         {
@@ -378,11 +378,11 @@ package pegas.util
          * @param a The amount of degrees that the current vector object will be rotated around the x-axis by.
          * @param b The amount of degrees that the current vector object will be rotated around the y-axis by.
          * <p><b>Example :</b></p>
-         * {@code
+         * <code>
          * var v:Vector3 = new Vector3(8,0,0) ;
          * Vector3Util.rotateXY(v,45,45) ;
          * trace(v) ;
-         * }
+         * </code>
          */
         public static function rotateXY (  v:Vector3, a:Number, b:Number):void 
         {
@@ -397,7 +397,7 @@ package pegas.util
          * @param cb The cosine of the angle to rotate the current vector object around the y-axis by.
          * @param sb The sine of the angle to rotate the current vector object around the y-axis by.
          * <p><b>Example :</b></p>
-         * {@code
+         * <code>
          * var v:Vector3 = new Vector3(6,1,4) ;
          * var cosAngleA:Number = Trigo.cosD(45) ;
          * var sinAngleA:Number = Trigo.sinD(45) ;
@@ -405,7 +405,7 @@ package pegas.util
          * var sinAngleB:Number = Trigo.sinD(90) ;
          * Vector3Util.rotateXYTrig(v, cosAngleA, sinAngleA, cosAngleB, sinAngleB) ;
          * trace(v) ;
-         * }
+         * </code>
          */
         public static function rotateXYTrig( v:Vector3, ca:Number, sa:Number, cb:Number, sb:Number):void 
         {
@@ -424,11 +424,11 @@ package pegas.util
          * @param b    The amount of degrees that the current vector object will be rotated around the y-axis by.
          * @param c    The amount of degrees that the current vector object will be rotated around the z-axis by.
          * <p><b>Example :</b></p>
-         * {@code
+         * <code>
          * var v:Vector3 = new Vector3(8,0,0);
          * Vector3Util.rotateXYZ(v,45,45,45);
          * trace (v);
-         * }
+         * </code>
          */
         public static function rotateXYZ ( v:Vector3, a:Number, b:Number, c:Number):void 
         {
@@ -445,7 +445,7 @@ package pegas.util
          * @param cc The cosine of the angle to rotate the current vector object around the z-axis by.
          * @param sc The sine of the angle to rotate the current vector object around the z-axis by.
          * <p><b>Example :</b></p>
-         * {@code
+         * <code>
          * var v:Vector3 = new Vector3(6,1,4) ;
          * var cosAngleA:Number = Trigo.cosD(45) ;
          * var sinAngleA:Number = Trigo.sinD(45) ;
@@ -455,7 +455,7 @@ package pegas.util
          * var sinAngleC:Number = Trigo.sinD(135) ;
          * Vector3Util.rotateXYZTrig(v, cosAngleA, sinAngleA, cosAngleB, sinAngleB, cosAngleC, sinAngleC) ;
          * trace(v) ;
-         * }
+         * </code>
          */
         public static function rotateXYZTrig ( v:Vector3, ca:Number, sa:Number, cb:Number, sb:Number, cc:Number, sc:Number):void 
         {

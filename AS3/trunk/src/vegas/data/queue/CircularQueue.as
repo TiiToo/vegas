@@ -35,7 +35,7 @@ package vegas.data.queue
     /**
      * The CircularQueue class allows for storing objects in a circular queue of a predefined size.
      * <p><b>Example :</b></p>
-     * {@code
+     * <code>
      * import vegas.data.iterator.Iterator ;
      * import vegas.data.queue.CircularQueue ;
      * 
@@ -87,8 +87,7 @@ package vegas.data.queue
      *     trace ("\t+ " + i.next()) ;
      * }
      * trace("clone.toSource : " + clone.toSource()) ;
-     * 
-     * }
+     * </code>
      * @author eKameleon
      */
 	public class CircularQueue extends CoreObject implements BoundedQueue

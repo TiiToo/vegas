@@ -34,7 +34,7 @@ package asgard.process
 	/**
 	 * This action process is an helper who launch the load of a CoreSound object.
 	 * <p><b>Example :</b></p>
-	 * {@code
+	 * <code>
 	 * import andromeda.events.ActionEvent ;
 	 * 
 	 * import asgard.media.CoreSound ;
@@ -69,7 +69,7 @@ package asgard.process
 	 * process.request = new URLRequest( url ) ;
 	 * 
 	 * process.run() ;
-	 * }
+	 * </code>
 	 * @author eKameleon
 	 */
 	public class ActionSoundLoader extends AbstractActionLoader 

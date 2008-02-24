@@ -42,7 +42,7 @@ package vegas.data.array
 	/**
      * The ProxyArray class.
      * <p><b>Example :</b></p>
-     * {@code
+     * <code>
      * import vegas.data.array.ProxyArray ;
      * 
      * var a1:ProxyArray = new ProxyArray() ;

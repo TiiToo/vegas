@@ -276,7 +276,7 @@ package lunas.display.container
         
         /**
          * Removes all childs in the model defined for the first item by the specified index value, 
-         * this method remove the first and the {@code size - 1} items.
+         * this method remove the first and the <code>size - 1</code> items.
          * @throws RangeError if the index value is out of the bounds of the container elements.
          */
         public function removeChildsAt( index:int, size:Number ):Array 

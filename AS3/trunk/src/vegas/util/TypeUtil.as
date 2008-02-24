@@ -167,14 +167,14 @@ package vegas.util
     	/**
     	 * Checks if the type of the passed-in object matches the passed-in type.
     	 * <p><b>Example :</b>
-    	 * {@code
+    	 * <code>
     	 * import vegas.util.TypeUtil ;
     	 * 
     	 * var s1:String = "hello world" ;
     	 * var s2:String = new String("hello world") ;
 	     * trace("s1 is string : " + TypeUtil.typesMatch( s1, String )) ; // output : 'true'
     	 * trace("s2 is string : " + TypeUtil.typesMatch( s2, String )) ; // output : 'true'
-	     * }
+	     * </code>
     	 * </p>
 	     */
 	    public static function typesMatch(o:*, type:*):Boolean 

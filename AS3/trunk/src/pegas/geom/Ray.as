@@ -42,13 +42,13 @@ package pegas.geom
 		 * Creates a new Ray instance.
 		 * <p><b>Usage :</b></p>
 	 	 * <p>With a Ray object passed in the argument of the constructor :</p>
-		 * {@code
+		 * <code>
 		 * var r:Ray = new Ray( r:Ray) ;
-		 * }
+		 * </code>
 		 * <p>With 2 Vector3 objects passed in the arguments of the constuctor : </p>
-		 * {@code
+		 * <code>
 	 	 * var r:Ray = new Ray( r:Vector3 , p:Vector3 ) ;
-	 	 * }
+	 	 * </code>
 	 	 */
 		public function Ray( ...arguments:Array )
 		{

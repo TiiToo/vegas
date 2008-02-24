@@ -287,14 +287,14 @@ package pegas.colors
 		/**
 		 * Returns the R+G+B values currently in use by the Color object as individual red, green, and blue values.
 		 * <p><b>Example :</b></p>
-		 * {@code 
+		 * <code>
 	 	 * var my_color:Color = new Color(my_mc);
 	 	 * my_color.setRGB2(255, 0, 255);
 	 	 * var rgb:Object = my_color.getRGB2();
 	 	 * trace (rgb.r);
 		 * trace (rgb.g);
 		 * trace (rgb.b);
-		 * }
+		 * </code>
 		 */
 		public function getRGB2():Object 
 		{
@@ -395,10 +395,10 @@ package pegas.colors
 		/**
 		 * Specifies an RGB color for a Color object using individual red, green, and blue values.
 		 * <p><b>Example :</b></p>
-		 * {@code
+		 * <code>
 		 * var my_color:SolidColor = new SolidColor(my_mc);
 		 * my_color.setRGB2(255, 0, 255);
-	  	 * }
+	  	 * </code>
 		 * @param r The red color value.
 		 * @param g The green color value.
 		 * @param b The blue color value.

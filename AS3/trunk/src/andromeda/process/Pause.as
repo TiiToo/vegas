@@ -30,7 +30,7 @@ package andromeda.process
 	/**
      * This <code>IAction</code> object create a pause in the process.
      * <p><b>Example :</b></p>
-     * {@code
+     * <code>
      * var handleEvent:Function = function( ...args:Array ) :void
      * {
      *     trace( this + " " + args) ;
@@ -40,7 +40,7 @@ package andromeda.process
      * p.addEventListener( ActionEvent.START  , handleEvent ) ;
      * p.addEventListener( ActionEvent.FINISH , handleEvent ) ;
      * p.run() ;
-	 * }
+	 * </code>
      * @author eKameleon
      */
 	public class Pause extends Action

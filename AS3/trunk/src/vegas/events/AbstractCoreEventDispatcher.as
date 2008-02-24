@@ -73,7 +73,7 @@ package vegas.events
 		/**
 		 * Dispatches an event into the event flow.
 		 * @param event The Event object that is dispatched into the event flow.
-		 * @return {@code'true} if the Event is dispatched.
+		 * @return <code>true</code> if the Event is dispatched.
 		 */
         public function dispatchEvent( event:Event ):Boolean
         {

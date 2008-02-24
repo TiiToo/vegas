@@ -39,9 +39,9 @@ package pegas.transitions
 		/**
 	 	 * Creates a new TransitionController instance.
 		 * <p><b>Example :</b> 
-	 	 * {@code 
+	 	 * <code> 
 		 * var controller:TransitionController = new TransitionController() ;
-		 * }
+		 * </code>
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
 		 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
 		 */
@@ -141,7 +141,7 @@ package pegas.transitions
 		/**
 		 * Run the specified Transition.
 		 * @param id the id of the Transition to be run.
-		 * @throws IllegalArgumentError if the {@param id} passed in argument isn't register in this TransitionCntroller
+		 * @throws IllegalArgumentError if the <code>id</code> passed in argument isn't register in this TransitionCntroller
 		 * @throws IllegalArgumentError if the <code>id</code> passed in argument is 'null' or 'undefined'.
 		 */
 		public function run( id:String ):void

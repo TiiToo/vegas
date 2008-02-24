@@ -40,7 +40,7 @@ package vegas.util
 		/**
 		 * Returns a deep copy of the specified object passed in argument. You can use a <code>ICopyable</code> instance or a native object.
 	 	 * <p><b>Example :</b></p>
-		 * {@code
+		 * <code>
 		 * import vegas.data.list.LinkedList ;
 		 * import vegas.util.Copier ;
 		 * var list:LinkedList = new LinkedList() ;
@@ -48,7 +48,7 @@ package vegas.util
 		 * list.insert("item2") ;
 		 * var copy:LinkedList = Copier.copy(list) as LinkedList ; // LinkedList is ICopyable !
 	 	 * trace( copy.equals(list) ) ; // true
-	 	 * }
+	 	 * </code>
 	 	 * @return a deep copy of the specified object passed in argument.
 	 	 */	
         public static function copy( o:* ):* 

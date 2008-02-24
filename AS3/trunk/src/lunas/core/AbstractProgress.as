@@ -27,7 +27,7 @@ package lunas.core
 	import pegas.maths.Range;    
 
 	/**
-     * This class provides a skeletal implementation of all the {@code IProgress} display components, to minimize the effort required to implement this interface.
+     * This class provides a skeletal implementation of all the <code>IProgress</code> display components, to minimize the effort required to implement this interface.
      * @author eKameleon
      */
     public class AbstractProgress extends AbstractComponent implements IProgress 

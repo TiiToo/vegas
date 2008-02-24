@@ -32,7 +32,7 @@ package pegas.transitions
 	 * This controller can be use with an external configuration or a dynamic easing engine.
 	 * This controller centralize all easing method in the application.
 	 * <p><b>Example :</b></p>
-	 * {@code
+	 * <code>
 	 * import pegas.transitions.easing.* ;
  	 * import pegas.transitions.EasingController ;
 	 * import pegas.transitions.Tween ;
@@ -46,7 +46,7 @@ package pegas.transitions
 	 * var easing:Function = controller.getEasing( "elastic_ease_out" ) ;
 	 * 
 	 * var tw:Tween = new Tween( mc, "_x" , easing, mc._x, 500, 24 , false, true) ; // mc a display on the root.
-	 * }
+	 * </code>
 	 * @author eKameleon
  	 */
 	public class EasingController extends CoreObject 
@@ -54,10 +54,10 @@ package pegas.transitions
 
 		/**
 		 * Creates a new EasingController instance.
-		 * <p><b>Example :</b> 
-		 * {@code 
+		 * <p><b>Usage :</b> 
+		 * <code>
 		 * var ec:EasingController = new EasingController() ;
-		 * }
+		 * </code>
 		 */	
 		public function EasingController()
 		{

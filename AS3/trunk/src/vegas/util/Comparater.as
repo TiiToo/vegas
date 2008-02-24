@@ -25,7 +25,7 @@ package vegas.util
 	import system.IEquatable;		
 
 	/**
-	 * The <code>Comparater</code> utility class is an all-static class with a method to returns {@true} if two object are equals.
+	 * The <code>Comparater</code> utility class is an all-static class with a method to returns <code>true</code> if two object are equals.
 	 * @author eKameleon
 	 */
 	public class Comparater 

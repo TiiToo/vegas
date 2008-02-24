@@ -34,7 +34,7 @@ package pegas.maths
     /**
      * Represents an immutable range of values.
      * <p><b>Example :</b></p>
-     * {@code
+     * <code>
      * import pegas.maths.Range ;
      * 
      * var r1:Range = new Range(10, 120) ;
@@ -49,7 +49,7 @@ package pegas.maths
      * trace ("r1 overlap r2 : " + r1.overlap(r2)) ; // r1 overlap r2 : true
      * trace ("r1 clamp 5 : " + r1.clamp(5)) ; // r1 clamp 5 : 10
      * trace ("r1 clamp 121 : " + r1.clamp(121)) ; // r1 clamp 121 : 120
-     * }
+     * </code>
      * @author eKameleon
      */
     public class Range extends CoreObject implements ICloneable, ICopyable, IEquatable

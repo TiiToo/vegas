@@ -43,23 +43,25 @@ package buRRRn.eden
 			super( config );
 		}
 
-		/* Property: compress
-		Parameter to remove (true) or add (false) all unecessary spaces,
-		tabs, carriages returns, lines feeds etc.
-		to optimize (more or less) packets of datas when they are transfered.
-           
-		note:
-		use "compress = false" when you want
-		to have a better view or debug packets of datas.
-           
-		note2:
-		this property is in sync with eden.prettyPrint
+		/**
+		 * Parameter to remove (true) or add (false) all unecessary spaces, tabs, carriages returns, lines feeds etc. 
+		 * to optimize (more or less) packets of datas when they are transfered.
+		 * 
+		 * note:
+		 * use "compress = false" when you want
+		 * to have a better view or debug packets of datas.
+		 * 
+		 * note2:
+		 * this property is in sync with eden.prettyPrint
 		 */
 		public function get compress():Boolean
 		{
 			return _config.compress;
 		}
-
+		
+		/**
+		 * @private
+		 */
 		public function set compress( value:Boolean ):void
 		{
 			_config.compress = value;
@@ -69,10 +71,10 @@ package buRRRn.eden
 		/**
 		 * Parameter allowing to copy objects by value if true or by reference if false.
 		 * <p><b>Example :</b></p>
-		 * {@code
+		 * <code>
 		 * foo = {a:1, b:2, c:3};
 		 * bar = foo;
-		 * }
+		 * </code>
 		 * In this case with copyObjectByValue = false
 		 * bar will be a reference to the foo object
 		 * but if copyObjectByValue = true
@@ -83,41 +85,43 @@ package buRRRn.eden
 			return _config.copyObjectByValue;
 		}
 
+		/**
+		 * @private
+		 */
 		public function set copyObjectByValue( value:Boolean ):void
 		{
 			_config.copyObjectByValue = value;
 		}
 
-		/* Property: strictMode
-		Allows to define the case-sensitivy of the parsers.
-		If true, variable names that differ only in case are
-		considered different.
+		/**
+		 * Allows to define the case-sensitivy of the parsers.
+		 * If true, variable names that differ only in case are considered different.
 		 */
 		public function get strictMode():Boolean
 		{
 			return _config.strictMode;
 		}
-
+		
+		/**
+		 * @private
+		 */
 		public function set strictMode( value:Boolean ):void
 		{
 			_config.strictMode = value;
 		}
 
-		/* Property: undefineable
-		Value assigned to a variable
-		when this one is not found or not authorized.
-           
-		note:
-		Depending on your environment you can
-		override it with a more suitable one
-		for exemple on C# you could set it
-		to null.
+		/**
+		 * Value assigned to a variable	when this one is not found or not authorized.
+		 * Depending on your environment you can override it with a more suitable one for exemple on C# you could set it to null.
 		 */
 		public function get undefineable():*
 		{
 			return _config.undefineable;
 		}
 
+		/**
+		 * @private
+		 */
 		public function set undefineable( value:* ):void
 		{
 			_config.undefineable = value;
@@ -132,74 +136,73 @@ package buRRRn.eden
 			return _config.verbose;
 		}
 
+		/**
+		 * @private
+		 */
 		public function set verbose( value:Boolean ):void
 		{
 			_config.verbose = value;
 		}
 
-		/* Property: security
-		Parameter setting on (true) or off (false) the security.
-		If true, all object path, function or constructor will
-		be scanned at interpretation time against the
-		authorized list (see: buRRRn.eden.config.authorized).
+		/**
+		 * Parameter setting on (true) or off (false) the security.
+		 * If true, all object path, function or constructor will be scanned at interpretation time against the
+		 * authorized list (see: buRRRn.eden.config.authorized).
 		 */
 		public function get security():Boolean
 		{
 			return _config.security;
 		}
 
+		/**
+		 * @private
+		 */
 		public function set security( value:Boolean ):void
 		{
 			_config.security = value;
 		}
 
-		/* Property: authorized
-		List of authorized keywords, objects path and constructors
-		that the parser is allowed to interpret.
-           
-		note:
-		you can add full path
-		ex: "blah.foobar"
-		and/or starting path
-		ex: "toto.titi.*"
-           
-		the difference is
-		with a full path you can only
-		create/use/define/assign value to this exact path
-		and
-		with a starting path you can
-		create/use/define/assign value to this path and its child paths
-           
-		attention:
-		special values as
-		NaN, true, false, null, undefined
-		are always authorized
+		/**
+		 * List of authorized keywords, objects path and constructors that the parser is allowed to interpret.
+		 * <p>Note:</p>
+		 * you can add full path
+		 * ex: "blah.foobar"
+		 * and/or starting path
+		 * ex: "toto.titi.*"
+		 * 
+		 * The difference is with a full path you can only create/use/define/assign value to this exact path and
+		 * with a starting path you can create/use/define/assign value to this path and its child paths 
+		 * 
+		 * attention:
+		 * special values as
+		 * NaN, true, false, null, undefined are always authorized
 		 */
 		public function get authorized():Array
 		{
 			return _config.authorized;
 		}
 
+		/**
+		 * @private
+		 */
 		public function set authorized( value:Array ):void
 		{
 			_config.authorized = value;
 		}
 
-		/* Property: allowFunctionCall
-		Allows to execute function call.
-		if set to false it blocks any functrion call and return undefined.
-           
-		exemple:
-		(code)
-		"titi = \"hello world\";
-		toto = titi.toUpperCase();"
-           
-		//allowFunctionCall= true
-		toto = "HELLO WORLD"
-           
-		//allowFunctionCall = false
-		toto = undefined
-		(end)
+		/**
+		 * Allows to execute function call. if set to false it blocks any functrion call and return undefined.
+		 * <p><b>Example:</b></p>
+		 * <code>
+		 * "titi = \"hello world\";
+		 * toto = titi.toUpperCase();"
+		 * 
+		 * // allowFunctionCall = true
+		 * toto = "HELLO WORLD"
+		 * 
+		 * // allowFunctionCall = false
+		 * toto = undefined
+		 * </code>
 		 */
 		public function get allowFunctionCall():Boolean
 		{
@@ -233,7 +236,6 @@ package buRRRn.eden
 		/**
 		 * When set to false array index are evaluated without bracket eval( test.0 ) for Flash ActionScript
 		 * When set to true array index are evaluated with bracket eval( test[0] ) for JavaScript, JScript, JSDB etc.
-		 * 
 		 * TODO : may become obsolete for AS3/ES4 but let's keep it for now for configuration file bacward compatibility
 		 */
 		public function get arrayIndexAsBracket():Boolean

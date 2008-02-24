@@ -42,13 +42,13 @@ package pegas.util
 	    /**
 	     * Returns the Plane reference defines by the specified object with the properties a, b, c and d.
 	     * <p><b>Example :</b></p>
-	     * {@code
+	     * <code>
 	     * import pegas.geom.Plane ;
 	     * import pegas.util.PlaneUtil ;
      	 * 
 	     * var p:Plane = PlaneUtil.getPlaneByObject( { a:10 , b:10 , c:100 , d:100 } ) ;
 	     * trace(p) ; // [Plane:{10,10,100,100}]
-	     * }
+	     * </code>
 	     * @return the Plane reference defines by the specified object with the properties a, b, c and d.
 	     */
     	public static function getPlaneByObject( o:Object ):Plane
@@ -59,7 +59,7 @@ package pegas.util
 	    /**
 	     * Returns the Plane reference defines by the specified object with the two vectors in argument.
 	     * <p><b>Example :</b></p>
-	     * {@code
+	     * <code>
 	     * import pegas.geom.Plane ;
 	     * import pegas.geom.Vector2 ;
 	     * import pegas.util.PlaneUtil ;
@@ -68,7 +68,7 @@ package pegas.util
 	     * var v2:Vector2 = new Vector2(100,100) ;
 	     * var p:Plane = PlaneUtil.getPlaneByVector( v1, v2 ) ;
 	     * trace(p) ; // [Plane:{10,10,100,100}]
-	     * }
+	     * </code>
      	 * @return the Plane reference defines by the specified object with the two vectors in argument.
 	     */
     	public static function getPlaneByVector( v1:Vector2 , v2:Vector2 ):Plane

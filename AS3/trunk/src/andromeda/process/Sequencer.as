@@ -32,7 +32,7 @@ package andromeda.process
 	/**
 	 * A Sequencer of IAction process.
 	 * <p><b>Example :</b></p>
-	 * {@code
+	 * <code>
 	 * var seq:Sequencer = new Sequencer() ;
 	 * seq.addEventListener( ActionEvent.START  , handleEvent ) ;
 	 * seq.addEventListener( ActionEvent.PROGRESS , handleEvent ) ;
@@ -43,7 +43,7 @@ package andromeda.process
 	 * seq.addAction( new Pause( 5, true) ) ;
 	 * seq.addAction( new Pause( 10, true) ) ;
 	 * seq.run() ;
-	 * }
+	 * </code>
 	 * @author eKameleon
 	 */
 	public class Sequencer extends Action

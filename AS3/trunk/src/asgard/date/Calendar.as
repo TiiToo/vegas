@@ -114,7 +114,7 @@ package asgard.date
 		/**
 	 	 * Adds the specified amount of time to the this instance.
 	 	 * <p>Examples :</p>
-	 	 * {@code
+	 	 * <code>
 	 	 * import asgard.date.Calendar ;
 	 	 *
 	 	 * var begin:Date = new Date( 2007, 5 , 14, 11, 30, 0 ) ;
@@ -127,7 +127,7 @@ package asgard.date
  	 	 * 
 	 	 * trace( "start  : " + sBegin ) ;
 	 	 * trace( "finish : " + sFinish ) ;
-	 	 * }
+	 	 * </code>
 		 * @param date The Date object to perform addition on.
 		 * @param field The this field constant to be used for performing addition.
 		 * @param amount The number of units (measured in the field constant) to add to the date.
@@ -204,7 +204,7 @@ package asgard.date
 		/**
 		 * Indicates if the current Date object is after the time of specified Date object.
 		 * <p><b>Example :</b></p>
-		 * {@code
+		 * <code>
 		 * import asgard.date.Calendar ;
 		 * 
 		 * var d1:Date = new Date(2005, 2, 15) ;
@@ -216,7 +216,7 @@ package asgard.date
 		 * trace ("# d1 after d2  : " + Calendar.after  ( d1 , d2 ) ) ; // false
 		 * trace ("# d2 after d1  : " + Calendar.after  ( d2 , d1 ) ) ; // true
 		 * trace ("# d1 before d2 : " + Calendar.before ( d1 , d2 ) ) ; // true
- 		 * }
+ 		 * </code>
 		 * @return <code>true</code> if the current Date object is after the time of specified Date object.
 		 */
 		public static function after( currentDate:Date = null , date:Date = null ):Boolean 
@@ -305,11 +305,11 @@ package asgard.date
 		/**
 		 * Returns an array representation of all days in a full month. The array can begin with null values if the first day in the first week are previous days of the previous month.
 		 * <p><b>Example :</b></p>
-		 * {@code
+		 * <code>
 		 * import asgard.date.Calendar ;
 		 * var ar:Array = Calendar.getFullMonthCalendar( new Date(2007,03) , 1 ) ;
 		 * trace(ar) ;
-		 * }
+		 * </code>
 	 	 * @param date (optional) The specified <code>Date</code> to return the full month calendar. The default value is the current <code>Date</code> object.
 		 * @param offset the day offset value between 0 and 6 to fill the calendar. The default value is 0 (Sunday). 
 		 * @return an array representation of a full month.
@@ -474,10 +474,10 @@ package asgard.date
 		/**
 		 * Returns the Date reference of the "tomorrow" <code>Date</code> object of the specified <code>Date</code> in argument.
 		 * <p><b>Example :</b></p>
-		 * {@code
+		 * <code>
 		 * trace ( "toDay     : " + (new Calendar()).format("DDDD yyyy-mm-dd") ) ;
 		 * trace ( "tomorrow  : " + (Calendar.tomorrow()).format("DDDD yyyy-mm-dd") ) ;
-	 	 * }
+	 	 * </code>
 	 	 * @return the Date reference of the "tomorrow" <code>Date</code> object of the specified <code>Date</code> in argument.
 	 	 */
 		public static function tomorrow( date:Date = null ):Date
@@ -489,10 +489,10 @@ package asgard.date
 		/**
 		 * Returns the Calendar reference of the "yesterday" <code>Calendar</code> object of the specified <code>Date</code> in argument.
 		 * <p><b>Example :</b></p>
-		 * {@code
+		 * <code>
 		 * trace ( "yesterday : " + (Calendar.yesterday()).format("DDDD yyyy-mm-dd") ) ;
 		 * trace ( "toDay     : " + (new Calendar()).format("DDDD yyyy-mm-dd") ) ;
-		 * }
+		 * </code>
 		 * @return the Calendar reference of the "yesterday" <code>Calendar</code> object of the specified <code>Date</code> in argument.
 	 	 */
 		public static function yesterday ( date:Date=null ):Date

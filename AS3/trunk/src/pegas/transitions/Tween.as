@@ -31,7 +31,7 @@ package pegas.transitions
 	 * The Tween class also lets you specify a variety of easing methods.
 	 * <p>Easing refers to gradual acceleration or deceleration during an animation, which helps your animations appear more realistic.</p>
 	 * <p><b>Example :</b></p>
-	 * {@code
+	 * <code>
 	 * import pegas.process.ActionEvent ;
 	 * import pegas.transitions.Tween ;
 	 * import pegas.transitions.easing.Elastic ;
@@ -48,7 +48,7 @@ package pegas.transitions
 	 * 
 	 * var tw:Tween = new Tween (mc, "_x", Elastic.easeOut, mc._x, 400, 2, true, true) ;
 	 * tw.addGlobalEventListener( debug ) ;
-	 * }
+	 * </code>
 	 * @author eKameleon
 	 */
 	public class Tween extends Motion 
@@ -57,10 +57,10 @@ package pegas.transitions
 		/**
 		 * Creates a new Tween instance.
 		 * <p><b>Usage :</b></p>
-	 	 * {@code
+	 	 * <code>
 	 	 * var tw:Tween = new Tween( obj, prop:String, e:Function, b:Number, f:Number, d:Number , u:Boolean, auto:Boolean ) ;
 	 	 * var tw:Tween = new Tween( obj, entries , d:Number , u:Boolean, auto:Boolean ) ;
-	 	 * }
+	 	 * </code>
 	 	 */
 		public function Tween( ...arguments:Array )
 		{

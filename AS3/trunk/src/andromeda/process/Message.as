@@ -26,7 +26,7 @@ package andromeda.process
     /**
      * This <code>IAction</code> object create a pause in the process.
      * <p><b>Example :</b></p>
-     * {@code
+     * <code>
      * import pegas.events.ActionEvent ;
      * 
      * var handleEvent:Function = function( e:ActionEvent ) :void
@@ -38,14 +38,14 @@ package andromeda.process
      * m.addEventListener( ActionEvent.START  , handleEvent ) ;
      * m.addEventListener( ActionEvent.FINISH , handleEvent ) ;
      * m.run() ;
-	 * }
+	 * </code>
      * @author eKameleon
      */
 	public class Message extends Pause
 	{
 		
     	/**
-    	 * Creates a new Pause instance.
+    	 * Creates a new Message instance.
     	 * @param message The message to notify when the pause if finished.
     	 * @param face The optional face value of this message.
     	 * @param duration the duration of the pause.

@@ -32,11 +32,11 @@ package pegas.colors
 	/**
 	 * <code>BasicColor</code> extends the Color Object.
 	 * <p>
-	 * {@code 
+	 * <code> 
 	 * import pegas.colors.BasicColor;
  	 * var c : BasicColor = new BasicColor ( display ); // assuming 'display' is a DisplayObject
 	 * c.setRGB(0xFF9900);
-	 * }
+	 * </code>
 	 * </p>
 	 * @author eKameleon
 	 */	
@@ -45,7 +45,7 @@ package pegas.colors
 
 		/**
 		 * Creates an instance of a BasicColor.
-		 * <p>{@code new BasicColor(mc);</p>
+		 * <p><code> new BasicColor(mc);</code></p>
 		 * @param display a DisplayObject reference.
 	 	 */
 		public function Color( display:DisplayObject )

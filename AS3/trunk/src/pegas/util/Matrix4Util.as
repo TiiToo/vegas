@@ -36,7 +36,7 @@ package pegas.util
 		/**
 		 * Creates and returns a new identity Matrix4.
 		 * <p><b>Example :</b></p>
-		 * {@code
+		 * <code>
 		 * import pegas.geom.Matrix4 ;
 		 * import pegas.util.Matrix4Util ;
 		 * var m:Matrix4 = MatrixUtil.getIdentity() ;
@@ -44,7 +44,7 @@ package pegas.util
 		 * // 0 1 0 0
 		 * // 0 0 1 0
 		 * // 0 0 0 1
-		 * }
+		 * </code>
 		 * @return a new identity Matrix4 object.
 		 */
 		public static function getIdentity():Matrix4
@@ -55,7 +55,7 @@ package pegas.util
 		/**
 		 * Creates and returns a new Matrix4 with all this elements are 0.
 		 * <p><b>Example :</b></p>
-		 * {@code
+		 * <code>
 		 * import pegas.geom.Matrix4 ;
 		 * import pegas.util.Matrix4Util ;
 		 * var m:Matrix4 = MatrixUtil.getZero() ;
@@ -63,7 +63,7 @@ package pegas.util
 		 * // 0 0 0 0
 		 * // 0 0 0 0
 	 	 * // 0 0 0 0
-		 * }
+		 * </code>
 	 	 * @return a new zero Matrix4 object.
 	 	 */
 		public static function getZero():Matrix4
@@ -74,7 +74,7 @@ package pegas.util
 		/**
 		 * Returns <code>true</code> if the Matrix4 is the identity.
 		 * <p><b>Example :</b></p>
-		 * {@code
+		 * <code>
 		 * import pegas.geom.Matrix4 ;
 		 * import pegas.util.Matrix4Util ;
 		 * 
@@ -85,7 +85,7 @@ package pegas.util
 		 * var m:Matrix4 = new Matrix4(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16) ;
 		 * var result:Boolean = Matrix4Util.isIdentity( m ) ;
 		 * trace(result) ; // false
-		 * }
+		 * </code>
 		 * @return <code>true</code> if the Matrix4 is the identity.
 		 */
 		public static function isIdentity( m:Matrix4 ):Boolean

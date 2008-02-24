@@ -12,7 +12,7 @@
 	/**
 	 * The MultiHashSet is a MutliHashMap that contains no duplicate elements in a specified key.
 	 * <p><b>Example :</b></p>
-	 * {@code
+	 * <code>
 	 * import vegas.data.Collection ;
 	 * import vegas.data.collections.SimpleCollection ;
 	 * import vegas.data.sets.MultiHashSet ;
@@ -58,7 +58,7 @@
 	 * var co:Collection = new SimpleCollection(["valueA1", "valueA4", "valueA1"]) ;
 	 * s.putCollection("key1", co) ;
 	 * trace("s.toString : " + s) ;
-	 * }
+	 * </code>
 	 * @author eKameleon
 	 * @see MultiMap
 	 */

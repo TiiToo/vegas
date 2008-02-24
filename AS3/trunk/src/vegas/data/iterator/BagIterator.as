@@ -60,7 +60,7 @@ package vegas.data.iterator
 
     	/**
 	     * Unsupported method in all BagIterator.
-    	 * @throws UnsupportedOperation {@ode key} method in unsupported.
+    	 * @throws UnsupportedOperation <code>key</code> method in unsupported.
     	 */
 		public function key():*
 		{

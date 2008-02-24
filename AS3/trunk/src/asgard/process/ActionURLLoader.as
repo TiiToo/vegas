@@ -33,7 +33,7 @@ package asgard.process
 	/**
 	 * This action process launch the load of a URLLoader object.
 	 * <p><b>Example :</b></p>
-	 * {@code
+	 * <code>
 	 * import andromeda.events.ActionEvent ;
 	 * 
 	 * import asgard.net.EdenLoader ;
@@ -66,7 +66,7 @@ package asgard.process
 	 * process.addEventListener(ActionEvent.FINISH , finish ) ;
 	 * process.request = new URLRequest( url ) ;
 	 * process.run() ;
- 	 * }
+ 	 * </code>
 	 * @author eKameleon
 	 */
 	public class ActionURLLoader extends AbstractActionLoader 

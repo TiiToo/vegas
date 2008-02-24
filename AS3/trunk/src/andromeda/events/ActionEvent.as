@@ -35,9 +35,6 @@ package andromeda.events
 		
 		/**
 		 * Creates a new <code>BasicEvent</code> instance.
-		 * {@code
-		 * var e:BasicEvent = new BasicEvent( type:String, [target:Object, [context:*, [bubbles:Boolean, [cancelable:Boolean, [time:Number]]]]]) ;
-	 	 * }
 		 * @param type the string type of the instance. 
 		 * @param target the target of the event.
 		 * @param info The information object of this event.

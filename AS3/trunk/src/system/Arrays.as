@@ -34,12 +34,12 @@ package system
 		 * Initializes a new Array with an arbitrary number of elements (index), 
 		 * with every element containing the passed parameter value or by default the null value.
 		 * <p><b>Example :</b></p>
-		 * {@code
+		 * <code>
 		 * var test:Array  = Arrays.initialize( 3 ); //define [null,null,null]
 		 * var test1:Array = Arrays.initialize( 3, 0 ); //define [0,0,0]
 		 * var test2:Array = Arrays.initialize( 3, true ); //define [true,true,true]
 		 * var test3:Array = Arrays.initialize( 3, "" ); //define ["","",""]
-		 * }
+		 * </code>
 		 * @return a new Array with an arbitrary number of elements (index), 
 		 * with every element containing the passed parameter value or by default the null value.
 		 */

@@ -50,7 +50,7 @@ package vegas.string
 	 * <p>More information in the official site : <a href="http://www.JSON.org/">http://www.JSON.org</a></p>
 	 * <p>Add Hexa Digits tool in deserialize method - <a href="http://www.burrrn.com/projects/eden.html">EDEN inspiration</a></p>
 	 * <p><b>Example :</b></p>
-	 * {@code
+	 * <code>
 	 * package
 	 * {
 	 * 	
@@ -110,7 +110,7 @@ package vegas.string
 	 *         }
 	 *     }
 	 * }
-	 * }
+	 * </code>
 	 * @author eKameleon
 	 */
 	public class JSON

@@ -30,7 +30,7 @@ package asgard.text
     /**
      * This loader load an external css file to fill the StyleSheet object defines over this loader.
      * <p><b>Example :</b></p>
-     * {@code
+     * <code>
      * import asgard.text.CoreTextField ;
      * import asgard.text.StyleSheetLoader ;
      * 
@@ -59,7 +59,7 @@ package asgard.text
      * addChild(field) ;
      * 
      * loader.load( new URLRequest( "style/style.css" ) ) ;
-     * }
+     * </code>
      * @author eKameleon
      */
     public class StyleSheetLoader extends URLLoader

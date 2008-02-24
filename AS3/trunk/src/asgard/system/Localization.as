@@ -276,7 +276,7 @@ package asgard.system
 
         /**
          * Removes the specified Lang in the Localization model.
-         * @param lang a valid Lang object. This argument is valid if the {@link Lang.validate} method return <code>true</code>.
+         * @param lang a valid Lang object. This argument is valid if the Lang.validate method return <code>true</code>.
          * @return The removed Locale object or null.
          */
         public function remove( lang:* ):* 

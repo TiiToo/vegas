@@ -120,7 +120,7 @@ package asgard.date
 		public var milliSeconds:Number;
 		
 		/** 
-		 * Flag if the instance need to be evaluated by {@link #evaluate}.
+		 * Flag if the instance need to be evaluated by evaluate.
 	  	 */
 		public var doEval:Boolean = true;	
 		
@@ -293,7 +293,7 @@ package asgard.date
 		 * Sets the time of the instance.
 		 * 
 		 * <p>Uses "ms" if no format or a wrong format was passed-in.</p>
-		 * <p>Uses {@code Number.MAX_VALUE} if <code>Infinity</code> was passed-in.</p>
+		 * <p>Uses <code>Number.MAX_VALUE</code> if <code>Infinity</code> was passed-in.</p>
 	     * @param time size of the time difference for the passed-in <code>format</code>
 	     * @param format (optional) "d"/"h"/"m"/"s"/"ms" for the unit of the amout. Default value is ms.
 		 */

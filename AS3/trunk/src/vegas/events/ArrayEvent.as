@@ -29,10 +29,10 @@ package vegas.events
     /**
      * The <code>ArrayEvent</code> to dispatch an event with an Array object.
      * <p><b>Example :</b></p>
-     * {@code
+     * <code>
      * var e:Event = new ArrayEvent("change", [2, 3, 4]) ;
      * trace( (e as ArrayEvent).getArray() ) ;
-     * }
+     * </code>
      * @author eKameleon
      */
 	public class ArrayEvent extends BasicEvent 

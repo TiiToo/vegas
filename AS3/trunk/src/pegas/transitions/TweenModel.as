@@ -80,9 +80,9 @@ package pegas.transitions
 		
 		/**
 		 * Returns a shallow copy of this object. This method keep all Tween entries and the id of the original object.
-		 * {@code  
+		 * <code>  
 		 * var clone:TweenModel = tp.clone() ;
-		 * }
+		 * </code>
 	 	 * @return a shallow copy of this object.
 	 	 */
 		public function clone():*

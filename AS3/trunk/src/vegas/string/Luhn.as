@@ -27,14 +27,13 @@ package vegas.string
 	/**
      * It is a simple checksum formula used to validate a variety of account numbers, such as credit card numbers, etc.
      * <p>The Luhn algorithm or Luhn formula, also known as the "modulus 10" or "mod 10" algorithm, was developed in the 1960s as a method of validating identification numbers.</p>
-     * <p><b>example</b><br>
-     * {@code
+     * <p><b>example</b></p>
+     * <code>
      * import vegas.string.Luhn ;
      * 
      * var code:String = "456565654" ;
      * trace (code + " isValid : " + Luhn.isValid(code)) ;
-     * }
-     * </p>
+     * </code>
      * @see <a href='http://fr.wikipedia.org/wiki/Formule_de_Luhn'>Luhn Formula</a> 
      * @author eKameleon
      */

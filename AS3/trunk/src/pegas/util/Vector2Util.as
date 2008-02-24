@@ -79,12 +79,12 @@ package pegas.util
 		/**
 	 	 * Returns the middle Vector2 between 2 Points.
 		 * <p><b>Example :</b></p>
-		 * {@code
+		 * <code>
 		 * var p1:Vector2 = new Vector2(10,10) ;
 		 * var p2:Vector2 = new Vector2(20,20) ;
 		 * var middle:Vector2 = Vector2Util.getMiddle(p1,p2) ;
 		 * trace(middle) ;
-		 * }
+		 * </code>
 	 	 * @return the middle Point between 2 Points.
 		 */
 		public static function getMiddle(p1:Vector2, p2:Vector2):Vector2 

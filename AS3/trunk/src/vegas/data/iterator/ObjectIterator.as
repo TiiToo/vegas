@@ -30,7 +30,7 @@ package vegas.data.iterator
 	/**
      * Converts an object to an iterator of all enumerable properties of the Object.
      * <p><b>Example :</b></p>
-     * {@code
+     * <code>
      * import vegas.data.iterator.ObjectIterator ;
      * import vegas.data.iterator.Iterator ;
      * 
@@ -72,7 +72,7 @@ package vegas.data.iterator
      *     var key:*   = it.key() ;
      *     trace ("it >> " + index + " :: " + key + " : " + next) ;
      * }
-     * }
+     * </code>
      * @author eKameleon
      */
 	public class ObjectIterator extends CoreObject implements Iterator

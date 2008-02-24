@@ -32,7 +32,7 @@ package pegas.draw
 	/**
      * The Canvas pen is used to draw a complex shape with differents points in a data model.
      * <p><b>Example :</b></p>
-     * {@code
+     * <code>
      * import pegas.draw.Canvas ;
      * 
      * var shape:Shape = new Shape() ;
@@ -54,7 +54,7 @@ package pegas.draw
      * 
      * var pen:Canvas = new Canvas( shape.graphics , data) ;
      * pen.draw() ;
-     * }
+     * </code>
      * @author eKameleon
      */
     dynamic public class Canvas extends Pen 
@@ -90,34 +90,34 @@ package pegas.draw
          * Apply a transform method in this Canvas. Uses the <code>CanvasTransform</code> tool class and this static methods.
          * @param transform the method effect used to transform the shape.
          * <p><b>Example :</b></p>
-          * {@code
-          * import pegas.draw.Canvas ;
-          * import pegas.draw.CanvasTransform ;
-          * 
-          * var data:Array = 
-          * [
-          *     ['S',[2,0xFF0000,100]],
-          *     ['F',[0x000000]],
-          *     ['L',[80,0]],
-          *     ['L',[160,0]],
-          *     ['L',[160,50]],
-          *     ['L',[160,100]],
-          *     ['L',[80,100]],
-          *     ['L',[0,100]],
-          *     ['L',[0,50]],
-          *     ['L',[0,0]],
-          *     ['EF']
-          * ] ;
-          *  
-          * this.createEmptyMovieClip("canvas_mc", 1) ;
-          * canvas_mc._x = 400 ;
-          * canvas_mc._y = 200 ;
-          * 
-          * var c:Canvas = new Canvas(canvas_mc, data) ;
-          * trace (c + " : " + c.size()) ;
-          * c.draw() ;
-          * 
-          * var bounds = canvas_mc.getBounds(canvas_mc);
+         * <code>
+         * import pegas.draw.Canvas ;
+         * import pegas.draw.CanvasTransform ;
+         * 
+         * var data:Array = 
+         * [
+         *     ['S',[2,0xFF0000,100]],
+         *     ['F',[0x000000]],
+         *     ['L',[80,0]],
+         *     ['L',[160,0]],
+         *     ['L',[160,50]],
+         *     ['L',[160,100]],
+         *     ['L',[80,100]],
+         *     ['L',[0,100]],
+         *     ['L',[0,50]],
+         *     ['L',[0,0]],
+         *     ['EF']
+         * ] ;
+         *  
+         * this.createEmptyMovieClip("canvas_mc", 1) ;
+         * canvas_mc._x = 400 ;
+         * canvas_mc._y = 200 ;
+         * 
+         * var c:Canvas = new Canvas(canvas_mc, data) ;
+         * trace (c + " : " + c.size()) ;
+         * c.draw() ;
+         * 
+         * var bounds = canvas_mc.getBounds(canvas_mc);
          * 
          * var count:Number = 0;
          * onEnterFrame = function()
@@ -145,7 +145,7 @@ package pegas.draw
          *     (cpt++ %2 == 0) ? c.linesToCurves() : c.curvesToLines() ;
          * }
          * Key.addListener(this) ;
-         * }
+         * </code>
          * @see CanvasTransform.
          */
         public function get transform():Function

@@ -27,7 +27,7 @@ package pegas.draw
 	/**
      * This pen drawing gears.
      * <p><b>Example :</b></p>
-     * {@code
+     * <code>
      * import pegas.draw.Align ;
      * import pegas.draw.GearPen ;
      * import pegas.draw.FillStyle ;
@@ -108,7 +108,7 @@ package pegas.draw
      * stage.addEventListener( MouseEvent.MOUSE_UP , mouseUp ) ;
      * 
      * stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
-     * }
+     * </code>
      * @author eKameleon
      */
     dynamic public class GearPen extends Pen 

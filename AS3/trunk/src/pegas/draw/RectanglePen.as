@@ -28,7 +28,7 @@ package pegas.draw
 	/**
      * This pen draw a rectangle shape with a Graphics object.
      * <p><b>Example :</b></p>
-     * {@code
+     * <code>
      * import pegas.draw.Align ;
      * import pegas.draw.RectanglePen ;
      * import pegas.draw.FillStyle ;
@@ -48,7 +48,7 @@ package pegas.draw
      * pen.fillStyle  = new FillStyle( 0xFF0000 , 0.5 ) ;
      * pen.lineStyle  = new LineStyle( 2, 0xFFFFFF , 1 ) ;
      * pen.draw() ;
-      * }
+     * </code>
      * @author eKameleon
      */
     dynamic public class RectanglePen extends Pen 
@@ -61,8 +61,8 @@ package pegas.draw
          * @param y (optional) The y position of the pen. (default 0)
          * @param width (optional) The width of the pen. (default 0)
          * @param height (optional) The height of the pen. (default 0)
-          * @param align (optional) The align value of the pen. (default Align.TOP_LEFT)
-          */
+         * @param align (optional) The align value of the pen. (default Align.TOP_LEFT)
+         */
         public function RectanglePen( graphic:* , x:Number = 0 , y:Number = 0 , width:Number = 0 , height:Number = 0 , align:uint = 10 )
         {
             super( graphic );

@@ -45,23 +45,23 @@ package pegas.geom
 		 * <p>If 16 arguments are passed to the constructor, it will create a <code>Matrix4</code> with the values.</p> 
 		 * <p>In the other case, a identity <code>Matrix4</code> is created.</p>
 		 * <p><b>Example 1 - Matrix4 identity :</b></p>
-		 * {@code
+		 * <code>
 		 * import pegas.geom.Matrix4 ;
 		 * var m:Matrix4 = new Matrix4() ;
 		 * // 1 0 0 0
 	 	 * // 0 1 0 0
 		 * // 0 0 1 0
 		 * // 0 0 0 1
-		 * }
+		 * </code>
 		 * <p><b>Example 2 - Matrix4 with 16 arguments :</b></p>
-		 * {@code
+		 * <code>
 		 * import pegas.geom.Matrix4 ;
 		 * var m:Matrix4 = new Matrix4(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16) ;
 	 	 * //  1  2  3  4
 		 * //  5  6  7  8
 		 * //  9 10 11 12
 		 * // 13 14 15 16
-		 * }
+		 * </code>
 		 */
 		public function Matrix4( ...arguments:Array )
 		{
@@ -88,177 +88,177 @@ package pegas.geom
 		
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * {@code 
+		 * <code> 
 		 * 1 0 0 0
 		 * 0 0 0 0
 		 * 0 0 0 0
 		 * 0 0 0 0 
-		 * }
+		 * </code>
 		 */
 		public var n11:Number;
 			
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * {@code 
-		 *  0 1 0 0
-		 *  0 0 0 0
-		 *  0 0 0 0
-		 *  0 0 0 0
-		 *  }
+		 * <code> 
+		 * 0 1 0 0
+		 * 0 0 0 0
+		 * 0 0 0 0
+		 * 0 0 0 0
+		 * </code> 
 	 	 */
 		public var n12:Number;
 		
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * {@code
+		 * <code>
 		 * 0 0 1 0
 		 * 0 0 0 0
 		 * 0 0 0 0
 		 * 0 0 0 0
-	 	 * }
+	 	 * </code>
 		 */
 		public var n13:Number;
 			
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * {@code
+		 * <code>
 		 * 0 0 0 1
 		 * 0 0 0 0
 		 * 0 0 0 0
 		 * 0 0 0 0
-		 * }
+		 * </code> 
 		 */
 		public var n14:Number;
 			
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * {@code 
+		 * <code>
 		 * 0 0 0 0
 		 * 1 0 0 0
 		 * 0 0 0 0
 		 * 0 0 0 0
-		 * }
+		 * </code> 
 	 	 */
 		public var n21:Number;
 			
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * {@code 
+		 * <code>
 		 * 0 0 0 0
 		 * 0 1 0 0
 		 * 0 0 0 0
 		 * 0 0 0 0
-		 * }
+		 * </code> 
 	 	 */
 		public var n22:Number;
 			
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * {@code 
+		 * <code>
 		 * 0 0 0 0
 		 * 0 0 1 0
 		 * 0 0 0 0
 	 	 * 0 0 0 0
-		 * }
+		 * </code> 
 	 	 */
 		public var n23:Number;
 		
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * {@code 
+		 * <code>
 	 	 * 0 0 0 0
 	 	 * 0 0 0 1
 	 	 * 0 0 0 0
 	 	 * 0 0 0 0
-	 	 * }
+		 * </code> 
 	 	 */
 		public var n24:Number;
 		
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * {@code 
+		 * <code>
 	 	 * 0 0 0 0
 		 * 0 0 0 0
 		 * 1 0 0 0
 		 * 0 0 0 0
-		 * }
+		 * </code> 
 	 	 */
 		public var n31:Number;
 			
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * {@code 
+		 * <code>
 		 * 0 0 0 0
 		 * 0 0 0 0
 		 * 0 1 0 0
 		 * 0 0 0 0
-		 * }
+		 * </code> 
 		 */
 		public var n32:Number;
 			
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-	 	 * {@code 
+		 * <code>
 		 * 0 0 0 0
 	 	 * 0 0 0 0
 		 * 0 0 1 0
 		 * 0 0 0 0
-		 * }
+		 * </code> 
 	 	 */
 		public var n33:Number;
 			
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * {@code 
+		 * <code>
 		 * 0 0 0 0
 		 * 0 0 0 0
 		 * 0 0 0 1
 	  	 * 0 0 0 0
-		 * }
+		 * </code> 
 	 	 */
 		public var n34:Number;
 			
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * {@code 
+		 * <code>
 		 * 0 0 0 0
 		 * 0 0 0 0
 		 * 0 0 0 0
 		 * 1 0 0 0
-		 * }
+		 * </code> 
 		 */
 		public var n41:Number;
 			
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * {@code 
+		 * <code>
 		 * 0 0 0 0
 	 	 * 0 0 0 0
 		 * 0 0 0 0
 		 * 0 1 0 0
-		 * }
+		 * </code> 
 	 	 */
 		public var n42:Number;
 		
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * {@code 
+		 * <code>
 		 * 0 0 0 0
 		 * 0 0 0 0
 		 * 0 0 0 0
 		 * 0 0 1 0
-		 * }
+		 * </code> 
 	  	 */
 		public var n43:Number;
 			
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * {@code 
+		 * <code>
 		 * 0 0 0 0
 	 	 * 0 0 0 0
 		 * 0 0 0 0
 		 * 0 0 0 1
-		 * }
+		 * </code> 
 		 */
 		public var n44:Number;
 

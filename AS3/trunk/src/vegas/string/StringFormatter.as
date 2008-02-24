@@ -29,8 +29,8 @@ package vegas.string
 
 	/**
      * Replaces the pattern item in a specified String with the text equivalent of the value of a specified Object instance.
-     * <p><b>Usage :</b>
-     * {@code
+     * <p><b>Usage :</b></p>
+     * <code>
      * import vegas.string.StringFormatter ;
      * 
      * var f:StringFormatter ;
@@ -52,8 +52,7 @@ package vegas.string
      * f.pattern = "{3} {2} {1} {0}" ;
      * result = f.format("a", "b", "c", "d") ;
      * trace (">> " + result) ;
-     * }
-     * </p>
+     * </code>
      * @author eKameleon
      */
 	public class StringFormatter extends AbstractFormatter

@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -33,7 +33,7 @@ package vegas.util.comparators
 	/**
 	 * This comparator compare Date objects.
 	 * <p><b>Example :</b></p>
- 	 * {@code
+ 	 * <code>
  	 * import vegas.util.comparators.DateComparator;
 	 * 
  	 * var comp:DateComparator = new DateComparator() ;
@@ -50,7 +50,7 @@ package vegas.util.comparators
 	 * trace( comp.compare(d1, d4) ) ; // -1
 	 * trace( comp.compare(d3, d1) ) ; // 1
 	 * trace( comp.compare(d4, d1) ) ; // 1
- 	 * }
+ 	 * </code>
 	 * @author eKameleon
  	 */
 	public class DateComparator extends CoreObject implements IComparator, ICloneable, ICopyable

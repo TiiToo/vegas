@@ -37,7 +37,7 @@ package vegas.data.map
 	/**
  	 * The default implementation of the <code>MultiMap</code> interface.
  	 * <p><b>Example :</b></p>
-	 * {@code
+	 * <code>
  	 * import vegas.data.Collection ;
 	 * import vegas.data.iterator.Iterator ;
 	 * import vegas.data.map.HashMap ;
@@ -121,8 +121,7 @@ package vegas.data.map
 	 * {
 	*      trace("\t> " + it.next()) ;
  	* }
-	* 
- 	* } 
+	* </code>
  	* @author eKameleon
  	* @see MultiMap
  	*/
@@ -186,9 +185,9 @@ package vegas.data.map
 		/**
 		 * Checks whether the map contains the value specified.
 		 * <p><b>Example :</b></p>
-		 * {@code
+		 * <code>
 		 * var b:Boolean = map.containsValue(value) ;
-		 * }
+		 * </code>
 		 * @return <code>true</code> if the List contains the specified value.
 		 */
 		public function containsValue( value:* ):Boolean 

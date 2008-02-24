@@ -29,7 +29,7 @@ package andromeda.process
 	/**
      * This <code>IAction</code> object register <code>IAction</code> objects in a batch process.
      * <p><b>Example :</b></p>
-     * {@code
+     * <code>
      * import pegas.events.ActionEvent ;
      * import pegas.process.BatchProcess ;
      * import pegas.process.Pause ;
@@ -71,7 +71,7 @@ package andromeda.process
      * // onProgress : [Pause duration:7s]
      * // onProgress : [Pause duration:10s]
      * // onFinished
-     * }
+     * </code>
      * @author eKameleon
      */
     public class BatchProcess extends SimpleAction

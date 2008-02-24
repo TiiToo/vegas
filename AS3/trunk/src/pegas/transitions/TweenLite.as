@@ -30,7 +30,7 @@ package pegas.transitions
 	 * The TweenLite class also lets you specify a variety of easing methods.
 	 * <p>Easing refers to gradual acceleration or deceleration during an animation, which helps your animations appear more realistic.</p>
 	 * <p><b>Example :</b></p>
-	 * {@code
+	 * <code>
 	 * import pegas.process.ActionEvent ;
 	 * import pegas.transitions.TweenLite ;
 	 * import pegas.transitions.easing.Back ;
@@ -48,7 +48,7 @@ package pegas.transitions
 	 * tw.addEventListener( ActionEvent.PROGRESS , debug ) ;
 	 * tw.addEventListener( ActionEvent.FINISH   , debug ) ;
 	 * tw.addEventListener( ActionEvent.LOOP     , debug ) ;
-	 * }
+	 * </code>
  	 * @author eKameleon
 	 */
 	public class TweenLite extends Motion 
@@ -75,7 +75,7 @@ package pegas.transitions
 		/**
 		 * (read-write) The TweenEntry reference of this tween.
 		 * <p><b>Example :</b></p>
-		 * {@code
+		 * <code>
 		 * import pegas.transitions.TweenEntry ;
 		 * import pegas.transitions.TweenLite ;
 		 * import pegas.transitions.easing.Bounce ;
@@ -86,7 +86,7 @@ package pegas.transitions
 		 * 
 		 * tw.tweenEntry = new TweenEntry( "x" , Bounce.easeOut, mc.x , 500 ) ;
 		 * tw.start() ;
-		 * }
+		 * </code>
 		 */
 		public function get tweenEntry():TweenEntry 
 		{
@@ -117,7 +117,7 @@ package pegas.transitions
 		/**
 		 * Instructs the tweened animation to continue tweening from its current animation point to a new finish and duration point.
 		 * <p><b>Example :</b></p>
-		 * {@code
+		 * <code>
 		 * import pegas.events.ActionEvent ;
 		 * import pegas.transitions.TweenLite ;
 		 * import pegas.transitions.easing.Bounce ;
@@ -133,7 +133,7 @@ package pegas.transitions
 		 * var tw:TweenLite = new TweenLite( mc, "x", Bounce.easeOut, mc.x, 550, 1, true ) ;
 		 * tw.addEventListener( ActionEvent.FINISH , continueTo ) ;
 		 * tw.run() ;
-		 * }
+		 * </code>
 		 * @param finish A number indicating the ending value of the target object property that is to be tweened.
 	 	 * @param duration A number indicating the length of time or number of frames for the tween motion.
 	 	 * @param noRestart This optional flag is used to fix the restart process of the tween.

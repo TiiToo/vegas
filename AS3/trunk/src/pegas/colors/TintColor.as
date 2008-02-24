@@ -53,7 +53,7 @@ package pegas.colors
 		/**
 		 * Returns the tint of a Color object.
 		 * <p><b>Example</b></b>
-		 * {@code
+		 * <code>
 		 * var cTint:TintColor = new TintColor(my_mc);
 		 * cTint.setTint( 0, 0, 128, 50 ) ;
 		 * var tint:Object = cTint.getTint();
@@ -61,7 +61,7 @@ package pegas.colors
 		 * trace ("g : " + tint.g);
 		 * trace ("b : " + tint.b);
 		 * trace ("percent : " + tint.percent);
-		 * }
+		 * </code>
 		 * @return The tint value object with r, g, b, and percent properties.
 		 */
 		public function getTint():Object 
@@ -75,13 +75,13 @@ package pegas.colors
 		/**
 		 * Returns the tint of a Color object.
 		 * <p><b>Example</b></b>
-		 * {@code
+		 * <code>
 		 * var cTint:TintColor = new TintColor(my_mc);
 		 * cTint.setTint2( 0x0000FF, 100 ) ;
 		 * var tint:Object = cTint.getTint2();
 		 * trace ("rgb     : " + tint.rgb);
 		 * trace ("percent : " + tint.percent);
-		 * }
+		 * </code>
 		 * @return The tint value object with rgb and percent properties.
 		 */
 		public function getTint2():Object 
@@ -95,14 +95,14 @@ package pegas.colors
 		/**
 	 	 * Returns the tint offset of a Color object.
 	 	 * <p><b>Example</b></b>
-		 * {@code
+		 * <code>
 		 * var cTint:TintColor = new TintColor(my_mc);
 		 * cTint.setTintOffset(0, 0, 128);
 		 * var tint:Object = cTint.getTintOffset();
 		 * trace ("r : " + tint.r);
 		 * trace ("g : " + tint.g);
 		 * trace ("b : " + tint.b);
-		 * }
+		 * </code>
 		 * @return The tint offset value object with r, g, and b properties.
 		 */
 		public function getTintOffset():Object 
@@ -114,10 +114,10 @@ package pegas.colors
 		/**
 		 * Tints a color object with a Color according to a certain percentage.
 		 * <p><b>Example</b></b>
-		 * {@code
+		 * <code>
 	 	 * var cTint:TintColor = new TintColor(my_mc);
 		 * cTint.setTint( 0, 0, 128, 50 ) ;
-		 * }
+		 * </code>
 		 * @param r The red color value.
 		 * @param g The green color value.
 		 * @param b The blue color value.
@@ -134,10 +134,10 @@ package pegas.colors
 		/**
 	 	 * Tints a color object with a Color according to a certain percentage.
 		 * <p><b>Example</b></b>
-	 	 * {@code
+		 * <code>
 		 * var cTint:TintColor = new TintColor(my_mc);
 		 * cTint.setTint2( 0x0000FF, 100 ) ;
-		 * }
+		 * </code>
 		 * @param hex The rgb value.
 		 * @param percent The tint percentage.
 		 */
@@ -153,10 +153,10 @@ package pegas.colors
 		/**
 		 * Tints a Color object with a color according to red, green, and blue values.
 		 * <p><b>Example</b></b>
-		 * {@code
+		 * <code>
 	 	 * var cTint:TintColor = new TintColor(my_mc);
 		 * cTint.setTintOffset( 0, 0, 128 ) ;
-		 * }
+		 * </code>
 		 * @param r The red color value.
 		 * @param g The green color value.
 		 * @param b The blue color value.

@@ -37,11 +37,11 @@ package pegas.colors
  	 * </ul>
  	 * </p>
  	 * <p>
- 	 * {@code 
+ 	 * <code>
  	 * import asgard.colors.BasicColor;
  	 * var c:LightColor = new LightColor( display ); 
  	 * c.setBrightness(55);
- 	 * }
+ 	 * </code>
  	 * </p>
  	 * @author eKameleon
  	 */

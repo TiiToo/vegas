@@ -31,7 +31,7 @@ package vegas.data.iterator
 	/**
      * Converts a string to an iterator.
      * <p><b>Example :</b></p>
-     * {@code
+     * <code>
      * import  vegas.data.iterator.Iterator ;
      * import  vegas.data.iterator.StringIterator ;
      * 
@@ -45,7 +45,7 @@ package vegas.data.iterator
      *     trace (it.key() + ' : ' + char) ;
      * }
      * trace (s) ;
-     * }
+     * </code>
      * @author eKameleon
      */
 	public class StringIterator extends CoreObject implements Iterator

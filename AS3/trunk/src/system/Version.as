@@ -30,11 +30,11 @@ package system
      * <p>implementation note:</p>
      * <p>internaly we stock the value of a version (the total of each fields) 
      * as a uint which max value is 4294967295 (0xFFFFFFFF) this is done to be able to use operators 
-     * {@code
+     * <code>
      * var v1:Version = new Version( 1, 0 );
      * var v2:Version = new Version( 2, 0 );
      * trace( v1 < v2 ); //true
-     * }
+     * </code>
      * by default operators in ECMAScript will use the valueOf of the class and this is neat because 
      * we can use operators without the need to really implement them.
      * 
@@ -119,8 +119,7 @@ package system
         
         /**
          * Constructs a Version object from a number.
-         * note :
-         * if the number is zero or negative, or is NaN or Infity returns an empty version object.
+         * If the number is zero or negative, or is NaN or Infity returns an empty version object.
          */
         public static function fromNumber( value:Number = 0 ):Version
         {
@@ -212,11 +211,11 @@ package system
         
         /**
          * We don't really need an equals method as we override the valueOf, we can do something as
-         * {@code
+         * <code>
          * var v1:Version = new Version( 1,0,0,0 );
          * var v2:Version = new Version( 1,0,0,0 );
          * trace( int(v1) == int(v2) ); //true
-         * }
+         * </code>
          * A cast to Number/int force the valueOf, not ideal but sufficient, and the same for any other operators.
          * But as we keep IEquatable for now, then we have no reason to not use it.
          */
@@ -252,17 +251,17 @@ package system
         /**
          * Returns a string representation of the object.
          * By default, the format returned will include only the fields greater than zero
-         * {@code
+         * <code>
          * var v:Version = new Version( 1, 5 );
          * trace( v ); // "1.5"
-         * }
+         * </code>
          * note :
          * the fields parameter allow you to force or limit the output format
-         * {@code
+         * <code>
          * var v:Version = new Version( 1, 5 );
          * trace( v.toString( 1 ) ); // "1"
          * trace( v.toString( 4 ) ); // "1.5.0.0"
-         * }
+         * </code>
          * <p>format :</p>
          * <li>major.minor.build.revision</li>
          * <li>major.minor.build</li>

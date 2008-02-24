@@ -38,42 +38,42 @@ package pegas.util
         /**
          * This constant change degrees to radians : <b>Math.PI/180</b>.
          * <p><b>Example</b></p>
-         * {@code
+         * <code>
          * trace (Trigo.DEG2RAD * 180) ;
-         * }
+         * </code>
          */
         public static const DEG2RAD:Number = 0.0174532925199433;
         
         /**
          * This constant change radians to degrees : <b>180/Math.PI</b>.
          * <p><b>Example</b></p>
-         * {@code
+         * <code>
          * trace (Trigo.RAD2DEG * Math.PI) ;
-         * }
+         * </code>
          */
         public static const RAD2DEG:Number = 57.2957795130823;
         
         /**
          * This constant is the golden mean (phi) : <b>( 1 + Math.sqrt(5) ) / 2</b>.
          * <p><b>Example</b></p>
-         * {@code
+         * <code>
          * trace (Trigo.PHI) ;
-         * }
+         * </code>
          */
         public static const PHI:Number = 1.61803398874989;
         
         /**
          * This constant is the Euler-Mascheroni constant (lambda or C) :
          * <p>
-         * {@code
+         * <code>
          * ( n )
          * lim( sigma 1/k - ln(n) )
          * n->oo    ( k=1 )
-         * }
+         * </code>
          * <p><b>Example</b></p>
-         * {@code
+         * <code>
          * trace (Trigo.LAMBDA) ;
-         * }
+         * </code>
          */
         public static const LAMBDA:Number = 0.57721566490143;
         

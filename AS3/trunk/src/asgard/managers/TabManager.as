@@ -37,7 +37,7 @@ package asgard.managers
     /**
      * The TabManager manage visual tab process in the applications.
      * <p><b>Example :</b></p>
-     * {@code
+     * <code>
      * import asgard.managers.TabManager ;
      * 
      * var manager:TabManager = TabManager.getInstance() ;
@@ -95,7 +95,7 @@ package asgard.managers
      * }
      * 
      * stage.addEventListener( KeyboardEvent.KEY_DOWN , onKeyDown ) ;
-     * }
+     * </code>
      * @author eKameleon
      */
     public class TabManager extends AbstractModel 

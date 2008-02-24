@@ -26,9 +26,9 @@ package pegas.colors
 
 	/**
 	 * <code>ColorHSV</code> provide static color conversion methods, in Hue Saturation Value color space.
-	 * {@link http://en.wikipedia.org/wiki/HSV_color_space}
+	 * <a href='http://en.wikipedia.org/wiki/HSV_color_space'>http://en.wikipedia.org/wiki/HSV_color_space</a>
 	 * <p><b>Example :</b></p>
-	 * {@code
+	 * <code>
 	 * import asgard.colors.ColorHSV;
 	 * var o:Object = ColorHSV.rgb2hsv(255, 0, 0);
 	 * for (var prop:String in o) 
@@ -42,7 +42,7 @@ package pegas.colors
 	 * {
 	 * 	   trace( prop + " : " + o2[prop] ) ;
 	 * }
-	 * }
+	 * 
 	 * @author eKameleon
 	 */
 	public class ColorHSV 
@@ -51,7 +51,7 @@ package pegas.colors
 		/**
 		 * Converts a HSV color in a RGB color.
 		 * <p><b>Example :</b></p>
-		 * {@code
+		 * <code>
 	 	 * import pegas.colors.ColorHSV;
 		 * var oRGB : Object = {r:250,g:0,b:0};
 		 * var o2 : Object = ColorHSV.hsv2rgb (oRGB, 50, 100); // desaturate 50%
@@ -59,7 +59,7 @@ package pegas.colors
 		 * {
 		 *     trace( prop + " : " + o2[prop] );
 		 * }
-		 * }
+		 * </code>
 		 * @param oColor an Object with r,g,b properties ( range from 0 - 255 ), this is the Hue.
 		 * @param s a Number represent the Saturation value ( range from 0 - 100 ).
 		 * @param v a Number represent the Brightness ( Value ) ( range from 0 - 100 ).
@@ -81,7 +81,7 @@ package pegas.colors
 		/**
 		 * Converts a RGB color in a HSV color.
 		 * <p><b>Example :</b></p>
-		 * {@code
+		 * <code>
 		 * import pegas.colors.ColorHSV;
 		 * var o:Object = ColorHSV.rgb2hsv(255, 0, 0);
 		 * for (var i in o) 
@@ -99,7 +99,7 @@ package pegas.colors
 		 * 		trace(i+" : "+o[i]);
 		 * 	}
 		 * }
-		 * }
+		 * </code>
 		 * @param r a Number represent red value ( range from 0 - 255 ).
 		 * @param g a Number represent red value ( range from 0 - 255 ).
 		 * @param b a Number represent red value ( range from 0 - 255 ).

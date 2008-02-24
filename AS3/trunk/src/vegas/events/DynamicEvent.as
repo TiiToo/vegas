@@ -29,12 +29,12 @@ package vegas.events
     /**
      * The <code>DynamicEvent</code> to dispatch an event with dynamic properties.
      * <p><b>Example :</b></p>
-     * {@code
+     * <code>
      * import vegas.events.DynamicEvent ;
      * var e:DynamicEvent = new DynamicEvent("change") ;
      * e.test = "hello world" ;
      * trace( e.test ) ;	
-     * }
+     * </code>
      * @author eKameleon
      */
 	public dynamic class DynamicEvent extends BasicEvent 
