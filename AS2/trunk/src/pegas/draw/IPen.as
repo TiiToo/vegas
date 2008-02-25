@@ -20,11 +20,10 @@
   Contributor(s) :
   
  */
-
-
-
 import flash.geom.Matrix;
 
+import pegas.draw.IFillStyle;
+import pegas.draw.ILineStyle;
 import pegas.draw.IShape;
 
 /**
@@ -96,10 +95,25 @@ interface pegas.draw.IPen extends IShape
 	 */
 	function curveTo(x1:Number, y1:Number, x2:Number, y2:Number):Void ;
 
+    /**
+     * This method draw the shape with IFillStyle and ILineStyle elements.
+     */
+    function drawShape():Void ;
+
 	/**
 	 * Applies a fill to the lines and curves that were since the last call to beginFill() or beginGradientFill(). Flash uses the fill that was specified in the previous call to beginFill() or beginGradientFill(). If the current drawing position does not equal the previous position specified in a moveTo() method and a fill is defined, the path is closed with a line and then filled.
 	 */
 	function endFill():Void ;
+
+    /**
+     * Determinates the fill style object of the pen.
+     */
+    function getFillStyle():IFillStyle ;
+
+    /**
+     * Determinates the line style object of the pen.
+     */
+    function getLineStyle():ILineStyle ;
 
 	/**
 	 * Returns the movieclip target reference of this pen.
@@ -164,6 +178,16 @@ interface pegas.draw.IPen extends IShape
 	 */
 	function moveTo(x:Number, y:Number):Void ;
 
+    /**
+     * Sets the fill style object of the pen.
+     */
+    function setFillStyle( style:IFillStyle ):Void ;
+
+    /**
+     * Sets the line style object of the pen.
+     */
+    function setLineStyle( style:ILineStyle ):Void ;
+    
 	/**
 	 * Sets the movieclip target of this IPen instance.
 	 */

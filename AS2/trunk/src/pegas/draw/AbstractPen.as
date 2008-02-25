@@ -20,9 +20,10 @@
   Contributor(s) :
   
  */
-
 import flash.geom.Matrix;
 
+import pegas.draw.IFillStyle;
+import pegas.draw.ILineStyle;
 import pegas.draw.IPen;
 
 import vegas.core.CoreObject;
@@ -146,6 +147,48 @@ class pegas.draw.AbstractPen extends CoreObject implements ICloneable, IPen, IRu
 	 */
 	public var default_t:Number = null ; // thickness
 
+    /**
+     * Determinates the fill style object of the pen.
+     */
+    public function get fill():IFillStyle
+    {
+        return getFillStyle() ;
+    }
+        
+    /**
+     * @private
+     */        
+    public function set fill( style:IFillStyle ):Void
+    {
+    	setFillStyle( style ) ;
+    }
+
+	/**
+     * Determinates the line style object of the pen.
+     */
+    public function get line():ILineStyle
+    {
+        return getLineStyle() ;
+    }
+        
+    /**
+     * @private
+     */        
+    public function set line( style:ILineStyle ):Void
+    {
+        setLineStyle( style ) ;
+    }
+
+    /**
+     * Indicates if the clear() method is invoqued at the end of the draw method.
+     */
+    public var useClear:Boolean = true ;
+
+    /**
+     * Indicates if the endFill() method is invoqued at the end of the draw method.
+     */
+    public var useEndFill:Boolean = true ;
+
 	/**
 	 * Fills a drawing area with a bitmap image. The bitmap can be repeated or tiled to fill the area.
 	 * @param bmp A transparent or opaque bitmap image.
@@ -258,6 +301,30 @@ class pegas.draw.AbstractPen extends CoreObject implements ICloneable, IPen, IRu
 	{
 		//
 	}
+	
+    /**
+     * This method draw the shape with IFillStyle and ILineStyle elements.
+     */
+    public function drawShape():Void
+    {
+       if ( useClear ) 
+       {
+           clear() ;    
+       }
+	   if ( _lineStyle != null )
+       {
+           _lineStyle.init( _target ) ;
+       }
+       if ( _fillStyle != null )
+       {
+           _fillStyle.init( _target ) ;
+       }
+       draw.apply( this , arguments ) ;
+       if ( useEndFill )
+       {
+            endFill() ;    
+       }
+    }	
 
 	/**
 	 * Applies a fill to the lines and curves that were since the last call to beginFill() or beginGradientFill(). Flash uses the fill that was specified in the previous call to beginFill() or beginGradientFill(). If the current drawing position does not equal the previous position specified in a moveTo() method and a fill is defined, the path is closed with a line and then filled.
@@ -266,6 +333,22 @@ class pegas.draw.AbstractPen extends CoreObject implements ICloneable, IPen, IRu
 	{
 		EF.apply(_target) ;
 	}
+
+    /**
+     * Determinates the fill style object of the pen.
+     */
+    public function getFillStyle():IFillStyle
+    {
+		return _fillStyle ;
+	}
+
+    /**
+     * Determinates the line style object of the pen.
+     */
+    public function getLineStyle():ILineStyle
+    {
+		return _lineStyle ;    	
+    }
 
 	/**
 	 * Returns the movieclip target reference of this pen.
@@ -370,7 +453,31 @@ class pegas.draw.AbstractPen extends CoreObject implements ICloneable, IPen, IRu
 	{
 		draw() ;
 	}
-	
+
+    /**
+     * Sets the fill style object of the pen.
+     */
+    public function setFillStyle( style:IFillStyle ):Void
+    {
+        _fillStyle = style || null ;
+        if ( _fillStyle != null )
+        {
+            _fillStyle.init( _target ) ;
+        }
+    }
+
+    /**
+     * Sets the line style object of the pen.
+     */
+    public function setLineStyle( style:ILineStyle ):Void
+    {
+         _lineStyle = style || null ;
+         if ( _lineStyle != null )
+         {
+             _lineStyle.init( _target ) ;
+         }
+    }
+
 	/**
 	 * Sets the movieclip target of this IPen instance.
 	 */
@@ -392,7 +499,20 @@ class pegas.draw.AbstractPen extends CoreObject implements ICloneable, IPen, IRu
 		txt += "]" ;
 		return txt ;
 	}
+	
+    /**
+     * @private
+     */
+    private var _fillStyle:IFillStyle ;
 
+    /**
+     * @private
+     */
+    private var _lineStyle:ILineStyle ;	
+
+    /**
+     * @private
+     */
 	private var _target:MovieClip ;
   
 }

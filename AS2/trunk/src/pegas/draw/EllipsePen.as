@@ -26,6 +26,57 @@ import pegas.draw.EasyPen;
 
 /**
  * This pen draw an ellipse shape in a MovieClip reference.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import pegas.draw.Align ;
+ * import pegas.draw.EllipsePen ;
+ * import pegas.draw.LineStyle ;
+ * import pegas.draw.FillStyle ;
+ * 
+ * createEmptyMovieClip("canvas_mc", 1) ;
+ * canvas_mc._x = 740 / 2 ;
+ * canvas_mc._y = 200 ;
+ * 
+ * var ellipse:EllipsePen = new EllipsePen(canvas_mc) ;
+ * 
+ * ellipse.line = new LineStyle( 2, 0xFFFFFF, 100 ) ;
+ * ellipse.fill = new FillStyle( 0xFF0000, 100 ) ;
+ * 
+ * ellipse.drawShape(0, 0, 100, 80, Align.BOTTOM_LEFT) ;
+ * 
+ * Key.addListener(this) ;
+ * 
+ * var onKeyDown:Function = function():Void
+ * {
+ *     var align:Number ;
+ *     switch(Key.getCode())
+ *     {
+ *         case Key.UP :
+ *         {
+ *             align = Align.BOTTOM ;
+ *             break ;
+ *         }
+ *         case Key.DOWN :
+ *         {
+ *             align = Align.TOP ;
+ *             break ;
+ *          }
+ *          case Key.LEFT :
+ *          {
+ *              align = Align.LEFT ;
+ *              break ;
+ *          }
+ *          case Key.RIGHT :
+ *          {
+ *              align = Align.RIGHT ;
+ *              break ;
+ *          }
+ *      }
+ *      ellipse.line = new LineStyle( 2, 0xFFFFFF, 100 ) ;
+ *      ellipse.fill = new FillStyle( 0x2083AC , 100 ) ;
+ *      ellipse.drawShape(0, 0, 100, 80, align) ;
+ * }
+ * }
  * @author eKameleon
  */
 class pegas.draw.EllipsePen extends EasyPen 
