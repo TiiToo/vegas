@@ -66,6 +66,11 @@ class lunas.display.ReflectDisplay extends ConfigurableDisplayObject implements 
 	public static var DEFAULT_MASK_DEPTH:Number = 9999 ;
 
 	/**
+	 * The default mask depth of this display. 
+	 */
+	public static var DEFAULT_MASK_NAME:String = "mcMask" ;
+	
+	/**
 	 * The default reflect depth of this display. 
 	 */
 	public static var DEFAULT_REFLECT_NAME:String = "mcReflect" ;
@@ -73,12 +78,7 @@ class lunas.display.ReflectDisplay extends ConfigurableDisplayObject implements 
 	/**
 	 * The default reflect depth of this display. 
 	 */
-	public static var DEFAULT_REFLECT_DEPTH:Number = 9000 ;
-
-	/**
-	 * The default mask depth of this display. 
-	 */
-	public static var DEFAULT_MASK_NAME:String = "mcMask" ;
+	public static var DEFAULT_REFLECT_DEPTH:Number = 9000 ;	
 	
 	/**
 	 * The alpha value of this display.
@@ -243,10 +243,10 @@ class lunas.display.ReflectDisplay extends ConfigurableDisplayObject implements 
 		} 
 		matrix.createGradientBox( _dimension.width, _dimension.height / 0.6 , (90/180)* Math.PI , 0, 0 );
 
-		var fillType:String = GradientType.LINEAR ;
-		var colors:Array = [0xFFFFFF, 0xFFFFFF];
-		var alphas:Array = [alpha, 0];
-		var ratios:Array = [0, ratio];
+		var fillType:String     = GradientType.LINEAR ;
+		var colors:Array        = [0xFFFFFF, 0xFFFFFF];
+		var alphas:Array        = [alpha, 0];
+		var ratios:Array        = [0, ratio];
 		var spreadMethod:String = SpreadMethod.PAD ;
 	
 		_penMask.clear() ;
@@ -257,7 +257,7 @@ class lunas.display.ReflectDisplay extends ConfigurableDisplayObject implements 
 		_mcMask._x = _mcReflect._x ;
 		_mcMask._y = _mcReflect._y - _mcReflect._height ;
 		
-		_mcMask.cacheAsBitmap = true ;
+		_mcMask.cacheAsBitmap    = true ;
 		_mcReflect.cacheAsBitmap = true ;
 		
 		_mcReflect.setMask(_mcMask) ;

@@ -126,11 +126,11 @@ package pegas.geom
     	 * Returns a new bounds with this size with a pos.
     	 * @return a new bounds with this size with a pos.
     	 */
-    	public function getBounds(x:Number, y:Number):Rectangle
+    	public function getBounds(x:Number, y:Number):flash.geom.Rectangle
     	{
     		x = isNaN(x) ? 0 : x ;
     		y = isNaN(y) ? 0 : y ;
-    		return new Rectangle(x, y, width, height) ;	
+    		return new flash.geom.Rectangle(x, y, width, height) ;	
     	}
     	
     	/**
