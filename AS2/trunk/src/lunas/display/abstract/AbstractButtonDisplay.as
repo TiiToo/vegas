@@ -42,11 +42,13 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 	 * Creates a new AbstractButtonDisplay instance.
 	 * @param sName the name of the display.
 	 * @param target the DisplayObject instance control this target.
+	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */	
-	private function AbstractButtonDisplay( sName:String, target:MovieClip ) 
+	private function AbstractButtonDisplay( sName:String, target:MovieClip , bGlobal:Boolean , sChannel:String ) 
 	{
 		
-		super ( sName, target ) ;
+		super ( sName, target , bGlobal , sChannel ) ;
 		
 		initButtonEvent() ;
 		registerView( view ) ;
@@ -340,22 +342,49 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 		// override this method when label property change
 	}
 
+	/**
+	 * @private
+	 */
 	private var _doubleClickEnabled:Boolean ;
 
+	/**
+	 * @private
+	 */
 	private var _eButton:ButtonEvent ;
 
+	/**
+	 * @private
+	 */
 	private var _label:String ;
 	
+	/**
+	 * @private
+	 */
 	private var _listenerRadio:EventListener ;
 	
+	/**
+	 * @private
+	 */
 	private var _scope:MovieClip ;	
 	
+	/**
+	 * @private
+	 */
 	private var _toggle:Boolean ;
 
+	/**
+	 * @private
+	 */
 	private var _selected:Boolean ;
 	
+	/**
+	 * @private
+	 */
 	private var _useHandCursor:Boolean = true ;
-	
+
+	/**
+	 * @private
+	 */
 	private function _fireButtonEvent( eventType:String ):Void 
 	{
 		_eButton.setType( eventType ) ;
@@ -363,6 +392,9 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 		dispatchEvent( _eButton ) ;
 	}
 
+	/**
+	 * @private
+	 */
 	private function _onPress():Void 
 	{
 		if ( _toggle == true ) 
@@ -380,6 +412,9 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 		
 	}
 
+	/**
+	 * @private
+	 */
 	private function _onRelease():Void 
 	{ 
 		if ( !_toggle ) 
@@ -388,7 +423,10 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 		}
 		_fireButtonEvent(ButtonEvent.MOUSE_UP) ;
 	}
-	
+
+	/**
+	 * @private
+	 */
 	private function _onRollOut():Void 
 	{
 		if ( !_toggle || !_selected ) 
@@ -403,6 +441,9 @@ class lunas.display.abstract.AbstractButtonDisplay extends AbstractComponentDisp
 		_fireButtonEvent(ButtonEvent.ROLLOUT) ;
 	}
 
+	/**
+	 * @private
+	 */
 	private function _onRollOver():Void 
 	{
 		if ( !_toggle || !_selected ) 

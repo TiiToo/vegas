@@ -174,11 +174,6 @@ package asgard.system
         public static const CS:Lang = new Lang("cs", "Czech") ;
 
         /**
-         * Indicates the 'Spanish' language reference.
-         */
-        public static const ES:Lang = new Lang("es", "Spanish") ;
-
-        /**
          * Indicates the 'Dasnish' language reference.
          */
         public static const DA:Lang = new Lang("da", "Danish") ;
@@ -192,7 +187,12 @@ package asgard.system
          * Indicates the 'English' language reference.
          */
         public static const EN:Lang = new Lang("en", "English") ;
-
+        
+        /**
+         * Indicates the 'Spanish' language reference.
+         */
+        public static const ES:Lang = new Lang("es", "Spanish") ;
+        
         /**
          * Indicates the 'Finnish' language reference.
          */

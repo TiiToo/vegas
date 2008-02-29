@@ -38,10 +38,12 @@ class lunas.display.abstract.AbstractButtonIconDisplay extends AbstractButtonDis
 	 * Creates a AbstractButtonIconDisplay instance.
 	 * @param sName The name of the display.
 	 * @param targe The DisplayObject instance control this target.
+	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */
-	private function AbstractButtonIconDisplay ( sName:String, target:MovieClip ) 
+	private function AbstractButtonIconDisplay ( sName:String, target:MovieClip , bGlobal:Boolean , sChannel:String ) 
 	{
-		super ( sName, target ) ;
+		super ( sName, target , bGlobal , sChannel ) ;
 	}
 
 	/**
@@ -195,8 +197,14 @@ class lunas.display.abstract.AbstractButtonIconDisplay extends AbstractButtonDis
 		// override this method when icon property change
 	}
 	
+	/**
+	 * @private
+	 */
 	private var _mcIcon:MovieClip ;
 
+	/**
+	 * @private
+	 */
 	private var _sIcon:String ;
 	
 

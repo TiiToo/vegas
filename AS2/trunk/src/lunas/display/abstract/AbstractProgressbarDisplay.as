@@ -36,10 +36,12 @@ class lunas.display.abstract.AbstractProgressbarDisplay extends AbstractProgress
 	 * Creates a new AbstractProgressbarDisplay instance. 
 	 * @param sName the name of the display.
 	 * @param target the DisplayObject instance control this target.
+	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */
-	private function AbstractProgressbarDisplay(sName:String, target:MovieClip ) 
+	private function AbstractProgressbarDisplay(sName:String, target:MovieClip , bGlobal:Boolean , sChannel:String ) 
 	{ 
-		super ( sName, target ) ;
+		super ( sName, target , bGlobal , sChannel ) ;
 		_nDirection = Direction.HORIZONTAL ;
 	}
 

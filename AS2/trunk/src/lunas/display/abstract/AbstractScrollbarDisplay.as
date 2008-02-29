@@ -35,20 +35,23 @@ import vegas.util.MathsUtil;
 
 /**
  * This class provides a skeletal implementation of all the {@code IScrollbar} display components, to minimize the effort required to implement this interface.
+ * @deprecated Use now the AbstractSliderDisplay class to create scrollbars.
  * @author eKameleon
  */
 class lunas.display.abstract.AbstractScrollbarDisplay extends AbstractProgressbarDisplay implements IScrollbar 
 {
 
 	/**
-	 * Creates a new AbstractScrollbar instance.
-	 * @param sName:String the name of the display.
-	 * @param target:MovieClip the DisplayObject instance control this target.
+	 * Creates a new AbstractScrollbarDisplay instance.
+	 * @param sName the name of the display.
+	 * @param target the DisplayObject instance control this target.
+	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */
-	private function AbstractScrollbarDisplay( sName:String, target:MovieClip ) 
+	private function AbstractScrollbarDisplay( sName:String, target:MovieClip , bGlobal:Boolean , sChannel:String ) 
 	{ 
 		
-		super ( sName, target ) ;
+		super ( sName, target , bGlobal , sChannel ) ;
 		_eDrag      = new ButtonEvent( ButtonEvent.DRAG, this ) ;
 		_eStartDrag = new ButtonEvent( ButtonEvent.START_DRAG, this ) ;
 		_eStopDrag  = new ButtonEvent( ButtonEvent.STOP_DRAG, this ) ;

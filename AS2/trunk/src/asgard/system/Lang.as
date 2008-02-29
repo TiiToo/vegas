@@ -19,192 +19,206 @@
   
   Contributor(s) :
   
-*/
-
+ */
 import vegas.data.map.HashMap;
 import vegas.util.ArrayUtil;
-
-// TODO change the full string of the Lang reference + localization.
+import vegas.util.TypeUtil;
 
 /**
- * The Lang class register all international lang of the application. Use this class in the Localization model of ASGard.
+ * This static enumeration class defines the language code of the system on which the player is running. 
+ * The language is specified as a lowercase two-letter language code from ISO 639-1. 
+ * For Chinese, an additional uppercase two-letter country code from ISO 3166 distinguishes between Simplified and Traditional Chinese. 
+ * The languages codes are based on the English names of the language: for example, 'hu' specifies Hungarian.
  * @author eKameleon
  */
 class asgard.system.Lang extends String 
 {
 
-	/**
-	 * Creates a new Lang instance.
-	 */
-	public function Lang(s) 
-	{
-		super(s) ;
-	}
-	
-	public static var CS:Lang    = new Lang("cs") ;
+    /**
+     * Creates a new Lang instance.
+     */
+    public function Lang( id:String , label:String ) 
+    {
+        super( id ) ;
+        this.label = label ;
+        Lang.put( this ) ;
+    }
+    
+    /**
+     * The label of the current Lang instance.
+     */        
+    public var label:String = null ;    
+    
+    /**
+     * Indicates the 'Czech' language reference.
+     */    
+    public static var CS:Lang = new Lang("cs" , "Czech") ;
 
-	public static var DA:Lang    = new Lang("da") ;
+    /**
+     * Indicates the 'Danish' language reference.
+     */
+    public static var DA:Lang = new Lang("da" , "Danish") ;
 
-	public static var NL:Lang    = new Lang("nl") ;
+    /**
+     * Indicates the 'German' language reference.
+     */
+    public static var DE:Lang = new Lang("de" , "German") ;
 
-	public static var EN:Lang    = new Lang("en") ;
+    /**
+     * Indicates the 'English' language reference.
+     */
+    public static var EN:Lang = new Lang("en" , "English") ;
 
-	public static var FI:Lang    = new Lang("fi") ;
+    /**
+     * Indicates the 'Spanish' language reference.
+     */
+    public static var ES:Lang = new Lang("es" , "Spanish") ;
 
-	public static var FR:Lang    = new Lang("fr") ;
+    /**
+     * Indicates the 'Finnish' language reference.
+     */
+    public static var FI:Lang = new Lang("fi" , "Finnish") ;
 
-	public static var DE:Lang    = new Lang("de") ;
+    /**
+     * Indicates the 'French' language reference.
+     */
+    public static var FR:Lang = new Lang("fr" , "French") ;
 
-	public static var HU:Lang    = new Lang("hu") ;
+    /**
+     * Indicates the 'Hungarian' language reference.
+     */
+    public static var HU:Lang = new Lang("hu" , "Hungarian") ;
 
-	public static var IT:Lang    = new Lang("it") ;
+    /**
+     * Indicates the 'Italian' language reference.
+     */
+    public static var IT:Lang = new Lang("it" , "Italian") ;
 
-	public static var JA:Lang    = new Lang("ja") ;
+    /**
+     * Indicates the 'Japanese' language reference.
+     */
+    public static var JA:Lang = new Lang("ja" , "Japanese") ;
+    
+    /**
+     * Indicates the 'Korean' language reference.
+     */
+    public static var KO:Lang = new Lang("ko" , "Korean") ;
 
-	public static var KO:Lang    = new Lang("ko") ;
+    /**
+     * Indicates the 'Dutch' language reference.
+     */
+    public static var NL:Lang = new Lang("nl" , "Dutch") ;
 
-	public static var NO:Lang    = new Lang("no") ;
+    /**
+     * Indicates the 'Norwegian' language reference.
+     */
+    public static var NO:Lang = new Lang("no" , "Norwegian") ;
 
-	public static var XU:Lang    = new Lang("xu") ;
+    /**
+     * Indicates the 'Other/unknown' language reference.
+     */
+    public static var XU:Lang = new Lang("xu" , "Other/unknown") ;
 
-	public static var PL:Lang    = new Lang("pl") ;
+    /**
+     * Indicates the 'Polish' language reference.
+     */
+    public static var PL:Lang = new Lang("pl" , "Polish") ;
 
-	public static var PT:Lang    = new Lang("pt") ;
+    /**
+     * Indicates the 'Portuguese' language reference.
+     */
+    public static var PT:Lang = new Lang("pt" , "Portuguese") ;
 
-	public static var RU:Lang    = new Lang("ru") ;
+    /**
+     * Indicates the 'Russian' language reference.
+     */    
+    public static var RU:Lang = new Lang("ru" , "Russian") ;
 
-	public static var ZH_CN:Lang = new Lang("zh-CN") ;
+    /**
+     * Indicates the 'Turkish' language reference.
+     */
+    public static var TR:Lang = new Lang("tr" , "Turkish") ;
 
-	public static var ES:Lang    = new Lang("es") ;
+    /**
+     * Indicates the 'Swedish' language reference.
+     */
+    public static var SV:Lang = new Lang("sv" , "Swedish") ;
 
-	public static var SV:Lang    = new Lang("sv") ;
+    /**
+     * Indicates the 'Simplified Chinese' language reference.
+     */
+    public static var ZH_CN:Lang = new Lang("zh-CN" , "Simplified Chinese") ;
 
-	public static var ZH_TW:Lang = new Lang("zh-TW") ;
+    /**
+     * Indicates the 'Traditional Chinese' language reference.
+     */
+    public static var ZH_TW:Lang = new Lang("zh-TW" , "Traditional Chinese") ;
 
-	public static var TR:Lang    = new Lang("tr") ;
+    /**
+     * The map of all existing Lang reference in the application.
+     */
+    public static var LANGS:HashMap ;
+    
+    /**
+     * Returns a Lang instance with the specified 'id' value.
+     * @return a Lang instance with the specified 'id' value.
+     */
+    public static function get( id:String ):Lang 
+    {
+    	return LANGS.get( id.valueOf() ) ;            
+    }
 
-	public static var CS_FULL:String = "Tchèque" ;
+    /**
+     * Inserts a new Lang in the Lang model.
+     */
+    public static function put( lang:Lang )
+    {
+    	if ( LANGS == null )
+    	{
+    		LANGS = new HashMap() ;
+    	}    	
+    	return LANGS.put( lang.valueOf() , lang ) ;
+    }
 
-	public static var DA_FULL:String = "Danois" ;
+    /**
+     * Removes a new Lang in the Lang model.
+     */
+    public static function remove( lang:Lang ) 
+    {
+        return LANGS.remove( lang.valueOf() ) ;
+    }
 
-	public static var NL_FULL:String = "Hollandais" ;
+    /**
+     * Returns the number of Lang reference register in the static LANGE HashMap.
+     * @return the number of Lang reference register in the static LANGE HashMap.
+     */
+    public static function size():Number
+    {
+        return LANGS.size() ;
+    }
 
-	public static var EN_FULL:String = "Anglais" ;
-
-	public static var FI_FULL:String = "Finlandais" ;
-
-	public static var FR_FULL:String = "Français" ;
-
-	public static var DE_FULL:String = "Allemand" ;
-
-	public static var HU_FULL:String = "Hongrois" ;
-
-	public static var IT_FULL:String = "Italien" ;
-
-	public static var JA_FULL:String = "Japonais" ;
-
-	public static var KO_FULL:String = "Coréen" ;
-
-	public static var NO_FULL:String = "Norvégien" ;
-
-	public static var XU_FULL:String = "Autre/Inconnu" ;
-
-	public static var PL_FULL:String = "Polonais" ;
-
-	public static var PT_FULL:String = "Portugais" ;
-
-	public static var RU_FULL:String = "Russe" ;
-
-	public static var ZH_CN_FULL:String = "Chinois simplifié" ;
-
-	public static var ES_FULL:String = "Espagnol" ;
-
-	public static var SV_FULL:String = "Suédois" ;
-
-	public static var ZH_TW_FULL:String = "Chinois Traditionnel" ;
-
-	public static var TR_FULL:String = "Turc" ;
-
-	public static var LANGS:HashMap = new HashMap () ;
-	
-	/**
-	 * Returns the name of the Lang define with the specified id in argument.
-	 * @return the name of the Lang define with the specified id in argument.
-	 */
-	public static function get(id:String):String 
-	{
-		if (LANGS.size() == 0) 
-		{
-			Lang.initialize() ;
-		}
-		return LANGS.get(id) ;			
-	}
-
-	/**
-	 * Initialize the model of this class.
-	 */
-	public static function initialize():Void 
-	{
-		LANGS.clear() ;
-		LANGS.put(CS, CS_FULL) ;
-		LANGS.put(DA, DA_FULL) ;
-		LANGS.put(NL, NL_FULL) ;
-		LANGS.put(EN, EN_FULL) ;
-		LANGS.put(FI, FI_FULL);
-		LANGS.put(FR, FR_FULL);
-		LANGS.put(DE, DE_FULL) ;
-		LANGS.put(HU, HU_FULL) ;
-		LANGS.put(IT, IT_FULL) ;
-		LANGS.put(JA, JA_FULL) ;
-		LANGS.put(KO, KO_FULL) ;
-		LANGS.put(NO, NO_FULL) ;
-		LANGS.put(XU, XU_FULL) ;
-		LANGS.put(PL, PL_FULL) ;
-		LANGS.put(PT, PT_FULL) ;
-		LANGS.put(RU, RU_FULL) ;
-		LANGS.put(ZH_CN, ZH_CN_FULL) ;
-		LANGS.put(ES, ES_FULL) ;
-		LANGS.put(SV, SV_FULL) ;
-		LANGS.put(ZH_TW, ZH_TW_FULL) ;
-		LANGS.put(TR, TR_FULL) ;
-	}
-
-	/**
-	 * Inserts a new Lang in the Lang model.
-	 */
-	public static function put( lang:Lang , label:String ) 
-	{
-		return LANGS.put(lang, label) ;
-	}
-
-	/**
-	 * Removes a new Lang in the Lang model.
-	 */
-	public static function remove( lang:Lang ) 
-	{
-		return LANGS.remove(lang) ;
-	}
-
-	/**
-	 * Validate the specified lang in argument.
-	 * @return {@code true} if the lang passed in argument is registered in the model.
-	 */
-	public static function validate( lang:String ):Boolean 
-	{
-		
-		var langs:Array = 
-		[
-			CS, DA, NL, EN, FI, FR,
-			DE, HU, IT, JA, KO, NO,
-			XU, PL, PT, RU, ZH_CN,
-			ES, SV, ZH_TW, TR
-		] ;
-		
-		return ArrayUtil.contains(langs, lang) ;
-	}
-
-	private static var __INITLANGS__ = Lang.initialize() ;
-	
+    /**
+     * Validate the specified lang in argument.
+     * @return {@code true} if the lang passed in argument is registered in the model.
+     */
+    public static function validate( lang ):Boolean 
+    {
+        var s:String ;
+        if ( lang instanceof Lang )
+        {
+            s = lang.toString() ;
+        }
+        else if ( TypeUtil.typesMatch( lang , String ) )
+        {
+            s = lang ;
+        }
+        else
+        {
+            return false ;
+        }
+        return ArrayUtil.contains(LANGS.getKeys(), s) ;
+    }
+    
 }
 
 

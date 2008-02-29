@@ -37,12 +37,14 @@ class lunas.display.abstract.AbstractTextInputDisplay extends AbstractTextAreaDi
 
 	/**
 	 * Creates a new AbstractTextInputDisplay instance.
-	 * @param sName:String the name of the display.
-	 * @param target:MovieClip the DisplayObject instance control this target.
+	 * @param sName the name of the display.
+	 * @param target the DisplayObject instance control this target.
+	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */
-	private function AbstractTextInputDisplay( sName:String, target:MovieClip ) 
+	private function AbstractTextInputDisplay( sName:String, target:MovieClip , bGlobal:Boolean , sChannel:String ) 
 	{ 
-		super ( sName , target ) ;
+		super ( sName , target , bGlobal , sChannel ) ;
 	}
 
 	/**
@@ -262,7 +264,7 @@ class lunas.display.abstract.AbstractTextInputDisplay extends AbstractTextAreaDi
 	 * Unregister the internal field reference of this component.
 	 * @return {@code true} if the unregister process is success.
 	 */
-	/*override*/ public function unregisterField():Boolean
+	public /*override*/ function unregisterField():Boolean
 	{
 		if (field != null)
 		{
@@ -278,16 +280,19 @@ class lunas.display.abstract.AbstractTextInputDisplay extends AbstractTextAreaDi
 
 	/**
 	 * The event when the component is focus in.
+	 * @private
 	 */
 	private var _eFocusIn:FocusEvent ;
 	
 	/**
 	 * The event when the component is focus out.
+	 * @private
 	 */
 	private var _eFocusOut:FocusEvent ;
 	
 	/**
 	 * The priority value of the component.
+	 * @private
 	 */
 	private var _priority:Boolean = false ;
 	

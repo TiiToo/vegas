@@ -35,12 +35,14 @@ class lunas.display.abstract.AbstractLabelDisplay extends AbstractComponentDispl
 
 	/**
 	 * Creates a new AbstractLabelDisplay instance.
-	 * @param sName:String the name of the display.
-	 * @param target:MovieClip the DisplayObject instance control this target.
+	 * @param sName the name of the display.
+	 * @param target the DisplayObject instance control this target.
+	 * @param bGlobal the flag to use a global event flow or a local event flow.
+	 * @param sChannel the name of the global event flow if the {@code bGlobal} argument is {@code true}.
 	 */
-	private function AbstractLabelDisplay( sName:String, target:MovieClip ) 
+	private function AbstractLabelDisplay( sName:String, target:MovieClip , bGlobal:Boolean , sChannel:String ) 
 	{ 
-		super ( sName , target ) ;
+		super ( sName , target , bGlobal, sChannel ) ;
 	}
 
 	/**
@@ -243,12 +245,24 @@ class lunas.display.abstract.AbstractLabelDisplay extends AbstractComponentDispl
 		// override this method when label property change
 	}
 
+	/**
+	 * @private
+	 */
 	private var _autoSize:String ;
 
+	/**
+	 * @private
+	 */
 	private var _html:Boolean ;
 
+	/**
+	 * @private
+	 */
 	private var _label:String ;
 
+	/**
+	 * @private
+	 */
 	private var _multiline:Boolean ;
 
 }

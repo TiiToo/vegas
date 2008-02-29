@@ -116,7 +116,7 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	 * (read-write) Returns the current {@code Lang} object selected in the current localization.
 	 * @return the current {@code Lang} object.
 	 */
-	public function get current():Lang 
+	public function get current()
 	{
 		return getCurrent() ;
 	}
@@ -124,7 +124,7 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	/**
 	 * (read-write) Sets the current {@code Lang} object.
 	 */
-	public function set current(lang:Lang):Void
+	public function set current( lang ):Void
 	{
 		setCurrent(lang) ;
 	}	
@@ -343,12 +343,12 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 	/**
 	 * Sets the current localization with the specified Lang.
 	 */
-	public function setCurrent(lang:Lang):Void 
+	public function setCurrent( lang ):Void 
 	{
 		if (Lang.validate(lang)) 
 		{
-			_current = lang ;
-			if ( contains(lang) ) 
+			_current = Lang.get(lang) ;
+			if ( contains( _current ) ) 
 			{
 				notifyChange() ;
 			}
