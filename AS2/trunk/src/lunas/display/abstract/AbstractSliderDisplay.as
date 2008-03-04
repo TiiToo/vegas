@@ -81,6 +81,23 @@ class lunas.display.abstract.AbstractSliderDisplay extends AbstractProgressbarDi
 	public var easing:Function = null ;
 
 	/**
+	 * Indicates if the layout direction of the thumb is invert.
+	 */
+	public function get invert():Boolean
+	{
+		return _invert ;	
+	}
+	
+	/**
+	 * @private
+	 */
+	public function set invert( b:Boolean ):Void
+	{
+		_invert = b ;
+		update() ;	
+	}
+
+	/**
 	 * A static object use to defines the inverse position property name of the bar.
 	 */
 	public function get invertPosField():Object
@@ -110,6 +127,24 @@ class lunas.display.abstract.AbstractSliderDisplay extends AbstractProgressbarDi
 	{
 		return getIsDragging() ;	
 	}
+	
+	/**
+	 * Determines how much the scrollbar's value will change when one of the arrow buttons is clicked. 
+	 * If the scrollbar is being used to control something like a text area, this should probably be set to one, to cause the text to scroll one line. 
+	 * If it is scrolling a picture or movie clip, it should probably be set to a larger amount. 
+	 */
+	public function get lineScrollSize():Number
+	{
+		return _lineScrollSize ;
+	}
+	
+	/**
+	 * @private
+	 */
+	public function set lineScrollSize( value:Number ):Void
+	{
+		_lineScrollSize = value > 1 ? value : 1 ;	
+	}	
 	
 	/**
 	 * The height property name
@@ -179,6 +214,23 @@ class lunas.display.abstract.AbstractSliderDisplay extends AbstractProgressbarDi
 	 * Determinates if the bar use easing effects or not.
 	 */
 	public var noEasing:Boolean = true ;
+
+	/**
+	 * Determines the amount the value will change if the user clicks above or below the thumb. 
+	 * If this amount is 0 the thumb will move with the lineScrollSize value.
+	 */
+	public function get pageSize():Number
+	{
+		return (_pageSize > 0) ? _pageSize : lineScrollSize ;
+	}
+		
+	/**
+	 * @private
+	 */
+	public function set pageSize( value:Number ):Void
+	{
+		_pageSize = value > 0 ? value : 0 ;	
+	}		
 
     /**
      * Determinates the size of the thumb.
@@ -456,6 +508,11 @@ class lunas.display.abstract.AbstractSliderDisplay extends AbstractProgressbarDi
 	 * @private
 	 */	
 	private var _mouseOffset:Number = 0 ;
+	
+	/**
+	 * @private
+	 */
+	private var _pageSize:Number = 0 ;			
 	
 	/**
 	 * @private
