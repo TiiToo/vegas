@@ -485,7 +485,7 @@ package lunas.core
 		 * Invoked when the component is destroyed with a removeMovieClip.
 		 * Overrides this method.
 		 */
-		public function viewDestroyed( e:Event ):void 
+		public function viewDestroyed( e:Event=null ):void 
 		{
 			// overrides
 		}
@@ -512,7 +512,7 @@ package lunas.core
 		 * Invoked when the component IStyle changed.
 		 * Overrides this method.
 		 */
-		public function viewStyleChanged( e:Event ):void 
+		public function viewStyleChanged( e:Event=null ):void 
 		{
 			// overrides
 		}

@@ -45,8 +45,8 @@ package pegas.draw
      * pen.useClear   = true ;
      * 
      * pen.useEndFill = true ;
-     * pen.fillStyle  = new FillStyle( 0xFF0000 , 0.5 ) ;
-     * pen.lineStyle  = new LineStyle( 2, 0xFFFFFF , 1 ) ;
+     * pen.fill       = new FillStyle( 0xFF0000 , 0.5 ) ;
+     * pen.line       = new LineStyle( 2, 0xFFFFFF , 1 ) ;
      * pen.draw() ;
      * </code>
      * @author eKameleon

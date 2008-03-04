@@ -54,7 +54,7 @@ package asgard.display
      * stage.scaleMode = StageScaleMode.NO_SCALE ;
      * 
      * var background:Background = new Background( "background" ) ;
-     * background.fillStyle = new FillStyle( 0x8D818F , 1 ) ;
+     * background.fill           = new FillStyle( 0x8D818F , 1 ) ;
      * background.setSize( 740, 400 ) ;
      * 
      * addChild( background ) ;
@@ -69,7 +69,7 @@ package asgard.display
      *     if( background.isFull )
      *     {
      *         stage.removeEventListener( Event.RESIZE, resize ) ;
-     *         background.fillStyle = new FillStyle( 0x8D818F , 1 ) ;
+     *         background.fill = new FillStyle( 0x8D818F , 1 ) ;
      *         background.isFull = false ;
      *     }
      *     else
@@ -77,7 +77,7 @@ package asgard.display
      *         stage.addEventListener( Event.RESIZE, resize ) ;
      *         background.gradientRotation = 90 ;
      *         background.useGradientBox   = true ;
-     *         background.fillStyle        = new FillGradientStyle( GradientType.LINEAR, [0x071E2C,0x81C2ED], [1,1], [0,255] ) ;
+     *         background.fill             = new FillGradientStyle( GradientType.LINEAR, [0x071E2C,0x81C2ED], [1,1], [0,255] ) ;
      *         background.isFull           = true ;
      *     }
      * }
@@ -106,7 +106,7 @@ package asgard.display
         /**
          * Determinates the IFillStyle reference of this display.
          */
-        public function get fillStyle():IFillStyle
+        public function get fill():IFillStyle
         {
             return _fillStyle ;
         }
@@ -114,12 +114,12 @@ package asgard.display
         /**
          * @private
          */
-        public function set fillStyle( style:IFillStyle ):void
+        public function set fill( style:IFillStyle ):void
         {
             _fillStyle = style ;
             if( _pen != null )
             {
-                _pen.fillStyle = _fillStyle ;
+                _pen.fill = _fillStyle ;
             }
             update() ;
         }
@@ -167,7 +167,7 @@ package asgard.display
         /**
          * Determinates the ILineStyle reference of this display.
          */
-        public function get lineStyle():ILineStyle
+        public function get line():ILineStyle
         {
             return _lineStyle ;
         }
@@ -175,12 +175,12 @@ package asgard.display
         /**
          * @private
          */
-        public function set lineStyle( style:ILineStyle ):void
+        public function set line( style:ILineStyle ):void
         {
             _lineStyle = style ;
             if( _pen != null )
             {
-                _pen.lineStyle = style ;
+                _pen.line = style ;
             }
             update() ;
         }
@@ -241,14 +241,14 @@ package asgard.display
             offsetX = isNaN(offsetX) ? 0 : offsetX ;
             offsetY = isNaN(offsetY) ? 0 : offsetY ;
             
-            if ( useGradientBox && fillStyle is FillGradientStyle )
+            if ( useGradientBox && fill is FillGradientStyle )
             {
                 
                 var matrix:Matrix = new Matrix() ;
                 matrix.createGradientBox( $w, $h );
                 matrix.rotate(Trigo.degreesToRadians(gradientRotation)) ;
                 
-                (fillStyle as FillGradientStyle).matrix = matrix ;
+                ( fill as FillGradientStyle ).matrix = matrix ;
                 
             }
             else
@@ -282,10 +282,8 @@ package asgard.display
         public function initBackgroundPen():IPen
         {
             var p:RoundedComplexRectanglePen = new RoundedComplexRectanglePen( this ) ;
-            p.fillStyle  = _fillStyle ;
-            p.lineStyle  = _lineStyle ;
-            p.useClear   = true ;
-            p.useEndFill = true ;
+            p.fill       = _fillStyle ;
+            p.line       = _lineStyle ;
             return p ;    
         }
 

@@ -23,6 +23,7 @@
 package lunas.display.button 
 {
 	import flash.display.Shape;
+	import flash.events.Event;
 	
 	import lunas.core.AbstractButton;	
 
@@ -42,22 +43,15 @@ package lunas.display.button
 		public function AquaButton(id:* = null, isConfigurable:Boolean = false, name:String = null)
 		{
 			super( id, isConfigurable, name );
+			minHeight = 30 ;
+			minWidth  = 30 ;
+			setSize( 73 , 30) ;
 		}
 
 		/**
 	     * The background of the button.
 	     */
     	public var background:Shape ;		
-
-		/**
-		 * The min height size of the component.
-		 */
-		public var minHeight:Number = 30 ;
-		
-		/**
-		 * The min width size of the component.
-		 */
-		public var minWidth:Number = 30 ;
 		
 		/**
 		 * Returns the constructor function of the <code>IBuilder</code> of this instance.
@@ -96,7 +90,7 @@ package lunas.display.button
 	    /**
      	 * Invoked when the style of the component is changed.
 	     */
-    	public override function viewStyleChanged():void 
+    	public override function viewStyleChanged( e:Event=null ):void
     	{
 	        update() ;
 	    }

@@ -43,7 +43,7 @@ package pegas.draw
      * 
      * var pen:StarPen = new StarPen( shape.graphics ) ;
      * pen.align = Align.CENTER ;
-     * pen.fillStyle  = new FillStyle( 0xEBD936 , 0.6 ) ;
+     * pen.fill  = new FillStyle( 0xEBD936 , 0.6 ) ;
      * pen.draw() ;
      * 
      * addChild( shape ) ;

@@ -43,8 +43,8 @@ package pegas.draw
         /**
          * Determinates the fill style object of the pen.
          */
-        function get fillStyle():IFillStyle ;
-        function set fillStyle( style:IFillStyle ):void ;
+        function get fill():IFillStyle ;
+        function set fill( style:IFillStyle ):void ;
         
         /**
          * Specifies the Graphics object belonging to this Shape object, where vector drawing commands can occur.
@@ -55,8 +55,8 @@ package pegas.draw
         /**
          * Determinates the line style object of the pen.
          */
-        function get lineStyle():ILineStyle ;
-        function set lineStyle( style:ILineStyle ):void ;
+        function get line():ILineStyle ;
+        function set line( style:ILineStyle ):void ;
         
         /**
          * This method contains the basic drawing shape algorithm.

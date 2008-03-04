@@ -191,7 +191,7 @@ package lunas.display.bar
          */
         public function get barFillStyle():IFillStyle
         {
-            return _barPen.fillStyle ;
+            return _barPen.fill ;
         }
         
         /**
@@ -199,7 +199,7 @@ package lunas.display.bar
          */        
         public function set barFillStyle( style:IFillStyle ):void
         {
-            _barPen.fillStyle = style ;
+            _barPen.fill = style ;
             update() ;
         }
         
@@ -208,7 +208,7 @@ package lunas.display.bar
          */
         public function get barLineStyle():ILineStyle
         {
-            return _barPen.lineStyle ;
+            return _barPen.line ;
         }
         
         /**
@@ -216,7 +216,7 @@ package lunas.display.bar
          */        
         public function set barLineStyle( style:ILineStyle ):void
         {
-            _barPen.lineStyle = style ;
+            _barPen.line = style ;
             update() ;
         }
 
@@ -345,7 +345,7 @@ package lunas.display.bar
          */
         public function get thumbFillStyle():IFillStyle
         {
-            return _thumbPen.fillStyle ;
+            return _thumbPen.fill ;
         }
         
         /**
@@ -353,7 +353,7 @@ package lunas.display.bar
          */        
         public function set thumbFillStyle( style:IFillStyle ):void
         {
-            _thumbPen.fillStyle = style ;
+            _thumbPen.fill = style ;
             update() ;
         }
         
@@ -362,7 +362,7 @@ package lunas.display.bar
          */
         public function get thumbLineStyle():ILineStyle
         {
-            return _thumbPen.lineStyle ;
+            return _thumbPen.line ;
         }
         
         /**
@@ -370,7 +370,7 @@ package lunas.display.bar
          */        
         public function set thumbLineStyle( style:ILineStyle ):void
         {
-            _thumbPen.lineStyle = style ;
+            _thumbPen.line = style ;
             update() ;
         }
         

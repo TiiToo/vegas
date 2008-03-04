@@ -183,7 +183,7 @@ package lunas.display.bar
          */
         public function get backgroundFillStyle():IFillStyle
         {
-            return _backgroundPen.fillStyle ;
+            return _backgroundPen.fill ;
         }
         
         /**
@@ -191,7 +191,7 @@ package lunas.display.bar
          */        
         public function set backgroundFillStyle( style:IFillStyle ):void
         {
-            _backgroundPen.fillStyle = style ;
+            _backgroundPen.fill = style ;
             update() ;
         }
         
@@ -200,7 +200,7 @@ package lunas.display.bar
          */
         public function get backgroundLineStyle():ILineStyle
         {
-            return _backgroundPen.lineStyle ;
+            return _backgroundPen.line ;
         }
         
         /**
@@ -208,7 +208,7 @@ package lunas.display.bar
          */        
         public function set backgroundLineStyle( style:ILineStyle ):void
         {
-            _backgroundPen.lineStyle = style ;
+            _backgroundPen.line = style ;
             update() ;
         }
     
@@ -222,7 +222,7 @@ package lunas.display.bar
          */
         public function get barFillStyle():IFillStyle
         {
-            return _barPen.fillStyle ;
+            return _barPen.fill ;
         }
         
         /**
@@ -230,7 +230,7 @@ package lunas.display.bar
          */        
         public function set barFillStyle( style:IFillStyle ):void
         {
-            _barPen.fillStyle = style ;
+            _barPen.fill = style ;
             update() ;
         }
         
@@ -239,7 +239,7 @@ package lunas.display.bar
          */
         public function get barLineStyle():ILineStyle
         {
-            return _barPen.lineStyle ;
+            return _barPen.line ;
         }
         
         /**
@@ -247,7 +247,7 @@ package lunas.display.bar
          */        
         public function set barLineStyle( style:ILineStyle ):void
         {
-            _barPen.lineStyle = style ;
+            _barPen.line = style ;
             update() ;
         }
         

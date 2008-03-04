@@ -86,7 +86,7 @@ package pegas.draw
         /**
          * Determinates the fill style object of the pen.
          */
-        public function get fillStyle():IFillStyle
+        public function get fill():IFillStyle
         {
             return _fillStyle ;
         }
@@ -94,7 +94,7 @@ package pegas.draw
         /**
          * @private
          */        
-        public function set fillStyle( style:IFillStyle ):void
+        public function set fill( style:IFillStyle ):void
         {
             _fillStyle = style || null ;
             if ( _fillStyle != null )
@@ -118,7 +118,7 @@ package pegas.draw
         /**
          * Determinates the line style object of the pen.
          */
-        public function get lineStyle():ILineStyle
+        public function get line():ILineStyle
         {
             return _lineStyle ;
         }
@@ -126,7 +126,7 @@ package pegas.draw
         /**
          * @private
          */        
-        public function set lineStyle( style:ILineStyle ):void
+        public function set line( style:ILineStyle ):void
         {
             _lineStyle = style || null ;
             if ( _lineStyle != null )

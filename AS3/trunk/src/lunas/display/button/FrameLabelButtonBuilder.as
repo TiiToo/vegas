@@ -46,7 +46,6 @@ package lunas.display.button
 		public function FrameLabelButtonBuilder( target:DisplayObject, bGlobal:Boolean = false, sChannel:String = null )
 		{
 			super( target, bGlobal, sChannel );
-			
 		}
 		
 		/**

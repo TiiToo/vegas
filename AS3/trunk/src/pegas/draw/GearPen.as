@@ -41,7 +41,7 @@ package pegas.draw
      * 
      * var pen:GearPen = new GearPen( shape.graphics ) ;
      * pen.align = Align.CENTER ;
-     * pen.fillStyle  = new FillStyle( 0xEBD936 , 1 ) ;
+     * pen.fill  = new FillStyle( 0xEBD936 , 1 ) ;
      * 
      * pen.draw() ;
      * addChild( shape ) ;

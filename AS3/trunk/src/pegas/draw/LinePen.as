@@ -86,15 +86,6 @@ package pegas.draw
         public var end:Vector2 ;
 
         /**
-         * Returns the Line reference of this pen.
-         * @return the Line reference of this pen.
-          */
-        public function line():Line 
-        {
-            return LineUtil.getLine( start , end ) ;    
-        }
-
-        /**
            * The start vector object of this line pen.
           */
         public var start:Vector2 ; 
@@ -120,6 +111,15 @@ package pegas.draw
         {
             graphics.moveTo( start.x, start.y ) ;
             graphics.lineTo( end.x, end.y ) ;
+        }
+
+        /**
+         * Returns the Line reference of this pen.
+         * @return the Line reference of this pen.
+         */
+        public function getLine():Line 
+        {
+            return LineUtil.getLine( start , end ) ;    
         }
 
         /**

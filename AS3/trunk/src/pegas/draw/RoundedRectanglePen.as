@@ -48,8 +48,8 @@ package pegas.draw
      * var pen:RoundedRectanglePen = new RoundedRectanglePen( shape.graphics , 0, 0, 100, 80, 12, NaN,  Align.CENTER ) ;
      * pen.useClear   = true ;
      * pen.useEndFill = true ;
-     * pen.fillStyle  = new FillStyle( 0xFF0000 , 0.5 ) ;
-     * pen.lineStyle  = new LineStyle( 2, 0xFFFFFF , 1 , true, LineScaleMode.NORMAL , CapsStyle.SQUARE, JointStyle.MITER ) ;
+     * pen.fill       = new FillStyle( 0xFF0000 , 0.5 ) ;
+     * pen.line       = new LineStyle( 2, 0xFFFFFF , 1 , true, LineScaleMode.NORMAL , CapsStyle.SQUARE, JointStyle.MITER ) ;
      * pen.draw() ;
      * </code>
      * @author eKameleon

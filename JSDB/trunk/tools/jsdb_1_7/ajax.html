@@ -1,0 +1,63 @@
+<script language="javascript"  type="text/javascript">
+
+var req;
+
+function loadXMLDoc(url,responder)
+{
+    // branch for native XMLHttpRequest object
+    if (window.XMLHttpRequest)
+    {
+        req = new XMLHttpRequest();
+        req.onreadystatechange = responder;
+        req.open("GET", url, true);
+        req.send(null);
+    // branch for IE/Windows ActiveX version
+    }
+    else if (window.ActiveXObject)
+    {
+        req = new ActiveXObject("Microsoft.XMLHTTP");
+        if (req)
+        {
+            req.onreadystatechange = responder;
+            req.open("GET", url, true);
+            req.send();
+        }
+    }
+}
+
+//globals
+stateOnline = true;
+stateRestart = false;
+stateTimeout = 500;
+stateWatchdog = null;
+
+function processWatchdog()
+{
+    // only if req shows "complete"
+    if (req.readyState == 4)
+    {
+        // only if "OK"
+        if (req.status == 200)
+        {
+            if (req.responseText == 'restart')
+            	startRestart = true;
+			stateWatchdog = setTimeout('watchdog()', stateTimeout);
+            stateOnline = true
+        }
+        else
+        {
+	        stateOnline = false
+            alert("There was a problem retrieving the XML data:\n" + req.statusText);
+        }
+    }
+}
+
+
+function watchdog()
+{
+	loadXMLDoc('/ping',processWatchdog);
+}
+
+watchdog()
+
+</script>

@@ -53,22 +53,66 @@ package pegas.draw
         /**
          * The radius of the bottom-left corner, in pixels.
          */
-        public var bottomLeftRadius:Number ;
+        public function get bottomLeftRadius():Number
+        {
+			return _bottomLeftRadius ;	
+		}
         
         /**
-         * The radius of the bottom-right corner, in pixels.
+         * @private
          */
-        public var bottomRightRadius:Number ;
+        public function set bottomLeftRadius( value:Number ):void
+        {
+			_bottomLeftRadius = isNaN(value) ? 0 : value ;
+		}        
+        
+        /**
+         * The radius of the bottom-left corner, in pixels.
+         */
+        public function get bottomRightRadius():Number
+        {
+			return _bottomRightRadius ;	
+		}
 
+        /**
+         * @private
+         */
+        public function set bottomRightRadius( value:Number ):void
+        {
+			_bottomRightRadius = isNaN(value) ? 0 : value ;
+		}      
+		
         /**
          * The radius of the upper-left corner, in pixels.
          */
-        public var topLeftRadius:Number ;
+        public function get topLeftRadius():Number
+        {
+			return _topLeftRadius ;	
+		}
+
+        /**
+         * @private
+         */
+        public function set topLeftRadius( value:Number ):void
+        {
+			_topLeftRadius = isNaN(value) ? 0 : value ;
+		}    		
         
         /**
          * The radius of the upper-right corner, in pixels. 
          */
-        public var topRightRadius:Number ;
+        public function get topRightRadius():Number
+        {
+			return _topRightRadius ;	
+		}
+
+        /**
+         * @private
+         */
+        public function set topRightRadius( value:Number ):void
+        {
+			_topRightRadius = isNaN(value) ? 0 : value ;
+		}          
 
         /**
          * This method contains the basic drawing shape algorithm.
@@ -112,5 +156,25 @@ package pegas.draw
             }
         }
         
+        /**
+         * @private
+         */
+        private var _bottomLeftRadius:Number = 0 ;
+        
+        /**
+         * @private
+         */
+        private var _bottomRightRadius:Number = 0 ;
+
+        /**
+         * @private
+         */
+		private var _topLeftRadius:Number = 0 ;
+        
+        /**
+         * @private
+         */
+        private var _topRightRadius:Number = 0 ;
+                
     }
 }

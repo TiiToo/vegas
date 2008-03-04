@@ -26,6 +26,7 @@ package lunas.display.button
 	
 	import lunas.core.AbstractStyle;
 	
+	import pegas.draw.FillStyle;
 	import pegas.transitions.easing.Elastic;	
 
 	/**
@@ -93,7 +94,7 @@ package lunas.display.button
 		/**
 		 * Indicates the type of the gridfit of the fields.
 		 */
-    	public var gridFitType:String = null;
+    	public var gridFitType:String = null ;
 		
 		/**
 		 * Indicates if the button use a html text or not.
@@ -144,21 +145,26 @@ package lunas.display.button
 		 * The color of the text when is selected.
 		 */
     	public var textSelectedColor:Number = 0x37284F ;
-		
+	
+        /**
+         * The radius of the bottom-left corner, in pixels.
+         */
+        public var themeBottomLeftRadius:Number = 8 ;
+        
+        /**
+         * The radius of the bottom-right corner, in pixels.
+         */
+        public var themeBottomRightRadius:Number = 8 ;
+        
 		/**
 		 * The alpha value of the text.
 		 */
-    	public var themeAlpha:Number = 100 ;
-		
-		/**
-		 * The color value of the background.
-		 */
-	    public var themeColor:Number = 0x006699  ;
+    	public var themeFill:FillStyle = new FillStyle( 0x006699 , 100 ) ;
 		
 		/**
 		 * The disabled color value of the background.
 		 */
-    	public var themeDisabledColor:Number = 0x000000 ;
+    	public var themeDisabledFill:FillStyle = new FillStyle( 0x000000 , 100 ) ;
 		
 		/**
 	 	 * The array of the filters of the component background.
@@ -168,18 +174,23 @@ package lunas.display.button
 		/**
 		 * The rollover color value of the background.
 		 */
-    	public var themeRollOverColor:Number = 0x435F78 ;
-	
-		/**
-	 	 * The rounded value of the background of the component.
-	 	 */
-    	public var themeRound:Number = 8 ;
+    	public var themeRollOverFill:FillStyle = new FillStyle( 0x435F78 , 100 ) ;
 		
 		/**
 		 * The selected color value of the background.
 		 */
-    	public var themeSelectedColor:Number = 0x000000 ;
-			
+    	public var themeSelectedFill:FillStyle = new FillStyle( 0x000000 , 100 ) ;
+		
+        /**
+         * The radius of the upper-left corner, in pixels.
+         */
+        public var themeTopLeftRadius:Number = 8 ;
+        
+        /**
+         * The radius of the upper-right corner, in pixels. 
+         */
+        public var themeTopRightRadius:Number = 8 ;				
+		
 		/**
 		 * Indicates if the component use the style text colors.
 		 */

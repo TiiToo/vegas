@@ -56,20 +56,20 @@ package lunas.display.container
 
 			super( id, isConfigurable, name );
 
-			_background              = new CoreSprite( null , false , "background" ) ;			
-			_container               = new CoreSprite( null , false , "container" ) ;
-			_mask                    = new CoreShape ( null , false , "mask" ) ;		
-			_area                    = new CoreSprite( null , false , "area" ) ;
+			_background         = new CoreSprite( null , false , "background" ) ;			
+			_container          = new CoreSprite( null , false , "container" ) ;
+			_mask               = new CoreShape ( null , false , "mask" ) ;		
+			_area               = new CoreSprite( null , false , "area" ) ;
 			
-			_areaPen                 = new RectanglePen( _area ) ;
-			_backgroundPen           = new RectanglePen( _background ) ;
-			_maskPen                 = new RectanglePen( _mask ) ;
+			_areaPen            = new RectanglePen( _area ) ;
+			_backgroundPen      = new RectanglePen( _background ) ;
+			_maskPen            = new RectanglePen( _mask ) ;
 			
-			_areaPen.fillStyle       = new FillStyle( 0 , 0 ) ;
-			_backgroundPen.fillStyle = new FillStyle( 0 , 0 ) ;
-			_maskPen.fillStyle       = new FillStyle( 0 , 0 ) ;
+			_areaPen.fill       = new FillStyle( 0 , 0 ) ;
+			_backgroundPen.fill = new FillStyle( 0 , 0 ) ;
+			_maskPen.fill       = new FillStyle( 0 , 0 ) ;
 			
-			_bound                   = new Rectangle() ;
+			_bound              = new Rectangle() ;
 				
 			lock() ;
 
