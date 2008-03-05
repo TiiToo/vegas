@@ -19,8 +19,7 @@
   
   Contributor(s) :
   
-*/
-
+ */
 import vegas.util.ConstructorUtil;
 import vegas.util.TypeUtil;
 
@@ -72,11 +71,17 @@ class vegas.util.factory.DisplayFactory
 			{
 				child = p_target.createEmptyMovieClip (p_name, p_depth) ;
 			}
-			else if (ConstructorUtil.isSubConstructorOf(p_class, TextField)) 
+			else if ( ConstructorUtil.isSubConstructorOf(p_class, TextField)) 
 			{
-				p_target.createTextField (p_name, p_depth, 0, 0, 0, 0) ;
+				p_target.createTextField (p_name, p_depth, 0, 0, 100, 100) ;
 				child = p_target[p_name] ;
 			}
+			else if ( p_class == TextField  )
+			{
+				p_target.createTextField (p_name, p_depth, 0, 0, 100, 100) ;
+				child = p_target[p_name] ;
+				return child ;
+			}			
 			return ConstructorUtil.createVisualInstance(p_class, child, p_init) ;
 		}
 		else if (TypeUtil.typesMatch(oChild, String)) 
