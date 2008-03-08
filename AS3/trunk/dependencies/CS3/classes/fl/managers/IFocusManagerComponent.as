@@ -1,4 +1,4 @@
-// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.managers {
 	/**
 	 * The IFocusManagerComponent interface provides methods and properties

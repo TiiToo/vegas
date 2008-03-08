@@ -25,9 +25,6 @@ package lunas.display.button
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.filters.GradientGlowFilter;
-	import flash.text.AntiAliasType;
-	import flash.text.GridFitType;
-	import flash.text.TextField;
 	
 	import asgard.display.CoreShape;
 	import asgard.text.CoreTextField;
@@ -38,9 +35,7 @@ package lunas.display.button
 	import pegas.colors.LightColor;
 	import pegas.draw.FillStyle;
 	import pegas.draw.RoundedComplexRectanglePen;
-	import pegas.transitions.Tween;
-	
-	import vegas.string.HTMLStringFormatter;	
+	import pegas.transitions.Tween;	
 
 	/**
 	 * The IBuilder class of the AquaButton component.
@@ -235,9 +230,9 @@ package lunas.display.button
 	     */
     	private function _refreshField():void
 	    {
-	        var $target:AquaButton = (target as AquaButton) ;
-	        var $s:AquaButtonStyle = $target.style as AquaButtonStyle ;
-					
+	        //var $target:AquaButton = (target as AquaButton) ;
+	        //var $s:AquaButtonStyle = $target.style as AquaButtonStyle ;
+			/*	
 			var $w:Number = AquaButton(target).w ;
 			var $h:Number = AquaButton(target).h ;
 			        
@@ -280,7 +275,7 @@ package lunas.display.button
 	
 			//field.x     = ( $i == null ) ? ($tl + $p) : ($i.x + $i.width + $p + $r ) ;
 			//field.width = ( $i == null ) ? ( $w - $m - $p - 2 * $r ) : ( $w - field.x - $m - $r ) ;
-			
+			*/
 		}				
 		
 	}

@@ -24,6 +24,7 @@
 package asgard.display
 {
 	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
 	import flash.display.Stage;	
 
 	/**
@@ -56,7 +57,7 @@ package asgard.display
 		/**
 		 * The root reference of the application.
 		 */
-		public static var root:DisplayObject;
+		public static var root:DisplayObjectContainer ;
 
 		/**
 		 * The stage reference of the application.

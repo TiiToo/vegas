@@ -46,7 +46,7 @@ package andromeda.model.map
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
 		 * @param sChannel (optional) the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
 		 */	
-        public function MapModel(id:* = null, bGlobal:Boolean = false, sChannel:String = null)
+        public function MapModel(id:* = null, bGlobal:Boolean = false, sChannel:String=null )
         {
             super( id , bGlobal , sChannel );
 			_map = initializeMap() ;

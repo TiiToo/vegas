@@ -32,7 +32,7 @@ package vegas.events
     * <p><code>EventDispatcher</code> is an AS2 port of the <b>Java.schst.net EventDispatcher</b>. Inspired by the NotificationCenter of Apple's Cocoa-Framework.
     * <li>EventDispatcher JAVA : Stephan Schmid - http://schst.net/</li><li>Cocoa-Framework : http://developer.apple.com/cocoa/</li><li>Notification center : http://developer.apple.com/documentation/Cocoa/Conceptual/Notifications/index.html</li>
     * </p>
-     * @author eKameleon
+    * @author eKameleon
     */
     public class EventDispatcher extends AbstractEventDispatcher implements IEventDispatcher
     {

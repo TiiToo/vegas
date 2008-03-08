@@ -25,7 +25,7 @@ package vegas.events
 {
 	import flash.events.Event;
 	
-	import system.Reflection;	    
+	import system.Reflection;	
 
 	/**
 	 * <code>BasicEvent</code> is the basical event structure to work with <code>vegas.events.EventDispatcher</code>.
@@ -119,6 +119,15 @@ package vegas.events
 		public function set type(s:String):void 
 		{
 			setType(s) ;	
+		}
+
+		/**
+		 * Dispatch the event with the global event flow.
+		 * @see EventDispatcher.getInstance() static method.
+		 */
+		public function dispatch( channel:String=null ):void
+		{
+			EventDispatcher.getInstance( channel ).dispatchEvent( this ) ;
 		}
 
 		/**

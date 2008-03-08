@@ -27,7 +27,7 @@ package vegas.events
 	import vegas.data.iterator.Iterator;
 	import vegas.data.map.ArrayMap;
 	import vegas.data.map.HashMap;
-	import vegas.errors.IllegalArgumentError;    
+	import vegas.errors.IllegalArgumentError;	
 
 	/**
      * The Front Controller pattern defines a single EventDispatcher that is responsible for processing application requests.
@@ -155,7 +155,7 @@ package vegas.events
             }
             if ( listener == null )
             {
-                throw new IllegalArgumentError( this + " insert method failed, the 'listener' object in argument not must be 'null' or 'undefined'.") ;    
+                throw new IllegalArgumentError( this + " insert method failed with the event type '" + eventName + "' failed, the 'listener' object in argument not must be 'null' or 'undefined'.") ;    
             }
             _map.put.apply( this, arguments ) ;
             _dispatcher.registerEventListener( eventName, listener ) ;

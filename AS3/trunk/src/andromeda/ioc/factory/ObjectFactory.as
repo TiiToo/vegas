@@ -119,7 +119,7 @@ package andromeda.ioc.factory
 					{
 						throw new NullPointerError( this +  " get( " + name + " ) method failed, the object isn't register in the container.") ; 
 					}
-					if ( definition.isSingleton())
+					if ( definition.isSingleton() )
 					{
 						instance = _createAndCacheSingletonInstance( name , definition ) ;
 					}
@@ -235,7 +235,7 @@ package andromeda.ioc.factory
 	 	 */
 		protected function _createAndCacheSingletonInstance( name:String, definition:IObjectDefinition ):*
 		{
-			var instance:* = singletons.get(name) ;
+			var instance:* = singletons.get( name ) ;
 			if( !instance ) 
 			{
 				instance = _createObject( definition.getType() , definition ) ;
