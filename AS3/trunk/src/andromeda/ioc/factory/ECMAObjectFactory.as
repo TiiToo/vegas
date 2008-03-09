@@ -46,7 +46,7 @@ package andromeda.ioc.factory
 	 * This factory builder use a deserialize eden object to creates all Objects with the IObjectDefinitionContainer.
 	 * <p><b>Example :</b></p>
  	 * <p><b>1 -</b> The eden application file : <b>"application.eden"</b></p>
- 	 * <code>
+ 	 * <pre class="prettyprint">
 	 *   {
 	 *        objects : 
 	 *        [
@@ -90,7 +90,7 @@ package andromeda.ioc.factory
 	 *                ,
 	 *                methods :
 	 *                [
-	 *                    { name:"setMail" , arguments  :  [ { value :"vegas@ekameleon.net" } ] }
+	 *                    { name:"setMail" , arguments  :  [ { value : 'vegas[at]ekameleon.net' } ] }
 	 *                ]
 	 *             }
 	 *             ,
@@ -106,9 +106,9 @@ package andromeda.ioc.factory
 	 *             }
 	 *         ]
 	 *    }
-	 * </code>
+	 * </pre>
 	 * <p>2 - The ActionScript test code :</p>
-	 * <code>
+	 * <pre class="prettyprint">
 	 * import andromeda.ioc.core.ObjectDefinition ;
 	 * import andromeda.ioc.factory.ECMAObjectFactory ;
 	 * import andromeda.events.ActionEvent ;
@@ -151,7 +151,7 @@ package andromeda.ioc.factory
 	 *     trace( "User firstName      : " + user.firstName ) ; // Marc
 	 *     trace( "User name           : " + user.name ) ; // ALCARAZ
 	 *     trace( "User age            : " + user.age ) ; // 30
-	 *     trace( "User mail           : " + user.mail ) ; // vegas@ekameleon.net
+	 *     trace( "User mail           : " + user.mail ) ; // vegas[at]ekameleon.net
 	 *     trace( "User url            : " + user.url  ) ; // http://www.ekameleon.net/blog
 	 *     trace( "User job            : " + user.job ) ; // [Job AS Developper]
 	 *     trace( "User address        : " + user.address ) ; // [Address]
@@ -189,9 +189,9 @@ package andromeda.ioc.factory
 	 * loader.addEventListener( Event.COMPLETE , complete ) ;
 	 *  
 	 * loader.load( request ) ;
-	 * </code>
+	 * </pre>
 	 * <p><b>3 -</b> The <b>test.User</b> class.</p>
-	 * <code>
+	 * <pre class="prettyprint">
 	 * package test
 	 * {
 	 *     import system.Reflection;
@@ -236,9 +236,9 @@ package andromeda.ioc.factory
 	 * 		   }
 	 * 	   }
 	 * }
- 	 * </code>
+ 	 * </pre>
 	 * <p><b>4 -</b> The <b>test.Address</b> class.</p>
-	 * <code>
+	 * <pre class="prettyprint">
 	 * package test
 	 * {
 	 *     import vegas.core.CoreObject ;
@@ -254,9 +254,9 @@ package andromeda.ioc.factory
 	 *         
 	 *     }
  	 * }
-	 * </code>
+	 * </pre>
 	 * <p><b>5 -</b> The <b>test.Job</b> class.</p>
-	 * <code>
+	 * <pre class="prettyprint">
 	 * package test
 	 * {
 	 *     import system.Reflection;
@@ -276,7 +276,7 @@ package andromeda.ioc.factory
 	 *         
 	 *     }
 	 * }
-	 * </code>
+	 * </pre>
 	 * @author eKameleon
 	 */
 	public class ECMAObjectFactory extends ObjectFactory implements IFactory 

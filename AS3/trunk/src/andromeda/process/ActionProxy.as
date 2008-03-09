@@ -34,8 +34,8 @@ package andromeda.process
 	
 	    /**
     	 * Creates a new ActionProxy instance.
-    	 * @param scope The scope of the proxy method invoqued in this process.
-    	 * @param method The method invoqued in this process.
+    	 * @param scope The scope of the proxy method invoked in this process.
+    	 * @param method The method invoked in this process.
     	 * @param args The Arguments injected in the method.
     	 * @param bGlobal the flag to use a global event flow or a local event flow.
     	 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
@@ -49,12 +49,12 @@ package andromeda.process
 	    }
 		
 		/**
-		 * The array representation of the proxy method invoqued in this process.
+		 * The array representation of the proxy method invoked in this process.
 		 */
 		public var args:Array ;
 		
 		/**
-		 * The proxy method invoqued in this process.
+		 * The proxy method invoked in this process.
 		 */
 		public var method:Function ;
 		

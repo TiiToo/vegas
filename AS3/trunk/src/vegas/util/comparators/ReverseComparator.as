@@ -32,7 +32,7 @@ package vegas.util.comparators
 	/**
 	 * Reverse an IComparator object. For example if the comparator must return 1 the reverse comparator return -1.
 	 * <p><b>Example :</b></p>
-	 * <code>
+	 * <pre class="prettyprint">
 	 * import vegas.util.comparators.ReverseComparator ;
 	 * import vegas.util.comparators.StringComparator ;
 	 * 
@@ -41,7 +41,7 @@ package vegas.util.comparators
 	 * 
 	 * trace( c.compare( "hello", "world" ) ) ; // -1
 	 * trace( s.compare( "hello", "world" ) ) ; // 1
-	 * </code>
+	 * </pre>
 	 * @author eKameleon
 	 */
 	public class ReverseComparator extends CoreObject implements IComparator, ICloneable, ICopyable

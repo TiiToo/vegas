@@ -42,9 +42,9 @@ package vegas.events
          * @param channel the channel of this FrontController.
          * @param target the EventDispatcher reference to switch with the default EventDispatcher singleton in the controller.
          * <p><b>Example :</b></p>
-         * <code> 
-         * var oC = new FrontController() ;
-         * </code>
+         * <pre class="prettyprint">
+         * var controller:FrontController = new FrontController() ;
+         * </pre>
          */
         public function FrontController( channel:String=null, target:EventDispatcher=null )
         {

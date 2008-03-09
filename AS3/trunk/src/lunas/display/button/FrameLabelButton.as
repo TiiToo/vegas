@@ -38,7 +38,7 @@ package lunas.display.button
 	 * This class looks like SimpleButton class but you can use the <code>registerType()</code> and the <code>unregisterType()</code> method to add or remove a ButtonEvent type (DISABLED, OVER, DOWN...) corresponding with a frame label in the MovieClip view of the button.
 	 * <p>
 	 * <p><b>Example :</b></p>
-	 * <code>
+	 * <pre class="prettyprint">
 	 * import lunas.display.button.FrameLabelButton ;
 	 * import lunas.events.ButtonEvent ;
 	 * 
@@ -101,7 +101,7 @@ package lunas.display.button
 	 * bt.addEventListener( ButtonEvent.SELECT        , debug ) ;
 	 * bt.addEventListener( ButtonEvent.UNSELECT      , debug ) ;
 	 * bt.addEventListener( ButtonEvent.UP            , debug ) ;
-	 * </code>
+	 * </pre>
 	 * @author eKameleon
 	 */
 	public class FrameLabelButton extends AbstractButton 

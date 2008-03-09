@@ -33,7 +33,7 @@ package vegas.util.comparators
 	/**
 	 * This comparator compare Date objects.
 	 * <p><b>Example :</b></p>
- 	 * <code>
+ 	 * <pre class="prettyprint">
  	 * import vegas.util.comparators.DateComparator;
 	 * 
  	 * var comp:DateComparator = new DateComparator() ;
@@ -50,7 +50,7 @@ package vegas.util.comparators
 	 * trace( comp.compare(d1, d4) ) ; // -1
 	 * trace( comp.compare(d3, d1) ) ; // 1
 	 * trace( comp.compare(d4, d1) ) ; // 1
- 	 * </code>
+ 	 * </pre>
 	 * @author eKameleon
  	 */
 	public class DateComparator extends CoreObject implements IComparator, ICloneable, ICopyable

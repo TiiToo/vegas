@@ -33,9 +33,9 @@ package vegas.core
 		
 		/**
 		 * Compare two IHashable objects.
-		 * <code>
+		 * <pre class="prettyprint">
 		 * var isEquals:Boolean = HashCode.equals(o1, o2) ;
-		 * </code>
+		 * </pre>
 		 * @param   o1 the first value to compare.
 		 * @param   o2 the second value to compare.
 		 * @return <code>true</code> of the two object are equals.  

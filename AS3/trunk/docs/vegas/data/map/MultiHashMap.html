@@ -1,0 +1,990 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
+<link rel="prettify" href="../../../prettify.css" type="text/css" media="prettify">
+<script type="text/javascript" language="javascript" src="../../../prettify.js"></script>
+<meta content="MultiHashMap,vegas.data.map.MultiHashMap,__map,clear,clone,containsKey,containsValue,containsValueByKey,copy,createCollection,getKeys,getValues,isEmpty,iterator,iteratorByKey,keyIterator,put,putAll,putCollection,remove,removeByKey,size,toSource,toString,totalSize,valueIterator,values,get" name="keywords">
+<title>vegas.data.map.MultiHashMap</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'MultiHashMap - VEGAS AS3 Reference';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../index-list.html')" href="../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../index.html?vegas/data/map/MultiHashMap.html&amp;vegas/data/map/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;MultiHashMap</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class MultiHashMap"); titleBar_setSubNav(false,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">vegas.data.map</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class MultiHashMap</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">MultiHashMap <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> <a href="../../core/CoreObject.html">CoreObject</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Implements</td><td><a href="../MultiMap.html">MultiMap</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Subclasses</td><td><a href="../sets/MultiHashSet.html">MultiHashSet</a></td>
+</tr>
+</table>
+<p></p>
+   The default implementation of the <code>MultiMap</code> interface.
+   <p><b>Example :</b></p>
+  <code>
+   import vegas.data.Collection ;
+  import vegas.data.iterator.Iterator ;
+  import vegas.data.map.HashMap ;
+  import vegas.data.Map ;
+  import vegas.data.MultiMap ;
+  import vegas.data.map.MultiHashMap ;
+   
+  var map1:HashMap = new HashMap() ;
+  map1.put("key1", "valueD1") ;
+  map1.put("key2", "valueD2") ;
+  trace ("> map1 : " + map1) ;
+  trace ("> map1 containsKey 'key1' : " + map1.containsKey("key1")) ;
+  
+  trace ("--- use a map argument in constructor") ;
+  
+  var map:MultiHashMap = new MultiHashMap(map1) ;
+  map.put("key1", "valueA1") ;
+  map.put("key1", "valueA2") ;
+  map.put("key1", "valueA3") ;
+  map.put("key2", "valueA2") ;
+  map.put("key2", "valueB1") ;
+   map.put("key2", "valueB2") ;
+   map.put("key3", "valueC1") ;
+   map.put("key3", "valueC2") ;
+  
+   trace ("init map : " + map) ;
+  trace ("\r--- toSource MultiMap") ;
+  
+  trace("map toSource : " + map.toSource()) ;
+   
+  trace ("\r--- put values in MultiMap") ;
+  
+  trace ("key1 >> " + map.get("key1")) ;
+  
+  trace ("key2 >> " + map.get("key2")) ;
+  
+  trace ("key3 >> " + map.get("key3")) ;
+  
+  trace ("\r--- toString MultiMap") ;
+  
+  trace (map) ;
+  
+  map.remove("key1", "valueA2") ;
+  
+  trace ("\r--- remove a value in key1 >> " + map.get("key1")) ;
+  
+  trace ("\r--- use iterator") ;
+  
+  var it:Iterator = map.iterator() ;
+  while(it.hasNext()) 
+  {
+      trace ("\t :: " + it.next()) ;
+  }
+  
+  trace ("\r--- use a key iterator : key1") ;
+  var it:Iterator = map.iterator("key1") ;
+  while(it.hasNext()) 
+  {
+      trace ("\t :: " + it.next()) ;
+  }
+  
+  trace ("\r--- putCollection key2 in key1") ;
+  map.putCollection("key1", map.get("key2")) ;
+  trace ("key1 >> " + map.get("key1")) ;
+  
+  trace ("\r--- different size") ;
+  trace ("map size : " + map.size()) ;
+  trace ("map totalSize : " + map.totalSize()) ;
+  
+  trace ("\r--- clone MultiMap") ;
+  var clone:MultiMap = map.clone() ;
+  clone.remove("key1") ;
+  
+  trace("clone : " + clone) ;
+  trace ("clone size : " + clone.totalSize()) ;
+  trace ("map size : " + map.totalSize()) ;
+  
+  trace ("\r--- valueIterator") ;
+  var it:Iterator = map.valueIterator() ;
+  while(it.hasNext()) 
+  {
+      trace("\t> " + it.next()) ;
+  }
+ </code>
+  <p></p>
+<p>
+<span class="classHeaderTableLabel">See also</span>
+</p>
+<div class="seeAlso">MultiMap</div>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a><a name="protectedPropertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Protected Properties</div>
+<table id="summaryTableProtectedProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#__map">__map</a> : <a href="../map/HashMap.html">HashMap</a>
+<div class="summaryTableDescription">
+   The internal Map of this MultiHashMap class.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<div class="showHideLinks">
+<div class="hideInheritedMethod" id="hideInheritedMethod">
+<a onclick="javascript:setInheritedVisible(false,'Method');" href="#methodSummary" class="showHideLink"><img src="../../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Methods</a>
+</div>
+<div class="showInheritedMethod" id="showInheritedMethod">
+<a onclick="javascript:setInheritedVisible(true,'Method');" href="#methodSummary" class="showHideLink"><img src="../../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Methods</a>
+</div>
+</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#MultiHashMap()">MultiHashMap</a>(m:<a href="../Map.html">Map</a> = null)</div>
+<div class="summaryTableDescription">
+   Creates a new MultiHashMap instance.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#clear()">clear</a>():void</div>
+<div class="summaryTableDescription">
+   Removes all elements in this map.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#clone()">clone</a>():*</div>
+<div class="summaryTableDescription">
+   Returns a shallow copy of this object.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#containsKey()">containsKey</a>(key:*):Boolean</div>
+<div class="summaryTableDescription">
+   Checks whether the map contains the key specified.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#containsValue()">containsValue</a>(value:*):Boolean</div>
+<div class="summaryTableDescription">
+   Checks whether the map contains the value specified.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#containsValueByKey()">containsValueByKey</a>(key:*, value:*):Boolean</div>
+<div class="summaryTableDescription">
+   Checks whether the map contains the value specified or at the specified key contains the value.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#copy()">copy</a>():*</div>
+<div class="summaryTableDescription">
+   Returns a deep copy of the map.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#createCollection()">createCollection</a>():<a href="../../data/Collection.html">Collection</a>
+</div>
+<div class="summaryTableDescription">
+   Creates a new instance of the map value Collection container.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#get()">get</a>(key:*):*</div>
+<div class="summaryTableDescription">
+   Gets the collection mapped to the specified key.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getKeys()">getKeys</a>():Array</div>
+<div class="summaryTableDescription">
+   Checks whether the map contains the key specified .</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/CoreObject.html#getLogger()">getLogger</a>():<a href="../../logging/ILogger.html">ILogger</a>
+</div>
+<div class="summaryTableDescription">
+   Returns the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/CoreObject.html">CoreObject</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getValues()">getValues</a>():Array</div>
+<div class="summaryTableDescription">
+   This returns an array containing the combination of values from all keys.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/CoreObject.html#hashCode()">hashCode</a>():uint</div>
+<div class="summaryTableDescription">
+   Returns a hashcode value for the object.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/CoreObject.html">CoreObject</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#isEmpty()">isEmpty</a>():Boolean</div>
+<div class="summaryTableDescription">
+   Returns whether this MultiHashSet contains any mappings.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#iterator()">iterator</a>():<a href="../iterator/Iterator.html">Iterator</a>
+</div>
+<div class="summaryTableDescription">
+   Gets an iterator for the MultiHashMap.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#iteratorByKey()">iteratorByKey</a>(key:*):<a href="../iterator/Iterator.html">Iterator</a>
+</div>
+<div class="summaryTableDescription">
+   Gets an iterator for the collection mapped to the specified key.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#keyIterator()">keyIterator</a>():<a href="../iterator/Iterator.html">Iterator</a>
+</div>
+<div class="summaryTableDescription">
+   Gets an iterator for the map to iterate keys.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#put()">put</a>(key:*, value:*):*</div>
+<div class="summaryTableDescription">
+   Adds the value to the collection associated with the specified key.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#putAll()">putAll</a>(map:<a href="../Map.html">Map</a>):void</div>
+<div class="summaryTableDescription">
+   Override superclass to ensure that MultiMap instances are correctly handled.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#putCollection()">putCollection</a>(key:*, c:<a href="../Collection.html">Collection</a>):void</div>
+<div class="summaryTableDescription">
+   Adds a collection of values to the collection associated with the specified key.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#remove()">remove</a>(o:*):*</div>
+<div class="summaryTableDescription">
+   Removes a specific value from map with a specific key.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#removeByKey()">removeByKey</a>(key:*, value:*):*</div>
+<div class="summaryTableDescription">
+   Removes a specific value from all the map.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/CoreObject.html#setLogger()">setLogger</a>(log:<a href="../../logging/ILogger.html">ILogger</a> = null):void</div>
+<div class="summaryTableDescription">
+   Sets the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/CoreObject.html">CoreObject</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#size()">size</a>():uint</div>
+<div class="summaryTableDescription">
+   Returns the size of the collection mapped to the specified key.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#toSource()">toSource</a>(indent:int = 0):String</div>
+<div class="summaryTableDescription">
+   Returns a Eden representation of the object.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#toString()">toString</a>():String</div>
+<div class="summaryTableDescription">
+   Returns the string representation of this instance.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#totalSize()">totalSize</a>():uint</div>
+<div class="summaryTableDescription">
+    Returns the total size of the map by counting all the values.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#valueIterator()">valueIterator</a>():<a href="../iterator/Iterator.html">Iterator</a>
+</div>
+<div class="summaryTableDescription">
+   Returns the iterator of all values in the MultiHashMap.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#values()">values</a>():<a href="../../data/Collection.html">Collection</a>
+</div>
+<div class="summaryTableDescription">
+   Returns a Collection of all values in the MultiHashMap.</div>
+</td><td class="summaryTableOwnerCol">MultiHashMap</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="__map"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">__map</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var __map:<a href="../map/HashMap.html">HashMap</a></code><p>
+   The internal Map of this MultiHashMap class.
+   </p></div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="MultiHashMap()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">MultiHashMap</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function MultiHashMap(m:<a href="../Map.html">Map</a> = null)</code><p>
+   Creates a new MultiHashMap instance.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">m</span>:<a href="../Map.html">Map</a></code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="clear()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">clear</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function clear():void</code><p>
+   Removes all elements in this map.
+   </p></div>
+<a name="clone()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">clone</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function clone():*</code><p>
+   Returns a shallow copy of this object.
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>*</code> &mdash; a shallow copy of this object.
+   </td>
+</tr>
+</table>
+</div>
+<a name="containsKey()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">containsKey</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function containsKey(key:*):Boolean</code><p>
+   Checks whether the map contains the key specified.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">key</span>:*</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code></td>
+</tr>
+</table>
+</div>
+<a name="containsValue()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">containsValue</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function containsValue(value:*):Boolean</code><p>
+   Checks whether the map contains the value specified.
+   </p><p><b>Example :</b></p>
+   <code>
+   var b:Boolean = map.containsValue(value) ;
+   </code>
+   <span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">value</span>:*</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the List contains the specified value.
+   </td>
+</tr>
+</table>
+</div>
+<a name="containsValueByKey()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">containsValueByKey</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function containsValueByKey(key:*, value:*):Boolean</code><p>
+   Checks whether the map contains the value specified or at the specified key contains the value.
+   </p><p><b>Example :</b></p>
+   {
+   var b:Boolean = map.containsValue(key, value) ;
+   }
+   <span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">key</span>:*</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">value</span>:*</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code></td>
+</tr>
+</table>
+</div>
+<a name="copy()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">copy</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function copy():*</code><p>
+   Returns a deep copy of the map.
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>*</code> &mdash; a deep copy of the map.
+   </td>
+</tr>
+</table>
+</div>
+<a name="createCollection()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">createCollection</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function createCollection():<a href="../../data/Collection.html">Collection</a></code><p>
+   Creates a new instance of the map value Collection container.
+   This method can be overridden to use your own collection type.
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../../data/Collection.html">Collection</a></code></td>
+</tr>
+</table>
+</div>
+<a name="get()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">get</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function get(key:*):*</code><p>
+   Gets the collection mapped to the specified key. This method is a convenience method to typecast the result of get(key).
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">key</span>:*</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>*</code></td>
+</tr>
+</table>
+</div>
+<a name="getKeys()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getKeys</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getKeys():Array</code><p>
+   Checks whether the map contains the key specified .
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Array</code></td>
+</tr>
+</table>
+</div>
+<a name="getValues()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getValues</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getValues():Array</code><p>
+   This returns an array containing the combination of values from all keys.
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Array</code></td>
+</tr>
+</table>
+</div>
+<a name="isEmpty()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isEmpty</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function isEmpty():Boolean</code><p>
+   Returns whether this MultiHashSet contains any mappings.
+   
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this MultiHashSet contains any mappings else <code>false</code>
+   </td>
+</tr>
+</table>
+</div>
+<a name="iterator()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">iterator</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function iterator():<a href="../iterator/Iterator.html">Iterator</a></code><p>
+   Gets an iterator for the MultiHashMap.
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../iterator/Iterator.html">Iterator</a></code></td>
+</tr>
+</table>
+</div>
+<a name="iteratorByKey()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">iteratorByKey</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function iteratorByKey(key:*):<a href="../iterator/Iterator.html">Iterator</a></code><p>
+   Gets an iterator for the collection mapped to the specified key.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">key</span>:*</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../iterator/Iterator.html">Iterator</a></code></td>
+</tr>
+</table>
+</div>
+<a name="keyIterator()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">keyIterator</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function keyIterator():<a href="../iterator/Iterator.html">Iterator</a></code><p>
+   Gets an iterator for the map to iterate keys.
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../iterator/Iterator.html">Iterator</a></code></td>
+</tr>
+</table>
+</div>
+<a name="put()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">put</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function put(key:*, value:*):*</code><p>
+   Adds the value to the collection associated with the specified key.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">key</span>:*</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">value</span>:*</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>*</code></td>
+</tr>
+</table>
+</div>
+<a name="putAll()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">putAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function putAll(map:<a href="../Map.html">Map</a>):void</code><p>
+   Override superclass to ensure that MultiMap instances are correctly handled.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">map</span>:<a href="../Map.html">Map</a></code></td>
+</tr>
+</table>
+</div>
+<a name="putCollection()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">putCollection</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function putCollection(key:*, c:<a href="../Collection.html">Collection</a>):void</code><p>
+   Adds a collection of values to the collection associated with the specified key.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">key</span>:*</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">c</span>:<a href="../Collection.html">Collection</a></code></td>
+</tr>
+</table>
+</div>
+<a name="remove()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">remove</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function remove(o:*):*</code><p>
+   Removes a specific value from map with a specific key.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">o</span>:*</code> &mdash; the key to remove in the map.
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>*</code></td>
+</tr>
+</table>
+</div>
+<a name="removeByKey()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">removeByKey</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function removeByKey(key:*, value:*):*</code><p>
+   Removes a specific value from all the map.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">key</span>:*</code> &mdash; the key to remove in the map
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">value</span>:*</code> &mdash; (optional) if this value is defined removes a specific value from map else removes all values associated with the specified key.
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>*</code> &mdash; the removed value.
+   </td>
+</tr>
+</table>
+</div>
+<a name="size()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">size</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function size():uint</code><p>
+   Returns the size of the collection mapped to the specified key.
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>uint</code> &mdash; the size of the collection mapped to the specified key.
+   </td>
+</tr>
+</table>
+</div>
+<a name="toSource()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">toSource</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function toSource(indent:int = 0):String</code><p>
+   Returns a Eden representation of the object.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">indent</span>:int</code> (default = <code>0</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash; a string representing the source code of the object.
+   </td>
+</tr>
+</table>
+</div>
+<a name="toString()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">toString</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function toString():String</code><p>
+   Returns the string representation of this instance.
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash; the string representation of this instance
+   </td>
+</tr>
+</table>
+</div>
+<a name="totalSize()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">totalSize</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function totalSize():uint</code><p>
+    Returns the total size of the map by counting all the values.
+    </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>uint</code> &mdash; the total size of the map by counting all the values.
+    </td>
+</tr>
+</table>
+</div>
+<a name="valueIterator()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">valueIterator</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function valueIterator():<a href="../iterator/Iterator.html">Iterator</a></code><p>
+   Returns the iterator of all values in the MultiHashMap.
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../iterator/Iterator.html">Iterator</a></code> &mdash; 
+                        the iterator of all values in the MultiHashMap.
+   
+                        
+                     </td>
+</tr>
+</table>
+</div>
+<a name="values()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">values</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function values():<a href="../../data/Collection.html">Collection</a></code><p>
+   Returns a Collection of all values in the MultiHashMap.
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../../data/Collection.html">Collection</a></code> &mdash; 
+                        a Collection of all values in the MultiHashMap.
+    
+                        
+                     </td>
+</tr>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> 
+</center>
+</div>
+</body>
+</html>
+<!-- -->

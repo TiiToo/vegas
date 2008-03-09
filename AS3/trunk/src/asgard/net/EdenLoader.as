@@ -30,7 +30,7 @@ package asgard.net
 	/**
 	 * This loader load an external file with eden document inside and deserialize it when the loading is complete.
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * import flash.events.Event ;
      * import flash.events.ProgressEvent ;
      * import flash.net.URLRequest ;
@@ -59,7 +59,7 @@ package asgard.net
      * loader.addEventListener(Event.COMPLETE, onComplete);
      * 
      * loader.load(request) ;
-     * </code>
+     * </pre>
      * @author eKameleon
      */ 
 	public class EdenLoader extends ParserLoader

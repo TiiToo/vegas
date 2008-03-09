@@ -31,13 +31,12 @@ package pegas.colors
 
 	/**
 	 * <code>BasicColor</code> extends the Color Object.
-	 * <p>
-	 * <code> 
+	 * <p><b>Example :</b></p>
+	 * <pre class="prettyprint">
 	 * import pegas.colors.BasicColor;
  	 * var c : BasicColor = new BasicColor ( display ); // assuming 'display' is a DisplayObject
 	 * c.setRGB(0xFF9900);
-	 * </code>
-	 * </p>
+	 * </pre>
 	 * @author eKameleon
 	 */	
 	public class Color extends CoreObject

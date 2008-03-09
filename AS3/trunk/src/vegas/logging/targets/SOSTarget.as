@@ -378,7 +378,7 @@ package vegas.logging.targets
     	private var _xs:XMLSocket ;
     	
     	/**
-    	 * Invoqued when the socket close the connection.
+    	 * Invoked when the socket close the connection.
     	 */
     	private function _onClose( e:Event ):void
     	{
@@ -387,7 +387,7 @@ package vegas.logging.targets
     	}
 
     	/**
-    	 * Invoqued when the socket is connected.
+    	 * Invoked when the socket is connected.
     	 */
     	private function _onConnect( e:Event ):void 
     	{
@@ -397,7 +397,7 @@ package vegas.logging.targets
     	}
 
     	/**
-    	 * Invoqued when the socket notify an IO error.
+    	 * Invoked when the socket notify an IO error.
     	 */
     	private function _onIOError ( e:IOErrorEvent ):void 
     	{
@@ -406,7 +406,7 @@ package vegas.logging.targets
         }
 
     	/**
-    	 * Invoqued when the socket notify a security error.
+    	 * Invoked when the socket notify a security error.
     	 */
         private function _onSecurityError ( e:SecurityErrorEvent ):void 
         {

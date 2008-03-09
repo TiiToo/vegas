@@ -36,13 +36,12 @@ package pegas.colors
  	 * <li>http://www.amazon.com/exec/obidos/ASIN/0072223561/robertpennerc-20
  	 * </ul>
  	 * </p>
- 	 * <p>
- 	 * <code>
+ 	 * <p><b>Example :</b></p>
+ 	 * <pre class="prettyprint">
  	 * import asgard.colors.BasicColor;
  	 * var c:LightColor = new LightColor( display ); 
  	 * c.setBrightness(55);
- 	 * </code>
- 	 * </p>
+ 	 * </pre>
  	 * @author eKameleon
  	 */
 	public class LightColor extends Color 

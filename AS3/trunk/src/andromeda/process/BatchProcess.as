@@ -29,7 +29,7 @@ package andromeda.process
 	/**
      * This <code>IAction</code> object register <code>IAction</code> objects in a batch process.
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * import pegas.events.ActionEvent ;
      * import pegas.process.BatchProcess ;
      * import pegas.process.Pause ;
@@ -71,7 +71,7 @@ package andromeda.process
      * // onProgress : [Pause duration:7s]
      * // onProgress : [Pause duration:10s]
      * // onFinished
-     * </code>
+     * </pre>
      * @author eKameleon
      */
     public class BatchProcess extends SimpleAction
@@ -147,7 +147,7 @@ package andromeda.process
 	    }
 	    
 	    /**
-         * Invoqued before the notifyFinished method is invoqued.
+         * Invoked before the notifyFinished method is invoked.
          * Overrides this method.
          */
 	    public function finish():void
@@ -265,7 +265,7 @@ package andromeda.process
         }
         
        	/**
-	     * Invoqued before the notifyStarted method is invoqued. Overrides this method.
+	     * Invoked before the notifyStarted method is invoked. Overrides this method.
 	     */
 	    public function start():void
 	    {
@@ -283,14 +283,14 @@ package andromeda.process
         private var _cpt:Number ;
 
         /**
-         * The event type of the event invoqued during the progress of the process.
+         * The event type of the event invoked during the progress of the process.
          */
 	    private var _sTypeProgress:String ;
         
 	    /**
-    	 * Invoqued when a tween finish this movement.
-    	 * If all tweens are finished the notifyFinished method is invoqued.
-	    */
+    	 * Invoked when a tween finish this movement.
+    	 * If all tweens are finished the notifyFinished method is invoked.
+	     */
     	private function _onFinished( e:ActionEvent ):void
     	{
 		    _cpt ++ ;

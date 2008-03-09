@@ -26,7 +26,7 @@ package calista.hash
 	/**
 	 * Wheeler & Needham’s Tiny Encryption Algorithm is a simple but powerful encryption algorithm (based on a ‘Feistel cipher’).
 	 * <p><b>Example :</b></p>
-	 * <code>
+	 * <pre class="prettyprint">
 	 * import calista.hash.TEA ;
 	 * 
 	 * var source:String = "hello world is secret" ;
@@ -37,7 +37,7 @@ package calista.hash
 	 * 
 	 * var decrypt:String = TEA.decrypt(encrypt , password) ;
 	 * trace("decrypt : " + decrypt) ;
-	 * </code>
+	 * </pre>
 	 * <p>Original Javascript implementation :</p>
 	 * Chris Veness, Movable Type Ltd: www.movable-type.co.uk
 	 * Algorithm: David Wheeler & Roger Needham, Cambridge University Computer Lab
@@ -49,7 +49,7 @@ package calista.hash
 		
 		/**
 		 * Uses corrected Block TEA to encrypt a string value using key.
-	 	 * <code>
+	 	 * <pre class="prettyprint">
 	 	 * import calista.hash.TEA ;
 	 	 * 
 	 	 * var source:String   = "hello world is secret" ;
@@ -58,7 +58,7 @@ package calista.hash
 	 	 * var encrypt:String = TEA.encrypt( source , password ) ;
 	 	 * trace("encrypt : " + encrypt) ;
 	 	 * // encrypt : 021fd8983c171657403494ffe971fdbea3f48acea8418864
-	 	 * </code>
+	 	 * </pre>
 		 * @return encrypted text as string
 		 */
 		public static function encrypt( src:String, key:String ):String
@@ -99,7 +99,7 @@ package calista.hash
 		/**
 	 	 * Use Corrected Block TEA to decrypt ciphertext using password.
 		 * <p><b>Example :</b></p>
-	 	 * <code>
+	 	 * <pre class="prettyprint">
 	 	 * import calista.hash.TEA ;
 	 	 * 
 		 * var source:String = "hello world is secret" ;
@@ -113,7 +113,7 @@ package calista.hash
 	 	 * 
 	 	 * // encrypt : 021fd8983c171657403494ffe971fdbea3f48acea8418864
 	 	 * // decrypt : hello world is secret
-	 	 * </code>
+	 	 * </pre>
 	 	 */
 		public static function decrypt( src:String, key:String ):String
 		{

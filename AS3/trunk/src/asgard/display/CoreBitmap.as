@@ -37,7 +37,7 @@ package asgard.display
 	/**
 	 * The CoreBitmap class extends the flash.display.Bitmap class and implements the IDisplayObject interface.
 	 * <p><b>Example :</b></p>
-	 * <code>
+	 * <pre class="prettyprint">
 	 * import asgard.display.CoreBitmap ;
 	 * import asgard.display.DisplayObjectCollector ;
 	 * 
@@ -52,7 +52,7 @@ package asgard.display
 	 * 
 	 * trace( "DisplayObject contains 'my_bitmap' : " + DisplayObjectCollector.contains( "my_bitmap" ) ) ;
 	 * trace( DisplayObjectCollector.get( "my_bitmap" ) ) ;
-	 * </code>
+	 * </pre>
 	 * @author eKameleon
 	 */
 	public class CoreBitmap extends Bitmap implements IDisplayObject

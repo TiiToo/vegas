@@ -32,7 +32,7 @@ package vegas.data.stack
 	/**
      * TypedQueue is a wrapper for Stack instances that ensures that only values of a specific type can be added to the wrapped stack.
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * import vegas.data.Stack ;
      * import vegas.data.stack.SimpleStack ;
      * import vegas.data.stack.TypedStack ;
@@ -49,7 +49,7 @@ package vegas.data.stack
      * trace("stack.toSource : " + ts.toSource()) ;
      * 
      * ts.push(2) ;
-     * </code>
+     * </pre>
      * @author eKameleon
      */
 	public class TypedStack extends AbstractTypeable implements Stack

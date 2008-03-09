@@ -30,7 +30,7 @@ package calista.hash
 	 * Read the good definition of this algorithm in Wikipedia : http://en.wikipedia.org/wiki/SHA-1
 	 * This implementation is a ActionScript version of the SHA-1 Cryptographic Hash Algorithm find in the web site : http://www.movable-type.co.uk/
 	 * <p><b>Example :</b></p>
-	 * <code>
+	 * <pre class="prettyprint">
 	 * import calista.hash.SHA1 ;
 	 * 
 	 * var hash:String = SHA1.encrypt("hello world") ;
@@ -40,7 +40,7 @@ package calista.hash
 	 * 
 	 * // 'hello world' SHA1 result : 2aae6c35c94fcfb415dbe95f408b9ce91ee846ed : true
 	 * 
-	 * </code>
+	 * </pre>
 	 * <p>Original Javascript implementation :</p>
 	 * Chris Veness, Movable Type Ltd: www.movable-type.co.uk
 	 * Algorithm: David Wheeler & Roger Needham, Cambridge University Computer Lab
@@ -53,14 +53,14 @@ package calista.hash
 		/**
 		 * Encrypt the specified text with the SHA1 algorithm.
 	 	 * <p><b>Example :</b></p>
-	 	 * <code>
+	 	 * <pre class="prettyprint">
 	 	 * import calista.hash.SHA1 ;
 	 	 * 
  	     * var hash:String = SHA1.encrypt("hello world") ;
 	 	 * var equal:Boolean = hash == '2aae6c35c94fcfb415dbe95f408b9ce91ee846ed' ;
 	 	 * 
 	 	 * trace("'hello world' SHA1 result : " + hash + " : " + equal ) ;
-	 	 * </code>
+	 	 * </pre>
 		 */
 		public static function encrypt( message:String ):String
 		{

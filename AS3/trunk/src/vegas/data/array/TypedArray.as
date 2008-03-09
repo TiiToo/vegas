@@ -31,13 +31,13 @@ package vegas.data.array
 	/**
      * <code>TypedArray</code> acts like a normal array but assures that only objects of a specific type are added to the array.
      * <p>Example :
-     * <code>
+     * <pre class="prettyprint">
      * import vegas.data.array.TypedArray ;
      * 
      * var ta:TypedArray = new TypedArray(String, ["item1", "item2", "item3"]) ;
      * trace ("ta : " + ta) ; // output : ta : item1,item2,item3
      * ta.push(2) ; // [TypeMismatchError] TypedArray.validate('value':2) is mismatch
-     * </code>
+     * </pre>
      * @author eKameleon 
      */
     public class TypedArray extends ProxyArray implements ITypeable, IValidator

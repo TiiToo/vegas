@@ -37,7 +37,7 @@ package asgard.managers
     /**
      * The TabManager manage visual tab process in the applications.
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * import asgard.managers.TabManager ;
      * 
      * var manager:TabManager = TabManager.getInstance() ;
@@ -95,7 +95,7 @@ package asgard.managers
      * }
      * 
      * stage.addEventListener( KeyboardEvent.KEY_DOWN , onKeyDown ) ;
-     * </code>
+     * </pre>
      * @author eKameleon
      */
     public class TabManager extends AbstractModel 
@@ -302,7 +302,7 @@ package asgard.managers
         private var _set:MultiHashSet ;
     
         /**
-         * Invoqued when an interactive object in the manager is focus in.
+         * Invoked when an interactive object in the manager is focus in.
          */
         private function _onFocusIn( e:FocusEvent ):void
         {

@@ -34,7 +34,7 @@ package andromeda.events
 	{
 		
 		/**
-		 * Creates a new <code>BasicEvent</code> instance.
+		 * Creates a new BasicEvent instance.
 		 * @param type the string type of the instance. 
 		 * @param target the target of the event.
 		 * @param info The information object of this event.

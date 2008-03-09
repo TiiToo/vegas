@@ -42,7 +42,7 @@ package asgard.display
 	/**
      * This display is used to create a background in your application or in an other display of the application.
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * import asgard.display.Background ;
      * 
      * import flash.display.GradientType ;
@@ -83,7 +83,7 @@ package asgard.display
      * }
      * 
      * stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
-     * </code>
+     * </pre>
      * @author eKameleon
      */
     public class Background extends CoreSprite 
@@ -275,7 +275,7 @@ package asgard.display
     
         /**
          * Init the pen to draw the background of this display.
-         * This method is invoqued in the constructor of the class.
+         * This method is invoked in the constructor of the class.
          * You can override this method to change the shape of the background.
          * @return the IPen reference to draw the background of the display.
          */
@@ -328,7 +328,7 @@ package asgard.display
         }
 
         /**
-         * This method is invoqued after the draw() method in the update() method.
+         * This method is invoked after the draw() method in the update() method.
          * Overrides this method.
          */
         public function viewChanged():void

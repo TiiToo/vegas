@@ -21,8 +21,6 @@
   
 */
 
-// TODO verify the y property with the example of the pen and the SPACE test.
-
 package pegas.draw 
 {
     import flash.display.Graphics;

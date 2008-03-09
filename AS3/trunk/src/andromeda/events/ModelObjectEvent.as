@@ -56,27 +56,27 @@ package andromeda.events
 		}
 
 		/**
-		 * Default event type when the addVO method is invoqued.
+		 * Default event type when the addVO method is invoked.
 		 */
 		public static var ADD_VO:String = "onAddVO" ;
 	
 		/**
-		 * Default event type when the clear method is invoqued.
+		 * Default event type when the clear method is invoked.
 		 */
 		public static var CLEAR_VO:String = "onClearVO" ;
 	
 		/**
-		 * Default event type when the setVO method is invoqued.
+		 * Default event type when the setVO method is invoked.
 		 */
 		public static var CHANGE_CURRENT_VO:String = "onChangeCurrentVO" ;
 	
 		/**
-		 * Default event type when the removeVO method is invoqued.
+		 * Default event type when the removeVO method is invoked.
 		 */
 		public static var REMOVE_VO:String = "onRemoveVO" ;
 	
 		/**
-		 * Default event type when the removeVO method is invoqued.
+		 * Default event type when the removeVO method is invoked.
 		 */
 		public static var UPDATE_VO:String = "onUpdateVO" ;
 		

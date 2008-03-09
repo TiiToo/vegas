@@ -30,7 +30,7 @@ package vegas.data.iterator
 	/**
      * Protect an iterator. This class protect the remove, reset and seek method.
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * import vegas.data.iterator.StringIterator ;
      * import vegas.data.iterator.ProtectedIterator ;
      * 
@@ -39,7 +39,7 @@ package vegas.data.iterator
      * {
      *     trace( it.next() ) ;
      * }
-     * </code>
+     * </pre>
      * @author eKameleon 
      */
     public class ProtectedIterator extends CoreObject implements Iterator

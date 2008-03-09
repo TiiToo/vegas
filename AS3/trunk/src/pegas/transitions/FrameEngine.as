@@ -135,7 +135,7 @@ package pegas.transitions
 		private var _sTypeEnterFrame:String = Event.ENTER_FRAME ;
 
 		/**
-		 * Invoqued during the enterframe propagation.
+		 * Invoked during the enterframe propagation.
 		 */
 		private function _enterFrame( e:Event ):void
 		{

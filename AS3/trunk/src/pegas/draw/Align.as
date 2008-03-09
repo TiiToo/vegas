@@ -103,11 +103,11 @@ package pegas.draw
         /**
          * Converts a string value in this Align value.
          * <p><b>Example :</b></p>
-         * <code>
+         * <pre class="prettyprint">
          * import pegas.draw.Align ;
          * var sAlign:String = "l" ;
          * trace( Align.toNumber("l") == Align.LEFT ) ; // true
-         * </code>
+         * </pre>
          */
         public static function toNumber( str:String ):uint 
         {
@@ -171,12 +171,12 @@ package pegas.draw
         /**
          * Returns the string representation of the specified Align value passed in argument.
          * <p><b>Example :</b></p>
-         * <code>
+         * <pre class="prettyprint">
          * import pegas.draw.Align ;
          * trace( Align.toString(Align.LEFT)) ; // "l"
          * trace( Align.toString(Align.TOP_LEFT)) ; // "tl"
          * trace( Align.toString(Align.RIGHT_BOTTOM)) ; // "rb"
-         * </code>
+         * </pre>
          * @return the string representation of the specified Align value passed in argument.
          */
         public static function toString(n:Number):String 

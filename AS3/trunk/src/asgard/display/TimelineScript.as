@@ -38,7 +38,7 @@ package asgard.display
 		
 		/**
 		 * Creates a new TimelineScript instance.
-		 * <code>
+		 * <pre class="prettyprint">
 		 * import asgard.display.TimelineScript ;
 		 * 
 		 * var ts:TimelineScript = new TimelineScript( mc , true ) ; // mc a MovieClip in the stage
@@ -76,7 +76,7 @@ package asgard.display
 		 * mc.useHandCursor = true ;
 		 * mc.buttonMode    = true ;
 		 * mc.addEventListener( MouseEvent.CLICK , click ) ;
-		 * </code>
+		 * </pre>
          * @param target The MovieClip reference of this iterator.
          * @param autoStop This boolean flag indicates if the specified MovieClip target reference is stopped.
 		 */

@@ -30,8 +30,8 @@ package vegas.data.bag
 
 	/**
 	 * Implements Bag, using a HashMap to provide the data storage. This is the standard implementation of a bag.
-	 * <p><b>Example : </b>
-	 * <code>
+	 * <p><b>Example : </b></p>
+	 * <pre class="prettyprint">
 	 * import vegas.data.Bag ;
 	 * import vegas.data.bag.HashBag ;
 	 * import vegas.data.Collection ;
@@ -77,8 +77,7 @@ package vegas.data.bag
  	 * trace ("----") ;
 	 * var s:Set = bag.uniqueSet() ;
 	 * trace("bag uniqueSet : " + s) ;
-	 * </code>
-	 * </p>
+	 * </pre>
 	 * @author eKameleon
  	 */
 	public class HashBag extends AbstractBag

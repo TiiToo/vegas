@@ -153,7 +153,7 @@ package pegas.maths
     	}
 
 		/**
-		 * Defines the square of a number.
+		 * Defines the square value of a number.
 		 */
 	    public static function square(n:Number):Number 
     	{	

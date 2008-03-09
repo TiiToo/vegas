@@ -33,14 +33,14 @@ package calista.util
 		/**
 		 * Compresses the specified text.
 	 	 * <p><b>Example :</b></p>
-	 	 * <code>
+	 	 * <pre class="prettyprint">
 	 	 * import calista.util.LZW ;
 	 	 * 
 	 	 * var source:String = "hello world with LZW algorithm" ;
 	 	 * 
 	 	 * var compress:String = LZW.compress( source ) ;
 	 	 * trace("compress : " + compress) ;
-	 	 * </code>
+	 	 * </pre>
 		 */
 		public static function compress( str:String ):String
 		{
@@ -82,7 +82,7 @@ package calista.util
 		/**
 		 * Decompresses the specified text with the LZW algorithm.
 	 	 * <p><b>Example :</b></p>
- 	 	 * <code>
+ 	 	 * <pre class="prettyprint">
 	 	 * import calista.util.LZW ;
 	 	 * 
 	 	 * var source:String = "hello world with LZW algorithm" ;
@@ -92,7 +92,7 @@ package calista.util
 	 	 * 
  	 	 * var decompress:String = LZW.decompress( compress ) ;
 	 	 * trace("decompress : " + decompress) ; // decompress : hello world with LZW algorithm
-	 	 * </code>
+	 	 * </pre>
 		 */
 		public static function decompress( str:String ):String
 		{

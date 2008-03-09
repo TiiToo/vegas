@@ -52,6 +52,7 @@ package vegas.logging.targets
             super();
             
             _lc = new LocalConnection() ;
+                        
     	    _lc.addEventListener ( AsyncErrorEvent.ASYNC_ERROR, _onAsyncError ) ;
     	    _lc.addEventListener ( StatusEvent.STATUS, _onStatus ) ;
     		_lc.addEventListener ( SecurityErrorEvent.SECURITY_ERROR , _onSecurityError ) ;    		
@@ -195,7 +196,7 @@ package vegas.logging.targets
     	}
     	
     	/**
-    	 * Invoqued when a asynchronous error is notify by the LocalConnection.
+    	 * Invoked when a asynchronous error is notify by the LocalConnection.
     	 */
     	private function _onAsyncError(e:AsyncErrorEvent):void
     	{
@@ -203,7 +204,7 @@ package vegas.logging.targets
     	}
 
     	/**
-    	 * Invoqued when the status of the LocalConnection change.
+    	 * Invoked when the status of the LocalConnection change.
     	 */
     	private function _onStatus( e:StatusEvent ):void
 		{
@@ -211,7 +212,7 @@ package vegas.logging.targets
 		}
 
     	/**
-    	 * Invoqued when a security error is notify by the LocalConnection.
+    	 * Invoked when a security error is notify by the LocalConnection.
     	 */
 		private function _onSecurityError( e:SecurityErrorEvent ):void
 		{

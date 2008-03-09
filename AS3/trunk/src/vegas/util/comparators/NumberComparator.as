@@ -33,7 +33,7 @@ package vegas.util.comparators
 	/**
 	 * This comparator compare two Number objects.
 	 * <p><b>Example :</b></p>
-	 * <code>
+	 * <pre class="prettyprint">
 	 * import vegas.util.comparators.NumberComparator ;
 	 * 
 	 * var c:NumberComparator = new NumberComparator() ;
@@ -45,7 +45,7 @@ package vegas.util.comparators
 	 * trace( c.compare( Number(Math.cos(25)) , 0.9912028118634736 ) ) ; // 0
 	 * trace( c.compare(1, 0) ) ; // 1
 	 * trace( c.compare(0, 1) ) ; // -1
-	 * </code>
+	 * </pre>
 	 * @author eKameleon
  	 */
 	public class NumberComparator extends CoreObject implements IComparator, ICloneable, ICopyable

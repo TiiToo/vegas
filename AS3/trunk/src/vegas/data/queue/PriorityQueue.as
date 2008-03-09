@@ -38,7 +38,7 @@ package vegas.data.queue
         /**
          * Creates a new PriorityQueue instance.
          * <p><b>Example :</b></p>
-         * <code>
+         * <pre class="prettyprint">
          * import vegas.data.queue.PriorityQueue ;
          * import vegas.errors.ClassCastError ;
          * import vegas.util.comparators.NumberComparator ;
@@ -76,7 +76,7 @@ package vegas.data.queue
          * 
          * q.options = PriorityQueue.CASEINSENSITIVE ;
          * trace("queue " + q) ;
-         * </code>
+         * </pre>
          * @param comp An optional IComparator object used in the PriorityQueue to defined the sort model when enqueue or modify the queue.
          * @param ar An optional Array with values to fill the queue.
          * @see IComparator

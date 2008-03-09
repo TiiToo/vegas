@@ -133,7 +133,7 @@ package asgard.net
     	}
         
 	    /**
-	     * Invoqued when the NetServerConnection receive from the server a shared event.
+	     * Invoked when the NetServerConnection receive from the server a shared event.
 	     * You must use class mapping in the server to register the BasicEvent or the 
 	     * @see BasicEvent
 	     */

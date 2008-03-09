@@ -37,7 +37,7 @@ package asgard.display
 	/**
 	 * The CoreSimpleButton class extends the flash.display.SimpleButton class and implements the IDisplayObject interface.
 	 * <p><b>Example :</b></p>
-	 * <code>
+	 * <pre class="prettyprint">
 	 * import asgard.display.CoreSimpleButton ;
 	 * import asgard.display.DisplayObjectCollector ;
 	 * 
@@ -55,7 +55,7 @@ package asgard.display
 	 * 
 	 * trace( "DisplayObject contains 'mybutton' : " + DisplayObjectCollector.contains( "my_button" ) ) ;
 	 * trace( DisplayObjectCollector.get( "my_button" ) ) ;
-	 * </code>
+	 * </pre>
 	 * @author eKameleon
 	 */
 	public class CoreSimpleButton extends SimpleButton implements IDisplayObject

@@ -108,7 +108,7 @@ package vegas.events
         }
 
 		/**
-		 * Creates and returns the internal <code>EventDispatcher</code> reference (this method is invoqued in the constructor).
+		 * Creates and returns the internal <code>EventDispatcher</code> reference (this method is invoked in the constructor).
 		 * You can overrides this method if you wan use a global <code>EventDispatcher</code> singleton.
 		 * @return the internal <code>EventDispatcher</code> reference.
 	 	 */

@@ -177,7 +177,7 @@ package andromeda.model.map
 		}
 		
         /**
-         * This method is invoqued in the constructor of the class to initialize all events.
+         * This method is invoked in the constructor of the class to initialize all events.
          * Overrides this method.
          */
         public override function initEventType():void

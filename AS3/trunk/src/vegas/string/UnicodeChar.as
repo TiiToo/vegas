@@ -31,7 +31,7 @@ package vegas.string
     /**
      * ECMA 262 Unicode IFormat-Control Characters tools.
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * UnicodeChar = vegas.string.UnicodeChar ;
      * 
      * trace("-----") ;
@@ -57,7 +57,7 @@ package vegas.string
      * 
      * u = new UnicodeChar() ;
      * trace( u.u5c0f() + u.u98fc() + u.u5f3e() + u.u0040() ) ; // 小飼弾@
-     * </code>
+     * </pre>
      * <p>See <a href='http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf'>ECMAScript 262 specifications</a></p>
      * @author eKameleon
      */

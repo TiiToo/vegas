@@ -28,7 +28,7 @@ package pegas.draw
     /**
      * Draws a rounded rectangle.
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * import flash.display.CapsStyle ;
      * import flash.display.JointStyle ;
      * import flash.display.LineScaleMode ;
@@ -51,7 +51,7 @@ package pegas.draw
      * pen.fill       = new FillStyle( 0xFF0000 , 0.5 ) ;
      * pen.line       = new LineStyle( 2, 0xFFFFFF , 1 , true, LineScaleMode.NORMAL , CapsStyle.SQUARE, JointStyle.MITER ) ;
      * pen.draw() ;
-     * </code>
+     * </pre>
      * @author eKameleon
      */
     dynamic public class RoundedRectanglePen extends RectanglePen 

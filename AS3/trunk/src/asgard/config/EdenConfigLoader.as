@@ -28,7 +28,7 @@ package asgard.config
 	/**
      * The EdenConfigLoader class based on the eden notation.
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * import andromeda.events.ActionEvent ;
      * 
      * import asgard.config.Config ;
@@ -56,7 +56,7 @@ package asgard.config
      * loader.addEventListener( ActionEvent.FINISH , debug) ;
      * loader.path = "config/" ;
      * loader.load() ;
-     * </code>
+     * </pre>
      * @author eKameleon
      */
     public class EdenConfigLoader extends AbstractConfigLoader

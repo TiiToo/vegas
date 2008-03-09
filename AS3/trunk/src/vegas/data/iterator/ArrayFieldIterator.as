@@ -28,7 +28,7 @@ package vegas.data.iterator
 	/**
      * Converts an array to an iterator but this iterator return the value of a specific field if the array is an array of objects.
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * import vegas.data.iterator.ArrayFieldIterator ;
      * 
      * var ar:Array = 
@@ -53,7 +53,7 @@ package vegas.data.iterator
      * {
      *     trace (it.next() + " : " + it.key()) ;
      * }
-     * </code>
+     * </pre>
      * @author eKameleon
      */
     public class ArrayFieldIterator extends ArrayIterator

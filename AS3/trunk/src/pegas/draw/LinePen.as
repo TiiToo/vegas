@@ -34,7 +34,7 @@ package pegas.draw
     /**
      * This pen is the basic tool to draw a line.
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * import flash.display.CapsStyle ;
      * import flash.display.JointStyle ;
      * import flash.display.LineScaleMode ;
@@ -54,7 +54,7 @@ package pegas.draw
      * pen.draw() ;
      * 
      * addChild( shape ) ;
-     * </code>
+     * </pre>
      * @author eKameleon
      */
    	dynamic public class LinePen extends Pen 

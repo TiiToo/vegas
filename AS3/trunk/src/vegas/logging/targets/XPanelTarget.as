@@ -182,7 +182,7 @@ package vegas.logging.targets
 	    }   
 
     	/**
-    	 * Invoqued when the LocalConnection notify an asynchronous error.
+    	 * Invoked when the LocalConnection notify an asynchronous error.
     	 */
     	private function _onAsyncError(e:AsyncErrorEvent):void
     	{
@@ -190,7 +190,7 @@ package vegas.logging.targets
     	}
 
     	/**
-    	 * Invoqued when the LocalConnection notify a status change.
+    	 * Invoked when the LocalConnection notify a status change.
     	 */
     	private function _onStatus( e:StatusEvent ):void
 		{
@@ -198,7 +198,7 @@ package vegas.logging.targets
 		}
 
     	/**
-    	 * Invoqued when the LocalConnection notify a security error.
+    	 * Invoked when the LocalConnection notify a security error.
     	 */
 		private function _onSecurityError( e:SecurityErrorEvent ):void
 		{

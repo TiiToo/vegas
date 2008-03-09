@@ -31,7 +31,7 @@ package vegas.data.queue
     /**
      * LinearQueue stores values in a 'first-in, first-out' manner.
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * import vegas.data.queue.LinearQueue ;
      * 
      * var q:LinearQueue = new LinearQueue(["item0", "item1"])  ;
@@ -56,7 +56,7 @@ package vegas.data.queue
      * 
      * trace ("queue size : " + q.size() ) ;
      * trace ("queue toSource : " + q.toSource()) ;
-     * </code>
+     * </pre>
      * @author eKameleon
      */
     public class LinearQueue extends SimpleCollection implements Queue

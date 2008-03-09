@@ -33,7 +33,7 @@ package asgard.display
     /**
      * This iterator control the timeline in a MovieClip target.
      * <p><b>Example :</b> With 'container a MovieClip in the stage of the application, this MovieClip contains 10 frames</p>
-     * <code>
+     * <pre class="prettyprint">
      * import asgard.display.TimelineIterator ;
      * 
      * var it:TimelineIterator = new TimelineIterator( container , 2 ) ;
@@ -75,7 +75,7 @@ package asgard.display
      * }
      * 
      * stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
-     * </code>
+     * </pre>
      * @author eKameleon
      */
     public class TimelineIterator extends CoreObject implements OrderedIterator  

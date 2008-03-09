@@ -42,11 +42,11 @@ package pegas.geom
 		/**
 		 * Creates a new Rectangle instance whose top-left corner is specified by the x and y parameters.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 	 	 * import pegas.geom.Rectangle;
 	 	 * var rec:Rectangle = new Rectangle(5, 10, 50, 100);
 	 	 * trace( "output : " + rec.toString() ); // output : (x:5,y:10,width:50,height:100)
-	 	 * </code>
+	 	 * </pre>
 	 	 * If not arguments are passed-in the constructor an empty rectangle is created.
 	 	 * @param x The <code>x</code> coordinate of the top-left corner of the rectangle.
 	 	 * @param y The <code>y</code> coordinate of the top-left corner of the rectangle.

@@ -27,7 +27,7 @@ package asgard.config
 
 	/**
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * import asgard.config.Config ;
      * import asgard.config.JSONConfigLoader;
      * import asgard.config.IConfigLoader;
@@ -53,7 +53,7 @@ package asgard.config
      * loader.addEventListener(Event.COMPLETE, complete) ;
      * loader.path = "config/" ;
      * loader.load() ;
-     * </code>	
+     * </pre>	
      * @author eKameleon
      */
     public class JSONConfigLoader extends AbstractConfigLoader

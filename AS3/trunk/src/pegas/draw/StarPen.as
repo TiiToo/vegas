@@ -29,7 +29,7 @@ package pegas.draw
     /**
      * This pen drawing a star shaped polygons. This pen draw stars in either direction for creating knockouts.
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * import pegas.draw.Align ;
      * import pegas.draw.StarPen ;
      * import pegas.draw.FillStyle ;
@@ -107,7 +107,7 @@ package pegas.draw
      * stage.addEventListener( MouseEvent.MOUSE_DOWN , mouseDown ) ;
      * stage.addEventListener( MouseEvent.MOUSE_UP , mouseUp ) ;
      * stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
-     * </code>
+     * </pre>
      * @author eKameleon
      */
     dynamic public class StarPen extends Pen 

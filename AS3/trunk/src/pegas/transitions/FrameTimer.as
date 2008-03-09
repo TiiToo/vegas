@@ -169,7 +169,7 @@ package pegas.transitions
 		
 		
 		/**
-		 * Invoqued when the frame engine is in progress.
+		 * Invoked when the frame engine is in progress.
 		 */		
 		protected function enterFrame( e:Event ):void
 		{

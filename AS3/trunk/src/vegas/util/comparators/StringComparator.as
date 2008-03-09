@@ -32,7 +32,7 @@ package vegas.util.comparators
 	/**
 	 * This comparator compare String objects.
 	 * <p><b>Example :</b></p>
-	 * <code>
+	 * <pre class="prettyprint">
 	 * import vegas.util.comparators.StringComparator ;
 	 * 
 	 * var comp1:StringComparator = new StringComparator() ;
@@ -50,7 +50,7 @@ package vegas.util.comparators
 	 * 
 	 * trace( comp1.compare(s1, s0) ) ;  -1
 	 * trace( comp2.compare(s1, s0) ) ;  0
-	 * </code>
+	 * </pre>
 	 * @author eKameleon
  	 */
 	public class StringComparator extends CoreObject implements IComparator, ICloneable, ICopyable

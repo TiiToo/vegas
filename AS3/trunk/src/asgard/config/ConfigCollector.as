@@ -71,7 +71,7 @@ package asgard.config
     	}
 
     	/**
-    	 * Run the <code>ConfigCollector</code> command to invoqued the <code>setup()</code> method of all <code>IConfigurable</code> object registered in the collector.
+    	 * Run the <code>ConfigCollector</code> command to invoked the <code>setup()</code> method of all <code>IConfigurable</code> object registered in the collector.
 	     */
     	public static function run():void
     	{

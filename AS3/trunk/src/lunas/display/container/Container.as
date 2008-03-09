@@ -33,7 +33,7 @@ package lunas.display.container
     /**
      * The Container class is the base components for all objects that can serve as display object containers on the display list.
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * import flash.display.StageScaleMode ;
      * import flash.events.KeyboardEvent ;
      * import flash.text.TextFieldAutoSize ;
@@ -73,7 +73,7 @@ package lunas.display.container
      * }
      * 
      * stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
-     * </code>
+     * </pre>
      * @author eKameleon
      */
     public class Container extends AbstractComponent implements IContainer

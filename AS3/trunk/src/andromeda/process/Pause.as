@@ -30,7 +30,7 @@ package andromeda.process
 	/**
      * This <code>IAction</code> object create a pause in the process.
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * var handleEvent:Function = function( ...args:Array ) :void
      * {
      *     trace( this + " " + args) ;
@@ -40,7 +40,7 @@ package andromeda.process
      * p.addEventListener( ActionEvent.START  , handleEvent ) ;
      * p.addEventListener( ActionEvent.FINISH , handleEvent ) ;
      * p.run() ;
-	 * </code>
+	 * </pre>
      * @author eKameleon
      */
 	public class Pause extends Action
@@ -169,15 +169,24 @@ package andromeda.process
 	    {
     		return "[Pause duration:" + duration + (useSeconds ? "s" : "ms") + "]" ;
     	}
-
+		
+		/**
+		 * @private
+		 */
 	    private var _duration:uint = 0;
-	    
+
+		/**
+		 * @private
+		 */
 	    private var _timer:Timer ;
 
+		/**
+		 * @private
+		 */
         private var _useSeconds:Boolean = false ;
 
         /**
-         * Invoqued when the internal timer of this process is finished.
+         * Invoked when the internal timer of this process is finished.
          */
         private function _onFinished(e:TimerEvent):void
         {
@@ -186,7 +195,7 @@ package andromeda.process
         }
         
         /**
-         * Invoqued when the timer of this process is in progress.
+         * Invoked when the timer of this process is in progress.
          */
         private function _onTimer(e:TimerEvent):void
         {

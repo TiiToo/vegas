@@ -34,13 +34,13 @@ package vegas.util.comparators
 	/**
 	 * An IComparator for <code>Boolean</code> objects that can sort either <code>true</code> or <code>false</code> first.
 	 * <p><b>Example :</b></p>
-	 * <code>
+	 * <pre class="prettyprint">
 	 * var c:IComparator = new BooleanComparator() ;
 	 * trace(c.compare(true, true)) ; // 0
 	 * trace(c.compare(true, false)) ; // 1
 	 * trace(c.compare(false, true)) ; // -1
 	 * trace(c.compare(false, false)) ; // 0
-	 * </code>
+	 * </pre>
 	 * @author eKameleon
  	 */
 	public class BooleanComparator extends CoreObject implements IComparator, ICloneable, ICopyable
@@ -122,13 +122,13 @@ package vegas.util.comparators
 	 	 * Returns a <code>BooleanComparator</code> singleton that sorts false values before true values.
 		 * Clients are encouraged to use the value returned from this method instead of constructing a new instance to reduce allocation and garbage collection overhead when multiple BooleanComparators may be used in the same application.
 	 	 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * var c:IComparator = BooleanComparator.getFalseFirstComparator() ;
 		 * trace(c.compare(true, true)) ; // 0
 		 * trace(c.compare(true, false)) ; // -1
 		 * trace(c.compare(false, true)) ; // 1
 		 * trace(c.compare(false, false)) ; // 0
-	 	 * </code>
+	 	 * </pre>
 		 * @return a <code>BooleanComparator</code> instance that sorts false values before true values.
 		 */
 		public static function getFalseFirstComparator():BooleanComparator
@@ -143,13 +143,13 @@ package vegas.util.comparators
 		/**
 		 * Returns a <code>BooleanComparator</code> singleton that sorts true values before false values.
 		 * Clients are encouraged to use the value returned from this method instead of constructing a new instance to reduce allocation and garbage collection overhead when multiple BooleanComparators may be used in the same application.
- 		 * <code>
+ 		 * <pre class="prettyprint">
 		 * var c:IComparator = BooleanComparator.getTrueFirstComparator() ;
 		 * trace(c.compare(true, true)) ; // 0
 		 * trace(c.compare(true, false)) ; // 1
 		 * trace(c.compare(false, true)) ; // -1
 		 * trace(c.compare(false, false)) ; // 0
-	 	 * </code>
+	 	 * </pre>
 	 	 * @return a <code>BooleanComparator</code> instance that sorts true values before false values.
 	 	 */
 		public static function getTrueFirstComparator():BooleanComparator

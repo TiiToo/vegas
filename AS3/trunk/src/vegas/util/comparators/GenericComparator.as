@@ -30,7 +30,7 @@ package vegas.util.comparators
     /**
 	 * This comparator compare two Objects by field.
 	 * <p><b>Example :</b></p>
- 	 * <code>
+ 	 * <pre class="prettyprint">
  	 * 
  	 * import vegas.events.Delegate ;
  	 * import vegas.util.comparators.GenericComparator ;
@@ -62,7 +62,7 @@ package vegas.util.comparators
  	 * 
  	 * ar.sort( Delegate.create( c , c.compare ) , Array.CASEINSENSITIVE | Array.DESCENDING ) ;
  	 * write(ar , "label") ; // Paris|Marseille|Lyon|Bordeaux
- 	 * </code>
+ 	 * </pre>
  	 * @author eKameleon
  	 */
 	public class GenericComparator extends CoreObject implements IComparator

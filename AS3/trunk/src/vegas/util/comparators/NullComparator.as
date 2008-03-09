@@ -32,7 +32,7 @@ package vegas.util.comparators
 	 * This comparator compare Null objects.
  	 * When comparing two non-null objects, the ComparableComparator is used if the nonNullComparator isnt' define.
 	 * <p><b>Example :</b></p>
-	 * <code>
+	 * <pre class="prettyprint">
 	 * import vegas.util.comparators.NullComparator;
 	 * 
 	 * var comp1:NullComparator = new NullComparator(null, true) ;
@@ -50,7 +50,7 @@ package vegas.util.comparators
 	 * trace( comp2.compare(n, n) ) ; // 0
 	 * trace( comp2.compare(n, o) ) ; // -1
 	 * trace( comp2.compare(o, n) ) ; // 1
- 	 * </code>
+ 	 * </pre>
   	 * @author eKameleon
 	 */
 	public class NullComparator extends CoreObject implements IComparator, ICloneable, ICopyable

@@ -44,7 +44,7 @@ package andromeda.vo
      * trace( "filter : " +  filter ) ;
      * 
      * filter.toggleFilter( VIDEO , true ) ;
-      * 
+     * 
      * trace( "filter : " +  filter ) ;
      * 
      * trace( "filter.toggleFilter( MP3, true ) : " + filter.toggleFilter( MP3, true ) ) ;
@@ -55,7 +55,7 @@ package andromeda.vo
      * filter.toggleFilter( VIDEO , false ) ;
      * 
      * trace( "filter : " +  filter ) ;
-      * 
+     * 
      * trace( "filter.contains( VIDEO ) : " + filter.contains( VIDEO ) ) ;
      * trace( "filter.contains( MP3 )   : " + filter.contains( MP3 ) ) ;
      * </pre>

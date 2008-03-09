@@ -74,7 +74,7 @@ package asgard.config
     	}
  
      	/**
-    	 * Invoqued when this object when the ConfigCollector is run.
+    	 * Invoked when this object when the ConfigCollector is run.
     	 */
        	public function setup():void
         {

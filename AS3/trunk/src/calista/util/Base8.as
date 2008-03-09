@@ -33,7 +33,7 @@ package calista.util
 		/**
 		 * Encodes a base8 string.
 	 	 * <p><b>Example :</b></p>
-	 	 * <code>
+	 	 * <pre class="prettyprint">
 	 	 * import calista.util.Base8 ;
 	 	 * var source:String = "hello world with a base 8 algorithm" ;
 	 	 * 
@@ -42,7 +42,7 @@ package calista.util
 	 	 * 
 	 	 * // encode : 68656c6c6f20776f726c64207769746820612062617365203820616c676f726974686d
 	 	 * 
-	 	 * </code>
+	 	 * </pre>
 		 */
 		public static function encode( str:String ):String
 		{
@@ -59,7 +59,7 @@ package calista.util
 		/**
 		 * Decodes a base8 string.
 	 	 * <p><b>Example :</b></p>
- 	 	 * <code>
+ 	 	 * <pre class="prettyprint">
 	 	 * import calista.util.Base8 ;
 	 	 * 
  	 	 * var source:String = "hello world with a base 8 algorithm" ;
@@ -73,7 +73,7 @@ package calista.util
 	 	 * // encode : 68656c6c6f20776f726c64207769746820612062617365203820616c676f726974686d
 	 	 * // decode : hello world with a base 8 algorithm
 	 	 * 
-	 	 * </code>
+	 	 * </pre>
 		 */
 		public static function decode( str:String ):String
 		{

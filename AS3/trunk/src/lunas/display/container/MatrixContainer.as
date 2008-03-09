@@ -31,7 +31,7 @@ package lunas.display.container
     /**
      * This container use a matrix layout pattern.
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * import flash.display.StageScaleMode ;
      * import flash.filters.* ;
      * 
@@ -90,9 +90,8 @@ package lunas.display.container
      * }
      * 
      * stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
-     * </code>
-     *
-      * @author eKameleon
+     * </pre>
+     * @author eKameleon
      */
     public class MatrixContainer extends ListContainer 
     {

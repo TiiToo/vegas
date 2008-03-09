@@ -62,10 +62,10 @@ package asgard.net
 	    /**
 	     * Decodes the specified string.
 	     * <p><b>Example :</b></p>
-	     * <code>
+	     * <pre class="prettyprint">
 	     * import asgard.net.HTMLEntities  ;
 	     * trace( HTMLEntities.decode("&lt;b&gt;hello world&lt;/b&gt;" ) ) ; // <b>hello world</b>
-	     * </code>
+	     * </pre>
 	     * @return the decode string.
 	     */
     	public static function decode( text:String, removeCRLF:Boolean=false ):String 
@@ -93,10 +93,10 @@ package asgard.net
 	    /**
 	     * Encodes the specified text passed in argument.
 	     * <p><b>Example :</b></p>
-	     * <code>
+	     * <pre class="prettyprint">
 	     * import asgard.net.HTMLEntities  ;
 	     * trace( HTMLEntities.encode("<b>hello world</b>" ) ) ; // &lt;b&gt;hello world&lt;/b&gt;
-	     * </code>
+	     * </pre>
 	     * @return a string encode text.
 	     */
 	    public static function encode( text:String ):String
@@ -121,10 +121,10 @@ package asgard.net
 	     * Returns the entity name of the specified character in argument.
 	     * Returns an empty string value if the char passed-in argument isn't a special char to transform in entity string representation.
 	     * <p><b>Example :</b></p>
-	     * <code>
+	     * <pre class="prettyprint">
      	 * import asgard.net.HTMLEntities  ;
 	     * trace( HTMLEntities.getCharToEntity("<") ) ; // &lt;
-	     * </code>
+	     * </pre>
 	     * @return the entity name of the specified character in argument.
 	     */
     	public static function getCharToEntity( char:String ):String
@@ -136,10 +136,10 @@ package asgard.net
 	    /**
 	     * Returns the entity number string representation of the specified character in argument.
 	     * <p><b>Example :</b></p>
-	     * <code>
+	     * <pre class="prettyprint">
 	     * import asgard.net.HTMLEntities  ;
 	     * trace( HTMLEntities.getCharToEntityNumber("<") ) ; // &#60;
-	     * </code>
+	     * </pre>
 	     * @return the entity number string representation of the specified character in argument.
 	     */
     	public static function getCharToEntityNumber( char:String ):String
@@ -150,10 +150,10 @@ package asgard.net
 	    /**
 	     * Returns the char representation of the specified entity number string value in argument or an empty string value.
 	     * <p><b>Example :</b></p>
-	     * <code>
+	     * <pre class="prettyprint">
 	     * import asgard.net.HTMLEntities  ;
 	     * trace( HTMLEntities.getEntityNumberToChar("&#60;")) ; // <
-	     * </code>
+	     * </pre>
      	 * @return the char representation of the specified entity number string value in argument or an empty string value.
 	     */
     	public static function getEntityNumberToChar( entityNumber:String ):String

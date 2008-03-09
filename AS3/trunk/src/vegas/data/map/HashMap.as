@@ -39,8 +39,7 @@ package vegas.data.map
 	/**
      * This class is not the same AS2 vegas.data.map.HashMap, see ArrayMap to compare AS2 and AS3 class.
      * <p><b>Example :</b></p>
-     * <p>
-     * <code>
+     * <pre class="prettyprint">
      * package 
      * {
      *         
@@ -83,8 +82,7 @@ package vegas.data.map
      *                        
      *       }
      *    }
-     * </code>
-     * </p>
+     * </pre>
      * @author eKameleon
      */
     public class HashMap extends Proxy implements Map

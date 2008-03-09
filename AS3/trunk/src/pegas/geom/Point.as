@@ -48,7 +48,7 @@ package pegas.geom
 		 * <li>if you pass two Numbers (x and y) you can define the horizontal and vertical coordinates.</li>
 		 * </ul>
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * import pegas.geom.Point ;
 		 * 
 		 * var p1:Point = new Point() ;
@@ -59,7 +59,7 @@ package pegas.geom
 		 * 
 		 * var p3:Point = new Point( 25,30 ) ;
 		 * trace(p3) ; // [Point:{25,30}]
-		 * </code>
+		 * </pre>
 		 */
 		public function Point( ...arguments:Array )
 		{
@@ -85,12 +85,12 @@ package pegas.geom
 		/**
 		 * Determinates the angle value of this Point object.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * var p1:Point = new Point(0,10) ;
 		 * var p2:Point = new Point(10,10) ;
 		 * trace(p1.getAngle()) ; // 90
 		 * trace(p2.getAngle()) ; // 45
-		 * </code>
+		 * </pre>
 		 * @return the angle value of this Point object.
 		 */
 		public function get angle():Number 
@@ -111,10 +111,10 @@ package pegas.geom
 		/**
 		 * Returns the length of the line segment from (0,0) to this point.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * var p:Point = new Point(0,5) ;
 		 * trace(p.length) ; // 5
-		 * </code>
+		 * </pre>
 		 * @return the length of the line segment from (0,0) to this point.
 		 */
 		public function get length():Number 
@@ -141,11 +141,11 @@ package pegas.geom
 		/**
 		 * Transform the coordinates of this point to used absolute value for the x and y properties.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * var p:Point = new Point(-10, -20) ;
 		 * p.abs() ;
 		 * trace(p) ; // [Point:{10,20}]
-		 * </code>
+		 * </pre>
 		 */
 		public function abs():void 
 		{
@@ -156,11 +156,11 @@ package pegas.geom
 		/**
 		 * Returns a new Point reference with the absolute value of the coordinates of this Point object.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * var p1:Point = new Point(-10, -20) ;
 	 	 * var p2:Point = p1.absNew() ;
 		 * trace(p1 + " / " + p2) ; // [Point:{-10,-20}] / [Point:{10,20}]
-	 	 * </code>
+	 	 * </pre>
 		 * @return a new Point reference with the absolute value of the coordinates of this Point object.
 		 */
 		public function absNew():Point 
@@ -171,11 +171,11 @@ package pegas.geom
 		/**
 	 	 * Returns the angle value between this Point object and the specified Point passed in arguments.
 	 	 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * var p1:Point = new Point(10, 20) ;
 		 * var p2:point = new Point(50, 200) ;
 		 * var angle:Number = p1.angleBetween(p2) ;
-		 * </code>
+		 * </pre>
 		 * @return the angle value between this Point object and the specified Point passed in arguments.
 		 */
 		public function angleBetween(p:Point):Number 
@@ -188,10 +188,10 @@ package pegas.geom
 		/**
 		 * Returns the shallow copy of this object.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 	 	 * var p1:Point = new Point(10, 20) ;
 		 * var p2:point = p1.clone() ;
-		 * </code>
+		 * </pre>
 	 	 * @return the shallow copy of this object.
 		 */
 		public override function clone():*
@@ -202,10 +202,10 @@ package pegas.geom
 		/**
 		 * Returns the deep copy of this object.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * var p1:Point = new Point(10, 20) ;
 		 * var p2:point = p1.copy() ;
-	 	 * </code>
+	 	 * </pre>
 		 * @return the deep copy of this object.
 		 */
 		public override function copy():* 
@@ -215,11 +215,11 @@ package pegas.geom
 	
 		/**
 		 * Returns the cross value of the current Point object with the Point passed in argument.
-		 * <code>
+		 * <pre class="prettyprint">
 	 	 * var p1:Point = new Point(10,20) ;
 		 * var p2:Point = new Point(40,60) ;
 		 * trace(p1.cross(p2)) ; // -200
-		 * </code>
+		 * </pre>
 		 * @param p The Point object use to calculate the cross value. 
 		 * @return The cross value of the current Point object with the Point passed in argument.
 		 */
@@ -231,11 +231,11 @@ package pegas.geom
 		/**
 		 * Returns the distance between <code>p1</code> and <code>p2</code> the 2 Points reference passed in argument.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * var p1:Point = new Point(10,20) ;
 		 * var p2:Point = new Point(40,60) ;
 		 * trace( Point.distance(p1,p2) ) ; // 50
-		 * </code>
+		 * </pre>
 	 	 * @param p1 the first Point.
 	 	 * @param p2 the second Point.
 	     * @return the distance between p1 and p2 the 2 Points reference passed in argument.
@@ -248,11 +248,11 @@ package pegas.geom
 		/**
 		 * Returns the dot value of the current Point and the specified Point passed in argument.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * var p1:Point = new Point(10,20) ;
 		 * var p2:Point = new Point(40,60) ;
 		 * trace(p1.dot(p2)) ; // 1600
-		 * </code>
+		 * </pre>
 		 * @param p the Point to calculate the dot value of the current Point.
 		 * @return the dot value of the current Point and the specified Point passed in argument.
 		 */
@@ -264,13 +264,13 @@ package pegas.geom
 		/**
 		 * Compares the specified object with this object for equality.
 		 * <p><b>Example :</b></p>
-	 	 * <code>
+	 	 * <pre class="prettyprint">
 		 * var p1:Point = new Point(10,20) ;
 	 	 * var p2:Point = new Point(10,20) ;
 		 * var p3:Point = new Point(30,40) ;
 	 	 * trace(p1.equals(p2)) ; // true
 		 * trace(p1.equals(p3)) ; // false
-		 * </code>
+		 * </pre>
 	 	 * @return <code>true</code> if the the specified object is equal with this object.
 	 	 */
 		public override function equals( o:* ):Boolean 
@@ -290,11 +290,11 @@ package pegas.geom
 		/**
 		 * Returns the direction of this Point.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * var p1 : Point = new Point(10,2);
 		 * var p2 : Point = p1.getDirection();
 		 * trace( p2.getDirection() ) ; 
-		 * </code>
+		 * </pre>
 		 * @return the direction of this Point.
 	 	 * @see Point.normalize
 		 */
@@ -308,10 +308,10 @@ package pegas.geom
 		/**
 		 * Returns the length of the line segment from (0,0) to this point.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * var p:Point = new Point(0,5) ;
 		 * trace(p.getLength()) ; // 5
-		 * </code>
+		 * </pre>
 		 * @return the length of the line segment from (0,0) to this point.
 		 */
 		public function getLength():Number 
@@ -322,12 +322,12 @@ package pegas.geom
 		/**
 		 * Returns the middle Point between 2 Points.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * var p1:Point = new Point(10,10) ;
 	 	 * var p2:Point = new Point(20,20) ;
 		 * var middle:Point = Point.getMiddle(p1,p2) ;
 		 * trace(middle) ;
-		 * </code>
+		 * </pre>
 		 * @return the middle Point between 2 Points.
 		 */
 		public static function getMiddle(p1:Point, p2:Point):Point 
@@ -338,11 +338,11 @@ package pegas.geom
 		/**
 		 * Returns the normal value of this Point.
 	 	 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * var p:Point = new Point(10,10) ;
 		 * var n:Point = p.getNormal() ; // [Point:{-10,10}]
 		 * trace(n) ;
-	 	 * </code>
+	 	 * </pre>
 	     * @return the normal value of this Point.
 	     */
 		public function getNormal():Point 
@@ -353,12 +353,12 @@ package pegas.geom
 		/**
 		 * Returns the size of the projection of this Point with an other Point.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 	 	 * var p1:Point = new Point(10,10) ;
 		 * var p2:Point = new Point(100,200) ;
 		 * var size:Number = p1.getProjectionLength(p2) ;
 		 * trace(size) ; // 0.06
-		 * </code>
+		 * </pre>
 		 * @param p the Point use to calculate the length of the projection.
 		 * @return the size of the projection of this Point with an other Point.
 	 	 */
@@ -374,7 +374,7 @@ package pegas.geom
 		 * The closer the value of the parameter f is to 1.0, the closer the interpolated point is to the first point (parameter <code>p1</code>). 
 		 * The closer the value of the parameter f is to 0, the closer the interpolated point is to the second point (parameter <code>p2</code>).
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 	 	 * var p1:Point = new Point(10,10) ;
 		 * var p2:Point = new Point(40,40) ;
 		 * var p3:Point ;
@@ -387,7 +387,7 @@ package pegas.geom
 		 * 
 	 	 * p3 = Point.interpolate( p1 , p2, 0.5 ) ;
 		 * trace(p3) ; // [Point:{25,25}]
-		 * </code>
+		 * </pre>
 		 * @param p1 The first point.
 		 * @param p2 The second Point.
 		 * @param f the The level of interpolation between the two points. Indicates where the new point will be, along the line between <code>p1</code> and <code>p2</code>. If f=1, pt1 is returned; if f=0, pt2 is returned.
@@ -401,15 +401,15 @@ package pegas.geom
 		/**
 		 * Returns <code>true</code> if the Point is perpendicular with the passed-in Point.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * var p1:Point = new Point(0,10) ;
 		 * var p2:Point = new Point(10,10) ;
 		 * var p3:Point = new Point(10,0) ;
 		 * trace(p1.isPerpTo(p2)) ; // false
 		 * trace(p1.isPerpTo(p3)) ; // true
-		 * </code>
+		 * </pre>
 		 * @param p the Point use to determinate if this Point object is perpendicular.
-		 * @return <code>true</code> if the Point is perpendicular with the passed-in Point.
+		 * @return <code>true</pre> if the Point is perpendicular with the passed-in Point.
 		 */
 		public function isPerpTo(p:Point):Boolean 
 		{	
@@ -419,12 +419,12 @@ package pegas.geom
 		/**
 		 * Returns the new Point with the maximum horizontal coordinate and the maximum vertical coordinate.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * var p1:Point = new Point(10,100) ;
 		 * var p2:Point = new Point(100,10) ;
 		 * var p3:Point = p1.max(p2) ;
 		 * trace(p3) ; // [Point:{100,100}]
-	 	 * </code>
+	 	 * </pre>
 		 * @param p The Point passed in this method
 		 * @return The new Point with the maximum horizontal coordinate and the maximum vertical coordinate.
 		 */
@@ -436,12 +436,12 @@ package pegas.geom
 		/**
 		 * Returns a new Point with the minimum horizontal coordinate and the minimize vertical coordinate.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * var p1:Point = new Point(10,100) ;
 		 * var p2:Point = new Point(100,10) ;
 		 * var p3:Point = p1.min(p2) ;
 		 * trace(p3) ; // [Point:{10,10}]
-		 * </code>
+		 * </pre>
  	 	 * @param p The Point passed in this method
 		 * @return a new Point with the min horizontal coordinate and the minimize vertical coordinate.
 		 */
@@ -453,14 +453,14 @@ package pegas.geom
 		/**
 		 * Sets this Point with negate coordinates.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * var p:Point = new Point(10,20) ;
 		 * trace(p) ; // [Point:{10,20}]
 		 * p.negate() ;
 		 * trace(p) ; // [Point:{-10,-20}]
 		 * p.negate() ;
 		 * trace(p) ; // [Point:{10,20}]
-		 * </code>
+		 * </pre>
 		 */
 		public function negate():void 
 		{
@@ -471,11 +471,11 @@ package pegas.geom
 		/**
 		 * Returns the new negate Point of this Point.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * var p:Point = new Point(10,20) ;
 		 * var n:Point = p.negateNew() ;
 		 * trace(n) ; // [Point:{-10,-20}]
-		 * </code>
+		 * </pre>
 		 * @return The new negate Point of this Point.
 		 */
 		public function negateNew():Point 
@@ -486,11 +486,11 @@ package pegas.geom
 		/**
 		 * Scales the line segment between (0,0) and the current point to a set length.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * var p:Point = new Point(0,5) ;
 		 * p.normalize() ;
 		 * trace(p) ; // [Point:{0,1}]
-		 * </code>
+		 * </pre>
 		 * @param thickness The scaling value. For example, if the current point is (0,5), and you normalize it to 1, the point returned is at (0,1).
 		 * @see length
 		 * @throws IllegalArgumentError if a zero-length vector or a illegal NaN value is calculate in this method.
@@ -519,11 +519,11 @@ package pegas.geom
 		 * The value of dx is added to the original value of x to create the new x value. 
 		 * The value of dy is added to the original value of y to create the new y value.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * var p:Point = new Point(10,10) ;
 		 * p.offset(10,10) ;
 		 * trace(p) ; // [Point:{20,20}]
-		 * </code>
+		 * </pre>
 		 * @param dx The amount by which to offset the horizontal coordinate, x.
 		 * @param dy The amount by which to offset the vertical coordinate, y.
 		 */
@@ -536,10 +536,10 @@ package pegas.geom
 		/**
 		 * Converts a pair of polar coordinates to a Cartesian point coordinate.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * var polar:Point = Point.polar( 5, Math.atan(3/4) ) ;
 		 * trace(polar) ; // [Point:{4,3}]
-		 * 
+		 * </pre>
 		 * @param len The length coordinate of the polar pair.
 		 * @param angle The angle, in radians, of the polar pair.
 		 * @return The new Cartesian point.
@@ -589,7 +589,7 @@ package pegas.geom
 	
 		/**
 		 * Sets the horizontal and vertical coordinates of this Point. 
- 	 	 * If the <code>x</code> and the <code>y</code> parameters are <code>NaN</code> or <code>null</code> the x value is 0 and y value is 0.
+ 	 	 * If the <code>x</pre> and the <code>y</pre> parameters are <code>NaN</pre> or <code>null</pre> the x value is 0 and y value is 0.
 	 	 */
 		public function reset(x:Number, y:Number):void 
 		{
@@ -612,7 +612,7 @@ package pegas.geom
 		}
 
 		/**
-		 * Rotates the Point with the specified <code>angle</code> in argument and creates a new Point.
+		 * Rotates the Point with the specified <code>angle</pre> in argument and creates a new Point.
 		 * @param angle the Angle to rotate this Point.
 		 * @return The rotate new Point.
 		 */
@@ -624,7 +624,7 @@ package pegas.geom
 		}
 
 		/**
-		 * Scales the Point with the specified <code>n</code> value in argument.
+		 * Scales the Point with the specified <code>n</pre> value in argument.
 		 * @param n the value to scale this Point.
 		 */
 		public function scale(n:Number):void 
@@ -634,7 +634,7 @@ package pegas.geom
 		}
 
 		/**
-		 * Rotates the Point with the specified <code>s</code> value in argument and creates a new Point.
+		 * Rotates the Point with the specified <code>s</pre> value in argument and creates a new Point.
 		 * @param n the value to scale this Point.
 		 * @return The scale new Point.
 		 */
@@ -666,13 +666,13 @@ package pegas.geom
 		/**
 		 * Swap the horizontal and vertical coordinates of two Point objects.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * var p1:Point = new Point(10,20) ;
 		 * var p2:Point = new Point(30,40) ;
 		 * trace(p1 + " / " + p2) ; // [Point:{10,20}] / [Point:{30,40}]
 		 * p1.swap(p2) ;
 		 * trace(p1 + " / " + p2) ; // [Point:{30,40}] / [Point:{10,20}]
-		 * </code>
+		 * </pre>
 		 */
 		public function swap(p:Point):void 
 		{

@@ -86,11 +86,11 @@ package buRRRn
 		/**
 		 * Parse a string and interpret the source code to the correct ECMAScript construct.
 		 * <p><b>Example :</b></p>
-		 * <code> 
+		 * <pre class="prettyprint">
 		 * "undefined" --> undefined
 		 * "0xFF"      --> 255
 		 * "{a:1,b:2}" --> {a:1,b:2}
-		 * </code>
+		 * </pre>
 		 */
 		public static function deserialize( source:String ):*
 		{

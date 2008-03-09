@@ -32,7 +32,7 @@ package vegas.data.iterator
      * An iterator page by page over an array who return an new array of elements.
      * If the step size value is <code>1</code> the next and previous methods returns the single value element in the data array.
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * import vegas.data.iterator.PageByPageIterator;
      * 
      * var ar:Array = [1, 2, 3, 4, 5, 6, 7, 8] ;
@@ -65,7 +65,7 @@ package vegas.data.iterator
      * next() ; // > 7,8 : 4
      * next() ; // > 1,2 : 1
      * prev() ; // > 7,8 : 4
-     * </code>
+     * </pre>
      * @author eKameleon
      */
     public class PageByPageIterator extends CoreObject implements OrderedIterator

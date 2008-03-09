@@ -44,7 +44,7 @@ package vegas.data.list
      * <p>In addition to implementing the List interface, the <code>LinkedList</code> class provides uniformly named methods to get, remove and insert an element at the beginning and end of the list.</p>
      * <p>These operations allow linked lists to be used as a stack, queue, etc.</p>
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * import vegas.data.Collection ;
      * import vegas.data.collections.SimpleCollection ;
      * import vegas.data.list.LinkedList;
@@ -189,7 +189,7 @@ package vegas.data.list
      * 
      * trace("list.size() : " + list.size()) ;
      * trace("list.isEmpty : " + list.isEmpty() ) ;
-     * </code>
+     * </pre>
      * @author eKameleon
      */
     public class LinkedList extends CoreObject implements List, Queue
@@ -755,15 +755,15 @@ package vegas.data.list
          * Removes an element at the specified position in this list. 
          * This implementation first gets a list iterator pointing to the indexed element (with <code>listIterator(index)</code>). 
          * Then, it removes the element with <b>ListIterator</b> remove method.
-            * <p><b>Example :</b></p>
-         * <code>
+         * <p><b>Example :</b></p>
+         * <pre class="prettyprint">
          * import vegas.data.list.LinkedList ;
          * var list:LinkedList = new LinkedList() ;
          * list.insert("item1") ;
          * list.insert("item2") ;
          * trace(list.removeAt(1)) ; // item2
          * trace(list) ; // {item1}
-         * </code>
+         * </pre>
          * @param id index of the element to be removed from the List.
          * @return the value removed in the list.
          */
@@ -775,7 +775,7 @@ package vegas.data.list
         /**
          * Removes the specified count of elements at the specified position in this list.
          * <p><b>Example :</b></p>
-         * <code>
+         * <pre class="prettyprint">
          * import vegas.data.list.LinkedList ;
          * var list:LinkedList = new LinkedList() ;
          * list.insert("item1") ;
@@ -785,7 +785,7 @@ package vegas.data.list
          * list.insert("item5") ;
          * var result = list.removesAt(2, 2) ; // {item1,item2,item5}
          * trace(result + " : " + list) ; // item1 : {item2,item3,item4}
-         * </code>
+         * </pre>
          * @param  id index of the first element to be removed from the List.
          */
         public function removesAt( id:uint , len:uint ):* 
@@ -796,7 +796,7 @@ package vegas.data.list
         /**
          * Removes and returns the first element from this list.
          * <p><b>Example :</b></p>
-         * <code>
+         * <pre class="prettyprint">
          * import vegas.data.list.LinkedList ;
          * var list:LinkedList = new LinkedList() ;
          * list.insert("item1") ;
@@ -805,7 +805,7 @@ package vegas.data.list
          * list.insert("item4") ;
          * var result = list.removeFirst() ;
          * trace(result + " : " + list) ; // item1 : {item2,item3,item4}
-         * </code>
+         * </pre>
          * @return the first element from this list.
          * @throws NoSuchElementException if this list is empty.
          */
@@ -817,7 +817,7 @@ package vegas.data.list
         /**
          * Removes and returns the last element from this list.
          * <p><b>Example :</b></p>
-         * <code>
+         * <pre class="prettyprint">
          * import vegas.data.list.LinkedList ;
          * var list:LinkedList = new LinkedList() ;
          * list.insert("item1") ;
@@ -826,7 +826,7 @@ package vegas.data.list
          * list.insert("item4") ;
          * var result = list.removeLast() ;
          * trace(result + " : " + list) ; // item4 : {item1,item2,item3}
-         * </code>
+         * </pre>
          * @return the last element from this list.
          * @throws NoSuchElementException if this list is empty.
          */
@@ -838,7 +838,7 @@ package vegas.data.list
         /**
          * Removes from this list all the elements that are contained between the specific <code>from</code> and the specific <code>to</code> position in this list (optional operation).
          * <p><b>Example :</b></p>
-         * <code>
+         * <pre class="prettyprint">
          * var list:LinkedList = new LinkedList() ;
          * list.insert("item1") ;
          * list.insert("item2") ;
@@ -847,7 +847,7 @@ package vegas.data.list
          * list.insert("item5") ;
          * list.removeRange(2, 4) ; 
          * trace(list) ; // {item1,item2,item5}
-         * </code>
+         * </pre>
          * @throws IllegalArgumentError if the 'from' or 'to' argument is NaN.
          * @throws RangeError if the 'to' > 'from'
          */
@@ -880,7 +880,7 @@ package vegas.data.list
         /**
          * Retains only the elements in this list that are contained in the specified collection (optional operation).
          * <p><b>Example :</b></p>
-         * <code>
+         * <pre class="prettyprint">
          * import vegas.data.collections.SimpleCollection ;
          * import vegas.data.list.LinkedList ;
          * 
@@ -893,7 +893,7 @@ package vegas.data.list
          * var c:SimpleCollection = new SimpleCollection( ["item2", "item4"] ) ;
          * var b:Boolean = list.retainAll( c ) ;
          * trace("list : " + list + ", is retain ? : " + b) ;
-         * </code>
+         * </pre>
          * @return <code>true</code> if the retainAll operation is success.
          */
         public function retainAll(c : Collection):Boolean 
@@ -913,14 +913,14 @@ package vegas.data.list
         /**
          * Replaces the element at the specified position in this list with the specified element.
          * <p><b>Example :</b></p>
-         * <code>
+         * <pre class="prettyprint">
          * import vegas.data.list.LinkedList ;
          * var list:LinkedList = new LinkedList() ;
          * list.insert("item1") ;
          * list.insert("item2") ;
          * var old:* = list.setAt( 1, "ITEM2" ) ;
          * trace("list : " + list + ", old : " + old) ; // list : {item1,ITEM2}, old : item2
-         * </code>
+         * </pre>
          * @param id index of element to replace.
          * @param o element to be stored at the specified position.
          * @return the element previously at the specified position.
@@ -943,13 +943,13 @@ package vegas.data.list
         /**
          * Returns the number of elements in this list.
          * <p><b>Example :</b></p>
-         * <code>
+         * <pre class="prettyprint">
          * import vegas.data.list.LinkedList ;
          * var list:LinkedList = new LinkedList() ;
          * list.insert("item1") ;
          * list.insert("item2") ;
          * trace(list.size()) ; // 2
-         * </code>
+         * </pre>
          * @return the number of elements in this list.
          */
         public function size():uint
@@ -960,7 +960,7 @@ package vegas.data.list
         /**
          * Returns a subList of the LinkedList. The subList is an ArrayList instance.
          * <p><b>Example :</b></p>
-         * <code>
+         * <pre class="prettyprint">
          * import vegas.data.list.LinkedList ;
          * 
          * var list:LinkedList = new LinkedList() ;
@@ -974,7 +974,7 @@ package vegas.data.list
          * trace( list.subList(2, -1) ) ; // {}
          * trace( list.subList(2, 3) ) ; // {item3}
          * trace( list.subList() ) ; // {item1,item2,item3,item4,item5}
-         * </code>
+         * </pre>
          * @return a subList of the LinkedList. The subList is an ArrayList instance.
          * @see LinkedList
          */
@@ -1005,7 +1005,7 @@ package vegas.data.list
        /**
         * Returns an array containing all of the elements in this list in the correct order.
         * <p><b>Example :</b></p>
-        * <code>
+        * <pre class="prettyprint">
         * import vegas.data.list.LinkedList ;
         * var list:LinkedList = new LinkedList() ;
         * list.insert("item1") ;
@@ -1013,7 +1013,7 @@ package vegas.data.list
         * list.insert("item3") ;
         * list.insert("item4") ;
         * trace( list.toArray() ) ; // item1,item2,item3,item4
-        * </code>
+        * </pre>
         * @return an array containing all of the elements in this list in the correct order.
         */
         public function toArray():Array 
@@ -1031,13 +1031,13 @@ package vegas.data.list
            /**
          * Returns a eden representation of the object.
          * <p><b>Example :</b></p>
-         * <code>
+         * <pre class="prettyprint">
          * var list:LinkedList = list.clone() ;
          * list.insert("item1") ;
          * list.insert("item2") ;
          * var source:String = list.toSource() ; 
          * trace(source) ; // new vegas.data.list.LinkedList(new vegas.data.collections.SimpleCollection(["item1","item2"]))
-         * </code>
+         * </pre>
          * @return a string representing the source code of the object.
          */
         public override function toSource( indent:int = 0 ):String  
@@ -1149,7 +1149,7 @@ import vegas.errors.UnsupportedOperation;
 /**
  * Converts a <code>LinkedList</code> to a specific <code>ListIterator</code>.
  * <p><b>Example :</b></p>
- * <code>
+ * <pre class="prettyprint">
  * import vegas.data.iterator.LinkedListIterator ;
  * import vegas.data.list.LinkedList ;
  * 
@@ -1159,7 +1159,7 @@ import vegas.errors.UnsupportedOperation;
  * list.insert("item3") ;
  * var it:LinkedListIterator = LinkedListIterator( list.listIterator(2) ) ;
  * trace(it.hasPrevious() + " : " + it.previous()) ; // true : item2
- * </code>
+ * </pre>
  * @author eKameleon
  */
 class LinkedListIterator extends CoreObject implements ListIterator
@@ -1199,14 +1199,14 @@ class LinkedListIterator extends CoreObject implements ListIterator
     /**
      * Checks to see if there is a previous element that can be iterated to.
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * var list:LinkedList = new LinkedList() ;
      * list.insert("item1") ;
      * list.insert("item2") ;
      * list.insert("item3") ;
      * var it:ListIterator = list.listIterator(2) ;
      * trace( it.hasPrevious() ) ;
-     * </code>
+     * </pre>
      */
     public function hasPrevious():Boolean 
     {
@@ -1216,7 +1216,7 @@ class LinkedListIterator extends CoreObject implements ListIterator
     /**
      * Inserts the specified element into the list (optional operation).
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * var list:LinkedList = new LinkedList() ;
      * list.insert("item1") ;
      * list.insert("item2") ;
@@ -1226,7 +1226,7 @@ class LinkedListIterator extends CoreObject implements ListIterator
      * it.insert("item0") ;
      * 
      * trace(list) ;
-     * </code>
+     * </pre>
      * <p><b>Attention :</b> Dont' use this method in a loop with hasPrevious() and previous() method.</p> 
      */
     public function insert( o:* ):void 

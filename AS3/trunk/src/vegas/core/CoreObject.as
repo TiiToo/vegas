@@ -33,14 +33,14 @@ package vegas.core
 	/**
 	 * CoreObject offers a default implementation of the IFormattable, IHashable and ISerializable interfaces.
 	 * <p>
-	 * <code>
+	 * <pre class="prettyprint">
 	 * import vegas.core.CoreObject ;
 	 *  
 	 * var core:CoreObject = new CoreObject() ;
 	 * trace("> core : " + core) ;
 	 * trace("> hashcode : " + core.hashCode()) ;
 	 * trace("> toSource : " + core.toSource()) ;
-	 * </code>
+	 * </pre>
 	 * </p>
 	 * @author eKameleon
 	 * @version 1.0.0.0

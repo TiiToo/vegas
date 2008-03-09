@@ -29,10 +29,10 @@ package pegas.geom
 	/**
 	 * Defines a linear equation of the form : <code> ax + by = c</code> with fixed real coefficients a, b and c such that a and b are not both zero.
 	 * <p><b>Example :</b></p>
- 	 * <code>
+ 	 * <pre class="prettyprint">
 	 * var l:Line = new Line(10, 20, 5) ;
 	 * trace(l) ; // {a:10,b:20,c:5}
-	 * </code>
+	 * </pre>
 	 */
 	public class Line extends CoreObject implements IGeometry 
 	{
@@ -68,10 +68,10 @@ package pegas.geom
 		/**
 		 * Returns a shallow copy of this instance.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * var l1:Line = new Line(10, 20, 30) ;
 		 * var l2:Line = l1.clone() ;
-		 * </code>
+		 * </pre>
 		 * @return a shallow copy of this instance.
 		 */
 		public function clone():*
@@ -82,10 +82,10 @@ package pegas.geom
 		/**
 		 * Returns a deep copy of this instance.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 	 	 * var l1:Line = new Line(10, 20, 30) ;
 		 * var l2:Line = l1.copy() ;
-		 * </code>
+		 * </pre>
 		 * @return a deep copy of this instance.
 		 */
 		public function copy():*

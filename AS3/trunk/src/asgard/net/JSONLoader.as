@@ -28,7 +28,7 @@ package asgard.net
 
 	/**
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * import flash.events.Event ;
      * import flash.events.ProgressEvent ;
      * import flash.net.URLRequest ;
@@ -57,7 +57,7 @@ package asgard.net
      * loader.addEventListener(Event.COMPLETE, onComplete);
      * 
      * loader.load(request) ;
-     * </code>
+     * </pre>
      * @author eKameleon
      */
 	public class JSONLoader extends ParserLoader

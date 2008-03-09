@@ -32,7 +32,7 @@ package pegas.colors
 	/**
  	 * Enumeration static class to defined Basic HTML data types : <a href="http://www.w3.org/TR/html4/types.html">W3C HTML 4 Specifications</a> (chap 6.5)
 	 * <p><b>Example :</b></p>
-	 * <code>
+	 * <pre class="prettyprint">
 	 * import pegas.colors.ColorHTML ;
 	 * 
 	 * var n:Number = ColorHTML.htmlToNumber( "#FF0000" ) ;
@@ -40,7 +40,7 @@ package pegas.colors
 	 * 
 	 * var c:ColorHTML = ColorHTML.YELLOW ;
 	 * trace(c.toString() + " : " + c.valueOf()) ;
- 	 * </code>
+ 	 * </pre>
  	 */
 	public class ColorHTML extends CoreObject implements IConvertible, IEquatable
 	{

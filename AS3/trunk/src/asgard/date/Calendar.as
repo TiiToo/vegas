@@ -26,7 +26,7 @@ package asgard.date
 	/**
 	 * This class contains all tools to creates a calendar.
 	 * <p><b>Example :</b></p>
-	 * <code>
+	 * <pre class="prettyprint">
 	 * import asgard.date.Calendar ;
 	 * 
 	 * var c1:Calendar = new Calendar(2005, 2, 15) ;
@@ -55,7 +55,7 @@ package asgard.date
 	 * 
 	 * var fc:Array = Calendar.getFullMonthCalendar(2005, 11) ;
 	 * trace ("> full calendar 2005/12 : " + fc) ;
-	 * </code>
+	 * </pre>
  	 * @author eKameleon
 	 */
 	public class Calendar
@@ -305,11 +305,11 @@ package asgard.date
 		/**
 		 * Returns an array representation of all days in a full month. The array can begin with null values if the first day in the first week are previous days of the previous month.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * import asgard.date.Calendar ;
 		 * var ar:Array = Calendar.getFullMonthCalendar( new Date(2007,03) , 1 ) ;
 		 * trace(ar) ;
-		 * </code>
+		 * </pre>
 	 	 * @param date (optional) The specified <code>Date</code> to return the full month calendar. The default value is the current <code>Date</code> object.
 		 * @param offset the day offset value between 0 and 6 to fill the calendar. The default value is 0 (Sunday). 
 		 * @return an array representation of a full month.
@@ -474,10 +474,10 @@ package asgard.date
 		/**
 		 * Returns the Date reference of the "tomorrow" <code>Date</code> object of the specified <code>Date</code> in argument.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * trace ( "toDay     : " + (new Calendar()).format("DDDD yyyy-mm-dd") ) ;
 		 * trace ( "tomorrow  : " + (Calendar.tomorrow()).format("DDDD yyyy-mm-dd") ) ;
-	 	 * </code>
+	 	 * </pre>
 	 	 * @return the Date reference of the "tomorrow" <code>Date</code> object of the specified <code>Date</code> in argument.
 	 	 */
 		public static function tomorrow( date:Date = null ):Date
@@ -489,10 +489,10 @@ package asgard.date
 		/**
 		 * Returns the Calendar reference of the "yesterday" <code>Calendar</code> object of the specified <code>Date</code> in argument.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * trace ( "yesterday : " + (Calendar.yesterday()).format("DDDD yyyy-mm-dd") ) ;
 		 * trace ( "toDay     : " + (new Calendar()).format("DDDD yyyy-mm-dd") ) ;
-		 * </code>
+		 * </pre>
 		 * @return the Calendar reference of the "yesterday" <code>Calendar</code> object of the specified <code>Date</code> in argument.
 	 	 */
 		public static function yesterday ( date:Date=null ):Date

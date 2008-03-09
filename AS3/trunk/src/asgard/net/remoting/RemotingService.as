@@ -41,7 +41,7 @@ package asgard.net.remoting
 	 * This class provides a service object to communicate with a remoting gateway server.
 	 * <p><b>Example : RemotingService and classmapping</b></p>
 	 * <p>Value object : test.User :</p>
-	 * <code>
+	 * <pre class="prettyprint">
 	 * package test
 	 * {
 	 *     import flash.net.registerClassAlias ;
@@ -75,9 +75,9 @@ package asgard.net.remoting
 	 *         
 	 *     }
 	 * }
-	 * </code>
+	 * </pre>
 	 * <p>TestRemotingService :</p>
-	 * <code>
+	 * <pre class="prettyprint">
 	 * package
 	 * {
 	 * 
@@ -152,10 +152,10 @@ package asgard.net.remoting
 	 * 
 	 *     }
 	 * }
-	 * </code>
+	 * </pre>
 	 * <p>The PHP AMFPHP service to test the RemotingService class :</p>
-	 * <code>
-	 * <?php
+	 * <pre class="prettyprint">
+	 * &lt;?php
 	 * require("test/User.php") ;
 	 * 
 	 * class Test 
@@ -195,8 +195,8 @@ package asgard.net.remoting
 	 *        }
 	 *    }
 	 * }
-	 * ?>
-	 * </code>
+	 * ?&gt;
+	 * </pre>
 	 * @author eKameleon
  	 */
 	public class RemotingService extends Action implements ICloneable

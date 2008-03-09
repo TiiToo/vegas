@@ -33,7 +33,7 @@ package calista.util
 		/**
 		 * Encodes a base64 string.
 	 	 * <p><b>Example :</b></p>
-	 	 * <code>
+	 	 * <pre class="prettyprint">
 	 	 * import calista.util.Base64 ;
 	 	 * var source:String = "hello world with a base 64 algorithm" ;
 	 	 * 
@@ -41,7 +41,7 @@ package calista.util
 	 	 * trace("encode : " + encode) ;
 	 	 * 
 	 	 * // encode : aGVsbG8gd29ybGQgd2l0aCBhIGJhc2UgNjQgYWxnb3JpdGht
-	 	 * </code>
+	 	 * </pre>
 		 */
 		public static function encode( str:String ):String
 		{
@@ -77,7 +77,7 @@ package calista.util
 		/**
 		 * Decodes a base64 string.
 	 	 * <p><b>Example :</b></p>
-	 	 * <code>
+	 	 * <pre class="prettyprint">
 	 	 * import calista.util.Base64 ;
 	 	 * 
 	 	 * var source:String = "hello world with a base 64 algorithm" ;
@@ -90,7 +90,7 @@ package calista.util
 	 	 * 
 	 	 * // encode : aGVsbG8gd29ybGQgd2l0aCBhIGJhc2UgNjQgYWxnb3JpdGht
 	 	 * // decode : hello world with a base 64 algorithm
-	 	 * </code>
+	 	 * </pre>
 		 */
 		public static function decode( str:String ):String
 		{

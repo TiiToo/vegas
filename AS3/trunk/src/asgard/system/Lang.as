@@ -32,7 +32,7 @@ package asgard.system
      * For Chinese, an additional uppercase two-letter country code from ISO 3166 distinguishes between Simplified and Traditional Chinese. 
      * The languages codes are based on the English names of the language: for example, 'hu' specifies Hungarian.
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * import asgard.system.Lang ;
      * 
      * trace("---- Lang.FR") ;
@@ -51,7 +51,7 @@ package asgard.system
      * 
      * trace("> Lang.Langs : " + Lang.LANGS) ;
      * trace("> Lang.size() : " + Lang.size()) ;
-     * </code>
+     * </pre>
      * @author eKameleon
      * @see Capabilities.language
      */

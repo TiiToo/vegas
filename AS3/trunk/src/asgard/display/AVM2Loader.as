@@ -39,7 +39,7 @@ package asgard.display
     /**
      * This AVM2Loader loads both of AVM1 and AVM2 swf as AVM2.
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * import asgard.display.AVM2Loader ;
      * 
      * import flash.net.URLRequest ;
@@ -77,7 +77,7 @@ package asgard.display
      *
      * var request:URLRequest = new URLRequest( "avm1.swf"  ) ; // The swf is compiled with the FP8 publish settings.
      * loader.load( request ) ;
-     * </code>
+     * </pre>
      * @author eKameleon
      */
     public class AVM2Loader extends CoreLoader 

@@ -51,7 +51,7 @@ package asgard.media
 	/**
 	 * The CoreSound class extends the flash.media.Sound class and implements the IConfigurable, Identifiable, ILockable and ILogable interfaces.
      * <p><b>Example :</b></p>
-	 * <code>
+	 * <pre class="prettyprint">
 	 * // See in the library of this fla file the BipSound Sound symbol and this linkage class id.
 	 * 
 	 * import andromeda.events.ActionEvent ;
@@ -93,7 +93,7 @@ package asgard.media
 	 * // sound.looping = true ;
 	 * 
 	 * sound.play() ;
-	 * </code>
+	 * </pre>
 	 * @author eKameleon
 	 */
 	public class CoreSound extends Sound implements IAction, ISound, IStoppable

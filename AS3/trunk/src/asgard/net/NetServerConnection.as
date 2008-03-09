@@ -337,7 +337,7 @@ package asgard.net
 		}
 		
     	/**
-    	 * This method is invoqued in the constructor of the class to initialize all events.
+    	 * This method is invoked in the constructor of the class to initialize all events.
     	 * Overrides this method.
     	 */
     	public function initEventType():void
@@ -350,7 +350,7 @@ package asgard.net
 	    }
 
     	/**
-    	 * Invoqued when the connection is closed.
+    	 * Invoked when the connection is closed.
     	 */
 		protected function notifyClose():void 
 		{
@@ -358,7 +358,7 @@ package asgard.net
 		}
 
     	/**
-	     * Invoqued when the connection is finished.
+	     * Invoked when the connection is finished.
     	 */
 		protected function notifyFinished():void 
 		{
@@ -366,7 +366,7 @@ package asgard.net
 		}
 
     	/**
-    	 * Invoqued when the connection is started.
+    	 * Invoked when the connection is started.
     	 */
 		protected function notifyStarted():void 
 		{
@@ -375,7 +375,7 @@ package asgard.net
 		}
 		
     	/**
-    	 * Invoqued when the status of the connection is changed.
+    	 * Invoked when the status of the connection is changed.
     	 */
 		protected function notifyStatus( status:NetServerStatus , info:* = null ):void 
 		{
@@ -386,7 +386,7 @@ package asgard.net
 		}
 	
     	/**
-	     * Invoqued when the connection is timeout.
+	     * Invoked when the connection is timeout.
 	     */
 	    protected function notifyTimeOut():void
 		{
@@ -484,7 +484,7 @@ package asgard.net
 	    }
 		
 		/**
-		 * Invoqued when a IOErrorEvent is notified.
+		 * Invoked when a IOErrorEvent is notified.
 		 */
 		protected function _onIOError(e:IOErrorEvent):void
 		{
@@ -493,34 +493,69 @@ package asgard.net
 		}
 
 		/**
-		 * Invoqued when a SecurityErrorEvent is notified.
+		 * Invoked when a SecurityErrorEvent is notified.
 		 */
 		protected function _onSecurityError(e:SecurityErrorEvent):void
 		{
 			_timer.stop() ;
 			notifyFinished() ;
 		}
-
+		
+		/**
+		 * @private
+		 */
 	    private static var _instance:NetServerConnection;
+
+		/**
+		 * @private
+		 */
 
         private var _nc:NetConnection ;
 
+		/**
+		 * @private
+		 */
 		private var _policy:TimeoutPolicy ;
 
+
+		/**
+		 * @private
+		 */
 		private var _sTypeClose:String ;
 
+		/**
+		 * @private
+		 */
 		private var _sTypeFinish:String ;
 
+		/**
+		 * @private
+		 */
 		private var _sTypeStart:String ;
 
+		/**
+		 * @private
+		 */
 		private var _sTypeStatus:String ;
 
+		/**
+		 * @private
+		 */
 		private var _sTypeTimeOut:String ;
 
+		/**
+		 * @private
+		 */
 		private var _timer:Timer ;
 		
+		/**
+		 * @private
+		 */
 		private var _uri:String ;
 		
+		/**
+		 * @private
+		 */
 		private function _onStatus( e:NetStatusEvent ):void
 		{
 			
@@ -573,7 +608,8 @@ package asgard.net
 		}
 		
 		/**
-	     * Invoqued when the connection is out of time.
+	     * Invoked when the connection is out of time.
+	     * @private
 	     */
 		public function _onTimeOut(e:TimerEvent):void 
 		{

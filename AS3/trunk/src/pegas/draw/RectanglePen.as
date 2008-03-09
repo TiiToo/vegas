@@ -28,7 +28,7 @@ package pegas.draw
 	/**
      * This pen draw a rectangle shape with a Graphics object.
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * import pegas.draw.Align ;
      * import pegas.draw.RectanglePen ;
      * import pegas.draw.FillStyle ;
@@ -48,7 +48,7 @@ package pegas.draw
      * pen.fill       = new FillStyle( 0xFF0000 , 0.5 ) ;
      * pen.line       = new LineStyle( 2, 0xFFFFFF , 1 ) ;
      * pen.draw() ;
-     * </code>
+     * </pre>
      * @author eKameleon
      */
     dynamic public class RectanglePen extends Pen 
@@ -167,7 +167,7 @@ package pegas.draw
         protected var _y:Number ;
         
         /**
-         * Invoqued to refresh the offset x and y position defines by the align property.
+         * Invoked to refresh the offset x and y position defines by the align property.
          */
         protected function _refreshAlign():void
         {

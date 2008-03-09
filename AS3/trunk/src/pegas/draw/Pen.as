@@ -136,12 +136,12 @@ package pegas.draw
         }
         
         /**
-         * Indicates if the clear() method is invoqued at the end of the draw method.
+         * Indicates if the clear() method is invoked at the end of the draw method.
          */
         public var useClear:Boolean = true ;
 
         /**
-         * Indicates if the endFill() method is invoqued at the end of the draw method.
+         * Indicates if the endFill() method is invoked at the end of the draw method.
          */
         public var useEndFill:Boolean = true ;
 

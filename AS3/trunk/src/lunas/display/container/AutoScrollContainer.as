@@ -35,7 +35,7 @@ package lunas.display.container
 	/**
 	 * This auto scrollable container use an auto scroll effect.
 	 * <p><b>Example :</b></p>
-	 * <code>
+	 * <pre class="prettyprint">
 	 * import flash.display.StageScaleMode ;
 	 * 
 	 * import lunas.core.Direction;
@@ -107,7 +107,7 @@ package lunas.display.container
 	 * }
 	 * 
 	 * stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
-	 * </code>
+	 * </pre>
 	 * @author eKameleon
 	 */
 	public class AutoScrollContainer extends ScrollContainer 

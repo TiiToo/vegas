@@ -34,7 +34,7 @@ package lunas.display.container
     /**
      * This container display all this child elements with a circle trigonometric algorithm.
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * import flash.display.StageScaleMode ;
      * import flash.events.KeyboardEvent ;
      * import flash.ui.Keyboard ;
@@ -117,7 +117,7 @@ package lunas.display.container
      * 
      * stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
      * stage.scaleMode = StageScaleMode.NO_SCALE ;
-     * </code>
+     * </pre>
      * @author eKameleon
      */
     public class CircleContainer extends Container 

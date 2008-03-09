@@ -42,7 +42,7 @@ package lunas.display.bar
 	/**
 	 * The SimpleScrollbar component.
 	 * <p><b>Example :</b></p>
-	 * <code>
+	 * <pre class="prettyprint">
 	 * import flash.display.StageScaleMode ;
 	 * 
 	 * import pegas.draw.FillStyle ;
@@ -131,7 +131,7 @@ package lunas.display.bar
 	 * }
 	 * 
 	 * stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
-	 * </code>
+	 * </pre>
 	 * @author eKameleon
 	 */
 	public class SimpleScrollbar extends AbstractScrollbar 

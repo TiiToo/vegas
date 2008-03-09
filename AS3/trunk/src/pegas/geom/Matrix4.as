@@ -45,23 +45,23 @@ package pegas.geom
 		 * <p>If 16 arguments are passed to the constructor, it will create a <code>Matrix4</code> with the values.</p> 
 		 * <p>In the other case, a identity <code>Matrix4</code> is created.</p>
 		 * <p><b>Example 1 - Matrix4 identity :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * import pegas.geom.Matrix4 ;
 		 * var m:Matrix4 = new Matrix4() ;
 		 * // 1 0 0 0
 	 	 * // 0 1 0 0
 		 * // 0 0 1 0
 		 * // 0 0 0 1
-		 * </code>
+		 * </pre>
 		 * <p><b>Example 2 - Matrix4 with 16 arguments :</b></p>
-		 * <code>
+		 * <pre class="prettyprint">
 		 * import pegas.geom.Matrix4 ;
 		 * var m:Matrix4 = new Matrix4(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16) ;
 	 	 * //  1  2  3  4
 		 * //  5  6  7  8
 		 * //  9 10 11 12
 		 * // 13 14 15 16
-		 * </code>
+		 * </pre>
 		 */
 		public function Matrix4( ...arguments:Array )
 		{
@@ -88,78 +88,78 @@ package pegas.geom
 		
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * <code> 
+		 * <pre class="prettyprint">
 		 * 1 0 0 0
 		 * 0 0 0 0
 		 * 0 0 0 0
 		 * 0 0 0 0 
-		 * </code>
+		 * </pre>
 		 */
 		public var n11:Number;
 			
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * <code> 
+		 * <pre class="prettyprint">
 		 * 0 1 0 0
 		 * 0 0 0 0
 		 * 0 0 0 0
 		 * 0 0 0 0
-		 * </code> 
+		 * </pre> 
 	 	 */
 		public var n12:Number;
 		
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * <code>
+		 * <pre class="prettyprint">
 		 * 0 0 1 0
 		 * 0 0 0 0
 		 * 0 0 0 0
 		 * 0 0 0 0
-	 	 * </code>
+	 	 * </pre>
 		 */
 		public var n13:Number;
 			
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * <code>
+		 * <pre class="prettyprint">
 		 * 0 0 0 1
 		 * 0 0 0 0
 		 * 0 0 0 0
 		 * 0 0 0 0
-		 * </code> 
+		 * </pre> 
 		 */
 		public var n14:Number;
 			
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * <code>
+		 * <pre class="prettyprint">
 		 * 0 0 0 0
 		 * 1 0 0 0
 		 * 0 0 0 0
 		 * 0 0 0 0
-		 * </code> 
+		 * </pre> 
 	 	 */
 		public var n21:Number;
 			
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * <code>
+		 * <pre class="prettyprint">
 		 * 0 0 0 0
 		 * 0 1 0 0
 		 * 0 0 0 0
 		 * 0 0 0 0
-		 * </code> 
+		 * </pre> 
 	 	 */
 		public var n22:Number;
 			
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * <code>
+		 * <pre class="prettyprint">
 		 * 0 0 0 0
 		 * 0 0 1 0
 		 * 0 0 0 0
 	 	 * 0 0 0 0
-		 * </code> 
+		 * </pre> 
 	 	 */
 		public var n23:Number;
 		
@@ -170,95 +170,95 @@ package pegas.geom
 	 	 * 0 0 0 1
 	 	 * 0 0 0 0
 	 	 * 0 0 0 0
-		 * </code> 
+		 * </pre> 
 	 	 */
 		public var n24:Number;
 		
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * <code>
+		 * <pre class="prettyprint">
 	 	 * 0 0 0 0
 		 * 0 0 0 0
 		 * 1 0 0 0
 		 * 0 0 0 0
-		 * </code> 
+		 * </pre> 
 	 	 */
 		public var n31:Number;
 			
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * <code>
+		 * <pre class="prettyprint">
 		 * 0 0 0 0
 		 * 0 0 0 0
 		 * 0 1 0 0
 		 * 0 0 0 0
-		 * </code> 
+		 * </pre> 
 		 */
 		public var n32:Number;
 			
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * <code>
+		 * <pre class="prettyprint">
 		 * 0 0 0 0
 	 	 * 0 0 0 0
 		 * 0 0 1 0
 		 * 0 0 0 0
-		 * </code> 
+		 * </pre> 
 	 	 */
 		public var n33:Number;
 			
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * <code>
+		 * <pre class="prettyprint">
 		 * 0 0 0 0
 		 * 0 0 0 0
 		 * 0 0 0 1
 	  	 * 0 0 0 0
-		 * </code> 
+		 * </pre> 
 	 	 */
 		public var n34:Number;
 			
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * <code>
+		 * <pre class="prettyprint">
 		 * 0 0 0 0
 		 * 0 0 0 0
 		 * 0 0 0 0
 		 * 1 0 0 0
-		 * </code> 
+		 * </pre> 
 		 */
 		public var n41:Number;
 			
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * <code>
+		 * <pre class="prettyprint">
 		 * 0 0 0 0
 	 	 * 0 0 0 0
 		 * 0 0 0 0
 		 * 0 1 0 0
-		 * </code> 
+		 * </pre> 
 	 	 */
 		public var n42:Number;
 		
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * <code>
+		 * <pre class="prettyprint">
 		 * 0 0 0 0
 		 * 0 0 0 0
 		 * 0 0 0 0
 		 * 0 0 1 0
-		 * </code> 
+		 * </pre> 
 	  	 */
 		public var n43:Number;
 			
 		/**
 		 * Defines a <code>Matrix4</code> cell.
-		 * <code>
+		 * <pre class="prettyprint">
 		 * 0 0 0 0
 	 	 * 0 0 0 0
 		 * 0 0 0 0
 		 * 0 0 0 1
-		 * </code> 
+		 * </pre> 
 		 */
 		public var n44:Number;
 
@@ -308,7 +308,7 @@ package pegas.geom
 
 		/**
 		 * Sets matrix[x][y] with the specified value.
-		 * @throws IllegalArgumentError if the x or y value are <code>null</code> or <code>undefined</code>.
+		 * @throws IllegalArgumentError if the x or y value are <code>null</pre> or <code>undefined</code>.
 		 */
 		public function setEntry( x:Number , y:Number , value:* ):void
 		{

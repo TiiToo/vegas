@@ -39,9 +39,9 @@ package pegas.transitions
 		/**
 	 	 * Creates a new TransitionController instance.
 		 * <p><b>Example :</b> 
-	 	 * <code> 
+	 	 * <pre class="prettyprint">
 		 * var controller:TransitionController = new TransitionController() ;
-		 * </code>
+		 * </pre>
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
 		 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
 		 */

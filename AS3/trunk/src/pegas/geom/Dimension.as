@@ -30,7 +30,7 @@ package pegas.geom
 	import vegas.util.Serializer;	
 
 	/**
-     * The Dimension class encapsulates the width and height of a componentin a single object.
+     * The Dimension class encapsulates the width and height of an object.
      * @author eKameleon
      */
     public class Dimension extends CoreObject implements IGeometry		

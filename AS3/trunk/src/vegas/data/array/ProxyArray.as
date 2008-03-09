@@ -42,7 +42,7 @@ package vegas.data.array
 	/**
      * The ProxyArray class.
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * import vegas.data.array.ProxyArray ;
      * 
      * var a1:ProxyArray = new ProxyArray() ;
@@ -77,8 +77,7 @@ package vegas.data.array
      * copy[3] = [7,8] ;
      *
      * trace(a2 + " : " + copy) ;
-     * }
-	 * </p>
+     * </pre>
      * @author eKameleon
      */
     dynamic public class ProxyArray extends Proxy implements ICloneable, ICopyable, IFormattable, IHashable, Iterable, ISerializable
