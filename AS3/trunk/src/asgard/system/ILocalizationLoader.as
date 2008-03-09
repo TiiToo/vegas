@@ -31,11 +31,11 @@ package asgard.system
     {
     
         /**
-         * (Read-only) Returns the Localization object.
-         * @return the config object.
+         * (Read-write) Indicates the Localization object.
          */
         function get localization():Localization ;
-    
+    	function set localization( localization:Localization ):void ;
+    	
         /**
          * (Read-write) The path of the localization file.
          */

@@ -99,7 +99,7 @@ package pegas.geom
 		 */
 		public function equals( o:* ):Boolean 
 		{
-			if ( o instanceof Matrix )
+			if ( o is Matrix )
 			{
 				// test if all elements are equals in the 2 matrix
 				return (o.r == r) && (o.c == c) ;

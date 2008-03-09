@@ -86,9 +86,9 @@ package andromeda.vo
     	/**
 	     * Preserves the class (type) of an object when the object is encoded in Action Message Format (AMF). 
 	     */
-    	public static function register( aliasName:String="NetServerInfoVO" ):Boolean
+    	public static function register( aliasName:String="NetServerInfoVO" ):void
     	{
-	        return registerClassAlias( aliasName , NetServerInfoVO ) ;
+	        registerClassAlias( aliasName , NetServerInfoVO ) ;
 	    }
 
         /**

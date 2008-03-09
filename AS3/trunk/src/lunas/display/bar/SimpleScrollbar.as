@@ -518,7 +518,7 @@ package lunas.display.bar
 		/**
 		 * Invoked when the component IStyle changed.
 		 */
-		public override function viewStyleChanged( e:Event ):void 
+		public override function viewStyleChanged( e:Event=null ):void 
 		{
 			update() ;
 		}

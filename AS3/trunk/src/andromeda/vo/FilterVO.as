@@ -33,7 +33,7 @@ package andromeda.vo
 	/**
      * This class provides a binary filter value object.
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * import andromeda.vo.FilterVO ;
      * 
      * var VIDEO :uint = 1 ;
@@ -58,7 +58,7 @@ package andromeda.vo
       * 
      * trace( "filter.contains( VIDEO ) : " + filter.contains( VIDEO ) ) ;
      * trace( "filter.contains( MP3 )   : " + filter.contains( MP3 ) ) ;
-     * </code>
+     * </pre>
      * @author eKameleon
      */
     public class FilterVO extends SimpleValueObject 
@@ -123,9 +123,9 @@ package andromeda.vo
     	/**
 	     * Preserves the class (type) of an object when the object is encoded in Action Message Format (AMF). 
 	     */
-    	public static function register( aliasName:String="FilterVO" ):Boolean
+    	public static function register( aliasName:String="FilterVO" ):void
     	{
-	        return registerClassAlias( aliasName , NetServerInfoVO ) ;
+	        registerClassAlias( aliasName , NetServerInfoVO ) ;
 	    }
 
         /**

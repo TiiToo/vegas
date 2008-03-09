@@ -22,8 +22,8 @@
 */
 
 package asgard.data.remoting
-{    
-	import andromeda.util.mvc.AbstractModel;
+{
+	import andromeda.model.AbstractModel;
 	
 	import asgard.data.iterator.RecordSetIterator;
 	import asgard.events.RecordSetEvent;
@@ -32,16 +32,19 @@ package asgard.data.remoting
 	
 	import vegas.data.iterator.Iterable;
 	import vegas.data.iterator.Iterator;
-	import vegas.errors.Warning;        
+	import vegas.errors.Warning;	
 
 	public class RecordSet extends AbstractModel implements Iterable
 	{
 		
-		// ----o Constructor
-		
-		public function RecordSet( o:* = null )
+		/**
+		 * Creates a new RecordSet instance.
+		 */
+		public function RecordSet( o:* = null , id:* = null , bGlobal:Boolean = false , sChannel:String = null )
 		{
-	
+			
+			super(id, bGlobal, sChannel ) ;
+			
 			_eAdd    = new RecordSetEvent(RecordSetEvent.ADD_ITEMS) ;
 			_eClear  = new RecordSetEvent(RecordSetEvent.CLEAR_ITEMS);
 			_eRemove = new RecordSetEvent(RecordSetEvent.REMOVE_ITEMS) ;
@@ -106,7 +109,7 @@ package asgard.data.remoting
 			oItem.__ID__ = _id ++ ;
 			_eAdd.index = index ;
 	
-			notifyChanged( _eAdd ) ;
+			dispatchEvent( _eAdd ) ;
 	
 			return oItem ;
 	
@@ -140,7 +143,7 @@ package asgard.data.remoting
 			_id = 0 ;
 			mTiles = new Array();
 			_eClear.removedItems = _items.splice(0) ;
-			notifyChanged(_eClear) ;
+			dispatchEvent(_eClear) ;
 		}
 	
 		public  function contains( oItem:* ):Boolean 
@@ -351,7 +354,7 @@ package asgard.data.remoting
 			_eRemove.firstItem = index ;
 			_eRemove.lastItem = index + len - 1 ;
 			_eRemove.removedItems = [].concat(oldItems) ;
-			notifyChanged ( _eRemove ) ;
+			dispatchEvent ( _eRemove ) ;
 			return oldItems ;
 		}
 	
@@ -372,7 +375,7 @@ package asgard.data.remoting
 				_items[index] = item ;
 				_items[index].__ID__ = tmpID ;
 				_eUpdate.index = index ;
-				notifyChanged( _eUpdate ) ;
+				dispatchEvent( _eUpdate ) ;
 			}
 		}
 	
@@ -388,7 +391,7 @@ package asgard.data.remoting
 				_items.splice(id, 1) ;
 				_items.splice(index, 0, tmp) ;
 				_eUpdate.index = index ;
-				notifyChanged( _eUpdate ) ;
+				dispatchEvent( _eUpdate ) ;
 			}
 		}
 
@@ -418,14 +421,14 @@ package asgard.data.remoting
 		{
 			if (checkLocal()) return ;
 			_items.sort(compareFunc, options) ;
-			notifyChanged(_eSort) ;
+			dispatchEvent(_eSort) ;
 		}
 
 		public function sortItemsBy( fieldNames:* , options:* ):void
 		{
 			if (checkLocal()) return ;
 			_items.sortOn( fieldNames, options ) ;
-			notifyChanged(_eSort) ;
+			dispatchEvent(_eSort) ;
 		}
 	
 		public function toArray():Array 

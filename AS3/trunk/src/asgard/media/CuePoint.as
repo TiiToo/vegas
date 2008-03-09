@@ -65,7 +65,7 @@ package asgard.media
          * Returns the String representation of this object.
          * @return the String representation of this object.
          */
-        public function toString():String
+        public override function toString():String
         {
             var txt:String = "[CuePoint" ;
             if (name != null)

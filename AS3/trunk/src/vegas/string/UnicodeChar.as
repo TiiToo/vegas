@@ -58,8 +58,8 @@ package vegas.string
      * u = new UnicodeChar() ;
      * trace( u.u5c0f() + u.u98fc() + u.u5f3e() + u.u0040() ) ; // 小飼弾@
      * </code>
+     * <p>See <a href='http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf'>ECMAScript 262 specifications</a></p>
      * @author eKameleon
-     * @see <a href='http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf'>ECMAScript 262 specifications</a>
      */
     dynamic public class UnicodeChar extends Proxy
     {
@@ -79,46 +79,55 @@ package vegas.string
     
 	    /**
     	 * Back Slash utf8 representation (special char).
+    	 * @private
     	 */
        	public static const BACK_SLASH:String = "\u005C" ;	
 
 	    /**
     	 * Back Space utf8 representation (special char).
+    	 * @private
     	 */
 	    public static const BACK_SPACE:String = "\u0008" ;
 
 	    /**
     	 * Simple Quote utf8 representation (special char).
+    	 * @private
     	 */
         public static const SIMPLE_QUOTE:String = "\u0027" ;
 
 	    /**
     	 * Double Quote utf8 representation (special char).
+    	 * @private
     	 */
         public static const DOUBLE_QUOTE:String = "\u0022" ;
 	
     	/**
     	 * Tab utf8 representation (whitespace).
+    	 * @private
     	 */
         public static const TAB:String = "\u0009" ;
 
 	    /**
     	 * Vertical Tab utf8 representation (whitespace).
+    	 * @private
     	 */
         public static const VT:String = "\u000B" ;
         
     	/**
     	 * Form Feed utf8 representation (whitespace).
+    	 * @private
     	 */
         public static const FF:String = "\u000C" ;
    
    	   /**
 	    * Space utf8 representation (whitespace).
+	    * @private
 	    */
         public static const SP:String = "\u0020" ;
 
     	/**
     	 * No-break space utf8 representation (whitespace).
+    	 * @private
     	 */
         public static const NBSP:String = "\u00A0" ;
 
@@ -129,26 +138,31 @@ package vegas.string
         
        	/**
 	     * Line Feed utf8 representation (line terminators).
+	     * @private
 	     */
         public static const LF:String = "\u000A" ;
         
     	/**
     	 * Carriage Return utf8 representation (line terminators).
+    	 * @private
     	 */
         public static const CR:String = "\u000D" ;
 
     	/**
     	 * Line Separator utf8 representation (line terminators).
+    	 * @private
 	     */        
         public static const LS:String = "\u2028" ;	
 
     	/**
     	 * Paragraph Separator utf8 representation (line terminators).
+    	 * @private
 	     */   
         public static const PS:String = "\u2029" ;	
 
     	/**
     	 * Array with all line terminators characters
+    	 * @private
     	 */
 	    public static const LINE_TERMINATOR_CHARS:Array = [ LF, CR, LS, PS ] ;
 

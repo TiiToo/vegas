@@ -135,7 +135,7 @@ package pegas.geom
 		 */
 		public override function equals( o:* ):Boolean
 		{
-			if ( o instanceof Vertex)
+			if ( o is Vertex)
 			{
 				var b1:Boolean = (o.x == x) && (o.y == y) && (o.z == z) ;
 				var	b2:Boolean = (o.tx == tx) && (o.ty == ty) && (o.tz == tz) ;

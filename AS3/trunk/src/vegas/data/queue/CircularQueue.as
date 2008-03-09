@@ -227,8 +227,8 @@ package vegas.data.queue
 
 	    /**
 	     * Returns the iterator of the queue.
+	     * <p>See <code>vegas.data.iterator.ProtectedIterator</code></p>
 	     * @return the iterator of the queue.
-	     * @see <code>vegas.data.iterator.ProtectedIterator</code>
 	     */
 		public function iterator():Iterator
 		{

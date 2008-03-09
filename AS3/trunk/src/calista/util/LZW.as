@@ -131,7 +131,7 @@ package calista.util
 					else 
 					{
 						chain = dict[code];
-						if (chain == undefined) 
+						if (chain == null) 
 						{
 							chain = buffer + buffer.slice(0,1) ;
 						}

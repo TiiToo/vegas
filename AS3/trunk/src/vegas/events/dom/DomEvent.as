@@ -85,7 +85,7 @@ package vegas.events.dom
 			return _bubbles ;
 		}
 
-		public override function get currentTarget():*
+		public override function get currentTarget():Object
 		{
 			return _currentTarget ;
 		}
@@ -97,7 +97,7 @@ package vegas.events.dom
 
         public function hashCode() : uint
         {
-        	return ;
+        	return NaN ;
         }
 
 		public function initEvent(type:String, bubbles:Boolean, cancelable:Boolean):void
@@ -105,7 +105,7 @@ package vegas.events.dom
 			type       = type ;
 			bubbles    = bubbles ;
 			cancelable = cancelable ;
-			timeStamp  = (new Date()).valueOf() ;
+			//timeStamp  = (new Date()).valueOf() ;
 		}
 
 		public function isCancelled():Boolean

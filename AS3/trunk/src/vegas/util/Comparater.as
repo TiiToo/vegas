@@ -47,7 +47,7 @@ package vegas.util
 			{
 				return true ;
 			}
-			if (o1 instanceof IEquatable) 
+			if (o1 is IEquatable) 
 			{
 				return IEquatable(o1).equals(o2) ;
 			}

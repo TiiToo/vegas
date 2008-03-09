@@ -32,7 +32,7 @@ package vegas.events.dom
      * This comparator is used in the <code>EventDispatcher</code> class to ordered all <code>EventLister</code> with a priority value.
      * @author eKameleon
      */
-	internal public class EventListenerComparator extends CoreObject implements IComparator
+	internal class EventListenerComparator extends CoreObject implements IComparator
 	{
 
 	    /**

@@ -34,7 +34,7 @@ package vegas.string
      * var code:String = "456565654" ;
      * trace (code + " isValid : " + Luhn.isValid(code)) ;
      * </code>
-     * @see <a href='http://fr.wikipedia.org/wiki/Formule_de_Luhn'>Luhn Formula</a> 
+     * <p>See <a href='http://fr.wikipedia.org/wiki/Formule_de_Luhn'>Luhn Formula</a></p> 
      * @author eKameleon
      */
 	public class Luhn

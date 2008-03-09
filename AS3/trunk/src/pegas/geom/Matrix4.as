@@ -72,11 +72,11 @@ package pegas.geom
 				n31 = arguments[8]  ; n32 = arguments[9]  ; n33 = arguments[10] ; n34 = arguments[11];
 				n41 = arguments[12] ; n42 = arguments[13] ; n43 = arguments[14] ; n44 = arguments[15];
 			}
-			else if (arguments[0] instanceof Matrix4)
+			else if (arguments[0] is Matrix4)
 			{
 				Matrix4Util.setByMatrix(this, arguments[0]) ;	
 			}
-			else if (arguments[0] instanceof Quaternion)
+			else if (arguments[0] is Quaternion)
 			{
 				Matrix4Util.setByQuaternion(this, arguments[0]) ;
 			}
@@ -351,13 +351,12 @@ package pegas.geom
 		 */
 		public function toObject():Object 
 		{
-			return 
-			{ 
-				n11:n11 , n12:n12 , n13:n13 , n14:n14 ,
-				n21:n21 , n22:n22 , n23:n23 , n24:n24 ,
-				n31:n31 , n32:n32 , n33:n33 , n34:n34 ,
-				n41:n41 , n42:n42 , n43:n43 , n44:n44 
-			} ;
+			var o:Object = {} ;
+			o.n11 = this.n11 ; o.n12 = this.n12 ; o.n13 = this.n13 ; o.n14 = this.n14 ;
+			o.n21 = this.n21 ; o.n22 = this.n22 ; o.n23 = this.n23 ; o.n24 = this.n24 ;
+			o.n31 = this.n31 ; o.n32 = this.n32 ; o.n33 = this.n33 ; o.n34 = this.n34 ;
+			o.n41 = this.n41 ; o.n42 = this.n42 ; o.n43 = this.n43 ; o.n44 = this.n44 ;
+			return o ;
 		}
 		
 		/**

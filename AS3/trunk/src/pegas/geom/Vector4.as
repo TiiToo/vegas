@@ -83,7 +83,7 @@ package pegas.geom
 		 */
 		public override function equals( o:* ):Boolean 
 		{
-			if ( o instanceof Vector4)
+			if ( o is Vector4)
 			{
 				return (o.x == x) && (o.y == y) && (o.z == z) && (o.w == w) ;
 			}
