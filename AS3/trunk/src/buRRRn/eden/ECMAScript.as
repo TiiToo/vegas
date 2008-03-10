@@ -574,9 +574,10 @@ package buRRRn.eden
 					case "\u000C": 
 					case "\u0020": 
 					case "\u00A0":
+					{
 						next( );
 						break;
-                    
+					}
                     /* note:
 					line terminators
 					"\n" - \u000A - LF
@@ -589,15 +590,19 @@ package buRRRn.eden
 					case "\u000D": 
 					case "\u2028": 
 					case "\u2029":
+					{
 						next( );
 						break;
-                    
+					}
 					case "/":
+					{
 						scanComments( );
 						break;
-                    
-					default:
+					}
+					default :
+					{
 						scan = false;
+					}
 				}
 			}
 		}
@@ -1147,18 +1152,26 @@ package buRRRn.eden
 				{
 					_inConstructor = false;
                     
+                    /* 
                     var test:* ;
-                    
 					try
 					{
-						test = new fcnObj( );
+						test = new fcnObj();
 					}
                     catch( e:Error )
 					{
 						return config.undefineable ;
 					}
+                    */ 
                     
-                    return ClassUtil.buildNewInstance(fcnObj, args) ; // VEGAS hack for the moment (35 arguments in this static build method)
+                    try
+                    {
+                    	return ClassUtil.buildNewInstance(fcnObj, args) ; // VEGAS hack for the moment (35 arguments in this static build method)
+                    }
+                    catch( e:Error )
+                    {
+                    	return config.undefineable ;
+                    }
                     
                     /*
 					switch( args.length )
