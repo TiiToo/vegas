@@ -1,7 +1,7 @@
 /* Pretty printing styles. Used with prettify.js. */
 
-.str { color: #080; }
-.kwd { color: #008; }
+.str { color: #82A332; }
+.kwd { color: #5C3A1B; }
 .com { color: #800; }
 .typ { color: #606; }
 .lit { color: #066; }
@@ -11,11 +11,17 @@
 .atn { color: #606; }
 .atv { color: #080; }
 .dec { color: #606; }
-pre.prettyprint { padding: 2px; border: 1px solid #888; }
+pre.prettyprint 
+{ 
+	background-color: #EAEAEA;
+	padding: 2px; 
+	border: 1px dashed #888;
+	padding: 4px;
+}
 
 @media print {
-  .str { color: #060; }
-  .kwd { color: #006; font-weight: bold; }
+  .str { color: #82A332; }
+  .kwd { color: #5C3A1B; font-weight: bold; }
   .com { color: #600; font-style: italic; }
   .typ { color: #404; font-weight: bold; }
   .lit { color: #044; }

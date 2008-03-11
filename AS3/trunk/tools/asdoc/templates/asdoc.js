@@ -26,8 +26,11 @@ function isEclipse() {
 //	return (window.name == ECLIPSE_FRAME_NAME) || (parent.name == ECLIPSE_FRAME_NAME) || (parent.parent.name == ECLIPSE_FRAME_NAME);
 }
 
-function configPage() {
-	if (isEclipse()) {
+function configPage() 
+{
+	
+	if (isEclipse()) 
+	{
 		if (window.name != "classFrame")
 		{
 			var localRef = window.location.href.indexOf('?') != -1 ? window.location.href.substring(0, window.location.href.indexOf('?')) : window.location.href;
@@ -44,27 +47,37 @@ function configPage() {
 //			var isIE  = (navigator.appVersion.indexOf("MSIE") != -1) ? true : false;
 //			if (isIE == false && window.location.hash != "")
 			if (window.location.hash != "")
+			{
 				window.location.hash=window.location.hash.substring(1);
+			}
 		}
 	}
-	else if (window == top) { // no frames
+	else if (window == top) 
+	{ // no frames
 		findObject("titleTable").style.display = "";
 	}
-	else { // frames
+	else 
+	{ // frames
 		findObject("titleTable").style.display = "none";
 	}
 	showTitle(asdocTitle);
+	prettyPrint() ;
 }
 
-function loadFrames(classFrameURL, classListFrameURL) {
+function loadFrames( classFrameURL, classListFrameURL ) 
+{
 	var classListFrame = findObject("classListFrame");
 	if(classListFrame != null && classListFrameContent!='')
+	{
 		classListFrame.document.location.href=classListFrameContent;
- 
-	if (isEclipse()) {
+	}
+	if (isEclipse()) 
+	{
 		var contentViewFrame = findObject(ECLIPSE_FRAME_NAME);
 		if (contentViewFrame != null && classFrameURL != '')
-			contentViewFrame.document.location.href=classFrameURL;
+		{
+			contentViewFrame.document.location.href = classFrameURL ;
+		}
 	}
 	else {
 		var classFrame = findObject("classFrame");
@@ -73,26 +86,36 @@ function loadFrames(classFrameURL, classListFrameURL) {
 	}
 }
 
-function showTitle(title) {
+function showTitle(title) 
+{
 	if (!isEclipse())
+	{
 		top.document.title = title;
+	}
 }
 
-function loadClassListFrame(classListFrameURL) {
-	if (parent.frames["classListFrame"] != null) {
+function loadClassListFrame(classListFrameURL) 
+{
+	if (parent.frames["classListFrame"] != null) 
+	{
 		parent.frames["classListFrame"].location = classListFrameURL;
 	}
-	else if (parent.frames["packageFrame"] != null) {
-		if (parent.frames["packageFrame"].frames["classListFrame"] != null) {
+	else if (parent.frames["packageFrame"] != null) 
+	{
+		if (parent.frames["packageFrame"].frames["classListFrame"] != null) 
+		{
 			parent.frames["packageFrame"].frames["classListFrame"].location = classListFrameURL;
 		}
 	}
 }
 
-function gotoLiveDocs(primaryURL, secondaryURL) {
+function gotoLiveDocs(primaryURL, secondaryURL) 
+{
 	var url = liveDocsBaseUrl + "index.html?" + primaryURL;
 	if (secondaryURL != null && secondaryURL != "")
+	{
 		url += ("&" + secondaryURL);
+	}
 	window.open(url, "mm_livedocs", "menubar=1,toolbar=1,status=1,scrollbars=1");
 }
 

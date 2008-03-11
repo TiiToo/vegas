@@ -142,7 +142,9 @@
 	</xsl:template>
 
 	<xsl:template name="getStyleLink">
+		
 		<xsl:param name="link"/>
+		
 		<xsl:param name="packageName"/>
 
 		<xsl:choose>
@@ -154,11 +156,13 @@
 				</xsl:for-each>
 			</xsl:when>
 			<xsl:otherwise>
+				
 				<xsl:variable name="baseRef">
 					<xsl:call-template name="getBaseRef">
 						<xsl:with-param name="packageName" select="$packageName"/>
 					</xsl:call-template>
 				</xsl:variable>
+				
 				<xsl:element name="link">
 					<xsl:attribute name="rel">stylesheet</xsl:attribute>
 					<xsl:attribute name="href">
@@ -166,6 +170,7 @@
 					<xsl:attribute name="type">text/css</xsl:attribute>
 					<xsl:attribute name="media">screen</xsl:attribute>
 				</xsl:element>
+				
 				<xsl:element name="link">
 					<xsl:attribute name="rel">stylesheet</xsl:attribute>
 					<xsl:attribute name="href">
@@ -173,12 +178,22 @@
 					<xsl:attribute name="type">text/css</xsl:attribute>
 					<xsl:attribute name="media">print</xsl:attribute>
 				</xsl:element>
+				
+				<xsl:element name="link">
+					<xsl:attribute name="rel">stylesheet</xsl:attribute>
+					<xsl:attribute name="href">
+						<xsl:value-of select="$baseRef"/>prettify.css</xsl:attribute>
+					<xsl:attribute name="type">text/css</xsl:attribute>
+				</xsl:element>				
+				
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
 
 	<xsl:template name="getTitleScript">
+		
 		<xsl:param name="packageName"/>
+		
 		<xsl:param name="title" select="$title-base"/>
 
 		<xsl:variable name="baseRef">
@@ -186,12 +201,21 @@
 				<xsl:with-param name="packageName" select="$packageName"/>
 			</xsl:call-template>
 		</xsl:variable>
+
+		<script language="javascript" type="text/javascript">
+			<xsl:attribute name="src">
+				<xsl:value-of select="$baseRef"/>
+				<xsl:text>prettify.js</xsl:text>
+			</xsl:attribute>
+		</script>
+		
 		<script language="javascript" type="text/javascript">
 			<xsl:attribute name="src">
 				<xsl:value-of select="$baseRef"/>
 				<xsl:text>asdoc.js</xsl:text>
 			</xsl:attribute>
 		</script>
+		
 		<xsl:if test="$isEclipse">
 			<script language="javascript" type="text/javascript">
 				<xsl:comment>
@@ -199,12 +223,14 @@
 				</xsl:comment>
 			</script>
 		</xsl:if>
+		
 		<script language="javascript" type="text/javascript">
 			<xsl:attribute name="src">
 				<xsl:value-of select="$baseRef"/>
 				<xsl:text>cookies.js</xsl:text>
 			</xsl:attribute>
 		</script>
+		
 		<script language="javascript" type="text/javascript">
 			<xsl:comment>
 				asdocTitle = '<xsl:value-of select="$title" />';
@@ -212,6 +238,7 @@
 				window.onload = configPage;
 			</xsl:comment>
 		</script>
+		
 	</xsl:template>
 
 	<xsl:template name="getLinks">

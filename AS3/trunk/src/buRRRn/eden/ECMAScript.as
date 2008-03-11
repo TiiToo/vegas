@@ -1152,18 +1152,6 @@ package buRRRn.eden
 				{
 					_inConstructor = false;
                     
-                    /* 
-                    var test:* ;
-					try
-					{
-						test = new fcnObj();
-					}
-                    catch( e:Error )
-					{
-						return config.undefineable ;
-					}
-                    */ 
-                    
                     try
                     {
                     	return ClassUtil.buildNewInstance(fcnObj, args) ; // VEGAS hack for the moment (35 arguments in this static build method)
@@ -1173,80 +1161,9 @@ package buRRRn.eden
                     	return config.undefineable ;
                     }
                     
-                    /*
-					switch( args.length )
-					{
-						case 9:
-						{
-							return new fcnObj( args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8] );
-						}
-						case 8:
-						{
-							return new fcnObj( args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7] );
-						}
-						case 7:
-						{
-							return new fcnObj( args[0], args[1], args[2], args[3], args[4], args[5], args[6] );
-						}
-						case 6:
-						{
-							return new fcnObj( args[0], args[1], args[2], args[3], args[4], args[5] );
-						}
-						case 5:
-						{
-							return new fcnObj( args[0], args[1], args[2], args[3], args[4] );
-						}
-						case 4:
-						{
-							return new fcnObj( args[0], args[1], args[2], args[3] );
-						}
-						case 3:
-						{
-							return new fcnObj( args[0], args[1], args[2] );
-						}
-						case 2:
-						{
-							return new fcnObj( args[0], args[1] );
-						}
-						case 1:
-						{
-							return new fcnObj( args[0] );
-						}
-						case 0:
-						default:
-						{
-							return new fcnObj( );
-						}
-					}*/
 				}
                 
-				//return fcnObj.apply( fcnObjScope, args );
-
-				var result:*;
-                
-				if( ref != null )
-				{
-					result = ref[ fcnName ].apply( ref, args );
-				}
-                else
-				{
-					result = fcnObj.apply( fcnObjScope, args );
-				}
-                
-				if( ch == "." )
-				{
-					next( );
-					return scanFunction( scanPath( ), pool, result );
-				}
-                else
-				{
-					if( !config.allowFunctionCall )
-					{
-						log( Strings.format( strings.notFunctionCallAllowed, fcnPath, args ) );
-						return config.undefineable;
-					}
-					return result;
-				}
+				
 			}
             
 			log( strings.errorFunction );

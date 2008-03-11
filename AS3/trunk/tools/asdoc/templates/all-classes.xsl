@@ -14,21 +14,31 @@
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 	<xsl:include href="asdoc-util.xsl"/>
-	<xsl:variable name="title" select="concat('All Classes - ',$title-base)"/>
+	
+	<xsl:variable name="title" select="concat('All Classes - ', $title-base)"/>
 
 	<xsl:template match="/">
+		
 		<xsl:copy-of select="$noLiveDocs" />
+		
 		<xsl:copy-of select="$docType" />
+		
 		<xsl:element name="html">
+			
 			<head>
+			
 				<title>
 					<xsl:value-of select="$title"/>
 				</title>
+			
 				<base target="classFrame"/>
+			
 				<xsl:call-template name="getStyleLink">
 					<xsl:with-param name="link" select="asdoc/link"/>
 				</xsl:call-template>
+
 			</head>
+			
 			<body class="classFrameContent">
 				<h3>
 					<a href="class-summary.html" target="classFrame" style="color:black">All Classes</a>
