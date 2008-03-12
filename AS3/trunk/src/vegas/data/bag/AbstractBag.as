@@ -41,7 +41,7 @@ package vegas.data.bag
 	import vegas.util.Serializer;	
 
 	/**
-	 * This class provides a skeletal implementation of the <code>Bag</code> interface, to minimize the effort required to implement this interface.
+	 * This class provides a skeletal implementation of the <code class="prettyprint">Bag</code> interface, to minimize the effort required to implement this interface.
 	 * <p>To implement a bag, the programmer needs only to extend this class and provide implementations for the cursor, insert and size methods. For supporting the removal of elements, the cursor returned by the cursor method must additionally implement its remove method.</p>
 	 * @author eKameleon
 	 */
@@ -80,8 +80,8 @@ package vegas.data.bag
 		}
 
 		/**
-		 * Returns <code>true</code> if this bag contains the object passed in argument.
-		 * @return <code>true</code> if this bag contains the object passed in argument.
+		 * Returns <code class="prettyprint">true</code> if this bag contains the object passed in argument.
+		 * @return <code class="prettyprint">true</code> if this bag contains the object passed in argument.
 		 */
 		public function contains(o:*):Boolean 
 		{
@@ -89,8 +89,8 @@ package vegas.data.bag
 		}
      
 		/**
-		 * Returns <code>true</code> if thie bag contains all object in the passed collection in argument.
-		 * @return <code>true</code> if thie bag contains all object in the passed collection in argument.
+		 * Returns <code class="prettyprint">true</code> if thie bag contains all object in the passed collection in argument.
+		 * @return <code class="prettyprint">true</code> if thie bag contains all object in the passed collection in argument.
 		 */
 	    public function containsAll(c:Collection):Boolean 
 	    {
@@ -98,8 +98,8 @@ package vegas.data.bag
 	    }
 
 		/**
-		 * Returns <code>true</code> if thie bag contains all object in the passed bag in argument.
-		 * @return <code>true</code> if thie bag contains all object in the passed bag in argument.
+		 * Returns <code class="prettyprint">true</code> if thie bag contains all object in the passed bag in argument.
+		 * @return <code class="prettyprint">true</code> if thie bag contains all object in the passed bag in argument.
 		 */     
 		public function containsAllInBag(b:Bag):Boolean 
 		{
@@ -208,8 +208,8 @@ package vegas.data.bag
     	}
 
 		/**
-		 * Returns <code>true</code> if the bag is empty.
-		 * @return <code>true</code> if the bag is empty.
+		 * Returns <code class="prettyprint">true</code> if the bag is empty.
+		 * @return <code class="prettyprint">true</code> if the bag is empty.
 		 */
 		public function isEmpty():Boolean 
 		{

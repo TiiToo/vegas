@@ -89,7 +89,7 @@ package vegas.util
          * Returns a string representation of the source code of the boolean.
          * @return a string representation of the source code of the boolean.
          */
-        public static function toSource( b:Boolean ):String 
+        public static function toSource( b:Boolean , ...rest:Array ):String 
         {
 		    return BooleanUtil.equals( b , true ) ? "true" : "false" ;
         }

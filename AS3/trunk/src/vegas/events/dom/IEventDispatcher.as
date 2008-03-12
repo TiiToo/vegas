@@ -42,20 +42,20 @@ package vegas.events.dom
 		function addGlobalEventListener(listener:EventListener, priority:uint, autoRemove:Boolean):void ;
 	
 		/**
-	     * Returns the <code>EventListenerCollection</code> of the specified event name.
-	     * @return the <code>EventListenerCollection</code> of the specified event name.
+	     * Returns the <code class="prettyprint">EventListenerCollection</code> of the specified event name.
+	     * @return the <code class="prettyprint">EventListenerCollection</code> of the specified event name.
 	     */
 		function getEventListeners(eventName:String):EventListenerCollection ;
 	    
 	    /**
-	     * Returns the <code>EventListenerCollection</code> of this EventDispatcher.
-	     * @return the <code>EventListenerCollection</code> of this EventDispatcher.
+	     * Returns the <code class="prettyprint">EventListenerCollection</code> of this EventDispatcher.
+	     * @return the <code class="prettyprint">EventListenerCollection</code> of this EventDispatcher.
 	     */
 		function getGlobalEventListeners():EventListenerCollection ;
 		
 		/**
-	     * Returns a <code>Set</code> of all register event's name in this EventListener.
-	     * @return a <code>Set</code> of all register event's name in this EventListener.
+	     * Returns a <code class="prettyprint">Set</code> of all register event's name in this EventListener.
+	     * @return a <code class="prettyprint">Set</code> of all register event's name in this EventListener.
 	     */
 		function getRegisteredEventNames():Set ;
 	

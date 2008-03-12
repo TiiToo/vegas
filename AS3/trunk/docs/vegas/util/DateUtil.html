@@ -40,7 +40,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 </table>
 <p></p>
-     The <code>DateUtil</code> utility class is an all-static class with methods for working with dates.
+     The <code class="prettyprint">DateUtil</code> utility class is an all-static class with methods for working with dates.
      <p></p>
 <br>
 <hr>
@@ -79,7 +79,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#toSource()">toSource</a>(date:Date):String</div>
+<a class="signatureLink" href="#toSource()">toSource</a>(date:Date, ... rest):String</div>
 <div class="summaryTableDescription">[static]
          Returns a string representation the source code of the Date.</div>
 </td><td class="summaryTableOwnerCol">DateUtil</td>
@@ -166,7 +166,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the the two specified Date object are equals.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the the two specified Date object are equals.
       </td>
 </tr>
 </table>
@@ -178,12 +178,18 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public static function toSource(date:Date):String</code><p>
+<code>public static function toSource(date:Date, ... rest):String</code><p>
          Returns a string representation the source code of the Date.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">date</span>:Date</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code>... <span class="label">rest</span></code></td>
 </tr>
 </table>
 <p></p>

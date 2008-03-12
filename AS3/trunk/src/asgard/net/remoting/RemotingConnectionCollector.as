@@ -45,8 +45,8 @@ package asgard.net.remoting
 		}
 		
 		/**
-	 	 * Returns <code>true</code> if the collector contains the RemotingConnection register with the name passed in argument.
-	 	 * @return <code>true</code> if the collector contains the RemotingConnection register with the name passed in argument.
+	 	 * Returns <code class="prettyprint">true</code> if the collector contains the RemotingConnection register with the name passed in argument.
+	 	 * @return <code class="prettyprint">true</code> if the collector contains the RemotingConnection register with the name passed in argument.
 	 	 */
 		public static function contains( sName:String ):Boolean 
 		{
@@ -97,8 +97,8 @@ package asgard.net.remoting
 		}
 	
 		/**
-	 	 * Returns <code>true</code> if the collector is empty.
-		 * @return <code>true</code> if the collector is empty.
+	 	 * Returns <code class="prettyprint">true</code> if the collector is empty.
+		 * @return <code class="prettyprint">true</code> if the collector is empty.
 		 */
 		public static function isEmpty():Boolean 
 		{
@@ -106,7 +106,7 @@ package asgard.net.remoting
 		}
 	
 		/**
-		 * Removes the RemotingConnection in the collector specified by the argument <code>sName</code>.
+		 * Removes the RemotingConnection in the collector specified by the argument <code class="prettyprint">sName</code>.
 	 	 */
 		public static function remove(sName:String):void
 		{

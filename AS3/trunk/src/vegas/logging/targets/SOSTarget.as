@@ -37,7 +37,7 @@ package vegas.logging.targets
 	 * Provides a logger target that uses the SOS console to output log messages. 
 	 * Thanks PowerFlasher and the <a href='http://sos.powerflasher.de/english/english.html'>SOS Console</a>
 	 * <p><b>Example :</b></p>
-	 * <code>
+	 * <code class="prettyprint">
 	 * import vegas.logging.* ;
 	 * import vegas.logging.targets.SOSTarget ;
 	 *  
@@ -281,7 +281,7 @@ package vegas.logging.targets
 
 		/**
 	     * Descendants of this class should override this method to direct the specified message to the desired output.
-	     * @param message String containing preprocessed log message which may include time, date, category, etc. based on property settings, such as <code>includeDate</code>, <code>includeCategory</code>, etc.
+	     * @param message String containing preprocessed log message which may include time, date, category, etc. based on property settings, such as <code class="prettyprint">includeDate</code>, <code class="prettyprint">includeCategory</code>, etc.
 	     * @param level the LogEventLevel of the message.
 	 	 */
         public override function internalLog( message:* , level:LogEventLevel ):void

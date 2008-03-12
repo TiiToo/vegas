@@ -31,8 +31,8 @@ package andromeda.process
 
 	/**
 	 * A Sequencer of IAction process.
-	 * <p><b>Example :</b></p>
-	 * <listing>
+     * @example
+     * <pre class="prettyprint">
 	 * var seq:Sequencer = new Sequencer() ;
 	 * seq.addEventListener( ActionEvent.START  , handleEvent ) ;
 	 * seq.addEventListener( ActionEvent.PROGRESS , handleEvent ) ;
@@ -43,7 +43,7 @@ package andromeda.process
 	 * seq.addAction( new Pause( 5, true) ) ;
 	 * seq.addAction( new Pause( 10, true) ) ;
 	 * seq.run() ;
-	 * </listing>
+	 * </pre>
 	 * @author eKameleon
 	 */
 	public class Sequencer extends Action
@@ -51,9 +51,9 @@ package andromeda.process
 		
     	/**
 	     * Creates a new Sequencer instance.
-    	 * @param ar An Array of <code>Action</code> objects.
+    	 * @param ar An Array of <code class="prettyprint">Action</code> objects.
     	 * @param bGlobal the flag to use a global event flow or a local event flow.
-    	 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
+    	 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
     	 */
 		public function Sequencer( ar:Array = null , bGlobal:Boolean = false , sChannel:String = null )
 		{
@@ -77,7 +77,7 @@ package andromeda.process
 		
     	/**
     	 * Adds a process(Action) in the Sequencer.
-    	 * @return <code>true</code> if the method success.
+    	 * @return <code class="prettyprint">true</code> if the method success.
     	 */
 		public function addAction(action:IAction, isClone:Boolean=false):Boolean 
 		{
@@ -92,7 +92,7 @@ package andromeda.process
 
     	/**
 	     * Removes all process in the Sequencer.
-    	 * @param noEvent A boolean flag to disabled the events dispatched by this method if is <code>true</code>.
+    	 * @param noEvent A boolean flag to disabled the events dispatched by this method if is <code class="prettyprint">true</code>.
     	 * @param callback Function to map and check the current process in progress in the sequencer before reset it.
     	 */
 		public function clear( noEvent:Boolean = false , callback:Function = null ):void 
@@ -204,7 +204,7 @@ package andromeda.process
 		
     	/**
     	 * Stops the Sequencer. Stop only the last process if is running.
-    	 * @param noEvent A boolean flag to disabled the events dispatched by this method if is <code>true</code>.
+    	 * @param noEvent A boolean flag to disabled the events dispatched by this method if is <code class="prettyprint">true</code>.
     	 * @param callback Function to map and check the current process in progress in the sequencer before reset it.
     	 */
 		public function stop( noEvent:Boolean = false , callback:Function = null ):void 

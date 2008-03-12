@@ -128,7 +128,7 @@ package vegas.logging.targets
     	 * Descendants of this class should override this method to direct the specified message to the desired output.
     	 *
     	 * @param message String containing preprocessed log message which may include time, date, category, etc. 
-    	 *        based on property settings, such as <code>includeDate</code>, <code>includeCategory</code>, etc.
+    	 *        based on property settings, such as <code class="prettyprint">includeDate</code>, <code class="prettyprint">includeCategory</code>, etc.
 	     */
 	    public override function internalLog( message:* , level:LogEventLevel):void
 	    {

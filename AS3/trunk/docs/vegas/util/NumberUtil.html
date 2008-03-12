@@ -40,7 +40,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 </table>
 <p></p>
-     The <code>NumberUtil</code> utility class is an all-static class with methods for working with number.
+     The <code class="prettyPrint">NumberUtil</code> utility class is an all-static class with methods for working with number.
      <p></p>
 <br>
 <hr>
@@ -96,7 +96,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#toSource()">toSource</a>(n:Number):String</div>
+<a class="signatureLink" href="#toSource()">toSource</a>(n:Number, ... rest):String</div>
 <div class="summaryTableDescription">[static]
          Returns a string representation of the specified number.</div>
 </td><td class="summaryTableOwnerCol">NumberUtil</td>
@@ -183,7 +183,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the two passed-in values are the sames.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the two passed-in values are the sames.
        </td>
 </tr>
 </table>
@@ -220,21 +220,7 @@ showHideInherited();
 <div class="detailBody">
 <code>public static function toHex(n:Number, prefix:String):String</code><p>
       Returns the hexadecimal string representation of the specified number value.
-      </p><p><b>Example :</b></p>
-      <code>
-       import vegas.util.NumberUtil ;
-            for (var i:uint =0 ; i<256 ; i++)
-      {
-          trace( NumberUtil.toHex( i ) ) ; // without optional prefix argument (default "0x")
-      }
-            trace("---") ; 
-      
-      for (var i:Number =0 ; i<256 ; i++)
-       {
-          trace( NumberUtil.toHex( i , "#" ) ) ; // with optional prefix argument
-      }
-       </code>
-       <span class="label">Parameters</span>
+   </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">n</span>:Number</code> &mdash; the number to format.
@@ -256,6 +242,22 @@ showHideInherited();
        </td>
 </tr>
 </table>
+<br>
+<span class="label">Example</span>
+<br>   <pre class="prettyprint">
+       import vegas.util.NumberUtil ;
+            for (var i:uint =0 ; i<256 ; i++)
+      {
+          trace( NumberUtil.toHex( i ) ) ; // without optional prefix argument (default "0x")
+      }
+            trace("---") ; 
+      
+      for (var i:Number =0 ; i<256 ; i++)
+       {
+          trace( NumberUtil.toHex( i , "#" ) ) ; // with optional prefix argument
+      }
+       </pre>
+       <p></p>
 </div>
 <a name="toSource()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -264,12 +266,18 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public static function toSource(n:Number):String</code><p>
+<code>public static function toSource(n:Number, ... rest):String</code><p>
          Returns a string representation of the specified number.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">n</span>:Number</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code>... <span class="label">rest</span></code></td>
 </tr>
 </table>
 <p></p>

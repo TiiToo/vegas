@@ -37,6 +37,9 @@ package asgard.display
 
 		/**
 		 * Creates a new ApplicationDisplay instance.
+		 * @param id Indicates the id of the object.
+		 * @param isConfigurable This flag indicates if the IConfigurable object is register in the ConfigCollector.
+		 * @param name Indicates the instance name of the object.
 		 */
 		public function ApplicationDisplay( id:*=null, isConfigurable:Boolean=false, name:String=null )
 		{

@@ -23,18 +23,34 @@
 
 package andromeda.vo 
 {
-	import flash.net.registerClassAlias;
-	
-	import andromeda.vo.SimpleValueObject;
-	
-	import system.Reflection;
-	
-	import vegas.util.Serializer;	
+    import flash.net.registerClassAlias;
+    
+    import andromeda.vo.SimpleValueObject;
+    
+    import system.Reflection;
+    
+    import vegas.util.Serializer;    
 
-	/**
-	 * This value object contains information sending by a server.
-	 * @author eKameleon
-	 */
+    /**
+     * This value object contains information sending by a server.
+     * @example
+     * <pre class="prettyprint">
+     * import andromeda.vo.NetServerInfoVO ;
+     * 
+     * var info:NetServerInfoVO = new NetServerInfoVO() ;
+     * info.application = "local" ;
+     * info.level       = "error" ;
+     * info.code        = "application_error" ;
+     * info.description = "An error is invoqued in the application" ;
+     * info.line        = 3 ;
+     * info.methodName  = "noMethod" ;
+     * info.serviceName = "noService" ;
+     * 
+     * trace("toString  : " + info) ;
+     * trace("toSource  : " + info.toSource()) ;
+     * </pre>
+     * @author eKameleon
+     */
     public class NetServerInfoVO extends SimpleValueObject 
     {
 
@@ -47,49 +63,49 @@ package andromeda.vo
             super(init) ;
         }
 
-		/**
-		 * This object exist if the server return an application error object. 
-		 * This property exist with FMS when the SSAS <code>application.rejectConnection()</code> method is invoked. 
-	  	 */
-		public var application:* ;
+        /**
+         * This object exist if the server return an application error object. 
+         * This property exist with FMS when the SSAS <code class="prettyprint">application.rejectConnection()</code> method is invoked. 
+           */
+        public var application:* ;
 
-	    /**
-	     * The code of the error.
-     	 */
-		public var code:String = null ;
+        /**
+         * The code of the error.
+          */
+        public var code:String ;
     
-	    /**
-	     * The default description of the error.
-	     */
-	    public var description:String = null  ;
-		
-	    /**
-	     * The level of this information object.
-	     */
-    	public var level:String = null ;  
-		    
-	    /**
-	     * The line number of the error.
-	     */
-    	public var line:Number = NaN ;
-		    
-	    /**
-     	 * The name of the method called.
-	     */
-    	public var methodName:String = null  ;
-		    
-    	/**
-	     * The name of the service used.
-	     */
-    	public var serviceName:String  = null ;
+        /**
+         * The default description of the error.
+         */
+        public var description:String ;
+        
+        /**
+         * The level of this information object.
+         */
+        public var level:String ;  
+            
+        /**
+         * The line number of the error.
+         */
+        public var line:Number ;
+            
+        /**
+          * The name of the method called.
+         */
+        public var methodName:String ;
+            
+        /**
+         * The name of the service used.
+         */
+        public var serviceName:String ;
 
-    	/**
-	     * Preserves the class (type) of an object when the object is encoded in Action Message Format (AMF). 
-	     */
-    	public static function register( aliasName:String="NetServerInfoVO" ):void
-    	{
-	        registerClassAlias( aliasName , NetServerInfoVO ) ;
-	    }
+        /**
+         * Preserves the class (type) of an object when the object is encoded in Action Message Format (AMF). 
+         */
+        public static function register( aliasName:String="NetServerInfoVO" ):void
+        {
+            registerClassAlias( aliasName , NetServerInfoVO ) ;
+        }
 
         /**
          * Returns the Object representation of this object.
@@ -115,29 +131,29 @@ package andromeda.vo
          */
         public override function toString():String
         {
-	        var str:String = "[" + Reflection.getClassName(this) ;
-	        if (code != null && code.length > 0)
-	        {
-	            str += " code:" + code ;
-	        }
-	        if (level != null && level.length > 0)
-        	{
-	            str += " level:" + level;
-        	}
-        	if (description != null && description.length > 0)
-	        {
-            	str += " description:" + description;
-        	}
-        	if ( !isNaN(line) && line.toString().length > 0)
-        	{
-	            str += " line:" + line;
-        	}
-			if (application != null)
-			{
-				str += " application:" + application  ;	
-			}
-        	str += "]" ;
-        	return str ;
+            var str:String = "[" + Reflection.getClassName(this) ;
+            if (code != null && code.length > 0)
+            {
+                str += " code:" + code ;
+            }
+            if (level != null && level.length > 0)
+            {
+                str += " level:" + level;
+            }
+            if (description != null && description.length > 0)
+            {
+                str += " description:" + description;
+            }
+            if ( !isNaN(line) && line.toString().length > 0)
+            {
+                str += " line:" + line;
+            }
+            if (application != null)
+            {
+                str += " application:" + application  ;    
+            }
+            str += "]" ;
+            return str ;
         }
         
     }

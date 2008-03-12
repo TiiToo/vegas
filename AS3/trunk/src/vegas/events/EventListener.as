@@ -26,7 +26,7 @@ package vegas.events
 	import flash.events.Event;
 	
 	/**
-	 * The <code>EventListener</code> interface is the primary method for handling events. Users implement the EventListener interface and register their listener on an <code>EventTarget</code> using the <code>addEventListener method</code>. The users should also remove their EventListener from its <code>EventTarget</code> after they have completed using the listener.
+	 * The <code class="prettyprint">EventListener</code> interface is the primary method for handling events. Users implement the EventListener interface and register their listener on an <code class="prettyprint">EventTarget</code> using the <code class="prettyprint">addEventListener method</code>. The users should also remove their EventListener from its <code class="prettyprint">EventTarget</code> after they have completed using the listener.
 	 * @author eKameleon
  	 */
 	public interface EventListener

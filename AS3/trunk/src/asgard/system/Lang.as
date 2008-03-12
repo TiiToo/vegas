@@ -31,26 +31,23 @@ package asgard.system
      * The language is specified as a lowercase two-letter language code from ISO 639-1. 
      * For Chinese, an additional uppercase two-letter country code from ISO 3166 distinguishes between Simplified and Traditional Chinese. 
      * The languages codes are based on the English names of the language: for example, 'hu' specifies Hungarian.
-     * <p><b>Example :</b></p>
+     * @example
      * <pre class="prettyprint">
      * import asgard.system.Lang ;
      * 
-     * trace("---- Lang.FR") ;
+     * trace( "Lang.ES.toString()        : " + Lang.ES.toString() ) ; // es
+     * trace( "Lang.ES.valueOf()         : " + Lang.ES.valueOf() ) ; // es
+     * trace( "Lang.ES.toSource()        : " + Lang.ES.toSource() ) ; // new asgard.system.Lang("es","Spanish")
+     * trace( "Lang.ES.label             : " + Lang.ES.label ) ; // Spanish
      * 
-     * trace("> Lang.FR : " + Lang.FR) ;
-     * trace("> Lang.FR label : " + Lang.FR.label) ;
-     * trace("> Lang.FR toSource() : " + Lang.FR.toSource()) ;
+     * trace( "Lang.get('fr') == Lang.FR : " + ( Lang.get("fr") == Lang.FR ) ) ; // true
+     * trace( "Lang.validate('fr')       : " + Lang.validate('fr') ) ; // true
+     * trace( "Lang.validate( Lang.FR )  : " + Lang.validate( Lang.FR ) ) ; // true
      * 
-     * trace("---- validate") ;
+     * trace( "Lang.LANGS                : " + Lang.LANGS ) ;
+     * // {pl:pl,nl:nl,es:es,tr:tr,it:it,da:da,pt:pt,fi:fi,zh-CN:zh-CN,no:no,ja:ja,de:de,ru:ru,fr:fr,zh-TW:zh-TW,xu:xu,ko:ko,en:en,sv:sv,cs:cs,hu:hu}
      * 
-     * trace("> Lang.validate 'fr' : "   + Lang.validate("fr")) ;
-     * trace("> Lang.validate 'japo' : " + Lang.validate("japo")) ;
-     * trace("> Lang.validate 'fr' : "   + Lang.validate(Lang.FR)) ;
-     * 
-     * trace("---- Lang.Langs map") ;
-     * 
-     * trace("> Lang.Langs : " + Lang.LANGS) ;
-     * trace("> Lang.size() : " + Lang.size()) ;
+     * trace( "Lang.LANGS.size()         : " + Lang.LANGS.size() ) ; // 21
      * </pre>
      * @author eKameleon
      * @see Capabilities.language
@@ -67,7 +64,7 @@ package asgard.system
         {
             this.label = label ;
             this.value = id ;
-            put(this) ;
+            put( this ) ;
         }
 
         /**
@@ -91,7 +88,7 @@ package asgard.system
          */
         public static function get( id:String ):Lang
         {
-            return LANGS.get(id) ;            
+            return LANGS.get( id.valueOf() ) ;            
         }
         
         /**

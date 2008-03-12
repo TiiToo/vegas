@@ -46,8 +46,8 @@ package lunas.display.button
 		}
 
 		/**
-		 * Returns the constructor function of the <code>IBuilder</code> of this instance.
-		 * @return the constructor function of the <code>IBuilder</code> of this instance.
+		 * Returns the constructor function of the <code class="prettyprint">IBuilder</code> of this instance.
+		 * @return the constructor function of the <code class="prettyprint">IBuilder</code> of this instance.
 		 */
 		public override function getBuilderRenderer():Class
 		{

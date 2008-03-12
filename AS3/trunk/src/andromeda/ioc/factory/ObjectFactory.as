@@ -50,7 +50,7 @@ package andromeda.ioc.factory
 		/**
 		 * Creates a new ObjectFactory instance.
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
-		 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
+		 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
 		 */
 		public function ObjectFactory( bGlobal:Boolean = false , sChannel:String = null )
 		{
@@ -84,9 +84,9 @@ package andromeda.ioc.factory
 		public var singletons:HashMap ;
 		
 		/**
-		 * Returns <code>true</code> if the LightContainer contains the specified name.
+		 * Returns <code class="prettyprint">true</code> if the LightContainer contains the specified name.
 		 * @param name the name of the object in the container.
-		 * @return <code>true</code> if the LightContainer contains the specified name.
+		 * @return <code class="prettyprint">true</code> if the LightContainer contains the specified name.
 		 */		
 		public function containsObject(name:String):Boolean 
 		{
@@ -139,7 +139,7 @@ package andromeda.ioc.factory
 		/**
 		 * This method defined if the object is a lazy init singleton object (must be singleton).
 		 * @param name The name of the object to find.
-		 * @return <code>true</code> if the object is a lazy init singleton object (must be singleton).
+		 * @return <code class="prettyprint">true</code> if the object is a lazy init singleton object (must be singleton).
 	 	 */	
 		public function isLazyInit( name:String ):Boolean 
 		{
@@ -156,7 +156,7 @@ package andromeda.ioc.factory
 		/**
 		 * This method defined if the object is a singleton or a prototype.
 		 * @param name The name of the object to find.
-		 * @return <code>true</code> if the object is a singleton or else if the object is a prototype. 
+		 * @return <code class="prettyprint">true</code> if the object is a singleton or else if the object is a prototype. 
 	 	 */	
 		public function isSingleton( name:String ):Boolean 
 		{

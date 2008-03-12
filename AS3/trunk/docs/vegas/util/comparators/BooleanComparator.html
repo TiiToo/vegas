@@ -46,7 +46,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 </table>
 <p></p>
-  An IComparator for <code>Boolean</code> objects that can sort either <code>true</code> or <code>false</code> first.
+  An IComparator for <code class="prettyprint">Boolean</code> objects that can sort either <code class="prettyprint">true</code> or <code class="prettyprint">false</code> first.
   <p><b>Example :</b></p>
   <pre class="prettyprint">
   var c:IComparator = new BooleanComparator() ;
@@ -68,7 +68,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#trueFirst">trueFirst</a> : Boolean<div class="summaryTableDescription">
-   When <code>true</code> sort <code>true</code> boolean values before <code>false</code>.</div>
+   When <code class="prettyprint">true</code> sort <code class="prettyprint">true</code> boolean values before <code class="prettyprint">false</code>.</div>
 </td><td class="summaryTableOwnerCol">BooleanComparator</td>
 </tr>
 </table>
@@ -126,7 +126,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="#getFalseFirstComparator()">getFalseFirstComparator</a>():<a href="../comparators/BooleanComparator.html">BooleanComparator</a>
 </div>
 <div class="summaryTableDescription">[static]
-    Returns a <code>BooleanComparator</code> singleton that sorts false values before true values.</div>
+    Returns a <code class="prettyprint">BooleanComparator</code> singleton that sorts false values before true values.</div>
 </td><td class="summaryTableOwnerCol">BooleanComparator</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -135,7 +135,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="../../core/CoreObject.html#getLogger()">getLogger</a>():<a href="../../logging/ILogger.html">ILogger</a>
 </div>
 <div class="summaryTableDescription">
-   Returns the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="">
@@ -144,7 +144,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="#getTrueFirstComparator()">getTrueFirstComparator</a>():<a href="../comparators/BooleanComparator.html">BooleanComparator</a>
 </div>
 <div class="summaryTableDescription">[static]
-   Returns a <code>BooleanComparator</code> singleton that sorts true values before false values.</div>
+   Returns a <code class="prettyprint">BooleanComparator</code> singleton that sorts true values before false values.</div>
 </td><td class="summaryTableOwnerCol">BooleanComparator</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -160,7 +160,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../core/CoreObject.html#setLogger()">setLogger</a>(log:<a href="../../logging/ILogger.html">ILogger</a> = null):void</div>
 <div class="summaryTableDescription">
-   Sets the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -196,7 +196,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public var trueFirst:Boolean</code><p>
-   When <code>true</code> sort <code>true</code> boolean values before <code>false</code>.
+   When <code class="prettyprint">true</code> sort <code class="prettyprint">true</code> boolean values before <code class="prettyprint">false</code>.
     </p></div>
 <a name="constructorDetail"></a>
 <div class="detailSectionHeader">Constructor detail</div>
@@ -315,7 +315,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function getFalseFirstComparator():<a href="../comparators/BooleanComparator.html">BooleanComparator</a></code><p>
-    Returns a <code>BooleanComparator</code> singleton that sorts false values before true values.
+    Returns a <code class="prettyprint">BooleanComparator</code> singleton that sorts false values before true values.
    Clients are encouraged to use the value returned from this method instead of constructing a new instance to reduce allocation and garbage collection overhead when multiple BooleanComparators may be used in the same application.
     </p><p><b>Example :</b></p>
    <pre class="prettyprint">
@@ -330,7 +330,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code><a href="../comparators/BooleanComparator.html">BooleanComparator</a></code> &mdash; 
-                        a <code>BooleanComparator</code> instance that sorts false values before true values.
+                        a <code class="prettyprint">BooleanComparator</code> instance that sorts false values before true values.
    
                         
                      </td>
@@ -345,7 +345,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function getTrueFirstComparator():<a href="../comparators/BooleanComparator.html">BooleanComparator</a></code><p>
-   Returns a <code>BooleanComparator</code> singleton that sorts true values before false values.
+   Returns a <code class="prettyprint">BooleanComparator</code> singleton that sorts true values before false values.
    Clients are encouraged to use the value returned from this method instead of constructing a new instance to reduce allocation and garbage collection overhead when multiple BooleanComparators may be used in the same application.
     <pre class="prettyprint">
    var c:IComparator = BooleanComparator.getTrueFirstComparator() ;
@@ -359,7 +359,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code><a href="../comparators/BooleanComparator.html">BooleanComparator</a></code> &mdash; 
-                        a <code>BooleanComparator</code> instance that sorts true values before false values.
+                        a <code class="prettyprint">BooleanComparator</code> instance that sorts true values before false values.
     
                         
                      </td>

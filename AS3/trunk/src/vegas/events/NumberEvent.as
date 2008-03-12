@@ -27,7 +27,7 @@ package vegas.events
     import flash.events.Event ;
     
     /**
-     * The <code>NumberEvent</code> to dispatch an event with a Number object.
+     * The <code class="prettyprint">NumberEvent</code> to dispatch an event with a Number object.
      * <pre class="prettyprint">
      * var e:Event = new NumberEvent("change", 10) ;
      * trace( (e as NumberEvent).getNumber() ) ;
@@ -38,7 +38,7 @@ package vegas.events
 	{
         
 		/**
-		 * Creates a new <code>NumberEvent</code> instance.
+		 * Creates a new <code class="prettyprint">NumberEvent</code> instance.
 		 * @param type the string type of the instance. 
 		 * @param n the Number object of this event. 
 		 * @param target the target of the event.

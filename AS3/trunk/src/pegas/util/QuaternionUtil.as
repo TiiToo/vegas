@@ -27,7 +27,7 @@ package pegas.util
 	import pegas.geom.Vector3;	
 
 	/**
-	 * Static tool class to manipulate and transform <code>Quaternion</code> references.
+	 * Static tool class to manipulate and transform <code class="prettyprint">Quaternion</code> references.
 	 * @author eKameleon
 	 */
 	public class QuaternionUtil 
@@ -122,7 +122,7 @@ package pegas.util
 	 	 * Sets the elements of a Quaternion to represent the rotation around an arbitary axis.
 	 	 * @param q the Quaternion to set.
 	 	 * @param theta a real number representing angle input.
-	 	 * @param axis the <code>Vector3</code> direction instance.
+	 	 * @param axis the <code class="prettyprint">Vector3</code> direction instance.
 	 	 */
 		public static function rotationAxis( q:Quaternion, theta:Number, axis:Vector3 ):void
 		{

@@ -94,8 +94,8 @@ package andromeda.vo
         }
             
         /**
-         * Returns <code>true</code> if the filter number value contains the option number value.
-         * @return <code>true</code> if the filter number value contains the option number value.
+         * Returns <code class="prettyprint">true</code> if the filter number value contains the option number value.
+         * @return <code class="prettyprint">true</code> if the filter number value contains the option number value.
          */
         public function contains( value:Number ) : Boolean
         {
@@ -112,8 +112,8 @@ package andromeda.vo
         }
             
         /**
-         * Returns <code>true</code> if the filter is NONE.
-         * @return <code>true</code> if the filter is NONE.
+         * Returns <code class="prettyprint">true</code> if the filter is NONE.
+         * @return <code class="prettyprint">true</code> if the filter is NONE.
          */
         public function isNone():Boolean
         {

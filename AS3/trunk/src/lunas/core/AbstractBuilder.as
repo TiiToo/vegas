@@ -27,7 +27,7 @@ package lunas.core
 	import vegas.events.AbstractCoreEventDispatcher;	
 
 	/**
-	 * This class provides a skeletal implementation of the <code>IBuilder</code> interface, to minimize the effort required to implement this interface.
+	 * This class provides a skeletal implementation of the <code class="prettyprint">IBuilder</code> interface, to minimize the effort required to implement this interface.
 	 * @author eKameleon
 	 */
 	public class AbstractBuilder extends AbstractCoreEventDispatcher implements IBuilder
@@ -37,7 +37,7 @@ package lunas.core
 		 * Creates a new AbstractBuilder instance.
 		 * @param target the target of the component reference to build.
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
-		 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
+		 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
 		 */
 		public function AbstractBuilder( target:DisplayObject, bGlobal:Boolean = false, sChannel:String = null)
 		{

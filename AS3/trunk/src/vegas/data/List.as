@@ -35,8 +35,8 @@ package vegas.data
     {
     
     	/**
-		 * Returns <code>true</code> if this list contains all of the elements of the specified collection.
-		 * @return <code>true</code> if this list contains all of the elements of the specified collection.
+		 * Returns <code class="prettyprint">true</code> if this list contains all of the elements of the specified collection.
+		 * @return <code class="prettyprint">true</code> if this list contains all of the elements of the specified collection.
 		 */
     	function containsAll(c:Collection):Boolean ;
 
@@ -78,12 +78,12 @@ package vegas.data
     	function removeAt(id:uint):* ;
 
 		/**
-		 * Removes from this list all the elements that are contained between the specific <code>from</code> and the specific <code>to</code> position in this list (optional operation).
+		 * Removes from this list all the elements that are contained between the specific <code class="prettyprint">from</code> and the specific <code class="prettyprint">to</code> position in this list (optional operation).
 		 */
     	function removeRange(fromIndex:uint, toIndex:uint):void ;
 	
 		/**
-		 * Removes from this list all the elements that are contained between the specific <code>id</code> position and the end of this list (optional operation).
+		 * Removes from this list all the elements that are contained between the specific <code class="prettyprint">id</code> position and the end of this list (optional operation).
 		 */
     	function removesAt(id:uint, len:uint):* ;
 

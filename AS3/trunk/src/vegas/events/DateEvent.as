@@ -27,7 +27,7 @@ package vegas.events
     import flash.events.Event ;
     
     /**
-     * The <code>DateEvent</code> to dispatch an event with a Date object.
+     * The <code class="prettyprint">DateEvent</code> to dispatch an event with a Date object.
      * <pre class="prettyprint">
      * var e:Event = new DateEvent("change", new Date()) ;
      * trace( (e as DateEvent).getDate() ) ;
@@ -38,7 +38,7 @@ package vegas.events
 	{
         
 		/**
-		 * Creates a new <code>DateEvent</code> instance.
+		 * Creates a new <code class="prettyprint">DateEvent</code> instance.
 		 * 
 		 * @param type the string type of the instance. 
 		 * @param date the Date object of this event. 

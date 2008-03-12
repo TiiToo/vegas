@@ -35,7 +35,7 @@ package pegas.geom
 	{
 
 		/**
-		 * Creates a new <code>Vertex</code> instance.
+		 * Creates a new <code class="prettyprint">Vertex</code> instance.
 		 * @param x the x coordinate.
 		 * @param y the y coordinate.
 	 	 * @param z the z coordinate.
@@ -131,7 +131,7 @@ package pegas.geom
 
 		/**
 		 * Compares the specified object with this object for equality.
-		 * @return <code>true</code> if the the specified object is equal with this object.
+		 * @return <code class="prettyprint">true</code> if the the specified object is equal with this object.
 		 */
 		public override function equals( o:* ):Boolean
 		{
@@ -147,8 +147,8 @@ package pegas.geom
 		}
 		
 		/**
-		 * Returns the <code>Vector3</code> representation of the transformed coordinate system of this Vertex.
-		 * @return the <code>Vector3</code> representation of the transformed coordinate system of this Vertex.
+		 * Returns the <code class="prettyprint">Vector3</code> representation of the transformed coordinate system of this Vertex.
+		 * @return the <code class="prettyprint">Vector3</code> representation of the transformed coordinate system of this Vertex.
 		 */
 		public function getTransformVector3():Vector3
 		{
@@ -156,8 +156,8 @@ package pegas.geom
 		}
 
 		/**
-		 * Returns the <code>Vector3</code> representation of this Vertex in the world coordinate.
-		 * @return the <code>Vector3</code> representation of this Vertex in the world coordinate.
+		 * Returns the <code class="prettyprint">Vector3</code> representation of this Vertex in the world coordinate.
+		 * @return the <code class="prettyprint">Vector3</code> representation of this Vertex in the world coordinate.
 		 */
 		public function getWorldVector3():Vector3
 		{

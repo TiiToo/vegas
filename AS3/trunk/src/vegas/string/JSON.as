@@ -46,10 +46,9 @@ package vegas.string
     
     /**
 	 * JSON (JavaScript object Notation) is a lightweight data-interchange format.
-	 * <p>Serializer & deserializer in AS2.</p>
 	 * <p>More information in the official site : <a href="http://www.JSON.org/">http://www.JSON.org</a></p>
-	 * <p>Add Hexa Digits tool in deserialize method - <a href="http://www.burrrn.com/projects/eden.html">EDEN inspiration</a></p>
-	 * <p><b>Example :</b></p>
+	 * <p>Add Hexa Digits tool in deserialize method - <a href="http://code.google.com/p/edenrr/">eden inspiration</a></p>
+	 * @example
 	 * <pre class="prettyprint">
 	 * package
 	 * {
@@ -118,6 +117,7 @@ package vegas.string
 		
 		/**
 		 * Deserialize the string source representation and return the result object.
+		 * @param source The String source to deserialize with eden.
 		 */		
 		public static function deserialize(source:String):* 
 		{
@@ -583,6 +583,7 @@ package vegas.string
 
 		/**
 		 * Serialize the object and return this string representation.
+		 * @param o The Object to serialize with the JSON notation.
 		 * @return the string serialize representation of an object.
 		 */
 		public static function serialize(o:*):String 

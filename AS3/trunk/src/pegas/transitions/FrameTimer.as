@@ -8,9 +8,9 @@ package pegas.transitions
 	import andromeda.process.SimpleAction;	
 
 	/**
-	 * Constructs a <code>new FrameTimer</code> object with the specified delay and repeat state. 
+	 * Constructs a <code class="prettyprint">new FrameTimer</code> object with the specified delay and repeat state. 
 	 * This timer use the frames by second of the animation. 
-	 * The timer does not start automatically, you much call the <code>start()</code> method to start it.
+	 * The timer does not start automatically, you much call the <code class="prettyprint">start()</code> method to start it.
 	 * @author eKameleon
 	 */
 	public class FrameTimer extends SimpleAction implements ITimer 
@@ -22,7 +22,7 @@ package pegas.transitions
     	 * @param delay The delay between timer events, in milliseconds.
     	 * @param repeatCount Specifies the number of repetitions. If zero, the timer repeats infinitely. If nonzero, the timer runs the specified number of times and then stops. 
     	 * @param bGlobal the flag to use a global event flow or a local event flow.
-    	 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
+    	 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
 		 */
 		public function FrameTimer(delay:Number = 0, repeatCount:int = 0, bGlobal:Boolean = false, sChannel:String = null)
 		{
@@ -92,8 +92,8 @@ package pegas.transitions
 		}
 
 		/**
-	     * Returns <code>true</code> if the process is in progress.
-	     * @return <code>true</code> if the process is in progress.
+	     * Returns <code class="prettyprint">true</code> if the process is in progress.
+	     * @return <code class="prettyprint">true</code> if the process is in progress.
 	     */
 		public override function getRunning():Boolean 
 		{

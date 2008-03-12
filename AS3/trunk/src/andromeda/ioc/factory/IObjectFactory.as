@@ -37,9 +37,9 @@ package andromeda.ioc.factory
 		function set config( o:ObjectConfig ):void ;
 		
 		/**
-		 * Returns <code>true</code> if the referencial contains the specified object.
+		 * Returns <code class="prettyprint">true</code> if the referencial contains the specified object.
 		 * @param The id name of the object to search.
-	 	 * @return <code>true</code> if the referencial contains the specified object.
+	 	 * @return <code class="prettyprint">true</code> if the referencial contains the specified object.
 		 */		
 		function containsObject(name:String):Boolean;
 				
@@ -53,14 +53,14 @@ package andromeda.ioc.factory
 		/**
 		 * This method defined if the object is a lazy init singleton object (must be singleton).
 		 * @param name The name of the object to find.
-		 * @return <code>true</code> if the object is a lazy init singleton object (must be singleton).
+		 * @return <code class="prettyprint">true</code> if the object is a lazy init singleton object (must be singleton).
 	 	 */	
 		function isLazyInit( name:String ):Boolean ; 		
 		
 		/**
 	 	 * This method defined if the object is a singleton or a prototype.
 		 * @param The id name of the object.
-		 * @return <code>true</code> if the object is a singleton or else if the object is a prototype. 
+		 * @return <code class="prettyprint">true</code> if the object is a singleton or else if the object is a prototype. 
 	 	 */		
 		function isSingleton(name:String):Boolean ;	
 		

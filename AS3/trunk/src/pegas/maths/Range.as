@@ -33,7 +33,7 @@ package pegas.maths
 
     /**
      * Represents an immutable range of values.
-     * <p><b>Example :</b></p>
+     * @code
      * <pre class="prettyprint">
      * import pegas.maths.Range ;
      * 
@@ -118,10 +118,10 @@ package pegas.maths
 
         /**
          * Creates a new range by combining two existing ranges.
-         * <li>either range can be <code>null</code>, in which case the other range is returned.</li>
-         * <li>if both ranges are <code>null</code> the return value is <code>null</code>.</li>
-         * @param range1 the first range, <code>null</code> permitted.
-         * @param range2 the second range, <code>null</code> permitted.
+         * <li>either range can be <code class="prettyprint">null</code>, in which case the other range is returned.</li>
+         * <li>if both ranges are <code class="prettyprint">null</code> the return value is <code class="prettyprint">null</code>.</li>
+         * @param range1 the first range, <code class="prettyprint">null</code> permitted.
+         * @param range2 the second range, <code class="prettyprint">null</code> permitted.
          */
         public static function combine( range1:Range, range2:Range ):Range
         {
@@ -145,8 +145,8 @@ package pegas.maths
         }
 
         /**
-         * Returns <code>true</code> if the Range instance contains the value passed in argument.
-         * @return <code>true</code> if the Range instance contains the value passed in argument.
+         * Returns <code class="prettyprint">true</code> if the Range instance contains the value passed in argument.
+         * @return <code class="prettyprint">true</code> if the Range instance contains the value passed in argument.
          */
         public function contains(value:Number):Boolean 
         {
@@ -179,11 +179,11 @@ package pegas.maths
         
         /**
          * Creates a new range by adding margins to an existing range.
-         * @param range the range <code>null</code> not permitted.
+         * @param range the range <code class="prettyprint">null</code> not permitted.
          * @param lowerMargin the lower margin (expressed as a percentage of the range length).
          * @param upperMargin the upper margin (expressed as a percentage of the range length).
          * @return The expanded range.
-         * @throws IllegalArgumentError if the range argument is <code>null</code>
+         * @throws IllegalArgumentError if the range argument is <code class="prettyprint">null</code>
          */
         public static function expand(range:Range, lowerMargin:Number, upperMargin:Number):Range
         {
@@ -238,8 +238,8 @@ package pegas.maths
         }
     
         /**
-         * Returns <code>true</code> if the value is out of the range.
-         * @return <code>true</code> if the value is out of the range.
+         * Returns <code class="prettyprint">true</code> if the value is out of the range.
+         * @return <code class="prettyprint">true</code> if the value is out of the range.
          */
         public function isOutOfRange(value:Number):Boolean 
         {
@@ -247,8 +247,8 @@ package pegas.maths
         }
     
         /**
-         * Returns <code>true</code> if the range in argument overlap the current range.
-         * @return <code>true</code> if the range in argument overlap the current range.
+         * Returns <code class="prettyprint">true</code> if the range in argument overlap the current range.
+         * @return <code class="prettyprint">true</code> if the range in argument overlap the current range.
          */
         public function overlap(r:Range):Boolean 
         {

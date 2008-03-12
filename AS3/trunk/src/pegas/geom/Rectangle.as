@@ -30,7 +30,7 @@ package pegas.geom
 	import vegas.errors.ClassCastError;												
 
 	/**
-	 * The Rectangle class is used to create and modify Rectangle objects. 
+	 * The <code class="prettyprint">Rectangle</code> class is used to create and modify Rectangle objects. 
 	 * <p>A Rectangle object is an area defined by its position, as indicated by its top-left corner point (x, y), and by its width and its height.</p>
 	 * <p>The x, y, width, and height properties of the Rectangle class are independent of each other; changing the value of one property has no effect on the others.</p>
 	 * <p>To used this class with a FP8 and > with flash.display.BitmapData class and other flash.* classes you can use the method toFlash() to return a compatible reference of this object.</p> 
@@ -41,15 +41,15 @@ package pegas.geom
 		
 		/**
 		 * Creates a new Rectangle instance whose top-left corner is specified by the x and y parameters.
-		 * <p><b>Example :</b></p>
+		 * If not arguments are passed-in the constructor an empty rectangle is created.
+		 * @example
 		 * <pre class="prettyprint">
 	 	 * import pegas.geom.Rectangle;
 	 	 * var rec:Rectangle = new Rectangle(5, 10, 50, 100);
 	 	 * trace( "output : " + rec.toString() ); // output : (x:5,y:10,width:50,height:100)
 	 	 * </pre>
-	 	 * If not arguments are passed-in the constructor an empty rectangle is created.
-	 	 * @param x The <code>x</code> coordinate of the top-left corner of the rectangle.
-	 	 * @param y The <code>y</code> coordinate of the top-left corner of the rectangle.
+	 	 * @param x The <code class="prettyprint">x</code> coordinate of the top-left corner of the rectangle.
+	 	 * @param y The <code class="prettyprint">y</code> coordinate of the top-left corner of the rectangle.
 	 	 * @param w The width of the rectangle in pixels.
 	 	 * @param h The height of the rectangle in pixels.
 	 	 */
@@ -272,7 +272,7 @@ package pegas.geom
 		 * Determines whether the specified point is contained within the rectangular region defined by this Rectangle object.
 		 * @param x The x coordinate to check.
 		 * @param y The y coordinate to check.
-		 * @return <code>true</code> if the specified point is contained within the rectangular region defined by this Rectangle object.
+		 * @return <code class="prettyprint">true</code> if the specified point is contained within the rectangular region defined by this Rectangle object.
 		 */
 		public function containsCoordinate( x:Number , y:Number ):Boolean 
 		{
@@ -282,7 +282,7 @@ package pegas.geom
 		/**
 		 * Determines whether the specified point is contained within the rectangular region defined by this Rectangle object.
 		 * @param vector The Vector2 to check.
-		 * @return <code>true</code> if the specified point is contained within the rectangular region defined by this Rectangle object.
+		 * @return <code class="prettyprint">true</code> if the specified point is contained within the rectangular region defined by this Rectangle object.
 		 */
 		public function containsVector( vector:Vector2 ):Boolean 
 		{
@@ -291,7 +291,7 @@ package pegas.geom
 	
 		/**
 		 * Determines whether the Rectangle object specified by the rect parameter is contained within this Rectangle object.
-		 * @return <code>true</code> if the specified Rectangle is contained within this Rectangle object. 
+		 * @return <code class="prettyprint">true</code> if the specified Rectangle is contained within this Rectangle object. 
 	 	 */
 		public function containsRectangle( rec:pegas.geom.Rectangle ):Boolean 
 		{
@@ -353,7 +353,7 @@ package pegas.geom
 
 		/**
 		 * Compares the specified object with this object for equality.
-		 * @return <code>true</code> if the the specified object is equal with this object.
+		 * @return <code class="prettyprint">true</code> if the the specified object is equal with this object.
 		 */
 		public override function equals( o:* ):Boolean 
 		{
@@ -422,7 +422,7 @@ package pegas.geom
 
 		/**
 		 * Determines whether or not this Rectangle object is empty.
-		 * @return <code>true</code> if the width and the height of the rectangle are empty (0).
+		 * @return <code class="prettyprint">true</code> if the width and the height of the rectangle are empty (0).
 		 */
 		public function isEmpty():Boolean 
 		{
@@ -457,8 +457,8 @@ package pegas.geom
 		}
 
 		/**
-		 * Returns a flash.geom.Rectangle reference of this Rectangle object.
-		 * @return a flash.geom.Rectangle reference of this Rectangle object.
+		 * Returns a <code class="prettyprint">flash.geom.Rectangle</code> reference of this Rectangle object.
+		 * @return a <code class="prettyprint">flash.geom.Rectangle</code> reference of this Rectangle object.
 		 */
 		public function toFlash():flash.geom.Rectangle
 		{
@@ -473,7 +473,7 @@ package pegas.geom
 		}
 
 		/**
-		 * Returns a eden reprensation of the object.
+		 * Returns a <b>eden</b> reprensation of the object.
 		 * @return a string representing the source code of the object.
 	 	 */
 		public override function toSource( indent:int = 0 ):String 

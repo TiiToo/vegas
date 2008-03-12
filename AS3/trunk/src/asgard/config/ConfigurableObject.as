@@ -30,7 +30,7 @@ package asgard.config
     /**
      * This core class extend the CoreObject class and implement the IConfigurable interface.
      * A IConfigurable object handle a notification of the ConfigCollector class with the method setup(), you must override this method in your concrete class.
-     * The IConfigurable objects are registered in the ConfigCollector to launch the setup of all IConfigurable object one time with the <code>ConfigCollector.run()</code> method when the Config is loaded for example. 
+     * The IConfigurable objects are registered in the ConfigCollector to launch the setup of all IConfigurable object one time with the <code class="prettyprint">ConfigCollector.run()</code> method when the Config is loaded for example. 
      * @author eKameleon
      */
 	public class ConfigurableObject extends AbstractCoreEventDispatcher implements IConfigurable
@@ -39,7 +39,7 @@ package asgard.config
     	/**
     	 * Creates a new ConfigurableObject instance.
     	 * @param bGlobal the flag to use a global event flow or a local event flow.
-    	 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
+    	 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
     	 */
         public function ConfigurableObject( bGlobal:Boolean = false , sChannel:String = null )
         {
@@ -48,8 +48,8 @@ package asgard.config
         }
 
     	/**
-	     * (read-write) Returns <code>true</code> if the object is configurable and receive the notification of the ConfigCollector in the setup() method.
-	     * @return <code>true</code> if the object is configurable and receive the notification of the ConfigCollector.
+	     * (read-write) Returns <code class="prettyprint">true</code> if the object is configurable and receive the notification of the ConfigCollector in the setup() method.
+	     * @return <code class="prettyprint">true</code> if the object is configurable and receive the notification of the ConfigCollector.
     	 */
     	public function get isConfigurable():Boolean
     	{

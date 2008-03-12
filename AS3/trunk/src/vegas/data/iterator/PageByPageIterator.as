@@ -30,7 +30,7 @@ package vegas.data.iterator
 
     /**
      * An iterator page by page over an array who return an new array of elements.
-     * If the step size value is <code>1</code> the next and previous methods returns the single value element in the data array.
+     * If the step size value is <code class="prettyprint">1</code> the next and previous methods returns the single value element in the data array.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
      * import vegas.data.iterator.PageByPageIterator;
@@ -123,8 +123,8 @@ package vegas.data.iterator
 	    }    
 
     	/**
-    	 * Returns <code>true</code> if the iteration has more elements.
-	     * @return <code>true</code> if the iterator has more elements.
+    	 * Returns <code class="prettyprint">true</code> if the iteration has more elements.
+	     * @return <code class="prettyprint">true</code> if the iterator has more elements.
 	     */
         public function hasNext():Boolean
         {
@@ -133,7 +133,7 @@ package vegas.data.iterator
 
     	/**
     	 * Checks to see if there is a previous element that can be iterated to.
-    	 * @return <code>true</code> if the iterator has more elements.
+    	 * @return <code class="prettyprint">true</code> if the iterator has more elements.
     	 */
         public function hasPrevious():Boolean
         {

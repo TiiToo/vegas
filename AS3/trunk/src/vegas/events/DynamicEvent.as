@@ -27,9 +27,9 @@ package vegas.events
     import flash.events.Event ;
     
     /**
-     * The <code>DynamicEvent</code> to dispatch an event with dynamic properties.
+     * The <code class="prettyprint">DynamicEvent</code> to dispatch an event with dynamic properties.
      * <p><b>Example :</b></p>
-     * <code>
+     * <code class="prettyprint">
      * import vegas.events.DynamicEvent ;
      * var e:DynamicEvent = new DynamicEvent("change") ;
      * e.test = "hello world" ;
@@ -41,7 +41,7 @@ package vegas.events
 	{
         
 		/**
-		 * Creates a new <code>DynamicEvent</code> instance.
+		 * Creates a new <code class="prettyprint">DynamicEvent</code> instance.
 		 * @param type the string type of the instance. 
 		 * @param target the target of the event.
 		 * @param context the optional context object of the event.

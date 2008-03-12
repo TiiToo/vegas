@@ -106,7 +106,7 @@ package asgard.managers
          * @param id the id of the model.
          * @param id the id of this model.
          * @param bGlobal the flag to use a global event flow or a local event flow.
-         * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
+         * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
          */
         public function TabManager( id:* = null, bGlobal:Boolean = false, sChannel:String = null)
         {
@@ -177,7 +177,7 @@ package asgard.managers
          * Insert a new child object in the manager with the specified id.
          * @param id The key of the group to collect the specified interactive object.
          * @param child The interactive object to collect in the manager.
-         * @return <code>true</code> if the interactive object is inserted in the manager.
+         * @return <code class="prettyprint">true</code> if the interactive object is inserted in the manager.
          * @throws IllegalArgumentError the id argument not must be 'null' or 'undefined'.
          */
         public function insert( id:* , child:InteractiveObject ):Boolean
@@ -200,7 +200,7 @@ package asgard.managers
          * Removes a child object in the manager with the specified id.
          * @param id The key of the group to collect the specified interactive object.
          * @param child The interactive object to collect in the manager.
-         * @return <code>true</code> if the interactive object is removed in the manager.
+         * @return <code class="prettyprint">true</code> if the interactive object is removed in the manager.
          * @throws IllegalArgumentError the id argument not must be 'null' or 'undefined'.
          */
         public function remove( id:* , child:InteractiveObject ):Boolean
@@ -220,10 +220,10 @@ package asgard.managers
         }    
         
         /**
-         * Select the specified group and returns <code>true</code> if the group exist.
+         * Select the specified group and returns <code class="prettyprint">true</code> if the group exist.
          * @param id The key of the tab group of interactive objects.
          * @param defaultChild (optional) The default interactive object to select by default when the group is selected.
-         * @return <code>true</code> if the specified group of interactive objects is selected.
+         * @return <code class="prettyprint">true</code> if the specified group of interactive objects is selected.
          * @throws IllegalArgumentError the id argument not must be 'null' or 'undefined'.
          */
         public function select( id:* , defaultChild:InteractiveObject = null ):Boolean
@@ -260,8 +260,8 @@ package asgard.managers
         }
     
         /**
-         * Unselect the specified group and returns <code>true</code> if the group exist.
-         * @return <code>true</code> if the unselected group exist and the process is success.
+         * Unselect the specified group and returns <code class="prettyprint">true</code> if the group exist.
+         * @return <code class="prettyprint">true</code> if the unselected group exist and the process is success.
          */
         public function unSelect():Boolean
         {

@@ -26,7 +26,7 @@ package vegas.util
 {
 
 	/**
-	 * The <code>ErrorUtil</code> utility class is an all-static class with methods for working with Error.
+	 * The <code class="prettyprint">ErrorUtil</code> utility class is an all-static class with methods for working with Error.
 	 * @author eKameleon
 	 */
     public class ErrorUtil
@@ -52,7 +52,7 @@ package vegas.util
 
 		/**
 		 * Compares if two Errors are equal by reference.
-		 * @return <code>true</code> if the two Errors are equal by reference.
+		 * @return <code class="prettyprint">true</code> if the two Errors are equal by reference.
 	 	 */
 		public static function equals( e1:Error = null , e2:Error = null ):Boolean 
 		{
@@ -71,7 +71,7 @@ package vegas.util
 	 	 * Returns a string representing the source code of the object.
 	 	 * @return a string representing the source code of the object.
  	 	 */
-	    public static function toSource( e:Error ):String 
+	    public static function toSource( e:Error , ...rest:Array ):String 
 	    {
 		    return 'new Error(\"' + e.message + '")' ;
         }

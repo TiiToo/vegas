@@ -30,6 +30,9 @@ package asgard.data.iterator
 	import vegas.data.iterator.Iterator;
 	import vegas.util.MathsUtil;
 	
+	/**
+	 * The RecordSetIterator class.
+	 */
 	public class RecordSetIterator extends CoreObject implements Iterator
 	{
 		

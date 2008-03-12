@@ -37,7 +37,7 @@ package vegas.logging.targets
 		/**
 		 * Creates a new LineFormattedTarget instance.
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
-		 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
+		 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
 		 */
         public function LineFormattedTarget( bGlobal:Boolean = false , sChannel:String = null )
         {
@@ -65,7 +65,7 @@ package vegas.logging.targets
     	public var includeLines:Boolean = false ; 
 
 	  	/**
-		 * Indicates if the milliseconds should be added to the trace. Only relevant when includeTime is <code>true</code>.
+		 * Indicates if the milliseconds should be added to the trace. Only relevant when includeTime is <code class="prettyprint">true</code>.
 	     */
   		public var includeMilliseconds:Boolean = false ;
 
@@ -83,7 +83,7 @@ package vegas.logging.targets
     	 * Descendants of this class should override this method to direct the specified message to the desired output.
     	 *
     	 * @param message String containing preprocessed log message which may include time, date, category, etc. 
-    	 *        based on property settings, such as <code>includeDate</code>, <code>includeCategory</code>, etc.
+    	 *        based on property settings, such as <code class="prettyprint">includeDate</code>, <code class="prettyprint">includeCategory</code>, etc.
 	     */
 	    public function internalLog( message:* , level:LogEventLevel ):void
 	    {
@@ -91,7 +91,7 @@ package vegas.logging.targets
 	    }
 	    
         /**
-         *  This method handles a <code>LogEvent</code> from an associated logger.
+         *  This method handles a <code class="prettyprint">LogEvent</code> from an associated logger.
          *  A target uses this method to translate the event into the appropriate
          *  format for transmission, storage, or display.
          *  This method will be called only if the event's level is in range of the target's level.

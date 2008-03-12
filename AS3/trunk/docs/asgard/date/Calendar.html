@@ -40,39 +40,41 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 </table>
 <p></p>
-  This class contains all tools to creates a calendar.
-  <p><b>Example :</b></p>
-  <pre class="prettyprint">
-  import asgard.date.Calendar ;
-  
-  var c1:Calendar = new Calendar(2005, 2, 15) ;
-  trace ("c1 getTime : " + c1.getTime()) ;
-  trace ("c1 toSource : " + c1.toSource()) ;
-  var c2:Calendar = new Calendar() ;
-  
-   trace ("-- c1 : " + c1) ;
-  trace ("-- c2 : " + c2) ;
-  
-   trace ("> c1 after c2 : " + c1.after(c2)) ;
-  trace ("> c2 after c1 : " + c2.after(c1)) ;
-  trace ("> c1 before c2 : " + c1.before(c2)) ;
-  
-  trace ("> c1 format : " + c1.format("dd/mm/yyyy HH' h' nn' mn' ss' s'")) ;
-  
-  var clone:Calendar = c1.clone() ;
-  trace ("-- c1 clone : " + clone) ;
-  trace ("> c1 equals clone : " + c1.equals(clone)) ;
-  
-  trace ("-----") ;
-  var count:Number = Calendar.getDaysInMonth(2005, 11) ;
-  trace ("> days in month 2005/12 : " + count) ;
-  var first:String = Calendar.getFirstDay(2005, 11, true) ;
-   trace ("> first day 2005/12 : " + first) ;
-  
-  var fc:Array = Calendar.getFullMonthCalendar(2005, 11) ;
-  trace ("> full calendar 2005/12 : " + fc) ;
-  </pre>
-   <p></p>
+     This class contains all tools to creates a calendar.
+     <p></p>
+<br>
+<span class="label">Example</span>
+<br>     <pre class="prettyprint">
+     import asgard.date.Calendar ;
+     
+     var c1:Calendar = new Calendar(2005, 2, 15) ;
+     trace ("c1 getTime : " + c1.getTime()) ;
+     trace ("c1 toSource : " + c1.toSource()) ;
+     var c2:Calendar = new Calendar() ;
+     
+     trace ("-- c1 : " + c1) ;
+     trace ("-- c2 : " + c2) ;
+     
+     trace ("> c1 after c2 : " + c1.after(c2)) ;
+     trace ("> c2 after c1 : " + c2.after(c1)) ;
+     trace ("> c1 before c2 : " + c1.before(c2)) ;
+     
+     trace ("> c1 format : " + c1.format("dd/mm/yyyy HH' h' nn' mn' ss' s'")) ;
+     
+     var clone:Calendar = c1.clone() ;
+     trace ("-- c1 clone : " + clone) ;
+     trace ("> c1 equals clone : " + c1.equals(clone)) ;
+     
+     trace ("-----") ;
+     var count:Number = Calendar.getDaysInMonth(2005, 11) ;
+     trace ("> days in month 2005/12 : " + count) ;
+     var first:String = Calendar.getFirstDay(2005, 11, true) ;
+     trace ("> first day 2005/12 : " + first) ;
+     
+     var fc:Array = Calendar.getFullMonthCalendar(2005, 11) ;
+     trace ("> full calendar 2005/12 : " + fc) ;
+     </pre>
+     <p></p>
 <br>
 <hr>
 </div>
@@ -88,7 +90,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#add()">add</a>(date:Date = null, field:String = null, amount:Number = 0):Date</div>
 <div class="summaryTableDescription">[static]
-    Adds the specified amount of time to the this instance.</div>
+         Adds the specified amount of time to the this instance.</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 <tr class="">
@@ -96,7 +98,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#after()">after</a>(currentDate:Date = null, date:Date = null):Boolean</div>
 <div class="summaryTableDescription">[static]
-   Indicates if the current Date object is after the time of specified Date object.</div>
+         Indicates if the current Date object is after the time of specified Date object.</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 <tr class="">
@@ -104,7 +106,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#before()">before</a>(currentDate:Date = null, date:Date = null):Boolean</div>
 <div class="summaryTableDescription">[static]
-   Returns <code>true</code> if the current time of this Calendar is before the time of Calendar when; false otherwise.</div>
+         Returns <code class="prettyprint">true</code> if the current time of this Calendar is before the time of Calendar when; false otherwise.</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 <tr class="">
@@ -112,7 +114,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#format()">format</a>(date:Date = null, pattern:String = ""):String</div>
 <div class="summaryTableDescription">[static]
-   Format the current Calendar date.</div>
+         Format the current Calendar date.</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 <tr class="">
@@ -120,7 +122,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#getCurrentFullMonthCalendar()">getCurrentFullMonthCalendar</a>(offset:Number):Array</div>
 <div class="summaryTableDescription">[static]
-   Returns the array representation of all days in the current month.</div>
+         Returns the array representation of all days in the current month.</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 <tr class="">
@@ -128,7 +130,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#getDayOffset()">getDayOffset</a>(date:Date = null, calendarYear:Number):Number</div>
 <div class="summaryTableDescription">[static]
-    Calculates the number of days the specified date is from January 1 of the specified calendar year.</div>
+         Calculates the number of days the specified date is from January 1 of the specified calendar year.</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 <tr class="">
@@ -136,7 +138,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#getDaysInMonth()">getDaysInMonth</a>(date:Date = null):Number</div>
 <div class="summaryTableDescription">[static]
-   Returns the numbers of days in a specified month.</div>
+         Returns the numbers of days in a specified month.</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 <tr class="">
@@ -144,7 +146,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#getFirstDay()">getFirstDay</a>(date:Date = null, nameFlag:Boolean = false):*</div>
 <div class="summaryTableDescription">[static]
-   Returns the first day in the specified month.</div>
+         Returns the first day in the specified month.</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 <tr class="">
@@ -152,7 +154,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#getFullMonthCalendar()">getFullMonthCalendar</a>(date:Date = null, offset:Number):Array</div>
 <div class="summaryTableDescription">[static]
-   Returns an array representation of all days in a full month.</div>
+         Returns an array representation of all days in a full month.</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 <tr class="">
@@ -160,7 +162,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#getJan1()">getJan1</a>(calendarYear:Number):Date</div>
 <div class="summaryTableDescription">[static]
-   Retrieves a Date object representing January 1 of any given year.</div>
+         Retrieves a Date object representing January 1 of any given year.</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 <tr class="">
@@ -168,7 +170,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#getNextMonth()">getNextMonth</a>(date:Date = null):Date</div>
 <div class="summaryTableDescription">[static]
-   Returns the <code>Date</code> of the next month of the specified <code>Date</code> object.</div>
+         Returns the <code class="prettyprint">Date</code> of the next month of the specified <code class="prettyprint">Date</code> object.</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 <tr class="">
@@ -176,7 +178,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#getPreviousMonth()">getPreviousMonth</a>(date:Date = null):Date</div>
 <div class="summaryTableDescription">[static]
-   Returns the <code>Date</code> of the previous month of the specified <code>Date</code> object.</div>
+         Returns the <code class="prettyprint">Date</code> of the previous month of the specified <code class="prettyprint">Date</code> object.</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 <tr class="">
@@ -184,7 +186,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#getWeekNumber()">getWeekNumber</a>(date:Date = null, calendarYear:Number, weekStartsOn:Number):Number</div>
 <div class="summaryTableDescription">[static]
-   Calculates the week number for the given date.</div>
+         Calculates the week number for the given date.</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 <tr class="">
@@ -192,7 +194,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#isEndOfMonth()">isEndOfMonth</a>(date:Date = null):Boolean</div>
 <div class="summaryTableDescription">[static]
-   Returns <code>true</code> if the current or specified <code>Date</code> if the last day in the current or specified month.</div>
+         Returns <code class="prettyprint">true</code> if the current or specified <code class="prettyprint">Date</code> if the last day in the current or specified month.</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 <tr class="">
@@ -200,7 +202,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#subtract()">subtract</a>(date:Date, field:String, amount:Number):Date</div>
 <div class="summaryTableDescription">[static]
-   Subtracts the specified amount of time from the this instance.</div>
+         Subtracts the specified amount of time from the this instance.</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 <tr class="">
@@ -208,7 +210,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#tomorrow()">tomorrow</a>(date:Date = null):Date</div>
 <div class="summaryTableDescription">[static]
-   Returns the Date reference of the "tomorrow" <code>Date</code> object of the specified <code>Date</code> in argument.</div>
+         Returns the Date reference of the "tomorrow" <code class="prettyprint">Date</code> object of the specified <code class="prettyprint">Date</code> in argument.</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 <tr class="">
@@ -216,7 +218,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#yesterday()">yesterday</a>(date:Date = null):Date</div>
 <div class="summaryTableDescription">[static]
-   Returns the Calendar reference of the "yesterday" <code>Calendar</code> object of the specified <code>Date</code> in argument.</div>
+         Returns the Calendar reference of the "yesterday" <code class="prettyprint">Calendar</code> object of the specified <code class="prettyprint">Date</code> in argument.</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 </table>
@@ -230,57 +232,53 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#DAY">DAY</a> : String = "D"<div class="summaryTableDescription">[static]
-     Constant field representing Day
-   </div>
+         Constant field representing Day ("D").</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#DEFAULT_FULL_MONTH_OFFSET">DEFAULT_FULL_MONTH_OFFSET</a> : Number = 0<div class="summaryTableDescription">[static]
-   The default offset use in the getFullMonthCalendar() method.</div>
+         The default (0) offset use in the getFullMonthCalendar() method.</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#HOUR">HOUR</a> : String = "h"<div class="summaryTableDescription">[static]
-   Constant field representing hours.</div>
+         Constant field representing hours ("h").</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#MILLISECOND">MILLISECOND</a> : String = "ms"<div class="summaryTableDescription">[static]
-   Constant field representing milliseconds.</div>
+         Constant field representing milliseconds ("ms").</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#MINUTE">MINUTE</a> : String = "mn"<div class="summaryTableDescription">[static]
-   Constant field representing minutes.</div>
+         Constant field representing minutes ("mn").</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#MONTH">MONTH</a> : String = "M"<div class="summaryTableDescription">[static]
-   Constant field representing Month
-   </div>
+         Constant field representing Month ("M").</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ONE_DAY_MS">ONE_DAY_MS</a> : Number = 8.64E7<div class="summaryTableDescription">[static]
-   Constant field representing one day, in milliseconds
-   </div>
+         Constant field representing one day, in milliseconds
+         </div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SECOND">SECOND</a> : String = "s"<div class="summaryTableDescription">[static]
-   Constant field representing seconds.</div>
+         Constant field representing seconds ("s").</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#WEEK">WEEK</a> : String = "W"<div class="summaryTableDescription">[static]
-   Constant field representing Week
-   </div>
+         Constant field representing Week ("W").</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#YEAR">YEAR</a> : String = "Y"<div class="summaryTableDescription">[static]
-   Constant field representing Year
-    </div>
+         Constant field representing Year ("Y").</div>
 </td><td class="summaryTableOwnerCol">Calendar</td>
 </tr>
 </table>
@@ -300,47 +298,47 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function add(date:Date = null, field:String = null, amount:Number = 0):Date</code><p>
-    Adds the specified amount of time to the this instance.
-    </p><p>Examples :</p>
-    <code>
-    import asgard.date.Calendar ;
-        var begin:Date = new Date( 2007, 5 , 14, 11, 30, 0 ) ;
-    var duration:Number = 50 ;
-    
-    var end:Date = Calendar.add( begin, Calendar.MINUTE , 50 ) ;
-        var sBegin:String   = Calendar.format(begin , "MM dd yyyy hh:nn:ss") ;
-    var sFinish:String  = Calendar.format(end   , "MM dd yyyy hh:nn:ss") ;
-     
-    trace( "start  : " + sBegin ) ;
-    trace( "finish : " + sFinish ) ;
-    </code>
-   <span class="label">Parameters</span>
+         Adds the specified amount of time to the this instance.
+         </p><p>Examples :</p>
+         <pre class="prettyprint">
+         import asgard.date.Calendar ;
+                  var begin:Date = new Date( 2007, 5 , 14, 11, 30, 0 ) ;
+         var duration:Number = 50 ;
+         
+         var end:Date = Calendar.add( begin, Calendar.MINUTE , 50 ) ;
+                  var sBegin:String   = Calendar.format(begin , "MM dd yyyy hh:nn:ss") ;
+         var sFinish:String  = Calendar.format(end   , "MM dd yyyy hh:nn:ss") ;
+         
+         trace( "start  : " + sBegin ) ;
+         trace( "finish : " + sFinish ) ;
+         </pre>
+         <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">date</span>:Date</code> (default = <code>null</code>)<code></code> &mdash; The Date object to perform addition on.
-   </td>
+         </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">field</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The this field constant to be used for performing addition.
-   </td>
+         </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">amount</span>:Number</code> (default = <code>0</code>)<code></code> &mdash; The number of units (measured in the field constant) to add to the date.
-   </td>
+         </td>
 </tr>
 </table>
 <p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Date</code> &mdash; the new <code>Date</code> object.
-   </td>
+<td width="20"></td><td><code>Date</code> &mdash; the new <code class="prettyprint">Date</code> object.
+         </td>
 </tr>
 </table>
 </div>
@@ -352,22 +350,22 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function after(currentDate:Date = null, date:Date = null):Boolean</code><p>
-   Indicates if the current Date object is after the time of specified Date object.
-   </p><p><b>Example :</b></p>
-   <code>
-   import asgard.date.Calendar ;
-   
-   var d1:Date = new Date(2005, 2, 15) ;
-   var d2:Date = new Date() ;
-   
-   trace ("d1 : " + d1) ;
-   trace ("d2 : " + d2) ;
-   
-   trace ("# d1 after d2  : " + Calendar.after  ( d1 , d2 ) ) ; // false
-   trace ("# d2 after d1  : " + Calendar.after  ( d2 , d1 ) ) ; // true
-   trace ("# d1 before d2 : " + Calendar.before ( d1 , d2 ) ) ; // true
-    </code>
-   <span class="label">Parameters</span>
+         Indicates if the current Date object is after the time of specified Date object.
+         </p><p><b>Example :</b></p>
+         <pre class="prettyprint">
+         import asgard.date.Calendar ;
+         
+         var d1:Date = new Date(2005, 2, 15) ;
+         var d2:Date = new Date() ;
+         
+         trace ("d1 : " + d1) ;
+         trace ("d2 : " + d2) ;
+         
+         trace ("# d1 after d2  : " + Calendar.after  ( d1 , d2 ) ) ; // false
+         trace ("# d2 after d1  : " + Calendar.after  ( d2 , d1 ) ) ; // true
+         trace ("# d1 before d2 : " + Calendar.before ( d1 , d2 ) ) ; // true
+         </pre>
+         <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">currentDate</span>:Date</code> (default = <code>null</code>)<code></code></td>
@@ -383,8 +381,8 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the current Date object is after the time of specified Date object.
-   </td>
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the current Date object is after the time of specified Date object.
+         </td>
 </tr>
 </table>
 </div>
@@ -396,8 +394,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function before(currentDate:Date = null, date:Date = null):Boolean</code><p>
-   Returns <code>true</code> if the current time of this Calendar is before the time of Calendar when; false otherwise.
-   </p><span class="label">Parameters</span>
+         Returns <code class="prettyprint">true</code> if the current time of this Calendar is before the time of Calendar when; false otherwise.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">currentDate</span>:Date</code> (default = <code>null</code>)<code></code></td>
@@ -413,8 +411,8 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the current time of this Calendar is before the time of Calendar when; false otherwise. 
-   </td>
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the current time of this Calendar is before the time of Calendar when; false otherwise. 
+         </td>
 </tr>
 </table>
 </div>
@@ -426,12 +424,12 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function format(date:Date = null, pattern:String = ""):String</code><p>
-   Format the current Calendar date.
-   </p><span class="label">Parameters</span>
+         Format the current Calendar date.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">date</span>:Date</code> (default = <code>null</code>)<code></code> &mdash; The <code>String</code> representation of the format pattern.
-   </td>
+<td width="20px"></td><td><code><span class="label">date</span>:Date</code> (default = <code>null</code>)<code></code> &mdash; The <code class="prettyprint">String</code> representation of the format pattern.
+         </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
@@ -445,7 +443,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>String</code> &mdash; the format string representation of the current Calendar date.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -457,12 +455,12 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function getCurrentFullMonthCalendar(offset:Number):Array</code><p>
-   Returns the array representation of all days in the current month.
-   </p><span class="label">Parameters</span>
+         Returns the array representation of all days in the current month.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">offset</span>:Number</code> &mdash; the day offset value between 0 and 6 to fill the calendar. The default value is 0 (Sunday). 
-   </td>
+         </td>
 </tr>
 </table>
 <p></p>
@@ -470,7 +468,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>Array</code> &mdash; the array representation of all days in the current month.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -482,20 +480,20 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function getDayOffset(date:Date = null, calendarYear:Number):Number</code><p>
-    Calculates the number of days the specified date is from January 1 of the specified calendar year.
-   Passing January 1 to this function would return an offset value of zero.
-   </p><span class="label">Parameters</span>
+         Calculates the number of days the specified date is from January 1 of the specified calendar year.
+         Passing January 1 to this function would return an offset value of zero.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">date</span>:Date</code> (default = <code>null</code>)<code></code> &mdash; The Date for which to find the offset
-    </td>
+         </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">calendarYear</span>:Number</code> &mdash; The calendar year to use for determining the offset
-   </td>
+         </td>
 </tr>
 </table>
 <p></p>
@@ -503,7 +501,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>Number</code> &mdash; The number of days since January 1 of the given year
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -515,12 +513,12 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function getDaysInMonth(date:Date = null):Number</code><p>
-   Returns the numbers of days in a specified month.
-   </p><span class="label">Parameters</span>
+         Returns the numbers of days in a specified month.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">date</span>:Date</code> (default = <code>null</code>)<code></code> &mdash; The specified <code>Date</code> object.
-   </td>
+<td width="20px"></td><td><code><span class="label">date</span>:Date</code> (default = <code>null</code>)<code></code> &mdash; The specified <code class="prettyprint">Date</code> object.
+         </td>
 </tr>
 </table>
 <p></p>
@@ -528,7 +526,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>Number</code> &mdash; the numbers of days in a specified month.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -540,19 +538,19 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function getFirstDay(date:Date = null, nameFlag:Boolean = false):*</code><p>
-   Returns the first day in the specified month.
-   </p><span class="label">Parameters</span>
+         Returns the first day in the specified month.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">date</span>:Date</code> (default = <code>null</code>)<code></code> &mdash; The specified <code>Date</code> object of this method. 
-   </td>
+<td width="20px"></td><td><code><span class="label">date</span>:Date</code> (default = <code>null</code>)<code></code> &mdash; The specified <code class="prettyprint">Date</code> object of this method. 
+         </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">nameFlag</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; The first day return value is a Number if the argument is <code>false</code> or the name of the day with a string representation if the flag is <code>true</code>.
-   </td>
+<td width="20px"></td><td><code><span class="label">nameFlag</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; The first day return value is a Number if the argument is <code class="prettyprint">false</code> or the name of the day with a string representation if the flag is <code class="prettyprint">true</code>.
+         </td>
 </tr>
 </table>
 <p></p>
@@ -560,7 +558,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>*</code> &mdash; the first day in the specified month.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -572,25 +570,25 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function getFullMonthCalendar(date:Date = null, offset:Number):Array</code><p>
-   Returns an array representation of all days in a full month. The array can begin with null values if the first day in the first week are previous days of the previous month.
-   </p><p><b>Example :</b></p>
-   <pre class="prettyprint">
-   import asgard.date.Calendar ;
-   var ar:Array = Calendar.getFullMonthCalendar( new Date(2007,03) , 1 ) ;
-   trace(ar) ;
-   </pre>
-    <span class="label">Parameters</span>
+         Returns an array representation of all days in a full month. The array can begin with null values if the first day in the first week are previous days of the previous month.
+         </p><p><b>Example :</b></p>
+         <pre class="prettyprint">
+         import asgard.date.Calendar ;
+         var ar:Array = Calendar.getFullMonthCalendar( new Date(2007,03) , 1 ) ;
+         trace(ar) ;
+         </pre>
+         <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">date</span>:Date</code> (default = <code>null</code>)<code></code> &mdash; (optional) The specified <code>Date</code> to return the full month calendar. The default value is the current <code>Date</code> object.
-   </td>
+<td width="20px"></td><td><code><span class="label">date</span>:Date</code> (default = <code>null</code>)<code></code> &mdash; (optional) The specified <code class="prettyprint">Date</code> to return the full month calendar. The default value is the current <code class="prettyprint">Date</code> object.
+         </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">offset</span>:Number</code> &mdash; the day offset value between 0 and 6 to fill the calendar. The default value is 0 (Sunday). 
-   </td>
+         </td>
 </tr>
 </table>
 <p></p>
@@ -598,7 +596,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>Array</code> &mdash; an array representation of a full month.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -610,12 +608,12 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function getJan1(calendarYear:Number):Date</code><p>
-   Retrieves a Date object representing January 1 of any given year.
-   </p><span class="label">Parameters</span>
+         Retrieves a Date object representing January 1 of any given year.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">calendarYear</span>:Number</code> &mdash; The calendar year for which to retrieve January 1
-   </td>
+<td width="20px"></td><td><code><span class="label">calendarYear</span>:Number</code> &mdash;    The calendar year for which to retrieve January 1
+         </td>
 </tr>
 </table>
 <p></p>
@@ -623,7 +621,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>Date</code> &mdash; January 1 of the calendar year specified.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -635,8 +633,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function getNextMonth(date:Date = null):Date</code><p>
-   Returns the <code>Date</code> of the next month of the specified <code>Date</code> object.
-   </p><span class="label">Parameters</span>
+         Returns the <code class="prettyprint">Date</code> of the next month of the specified <code class="prettyprint">Date</code> object.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">date</span>:Date</code> (default = <code>null</code>)<code></code></td>
@@ -646,8 +644,8 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Date</code> &mdash; the <code>Data</code> of the next month of the specified <code>Date</code> object.
-   </td>
+<td width="20"></td><td><code>Date</code> &mdash; the <code class="prettyprint">Data</code> of the next month of the specified <code class="prettyprint">Date</code> object.
+         </td>
 </tr>
 </table>
 </div>
@@ -659,8 +657,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function getPreviousMonth(date:Date = null):Date</code><p>
-   Returns the <code>Date</code> of the previous month of the specified <code>Date</code> object.
-   </p><span class="label">Parameters</span>
+         Returns the <code class="prettyprint">Date</code> of the previous month of the specified <code class="prettyprint">Date</code> object.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">date</span>:Date</code> (default = <code>null</code>)<code></code></td>
@@ -670,8 +668,8 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Date</code> &mdash; the <code>Date</code> of the previous month of the specified <code>Date</code> object.
-   </td>
+<td width="20"></td><td><code>Date</code> &mdash; the <code class="prettyprint">Date</code> of the previous month of the specified <code class="prettyprint">Date</code> object.
+         </td>
 </tr>
 </table>
 </div>
@@ -683,30 +681,30 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function getWeekNumber(date:Date = null, calendarYear:Number, weekStartsOn:Number):Number</code><p>
-   Calculates the week number for the given date. This function assumes that week 1 is the 
-   week in which January 1 appears, regardless of whether the week consists of a full 7 days.
-   The calendar year can be specified to help find what a the week number would be for a given date if the date overlaps years. 
-   For instance, a week may be considered week 1 of 2005, or week 53 of 2004. 
-   Specifying the optional calendarYear allows one to make this distinction easily.
-     </p><span class="label">Parameters</span>
+         Calculates the week number for the given date. This function assumes that week 1 is the 
+         week in which January 1 appears, regardless of whether the week consists of a full 7 days.
+         The calendar year can be specified to help find what a the week number would be for a given date if the date overlaps years. 
+         For instance, a week may be considered week 1 of 2005, or week 53 of 2004. 
+         Specifying the optional calendarYear allows one to make this distinction easily.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">date</span>:Date</code> (default = <code>null</code>)<code></code> &mdash; The date for which to find the week number
-   </td>
+         </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">calendarYear</span>:Number</code> &mdash; (optional) The calendar year to use for determining the week number. Default is the calendar year of parameter "date".
-   </td>
+         </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">weekStartsOn</span>:Number</code> &mdash; (optional) The integer (0-6) representing which day a week begins on. Default is 0 (for Sunday).
-   </td>
+         </td>
 </tr>
 </table>
 <p></p>
@@ -714,7 +712,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>Number</code> &mdash; The week number of the given date.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -726,8 +724,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function isEndOfMonth(date:Date = null):Boolean</code><p>
-   Returns <code>true</code> if the current or specified <code>Date</code> if the last day in the current or specified month.
-   </p><span class="label">Parameters</span>
+         Returns <code class="prettyprint">true</code> if the current or specified <code class="prettyprint">Date</code> if the last day in the current or specified month.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">date</span>:Date</code> (default = <code>null</code>)<code></code></td>
@@ -737,8 +735,8 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the current or specified <code>Date</code> if the last day in the current or specified month.
-   </td>
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the current or specified <code class="prettyprint">Date</code> if the last day in the current or specified month.
+         </td>
 </tr>
 </table>
 </div>
@@ -750,34 +748,34 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function subtract(date:Date, field:String, amount:Number):Date</code><p>
-   Subtracts the specified amount of time from the this instance.
-    </p><span class="label">Parameters</span>
+         Subtracts the specified amount of time from the this instance.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">date</span>:Date</code> &mdash; The Date object to perform subtraction on
-   </td>
+         </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">field</span>:String</code> &mdash; The this field constant to be used for performing subtraction.
-   </td>
+<td width="20px"></td><td><code><span class="label">field</span>:String</code> &mdash;    The this field constant to be used for performing subtraction.
+         </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">amount</span>:Number</code> &mdash; The number of units (measured in the field constant) to subtract from the date.
-   </td>
+         </td>
 </tr>
 </table>
 <p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Date</code> &mdash; the new <code>Calendar</code> object.
-   </td>
+<td width="20"></td><td><code>Date</code> &mdash; the new <code class="prettyprint">Calendar</code> object.
+         </td>
 </tr>
 </table>
 </div>
@@ -789,13 +787,13 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function tomorrow(date:Date = null):Date</code><p>
-   Returns the Date reference of the "tomorrow" <code>Date</code> object of the specified <code>Date</code> in argument.
-   </p><p><b>Example :</b></p>
-   <pre class="prettyprint">
-   trace ( "toDay     : " + (new Calendar()).format("DDDD yyyy-mm-dd") ) ;
-   trace ( "tomorrow  : " + (Calendar.tomorrow()).format("DDDD yyyy-mm-dd") ) ;
-    </pre>
-    <span class="label">Parameters</span>
+         Returns the Date reference of the "tomorrow" <code class="prettyprint">Date</code> object of the specified <code class="prettyprint">Date</code> in argument.
+         </p><p><b>Example :</b></p>
+         <pre class="prettyprint">
+         trace ( "toDay     : " + (new Calendar()).format("DDDD yyyy-mm-dd") ) ;
+         trace ( "tomorrow  : " + (Calendar.tomorrow()).format("DDDD yyyy-mm-dd") ) ;
+         </pre>
+         <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">date</span>:Date</code> (default = <code>null</code>)<code></code></td>
@@ -805,8 +803,8 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Date</code> &mdash; the Date reference of the "tomorrow" <code>Date</code> object of the specified <code>Date</code> in argument.
-    </td>
+<td width="20"></td><td><code>Date</code> &mdash; the Date reference of the "tomorrow" <code class="prettyprint">Date</code> object of the specified <code class="prettyprint">Date</code> in argument.
+         </td>
 </tr>
 </table>
 </div>
@@ -818,13 +816,13 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function yesterday(date:Date = null):Date</code><p>
-   Returns the Calendar reference of the "yesterday" <code>Calendar</code> object of the specified <code>Date</code> in argument.
-   </p><p><b>Example :</b></p>
-   <pre class="prettyprint">
-   trace ( "yesterday : " + (Calendar.yesterday()).format("DDDD yyyy-mm-dd") ) ;
-   trace ( "toDay     : " + (new Calendar()).format("DDDD yyyy-mm-dd") ) ;
-   </pre>
-   <span class="label">Parameters</span>
+         Returns the Calendar reference of the "yesterday" <code class="prettyprint">Calendar</code> object of the specified <code class="prettyprint">Date</code> in argument.
+         </p><p><b>Example :</b></p>
+         <pre class="prettyprint">
+         trace ( "yesterday : " + (Calendar.yesterday()).format("DDDD yyyy-mm-dd") ) ;
+         trace ( "toDay     : " + (new Calendar()).format("DDDD yyyy-mm-dd") ) ;
+         </pre>
+         <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">date</span>:Date</code> (default = <code>null</code>)<code></code></td>
@@ -834,8 +832,8 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Date</code> &mdash; the Calendar reference of the "yesterday" <code>Calendar</code> object of the specified <code>Date</code> in argument.
-    </td>
+<td width="20"></td><td><code>Date</code> &mdash; the Calendar reference of the "yesterday" <code class="prettyprint">Calendar</code> object of the specified <code class="prettyprint">Date</code> in argument.
+         </td>
 </tr>
 </table>
 </div>
@@ -849,8 +847,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const DAY:String = "D"</code><p>
-     Constant field representing Day
-   </p></div>
+         Constant field representing Day ("D").
+         </p></div>
 <a name="DEFAULT_FULL_MONTH_OFFSET"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -859,8 +857,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const DEFAULT_FULL_MONTH_OFFSET:Number = 0</code><p>
-   The default offset use in the getFullMonthCalendar() method.
-   </p></div>
+         The default (0) offset use in the getFullMonthCalendar() method.
+         </p></div>
 <a name="HOUR"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -869,8 +867,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const HOUR:String = "h"</code><p>
-   Constant field representing hours.
-   </p></div>
+         Constant field representing hours ("h").
+         </p></div>
 <a name="MILLISECOND"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -879,8 +877,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const MILLISECOND:String = "ms"</code><p>
-   Constant field representing milliseconds.
-   </p></div>
+         Constant field representing milliseconds ("ms").
+         </p></div>
 <a name="MINUTE"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -889,8 +887,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const MINUTE:String = "mn"</code><p>
-   Constant field representing minutes.
-   </p></div>
+         Constant field representing minutes ("mn").
+         </p></div>
 <a name="MONTH"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -899,8 +897,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const MONTH:String = "M"</code><p>
-   Constant field representing Month
-   </p></div>
+         Constant field representing Month ("M").
+         </p></div>
 <a name="ONE_DAY_MS"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -909,8 +907,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const ONE_DAY_MS:Number = 8.64E7</code><p>
-   Constant field representing one day, in milliseconds
-   </p></div>
+         Constant field representing one day, in milliseconds
+         </p></div>
 <a name="SECOND"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -919,8 +917,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const SECOND:String = "s"</code><p>
-   Constant field representing seconds.
-   </p></div>
+         Constant field representing seconds ("s").
+         </p></div>
 <a name="WEEK"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -929,8 +927,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const WEEK:String = "W"</code><p>
-   Constant field representing Week
-   </p></div>
+         Constant field representing Week ("W").
+         </p></div>
 <a name="YEAR"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -939,8 +937,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const YEAR:String = "Y"</code><p>
-   Constant field representing Year
-    </p></div>
+         Constant field representing Year ("Y").
+          </p></div>
 <br>
 <br>
 <hr>

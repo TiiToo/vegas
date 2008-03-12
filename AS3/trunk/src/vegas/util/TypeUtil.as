@@ -27,7 +27,7 @@ package vegas.util
 {
     
     /**
-     * The <code>TypeUtil</code> utility class is an all-static class with methods for checking and working with the type of the object in AS2.
+     * The <code class="prettyprint">TypeUtil</code> utility class is an all-static class with methods for checking and working with the type of the object in AS2.
      * @author eKameleon
      */
     public class TypeUtil
@@ -95,7 +95,7 @@ package vegas.util
         
        	/**
 	     * Compares the types of two objects.
-	     * @return <code>true</code> if the two objects are the same primitive type.
+	     * @return <code class="prettyprint">true</code> if the two objects are the same primitive type.
 	     */
         public static function compare(o1:*, o2:*):Boolean 
         {
@@ -104,7 +104,7 @@ package vegas.util
     	
         /**
     	 * Checks if the passed-in object is an explicit instance of the passed-in class.
-    	 * @return <code>true</code> if the passed-in object is an explicit instance of the passed-in class.
+    	 * @return <code class="prettyprint">true</code> if the passed-in object is an explicit instance of the passed-in class.
     	 */
         public static function isExplicitInstanceOf(o:*, c:*):Boolean 
 	    {
@@ -129,7 +129,7 @@ package vegas.util
     
 	    /**
 	     * Checks if the passed-in object is a generic object.
-    	 * @return <code>true</code> if the passed-in object is a generic object.
+    	 * @return <code class="prettyprint">true</code> if the passed-in object is a generic object.
     	 */
 	    public static function isGenericObject( o:* ):Boolean
     	{
@@ -138,7 +138,7 @@ package vegas.util
     
     	/**
     	 * Checks if the passed-in object is an instance of the passed-in type.
-    	 * @return <code>true</code> if the passed-in object is an instance of the passed-in type.
+    	 * @return <code class="prettyprint">true</code> if the passed-in object is an instance of the passed-in type.
     	 */
     	public static function isInstanceOf(o:*, type:*):Boolean 
     	{
@@ -148,7 +148,7 @@ package vegas.util
     	
     	/**
 	     * Checks if the passed-in object is a primitive type.
-	     * @return <code>true</code> if the passed-in object is a primitive type.
+	     * @return <code class="prettyprint">true</code> if the passed-in object is a primitive type.
 	     */
     	public static function isPrimitive(o:*):Boolean 
     	{
@@ -157,7 +157,7 @@ package vegas.util
 
     	/**
     	 * Checks if the result of an execution of the typeof method on the passed-in object matches the passed-in type.
-    	 * @return <code>true</code> if the result of an execution of the typeof method on the passed-in object matches the passed-in type.
+    	 * @return <code class="prettyprint">true</code> if the result of an execution of the typeof method on the passed-in object matches the passed-in type.
     	 */
     	public static function isTypeOf(o:*, type:String):Boolean 
     	{
@@ -167,7 +167,7 @@ package vegas.util
     	/**
     	 * Checks if the type of the passed-in object matches the passed-in type.
     	 * <p><b>Example :</b>
-    	 * <code>
+    	 * <code class="prettyprint">
     	 * import vegas.util.TypeUtil ;
     	 * 
     	 * var s1:String = "hello world" ;

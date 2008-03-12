@@ -43,9 +43,9 @@ package andromeda.model
 		}
 		
 		/**
-		 * Returns <code>true</code> if the collector contains the IModel register with the id passed in argument.
+		 * Returns <code class="prettyprint">true</code> if the collector contains the IModel register with the id passed in argument.
 		 * @param id the id of the model register in the model.
-		 * @return <code>true</code> if the collector contains the IModel register with the id passed in argument.
+		 * @return <code class="prettyprint">true</code> if the collector contains the IModel register with the id passed in argument.
 		 */
 		public static function contains( id:* ):Boolean 
 		{
@@ -53,9 +53,9 @@ package andromeda.model
 		}
 		
 		/**
-		 * Returns <code>true</code> if the collector contains the IModel passed in argument.
+		 * Returns <code class="prettyprint">true</code> if the collector contains the IModel passed in argument.
 		 * @param model the IModel to search in the model.
-		 * @return <code>true</code> if the collector contains the IModel passed in argument.
+		 * @return <code class="prettyprint">true</code> if the collector contains the IModel passed in argument.
 		 */
 		public static function containsModel( model:IModel ):Boolean
 		{
@@ -81,7 +81,7 @@ package andromeda.model
 		 * Insert a IModel in the collector and indexed it with the string name in the first parameter.
 		 * @param sName the name of the display to register it.
 		 * @param dObject the IModel reference.
-		 * @return <code>true</code> if the  specified model is inserted in the model.
+		 * @return <code class="prettyprint">true</code> if the  specified model is inserted in the model.
 		 * @throws Warning if the specified name is already registered in the collector.
 		 */
 		public static function insert( id:* , model:IModel):Boolean 
@@ -94,8 +94,8 @@ package andromeda.model
 		}
 		
 		/**
-		 * Returns <code>true</code> if the collector is empty.
-		 * @return <code>true</code> if the collector is empty.
+		 * Returns <code class="prettyprint">true</code> if the collector is empty.
+		 * @return <code class="prettyprint">true</code> if the collector is empty.
 		 */
 		public static function isEmpty():Boolean 
 		{
@@ -103,7 +103,7 @@ package andromeda.model
 		}
 	
 		/**
-		 * Removes the IModel in the collector specified by the argument <code>id</code>. 
+		 * Removes the IModel in the collector specified by the argument <code class="prettyprint">id</code>. 
 		 * @param id the id of the model to unregister in the collector.
 		 */
 		public static function remove( id:* ):void 

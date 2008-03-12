@@ -26,15 +26,15 @@ package pegas.util
 	import pegas.geom.Matrix;	
 	
 	/**
-	 * Static tool class to manipulate and transform <code>Matrix</code> references.
+	 * Static tool class to manipulate and transform <code class="prettyprint">Matrix</code> references.
 	 * @author eKameleon
 	 */
 	public class MatrixUtil 
 	{
 		
 		/**
-		 * Returns <code>true</code> if the Matrix is the identity.
-		 * @return <code>true</code> if the Matrix is the identity.
+		 * Returns <code class="prettyprint">true</code> if the Matrix is the identity.
+		 * @return <code class="prettyprint">true</code> if the Matrix is the identity.
 	 	 */
 		public static function isIdentity( m:Matrix ):Boolean
 		{

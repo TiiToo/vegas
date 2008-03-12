@@ -89,8 +89,8 @@ package vegas.events
  		}
  
         /**
-         * Returns the internal <code>ILogger</code> reference of this <code>ILogable</code> object.
-         * @return the internal <code>ILogger</code> reference of this <code>ILogable</code> object.
+         * Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.
+         * @return the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.
          */
         public function getLogger():ILogger
         {
@@ -111,7 +111,7 @@ package vegas.events
 		}
 		
         /**
-         * Registers an <code>EventListener</code> object with an EventDispatcher object so that the listener receives notification of an event.
+         * Registers an <code class="prettyprint">EventListener</code> object with an EventDispatcher object so that the listener receives notification of an event.
          */
         public function registerEventListener( type:String, listener:*, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false ):void
         {    
@@ -128,7 +128,7 @@ package vegas.events
         }
 
         /**
-         * Sets the internal <code>ILogger</code> reference of this <code>ILogable</code> object.
+         * Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.
          */
         public function setLogger( log:ILogger=null ):void 
         {
@@ -158,7 +158,7 @@ package vegas.events
         }
         
         /**
-         * Removes an <code>EventListener</code> from the EventDispatcher object.
+         * Removes an <code class="prettyprint">EventListener</code> from the EventDispatcher object.
          */
         public function unregisterEventListener(type:String, listener:*, useCapture:Boolean = false):void 
         {

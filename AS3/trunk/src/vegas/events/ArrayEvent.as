@@ -27,7 +27,7 @@ package vegas.events
     import flash.events.Event ;
     
     /**
-     * The <code>ArrayEvent</code> to dispatch an event with an Array object.
+     * The <code class="prettyprint">ArrayEvent</code> to dispatch an event with an Array object.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
      * var e:Event = new ArrayEvent("change", [2, 3, 4]) ;
@@ -39,7 +39,7 @@ package vegas.events
 	{
         
 		/**
-		 * Creates a new <code>ArrayEvent</code> instance.
+		 * Creates a new <code class="prettyprint">ArrayEvent</code> instance.
 		 * @param type the string type of the instance. 
 		 * @param ar the array object of this event. 
 		 * @param target the target of the event.

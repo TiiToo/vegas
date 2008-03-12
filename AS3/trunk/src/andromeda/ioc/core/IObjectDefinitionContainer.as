@@ -43,8 +43,8 @@ package andromeda.ioc.core
 		function clearObjectDefinition():void ;
 		
 		/**
-		 * Returns <code>true</code> if the object define with the specified name in register in the container.
-		 * @return <code>true</code> if the object define with the specified name in register in the container.
+		 * Returns <code class="prettyprint">true</code> if the object define with the specified name in register in the container.
+		 * @return <code class="prettyprint">true</code> if the object define with the specified name in register in the container.
 		 */
 		function containsObjectDefinition( name:String ):Boolean ;
 		

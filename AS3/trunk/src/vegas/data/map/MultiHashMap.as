@@ -35,9 +35,9 @@ package vegas.data.map
 	import vegas.util.Serializer;	
 
 	/**
- 	 * The default implementation of the <code>MultiMap</code> interface.
+ 	 * The default implementation of the <code class="prettyprint">MultiMap</code> interface.
  	 * <p><b>Example :</b></p>
-	 * <code>
+	 * <code class="prettyprint">
  	 * import vegas.data.Collection ;
 	 * import vegas.data.iterator.Iterator ;
 	 * import vegas.data.map.HashMap ;
@@ -185,10 +185,10 @@ package vegas.data.map
 		/**
 		 * Checks whether the map contains the value specified.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <code class="prettyprint">
 		 * var b:Boolean = map.containsValue(value) ;
 		 * </code>
-		 * @return <code>true</code> if the List contains the specified value.
+		 * @return <code class="prettyprint">true</code> if the List contains the specified value.
 		 */
 		public function containsValue( value:* ):Boolean 
 		{
@@ -277,7 +277,7 @@ package vegas.data.map
 		/**
 		 * Returns whether this MultiHashSet contains any mappings.
 		 * 
-		 * @return <code>true</code> if this MultiHashSet contains any mappings else <code>false</code>
+		 * @return <code class="prettyprint">true</code> if this MultiHashSet contains any mappings else <code class="prettyprint">false</code>
 		 */
 		public function isEmpty():Boolean 
 		{

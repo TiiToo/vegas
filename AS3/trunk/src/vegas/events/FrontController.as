@@ -112,9 +112,9 @@ package vegas.events
         }
 
         /**
-         * Returns a global <code>FrontController</code> singleton.
+         * Returns a global <code class="prettyprint">FrontController</code> singleton.
          * @param channel The channel of the FrontController (default the EventDispatcher.DEFAULT_SINGLETON_NAME value).
-         * @return a global <code>FrontController</code> singleton.
+         * @return a global <code class="prettyprint">FrontController</code> singleton.
          */
         public static function getInstance( channel:String = null ):FrontController 
         {
@@ -144,8 +144,8 @@ package vegas.events
          * Add a new entry into the FrontController.
          * @param eventName:String
          * @param listener:EventListener or listener:Function
-         * @throws IllegalArgumentError If the 'eventName' value in argument is <code>null</code> or <code>undefined</code>.
-         * @throws IllegalArgumentError If the 'listener' object in argument is <code>null</code> or <code>undefined</code>.
+         * @throws IllegalArgumentError If the 'eventName' value in argument is <code class="prettyprint">null</code> or <code class="prettyprint">undefined</code>.
+         * @throws IllegalArgumentError If the 'listener' object in argument is <code class="prettyprint">null</code> or <code class="prettyprint">undefined</code>.
          */
         public function insert(eventName:String, listener:* ):void 
         {
@@ -163,10 +163,10 @@ package vegas.events
         
         /**
          * Adds a new EventListener into an EventListenerBatch in the FrontController.
-         * If this <code>listener</code> argument is 'null' or 'undefined' and if the <code>eventName</code> argument isn't register with an EventListenerBatch in the FrontController, 
+         * If this <code class="prettyprint">listener</code> argument is 'null' or 'undefined' and if the <code class="prettyprint">eventName</code> argument isn't register with an EventListenerBatch in the FrontController, 
          * an empty EventListenerBatch is created and register in the FrontController with the specified 'eventName'.
          * @param eventName The name of the event type.
-         * @param listener (optional) The <code>EventListener</code> mapped in the FrontController with the specified event type (This listener is added in an EventListenerBatch). 
+         * @param listener (optional) The <code class="prettyprint">EventListener</code> mapped in the FrontController with the specified event type (This listener is added in an EventListenerBatch). 
          * @throws IllegalArgumentError If the 'eventName' value in argument not must be 'null' or 'undefined'.
          */
         public function insertBatch( eventName:String, listener:EventListener ):void
@@ -193,7 +193,7 @@ package vegas.events
         
         /**
          * Indicates if the specified eventlistener registered with the 'eventName' value in argument is an EventListenerBatch instance.
-         * @return <code>true</code> if the specified eventlistener registered with the 'eventName' value in argument is an EventListenerBatch instance.
+         * @return <code class="prettyprint">true</code> if the specified eventlistener registered with the 'eventName' value in argument is an EventListenerBatch instance.
          */
         public function isEventListenerBatch( eventName:String ):Boolean
         {

@@ -27,7 +27,7 @@ package lunas.core
 	import pegas.maths.Range;    
 
 	/**
-     * This class provides a skeletal implementation of all the <code>IProgress</code> display components, to minimize the effort required to implement this interface.
+     * This class provides a skeletal implementation of all the <code class="prettyprint">IProgress</code> display components, to minimize the effort required to implement this interface.
      * @author eKameleon
      */
     public class AbstractProgress extends AbstractComponent implements IProgress 
@@ -68,7 +68,7 @@ package lunas.core
         /**
          * Sets the position of the progress bar.
          * @param pos the position value of the progress bar.
-         * @param noEvent (optional) this flag disabled the events of this method if this argument is <code>true</code>
+         * @param noEvent (optional) this flag disabled the events of this method if this argument is <code class="prettyprint">true</code>
          * @param flag (optional) An optional boolean flag use in the method.
          */
         public function setPosition(value:Number, noEvent:Boolean=false, flag:Boolean=false ):void

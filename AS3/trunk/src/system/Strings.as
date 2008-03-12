@@ -567,7 +567,7 @@ package system
 	  	 * trace( Strings.startsWith("hello world", "hello") ) ; // true
 		 * trace( Strings.startsWith("hello world", "a") ) ; // false
 		 * </pre>
-		 * @return <code>true</code> if the specified string is a prefix of the current instance.
+		 * @return <code class="prettyprint">true</code> if the specified string is a prefix of the current instance.
 		 */
 		public static function startsWith( str:String, value:String ):Boolean
 		{

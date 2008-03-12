@@ -166,7 +166,7 @@ package pegas.draw
         }
 
         /**
-         * Defines a shortcut reference to used the <code>beginBitmapFill</code> method.
+         * Defines a shortcut reference to used the <code class="prettyprint">beginBitmapFill</code> method.
          */
         public function BF( ...arguments:Array ):void
         {
@@ -174,7 +174,7 @@ package pegas.draw
         }
 
         /**
-         * Defines a shortcut reference to used the <code>curveTo</code> method.
+         * Defines a shortcut reference to used the <code class="prettyprint">curveTo</code> method.
          */
         public function C( ...arguments:Array ):void
         {
@@ -182,7 +182,7 @@ package pegas.draw
         }
 
         /**
-         * Defines a shortcut reference to used the <code>clear</code> method.
+         * Defines a shortcut reference to used the <code class="prettyprint">clear</code> method.
          */
         public function CL():void
         {
@@ -190,7 +190,7 @@ package pegas.draw
         }
 
         /**
-         * Defines a shortcut reference to used the <code>endFill</code> method.
+         * Defines a shortcut reference to used the <code class="prettyprint">endFill</code> method.
           */
         public function EF():void
         {
@@ -198,7 +198,7 @@ package pegas.draw
         }
 
         /**
-          * Defines a shortcut reference to used the <code>beginFill</code> method.
+          * Defines a shortcut reference to used the <code class="prettyprint">beginFill</code> method.
           */
         public function F( ...arguments:Array ):void
         {
@@ -206,7 +206,7 @@ package pegas.draw
         }
 
         /**
-         * Defines a shortcut reference to used the <code>beginGradientFill</code> method.
+         * Defines a shortcut reference to used the <code class="prettyprint">beginGradientFill</code> method.
           */
         public function GF( ...arguments:Array ):void
         {
@@ -214,7 +214,7 @@ package pegas.draw
         }
         
         /**
-          * Defines a shortcut reference to used the <code>lineGradientStyle</code> method.
+          * Defines a shortcut reference to used the <code class="prettyprint">lineGradientStyle</code> method.
           */
         public function GS( ...arguments:Array ):void
         {
@@ -222,7 +222,7 @@ package pegas.draw
         }
         
         /**
-         * Defines a shortcut reference to used the <code>lineTo</code> method.
+         * Defines a shortcut reference to used the <code class="prettyprint">lineTo</code> method.
          */
         public function L( ...arguments:Array ):void
         {
@@ -230,7 +230,7 @@ package pegas.draw
         }
         
         /**
-         * Defines a shortcut reference to used the <code>moveTo</code> method.
+         * Defines a shortcut reference to used the <code class="prettyprint">moveTo</code> method.
          */
         public function M( ...arguments:Array ):void
         {
@@ -238,7 +238,7 @@ package pegas.draw
         }
     
         /**
-         * Defines a shortcut reference to used the <code>lineStyle</code> method.
+         * Defines a shortcut reference to used the <code class="prettyprint">lineStyle</code> method.
          */
         public function S( ...arguments:Array ):void
         {

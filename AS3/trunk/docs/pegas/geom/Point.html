@@ -45,9 +45,9 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <p></p>
   The Point class represents a location in a two-dimensional coordinate system, where x represents the horizontal axis and y represents the vertical axis.
   <p>The following code creates a point at (0,0) :</p>
-  <code>
+  <pre class="prettyprint">
   var myPoint:Point = new Point() ; 
-  </code>
+  </pre>
   <p></p>
 <br>
 <hr>
@@ -172,7 +172,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#distance()">distance</a>(p1:<a href="Point.html">Point</a>, p2:<a href="Point.html">Point</a>):Number</div>
 <div class="summaryTableDescription">[static]
-   Returns the distance between <code>p1</code> and <code>p2</code> the 2 Points reference passed in argument.</div>
+   Returns the distance between <code class="prettyprint">p1</code> and <code class="prettyprint">p2</code> the 2 Points reference passed in argument.</div>
 </td><td class="summaryTableOwnerCol">Point</td>
 </tr>
 <tr class="">
@@ -214,7 +214,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="../../vegas/core/CoreObject.html#getLogger()">getLogger</a>():<a href="../../vegas/logging/ILogger.html">ILogger</a>
 </div>
 <div class="summaryTableDescription">
-   Returns the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="">
@@ -265,7 +265,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#isPerpTo()">isPerpTo</a>(p:<a href="Point.html">Point</a>):Boolean</div>
 <div class="summaryTableDescription">
-   Returns <code>true</code> if the Point is perpendicular with the passed-in Point.</div>
+   Returns <code class="prettyprint">true</code> if the Point is perpendicular with the passed-in Point.</div>
 </td><td class="summaryTableOwnerCol">Point</td>
 </tr>
 <tr class="">
@@ -376,7 +376,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="#rotateNew()">rotateNew</a>(angle:Number):<a href="../geom/Point.html">Point</a>
 </div>
 <div class="summaryTableDescription">
-   Rotates the Point with the specified <code>angle</pre> in argument and creates a new Point.</div>
+   Rotates the Point with the specified <code class="prettyprint">angle</pre> in argument and creates a new Point.</div>
 </td><td class="summaryTableOwnerCol">Point</td>
 </tr>
 <tr class="">
@@ -384,7 +384,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#scale()">scale</a>(n:Number):void</div>
 <div class="summaryTableDescription">
-   Scales the Point with the specified <code>n</pre> value in argument.</div>
+   Scales the Point with the specified <code class="prettyprint">n</pre> value in argument.</div>
 </td><td class="summaryTableOwnerCol">Point</td>
 </tr>
 <tr class="">
@@ -393,7 +393,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="#scaleNew()">scaleNew</a>(n:Number):<a href="../geom/Point.html">Point</a>
 </div>
 <div class="summaryTableDescription">
-   Rotates the Point with the specified <code>s</pre> value in argument and creates a new Point.</div>
+   Rotates the Point with the specified <code class="prettyprint">s</pre> value in argument and creates a new Point.</div>
 </td><td class="summaryTableOwnerCol">Point</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -401,7 +401,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../vegas/core/CoreObject.html#setLogger()">setLogger</a>(log:<a href="../../vegas/logging/ILogger.html">ILogger</a> = null):void</div>
 <div class="summaryTableDescription">
-   Sets the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="">
@@ -710,7 +710,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function distance(p1:<a href="Point.html">Point</a>, p2:<a href="Point.html">Point</a>):Number</code><p>
-   Returns the distance between <code>p1</code> and <code>p2</code> the 2 Points reference passed in argument.
+   Returns the distance between <code class="prettyprint">p1</code> and <code class="prettyprint">p2</code> the 2 Points reference passed in argument.
    </p><p><b>Example :</b></p>
    <pre class="prettyprint">
    var p1:Point = new Point(10,20) ;
@@ -798,7 +798,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the the specified object is equal with this object.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the the specified object is equal with this object.
     </td>
 </tr>
 </table>
@@ -965,9 +965,9 @@ showHideInherited();
 <div class="detailBody">
 <code>public static function interpolate(p1:<a href="Point.html">Point</a>, p2:<a href="Point.html">Point</a>, f:Number):<a href="../geom/Point.html">Point</a></code><p>
    Determines a point between two specified points. 
-   The parameter f determines where the new interpolated point is located relative to the two end points specified by parameters <code>p1</code> and <code>p2</code>. 
-   The closer the value of the parameter f is to 1.0, the closer the interpolated point is to the first point (parameter <code>p1</code>). 
-   The closer the value of the parameter f is to 0, the closer the interpolated point is to the second point (parameter <code>p2</code>).
+   The parameter f determines where the new interpolated point is located relative to the two end points specified by parameters <code class="prettyprint">p1</code> and <code class="prettyprint">p2</code>. 
+   The closer the value of the parameter f is to 1.0, the closer the interpolated point is to the first point (parameter <code class="prettyprint">p1</code>). 
+   The closer the value of the parameter f is to 0, the closer the interpolated point is to the second point (parameter <code class="prettyprint">p2</code>).
    </p><p><b>Example :</b></p>
    <pre class="prettyprint">
     var p1:Point = new Point(10,10) ;
@@ -1000,7 +1000,7 @@ showHideInherited();
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">f</span>:Number</code> &mdash; the The level of interpolation between the two points. Indicates where the new point will be, along the line between <code>p1</code> and <code>p2</code>. If f=1, pt1 is returned; if f=0, pt2 is returned.
+<td width="20px"></td><td><code><span class="label">f</span>:Number</code> &mdash; the The level of interpolation between the two points. Indicates where the new point will be, along the line between <code class="prettyprint">p1</code> and <code class="prettyprint">p2</code>. If f=1, pt1 is returned; if f=0, pt2 is returned.
    </td>
 </tr>
 </table>
@@ -1024,7 +1024,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function isPerpTo(p:<a href="Point.html">Point</a>):Boolean</code><p>
-   Returns <code>true</code> if the Point is perpendicular with the passed-in Point.
+   Returns <code class="prettyprint">true</code> if the Point is perpendicular with the passed-in Point.
    </p><p><b>Example :</b></p>
    <pre class="prettyprint">
    var p1:Point = new Point(0,10) ;
@@ -1044,7 +1044,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</pre> if the Point is perpendicular with the passed-in Point.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</pre> if the Point is perpendicular with the passed-in Point.
    </td>
 </tr>
 </table>
@@ -1354,7 +1354,7 @@ showHideInherited();
 <div class="detailBody">
 <code>public function reset(x:Number, y:Number):void</code><p>
    Sets the horizontal and vertical coordinates of this Point. 
-     If the <code>x</pre> and the <code>y</pre> parameters are <code>NaN</pre> or <code>null</pre> the x value is 0 and y value is 0.
+     If the <code class="prettyprint">x</pre> and the <code class="prettyprint">y</pre> parameters are <code class="prettyprint">NaN</pre> or <code class="prettyprint">null</pre> the x value is 0 and y value is 0.
     </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -1393,7 +1393,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function rotateNew(angle:Number):<a href="../geom/Point.html">Point</a></code><p>
-   Rotates the Point with the specified <code>angle</pre> in argument and creates a new Point.
+   Rotates the Point with the specified <code class="prettyprint">angle</pre> in argument and creates a new Point.
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -1421,7 +1421,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function scale(n:Number):void</code><p>
-   Scales the Point with the specified <code>n</pre> value in argument.
+   Scales the Point with the specified <code class="prettyprint">n</pre> value in argument.
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -1438,7 +1438,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function scaleNew(n:Number):<a href="../geom/Point.html">Point</a></code><p>
-   Rotates the Point with the specified <code>s</pre> value in argument and creates a new Point.
+   Rotates the Point with the specified <code class="prettyprint">s</pre> value in argument and creates a new Point.
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>

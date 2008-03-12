@@ -28,14 +28,14 @@ package pegas.geom
 	import vegas.util.Serializer;	
 
 	/**
-	 * Defines a Matrix with n rows and n columns.
+	 * Defines a <code class="prettyprint">Matrix</code> with n rows and n columns.
 	 * @author eKameleon
 	 */
 	public class Matrix extends CoreObject implements IGeometry
 	{
 
 		/**
-		 * Creates a new Matrix instance.
+		 * Creates a new <code class="prettyprint">Matrix</code> instance.
 		 * @param r the number of rows in the matrix.
 		 * @param c the number of columns in the matrix.
 		 * @param ar the optional Matrix instance to fill the current Matrix.
@@ -95,7 +95,7 @@ package pegas.geom
 		
 		/**
 		 * Compares the specified object with this object for equality.
-		 * @return <code>true</code> if the the specified object is equal with this object.
+		 * @return <code class="prettyprint">true</code> if the the specified object is equal with this object.
 		 */
 		public function equals( o:* ):Boolean 
 		{

@@ -26,7 +26,7 @@ package lunas.core
 	import lunas.core.IProgressbar;	
 
 	/**
-     * This class provides a skeletal implementation of all the <code>IProgressbar</code> display components, to minimize the effort required to implement this interface.
+     * This class provides a skeletal implementation of all the <code class="prettyprint">IProgressbar</code> display components, to minimize the effort required to implement this interface.
      * @author eKameleon
      */
     public class AbstractProgressbar extends AbstractProgress implements IProgressbar 

@@ -61,7 +61,7 @@ package asgard.events
         public static var DEFAULT_ID:String = "" ;
         
         /**
-          * Returns a shallow copy of this object.
+         * Returns a shallow copy of this object.
          * @return a shallow copy of this object.
          */
         public override function clone():Event
@@ -80,8 +80,8 @@ package asgard.events
         }
 
         /**
-         * Returns the current <code>Local</code> reference or the internal value of the Local property passed in argument with the string in argument.
-         * @return the current <code>Local</code> reference or the internal value of the Local property passed in argument with the string in argument.
+         * Returns the current <code class="prettyprint">Local</code> reference or the internal value of the Local property passed in argument with the string in argument.
+         * @return the current <code class="prettyprint">Local</code> reference or the internal value of the Local property passed in argument with the string in argument.
          */
         public function getLocale( sID:String=null ):*
         {

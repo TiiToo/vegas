@@ -36,7 +36,7 @@ package asgard.text
     /**
      * This loader load an external swf who contains embed fonts.
      * <p><b>Example :</b></p>
-     * <code>
+     * <pre class="prettyprint">
      * import asgard.events.FontEvent ;
      * import asgard.text.CoreTextField ;
      * import asgard.text.FontLoader ;
@@ -93,7 +93,7 @@ package asgard.text
      * loader.registerFontClassName( "MyriadPro" ) ;
      * 
      * loader.load( request  ) ;
-     * </code>
+     * </pre>
      * <p>the external file "font/fonts.swf" contains in this library the two Font symbols.</p>
      * @author eKameleon
      */

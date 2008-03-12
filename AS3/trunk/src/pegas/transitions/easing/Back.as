@@ -19,7 +19,7 @@ package pegas.transitions.easing
 	{
 		
 		/**
-		 * The <code>easeIn()</code> method starts the motion by backtracking and then reversing direction and moving toward the target.
+		 * The <code class="prettyprint">easeIn()</code> method starts the motion by backtracking and then reversing direction and moving toward the target.
 		 * @param t Specifies the current time, between 0 and duration inclusive.
 		 * @param b Specifies the initial value of the animation property.
 		 * @param c Specifies the total change in the animation property.
@@ -37,7 +37,7 @@ package pegas.transitions.easing
 		}
 		
 		/**
-		 * The <code>easeInOut()</code> method combines the motion of the <code>easeIn()</code> and <code>easeOut()</code> methods 
+		 * The <code class="prettyprint">easeInOut()</code> method combines the motion of the <code class="prettyprint">easeIn()</code> and <code class="prettyprint">easeOut()</code> methods 
 		 * to start the motion by backtracking, then reversing direction and moving toward the target, overshooting the target slightly, 
 		 * reversing direction again, and then moving back toward the target.
 		 * @param t Specifies the current time, between 0 and duration inclusive.
@@ -61,7 +61,7 @@ package pegas.transitions.easing
 		}
 		
 		/**
-		 * The <code>easeOut()</code> method starts the motion by moving towards the target, overshooting it slightly, 
+		 * The <code class="prettyprint">easeOut()</code> method starts the motion by moving towards the target, overshooting it slightly, 
 		 * and then reversing direction back toward the target.
 		 * @param t Specifies the current time, between 0 and duration inclusive.
 		 * @param b Specifies the initial value of the animation property.

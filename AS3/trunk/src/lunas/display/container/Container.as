@@ -169,8 +169,8 @@ package lunas.display.container
         }
         
         /**
-         * Returns <code>true</code> if a child exist in the display list at the specified index value.
-         * @return <code>true</code> if a child exist in the display list at the specified index value.
+         * Returns <code class="prettyprint">true</code> if a child exist in the display list at the specified index value.
+         * @return <code class="prettyprint">true</code> if a child exist in the display list at the specified index value.
          */
         public function containsAt( index:int ):Boolean 
         {
@@ -276,7 +276,7 @@ package lunas.display.container
         
         /**
          * Removes all childs in the model defined for the first item by the specified index value, 
-         * this method remove the first and the <code>size - 1</code> items.
+         * this method remove the first and the <code class="prettyprint">size - 1</code> items.
          * @throws RangeError if the index value is out of the bounds of the container elements.
          */
         public function removeChildsAt( index:int, size:Number ):Array 

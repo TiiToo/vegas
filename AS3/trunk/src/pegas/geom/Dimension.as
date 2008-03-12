@@ -30,14 +30,14 @@ package pegas.geom
 	import vegas.util.Serializer;	
 
 	/**
-     * The Dimension class encapsulates the width and height of an object.
+     * The <code class="prettyprint">Dimension</code> class encapsulates the width and height of an object.
      * @author eKameleon
      */
     public class Dimension extends CoreObject implements IGeometry		
 	{
 
 		/**
-    	 * Creates a new Dimension instance.
+    	 * Creates a new <code class="prettyprint">Dimension</code> instance.
     	 */
         public function Dimension( ...arguments:Array )
         {
@@ -108,7 +108,7 @@ package pegas.geom
     
     	/**
     	 * Compares the specified object with this object for equality.
-    	 * @return <code>true</code> if the the specified object is equal with this object.
+    	 * @return <code class="prettyprint">true</code> if the the specified object is equal with this object.
     	 */
     	public function equals( o:* ):Boolean
     	{

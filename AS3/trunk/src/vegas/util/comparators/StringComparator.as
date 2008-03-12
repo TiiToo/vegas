@@ -105,9 +105,9 @@ package vegas.util.comparators
 		}
 		
 		/**
-		 * Returns the <code>StringComparator</code> singleton with the a <code>false</code> ignoreCase property.
+		 * Returns the <code class="prettyprint">StringComparator</code> singleton with the a <code class="prettyprint">false</code> ignoreCase property.
 		 * Clients are encouraged to use the value returned from this method instead of constructing a new instance to reduce allocation and garbage collection overhead when multiple StringComparators may be used in the same application.
-	 	 * @return the <code>StringComparator</code> singleton with the a <code>false</code> ignoreCase property.
+	 	 * @return the <code class="prettyprint">StringComparator</code> singleton with the a <code class="prettyprint">false</code> ignoreCase property.
 	 	*/
 		public static function getStringComparator():IComparator
 		{
@@ -119,9 +119,9 @@ package vegas.util.comparators
 		}
 		
 		/**
-		 * Returns the <code>StringComparator</code> singleton with the a <code>true</code> ignoreCase property.
+		 * Returns the <code class="prettyprint">StringComparator</code> singleton with the a <code class="prettyprint">true</code> ignoreCase property.
 	 	 * Clients are encouraged to use the value returned from this method instead of constructing a new instance to reduce allocation and garbage collection overhead when multiple StringComparators may be used in the same application.
-		 * @return the <code>StringComparator</code> singleton with the a <code>true</code> ignoreCase property.
+		 * @return the <code class="prettyprint">StringComparator</code> singleton with the a <code class="prettyprint">true</code> ignoreCase property.
 	  	 */
 		public static function getIgnoreCaseStringComparator():IComparator
 		{

@@ -41,8 +41,8 @@ package vegas.string
 	{
 
 	    /**
-    	 * Returns <code>true</code> if the expression in argument is a valid Luhn value.
-    	 * @return <code>true</code> if the expression in argument is a valid Luhn value.
+    	 * Returns <code class="prettyprint">true</code> if the expression in argument is a valid Luhn value.
+    	 * @return <code class="prettyprint">true</code> if the expression in argument is a valid Luhn value.
     	 */
 		public static function isValid(str:String):Boolean 
 		{	

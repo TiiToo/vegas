@@ -30,7 +30,7 @@ package vegas.data.collections
 	import vegas.util.Serializer;	
 
 	/**
-	 * This class provides a skeletal implementation of the <code>Collection</code> interface, to minimize the effort required to implement this interface.
+	 * This class provides a skeletal implementation of the <code class="prettyprint">Collection</code> interface, to minimize the effort required to implement this interface.
  	 * @author eKameleon
 	 */
 	public class AbstractCollection extends CoreObject implements Collection
@@ -81,8 +81,8 @@ package vegas.data.collections
 		}
 		
 		/**
-		 * Returns <code>true</code> if this collection contains the specified element.
-		 * @return <code>true</code> if this collection contains the specified element.
+		 * Returns <code class="prettyprint">true</code> if this collection contains the specified element.
+		 * @return <code class="prettyprint">true</code> if this collection contains the specified element.
 	 	 */
 		public function contains(o:*):Boolean
 		{
@@ -118,8 +118,8 @@ package vegas.data.collections
 		}
 		
 		/**
-		 * Returns <code>true</code> if this collection contains no elements.
-		 * @return <code>true</code> if this collection contains no elements.
+		 * Returns <code class="prettyprint">true</code> if this collection contains no elements.
+		 * @return <code class="prettyprint">true</code> if this collection contains no elements.
 	 	 */
 		public function isEmpty():Boolean
 		{

@@ -120,7 +120,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="#getInstance()">getInstance</a>(channel:String = null):<a href="../events/FrontController.html">FrontController</a>
 </div>
 <div class="summaryTableDescription">[static]
-         Returns a global <code>FrontController</code> singleton.</div>
+         Returns a global <code class="prettyprint">FrontController</code> singleton.</div>
 </td><td class="summaryTableOwnerCol">FrontController</td>
 </tr>
 <tr class="">
@@ -138,7 +138,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="../core/CoreObject.html#getLogger()">getLogger</a>():<a href="../logging/ILogger.html">ILogger</a>
 </div>
 <div class="summaryTableDescription">
-   Returns the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -202,7 +202,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../core/CoreObject.html#setLogger()">setLogger</a>(log:<a href="../logging/ILogger.html">ILogger</a> = null):void</div>
 <div class="summaryTableDescription">
-   Sets the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="">
@@ -356,7 +356,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function getInstance(channel:String = null):<a href="../events/FrontController.html">FrontController</a></code><p>
-         Returns a global <code>FrontController</code> singleton.
+         Returns a global <code class="prettyprint">FrontController</code> singleton.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -369,7 +369,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code><a href="../events/FrontController.html">FrontController</a></code> &mdash; 
-                        a global <code>FrontController</code> singleton.
+                        a global <code class="prettyprint">FrontController</code> singleton.
          
                         
                      </td>
@@ -427,14 +427,14 @@ showHideInherited();
 <span class="label">Throws</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code></code> &mdash; If the 'eventName' value in argument is <code>null</code> or <code>undefined</code>.
+<td width="20"></td><td><code></code> &mdash; If the 'eventName' value in argument is <code class="prettyprint">null</code> or <code class="prettyprint">undefined</code>.
          </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20"></td><td><code></code> &mdash; If the 'listener' object in argument is <code>null</code> or <code>undefined</code>.
+<td width="20"></td><td><code></code> &mdash; If the 'listener' object in argument is <code class="prettyprint">null</code> or <code class="prettyprint">undefined</code>.
          </td>
 </tr>
 </table>
@@ -448,7 +448,7 @@ showHideInherited();
 <div class="detailBody">
 <code>public function insertBatch(eventName:String, listener:<a href="EventListener.html">EventListener</a>):void</code><p>
          Adds a new EventListener into an EventListenerBatch in the FrontController.
-         If this <code>listener</code> argument is 'null' or 'undefined' and if the <code>eventName</code> argument isn't register with an EventListenerBatch in the FrontController, 
+         If this <code class="prettyprint">listener</code> argument is 'null' or 'undefined' and if the <code class="prettyprint">eventName</code> argument isn't register with an EventListenerBatch in the FrontController, 
          an empty EventListenerBatch is created and register in the FrontController with the specified 'eventName'.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -460,7 +460,7 @@ showHideInherited();
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">listener</span>:<a href="EventListener.html">EventListener</a></code> &mdash; (optional) The <code>EventListener</code> mapped in the FrontController with the specified event type (This listener is added in an EventListenerBatch). 
+<td width="20px"></td><td><code><span class="label">listener</span>:<a href="EventListener.html">EventListener</a></code> &mdash; (optional) The <code class="prettyprint">EventListener</code> mapped in the FrontController with the specified event type (This listener is added in an EventListenerBatch). 
          </td>
 </tr>
 </table>
@@ -492,7 +492,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the specified eventlistener registered with the 'eventName' value in argument is an EventListenerBatch instance.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the specified eventlistener registered with the 'eventName' value in argument is an EventListenerBatch instance.
          </td>
 </tr>
 </table>

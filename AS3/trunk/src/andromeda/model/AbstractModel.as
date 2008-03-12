@@ -26,7 +26,7 @@ package andromeda.model
 	import vegas.events.AbstractCoreEventDispatcher;    
 
 	/**
-	 * This class provides a skeletal implementation of the <code>IModel</code> interface, to minimize the effort required to implement this interface.
+	 * This class provides a skeletal implementation of the <code class="prettyprint">IModel</code> interface, to minimize the effort required to implement this interface.
 	 * @author eKameleon
 	 */
 	public class AbstractModel extends AbstractCoreEventDispatcher implements IModel
@@ -37,7 +37,7 @@ package andromeda.model
 		 * @param id the id of the model.
          * @param id the id of this model.
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
-		 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
+		 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
 		 */	
 		public function AbstractModel( id:* = null , bGlobal:Boolean = false , sChannel:String = null )
 		{
@@ -46,9 +46,9 @@ package andromeda.model
 		}
 
 		/**
-		 * Returns the <code>id</code> of this IModelObject. This method is use to register this object in a category of models.
-		 * You can overrides this method to change the nature of the natural id property of this object but this hack don't modify the value of the <code>id</code> property. 
-		 * @return the <code>id</code> of this IModelObject.
+		 * Returns the <code class="prettyprint">id</code> of this IModelObject. This method is use to register this object in a category of models.
+		 * You can overrides this method to change the nature of the natural id property of this object but this hack don't modify the value of the <code class="prettyprint">id</code> property. 
+		 * @return the <code class="prettyprint">id</code> of this IModelObject.
 		 */
 		public function get id():*
 		{
@@ -56,7 +56,7 @@ package andromeda.model
 		}
 		
 		/**
-		 * Sets the <code>id</code> of this IModelObject.
+		 * Sets the <code class="prettyprint">id</code> of this IModelObject.
 		 */
 		public function set id(value:*):void
 		{

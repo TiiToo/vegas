@@ -54,7 +54,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#DEFAULT_CATEGORY">DEFAULT_CATEGORY</a> : String = ""<div class="summaryTableDescription">[static]
-         const The default categoty of the <code>ILogger</code> instances returns with the <code>getLogger</code> method.</div>
+         const The default categoty of the <code class="prettyprint">ILogger</code> instances returns with the <code class="prettyprint">getLogger</code> method.</div>
 </td><td class="summaryTableOwnerCol">Log</td>
 </tr>
 <tr class="">
@@ -184,7 +184,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static var DEFAULT_CATEGORY:String = ""</code><p>
-         const The default categoty of the <code>ILogger</code> instances returns with the <code>getLogger</code> method.
+         const The default categoty of the <code class="prettyprint">ILogger</code> instances returns with the <code class="prettyprint">getLogger</code> method.
          </p></div>
 <a name="ILLEGALCHARACTERS"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -254,7 +254,7 @@ showHideInherited();
 <div class="detailBody">
 <code>public static function flush():void</code><p>
           This method removes all of the current loggers from the cache.
-          Subsquent calls to the <code>getLogger()</code> method return new instances
+          Subsquent calls to the <code class="prettyprint">getLogger()</code> method return new instances
           of loggers rather than any previous instances with the same category.
           This method is intended for use in debugging only.
          </p></div>
@@ -272,7 +272,7 @@ showHideInherited();
           Categories must be at least one character in length and may not contain
           any blanks or any of the following characters:
           []~$^&amp;\/(){}&lt;&gt;+=`!#%?,:;'"&#64;
-          This method will throw an <code>InvalidCategoryError</code> if the
+          This method will throw an <code class="prettyprint">InvalidCategoryError</code> if the
           category specified is malformed.
                    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -317,8 +317,8 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash;   <code>true</code> if there are any illegal characters found,
-                    <code>false</code> otherwise
+<td width="20"></td><td><code>Boolean</code> &mdash;   <code class="prettyprint">true</code> if there are any illegal characters found,
+                    <code class="prettyprint">false</code> otherwise
          </td>
 </tr>
 </table>

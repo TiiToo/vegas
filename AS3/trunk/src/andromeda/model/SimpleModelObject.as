@@ -35,7 +35,7 @@ package andromeda.model
 		 * Creates a new SimpleModelObject instance.
 		 * @param id the id of this model.
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
-		 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
+		 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
 		 */
 		public function SimpleModelObject(id:* = null, bGlobal:Boolean = false, sChannel:String = null)
 		{

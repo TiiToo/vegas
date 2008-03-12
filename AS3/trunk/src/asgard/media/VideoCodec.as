@@ -58,8 +58,8 @@ package asgard.media
         public static const SORENSON:Number = 2 ;
             
         /**
-         * Returns <code>true</code> if the specified id in argument is a valid video codec.
-         * @return <code>true</code> if the specified id in argument is a valid video codec.
+         * Returns <code class="prettyprint">true</code> if the specified id in argument is a valid video codec.
+         * @return <code class="prettyprint">true</code> if the specified id in argument is a valid video codec.
          */
         public function validate( id:Number ):Boolean
         {

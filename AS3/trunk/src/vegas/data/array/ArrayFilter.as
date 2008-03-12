@@ -87,7 +87,7 @@ package vegas.data.array
           * Creates a new ArrayFilter instance.
           * @param value the default filter value of this instance. If this argument is null the filter value is ArrayFilter.NONE(0). 
           * @param bGlobal the flag to use a global event flow or a local event flow.
-          * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
+          * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
           */
         public function ArrayFilter( value:uint=0, bGlobal:Boolean=false, sChannel:String=null)
         {
@@ -98,7 +98,7 @@ package vegas.data.array
 
         /**
          * Specifies case-insensitive sorting for the Array class sorting methods. You can use this constant
-         * for the <code>options</code> parameter in the <code>sort()</code> or <code>sortOn()</code> method. 
+         * for the <code class="prettyprint">options</code> parameter in the <code class="prettyprint">sort()</code> or <code class="prettyprint">sortOn()</code> method. 
          * <p>The value of this constant is 1.</p>
          */
         public static var CASEINSENSITIVE:uint = Array.CASEINSENSITIVE ;
@@ -110,8 +110,8 @@ package vegas.data.array
         
         /**
          * Specifies descending sorting for the Array class sorting methods. 
-         * You can use this constant for the <code>options</code> parameter in the <code>sort()</code>
-         * or <code>sortOn()</code> method. 
+         * You can use this constant for the <code class="prettyprint">options</code> parameter in the <code class="prettyprint">sort()</code>
+         * or <code class="prettyprint">sortOn()</code> method. 
          * <p>The value of this constant is 2.</p>
          */
         public static var DESCENDING:uint = Array.DESCENDING ;
@@ -124,19 +124,19 @@ package vegas.data.array
         
         /**
          * Specifies numeric (instead of character-string) sorting for the Array class sorting methods. 
-         * Including this constant in the <code>options</code>
-         * parameter causes the <code>sort()</code> and <code>sortOn()</code> methods 
+         * Including this constant in the <code class="prettyprint">options</code>
+         * parameter causes the <code class="prettyprint">sort()</code> and <code class="prettyprint">sortOn()</code> methods 
          * to sort numbers as numeric values, not as strings of numeric characters.  
-         * Without the <code>NUMERIC</code> constant, sorting treats each array element as a 
+         * Without the <code class="prettyprint">NUMERIC</code> constant, sorting treats each array element as a 
          * character string and produces the results in Unicode order. 
          *
-         * <p>For example, given the array of values <code>[2005, 7, 35]</code>, if the <code>NUMERIC</code> 
-         * constant is <strong>not</strong> included in the <code>options</code> parameter, the 
-         * sorted array is <code>[2005, 35, 7]</code>, but if the <code>NUMERIC</code> constant <strong>is</strong> included, 
-         * the sorted array is <code>[7, 35, 2005]</code>. </p>
+         * <p>For example, given the array of values <code class="prettyprint">[2005, 7, 35]</code>, if the <code class="prettyprint">NUMERIC</code> 
+         * constant is <strong>not</strong> included in the <code class="prettyprint">options</code> parameter, the 
+         * sorted array is <code class="prettyprint">[2005, 35, 7]</code>, but if the <code class="prettyprint">NUMERIC</code> constant <strong>is</strong> included, 
+         * the sorted array is <code class="prettyprint">[7, 35, 2005]</code>. </p>
          * 
          * <p>This constant applies only to numbers in the array; it does 
-         * not apply to strings that contain numeric data such as <code>["23", "5"]</code>.</p>
+         * not apply to strings that contain numeric data such as <code class="prettyprint">["23", "5"]</code>.</p>
          * 
          * <p>The value of this constant is 16.</p>
          */
@@ -144,8 +144,8 @@ package vegas.data.array
         
         /**
          * Specifies that a sort returns an array that consists of array indices as a result of calling
-         * the <code>sort()</code> or <code>sortOn()</code> method. You can use this constant
-         * for the <code>options</code> parameter in the <code>sort()</code> or <code>sortOn()</code> 
+         * the <code class="prettyprint">sort()</code> or <code class="prettyprint">sortOn()</code> method. You can use this constant
+         * for the <code class="prettyprint">options</code> parameter in the <code class="prettyprint">sort()</code> or <code class="prettyprint">sortOn()</code> 
          * method, so you have access to multiple views on the array elements while the original array is unmodified. 
          * <p>The value of this constant is 8.</p>
          */
@@ -153,7 +153,7 @@ package vegas.data.array
 
         /**
          * Specifies the unique sorting requirement for the Array class sorting methods. 
-         * You can use this constant for the <code>options</code> parameter in the <code>sort()</code> or <code>sortOn()</code> method. 
+         * You can use this constant for the <code class="prettyprint">options</code> parameter in the <code class="prettyprint">sort()</code> or <code class="prettyprint">sortOn()</code> method. 
          * The unique sorting option terminates the sort if any two elements or fields being sorted have identical values. 
          * <p>The value of this constant is 4.</p>
          */
@@ -182,8 +182,8 @@ package vegas.data.array
         public var useEvent:Boolean = true ;
         
         /**
-         * Returns <code>true</code> if the filter number value contains the option number value.
-         * @return <code>true</code> if the filter number value contains the option number value.
+         * Returns <code class="prettyprint">true</code> if the filter number value contains the option number value.
+         * @return <code class="prettyprint">true</code> if the filter number value contains the option number value.
          */
         public static function contains( nFilter:uint, nOption:uint ) : Boolean
         {
@@ -222,8 +222,8 @@ package vegas.data.array
         }
     
         /**
-         * Returns <code>true</code> if the CASEINSENSITIVE option value exist in the current filter.
-         * @return <code>true</code> if the CASEINSENSITIVE option value exist in the current filter.
+         * Returns <code class="prettyprint">true</code> if the CASEINSENSITIVE option value exist in the current filter.
+         * @return <code class="prettyprint">true</code> if the CASEINSENSITIVE option value exist in the current filter.
         */
         public function isCaseInsensitive():Boolean
         {
@@ -231,8 +231,8 @@ package vegas.data.array
         }
             
         /**
-         * Returns <code>true</code> if the DESCENDING option value exist in the current filter.
-         * @return <code>true</code> if the DESCENDING option value exist in the current filter.
+         * Returns <code class="prettyprint">true</code> if the DESCENDING option value exist in the current filter.
+         * @return <code class="prettyprint">true</code> if the DESCENDING option value exist in the current filter.
          */
         public function isDescending():Boolean
         {
@@ -240,8 +240,8 @@ package vegas.data.array
         }
             
         /**
-         * Returns <code>true</code> if the filter is NONE.
-         * @return <code>true</code> if the filter is NONE.
+         * Returns <code class="prettyprint">true</code> if the filter is NONE.
+         * @return <code class="prettyprint">true</code> if the filter is NONE.
          */
         public function isNone():Boolean
         {
@@ -249,8 +249,8 @@ package vegas.data.array
         }
         
         /**
-         * Returns <code>true</code> if the NUMERIC option value exist in the current filter.
-         * @return <code>true</code> if the NUMERIC option value exist in the current filter.
+         * Returns <code class="prettyprint">true</code> if the NUMERIC option value exist in the current filter.
+         * @return <code class="prettyprint">true</code> if the NUMERIC option value exist in the current filter.
          */
         public function isNumeric():Boolean
         {
@@ -258,8 +258,8 @@ package vegas.data.array
         }
             
         /**
-         * Returns <code>true</code> if the RETURNINDEXEDARRAY option value exist in the current filter.
-         * @return <code>true</code> if the RETURNINDEXEDARRAY option value exist in the current filter.
+         * Returns <code class="prettyprint">true</code> if the RETURNINDEXEDARRAY option value exist in the current filter.
+         * @return <code class="prettyprint">true</code> if the RETURNINDEXEDARRAY option value exist in the current filter.
          */
         public function isReturnIndexedArray():Boolean
         {
@@ -267,8 +267,8 @@ package vegas.data.array
         }
         
         /**
-         * Returns <code>true</code> if the UNIQUESORT option value exist in the current filter.
-         * @return <code>true</code> if the UNIQUESORT option value exist in the current filter.
+         * Returns <code class="prettyprint">true</code> if the UNIQUESORT option value exist in the current filter.
+         * @return <code class="prettyprint">true</code> if the UNIQUESORT option value exist in the current filter.
          */
         public function isUniqueSort():Boolean
         {

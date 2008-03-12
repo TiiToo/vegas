@@ -48,7 +48,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <p></p>
   This means half of a line, it is infinite in one direction, but ends at a certain point in the other direction.
   In Euclidean geometry, a ray (or half-line) given two distinct points A (the origin) and B on the ray, is the set of points C on the line containing points A and B such that A is not strictly between C and B. 
-  In geometry, a ray starts at one point, then goes on forever in one direction : (A) -- (B) -- ((C)) -->
+  In geometry, a ray starts at one point, then goes on forever in one direction : <code class="prettyprint">(A) -- (B) -- ((C)) -- ></code>
   <p></p>
 <br>
 <hr>
@@ -63,19 +63,19 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#p">p</a> : <a href="../geom/Vector3.html">Vector3</a>
 <div class="summaryTableDescription">
-   Determinates the p <code>Vector3</code> of the Ray object.</div>
+   Determinates the p <code class="prettyprint">Vector3</code> of the Ray object.</div>
 </td><td class="summaryTableOwnerCol">Ray</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#q">q</a> : <a href="../geom/Vector3.html">Vector3</a>
 <div class="summaryTableDescription">
-   Determinates the q <code>Vector3</code> of the Ray object.</div>
+   Determinates the q <code class="prettyprint">Vector3</code> of the Ray object.</div>
 </td><td class="summaryTableOwnerCol">Ray</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#v">v</a> : <a href="../geom/Vector3.html">Vector3</a>
 <div class="summaryTableDescription">
-   Determinates the v <code>Vector3</code> of the Ray object.</div>
+   Determinates the v <code class="prettyprint">Vector3</code> of the Ray object.</div>
 </td><td class="summaryTableOwnerCol">Ray</td>
 </tr>
 </table>
@@ -100,7 +100,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#Ray()">Ray</a>(... arguments)</div>
 <div class="summaryTableDescription">
-   Creates a new Ray instance.</div>
+   Creates a new <code class="prettyprint">Ray</code> instance.</div>
 </td><td class="summaryTableOwnerCol">Ray</td>
 </tr>
 <tr class="">
@@ -133,7 +133,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="../../vegas/core/CoreObject.html#getLogger()">getLogger</a>():<a href="../../vegas/logging/ILogger.html">ILogger</a>
 </div>
 <div class="summaryTableDescription">
-   Returns the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -149,7 +149,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../vegas/core/CoreObject.html#setLogger()">setLogger</a>(log:<a href="../../vegas/logging/ILogger.html">ILogger</a> = null):void</div>
 <div class="summaryTableDescription">
-   Sets the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="">
@@ -193,7 +193,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public var p:<a href="../geom/Vector3.html">Vector3</a></code><p>
-   Determinates the p <code>Vector3</code> of the Ray object.
+   Determinates the p <code class="prettyprint">Vector3</code> of the Ray object.
    </p></div>
 <a name="q"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -203,7 +203,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public var q:<a href="../geom/Vector3.html">Vector3</a></code><p>
-   Determinates the q <code>Vector3</code> of the Ray object.
+   Determinates the q <code class="prettyprint">Vector3</code> of the Ray object.
    </p></div>
 <a name="v"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -213,7 +213,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public var v:<a href="../geom/Vector3.html">Vector3</a></code><p>
-   Determinates the v <code>Vector3</code> of the Ray object.
+   Determinates the v <code class="prettyprint">Vector3</code> of the Ray object.
    </p></div>
 <a name="constructorDetail"></a>
 <div class="detailSectionHeader">Constructor detail</div>
@@ -225,9 +225,16 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function Ray(... arguments)</code><p>
-   Creates a new Ray instance.
-   </p><p><b>Usage :</b></p>
-    <p>With a Ray object passed in the argument of the constructor :</p>
+   Creates a new <code class="prettyprint">Ray</code> instance.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code>... <span class="label">arguments</span></code></td>
+</tr>
+</table>
+<br>
+<span class="label">Example</span>
+<br>    <p>With a Ray object passed in the argument of the constructor :</p>
    <pre class="prettyprint">
    var r:Ray = new Ray( r:Ray) ;
    </pre>
@@ -235,12 +242,7 @@ showHideInherited();
    <pre class="prettyprint">
     var r:Ray = new Ray( r:Vector3 , p:Vector3 ) ;
     </pre>
-    <span class="label">Parameters</span>
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td width="20px"></td><td><code>... <span class="label">arguments</span></code></td>
-</tr>
-</table>
+    <p></p>
 </div>
 <a name="methodDetail"></a>
 <div class="detailSectionHeader">Method detail</div>
@@ -299,7 +301,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the the specified object is equal with this object.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the the specified object is equal with this object.
    </td>
 </tr>
 </table>

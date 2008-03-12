@@ -87,7 +87,7 @@ package pegas.draw
         }
 
         /**
-         * Apply a transform method in this Canvas. Uses the <code>CanvasTransform</code> tool class and this static methods.
+         * Apply a transform method in this Canvas. Uses the <code class="prettyprint">CanvasTransform</code> tool class and this static methods.
          * @param transform the method effect used to transform the shape.
          * <p><b>Example :</b></p>
          * <pre class="prettyprint">
@@ -159,7 +159,7 @@ package pegas.draw
         }
 
         /**
-         * Defines a shortcut reference to used the <code>curveTo</code> method.
+         * Defines a shortcut reference to used the <code class="prettyprint">curveTo</code> method.
          */
         public override function C( ...arguments:Array ):void
         {
@@ -176,7 +176,7 @@ package pegas.draw
         }
         
         /**
-         * Defines a shortcut reference to used the <code>lineTo</code> method.
+         * Defines a shortcut reference to used the <code class="prettyprint">lineTo</code> method.
          */
         public override function L( ...arguments:Array ):void
         {
@@ -192,7 +192,7 @@ package pegas.draw
         }
         
         /**
-         * Defines a shortcut reference to used the <code>moveTo</code> method.
+         * Defines a shortcut reference to used the <code class="prettyprint">moveTo</code> method.
          */
         public override function M( ...arguments:Array ):void
         {
@@ -289,7 +289,7 @@ package pegas.draw
         /**
          * This static method launch the process to draw in a specified movieclip target the canvas defined with the (@code draw} argument.
          * @param graphics the Graphics reference.
-         * @param draw the <code>Canvas</code> reference used to draw in the <code>target</code> reference.
+         * @param draw the <code class="prettyprint">Canvas</code> reference used to draw in the <code class="prettyprint">target</code> reference.
          * @throws NullPointerError The Canvas process failed with a 'null' or 'undefined' graphics reference in argument.") ;
          */
         public static function process( graphics:Graphics , pen:Canvas ):void 

@@ -46,7 +46,7 @@ package pegas.transitions
 		 * @param id the id of the model.
 		 * @param tweens The array to initialize the model with some TweenEntry objects. All no TweenEntry objects are ignored.
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
-	 	 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
+	 	 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
 	 	 */
 		public function TweenModel(id:* = null, tweens:Array=null, bGlobal:Boolean = false, sChannel:String = null)
 		{
@@ -80,7 +80,7 @@ package pegas.transitions
 		
 		/**
 		 * Returns a shallow copy of this object. This method keep all Tween entries and the id of the original object.
-		 * <code>  
+		 * <code class="prettyprint">  
 		 * var clone:TweenModel = tp.clone() ;
 		 * </code>
 	 	 * @return a shallow copy of this object.
@@ -91,8 +91,8 @@ package pegas.transitions
 		}
 		
 		/**
-		 * Returns <code>true</code> if the specified property exist in this model.
-		 * @return <code>true</code> if the specified property exist in this model.
+		 * Returns <code class="prettyprint">true</code> if the specified property exist in this model.
+		 * @return <code class="prettyprint">true</code> if the specified property exist in this model.
 		 */
 		public function contains( prop:String ):Boolean 
 		{
@@ -109,8 +109,8 @@ package pegas.transitions
 		}
 
 		/**
-	 	 * Returns the event name use in the <code>insert</code> method.
-		 * @return the event name use in the <code>insert</code> method.
+	 	 * Returns the event name use in the <code class="prettyprint">insert</code> method.
+		 * @return the event name use in the <code class="prettyprint">insert</code> method.
 		 */
 		public function getEventTypeADD():String
 		{
@@ -118,8 +118,8 @@ package pegas.transitions
 		}
 
 		/**
-	 	 * Returns the event name use in the <code>clear</code> method.
-	 	 * @return the event name use in the <code>clear</code> method.
+	 	 * Returns the event name use in the <code class="prettyprint">clear</code> method.
+	 	 * @return the event name use in the <code class="prettyprint">clear</code> method.
 	 	 */
 		public function getEventTypeCLEAR():String
 		{
@@ -127,8 +127,8 @@ package pegas.transitions
 		}
 		
 		/**
-		 * Returns the event name use in the <code>remove</code> method.
-		 * @return the event name use in the <code>remove</code> method.
+		 * Returns the event name use in the <code class="prettyprint">remove</code> method.
+		 * @return the event name use in the <code class="prettyprint">remove</code> method.
 	 	 */
 		public function getEventTypeREMOVE():String
 		{
@@ -216,7 +216,7 @@ package pegas.transitions
 		}
 
 		/**
-		 * Sets the event name use in the <code>insert</code> method.
+		 * Sets the event name use in the <code class="prettyprint">insert</code> method.
 		 */
 		public function setEventTypeADD( type:String=null ):void
 		{
@@ -224,7 +224,7 @@ package pegas.transitions
 		}
 		
 		/**
-	 	 * Sets the event name use in the <code>clear</code> method.
+	 	 * Sets the event name use in the <code class="prettyprint">clear</code> method.
 	 	 */
 		public function setEventTypeCLEAR( type:String=null ):void
 		{
@@ -232,7 +232,7 @@ package pegas.transitions
 		}
 
 		/**
-		 * Sets the event name use in the <code>remove</code> method.
+		 * Sets the event name use in the <code class="prettyprint">remove</code> method.
 		 */
 		public function setEventTypeREMOVE( type:String=null ):void
 		{

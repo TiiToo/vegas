@@ -53,8 +53,8 @@ package lunas.core
 
 		/**
 		 *  An EdgeMetrics object with a value of zero for its
-		 *  <code>left</code>, <code>top</code>, <code>right</code>,
-		 *  and <code>bottom</code> properties.
+		 *  <code class="prettyprint">left</code>, <code class="prettyprint">top</code>, <code class="prettyprint">right</code>,
+		 *  and <code class="prettyprint">bottom</code> properties.
 		 */
 		public static const EMPTY:EdgeMetrics = new EdgeMetrics(0, 0, 0, 0) ;
 
@@ -98,7 +98,7 @@ package lunas.core
 
 		/**
 		 * Compares the specified object with this object for equality.
-		 * @return <code>true</code> if the the specified object is equal with this object.
+		 * @return <code class="prettyprint">true</code> if the the specified object is equal with this object.
 		 */
 		public function equals( o:* ):Boolean
 		{

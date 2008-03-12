@@ -34,6 +34,9 @@ package asgard.data.remoting
 	import vegas.data.iterator.Iterator;
 	import vegas.errors.Warning;	
 
+	/**
+	 * The RecordSet class.
+	 */
 	public class RecordSet extends AbstractModel implements Iterable
 	{
 		
@@ -70,14 +73,11 @@ package asgard.data.remoting
 			// Use with AMF serialization - see serverInfo read-write property !
 
 		}
-
-		// ----o Public Properties
-	
+		
 		public var numRows:uint ;
+
 		public var serviceName:String ; 
 		
-		// ----o Public Methods
-
 		public function addItem(oItem:*):*
 		{
 			return addItemAt(size(), oItem) ; 

@@ -41,7 +41,7 @@ package asgard.display
 
 	/**
      * This display is used to create a background in your application or in an other display of the application.
-     * <p><b>Example :</b></p>
+     * @example
      * <pre class="prettyprint">
      * import asgard.display.Background ;
      * 

@@ -77,8 +77,8 @@ package vegas.data.queue
         }
 
 		/**
-		 * Returns <code>true</code> if the queue contains value.
-		 * @return <code>true</code> if the queue contains value.
+		 * Returns <code class="prettyprint">true</code> if the queue contains value.
+		 * @return <code class="prettyprint">true</code> if the queue contains value.
 		 */
         public function contains(o:*):Boolean
         {
@@ -96,7 +96,7 @@ package vegas.data.queue
 
         /**
          * Removes the head of this queue and return true if removes.
-         * @return <code>true</code> if the Queue is dequeue.
+         * @return <code class="prettyprint">true</code> if the Queue is dequeue.
          */
         public function dequeue():Boolean
         {
@@ -121,8 +121,8 @@ package vegas.data.queue
         }
 
         /**
-         * Returns <code>true</code> if this queue is empty.
-         * @return <code>true</code> if this queue is empty.
+         * Returns <code class="prettyprint">true</code> if this queue is empty.
+         * @return <code class="prettyprint">true</code> if this queue is empty.
          */
         public function isEmpty():Boolean
         {

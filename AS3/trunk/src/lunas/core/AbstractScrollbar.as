@@ -30,7 +30,7 @@ package lunas.core
 	import lunas.events.ButtonEvent;	
 
 	/**
-	 * This class provides a skeletal implementation of all the <code>IScrollbar</code> display components, to minimize the effort required to implement this interface.
+	 * This class provides a skeletal implementation of all the <code class="prettyprint">IScrollbar</code> display components, to minimize the effort required to implement this interface.
 	 * @author eKameleon
 	 */
 	public class AbstractScrollbar extends AbstractProgressbar implements IScrollbar

@@ -27,7 +27,7 @@ package pegas.util
 	import pegas.geom.Quaternion;	
 	
 	/**
-	 * Static tool class to manipulate and transform <code>Matrix</code> references.
+	 * Static tool class to manipulate and transform <code class="prettyprint">Matrix</code> references.
 	 * @author eKameleon
  	 */
 	public class Matrix4Util 
@@ -36,7 +36,7 @@ package pegas.util
 		/**
 		 * Creates and returns a new identity Matrix4.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <code class="prettyprint">
 		 * import pegas.geom.Matrix4 ;
 		 * import pegas.util.Matrix4Util ;
 		 * var m:Matrix4 = MatrixUtil.getIdentity() ;
@@ -55,7 +55,7 @@ package pegas.util
 		/**
 		 * Creates and returns a new Matrix4 with all this elements are 0.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <code class="prettyprint">
 		 * import pegas.geom.Matrix4 ;
 		 * import pegas.util.Matrix4Util ;
 		 * var m:Matrix4 = MatrixUtil.getZero() ;
@@ -72,9 +72,9 @@ package pegas.util
 		}
 
 		/**
-		 * Returns <code>true</code> if the Matrix4 is the identity.
+		 * Returns <code class="prettyprint">true</code> if the Matrix4 is the identity.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <code class="prettyprint">
 		 * import pegas.geom.Matrix4 ;
 		 * import pegas.util.Matrix4Util ;
 		 * 
@@ -86,7 +86,7 @@ package pegas.util
 		 * var result:Boolean = Matrix4Util.isIdentity( m ) ;
 		 * trace(result) ; // false
 		 * </code>
-		 * @return <code>true</code> if the Matrix4 is the identity.
+		 * @return <code class="prettyprint">true</code> if the Matrix4 is the identity.
 		 */
 		public static function isIdentity( m:Matrix4 ):Boolean
 		{

@@ -42,7 +42,7 @@ package asgard.config
          * Creates a new AbstractConfigLoader instance.
        	 * @param loader The URLLoader object to load.
 	     * @param bGlobal the flag to use a global event flow or a local event flow.
-     	 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
+     	 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
          */
         public function AbstractConfigLoader( loader:URLLoader, bGlobal:Boolean = false, sChannel:String = null )
         {

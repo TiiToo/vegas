@@ -56,7 +56,7 @@ package asgard.net
 
 		/**
 		 * This object exist if the server return an application error object. 
-		 * This property exist with FMS when the SSAS <code>application.rejectConnection()</code> method is invoked. 
+		 * This property exist with FMS when the SSAS <code class="prettyprint">application.rejectConnection()</code> method is invoked. 
 	  	 */
 		public var application:* ;
 

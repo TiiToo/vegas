@@ -29,7 +29,7 @@ package vegas.events.dom
     import vegas.data.queue.LinearQueue;
     
     /**
-     * Internal class used in <code>vegas.events.dom.EventDispatcher</code> class to bufferize the events if no EventListener are registered with the event type of the event.
+     * Internal class used in <code class="prettyprint">vegas.events.dom.EventDispatcher</code> class to bufferize the events if no EventListener are registered with the event type of the event.
      */
 	internal class EventQueue extends CoreObject
 	{

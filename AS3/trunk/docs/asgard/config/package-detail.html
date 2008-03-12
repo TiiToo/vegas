@@ -76,35 +76,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Pa
 </tr>
 <tr class="prow0">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="JSONConfigLoader.html">JSONConfigLoader</a></td><td class="summaryTableLastCol">
-     <p><b>Example :</b></p>
-     <pre class="prettyprint">
-     import asgard.config.Config ;
-     import asgard.config.JSONConfigLoader;
-     import asgard.config.IConfigLoader;
-     import flash.events.Event ;
-            
-     var complete:Function = function ( e:Event ):void
-     {
-         var data:= Config.getInstance() ;
-         for (var prop:String in data)
-         {
-             trace("> " + prop + " : " + data[prop]) ;
-             if (data[prop] as Object)
-             {
-                 for (var key:String in data[prop]) 
-                 {
-                     trace("    > " + key + " : " + data[prop][key]) ;
-                 }
-             }
-        }
-     }
-            
-     var loader:IConfigLoader = new JSONConfigLoader() ;
-     loader.addEventListener(Event.COMPLETE, complete) ;
-     loader.path = "config/" ;
-     loader.load() ;
-     </pre> 
-     </td>
+  The JSONConfigLoader class based on the JSON notation.</td>
 </tr>
 </table>
 <p></p>

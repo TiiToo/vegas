@@ -101,7 +101,7 @@ package vegas.data.list
         /**
          * Appends the specified element to the end of this list.
          * @param o element to be appended to this list.
-         * @return <code>true</code> (as per the general contract of <code>Collection.insert</code>).
+         * @return <code class="prettyprint">true</code> (as per the general contract of <code class="prettyprint">Collection.insert</code>).
          */
 		public override function insert(o:*):Boolean 
 		{
@@ -113,7 +113,7 @@ package vegas.data.list
         /**
          * Appends all of the elements in the specified collection to the end of this list, in the order that they are returned by the specified collection's iterator.
          * @param c the elements to be inserted into this list.
-         * @return <code>true</code> if this list changed as a result of the call.
+         * @return <code class="prettyprint">true</code> if this list changed as a result of the call.
          */
 		public override function insertAll(c:Collection):Boolean 
 		{

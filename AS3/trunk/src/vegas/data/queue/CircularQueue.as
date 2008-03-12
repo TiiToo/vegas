@@ -150,8 +150,8 @@ package vegas.data.queue
 		}
 
 	    /**
-	     * Returns <code>true</code> if the queue contains the object passed in argument.
-	     * @return <code>true</code> if the queue contains the object passed in argument.
+	     * Returns <code class="prettyprint">true</code> if the queue contains the object passed in argument.
+	     * @return <code class="prettyprint">true</code> if the queue contains the object passed in argument.
 	     */
 		public function contains(o:*):Boolean
 		{
@@ -169,7 +169,7 @@ package vegas.data.queue
 
 	    /**
     	 * Retreives the first element in the queue object, return a boolean.
-    	 * @return <code>true</code> if the first element in the queue is dequeue.
+    	 * @return <code class="prettyprint">true</code> if the first element in the queue is dequeue.
     	 */
 		public function dequeue():Boolean
 		{
@@ -208,8 +208,8 @@ package vegas.data.queue
 		}
 	
 	    /**
-	     * Returns <code>true</code> if the queue is empty.
-	     * @return <code>true</code> if the queue is empty.
+	     * Returns <code class="prettyprint">true</code> if the queue is empty.
+	     * @return <code class="prettyprint">true</code> if the queue is empty.
 	     */
 		public function isEmpty():Boolean
 		{
@@ -217,8 +217,8 @@ package vegas.data.queue
 		}
 
 	    /**
-	     * Returns <code>true</code> if the queue is full.
-	     * @return <code>true</code> if the queue is full.
+	     * Returns <code class="prettyprint">true</code> if the queue is full.
+	     * @return <code class="prettyprint">true</code> if the queue is full.
 	     */
 		public function isFull():Boolean
 		{
@@ -227,7 +227,7 @@ package vegas.data.queue
 
 	    /**
 	     * Returns the iterator of the queue.
-	     * <p>See <code>vegas.data.iterator.ProtectedIterator</code></p>
+	     * <p>See <code class="prettyprint">vegas.data.iterator.ProtectedIterator</code></p>
 	     * @return the iterator of the queue.
 	     */
 		public function iterator():Iterator
@@ -245,8 +245,8 @@ package vegas.data.queue
 		}
 
     	/**
-    	 * Returns the value of the first element in the queue or <code>null</code> if the queue is empty.
-    	 * @return the value of the first element in the queue or <code>null</code> if the queue is empty.
+    	 * Returns the value of the first element in the queue or <code class="prettyprint">null</code> if the queue is empty.
+    	 * @return the value of the first element in the queue or <code class="prettyprint">null</code> if the queue is empty.
     	 */
 		public function peek():*
 		{

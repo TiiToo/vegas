@@ -44,8 +44,10 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </table>
 <p></p>
      This AVM2Loader loads both of AVM1 and AVM2 swf as AVM2.
-     <p><b>Example :</b></p>
-     <pre class="prettyprint">
+     <p></p>
+<br>
+<span class="label">Example</span>
+<br>     <pre class="prettyprint">
      import asgard.display.AVM2Loader ;
      
      import flash.net.URLRequest ;
@@ -80,7 +82,8 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
      loader.y = 25 ;
      
      addChild( loader ) ;
-          var request:URLRequest = new URLRequest( "avm1.swf"  ) ; // The swf is compiled with the FP8 publish settings.
+     
+     var request:URLRequest = new URLRequest( "avm1.swf"  ) ; // The swf is compiled with the FP8 publish settings.
      loader.load( request ) ;
      </pre>
      <p></p>
@@ -148,7 +151,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="CoreLoader.html#getLogger()">getLogger</a>():<a href="../../vegas/logging/ILogger.html">ILogger</a>
 </div>
 <div class="summaryTableDescription">
-   Returns the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="CoreLoader.html">CoreLoader</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -164,7 +167,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="CoreLoader.html#isLocked()">isLocked</a>():Boolean</div>
 <div class="summaryTableDescription">
-      Returns <code>true</code> if the object is locked.</div>
+      Returns <code class="prettyprint">true</code> if the object is locked.</div>
 </td><td class="summaryTableOwnerCol"><a href="CoreLoader.html">CoreLoader</a></td>
 </tr>
 <tr class="">
@@ -172,7 +175,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#load()">load</a>(request:URLRequest, context:LoaderContext = null):void</div>
 <div class="summaryTableDescription">
-         loads both of AVM1 and AVM2 movie as AVM2 movie.</div>
+         Loads both of AVM1 and AVM2 movie as AVM2 movie.</div>
 </td><td class="summaryTableOwnerCol">AVM2Loader</td>
 </tr>
 <tr class="">
@@ -196,7 +199,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="CoreLoader.html#setLogger()">setLogger</a>(log:<a href="../../vegas/logging/ILogger.html">ILogger</a> = null):void</div>
 <div class="summaryTableDescription">
-   Sets the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="CoreLoader.html">CoreLoader</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -212,7 +215,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="CoreLoader.html#toString()">toString</a>():String</div>
 <div class="summaryTableDescription">
-    Returns the <code>String</code> representation of this object.</div>
+    Returns the <code class="prettyprint">String</code> representation of this object.</div>
 </td><td class="summaryTableOwnerCol"><a href="CoreLoader.html">CoreLoader</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -281,7 +284,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public override function load(request:URLRequest, context:LoaderContext = null):void</code><p>
-         loads both of AVM1 and AVM2 movie as AVM2 movie.
+         Loads both of AVM1 and AVM2 movie as AVM2 movie.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>

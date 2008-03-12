@@ -28,10 +28,68 @@ package andromeda.process
 	import vegas.data.iterator.Iterator;    
 
 	/**
-     * A batch is a collection of <code>Action</code> objects. All <code>Action</code> objects are processed as a single unit.
-     * This class use an internal typed <code>SimpleCollection</code> to register all <code>Action</code> objects.  
+     * A batch is a collection of <code class="prettyprint">Action</code> objects. All <code class="prettyprint">Action</code> objects are processed as a single unit.
+     * This class use an internal typed <code class="prettyprint">SimpleCollection</code> to register all <code class="prettyprint">Action</code> objects.  
+     * @example
+     * <pre class="prettyprint">
+     * import flash.display.StageAlign ;
+     * import flash.display.StageScaleMode ;
+     * 
+     * import andromeda.events.ActionEvent ;
+     * import andromeda.process.Batch ;
+     * 
+     * import pegas.transitions.easing.* ;
+     * import pegas.transitions.Tween ;
+     * 
+     * Stage.align     = StageAlign.TOP_LEFT ;
+     * Stage.scaleMode = StageScaleMode.NO_SCALE ;
+     * 
+     * var batch:Batch = new Batch();
+     * 
+     * var change:Function = function( e:ActionEvent ):void
+     * {
+     *     if ( e.target is Tween )
+     *     {
+     *         var tw:Tween = e.target as Tween ;
+     *         var display:Shape = (tw.target as Shape) ;
+     *         display.scaleY  = display.scaleX ;
+     *     }
+     * }
+     * 
+     * var max:uint = 50 ;
+     * for ( var i:uint = 0; i < max ; i++ )
+     * {
+     *     var rec:Shape = addChild( new Shape() ) ;
+     *     rec.x = Math.random()*740 ;
+     *     rec.y = Math.random()*400 ;
+     *     rec.graphics.beginFill( Math.round( Math.random() * 0xFFFFFF ) , 1) ;
+     *     rec.graphics.drawRect(0,0,20,20) ;
+     *     rec.filters = [ new BlurFilter( Math.random() * 12 , Math.random() * 12 , 2 ) ] ;
+     *     
+     *     var tw:Tween = new Tween( rec ) ;
+     *     tw.addEventListener( ActionEvent.CHANGE , change , false, 0, true ) ;
+     *     tw.duration = 10 + Math.round( Math.random() * 24 ) ;
+     *     tw.insertProperty( "x"      , Bounce.easeOut  , rec.x      , Math.random() * 740 ) ;
+     *     tw.insertProperty( "y"      , Back.easeOut    , rec.y      , Math.random() * 400 ) ;
+     *     tw.insertProperty( "scaleX" , Elastic.easeOut , rec.scaleX , Math.random() ) ;
+     *     tw.insertProperty( "scaleY" , Back.easeOut    , rec.scaleY , Math.random() ) ;
+     *     
+     *     batch.insert( tw );
+     *     
+     * }
+     * 
+     * trace ("Press a key or your mouse to run the process...") ;
+     * 
+     * var run:Function = function ( e:Event ):void
+     * {
+     *     batch.run() ;
+     * }
+     * 
+     * stage.addEventListener( KeyboardEvent.KEY_DOWN , run ) ;
+     * stage.addEventListener( MouseEvent.MOUSE_DOWN  , run ) ;
+     * </pre>
      * @author eKameleon
-    */
+     */
     public class Batch extends TypedCollection implements IRunnable
     {
         

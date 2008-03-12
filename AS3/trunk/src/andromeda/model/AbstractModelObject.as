@@ -29,7 +29,7 @@ package andromeda.model
 	import vegas.errors.TypeMismatchError;	
 
 	/**
-     * This class provides a skeletal implementation of the <code>IModelObject</code> interface, to minimize the effort required to implement this interface.
+     * This class provides a skeletal implementation of the <code class="prettyprint">IModelObject</code> interface, to minimize the effort required to implement this interface.
      * @author eKameleon
      */
     public class AbstractModelObject extends AbstractModel implements IModelObject
@@ -39,7 +39,7 @@ package andromeda.model
          * Creates a new AbstractModelObject instance.
          * @param id the id of this model.
          * @param bGlobal the flag to use a global event flow or a local event flow.
-         * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
+         * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
          */	
         public function AbstractModelObject( id:* = null , bGlobal:Boolean = false , sChannel:String = null )
         {
@@ -81,8 +81,8 @@ package andromeda.model
         }
 
         /**
-         * Returns the event name use in the <code>setVO</code> method.
-         * @return the event name use in the <code>setVO</code> method.
+         * Returns the event name use in the <code class="prettyprint">setVO</code> method.
+         * @return the event name use in the <code class="prettyprint">setVO</code> method.
          */
         public function getEventTypeCHANGE():String
         {
@@ -90,8 +90,8 @@ package andromeda.model
         }
 
         /**
-         * Returns the event name use in the <code>clear</code> method.
-         * @return the event name use in the <code>clear</code> method.
+         * Returns the event name use in the <code class="prettyprint">clear</code> method.
+         * @return the event name use in the <code class="prettyprint">clear</code> method.
          */
         public function getEventTypeCLEAR():String
         {
@@ -109,7 +109,7 @@ package andromeda.model
         }
 
         /**
-         * Notify a <code>ModelObjectEvent</code> when a <code>IValueObject</code> change in the model.
+         * Notify a <code class="prettyprint">ModelObjectEvent</code> when a <code class="prettyprint">IValueObject</code> change in the model.
          */	
         public function notifyChange( vo:IValueObject ):void
         {
@@ -121,7 +121,7 @@ package andromeda.model
 		}
 
         /**
-         * Notify a <code>ModelObjectEvent</code> when the model is cleared.
+         * Notify a <code class="prettyprint">ModelObjectEvent</code> when the model is cleared.
          */ 
         public function notifyClear():void
         {
@@ -147,8 +147,8 @@ package andromeda.model
         }
 
         /**
-         * Returns the event name use in the <code>setVO</code> method.
-         * @return the event name use in the <code>setVO</code> method.
+         * Returns the event name use in the <code class="prettyprint">setVO</code> method.
+         * @return the event name use in the <code class="prettyprint">setVO</code> method.
          */
         public function setEventTypeCHANGE( type:String ):void
         {
@@ -156,8 +156,8 @@ package andromeda.model
         }
 
         /**
-         * Returns the event name use in the <code>clear</code> method.
-         * @return the event name use in the <code>clear</code> method.
+         * Returns the event name use in the <code class="prettyprint">clear</code> method.
+         * @return the event name use in the <code class="prettyprint">clear</code> method.
          */
         public function setEventTypeCLEAR( type:String ):void
         {
@@ -165,9 +165,9 @@ package andromeda.model
         }
 
         /**
-         * Returns <code>true</code> if the <code>IValidator</code> object validate the value. Overrides this method in your concrete IModelObject class.
+         * Returns <code class="prettyprint">true</code> if the <code class="prettyprint">IValidator</code> object validate the value. Overrides this method in your concrete IModelObject class.
          * @param value the object to test.
-         * @return <code>true</code> is this specific value is valid.
+         * @return <code class="prettyprint">true</code> is this specific value is valid.
          */
         public function supports( value:* ):Boolean 
         {

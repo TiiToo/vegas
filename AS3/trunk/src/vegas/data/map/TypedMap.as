@@ -39,7 +39,7 @@ package vegas.data.map
 	 	 * Creates a new TypedMap instance.
 		 * @param fType the type of all values in this TypedMap.
 		 * @param m the map to wrapp.
-		 * @throws IllegalArgumentError if the specified map in argument is <code>null</code> or <code>undefined</code>.
+		 * @throws IllegalArgumentError if the specified map in argument is <code class="prettyprint">null</code> or <code class="prettyprint">undefined</code>.
 		 */
 		public function TypedMap(type:*, map:Map)
 		{
@@ -76,8 +76,8 @@ package vegas.data.map
 		}
 
 		/**
-		 * Returns <code>true</code> if this map contains a mapping for the specified key.
-		 * @return <code>true</code> if this map contains a mapping for the specified key.
+		 * Returns <code class="prettyprint">true</code> if this map contains a mapping for the specified key.
+		 * @return <code class="prettyprint">true</code> if this map contains a mapping for the specified key.
 		 */
 		public function containsKey(key:*):Boolean
 		{
@@ -85,8 +85,8 @@ package vegas.data.map
 		}
 
 		/**
-		 * Returns <code>true</code> if this map maps one or more keys to the specified value.
-		 * @return <code>true</code> if this map maps one or more keys to the specified value.
+		 * Returns <code class="prettyprint">true</code> if this map maps one or more keys to the specified value.
+		 * @return <code class="prettyprint">true</code> if this map maps one or more keys to the specified value.
 		 */
 		public function containsValue(value:*):Boolean
 		{
@@ -131,8 +131,8 @@ package vegas.data.map
 		}
 
 		/**
-	 	 * Returns <code>true</code> if this map contains no key-value mappings.
-		 * @return <code>true</code> if this map contains no key-value mappings.
+	 	 * Returns <code class="prettyprint">true</code> if this map contains no key-value mappings.
+		 * @return <code class="prettyprint">true</code> if this map contains no key-value mappings.
 	 	 */
 		public function isEmpty():Boolean
 		{

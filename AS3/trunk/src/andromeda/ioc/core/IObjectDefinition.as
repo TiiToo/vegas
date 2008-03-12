@@ -86,8 +86,8 @@ package andromeda.ioc.core
 		function isLazyInit():Boolean ; 
 
 		/**
-		 * Returns <code>true</code> if the object in a Sigleton else the object is a prototype.
-		 * @return <code>true</code> if the object in a Sigleton else the object is a prototype.
+		 * Returns <code class="prettyprint">true</code> if the object in a Sigleton else the object is a prototype.
+		 * @return <code class="prettyprint">true</code> if the object in a Sigleton else the object is a prototype.
 		 */		
 		function isSingleton():Boolean ; 
 	

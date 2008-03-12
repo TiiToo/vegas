@@ -35,17 +35,82 @@ package asgard.system
      * The Localization class allows to manage via textual files with 'JSON' or 'eden' format to charge the textual contents 
      * of an application according to the parameters of languages chosen by the users.
      * <p>It is possible to define several singletons of the Localization class to manage several elements in the application, but for this it's necessary to use the static property getInstance(sName). 
-     * Thus all the authorities become of Singletons reusable a little everywhere in the application rather quickly.</p> 
+     * Thus all the authorities become of Singletons reusable a little everywhere in the application rather quickly.</p>
+     * @example
+     * <pre class="prettyprint">
+     * import andromeda.events.ActionEvent ;
+     * 
+     * import asgard.events.LocalizationEvent ;
+     * import asgard.system.EdenLocalizationLoader ;
+     * import asgard.system.Lang ;
+     * import asgard.system.Locale ;
+     * import asgard.system.Localization ;
+     * 
+     * import vegas.events.Delegate ;
+     * 
+     * var debug:Function = function( e:Event ):void
+     * {
+     *     trace("------- " + e.type ) ;
+     * }
+     * 
+     * var change:Function = function( e:LocalizationEvent )
+     * {
+     *     var target:Localization = e.getTarget() ;
+     *     var current:Lang  = e.getCurrent() ;
+     *     var locale:Locale = e.getLocale() ;
+     *     trace("# change current " + current ) ;
+     *     trace("# change locale  " + locale  ) ;
+     *     for (var each:String in locale)
+     *     {
+     *         trace("  * " + each + " : " + locale[each]) ;
+     *         for (var prop:String in locale[each])
+     *         {
+     *             trace("    * " + prop + " : " + locale[each][prop]) ;
+     *         }
+     *     }
+     * }
+     * 
+     * var localization:Localization  = Localization.getInstance() ;
+     * localization.addEventListener( LocalizationEvent.CHANGE , change ) ;
+     * 
+     * var loader:EdenLocalizationLoader = localization.loader as EdenLocalizationLoader ;
+     * loader.addEventListener( ActionEvent.START , debug ) ;
+     * loader.addEventListener( ActionEvent.FINISH , debug ) ;
+     * loader.path = "locale/" ;
+     * 
+     * localization.current = Lang.FR ;
+     * 
+     * var onKeyDown:Function = function( e:KeyboardEvent ):void
+     * {
+     *     var code:uint = e.keyCode ;
+     *     switch( code )
+     *     {
+     *         case Keyboard.UP :
+     *         {
+     *             localization.current = Lang.EN ;
+     *             break ;
+     *         }
+     *         case Keyboard.DOWN :
+     *         {
+     *             localization.current = "fr" ;
+     *             break ;
+     *         }
+     *     }
+     * }
+     * stage.addEventListener( KeyboardEvent.KEY_DOWN , onKeyDown ) ; 
+	 * </pre> 
      * @author eKameleon
-     * @see Lang
-     * @see Locale
+     * @see asgard.system.Lang
+     * @see asgard.system.Locale
      */
     public class Localization extends AbstractCoreEventDispatcher implements Identifiable
     {
 
         /**
          * Creates a new Localization instance.
-         * @param sName the name of the object.
+         * @param id the id of the object.
+		 * @param bGlobal the flag to use a global event flow or a local event flow.
+		 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
          */
         public function Localization( id:*=null , bGlobal:Boolean = false, sChannel:String = null )
         {
@@ -66,9 +131,9 @@ package asgard.system
         public static var DEFAULT_ID:String = "default" ;
 
         /**
-         * (read-write) Indicates the current <code>Lang</code> object selected in the current localization.
+         * (read-write) Indicates the current <code class="prettyprint">Lang</code> object selected in the current localization.
          */
-        public function get current():Lang 
+        public function get current():* 
         {
             return _current ;
         }
@@ -76,18 +141,18 @@ package asgard.system
         /**
          * @private
          */
-        public function set current( lang:Lang ):void
+        public function set current( lang:* ):void
         {
             if ( Lang.validate(lang) ) 
             {
-                _current = lang ;
-                if ( contains(lang) ) 
+                _current = Lang.get(lang) ;
+                if ( contains( _current ) ) 
                 {
                     notifyChange() ;
                 }
                 else 
                 {
-                    loader.loadLang( current ) ;
+                    loader.loadLang( _current ) ;
                 }
             }
         }    
@@ -136,8 +201,8 @@ package asgard.system
         }
         
         /**
-         * Returns <code>true</code> if this Localization contains the specified Lang.
-          * @return <code>true</code> if this Localization contains the specified Lang.
+         * Returns <code class="prettyprint">true</code> if this Localization contains the specified Lang.
+          * @return <code class="prettyprint">true</code> if this Localization contains the specified Lang.
          */
         public function contains( lang:* ):Boolean 
         {     
@@ -152,8 +217,8 @@ package asgard.system
         }
     
         /**
-         * Returns the current <code>Locale</code> object defines with the specified <code>Lang</code> object in argument.
-         * @return the current <code>Locale</code> object defines with the specified <code>Lang</code> object in argument.
+         * Returns the current <code class="prettyprint">Locale</code> object defines with the specified <code class="prettyprint">Lang</code> object in argument.
+         * @return the current <code class="prettyprint">Locale</code> object defines with the specified <code class="prettyprint">Lang</code> object in argument.
          */
         public function get( lang:* ):Locale 
         {
@@ -177,8 +242,8 @@ package asgard.system
         }
         
         /**
-         * Returns a <code>Localization</code> singleton reference with the specified name passed-in argument.
-         * @return a <code>Localization</code> singleton reference with the specified name passed-in argument.
+         * Returns a <code class="prettyprint">Localization</code> singleton reference with the specified name passed-in argument.
+         * @return a <code class="prettyprint">Localization</code> singleton reference with the specified name passed-in argument.
          */
         public static function getInstance( id:String=null ):Localization 
         {
@@ -227,8 +292,8 @@ package asgard.system
         } 
         
         /**
-         * Returns <code>true</code> if the Localization model is empty.
-         * @return <code>true</code> if the Localization model is empty.
+         * Returns <code class="prettyprint">true</code> if the Localization model is empty.
+         * @return <code class="prettyprint">true</code> if the Localization model is empty.
          */
         public function isEmpty():Boolean 
         {
@@ -262,7 +327,7 @@ package asgard.system
         }
 
         /**
-         * Releases the specified <code>Localization</code> singleton with the specified name in argument.
+         * Releases the specified <code class="prettyprint">Localization</code> singleton with the specified name in argument.
          * @return the reference of the removed Localization object.
          */
         public static function release( id:String ):Localization 
@@ -276,7 +341,7 @@ package asgard.system
 
         /**
          * Removes the specified Lang in the Localization model.
-         * @param lang a valid Lang object. This argument is valid if the Lang.validate method return <code>true</code>.
+         * @param lang a valid Lang object. This argument is valid if the Lang.validate method return <code class="prettyprint">true</code>.
          * @return The removed Locale object or null.
          */
         public function remove( lang:* ):* 
@@ -310,8 +375,8 @@ package asgard.system
         }
         
         /**
-          * Returns the <code>String</code> representation of this object.
-          * @return the <code>String</code> representation of this object.
+          * Returns the <code class="prettyprint">String</code> representation of this object.
+          * @return the <code class="prettyprint">String</code> representation of this object.
           */
         public override function toString():String
         {

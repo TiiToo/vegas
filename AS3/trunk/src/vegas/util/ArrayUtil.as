@@ -80,7 +80,7 @@ package vegas.util
          * Returns a string representing the source code of the array.
          * @return a string representing the source code of the array.
          */
-	    public static function toSource( ar:Array ):String 
+	    public static function toSource( ar:Array , ...rest:Array ):String 
 	    {
     		return buRRRn.eden.Serializer.emitArray(ar) ;
         }

@@ -27,7 +27,7 @@ package vegas.events.dom
 	import vegas.events.EventListener;
 	
 	/**
-     * Internal class in the <code>EventDispatcher</code> class to register in an <code>EventCollection</code> an <code>EventListener</code>.
+     * Internal class in the <code class="prettyprint">EventDispatcher</code> class to register in an <code class="prettyprint">EventCollection</code> an <code class="prettyprint">EventListener</code>.
      * @author eKameleon
      * @see EventListenerCollection
      * @see EventListenerComparator
@@ -37,7 +37,7 @@ package vegas.events.dom
 		
 		/**
 	     * Creates a new EventListenerContainer instance.
-	     * @param listener an <code>EventListener</code>
+	     * @param listener an <code class="prettyprint">EventListener</code>
 	     */	
 		public function EventListenerContainer( listener:EventListener )
 		{
@@ -60,8 +60,8 @@ package vegas.events.dom
 	    }
 
 	    /**
-	     * Returns the priority of the <code>EventListener</code>. This priority is used in the <code>EventListenerComparator</code>.
-	     * @return the priority of the <code>EventListener</code>. This priority is used in the <code>EventListenerComparator</code>.
+	     * Returns the priority of the <code class="prettyprint">EventListener</code>. This priority is used in the <code class="prettyprint">EventListenerComparator</code>.
+	     * @return the priority of the <code class="prettyprint">EventListener</code>. This priority is used in the <code class="prettyprint">EventListenerComparator</code>.
 	     * @see EventListenerComparator
 	     */
 		public function getPriority():uint 
@@ -70,8 +70,8 @@ package vegas.events.dom
 		}
 
         /**
-         * Returns <code>true</code> if the <code>EventListener</code> is auto remove at the end of the event flow.
-         * @return <code>true</code> if the <code>EventListener</code> is auto remove at the end of the event flow.
+         * Returns <code class="prettyprint">true</code> if the <code class="prettyprint">EventListener</code> is auto remove at the end of the event flow.
+         * @return <code class="prettyprint">true</code> if the <code class="prettyprint">EventListener</code> is auto remove at the end of the event flow.
          */
 	    public function isAutoRemoveEnabled():Boolean 
 	    {
@@ -79,8 +79,8 @@ package vegas.events.dom
 	    }
 
 	    /**
-	     * Returns the <code>EventListener</code> reference.
-	     * @return the <code>EventListener</code> reference.
+	     * Returns the <code class="prettyprint">EventListener</code> reference.
+	     * @return the <code class="prettyprint">EventListener</code> reference.
 	     */
 	    public function getListener():EventListener 
 	    {
@@ -88,7 +88,7 @@ package vegas.events.dom
 	    }
     
         /**
-         * Sets the priority of the <code>EventListener</code>.
+         * Sets the priority of the <code class="prettyprint">EventListener</code>.
          */
 		public function setPriority(n:uint=0):void
 		{

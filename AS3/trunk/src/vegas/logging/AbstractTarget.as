@@ -37,7 +37,7 @@ package vegas.logging
         /**
          * Creates a new AbstractTarget instance.
          * @param bGlobal the flag to use a global event flow or a local event flow.
-         * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
+         * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
          */
         public function AbstractTarget( bGlobal:Boolean = false , sChannel:String = null )
         {
@@ -184,7 +184,7 @@ package vegas.logging
         }
 
         /**
-         *  This method handles a <code>LogEvent</code> from an associated logger.
+         *  This method handles a <code class="prettyprint">LogEvent</code> from an associated logger.
          *  A target uses this method to translate the event into the appropriate
          *  format for transmission, storage, or display.
          *  This method will be called only if the event's level is in range of the
@@ -264,7 +264,7 @@ package vegas.logging
         private var _loggerCount:uint = 0 ;
         
         /**
-         * This method will call the <code>logEvent</code> method if the level of the
+         * This method will call the <code class="prettyprint">logEvent</code> method if the level of the
          * event is appropriate for the current level.
          */
         private function _logHandler( event:LogEvent ):void

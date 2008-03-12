@@ -25,7 +25,7 @@ package vegas.util
 {
     
     /**
-     * The <code>FunctionUtil</code> utility class is an all-static class with methods for working with function.
+     * The <code class="prettyprint">FunctionUtil</code> utility class is an all-static class with methods for working with function.
      * @author eKameleon
      */
     public class FunctionUtil

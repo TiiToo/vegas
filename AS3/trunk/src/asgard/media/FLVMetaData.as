@@ -67,7 +67,7 @@ package asgard.media
         public var audiosize:Number ;
         
         /**
-         * Is <code>true</code> if the last video tag is a key frame and hence can be 'seek'ed.
+         * Is <code class="prettyprint">true</code> if the last video tag is a key frame and hence can be 'seek'ed.
          */
         public var canSeekToEnd:Boolean ;
         

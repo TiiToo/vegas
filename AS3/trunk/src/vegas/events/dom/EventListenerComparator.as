@@ -29,7 +29,7 @@ package vegas.events.dom
 	import vegas.errors.IllegalArgumentError ;
 
     /**
-     * This comparator is used in the <code>EventDispatcher</code> class to ordered all <code>EventLister</code> with a priority value.
+     * This comparator is used in the <code class="prettyprint">EventDispatcher</code> class to ordered all <code class="prettyprint">EventLister</code> with a priority value.
      * @author eKameleon
      */
 	internal class EventListenerComparator extends CoreObject implements IComparator

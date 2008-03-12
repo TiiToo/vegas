@@ -47,7 +47,7 @@ package vegas.util
 			{
 				return "null" ;
 			}
-		    var path:String = Reflection.getClassPath(o) ;
+		    var path:String   = Reflection.getClassPath(o) ;
     		var source:String = "new " + path + "(" ;
     		if ( params != null )
     		{
@@ -85,7 +85,7 @@ package vegas.util
 		    }
     		if (o === null) 
     		{
-    		return "null" ;
+    			return "null" ;
     		}
     		if (o is ISerializable) 
     		{

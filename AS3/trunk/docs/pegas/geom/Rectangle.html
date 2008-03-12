@@ -43,7 +43,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 </table>
 <p></p>
-  The Rectangle class is used to create and modify Rectangle objects. 
+  The <code class="prettyprint">Rectangle</code> class is used to create and modify Rectangle objects. 
   <p>A Rectangle object is an area defined by its position, as indicated by its top-left corner point (x, y), and by its width and its height.</p>
   <p>The x, y, width, and height properties of the Rectangle class are independent of each other; changing the value of one property has no effect on the others.</p>
   <p>To used this class with a FP8 and > with flash.display.BitmapData class and other flash.classes you can use the method toFlash() to return a compatible reference of this object.</p> 
@@ -260,7 +260,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="../../vegas/core/CoreObject.html#getLogger()">getLogger</a>():<a href="../../vegas/logging/ILogger.html">ILogger</a>
 </div>
 <div class="summaryTableDescription">
-   Returns the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -335,7 +335,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../vegas/core/CoreObject.html#setLogger()">setLogger</a>(log:<a href="../../vegas/logging/ILogger.html">ILogger</a> = null):void</div>
 <div class="summaryTableDescription">
-   Sets the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="">
@@ -359,7 +359,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#toFlash()">toFlash</a>():Rectangle</div>
 <div class="summaryTableDescription">
-   Returns a flash.geom.Rectangle reference of this Rectangle object.</div>
+   Returns a <code class="prettyprint">flash.geom.Rectangle</code> reference of this Rectangle object.</div>
 </td><td class="summaryTableOwnerCol">Rectangle</td>
 </tr>
 <tr class="">
@@ -375,7 +375,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#toSource()">toSource</a>(indent:int = 0):String</div>
 <div class="summaryTableDescription">
-   Returns a eden reprensation of the object.</div>
+   Returns a <b>eden</b> reprensation of the object.</div>
 </td><td class="summaryTableOwnerCol">Rectangle</td>
 </tr>
 <tr class="">
@@ -593,20 +593,22 @@ showHideInherited();
 <div class="detailBody">
 <code>public function Rectangle(... arguments)</code><p>
    Creates a new Rectangle instance whose top-left corner is specified by the x and y parameters.
-   </p><p><b>Example :</b></p>
-   <pre class="prettyprint">
+   If not arguments are passed-in the constructor an empty rectangle is created.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code>... <span class="label">arguments</span></code> &mdash; The <code class="prettyprint">x</code> coordinate of the top-left corner of the rectangle.
+    </td>
+</tr>
+</table>
+<br>
+<span class="label">Example</span>
+<br>   <pre class="prettyprint">
     import pegas.geom.Rectangle;
     var rec:Rectangle = new Rectangle(5, 10, 50, 100);
     trace( "output : " + rec.toString() ); // output : (x:5,y:10,width:50,height:100)
     </pre>
-    If not arguments are passed-in the constructor an empty rectangle is created.
-    <span class="label">Parameters</span>
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td width="20px"></td><td><code>... <span class="label">arguments</span></code> &mdash; The <code>x</code> coordinate of the top-left corner of the rectangle.
-    </td>
-</tr>
-</table>
+    <p></p>
 </div>
 <a name="methodDetail"></a>
 <div class="detailSectionHeader">Method detail</div>
@@ -699,7 +701,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the specified point is contained within the rectangular region defined by this Rectangle object.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the specified point is contained within the rectangular region defined by this Rectangle object.
    </td>
 </tr>
 </table>
@@ -723,7 +725,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the specified Rectangle is contained within this Rectangle object. 
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the specified Rectangle is contained within this Rectangle object. 
     </td>
 </tr>
 </table>
@@ -748,7 +750,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the specified point is contained within the rectangular region defined by this Rectangle object.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the specified point is contained within the rectangular region defined by this Rectangle object.
    </td>
 </tr>
 </table>
@@ -800,7 +802,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the the specified object is equal with this object.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the the specified object is equal with this object.
    </td>
 </tr>
 </table>
@@ -880,7 +882,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the width and the height of the rectangle are empty (0).
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the width and the height of the rectangle are empty (0).
    </td>
 </tr>
 </table>
@@ -947,12 +949,12 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function toFlash():Rectangle</code><p>
-   Returns a flash.geom.Rectangle reference of this Rectangle object.
+   Returns a <code class="prettyprint">flash.geom.Rectangle</code> reference of this Rectangle object.
    </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Rectangle</code> &mdash; a flash.geom.Rectangle reference of this Rectangle object.
+<td width="20"></td><td><code>Rectangle</code> &mdash; a <code class="prettyprint">flash.geom.Rectangle</code> reference of this Rectangle object.
    </td>
 </tr>
 </table>
@@ -983,7 +985,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public override function toSource(indent:int = 0):String</code><p>
-   Returns a eden reprensation of the object.
+   Returns a <b>eden</b> reprensation of the object.
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>

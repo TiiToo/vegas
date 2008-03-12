@@ -27,7 +27,7 @@ package pegas.util
 	import pegas.geom.Vector2;	
 	
 	/**
-	 * Static tool class to manipulate and transform <code>Plane</code> references.
+	 * Static tool class to manipulate and transform <code class="prettyprint">Plane</code> references.
 	 * @author eKameleon
 	 */
 	public class PlaneUtil 
@@ -42,7 +42,7 @@ package pegas.util
 	    /**
 	     * Returns the Plane reference defines by the specified object with the properties a, b, c and d.
 	     * <p><b>Example :</b></p>
-	     * <code>
+	     * <code class="prettyprint">
 	     * import pegas.geom.Plane ;
 	     * import pegas.util.PlaneUtil ;
      	 * 
@@ -59,7 +59,7 @@ package pegas.util
 	    /**
 	     * Returns the Plane reference defines by the specified object with the two vectors in argument.
 	     * <p><b>Example :</b></p>
-	     * <code>
+	     * <code class="prettyprint">
 	     * import pegas.geom.Plane ;
 	     * import pegas.geom.Vector2 ;
 	     * import pegas.util.PlaneUtil ;

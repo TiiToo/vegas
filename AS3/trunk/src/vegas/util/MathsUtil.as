@@ -26,7 +26,7 @@ package vegas.util
     import vegas.errors.IllegalArgumentError ;
    
    /**
-    * The <code>MathUtil</code> utility class is an all-static class with methods for working with numbers.
+    * The <code class="prettyprint">MathUtil</code> utility class is an all-static class with methods for working with numbers.
      * @author eKameleon
      */ 
     public class MathsUtil

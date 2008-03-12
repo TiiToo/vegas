@@ -38,7 +38,7 @@ package pegas.util
         /**
          * This constant change degrees to radians : <b>Math.PI/180</b>.
          * <p><b>Example</b></p>
-         * <code>
+         * <code class="prettyprint">
          * trace (Trigo.DEG2RAD * 180) ;
          * </code>
          */
@@ -47,7 +47,7 @@ package pegas.util
         /**
          * This constant change radians to degrees : <b>180/Math.PI</b>.
          * <p><b>Example</b></p>
-         * <code>
+         * <code class="prettyprint">
          * trace (Trigo.RAD2DEG * Math.PI) ;
          * </code>
          */
@@ -56,7 +56,7 @@ package pegas.util
         /**
          * This constant is the golden mean (phi) : <b>( 1 + Math.sqrt(5) ) / 2</b>.
          * <p><b>Example</b></p>
-         * <code>
+         * <code class="prettyprint">
          * trace (Trigo.PHI) ;
          * </code>
          */
@@ -65,13 +65,13 @@ package pegas.util
         /**
          * This constant is the Euler-Mascheroni constant (lambda or C) :
          * <p>
-         * <code>
+         * <code class="prettyprint">
          * ( n )
          * lim( sigma 1/k - ln(n) )
          * n->oo    ( k=1 )
          * </code>
          * <p><b>Example</b></p>
-         * <code>
+         * <code class="prettyprint">
          * trace (Trigo.LAMBDA) ;
          * </code>
          */

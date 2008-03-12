@@ -26,7 +26,7 @@ package pegas.util
 	import pegas.geom.Vector2;	
 
 	/**
-	 * Static tool class to manipulate and transform <code>Line</code> references.
+	 * Static tool class to manipulate and transform <code class="prettyprint">Line</code> references.
 	 * @author eKameleon
 	 */
 	public class LineUtil 

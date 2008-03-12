@@ -40,7 +40,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 </table>
 <p></p>
-  The <code>StringUtil</code> utility class is an extended String class with methods for working with string.
+  The <code class="prettyprint">StringUtil</code> utility class is an extended String class with methods for working with string.
   This class complete the system.Strings static class.
   <p></p>
 <br>
@@ -106,7 +106,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#isEmpty()">isEmpty</a>(str:String):Boolean</div>
 <div class="summaryTableDescription">[static]
-   Returns <code>true</code> if this string is empty.</div>
+   Returns <code class="prettyprint">true</code> if this string is empty.</div>
 </td><td class="summaryTableOwnerCol">StringUtil</td>
 </tr>
 <tr class="">
@@ -160,7 +160,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#toSource()">toSource</a>(str:String):String</div>
+<a class="signatureLink" href="#toSource()">toSource</a>(str:String, ... rest):String</div>
 <div class="summaryTableDescription">[static]
    Returns the eden representation of the object.</div>
 </td><td class="summaryTableOwnerCol">StringUtil</td>
@@ -380,14 +380,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function isEmpty(str:String):Boolean</code><p>
-   Returns <code>true</code> if this string is empty.
-   </p><p><b>Example :</b></p>
-   <code>
-   import vegas.util.StringUtil ;
-   var b1:Boolean = StringUtil.isEmpty("") ; // true
-   var b2:Boolean = StringUtil.isEmpty("hello world") ; // false
-   </code>
-   <span class="label">Parameters</span>
+   Returns <code class="prettyprint">true</code> if this string is empty.
+   </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">str</span>:String</code> &mdash; the string object.
@@ -398,10 +392,18 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this string is empty.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if this string is empty.
     </td>
 </tr>
 </table>
+<br>
+<span class="label">Example</span>
+<br>   <pre class="prettyprint">
+   import vegas.util.StringUtil ;
+   var b1:Boolean = StringUtil.isEmpty("") ; // true
+   var b2:Boolean = StringUtil.isEmpty("hello world") ; // false
+   </pre>
+   <p></p>
 </div>
 <a name="lastChar()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -412,12 +414,7 @@ showHideInherited();
 <div class="detailBody">
 <code>public static function lastChar(str:String):String</code><p>
    Returns the last char of the string. 
-   </p><p><b>Example :</b></p>
-    <code>
-   import vegas.util.StringUtil ;
-   trace( StringUtil.lastChar("hello world") ; // d
-   </code>
-   <span class="label">Parameters</span>
+   </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">str</span>:String</code> &mdash; the string object.
@@ -432,6 +429,13 @@ showHideInherited();
     </td>
 </tr>
 </table>
+<br>
+<span class="label">Example</span>
+<br>   <pre class="prettyprint">
+   import vegas.util.StringUtil ;
+   trace( StringUtil.lastChar("hello world") ; // d
+   </pre>
+   <p></p>
 </div>
 <a name="lastIndexOfAny()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -472,11 +476,7 @@ showHideInherited();
 <div class="detailBody">
 <code>public static function replace(str:String, search:String, replace:String):String</code><p>
    Replaces the 'search' string with the 'replace' String.
-    </p><p><b>Example :</b></p>
-    <code>
-   vegas.util.StringUtil.replace("hello world", "hello", "hi") ; // "hello world" -> "hi world"
-   </code>
-   <span class="label">Parameters</span>
+   </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">str</span>:String</code> &mdash; string to transform.
@@ -503,6 +503,12 @@ showHideInherited();
    </td>
 </tr>
 </table>
+<br>
+<span class="label">Example</span>
+<br>   <pre class="prettyprint">
+   vegas.util.StringUtil.replace("hello world", "hello", "hi") ; // "hello world" -> "hi world"
+   </pre>
+   <p></p>
 </div>
 <a name="reverse()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -513,11 +519,7 @@ showHideInherited();
 <div class="detailBody">
 <code>public static function reverse(str:String):String</code><p>
     Reverses the current instance.
-   </p><p><b>Example :</b></p>
-    <code>
-   var reverse:String = vegas.util.StringUtil.reverse("hello") ; // "olleh"
-   </code>
-    <span class="label">Parameters</span>
+   </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">str</span>:String</code></td>
@@ -531,6 +533,12 @@ showHideInherited();
    </td>
 </tr>
 </table>
+<br>
+<span class="label">Example</span>
+<br>   <pre class="prettyprint">
+   var reverse:String = vegas.util.StringUtil.reverse("hello") ; // "olleh"
+   </pre>
+    <p></p>
 </div>
 <a name="splice()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -541,22 +549,7 @@ showHideInherited();
 <div class="detailBody">
 <code>public static function splice(str:String, startIndex:uint, deleteCount:uint = 0, value:* = null):String</code><p>
    Adds and removes elements in the string.
-   </p><p><b>Example :</b></p>
-   <code>
-   import vegas.util.StringUtil ;
-   
-   var result:String ;
-   
-   result = StringUtil.splice("hello world", 0, 1, "H") ;
-   trace(result) ; // Hello world
-   
-   result = StringUtil.splice("hello world", 6, 0, "life") ;
-   trace(result) ; // hello lifeworld
-   
-   result = StringUtil.splice("hello world", 6, 5, "life") ;
-   trace(result) ; // hello life
-   </code>
-   <span class="label">Parameters</span>
+   </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">str</span>:String</code> &mdash; Index at which to start changing the string.
@@ -590,6 +583,23 @@ showHideInherited();
 <td width="20"></td><td><code>String</code></td>
 </tr>
 </table>
+<br>
+<span class="label">Example</span>
+<br>   <pre class="prettyprint">
+   import vegas.util.StringUtil ;
+   
+   var result:String ;
+   
+   result = StringUtil.splice("hello world", 0, 1, "H") ;
+   trace(result) ; // Hello world
+   
+   result = StringUtil.splice("hello world", 6, 0, "life") ;
+   trace(result) ; // hello lifeworld
+   
+   result = StringUtil.splice("hello world", 6, 5, "life") ;
+   trace(result) ; // hello life
+   </pre>
+   <p></p>
 </div>
 <a name="toArray()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -600,12 +610,7 @@ showHideInherited();
 <div class="detailBody">
 <code>public static function toArray(str:String, separator:String = ""):Array</code><p>
    Returns an array representation of this instance.
-   </p><p><b>Example :</b></p>
-   <code>
-   import vegas.util.StringUtil ;
-   trace( StringUtil.toArray("hello world" )) ; // h,e,l,l,o, ,w,o,r,l,d
-   </code>
-   <span class="label">Parameters</span>
+   </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">str</span>:String</code></td>
@@ -625,6 +630,13 @@ showHideInherited();
     </td>
 </tr>
 </table>
+<br>
+<span class="label">Example</span>
+<br>   <pre class="prettyprint">
+   import vegas.util.StringUtil ;
+   trace( StringUtil.toArray("hello world" )) ; // h,e,l,l,o, ,w,o,r,l,d
+   </pre>
+   <p></p>
 </div>
 <a name="toSource()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -633,18 +645,18 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public static function toSource(str:String):String</code><p>
+<code>public static function toSource(str:String, ... rest):String</code><p>
    Returns the eden representation of the object.
-   </p><p><b>Example :</b></p>
-   <code>
-   import vegas.util.StringUtil ;
-   var source:String = StringUtil.toSource("hello world") ;
-    trace(source) ; // "hello world"
-   </code>
-    <span class="label">Parameters</span>
+   </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">str</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code>... <span class="label">rest</span></code></td>
 </tr>
 </table>
 <p></p>
@@ -655,6 +667,14 @@ showHideInherited();
    </td>
 </tr>
 </table>
+<br>
+<span class="label">Example</span>
+<br>   <pre class="prettyprint">
+   import vegas.util.StringUtil ;
+   var source:String = StringUtil.toSource("hello world") ;
+    trace(source) ; // "hello world"
+   </pre>
+    <p></p>
 </div>
 <a name="ucFirst()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -665,12 +685,7 @@ showHideInherited();
 <div class="detailBody">
 <code>public static function ucFirst(str:String):String</code><p>
    Returns the value of this specified string with the first character in uppercase.
-   </p><p><b>Example :</b></p>
-   <code>
-   import vegas.util.StringUtil ;
-   trace( StringUtil.ucFirst("hello world" )) ; // Hello world
-   </code>
-   <span class="label">Parameters</span>
+   </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">str</span>:String</code></td>
@@ -684,6 +699,13 @@ showHideInherited();
     </td>
 </tr>
 </table>
+<br>
+<span class="label">Example</span>
+<br>   <pre class="prettyprint">
+   import vegas.util.StringUtil ;
+   trace( StringUtil.ucFirst("hello world" )) ; // Hello world
+   </pre>
+   <p></p>
 </div>
 <a name="ucWords()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -694,12 +716,7 @@ showHideInherited();
 <div class="detailBody">
 <code>public static function ucWords(str:String):String</code><p>
    Uppercase the first character of each word in a string.
-   </p><p><b>Example :</b></p>
-   <code>
-   import vegas.util.StringUtil ;
-    trace( StringUtil.ucWords("hello world" )) ; // Hello World
-   </code>
-   <span class="label">Parameters</span>
+   </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">str</span>:String</code></td>
@@ -713,6 +730,13 @@ showHideInherited();
    </td>
 </tr>
 </table>
+<br>
+<span class="label">Example</span>
+<br>   <pre class="prettyprint">
+   import vegas.util.StringUtil ;
+    trace( StringUtil.ucWords("hello world" )) ; // Hello World
+   </pre>
+   <p></p>
 </div>
 <a name="constantDetail"></a>
 <div class="detailSectionHeader">Constant detail</div>

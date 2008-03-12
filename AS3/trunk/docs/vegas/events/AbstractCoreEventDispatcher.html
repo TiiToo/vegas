@@ -49,8 +49,8 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 </table>
 <p></p>
-   This abstract class is used to create concrete <code>IEventDispatcher</code> implementations. This class used an internal <code>EventDispatcher</code> object by composition.
-   <p>You can overrides the internal <code>EventDispatcher</code> instance with the <code>initEventDispatcher</code> or the <code>setEventDispatcher</code> methods. Used a global singleton reference in this method to register all events in a <code>FrontController</code> for example.</p>
+   This abstract class is used to create concrete <code class="prettyprint">IEventDispatcher</code> implementations. This class used an internal <code class="prettyprint">EventDispatcher</code> object by composition.
+   <p>You can overrides the internal <code class="prettyprint">EventDispatcher</code> instance with the <code class="prettyprint">initEventDispatcher</code> or the <code class="prettyprint">setEventDispatcher</code> methods. Used a global singleton reference in this method to register all events in a <code class="prettyprint">FrontController</code> for example.</p>
   <p></p>
 <br>
 <hr>
@@ -114,7 +114,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="#getEventDispatcher()">getEventDispatcher</a>():<a href="../events/EventDispatcher.html">EventDispatcher</a>
 </div>
 <div class="summaryTableDescription">
-   Returns the internal <code>EventDispatcher</code> reference.</div>
+   Returns the internal <code class="prettyprint">EventDispatcher</code> reference.</div>
 </td><td class="summaryTableOwnerCol">AbstractCoreEventDispatcher</td>
 </tr>
 <tr class="">
@@ -131,7 +131,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="../core/CoreObject.html#getLogger()">getLogger</a>():<a href="../logging/ILogger.html">ILogger</a>
 </div>
 <div class="summaryTableDescription">
-   Returns the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="">
@@ -156,7 +156,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="#initEventDispatcher()">initEventDispatcher</a>():<a href="../events/EventDispatcher.html">EventDispatcher</a>
 </div>
 <div class="summaryTableDescription">
-   Creates and returns the internal <code>EventDispatcher</code> reference (this method is invoked in the constructor).</div>
+   Creates and returns the internal <code class="prettyprint">EventDispatcher</code> reference (this method is invoked in the constructor).</div>
 </td><td class="summaryTableOwnerCol">AbstractCoreEventDispatcher</td>
 </tr>
 <tr class="">
@@ -164,7 +164,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#isLocked()">isLocked</a>():Boolean</div>
 <div class="summaryTableDescription">
-      Returns <code>true</code> if the object is locked.</div>
+      Returns <code class="prettyprint">true</code> if the object is locked.</div>
 </td><td class="summaryTableOwnerCol">AbstractCoreEventDispatcher</td>
 </tr>
 <tr class="">
@@ -196,7 +196,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#setEventDispatcher()">setEventDispatcher</a>(e:<a href="EventDispatcher.html">EventDispatcher</a>):void</div>
 <div class="summaryTableDescription">
-   Sets the internal <code>EventDispatcher</code> reference.</div>
+   Sets the internal <code class="prettyprint">EventDispatcher</code> reference.</div>
 </td><td class="summaryTableOwnerCol">AbstractCoreEventDispatcher</td>
 </tr>
 <tr class="">
@@ -204,7 +204,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#setGlobal()">setGlobal</a>(flag:Boolean = false, channel:String = null):void</div>
 <div class="summaryTableDescription">
-   Sets if the instance use a global <code>EventDispatcher</code> to dispatch this events, if the <code>flag</code> value is <code>false</code> the instance use a local EventDispatcher.</div>
+   Sets if the instance use a global <code class="prettyprint">EventDispatcher</code> to dispatch this events, if the <code class="prettyprint">flag</code> value is <code class="prettyprint">false</code> the instance use a local EventDispatcher.</div>
 </td><td class="summaryTableOwnerCol">AbstractCoreEventDispatcher</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -212,7 +212,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../core/CoreObject.html#setLogger()">setLogger</a>(log:<a href="../logging/ILogger.html">ILogger</a> = null):void</div>
 <div class="summaryTableDescription">
-   Sets the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="">
@@ -272,7 +272,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>isGlobal:Boolean</code>&nbsp;&nbsp;[read-only]<p>
-   (read-only) Returns the value of the isGlobal flag of this model. Use the <code>setGlobal</code> method to modify this value.
+   (read-only) Returns the value of the isGlobal flag of this model. Use the <code class="prettyprint">setGlobal</code> method to modify this value.
    </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get isGlobal():Boolean</code>
@@ -299,7 +299,7 @@ showHideInherited();
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">sChannel</span>:String</code> (default = <code>null</code>)<code></code> &mdash; the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
+<td width="20px"></td><td><code><span class="label">sChannel</span>:String</code> (default = <code>null</code>)<code></code> &mdash; the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
    </td>
 </tr>
 </table>
@@ -325,7 +325,7 @@ showHideInherited();
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">listener</span>:Function</code> &mdash; The object that receives a notification when an event of the specified type occurs. This must be an object implementing the <code>EventListener</code> interface.
+<td width="20px"></td><td><code><span class="label">listener</span>:Function</code> &mdash; The object that receives a notification when an event of the specified type occurs. This must be an object implementing the <code class="prettyprint">EventListener</code> interface.
     </td>
 </tr>
 <tr>
@@ -371,7 +371,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the Event is dispatched.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the Event is dispatched.
    </td>
 </tr>
 </table>
@@ -384,13 +384,13 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function getEventDispatcher():<a href="../events/EventDispatcher.html">EventDispatcher</a></code><p>
-   Returns the internal <code>EventDispatcher</code> reference.
+   Returns the internal <code class="prettyprint">EventDispatcher</code> reference.
    </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code><a href="../events/EventDispatcher.html">EventDispatcher</a></code> &mdash; 
-                        the internal <code>EventDispatcher</code> reference.
+                        the internal <code class="prettyprint">EventDispatcher</code> reference.
    
                         
                      </td>
@@ -410,7 +410,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the instance use a global EventDispatcher to dispatch this events.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the instance use a global EventDispatcher to dispatch this events.
     </td>
 </tr>
 </table>
@@ -447,14 +447,14 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function initEventDispatcher():<a href="../events/EventDispatcher.html">EventDispatcher</a></code><p>
-   Creates and returns the internal <code>EventDispatcher</code> reference (this method is invoked in the constructor).
-   You can overrides this method if you wan use a global <code>EventDispatcher</code> singleton.
+   Creates and returns the internal <code class="prettyprint">EventDispatcher</code> reference (this method is invoked in the constructor).
+   You can overrides this method if you wan use a global <code class="prettyprint">EventDispatcher</code> singleton.
    </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code><a href="../events/EventDispatcher.html">EventDispatcher</a></code> &mdash; 
-                        the internal <code>EventDispatcher</code> reference.
+                        the internal <code class="prettyprint">EventDispatcher</code> reference.
     
                         
                      </td>
@@ -469,12 +469,12 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function isLocked():Boolean</code><p>
-      Returns <code>true</code> if the object is locked.
+      Returns <code class="prettyprint">true</code> if the object is locked.
       </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the object is locked.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the object is locked.
       </td>
 </tr>
 </table>
@@ -508,7 +508,7 @@ showHideInherited();
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">listener</span>:Boolean</code> &mdash; The object that receives a notification when an event of the specified type occurs. This must be an object implementing the <code>EventListener</code> interface.
+<td width="20px"></td><td><code><span class="label">listener</span>:Boolean</code> &mdash; The object that receives a notification when an event of the specified type occurs. This must be an object implementing the <code class="prettyprint">EventListener</code> interface.
     </td>
 </tr>
 <tr>
@@ -543,7 +543,7 @@ showHideInherited();
 <div class="detailBody">
 <code>public function removeEventListener(type:String, listener:Function, useCapture:Boolean = false):void</code><p> 
    Removes a listener from the EventDispatcher object.
-   If there is no matching listener registered with the <code>EventDispatcher</code> object, then calling this method has no effect.
+   If there is no matching listener registered with the <code class="prettyprint">EventDispatcher</code> object, then calling this method has no effect.
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -573,7 +573,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function setEventDispatcher(e:<a href="EventDispatcher.html">EventDispatcher</a>):void</code><p>
-   Sets the internal <code>EventDispatcher</code> reference.
+   Sets the internal <code class="prettyprint">EventDispatcher</code> reference.
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -589,7 +589,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function setGlobal(flag:Boolean = false, channel:String = null):void</code><p>
-   Sets if the instance use a global <code>EventDispatcher</code> to dispatch this events, if the <code>flag</code> value is <code>false</code> the instance use a local EventDispatcher.
+   Sets if the instance use a global <code class="prettyprint">EventDispatcher</code> to dispatch this events, if the <code class="prettyprint">flag</code> value is <code class="prettyprint">false</code> the instance use a local EventDispatcher.
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -600,7 +600,7 @@ showHideInherited();
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">channel</span>:String</code> (default = <code>null</code>)<code></code> &mdash; the name of the global event flow if the <code>flag</code> argument is <code>true</code>.  
+<td width="20px"></td><td><code><span class="label">channel</span>:String</code> (default = <code>null</code>)<code></code> &mdash; the name of the global event flow if the <code class="prettyprint">flag</code> argument is <code class="prettyprint">true</code>.  
    </td>
 </tr>
 </table>
@@ -648,7 +648,7 @@ showHideInherited();
 <div class="detailBody">
 <code>public function unregisterEventListener(type:String, listener:Boolean, useCapture:* = false):void</code><p> 
    Removes a listener (Function or EventListener object) from the EventDispatcher object.
-   If there is no matching listener registered with the <code>EventDispatcher</code> object, then calling this method has no effect.
+   If there is no matching listener registered with the <code class="prettyprint">EventDispatcher</code> object, then calling this method has no effect.
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -679,7 +679,7 @@ showHideInherited();
 <div class="detailBody">
 <code>public function willTrigger(type:String):Boolean</code><p>
    Checks whether an event listener is registered with this EventDispatcher object or any of its ancestors for the specified event type.
-   This method returns <code>true</code> if an event listener is triggered during any phase of the event flow when an event of the specified type is dispatched to this EventDispatcher object or any of its descendants.
+   This method returns <code class="prettyprint">true</code> if an event listener is triggered during any phase of the event flow when an event of the specified type is dispatched to this EventDispatcher object or any of its descendants.
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -690,7 +690,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; A value of <code>true</code> if a listener of the specified type will be triggered; <code>false</code> otherwise.
+<td width="20"></td><td><code>Boolean</code> &mdash; A value of <code class="prettyprint">true</code> if a listener of the specified type will be triggered; <code class="prettyprint">false</code> otherwise.
    </td>
 </tr>
 </table>

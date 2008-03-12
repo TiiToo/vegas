@@ -35,7 +35,7 @@ package asgard.display
 
 	/**
 	 * The CoreMovieClip class extends the flash.display.MovieClip class and implements the IDisplayObject interface.
-	 * <p><b>Example :</b></p>
+	 * @example
 	 * <pre class="prettyprint">
 	 * import asgard.display.CoreMovieClip ;
 	 * import asgard.display.DisplayObjectCollector ;
@@ -85,8 +85,8 @@ package asgard.display
 		}
 	
 		/**
-	 	 * Returns the <code>String</code> representation of this object.
-	 	 * @return the <code>String</code> representation of this object.
+	 	 * Returns the <code class="prettyprint">String</code> representation of this object.
+	 	 * @return the <code class="prettyprint">String</code> representation of this object.
 	 	 */
 		public function set id( id:* ):void
 		{
@@ -118,8 +118,8 @@ package asgard.display
 		}
 		
 		/**
-		 * Returns the internal <code>ILogger</code> reference of this <code>ILogable</code> object.
-		 * @return the internal <code>ILogger</code> reference of this <code>ILogable</code> object.
+		 * Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.
+		 * @return the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.
 		 */
 		public function getLogger():ILogger
 		{
@@ -140,8 +140,8 @@ package asgard.display
 		}
 
     	/**
-	     * Returns <code>true</code> if the object is locked.
-	     * @return <code>true</code> if the object is locked.
+	     * Returns <code class="prettyprint">true</code> if the object is locked.
+	     * @return <code class="prettyprint">true</code> if the object is locked.
 	     */
 	    public function isLocked():Boolean 
 	    {
@@ -157,7 +157,7 @@ package asgard.display
     	}
 		
 		/**
-		 * Sets the internal <code>ILogger</code> reference of this <code>ILogable</code> object.
+		 * Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.
 		 */
 		public function setLogger( log:ILogger=null ):void 
 		{
@@ -181,8 +181,8 @@ package asgard.display
         }
         
 		/**
-	 	 * Returns the <code>String</code> representation of this object.
-	 	 * @return the <code>String</code> representation of this object.
+	 	 * Returns the <code class="prettyprint">String</code> representation of this object.
+	 	 * @return the <code class="prettyprint">String</code> representation of this object.
 	 	 */
 		public override function toString():String
 		{

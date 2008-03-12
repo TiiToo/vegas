@@ -25,7 +25,7 @@ package pegas.util
 	import pegas.geom.Vector4;	
 	
 	/**
-	 * Static tool class to manipulate and transform <code>Vector4</code> references.
+	 * Static tool class to manipulate and transform <code class="prettyprint">Vector4</code> references.
 	 * @author eKameleon
 	 */
 	public class Vector4Util 
@@ -94,9 +94,9 @@ package pegas.util
 		
 		/**
 	 	 * Computes the cross product of the two Vector4s.
-	 	 * @param v1 a <code>Vector4</code>.
-	 	 * @param v2 a <code>Vector4</code>.
-	 	 * @return the <code>Vector4</code> resulting of the cross product.
+	 	 * @param v1 a <code class="prettyprint">Vector4</code>.
+	 	 * @param v2 a <code class="prettyprint">Vector4</code>.
+	 	 * @return the <code class="prettyprint">Vector4</code> resulting of the cross product.
 	 	 */
 		public static function getCross( v1:Vector4, v2:Vector4 ):Vector4
 		{
@@ -111,8 +111,8 @@ package pegas.util
 	
 		/**
 		 * Computes the dot product of the two Vector4s.
-		 * @param v1 a <code>Vector4</code>.
-		 * @param v2 a <code>Vector4</code>.
+		 * @param v1 a <code class="prettyprint">Vector4</code>.
+		 * @param v2 a <code class="prettyprint">Vector4</code>.
 	 	 * @return the dot product of the 2 Vector4.
 		 */
 		public static function getDot( v1:Vector4, v2:Vector4 ):Number
@@ -131,9 +131,9 @@ package pegas.util
 		}
 		
 		/**
-		 * Computes the oposite Vector4 of the <code>Vector4</code>.
+		 * Computes the oposite Vector4 of the <code class="prettyprint">Vector4</code>.
 		 * @param v the Vector4 reference to negate.
-	 	 * @return a new negate <code>Vector4</code> reference.
+	 	 * @return a new negate <code class="prettyprint">Vector4</code> reference.
 	 	 */
 		public static function getNegate( v:Vector4 ):Vector4
 		{
@@ -141,9 +141,9 @@ package pegas.util
 		}	
 		
 		/**
-	 	 * Computes the norm of the <code>Vector4</code>.
+	 	 * Computes the norm of the <code class="prettyprint">Vector4</code>.
 	 	 * @param v a Vector4 reference.
-	 	 * @return the norm of the specified <code>Vector4</code>.
+	 	 * @return the norm of the specified <code class="prettyprint">Vector4</code>.
 	 	 */
 		public static function getNorm( v:Vector4 ):Number
 		{
@@ -194,9 +194,9 @@ package pegas.util
 		}
 		
 		/**
-	 	 * Normalize the specified <code>Vector4</code> in parameter.
+	 	 * Normalize the specified <code class="prettyprint">Vector4</code> in parameter.
 	 	 * @param v a Vector4 reference.
-	 	 * @return <code>true</code> of the normalize method is success else false for mistake.
+	 	 * @return <code class="prettyprint">true</code> of the normalize method is success else false for mistake.
 	 	 */	
 		public static function normalize( v:Vector4 ):Boolean
 		{
@@ -213,10 +213,10 @@ package pegas.util
 		}
 		
 		/**
-		 * Sets the specified <code>Vector4</code> object with the second <code>Vector4</code> object passed in argument.
-		 * @param v1 the first <code>Vector4</code>.
-		 * @param v2 the second <code>Vector4</code>.
-		 * @return the first <code>Vector4</code> transformed.
+		 * Sets the specified <code class="prettyprint">Vector4</code> object with the second <code class="prettyprint">Vector4</code> object passed in argument.
+		 * @param v1 the first <code class="prettyprint">Vector4</code>.
+		 * @param v2 the second <code class="prettyprint">Vector4</code>.
+		 * @return the first <code class="prettyprint">Vector4</code> transformed.
 	 	 */
 		public static function setByVector4( v1:Vector4, v2:Vector4):Vector4
 		{

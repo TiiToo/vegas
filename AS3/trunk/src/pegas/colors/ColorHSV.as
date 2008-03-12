@@ -25,7 +25,7 @@ package pegas.colors
 {
 
 	/**
-	 * <code>ColorHSV</code> provide static color conversion methods, in Hue Saturation Value color space.
+	 * <code class="prettyprint">ColorHSV</code> provide static color conversion methods, in Hue Saturation Value color space.
 	 * <a href='http://en.wikipedia.org/wiki/HSV_color_space'>http://en.wikipedia.org/wiki/HSV_color_space</a>
 	 * <p><b>Example :</b></p>
 	 * <pre class="prettyprint">

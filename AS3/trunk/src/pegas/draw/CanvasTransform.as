@@ -25,7 +25,7 @@ package pegas.draw
     import pegas.geom.Rectangle;    
 
     /**
-     * This tool class transform a <code>Canvas</code> object with static methods.
+     * This tool class transform a <code class="prettyprint">Canvas</code> object with static methods.
      * @author eKameleon
      * Thanks : Peter Hall <www.peterjoel.com> ASVDrawing Class v1.0
      */
@@ -34,8 +34,8 @@ package pegas.draw
         
     
         /**
-         * Creates a free form effect over a <code>Canvas</code> object}.
-         * @return the method to be used to creates a free form effect over a <code>Canvas</code> object}.
+         * Creates a free form effect over a <code class="prettyprint">Canvas</code> object}.
+         * @return the method to be used to creates a free form effect over a <code class="prettyprint">Canvas</code> object}.
          */
         public static function createFreeform 
         (
@@ -61,8 +61,8 @@ package pegas.draw
         }
         
         /**
-          * Creates a pinch effect over a <code>Canvas</code> object}.
-          * @return the method to be used to creates a pinch effect over a <code>Canvas</code> object}.
+          * Creates a pinch effect over a <code class="prettyprint">Canvas</code> object}.
+          * @return the method to be used to creates a pinch effect over a <code class="prettyprint">Canvas</code> object}.
           */
         public static function createPinch( area:* , xAmount:Number, yAmount:Number):Function 
         {
@@ -115,8 +115,8 @@ package pegas.draw
         }
     
         /**
-          * Creates a waves effect over a <code>Canvas</code> object}.
-          * @return the method to be used to creates a waves effect over a <code>Canvas</code> object}.
+          * Creates a waves effect over a <code class="prettyprint">Canvas</code> object}.
+          * @return the method to be used to creates a waves effect over a <code class="prettyprint">Canvas</code> object}.
           */
         public static function createWaves
         ( 
@@ -146,8 +146,8 @@ package pegas.draw
         }
     
         /**
-          * Creates a Whirl effect over a <code>Canvas</code> object}.
-          * @return the method to be used to creates a Whirl effect over a <code>Canvas</code> object}.
+          * Creates a Whirl effect over a <code class="prettyprint">Canvas</code> object}.
+          * @return the method to be used to creates a Whirl effect over a <code class="prettyprint">Canvas</code> object}.
           */
         public static function createWhirl( centerX:Number, centerY:Number, radius:Number, amount:Number):Function 
         {

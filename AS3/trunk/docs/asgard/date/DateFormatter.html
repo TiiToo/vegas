@@ -43,41 +43,43 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 </table>
 <p></p>
-  DateFormatter formats a given date with a specified pattern.
-  <p>Use the declared constants as placeholders for specific parts of the date-time.</p>
-  <p>All characters from 'A' to 'Z' and from 'a' to 'z' are reserved, although not all of these characters are interpreted right now.</p> 
-  <p>If you want to include plain text in the pattern put it into quotes (') to avoid interpretation.</p>
-  <p>If you want a quote in the formatted date-time, put two quotes directly after one another. For example: <code> "hh 'o''clock'"}.</p>
-  <p><b>Example :</b>
-   <pre class="prettyprint">
-  import asgard.date.DateFormatter ;
-  
-  var f:DateFormatter = new DateFormatter() ;
-  
-  f.pattern = "yyyy DDDD d MMMM - hh 'h' nn 'mn' ss 's'" ;
-  var result:String = f.format() ;
-  trace("pattern : " + f.pattern) ;
-  trace("result  : " + result) ;
-  
-  trace("----") ;
-  
-  f.pattern = "DDDD d MMMM yyyy" ;
-  var result:String = f.format(new Date(2005, 10, 22)) ;
-  trace("pattern : " + f.pattern) ;
-   trace("result  : " + result) ;
-  
-  trace("----") ;
-  
-  f.pattern = "hh 'h' nn 'mn' ss 's' tt" ;
-  trace( f.format( new Date(2008,1,21,10,15,0,0) ) ) ; // 02 h 15 mn 00 s am
-  
-  f.pattern = "hh 'h' nn 'mn' ss 's' t" ;
-  trace( formatter.format( new Date(2008,1,21,10,15,0,0) ) ) ; // 02 h 15 mn 00 s a
-  
-  f.pattern = "hh 'h' nn 'mn' ss 's' TT" ; // capitalize the pm expression.
-  trace( formatter.format( new Date(2008,1,21,14,15,0,0) ) ) ; // 02 h 15 mn 00 s PM
-  </pre>
-  <p></p>
+     DateFormatter formats a given date with a specified pattern.
+     <p>Use the declared constants as placeholders for specific parts of the date-time.</p>
+     <p>All characters from 'A' to 'Z' and from 'a' to 'z' are reserved, although not all of these characters are interpreted right now.</p> 
+     <p>If you want to include plain text in the pattern put it into quotes (') to avoid interpretation.</p>
+     <p>If you want a quote in the formatted date-time, put two quotes directly after one another. For example: <code class="prettyprint"> "hh 'o''clock'"}.</p>
+     <p></p>
+<br>
+<span class="label">Example</span>
+<br>     <pre class="prettyprint">
+     import asgard.date.DateFormatter ;
+     
+     var f:DateFormatter = new DateFormatter() ;
+     
+     f.pattern = "yyyy DDDD d MMMM - hh 'h' nn 'mn' ss 's'" ;
+     var result:String = f.format() ;
+     trace("pattern : " + f.pattern) ;
+     trace("result  : " + result) ;
+     
+     trace("----") ;
+     
+     f.pattern = "DDDD d MMMM yyyy" ;
+     var result:String = f.format(new Date(2005, 10, 22)) ;
+     trace("pattern : " + f.pattern) ;
+     trace("result  : " + result) ;
+     
+     trace("----") ;
+     
+     f.pattern = "hh 'h' nn 'mn' ss 's' tt" ;
+     trace( f.format( new Date(2008,1,21,10,15,0,0) ) ) ; // 02 h 15 mn 00 s am
+     
+     f.pattern = "hh 'h' nn 'mn' ss 's' t" ;
+     trace( formatter.format( new Date(2008,1,21,10,15,0,0) ) ) ; // 02 h 15 mn 00 s a
+     
+     f.pattern = "hh 'h' nn 'mn' ss 's' TT" ; // capitalize the pm expression.
+     trace( formatter.format( new Date(2008,1,21,14,15,0,0) ) ) ; // 02 h 15 mn 00 s PM
+     </pre>
+     <p></p>
 <br>
 <hr>
 </div>
@@ -98,12 +100,12 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#DEFAULT_AM_EXPRESSION">DEFAULT_AM_EXPRESSION</a> : String = "am"<div class="summaryTableDescription">[static]
-   The default AM/PM designator expression.</div>
+         The default AM/PM designator expression.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#DEFAULT_PM_EXPRESSION">DEFAULT_PM_EXPRESSION</a> : String = "pm"<div class="summaryTableDescription">[static]
-   The default AM/PM designator expression.</div>
+         The default AM/PM designator expression.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="hideInheritedProperty">
@@ -133,7 +135,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#DateFormatter()">DateFormatter</a>(pattern:String = "dd.mm.yyyy HH:nn:ss")</div>
 <div class="summaryTableDescription">
-   Creates a new DateFormatter instance.</div>
+         Creates a new DateFormatter instance.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -157,7 +159,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#format()">format</a>(... arguments):String</div>
 <div class="summaryTableDescription">
-   This method format an expression with the pattern of this formatter.</div>
+         This method format an expression with the pattern of this formatter.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
@@ -165,7 +167,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#formatDayAsNumber()">formatDayAsNumber</a>(day:Number, cpt:Number):String</div>
 <div class="summaryTableDescription">
-   Formats the specified number day value in a string representation.</div>
+         Formats the specified number day value in a string representation.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
@@ -173,7 +175,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#formatDayAsText()">formatDayAsText</a>(day:Number, cpt:Number):String</div>
 <div class="summaryTableDescription">
-    Formats the specified day value in a string representation.</div>
+         Formats the specified day value in a string representation.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
@@ -181,7 +183,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#formatDesignator()">formatDesignator</a>(hour:Number, cpt:Number, capitalize:Boolean):String</div>
 <div class="summaryTableDescription">
-   Formats the designator AM/PM in string expression.</div>
+         Formats the designator AM/PM in string expression.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
@@ -189,7 +191,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#formatHourInAmPm()">formatHourInAmPm</a>(hour:Number, cpt:Number):String</div>
 <div class="summaryTableDescription">
-    Formats the specified hour value in a string representation with the am-pm notation.</div>
+         Formats the specified hour value in a string representation with the am-pm notation.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
@@ -197,7 +199,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#formatHourInDay()">formatHourInDay</a>(hour:Number, cpt:Number):String</div>
 <div class="summaryTableDescription">
-     Formats an hour number in string expression.</div>
+         Formats an hour number in string expression.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
@@ -205,7 +207,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#formatMillisecond()">formatMillisecond</a>(millisecond:Number, cpt:Number):String</div>
 <div class="summaryTableDescription">
-   Formats a millisecond value number in string expression.</div>
+         Formats a millisecond value number in string expression.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
@@ -213,7 +215,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#formatMinute()">formatMinute</a>(minute:Number, cpt:Number):String</div>
 <div class="summaryTableDescription">
-   Formats a minute value number in string expression.</div>
+         Formats a minute value number in string expression.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
@@ -221,7 +223,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#formatMonthAsNumber()">formatMonthAsNumber</a>(month:Number, cpt:Number):String</div>
 <div class="summaryTableDescription">
-    Formats a month value number in string expression.</div>
+         Formats a month value number in string expression.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
@@ -229,7 +231,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#formatMonthAsText()">formatMonthAsText</a>(month:Number, cpt:Number):String</div>
 <div class="summaryTableDescription">
-   Formats a month text value in string expression.</div>
+         Formats a month text value in string expression.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
@@ -237,7 +239,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#formatSecond()">formatSecond</a>(second:Number, cpt:Number):String</div>
 <div class="summaryTableDescription">
-   Format the second value passed in argument.</div>
+         Format the second value passed in argument.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
@@ -245,7 +247,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#formatYear()">formatYear</a>(year:Number, cpt:Number):String</div>
 <div class="summaryTableDescription">
-   Format the year value passed in argument.</div>
+         Format the year value passed in argument.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
@@ -254,7 +256,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="#getInstance()">getInstance</a>():<a href="../date/DateFormatter.html">DateFormatter</a>
 </div>
 <div class="summaryTableDescription">[static]
-   Returns the singleton reference of the DateFormatter class.</div>
+         Returns the singleton reference of the DateFormatter class.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -263,7 +265,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="../../vegas/core/CoreObject.html#getLogger()">getLogger</a>():<a href="../../vegas/logging/ILogger.html">ILogger</a>
 </div>
 <div class="summaryTableDescription">
-   Returns the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="">
@@ -271,7 +273,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#getZeros()">getZeros</a>(cpt:Number):String</div>
 <div class="summaryTableDescription">
-   Returns a string representation fill by 0 values or an empty string if the cpt value is NaN or <1.</div>
+         Returns a string representation fill by 0 values or an empty string if the cpt value is NaN or <1.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -287,7 +289,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../vegas/core/CoreObject.html#setLogger()">setLogger</a>(log:<a href="../../vegas/logging/ILogger.html">ILogger</a> = null):void</div>
 <div class="summaryTableDescription">
-   Sets the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -317,108 +319,108 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AM_PM">AM_PM</a> : String = "t"<div class="summaryTableDescription">[static]
-    Placeholder for AM/PM designator who indicates if the hour is is before or after noon in date format.</div>
+         Placeholder for AM/PM designator who indicates if the hour is is before or after noon in date format.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#CAPITAL_AM_PM">CAPITAL_AM_PM</a> : String = "T"<div class="summaryTableDescription">[static]
-   Placeholder for AM/PM designator who indicates if the hour is is before or after noon in date format.</div>
+         Placeholder for AM/PM designator who indicates if the hour is is before or after noon in date format.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#DAY_AS_NUMBER">DAY_AS_NUMBER</a> : String = "d"<div class="summaryTableDescription">[static]
-   Placeholder for day in month as number in date format.</div>
+         Placeholder for day in month as number in date format.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#DAY_AS_TEXT">DAY_AS_TEXT</a> : String = "D"<div class="summaryTableDescription">[static]
-   Placeholder for day in week as text in date format.</div>
+         Placeholder for day in week as text in date format.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#DEFAULT_DATE_FORMAT">DEFAULT_DATE_FORMAT</a> : String = "dd.mm.yyyy HH:nn:ss"<div class="summaryTableDescription">[static]
-   The default date format pattern <code>"dd.mm.yyyy HH:nn:ss"</code>.</div>
+         The default date format pattern <code class="prettyprint">"dd.mm.yyyy HH:nn:ss"</code>.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#HOUR_IN_AM_PM">HOUR_IN_AM_PM</a> : String = "h"<div class="summaryTableDescription">[static]
-   Placeholder for hour in am/pm (1 - 12) in date format.</div>
+         Placeholder for hour in am/pm (1 - 12) in date format.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#HOUR_IN_DAY">HOUR_IN_DAY</a> : String = "H"<div class="summaryTableDescription">[static]
-   Placeholder for hour in day (0 - 23) in date format.</div>
+         Placeholder for hour in day (0 - 23) in date format.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#MILLISECOND">MILLISECOND</a> : String = "S"<div class="summaryTableDescription">[static]
-   Placeholder for millisecond in date format.</div>
+         Placeholder for millisecond in date format.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#MINUTE">MINUTE</a> : String = "n"<div class="summaryTableDescription">[static]
-   Placeholder for minute in hour in date format.</div>
+         Placeholder for minute in hour in date format.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#MONTH_AS_NUMBER">MONTH_AS_NUMBER</a> : String = "m"<div class="summaryTableDescription">[static]
-   Placeholder for month in year as number in date format.</div>
+         Placeholder for month in year as number in date format.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#MONTH_AS_TEXT">MONTH_AS_TEXT</a> : String = "M"<div class="summaryTableDescription">[static]
-    Placeholder for month in year as text in date format.</div>
+          Placeholder for month in year as text in date format.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#QUOTE">QUOTE</a> : String = "'"<div class="summaryTableDescription">[static]
-   Quotation beginning and ending token.</div>
+         Quotation beginning and ending token.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#RANGE_DAY_AS_TEXT">RANGE_DAY_AS_TEXT</a> : <a href="../../pegas/maths/Range.html">Range</a>
 <div class="summaryTableDescription">[static]
-   The internal range use to defined the days as text in the DateFormatter.</div>
+         The internal range use to defined the days as text in the DateFormatter.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#RANGE_HOUR">RANGE_HOUR</a> : <a href="../../pegas/maths/Range.html">Range</a>
 <div class="summaryTableDescription">[static]
-   The internal range use to defined the hours in the DateFormatter.</div>
+         The internal range use to defined the hours in the DateFormatter.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#RANGE_MILLISECOND">RANGE_MILLISECOND</a> : <a href="../../pegas/maths/Range.html">Range</a>
 <div class="summaryTableDescription">[static]
-   The internal range use to defined the milliseconds in the DateFormatter.</div>
+         The internal range use to defined the milliseconds in the DateFormatter.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#RANGE_MINUTE">RANGE_MINUTE</a> : <a href="../../pegas/maths/Range.html">Range</a>
 <div class="summaryTableDescription">[static]
-   The internal range use to defined the minutes in the DateFormatter.</div>
+         The internal range use to defined the minutes in the DateFormatter.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#RANGE_MONTH">RANGE_MONTH</a> : <a href="../../pegas/maths/Range.html">Range</a>
 <div class="summaryTableDescription">[static]
-   The internal range use to defined the months in the DateFormatter.</div>
+         The internal range use to defined the months in the DateFormatter.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#RANGE_SECOND">RANGE_SECOND</a> : <a href="../../pegas/maths/Range.html">Range</a>
 <div class="summaryTableDescription">[static]
-   The internal range use to defined the seconds in the DateFormatter.</div>
+         The internal range use to defined the seconds in the DateFormatter.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SECOND">SECOND</a> : String = "s"<div class="summaryTableDescription">[static]
-   Placeholder for second in minute in date format.</div>
+         Placeholder for second in minute in date format.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#YEAR">YEAR</a> : String = "y"<div class="summaryTableDescription">[static]
-   Placeholder for year in date format.</div>
+         Placeholder for year in date format.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 </table>
@@ -438,8 +440,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static var DEFAULT_AM_EXPRESSION:String = "am"</code><p>
-   The default AM/PM designator expression.
-   </p></div>
+         The default AM/PM designator expression.
+         </p></div>
 <a name="DEFAULT_PM_EXPRESSION"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -448,8 +450,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static var DEFAULT_PM_EXPRESSION:String = "pm"</code><p>
-   The default AM/PM designator expression.
-   </p></div>
+         The default AM/PM designator expression.
+         </p></div>
 <a name="constructorDetail"></a>
 <div class="detailSectionHeader">Constructor detail</div>
 <a name="DateFormatter()"></a>
@@ -460,13 +462,13 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function DateFormatter(pattern:String = "dd.mm.yyyy HH:nn:ss")</code><p>
-   Creates a new DateFormatter instance.
-   </p><p>If you do not pass-in a pattern or if the passed-in one is null or undefined the constant DEFAULT_DATE_FORMAT is used.</p>
-    <span class="label">Parameters</span>
+         Creates a new DateFormatter instance.
+         </p><p>If you do not pass-in a pattern or if the passed-in one is null or undefined the constant DEFAULT_DATE_FORMAT is used.</p>
+         <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">pattern</span>:String</code> (default = "<code>dd.mm.yyyy HH:nn:ss</code>")<code></code> &mdash; (optional) the pattern describing the date and time format.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -480,9 +482,9 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public override function format(... arguments):String</code><p>
-   This method format an expression with the pattern of this formatter.
-   Overrides this method.
-   </p><span class="label">Parameters</span>
+         This method format an expression with the pattern of this formatter.
+         Overrides this method.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code>... <span class="label">arguments</span></code></td>
@@ -504,8 +506,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function formatDayAsNumber(day:Number, cpt:Number):String</code><p>
-   Formats the specified number day value in a string representation.
-   </p><span class="label">Parameters</span>
+         Formats the specified number day value in a string representation.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">day</span>:Number</code></td>
@@ -522,7 +524,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>String</code> &mdash; the specified numberday value in a string representation.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -534,8 +536,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function formatDayAsText(day:Number, cpt:Number):String</code><p>
-    Formats the specified day value in a string representation.
-    </p><span class="label">Parameters</span>
+         Formats the specified day value in a string representation.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">day</span>:Number</code></td>
@@ -552,7 +554,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>String</code> &mdash; the specified day value in a string representation.
-    </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -564,8 +566,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function formatDesignator(hour:Number, cpt:Number, capitalize:Boolean):String</code><p>
-   Formats the designator AM/PM in string expression.
-   </p><span class="label">Parameters</span>
+         Formats the designator AM/PM in string expression.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">hour</span>:Number</code></td>
@@ -588,7 +590,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>String</code> &mdash; the specified am/pm expression representation.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -600,8 +602,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function formatHourInAmPm(hour:Number, cpt:Number):String</code><p>
-    Formats the specified hour value in a string representation with the am-pm notation.
-    </p><span class="label">Parameters</span>
+         Formats the specified hour value in a string representation with the am-pm notation.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">hour</span>:Number</code></td>
@@ -618,7 +620,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>String</code> &mdash; the specified hour value in a string representation with the am-pm notation.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -630,8 +632,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function formatHourInDay(hour:Number, cpt:Number):String</code><p>
-     Formats an hour number in string expression.
-    </p><span class="label">Parameters</span>
+         Formats an hour number in string expression.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">hour</span>:Number</code></td>
@@ -659,8 +661,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function formatMillisecond(millisecond:Number, cpt:Number):String</code><p>
-   Formats a millisecond value number in string expression.
-   </p><span class="label">Parameters</span>
+         Formats a millisecond value number in string expression.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">millisecond</span>:Number</code></td>
@@ -688,8 +690,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function formatMinute(minute:Number, cpt:Number):String</code><p>
-   Formats a minute value number in string expression.
-    </p><span class="label">Parameters</span>
+         Formats a minute value number in string expression.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">minute</span>:Number</code></td>
@@ -717,8 +719,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function formatMonthAsNumber(month:Number, cpt:Number):String</code><p>
-    Formats a month value number in string expression.
-   </p><span class="label">Parameters</span>
+         Formats a month value number in string expression.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">month</span>:Number</code></td>
@@ -746,8 +748,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function formatMonthAsText(month:Number, cpt:Number):String</code><p>
-   Formats a month text value in string expression.
-   </p><span class="label">Parameters</span>
+         Formats a month text value in string expression.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">month</span>:Number</code></td>
@@ -775,8 +777,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function formatSecond(second:Number, cpt:Number):String</code><p>
-   Format the second value passed in argument.
-   </p><span class="label">Parameters</span>
+         Format the second value passed in argument.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">second</span>:Number</code></td>
@@ -793,7 +795,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>String</code> &mdash; the second string representation of this DateFormatter.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -805,8 +807,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function formatYear(year:Number, cpt:Number):String</code><p>
-   Format the year value passed in argument.
-   </p><span class="label">Parameters</span>
+         Format the year value passed in argument.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">year</span>:Number</code></td>
@@ -823,7 +825,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>String</code> &mdash; the year string representation of this DateFormatter.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -835,8 +837,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function getInstance():<a href="../date/DateFormatter.html">DateFormatter</a></code><p>
-   Returns the singleton reference of the DateFormatter class.
-   </p><p></p>
+         Returns the singleton reference of the DateFormatter class.
+         </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -852,8 +854,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function getZeros(cpt:Number):String</code><p>
-   Returns a string representation fill by 0 values or an empty string if the cpt value is NaN or <1.
-   </p><span class="label">Parameters</span>
+         Returns a string representation fill by 0 values or an empty string if the cpt value is NaN or <1.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">cpt</span>:Number</code></td>
@@ -864,7 +866,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>String</code> &mdash; a string representation fill by 0 values or an empty string if the cpt value is NaN or <1.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -878,9 +880,9 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const AM_PM:String = "t"</code><p>
-    Placeholder for AM/PM designator who indicates if the hour is is before or after noon in date format.
-   The output is lower-case. Examples: t -> a or p  / tt -> am or pm.
-   </p></div>
+         Placeholder for AM/PM designator who indicates if the hour is is before or after noon in date format.
+         The output is lower-case. Examples: t -> a or p  / tt -> am or pm.
+         </p></div>
 <a name="CAPITAL_AM_PM"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -889,9 +891,9 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const CAPITAL_AM_PM:String = "T"</code><p>
-   Placeholder for AM/PM designator who indicates if the hour is is before or after noon in date format.
-   The output is capitalized. Examples: T -> T or P / TT -> AM or PM.
-   </p></div>
+         Placeholder for AM/PM designator who indicates if the hour is is before or after noon in date format.
+         The output is capitalized. Examples: T -> T or P / TT -> AM or PM.
+         </p></div>
 <a name="DAY_AS_NUMBER"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -900,8 +902,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const DAY_AS_NUMBER:String = "d"</code><p>
-   Placeholder for day in month as number in date format.
-   </p></div>
+         Placeholder for day in month as number in date format.
+         </p></div>
 <a name="DAY_AS_TEXT"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -910,8 +912,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const DAY_AS_TEXT:String = "D"</code><p>
-   Placeholder for day in week as text in date format.
-   </p></div>
+         Placeholder for day in week as text in date format.
+         </p></div>
 <a name="DEFAULT_DATE_FORMAT"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -920,8 +922,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const DEFAULT_DATE_FORMAT:String = "dd.mm.yyyy HH:nn:ss"</code><p>
-   The default date format pattern <code>"dd.mm.yyyy HH:nn:ss"</code>.
-   </p></div>
+         The default date format pattern <code class="prettyprint">"dd.mm.yyyy HH:nn:ss"</code>.
+         </p></div>
 <a name="HOUR_IN_AM_PM"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -930,8 +932,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const HOUR_IN_AM_PM:String = "h"</code><p>
-   Placeholder for hour in am/pm (1 - 12) in date format.
-   </p></div>
+         Placeholder for hour in am/pm (1 - 12) in date format.
+         </p></div>
 <a name="HOUR_IN_DAY"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -940,8 +942,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const HOUR_IN_DAY:String = "H"</code><p>
-   Placeholder for hour in day (0 - 23) in date format.
-   </p></div>
+         Placeholder for hour in day (0 - 23) in date format.
+         </p></div>
 <a name="MILLISECOND"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -950,8 +952,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const MILLISECOND:String = "S"</code><p>
-   Placeholder for millisecond in date format.
-   </p></div>
+         Placeholder for millisecond in date format.
+         </p></div>
 <a name="MINUTE"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -960,8 +962,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const MINUTE:String = "n"</code><p>
-   Placeholder for minute in hour in date format.
-   </p></div>
+         Placeholder for minute in hour in date format.
+         </p></div>
 <a name="MONTH_AS_NUMBER"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -970,8 +972,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const MONTH_AS_NUMBER:String = "m"</code><p>
-   Placeholder for month in year as number in date format.
-   </p></div>
+         Placeholder for month in year as number in date format.
+         </p></div>
 <a name="MONTH_AS_TEXT"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -980,8 +982,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const MONTH_AS_TEXT:String = "M"</code><p>
-    Placeholder for month in year as text in date format.
-   </p></div>
+          Placeholder for month in year as text in date format.
+         </p></div>
 <a name="QUOTE"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -990,8 +992,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const QUOTE:String = "'"</code><p>
-   Quotation beginning and ending token. 
-   </p></div>
+         Quotation beginning and ending token. 
+         </p></div>
 <a name="RANGE_DAY_AS_TEXT"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -1000,8 +1002,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const RANGE_DAY_AS_TEXT:<a href="../../pegas/maths/Range.html">Range</a></code><p>
-   The internal range use to defined the days as text in the DateFormatter.
-   </p></div>
+         The internal range use to defined the days as text in the DateFormatter.
+         </p></div>
 <a name="RANGE_HOUR"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -1010,8 +1012,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const RANGE_HOUR:<a href="../../pegas/maths/Range.html">Range</a></code><p>
-   The internal range use to defined the hours in the DateFormatter.
-   </p></div>
+         The internal range use to defined the hours in the DateFormatter.
+         </p></div>
 <a name="RANGE_MILLISECOND"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -1020,8 +1022,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const RANGE_MILLISECOND:<a href="../../pegas/maths/Range.html">Range</a></code><p>
-   The internal range use to defined the milliseconds in the DateFormatter.
-   </p></div>
+         The internal range use to defined the milliseconds in the DateFormatter.
+         </p></div>
 <a name="RANGE_MINUTE"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -1030,8 +1032,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const RANGE_MINUTE:<a href="../../pegas/maths/Range.html">Range</a></code><p>
-   The internal range use to defined the minutes in the DateFormatter.
-   </p></div>
+         The internal range use to defined the minutes in the DateFormatter.
+         </p></div>
 <a name="RANGE_MONTH"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -1040,8 +1042,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const RANGE_MONTH:<a href="../../pegas/maths/Range.html">Range</a></code><p>
-   The internal range use to defined the months in the DateFormatter.
-   </p></div>
+         The internal range use to defined the months in the DateFormatter.
+         </p></div>
 <a name="RANGE_SECOND"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -1050,8 +1052,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const RANGE_SECOND:<a href="../../pegas/maths/Range.html">Range</a></code><p>
-   The internal range use to defined the seconds in the DateFormatter.
-   </p></div>
+         The internal range use to defined the seconds in the DateFormatter.
+         </p></div>
 <a name="SECOND"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -1060,8 +1062,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const SECOND:String = "s"</code><p>
-   Placeholder for second in minute in date format.
-   </p></div>
+         Placeholder for second in minute in date format.
+         </p></div>
 <a name="YEAR"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -1070,8 +1072,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const YEAR:String = "y"</code><p>
-   Placeholder for year in date format.
-   </p></div>
+         Placeholder for year in date format.
+         </p></div>
 <br>
 <br>
 <hr>

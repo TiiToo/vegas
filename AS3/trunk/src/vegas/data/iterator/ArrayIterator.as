@@ -29,7 +29,7 @@ package vegas.data.iterator
 	import vegas.util.Serializer;		
 
 	/**
-     * Converts an <code>Array</code> to an iterator.
+     * Converts an <code class="prettyprint">Array</code> to an iterator.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
      * import vegas.data.iterator.ArrayIterator ;
@@ -77,8 +77,8 @@ package vegas.data.iterator
         }
         
     	/**
-    	 * Returns <code>true</code> if the iteration has more elements.
-    	 * @return <code>true</code> if the iteration has more elements.
+    	 * Returns <code class="prettyprint">true</code> if the iteration has more elements.
+    	 * @return <code class="prettyprint">true</code> if the iteration has more elements.
     	 */	
         public function hasNext():Boolean
         {

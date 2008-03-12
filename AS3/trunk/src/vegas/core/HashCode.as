@@ -24,7 +24,7 @@ package vegas.core
 {
 
 	/**
-	 * Collected methods which allow easy implementation of <code>hashCode</code>.
+	 * Collected methods which allow easy implementation of <code class="prettyprint">hashCode</code>.
 	 * @author eKameleon
 	 * @version 1.0.0.0
 	 */
@@ -38,7 +38,7 @@ package vegas.core
 		 * </pre>
 		 * @param   o1 the first value to compare.
 		 * @param   o2 the second value to compare.
-		 * @return <code>true</code> of the two object are equals.  
+		 * @return <code class="prettyprint">true</code> of the two object are equals.  
 		 */
 		public static function equals(o1:*, o2:*):Boolean 
 		{

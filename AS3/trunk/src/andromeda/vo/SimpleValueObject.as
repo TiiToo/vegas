@@ -68,8 +68,8 @@ package andromeda.vo
 		}
 		
 		/**
-		 * Compares the specified object with this object for equality. This method compares the ids of the objects with the <code>Identifiable.getID()</code> method.
-		 * @return <code>true</code> if the the specified object is equal with this object.
+		 * Compares the specified object with this object for equality. This method compares the ids of the objects with the <code class="prettyprint">Identifiable.getID()</code> method.
+		 * @return <code class="prettyprint">true</code> if the the specified object is equal with this object.
 		 */
 		public function equals( o:* ):Boolean
 		{
@@ -84,8 +84,8 @@ package andromeda.vo
 		}
 			
 		/**
-	 	 * Returns the <code>String</code> representation of this object.
-	 	 * @return the <code>String</code> representation of this object.
+	 	 * Returns the <code class="prettyprint">String</code> representation of this object.
+	 	 * @return the <code class="prettyprint">String</code> representation of this object.
 	 	 */
 		public override function toString():String
 		{

@@ -32,8 +32,8 @@ package vegas.core
 	{
 
     	/**
-    	 * Returns <code>true</code> if the object is locked.
-    	 * @return <code>true</code> if the object is locked.
+    	 * Returns <code class="prettyprint">true</code> if the object is locked.
+    	 * @return <code class="prettyprint">true</code> if the object is locked.
     	 */
     	function isLocked():Boolean ;
 	

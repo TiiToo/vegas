@@ -27,8 +27,8 @@ package pegas.geom
 	import vegas.util.Serializer;	
 
 	/**
-	 * Defines a linear equation of the form : <code> ax + by = c</code> with fixed real coefficients a, b and c such that a and b are not both zero.
-	 * <p><b>Example :</b></p>
+	 * Defines a linear equation of the form : <code class="prettyprint"> ax + by = c</code> with fixed real coefficients a, b and c such that a and b are not both zero.
+	 * @example
  	 * <pre class="prettyprint">
 	 * var l:Line = new Line(10, 20, 5) ;
 	 * trace(l) ; // {a:10,b:20,c:5}
@@ -95,7 +95,7 @@ package pegas.geom
 		
 		/**
 		 * Compares the specified object with this object for equality.
-		 * @return <code>true</code> if the the specified object is equal with this object.
+		 * @return <code class="prettyprint">true</code> if the the specified object is equal with this object.
 		 */
 		public function equals(o:*):Boolean
 		{

@@ -26,7 +26,8 @@ package asgard.config
 	import asgard.net.JSONLoader;	    
 
 	/**
-     * <p><b>Example :</b></p>
+	 * The JSONConfigLoader class based on the JSON notation.
+     * @example
      * <pre class="prettyprint">
      * import asgard.config.Config ;
      * import asgard.config.JSONConfigLoader;
@@ -55,6 +56,7 @@ package asgard.config
      * loader.load() ;
      * </pre>	
      * @author eKameleon
+     * @see vegas.string.JSON
      */
     public class JSONConfigLoader extends AbstractConfigLoader
     {
@@ -62,7 +64,7 @@ package asgard.config
         /**
          * Creates a new JSONConfigLoader instance.
          * @param bGlobal the flag to use a global event flow or a local event flow.
-         * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
+         * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
          */
         public function JSONConfigLoader( bGlobal:Boolean = false, sChannel:String = null )
         {

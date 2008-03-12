@@ -25,7 +25,7 @@ package vegas.util
 	import system.IEquatable;		
 
 	/**
-	 * The <code>Comparater</code> utility class is an all-static class with a method to returns <code>true</code> if two object are equals.
+	 * The <code class="prettyprint">Comparater</code> utility class is an all-static class with a method to returns <code class="prettyprint">true</code> if two object are equals.
 	 * @author eKameleon
 	 */
 	public class Comparater 
@@ -35,7 +35,7 @@ package vegas.util
 	 	 * Compares if two objects are equal by value. 
 		 * @param o1 the first object to compare.
 		 * @param o2 the second object to compare.
-		 * @return <code>true</code> if the 2 objects are equals.
+		 * @return <code class="prettyprint">true</code> if the 2 objects are equals.
 		 */	
 		public static function compare( o1:*, o2:* ):Boolean 
 		{
@@ -92,7 +92,7 @@ package vegas.util
 		
 		/**
 		 * Compares if two Arrays are equal by value. 
-		 * @return <code>true</code> if the 2 objects are equals.
+		 * @return <code class="prettyprint">true</code> if the 2 objects are equals.
 		 */
 		public static function arrayCompare( ar1:*, ar2:* ):Boolean
     	{
@@ -140,7 +140,7 @@ package vegas.util
 
 		/**
 		 * Compares if two Booleans are equal by value. 
-		 * @return <code>true</code> if the 2 objects are equals.
+		 * @return <code class="prettyprint">true</code> if the 2 objects are equals.
 	 	 */
 		public static function booleanCompare( b1:* , b2:* ):Boolean
 	    {
@@ -157,7 +157,7 @@ package vegas.util
 
 		/**
 		 * Compares if two Dates are equal by value.
-		 * @return <code>true</code> if the 2 objects are equals.
+		 * @return <code class="prettyprint">true</code> if the 2 objects are equals.
 		 */
 		public static function dateCompare( d1:* , d2:* ):Boolean
 		{
@@ -174,7 +174,7 @@ package vegas.util
 		
 		/**
 		 * Compares if two Errors are equal by value.
-		 * @return <code>true</code> if the 2 objects are equals.
+		 * @return <code class="prettyprint">true</code> if the 2 objects are equals.
 		 */
 		public static function errorCompare( e1:* , e2:* ):Boolean
 		{
@@ -191,7 +191,7 @@ package vegas.util
 	
 		/**
 		 * Compares if two Functions are equal by value.
-		 * @return <code>true</code> if the 2 objects are equals.
+		 * @return <code class="prettyprint">true</code> if the 2 objects are equals.
 	 	 */
 		public static function functionCompare( f1:* , f2:* ):Boolean
 		{
@@ -208,7 +208,7 @@ package vegas.util
 		
 		/**
 		 * Compares if two Numbers are equal by value.
-	 	 * @return <code>true</code> if the 2 objects are equals.
+	 	 * @return <code class="prettyprint">true</code> if the 2 objects are equals.
 		 */
 		public static function numberCompare( n1:* , n2:* ):Boolean
 		{
@@ -243,7 +243,7 @@ package vegas.util
 	
 		/**
 		 * Compares if two Objects are equal by value.
-		 * @return <code>true</code> if the 2 objects are equals.
+		 * @return <code class="prettyprint">true</code> if the 2 objects are equals.
 		 */
 		public static function objectCompare( o1:* , o2:* ):Boolean
 		{
@@ -285,7 +285,7 @@ package vegas.util
 		
 		/**
 	 	 * Compares if two Strings are equal by value.
-		 * @return <code>true</code> if the 2 objects are equals.
+		 * @return <code class="prettyprint">true</code> if the 2 objects are equals.
 		 */
 		public static function stringCompare( s1:* , s2:* ):Boolean
     	{

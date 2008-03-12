@@ -71,7 +71,7 @@ package buRRRn.eden
 		/**
 		 * Parameter allowing to copy objects by value if true or by reference if false.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <code class="prettyprint">
 		 * foo = {a:1, b:2, c:3};
 		 * bar = foo;
 		 * </code>
@@ -193,7 +193,7 @@ package buRRRn.eden
 		/**
 		 * Allows to execute function call. if set to false it blocks any functrion call and return undefined.
 		 * <p><b>Example:</b></p>
-		 * <code>
+		 * <code class="prettyprint">
 		 * "titi = \"hello world\";
 		 * toto = titi.toUpperCase();"
 		 * 

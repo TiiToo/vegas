@@ -28,8 +28,8 @@ package andromeda.process
 	import vegas.util.Serializer;	
 
 	/**
-     * This <code>IAction</code> object create a pause in the process.
-     * <p><b>Example :</b></p>
+     * This <code class="prettyprint">IAction</code> object create a pause in the process.
+     * @example
      * <pre class="prettyprint">
      * var handleEvent:Function = function( ...args:Array ) :void
      * {
@@ -51,7 +51,7 @@ package andromeda.process
     	 * @param duration the duration of the pause.
     	 * @param seconds the flag to indicates if the duration is in second or not.
     	 * @param bGlobal the flag to use a global event flow or a local event flow.
-    	 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
+    	 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
 		 */
 		public function Pause( duration:uint = 0 , seconds:Boolean = false , bGlobal:Boolean = false , sChannel:String = null )
 		{

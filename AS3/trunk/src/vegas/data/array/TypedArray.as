@@ -29,7 +29,7 @@ package vegas.data.array
 	import vegas.errors.TypeMismatchError;    
 
 	/**
-     * <code>TypedArray</code> acts like a normal array but assures that only objects of a specific type are added to the array.
+     * <code class="prettyprint">TypedArray</code> acts like a normal array but assures that only objects of a specific type are added to the array.
      * <p>Example :
      * <pre class="prettyprint">
      * import vegas.data.array.TypedArray ;

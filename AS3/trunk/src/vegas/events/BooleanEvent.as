@@ -27,7 +27,7 @@ package vegas.events
     import flash.events.Event ;
     
     /**
-     * The <code>BooleanEvent</code> to dispatch an event with a Boolean object.
+     * The <code class="prettyprint">BooleanEvent</code> to dispatch an event with a Boolean object.
      * <pre class="prettyprint">
      * var e:Event = new BooleanEvent("change", true) ;
      * trace( (e as BooleanEvent).getBoolean() ) ;
@@ -38,7 +38,7 @@ package vegas.events
 	{
         
 		/**
-		 * Creates a new <code>BooleanEvent</code> instance.
+		 * Creates a new <code class="prettyprint">BooleanEvent</code> instance.
 		 * @param type the string type of the instance. 
 		 * @param b the Boolean object of this event. 
 		 * @param target the target of the event.

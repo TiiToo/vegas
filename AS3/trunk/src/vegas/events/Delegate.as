@@ -34,8 +34,8 @@ package vegas.events
 	 * <p>This version is also inspired from <a href='http://www.peterjoel.com/blog/index.php?archive=2004_08_01_archive.xml#109320812208031938'>Peter Hall's EventDelegate</a> implementation and from the Francis bourre framework "<a href="http://osflash.org/pixlib">Pixlib</a>".</p>
 	 * <p>You can instantiate and keep a reference of a Delegate instance.</p>
 	 * <p>In the VEGAS implementation :
- 	 * <li>The <code>Delegate</code> class implements <code>EventListener</code> interface. you can use a Delegate instances in the <code>addEventListener</code> method for all <code>EventTarget</code> implementations.</li>
-	 * <li>The <code>Delegate</code> class implements <code>IRunnable</code> interface</li>
+ 	 * <li>The <code class="prettyprint">Delegate</code> class implements <code class="prettyprint">EventListener</code> interface. you can use a Delegate instances in the <code class="prettyprint">addEventListener</code> method for all <code class="prettyprint">EventTarget</code> implementations.</li>
+	 * <li>The <code class="prettyprint">Delegate</code> class implements <code class="prettyprint">IRunnable</code> interface</li>
 	 * </p>
  	 * @author eKameleon
 	 */

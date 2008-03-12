@@ -30,7 +30,8 @@ package vegas.string
     
     /**
      * ECMA 262 Unicode IFormat-Control Characters tools.
-     * <p><b>Example :</b></p>
+     * <p>See <a href='http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf'>ECMAScript 262 specifications</a></p>
+     * @example
      * <pre class="prettyprint">
      * UnicodeChar = vegas.string.UnicodeChar ;
      * 
@@ -58,7 +59,6 @@ package vegas.string
      * u = new UnicodeChar() ;
      * trace( u.u5c0f() + u.u98fc() + u.u5f3e() + u.u0040() ) ; // 小飼弾@
      * </pre>
-     * <p>See <a href='http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf'>ECMAScript 262 specifications</a></p>
      * @author eKameleon
      */
     dynamic public class UnicodeChar extends Proxy
@@ -67,7 +67,7 @@ package vegas.string
        	/**
     	 * Creates a new UnicodeChar instance.
 	     * <p><b>Example :</b></p>
-	     * <code>
+	     * <code class="prettyprint">
 	     * var u:UnicodeChar = new UnicodeChar() ;
 	     * trace( u.u0040() ) ; // @
 	     * </code>
@@ -102,39 +102,39 @@ package vegas.string
         public static const DOUBLE_QUOTE:String = "\u0022" ;
 	
     	/**
-    	 * Tab utf8 representation (whitespace).
-    	 * @private
+    	 * Array with all whitespace characters. NB : USP no implement (Any other Unicode "space separator")
     	 */
-        public static const TAB:String = "\u0009" ;
+        public static const WHITE_SPACE_CHARS:Array = [ "\u0009", "\u000B", "\u000C", "\u0020", "\u00A0" ] ;    		
+	
+    	/**
+    	 * Tab utf8 representation (whitespace).
+    	 */
+        public static const TAB:String = WHITE_SPACE_CHARS[0] ;
 
 	    /**
     	 * Vertical Tab utf8 representation (whitespace).
-    	 * @private
     	 */
-        public static const VT:String = "\u000B" ;
+        public static const VT:String = WHITE_SPACE_CHARS[1] ;
         
     	/**
     	 * Form Feed utf8 representation (whitespace).
-    	 * @private
     	 */
-        public static const FF:String = "\u000C" ;
+        public static const FF:String = WHITE_SPACE_CHARS[2] ;
    
    	   /**
 	    * Space utf8 representation (whitespace).
-	    * @private
 	    */
-        public static const SP:String = "\u0020" ;
+        public static const SP:String = WHITE_SPACE_CHARS[3] ;
 
     	/**
     	 * No-break space utf8 representation (whitespace).
-    	 * @private
     	 */
-        public static const NBSP:String = "\u00A0" ;
-
+        public static const NBSP:String = WHITE_SPACE_CHARS[4] ;
+        
     	/**
-    	 * Array with all whitespace characters. NB : USP no implement (Any other Unicode "space separator")
+    	 * Array with all line terminators characters
     	 */
-        public static const WHITE_SPACE_CHARS:Array = [ TAB, VT, FF, SP, NBSP ] ;
+	    public static const LINE_TERMINATOR_CHARS:Array = [ LF, CR, LS, PS ] ;        
         
        	/**
 	     * Line Feed utf8 representation (line terminators).
@@ -160,11 +160,7 @@ package vegas.string
 	     */   
         public static const PS:String = "\u2029" ;	
 
-    	/**
-    	 * Array with all line terminators characters
-    	 * @private
-    	 */
-	    public static const LINE_TERMINATOR_CHARS:Array = [ LF, CR, LS, PS ] ;
+
 
         /**
          * Overrides the behavior of an object property that can be called as a function. 
@@ -184,8 +180,8 @@ package vegas.string
         }
 
     	/**
-    	 * Returns <code>true</code> of the specified character is a whitespace.
-    	 * @return <code>true</code> of the specified character is a whitespace.
+    	 * Returns <code class="prettyprint">true</code> of the specified character is a whitespace.
+    	 * @return <code class="prettyprint">true</code> of the specified character is a whitespace.
     	 */
 	    public static function isWhiteSpace( char:String ):Boolean 
 	    {
@@ -194,8 +190,8 @@ package vegas.string
         }
 
     	/**
-    	 * Returns <code>true</code> of the specified character is a line terminator.
-    	 * @return <code>true</code> of the specified character is a line terminator.
+    	 * Returns <code class="prettyprint">true</code> of the specified character is a line terminator.
+    	 * @return <code class="prettyprint">true</code> of the specified character is a line terminator.
     	 */
         public static function isLineTerminators( char:String ):Boolean 
         {

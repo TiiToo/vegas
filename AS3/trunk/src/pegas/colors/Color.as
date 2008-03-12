@@ -30,7 +30,7 @@ package pegas.colors
 	import vegas.core.CoreObject;	
 
 	/**
-	 * <code>BasicColor</code> extends the Color Object.
+	 * <code class="prettyprint">BasicColor</code> extends the Color Object.
 	 * <p><b>Example :</b></p>
 	 * <pre class="prettyprint">
 	 * import pegas.colors.BasicColor;
@@ -44,7 +44,7 @@ package pegas.colors
 
 		/**
 		 * Creates an instance of a BasicColor.
-		 * <p><code> new BasicColor(mc);</code></p>
+		 * <p><code class="prettyprint"> new BasicColor(mc);</code></p>
 		 * @param display a DisplayObject reference.
 	 	 */
 		public function Color( display:DisplayObject )

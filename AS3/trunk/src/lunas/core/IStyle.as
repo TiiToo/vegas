@@ -42,22 +42,22 @@ package lunas.core
 		
 		/**
 		 * Returns the value of the specified property if it's exist in the object, else returns null.
-		 * @return the value of the specified property if it's exist in the object or <code>null</code>.
+		 * @return the value of the specified property if it's exist in the object or <code class="prettyprint">null</code>.
 		 */
 		function getStyle(prop:String):* ;
 
 		/**
-		 * Invoked in the constructor of the <code>IStyle</code> instance.
+		 * Invoked in the constructor of the <code class="prettyprint">IStyle</code> instance.
 		 */
 		function initialize():void ;
 
 		/**
-		 * Sets the properties of this <code>IStyle</code> object.
+		 * Sets the properties of this <code class="prettyprint">IStyle</code> object.
 		 */
 		function setStyle( ...args:Array ):void ;
 
 		/**
-		 * Updates the <code>IStyle</code> object.
+		 * Updates the <code class="prettyprint">IStyle</code> object.
 		 */
 		function update():void ;
 		

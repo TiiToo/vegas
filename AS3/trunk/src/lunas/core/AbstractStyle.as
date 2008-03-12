@@ -31,7 +31,7 @@ package lunas.core
 	import vegas.events.AbstractCoreEventDispatcher;	
 
 	/**
-	 * This class provides a skeletal implementation of the <code>IStyle</code> interface, to minimize the effort required to implement this interface.
+	 * This class provides a skeletal implementation of the <code class="prettyprint">IStyle</code> interface, to minimize the effort required to implement this interface.
 	 * @author eKameleon
  	 */
 	public class AbstractStyle extends AbstractCoreEventDispatcher implements IStyle
@@ -96,7 +96,7 @@ package lunas.core
 
 		/**
 		 * Returns the value of the specified property if it's exist in the object, else returns null.
-		 * @return the value of the specified property if it's exist in the object or <code>null</code>.
+		 * @return the value of the specified property if it's exist in the object or <code class="prettyprint">null</code>.
 		 */
 		public function getStyle(prop:String):*
 		{
@@ -111,7 +111,7 @@ package lunas.core
 		}
 
 		/**
-		 * Invoked in the constructor of the <code>IStyle</code> instance.
+		 * Invoked in the constructor of the <code class="prettyprint">IStyle</code> instance.
 		 */
 		public function initialize():void
 		{
@@ -147,7 +147,7 @@ package lunas.core
 		}
 		
 		/**
-		 * Invoked when a style property of this <code>IStyle</code> change.
+		 * Invoked when a style property of this <code class="prettyprint">IStyle</code> change.
 		 * By default this method is empty, you can override this method.
 		 */
 		public function styleChanged():void 
@@ -156,7 +156,7 @@ package lunas.core
 		}
 			
 		/**
-		 * Invoked when the styleSheet value of this <code>IStyle</code> change.
+		 * Invoked when the styleSheet value of this <code class="prettyprint">IStyle</code> change.
 		 * By default this method is empty, you can override this method.
 		 */
 		public function styleSheetChanged():void 
@@ -165,8 +165,8 @@ package lunas.core
 		}
 		
 		/**
-	 	 * Returns the <code>String</code> representation of this object.
-	 	 * @return the <code>String</code> representation of this object.
+	 	 * Returns the <code class="prettyprint">String</code> representation of this object.
+	 	 * @return the <code class="prettyprint">String</code> representation of this object.
 	 	 */
 		public override function toString():String
 		{
@@ -180,7 +180,7 @@ package lunas.core
 		}	
 		
 		/**
-		 * Updates the <code>IStyle</code> object.
+		 * Updates the <code class="prettyprint">IStyle</code> object.
 		 * By default this method is empty, you can override this method.
 		 */
 		public function update():void

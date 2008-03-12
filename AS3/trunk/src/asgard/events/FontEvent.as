@@ -75,7 +75,7 @@ package asgard.events
         }
         
         /**
-          * Returns a shallow copy of this object.
+         * Returns a shallow copy of this object.
          * @return a shallow copy of this object.
          */
         public override function clone():Event

@@ -37,7 +37,7 @@ package pegas.geom
 	{
 
 		/**
-		 * Creates a new <code>Vector4</code> instance.
+		 * Creates a new <code class="prettyprint">Vector4</code> instance.
 	 	 * @param x the x coordinate.
 		 * @param y the y coordinate.
 		 * @param z the z coordinate.
@@ -79,7 +79,7 @@ package pegas.geom
 		
 		/**
 		 * Compares the specified object with this object for equality.
-		 * @return <code>true</code> if the the specified object is equal with this object.
+		 * @return <code class="prettyprint">true</code> if the the specified object is equal with this object.
 		 */
 		public override function equals( o:* ):Boolean 
 		{

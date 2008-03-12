@@ -32,7 +32,7 @@ package vegas.util
 	import vegas.core.IHashable;	
 
 	/**
-	 * The <code>ClassUtil</code> utility class is an all-static class with methods for working with function the Class in AS3.
+	 * The <code class="prettyprint">ClassUtil</code> utility class is an all-static class with methods for working with function the Class in AS3.
 	 * @author eKameleon
 	 */
 	public class ClassUtil
@@ -82,8 +82,8 @@ package vegas.util
 		}
 		
 		/**
-		 * Returns <code>true</code> if the first specified object extends the second specified parent Class.
-		 * @return <code>true</code> if the first specified object extends the second specified parent Class.
+		 * Returns <code class="prettyprint">true</code> if the first specified object extends the second specified parent Class.
+		 * @return <code class="prettyprint">true</code> if the first specified object extends the second specified parent Class.
 		 */
 		public static function extendsClass( clazz:Class , parent:Class ):Boolean
 		{
@@ -95,8 +95,8 @@ package vegas.util
 		}		
 		
 		/**
-		 * Returns <code>true</code> if the specified first Class in argument implements the specified interface.
-		 * @return <code>true</code> if the specified first Class in argument implements the specified interface.
+		 * Returns <code class="prettyprint">true</code> if the specified first Class in argument implements the specified interface.
+		 * @return <code class="prettyprint">true</code> if the specified first Class in argument implements the specified interface.
 		 */
 		public static function implementsInterface( clazz:Class , interf:Class ):Boolean
 		{

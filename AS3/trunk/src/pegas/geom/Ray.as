@@ -32,15 +32,15 @@ package pegas.geom
 	/**
 	 * This means half of a line, it is infinite in one direction, but ends at a certain point in the other direction.
 	 * In Euclidean geometry, a ray (or half-line) given two distinct points A (the origin) and B on the ray, is the set of points C on the line containing points A and B such that A is not strictly between C and B. 
-	 * In geometry, a ray starts at one point, then goes on forever in one direction : (A) -- (B) -- ((C)) -->
+	 * In geometry, a ray starts at one point, then goes on forever in one direction : <code class="prettyprint">(A) -- (B) -- ((C)) -- ></code>
 	 * @author eKameleon
 	 */
 	public class Ray extends CoreObject implements IGeometry
 	{
 
 		/**
-		 * Creates a new Ray instance.
-		 * <p><b>Usage :</b></p>
+		 * Creates a new <code class="prettyprint">Ray</code> instance.
+		 * @example
 	 	 * <p>With a Ray object passed in the argument of the constructor :</p>
 		 * <pre class="prettyprint">
 		 * var r:Ray = new Ray( r:Ray) ;
@@ -75,17 +75,17 @@ package pegas.geom
 		}
 
 		/**
-		 * Determinates the p <code>Vector3</code> of the Ray object.
+		 * Determinates the p <code class="prettyprint">Vector3</code> of the Ray object.
 		 */
 		public var p:Vector3 ;
 		
 		/**
-		 * Determinates the q <code>Vector3</code> of the Ray object.
+		 * Determinates the q <code class="prettyprint">Vector3</code> of the Ray object.
 		 */
 		public var q:Vector3 ;	
 		
 		/**
-		 * Determinates the v <code>Vector3</code> of the Ray object.
+		 * Determinates the v <code class="prettyprint">Vector3</code> of the Ray object.
 		 */	
 		public var v:Vector3 ;
 		
@@ -113,7 +113,7 @@ package pegas.geom
 
 		/**
 		 * Compares the specified object with this object for equality.
-		 * @return <code>true</code> if the the specified object is equal with this object.
+		 * @return <code class="prettyprint">true</code> if the the specified object is equal with this object.
 		 */
 		public function equals( o:* ):Boolean 
 		{

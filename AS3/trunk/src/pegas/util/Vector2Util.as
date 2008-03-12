@@ -25,7 +25,7 @@ package pegas.util
 	import pegas.geom.Vector2;	
 	
 	/**
-	 * Static tool class to manipulate and transform <code>Vector2</code> references.
+	 * Static tool class to manipulate and transform <code class="prettyprint">Vector2</code> references.
 	 * @author eKameleon
 	 */
 	public class Vector2Util 
@@ -79,7 +79,7 @@ package pegas.util
 		/**
 	 	 * Returns the middle Vector2 between 2 Points.
 		 * <p><b>Example :</b></p>
-		 * <code>
+		 * <code class="prettyprint">
 		 * var p1:Vector2 = new Vector2(10,10) ;
 		 * var p2:Vector2 = new Vector2(20,20) ;
 		 * var middle:Vector2 = Vector2Util.getMiddle(p1,p2) ;
@@ -160,10 +160,10 @@ package pegas.util
 		}
 	
 		/**
-	 	 * Sets the specified <code>Vector2</code> object with the second <code>Vector2</code> object passed in argument.
-		 * @param v1 the first <code>Vector2</code>.
-		 * @param v2 the second <code>Vector2</code>.
-		 * @return the first <code>Vector2</code> transformed.
+	 	 * Sets the specified <code class="prettyprint">Vector2</code> object with the second <code class="prettyprint">Vector2</code> object passed in argument.
+		 * @param v1 the first <code class="prettyprint">Vector2</code>.
+		 * @param v2 the second <code class="prettyprint">Vector2</code>.
+		 * @return the first <code class="prettyprint">Vector2</code> transformed.
 		 */
 		public static function setByVector2( v1:Vector2, v2:Vector2):Vector2
 		{

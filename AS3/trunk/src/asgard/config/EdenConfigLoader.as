@@ -27,7 +27,7 @@ package asgard.config
 
 	/**
      * The EdenConfigLoader class based on the eden notation.
-     * <p><b>Example :</b></p>
+     * @example
      * <pre class="prettyprint">
      * import andromeda.events.ActionEvent ;
      * 
@@ -65,7 +65,7 @@ package asgard.config
         /**
          * Creates a new EdenConfigLoader instance.
          * @param bGlobal the flag to use a global event flow or a local event flow.
-         * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
+         * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
          */
         public function EdenConfigLoader( bGlobal:Boolean = false, sChannel:String = null )
         {

@@ -34,8 +34,8 @@ package lunas.display.button
 	 * <li>"over"     : the frame when the button is over.</li>
 	 * <li>"up"       : the first frame when the button is up.</li>
 	 * </ul>
-	 * <p>The <code>stop()</code> method is call in the first frame of the component when the constructor is launched.</p>
-	 * This class looks like SimpleButton class but you can use the <code>registerType()</code> and the <code>unregisterType()</code> method to add or remove a ButtonEvent type (DISABLED, OVER, DOWN...) corresponding with a frame label in the MovieClip view of the button.
+	 * <p>The <code class="prettyprint">stop()</code> method is call in the first frame of the component when the constructor is launched.</p>
+	 * This class looks like SimpleButton class but you can use the <code class="prettyprint">registerType()</code> and the <code class="prettyprint">unregisterType()</code> method to add or remove a ButtonEvent type (DISABLED, OVER, DOWN...) corresponding with a frame label in the MovieClip view of the button.
 	 * <p>
 	 * <p><b>Example :</b></p>
 	 * <pre class="prettyprint">
@@ -150,8 +150,8 @@ package lunas.display.button
 		}
 
 		/**
-		 * Returns <code>true</code> if the specified type is register in the object.
-		 * @return <code>true</code> if the specified type is register in the object.
+		 * Returns <code class="prettyprint">true</code> if the specified type is register in the object.
+		 * @return <code class="prettyprint">true</code> if the specified type is register in the object.
 		 */
 		public function containsType( type:String ):Boolean
 		{
@@ -159,8 +159,8 @@ package lunas.display.button
 		}
 
 		/**
-		 * Returns the constructor function of the <code>IBuilder</code> of this instance.
-		 * @return the constructor function of the <code>IBuilder</code> of this instance.
+		 * Returns the constructor function of the <code class="prettyprint">IBuilder</code> of this instance.
+		 * @return the constructor function of the <code class="prettyprint">IBuilder</code> of this instance.
 		 */
 		public override function getBuilderRenderer():Class
 		{

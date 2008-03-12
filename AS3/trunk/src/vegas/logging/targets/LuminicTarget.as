@@ -96,7 +96,7 @@ package vegas.logging.targets
     	}
     	
         /**
-         *  This method handles a <code>LogEvent</code> from an associated logger.
+         *  This method handles a <code class="prettyprint">LogEvent</code> from an associated logger.
          *  A target uses this method to translate the event into the appropriate
          *  format for transmission, storage, or display.
          *  This method will be called only if the event's level is in range of the target's level.

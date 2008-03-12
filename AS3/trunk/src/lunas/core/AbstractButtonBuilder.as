@@ -38,7 +38,7 @@ package lunas.core
 		 * Creates a new AbstractButtonBuilder instance.
 		 * @param target the target of the component reference to build.
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
-		 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
+		 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
 		 */
 		public function AbstractButtonBuilder( target:DisplayObject, bGlobal:Boolean = false, sChannel:String = null)
 		{
@@ -48,8 +48,8 @@ package lunas.core
 		}
 
 		/**
-		 * Returns <code>true</code> if the specified type is register in the object.
-		 * @return <code>true</code> if the specified type is register in the object.
+		 * Returns <code class="prettyprint">true</code> if the specified type is register in the object.
+		 * @return <code class="prettyprint">true</code> if the specified type is register in the object.
 		 */
 		public function containsType( type:String ):Boolean
 		{

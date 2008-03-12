@@ -48,7 +48,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <p></p>
      Linked list implementation of the List and Queue interface. 
      <p>Implements all optional list operations, and permits all elements (including null).</p>
-     <p>In addition to implementing the List interface, the <code>LinkedList</code> class provides uniformly named methods to get, remove and insert an element at the beginning and end of the list.</p>
+     <p>In addition to implementing the List interface, the <code class="prettyprint">LinkedList</code> class provides uniformly named methods to get, remove and insert an element at the beginning and end of the list.</p>
      <p>These operations allow linked lists to be used as a stack, queue, etc.</p>
      <p><b>Example :</b></p>
      <pre class="prettyprint">
@@ -262,7 +262,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#contains()">contains</a>(o:*):Boolean</div>
 <div class="summaryTableDescription">
-         Returns <code>true</code> if this list contains the specified element.</div>
+         Returns <code class="prettyprint">true</code> if this list contains the specified element.</div>
 </td><td class="summaryTableOwnerCol">LinkedList</td>
 </tr>
 <tr class="">
@@ -270,7 +270,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#containsAll()">containsAll</a>(c:<a href="../Collection.html">Collection</a>):Boolean</div>
 <div class="summaryTableDescription">
-         Returns <code>true</code> if this collection contains the specified element.</div>
+         Returns <code class="prettyprint">true</code> if this collection contains the specified element.</div>
 </td><td class="summaryTableOwnerCol">LinkedList</td>
 </tr>
 <tr class="">
@@ -352,7 +352,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="../../core/CoreObject.html#getLogger()">getLogger</a>():<a href="../../logging/ILogger.html">ILogger</a>
 </div>
 <div class="summaryTableDescription">
-   Returns the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="">
@@ -360,7 +360,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#getModCount()">getModCount</a>():uint</div>
 <div class="summaryTableDescription">
-         This method is used by the <code>LinkedListIterator</code> class only.</div>
+         This method is used by the <code class="prettyprint">LinkedListIterator</code> class only.</div>
 </td><td class="summaryTableOwnerCol">LinkedList</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -432,7 +432,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#isEmpty()">isEmpty</a>():Boolean</div>
 <div class="summaryTableDescription">
-         Returns <code>true</code> if this queue contains no elements.</div>
+         Returns <code class="prettyprint">true</code> if this queue contains no elements.</div>
 </td><td class="summaryTableOwnerCol">LinkedList</td>
 </tr>
 <tr class="">
@@ -522,7 +522,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#removeRange()">removeRange</a>(from:uint, to:uint):void</div>
 <div class="summaryTableDescription">
-         Removes from this list all the elements that are contained between the specific <code>from</code> and the specific <code>to</code> position in this list (optional operation).</div>
+         Removes from this list all the elements that are contained between the specific <code class="prettyprint">from</code> and the specific <code class="prettyprint">to</code> position in this list (optional operation).</div>
 </td><td class="summaryTableOwnerCol">LinkedList</td>
 </tr>
 <tr class="">
@@ -554,7 +554,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../core/CoreObject.html#setLogger()">setLogger</a>(log:<a href="../../logging/ILogger.html">ILogger</a> = null):void</div>
 <div class="summaryTableDescription">
-   Sets the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="">
@@ -718,9 +718,9 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function contains(o:*):Boolean</code><p>
-         Returns <code>true</code> if this list contains the specified element.
+         Returns <code class="prettyprint">true</code> if this list contains the specified element.
          </p><p><b>Example :</b></p>
-         <code>
+         <code class="prettyprint">
          var list:LinkedList = new LinkedList() ;
          list.insert("item1") ;
          trace(list.contains( "item1" ) ; // output : true
@@ -736,7 +736,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this list contains the specified element.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if this list contains the specified element.
          </td>
 </tr>
 </table>
@@ -749,7 +749,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function containsAll(c:<a href="../Collection.html">Collection</a>):Boolean</code><p>
-         Returns <code>true</code> if this collection contains the specified element.
+         Returns <code class="prettyprint">true</code> if this collection contains the specified element.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -760,7 +760,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this collection contains the specified element.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if this collection contains the specified element.
          </td>
 </tr>
 </table>
@@ -796,7 +796,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the head of the queue is remove.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the head of the queue is remove.
          </td>
 </tr>
 </table>
@@ -847,7 +847,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the element in inserted in the list.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the element in inserted in the list.
          </td>
 </tr>
 </table>
@@ -989,7 +989,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function getModCount():uint</code><p>
-         This method is used by the <code>LinkedListIterator</code> class only.
+         This method is used by the <code class="prettyprint">LinkedListIterator</code> class only.
          </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -1050,7 +1050,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> (as per the general contract of <code>Collection.insert</code>).
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> (as per the general contract of <code class="prettyprint">Collection.insert</code>).
          </td>
 </tr>
 </table>
@@ -1077,7 +1077,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this list changed as a result of the call.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if this list changed as a result of the call.
          </td>
 </tr>
 </table>
@@ -1187,12 +1187,12 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function isEmpty():Boolean</code><p>
-         Returns <code>true</code> if this queue contains no elements.
+         Returns <code class="prettyprint">true</code> if this queue contains no elements.
          </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this queue is empty else <code>false</code>.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if this queue is empty else <code class="prettyprint">false</code>.
          </td>
 </tr>
 </table>
@@ -1283,7 +1283,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>*</code> &mdash; the head of this queue, or <code>null</code> if this queue is empty.
+<td width="20"></td><td><code>*</code> &mdash; the head of this queue, or <code class="prettyprint">null</code> if this queue is empty.
          </td>
 </tr>
 </table>
@@ -1301,7 +1301,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>*</code> &mdash; the head of this queue, or <code>null</code> if this queue is empty.
+<td width="20"></td><td><code>*</code> &mdash; the head of this queue, or <code class="prettyprint">null</code> if this queue is empty.
          </td>
 </tr>
 </table>
@@ -1342,7 +1342,7 @@ showHideInherited();
 <code>public function removeAll(c:<a href="../Collection.html">Collection</a>):Boolean</code><p>
          Removes all elements defined in the specified Collection in the list.
          </p><p><b>Example :</b></p>
-         <code>
+         <code class="prettyprint">
          import vegas.data.collections.SimpleCollection ;
          import vegas.data.list.LinkedList ;
          var list:LinkedList = new LinkedList() ;
@@ -1361,7 +1361,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if all elements are find and remove in the list.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if all elements are find and remove in the list.
          </td>
 </tr>
 </table>
@@ -1375,7 +1375,7 @@ showHideInherited();
 <div class="detailBody">
 <code>public function removeAt(id:uint):*</code><p>
          Removes an element at the specified position in this list. 
-         This implementation first gets a list iterator pointing to the indexed element (with <code>listIterator(index)</code>). 
+         This implementation first gets a list iterator pointing to the indexed element (with <code class="prettyprint">listIterator(index)</code>). 
          Then, it removes the element with <b>ListIterator</b> remove method.
          </p><p><b>Example :</b></p>
          <pre class="prettyprint">
@@ -1484,7 +1484,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function removeRange(from:uint, to:uint):void</code><p>
-         Removes from this list all the elements that are contained between the specific <code>from</code> and the specific <code>to</code> position in this list (optional operation).
+         Removes from this list all the elements that are contained between the specific <code class="prettyprint">from</code> and the specific <code class="prettyprint">to</code> position in this list (optional operation).
          </p><p><b>Example :</b></p>
          <pre class="prettyprint">
          var list:LinkedList = new LinkedList() ;
@@ -1600,7 +1600,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the retainAll operation is success.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the retainAll operation is success.
          </td>
 </tr>
 </table>

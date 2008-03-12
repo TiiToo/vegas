@@ -47,7 +47,7 @@ package vegas.data.sets
 		
 		/**
 	     * Compares the specified object with this object for equality.
-	     * @return <code>true</code> if the the specified object is equal with this object.
+	     * @return <code class="prettyprint">true</code> if the the specified object is equal with this object.
 	     */
 		public function equals(o:*):Boolean 
 		{

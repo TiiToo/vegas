@@ -27,7 +27,7 @@ package vegas.data.list
 	import vegas.core.CoreObject;
 	
 	/**
-     * Internal class in the <code>LinkedList</code> class to defined all entries in the list and the links betweens alls.
+     * Internal class in the <code class="prettyprint">LinkedList</code> class to defined all entries in the list and the links betweens alls.
      * @author eKameleon
      */
     public class LinkedListEntry extends CoreObject

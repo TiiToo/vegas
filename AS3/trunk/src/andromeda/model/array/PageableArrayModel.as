@@ -41,7 +41,7 @@ package andromeda.model.array
 		 * Creates a new PageableArrayModel instance.
 		 * @param id the id of this model.
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
-		 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
+		 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
 		 */
 		public function PageableArrayModel(id:* = null, bGlobal:Boolean = false, sChannel:String = null)
 		{
@@ -52,8 +52,8 @@ package andromeda.model.array
 		/**
 		 * Inserts all IValueObject in the array passed in argument.
 		 * @param datas The array of all value objects to insert in the model.
-		 * @param noClear (optional) If this argument is <code>true</code> the clear method isn't called when this process begin.
-		 * @param noRefresh (optional) If this argument is <code>true</code> the refresh method isn't called when this process is finish.
+		 * @param noClear (optional) If this argument is <code class="prettyprint">true</code> the clear method isn't called when this process begin.
+		 * @param noRefresh (optional) If this argument is <code class="prettyprint">true</code> the refresh method isn't called when this process is finish.
 		 */
 		public function addAllVO( datas:Array , noClear:Boolean=false , noRefresh:Boolean=false ):void
 		{
@@ -105,8 +105,8 @@ package andromeda.model.array
 		}
 		
 		/**
-		 * Returns the event name use in the <code>addVO</code> method.
-		 * @return the event name use in the <code>addVO</code> method.
+		 * Returns the event name use in the <code class="prettyprint">addVO</code> method.
+		 * @return the event name use in the <code class="prettyprint">addVO</code> method.
 		 */
 		public function getEventTypeUPDATE():String
 		{
@@ -123,8 +123,8 @@ package andromeda.model.array
 		}
 
 		/**
-		 * Returns <code>true</code> if the list has a next page.
-		 * @return <code>true</code> if the list has a next page.
+		 * Returns <code class="prettyprint">true</code> if the list has a next page.
+		 * @return <code class="prettyprint">true</code> if the list has a next page.
 		 */
 		public function hasNext():Boolean
 		{
@@ -132,8 +132,8 @@ package andromeda.model.array
 		}
 			
 		/**
-		 * Returns <code>true</code> if the list has a previous page.
-		 * @return <code>true</code> if the list has a previous page.
+		 * Returns <code class="prettyprint">true</code> if the list has a previous page.
+		 * @return <code class="prettyprint">true</code> if the list has a previous page.
 		 */
 		public function hasPrevious():Boolean
 		{
@@ -161,7 +161,7 @@ package andromeda.model.array
 		}
 
     	/**
-	     * Notify an <code>Event</code> when a <code>IValueObject</code> is inserted in the model. 
+	     * Notify an <code class="prettyprint">Event</code> when a <code class="prettyprint">IValueObject</code> is inserted in the model. 
 	     * If the model countVO value is > 1 notify an ArrayEvent else if the coutVO value is 1 notify a ModelObjectEvent. 
 	     */ 
     	public function notifyUpdate( value:* ):*
@@ -242,7 +242,7 @@ package andromeda.model.array
 		/**
 		 * Set the count of the IValueObject in a page of this model. 
 		 * @param n The count value of items in this model. This value must be >=1.
-		 * @param noRender Indicates if the method call the run method if this argumement is <code>false</code> (default is <code>false</code>).
+		 * @param noRender Indicates if the method call the run method if this argumement is <code class="prettyprint">false</code> (default is <code class="prettyprint">false</code>).
 	 	 */
 		public function setCountVO( n:uint , noRender:Boolean=false ):void
 		{
@@ -259,7 +259,7 @@ package andromeda.model.array
 		}
 
 		/**
-		 * Sets the event name use in the <code>addVO</code> method.
+		 * Sets the event name use in the <code class="prettyprint">addVO</code> method.
 		 */
 		public function setEventTypeUPDATE( type:String ):void
 		{

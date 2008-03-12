@@ -28,7 +28,7 @@ package vegas.util
 	import vegas.errors.ClassCastError;	
 
 	/**
-	 * The <code>StringUtil</code> utility class is an extended String class with methods for working with string.
+	 * The <code class="prettyprint">StringUtil</code> utility class is an extended String class with methods for working with string.
 	 * This class complete the system.Strings static class.
 	 * @author eKameleon
 	 */
@@ -179,15 +179,15 @@ package vegas.util
     	}
  	
 		/**
-		 * Returns <code>true</code> if this string is empty.
-		 * <p><b>Example :</b></p>
-		 * <code>
+		 * Returns <code class="prettyprint">true</code> if this string is empty.
+		 * @example
+		 * <pre class="prettyprint">
 		 * import vegas.util.StringUtil ;
 		 * var b1:Boolean = StringUtil.isEmpty("") ; // true
 		 * var b2:Boolean = StringUtil.isEmpty("hello world") ; // false
-		 * </code>
+		 * </pre>
 		 * @param str the string object.
-		 * @return <code>true</code> if this string is empty.
+		 * @return <code class="prettyprint">true</code> if this string is empty.
 	 	 */
 	    public static function isEmpty(str:String):Boolean 
 	    {
@@ -196,11 +196,11 @@ package vegas.util
  
  		/**
 		 * Returns the last char of the string. 
-		 * <p><b>Example :</b></p>
-	 	 * <code>
+		 * @example
+		 * <pre class="prettyprint">
 		 * import vegas.util.StringUtil ;
 		 * trace( StringUtil.lastChar("hello world") ; // d
-		 * </code>
+		 * </pre>
 		 * @param str the string object.
 		 * @return the last char of the string.
 	 	 */
@@ -227,10 +227,10 @@ package vegas.util
 	
 	 	/**
 		 * Replaces the 'search' string with the 'replace' String.
-	 	 * <p><b>Example :</b></p>
-	 	 * <code>
+		 * @example
+		 * <pre class="prettyprint">
 		 * vegas.util.StringUtil.replace("hello world", "hello", "hi") ; // "hello world" -> "hi world"
-		 * </code>
+		 * </pre>
 		 * @param the string to transform.
 		 * @return the new string transform with this method.
 		 */
@@ -241,10 +241,10 @@ package vegas.util
 	
 		/**
 	 	 * Reverses the current instance.
-		 * <p><b>Example :</b></p>
-	 	 * <code>
+		 * @example
+		 * <pre class="prettyprint">
 		 * var reverse:String = vegas.util.StringUtil.reverse("hello") ; // "olleh"
-		 * </code>
+		 * </pre>
 	 	 * @return the reverse string of the specified string passed-in argument.
 		 */
 		public static function reverse(str:String):String 
@@ -256,8 +256,8 @@ package vegas.util
 
 		/**
 		 * Adds and removes elements in the string.
-		 * <p><b>Example :</b></p>
-		 * <code>
+		 * @example
+		 * <pre class="prettyprint">
 		 * import vegas.util.StringUtil ;
 		 * 
 		 * var result:String ;
@@ -270,7 +270,7 @@ package vegas.util
 		 * 
 		 * result = StringUtil.splice("hello world", 6, 5, "life") ;
 		 * trace(result) ; // hello life
-		 * </code>
+		 * </pre>
 		 * @param startIndex Index at which to start changing the string.
 	 	 * @param deleteCount Indicating the number of old character elements to remove.
 		 * @param value The elements to add to the string. If you don't specify any elements, splice simply removes elements from the string.
@@ -284,11 +284,11 @@ package vegas.util
 
 		/**
 		 * Returns an array representation of this instance.
-		 * <p><b>Example :</b></p>
-		 * <code>
+		 * @example
+		 * <pre class="prettyprint">
 		 * import vegas.util.StringUtil ;
 		 * trace( StringUtil.toArray("hello world" )) ; // h,e,l,l,o, ,w,o,r,l,d
-		 * </code>
+		 * </pre>
 		 * @return an array representation of this instance.
 	 	 */
 	    public static function toArray(str:String, separator:String="" ):Array 
@@ -298,26 +298,26 @@ package vegas.util
 
 		/**
 		 * Returns the eden representation of the object.
-		 * <p><b>Example :</b></p>
-		 * <code>
+		 * @example
+		 * <pre class="prettyprint">
 		 * import vegas.util.StringUtil ;
 		 * var source:String = StringUtil.toSource("hello world") ;
 	 	 * trace(source) ; // "hello world"
-		 * </code>
+		 * </pre>
 	 	 * @return a string representing the source code of the object.
 		 */
-	    public static function toSource( str:String ):String 
+	    public static function toSource( str:String , ...rest:Array ):String 
 	    {
 		    return buRRRn.eden.Serializer.emitString(str) ;
 	    }
 	    
 		/**
 		 * Returns the value of this specified string with the first character in uppercase.
-		 * <p><b>Example :</b></p>
-		 * <code>
+		 * @example
+		 * <pre class="prettyprint">
 		 * import vegas.util.StringUtil ;
 		 * trace( StringUtil.ucFirst("hello world" )) ; // Hello world
-		 * </code>
+		 * </pre>
 		 * @return the value of this string with the first character in uppercase.
 	 	 */
 	 	public static function ucFirst(str:String):String 
@@ -327,11 +327,11 @@ package vegas.util
 
 		/**
 		 * Uppercase the first character of each word in a string.
-		 * <p><b>Example :</b></p>
-		 * <code>
+		 * @example
+		 * <pre class="prettyprint">
 		 * import vegas.util.StringUtil ;
 	 	 * trace( StringUtil.ucWords("hello world" )) ; // Hello World
-		 * </code>
+		 * </pre>
 		 * @return the string value with the first character in uppercase of each word in a string.
 		 */	
 	    public static function ucWords(str:String):String 

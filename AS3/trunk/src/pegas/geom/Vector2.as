@@ -38,7 +38,7 @@ package pegas.geom
 	{
 
 		/**
-		 * Creates a new <code>Vector2</code> instance.
+		 * Creates a new <code class="prettyprint">Vector2</code> instance.
 		 * @param x the x coordinate.
 		 * @param y the y coordinate.
 	 	 */ 	
@@ -84,7 +84,7 @@ package pegas.geom
 	
 		/**
 	 	 * Compares the specified object with this object for equality.
-		 * @return <code>true</code> if the the specified object is equal with this object.
+		 * @return <code class="prettyprint">true</code> if the the specified object is equal with this object.
 		 */
 		public function equals( o:* ):Boolean 
 		{

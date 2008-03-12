@@ -200,8 +200,8 @@ package pegas.draw
         }
 
         /**
-         * Returns <code>true</code> if the specified Align value in argument is a valid Align value else returns <code>false</code>.
-         * @return <code>true</code> if the specified Align value in argument is a valid Align value else returns <code>false</code>.
+         * Returns <code class="prettyprint">true</code> if the specified Align value in argument is a valid Align value else returns <code class="prettyprint">false</code>.
+         * @return <code class="prettyprint">true</code> if the specified Align value in argument is a valid Align value else returns <code class="prettyprint">false</code>.
           */
         public static function validate( value:uint ):Boolean 
         {

@@ -29,7 +29,7 @@ package vegas.util
 	import vegas.util.Copier;	
 
 	/**
-     * The <code>ObjectUtil</code> utility class is an all-static class with methods for working with object.
+     * The <code class="prettyprint">ObjectUtil</code> utility class is an all-static class with methods for working with object.
      * @author eKameleon
      */
     public class ObjectUtil
@@ -86,8 +86,8 @@ package vegas.util
         }
 
     	/**
-    	 * Returns <code>true</code> if the passed object is empty of enumerable property.
-    	 * @return <code>true</code> if the passed object is empty of enumerable property.
+    	 * Returns <code class="prettyprint">true</code> if the passed object is empty of enumerable property.
+    	 * @return <code class="prettyprint">true</code> if the passed object is empty of enumerable property.
     	 */
         public static function isEmpty(o:Object):Boolean 
         {
@@ -101,8 +101,8 @@ package vegas.util
         }
         
         /**
-         * Returns <code>true</code> if the specified object is a simple object.
-         * @return <code>true</code> if the specified object is a simple object.
+         * Returns <code class="prettyprint">true</code> if the specified object is a simple object.
+         * @return <code class="prettyprint">true</code> if the specified object is a simple object.
          */ 
 		public static function isSimple(value:Object):Boolean 
 		{
@@ -174,24 +174,28 @@ package vegas.util
  	        var o:Object        = arguments[0] ;
  	        var indent:Number   = arguments[1] ;
  	        var indentor:String = arguments[2] ;
-		    var each:String ;
     		var source:Array = [] ;
-    		if (isNaN(indent)) indent ++ ;
-    		for (each in o) 
+    		if (isNaN(indent)) 
     		{
-    			if ( o.hasOwnProperty(each) ) 
+    			indent ++ ;
+    		}
+    		for ( var prop:String in o ) 
+    		{
+    			
+    			if ( prop in o ) 
     			{
-    				if (o[each] === undefined) 
+    				if (o[prop] === undefined) 
     				{
-    					source.push( each + ":" + "undefined") ;
+    					source.push( prop + ":" + "undefined") ;
     				}
-    				else if (o[each] === null) 
+    				else if (o[prop] === null) 
     				{
-    					source.push( each + ":" + "null") ;
+    					source.push( prop + ":" + "null") ;
     				}
     				else 
     				{
-    					source.push( each + ":" + Serializer.toSource(o[each], indent, indentor) ) ;
+    					// trace("ObjectUtil.toSource : " + prop + " : " + o[prop] ) ;
+    					source.push( prop + ":" + Serializer.toSource( o[prop], indent, indentor) ) ;
     				}
     			}
     		}

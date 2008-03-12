@@ -25,7 +25,42 @@ package andromeda.process
 	import vegas.events.Delegate;    
 
 	/**
-     * This <code>IAction</code> object run a proxy method.
+     * This <code class="prettyprint">IAction</code> object run a proxy method.
+     * @example
+     * <pre class="prettyprint">
+     * import andromeda.events.ActionEvent ;
+     * import andromeda.process.ActionProxy ;
+     * 
+     * var debug:Function = function( e:ActionEvent ):void
+     * {
+     *     trace ( e ) ;
+     * }
+     * 
+     * var test:Function = function( ...args:Array ):void
+     * {
+     *     trace( this + " test : " + args ) ;
+     * }
+     * 
+     * var o:Object = {} ;
+     * o.toString = function():String
+     * {
+     *     return "myObject" ;
+     * }
+     * 
+     * var ap:ActionProxy = new ActionProxy( o, test, ["hello world", true] ) ;
+     * trace ( "action proxy    : " + ap ) ;
+     * trace ( "action toSource : " + ap.toSource() ) ;
+     * ap.addEventListener( ActionEvent.START  , debug ) ;
+     * ap.addEventListener( ActionEvent.FINISH , debug ) ;
+     * 
+     * ap.run() ; // run the process
+     * 
+     * // action proxy : [ActionProxy]
+     * // action toSource : new andromeda.process.ActionProxy()
+     * // [ActionEvent type="onStarted" target=[ActionProxy] context=null bubbles=false cancelable=false eventPhase=2]
+     * // myObject test : hello world,true
+     * // [ActionEvent type="onFinished" target=[ActionProxy] context=null bubbles=false cancelable=false eventPhase=2]
+     * </pre>
      * @author eKameleon
      * @see vegas.events.Delegate
      */
@@ -38,7 +73,7 @@ package andromeda.process
     	 * @param method The method invoked in this process.
     	 * @param args The Arguments injected in the method.
     	 * @param bGlobal the flag to use a global event flow or a local event flow.
-    	 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
+    	 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
     	 */
     	function ActionProxy( scope:*, method:Function , args:Array=null , bGlobal:Boolean = false , sChannel:String = null )
     	{

@@ -26,7 +26,7 @@ package asgard.config
 
     /**
      * The IConfigurable interface defines configurable objects. 
-     * This objects can be update with the Config of the application when the <code>setup</code> method of the object is invoked.
+     * This objects can be update with the Config of the application when the <code class="prettyprint">setup</code> method of the object is invoked.
      * @author eKameleon
      */
     public interface IConfigurable

@@ -85,7 +85,7 @@ package vegas.data.bag
 		
 		/**
 	 	 * Creates a new HashBag instance.
-		 * @param c a <code>Collection</code> to constructs a bag containing all the members of the given collection.
+		 * @param c a <code class="prettyprint">Collection</code> to constructs a bag containing all the members of the given collection.
 		 */
 		public function HashBag(c:Collection=null)
 		{

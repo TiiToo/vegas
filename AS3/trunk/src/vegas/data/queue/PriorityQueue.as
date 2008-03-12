@@ -94,15 +94,15 @@ package vegas.data.queue
 
         /**
          * Specifies case-insensitive sorting for the Array class sorting methods. You can use this constant
-         * for the <code>options</code> parameter in the <code>sort()</code> or <code>sortOn()</code> method. 
+         * for the <code class="prettyprint">options</code> parameter in the <code class="prettyprint">sort()</code> or <code class="prettyprint">sortOn()</code> method. 
          * <p>The value of this constant is 1.</p>
          */
         public static const CASEINSENSITIVE:uint = 1;
     
         /**
          * Specifies descending sorting for the Array class sorting methods. 
-          * You can use this constant for the <code>options</code> parameter in the <code>sort()</code>
-          * or <code>sortOn()</code> method. 
+          * You can use this constant for the <code class="prettyprint">options</code> parameter in the <code class="prettyprint">sort()</code>
+          * or <code class="prettyprint">sortOn()</code> method. 
            * <p>The value of this constant is 2.</p>
          */
         public static const DESCENDING:uint = 2;
@@ -115,19 +115,19 @@ package vegas.data.queue
 
         /**
          * Specifies numeric (instead of character-string) sorting for the Array class sorting methods. 
-         * Including this constant in the <code>options</code>
-         * parameter causes the <code>sort()</code> and <code>sortOn()</code> methods 
+         * Including this constant in the <code class="prettyprint">options</code>
+         * parameter causes the <code class="prettyprint">sort()</code> and <code class="prettyprint">sortOn()</code> methods 
          * to sort numbers as numeric values, not as strings of numeric characters.  
-         * Without the <code>NUMERIC</code> constant, sorting treats each array element as a 
+         * Without the <code class="prettyprint">NUMERIC</code> constant, sorting treats each array element as a 
          * character string and produces the results in Unicode order. 
          *
-         * <p>For example, given the array of values <code>[2005, 7, 35]</code>, if the <code>NUMERIC</code> 
-         * constant is <strong>not</strong> included in the <code>options</code> parameter, the 
-         * sorted array is <code>[2005, 35, 7]</code>, but if the <code>NUMERIC</code> constant <strong>is</strong> included, 
-         * the sorted array is <code>[7, 35, 2005]</code>. </p>
+         * <p>For example, given the array of values <code class="prettyprint">[2005, 7, 35]</code>, if the <code class="prettyprint">NUMERIC</code> 
+         * constant is <strong>not</strong> included in the <code class="prettyprint">options</code> parameter, the 
+         * sorted array is <code class="prettyprint">[2005, 35, 7]</code>, but if the <code class="prettyprint">NUMERIC</code> constant <strong>is</strong> included, 
+         * the sorted array is <code class="prettyprint">[7, 35, 2005]</code>. </p>
          * 
          * <p>This constant applies only to numbers in the array; it does 
-         * not apply to strings that contain numeric data such as <code>["23", "5"]</code>.</p>
+         * not apply to strings that contain numeric data such as <code class="prettyprint">["23", "5"]</code>.</p>
          * 
          * <p>The value of this constant is 16.</p>
          */

@@ -37,8 +37,8 @@ package asgard.config
     {
         
 	    /**
-	     * Returns <code>true</code> if the collector contains the specified <code>IConfigurable</code> object.
-	     * @return <code>true</code> if the collector contains the specified <code>IConfigurable</code> object.
+	     * Returns <code class="prettyprint">true</code> if the collector contains the specified <code class="prettyprint">IConfigurable</code> object.
+	     * @return <code class="prettyprint">true</code> if the collector contains the specified <code class="prettyprint">IConfigurable</code> object.
 	     */	
 	    public static function contains( conf:IConfigurable ):Boolean 
     	{
@@ -54,8 +54,8 @@ package asgard.config
     	}
    
  	   /**
-	    * Returns the <code>Iterator</code> of this collector.
-	    * @return the <code>Iterator</code> of this collector.
+	    * Returns the <code class="prettyprint">Iterator</code> of this collector.
+	    * @return the <code class="prettyprint">Iterator</code> of this collector.
 	    */
     	public static function iterator() :Iterator
     	{
@@ -63,7 +63,7 @@ package asgard.config
     	}
 
     	/**
-    	 * Removes the specified <code>IConfigurable</code> object in the collector.
+    	 * Removes the specified <code class="prettyprint">IConfigurable</code> object in the collector.
     	 */
     	public static function remove( conf:IConfigurable ):*
     	{
@@ -71,7 +71,7 @@ package asgard.config
     	}
 
     	/**
-    	 * Run the <code>ConfigCollector</code> command to invoked the <code>setup()</code> method of all <code>IConfigurable</code> object registered in the collector.
+    	 * Run the <code class="prettyprint">ConfigCollector</code> command to invoked the <code class="prettyprint">setup()</code> method of all <code class="prettyprint">IConfigurable</code> object registered in the collector.
 	     */
     	public static function run():void
     	{

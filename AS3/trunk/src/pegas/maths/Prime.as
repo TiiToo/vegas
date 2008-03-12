@@ -33,7 +33,7 @@ package pegas.maths
 		
 		/**
 		 * Defines an array of all primes between 'from' and 'n' inclusive, positive but restricted integer value, ignores decimals.
-		 * @return a array representation of all primes between <code>from</code> and <code>n</code> inclusive}
+		 * @return a array representation of all primes between <code class="prettyprint">from</code> and <code class="prettyprint">n</code> inclusive}
 		 */
 		public static function findPrimeFrom( n:Number , from:Number = 0  ):Array 
 		{

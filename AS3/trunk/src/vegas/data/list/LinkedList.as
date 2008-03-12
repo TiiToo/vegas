@@ -41,7 +41,7 @@ package vegas.data.list
     /**
      * Linked list implementation of the List and Queue interface. 
      * <p>Implements all optional list operations, and permits all elements (including null).</p>
-     * <p>In addition to implementing the List interface, the <code>LinkedList</code> class provides uniformly named methods to get, remove and insert an element at the beginning and end of the list.</p>
+     * <p>In addition to implementing the List interface, the <code class="prettyprint">LinkedList</code> class provides uniformly named methods to get, remove and insert an element at the beginning and end of the list.</p>
      * <p>These operations allow linked lists to be used as a stack, queue, etc.</p>
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
@@ -243,15 +243,15 @@ package vegas.data.list
         }
 
         /**
-         * Returns <code>true</code> if this list contains the specified element.
+         * Returns <code class="prettyprint">true</code> if this list contains the specified element.
          * <p><b>Example :</b></p>
-         * <code>
+         * <code class="prettyprint">
          * var list:LinkedList = new LinkedList() ;
          * list.insert("item1") ;
          * trace(list.contains( "item1" ) ; // output : true
          * </code>
          * @param o element whose presence in this list is to be tested.
-         * @return <code>true</code> if this list contains the specified element.
+         * @return <code class="prettyprint">true</code> if this list contains the specified element.
          */
         public function contains( o:* ):Boolean
         {
@@ -259,8 +259,8 @@ package vegas.data.list
         }
 
         /**
-         * Returns <code>true</code> if this collection contains the specified element.
-         * @return <code>true</code> if this collection contains the specified element.
+         * Returns <code class="prettyprint">true</code> if this collection contains the specified element.
+         * @return <code class="prettyprint">true</code> if this collection contains the specified element.
          */
         public function containsAll(c : Collection):Boolean 
         {
@@ -292,7 +292,7 @@ package vegas.data.list
     
         /**
          * Retrieves and removes the head of this queue.
-         * @return <code>true</code> if the head of the queue is remove.
+         * @return <code class="prettyprint">true</code> if the head of the queue is remove.
          */
         public function dequeue():Boolean 
         {
@@ -316,7 +316,7 @@ package vegas.data.list
         /**
          * Adds the specified element as the tail (last element) of this list.
          * @param o the element to add.
-         * @return <code>true</code> if the element in inserted in the list.
+         * @return <code class="prettyprint">true</code> if the element in inserted in the list.
          */
         public function enqueue(o:*):Boolean 
         {
@@ -415,7 +415,7 @@ package vegas.data.list
         }
     
         /**
-         * This method is used by the <code>LinkedListIterator</code> class only.
+         * This method is used by the <code class="prettyprint">LinkedListIterator</code> class only.
          */
         public function getModCount():uint
         {
@@ -470,7 +470,7 @@ package vegas.data.list
         /**
          * Appends the specified element to the end of this list.
          * @param o element to be appended to this list.
-         * @return <code>true</code> (as per the general contract of <code>Collection.insert</code>).
+         * @return <code class="prettyprint">true</code> (as per the general contract of <code class="prettyprint">Collection.insert</code>).
          */
         public function insert( o:* ):Boolean
         {
@@ -483,7 +483,7 @@ package vegas.data.list
          * The behavior of this operation is undefined if the specified collection is modified while the operation is in progress.  
          * (This implies that the behavior of this call is undefined if the specified Collection is this list, and this list is nonempty.)
          * @param c the elements to be inserted into this list.
-         * @return <code>true</code> if this list changed as a result of the call.
+         * @return <code class="prettyprint">true</code> if this list changed as a result of the call.
          * @throws NullPointerException if the specified collection is null.
          */
         public function insertAll( c:Collection ):Boolean
@@ -573,8 +573,8 @@ package vegas.data.list
         }
         
         /**
-         * Returns <code>true</code> if this queue contains no elements.
-         * @return <code>true</code> if this queue is empty else <code>false</code>.
+         * Returns <code class="prettyprint">true</code> if this queue contains no elements.
+         * @return <code class="prettyprint">true</code> if this queue is empty else <code class="prettyprint">false</code>.
          */
         public function isEmpty():Boolean 
         {
@@ -645,7 +645,7 @@ package vegas.data.list
         
         /**
          * Retrieves, but does not remove, the head (first element) of this list.
-         * @return the head of this queue, or <code>null</code> if this queue is empty.
+         * @return the head of this queue, or <code class="prettyprint">null</code> if this queue is empty.
          */
         public function peek():* 
         {
@@ -658,7 +658,7 @@ package vegas.data.list
 
         /**
          * Retrieves and removes the head (first element) of this list.
-         * @return the head of this queue, or <code>null</code> if this queue is empty.
+         * @return the head of this queue, or <code class="prettyprint">null</code> if this queue is empty.
          */
         public function poll():* 
         {
@@ -717,7 +717,7 @@ package vegas.data.list
         /**
          * Removes all elements defined in the specified Collection in the list.
          * <p><b>Example :</b></p>
-         * <code>
+         * <code class="prettyprint">
          * import vegas.data.collections.SimpleCollection ;
          * import vegas.data.list.LinkedList ;
          * var list:LinkedList = new LinkedList() ;
@@ -726,7 +726,7 @@ package vegas.data.list
          * trace(list.removeAll(new SimpleCollection(["item1"])) ; // true
          * trace(list) ; // {item2}
          * </code>
-         * @return <code>true</code> if all elements are find and remove in the list.
+         * @return <code class="prettyprint">true</code> if all elements are find and remove in the list.
          */
         public function removeAll( c:Collection ):Boolean 
         {
@@ -753,7 +753,7 @@ package vegas.data.list
 
         /**
          * Removes an element at the specified position in this list. 
-         * This implementation first gets a list iterator pointing to the indexed element (with <code>listIterator(index)</code>). 
+         * This implementation first gets a list iterator pointing to the indexed element (with <code class="prettyprint">listIterator(index)</code>). 
          * Then, it removes the element with <b>ListIterator</b> remove method.
          * <p><b>Example :</b></p>
          * <pre class="prettyprint">
@@ -836,7 +836,7 @@ package vegas.data.list
         }
         
         /**
-         * Removes from this list all the elements that are contained between the specific <code>from</code> and the specific <code>to</code> position in this list (optional operation).
+         * Removes from this list all the elements that are contained between the specific <code class="prettyprint">from</code> and the specific <code class="prettyprint">to</code> position in this list (optional operation).
          * <p><b>Example :</b></p>
          * <pre class="prettyprint">
          * var list:LinkedList = new LinkedList() ;
@@ -894,7 +894,7 @@ package vegas.data.list
          * var b:Boolean = list.retainAll( c ) ;
          * trace("list : " + list + ", is retain ? : " + b) ;
          * </pre>
-         * @return <code>true</code> if the retainAll operation is success.
+         * @return <code class="prettyprint">true</code> if the retainAll operation is success.
          */
         public function retainAll(c : Collection):Boolean 
         {
@@ -1147,7 +1147,7 @@ import vegas.errors.NoSuchElementError;
 import vegas.errors.UnsupportedOperation;
 
 /**
- * Converts a <code>LinkedList</code> to a specific <code>ListIterator</code>.
+ * Converts a <code class="prettyprint">LinkedList</code> to a specific <code class="prettyprint">ListIterator</code>.
  * <p><b>Example :</b></p>
  * <pre class="prettyprint">
  * import vegas.data.iterator.LinkedListIterator ;
@@ -1188,8 +1188,8 @@ class LinkedListIterator extends CoreObject implements ListIterator
     }
 
     /**
-     * Returns <code>true</code> if the iteration has more elements.
-     * @return <code>true</code> if the iteration has more elements.
+     * Returns <code class="prettyprint">true</code> if the iteration has more elements.
+     * @return <code class="prettyprint">true</code> if the iteration has more elements.
      */    
     public function hasNext():Boolean 
     {

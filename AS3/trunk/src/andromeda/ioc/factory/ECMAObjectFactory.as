@@ -285,7 +285,7 @@ package andromeda.ioc.factory
 		/**
 		 * Creates a new EdenObjectFactory instance.
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
-		 * @param sChannel the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
+		 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
 		 */
 		public function ECMAObjectFactory( bGlobal:Boolean = false , sChannel:String = null )
 		{
@@ -302,7 +302,7 @@ package andromeda.ioc.factory
 		/**
 		 * Create the objects and fill the IObjectDefinitionContainer.
 		 * <p><b>Parameters</b></p>
-		 * <code>edenObject</code> An object who contains all the "objects" settings.
+		 * <code class="prettyprint">edenObject</code> An object who contains all the "objects" settings.
 		 */
 		public function create( ...arguments:Array ):void
 		{

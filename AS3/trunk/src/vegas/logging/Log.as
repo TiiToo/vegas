@@ -36,7 +36,7 @@ package vegas.logging
     {
 
         /**
-         * const The default categoty of the <code>ILogger</code> instances returns with the <code>getLogger</code> method.
+         * const The default categoty of the <code class="prettyprint">ILogger</code> instances returns with the <code class="prettyprint">getLogger</code> method.
          */
         public static var DEFAULT_CATEGORY:String = "" ;
 
@@ -105,7 +105,7 @@ package vegas.logging
         
         /**
          *  This method removes all of the current loggers from the cache.
-         *  Subsquent calls to the <code>getLogger()</code> method return new instances
+         *  Subsquent calls to the <code class="prettyprint">getLogger()</code> method return new instances
          *  of loggers rather than any previous instances with the same category.
          *  This method is intended for use in debugging only.
          */
@@ -123,7 +123,7 @@ package vegas.logging
          *  Categories must be at least one character in length and may not contain
          *  any blanks or any of the following characters:
          *  []~$^&amp;\/(){}&lt;&gt;+=`!#%?,:;'"&#64;
-         *  This method will throw an <code>InvalidCategoryError</code> if the
+         *  This method will throw an <code class="prettyprint">InvalidCategoryError</code> if the
          *  category specified is malformed.
          *
          *  @param category The category of the logger that should be returned.
@@ -173,8 +173,8 @@ package vegas.logging
          *  @param value The String to check for illegal characters.
          *            The following characters are not valid:
          *                []~$^&amp;\/(){}&lt;&gt;+=`!#%?,:;'"&#64;
-         *  @return   <code>true</code> if there are any illegal characters found,
-         *            <code>false</code> otherwise
+         *  @return   <code class="prettyprint">true</code> if there are any illegal characters found,
+         *            <code class="prettyprint">false</code> otherwise
          */
         public static function hasIllegalCharacters( value:String ):Boolean
         {
@@ -296,11 +296,11 @@ package vegas.logging
         
         /**
          *  This method checks that the specified category matches any of the filter
-         *  expressions provided in the <code>filters</code> Array.
+         *  expressions provided in the <code class="prettyprint">filters</code> Array.
          *
          *  @param category The category to match against
          *  @param filters A list of Strings to check category against.
-         *  @return <code>true</code> if the specified category matches any of the filter expressions found in the filters list, <code>false</code> otherwise.
+         *  @return <code class="prettyprint">true</code> if the specified category matches any of the filter expressions found in the filters list, <code class="prettyprint">false</code> otherwise.
          */
         private static function categoryMatchInFilterList(category:String, filters:Array):Boolean
         {
@@ -332,7 +332,7 @@ package vegas.logging
         
         /**
          *  This method will ensure that a valid category string has been specified.
-         *  If the category is not valid an <code>InvalidCategoryError</code> will be thrown.
+         *  If the category is not valid an <code class="prettyprint">InvalidCategoryError</code> will be thrown.
          *  Categories can not contain any blanks or any of the following characters: []`*~,!#$%^&amp;()]{}+=\|'";?&gt;&lt;./&#64; 
          *  or be less than 1 character in length.
          */

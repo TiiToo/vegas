@@ -26,14 +26,14 @@ package vegas.events
 	import flash.events.Event;	    
 
 	/**
-     * The <code>CommandEvent</code> to dispatch an event with a Command object inside.
+     * The <code class="prettyprint">CommandEvent</code> to dispatch an event with a Command object inside.
      * @author eKameleon
      */
 	public class CommandEvent extends BasicEvent 
 	{
         
 		/**
-		 * Creates a new <code>BooleanEvent</code> instance.
+		 * Creates a new <code class="prettyprint">BooleanEvent</code> instance.
 		 * @param type the string type of the instance. 
 		 * @param co The Command of the event.
 		 * @param target the target of the event.

@@ -149,7 +149,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../collections/AbstractCollection.html#contains()">contains</a>(o:*):Boolean</div>
 <div class="summaryTableDescription">
-   Returns <code>true</code> if this collection contains the specified element.</div>
+   Returns <code class="prettyprint">true</code> if this collection contains the specified element.</div>
 </td><td class="summaryTableOwnerCol"><a href="../collections/AbstractCollection.html">AbstractCollection</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -157,7 +157,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../collections/SimpleCollection.html#containsAll()">containsAll</a>(c:<a href="../../data/Collection.html">Collection</a>):Boolean</div>
 <div class="summaryTableDescription">
-   Returns <code>true</code> if this collection contains all of the elements of the specified collection.</div>
+   Returns <code class="prettyprint">true</code> if this collection contains all of the elements of the specified collection.</div>
 </td><td class="summaryTableOwnerCol"><a href="../collections/SimpleCollection.html">SimpleCollection</a></td>
 </tr>
 <tr class="">
@@ -206,7 +206,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="../../core/CoreObject.html#getLogger()">getLogger</a>():<a href="../../logging/ILogger.html">ILogger</a>
 </div>
 <div class="summaryTableDescription">
-   Returns the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -246,7 +246,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../collections/AbstractCollection.html#isEmpty()">isEmpty</a>():Boolean</div>
 <div class="summaryTableDescription">
-   Returns <code>true</code> if this collection contains no elements.</div>
+   Returns <code class="prettyprint">true</code> if this collection contains no elements.</div>
 </td><td class="summaryTableOwnerCol"><a href="../collections/AbstractCollection.html">AbstractCollection</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -303,7 +303,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../core/CoreObject.html#setLogger()">setLogger</a>(log:<a href="../../logging/ILogger.html">ILogger</a> = null):void</div>
 <div class="summaryTableDescription">
-   Sets the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -600,7 +600,7 @@ showHideInherited();
 <div class="detailBody">
 <code>public static const CASEINSENSITIVE:uint = 1</code><p>
          Specifies case-insensitive sorting for the Array class sorting methods. You can use this constant
-         for the <code>options</code> parameter in the <code>sort()</code> or <code>sortOn()</code> method. 
+         for the <code class="prettyprint">options</code> parameter in the <code class="prettyprint">sort()</code> or <code class="prettyprint">sortOn()</code> method. 
          </p><p>The value of this constant is 1.</p>
          </div>
 <a name="DESCENDING"></a>
@@ -612,8 +612,8 @@ showHideInherited();
 <div class="detailBody">
 <code>public static const DESCENDING:uint = 2</code><p>
          Specifies descending sorting for the Array class sorting methods. 
-          You can use this constant for the <code>options</code> parameter in the <code>sort()</code>
-          or <code>sortOn()</code> method. 
+          You can use this constant for the <code class="prettyprint">options</code> parameter in the <code class="prettyprint">sort()</code>
+          or <code class="prettyprint">sortOn()</code> method. 
            </p><p>The value of this constant is 2.</p>
          </div>
 <a name="NONE"></a>
@@ -636,18 +636,18 @@ showHideInherited();
 <div class="detailBody">
 <code>public static const NUMERIC:uint = 16</code><p>
          Specifies numeric (instead of character-string) sorting for the Array class sorting methods. 
-         Including this constant in the <code>options</code>
-         parameter causes the <code>sort()</code> and <code>sortOn()</code> methods 
+         Including this constant in the <code class="prettyprint">options</code>
+         parameter causes the <code class="prettyprint">sort()</code> and <code class="prettyprint">sortOn()</code> methods 
          to sort numbers as numeric values, not as strings of numeric characters.  
-         Without the <code>NUMERIC</code> constant, sorting treats each array element as a 
+         Without the <code class="prettyprint">NUMERIC</code> constant, sorting treats each array element as a 
          character string and produces the results in Unicode order. 
-                  </p><p>For example, given the array of values <code>[2005, 7, 35]</code>, if the <code>NUMERIC</code> 
-         constant is <strong>not</strong> included in the <code>options</code> parameter, the 
-         sorted array is <code>[2005, 35, 7]</code>, but if the <code>NUMERIC</code> constant <strong>is</strong> included, 
-         the sorted array is <code>[7, 35, 2005]</code>. </p>
+                  </p><p>For example, given the array of values <code class="prettyprint">[2005, 7, 35]</code>, if the <code class="prettyprint">NUMERIC</code> 
+         constant is <strong>not</strong> included in the <code class="prettyprint">options</code> parameter, the 
+         sorted array is <code class="prettyprint">[2005, 35, 7]</code>, but if the <code class="prettyprint">NUMERIC</code> constant <strong>is</strong> included, 
+         the sorted array is <code class="prettyprint">[7, 35, 2005]</code>. </p>
          
          <p>This constant applies only to numbers in the array; it does 
-         not apply to strings that contain numeric data such as <code>["23", "5"]</code>.</p>
+         not apply to strings that contain numeric data such as <code class="prettyprint">["23", "5"]</code>.</p>
          
          <p>The value of this constant is 16.</p>
          </div>

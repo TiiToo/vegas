@@ -74,8 +74,8 @@ package asgard.media
         }
     
         /**
-         * Returns the <code>String</code> representation of this object.
-         * @return the <code>String</code> representation of this object.
+         * Returns the <code class="prettyprint">String</code> representation of this object.
+         * @return the <code class="prettyprint">String</code> representation of this object.
          */
         public function set id( id:* ):void
         {
@@ -91,8 +91,8 @@ package asgard.media
         }
         
         /**
-         * Returns the internal <code>ILogger</code> reference of this <code>ILogable</code> object.
-         * @return the internal <code>ILogger</code> reference of this <code>ILogable</code> object.
+         * Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.
+         * @return the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.
          */
         public function getLogger():ILogger
         {
@@ -129,8 +129,8 @@ package asgard.media
         }
 
         /**
-         * Returns <code>true</code> if the object is locked.
-         * @return <code>true</code> if the object is locked.
+         * Returns <code class="prettyprint">true</code> if the object is locked.
+         * @return <code class="prettyprint">true</code> if the object is locked.
          */
         public function isLocked():Boolean 
         {
@@ -146,7 +146,7 @@ package asgard.media
         }
         
         /**
-         * Sets the internal <code>ILogger</code> reference of this <code>ILogable</code> object.
+         * Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.
          */
         public function setLogger( log:ILogger=null ):void 
         {
@@ -170,8 +170,8 @@ package asgard.media
         }
         
         /**
-         * Returns the <code>String</code> representation of this object.
-         * @return the <code>String</code> representation of this object.
+         * Returns the <code class="prettyprint">String</code> representation of this object.
+         * @return the <code class="prettyprint">String</code> representation of this object.
          */
         public override function toString():String
         {

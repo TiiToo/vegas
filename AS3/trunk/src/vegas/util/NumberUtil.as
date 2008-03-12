@@ -25,7 +25,7 @@ package vegas.util
 {
    
     /**
-     * The <code>NumberUtil</code> utility class is an all-static class with methods for working with number.
+     * The <code class="prettyPrint">NumberUtil</code> utility class is an all-static class with methods for working with number.
      * @author eKameleon
      */
     public class NumberUtil
@@ -51,7 +51,7 @@ package vegas.util
 
     	/**
      	 * Compares if two Numbers are equal by value
-     	 * @return <code>true</code> if the two passed-in values are the sames.
+     	 * @return <code class="prettyprint">true</code> if the two passed-in values are the sames.
      	 */
     	public static function equals( n1:Number=NaN, n2:Number=NaN ):Boolean 
     	{
@@ -77,8 +77,8 @@ package vegas.util
     	
     	/**
 	     * Returns the hexadecimal string representation of the specified number value.
-	     * <p><b>Example :</b></p>
-	     * <code>
+		 * @example
+		 * <pre class="prettyprint">
      	 * import vegas.util.NumberUtil ;
 	     *
 	     * for (var i:uint =0 ; i<256 ; i++)
@@ -92,7 +92,7 @@ package vegas.util
      	 * {
 	     *     trace( NumberUtil.toHex( i , "#" ) ) ; // with optional prefix argument
 	     * }
-     	 * </code>
+     	 * </pre>
      	 * @param n the number to format.
      	 * @param prefix Optional string represention of the prefix of the return format string. If this argument is undefined the prefix is "0x".
      	 * @return the hexadecimal string representation of the specified number value.
@@ -115,7 +115,7 @@ package vegas.util
          * Returns a string representation of the specified number.
          * @return a string representation of the specified number.
          */
-    	public static function toSource( n:Number ):String 
+    	public static function toSource( n:Number , ...rest:Array ):String 
     	{
 		    return n.toString() ;
         }

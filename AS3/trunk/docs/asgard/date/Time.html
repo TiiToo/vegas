@@ -43,10 +43,43 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 </table>
 <p></p>
-  The <code>Time</code> object is a holder for a time difference.
-  <p><code>Time</code> splits a time difference (distance between two dates) into 
-  days, hours, minutes, seconds and milliseconds to offers methods to access the time difference value.
-  <p></p>
+     The <code class="prettyprint">Time</code> object is a holder for a time difference.
+     <p><code class="prettyprint">Time</code> splits a time difference (distance between two dates) into 
+     days, hours, minutes, seconds and milliseconds to offers methods to access the time difference value.</p>
+     <p></p>
+<br>
+<span class="label">Example</span>
+<br>     <pre class="prettyprint">
+     import asgard.date.Time ;
+     
+     var time:Time ;
+     
+     time = new Time( 12000 ) ;
+     trace( time + " : " + time.getSeconds() + " seconds" ) ;
+     trace( time + " : " + time.getMinutes(3) + " minutes" ) ;
+     
+     trace("---") ;
+     
+     var time1:Time = new Time( 2 , Time.DAY_FORMAT ) ;
+     
+     trace( "days         : " + time1.inDays() ) ;
+     trace( "hours        : " + time1.inHours() ) ;
+     trace( "minutes      : " + time1.inMinutes() ) ;
+     trace( "seconds      : " + time1.inSeconds() ) ;
+     trace( "milliseconds : " + time1.inMilliSeconds() ) ;
+     
+     trace("---") ;
+     
+     var time2:Time = new Time( 24 , Time.HOUR_FORMAT ) ;
+     
+     var time3:Time = time1.plus( time2 ) ; // + 24H
+     trace( "days         : " + time3.inDays() ) ;
+     trace( "hours        : " + time3.inHours() ) ;
+     trace( "minutes      : " + time3.inMinutes() ) ;
+     trace( "seconds      : " + time3.inSeconds() ) ;
+     trace( "milliseconds : " + time3.inMilliSeconds() ) ;
+     </pre>
+     <p></p>
 <br>
 <hr>
 </div>
@@ -59,37 +92,37 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#days">days</a> : Number<div class="summaryTableDescription"> 
-   Amount of days.</div>
+         Amount of days.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#doEval">doEval</a> : Boolean = true<div class="summaryTableDescription"> 
-   Flag if the instance need to be evaluated by evaluate.</div>
+         Flag if the instance need to be evaluated by evaluate.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#hours">hours</a> : Number<div class="summaryTableDescription">  
-   Amount of hours.</div>
+         Amount of hours.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#milliSeconds">milliSeconds</a> : Number<div class="summaryTableDescription"> 
-   Amount of milliseconds.</div>
+         Amount of milliseconds.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#minutes">minutes</a> : Number<div class="summaryTableDescription">
-    Amount of minutes.</div>
+          Amount of minutes.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ms">ms</a> : Number<div class="summaryTableDescription">
-    Time difference in ms.</div>
+         Time difference in ms.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#seconds">seconds</a> : Number<div class="summaryTableDescription">
-    Amount of seconds.</div>
+          Amount of seconds.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 </table>
@@ -114,7 +147,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#Time()">Time</a>(timeDifference:Number, format:String = null)</div>
 <div class="summaryTableDescription">
-   Creates a new <code>Time</code> instance.</div>
+         Creates a new <code class="prettyprint">Time</code> instance.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="">
@@ -122,7 +155,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#evaluate()">evaluate</a>():void</div>
 <div class="summaryTableDescription">
-   Splits the time distance from ms (source value) into the different units.</div>
+         Splits the time distance from ms (source value) into the different units.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="">
@@ -130,7 +163,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#getDays()">getDays</a>(round:Number):Number</div>
 <div class="summaryTableDescription">
-    Returns the amount of days are contained within the time.</div>
+         Returns the amount of days are contained within the time.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="">
@@ -138,7 +171,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#getHours()">getHours</a>(round:Number):Number</div>
 <div class="summaryTableDescription">
-     Returns the amount of hours are contained within the time.</div>
+         Returns the amount of hours are contained within the time.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -147,7 +180,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="../../vegas/core/CoreObject.html#getLogger()">getLogger</a>():<a href="../../vegas/logging/ILogger.html">ILogger</a>
 </div>
 <div class="summaryTableDescription">
-   Returns the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="">
@@ -155,7 +188,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#getMilliseconds()">getMilliseconds</a>(round:Number):Number</div>
 <div class="summaryTableDescription">
-   Returns the amount of milliseconds are contained within the time.</div>
+         Returns the amount of milliseconds are contained within the time.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="">
@@ -163,7 +196,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#getMinutes()">getMinutes</a>(round:Number):Number</div>
 <div class="summaryTableDescription">
-   Returns the amount of minutes are contained within the time.</div>
+         Returns the amount of minutes are contained within the time.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="">
@@ -171,7 +204,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#getSeconds()">getSeconds</a>(round:Number):Number</div>
 <div class="summaryTableDescription">
-   Returns the amount of seconds are contained within the time.</div>
+         Returns the amount of seconds are contained within the time.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -187,7 +220,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#inDays()">inDays</a>():Number</div>
 <div class="summaryTableDescription">
-   Returns the time distance in days.</div>
+         Returns the time distance in days.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="">
@@ -195,7 +228,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#inHours()">inHours</a>():Number</div>
 <div class="summaryTableDescription">
-   Returns the time distance in hours.</div>
+         Returns the time distance in hours.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="">
@@ -203,7 +236,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#inMilliSeconds()">inMilliSeconds</a>():Number</div>
 <div class="summaryTableDescription">
-   Returns the time difference in milliseconds.</div>
+         Returns the time difference in milliseconds.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="">
@@ -211,7 +244,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#inMinutes()">inMinutes</a>():Number</div>
 <div class="summaryTableDescription">
-   Returns the time distance in minutes.</div>
+         Returns the time distance in minutes.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="">
@@ -219,7 +252,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#inSeconds()">inSeconds</a>():Number</div>
 <div class="summaryTableDescription">
-    Returns The time difference in seconds.</div>
+         Returns The time difference in seconds.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="">
@@ -228,7 +261,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="#minus()">minus</a>(timeDifference:<a href="Time.html">Time</a>):<a href="../date/Time.html">Time</a>
 </div>
 <div class="summaryTableDescription">
-    Removes the passed-in <code>timeDifference</code> from the current time.</div>
+         Removes the passed-in <code class="prettyprint">timeDifference</code> from the current time.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="">
@@ -237,7 +270,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="#plus()">plus</a>(timeDifference:<a href="Time.html">Time</a>):<a href="../date/Time.html">Time</a>
 </div>
 <div class="summaryTableDescription">
-    Adds the passed-in <code>timedistance</code> to the current time.</div>
+         Adds the passed-in <code class="prettyprint">timedistance</code> to the current time.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -245,7 +278,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../vegas/core/CoreObject.html#setLogger()">setLogger</a>(log:<a href="../../vegas/logging/ILogger.html">ILogger</a> = null):void</div>
 <div class="summaryTableDescription">
-   Sets the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="">
@@ -254,7 +287,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="#setValue()">setValue</a>(timeDifference:Number, format:String = null):<a href="../date/Time.html">Time</a>
 </div>
 <div class="summaryTableDescription"> 
-   Sets the time of the instance.</div>
+         Sets the time of the instance.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -278,7 +311,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#valueOf()">valueOf</a>():Number</div>
 <div class="summaryTableDescription">
-   Returns the value of the time distance (in ms).</div>
+         Returns the value of the time distance (in ms).</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 </table>
@@ -292,47 +325,47 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#DAY">DAY</a> : Number = 8.64E7<div class="summaryTableDescription">[static] 
-   Factor from ms to day.</div>
+         Factor from ms to day.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#DAY_FORMAT">DAY_FORMAT</a> : String = "d"<div class="summaryTableDescription">[static]
-   The 'day' string representation to format the unit amount time value.</div>
+         The 'day' string representation to format the unit amount time value.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#HOUR">HOUR</a> : Number = 3600000.0<div class="summaryTableDescription">[static] 
-   Factor from ms to hour.</div>
+         Factor from ms to hour.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#HOUR_FORMAT">HOUR_FORMAT</a> : String = "h"<div class="summaryTableDescription">[static]
-   The 'hour' string representation to format the unit amount time value.</div>
+         The 'hour' string representation to format the unit amount time value.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#MILLISECOND_FORMAT">MILLISECOND_FORMAT</a> : String = "ms"<div class="summaryTableDescription">[static]
-   The 'millisecond' string representation to format the unit amount time value.</div>
+         The 'millisecond' string representation to format the unit amount time value.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#MINUTE">MINUTE</a> : Number = 60000.0<div class="summaryTableDescription">[static] 
-   Factor from ms to minute.</div>
+         Factor from ms to minute.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#MINUTE_FORMAT">MINUTE_FORMAT</a> : String = "m"<div class="summaryTableDescription">[static]
-   The 'minute' string representation to format the unit amount time value.</div>
+         The 'minute' string representation to format the unit amount time value.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SECOND">SECOND</a> : Number = 1000<div class="summaryTableDescription">[static] 
-   Factor from ms to second.</div>
+         Factor from ms to second.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SECOND_FORMAT">SECOND_FORMAT</a> : String = "ms"<div class="summaryTableDescription">[static]
-   The 'second' string representation to format the unit amount time value.</div>
+         The 'second' string representation to format the unit amount time value.</div>
 </td><td class="summaryTableOwnerCol">Time</td>
 </tr>
 </table>
@@ -352,8 +385,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public var days:Number</code><p> 
-   Amount of days.
-   </p></div>
+         Amount of days.
+         </p></div>
 <a name="doEval"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -362,8 +395,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public var doEval:Boolean = true</code><p> 
-   Flag if the instance need to be evaluated by evaluate.
-     </p></div>
+         Flag if the instance need to be evaluated by evaluate.
+         </p></div>
 <a name="hours"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -372,8 +405,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public var hours:Number</code><p>  
-   Amount of hours.
-   </p></div>
+         Amount of hours.
+         </p></div>
 <a name="milliSeconds"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -382,8 +415,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public var milliSeconds:Number</code><p> 
-   Amount of milliseconds.
-   </p></div>
+         Amount of milliseconds.
+         </p></div>
 <a name="minutes"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -392,8 +425,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public var minutes:Number</code><p>
-    Amount of minutes.
-   </p></div>
+          Amount of minutes.
+         </p></div>
 <a name="ms"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -402,8 +435,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public var ms:Number</code><p>
-    Time difference in ms.
-    </p></div>
+         Time difference in ms.
+         </p></div>
 <a name="seconds"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -412,8 +445,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public var seconds:Number</code><p>
-    Amount of seconds.
-   </p></div>
+          Amount of seconds.
+         </p></div>
 <a name="constructorDetail"></a>
 <div class="detailSectionHeader">Constructor detail</div>
 <a name="Time()"></a>
@@ -424,19 +457,19 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function Time(timeDifference:Number, format:String = null)</code><p>
-   Creates a new <code>Time</code> instance.
-      </p><span class="label">Parameters</span>
+         Creates a new <code class="prettyprint">Time</code> instance.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">timeDifference</span>:Number</code> &mdash; The time size of the time difference for the passed-in <code>format</code>.
-      </td>
+<td width="20px"></td><td><code><span class="label">timeDifference</span>:Number</code> &mdash; The time size of the time difference for the passed-in <code class="prettyprint">format</code>.
+         </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">format</span>:String</code> (default = <code>null</code>)<code></code> &mdash; (optional) "d"/"h"/"m"/"s"/"ms" for the unit of the amout, default case is "ms".
-      </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -450,8 +483,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function evaluate():void</code><p>
-   Splits the time distance from ms (source value) into the different units.
-    </p></div>
+         Splits the time distance from ms (source value) into the different units.
+         </p></div>
 <a name="getDays()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -460,13 +493,13 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function getDays(round:Number):Number</code><p>
-    Returns the amount of days are contained within the time.
-    </p><p>It will not round the result if you pass-in nothing.</p>
-    <span class="label">Parameters</span>
+         Returns the amount of days are contained within the time.
+         </p><p>It will not round the result if you pass-in nothing.</p>
+         <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">round</span>:Number</code> &mdash; (optional) the number of decimal spaces
-    </td>
+         </td>
 </tr>
 </table>
 <p></p>
@@ -474,7 +507,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>Number</code> &mdash; The time difference in days.
-    </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -486,13 +519,13 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function getHours(round:Number):Number</code><p>
-     Returns the amount of hours are contained within the time.
-    </p><p>It will not round the result if you pass-in nothing.</p>
-    <span class="label">Parameters</span>
+         Returns the amount of hours are contained within the time.
+         </p><p>It will not round the result if you pass-in nothing.</p>
+         <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">round</span>:Number</code> &mdash; (optional) the number of decimal spaces
-    </td>
+         </td>
 </tr>
 </table>
 <p></p>
@@ -500,7 +533,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>Number</code> &mdash; The time difference in hours.
-    </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -512,13 +545,13 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function getMilliseconds(round:Number):Number</code><p>
-   Returns the amount of milliseconds are contained within the time.
-   </p><p>It will not round the result if you pass-in nothing.</p>
-   <span class="label">Parameters</span>
+         Returns the amount of milliseconds are contained within the time.
+         </p><p>It will not round the result if you pass-in nothing.</p>
+         <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">round</span>:Number</code> &mdash; (optional) the number of decimal spaces.
-    </td>
+         </td>
 </tr>
 </table>
 <p></p>
@@ -526,7 +559,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>Number</code> &mdash; The time difference in milliseconds.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -538,13 +571,13 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function getMinutes(round:Number):Number</code><p>
-   Returns the amount of minutes are contained within the time.
-   </p><p>It will not round the result if you pass-in nothing.</p>
-   <span class="label">Parameters</span>
+         Returns the amount of minutes are contained within the time.
+         </p><p>It will not round the result if you pass-in nothing.</p>
+         <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">round</span>:Number</code> &mdash; (optional) the number of decimal spaces
-    </td>
+         </td>
 </tr>
 </table>
 <p></p>
@@ -552,7 +585,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>Number</code> &mdash; The time difference in minutes.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -564,13 +597,13 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function getSeconds(round:Number):Number</code><p>
-   Returns the amount of seconds are contained within the time.
-   </p><p>It will not round the result if you pass-in nothing.</p>
-    <span class="label">Parameters</span>
+         Returns the amount of seconds are contained within the time.
+         </p><p>It will not round the result if you pass-in nothing.</p>
+         <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">round</span>:Number</code> &mdash; (optional) the number of decimal spaces
-   </td>
+         </td>
 </tr>
 </table>
 <p></p>
@@ -578,7 +611,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>Number</code> &mdash; The time difference in seconds
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -590,13 +623,13 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function inDays():Number</code><p>
-   Returns the time distance in days.
-   </p><p></p>
+         Returns the time distance in days.
+         </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>Number</code> &mdash; The time difference in days.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -608,13 +641,13 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function inHours():Number</code><p>
-   Returns the time distance in hours.
-   </p><p></p>
+         Returns the time distance in hours.
+         </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>Number</code> &mdash; The time difference in hours.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -626,13 +659,13 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function inMilliSeconds():Number</code><p>
-   Returns the time difference in milliseconds.
-   </p><p></p>
+         Returns the time difference in milliseconds.
+         </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>Number</code> &mdash; the time difference in milliseconds.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -644,13 +677,13 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function inMinutes():Number</code><p>
-   Returns the time distance in minutes.
-   </p><p></p>
+         Returns the time distance in minutes.
+         </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>Number</code> &mdash; The time difference in minutes.
-    </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -662,13 +695,13 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function inSeconds():Number</code><p>
-    Returns The time difference in seconds.
-    </p><p></p>
+         Returns The time difference in seconds.
+         </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>Number</code> &mdash; The time difference in seconds.
-    </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -680,12 +713,12 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function minus(timeDifference:<a href="Time.html">Time</a>):<a href="../date/Time.html">Time</a></code><p>
-    Removes the passed-in <code>timeDifference</code> from the current time.
-    </p><span class="label">Parameters</span>
+         Removes the passed-in <code class="prettyprint">timeDifference</code> from the current time.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">timeDifference</span>:<a href="Time.html">Time</a></code> &mdash; time difference to be removed from the current time
-    </td>
+         </td>
 </tr>
 </table>
 <p></p>
@@ -694,7 +727,7 @@ showHideInherited();
 <tr>
 <td width="20"></td><td><code><a href="../date/Time.html">Time</a></code> &mdash; 
                         A new instance with the resulting amount of time
-    
+         
                         
                      </td>
 </tr>
@@ -708,12 +741,12 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function plus(timeDifference:<a href="Time.html">Time</a>):<a href="../date/Time.html">Time</a></code><p>
-    Adds the passed-in <code>timedistance</code> to the current time.
-    </p><span class="label">Parameters</span>
+         Adds the passed-in <code class="prettyprint">timedistance</code> to the current time.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">timeDifference</span>:<a href="Time.html">Time</a></code> &mdash; time difference to be added to the current time.
-    </td>
+         </td>
 </tr>
 </table>
 <p></p>
@@ -722,7 +755,7 @@ showHideInherited();
 <tr>
 <td width="20"></td><td><code><a href="../date/Time.html">Time</a></code> &mdash; 
                         A new instance with the resulting amount of time.
-    
+         
                         
                      </td>
 </tr>
@@ -736,22 +769,22 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function setValue(timeDifference:Number, format:String = null):<a href="../date/Time.html">Time</a></code><p> 
-   Sets the time of the instance.
-   
-   </p><p>Uses "ms" if no format or a wrong format was passed-in.</p>
-   <p>Uses <code>Number.MAX_VALUE</code> if <code>Infinity</code> was passed-in.</p>
-      <span class="label">Parameters</span>
+         Sets the time of the instance.
+         
+         </p><p>Uses "ms" if no format or a wrong format was passed-in.</p>
+         <p>Uses <code class="prettyprint">Number.MAX_VALUE</code> if <code class="prettyprint">Infinity</code> was passed-in.</p>
+         <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">timeDifference</span>:Number</code> &mdash; size of the time difference for the passed-in <code>format</code>
-      </td>
+<td width="20px"></td><td><code><span class="label">timeDifference</span>:Number</code> &mdash; size of the time difference for the passed-in <code class="prettyprint">format</code>
+         </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">format</span>:String</code> (default = <code>null</code>)<code></code> &mdash; (optional) "d"/"h"/"m"/"s"/"ms" for the unit of the amout. Default value is ms.
-   </td>
+         </td>
 </tr>
 </table>
 <p></p>
@@ -770,13 +803,13 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function valueOf():Number</code><p>
-   Returns the value of the time distance (in ms).
-   </p><p></p>
+         Returns the value of the time distance (in ms).
+         </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>Number</code> &mdash; The value of this object in ms.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -790,8 +823,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const DAY:Number = 8.64E7</code><p> 
-   Factor from ms to day.
-   </p></div>
+         Factor from ms to day.
+         </p></div>
 <a name="DAY_FORMAT"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -800,8 +833,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const DAY_FORMAT:String = "d"</code><p>
-   The 'day' string representation to format the unit amount time value.
-   </p></div>
+         The 'day' string representation to format the unit amount time value.
+         </p></div>
 <a name="HOUR"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -810,8 +843,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const HOUR:Number = 3600000.0</code><p> 
-   Factor from ms to hour.
-   </p></div>
+         Factor from ms to hour.
+         </p></div>
 <a name="HOUR_FORMAT"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -820,8 +853,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const HOUR_FORMAT:String = "h"</code><p>
-   The 'hour' string representation to format the unit amount time value.
-   </p></div>
+         The 'hour' string representation to format the unit amount time value.
+         </p></div>
 <a name="MILLISECOND_FORMAT"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -830,8 +863,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const MILLISECOND_FORMAT:String = "ms"</code><p>
-   The 'millisecond' string representation to format the unit amount time value.
-   </p></div>
+         The 'millisecond' string representation to format the unit amount time value.
+         </p></div>
 <a name="MINUTE"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -840,8 +873,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const MINUTE:Number = 60000.0</code><p> 
-   Factor from ms to minute.
-   </p></div>
+         Factor from ms to minute.
+         </p></div>
 <a name="MINUTE_FORMAT"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -850,8 +883,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const MINUTE_FORMAT:String = "m"</code><p>
-   The 'minute' string representation to format the unit amount time value.
-   </p></div>
+         The 'minute' string representation to format the unit amount time value.
+         </p></div>
 <a name="SECOND"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -860,8 +893,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const SECOND:Number = 1000</code><p> 
-   Factor from ms to second. 
-   </p></div>
+         Factor from ms to second. 
+         </p></div>
 <a name="SECOND_FORMAT"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -870,8 +903,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const SECOND_FORMAT:String = "ms"</code><p>
-   The 'second' string representation to format the unit amount time value.
-   </p></div>
+         The 'second' string representation to format the unit amount time value.
+         </p></div>
 <br>
 <br>
 <hr>

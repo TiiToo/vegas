@@ -48,8 +48,8 @@ package vegas.data
     	function clear():void ;
 	
 		/**
-		 * Returns <code>true</code> if the queue contains value.
-		 * @return <code>true</code> if the queue contains value.
+		 * Returns <code class="prettyprint">true</code> if the queue contains value.
+		 * @return <code class="prettyprint">true</code> if the queue contains value.
 		 */
     	function contains(o:*):Boolean ;
     	

@@ -32,7 +32,7 @@ package vegas.util.comparators
 	import vegas.errors.NullPointerError;
 	
 	/**
-	 * An IComparator for <code>Boolean</code> objects that can sort either <code>true</code> or <code>false</code> first.
+	 * An IComparator for <code class="prettyprint">Boolean</code> objects that can sort either <code class="prettyprint">true</code> or <code class="prettyprint">false</code> first.
 	 * <p><b>Example :</b></p>
 	 * <pre class="prettyprint">
 	 * var c:IComparator = new BooleanComparator() ;
@@ -57,7 +57,7 @@ package vegas.util.comparators
 		}
 
 		/**
-		 * When <code>true</code> sort <code>true</code> boolean values before <code>false</code>.
+		 * When <code class="prettyprint">true</code> sort <code class="prettyprint">true</code> boolean values before <code class="prettyprint">false</code>.
 	 	 */
 		public var trueFirst:Boolean ; 
 
@@ -119,7 +119,7 @@ package vegas.util.comparators
 		}
 		
 		/**
-	 	 * Returns a <code>BooleanComparator</code> singleton that sorts false values before true values.
+	 	 * Returns a <code class="prettyprint">BooleanComparator</code> singleton that sorts false values before true values.
 		 * Clients are encouraged to use the value returned from this method instead of constructing a new instance to reduce allocation and garbage collection overhead when multiple BooleanComparators may be used in the same application.
 	 	 * <p><b>Example :</b></p>
 		 * <pre class="prettyprint">
@@ -129,7 +129,7 @@ package vegas.util.comparators
 		 * trace(c.compare(false, true)) ; // 1
 		 * trace(c.compare(false, false)) ; // 0
 	 	 * </pre>
-		 * @return a <code>BooleanComparator</code> instance that sorts false values before true values.
+		 * @return a <code class="prettyprint">BooleanComparator</code> instance that sorts false values before true values.
 		 */
 		public static function getFalseFirstComparator():BooleanComparator
 		{
@@ -141,7 +141,7 @@ package vegas.util.comparators
 		}
 		
 		/**
-		 * Returns a <code>BooleanComparator</code> singleton that sorts true values before false values.
+		 * Returns a <code class="prettyprint">BooleanComparator</code> singleton that sorts true values before false values.
 		 * Clients are encouraged to use the value returned from this method instead of constructing a new instance to reduce allocation and garbage collection overhead when multiple BooleanComparators may be used in the same application.
  		 * <pre class="prettyprint">
 		 * var c:IComparator = BooleanComparator.getTrueFirstComparator() ;
@@ -150,7 +150,7 @@ package vegas.util.comparators
 		 * trace(c.compare(false, true)) ; // -1
 		 * trace(c.compare(false, false)) ; // 0
 	 	 * </pre>
-	 	 * @return a <code>BooleanComparator</code> instance that sorts true values before false values.
+	 	 * @return a <code class="prettyprint">BooleanComparator</code> instance that sorts true values before false values.
 	 	 */
 		public static function getTrueFirstComparator():BooleanComparator
 		{

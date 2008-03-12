@@ -45,7 +45,7 @@ package vegas.data.list
 		
 		/**
 		 * Compares the specified object with this object for equality.
-		 * @return <code>true</code> if the the specified object is equal with this object.
+		 * @return <code class="prettyprint">true</code> if the the specified object is equal with this object.
 		 */
 		public function equals( o:* ):Boolean 
 		{
@@ -53,7 +53,7 @@ package vegas.data.list
 		}
 
 		/**
-	 	 * This method is used by the <code>ListItr</code> class only.
+	 	 * This method is used by the <code class="prettyprint">ListItr</code> class only.
 	 	 */
 		public function getModCount():Number 
 		{
@@ -118,7 +118,7 @@ package vegas.data.list
 		}
 
 		/**
-		 * Removes from this list all the elements that are contained between the specific <code>from</code> and the specific <code>to</code> position in this list (optional operation).
+		 * Removes from this list all the elements that are contained between the specific <code class="prettyprint">from</code> and the specific <code class="prettyprint">to</code> position in this list (optional operation).
 	 	 */
 		public function removeRange(from:uint , to:uint):void 
 		{

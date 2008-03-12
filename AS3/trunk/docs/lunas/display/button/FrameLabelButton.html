@@ -53,8 +53,8 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
   <li>"over"     : the frame when the button is over.</li>
   <li>"up"       : the first frame when the button is up.</li>
   </ul>
-  <p>The <code>stop()</code> method is call in the first frame of the component when the constructor is launched.</p>
-  This class looks like SimpleButton class but you can use the <code>registerType()</code> and the <code>unregisterType()</code> method to add or remove a ButtonEvent type (DISABLED, OVER, DOWN...) corresponding with a frame label in the MovieClip view of the button.
+  <p>The <code class="prettyprint">stop()</code> method is call in the first frame of the component when the constructor is launched.</p>
+  This class looks like SimpleButton class but you can use the <code class="prettyprint">registerType()</code> and the <code class="prettyprint">unregisterType()</code> method to add or remove a ButtonEvent type (DISABLED, OVER, DOWN...) corresponding with a frame label in the MovieClip view of the button.
   <p>
   <p><b>Example :</b></p>
   <pre class="prettyprint">
@@ -325,7 +325,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#containsType()">containsType</a>(type:String):Boolean</div>
 <div class="summaryTableDescription">
-   Returns <code>true</code> if the specified type is register in the object.</div>
+   Returns <code class="prettyprint">true</code> if the specified type is register in the object.</div>
 </td><td class="summaryTableOwnerCol">FrameLabelButton</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -349,7 +349,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#getBuilderRenderer()">getBuilderRenderer</a>():Class</div>
 <div class="summaryTableDescription">
-   Returns the constructor function of the <code>IBuilder</code> of this instance.</div>
+   Returns the constructor function of the <code class="prettyprint">IBuilder</code> of this instance.</div>
 </td><td class="summaryTableOwnerCol">FrameLabelButton</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -358,7 +358,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="../../../asgard/display/CoreSprite.html#getLogger()">getLogger</a>():<a href="../../../vegas/logging/ILogger.html">ILogger</a>
 </div>
 <div class="summaryTableDescription">
-   Returns the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../../asgard/display/CoreSprite.html">CoreSprite</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -406,7 +406,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../../asgard/display/CoreSprite.html#isLocked()">isLocked</a>():Boolean</div>
 <div class="summaryTableDescription">
-      Returns <code>true</code> if the object is locked.</div>
+      Returns <code class="prettyprint">true</code> if the object is locked.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../../asgard/display/CoreSprite.html">CoreSprite</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -414,7 +414,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../core/AbstractComponent.html#isVisible()">isVisible</a>():Boolean</div>
 <div class="summaryTableDescription">
-   Returns <code>true</code> if the component is visible.</div>
+   Returns <code class="prettyprint">true</code> if the component is visible.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -494,7 +494,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../../asgard/display/CoreSprite.html#setLogger()">setLogger</a>(log:<a href="../../../vegas/logging/ILogger.html">ILogger</a> = null):void</div>
 <div class="summaryTableDescription">
-   Sets the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../../asgard/display/CoreSprite.html">CoreSprite</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -542,7 +542,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../../asgard/display/CoreSprite.html#toString()">toString</a>():String</div>
 <div class="summaryTableDescription">
-    Returns the <code>String</code> representation of this object.</div>
+    Returns the <code class="prettyprint">String</code> representation of this object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../../asgard/display/CoreSprite.html">CoreSprite</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -733,7 +733,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function containsType(type:String):Boolean</code><p>
-   Returns <code>true</code> if the specified type is register in the object.
+   Returns <code class="prettyprint">true</code> if the specified type is register in the object.
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -744,7 +744,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the specified type is register in the object.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the specified type is register in the object.
    </td>
 </tr>
 </table>
@@ -757,12 +757,12 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public override function getBuilderRenderer():Class</code><p>
-   Returns the constructor function of the <code>IBuilder</code> of this instance.
+   Returns the constructor function of the <code class="prettyprint">IBuilder</code> of this instance.
    </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Class</code> &mdash; the constructor function of the <code>IBuilder</code> of this instance.
+<td width="20"></td><td><code>Class</code> &mdash; the constructor function of the <code class="prettyprint">IBuilder</code> of this instance.
    </td>
 </tr>
 </table>

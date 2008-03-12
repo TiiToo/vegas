@@ -47,23 +47,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </table>
 <p></p>
      Represents an immutable range of values.
-     <p><b>Example :</b></p>
-     <pre class="prettyprint">
-     import pegas.maths.Range ;
-     
-     var r1:Range = new Range(10, 120) ;
-     var r2:Range = new Range(100, 150) ;
-     
-     trace ("r1 : " + r1) ; // r1 : [Range<10,120>]
-     trace ("r2 : " + r2) ; // r2 : [Range<100,150>]
-     
-     trace ("r2.toSource() : " + r2.toSource()) ; // r2.toSource() : new pegas.maths.Range(100,150)
-     trace ("r1 contains 50 : " + r1.contains(50)) ; // r1 contains 50 : true
-     trace ("r1 isOutOfRange 5 : " + r1.isOutOfRange(5)) ; // r1 isOutOfRange 5 : true
-     trace ("r1 overlap r2 : " + r1.overlap(r2)) ; // r1 overlap r2 : true
-     trace ("r1 clamp 5 : " + r1.clamp(5)) ; // r1 clamp 5 : 10
-     trace ("r1 clamp 121 : " + r1.clamp(121)) ; // r1 clamp 121 : 120
-     </pre>
      <p></p>
 <br>
 <hr>
@@ -140,7 +123,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#contains()">contains</a>(value:Number):Boolean</div>
 <div class="summaryTableDescription">
-         Returns <code>true</code> if the Range instance contains the value passed in argument.</div>
+         Returns <code class="prettyprint">true</code> if the Range instance contains the value passed in argument.</div>
 </td><td class="summaryTableOwnerCol">Range</td>
 </tr>
 <tr class="">
@@ -190,7 +173,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="../../vegas/core/CoreObject.html#getLogger()">getLogger</a>():<a href="../../vegas/logging/ILogger.html">ILogger</a>
 </div>
 <div class="summaryTableDescription">
-   Returns the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="">
@@ -222,7 +205,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#isOutOfRange()">isOutOfRange</a>(value:Number):Boolean</div>
 <div class="summaryTableDescription">
-         Returns <code>true</code> if the value is out of the range.</div>
+         Returns <code class="prettyprint">true</code> if the value is out of the range.</div>
 </td><td class="summaryTableOwnerCol">Range</td>
 </tr>
 <tr class="">
@@ -230,7 +213,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#overlap()">overlap</a>(r:<a href="Range.html">Range</a>):Boolean</div>
 <div class="summaryTableDescription">
-         Returns <code>true</code> if the range in argument overlap the current range.</div>
+         Returns <code class="prettyprint">true</code> if the range in argument overlap the current range.</div>
 </td><td class="summaryTableOwnerCol">Range</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -238,7 +221,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../vegas/core/CoreObject.html#setLogger()">setLogger</a>(log:<a href="../../vegas/logging/ILogger.html">ILogger</a> = null):void</div>
 <div class="summaryTableDescription">
-   Sets the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="">
@@ -404,19 +387,19 @@ showHideInherited();
 <div class="detailBody">
 <code>public static function combine(range1:<a href="Range.html">Range</a>, range2:<a href="Range.html">Range</a>):<a href="../maths/Range.html">Range</a></code><p>
          Creates a new range by combining two existing ranges.
-         <li>either range can be <code>null</code>, in which case the other range is returned.</li>
-         <li>if both ranges are <code>null</code> the return value is <code>null</code>.</li>
+         <li>either range can be <code class="prettyprint">null</code>, in which case the other range is returned.</li>
+         <li>if both ranges are <code class="prettyprint">null</code> the return value is <code class="prettyprint">null</code>.</li>
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">range1</span>:<a href="Range.html">Range</a></code> &mdash; the first range, <code>null</code> permitted.
+<td width="20px"></td><td><code><span class="label">range1</span>:<a href="Range.html">Range</a></code> &mdash; the first range, <code class="prettyprint">null</code> permitted.
          </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">range2</span>:<a href="Range.html">Range</a></code> &mdash; the second range, <code>null</code> permitted.
+<td width="20px"></td><td><code><span class="label">range2</span>:<a href="Range.html">Range</a></code> &mdash; the second range, <code class="prettyprint">null</code> permitted.
          </td>
 </tr>
 </table>
@@ -436,7 +419,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function contains(value:Number):Boolean</code><p>
-         Returns <code>true</code> if the Range instance contains the value passed in argument.
+         Returns <code class="prettyprint">true</code> if the Range instance contains the value passed in argument.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -447,7 +430,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the Range instance contains the value passed in argument.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the Range instance contains the value passed in argument.
          </td>
 </tr>
 </table>
@@ -505,7 +488,7 @@ showHideInherited();
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">range</span>:<a href="Range.html">Range</a></code> &mdash; the range <code>null</code> not permitted.
+<td width="20px"></td><td><code><span class="label">range</span>:<a href="Range.html">Range</a></code> &mdash; the range <code class="prettyprint">null</code> not permitted.
          </td>
 </tr>
 <tr>
@@ -538,7 +521,7 @@ showHideInherited();
 <span class="label">Throws</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code></code> &mdash; if the range argument is <code>null</code>
+<td width="20"></td><td><code></code> &mdash; if the range argument is <code class="prettyprint">null</code>
          </td>
 </tr>
 </table>
@@ -651,7 +634,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function isOutOfRange(value:Number):Boolean</code><p>
-         Returns <code>true</code> if the value is out of the range.
+         Returns <code class="prettyprint">true</code> if the value is out of the range.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -662,7 +645,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the value is out of the range.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the value is out of the range.
          </td>
 </tr>
 </table>
@@ -675,7 +658,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function overlap(r:<a href="Range.html">Range</a>):Boolean</code><p>
-         Returns <code>true</code> if the range in argument overlap the current range.
+         Returns <code class="prettyprint">true</code> if the range in argument overlap the current range.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -686,7 +669,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the range in argument overlap the current range.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the range in argument overlap the current range.
          </td>
 </tr>
 </table>

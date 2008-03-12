@@ -35,8 +35,8 @@ package andromeda.ioc.core
 
 		/**
 		 * Creates a new ObjectDefinition instance.
-		 * @param id the id of the <code>ObjectDefinition</code> object.
-		 * @param type the type of the <code>ObjectDefinition</code> object.
+		 * @param id the id of the <code class="prettyprint">ObjectDefinition</code> object.
+		 * @param type the type of the <code class="prettyprint">ObjectDefinition</code> object.
 		 * @param singleton the boolean flag to indicate if the object is a sigleton or not.
 		 * @param lazyInit the boolean flag to indicate if the singleton object is lazy init or not.
 		 */	
@@ -156,8 +156,8 @@ package andromeda.ioc.core
 		}
 		
 		/**
-		 * Returns <code>true</code> if the object in a Sigleton else the object is a prototype.
-		 * @return <code>true</code> if the object in a Sigleton else the object is a prototype.
+		 * Returns <code class="prettyprint">true</code> if the object in a Sigleton else the object is a prototype.
+		 * @return <code class="prettyprint">true</code> if the object in a Sigleton else the object is a prototype.
 		 */		
 		public function isSingleton():Boolean 
 		{

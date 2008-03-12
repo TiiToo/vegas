@@ -28,7 +28,7 @@ package andromeda.controller
 	import vegas.core.CoreObject;
 
 	/**
-	 * This class provides a skeletal implementation of the <code>IController</code> interface, to minimize the effort required to implement this interface.
+	 * This class provides a skeletal implementation of the <code class="prettyprint">IController</code> interface, to minimize the effort required to implement this interface.
 	 * @author eKameleon
 	 */
 	public class AbstractController extends CoreObject implements IController

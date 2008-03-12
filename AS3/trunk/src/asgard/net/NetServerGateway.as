@@ -92,7 +92,7 @@ package asgard.net
     	}
         
 	    /**
-    	 * Returns <code>true</code> if the eventName is registered in the Gateway Controller.
+    	 * Returns <code class="prettyprint">true</code> if the eventName is registered in the Gateway Controller.
     	 * @param eventName the name of the event type in the internal controller.
     	 */
 	    public function contains( eventName:String ):Boolean 

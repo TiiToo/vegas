@@ -25,7 +25,7 @@ package pegas.util
     import pegas.geom.Vector3;            
 
     /**
-     * Static tool class to manipulate and transform <code>Vector3</code> references.
+     * Static tool class to manipulate and transform <code class="prettyprint">Vector3</code> references.
      * @author eKameleon
      */
     public class Vector3Util 
@@ -79,9 +79,9 @@ package pegas.util
     
         /**
          * Computes the cross product of the two Vector3s.
-         * @param v1 a <code>Vector3</code>.
-         * @param v2 a <code>Vector3</code>.
-         * @return the <code>Vector3</code> resulting of the cross product.
+         * @param v1 a <code class="prettyprint">Vector3</code>.
+         * @param v2 a <code class="prettyprint">Vector3</code>.
+         * @return the <code class="prettyprint">Vector3</code> resulting of the cross product.
          */
         public static function getCross( v1:Vector3, v2:Vector3 ):Vector3
         {
@@ -95,8 +95,8 @@ package pegas.util
     
         /**
          * Computes the dot product of the two Vector3s.
-         * @param v1 a <code>Vector3</code>.
-         * @param v2 a <code>Vector3</code>.
+         * @param v1 a <code class="prettyprint">Vector3</code>.
+         * @param v2 a <code class="prettyprint">Vector3</code>.
          * @return the dot product of the 2 Vector3.
          */
         public static function getDot( v1:Vector3, v2:Vector3 ):Number
@@ -115,9 +115,9 @@ package pegas.util
         }
         
         /**
-         * Computes the oposite Vector3 of the <code>Vector3</code>.
+         * Computes the oposite Vector3 of the <code class="prettyprint">Vector3</code>.
          * @param v the Vector3 reference to negate.
-         * @return a new negate <code>Vector3</code> reference.
+         * @return a new negate <code class="prettyprint">Vector3</code> reference.
          */
         public static function getNegate( v:Vector3 ):Vector3
         {
@@ -125,9 +125,9 @@ package pegas.util
         }    
         
         /**
-         * Computes the norm of the <code>Vector3</code>.
+         * Computes the norm of the <code class="prettyprint">Vector3</code>.
          * @param v a Vector3 reference.
-         * @return the norm of the specified <code>Vector3</code>.
+         * @return the norm of the specified <code class="prettyprint">Vector3</code>.
          */
         public static function getNorm( v:Vector3 ):Number
         {
@@ -137,7 +137,7 @@ package pegas.util
         /**
          * Calculates and returns the perspective ratio needed to scale an object correctly.
          * <p><b>Example :</b></p>
-         * <code>
+         * <code class="prettyprint">
          * var v:Vector3 = new Vector3(50,20,40);
          * var p:Number  = Vector3Util.getPerspective(v);
          * trace(p) ;
@@ -210,9 +210,9 @@ package pegas.util
         }
     
         /**
-         * Normalize the specified <code>Vector3</code> in parameter.
+         * Normalize the specified <code class="prettyprint">Vector3</code> in parameter.
          * @param v a Vector3 reference.
-         * @return <code>true</code> of the normalize method is success else false for mistake.
+         * @return <code class="prettyprint">true</code> of the normalize method is success else false for mistake.
          */    
         public static function normalize( v:Vector3 ):Boolean
         {
@@ -232,7 +232,7 @@ package pegas.util
          * @param v the Vector3 reference.
          * @param perspective The perspective ratio. If no value is specified, it is calculated automatically by calling the getPerspective() method.
          * <p><b>Example :</b></p>
-         * <code>
+         * <code class="prettyprint">
          * var v:Vector3 = new Vector3(50,20,40) ;
          * Vector3Util.project(v);
          * trace(v) ;
@@ -251,7 +251,7 @@ package pegas.util
          * @param v the Vector3 reference.
          * @param perspective The perspective ratio. If no value is specified, it is calculated automatically by calling the getPerspective() method.
          * <p><b>Example :</b></p>
-         * <code>
+         * <code class="prettyprint">
          * var v:Vector3 = new Vector3(50,20,40) ;
          * Vector3Util.project(v);
          * trace(v) ;
@@ -269,7 +269,7 @@ package pegas.util
          * @param v The Vector3 reference.
          * @param angle    The amount of degrees that the current vector object will be rotated by.
          * <p><b>Example :</b></p>
-         * <code>
+         * <code class="prettyprint">
          * var v:Vector3 = new Vector3(1,4,7) ;
          * Vector3Util.rotateX(v, 180);
          * trace( v ) ;
@@ -286,7 +286,7 @@ package pegas.util
          * @param ca The cosine of the angle to rotate the current vector object by.
          * @param sa The sine of the angle to rotate the current vector object by.
          * <p><b>Example :</b></p>
-         * <code>
+         * <code class="prettyprint">
          * var v:Vector3       = new Vector3(1,4,7);
          * var cosAngle:Number = Trigo.cosD(180);
          * var sinAngle:Number = Trigo.sinD(180);
@@ -305,7 +305,7 @@ package pegas.util
          * @param v The Vector3 reference.
          * @param angle    The amount of degrees that the current vector object will be rotated by.
          * <p><b>Example :</b></p>
-         * <code>
+         * <code class="prettyprint">
          * var v:Vector3 = new Vector3(1,4,7);
          * Vector3Util.rotateY(v,180);
          * trace(v);
@@ -322,7 +322,7 @@ package pegas.util
          * @param ca The cosine of the angle to rotate the current vector object by.
          * @param sa The sine of the angle to rotate the current vector object by.
          * <p><b>Example :</b></p>
-         * <code>
+         * <code class="prettyprint">
          * var v:Vector3       = new Vector3(3,-8,5);
          * var cosAngle:Number = Trigo.cosD(90);
          * var sinAngle:Number = Trigo.sinD(90);
@@ -341,7 +341,7 @@ package pegas.util
          * @param v The Vector3 reference.
          * @param angle    The amount of degrees that the current vector object will be rotated by.
          * <p><b>Example :</b></p>
-         * <code>
+         * <code class="prettyprint">
          * var v:Vector3 = new Vector3(1,4,7) ;
          * Vector3Util.rotateZ(v,180) ;
          * trace(v);
@@ -358,7 +358,7 @@ package pegas.util
          * @param ca The cosine of the angle to rotate the current vector object by.
          * @param sa The sine of the angle to rotate the current vector object by.
          * <p><b>Example :</b></p>
-         * <code>
+         * <code class="prettyprint">
          * var v:Vector3 = new Vector3(6,1,4);
          * var cosAngle:Number = Trigo.cosD(45);
          * var sinAngle:Number = Trigo.sinD(45);
@@ -378,7 +378,7 @@ package pegas.util
          * @param a The amount of degrees that the current vector object will be rotated around the x-axis by.
          * @param b The amount of degrees that the current vector object will be rotated around the y-axis by.
          * <p><b>Example :</b></p>
-         * <code>
+         * <code class="prettyprint">
          * var v:Vector3 = new Vector3(8,0,0) ;
          * Vector3Util.rotateXY(v,45,45) ;
          * trace(v) ;
@@ -397,7 +397,7 @@ package pegas.util
          * @param cb The cosine of the angle to rotate the current vector object around the y-axis by.
          * @param sb The sine of the angle to rotate the current vector object around the y-axis by.
          * <p><b>Example :</b></p>
-         * <code>
+         * <code class="prettyprint">
          * var v:Vector3 = new Vector3(6,1,4) ;
          * var cosAngleA:Number = Trigo.cosD(45) ;
          * var sinAngleA:Number = Trigo.sinD(45) ;
@@ -424,7 +424,7 @@ package pegas.util
          * @param b    The amount of degrees that the current vector object will be rotated around the y-axis by.
          * @param c    The amount of degrees that the current vector object will be rotated around the z-axis by.
          * <p><b>Example :</b></p>
-         * <code>
+         * <code class="prettyprint">
          * var v:Vector3 = new Vector3(8,0,0);
          * Vector3Util.rotateXYZ(v,45,45,45);
          * trace (v);
@@ -445,7 +445,7 @@ package pegas.util
          * @param cc The cosine of the angle to rotate the current vector object around the z-axis by.
          * @param sc The sine of the angle to rotate the current vector object around the z-axis by.
          * <p><b>Example :</b></p>
-         * <code>
+         * <code class="prettyprint">
          * var v:Vector3 = new Vector3(6,1,4) ;
          * var cosAngleA:Number = Trigo.cosD(45) ;
          * var sinAngleA:Number = Trigo.sinD(45) ;
@@ -471,10 +471,10 @@ package pegas.util
         }
         
         /**
-         * Sets the specified <code>Vector3</code> object with the second <code>Vector3</code> object passed in argument.
-         * @param v1 the first <code>Vector3</code>.
-         * @param v2 the second <code>Vector3</code>.
-         * @return the first <code>Vector3</code> transformed.
+         * Sets the specified <code class="prettyprint">Vector3</code> object with the second <code class="prettyprint">Vector3</code> object passed in argument.
+         * @param v1 the first <code class="prettyprint">Vector3</code>.
+         * @param v2 the second <code class="prettyprint">Vector3</code>.
+         * @return the first <code class="prettyprint">Vector3</code> transformed.
          */
         public static function setByVector3( v1:Vector3, v2:Vector3):Vector3
         {

@@ -44,6 +44,51 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </table>
 <p></p>
   This Action launch the init method of ths process but notify an event before (ActionEvent.START) and after(ActionEvent.FINISH) the process.
+  This class is a pseudo abstract class. Don't instanciate this class but create a custom class with it.
+  <p></p>
+<br>
+<span class="label">Example</span>
+<br>  You must use this class with a custom class who extends this class.
+  <pre class="prettyprint">
+  import andromeda.events.ActionEvent ;
+  import test.InitTest ; // extends InitProcess.
+  
+  var debug:Function = function( e:ActionEvent ):void
+  {
+      trace ( e ) ;
+  }
+  
+  var p:InitTest = new InitTest() ;
+  p.addEventListener( ActionEvent.START  , debug ) ;
+  p.addEventListener( ActionEvent.FINISH , debug ) ;
+  
+  p.run() ;
+  
+  // [ActionEvent type="onStarted" target=[InitTest] context=null bubbles=false cancelable=false eventPhase=2]
+  // [InitTest] custom initialize
+  // [ActionEvent type="onFinished" target=[InitTest] context=null bubbles=false cancelable=false eventPhase=2]
+  </pre>
+  <code class="prettyprint">InitTest</code> is the child class of the <code class="prettyprint">InitProcess</code> pseudo abstract class :
+  <pre class="prettyprint">
+  package test
+  {
+      import andromeda.process.InitProcess ;
+      
+      public class InitTest extends InitProcess
+      {
+      
+          public function InitTest( bGlobal:Boolean = false , sChannel:String = null )
+          {
+              super( bGlobal, sChannel);
+          }
+          
+          public override function init():void
+          {
+              trace( this + " custom initialize") ;
+          }
+      }
+  }
+  </pre>
   <p></p>
 <br>
 <hr>
@@ -80,7 +125,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 <tr class="hideInheritedProperty">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="SimpleAction.html#running">running</a> : Boolean<div class="summaryTableDescription">
-      (read-only) Returns <code>true</code> if the process is in progress.</div>
+      (read-only) Returns <code class="prettyprint">true</code> if the process is in progress.</div>
 </td><td class="summaryTableOwnerCol"><a href="SimpleAction.html">SimpleAction</a></td>
 </tr>
 <tr class="hideInheritedProperty">
@@ -143,7 +188,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="../../vegas/events/AbstractCoreEventDispatcher.html#getEventDispatcher()">getEventDispatcher</a>():<a href="../../vegas/events/EventDispatcher.html">EventDispatcher</a>
 </div>
 <div class="summaryTableDescription">
-   Returns the internal <code>EventDispatcher</code> reference.</div>
+   Returns the internal <code class="prettyprint">EventDispatcher</code> reference.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/events/AbstractCoreEventDispatcher.html">AbstractCoreEventDispatcher</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -176,7 +221,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="../../vegas/core/CoreObject.html#getLogger()">getLogger</a>():<a href="../../vegas/logging/ILogger.html">ILogger</a>
 </div>
 <div class="summaryTableDescription">
-   Returns the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -184,7 +229,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="SimpleAction.html#getRunning()">getRunning</a>():Boolean</div>
 <div class="summaryTableDescription">
-      Returns <code>true</code> if the process is in progress.</div>
+      Returns <code class="prettyprint">true</code> if the process is in progress.</div>
 </td><td class="summaryTableOwnerCol"><a href="SimpleAction.html">SimpleAction</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -217,7 +262,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="../../vegas/events/AbstractCoreEventDispatcher.html#initEventDispatcher()">initEventDispatcher</a>():<a href="../../vegas/events/EventDispatcher.html">EventDispatcher</a>
 </div>
 <div class="summaryTableDescription">
-   Creates and returns the internal <code>EventDispatcher</code> reference (this method is invoked in the constructor).</div>
+   Creates and returns the internal <code class="prettyprint">EventDispatcher</code> reference (this method is invoked in the constructor).</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/events/AbstractCoreEventDispatcher.html">AbstractCoreEventDispatcher</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -233,7 +278,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../vegas/events/AbstractCoreEventDispatcher.html#isLocked()">isLocked</a>():Boolean</div>
 <div class="summaryTableDescription">
-      Returns <code>true</code> if the object is locked.</div>
+      Returns <code class="prettyprint">true</code> if the object is locked.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/events/AbstractCoreEventDispatcher.html">AbstractCoreEventDispatcher</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -289,7 +334,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../vegas/events/AbstractCoreEventDispatcher.html#setEventDispatcher()">setEventDispatcher</a>(e:<a href="../../vegas/events/EventDispatcher.html">EventDispatcher</a>):void</div>
 <div class="summaryTableDescription">
-   Sets the internal <code>EventDispatcher</code> reference.</div>
+   Sets the internal <code class="prettyprint">EventDispatcher</code> reference.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/events/AbstractCoreEventDispatcher.html">AbstractCoreEventDispatcher</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -313,7 +358,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../vegas/events/AbstractCoreEventDispatcher.html#setGlobal()">setGlobal</a>(flag:Boolean = false, channel:String = null):void</div>
 <div class="summaryTableDescription">
-   Sets if the instance use a global <code>EventDispatcher</code> to dispatch this events, if the <code>flag</code> value is <code>false</code> the instance use a local EventDispatcher.</div>
+   Sets if the instance use a global <code class="prettyprint">EventDispatcher</code> to dispatch this events, if the <code class="prettyprint">flag</code> value is <code class="prettyprint">false</code> the instance use a local EventDispatcher.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/events/AbstractCoreEventDispatcher.html">AbstractCoreEventDispatcher</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -321,7 +366,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../vegas/core/CoreObject.html#setLogger()">setLogger</a>(log:<a href="../../vegas/logging/ILogger.html">ILogger</a> = null):void</div>
 <div class="summaryTableDescription">
-   Sets the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -417,7 +462,7 @@ showHideInherited();
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">sChannel</span>:String</code> (default = <code>null</code>)<code></code> &mdash; the name of the global event flow if the <code>bGlobal</code> argument is <code>true</code>.
+<td width="20px"></td><td><code><span class="label">sChannel</span>:String</code> (default = <code>null</code>)<code></code> &mdash; the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
       </td>
 </tr>
 </table>

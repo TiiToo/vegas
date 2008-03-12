@@ -185,7 +185,11 @@ class asgard.system.Localization extends AbstractCoreEventDispatcher implements 
 		}
 		return Localization(__mInstances.get(sName)) ;
 	}	
-
+	
+	/**
+	 * Returns the name of the object.
+	 * @return the name of the object.
+	 */
 	public function getName():String 
 	{
 		return _sName ;	

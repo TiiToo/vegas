@@ -44,7 +44,49 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </table>
 <p></p>
   The TimeLineScript class use composition to register script function over MovieClip timelines.
-  <p></p>
+     <p></p>
+<br>
+<span class="label">Example</span>
+<br>     <pre class="prettyprint">
+     import asgard.display.TimelineScript ;
+     
+     var ts:TimelineScript = new TimelineScript( mc , true ) ; // mc a MovieClip in the stage
+     
+     var start:Function = function()
+     {
+         trace("start") ;
+     }
+     
+     var pause:Function = function()
+     {
+         trace("pause") ;
+         mc.stop() ;
+         setTimeout( mc.play , 4000 ) ; // pause 4 s
+     }
+     
+     var finish:Function = function()
+     {
+         trace("finish") ;
+         mc.stop() ;
+     }
+     
+     ts.put( "begin"   , start ) ;
+     ts.put( "middle"  , pause ) ;
+     ts.put( "finish"  , finish ) ;
+     
+     var click:Function = function( e:MouseEvent ):void
+     {
+         mc.play() ;
+         trace("click") ;
+         e.target.removeEventListener( MouseEvent.CLICK , click ) ;
+         mc.buttonMode = false ;
+     }
+     
+     mc.useHandCursor = true ;
+     mc.buttonMode    = true ;
+     mc.addEventListener( MouseEvent.CLICK , click ) ;
+     </pre>
+     <p></p>
 <br>
 <hr>
 </div>
@@ -82,7 +124,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#TimelineScript()">TimelineScript</a>(target:MovieClip, autoStop:Boolean = false)</div>
 <div class="summaryTableDescription">
-   Creates a new TimelineScript instance.</div>
+         Creates a new TimelineScript instance.</div>
 </td><td class="summaryTableOwnerCol">TimelineScript</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -91,7 +133,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="../../vegas/core/CoreObject.html#getLogger()">getLogger</a>():<a href="../../vegas/logging/ILogger.html">ILogger</a>
 </div>
 <div class="summaryTableDescription">
-   Returns the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -123,7 +165,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../vegas/core/CoreObject.html#setLogger()">setLogger</a>(log:<a href="../../vegas/logging/ILogger.html">ILogger</a> = null):void</div>
 <div class="summaryTableDescription">
-   Sets the internal <code>ILogger</code> reference of this <code>ILogable</code> object.</div>
+   Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -156,7 +198,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#resolve()">resolve</a>(label:String = null):int</div>
 <div class="summaryTableDescription">
-   Indicates if the specified passed-in label value is in the MovieClip target.</div>
+         Indicates if the specified passed-in label value is in the MovieClip target.</div>
 </td><td class="summaryTableOwnerCol">TimelineScript</td>
 </tr>
 </table>
@@ -192,46 +234,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function TimelineScript(target:MovieClip, autoStop:Boolean = false)</code><p>
-   Creates a new TimelineScript instance.
-   <pre class="prettyprint">
-   import asgard.display.TimelineScript ;
-   
-   var ts:TimelineScript = new TimelineScript( mc , true ) ; // mc a MovieClip in the stage
-   
-   var start:Function = function()
-   {
-       trace("start") ;
-   }
-   
-   var pause:Function = function()
-   {
-       trace("pause") ;
-       mc.stop() ;
-       setTimeout( mc.play , 4000 ) ; // pause 4 s
-   }
-   
-   var finish:Function = function()
-   {
-       trace("finish") ;
-       mc.stop() ;
-   }
-   
-   ts.put( "begin"   , start ) ;
-   ts.put( "middle"  , pause ) ;
-   ts.put( "finish"  , finish ) ;
-   
-   var click:Function = function( e:MouseEvent ):void
-   {
-       mc.play() ;
-       trace("click") ;
-       e.target.removeEventListener( MouseEvent.CLICK , click ) ;
-       mc.buttonMode = false ;
-   }
-   
-   mc.useHandCursor = true ;
-   mc.buttonMode    = true ;
-   mc.addEventListener( MouseEvent.CLICK , click ) ;
-   </pre>
+         Creates a new TimelineScript instance.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -243,7 +246,7 @@ showHideInherited();
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">autoStop</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; This boolean flag indicates if the specified MovieClip target reference is stopped.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -306,8 +309,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>protected function resolve(label:String = null):int</code><p>
-   Indicates if the specified passed-in label value is in the MovieClip target.
-   </p><span class="label">Parameters</span>
+         Indicates if the specified passed-in label value is in the MovieClip target.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">label</span>:String</code> (default = <code>null</code>)<code></code></td>
