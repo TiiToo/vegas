@@ -57,12 +57,12 @@ package system
 
 		/** 
 		 * Splice one array into another.
-		 * Like the python. 
-		 * <pre class="prettify">
+		 * Like the python 
+		 * <pre class="prettyprint">
   		 * container[containerPosition:containerPosition + countReplaced] = inserted
   		 * </pre>
   		 * @example
-		 * <pre class="prettify">
+		 * <pre class="prettyprint">
   		 * import system.Arrays ;
   		 * 
   		 * var inserted:Array  ;
