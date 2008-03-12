@@ -44,9 +44,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </table>
 <p></p>
   Provides a logger target that uses the SOS console to output log messages. 
-  Thanks PowerFlasher and the <a href='http://sos.powerflasher.de/english/english.html'>SOS Console</a>
-  <p><b>Example :</b></p>
-  <code class="prettyprint">
+  Thanks <b>PowerFlasher</b> and the <a href='http://sos.powerflasher.de/english/english.html'>SOS Console</a>
+  <p></p>
+<br>
+<span class="label">Example</span>
+<br>  <pre class="prettyprint">
   import vegas.logging.;
   import vegas.logging.targets.SOSTarget ;
    
@@ -54,7 +56,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
   
   // setup target
   var target:SOSTarget = new SOSTarget("myApplication", 0xD8F394) ;
-  target.filters = ["myApplication", "vegas.errors.] ; // use a empty array to receive all logs.
+  target.filters = [ "myApplication" ] ; // use a empty array to receive all logs.
   target.includeLines = true ;
   target.includeCategory = true ;
   target.includeDate = true ;
@@ -63,7 +65,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
   target.level = LogEventLevel.ALL ; 
   //target.setLevelColor(LogEventLevel.DEBUG, 0xFF0000) ;
   //target.levelPolicy = SOSType.DISABLE ; // SOSType.ENABLE default value
-  target.sendFoldLevelMessage(LogEventLevel.DEBUG, "Init SOS console", "test a fold message") ;
+  target.sendFoldLevelMessage( LogEventLevel.DEBUG, "Init SOS console", "test a fold message" ) ;
   target.sendMessage("Init SOS console....") ;
   
   // register target
@@ -79,8 +81,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
   logger.info("INFO !!") ;
   logger.warn("WARNING !!") ;
   logger.warn([3, 2, 4]) ;
-  throw new FatalError("a fatal error") ;
-  </code>
+  </pre>
   <p></p>
 <br>
 <hr>
@@ -809,19 +810,22 @@ showHideInherited();
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">name</span>:String</code> (default = <code>null</code>)<code></code></td>
+<td width="20px"></td><td><code><span class="label">name</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The name of the target application in the console.
+   </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">color</span>:Number</code></td>
+<td width="20px"></td><td><code><span class="label">color</span>:Number</code> &mdash; The color of the application in the console.
+   </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">isIdenfify</span>:Boolean</code> (default = <code>true</code>)<code></code></td>
+<td width="20px"></td><td><code><span class="label">isIdenfify</span>:Boolean</code> (default = <code>true</code>)<code></code> &mdash; Inficates if the target is identify or not.
+   </td>
 </tr>
 </table>
 </div>

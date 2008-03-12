@@ -284,7 +284,7 @@ showHideInherited();
          Use the bold method to format and display a string in a document.
          <pre class="prettyprint">
          var s:String = HTMLStringFormatter.bold("hello world") ;
-         trace("bold : " + s) ; // bold : <b>hello world</b>
+         trace("bold : " + s) ; // bold : &lt;b&gt;hello world&lt;/b&gt;
          </pre>
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -403,7 +403,7 @@ showHideInherited();
          <pre class="prettyprint">
          import vegas.string.HTMLStringFormatter ;
          var s:String = HTMLStringFormatter.italics("hello world") ;
-         trace("italics : " + s) ; // italics : <i>hello world</i>
+         trace("italics : " + s) ; // italics : &lt;i&gt;hello world&lt;/i&gt;
          </pre>
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -433,7 +433,7 @@ showHideInherited();
          <pre class="prettyprint">
          import vegas.string.HTMLStringFormatter ;
          var s:String = HTMLStringFormatter.link("hello world", "http://ekameleon.net/blog", "_blank") ;
-         trace("link : " + s) ; // link : <a href="http://google.fr" target="_blank">hello world</a>
+         trace("link : " + s) ; // link : &lt;a href=&quot;http://google.fr&quot; target=&quot;_blank&quot;&gt;hello world&lt;/a&gt;
          </pre>
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -478,12 +478,12 @@ showHideInherited();
          import vegas.string.HTMLStringFormatter ;
          
          var s:String = HTMLStringFormatter.paragraph("hello world") ;
-         trace("paragraph : " + s) ; // paragraph : </p><p>hello world</p>
+         trace("paragraph : " + s) ; // paragraph : &lt;p&gt;hello world&lt;/p&gt;
          
          var s:String = HTMLStringFormatter.paragraph("hello world", "myStyle") ;
-         trace("paragraph : " + s) ; // paragraph : <p class="myStyle">hello world</p>
+         trace("paragraph : " + s) ; // paragraph : &lt;p class=&quot;myStyle&quot;&gt;hello world&lt;/p&gt;
          </pre>
-         <span class="label">Parameters</span>
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">str</span>:String</code> &mdash; the string to be formatted.
@@ -544,10 +544,10 @@ showHideInherited();
          import vegas.string.HTMLStringFormatter ;
          
          var sP:String = HTMLStringFormatter.span("hello world") ;
-         trace("span : " + sP) ; // span : <span>hello world</span>
+         trace("span : " + sP) ; // span : &lt;span&gt;hello world&lt;/span&gt;
          
          var sP:String = HTMLStringFormatter.span("hello world", "myStyle") ;
-         trace("span : " + sP) ; // span : <span class="myStyle">hello world</span>
+         trace("span : " + sP) ; // span : &lt;span class=&quot;myStyle&quot;&gt;hello world&lt;/span&gt;
          </pre>
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -659,7 +659,7 @@ showHideInherited();
          <pre class="prettyprint">
          import vegas.string.HTMLStringFormatter ;
          var s:String = HTMLStringFormatter.underline("hello world") ;
-         trace("underline : " + s) ; // underline : <u>hello world</u>
+         trace("underline : " + s) ; // underline : &lt;u&gt;hello world&lt;/u&gt;
          </pre>
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">

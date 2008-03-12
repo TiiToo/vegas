@@ -35,9 +35,9 @@ package vegas.logging.targets
 
 	/**
 	 * Provides a logger target that uses the SOS console to output log messages. 
-	 * Thanks PowerFlasher and the <a href='http://sos.powerflasher.de/english/english.html'>SOS Console</a>
-	 * <p><b>Example :</b></p>
-	 * <code class="prettyprint">
+	 * Thanks <b>PowerFlasher</b> and the <a href='http://sos.powerflasher.de/english/english.html'>SOS Console</a>
+	 * @example
+	 * <pre class="prettyprint">
 	 * import vegas.logging.* ;
 	 * import vegas.logging.targets.SOSTarget ;
 	 *  
@@ -45,7 +45,7 @@ package vegas.logging.targets
 	 * 
 	 * // setup target
 	 * var target:SOSTarget = new SOSTarget("myApplication", 0xD8F394) ;
-	 * target.filters = ["myApplication", "vegas.errors.*"] ; // use a empty array to receive all logs.
+	 * target.filters = [ "myApplication" ] ; // use a empty array to receive all logs.
 	 * target.includeLines = true ;
 	 * target.includeCategory = true ;
 	 * target.includeDate = true ;
@@ -54,7 +54,7 @@ package vegas.logging.targets
 	 * target.level = LogEventLevel.ALL ; 
 	 * //target.setLevelColor(LogEventLevel.DEBUG, 0xFF0000) ;
 	 * //target.levelPolicy = SOSType.DISABLE ; // SOSType.ENABLE default value
-	 * target.sendFoldLevelMessage(LogEventLevel.DEBUG, "Init SOS console", "test a fold message") ;
+	 * target.sendFoldLevelMessage( LogEventLevel.DEBUG, "Init SOS console", "test a fold message" ) ;
 	 * target.sendMessage("Init SOS console....") ;
 	 * 
 	 * // register target
@@ -70,8 +70,7 @@ package vegas.logging.targets
 	 * logger.info("INFO !!") ;
 	 * logger.warn("WARNING !!") ;
 	 * logger.warn([3, 2, 4]) ;
-	 * throw new FatalError("a fatal error") ;
-	 * </code>
+	 * </pre>
 	 * @author eKameleon
 	 */
     public class SOSTarget extends LineFormattedTarget
@@ -79,6 +78,9 @@ package vegas.logging.targets
         
 		/**
 		 * Creates a new SOSTarget instance.
+		 * @param name The name of the target application in the console.
+		 * @param color The color of the application in the console.
+		 * @param isIdenfify Inficates if the target is identify or not.
 		 */
         public function SOSTarget( name:String=null, color:Number=NaN , isIdenfify:Boolean=true  )
         {

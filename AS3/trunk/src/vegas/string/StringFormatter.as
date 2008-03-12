@@ -29,7 +29,7 @@ package vegas.string
 
 	/**
      * Replaces the pattern item in a specified String with the text equivalent of the value of a specified Object instance.
-     * <p><b>Usage :</b></p>
+     * @example
      * <pre class="prettyprint">
      * import vegas.string.StringFormatter ;
      * 
@@ -59,7 +59,7 @@ package vegas.string
 	{
 
     	/**
-    	 * Creates a new StringFormatter instance.
+    	 * Creates a new <code class="prettyprint">StringFormatter</code> instance.
     	 * @param pattern the format pattern.
     	 */
 		public function StringFormatter( pattern:String )

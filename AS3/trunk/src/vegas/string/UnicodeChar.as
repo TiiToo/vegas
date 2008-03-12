@@ -29,7 +29,7 @@ package vegas.string
     import vegas.core.types.Char;
     
     /**
-     * ECMA 262 Unicode IFormat-Control Characters tools.
+     * <b>ECMA 262</b> Unicode IFormat-Control Characters tools.
      * <p>See <a href='http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf'>ECMAScript 262 specifications</a></p>
      * @example
      * <pre class="prettyprint">
@@ -65,46 +65,47 @@ package vegas.string
     {
         
        	/**
-    	 * Creates a new UnicodeChar instance.
-	     * <p><b>Example :</b></p>
-	     * <code class="prettyprint">
+    	 * Creates a new <code class="prettyprint">UnicodeChar</code> instance.
+	     * @example
+	     * <pre class="prettyprint">
 	     * var u:UnicodeChar = new UnicodeChar() ;
 	     * trace( u.u0040() ) ; // @
-	     * </code>
+	     * </pre>
 	     */
 	    public function UnicodeChar()
 	    {
     		//	
     	}
-    
+
+    	/**
+    	 * Array with all whitespace characters. NB : USP no implement (Any other Unicode "space separator")
+    	 */
+        public static const SPECIAL_CHARS:Array = [ "\u005C" , "\u0008" , "\u0027" , "\u0022" ] ;
+
 	    /**
     	 * Back Slash utf8 representation (special char).
-    	 * @private
     	 */
-       	public static const BACK_SLASH:String = "\u005C" ;	
+       	public static const BACK_SLASH:String = SPECIAL_CHARS[0] ;	
 
 	    /**
     	 * Back Space utf8 representation (special char).
-    	 * @private
     	 */
-	    public static const BACK_SPACE:String = "\u0008" ;
+	    public static const BACK_SPACE:String = SPECIAL_CHARS[1] ;
 
 	    /**
     	 * Simple Quote utf8 representation (special char).
-    	 * @private
     	 */
-        public static const SIMPLE_QUOTE:String = "\u0027" ;
+        public static const SIMPLE_QUOTE:String = SPECIAL_CHARS[2] ;
 
 	    /**
     	 * Double Quote utf8 representation (special char).
-    	 * @private
     	 */
-        public static const DOUBLE_QUOTE:String = "\u0022" ;
+        public static const DOUBLE_QUOTE:String = SPECIAL_CHARS[3] ;
 	
     	/**
     	 * Array with all whitespace characters. NB : USP no implement (Any other Unicode "space separator")
     	 */
-        public static const WHITE_SPACE_CHARS:Array = [ "\u0009", "\u000B", "\u000C", "\u0020", "\u00A0" ] ;    		
+        public static const WHITE_SPACE_CHARS:Array = [ "\u0009", "\u000B", "\u000C", "\u0020", "\u00A0" ] ; // hack only with ASDoc :(		
 	
     	/**
     	 * Tab utf8 representation (whitespace).
@@ -134,33 +135,27 @@ package vegas.string
     	/**
     	 * Array with all line terminators characters
     	 */
-	    public static const LINE_TERMINATOR_CHARS:Array = [ LF, CR, LS, PS ] ;        
+	    public static const LINE_TERMINATOR_CHARS:Array = [ "\u000A", "\u000D", "\u2028", "\u2029" ] ;  // hack only with ASDoc :(     
         
        	/**
 	     * Line Feed utf8 representation (line terminators).
-	     * @private
 	     */
-        public static const LF:String = "\u000A" ;
+        public static const LF:String = LINE_TERMINATOR_CHARS[0] ;
         
     	/**
     	 * Carriage Return utf8 representation (line terminators).
-    	 * @private
     	 */
-        public static const CR:String = "\u000D" ;
+        public static const CR:String = LINE_TERMINATOR_CHARS[1] ;
 
     	/**
     	 * Line Separator utf8 representation (line terminators).
-    	 * @private
 	     */        
-        public static const LS:String = "\u2028" ;	
+        public static const LS:String = LINE_TERMINATOR_CHARS[2] ;	
 
     	/**
     	 * Paragraph Separator utf8 representation (line terminators).
-    	 * @private
 	     */   
-        public static const PS:String = "\u2029" ;	
-
-
+        public static const PS:String = LINE_TERMINATOR_CHARS[3] ;	
 
         /**
          * Overrides the behavior of an object property that can be called as a function. 

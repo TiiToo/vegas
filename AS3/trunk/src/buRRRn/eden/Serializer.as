@@ -143,11 +143,12 @@ package buRRRn.eden
 		 */
 		public static function emitString( value:String ):String
 		{
-			var quote:String = "\"";
-			var str:String = "";
-			var ch:String = "";
-			var pos:int = 0;
+			
 			var code:int;
+			var quote:String = "\"" ;
+			var str:String   = ""   ;
+			var ch:String    = ""   ;
+			var pos:int      = 0    ;
             
 			var _toUnicodeNotation:Function = function( num:int ):String
 			{

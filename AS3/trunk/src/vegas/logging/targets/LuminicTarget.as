@@ -24,8 +24,8 @@
 package vegas.logging.targets
 {
 
-	// TODO : corriger les types de la sérialization (le problème reste que cette console est prévue à la base pour AS1/AS2)
-	// FIXME : Problème avec le logger ... boucle infinie dans l'événement StatusEvent !!!!
+	// TODO  : Fix serialization of the objects (for the moment the console use AS1/AS2 objects).
+	// FIXME : The logger bug with an infinite loopin the StatusEvent!
 	import flash.events.AsyncErrorEvent;
 	import flash.events.SecurityErrorEvent;
 	import flash.events.StatusEvent;

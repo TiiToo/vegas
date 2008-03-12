@@ -28,8 +28,8 @@ package vegas.logging.targets
  
 	 /**
 	  * Provides a logger target that uses the global trace() method to output log messages.
-	  * <p><b>Example :</b></p>
- 	  * <code class="prettyprint">
+	  * @example
+ 	  * <pre class="prettyprint">
 	  * import vegas.logging.ILogger ;
 	  * import vegas.logging.ITarget ;
 	  * import vegas.logging.Log ;
@@ -40,7 +40,7 @@ package vegas.logging.targets
 	  * // setup writer 
 	  * var traceTarget:TraceTarget = new TraceTarget() ;
 	  * 
-	  * traceTarget.filters = ["vegas.logging.*"] ;
+	  * traceTarget.filters = ["myApplication"] ;
 	  * traceTarget.includeDate = true ;
 	  * traceTarget.includeTime = true ;
 	  * traceTarget.includeLevel = true ;
@@ -54,7 +54,7 @@ package vegas.logging.targets
 	  * // get a logger for the 'myDebug' category 
 	  * // and send some data to it.
 	  * 
-	  * var logger:ILogger = Log.getLogger("vegas.logging.targets") ;
+	  * var logger:ILogger = Log.getLogger("myApplication") ;
 	  * logger.log(LogEventLevel.DEBUG, "here is some myDebug info : {0} and {1}", 2.25 , true) ; 
 	  * logger.fatal("Here is some fatal error...") ; 
 	  * 
@@ -62,7 +62,7 @@ package vegas.logging.targets
 	  * traceTarget.includeTime = false ;
 	  * traceTarget.includeCategory = false ;
 	  * logger.info("[{0}, {1}, {2}]", 2, 4, 6) ; 
-	  * </code>
+	  * </pre>
 	  * @author eKameleon
 	  */
     public class TraceTarget extends LineFormattedTarget
