@@ -54,6 +54,66 @@ package system
 			return arr;
 		}
 
+		/** 
+		 * Splice one array into another.
+		 * Like the python. 
+		 * <pre class="prettify">
+  		 * container[containerPosition:containerPosition + countReplaced] = inserted
+  		 * </pre>
+  		 * @example
+		 * <pre class="prettify">
+  		 * import system.Arrays ;
+  		 * 
+  		 * var inserted:Array  ;
+  		 * var container:Array ;
+  		 * 
+  		 * inserted  = [1, 2, 3, 4] ;
+  		 * container = [5, 6, 7, 8] ;
+  		 * 
+  		 * trace( "inserted  : " + inserted  ) ;
+  		 * trace( "container : " + container ) ;
+  		 * 
+  		 * trace("---") ;
+  		 * 
+  		 * inserted  = [1, 2, 3, 4] ;
+  		 * container = [5, 6, 7, 8] ;
+  		 * 
+  		 * Arrays.spliceArrayInto( inserted, container ) ;
+  		 * trace( "Arrays.spliceArrayInto( inserted, container, 0 , 0 ) : " + container ) ; // 1,2,3,4,5,6,7,8
+  		 * 
+  		 * trace("---") ;
+  		 * inserted  = [1, 2, 3, 4] ;
+  		 * container = [5, 6, 7, 8] ;
+  		 * 
+  		 * Arrays.spliceArrayInto( inserted, container, 0 , 4 ) ;
+  		 * trace( "Arrays.spliceArrayInto( inserted, container, 0 , 4 ) : " + container ) ; // 1,2,3,4
+  		 * 
+  		 * trace("---") ;
+  		 * 
+  		 * inserted  = [1, 2, 3, 4] ;
+  		 * container = [5, 6, 7, 8] ;
+  		 * 
+  		 * Arrays.spliceArrayInto( inserted, container, 0 , 2 ) ;
+  		 * trace( "Arrays.spliceArrayInto( inserted, container, 0 , 4 ) : " + container ) ; // 1,2,3,4,7,8
+  		 * </pre>
+  		 * @param inserted The Array of char inserted in the Array container.
+  		 * @param container The container modified in place.
+  		 * @param containerPosition The position in the container to inserted the Array of chars.
+  		 * @param countReplaced The count value to replaced values.
+  		 */
+		public static function spliceArrayInto( inserted:Array, container:Array, containerPosition:Number=0 , countReplaced:Number=0 ):void
+		{
+  			inserted.unshift( containerPosition, isNaN( countReplaced ) ? 0 : countReplaced );
+  			try 
+  			{
+    			container.splice.apply( container, inserted ) ;
+  			} 
+  			finally 
+  			{
+    			inserted.splice(0, 2) ;
+  			}
+		}	
+
 	}
 
 }
