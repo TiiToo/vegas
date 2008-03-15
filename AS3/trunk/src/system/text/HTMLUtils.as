@@ -18,14 +18,6 @@ package system.text
 		}
 
 		/**
-		 * Indicates if the given node's innerHTML normally unescaped.
-		 */
-		public static function isRawContent( node:* ):Boolean
-		{
-  			return 'XMP' == node.tagName;
-		}
-
-		/**
 		 * Unescapes html to plain text.
 		 */
 		public static function htmlToText( html:String ):String 
@@ -35,9 +27,6 @@ package system.text
   			{ 
 	  			return html; 
   			}
-  			// Handle numeric entities specially.  We can't use functional substitution
-  			// since that doesn't work in older versions of Safari.
-  			// These should be rare since most browsers convert them to normal chars.
   			for ( --pos ; ( pos = html.indexOf('&#', pos + 1)) >= 0 ; ) 
 	  		{
     			var end:int = html.indexOf(';', pos);
