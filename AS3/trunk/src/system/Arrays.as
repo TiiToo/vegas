@@ -29,8 +29,9 @@ package system
     /**
 	 * Array static tool class.
 	 */
-	public dynamic class Arrays
+	public class Arrays
 	{
+		
 		/**
 		 * Initializes a new Array with an arbitrary number of elements (index), 
 		 * with every element containing the passed parameter value or by default the null value.
@@ -51,7 +52,6 @@ package system
 			{
 				arr[i] = value ;
 			}
-            
 			return arr;
 		}
 
@@ -79,30 +79,30 @@ package system
   		 * inserted  = [1, 2, 3, 4] ;
   		 * container = [5, 6, 7, 8] ;
   		 * 
-  		 * Arrays.spliceArrayInto( inserted, container ) ;
-  		 * trace( "Arrays.spliceArrayInto( inserted, container, 0 , 0 ) : " + container ) ; // 1,2,3,4,5,6,7,8
+  		 * Arrays.spliceInto( inserted, container ) ;
+  		 * trace( "Arrays.spliceInto( inserted, container, 0 , 0 ) : " + container ) ; // 1,2,3,4,5,6,7,8
   		 * 
   		 * trace("---") ;
   		 * inserted  = [1, 2, 3, 4] ;
   		 * container = [5, 6, 7, 8] ;
   		 * 
-  		 * Arrays.spliceArrayInto( inserted, container, 0 , 4 ) ;
-  		 * trace( "Arrays.spliceArrayInto( inserted, container, 0 , 4 ) : " + container ) ; // 1,2,3,4
+  		 * Arrays.spliceInto( inserted, container, 0 , 4 ) ;
+  		 * trace( "Arrays.spliceInto( inserted, container, 0 , 4 ) : " + container ) ; // 1,2,3,4
   		 * 
   		 * trace("---") ;
   		 * 
   		 * inserted  = [1, 2, 3, 4] ;
   		 * container = [5, 6, 7, 8] ;
   		 * 
-  		 * Arrays.spliceArrayInto( inserted, container, 0 , 2 ) ;
-  		 * trace( "Arrays.spliceArrayInto( inserted, container, 0 , 4 ) : " + container ) ; // 1,2,3,4,7,8
+  		 * Arrays.spliceInto( inserted, container, 0 , 2 ) ;
+  		 * trace( "Arrays.spliceInto( inserted, container, 0 , 4 ) : " + container ) ; // 1,2,3,4,7,8
   		 * </pre>
   		 * @param inserted The Array of char inserted in the Array container.
   		 * @param container The container modified in place.
   		 * @param containerPosition The position in the container to inserted the Array of chars.
   		 * @param countReplaced The count value to replaced values.
   		 */
-		public static function spliceArrayInto( inserted:Array, container:Array, containerPosition:Number=0 , countReplaced:Number=0 ):void
+		public static function spliceInto( inserted:Array, container:Array, containerPosition:Number=0 , countReplaced:Number=0 ):void
 		{
   			inserted.unshift( containerPosition, isNaN( countReplaced ) ? 0 : countReplaced );
   			try 
