@@ -58,7 +58,7 @@ package asgard.config
 		 * @param sID (optional) if this key is specified the method return the value of the specified key in the current Config object.
 		 * @param callback (optional) The optional method to launch after the initialization over the specified object. 
 		 */
-		public function init( o:Object , sID:String , callback:Function ):void
+		public function init( o:Object , sID:String , callback:Function=null ):void
 		{
 			var init:* = sID == null ? this : this[ sID ] ;
 			for (var prop:String in init)
