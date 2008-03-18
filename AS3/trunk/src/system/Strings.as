@@ -551,7 +551,6 @@ package system
 		 * </pre>
 		 * @return The left-aligns the characters in this string, padding on the right with a specified Unicode character, for a specified total length.
 	 	 */
-
 		public static function padRight( str:String, totalWidth:int, paddingChar:String = " " ):String
 		{
 			return _padHelper( str, totalWidth, paddingChar, true );
