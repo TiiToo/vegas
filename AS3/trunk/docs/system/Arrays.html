@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../print.css" type="text/css" media="print">
 <link rel="stylesheet" href="../prettify.css" type="text/css">
-<meta content="Arrays,system.Arrays,initialize,spliceArrayInto" name="keywords">
+<meta content="Arrays,system.Arrays,initialize,spliceInto" name="keywords">
 <title>system.Arrays</title>
 </head>
 <body>
@@ -36,7 +36,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">system</a></td>
 </tr>
 <tr>
-<td class="classHeaderTableLabel">Class</td><td class="classSignature">public dynamic  class Arrays</td>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class Arrays</td>
 </tr>
 </table>
 <p></p>
@@ -64,7 +64,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#spliceArrayInto()">spliceArrayInto</a>(inserted:Array, container:Array, containerPosition:Number = 0, countReplaced:Number = 0):void</div>
+<a class="signatureLink" href="#spliceInto()">spliceInto</a>(inserted:Array, container:Array, containerPosition:Number = 0, countReplaced:Number = 0):void</div>
 <div class="summaryTableDescription">[static] 
    Splice one array into another.</div>
 </td><td class="summaryTableOwnerCol">Arrays</td>
@@ -117,14 +117,14 @@ showHideInherited();
 </tr>
 </table>
 </div>
-<a name="spliceArrayInto()"></a>
+<a name="spliceInto()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">spliceArrayInto</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">spliceInto</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public static function spliceArrayInto(inserted:Array, container:Array, containerPosition:Number = 0, countReplaced:Number = 0):void</code><p> 
+<code>public static function spliceInto(inserted:Array, container:Array, containerPosition:Number = 0, countReplaced:Number = 0):void</code><p> 
    Splice one array into another.
    Like the python 
    <pre class="prettyprint">
@@ -177,23 +177,23 @@ showHideInherited();
      inserted  = [1, 2, 3, 4] ;
      container = [5, 6, 7, 8] ;
      
-     Arrays.spliceArrayInto( inserted, container ) ;
-     trace( "Arrays.spliceArrayInto( inserted, container, 0 , 0 ) : " + container ) ; // 1,2,3,4,5,6,7,8
+     Arrays.spliceInto( inserted, container ) ;
+     trace( "Arrays.spliceInto( inserted, container, 0 , 0 ) : " + container ) ; // 1,2,3,4,5,6,7,8
      
      trace("---") ;
      inserted  = [1, 2, 3, 4] ;
      container = [5, 6, 7, 8] ;
      
-     Arrays.spliceArrayInto( inserted, container, 0 , 4 ) ;
-     trace( "Arrays.spliceArrayInto( inserted, container, 0 , 4 ) : " + container ) ; // 1,2,3,4
+     Arrays.spliceInto( inserted, container, 0 , 4 ) ;
+     trace( "Arrays.spliceInto( inserted, container, 0 , 4 ) : " + container ) ; // 1,2,3,4
      
      trace("---") ;
      
      inserted  = [1, 2, 3, 4] ;
      container = [5, 6, 7, 8] ;
      
-     Arrays.spliceArrayInto( inserted, container, 0 , 2 ) ;
-     trace( "Arrays.spliceArrayInto( inserted, container, 0 , 4 ) : " + container ) ; // 1,2,3,4,7,8
+     Arrays.spliceInto( inserted, container, 0 , 2 ) ;
+     trace( "Arrays.spliceInto( inserted, container, 0 , 4 ) : " + container ) ; // 1,2,3,4,7,8
      </pre>
      <p></p>
 </div>

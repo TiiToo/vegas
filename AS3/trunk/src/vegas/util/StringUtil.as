@@ -23,9 +23,7 @@
 
 package vegas.util
 {
-	import buRRRn.eden.Serializer;
-	
-	import vegas.errors.ClassCastError;	
+	import buRRRn.eden.Serializer;	
 
 	/**
 	 * The <code class="prettyprint">StringUtil</code> utility class is an extended String class with methods for working with string.
@@ -46,15 +44,6 @@ package vegas.util
          */ 
         public static const SPC:String = " " ; // SPACE
 
-		/**
-	 	 * Returns 0 if the passed string is lower case else 1.
-	 	 * @return 0 if the passed string is lower case else 1.
-	 	 */
-		public static function caseValue( str:String ):Number
-		{
-			return ( str.toLowerCase() == str ) ? 0 : 1 ;
-		}
-
         /**
          * Returns a shallow copy of the specified string.
          * @return a shallow copy of the specified string.
@@ -63,105 +52,7 @@ package vegas.util
         {
 		    return s ;	
     	}
-        
-        /**
-         * Compares the two specified String objects.
-         */
-      	public static function compare( strA:String=null , strB:String=null, ignoreCase:Boolean=false ):Number 
-      	{
-		    
-		    if( (strA == null) || (strB == null) ) 
-		    {
-    			if( strA == strB ) 
-    			{
-    				return 0 ;
-    			}
-                else if( strA == null ) 
-                {
-                	return -1 ;
-                }
-                else 
-                {
-                	return 1 ;
-                }
-    		}
-    		
-    		if ( !( strA is String ) || !( strB is String ) ) 
-			{
-				throw new ClassCastError( "compare method failed, Arguments string expected." ) ;
-			}
-    		else
-    		{
-    			strA = strA.toString() ;
-    			strB = strB.toString() ;
-    			if( ignoreCase ) 
-	    		{
-	            	strA = strA.toLowerCase() ;
-        	    	strB = strB.toLowerCase() ;
-            	}
-            	if( strA == strB ) 
-            	{
-            		return 0 ;
-            	}
-            	
-            	var size:Number = Math.min(strA.length, strB.length) ;
-            	if (size > 0)
-            	{
-           			var i:Number = 0 ;
-					var c:Number ;
-					while ( i < size )
-					{
-						c = StringUtil.compareChars( strA.charAt(i), strB.charAt(i));
-						if ( c != 0 ) 
-						{
-							return c;
-						}
-						i++ ;
-					}          		
-            	}
-            	
-            	if( strA.length > strB.length ) 
-            	{
-            		return 1 ;
-            	}
-            	else
-            	{
-            		return -1 ;
-            	}
-    		}
-    	}  
-        
-		/**
-		 * Compares the two caracteres passed in argument for order.
-		 * @return <p>
-		 * <li>-1 if charA is "lower" than (less than, before, etc.) charB ;</li>
-		 * <li> 1 if charA is "higher" than (greater than, after, etc.) charB ;</li>
-		 * <li> 0 if charA and charB are equal.</li>
-		 * </p>
-		 */
-		public static function compareChars( charA:String, charB:String ):Number
-		{
-			var a:String = charA.charAt(0) ;
-			var b:String = charB.charAt(0) ;
-			if ( caseValue(a) < caseValue(b) ) 
-			{
-				return -1;
-			}
-			if ( caseValue(a) > caseValue(b) ) 
-			{
-				return 1 ;
-			}	
-			if ( a < b ) 
-			{
-				return -1;
-			}
-			if ( a > b ) 
-			{
-				return 1;
-			}
-			return 0 ;
-		}
-        
+  		
         /**
          * Returns a copy by value of this object.
          */
@@ -220,7 +111,10 @@ package vegas.util
     		for (var i:Number = 0 ; i<l ; i++) 
     		{
     			index = str.lastIndexOf(ar[i]) ;
-    			if (index > -1) return index ;
+    			if (index > -1) 
+    			{
+    				return index ;
+    			}
     		}
     		return index ;
 	    }
@@ -326,7 +220,7 @@ package vegas.util
 	    }
 
 		/**
-		 * Uppercase the first character of each word in a string.
+		 * Uppercases the first character of each word in a string.
 		 * @example
 		 * <pre class="prettyprint">
 		 * import vegas.util.StringUtil ;

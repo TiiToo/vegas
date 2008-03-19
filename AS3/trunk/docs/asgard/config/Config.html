@@ -100,7 +100,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#init()">init</a>(o:Object, sID:String, callback:Function):void</div>
+<a class="signatureLink" href="#init()">init</a>(o:Object, sID:String, callback:Function = null):void</div>
 <div class="summaryTableDescription">
    Apply the current Config object over the specified object.</div>
 </td><td class="summaryTableOwnerCol">Config</td>
@@ -178,7 +178,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function init(o:Object, sID:String, callback:Function):void</code><p>
+<code>public function init(o:Object, sID:String, callback:Function = null):void</code><p>
    Apply the current Config object over the specified object.
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -197,7 +197,7 @@ showHideInherited();
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">callback</span>:Function</code> &mdash; (optional) The optional method to launch after the initialization over the specified object. 
+<td width="20px"></td><td><code><span class="label">callback</span>:Function</code> (default = <code>null</code>)<code></code> &mdash; (optional) The optional method to launch after the initialization over the specified object. 
    </td>
 </tr>
 </table>

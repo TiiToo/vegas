@@ -23,11 +23,12 @@
 
 package vegas.util.comparators
 {
+	import system.Strings;
+	
 	import vegas.core.CoreObject;
 	import vegas.core.ICloneable;
 	import vegas.core.IComparator;
-	import vegas.core.ICopyable;
-	import vegas.util.StringUtil;	
+	import vegas.core.ICopyable;	
 
 	/**
 	 * This comparator compare String objects.
@@ -92,7 +93,7 @@ package vegas.util.comparators
 	 	 */
 		public function compare(o1:*, o2:*):int
 		{
-			return StringUtil.compare( o1, o2, ignoreCase );
+			return Strings.compare( o1, o2, ignoreCase );
 		}
 		
 		/**

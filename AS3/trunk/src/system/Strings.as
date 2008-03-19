@@ -33,15 +33,16 @@ package system
 
 		/**
 		 * Contains a read-only list of white space chars.
-		 * Note :
-		 * - http://developer.mozilla.org/es4/proposals/string.html
-		 * - http://www.fileformat.info/info/unicode/category/Zs/list.htm
-		 * - http://www.fileformat.info/info/unicode/category/Zl/list.htm
-		 * - http://www.fileformat.info/info/unicode/category/Zp/list.htm
-		 * - http://www.fileformat.info/info/unicode/char/200b/index.htm
-		 * - http://www.fileformat.info/info/unicode/char/feff/index.htm
-		 * - http://www.fileformat.info/info/unicode/char/2060/index.htm
-		 * TODO we maybe could also define 0xFFEF and/or 0x2060, but not completely sure of all the implication, 0xFFEF in byte order mark etc.
+		 * <p><b>Note :</b></p>
+		 * <ul>
+		 * <li>http://developer.mozilla.org/es4/proposals/string.html</li>
+		 * <li>http://www.fileformat.info/info/unicode/category/Zs/list.htm</li>
+		 * <li>http://www.fileformat.info/info/unicode/category/Zl/list.htm</li>
+		 * <li>http://www.fileformat.info/info/unicode/category/Zp/list.htm</li>
+		 * <li>http://www.fileformat.info/info/unicode/char/200b/index.htm</li>
+		 * <li>http://www.fileformat.info/info/unicode/char/feff/index.htm</li>
+		 * <li>http://www.fileformat.info/info/unicode/char/2060/index.htm</li>
+		 * </ul>
 		 */
 		public static const whiteSpaceChars:Array = 
 		[ 
@@ -72,7 +73,17 @@ package system
 			"\u205F" /*Medium mathematical space*/,
 			"\u3000" /*Ideographic space*/ 
 		];
-
+		// TODO we maybe could also define 0xFFEF and/or 0x2060, but not completely sure of all the implication, 0xFFEF in byte order mark etc.
+		
+		/**
+	 	 * Returns 0 if the passed string is lower case else 1.
+	 	 * @return 0 if the passed string is lower case else 1.
+	 	 */
+		public static function caseValue( str:String ):uint
+		{
+			return ( str.toLowerCase() == str ) ? 0 : 1 ;
+		}
+		
         /**
          * Compares the two specified String objects.
          * @param o1 first string to compare with the second string.
@@ -82,27 +93,25 @@ package system
          */		 
 		public static function compare( o1:*, o2:*, strict:Boolean = false ):int
 		{
-            
-			/* TODO: review and test the logic */
 			if( (o1 == null) || (o2 == null) )
 			{
 				if( o1 == o2 )
 				{
-					return 0; //both null
+					return 0 ; //both null
 				}
                 else if( o1 == null )
 				{
-					return -1; //o1 is null -1
+					return -1 ; //o1 is null -1
 				}
                 else
 				{
-					return 1; //o2 is null 1
+					return 1 ; //o2 is null 1
 				}
 			}
             
 			if( !(o1 is String) || !(o2 is String) )
 			{
-				throw new Error( "Arguments String expected." );
+				throw new ArgumentError( "Arguments String expected." );
 			}
             
 			if( !strict )
@@ -113,28 +122,77 @@ package system
             
 			if( o1 == o2 )
 			{
-				return 0;
+				return 0 ;
 			}
             else if( o1.length == o2.length )
 			{
-				/* TODO:
-				implement a string diff algorithm
-				 */
-				//return difference( o1, o2, option );
-				return 0;
+				var c:Number ;
+				var size:Number = o1.length ;
+				var i:Number    = 0 ;
+				while ( i < size )
+				{
+					c = compareChars( o1.charAt(i), o2.charAt(i) );
+					if ( c != 0 ) 
+					{
+						return c;
+					}
+					i++ ;
+				}  
 			}
             else if( o1.length > o2.length )
 			{
-				return 1;
+				return 1 ;
 			}
-            else
+
+            return -1 ;
+			
+		}
+
+		/**
+		 * Compares the two characters passed in argument for order.
+		 * @return <p>
+		 * <li>-1 if charA is "lower" than (less than, before, etc.) charB ;</li>
+		 * <li> 1 if charA is "higher" than (greater than, after, etc.) charB ;</li>
+		 * <li> 0 if charA and charB are equal.</li>
+		 * </p>
+		 */
+		public static function compareChars( charA:String, charB:String ):int
+		{
+			var a:String = charA.charAt(0) ;
+			var b:String = charB.charAt(0) ;
+			if ( caseValue(a) < caseValue(b) ) 
 			{
 				return -1;
 			}
+			if ( caseValue(a) > caseValue(b) ) 
+			{
+				return 1 ;
+			}	
+			if ( a < b ) 
+			{
+				return -1;
+			}
+			if ( a > b ) 
+			{
+				return 1;
+			}
+			return 0 ;
 		}
 
         /**
          * Determines whether the end of this instance matches the specified String.
+ 		 * <p><b>Example :</b></p>
+ 		 * <pre class="prettyprint">
+ 		 * import system.Strings ;
+ 		 * 
+ 		 * var result:* ;
+ 		 * 
+ 		 * result = Strings.endsWith( "hello world", "world" );
+ 		 * trace("> " + result) ; // true
+ 		 * 
+ 		 * result = Strings.endsWith( "hello world", "hello" );
+ 		 * trace("> " + result) ; // false
+ 		 * </pre>
          */
 		public static function endsWith( str:String, value:String ):Boolean
 		{
@@ -148,11 +206,11 @@ package system
  		/** 
  		 * Format a string using indexed or named parameters.
  		 * <p>Method call :</p>
- 		 * <li>StringUtil.format(pattern:String, ...arguments:Array):String</li>
- 		 * <li>StringUtil.format(pattern:String, [arg0:*,arg1:*,arg2:*, ...] ):String</li>
- 		 * <li>StringUtil.format(pattern:String, [arg0:*,arg1:*,arg2:*, ...], ...args:Array ):String</li>
- 		 * <li>StringUtil.format(pattern:String, {name0:value0,name1:value1,name2:value2, ...} ):String</li>
- 		 * <li>StringUtil.format(pattern:String, {name0:value0,name1:value1,name2:value2, ...} , ...args:Array ) :String</li>
+ 		 * <li>Strings.format(pattern:String, ...arguments:Array):String</li>
+ 		 * <li>Strings.format(pattern:String, [arg0:*,arg1:*,arg2:*, ...] ):String</li>
+ 		 * <li>Strings.format(pattern:String, [arg0:*,arg1:*,arg2:*, ...], ...args:Array ):String</li>
+ 		 * <li>Strings.format(pattern:String, {name0:value0,name1:value1,name2:value2, ...} ):String</li>
+ 		 * <li>Strings.format(pattern:String, {name0:value0,name1:value1,name2:value2, ...} , ...args:Array ) :String</li>
  		 * </p>
  		 * <p>Replaces the pattern item in a specified String with the text equivalent of the value of a specified Object instance.</p>
  		 * <p>Formats item : {token[,alignment][:paddingChar]}</p>
@@ -166,56 +224,60 @@ package system
  		 * import system.Strings ;
  		 * 
  		 * var result:String ;
-		 * 
-		 * // indexed from the arguments
-		 * 
-		 * result = Strings.format( "hello {1} {0} world", "big", "the" ); 
-		 * trace("> " + result) ; //"hello the big world"
-		 *
-		 * result = Strings.format("Brad's dog has {0,6:#} fleas.", 41) ;
-		 * trace("> " + result) ;
-		 *
-		 * result = Strings.format("Brad's dog has {0,-6} fleas.", 12) ;
-		 * trace("> " + result) ;
-		 *
-		 * result = Strings.format("{3} {2} {1} {0}", "a", "b", "c", "d") ;
-		 * trace("> " + result) ;
-		 * 
-		 * // named from an object
-		 * 
-		 * result = Strings.format( "hello I'm {name}", {name:"HAL"} );
-		 * trace("> " + result) ; //"hello I'm HAL"
-		 * 
-		 * // indexed from an array
-		 * 
-		 * var names:Array = ["A","B","C","D"];
-		 * var scores:Array = [16,32,128,1024];
-		 * for( var i:int=0; i<names.length; i++ )
-		 * {
-		 *     trace( Strings.format( "{0} scored {1,5}", [names[i], scores[i]] ) );
-		 * }
-		 * // "A scored    16"
-		 * // "B scored    32"
-		 * // "C scored   128"
-		 * // "D scored  1024"
-		 * 
-		 * // resolve toString
-		 * var x:Object = {};
-		 * x.toString = function() { return "john doe"; } ;
-		 * trace( Strings.format( "Who is {0} ?", x ) ) ; //"Who is john doe ?"
-		 * 
-		 * // you can off course reuse the index
-		 * var fruits:Array = ["apple", "banana", "pineapple"] ;
-		 * trace( Strings.format( "I like all fruits {0},{1},{2}, etc. but still I prefer above all {0}", fruits ) ); // "I like all fruits apple,banana,pineapple, etc. but still I prefer above all apple"
-		 * 
-		 * // indexed from an array + the arguments
-		 * var fruits:Array = ["apple", "banana", "pineapple"];
-		 * trace( Strings.format( "fruits: {0}, {1}, {2}, {3}, {4}, {5}", fruits, "grape", "tomato" ) ); //"fruits: apple, banana, pineapple, grape, tomato, undefined"
-		 * 
-		 * // passing reference and padding
-		 * var what = "answer" ;
-		 * result = Strings.format( "your {0} is within {answer,20:.}", {answer:"my answer"}, what ) ; 
-		 * trace("> " + result ) // "your answer is within ...........my answer"
+ 		 * 
+ 		 * // indexed from the arguments
+ 		 * 
+ 		 * result = Strings.format( "hello {1} {0} world", "big", "the" );
+ 		 * trace("> " + result) ; //"hello the big world"
+ 		 * 
+ 		 * result = Strings.format("Brad's dog has {0,6:#} fleas.", 41) ;
+ 		 * trace("> " + result) ;
+ 		 * 
+ 		 * result = Strings.format("Brad's dog has {0,-6} fleas.", 12) ;
+ 		 * trace("> " + result) ;
+ 		 * 
+ 		 * result = Strings.format("{3} {2} {1} {0}", "a", "b", "c", "d") ;
+ 		 * trace("> " + result) ;
+ 		 * 
+ 		 * // named from an object
+ 		 * 
+ 		 * result = Strings.format( "hello I'm {name}", {name:"HAL"} );
+ 		 * trace("> " + result) ; //"hello I'm HAL"
+ 		 * 
+ 		 * // indexed from an array
+ 		 * 
+ 		 * var names:Array = ["A","B","C","D"];
+ 		 * var scores:Array = [16,32,128,1024];
+ 		 * for( var i:int=0; i<names.length; i++ )
+ 		 * {
+ 		 *     trace( Strings.format( "{0} scored {1,5}", [names[i], scores[i]] ) );
+ 		 * }
+ 		 * // "A scored    16"
+ 		 * // "B scored    32"
+ 		 * // "C scored   128"
+ 		 * // "D scored  1024"
+ 		 * 
+ 		 * // resolve toString
+ 		 * var user:Object = {};
+ 		 * user.toString = function() { return "john doe"; } ;
+ 		 * trace( Strings.format( "Who is {0} ?", user ) ) ; //"Who is john doe ?"
+ 		 * 
+ 		 * var fruits:Array ;
+ 		 * 
+ 		 * // you can off course reuse the index
+ 		 * fruits = ["apple", "banana", "pineapple"] ;
+ 		 * trace( Strings.format( "I like all fruits {0},{1},{2}, etc. but still I prefer above all {0}", fruits ) ); // "I like all fruits apple,banana,pineapple, etc. but still I prefer above all apple"
+ 		 * 
+ 		 * // indexed from an array + the arguments
+ 		 * 
+ 		 * fruits = ["apple", "banana", "pineapple"];
+ 		 * trace( Strings.format( "fruits : {0}, {1}, {2}, {3}, {4}", fruits, "grape", "tomato" ) ); //"fruits : apple, banana, pineapple, grape, tomato"
+ 		 * 
+ 		 * // passing reference and padding
+ 		 * 
+ 		 * var what = "answer" ;
+ 		 * result = Strings.format( "your {0} is within {answer,20:.}", {answer:"my answer"}, what ) ;
+ 		 * trace( result ) // "your answer is within ...........my answer"
  		 * </pre>
  		 */
 		public static function format( format:String, ...args ):String
@@ -424,43 +486,55 @@ package system
 		 * <pre class="prettyprint">
 		 * import system.Strings ;
 		 * 
-		 * Strings.indexOfAny("hello world", [2, "hello", 5]) ; // 0
-		 * Strings.indexOfAny("Five = 5", [2, "hello", 5]) ; // 7
-	 	 * Strings.indexOfAny("actionscript is good", [2, "hello", 5]) ; // -1
+		 * trace( Strings.indexOfAny("hello world", [2, "hello", 5]) ) ; // 0
+		 * trace( Strings.indexOfAny("Five 5 = 5 and not 2" , [2, "hello", 5]) ) ; // 19 
+		 * trace( Strings.indexOfAny("Five 5 = 5 and not 2" , [5, "hello", 2] ) ) ; // 5
+		 * trace( Strings.indexOfAny("Five 5 = 5 and not 2" , [5, "hello", 2] , 6 ) ) ; // 9
+		 * trace( Strings.indexOfAny("Five 5 = 5 and not 2" , [5, "hello", 2] , 6 , 2 ) ) ; // -1
+		 * trace( Strings.indexOfAny("actionscript is good" , [5, "hello", 2]) ) ; // -1
 		 * </pre>
+		 * @param str The String to ckeck.
+		 * @param anyOf The Array of Unicode characters to find in the String.
+		 * @param startIndex The init position of the search process.
+		 * @param count The number of elements to check.
 	 	 * @return the index of the first occurrence in this instance of any character in a specified array of Unicode characters.
+	 	 * @throws ArgumentError if the anyOf argument is 'null' or 'undefined'.
 	 	 */
-		public static function indexOfAny( str:String, anyOf:Array, startIndex:int = 0, count:int = -1 ):int
+		public static function indexOfAny( str:String, anyOf:Array, startIndex:int = 0, count:int = 0x7FFFFFFF ):int
 		{
 			var i:int;
-			var endIndex:int;
+			var index:int ;
+            
+            if ( anyOf == null )
+            {
+            	throw new ArgumentError( "Strings.indexOfAny failed with an empty 'anyOf' Array.") ;
+			}
             
 			if( str.length == 0 )
 			{
 				return -1;
 			}
             
-			if( startIndex < 0 )
-			{
-				startIndex = 0;
-			}
+            if ( isNaN(startIndex) )
+            {
+            	startIndex = 0 ;
+            }
+            else if( ( startIndex < 0 ) || ( startIndex >= str.length ) )
+            {
+            	return -1 ;
+            }
             
-			if( (count < 0) || (count > anyOf.length - startIndex) )
+            str = str.substr( 0 , startIndex + count  -1 ) ;
+           
+			var len:uint = anyOf.length ;
+			for ( i = 0 ; i < len ; i ++ )
 			{
-				endIndex = anyOf.length - 1;
-			}
-            else
-			{
-				endIndex = startIndex + count - 1;
-			}
-            
-			for( i = startIndex; i <= endIndex ; i++ )
-			{
-				if( str.indexOf( anyOf[i] ) > -1 )
-				{
-					return i;
-				}
-			}
+    			index = str.indexOf( anyOf[i] , startIndex ) ;
+    			if (index > -1) 
+    			{
+    				return index ;
+    			}
+    		}
             
 			return -1;
 		}
@@ -490,7 +564,7 @@ package system
 		 * </pre>
 		 * @return the string modified by the method.
 		 */		 
-		public function insert( str:String, startIndex:int=0, value:String=null ):String
+		public static function insert( str:String, startIndex:int=0, value:String=null ):String
 		{
 			
 			if( value == null ) 
@@ -517,16 +591,86 @@ package system
             
 			return strA + value + strB;
 		}
+		
+		/**
+		 * Reports the index position of the last occurrence in this instance of one or more characters specified in a Unicode array.
+		 * <p><b>Example :</b></p>
+		 * <pre class="prettyprint"> 
+		 * trace( Strings.lastIndexOfAny("hello world", ["2", "hello", "5"]) ) ; // 0
+		 * trace( Strings.lastIndexOfAny("Five 5 = 5 and not 2" , ["2", "hello", "5"]) ) ; // 19
+		 * trace( Strings.lastIndexOfAny("Five 5 = 5 and not 2" , ["5", "hello", "2"] ) ) ; // 9
+		 * trace( Strings.lastIndexOfAny("Five 5 = 5 and not 2" , ["5", "hello", "2"] , 8 ) ) ; // 5
+		 * trace( Strings.lastIndexOfAny("Five 5 = 5 and not 2" , ["5", "hello", "2"] , 8 , 3) ) ; // -1
+		 * </pre> 
+		 * @param str The String to ckeck.
+		 * @param anyOf The Array of Unicode characters to find in the String.
+		 * @param startIndex The init position of the search process.
+		 * @param count The number of elements to check.
+	 	 * @return the index position of the last occurrence in this instance of one or more characters specified in a Unicode array.
+	 	 * @throws ArgumentError if the anyOf argument is 'null' or 'undefined'.
+	 	 */
+    	public static function lastIndexOfAny( str:String, anyOf:Array, startIndex:int = 0x7FFFFFFF, count:int = 0x7FFFFFFF ):int 
+    	{
+			var i:int;
+			var index:int ;
+            
+            if ( anyOf == null )
+            {
+            	throw new ArgumentError( "Strings.lastIndexOfAny failed with an empty 'anyOf' Array.") ;
+			}
+            
+			if( str == null || str.length == 0 )
+			{
+				return -1;
+			}
+            
+            if ( isNaN(count) || count < 0 )
+            {
+            	count = 0x7FFFFFFF ;	
+            }
+            
+            if ( isNaN(startIndex) || startIndex > str.length )
+            {
+            	startIndex = str.length ;
+            }
+            else if( startIndex < 0 )
+            {
+            	return -1 ;
+            }
+			
+			var endIndex:int = startIndex - count + 1 ;
+			
+			if ( endIndex < 0 )
+			{
+				endIndex = 0 ;	
+			}
+			
+            str = str.slice( endIndex , startIndex+1 ) ;
+			
+			var len:uint = anyOf.length ;
+			for ( i = 0 ; i < len ; i ++ )
+			{
+    			index = str.lastIndexOf( anyOf[i] , startIndex ) ;
+    			if (index > -1) 
+    			{
+    				return index + endIndex;
+    			}
+    		}
+    		
+    		return -1 ;
+	    }		
 
 		/**
 		 * Right-aligns the characters in this instance, padding on the left with a specified Unicode character for a specified total length.
 		 * <pre class="prettyprint">
 		 * import system.Strings ;
 		 * 
-		 * var result:String = Strings.padLeft("hello", 8) ;
+		 * var result:String ;
+		 * 
+		 * result = Strings.padLeft("hello", 8) ;
 		 * trace(result) ; //  "   hello"
 		 * 
-		 * var result:String = Strings.padLeft("hello", 8, ".") ;
+		 * result = Strings.padLeft("hello", 8, ".") ;
 		 * trace(result) ; //  "...hello" 
 		 * </pre>
 		 * @return The right-aligns the characters in this instance, padding on the left with a specified Unicode character for a specified total length.
@@ -543,10 +687,12 @@ package system
 		 * <pre class="prettyprint">
 		 * import system.Strings ;
 		 * 
-		 * var result:String = Strings.padRight("hello", 8) ;
+		 * var result:String ;
+		 * 
+		 * result = Strings.padRight("hello", 8) ;
 		 * trace(result) ; //  "hello   "
 		 * 
-		 * var result:String = Strings.padRight(hello", 8, ".") ;
+		 * result = Strings.padRight("hello", 8, ".") ;
 		 * trace(result) ; //  "hello..." 
 		 * </pre>
 		 * @return The left-aligns the characters in this string, padding on the right with a specified Unicode character, for a specified total length.
@@ -585,6 +731,13 @@ package system
 
 		/**
 		 * Removes all occurrences of a set of specified characters (or strings) from the beginning and end of this instance.
+		 * <p><b>Example :</b></p>
+		 * <pre class="prettyprint">
+		 * trace( Strings.trim("\r\t   hello world   \t ") ) ; // hello world
+		 * </pre>
+		 * @param str The string to trim.
+		 * @param trimChars The optional array of characters to trim. If this argument is null the <code class="prettyprint">Strings.whiteSpaceChars</code> static array is used.
+		 * @return The new string when is trimed.
 		 */
 		public static function trim( str:String, trimChars:Array = null ):String
 		{
@@ -598,6 +751,13 @@ package system
 
 		/**
 		 * Removes all occurrences of a set of characters specified in an array from the end of this instance.
+		 * <p><b>Example :</b></p>
+		 * <pre class="prettyprint">
+		 * trace( Strings.trimEnd("---hello world---" , Strings.whiteSpaceChars.concat("-")  ) ) ; // ---hello world
+		 * </pre>
+		 * @param str The string to trim.
+		 * @param trimChars The optional array of characters to trim. If this argument is null the <code class="prettyprint">Strings.whiteSpaceChars</code> static array is used.
+		 * @return The new string when is trimed.
 		 */
 		public static function trimEnd( str:String, trimChars:Array = null ):String
 		{
@@ -611,6 +771,13 @@ package system
 
 		/**
 		 * Removes all occurrences of a set of characters specified in an array from the beginning of this instance.
+		 * <p><b>Example :</b></p>
+		 * <pre class="prettyprint">
+		 * trace( Strings.trimStart("---hello world---" , Strings.whiteSpaceChars.concat("-")  ) ) ; // hello world---
+		 * </pre>
+		 * @param str The string to trim.
+		 * @param trimChars The optional array of characters to trim. If this argument is null the <code class="prettyprint">Strings.whiteSpaceChars</code> static array is used.
+		 * @return The new string when is trimed.
 		 */
 		public static function trimStart( str:String, trimChars:Array = null ):String
 		{
@@ -624,6 +791,7 @@ package system
 
 		/**
 		 * Helper method for the padLeft and padRight method.
+		 * @private
 		 */
 		private static function _padHelper( str:String, totalWidth:int, paddingChar:String = " ", isRightPadded:Boolean = true ):String
 		{
@@ -654,6 +822,7 @@ package system
 
 		/**
 		 * Helper method used by trim, trimStart and trimEnd methods.
+		 * @private
 		 */
 		private static function _trimHelper( str:String, trimChars:Array, trimStart:Boolean = false, trimEnd:Boolean = false ):String
 		{

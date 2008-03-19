@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../print.css" type="text/css" media="print">
 <link rel="stylesheet" href="../prettify.css" type="text/css">
-<meta content="Strings,system.Strings,whiteSpaceChars,compare,endsWith,format,indexOfAny,insert,padLeft,padRight,startsWith,trim,trimEnd,trimStart" name="keywords">
+<meta content="Strings,system.Strings,whiteSpaceChars,caseValue,compare,compareChars,endsWith,format,indexOfAny,insert,lastIndexOfAny,padLeft,padRight,startsWith,trim,trimEnd,trimStart" name="keywords">
 <title>system.Strings</title>
 </head>
 <body>
@@ -55,9 +55,25 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
+<a class="signatureLink" href="#caseValue()">caseValue</a>(str:String):uint</div>
+<div class="summaryTableDescription">[static]
+    Returns 0 if the passed string is lower case else 1.</div>
+</td><td class="summaryTableOwnerCol">Strings</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
 <a class="signatureLink" href="#compare()">compare</a>(o1:*, o2:Boolean, strict:* = false):int</div>
 <div class="summaryTableDescription">[static]
          Compares the two specified String objects.</div>
+</td><td class="summaryTableOwnerCol">Strings</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#compareChars()">compareChars</a>(charA:String, charB:String):int</div>
+<div class="summaryTableDescription">[static]
+   Compares the two characters passed in argument for order.</div>
 </td><td class="summaryTableOwnerCol">Strings</td>
 </tr>
 <tr class="">
@@ -79,7 +95,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#indexOfAny()">indexOfAny</a>(str:String, anyOf:Array, startIndex:int = 0, count:int = -1):int</div>
+<a class="signatureLink" href="#indexOfAny()">indexOfAny</a>(str:String, anyOf:Array, startIndex:int = 0, count:int = 0x7FFFFFFF):int</div>
 <div class="summaryTableDescription">[static]
    Reports the index of the first occurrence in this instance of any character in a specified array of Unicode characters.</div>
 </td><td class="summaryTableOwnerCol">Strings</td>
@@ -88,8 +104,16 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
 <a class="signatureLink" href="#insert()">insert</a>(str:String, startIndex:int = 0, value:String = null):String</div>
-<div class="summaryTableDescription">
+<div class="summaryTableDescription">[static]
    Inserts a specified instance of String at a specified index position in this instance.</div>
+</td><td class="summaryTableOwnerCol">Strings</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#lastIndexOfAny()">lastIndexOfAny</a>(str:String, anyOf:Array, startIndex:int = 0x7FFFFFFF, count:int = 0x7FFFFFFF):int</div>
+<div class="summaryTableDescription">[static]
+   Reports the index position of the last occurrence in this instance of one or more characters specified in a Unicode array.</div>
 </td><td class="summaryTableOwnerCol">Strings</td>
 </tr>
 <tr class="">
@@ -163,10 +187,34 @@ showHideInherited();
 <div class="MainContent">
 <a name="methodDetail"></a>
 <div class="detailSectionHeader">Method detail</div>
+<a name="caseValue()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">caseValue</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function caseValue(str:String):uint</code><p>
+    Returns 0 if the passed string is lower case else 1.
+    </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">str</span>:String</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>uint</code> &mdash; 0 if the passed string is lower case else 1.
+    </td>
+</tr>
+</table>
+</div>
 <a name="compare()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">compare</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+<td class="detailHeaderName">compare</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
@@ -202,6 +250,40 @@ showHideInherited();
 </tr>
 </table>
 </div>
+<a name="compareChars()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">compareChars</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function compareChars(charA:String, charB:String):int</code><p>
+   Compares the two characters passed in argument for order.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">charA</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">charB</span>:String</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>int</code> &mdash; <p>
+   <li>-1 if charA is "lower" than (less than, before, etc.) charB ;</li>
+   <li> 1 if charA is "higher" than (greater than, after, etc.) charB ;</li>
+   <li> 0 if charA and charB are equal.</li>
+   </p>
+   </td>
+</tr>
+</table>
+</div>
 <a name="endsWith()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -211,7 +293,19 @@ showHideInherited();
 <div class="detailBody">
 <code>public static function endsWith(str:String, value:String):Boolean</code><p>
          Determines whether the end of this instance matches the specified String.
-         </p><span class="label">Parameters</span>
+    </p><p><b>Example :</b></p>
+    <pre class="prettyprint">
+    import system.Strings ;
+    
+    var result:;
+    
+    result = Strings.endsWith( "hello world", "world" );
+    trace("> " + result) ; // true
+    
+    result = Strings.endsWith( "hello world", "hello" );
+    trace("> " + result) ; // false
+    </pre>
+         <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">str</span>:String</code></td>
@@ -241,11 +335,11 @@ showHideInherited();
 <code>public static function format(format:String, ... args):String</code><p> 
     Format a string using indexed or named parameters.
     </p><p>Method call :</p>
-    <li>StringUtil.format(pattern:String, ...arguments:Array):String</li>
-    <li>StringUtil.format(pattern:String, [arg0:arg1:arg2: ...] ):String</li>
-    <li>StringUtil.format(pattern:String, [arg0:arg1:arg2: ...], ...args:Array ):String</li>
-    <li>StringUtil.format(pattern:String, {name0:value0,name1:value1,name2:value2, ...} ):String</li>
-    <li>StringUtil.format(pattern:String, {name0:value0,name1:value1,name2:value2, ...} , ...args:Array ) :String</li>
+    <li>Strings.format(pattern:String, ...arguments:Array):String</li>
+    <li>Strings.format(pattern:String, [arg0:arg1:arg2: ...] ):String</li>
+    <li>Strings.format(pattern:String, [arg0:arg1:arg2: ...], ...args:Array ):String</li>
+    <li>Strings.format(pattern:String, {name0:value0,name1:value1,name2:value2, ...} ):String</li>
+    <li>Strings.format(pattern:String, {name0:value0,name1:value1,name2:value2, ...} , ...args:Array ) :String</li>
     </p>
     <p>Replaces the pattern item in a specified String with the text equivalent of the value of a specified Object instance.</p>
     <p>Formats item : {token[,alignment][:paddingChar]}</p>
@@ -259,53 +353,60 @@ showHideInherited();
     import system.Strings ;
     
     var result:String ;
-   
-   // indexed from the arguments
-   
-   result = Strings.format( "hello {1} {0} world", "big", "the" ); 
-   trace("> " + result) ; //"hello the big world"
-      result = Strings.format("Brad's dog has {0,6:#} fleas.", 41) ;
-   trace("> " + result) ;
-      result = Strings.format("Brad's dog has {0,-6} fleas.", 12) ;
-   trace("> " + result) ;
-      result = Strings.format("{3} {2} {1} {0}", "a", "b", "c", "d") ;
-   trace("> " + result) ;
-   
-   // named from an object
-   
-   result = Strings.format( "hello I'm {name}", {name:"HAL"} );
-   trace("> " + result) ; //"hello I'm HAL"
-   
-   // indexed from an array
-   
-   var names:Array = ["A","B","C","D"];
-   var scores:Array = [16,32,128,1024];
-   for( var i:int=0; i<names.length; i++ )
-   {
-       trace( Strings.format( "{0} scored {1,5}", [names[i], scores[i]] ) );
-   }
-   // "A scored    16"
-   // "B scored    32"
-   // "C scored   128"
-   // "D scored  1024"
-   
-   // resolve toString
-   var x:Object = {};
-   x.toString = function() { return "john doe"; } ;
-   trace( Strings.format( "Who is {0} ?", x ) ) ; //"Who is john doe ?"
-   
-   // you can off course reuse the index
-   var fruits:Array = ["apple", "banana", "pineapple"] ;
-   trace( Strings.format( "I like all fruits {0},{1},{2}, etc. but still I prefer above all {0}", fruits ) ); // "I like all fruits apple,banana,pineapple, etc. but still I prefer above all apple"
-   
-   // indexed from an array + the arguments
-   var fruits:Array = ["apple", "banana", "pineapple"];
-   trace( Strings.format( "fruits: {0}, {1}, {2}, {3}, {4}, {5}", fruits, "grape", "tomato" ) ); //"fruits: apple, banana, pineapple, grape, tomato, undefined"
-   
-   // passing reference and padding
-   var what = "answer" ;
-   result = Strings.format( "your {0} is within {answer,20:.}", {answer:"my answer"}, what ) ; 
-   trace("> " + result ) // "your answer is within ...........my answer"
+    
+    // indexed from the arguments
+    
+    result = Strings.format( "hello {1} {0} world", "big", "the" );
+    trace("> " + result) ; //"hello the big world"
+    
+    result = Strings.format("Brad's dog has {0,6:#} fleas.", 41) ;
+    trace("> " + result) ;
+    
+    result = Strings.format("Brad's dog has {0,-6} fleas.", 12) ;
+    trace("> " + result) ;
+    
+    result = Strings.format("{3} {2} {1} {0}", "a", "b", "c", "d") ;
+    trace("> " + result) ;
+    
+    // named from an object
+    
+    result = Strings.format( "hello I'm {name}", {name:"HAL"} );
+    trace("> " + result) ; //"hello I'm HAL"
+    
+    // indexed from an array
+    
+    var names:Array = ["A","B","C","D"];
+    var scores:Array = [16,32,128,1024];
+    for( var i:int=0; i<names.length; i++ )
+    {
+        trace( Strings.format( "{0} scored {1,5}", [names[i], scores[i]] ) );
+    }
+    // "A scored    16"
+    // "B scored    32"
+    // "C scored   128"
+    // "D scored  1024"
+    
+    // resolve toString
+    var user:Object = {};
+    user.toString = function() { return "john doe"; } ;
+    trace( Strings.format( "Who is {0} ?", user ) ) ; //"Who is john doe ?"
+    
+    var fruits:Array ;
+    
+    // you can off course reuse the index
+    fruits = ["apple", "banana", "pineapple"] ;
+    trace( Strings.format( "I like all fruits {0},{1},{2}, etc. but still I prefer above all {0}", fruits ) ); // "I like all fruits apple,banana,pineapple, etc. but still I prefer above all apple"
+    
+    // indexed from an array + the arguments
+    
+    fruits = ["apple", "banana", "pineapple"];
+    trace( Strings.format( "fruits : {0}, {1}, {2}, {3}, {4}", fruits, "grape", "tomato" ) ); //"fruits : apple, banana, pineapple, grape, tomato"
+    
+    // passing reference and padding
+    
+    var what = "answer" ;
+    result = Strings.format( "your {0} is within {answer,20:.}", {answer:"my answer"}, what ) ;
+    trace( result ) // "your answer is within ...........my answer"
     </pre>
     <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -334,38 +435,45 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public static function indexOfAny(str:String, anyOf:Array, startIndex:int = 0, count:int = -1):int</code><p>
+<code>public static function indexOfAny(str:String, anyOf:Array, startIndex:int = 0, count:int = 0x7FFFFFFF):int</code><p>
    Reports the index of the first occurrence in this instance of any character in a specified array of Unicode characters.
    </p><p><b>Example :</b></p>
    <pre class="prettyprint">
    import system.Strings ;
    
-   Strings.indexOfAny("hello world", [2, "hello", 5]) ; // 0
-   Strings.indexOfAny("Five = 5", [2, "hello", 5]) ; // 7
-    Strings.indexOfAny("actionscript is good", [2, "hello", 5]) ; // -1
+   trace( Strings.indexOfAny("hello world", [2, "hello", 5]) ) ; // 0
+   trace( Strings.indexOfAny("Five 5 = 5 and not 2" , [2, "hello", 5]) ) ; // 19 
+   trace( Strings.indexOfAny("Five 5 = 5 and not 2" , [5, "hello", 2] ) ) ; // 5
+   trace( Strings.indexOfAny("Five 5 = 5 and not 2" , [5, "hello", 2] , 6 ) ) ; // 9
+   trace( Strings.indexOfAny("Five 5 = 5 and not 2" , [5, "hello", 2] , 6 , 2 ) ) ; // -1
+   trace( Strings.indexOfAny("actionscript is good" , [5, "hello", 2]) ) ; // -1
    </pre>
-    <span class="label">Parameters</span>
+   <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">str</span>:String</code></td>
+<td width="20px"></td><td><code><span class="label">str</span>:String</code> &mdash; The String to ckeck.
+   </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">anyOf</span>:Array</code></td>
+<td width="20px"></td><td><code><span class="label">anyOf</span>:Array</code> &mdash; The Array of Unicode characters to find in the String.
+   </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">startIndex</span>:int</code> (default = <code>0</code>)<code></code></td>
+<td width="20px"></td><td><code><span class="label">startIndex</span>:int</code> (default = <code>0</code>)<code></code> &mdash; The init position of the search process.
+   </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">count</span>:int</code> (default = <code>-1</code>)<code></code></td>
+<td width="20px"></td><td><code><span class="label">count</span>:int</code> (default = <code>0x7FFFFFFF</code>)<code></code> &mdash; The number of elements to check.
+    </td>
 </tr>
 </table>
 <p></p>
@@ -373,6 +481,14 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>int</code> &mdash; the index of the first occurrence in this instance of any character in a specified array of Unicode characters.
+    </td>
+</tr>
+</table>
+<br>
+<span class="label">Throws</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code></code> &mdash; if the anyOf argument is 'null' or 'undefined'.
     </td>
 </tr>
 </table>
@@ -384,7 +500,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function insert(str:String, startIndex:int = 0, value:String = null):String</code><p>
+<code>public static function insert(str:String, startIndex:int = 0, value:String = null):String</code><p>
    Inserts a specified instance of String at a specified index position in this instance.
    note :
    if index is null, we directly append the value to the end of the string.
@@ -434,6 +550,68 @@ showHideInherited();
 </tr>
 </table>
 </div>
+<a name="lastIndexOfAny()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">lastIndexOfAny</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function lastIndexOfAny(str:String, anyOf:Array, startIndex:int = 0x7FFFFFFF, count:int = 0x7FFFFFFF):int</code><p>
+   Reports the index position of the last occurrence in this instance of one or more characters specified in a Unicode array.
+   </p><p><b>Example :</b></p>
+   <pre class="prettyprint"> 
+   trace( Strings.lastIndexOfAny("hello world", ["2", "hello", "5"]) ) ; // 0
+   trace( Strings.lastIndexOfAny("Five 5 = 5 and not 2" , ["2", "hello", "5"]) ) ; // 19
+   trace( Strings.lastIndexOfAny("Five 5 = 5 and not 2" , ["5", "hello", "2"] ) ) ; // 9
+   trace( Strings.lastIndexOfAny("Five 5 = 5 and not 2" , ["5", "hello", "2"] , 8 ) ) ; // 5
+   trace( Strings.lastIndexOfAny("Five 5 = 5 and not 2" , ["5", "hello", "2"] , 8 , 3) ) ; // -1
+   </pre> 
+   <span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">str</span>:String</code> &mdash; The String to ckeck.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">anyOf</span>:Array</code> &mdash; The Array of Unicode characters to find in the String.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">startIndex</span>:int</code> (default = <code>0x7FFFFFFF</code>)<code></code> &mdash; The init position of the search process.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">count</span>:int</code> (default = <code>0x7FFFFFFF</code>)<code></code> &mdash; The number of elements to check.
+    </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>int</code> &mdash; the index position of the last occurrence in this instance of one or more characters specified in a Unicode array.
+    </td>
+</tr>
+</table>
+<br>
+<span class="label">Throws</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code></code> &mdash; if the anyOf argument is 'null' or 'undefined'.
+    </td>
+</tr>
+</table>
+</div>
 <a name="padLeft()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -446,10 +624,12 @@ showHideInherited();
    <pre class="prettyprint">
    import system.Strings ;
    
-   var result:String = Strings.padLeft("hello", 8) ;
+   var result:String ;
+   
+   result = Strings.padLeft("hello", 8) ;
    trace(result) ; //  "   hello"
    
-   var result:String = Strings.padLeft("hello", 8, ".") ;
+   result = Strings.padLeft("hello", 8, ".") ;
    trace(result) ; //  "...hello" 
    </pre>
    </p><span class="label">Parameters</span>
@@ -492,10 +672,12 @@ showHideInherited();
    <pre class="prettyprint">
    import system.Strings ;
    
-   var result:String = Strings.padRight("hello", 8) ;
+   var result:String ;
+   
+   result = Strings.padRight("hello", 8) ;
    trace(result) ; //  "hello   "
    
-   var result:String = Strings.padRight(hello", 8, ".") ;
+   result = Strings.padRight("hello", 8, ".") ;
    trace(result) ; //  "hello..." 
    </pre>
    <span class="label">Parameters</span>
@@ -572,23 +754,30 @@ showHideInherited();
 <div class="detailBody">
 <code>public static function trim(str:String, trimChars:Array = null):String</code><p>
    Removes all occurrences of a set of specified characters (or strings) from the beginning and end of this instance.
-   </p><span class="label">Parameters</span>
+   </p><p><b>Example :</b></p>
+   <pre class="prettyprint">
+   trace( Strings.trim("\r\t   hello world   \t ") ) ; // hello world
+   </pre>
+   <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">str</span>:String</code></td>
+<td width="20px"></td><td><code><span class="label">str</span>:String</code> &mdash; The string to trim.
+   </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">trimChars</span>:Array</code> (default = <code>null</code>)<code></code></td>
+<td width="20px"></td><td><code><span class="label">trimChars</span>:Array</code> (default = <code>null</code>)<code></code> &mdash; The optional array of characters to trim. If this argument is null the <code class="prettyprint">Strings.whiteSpaceChars</code> static array is used.
+   </td>
 </tr>
 </table>
 <p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>String</code></td>
+<td width="20"></td><td><code>String</code> &mdash; The new string when is trimed.
+   </td>
 </tr>
 </table>
 </div>
@@ -601,23 +790,30 @@ showHideInherited();
 <div class="detailBody">
 <code>public static function trimEnd(str:String, trimChars:Array = null):String</code><p>
    Removes all occurrences of a set of characters specified in an array from the end of this instance.
-   </p><span class="label">Parameters</span>
+   </p><p><b>Example :</b></p>
+   <pre class="prettyprint">
+   trace( Strings.trimEnd("---hello world---" , Strings.whiteSpaceChars.concat("-")  ) ) ; // ---hello world
+   </pre>
+   <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">str</span>:String</code></td>
+<td width="20px"></td><td><code><span class="label">str</span>:String</code> &mdash; The string to trim.
+   </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">trimChars</span>:Array</code> (default = <code>null</code>)<code></code></td>
+<td width="20px"></td><td><code><span class="label">trimChars</span>:Array</code> (default = <code>null</code>)<code></code> &mdash; The optional array of characters to trim. If this argument is null the <code class="prettyprint">Strings.whiteSpaceChars</code> static array is used.
+   </td>
 </tr>
 </table>
 <p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>String</code></td>
+<td width="20"></td><td><code>String</code> &mdash; The new string when is trimed.
+   </td>
 </tr>
 </table>
 </div>
@@ -630,23 +826,30 @@ showHideInherited();
 <div class="detailBody">
 <code>public static function trimStart(str:String, trimChars:Array = null):String</code><p>
    Removes all occurrences of a set of characters specified in an array from the beginning of this instance.
-   </p><span class="label">Parameters</span>
+   </p><p><b>Example :</b></p>
+   <pre class="prettyprint">
+   trace( Strings.trimStart("---hello world---" , Strings.whiteSpaceChars.concat("-")  ) ) ; // hello world---
+   </pre>
+   <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">str</span>:String</code></td>
+<td width="20px"></td><td><code><span class="label">str</span>:String</code> &mdash; The string to trim.
+   </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">trimChars</span>:Array</code> (default = <code>null</code>)<code></code></td>
+<td width="20px"></td><td><code><span class="label">trimChars</span>:Array</code> (default = <code>null</code>)<code></code> &mdash; The optional array of characters to trim. If this argument is null the <code class="prettyprint">Strings.whiteSpaceChars</code> static array is used.
+   </td>
 </tr>
 </table>
 <p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>String</code></td>
+<td width="20"></td><td><code>String</code> &mdash; The new string when is trimed.
+   </td>
 </tr>
 </table>
 </div>
@@ -661,16 +864,17 @@ showHideInherited();
 <div class="detailBody">
 <code>public static const whiteSpaceChars:Array</code><p>
    Contains a read-only list of white space chars.
-   Note :
-   - http://developer.mozilla.org/es4/proposals/string.html
-   - http://www.fileformat.info/info/unicode/category/Zs/list.htm
-   - http://www.fileformat.info/info/unicode/category/Zl/list.htm
-   - http://www.fileformat.info/info/unicode/category/Zp/list.htm
-   - http://www.fileformat.info/info/unicode/char/200b/index.htm
-   - http://www.fileformat.info/info/unicode/char/feff/index.htm
-   - http://www.fileformat.info/info/unicode/char/2060/index.htm
-   TODO we maybe could also define 0xFFEF and/or 0x2060, but not completely sure of all the implication, 0xFFEF in byte order mark etc.
-   </p></div>
+   </p><p><b>Note :</b></p>
+   <ul>
+   <li>http://developer.mozilla.org/es4/proposals/string.html</li>
+   <li>http://www.fileformat.info/info/unicode/category/Zs/list.htm</li>
+   <li>http://www.fileformat.info/info/unicode/category/Zl/list.htm</li>
+   <li>http://www.fileformat.info/info/unicode/category/Zp/list.htm</li>
+   <li>http://www.fileformat.info/info/unicode/char/200b/index.htm</li>
+   <li>http://www.fileformat.info/info/unicode/char/feff/index.htm</li>
+   <li>http://www.fileformat.info/info/unicode/char/2060/index.htm</li>
+   </ul>
+   </div>
 <br>
 <br>
 <hr>
