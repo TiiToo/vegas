@@ -61,13 +61,20 @@ package lunas.display.container
 			_mask               = new CoreShape ( null , false , "mask" ) ;		
 			_area               = new CoreSprite( null , false , "area" ) ;
 			
-			_areaPen            = new RectanglePen( _area ) ;
-			_backgroundPen      = new RectanglePen( _background ) ;
-			_maskPen            = new RectanglePen( _mask ) ;
+			_background.buttonMode = false ;
+
+			_container.buttonMode  = false ;
+
+			_area.buttonMode       = false ; 
+			_area.mouseEnabled     = false ;
 			
-			_areaPen.fill       = new FillStyle( 0 , 0 ) ;
-			_backgroundPen.fill = new FillStyle( 0 , 0 ) ;
-			_maskPen.fill       = new FillStyle( 0 , 0 ) ;
+			_areaPen               = new RectanglePen( _area ) ;
+			_backgroundPen         = new RectanglePen( _background ) ;
+			_maskPen               = new RectanglePen( _mask ) ;
+			
+			_areaPen.fill          = new FillStyle( 0 , 0 ) ;
+			_backgroundPen.fill    = new FillStyle( 0 , 0 ) ;
+			_maskPen.fill          = new FillStyle( 0 , 0 ) ;
 			
 			_bound              = new Rectangle() ;
 				

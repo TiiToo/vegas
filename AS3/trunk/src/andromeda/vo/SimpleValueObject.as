@@ -30,7 +30,7 @@ package andromeda.vo
 	import vegas.core.Identifiable;	
 
 	/**
-	 * Creates a new SimpleValueObject instance.
+	 * The SimpleValueObject class provides a basic implementation of the IValueObject interface.
 	 * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
 	 */
 	public class SimpleValueObject extends CoreObject implements IEquatable, IValueObject
