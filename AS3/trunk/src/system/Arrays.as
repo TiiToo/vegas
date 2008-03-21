@@ -24,13 +24,13 @@
 */	 
 
 package system
-{
+	{
 	
     /**
 	 * Array static tool class.
 	 */
 	public class Arrays
-	{
+		{
 		
 		/**
 		 * Initializes a new Array with an arbitrary number of elements (index), 
@@ -46,14 +46,14 @@ package system
 		 * with every element containing the passed parameter value or by default the null value.
 		 */
 		public static function initialize( elements:int = 0, value:* = null ):Array
-		{
+			{
 			var arr:Array = [];
 			for( var i:int = 0; i < elements ; i++ )
-			{
+				{
 				arr[i] = value ;
-			}
+				}
 			return arr;
-		}
+			}
 
 		/** 
 		 * Splice one array into another.
@@ -103,19 +103,19 @@ package system
   		 * @param countReplaced The count value to replaced values.
   		 */
 		public static function spliceInto( inserted:Array, container:Array, containerPosition:Number=0 , countReplaced:Number=0 ):void
-		{
+			{
   			inserted.unshift( containerPosition, isNaN( countReplaced ) ? 0 : countReplaced );
   			try 
-  			{
+				{
     			container.splice.apply( container, inserted ) ;
-  			} 
+				} 
   			finally 
-  			{
+				{
     			inserted.splice(0, 2) ;
-  			}
-		}	
+				}
+			}	
+
+		}
 
 	}
-
-}
 
