@@ -1,5 +1,4 @@
 ﻿/*
-  
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
   the License. You may obtain a copy of the License at 
@@ -9,23 +8,22 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is eden: ECMAScript data exchange notation AS2. 
+  The Original Code is [ES4a: ECMAScript 4 MaasHaack framework].
   
   The Initial Developer of the Original Code is
   Zwetan Kjukov <zwetan@gmail.com>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2006
+  Portions created by the Initial Developer are Copyright (C) 2006-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s):
   
-  	- Alcaraz Marc (aka eKameleon) <vegas@ekameleon.net> (2007-2008)
-	  Use this version only with Vegas AS3 Framework Please.
+  	- Alcaraz Marc (aka eKameleon) <ekameleon@gmail.com> (2007-2008)
 
 */
 package system
-{
+    {
     
-	/**
+    /**
      * A basic Version class which is composed by four fields: major, minor, build and revision.
      * <p>implementation note:</p>
      * <p>internaly we stock the value of a version (the total of each fields) 
@@ -61,7 +59,46 @@ package system
      * This logic and these limitations can change later.
      */
     public class Version implements IEquatable
-	{
+        {
+            
+        
+        private var _major:uint;
+        private var _minor:uint;
+        private var _build:uint;
+        private var _revision:uint;
+        
+        private var _maxMajor:uint    = 0xf;
+        private var _maxMinor:uint    = 0xf;
+        private var _maxBuild:uint    = 0xff;
+        private var _maxRevision:uint = 0xffff;
+        
+        private var _separator:String = ".";
+        
+        /**
+         * @private
+         */
+        private function getFields():int
+            {
+            var f:int = 4;
+            
+            if( revision == 0 )
+                {
+                f--;
+                }
+            
+            if( (f == 3) && (build == 0) )
+                {
+                f--;
+                }
+            
+            if( (f == 2) && (minor == 0) )
+                {
+                f--;
+                }
+            
+            return f; //we always have a minimum field of 1, the major field
+            }
+        
         
         /**
          * Creates a new Version instance.
@@ -70,69 +107,73 @@ package system
          * @param build The build value of the version.
          * @param revision The revision value of the version.
          */
-        public function Version( major:uint = 0, minor:uint = 0, build:uint = 0, revision:uint = 0 )
-        {
-            
-            if( (major > _maxMajor) && (minor == 0) && (build == 0) && (revision == 0) )
+        public function Version( major:uint = 0,
+                                 minor:uint = 0,
+                                 build:uint = 0,
+                                 revision:uint = 0 )
             {
+            
+            if( (major > _maxMajor) && (minor == 0)
+                                    && (build == 0)
+                                    && (revision == 0) )
+                {
                 var v:Version = Version.fromNumber( major );
                 major    = v.major;
                 minor    = v.minor;
                 build    = v.build;
                 revision = v.revision;
-            }
+                }
             
             this.major    = major;
             this.minor    = minor;
             this.build    = build;
             this.revision = revision;
             
-        }
+            }
         
         /**
          * Constructs a Version object from a string.
          */
-        public static function fromString( value:String = "" , separator:String = "." ):Version
-        {
+        public static function fromString( value:String = "" ):Version
+            {
             var v:Version = new Version();
             
             if( (value == "") || (value == null) )
-        	{
+                {
                 return v;
-            }
+                }
             
-            if( value.indexOf( separator ) > -1 )
-            {
-                var values:Array = value.split( separator );
+            if( value.indexOf( "." ) > -1 )
+                {
+                var values:Array = value.split( "." );
                 v.major    = parseInt( values[0] );
                 v.minor    = parseInt( values[1] );
                 v.build    = parseInt( values[2] );
                 v.revision = parseInt( values[3] );
-            }
+                }
             else
-            {
+                {
                 v.major = parseInt( value );
-            }
+                }
             
             return v;
-		}
+            }
         
         /**
          * Constructs a Version object from a number.
          * If the number is zero or negative, or is NaN or Infity returns an empty version object.
          */
         public static function fromNumber( value:Number = 0 ):Version
-        {
+            {
             var v:Version = new Version();
             
-            if ( isNaN(value) || (value == 0) || (value < 0)
+            if( isNaN(value) || (value == 0) || (value < 0)
                 || (value == Number.MAX_VALUE)
                 || (value == Number.POSITIVE_INFINITY)
-                || (value == Number.NEGATIVE_INFINITY) 
-            )
-            {
+                || (value == Number.NEGATIVE_INFINITY) )
+                {
                 return v;
-            }
+                }
             
             //this is like the inverse of valueOf
             //(major << 28) | (minor << 24) | (build << 16) | revision
@@ -142,72 +183,72 @@ package system
             v.build    = (value & 0x00ff0000) >>> 16;
             v.revision = (value & 0x0000ffff);
             
-            return v ;
-        }
+            return v;
+            }
         
         /**
          * Indicates the major value of this version.
-         */
+         */        
         public function get major():uint
-		{
+            {
             return _major;
-        }
+            }
         
         /**
          * @private
-         */
+         */        
         public function set major( value:uint ):void
-		{
+            {
             _major = Math.min( value, _maxMajor );
-		}
+            }
 
         /**
          * Indicates the minor value of this version.
          */
         public function get minor():uint
-        {
+            {
             return _minor;
-        }
-
+            }
+      
         /**
          * @private
-         */
+         */ 
         public function set minor( value:uint ):void
-        {
+            {
             _minor = Math.min( value, _maxMinor );
-        }
-
+            }
+        
         /**
          * Indicates the build value of this version.
          */
         public function get build():uint
-		{
+            {
             return _build;
-		}
-        
+            }
+         
         /**
          * @private
          */
         public function set build( value:uint ):void
-		{
+            {
             _build = Math.min( value, _maxBuild );
-		}
-        
+            }
+
         /**
          * Indicates the revision value of this version.
          */
         public function get revision():uint
-        {
+            {
             return _revision;
-        }
-        
+            }
+
         /**
          * @private
          */
         public function set revision( value:uint ):void
-        {
+            {
             _revision = Math.min( value, _maxRevision );
-        }
+            }
         
         /**
          * We don't really need an equals method as we override the valueOf, we can do something as
@@ -269,102 +310,43 @@ package system
          * <li>major</li>
          */
         public function toString( fields:int = 0 ):String
-		{
+            {
             var arr:Array;
             
             if( (fields <= 0) || (fields > 4) )
-            {
-                fields = _fields; //get the default fields
-            }
+                {
+                fields = getFields(); //get the default fields
+                }
             
             switch( fields )
-            {
-                case 1:
-                arr = [ major ];
-                break;
-                
-                case 2:
-                arr = [ major, minor ];
-                break;
+                {
+                case 1 :
+                    {
+                    arr = [ major ];
+                    break;
+                    }                
+                case 2 :
+                    {
+                    arr = [ major, minor ];
+                    break;
+                    }
                 
                 case 3:
-                arr = [ major, minor, build ];
-                break;
+                    {
+                    arr = [ major, minor, build ];
+                    break;
+                    }
                 
                 case 4:
                 default:
-                arr = [ major, minor, build, revision ];
-           }
+                    {
+                        arr = [ major, minor, build, revision ];
+                    }
+                }
             
             return arr.join( _separator );
-		}
-        
-        /**
-         * @private
-         */
-        private var _major:uint;
-        
-        /**
-         * @private
-         */
-        private var _maxMajor:uint    = 0xf;
-        
-        /**
-         * @private
-         */
-        private var _maxMinor:uint    = 0xf;
-        
-        /**
-         * @private
-         */
-        private var _maxBuild:uint    = 0xff;
-        
-        /**
-         * @private
-         */
-        private var _maxRevision:uint = 0xffff;
-        
-        /**
-         * @private
-         */
-        private var _minor:uint;
-        
-        /**
-         * @private
-         */
-        private var _build:uint;
-        
-        /**
-         * @private
-         */
-        private var _revision:uint;
-        
-        /**
-         * @private
-         */
-        private var _separator:String = ".";
-        
-        /**
-         * @private
-         */
-        private function get _fields():int
-		{
-            var f:int = 4;
-            if( revision == 0 )
-            {
-                f--;
             }
-            if( (f == 3) && (build == 0) )
-            {
-                f--;
-            }
-            if( (f == 2) && (minor == 0) )
-            {
-                f--;
-            }
-            return f; //we always have a minimum field of 1, the major field
+        
         }
-        
-    }
     
-}
+    }

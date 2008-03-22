@@ -210,7 +210,7 @@ class asgard.events.RemotingEvent extends DynamicEvent
 	 */
 	public function getMethodName():String 
 	{
-		return _sMethodName ;
+		return _sMethodName || target.getMethodName() || null ;
 	}
 
 	/**
@@ -316,7 +316,7 @@ class asgard.events.RemotingEvent extends DynamicEvent
 	/**
 	 * @private
 	 */
-	/*protected*/ private function _getParams():Array 
+	/*protected*/ function _getParams():Array 
 	{
 		var ar:Array = super._getParams() ;
 		ar.splice(2, null, Serializer.toSource(_result)) ;

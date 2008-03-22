@@ -74,7 +74,7 @@ package asgard.net
         	var ch:String ;
         	var entity:String ;
 	        var len:uint = entities.length ;
-        	for( i=0; i<len ; i++ )
+        	for( i=0 ; i<len ; i++ )
         	{
 	            ch = specialchars[ i ];
             	entity = entities[ i ];
@@ -105,7 +105,7 @@ package asgard.net
 	        var ch:String ;
         	var entity:String ;
         	var len:uint = entities.length ;
-			for( i=0; i<len; i++ )
+			for( i=0; i < len; i++ )
         	{
 	            ch     = specialchars[i];
             	entity = entities[i];

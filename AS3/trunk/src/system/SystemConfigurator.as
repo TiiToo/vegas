@@ -19,32 +19,42 @@
   
   	- Alcaraz Marc (aka eKameleon) <ekameleon@gmail.com> (2007-2008)
 
-*/	
-package system.text.prettifier
-    {
-    
-    /**
-	 * The code prettify AS3 tool. 
-	 * @author eKameleon
-	 */    
-    public class Prettify
+*/
+package system
+	{
+	import system.Configurator;    
+
+	/**
+     * The system configurator class.
+     */
+    public class SystemConfigurator extends Configurator
         {
         
         /**
-         * Creates a new Prettify instance.
+         * Creates a new SystemConfigurator instance.
+         * @param config This argument initialize the configurator with a generic object.
          */
-        public function Prettify()
+        public function SystemConfigurator( config:Object )
             {
-            
+            super( config );
             }
         
-        /* TODO:
-           define a clean and simple API, cf Prettify.prettyIndent, Prettify.prettyPrinting etc.
-           ex:
-           var something:Prettify = new Prettify( "{a:1, b:2}" );
-           TextField.htmlText = something.toHTML( myCSS );
-        */
+        /**
+         * Indicates if the config use the verbose mode or not.
+         */
+        public function get verbose():Boolean
+            {
+            return _config.verbose;
+            }
         
-        }
-    }
+        /**
+         * @private
+         */
+        public function set verbose( value:Boolean ):void
+            {
+            _config.verbose = value;
+            }
 
+        }
+
+    }

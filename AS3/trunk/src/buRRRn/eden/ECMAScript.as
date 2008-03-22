@@ -1408,7 +1408,7 @@ package buRRRn.eden
 				_localPool[ name ] = localscope[ name ];
 				//tracePool();
 
-								_inAssignement = false;
+				_inAssignement = false;
 			}
 		}
 		
@@ -1483,7 +1483,7 @@ package buRRRn.eden
 				_localPool[ path ] = scope[ member ];
 				//tracePool();
 
-								_inAssignement = false;
+				_inAssignement = false;
 			}
 		}
 		
