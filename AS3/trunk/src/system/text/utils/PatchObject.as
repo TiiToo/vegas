@@ -74,12 +74,14 @@ package system.text.utils
  		 */
 		public function toString():String 
 		{
+  			
   			var coords1:String, coords2:String ;
+  			
   			if ( length1 === 0 ) 
   			{
     			coords1 = String(start1) + ',0';
   			} 
-  			else if (this.length1 == 1) 
+  			else if ( length1 == 1 ) 
   			{
     			coords1 = String(start1) + 1 ;
   			} 
@@ -88,11 +90,11 @@ package system.text.utils
     			coords1 = ( start1 + 1 ) + ',' + length1 ;
   			}
   			
-  			if (this.length2 === 0) 
+  			if ( length2 === 0 ) 
   			{
     			coords2 = String(start2) + ',0' ;
   			} 
-  			else if (this.length2 == 1) 
+  			else if ( length2 == 1 ) 
   			{
     			coords2 = String(start2) + 1;
   			} 
@@ -100,25 +102,28 @@ package system.text.utils
   			{
     			coords2 = (start2 + 1) + ',' + length2 ;
   			}
+  			
   			var txt:Array = ['@@ -' + coords1 + ' +' + coords2 + ' @@\n'] ;
   			var op:String ;
+  			
   			// Escape the body of the patch with %xx notation.
+  			
   			var len:uint = diffs.length ;
   			for (var x:uint = 0; x < len ; x++ ) 
   			{
-    			switch (this.diffs[x][0]) 
+    			switch ( this.diffs[x][0] ) 
     			{
-    				case DifferenceMatchPatch.DIFF_INSERT:
+    				case Difference.INSERT :
     				{
       					op = '+';
       					break;
     				}
-    				case DifferenceMatchPatch.DIFF_DELETE :
+    				case Difference.DELETE :
     				{
       					op = '-' ;
       					break ;
     				}
-    				case DifferenceMatchPatch.DIFF_EQUAL :
+    				case Difference.EQUAL :
     				{
       					op = ' ';
       					break;
@@ -126,7 +131,9 @@ package system.text.utils
     			}
     			txt[x + 1] = op + encodeURI(this.diffs[x][1]) + '\n' ;
   			}
+  			
   			return txt.join('').replace(/%20/g, ' ') ;
+  			
 		}
 	}
 }

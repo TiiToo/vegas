@@ -29,146 +29,128 @@ package system.text.utils
 	/**
 	 * Computes the difference between two texts to create a patch. 
 	 * Applies the patch onto another text, allowing for errors.
+	 * I test for the moment the official Google library diffMatchPatch with JSDB
+	 * <pre class="prettyprint">
+	 * // code in JS
+	 * var o = new diff_match_patch() ;
+	 * 
+	 * var result = o.diff_commonPrefix( "hello world" , "hello ekameleon" ) ;
+	 * trace( result + " commons prefix of two strings" ) ; // 6 commons prefix of two strings
+	 * 
+	 * trace("----") ;
+	 * 
+	 * var result =  o.diff_commonSuffix( "hello worlds" , "hi worlds" ) ;
+	 * trace( result + " commons suffix of two strings" ) ; // 7 commons suffix of two strings
+	 * 
+	 * trace("----") ;
+	 * 
+	 * var result = o.diff_main( "hello world" , "hello system" ) ;
+	 * trace(result) ; // 0,hello ,-1,world,1,system
+	 * 
+	 * trace("----") ;
+	 * 
+	 * var result = o.diff_compute( "hello worlds" , "hello system" ) ;
+	 * trace(result) ; // 0,,0,hello ,-1,world,0,s,1,ystem
+	 * 
+	 * trace("----") ;
+	 * 
+	 * var result = o.diff_map( "hello worlds" , "hello system" ) ;
+	 * trace(result) ; // -1,world,0,s,1,ystem
+	 * </pre>
+	 * <p>The same code in <b>AS3</b> is :</p>
+	 * <pre class="prettyprint">
+	 * import system.text.utils.Difference ;
+	 * 
+	 * var result:* ;
+	 * 
+	 * result = Difference.commonPrefix( "hello world" , "hello system" ) ;
+	 * trace( result + " commons prefix of two strings" ) ; // 6 commons prefix of two strings (OK)
+	 * 
+	 * trace("----") ;
+	 * 
+	 * result = Difference.commonSuffix( "hello worlds" , "hi worlds" ) ;
+	 * trace( result + " commons suffix of two strings" ) ; // 7 commons suffix of two strings (OK)
+	 * 
+	 * trace("----") ;
+	 * 
+	 * result = Difference.main( "hello world" , "hello system" ) ;
+	 * trace( result ) ; // 0,hello ,-1,world,1,system (WARN bug for the moment with other tests).
+	 * 
+	 * trace("----") ;
+	 * 
+	 * result = Difference.compute( "hello world" , "hello system" ) ;
+	 * trace( result ) ; // null (FIXME bug for the moment)
+	 * 
+	 * trace("----") ;
+	 * 
+	 * result = Difference.map( "hello world" , "hello system" ) ;
+	 * trace( result ) ; // null (FIXME bug for the moment)
+	 * </pre>
+	 * <p>TODO Unit tests</p>
 	 * @author eKameleon
 	 */
-	public class DifferenceMatchPatch 
+	public class Difference 
 	{
-		
-		/**
-		 * Creates a new DifferenceMatchPatch instance.
-		 */
-		public function DifferenceMatchPatch()
-		{
-			matchMaxBits = getMaxBits();
-		}
 
 		/**
-		 * The <code class="prettyprint">DIFF_DELETE</code> constante (0).
+		 * The <code class="prettyprint">DELETE</code> constante (0).
  		 * <p>The data structure representing a diff is an array of tuples :</p>
  		 * <pre class="prettyprint">
- 		 * [[DIFF_DELETE, 'Hello'], [DIFF_INSERT, 'Goodbye'], [DIFF_EQUAL, ' world.']]
+ 		 * [[DELETE, 'Hello'], [INSERT, 'Goodbye'], [EQUAL, ' world.']]
  		 * </pre>
  		 * <p>Which means : delete <b>'Hello'</b>, add <b>'Goodbye'</b> and keep </b>' world.'</b>.</p>
  		 */
-		public static const DIFF_DELETE:int = -1 ;
+		public static const DELETE:int = -1 ;
 
 		/**
-		 * The <code class="prettyprint">DIFF_EQUAL</code> constante (0).
+		 * The <code class="prettyprint">EQUAL</code> constante (0).
  		 * <p>The data structure representing a diff is an array of tuples :</p>
  		 * <pre class="prettyprint">
- 		 * [[DIFF_DELETE, 'Hello'], [DIFF_INSERT, 'Goodbye'], [DIFF_EQUAL, ' world.']]
+ 		 * [[DELETE, 'Hello'], [INSERT, 'Goodbye'], [EQUAL, ' world.']]
  		 * </pre>
  		 * <p>Which means : delete <b>'Hello'</b>, add <b>'Goodbye'</b> and keep </b>' world.'</b>.</p>
  		 */
-		public static const DIFF_EQUAL:int = 0 ;
+		public static const EQUAL:int = 0 ;
 
 		/**
-		 * The <code class="prettyprint">DIFF_INSERT</code> constante (0).
+		 * The <code class="prettyprint">INSERT</code> constante (0).
  		 * <p>The data structure representing a diff is an array of tuples :</p>
  		 * <pre class="prettyprint">
- 		 * [[DIFF_DELETE, 'Hello'], [DIFF_INSERT, 'Goodbye'], [DIFF_EQUAL, ' world.']]
+ 		 * [[DELETE, 'Hello'], [INSERT, 'Goodbye'], [EQUAL, ' world.']]
  		 * </pre>
  		 * <p>Which means : delete <b>'Hello'</b>, add <b>'Goodbye'</b> and keep </b>' world.'</b>.</p>
  		 */
-		public static const DIFF_INSERT:int = 1 ;
+		public static const INSERT:int = 1 ;
 
 		/**
 		 *  The size beyond which the double-ended diff activates.
 		 *  Double-ending is twice as fast, but less accurate.
 		 */
-		public var diffDualThreshold:Number = 32 ;
+		public static var dualThreshold:Number = 32 ;
 				
 		/**
 		 * Cost of an empty edit operation in terms of edit characters.
 		 */
-		public var diffEditCost:Number = 4 ;
+		public static var editCost:Number = 4 ;
 		
 		/**
 		 * The number of seconds to map a diff before giving up. (0 for infinity)
 		 */
-		public var diffTimeout:Number = 1.0 ;
+		public static var timeout:Number = 1.0 ;
   
-  		/**
-  		 * Tweak the relative importance (0.0 = accuracy, 1.0 = proximity)
-  		 */
-		public var matchBalance:Number = 0.5 ;
-
-	  	/**
-	  	 * The min cutoffs used when computing text lengths.
-	  	 */
-		public var matchMinLength:Number = 100 ;
-
-		/**
-		 * How many bits in a number.
-		 */
-		public var matchMaxBits:Number ;
-
-	  	/**
-	  	 * The max cutoffs used when computing text lengths.
-	  	 */
-		public var matchMaxLength:Number = 1000 ;
-  
-  		/**
-  		 * At what point is no match declared (0.0 = perfection, 1.0 = very loose)
-  		 */
-		public var matchThreshold:Number = 0.5 ;
-		
-		/**
-		 * Chunk size for context length.
-		 */
-		public var patchMargin:Number = 4 ;		
-
-		/**
-		 * Increases the context until it is unique, but don't let the pattern expand beyond matchMaxBits.
-		 * @param patch The patch to grow.
-		 * @param text Source text.
-		 */
-		public function addContext(patch:PatchObject, text:String):void 
-		{
-  			var pattern:String = text.substring(patch.start2, patch.start2 + patch.length1);
-  			var padding:uint = 0;
-  			while (text.indexOf(pattern) != text.lastIndexOf(pattern) && pattern.length < matchMaxBits - patchMargin - patchMargin ) 
-  			{
-    			padding += patchMargin ;
-    			pattern = text.substring(patch.start2 - padding, patch.start2 + patch.length1 + padding);
-  			}
-  			// Add one chunk for good luck.
-  			padding += patchMargin ;
-  			// Add the prefix.
-  			var prefix:String = text.substring(patch.start2 - padding, patch.start2);
-  			if (prefix !== '') 
-  			{
-    			patch.diffs.unshift([DIFF_EQUAL, prefix]);
-  			}
-  			// Add the suffix.
-  			var suffix:String = text.substring(patch.start2 + patch.length1, patch.start2 + patch.length1 + padding);
-  			if (suffix !== '') 
-  			{
-    			patch.diffs.push([DIFF_EQUAL, suffix]) ;
-  			}
-			
-  			// Roll back the start points.
-  			patch.start1 -= prefix.length;
-  			patch.start2 -= prefix.length;
-  			
-  			// Extend the lengths.
-  			patch.length1 += prefix.length + suffix.length;
-  			patch.length2 += prefix.length + suffix.length;
-		}
-
 		/**
  		 * Adds an index to each tuple, represents where the tuple is located in text2.
- 		 * e.g. [[DIFF_DELETE, 'h', 0], [DIFF_INSERT, 'c', 0], [DIFF_EQUAL, 'at', 1]]
+ 		 * e.g. [[DELETE, 'h', 0], [INSERT, 'c', 0], [EQUAL, 'at', 1]]
  		 * @param diffs Array of diff tuples {Array.<Array.<*>>}.
  		 */
-		public function addIndex( diffs:Array ):void 
+		public static function addIndex( diffs:Array ):void 
 		{
   			var i:uint = 0 ;
   			var l:uint = diffs.length ;
   			for (var x:uint = 0; x < l ; x++) 
   			{
     			diffs[x][2] = i;
-			    if (diffs[x][0] !== DIFF_DELETE) 
+			    if (diffs[x][0] !== DELETE) 
 			    {
 	      			i += diffs[x][1].length;
 			    }
@@ -176,163 +158,32 @@ package system.text.utils
 		}
 		
 		/**
-		 * Locate the best instance of 'pattern' in 'text' near 'loc' using the Bitap algorithm.
-		 * @param {string} text The text to search
-		 * @param {string} pattern The pattern to search for
-		 * @param {number} loc The location to search around
-		 * @return {number?} Best match index or null
-		 */
-		public function bitap( text:String, pattern:String, loc:Number ):Number 
-		{
-  			if ( pattern.length > matchMaxBits ) 
-  			{
-	    		throw new Error('Pattern too long for this browser.');
-  			}
-
-  			// Initialise the alphabet.
-  			var s:Object = alphabet( pattern );
-
-  			var score_text_length:uint = text.length;
-  			// Coerce the text length between reasonable maximums and minimums.
-  			score_text_length = Math.max( score_text_length, matchMinLength ) ;
-  			score_text_length = Math.min( score_text_length, matchMaxLength ) ;
-			
-  			var dmp:* = this ;  // 'this' becomes 'window' in a closure.
-
-  			/**
-		     * Computes and return the score for a match with e errors and x location.
-   			 * Accesses loc, score_text_length and pattern through being a closure.
-   			 * @param e Number of errors in match.
-   			 * @param x Location of match.
-   			 * @return Overall score for match.
-   			 */
-  			function bitapScore(e:Number, x:uint):Number
-  			{
-    			var d:Number = Math.abs(loc - x);
-    			return ( e / pattern.length / dmp.matchBalance ) + ( d / score_text_length / ( 1.0 - dmp.matchBalance ) ) ;
-  			}
-
-	  		// Highest score beyond which we give up.
-  			var score_threshold:Number = matchThreshold ;
-			  		
-  			// Is there a nearby exact match? (speedup)
-  			var best_loc:int = text.indexOf(pattern, loc);
-  			if (best_loc != -1) 
-  			{
-	    		score_threshold = Math.min(bitapScore(0, best_loc), score_threshold);
-  			}
-	  		
-  			// What about in the other direction? (speedup)
-  			best_loc = text.lastIndexOf(pattern, loc + pattern.length) ;
-  			if (best_loc != -1) 
-  			{
-	    		score_threshold = Math.min(bitapScore(0, best_loc), score_threshold);
-  			}
-	
-			// Initialise the bit arrays.
-  			var matchmask:int = 1 << (pattern.length - 1) ;
- 			best_loc = NaN ;
-	
-  			var bin_min:int , bin_mid:int ;
-  			var bin_max:int = Math.max(loc + loc, text.length) ;
-  			var last_rd:Array ;
-  			for (var d:int = 0; d < pattern.length ; d++) 
-  			{
-	    		// Scan for the best match; each iteration allows for one more error.
-    			var rd:Array = Array( text.length ) ;
-	
-    			// Run a binary search to determine how far from 'loc' we can stray at this
-    			// error level.
-    			bin_min = loc;
-    			bin_mid = bin_max;
-    			while (bin_min < bin_mid) 
-    			{
-	      			if (bitapScore(d, bin_mid) < score_threshold) 
-      				{
-			       		bin_min = bin_mid;
-      				} 
-      				else 
-      				{
-	        			bin_max = bin_mid;
-      				}
-      				bin_mid = Math.floor((bin_max - bin_min) / 2 + bin_min);
-    			}
-    			// Use the result from this iteration as the maximum for the next.
-    			bin_max        = bin_mid ;
-    			var start:int  = Math.max(0, loc - (bin_mid - loc) - 1);
-    			var finish:int = Math.min(text.length - 1, pattern.length + bin_mid);
-    			if ( text.charAt(finish) == pattern.charAt(pattern.length - 1) ) 
-    			{
-      				rd[finish] = (1 << (d + 1)) - 1;
-    			} 
-    			else 
-    			{
-      				rd[finish] = (1 << d) - 1;
-    			}
-    			for (var j:int = finish - 1; j >= start; j-- ) 
-	    		{
-    	  			// The alphabet (s) is a sparse hash, so the following lines generate
-      				// warnings.
-      				if (d === 0) 
-      				{  
-	      				// First pass: exact match.
-	        			rd[j] = ((rd[j + 1] << 1) | 1) & s[text.charAt(j)];
-	        		} 
-	        		else 
-	        		{  
-		        		// Subsequent passes: fuzzy match.
-        				rd[j] = ((rd[j + 1] << 1) | 1) & s[text.charAt(j)] | ((last_rd[j + 1] << 1) | 1) | ((last_rd[j] << 1) | 1) | last_rd[j + 1] ;
-      				}
-      				if (rd[j] & matchmask) 
-      				{
-	        			var score:Number = bitapScore(d, j);
-        				// This match will almost certainly be better than any existing match. But check anyway.
-        				if (score <= score_threshold) 
-        				{
-          					score_threshold = score ; // Told you so.
-          					best_loc = j ;
-          					if (j > loc) 
-          					{
-            					start = Math.max(0, loc - (j - loc)) ; // When passing loc, don't exceed our current distance from loc.
-          					} 
-          					else 
-          					{
-            					break ; // Already passed loc, downhill from here on in.
-          					}
-        				}
-        			}
-      			}
-
-    			// No hope for a (better) match at greater error levels.
-    			if ( bitapScore(d + 1, loc) > score_threshold ) 
-	    		{
-      				break;
-    			}
-    			last_rd = rd ;
-  			}
-  			return best_loc ;
-		}		
-
-		/**
 		 * Reduces the number of edits by eliminating operationally trivial equalities.
 		 * @param diffs Array of diff tuples {Array.<Array.<*>>}.
 		 */
-		public function cleanupEfficiency( diffs:Array ):void 
+		public static function cleanupEfficiency( diffs:Array ):void 
 		{
+  			
   			var changes:Boolean       = false ;
+  			
   			var equalities:Array      = []    ; // Stacks of indices where equalities are found.
   			var equalitiesLength:uint = 0     ; // Keeping our own length var is faster in JS.
+  			
   			var lastequality:String   = ''    ; // Always equal to equalities[equalitiesLength-1][1]
+  			
   			var pointer:uint          = 0     ; // Index of current position.
+  			
   			var pre_ins:Boolean       = false ; // Is there an insertion operation before the last equality.
   			var pre_del:Boolean       = false ; // Is there a deletion operation before the last equality.
+  			
   			var post_ins:Boolean      = false ; // Is there an insertion operation after the last equality.
   			var post_del:Boolean      = false ; // Is there a deletion operation after the last equality.
+  		
   			while ( pointer < diffs.length ) 
   			{
-    			if (diffs[pointer][0] == DIFF_EQUAL) 
-    			{  // equality found
-      				if (diffs[pointer][1].length < this.diffEditCost && (post_ins || post_del)) 
+    			if (diffs[pointer][0] == EQUAL) // equality found
+    			{  
+      				if (diffs[pointer][1].length < editCost && (post_ins || post_del)) 
       				{
         				equalities[equalitiesLength++] = pointer; // Candidate found.
 				        pre_ins      = post_ins ;
@@ -349,7 +200,7 @@ package system.text.utils
     			} 
     			else 
     			{  
-      				if (diffs[pointer][0] == DIFF_DELETE) // an insertion or deletion 
+      				if (diffs[pointer][0] == DELETE) // an insertion or deletion 
       				{
         				post_del = true ;
       				} 
@@ -368,14 +219,16 @@ package system.text.utils
       				if 
       				( 
       					lastequality && ((pre_ins && pre_del && post_ins && post_del) || 
-                           ((lastequality.length < diffEditCost / 2) &&
+                           
+                           ((lastequality.length < editCost / 2) &&
+                           
                            	( Number(pre_ins) + Number(pre_del) + Number(post_ins) + Number(post_del) ) == 3))
                     ) 
 					{
         				// Duplicate record
-        				diffs.splice(equalities[equalitiesLength - 1], 0, [DIFF_DELETE, lastequality]);
+        				diffs.splice(equalities[equalitiesLength - 1], 0, [DELETE, lastequality]);
         				// Change second copy to insert.
-        				diffs[equalities[equalitiesLength - 1] + 1][0] = DIFF_INSERT ;
+        				diffs[equalities[equalitiesLength - 1] + 1][0] = INSERT ;
         				equalitiesLength-- ;  // Throw away the equality we just deleted;
         				lastequality = '' ;
         				if (pre_ins && pre_del) 
@@ -402,13 +255,12 @@ package system.text.utils
 			}
 		}
 
-
 		/**
 		 * Rehydrate the text in a diff from a string of line hashes to real lines of text.
  		 * @param diffs Array of diff tuples {Array.<Array.<*>>}.
  		 * @param lineArray Array of unique strings {Array.<string>}.
  		 */
-		public function charsToLines( diffs:Array , lineArray:Array ):void
+		public static function charsToLines( diffs:Array , lineArray:Array ):void
 		{
 			var l:uint = diffs.length ;
   			for ( var x:uint = 0 ; x < l ; x++ ) 
@@ -429,34 +281,40 @@ package system.text.utils
 		 * Any edit section can move as long as it doesn't cross an equality.
 		 * @param diffs Array of diff tuples {Array.<Array.<*>>}
 		 */
-		public function cleanupMerge( diffs:Array ):void 
+		public static function cleanupMerge( diffs:Array ):void 
 		{
-  			diffs.push( [DIFF_EQUAL, ''] ) ; // Add a dummy entry at the end.
+  			
+  			diffs.push( [EQUAL, ''] ) ; // Add a dummy entry at the end.
+  			
   			var pointer:int = 0;
+  			
   			var count_delete:uint  = 0  ;
   			var count_insert:uint  = 0  ;
+  			
   			var text_delete:String = '' ;
   			var text_insert:String = '' ;
+  			
   			var commonlength:uint ;
+  			
   			while (pointer < diffs.length) 
   			{
     			switch (diffs[pointer][0]) 
     			{
-    				case DIFF_INSERT :
+    				case INSERT :
     				{
       					count_insert++ ;
       					text_insert += diffs[pointer][1] ;
       		 			pointer++ ;
       					break ;
     				}
-    				case DIFF_DELETE :
+    				case DELETE :
     				{
       					count_delete++ ;
       					text_delete += diffs[pointer][1] ;
       					pointer++ ;
       					break ;
     				}
-    				case DIFF_EQUAL :
+    				case EQUAL :
     				{
       					// Upon reaching an equality, check for prior redundancies.
       					if (count_delete !== 0 || count_insert !== 0) 
@@ -467,13 +325,13 @@ package system.text.utils
           							commonlength = commonPrefix(text_insert, text_delete) ;
           							if (commonlength !== 0) 
           							{
-            							if ((pointer - count_delete - count_insert) > 0 && diffs[pointer - count_delete - count_insert - 1][0] == DIFF_EQUAL) 
+            							if ((pointer - count_delete - count_insert) > 0 && diffs[pointer - count_delete - count_insert - 1][0] == EQUAL) 
             							{
               								diffs[pointer - count_delete - count_insert - 1][1] += text_insert.substring(0, commonlength) ;
             							}
             							else 
             							{
-              								diffs.splice(0, 0, [ DIFF_EQUAL, text_insert.substring(0, commonlength)] ) ;
+              								diffs.splice(0, 0, [ EQUAL, text_insert.substring(0, commonlength)] ) ;
               								pointer++;
             							}
             							text_insert = text_insert.substring(commonlength);
@@ -491,19 +349,19 @@ package system.text.utils
         						// Delete the offending records and add the merged ones.
         						if (count_delete === 0) 
         						{
-          							diffs.splice(pointer - count_delete - count_insert, count_delete + count_insert, [DIFF_INSERT, text_insert]);
+          							diffs.splice(pointer - count_delete - count_insert, count_delete + count_insert, [INSERT, text_insert]);
         						} 
         						else if (count_insert === 0) 
         						{
-          							diffs.splice(pointer - count_delete - count_insert, count_delete + count_insert, [DIFF_DELETE, text_delete]);
+          							diffs.splice(pointer - count_delete - count_insert, count_delete + count_insert, [DELETE, text_delete]);
         						} 
         						else 
         						{
-          							diffs.splice(pointer - count_delete - count_insert, count_delete + count_insert, [DIFF_DELETE, text_delete], [DIFF_INSERT, text_insert]);
+          							diffs.splice(pointer - count_delete - count_insert, count_delete + count_insert, [DELETE, text_delete], [INSERT, text_insert]);
 						        }
         						pointer = pointer - count_delete - count_insert + (count_delete ? 1 : 0) + (count_insert ? 1 : 0) + 1 ;
       						}
-      						else if (pointer !== 0 && diffs[pointer - 1][0] == DIFF_EQUAL) 
+      						else if (pointer !== 0 && diffs[pointer - 1][0] == EQUAL) 
       						{
       							// Merge this equality with the previous one.
         						diffs[pointer - 1][1] += diffs[pointer][1] ;
@@ -534,7 +392,7 @@ package system.text.utils
   			// Intentionally ignore the first and last element (don't need checking).
   			while (pointer < diffs.length - 1) 
   			{
-    			if (diffs[pointer - 1][0] == DIFF_EQUAL && diffs[pointer + 1][0] == DIFF_EQUAL) 
+    			if (diffs[pointer - 1][0] == EQUAL && diffs[pointer + 1][0] == EQUAL) 
     			{
       				// This is a single edit surrounded by equalities.
       				if (diffs[pointer][1].substring(diffs[pointer][1].length - diffs[pointer - 1][1].length) == diffs[pointer - 1][1]) 
@@ -566,9 +424,9 @@ package system.text.utils
 
 		/**
 		 * Reduce the number of edits by eliminating semantically trivial equalities.
-		 * @param {Array.<Array.<*>>} diffs Array of diff tuples
+		 * @param diffs Array of diff tuples {Array.<Array.<*>>}.
 		 */
-		public function cleanupSemantic( diffs:Array ):void
+		public static function cleanupSemantic( diffs:Array ):void
 		{
   			var changes:Boolean       = false ;
   			var equalities:Array      = []    ; // Stack of indices where equalities are found.
@@ -579,7 +437,7 @@ package system.text.utils
   			var length_changes2:uint  = 0     ; // Number of characters that changed after the equality.
   			while (pointer < diffs.length) 
   			{
-    			if ( diffs[pointer][0] == DIFF_EQUAL ) // equality found 
+    			if ( diffs[pointer][0] == EQUAL ) // equality found 
     			{  
       				equalities[equalitiesLength++] = pointer ;
       				length_changes1 = length_changes2 ;
@@ -591,8 +449,8 @@ package system.text.utils
       				length_changes2 += diffs[pointer][1].length ;
       				if (lastequality !== null && (lastequality.length <= length_changes1) && (lastequality.length <= length_changes2)) 
       				{
-        				diffs.splice(equalities[equalitiesLength - 1], 0, [DIFF_DELETE , lastequality]); // Duplicate record
-        				diffs[equalities[equalitiesLength - 1] + 1][0] = DIFF_INSERT ; // Change second copy to insert.
+        				diffs.splice(equalities[equalitiesLength - 1], 0, [DELETE , lastequality]); // Duplicate record
+        				diffs[equalities[equalitiesLength - 1] + 1][0] = INSERT ; // Change second copy to insert.
 				        equalitiesLength--; // Throw away the equality we just deleted.
         				equalitiesLength--; // Throw away the previous equality (it needs to be reevaluated).
         				pointer         = equalitiesLength ? equalities[equalitiesLength - 1] : -1 ;
@@ -616,13 +474,13 @@ package system.text.utils
 		 * e.g: The c<ins>at c</ins>ame. -> The <ins>cat </ins>came.
 		 * @param diffs Array of diff tuples {Array.<Array.<*>>}.
 		 */
-		public function cleanupSemanticLossless( diffs:Array ):void 
+		public static function cleanupSemanticLossless( diffs:Array ):void 
 		{
   			var pointer:int = 1;
 			// Intentionally ignore the first and last element (don't need checking).
   			while (pointer < diffs.length - 1) 
   			{
-    			if (diffs[pointer - 1][0] == DIFF_EQUAL && diffs[pointer + 1][0] == DIFF_EQUAL) 
+    			if (diffs[pointer - 1][0] == EQUAL && diffs[pointer + 1][0] == EQUAL) 
     			{
       				// This is a single edit surrounded by equalities.
       				var equality1:String = diffs[pointer - 1][1] ;
@@ -681,7 +539,7 @@ package system.text.utils
 		 * @param {string} three Third string
 		 * @return {number} The score.
 		 */
-		public function cleanupSemanticScore(one:String, two:String, three:String):uint 
+		public static function cleanupSemanticScore(one:String, two:String, three:String):uint 
 		{
     		var whitespace:RegExp = /\s/ ;
     		var score:uint = 0;
@@ -698,11 +556,19 @@ package system.text.utils
 
 		/**
 	 	 * Determines the common prefix of two strings.
+	 	 * <p><b>Example :</b></p>
+	 	 * <pre class="prettyprint">
+	 	 * import system.text.utils.Difference ;
+	 	 * 
+	 	 * var result:uint = Difference.commonPrefix( "hello world" , "hello system" ) ;
+	 	 * 
+	 	 * trace( result + " commons prefix of two strings" ) ; // 6 commons prefix of two strings
+	 	 * </pre>
  		 * @param text1 First string
  		 * @param text2 Second string
  		 * @return The number of characters common to the start of each string.
  		 */
-		public function commonPrefix( text1:String , text2:String ):uint 
+		public static function commonPrefix( text1:String , text2:String ):uint 
 		{
   			// Quick check for common null cases.
   			if (!text1 || !text2 || text1.charCodeAt(0) !== text2.charCodeAt(0)) 
@@ -733,11 +599,19 @@ package system.text.utils
 		
 		/**
 		 * Determines the common suffix of two strings.
+	 	 * <p><b>Example :</b></p>
+	 	 * <pre class="prettyprint">
+	 	 * import system.text.utils.Difference ;
+	 	 * 
+	 	 * var result:uint = Difference.commonSuffix( "hello worlds" , "hi worlds" ) ; 
+	 	 * 
+	 	 * trace( result + " commons suffix of two strings" ) ; // 7 commons suffix of two strings
+	 	 * </pre>
 		 * @param text1 First string
 		 * @param text2 Second string
 		 * @return The number of characters common to the end of each string.
  		 */
-		public function commonSuffix( text1:String , text2:String ):uint
+		public static function commonSuffix( text1:String , text2:String ):uint
 		{
   			// Quick check for common null cases.
   			if ( !text1 || !text2 || text1.charCodeAt(text1.length - 1) !== text2.charCodeAt(text2.length - 1)) 
@@ -745,7 +619,7 @@ package system.text.utils
     			return 0;
   			}
   			// Binary search.
-  			// Performance analysis: http://neil.fraser.name/news/2007/10/09/
+  			// Performance analysis : http://neil.fraser.name/news/2007/10/09/
   			var pointermin:uint   = 0;
   			var pointermax:uint   = Math.min(text1.length, text2.length);
   			var pointermid:uint   = pointermax;
@@ -770,21 +644,32 @@ package system.text.utils
 
 		/**
 		 * Finds the differences between two texts.
+	 	 * <p><b>Example :</b></p>
+	 	 * <pre class="prettyprint">
+	 	 * import system.text.utils.Difference ;
+	 	 * 
+	 	 * var result:uint = Difference.compute( "hello worlds" , "hello system" ) ; 
+	 	 * 
+	 	 * trace( result ) ; // 0,,0,hello ,-1,world,0,s,1,ystem
+	 	 * </pre>
 		 * @param text1 Old string to be diffed
 		 * @param text2 New string to be diffed
 		 * @param checklines Speedup flag. If <code class="prettyprint">false</code>, then don't run a line-level diff first to identify the changed areas.
 		 * If <code class="prettyPrint">true</code>, then run a faster, slightly less optimal diff.
 		 * @return Array of diff tuples {Array.<Array.<*>>}.
 		 */
-		public function compute( text1:String, text2:String, checklines:Boolean ):Array
+		public static function compute( text1:String, text2:String, checklines:Boolean = true ):Array
 		{
+			
+			// FIXME for the moment this algorith bug !
+			
 			if (!text1) 
   			{
-    			return [[DIFF_INSERT, text2]] ; // Just add some text (speedup)
+    			return [[INSERT, text2]] ; // Just add some text (speedup)
   			}
   			if (!text2) 
   			{
-    			return [[DIFF_DELETE, text1]] ; // Just delete some text (speedup)
+    			return [[DELETE, text1]] ; // Just delete some text (speedup)
 			}
 			var diffs:Array ;
 			var longtext:String  = ( text1.length > text2.length ) ? text1 : text2 ;
@@ -795,14 +680,14 @@ package system.text.utils
     			// Shorter text is inside the longer text (speedup)
     			diffs = 
     			[
-    				[ DIFF_INSERT , longtext.substring(0, i) ] ,
-             		[ DIFF_EQUAL  , shorttext ] ,
-             		[ DIFF_INSERT , longtext.substring(i + shorttext.length) ]
+    				[ INSERT , longtext.substring(0, i) ] ,
+             		[ EQUAL  , shorttext ] ,
+             		[ INSERT , longtext.substring(i + shorttext.length) ]
              	];
     			// Swap insertions for deletions if diff is reversed.
     			if (text1.length > text2.length) 
     			{
-      				diffs[0][0] = diffs[2][0] = DIFF_DELETE ;
+      				diffs[0][0] = diffs[2][0] = DELETE ;
     			}
     			return diffs ;
   			}
@@ -820,11 +705,11 @@ package system.text.utils
     			var midCommon:String = hm[4];
     			
     			// Send both pairs off for separate processing.
-    			var diffs_a:Array = difference(text1_a, text2_a, checklines) ;
-    			var diffs_b:Array = difference(text1_b, text2_b, checklines);
+    			var diffs_a:Array = Difference.main(text1_a, text2_a, checklines) ;
+    			var diffs_b:Array = Difference.main(text1_b, text2_b, checklines);
     			
     			// Merge the results.
-    			diffs_a.concat( [ [ DIFF_EQUAL, midCommon ] ] , diffs_b ) ;
+    			diffs_a.concat( [ [ EQUAL, midCommon ] ] , diffs_b ) ;
   			}
 
   			// Perform a real diff.
@@ -844,7 +729,7 @@ package system.text.utils
   			diffs = map(text1, text2) ;
   			if (!diffs) 
   			{
-    			diffs = [[DIFF_DELETE, text1], [DIFF_INSERT, text2]] ; // No acceptable result.
+    			diffs = [[DELETE, text1], [INSERT, text2]] ; // No acceptable result.
   			}
   			if (checklines) 
   			{
@@ -854,7 +739,7 @@ package system.text.utils
     			// Rediff any replacement blocks, this time character-by-character.
     			// Add a dummy entry at the end.
     			
-    			diffs.push( [DIFF_EQUAL, ''] ) ;
+    			diffs.push( [EQUAL, ''] ) ;
     			var pointer:uint       = 0  ;
     			var count_delete:uint  = 0  ;
     			var count_insert:uint  = 0  ;
@@ -864,25 +749,25 @@ package system.text.utils
     			{
       				switch (diffs[pointer][0]) 
       				{
-      					case DIFF_INSERT :
+      					case INSERT :
       					{
         					count_insert++ ;
         					text_insert += diffs[pointer][1] ;
         					break ;
       					}
-      					case DIFF_DELETE :
+      					case DELETE :
       					{
         					count_delete++ ;
         					text_delete += diffs[pointer][1] ;
         					break ;
       					}
-      					case DIFF_EQUAL :
+      					case EQUAL :
       					{
         					// Upon reaching an equality, check for prior redundancies.
         					if (count_delete >= 1 && count_insert >= 1) 
         					{
           						// Delete the offending records and add the merged ones.
-          						var a2:Array = difference(text_delete, text_insert, false) ;
+          						var a2:Array = Difference.main ( text_delete, text_insert, false ) ;
           						diffs.splice(pointer - count_delete - count_insert, count_delete + count_insert) ;
           						pointer = pointer - count_delete - count_insert ;
           						for (var j:int = a2.length - 1; j >= 0; j--) 
@@ -908,19 +793,27 @@ package system.text.utils
   		/**
 		 * Find the differences between two texts. 
 		 * Simplifies the problem by stripping any common prefix or suffix off the texts before diffing.
-		 * @param {string} text1 Old string to be diffed
-		 * @param {string} text2 New string to be diffed
-		 * @param {boolean} opt_checklines Optional speedup flag. 
+	 	 * <p><b>Example :</b></p>
+	 	 * <pre class="prettyprint">
+	 	 * import system.text.utils.Difference ;
+	 	 * 
+	 	 * var result:uint = Difference.main( "hello worlds" , "hello system" ) ; 
+	 	 * 
+	 	 * trace( result ) ; // 0,hello ,-1,world,1,system
+	 	 * </pre>
+		 * @param text1 Old string to be diffed
+		 * @param text2 New string to be diffed
+		 * @param checklines Optional speedup flag. 
 		 * If present and false, then don't run a line-level diff first to identify the changed areas. 
 		 * Defaults to true, which does a faster, slightly less optimal diff
 		 * @return Array of diff tuples {Array.<Array.<*>>}.
 		 */
-		public function difference( text1:String, text2:String, checklines:Boolean=true ):Array 
+		public static function main( text1:String, text2:String, checklines:Boolean=true ):Array 
 		{
   			// Check for equality (speedup)
   			if (text1 == text2) 
   			{
-    			return [ [DIFF_EQUAL , text1 ] ] ;
+    			return [ [EQUAL , text1 ] ] ;
   			}
 
 			// Trim off common prefix (speedup)
@@ -945,11 +838,11 @@ package system.text.utils
   			// Restore the prefix and suffix
   			if (commonprefix) 
   			{
-    			diffs.unshift([DIFF_EQUAL, commonprefix]);
+    			diffs.unshift([EQUAL, commonprefix]);
   			}
   			if (commonsuffix) 
   			{
-    			diffs.push([DIFF_EQUAL, commonsuffix]);
+    			diffs.push([EQUAL, commonsuffix]);
   			}
   			
   			cleanupMerge(diffs);
@@ -964,7 +857,7 @@ package system.text.utils
 		 * @return Array of diff tuples {Array.<Array.<*>>}.
 		 * @throws Error If invalid input.
 		 */
-		public function fromDelta(text1:String, delta:String):Array 
+		public static function fromDelta(text1:String, delta:String):Array 
 		{
   			var diffs:Array      = [] ;
   			var diffsLength:uint = 0  ;  // Keeping our own length var is faster in JS.
@@ -981,7 +874,7 @@ package system.text.utils
     				{
       					try 
       					{
-        					diffs[diffsLength++] = [ DIFF_INSERT , decodeURI(param) ] ;
+        					diffs[diffsLength++] = [ INSERT , decodeURI(param) ] ;
       					}
       					catch (ex:Error) 
       					{
@@ -1002,7 +895,7 @@ package system.text.utils
         					throw new Error('Invalid number in fromDelta : ' + param) ;
       					}
      					var text:String = text1.substring(pointer, pointer += n);
-       					diffs[diffsLength++] = (tokens[x].charAt(0) == '=') ? [DIFF_EQUAL, text] : [DIFF_DELETE, text] ; 
+       					diffs[diffsLength++] = (tokens[x].charAt(0) == '=') ? [EQUAL, text] : [DELETE, text] ; 
 						break;
     				}
     				default :
@@ -1023,128 +916,13 @@ package system.text.utils
 		}		
 
 		/**
-		 * Parse a textual representation of patches and return a list of patch objects.
-		 * @param textline Text representation of patches
-		 * @return Array of patch objects {Array.<patch_obj>} .
-		 * @throws Error If invalid input.
-		 */
-		public function fromText( textline:String ):Array 
-		{
-  			var patches:Array    = [] ;
-  			var text:Array       = textline.split('\n') ;
-  			var textPointer:uint = 0 ;
-  			while (textPointer < text.length) 
-  			{
-	    		var m:Boolean = text[textPointer].match(/^@@ -(\d+),?(\d*) \+(\d+),?(\d*) @@$/) ;
-    			if ( !m ) 
-    			{
-	      			throw new Error('Invalid patch string: ' + text[textPointer]) ;
-    			}
-    			var patch:PatchObject = new PatchObject() ; 
-    			patches.push(patch) ;
-    			patch.start1 = parseInt(m[1], 10) ;
-    			if (m[2] === '') 
-    			{
-	      			patch.start1-- ;
-      				patch.length1 = 1 ;
-    			} 
-    			else if (m[2] == '0') 
-    			{
-	      			patch.length1 = 0 ;
-    			} 
-    			else 
-    			{
-	      			patch.start1-- ;
-      				patch.length1 = parseInt(m[2], 10) ;
-    			}
-				patch.start2 = parseInt(m[3], 10) ;
-    			if (m[4] === '') 
-    			{
-	      			patch.start2-- ;
-      				patch.length2 = 1 ;
-    			} 
-    			else if (m[4] == '0') 
-    			{
-	      			patch.length2 = 0;
-    			}
-    			else 
-    			{
-	      			patch.start2-- ;
-      				patch.length2 = parseInt(m[4], 10) ; 
-    			}
-    			textPointer++;
-					
-    			while (textPointer < text.length) 
-    			{
-	      			var sign:String = text[textPointer].charAt(0);
-      				try 
-      				{
-	        			var line:String = decodeURIComponent(text[textPointer].substring(1));
-      				} 
-      				catch ( ex:Error ) 
-      				{
-	        			throw new Error('Illegal escape in patch_fromText: ' + line);// Malformed URI sequence.
-      				}
-      				if (sign == '-') 
-      				{
-		        		// Deletion.
-        				patch.diffs.push([DIFF_DELETE, line]);
-      				} 
-      				else if (sign == '+') 
-      				{
-	        			// Insertion.
-        				patch.diffs.push([DIFF_INSERT, line]);
-      				} 
-      				else if (sign == ' ') 
-      				{
-	        			// Minor equality.
-        				patch.diffs.push([DIFF_EQUAL, line]);
-      				} 
-      				else if (sign == '@') 
-      				{
-	        			// Start of next patch.
-        				break;
-      				} 
-      				else if (sign === '') 
-      				{
-	        			// Blank line ?  Whatever.
-      				} 
-      				else 
-      				{
-        				throw new Error('Invalid patch mode "' + sign + '" in: ' + line) ; // WTF?
-      				}
-      				textPointer++ ;
-   			 	}
-  			}
-  			return patches;
-		};
-
-		/**
-		 * Compute the number of bits in an int. The  normal answer for JavaScript is 32.
-	     * @return {number} Max bits.
-   		 */
-  		public static function getMaxBits():Number 
-  		{
-    		var maxbits:int = 0;
-    		var oldi:int    = 1;
-    		var newi:int    = 2;
-    		while (oldi != newi) 
-    		{
-      			maxbits++ ;
-      			oldi = newi;
-      			newi = newi << 1;
-    		}
-    		return maxbits;
-  		}
-
-		/**
 		 * Do the two texts share a substring which is at least half the length of the longer text ?
 		 * @param text1 First string.
 		 * @param text2 Second string.
 		 * @return Five element Array, containing the prefix of text1, the suffix of text1, the prefix of text2, 
 		 * the suffix of text2 and the common middle.  Or null if there was no match. {Array.<string>?}
 	     */
-		public function halfMatch( text1:String, text2:String ):Array 
+		public static function halfMatch( text1:String, text2:String ):Array 
 		{
 			var longtext:String  = ( text1.length > text2.length ) ? text1 : text2 ;
 			var shorttext:String = ( text1.length > text2.length ) ? text2 : text1 ;
@@ -1204,7 +982,7 @@ package system.text.utils
 		 * @return Three element Array, containing the encoded text1, the encoded text2 and the array of unique strings. 
 		 * The zeroth element of the array of unique strings is intentionally blank. {Array.<string|Array.<string>>} 
  		 */
-		public function linesToChars( text1:String, text2:String):Array 
+		public static function linesToChars( text1:String, text2:String):Array 
 		{
   			var lineArray:Array = [] ;  // e.g. lineArray[4] == 'Hello\n'
   			var lineHash:Object = {} ;  // e.g. lineHash['Hello\n'] == 4
@@ -1216,42 +994,67 @@ package system.text.utils
 
 		/**
  		 * Explores the intersection points between the two texts.
+	 	 * <p><b>Example :</b></p>
+	 	 * <pre class="prettyprint">
+	 	 * import system.text.utils.Difference ;
+	 	 * 
+	 	 * var result:uint = Difference.map( "hello worlds" , "hello system" ) ; 
+	 	 * 
+	 	 * trace( result ) ; // -1,world,0,s,1,ystem
+	 	 * </pre>
 		 * @param text1 Old string to be diffed
 		 * @param text2 New string to be diffed
 		 * @return Array of diff tuples or null if no diff available. {Array.<Array.<*>>?} 
  		 */
-		public function map( text1:String, text2:String ):Array 
+		public static function map( text1:String, text2:String ):Array 
 		{
   			// Don't run for too long.
+  			
   			var k:uint ;
-  			var ms_end:int        = (new Date()).getTime() + diffTimeout * 1000 ;
+  			
+  			var ms_end:int        = (new Date()).getTime() + timeout * 1000 ;
+  			
   			var max_d:int         = text1.length + text2.length - 1;
-  			var doubleEnd:Boolean = diffDualThreshold * 2 < max_d ;
+  			
+  			var doubleEnd:Boolean = dualThreshold * 2 < max_d ;
+  			
   			var v_map1:Array      = [] ;
   			var v_map2:Array      = [] ;
+  			
   			var v1:Object         = {} ;
   			var v2:Object         = {} ;
+  			
   			v1[1] = 0 ;
   			v2[1] = 0 ;
+  			
   			var x:Number, y:Number ;
+  			
   			var footstep:String  ; // Used to track overlapping paths.
   			var footsteps:Object = {};
+  			
   			var done:Boolean = false;
-  			//FIXME Safari 1.x doesn't have hasOwnProperty
+  			
+  			//FIXME Safari 1.x doesn't have hasOwnProperty :: (eka) this test exist in the JS version but in AS3 ???
   			var hasOwnProperty:Boolean = !!(footsteps.hasOwnProperty);
+  			
   			// If the total number of characters is odd, then the front path will collide with the reverse path.
 	  		var front:uint = (text1.length + text2.length) % 2;
+  			
   			for (var d:uint = 0; d < max_d; d++) 
   			{
+    			
     			// Bail out if timeout reached.
-    			if ( diffTimeout > 0 && (new Date()).getTime() > ms_end) 
+    			
+    			if ( timeout > 0 && (new Date()).getTime() > ms_end) 
     			{
       				return null;
     			}
 			
     			// Walk the front path one step.
+    			
     			v_map1[d] = {} ;
-    			for (k = -d; k <= d; k += 2) 
+    			
+    			for ( k = -d ; k <= d ; k += 2 ) 
     			{
       				if (k == -d || k != d && v1[k - 1] < v1[k + 1]) 
       				{
@@ -1291,8 +1094,10 @@ package system.text.utils
           					}
         				}
       				}
+      				
       				v1[k] = x ;
       				v_map1[d][x + ',' + y] = true ;
+      				
       				if (x == text1.length && y == text2.length) 
       				{
         				// Reached the end in single-path mode.
@@ -1306,12 +1111,14 @@ package system.text.utils
                         text2.substring(0, y));
         				return a2.concat( path2(v_map2, text1.substring(x), text2.substring(y)) ) ;
       				}
+    			
     			}
 
-   				if (doubleEnd) 
+   				if ( doubleEnd ) 
    				{
       				// Walk the reverse path one step.
       				v_map2[d] = {} ;
+      				
       				for (k = -d; k <= d; k += 2) 
       				{
         				if (k == -d || k != d && v2[k - 1] < v2[k + 1]) 
@@ -1322,16 +1129,21 @@ package system.text.utils
         				{
           					x = v2[k - 1] + 1;
         				}
+        				
         				y = x - k ;
+        				
         				footstep = (text1.length - x) + ',' + (text2.length - y) ;
+        				
         				if (!front && (hasOwnProperty ? footsteps.hasOwnProperty(footstep) : (footsteps[footstep] !== undefined))) 
         				{
           					done = true ;
         				}
+        				
         				if (front) 
         				{
           					footsteps[footstep] = d ; 
         				}	
+        				
         				while (!done && x < text1.length && y < text2.length && text1.charAt(text1.length - x - 1) == text2.charAt(text2.length - y - 1)) 
         				{
           					x++ ;
@@ -1346,8 +1158,11 @@ package system.text.utils
             					footsteps[footstep] = d ;
 					        }
         				}
+        				
         				v2[k] = x ;
+        				
         				v_map2[d][x + ',' + y] = true ;
+        				
         				if (done) 
         				{
           					// Reverse path ran over front path.
@@ -1355,6 +1170,7 @@ package system.text.utils
           					var a:Array = path1(v_map1, text1.substring(0, text1.length - x), text2.substring(0, text2.length - y));
           					return a.concat( path2(v_map2, text1.substring(text1.length - x), text2.substring(text2.length - y))) ;
         				}
+        				
       				}
     			}
   			}
@@ -1362,39 +1178,11 @@ package system.text.utils
 		}
 		
 		/**
-		 * Locates the best instance of 'pattern' in 'text' near 'loc'.
-		 * @param text The text to search
-		 * @param pattern The pattern to search for
-		 * @param loc The location to search around
-		 * @return Best match index or null
-		 */
-		public function match(text:String, pattern:String, loc:Number):Number 
-		{
-  			loc = Math.max(0, Math.min(loc, text.length - pattern.length));
-  			if (text == pattern) 
-  			{
-    			return 0 ; // Shortcut (potentially not guaranteed by the algorithm)
-  			} 
-  			else if (text.length === 0) 
-  			{
-	   			return null ; // Nothing to match.
-  			} 
-  			else if (text.substring(loc, loc + pattern.length) == pattern) 
-  			{
-    			return loc; // Perfect match at the perfect spot!  (Includes case of null pattern)
-  			} 
-  			else 
-  			{
-		    	return bitap(text, pattern, loc); // Do a fuzzy compare.
-  			}
-		}
-		
-		/**
 		 * Converts a diff array into a pretty HTML report.
  		 * @param diffs Array of diff tuples {Array.<Array.<*>>}.
 		 * @return The HTML representation.
 		 */
-		public function prettyHtml( diffs:Array ):String 
+		public static function prettyHtml( diffs:Array ):String 
 		{
   			addIndex(diffs) ;
   			var html:Array = [] ;
@@ -1408,17 +1196,17 @@ package system.text.utils
     			t            = t.replace(/\n/g, '&para;<BR>');
     			switch (m) 
     			{
-    				case DIFF_INSERT :
+    				case INSERT :
     				{
 	      				html[x] = '<INS STYLE="background:#E6FFE6;" TITLE="i=' + i + '">' + t + '</INS>' ;
       					break;
     				}
-	    			case DIFF_DELETE :
+	    			case DELETE :
     				{
 	      				html[x] = '<DEL STYLE="background:#FFE6E6;" TITLE="i=' + i + '">' + t + '</DEL>' ;
       					break ;
     				}
-    				case DIFF_EQUAL :
+    				case EQUAL :
     				{
 	      				html[x] = '<SPAN TITLE="i=' + i + '">' + t + '</SPAN>' ;
       					break;
@@ -1427,19 +1215,19 @@ package system.text.utils
   			}
   			return html.join('');
 		}
-
+		
 		/**
 		 * Computes and returns the source text (all equalities and deletions).
 		 * @param diffs Array of diff tuples {Array.<Array.<*>>} 
 		 * @return Source text.
 		 */
-		public function text1( diffs:Array ):String 
+		public static function text1( diffs:Array ):String 
 		{
   			var txt:Array = [];
   			var l:uint = diffs.length ;
   			for ( var x:uint = 0 ; x < l ; x++ ) 
     		{
-    			if ( diffs[x][0] !== DIFF_INSERT ) 
+    			if ( diffs[x][0] !== INSERT ) 
     			{
       				txt[x] = diffs[x][1];
     			}
@@ -1452,13 +1240,13 @@ package system.text.utils
 		 * @param diffs Array of diff tuples {Array.<Array.<*>>}.
 		 * @return Destination text.
 		 */
-		public function text2( diffs:Array ):String 
+		public static function text2( diffs:Array ):String 
 		{
   			var txt:Array = [] ;
   			var l:uint = diffs.length ;
   			for ( var x:uint = 0 ; x < l ; x++ ) 
   			{
-    			if ( diffs[x][0] !== DIFF_DELETE ) 
+    			if ( diffs[x][0] !== DELETE ) 
     			{
       				txt[x] = diffs[x][1];
     			}
@@ -1473,24 +1261,24 @@ package system.text.utils
 		 * @param diffs Array of diff tuples {Array.<Array.<*>>}.
 		 * @return The delta text.
 		 */
-		public function toDelta( diffs:Array ):String 
+		public static function toDelta( diffs:Array ):String 
 		{
   			var txt:Array = [];
   			var l:uint = diffs.length ;
   			for (var x:uint = 0; x < l ; x++) 
     		switch (diffs[x][0]) 
     		{
-    			case DIFF_INSERT :
+    			case INSERT :
     			{
       				txt[x] = '+' + encodeURI(diffs[x][1]);
       				break;
     			}
-    			case DIFF_DELETE :
+    			case DELETE :
     			{
       				txt[x] = '-' + diffs[x][1].length ;
       				break;
     			}
-    			case DIFF_EQUAL :
+    			case EQUAL :
     			{
       				txt[x] = '=' + diffs[x][1].length;
 					break;
@@ -1500,28 +1288,12 @@ package system.text.utils
 		}
 
 		/**
-		 * Take a list of patches and return a textual representation.
-		 * @param {Array.<patch_obj>} patches Array of patch objects
-		 * @return {string} Text representation of patches
-		 */
-		public function toText( patches:Array ):String 
-		{
-  			var text:Array = [] ;
-  			var len:uint = patches.length ;
-  			for (var x:uint = 0; x < len ; x++ ) 
-  			{
-    			text[x] = patches[x];
-  			}
-  			return text.join('');
-		}
-
-		/**
 		 * loc is a location in text1, compute and return the equivalent location in text2. e.g. 'The cat' vs 'The big cat', 1->1, 5->8
  		 * @param diffs Array of diff tuples {Array.<Array.<*>>}.
 		 * @param loc Location within text1.
 		 * @return Location within text2.
 		 */
-		public function xIndex(diffs:Array, loc:Number):Number 
+		public static function xIndex(diffs:Array, loc:Number):Number 
 		{
   			var chars1:uint      = 0 ;
   			var chars2:uint      = 0 ;
@@ -1531,11 +1303,11 @@ package system.text.utils
   			var l:uint = diffs.length ;
   			for (x = 0; x < l; x++) 
   			{
-    			if (diffs[x][0] !== DIFF_INSERT) 
+    			if (diffs[x][0] !== INSERT) 
     			{
       				chars1 += diffs[x][1].length;   // Equality or deletion.
     			}
-    			if (diffs[x][0] !== DIFF_DELETE) 
+    			if (diffs[x][0] !== DELETE) 
     			{  
       				chars2 += diffs[x][1].length; // Equality or insertion.
     			}
@@ -1547,33 +1319,12 @@ package system.text.utils
     			last_chars2 = chars2;
   			}
   			// Was the location was deleted ?
-  			if ( diffs.length != x && diffs[x][0] === DIFF_DELETE ) 
+  			if ( diffs.length != x && diffs[x][0] === DELETE ) 
   			{
     			return last_chars2 ;
   			}
   			// Add the remaining character length.
   			return last_chars2 + (loc - last_chars1) ;
-		}
-
-		/**
- 		 * Initialise the alphabet for the Bitap algorithm.
- 		 * @param {string} pattern The text to encode
- 		 * @return {Object} Hash of character locations
- 		 */
-		private function alphabet( pattern:String ):Object 
-		{
-  			var s:Object = Object() ;
-  			var l:uint   = pattern.length ;
-  			var i:uint ;
-  			for ( i = 0 ; i < l ; i++ ) 
-  			{
-    			s[pattern.charAt(i)] = 0;
-  			}
-  			for ( i = 0 ; i < pattern.length; i++ ) 
-  			{
-    			s[pattern.charAt(i)] |= 1 << (pattern.length - i - 1 ) ;
-  			}
-	  		return s;
 		}
 
 		/**
@@ -1585,7 +1336,7 @@ package system.text.utils
 		 * @return Five element Array, containing the prefix of longtext, the suffix of longtext, the prefix of shorttext, the suffix
 		 * of shorttext and the common middle.  Or null if there was no match. {Array.<string>?}
 		 */
-		private function halfMatchI( longtext:String , shorttext:String , i:uint ):Array 
+		private static function halfMatchI( longtext:String , shorttext:String , i:uint ):Array 
 		{
     		// Start with a 1/4 length substring at position i as a seed.
     		var seed:String = longtext.substring(i, i + Math.floor(longtext.length / 4));
@@ -1616,13 +1367,13 @@ package system.text.utils
   		}
  		
  		/**
-		 * Split a text into an array of strings.  Reduce the texts to a string of
-   		 * hashes where each Unicode character represents one line.
+		 * Split a text into an array of strings. 
+		 * Reduce the texts to a string of hashes where each Unicode character represents one line.
    		 * Modifies linearray and linehash through being a closure.
    		 * @param {string} text String to encode
    		 * @return {string} Encoded string
 		 */
-		private function linesToCharsMunge( text:String, lineArray:Array, lineHash:Object ):String 
+		private static function linesToCharsMunge( text:String, lineArray:Array, lineHash:Object ):String 
 		{
     		var chars:String = '';
 		    // Walk the text, pulling out a substring for each line.
@@ -1642,7 +1393,8 @@ package system.text.utils
       			var line:String = text.substring(lineStart, lineEnd + 1) ;
       			lineStart       = lineEnd + 1 ;
 				
-				if ( lineHash.hasOwnProperty ? lineHash.hasOwnProperty(line) : (lineHash[line] !== undefined)) 
+				// FIXME old :: if ( ( lineHash.hasOwnProperty ) ? lineHash.hasOwnProperty(line) : (lineHash[line] !== undefined) ) 
+				if ( lineHash.hasOwnProperty(line) ) 
 				{
         			chars += String.fromCharCode(lineHash[line]);
       			} 
@@ -1664,7 +1416,7 @@ package system.text.utils
 		 * @param text2 New string fragment to be diffed.
 		 * @return Array of diff tuples {Array.<Array.<*>>}.
  		 */
-		private function path1( v_map:Array , text1:String, text2:String):Array 
+		private static function path1( v_map:Array , text1:String, text2:String):Array 
 		{
   			var path:Array  = [];
   			var x:uint      = text1.length ;
@@ -1677,29 +1429,29 @@ package system.text.utils
       				if (v_map[d].hasOwnProperty ? v_map[d].hasOwnProperty((x - 1) + ',' + y) : (v_map[d][(x - 1) + ',' + y] !== undefined)) 
       				{
         				x-- ;
-        				if (last_op === DIFF_DELETE) 
+        				if (last_op === DELETE) 
         				{
           					path[0][1] = text1.charAt(x) + path[0][1] ;
         				}
         				else 
         				{
-          					path.unshift([DIFF_DELETE, text1.charAt(x)]) ;
+          					path.unshift([DELETE, text1.charAt(x)]) ;
         				}
-        				last_op = DIFF_DELETE;
+        				last_op = DELETE;
         				break ;
       				} 
       				else if (v_map[d].hasOwnProperty ? v_map[d].hasOwnProperty(x + ',' + (y - 1)) : (v_map[d][x + ',' + (y - 1)] !== undefined)) 
       				{
         				y-- ;
-        				if (last_op === DIFF_INSERT) 
+        				if (last_op === INSERT) 
         				{
           					path[0][1] = text2.charAt(y) + path[0][1] ;
         				} 
         				else 
         				{
-          					path.unshift([DIFF_INSERT, text2.charAt(y)]) ;
+          					path.unshift([INSERT, text2.charAt(y)]) ;
         				}
-        				last_op = DIFF_INSERT ;
+        				last_op = INSERT ;
         				break ;
       				} 
       				else 
@@ -1710,15 +1462,15 @@ package system.text.utils
         				//{
         				//    throw new Error('No diagonal.  Can\'t happen. (diff_path1)');
         				//}
-        				if (last_op === DIFF_EQUAL) 
+        				if (last_op === EQUAL) 
         				{
           					path[0][1] = text1.charAt(x) + path[0][1] ;
         				} 
         				else 
         				{
-          					path.unshift([DIFF_EQUAL, text1.charAt(x)]);
+          					path.unshift([EQUAL, text1.charAt(x)]);
         				}
-        				last_op = DIFF_EQUAL;
+        				last_op = EQUAL;
       				}
     			}
   			}
@@ -1732,7 +1484,7 @@ package system.text.utils
 		 * @param text2 New string fragment to be diffed
 		 * @return Array of diff tuples {Array.<Array.<*>>} 
 		 */
-		private function path2(v_map:Array, text1:String, text2:String):Array 
+		private static function path2(v_map:Array, text1:String, text2:String):Array 
 		{
   			var path:Array      = [] ;
   			var pathLength:uint = 0  ;
@@ -1746,29 +1498,29 @@ package system.text.utils
       				if (v_map[d].hasOwnProperty ? v_map[d].hasOwnProperty((x - 1) + ',' + y) : (v_map[d][(x - 1) + ',' + y] !== undefined)) 
       				{
         				x-- ;
-        				if (last_op === DIFF_DELETE) 
+        				if (last_op === DELETE) 
         				{
           					path[pathLength - 1][1] += text1.charAt(text1.length - x - 1) ;
         				} 
         				else 
         				{
-          					path[pathLength++] = [DIFF_DELETE, text1.charAt(text1.length - x - 1)] ;
+          					path[pathLength++] = [DELETE, text1.charAt(text1.length - x - 1)] ;
         				}
-        				last_op = DIFF_DELETE ; 
+        				last_op = DELETE ; 
       				    break ;
       				} 
       				else if (v_map[d].hasOwnProperty ? v_map[d].hasOwnProperty(x + ',' + (y - 1)) : (v_map[d][x + ',' + (y - 1)] !== undefined)) 
       				{
         				y-- ;
-        				if (last_op === DIFF_INSERT) 
+        				if (last_op === INSERT) 
         				{
           					path[pathLength - 1][1] += text2.charAt(text2.length - y - 1) ;
         				} 
         				else 
         				{
-          					path[pathLength++] = [DIFF_INSERT, text2.charAt(text2.length - y - 1)] ;
+          					path[pathLength++] = [INSERT, text2.charAt(text2.length - y - 1)] ;
         				}
-        				last_op = DIFF_INSERT ;
+        				last_op = INSERT ;
         				break;
       				} 
       				else 
@@ -1779,15 +1531,15 @@ package system.text.utils
         				// {
         				//     throw new Error('No diagonal.  Can\'t happen. (diff_path2)');
         				// }
-        				if (last_op === DIFF_EQUAL) 
+        				if (last_op === EQUAL) 
         				{
           					path[pathLength - 1][1] += text1.charAt(text1.length - x - 1) ;
         				}
         				else 
         				{
-          					path[pathLength++] = [DIFF_EQUAL, text1.charAt(text1.length - x - 1)];
+          					path[pathLength++] = [EQUAL, text1.charAt(text1.length - x - 1)];
         				}
-        				last_op = DIFF_EQUAL;
+        				last_op = EQUAL;
       				}
     			}
   			}
