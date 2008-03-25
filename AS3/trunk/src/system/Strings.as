@@ -122,18 +122,7 @@ package system
 			}
             else if( o1.length == o2.length )
 			{
-				var c:Number ;
-				var size:Number = o1.length ;
-				var i:Number    = 0 ;
-				while ( i < size )
-				{
-					c = compareChars( o1.charAt(i), o2.charAt(i) );
-					if ( c != 0 ) 
-					{
-						return c;
-					}
-					i++ ;
-				}  
+				return (o1 as String).localeCompare(o2 as String) ;
 			}
             else if( o1.length > o2.length )
 			{

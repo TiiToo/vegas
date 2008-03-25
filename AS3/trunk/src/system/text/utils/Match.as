@@ -33,24 +33,6 @@ package system.text.utils
 	 */
 	public class Match 
 	{
-
-		/**
-		 * Compute the number of bits in an int. The  normal answer for JavaScript is 32.
-	     * @return {number} Max bits.
-   		 */
-  		public static function getMaxBits():Number 
-  		{
-    		var maxbits:int = 0;
-    		var oldi:int    = 1;
-    		var newi:int    = 2;
-    		while ( oldi != newi ) 
-    		{
-      			maxbits++ ;
-      			oldi = newi ;
-      			newi = newi << 1 ;
-    		}
-    		return maxbits;
-  		}
 		
   		/**
   		 * Tweak the relative importance (0.0 = accuracy, 1.0 = proximity)

@@ -27,7 +27,7 @@ package system.text.utils
 {
 
 	/**
-	 * Create a patch with the difference between two texts. 
+	 * Creates a patch with the difference between two texts. 
 	 * Applies the patch onto another text, allowing for errors.
 	 * @author eKameleon
 	 */

@@ -24,7 +24,7 @@
   
 */
 package system.text.utils 
-{
+	{
 
 	/**
 	 * Class representing one patch operation.

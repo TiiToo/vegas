@@ -136,7 +136,7 @@ package system.text.utils
 		/**
 		 * The number of seconds to map a diff before giving up. (0 for infinity)
 		 */
-		public static var timeout:Number = 1.0 ;
+		public static var timeout:Number = 1 ;
   
 		/**
  		 * Adds an index to each tuple, represents where the tuple is located in text2.
@@ -660,9 +660,6 @@ package system.text.utils
 		 */
 		public static function compute( text1:String, text2:String, checklines:Boolean = true ):Array
 		{
-			
-			// FIXME for the moment this algorith bug !
-			
 			if (!text1) 
   			{
     			return [[INSERT, text2]] ; // Just add some text (speedup)
@@ -671,10 +668,14 @@ package system.text.utils
   			{
     			return [[DELETE, text1]] ; // Just delete some text (speedup)
 			}
+			
 			var diffs:Array ;
+			
 			var longtext:String  = ( text1.length > text2.length ) ? text1 : text2 ;
 			var shorttext:String = ( text1.length > text2.length ) ? text2 : text1 ;
+  			
   			var i:int = longtext.indexOf( shorttext ) ;
+  			
   			if (i != -1) 
   			{
     			// Shorter text is inside the longer text (speedup)
@@ -691,55 +692,67 @@ package system.text.utils
     			}
     			return diffs ;
   			}
+  			
   			longtext = shorttext = null;  // Garbage collect
 
 			// Check to see if the problem can be split in two.
+  			
   			var hm:Array = halfMatch(text1, text2);
+  			
   			if (hm) 
   			{
     			// A half-match was found, sort out the return data.
+    			
     			var text1_a:String   = hm[0] ;
     			var text1_b:String   = hm[1] ;
     			var text2_a:String   = hm[2] ;
     			var text2_b:String   = hm[3] ;
+    			
     			var midCommon:String = hm[4];
     			
     			// Send both pairs off for separate processing.
-    			var diffs_a:Array = Difference.main(text1_a, text2_a, checklines) ;
-    			var diffs_b:Array = Difference.main(text1_b, text2_b, checklines);
+    			var diffs_a:Array = Difference.main( text1_a , text2_a , checklines) ;
+    			var diffs_b:Array = Difference.main( text1_b , text2_b , checklines);
     			
     			// Merge the results.
     			diffs_a.concat( [ [ EQUAL, midCommon ] ] , diffs_b ) ;
   			}
 
   			// Perform a real diff.
+
   			if (checklines && (text1.length < 100 || text2.length < 100)) 
   			{
-    			// Too trivial for the overhead.
-    			checklines = false;
+    			checklines = false ; // Too trivial for the overhead.
   			}
+  			
   			var linearray:Array ;
+  			
   			if (checklines) 
   			{
-    			var a1:Array = linesToChars(text1, text2) ; // Scan the text on a line-by-line basis first.
-    			text1        = a1[0] ;
-    			text2        = a1[1] ;
-    			linearray    = a1[2] ;
+    			var a:Array = linesToChars(text1, text2) ; // Scan the text on a line-by-line basis first.
+    			text1       = a[0] ;
+    			text2       = a[1] ;
+    			linearray   = a[2] ;
   			}
+  			
   			diffs = map(text1, text2) ;
+  			
   			if (!diffs) 
   			{
     			diffs = [[DELETE, text1], [INSERT, text2]] ; // No acceptable result.
   			}
   			if (checklines) 
   			{
+    			
     			charsToLines(diffs, linearray) ; // Converts the diff back to original text.
+    			
     			cleanupSemantic(diffs) ; // Eliminates freak matches (e.g. blank lines)
 				
     			// Rediff any replacement blocks, this time character-by-character.
     			// Add a dummy entry at the end.
     			
     			diffs.push( [EQUAL, ''] ) ;
+    			
     			var pointer:uint       = 0  ;
     			var count_delete:uint  = 0  ;
     			var count_insert:uint  = 0  ;
@@ -766,15 +779,19 @@ package system.text.utils
         					// Upon reaching an equality, check for prior redundancies.
         					if (count_delete >= 1 && count_insert >= 1) 
         					{
+          						
           						// Delete the offending records and add the merged ones.
-          						var a2:Array = Difference.main ( text_delete, text_insert, false ) ;
+          						var ar:Array = main ( text_delete, text_insert, false ) ;
+          						
           						diffs.splice(pointer - count_delete - count_insert, count_delete + count_insert) ;
+          						
           						pointer = pointer - count_delete - count_insert ;
-          						for (var j:int = a2.length - 1; j >= 0; j--) 
+          						
+          						for (var j:int = ar.length - 1 ; j >= 0 ; j--) 
           						{
-            						diffs.splice(pointer, 0, a2[j]);
+            						diffs.splice( pointer, 0, ar[j] ) ;
           						}
-          						pointer += a2.length ;
+          						pointer += ar.length ;
         					}
         					count_insert = 0  ;
         					count_delete = 0  ;
@@ -785,70 +802,11 @@ package system.text.utils
       				}
      				pointer++;
     			}
-    			diffs.pop() ;  // Remove the dummy entry at the end.
+    			diffs.pop() ;  // Removes the dummy entry at the end.
 			}
   			return diffs;
 		}
 
-  		/**
-		 * Find the differences between two texts. 
-		 * Simplifies the problem by stripping any common prefix or suffix off the texts before diffing.
-	 	 * <p><b>Example :</b></p>
-	 	 * <pre class="prettyprint">
-	 	 * import system.text.utils.Difference ;
-	 	 * 
-	 	 * var result:uint = Difference.main( "hello worlds" , "hello system" ) ; 
-	 	 * 
-	 	 * trace( result ) ; // 0,hello ,-1,world,1,system
-	 	 * </pre>
-		 * @param text1 Old string to be diffed
-		 * @param text2 New string to be diffed
-		 * @param checklines Optional speedup flag. 
-		 * If present and false, then don't run a line-level diff first to identify the changed areas. 
-		 * Defaults to true, which does a faster, slightly less optimal diff
-		 * @return Array of diff tuples {Array.<Array.<*>>}.
-		 */
-		public static function main( text1:String, text2:String, checklines:Boolean=true ):Array 
-		{
-  			// Check for equality (speedup)
-  			if (text1 == text2) 
-  			{
-    			return [ [EQUAL , text1 ] ] ;
-  			}
-
-			// Trim off common prefix (speedup)
-  			
-  			var commonlength:uint   = commonPrefix(text1, text2) ;
-  			var commonprefix:String = text1.substring(0, commonlength)     ;
-  			
-  			text1 = text1.substring( commonlength ) ;
-  			text2 = text2.substring( commonlength ) ;
-
-  			// Trim off common suffix (speedup)
-  			commonlength = commonSuffix(text1, text2);
-  			
-  			var commonsuffix:String = text1.substring(text1.length - commonlength);
-  			
-  			text1 = text1.substring(0, text1.length - commonlength);
-  			text2 = text2.substring(0, text2.length - commonlength);
-
-  			// Compute the diff on the middle block
-  			var diffs:Array = compute(text1, text2, checklines) ; 
-
-  			// Restore the prefix and suffix
-  			if (commonprefix) 
-  			{
-    			diffs.unshift([EQUAL, commonprefix]);
-  			}
-  			if (commonsuffix) 
-  			{
-    			diffs.push([EQUAL, commonsuffix]);
-  			}
-  			
-  			cleanupMerge(diffs);
-  			
-  			return diffs ;
-		}
 
 		/**
 		 * Given the original text1, and an encoded string which describes the operations required to transform text1 into text2, compute the full diff.
@@ -924,6 +882,7 @@ package system.text.utils
 	     */
 		public static function halfMatch( text1:String, text2:String ):Array 
 		{
+			
 			var longtext:String  = ( text1.length > text2.length ) ? text1 : text2 ;
 			var shorttext:String = ( text1.length > text2.length ) ? text2 : text1 ;
   			
@@ -931,7 +890,7 @@ package system.text.utils
   			{
     			return null ; // Pointless.
   			}
-			
+  			
 			// First check if the second quarter is the seed for a half-match.
   			var hm1:Array = halfMatchI(longtext, shorttext, Math.ceil(longtext.length / 4) ) ;
   			
@@ -953,11 +912,15 @@ package system.text.utils
   			} 
   			else 
   			{
-    			// Both matched.  Select the longest.
-    			hm = hm1[4].length > hm2[4].length ? hm1 : hm2 ;
+    			hm = ( hm1[4].length > hm2[4].length ) ? hm1 : hm2 ; // Both matched.  Select the longest.
 			}
 			// A half-match was found, sort out the return data.
-  			var text1_a:String, text1_b:String, text2_a:String, text2_b:String ;
+			
+  			var text1_a:String ;
+  			var text1_b:String ;
+  			var text2_a:String ;
+  			var text2_b:String ;
+  			
   			if (text1.length > text2.length) 
   			{
   				text1_a = hm[0] ;
@@ -992,6 +955,70 @@ package system.text.utils
   			return [chars1, chars2, lineArray];
 		}
 
+  		/**
+		 * Find the differences between two texts. 
+		 * Simplifies the problem by stripping any common prefix or suffix off the texts before diffing.
+	 	 * <p><b>Example :</b></p>
+	 	 * <pre class="prettyprint">
+	 	 * import system.text.utils.Difference ;
+	 	 * 
+	 	 * var result:uint = Difference.main( "hello worlds" , "hello system" ) ; 
+	 	 * 
+	 	 * trace( result ) ; // 0,hello ,-1,world,1,system
+	 	 * </pre>
+		 * @param text1 Old string to be diffed
+		 * @param text2 New string to be diffed
+		 * @param checklines Optional speedup flag. 
+		 * If present and false, then don't run a line-level diff first to identify the changed areas. 
+		 * Defaults to true, which does a faster, slightly less optimal diff
+		 * @return Array of diff tuples {Array.<Array.<*>>}.
+		 */
+		public static function main( text1:String, text2:String, checklines:Boolean=true ):Array 
+		{
+  			
+  			// Check for equality (speedup)
+  			
+  			if (text1 == text2) 
+  			{
+    			return [ [EQUAL , text1 ] ] ;
+  			}
+
+			// Trim off common prefix (speedup)
+
+  			var commonlength:uint   = commonPrefix( text1, text2 ) ;
+  			var commonprefix:String = text1.substring(0, commonlength)     ;
+  			
+  			text1 = text1.substring( commonlength ) ;
+  			text2 = text2.substring( commonlength ) ;
+
+  			// Trim off common suffix (speedup)
+  			commonlength = commonSuffix(text1, text2);
+  			
+  			var commonsuffix:String = text1.substring(text1.length - commonlength);
+  			
+  			text1 = text1.substring(0, text1.length - commonlength);
+  			text2 = text2.substring(0, text2.length - commonlength);
+
+  			// Compute the diff on the middle block
+  			var diffs:Array = compute(text1, text2, checklines) ; 
+
+  			// Restore the prefix and suffix
+  			
+  			if (commonprefix) 
+  			{
+    			diffs.unshift([EQUAL, commonprefix]);
+  			}
+  			
+  			if (commonsuffix) 
+  			{
+    			diffs.push([EQUAL, commonsuffix]);
+  			}
+  			
+  			cleanupMerge(diffs);
+  			
+  			return diffs ;
+		}
+		
 		/**
  		 * Explores the intersection points between the two texts.
 	 	 * <p><b>Example :</b></p>
@@ -1034,9 +1061,6 @@ package system.text.utils
   			
   			var done:Boolean = false;
   			
-  			//FIXME Safari 1.x doesn't have hasOwnProperty :: (eka) this test exist in the JS version but in AS3 ???
-  			var hasOwnProperty:Boolean = !!(footsteps.hasOwnProperty);
-  			
   			// If the total number of characters is odd, then the front path will collide with the reverse path.
 	  		var front:uint = (text1.length + text2.length) % 2;
   			
@@ -1068,7 +1092,7 @@ package system.text.utils
       				if (doubleEnd) 
       				{
         				footstep = x + ',' + y ;
-        				if (front && (hasOwnProperty ? footsteps.hasOwnProperty(footstep) : (footsteps[footstep] !== undefined))) 
+        				if (front && footsteps.hasOwnProperty(footstep)) 
         				{
           					done = true ;
         				}
@@ -1084,7 +1108,7 @@ package system.text.utils
         				if (doubleEnd) 
         				{
           					footstep = x + ',' + y ;
-          					if (front && (hasOwnProperty ? footsteps.hasOwnProperty(footstep) : (footsteps[footstep] !== undefined))) 
+          					if (front && footsteps.hasOwnProperty(footstep)) 
           					{
             					done = true ;
           					}
@@ -1134,7 +1158,7 @@ package system.text.utils
         				
         				footstep = (text1.length - x) + ',' + (text2.length - y) ;
         				
-        				if (!front && (hasOwnProperty ? footsteps.hasOwnProperty(footstep) : (footsteps[footstep] !== undefined))) 
+        				if ( !front && footsteps.hasOwnProperty(footstep)) 
         				{
           					done = true ;
         				}
@@ -1149,7 +1173,7 @@ package system.text.utils
           					x++ ;
           					y++ ;
           					footstep = (text1.length - x) + ',' + (text2.length - y) ;
-          					if (!front && (hasOwnProperty ? footsteps.hasOwnProperty(footstep) : (footsteps[footstep] !== undefined))) 
+          					if ( !front && footsteps.hasOwnProperty(footstep)) 
           					{
             					done = true ;
 							}
@@ -1336,27 +1360,39 @@ package system.text.utils
 		 * @return Five element Array, containing the prefix of longtext, the suffix of longtext, the prefix of shorttext, the suffix
 		 * of shorttext and the common middle.  Or null if there was no match. {Array.<string>?}
 		 */
-		private static function halfMatchI( longtext:String , shorttext:String , i:uint ):Array 
+		private static function halfMatchI( longtext:String , shorttext:String , i:Number ):Array 
 		{
     		// Start with a 1/4 length substring at position i as a seed.
+
     		var seed:String = longtext.substring(i, i + Math.floor(longtext.length / 4));
+
 		    var j:int = -1;
-    		var best_common:String = '';
-    		var best_longtext_a:String , best_longtext_b:String, best_shorttext_a:String, best_shorttext_b:String ;
+    		
+    		var best_common:String = '' ;
+    		
+    		var best_longtext_a:String  ;
+    		var best_longtext_b:String  ;
+    		var best_shorttext_a:String ;
+    		var best_shorttext_b:String ;
+    		
     		while ((j = shorttext.indexOf(seed, j + 1)) != -1) 
     		{
+      			
       			var prefixLength:uint = commonPrefix(longtext.substring(i)    , shorttext.substring(j) ) ;
+      			
       			var suffixLength:uint = commonSuffix(longtext.substring(0, i) , shorttext.substring(0, j) ) ;
+      			
       			if ( best_common.length < suffixLength + prefixLength ) 
       			{
-        			best_common = shorttext.substring(j - suffixLength, j) + shorttext.substring(j, j + prefixLength ) ;
-        			best_longtext_a = longtext.substring(0, i - suffixLength);
-        			best_longtext_b = longtext.substring(i + prefixLength);
-        			best_shorttext_a = shorttext.substring(0, j - suffixLength);
-        			best_shorttext_b = shorttext.substring(j + prefixLength);
+        			best_common      = shorttext.substring (j - suffixLength, j) + shorttext.substring(j, j + prefixLength ) ;
+        			best_longtext_a  = longtext.substring  (0, i - suffixLength);
+        			best_longtext_b  = longtext.substring  (i + prefixLength);
+        			best_shorttext_a = shorttext.substring (0, j - suffixLength);
+        			best_shorttext_b = shorttext.substring (j + prefixLength);
       			}
+      			
     		}
-    		if (best_common.length >= longtext.length / 2) 
+    		if ( best_common.length >= longtext.length / 2 ) 
     		{
       			return [ best_longtext_a, best_longtext_b, best_shorttext_a, best_shorttext_b, best_common ] ;
     		}
@@ -1391,9 +1427,10 @@ package system.text.utils
         			lineEnd = text.length - 1;
       			}
       			var line:String = text.substring(lineStart, lineEnd + 1) ;
+				
       			lineStart       = lineEnd + 1 ;
 				
-				// FIXME old :: if ( ( lineHash.hasOwnProperty ) ? lineHash.hasOwnProperty(line) : (lineHash[line] !== undefined) ) 
+				// FIXME old :: if ( ( lineHash.hasOwnProperty ) ? lineHash.hasOwnProperty(line) : (lineHash[line] !== undefined) )
 				if ( lineHash.hasOwnProperty(line) ) 
 				{
         			chars += String.fromCharCode(lineHash[line]);

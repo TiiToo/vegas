@@ -40,11 +40,11 @@ class lunas.core.AbstractStyle extends AbstractCoreEventDispatcher implements IS
 	 */
 	private function AbstractStyle ( init:Object ) 
 	{
+		initialize() ;
 		for (var prop:String in init) 
 		{
 			this[prop] = init[prop] ;
 		}
-		initialize() ;
 		update() ;
 	}
 
