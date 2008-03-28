@@ -8,7 +8,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is [ES4a: ECMAScript 4 MaasHaack framework].
+  The Original Code is [ASTUce: ActionScript Test Unit compact edition AS3]. 
   
   The Initial Developer of the Original Code is
   Zwetan Kjukov <zwetan@gmail.com>.
@@ -17,44 +17,34 @@
   
   Contributor(s):
   
-  	- Alcaraz Marc (aka eKameleon) <ekameleon@gmail.com> (2007-2008)
+  	- Alcaraz Marc (aka eKameleon) <vegas@ekameleon.net> (2007-2008)
 
 */
-package system
+package buRRRn.ASTUce.framework
     {
-    import system.Configurator;    
     
     /**
-     * The system configurator class.
+     * A Protectable can be run and can throw errors.
+     * @see TestResult
      */
-    public class SystemConfigurator extends Configurator
+    public dynamic class Protectable
         {
         
-        /**
-         * Creates a new SystemConfigurator instance.
-         * @param config This argument initialize the configurator with a generic object.
-         */
-        public function SystemConfigurator( config:Object )
+        public function Protectable()
             {
-            super( config );
+            
             }
         
         /**
-         * Indicates if the config use the verbose mode or not.
+         * Runs the the following method protected.
+         * <p><b>Note :</b> yes, you have to define this method in the prototype so it can be dynamically overrided</p>
          */
-        public function get verbose():Boolean
+        prototype.protect = function():void
             {
-            return _config.verbose;
-            }
+            
+            } ;
         
-        /**
-         * @private
-         */
-        public function set verbose( value:Boolean ):void
-            {
-            _config.verbose = value;
-            }
-
         }
-
+    
     }
+

@@ -21,40 +21,12 @@
 
 */
 package system
-    {
-    import system.Configurator;    
+	{
+		
+	/**
+	 * The System configurator.
+	 */
+    public var config:SystemConfigurator = new SystemConfigurator( { verbose: false } );
     
-    /**
-     * The system configurator class.
-     */
-    public class SystemConfigurator extends Configurator
-        {
-        
-        /**
-         * Creates a new SystemConfigurator instance.
-         * @param config This argument initialize the configurator with a generic object.
-         */
-        public function SystemConfigurator( config:Object )
-            {
-            super( config );
-            }
-        
-        /**
-         * Indicates if the config use the verbose mode or not.
-         */
-        public function get verbose():Boolean
-            {
-            return _config.verbose;
-            }
-        
-        /**
-         * @private
-         */
-        public function set verbose( value:Boolean ):void
-            {
-            _config.verbose = value;
-            }
-
-        }
-
     }
+

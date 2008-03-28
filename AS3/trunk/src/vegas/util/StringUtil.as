@@ -40,7 +40,7 @@ package vegas.util
         public static const EMPTY:String = "" ;
         
         /**
-         * Reprensents the space string value.
+         * Represents the space string value.
          */ 
         public static const SPC:String = " " ; // SPACE
 

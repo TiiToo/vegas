@@ -8,7 +8,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is [ES4a: ECMAScript 4 MaasHaack framework].
+  The Original Code is [ASTUce: ActionScript Test Unit compact edition AS3]. 
   
   The Initial Developer of the Original Code is
   Zwetan Kjukov <zwetan@gmail.com>.
@@ -17,44 +17,40 @@
   
   Contributor(s):
   
-  	- Alcaraz Marc (aka eKameleon) <ekameleon@gmail.com> (2007-2008)
+  	- Alcaraz Marc (aka eKameleon) <vegas@ekameleon.net> (2007-2008)
 
 */
-package system
+package buRRRn.ASTUce.runner
     {
-    import system.Configurator;    
     
-    /**
-     * The system configurator class.
-     */
-    public class SystemConfigurator extends Configurator
+    public class TestRunStatus
         {
-        
-        /**
-         * Creates a new SystemConfigurator instance.
-         * @param config This argument initialize the configurator with a generic object.
-         */
-        public function SystemConfigurator( config:Object )
-            {
-            super( config );
-            }
-        
-        /**
-         * Indicates if the config use the verbose mode or not.
-         */
-        public function get verbose():Boolean
-            {
-            return _config.verbose;
-            }
-        
+        	
         /**
          * @private
          */
-        public function set verbose( value:Boolean ):void
+        private var _value:int;
+        
+        /**
+         * Creates a new TestRunStatus instance.
+         * @param value The status value of this instance.
+         */
+        public function TestRunStatus(value:int)
             {
-            _config.verbose = value;
+            _value = value;
             }
+        
+        /**
+         * The error TestRunStatus constante (1).
+         */
+        public static const error:TestRunStatus   = new TestRunStatus( 1 );
 
+        /**
+         * The failure TestRunStatus constante (2).
+         */
+        public static const failure:TestRunStatus = new TestRunStatus( 2 );
+        
         }
-
+    
     }
+

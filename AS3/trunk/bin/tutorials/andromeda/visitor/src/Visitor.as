@@ -2,10 +2,7 @@
 {
 	import flash.display.*;
 	
-	import asgard.display.DisplayObjectCollector;
-	
 	import visitor.display.PictureDisplay;
-	import visitor.display.UIList;
 	import visitor.visitor.HideVisitor;
 	import visitor.visitor.LoaderVisitor;
 	import visitor.visitor.ShowVisitor;	
@@ -27,6 +24,7 @@
             stage.align     = StageAlign.TOP_LEFT ;
             
             var pic:PictureDisplay = new PictureDisplay() ;
+            
             pic.x = 100 ;
             pic.y = 100 ;
             
@@ -35,9 +33,7 @@
             var url:String = "library/picture1.jpg" ;
             
             pic.accept( new LoaderVisitor( url ) ) ;
-            
             pic.accept( new HideVisitor() ) ;
-            
             pic.accept( new ShowVisitor() ) ;
             
         }

@@ -6,12 +6,13 @@ package visitor.display
 	import andromeda.util.visitor.IVisitable;
 	import andromeda.util.visitor.IVisitor;
 	
-	import asgard.display.DisplayObjectCollector;	
+	import asgard.display.CoreLoader;
+	import asgard.display.CoreSprite;	
 
 	/**
      * The PictureDisplay class.
      */
-    public class PictureDisplay extends Sprite implements IVisitable
+    public class PictureDisplay extends CoreSprite implements IVisitable
     {
 
 	    /**
@@ -19,15 +20,8 @@ package visitor.display
 	     */	
     	public function PictureDisplay() 
     	{
-
-    	    name = UIList.PICTURE ;
-		    DisplayObjectCollector.insert(name , this ) ;
-		    
-            var loader:Loader = new Loader() ;
-            loader.name       = UIList.LOADER ;
-            
-            DisplayObjectCollector.insert( loader.name, loader ) ;
-		    
+    	    super( UIList.PICTURE ) ;
+            loader = new CoreLoader( UIList.LOADER ) ;
 		    update() ;
     	}
         
@@ -35,7 +29,12 @@ package visitor.display
          * The virtual height of the picture.
          */  
         public var h:uint = 260 ;
-    
+    	
+    	/**
+    	 * The loader of the picture display.
+    	 */
+    	public var loader:CoreLoader ;
+    	
 	    /**
     	 * The margin in the picture to display the container.
     	 */
@@ -58,14 +57,11 @@ package visitor.display
         /**
          * Update the view of the display.
          */
-        public function update():void
+        public override function update():void
         {
             graphics.clear() ;
             graphics.beginFill(0xFFFFFF, 100) ;
-            graphics.lineTo(w, 0) ;
-            graphics.lineTo(w, h) ;
-            graphics.lineTo(0, h) ;
-            graphics.lineTo(0, 0) ;
+            graphics.drawRect(0, 0, w, h) ;
             graphics.endFill() ;
         }
 

@@ -8,7 +8,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is [ES4a: ECMAScript 4 MaasHaack framework].
+  The Original Code is [ASTUce: ActionScript Test Unit compact edition AS3]. 
   
   The Initial Developer of the Original Code is
   Zwetan Kjukov <zwetan@gmail.com>.
@@ -17,44 +17,38 @@
   
   Contributor(s):
   
-  	- Alcaraz Marc (aka eKameleon) <ekameleon@gmail.com> (2007-2008)
+  	- Alcaraz Marc (aka eKameleon) <vegas@ekameleon.net> (2007-2008)
 
 */
-package system
+package buRRRn.ASTUce.framework
     {
-    import system.Configurator;    
     
     /**
-     * The system configurator class.
+     * An ITest can be run and collect its results.
+     * @see TestResult
      */
-    public class SystemConfigurator extends Configurator
+    public interface ITest
         {
         
         /**
-         * Creates a new SystemConfigurator instance.
-         * @param config This argument initialize the configurator with a generic object.
+         * Counts the number of test cases that will be run by this test.
          */
-        public function SystemConfigurator( config:Object )
-            {
-            super( config );
-            }
+        function get countTestCases():int;
+        
+        //function get name():String;
         
         /**
-         * Indicates if the config use the verbose mode or not.
+         * Runs a test and collects its result in a TestResult instance.
          */
-        public function get verbose():Boolean
-            {
-            return _config.verbose;
-            }
+        function run( result:TestResult ):void;
         
         /**
-         * @private
+         * Returns a string representation of the object.
+         * Returns a string representation of the object.
          */
-        public function set verbose( value:Boolean ):void
-            {
-            _config.verbose = value;
-            }
-
+        function toString( ...args ):String;
+        
         }
-
+    
     }
+

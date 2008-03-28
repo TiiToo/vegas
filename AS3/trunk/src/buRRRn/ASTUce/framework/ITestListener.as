@@ -8,7 +8,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is [ES4a: ECMAScript 4 MaasHaack framework].
+  The Original Code is [ASTUce: ActionScript Test Unit compact edition AS3]. 
   
   The Initial Developer of the Original Code is
   Zwetan Kjukov <zwetan@gmail.com>.
@@ -17,44 +17,44 @@
   
   Contributor(s):
   
-  	- Alcaraz Marc (aka eKameleon) <ekameleon@gmail.com> (2007-2008)
+  	- Alcaraz Marc (aka eKameleon) <vegas@ekameleon.net> (2007-2008)
 
 */
-package system
+package buRRRn.ASTUce.framework
     {
-    import system.Configurator;    
     
     /**
-     * The system configurator class.
+     * A Listener for test progress.
      */
-    public class SystemConfigurator extends Configurator
+    public interface ITestListener
         {
         
         /**
-         * Creates a new SystemConfigurator instance.
-         * @param config This argument initialize the configurator with a generic object.
+         * An error occurred.
          */
-        public function SystemConfigurator( config:Object )
-            {
-            super( config );
-            }
+        function addError( test:ITest, e:Error ):void;
         
         /**
-         * Indicates if the config use the verbose mode or not.
+         * A failure occurred.
          */
-        public function get verbose():Boolean
-            {
-            return _config.verbose;
-            }
+        function addFailure( test:ITest, afe:AssertionFailedError ):void;
         
         /**
-         * @private
+         * A valid test occurred.
          */
-        public function set verbose( value:Boolean ):void
-            {
-            _config.verbose = value;
-            }
-
+        function addValid( test:ITest ):void;
+        
+        /**
+         * A test ended.
+         */
+        function endTest( test:ITest ):void;
+        
+        /**
+         * A test started.
+         */
+        function startTest( test:ITest ):void;
+        
         }
-
+    
     }
+
