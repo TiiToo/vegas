@@ -39,12 +39,10 @@ package buRRRn.ASTUce
             super( config );
             }
         
-        /* Boolean option to configure the getInfo method behaviour.
-           
-           parameters:
-           true  - more verbose
-           false - less verbose
-        */
+        /**
+         * Boolean option to configure the getInfo method behaviour.
+         * <p>If the value is <code class="prettyprint">true</code> more verbose else less verbose.</p>
+         */
         public function get verbose():Boolean
             {
             return _config.verbose;
@@ -58,29 +56,24 @@ package buRRRn.ASTUce
             _config.verbose = value;
             }
         
-        /* Boolean option to display all the constructors being tested.
-           
-           parameters:
-           true  - show constructors list
-           false - don't show constructor list
-           
-           note:
-           Will show an indented list of tests
-           (code)
-            All ASTUce tests
-            	{
-            	Framework Tests
-            		{
-            		TestCaseTest
-            			{
-            			testCaseToString( TestCaseTest )
-            			testRunAndTearDownFails( TestCaseTest )
-            			testWasRun( TestCaseTest )
-            			testError( TestCaseTest )
-            			...
-           (end)
-           
-        */
+        /**
+         * Boolean option to display all the constructors being tested.
+         * <p>If the value is <code class="prettyprint">true</code> show constructors list elsedon't show constructor list.</p>
+         * <p><b>Note : </b> Will show an indented list of tests</p>
+         * <pre class="prettyprint">
+         * All ASTUce tests
+         *      {
+         *      Framework Tests
+         *      {
+         *      TestCaseTest
+         *              {
+         *              testCaseToString( TestCaseTest )
+         *     			testRunAndTearDownFails( TestCaseTest )
+         *     			testWasRun( TestCaseTest )
+         *     			testError( TestCaseTest )
+         *     			...
+         * </pre>    			
+         */
         public function get showConstructorList():Boolean
             {
             return _config.showConstructorList;
@@ -246,6 +239,9 @@ package buRRRn.ASTUce
             return _config.showPrintFailures;
             }
         
+        /**
+         * @private
+         */
         public function set showPrintFailures( value:Boolean ):void
             {
             _config.showPrintFailures = value;
@@ -292,12 +288,9 @@ package buRRRn.ASTUce
             _config.showEmptyTests = value;
             }
         
-        /* Boolean option to display the source of objects being compared.
-           
-           parameters:
-           true  - show the object source
-           false - don't show the source
-           
+        /**
+         * Boolean option to display the source of objects being compared.
+         * <p>If the value is <code class="prettyprint">true</code> show the object source else don't show the source.
            note:
            It help you to debug to see
            (code)
@@ -372,12 +365,10 @@ package buRRRn.ASTUce
             _config.testInheritedTests = value;
             }
         
-        /* 
-           note:
-           define the max column chars to display
-           before returning to the line.
-           -> only usefull to print short tests/failures/errors
-        */
+        /**
+         * Indicates the max columns chars to display before returning to the line.
+         * <p>-> only usefull to print short tests/failures/errors.</p>
+         */
         public function get maxColumn():int
             {
             return _config.maxColumn;
@@ -391,8 +382,9 @@ package buRRRn.ASTUce
             _config.maxColumn = value;
             }
         
-        /* Property: defectHeaderAsError
-        */
+        /**
+         * Defect the header as error.
+         */
         public function get defectHeaderAsError():Boolean
             {
             return _config.defectHeaderAsError;
@@ -406,8 +398,9 @@ package buRRRn.ASTUce
             _config.defectHeaderAsError = value;
             }
         
-        /* Property: allowErrorTrace
-        */
+        /**
+         * Indicates if the error trace is allowed.
+         */
         public function get allowErrorTrace():Boolean
             {
             return _config.allowErrorTrace;
@@ -421,8 +414,9 @@ package buRRRn.ASTUce
             _config.allowErrorTrace = value;
             }
         
-        /* Property: allowStackTrace
-        */
+        /**
+         * Indicates if the stack trace is allowed.
+         */
         public function get allowStackTrace():Boolean
             {
             return _config.allowStackTrace;
@@ -436,12 +430,11 @@ package buRRRn.ASTUce
             _config.allowStackTrace = value;
             }
         
-        /* 
-           note:
-           allow to use the filteredPatterns array
-           to filter or not the errors stack trace
-           set it to false if you want the full stack.
-        */
+        /**
+         * Indicates if the filter error stack is allowed.
+         * Allow to use the filteredPatterns array to filter or not the errors stack trace 
+         * set it to false if you want the full stack.
+         */
         public function get filterErrorStack():Boolean
             {
             return _config.filterErrorStack;
@@ -455,7 +448,8 @@ package buRRRn.ASTUce
             _config.filterErrorStack = value;
             }
         
-        /* allow to clean some informations of the stack trace line
+        /**
+         * Allows to clean some informations of the stack trace line
            
            ex:
            at buRRRn.ASTUce.samples::ArrayTest/testClone()[C:\code\sandbox\buRRRn\ASTUce\samples\ArrayTest.as:72]
@@ -547,8 +541,8 @@ package buRRRn.ASTUce
             _config.filteredPatterns = value;
             }
         
-        //I want intrinsic::get/set :(
-        }
+        
+        }  //I want intrinsic::get/set :(
     
     }
 

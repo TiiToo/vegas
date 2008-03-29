@@ -47,10 +47,86 @@ package buRRRn.ASTUce.framework
      */    
     public class TestSuite implements ITest
         {
+        
+        /**
+         * @private
+         */
         private var _unknown:String = "[Unknown]";
+
+        /**
+         * @private
+         */
         private var _tests:Array    = [];
         
+        /**
+         * @private
+         */
         private var _name:String;
+        
+        /**
+         * @private
+         */
+        private function _addTestMethod( method:String, theConstructor:Class ):void
+            {
+            if( !_isTestMethod( method ) )
+                {
+                return;
+                }
+            
+            addTest( createTest( theConstructor, method ) );
+            }
+            
+        /**
+         * @private
+         */
+        private static function _warning( message:String, detail:String = "" ):ITest
+            {
+            return new TestWarning( message, detail );
+            }
+
+        
+        /*
+        for now we can only reflect public methods, ctors, etc.
+        so we don't need the following
+        
+        private function _isPublicTestMethod( method:String ):Boolean
+            {
+            
+            }
+        */
+        
+       /**
+        * @private
+        */
+        private function _isTestMethod( method:String ):Boolean
+            {
+            /* TODO:
+               - add check for paramters length == 0
+               - add check for return type == void
+            */
+            method = method.toLowerCase();
+            return Strings.startsWith( method, "test" );
+            }
+        
+       /**
+        * @private
+        */
+        private function _isTestMethodFilter( element:*, index:int, arr:Array ):Boolean
+            {
+            var method:String = element.toLowerCase();
+            
+            /* note:
+               toString and valueOF are a special case
+               because they are defined in the prototype
+               and so will not be filtered correctly
+            */
+            if( (method == "tostring") || (method == "tostring") )
+                {
+                return false;
+                }
+            
+            return Strings.startsWith( element.toLowerCase(), "test" );
+            }        
         
         public var simpleTrace:Boolean;
         
@@ -192,59 +268,10 @@ package buRRRn.ASTUce.framework
             
             
             }
-       
-       private static function _warning( message:String, detail:String = "" ):ITest
-            {
-            return new TestWarning( message, detail );
-            }
         
-        private function _addTestMethod( method:String, theConstructor:Class ):void
-            {
-            if( !_isTestMethod( method ) )
-                {
-                return;
-                }
-            
-            addTest( createTest( theConstructor, method ) );
-            }
-        
-        /*
-        for now we can only reflect public methods, ctors, etc.
-        so we don't need the following
-        
-        private function _isPublicTestMethod( method:String ):Boolean
-            {
-            
-            }
-        */
-        
-        private function _isTestMethod( method:String ):Boolean
-            {
-            /* TODO:
-               - add check for paramters length == 0
-               - add check for return type == void
-            */
-            method = method.toLowerCase();
-            return Strings.startsWith( method, "test" );
-            }
-        
-        private function _isTestMethodFilter( element:*, index:int, arr:Array ):Boolean
-            {
-            var method:String = element.toLowerCase();
-            
-            /* note:
-               toString and valueOF are a special case
-               because they are defined in the prototype
-               and so will not be filtered correctly
-            */
-            if( (method == "tostring") || (method == "tostring") )
-                {
-                return false;
-                }
-            
-            return Strings.startsWith( element.toLowerCase(), "test" );
-            }
-        
+        /**
+         * Indicates the number of TestCase elements in this suite.
+         */
         public function get countTestCases():int
             {
             var count:int = 0;
@@ -257,11 +284,9 @@ package buRRRn.ASTUce.framework
             return count;
             }
         
-        /* Returns the name of the suite.
-           
-           note:
-           if no name is defined we return "[Unknown]".
-        */
+        /**
+         * Indicates the name of the suite. if no name is defined we return "[Unknown]".
+         */
         public function get name():String
             {
             if( (_name == null) || (_name == "") )
@@ -272,29 +297,33 @@ package buRRRn.ASTUce.framework
             return _name;
             }
         
-        /* Sets the name of the suite.
-        */
+        /**
+         * @private
+         */
         public function set name( value:String ):void
             {
             _name = value;
             }
         
-        /* Returns the number of tests in this suite.
-        */
+        /**
+         * Indicates the number of tests in this suite.
+         */
         public function get testCount():int
             {
             return _tests.length;
             }
         
-        /* Returns the tests as an Array.
-        */
+        /**
+         * Indicates the tests as an Array.
+         */
         public function get tests():Array
             {
             return _tests;
             }
         
-        /* Creates a test corresponding to the method name in theConstructor class.
-        */
+        /**
+         * Creates a test corresponding to the method name in theConstructor class.
+         */
         public static function createTest( theConstructor:Class, name:String ):ITest
             {
             if( theConstructor == null )
@@ -326,8 +355,9 @@ package buRRRn.ASTUce.framework
             return test;
             }
         
-        /* Adds a test to the suite.
-        */
+        /**
+         * Adds a test to the suite.
+         */
         public function addTest( test:ITest ):void
             {
             /* attention:
@@ -349,15 +379,17 @@ package buRRRn.ASTUce.framework
             _tests.push( test );
             }
         
-        /* Adds the tests from the given class to the suite.
-        */
+        /**
+         * Adds the tests from the given class to the suite.
+         */
         public function addTestSuite( testConstructor:Class ):void
             {
             addTest( new TestSuite( testConstructor ) );
             }
         
-        /* Runs the tests and collects their result in a <TestResult>.
-        */
+        /**
+         * Runs the tests and collects their result in a <TestResult>.
+         */
         public function run( result:TestResult ):void
             {
             var i:int;
@@ -375,22 +407,29 @@ package buRRRn.ASTUce.framework
                 }
             }
         
+        /**
+         * Runs the test.
+         */
         public function runTest( test:ITest, result:TestResult ):void
             {
             test.run( result );
             }
         
-        /* Returns the test at the given index.
-        */
+        /**
+         * Returns the test at the given index.
+         * @return the test at the given index.
+         */
         public function testAt( index:int ):ITest
             {
             return _tests[ index ];
             }
         
-        /* Returns a string representation of the test suite.
-           
-           toString( increment:int = 0, asSimpleTrace:Boolean = false, [simpleTraceDepth:int = 0] )
-        */
+        /**
+         * Returns a string representation of the test suite.
+         * <pre class="prettyprint">
+         * toString( increment:int = 0, asSimpleTrace:Boolean = false, [simpleTraceDepth:int = 0] )
+         * </pre>
+         */
         public function toString( ...args ):String
             {
             var increment:int = 0;

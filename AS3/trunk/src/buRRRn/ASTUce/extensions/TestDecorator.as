@@ -45,17 +45,26 @@ package buRRRn.ASTUce.extensions
             {
             _test = test;
             }
-        
+       
+        /**
+         * The number of test cases.
+         */
         public function get countTestCases():int
             {
             return _test.countTestCases;
             }
         
+        /**
+         * Indicates the ITest reference of this decorator.
+         */
         public function get test():ITest
             {
             return _test;
             }
         
+        /**
+         * Runs the specified TestResult with this run method.
+         */
         public function basicRun( result:TestResult ):void
             {
             _test.run( result );

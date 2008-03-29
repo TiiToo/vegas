@@ -24,7 +24,7 @@ package buRRRn.ASTUce.framework
     {
     
     /**
-     * Thrown when an assert equals for Strings failed.
+     * Throwns when an assert equals for Strings failed.
      */
     public class ComparisonFailure extends AssertionFailedError
         {

@@ -30,6 +30,9 @@ package buRRRn.ASTUce.framework
     public dynamic class Protectable
         {
         
+        /**
+         * Creates a new Protectable instance.
+         */
         public function Protectable()
             {
             

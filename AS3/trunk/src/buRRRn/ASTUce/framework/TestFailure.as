@@ -23,25 +23,27 @@
 package buRRRn.ASTUce.framework
     {
     
-    /* A TestFailure collects a failed test together with
-       the caught error.
-    */
+    /**
+     * A TestFailure collects a failed test together with the caught error.
+     */
     public class TestFailure
         {
         
         protected var _failedTest:ITest;
         protected var _thrownError:Error;
         
-        /* Constructs a TestFailure with the given test and error.
-        */
+        /**
+         * Creates a TestFailure with the given test and error.
+         */
         public function TestFailure( failedTest:ITest, thrownError:Error )
             {
             _failedTest  = failedTest;
             _thrownError = thrownError;
             }
         
-        /* Gets the message of the error;
-        */
+        /**
+         * Gets the message of the error.
+         */
         public function get errorMessage():String
             {
             if( thrownError is ComparisonFailure )
@@ -52,44 +54,47 @@ package buRRRn.ASTUce.framework
             return thrownError.message;
             }
         
-        /* Gets the failed test.
-        */
+        /**
+         * Gets the failed test.
+         */
         public function get failedTest():ITest
             {
             return _failedTest;
             }
         
-        /* Gets the thrown error.
-        */
+        /**
+         * Gets the thrown error.
+         */
         public function get thrownError():Error
             {
             return _thrownError;
             }
         
-        /* Returns a Boolean indicating if the
-           failure was an <AssertionFailedError>.
-        */
+        /**
+         * Returns a Boolean indicating if the failure was an <code class="prettyprint">AssertionFailedError</code>.
+         * @return a Boolean indicating if the failure was an <code class="prettyprint">AssertionFailedError</code>.
+         */
         public function isFailure():Boolean
             {
             return (thrownError is AssertionFailedError);
             }
         
-        /* Returns a short description of the failure.
-        */
+        /**
+         * Returns a short description of the failure.
+         * @return a short description of the failure.
+         */
         public function toString():String
             {
             return failedTest + ": " + errorMessage;
             }
         
-        /* Returns a full description of the failure.
-           (for the debugger version of Flash Player only).
-           
-           TODO:
-           - detect if we are in the debugger player ?
-        */
+        /**
+         * Returns a full description of the failure. (for the debugger version of Flash Player only).
+         * @return a full description of the failure. (for the debugger version of Flash Player only).
+         */
         public function trace():String
             {
-            return thrownError.getStackTrace();
+            return thrownError.getStackTrace(); // TODO detect if we are in the debugger player ?
             }
         
         }

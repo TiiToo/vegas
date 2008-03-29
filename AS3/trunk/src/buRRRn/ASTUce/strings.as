@@ -36,141 +36,182 @@ package buRRRn.ASTUce
          */
         public static var separator:String = "----------------------------------------------------------------";
         
-        /* {0}expected not same
-        */
+        /**
+         * {0}expected not same
+         */
         public static var expectedNotSame:String = "{0}expected not same";
         
-        /* {0}expected same:<{1}> was not:<{2}>
-        */
+        /**
+         * {0}expected same:<{1}> was not:<{2}>
+         */
         public static var expectedSame:String = "{0}expected same:<{1}> was not:<{2}>";
         
-        /* {0}expected:<{1}> but was:<{2}>
-        */
+        /**
+         * {0}expected:<{1}> but was:<{2}>
+         */
         public static var expectedButWas:String = "{0}expected:<{1}> but was:<{2}>";
         
-        /* The method name is null
-        */
+        /**
+         * The method name is null
+         */
         public static var methodNameNull:String = "The method name is null";
         
-        /* The method name is undefined
-        */
+        /**
+         * The method name is undefined
+         */
         public static var methodNameUndef:String = "The method name is undefined";
         
-        /* The method name is the empty string
-        */
+        /**
+         * The method name is the empty string
+         */
         public static var methodNameEmpty:String = "The method name is the empty string";
         
-        /* Method "{0}" not found
-        */
+        /**
+         * Method "{0}" not found
+         */
         public static var methodNotFound:String = "Method \"{0}\" not found";
         
-        /* Method "{0}" should be public
-        */
+        /**
+         * Method "{0}" should be public
+         */
         public static var methodshouldBePublic:String = "Method \"{0}\" should be public";
         
-        /* Object "{0}" is not a constructor
-        */
+        /**
+         * Object "{0}" is not a constructor
+         */
         public static var objectNotCtor:String = "Object of type \"{0}\" is not a constructor";
         
-        /* Constructor "{0}" is not public
-        */
+        /**
+         * Constructor "{0}" is not public
+         */
         public static var ctorNotPublic:String = "Constructor \"{0}\" is not public";
         
-        /* Constructor "{0}" is malformed, probably the "name" argument is missing
-        */
+        /**
+         * Constructor "{0}" is malformed, probably the "name" argument is missing
+         */
         public static var ctorIsMalformed:String = "Constructor \"{0}\" is malformed, probably the \"name\" argument is missing";
+        
+        /**
+         * Method \"{0}\" can not be created because constructor \"{1}\" is malformed
+         */        
         public static var ctorIsMalformedMethod:String = "Method \"{0}\" can not be created because constructor \"{1}\" is malformed";
         
-        /* Constructor "{0}" is not instanciable ({1})
-        */
+        /**
+         * Constructor "{0}" is not instanciable ({1})
+         */
         public static var ctorNotInstanciable:String = "Constructor \"{0}\" is not instanciable";
+        
+        /**
+         * Method \"{0}\" can not be created because constructor \"{1}\" is not instanciable
+         */
         public static var ctorNotInstanciableMethod:String = "Method \"{0}\" can not be created because constructor \"{1}\" is not instanciable";
         
-        /* Constructor "{0}" does not implement ITest
-        */
+        /**
+         * Constructor "{0}" does not implement ITest
+         */
         public static var ctorNotATest:String = "Constructor \"{0}\" does not implement ITest";
         
-        /* Cannot instantiate test case "{0}" ({1})
-        */
+        /**
+         * Cannot instantiate test case "{0}" ({1})
+         */
         public static var canNotInstanciateTestCase:String = "Cannot instantiate test case \"{0}\" ({1})";
         
-        /* No tests found in "{0}"
-        */
+        /**
+         * No tests found in "{0}"
+         */
         public static var noTestsFound:String = "No tests found in \"{0}\"";
         
-        /* the argument "test" does not exist in the objects namespace (check your includes!)
-        */
+        /**
+         * the argument "test" does not exist in the objects namespace (check your includes!)
+         */
         public static var argTestDoesNotExist:String = "the argument \"test\" does not exist in the namespace";
         
-        /* the argument "test" does not implement ITest
-        */
+        /**
+         * the argument "test" does not implement ITest
+         */
         public static var argTestNotATest:String = "the argument \"test\" does not implement ITest";
         
-        /* Test method "{0}" isn't public
-        */
+        /**
+         * Test method "{0}" isn't public
+         */
         public static var testMethNotPublic:String = "Test method \"{0}\" isn't public";
         
-        /* Cannot instantiate "{0}" test case
-        */
+        /**
+         * Cannot instantiate "{0}" test case
+         */
         public static var canNotCreateTest:String = "Cannot instantiate \"{0}\" test case";
         
-        /* error
-        */
+        /**
+         * error
+         */
         public static var nameError:String = "error";
         
-        /* failure
-        */
+        /**
+         * failure
+         */
         public static var nameFailure:String = "failure";
         
-        /* Time: {0}
-        */
+        /**
+         * Time: {0}
+         */
         public static var PrtTime:String = "Time: {0}";
         
-        /* {0}h:{1}mn:{2}s:{3}ms
-        */
+        /**
+         * {0}h:{1}mn:{2}s:{3}ms
+         */
         //public static var PrtElapsedTime:String = "{0}h:{1}mn:{2}s:{3}ms";
         public static var PrtElapsedTime:String = "{h}h:{mn}mn:{s}s:{ms}ms";
         
-        /* {0}) {1}
-        */
+        /**
+         * {0}) {1}
+         */
         public static var PrtDefectHeader:String = "{0,4}) {1}";
         
         public static var PrtDefectTrace:String  = "{0,4}  {1}";
         
-        /* There was {0} {1}
-        */
+        /**
+         * There was {0} {1}
+         */
         public static var PrtOneDefect:String = "There was {0} {1} :";
         
-        /* There were {0} {1}s
-        */
+        /**
+         * There were {0} {1}s
+         */
         public static var PrtMoreDefects:String = "There were {0} {1}s :";
         
-        /* OK ({0} test{1})
-        */
+        /**
+         * OK ({0} test{1})
+         */
         public static var PrtOK:String = "OK ({0} test{1})";
         
-        /* FAILURES!!!
-        */
+        /**
+         * FAILURES!!!
+         */
         public static var PrtFailure:String = "FAILURES!!!";
         
-        /* Tests run: {0},  Failures: {1},  Errors: {2}
-        */
+        /**
+         * Tests run: {0},  Failures: {1},  Errors: {2}
+         */
         public static var PrtFailureDetails:String = "Tests run: {0},  Failures: {1},  Errors: {2}";
         
-        /* <RETURN> to continue
-        */
+        /**
+         * [ENTER] to continue
+         */
         public static var PrtWaitPrompt:String = "[ENTER] to continue";
         
-        /* .
-        */
+        /**
+         * The . expression.
+         */
         public static var PrtShortTest:String = ".";
         
-        /* E
-        */
+        /**
+         * The E expression.
+         */
         public static var PrtShortError:String = "E";
         
-        /* F
-        */
+        /**
+         * The F expression.
+         */
         public static var PrtShortFailure:String = "F";
         
         }

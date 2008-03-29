@@ -26,26 +26,21 @@ package buRRRn.ASTUce.extensions
     
     import buRRRn.ASTUce.framework.*;
     
-    /* A Decorator that runs a test
-       and fails if the maximum elapsed time was exceeded.
-       
-       Even if the code is very close,
-       a <TimedTest> is not the same as a <TimedTestCase>,
-       it allows you to run any tests implementing ITest,
-       and its inner-working is on the test method, not the runTest method,
-       also it adds AssertionFailedError directly to the result.
-       
-       To use TimedTest, create a Test like:
-       (code)
-       var suite:TestSuite = new TestSuite( "a group of timed tests" );
-       suite.addTest( new SomeTest() );
-       suite.addTest( new SomeTest() );
-       
-       var test:ITest = new TimedTest( suite, 100 );
-       (end)
-       The TimedTest will check if all the tests contained in the
-       TestSuite execute within the provided timeout of 100ms.
-    */
+    /**
+     * A Decorator that runs a test and fails if the maximum elapsed time was exceeded.
+     * <p>Even if the code is very close, a <code class="prettyprint">TimedTest</code> is not the same as a <code class="prettyprint">TimedTestCase</code>, 
+     * it allows you to run any tests implementing ITest, and its inner-working is on the test method, not the runTest method,
+     * also it adds AssertionFailedError directly to the result.</p>
+     * <p>To use TimedTest, create a Test like:</p>
+     * <pre class="prettyprint">
+     * var suite:TestSuite = new TestSuite( "a group of timed tests" );
+     * suite.addTest( new SomeTest() );
+     * suite.addTest( new SomeTest() );
+     * 
+     * var test:ITest = new TimedTest( suite, 100 );
+     * </pre>
+     * The <code class="prettyprint">TimedTest</code> will check if all the tests contained in the <code class="prettyprint">TestSuite</code> execute within the provided timeout of 100ms.
+     */
     public class TimedTest extends TestDecorator
         {
         private var _maxElapsedTime:int;
@@ -53,6 +48,9 @@ package buRRRn.ASTUce.extensions
         private var _elapsedTime:int;
         private var _timeExceeded:Boolean;
         
+        /**
+         * Creates a new TimedTest instance.
+         */
         public function TimedTest( test:ITest, maxElapsedTime:int )
             {
             super( test );
@@ -67,6 +65,9 @@ package buRRRn.ASTUce.extensions
             _timeExceeded   = false;
             }
         
+        /**
+         * Indicates the elapsed time of this test.
+         */
         protected function get elapsedTime():int
             {
              if( _elapsedTime == 0 )
@@ -77,6 +78,9 @@ package buRRRn.ASTUce.extensions
             return _elapsedTime;
             }
         
+        /**
+         * Runs the test.
+         */
         public override function run( result:TestResult ):void
             {
             _startTime = getTimer();
@@ -92,6 +96,10 @@ package buRRRn.ASTUce.extensions
             
             }
         
+        /**
+         * Returns the String representation of the object.
+         * @return the String representation of the object.
+         */
         public override function toString( ...args ):String
             {
             var msg:String;

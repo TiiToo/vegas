@@ -23,6 +23,9 @@
 package buRRRn.ASTUce.runner
     {
     
+    /**
+     * The TestRunStatus class.
+     */
     public class TestRunStatus
         {
         	

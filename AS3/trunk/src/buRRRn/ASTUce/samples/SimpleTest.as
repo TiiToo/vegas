@@ -24,10 +24,20 @@ package buRRRn.ASTUce.samples
     {
     import buRRRn.ASTUce.framework.TestCase;
 
+	/**
+	 * The simple TestCase class.
+	 */
     public class SimpleTest extends TestCase
         {
         
+        /**
+         * The first value.
+         */
         public var value1:int;
+
+        /**
+         * The second value.
+         */
         public var value2:int;
         
         public function SimpleTest( name:String="" )

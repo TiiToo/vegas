@@ -26,12 +26,10 @@ package buRRRn.ASTUce.framework
 	import buRRRn.ASTUce.strings;
 	
 	import system.IEquatable;
-	import system.Strings;    
+	import system.Strings;	
 
 	/**
-     * A set of assert methods.
-     * Messages are only displayed when an assert fails.
-     * It is a static only class.
+     * A set of assert methods. Messages are only displayed when an assert fails. It is a static only class.
      * <p><b>Notes :</b></p>
      * <li>in ES4 we do not have protected/private constructor (which is good imho)</li>
      * <li>we could make a public const Assert instancied by an internal class _Assert</li>
@@ -45,35 +43,34 @@ package buRRRn.ASTUce.framework
         /**
          * @private
          */
-// FIXME 
-//        private static function _serialize( o:* ):String
-//            {
-//            /* note:
-//               we don't want to have prettyPrinting messing
-//               with our lines output so we deactivate it
-//            */
-//            var pretty:Boolean = system.config.serializer.prettyPrinting;
-//            system.config.serializer.prettyPrinting = false;
-//            
-//            var str:String = system.config.serializer.serialize( o );
-//            
-//            /* note:
-//               in case original serializer would output nothing
-//               we use the Basic serializer to at least obtain
-//               the toString() representation
-//            */
-//            /* temporaly removed
-//            if( (str == "{}") || (str == "") )
-//                {
-//                var tmp:* = Serializer.format;
-//                Serializer.format = SerializationFormat.basic;
-//                str = Serializer.serialize( o );
-//                Serializer.format = tmp;
-//                }
-//            */
-//            system.config.serializer.prettyPrinting = pretty;
-//            return str;
- //           }
+        private static function _serialize( o:* ):String
+            {
+            /* note:
+               we don't want to have prettyPrinting messing
+               with our lines output so we deactivate it
+            */
+            var pretty:Boolean = system.config.serializer.prettyPrinting;
+            system.config.serializer.prettyPrinting = false;
+            
+            var str:String = system.config.serializer.serialize( o );
+            
+            /* note:
+               in case original serializer would output nothing
+               we use the Basic serializer to at least obtain
+               the toString() representation
+            */
+            /* temporaly removed
+            if( (str == "{}") || (str == "") )
+                {
+                var tmp:* = Serializer.format;
+                Serializer.format = SerializationFormat.basic;
+                str = Serializer.serialize( o );
+                Serializer.format = tmp;
+                }
+            */
+            system.config.serializer.prettyPrinting = pretty;
+            return str;
+           }
         
         /**
          * @private
@@ -82,8 +79,8 @@ package buRRRn.ASTUce.framework
             {
             if( buRRRn.ASTUce.config.showObjectSource )
                 {
-                // FIXME expected = _serialize( expected );
-                // FIXME actual   = _serialize( actual );
+                    expected = _serialize( expected );
+                    actual   = _serialize( actual );
                 }
             
             if( buRRRn.ASTUce.config.invertExpectedActual )
@@ -125,8 +122,8 @@ package buRRRn.ASTUce.framework
             
             if( buRRRn.ASTUce.config.showObjectSource )
                 {
-                //FIXME expected = _serialize( expected );
-                //FIXME actual   = _serialize( actual );
+                expected = _serialize( expected );
+                actual   = _serialize( actual );
                 }
             
             if( buRRRn.ASTUce.config.invertExpectedActual )

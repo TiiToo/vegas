@@ -53,24 +53,6 @@ package vegas.util
         }
     
         /**
-         * Returns whether the Array contains a particular item.
-         * <p><b>Example :</b></p>
-         * <pre class="prettyprint">
-         * import vegas.util.ArrayUtil ;
-         * 
-         * var ar:Array = [2, 3, 4] ;
-         * 
-         * trace(ArrayUtil.contains(ar, 3)) ; // true
-         * trace(ArrayUtil.contains(ar, 5)) ; // false
-         * </pre>
-         * @return whether the Array contains a particular item.
-         */
-        public static function contains( ar:Array , value:Object):Boolean 
-        {
-            return ar.indexOf(value) > -1 ;
-        }
-    
-        /**
          * Creates the deep copy of the Array.
          * <p><b>Example :</b></p>
          * <pre class="prettyprint">
@@ -105,36 +87,6 @@ package vegas.util
                 }
             }
             return a ;
-        }
-        
-        /**
-         * Returns a new Array who contains the specified Array elements repeated count times.
-         * <p><b>Example :</b></p>
-         * <pre class="prettyprint">
-         * import vegas.util.ArrayUtil ;
-         * 
-         * var ar:Array = [2, 3, 4] ;
-         * 
-         * trace(ArrayUtil.repeat(ar, 0)) ; // 2,3,4
-         * trace(ArrayUtil.repeat(ar, 3)) ; // 2,3,4,2,3,4,2,3,4
-         * </pre>
-         * @return a new Array who contains the specified Array elements repeated count times.
-         */
-        public static function repeat( ar:Array , count:uint=0 ):Array
-        {
-            var result:Array = [] ;
-            if ( count > 0 )
-            {
-                for( var i:uint = 0 ; i<count ; i++)
-                {
-                    result = result.concat(ar) ;
-                }
-            }
-            else
-            {
-                result = ArrayUtil.clone(ar) ;    
-            }
-            return  result ;
         }
         
         /**

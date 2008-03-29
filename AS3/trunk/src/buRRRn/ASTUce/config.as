@@ -23,8 +23,6 @@
 package buRRRn.ASTUce
     {
     
-    // TODO 
-    
     /**
      * Configure the ASTUce framework.
      */
@@ -51,16 +49,17 @@ package buRRRn.ASTUce
                                                                    cleanupErrorStack: true,
                                                                    cleanupPattern: /\[.*\]/,
                                                                    cleanupReplacement: "",
-                                                                   filteredPatterns: [
-                                                                   "buRRRn.ASTUce.framework::TestResult",
-                                                                   "buRRRn.ASTUce.framework::TestCase",
-                                                                   "buRRRn.ASTUce.framework::TestSuite",
-                                                                   "buRRRn.ASTUce.ui",
-                                                                   "at MethodInfo",
-                                                                   "at ()",
-                                                                   "at Function/http://adobe.com/AS3/2006/builtin::call()",
-                                                                   "at Function/http://adobe.com/AS3/2006/builtin::apply()"
-                                                                                     ]
+                                                                   filteredPatterns: 
+                                                                       [
+                                                                       "buRRRn.ASTUce.framework::TestResult",
+                                                                       "buRRRn.ASTUce.framework::TestCase",
+                                                                       "buRRRn.ASTUce.framework::TestSuite",
+                                                                       "buRRRn.ASTUce.ui",
+                                                                       "at MethodInfo",
+                                                                       "at ()",
+                                                                       "at Function/http://adobe.com/AS3/2006/builtin::call()",
+                                                                       "at Function/http://adobe.com/AS3/2006/builtin::apply()"
+                                                                       ]
                                                                    } );
         
     

@@ -29,12 +29,12 @@ package buRRRn.ASTUce.samples
     public class ArrayTest extends TestCase
         {
         
-        static public function main():void
+        public static function main():void
             {
             //TestRunner.run (suite());
             }
         
-        static public function suite():ITest
+        public static function suite():ITest
             {
             return new TestSuite( ArrayTest );
             }

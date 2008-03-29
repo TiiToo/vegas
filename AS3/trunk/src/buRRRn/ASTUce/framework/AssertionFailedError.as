@@ -23,11 +23,16 @@
 package buRRRn.ASTUce.framework
     {
     
-    /* Thrown when an assertion failed.
-    */
+    /**
+     * Throwns when an assertion failed.
+     */
     public class AssertionFailedError extends Error
         {
         
+        /**
+         * Creates a new AssertionFailedError instance.
+         * @param message The message of the error object.
+         */
         public function AssertionFailedError( message:String = "" )
             {
             super( message );
@@ -41,6 +46,10 @@ package buRRRn.ASTUce.framework
             name = "AssertionFailedError";
             }
         
+        /**
+         * Returns the String representation of the object.
+         * @return the String representation of the object.
+         */
         public function toString():String
             {
             return name + ": " + message;

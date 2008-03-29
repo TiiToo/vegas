@@ -28,8 +28,17 @@ package buRRRn.ASTUce.extensions
      */
     public class RepeatedTest extends TestDecorator
         {
+        	
+        /**
+         * @private
+         */
         private var _timesRepeat:int;
         
+        /**
+         * Creates a new RepeatedTest instance.
+         * @param test The ITest reference of this object.
+         * @param repeat The number of iteration of this repeated test.
+         */
         public function RepeatedTest( test:ITest, repeat:int )
             {
             super( test );
@@ -42,11 +51,17 @@ package buRRRn.ASTUce.extensions
             _timesRepeat = repeat;
             }
         
+        /**
+         * The number of test cases.
+         */
         public override function get countTestCases():int
             {
             return super.countTestCases * _timesRepeat;
             }
         
+        /**
+         * Run the test.
+         */
         public override function run( result:TestResult ):void
             {
             var i:int;
@@ -61,6 +76,10 @@ package buRRRn.ASTUce.extensions
                 }
             }
         
+        /**
+         * Returns the String representation of the object.
+         * @return the String representation of the object.
+         */
         public override function toString( ...args ):String
             {
             return super.toString() + " (repeated)";

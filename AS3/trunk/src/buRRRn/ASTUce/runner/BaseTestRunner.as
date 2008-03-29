@@ -51,8 +51,9 @@ package buRRRn.ASTUce.runner
             
             }
         
-        /* An error occurred.
-        */
+        /**
+         * An error occurred.
+         */
         public function addError( test:ITest, e:Error ):void
             {
             testFailed( TestRunStatus.error, test.toString(), e.toString() );

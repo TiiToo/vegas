@@ -51,7 +51,9 @@ package buRRRn.ASTUce.framework
         protected var _listeners:Array;
         protected var _runTests:int;
         
-        
+        /**
+         * Creates a new TestResult instance.
+         */
         public function TestResult()
             {
             _failures  = [];
@@ -61,51 +63,62 @@ package buRRRn.ASTUce.framework
             _stop      = false;
             }
         
-        /* Gets the number of detected errors.
-        */
+        /**
+         * Returns the number of detected errors.
+         * @return the number of detected errors.
+         */
         public function get errorCount():int
             {
             return _errors.length;
             }
         
-        /* Returns an Array for the errors.
-        */
+        /**
+         * Returns an Array for the errors.
+         * @return an Array for the errors.
+         */
         public function get errors():Array
             {
             return _errors;
             }
         
-        /* Gets the number of detected failures.
-        */
+        /**
+         * Returns the number of detected failures.
+         * @return the number of detected failures.
+         */
         public function get failureCount():int
             {
             return _failures.length;
             }
         
-        /* Returns an Array for the failures.
-        */
+        /**
+         * Returns an Array for the failures.
+         * @return an Array for the failures.
+         */
         public function get failures():Array
             {
             return _failures;
             }
         
-        /* Gets the number of run tests.
-        */
+        /**
+         * Returns the number of run tests.
+         * @return the number of run tests.
+         */
         public function get runCount():int
             {
             return _runTests;
             }
         
-        /* Checks whether the test run should stop.
-        */
+        /**
+         * Checks whether the test run should stop.
+         */
         public function get shouldStop():Boolean
             {
             return _stop;
             }
         
-        /* Adds an error to the list of errors.
-           The passed in exception caused the error.
-        */
+        /**
+         * Adds an error to the list of errors. The passed in exception caused the error.
+         */
         public function addError( test:ITest, e:Error ):void
             {
             
@@ -121,76 +134,81 @@ package buRRRn.ASTUce.framework
                 }
             }
         
-        /* Adds a failure to the list of failures.
-           The passed in exception caused the failure.
-        */
+        /**
+         * Adds a failure to the list of failures. The passed in exception caused the failure.
+         */
         public function addFailure( test:ITest, afe:AssertionFailedError ):void
             {
             var i:int;
             var listeners:Array = cloneListeners();
             
             _failures.push( new TestFailure( test, afe ) );
-            
-            for( i=0; i<listeners.length; i++ )
+            var len:uint = listeners.length ;
+            for( i=0 ; i < len ; i++ )
                 {
                 listeners[i].addFailure( test, afe );
                 }
             }
         
-        /* Adds a a valid test to the listeners.
-        */
+        /**
+         * Adds a a valid test to the listeners.
+         */
         public function addValid( test:ITest ):void
             {
             var i:int;
             var listeners:Array = cloneListeners();
-            
-            for( i=0; i<listeners.length; i++ )
+            var len:uint = listeners.length ;
+            for( i=0; i < len ; i++ )
                 {
                 listeners[i].addValid( test );
                 }
             }
         
-        /* Registers a TestListener.
-        */
+        /**
+         * Registers a TestListener.
+         */
         public function addListener( listener:ITestListener ):void
             {
             _listeners.push( listener );
             }
         
-        /* Returns a copy of the listeners.
-        */
+        /**
+         * Returns a copy of the listeners.
+         */
         public function cloneListeners():Array
             {
             return _listeners.concat(); //shalllow copy
             }
         
-        /* Informs the result that a test was completed.
-        */
+        /**
+         * Informs the result that a test was completed.
+         */
         public function endTest( test:ITest ):void
             {
             var i:int;
             var listeners:Array = cloneListeners();
-            
-            for( i=0; i<listeners.length; i++ )
+            var len:uint = listeners.length ;
+            for( i=0; i < len ; i++ )
                 {
                 listeners[i].endTest( test );
                 }
             }
         
-        /* Unregisters a TestListener.
-        */
+        /**
+         * Unregisters a TestListener.
+         */
         public function removeListener( listener:ITestListener ):void
             {
             var index:int = _listeners.indexOf( listener );
-            
             if( index > -1 )
                 {
                 _listeners.splice( index, 1 );
                 }
             }
         
-        /* Runs a TestCase.
-        */
+        /**
+         * Runs a TestCase.
+         */
         public function run( test:TestCase ):void
             {
             startTest( test );
@@ -205,11 +223,10 @@ package buRRRn.ASTUce.framework
             endTest( test );
             }
         
-        /* Runs a TestCase.
-           
-           note:
-           yes, you can catch errors by error type :)
-        */
+        /**
+         * Runs a TestCase.
+         * <p><b>Note :</b>Yes, you can catch errors by error type :)</p>
+         */
         public function runProtected( test:ITest, p:Protectable ):void
             {
             try
@@ -230,8 +247,9 @@ package buRRRn.ASTUce.framework
             addValid( test );
             }
         
-        /* Informs the result that a test will be started.
-        */
+        /**
+         * Informs the result that a test will be started.
+         */
         public function startTest( test:ITest ):void
             {
             var i:int;
@@ -240,22 +258,26 @@ package buRRRn.ASTUce.framework
             
             //trace( "_runTests: " + _runTests );
             _runTests += count;
-            
-            for( i=0; i<listeners.length; i++ )
+
+            var len:uint = listeners.length ;
+            for( i=0 ; i < len ; i++ )
                 {
                 listeners[i].startTest( test );
                 }
             }
         
-        /* Marks that the test run should stop.
-        */
+        /**
+         * Marks that the test run should stop.
+         */
         public function stop():void
             {
             _stop = true;
             }
         
-        /* Returns whether the entire test was successful or not.
-        */
+        /**
+         * Returns whether the entire test was successful or not.
+         * @return whether the entire test was successful or not.
+         */
         public function wasSuccessful():Boolean
             {
             return (failureCount == 0) && (errorCount == 0);

@@ -21,54 +21,54 @@
 
 */
 package system
-	{
-	
-	/**
-     * The system configurator class.
-     */
-    public class SystemConfigurator extends Configurator
+    {
+    
+    /**
+     * Defines what a Serializer have to implements to be integrated in the framework.
+     * <p><b>Note :</b>Every serializers (eden, json, wddx, etc.) should implement it.</p>
+     */    
+    public interface ISerializer
         {
         
         /**
-         * Creates a new SystemConfigurator instance.
-         * @param config This argument initialize the configurator with a generic object.
+         * The prettyIndent value of the serializer.
          */
-        public function SystemConfigurator( config:Object )
-            {
-            super( config );
-            }
-        
-        /**
-         * Indicates if the config use the verbose mode or not.
-         */
-        public function get verbose():Boolean
-            {
-            return _config.verbose;
-            }
+        function get prettyIndent():int;
         
         /**
          * @private
          */
-        public function set verbose( value:Boolean ):void
-            {
-            _config.verbose = value;
-            }
+        function set prettyIndent( value:int ):void;
+        
+        /**
+         * The prettyPrinting value of the serializer.
+         */        
+        function get prettyPrinting():Boolean;
 
         /**
-         * The current serializer used used by the system 
-         */        
-        public function get serializer():ISerializer
-            {
-            return _config.serializer;
-            }
+         * @private
+         */
+        function set prettyPrinting( value:Boolean ):void;
         
+        /**
+         * The identor String value of the serializer.
+         */      
+        function get indentor():String;
+
         /**
          * @private
          */
-        public function set serializer( value:ISerializer ):void
-            {
-            _config.serializer = value;
-            }
+        function set indentor( value:String ):void;
+        
+        /**
+         * Serialize the specified object.
+         */
+        function serialize( value:* ):String;
+
+        /**
+         * Deserialiaze the specified String source representation.
+         */
+        function deserialize( source:String ):*;
         
         }
 

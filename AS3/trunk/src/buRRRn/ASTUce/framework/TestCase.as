@@ -28,9 +28,9 @@ package buRRRn.ASTUce.framework
     import buRRRn.ASTUce.strings;
     
     /**
-     *  A test case define the fixture to run multiple tests.
-     *  @see TestResult
-     *  @see TestSuite
+     * A test case define the fixture to run multiple tests.
+     * @see TestResult
+     * @see TestSuite
      */
     public class TestCase extends Assert implements ITest
         {
@@ -41,7 +41,7 @@ package buRRRn.ASTUce.framework
         private var _name:String;
         
         /**
-         *  Constructs a test case with the given name if provided.
+         * Creates a new TestCase instance with the given name if provided.
          */
         public function TestCase( name:String = "" )
             {

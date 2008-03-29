@@ -10,24 +10,29 @@
   
   The Original Code is [ES4a: ECMAScript 4 MaasHaack framework].
   
-  The Initial Developer of the Original Code is
-  Zwetan Kjukov <zwetan@gmail.com>.
+  The Initial Developer of the Original Code is 
+  ALCARAZ Marc <ekameleon@gmail.com>.
   Portions created by the Initial Developer are Copyright (C) 2006-2008
   the Initial Developer. All Rights Reserved.
   
-  Contributor(s):
+  Contributor(s) :
   
-  	- Alcaraz Marc (aka eKameleon) <ekameleon@gmail.com> (2007-2008)
-
 */
-package system
+package system.evaluators 
 {
-	import buRRRn.eden;		
+
 	/**
-	 * The System configurator.
+	 * Allows an object evaluable.
+	 * @author eKameleon
 	 */
-    public var config:SystemConfigurator = new SystemConfigurator( {
-                                                                   verbose: false,
-                                                                   serializer: eden
-                                                                   } );    
-    }
+	public interface IEvaluator 
+	{
+	
+		/**
+		 * Evaluates the specified object.
+		 */
+		function eval( o:* ):* ;
+
+	}
+
+}
