@@ -20,69 +20,130 @@
   Contributor(s) :
   
 */
-
 package vegas.util
 {
 
-	/**
-	 * Array static tool class.
-	 * @author eKameleon
-	 */
+    /**
+     * Array static tool class.
+     * @author eKameleon
+     */
     public class ArrayUtil 
     {
-		
-		import buRRRn.eden.Serializer ;
-		
+        
+        import buRRRn.eden.Serializer ;
+        
         /**
          * Creates the shallow copy of the Array.
+         * <p><b>Example :</b></p>
+         * <pre class="prettyprint">
+         * import vegas.util.ArrayUtil ;
+         * 
+         * var ar1:Array = [ [2, 3, 4] , [5, 6, 7] ] ;
+         * var ar2:Array = ArrayUtil.clone(ar1) ;
+         * 
+         * trace( 'clone : ' + ar1 + " : " + ar2 ) ; // 2,3,4,5,6,7
+         * trace( 'ar1 == ar2 : ' + ( ar1 == ar2 ) ) ; // false
+         * trace( 'ar1[0] == ar2[0] : ' + ( ar1[0] == ar2[0] ) ) ; // true
+         * </pre>
          * @return the shallow copy of the Array.
          */
-    	public static function clone(ar:Array):Array 
-    	{
-    		return ar.slice() ;
-    	}
+        public static function clone(ar:Array):Array 
+        {
+              return ar.slice() ;
+        }
     
         /**
          * Returns whether the Array contains a particular item.
+         * <p><b>Example :</b></p>
+         * <pre class="prettyprint">
+         * import vegas.util.ArrayUtil ;
+         * 
+         * var ar:Array = [2, 3, 4] ;
+         * 
+         * trace(ArrayUtil.contains(ar, 3)) ; // true
+         * trace(ArrayUtil.contains(ar, 5)) ; // false
+         * </pre>
+         * @return whether the Array contains a particular item.
          */
-    	public static function contains( ar:Array , value:Object):Boolean 
-    	{
-    		return ar.indexOf(value) > -1 ;
-    	}
+        public static function contains( ar:Array , value:Object):Boolean 
+        {
+            return ar.indexOf(value) > -1 ;
+        }
     
-    	/**
-    	 * Creates the deep copy of the Array.
-    	 * @return the deep copy of the Array.
-    	 */
-    	public static function copy(ar:Array):Array 
-    	{
-    		var a:Array = [] ;
-    		var l:uint = ar.length ;
-    		for (var i:uint = 0 ; i < l ; i++) 
-    		{
-    			if( ar[i] === undefined ) 
-    			{
-    				a[i] = undefined ;
-    			}
-    			else if( ar[i] === null ) 
-    			{
-    				a[i] = null ;
-    			}
-            	else 
-            	{
-    				a[i] = Copier.copy(ar[i]) ;
-    			}
-    		}
-    		return a ;
-    	}
-
+        /**
+         * Creates the deep copy of the Array.
+         * <p><b>Example :</b></p>
+         * <pre class="prettyprint">
+         * import vegas.util.ArrayUtil ;
+         * 
+         * var ar1:Array = [ [2, 3, 4] , [5, 6, 7] ] ;
+         * var ar2:Array = ArrayUtil.copy(ar1) ;
+         * 
+         * trace( 'copy : ' + ar1 + " : " + ar2 ) ; // 2,3,4,5,6,7
+         * trace( 'ar1 == ar2 : ' + ( ar1 == ar2 ) ) ; // false
+         * trace( 'ar1[0] == ar2[0] : ' + ( ar1[0] == ar2[0] ) ) ; // false
+         * </pre>
+         * @return the deep copy of the Array.
+         */
+        public static function copy(ar:Array):Array 
+        {
+            var a:Array = [] ;
+            var l:uint = ar.length ;
+            for (var i:uint = 0 ; i < l ; i++) 
+            {
+                if( ar[i] === undefined ) 
+                {
+                    a[i] = undefined ;
+                }
+                else if( ar[i] === null ) 
+                {
+                    a[i] = null ;
+                }
+                else 
+                {
+                    a[i] = Copier.copy(ar[i]) ;
+                }
+            }
+            return a ;
+        }
+        
+        /**
+         * Returns a new Array who contains the specified Array elements repeated count times.
+         * <p><b>Example :</b></p>
+         * <pre class="prettyprint">
+         * import vegas.util.ArrayUtil ;
+         * 
+         * var ar:Array = [2, 3, 4] ;
+         * 
+         * trace(ArrayUtil.repeat(ar, 0)) ; // 2,3,4
+         * trace(ArrayUtil.repeat(ar, 3)) ; // 2,3,4,2,3,4,2,3,4
+         * </pre>
+         * @return a new Array who contains the specified Array elements repeated count times.
+         */
+        public static function repeat( ar:Array , count:uint=0 ):Array
+        {
+            var result:Array = [] ;
+            if ( count > 0 )
+            {
+                for( var i:uint = 0 ; i<count ; i++)
+                {
+                    result = result.concat(ar) ;
+                }
+            }
+            else
+            {
+                result = ArrayUtil.clone(ar) ;    
+            }
+            return  result ;
+        }
+        
         /**
          * Returns a string representing the source code of the array.
          * @return a string representing the source code of the array.
          */
-	    public static function toSource( ar:Array , ...rest:Array ):String 
-	    {
-    		return buRRRn.eden.Serializer.emitArray(ar) ;
+        public static function toSource( ar:Array , ...rest:Array ):String 
+        {
+            return buRRRn.eden.Serializer.emitArray(ar) ;
         }
 
     }    

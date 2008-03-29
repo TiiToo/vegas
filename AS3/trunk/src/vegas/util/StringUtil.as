@@ -20,7 +20,6 @@
   Contributor(s) :
   
 */
-
 package vegas.util
 {
 	import buRRRn.eden.Serializer;	
@@ -43,7 +42,32 @@ package vegas.util
          * Represents the space string value.
          */ 
         public static const SPC:String = " " ; // SPACE
-
+		
+		/**
+		 * Returns the center String representation of the specified String value.
+         * <p><b>Example :</b></p>
+		 * <pre class="prettyprint">
+		 * import vegas.util.StringUtil ;
+		 * trace(StringUtil.center("hello world", 0))         ; // hello world
+		 * trace(StringUtil.center("hello world", 20))        ; //     hello world
+		 * trace(StringUtil.center("hello world", 20, "_" ) ) ; // ____hello world_____
+		 * </pre>
+		 * @param str The String to center.
+		 * @param size The number of character to center the String expression. (default 0)
+		 * @param separator The optional separator character use before and after the String to center. (default " ")
+		 * @return the center String representation of the specified String value.
+		 */
+        public static function center( str:String, size:uint=0 , separator:String=" " ):String 
+        {
+		    var n:uint = str.length ;
+    		if (size <= n)
+    		{
+        		return str ;
+    		}
+    		var m:int = Math.floor( ( size - n ) / 2 ) ;
+    		return repeat(separator, m) + str + repeat(separator, size - n - m) ;
+    	}
+  		
         /**
          * Returns a shallow copy of the specified string.
          * @return a shallow copy of the specified string.
@@ -55,6 +79,7 @@ package vegas.util
   		
         /**
          * Returns a copy by value of this object.
+         * @return a copy by value of this object.
          */
         public static function copy(str:String):String 
         {
@@ -66,12 +91,12 @@ package vegas.util
          */
     	public static function firstChar( str:String ):String 
     	{
-    		return str.charAt(0) ;
+  			return str.charAt(0) ;
     	}
  	
 		/**
 		 * Returns <code class="prettyprint">true</code> if this string is empty.
-		 * @example
+         * <p><b>Example :</b></p>
 		 * <pre class="prettyprint">
 		 * import vegas.util.StringUtil ;
 		 * var b1:Boolean = StringUtil.isEmpty("") ; // true
@@ -87,7 +112,7 @@ package vegas.util
  
  		/**
 		 * Returns the last char of the string. 
-		 * @example
+         * <p><b>Example :</b></p>
 		 * <pre class="prettyprint">
 		 * import vegas.util.StringUtil ;
 		 * trace( StringUtil.lastChar("hello world") ; // d
@@ -119,9 +144,37 @@ package vegas.util
     		return index ;
 	    }
 	
+		/**
+		 * Returns a new String value who contains the specified String characters repeated count times.
+         * <p><b>Example :</b></p>
+         * <pre class="prettyprint">
+         * import vegas.util.StringUtil ;
+         * 
+         * trace(StringUtil.repeat("hello", 0)) ; // hello
+         * trace(StringUtil.repeat("hello", 3)) ; // hellohellohello
+         * </pre>
+		 * @return a new String value who contains the specified String characters repeated count times.
+		 */
+		public static function repeat( str:String="" , count:uint=0 ):String
+		{
+			var result:String = "" ;
+			if ( count > 0 )
+			{
+				for( var i:uint = 0 ; i<count ; i++)
+				{
+					result = result.concat(str) ;
+				}
+			}
+			else
+			{
+				result = str ;	
+			}
+			return  result ;
+		}	
+	
 	 	/**
 		 * Replaces the 'search' string with the 'replace' String.
-		 * @example
+         * <p><b>Example :</b></p>
 		 * <pre class="prettyprint">
 		 * vegas.util.StringUtil.replace("hello world", "hello", "hi") ; // "hello world" -> "hi world"
 		 * </pre>
@@ -135,7 +188,7 @@ package vegas.util
 	
 		/**
 	 	 * Reverses the current instance.
-		 * @example
+         * <p><b>Example :</b></p>
 		 * <pre class="prettyprint">
 		 * var reverse:String = vegas.util.StringUtil.reverse("hello") ; // "olleh"
 		 * </pre>
@@ -178,7 +231,7 @@ package vegas.util
 
 		/**
 		 * Returns an array representation of this instance.
-		 * @example
+         * <p><b>Example :</b></p>
 		 * <pre class="prettyprint">
 		 * import vegas.util.StringUtil ;
 		 * trace( StringUtil.toArray("hello world" )) ; // h,e,l,l,o, ,w,o,r,l,d
@@ -207,7 +260,7 @@ package vegas.util
 	    
 		/**
 		 * Returns the value of this specified string with the first character in uppercase.
-		 * @example
+         * <p><b>Example :</b></p>
 		 * <pre class="prettyprint">
 		 * import vegas.util.StringUtil ;
 		 * trace( StringUtil.ucFirst("hello world" )) ; // Hello world
@@ -221,7 +274,7 @@ package vegas.util
 
 		/**
 		 * Uppercases the first character of each word in a string.
-		 * @example
+         * <p><b>Example :</b></p>
 		 * <pre class="prettyprint">
 		 * import vegas.util.StringUtil ;
 	 	 * trace( StringUtil.ucWords("hello world" )) ; // Hello World

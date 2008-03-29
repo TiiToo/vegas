@@ -34,562 +34,628 @@ import vegas.util.TypeUtil;
  */
 class vegas.util.StringUtil
 {
-	
+    
     /**
-	 * Represents the empty string.
-	 */
-	public static var EMPTY:String = "" ;
-	
-	/**
-	 * Contains a list of all white space chars.
-	 */
-	public static var WHITE_SPACE_CHARS:Array = 
-	[ 
-		"\u0009", "\u000A", "\u000B", "\u000C", "\u000D",
-		"\u0020", "\u00A0", "\u2000", "\u2001", "\u2002",
-		"\u2003", "\u2004", "\u2005", "\u2006", "\u2007",
-		"\u2008", "\u2009", "\u200A", "\u200B", "\u3000",
+     * Represents the empty string.
+     */
+    public static var EMPTY:String = "" ;
+    
+    /**
+     * Represents the space string value.
+     */ 
+    public static var SPC:String = " " ; // SPACE    
+    
+    /**
+     * Contains a list of all white space chars.
+     */
+    public static var WHITE_SPACE_CHARS:Array = 
+    [ 
+        "\u0009", "\u000A", "\u000B", "\u000C", "\u000D",
+        "\u0020", "\u00A0", "\u2000", "\u2001", "\u2002",
+        "\u2003", "\u2004", "\u2005", "\u2006", "\u2007",
+        "\u2008", "\u2009", "\u200A", "\u200B", "\u3000",
         "\uFEFF" 
     ];
 
-	/**
-	 * Returns 0 if the passed string is lower case else 1.
-	 * @return 0 if the passed string is lower case else 1.
-	 */
-	public static function caseValue( str:String ):Number
-	{
-		return ( str.toLowerCase() == str ) ? 0 : 1 ;
-	}
+    /**
+     * Returns 0 if the passed string is lower case else 1.
+     * @return 0 if the passed string is lower case else 1.
+     */
+    public static function caseValue( str:String ):Number
+    {
+        return ( str.toLowerCase() == str ) ? 0 : 1 ;
+    }
 
-	/**
-	 * Returns a shallow copy of this object.
-	 * @return a shallow copy of this object.
-	 */
-	public static function clone( str:String ):String 
-	{
-		return str ;	
-	}
+    /**
+     * Returns the center String representation of the specified String value.
+     * <p><b>Example :</b></p>
+     * {@code
+     * import vegas.util.StringUtil ;
+     * trace(StringUtil.center("hello world", 0))         ; // hello world
+     * trace(StringUtil.center("hello world", 20))        ; //     hello world
+     * trace(StringUtil.center("hello world", 20, "_" ) ) ; // ____hello world_____
+     * }
+     * @param str The String to center.
+     * @param size The number of character to center the String expression. (default 0)
+     * @param separator The optional separator character use before and after the String to center. (default " ")
+     * @return the center String representation of the specified String value.
+     */
+    public static function center( str:String, size:Number , separator:String):String
+    {
+        if ( isNaN(size) || size < 0 )
+        {
+            size = 0 ;    
+        }
+        if (separator == null)
+        {
+            separator = SPC ;
+        }
+        var n:Number = str.length ;
+        if (size <= n)
+        {
+               return str ;
+        }
+        var m:Number = Math.floor( ( size - n ) / 2 ) ;
+        return repeat(separator, m) + str + repeat(separator, size - n - m) ;
+    }
 
-	/**
-	 * Compares its two arguments for order. You can ignore the case of the 2 strings parameters.
-	 * @param o1 the first String object to compare.
-	 * @param o2 the second String object to compare.
-	 * @return <p>
-	 * <li>-1 if o1 is "lower" than (less than, before, etc.) o2 ;</li>
-	 * <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
-	 * <li> 0 if o1 and o2 are equal.</li>
-	 * </p>
-	 * @throws IllegalArgumentError if compare(a, b) and 'a' and 'b' must be String objects.
-	 * @see StringComparator
-	 */
-	public static function compare( strA:String , strB:String, ignoreCase:Boolean ):Number 
-	{
-		return (new StringComparator(ignoreCase)).compare(strA, strB) ;
-	}
-	
-	/**
-	 * Compares the two caracteres passed in argument for order.
-	 * @return <p>
-	 * <li>-1 if charA is "lower" than (less than, before, etc.) charB ;</li>
-	 * <li> 1 if charA is "higher" than (greater than, after, etc.) charB ;</li>
-	 * <li> 0 if charA and charB are equal.</li>
-	 * </p>
-	 */
-	public static function compareChars( charA:String, charB:String ):Number
-	{
-		var a:String = charA.charAt(0) ;
-		var b:String = charB.charAt(0) ;
-		if ( caseValue(a) < caseValue(b) ) 
-		{
-			return -1;
-		}
-		if ( caseValue(a) > caseValue(b) ) 
-		{
-			return 1 ;
-		}
-		if ( a < b ) 
-		{
-			return -1;
-		}
-		if ( a > b ) 
-		{
-			return 1;
-		}
-		return 0 ;
-	}
-	
-	/**
-	 * Compares this object with the specified object for order.
-	 * @return <p>
-	 * <li>-1 if charA is "lower" than (less than, before, etc.) charB ;</li>
-	 * <li> 1 if charA is "higher" than (greater than, after, etc.) charB ;</li>
-	 * <li> 0 if charA and charB are equal.</li>
-	 * </p>
-	 */
-	public static function compareTo( str:String, o ):Number 
-	{
-		if (! TypeUtil.typesMatch(o, String)) 
-		{
-			throw new ArgumentsError("StringUtil.compareTo('"+ o + "' value must be a string") ;
-		}
-		if (o == null) 
-		{
-			return 1 ;
-		}
-		return StringUtil.compare(String(str.valueOf()), String(o.valueOf()) ) ;
-	}
-	
-	/**
-	 * Returns a deep copy of this object.
-	 * @return a deep copy of this object.
-	 */
-	public static function copy(str:String):String 
-	{
-		return str.valueOf()  ;
-	}
-	
-	/**
-	 * Returns {@code true} if the string contains the specified caractere at the end.
-	 * <p><b>Example :</b></p>
-	 * {@code
-	 * import vegas.util.StringUtil ;
-	 * trace( StringUtil.endsWith("hello world", "d") ) ; // true
-	 * }
-	 * @return {@code true} if the string contains the specified caractere at the end.
-	 */
-	public static function endsWith( str:String, value:String ):Boolean 
-	{
-		if (value == null) return false ;
-		if ( str.length < value.length ) return false ;
-		return StringUtil.compare( str.substr( str.length-value.length ), value) == 0;
-	}
-	
-	/**
-	 * Returns the first character in the string.
-	 * <p><b>Example :</b></p>
-	 * {@code
-	 * import vegas.util.StringUtil ;
-	 * trace( StringUtil.firstChar("hello world") ; // h
-	 * }
-	 * @return the first character in the string.
-	 */
-	public static function firstChar( str:String ):String 
-	{
-		return str.charAt(0) ;
-	}
+    /**
+     * Returns a shallow copy of this object.
+     * @return a shallow copy of this object.
+     */
+    public static function clone( str:String ):String 
+    {
+        return str ;    
+    }
 
-	/**
-	 * Reports the index of the first occurrence in this instance of any character in a specified array of Unicode characters.
-	 * <p><b>Example :</b></p>
-	 * {@code
-	 * import vegas.util.StringUtil ;
-	 * StringUtil.indexOfAny("hello world", [2, "hello", 5]) ; // 0
-	 * StringUtil.indexOfAny("Five = 5", [2, "hello", 5]) ; // 7
-	 * StringUtil.indexOfAny("actionscript is good", [2, "hello", 5]) ; // -1
-	 * }
-	 * @return the index of the first occurrence in this instance of any character in a specified array of Unicode characters.
-	 */
-	public static function indexOfAny(str:String, ar:Array):Number 
-	{
-		var index:Number ;
-		var l:Number = ar.length ;
-		for (var i:Number = 0 ; i<l ; i++) 
-		{
-			index = str.indexOf(ar[i]) ;
-			if (index > -1) 
-			{
-				return index ;
-			}
-		}
-		return -1 ;
-	}
-	
-	/**
-	 * Inserts a specified instance of String at a specified index position in this instance.
-	 * <p><b>Example :</b></p>
-	 * {@code
-	 * import vegas.util.StringUtil ;
-	 * var result:String ;
-	 * result = StringUtil.insert("hello", 0, "a" ) ;  // ahello
-	 * result = StringUtil.insert("hello", -1, "a" ) ; // ahello
-	 * result = StringUtil.insert("hello", 10, "a" ) ; // helloa
-	 * result = StringUtil.insert("hello", 1, "a" ) ;  // haello
-	 * }
-	 * @return the string modified by the method.
-	 */
-	public static function insert( str:String, startIndex:Number, value:String):String 
-	{
-		str = str.valueOf() ;
-		if( value == null ) 
-		{
-			return str ;
-		}
-		if( str == "" ) 
-		{
-			return value ;
-		}
+    /**
+     * Compares its two arguments for order. You can ignore the case of the 2 strings parameters.
+     * @param o1 the first String object to compare.
+     * @param o2 the second String object to compare.
+     * @return <p>
+     * <li>-1 if o1 is "lower" than (less than, before, etc.) o2 ;</li>
+     * <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
+     * <li> 0 if o1 and o2 are equal.</li>
+     * </p>
+     * @throws IllegalArgumentError if compare(a, b) and 'a' and 'b' must be String objects.
+     * @see StringComparator
+     */
+    public static function compare( strA:String , strB:String, ignoreCase:Boolean ):Number 
+    {
+        return (new StringComparator(ignoreCase)).compare(strA, strB) ;
+    }
+    
+    /**
+     * Compares the two caracteres passed in argument for order.
+     * @return <p>
+     * <li>-1 if charA is "lower" than (less than, before, etc.) charB ;</li>
+     * <li> 1 if charA is "higher" than (greater than, after, etc.) charB ;</li>
+     * <li> 0 if charA and charB are equal.</li>
+     * </p>
+     */
+    public static function compareChars( charA:String, charB:String ):Number
+    {
+        var a:String = charA.charAt(0) ;
+        var b:String = charB.charAt(0) ;
+        if ( caseValue(a) < caseValue(b) ) 
+        {
+            return -1;
+        }
+        if ( caseValue(a) > caseValue(b) ) 
+        {
+            return 1 ;
+        }
+        if ( a < b ) 
+        {
+            return -1;
+        }
+        if ( a > b ) 
+        {
+            return 1;
+        }
+        return 0 ;
+    }
+    
+    /**
+     * Compares this object with the specified object for order.
+     * @return <p>
+     * <li>-1 if charA is "lower" than (less than, before, etc.) charB ;</li>
+     * <li> 1 if charA is "higher" than (greater than, after, etc.) charB ;</li>
+     * <li> 0 if charA and charB are equal.</li>
+     * </p>
+     */
+    public static function compareTo( str:String, o ):Number 
+    {
+        if (! TypeUtil.typesMatch(o, String)) 
+        {
+            throw new ArgumentsError("StringUtil.compareTo('"+ o + "' value must be a string") ;
+        }
+        if (o == null) 
+        {
+            return 1 ;
+        }
+        return StringUtil.compare(String(str.valueOf()), String(o.valueOf()) ) ;
+    }
+    
+    /**
+     * Returns a deep copy of this object.
+     * @return a deep copy of this object.
+     */
+    public static function copy(str:String):String 
+    {
+        return str.valueOf()  ;
+    }
+    
+    /**
+     * Returns {@code true} if the string contains the specified caractere at the end.
+     * <p><b>Example :</b></p>
+     * {@code
+     * import vegas.util.StringUtil ;
+     * trace( StringUtil.endsWith("hello world", "d") ) ; // true
+     * }
+     * @return {@code true} if the string contains the specified caractere at the end.
+     */
+    public static function endsWith( str:String, value:String ):Boolean 
+    {
+        if (value == null) return false ;
+        if ( str.length < value.length ) return false ;
+        return StringUtil.compare( str.substr( str.length-value.length ), value) == 0;
+    }
+    
+    /**
+     * Returns the first character in the string.
+     * <p><b>Example :</b></p>
+     * {@code
+     * import vegas.util.StringUtil ;
+     * trace( StringUtil.firstChar("hello world") ; // h
+     * }
+     * @return the first character in the string.
+     */
+    public static function firstChar( str:String ):String 
+    {
+        return str.charAt(0) ;
+    }
+
+    /**
+     * Reports the index of the first occurrence in this instance of any character in a specified array of Unicode characters.
+     * <p><b>Example :</b></p>
+     * {@code
+     * import vegas.util.StringUtil ;
+     * StringUtil.indexOfAny("hello world", [2, "hello", 5]) ; // 0
+     * StringUtil.indexOfAny("Five = 5", [2, "hello", 5]) ; // 7
+     * StringUtil.indexOfAny("actionscript is good", [2, "hello", 5]) ; // -1
+     * }
+     * @return the index of the first occurrence in this instance of any character in a specified array of Unicode characters.
+     */
+    public static function indexOfAny(str:String, ar:Array):Number 
+    {
+        var index:Number ;
+        var l:Number = ar.length ;
+        for (var i:Number = 0 ; i<l ; i++) 
+        {
+            index = str.indexOf(ar[i]) ;
+            if (index > -1) 
+            {
+                return index ;
+            }
+        }
+        return -1 ;
+    }
+    
+    /**
+     * Inserts a specified instance of String at a specified index position in this instance.
+     * <p><b>Example :</b></p>
+     * {@code
+     * import vegas.util.StringUtil ;
+     * var result:String ;
+     * result = StringUtil.insert("hello", 0, "a" ) ;  // ahello
+     * result = StringUtil.insert("hello", -1, "a" ) ; // ahello
+     * result = StringUtil.insert("hello", 10, "a" ) ; // helloa
+     * result = StringUtil.insert("hello", 1, "a" ) ;  // haello
+     * }
+     * @return the string modified by the method.
+     */
+    public static function insert( str:String, startIndex:Number, value:String):String 
+    {
+        str = str.valueOf() ;
+        if( value == null ) 
+        {
+            return str ;
+        }
+        if( str == "" ) 
+        {
+            return value ;
+        }
         if( startIndex <= 0 )
         {
-        	return value + str ;
+            return value + str ;
         }
-       	else if( isNaN(startIndex) || (startIndex >= str.length) ) 
-       	{
-       		return str + value ;
-       	}
-       	var strA:String = str.substr( 0, startIndex );
-    	var strB:String = str.substr( startIndex ) ;
-    	return strA + value + strB ;
-	}
-	
-	/**
-	 * Returns {@code true} if this string is empty.
-	 * <p><b>Example :</b></p>
-	 * {@code
-	 * import vegas.util.StringUtil ;
-	 * var b1:Boolean = StringUtil.isEmpty("") ; // true
-	 * var b2:Boolean = StringUtil.isEmpty("hello world") ; // false
-	 * }
-	 * @param str the string object.
-	 * @return {@code true} if this string is empty.
-	 */
-	public static function isEmpty( str:String ):Boolean 
-	{
-		return str.length == 0 ;
-	}
-	
-	/**
-	 * Returns a StringIterator reference of this string instance.
-	 * <p><b>Example :</b></p>
-	 * {@code
-	 * var it:Iterator = vegas.util.StringUtil.iterator("hello") ;
-	 * while(it.hasNext())
-	 * {
-	 *     trace("-> " + it.next()) ;
-	 * }
-	 * }
-	 * @param str the string object.
-	 * @return a StringIterator reference of this string instance.
-	 */
-	public static function iterator( str:String):Iterator 
-	{
-		return new StringIterator( str.toString()) ;
-	}	
-	
-	/**
-	 * Returns the last char of the string. 
-	 * <p><b>Example :</b></p>
-	 * {@code
-	 * import vegas.util.StringUtil ;
-	 * trace( StringUtil.firstChar("hello world") ; // d
-	 * }
-	 * @param str the string object.
-	 * @return the last char of the string.
-	 */
-	public static function lastChar( str:String ):String 
-	{
-		return str.charAt(str.length - 1) ;
-	}
+           else if( isNaN(startIndex) || (startIndex >= str.length) ) 
+           {
+               return str + value ;
+           }
+           var strA:String = str.substr( 0, startIndex );
+        var strB:String = str.substr( startIndex ) ;
+        return strA + value + strB ;
+    }
+    
+    /**
+     * Returns {@code true} if this string is empty.
+     * <p><b>Example :</b></p>
+     * {@code
+     * import vegas.util.StringUtil ;
+     * var b1:Boolean = StringUtil.isEmpty("") ; // true
+     * var b2:Boolean = StringUtil.isEmpty("hello world") ; // false
+     * }
+     * @param str the string object.
+     * @return {@code true} if this string is empty.
+     */
+    public static function isEmpty( str:String ):Boolean 
+    {
+        return str.length == 0 ;
+    }
+    
+    /**
+     * Returns a StringIterator reference of this string instance.
+     * <p><b>Example :</b></p>
+     * {@code
+     * var it:Iterator = vegas.util.StringUtil.iterator("hello") ;
+     * while(it.hasNext())
+     * {
+     *     trace("-> " + it.next()) ;
+     * }
+     * }
+     * @param str the string object.
+     * @return a StringIterator reference of this string instance.
+     */
+    public static function iterator( str:String):Iterator 
+    {
+        return new StringIterator( str.toString()) ;
+    }    
+    
+    /**
+     * Returns the last char of the string. 
+     * <p><b>Example :</b></p>
+     * {@code
+     * import vegas.util.StringUtil ;
+     * trace( StringUtil.firstChar("hello world") ; // d
+     * }
+     * @param str the string object.
+     * @return the last char of the string.
+     */
+    public static function lastChar( str:String ):String 
+    {
+        return str.charAt(str.length - 1) ;
+    }
 
-	/**
-	 * Reports the index position of the last occurrence in this instance of one or more characters specified in a Unicode array.
-	 * <p><b>Example :</b></p>
-	 * {@code
-	 * vegas.util.StringUtil.lastChar("hello world") ; // the last char is 'd'.
-	 * }
-	 * @return the index position of the last occurrence in this instance of one or more characters specified in a Unicode array.
-	 */
-	public static function lastIndexOfAny(str:String, ar:Array):Number 
-	{
-		var index:Number = -1 ;
-		var l:Number = ar.length ;
-		for (var i:Number = 0 ; i<l ; i++) 
-		{
-			index = str.lastIndexOf(ar[i]) ;
-			if (index > -1) 
-			{
-				return index ;
-			}
-		}
-		return index ;
-	}
-	
-	/**
-	 * Right-aligns the characters in this instance, padding on the left with a specified Unicode character for a specified total length.
-	 * {@code
-	 * import vegas.util.StringUtil ;
-	 * 
-	 * var result:String = StringUtil.padLeft("hello", 8) ;
-	 * trace(result) ; //  "   hello"
-	 * 
-	 * var result:String = StringUtil.padLeft("hello", 8, ".") ;
-	 * trace(result) ; //  "...hello" 
-	 * }
-	 * @return The right-aligns the characters in this instance, padding on the left with a specified Unicode character for a specified total length.
-	 */
-	public static function padLeft(str:String, i:Number /*Int*/, char:String):String 
-	{
-		char = char || " " ;
-		var s:String = new String( str ) ;
+    /**
+     * Reports the index position of the last occurrence in this instance of one or more characters specified in a Unicode array.
+     * <p><b>Example :</b></p>
+     * {@code
+     * vegas.util.StringUtil.lastChar("hello world") ; // the last char is 'd'.
+     * }
+     * @return the index position of the last occurrence in this instance of one or more characters specified in a Unicode array.
+     */
+    public static function lastIndexOfAny(str:String, ar:Array):Number 
+    {
+        var index:Number = -1 ;
+        var l:Number = ar.length ;
+        for (var i:Number = 0 ; i<l ; i++) 
+        {
+            index = str.lastIndexOf(ar[i]) ;
+            if (index > -1) 
+            {
+                return index ;
+            }
+        }
+        return index ;
+    }
+    
+    /**
+     * Right-aligns the characters in this instance, padding on the left with a specified Unicode character for a specified total length.
+     * {@code
+     * import vegas.util.StringUtil ;
+     * 
+     * var result:String = StringUtil.padLeft("hello", 8) ;
+     * trace(result) ; //  "   hello"
+     * 
+     * var result:String = StringUtil.padLeft("hello", 8, ".") ;
+     * trace(result) ; //  "...hello" 
+     * }
+     * @return The right-aligns the characters in this instance, padding on the left with a specified Unicode character for a specified total length.
+     */
+    public static function padLeft(str:String, i:Number /*Int*/, char:String):String 
+    {
+        char = char || " " ;
+        var s:String = new String( str ) ;
         var l:Number = s.length ;
         for (var k:Number = 0 ; k < (i - l) ; k++) 
         {
-        	s = char + s ;
+            s = char + s ;
         }
         return s ;
     }
-	
-	/**
-	 * Left-aligns the characters in this string, padding on the right with a specified Unicode character, for a specified total length.
-	 * <p><b>Example :</b></p>
-	 * {@code
-	 * import vegas.util.StringUtil ;
-	 * 
-	 * var result:String = StringUtil.padRight("hello", 8) ;
-	 * trace(result) ; //  "hello   "
-	 * 
-	 * var result:String = StringUtil.padRight(hello", 8, ".") ;
-	 * trace(result) ; //  "hello..." 
-	 * }
-	 * @return The left-aligns the characters in this string, padding on the right with a specified Unicode character, for a specified total length.
-	 */
-	public static function padRight(str:String, i:Number /*Int*/ , char:String):String 
-	{
-		char = char || " " ;
+    
+    /**
+     * Left-aligns the characters in this string, padding on the right with a specified Unicode character, for a specified total length.
+     * <p><b>Example :</b></p>
+     * {@code
+     * import vegas.util.StringUtil ;
+     * 
+     * var result:String = StringUtil.padRight("hello", 8) ;
+     * trace(result) ; //  "hello   "
+     * 
+     * var result:String = StringUtil.padRight(hello", 8, ".") ;
+     * trace(result) ; //  "hello..." 
+     * }
+     * @return The left-aligns the characters in this string, padding on the right with a specified Unicode character, for a specified total length.
+     */
+    public static function padRight(str:String, i:Number /*Int*/ , char:String):String 
+    {
+        char = char || " " ;
         var s:String = new String( str ) ;
         var l:Number = s.length ;
-		for (var k:Number = 0 ; k < (i - l) ; k++) 
-		{
-			s = s + char ;
-		}
+        for (var k:Number = 0 ; k < (i - l) ; k++) 
+        {
+            s = s + char ;
+        }
         return s ;
     }
-	
-	/**
-	 * Replaces the 'search' string with the 'replace' String.
-	 * <p><b>Example :</b></p>
-	 * {@code
-	 * vegas.util.StringUtil.replace("hello world", "hello", "hi") ; // "hello world" -> "hi world"
-	 * }
-	 * @param the string to transform.
-	 * @return the new string transform with this method.
-	 */
-	public static function replace(str:String, search:String, replace:String):String 
-	{
-		return str.split(search).join(replace) ;
-	}
-	
-	/**
-	 * Reverses the current instance.
-	 * <p><b>Example :</b></p>
-	 * {@code
-	 * var reverse:String = vegas.util.StringUtil.reverse("hello") ; // "olleh"
-	 * }
-	 * @return the reverse string of the specified string passed-in argument.
-	 */
-	public static function reverse( str:String ):String 
-	{  
-		var ar:Array = str.split("") ;
-		ar.reverse() ;
-		return ar.join("") ;
-	}
-	
-	/**
-	 * Adds and removes elements in the string.
-	 * <p><b>Example :</b></p>
-	 * {@code
-	 * import vegas.util.StringUtil ;
-	 * 
-	 * var result:String = StringUtil.splice("hello world", 0, 1, "H") ;
-	 * trace(result) ; // Hello world
-	 * 
-	 * var result:String = StringUtil.splice("hello world", 6, 0, "life") ;
-	 * trace(result) ; // hello lifeworld
-	 * 
-	 * var result:String = StringUtil.splice("hello world", 6, 5, "life") ;
-	 * trace(result) ; // hello life
-	 * }
-	 * @param startIndex Index at which to start changing the string.
-	 * @param deleteCount Indicating the number of old character elements to remove.
-	 * @param value The elements to add to the string. If you don't specify any elements, splice simply removes elements from the string.
-	 */
-	public static function splice( str:String, startIndex:Number, deleteCount:Number, value):String 
-	{
-		var a:Array = StringUtil.toArray(str) ;
-		a.splice(startIndex, deleteCount, value) ;
-		return a.join("") ;
-	}
-
-	/**
-	 * Determines whether a specified string is a prefix of the current instance. 
-	 * <p><b>Example : </b></p>
-	 * {@code
-	 * import vegas.util.StringUtil ;
-	 * 
-	 * trace( StringUtil.startsWith("hello world", "h") ) ; // true
-	 * trace( StringUtil.startsWith("hello world", "hello") ) ; // true
-	 * trace( StringUtil.startsWith("hello world", "a") ) ; // false
-	 * }
-	 * @return {@code true} if the specified string is a prefix of the current instance.
-	 */
-	public static function startsWith( str:String, value:String ):Boolean
-   	{
-	   	if( value == null )
-		{
-    	   	return false;
-        }
-	    
-	    if( str.length < value.length )
-        {
-        	return false;
-        }
-	    
-	    if( str.charAt( 0 ) != value.charAt( 0 ) )
-        {
-        	return false;
-        }
-	    
-	   	return( StringUtil.compare( str.substr( 0, value.length), value) == 0);
-	}
-
-	/**
-	 * Returns an array representation of this instance.
-	 * <p><b>Example :</b></p>
-	 * {@code
-	 * import vegas.util.StringUtil ;
-	 * trace( StringUtil.toArray("hello world" )) ; // h,e,l,l,o, ,w,o,r,l,d
-	 * }
-	 * @return an array representation of this instance.
-	 */
-	public static function toArray( str:String ):Array 
-	{
-		return str.split("") ;
-	}
-	
-	/**
-	 * Returns a Eden representation of the object.
-	 * <p><b>Example :</b></p>
-	 * {@code
-	 * import vegas.util.StringUtil ;
-	 * var source:String = StringUtil.toSource("hello world") ;
-	 * trace(source) ; // "hello world"
-	 * }
-	 * @return a string representing the source code of the object.
-	 */
-	public static function toSource(str:String, indent:Number, indentor:String):String 
-	{
-		return Serializer.toSource(str) ;
-	}
-
-	/**
-	 * Removes all occurrences of a set of specified characters (or strings)
-	 * from the beginning and end of this instance.
-	 */
-	public static function trim( str:String,  trimChars:Array )
-    {
-    	if( (trimChars == null) || (trimChars.length == 0) )
-        {
-        	trimChars = WHITE_SPACE_CHARS ;
-        }
-    	return _trimHelper( str, trimChars, true, true );
-    }
-
-	/**
-	 * Removes all occurrences of a set of characters specified in an array from the end of this instance.
-	 */
-	public static function trimEnd( str:String , trimChars:Array )
-    {
-    	if( (trimChars == null) || (trimChars.length == 0) )
-        {
-        	trimChars = WHITE_SPACE_CHARS;
-        }
-    	return _trimHelper( str, trimChars, null, true );
-    }
-
-	/**
-	 * Removes all occurrences of a set of characters specified 
-	 * in an array from the beginning of this instance.
-	 */
-	public static function trimStart( str:String, trimChars:Array )
-    {
-    	if( (trimChars == null) || (trimChars.length == 0) )
-        {
-        	trimChars = WHITE_SPACE_CHARS;
-        }
-    	return _trimHelper( str, trimChars, true ) ;
-    }
-
-	/**
-	 * Returns the value of this specified string with the first character in uppercase.
-	 * <p><b>Example :</b></p>
-	 * {@code
-	 * import vegas.util.StringUtil ;
-	 * trace( StringUtil.ucFirst("hello world" )) ; // Hello world
-	 * }
-	 * @return the value of this string with the first character in uppercase.
-	 */
-	public static function ucFirst(str:String):String 
-	{
-		return str.charAt(0).toUpperCase() + str.substring(1) ;
-	}
-	
-	/**
-	 * Uppercase the first character of each word in a string.
-	 * <p><b>Example :</b></p>
-	 * {@code
-	 * import vegas.util.StringUtil ;
-	 * trace( StringUtil.ucWords("hello world" )) ; // Hello World
-	 * }
-	 * @return the string value with the first character in uppercase of each word in a string.
-	 */
-	public static function ucWords( str:String ):String 
-	{
-		var ar:Array = str.split(" ") ;
-		var l:Number = ar.length ;
-		while(--l > -1) 
-		{
-			ar[l] = StringUtil.ucFirst(ar[l]) ;
-		}
-		return ar.join(" ") ;
-	}
-
-	/**
-	 * Helper method used by trim, trimStart and trimEnd methods.
-	 */
-	private static function _trimHelper( str:String, trimChars:Array, trimStart:Boolean, trimEnd:Boolean )
-    {
-	    if( trimStart == null )
-        {
-    	    trimStart = false;
-        }
-    	
-    	if( trimEnd == null )
-        {
-        	trimEnd = false;
-        }
-    	
-    	var iLeft, iRight;
-    	var s:String = copy(str) ;
     
-    	if( trimStart )
+    /**
+     * Returns a new String value who contains the specified String characters repeated count times.
+     * <p><b>Example :</b></p>
+     * {@code
+     * import vegas.util.StringUtil ;
+     * 
+     * trace(StringUtil.repeat("hello", 0)) ; // hello
+     * trace(StringUtil.repeat("hello", 3)) ; // hellohellohello
+     * }
+     * @return a new String value who contains the specified String characters repeated count times.
+     */
+    public static function repeat( str:String , count:Number ):String
+    {
+        var result:String = "" ;
+        if ( count > 0 )
         {
-        	for( iLeft=0; (iLeft<s.length) && (trimChars.contains( s.charAt( iLeft ) )); iLeft++ )
-        	{
-	    	    
-    	    }
-        	s = s.substr( iLeft );
+            for( var i:Number = 0 ; i < count ; i++)
+            {
+                result = result.concat(str) ;
+            }
+        }
+        else
+        {
+            result = str ;    
+        }
+        return  result ;
+    }        
+    
+    /**
+     * Replaces the 'search' string with the 'replace' String.
+     * <p><b>Example :</b></p>
+     * {@code
+     * vegas.util.StringUtil.replace("hello world", "hello", "hi") ; // "hello world" -> "hi world"
+     * }
+     * @param the string to transform.
+     * @return the new string transform with this method.
+     */
+    public static function replace(str:String, search:String, replace:String):String 
+    {
+        return str.split(search).join(replace) ;
+    }
+    
+    /**
+     * Reverses the current instance.
+     * <p><b>Example :</b></p>
+     * {@code
+     * var reverse:String = vegas.util.StringUtil.reverse("hello") ; // "olleh"
+     * }
+     * @return the reverse string of the specified string passed-in argument.
+     */
+    public static function reverse( str:String ):String 
+    {  
+        var ar:Array = str.split("") ;
+        ar.reverse() ;
+        return ar.join("") ;
+    }
+    
+    /**
+     * Adds and removes elements in the string.
+     * <p><b>Example :</b></p>
+     * {@code
+     * import vegas.util.StringUtil ;
+     * 
+     * var result:String = StringUtil.splice("hello world", 0, 1, "H") ;
+     * trace(result) ; // Hello world
+     * 
+     * var result:String = StringUtil.splice("hello world", 6, 0, "life") ;
+     * trace(result) ; // hello lifeworld
+     * 
+     * var result:String = StringUtil.splice("hello world", 6, 5, "life") ;
+     * trace(result) ; // hello life
+     * }
+     * @param startIndex Index at which to start changing the string.
+     * @param deleteCount Indicating the number of old character elements to remove.
+     * @param value The elements to add to the string. If you don't specify any elements, splice simply removes elements from the string.
+     */
+    public static function splice( str:String, startIndex:Number, deleteCount:Number, value):String 
+    {
+        var a:Array = StringUtil.toArray(str) ;
+        a.splice(startIndex, deleteCount, value) ;
+        return a.join("") ;
+    }
+
+    /**
+     * Determines whether a specified string is a prefix of the current instance. 
+     * <p><b>Example : </b></p>
+     * {@code
+     * import vegas.util.StringUtil ;
+     * 
+     * trace( StringUtil.startsWith("hello world", "h") ) ; // true
+     * trace( StringUtil.startsWith("hello world", "hello") ) ; // true
+     * trace( StringUtil.startsWith("hello world", "a") ) ; // false
+     * }
+     * @return {@code true} if the specified string is a prefix of the current instance.
+     */
+    public static function startsWith( str:String, value:String ):Boolean
+       {
+           if( value == null )
+        {
+               return false;
+        }
+        
+        if( str.length < value.length )
+        {
+            return false;
+        }
+        
+        if( str.charAt( 0 ) != value.charAt( 0 ) )
+        {
+            return false;
+        }
+        
+           return( StringUtil.compare( str.substr( 0, value.length), value) == 0);
+    }
+
+    /**
+     * Returns an array representation of this instance.
+     * <p><b>Example :</b></p>
+     * {@code
+     * import vegas.util.StringUtil ;
+     * trace( StringUtil.toArray("hello world" )) ; // h,e,l,l,o, ,w,o,r,l,d
+     * }
+     * @return an array representation of this instance.
+     */
+    public static function toArray( str:String ):Array 
+    {
+        return str.split("") ;
+    }
+    
+    /**
+     * Returns a Eden representation of the object.
+     * <p><b>Example :</b></p>
+     * {@code
+     * import vegas.util.StringUtil ;
+     * var source:String = StringUtil.toSource("hello world") ;
+     * trace(source) ; // "hello world"
+     * }
+     * @return a string representing the source code of the object.
+     */
+    public static function toSource(str:String, indent:Number, indentor:String):String 
+    {
+        return Serializer.toSource(str) ;
+    }
+
+    /**
+     * Removes all occurrences of a set of specified characters (or strings)
+     * from the beginning and end of this instance.
+     */
+    public static function trim( str:String,  trimChars:Array )
+    {
+        if( (trimChars == null) || (trimChars.length == 0) )
+        {
+            trimChars = WHITE_SPACE_CHARS ;
+        }
+        return _trimHelper( str, trimChars, true, true );
+    }
+
+    /**
+     * Removes all occurrences of a set of characters specified in an array from the end of this instance.
+     */
+    public static function trimEnd( str:String , trimChars:Array )
+    {
+        if( (trimChars == null) || (trimChars.length == 0) )
+        {
+            trimChars = WHITE_SPACE_CHARS;
+        }
+        return _trimHelper( str, trimChars, null, true );
+    }
+
+    /**
+     * Removes all occurrences of a set of characters specified 
+     * in an array from the beginning of this instance.
+     */
+    public static function trimStart( str:String, trimChars:Array )
+    {
+        if( (trimChars == null) || (trimChars.length == 0) )
+        {
+            trimChars = WHITE_SPACE_CHARS;
+        }
+        return _trimHelper( str, trimChars, true ) ;
+    }
+
+    /**
+     * Returns the value of this specified string with the first character in uppercase.
+     * <p><b>Example :</b></p>
+     * {@code
+     * import vegas.util.StringUtil ;
+     * trace( StringUtil.ucFirst("hello world" )) ; // Hello world
+     * }
+     * @return the value of this string with the first character in uppercase.
+     */
+    public static function ucFirst(str:String):String 
+    {
+        return str.charAt(0).toUpperCase() + str.substring(1) ;
+    }
+    
+    /**
+     * Uppercase the first character of each word in a string.
+     * <p><b>Example :</b></p>
+     * {@code
+     * import vegas.util.StringUtil ;
+     * trace( StringUtil.ucWords("hello world" )) ; // Hello World
+     * }
+     * @return the string value with the first character in uppercase of each word in a string.
+     */
+    public static function ucWords( str:String ):String 
+    {
+        var ar:Array = str.split(" ") ;
+        var l:Number = ar.length ;
+        while(--l > -1) 
+        {
+            ar[l] = StringUtil.ucFirst(ar[l]) ;
+        }
+        return ar.join(" ") ;
+    }
+
+    /**
+     * Helper method used by trim, trimStart and trimEnd methods.
+     */
+    private static function _trimHelper( str:String, trimChars:Array, trimStart:Boolean, trimEnd:Boolean )
+    {
+        if( trimStart == null )
+        {
+            trimStart = false;
+        }
+        
+        if( trimEnd == null )
+        {
+            trimEnd = false;
+        }
+        
+        var iLeft, iRight;
+        var s:String = copy(str) ;
+    
+        if( trimStart )
+        {
+            for( iLeft=0; (iLeft<s.length) && (trimChars.contains( s.charAt( iLeft ) )); iLeft++ )
+            {
+                
+            }
+            s = s.substr( iLeft );
         }
     
-    	if( trimEnd )
+        if( trimEnd )
         {
-        	for( iRight=s.length-1; (iRight>=0) && (trimChars.contains( s.charAt( iRight ) )); iRight-- )
+            for( iRight=s.length-1; (iRight>=0) && (trimChars.contains( s.charAt( iRight ) )); iRight-- )
             {            
             
             }
         
-        	s = s.substring( 0, iRight+1 );
+            s = s.substring( 0, iRight+1 );
         }
     
-    	return s ;
+        return s ;
     }
 
 }
