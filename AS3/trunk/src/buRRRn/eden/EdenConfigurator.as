@@ -26,7 +26,7 @@ package buRRRn.eden
 {
 	import buRRRn.eden;
 	
-	import system.Configurator;		
+	import system.Configurator;	
 
 	/**
 	 * The configurator object of the eden parser.
@@ -44,15 +44,93 @@ package buRRRn.eden
 		}
 
 		/**
+		 * Allows to execute function call. if set to false it blocks any functrion call and return undefined.
+		 * <p><b>Example:</b></p>
+		 * <pre class="prettyprint">
+		 * "titi = \"hello world\";
+		 * toto = titi.toUpperCase();"
+		 * 
+		 * // allowFunctionCall = true
+		 * toto = "HELLO WORLD"
+		 * 
+		 * // allowFunctionCall = false
+		 * toto = undefined
+		 * </code>
+		 */
+		public function get allowFunctionCall():Boolean
+		{
+			return _config.allowFunctionCall;
+		}
+
+		/**
+		 * @private
+		 */
+		public function set allowFunctionCall( value:Boolean ):void
+		{
+			_config.allowFunctionCall = value;
+		}
+
+		/**
+		 * When set to false array index are evaluated without bracket eval( test.0 ) for Flash ActionScript
+		 * When set to true array index are evaluated with bracket eval( test[0] ) for JavaScript, JScript, JSDB etc.
+		 */
+        public function get arrayIndexAsBracket():Boolean
+        {
+            return _config.arrayIndexAsBracket; // TODO : may become obsolete for AS3/ES4 but let's keep it for now for configuration file bacward compatibility
+        }
+		
+		/**
+		 * @private
+		 */
+		public function set arrayIndexAsBracket( value:Boolean ):void
+		{
+			_config.arrayIndexAsBracket = value;
+		}
+
+		/**
+		 * List of authorized keywords, objects path and constructors that the parser is allowed to interpret.
+		 * <p>Note: you can add full path</p>
+		 * <p><b>ex:</b> "blah.foobar"</p>
+		 * <p>and/or starting path</p>
+		 * <p><b>ex:</b> "toto.titi.*"</p>
+		 * <p>The difference is with a full path you can only <b>create/use/define/assign</b> value to this exact path and
+		 * with a starting path you can create/use/define/assign value to this path and its child paths.</p> 
+		 * <p><b>Attention:</b> special values as NaN, true, false, null, undefined are always authorized.</p>
+		 */
+		public function get authorized():Array
+		{
+			return _config.authorized;
+		}
+
+		/**
+		 * @private
+		 */
+		public function set authorized( value:Array ):void
+		{
+			_config.authorized = value;
+		}
+
+		/**
+		 * Determinates if the add scope process is automatic or not.
+		 */
+		public function get autoAddScopePath():Boolean
+		{
+			return _config.autoAddScopePath;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set autoAddScopePath( value:Boolean ):void
+		{
+			_config.autoAddScopePath = value;
+		}
+
+		/**
 		 * Parameter to remove (true) or add (false) all unecessary spaces, tabs, carriages returns, lines feeds etc. 
 		 * to optimize (more or less) packets of datas when they are transfered.
-		 * 
-		 * note:
-		 * use "compress = false" when you want
-		 * to have a better view or debug packets of datas.
-		 * 
-		 * note2:
-		 * this property is in sync with eden.prettyPrint
+		 * <p><b>Note 1 :</b> use "compress = false" when you want to have a better view or debug packets of datas.</p>
+		 * <p><b>Note 2 :</b> this property is in sync with eden.prettyPrint</p>
 		 */
 		public function get compress():Boolean
 		{
@@ -127,9 +205,8 @@ package buRRRn.eden
 			_config.undefineable = value;
 		}
 
-		/* Property: verbose
-		Parameter allowing to trace messages
-		in the console if the environment permit it.
+		/**
+		 * Parameter allowing to trace messages in the console if the environment permit it.
 		 */
 		public function get verbose():Boolean
 		{
@@ -162,95 +239,6 @@ package buRRRn.eden
 			_config.security = value;
 		}
 
-		/**
-		 * List of authorized keywords, objects path and constructors that the parser is allowed to interpret.
-		 * <p>Note:</p>
-		 * you can add full path
-		 * ex: "blah.foobar"
-		 * and/or starting path
-		 * ex: "toto.titi.*"
-		 * 
-		 * The difference is with a full path you can only create/use/define/assign value to this exact path and
-		 * with a starting path you can create/use/define/assign value to this path and its child paths 
-		 * 
-		 * attention:
-		 * special values as
-		 * NaN, true, false, null, undefined are always authorized
-		 */
-		public function get authorized():Array
-		{
-			return _config.authorized;
-		}
-
-		/**
-		 * @private
-		 */
-		public function set authorized( value:Array ):void
-		{
-			_config.authorized = value;
-		}
-
-		/**
-		 * Allows to execute function call. if set to false it blocks any functrion call and return undefined.
-		 * <p><b>Example:</b></p>
-		 * <code class="prettyprint">
-		 * "titi = \"hello world\";
-		 * toto = titi.toUpperCase();"
-		 * 
-		 * // allowFunctionCall = true
-		 * toto = "HELLO WORLD"
-		 * 
-		 * // allowFunctionCall = false
-		 * toto = undefined
-		 * </code>
-		 */
-		public function get allowFunctionCall():Boolean
-		{
-			return _config.allowFunctionCall;
-		}
-
-		/**
-		 * @private
-		 */
-		public function set allowFunctionCall( value:Boolean ):void
-		{
-			_config.allowFunctionCall = value;
-		}
-
-		/**
-		 * Determinates if the add scope process is automatic or not.
-		 */
-		public function get autoAddScopePath():Boolean
-		{
-			return _config.autoAddScopePath;
-		}
-		
-		/**
-		 * @private
-		 */
-		public function set autoAddScopePath( value:Boolean ):void
-		{
-			_config.autoAddScopePath = value;
-		}
-
-		/**
-		 * When set to false array index are evaluated without bracket eval( test.0 ) for Flash ActionScript
-		 * When set to true array index are evaluated with bracket eval( test[0] ) for JavaScript, JScript, JSDB etc.
-		 * TODO : may become obsolete for AS3/ES4 but let's keep it for now for configuration file bacward compatibility
-		 */
-		public function get arrayIndexAsBracket():Boolean
-		{
-			return _config.arrayIndexAsBracket;
-		}
-		
-		/**
-		 * @private
-		 */
-		public function set arrayIndexAsBracket( value:Boolean ):void
-		{
-			_config.arrayIndexAsBracket = value;
-		}
-		
    		/**
 		 * Inserts an authorized path in the white list of the parser.
 		 */
@@ -273,7 +261,7 @@ package buRRRn.eden
         	{
         		throw new Error( this + " addAuthorized failed with a null 'authorized' Array to configurate the eden parser.") ;
 			}
-        }
+        }        
         
    		/**
 		 * Removes an authorized path in the white list of the parser.

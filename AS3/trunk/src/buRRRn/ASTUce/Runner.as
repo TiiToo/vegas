@@ -37,13 +37,23 @@ package buRRRn.ASTUce
      */
     public class Runner extends BaseTestRunner
         {
+        	
+        /**
+         * @private
+         */
         private var _printer:ResultPrinter;
         
+        /**
+         * Display the header.
+         */
         protected static function displayHeader():void
             {
             buRRRn.ASTUce.info();
             }
         
+        /**
+         * Display the test infos.
+         */
         protected static function displayInfos( suite:ITest, result:TestResult ):void
             {
             if( config.showConstructorList )
@@ -52,6 +62,9 @@ package buRRRn.ASTUce
                 }
             }
         
+        /**
+         * Invoked when the runner failed.
+         */
         protected override function runFailed( message:String ):void
             {
             Console.writeLine( message );
@@ -72,16 +85,26 @@ package buRRRn.ASTUce
             _printer = new ResultPrinter( writer );
             }
         
+        /**
+         * Indicates the printer of this runner.
+         */
         public function get printer():*
             {
             return _printer;
             }
         
+        /**
+         * @private
+         */
         public function set printer( printer:* ):void
             {
             _printer = printer;
             }
         
+        /**
+         * Returns the name of the test.
+         * @return the name of the test.
+         */
         public function getTestName( any:* ):String
             {
             if( any == null )
@@ -107,8 +130,9 @@ package buRRRn.ASTUce
             return "";
             }
         
-        /* Runs a multiple test and collects their results.
-        */
+        /**
+         * Runs a multiple test and collects their results.
+         */
         public static function main( ...args ):void
             {
             var result:TestResult;
@@ -120,7 +144,7 @@ package buRRRn.ASTUce
             for( var i:int=0; i<args.length; i++ )
                 {
                 suiteName = runner.getTestName( args[i] );
-                Console.writeLine( Strings.format( __strings__.runTitle, suiteName, i ) );
+                Console.writeLine( Strings.format( _strings.runTitle, suiteName, i ) );
                 
                 try
                     {
@@ -128,30 +152,28 @@ package buRRRn.ASTUce
                     }
                 catch( er1:NullSuiteError )
                     {
-                    runner.runFailed( __strings__.nullTestsuite );
+                    runner.runFailed( _strings.nullTestsuite );
                     }
                 catch( er2:Error )
                     {
-                    runner.runFailed( Strings.format( __strings__.canNotCreateAndRun, i ) );
-                    runner.runFailed( Strings.format( __strings__.tab, er2.toString() ) );
+                    runner.runFailed( Strings.format( _strings.canNotCreateAndRun, i ) );
+                    runner.runFailed( Strings.format( _strings.tab, er2.toString() ) );
                     }
                 
                 Console.writeLine( strings.separator );
                 }
             }
         
-        /* Runs a single test and collects its results.
-           This method can be used to start a test run
-           from your program.
-           
-           Parameters:
-           test - can be a ITest (TestCase,TestSuite,etc.), a Class or a String
-           
-           note:
-           In the case of a string parameter, the runner will first try to
-           locate a static suite() method, and if it can not find it
-           then will try to extract a test suite automatically.
-        */
+        /**
+         * Runs a single test and collects its results.
+         * <p>This method can be used to start a test run from your program.</p>
+         * <p>Parameters :</p>
+         * <p><b>Note :</b></p>
+         * <p>In the case of a string parameter, the runner will first try to
+         * locate a static suite() method, and if it can not find it 
+         * then will try to extract a test suite automatically.
+         * @param test Can be a ITest (TestCase,TestSuite,etc.), a Class or a String
+         */
         public static function run( test:*, runner:Runner = null ):TestResult
             {
             if( runner == null )
@@ -195,6 +217,9 @@ package buRRRn.ASTUce
             return runner.doRun( suite );
             }
         
+        /**
+         * Do the run process.
+         */
         public function doRun( suite:ITest ):TestResult
             {
             var result:TestResult = new TestResult();
@@ -218,7 +243,10 @@ package buRRRn.ASTUce
         
         }
         
-        internal var __strings__:Object = 
+        /**
+         * Internal strings.
+         */
+        internal var _strings:Object = 
         {	
         	runTitle           : "[{0}] #{1}" ,
 			tab                : "    {0}"    ,
@@ -228,6 +256,9 @@ package buRRRn.ASTUce
 
     }
 
+/**
+ * The NullSuiteError internal class.
+ */
 class NullSuiteError extends Error
 {
     

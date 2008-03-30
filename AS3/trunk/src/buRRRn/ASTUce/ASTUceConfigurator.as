@@ -17,13 +17,13 @@
   
   Contributor(s):
   
-  	- Alcaraz Marc (aka eKameleon) <vegas@ekameleon.net> (2007-2008)
+      - Alcaraz Marc (aka eKameleon) <vegas@ekameleon.net> (2007-2008)
 
 */
 package buRRRn.ASTUce
     {
     import system.Configurator;
-    
+        
     /**
      * Configures the ASTUce framework.
      */
@@ -68,11 +68,11 @@ package buRRRn.ASTUce
          *      TestCaseTest
          *              {
          *              testCaseToString( TestCaseTest )
-         *     			testRunAndTearDownFails( TestCaseTest )
-         *     			testWasRun( TestCaseTest )
-         *     			testError( TestCaseTest )
-         *     			...
-         * </pre>    			
+         *                 testRunAndTearDownFails( TestCaseTest )
+         *                 testWasRun( TestCaseTest )
+         *                 testError( TestCaseTest )
+         *                 ...
+         * </pre>                
          */
         public function get showConstructorList():Boolean
             {
@@ -87,26 +87,23 @@ package buRRRn.ASTUce
             _config.showConstructorList = value;
             }
         
-        /* 
-           note:
-           if false will show the full indentation
-           (code)
-            All ASTUce tests
-            	{
-            	Framework Tests
-            		{
-            		TestCaseTest
-            			{
-            			testCaseToString( TestCaseTest )
-            			testRunAndTearDownFails( TestCaseTest )
-            			testWasRun( TestCaseTest )
-            			testError( TestCaseTest )
-            			...
-           (end)
-           
-           if true will show the indentation till the
-           showSimpleTraceDepth
-        */
+        /**
+         * If false will show the full indentation
+         * <pre class="prettyprint">
+         *  All ASTUce tests
+         *      {
+         *      Framework Tests
+         *          {
+         *          TestCaseTest
+         *              {
+         *              testCaseToString( TestCaseTest )
+         *              testRunAndTearDownFails( TestCaseTest )
+         *              testWasRun( TestCaseTest )
+         *              testError( TestCaseTest )
+         *              ...
+         * </pre> 
+         * If true will show the indentation till the showSimpleTraceDepth.
+         */
         public function get showAllAsSimpleTrace():Boolean
             {
             return _config.showAllAsSimpleTrace;
@@ -120,24 +117,23 @@ package buRRRn.ASTUce
             _config.showAllAsSimpleTrace = value;
             }
         
-        /* 
-           note:
-           will limit the depth of description for constructors list
-           (code)
-            All ASTUce tests
-            	{
-            	Framework Tests
-            		{
-            		TestCaseTest
-            			{
-            			13 Tests ...
-            			}
-            		Suite tests
-            			{
-            			7 Tests ...
-            			}
-           (end)
-        */
+        /**
+         * will limit the depth of description for constructors list
+         * <pre class="prettyprint">
+         * All ASTUce tests
+         *      {
+         *      Framework Tests
+         *          {
+         *          TestCaseTest
+         *              {
+         *              13 Tests ...
+         *              }
+         *          Suite tests
+         *              {
+         *              7 Tests ...
+         *              }
+         * </pre> 
+         */
         public function get showSimpleTraceDepth():int
             {
             return _config.showSimpleTraceDepth;
@@ -151,13 +147,12 @@ package buRRRn.ASTUce
             _config.showSimpleTraceDepth = value;
             }
         
-        /* 
-           note:
-           shows the short tests
-           (code)
-           ...F..E...
-           (end)
-        */
+        /**
+         * Sshows the short tests.
+         * <pre class="prettyprint">
+         *  ...F..E...
+         * </pre> 
+         */
         public function get showPrinterShortTests():Boolean
             {
             return _config.showPrinterShortTests;
@@ -171,15 +166,15 @@ package buRRRn.ASTUce
             _config.showPrinterShortTests = value;
             }
         
-        /* 
-           note:
-           need to be true to display
-           - printHeader
-           - printErrors
-           - printFailures
-           - printFooter
-           - empty tests
-        */
+        /**
+         * 
+         * Need to be true to display :
+         * <li>printHeader</li>
+         * <li>printErrors</li>
+         * <li>printFailures</li>
+         * <li>printFooter</li>
+         * <li>empty tests</li>
+         */
         public function get showPrinterDetails():Boolean
             {
             return _config.showPrinterDetails;
@@ -193,13 +188,12 @@ package buRRRn.ASTUce
             _config.showPrinterDetails = value;
             }
         
-        /* 
-           note:
-           show the header
-           (code)
-           Time: 0h:0mn:0s:10ms
-           (end)
-        */
+        /**
+         * show the header
+         * <pre class="prettyprint">
+         *  Time: 0h:0mn:0s:10ms
+         * </pre> 
+         */
         public function get showPrintHeader():Boolean
             {
             return _config.showPrintHeader;
@@ -213,10 +207,9 @@ package buRRRn.ASTUce
             _config.showPrintHeader = value;
             }
         
-        /* 
-           note:
-           show the errors details
-        */
+        /**
+         * Show the errors details.
+         */
         public function get showPrintErrors():Boolean
             {
             return _config.showPrintErrors;
@@ -230,10 +223,9 @@ package buRRRn.ASTUce
             _config.showPrintErrors = value;
             }
         
-        /* 
-           note:
-           show the failures details
-        */
+        /**
+         * Show the failures details
+         */
         public function get showPrintFailures():Boolean
             {
             return _config.showPrintFailures;
@@ -247,12 +239,12 @@ package buRRRn.ASTUce
             _config.showPrintFailures = value;
             }
         
-        /* note:
-           show the footer
-           (code)
-           OK (10 tests)
-           (end)
-        */
+        /**
+         * Show the footer.
+         * <pre class="prettyprint">
+         * OK (10 tests)
+         * </pre> 
+         */
         public function get showPrintFooter():Boolean
             {
             return _config.showPrintFooter;
@@ -266,15 +258,12 @@ package buRRRn.ASTUce
             _config.showPrintFooter = value;
             }
         
-        /* 
-           note:
-           sometimes you add a test or a test suite
-           that does not contain any tests,
-           il will show something as
-           (code)
-           [unknown]
-           (end)
-        */
+        /**
+         * Sometimes you add a test or a test suite that does not contain any tests, il will show something as
+         * <pre class="prettyprint">
+         * [unknown]
+         * </pre> 
+         */
         public function get showEmptyTests():Boolean
             {
             return _config.showEmptyTests;
@@ -291,16 +280,15 @@ package buRRRn.ASTUce
         /**
          * Boolean option to display the source of objects being compared.
          * <p>If the value is <code class="prettyprint">true</code> show the object source else don't show the source.
-           note:
-           It help you to debug to see
-           (code)
-           AssertionFailedError : expected:<{a:1,b:2,c:3}> but was:<{a:1,b:2,c:4}>
-           (end)
-           instead of
-           (code)
-           AssertionFailedError : expected:<[object Object]> but was:<[object Object]>
-           (end)
-        */
+         * <p><b>Note :</b>It help you to debug to see</p>
+         * <pre class="prettyprint">
+         * AssertionFailedError : expected:<{a:1,b:2,c:3}> but was:<{a:1,b:2,c:4}>
+         * </pre> 
+         * <p>instead of</p>
+         * <pre class="prettyprint">
+         * AssertionFailedError : expected:<[object Object]> but was:<[object Object]>
+         * </pre> 
+         */
         public function get showObjectSource():Boolean
             {
             return _config.showObjectSource;
@@ -314,13 +302,13 @@ package buRRRn.ASTUce
             _config.showObjectSource = value;
             }
         
-        /* Boolean option to invert the order of the arguments: expected, actual
-           see <buRRRn.ASTUce.framework.Assert>
-           
-           parameters:
-           true  - the argument order is: actual, expected. (inverted)
-           false - the argument order is: expected, actual. (default)
-        */
+        /**
+         * Boolean option to invert the order of the arguments: expected, actual 
+         * see <code class="prettyprint">buRRRn.ASTUce.framework.Assert</code>.
+         * <p><b>Parameters:</b></p>
+         * <li><b>true</b> : the argument order is: actual, expected. (inverted)</li>
+         * <li><b>false</b> : the argument order is: expected, actual. (default)</li>
+         */
         public function get invertExpectedActual():Boolean
             {
             return _config.invertExpectedActual;
@@ -334,24 +322,20 @@ package buRRRn.ASTUce
             _config.invertExpectedActual = value;
             }
         
-        /* Boolean option allowing to iterate or not trough inherited tests.
-           
-           parameters:
-           true  - iterate inherited tests
-           false - does NOT iterate inherited tests
-           
-           note:
-           If you set this option to false the following test
-           SuiteTest( testInheritedTests ) will fail.
-           Hopefully the failure message should direct you here ;).
-           (code)
-           0) testInheritedTests( SuiteTest )
-              AssertionFailedError: see buRRRn.ASTUce.config.testInheritedTests
-              	at buRRRn.ASTUce.framework::Assert$/fail()
-              	at buRRRn.ASTUce.framework::Assert$/assertTrue()
-              	at buRRRn.ASTUce.tests.framework::SuiteTest/testInheritedTests()
-           (end)
-        */
+        /**
+         * Boolean option allowing to iterate or not trough inherited tests.
+         * <p>If is <b>true</b> iterate inherited tests.</p>
+         * <p><b>Note :</b></p>
+         * <p>If you set this option to false the following test <code class="prettyprint">SuiteTest( testInheritedTests )</code> will fail.</p>
+         * <p>Hopefully the failure message should direct you here ;).</p>
+         * <pre class="prettyprint">
+         * 0) testInheritedTests( SuiteTest )
+         *    AssertionFailedError: see buRRRn.ASTUce.config.testInheritedTests
+         *        at buRRRn.ASTUce.framework::Assert$/fail()
+         *        at buRRRn.ASTUce.framework::Assert$/assertTrue()
+         *        at buRRRn.ASTUce.tests.framework::SuiteTest/testInheritedTests()
+         * </pre> 
+         */
         public function get testInheritedTests():Boolean
             {
             return _config.testInheritedTests;
@@ -450,28 +434,28 @@ package buRRRn.ASTUce
         
         /**
          * Allows to clean some informations of the stack trace line
-           
-           ex:
-           at buRRRn.ASTUce.samples::ArrayTest/testClone()[C:\code\sandbox\buRRRn\ASTUce\samples\ArrayTest.as:72]
-           become
-           at buRRRn.ASTUce.samples::ArrayTest/testClone()
-           
-           note:
-           to remove all file system info between [ and ]
-           /\[.*\]/ -> ""
-           at buRRRn.ASTUce.samples::ArrayTest/testClone()[C:\code\sandbox\buRRRn\ASTUce\samples\ArrayTest.as:72]
-           at buRRRn.ASTUce.samples::ArrayTest/testClone()
-           
-           to remove only the drive (c:\) info (windows)
-           /\[[a-zA-Z]\:\\/ -> "["
-           at buRRRn.ASTUce.samples::ArrayTest/testClone()[C:\code\sandbox\buRRRn\ASTUce\samples\ArrayTest.as:72]
-           at buRRRn.ASTUce.samples::ArrayTest/testClone()[code\sandbox\buRRRn\ASTUce\samples\ArrayTest.as:72]
-           
-           to remove the drive and path info (c:\some\path) (windows)
-           /\[[a-zA-Z].*\\/ -> "["
-           at buRRRn.ASTUce.samples::ArrayTest/testClone()[C:\code\sandbox\buRRRn\ASTUce\samples\ArrayTest.as:72]
-           at buRRRn.ASTUce.samples::ArrayTest/testClone()[ArrayTest.as:72]
-        */
+         * 
+         * ex:
+         * at buRRRn.ASTUce.samples::ArrayTest/testClone()[C:\code\sandbox\buRRRn\ASTUce\samples\ArrayTest.as:72]
+         * become
+         * at buRRRn.ASTUce.samples::ArrayTest/testClone()
+         * 
+         * note:
+         * to remove all file system info between [ and ]
+         * /\[.*\]/ -> ""
+         * at buRRRn.ASTUce.samples::ArrayTest/testClone()[C:\code\sandbox\buRRRn\ASTUce\samples\ArrayTest.as:72]
+         * at buRRRn.ASTUce.samples::ArrayTest/testClone()
+         * 
+         * to remove only the drive (c:\) info (windows)
+         * /\[[a-zA-Z]\:\\/ -> "["
+         * at buRRRn.ASTUce.samples::ArrayTest/testClone()[C:\code\sandbox\buRRRn\ASTUce\samples\ArrayTest.as:72]
+         * at buRRRn.ASTUce.samples::ArrayTest/testClone()[code\sandbox\buRRRn\ASTUce\samples\ArrayTest.as:72]
+         * 
+         * to remove the drive and path info (c:\some\path) (windows)
+         * /\[[a-zA-Z].*\\/ -> "["
+         * at buRRRn.ASTUce.samples::ArrayTest/testClone()[C:\code\sandbox\buRRRn\ASTUce\samples\ArrayTest.as:72]
+         * at buRRRn.ASTUce.samples::ArrayTest/testClone()[ArrayTest.as:72]
+         */
         public function get cleanupErrorStack():Boolean
             {
             return _config.cleanupErrorStack;
@@ -501,8 +485,9 @@ package buRRRn.ASTUce
             _config.cleanupPattern = value;
             }
         
-        /* Property: cleanupReplacement
-        */
+        /**
+         * Indicates the cleanup replacement value. 
+         */
         public function get cleanupReplacement():String
             {
             return _config.cleanupReplacement;

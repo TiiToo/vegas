@@ -83,7 +83,6 @@ package buRRRn.ASTUce.extensions
      *       //by default each tests will run with a timeout of 500ms
      *       }
      * </pre>
-     *   
      */
     public class TimedTestCase extends TestCase
         {
@@ -113,6 +112,11 @@ package buRRRn.ASTUce.extensions
          */
         private var _timeExceeded:Boolean;
         
+        /**
+         * Creates a new TimedTestCase instance.
+         * @param name The name of the TestCase.
+         * @param maxElapsedTime The max elapsed time of this TestCase.
+         */
         public function TimedTestCase( name:String = "", maxElapsedTime:int = -1 )
             {
             super( name );

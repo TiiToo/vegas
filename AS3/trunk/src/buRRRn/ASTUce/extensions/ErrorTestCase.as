@@ -52,6 +52,8 @@ package buRRRn.ASTUce.extensions
         
         /**
          * Creates a new ErrorTestCase instance.
+         * @param name the name of the test case.
+         * @param The error class.
          */
         public function ErrorTestCase( name:String = "", error:Class = null )
             {

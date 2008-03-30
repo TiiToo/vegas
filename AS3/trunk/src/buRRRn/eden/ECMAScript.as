@@ -75,12 +75,18 @@ package buRRRn.eden
 				trace( member );
 			}
 		}
-
+		
+		/**
+		 * Indicates the verbose flag mode of the parser.
+		 */
 		public static function get verbose():Boolean
 		{
 			return GenericParser.verbose;
 		}
-
+		
+		/**
+		 * @private
+		 */
 		public static function set verbose( value:Boolean ):void
 		{
 			GenericParser.verbose = value;
@@ -141,15 +147,13 @@ package buRRRn.eden
 			return value;
 		}
 
-		/* TODO:
-		add a config
-		to either
-		- store logs (nonblock parsing)
-		- display logs (nonblock parsing)
-		- throw an error (block parsing)
-		- add a safety mecanism to prevent infinite loop log
-		when the same error is logged over and over
-		in non-blocking mode
+		/**
+		 * Dispatch a log message.
+		 * Add a config to either
+		 * <li> store logs (nonblock parsing)</li>
+		 * <li> display logs (nonblock parsing)</li>
+		 * <li> throw an error (block parsing)</li>
+		 * <li>add a safety mecanism to prevent infinite loop log when the same error is logged over and over in non-blocking mode</li>
 		 */
 		public function log( str:String ):void
 		{
@@ -195,7 +199,8 @@ package buRRRn.eden
 			return false;
 		}
 
-		/* Method: isIdentifierPart
+		/**
+		 * Indicates if the identifier is a part.
 		 */
 		public function isIdentifierPart( c:String ):Boolean
 		{
@@ -218,15 +223,16 @@ package buRRRn.eden
 			return false;
 		}
 
-		/* Method: isLineTerminator
-           
-		note:
-		line terminators
-		"\n" - \u000A - LF
-		"\R" - \u000D - CR
-		???  - \u2028 - LS
-		???  - \u2029 - PS
-		see: ECMA-262 spec 7.3 (PDF p24/188)
+		/**
+		 * Inidcates if the specified character is a line terminator.
+		 * <p>Note: line terminators</p>
+		 * <pre class="prettyprint">
+		 * "\n" - \u000A - LF
+		 * "\R" - \u000D - CR
+		 * ???  - \u2028 - LS
+		 * ???  - \u2029 - PS
+		 * see: ECMA-262 spec 7.3 (PDF p24/188)
+		 * </p>
 		 */
 		public function isLineTerminator( c:String ):Boolean
 		{
@@ -244,11 +250,9 @@ package buRRRn.eden
 			}
 		}
 
-		/* Method: isReservedKeyword
-           
-		note:
-		Reserved Keywords
-		see: ECMA-262 spec 7.5.2 p13 (PDF p25/188)
+		/**
+         * Indicates if the specified indentifier is a reserved keyword.
+         * Reserved Keywords see : <b>ECMA-262 spec 7.5.2 p13 (PDF p25/188)</b>
 		 */
 		public function isReservedKeyword( identifier:String ):Boolean
 		{
@@ -296,11 +300,9 @@ package buRRRn.eden
 			}
 		}
 
-		/* Method: isFutureReservedKeyword
-           
-		note:
-		Future Reserved Keywords
-		see: ECMA-262 spec 7.5.3
+		/**
+         * Indicates if the specified identifier string value is a future reserved keyword.  
+		 * <p><b>Note :</b> Future Reserved Keywords in ECMA-262 spec 7.5.3</p>
 		 */
 		public function isFutureReservedKeyword( identifier:String ):Boolean
 		{
@@ -351,7 +353,10 @@ package buRRRn.eden
 					return false;
 			}
 		}
-
+		
+		/**
+		 * Indicates if the specified path is valid.
+		 */
 		public function isValidPath( path:String ):Boolean
 		{
 			debug( "isValidPath()" );
@@ -375,6 +380,9 @@ package buRRRn.eden
 			return true;
 		}
 
+		/**
+		 * Indicates if the specified path does exist in the local scope.
+		 */
 		public function doesExistInLocalScope( path:String ):Boolean
 		{
 			debug( "doesExistInLocalScope( " + path + " )" );
@@ -416,7 +424,7 @@ package buRRRn.eden
 		}
 		
 		/**
-		 * Indicates if the specified path don't exist in the global scope.
+		 * Indicates if the specified path does exist in the global scope.
 		 */
 		public function doesExistInGlobalScope( path:String ):Boolean
 		{
@@ -741,8 +749,8 @@ package buRRRn.eden
 			return path;
 		}
 
-
-		/* Method: scanString
+		/**
+		 * Scans the Strings.
 		 */
 		public function scanString( quote:String ):String
 		{
@@ -1031,6 +1039,9 @@ package buRRRn.eden
 			return undefined;
 		}
 
+		/**
+		 * Scans Arrays.
+		 */
 		public function scanArray():Array
 		{
 			debug( "scanArray()" );
@@ -1071,7 +1082,8 @@ package buRRRn.eden
 			return undefined;
 		}
 
-		/* Method: scanFunction
+		/**
+		 * Scans the Functions.
 		 */
 		public function scanFunction( fcnPath:String, pool:*, ref:* = null ):*
 		{
@@ -1319,8 +1331,8 @@ package buRRRn.eden
 			var member:String = paths.pop( );
             
 			var foundScope:Boolean = false;
-            
-			for( var i:int = 0; i < paths.length ; i++ )
+            var size:uint = paths.length ;
+            for( var i:uint =0 ; i < size ; i++ )
 			{
 				if( !foundScope )
 				{
@@ -1445,7 +1457,8 @@ package buRRRn.eden
             
 			scope = localscope[ prop ];
             
-			for( var i:int = 0; i < paths.length ; i++ )
+            var size:uint = paths.length ;
+            for( var i:uint =0 ; i < size ; i++ )
 			{
 				subpath = paths[i];
                 

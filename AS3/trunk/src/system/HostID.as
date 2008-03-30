@@ -48,15 +48,18 @@ package system
         public static const Flash:HostID = new HostID( 1, "Flash" );
 
         /**
-         * The 'Flex' host id constant.
-         */
-        public static const Apollo:HostID = new HostID( 2, "Apollo" );
-
-        /**
          * The 'Air' host id constant.
          */
-        public static const Air:HostID = new HostID( 3, "Air" );
-        
+        public static const Air:HostID = new HostID( 2, "Air" );
+
+        /* note:
+           We will take into account only hosts upon which you can build
+           "real" application, no moving target.
+        */
+        /*
+        public static const Tamarin:HostID    = new HostID( 3, "Tamarin" );
+        public static const RedTamarin:HostID = new HostID( 4, "RedTamarin" );
+        */
 
     }
     

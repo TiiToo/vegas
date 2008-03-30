@@ -26,7 +26,7 @@ package buRRRn.eden
 {
 
 	/**
-	 * The generic parser static tool class.
+	 * The GenericParser static tool class.
 	 */
 	public class GenericParser
 	{
@@ -43,14 +43,14 @@ package buRRRn.eden
 		}
 
 		/**
-		 * The current parser position in the string expression to parse.
-		 */
-		public var pos:uint ;
-		
-		/**
 		 * The current character to parse.
 		 */
 		public var ch:String ;
+
+		/**
+		 * The current parser position in the string expression to parse.
+		 */
+		public var pos:uint ;
 
 		/**
 		 * Indicates the String source representation of the parser (read-only).
@@ -77,19 +77,19 @@ package buRRRn.eden
 		}
 		
 		/**
-		 * Returns the char in the source to parse at the specified position.
-		 * @return the char in the source to parse at the specified position.
+		 * Returns the current char in the parse process.
+		 * @return the current char in the parse process.
 		 */
-		public function getCharAt( pos:uint ):String
+		public function getChar():String
 		{
 			return source.charAt( pos );
 		}
 
 		/**
-		 * Returns the current char in the parse process.
-		 * @return the current char in the parse process.
+		 * Returns the char in the source to parse at the specified position.
+		 * @return the char in the source to parse at the specified position.
 		 */
-		public function getChar():String
+		public function getCharAt( pos:uint ):String
 		{
 			return source.charAt( pos );
 		}
@@ -166,7 +166,6 @@ package buRRRn.eden
 		/**
 		 * Indicates if the specified character is a unicode character.
 		 */
-
 		public static function isUnicode( c:String ):Boolean
 		{
 			return c.charCodeAt( 0 ) > 255;

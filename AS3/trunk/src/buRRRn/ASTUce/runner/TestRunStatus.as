@@ -46,12 +46,12 @@ package buRRRn.ASTUce.runner
         /**
          * The error TestRunStatus constante (1).
          */
-        public static const error:TestRunStatus   = new TestRunStatus( 1 );
+        public static const error:TestRunStatus   = new TestRunStatus( 1 ) ;
 
         /**
          * The failure TestRunStatus constante (2).
          */
-        public static const failure:TestRunStatus = new TestRunStatus( 2 );
+        public static const failure:TestRunStatus = new TestRunStatus( 2 ) ;
         
         }
     
