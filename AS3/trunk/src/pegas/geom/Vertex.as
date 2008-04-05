@@ -35,7 +35,7 @@ package pegas.geom
 	{
 
 		/**
-		 * Creates a new <code class="prettyprint">Vertex</code> instance.
+		 * Creates a <code class="prettyprint">new Vertex</code> instance.
 		 * @param x the x coordinate.
 		 * @param y the y coordinate.
 	 	 * @param z the z coordinate.
