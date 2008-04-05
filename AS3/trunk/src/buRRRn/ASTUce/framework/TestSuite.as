@@ -221,11 +221,11 @@ package buRRRn.ASTUce.framework
                 */
                 if( er.errorID == 1063 )
                     {
-                    addTest( _warning( Strings.format( strings.ctorIsMalformed, className ), e.message ) );
+                    addTest( _warning( Strings.format( strings.ctorIsMalformed, className ), er.message ) );
                     }
                 else
                     {
-                    addTest( _warning( Strings.format( strings.ctorNotInstanciable, className ), e.message ) );
+                    addTest( _warning( Strings.format( strings.ctorNotInstanciable, className ), er.message ) );
                     }
                 return;
                 }

@@ -105,7 +105,6 @@ package buRRRn.eden
 		public static function emitObject( value:Object ):String
 		{
 			var source:Array = [];
-            
 			for( var member:String in value )
 			{
 				if( value.hasOwnProperty( member ) )

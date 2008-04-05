@@ -23,6 +23,7 @@
 package buRRRn.ASTUce
 {
 	import buRRRn.ASTUce.config;
+	import buRRRn.ASTUce.errors.NullSuiteError;
 	import buRRRn.ASTUce.framework.*;
 	import buRRRn.ASTUce.runner.BaseTestRunner;
 	import buRRRn.ASTUce.strings;
@@ -30,7 +31,7 @@ package buRRRn.ASTUce
 	
 	import system.Console;
 	import system.Reflection;
-	import system.Strings;    
+	import system.Strings;	
 
 	/**
      * This is the default TestRunner for ASTUce
@@ -47,9 +48,9 @@ package buRRRn.ASTUce
          * Display the header.
          */
         protected static function displayHeader():void
-            {
-            buRRRn.ASTUce.info();
-            }
+        {
+            Console.writeLine( buRRRn.ASTUce.info() ) ;
+        }
         
         /**
          * Display the test infos.
@@ -134,35 +135,37 @@ package buRRRn.ASTUce
          * Runs a multiple test and collects their results.
          */
         public static function main( ...args ):void
-            {
+        {
             var result:TestResult;
             var runner:Runner = new Runner();
             var suiteName:String;
             
             displayHeader();
-            
-            for( var i:int=0; i<args.length; i++ )
+            var l:uint = args.length ;
+            for( var i:uint=0; i<l; i++ )
                 {
+                
                 suiteName = runner.getTestName( args[i] );
+                
                 Console.writeLine( Strings.format( _strings.runTitle, suiteName, i ) );
                 
                 try
-                    {
+                {
                     result = run( args[i], runner );
-                    }
+                }
                 catch( er1:NullSuiteError )
-                    {
+                {
                     runner.runFailed( _strings.nullTestsuite );
-                    }
+                }
                 catch( er2:Error )
-                    {
+                {
                     runner.runFailed( Strings.format( _strings.canNotCreateAndRun, i ) );
                     runner.runFailed( Strings.format( _strings.tab, er2.toString() ) );
-                    }
+                }
                 
                 Console.writeLine( strings.separator );
-                }
             }
+        }
         
         /**
          * Runs a single test and collects its results.
@@ -176,6 +179,7 @@ package buRRRn.ASTUce
          */
         public static function run( test:*, runner:Runner = null ):TestResult
             {
+            
             if( runner == null )
                 {
                 runner = new Runner();
@@ -241,12 +245,10 @@ package buRRRn.ASTUce
             return result;
             }
         
-        }
-        
         /**
          * Internal strings.
          */
-        internal var _strings:Object = 
+        private static var _strings:Object = 
         {	
         	runTitle           : "[{0}] #{1}" ,
 			tab                : "    {0}"    ,
@@ -255,12 +257,4 @@ package buRRRn.ASTUce
 		} ;
 
     }
-
-/**
- * The NullSuiteError internal class.
- */
-class NullSuiteError extends Error
-{
-    
 }
-

@@ -133,7 +133,7 @@ package pegas.geom
 		 */
 		public override function toSource( indent:int = 0 ):String 
 		{
-			return Serializer.getSourceOf(this, [p.toSource(), v.toSource()]) ;
+			return Serializer.getSourceOf(this, [p, v]) ;
 		}
 		
 		/**
@@ -142,7 +142,7 @@ package pegas.geom
 		 */ 	
 		public override function toString():String
 		{
-			return "[" + Reflection.getClassName(this) + ":" + p + " + t * " + v + "]" ;
+			return "[" + Reflection.getClassName(this) + ":" + p + "+t*" + v + "]" ;
 		}
 
 		/**

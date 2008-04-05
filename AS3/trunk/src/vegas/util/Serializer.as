@@ -115,14 +115,14 @@ package vegas.util
     		{
     			return FunctionUtil.toSource.apply(o, arguments.slice()) ;
     		}
-    		else if (o as uint) 
-    		{
-    			return ("new uint(" + o + ")") ;
-    		}
-    		else if (o as int) 
-    		{
-    			return ("new int(" + o + ")") ;
-    		}
+    		//else if (o as uint) 
+    		//{
+    		//	return ("new uint(" + o + ")") ;
+    		//}
+    		//else if (o as int) 
+    		//{
+    		//	return ("new int(" + o + ")") ;
+    		//}
     		else if (o is Number) 
     		{
     			return NumberUtil.toSource.apply(o, arguments.slice()) ;

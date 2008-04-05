@@ -21,63 +21,76 @@
 
 */
 package buRRRn.ASTUce
-    {
-    import system.Version;
-    import system.Strings;
-    import buRRRn.ASTUce.config;
+{
+	import buRRRn.ASTUce.config;
+	
+	import system.Strings;
+	import system.Version;    
     
     /**
      * Basic system info
      */
     public function info( verbose:Boolean = false, showConfig:Boolean = false ):String
-        {
+    {
+        
         var separator:String = "----------------------------------------------------------------";
+        
         var CRLF:String      = "\n";
         var name:String      = "ASTUce";
+        
         var fullname:String  = "ActionScript Test Unit compact edition AS3";
+        
         var version:Version  = new Version( 0, 8 );
-            version.revision = parseInt( "$Rev: 60 $".split( " " )[1] );
+        
+        version.revision = parseInt( "$Rev: 60 $".split( " " )[1] );
          
         var copyright:String = "Copyright © 2006-2008 Zwetan Kjukov, All right reserved.";
         var origin:String    = "Made in the EU.";
         
         var str:String = "";
-            if( !verbose && config.verbose )
-                {
-                verbose = true;
-                }
+        
+        if( !verbose && config.verbose )
+        {
+            verbose = true;
+        }
             
-            if( verbose ) {
+        if( verbose ) 
+        {
             str += "{sep}{crlf}";
             str += "{name}: {fullname} v{version}{crlf}";
             str += "{copyright}{crlf}";
             str += "{origin}{crlf}";
             str += "{sep}";
-            } else {
+        } 
+        else 
+        {
             str += "{name} v{version}{crlf}";
             str += "{sep}";
-             }
-            
-            if( showConfig ) {
-            str += "{crlf}config:";
-            str += "{config}{crlf}";
-            str += "{sep}";
-            }
-            
-        return Strings.format( str,
-                               {
-                               sep:separator,
-                               crlf:CRLF,
-                               name:name,
-                               fullname:fullname,
-                               version:version,
-                               copyright:copyright,
-                               origin:origin,
-                               config: config.toSource()
-                               }
-                             );
-        
         }
-    
+        
+        if( showConfig == true ) 
+        {
+            str += "{crlf}" ;
+            str += "config : ";
+            str += "{config}" ;
+            str += "{crlf}" ;
+            str += "{sep}";
+        }
+        
+        var shows:Object = 
+        {
+            sep       : separator ,
+            crlf      : CRLF ,
+            name      : name ,
+            fullname  : fullname ,
+            version   : version ,
+            copyright : copyright ,
+            origin    : origin ,
+            config    : config.toSource()
+        } ;
+
+        return Strings.format( str, shows ) ;
+                               
     }
+}
 

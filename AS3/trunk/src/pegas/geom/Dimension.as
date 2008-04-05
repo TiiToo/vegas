@@ -22,8 +22,6 @@
 */
 package pegas.geom
 {
-	import flash.geom.Rectangle;
-	
 	import system.Reflection;
 	
 	import vegas.core.CoreObject;
@@ -126,11 +124,11 @@ package pegas.geom
     	 * Returns a new bounds with this size with a pos.
     	 * @return a new bounds with this size with a pos.
     	 */
-    	public function getBounds(x:Number, y:Number):flash.geom.Rectangle
+    	public function getBounds(x:Number, y:Number):Rectangle
     	{
     		x = isNaN(x) ? 0 : x ;
     		y = isNaN(y) ? 0 : y ;
-    		return new flash.geom.Rectangle(x, y, width, height) ;	
+    		return new Rectangle(x, y, width, height) ;	
     	}
     	
     	/**

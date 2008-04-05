@@ -40,6 +40,26 @@ package buRRRn.ASTUce
             }
         
         /**
+         * Boolean option to invert the order of the arguments: expected, actual 
+         * see <code class="prettyprint">buRRRn.ASTUce.framework.Assert</code>.
+         * <p><b>Parameters:</b></p>
+         * <li><b>true</b> : the argument order is: actual, expected. (inverted)</li>
+         * <li><b>false</b> : the argument order is: expected, actual. (default)</li>
+         */
+        public function get invertExpectedActual():Boolean
+            {
+            return _config.invertExpectedActual;
+            }
+        
+        /**
+         * @private
+         */
+        public function set invertExpectedActual( value:Boolean ):void
+            {
+            _config.invertExpectedActual = value;
+            }        
+        
+        /**
          * Boolean option to configure the getInfo method behaviour.
          * <p>If the value is <code class="prettyprint">true</code> more verbose else less verbose.</p>
          */
@@ -148,25 +168,6 @@ package buRRRn.ASTUce
             }
         
         /**
-         * Sshows the short tests.
-         * <pre class="prettyprint">
-         *  ...F..E...
-         * </pre> 
-         */
-        public function get showPrinterShortTests():Boolean
-            {
-            return _config.showPrinterShortTests;
-            }
-        
-        /**
-         * @private
-         */
-        public function set showPrinterShortTests( value:Boolean ):void
-            {
-            _config.showPrinterShortTests = value;
-            }
-        
-        /**
          * 
          * Need to be true to display :
          * <li>printHeader</li>
@@ -186,26 +187,7 @@ package buRRRn.ASTUce
         public function set showPrinterDetails( value:Boolean ):void
             {
             _config.showPrinterDetails = value;
-            }
-        
-        /**
-         * show the header
-         * <pre class="prettyprint">
-         *  Time: 0h:0mn:0s:10ms
-         * </pre> 
-         */
-        public function get showPrintHeader():Boolean
-            {
-            return _config.showPrintHeader;
-            }
-        
-        /**
-         * @private
-         */
-        public function set showPrintHeader( value:Boolean ):void
-            {
-            _config.showPrintHeader = value;
-            }
+            }        
         
         /**
          * Show the errors details.
@@ -221,8 +203,8 @@ package buRRRn.ASTUce
         public function set showPrintErrors( value:Boolean ):void
             {
             _config.showPrintErrors = value;
-            }
-        
+            }  
+
         /**
          * Show the failures details
          */
@@ -238,7 +220,7 @@ package buRRRn.ASTUce
             {
             _config.showPrintFailures = value;
             }
-        
+            
         /**
          * Show the footer.
          * <pre class="prettyprint">
@@ -257,7 +239,46 @@ package buRRRn.ASTUce
             {
             _config.showPrintFooter = value;
             }
+
+        /**
+         * show the header
+         * <pre class="prettyprint">
+         *  Time: 0h:0mn:0s:10ms
+         * </pre> 
+         */
+        public function get showPrintHeader():Boolean
+            {
+            return _config.showPrintHeader;
+            }
         
+        /**
+         * @private
+         */
+        public function set showPrintHeader( value:Boolean ):void
+            {
+            _config.showPrintHeader = value;
+            }        
+        
+        /**
+         * Shows the short tests.
+         * <pre class="prettyprint">
+         *  ...F..E...
+         * </pre> 
+         */
+        public function get showPrinterShortTests():Boolean
+            {
+            return _config.showPrinterShortTests;
+            }
+        
+        /**
+         * @private
+         */
+        public function set showPrinterShortTests( value:Boolean ):void
+            {
+            _config.showPrinterShortTests = value;
+            }
+        
+
         /**
          * Sometimes you add a test or a test suite that does not contain any tests, il will show something as
          * <pre class="prettyprint">
@@ -302,25 +323,7 @@ package buRRRn.ASTUce
             _config.showObjectSource = value;
             }
         
-        /**
-         * Boolean option to invert the order of the arguments: expected, actual 
-         * see <code class="prettyprint">buRRRn.ASTUce.framework.Assert</code>.
-         * <p><b>Parameters:</b></p>
-         * <li><b>true</b> : the argument order is: actual, expected. (inverted)</li>
-         * <li><b>false</b> : the argument order is: expected, actual. (default)</li>
-         */
-        public function get invertExpectedActual():Boolean
-            {
-            return _config.invertExpectedActual;
-            }
-        
-        /**
-         * @private
-         */
-        public function set invertExpectedActual( value:Boolean ):void
-            {
-            _config.invertExpectedActual = value;
-            }
+
         
         /**
          * Boolean option allowing to iterate or not trough inherited tests.

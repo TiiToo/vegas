@@ -8,7 +8,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is [ES4a: ECMAScript 4 MaasHaack framework].
+  The Original Code is [ASTUce: ActionScript Test Unit compact edition AS3]. 
   
   The Initial Developer of the Original Code is
   Zwetan Kjukov <zwetan@gmail.com>.
@@ -17,17 +17,25 @@
   
   Contributor(s):
   
-  	- Alcaraz Marc (aka eKameleon) <ekameleon@gmail.com> (2007-2008)
+    - Alcaraz Marc (aka eKameleon) <vegas@ekameleon.net> (2007-2008)
 
 */
-package system
+package buRRRn.ASTUce.errors 
 {
-	import buRRRn.eden;		
+
 	/**
-	 * The System configurator.
+	 * The NullSuiteError class.
+	 * @author eKameleon
 	 */
-    public var config:SystemConfigurator = new SystemConfigurator( {
-                                                                   verbose    : false ,
-                                                                   serializer : eden
-                                                                   } );    
-    }
+	public class NullSuiteError extends Error 
+	{
+
+        /**
+         * Creates a new NullSuiteError instance.
+         */
+		public function NullSuiteError(message:String = "", id:uint = 0)
+		{
+			super( message, id );
+		}
+	}
+}

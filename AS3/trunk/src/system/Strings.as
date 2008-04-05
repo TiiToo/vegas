@@ -296,11 +296,12 @@ package system
                 return format; //nothing to format
             }
             
-            var paddingChar:String = " "; 
-            //default padding char is SPC
-            var indexedValues:Array = [];  
-            //cf {0} {1} etc.
+            var paddingChar:String = " " ; //default padding char is SPC 
+            
+            var indexedValues:Array = [] ; //cf {0} {1} etc.  
+            
             var namedValues:Object = {};  
+            
             //cf {toto} {titi} etc.
             //var numeric:RegExp      = /^[0-9]*/;
             //var alphabetic:RegExp   = /^[A-Za-z]./;
@@ -325,7 +326,7 @@ package system
             }
             
             indexedValues = indexedValues.concat( args );
-            
+
             //escape {{ and }}
             var ORC1:String = "\uFFFC"; 
             //Object Replacement Character
