@@ -117,7 +117,7 @@ package pegas.geom
 		 */ 	
 		public override function toString():String
 		{
-			return "[" + Reflection.getClassName(this) + " {" + x + "," + y + "," + z + "," + w + "}]" ;
+			return "[" + Reflection.getClassName(this) + ":{" + x + "," + y + "," + z + "," + w + "}]" ;
 		}
 	
 	}

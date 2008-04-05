@@ -188,7 +188,7 @@ package pegas.geom
 		 */ 	
 		public override function toString():String
 		{
-			return "[" + Reflection.getClassName(this) + " {x:" + x + ",y:" + y + ",z:" + z + ",tx:" + tx + ",ty:" + ty + ",tz:" + tz + "}]" ;
+			return "[" + Reflection.getClassName(this) + ":{x:" + x + ",y:" + y + ",z:" + z + ",tx:" + tx + ",ty:" + ty + ",tz:" + tz + "}]" ;
 		}
 
 	}
