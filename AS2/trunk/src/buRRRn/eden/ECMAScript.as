@@ -20,7 +20,9 @@ Contributor(s):
 - ALCARAZ Marc (aka eKameleon) <vegas@ekameleon.net>   		 
 Eden for VEGAS, use this version only with Vegas AS2 Framework Please.
   
- */import buRRRn.eden.config;
+ */
+
+import buRRRn.eden.config;
 import buRRRn.eden.strings;
 
 import vegas.core.ICopyable;
@@ -853,7 +855,7 @@ class buRRRn.eden.ECMAScript extends buRRRn.eden.GenericParser
         
         if( !isReservedKeyword( ctor ) && !isFutureReservedKeyword( ctor ) )
         {
-	        ctorObj = ConstructorUtil.createInstanceByNamespace(ctor) ;
+	        ctorObj = ConstructorUtil.createConstructorByNamespace(ctor) ;
         }
         else
         {

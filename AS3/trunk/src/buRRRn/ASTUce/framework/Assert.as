@@ -27,7 +27,7 @@ package buRRRn.ASTUce.framework
 	
 	import system.IEquatable;
 	import system.Strings;
-	import system.config;	
+	
 
 	/**
      * A set of assert methods. Messages are only displayed when an assert fails. It is a static only class.
@@ -50,6 +50,9 @@ package buRRRn.ASTUce.framework
                we don't want to have prettyPrinting messing
                with our lines output so we deactivate it
             */
+            
+            import system.config;   
+            
             var pretty:Boolean = system.config.serializer.prettyPrinting;
             
             system.config.serializer.prettyPrinting = false;

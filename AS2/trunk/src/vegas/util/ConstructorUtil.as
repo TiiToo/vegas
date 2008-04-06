@@ -42,6 +42,38 @@ class vegas.util.ConstructorUtil
 	}
 	
 	/**
+	 * Returns an object defined by the specified path.
+	 * <p><b>Example :</b></p>
+	 * {@code
+	 * import vegas.util.ConstructorUtil  ;
+	 * import vegas.core.CoreObject ;
+	 * 
+	 * var clazz:Function = ConstructorUtil.createConstructorByNamespace("vegas.core.CoreObject") ;
+	 * 
+	 * var core:CoreObject = new clazz() ;
+	 * trace(core) ; // [CoreObject]
+	 * }
+	 * @return an object defined by the specified path.
+	 */
+    public static function createConstructorByNamespace( path:String , scope )
+	{
+		var a:Array = path.split('.');
+		var l:Number = a.length ;
+		var name:String ;
+		scope = scope || _global ;
+		for (var i:Number = 0 ; i < l ; i++) 
+		{
+			name = a[i] ;
+			if ( ! scope[name] ) 
+			{
+				scope[name] = {} ;
+			}
+			scope = scope[name] ;
+		}
+		return scope ;
+	} ;	
+	
+	/**
 	 * Creates an instance of the constructor function passed in argument.
 	 * This method launch the constructor of the class with all arguments in the {@code args} array.
 	 * @param c the function constructor.
@@ -58,38 +90,6 @@ class vegas.util.ConstructorUtil
 		c.apply(i, args) ;
 		return i ;
 	}
-	
-	/**
-	 * Returns an object defined by the specified path.
-	 * <p><b>Example :</b></p>
-	 * {@code
-	 * import vegas.util.ConstructorUtil  ;
-	 * import vegas.core.CoreObject ;
-	 * 
-	 * var clazz:Function = ConstructorUtil.createInstanceByNamespace("vegas.core.CoreObject") ;
-	 * 
-	 * var core:CoreObject = new clazz() ;
-	 * trace(core) ; // [CoreObject]
-	 * }
-	 * @return an object defined by the specified path.
-	 */
-    public static function createInstanceByNamespace( path:String , scope )
-	{
-		var a:Array = path.split('.');
-		var l:Number = a.length ;
-		var name:String ;
-		scope = scope || _global ;
-		for (var i:Number = 0 ; i < l ; i++) 
-		{
-			name = a[i] ;
-			if ( ! scope[name] ) 
-			{
-				scope[name] = {} ;
-			}
-			scope = scope[name] ;
-		}
-		return scope ;
-	} ;
 
 	/**
 	 * Transforms and returns the reference of the visual object passed in argument. 
