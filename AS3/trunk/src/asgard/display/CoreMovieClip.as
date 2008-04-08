@@ -22,18 +22,18 @@
 */
 package asgard.display 
 {
-	import flash.display.MovieClip;
-	
-	import asgard.config.Config;
-	import asgard.config.ConfigCollector;
-	
-	import system.Reflection;
-	
-	import vegas.core.HashCode;
-	import vegas.logging.ILogger;
-	import vegas.logging.Log;	
+    import flash.display.MovieClip;
+    
+    import asgard.config.Config;
+    import asgard.config.ConfigCollector;
+    
+    import system.Reflection;
+    
+    import vegas.core.HashCode;
+    import vegas.logging.ILogger;
+    import vegas.logging.Log;	
 
-	/**
+    /**
 	 * The CoreMovieClip class extends the flash.display.MovieClip class and implements the IDisplayObject interface.
 	 * @example
 	 * <pre class="prettyprint">
@@ -169,15 +169,7 @@ package asgard.display
          */
         public function setup():void
         {
-			var config:Object = Config.getInstance()[ id ] ; 
-			if ( config != null ) 
-			{
-				for (var prop:String in config)
-				{
-					this[prop] = config[prop] ; 
-				}
-			}
-			update() ;	
+        	Config.getInstance().init(this, id, update) ; 
         }
         
 		/**

@@ -23,12 +23,11 @@
 
 package asgard.config
 {
+    import asgard.config.IConfigurable;
+    
+    import vegas.data.iterator.Iterator;
+    import vegas.data.sets.HashSet;	
 
-	import asgard.config.IConfigurable;
-	
-	import vegas.data.iterator.Iterator;
-	import vegas.data.sets.HashSet;
-	
     /**
      * The ConfigCollector class is a static collection to register all IConfigurable objects.
      * @author eKameleon
@@ -81,7 +80,10 @@ package asgard.config
     		    var l:uint = ar.length ;
     		    while(--l > -1)
     		    {
-    				ar[l].setup() ;	
+    		    	if ( ar[l] is IConfigurable)
+    		    	{
+    					(ar[l] as IConfigurable).setup() ;
+    		    	}	
     			}
     		}	
     	}
