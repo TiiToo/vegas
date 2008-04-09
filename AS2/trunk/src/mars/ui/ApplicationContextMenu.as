@@ -19,8 +19,7 @@
   
   Contributor(s) :
   
-*/
-
+ */
 import asgard.config.Config;
 import asgard.config.ConfigurableObject;
 import asgard.display.StageDisplayState;
@@ -199,7 +198,6 @@ class mars.ui.ApplicationContextMenu extends ConfigurableObject
 			for (var i:Number = 0 ; i<l ; i++) 
 			{
 				var item = conf[i] ;
-				getLogger().info( this + " label:" + item.label + ",url : " + item.url) ;
 				addURL( item.label, item.url, item.target, item.separator ) ;
 			}	
 		}
