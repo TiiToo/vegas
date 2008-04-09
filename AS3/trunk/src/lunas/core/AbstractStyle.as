@@ -24,30 +24,30 @@ package lunas.core
 {
 	import flash.text.StyleSheet;
 	
+	import asgard.config.ConfigurableObject;
+	
 	import lunas.events.StyleEvent;
 	
-	import system.Reflection;
-	
-	import vegas.events.AbstractCoreEventDispatcher;	
+	import system.Reflection;	
 
 	/**
 	 * This class provides a skeletal implementation of the <code class="prettyprint">IStyle</code> interface, to minimize the effort required to implement this interface.
 	 * @author eKameleon
  	 */
-	public class AbstractStyle extends AbstractCoreEventDispatcher implements IStyle
+	public class AbstractStyle extends ConfigurableObject implements IStyle
 	{
 		
 		/**
 		 * Creates a new AbstractStyle instance.
 		 * @param id The id of the object.
-		 * @param init An object that contains properties with which to populate the newly IStyle object. If initObject is not an object, it is ignored. 
+		 * @param init An object that contains properties with which to populate the newly IStyle object. If initObject is not an object, it is ignored.
+    	 * @param bGlobal the flag to use a global event flow or a local event flow.
+    	 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
 		 */
-		public function AbstractStyle ( id:*=null , init:*=null )
+		public function AbstractStyle ( id:*=null , init:*=null , bGlobal:Boolean = false , sChannel:String = null )
 		{
-			if ( id != null )
-			{
-				this.id = id ;
-			}
+			super( id , id != null , bGlobal , sChannel ) ; // configurable if the id != null
+			initialize() ;
 			if ( init != null )
 			{		
 				for (var prop:String in init) 
@@ -55,24 +55,7 @@ package lunas.core
 					this[prop] = init[prop] ;
 				}
 			}
-			initialize() ;
 			update() ;
-		}
-
-		/**
-		 * (read-write) Indicates the id of this IStyle object.
-		 */
-		public function get id():*
-		{
-			return _id ;
-		}
-	
-		/**
-		 * @private
-		 */
-		public function set id( id:* ):void
-		{
-			_setID( id ) ;
 		}
 
 		/**
@@ -90,7 +73,6 @@ package lunas.core
 		{
 			_ss = ss ;
 			styleSheetChanged() ;
-			update() ;
 			dispatchEvent( new StyleEvent( StyleEvent.STYLE_SHEET_CHANGE , this ) ) ;
 		}
 
@@ -119,6 +101,15 @@ package lunas.core
 		}
 		
 		/**
+		 * Invoked when the style is changed.
+		 */
+		public function notifyStyleChanged():void
+		{
+			styleChanged() ;
+			dispatchEvent( new StyleEvent( StyleEvent.STYLE_CHANGE , this ) ) ;
+		}
+		
+		/**
 		 * This method is invoked to change a style attribute in this IStyle object with a generic object or a key(String)/value pair of arguments.
 		 */
 		public function setStyle( ...args:Array ):void
@@ -132,7 +123,7 @@ package lunas.core
 				if ( args[0] in this ) 
 				{
 					this[ args[0] ] = args[1] ;
-					dispatchEvent( new StyleEvent( StyleEvent.STYLE_CHANGE , this ) ) ;
+					notifyStyleChanged() ;
 				}
 			}
 			else if ( args[0] is Object ) 
@@ -142,10 +133,19 @@ package lunas.core
 				{
 					this[i] = prop[i] ;
 				}
-				dispatchEvent( new StyleEvent( StyleEvent.STYLE_CHANGE , this ) ) ;
+				notifyStyleChanged() ;
 			}
 		}
-		
+
+     	/**
+    	 * Invoked when this object when the ConfigCollector is run.
+    	 */
+       	public override function setup():void
+        {
+			super.setup() ;
+			notifyStyleChanged() ;
+        }		
+
 		/**
 		 * Invoked when a style property of this <code class="prettyprint">IStyle</code> change.
 		 * By default this method is empty, you can override this method.
@@ -180,15 +180,6 @@ package lunas.core
 		}	
 		
 		/**
-		 * Updates the <code class="prettyprint">IStyle</code> object.
-		 * By default this method is empty, you can override this method.
-		 */
-		public function update():void
-		{
-			// 
-		}
-		
-		/**
 		 * @private
 		 */
 		private var _id:* ;		
@@ -202,13 +193,13 @@ package lunas.core
 		 * Sets the id of the object and register it in the StyleCollector if it's possible.
 		 * @see StyleCollector.
 		 */
-		private function _setID( id:* ):void 
+		protected override function _setID( id:* ):void 
 		{
 			if ( StyleCollector.contains( this._id ) )
 			{
 				StyleCollector.remove( this._id ) ;
 			}
-			this._id = id ;
+			super._setID( id ) ;
 			if ( this._id != null )
 			{
 				StyleCollector.insert ( this._id, this ) ;

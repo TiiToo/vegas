@@ -168,15 +168,10 @@ package asgard.display
          */
         public function setup():void
         {
-			var config:Object = Config.getInstance()[ id ] ; 
-			if ( config != null ) 
-			{
-				for (var prop:String in config)
-				{
-					this[prop] = config[prop] ; 
-				}
-			}
-			update() ;	
+        	if ( id != null )
+        	{
+				Config.getInstance().init( this , id , update ) ;
+        	}
         }
         
 		/**

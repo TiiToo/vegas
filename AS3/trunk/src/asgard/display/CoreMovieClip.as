@@ -169,7 +169,10 @@ package asgard.display
          */
         public function setup():void
         {
-        	Config.getInstance().init(this, id, update) ; 
+        	if ( id != null )
+        	{
+				Config.getInstance().init( this , id , update ) ;
+        	}
         }
         
 		/**
