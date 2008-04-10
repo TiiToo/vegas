@@ -22,25 +22,25 @@
 */
 package andromeda.ioc.factory 
 {
-	import flash.utils.getDefinitionByName;
-	
-	import andromeda.ioc.core.IObjectDefinition;
-	import andromeda.ioc.core.ObjectAttribute;
-	import andromeda.ioc.core.ObjectDefinitionContainer;
-	import andromeda.ioc.core.ObjectFactoryMethod;
-	import andromeda.ioc.core.ObjectMethod;
-	import andromeda.ioc.core.ObjectStaticFactoryMethod;
-	import andromeda.ioc.factory.IObjectFactory;
-	
-	import system.Reflection;
-	
-	import vegas.data.Map;
-	import vegas.data.iterator.Iterator;
-	import vegas.data.map.HashMap;
-	import vegas.errors.NullPointerError;
-	import vegas.util.ClassUtil;	
+    import flash.utils.getDefinitionByName;
+    
+    import andromeda.ioc.core.IObjectDefinition;
+    import andromeda.ioc.core.ObjectAttribute;
+    import andromeda.ioc.core.ObjectDefinitionContainer;
+    import andromeda.ioc.core.ObjectFactoryMethod;
+    import andromeda.ioc.core.ObjectMethod;
+    import andromeda.ioc.core.ObjectStaticFactoryMethod;
+    import andromeda.ioc.factory.IObjectFactory;
+    
+    import system.Reflection;
+    
+    import vegas.data.Map;
+    import vegas.data.iterator.Iterator;
+    import vegas.data.map.HashMap;
+    import vegas.errors.NullPointerError;
+    import vegas.util.ClassUtil;	
 
-	/**
+    /**
 	 * The factory of all objects who implements the IObjectDefinition interface.
 	 * @author eKameleon
 	 */

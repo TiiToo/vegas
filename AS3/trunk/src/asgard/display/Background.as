@@ -23,23 +23,23 @@
 package asgard.display 
 {
     import flash.events.Event;
-	import flash.geom.Matrix;
-	
-	import asgard.display.CoreSprite;
-	
-	import pegas.draw.FillGradientStyle;
-	import pegas.draw.IFillStyle;
-	import pegas.draw.ILineStyle;
-	import pegas.draw.IPen;
-	import pegas.draw.Pen;
-	import pegas.draw.RoundedComplexRectanglePen;
-	import pegas.geom.Dimension;
-	import pegas.util.Trigo;
-	
-	import vegas.events.BasicEvent;
-	import vegas.util.MathsUtil;	
+    import flash.geom.Matrix;
+    
+    import asgard.display.CoreSprite;
+    
+    import pegas.draw.FillGradientStyle;
+    import pegas.draw.IFillStyle;
+    import pegas.draw.ILineStyle;
+    import pegas.draw.IPen;
+    import pegas.draw.Pen;
+    import pegas.draw.RoundedComplexRectanglePen;
+    import pegas.geom.Dimension;
+    import pegas.util.Trigo;
+    
+    import vegas.events.BasicEvent;
+    import vegas.util.MathsUtil;    
 
-	/**
+    /**
      * This display is used to create a background in your application or in an other display of the application.
      * @example
      * <pre class="prettyprint">
@@ -158,7 +158,7 @@ package asgard.display
         /**
          * @private
          */
-        public function set isFull(b:Boolean):void
+        public function set isFull( b:Boolean ):void
         {
             _isFull = b ;
             update() ;
@@ -339,13 +339,20 @@ package asgard.display
         /**
          * @private
          */
-        private var _fillStyle:IFillStyle ;
-
+        protected var _h:Number ;
+        
         /**
          * @private
          */
-        private var _h:Number ;
+        protected var _w:Number ;
+        
+        
+        /**
+         * @private
+         */
+        private var _fillStyle:IFillStyle ;
 
+        
         /**
          * @private
          */
@@ -370,12 +377,8 @@ package asgard.display
          * @private
          */
         private var _sResize:String = Event.RESIZE ;
-
-        /**
-         * @private
-         */
-        private var _w:Number ;
         
     }
+
 }
 

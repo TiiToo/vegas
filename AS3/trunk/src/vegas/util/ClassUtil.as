@@ -23,15 +23,15 @@ Contributor(s) :
 
 package vegas.util
 {
-	import flash.utils.describeType;
-	import flash.utils.getQualifiedClassName;
-	
-	import system.Reflection;
-	
-	import vegas.core.HashCode;
-	import vegas.core.IHashable;	
+    import flash.utils.describeType;
+    import flash.utils.getQualifiedClassName;
+    
+    import system.Reflection;
+    
+    import vegas.core.HashCode;
+    import vegas.core.IHashable;    
 
-	/**
+    /**
 	 * The <code class="prettyprint">ClassUtil</code> utility class is an all-static class with methods for working with function the Class in AS3.
 	 * @author eKameleon
 	 */
@@ -57,7 +57,6 @@ package vegas.util
 			return build.apply( null, params );
 	    }
 		
-
 		/**
 		 * Creates an instance with the passed-in Class.
 		 * @param c the class to instanciate.

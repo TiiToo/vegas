@@ -169,8 +169,6 @@ package asgard.net
     		_controller.remove(eventName) ;
     	}
         
-
-        
         /**
          * The internal NetServerConnection reference of this gateway.
          */
