@@ -81,7 +81,7 @@
         }
         
         /**
-         * Invoqued when a key event is notify.
+         * Invoked when a key event is notify.
          */
         public function keyHandler( e:KeyboardEvent ):void
         {

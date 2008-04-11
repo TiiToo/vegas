@@ -1,18 +1,16 @@
 ﻿
 package mvc.display
 {
-    import flash.display.Loader;
-    import flash.display.Sprite;
-    
-    import andromeda.util.visitor.IVisitable;
-    import andromeda.util.visitor.IVisitor;
-    
-    import asgard.display.DisplayObjectCollector;    
+	import andromeda.util.visitor.IVisitable;
+	import andromeda.util.visitor.IVisitor;
+	
+	import asgard.display.CoreLoader;
+	import asgard.display.CoreSprite;	
 
-    /**
+	/**
      * The PictureDisplay class.
      */
-    public class PictureDisplay extends Sprite implements IVisitable
+    public class PictureDisplay extends CoreSprite implements IVisitable
     {
 
         /**
@@ -21,13 +19,9 @@ package mvc.display
         public function PictureDisplay() 
         {
 
-            name = UIList.PICTURE ;
+            super( UIList.PICTURE ) ;
             
-            var loader:Loader = new Loader() ;
-            loader.name       = UIList.LOADER ;
-            
-            DisplayObjectCollector.insert( name , this ) ;            
-            DisplayObjectCollector.insert( loader.name , loader ) ;
+            loader = new CoreLoader( UIList.LOADER ) ;
             
             update() ;
             
@@ -37,7 +31,12 @@ package mvc.display
          * The virtual height of the picture.
          */  
         public var h:uint = 260 ;
-    
+        
+        /**
+         * The loader of this picture display.
+         */
+        public var loader:CoreLoader ;
+        
         /**
          * The margin in the picture to display the container.
          */
@@ -60,14 +59,11 @@ package mvc.display
         /**
          * Update the view of the display.
          */
-        public function update():void
+        public override function update():void
         {
             graphics.clear() ;
-            graphics.beginFill(0xFFFFFF, 100) ;
-            graphics.lineTo(w, 0) ;
-            graphics.lineTo(w, h) ;
-            graphics.lineTo(0, h) ;
-            graphics.lineTo(0, 0) ;
+            graphics.beginFill(0xFFFFFF, 1) ;
+            graphics.drawRect(0,0,w,h) ;
             graphics.endFill() ;
         }
 

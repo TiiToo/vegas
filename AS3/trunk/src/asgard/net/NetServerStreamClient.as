@@ -56,10 +56,10 @@ package asgard.net
 		public var netStream:NetStream ;
       	
     	/**
-	     * Invoked when the cuePoints object of the NetStream is changed.
+	     * Invoked when an embedded cue point is reached while playing an FLV file.
 	     * This method can be overrides easily.
 	     */    	
-	    public function onCuePoint(info:Object):void 
+	    public function onCuePoint( info:Object ):void 
 	    {
 	    	// overrides
         	// getLogger().info( this + " cuepoint: time=" + info.time + " name=" + info.name + " type=" + info.type);

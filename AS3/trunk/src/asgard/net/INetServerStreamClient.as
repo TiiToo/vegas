@@ -23,22 +23,50 @@
 package asgard.net 
 {
 
-    /**
+	/**
      * This interface provides all callback methods invoked in a NetStream object.
      * @author eKameleon
      */
     public interface INetServerStreamClient 
     {
-    	
+      	
     	/**
-	     * Invoked when the metadatas object of the NetStream is changed.
-      	 */
-    	function onMetaData(info:Object):void ; 
-
-    	/**
-	     * Invoked when the cuePoints object of the NetStream is changed.
+	     * Invoked when an embedded cue point is reached while playing an FLV file.
+	     * This method can be overrides easily.
 	     */    	
-	   	function onCuePoint(info:Object):void ; 
+	    function onCuePoint( info:Object ):void ;
+      	
+      	/**
+      	 * Dispatched when Flash Player receives image data as a byte array embedded in a media file that is playing. 
+      	 * The image data can produce either JPEG, PNG or GIF content. 
+      	 * Use the flash.display.Loader.loadBytes() method to load the byte array into a display object.
+      	 */
+      	function onImageData( imageData:Object ):void ;
+      	
+	    /**
+	     * Dispatched when the application receives descriptive information embedded in the video being played. 
+	     * For information about video file formats supported by Flash Media Server, see the Flash Media Server documentation.
+     	 */
+    	function onMetaData(info:Object):void ; 
+			    
+	    /**
+	     * Dispatched when the application receives descriptive information embedded in the video being played. 
+	     * For information about video file formats supported by Flash Media Server, see the Flash Media Server documentation.
+	     * @see NetStreamStatus.PLAY_COMPLETE
+	     * @see NetStreamStatus.PLAY_SWITCH
+     	 */
+    	function onPlayStatus(info:Object):void ; 
+			    
+	    /**
+	     * Dispatched when Flash Player receives text data embedded in a media file that is playing. 
+	     * The text data is in UTF-8 format and can contain information about formatting based on the 3GP timed text specification. 
+	     * This special event is intended for use with Flash Media Server; 
+	     * for more information, see the class description. You cannot use the addEventListener() method, or any other EventDispatcher methods, to listen for, or process, this event. 
+	     * Rather, you must define a single callback function and attach it directly to the textData object.
+	     * <p>This event is triggered after a call to the NetStream.play() method, but before the video playhead has advanced.</p>
+	     * <p>The onTextData event object contains one property for each piece of text data.</p>
+     	 */
+    	function onTextData(textData:Object):void ;	
     	
     }
 }
