@@ -22,15 +22,14 @@
 */
 package asgard.media 
 {
+    import andromeda.vo.SimpleValueObject;    
 
-    import andromeda.vo.SimpleValueObject;
-    
     /**
      * The FLVMetaData instances contains all datas values injected in the external FLV video.
      * <p>More informations in the <a href='http://www.buraks.com/flvmdi/'>flvmdi page</a> write by Burak.</p>
      * @author eKameleon
      */
-    public class FLVMetaData extends SimpleValueObject 
+    public dynamic class FLVMetaData extends SimpleValueObject 
     {
 
         /**
@@ -93,7 +92,7 @@ package asgard.media
         public var datasize:Number ;
             
         /**
-         * Length of the FLV in seconds. FLVMDI computes this value.
+         * Length of the FLV in seconds. FLVMDI computes this value for example.
          */
         public var duration:Number ;
         

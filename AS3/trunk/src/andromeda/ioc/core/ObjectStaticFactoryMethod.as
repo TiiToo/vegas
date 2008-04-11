@@ -52,6 +52,7 @@ package andromeda.ioc.core
 			{
 				return null ;
 			}
+			
 			if ( ObjectAttribute.TYPE in factoryMethod && ObjectAttribute.NAME in factoryMethod )
 			{
 				return new ObjectStaticFactoryMethod

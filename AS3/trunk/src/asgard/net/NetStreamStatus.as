@@ -22,7 +22,7 @@
 */
 package asgard.net 
 {
-    import vegas.core.CoreObject;        
+    import vegas.core.CoreObject;            
 
     /**
      * The NetStream status object who contains the level and the status value of all NetStreams in the application.
@@ -99,6 +99,11 @@ package asgard.net
 		 * The stream is paused.
 		 */
 		public static const PAUSE:NetStreamStatus = new NetStreamStatus("NetStream.Pause.Notify", STATUS) ;	
+
+		/**
+		 * Playback has completed.
+		 */
+		public static const PLAY_COMPLETE:NetStreamStatus = new NetStreamStatus("NetStream.Play.Complete", STATUS) ;
 		
 		/**
 		 * An error has occurred in playback for a reason other than those listed elsewhere in this table,
@@ -130,6 +135,11 @@ package asgard.net
 		 * The FLV passed to the play() method can't be found.
 		 */
 		public static const PLAY_STREAM_NOT_FOUND:NetStreamStatus = new NetStreamStatus("NetStream.Play.StreamNotFound", ERROR) ;	
+	
+		/**
+		 * The subscriber is switching from one stream to another in a playlist.
+		 */
+		public static const PLAY_SWITCH:NetStreamStatus = new NetStreamStatus("NetStream.Play.Switch", STATUS) ;	
 	
 		/**
 		 * An unpublish from a stream is sent to all subscribers.

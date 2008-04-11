@@ -22,23 +22,23 @@
 */
 package asgard.net
 {
-	import flash.events.Event;
-	import flash.events.IOErrorEvent;
-	import flash.events.NetStatusEvent;
-	import flash.events.SecurityErrorEvent;
-	import flash.events.TimerEvent;
-	import flash.net.NetConnection;
-	import flash.net.ObjectEncoding;
-	import flash.net.Responder;
-	import flash.utils.Timer;
-	
-	import asgard.events.NetServerEvent;
-	
-	import vegas.core.ICloneable;
-	import vegas.core.IRunnable;
-	import vegas.events.AbstractCoreEventDispatcher;	
+    import flash.events.Event;
+    import flash.events.IOErrorEvent;
+    import flash.events.NetStatusEvent;
+    import flash.events.SecurityErrorEvent;
+    import flash.events.TimerEvent;
+    import flash.net.NetConnection;
+    import flash.net.ObjectEncoding;
+    import flash.net.Responder;
+    import flash.utils.Timer;
+    
+    import asgard.events.NetServerEvent;
+    
+    import vegas.core.ICloneable;
+    import vegas.core.IRunnable;
+    import vegas.events.AbstractCoreEventDispatcher;    
 
-	/**
+    /**
  	 * This class extends the NetConnection class and defined an implementation based on VEGAS to used Flash Remoting or Flash MediaServer (with AMF protocol).
 	 * @author eKameleon
 	 */	
@@ -54,7 +54,7 @@ package asgard.net
 		{
 			
 			super( bGlobal , sChannel ) ;	
-			
+						
 			_nc = new NetConnection() ;
 			_nc.client = this ;
 			_nc.objectEncoding = ObjectEncoding.AMF0 ; // DEFAULT AMF0
@@ -258,7 +258,16 @@ package asgard.net
 	    {
     		return new NetServerEvent( type || null , this ) ;
     	}
-
+    	
+    	/**
+    	 * Returns the internal NetConnection reference of this object.
+    	 * @return the internal NetConnection reference of this object.
+    	 */
+		public function getNetConnection():NetConnection
+		{
+			return _nc ;	
+		}
+		
     	/**
     	 * Returns the event name use in the connection is closed.
     	 * @return the event name use in the connection is closed.

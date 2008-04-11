@@ -40,7 +40,7 @@ package andromeda.ioc.factory
     import vegas.data.map.HashMap;
     import vegas.data.queue.LinearQueue;
     import vegas.data.sets.HashSet;
-    import vegas.errors.NullPointerError;	
+    import vegas.errors.NullPointerError;    
 
     /**
 	 * This factory builder use a deserialize eden object to creates all Objects with the IObjectDefinitionContainer.
@@ -426,7 +426,7 @@ package andromeda.ioc.factory
 				var singleton:Boolean          =  o[ ObjectAttribute.OBJECT_SINGLETON ] ;
 				var staticfactoryMethod:Object =  o[ ObjectAttribute.OBJECT_STATIC_FACTORY_METHOD ] ;				
 				var type:String                =  o[ ObjectAttribute.TYPE ] ;
-				
+									
 				var definition:ObjectDefinition = new ObjectDefinition( id, type , singleton , lazyInit ) ;
 				definition.setConstructorArguments( args ) ;
 				definition.setDestroyMethodName( destroy ) ;

@@ -38,7 +38,7 @@ package andromeda.ioc.factory
     import vegas.data.iterator.Iterator;
     import vegas.data.map.HashMap;
     import vegas.errors.NullPointerError;
-    import vegas.util.ClassUtil;	
+    import vegas.util.ClassUtil;    
 
     /**
 	 * The factory of all objects who implements the IObjectDefinition interface.
