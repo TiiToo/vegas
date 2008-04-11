@@ -67,11 +67,7 @@
         
             for (var i:uint = 1 ; i<= count ; i++)
             {
-                var init:Object =
-                {
-                    id:i , name:"picture_" + i , url:"library/picture" + i + ".jpg" 
-                } ;
-                picture = new PictureVO(  init ) ; 
+                picture = new PictureVO( { id:i , name:"picture_" + i , url:"library/picture" + i + ".jpg" } ) ; 
                 gallery.addVO( picture ) ;
             }
             
