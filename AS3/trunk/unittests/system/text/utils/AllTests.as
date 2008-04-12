@@ -20,14 +20,10 @@
   Contributor(s) :
   
 */
-package  
+package system.text.utils  
 {
 	import buRRRn.ASTUce.framework.ITest;
-	import buRRRn.ASTUce.framework.TestSuite;
-	
-	import pegas.AllTests;
-	
-	import system.AllTests;	
+	import buRRRn.ASTUce.framework.TestSuite;	
 
 	/**
 	 * This class launch all tests.
@@ -41,18 +37,16 @@ package
          */		
         public static function suite():ITest
         {
-            var suite:TestSuite = new TestSuite( "VEGAS v1RC4 unit tests" );
-            
-            // pegas
-            
-            suite.addTest( pegas.AllTests.suite() );
-            
-            // system
-            
-            suite.addTest( system.AllTests.suite() );
+            var suite:TestSuite = new TestSuite( "system.text.utils" );
+
+            suite.addTestSuite( TestDifference ) ;
+            suite.addTestSuite( TestGetMaxBits ) ;
+            suite.addTestSuite( TestMatch ) ;
+            suite.addTestSuite( TestPatch ) ;
+            suite.addTestSuite( TestPatchObject ) ;
             
             return suite;
         }
-        
 	}
 }
+
