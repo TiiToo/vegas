@@ -39,21 +39,21 @@ package system.text.utils
   		 */
 		public static var balance:Number = 0.5 ;		
 		
+        /**
+         * How many bits in a number.
+         */
+        public static var maxBits:Number = getMaxBits() ;
+
+        /**
+         * The max cutoffs used when computing text lengths.
+         */
+        public static var maxLength:Number = 1000 ;		
+		
 	  	/**
 	  	 * The min cutoffs used when computing text lengths.
 	  	 */
 		public static var minLength:Number = 100 ;
-
-		/**
-		 * How many bits in a number.
-		 */
-		public static var maxBits:Number = getMaxBits() ;
-
-	  	/**
-	  	 * The max cutoffs used when computing text lengths.
-	  	 */
-		public static var maxLength:Number = 1000 ;
-  
+          
   		/**
   		 * At what point is no match declared (0.0 = perfection, 1.0 = very loose)
   		 */
@@ -66,7 +66,7 @@ package system.text.utils
  		 */
 		public static function alphabet( pattern:String ):Object 
 		{
-  			var s:Object = Object() ;
+  			var s:Object = {} ;
   			var l:uint   = pattern.length ;
   			var i:uint ;
   			for ( i = 0 ; i < l ; i++ ) 
@@ -129,7 +129,7 @@ package system.text.utils
   			for (var d:int = 0; d < pattern.length ; d++) 
   			{
 	    		// Scan for the best match; each iteration allows for one more error.
-    			var rd:Array = Array( text.length ) ;
+    			var rd:Array = new Array( text.length ) ;
 	
     			// Run a binary search to determine how far from 'loc' we can stray at this
     			// error level.

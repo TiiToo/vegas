@@ -38,6 +38,45 @@ package system.text.utils
 		{
 			super( name );
 		}
-            
+         
+        public function setUp():void
+        {
+            Array.prototype.toString = function():String
+            {
+                 return "[" + this.join(",") + "]" ;    
+            };
+        }
+        
+        public function tearDown():void
+        {
+            Array.prototype.toString = undefined ;
+        }
+        
+        public function testMargin():void
+        {
+            // FIXME finish unit test of this property
+        }
+        
+        
+        public function testAddContext():void
+        {
+            // FIXME finish unit test.
+        }
+        
+        public function testFromText():void
+        {
+            // FIXME finish unit test.
+        }
+        
+        public function testSplitMax():void
+        {
+            // FIXME finish unit test.
+        }
+        
+        public function testToText():void
+        {
+            // FIXME finish unit test.
+        }         
+         
 	}
 }

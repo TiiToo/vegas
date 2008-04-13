@@ -25,7 +25,7 @@
 */
 package system.text.utils 
 {
-	import buRRRn.ASTUce.framework.TestCase;		
+	import buRRRn.ASTUce.framework.TestCase;					
 
 	/**
 	 * Read the http://neil.fraser.name/writing/diff/ page to understand the algo.
@@ -38,6 +38,56 @@ package system.text.utils
 		{
 			super( name );
 		}
+		
+		public var o:PatchObject ;
+		
+        public function setUp():void
+        {
+            o = new PatchObject() ;  
+        }
+        
+        public function tearDown():void
+        {
+            o = undefined ;
+        }		
+		 
+        public function testDiffs():void
+        {
+        	var result:Boolean = o.diffs is Array; 
+        	assertTrue( result , "PatchObject.diffs property is Array failed : " + result  ) ;
+		}
+        
+        public function testLength1():void
+        {
+            var test:Boolean = o.length1 is uint ;
+            assertTrue( test , "PatchObject.length1 is uint : " + test ) ;
+            assertEquals( o.length1 , 0, "PatchObject.length1 is 0 : " + o.length1 ) ;
+        }        
+
+        public function testLength2():void
+        {
+            var test:Boolean = o.length2 is uint ;
+            assertTrue( test , "PatchObject.length2 is uint : " + test ) ;
+            assertEquals( o.length2 , 0, "PatchObject.length2 is 0 : " + o.length2 ) ;
+        }   
+
+        public function testStart1():void
+        {
+            assertTrue( (o.start1 is uint) , "PatchObject.start1 is uint failed : " + (o.start1 is uint) ) ;
+            assertEquals( o.start1, 0 , "PatchObject.start2 is 0 with an empty instance." ) ;
+
+        }   
+
+        public function testStart2():void
+        {
+            assertTrue( o.start2 is uint , "PatchObject.start2 is uint failed : " + (o.start2 is uint) ) ;
+            assertEquals( o.start2, 0 , "PatchObject.start2 is 0 with an empty instance." ) ;
+        }
+        
+        public function testToString():void
+        {
+            assertEquals( o.toString() , "@@ -0,0 +0,0 @@\n" , "PatchObject.toString() failed with an empty instance : " + o.toString() ) ;
+        }	 
 		 
 	}
 }

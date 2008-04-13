@@ -41,9 +41,9 @@ package system.text.utils
 
             suite.addTestSuite( TestDifference ) ;
             suite.addTestSuite( TestGetMaxBits ) ;
-            // suite.addTestSuite( TestMatch ) ;
-            // suite.addTestSuite( TestPatch ) ;
-            // suite.addTestSuite( TestPatchObject ) ;
+            suite.addTestSuite( TestMatch ) ;
+            suite.addTestSuite( TestPatch ) ;
+            suite.addTestSuite( TestPatchObject ) ;
             
             return suite;
         }
