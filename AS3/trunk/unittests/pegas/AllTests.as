@@ -25,8 +25,14 @@ package pegas
 	import buRRRn.ASTUce.framework.ITest;
 	import buRRRn.ASTUce.framework.TestSuite;
 	
-	import pegas.geom.AllTests;	
-
+	import pegas.colors.AllTests;	
+    import pegas.draw.AllTests; 
+    import pegas.events.AllTests;
+    import pegas.geom.AllTests; 
+    import pegas.maths.AllTests;
+    import pegas.transitions.AllTests;
+    import pegas.util.AllTests;
+    
 	/**
 	 * This class launch all tests.
 	 * @author eKameleon
@@ -40,8 +46,14 @@ package pegas
         public static function suite():ITest
         {
             var suite:TestSuite = new TestSuite( "pegas" );
-
+            
+            suite.addTest( pegas.colors.AllTests.suite()  ) ;
+            suite.addTest( pegas.draw.AllTests.suite()  ) ;
+            suite.addTest( pegas.events.AllTests.suite()  ) ;
             suite.addTest( pegas.geom.AllTests.suite()  ) ;
+            suite.addTest( pegas.maths.AllTests.suite()  ) ;
+            suite.addTest( pegas.transitions.AllTests.suite()  ) ;
+            suite.addTest( pegas.util.AllTests.suite()  ) ;
             
             return suite;
         }

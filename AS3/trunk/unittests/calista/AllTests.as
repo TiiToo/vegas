@@ -20,14 +20,13 @@
   Contributor(s) :
   
 */
-package  
+package calista  
 {
 	import buRRRn.ASTUce.framework.ITest;
 	import buRRRn.ASTUce.framework.TestSuite;
 	
-	import pegas.AllTests;
-	import system.AllTests;	
-    import vegas.AllTests; 
+	import calista.hash.AllTests;	
+    import calista.util.AllTests;
     
 	/**
 	 * This class launch all tests.
@@ -41,14 +40,13 @@ package
          */		
         public static function suite():ITest
         {
-            var suite:TestSuite = new TestSuite( "VEGAS v1RC4 unit tests" );
-            
-            suite.addTest( pegas.AllTests.suite() );
-            suite.addTest( system.AllTests.suite() );
-            suite.addTest( vegas.AllTests.suite() );
+            var suite:TestSuite = new TestSuite( "calista" );
+
+            suite.addTest( calista.hash.AllTests.suite()  ) ;
+            suite.addTest( calista.util.AllTests.suite()  ) ;
             
             return suite;
         }
-        
 	}
 }
+

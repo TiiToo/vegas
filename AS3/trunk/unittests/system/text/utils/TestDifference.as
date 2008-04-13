@@ -133,7 +133,7 @@ package system.text.utils
             result = Difference.commonPrefix( "World" , "world" ) ; // 0 common prefix of two strings
             assertEquals( result , 0 , "commonPrefix failed with the two strings 'World' and 'world' : " + result ) ; 
 
-            result = Difference.commonPrefix( "wOrld" , "world" ) ; // 0 common prefix of two strings
+            result = Difference.commonPrefix( "wOrld" , "world" ) ; // 1 common prefix of two strings
             assertEquals( result , 1 , "commonPrefix failed with the two strings 'wOrld' and 'world' : " + result ) ; 
 
             result = Difference.commonPrefix( "hello world" , "hello system" ) ; // 6 commons prefix of two strings

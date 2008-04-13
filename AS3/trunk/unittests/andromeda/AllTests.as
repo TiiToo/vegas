@@ -20,14 +20,18 @@
   Contributor(s) :
   
 */
-package  
+package andromeda  
 {
 	import buRRRn.ASTUce.framework.ITest;
 	import buRRRn.ASTUce.framework.TestSuite;
 	
-	import pegas.AllTests;
-	import system.AllTests;	
-    import vegas.AllTests; 
+	import andromeda.controller.AllTests;	
+    import andromeda.events.AllTests;
+    import andromeda.ioc.AllTests;
+    import andromeda.model.AllTests;
+    import andromeda.process.AllTests;
+    import andromeda.util.AllTests;
+    import andromeda.vo.AllTests;
     
 	/**
 	 * This class launch all tests.
@@ -41,14 +45,18 @@ package
          */		
         public static function suite():ITest
         {
-            var suite:TestSuite = new TestSuite( "VEGAS v1RC4 unit tests" );
-            
-            suite.addTest( pegas.AllTests.suite() );
-            suite.addTest( system.AllTests.suite() );
-            suite.addTest( vegas.AllTests.suite() );
+            var suite:TestSuite = new TestSuite( "calista" );
+
+            suite.addTest( andromeda.controller.AllTests.suite() ) ;
+            suite.addTest( andromeda.events.AllTests.suite() ) ;
+            suite.addTest( andromeda.ioc.AllTests.suite() ) ;
+            suite.addTest( andromeda.model.AllTests.suite() ) ;
+            suite.addTest( andromeda.process.AllTests.suite() ) ;
+            suite.addTest( andromeda.util.AllTests.suite() ) ;
+            suite.addTest( andromeda.vo.AllTests.suite() ) ;
             
             return suite;
         }
-        
 	}
 }
+

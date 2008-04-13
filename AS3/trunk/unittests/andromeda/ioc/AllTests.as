@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is VEGAS Framework.
+  The Original Code is PEGAS Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -20,15 +20,14 @@
   Contributor(s) :
   
 */
-package  
+package andromeda.ioc  
 {
 	import buRRRn.ASTUce.framework.ITest;
-	import buRRRn.ASTUce.framework.TestSuite;
-	
-	import pegas.AllTests;
-	import system.AllTests;	
-    import vegas.AllTests; 
-    
+	import buRRRn.ASTUce.framework.TestSuite;	
+
+    import andromeda.ioc.core.AllTests;
+    import andromeda.ioc.factory.AllTests;
+
 	/**
 	 * This class launch all tests.
 	 * @author eKameleon
@@ -41,13 +40,14 @@ package
          */		
         public static function suite():ITest
         {
-            var suite:TestSuite = new TestSuite( "VEGAS v1RC4 unit tests" );
             
-            suite.addTest( pegas.AllTests.suite() );
-            suite.addTest( system.AllTests.suite() );
-            suite.addTest( vegas.AllTests.suite() );
-            
+            var suite:TestSuite = new TestSuite( "andromeda.ioc" );
+
+            suite.addTest( andromeda.ioc.core.AllTests.suite() ) ;
+            suite.addTest( andromeda.ioc.factory.AllTests.suite() ) ;
+
             return suite;
+            
         }
         
 	}

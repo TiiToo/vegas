@@ -20,15 +20,19 @@
   Contributor(s) :
   
 */
-package  
+package vegas  
 {
 	import buRRRn.ASTUce.framework.ITest;
 	import buRRRn.ASTUce.framework.TestSuite;
 	
-	import pegas.AllTests;
-	import system.AllTests;	
-    import vegas.AllTests; 
-    
+	import vegas.core.AllTests;
+	import vegas.data.AllTests;
+	import vegas.errors.AllTests;
+	import vegas.events.AllTests;
+	import vegas.logging.AllTests;
+	import vegas.string.AllTests;
+	import vegas.util.AllTests;	
+
 	/**
 	 * This class launch all tests.
 	 * @author eKameleon
@@ -41,14 +45,18 @@ package
          */		
         public static function suite():ITest
         {
-            var suite:TestSuite = new TestSuite( "VEGAS v1RC4 unit tests" );
-            
-            suite.addTest( pegas.AllTests.suite() );
-            suite.addTest( system.AllTests.suite() );
-            suite.addTest( vegas.AllTests.suite() );
+            var suite:TestSuite = new TestSuite( "vegas" );
+
+            suite.addTest( vegas.core.AllTests.suite() ) ;
+            suite.addTest( vegas.data.AllTests.suite() ) ;
+            suite.addTest( vegas.errors.AllTests.suite() ) ;
+            suite.addTest( vegas.events.AllTests.suite() ) ;
+            suite.addTest( vegas.logging.AllTests.suite() ) ;
+            suite.addTest( vegas.string.AllTests.suite() ) ;
+            suite.addTest( vegas.util.AllTests.suite() ) ;
             
             return suite;
         }
-        
 	}
 }
+
