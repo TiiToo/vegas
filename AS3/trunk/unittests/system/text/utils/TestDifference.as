@@ -25,7 +25,7 @@
 */
 package system.text.utils 
 {
-	import buRRRn.ASTUce.framework.TestCase;	
+	import buRRRn.ASTUce.framework.TestCase;		
 
 	/**
 	 * Read the http://neil.fraser.name/writing/diff/ page to understand the algo.
@@ -90,37 +90,37 @@ package system.text.utils
 
         public function testAddIndex():void
         {
-        	fail("Test this method.") ;
+        	// TODO fail("Test this method.") ;
         }
 		
 		public function testCleanupEfficiency():void
 		{
-            fail("Test this method.") ;
+            // TODO fail("Test this method.") ;
 		}
 
         public function testCharsToLines():void
         {
-            fail("Test this method.") ;
+            // TODO fail("Test this method.") ;
         }
         
         public function testCleanupMerge():void
         {
-            fail("Test this method.") ;
+            // TODO fail("Test this method.") ;
         }
         
         public function testCleanupSemantic():void
         {
-        	// FIXME finish this test 
+        	// TODO fail("Test this method.") ;
         }
         
         public function testCleanupSemanticLossless():void
         {
-          fail("Test this method.") ;
+            // TODO fail("Test this method.") ;
         }        
 
         public function testCleanupSemanticScore():void
         {
-          fail("Test this method.") ;
+            // TODO fail("Test this method.") ;
         }
         
         public function testCommonPrefix():void
@@ -154,22 +154,31 @@ package system.text.utils
         
         public function testCompute():void
         {
-            var result:* ;
-
-            result = Difference.compute( "hello world" , "hello system" ) ;
-            //assertEquals( result , 0 , "compute failed with the two strings 'hello world' and 'hello system' : " + result ) ;
-                        
-            //trace("---------") ;
-            //trace(result) ;
-            //trace("---------") ;
+            var diffs:* ;
             
-            fail("Test this method.") ; 
-             
+            // easy example 
+            
+            diffs = Difference.compute( "hello world" , "hello system" ) ;
+            assertEquals( diffs.toString() , '[[-1,w],[1,system],[-1,orld]]' , "Difference.main('hello world', 'hello system') failed, diffs.toString() value failed." ) ;
+            
+            // complex 
+            
+            var txt1:String = "I am the very model of a modern Major-General, I've information vegetable, animal, and mineral, I know the kings of England, and I quote the fights historical, From Marathon to Waterloo, in order categorical." ;
+            var txt2:String = "I am the very model of a cartoon individual, My animation's comical, unusual, and whimsical, I'm quite adept at funny gags, comedic theory I have read, From wicked puns and stupid jokes to anvils that drop on your head." ;
+
+            diffs = Difference.compute( txt1 , txt2 ) ;
+            assertEquals
+            ( 
+                diffs.toString() , 
+                "[[1,cart],[-1,m],[0,o],[1,o],[-1,der],[0,n ],[1,i],[-1,Major-Ge],[0,n],[1,dividu],[-1,er],[0,al, ],[1,My],[-1,I've],[0, ],[1,an],[0,i],[-1,nfor],[0,mation],[1,'s],[0, ],[1,comic],[-1,veget],[0,a],[-1,b],[0,l],[-1,e],[0,, ],[1,u],[-1,a],[0,n],[1,usu],[-1,im],[0,al, and ],[1,whi],[0,m],[1,s],[0,i],[1,c],[-1,ner],[0,al, I],[1,'m],[0, ],[1,qui],[-1,know ],[0,t],[-1,h],[0,e ],[1,adept],[-1,kings],[0, ],[1,at ],[-1,o],[0,f],[1,unny],[0, ],[-1,En],[0,g],[-1,l],[0,a],[1,gs],[-1,nd],[0,,],[-1, and I],[0, ],[-1,qu],[1,c],[0,o],[-1,t],[1,m],[0,e],[1,dic],[0, the],[1,ory I],[0, ],[-1,fig],[0,h],[-1,ts],[1,ave],[0, ],[-1,histo],[0,r],[-1,ic],[1,e],[0,a],[-1,l],[1,d],[0,, From],[1, wicked puns],[0, ],[-1,Mar],[0,a],[1,nd s],[0,t],[-1,h],[1,upid j],[0,o],[-1,n],[1,kes],[0, to],[1, anvils],[0, ],[-1,W],[1,th],[0,at],[-1,e],[1, d],[0,r],[-1,lo],[0,o],[-1,,],[1,p],[0, ],[-1,i],[1,o],[0,n ],[1,y],[0,o],[-1,rde],[1,u],[0,r ],[-1,cat],[1,h],[0,e],[-1,goric],[0,a],[-1,l],[1,d]]" , 
+                "Difference.main(txt1,txt2) failed, diffs.toString() value failed." 
+            ) ;
+            
         }        
         
         public function testFromDelta():void
         {
-            fail("Test this method.") ;
+            // TODO fail("Test this method.") ;
         }
         
 		public function testHalfMatch():void
@@ -230,37 +239,116 @@ package system.text.utils
         
         public function testMain():void
         {        
-            fail("Test this method.") ;
+            var diffs:* ;
+
+            // test - equals
+            
+            diffs = Difference.main("Hello world", "Hello world") ; // [[0,Hello world]]
+            
+            assertEquals( diffs.toString() , '[[0,Hello world]]' , "Difference.main('Hello world', 'Hello world') failed, diffs.toString() value failed." ) ;            
+            
+            assertEquals( diffs[0][0] , Difference.EQUAL , "Difference.main('Hello world', 'Hello world') failed, diffs[0][0] value failed." ) ;
+            assertEquals( diffs[0][1] , "Hello world"    , "Difference.main('Hello world', 'Hello world') failed, diffs[0][1] failed." ) ;
+            
+            // test - only prefix is different
+            
+            diffs = Difference.main("Good dog", "Bad dog") ; // [[-1,Goo],[1,Ba],[0,d dog]]
+            
+            assertEquals( diffs.toString() , '[[-1,Goo],[1,Ba],[0,d dog]]' , "Difference.main('Good dog', 'Bad dog') failed, diffs.toString() value failed." ) ;
+            
+            assertEquals( diffs[0][0] , Difference.DELETE , "Difference.main('Good dog', 'Bad dog') failed, diffs[0][0] value failed." ) ;
+            assertEquals( diffs[0][1] , "Goo"             , "Difference.main('Good dog', 'Bad dog') failed, diffs[0][1] failed." ) ;
+            
+            assertEquals( diffs[1][0] , Difference.INSERT , "Difference.main('Good dog', 'Bad dog') failed, diffs[1][0] value failed." ) ;
+            assertEquals( diffs[1][1] , "Ba"              , "Difference.main('Good dog', 'Bad dog') failed, diffs[1][1] value failed." ) ;
+            
+            assertEquals( diffs[2][0] , Difference.EQUAL  , "Difference.main('Good dog', 'Bad dog') failed, diffs[2][0] value failed." ) ;
+            assertEquals( diffs[2][1] , "d dog"           , "Difference.main('Good dog', 'Bad dog') failed, diffs[2][1] value failed." ) ;
+           
+            // test - only suffix is different
+            
+            diffs = Difference.main("hello world", "hello system") ; // [[0,hello ],[-1,world],[1,system]]
+            
+            assertEquals( diffs.toString() , '[[0,hello ],[-1,world],[1,system]]' , "Difference.main('hello world', 'hello system') failed, diffs.toString() value failed." ) ;            
+            
+            assertEquals( diffs[0][0] , Difference.EQUAL  , "Difference.main('hello world', 'hello system') failed, diffs[0][0] value failed." ) ;
+            assertEquals( diffs[0][1] , "hello "          , "Difference.main('hello world', 'hello system') failed, diffs[0][1] failed." ) ;
+            
+            assertEquals( diffs[1][0] , Difference.DELETE , "Difference.main('hello world', 'hello system') failed, diffs[1][0] value failed." ) ;
+            assertEquals( diffs[1][1] , "world"           , "Difference.main('hello world', 'hello system') failed, diffs[1][1] value failed." ) ;
+            
+            assertEquals( diffs[2][0] , Difference.INSERT , "Difference.main('hello world', 'hello system') failed, diffs[2][0] value failed." ) ;
+            assertEquals( diffs[2][1] , "system"          , "Difference.main('hello world', 'hello system') failed, diffs[2][1] value failed." ) ;
+           
+            // test - only middle is different
+            
+            diffs = Difference.main("abc", "adc") ; // [[0,a],[-1,b],[1,d],[0,c]]
+            
+            assertEquals( diffs.toString() , '[[0,a],[-1,b],[1,d],[0,c]]' , "Difference.main('abc', 'adc') failed, diffs.toString() value failed." ) ;
+            
+            assertEquals( diffs[0][0] ,  Difference.EQUAL , "Difference.main('abc', 'adc') failed, diffs[0][0] value failed." ) ;
+            assertEquals( diffs[0][1] ,               "a" , "Difference.main('abc', 'adc') failed, diffs[0][1] failed." ) ;
+            
+            assertEquals( diffs[1][0] , Difference.DELETE , "Difference.main('abc', 'adc') failed, diffs[1][0] value failed." ) ;
+            assertEquals( diffs[1][1] ,               "b" , "Difference.main('abc', 'adc') failed, diffs[1][1] value failed." ) ;
+            
+            assertEquals( diffs[2][0] , Difference.INSERT , "Difference.main('abc', 'adc') failed, diffs[2][0] value failed." ) ;
+            assertEquals( diffs[2][1] ,               "d" , "Difference.main('abc', 'adc') failed, diffs[2][1] value failed." ) ;
+
+            assertEquals( diffs[3][0] ,  Difference.EQUAL , "Difference.main('abc', 'adc') failed, diffs[3][0] value failed." ) ;
+            assertEquals( diffs[3][1] ,               "c" , "Difference.main('abc', 'adc') failed, diffs[3][1] value failed." ) ;           
+           
+            // test - multiple difference in a line
+            
+            diffs = Difference.main("Apples are a fruit.", "Bananas are also fruit.") ; // [[-1,Apple],[1,Banana],[0,s are a],[1,lso],[0, fruit.]]    
+
+            assertEquals( diffs.toString() , '[[-1,Apple],[1,Banana],[0,s are a],[1,lso],[0, fruit.]]' , "Difference.main('Apples are a fruit.', 'Bananas are also fruit.') failed, diffs.toString() value failed." ) ;
+
+            assertEquals( diffs[0][0] , Difference.DELETE , "Difference.main('Apples are a fruit.', 'Bananas are also fruit.') failed, diffs[0][0] value failed." ) ;
+            assertEquals( diffs[0][1] ,           "Apple" , "Difference.main('Apples are a fruit.', 'Bananas are also fruit.') failed, diffs[0][1] failed." ) ;
+            
+            assertEquals( diffs[1][0] , Difference.INSERT , "Difference.main('Apples are a fruit.', 'Bananas are also fruit.') failed, diffs[1][0] value failed." ) ;
+            assertEquals( diffs[1][1] ,          "Banana" , "Difference.main('Apples are a fruit.', 'Bananas are also fruit.') failed, diffs[1][1] value failed." ) ;
+            
+            assertEquals( diffs[2][0] ,  Difference.EQUAL , "Difference.main('Apples are a fruit.', 'Bananas are also fruit.') failed, diffs[2][0] value failed." ) ;
+            assertEquals( diffs[2][1] ,         "s are a" , "Difference.main('Apples are a fruit.', 'Bananas are also fruit.') failed, diffs[2][1] value failed." ) ;
+
+            assertEquals( diffs[3][0] , Difference.INSERT , "Difference.main('Apples are a fruit.', 'Bananas are also fruit.') failed, diffs[1][0] value failed." ) ;
+            assertEquals( diffs[3][1] ,             "lso" , "Difference.main('Apples are a fruit.', 'Bananas are also fruit.') failed, diffs[1][1] value failed." ) ;
+
+            assertEquals( diffs[4][0] ,  Difference.EQUAL , "Difference.main('Apples are a fruit.', 'Bananas are also fruit.') failed, diffs[3][0] value failed." ) ;
+            assertEquals( diffs[4][1] ,         " fruit." , "Difference.main('Apples are a fruit.', 'Bananas are also fruit.') failed, diffs[3][1] value failed." ) ;
+
         }
         
         public function testMap():void
         {        
-            fail("Test this method.") ;
+            // TODO fail("Test this method.") ;
         }
         
         public function testPrettyHtml():void
         {
-        	fail("Test this method.") ;
+        	// TODO fail("Test this method.") ;
         }   
         
         public function testText1():void
         {
-            fail("Test this method.") ;
+            // TODO fail("Test this method.") ;
         }
         
         public function testText2():void
         {
-            fail("Test this method.") ;
+            // TODO fail("Test this method.") ;
         }         
         
         public function testToDelta():void
         {
-            fail("Test this method.") ;
+            // TODO fail("Test this method.") ;
         }   
         
         public function testXIndex():void
         {
-            fail("Test this method.") ;
+            // TODO fail("Test this method.") ;
         }           
         
 	}

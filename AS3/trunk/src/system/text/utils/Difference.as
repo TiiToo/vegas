@@ -25,6 +25,7 @@
 */
 package system.text.utils 
 {
+	import flash.utils.getTimer;		
 
 	/**
 	 * Computes the difference between two texts to create a patch. 
@@ -700,7 +701,7 @@ package system.text.utils
   			longtext = shorttext = null ;  // Garbage collect
 
 			// Check to see if the problem can be split in two.
-              			
+            
   			var hm:Array = halfMatch(text1, text2);
   			if ( hm != null ) 
   			{
@@ -722,15 +723,13 @@ package system.text.utils
   			}
 
   			// Perform a real diff.
-
-  			if (checklines && (text1.length < 100 || text2.length < 100)) 
+    		if (checklines && (text1.length < 100 || text2.length < 100)) 
   			{
-    			checklines = false ; // Too trivial for the overhead.
+       			checklines = false ; // Too trivial for the overhead.
   			}
   			
   			var linearray:Array ;
-  			
-  			if (checklines) 
+  			if ( checklines ) 
   			{
     			var a:Array = linesToChars(text1, text2) ; // Scan the text on a line-by-line basis first.
     			text1       = a[0] ;
@@ -738,9 +737,7 @@ package system.text.utils
     			linearray   = a[2] ;
   			}
   			
-  			diffs = map(text1, text2) ;
-  			
-
+  			diffs = map (text1, text2) ;
   			
   			if ( !diffs ) 
   			{
@@ -1073,12 +1070,12 @@ package system.text.utils
 
   			// Restore the prefix and suffix
   			
-  			if (commonprefix) 
+  			if ( commonprefix ) 
   			{
   				diffs.unshift([EQUAL, commonprefix]);
   			}
   			
-  			if (commonsuffix) 
+  			if ( commonsuffix ) 
   			{
     			diffs.push([EQUAL, commonsuffix]);
   			}
@@ -1108,25 +1105,26 @@ package system.text.utils
   			
   			var k:int ;
   			
-  			var ms_end:int        = (new Date()).getTime() + timeout * 1000 ;
+  			var ms_end:int        = getTimer() + timeout * 1000 ;
   			
   			var max_d:int         = text1.length + text2.length - 1;
   			
-  			var doubleEnd:Boolean = dualThreshold * 2 < max_d ;
+  			var doubleEnd:Boolean = ( dualThreshold * 2 ) < max_d ;
   			
   			var ar1:Array      = [] ;
   			var ar2:Array      = [] ;
   			
-  			var v1:Object         = {} ;
-  			var v2:Object         = {} ;
+  			var v1:Object      = {} ;
+  			var v2:Object      = {} ;
   			
   			v1[1] = 0 ;
   			v2[1] = 0 ;
   			
-  			var x:Number, y:Number ;
+  			var x:int ;
+  			var y:int ;
   			
-  			var footstep:String  ; // Used to track overlapping paths.
-  			var footsteps:Object = {};
+  			var footstep:String        ; // Used to track overlapping paths.
+  			var footsteps:Object = {} ;
   			
   			var done:Boolean = false;
   			
@@ -1137,8 +1135,7 @@ package system.text.utils
   			{
     			
     			// Bail out if timeout reached.
-    			
-    			if ( timeout > 0 && (new Date()).getTime() > ms_end) 
+    			if ( (timeout > 0) && ( getTimer() > ms_end )  )
     			{
       				return null;
     			}
@@ -1149,7 +1146,7 @@ package system.text.utils
     			
     			for ( k = -d ; k <= d ; k += 2 ) 
     			{
-      				if (k == -d || k != d && v1[k - 1] < v1[k + 1]) 
+      				if ( ( k == -d || k != d ) && ( v1[k - 1] < v1[k + 1]) ) 
       				{
         				x = v1[k + 1] ;
       				} 
@@ -1200,13 +1197,12 @@ package system.text.utils
       				{
         				// Front path ran over reverse path.
         				ar2 = ar2.slice(0, footsteps[footstep] + 1) ;
-        				var a2:Array = path1(ar1, text1.substring(0, x),
-                        text2.substring(0, y));
+        				var a2:Array = path1(ar1, text1.substring(0, x), text2.substring(0, y));
         				return a2.concat( path2(ar2, text1.substring(x), text2.substring(y)) ) ;
       				}
     			
     			}
-
+                
    				if ( doubleEnd ) 
    				{
       				// Walk the reverse path one step.
@@ -1267,6 +1263,7 @@ package system.text.utils
       				}
     			}
   			}
+  			
   			return null ; // Number of diffs equals number of characters, no commonality at all.
 		}
 		
@@ -1432,7 +1429,7 @@ package system.text.utils
 		private static function halfMatchI( longtext:String , shorttext:String , i:Number ):Array 
 		{
     		// Start with a 1/4 length substring at position i as a seed.
-
+            
     		var seed:String = longtext.substring(i, i + Math.floor(longtext.length / 4));
 
 		    var j:int = -1;
@@ -1467,7 +1464,7 @@ package system.text.utils
     		}
     		else 
     		{
-      			return null;
+      			return null ;
   			}
   		}
  		
@@ -1551,48 +1548,52 @@ package system.text.utils
 		 */
 		private static function path2( ar:Array, text1:String, text2:String):Array 
 		{
-  			
+            
   			var last:int ;
-  			
-  			var path:Array      = [] ;
-  			var pathLength:int = 0  ;
-  			var x:int          = text1.length ;
-  			var y:int          = text2.length ;
-  			
-  			for ( var d:int = (ar.length - 2) ; d >= 0; d-- ) 
+  			var path:Array = [] ;
+            var x:int      = text1.length ;
+            var y:int      = text2.length ;
+  			var size:int   = 0  ;
+  			var d:int = (ar.length - 2) ;
+  			for (  ; d >= 0 ; d-- ) 
   			{
-    			while (1) 
+    			while ( 1 ) 
     			{
-      				if ( ar[d].hasOwnProperty((x - 1) + ',' + y) ) 
+      				if ( ar[d].hasOwnProperty( (x - 1) + ',' + y) ) 
       				{
+      					
+
+      					
         				x-- ;
         				if ( last === DELETE ) 
         				{
-          					path[pathLength - 1][1] += text1.charAt(text1.length - x - 1) ;
+          					path[size - 1][1] += text1.charAt(text1.length - x - 1) ;
         				} 
         				else 
         				{
-          					path[pathLength++] = [ DELETE , text1.charAt(text1.length - x - 1) ] ;
+          					path[size++] = [ DELETE , text1.charAt(text1.length - x - 1) ] ;
         				}
         				last = DELETE ; 
       				    break ;
       				} 
       				else if ( ar[d].hasOwnProperty(x + ',' + (y - 1)) ) 
       				{
+
         				y-- ;
         				if ( last === INSERT ) 
         				{
-          					path[pathLength - 1][1] += text2.charAt(text2.length - y - 1) ;
+          					path[size - 1][1] += text2.charAt(text2.length - y - 1) ;
         				} 
         				else 
         				{
-          					path[pathLength++] = [ INSERT , text2.charAt(text2.length - y - 1)] ;
+          					path[size++] = [ INSERT , text2.charAt(text2.length - y - 1)] ;
         				}
         				last = INSERT ;
         				break;
       				} 
       				else 
       				{
+      					var pos:int ;
         				x-- ;
         				y-- ;
         				// if (text1.charAt(text1.length - x - 1) != text2.charAt(text2.length - y - 1)) 
@@ -1601,13 +1602,18 @@ package system.text.utils
         				// }
         				if (last === EQUAL) 
         				{
-          					path[pathLength - 1][1] += text1.charAt(text1.length - x - 1) ;
+                            pos = (size - 1) > 0 ? ( size - 1 ) : 0 ;
+                            if ( path[pos] == null )
+                            {
+                                path[pos] = [] ;	
+                            }
+          					path[pos][1] += text1.charAt(text1.length - x - 1) ;
         				}
         				else 
         				{
-          					path[pathLength++] = [EQUAL, text1.charAt(text1.length - x - 1)];
+          					path[size++] = [EQUAL, text1.charAt(text1.length - x - 1)];
         				}
-        				last = EQUAL;
+        				last = EQUAL ;
       				}
     			}
   			}
