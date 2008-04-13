@@ -159,7 +159,7 @@ package system.text.utils
             // easy example 
             
             diffs = Difference.compute( "hello world" , "hello system" ) ;
-            assertEquals( diffs.toString() , '[[-1,w],[1,system],[-1,orld]]' , "Difference.main('hello world', 'hello system') failed, diffs.toString() value failed." ) ;
+            assertEquals( diffs.toString() , '[[-1,w],[1,system],[-1,orld]]' , "Difference.compute('hello world', 'hello system') failed, diffs.toString() value failed." ) ;
             
             // complex 
             
@@ -171,7 +171,7 @@ package system.text.utils
             ( 
                 diffs.toString() , 
                 "[[1,cart],[-1,m],[0,o],[1,o],[-1,der],[0,n ],[1,i],[-1,Major-Ge],[0,n],[1,dividu],[-1,er],[0,al, ],[1,My],[-1,I've],[0, ],[1,an],[0,i],[-1,nfor],[0,mation],[1,'s],[0, ],[1,comic],[-1,veget],[0,a],[-1,b],[0,l],[-1,e],[0,, ],[1,u],[-1,a],[0,n],[1,usu],[-1,im],[0,al, and ],[1,whi],[0,m],[1,s],[0,i],[1,c],[-1,ner],[0,al, I],[1,'m],[0, ],[1,qui],[-1,know ],[0,t],[-1,h],[0,e ],[1,adept],[-1,kings],[0, ],[1,at ],[-1,o],[0,f],[1,unny],[0, ],[-1,En],[0,g],[-1,l],[0,a],[1,gs],[-1,nd],[0,,],[-1, and I],[0, ],[-1,qu],[1,c],[0,o],[-1,t],[1,m],[0,e],[1,dic],[0, the],[1,ory I],[0, ],[-1,fig],[0,h],[-1,ts],[1,ave],[0, ],[-1,histo],[0,r],[-1,ic],[1,e],[0,a],[-1,l],[1,d],[0,, From],[1, wicked puns],[0, ],[-1,Mar],[0,a],[1,nd s],[0,t],[-1,h],[1,upid j],[0,o],[-1,n],[1,kes],[0, to],[1, anvils],[0, ],[-1,W],[1,th],[0,at],[-1,e],[1, d],[0,r],[-1,lo],[0,o],[-1,,],[1,p],[0, ],[-1,i],[1,o],[0,n ],[1,y],[0,o],[-1,rde],[1,u],[0,r ],[-1,cat],[1,h],[0,e],[-1,goric],[0,a],[-1,l],[1,d]]" , 
-                "Difference.main(txt1,txt2) failed, diffs.toString() value failed." 
+                "Difference.compute(txt1,txt2) failed, diffs.toString() value failed." 
             ) ;
             
         }        

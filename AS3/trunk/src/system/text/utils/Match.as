@@ -82,10 +82,10 @@ package system.text.utils
 
 		/**
 		 * Locate the best instance of 'pattern' in 'text' near 'loc' using the Bitap algorithm.
-		 * @param {string} text The text to search
-		 * @param {string} pattern The pattern to search for
-		 * @param {number} loc The location to search around
-		 * @return {number?} Best match index or null
+		 * @param text The text to search
+		 * @param pattern The pattern to search for
+		 * @param loc The location to search around
+		 * @return The best match index or null
 		 */
 		public static function bitap( text:String, pattern:String, loc:Number ):Number 
 		{
