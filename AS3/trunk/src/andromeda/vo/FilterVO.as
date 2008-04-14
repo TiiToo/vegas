@@ -22,15 +22,15 @@
 */
 package andromeda.vo 
 {
-	import flash.net.registerClassAlias;
-	
-	import andromeda.vo.SimpleValueObject;
-	
-	import system.Reflection;
-	
-	import vegas.util.Serializer;	
+    import flash.net.registerClassAlias;
+    
+    import andromeda.vo.SimpleValueObject;
+    
+    import system.Reflection;
+    
+    import vegas.util.Serializer;	
 
-	/**
+    /**
      * This class provides a binary filter value object.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
@@ -125,7 +125,7 @@ package andromeda.vo
 	     */
     	public static function register( aliasName:String="FilterVO" ):void
     	{
-	        registerClassAlias( aliasName , NetServerInfoVO ) ;
+	        registerClassAlias( aliasName , FilterVO ) ;
 	    }
 
         /**

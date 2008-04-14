@@ -35,7 +35,6 @@ package andromeda.model
 		/**
 		 * Creates a new AbstractModel instance.
 		 * @param id the id of the model.
-         * @param id the id of this model.
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
 		 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
 		 */	
