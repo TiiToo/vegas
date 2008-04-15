@@ -96,10 +96,6 @@ package asgard.media
      	 */
      	public function apply( camera:Camera ):void
      	{
-     		for (var prop:String in this)
-     		{
-     			trace(prop) ;	
-     		}
 			camera.setQuality( bandwidth , quality ) ;
 			camera.setMode( width, height, fps, favorarea ) ;
             camera.setMotionLevel( motionLevel, motionTimeout ) ;     		
