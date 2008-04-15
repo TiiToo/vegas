@@ -42,6 +42,26 @@ class mars.logging.ApplicationLogger
 	public static var APPLICATION_CHANNEL:String = "application" ;
 
 	/**
+	 * The AirLogger target.
+	 */
+	public static var airTarget:AirLoggerTarget ;
+
+	/**
+	 * The Luminic target.
+	 */
+	public static var luminicTarget:LuminicTarget ;
+
+	/**
+	 * The SOS console target.
+	 */
+	public static var sosTarget:SOSTarget ;
+
+	/**
+	 * The Trace target.
+	 */
+	public static var traceTarget:TraceTarget ;
+
+	/**
 	 * Indicates if the AirLogger console is used.
 	 */
 	public static var USE_AIR_LOGGER:Boolean = false ;
@@ -128,6 +148,7 @@ class mars.logging.ApplicationLogger
 		return _logger ;	
 	}
 
+	
 	/**
 	 * Initialize the global Logger singleton.
 	 */
@@ -140,7 +161,7 @@ class mars.logging.ApplicationLogger
 
 		if ( USE_AIR_LOGGER )
 		{
-			var airTarget:AirLoggerTarget = new AirLoggerTarget( APPLICATION_CHANNEL ) ;
+			airTarget = new AirLoggerTarget( APPLICATION_CHANNEL ) ;
 			airTarget.filters             = filters ;
 			airTarget.includeLines        = true ;
 			airTarget.level               = LogEventLevel.ALL ;
@@ -150,7 +171,7 @@ class mars.logging.ApplicationLogger
 		
 		if (USE_SOS)
 		{
-			var sosTarget:SOSTarget = new SOSTarget() ;
+			sosTarget = new SOSTarget() ;
 			sosTarget.filters       = filters ;
 			sosTarget.includeLines  = true ;
 			sosTarget.level         = LogEventLevel.ALL ;
@@ -160,7 +181,7 @@ class mars.logging.ApplicationLogger
 
 		if ( USE_LUMINIC )
 		{
-			var luminicTarget:LuminicTarget = new LuminicTarget() ;
+			luminicTarget = new LuminicTarget() ;
 			luminicTarget.filters = filters ;
 			luminicTarget.isCollapse = false ;
 			luminicTarget.includeTime = true ;
@@ -171,7 +192,7 @@ class mars.logging.ApplicationLogger
 		
 		if ( USE_TRACE )
 		{
-			var traceTarget:TraceTarget = new TraceTarget() ;
+			traceTarget = new TraceTarget() ;
 			traceTarget.filters = filters ;
 			traceTarget.includeTime = true ;
 			traceTarget.level = LogEventLevel.ALL ;
