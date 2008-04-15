@@ -23,11 +23,11 @@
 
 package asgard.display
 {
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	import flash.display.Stage;	
+    import flash.display.DisplayObject;
+    import flash.display.DisplayObjectContainer;
+    import flash.display.Stage;    
 
-	/**
+    /**
 	 * The ApplicationDisplay class is a MovieClip class to creates the main class of your applications in AS3.
 	 * This source code is inspired of the original TopLevel class of Senocular : http://www.senocular.com/flash/actionscript.php?file=ActionScript_3.0/TopLevel.as
 	 * @author eKameleon
@@ -66,6 +66,24 @@ package asgard.display
 		 * The stage reference of the application.
 		 */
 		public static var stage:Stage ;
+		
+		/**
+		 * Returns the root reference of the application. 
+		 * @return the root reference of the application.
+		 */
+		public static function getRoot():DisplayObjectContainer
+		{
+			return root ;
+		}
+
+		/**
+		 * Returns the stage reference of the application.
+		 * @return the stage reference of the application.
+		 */
+		public static function getStage():Stage
+		{
+			return stage ;
+		}
 		
 	}
 	
