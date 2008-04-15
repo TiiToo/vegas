@@ -30,7 +30,7 @@ package test.factory
 		 * Creates a new User instance with the specified pseudo.
 		 * @param pseudo The pseudo String representation of the new User.
 		 */
-		public function create( pseudo:String ):User
+		public function build( pseudo:String ):User
 		{
 			if ( blackList.indexOf( pseudo ) > -1 )
 			{

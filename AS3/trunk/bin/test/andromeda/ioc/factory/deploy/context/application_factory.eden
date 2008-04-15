@@ -33,7 +33,7 @@
 			factoryMethod  : 
 			{ 
 				factory   : "user_filter_factory" , 
-				name      : "create"              , 
+				name      : "build"              , 
 				arguments : 
 				[ 
 					{ value : "pegas" } 
@@ -47,7 +47,7 @@
 			factoryMethod  : 
 			{ 
 				factory   : "user_filter_factory" , 
-				name      : "create"              , 
+				name      : "build"              , 
 				arguments : 
 				[ 
 					{ value : "lunas" } 

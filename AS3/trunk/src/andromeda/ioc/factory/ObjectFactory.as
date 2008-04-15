@@ -121,11 +121,11 @@ package andromeda.ioc.factory
 					}
 					if ( definition.isSingleton() )
 					{
-						instance = _createAndCacheSingletonInstance( name , definition ) ;
+						instance = createAndCacheSingletonInstance( name , definition ) ;
 					}
 					else
 					{
-						instance = _createObject( definition.getType() , definition ) ;
+						instance = createObject( definition.getType() , definition ) ;
 					}
 				}
 			}
@@ -179,7 +179,7 @@ package andromeda.ioc.factory
 		{
 			if ( isSingleton(name) )
 			{
-				_invokeDestroyMethod( singletons.get(name), getObjectDefinition(name) ) ;
+				invokeDestroyMethod( singletons.get(name), getObjectDefinition(name) ) ;
 				singletons.remove( name ) ;	
 			}
 		}
@@ -233,12 +233,12 @@ package andromeda.ioc.factory
 	 	 * @param name the name of the class object.
 	 	 * @param definition the IDefinition to apply over the new instance.
 	 	 */
-		protected function _createAndCacheSingletonInstance( name:String, definition:IObjectDefinition ):*
+		protected function createAndCacheSingletonInstance( name:String, definition:IObjectDefinition ):*
 		{
 			var instance:* = singletons.get( name ) ;
 			if( !instance ) 
 			{
-				instance = _createObject( definition.getType() , definition ) ;
+				instance = createObject( definition.getType() , definition ) ;
 				singletons.put( name, instance ) ;
 			}
 			return instance;
@@ -248,7 +248,7 @@ package andromeda.ioc.factory
 		 * Creates a new Object with the specified name and the specified IObjectDefinition in argument.
 		 * @return a new Object with the specified name and the specified IObjectDefinition in argument.
 		 */
-		protected function _createObject( name:String , definition:IObjectDefinition ):*
+		protected function createObject( name:String , definition:IObjectDefinition ):*
 		{
 			var instance:* = null ;
 			var clazz:Class ;
@@ -261,41 +261,42 @@ package andromeda.ioc.factory
 			else
 			{	
 				var factory:String ;
-				var sName:String   ;
+				var args:Array = _createArguments( (factoryMethod as ObjectMethod).arguments ) ;
+				var methodName:String   ;
 				var ref:* ;
 				if ( factoryMethod is ObjectStaticFactoryMethod )
 				{
-					clazz = getDefinitionByName( (factoryMethod as ObjectStaticFactoryMethod).type as String ) as Class ;
-					sName = (factoryMethod as ObjectStaticFactoryMethod).name ;
-					if ( sName in clazz ) 
+					clazz      = getDefinitionByName( (factoryMethod as ObjectStaticFactoryMethod).type as String ) as Class ;
+					methodName = (factoryMethod as ObjectStaticFactoryMethod).name ;
+					if ( clazz != null && methodName in clazz ) 
 					{
-						instance = clazz[sName].apply( null, _createArguments( (factoryMethod as ObjectMethod).arguments ) ) ;
+						instance = clazz[methodName].apply( null, args ) ;
 					}
 				}
 				else if ( factoryMethod is ObjectFactoryMethod )
 				{
-					factory = (factoryMethod as ObjectFactoryMethod).factory ;
-					sName   = (factoryMethod as ObjectFactoryMethod).name ;
-					ref = getObject(factory) ;
-					if ( ref != null && sName in ref ) 
+					factory    = (factoryMethod as ObjectFactoryMethod).factory ;
+					methodName = (factoryMethod as ObjectFactoryMethod).name ;
+					ref        = getObject( factory ) ;
+					if ( ( ref != null ) && ( methodName != null ) && ( methodName in ref ) ) 
 					{
-						instance = ref[sName].apply( null, _createArguments( (factoryMethod as ObjectMethod).arguments ) ) ;
+						instance = ref[methodName].apply( null, args ) ;
 					} 						
 				}
 			}
 			if ( instance != null )
 			{
-				_populateProperties( instance, definition.getProperties() );
-				_invokeMethods( instance , definition.getMethods() ) ;
-				_invokeInitMethod( instance, definition ) ;
+				populateProperties( instance, definition.getProperties() );
+				invokeMethods( instance , definition.getMethods() ) ;
+				invokeInitMethod( instance, definition ) ;
 			}
 			return instance ;
 		}
 
 		/**
-		 * Invoque the destroy method of the specified object, if the init method is define in the IDefinition object.
+		 * Invokes the destroy method of the specified object, if the init method is define in the IDefinition object.
 		 */
-		protected function _invokeDestroyMethod( o:* , definition:IObjectDefinition ):void
+		protected function invokeDestroyMethod( o:* , definition:IObjectDefinition ):void
 		{
 			var name:String     = definition.getDestroyMethodName();
 			if ( name == null && config != null )
@@ -310,9 +311,9 @@ package andromeda.ioc.factory
 		}
 	
 		/**
-		 * Invoque the init method of the specified object, if the init method is define in the IDefinition object.
+		 * Invokes the init method of the specified object, if the init method is define in the IDefinition object.
 		 */
-		protected function _invokeInitMethod( o:* , definition:IObjectDefinition=null ):void
+		protected function invokeInitMethod( o:* , definition:IObjectDefinition=null ):void
 		{
 			var name:String     = definition.getInitMethodName();
 			if ( name == null && config != null )
@@ -327,9 +328,9 @@ package andromeda.ioc.factory
 		}
 		
 		/**
-		 * Invoque the init method of the specified object, if the init method is define in the IDefinition object.
+		 * Invokes the init method of the specified object, if the init method is define in the IDefinition object.
 		 */
-		protected function _invokeMethods( o:* , methods:Array ):void
+		protected function invokeMethods( o:* , methods:Array ):void
 		{
 			if ( o == null || methods == null )
 			{
@@ -363,7 +364,7 @@ package andromeda.ioc.factory
 		/**
 		 * Populates all properties in the Map passed in argument.
 		 */
-		protected function _populateProperties( o:* , properties:Map=null ):void 
+		protected function populateProperties( o:* , properties:Map=null ):void 
 		{
 			if (properties != null && properties.size() > 0)
 			{
@@ -385,7 +386,7 @@ package andromeda.ioc.factory
 		/**
 		 * Populates all properties in the Map passed in argument.
 		 */
-		protected function _populateMethods( o:* , methods:Array=null ):void 
+		protected function populateMethods( o:* , methods:Array=null ):void 
 		{
 			if ( o == null || methods == null )
 			{
