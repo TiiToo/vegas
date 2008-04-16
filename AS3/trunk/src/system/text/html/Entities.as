@@ -142,7 +142,7 @@ package system.text.html
         //ASCII Entities
         
         add( new Entity( "\"" , "quot" , 34 ) ) ; // quotation mark 
-        add( new Entity(  "&" , "amp"  , 38 ) ) ; // ampersand
+        add( new Entity( "&" , "amp"  , 38 ) ) ; // ampersand
         add( new Entity( "\'" , "apos" , 39 ) ) ; // apostrophe
         add( new Entity(  "<" , "lt"   , 60 ) ) ; // less-than sign 
         add( new Entity(  ">" , "gt"   , 62 ) ) ; // greater-than sign  

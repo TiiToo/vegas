@@ -38,6 +38,7 @@ package asgard.net
 		
         /**
          * Creates a new ParserLoader instance.
+         * @param request The URLRequest of the file to load.
          */ 
 		public function ParserLoader( request:URLRequest=null )
 		{

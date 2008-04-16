@@ -25,7 +25,7 @@ package system.text
 	import buRRRn.ASTUce.framework.ITest;
 	import buRRRn.ASTUce.framework.TestSuite;
 	
-	import system.text.utils.AllTests;	
+	import system.text.diff.AllTests;	
 
 	/**
 	 * This class launch all tests.
@@ -41,7 +41,7 @@ package system.text
         {
             var suite:TestSuite = new TestSuite( "system.text" );
 
-            suite.addTest( system.text.utils.AllTests.suite()  ) ;
+            suite.addTest( system.text.diff.AllTests.suite()  ) ;
 
             return suite;
         }

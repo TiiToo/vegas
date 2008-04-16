@@ -22,7 +22,7 @@
 */
 package asgard.net 
 {
-    import vegas.core.CoreObject;            
+	import vegas.core.CoreObject;                
 
     /**
      * The NetStream status object who contains the level and the status value of all NetStreams in the application.
@@ -54,7 +54,7 @@ package asgard.net
 
 		/**
 		 * Compares the specified object with this object for equality.
-		 * @return {@code true} if the the specified object is equal with this object.
+		 * @return <code class="prettyprint">true</code> if the the specified object is equal with this object.
 		 */
 		public function equals(o:*):Boolean
 		{
@@ -65,7 +65,7 @@ package asgard.net
 		 * Returns the string representation of this object.
 		 * @return the string representation of this object.
 		 */
-		public function toString():String 
+		public override function toString():String 
 		{
 			return code ;	
 		}

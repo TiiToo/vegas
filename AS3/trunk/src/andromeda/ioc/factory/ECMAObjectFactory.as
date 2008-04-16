@@ -107,7 +107,7 @@ package andromeda.ioc.factory
 	 *         ]
 	 *    }
 	 * </pre>
-	 * <p>2 - The ActionScript test code :</p>
+	 * <p><b>2 -</b> The ActionScript test code :</p>
 	 * <pre class="prettyprint">
 	 * import andromeda.ioc.core.ObjectDefinition ;
 	 * import andromeda.ioc.factory.ECMAObjectFactory ;

@@ -107,7 +107,7 @@ package asgard.net
      *     ]
      * }
      * </pre>
-     * <p>2 - The import eden context file : <b>"view.eden"</b></p>
+     * <p><b>3 -</b> The import eden context file : <b>"view.eden"</b></p>
      * <pre class="prettyprint">
      * {
      *     objects :
@@ -151,7 +151,7 @@ package asgard.net
      * 
      * }
      * </pre>
-     * <p><b>3 -</b> The main source code of the example :</p>
+     * <p><b>4 -</b> The main source code of the example :</p>
      * <pre class="prettyprint">
      * import buRRRn.eden.config;
      * 
@@ -165,7 +165,7 @@ package asgard.net
      * 
      * //// eden white list : allow class and package to deserialize custom objects.
      * 
-     * config.addAuthorized( "flash.filters.*" ) ;
+     * config.addAuthorized( "flash.filters.DropShadowFilter" ) ;
      * config.addAuthorized( "flash.text.TextField" ) ;
      * config.addAuthorized( "flash.text.TextFormat" ) ;
      * 

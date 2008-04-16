@@ -56,6 +56,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("JÂ
 <td width="20"></td><td></td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/text/prettifier/class-list.html');" href="system/text/prettifier/Keywords.html#JAVA_KEYWORDS">JAVA_KEYWORDS</a> &mdash; Static property in class system.text.prettifier.<a onclick="javascript:loadClassListFrame('system/text/prettifier/class-list.html');" href="system/text/prettifier/Keywords.html">Keywords</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         The String list of all JAVA keywords.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/draw/class-list.html');" href="pegas/draw/LineStyle.html#joints">joints</a> &mdash; Property in class pegas.draw.<a onclick="javascript:loadClassListFrame('pegas/draw/class-list.html');" href="pegas/draw/LineStyle.html">LineStyle</a></td>
 </tr>
 <tr>
@@ -67,6 +74,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("JÂ
 </tr>
 <tr>
 <td width="20"></td><td></td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/text/prettifier/class-list.html');" href="system/text/prettifier/Keywords.html#JSCRIPT_KEYWORDS">JSCRIPT_KEYWORDS</a> &mdash; Static property in class system.text.prettifier.<a onclick="javascript:loadClassListFrame('system/text/prettifier/class-list.html');" href="system/text/prettifier/Keywords.html">Keywords</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         The String list of all JavaScript keywords.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/string/class-list.html');" href="vegas/string/JSON.html">JSON</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('vegas/string/class-list.html');" href="vegas/string/package-detail.html">vegas.string</a></td>
@@ -108,38 +122,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("JÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-     <p><b>Example :</b></p>
-     <pre class="prettyprint">
-     import flash.events.Event ;
-     import flash.events.ProgressEvent ;
-     import flash.net.URLRequest ;
-     import asgard.net.JSONLoader ;
-     
-     var loader:JSONLoader = new JSONLoader() ;
-     var request:URLRequest = new URLRequest("json/config.json");
-     function onComplete(e:Event):void
-     {
-         var data:= e.target.data ;
-         trace("> onComplete : " + e) ;
-         for (var prop:String in data)
-         {
-             trace("  > " + prop + " : " + data[prop]) ;
-         }
-     }
-     
-     function onProgress(e:ProgressEvent):void
-     {
-         trace("> onProgress : " + e) ;
-         var percent:Number = Math.round( e.bytesLoaded 100 / e.bytesTotal ) ;
-         trace("  > progress : " + percent + " %");
-     }
-     
-     loader.addEventListener(ProgressEvent.PROGRESS, onProgress);
-     loader.addEventListener(Event.COMPLETE, onComplete);
-     
-     loader.load(request) ;
-     </pre>
-     </td>
+     This loader load an external file with JSON dom inside and deserialize it when the loading is complete.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/JSONLoader.html#JSONLoader()">JSONLoader</a>(request) &mdash; Constructor in class asgard.net.<a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/JSONLoader.html">JSONLoader</a></td>

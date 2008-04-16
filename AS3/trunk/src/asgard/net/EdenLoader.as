@@ -67,6 +67,7 @@ package asgard.net
 		
         /**
          * Creates a new EdenLoader instance.
+         * @param request The URLRequest of the file to load.
          */ 
 		public function EdenLoader( request:URLRequest=null )
 		{

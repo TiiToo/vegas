@@ -1,0 +1,301 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
+<link rel="stylesheet" href="../../../prettify.css" type="text/css">
+<meta content="IEventDispatcher,vegas.events.dom.IEventDispatcher,addGlobalEventListener,getEventListeners,getGlobalEventListeners,getRegisteredEventNames,hasEventListener,removeGlobalEventListener" name="keywords">
+<title>vegas.events.dom.IEventDispatcher</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../prettify.js"></script><script type="text/javascript" language="javascript" src="../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'IEventDispatcher - VEGAS AS3 Reference';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../index-list.html')" href="../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../index.html?vegas/events/dom/IEventDispatcher.html&amp;vegas/events/dom/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Interface&nbsp;IEventDispatcher</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Interface IEventDispatcher"); titleBar_setSubNav(false,false,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">vegas.events.dom</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Interface</td><td class="classSignature">public interface IEventDispatcher extends <a href="EventTarget.html">EventTarget</a></td>
+</tr>
+</table>
+<p></p>
+     This interface implement class who stores the listeners object an notifies them.
+     <p></p>
+<br>
+<hr>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<div class="showHideLinks">
+<div class="hideInheritedMethod" id="hideInheritedMethod">
+<a onclick="javascript:setInheritedVisible(false,'Method');" href="#methodSummary" class="showHideLink"><img src="../../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Methods</a>
+</div>
+<div class="showInheritedMethod" id="showInheritedMethod">
+<a onclick="javascript:setInheritedVisible(true,'Method');" href="#methodSummary" class="showHideLink"><img src="../../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Methods</a>
+</div>
+</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="EventTarget.html#addEventListener()">addEventListener</a>(eventName:String, listener:<a href="../../events/EventListener.html">EventListener</a>, useCapture:Boolean, priority:uint, autoRemove:Boolean):void</div>
+<div class="summaryTableDescription">
+      Allows the registration of event listeners on the event target.</div>
+</td><td class="summaryTableOwnerCol"><a href="EventTarget.html">EventTarget</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#addGlobalEventListener()">addGlobalEventListener</a>(listener:<a href="../EventListener.html">EventListener</a>, priority:uint, autoRemove:Boolean):void</div>
+<div class="summaryTableDescription">
+      Allows the registration of global event listeners on the event target.</div>
+</td><td class="summaryTableOwnerCol">IEventDispatcher</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="EventTarget.html#dispatchEvent()">dispatchEvent</a>(event:*, isQueue:Boolean, target:*, context:*):<a href="../dom/DomEvent.html">DomEvent</a>
+</div>
+<div class="summaryTableDescription">
+      Dispatches an event into the event flow.</div>
+</td><td class="summaryTableOwnerCol"><a href="EventTarget.html">EventTarget</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getEventListeners()">getEventListeners</a>(eventName:String):EventListenerCollection</div>
+<div class="summaryTableDescription">
+      Returns the <code class="prettyprint">EventListenerCollection</code> of the specified event name.</div>
+</td><td class="summaryTableOwnerCol">IEventDispatcher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getGlobalEventListeners()">getGlobalEventListeners</a>():EventListenerCollection</div>
+<div class="summaryTableDescription">
+      Returns the <code class="prettyprint">EventListenerCollection</code> of this EventDispatcher.</div>
+</td><td class="summaryTableOwnerCol">IEventDispatcher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getRegisteredEventNames()">getRegisteredEventNames</a>():<a href="../../data/Set.html">Set</a>
+</div>
+<div class="summaryTableDescription">
+      Returns a <code class="prettyprint">Set</code> of all register event's name in this EventListener.</div>
+</td><td class="summaryTableOwnerCol">IEventDispatcher</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#hasEventListener()">hasEventListener</a>(eventName:String):Boolean</div>
+<div class="summaryTableDescription">
+      Checks whether the EventDispatcher object has any listeners registered for a specific type of event.</div>
+</td><td class="summaryTableOwnerCol">IEventDispatcher</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="EventTarget.html#removeEventListener()">removeEventListener</a>(eventName:String, listener:Boolean, useCapture:*):<a href="../../events/EventListener.html">EventListener</a>
+</div>
+<div class="summaryTableDescription"> 
+      Removes a listener from the <code class="prettyprint">EventDispatcher</code> object.</div>
+</td><td class="summaryTableOwnerCol"><a href="EventTarget.html">EventTarget</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#removeGlobalEventListener()">removeGlobalEventListener</a>(listener:*):<a href="../../events/EventListener.html">EventListener</a>
+</div>
+<div class="summaryTableDescription"> 
+      Removes a global listener from the EventDispatcher object.</div>
+</td><td class="summaryTableOwnerCol">IEventDispatcher</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="addGlobalEventListener()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">addGlobalEventListener</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function addGlobalEventListener(listener:<a href="../EventListener.html">EventListener</a>, priority:uint, autoRemove:Boolean):void</code><p>
+      Allows the registration of global event listeners on the event target.
+      </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">listener</span>:<a href="../EventListener.html">EventListener</a></code> &mdash; The object that receives a notification when an event of the specified type occurs. This must be an object implementing the <b>EventListener</b> interface.
+      </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">priority</span>:uint</code> &mdash; Determines the priority level of the event listener.
+      </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">autoRemove</span>:Boolean</code> &mdash; Apply a removeEventListener after the first trigger
+      </td>
+</tr>
+</table>
+</div>
+<a name="getEventListeners()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getEventListeners</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getEventListeners(eventName:String):EventListenerCollection</code><p>
+      Returns the <code class="prettyprint">EventListenerCollection</code> of the specified event name.
+      </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">eventName</span>:String</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>EventListenerCollection</code> &mdash; the <code class="prettyprint">EventListenerCollection</code> of the specified event name.
+      </td>
+</tr>
+</table>
+</div>
+<a name="getGlobalEventListeners()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getGlobalEventListeners</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getGlobalEventListeners():EventListenerCollection</code><p>
+      Returns the <code class="prettyprint">EventListenerCollection</code> of this EventDispatcher.
+      </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>EventListenerCollection</code> &mdash; the <code class="prettyprint">EventListenerCollection</code> of this EventDispatcher.
+      </td>
+</tr>
+</table>
+</div>
+<a name="getRegisteredEventNames()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getRegisteredEventNames</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getRegisteredEventNames():<a href="../../data/Set.html">Set</a></code><p>
+      Returns a <code class="prettyprint">Set</code> of all register event's name in this EventListener.
+      </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../../data/Set.html">Set</a></code> &mdash; 
+                        a <code class="prettyprint">Set</code> of all register event's name in this EventListener.
+      
+                        
+                     </td>
+</tr>
+</table>
+</div>
+<a name="hasEventListener()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">hasEventListener</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function hasEventListener(eventName:String):Boolean</code><p>
+      Checks whether the EventDispatcher object has any listeners registered for a specific type of event.
+      This allows you to determine where altered handling of an event type has been introduced in the event flow heirarchy by an EventDispatcher object.
+      </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">eventName</span>:String</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code></td>
+</tr>
+</table>
+</div>
+<a name="removeGlobalEventListener()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">removeGlobalEventListener</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function removeGlobalEventListener(listener:*):<a href="../../events/EventListener.html">EventListener</a></code><p> 
+      Removes a global listener from the EventDispatcher object.
+      If there is no matching listener registered with the EventDispatcher object, then calling this method has no effect.
+      </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">listener</span>:*</code> &mdash; string representation of the class name of the EventListener or a EventListener object.
+      </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../../events/EventListener.html">EventListener</a></code></td>
+</tr>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> 
+</center>
+</div>
+</body>
+</html>
+<!-- -->

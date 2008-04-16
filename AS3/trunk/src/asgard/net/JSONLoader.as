@@ -27,6 +27,7 @@ package asgard.net
 	import vegas.string.JSON;		
 
 	/**
+     * This loader load an external file with JSON dom inside and deserialize it when the loading is complete.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
      * import flash.events.Event ;
@@ -65,6 +66,7 @@ package asgard.net
 		
 		/**
 		 * Creates a new JSONLoader instance.
+		 * @param request The URLRequest of the file to load.
 		 */
 		public function JSONLoader(request:URLRequest=null)
 		{

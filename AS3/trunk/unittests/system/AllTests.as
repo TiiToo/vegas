@@ -42,7 +42,7 @@ package system
             var suite:TestSuite = new TestSuite( "system" );
 
             suite.addTest( system.text.AllTests.suite()  ) ;
-            
+
             return suite;
         }
 	}
