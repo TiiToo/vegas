@@ -1,45 +1,30 @@
 {
 
-	configuration :
-	{
-		defaultInitMethod    : "initialize"    ,
-		defaultDestroyMethod : "destroy" 
-	}
-	,
-	imports :
-	[
-		{ ressource : "view.eden" }
-	]
-	,
-	objects :
-	[
-		
-		{
-			id        : "user" ,
-			type      : "test.User" ,			
-			singleton : true ,
-			arguments : 
-			[
-				{ value : "ekameleon" }
-			]
-		}
-        ,
-		{
-			id         : "square" ,
-			type       : "Square" ,
-			singleton  : true     ,
-			properties : 
-			[
-				{ name:"x" , value : 50  } ,
-				{ name:"y" , value : 50  }
-			]
-			,
-			methods :
-			[
-				{ name:"addChild" , arguments:[ { ref:"my_field" } ] }
-			]
-		}
-		
-	]
+    configuration :
+    {
+        defaultInitMethod    : "initialize" ,
+        defaultDestroyMethod : "destroy"    ,
+        identify             : true 
+    }
+    ,
+    imports :
+    [
+        { ressource : "view.eden" }
+    ]
+    ,
+    objects :
+    [
+        
+        {
+            id        : "user" ,
+            type      : "test.User" ,            
+            singleton : true ,
+            arguments : 
+            [
+                { value : "ekameleon" }
+            ]
+        }
+    
+    ]
 
 }

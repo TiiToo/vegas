@@ -22,7 +22,7 @@
 */
 package andromeda.ioc.factory 
 {
-	import vegas.core.CoreObject;			
+	import vegas.core.CoreObject;				
 
 	/**
 	 * This object contains the configuration of the IOC object factory.
@@ -49,6 +49,11 @@ package andromeda.ioc.factory
 		 * The default name of destroy callback method to invoke with object definition in the ObjectFactory. 
 		 */
 		public var defaultInitMethod:String ; 		
+		
+		/**
+		 * Indicates if the singleton objects in the ObjectFactory are identifiy if the type of the object implements the Identifiable interface.
+		 */
+		public var identify:Boolean ;
 		
 		/**
 		 * Initialize the config object.

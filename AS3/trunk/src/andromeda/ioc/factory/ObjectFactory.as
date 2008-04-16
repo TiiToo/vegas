@@ -22,25 +22,26 @@
 */
 package andromeda.ioc.factory 
 {
-    import flash.utils.getDefinitionByName;
-    
-    import andromeda.ioc.core.IObjectDefinition;
-    import andromeda.ioc.core.ObjectAttribute;
-    import andromeda.ioc.core.ObjectDefinitionContainer;
-    import andromeda.ioc.core.ObjectFactoryMethod;
-    import andromeda.ioc.core.ObjectMethod;
-    import andromeda.ioc.core.ObjectStaticFactoryMethod;
-    import andromeda.ioc.factory.IObjectFactory;
-    
-    import system.Reflection;
-    
-    import vegas.data.Map;
-    import vegas.data.iterator.Iterator;
-    import vegas.data.map.HashMap;
-    import vegas.errors.NullPointerError;
-    import vegas.util.ClassUtil;    
+	import flash.utils.getDefinitionByName;
+	
+	import andromeda.ioc.core.IObjectDefinition;
+	import andromeda.ioc.core.ObjectAttribute;
+	import andromeda.ioc.core.ObjectDefinitionContainer;
+	import andromeda.ioc.core.ObjectFactoryMethod;
+	import andromeda.ioc.core.ObjectMethod;
+	import andromeda.ioc.core.ObjectStaticFactoryMethod;
+	import andromeda.ioc.factory.IObjectFactory;
+	
+	import system.Reflection;
+	
+	import vegas.core.Identifiable;
+	import vegas.data.Map;
+	import vegas.data.iterator.Iterator;
+	import vegas.data.map.HashMap;
+	import vegas.errors.NullPointerError;
+	import vegas.util.ClassUtil;	
 
-    /**
+	/**
 	 * The factory of all objects who implements the IObjectDefinition interface.
 	 * @author eKameleon
 	 */
@@ -95,12 +96,12 @@ package andromeda.ioc.factory
 		
 		/**
 		 * The custom debug method of this factory.
+		 * You can overrides this method, the prototype object is dynamic.
 		 */
 		public function debug( o:* ):void
 		{
-			getLogger().warn ( o ) ;
-			// use trace in this method if you want debug in Flash or the Flash debugger.
-		}
+			getLogger().warn( o ) ; // use trace in this method if you want debug in Flash or the Flash debugger.
+		};
 		
 		/**
 		 * This method returns an object with the specified name in argument.
@@ -286,12 +287,24 @@ package andromeda.ioc.factory
 			}
 			if ( instance != null )
 			{
-				populateProperties( instance, definition.getProperties() );
-				invokeMethods( instance , definition.getMethods() ) ;
-				invokeInitMethod( instance, definition ) ;
+				populateProperties   ( instance , definition.getProperties() );
+				invokeMethods        ( instance , definition.getMethods() ) ;
+				invokeInitMethod     ( instance , definition ) ;
+				invokeIdentification ( instance , definition ) ;
 			}
 			return instance ;
 		}
+		
+		/**
+		 * Invokes the identification of the specified object, if the 'identify' flag is true the config of this factory and if specified the IDefinition object scope is singleton.
+		 */
+		protected function invokeIdentification( o:* , definition:IObjectDefinition ):void
+		{
+			if ( definition.isSingleton() && o is Identifiable )
+			{
+				(o as Identifiable ).id = definition.id ;
+			}
+		}		
 
 		/**
 		 * Invokes the destroy method of the specified object, if the init method is define in the IDefinition object.

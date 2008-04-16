@@ -438,8 +438,8 @@ package andromeda.ioc.factory
 				definition.setFactoryMethod( ObjectStaticFactoryMethod.create( staticfactoryMethod ) ) ;
 				
 				addObjectDefinition( id , definition ) ;
-
-				if ( assemblyName && !_assemblies.containsKey( assemblyName ) )
+				
+				if ( assemblyName != null && !_assemblies.containsKey( assemblyName ) )
 				{
 					_assemblies.put( assemblyName , new AssemblyEntry( assemblyName , definition ) ) ;	
 				}
@@ -447,7 +447,7 @@ package andromeda.ioc.factory
 				{
 					_initDefinition( definition ) ;
 				}
-				
+							
 			}
 
 		}
