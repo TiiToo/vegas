@@ -22,9 +22,8 @@
 */
 package andromeda.process 
 {
-	import flash.events.Event;
-	
 	import andromeda.events.ActionEvent;
+	import andromeda.process.mocks.MockSimpleActionListener;
 	
 	import buRRRn.ASTUce.framework.TestCase;
 	
@@ -43,20 +42,26 @@ package andromeda.process
 		
 		public var action:SimpleAction ;
 		
+		public var mockListener:MockSimpleActionListener ;
+		
         public function setUp():void
         {
-            action = new SimpleAction() ;
-        }
+            action       = new SimpleAction() ;
+            mockListener = new MockSimpleActionListener() ;
+            mockListener.register( action ) ;
+		}
         
         public function tearDown():void
         {
-            action = undefined ;
+            mockListener.unregister(action) ;
+            mockListener = undefined ;
+            action = undefined ;            
         }
         
         public function testConstructor():void
         {
-            assertNotNull( action, "Action constructor failed, the instance not must be null.") ;
-            assertTrue( action is SimpleAction, "Action is SimpleAction failed.") ;
+            assertNotNull( action , "Action constructor failed, the instance not must be null." ) ;
+            assertTrue( action is SimpleAction , "Action is SimpleAction failed." ) ;
         }
         
         public function testInherit():void
@@ -65,7 +70,6 @@ package andromeda.process
             assertTrue( action is IAction , "Action implements the IAction interface" ) ;    	
         }   
                 
-        
         public function testClone():void
         {
             var clone:SimpleAction = action.clone() as SimpleAction ;
@@ -90,48 +94,16 @@ package andromeda.process
         
         public function testNotifyFinished():void
         {
-            var isEvent:Boolean     = false ;
-            var isDispatch:Boolean  = false ;
-            var type:String         = null  ;
-            
-            var someHandler:Function = function( event:Event ):void 
-            {
-                   isDispatch  = true ;
-                   isEvent     = event is ActionEvent ;
-                   type        = event.type ;                   
-               } ;
-                   
-            action.addEventListener( ActionEvent.FINISH , someHandler , false , 0 , true )  ;
             action.notifyFinished() ;
-            action.removeEventListener( ActionEvent.FINISH, someHandler , false )  ;
-                    
-            assertTrue( isDispatch , "Action notifyFinished 01 failed, the ActionEvent.START event isn't notify" ) ;
-            assertTrue( isEvent    , "Action notifyFinished 02 failed, the dispatched event isn't a ActionEvent" ) ;
-            assertEquals( type , ActionEvent.FINISH , "Action notifyFinished 03 failed, the dispatched event type must be ActionEvent.FINISH." ) ;
+            assertTrue( mockListener.finishCalled , "Action notifyFinished failed, the ActionEvent.START event isn't notify" ) ;
+            assertEquals( mockListener.finishType , ActionEvent.FINISH  , "Action notifyStarted failed, bad type found." );
         }
     
         public function testNotifyStarted():void
         {
-            
-            var isEvent:Boolean     = false ;
-            var isDispatch:Boolean  = false ;
-            var type:String         = null  ;
-            
-            var someHandler:Function = function( event:Event ):void 
-            {
-                isDispatch  = true ;
-                isEvent     = event is ActionEvent ;
-                type        = event.type ;                   
-            };
-                
-            action.addEventListener( ActionEvent.START , someHandler , false , 0 , true )  ;
             action.notifyStarted() ;
-            action.removeEventListener( ActionEvent.START, someHandler , false )  ;
-                    
-            assertTrue( isDispatch , "Action notifyStarted failed, the ActionEvent.START event isn't notify" ) ;
-            assertTrue( isEvent    , "Action notifyStarted failed, the dispatched event isn't a ActionEvent" ) ;
-            assertEquals( type , ActionEvent.START , "Action notifyStarted failed, the dispatched event type must be ActionEvent.START." ) ;
-                    
+            assertTrue( mockListener.startCalled , "Action notifyStarted failed, the ActionEvent.START event isn't notify" ) ;
+            assertEquals( mockListener.startType , ActionEvent.START  , "Action notifyStarted failed, bad type found." );
         }    
         
         public function testRun():void

@@ -87,7 +87,7 @@ package system.text.diff
 	 * result = Difference.map( "hello world" , "hello system" ) ;
 	 * trace( result ) ;
 	 * </pre>
-	 * <p>This library is in progress, don't use it for the moment please (alpha version)</p>
+	 * <p>This library is in progress, don't use it for the moment please (alpha version)</p>gm
 	 * @author eKameleon
 	 */
 	public class Difference 
