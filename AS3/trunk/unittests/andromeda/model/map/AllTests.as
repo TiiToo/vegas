@@ -40,6 +40,8 @@ package andromeda.model.map
             
             var suite:TestSuite = new TestSuite( "andromeda.model.map" );
 
+            // FIXME suite.addTestSuite( TestMapModel ) ;
+
             return suite;
             
         }

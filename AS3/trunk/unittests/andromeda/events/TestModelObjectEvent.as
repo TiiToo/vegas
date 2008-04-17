@@ -20,17 +20,17 @@
   Contributor(s) :
   
 */
-package andromeda.process 
+package andromeda.events 
 {
 	import buRRRn.ASTUce.framework.TestCase;
 	
 	/**
 	 * @author eKameleon
 	 */
-	public class TestBatch extends TestCase 
+	public class TestModelObjectEvent extends TestCase 
 	{
 
-		public function TestBatch(name:String = "")
+		public function TestModelObjectEvent(name:String = "")
 		{
 			super(name);
 		}

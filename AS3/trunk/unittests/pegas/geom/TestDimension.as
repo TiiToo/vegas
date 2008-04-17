@@ -72,6 +72,7 @@ package pegas.geom
         public function testInherit():void
         {
             assertTrue( d is CoreObject , "DIM_01 - inherit CoreObject failed.") ;
+            assertTrue( d is IGeometry  , "DIM_02 - implements IGeometry failed.") ;
         }   
         
         public function testHashCode():void

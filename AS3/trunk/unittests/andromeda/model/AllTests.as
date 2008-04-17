@@ -42,9 +42,20 @@ package andromeda.model
         {
             
             var suite:TestSuite = new TestSuite( "andromeda.model" );
-
+			
+			// suites
+			
             suite.addTest( andromeda.model.array.AllTests.suite() ) ;
             suite.addTest( andromeda.model.map.AllTests.suite() ) ;
+	
+			// cases
+
+            // FIXME suite.addTestSuite( TestAbstractModel ) ;
+            // FIXME suite.addTestSuite( TestAbstractModelObject ) ;
+            // FIXME suite.addTestSuite( TestIModel ) ;
+            // FIXME suite.addTestSuite( TestIModelObject ) ;
+            // FIXME suite.addTestSuite( TestModelCollector ) ;
+            // FIXME suite.addTestSuite( TestSimpleModelObject ) ;
 
             return suite;
             

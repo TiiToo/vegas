@@ -40,6 +40,8 @@ package andromeda.model.array
             
             var suite:TestSuite = new TestSuite( "andromeda.model.array" );
 
+            // FIXME suite.addTestSuite( TestPageableArrayModel ) ;
+
             return suite;
             
         }

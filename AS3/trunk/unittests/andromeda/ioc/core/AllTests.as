@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is PEGAS Framework.
+  The Original Code is Andromeda Framework based on VEGAS.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -39,6 +39,16 @@ package andromeda.ioc.core
         {
             
             var suite:TestSuite = new TestSuite( "andromeda.ioc.core" );
+
+            // FIXME suite.addTestSuite( TestIObjectDefinition ) ;
+            // FIXME suite.addTestSuite( TestIObjectDefinitionContainer ) ;
+            // FIXME suite.addTestSuite( TestObjectAttribute ) ;
+            // FIXME suite.addTestSuite( TestObjectDefinition ) ;
+            // FIXME suite.addTestSuite( TestObjectDefinitionContainer ) ;
+            // FIXME suite.addTestSuite( TestObjectFactoryMethod ) ;
+            // FIXME suite.addTestSuite( TestObjectMethod ) ;
+            // FIXME suite.addTestSuite( TestObjectScope ) ;
+            // FIXME suite.addTestSuite( TestObjectStaticFactoryMethod ) ;
 
             return suite;
             
