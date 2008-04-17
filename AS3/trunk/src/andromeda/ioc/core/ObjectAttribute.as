@@ -49,6 +49,11 @@ package andromeda.ioc.core
 		 * Defines the label of the 'factory' attribure.
 		 */
 		public static const FACTORY:String = "factory" ;  
+
+		/**
+		 * Defines the label of the 'identify' property of the object.
+		 */
+		public static const IDENTIFY:String = "identify" ;
 		
 		/**
 		 * Defines the label of the 'imports' top-level attribute.

@@ -22,10 +22,27 @@
 */
 package andromeda.ioc.factory 
 {
-	import vegas.core.CoreObject;				
+	import system.Reflection;
+	
+	import vegas.core.CoreObject;	
 
 	/**
 	 * This object contains the configuration of the IOC object factory.
+	 * <p><b>Example :</b></p>
+	 * <pre class="prettyprint">
+	 * import andromeda.ioc.factory.ECMAObjectFactory ;
+	 * import andromeda.ioc.factory.ObjectConfig ;
+	 * 
+	 * var factory:ECMAObjectFactory = ECMAObjectFactory.getInstance() ;
+	 * var config:ObjectConfig        = new ObjectConfig() ;
+	 * 
+	 * config.defaultInitMethod       = "init" ;
+	 * config.defaultDestroyMethod    = "destroy" ;
+	 * config.identify                = true ;
+	 * 
+	 * factory.config = config ;
+	 * trace( config ) ; // [ObjectConfig defaultDestroyMethod:destroy defaultInitMethod:init identify:true]
+	 * </pre>
 	 * @author eKameleon
 	 */
 	public class ObjectConfig extends CoreObject 
@@ -73,5 +90,29 @@ package andromeda.ioc.factory
 				}	
 			}
 		}
+		
+		/**
+		 * Returns the string representation of this instance.
+		 * @return the string representation of this instance.
+		 */
+		public override function toString():String 
+		{
+			var s:String = "[" + Reflection.getClassName(this) ;
+			if ( defaultDestroyMethod != null )
+			{
+				s += " defaultDestroyMethod:" + defaultDestroyMethod ;
+			}
+			if ( defaultInitMethod != null )
+			{
+				s += " defaultInitMethod:" + defaultInitMethod ;
+			}
+			if ( identify )
+			{
+				s += " identify:" + identify ;
+			}
+			s += "]" ;
+			return s ;
+		}
+		
 	}
 }

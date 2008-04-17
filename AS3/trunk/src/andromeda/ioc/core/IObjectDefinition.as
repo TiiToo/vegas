@@ -33,6 +33,17 @@ package andromeda.ioc.core
 	{
 
 		/**
+		 * Indicates if the object definition is a singleton and the type of the object is Identifiable if the object must be
+		 * populated with the id of the definition when is instanciated.
+		 */
+		function get identify():* ;
+	
+		/**
+	 	 * @private
+	 	 */
+		function set identify( value:* ):void ;
+
+		/**
 		 * Returns the constructor arguments values of this object in a Array list.
 		 * @return the constructor arguments values of this object in a Array list.
 		 */	

@@ -302,7 +302,10 @@ package andromeda.ioc.factory
 		{
 			if ( definition.isSingleton() && o is Identifiable )
 			{
-				(o as Identifiable ).id = definition.id ;
+				if ( ( definition.identify != null && definition.identify === true ) || (  definition.identify == null && config.identify !== false ) )
+				{
+					(o as Identifiable ).id = definition.id ;
+				}
 			}
 		}		
 

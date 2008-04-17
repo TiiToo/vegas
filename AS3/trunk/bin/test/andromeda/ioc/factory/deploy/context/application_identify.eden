@@ -1,0 +1,28 @@
+{
+    
+    objects : 
+    [
+        
+        {   
+            id          : "vo_01"  ,
+            type        : "andromeda.vo.NetServerInfoVO" ,
+            singleton   : true ,
+            identify    : true ,
+            arguments   : 
+            [ 
+                { 
+                    application : "local" ,
+                    level       : "error" ,
+                    code        : "application_error" ,
+                    description : "An error is invoqued in the application" ,
+                    line        : 3 ,
+                    methodName  : "noMethod" ,
+                    serviceName : "noService" 
+                } 
+            ]
+        
+        }
+        
+    ]
+
+}
