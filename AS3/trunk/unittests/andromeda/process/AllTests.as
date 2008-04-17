@@ -39,6 +39,8 @@ package andromeda.process
         {
             
             var suite:TestSuite = new TestSuite( "andromeda.process" );
+            
+            suite.addTestSuite( TestIStoppable ) ;
 
             return suite;
             
