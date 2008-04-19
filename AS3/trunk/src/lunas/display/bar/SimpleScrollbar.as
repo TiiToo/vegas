@@ -251,7 +251,7 @@ package lunas.display.bar
 		}
 		
 		/**
-		 * (read-write) Indicates the top button used when the bar direction is Direction.VERTICAL.
+		 * (read-write) Indicates the left button used when the bar direction is Direction.HORIZONTAL.
 		 */
 		public function get leftButton():FrameLabelButton
 		{
@@ -281,7 +281,7 @@ package lunas.display.bar
 		}
 
 		/**
-		 * (read-write) Indicates the top button used when the bar direction is Direction.VERTICAL.
+		 * (read-write) Indicates the right button used when the bar direction is Direction.HORIZONTAL.
 		 */
 		public function get rightButton():FrameLabelButton
 		{
