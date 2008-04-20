@@ -59,42 +59,48 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("In
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
 <a class="signatureLink" href="#testEnded()">testEnded</a>(testName:String):void</div>
-<div class="summaryTableDescription"></div>
+<div class="summaryTableDescription">
+         Invoked when the test is ended.</div>
 </td><td class="summaryTableOwnerCol">ITestRunListener</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
 <a class="signatureLink" href="#testFailed()">testFailed</a>(status:<a href="TestRunStatus.html">TestRunStatus</a>, testName:String, trace:String):void</div>
-<div class="summaryTableDescription"></div>
+<div class="summaryTableDescription">
+         Invoked when the test is failed.</div>
 </td><td class="summaryTableOwnerCol">ITestRunListener</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
 <a class="signatureLink" href="#testRunEnded()">testRunEnded</a>(elapsedTime:Number):void</div>
-<div class="summaryTableDescription"></div>
+<div class="summaryTableDescription">
+         Invoked when the test process is ending.</div>
 </td><td class="summaryTableOwnerCol">ITestRunListener</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
 <a class="signatureLink" href="#testRunStarted()">testRunStarted</a>(testSuiteName:String, testCount:int):void</div>
-<div class="summaryTableDescription"></div>
+<div class="summaryTableDescription">
+         Invoked when the test process is started.</div>
 </td><td class="summaryTableOwnerCol">ITestRunListener</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
 <a class="signatureLink" href="#testRunStopped()">testRunStopped</a>(elapsedTime:Number):void</div>
-<div class="summaryTableDescription"></div>
+<div class="summaryTableDescription">
+         Invoked when the test process is stopped.</div>
 </td><td class="summaryTableOwnerCol">ITestRunListener</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
 <a class="signatureLink" href="#testStarted()">testStarted</a>(testName:String):void</div>
-<div class="summaryTableDescription"></div>
+<div class="summaryTableDescription">
+         Invoked when the test is started.</div>
 </td><td class="summaryTableOwnerCol">ITestRunListener</td>
 </tr>
 </table>
@@ -113,7 +119,9 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function testEnded(testName:String):void</code><span class="label">Parameters</span>
+<code>public function testEnded(testName:String):void</code><p>
+         Invoked when the test is ended.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">testName</span>:String</code></td>
@@ -127,7 +135,9 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function testFailed(status:<a href="TestRunStatus.html">TestRunStatus</a>, testName:String, trace:String):void</code><span class="label">Parameters</span>
+<code>public function testFailed(status:<a href="TestRunStatus.html">TestRunStatus</a>, testName:String, trace:String):void</code><p>
+         Invoked when the test is failed.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">status</span>:<a href="TestRunStatus.html">TestRunStatus</a></code></td>
@@ -153,7 +163,9 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function testRunEnded(elapsedTime:Number):void</code><span class="label">Parameters</span>
+<code>public function testRunEnded(elapsedTime:Number):void</code><p>
+         Invoked when the test process is ending.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">elapsedTime</span>:Number</code></td>
@@ -167,7 +179,9 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function testRunStarted(testSuiteName:String, testCount:int):void</code><span class="label">Parameters</span>
+<code>public function testRunStarted(testSuiteName:String, testCount:int):void</code><p>
+         Invoked when the test process is started.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">testSuiteName</span>:String</code></td>
@@ -187,7 +201,9 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function testRunStopped(elapsedTime:Number):void</code><span class="label">Parameters</span>
+<code>public function testRunStopped(elapsedTime:Number):void</code><p>
+         Invoked when the test process is stopped.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">elapsedTime</span>:Number</code></td>
@@ -201,7 +217,9 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function testStarted(testName:String):void</code><span class="label">Parameters</span>
+<code>public function testStarted(testName:String):void</code><p>
+         Invoked when the test is started.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">testName</span>:String</code></td>

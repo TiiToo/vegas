@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
 <link rel="stylesheet" href="../../../prettify.css" type="text/css">
-<meta content="ObjectConfig,andromeda.ioc.factory.ObjectConfig,defaultDestroyMethod,defaultInitMethod,identify,initialize" name="keywords">
+<meta content="ObjectConfig,andromeda.ioc.factory.ObjectConfig,defaultDestroyMethod,defaultInitMethod,identify,initialize,toString" name="keywords">
 <title>andromeda.ioc.factory.ObjectConfig</title>
 </head>
 <body>
@@ -44,6 +44,21 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </table>
 <p></p>
   This object contains the configuration of the IOC object factory.
+  <p><b>Example :</b></p>
+  <pre class="prettyprint">
+  import andromeda.ioc.factory.ECMAObjectFactory ;
+  import andromeda.ioc.factory.ObjectConfig ;
+  
+  var factory:ECMAObjectFactory = ECMAObjectFactory.getInstance() ;
+  var config:ObjectConfig        = new ObjectConfig() ;
+  
+  config.defaultInitMethod       = "init" ;
+  config.defaultDestroyMethod    = "destroy" ;
+  config.identify                = true ;
+  
+  factory.config = config ;
+  trace( config ) ; // [ObjectConfig defaultDestroyMethod:destroy defaultInitMethod:init identify:true]
+  </pre>
   <p></p>
 <br>
 <hr>
@@ -136,13 +151,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
    Returns a Eden representation of the object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../../vegas/core/CoreObject.html">CoreObject</a></td>
 </tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="../../../vegas/core/CoreObject.html#toString()">toString</a>():String</div>
+<a class="signatureLink" href="#toString()">toString</a>():String</div>
 <div class="summaryTableDescription">
    Returns the string representation of this instance.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../../vegas/core/CoreObject.html">CoreObject</a></td>
+</td><td class="summaryTableOwnerCol">ObjectConfig</td>
 </tr>
 </table>
 </div>
@@ -217,6 +232,24 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">init</span>:Object</code> &mdash; A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
+   </td>
+</tr>
+</table>
+</div>
+<a name="toString()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">toString</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function toString():String</code><p>
+   Returns the string representation of this instance.
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash; the string representation of this instance.
    </td>
 </tr>
 </table>

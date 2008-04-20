@@ -28,6 +28,8 @@ package vegas.events.dom
 
 	import vegas.errors.IllegalArgumentError ;
 
+    [ExcludeClass]
+
     /**
      * This comparator is used in the <code class="prettyprint">EventDispatcher</code> class to ordered all <code class="prettyprint">EventLister</code> with a priority value.
      * @author eKameleon

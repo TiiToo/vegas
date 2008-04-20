@@ -55,7 +55,7 @@ package buRRRn.ASTUce.mocks
          */
         public function addMockMethod( method:* ):void
         { 
-            owner.createMethod( owner , mock , method ) ; 
+            owner.createMethod( owner , this , method ) ; 
         }        
         
         /**

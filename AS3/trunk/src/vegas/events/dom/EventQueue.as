@@ -28,6 +28,8 @@ package vegas.events.dom
     import vegas.data.iterator.Iterator;
     import vegas.data.queue.LinearQueue;
     
+    [ExcludeClass]
+    
     /**
      * Internal class used in <code class="prettyprint">vegas.events.dom.EventDispatcher</code> class to bufferize the events if no EventListener are registered with the event type of the event.
      */

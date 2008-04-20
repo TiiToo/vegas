@@ -32,7 +32,9 @@ package vegas.events.dom
 	import vegas.data.iterator.Iterator;
 	import vegas.data.list.SortedArrayList;
 	import vegas.events.EventListener;    
-
+    
+    [ExcludeClass]
+    
 	/**
      * Internal class used in the EventDispatcher to collect <code class="prettyprint">EventListener</code> for a specific event type.  
      * @author eKameleon

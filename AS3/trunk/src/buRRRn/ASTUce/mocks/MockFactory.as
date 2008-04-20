@@ -22,7 +22,7 @@ package buRRRn.ASTUce.mocks
 {
     import flash.utils.describeType;
     
-    import system.Reflection;            
+    import system.Reflection;    
 
     /**
      * The MockFactory class.
@@ -210,6 +210,7 @@ package buRRRn.ASTUce.mocks
             {
                 return false;
             }
+            return false ;
         }
         
         /**

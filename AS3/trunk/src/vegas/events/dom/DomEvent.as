@@ -31,7 +31,8 @@ package vegas.events.dom
 	import vegas.core.IFormattable;
 	import vegas.core.IHashable;
 	import vegas.events.BasicEvent;		
-
+    
+    [ExcludeClass]
 	public class DomEvent extends BasicEvent implements ICopyable, IFormattable, IHashable, ISerializable
 	{
 		

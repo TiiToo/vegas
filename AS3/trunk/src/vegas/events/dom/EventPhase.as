@@ -27,6 +27,9 @@
  */
 package vegas.events.dom
 {
+	
+	[ExcludeClass]
+	
 	public class EventPhase
 	{
 		

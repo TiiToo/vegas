@@ -30,7 +30,8 @@ package pegas.colors
 	import vegas.util.ObjectUtil;	
 
 	/**
- 	 * Enumeration static class to defined Basic HTML data types : <a href="http://www.w3.org/TR/html4/types.html">W3C HTML 4 Specifications</a> (chap 6.5)
+ 	 * Enumeration static class to defined Basic HTML data types.
+ 	 * <p>Read the about it the <a href="http://www.w3.org/TR/html4/types.html">W3C HTML 4 Specifications</a> (chap 6.5)</p>
 	 * <p><b>Example :</b></p>
 	 * <pre class="prettyprint">
 	 * import pegas.colors.ColorHTML ;

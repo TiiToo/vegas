@@ -173,7 +173,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-   (read-write) Indicates the id of this object.</td>
+         (read-write) Indicates the id of this object.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/model/class-list.html');" href="andromeda/model/AbstractModel.html#id">id</a> &mdash; Property in class andromeda.model.<a onclick="javascript:loadClassListFrame('andromeda/model/class-list.html');" href="andromeda/model/AbstractModel.html">AbstractModel</a></td>
@@ -330,6 +330,22 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
   This interface defines a common structure for classes that has an ID.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/core/class-list.html');" href="andromeda/ioc/core/IObjectDefinition.html#identify">identify</a> &mdash; Property in interface andromeda.ioc.core.<a onclick="javascript:loadClassListFrame('andromeda/ioc/core/class-list.html');" href="andromeda/ioc/core/IObjectDefinition.html">IObjectDefinition</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   Indicates if the object definition is a singleton and the type of the object is Identifiable if the object must be
+   populated with the id of the definition when is instanciated.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/core/class-list.html');" href="andromeda/ioc/core/ObjectDefinition.html#identify">identify</a> &mdash; Property in class andromeda.ioc.core.<a onclick="javascript:loadClassListFrame('andromeda/ioc/core/class-list.html');" href="andromeda/ioc/core/ObjectDefinition.html">ObjectDefinition</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates if the object definition is a singleton and the type of the object is Identifiable if the object must be
+         populated with the id of the definition when is instanciated.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ObjectConfig.html#identify">identify</a> &mdash; Property in class andromeda.ioc.factory.<a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ObjectConfig.html">ObjectConfig</a></td>
 </tr>
 <tr>
@@ -349,6 +365,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
 <tr>
 <td width="20"></td><td>
    Shows some Information about the Connection.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/core/class-list.html');" href="andromeda/ioc/core/ObjectAttribute.html#IDENTIFY">IDENTIFY</a> &mdash; Constant static property in class andromeda.ioc.core.<a onclick="javascript:loadClassListFrame('andromeda/ioc/core/class-list.html');" href="andromeda/ioc/core/ObjectAttribute.html">ObjectAttribute</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   Defines the label of the 'identify' property of the object.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/geom/class-list.html');" href="pegas/geom/Matrix4.html#identity()">identity</a>() &mdash; Method in class pegas.geom.<a onclick="javascript:loadClassListFrame('pegas/geom/class-list.html');" href="pegas/geom/Matrix4.html">Matrix4</a></td>
@@ -391,13 +414,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
 <tr>
 <td width="20"></td><td>
   This interface defines the methods of the vegas.events.EventDispatcher class.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/events/dom/class-list.html');" href="vegas/events/dom/IEventDispatcher.html"><i>IEventDispatcher</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('vegas/events/dom/class-list.html');" href="vegas/events/dom/package-detail.html">vegas.events.dom</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-     This interface implement class who stores the listeners object an notifies them.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/core/class-list.html');" href="vegas/core/IFactory.html"><i>IFactory</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('vegas/core/class-list.html');" href="vegas/core/package-detail.html">vegas.core</a></td>
@@ -991,12 +1007,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
 <tr>
 <td width="20"></td><td>
    This method is invoked in the constructor of the class to initialize all event types.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/events/dom/class-list.html');" href="vegas/events/dom/DomEvent.html#initEvent()">initEvent</a>(type, bubbles, cancelable) &mdash; Method in class vegas.events.dom.<a onclick="javascript:loadClassListFrame('vegas/events/dom/class-list.html');" href="vegas/events/dom/DomEvent.html">DomEvent</a></td>
-</tr>
-<tr>
-<td width="20"></td><td></td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerStream.html#initEventDispatcher()">initEventDispatcher</a>() &mdash; Method in class asgard.net.<a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerStream.html">NetServerStream</a></td>
@@ -1732,18 +1742,25 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
          see <code class="prettyprint">buRRRn.ASTUce.framework.Assert</code>.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('buRRRn/ASTUce/mocks/class-list.html');" href="buRRRn/ASTUce/mocks/InvocationBehavior.html">InvocationBehavior</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('buRRRn/ASTUce/mocks/class-list.html');" href="buRRRn/ASTUce/mocks/package-detail.html">buRRRn.ASTUce.mocks</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+     This class provides a container to prepare a method to invoke.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('buRRRn/ASTUce/mocks/class-list.html');" href="buRRRn/ASTUce/mocks/InvocationBehavior.html#InvocationBehavior()">InvocationBehavior</a>(caller, method, arguments) &mdash; Constructor in class buRRRn.ASTUce.mocks.<a onclick="javascript:loadClassListFrame('buRRRn/ASTUce/mocks/class-list.html');" href="buRRRn/ASTUce/mocks/InvocationBehavior.html">InvocationBehavior</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Creates a new InvocationBehavior.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ObjectFactory.html#invokeDestroyMethod()">invokeDestroyMethod</a>(o, definition:<a href="andromeda/ioc/core/IObjectDefinition.html" onclick="javascript:loadClassListFrame('andromeda/ioc/core./class-list.html');">andromeda.ioc.core:IObjectDefinition</a>) &mdash; Method in class andromeda.ioc.factory.<a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ObjectFactory.html">ObjectFactory</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
    Invokes the destroy method of the specified object, if the init method is define in the IDefinition object.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ObjectFactory.html#invokeIdentification()">invokeIdentification</a>(o, definition:<a href="andromeda/ioc/core/IObjectDefinition.html" onclick="javascript:loadClassListFrame('andromeda/ioc/core./class-list.html');">andromeda.ioc.core:IObjectDefinition</a>) &mdash; Method in class andromeda.ioc.factory.<a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ObjectFactory.html">ObjectFactory</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-   Invokes the identification of the specified object, if the 'identify' flag is true the config of this factory and if specified the IDefinition object scope is singleton.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ObjectFactory.html#invokeInitMethod()">invokeInitMethod</a>(o, definition:<a href="andromeda/ioc/core/IObjectDefinition.html" onclick="javascript:loadClassListFrame('andromeda/ioc/core./class-list.html');">andromeda.ioc.core:IObjectDefinition</a>) &mdash; Method in class andromeda.ioc.factory.<a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ObjectFactory.html">ObjectFactory</a></td>
@@ -1823,6 +1840,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
   The IRunnable interface should be implemented by any class whose instances are intended to be executed by a "thread".</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('buRRRn/ASTUce/mocks/class-list.html');" href="buRRRn/ASTUce/mocks/TypeOf.html#isA()">isA</a>(type) &mdash; Static method in class buRRRn.ASTUce.mocks.<a onclick="javascript:loadClassListFrame('buRRRn/ASTUce/mocks/class-list.html');" href="buRRRn/ASTUce/mocks/TypeOf.html">TypeOf</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Returns the TypeOf reference of the specified type object (class).</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('buRRRn/eden/class-list.html');" href="buRRRn/eden/GenericParser.html#isAlpha()">isAlpha</a>(c) &mdash; Static method in class buRRRn.eden.<a onclick="javascript:loadClassListFrame('buRRRn/eden/class-list.html');" href="buRRRn/eden/GenericParser.html">GenericParser</a></td>
 </tr>
 <tr>
@@ -1842,12 +1866,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
 <tr>
 <td width="20"></td><td>
          (read-only) Returns the buffering state of external MP3 files.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/events/dom/class-list.html');" href="vegas/events/dom/DomEvent.html#isCancelled()">isCancelled</a>() &mdash; Method in class vegas.events.dom.<a onclick="javascript:loadClassListFrame('vegas/events/dom/class-list.html');" href="vegas/events/dom/DomEvent.html">DomEvent</a></td>
-</tr>
-<tr>
-<td width="20"></td><td></td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/data/array/class-list.html');" href="vegas/data/array/ArrayFilter.html#isCaseInsensitive()">isCaseInsensitive</a>() &mdash; Method in class vegas.data.array.<a onclick="javascript:loadClassListFrame('vegas/data/array/class-list.html');" href="vegas/data/array/ArrayFilter.html">ArrayFilter</a></td>
@@ -2391,7 +2409,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-   Indicates if the object lazily initialized.</td>
+         Indicates if the object lazily initialized.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/IObjectFactory.html#isLazyInit()">isLazyInit</a>(name) &mdash; Method in interface andromeda.ioc.factory.<a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/IObjectFactory.html">IObjectFactory</a></td>
@@ -2575,12 +2593,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
       Returns the proxy policy boolean value of this RemotingService.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/events/dom/class-list.html');" href="vegas/events/dom/DomEvent.html#isQueued()">isQueued</a>() &mdash; Method in class vegas.events.dom.<a onclick="javascript:loadClassListFrame('vegas/events/dom/class-list.html');" href="vegas/events/dom/DomEvent.html">DomEvent</a></td>
-</tr>
-<tr>
-<td width="20"></td><td></td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/logging/targets/class-list.html');" href="vegas/logging/targets/AirLoggerTarget.html#isRequesting()">isRequesting</a>() &mdash; Method in class vegas.logging.targets.<a onclick="javascript:loadClassListFrame('vegas/logging/targets/class-list.html');" href="vegas/logging/targets/AirLoggerTarget.html">AirLoggerTarget</a></td>
 </tr>
 <tr>
@@ -2620,7 +2632,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-   Returns <code class="prettyprint">true</code> if the object in a Sigleton else the object is a prototype.</td>
+         Returns <code class="prettyprint">true</code> if the object in a Sigleton else the object is a prototype.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/IObjectFactory.html#isSingleton()">isSingleton</a>(name) &mdash; Method in interface andromeda.ioc.factory.<a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/IObjectFactory.html">IObjectFactory</a></td>

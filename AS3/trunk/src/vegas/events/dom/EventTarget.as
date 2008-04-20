@@ -25,6 +25,8 @@ package vegas.events.dom
 {
     import vegas.events.EventListener;
     
+    [ExcludeClass]
+    
 	/**
      * The EventTarget interface inspired by the <a href='http://www.w3.org/TR/2000/REC-DOM-Level-2-Events-20001113/'>Document Object Model (DOM) Level 2 Events Specification</a>.
      * @author eKameleon

@@ -46,241 +46,241 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 </table>
 <p></p>
-  This factory builder use a deserialize eden object to creates all Objects with the IObjectDefinitionContainer.
-  <p><b>Example :</b></p>
-   <p><b>1 -</b> The eden application file : <b>"application.eden"</b></p>
-   <pre class="prettyprint">
-    {
-         objects : 
-         [
-             {   
-                 id            : "address"  ,
-                 type          : "test.Address" ,
-                 properties    : 
-                 [ 
-                     { name : "city"   , value : "Marseille" } ,
-                     { name : "street" , value : "xx xxx xxxxxxxxxxx" } ,
-                     { name : "zip"    , value : 13004 } 
-                 ]
-             }
-             ,
-             {   
-                 id         : "job_dev"  ,
-                 type       : "test.Job" ,
-                 properties : [ { name:"name" , value:"AS Developper" } ]
-             }
-             ,
-             {   
-                 id            : "user" , 
-                 type          : "test.User" , 
-                 arguments     : 
-                 [ 
-                     { value :"eKameleon" } , 
-                     { value :"ALCARAZ"   } , 
-                     { ref   :"address"   } 
-                 ] ,
-                 lazyInit      : true , // only if this object is a singleton, the singleton isn't initialized during the factory initialize process.
-                 singleton     : true ,
-                 destroy       : "destroy" ,  // only if this object is a singleton and the user destroy the reference in the factory.
-                 init          : "initialize" ,
-                 properties : 
-                 [
-                     { name:"age"       , value : 30          } ,
-                     { name:"firstName" , value : "Marc"      } , 
-                     { name:"job"       , ref   : "job_dev"   } , 
-                     { name:"url"       , value : "http://www.ekameleon.net/blog" }
-                 ]
+     This factory builder use a deserialize eden object to creates all Objects with the IObjectDefinitionContainer.
+     <p><b>Example :</b></p>
+      <p><b>1 -</b> The eden application file : <b>"application.eden"</b></p>
+      <pre class="prettyprint">
+       {
+            objects : 
+            [
+                {   
+                    id            : "address"  ,
+                    type          : "test.Address" ,
+                    properties    : 
+                    [ 
+                        { name : "city"   , value : "Marseille" } ,
+                        { name : "street" , value : "xx xxx xxxxxxxxxxx" } ,
+                        { name : "zip"    , value : 13004 } 
+                    ]
+                }
+                ,
+                {   
+                    id         : "job_dev"  ,
+                    type       : "test.Job" ,
+                    properties : [ { name:"name" , value:"AS Developper" } ]
+                }
+                ,
+                {   
+                    id            : "user" , 
+                    type          : "test.User" , 
+                    arguments     : 
+                    [ 
+                        { value :"eKameleon" } , 
+                        { value :"ALCARAZ"   } , 
+                        { ref   :"address"   } 
+                    ] ,
+                    lazyInit      : true , // only if this object is a singleton, the singleton isn't initialized during the factory initialize process.
+                    singleton     : true ,
+                    destroy       : "destroy" ,  // only if this object is a singleton and the user destroy the reference in the factory.
+                    init          : "initialize" ,
+                    properties : 
+                    [
+                        { name:"age"       , value : 30          } ,
+                        { name:"firstName" , value : "Marc"      } , 
+                        { name:"job"       , ref   : "job_dev"   } , 
+                        { name:"url"       , value : "http://www.ekameleon.net/blog" }
+                    ]
+                    ,
+                    methods :
+                    [
+                        { name:"setMail" , arguments  :  [ { value : 'vegas[at]ekameleon.net' } ] }
+                    ]
+                 }
                  ,
-                 methods :
-                 [
-                     { name:"setMail" , arguments  :  [ { value : 'vegas[at]ekameleon.net' } ] }
-                 ]
-              }
-              ,
-              {
-                  id            : "square" ,
-                  type          : "Square" ,
-                  assemblyName  : "dll/dll.swf" , // external swf with a linked Sprite in the library
-                  properties    :
-                  [
-                      { name:"x" , value : 100  } ,
-                      { name:"y" , value : 25   }
-                  ]
-              }
-          ]
+                 {
+                     id            : "square" ,
+                     type          : "Square" ,
+                     assemblyName  : "dll/dll.swf" , // external swf with a linked Sprite in the library
+                     properties    :
+                     [
+                         { name:"x" , value : 100  } ,
+                         { name:"y" , value : 25   }
+                     ]
+                 }
+             ]
+        }
+     </pre>
+     <p><b>2 -</b> The ActionScript test code :</p>
+     <pre class="prettyprint">
+     import andromeda.ioc.core.ObjectDefinition ;
+     import andromeda.ioc.factory.ECMAObjectFactory ;
+     import andromeda.events.ActionEvent ;
+     
+     import flash.display.StageAlign ;
+     import flash.display.StageScaleMode ;
+     import flash.events.Event;
+     import flash.events.IOErrorEvent;
+     import flash.events.ProgressEvent;
+     
+     import buRRRn.eden ;
+     
+     import test.User ;
+     
+     stage.align     = StageAlign.TOP_LEFT ;
+     stage.scaleMode = StageScaleMode.NO_SCALE ;
+     
+     var complete:Function = function ( event:Event ):void
+     {
+         var loader:URLLoader = event.target as URLLoader ;
+         var source:String    = loader.data ;
+         var app:Object       = eden.deserialize(source) ;
+         
+         factory.create( app.objects ) ;
      }
-  </pre>
-  <p><b>2 -</b> The ActionScript test code :</p>
-  <pre class="prettyprint">
-  import andromeda.ioc.core.ObjectDefinition ;
-  import andromeda.ioc.factory.ECMAObjectFactory ;
-  import andromeda.events.ActionEvent ;
-  
-  import flash.display.StageAlign ;
-  import flash.display.StageScaleMode ;
-  import flash.events.Event;
-  import flash.events.IOErrorEvent;
-  import flash.events.ProgressEvent;
-  
-  import buRRRn.eden ;
-  
-  import test.User ;
-  
-  stage.align     = StageAlign.TOP_LEFT ;
-  stage.scaleMode = StageScaleMode.NO_SCALE ;
-  
-  var complete:Function = function ( event:Event ):void
-  {
-      var loader:URLLoader = event.target as URLLoader ;
-      var source:String    = loader.data ;
-      var app:Object       = eden.deserialize(source) ;
+     
+     var debug:Function = function( e:Event ):void
+     {
+         trace( e ) ;
+     }
+     
+     var main:Function = function( e:ActionEvent ):void
+     {
+     
+         trace( e ) ;
+         
+         var user:User = factory.getObject( "user" ) ;
+         
+         trace( "User pseudo         : " + user.pseudo ) ; // ekameleon
+         trace( "User firstName      : " + user.firstName ) ; // Marc
+         trace( "User name           : " + user.name ) ; // ALCARAZ
+         trace( "User age            : " + user.age ) ; // 30
+         trace( "User mail           : " + user.mail ) ; // vegas[at]ekameleon.net
+         trace( "User url            : " + user.url  ) ; // http://www.ekameleon.net/blog
+         trace( "User job            : " + user.job ) ; // [Job AS Developper]
+         trace( "User address        : " + user.address ) ; // [Address]
+         trace( "User address city   : " + user.address.city ) ; // Marseille
+         trace( "User address street : " + user.address.street ) ; // xx xxx xxxxxxxxxxx
+         trace( "User address zip    : " + user.address.zip ) ; // 13004
+         trace( "User isSingleton    : " + factory.isSingleton( "user" ) ) ;
+         trace( "User isLazyInit     : " + factory.isLazyInit( "user" ) ) ;
+         
+         var sprite:Sprite = factory.getObject("square") as Sprite ; // use external dll in the "dll/dll.swf" file
+         addChild(sprite) ;
+         
+         trace( "---" ) ;
+         
+         var def:ObjectDefinition ;
+         
+         def = factory.getObjectDefinition("user") ;
+         trace( "# 'user' IObjectDefinition scope : " + def.getScope() ) ;
+         
+         def = factory.getObjectDefinition("address") ;
+         trace( "# 'address' IObjectDefinition scope : " + def.getScope() ) ;
+     }
       
-      factory.create( app.objects ) ;
-  }
-  
-  var debug:Function = function( e:Event ):void
-  {
-      trace( e ) ;
-  }
-  
-  var main:Function = function( e:ActionEvent ):void
-  {
-  
-      trace( e ) ;
+     var factory:ECMAObjectFactory = ECMAObjectFactory.getInstance() ;
       
-      var user:User = factory.getObject( "user" ) ;
+     factory.addEventListener( IOErrorEvent.IO_ERROR   , debug ) ;
+     factory.addEventListener( ProgressEvent.PROGRESS  , debug ) ;
+     factory.addEventListener( Event.COMPLETE          , debug ) ;
+     factory.addEventListener( ActionEvent.START       , debug ) ;
+     factory.addEventListener( ActionEvent.FINISH      , main  ) ;
       
-      trace( "User pseudo         : " + user.pseudo ) ; // ekameleon
-      trace( "User firstName      : " + user.firstName ) ; // Marc
-      trace( "User name           : " + user.name ) ; // ALCARAZ
-      trace( "User age            : " + user.age ) ; // 30
-      trace( "User mail           : " + user.mail ) ; // vegas[at]ekameleon.net
-      trace( "User url            : " + user.url  ) ; // http://www.ekameleon.net/blog
-      trace( "User job            : " + user.job ) ; // [Job AS Developper]
-      trace( "User address        : " + user.address ) ; // [Address]
-      trace( "User address city   : " + user.address.city ) ; // Marseille
-      trace( "User address street : " + user.address.street ) ; // xx xxx xxxxxxxxxxx
-      trace( "User address zip    : " + user.address.zip ) ; // 13004
-      trace( "User isSingleton    : " + factory.isSingleton( "user" ) ) ;
-      trace( "User isLazyInit     : " + factory.isLazyInit( "user" ) ) ;
+     var request:URLRequest = new URLRequest( "context/application.eden" ) ;
       
-      var sprite:Sprite = factory.getObject("square") as Sprite ; // use external dll in the "dll/dll.swf" file
-      addChild(sprite) ;
+     var loader:URLLoader   = new URLLoader() ;
+     loader.addEventListener( Event.COMPLETE , complete ) ;
       
-      trace( "---" ) ;
-      
-      var def:ObjectDefinition ;
-      
-      def = factory.getObjectDefinition("user") ;
-      trace( "# 'user' IObjectDefinition scope : " + def.getScope() ) ;
-      
-      def = factory.getObjectDefinition("address") ;
-      trace( "# 'address' IObjectDefinition scope : " + def.getScope() ) ;
-  }
-   
-  var factory:ECMAObjectFactory = ECMAObjectFactory.getInstance() ;
-   
-  factory.addEventListener( IOErrorEvent.IO_ERROR   , debug ) ;
-  factory.addEventListener( ProgressEvent.PROGRESS  , debug ) ;
-  factory.addEventListener( Event.COMPLETE          , debug ) ;
-  factory.addEventListener( ActionEvent.START       , debug ) ;
-  factory.addEventListener( ActionEvent.FINISH      , main  ) ;
-   
-  var request:URLRequest = new URLRequest( "context/application.eden" ) ;
-   
-  var loader:URLLoader   = new URLLoader() ;
-  loader.addEventListener( Event.COMPLETE , complete ) ;
-   
-  loader.load( request ) ;
-  </pre>
-  <p><b>3 -</b> The <b>test.User</b> class.</p>
-  <pre class="prettyprint">
-  package test
-  {
-      import system.Reflection;
-      import vegas.core.CoreObject;
-      
-      public class User extends CoreObject
-      {
-          public function User( pseudo:String = null, name:String =null , address:Address = null )
-          {
-              this.pseudo  = pseudo ;
-              this.name    = name ;
-              this.address = address ;
-          }
-          
-          public var address:Address ;
-          public var age:Number ;
-          public var firstName:String ;
-          public var job:Job ;
-          public var mail:String ;
-          public var name:String ;
-          public var pseudo:String ;
-          public var url:String ;
-          
-          public function destroy():void
-          {
-              trace( this + " destroy.") ;
-          }
-          
-          public function initialize():void
-       {
-            trace( this + " initialize.") ;
-       }
-       
-       public function setMail( sMail:String ):void
-       {
-           mail = sMail ;
-       }
-       
-       public override function toString():String
-       {
-            return "[" + Reflection.getClassName(this) + ( pseudo != null ? " " + pseudo : "" ) + "]" ;
-       }
-      }
-  }
-   </pre>
-  <p><b>4 -</b> The <b>test.Address</b> class.</p>
-  <pre class="prettyprint">
-  package test
-  {
-      import vegas.core.CoreObject ;
-      
-      public class Address extends CoreObject
-      {
-      
-          public function Address() {}
-          
-          public var city:String ;
-          public var street:String
-          public var zip:Number ;
-          
-      }
-   }
-  </pre>
-  <p><b>5 -</b> The <b>test.Job</b> class.</p>
-  <pre class="prettyprint">
-  package test
-  {
-      import system.Reflection;
-      import vegas.core.CoreObject ;
-      
-      public class test.Job extends CoreObject
-      {
-      
-          public function Job() {}
-          
-          public var name:String ;
-          
-          public function toString():String
-          {
-              return "[" + Reflection.getClassName(this) + " " + name + "]" ;
-          }
-          
-      }
-  }
-  </pre>
-  <p></p>
+     loader.load( request ) ;
+     </pre>
+     <p><b>3 -</b> The <b>test.User</b> class.</p>
+     <pre class="prettyprint">
+     package test
+     {
+         import system.Reflection;
+         import vegas.core.CoreObject;
+         
+         public class User extends CoreObject
+         {
+             public function User( pseudo:String = null, name:String =null , address:Address = null )
+             {
+                 this.pseudo  = pseudo ;
+                 this.name    = name ;
+                 this.address = address ;
+             }
+             
+             public var address:Address ;
+             public var age:Number ;
+             public var firstName:String ;
+             public var job:Job ;
+             public var mail:String ;
+             public var name:String ;
+             public var pseudo:String ;
+             public var url:String ;
+             
+             public function destroy():void
+             {
+                 trace( this + " destroy.") ;
+             }
+             
+             public function initialize():void
+                {
+                     trace( this + " initialize.") ;
+                }
+                
+                public function setMail( sMail:String ):void
+                {
+                    mail = sMail ;
+                }
+                
+                public override function toString():String
+                {
+                     return "[" + Reflection.getClassName(this) + ( pseudo != null ? " " + pseudo : "" ) + "]" ;
+                }
+            }
+     }
+     </pre>
+     <p><b>4 -</b> The <b>test.Address</b> class.</p>
+     <pre class="prettyprint">
+     package test
+     {
+         import vegas.core.CoreObject ;
+         
+         public class Address extends CoreObject
+         {
+         
+             public function Address() {}
+             
+             public var city:String ;
+             public var street:String
+             public var zip:Number ;
+             
+         }
+     }
+     </pre>
+     <p><b>5 -</b> The <b>test.Job</b> class.</p>
+     <pre class="prettyprint">
+     package test
+     {
+         import system.Reflection;
+         import vegas.core.CoreObject ;
+         
+         public class test.Job extends CoreObject
+         {
+         
+             public function Job() {}
+             
+             public var name:String ;
+             
+             public function toString():String
+             {
+                 return "[" + Reflection.getClassName(this) + " " + name + "]" ;
+             }
+             
+         }
+     }
+     </pre>
+     <p></p>
 <br>
 <hr>
 </div>
@@ -317,12 +317,12 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#objects">objects</a> : Array<div class="summaryTableDescription">
-   This array contains objects to fill this factory with the run or create method.</div>
+         This array contains objects to fill this factory with the run or create method.</div>
 </td><td class="summaryTableOwnerCol">ECMAObjectFactory</td>
 </tr>
 <tr class="hideInheritedProperty">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../process/SimpleAction.html#running">running</a> : Boolean<div class="summaryTableDescription">
-      (read-only) Returns <code class="prettyprint">true</code> if the process is in progress.</div>
+         (read-only) Returns <code class="prettyprint">true</code> if the process is in progress.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/SimpleAction.html">SimpleAction</a></td>
 </tr>
 <tr class="hideInheritedProperty">
@@ -353,7 +353,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#ECMAObjectFactory()">ECMAObjectFactory</a>(bGlobal:Boolean = false, sChannel:String = null)</div>
 <div class="summaryTableDescription">
-   Creates a new EdenObjectFactory instance.</div>
+         Creates a new EdenObjectFactory instance.</div>
 </td><td class="summaryTableOwnerCol">ECMAObjectFactory</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -409,7 +409,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#create()">create</a>(... arguments):void</div>
 <div class="summaryTableDescription">
-   Create the objects and fill the IObjectDefinitionContainer.</div>
+         Create the objects and fill the IObjectDefinitionContainer.</div>
 </td><td class="summaryTableOwnerCol">ECMAObjectFactory</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -458,7 +458,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/SimpleAction.html#getEventTypeFINISH()">getEventTypeFINISH</a>():String</div>
 <div class="summaryTableDescription">
-   Returns the event name use in the notifyFinished method.</div>
+         Returns the event name use in the notifyFinished method.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/SimpleAction.html">SimpleAction</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -498,7 +498,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/SimpleAction.html#getEventTypeSTART()">getEventTypeSTART</a>():String</div>
 <div class="summaryTableDescription">
-   Returns the event name use in the notifyStarted method.</div>
+         Returns the event name use in the notifyStarted method.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/SimpleAction.html">SimpleAction</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -523,7 +523,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="#getInstance()">getInstance</a>():<a href="../factory/ECMAObjectFactory.html">ECMAObjectFactory</a>
 </div>
 <div class="summaryTableDescription">[static]
-   Returns the singleton reference of this class.</div>
+         Returns the singleton reference of this class.</div>
 </td><td class="summaryTableOwnerCol">ECMAObjectFactory</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -565,7 +565,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/SimpleAction.html#getRunning()">getRunning</a>():Boolean</div>
 <div class="summaryTableDescription">
-      Returns <code class="prettyprint">true</code> if the process is in progress.</div>
+         Returns <code class="prettyprint">true</code> if the process is in progress.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/SimpleAction.html">SimpleAction</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -638,7 +638,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/SimpleAction.html#notifyFinished()">notifyFinished</a>():void</div>
 <div class="summaryTableDescription">
-      Notify an ActionEvent when the process is finished.</div>
+         Notify an ActionEvent when the process is finished.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/SimpleAction.html">SimpleAction</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -646,7 +646,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/SimpleAction.html#notifyStarted()">notifyStarted</a>():void</div>
 <div class="summaryTableDescription">
-      Notify an ActionEvent when the process is started.</div>
+         Notify an ActionEvent when the process is started.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/SimpleAction.html">SimpleAction</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -686,7 +686,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#run()">run</a>(... arguments):void</div>
 <div class="summaryTableDescription">
-      Run the process.</div>
+         Run the process.</div>
 </td><td class="summaryTableOwnerCol">ECMAObjectFactory</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -718,7 +718,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/SimpleAction.html#setEventTypeFINISH()">setEventTypeFINISH</a>(type:String):void</div>
 <div class="summaryTableDescription">
-   Sets the event name use in the notifyFinished method.</div>
+         Sets the event name use in the notifyFinished method.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/SimpleAction.html">SimpleAction</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -758,7 +758,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/SimpleAction.html#setEventTypeSTART()">setEventTypeSTART</a>(type:String):void</div>
 <div class="summaryTableDescription">
-   Sets the event name use in the notifyStarted method.</div>
+         Sets the event name use in the notifyStarted method.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/SimpleAction.html">SimpleAction</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -861,17 +861,17 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="hideInheritedProtectedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="ObjectFactory.html#_createArguments()">_createArguments</a>(argList:Array = null):Array</div>
+<a class="signatureLink" href="ObjectFactory.html#createAndCacheSingletonInstance()">createAndCacheSingletonInstance</a>(name:String, definition:<a href="../core/IObjectDefinition.html">IObjectDefinition</a>):*</div>
 <div class="summaryTableDescription">
-    Creates the arguments Array representation of the specified definition.</div>
+    Creates and cache the singleton instance define with the specified name and IDefinition.</div>
 </td><td class="summaryTableOwnerCol"><a href="ObjectFactory.html">ObjectFactory</a></td>
 </tr>
 <tr class="hideInheritedProtectedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="ObjectFactory.html#createAndCacheSingletonInstance()">createAndCacheSingletonInstance</a>(name:String, definition:<a href="../core/IObjectDefinition.html">IObjectDefinition</a>):*</div>
+<a class="signatureLink" href="ObjectFactory.html#createArguments()">createArguments</a>(argList:Array = null):Array</div>
 <div class="summaryTableDescription">
-    Creates and cache the singleton instance define with the specified name and IDefinition.</div>
+    Creates the arguments Array representation of the specified definition.</div>
 </td><td class="summaryTableOwnerCol"><a href="ObjectFactory.html">ObjectFactory</a></td>
 </tr>
 <tr class="hideInheritedProtectedMethod">
@@ -888,14 +888,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="ObjectFactory.html#invokeDestroyMethod()">invokeDestroyMethod</a>(o:*, definition:<a href="../core/IObjectDefinition.html">IObjectDefinition</a>):void</div>
 <div class="summaryTableDescription">
    Invokes the destroy method of the specified object, if the init method is define in the IDefinition object.</div>
-</td><td class="summaryTableOwnerCol"><a href="ObjectFactory.html">ObjectFactory</a></td>
-</tr>
-<tr class="hideInheritedProtectedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="ObjectFactory.html#invokeIdentification()">invokeIdentification</a>(o:*, definition:<a href="../core/IObjectDefinition.html">IObjectDefinition</a>):void</div>
-<div class="summaryTableDescription">
-   Invokes the identification of the specified object, if the 'identify' flag is true the config of this factory and if specified the IDefinition object scope is singleton.</div>
 </td><td class="summaryTableOwnerCol"><a href="ObjectFactory.html">ObjectFactory</a></td>
 </tr>
 <tr class="hideInheritedProtectedMethod">
@@ -981,6 +973,14 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="hideInheritedProtectedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
+<a class="signatureLink" href="ObjectFactory.html#populateIdentifiable()">populateIdentifiable</a>(o:*, definition:<a href="../core/IObjectDefinition.html">IObjectDefinition</a>):void</div>
+<div class="summaryTableDescription">
+   Populates the <code class="prettyprint">Identifiable</code> singleton object, if the 'identify' flag is true the config of this factory and if specified the <code class="prettyprint">IObjectDefinition</code> object scope is singleton.</div>
+</td><td class="summaryTableOwnerCol"><a href="ObjectFactory.html">ObjectFactory</a></td>
+</tr>
+<tr class="hideInheritedProtectedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
 <a class="signatureLink" href="ObjectFactory.html#populateMethods()">populateMethods</a>(o:*, methods:Array = null):void</div>
 <div class="summaryTableDescription">
    Populates all properties in the Map passed in argument.</div>
@@ -999,7 +999,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/SimpleAction.html#setRunning()">setRunning</a>(b:Boolean):void</div>
 <div class="summaryTableDescription">
-      This protected method is an internal method to change the running property value.</div>
+         This protected method is an internal method to change the running property value.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/SimpleAction.html">SimpleAction</a></td>
 </tr>
 </table>
@@ -1019,8 +1019,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public var objects:Array</code><p>
-   This array contains objects to fill this factory with the run or create method.
-   </p></div>
+         This array contains objects to fill this factory with the run or create method.
+         </p></div>
 <a name="constructorDetail"></a>
 <div class="detailSectionHeader">Constructor detail</div>
 <a name="ECMAObjectFactory()"></a>
@@ -1031,19 +1031,19 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function ECMAObjectFactory(bGlobal:Boolean = false, sChannel:String = null)</code><p>
-   Creates a new EdenObjectFactory instance.
-   </p><span class="label">Parameters</span>
+         Creates a new EdenObjectFactory instance.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">bGlobal</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; the flag to use a global event flow or a local event flow.
-   </td>
+         </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">sChannel</span>:String</code> (default = <code>null</code>)<code></code> &mdash; the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -1057,10 +1057,10 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function create(... arguments):void</code><p>
-   Create the objects and fill the IObjectDefinitionContainer.
-   </p><p><b>Parameters</b></p>
-   <code class="prettyprint">edenObject</code> An object who contains all the "objects" settings.
-   <span class="label">Parameters</span>
+         Create the objects and fill the IObjectDefinitionContainer.
+         </p><p><b>Parameters</b></p>
+         <code class="prettyprint">edenObject</code> An object who contains all the "objects" settings.
+         <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code>... <span class="label">arguments</span></code></td>
@@ -1075,14 +1075,14 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function getInstance():<a href="../factory/ECMAObjectFactory.html">ECMAObjectFactory</a></code><p>
-   Returns the singleton reference of this class.
-   </p><p></p>
+         Returns the singleton reference of this class.
+         </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code><a href="../factory/ECMAObjectFactory.html">ECMAObjectFactory</a></code> &mdash; 
                         the singleton reference of this class.
-   
+         
                         
                      </td>
 </tr>
@@ -1096,8 +1096,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public override function run(... arguments):void</code><p>
-      Run the process.
-      </p><span class="label">Parameters</span>
+         Run the process.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code>... <span class="label">arguments</span></code></td>

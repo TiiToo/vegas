@@ -194,7 +194,7 @@ package andromeda.ioc.factory
 	 	 * Creates the arguments Array representation of the specified definition.
 	 	 * @return the arguments Array representation of the specified definition.
 	 	 */
-		protected function _createArguments( argList:Array=null ):Array
+		protected function createArguments( argList:Array=null ):Array
 		{
 			if ( argList == null )
 			{
@@ -257,12 +257,12 @@ package andromeda.ioc.factory
 			if ( factoryMethod == null )
 			{
 				clazz    = getDefinitionByName(name) as Class ;
-				instance = ClassUtil.buildNewInstance(clazz, _createArguments( definition.getConstructorArguments()) ) ;
+				instance = ClassUtil.buildNewInstance(clazz, createArguments( definition.getConstructorArguments()) ) ;
 			}
 			else
 			{	
 				var factory:String ;
-				var args:Array = _createArguments( (factoryMethod as ObjectMethod).arguments ) ;
+				var args:Array = createArguments( (factoryMethod as ObjectMethod).arguments ) ;
 				var methodName:String   ;
 				var ref:* ;
 				if ( factoryMethod is ObjectStaticFactoryMethod )
@@ -287,18 +287,18 @@ package andromeda.ioc.factory
 			}
 			if ( instance != null )
 			{
+                populateIdentifiable ( instance , definition ) ;
 				populateProperties   ( instance , definition.getProperties() );
 				invokeMethods        ( instance , definition.getMethods() ) ;
 				invokeInitMethod     ( instance , definition ) ;
-				invokeIdentification ( instance , definition ) ;
 			}
 			return instance ;
 		}
 		
 		/**
-		 * Invokes the identification of the specified object, if the 'identify' flag is true the config of this factory and if specified the IDefinition object scope is singleton.
+		 * Populates the <code class="prettyprint">Identifiable</code> singleton object, if the 'identify' flag is true the config of this factory and if specified the <code class="prettyprint">IObjectDefinition</code> object scope is singleton.
 		 */
-		protected function invokeIdentification( o:* , definition:IObjectDefinition ):void
+		protected function populateIdentifiable( o:* , definition:IObjectDefinition ):void
 		{
 			if ( definition.isSingleton() && o is Identifiable )
 			{
@@ -361,7 +361,7 @@ package andromeda.ioc.factory
 					{
 						var item:Object = methods[i] ;
 						var name:String = item[ ObjectAttribute.NAME ] ;
-						var args:Array  = _createArguments( item[ ObjectAttribute.ARGUMENTS ] ) ;
+						var args:Array  = createArguments( item[ ObjectAttribute.ARGUMENTS ] ) ;
 						if ( name in o )
 						{
 							o[ name ].apply( o , args ) ;	
@@ -417,7 +417,7 @@ package andromeda.ioc.factory
 					if ( item != null )
 					{
 						var name:String = item[ ObjectAttribute.NAME ] ;
-						var args:Array = _createArguments(item[ ObjectAttribute.ARGUMENTS ]) ;
+						var args:Array = createArguments(item[ ObjectAttribute.ARGUMENTS ]) ;
 						if ( name != null && name in o )
 						{
 							o[name].apply(o, args) ;
