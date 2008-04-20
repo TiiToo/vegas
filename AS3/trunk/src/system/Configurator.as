@@ -66,7 +66,7 @@ package system
          */
         public function toString():String
         {
-            return "[" + Reflection.getClassName(this) + "]" ;
+            return toSource();
         }
         
         /**

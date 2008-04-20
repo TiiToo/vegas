@@ -44,31 +44,6 @@ package vegas.util
         public static const SPC:String = " " ; // SPACE
 		
 		/**
-		 * Returns the center String representation of the specified String value.
-         * <p><b>Example :</b></p>
-		 * <pre class="prettyprint">
-		 * import vegas.util.StringUtil ;
-		 * trace(StringUtil.center("hello world", 0))         ; // hello world
-		 * trace(StringUtil.center("hello world", 20))        ; //     hello world
-		 * trace(StringUtil.center("hello world", 20, "_" ) ) ; // ____hello world_____
-		 * </pre>
-		 * @param str The String to center.
-		 * @param size The number of character to center the String expression. (default 0)
-		 * @param separator The optional separator character use before and after the String to center. (default " ")
-		 * @return the center String representation of the specified String value.
-		 */
-        public static function center( str:String, size:uint=0 , separator:String=" " ):String 
-        {
-		    var n:uint = str.length ;
-    		if (size <= n)
-    		{
-        		return str ;
-    		}
-    		var m:int = Math.floor( ( size - n ) / 2 ) ;
-    		return repeat(separator, m) + str + repeat(separator, size - n - m) ;
-    	}
-  		
-        /**
          * Returns a shallow copy of the specified string.
          * @return a shallow copy of the specified string.
          */

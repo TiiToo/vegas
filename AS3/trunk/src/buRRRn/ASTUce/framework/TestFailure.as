@@ -29,7 +29,14 @@ package buRRRn.ASTUce.framework
     public class TestFailure
         {
         
+        /**
+         * @private
+         */
         protected var _failedTest:ITest;
+
+        /**
+         * @private
+         */
         protected var _thrownError:Error;
         
         /**

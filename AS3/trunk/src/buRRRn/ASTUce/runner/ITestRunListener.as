@@ -29,16 +29,34 @@ package buRRRn.ASTUce.runner
     public interface ITestRunListener
         {
         
+        /**
+         * Invoked when the test is ended.
+         */
         function testEnded( testName:String ):void ;
         
+        /**
+         * Invoked when the test is failed.
+         */
         function testFailed( status:TestRunStatus, testName:String, trace:String ):void ;
         
+        /**
+         * Invoked when the test process is ending.
+         */  
         function testRunEnded( elapsedTime:Number ):void ;
         
+        /**
+         * Invoked when the test process is started.
+         */
         function testRunStarted( testSuiteName:String, testCount:int ):void ;
         
+        /**
+         * Invoked when the test process is stopped.
+         */
         function testRunStopped( elapsedTime:Number ):void ;
         
+        /**
+         * Invoked when the test is started.
+         */
         function testStarted( testName:String ):void ;
         
         }

@@ -132,8 +132,7 @@ package buRRRn.ASTUce.framework
         
         /**
          * Creates a new TestSuite instance.
-         * note:
-         * theConstructor argument can be either a String an ITest or a Class in case of a Class tests will be extracted automatically.
+         * <p><b>Note :<b>theConstructor argument can be either a String an ITest or a Class in case of a Class tests will be extracted automatically.</p>
          */
         public function TestSuite( theConstructor:* = null, name:String = "", simpleTrace:Boolean = false )
             {

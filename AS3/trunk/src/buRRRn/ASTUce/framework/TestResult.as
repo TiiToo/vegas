@@ -64,8 +64,7 @@ package buRRRn.ASTUce.framework
             }
         
         /**
-         * Returns the number of detected errors.
-         * @return the number of detected errors.
+         * Indicates the number of detected errors.
          */
         public function get errorCount():int
             {
@@ -74,7 +73,6 @@ package buRRRn.ASTUce.framework
         
         /**
          * Returns an Array for the errors.
-         * @return an Array for the errors.
          */
         public function get errors():Array
             {
@@ -83,7 +81,6 @@ package buRRRn.ASTUce.framework
         
         /**
          * Returns the number of detected failures.
-         * @return the number of detected failures.
          */
         public function get failureCount():int
             {
@@ -92,7 +89,6 @@ package buRRRn.ASTUce.framework
         
         /**
          * Returns an Array for the failures.
-         * @return an Array for the failures.
          */
         public function get failures():Array
             {
@@ -100,8 +96,7 @@ package buRRRn.ASTUce.framework
             }
         
         /**
-         * Returns the number of run tests.
-         * @return the number of run tests.
+         * Indicates the number of run tests.
          */
         public function get runCount():int
             {
