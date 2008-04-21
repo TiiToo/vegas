@@ -125,8 +125,8 @@ package andromeda.process
     		{
     		    return ;
     		}
-		    notifyStarted() ;
 		    setRunning( true ) ;
+		    notifyStarted() ;
 		    _timer.start() ;
 	    }
         

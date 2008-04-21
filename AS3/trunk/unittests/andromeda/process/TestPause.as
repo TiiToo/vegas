@@ -22,7 +22,7 @@
 */
 package andromeda.process 
 {
-	import buRRRn.ASTUce.framework.TestCase;	
+	import buRRRn.ASTUce.framework.TestCase;		
 
 	/**
 	 * @author eKameleon
@@ -45,7 +45,39 @@ package andromeda.process
         public function tearDown():void
         {
             pause = undefined ;      
-        }		
+        }
+        
+        public function testConstructor():void
+        {
+            assertNotNull( pause , "Pause constructor failed, the instance not must be null." ) ;
+            assertTrue( pause is Pause , "Pause constructor failed, bad type." ) ;
+        }
+        
+        public function testDelay():void
+        {
+        	assertEquals( pause.delay, 0  , "Pause default delay failed." ) ;
+        }
+        
+        public function testDuration():void
+        {
+        	assertEquals( pause.duration, 0  , "Pause default duration failed." ) ;
+        }
+        
+        public function testUseSeconds():void
+        {
+        	assertFalse( pause.useSeconds , "Pause default useSeconds failed." ) ;
+        }
+                
+        public function testClone():void
+        {
+            var clone:Pause = pause.clone() as Pause ;
+            assertNotNull( clone , "Pause clone 01 method failed." ) ;
+            assertFalse( clone == pause  , "Pause clone 02 method failed." ) ;
+            assertEquals( clone.delay    , pause.delay  , "Pause clone 03 method failed." ) ;
+            assertEquals( clone.duration , pause.duration  , "Pause clone 04 method failed." ) ;
+            assertEquals( clone.useSeconds , pause.useSeconds  , "Pause clone 05 method failed." ) ;
+        }
+                
 		
 	}
 }

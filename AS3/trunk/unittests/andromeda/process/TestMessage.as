@@ -22,8 +22,8 @@
 */
 package andromeda.process 
 {
-	import buRRRn.ASTUce.framework.TestCase;
-	
+	import buRRRn.ASTUce.framework.TestCase;					
+
 	/**
 	 * @author eKameleon
 	 */
@@ -34,5 +34,65 @@ package andromeda.process
 		{
 			super(name);
 		}
+		
+		public var message:Message ;
+		
+        public function setUp():void
+        {
+            message = new Message("hello world", "happy", 5, true, Message.ME ) ;
+		}
+        
+        public function tearDown():void
+        {
+            message = undefined ;      
+        }
+        
+        public function testConstructor():void
+        {
+            assertNotNull( message , "Message constructor failed, the instance not must be null." ) ;
+            assertTrue( message is Pause , "Pause constructor failed, bad type." ) ;
+        }
+        
+        public function testDelay():void
+        {
+        	assertEquals( message.delay, 5000  , "Message default delay failed." ) ;
+        }
+        
+        public function testDuration():void
+        {
+        	assertEquals( message.duration, 5  , "Message default duration failed." ) ;
+        }
+        
+        public function testFace():void
+        {
+        	assertEquals( message.face, "happy" , "Message default face failed." ) ;
+        }        
+        
+        public function testMessage():void
+        {
+        	assertEquals( message.message, "hello world" , "Message default message failed." ) ;
+        }
+        
+        public function testTo():void
+        {
+        	assertEquals( message.to, Message.ME , "Message default to failed." ) ;
+        }        
+        
+        public function testUseSeconds():void
+        {
+        	assertTrue( message.useSeconds , "Message default useSeconds failed." ) ;
+        }
+                
+        public function testClone():void
+        {
+            var clone:Pause = message.clone() as Pause ;
+            assertNotNull( clone , "Message clone 01 method failed." ) ;
+            assertFalse( clone == message  , "Message clone 02 method failed." ) ;
+            assertEquals( clone.delay    , message.delay  , "Message clone 03 method failed." ) ;
+            assertEquals( clone.duration , message.duration  , "Message clone 04 method failed." ) ;
+            assertEquals( clone.useSeconds , message.useSeconds  , "Message clone 05 method failed." ) ;
+        }
+             
+		
 	}
 }

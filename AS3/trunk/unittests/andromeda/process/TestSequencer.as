@@ -22,8 +22,12 @@
 */
 package andromeda.process 
 {
-	import buRRRn.ASTUce.framework.TestCase;
+	import andromeda.events.ActionEvent;
+	import andromeda.process.mocks.MockSimpleAction;
+	import andromeda.process.mocks.MockSimpleActionListener;
 	
+	import buRRRn.ASTUce.framework.TestCase;	
+
 	/**
 	 * @author eKameleon
 	 */
@@ -34,5 +38,91 @@ package andromeda.process
 		{
 			super(name);
 		}
+		
+       public var seq:Sequencer ;		
+		
+		public var mockListener:MockSimpleActionListener ;		
+		
+        public function setUp():void
+        {
+            
+            seq = new Sequencer() ;
+            
+            seq.addAction(new MockSimpleAction()) ;
+            seq.addAction(new MockSimpleAction()) ;
+            seq.addAction(new MockSimpleAction()) ;
+            seq.addAction(new MockSimpleAction()) ;
+            
+        }
+        
+        public function tearDown():void
+        {
+            seq = undefined ; 
+            MockSimpleAction.reset() ; 
+        }		
+		
+		public function testInherit():void
+		{
+			assertTrue( seq is Action , "inherit Action failed.");
+		}
+		
+        public function testClear():void
+        {
+        	var clone:Sequencer = seq.clone() as Sequencer ;
+        	clone.clear() ;
+        	assertEquals( clone.size() , 0 , "clear method failed.") ;
+        }		
+		
+        public function testClone():void
+        {
+        	var clone:Sequencer = seq.clone() as Sequencer ;
+        	assertNotNull( clone  , "clone method failed, with a null shallow copy object." ) ;
+        	assertNotSame( clone  , seq  , "clone method failed, the shallow copy isn't the same with the BatchProcess object." ) ;
+        }
+        
+        public function testRun():void
+        {
+			MockSimpleAction.reset() ;
+        
+        	var sequence:Sequencer = seq.clone() as Sequencer ;
+        	
+        	mockListener = new MockSimpleActionListener(sequence) ;
+        	
+			sequence.addAction( new MockSimpleAction()) ;
+            sequence.addAction( new MockSimpleAction()) ;
+            sequence.addAction( new MockSimpleAction()) ;
+            
+            trace("-----------") ;
+           	
+           	trace(sequence.size() ) ; // 
+           	
+        	sequence.run() ;
+        	
+        	trace("-----------") ;
+        	
+        	assertTrue( mockListener.isRunning , "The MockSimpleActionListener.isRunning property failed, must be true." ) ;
+        	assertEquals( MockSimpleAction.COUNT , sequence.size() , "run method failed, the sequencer must launch " + sequence.size() + " IRunnable objects." ) ;
+        	assertFalse( sequence.running , "The running property of the Sequencer must be false after the process." ) ;
+        	
+            assertTrue( mockListener.startCalled  , "run method failed, the ActionEvent.START event isn't notify" ) ;
+            assertEquals( mockListener.startType  , ActionEvent.START   , "run method failed, bad type found when the process is started." );
+            assertTrue( mockListener.finishCalled  , "run method failed, the ActionEvent.START event isn't notify" ) ;
+            assertEquals( mockListener.finishType , ActionEvent.FINISH  , "run method failed, bad type found when the process is finished." );
+        	
+        	mockListener.unregister() ;
+        	mockListener = null ;
+        	
+        	MockSimpleAction.reset() ;
+        	
+        	
+
+        }
+        
+        public function testSize():void
+        {
+        	assertEquals( seq.size() , 4 , "size method failed.") ;
+        }		        
+		
+		
 	}
 }

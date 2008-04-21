@@ -22,7 +22,7 @@
 */
 package andromeda.process.mocks 
 {
-	import andromeda.process.SimpleAction;				
+	import andromeda.process.SimpleAction;					
 
 	/**
 	 * This mock simulate an IAction object who increments a static counter "COUNT" when the run method of all instance of this class are called.
@@ -57,9 +57,10 @@ package andromeda.process.mocks
 		 */
 		public override function run(...arguments:Array):void
 		{
-			notifyStarted() ;
 			setRunning(true) ;
+			notifyStarted() ;
 			COUNT ++ ;	
+			trace(this + " :: " + COUNT ) ;
 			setRunning(false) ;
 			notifyFinished() ;
 		}

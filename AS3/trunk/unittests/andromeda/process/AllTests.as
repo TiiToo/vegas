@@ -48,9 +48,9 @@ package andromeda.process
             suite.addTestSuite( TestIAction ) ;
             suite.addTestSuite( TestInitProcess ) ;
             suite.addTestSuite( TestIStoppable ) ;
-            // FIXME suite.addTestSuite( TestMessage ) ;
-            // FIXME suite.addTestSuite( TestPause ) ;
-            // FIXME suite.addTestSuite( TestSequencer ) ;
+            suite.addTestSuite( TestMessage ) ;
+            suite.addTestSuite( TestPause ) ;
+            suite.addTestSuite( TestSequencer ) ;
             suite.addTestSuite( TestSimpleAction ) ;
 
             return suite;

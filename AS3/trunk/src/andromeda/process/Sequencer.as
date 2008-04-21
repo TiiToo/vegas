@@ -148,8 +148,8 @@ package andromeda.process
 			{
 				if (!running) 
 				{
-					notifyStarted() ;
 					setRunning(true) ;
+					notifyStarted() ;
 				}
 				else
 				{
