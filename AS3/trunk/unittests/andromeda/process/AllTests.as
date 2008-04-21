@@ -40,11 +40,11 @@ package andromeda.process
             
             var suite:TestSuite = new TestSuite( "andromeda.process" );
 
-            suite.addTestSuite( TestAction ) ;  // TODO finish this tests
+            suite.addTestSuite( TestAction ) ;
             suite.addTestSuite( TestActionProxy ) ;
             suite.addTestSuite( TestBatch ) ;
             suite.addTestSuite( TestBatchProcess ) ;
-            // FIXME suite.addTestSuite( TestEventDispatcherProcess ) ;
+            suite.addTestSuite( TestEventDispatcherProcess ) ;
             suite.addTestSuite( TestIAction ) ;
             suite.addTestSuite( TestInitProcess ) ;
             suite.addTestSuite( TestIStoppable ) ;

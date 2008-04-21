@@ -22,6 +22,8 @@
 */
 package andromeda.process
 {
+	import vegas.errors.IllegalArgumentError;	
+	
 	import flash.events.Event;
 	
 	import vegas.events.BasicEvent;
@@ -40,10 +42,15 @@ package andromeda.process
 		 * @param channel The event channel flow to dispatch the event.
     	 * @param bGlobal the flag to use a global event flow or a local event flow.
     	 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
+    	 * @throws IllegalArgumentError If the 'event' argument is null.
 		 */
 		public function EventDispatcherProcess( event:*, channel:String=null , bGlobal:Boolean = false, sChannel:String = null)
 		{
 			super( bGlobal, sChannel ) ;
+			if ( event == null )
+			{
+				throw new IllegalArgumentError(this + " constructor failed, the event argument not must be 'null' or 'undefined'.") ;	
+			}
 			if ( event is String )
 			{
 				this.event = new BasicEvent( event as String ) ;
@@ -82,8 +89,8 @@ package andromeda.process
 	      */
 		public override function run( ...arguments:Array ):void 
 		{
-			notifyStarted() ;
 			setRunning(true) ;
+			notifyStarted() ;
 			EventDispatcher.getInstance( channel ).dispatchEvent( event ) ;
 			setRunning(false) ;
 			notifyFinished() ;
