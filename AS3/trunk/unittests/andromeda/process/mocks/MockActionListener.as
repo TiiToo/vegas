@@ -35,10 +35,11 @@ package andromeda.process.mocks
         
         /**
          * Creates a new MockActionListener instance.
+         * @param action The IAction of this mock to register.
          */
-        public function MockActionListener()
-        {
-        
+        public function MockActionListener( action:IAction=null )
+		{
+        	super( action ) ;
         }
         
         /**
@@ -65,7 +66,12 @@ package andromeda.process.mocks
          * Indicates if the ActionEvent.INFO event is invoked.
          */
         public var infoCalled:Boolean ;
-
+		
+		/**
+		 * The info object in the ActionEvent dispatched in the notifyInfo method of the Action.
+		 */
+		public var infoObject:* ;
+		
         /**
          * Indicates the type of the info event notification.
          */     
@@ -101,6 +107,16 @@ package andromeda.process.mocks
          */     
         public var progressType:String ;
 
+        /**
+         * Indicates if the ActionEvent.RESUME event is invoked.
+         */
+        public var resumeCalled:Boolean ;           
+
+        /**
+         * Indicates the type of the resume event notification.
+         */     
+        public var resumeType:String ;
+        
         /**
          * Indicates if the ActionEvent.STOP event is invoked.
          */
@@ -146,6 +162,7 @@ package andromeda.process.mocks
         {
             infoCalled = true ;
             infoType   = e.type ;
+            infoObject = e.info ;
         }       
         
         /**
@@ -174,7 +191,16 @@ package andromeda.process.mocks
             progressCalled = true ;
             progressType   = e.type ;
         }          
-       
+
+        /**
+         * Invoked when the ActionEvent.RESUME event is dispatched.
+         */
+        public function onResume( e:ActionEvent ):void
+        {
+            resumeCalled = true ;
+            resumeType   = e.type ;
+        }
+               
         /**
          * Invoked when the ActionEvent.STOP event is dispatched.
          */
@@ -207,6 +233,7 @@ package andromeda.process.mocks
             action.addEventListener( ActionEvent.LOOP      , onLoop      , false , 0 , true ) ;
             action.addEventListener( ActionEvent.PAUSE     , onPause     , false , 0 , true ) ;
             action.addEventListener( ActionEvent.PROGRESS  , onProgress  , false , 0 , true ) ;
+            action.addEventListener( ActionEvent.RESUME    , onResume    , false , 0 , true ) ;
             action.addEventListener( ActionEvent.STOP      , onStop      , false , 0 , true ) ;
             action.addEventListener( ActionEvent.TIMEOUT   , onTimeOut   , false , 0 , true ) ;
             
@@ -225,6 +252,7 @@ package andromeda.process.mocks
             	action.removeEventListener( ActionEvent.LOOP      , onLoop     , false ) ;
             	action.removeEventListener( ActionEvent.PAUSE     , onPause    , false ) ;
             	action.removeEventListener( ActionEvent.PROGRESS  , onProgress , false ) ;
+            	action.removeEventListener( ActionEvent.RESUME    , onResume   , false ) ;
             	action.removeEventListener( ActionEvent.STOP      , onStop     , false ) ;
             	action.removeEventListener( ActionEvent.TIMEOUT   , onTimeOut  , false ) ;
             	super.unregister() ;

@@ -20,32 +20,49 @@
   Contributor(s) :
   
 */
-package andromeda.process 
+package andromeda.process.mocks 
 {
-	import buRRRn.ASTUce.framework.TestCase;	
+	import andromeda.process.SimpleAction;				
 
 	/**
+	 * This mock simulate an IAction object who increments a static counter "COUNT" when the run method of all instance of this class are called.
 	 * @author eKameleon
 	 */
-	public class TestPause extends TestCase 
+	public class MockSimpleAction extends SimpleAction 
 	{
-
-		public function TestPause(name:String = "")
+		
+		/**
+		 * Creates a new MockAction instance.
+		 */
+		public function MockSimpleAction()
 		{
-			super(name);
+			super() ;
 		}
 		
-		public var pause:Pause ;
+		/**
+		 * The counter of this class.
+		 */
+		public static var COUNT:uint = 0 ;
 		
-        public function setUp():void
-        {
-            pause = new Pause() ;
-        }
-        
-        public function tearDown():void
-        {
-            pause = undefined ;      
-        }		
+		/**
+		 * Reset the static counter.
+		 */
+		public static function reset():void
+		{
+			COUNT = 0 ;	
+		}
+		
+		/**
+		 * Run the process.
+		 */
+		public override function run(...arguments:Array):void
+		{
+			notifyStarted() ;
+			setRunning(true) ;
+			COUNT ++ ;	
+			setRunning(false) ;
+			notifyFinished() ;
+		}
 		
 	}
 }

@@ -23,7 +23,7 @@
 package andromeda.process 
 {
 	import andromeda.events.ActionEvent;
-	import andromeda.process.mocks.MockAction;
+	import andromeda.process.mocks.MockSimpleAction;
 	import andromeda.process.mocks.MockSimpleActionListener;
 	
 	import buRRRn.ASTUce.framework.TestCase;	
@@ -47,10 +47,10 @@ package andromeda.process
         {
             batch = new BatchProcess() ;
             
-            batch.addAction(new MockAction()) ;
-            batch.addAction(new MockAction()) ;
-            batch.addAction(new MockAction()) ;
-            batch.addAction(new MockAction()) ;
+            batch.addAction(new MockSimpleAction()) ;
+            batch.addAction(new MockSimpleAction()) ;
+            batch.addAction(new MockSimpleAction()) ;
+            batch.addAction(new MockSimpleAction()) ;
             
             mockListener = new MockSimpleActionListener(batch) ;
         }
@@ -71,11 +71,11 @@ package andromeda.process
         
         public function testRun():void
         {
-			MockAction.reset() ;
+			MockSimpleAction.reset() ;
         	batch.run() ;
         	assertTrue( mockListener.isRunning , "The MockSimpleActionListener.isRunning property failed, must be true." ) ;
-        	assertEquals( MockAction.COUNT , batch.size() , "run method failed, the batch must launch " + batch.size + " IRunnable objects." ) ;
-        	assertEquals( MockAction.COUNT , batch.size() , "run method failed, the batch must launch " + batch.size + " IRunnable objects." ) ;
+        	assertEquals( MockSimpleAction.COUNT , batch.size() , "run method failed, the batch must launch " + batch.size + " IRunnable objects." ) ;
+        	assertEquals( MockSimpleAction.COUNT , batch.size() , "run method failed, the batch must launch " + batch.size + " IRunnable objects." ) ;
         	assertFalse( batch.running , "The running property of the BatchProcess must be false after the process." ) ;
         }
 		

@@ -36,6 +36,7 @@ package andromeda.process.mocks
     
         /**
          * Creates a new MockSimpleActionListener instance.
+         * @param action The IAction of this mock to register.
          */
         public function MockSimpleActionListener( action:IAction=null )
 		{

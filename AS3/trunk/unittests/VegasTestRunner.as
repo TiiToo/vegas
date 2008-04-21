@@ -37,10 +37,12 @@ package
             public function VegasTestRunner()
             {
 
-                buRRRn.ASTUce.config.allowStackTrace     = false ;
                 // buRRRn.ASTUce.config.allowErrorTrace     = false ;
                 // buRRRn.ASTUce.config.showPrinterDetails  = false ;
                 // buRRRn.ASTUce.config.showPrinterShortTests = false ;
+                
+                buRRRn.ASTUce.config.allowStackTrace     = false ;
+                buRRRn.ASTUce.config.maxColumn           = 62 ;
                 buRRRn.ASTUce.config.showConstructorList = false ;
                                 
                 // testing all.

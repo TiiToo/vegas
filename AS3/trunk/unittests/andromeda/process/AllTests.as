@@ -39,7 +39,7 @@ package andromeda.process
         {
             
             var suite:TestSuite = new TestSuite( "andromeda.process" );
-
+			
             suite.addTestSuite( TestAction ) ;
             suite.addTestSuite( TestActionProxy ) ;
             suite.addTestSuite( TestBatch ) ;
