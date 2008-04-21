@@ -24,7 +24,8 @@ package andromeda.process.mocks
 {
 	import flash.events.IEventDispatcher;
 	
-	import andromeda.events.ActionEvent;	
+	import andromeda.events.ActionEvent;
+	import andromeda.process.IAction;	
 
 	/**
      * This Mock object listen all events dispatched from a Action object.
@@ -195,39 +196,41 @@ package andromeda.process.mocks
         /**
          * Registers all events of the object.
          */
-        public override function register( dispatcher:IEventDispatcher ):void
+        public override function register( action:IAction ):void
         {
         	
-        	super.register( dispatcher ) ;
+        	super.register( action ) ;
         	
-            dispatcher.addEventListener( ActionEvent.CHANGE    , onChange    , false , 0 , true ) ;
-            dispatcher.addEventListener( ActionEvent.CLEAR     , onClear     , false , 0 , true ) ;
-            dispatcher.addEventListener( ActionEvent.INFO      , onInfo      , false , 0 , true ) ;
-            dispatcher.addEventListener( ActionEvent.LOOP      , onLoop      , false , 0 , true ) ;
-            dispatcher.addEventListener( ActionEvent.PAUSE     , onPause     , false , 0 , true ) ;
-            dispatcher.addEventListener( ActionEvent.PROGRESS  , onProgress  , false , 0 , true ) ;
-            dispatcher.addEventListener( ActionEvent.STOP      , onStop      , false , 0 , true ) ;
-            dispatcher.addEventListener( ActionEvent.TIMEOUT   , onTimeOut   , false , 0 , true ) ;
+            action.addEventListener( ActionEvent.CHANGE    , onChange    , false , 0 , true ) ;
+            action.addEventListener( ActionEvent.CLEAR     , onClear     , false , 0 , true ) ;
+            action.addEventListener( ActionEvent.INFO      , onInfo      , false , 0 , true ) ;
+            action.addEventListener( ActionEvent.LOOP      , onLoop      , false , 0 , true ) ;
+            action.addEventListener( ActionEvent.PAUSE     , onPause     , false , 0 , true ) ;
+            action.addEventListener( ActionEvent.PROGRESS  , onProgress  , false , 0 , true ) ;
+            action.addEventListener( ActionEvent.STOP      , onStop      , false , 0 , true ) ;
+            action.addEventListener( ActionEvent.TIMEOUT   , onTimeOut   , false , 0 , true ) ;
             
         }
                 
         /**
-         * Unregisters all events of the object.
+         * Unregisters all events of the action register in this mock.
          */
-        public override function unregister( dispatcher:IEventDispatcher ):void
+        public override function unregister():void
         {
-            super.unregister( dispatcher ) ;
-
-            dispatcher.removeEventListener( ActionEvent.CHANGE    , onChange   , false ) ;
-            dispatcher.removeEventListener( ActionEvent.CLEAR     , onClear    , false ) ;
-            dispatcher.removeEventListener( ActionEvent.INFO      , onInfo     , false ) ;
-            dispatcher.removeEventListener( ActionEvent.LOOP      , onLoop     , false ) ;
-            dispatcher.removeEventListener( ActionEvent.PAUSE     , onPause    , false ) ;
-            dispatcher.removeEventListener( ActionEvent.PROGRESS  , onProgress , false ) ;
-            dispatcher.removeEventListener( ActionEvent.STOP      , onStop     , false ) ;
-            dispatcher.removeEventListener( ActionEvent.TIMEOUT   , onTimeOut  , false ) ;
+        	if ( action != null )
+        	{
+            	action.removeEventListener( ActionEvent.CHANGE    , onChange   , false ) ;
+            	action.removeEventListener( ActionEvent.CLEAR     , onClear    , false ) ;
+            	action.removeEventListener( ActionEvent.INFO      , onInfo     , false ) ;
+            	action.removeEventListener( ActionEvent.LOOP      , onLoop     , false ) ;
+            	action.removeEventListener( ActionEvent.PAUSE     , onPause    , false ) ;
+            	action.removeEventListener( ActionEvent.PROGRESS  , onProgress , false ) ;
+            	action.removeEventListener( ActionEvent.STOP      , onStop     , false ) ;
+            	action.removeEventListener( ActionEvent.TIMEOUT   , onTimeOut  , false ) ;
+            	super.unregister() ;
+        	}
         }    
     
-    }
+	}
 
 }

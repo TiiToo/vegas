@@ -22,8 +22,12 @@
 */
 package andromeda.process 
 {
-	import buRRRn.ASTUce.framework.TestCase;
+	import andromeda.events.ActionEvent;
+	import andromeda.process.mocks.MockAction;
+	import andromeda.process.mocks.MockSimpleActionListener;
 	
+	import buRRRn.ASTUce.framework.TestCase;	
+
 	/**
 	 * @author eKameleon
 	 */
@@ -34,5 +38,56 @@ package andromeda.process
 		{
 			super(name);
 		}
+		
+        public var batch:BatchProcess ;		
+		
+		public var mockListener:MockSimpleActionListener ;		
+		
+        public function setUp():void
+        {
+            batch = new BatchProcess() ;
+            
+            batch.addAction(new MockAction()) ;
+            batch.addAction(new MockAction()) ;
+            batch.addAction(new MockAction()) ;
+            batch.addAction(new MockAction()) ;
+            
+            mockListener = new MockSimpleActionListener(batch) ;
+        }
+        
+        public function tearDown():void
+        {
+            mockListener.unregister() ;
+            mockListener = undefined ;
+            batch        = undefined ;      
+        }		
+		
+        public function testClone():void
+        {
+        	var clone:BatchProcess = batch.clone() ;
+        	assertNotNull( clone  , "clone method failed, with a null shallow copy object." ) ;
+        	assertNotSame( clone  , batch  , "clone method failed, the shallow copy isn't the same with the BatchProcess object." ) ;
+        }
+        
+        public function testRun():void
+        {
+			MockAction.reset() ;
+        	batch.run() ;
+        	assertTrue( mockListener.isRunning , "The MockSimpleActionListener.isRunning property failed, must be true." ) ;
+        	assertEquals( MockAction.COUNT , batch.size() , "run method failed, the batch must launch " + batch.size + " IRunnable objects." ) ;
+        	assertEquals( MockAction.COUNT , batch.size() , "run method failed, the batch must launch " + batch.size + " IRunnable objects." ) ;
+        	assertFalse( batch.running , "The running property of the BatchProcess must be false after the process." ) ;
+        }
+		
+		public function testEvents():void
+		{
+        	batch.run() ;
+            assertTrue( mockListener.startCalled  , "run method failed, the ActionEvent.START event isn't notify" ) ;
+            assertEquals( mockListener.startType  , ActionEvent.START   , "run method failed, bad type found when the process is started." );
+            assertTrue( mockListener.finishCalled  , "run method failed, the ActionEvent.START event isn't notify" ) ;
+            assertEquals( mockListener.finishType , ActionEvent.FINISH  , "run method failed, bad type found when the process is finished." );
+		}		
+
 	}
+		
 }

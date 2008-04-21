@@ -22,8 +22,12 @@
 */
 package andromeda.process 
 {
+	import andromeda.process.mocks.MockCommand;
+	
 	import buRRRn.ASTUce.framework.TestCase;
 	
+	import vegas.core.IRunnable;	
+
 	/**
 	 * @author eKameleon
 	 */
@@ -34,5 +38,58 @@ package andromeda.process
 		{
 			super(name);
 		}
+		
+        public var batch:Batch ;		
+
+        public function setUp():void
+        {
+            batch = new Batch() ;
+            batch.insert( new MockCommand() ) ;
+            batch.insert( new MockCommand() ) ;
+            batch.insert( new MockCommand() ) ;
+            batch.insert( new MockCommand() ) ;
+        }
+        
+        public function tearDown():void
+        {
+        	batch.clear() ;
+            batch = undefined ;      
+        }		
+		
+        public function testConstructor():void
+        {
+            assertNotNull( batch , "Batch constructor failed, the instance not must be null." ) ;
+            assertTrue( batch is Batch , "batch must be a Batch object." ) ;
+            assertTrue( batch is IRunnable , "batch implements the IRunnable interface." ) ;
+        }
+		
+        public function testClear():void
+        {
+        	var clone:Batch = batch.clone() ;
+        	clone.clear() ;
+        	assertEquals( clone.size() , 0 , "clear method failed, the batch must be empty" ) ;
+        }
+		
+        public function testClone():void
+        {
+        	var clone:Batch = batch.clone() ;
+        	assertNotNull( clone , "clone method failed, with a null shallow copy object." ) ;
+        	assertNotSame( clone , batch , "clone method failed, the shallow copy isn't the same with the action object." ) ;
+        }
+        
+        public function testRun():void
+        {
+        	MockCommand.reset() ;
+        	batch.run() ;
+        	assertEquals( MockCommand.COUNT , batch.size() , "run method failed, the batch must launch " + batch.size + " IRunnable objects." ) ;
+        }
+        
+        public function testSize():void
+        {
+        	var clone:Batch = batch.clone() ;
+        	clone.clear() ;
+        	assertEquals( clone.size() , 0 , "clear method failed, the batch must be empty" ) ;
+        }        
+		
 	}
 }

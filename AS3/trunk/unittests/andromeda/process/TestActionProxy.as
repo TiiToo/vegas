@@ -22,7 +22,10 @@
 */
 package andromeda.process 
 {
-	import buRRRn.ASTUce.framework.TestCase;											
+	import andromeda.events.ActionEvent;
+	import andromeda.process.mocks.MockSimpleActionListener;
+	
+	import buRRRn.ASTUce.framework.TestCase;	
 
 	/**
 	 * @author eKameleon
@@ -37,13 +40,14 @@ package andromeda.process
 		
         public var action:ActionProxy ;		
 		
+		public var mockListener:MockSimpleActionListener ;		
+		
 		public var scope:Object ;
 		
         public function setUp():void
         {
-        	
-        	
         	scope = {} ;
+        	scope.methodCalled = false ;
         	scope.toString = function():String
         	{
         	   return "[scope]" ;	
@@ -51,16 +55,19 @@ package andromeda.process
             
             var method:Function = function( ...args:Array ):void
             {
-            	throw new Error("method with : " + args.length ) ;	
+            	this.methodCalled = true ;
             };
         	
             action = new ActionProxy(scope, method, ["hello world", "hello city", "hello actionscript"] ) ;
+            mockListener = new MockSimpleActionListener(action) ;
             
         }
         
         public function tearDown():void
         {
-            action = undefined ;
+            mockListener.unregister() ;
+            mockListener = undefined  ;
+            action       = undefined  ;
         }
         
         public function testArgs():void
@@ -98,8 +105,22 @@ package andromeda.process
         
         public function testRun():void
         {
-        	
+        	action.run() ;
+        	assertTrue( scope.methodCalled , "run method failed, the method isn't called." ) ;
+            assertTrue( mockListener.startCalled  , "run method failed, the ActionEvent.START event isn't notify" ) ;
+            assertEquals( mockListener.startType  , ActionEvent.START   , "run method failed, bad type found when the process is started." );
+            assertTrue( mockListener.finishCalled  , "run method failed, the ActionEvent.START event isn't notify" ) ;
+            assertEquals( mockListener.finishType , ActionEvent.FINISH  , "run method failed, bad type found when the process is finished." );
         }
+		
+		public function testEvents():void
+		{
+        	action.run() ;
+            assertTrue( mockListener.startCalled  , "run method failed, the ActionEvent.START event isn't notify" ) ;
+            assertEquals( mockListener.startType  , ActionEvent.START   , "run method failed, bad type found when the process is started." );
+            assertTrue( mockListener.finishCalled  , "run method failed, the ActionEvent.START event isn't notify" ) ;
+            assertEquals( mockListener.finishType , ActionEvent.FINISH  , "run method failed, bad type found when the process is finished." );
+		}
 		
 	}
 }

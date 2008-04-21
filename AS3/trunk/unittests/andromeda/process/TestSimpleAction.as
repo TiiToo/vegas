@@ -47,15 +47,14 @@ package andromeda.process
         public function setUp():void
         {
             action       = new SimpleAction() ;
-            mockListener = new MockSimpleActionListener() ;
-            mockListener.register( action ) ;
+            mockListener = new MockSimpleActionListener(action) ;
 		}
         
         public function tearDown():void
         {
-            mockListener.unregister(action) ;
+            mockListener.unregister() ;
             mockListener = undefined ;
-            action = undefined ;            
+            action       = undefined ;            
         }
         
         public function testConstructor():void

@@ -24,7 +24,9 @@ package andromeda.process.mocks
 {
 	import flash.events.IEventDispatcher;
 	
-	import andromeda.events.ActionEvent;	
+	import andromeda.events.ActionEvent;
+	import andromeda.process.IAction;
+	import andromeda.process.SimpleAction;	
 
 	/**
      * This Mock object listen all events dispatched from a Action object.
@@ -35,11 +37,19 @@ package andromeda.process.mocks
         /**
          * Creates a new MockSimpleActionListener instance.
          */
-        public function MockSimpleActionListener()
-        {
-        
+        public function MockSimpleActionListener( action:IAction=null )
+		{
+			if ( action != null )
+			{
+        		register(action) ;
+			}	
         }
-          
+        
+        /**
+         * The IAction object to register and test.
+         */
+        public var action:IAction ;
+         
         /**
          * Indicates if the ActionEvent.FINISH event is invoked.
          */
@@ -49,6 +59,11 @@ package andromeda.process.mocks
          * Indicates the type of the finish event notification.
          */     
         public var finishType:String ;
+        
+        /**
+         * Indicates if the Action owner object is running during the process.
+         */
+        public var isRunning:Boolean ;
         
         /**
          * Indicates if the ActionEvent.CALLED event is invoked.
@@ -76,24 +91,36 @@ package andromeda.process.mocks
         {
             startCalled = true ;
             startType   = e.type ;
+            if ( action is SimpleAction )
+            {
+            	isRunning = (action as SimpleAction).running ;
+            }
         }
         
         /**
          * Registers all events of the object.
          */
-        public function register( dispatcher:IEventDispatcher ):void
+        public function register( action:IAction ):void
         {
-        	dispatcher.addEventListener( ActionEvent.FINISH , onFinish , false , 0 , true ) ;
-        	dispatcher.addEventListener( ActionEvent.START  , onStart , false , 0 , true ) ;
+        	if ( this.action != null )
+        	{
+        		unregister() ;
+        	}
+        	this.action = action ;
+        	this.action.addEventListener( ActionEvent.FINISH , onFinish , false , 0 , true ) ;
+        	this.action.addEventListener( ActionEvent.START  , onStart , false , 0 , true ) ;
         }
                 
         /**
-         * Unregisters all events of the object.
+         * Unregisters all events of the action register in this mock.
          */
-        public function unregister( dispatcher:IEventDispatcher ):void
+        public function unregister():void
         {
-            dispatcher.removeEventListener( ActionEvent.FINISH , onFinish , false ) ;
-            dispatcher.removeEventListener( ActionEvent.START  , onStart  , false ) ;
+        	if ( action != null )
+        	{
+	            action.removeEventListener( ActionEvent.FINISH , onFinish , false ) ;
+            	action.removeEventListener( ActionEvent.START  , onStart  , false ) ;
+        	}
         }
         
     }

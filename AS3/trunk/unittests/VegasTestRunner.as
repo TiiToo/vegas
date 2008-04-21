@@ -22,12 +22,12 @@
 */
 package  
 {
-    import flash.display.Sprite;
-    
-    import buRRRn.ASTUce.config;  
-    import buRRRn.ASTUce.Runner;
+	import flash.display.Sprite;
+	
+	import buRRRn.ASTUce.Runner;
+	import buRRRn.ASTUce.config;    
 
-    /**
+	/**
 	 * The main VEGAS TestRunner launcher.
 	 * @author eKameleon
 	 */
@@ -37,7 +37,7 @@ package
             public function VegasTestRunner()
             {
 
-                // buRRRn.ASTUce.config.allowStackTrace     = false ;
+                buRRRn.ASTUce.config.allowStackTrace     = false ;
                 // buRRRn.ASTUce.config.allowErrorTrace     = false ;
                 // buRRRn.ASTUce.config.showPrinterDetails  = false ;
                 // buRRRn.ASTUce.config.showPrinterShortTests = false ;

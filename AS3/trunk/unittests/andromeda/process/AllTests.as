@@ -42,8 +42,8 @@ package andromeda.process
 
             suite.addTestSuite( TestAction ) ;  // TODO finish this tests
             suite.addTestSuite( TestActionProxy ) ;
-            // FIXME suite.addTestSuite( TestBatch ) ;
-            // FIXME suite.addTestSuite( TestBatchProcess ) ;
+            suite.addTestSuite( TestBatch ) ;
+            suite.addTestSuite( TestBatchProcess ) ;
             // FIXME suite.addTestSuite( TestEventDispatcherProcess ) ;
             suite.addTestSuite( TestIAction ) ;
             suite.addTestSuite( TestInitProcess ) ;
