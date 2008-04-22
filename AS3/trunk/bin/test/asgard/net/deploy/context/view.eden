@@ -18,7 +18,8 @@
         {
             id         : "my_sprite" ,
             type       : "asgard.display.CoreSprite" ,
-            singleton  : true // must be a singleton to test the ObjectConfig.identify flag.
+            singleton  : true  ,  // must be a singleton to test the ObjectConfig.identify flag. 
+			identify   : true
         }
         ,
         {

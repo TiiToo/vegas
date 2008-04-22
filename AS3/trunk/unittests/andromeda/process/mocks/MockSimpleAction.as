@@ -22,7 +22,9 @@
 */
 package andromeda.process.mocks 
 {
-	import andromeda.process.SimpleAction;					
+	import andromeda.process.SimpleAction;
+	
+	import system.Reflection;	
 
 	/**
 	 * This mock simulate an IAction object who increments a static counter "COUNT" when the run method of all instance of this class are called.
@@ -34,15 +36,35 @@ package andromeda.process.mocks
 		/**
 		 * Creates a new MockAction instance.
 		 */
-		public function MockSimpleAction()
+		public function MockSimpleAction( id:*=null , verbose:Boolean=false )
 		{
 			super() ;
+			this.id = id ;
 		}
 		
 		/**
 		 * The counter of this class.
 		 */
-		public static var COUNT:uint = 0 ;
+		public static var COUNT:uint = 0 ;		
+		
+		/**
+		 * The id of the object.
+		 */
+		public var id:* ;
+		
+		/**
+		 * The verbose flag.
+		 */
+		public var verbose:Boolean ;
+		
+        /**
+         * Returns a shallow copy of this object.
+         * @return a shallow copy of this object.
+         */
+        public override function clone():*
+        {
+            return new MockSimpleAction(id, verbose) ;
+        }
 		
 		/**
 		 * Reset the static counter.
@@ -59,11 +81,30 @@ package andromeda.process.mocks
 		{
 			setRunning(true) ;
 			notifyStarted() ;
+			if ( verbose )
+			{
+				trace( this + " run :: " + COUNT + (id != null ? " id:" + id : "" ) ) ;
+			}
 			COUNT ++ ;	
-			trace(this + " :: " + COUNT ) ;
 			setRunning(false) ;
 			notifyFinished() ;
 		}
+		
+			
+		/**
+	 	 * Returns the <code class="prettyprint">String</code> representation of this object.
+	 	 * @return the <code class="prettyprint">String</code> representation of this object.
+	 	 */
+		public override function toString():String
+		{
+			var str:String = "[" + Reflection.getClassName(this) ;
+			if ( this.id != null )
+			{
+				str += " " + this.id ;	
+			} 
+			str += "]" ;
+			return str ;
+		}			
 		
 	}
 }

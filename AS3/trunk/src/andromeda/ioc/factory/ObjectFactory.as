@@ -22,26 +22,26 @@
 */
 package andromeda.ioc.factory 
 {
-	import flash.utils.getDefinitionByName;
-	
-	import andromeda.ioc.core.IObjectDefinition;
-	import andromeda.ioc.core.ObjectAttribute;
-	import andromeda.ioc.core.ObjectDefinitionContainer;
-	import andromeda.ioc.core.ObjectFactoryMethod;
-	import andromeda.ioc.core.ObjectMethod;
-	import andromeda.ioc.core.ObjectStaticFactoryMethod;
-	import andromeda.ioc.factory.IObjectFactory;
-	
-	import system.Reflection;
-	
-	import vegas.core.Identifiable;
-	import vegas.data.Map;
-	import vegas.data.iterator.Iterator;
-	import vegas.data.map.HashMap;
-	import vegas.errors.NullPointerError;
-	import vegas.util.ClassUtil;	
+    import flash.utils.getDefinitionByName;
+    
+    import andromeda.ioc.core.IObjectDefinition;
+    import andromeda.ioc.core.ObjectAttribute;
+    import andromeda.ioc.core.ObjectDefinitionContainer;
+    import andromeda.ioc.core.ObjectFactoryMethod;
+    import andromeda.ioc.core.ObjectMethod;
+    import andromeda.ioc.core.ObjectStaticFactoryMethod;
+    import andromeda.ioc.factory.IObjectFactory;
+    
+    import system.Reflection;
+    
+    import vegas.core.Identifiable;
+    import vegas.data.Map;
+    import vegas.data.iterator.Iterator;
+    import vegas.data.map.HashMap;
+    import vegas.errors.NullPointerError;
+    import vegas.util.ClassUtil;	
 
-	/**
+    /**
 	 * The factory of all objects who implements the IObjectDefinition interface.
 	 * @author eKameleon
 	 */
@@ -302,7 +302,7 @@ package andromeda.ioc.factory
 		{
 			if ( definition.isSingleton() && o is Identifiable )
 			{
-				if ( ( definition.identify != null && definition.identify === true ) || (  definition.identify == null && config.identify !== false ) )
+                if ( ( definition.identify == true ) || ( config.identify === true && definition.identify != false ) )
 				{
 					(o as Identifiable ).id = definition.id ;
 				}

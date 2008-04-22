@@ -4,7 +4,7 @@
     {
         defaultInitMethod    : "initialize" ,
         defaultDestroyMethod : "destroy"    ,
-        identify             : true 
+        identify             : true
     }
     ,
     imports :

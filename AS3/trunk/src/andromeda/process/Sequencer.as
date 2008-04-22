@@ -22,14 +22,14 @@
 */
 package andromeda.process
 {
-	import andromeda.events.ActionEvent;
-	
-	import vegas.data.iterator.Iterator;
-	import vegas.data.queue.LinearQueue;
-	import vegas.data.queue.TypedQueue;
-	import vegas.util.Serializer;	
+    import andromeda.events.ActionEvent;
+    
+    import vegas.data.iterator.Iterator;
+    import vegas.data.queue.LinearQueue;
+    import vegas.data.queue.TypedQueue;
+    import vegas.util.Serializer;	
 
-	/**
+    /**
 	 * A Sequencer of IAction process.
      * @example
      * <pre class="prettyprint">
@@ -57,8 +57,11 @@ package andromeda.process
     	 */
 		public function Sequencer( ar:Array = null , bGlobal:Boolean = false , sChannel:String = null )
 		{
+			
 			super(bGlobal, sChannel);
+			
 			_queue = new TypedQueue( IAction, new LinearQueue() ) ; 
+			
 			if (ar != null)
 			{
 				var l:Number = ar.length ;
@@ -81,11 +84,15 @@ package andromeda.process
     	 */
 		public function addAction(action:IAction, isClone:Boolean=false):Boolean 
 		{
+			if ( action == null )
+			{
+				return false ;	
+			}
 			var a:IAction = isClone ? action.clone() : action ;
 			var isEnqueue:Boolean = _queue.enqueue(a) ;
 			if (isEnqueue)
 			{
-				a.addEventListener( ActionEvent.FINISH, run ) ;
+				a.addEventListener( ActionEvent.FINISH, run , false, 0 , true ) ;
 			}
 			return isEnqueue ;
 		}
@@ -146,16 +153,18 @@ package andromeda.process
 		{
 			if (_queue.size() > 0) 
 			{
-				if (!running) 
+				if ( !running ) 
 				{
-					setRunning(true) ;
+					setRunning( true ) ;
 					notifyStarted() ;
 				}
 				else
 				{
-				    notifyProgress() ;
+					notifyProgress() ;
 				}
+				
 				_cur = _queue.poll() ;
+				
 				try
 				{
 					_cur.run() ;
@@ -165,12 +174,17 @@ package andromeda.process
 					getLogger().warn( this + " run failed : " + e.toString() ) ;
 					run() ;	
 				}
+				
 			}
 			else 
 			{
 				notifyProgress() ;
 				if ( _cur != null )
 				{
+					if ( _cur is IStoppable )
+					{
+						(_cur as IStoppable).stop() ;	
+					}
 					_cur.removeEventListener( ActionEvent.FINISH, run ) ;
 			    	_cur = null ;
 				}
@@ -212,6 +226,10 @@ package andromeda.process
 			if ( running ) 
 			{
 				_cur.addEventListener(ActionEvent.FINISH, run) ;
+				if ( _cur is IStoppable )
+				{
+					(_cur as IStoppable).stop() ;	
+				}
 				if (callback != null)
 			    {
     				callback.call( this, _cur ) ;
