@@ -24,6 +24,7 @@ package asgard.net.remoting
 {
 	import flash.events.TimerEvent;
 	import flash.net.ObjectEncoding;
+	import flash.net.registerClassAlias;
 	import flash.net.Responder;
 	import flash.utils.Timer;
 	
