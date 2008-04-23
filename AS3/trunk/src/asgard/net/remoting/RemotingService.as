@@ -82,10 +82,11 @@ package asgard.net.remoting
 	 * package
 	 * {
 	 * 
+	 *     import andromeda.events.ActionEvent;
 	 *     import asgard.events.RemotingEvent;
 	 *     import asgard.net.remoting.RemotingService;
 	 *     import flash.display.Sprite;
-	 *     import pegas.events.ActionEvent;
+	 *     
 	 *     import test.User;
 	 * 
 	 *     public class TestRemotingService extends Sprite
