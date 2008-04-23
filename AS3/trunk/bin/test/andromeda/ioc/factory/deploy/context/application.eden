@@ -2,8 +2,8 @@
 
 	configuration :
 	{
-		defaultInitMethod    : "initialize"    ,
-		defaultDestroyMethod : "destroy" 
+		defaultInitMethod    : "initialize" ,
+		defaultDestroyMethod : "destroy"    
 	}
 	,
 	objects : 
@@ -36,7 +36,7 @@
 				{ ref   :"address"   } 
 			] ,
 			lazyInit      : true , // only if this object is a singleton, the singleton isn't initialized during the factory initialize process.
-			singleton     : true ,
+			singleton     : true  ,
 			destroy       : "destroy" ,
 			init          : "initialize" , // see the global 'defaultInitMethod' attribute in the 'configuration' attribute.
 			properties    : 

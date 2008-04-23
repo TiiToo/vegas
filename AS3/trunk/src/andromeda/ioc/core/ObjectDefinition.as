@@ -53,9 +53,9 @@ package andromeda.ioc.core
             }
             _id        = id ;
             _type      = type ;
-            _lazyInit  = lazyInit ;
             _singleton = singleton  ;
-            _scope      = singleton ? ObjectScope.SINGLETON : ObjectScope.PROTOTYPE ;
+            _scope     = singleton ? ObjectScope.SINGLETON : ObjectScope.PROTOTYPE ;
+            _lazyInit  = lazyInit && _singleton ;
         }
 
         /**

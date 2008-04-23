@@ -22,16 +22,16 @@
 */
 package  
 {
-	import buRRRn.ASTUce.framework.ITest;
-	import buRRRn.ASTUce.framework.TestSuite;
 
-	import andromeda.AllTests;
-		
-	import pegas.AllTests;
-	
-	import vegas.AllTests;	
+    
+    import buRRRn.ASTUce.framework.ITest;
+    import buRRRn.ASTUce.framework.TestSuite;
 
-	/**
+    import andromeda.AllTests;
+    import pegas.AllTests;
+    import vegas.AllTests;    
+
+    /**
 	 * This class launch all tests.
 	 * @author eKameleon
 	 */
@@ -47,7 +47,7 @@ package
             
             suite.addTest( andromeda.AllTests.suite() );
             suite.addTest( pegas.AllTests.suite() );
-            // suite.addTest( system.AllTests.suite() );
+            //suite.addTest( system.AllTests.suite() );
             suite.addTest( vegas.AllTests.suite() );
             
             return suite;

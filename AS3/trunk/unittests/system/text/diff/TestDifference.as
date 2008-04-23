@@ -165,8 +165,15 @@ package system.text.diff
             
             // complex 
             
-            var txt1:String = "I am the very model of a modern Major-General, I've information vegetable, animal, and mineral, I know the kings of England, and I quote the fights historical, From Marathon to Waterloo, in order categorical." ;
-            var txt2:String = "I am the very model of a cartoon individual, My animation's comical, unusual, and whimsical, I'm quite adept at funny gags, comedic theory I have read, From wicked puns and stupid jokes to anvils that drop on your head." ;
+            var txt1:String ;
+            var txt2:String ;
+            
+            // fast
+            
+            
+            
+            txt1 = "I am the very model of a modern Major-General, I've information vegetable, animal, and mineral, I know the kings of England, and I quote the fights historical, From Marathon to Waterloo, in order categorical." ;
+            txt2 = "I am the very model of a cartoon individual, My animation's comical, unusual, and whimsical, I'm quite adept at funny gags, comedic theory I have read, From wicked puns and stupid jokes to anvils that drop on your head." ;
 
             diffs = Difference.compute( txt1 , txt2 ) ;
             assertEquals

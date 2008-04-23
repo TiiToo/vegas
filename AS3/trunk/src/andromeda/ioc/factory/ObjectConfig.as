@@ -24,7 +24,7 @@ package andromeda.ioc.factory
 {
     import system.Reflection;
     
-    import vegas.core.CoreObject;	
+    import vegas.core.CoreObject;    
 
     /**
 	 * This object contains the configuration of the IOC object factory.
