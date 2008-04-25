@@ -178,7 +178,7 @@ class andromeda.model.stack.StackModel extends AbstractModelObject
 	{
 		if (vo == null)
 		{
-			throw new IllegalArgumentError( this + " enqueue method failed, the IValueObject passed in argument not must be 'null' or 'undefined'.") ;	
+			throw new IllegalArgumentError( this + " push method failed, the IValueObject passed in argument not must be 'null' or 'undefined'.") ;	
 		}
 		validate(vo) ;
 		_stack.push( vo ) ;

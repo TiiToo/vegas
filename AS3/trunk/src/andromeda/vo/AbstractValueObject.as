@@ -20,70 +20,29 @@
   Contributor(s) :
   
 */
-
 package andromeda.vo
 {
-	import system.IEquatable;
-	
-	import vegas.core.CoreObject;
-	import vegas.core.Identifiable;	
+    import vegas.core.CoreObject;    
 
-	/**
+    /**
 	 * This class provides a skeletal implementation of the <code class="prettyprint">IValueObject</code> interface, to minimize the effort required to implement this interface.
 	 * @author eKameleon
 	 */
-	public class AbstractValueObject extends CoreObject implements IEquatable, IValueObject
+	public class AbstractValueObject extends SimpleValueObject
 	{
 		
 		/**
 		 * Creates a new AbstractValueObject.
-		 */
-		public function AbstractValueObject()
+         * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
+         */
+		public function AbstractValueObject( init:Object=null )
 		{
-			if ( _id == null )
+			super(init) ;
+			if ( id == null )
 			{
-				_id = hashCode() ;
+			     id = hashCode() ;
 			}
 		}
-		
-		/**
-		 * (read-write) Returns the id of this IValueObject.
-		 * @return the id of this IValueObject.
-		 */
-		public function get id():*
-		{
-			return _id ;
-		}
-	
-		/**
-		 * (read-write) Sets the id of this IValueObject.
-		 * @return the id of this IValueObject.
-		 */
-		public function set id( id:* ):void
-		{
-			_id = id ;
-		}
-		
-		/**
-		 * Compares the specified object with this object for equality. This method compares the ids of the objects with the <code class="prettyprint">Identifiable.getID()</code> method.
-		 * @return <code class="prettyprint">true</code> if the the specified object is equal with this object.
-		 */
-		public function equals( o:* ):Boolean
-		{
-			if (o is Identifiable)
-			{
-				return ( o as Identifiable ).id == this.id ;			
-			}
-			else
-			{
-				return false ;
-			}
-		}
-		
-		/**
-		 * The internal id of this IValueObject
-		 */
-		private var _id:* ;
 		
 	}
 }

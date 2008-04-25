@@ -37,6 +37,7 @@ package vegas.data.list
 		
 		/**
 	 	 * Creates a new AbstractList instance.
+	 	 * @param ar The optional default Array to fill this list.
 	 	 */
 		public function AbstractList( ar:Array=null )
 		{
@@ -205,11 +206,15 @@ import vegas.errors.IndexOutOfBoundsError;
 import vegas.errors.NoSuchElementError;
 import vegas.util.MathsUtil;
 
+/**
+ * The basic implementation of the list iterators.
+ */
 class ListItr extends CoreObject implements ListIterator 
 {
 
 	/**
 	 * Creates a new ListItr instance.
+	 * @param li The owner List reference of this iterator.
 	 */
 	function ListItr( li:List ) 
 	{
@@ -223,6 +228,9 @@ class ListItr extends CoreObject implements ListIterator
 		_expectedModCount = AbstractList(_list).getModCount() ;
 	}
 	
+	/**
+	 * Invoked to check for comodification.
+	 */
 	public function checkForComodification():void 
 	{
 		var l:AbstractList = AbstractList(_list) ;
@@ -232,16 +240,26 @@ class ListItr extends CoreObject implements ListIterator
     	}
 	}
 	
+    /**
+     * Returns <code class="prettyprint">true</code> if the iteration has more elements.
+     * @return <code class="prettyprint">true</code> if the iteration has more elements.
+     */ 
 	public function hasNext():Boolean 
 	{
 		return _key < _list.size() ;
 	}
 
+    /**
+     * Checks to see if there is a previous element that can be iterated to.
+     */
 	public function hasPrevious():Boolean 
 	{ 
 		return _key != 0 ;
 	}
-
+    
+    /**
+     * Inserts an object in the list during the iteration process.
+     */
 	public function insert(o:*):void 
 	{
 		checkForComodification() ;
@@ -257,11 +275,19 @@ class ListItr extends CoreObject implements ListIterator
 		}	
 	}
 
+    /**
+     * Returns the current key of the internal pointer of the iterator (optional operation).
+     * @return the current key of the internal pointer of the iterator (optional operation).
+     */
 	public function key():*
 	{
 		return _key ;
 	}
 
+    /**
+     * Returns the next element in the iteration.
+     * @return the next element in the iteration.
+     */
 	public function next():* 
 	{
 		if (hasNext()) 
@@ -277,11 +303,19 @@ class ListItr extends CoreObject implements ListIterator
 		}
 	}
 	
+    /**
+     * Returns the next index value of the iterator.
+     * @return the next index value of the iterator.
+     */
 	public function nextIndex():uint 
 	{
 		return _key ;
 	}
-		
+
+    /**
+     * Returns the previous element in the collection.
+     * @return the previous element in the collection.
+     */
 	public function previous():*
 	{
 		checkForComodification() ;
@@ -299,11 +333,18 @@ class ListItr extends CoreObject implements ListIterator
 		}
 	}
 
+    /**
+     * Returns the previous index value of the iterator.
+     * @return the previous index value of the iterator.
+     */
 	public function previousIndex():int 
 	{
 		return _key - 1 ;
 	}
 
+    /**
+     * Removes from the underlying collection the last element returned by the iterator (optional operation).
+     */
 	public function remove():*
 	{
 		if (_listast == -1) throw new IllegalStateError() ;
@@ -320,17 +361,26 @@ class ListItr extends CoreObject implements ListIterator
 		}
 	}	
 
+    /**
+     * Reset the internal pointer of the iterator (optional operation).
+     */
 	public function reset():void 
 	{
 		_key = 0 ;
 	}
 
+    /**
+     * Change the position of the internal pointer of the iterator (optional operation).
+     */
 	public function seek(position:*):void 
 	{
 		_key = MathsUtil.clamp(position, 0, _list.size()) ;
 		_listast = _key - 1 ;
 	}
-
+    
+    /**
+     * Sets the last element returned by the iterator.
+     */
 	public function set(o:*):void
 	{
 		if (_listast == -1) throw new IllegalStateError() ;
@@ -344,11 +394,27 @@ class ListItr extends CoreObject implements ListIterator
 		{
 			throw e ;
 		}
-	}	
+	}
+	
+    /**
+     * @private
+     */
+    private var _expectedModCount:Number ;	
 
+    /**
+     * @private
+     */
+    private var _key:uint ;
+    
+    /**
+     * @private
+     */
 	private var _list:List ;
-	private var _key:uint ;
+
+    /**
+     * @private
+     */
 	private var _listast:int ;
-	private var _expectedModCount:Number ;
+
 
 }

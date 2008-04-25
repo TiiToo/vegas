@@ -338,9 +338,8 @@ package vegas.data.queue
 		 * @private
 		 */
 	    private var _rear:uint ;
-
-		
-		/**
+        
+        /**
 		 * The array index for the next object to be removed from the queue.
 		 * @private
 		 */

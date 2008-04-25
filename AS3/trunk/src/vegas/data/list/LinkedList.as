@@ -197,6 +197,10 @@ package vegas.data.list
         
         /**
          * Creates a new LinkedList instance.
+         * <p><b>Usage :</b></p>
+         * <pre class="prettyprint>
+         * var list:LinkedList = new LinkedList() ;
+         * </pre>
          * @param c The optional Collection used to fill and initialize this LinkedList instance.
          */
         public function LinkedList( c:Collection = null )
@@ -245,11 +249,11 @@ package vegas.data.list
         /**
          * Returns <code class="prettyprint">true</code> if this list contains the specified element.
          * <p><b>Example :</b></p>
-         * <code class="prettyprint">
+         * <pre class="prettyprint">
          * var list:LinkedList = new LinkedList() ;
          * list.insert("item1") ;
          * trace(list.contains( "item1" ) ; // output : true
-         * </code>
+         * </pre>
          * @param o element whose presence in this list is to be tested.
          * @return <code class="prettyprint">true</code> if this list contains the specified element.
          */
@@ -474,7 +478,7 @@ package vegas.data.list
          */
         public function insert( o:* ):Boolean
         {
-            _insertBefore( o, _header ) ;
+            insertBefore( o, _header ) ;
             return true ;
         }
         
@@ -553,6 +557,23 @@ package vegas.data.list
             var i:ListIterator = listIterator(id) ;
             i.insert(o);
         }
+            
+        /**
+         * Inserts the given element in the list before the given entry.
+         * This method is "protected" only the LinkedList and the LinkedListIterator must use this method.
+         * @param o the element to be inserted at the beginning of this list.
+         * @param e the entry instance to defined where inserted the element.
+         * @private
+         */
+        public function insertBefore( o:* , e:LinkedListEntry ):LinkedListEntry
+        {
+            var newEntry:LinkedListEntry = new LinkedListEntry( o, e, e.previous ) ;
+            newEntry.previous.next = newEntry ;
+            newEntry.next.previous = newEntry ;
+            _size ++ ;
+            _modCount ++ ;
+            return newEntry ;
+        }        
         
         /**
          * Inserts the given element at the beginning of this list.
@@ -560,7 +581,7 @@ package vegas.data.list
          */
         public function insertFirst( o:* ):void
         {
-            _insertBefore( o, _header.next ) ;    
+            insertBefore( o, _header.next ) ;    
         }
 
         /**
@@ -569,7 +590,7 @@ package vegas.data.list
          */
         public function insertLast( o:* ):void
         {
-            _insertBefore(o , _header) ;    
+            insertBefore(o , _header) ;    
         }
         
         /**
@@ -684,7 +705,7 @@ package vegas.data.list
                 {
                     if ( e.element == null ) 
                     {
-                        _removeEntry(e) ;
+                        removeEntry(e) ;
                         return true;
                     }
                 }
@@ -697,7 +718,7 @@ package vegas.data.list
                     {
                         if ( (o as IEquatable).equals( e.element ) ) 
                         {
-                            _removeEntry(e);
+                            removeEntry(e);
                             return true;
                         }
                     }
@@ -705,7 +726,7 @@ package vegas.data.list
                     {     
                         if ( o == e.element ) 
                         {
-                            _removeEntry(e);
+                            removeEntry(e);
                             return true;
                         }
                     }
@@ -769,29 +790,27 @@ package vegas.data.list
          */
         public function removeAt(id:uint):* 
         {
-            return _removeEntry( _entry(id) ) ;
+            return removeEntry( _entry(id) ) ;
         }
-        
+                
         /**
-         * Removes the specified count of elements at the specified position in this list.
-         * <p><b>Example :</b></p>
-         * <pre class="prettyprint">
-         * import vegas.data.list.LinkedList ;
-         * var list:LinkedList = new LinkedList() ;
-         * list.insert("item1") ;
-         * list.insert("item2") ;
-         * list.insert("item3") ;
-         * list.insert("item4") ;
-         * list.insert("item5") ;
-         * var result = list.removesAt(2, 2) ; // {item1,item2,item5}
-         * trace(result + " : " + list) ; // item1 : {item2,item3,item4}
-         * </pre>
-         * @param  id index of the first element to be removed from the List.
+         * Removes an Entry in the list.
          */
-        public function removesAt( id:uint , len:uint ):* 
+        public function removeEntry( e:LinkedListEntry ):*
         {
-            return removeRange( id , id + len ) ;
-        }
+            if ( e == _header )
+            {
+                throw new NoSuchElementError(this + " removeEntry method failed.");
+            }
+            var result:* = e.element ;
+            e.previous.next = e.next;
+            e.next.previous = e.previous;
+            e.next = e.previous = null ;
+            e.element = null ;
+            _size-- ;
+            _modCount++ ;
+            return result ;
+        }    
     
         /**
          * Removes and returns the first element from this list.
@@ -811,7 +830,7 @@ package vegas.data.list
          */
         public function removeFirst():*
         {
-            return _removeEntry( _header.next );
+            return removeEntry( _header.next );
         }
         
         /**
@@ -832,7 +851,7 @@ package vegas.data.list
          */
         public function removeLast():*
         {
-            return _removeEntry( _header.previous );
+            return removeEntry( _header.previous );
         }
         
         /**
@@ -876,6 +895,27 @@ package vegas.data.list
                 }    
             }
         }
+        
+        /**
+         * Removes the specified count of elements at the specified position in this list.
+         * <p><b>Example :</b></p>
+         * <pre class="prettyprint">
+         * import vegas.data.list.LinkedList ;
+         * var list:LinkedList = new LinkedList() ;
+         * list.insert("item1") ;
+         * list.insert("item2") ;
+         * list.insert("item3") ;
+         * list.insert("item4") ;
+         * list.insert("item5") ;
+         * var result = list.removesAt(2, 2) ; // {item1,item2,item5}
+         * trace(result + " : " + list) ; // item1 : {item2,item3,item4}
+         * </pre>
+         * @param  id index of the first element to be removed from the List.
+         */
+        public function removesAt( id:uint , len:uint ):* 
+        {
+            return removeRange( id , id + len ) ;
+        }        
     
         /**
          * Retains only the elements in this list that are contained in the specified collection (optional operation).
@@ -1082,42 +1122,7 @@ package vegas.data.list
             }
             return e ;
         }
-    
-        /**
-         * Inserts the given element in the list before the given entry.
-         * This method is "protected" only the LinkedList and the LinkedListIterator must use this method.
-         * @param o the element to be inserted at the beginning of this list.
-         * @param e the entry instance to defined where inserted the element.
-         */
-        public function _insertBefore( o:* , e:LinkedListEntry ):LinkedListEntry
-        {
-            var newEntry:LinkedListEntry = new LinkedListEntry( o, e, e.previous ) ;
-            newEntry.previous.next = newEntry ;
-            newEntry.next.previous = newEntry ;
-            _size ++ ;
-            _modCount ++ ;
-            return newEntry ;
-        }
-
-        /**
-         * Removes an Entry in the list.
-         */
-        public function _removeEntry( e:LinkedListEntry ):*
-        {
-            if ( e == _header )
-            {
-                throw new NoSuchElementError(this + " removeEntry method failed.");
-            }
-            var result:* = e.element ;
-            e.previous.next = e.next;
-            e.next.previous = e.previous;
-            e.next = e.previous = null ;
-            e.element = null ;
-            _size-- ;
-            _modCount++ ;
-            return result ;
-        }
-    
+            
         /**
          * The internal header of this list.
          */
@@ -1233,7 +1238,7 @@ class LinkedListIterator extends CoreObject implements ListIterator
     {
         this.checkForComodification();
         this._lastReturned = this._list.getHeader() ;
-        this._list._insertBefore(o, this._next) ;
+        this._list.insertBefore(o, this._next) ;
         this._nextIndex ++ ;
         this._expectedModCount ++ ;
     }
@@ -1312,7 +1317,7 @@ class LinkedListIterator extends CoreObject implements ListIterator
         var lastNext:LinkedListEntry = this._lastReturned.next;
         try 
         {
-           this._list._removeEntry( this._lastReturned ) ;
+           this._list.removeEntry( this._lastReturned ) ;
         }
         catch ( e:NoSuchElementError ) 
         {
