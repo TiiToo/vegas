@@ -31,7 +31,7 @@ package andromeda.model.array
 	import vegas.events.ArrayEvent;
 
 	/**
-	 * Defines an array model with a 'page by page' iterator.
+	 * Defines an <code class="prettyprint">Array</code> model with a 'page by page' iterator.
 	 * @author eKameleon
 	 */
 	public class PageableArrayModel extends AbstractModelObject
@@ -266,10 +266,10 @@ package andromeda.model.array
 			_sUpdateType = type ;
 		}
 
-		/**
-		 * Returns the number of elements in the model.
-		 * @return the number of elements in the model.
-		 */
+        /**
+         * Returns the number of <code class="prettyprint">IValueObject</code> in this model.
+         * @return the number of <code class="prettyprint">IValueObject</code> in this model.
+         */
 		public function size():uint
 		{
 			return _a.length ;	

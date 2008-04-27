@@ -5,22 +5,22 @@
 <link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
 <link rel="stylesheet" href="../../../prettify.css" type="text/css">
-<meta content="PageableArrayModel,andromeda.model.array.PageableArrayModel,addAllVO,clear,getCountVO,getCurrentPage,getEventTypeUPDATE,getPageCount,hasNext,hasPrevious,iterator,lastPage,next,notifyUpdate,previous,refresh,reset,run,setCountVO,setEventTypeUPDATE,size,toArray" name="keywords">
-<title>andromeda.model.array.PageableArrayModel</title>
+<meta content="StackModel,andromeda.model.stack.StackModel,POP_VO,PUSH_VO,clear,getEventTypePOP,getEventTypePUSH,getStack,initEventType,initializeStack,isEmpty,iterator,notifyPop,notifyPush,pop,push,setEventTypePOP,setEventTypePUSH,setStack,size,toArray" name="keywords">
+<title>andromeda.model.stack.StackModel</title>
 </head>
 <body>
 <script type="text/javascript" language="javascript" src="../../../prettify.js"></script><script type="text/javascript" language="javascript" src="../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../cookies.js"></script><script type="text/javascript" language="javascript">
 <!--
-				asdocTitle = 'PageableArrayModel - VEGAS AS3 Reference';
+				asdocTitle = 'StackModel - VEGAS AS3 Reference';
 				var baseRef = '../../../';
 				window.onload = configPage;
 			--></script>
 <table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
 <tr>
-<td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../index-list.html')" href="../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../index.html?andromeda/model/array/PageableArrayModel.html&amp;andromeda/model/array/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../images/logo.jpg"></td>
+<td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../index-list.html')" href="../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../index.html?andromeda/model/stack/StackModel.html&amp;andromeda/model/stack/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../images/logo.jpg"></td>
 </tr>
 <tr class="titleTableRow2">
-<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;PageableArrayModel</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;StackModel</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
 </tr>
 <tr class="titleTableRow3">
 <td colspan="2">&nbsp;</td>
@@ -28,23 +28,23 @@
 </table>
 <script type="text/javascript" language="javascript">
 <!--
-if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class PageableArrayModel"); titleBar_setSubNav(false,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class StackModel"); titleBar_setSubNav(false,true,false,false,false,false,true,false,false,false,false,false,false,false);}
 --></script>
 <div class="MainContent">
 <table cellspacing="0" cellpadding="0" class="classHeaderTable">
 <tr>
-<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">andromeda.model.array</a></td>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">andromeda.model.stack</a></td>
 </tr>
 <tr>
-<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class PageableArrayModel</td>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class StackModel</td>
 </tr>
 <tr>
-<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">PageableArrayModel <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> <a href="../AbstractModelObject.html">AbstractModelObject</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> <a href="../AbstractModel.html">AbstractModel</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> <a href="../../../vegas/events/AbstractCoreEventDispatcher.html">AbstractCoreEventDispatcher</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> <a href="../../../vegas/core/CoreObject.html">CoreObject</a></td>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">StackModel <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> <a href="../AbstractModelObject.html">AbstractModelObject</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> <a href="../AbstractModel.html">AbstractModel</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> <a href="../../../vegas/events/AbstractCoreEventDispatcher.html">AbstractCoreEventDispatcher</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> <a href="../../../vegas/core/CoreObject.html">CoreObject</a></td>
 </tr>
 </table>
 <p></p>
-  Defines an <code class="prettyprint">Array</code> model with a 'page by page' iterator.
-  <p></p>
+     This model use an internal <code class="prettyprint">Stack</code> to register value objects.
+     <p></p>
 <br>
 <hr>
 </div>
@@ -59,7 +59,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a onclick="javascript:setInheritedVisible(true,'Property');" href="#propertySummary" class="showHideLink"><img src="../../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Properties</a>
 </div>
 </div>
-<table id="summaryTableProperty" class="summaryTable hideInheritedProperty" cellpadding="3" cellspacing="0">
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
 <tr>
 <th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
 </tr>
@@ -72,6 +72,16 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../../vegas/events/AbstractCoreEventDispatcher.html#isGlobal">isGlobal</a> : Boolean<div class="summaryTableDescription">
    (read-only) Returns the value of the isGlobal flag of this model.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../../vegas/events/AbstractCoreEventDispatcher.html">AbstractCoreEventDispatcher</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#POP_VO">POP_VO</a> : String = "onPopVO"<div class="summaryTableDescription">[static]
+         Default event type when the pop method is invoked.</div>
+</td><td class="summaryTableOwnerCol">StackModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PUSH_VO">PUSH_VO</a> : String = "onPushVO"<div class="summaryTableDescription">[static]
+         Default event type when the push method is invoked.</div>
+</td><td class="summaryTableOwnerCol">StackModel</td>
 </tr>
 <tr class="hideInheritedProperty">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../AbstractModelObject.html#security">security</a> : Boolean = true<div class="summaryTableDescription">
@@ -98,18 +108,10 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#PageableArrayModel()">PageableArrayModel</a>(id:* = null, bGlobal:Boolean = false, sChannel:String = null)</div>
+<a class="signatureLink" href="#StackModel()">StackModel</a>(id:* = null, bGlobal:Boolean = false, sChannel:String = null)</div>
 <div class="summaryTableDescription">
-   Creates a new PageableArrayModel instance.</div>
-</td><td class="summaryTableOwnerCol">PageableArrayModel</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#addAllVO()">addAllVO</a>(datas:Array, noClear:Boolean = false, noRefresh:Boolean = false):void</div>
-<div class="summaryTableDescription">
-   Inserts all IValueObject in the array passed in argument.</div>
-</td><td class="summaryTableOwnerCol">PageableArrayModel</td>
+         Creates a new StackModel instance.</div>
+</td><td class="summaryTableOwnerCol">StackModel</td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -124,8 +126,8 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#clear()">clear</a>():void</div>
 <div class="summaryTableDescription">
-   Clear the model.</div>
-</td><td class="summaryTableOwnerCol">PageableArrayModel</td>
+         Removes all value objects in the model.</div>
+</td><td class="summaryTableOwnerCol">StackModel</td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -143,22 +145,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summaryTableDescription">
    Dispatches an event into the event flow.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../../vegas/events/AbstractCoreEventDispatcher.html">AbstractCoreEventDispatcher</a></td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#getCountVO()">getCountVO</a>():uint</div>
-<div class="summaryTableDescription">
-   Returns the count of the IValueObject in a page of this model.</div>
-</td><td class="summaryTableOwnerCol">PageableArrayModel</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#getCurrentPage()">getCurrentPage</a>():Number</div>
-<div class="summaryTableDescription">
-   Returns the current page selected in the model.</div>
-</td><td class="summaryTableOwnerCol">PageableArrayModel</td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -197,10 +183,18 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#getEventTypeUPDATE()">getEventTypeUPDATE</a>():String</div>
+<a class="signatureLink" href="#getEventTypePOP()">getEventTypePOP</a>():String</div>
 <div class="summaryTableDescription">
-   Returns the event name use in the <code class="prettyprint">addVO</code> method.</div>
-</td><td class="summaryTableOwnerCol">PageableArrayModel</td>
+         Returns the event name use in the {</div>
+</td><td class="summaryTableOwnerCol">StackModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getEventTypePUSH()">getEventTypePUSH</a>():String</div>
+<div class="summaryTableDescription">
+         Returns the event name use in the {</div>
+</td><td class="summaryTableOwnerCol">StackModel</td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -222,10 +216,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#getPageCount()">getPageCount</a>():Number</div>
+<a class="signatureLink" href="#getStack()">getStack</a>():<a href="../../../vegas/data/Stack.html">Stack</a>
+</div>
 <div class="summaryTableDescription">
-   Returns the numbers of page with the current model.</div>
-</td><td class="summaryTableOwnerCol">PageableArrayModel</td>
+         Returns the internal {</div>
+</td><td class="summaryTableOwnerCol">StackModel</td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -243,22 +238,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
    Returns a hashcode value for the object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../../vegas/core/CoreObject.html">CoreObject</a></td>
 </tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#hasNext()">hasNext</a>():Boolean</div>
-<div class="summaryTableDescription">
-   Returns <code class="prettyprint">true</code> if the list has a next page.</div>
-</td><td class="summaryTableOwnerCol">PageableArrayModel</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#hasPrevious()">hasPrevious</a>():Boolean</div>
-<div class="summaryTableDescription">
-   Returns <code class="prettyprint">true</code> if the list has a previous page.</div>
-</td><td class="summaryTableOwnerCol">PageableArrayModel</td>
-</tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
@@ -268,13 +247,30 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
    Creates and returns the internal <code class="prettyprint">EventDispatcher</code> reference (this method is invoked in the constructor).</div>
 </td><td class="summaryTableOwnerCol"><a href="../../../vegas/events/AbstractCoreEventDispatcher.html">AbstractCoreEventDispatcher</a></td>
 </tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="../AbstractModelObject.html#initEventType()">initEventType</a>():void</div>
+<a class="signatureLink" href="#initEventType()">initEventType</a>():void</div>
 <div class="summaryTableDescription">
          This method is invoked in the constructor of the class to initialize all events.</div>
-</td><td class="summaryTableOwnerCol"><a href="../AbstractModelObject.html">AbstractModelObject</a></td>
+</td><td class="summaryTableOwnerCol">StackModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#initializeStack()">initializeStack</a>():<a href="../../../vegas/data/Stack.html">Stack</a>
+</div>
+<div class="summaryTableDescription">
+         Initialize the internal Stack instance in the constructor of the class.</div>
+</td><td class="summaryTableOwnerCol">StackModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#isEmpty()">isEmpty</a>():Boolean</div>
+<div class="summaryTableDescription">
+         Returns {</div>
+</td><td class="summaryTableOwnerCol">StackModel</td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -290,16 +286,8 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="#iterator()">iterator</a>():<a href="../../../vegas/data/iterator/Iterator.html">Iterator</a>
 </div>
 <div class="summaryTableDescription">
-   Returns a PageByPageIterator of this model.</div>
-</td><td class="summaryTableOwnerCol">PageableArrayModel</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#lastPage()">lastPage</a>():void</div>
-<div class="summaryTableDescription">
-   Seek the iterator in the last page of this object.</div>
-</td><td class="summaryTableOwnerCol">PageableArrayModel</td>
+         Returns the iterator of this model.</div>
+</td><td class="summaryTableOwnerCol">StackModel</td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -308,14 +296,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summaryTableDescription">
       Locks the object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../../vegas/events/AbstractCoreEventDispatcher.html">AbstractCoreEventDispatcher</a></td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#next()">next</a>():*</div>
-<div class="summaryTableDescription">
-   Show the next page of the model.</div>
-</td><td class="summaryTableOwnerCol">PageableArrayModel</td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -336,26 +316,35 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#notifyUpdate()">notifyUpdate</a>(value:*):*</div>
+<a class="signatureLink" href="#notifyPop()">notifyPop</a>(vo:<a href="../../vo/IValueObject.html">IValueObject</a>):void</div>
 <div class="summaryTableDescription">
-      Notify an <code class="prettyprint">Event</code> when a <code class="prettyprint">IValueObject</code> is inserted in the model.</div>
-</td><td class="summaryTableOwnerCol">PageableArrayModel</td>
+         Notify a {</div>
+</td><td class="summaryTableOwnerCol">StackModel</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#previous()">previous</a>():*</div>
+<a class="signatureLink" href="#notifyPush()">notifyPush</a>(vo:<a href="../../vo/IValueObject.html">IValueObject</a>):void</div>
 <div class="summaryTableDescription">
-   Show in the previous page in the list or previous screen.</div>
-</td><td class="summaryTableOwnerCol">PageableArrayModel</td>
+         Notify a {</div>
+</td><td class="summaryTableOwnerCol">StackModel</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#refresh()">refresh</a>():void</div>
+<a class="signatureLink" href="#pop()">pop</a>():<a href="../../vo/IValueObject.html">IValueObject</a>
+</div>
 <div class="summaryTableDescription">
-   Refresh the model.</div>
-</td><td class="summaryTableOwnerCol">PageableArrayModel</td>
+         Removes and returns the lastly pushed value object in the model.</div>
+</td><td class="summaryTableOwnerCol">StackModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#push()">push</a>(vo:<a href="../../vo/IValueObject.html">IValueObject</a>):void</div>
+<div class="summaryTableDescription">
+         Pushes the passed-in value object to this stack.</div>
+</td><td class="summaryTableOwnerCol">StackModel</td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -373,29 +362,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
    Removes a listener from the EventDispatcher object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../../vegas/events/AbstractCoreEventDispatcher.html">AbstractCoreEventDispatcher</a></td>
 </tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#reset()">reset</a>():void</div>
+<a class="signatureLink" href="../AbstractModel.html#run()">run</a>(... arguments):void</div>
 <div class="summaryTableDescription">
-   Resets the key pointer of the iterator.</div>
-</td><td class="summaryTableOwnerCol">PageableArrayModel</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#run()">run</a>(... arguments):void</div>
-<div class="summaryTableDescription">
-   Run the model when is initialize.</div>
-</td><td class="summaryTableOwnerCol">PageableArrayModel</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#setCountVO()">setCountVO</a>(n:uint, noRender:Boolean = false):void</div>
-<div class="summaryTableDescription">
-   Set the count of the IValueObject in a page of this model.</div>
-</td><td class="summaryTableOwnerCol">PageableArrayModel</td>
+    Run the first process with this model.</div>
+</td><td class="summaryTableOwnerCol"><a href="../AbstractModel.html">AbstractModel</a></td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -432,10 +405,18 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#setEventTypeUPDATE()">setEventTypeUPDATE</a>(type:String):void</div>
+<a class="signatureLink" href="#setEventTypePOP()">setEventTypePOP</a>(type:String):void</div>
 <div class="summaryTableDescription">
-   Sets the event name use in the <code class="prettyprint">addVO</code> method.</div>
-</td><td class="summaryTableOwnerCol">PageableArrayModel</td>
+         Sets the event name use in the <code class="prettyprint">pop</code> method.</div>
+</td><td class="summaryTableOwnerCol">StackModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setEventTypePUSH()">setEventTypePUSH</a>(type:String):void</div>
+<div class="summaryTableDescription">
+         Sets the event name use in the <code class="prettyprint">push</code> method.</div>
+</td><td class="summaryTableOwnerCol">StackModel</td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -456,10 +437,18 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#size()">size</a>():uint</div>
+<a class="signatureLink" href="#setStack()">setStack</a>(s:<a href="../../../vegas/data/Stack.html">Stack</a>):void</div>
+<div class="summaryTableDescription">
+         Sets the internal Stack of this model.</div>
+</td><td class="summaryTableOwnerCol">StackModel</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#size()">size</a>():Number</div>
 <div class="summaryTableDescription">
          Returns the number of <code class="prettyprint">IValueObject</code> in this model.</div>
-</td><td class="summaryTableOwnerCol">PageableArrayModel</td>
+</td><td class="summaryTableOwnerCol">StackModel</td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -474,8 +463,8 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#toArray()">toArray</a>():Array</div>
 <div class="summaryTableDescription">
-   Returns the array representation of all vos in this model.</div>
-</td><td class="summaryTableOwnerCol">PageableArrayModel</td>
+         Returns the <code class="prettyprint">Array</code> representation of this object.</div>
+</td><td class="summaryTableOwnerCol">StackModel</td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -532,187 +521,165 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 showHideInherited();
 --></script>
 <div class="MainContent">
-<a name="constructorDetail"></a>
-<div class="detailSectionHeader">Constructor detail</div>
-<a name="PageableArrayModel()"></a>
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="POP_VO"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">PageableArrayModel</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+<td class="detailHeaderName">POP_VO</td><td class="detailHeaderType">property</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public function PageableArrayModel(id:* = null, bGlobal:Boolean = false, sChannel:String = null)</code><p>
-   Creates a new PageableArrayModel instance.
-   </p><span class="label">Parameters</span>
+<code>public static var POP_VO:String = "onPopVO"</code><p>
+         Default event type when the pop method is invoked.
+         </p></div>
+<a name="PUSH_VO"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PUSH_VO</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static var PUSH_VO:String = "onPushVO"</code><p>
+         Default event type when the push method is invoked.
+         </p></div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="StackModel()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">StackModel</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function StackModel(id:* = null, bGlobal:Boolean = false, sChannel:String = null)</code><p>
+         Creates a new StackModel instance.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">id</span>:*</code> (default = <code>null</code>)<code></code> &mdash; the id of this model.
-   </td>
+         </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">bGlobal</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; the flag to use a global event flow or a local event flow.
-   </td>
+         </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">sChannel</span>:String</code> (default = <code>null</code>)<code></code> &mdash; the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
 <a name="methodDetail"></a>
 <div class="detailSectionHeader">Method detail</div>
-<a name="addAllVO()"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">addAllVO</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>public function addAllVO(datas:Array, noClear:Boolean = false, noRefresh:Boolean = false):void</code><p>
-   Inserts all IValueObject in the array passed in argument.
-   </p><span class="label">Parameters</span>
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td width="20px"></td><td><code><span class="label">datas</span>:Array</code> &mdash; The array of all value objects to insert in the model.
-   </td>
-</tr>
-<tr>
-<td class="paramSpacer">&nbsp;</td>
-</tr>
-<tr>
-<td width="20px"></td><td><code><span class="label">noClear</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; (optional) If this argument is <code class="prettyprint">true</code> the clear method isn't called when this process begin.
-   </td>
-</tr>
-<tr>
-<td class="paramSpacer">&nbsp;</td>
-</tr>
-<tr>
-<td width="20px"></td><td><code><span class="label">noRefresh</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; (optional) If this argument is <code class="prettyprint">true</code> the refresh method isn't called when this process is finish.
-   </td>
-</tr>
-</table>
-</div>
 <a name="clear()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">clear</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">clear</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
 </tr>
 </table>
 <div class="detailBody">
 <code>public override function clear():void</code><p>
-   Clear the model.
-   </p></div>
-<a name="getCountVO()"></a>
+         Removes all value objects in the model.
+         </p></div>
+<a name="getEventTypePOP()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">getCountVO</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">getEventTypePOP</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public function getCountVO():uint</code><p>
-   Returns the count of the IValueObject in a page of this model.
-   </p><p></p>
+<code>public function getEventTypePOP():String</code><p>
+         Returns the event name use in the {</p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>uint</code> &mdash; the count of the IValueObject in a page of this model.
-   </td>
+<td width="20"></td><td><code>String</code> &mdash; the event name use in the {</td>
 </tr>
 </table>
 </div>
-<a name="getCurrentPage()"></a>
+<a name="getEventTypePUSH()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">getCurrentPage</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">getEventTypePUSH</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public function getCurrentPage():Number</code><p>
-   Returns the current page selected in the model.
-   </p><p></p>
+<code>public function getEventTypePUSH():String</code><p>
+         Returns the event name use in the {</p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Number</code> &mdash; the current page selected in the model.
-   </td>
+<td width="20"></td><td><code>String</code> &mdash; the event name use in the {</td>
 </tr>
 </table>
 </div>
-<a name="getEventTypeUPDATE()"></a>
+<a name="getStack()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">getEventTypeUPDATE</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">getStack</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public function getEventTypeUPDATE():String</code><p>
-   Returns the event name use in the <code class="prettyprint">addVO</code> method.
-   </p><p></p>
+<code>public function getStack():<a href="../../../vegas/data/Stack.html">Stack</a></code><p>
+         Returns the internal {</p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>String</code> &mdash; the event name use in the <code class="prettyprint">addVO</code> method.
-   </td>
+<td width="20"></td><td><code><a href="../../../vegas/data/Stack.html">Stack</a></code> &mdash; 
+                        the internal {
+                        
+                     </td>
 </tr>
 </table>
 </div>
-<a name="getPageCount()"></a>
+<a name="initEventType()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">getPageCount</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">initEventType</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public function getPageCount():Number</code><p>
-   Returns the numbers of page with the current model.
-   </p><p></p>
+<code>public override function initEventType():void</code><p>
+         This method is invoked in the constructor of the class to initialize all events.
+         Overrides this method.
+         </p></div>
+<a name="initializeStack()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">initializeStack</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function initializeStack():<a href="../../../vegas/data/Stack.html">Stack</a></code><p>
+         Initialize the internal Stack instance in the constructor of the class.
+         You can overrides this method if you want change the default {</p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Number</code> &mdash; the numbers of page with the current model.
-   </td>
+<td width="20"></td><td><code><a href="../../../vegas/data/Stack.html">Stack</a></code></td>
 </tr>
 </table>
 </div>
-<a name="hasNext()"></a>
+<a name="isEmpty()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">hasNext</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">isEmpty</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public function hasNext():Boolean</code><p>
-   Returns <code class="prettyprint">true</code> if the list has a next page.
-   </p><p></p>
+<code>public function isEmpty():Boolean</code><p>
+         Returns {</p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the list has a next page.
-   </td>
-</tr>
-</table>
-</div>
-<a name="hasPrevious()"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">hasPrevious</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>public function hasPrevious():Boolean</code><p>
-   Returns <code class="prettyprint">true</code> if the list has a previous page.
-   </p><p></p>
-<span class="label">Returns</span>
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the list has a previous page.
-   </td>
+<td width="20"></td><td><code>Boolean</code> &mdash; {</td>
 </tr>
 </table>
 </div>
@@ -724,164 +691,141 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function iterator():<a href="../../../vegas/data/iterator/Iterator.html">Iterator</a></code><p>
-   Returns a PageByPageIterator of this model.
-   </p><p></p>
+         Returns the iterator of this model.
+         </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code><a href="../../../vegas/data/iterator/Iterator.html">Iterator</a></code> &mdash; 
-                        a PageByPageIterator of this model.
-   
+                        the iterator of this model.
+         
                         
                      </td>
 </tr>
 </table>
 </div>
-<a name="lastPage()"></a>
+<a name="notifyPop()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">lastPage</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">notifyPop</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public function lastPage():void</code><p>
-   Seek the iterator in the last page of this object.
-   </p></div>
-<a name="next()"></a>
+<code>public function notifyPop(vo:<a href="../../vo/IValueObject.html">IValueObject</a>):void</code><p>
+         Notify a {</p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">vo</span>:<a href="../../vo/IValueObject.html">IValueObject</a></code></td>
+</tr>
+</table>
+</div>
+<a name="notifyPush()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">next</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">notifyPush</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public function next():*</code><p>
-   Show the next page of the model.
-   </p><p></p>
+<code>public function notifyPush(vo:<a href="../../vo/IValueObject.html">IValueObject</a>):void</code><p>
+         Notify a {</p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">vo</span>:<a href="../../vo/IValueObject.html">IValueObject</a></code></td>
+</tr>
+</table>
+</div>
+<a name="pop()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">pop</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function pop():<a href="../../vo/IValueObject.html">IValueObject</a></code><p>
+         Removes and returns the lastly pushed value object in the model.
+         </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>*</code></td>
+<td width="20"></td><td><code><a href="../../vo/IValueObject.html">IValueObject</a></code> &mdash; 
+                        the lastly pushed value object in the model.
+         
+                        
+                     </td>
 </tr>
 </table>
 </div>
-<a name="notifyUpdate()"></a>
+<a name="push()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">notifyUpdate</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">push</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public function notifyUpdate(value:*):*</code><p>
-      Notify an <code class="prettyprint">Event</code> when a <code class="prettyprint">IValueObject</code> is inserted in the model. 
-      If the model countVO value is > 1 notify an ArrayEvent else if the coutVO value is 1 notify a ModelObjectEvent. 
-      </p><span class="label">Parameters</span>
+<code>public function push(vo:<a href="../../vo/IValueObject.html">IValueObject</a>):void</code><p>
+         Pushes the passed-in value object to this stack.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">value</span>:*</code></td>
+<td width="20px"></td><td><code><span class="label">vo</span>:<a href="../../vo/IValueObject.html">IValueObject</a></code> &mdash; The IValueObject to push.
+         </td>
 </tr>
 </table>
-<p></p>
-<span class="label">Returns</span>
+<br>
+<span class="label">Throws</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>*</code></td>
+<td width="20"></td><td><code></code> &mdash; If the IValueObject is 'null' or 'undefined'.
+         </td>
 </tr>
 </table>
 </div>
-<a name="previous()"></a>
+<a name="setEventTypePOP()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">previous</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">setEventTypePOP</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public function previous():*</code><p>
-   Show in the previous page in the list or previous screen.
-   </p><p></p>
-<span class="label">Returns</span>
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td width="20"></td><td><code>*</code></td>
-</tr>
-</table>
-</div>
-<a name="refresh()"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">refresh</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>public function refresh():void</code><p>
-   Refresh the model.
-   </p></div>
-<a name="reset()"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">reset</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>public function reset():void</code><p>
-   Resets the key pointer of the iterator.
-   </p></div>
-<a name="run()"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">run</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>public override function run(... arguments):void</code><p>
-   Run the model when is initialize. This method don't work if the model is locked.
-   </p><span class="label">Parameters</span>
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td width="20px"></td><td><code>... <span class="label">arguments</span></code></td>
-</tr>
-</table>
-<p>
-<span class="label">See also</span>
-</p>
-<div class="seeAlso">ILockable</div>
-</div>
-<a name="setCountVO()"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">setCountVO</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>public function setCountVO(n:uint, noRender:Boolean = false):void</code><p>
-   Set the count of the IValueObject in a page of this model. 
-   </p><span class="label">Parameters</span>
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td width="20px"></td><td><code><span class="label">n</span>:uint</code> &mdash; The count value of items in this model. This value must be >=1.
-   </td>
-</tr>
-<tr>
-<td class="paramSpacer">&nbsp;</td>
-</tr>
-<tr>
-<td width="20px"></td><td><code><span class="label">noRender</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; Indicates if the method call the run method if this argumement is <code class="prettyprint">false</code> (default is <code class="prettyprint">false</code>).
-    </td>
-</tr>
-</table>
-</div>
-<a name="setEventTypeUPDATE()"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">setEventTypeUPDATE</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>public function setEventTypeUPDATE(type:String):void</code><p>
-   Sets the event name use in the <code class="prettyprint">addVO</code> method.
-   </p><span class="label">Parameters</span>
+<code>public function setEventTypePOP(type:String):void</code><p>
+         Sets the event name use in the <code class="prettyprint">pop</code> method.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">type</span>:String</code></td>
+</tr>
+</table>
+</div>
+<a name="setEventTypePUSH()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setEventTypePUSH</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setEventTypePUSH(type:String):void</code><p>
+         Sets the event name use in the <code class="prettyprint">push</code> method.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">type</span>:String</code></td>
+</tr>
+</table>
+</div>
+<a name="setStack()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setStack</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setStack(s:<a href="../../../vegas/data/Stack.html">Stack</a>):void</code><p>
+         Sets the internal Stack of this model. 
+         By default the initializeStack() method is used if the passed-in argument is null.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">s</span>:<a href="../../../vegas/data/Stack.html">Stack</a></code></td>
 </tr>
 </table>
 </div>
@@ -892,13 +836,13 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function size():uint</code><p>
+<code>public function size():Number</code><p>
          Returns the number of <code class="prettyprint">IValueObject</code> in this model.
          </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>uint</code> &mdash; the number of <code class="prettyprint">IValueObject</code> in this model.
+<td width="20"></td><td><code>Number</code> &mdash; the number of <code class="prettyprint">IValueObject</code> in this model.
          </td>
 </tr>
 </table>
@@ -911,13 +855,13 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function toArray():Array</code><p>
-   Returns the array representation of all vos in this model.
-   </p><p></p>
+         Returns the <code class="prettyprint">Array</code> representation of this object.
+         </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Array</code> &mdash; the array representation of all vos in this model.
-    </td>
+<td width="20"></td><td><code>Array</code> &mdash; the <code class="prettyprint">Array</code> representation of this object.
+         </td>
 </tr>
 </table>
 </div>

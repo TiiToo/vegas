@@ -31,7 +31,7 @@ package andromeda.model.queue
     import vegas.errors.IllegalArgumentError;    
 
     /**
-     * This model use an internal {@code Queue} to register value objects.
+     * This model use an internal <code class="prettyprint">Queue</code> to register value objects.
      * @author eKameleon
      */
     public class QueueModel extends AbstractModelObject 
@@ -208,8 +208,8 @@ package andromeda.model.queue
         }
             
         /**
-         * Returns the number of IValueObject in this model.
-         * @return the number of IValueObject in this model.
+         * Returns the number of <code class="prettyprint">IValueObject</code> in this model.
+         * @return the number of <code class="prettyprint">IValueObject</code> in this model.
          */
         public function size():Number
         {
@@ -217,8 +217,8 @@ package andromeda.model.queue
         }        
         
         /**
-         * Returns the {@code Array} representation of this object.
-         * @return the {@code Array} representation of this object.
+         * Returns the <code class="prettyprint">Array</code> representation of this object.
+         * @return the <code class="prettyprint">Array</code> representation of this object.
          */
         public function toArray():Array
         {

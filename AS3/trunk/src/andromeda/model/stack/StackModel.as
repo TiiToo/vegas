@@ -31,7 +31,7 @@ package andromeda.model.stack
     import vegas.errors.IllegalArgumentError;    
 
     /**
-     * This model use an internal {@code Stack} to register value objects.
+     * This model use an internal <code class="prettyprint">Stack</code> to register value objects.
      * @author eKameleon
      */
     public class StackModel extends AbstractModelObject 
@@ -210,8 +210,8 @@ package andromeda.model.stack
         }
                 
         /**
-         * Returns the number of IValueObject in this model.
-         * @return the number of IValueObject in this model.
+         * Returns the number of <code class="prettyprint">IValueObject</code> in this model.
+         * @return the number of <code class="prettyprint">IValueObject</code> in this model.
          */
         public function size():Number
         {
@@ -219,8 +219,8 @@ package andromeda.model.stack
         }   
         
         /**
-         * Returns the {@code Array} representation of this object.
-         * @return the {@code Array} representation of this object.
+         * Returns the <code class="prettyprint">Array</code> representation of this object.
+         * @return the <code class="prettyprint">Array</code> representation of this object.
          */
         public function toArray():Array
         {

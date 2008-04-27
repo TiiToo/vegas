@@ -33,7 +33,7 @@ package andromeda.model.collections
     import vegas.errors.Warning;    
 
     /**
-     * This model use an internal {@code Collection} to register value objects.
+     * This model use an internal <code class="prettyprint">Collection</code> to register value objects.
      * @author eKameleon
      */
     public class CollectionModel extends AbstractModelObject 
@@ -255,8 +255,8 @@ package andromeda.model.collections
         }
        
         /**
-         * Returns the number of IValueObject in this model.
-         * @return the number of IValueObject in this model.
+         * Returns the number of <code class="prettyprint">IValueObject</code> in this model.
+         * @return the number of <code class="prettyprint">IValueObject</code> in this model.
          */
         public function size():Number
         {
@@ -264,8 +264,8 @@ package andromeda.model.collections
         }
         
         /**
-         * Returns the {@code Array} representation of this object.
-         * @return the {@code Array} representation of this object.
+         * Returns the <code class="prettyprint">Array</code> representation of this object.
+         * @return the <code class="prettyprint">Array</code> representation of this object.
          */
         public function toArray():Array
         {

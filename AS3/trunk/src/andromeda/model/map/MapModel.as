@@ -34,7 +34,7 @@ package andromeda.model.map
 	import vegas.errors.Warning;	
 
 	/**
-	 * This model use an internal Map to register value objects with a specific key.
+	 * This model use an internal <code class="prettyprint">Map</code> to register value objects with a specific key.
 	 * @author eKameleon
 	 */
     public class MapModel extends AbstractModelObject implements Iterable 
@@ -304,10 +304,10 @@ package andromeda.model.map
 			_map = m || initializeMap() ;	
 		}
 
-		/**
-	 	 * Returns the number of IValueObject in this model.
-	 	 * @return the number of IValueObject in this model.
-	 	 */
+        /**
+         * Returns the number of <code class="prettyprint">IValueObject</code> in this model.
+         * @return the number of <code class="prettyprint">IValueObject</code> in this model.
+         */
 		public function size():Number
 		{
 			return _map.size() ;

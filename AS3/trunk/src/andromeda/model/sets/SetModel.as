@@ -29,7 +29,7 @@ package andromeda.model.sets
     import vegas.data.sets.HashSet;    
 
     /**
-     * This model use an internal {@code Set} to register value objects.
+     * This model use an internal <code class="prettyprint">Set</code> to register value objects.
      * @author eKameleon
      */
     public class SetModel extends CollectionModel 
