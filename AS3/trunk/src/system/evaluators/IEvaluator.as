@@ -10,21 +10,22 @@
   
   The Original Code is [ES4a: ECMAScript 4 MaasHaack framework].
   
-  The Initial Developer of the Original Code is 
-  ALCARAZ Marc <ekameleon@gmail.com>.
+  The Initial Developer of the Original Code is
+  Marc Alcaraz <ekameleon@gmail.com>.
   Portions created by the Initial Developer are Copyright (C) 2006-2008
   the Initial Developer. All Rights Reserved.
   
-  Contributor(s) :
-  
+  Contributor(s):
+    - Zwetan Kjukov <zwetan@gmail.com>
 */
 package system.evaluators 
 {
 
-	/**
-	 * Allows an object evaluable.
-	 * @author eKameleon
-	 */
+    /**
+     * An Evaluator is a class that can interpret an object to another object.
+     * <p>It's not necessary a parser, but the most common cases would be a string being evaluated to an object structure.</p>
+     * <p><b>Note:</b> eval always take one and only one argument, if you need to configure the evaluator pass different arguments in the constructor.</p>
+     */
 	public interface IEvaluator 
 	{
 	

@@ -11,33 +11,26 @@
   The Original Code is [ES4a: ECMAScript 4 MaasHaack framework].
   
   The Initial Developer of the Original Code is
-  Marc Alcaraz <ekameleon@gmail.com>.
+  Zwetan Kjukov <zwetan@gmail.com>.
   Portions created by the Initial Developer are Copyright (C) 2006-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s):
   
+    - Marc Alcaraz <ekameleon@gmail.com>
+
 */
-package system.text.diff 
-{
-	import buRRRn.ASTUce.framework.TestCase;	
-
-	/**
-	 * Read the http://neil.fraser.name/writing/diff/ page to understand the algo.
-	 * @author eKameleon
-	 */
-	public class TestGetMaxBits extends TestCase 
-	{
-
-		public function TestGetMaxBits(name:String = "")
-		{
-			super( name );
-		}
-		 
-        public function testGetMaxBits():void
+package system.reflection
+    {
+    
+    /**
+     * The MethodInfo interface.
+     */
+    public interface MethodInfo
         {
-        	assertEquals( getMaxBits() , 32 , "getMaxBits() method failed." ) ;
-        }
         
-	}
-}
+        
+        }
+    
+    
+    }

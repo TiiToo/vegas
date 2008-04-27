@@ -16,28 +16,26 @@
   the Initial Developer. All Rights Reserved.
   
   Contributor(s):
-  
+    
+     - Zwetan Kjukov <zwetan@gmail.com>
+
 */
-package system.text.diff 
-{
-	import buRRRn.ASTUce.framework.TestCase;	
-
-	/**
-	 * Read the http://neil.fraser.name/writing/diff/ page to understand the algo.
-	 * @author eKameleon
-	 */
-	public class TestGetMaxBits extends TestCase 
-	{
-
-		public function TestGetMaxBits(name:String = "")
-		{
-			super( name );
-		}
-		 
-        public function testGetMaxBits():void
+package system.formatters
+    {
+    
+    /**
+     * Interface implemented by classes that can format a value in a specific string expression.
+     */
+    public interface IFormatter
         {
-        	assertEquals( getMaxBits() , 32 , "getMaxBits() method failed." ) ;
-        }
         
-	}
-}
+        /**
+         * Formats the specified value.
+         * @return the string representation of the formatted value. 
+         */
+        function format( value:* = null ):String;
+        
+        }
+    
+    }
+

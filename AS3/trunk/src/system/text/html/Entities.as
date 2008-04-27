@@ -17,7 +17,7 @@
   
   Contributor(s):
   
-  	- Alcaraz Marc (aka eKameleon) <ekameleon@gmail.com> (2007-2008)
+  	- Marc Alcaraz <ekameleon@gmail.com>
 
 */
 package system.text.html
@@ -39,6 +39,11 @@ package system.text.html
          * @private
          */
         private static var _fastSearch:Dictionary = new Dictionary() ;
+        
+        /**
+         * Indicates if the class support ISO-8859-15.
+         */
+        public static var support_ISO_8859_15:Boolean = false;        
         
         /**
          * Inserts a new Entity element in the entities definitions.
@@ -139,7 +144,7 @@ package system.text.html
             return "";
             }
         
-        //ASCII Entities
+        // ASCII Entities
         
         add( new Entity( "\"" , "quot" , 34 ) ) ; // quotation mark 
         add( new Entity( "&" , "amp"  , 38 ) ) ; // ampersand
@@ -147,11 +152,7 @@ package system.text.html
         add( new Entity(  "<" , "lt"   , 60 ) ) ; // less-than sign 
         add( new Entity(  ">" , "gt"   , 62 ) ) ; // greater-than sign  
 
-        //ISO 8859-15 Symbol Entities
-        
-        // FIXME add( new Entity(  "€" ,   "euro" , 8364 ) ) ; // euro sign ???
-        
-        //ISO 8859-1 Symbol Entities
+        // ISO 8859-1 Symbol Entities
         
         add( new Entity(  " " ,   "nbsp" , 160 ) ) ; // non-breaking space 
         add( new Entity(  "¡" ,  "iexcl" , 161 ) ) ; // inverted exclamation mark 
@@ -252,6 +253,41 @@ package system.text.html
         add( new Entity(  "ý" , "yacute" , 253 ) ) ; // small y, acute accent
         add( new Entity(  "þ" ,  "thorn" , 254 ) ) ; // small thorn, Icelandic
         add( new Entity(  "ÿ" ,   "yuml" , 255 ) ) ; // small y, umlaut mark
+        
+        // FIXME add( new Entity(  "€" ,   "euro" , 8364 ) ) ; // euro sign ???
+        
+        /* ISO 8859-15 Symbol Entities
+           see http://fr.wikipedia.org/wiki/ISO_8859-15
+           
+           when the option support_ISO_8859_15 is true
+           the following table will be used
+           
+           Position 0xA4 0xA6 0xA8 0xB4 0xB8 0xBC 0xBD 0xBE
+           8859-1      ¤    ¦    ¨    ´    ¸    ¼    ½    ¾
+           8859-15     €    Š    š    Ž    ž    Œ    œ    Ÿ
+        */
+        if( Entities.support_ISO_8859_15 )
+            {
+            /* TODO:
+               either we can switch
+               but in theory we could use both 8859-1 and 8859-15
+               as we have only findByChar and findByName methods
+               
+               need to be unit tested to be 100% sure
+            */
+            }
+        else
+            {
+            add( new Entity(  "¤" , "curren" , 164 ) ) ; // currency sign
+            add( new Entity(  "¦" , "brvbar" , 166 ) ) ; // broken vertical bar
+            add( new Entity(  "¨" ,    "uml" , 168 ) ) ; // spacing diaresis
+            add( new Entity(  "´" ,  "acute" , 180 ) ) ; // spacing acute
+            add( new Entity(  "¸" ,  "cedil" , 184 ) ) ; // spacing cedilla
+            add( new Entity(  "¼" , "frac14" , 188 ) ) ; // fraction 1/4
+            add( new Entity(  "½" , "frac12" , 189 ) ) ; // fraction 1/2 
+            add( new Entity(  "¾" , "frac34" , 190 ) ) ; // fraction 3/4
+            }
+        
         
         }
 

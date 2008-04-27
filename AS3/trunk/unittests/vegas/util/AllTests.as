@@ -40,8 +40,6 @@ package vegas.util
             
             var suite:TestSuite = new TestSuite( "vegas.util" );
 
-            suite.addTestSuite( TestMathsUtil ) ;
-
             return suite;
             
         }
