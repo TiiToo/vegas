@@ -27,9 +27,8 @@ package asgard.net
     
     import asgard.events.SoundEvent;
     
-    import pegas.maths.Range;
-    
     import system.Reflection;
+    import system.numeric.Range;
     
     import vegas.core.HashCode;
     import vegas.core.ILockable;

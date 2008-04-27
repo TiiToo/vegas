@@ -22,11 +22,11 @@
 */
 package lunas.core 
 {
-	import lunas.core.AbstractComponent;
-	
-	import pegas.maths.Range;    
+    import lunas.core.AbstractComponent;
+    
+    import system.numeric.Range;    
 
-	/**
+    /**
      * This class provides a skeletal implementation of all the <code class="prettyprint">IProgress</code> display components, to minimize the effort required to implement this interface.
      * @author eKameleon
      */

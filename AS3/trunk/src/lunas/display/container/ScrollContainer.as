@@ -22,21 +22,21 @@
 */
 package lunas.display.container 
 {
-	import flash.events.Event;
-	
-	import andromeda.events.ActionEvent;
-	
-	import lunas.display.container.ListContainer;
-	import lunas.events.ComponentEvent;
-	
-	import pegas.transitions.Motion;
-	import pegas.transitions.Tween;
-	import pegas.transitions.TweenEntry;
-	import pegas.transitions.easing.Back;
-	
-	import vegas.util.MathsUtil;	
+    import flash.events.Event;
+    
+    import andromeda.events.ActionEvent;
+    
+    import lunas.display.container.ListContainer;
+    import lunas.events.ComponentEvent;
+    
+    import pegas.transitions.Motion;
+    import pegas.transitions.Tween;
+    import pegas.transitions.TweenEntry;
+    import pegas.transitions.easing.Back;
+    
+    import system.numeric.Mathematics;	
 
-	/**
+    /**
 	 * This container is a list and can be scrolled.
 	 * @author eKameleon
  	*/
@@ -113,7 +113,7 @@ package lunas.display.container
 	 	 */
 		public function get scroll():Number 
 		{
-			return MathsUtil.clamp( _scroll , 1 , maxscroll ) ;
+			return Mathematics.clamp( _scroll , 1 , maxscroll ) ;
 		}
 			
 		/**

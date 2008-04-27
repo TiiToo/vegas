@@ -22,33 +22,32 @@
 */
 package asgard.media 
 {
-	import flash.events.Event;
-	import flash.events.IOErrorEvent;
-	import flash.events.TimerEvent;
-	import flash.media.Sound;
-	import flash.media.SoundChannel;
-	import flash.media.SoundLoaderContext;
-	import flash.media.SoundTransform;
-	import flash.net.URLRequest;
-	import flash.utils.Timer;
-	
-	import andromeda.events.ActionEvent;
-	import andromeda.process.IAction;
-	import andromeda.process.IStoppable;
-	
-	import asgard.config.Config;
-	import asgard.config.ConfigCollector;
-	import asgard.events.SoundEvent;
-	
-	import pegas.maths.Range;
-	
-	import system.Reflection;
-	
-	import vegas.core.HashCode;
-	import vegas.logging.ILogger;
-	import vegas.logging.Log;	
+    import flash.events.Event;
+    import flash.events.IOErrorEvent;
+    import flash.events.TimerEvent;
+    import flash.media.Sound;
+    import flash.media.SoundChannel;
+    import flash.media.SoundLoaderContext;
+    import flash.media.SoundTransform;
+    import flash.net.URLRequest;
+    import flash.utils.Timer;
+    
+    import andromeda.events.ActionEvent;
+    import andromeda.process.IAction;
+    import andromeda.process.IStoppable;
+    
+    import asgard.config.Config;
+    import asgard.config.ConfigCollector;
+    import asgard.events.SoundEvent;
+    
+    import system.Reflection;
+    import system.numeric.Range;
+    
+    import vegas.core.HashCode;
+    import vegas.logging.ILogger;
+    import vegas.logging.Log;	
 
-	/**
+    /**
 	 * The CoreSound class extends the flash.media.Sound class and implements the IConfigurable, Identifiable, ILockable and ILogable interfaces.
      * <p><b>Example :</b></p>
 	 * <pre class="prettyprint">

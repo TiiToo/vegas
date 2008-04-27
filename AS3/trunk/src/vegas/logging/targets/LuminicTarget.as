@@ -26,17 +26,18 @@ package vegas.logging.targets
 
 	// TODO  : Fix serialization of the objects (for the moment the console use AS1/AS2 objects).
 	// FIXME : The logger bug with an infinite loopin the StatusEvent!
-	import flash.events.AsyncErrorEvent;
-	import flash.events.SecurityErrorEvent;
-	import flash.events.StatusEvent;
-	import flash.net.LocalConnection;
-	import flash.xml.XMLNode;
-	
-	import pegas.maths.Range;
-	
-	import vegas.logging.LogEvent;
-	
-	/**
+    
+    import flash.events.AsyncErrorEvent;
+    import flash.events.SecurityErrorEvent;
+    import flash.events.StatusEvent;
+    import flash.net.LocalConnection;
+    import flash.xml.XMLNode;
+    
+    import system.numeric.Range;
+    
+    import vegas.logging.LogEvent;	
+
+    /**
 	 * Provides a logger target that uses the FlashInspector console to output log messages. 
 	 * Thanks Pablo Costantini and LuminicBox <a href='http://www.luminicbox.com/blog/default.aspx?page=post&id=2'>FlashInspector</a>.
 	 * @author eKameleon

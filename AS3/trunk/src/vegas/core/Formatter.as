@@ -20,30 +20,29 @@
   Contributor(s) :
   
 */
-
-package vegas.util
+package vegas.core
 {
-	import flash.utils.getDefinitionByName;
-	
-	import system.Reflection;
-	
-	import vegas.core.CoreObject;
-	import vegas.core.ICloneable;
-	import vegas.core.ICopyable;
-	import vegas.core.IFormatter;
-	import vegas.util.Serializer;	
+    import flash.utils.getDefinitionByName;
+    
+    import system.Reflection;
+    import system.formatters.IFormatter;
+    
+    import vegas.core.CoreObject;
+    import vegas.core.ICloneable;
+    import vegas.core.ICopyable;
+    import vegas.util.Serializer;    
 
-	/**
+    /**
 	 * Abstract class to creates classes who implemented IFormatter interface.
 	 * @author eKameleon
 	 */
-	public class AbstractFormatter extends CoreObject implements ICloneable, ICopyable, IFormatter
+	public class Formatter extends CoreObject implements ICloneable, ICopyable, IFormatter
 	{
 		
 		/**
 		 * Abstract constructor to creates a new class who extends AbstractFormatter.
 		 */
-		public function AbstractFormatter( pattern:String=null )
+		public function Formatter( pattern:String=null )
 		{
 			_pattern = pattern ;
 		}
@@ -86,11 +85,11 @@ package vegas.util
 			return new clazz( pattern.valueOf() ) ;
 		}
 
-		/**
-		 * This method format an expression with the pattern of this formatter.
-		 * Overrides this method.
-		 */	
-		public function format( ...arguments:Array ):String 
+        /**
+         * Formats the specified value.
+         * @return the string representation of the formatted value. 
+         */
+        public function format( value:* = null ):String
 		{
 			return null ; // override this method
 		}

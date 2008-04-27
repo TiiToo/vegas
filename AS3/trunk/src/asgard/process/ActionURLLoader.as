@@ -22,15 +22,15 @@
 */
 package asgard.process 
 {
-	import flash.events.Event;
-	import flash.net.URLLoader;
-	import flash.net.URLLoaderDataFormat;
-	
-	import asgard.process.AbstractActionLoader;
-	
-	import pegas.maths.Range;	
+    import flash.events.Event;
+    import flash.net.URLLoader;
+    import flash.net.URLLoaderDataFormat;
+    
+    import asgard.process.AbstractActionLoader;
+    
+    import system.numeric.Range;	
 
-	/**
+    /**
 	 * This action process launch the load of a URLLoader object.
 	 * <p><b>Example :</b></p>
 	 * <pre class="prettyprint">

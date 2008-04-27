@@ -23,12 +23,13 @@
 
 package vegas.data.iterator
 {
-	import vegas.core.CoreObject;
-	import vegas.errors.UnsupportedOperation;
-	import vegas.util.MathsUtil;
-	import vegas.util.Serializer;	
+    import system.numeric.Mathematics;
+    
+    import vegas.core.CoreObject;
+    import vegas.errors.UnsupportedOperation;
+    import vegas.util.Serializer;	
 
-	/**
+    /**
      * Converts a string to an iterator.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
@@ -111,7 +112,7 @@ package vegas.data.iterator
 	     */
 		public function seek(position:*):void
 		{
-			_k = MathsUtil.clamp ((position-1), -1, _size-1) ;
+			_k = Mathematics.clamp ((position-1), -1, _size-1) ;
 		}
 
         /**

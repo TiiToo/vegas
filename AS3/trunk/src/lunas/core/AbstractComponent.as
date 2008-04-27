@@ -22,27 +22,27 @@
 */
 package lunas.core 
 {
-	import flash.events.Event;
-	import flash.events.TimerEvent;
-	
-	import asgard.display.CoreSprite;
-	
-	import lunas.core.IBuilder;
-	import lunas.core.IFocusable;
-	import lunas.core.IGroupable;
-	import lunas.core.IStyle;
-	import lunas.events.ComponentEvent;
-	import lunas.events.StyleEvent;
-	
-	import pegas.draw.IShape;
-	import pegas.transitions.FrameTimer;
-	
-	import system.Reflection;
-	
-	import vegas.util.ClassUtil;
-	import vegas.util.MathsUtil;	
+    import flash.events.Event;
+    import flash.events.TimerEvent;
+    
+    import asgard.display.CoreSprite;
+    
+    import lunas.core.IBuilder;
+    import lunas.core.IFocusable;
+    import lunas.core.IGroupable;
+    import lunas.core.IStyle;
+    import lunas.events.ComponentEvent;
+    import lunas.events.StyleEvent;
+    
+    import pegas.draw.IShape;
+    import pegas.transitions.FrameTimer;
+    
+    import system.Reflection;
+    import system.numeric.Mathematics;
+    
+    import vegas.util.ClassUtil;	
 
-	/**
+    /**
 	 * This class provides a skeletal implementation of all the components in Lunas, to minimize the effort required to implement this interface.
 	 * @author eKameleon
 	 */
@@ -211,7 +211,7 @@ package lunas.core
 		 */
 		public function set h( n:Number ):void 
 		{
-			_h = isNaN(n) ? 0 : MathsUtil.clamp(n, minHeight, maxHeight) ; 
+			_h = isNaN(n) ? 0 : Mathematics.clamp(n, minHeight, maxHeight) ; 
 			notifyResized() ;
 			update() ;
 		}
@@ -283,7 +283,7 @@ package lunas.core
 		 */
 		public function set w( n:Number ):void 
 		{
-			_w = isNaN(n) ? 0 : MathsUtil.clamp(n, minWidth, maxWidth) ; 
+			_w = isNaN(n) ? 0 : Mathematics.clamp(n, minWidth, maxWidth) ; 
 			notifyResized() ;
 			update() ;
 		}
@@ -424,8 +424,8 @@ package lunas.core
 		 */
 		public function setSize( w:Number, h:Number):void 
 		{
-			_w = isNaN(w) ? 0 : MathsUtil.clamp( w , minWidth, maxWidth) ; 
-			_h = isNaN(h) ? 0 : MathsUtil.clamp( h , minHeight, maxHeight) ; 
+			_w = isNaN(w) ? 0 : Mathematics.clamp( w , minWidth, maxWidth) ; 
+			_h = isNaN(h) ? 0 : Mathematics.clamp( h , minHeight, maxHeight) ; 
 			notifyResized() ;
 			update() ;
 		}

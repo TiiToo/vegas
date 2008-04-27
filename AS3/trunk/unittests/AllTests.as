@@ -25,11 +25,11 @@ package
     import andromeda.AllTests;
     
     import buRRRn.ASTUce.framework.ITest;
-    import buRRRn.ASTUce.framework.TestSuite;
+    import buRRRn.ASTUce.framework.TestSuite;  
     
     import pegas.AllTests;
-    import system.AllTests;
-    import vegas.AllTests;    
+    
+    import vegas.AllTests;   
 
     /**
 	 * This class launch all tests.

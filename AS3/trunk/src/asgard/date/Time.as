@@ -22,8 +22,9 @@
 */
 package asgard.date 
 {
-	import vegas.core.CoreObject;
-	import vegas.util.MathsUtil;	
+    import system.numeric.Mathematics;
+    
+    import vegas.core.CoreObject;	
 
     /**
      * The <code class="prettyprint">Time</code> object is a holder for a time difference.
@@ -160,7 +161,7 @@ package asgard.date
          */
         public function evaluate():void 
         {
-            var negative:int = MathsUtil.sign(ms) ;
+            var negative:int = Mathematics.sign(ms) ;
             var rest:Number = ms ;
                     
             days = rest / DAY ;
@@ -192,7 +193,7 @@ package asgard.date
             {
                 evaluate() ;
             }
-            return isNaN(round) ? days : MathsUtil.floor(days, round) ;
+            return isNaN(round) ? days : Mathematics.floor(days, round) ;
         }
     
         /**
@@ -207,7 +208,7 @@ package asgard.date
             {
                 evaluate() ;
             }
-            return isNaN(round) ? hours : MathsUtil.floor(hours, round);
+            return isNaN(round) ? hours : Mathematics.floor(hours, round);
         }
     
         /**
@@ -222,7 +223,7 @@ package asgard.date
             {
                 evaluate();
             }
-            return isNaN(round) ? milliSeconds : MathsUtil.floor(milliSeconds, round) ;
+            return isNaN(round) ? milliSeconds : Mathematics.floor(milliSeconds, round) ;
         }
         
         /**
@@ -237,7 +238,7 @@ package asgard.date
             {
                 evaluate() ;
             }
-            return isNaN(round) ? minutes :MathsUtil.floor(minutes, round) ;
+            return isNaN(round) ? minutes :Mathematics.floor(minutes, round) ;
         }
         
         /**
@@ -252,7 +253,7 @@ package asgard.date
             {
                 evaluate();
             }
-            return isNaN(round) ? seconds : MathsUtil.floor(seconds, round) ;
+            return isNaN(round) ? seconds : Mathematics.floor(seconds, round) ;
         }
     
         /**

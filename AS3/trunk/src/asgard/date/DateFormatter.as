@@ -22,10 +22,10 @@
 */
 package asgard.date 
 {
-	import pegas.maths.Range;
-	
-	import vegas.errors.IllegalArgumentError;
-	import vegas.util.AbstractFormatter;	
+    import system.numeric.Range;
+    
+    import vegas.core.Formatter;
+    import vegas.errors.IllegalArgumentError;    
 
     /**
      * DateFormatter formats a given date with a specified pattern.
@@ -64,7 +64,7 @@ package asgard.date
      * </pre>
      * @author eKameleon
      */
-    public class DateFormatter extends AbstractFormatter 
+    public class DateFormatter extends Formatter 
     {
 
         /**
@@ -190,16 +190,16 @@ package asgard.date
         public static const YEAR:String = "y";
                 
         /**
-         * This method format an expression with the pattern of this formatter.
-         * Overrides this method.
-         */    
-        public override function format( ...arguments:Array ):String 
+         * Formats the specified value.
+         * @return the string representation of the formatted value. 
+         */
+        public override function format( value:* = null ):String
         {
             if (pattern == null) 
             {
                 return "" ;
             }
-            var date:Date = ( arguments[0] != null && arguments[0] is Date) ? (arguments[0] as Date) : new Date() ;
+            var date:Date = ( value != null && value is Date) ? (value as Date) : new Date() ;
             var p:String = pattern ;
             var a:Array = p.split("") ;
             var l:Number = a.length ;

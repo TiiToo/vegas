@@ -23,14 +23,14 @@
 
 package asgard.data.iterator
 {
-	
-	import asgard.data.remoting.RecordSet ;
-	
-	import vegas.core.CoreObject;
-	import vegas.data.iterator.Iterator;
-	import vegas.util.MathsUtil;
-	
-	/**
+    import asgard.data.remoting.RecordSet;
+    
+    import system.numeric.Mathematics;
+    
+    import vegas.core.CoreObject;
+    import vegas.data.iterator.Iterator;	
+
+    /**
 	 * The RecordSetIterator class.
 	 */
 	public class RecordSetIterator extends CoreObject implements Iterator
@@ -71,7 +71,7 @@ package asgard.data.iterator
 
 		public function seek(position:*):void 
 		{
-			_k = MathsUtil.clamp ((position-1), -1, _rs.size()) ;
+			_k = Mathematics.clamp ((position-1), -1, _rs.size()) ;
 		}
 
 		// ----o Private Properties

@@ -22,13 +22,13 @@
 */
 package vegas.data.list
 {
-	import vegas.data.Collection;
-	import vegas.data.List;
-	import vegas.data.collections.SimpleCollection;
-	import vegas.data.iterator.ListIterator;
-	import vegas.errors.IndexOutOfBoundsError;	
+    import vegas.data.Collection;
+    import vegas.data.List;
+    import vegas.data.collections.SimpleCollection;
+    import vegas.data.iterator.ListIterator;
+    import vegas.errors.IndexOutOfBoundsError;	
 
-	/**
+    /**
  	 * This class provides a skeletal implementation of the List interface to minimize the effort required to implement this interface.
 	 * @author eKameleon
  	 */
@@ -194,6 +194,8 @@ package vegas.data.list
 	}
 }
 
+import system.numeric.Mathematics;
+
 import vegas.core.CoreObject;
 import vegas.data.Collection;
 import vegas.data.List;
@@ -204,7 +206,6 @@ import vegas.errors.IllegalArgumentError;
 import vegas.errors.IllegalStateError;
 import vegas.errors.IndexOutOfBoundsError;
 import vegas.errors.NoSuchElementError;
-import vegas.util.MathsUtil;
 
 /**
  * The basic implementation of the list iterators.
@@ -374,7 +375,7 @@ class ListItr extends CoreObject implements ListIterator
      */
 	public function seek(position:*):void 
 	{
-		_key = MathsUtil.clamp(position, 0, _list.size()) ;
+		_key = Mathematics.clamp(position, 0, _list.size()) ;
 		_listast = _key - 1 ;
 	}
     

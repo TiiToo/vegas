@@ -36,8 +36,9 @@ package asgard.display
     import pegas.geom.Dimension;
     import pegas.util.Trigo;
     
-    import vegas.events.BasicEvent;
-    import vegas.util.MathsUtil;    
+    import system.numeric.Mathematics;
+    
+    import vegas.events.BasicEvent;    
 
     /**
      * This display is used to create a background in your application or in an other display of the application.
@@ -142,7 +143,7 @@ package asgard.display
          */
         public function set h( n:Number ):void 
         {
-            _h = MathsUtil.clamp( n , minHeight, maxHeight ) ;
+            _h = Mathematics.clamp( n , minHeight, maxHeight ) ;
             notifyResized() ;
             update() ;
         }
@@ -223,7 +224,7 @@ package asgard.display
          */
         public function set w( n:Number ):void 
         {
-            _w = MathsUtil.clamp( n , minWidth, maxWidth ) ;
+            _w = Mathematics.clamp( n , minWidth, maxWidth ) ;
             notifyResized() ;
             update() ;
         }
@@ -308,8 +309,8 @@ package asgard.display
          */
         public function setSize( w:Number, h:Number ):void
         {
-            _w = MathsUtil.clamp( w , minWidth, maxWidth) ;
-            _h = MathsUtil.clamp( h , minHeight, maxHeight) ;
+            _w = Mathematics.clamp( w , minWidth, maxWidth) ;
+            _h = Mathematics.clamp( h , minHeight, maxHeight) ;
             notifyResized() ;
             update() ;
         }

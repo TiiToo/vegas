@@ -22,10 +22,7 @@ package system
 {
     import buRRRn.ASTUce.framework.ITest;
     import buRRRn.ASTUce.framework.TestSuite;    
-    
-    import system.formatters.AllTests ;
-    import system.numeric.AllTests ;
-    
+
     /**
 	 * This class launch all tests.
 	 * @author eKameleon

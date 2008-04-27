@@ -23,10 +23,10 @@
 
 package vegas.data.iterator
 {
-
+    import system.numeric.Mathematics;
+    
     import vegas.core.CoreObject;
-    import vegas.errors.UnsupportedOperation;
-    import vegas.util.MathsUtil;
+    import vegas.errors.UnsupportedOperation;    
 
     /**
      * An iterator page by page over an array who return an new array of elements.
@@ -225,7 +225,7 @@ package vegas.data.iterator
     	 */
         public function seek(position:*):void
         {
-		    _key = MathsUtil.clamp( position++, 0, _pageCount+1 ) ;
+		    _key = Mathematics.clamp( position++, 0, _pageCount+1 ) ;
 		    _currentPage = _key ;
         }
         

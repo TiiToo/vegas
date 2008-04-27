@@ -23,15 +23,15 @@
 
 package pegas.geom 
 {
-	import pegas.geom.IGeometry;
-	import pegas.util.Matrix4Util;
-	
-	import system.Reflection;
-	
-	import vegas.core.CoreObject;
-	import vegas.util.Comparater;
-	import vegas.util.MathsUtil;
-	import vegas.util.Serializer;	
+    import pegas.geom.IGeometry;
+    import pegas.util.Matrix4Util;
+    
+    import system.Reflection;
+    import system.numeric.Mathematics;
+    
+    import vegas.core.CoreObject;
+    import vegas.util.Comparater;
+    import vegas.util.Serializer;	
 
     /**
      * Matrix with 4 rows and 4 columns.
@@ -321,8 +321,8 @@ package pegas.geom
          */
         public function setEntry( x:Number , y:Number , value:* ):void
         {
-            x = MathsUtil.clamp(x, 0, 3) ;
-            y = MathsUtil.clamp(y, 0, 3) ;
+            x = Mathematics.clamp(x, 0, 3) ;
+            y = Mathematics.clamp(y, 0, 3) ;
             var m:Array = toArray() ;
             m[x][y] = value ;
         }

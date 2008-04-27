@@ -1,41 +1,36 @@
 ﻿/*
-
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
   the License. You may obtain a copy of the License at 
-  
-           http://www.mozilla.org/MPL/ 
+  http://www.mozilla.org/MPL/ 
   
   Software distributed under the License is distributed on an "AS IS" basis,
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is PEGAS Framework.
+  The Original Code is [ES4a: ECMAScript 4 MaasHaack framework].
   
   The Initial Developer of the Original Code is
-  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2008
+  Marc Alcaraz <ekameleon@gmail.com>.
+  Portions created by the Initial Developer are Copyright (C) 2006-2008
   the Initial Developer. All Rights Reserved.
   
-  Contributor(s) :
+  Contributor(s):
   
+    - Zwetan Kjukov <zwetan@gmail.com>
+
 */
-package pegas.maths
+package system.numeric
 {
     import system.IEquatable;
-    
-    import vegas.core.CoreObject;
-    import vegas.core.ICloneable;
-    import vegas.core.ICopyable;
-    import vegas.errors.ArgumentOutOfBoundsError;
-    import vegas.errors.IllegalArgumentError;
-    import vegas.util.MathsUtil;    
+    import system.ISerializable;
+    import system.numeric.Mathematics;    
 
     /**
      * Represents an immutable range of values.
      * @code
      * <pre class="prettyprint">
-     * import pegas.maths.Range ;
+     * import system.numeric.Range ;
      * 
      * var r1:Range = new Range(10, 120) ;
      * var r2:Range = new Range(100, 150) ;
@@ -52,18 +47,19 @@ package pegas.maths
      * </pre>
      * @author eKameleon
      */
-    public class Range extends CoreObject implements ICloneable, ICopyable, IEquatable
+    public class Range implements IEquatable, ISerializable
     {
         
         /**
          * Creates a new Range instance.
-         * use <pre>var r:Range = new Range( min:Number, max:Number) ;</pre>
+         * <p><b>Usage :</b></p>
+         * <pre>var r:Range = new Range( min:Number, max:Number) ;</pre>
          */ 
         public function Range( min:Number, max:Number)
         {
             if ( max < min)
             {
-                throw new ArgumentOutOfBoundsError("Range constructor : 'max' argument is < of 'min' argument") ;
+                throw new RangeError("Range constructor : 'max' argument is < of 'min' argument") ;
             }
             this.min = min ;
             this.max = max ;
@@ -104,7 +100,7 @@ package pegas.maths
          */    
         public function clamp(value:Number):Number 
         {
-            return MathsUtil.clamp(value, min, max) ;
+            return Mathematics.clamp(value, min, max) ;
         }
 
         /**
@@ -152,16 +148,7 @@ package pegas.maths
         {
             return !isOutOfRange(value) ;
         }
-        
-        /**
-         * Returns a deep copy of the object.
-         * @return a deep copy of the object.
-         */
-        public function copy():*
-        {
-            return new Range(min, max) ;
-        }
-        
+                
         /**
          * Indicates whether some other object is "equal to" this one.
          */
@@ -183,13 +170,13 @@ package pegas.maths
          * @param lowerMargin the lower margin (expressed as a percentage of the range length).
          * @param upperMargin the upper margin (expressed as a percentage of the range length).
          * @return The expanded range.
-         * @throws IllegalArgumentError if the range argument is <code class="prettyprint">null</code>
+         * @throws Error if the range argument is <code class="prettyprint">null</code>
          */
         public static function expand(range:Range, lowerMargin:Number, upperMargin:Number):Range
         {
             if (range == null)
             {
-                throw new IllegalArgumentError("Range.expand method failed, the range argument not must be 'null' or 'undefined'.");  
+                throw new Error("Range.expand method failed, the range argument not must be 'null' or 'undefined'.");  
             }
             var size:Number = range.size() ;
             var lower:Number = size * lowerMargin ;
@@ -268,16 +255,16 @@ package pegas.maths
          * Returns the Eden representation of the object.
          * @return the string representing the source code of the object.
          */
-        public override function toSource( indent:int = 0 ):String  
+        public function toSource( indent:int = 0 ):String  
         {
-            return "new pegas.maths.Range(" + min + "," + max + ")";
+            return "new system.numeric.Range(" + min + "," + max + ")";
         }
 
         /**
          * Returns the string representation of this instance.
          * @return the string representation of this instance.
          */
-        public override function toString():String 
+        public function toString():String 
         {
             return "[Range<" + min + "," + max + ">]";
         }

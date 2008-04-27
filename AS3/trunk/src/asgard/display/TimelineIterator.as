@@ -24,11 +24,12 @@ package asgard.display
 {
     import flash.display.MovieClip;
     
+    import system.numeric.Mathematics;
+    
     import vegas.core.CoreObject;
     import vegas.data.iterator.OrderedIterator;
     import vegas.errors.IllegalArgumentError;
-    import vegas.errors.UnsupportedOperation;
-    import vegas.util.MathsUtil;    
+    import vegas.errors.UnsupportedOperation;    
 
     /**
      * This iterator control the timeline in a MovieClip target.
@@ -236,7 +237,7 @@ package asgard.display
          */
         public function seek( position:* ):void 
         {
-            _target.gotoAndStop(MathsUtil.clamp( position, 1, _target.totalFrames )) ;
+            _target.gotoAndStop(Mathematics.clamp( position, 1, _target.totalFrames )) ;
         }
     
         /**

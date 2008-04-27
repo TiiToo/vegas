@@ -23,11 +23,12 @@
 
 package vegas.data.iterator
 {
-	import vegas.core.CoreObject;
-	import vegas.util.MathsUtil;
-	import vegas.util.Serializer;	
+    import system.numeric.Mathematics;
+    
+    import vegas.core.CoreObject;
+    import vegas.util.Serializer;	
 
-	/**
+    /**
      * Converts an object to an iterator of all enumerable properties of the Object.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
@@ -160,7 +161,7 @@ package vegas.data.iterator
     	 */
 		public function seek(position:*):void
 		{
-			_k = MathsUtil.clamp ((position-1), -1, _len) ;
+			_k = Mathematics.clamp ((position-1), -1, _len) ;
 		}
         
         /**
