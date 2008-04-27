@@ -1,0 +1,556 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../print.css" type="text/css" media="print">
+<link rel="stylesheet" href="../../prettify.css" type="text/css">
+<meta content="Mathematics,system.numeric.Mathematics,ceil,clamp,floor,interpolate,map,normalize,percentage,round,sign" name="keywords">
+<title>system.numeric.Mathematics</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../prettify.js"></script><script type="text/javascript" language="javascript" src="../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'Mathematics - VEGAS AS3 Reference';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../all-classes.html')" href="../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../all-classes.html')" href="../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../index-list.html')" href="../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../index.html?system/numeric/Mathematics.html&amp;system/numeric/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;Mathematics</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class Mathematics"); titleBar_setSubNav(false,false,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">system.numeric</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class Mathematics</td>
+</tr>
+</table>
+<p></p>
+     The <code class="prettyprint">Mathematics</code> utility class is an all-static class with methods for working with numbers.
+     <p></p>
+<br>
+<hr>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#ceil()">ceil</a>(n:Number, floatCount:Number):Number</div>
+<div class="summaryTableDescription">[static]
+         Rounds and returns the ceiling of the specified number or expression.</div>
+</td><td class="summaryTableOwnerCol">Mathematics</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#clamp()">clamp</a>(value:Number, min:Number, max:Number):Number</div>
+<div class="summaryTableDescription">[static]
+         Bounds a numeric value between 2 numbers.</div>
+</td><td class="summaryTableOwnerCol">Mathematics</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#floor()">floor</a>(n:Number, floatCount:Number):Number</div>
+<div class="summaryTableDescription">[static]
+         Rounds and returns a number by a count of floating points.</div>
+</td><td class="summaryTableOwnerCol">Mathematics</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#interpolate()">interpolate</a>(value:Number, minimum:Number, maximum:Number):Number</div>
+<div class="summaryTableDescription">[static]
+         With a number value and a range this method returns the actual value for the interpolated value in that range.</div>
+</td><td class="summaryTableOwnerCol">Mathematics</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#map()">map</a>(value:Number, minimum1:Number, maximum1:Number, minimum2:Number, maximum2:Number):Number</div>
+<div class="summaryTableDescription">[static]
+         Takes a value in a given range (minimum1, maximum1) and finds the corresponding value in the next range(minimum2, maximum2).</div>
+</td><td class="summaryTableOwnerCol">Mathematics</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#normalize()">normalize</a>(value:Number, minimum:Number, maximum:Number):Number</div>
+<div class="summaryTableDescription">[static]
+         Takes a value within a given range and converts it to a number between 0 and 1.</div>
+</td><td class="summaryTableOwnerCol">Mathematics</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#percentage()">percentage</a>(value:Number, maximum:Number):Number</div>
+<div class="summaryTableDescription">[static]
+         Returns a percentage or null.</div>
+</td><td class="summaryTableOwnerCol">Mathematics</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#round()">round</a>(n:Number, floatCount:Number):Number</div>
+<div class="summaryTableDescription">[static]
+         Rounds and returns a number by a count of floating points.</div>
+</td><td class="summaryTableOwnerCol">Mathematics</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#sign()">sign</a>(n:Number):Number</div>
+<div class="summaryTableDescription">[static]
+         Returns 1 if the value is positive or -1.</div>
+</td><td class="summaryTableOwnerCol">Mathematics</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="ceil()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ceil</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function ceil(n:Number, floatCount:Number):Number</code><p>
+         Rounds and returns the ceiling of the specified number or expression. 
+         The ceiling of a number is the closest integer that is greater than or equal to the number.
+         </p><p><b>Example :</b></p>
+         <pre class="prettyprint">
+         import system.numeric.Mathematics ;
+         
+         var n = Mathematics.ceil(4.572525153, 2) ;
+         trace ("n : " + n) ; // n : 4.58
+         
+         var n = Mathematics.ceil(4.572525153, -1) ;
+         trace ("n : " + n) ; // n : 5
+         </pre>
+         <span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">n</span>:Number</code> &mdash; the number to round.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">floatCount</span>:Number</code> &mdash; the count of number after the point.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code> &mdash; the ceil value of a number by a count of floating points.
+         </td>
+</tr>
+</table>
+</div>
+<a name="clamp()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">clamp</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function clamp(value:Number, min:Number, max:Number):Number</code><p>
+         Bounds a numeric value between 2 numbers.
+         </p><p><b>Example :</b></p>
+         <pre class="prettyprint">
+         import system.numeric.Mathematics ;
+         
+         var n = Mathematics.clamp(4, 5, 10) ;
+         trace ("n : " + n) ; // 5
+         
+         var n = Mathematics.clamp(12, 5, 10) ;
+         trace ("n : " + n) ; // 10
+         
+         var n = Mathematics.clamp(6, 5, 10) ;
+         trace ("n : " + n) ; // 5
+         
+         var n = Mathematics.clamp(NaN, 5, 10) ;
+         trace ("n : " + n) ; // NaN
+         </pre>
+         <span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">value</span>:Number</code> &mdash; the value to clamp.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">min</span>:Number</code> &mdash; the min value of the range.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">max</span>:Number</code> &mdash; the max value of the range.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code> &mdash; a bound numeric value between 2 numbers.
+         </td>
+</tr>
+</table>
+</div>
+<a name="floor()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">floor</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function floor(n:Number, floatCount:Number):Number</code><p>
+         Rounds and returns a number by a count of floating points.
+         </p><p><b>Example :</b></p>
+         <pre class="prettyprint">
+         import system.numeric.Mathematics ;
+         
+         var n = Mathematics.floor(4.572525153, 2) ;
+         trace ("n : " + n) ; // n : 4.57
+         
+         var n = Mathematics.floor(4.572525153, -1) ;
+         trace ("n : " + n) ; // n : 4
+         </pre>
+         <span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">n</span>:Number</code> &mdash; the number to round.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">floatCount</span>:Number</code> &mdash; the count of number after the point.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code> &mdash; the floor value of a number by a count of floating points.
+         </td>
+</tr>
+</table>
+</div>
+<a name="interpolate()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">interpolate</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function interpolate(value:Number, minimum:Number, maximum:Number):Number</code><p>
+         With a number value and a range this method returns the actual value for the interpolated value in that range.
+         <pre class="prettyprint">
+         import system.numeric.Mathematics ;
+         trace( Mathematics.interpolate( 0.5, 0 , 100 ) ) ; // 50
+         </pre>
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">value</span>:Number</code> &mdash; The normal number value to interpolate (value between 0 and 1).
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">minimum</span>:Number</code> &mdash; The minimum value of the interpolation.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">maximum</span>:Number</code> &mdash; The maximum value of the interpolation.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code> &mdash; the actual value for the interpolated value in that range.
+         </td>
+</tr>
+</table>
+</div>
+<a name="map()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">map</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function map(value:Number, minimum1:Number, maximum1:Number, minimum2:Number, maximum2:Number):Number</code><p>
+         Takes a value in a given range (minimum1, maximum1) and finds the corresponding value in the next range(minimum2, maximum2).
+         <pre class="prettyprint">
+         import system.numeric.Mathematics ;
+         trace( Mathematics.map( 10,  0, 100, 20, 80  ) ) ; // 26
+         trace( Mathematics.map( 26, 20,  80,  0, 100 ) ) ; // 10
+         </pre>
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">value</span>:Number</code> &mdash; The number value to map.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">minimum1</span>:Number</code> &mdash; The minimum value of the first range of the value.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">maximum1</span>:Number</code> &mdash; The maximum value of the first range of the value.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">minimum2</span>:Number</code> &mdash; The minimum value of the second range of the value.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">maximum2</span>:Number</code> &mdash; The maximum value of the second range of the value.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code> &mdash; value in a given range (minimum1, maximum1) and finds the corresponding value in the next range(minimum2, maximum2).
+         </td>
+</tr>
+</table>
+</div>
+<a name="normalize()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">normalize</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function normalize(value:Number, minimum:Number, maximum:Number):Number</code><p>
+         Takes a value within a given range and converts it to a number between 0 and 1.
+         Actually it can be outside that range if the original value is outside its range.
+         <pre class="prettyprint">
+         import system.numeric.Mathematics ;
+         trace( Mathematics.normalize( 10, 0 , 100 ) ) ; // 0.1
+         </pre>         
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">value</span>:Number</code> &mdash; The number value to normalize.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">minimum</span>:Number</code> &mdash; The minimum value of the normalization.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">maximum</span>:Number</code> &mdash; The maximum value of the normalization.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code></td>
+</tr>
+</table>
+</div>
+<a name="percentage()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">percentage</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function percentage(value:Number, maximum:Number):Number</code><p>
+         Returns a percentage or null.
+         </p><p><b>Example :</b></p>
+         <pre class="prettyprint">
+         import system.numeric.Mathematics ;
+         trace( Mathematics.percentage( 50 , 100 ) + "%" ) ; // 50%
+         trace( Mathematics.percentage( 68 , 425 ) + "%" ) ; // 16% 
+         </pre>
+         <span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">value</span>:Number</code> &mdash; the current value.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">maximum</span>:Number</code> &mdash; the max value.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code> &mdash; a percentage value or null.
+         </td>
+</tr>
+</table>
+</div>
+<a name="round()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">round</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function round(n:Number, floatCount:Number):Number</code><p>
+         Rounds and returns a number by a count of floating points.
+         </p><p><b>Example :</b></p>
+         <pre class="prettyprint">
+         import system.numeric.Mathematics ;
+         
+         var n = Mathematics.round(4.572525153, 2) ;
+         trace ("n : " + n) ; // 4.57
+         
+         var n = Mathematics.round(4.572525153, -1) ;
+         trace ("n : " + n) ; // 5
+         </pre>
+         <span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">n</span>:Number</code> &mdash; the number to round.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">floatCount</span>:Number</code> &mdash; the count of number after the point.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code> &mdash; the round of a number by a count of floating points.
+         </td>
+</tr>
+</table>
+</div>
+<a name="sign()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">sign</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function sign(n:Number):Number</code><p>
+         Returns 1 if the value is positive or -1.
+         </p><p><b>Example :</b></p>
+         <pre class="prettyprint">
+         import system.numeric.Mathematics ;
+         
+         n = Mathematics.sign(-150) ;
+         trace ("n : " + n) ; // -1
+         
+         n = Mathematics.sign(200) ;
+         trace ("n : " + n) ; // 1
+         
+         n = Mathematics.sign(0) ;
+         trace ("n : " + n) ; // 1
+         </pre>
+         <span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">n</span>:Number</code> &mdash; the number to defined this sign.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code> &mdash; 1 if the value is positive or -1.
+         </td>
+</tr>
+</table>
+<br>
+<span class="label">Throws</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code></code> &mdash; if the passed-in value is NaN.
+         </td>
+</tr>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> 
+</center>
+</div>
+</body>
+</html>
+<!-- -->

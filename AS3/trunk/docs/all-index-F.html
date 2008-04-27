@@ -392,7 +392,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("FÂ
       Filters the passed-in Number value, if the value is NaN the return value is the default value in second argument.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/maths/class-list.html');" href="pegas/maths/Range.html#filterNaNValue()">filterNaNValue</a>(value, defaultValue) &mdash; Static method in class pegas.maths.<a onclick="javascript:loadClassListFrame('pegas/maths/class-list.html');" href="pegas/maths/Range.html">Range</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/numeric/class-list.html');" href="system/numeric/Range.html#filterNaNValue()">filterNaNValue</a>(value, defaultValue) &mdash; Static method in class system.numeric.<a onclick="javascript:loadClassListFrame('system/numeric/class-list.html');" href="system/numeric/Range.html">Range</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
@@ -411,6 +411,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("FÂ
 <tr>
 <td width="20"></td><td>
          (read-write) Returns the filters array of this target.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/evaluators/class-list.html');" href="system/evaluators/MathEvaluator.html#filterSpecialChars()">filterSpecialChars</a>(expression) &mdash; Method in class system.evaluators.<a onclick="javascript:loadClassListFrame('system/evaluators/class-list.html');" href="system/evaluators/MathEvaluator.html">MathEvaluator</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Filters and returns special char passed-in argument.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/vo/class-list.html');" href="andromeda/vo/FilterVO.html">FilterVO</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('andromeda/vo/class-list.html');" href="andromeda/vo/package-detail.html">andromeda.vo</a></td>
@@ -589,7 +596,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("FÂ
          The 'Flash' host id constant.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/util/class-list.html');" href="vegas/util/MathsUtil.html#floor()">floor</a>(n, floatCount) &mdash; Static method in class vegas.util.<a onclick="javascript:loadClassListFrame('vegas/util/class-list.html');" href="vegas/util/MathsUtil.html">MathsUtil</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/numeric/class-list.html');" href="system/numeric/Mathematics.html#floor()">floor</a>(n, floatCount) &mdash; Static method in class system.numeric.<a onclick="javascript:loadClassListFrame('system/numeric/class-list.html');" href="system/numeric/Mathematics.html">Mathematics</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
@@ -743,11 +750,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("FÂ
          Format the current Calendar date.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/date/class-list.html');" href="asgard/date/DateFormatter.html#format()">format</a>(... rest) &mdash; Method in class asgard.date.<a onclick="javascript:loadClassListFrame('asgard/date/class-list.html');" href="asgard/date/DateFormatter.html">DateFormatter</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/date/class-list.html');" href="asgard/date/DateFormatter.html#format()">format</a>(value) &mdash; Method in class asgard.date.<a onclick="javascript:loadClassListFrame('asgard/date/class-list.html');" href="asgard/date/DateFormatter.html">DateFormatter</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-         This method format an expression with the pattern of this formatter.</td>
+         Formats the specified value.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerStatus.html#format()">format</a>(code) &mdash; Static method in class asgard.net.<a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerStatus.html">NetServerStatus</a></td>
@@ -778,25 +785,18 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("FÂ
          Format a string using indexed or named parameters.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/core/class-list.html');" href="vegas/core/IFormatter.html#format()">format</a>(... rest) &mdash; Method in interface vegas.core.<a onclick="javascript:loadClassListFrame('vegas/core/class-list.html');" href="vegas/core/IFormatter.html">IFormatter</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/formatters/class-list.html');" href="system/formatters/IFormatter.html#format()">format</a>(value) &mdash; Method in interface system.formatters.<a onclick="javascript:loadClassListFrame('system/formatters/class-list.html');" href="system/formatters/IFormatter.html">IFormatter</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-   Format a string expression.</td>
+         Formats the specified value.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/string/class-list.html');" href="vegas/string/StringFormatter.html#format()">format</a>(... rest) &mdash; Method in class vegas.string.<a onclick="javascript:loadClassListFrame('vegas/string/class-list.html');" href="vegas/string/StringFormatter.html">StringFormatter</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-      Format the pattern with all the arguments passed in this method.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/util/class-list.html');" href="vegas/util/AbstractFormatter.html#format()">format</a>(... rest) &mdash; Method in class vegas.util.<a onclick="javascript:loadClassListFrame('vegas/util/class-list.html');" href="vegas/util/AbstractFormatter.html">AbstractFormatter</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/core/class-list.html');" href="vegas/core/Formatter.html#format()">format</a>(value) &mdash; Method in class vegas.core.<a onclick="javascript:loadClassListFrame('vegas/core/class-list.html');" href="vegas/core/Formatter.html">Formatter</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-   This method format an expression with the pattern of this formatter.</td>
+         Formats the specified value.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/logging/targets/class-list.html');" href="vegas/logging/targets/LineFormattedTarget.html#formatDate()">formatDate</a>(d) &mdash; Method in class vegas.logging.targets.<a onclick="javascript:loadClassListFrame('vegas/logging/targets/class-list.html');" href="vegas/logging/targets/LineFormattedTarget.html">LineFormattedTarget</a></td>
@@ -909,6 +909,20 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("FÂ
 <tr>
 <td width="20"></td><td>
          Format the second value passed in argument.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/core/class-list.html');" href="vegas/core/Formatter.html">Formatter</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('vegas/core/class-list.html');" href="vegas/core/package-detail.html">vegas.core</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+  Abstract class to creates classes who implemented IFormatter interface.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/core/class-list.html');" href="vegas/core/Formatter.html#Formatter()">Formatter</a>(pattern) &mdash; Constructor in class vegas.core.<a onclick="javascript:loadClassListFrame('vegas/core/class-list.html');" href="vegas/core/Formatter.html">Formatter</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   Abstract constructor to creates a new class who extends AbstractFormatter.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/logging/targets/class-list.html');" href="vegas/logging/targets/LineFormattedTarget.html#formatTime()">formatTime</a>(d) &mdash; Method in class vegas.logging.targets.<a onclick="javascript:loadClassListFrame('vegas/logging/targets/class-list.html');" href="vegas/logging/targets/LineFormattedTarget.html">LineFormattedTarget</a></td>

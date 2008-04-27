@@ -399,7 +399,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-  Allows an object evaluable.</td>
+     An Evaluator is a class that can interpret an object to another object.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/events/class-list.html');" href="vegas/events/IEventDispatcher.html"><i>IEventDispatcher</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('vegas/events/class-list.html');" href="vegas/events/package-detail.html">vegas.events</a></td>
@@ -444,11 +444,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
   Provides functionality to format the value of an object into a string representation.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/core/class-list.html');" href="vegas/core/IFormatter.html"><i>IFormatter</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('vegas/core/class-list.html');" href="vegas/core/package-detail.html">vegas.core</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/formatters/class-list.html');" href="system/formatters/IFormatter.html"><i>IFormatter</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('system/formatters/class-list.html');" href="system/formatters/package-detail.html">system.formatters</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-  Interface implemented by classes that can format an specific string expression.</td>
+     Interface implemented by classes that can format a value in a specific string expression.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/geom/class-list.html');" href="pegas/geom/IGeometry.html"><i>IGeometry</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('pegas/geom/class-list.html');" href="pegas/geom/package-detail.html">pegas.geom</a></td>
@@ -1654,7 +1654,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
    Determines a point between two specified points.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/util/class-list.html');" href="vegas/util/MathsUtil.html#interpolate()">interpolate</a>(value, minimum, maximum) &mdash; Static method in class vegas.util.<a onclick="javascript:loadClassListFrame('vegas/util/class-list.html');" href="vegas/util/MathsUtil.html">MathsUtil</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/numeric/class-list.html');" href="system/numeric/Mathematics.html#interpolate()">interpolate</a>(value, minimum, maximum) &mdash; Static method in class system.numeric.<a onclick="javascript:loadClassListFrame('system/numeric/class-list.html');" href="system/numeric/Mathematics.html">Mathematics</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
@@ -1896,6 +1896,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
    Indicates if the specified character is an alpha (A-Z or a-z) character.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/evaluators/class-list.html');" href="system/evaluators/MathEvaluator.html#isAlpha()">isAlpha</a>(c) &mdash; Method in class system.evaluators.<a onclick="javascript:loadClassListFrame('system/evaluators/class-list.html');" href="system/evaluators/MathEvaluator.html">MathEvaluator</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates if the passed-in value is a alpha character.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('buRRRn/eden/class-list.html');" href="buRRRn/eden/GenericParser.html#isASCII()">isASCII</a>(c) &mdash; Static method in class buRRRn.eden.<a onclick="javascript:loadClassListFrame('buRRRn/eden/class-list.html');" href="buRRRn/eden/GenericParser.html">GenericParser</a></td>
 </tr>
 <tr>
@@ -2041,6 +2048,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
 <tr>
 <td width="20"></td><td>
    Indicates if the specified character is a digit.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/evaluators/class-list.html');" href="system/evaluators/MathEvaluator.html#isDigit()">isDigit</a>(c) &mdash; Method in class system.evaluators.<a onclick="javascript:loadClassListFrame('system/evaluators/class-list.html');" href="system/evaluators/MathEvaluator.html">MathEvaluator</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates if the passed-in string value is a digit.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('buRRRn/eden/class-list.html');" href="buRRRn/eden/ECMAScript.html#isDigitNumber()">isDigitNumber</a>(num) &mdash; Method in class buRRRn.eden.<a onclick="javascript:loadClassListFrame('buRRRn/eden/class-list.html');" href="buRRRn/eden/ECMAScript.html">ECMAScript</a></td>
@@ -2412,6 +2426,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
    Indicates if the specified character is a hexadecimal digit.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/evaluators/class-list.html');" href="system/evaluators/MathEvaluator.html#isHexDigit()">isHexDigit</a>(c) &mdash; Method in class system.evaluators.<a onclick="javascript:loadClassListFrame('system/evaluators/class-list.html');" href="system/evaluators/MathEvaluator.html">MathEvaluator</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates if the passed-in string value is a hexadecimal digit.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/logging/targets/class-list.html');" href="vegas/logging/targets/AirLoggerTarget.html#isIdentified()">isIdentified</a>() &mdash; Method in class vegas.logging.targets.<a onclick="javascript:loadClassListFrame('vegas/logging/targets/class-list.html');" href="vegas/logging/targets/AirLoggerTarget.html">AirLoggerTarget</a></td>
 </tr>
 <tr>
@@ -2614,6 +2635,20 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
          Returns <code class="prettyprint">true</code> if the NUMERIC option value exist in the current filter.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/evaluators/class-list.html');" href="system/evaluators/MathEvaluator.html#isOctalDigit()">isOctalDigit</a>(c) &mdash; Method in class system.evaluators.<a onclick="javascript:loadClassListFrame('system/evaluators/class-list.html');" href="system/evaluators/MathEvaluator.html">MathEvaluator</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates if the passed-in string value is a octal digit.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/evaluators/class-list.html');" href="system/evaluators/MathEvaluator.html#isOperator()">isOperator</a>(c) &mdash; Method in class system.evaluators.<a onclick="javascript:loadClassListFrame('system/evaluators/class-list.html');" href="system/evaluators/MathEvaluator.html">MathEvaluator</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates if the passed-in string value is a operator digit.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/media/class-list.html');" href="asgard/media/ISound.html"><i>ISound</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('asgard/media/class-list.html');" href="asgard/media/package-detail.html">asgard.media</a></td>
 </tr>
 <tr>
@@ -2621,7 +2656,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
      This interface defines all interfaces who implements the core sound objects in ASGard.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/maths/class-list.html');" href="pegas/maths/Range.html#isOutOfRange()">isOutOfRange</a>(value) &mdash; Method in class pegas.maths.<a onclick="javascript:loadClassListFrame('pegas/maths/class-list.html');" href="pegas/maths/Range.html">Range</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/numeric/class-list.html');" href="system/numeric/Range.html#isOutOfRange()">isOutOfRange</a>(value) &mdash; Method in class system.numeric.<a onclick="javascript:loadClassListFrame('system/numeric/class-list.html');" href="system/numeric/Range.html">Range</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
@@ -2717,6 +2752,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
 <tr>
 <td width="20"></td><td>
    Indicates if the specified object is static (true).</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/reflection/class-list.html');" href="system/reflection/TypeInfo.html#isSubtypeOf()">isSubtypeOf</a>(o) &mdash; Method in interface system.reflection.<a onclick="javascript:loadClassListFrame('system/reflection/class-list.html');" href="system/reflection/TypeInfo.html">TypeInfo</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates is the type is a sub type.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/IStoppable.html"><i>IStoppable</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/package-detail.html">andromeda.process</a></td>
