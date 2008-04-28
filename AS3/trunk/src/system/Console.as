@@ -24,7 +24,7 @@ package system
 {
 
 	/**
-	 * The console class. 
+	 * The Console class. 
      */
     public class Console
         {

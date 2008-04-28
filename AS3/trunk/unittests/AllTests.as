@@ -25,11 +25,13 @@ package
     import andromeda.AllTests;
     
     import buRRRn.ASTUce.framework.ITest;
-    import buRRRn.ASTUce.framework.TestSuite;  
+    import buRRRn.ASTUce.framework.TestSuite;
     
     import pegas.AllTests;
     
-    import vegas.AllTests;   
+    import system.AllTests;
+    
+    import vegas.AllTests;    
 
     /**
 	 * This class launch all tests.
@@ -47,7 +49,7 @@ package
             
             suite.addTest( andromeda.AllTests.suite() );
             suite.addTest( pegas.AllTests.suite() );
-            // suite.addTest( system.AllTests.suite() );
+            suite.addTest( system.AllTests.suite() );
             suite.addTest( vegas.AllTests.suite() );
             
             return suite;

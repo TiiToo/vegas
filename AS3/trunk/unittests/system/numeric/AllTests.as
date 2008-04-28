@@ -18,11 +18,11 @@
   Contributor(s):
   
 */
-package system  
+package system.numeric  
 {
     import buRRRn.ASTUce.framework.ITest;
     import buRRRn.ASTUce.framework.TestSuite;    
-    
+
     /**
 	 * This class launch all tests.
 	 * @author eKameleon
@@ -35,11 +35,9 @@ package system
          */		
         public static function suite():ITest
         {
-            var suite:TestSuite = new TestSuite( "system" );
-            
-            // suite.addTest( system.text.AllTests.suite()  ) ;
-            // suite.addTest( system.numeric.AllTests.suite()  ) ;
-            
+            var suite:TestSuite = new TestSuite( "system.numeric" );
+
+            suite.addTestSuite( RangeTest ) ;
 
             return suite;
         }
