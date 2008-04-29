@@ -44,7 +44,6 @@ package system.numeric
      * trace ("r1 clamp 5        : " + r1.clamp(5)        ) ; // r1 clamp 5 : 10
      * trace ("r1 clamp 121      : " + r1.clamp(121)      ) ; // r1 clamp 121 : 120
      * </pre>
-     * @author eKameleon
      */
     public class Range implements IEquatable, ISerializable
         {

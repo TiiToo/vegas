@@ -70,87 +70,87 @@ package system.evaluators
      * 
      * (13) ~ + - 
      * unary operators
-             
-             ex: +5 - +5 translate to (+5) - (+5)
-             ex: -5 + -5 translate to (-5) + (-5)
-             ex: ~3 - 7  translate to (~3) - 7
-             any unary operators will be evaluated first
-             
-             (12) * / %
-                  multiplication, division, modulo division
-             
-             ex: 5 * 3 + 1 translate to (5 * 3) + 1
-             ex: 2 % 8 - 4 translate to (2 % 8) - 4
-             
-             (11) + -
-                  addition, subtraction
-             
-             (10) << >> <<<
-                  bit shifting
-             
-             (7)  &
-                  bitwise AND
-             
-             (6)  ^
-                  bitwise XOR
-             
-             (5)  |
-                  bitwise OR
-             
-           - context
-             when instanciating the MathEvaluator you can pass a context
-             containing either variables or functions
-             
-             ex:
-             var me:MathEvaluator = new MathEvaluator( {x:100, test:function(a:Number):Number {return a*a;} );
-             trace( me.eval( "test(100) + 1" ) ); //return 10001
-             
-             but there are some limitations
-              * your variable or function name must me lowercase
-              * your variable or function name must contains only letter from a to z
-                and can end with only one digit
-                ex:
-                test()  //OK
-                test2() //OK
-                2test() //BAD
-                te2st() //BAD
-                etc.
-              * your function can only have one argument
-              * your function name can not override default math functions as cos, sin, etc.
-        
-        
-        we do not support logical ( || && !)
-        or assignement operators (= == += etc.)
-        
-        reasons:
-         * logical operators deal with boolean, here we want to deal only with numbers and math expression
-         * we do not support variables nor variable assignation
-        
-        
-        Parenthesis are used to alter the order of evaluation determined by operator precedence.
-        Operators with the same priority are evaluated left to right.
-        
-        how the parser work:
-        1) we first filter some multiple char operators to single chars
-           ex: << translate to «
-           and other filtering
-           
-        2) then we parse char by char (top to bottom parsing)
-           to generate tokens in postfix order (reverse polish notation)
-           the expression 5 + 4 become [5,4,+]
-           but while doing that we also do a lot of other things
-           - evaluate function call
-           - remove space chars
-           - re-order tokens by operators priority
-           - evaluate  hexadecimal notation to decimal
-           - etc.
-           
-        3) finally we iterate trough our tokens
-           and evaluate them by operators
-           ex: [5,4,+]
-           we find the op +, then addition the 2 values
-           etc.
-           till the end of the tokens list
+     *       
+     *       ex: +5 - +5 translate to (+5) - (+5)
+     *       ex: -5 + -5 translate to (-5) + (-5)
+     *       ex: ~3 - 7  translate to (~3) - 7
+     *       any unary operators will be evaluated first
+     *       
+     *       (12) * / %
+     *           multiplication, division, modulo division
+     *       
+     *       ex: 5 * 3 + 1 translate to (5 * 3) + 1
+     *       ex: 2 % 8 - 4 translate to (2 % 8) - 4
+     *       
+     *       (11) + -
+     *           addition, subtraction
+     *       
+     *       (10) << >> <<<
+     *           bit shifting
+     *       
+     *       (7)  &
+     *           bitwise AND
+     *       
+     *       (6)  ^
+     *           bitwise XOR
+     *       
+     *       (5)  |
+     *           bitwise OR
+     *       
+     *     - context
+     *       when instanciating the MathEvaluator you can pass a context
+     *       containing either variables or functions
+     *       
+     *       ex:
+     *       var me:MathEvaluator = new MathEvaluator( {x:100, test:function(a:Number):Number {return a*a;} );
+     *       trace( me.eval( "test(100) + 1" ) ); //return 10001
+     *       
+     *       but there are some limitations
+     *        * your variable or function name must me lowercase
+     *        * your variable or function name must contains only letter from a to z
+     *         and can end with only one digit
+     *         ex:
+     *         test()  //OK
+     *         test2() //OK
+     *         2test() //BAD
+     *         te2st() //BAD
+     *         etc.
+     *       * your function can only have one argument
+     *       * your function name can not override default math functions as cos, sin, etc.
+     *  
+     *   
+     *   we do not support logical ( || && !)
+     *  or assignement operators (= == += etc.)
+     *   
+     *   reasons:
+     *  * logical operators deal with boolean, here we want to deal only with numbers and math expression
+     *  * we do not support variables nor variable assignation
+     *  
+     *  
+     *  Parenthesis are used to alter the order of evaluation determined by operator precedence.
+     *  Operators with the same priority are evaluated left to right.
+     *  
+     *  how the parser work:
+     *   1) we first filter some multiple char operators to single chars
+     *    ex: << translate to «
+     *    and other filtering
+     *    
+     *   2) then we parse char by char (top to bottom parsing)
+     *    to generate tokens in postfix order (reverse polish notation)
+     *    the expression 5 + 4 become [5,4,+]
+     *    but while doing that we also do a lot of other things
+     *    - evaluate function call
+     *    - remove space chars
+     *    - re-order tokens by operators priority
+     *    - evaluate  hexadecimal notation to decimal
+     *    - etc.
+     *    
+     *  3) finally we iterate trough our tokens
+     *    and evaluate them by operators
+     *    ex: [5,4,+]
+     *    we find the op +, then addition the 2 values
+     *    etc.
+     *    till the end of the tokens list
      */
     public class MathEvaluator implements IEvaluator
         {

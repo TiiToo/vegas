@@ -1,31 +1,32 @@
 ﻿/*
-
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
   the License. You may obtain a copy of the License at 
-  
-           http://www.mozilla.org/MPL/ 
+  http://www.mozilla.org/MPL/ 
   
   Software distributed under the License is distributed on an "AS IS" basis,
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is ASGard Framework.
+  The Original Code is [ES4a: ECMAScript 4 MaasHaack framework].
   
   The Initial Developer of the Original Code is
-  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2008
+  Marc Alcaraz <ekameleon@gmail.com>.
+  Portions created by the Initial Developer are Copyright (C) 2006-2008
   the Initial Developer. All Rights Reserved.
   
-  Contributor(s) :
-  
-*/
-package asgard.date 
-{
-    import system.numeric.Range;
+  Contributor(s):
     
-    import vegas.core.Formatter;
-    import vegas.errors.IllegalArgumentError;    
+     - Zwetan Kjukov <zwetan@gmail.com>
+
+*/
+package system.formatters 
+{
+    import flash.utils.getDefinitionByName;
+    
+    import system.Reflection;
+    import system.date.LocalDate;
+    import system.numeric.Range;    
 
     /**
      * DateFormatter formats a given date with a specified pattern.
@@ -34,7 +35,7 @@ package asgard.date
      * <p>If you want to include plain text in the pattern put it into quotes (') to avoid interpretation.</p>
      * <p>If you want a quote in the formatted date-time, put two quotes directly after one another. For example: <code class="prettyprint"> "hh 'o''clock'"}.</p>
      * <pre class="prettyprint">
-     * import asgard.date.DateFormatter ;
+     * import system.formatter.DateFormatter ;
      * 
      * var f:DateFormatter = new DateFormatter() ;
      * 
@@ -61,19 +62,18 @@ package asgard.date
      * f.pattern = "hh 'h' nn 'mn' ss 's' TT" ; // capitalize the pm expression.
      * trace( formatter.format( new Date(2008,1,21,14,15,0,0) ) ) ; // 02 h 15 mn 00 s PM
      * </pre>
-     * @author eKameleon
      */
-    public class DateFormatter extends Formatter 
+    public class DateFormatter implements IFormatter 
     {
 
         /**
          * Creates a new DateFormatter instance.
-         * <p>If you do not pass-in a pattern or if the passed-in one is null or undefined the constant DEFAULT_DATE_FORMAT is used.</p>
+         * <p>If you do not pass-in a pattern or if the passed-in one is null or undefined the constant DEFAULT_DATE_FORMAT is used ("dd.mm.yyyy HH:nn:ss").</p>
          * @param pattern (optional) the pattern describing the date and time format.
          */
         public function DateFormatter( pattern:String = "dd.mm.yyyy HH:nn:ss" )
         {
-            super( pattern );
+            _pattern = pattern ;
         }
         
         /**
@@ -187,11 +187,38 @@ package asgard.date
          * Placeholder for year in date format.
          */
         public static const YEAR:String = "y";
-                
+        
+        /**
+         * Returns the internal pattern of this formatter.
+         * @return the string representation of the pattern of this formatter.
+         */
+        public function get pattern():String 
+        {
+            return _pattern ;
+        }
+
+        /**
+         * Sets the internal pattern of this formatter.
+         */
+        public function set pattern( expression:String ):void 
+        {
+            this._pattern = expression ;
+        }        
+        
+        /**
+         * Creates and returns a shallow copy of the object.
+         * @return A new object that is a shallow copy of this instance.
+         */ 
+        public function clone():*
+        {
+            var clazz:Class = getDefinitionByName( Reflection.getClassPath(this) ) as Class;
+            return new clazz( pattern )  ;
+        }
+         
         /**
          * Formats the specified value.
          * <pre class="prettyprint">
-         * import asgard.date.DateFormatter ;
+         * import system.formatter.DateFormatter ;
          * 
          * var f:DateFormatter = new DateFormatter() ;
          * 
@@ -220,33 +247,39 @@ package asgard.date
          * </pre>
          * @return the string representation of the formatted value. 
          */
-        public override function format( value:* = null ):String
+        public function format( value:* = null ):String
         {
             if (pattern == null) 
             {
                 return "" ;
             }
-            var date:Date = ( value != null && value is Date) ? (value as Date) : new Date() ;
-            var p:String = pattern ;
-            var a:Array = p.split("") ;
-            var l:Number = a.length ;
+            
             var cpt:Number ;
             var ch:String ; // current character
-            var i:Number = -1 ;
-            var r:String = "" ;
+            
+            var date:Date = ( value != null && value is Date) ? (value as Date) : new Date() ;
+            
+            var next:int ;
+            var prev:int ;            
+            
+            var p:String  = pattern ;
+            var a:Array   = p.split("") ;
+            var l:Number  = a.length ;
+            var i:Number  = -1 ;
+            var r:String  = "" ;
+
             while (++i < l) 
             {
                 ch = a[i] ;
-                if (ch == DateFormatter.QUOTE) 
+                if ( ch == DateFormatter.QUOTE ) 
                 {
                     if (a[i + 1] == DateFormatter.QUOTE) 
                     {
                         r += "'" ; 
                         i++ ;
                     }
-                    var next:Number = i ;
-                    var prev:Number ;
-                    while (true) 
+                    next = i ;
+                    while ( true ) 
                     {
                         prev = next ;
                         next = p.indexOf("'", next + 1) ;
@@ -331,6 +364,16 @@ package asgard.date
             return r ;
             
         }
+        
+
+        /**
+         * Returns a Eden representation of the object.
+         * @return a string representing the source code of the object.
+         */
+        public function toSource( indent:int = 0 ):String 
+        {
+            return "new " + Reflection.getClassPath(this) + '("' + pattern || DEFAULT_DATE_FORMAT + "')" ;
+        }        
     
         /**
          * Formats the specified number day value in a string representation.
@@ -345,7 +388,7 @@ package asgard.date
             var string:String = day.toString();
             return (getZeros(cpt - string.length) + string);
         }
-        
+                
         /**
          * Formats the specified day value in a string representation.
          * @return the specified day value in a string representation.
@@ -354,7 +397,7 @@ package asgard.date
         {
             if (RANGE_DAY_AS_TEXT.isOutOfRange(day)) 
             {
-                throw new IllegalArgumentError(this + " formatDayAsText method failed, the day value is out of range.") ;
+                throw new Error(this + " formatDayAsText method failed, the day value is out of range.") ;
             }
             if (isNaN(cpt)) 
             {
@@ -374,7 +417,7 @@ package asgard.date
         {
             if (RANGE_HOUR.isOutOfRange(hour))
             {
-                throw new IllegalArgumentError(this + " formatDesignator method failed, the hour value is out of range.") ;
+                throw new Error(this + " formatDesignator method failed, the hour value is out of range.") ;
             }
             if (isNaN(cpt)) 
             {
@@ -393,7 +436,7 @@ package asgard.date
         {
             if (RANGE_HOUR.isOutOfRange(hour)) 
             {
-                throw new IllegalArgumentError(this + " formatHourInAmPm method failed, the hour value is out of range.") ;
+                throw new Error(this + " formatHourInAmPm method failed, the hour value is out of range.") ;
             }
             if (isNaN(cpt)) 
             {
@@ -422,7 +465,7 @@ package asgard.date
         {
             if (RANGE_HOUR.isOutOfRange(hour))
             {
-                throw new IllegalArgumentError(this + " formatHourInDay method failed, the hour value is out of range.") ;
+                throw new Error(this + " formatHourInDay method failed, the hour value is out of range.") ;
             }
             if (isNaN(cpt)) 
             {
@@ -439,7 +482,7 @@ package asgard.date
         {
             if (RANGE_MILLISECOND.isOutOfRange(millisecond)) 
             {
-                throw new IllegalArgumentError(this + " formatMillisecond method failed, the millisecond value is out of range.");
+                throw new Error(this + " formatMillisecond method failed, the millisecond value is out of range.");
             }
             if (isNaN(cpt)) 
             {
@@ -456,7 +499,7 @@ package asgard.date
         {
             if (RANGE_MINUTE.isOutOfRange(minute)) 
             {
-                throw new IllegalArgumentError(this + " formatMinute method failed, the minute value is out of range.") ;
+                throw new Error(this + " formatMinute method failed, the minute value is out of range.") ;
             }
             if (isNaN(cpt)) cpt = 0 ;
             var s:String = minute.toString();
@@ -470,7 +513,7 @@ package asgard.date
         {
             if (RANGE_MONTH.isOutOfRange(month)) 
             {
-                throw new IllegalArgumentError(this + " formatMonthAsNumber method failed, the month value is out of range.") ;
+                throw new Error(this + " formatMonthAsNumber method failed, the month value is out of range.") ;
             }
             if (isNaN(cpt)) cpt = 0 ;
             var string:String = (month + 1).toString();
@@ -484,7 +527,7 @@ package asgard.date
         {
             if (RANGE_MONTH.isOutOfRange(month)) 
             {
-                throw new IllegalArgumentError(this + " formatMonthAsText method failed, the month value is out of range.") ;
+                throw new Error(this + " formatMonthAsText method failed, the month value is out of range.") ;
             }
             if (isNaN(cpt)) cpt = 0 ;
             var r:String;
@@ -502,7 +545,7 @@ package asgard.date
         {
             if (RANGE_SECOND.isOutOfRange(second)) 
             {
-                throw new IllegalArgumentError(this + " formatSecond method failed, the second value is out of range.") ;
+                throw new Error(this + " formatSecond method failed, the second value is out of range.") ;
             }
             if (isNaN(cpt))
             {
@@ -520,7 +563,7 @@ package asgard.date
         {
             if ( isNaN(year) ) 
             {
-                throw new IllegalArgumentError(this + " formatYear method failed, the year value must be a Number.") ;
+                throw new Error(this + " formatYear method failed, the year value must be a Number.") ;
             }    
             if (isNaN(cpt)) 
             {
@@ -570,13 +613,17 @@ package asgard.date
             }
             return r ;
         }
-        
-    
+
         /**
          * The internal singleton reference ot the DateFormatter class.
          */
         private static var _instance:DateFormatter ;
-            
+        
+        /**
+         * The internal pattern of this formatter.
+         */
+        private var _pattern:String ; // pattern        
+                    
         /**
          * @private
          */
