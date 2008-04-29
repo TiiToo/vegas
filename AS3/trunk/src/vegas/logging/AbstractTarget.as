@@ -24,14 +24,14 @@ package vegas.logging
 {
     import system.Strings;
     
-    import vegas.events.AbstractCoreEventDispatcher;
+    import vegas.events.CoreEventDispatcher;
     import vegas.logging.errors.InvalidFilterError;    
 
     /**
      * This class provides the basic functionality required by the logging framework for a target implementation. It handles the validation of filter expressions and provides a default level property. No implementation of the logEvent() method is provided.
      * @author eKameleon
      */
-    public class AbstractTarget extends AbstractCoreEventDispatcher implements ITarget
+    public class AbstractTarget extends CoreEventDispatcher implements ITarget
     {
         
         /**

@@ -22,11 +22,11 @@
 */
 package vegas.data.array
 {
-	import vegas.events.AbstractCoreEventDispatcher;
-	import vegas.events.BasicEvent;
-	import vegas.util.Serializer;	
+    import vegas.events.BasicEvent;
+    import vegas.events.CoreEventDispatcher;
+    import vegas.util.Serializer;	
 
-	/**
+    /**
      * This filter contains all constants and methods to sort the Arrays in the application.
      * <p><b>Example : </b></p>
      * <pre class="prettyprint">
@@ -80,7 +80,7 @@ package vegas.data.array
      * </pre>
      * @author eKameleon
      */
-    public class ArrayFilter extends AbstractCoreEventDispatcher
+    public class ArrayFilter extends CoreEventDispatcher
     {
         
         /**

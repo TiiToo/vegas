@@ -20,7 +20,6 @@
   Contributor(s) :
   
 */
-
 package vegas.events
 {
 	import flash.events.Event;
@@ -35,15 +34,15 @@ package vegas.events
  	 * <p>You can overrides the internal <code class="prettyprint">EventDispatcher</code> instance with the <code class="prettyprint">initEventDispatcher</code> or the <code class="prettyprint">setEventDispatcher</code> methods. Used a global singleton reference in this method to register all events in a <code class="prettyprint">FrontController</code> for example.</p>
 	 * @author eKameleon
  	 */
-	public class AbstractCoreEventDispatcher extends CoreObject implements IEventDispatcher, ILockable
+	public class CoreEventDispatcher extends CoreObject implements IEventDispatcher, ILockable
     {
 
 		/**
-		 * Creates a new AbstractCoreEventDispatcher.
+		 * Creates a new CoreEventDispatcher.
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
 		 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
 		 */
-        public function AbstractCoreEventDispatcher( bGlobal:Boolean = false , sChannel:String = null ) 
+        public function CoreEventDispatcher( bGlobal:Boolean = false , sChannel:String = null ) 
         {
     		setGlobal( bGlobal , sChannel ) ;	
         }

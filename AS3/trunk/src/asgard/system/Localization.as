@@ -21,17 +21,17 @@
 */
 package asgard.system 
 {
-	import flash.errors.IllegalOperationError;
-	
-	import asgard.events.LocalizationEvent;
-	
-	import system.Reflection;
-	
-	import vegas.core.Identifiable;
-	import vegas.data.map.HashMap;
-	import vegas.events.AbstractCoreEventDispatcher;	
+    import flash.errors.IllegalOperationError;
+    
+    import asgard.events.LocalizationEvent;
+    
+    import system.Reflection;
+    
+    import vegas.core.Identifiable;
+    import vegas.data.map.HashMap;
+    import vegas.events.CoreEventDispatcher;	
 
-	/**
+    /**
      * The Localization class allows to manage via textual files with 'JSON' or 'eden' format to charge the textual contents 
      * of an application according to the parameters of languages chosen by the users.
      * <p>It is possible to define several singletons of the Localization class to manage several elements in the application, but for this it's necessary to use the static property getInstance(sName). 
@@ -103,7 +103,7 @@ package asgard.system
      * @see asgard.system.Lang
      * @see asgard.system.Locale
      */
-    public class Localization extends AbstractCoreEventDispatcher implements Identifiable
+    public class Localization extends CoreEventDispatcher implements Identifiable
     {
 
         /**

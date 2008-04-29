@@ -22,14 +22,14 @@
 */
 package andromeda.process 
 {
-	import andromeda.events.ActionEvent;
-	import andromeda.process.mocks.MockSimpleActionListener;
-	
-	import buRRRn.ASTUce.framework.TestCase;
-	
-	import vegas.events.AbstractCoreEventDispatcher;	
+    import andromeda.events.ActionEvent;
+    import andromeda.process.mocks.MockSimpleActionListener;
+    
+    import buRRRn.ASTUce.framework.TestCase;
+    
+    import vegas.events.CoreEventDispatcher;	
 
-	/**
+    /**
 	 * @author eKameleon
 	 */
 	public class TestSimpleAction extends TestCase 
@@ -65,7 +65,7 @@ package andromeda.process
         
         public function testInherit():void
         {
-            assertTrue( action is AbstractCoreEventDispatcher , "Action inherit AbstractCoreEventDispatcher failed.") ;
+            assertTrue( action is CoreEventDispatcher , "Action inherit CoreEventDispatcher failed.") ;
             assertTrue( action is IAction , "Action implements the IAction interface" ) ;    	
         }   
                 

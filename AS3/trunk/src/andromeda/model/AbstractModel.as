@@ -23,13 +23,13 @@
 
 package andromeda.model
 {
-	import vegas.events.AbstractCoreEventDispatcher;    
+    import vegas.events.CoreEventDispatcher;	    
 
-	/**
+    /**
 	 * This class provides a skeletal implementation of the <code class="prettyprint">IModel</code> interface, to minimize the effort required to implement this interface.
 	 * @author eKameleon
 	 */
-	public class AbstractModel extends AbstractCoreEventDispatcher implements IModel
+	public class AbstractModel extends CoreEventDispatcher implements IModel
 	{
 	
 		/**

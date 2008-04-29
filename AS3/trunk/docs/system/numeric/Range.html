@@ -142,7 +142,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#expand()">expand</a>(range:<a href="Range.html">Range</a>, lowerMargin:Number, upperMargin:Number):<a href="../numeric/Range.html">Range</a>
+<a class="signatureLink" href="#expand()">expand</a>(range:<a href="Range.html">Range</a>, lowerMargin:Number = 1, upperMargin:Number = 1):<a href="../numeric/Range.html">Range</a>
 </div>
 <div class="summaryTableDescription">[static]
          Creates a new range by adding margins to an existing range.</div>
@@ -438,7 +438,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public static function expand(range:<a href="Range.html">Range</a>, lowerMargin:Number, upperMargin:Number):<a href="../numeric/Range.html">Range</a></code><p>
+<code>public static function expand(range:<a href="Range.html">Range</a>, lowerMargin:Number = 1, upperMargin:Number = 1):<a href="../numeric/Range.html">Range</a></code><p>
          Creates a new range by adding margins to an existing range.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -450,14 +450,14 @@ showHideInherited();
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">lowerMargin</span>:Number</code> &mdash; the lower margin (expressed as a percentage of the range length).
+<td width="20px"></td><td><code><span class="label">lowerMargin</span>:Number</code> (default = <code>1</code>)<code></code> &mdash; the lower margin (expressed as a percentage of the range length).
          </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">upperMargin</span>:Number</code> &mdash; the upper margin (expressed as a percentage of the range length).
+<td width="20px"></td><td><code><span class="label">upperMargin</span>:Number</code> (default = <code>1</code>)<code></code> &mdash; the upper margin (expressed as a percentage of the range length).
          </td>
 </tr>
 </table>

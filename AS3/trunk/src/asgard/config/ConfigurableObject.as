@@ -23,16 +23,16 @@
 
 package asgard.config
 {
-	import vegas.core.Identifiable;
-	import vegas.events.AbstractCoreEventDispatcher;	
+    import vegas.core.Identifiable;
+    import vegas.events.CoreEventDispatcher;	
 
-	/**
+    /**
      * This core class extend the CoreObject class and implement the IConfigurable interface.
      * A IConfigurable object handle a notification of the ConfigCollector class with the method setup(), you must override this method in your concrete class.
      * The IConfigurable objects are registered in the ConfigCollector to launch the setup of all IConfigurable object one time with the <code class="prettyprint">ConfigCollector.run()</code> method when the Config is loaded for example. 
      * @author eKameleon
      */
-	public class ConfigurableObject extends AbstractCoreEventDispatcher implements IConfigurable, Identifiable
+	public class ConfigurableObject extends CoreEventDispatcher implements IConfigurable, Identifiable
     {
        
     	/**

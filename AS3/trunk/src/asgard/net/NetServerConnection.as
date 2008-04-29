@@ -36,13 +36,13 @@ package asgard.net
     
     import vegas.core.ICloneable;
     import vegas.core.IRunnable;
-    import vegas.events.AbstractCoreEventDispatcher;    
+    import vegas.events.CoreEventDispatcher;    
 
     /**
  	 * This class extends the NetConnection class and defined an implementation based on VEGAS to used Flash Remoting or Flash MediaServer (with AMF protocol).
 	 * @author eKameleon
 	 */	
-	public class NetServerConnection extends AbstractCoreEventDispatcher implements ICloneable, IRunnable
+	public class NetServerConnection extends CoreEventDispatcher implements ICloneable, IRunnable
 	{
 		
 		/**

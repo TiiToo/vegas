@@ -23,17 +23,17 @@
 
 package pegas.transitions 
 {
-	import vegas.data.Map;
-	import vegas.data.map.HashMap;
-	import vegas.errors.IllegalArgumentError;
-	import vegas.events.AbstractCoreEventDispatcher;
-	import vegas.util.TypeUtil;	
+    import vegas.data.Map;
+    import vegas.data.map.HashMap;
+    import vegas.errors.IllegalArgumentError;
+    import vegas.events.CoreEventDispatcher;
+    import vegas.util.TypeUtil;	
 
-	/**
+    /**
 	 * The TransitionController register all the ITransition of the application.
 	 * @author eKameleon
 	 */
-	public class TransitionController extends AbstractCoreEventDispatcher 
+	public class TransitionController extends CoreEventDispatcher 
 	{
 
 		/**

@@ -26,13 +26,13 @@ package asgard.net
     
     import asgard.media.FLVMetaData;
     
-    import vegas.events.AbstractCoreEventDispatcher;    
+    import vegas.events.CoreEventDispatcher;    
 
     /**
      * Specifies the object on which callback methods are invoked by a NetStream object.
      * @author eKameleon
      */
-    public class NetServerStreamClient extends AbstractCoreEventDispatcher implements INetServerStreamClient
+    public class NetServerStreamClient extends CoreEventDispatcher implements INetServerStreamClient
     {
 
 		/**

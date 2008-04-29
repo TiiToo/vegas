@@ -24,13 +24,13 @@ package andromeda.process
 {
     import andromeda.events.ActionEvent;
     
-    import vegas.events.AbstractCoreEventDispatcher;    
+    import vegas.events.CoreEventDispatcher;    
 
     /**
      * A simple representation of the <code class="prettyprint">IAction</code> interface.
      * @author eKameleon
      */
-    public class SimpleAction extends AbstractCoreEventDispatcher implements IAction
+    public class SimpleAction extends CoreEventDispatcher implements IAction
     {
     
         /**

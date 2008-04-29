@@ -22,15 +22,15 @@
 */
 package lunas.core 
 {
-	import flash.display.DisplayObject;
-	
-	import vegas.events.AbstractCoreEventDispatcher;	
+    import flash.display.DisplayObject;
+    
+    import vegas.events.CoreEventDispatcher;	
 
-	/**
+    /**
 	 * This class provides a skeletal implementation of the <code class="prettyprint">IBuilder</code> interface, to minimize the effort required to implement this interface.
 	 * @author eKameleon
 	 */
-	public class AbstractBuilder extends AbstractCoreEventDispatcher implements IBuilder
+	public class AbstractBuilder extends CoreEventDispatcher implements IBuilder
 	{
 
 		/**
