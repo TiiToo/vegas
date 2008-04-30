@@ -16,9 +16,7 @@
   the Initial Developer. All Rights Reserved.
   
   Contributor(s):
-    
-     - Zwetan Kjukov <zwetan@gmail.com>
-
+  
 */
 package system.formatters 
 {
@@ -64,9 +62,9 @@ package system.formatters
      * </pre>
      */
     public class DateFormatter implements IFormatter, ISerializable 
-    {
+        {
         
-        use namespace dateParser;
+        use namespace dateparser;
         
         /**
          * Creates a new DateFormatter instance.
@@ -192,8 +190,7 @@ package system.formatters
         
 
         /**
-         * Returns the internal pattern of this formatter.
-         * @return the string representation of the pattern of this formatter.
+         * Indicates the internal pattern of this formatter.
          */
         public function get pattern():String 
             {
@@ -201,7 +198,7 @@ package system.formatters
             }
 
         /**
-         * Sets the internal pattern of this formatter.
+         * @private
          */
         public function set pattern( expression:String ):void 
         {
@@ -368,41 +365,27 @@ package system.formatters
             return r ;
             
         }
-
-        /**
-         * Returns the singleton reference of the DateFormatter class.
-         * Developers are encouraged to use the comparator returned from this method instead of constructing a new instance to reduce allocation and GC overhead when multiple comparable comparators may be used in the same application.
-         * @returns the singleton reference of the DateFormatter class.
-         */
-        public static function getInstance():DateFormatter 
-        {
-            if ( _instance == null )
-            {
-                _instance = new DateFormatter();
-            }
-            return _instance;
-        }        
-
+        
         /**
          * Returns the source code string representation of the object.
          * @return the source code string representation of the object.
          */
         public function toSource( indent:int = 0 ):String 
             {
-            return "new " + Reflection.getClassPath(this) + '("' + pattern || DEFAULT_DATE_FORMAT + "')" ;
+            return "new " + Reflection.getClassPath(this) + '("' + ( pattern || DEFAULT_DATE_FORMAT ) + '")' ;
             }        
         
         /**
          * The private internal dateParser namespace.
          * @private
          */
-        private namespace dateParser ;
+        private namespace dateparser ;
         
         /**
          * Formats the specified number day value in a string representation.
          * @return the specified numberday value in a string representation.
          */
-        dateParser function formatDayAsNumber(day:Number, cpt:Number=NaN):String 
+        dateparser function formatDayAsNumber(day:Number, cpt:Number=NaN):String 
             {
             if (isNaN(cpt)) 
                 {
@@ -416,7 +399,7 @@ package system.formatters
          * Formats the specified day value in a string representation.
          * @return the specified day value in a string representation.
          */
-        dateParser function formatDayAsText(day:Number, cpt:Number=NaN):String 
+        dateparser function formatDayAsText(day:Number, cpt:Number=NaN):String 
             {
             if (RANGE_DAY_AS_TEXT.isOutOfRange(day)) 
                 {
@@ -436,7 +419,7 @@ package system.formatters
          * Formats the designator AM/PM in string expression.
          * @return the specified am/pm expression representation.
          */
-        dateParser function formatDesignator(hour:Number, cpt:Number, capitalize:Boolean ):String 
+        dateparser function formatDesignator(hour:Number, cpt:Number, capitalize:Boolean ):String 
             {
             if (RANGE_HOUR.isOutOfRange(hour))
                 {
@@ -455,7 +438,7 @@ package system.formatters
          * Formats the specified hour value in a string representation with the am-pm notation.
          * @return the specified hour value in a string representation with the am-pm notation.
          */
-        dateParser function formatHourInAmPm(hour:Number, cpt:Number=NaN):String 
+        dateparser function formatHourInAmPm(hour:Number, cpt:Number=NaN):String 
             {
             if (RANGE_HOUR.isOutOfRange(hour)) 
                 {
@@ -484,7 +467,7 @@ package system.formatters
         /**
          * Formats an hour number in string expression.
          */
-        dateParser function formatHourInDay(hour:Number, cpt:Number=NaN):String 
+        dateparser function formatHourInDay(hour:Number, cpt:Number=NaN):String 
             {
             if (RANGE_HOUR.isOutOfRange(hour))
                 {
@@ -501,7 +484,7 @@ package system.formatters
         /**
          * Formats a millisecond value number in string expression.
          */
-        dateParser function formatMillisecond(millisecond:Number, cpt:Number=NaN):String 
+        dateparser function formatMillisecond(millisecond:Number, cpt:Number=NaN):String 
             {
             if (RANGE_MILLISECOND.isOutOfRange(millisecond)) 
                 {
@@ -518,7 +501,7 @@ package system.formatters
         /**
          * Formats a minute value number in string expression.
          */
-        dateParser function formatMinute(minute:Number, cpt:Number=NaN):String 
+        dateparser function formatMinute(minute:Number, cpt:Number=NaN):String 
             {
             if (RANGE_MINUTE.isOutOfRange(minute)) 
                 {
@@ -532,7 +515,7 @@ package system.formatters
         /**
          * Formats a month value number in string expression.
          */
-        dateParser function formatMonthAsNumber(month:Number, cpt:Number=NaN):String 
+        dateparser function formatMonthAsNumber(month:Number, cpt:Number=NaN):String 
             {
             if (RANGE_MONTH.isOutOfRange(month)) 
                 {
@@ -549,7 +532,7 @@ package system.formatters
         /**
          * Formats a month text value in string expression.
          */
-        dateParser function formatMonthAsText(month:Number, cpt:Number=NaN):String 
+        dateparser function formatMonthAsText(month:Number, cpt:Number=NaN):String 
             {
             if (RANGE_MONTH.isOutOfRange(month)) 
                 {
@@ -570,7 +553,7 @@ package system.formatters
          * Format the second value passed in argument.
          * @return the second string representation of this DateFormatter.
          */
-        dateParser function formatSecond(second:Number, cpt:Number=NaN):String 
+        dateparser function formatSecond(second:Number, cpt:Number=NaN):String 
             {
             if (RANGE_SECOND.isOutOfRange(second)) 
                 {
@@ -588,7 +571,7 @@ package system.formatters
          * Format the year value passed in argument.
          * @return the year string representation of this DateFormatter.
          */
-        dateParser function formatYear( year:Number=NaN , cpt:Number=NaN ):String 
+        dateparser function formatYear( year:Number=NaN , cpt:Number=NaN ):String 
             {
             if ( isNaN(year) ) 
                 {
@@ -609,7 +592,7 @@ package system.formatters
          * Returns a string representation fill by 0 values or an empty string if the cpt value is NaN or <1.
          * @return a string representation fill by 0 values or an empty string if the cpt value is NaN or <1.
          */
-        dateParser function getZeros(cpt:Number):String 
+        dateparser function getZeros(cpt:Number):String 
             {
             if (cpt < 1 || isNaN(cpt)) 
                 {
@@ -628,21 +611,16 @@ package system.formatters
                 }
             return r ;
             }
-
-        /**
-         * The internal singleton reference ot the DateFormatter class.
-         */
-        private static var _instance:DateFormatter ;
-        
+                
         /**
          * The internal pattern of this formatter.
          */
-        dateParser var _pattern:String ; // pattern        
+        dateparser var _pattern:String ; // pattern        
                     
         /**
          * @private
          */
-        dateParser function count(char:String, a:Array):Number 
+        dateparser function count(char:String, a:Array):Number 
             {
             if (!a) return 0 ;
             var r:Number = 0 ;
@@ -657,7 +635,7 @@ package system.formatters
         
         }
 
-}
+    }
 
 /**
  * This static enumeration class register all string constants to defined a month.
