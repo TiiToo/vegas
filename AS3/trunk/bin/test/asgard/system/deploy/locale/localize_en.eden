@@ -1,28 +1,28 @@
 ﻿{
-	
-	lang      : "en" ,
-	namespace : "http://www.ekameleon.net/2008/asgard" ,
-	version   : "1.0.0.0" ,
+    
+    lang      : "en" ,
+    namespace : "http://www.ekameleon.net/2008/asgard" ,
+    version   : "1.0.0.0" ,
 
-	type : "eden" ,
+    type : "eden" ,
 
-	door : 
-	{
-	
-		connectStarted    : "START CONNECTION" ,
-		connectFinished   : "FINISH CONNECTION" ,		
-		connectInProgress : "CONNECTION IN PROGRESS" ,		
-		connectOutOfTime  : "THE CONNECTION IS OUT OF TIME"
-	
-	}
-	,
-	info : 
-	{
-	
-		finish_loading   : "THE LOADING IS FINISHED" ,
-		progress_loading : "THE LOADING IS IN PROGRESS" ,
-		start_loading    : "THE LOADING IS STARTED"
-	}
-	
-	
+    door : 
+    {
+    
+        connectStarted    : "START CONNECTION" ,
+        connectFinished   : "FINISH CONNECTION" ,        
+        connectInProgress : "CONNECTION IN PROGRESS" ,        
+        connectOutOfTime  : "THE CONNECTION IS OUT OF TIME"
+    
+    }
+    ,
+    info : 
+    {
+    
+        finish_loading   : "THE LOADING IS FINISHED" ,
+        progress_loading : "THE LOADING IS IN PROGRESS" ,
+        start_loading    : "THE LOADING IS STARTED"
+    }
+    
+    
 }
