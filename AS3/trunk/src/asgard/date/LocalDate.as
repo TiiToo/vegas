@@ -25,7 +25,7 @@ package asgard.date
 
 	/**
 	 * This static enumeration class register all string constants to defined a date.
-	 * @example
+	 * <p><b>Example :</b></p>
      * <pre class="prettyprint">
 	 * import asgard.date.LocalDate ;
 	 * trace( "days   : " + LocalDate.getDays() ) ;

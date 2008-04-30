@@ -26,9 +26,8 @@ package system.evaluators
 
     /**
      * Evaluates mathematical string expressions.
-     * MathParser implementation
-     * <p>Support all of the following :</p>
-     * <p>Decimal, hexadecimal, octal notation :</p>
+     * <p><b>The MathEvaluator implementation</b>, support all of the following :</p>
+     * <p><b>Decimal, hexadecimal, octal notation :</b></p>
      * <pre class="prettyprint">
      * 1 + 1
      * 0.5 + 0.7
@@ -67,35 +66,40 @@ package system.evaluators
      * <p>sin(4) will be evaluated first</p>
      * <p><b>example :</b> <code class="prettyprint">5 * (4 + 0.5)</code></p>
      * <p>the expression within the parenthesis will occurs first</p>
-     * 
+     * <pre class="prettyprint">
      * (13) ~ + - 
-     * unary operators
-     *       
-     *       ex: +5 - +5 translate to (+5) - (+5)
-     *       ex: -5 + -5 translate to (-5) + (-5)
-     *       ex: ~3 - 7  translate to (~3) - 7
-     *       any unary operators will be evaluated first
-     *       
-     *       (12) * / %
-     *           multiplication, division, modulo division
-     *       
-     *       ex: 5 * 3 + 1 translate to (5 * 3) + 1
-     *       ex: 2 % 8 - 4 translate to (2 % 8) - 4
-     *       
-     *       (11) + -
-     *           addition, subtraction
-     *       
-     *       (10) << >> <<<
-     *           bit shifting
-     *       
-     *       (7)  &
-     *           bitwise AND
-     *       
-     *       (6)  ^
-     *           bitwise XOR
-     *       
-     *       (5)  |
-     *           bitwise OR
+     * </pre>
+     * <p>unary operators</p>
+     * <p>ex: +5 - +5 translate to (+5) - (+5)</p>
+     * <p>ex: -5 + -5 translate to (-5) + (-5)</p>
+     * <p>ex: ~3 - 7  translate to (~3) - 7</p>
+     * <p>any unary operators will be evaluated first</p>
+     * <pre class="prettyprint">
+     * (12) * / %
+     * </pre>
+     * <p><b>multiplication, division, modulo division</p></b>
+     * <p>ex: 5 * 3 + 1 translate to (5 * 3) + 1</p>
+     * <p>ex: 2 % 8 - 4 translate to (2 % 8) - 4</p>
+     * <pre class="prettyprint">
+     * (11) + -
+     * </pre>
+     * <p><b>addition, subtraction</b></p>
+     * <pre class="prettyprint">
+     * (10) << >> <<<
+     * </pre>
+     * <p><b>bit shifting</b></p>
+     * <pre class="prettyprint">
+     * (7)  &
+     * </pre>
+     * <p><b>bitwise AND</b></p>
+     * <pre class="prettyprint">
+     * (6)  ^
+     * </pre>
+     * <p><b>bitwise XOR</b></p>
+     * <pre class="prettyprint">
+     * (5)  |
+     * </pre>
+     * bitwise OR
      *       
      *     - context
      *       when instanciating the MathEvaluator you can pass a context
