@@ -5,8 +5,8 @@
 <link rel="stylesheet" href="../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../print.css" type="text/css" media="print">
 <link rel="stylesheet" href="../../prettify.css" type="text/css">
-<meta content="DateFormatter,asgard.date.DateFormatter,AM_PM,CAPITAL_AM_PM,DAY_AS_NUMBER,DAY_AS_TEXT,DEFAULT_AM_EXPRESSION,DEFAULT_DATE_FORMAT,DEFAULT_PM_EXPRESSION,HOUR_IN_AM_PM,HOUR_IN_DAY,MILLISECOND,MINUTE,MONTH_AS_NUMBER,MONTH_AS_TEXT,QUOTE,RANGE_DAY_AS_TEXT,RANGE_HOUR,RANGE_MILLISECOND,RANGE_MINUTE,RANGE_MONTH,RANGE_SECOND,SECOND,YEAR,format,formatDayAsNumber,formatDayAsText,formatDesignator,formatHourInAmPm,formatHourInDay,formatMillisecond,formatMinute,formatMonthAsNumber,formatMonthAsText,formatSecond,formatYear,getInstance,getZeros" name="keywords">
-<title>asgard.date.DateFormatter</title>
+<meta content="DateFormatter,system.formatters.DateFormatter,AM_PM,CAPITAL_AM_PM,DAY_AS_NUMBER,DAY_AS_TEXT,DEFAULT_AM_EXPRESSION,DEFAULT_DATE_FORMAT,DEFAULT_PM_EXPRESSION,HOUR_IN_AM_PM,HOUR_IN_DAY,MILLISECOND,MINUTE,MONTH_AS_NUMBER,MONTH_AS_TEXT,QUOTE,RANGE_DAY_AS_TEXT,RANGE_HOUR,RANGE_MILLISECOND,RANGE_MINUTE,RANGE_MONTH,RANGE_SECOND,SECOND,YEAR,_pattern,pattern,clone,format,formatDayAsNumber,formatDayAsText,formatDesignator,formatHourInAmPm,formatHourInDay,formatMillisecond,formatMinute,formatMonthAsNumber,formatMonthAsText,formatSecond,formatYear,getZeros,toSource" name="keywords">
+<title>system.formatters.DateFormatter</title>
 </head>
 <body>
 <script type="text/javascript" language="javascript" src="../../prettify.js"></script><script type="text/javascript" language="javascript" src="../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../cookies.js"></script><script type="text/javascript" language="javascript">
@@ -17,7 +17,7 @@
 			--></script>
 <table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
 <tr>
-<td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../all-classes.html')" href="../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../all-classes.html')" href="../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../index-list.html')" href="../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../index.html?asgard/date/DateFormatter.html&amp;asgard/date/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../images/logo.jpg"></td>
+<td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../all-classes.html')" href="../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../all-classes.html')" href="../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../index-list.html')" href="../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../index.html?system/formatters/DateFormatter.html&amp;system/formatters/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../images/logo.jpg"></td>
 </tr>
 <tr class="titleTableRow2">
 <td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;DateFormatter</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#constantSummary">Constants</a></td>
@@ -33,13 +33,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="MainContent">
 <table cellspacing="0" cellpadding="0" class="classHeaderTable">
 <tr>
-<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">asgard.date</a></td>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">system.formatters</a></td>
 </tr>
 <tr>
 <td class="classHeaderTableLabel">Class</td><td class="classSignature">public class DateFormatter</td>
 </tr>
 <tr>
-<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">DateFormatter <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../images/inherit-arrow.gif"> <a href="../../vegas/core/Formatter.html">Formatter</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../images/inherit-arrow.gif"> <a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
+<td class="classHeaderTableLabel">Implements</td><td><a href="IFormatter.html">IFormatter</a>, <a href="../ISerializable.html">ISerializable</a></td>
 </tr>
 </table>
 <p></p>
@@ -49,7 +49,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
      <p>If you want to include plain text in the pattern put it into quotes (') to avoid interpretation.</p>
      <p>If you want a quote in the formatted date-time, put two quotes directly after one another. For example: <code class="prettyprint"> "hh 'o''clock'"}.</p>
      <pre class="prettyprint">
-     import asgard.date.DateFormatter ;
+     import system.formatter.DateFormatter ;
      
      var f:DateFormatter = new DateFormatter() ;
      
@@ -83,14 +83,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a name="propertySummary"></a>
 <div class="summarySection">
 <div class="summaryTableTitle">Public Properties</div>
-<div class="showHideLinks">
-<div class="hideInheritedProperty" id="hideInheritedProperty">
-<a onclick="javascript:setInheritedVisible(false,'Property');" href="#propertySummary" class="showHideLink"><img src="../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Properties</a>
-</div>
-<div class="showInheritedProperty" id="showInheritedProperty">
-<a onclick="javascript:setInheritedVisible(true,'Property');" href="#propertySummary" class="showHideLink"><img src="../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Properties</a>
-</div>
-</div>
 <table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
 <tr>
 <th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
@@ -105,24 +97,16 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
          The default AM/PM designator expression.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
-<tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../vegas/core/Formatter.html#pattern">pattern</a> : String<div class="summaryTableDescription">
-   Returns the internal pattern of this formatter.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../vegas/core/Formatter.html">Formatter</a></td>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#pattern">pattern</a> : String<div class="summaryTableDescription">
+         Indicates the internal pattern of this formatter.</div>
+</td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 </table>
 </div>
 <a name="methodSummary"></a>
 <div class="summarySection">
 <div class="summaryTableTitle">Public Methods</div>
-<div class="showHideLinks">
-<div class="hideInheritedMethod" id="hideInheritedMethod">
-<a onclick="javascript:setInheritedVisible(false,'Method');" href="#methodSummary" class="showHideLink"><img src="../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Methods</a>
-</div>
-<div class="showInheritedMethod" id="showInheritedMethod">
-<a onclick="javascript:setInheritedVisible(true,'Method');" href="#methodSummary" class="showHideLink"><img src="../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Methods</a>
-</div>
-</div>
 <table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
 <tr>
 <th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
@@ -135,21 +119,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
          Creates a new DateFormatter instance.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="../../vegas/core/Formatter.html#clone()">clone</a>():*</div>
+<a class="signatureLink" href="#clone()">clone</a>():*</div>
 <div class="summaryTableDescription">
-   Creates and returns a shallow copy of the object.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../vegas/core/Formatter.html">Formatter</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../vegas/core/Formatter.html#copy()">copy</a>():*</div>
-<div class="summaryTableDescription">
-   Interface implemented by classes that can produce "deep" copies of their objects.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../vegas/core/Formatter.html">Formatter</a></td>
+         Creates and returns a shallow copy of the object.</div>
+</td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
@@ -162,148 +138,10 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#formatDayAsNumber()">formatDayAsNumber</a>(day:Number, cpt:Number):String</div>
+<a class="signatureLink" href="#toSource()">toSource</a>(indent:int = 0):String</div>
 <div class="summaryTableDescription">
-         Formats the specified number day value in a string representation.</div>
+         Returns the source code string representation of the object.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#formatDayAsText()">formatDayAsText</a>(day:Number, cpt:Number):String</div>
-<div class="summaryTableDescription">
-         Formats the specified day value in a string representation.</div>
-</td><td class="summaryTableOwnerCol">DateFormatter</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#formatDesignator()">formatDesignator</a>(hour:Number, cpt:Number, capitalize:Boolean):String</div>
-<div class="summaryTableDescription">
-         Formats the designator AM/PM in string expression.</div>
-</td><td class="summaryTableOwnerCol">DateFormatter</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#formatHourInAmPm()">formatHourInAmPm</a>(hour:Number, cpt:Number):String</div>
-<div class="summaryTableDescription">
-         Formats the specified hour value in a string representation with the am-pm notation.</div>
-</td><td class="summaryTableOwnerCol">DateFormatter</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#formatHourInDay()">formatHourInDay</a>(hour:Number, cpt:Number):String</div>
-<div class="summaryTableDescription">
-         Formats an hour number in string expression.</div>
-</td><td class="summaryTableOwnerCol">DateFormatter</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#formatMillisecond()">formatMillisecond</a>(millisecond:Number, cpt:Number):String</div>
-<div class="summaryTableDescription">
-         Formats a millisecond value number in string expression.</div>
-</td><td class="summaryTableOwnerCol">DateFormatter</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#formatMinute()">formatMinute</a>(minute:Number, cpt:Number):String</div>
-<div class="summaryTableDescription">
-         Formats a minute value number in string expression.</div>
-</td><td class="summaryTableOwnerCol">DateFormatter</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#formatMonthAsNumber()">formatMonthAsNumber</a>(month:Number, cpt:Number):String</div>
-<div class="summaryTableDescription">
-         Formats a month value number in string expression.</div>
-</td><td class="summaryTableOwnerCol">DateFormatter</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#formatMonthAsText()">formatMonthAsText</a>(month:Number, cpt:Number):String</div>
-<div class="summaryTableDescription">
-         Formats a month text value in string expression.</div>
-</td><td class="summaryTableOwnerCol">DateFormatter</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#formatSecond()">formatSecond</a>(second:Number, cpt:Number):String</div>
-<div class="summaryTableDescription">
-         Format the second value passed in argument.</div>
-</td><td class="summaryTableOwnerCol">DateFormatter</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#formatYear()">formatYear</a>(year:Number, cpt:Number):String</div>
-<div class="summaryTableDescription">
-         Format the year value passed in argument.</div>
-</td><td class="summaryTableOwnerCol">DateFormatter</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#getInstance()">getInstance</a>():<a href="../date/DateFormatter.html">DateFormatter</a>
-</div>
-<div class="summaryTableDescription">[static]
-         Returns the singleton reference of the DateFormatter class.</div>
-</td><td class="summaryTableOwnerCol">DateFormatter</td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../vegas/core/CoreObject.html#getLogger()">getLogger</a>():<a href="../../vegas/logging/ILogger.html">ILogger</a>
-</div>
-<div class="summaryTableDescription">
-   Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#getZeros()">getZeros</a>(cpt:Number):String</div>
-<div class="summaryTableDescription">
-         Returns a string representation fill by 0 values or an empty string if the cpt value is NaN or <1.</div>
-</td><td class="summaryTableOwnerCol">DateFormatter</td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../vegas/core/CoreObject.html#hashCode()">hashCode</a>():uint</div>
-<div class="summaryTableDescription">
-   Returns a hashcode value for the object.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../vegas/core/CoreObject.html#setLogger()">setLogger</a>(log:<a href="../../vegas/logging/ILogger.html">ILogger</a> = null):void</div>
-<div class="summaryTableDescription">
-   Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../vegas/core/Formatter.html#toSource()">toSource</a>(indent:int = 0):String</div>
-<div class="summaryTableDescription">
-   Returns a Eden representation of the object.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../vegas/core/Formatter.html">Formatter</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../vegas/core/CoreObject.html#toString()">toString</a>():String</div>
-<div class="summaryTableDescription">
-   Returns the string representation of this instance.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
 </tr>
 </table>
 </div>
@@ -375,37 +213,37 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#RANGE_DAY_AS_TEXT">RANGE_DAY_AS_TEXT</a> : <a href="../../system/numeric/Range.html">Range</a>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#RANGE_DAY_AS_TEXT">RANGE_DAY_AS_TEXT</a> : <a href="../numeric/Range.html">Range</a>
 <div class="summaryTableDescription">[static]
          The internal range use to defined the days as text in the DateFormatter.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#RANGE_HOUR">RANGE_HOUR</a> : <a href="../../system/numeric/Range.html">Range</a>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#RANGE_HOUR">RANGE_HOUR</a> : <a href="../numeric/Range.html">Range</a>
 <div class="summaryTableDescription">[static]
          The internal range use to defined the hours in the DateFormatter.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#RANGE_MILLISECOND">RANGE_MILLISECOND</a> : <a href="../../system/numeric/Range.html">Range</a>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#RANGE_MILLISECOND">RANGE_MILLISECOND</a> : <a href="../numeric/Range.html">Range</a>
 <div class="summaryTableDescription">[static]
          The internal range use to defined the milliseconds in the DateFormatter.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#RANGE_MINUTE">RANGE_MINUTE</a> : <a href="../../system/numeric/Range.html">Range</a>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#RANGE_MINUTE">RANGE_MINUTE</a> : <a href="../numeric/Range.html">Range</a>
 <div class="summaryTableDescription">[static]
          The internal range use to defined the minutes in the DateFormatter.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#RANGE_MONTH">RANGE_MONTH</a> : <a href="../../system/numeric/Range.html">Range</a>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#RANGE_MONTH">RANGE_MONTH</a> : <a href="../numeric/Range.html">Range</a>
 <div class="summaryTableDescription">[static]
          The internal range use to defined the months in the DateFormatter.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#RANGE_SECOND">RANGE_SECOND</a> : <a href="../../system/numeric/Range.html">Range</a>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#RANGE_SECOND">RANGE_SECOND</a> : <a href="../numeric/Range.html">Range</a>
 <div class="summaryTableDescription">[static]
          The internal range use to defined the seconds in the DateFormatter.</div>
 </td><td class="summaryTableOwnerCol">DateFormatter</td>
@@ -449,6 +287,32 @@ showHideInherited();
 <code>public static var DEFAULT_PM_EXPRESSION:String = "pm"</code><p>
          The default AM/PM designator expression.
          </p></div>
+<a name="_pattern"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_pattern</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>dateparser var _pattern:String</code><p>
+         The internal pattern of this formatter.
+         </p></div>
+<a name="pattern"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">pattern</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>pattern:String</code>&nbsp;&nbsp;[read-write]<p>
+         Indicates the internal pattern of this formatter.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get pattern():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set pattern(value:String):void</code>
+<br>
+</div>
 <a name="constructorDetail"></a>
 <div class="detailSectionHeader">Constructor detail</div>
 <a name="DateFormatter()"></a>
@@ -460,7 +324,7 @@ showHideInherited();
 <div class="detailBody">
 <code>public function DateFormatter(pattern:String = "dd.mm.yyyy HH:nn:ss")</code><p>
          Creates a new DateFormatter instance.
-         </p><p>If you do not pass-in a pattern or if the passed-in one is null or undefined the constant DEFAULT_DATE_FORMAT is used.</p>
+         </p><p>If you do not pass-in a pattern or if the passed-in one is null or undefined the constant DEFAULT_DATE_FORMAT is used ("dd.mm.yyyy HH:nn:ss").</p>
          <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -471,17 +335,35 @@ showHideInherited();
 </div>
 <a name="methodDetail"></a>
 <div class="detailSectionHeader">Method detail</div>
-<a name="format()"></a>
+<a name="clone()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">format</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+<td class="detailHeaderName">clone</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public override function format(value:* = null):String</code><p>
+<code>public function clone():*</code><p>
+         Creates and returns a shallow copy of the object.
+         </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>*</code> &mdash; A new object that is a shallow copy of this instance.
+         </td>
+</tr>
+</table>
+</div>
+<a name="format()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">format</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function format(value:* = null):String</code><p>
          Formats the specified value.
          <pre class="prettyprint">
-         import asgard.date.DateFormatter ;
+         import system.formatter.DateFormatter ;
          
          var f:DateFormatter = new DateFormatter() ;
          
@@ -529,7 +411,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function formatDayAsNumber(day:Number, cpt:Number):String</code><p>
+<code>dateparser function formatDayAsNumber(day:Number, cpt:Number):String</code><p>
          Formats the specified number day value in a string representation.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -559,7 +441,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function formatDayAsText(day:Number, cpt:Number):String</code><p>
+<code>dateparser function formatDayAsText(day:Number, cpt:Number):String</code><p>
          Formats the specified day value in a string representation.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -589,7 +471,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function formatDesignator(hour:Number, cpt:Number, capitalize:Boolean):String</code><p>
+<code>dateparser function formatDesignator(hour:Number, cpt:Number, capitalize:Boolean):String</code><p>
          Formats the designator AM/PM in string expression.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -625,7 +507,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function formatHourInAmPm(hour:Number, cpt:Number):String</code><p>
+<code>dateparser function formatHourInAmPm(hour:Number, cpt:Number):String</code><p>
          Formats the specified hour value in a string representation with the am-pm notation.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -655,7 +537,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function formatHourInDay(hour:Number, cpt:Number):String</code><p>
+<code>dateparser function formatHourInDay(hour:Number, cpt:Number):String</code><p>
          Formats an hour number in string expression.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -684,7 +566,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function formatMillisecond(millisecond:Number, cpt:Number):String</code><p>
+<code>dateparser function formatMillisecond(millisecond:Number, cpt:Number):String</code><p>
          Formats a millisecond value number in string expression.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -713,7 +595,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function formatMinute(minute:Number, cpt:Number):String</code><p>
+<code>dateparser function formatMinute(minute:Number, cpt:Number):String</code><p>
          Formats a minute value number in string expression.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -742,7 +624,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function formatMonthAsNumber(month:Number, cpt:Number):String</code><p>
+<code>dateparser function formatMonthAsNumber(month:Number, cpt:Number):String</code><p>
          Formats a month value number in string expression.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -771,7 +653,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function formatMonthAsText(month:Number, cpt:Number):String</code><p>
+<code>dateparser function formatMonthAsText(month:Number, cpt:Number):String</code><p>
          Formats a month text value in string expression.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -800,7 +682,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function formatSecond(second:Number, cpt:Number):String</code><p>
+<code>dateparser function formatSecond(second:Number, cpt:Number):String</code><p>
          Format the second value passed in argument.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -830,7 +712,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function formatYear(year:Number, cpt:Number):String</code><p>
+<code>dateparser function formatYear(year:Number, cpt:Number):String</code><p>
          Format the year value passed in argument.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -853,24 +735,6 @@ showHideInherited();
 </tr>
 </table>
 </div>
-<a name="getInstance()"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">getInstance</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>public static function getInstance():<a href="../date/DateFormatter.html">DateFormatter</a></code><p>
-         Returns the singleton reference of the DateFormatter class.
-         Developers are encouraged to use the comparator returned from this method instead of constructing a new instance to reduce allocation and GC overhead when multiple comparable comparators may be used in the same application.
-         </p><p></p>
-<span class="label">Returns</span>
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td width="20"></td><td><code><a href="../date/DateFormatter.html">DateFormatter</a></code></td>
-</tr>
-</table>
-</div>
 <a name="getZeros()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -878,7 +742,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function getZeros(cpt:Number):String</code><p>
+<code>dateparser function getZeros(cpt:Number):String</code><p>
          Returns a string representation fill by 0 values or an empty string if the cpt value is NaN or <1.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -891,6 +755,30 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>String</code> &mdash; a string representation fill by 0 values or an empty string if the cpt value is NaN or <1.
+         </td>
+</tr>
+</table>
+</div>
+<a name="toSource()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">toSource</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function toSource(indent:int = 0):String</code><p>
+         Returns the source code string representation of the object.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">indent</span>:int</code> (default = <code>0</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash; the source code string representation of the object.
          </td>
 </tr>
 </table>
@@ -1026,7 +914,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public static const RANGE_DAY_AS_TEXT:<a href="../../system/numeric/Range.html">Range</a></code><p>
+<code>public static const RANGE_DAY_AS_TEXT:<a href="../numeric/Range.html">Range</a></code><p>
          The internal range use to defined the days as text in the DateFormatter.
          </p></div>
 <a name="RANGE_HOUR"></a>
@@ -1036,7 +924,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public static const RANGE_HOUR:<a href="../../system/numeric/Range.html">Range</a></code><p>
+<code>public static const RANGE_HOUR:<a href="../numeric/Range.html">Range</a></code><p>
          The internal range use to defined the hours in the DateFormatter.
          </p></div>
 <a name="RANGE_MILLISECOND"></a>
@@ -1046,7 +934,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public static const RANGE_MILLISECOND:<a href="../../system/numeric/Range.html">Range</a></code><p>
+<code>public static const RANGE_MILLISECOND:<a href="../numeric/Range.html">Range</a></code><p>
          The internal range use to defined the milliseconds in the DateFormatter.
          </p></div>
 <a name="RANGE_MINUTE"></a>
@@ -1056,7 +944,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public static const RANGE_MINUTE:<a href="../../system/numeric/Range.html">Range</a></code><p>
+<code>public static const RANGE_MINUTE:<a href="../numeric/Range.html">Range</a></code><p>
          The internal range use to defined the minutes in the DateFormatter.
          </p></div>
 <a name="RANGE_MONTH"></a>
@@ -1066,7 +954,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public static const RANGE_MONTH:<a href="../../system/numeric/Range.html">Range</a></code><p>
+<code>public static const RANGE_MONTH:<a href="../numeric/Range.html">Range</a></code><p>
          The internal range use to defined the months in the DateFormatter.
          </p></div>
 <a name="RANGE_SECOND"></a>
@@ -1076,7 +964,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public static const RANGE_SECOND:<a href="../../system/numeric/Range.html">Range</a></code><p>
+<code>public static const RANGE_SECOND:<a href="../numeric/Range.html">Range</a></code><p>
          The internal range use to defined the seconds in the DateFormatter.
          </p></div>
 <a name="SECOND"></a>
