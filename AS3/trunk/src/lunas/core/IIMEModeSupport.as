@@ -23,22 +23,24 @@
 package lunas.core 
 {
 
-	/**
-	 * The IData interface defines the interface for components that have a data property.
-	 * @author eKameleon
-	 */
-	public interface IData 
-	{
+    /**
+     * The IIMESupport interface defines the interface for any component that supports IME.
+     * (input method editor).
+     * IME is used for entering characters in Chinese, Japanese, and Korean.
+     * @author eKameleon
+     */
+    public interface IIMEModeSupport 
+    {
 
-		/**
-		 * Indicates the data value object of the component.
-		 */
-		function get data():* ;
-		
-		/**
-		 * @private
-		 */
-		function set data( value:* ):void ;
-		
-	}
+        /**
+         *  The IME mode of the component.
+         */
+        function get imeMode():String;
+        
+        /**
+         *  @private
+         */
+        function set imeMode(value:String):void;    	
+    	
+    }
 }

@@ -35,6 +35,10 @@ package lunas.core
 		 * A flag that indicates whether this control is selected.
 		 */
 		function get selected():Boolean ;
+		
+		/**
+		 * @private
+		 */
 		function set selected( b:Boolean ):void ;
 		
 	}
