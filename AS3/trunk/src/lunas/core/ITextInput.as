@@ -32,6 +32,36 @@ package lunas.core
      */
     public interface ITextInput extends IData, IFocusable 
     {
+    
+        /**
+         * Specifies whether extra white space (spaces, line breaks, and so on) should be removed in a TextInput control with HTML text.
+         */
+        function get condenseWhite():Boolean ;
+        
+        /**
+         * @private
+         */
+        function set condenseWhite(b:Boolean):void ;
+        
+        /**
+         * Indicates whether this control is used for entering passwords.
+         */
+        function get displayAsPassword():Boolean ;
+        
+        /**
+         * @private
+         */
+        function set displayAsPassword(b:Boolean):void ;
+        
+        /**
+         * Indicates whether the user is allowed to edit the text in this control.
+         */
+        function get editable():Boolean ;
+        
+        /**
+         * @private
+         */
+        function set editable( b:Boolean ):void ;    
     	
         /**
          * Specifies the text displayed by the TextInput component, including HTML markup that expresses the styles of that text.
@@ -43,6 +73,26 @@ package lunas.core
          */
         function set htmlText( str:String ):void ;        	
     	
+        /**
+         * Maximum number of characters that users can enter in the text field.
+         */
+        function get maxChars():int ;
+        
+        /**
+         * @private
+         */
+        function set maxChars( i:int ):void ; 
+                
+        /**
+         * Indicates the set of characters that a user can enter into the control.
+         */
+        function get restrict():String ; 
+        
+        /**
+         * @private
+         */
+        function set restrict( expression:String ):void ; 
+            	
         /**
          * Plain text that appears in the component.
          */

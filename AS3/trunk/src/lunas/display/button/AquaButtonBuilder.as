@@ -155,6 +155,8 @@ package lunas.display.button
 			effect     = new CoreShape() ;
 			field      = new CoreTextField() ;
 			
+			field.mouseEnabled = false ;
+			
 			t.addChild(background) ;
 			t.addChild(effect) ;
 			t.addChild(field) ;

@@ -23,8 +23,11 @@
 package lunas.core 
 {
     import flash.text.TextField;
+    import flash.text.TextFieldType;
     
-    import lunas.core.AbstractComponent;    
+    import asgard.text.CoreTextField;
+    
+    import lunas.core.AbstractComponent;        
 
     /**
      * This class provides a skeletal implementation of the <code class="prettyprint">ITextInput</code> interface, to minimize the effort required to implement this interface.
@@ -45,6 +48,22 @@ package lunas.core
         }
         
         /**
+         * Specifies whether extra white space (spaces, line breaks, and so on) should be removed in a TextInput control with HTML text.
+         */
+        public function get condenseWhite():Boolean
+        {
+            return _textField.condenseWhite ;
+        }
+
+        /**
+         * @private
+         */
+        public function set condenseWhite(b:Boolean):void
+        {
+            _textField.condenseWhite = b ;
+        }        
+        
+        /**
          * Indicates the data value object of the component.
          */
         public function get data():*
@@ -58,6 +77,39 @@ package lunas.core
         public function set data(value:*):void
         {
         	_data = value ;
+        }
+        
+        /**
+         * Indicates whether this control is used for entering passwords.
+         */
+        public function get displayAsPassword():Boolean
+        {
+            return _textField.displayAsPassword ;
+        }
+
+        /**
+         * @private
+         */
+        public function set displayAsPassword(b:Boolean):void
+        {
+            _textField.displayAsPassword = b ;
+        }           
+        
+        /**
+         * Indicates whether the user is allowed to edit the text in this control.
+         */
+        public function get editable():Boolean
+        {
+            return _editable ;
+        }
+
+        /**
+         * @private
+         */
+        public function set editable( b:Boolean ):void
+        {
+            _editable = b ;
+            viewEditableChanged() ;
         }        
         
         /**
@@ -74,8 +126,70 @@ package lunas.core
         public function set htmlText(str:String):void
         {
         	_htmlText = str ;
-        	update() ;
+        	viewHTMLTextChanged() ;
         }        
+        
+        /**
+         * Horizontal scroll position.
+         */
+        public function get horizontalScrollPosition():Number
+        {
+            return _textField.scrollH ;  
+        }        
+        
+        /**
+         * @private
+         */
+        public function set horizontalScrollPosition( position:Number ):void
+        {
+            _textField.scrollH = position ;  
+        }        
+        
+        /**
+         * Maximum number of characters that users can enter in the text field.
+         */
+        public function get maxChars():int 
+        { 
+            return _textField.maxChars ;
+        }
+
+        /**
+         * @private
+         */
+        public function set maxChars( i:int ):void 
+        { 
+            _textField.maxChars = i ;
+        }
+        
+        /**
+         * [read-only] Maximum value of horizontalScrollPosition.
+         */
+        public function maxHorizontalScrollPosition ():Number
+        {
+            return _textField.maxScrollH ;	
+        }
+        
+        /**
+         * Indicates the set of characters that a user can enter into the control.
+         * <p>If the value of the restrict property is null, you can enter any character.</p>
+         * <p>If the value of the restrict property is an empty string, you cannot enter any character.</p>
+         * <p>This property only restricts user interaction; a script can put any text into the text field.</p>
+         * <p>If the value of the restrict property is a string of characters, you may enter only characters in that string into the text field.</p>
+         * <p>The default value is null.</p>
+         * @see flash.text.TextField#restrict property
+         */
+        public function get restrict():String 
+        { 
+            return _textField.restrict ;
+        }
+
+        /**
+         * @private
+         */
+        public function set restrict( expression:String ):void 
+        { 
+            _textField.restrict = expression ;
+        }          
         
         /**
          * A flag that indicates whether this control is selected.
@@ -107,10 +221,12 @@ package lunas.core
         public function set text(str:String):void
         {
             _text = str ;
+            viewTextChanged() ;
         }        
         
         /**
          * The internal TextField that renders the text of this TextInput.
+         * Warning, if you use the setter of this virtual attribute the component is cleaned.
          */        
         public function get textField():TextField
         {
@@ -120,31 +236,52 @@ package lunas.core
         /**
          * @private
          */        
-        public function set textField(field:TextField):void
+        public function set textField( field:TextField ):void
         {
-        	_textField = field ;
+        	if ( _textField != null )
+        	{
+        	   removeChild( _textField ) ;	
+        	}
+        	_textField = field || new CoreTextField() ;
+        	addChild(_textField) ;
+        	viewEditableChanged() ;
+        	update() ;
         }
         
         /**
-         * Invoked when the group property or the groupName property changed.
+         * Called when the editable attributes are invoked.
          */
-        public override function groupPolicyChanged():void 
+        protected function viewEditableChanged():void
         {
-            //
-        }
+            _textField.selectable = enabled && editable ;
+            _textField.type       = (enabled && editable) ? TextFieldType.INPUT : TextFieldType.DYNAMIC ;
+        }         
         
         /**
-         * Called when the text or htmlText attributes are invoked.
+         * Called when the htmlText attributes are invoked.
          */
-        public function viewTextChanged():void
+        protected function viewHTMLTextChanged():void
         {
-            // overrides this method	
-        }
-                
+            // overrides this method    
+        }        
+        
+        /**
+         * Called when the text attributes are invoked.
+         */
+        protected function viewTextChanged():void
+        {
+            // overrides this method    
+        }  
+              
         /**
          * @private
          */
         private var _data:* ;
+        
+        /**
+         * @private
+         */
+        private var _editable:Boolean = true ;
         
         /**
          * @private
