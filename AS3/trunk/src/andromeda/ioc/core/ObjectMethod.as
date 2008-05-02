@@ -38,8 +38,7 @@ package andromeda.ioc.core
 		 */
 		public function ObjectMethod( name:String , arguments:Array =null )
 		{
-			super();
-			this.name      = name    ;
+            this.name      = name    ;
 			this.arguments = arguments ;
 		}
 		

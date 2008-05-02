@@ -176,7 +176,7 @@ package lunas.display.container
 		 */
 		public function notifyScroll():void 
 		{
-			_fireComponentEvent( ComponentEvent.SCROLL ) ;
+			fireComponentEvent( ComponentEvent.SCROLL ) ;
 		}
 
 		/**

@@ -40,17 +40,17 @@ package pegas.geom
             
             var suite:TestSuite = new TestSuite( "pegas.geom" );
             
-            suite.addTestSuite( TestDimension ) ;
-            suite.addTestSuite( TestMatrix4 ) ;
-            suite.addTestSuite( TestPlane ) ;
-            suite.addTestSuite( TestPoint ) ;
-            suite.addTestSuite( TestQuaternion ) ;
-            suite.addTestSuite( TestRay ) ;
-            suite.addTestSuite( TestUVCoordinate ) ;
-            suite.addTestSuite( TestVector2 ) ;
-            suite.addTestSuite( TestVector3 ) ;
-            suite.addTestSuite( TestVector4 ) ;
-            suite.addTestSuite( TestVertex ) ;
+            suite.addTestSuite( DimensionTest ) ;
+            suite.addTestSuite( Matrix4Test ) ;
+            suite.addTestSuite( PlaneTest ) ;
+            suite.addTestSuite( PointTest ) ;
+            suite.addTestSuite( QuaternionTest ) ;
+            suite.addTestSuite( RayTest ) ;
+            suite.addTestSuite( UVCoordinateTest ) ;
+            suite.addTestSuite( Vector2Test ) ;
+            suite.addTestSuite( Vector3Test ) ;
+            suite.addTestSuite( Vector4Test ) ;
+            suite.addTestSuite( VertexTest ) ;
                         
             return suite;
             

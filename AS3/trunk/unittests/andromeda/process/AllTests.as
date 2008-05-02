@@ -40,18 +40,18 @@ package andromeda.process
             
             var suite:TestSuite = new TestSuite( "andromeda.process" );
 			
-            suite.addTestSuite( TestAction ) ;
-            suite.addTestSuite( TestActionProxy ) ;
-            suite.addTestSuite( TestBatch ) ;
-            suite.addTestSuite( TestBatchProcess ) ;
-            suite.addTestSuite( TestEventDispatcherProcess ) ;
-            suite.addTestSuite( TestIAction ) ;
-            suite.addTestSuite( TestInitProcess ) ;
-            suite.addTestSuite( TestIStoppable ) ;
-            suite.addTestSuite( TestMessage ) ;
-            suite.addTestSuite( TestPause ) ;
-            suite.addTestSuite( TestSequencer ) ;
-            suite.addTestSuite( TestSimpleAction ) ;
+            suite.addTestSuite( ActionTest ) ;
+            suite.addTestSuite( ActionProxyTest ) ;
+            suite.addTestSuite( BatchTest ) ;
+            suite.addTestSuite( BatchProcessTest ) ;
+            suite.addTestSuite( EventDispatcherProcessTest ) ;
+            suite.addTestSuite( IActionTest ) ;
+            suite.addTestSuite( InitProcessTest ) ;
+            suite.addTestSuite( IStoppableTest ) ;
+            suite.addTestSuite( MessageTest ) ;
+            suite.addTestSuite( PauseTest ) ;
+            suite.addTestSuite( SequencerTest ) ;
+            suite.addTestSuite( SimpleActionTest ) ;
 
             return suite;
             

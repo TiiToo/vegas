@@ -22,10 +22,10 @@
 */
 package andromeda.ioc.core
 {
-	import buRRRn.ASTUce.framework.ITest;
-	import buRRRn.ASTUce.framework.TestSuite;	
+    import buRRRn.ASTUce.framework.ITest;
+    import buRRRn.ASTUce.framework.TestSuite;	
 
-	/**
+    /**
 	 * This class launch all tests.
 	 * @author eKameleon
 	 */
@@ -39,16 +39,17 @@ package andromeda.ioc.core
         {
             
             var suite:TestSuite = new TestSuite( "andromeda.ioc.core" );
-
-            // FIXME suite.addTestSuite( TestIObjectDefinition ) ;
-            // FIXME suite.addTestSuite( TestIObjectDefinitionContainer ) ;
-            // FIXME suite.addTestSuite( TestObjectAttribute ) ;
-            // FIXME suite.addTestSuite( TestObjectDefinition ) ;
-            // FIXME suite.addTestSuite( TestObjectDefinitionContainer ) ;
-            // FIXME suite.addTestSuite( TestObjectFactoryMethod ) ;
-            // FIXME suite.addTestSuite( TestObjectMethod ) ;
-            // FIXME suite.addTestSuite( TestObjectScope ) ;
-            // FIXME suite.addTestSuite( TestObjectStaticFactoryMethod ) ;
+            
+            suite.addTestSuite( AssemblyEntryTest ) ;
+            // FIXME suite.addTestSuite( IObjectDefinitionTest ) ;
+            // FIXME suite.addTestSuite( IObjectDefinitionContainerTest ) ;
+            // FIXME suite.addTestSuite( ObjectAttributeTest ) ;
+            // FIXME suite.addTestSuite( ObjectDefinitionTest ) ;
+            // FIXME suite.addTestSuite( ObjectDefinitionContainerTest ) ;
+            // FIXME suite.addTestSuite( ObjectFactoryMethodTest ) ;
+            // FIXME suite.addTestSuite( ObjectMethodTest ) ;
+            // FIXME suite.addTestSuite( ObjectScopeTest ) ;
+            // FIXME suite.addTestSuite( ObjectStaticFactoryMethodTest ) ;
 
             return suite;
             

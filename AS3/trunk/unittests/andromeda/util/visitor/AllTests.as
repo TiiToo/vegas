@@ -40,9 +40,9 @@ package andromeda.util.visitor
             
             var suite:TestSuite = new TestSuite( "andromeda.util.visitor" );
 
-            // FIXME suite.addTestSuite( TestAbstractVisitable ) ;
-            // FIXME suite.addTestSuite( TestIVisitable ) ; 
-            // FIXME suite.addTestSuite( TestIVisitor ) ; 
+            // FIXME suite.addTestSuite( AbstractVisitableTest ) ;
+            // FIXME suite.addTestSuite( IVisitableTest ) ; 
+            // FIXME suite.addTestSuite( IVisitorTest ) ; 
 
             return suite;
             

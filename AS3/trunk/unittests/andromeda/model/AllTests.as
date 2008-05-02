@@ -50,12 +50,12 @@ package andromeda.model
 	
 			// cases
 
-            // FIXME suite.addTestSuite( TestAbstractModel ) ;
-            // FIXME suite.addTestSuite( TestAbstractModelObject ) ;
-            // FIXME suite.addTestSuite( TestIModel ) ;
-            // FIXME suite.addTestSuite( TestIModelObject ) ;
-            // FIXME suite.addTestSuite( TestModelCollector ) ;
-            // FIXME suite.addTestSuite( TestSimpleModelObject ) ;
+            // FIXME suite.addTestSuite( AbstractModelTest ) ;
+            // FIXME suite.addTestSuite( AbstractModelObjectTest ) ;
+            // FIXME suite.addTestSuite( IModelTest ) ;
+            // FIXME suite.addTestSuite( IModelObjectTest ) ;
+            // FIXME suite.addTestSuite( ModelCollectorTest ) ;
+            // FIXME suite.addTestSuite( SimpleModelObjectTest ) ;
 
             return suite;
             

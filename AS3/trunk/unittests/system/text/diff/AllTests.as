@@ -20,16 +20,10 @@
 */
 package system.text.diff  
 {
-	import buRRRn.ASTUce.framework.ITest;
-	import buRRRn.ASTUce.framework.TestSuite;
-	
-	import system.text.diff.TestDifference;
-	import system.text.diff.TestGetMaxBits;
-	import system.text.diff.TestMatch;
-	import system.text.diff.TestPatch;
-	import system.text.diff.TestPatchObject;	
-
-	/**
+    import buRRRn.ASTUce.framework.ITest;
+    import buRRRn.ASTUce.framework.TestSuite;	
+    
+    /**
 	 * This class launch all tests.
 	 * @author eKameleon
 	 */
@@ -43,11 +37,11 @@ package system.text.diff
         {
             var suite:TestSuite = new TestSuite( "system.text.diff" );
 
-            suite.addTestSuite( TestDifference ) ;
-            suite.addTestSuite( TestGetMaxBits ) ;
-            suite.addTestSuite( TestMatch ) ;
-            suite.addTestSuite( TestPatch ) ;
-            suite.addTestSuite( TestPatchObject ) ;
+            suite.addTestSuite( DifferenceTest ) ;
+            suite.addTestSuite( GetMaxBitsTest ) ;
+            suite.addTestSuite( MatchTest ) ;
+            suite.addTestSuite( PatchTest ) ;
+            suite.addTestSuite( PatchObjectTest ) ;
             
             return suite;
         }

@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../print.css" type="text/css" media="print">
 <link rel="stylesheet" href="../../prettify.css" type="text/css">
-<meta content="AbstractComponent,lunas.core.AbstractComponent,_h,_w,bubbles,maxHeight,maxWidth,minHeight,minWidth,border,builder,enabled,group,groupName,h,style,w,_fireComponentEvent,doLater,draw,getBuilderRenderer,getStyleRenderer,groupPolicyChanged,hide,initialize,isVisible,move,notifyChanged,notifyEnabled,notifyResized,refresh,setSize,setStyle,show,update,viewChanged,viewDestroyed,viewEnabled,viewResize,viewStyleChanged" name="keywords">
+<meta content="AbstractComponent,lunas.core.AbstractComponent,_h,_w,bubbles,maxHeight,maxWidth,minHeight,minWidth,border,builder,enabled,group,groupName,h,style,w,doLater,draw,fireComponentEvent,getBuilderRenderer,getStyleRenderer,groupPolicyChanged,hide,initialize,isVisible,move,notifyChanged,notifyEnabled,notifyResized,refresh,setSize,setStyle,show,update,viewChanged,viewDestroyed,viewEnabled,viewResize,viewStyleChanged" name="keywords">
 <title>lunas.core.AbstractComponent</title>
 </head>
 <body>
@@ -45,7 +45,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="classHeaderTableLabel">Implements</td><td><a href="IBorder.html">IBorder</a>, <a href="IGroupable.html">IGroupable</a>, <a href="../../pegas/draw/IShape.html">IShape</a></td>
 </tr>
 <tr>
-<td class="classHeaderTableLabel">Subclasses</td><td><a href="../core/AbstractButton.html">AbstractButton</a>, <a href="../core/AbstractProgress.html">AbstractProgress</a>, <a href="../display/container/Container.html">Container</a></td>
+<td class="classHeaderTableLabel">Subclasses</td><td><a href="../core/AbstractButton.html">AbstractButton</a>, <a href="../core/AbstractProgress.html">AbstractProgress</a>, <a href="../core/AbstractTextInput.html">AbstractTextInput</a>, <a href="../display/container/Container.html">Container</a></td>
 </tr>
 </table>
 <p></p>
@@ -444,7 +444,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#_fireComponentEvent()">_fireComponentEvent</a>(type:String):void</div>
+<a class="signatureLink" href="#fireComponentEvent()">fireComponentEvent</a>(type:String):void</div>
 <div class="summaryTableDescription">
    Dispatchs a ComponentEvent with the specified type.</div>
 </td><td class="summaryTableOwnerCol">AbstractComponent</td>
@@ -691,26 +691,10 @@ showHideInherited();
 </div>
 <a name="methodDetail"></a>
 <div class="detailSectionHeader">Method detail</div>
-<a name="_fireComponentEvent()"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">_fireComponentEvent</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>protected function _fireComponentEvent(type:String):void</code><p>
-   Dispatchs a ComponentEvent with the specified type.
-   </p><span class="label">Parameters</span>
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td width="20px"></td><td><code><span class="label">type</span>:String</code></td>
-</tr>
-</table>
-</div>
 <a name="doLater()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">doLater</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">doLater</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
 </tr>
 </table>
 <div class="detailBody">
@@ -730,6 +714,22 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code>... <span class="label">arguments</span></code></td>
+</tr>
+</table>
+</div>
+<a name="fireComponentEvent()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">fireComponentEvent</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function fireComponentEvent(type:String):void</code><p>
+   Dispatchs a ComponentEvent with the specified type.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">type</span>:String</code></td>
 </tr>
 </table>
 </div>

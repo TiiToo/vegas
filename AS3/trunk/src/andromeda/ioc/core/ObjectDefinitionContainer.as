@@ -96,9 +96,9 @@ package andromeda.ioc.core
         }
         
         /**
-         * Registers an object in the container.
-         * @param name the name of the object.
-         * @param definition the definition of the object.
+         * Registers an object definition in the container.
+         * @param name the name of the object to register.
+         * @param definition the definition of the object to register.
          */
         public function addObjectDefinition( name:String, definition:IObjectDefinition ):void 
         {
@@ -124,9 +124,9 @@ package andromeda.ioc.core
         }
         
         /**
-         * Returns the numbers objects registered in the container.
+         * Returns the IObjectDefinition object register in the container with the specified id.
          * @param name the id name of the ObjectDefinition to return. 
-         * @return the IObjectDefinition registered in the container.
+         * @return the IObjectDefinition object register in the container with the specified id.
          * @throws IllegalArgumentError If the specified object definition don't exist in the container.
          */
         public function getObjectDefinition( name:String ):IObjectDefinition 
@@ -162,7 +162,7 @@ package andromeda.ioc.core
          * Returns the numbers objects registered in the container.
          * @return the numbers objects registered in the container.
          */
-        public function sizeObjectDefinition():Number 
+        public function sizeObjectDefinition():uint 
         {
             return _map.size() ;
         }

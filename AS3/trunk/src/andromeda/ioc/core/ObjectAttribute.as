@@ -74,8 +74,8 @@ package andromeda.ioc.core
 		 * The name of the external object property to register the destroy method name.
 		 */
 		public static const OBJECT_DESTROY_METHOD_NAME:String = "destroy" ;  
-		
-		/**
+        
+        /**
 		 * The name of the external object property to register the destroy method name.
 		 */
 		public static const OBJECT_FACTORY_METHOD:String = "factoryMethod" ;  

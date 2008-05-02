@@ -40,8 +40,8 @@ package andromeda.util.observer
             
             var suite:TestSuite = new TestSuite( "andromeda.util.observer" );
 
-            // FIXME suite.addTestSuite( TestIObserver ) ;
-            // FIXME suite.addTestSuite( TestIObservable ) ;            
+            // FIXME suite.addTestSuite( IObserverTest ) ;
+            // FIXME suite.addTestSuite( IObservableTest ) ;            
 
             return suite;
             

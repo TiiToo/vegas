@@ -153,7 +153,7 @@ package lunas.display.container
                 removeChildAt( size ) ; 
             }
             update() ;
-            _fireComponentEvent( ComponentEvent.CLEAR ) ;
+            fireComponentEvent( ComponentEvent.CLEAR ) ;
         }
 
         /**

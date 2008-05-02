@@ -39,6 +39,28 @@ package lunas.display.text
 
     /**
      * The simple representation of the ITextInput interface.
+     * <p><b>Example :</b></p>
+     * <pre class="prettyprint">
+     * import lunas.display.text.SimpleTextInput ;
+     * import lunas.display.text.SimpleTextInputStyle ;
+     * 
+     * var input:SimpleTextInput = new SimpleTextInput() ;
+     *  
+     * input.x = 50 ;
+     * input.y = 50 ;
+     * 
+     * addChild( input ) ;
+     * 
+     * // tests
+     * 
+     * input.style = new SimpleTextInputStyle( null , { color:0xFF0000 } ) ;
+     * 
+     * // input.displayAsPassword = true ;
+     * // input.htmlText = "&lt;p&gt;Hello &lt;b&gt;World&lt;/b&gt;&lt;/p&gt;" ;
+     * // input.restrict = "a-z 1-9" ;
+     * // input.editable = false ;
+     * // input.enabled  = false ;
+     * </pre>
      * @author eKameleon
      */
     public class SimpleTextInput extends AbstractTextInput 
@@ -224,9 +246,9 @@ package lunas.display.text
         private var _background:Sprite ;      
 
         /**
-         * The light color reference of the background.
+         * @private
          */
-        public var _backgroundColor:LightColor ;          
+        private var _backgroundColor:LightColor ;          
 
         /**
          * @private

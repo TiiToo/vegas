@@ -134,7 +134,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../core/ObjectDefinitionContainer.html#addObjectDefinition()">addObjectDefinition</a>(name:String, definition:<a href="../core/IObjectDefinition.html">IObjectDefinition</a>):void</div>
 <div class="summaryTableDescription">
-         Registers an object in the container.</div>
+         Registers an object definition in the container.</div>
 </td><td class="summaryTableOwnerCol"><a href="../core/ObjectDefinitionContainer.html">ObjectDefinitionContainer</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -158,7 +158,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#containsObject()">containsObject</a>(name:String):Boolean</div>
 <div class="summaryTableDescription">
-   Returns <code class="prettyprint">true</code> if the LightContainer contains the specified name.</div>
+   Returns <code class="prettyprint">true</code> if the container contains the specified name.</div>
 </td><td class="summaryTableOwnerCol">ObjectFactory</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -305,7 +305,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="../core/ObjectDefinitionContainer.html#getObjectDefinition()">getObjectDefinition</a>(name:String):<a href="../core/IObjectDefinition.html">IObjectDefinition</a>
 </div>
 <div class="summaryTableDescription">
-         Returns the numbers objects registered in the container.</div>
+         Returns the IObjectDefinition object register in the container with the specified id.</div>
 </td><td class="summaryTableOwnerCol"><a href="../core/ObjectDefinitionContainer.html">ObjectDefinitionContainer</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -370,7 +370,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#isSingleton()">isSingleton</a>(name:String):Boolean</div>
 <div class="summaryTableDescription">
-   This method defined if the object is a singleton or a prototype.</div>
+   This method indicates if the object is a singleton.</div>
 </td><td class="summaryTableOwnerCol">ObjectFactory</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -544,7 +544,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="../core/ObjectDefinitionContainer.html#sizeObjectDefinition()">sizeObjectDefinition</a>():Number</div>
+<a class="signatureLink" href="../core/ObjectDefinitionContainer.html#sizeObjectDefinition()">sizeObjectDefinition</a>():uint</div>
 <div class="summaryTableDescription">
          Returns the numbers objects registered in the container.</div>
 </td><td class="summaryTableOwnerCol"><a href="../core/ObjectDefinitionContainer.html">ObjectDefinitionContainer</a></td>
@@ -821,7 +821,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function containsObject(name:String):Boolean</code><p>
-   Returns <code class="prettyprint">true</code> if the LightContainer contains the specified name.
+   Returns <code class="prettyprint">true</code> if the container contains the specified name.
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -833,7 +833,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the LightContainer contains the specified name.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the container contains the specified name.
    </td>
 </tr>
 </table>
@@ -1064,7 +1064,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function isSingleton(name:String):Boolean</code><p>
-   This method defined if the object is a singleton or a prototype.
+   This method indicates if the object is a singleton.
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -1076,7 +1076,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the object is a singleton or else if the object is a prototype. 
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the object is a singleton. 
     </td>
 </tr>
 </table>

@@ -40,8 +40,8 @@ package andromeda.controller
             
             var suite:TestSuite = new TestSuite( "andromeda.controller" );
 
-            suite.addTestSuite( TestIController ) ;   
-            suite.addTestSuite( TestAbstractController ) ; 
+            suite.addTestSuite( IControllerTest ) ;   
+            suite.addTestSuite( AbstractControllerTest ) ; 
 
             return suite;
             

@@ -341,7 +341,7 @@ package lunas.core
 		public function hide():void 
 		{
 			visible = false ;
-			_fireComponentEvent( ComponentEvent.HIDE  ) ;
+			fireComponentEvent( ComponentEvent.HIDE  ) ;
 		}
 		
 		/**
@@ -377,7 +377,7 @@ package lunas.core
 			{
 				this.y = y ;
 			}
-			_fireComponentEvent( ComponentEvent.MOVE ) ;
+			fireComponentEvent( ComponentEvent.MOVE ) ;
 		}
 		
 		/**
@@ -385,7 +385,7 @@ package lunas.core
 		 */
 		public function notifyChanged():void 
 		{
-			_fireComponentEvent( ComponentEvent.CHANGE ) ;
+			fireComponentEvent( ComponentEvent.CHANGE ) ;
 		}		
 				
 		/**
@@ -394,7 +394,7 @@ package lunas.core
 		 */
 		public function notifyEnabled():void
 		{
-			_fireComponentEvent( ComponentEvent.ENABLED ) ;	
+			fireComponentEvent( ComponentEvent.ENABLED ) ;	
 		}
 		
 		/**
@@ -403,7 +403,7 @@ package lunas.core
 		public function notifyResized():void 
 		{
 			viewResize() ;
-			_fireComponentEvent( ComponentEvent.RESIZE ) ;
+			fireComponentEvent( ComponentEvent.RESIZE ) ;
 		}
 		
 		/**
@@ -451,7 +451,7 @@ package lunas.core
 		public function show():void 
 		{
 			visible = true ;
-			_fireComponentEvent( ComponentEvent.SHOW  ) ;
+			fireComponentEvent( ComponentEvent.SHOW  ) ;
 		}
 		
 		/**
@@ -469,7 +469,7 @@ package lunas.core
 				_builder.update() ;
 			}
 			viewChanged() ;
-			_fireComponentEvent( Event.RENDER ) ;
+			fireComponentEvent( Event.RENDER ) ;
 		}
 		
 		/**
@@ -565,7 +565,7 @@ package lunas.core
 		/**
 		 * Dispatchs a ComponentEvent with the specified type.
 		 */
-		protected function _fireComponentEvent( type:String ):void
+		protected function fireComponentEvent( type:String ):void
 		{
 			dispatchEvent( new ComponentEvent( type , this , bubbles )  ) ;
 		}

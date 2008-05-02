@@ -26,6 +26,15 @@ package system.text.html
         
     /**
      * The HTML tool class.
+     * <p><b>Example :</b></p>
+     * <pre class="prettyprint">
+     * import system.text.html.HTML ;
+     * var encode:String = HTML.encode("&lt;p&gt;Hello &lt;b&gt;World&lt;/b&gt;&lt;/p&gt;") ;
+     * trace( "HTML.encode : " + encode ) ;
+     * 
+     * var decode:String = HTML.decode( encode ) ;
+     * trace( "HTML.decode : " + decode ) ;
+     * </pre>
      */
     public class HTML
         {

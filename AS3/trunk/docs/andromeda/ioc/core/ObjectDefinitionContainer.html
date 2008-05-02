@@ -170,7 +170,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#addObjectDefinition()">addObjectDefinition</a>(name:String, definition:<a href="IObjectDefinition.html">IObjectDefinition</a>):void</div>
 <div class="summaryTableDescription">
-         Registers an object in the container.</div>
+         Registers an object definition in the container.</div>
 </td><td class="summaryTableOwnerCol">ObjectDefinitionContainer</td>
 </tr>
 <tr class="">
@@ -317,7 +317,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="#getObjectDefinition()">getObjectDefinition</a>(name:String):<a href="../core/IObjectDefinition.html">IObjectDefinition</a>
 </div>
 <div class="summaryTableDescription">
-         Returns the numbers objects registered in the container.</div>
+         Returns the IObjectDefinition object register in the container with the specified id.</div>
 </td><td class="summaryTableOwnerCol">ObjectDefinitionContainer</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -532,7 +532,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#sizeObjectDefinition()">sizeObjectDefinition</a>():Number</div>
+<a class="signatureLink" href="#sizeObjectDefinition()">sizeObjectDefinition</a>():uint</div>
 <div class="summaryTableDescription">
          Returns the numbers objects registered in the container.</div>
 </td><td class="summaryTableOwnerCol">ObjectDefinitionContainer</td>
@@ -709,18 +709,18 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function addObjectDefinition(name:String, definition:<a href="IObjectDefinition.html">IObjectDefinition</a>):void</code><p>
-         Registers an object in the container.
+         Registers an object definition in the container.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">name</span>:String</code> &mdash; the name of the object.
+<td width="20px"></td><td><code><span class="label">name</span>:String</code> &mdash; the name of the object to register.
          </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">definition</span>:<a href="IObjectDefinition.html">IObjectDefinition</a></code> &mdash; the definition of the object.
+<td width="20px"></td><td><code><span class="label">definition</span>:<a href="IObjectDefinition.html">IObjectDefinition</a></code> &mdash; the definition of the object to register.
          </td>
 </tr>
 </table>
@@ -768,7 +768,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function getObjectDefinition(name:String):<a href="../core/IObjectDefinition.html">IObjectDefinition</a></code><p>
-         Returns the numbers objects registered in the container.
+         Returns the IObjectDefinition object register in the container with the specified id.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -781,7 +781,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code><a href="../core/IObjectDefinition.html">IObjectDefinition</a></code> &mdash; 
-                        the IObjectDefinition registered in the container.
+                        the IObjectDefinition object register in the container with the specified id.
          
                         
                      </td>
@@ -828,13 +828,13 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function sizeObjectDefinition():Number</code><p>
+<code>public function sizeObjectDefinition():uint</code><p>
          Returns the numbers objects registered in the container.
          </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Number</code> &mdash; the numbers objects registered in the container.
+<td width="20"></td><td><code>uint</code> &mdash; the numbers objects registered in the container.
          </td>
 </tr>
 </table>

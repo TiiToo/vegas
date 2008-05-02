@@ -30,6 +30,7 @@ package andromeda.ioc.factory
     import flash.system.ApplicationDomain;
     import flash.system.LoaderContext;
     
+    import andromeda.ioc.core.AssemblyEntry;
     import andromeda.ioc.core.ObjectAttribute;
     import andromeda.ioc.core.ObjectDefinition;
     import andromeda.ioc.factory.ObjectFactory;
@@ -534,38 +535,3 @@ package andromeda.ioc.factory
 
     }
 }
-
-import andromeda.ioc.core.ObjectDefinition;
-
-import vegas.core.CoreObject;
-
-/**
- * This entries contains an ObjectDefinition and this assemblyName value. 
- * @author eKameleon
- */
-class AssemblyEntry extends CoreObject
-{
-
-    /**
-     * Creates a new AssemblyEntry instance.
-     * @param name The name of the assembly file to load.
-     * @param definition The object definition attached with the assembly file.
-     */
-    public function AssemblyEntry( name:String , definition:ObjectDefinition )
-    {
-        this.name       = name ;
-        this.definition = definition ;
-    }
-    
-    /**
-     * The ObjectDefinition of this entry.
-     */
-    public var definition:ObjectDefinition ;
-    
-    /**
-     * The name of this entry.
-     */
-    public var name:String ;
-    
-}
-

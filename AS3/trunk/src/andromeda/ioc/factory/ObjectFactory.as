@@ -85,9 +85,9 @@ package andromeda.ioc.factory
 		public var singletons:HashMap ;
 		
 		/**
-		 * Returns <code class="prettyprint">true</code> if the LightContainer contains the specified name.
+		 * Returns <code class="prettyprint">true</code> if the container contains the specified name.
 		 * @param name the name of the object in the container.
-		 * @return <code class="prettyprint">true</code> if the LightContainer contains the specified name.
+		 * @return <code class="prettyprint">true</code> if the container contains the specified name.
 		 */		
 		public function containsObject(name:String):Boolean 
 		{
@@ -155,9 +155,9 @@ package andromeda.ioc.factory
 		}
 
 		/**
-		 * This method defined if the object is a singleton or a prototype.
+		 * This method indicates if the object is a singleton.
 		 * @param name The name of the object to find.
-		 * @return <code class="prettyprint">true</code> if the object is a singleton or else if the object is a prototype. 
+		 * @return <code class="prettyprint">true</code> if the object is a singleton. 
 	 	 */	
 		public function isSingleton( name:String ):Boolean 
 		{

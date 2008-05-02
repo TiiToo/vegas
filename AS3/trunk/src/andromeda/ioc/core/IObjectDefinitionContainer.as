@@ -64,7 +64,7 @@ package andromeda.ioc.core
 		 * Returns the numbers objects registered in the container.
 		 * @return the numbers objects registered in the container.
 		 */
-		function sizeObjectDefinition():Number ;
+		function sizeObjectDefinition():uint ;
 		
 	}
 }
