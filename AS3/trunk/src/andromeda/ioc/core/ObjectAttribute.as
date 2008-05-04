@@ -130,6 +130,16 @@ package andromeda.ioc.core
 		 */
 		public static const TYPE:String = "type" ;  
 		
+        /**
+         * Defines the attribute name of the alias expression in a typeAlias object in the configuration of the ioc factory.
+         */
+        public static const TYPE_ALIAS:String = "alias" ; 		
+		
+        /**
+         * Defines the attribute name of the 'typeAliases' Array in the configuration of the ioc factory.
+         */
+        public static const TYPE_ALIASES:String = "typeAliases" ;   		
+		
 		/**
 		 * Defines the label of the reference in a property object.
 		 */

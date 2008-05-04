@@ -27,10 +27,10 @@ package andromeda.ioc.factory
 	/**
 	 * @author eKameleon
 	 */
-	public class TestObjectConfig extends TestCase 
+	public class ObjectConfigTest extends TestCase 
 	{
 
-		public function TestObjectConfig(name:String = "")
+		public function ObjectConfigTest(name:String = "")
 		{
 			super(name);
 		}

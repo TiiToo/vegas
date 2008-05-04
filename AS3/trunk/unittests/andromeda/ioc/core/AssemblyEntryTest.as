@@ -69,9 +69,7 @@ package andromeda.ioc.core
         {
         	assertEquals( entry.name , "id" , "AssemblyEntry.definition failed.") ;
         }        
-
-
-
+        
 	}
 }
 

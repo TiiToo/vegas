@@ -3,7 +3,7 @@
     [
         {
             id         : "my_field" ,
-            type       : "flash.text.TextField"  , // this class is created and embed in the library of the swf.
+            type       : "TextField"  , // this class is created and embed in the library of the swf.
             properties : 
             [
                 { name : "autoSize"          , value : "left" } ,

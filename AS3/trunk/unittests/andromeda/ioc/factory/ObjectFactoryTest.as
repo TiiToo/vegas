@@ -20,34 +20,19 @@
   Contributor(s) :
   
 */
-package andromeda.ioc.factory
+package andromeda.ioc.factory 
 {
-	import buRRRn.ASTUce.framework.ITest;
-	import buRRRn.ASTUce.framework.TestSuite;	
-
+	import buRRRn.ASTUce.framework.TestCase;
+	
 	/**
-	 * This class launch all tests.
 	 * @author eKameleon
 	 */
-	public class AllTests
+	public class ObjectFactoryTest extends TestCase 
 	{
-		
-        /**
-         * Creates the Test list.
-         */		
-        public static function suite():ITest
-        {
-            
-            var suite:TestSuite = new TestSuite( "andromeda.ioc.factory" );
 
-            // FIXME suite.addTestSuite( ECMAObjectFactoryTest ) ;
-            // FIXME suite.addTestSuite( IObjectFactoryTest ) ;
-            // FIXME suite.addTestSuite( ObjectConfigTest ) ;
-            // FIXME suite.addTestSuite( ObjectFactoryTest ) ;
-
-            return suite;
-            
-        }
-        
+		public function ObjectFactoryTest(name:String = "")
+		{
+			super(name);
+		}
 	}
 }

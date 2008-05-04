@@ -22,14 +22,8 @@
 */
 package andromeda.ioc.factory 
 {
-    import flash.utils.getDefinitionByName;
-    
-    import andromeda.ioc.core.IObjectDefinition;
-    import andromeda.ioc.core.ObjectAttribute;
-    import andromeda.ioc.core.ObjectDefinitionContainer;
-    import andromeda.ioc.core.ObjectFactoryMethod;
-    import andromeda.ioc.core.ObjectMethod;
-    import andromeda.ioc.core.ObjectStaticFactoryMethod;
+    import andromeda.ioc.core.*;
+    import andromeda.ioc.evaluators.TypeEvaluator;
     import andromeda.ioc.factory.IObjectFactory;
     
     import system.Reflection;
@@ -39,7 +33,7 @@ package andromeda.ioc.factory
     import vegas.data.iterator.Iterator;
     import vegas.data.map.HashMap;
     import vegas.errors.NullPointerError;
-    import vegas.util.ClassUtil;	
+    import vegas.util.ClassUtil;    
 
     /**
 	 * The factory of all objects who implements the IObjectDefinition interface.
@@ -56,7 +50,8 @@ package andromeda.ioc.factory
 		public function ObjectFactory( bGlobal:Boolean = false , sChannel:String = null )
 		{
 			super( bGlobal, sChannel ) ;
-			singletons = new HashMap() ;
+			typeEvaluator = new TypeEvaluator() ;
+            singletons = new HashMap() ;
 			if ( config == null )
 			{
 				config = new ObjectConfig() ; // the default empty ObjectConfig instance.
@@ -76,8 +71,9 @@ package andromeda.ioc.factory
 		 */
 		public function set config( o:ObjectConfig ):void
 		{
-			_config = o ;	
-		}		
+			_config = o ;
+			typeEvaluator.config = _config ;
+        }		
 		
 		/**
 		 * The maps of all objects in the container.
@@ -126,7 +122,7 @@ package andromeda.ioc.factory
 					}
 					else
 					{
-						instance = createObject( definition.getType() , definition ) ;
+						instance = createObject( definition ) ;
 					}
 				}
 			}
@@ -239,7 +235,7 @@ package andromeda.ioc.factory
 			var instance:* = singletons.get( name ) ;
 			if( !instance ) 
 			{
-				instance = createObject( definition.getType() , definition ) ;
+				instance = createObject( definition ) ;
 				singletons.put( name, instance ) ;
 			}
 			return instance;
@@ -249,15 +245,15 @@ package andromeda.ioc.factory
 		 * Creates a new Object with the specified name and the specified IObjectDefinition in argument.
 		 * @return a new Object with the specified name and the specified IObjectDefinition in argument.
 		 */
-		protected function createObject( name:String , definition:IObjectDefinition ):*
+		protected function createObject( definition:IObjectDefinition ):*
 		{
 			var instance:* = null ;
 			var clazz:Class ;
 			var factoryMethod:ObjectMethod = definition.getFactoryMethod() ;
 			if ( factoryMethod == null )
 			{
-				clazz    = getDefinitionByName(name) as Class ;
-				instance = ClassUtil.buildNewInstance(clazz, createArguments( definition.getConstructorArguments()) ) ;
+				clazz           = typeEvaluator.eval( definition.getType() ) as Class ;
+				instance        = ClassUtil.buildNewInstance( clazz, createArguments( definition.getConstructorArguments()) ) ;
 			}
 			else
 			{	
@@ -267,7 +263,7 @@ package andromeda.ioc.factory
 				var ref:* ;
 				if ( factoryMethod is ObjectStaticFactoryMethod )
 				{
-					clazz      = getDefinitionByName( (factoryMethod as ObjectStaticFactoryMethod).type as String ) as Class ;
+					clazz      = typeEvaluator.eval( (factoryMethod as ObjectStaticFactoryMethod).type as String ) as Class ;
 					methodName = (factoryMethod as ObjectStaticFactoryMethod).name ;
 					if ( clazz != null && methodName in clazz ) 
 					{
@@ -427,7 +423,11 @@ package andromeda.ioc.factory
 			} 
 		}
 
-
+        /**
+         * @private
+         */
+        protected var typeEvaluator:TypeEvaluator ;        
+        
 		/**
 		 * Returns the object register in cache in this container.
 	 	 * @param the name of the object.

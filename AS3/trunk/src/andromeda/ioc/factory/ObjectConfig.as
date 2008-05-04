@@ -22,9 +22,14 @@
 */
 package andromeda.ioc.factory 
 {
+    import andromeda.ioc.core.ObjectAttribute;
+    import andromeda.ioc.core.TypeAliases;
+    import andromeda.ioc.core.TypePolicy;
+    
     import system.Reflection;
     
-    import vegas.core.CoreObject;    
+    import vegas.core.CoreObject;
+    import vegas.data.iterator.Iterator;    
 
     /**
 	 * This object contains the configuration of the IOC object factory.
@@ -54,6 +59,7 @@ package andromeda.ioc.factory
 		 */
 		public function ObjectConfig( init:Object=null )
 		{
+            _typeAliases = new TypeAliases() ;
 			initialize( init ) ;
 		}
 		
@@ -73,6 +79,86 @@ package andromeda.ioc.factory
 		public var identify:Boolean ;
 		
 		/**
+		 * Determinates the typeAliases reference of this config object.
+		 * <p>The setter of this virtual property can be populated with a TypeAliases instance or an Array of typeAliases items.</p>
+		 * <p>This setter attribute don't remove the old TypeAliases instance but fill it with new aliases. 
+		 * If you want cleanup the aliases of this configuration object you must use the <code class="prettyprint">typeAliases.clear()</code> method.</p>
+		 * <p>The typeAliases items are generic objects with 2 attributes <b>alias</b> (the alias String expression) and <b>type</b> (the type String expression).</p>
+		 * <p><b>Example :</b></p>
+		 * <pre class="prettyprint">
+		 * </pre> 
+		 */
+		public function get typeAliases():*
+		{
+		  	return _typeAliases ;
+		}
+		
+        /**
+         * @private
+         */
+        public function set typeAliases( aliases:* ):void
+        {
+            if ( aliases is TypeAliases )
+            {
+            	var it:Iterator = (aliases as TypeAliases).iterator() ;
+            	while( it.hasNext() )
+            	{
+            		var next:String = it.next() as String ;
+            		var key:String  = it.key() as String ;
+            	   	_typeAliases.put(key, next) ;
+            	}
+            }
+            else if ( aliases is Array )
+            {
+            	var arr:Array = aliases as Array ;
+            	var len:uint  = arr.length ;
+            	if ( len > 0 )
+            	{
+               	   while ( --len > -1 )
+            	   {
+                	   var item:Object = arr[len] as Object ;
+            	       if ( item != null && ( ObjectAttribute.TYPE_ALIAS in item ) && ( ObjectAttribute.TYPE in item ) )
+            	       {
+                	   	   _typeAliases.put( item[ObjectAttribute.TYPE_ALIAS] as String , item[ObjectAttribute.TYPE] as String ) ;
+            	       }	
+            	   }
+            	}
+            }
+        }
+        
+        /**
+         * Indicates the type policy of the object factory who use this configuration object. 
+         * The default value of this attribute is <code class="prettyprint">TypePolicy.NONE</code>.
+         * <p>You can use the TypePolicy.NONE, TypePolicy.ALL, TypePolicy.ALIAS values./p>
+         * @see andromeda.ioc.core.TypePolicy
+         */
+        public function get typePolicy():String
+        {
+            return _typePolicy ;	
+        }
+        
+        /**
+         * @private
+         */
+        public function set typePolicy( policy:String ):void
+        {
+        	switch( policy )
+        	{
+        		case TypePolicy.ALIAS :
+        		case TypePolicy.ALL   :
+        		case TypePolicy.NONE  :
+        		{
+                    _typePolicy = policy ;
+                    break ;
+        		}
+        		default :
+        		{
+                    _typePolicy = TypePolicy.NONE ;
+                }
+        	}
+        }        
+        
+        /**
 		 * Initialize the config object.
 		 * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
 		 */
@@ -90,7 +176,7 @@ package andromeda.ioc.factory
 				}	
 			}
 		}
-		
+        		
 		/**
 		 * Returns the string representation of this instance.
 		 * @return the string representation of this instance.
@@ -113,6 +199,16 @@ package andromeda.ioc.factory
 			s += "]" ;
 			return s ;
 		}
+		
+		/**
+		 * @private
+		 */
+		private var _typeAliases:TypeAliases ;
+	           
+        /**
+         * @private
+         */
+        private var _typePolicy:String = TypePolicy.NONE ;	
 		
 	}
 }

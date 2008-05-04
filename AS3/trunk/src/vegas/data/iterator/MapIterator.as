@@ -23,12 +23,12 @@
 
 package vegas.data.iterator
 {
-	import vegas.core.CoreObject;
-	import vegas.data.Map;
-	import vegas.errors.UnsupportedOperation;
-	import vegas.util.Serializer; 
+    import vegas.core.CoreObject;
+    import vegas.data.Map;
+    import vegas.errors.UnsupportedOperation;
+    import vegas.util.Serializer; 
 
-	/**
+    /**
      * Converts a <code class="prettyprint">Map</code> to an iterator.
      * @author eKameleon
      */
@@ -36,67 +36,67 @@ package vegas.data.iterator
     {
         
        /**
-	    * Creates a new MapIterator instance.
-	    * @param m the Map reference of this iterator. 
-	    */
+        * Creates a new MapIterator instance.
+        * @param m the Map reference of this iterator. 
+        */
         public function MapIterator(m:Map)
         {
-		    _m = m ;
-    		_i = new ArrayIterator(m.getKeys()) ;
-    		_k = null ;
+            _m = m ;
+            _i = new ArrayIterator(m.getKeys()) ;
+            _k = null ;
         }
         
-    	/**
-    	 * Returns <code class="prettyprint">true</code> if the iteration has more elements.
-    	 * @return <code class="prettyprint">true</code> if the iteration has more elements.
-    	 */	
+        /**
+         * Returns <code class="prettyprint">true</code> if the iteration has more elements.
+         * @return <code class="prettyprint">true</code> if the iteration has more elements.
+         */    
         public function hasNext():Boolean
         {
             return _i.hasNext() ;
         }
 
-    	/**
-    	 * Returns the current key of the internal pointer of the iterator (optional operation).
-    	 * @return the current key of the internal pointer of the iterator (optional operation).
-    	 */
+        /**
+         * Returns the current key of the internal pointer of the iterator (optional operation).
+         * @return the current key of the internal pointer of the iterator (optional operation).
+         */
         public function key():*
         {
             return _k ;
         }
         
-       	/**
-	     * Returns the next element in the iteration.
-	     * @return the next element in the iteration.
-	     */
+           /**
+         * Returns the next element in the iteration.
+         * @return the next element in the iteration.
+         */
         public function next():*
         {
-		    _k = _i.next() ;
-    		return _m.get(_k) ;
+            _k = _i.next() ;
+            return _m.get(_k) ;
         }
 
-    	/**
-    	 * Removes from the underlying collection the last element returned by the iterator (optional operation).
-    	 */
+        /**
+         * Removes from the underlying collection the last element returned by the iterator (optional operation).
+         */
         public function remove():*
         {
-		    _i.remove() ;
-    		return _m.remove(_k) ;
+            _i.remove() ;
+            return _m.remove(_k) ;
         }
 
-    	/**
-    	 * Reset the internal pointer of the iterator (optional operation).
-    	 */
+        /**
+         * Reset the internal pointer of the iterator (optional operation).
+         */
         public function reset():void
         {
             _i.reset() ;
         }        
 
-    	/**
-    	 * Change the position of the internal pointer of the iterator (optional operation).
-    	 */	
+        /**
+         * Change the position of the internal pointer of the iterator (optional operation).
+         */    
         public function seek(position:*):void
         {
-		    throw new UnsupportedOperation("This Iterator does not support the seek() method.") ;
+            throw new UnsupportedOperation("This Iterator does not support the seek() method.") ;
         }
         
         /**
@@ -107,10 +107,21 @@ package vegas.data.iterator
         {
             return "new vegas.data.iterator.MapIterator(" + Serializer.toSource(_m) + ")" ;
         }
-    
-    	private var _m:Map ; 
-    	private var _i:ArrayIterator ; 
-    	private var _k:* ; // current key
+        
+        /**
+         * @private
+         */
+        private var _m:Map ; 
+
+        /**
+         * @private
+         */
+        private var _i:ArrayIterator ; 
+
+        /**
+         * @private
+         */
+        private var _k:* ; // current key
         
     }
 }

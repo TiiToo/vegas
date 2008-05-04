@@ -23,7 +23,7 @@
 package andromeda.ioc.core
 {
     import buRRRn.ASTUce.framework.ITest;
-    import buRRRn.ASTUce.framework.TestSuite;	
+    import buRRRn.ASTUce.framework.TestSuite;    
 
     /**
 	 * This class launch all tests.
@@ -50,7 +50,9 @@ package andromeda.ioc.core
             // FIXME suite.addTestSuite( ObjectMethodTest ) ;
             // FIXME suite.addTestSuite( ObjectScopeTest ) ;
             // FIXME suite.addTestSuite( ObjectStaticFactoryMethodTest ) ;
-
+            suite.addTestSuite( TypeAliasesTest ) ;
+            suite.addTestSuite( TypePolicyTest ) ;
+                        
             return suite;
             
         }

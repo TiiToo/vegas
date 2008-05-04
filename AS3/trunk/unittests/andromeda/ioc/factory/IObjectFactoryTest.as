@@ -27,10 +27,10 @@ package andromeda.ioc.factory
 	/**
 	 * @author eKameleon
 	 */
-	public class TestObjectFactory extends TestCase 
+	public class IObjectFactoryTest extends TestCase 
 	{
 
-		public function TestObjectFactory(name:String = "")
+		public function IObjectFactoryTest(name:String = "")
 		{
 			super(name);
 		}

@@ -4,7 +4,13 @@
     {
         defaultInitMethod    : "initialize" ,
         defaultDestroyMethod : "destroy"    ,
-        identify             : true
+        identify             : true         ,
+        typePolicy           : "alias"      , // "none", "all", "alias"
+        typeAliases          : 
+        [
+			{ alias:"TextField" , type:"flash.text.TextField" } ,
+			{ alias:"User"      , type:"test.User"            } 
+        ]
     }
     ,
     imports :
@@ -17,7 +23,7 @@
         
         {
             id        : "user" ,
-            type      : "test.User" ,            
+            type      : "User" ,            
             singleton : true ,
             arguments : 
             [

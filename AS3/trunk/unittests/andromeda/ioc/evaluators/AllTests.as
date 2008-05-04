@@ -20,19 +20,31 @@
   Contributor(s) :
   
 */
-package andromeda.ioc.factory 
+package andromeda.ioc.evaluators
 {
-	import buRRRn.ASTUce.framework.TestCase;
-	
-	/**
+    import buRRRn.ASTUce.framework.ITest;
+    import buRRRn.ASTUce.framework.TestSuite;    
+
+    /**
+	 * This class launch all tests.
 	 * @author eKameleon
 	 */
-	public class TestECMAObjectFactory extends TestCase 
+	public class AllTests
 	{
-
-		public function TestECMAObjectFactory(name:String = "")
-		{
-			super(name);
-		}
+		
+        /**
+         * Creates the Test list.
+         */		
+        public static function suite():ITest
+        {
+            
+            var suite:TestSuite = new TestSuite( "andromeda.ioc.evaluators" );
+            
+            suite.addTestSuite( TypeEvaluatorTest ) ;
+                        
+            return suite;
+            
+        }
+        
 	}
 }

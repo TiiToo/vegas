@@ -20,37 +20,39 @@
   Contributor(s) :
   
 */
-package andromeda.ioc  
+package andromeda.ioc.core 
 {
-    import andromeda.ioc.core.AllTests;
-    import andromeda.ioc.evaluators.AllTests;    
-    import andromeda.ioc.factory.AllTests;
-    
-    import buRRRn.ASTUce.framework.ITest;
-    import buRRRn.ASTUce.framework.TestSuite;	
+    import buRRRn.ASTUce.framework.TestCase;            
 
     /**
-	 * This class launch all tests.
-	 * @author eKameleon
-	 */
-	public class AllTests
-	{
-		
+     * The TypePolicy test case.
+     * @author eKameleon
+     */
+    public class TypePolicyTest extends TestCase 
+    {
+
         /**
-         * Creates the Test list.
-         */		
-        public static function suite():ITest
+         * Creates a new TypePolicyTest instance.
+         */
+        public function TypePolicyTest(name:String = "")
         {
-            
-            var suite:TestSuite = new TestSuite( "andromeda.ioc" );
-
-            suite.addTest( andromeda.ioc.core.AllTests.suite() ) ;
-            suite.addTest( andromeda.ioc.evaluators.AllTests.suite() ) ;
-            suite.addTest( andromeda.ioc.factory.AllTests.suite() ) ;
-
-            return suite;
-            
+            super( name );
         }
         
-	}
+        public function testALIAS():void
+        {
+        	assertEquals( TypePolicy.ALIAS,  "alias" , "TypePolicy.ALIAS failed.") ;
+        }  
+                
+        public function testALL():void
+        {
+            assertEquals( TypePolicy.ALL,  "all" , "TypePolicy.ALL failed.") ;
+        }  
+        
+        public function testNONE():void
+        {
+            assertEquals( TypePolicy.NONE,  "none" , "TypePolicy.NONE failed.") ;
+        }  
+                
+    }
 }
