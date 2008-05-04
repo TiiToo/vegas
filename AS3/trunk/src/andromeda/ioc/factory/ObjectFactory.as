@@ -37,6 +37,54 @@ package andromeda.ioc.factory
 
     /**
 	 * The factory of all objects who implements the IObjectDefinition interface.
+     * <p><b>Example :</b></p>
+     * <pre class="prettyprint">
+     * import test.User ;
+     * 
+     * import andromeda.ioc.core.ObjectDefinition ;
+     * import andromeda.ioc.factory.ObjectFactory ;
+     * 
+     * import vegas.data.map.HashMap ;
+     * 
+     * var factory:ObjectFactory = new ObjectFactory();
+     * 
+     * var properties:HashMap = new HashMap() ;
+     * properties.put("pseudo" , "ekameleon" ) ;
+     * properties.put("url"  , "http://www.ekameleon.net/blog" );
+     * 
+     * var definition:ObjectDefinition = new ObjectDefinition( "test.User" ) ;
+     * definition.setProperties( properties ) ;
+     * definition.setInitMethodName( "initialize" ) ;
+     * 
+     * factory.addObjectDefinition("user", definition );
+     * 
+     * var user:User = factory.getObject("user") ;
+     * 
+     * trace( "# User pseudo : " + user.pseudo ) ; // ekameleon
+     * trace( "# User url    : " + user.url    ) ; // http://www.ekameleon.net/blog
+     * </pre>
+     * With the <b>test.User</b> class :
+     * <pre class="prettyprint">
+     * package test
+     * {
+     *     import vegas.core.CoreObject ;
+     * 
+     *     public class User extends CoreObject
+     *     {
+     *         
+     *         public function User() {}
+     *         
+     *         public var pseudo:String ;
+     *         public var url:String ;
+     *         
+     *         public function initialize():void
+     *         {
+     *             trace( "# " + this + " initialize.") ;
+     *         }
+     *         
+     *     }
+     * }
+     * </pre>
 	 * @author eKameleon
 	 */
 	public class ObjectFactory extends ObjectDefinitionContainer implements IObjectFactory 

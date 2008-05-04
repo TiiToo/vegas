@@ -32,67 +32,76 @@ package andromeda.ioc.factory
     import vegas.data.iterator.Iterator;    
 
     /**
-	 * This object contains the configuration of the IOC object factory.
-	 * <p><b>Example :</b></p>
-	 * <pre class="prettyprint">
-	 * import andromeda.ioc.factory.ECMAObjectFactory ;
-	 * import andromeda.ioc.factory.ObjectConfig ;
-	 * 
-	 * var factory:ECMAObjectFactory = ECMAObjectFactory.getInstance() ;
-	 * var config:ObjectConfig        = new ObjectConfig() ;
-	 * 
-	 * config.defaultInitMethod       = "init" ;
-	 * config.defaultDestroyMethod    = "destroy" ;
-	 * config.identify                = true ;
-	 * 
-	 * factory.config = config ;
-	 * trace( config ) ; // [ObjectConfig defaultDestroyMethod:destroy defaultInitMethod:init identify:true]
-	 * </pre>
-	 * @author eKameleon
-	 */
-	public class ObjectConfig extends CoreObject 
-	{
+     * This object contains the configuration of the IOC object factory.
+     * <p><b>Example :</b></p>
+     * <pre class="prettyprint">
+     * import andromeda.ioc.factory.ECMAObjectFactory ;
+     * import andromeda.ioc.factory.ObjectConfig ;
+     * 
+     * var factory:ECMAObjectFactory = ECMAObjectFactory.getInstance() ;
+     * var config:ObjectConfig       = new ObjectConfig() ;
+     * 
+     * config.defaultInitMethod      = "init" ;
+     * config.defaultDestroyMethod   = "destroy" ;
+     * config.identify               = true ;
+     * 
+     * config.typeAliases            = [ { alias:"CoreObject" , type:"vegas.core.CoreObject" } ] ;
+     * config.typePolicy             = TypePolicy.ALIAS ;
+     * 
+     * factory.config = config ;
+     * trace( config ) ; // [ObjectConfig defaultDestroyMethod:destroy defaultInitMethod:init identify:true]
+     * </pre>
+     * @author eKameleon
+     */
+    public class ObjectConfig extends CoreObject 
+    {
 
-		/**
-		 * Creates a new ObjectConfig instance.
-		 * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
-		 */
-		public function ObjectConfig( init:Object=null )
-		{
+        /**
+         * Creates a new ObjectConfig instance.
+         * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
+         */
+        public function ObjectConfig( init:Object=null )
+        {
             _typeAliases = new TypeAliases() ;
-			initialize( init ) ;
-		}
-		
-		/**
-		 * The default name of destroy callback method to invoke with object definition in the ObjectFactory. 
-		 */
-		public var defaultDestroyMethod:String ;
+            initialize( init ) ;
+        }
+        
+        /**
+         * The default name of destroy callback method to invoke with object definition in the ObjectFactory. 
+         */
+        public var defaultDestroyMethod:String ;
 
-		/**
-		 * The default name of destroy callback method to invoke with object definition in the ObjectFactory. 
-		 */
-		public var defaultInitMethod:String ; 		
-		
-		/**
-		 * Indicates if the singleton objects in the ObjectFactory are identifiy if the type of the object implements the Identifiable interface.
-		 */
-		public var identify:Boolean ;
-		
-		/**
-		 * Determinates the typeAliases reference of this config object.
-		 * <p>The setter of this virtual property can be populated with a TypeAliases instance or an Array of typeAliases items.</p>
-		 * <p>This setter attribute don't remove the old TypeAliases instance but fill it with new aliases. 
-		 * If you want cleanup the aliases of this configuration object you must use the <code class="prettyprint">typeAliases.clear()</code> method.</p>
-		 * <p>The typeAliases items are generic objects with 2 attributes <b>alias</b> (the alias String expression) and <b>type</b> (the type String expression).</p>
-		 * <p><b>Example :</b></p>
-		 * <pre class="prettyprint">
-		 * </pre> 
-		 */
-		public function get typeAliases():*
-		{
-		  	return _typeAliases ;
-		}
-		
+        /**
+         * The default name of destroy callback method to invoke with object definition in the ObjectFactory. 
+         */
+        public var defaultInitMethod:String ;         
+        
+        /**
+         * Indicates if the singleton objects in the ObjectFactory are identifiy if the type of the object implements the Identifiable interface.
+         */
+        public var identify:Boolean ;
+        
+        /**
+         * Determinates the typeAliases reference of this config object.
+         * <p>The setter of this virtual property can be populated with a TypeAliases instance or an Array of typeAliases items.</p>
+         * <p>This setter attribute don't remove the old TypeAliases instance but fill it with new aliases. 
+         * If you want cleanup the aliases of this configuration object you must use the <code class="prettyprint">typeAliases.clear()</code> method.</p>
+         * <p>The typeAliases items are generic objects with 2 attributes <b>alias</b> (the alias String expression) and <b>type</b> (the type String expression).</p>
+         * <p><b>Example :</b></p>
+         * <pre class="prettyprint">
+         * import andromeda.ioc.factory.ObjectConfig ;
+         * var config:ObjectConfig  = new ObjectConfig() ;
+         * config.typeAliases       = 
+         * [ 
+         *     { alias:"CoreObject" , type:"vegas.core.CoreObject" } 
+         * ] ;
+         * </pre> 
+         */
+        public function get typeAliases():*
+        {
+              return _typeAliases ;
+        }
+        
         /**
          * @private
          */
@@ -100,29 +109,29 @@ package andromeda.ioc.factory
         {
             if ( aliases is TypeAliases )
             {
-            	var it:Iterator = (aliases as TypeAliases).iterator() ;
-            	while( it.hasNext() )
-            	{
-            		var next:String = it.next() as String ;
-            		var key:String  = it.key() as String ;
-            	   	_typeAliases.put(key, next) ;
-            	}
+                var it:Iterator = (aliases as TypeAliases).iterator() ;
+                while( it.hasNext() )
+                {
+                    var next:String = it.next() as String ;
+                    var key:String  = it.key() as String ;
+                       _typeAliases.put(key, next) ;
+                }
             }
             else if ( aliases is Array )
             {
-            	var arr:Array = aliases as Array ;
-            	var len:uint  = arr.length ;
-            	if ( len > 0 )
-            	{
-               	   while ( --len > -1 )
-            	   {
-                	   var item:Object = arr[len] as Object ;
-            	       if ( item != null && ( ObjectAttribute.TYPE_ALIAS in item ) && ( ObjectAttribute.TYPE in item ) )
-            	       {
-                	   	   _typeAliases.put( item[ObjectAttribute.TYPE_ALIAS] as String , item[ObjectAttribute.TYPE] as String ) ;
-            	       }	
-            	   }
-            	}
+                var arr:Array = aliases as Array ;
+                var len:uint  = arr.length ;
+                if ( len > 0 )
+                {
+                      while ( --len > -1 )
+                   {
+                       var item:Object = arr[len] as Object ;
+                       if ( item != null && ( ObjectAttribute.TYPE_ALIAS in item ) && ( ObjectAttribute.TYPE in item ) )
+                       {
+                              _typeAliases.put( item[ObjectAttribute.TYPE_ALIAS] as String , item[ObjectAttribute.TYPE] as String ) ;
+                       }    
+                   }
+                }
             }
         }
         
@@ -134,7 +143,7 @@ package andromeda.ioc.factory
          */
         public function get typePolicy():String
         {
-            return _typePolicy ;	
+            return _typePolicy ;    
         }
         
         /**
@@ -142,73 +151,73 @@ package andromeda.ioc.factory
          */
         public function set typePolicy( policy:String ):void
         {
-        	switch( policy )
-        	{
-        		case TypePolicy.ALIAS :
-        		case TypePolicy.ALL   :
-        		case TypePolicy.NONE  :
-        		{
+            switch( policy )
+            {
+                case TypePolicy.ALIAS :
+                case TypePolicy.ALL   :
+                case TypePolicy.NONE  :
+                {
                     _typePolicy = policy ;
                     break ;
-        		}
-        		default :
-        		{
+                }
+                default :
+                {
                     _typePolicy = TypePolicy.NONE ;
                 }
-        	}
+            }
         }        
         
         /**
-		 * Initialize the config object.
-		 * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
-		 */
-		public function initialize( init:Object ):void
-		{
-			if ( init == null )
-			{
-				return ;	
-			}
-			for (var prop:String in init)
-			{
-				if ( prop in this )
-				{
-					this[prop] = init[prop] ;	
-				}	
-			}
-		}
-        		
-		/**
-		 * Returns the string representation of this instance.
-		 * @return the string representation of this instance.
-		 */
-		public override function toString():String 
-		{
-			var s:String = "[" + Reflection.getClassName(this) ;
-			if ( defaultDestroyMethod != null )
-			{
-				s += " defaultDestroyMethod:" + defaultDestroyMethod ;
-			}
-			if ( defaultInitMethod != null )
-			{
-				s += " defaultInitMethod:" + defaultInitMethod ;
-			}
-			if ( identify )
-			{
-				s += " identify:" + identify ;
-			}
-			s += "]" ;
-			return s ;
-		}
-		
-		/**
-		 * @private
-		 */
-		private var _typeAliases:TypeAliases ;
-	           
+         * Initialize the config object.
+         * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
+         */
+        public function initialize( init:Object ):void
+        {
+            if ( init == null )
+            {
+                return ;    
+            }
+            for (var prop:String in init)
+            {
+                if ( prop in this )
+                {
+                    this[prop] = init[prop] ;    
+                }    
+            }
+        }
+                
+        /**
+         * Returns the string representation of this instance.
+         * @return the string representation of this instance.
+         */
+        public override function toString():String 
+        {
+            var s:String = "[" + Reflection.getClassName(this) ;
+            if ( defaultDestroyMethod != null )
+            {
+                s += " defaultDestroyMethod:" + defaultDestroyMethod ;
+            }
+            if ( defaultInitMethod != null )
+            {
+                s += " defaultInitMethod:" + defaultInitMethod ;
+            }
+            if ( identify )
+            {
+                s += " identify:" + identify ;
+            }
+            s += "]" ;
+            return s ;
+        }
+        
         /**
          * @private
          */
-        private var _typePolicy:String = TypePolicy.NONE ;	
-		
-	}
+        private var _typeAliases:TypeAliases ;
+               
+        /**
+         * @private
+         */
+        private var _typePolicy:String = TypePolicy.NONE ;    
+        
+    }
 }

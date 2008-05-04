@@ -43,23 +43,26 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 </table>
 <p></p>
-  This object contains the configuration of the IOC object factory.
-  <p><b>Example :</b></p>
-  <pre class="prettyprint">
-  import andromeda.ioc.factory.ECMAObjectFactory ;
-  import andromeda.ioc.factory.ObjectConfig ;
-  
-  var factory:ECMAObjectFactory = ECMAObjectFactory.getInstance() ;
-  var config:ObjectConfig        = new ObjectConfig() ;
-  
-  config.defaultInitMethod       = "init" ;
-  config.defaultDestroyMethod    = "destroy" ;
-  config.identify                = true ;
-  
-  factory.config = config ;
-  trace( config ) ; // [ObjectConfig defaultDestroyMethod:destroy defaultInitMethod:init identify:true]
-  </pre>
-  <p></p>
+     This object contains the configuration of the IOC object factory.
+     <p><b>Example :</b></p>
+     <pre class="prettyprint">
+     import andromeda.ioc.factory.ECMAObjectFactory ;
+     import andromeda.ioc.factory.ObjectConfig ;
+     
+     var factory:ECMAObjectFactory = ECMAObjectFactory.getInstance() ;
+     var config:ObjectConfig       = new ObjectConfig() ;
+     
+     config.defaultInitMethod      = "init" ;
+     config.defaultDestroyMethod   = "destroy" ;
+     config.identify               = true ;
+     
+     config.typeAliases            = [ { alias:"CoreObject" , type:"vegas.core.CoreObject" } ] ;
+     config.typePolicy             = TypePolicy.ALIAS ;
+     
+     factory.config = config ;
+     trace( config ) ; // [ObjectConfig defaultDestroyMethod:destroy defaultInitMethod:init identify:true]
+     </pre>
+     <p></p>
 <br>
 <hr>
 </div>
@@ -72,22 +75,22 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#defaultDestroyMethod">defaultDestroyMethod</a> : String<div class="summaryTableDescription">
-   The default name of destroy callback method to invoke with object definition in the ObjectFactory.</div>
+         The default name of destroy callback method to invoke with object definition in the ObjectFactory.</div>
 </td><td class="summaryTableOwnerCol">ObjectConfig</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#defaultInitMethod">defaultInitMethod</a> : String<div class="summaryTableDescription">
-   The default name of destroy callback method to invoke with object definition in the ObjectFactory.</div>
+         The default name of destroy callback method to invoke with object definition in the ObjectFactory.</div>
 </td><td class="summaryTableOwnerCol">ObjectConfig</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#identify">identify</a> : Boolean<div class="summaryTableDescription">
-   Indicates if the singleton objects in the ObjectFactory are identifiy if the type of the object implements the Identifiable interface.</div>
+         Indicates if the singleton objects in the ObjectFactory are identifiy if the type of the object implements the Identifiable interface.</div>
 </td><td class="summaryTableOwnerCol">ObjectConfig</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#typeAliases">typeAliases</a> : *<div class="summaryTableDescription">
-   Determinates the typeAliases reference of this config object.</div>
+         Determinates the typeAliases reference of this config object.</div>
 </td><td class="summaryTableOwnerCol">ObjectConfig</td>
 </tr>
 <tr class="">
@@ -117,7 +120,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#ObjectConfig()">ObjectConfig</a>(init:Object = null)</div>
 <div class="summaryTableDescription">
-   Creates a new ObjectConfig instance.</div>
+         Creates a new ObjectConfig instance.</div>
 </td><td class="summaryTableOwnerCol">ObjectConfig</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -142,7 +145,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#initialize()">initialize</a>(init:Object):void</div>
 <div class="summaryTableDescription">
-   Initialize the config object.</div>
+         Initialize the config object.</div>
 </td><td class="summaryTableOwnerCol">ObjectConfig</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -166,7 +169,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#toString()">toString</a>():String</div>
 <div class="summaryTableDescription">
-   Returns the string representation of this instance.</div>
+         Returns the string representation of this instance.</div>
 </td><td class="summaryTableOwnerCol">ObjectConfig</td>
 </tr>
 </table>
@@ -186,8 +189,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public var defaultDestroyMethod:String</code><p>
-   The default name of destroy callback method to invoke with object definition in the ObjectFactory. 
-   </p></div>
+         The default name of destroy callback method to invoke with object definition in the ObjectFactory. 
+         </p></div>
 <a name="defaultInitMethod"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -196,8 +199,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public var defaultInitMethod:String</code><p>
-   The default name of destroy callback method to invoke with object definition in the ObjectFactory. 
-   </p></div>
+         The default name of destroy callback method to invoke with object definition in the ObjectFactory. 
+         </p></div>
 <a name="identify"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -206,8 +209,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public var identify:Boolean</code><p>
-   Indicates if the singleton objects in the ObjectFactory are identifiy if the type of the object implements the Identifiable interface.
-   </p></div>
+         Indicates if the singleton objects in the ObjectFactory are identifiy if the type of the object implements the Identifiable interface.
+         </p></div>
 <a name="typeAliases"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -216,15 +219,21 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>typeAliases:*</code>&nbsp;&nbsp;[read-write]<p>
-   Determinates the typeAliases reference of this config object.
-   </p><p>The setter of this virtual property can be populated with a TypeAliases instance or an Array of typeAliases items.</p>
-   <p>This setter attribute don't remove the old TypeAliases instance but fill it with new aliases. 
-   If you want cleanup the aliases of this configuration object you must use the <code class="prettyprint">typeAliases.clear()</code> method.</p>
-   <p>The typeAliases items are generic objects with 2 attributes <b>alias</b> (the alias String expression) and <b>type</b> (the type String expression).</p>
-   <p><b>Example :</b></p>
-   <pre class="prettyprint">
-   </pre> 
-   <span class="label">Implementation</span>
+         Determinates the typeAliases reference of this config object.
+         </p><p>The setter of this virtual property can be populated with a TypeAliases instance or an Array of typeAliases items.</p>
+         <p>This setter attribute don't remove the old TypeAliases instance but fill it with new aliases. 
+         If you want cleanup the aliases of this configuration object you must use the <code class="prettyprint">typeAliases.clear()</code> method.</p>
+         <p>The typeAliases items are generic objects with 2 attributes <b>alias</b> (the alias String expression) and <b>type</b> (the type String expression).</p>
+         <p><b>Example :</b></p>
+         <pre class="prettyprint">
+         import andromeda.ioc.factory.ObjectConfig ;
+         var config:ObjectConfig  = new ObjectConfig() ;
+         config.typeAliases       = 
+         [ 
+             { alias:"CoreObject" , type:"vegas.core.CoreObject" } 
+         ] ;
+         </pre> 
+         <span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get typeAliases():*</code>
 <br>
@@ -265,12 +274,12 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function ObjectConfig(init:Object = null)</code><p>
-   Creates a new ObjectConfig instance.
-   </p><span class="label">Parameters</span>
+         Creates a new ObjectConfig instance.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">init</span>:Object</code> (default = <code>null</code>)<code></code> &mdash; A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -284,12 +293,12 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function initialize(init:Object):void</code><p>
-   Initialize the config object.
-   </p><span class="label">Parameters</span>
+         Initialize the config object.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">init</span>:Object</code> &mdash; A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -301,13 +310,13 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public override function toString():String</code><p>
-   Returns the string representation of this instance.
-   </p><p></p>
+         Returns the string representation of this instance.
+         </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>String</code> &mdash; the string representation of this instance.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
