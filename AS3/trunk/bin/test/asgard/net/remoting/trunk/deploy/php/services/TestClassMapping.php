@@ -1,6 +1,6 @@
 <?php
 
-	require("test/vo/UserVO.php") ;
+	require("../src/test/vo/UserVO.php") ;
 	
 	/**
 	 * This service test the class mapping with AMFPHP.
@@ -15,7 +15,7 @@
 			(
 				"getUser" => array
 				(
-					"description" => "Returns a user.",
+					"description" => "Returns an UserVO reference.",
 					"access"      => "remote"
 				)
 			) ;
@@ -27,7 +27,7 @@
 		 */
 		function getUser( $name, $age, $url ) 
 		{
-			return new User( $name, $age, $url ) ;
+			return new UserVO( $name, $age, $url ) ;
 		}
 	
 	}

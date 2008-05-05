@@ -11,10 +11,8 @@ class Test
 	 */
 	function Test () 
 	{
-	
 		$this->methodTable = array 
 		(
-			
         	"hello" => array 
         	(
 				"access"      => "remote"           ,
@@ -27,17 +25,15 @@ class Test
 				"description" => "return date" ,
 				"returns"     => "date"
 			)
-			
+			,
+			"run" => array 
+			(
+				"access"      => "remote"      , 
+				"description" => "return a test" 
+			)
         ) ;
-		
 	}
 	
-	/**
-	 * Basic "hello world" method.
-	 * @param $who a String value.
-	 * @return a string
-	 */
-	 
 	function hello( $who ) 
 	{
 		if ( $who == "" )
@@ -46,14 +42,15 @@ class Test
 		}
 		return "hello " . $who . " !" ;
 	}
-
-	/**
-	 * Returns a Date object.
-	 * @return a Date object.
-	 */
+	
 	function getDate($date) 
 	{
 		return $date ;
+	}
+	
+	function run()
+	{
+		return "test" ;
 	}
 	
 }
