@@ -58,6 +58,7 @@ package asgard.net
 			_nc = new NetConnection() ;
 			_nc.client = this ;
 			_nc.objectEncoding = ObjectEncoding.AMF0 ; // DEFAULT AMF0
+			
 			_nc.addEventListener( IOErrorEvent.IO_ERROR             , _onIOError) ;
 			_nc.addEventListener( NetStatusEvent.NET_STATUS         , _onStatus) ;
 			_nc.addEventListener( SecurityErrorEvent.SECURITY_ERROR , _onSecurityError);
@@ -387,10 +388,7 @@ package asgard.net
     	 */
 		protected function notifyStatus( status:NetServerStatus , info:* = null ):void 
 		{
-			var e:NetServerEvent = new NetServerEvent( _sTypeStatus, this ) ;
-			e.setInfo(info) ;
-			e.setStatus(status) ;
-			dispatchEvent( e ) ;	
+			dispatchEvent( new NetServerEvent( _sTypeStatus, this , status , info ) ) ;	
 		}
 	
     	/**
@@ -490,25 +488,7 @@ package asgard.net
     			_nc.call( event, null, context ) ;
 		    }
 	    }
-		
-		/**
-		 * Invoked when a IOErrorEvent is notified.
-		 */
-		protected function _onIOError(e:IOErrorEvent):void
-		{
-			_timer.stop() ;
-			notifyFinished() ;
-		}
-
-		/**
-		 * Invoked when a SecurityErrorEvent is notified.
-		 */
-		protected function _onSecurityError(e:SecurityErrorEvent):void
-		{
-			_timer.stop() ;
-			notifyFinished() ;
-		}
-		
+        		
 		/**
 		 * @private
 		 */
@@ -561,70 +541,54 @@ package asgard.net
 		 */
 		private var _uri:String ;
 		
-		/**
-		 * @private
-		 */
-		private function _onStatus( e:NetStatusEvent ):void
-		{
-			
-			_timer.stop() ;
+        /**
+         * Invoked when a IOErrorEvent is notified.
+         * @private
+         */
+        protected function _onIOError(e:IOErrorEvent):void
+        {
+            _timer.stop() ;
+            notifyFinished() ;
+        }
 
-			dispatchEvent( e ) ;
-			
-			var code:NetServerStatus = NetServerStatus.format( e.info.code ) ;
-			
-			switch (code) 
-			{
-				
-				case NetServerStatus.BAD_VERSION :
-				{
-					notifyStatus( NetServerStatus.BAD_VERSION , e.info) ;
-					break ;
-				}
-				case NetServerStatus.CLOSED :
-				{
-					notifyStatus(NetServerStatus.CLOSED, e.info) ;
-					break ;
-				}
-				case NetServerStatus.FAILED :
-				{
-					notifyStatus(NetServerStatus.FAILED, e.info) ;
-					break ;
-				}
-				case NetServerStatus.INVALID :
-				{
-					notifyStatus(NetServerStatus.INVALID, e.info) ;
-					break ;
-				}	
-				case NetServerStatus.REJECTED :
-				{
-					notifyStatus(NetServerStatus.REJECTED, e.info) ;
-					break ;
-				}
-				case NetServerStatus.SHUTDOWN :
-				{
-					notifyStatus(NetServerStatus.SHUTDOWN, e.info) ;
-					break ;
-				}
-				case NetServerStatus.SUCCESS :
-				{
-					notifyStatus(NetServerStatus.SUCCESS, e.info) ;
-					break ;
-				}
-			}
-			notifyFinished() ;
-		}
+        /**
+         * Invoked when a SecurityErrorEvent is notified.
+         * @private
+         */
+        protected function _onSecurityError(e:SecurityErrorEvent):void
+        {
+            _timer.stop() ;
+            notifyFinished() ;
+        }		
+		
+        /**
+         * @private
+         */
+        private function _onStatus( e:NetStatusEvent ):void
+        {
+            var status:NetServerStatus = NetServerStatus.get( e.info.code ) ;
+            _timer.stop() ;
+            dispatchEvent( e ) ;
+            if ( status != null  )
+            {
+                notifyStatus( status , e.info) ;
+            }
+            notifyFinished() ;
+        }		
 		
 		/**
 	     * Invoked when the connection is out of time.
 	     * @private
 	     */
-		public function _onTimeOut(e:TimerEvent):void 
+		protected function _onTimeOut(e:TimerEvent):void 
 		{
 			this._timer.stop() ;
+			if ( this.connected )
+			{
+			    this.close() ;
+			}
     		this.notifyTimeOut() ;
 			this.notifyFinished() ;
-			this.close() ;
 		}
 		
 		

@@ -20,29 +20,29 @@
   Contributor(s) :
   
 */
-
 package asgard.net.remoting
 {
     import asgard.net.NetServerConnection;
     
+    import system.Reflection;                
+
     /**
-	 * The NetServerConnection object used in the RemotingService class to connect the client with the server.
+	 * The <code class="prettyprint">RemotingConnection</code> object used in the RemotingService class to connect the client with the server.
 	 * @author eKameleon
- 	 * @version 1.0.0.0
 	 */	
 	public class RemotingConnection extends NetServerConnection
 	{
 		
 	    /**
-    	 * Creates a new RemotingConnection instance.
+    	 * Creates a new <code class="prettyprint">RemotingConnection</code> instance.
     	 * @param sURL the url of the connection.
     	 */	
-		public function RemotingConnection( sURL:String = null )
+		public function RemotingConnection( url:String = null )
 		{
 			super() ;
-			if ( sURL != null )
+			if ( url != null )
 			{
-				this.connect( sURL );
+				this.connect( url );
 			} 
 		}
 
@@ -66,21 +66,25 @@ package asgard.net.remoting
 		}
 		
 		/**
-		 * Returns the RemotingConnection reference defines with the specified url representation.
-		 * @return the RemotingConnection reference defines with the specified url representation.
+		 * Returns the <code class="prettyprint">RemotingConnection</code> reference defines with the specified url representation.
+		 * @return the <code class="prettyprint">RemotingConnection</code> reference defines with the specified url representation.
 		 */
-		public static function getConnection( sUrl:String ):RemotingConnection 
+		public static function getConnection( url:String ):RemotingConnection 
 		{
-			if ( ! RemotingConnectionCollector.contains(sUrl) ) 
+			if ( url != null && url.length > 0 )
 			{
-				RemotingConnectionCollector.insert( sUrl, new RemotingConnection( sUrl ) );
-			}
-			return RemotingConnectionCollector.get(sUrl) ;
+                if ( ! RemotingConnectionCollector.contains( url ) ) 
+			    {
+				    RemotingConnectionCollector.insert( url, new RemotingConnection( url ) );
+			    }
+			    return RemotingConnectionCollector.get( url ) ;
+		    }
+            return null ;   
 		}
-
+		
 		/**
 		 * Sets the credentials authentification value of this connection.
-		 * @param authentification The RemotingAuthentification object to defines the credentials user id and password of the service session.
+		 * @param authentification The <code class="prettyprint">RemotingAuthentification</code> object to defines the credentials user id and password of the service session.
 		 */
 		public function setCredentials( authentification:RemotingAuthentification = null ):void  
 		{
@@ -94,14 +98,14 @@ package asgard.net.remoting
 		{
 			var oDebug:Object = 
 			{
-				amf:false, 
-				error:true,
-				trace:true,
-				coldfusion:false, 
-				m_debug:true,
-				httpheaders:false, 
-				amfheaders:false, 
-				recordset:true
+				amf         : false , 
+				error       : true  ,
+				trace       : true  ,
+				coldfusion  : false , 
+				m_debug     : true  ,
+				httpheaders : false , 
+				amfheaders  : false , 
+				recordset   : true
 			} ;
 			addHeader( RemotingConnection.AMF_SERVER_DEBUG, true, oDebug) ;
 		}
@@ -113,6 +117,15 @@ package asgard.net.remoting
 		{
 			addHeader( RemotingConnection.AMF_SERVER_DEBUG, true, undefined) ;
 		}
+		
+        /**
+         * Returns the string representation of this instance.
+         * @return the string representation of this instance.
+         */
+        public override function toString():String 
+        {
+            return "[" + Reflection.getClassName(this) + "]" ;
+        }		
 		
 	}
 	

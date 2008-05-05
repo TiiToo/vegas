@@ -20,18 +20,16 @@
   Contributor(s) :
   
 */
-
 package asgard.net.remoting
 {
     import asgard.net.remoting.RemotingConnection;
     
     import vegas.data.map.HashMap;
-    import vegas.errors.Warning;
-    
-	/**
+    import vegas.errors.Warning;    
+
+    /**
 	 * This collector use a Map to register all RemotingConnection in the application.
  	 * @author eKameleon
-	 * @version 1.0.0.0
 	 */
 	public class RemotingConnectionCollector
 	{
@@ -57,42 +55,34 @@ package asgard.net.remoting
 		 * Returns the RemotingConnection reference with the name passed in argument.
 		 * @return the RemotingConnection reference with the name passed in argument.
 		 */
-		public static function get(sName:String):RemotingConnection 
+		public static function get( name:String ):RemotingConnection 
 		{
-			try 
+			if (!contains(name) ) 
 			{
-				if (!contains(sName) ) 
-				{
-					throw new Warning("[RemotingConnectionCollector].get(\"" + sName + "\"). Can't find RemotingConnection instance." ) ;
-				} ;
-			} 
-			catch (e:Warning) 
-			{
-				e.toString() ;
+				throw new Warning("[RemotingConnectionCollector].get(\"" + name + "\"). Can't find RemotingConnection instance." ) ;
 			}
-			
-			return RemotingConnection(_map.get(sName)) ;	
+			return RemotingConnection(_map.get(name)) ;	
 		}
 		
 		/**
 		 * Insert a RemotingConnection in the collector and indexed it with the string name in the first parameter.
-		 * @param sName the name of the RemotingConnection object to register it.
+		 * @param name the name of the RemotingConnection object to register it.
 		 * @param rc the RemotingConnection reference. 
 		 */
-		public static function insert(sName:String, rc:RemotingConnection):Boolean 
+		public static function insert( name:String, rc:RemotingConnection ):Boolean 
 		{
 			try 
 			{
-				if ( contains(sName) ) 
+				if ( contains(name) ) 
 				{
-					throw new Warning("[RemotingConnectionCollector].insert(). A RemotingConnection instance is already registered with '" + sName + "' name." ) ;
-				} ;
+					throw new Warning("[RemotingConnectionCollector].insert(). A RemotingConnection instance is already registered with '" + name + "' name." ) ;
+				}
 			}
 			catch (e:Warning) 
 			{
 				e.toString() ;
 			}
-			return Boolean(_map.put(sName, rc))   ;	
+			return Boolean( _map.put(name, rc) )   ;	
 			
 		}
 	
@@ -122,6 +112,9 @@ package asgard.net.remoting
 			return _map.size() ;
 		}
 		
+		/**
+		 * @private
+		 */
 		private static var _map:HashMap = new HashMap() ;	
 		
 	}

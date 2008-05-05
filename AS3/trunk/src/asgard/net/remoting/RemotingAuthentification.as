@@ -20,7 +20,6 @@
   Contributor(s) :
   
 */
-
 package asgard.net.remoting
 {
     import vegas.core.CoreObject;
@@ -39,7 +38,7 @@ package asgard.net.remoting
     	 */
 		public function RemotingAuthentification(id:String=null, pass:String=null)
 		{
-			userid = id ;
+			userid   = id   ;
 			password = pass ;
 		}
 	

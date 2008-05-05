@@ -20,127 +20,172 @@
   Contributor(s) :
   
 */
-
 package asgard.net
 {
-	import vegas.core.CoreObject;    
+    import vegas.core.CoreObject;                    
 
-	/**
-	 * Defines the NetServer status.
-	 * @author eKameleon
-	 */
-	public class NetServerStatus extends CoreObject
-	{
+    /**
+     * Defines the enumeration of all NetServerConnection status codes.
+     * @author eKameleon
+     */
+    public class NetServerStatus extends CoreObject
+    {
 
         /**
          * Creates a new NetServerStatus instance.
-	 	 * @param s the String value of this object.
+          * @param code The code property.
          */ 
-		public function NetServerStatus( value:String )
-		{
-			_value = value ;
-		}
-	
-		/**
-	 	 * Packet encoded in an unidentified format.
-	 	 */	
-		public static const BAD_VERSION:NetServerStatus = new NetServerStatus("badversion") ;
-		
-		/**
-	 	 * The connection was closed successfully.
-	 	 */
-		public static const CLOSED:NetServerStatus = new NetServerStatus("closed") ;
+        public function NetServerStatus( code:String , level:String )
+        {
+            this.code = code ;
+        }
+        
+        /**
+         * The code property.
+         */
+        public var code:String ;
 
-		/**
-		 * The connection attempt failed or the NetConnection.call method was not able to invoke the server-side method or command.
-		 */
-		public static const FAILED:NetServerStatus = new NetServerStatus("failed") ;
+        /**
+         * The level property.
+         */
+        public var level:String ;
 
-		/**
-		 * The application name specified during connect is invalid.
-		 */
-		public static const INVALID:NetServerStatus = new NetServerStatus("invalidapp") ;
-		
-		/**
-	 	 * The connection attempt did not have permission to access the application.
-	 	 */
-		public static const REJECTED:NetServerStatus = new NetServerStatus("rejected") ;
-		
-		/**
-	 	 *  The specified application is shutting down.
-	 	 */
-		public static const SHUTDOWN:NetServerStatus = new NetServerStatus("appshutdown") ;
-	
-		/**
-	 	 * The connection attempt succeeded.
-	 	 */
-		public static const SUCCESS:NetServerStatus = new NetServerStatus("success") ;
+        /**
+          * Compares the specified object with this object for equality.
+          * @return <code class="prettyprint">true</code> if the the specified object is equal with this object.
+          */
+        public function equals( o:* ):Boolean
+        {
+            if ( o is NetServerStatus )
+            {
+                return ((o as NetServerStatus).code == code) && ((o as NetServerStatus).level == level) ;
+            }
+            else
+            {
+                return false ;
+            }    
+        }
 
-		/**
-	 	 * Compares the specified object with this object for equality.
-	 	 * @return <code class="prettyprint">true</code> if the the specified object is equal with this object.
-	 	 */
-		public function equals( o:* ):Boolean
-		{
-			return o.valueOf() == valueOf() ;	
-		}
+        /**
+         * Indicates if the specified code expression is register in the NetServerStatus enumeration list.
+         * @return <code class="prettyprint">true</code> if the specified code expression is register in the NetServerStatus enumeration list.
+         */
+        public static function contains( code:String ):Boolean 
+        {
+            return get(code) != null ;
+        }
 
-		/**
-		 * Convert onStatus code value in NetConnection.onStatus in a ConnectionStatus valid string.
-		 */
-		public static function format(code:String):NetServerStatus 
-		{
-			code = code.split(".").pop().toLowerCase() ;
-			var status:Array = [BAD_VERSION, CLOSED, FAILED, INVALID, REJECTED, SHUTDOWN, SUCCESS] ;
-			var l:uint = status.length ;
-			while(--l > -1) 
-			{
-				if (status[l].toString() == code) 
-				{
-					return status[l] ;	
-				}
-			}
-			return null ;
-		}
+        /**
+         * Returns the specified code expression register in the NetServerStatus enumeration list.
+         */
+        public static function get( code:String ):NetServerStatus 
+        {
+            var status:Array = 
+            [
+                 CALL_BAD_VERSION , CALL_FAILED      , CALL_PROHIBITED ,
+                 CONNECT_CLOSED   , CONNECT_FAILED   , CONNECT_INVALID , 
+                 CONNECT_REJECTED , CONNECT_SHUTDOWN , CONNECT_SUCCESS
+            ] ;
+            var len:uint = status.length ;
+            while( --len > -1 )
+            {
+            	if ( status[len].code == code )
+            	{
+            		return status[len] as NetServerStatus ;
+            	}
+            }
+            return null ;
+        }
 
-		/**
-		 * Returns the Eden String representation of this object.
-		 * @return the Eden String representation of this object.
-		 */
-		public override function toSource( indent:int = 0 ):String 
-		{
-			return "new asgard.net.NetServerStatus(\"" + toString() + "\")" ;
-		}
-		
-		/**
-		 * Returns the String representation of the object.
-		 * @return the String representation of the object.
-		 */
-		public override function toString():String
-		{
-			return _value ;
-		}
+        /**
+         * Returns the source representation of this object.
+         * @return the source representation of this object.
+         */
+        public override function toSource( indent:int = 0 ):String 
+        {
+            return 'new asgard.net.NetServerStatus("' + code + '","' + level + '")' ;
+        }
+        
+        /**
+         * Returns the String representation of the object.
+         * @return the String representation of the object.
+         */
+        public override function toString():String
+        {
+            return code ;
+        }
 
-		/**
-		 * Validate if the specified object is a valid status value.
-		 * @return <code class="prettyprint">true</code> if the specified object is a valid status value.
-		 */
-		public static function validate( o:* ):Boolean 
-		{
-			var status:Array = [BAD_VERSION, CLOSED, FAILED, INVALID, REJECTED, SHUTDOWN, SUCCESS] ;
-			return status.indexOf(o) > -1 ;	
-		}	
-		
-		/**
-		 * Returns the primitive value of this object.
-		 * @return the primitive value of this object.
-		 */
-		public function valueOf():*
-		{
-			return _value ;
-		}
-		
-		private var _value:String ;
-		
-	}
+        /**
+         * Validate if the specified object is a valid status value.
+         * @return <code class="prettyprint">true</code> if the specified object is a valid status value.
+         */
+        public static function validate( o:* ):Boolean 
+        {
+            var status:Array = 
+            [
+                 CALL_BAD_VERSION , CALL_FAILED      , CALL_PROHIBITED ,
+                 CONNECT_CLOSED   , CONNECT_FAILED   , CONNECT_INVALID , 
+                 CONNECT_REJECTED , CONNECT_SHUTDOWN , CONNECT_SUCCESS
+            ] ;
+            return status.indexOf(o) > -1 ;    
+        }    
+        
+        /**
+         * Returns the primitive value of this object.
+         * @return the primitive value of this object.
+         */
+        public function valueOf():*
+        {
+            return code ;
+        }
+                
+        /**
+         * Packet encoded in an unidentified format.
+         */ 
+        public static const CALL_BAD_VERSION:NetServerStatus = new NetServerStatus("NetConnection.Call.BadVersion", "error") ;
+
+        /**
+         * The NetConnection.call method was not able to invoke the server-side method or command.
+         */ 
+        public static const CALL_FAILED:NetServerStatus = new NetServerStatus("NetConnection.Call.Failed", "error") ;
+
+        /**
+         * An Action Message Format (AMF) operation is prevented for security reasons. 
+         * Either the AMF URL is not in the same domain as the file containing the code calling the NetConnection.call() method, 
+         * or the AMF server does not have a policy file that trusts the domain of the the file containing the code calling 
+         * the NetConnection.call() method.
+         */ 
+        public static const CALL_PROHIBITED:NetServerStatus = new NetServerStatus( "NetConnection.Call.Prohibited" , "error" ) ;
+                
+        /**
+         * The connection was closed successfully.
+         */
+        public static const CONNECT_CLOSED:NetServerStatus = new NetServerStatus( "NetConnection.Connect.Closed" , "status" ) ;
+
+        /**
+         * The connection attempt failed or the NetConnection.call method was not able to invoke the server-side method or command.
+         */
+        public static const CONNECT_FAILED:NetServerStatus = new NetServerStatus( "NetConnection.Connect.failed" , "error" ) ;
+
+        /**
+         * The application name specified during connect is invalid.
+         */
+        public static const CONNECT_INVALID:NetServerStatus = new NetServerStatus( "NetConnection.Connect.InvalidApp" , "error" ) ;
+        
+        /**
+         * The connection attempt did not have permission to access the application.
+         */
+        public static const CONNECT_REJECTED:NetServerStatus = new NetServerStatus( "NetConnection.Connect.Rejected" , "error" ) ;
+        
+        /**
+         *  The specified application is shutting down.
+         */
+        public static const CONNECT_SHUTDOWN:NetServerStatus = new NetServerStatus( "NetConnection.Connect.AppShutdown" , "error" ) ;
+    
+        /**
+         * The connection attempt succeeded.
+         */
+        public static const CONNECT_SUCCESS:NetServerStatus = new NetServerStatus( "NetConnection.Connect.Success" , "status" ) ;        
+        
+    }
 }

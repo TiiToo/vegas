@@ -155,9 +155,21 @@ package asgard.events
             _status = NetServerStatus.validate(status) ? status : null ;
         }
         
+        /**
+         * @private
+         */
         private var _connection:NetServerConnection ;
+
+        /**
+         * @private
+         */
         private var _status:NetServerStatus ;
+
+        /**
+         * @private
+         */
         private var _info:NetServerInfo ;
 
     }
+
 }
